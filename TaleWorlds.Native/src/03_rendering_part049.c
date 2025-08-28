@@ -170,7 +170,7 @@ void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int co
   
   buffer_count_ptr = (int *)(render_context + 0x80);
   // 重新分配缓冲区以容纳新的坐标点
-  FUN_18011dc70(buffer_count_ptr, coordinate_count + (*buffer_count_ptr - start_index));
+  expand_render_buffer(buffer_count_ptr, coordinate_count + (*buffer_count_ptr - start_index));
   current_count = *buffer_count_ptr;
   
   // 使用寄存器变量进行坐标变换
@@ -194,7 +194,7 @@ void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int co
       if (current_count + 1 < buffer_capacity) {
         new_capacity = buffer_capacity;
       }
-      FUN_18011dc70(buffer_count_ptr, new_capacity);
+      expand_render_buffer(buffer_count_ptr, new_capacity);
       current_count = *buffer_count_ptr;
     }
     
@@ -219,7 +219,7 @@ void RenderingSystem_ClearBuffer(longlong render_context)
 
 {
   // 清理渲染缓冲区
-  FUN_18011d9a0(render_context + 0x80);
+  clear_render_buffer(render_context + 0x80);
   return;
 }
 
@@ -235,11 +235,11 @@ void RenderingSystem_ScaleAndInitialize(longlong render_context, undefined8 data
 {
   // 检查缩放因子是否为0
   if (scale_factor == 0.0) {
-    FUN_18011d9a0();
+    clear_render_buffer();
   }
   else {
     // 重新分配缓冲区并初始化
-    FUN_18011dc70((int *)(render_context + 0x80), index_count + 1 + *(int *)(render_context + 0x80));
+    expand_render_buffer((int *)(render_context + 0x80), index_count + 1 + *(int *)(render_context + 0x80));
     if (-1 < index_count) {
       // 初始化渲染数据（此函数不返回）
       FUN_1808fd400();
@@ -260,7 +260,7 @@ void RenderingSystem_Initialize(void)
   int stack_index;
   
   // 分配渲染缓冲区
-  FUN_18011dc70();
+  expand_render_buffer();
   if (-1 < stack_index) {
     // 初始化渲染系统（此函数不返回）
     FUN_1808fd400();
@@ -381,7 +381,7 @@ void RenderingSystem_ProcessRectangleArea(longlong render_context, float *start_
       if (current_count + 1 < buffer_capacity) {
         new_capacity = buffer_capacity;
       }
-      FUN_18011dc70(buffer_count_ptr, new_capacity);
+      expand_render_buffer(buffer_count_ptr, new_capacity);
       current_count = *buffer_count_ptr;
     }
     
@@ -496,16 +496,16 @@ void RenderingSystem_ProcessCoordinateOffset(undefined4 render_context)
   }
   temp_coord_x = base_offset_x + temp_coord_y;
   temp_coord_y = base_coord_x + temp_coord_y;
-  FUN_180293730(render_context, &temp_coord_x);
+  FUN_180293730(render_context, &temp_coord_x, temp_coord_y, 0.0, 0, 0);
   temp_coord_y = offset_y + coord_ptr1[1];
   temp_coord_x = *coord_ptr2 - offset_y;
-  FUN_180293730(temp_coord_x, &temp_coord_x, offset_y, 9, 0xc);
+  FUN_180293730(render_context, &temp_coord_x, offset_y, 9, 0xc);
   temp_coord_x = *coord_ptr2 - offset_x;
   temp_coord_y = coord_ptr2[1] - offset_x;
-  FUN_180293730(temp_coord_x, &temp_coord_x, offset_x, 0, 3);
+  FUN_180293730(render_context, &temp_coord_x, offset_x, 0, 3);
   temp_coord_x = offset_distance + *coord_ptr1;
   temp_coord_y = coord_ptr2[1] - offset_distance;
-  FUN_180293730(temp_coord_x, &temp_coord_x, offset_distance, 3, 6);
+  FUN_180293730(render_context, &temp_coord_x, offset_distance, 3, 6);
   return;
 }
 
@@ -622,7 +622,7 @@ void RenderingSystem_ProcessDualCoordinates2(void)
     if (current_count + 1 < buffer_capacity) {
       new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(coord_x, new_capacity);
+    expand_render_buffer(coord_x, new_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -646,7 +646,7 @@ void RenderingSystem_ProcessDualCoordinates2(void)
     if (current_count + 1 < default_capacity) {
       buffer_capacity = default_capacity;
     }
-    FUN_18011dc70(coord_x, buffer_capacity);
+    expand_render_buffer(coord_x, buffer_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -709,7 +709,7 @@ void RenderingSystem_AlignTextureCoordinates(longlong render_context, float *sta
       if (current_count + 1 < buffer_capacity) {
         new_capacity = buffer_capacity;
       }
-      FUN_18011dc70(buffer_count_ptr, new_capacity);
+      expand_render_buffer(buffer_count_ptr, new_capacity);
       current_count = *buffer_count_ptr;
     }
     
@@ -960,7 +960,7 @@ void RenderingSystem_ExpandBufferAndProcessData(undefined4 buffer_ptr, undefined
   }
   
   // 扩展缓冲区
-  FUN_18011dc70(buffer_ptr, new_size);
+  expand_render_buffer(buffer_ptr, new_size);
   
   // 存储数据
   *(undefined8 *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)*buffer_count_ptr * 8) = data_ptr4;
@@ -1208,7 +1208,7 @@ void RenderingSystem_ProcessTripleCoordinates(longlong render_context, undefined
   // 检查渲染标志是否有效
   if ((render_flags & 0xff000000) != 0) {
     // 清理缓冲区
-    FUN_18011d9a0(render_context + 0x80);
+    clear_render_buffer(render_context + 0x80);
     // 添加三个坐标点到缓冲区
     FUN_18011d9a0(render_context + 0x80, data_ptr2);
     FUN_18011d9a0(render_context + 0x80, data_ptr3);
@@ -1287,47 +1287,57 @@ void RenderingSystem_ProcessScaledCoordinates(longlong render_context, undefined
 void RenderingSystem_AdvancedTextProcessing(longlong render_context, longlong font_data, float scale_factor, undefined8 *vertex_data, uint render_flags, longlong text_start, longlong text_end, undefined4 render_param, float *color_array)
 
 {
-  undefined8 *puVar1;
-  undefined8 uStack_18;
-  undefined8 uStack_10;
+  undefined8 *texture_data_ptr;
+  undefined8 texture_coord1;
+  undefined8 texture_coord2;
   
-  if ((param_5 & 0xff000000) != 0) {
-    if (param_7 == 0) {
-      param_7 = -1;
+  // 检查渲染标志是否有效
+  if ((render_flags & 0xff000000) != 0) {
+    // 如果文本结束指针为空，计算文本长度
+    if (text_end == 0) {
+      text_end = -1;
       do {
-        param_7 = param_7 + 1;
-      } while (*(char *)(param_6 + param_7) != '\0');
-      param_7 = param_7 + param_6;
+        text_end = text_end + 1;
+      } while (*(char *)(text_start + text_end) != '\0');
+      text_end = text_end + text_start;
     }
-    if (param_6 != param_7) {
-      if (param_2 == 0) {
-        param_2 = *(longlong *)(*(longlong *)(param_1 + 0x38) + 8);
+    
+    // 确保文本不为空
+    if (text_start != text_end) {
+      // 获取默认字体数据和缩放因子
+      if (font_data == 0) {
+        font_data = *(longlong *)(*(longlong *)(render_context + 0x38) + 8);
       }
-      if (param_3 == 0.0) {
-        param_3 = *(float *)(*(longlong *)(param_1 + 0x38) + 0x10);
+      if (scale_factor == 0.0) {
+        scale_factor = *(float *)(*(longlong *)(render_context + 0x38) + 0x10);
       }
-      puVar1 = (undefined8 *)
-               (*(longlong *)(param_1 + 0x68) + -0x10 + (longlong)*(int *)(param_1 + 0x60) * 0x10);
-      uStack_18 = *puVar1;
-      uStack_10 = puVar1[1];
-      if (param_9 != (float *)0x0) {
-        if ((float)uStack_18 < *param_9) {
-          uStack_18._4_4_ = (float)((ulonglong)uStack_18 >> 0x20);
-          uStack_18 = CONCAT44(uStack_18._4_4_,*param_9);
+      
+      // 获取纹理坐标数据
+      texture_data_ptr = (undefined8 *)
+               (*(longlong *)(render_context + 0x68) + -0x10 + (longlong)*(int *)(render_context + 0x60) * 0x10);
+      texture_coord1 = *texture_data_ptr;
+      texture_coord2 = texture_data_ptr[1];
+      
+      // 如果提供了颜色数组，调整纹理坐标
+      if (color_array != (float *)0x0) {
+        if ((float)texture_coord1 < *color_array) {
+          texture_coord1._4_4_ = (float)((ulonglong)texture_coord1 >> 0x20);
+          texture_coord1 = CONCAT44(texture_coord1._4_4_, *color_array);
         }
-        if (uStack_18._4_4_ < param_9[1]) {
-          uStack_18 = CONCAT44(param_9[1],(float)uStack_18);
+        if (texture_coord1._4_4_ < color_array[1]) {
+          texture_coord1 = CONCAT44(color_array[1], (float)texture_coord1);
         }
-        if (param_9[2] <= (float)uStack_10) {
-          uStack_10._4_4_ = (float)((ulonglong)uStack_10 >> 0x20);
-          uStack_10 = CONCAT44(uStack_10._4_4_,param_9[2]);
+        if (color_array[2] <= (float)texture_coord2) {
+          texture_coord2._4_4_ = (float)((ulonglong)texture_coord2 >> 0x20);
+          texture_coord2 = CONCAT44(texture_coord2._4_4_, color_array[2]);
         }
-        if (param_9[3] <= uStack_10._4_4_) {
-          uStack_10 = CONCAT44(param_9[3],(float)uStack_10);
+        if (color_array[3] <= texture_coord2._4_4_) {
+          texture_coord2 = CONCAT44(color_array[3], (float)texture_coord2);
         }
       }
-      FUN_180297590(param_2,param_1,param_3,*param_4,param_5,&uStack_18,param_6,param_7,param_8,
-                    param_9 != (float *)0x0);
+      
+      // 执行高级文本渲染
+      FUN_180297590(font_data, render_context, scale_factor, *vertex_data, render_flags, &texture_coord1, text_start, text_end, render_param, color_array != (float *)0x0);
     }
   }
   return;
@@ -1338,31 +1348,40 @@ void RenderingSystem_AdvancedTextProcessing(longlong render_context, longlong fo
 
 
 // 函数: void FUN_180294330(longlong param_1,undefined8 *param_2,uint param_3,longlong param_4)
-void FUN_180294330(longlong param_1,undefined8 *param_2,uint param_3,longlong param_4)
+// 功能: 渲染系统文本处理函数
+// 参数: param_1 - 渲染上下文指针, param_2 - 顶点数据数组, param_3 - 渲染标志, param_4 - 文本指针
+void RenderingSystem_ProcessText(longlong render_context, undefined8 *vertex_data, uint render_flags, longlong text_ptr)
 
 {
-  undefined4 *puVar1;
-  longlong lVar2;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined4 *texture_data_ptr;
+  longlong text_length;
+  undefined4 texture_coord1;
+  undefined4 texture_coord2;
+  undefined4 texture_coord3;
+  undefined4 texture_coord4;
   
-  if ((param_3 & 0xff000000) != 0) {
-    lVar2 = -1;
+  // 检查渲染标志是否有效
+  if ((render_flags & 0xff000000) != 0) {
+    // 计算文本长度
+    text_length = -1;
     do {
-      lVar2 = lVar2 + 1;
-    } while (*(char *)(param_4 + lVar2) != '\0');
-    if (param_4 != lVar2 + param_4) {
-      puVar1 = (undefined4 *)
-               (*(longlong *)(param_1 + 0x68) + -0x10 + (longlong)*(int *)(param_1 + 0x60) * 0x10);
-      uStack_18 = *puVar1;
-      uStack_14 = puVar1[1];
-      uStack_10 = puVar1[2];
-      uStack_c = puVar1[3];
-      FUN_180297590(*(undefined8 *)(*(longlong *)(param_1 + 0x38) + 8),param_1,
-                    *(undefined4 *)(*(longlong *)(param_1 + 0x38) + 0x10),*param_2,param_3,
-                    &uStack_18,param_4,lVar2 + param_4,0,0);
+      text_length = text_length + 1;
+    } while (*(char *)(text_ptr + text_length) != '\0');
+    
+    // 确保文本不为空
+    if (text_ptr != text_length + text_ptr) {
+      // 获取纹理坐标数据
+      texture_data_ptr = (undefined4 *)
+               (*(longlong *)(render_context + 0x68) + -0x10 + (longlong)*(int *)(render_context + 0x60) * 0x10);
+      texture_coord1 = *texture_data_ptr;
+      texture_coord2 = texture_data_ptr[1];
+      texture_coord3 = texture_data_ptr[2];
+      texture_coord4 = texture_data_ptr[3];
+      
+      // 执行文本渲染
+      FUN_180297590(*(undefined8 *)(*(longlong *)(render_context + 0x38) + 8), render_context,
+                    *(undefined4 *)(*(longlong *)(render_context + 0x38) + 0x10), *vertex_data, render_flags,
+                    &texture_coord1, text_ptr, text_length + text_ptr, 0, 0);
     }
   }
   return;
