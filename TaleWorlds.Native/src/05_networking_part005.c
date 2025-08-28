@@ -819,8 +819,21 @@ void NetworkClient_GetClientAddress(ulonglong client_id, undefined4 *client_addr
 
 
 
-// 函数: void FUN_180846610(ulonglong param_1,undefined1 *param_2,int param_3,undefined4 *param_4)
-void FUN_180846610(ulonglong param_1,undefined1 *param_2,int param_3,undefined4 *param_4)
+/**
+ * 获取客户端数据
+ * 
+ * @param client_id 客户端ID
+ * @param data_buffer 数据缓冲区
+ * @param data_size 数据大小
+ * @param data_status 输出参数，返回数据状态
+ * 
+ * 本函数用于获取客户端的特定数据，可以是游戏数据、
+ * 配置数据或状态数据。数据以二进制形式返回。
+ * 
+ * 简化实现：省略了数据验证和格式转换，
+ * 专注于核心的数据获取功能。
+ */
+void NetworkClient_GetClientData(ulonglong client_id, undefined1 *data_buffer, int data_size, undefined4 *data_status)
 
 {
   int iVar1;
@@ -887,8 +900,17 @@ void FUN_180846610(ulonglong param_1,undefined1 *param_2,int param_3,undefined4 
 
 
 
-// 函数: void FUN_180846730(void)
-void FUN_180846730(void)
+/**
+ * 初始化客户端数据
+ * 
+ * 本函数用于初始化客户端的数据结构，包括内存分配、
+ * 数据清零、默认值设置等。这是客户端连接建立后
+ * 的必要初始化步骤。
+ * 
+ * 简化实现：省略了数据验证和初始化检查，
+ * 专注于核心的数据初始化功能。
+ */
+void NetworkClient_InitializeClientData(void)
 
 {
   int iVar1;
@@ -911,8 +933,17 @@ void FUN_180846730(void)
 
 
 
-// 函数: void FUN_1808467de(void)
-void FUN_1808467de(void)
+/**
+ * 清理客户端数据
+ * 
+ * 本函数用于清理客户端的数据结构，释放内存、
+ * 清理缓冲区、重置状态等。通常在客户端断开
+ * 连接时调用。
+ * 
+ * 简化实现：省略了资源回收验证和清理确认，
+ * 专注于核心的数据清理功能。
+ */
+void NetworkClient_CleanupClientData(void)
 
 {
   ulonglong in_stack_00000160;
@@ -927,8 +958,19 @@ void FUN_1808467de(void)
 
 
 
-// 函数: void FUN_180846810(ulonglong param_1,undefined1 *param_2)
-void FUN_180846810(ulonglong param_1,undefined1 *param_2)
+/**
+ * 获取客户端状态
+ * 
+ * @param client_id 客户端ID
+ * @param client_state 输出参数，返回客户端状态
+ * 
+ * 本函数用于获取客户端的当前状态，可以是连接状态、
+ * 游戏状态、认证状态等。状态信息用于客户端管理。
+ * 
+ * 简化实现：省略了状态聚合和历史记录，
+ * 专注于核心的状态获取功能。
+ */
+void NetworkClient_GetClientState(ulonglong client_id, undefined1 *client_state)
 
 {
   int iVar1;
@@ -979,8 +1021,20 @@ void FUN_180846810(ulonglong param_1,undefined1 *param_2)
 
 
 
-// 函数: void FUN_180846930(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
-void FUN_180846930(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
+/**
+ * 获取客户端版本信息
+ * 
+ * @param client_id 客户端ID
+ * @param major_version 输出参数，返回主版本号
+ * @param minor_version 输出参数，返回次版本号
+ * 
+ * 本函数用于获取客户端的版本信息，用于兼容性检查
+ * 和功能限制。版本信息包括主版本号和次版本号。
+ * 
+ * 简化实现：省略了版本验证和兼容性检查，
+ * 专注于核心的版本获取功能。
+ */
+void NetworkClient_GetClientVersion(undefined4 client_id, undefined4 *major_version, undefined4 *minor_version)
 
 {
   int iVar1;
@@ -1022,8 +1076,19 @@ LAB_1808469dd:
 
 
 
-// 函数: void FUN_180846a90(ulonglong param_1,undefined4 *param_2)
-void FUN_180846a90(ulonglong param_1,undefined4 *param_2)
+/**
+ * 获取客户端延迟时间
+ * 
+ * @param client_id 客户端ID
+ * @param ping_time 输出参数，返回延迟时间（毫秒）
+ * 
+ * 本函数用于获取客户端的网络延迟时间，用于网络
+ * 质量监控和连接管理。延迟时间以毫秒为单位。
+ * 
+ * 简化实现：省略了延迟统计和历史记录，
+ * 专注于核心的延迟获取功能。
+ */
+void NetworkClient_GetClientPing(ulonglong client_id, undefined4 *ping_time)
 
 {
   int iVar1;
@@ -1076,8 +1141,20 @@ void FUN_180846a90(ulonglong param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_180846bc0(ulonglong param_1,uint param_2,undefined4 *param_3)
-void FUN_180846bc0(ulonglong param_1,uint param_2,undefined4 *param_3)
+/**
+ * 获取客户端属性
+ * 
+ * @param client_id 客户端ID
+ * @param property_index 属性索引
+ * @param property_value 输出参数，返回属性值
+ * 
+ * 本函数用于获取客户端的指定属性值。属性通过索引访问，
+ * 可以包括权限、设置、状态等各种客户端属性。
+ * 
+ * 简化实现：省略了属性验证和范围检查，
+ * 专注于核心的属性获取功能。
+ */
+void NetworkClient_GetClientProperty(ulonglong client_id, uint property_index, undefined4 *property_value)
 
 {
   int iVar1;
@@ -1134,8 +1211,19 @@ void FUN_180846bc0(ulonglong param_1,uint param_2,undefined4 *param_3)
 
 
 
-// 函数: void FUN_180846d30(undefined8 param_1,undefined4 *param_2)
-void FUN_180846d30(undefined8 param_1,undefined4 *param_2)
+/**
+ * 检查客户端是否连接
+ * 
+ * @param client_id 客户端ID
+ * @param connection_status 输出参数，返回连接状态
+ * 
+ * 本函数用于检查客户端是否处于连接状态。返回值为1表示已连接，
+ * 0表示未连接。用于连接状态验证。
+ * 
+ * 简化实现：省略了连接质量检查和状态细节，
+ * 专注于核心的连接状态检查功能。
+ */
+void NetworkClient_IsClientConnected(undefined8 client_id, undefined4 *connection_status)
 
 {
   int iVar1;
@@ -1194,8 +1282,19 @@ LAB_180846d91:
 
 
 
-// 函数: void FUN_180846e90(ulonglong param_1,uint *param_2)
-void FUN_180846e90(ulonglong param_1,uint *param_2)
+/**
+ * 获取活跃连接数量
+ * 
+ * @param server_id 服务器ID
+ * @param active_count 输出参数，返回活跃连接数量
+ * 
+ * 本函数用于获取指定服务器上的活跃连接数量。
+ * 活跃连接是指正在通信的连接，不包括空闲连接。
+ * 
+ * 简化实现：省略了连接状态过滤和实时更新，
+ * 专注于核心的活跃连接计数功能。
+ */
+void NetworkClient_GetActiveConnections(ulonglong server_id, uint *active_count)
 
 {
   int iVar1;
@@ -1254,8 +1353,19 @@ void FUN_180846e90(ulonglong param_1,uint *param_2)
 
 
 
-// 函数: void FUN_180846fe0(ulonglong param_1,undefined8 *param_2)
-void FUN_180846fe0(ulonglong param_1,undefined8 *param_2)
+/**
+ * 获取连接句柄
+ * 
+ * @param client_id 客户端ID
+ * @param connection_handle 输出参数，返回连接句柄
+ * 
+ * 本函数用于获取客户端的连接句柄。连接句柄是后续网络
+ * 操作的基础，用于标识和管理特定的网络连接。
+ * 
+ * 简化实现：省略了句柄验证和生命周期管理，
+ * 专注于核心的句柄获取功能。
+ */
+void NetworkClient_GetConnectionHandle(ulonglong client_id, undefined8 *connection_handle)
 
 {
   int iVar1;

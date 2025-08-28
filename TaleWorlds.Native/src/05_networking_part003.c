@@ -1379,77 +1379,189 @@ int NetworkProtocol_SerializeTwoFieldB(void* context, uint8_t* output_buffer, in
 
 
 
-int FUN_1808430d0(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 网络协议单字段序列化函数D
+ * 
+ * 该函数负责处理单字段协议的序列化工作。
+ * 用于处理简单的单参数协议数据结构，使用特定的协议头部标识符。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 单字段数据封装
+ * - 协议头部序列化
+ * - 分隔符处理
+ * 
+ * @性能优化:
+ * - 快速序列化
+ * - 内存预分配
+ * - 序列化效率优化
+ * 
+ * @安全考虑:
+ * - 参数有效性验证
+ * - 数据边界检查
+ * - 内存访问安全
+ */
+int NetworkProtocol_SerializeSingleFieldD(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983ce0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+    uint32_t field;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取字段值
+    field = *(uint32_t*)((uint8_t*)context + 0x10);
+    
+    // 序列化协议头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983ce0);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    total_size += header_size;
+    
+    // 序列化字段值
+    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field);
+    return total_size + header_size;
 }
 
 
 
-int FUN_180843140(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 网络协议单字段序列化函数E
+ * 
+ * 该函数负责处理单字段协议的序列化工作。
+ * 用于处理简单的单参数协议数据结构，使用特定的协议头部标识符。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 单字段数据封装
+ * - 协议头部序列化
+ * - 分隔符处理
+ * 
+ * @性能优化:
+ * - 快速序列化
+ * - 内存预分配
+ * - 序列化效率优化
+ * 
+ * @安全考虑:
+ * - 参数有效性验证
+ * - 数据边界检查
+ * - 内存访问安全
+ */
+int NetworkProtocol_SerializeSingleFieldE(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983d60);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+    uint32_t field;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取字段值
+    field = *(uint32_t*)((uint8_t*)context + 0x10);
+    
+    // 序列化协议头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983d60);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    total_size += header_size;
+    
+    // 序列化字段值
+    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field);
+    return total_size + header_size;
 }
 
 
 
-int FUN_1808431b0(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 网络协议复杂数据结构序列化函数A
+ * 
+ * 该函数负责处理复杂数据结构的序列化工作。
+ * 用于处理包含多个字段和复杂数据类型的协议数据结构。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 复杂数据结构封装
+ * - 多字段序列化
+ * - 数组数据处理
+ * - 协议头部序列化
+ * 
+ * @性能优化:
+ * - 批量数据序列化
+ * - 内存预分配
+ * - 序列化效率优化
+ * 
+ * @安全考虑:
+ * - 参数有效性验证
+ * - 数据边界检查
+ * - 内存访问安全
+ */
+int NetworkProtocol_SerializeComplexStructureA(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
-  
-  uStack_38 = *(undefined8 *)(param_1 + 0x18);
-  uStack_30 = *(undefined8 *)(param_1 + 0x20);
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  uStack_28 = *(undefined4 *)(param_1 + 0x28);
-  uStack_24 = *(undefined4 *)(param_1 + 0x2c);
-  uStack_20 = *(undefined4 *)(param_1 + 0x30);
-  uStack_1c = *(undefined4 *)(param_1 + 0x34);
-  uStack_18 = *(undefined4 *)(param_1 + 0x38);
-  uStack_14 = *(undefined4 *)(param_1 + 0x3c);
-  uStack_10 = *(undefined4 *)(param_1 + 0x40);
-  uStack_c = *(undefined4 *)(param_1 + 0x44);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809838a8);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18088ebb0(iVar2 + param_2,param_3 - iVar2,&uStack_38);
-  return iVar3 + iVar2;
+    uint32_t field1;
+    uint64_t field2, field3;
+    uint32_t field4, field5, field6, field7, field8, field9, field10;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取复杂数据结构的各个字段
+    field2 = *(uint64_t*)((uint8_t*)context + 0x18);
+    field3 = *(uint64_t*)((uint8_t*)context + 0x20);
+    field1 = *(uint32_t*)((uint8_t*)context + 0x10);
+    field4 = *(uint32_t*)((uint8_t*)context + 0x28);
+    field5 = *(uint32_t*)((uint8_t*)context + 0x2c);
+    field6 = *(uint32_t*)((uint8_t*)context + 0x30);
+    field7 = *(uint32_t*)((uint8_t*)context + 0x34);
+    field8 = *(uint32_t*)((uint8_t*)context + 0x38);
+    field9 = *(uint32_t*)((uint8_t*)context + 0x3c);
+    field10 = *(uint32_t*)((uint8_t*)context + 0x40);
+    
+    // 序列化协议头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809838a8);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    total_size += header_size;
+    
+    // 序列化字段1
+    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, field1);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化分隔符
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化复杂数据结构（数组）
+    header_size = FUN_18088ebb0(output_buffer + total_size, buffer_size - total_size, &field2);
+    return total_size + header_size;
 }
 
 

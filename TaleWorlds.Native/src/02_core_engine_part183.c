@@ -407,7 +407,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     *(undefined8 **)(dest_ptr + CORE_OFFSET_0x180) = data_block;
     
     // 复制第三部分数据
-    DataStructureProcessor(dest_ptr + CORE_OFFSET_0x198, src_ptr + CORE_OFFSET_0x198, CORE_ENGINE_BLOCK_SIZE_0x98, 5, FUN_180049b30, FUN_180044a30);
+    DataStructureProcessor(dest_ptr + CORE_OFFSET_0x198, src_ptr + CORE_OFFSET_0x198, CORE_ENGINE_BLOCK_SIZE_0x98, 5, DataBlockCopier, DataValidator);
     
     // 计算第三块数据的大小和数量
     buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x498) - *(longlong *)(src_ptr + CORE_OFFSET_0x490);
@@ -458,8 +458,8 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     *(undefined8 **)(dest_ptr + CORE_OFFSET_0x498) = data_block;
     
     // 复制剩余的数据部分
-    DataStructureProcessor(dest_ptr + CORE_OFFSET_0x4b0, src_ptr + CORE_OFFSET_0x4b0, CORE_ENGINE_BLOCK_SIZE_0x58, CORE_ENGINE_BLOCK_SIZE_0x10, FUN_1800b8300, FUN_180044a30);
-    DataStructureProcessor(dest_ptr + CORE_OFFSET_0xa30, src_ptr + CORE_OFFSET_0xa30, CORE_ENGINE_BLOCK_SIZE_0x98, 9, FUN_180049b30, FUN_180044a30);
+    DataStructureProcessor(dest_ptr + CORE_OFFSET_0x4b0, src_ptr + CORE_OFFSET_0x4b0, CORE_ENGINE_BLOCK_SIZE_0x58, CORE_ENGINE_BLOCK_SIZE_0x10, DataOptimizationProcessor, DataValidator);
+    DataStructureProcessor(dest_ptr + CORE_OFFSET_0xa30, src_ptr + CORE_OFFSET_0xa30, CORE_ENGINE_BLOCK_SIZE_0x98, 9, DataBlockCopier, DataValidator);
     DataBlockCopier(dest_ptr + CORE_OFFSET_0xf88, src_ptr + CORE_OFFSET_0xf88);
     DataBlockCopier(dest_ptr + CORE_OFFSET_0x1020, src_ptr + CORE_OFFSET_0x1020);
     
@@ -601,7 +601,7 @@ longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resou
     stack_data_4 = 0;
     stack_data_2 = (undefined1 *)0x0;
     stack_data_3 = 0;
-    FUN_1806277c0(&stack_data_1, *(undefined4 *)(config_data + CORE_OFFSET_0x10));
+    ConfigBlockInitializer(&stack_data_1, *(undefined4 *)(config_data + CORE_OFFSET_0x10));
     
     // 处理资源数据
     if (0 < *(int *)(config_data + CORE_OFFSET_0x10)) {
@@ -897,7 +897,7 @@ SKIP_REALLOCATION:
                 config_block[3] = 0;
                 config_block[1] = 0;
                 *(undefined4 *)(config_block + 2) = 0;
-                FUN_1806277c0(config_block, heap_ptr);
+                ConfigBlockInitializer(config_block, heap_ptr);
                 if ((int)heap_ptr != 0) {
                     memcpy(config_block[1], temp_ptr_1, (int)heap_ptr + 1);
                 }
@@ -1134,7 +1134,7 @@ PROCESS_DATA:
                 stack_data_3 = 0;
                 stack_ptr_3 = (undefined1 *)0x0;
                 stack_data_2 = 0;
-                FUN_1806277c0(&stack_ptr_2, *(undefined4 *)(data_handle + CORE_OFFSET_0x10));
+                ConfigBlockInitializer(&stack_ptr_2, *(undefined4 *)(data_handle + CORE_OFFSET_0x10));
                 element_index = stack_data_10;
                 
                 // 复制字符串数据
@@ -1159,7 +1159,7 @@ PROCESS_DATA:
                     stack_data_8 = 3;
                     temp_size = (ulonglong)stack_data_10;
                     if (stack_data_9 != 0) {
-                        FUN_1806277c0(&stack_ptr_4, temp_size);
+                        ConfigBlockInitializer(&stack_ptr_4, temp_size);
                     }
                     if (element_index != 0) {
                         memcpy(stack_data_5, stack_data_9, temp_size);
@@ -1169,7 +1169,7 @@ PROCESS_DATA:
                         *(undefined1 *)(temp_size + stack_data_5) = 0;
                     }
                     stack_data_7._4_4_ = stack_data_11._4_4_;
-                    FUN_1806277c0(&stack_ptr_4, 1);
+                    ConfigBlockInitializer(&stack_ptr_4, 1);
                     *(undefined2 *)((stack_data_3 & 0xffffffff) + stack_data_5) = 0x2e;
                     stack_data_3 = CONCAT44(stack_data_3._4_4_, 1);
                     data_handle = DataContextCreator(&stack_ptr_4, &stack_ptr_11, *stack_ptr_1);
@@ -1203,7 +1203,7 @@ PROCESS_DATA:
                 // 处理数据元素
                 if (*(int *)(*stack_ptr_1 + 0x20) == 0) {
                     element_index = stack_data_2 + 1;
-                    FUN_1806277c0(&stack_ptr_2, element_index);
+                    ConfigBlockInitializer(&stack_ptr_2, element_index);
                     *(undefined2 *)(stack_ptr_3 + stack_data_2) = 0x2e;
                     stack_data_2 = element_index;
                 }
@@ -1307,9 +1307,9 @@ core_engine_interface_initializer(undefined8 *interface_ptr, undefined8 *config_
     *(undefined4 *)(config_ptr + 3) = 3;
     init_param_3 = 1;
     init_param_1 = *interface_ptr;
-    init_param_2 = FUN_180628ca0();
+    init_param_2 = ProcessingResultGetter();
     init_param_2 = StringInitializer(init_buffer, init_param_2);
-    FUN_180162220(init_param_1, config_ptr, init_param_2, init_flags, init_param_3, init_param_4);
+    InitParameterProcessor(init_param_1, config_ptr, init_param_2, init_flags, init_param_3, init_param_4);
     return config_ptr;
 }
 
@@ -1339,11 +1339,11 @@ core_engine_parameter_handler(longlong *param_array, undefined8 *config_ptr, und
     if (*param_array == 0) {
         if (param_array[1] == 0) {
             if (param_array[2] == 0) {
-                process_result = FUN_180628ca0();
+                process_result = ProcessingResultGetter();
                 StringInitializer(config_ptr, process_result);
             }
             else {
-                process_result = FUN_180628ca0();
+                process_result = ProcessingResultGetter();
                 DataContextCreator(process_result, config_ptr, param_array[2]);
             }
         }
@@ -1352,7 +1352,7 @@ core_engine_parameter_handler(longlong *param_array, undefined8 *config_ptr, und
             stack_data_3 = 0;
             stack_data_1 = 0;
             stack_data_2 = 0;
-            FUN_180628040(&stack_ptr_1, &UNK_180a0888c, (double)*(float *)param_array[1], process_flags, 0, 0xfffffffffffffffe);
+            FloatDataProcessor(&stack_ptr_1, &UNK_180a0888c, (double)*(float *)param_array[1], process_flags, 0, 0xfffffffffffffffe);
             *config_ptr = &UNK_18098bcb0;
             config_ptr[1] = 0;
             *(undefined4 *)(config_ptr + 2) = 0;
@@ -1364,8 +1364,8 @@ core_engine_parameter_handler(longlong *param_array, undefined8 *config_ptr, und
         }
     }
     else {
-        process_result = FUN_180628ca0();
-        FUN_180627d90(process_result, config_ptr, *(undefined4 *)*param_array);
+        process_result = ProcessingResultGetter();
+        ParameterProcessor(process_result, config_ptr, *(undefined4 *)*param_array);
     }
     return config_ptr;
 }
