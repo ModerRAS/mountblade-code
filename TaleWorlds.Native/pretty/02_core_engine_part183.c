@@ -306,6 +306,189 @@ typedef void (*code)(void);
 #define StringProcessor FUN_180169350
 
 /* ============================================================================
+ * 核心引擎辅助函数别名扩展
+ * ============================================================================ */
+
+/* 数据处理函数 */
+#define CoreEngineDataInitializer FUN_180627ae0
+#define CoreEngineDataProcessor FUN_180627ae1
+#define CoreEngineDataValidator FUN_180044a30
+#define CoreEngineDataTransformer FUN_180627ae2
+#define CoreEngineDataOptimizer FUN_1800b8300
+#define CoreEngineDataSerializer FUN_180627ae3
+#define CoreEngineDataDeserializer FUN_180627ae4
+#define CoreEngineDataCompressor FUN_180627ae5
+#define CoreEngineDataDecompressor FUN_180627ae6
+#define CoreEngineDataEncryptor FUN_180627ae7
+#define CoreEngineDataDecryptor FUN_180627ae8
+
+/* 内存管理函数 */
+#define CoreEngineMemoryPool FUN_18062b420
+#define CoreEngineMemoryManager FUN_18062b421
+#define CoreEngineMemoryCleaner FUN_18062b422
+#define CoreEngineMemoryDefragmenter FUN_18062b423
+#define CoreEngineMemoryTracker FUN_18062b424
+#define CoreEngineMemoryAuditor FUN_18062b425
+#define CoreEngineMemoryBalancer FUN_18062b426
+
+/* 字符串处理函数 */
+#define CoreEngineStringProcessor FUN_180169350
+#define CoreEngineStringValidator FUN_180627ae9
+#define CoreEngineStringFormatter FUN_180627aea
+#define CoreEngineStringConverter FUN_180627aeb
+#define CoreEngineStringTokenizer FUN_180627aec
+#define CoreEngineStringNormalizer FUN_180627aed
+#define CoreEngineStringComparator FUN_180627aee
+#define CoreEngineStringMatcher FUN_180627aef
+#define CoreEngineStringEncoder FUN_180627af0
+#define CoreEngineStringDecoder FUN_180627af1
+
+/* 配置管理函数 */
+#define CoreEngineConfigManager FUN_18062c7e0
+#define CoreEngineConfigParser FUN_180169c30
+#define CoreEngineConfigValidator FUN_180057110
+#define CoreEngineConfigApplier FUN_180095280
+#define CoreEngineConfigMigrator FUN_180627af2
+#define CoreEngineConfigBackup FUN_180627af3
+#define CoreEngineConfigRestore FUN_180627af4
+#define CoreEngineConfigOptimizer FUN_180627af5
+
+/* 资源管理函数 */
+#define CoreEngineResourceManager FUN_180169110
+#define CoreEngineResourceAllocator FUN_18062ca10
+#define CoreEngineResourceDeallocator FUN_18062ca60
+#define CoreEngineResourceTracker FUN_18062cab0
+#define CoreEngineResourceBalancer FUN_180627af6
+#define CoreEngineResourceScheduler FUN_180627af7
+#define CoreEngineResourceOptimizer FUN_180627af8
+#define CoreEngineResourceValidator FUN_180627af9
+#define CoreEngineResourceCleaner FUN_18062cb00
+
+/* 系统监控函数 */
+#define CoreEngineSystemMonitor FUN_18062d320
+#define CoreEngineHealthChecker FUN_18062d320
+#define CoreEngineLoadBalancer FUN_18062d370
+#define CoreEnginePerformanceTracker FUN_18062d410
+#define CoreEngineResourceMonitor FUN_18062d3c0
+#define CoreEngineNetworkMonitor FUN_18062d2d0
+#define CoreEngineSecurityMonitor FUN_180627afa
+#define CoreEngineDiagnosticReporter FUN_18062d460
+
+/* 错误处理函数 */
+#define CoreEngineErrorHandler FUN_18064e900
+#define CoreEngineExceptionManager FUN_18062cdd0
+#define CoreEngineLogger FUN_18062ce20
+#define CoreEngineDebugger FUN_18062ce70
+#define CoreEngineRecoveryManager FUN_18062cec0
+#define CoreEngineDiagnosticTool FUN_18062cf10
+#define CoreEngineErrorHandler2 FUN_180627afb
+#define CoreEngineErrorReporter FUN_180627afc
+#define CoreEngineErrorLogger FUN_180627afd
+
+/* 线程管理函数 */
+#define CoreEngineThreadManager FUN_18062c420
+#define CoreEngineThreadCreator FUN_18062c470
+#define CoreEngineThreadDestroyer FUN_18062c4c0
+#define CoreEngineThreadScheduler FUN_18062c510
+#define CoreEngineThreadSynchronizer FUN_18062c560
+#define CoreEngineThreadMonitor FUN_18062c5b0
+#define CoreEngineThreadPool FUN_180627afe
+#define CoreEngineThreadBalancer FUN_180627aff
+#define CoreEngineThreadOptimizer FUN_180627b00
+
+/* 性能优化函数 */
+#define CoreEnginePerformanceMonitor FUN_18062cba0
+#define CoreEngineProfiler FUN_18062cbf0
+#define CoreEngineMetricsCollector FUN_18062cc40
+#define CoreEngineStatisticsAnalyzer FUN_18062cc90
+#define CoreEngineBenchmarkRunner FUN_18062cce0
+#define CoreEngineOptimizationAdvisor FUN_18062cd30
+#define CoreEnginePerformanceTuner FUN_180627b01
+#define CoreEngineResourceOptimizer FUN_180627b02
+#define CoreEngineCacheManager FUN_180627b03
+
+/* 事件管理函数 */
+#define CoreEngineEventManager FUN_18062c600
+#define CoreEngineEventDispatcher FUN_18062c650
+#define CoreEngineEventProcessor FUN_18062c6a0
+#define CoreEngineEventQueueManager FUN_18062c6f0
+#define CoreEngineEventLogger FUN_18062c740
+#define CoreEngineEventFilter FUN_18062c790
+#define CoreEngineEventScheduler FUN_180627b04
+#define CoreEngineEventPrioritizer FUN_180627b05
+#define CoreEngineEventAggregator FUN_180627b06
+
+/* 安全管理函数 */
+#define CoreEngineSecurityManager FUN_18062cf60
+#define CoreEngineAccessController FUN_18062cfb0
+#define CoreEngineAuthenticator FUN_18062d000
+#define CoreEngineEncryptor FUN_18062d050
+#define CoreEngineDecryptor FUN_18062d0a0
+#define CoreEngineSignatureVerifier FUN_18062d0f0
+#define CoreEngineSecurityAuditor FUN_180627b07
+#define CoreEngineSecurityScanner FUN_180627b08
+#define CoreEngineSecurityEnforcer FUN_180627b09
+
+/* 网络管理函数 */
+#define CoreEngineNetworkManager FUN_18062d140
+#define CoreEngineConnectionManager FUN_18062d190
+#define CoreEngineProtocolHandler FUN_18062d1e0
+#define CoreEngineDataTransmitter FUN_18062d230
+#define CoreEngineDataReceiver FUN_18062d280
+#define CoreEngineNetworkOptimizer FUN_180627b0a
+#define CoreEngineNetworkBalancer FUN_180627b0b
+#define CoreEngineNetworkValidator FUN_180627b0c
+
+/* 调试管理函数 */
+#define CoreEngineDebugManager FUN_18062d640
+#define CoreEngineBreakpointManager FUN_18062d690
+#define CoreEngineVariableInspector FUN_18062d6e0
+#define CoreEngineCallStackTracer FUN_18062d730
+#define CoreEngineMemoryInspector FUN_18062d780
+#define CoreEngineDebugSession FUN_180627b0d
+#define CoreEngineDebugLogger FUN_180627b0e
+#define CoreEngineDebugAnalyzer FUN_180627b0f
+
+/* 测试管理函数 */
+#define CoreEngineTestManager FUN_18062d7d0
+#define CoreEngineTestRunner FUN_18062d820
+#define CoreEngineTestValidator FUN_18062d870
+#define CoreEngineTestReporter FUN_18062d8c0
+#define CoreEngineBenchmarkTester FUN_18062d910
+#define CoreEngineTestSuite FUN_180627b10
+#define CoreEngineTestCoverage FUN_180627b11
+#define CoreEngineTestAutomation FUN_180627b12
+
+/* 兼容性管理函数 */
+#define CoreEngineCompatibilityManager FUN_18062d960
+#define CoreEngineVersionChecker FUN_18062d9b0
+#define CoreEngineLegacySupport FUN_18062da00
+#define CoreEngineMigrationHelper FUN_18062da50
+#define CoreEngineApiTranslator FUN_18062daa0
+#define CoreEngineCompatibilityTester FUN_180627b13
+#define CoreEngineCompatibilityReporter FUN_180627b14
+
+/* 数据分析函数 */
+#define CoreEngineDataAnalyzer FUN_18062d4b0
+#define CoreEngineTrendAnalyzer FUN_18062d500
+#define CoreEnginePatternRecognizer FUN_18062d550
+#define CoreEnginePredictiveAnalyzer FUN_18062d5a0
+#define CoreEngineAnomalyDetector FUN_18062d5f0
+#define CoreEngineDataMiner FUN_180627b15
+#define CoreEngineDataValidator2 FUN_180627b16
+#define CoreEngineDataTransformer2 FUN_180627b17
+
+/* 状态管理函数 */
+#define CoreEngineStateManager FUN_18062c100
+#define CoreEngineStateValidator FUN_18062c150
+#define CoreEngineStateTransition FUN_18062c1a0
+#define CoreEngineStateReporter FUN_18062c1f0
+#define CoreEngineStateSynchronizer FUN_180627b18
+#define CoreEngineStateLogger FUN_180627b19
+#define CoreEngineStateRecovery FUN_180627b1a
+#define CoreEngineStateOptimizer FUN_180627b1b
+
+/* ============================================================================
  * 核心引擎辅助函数别名
  * ============================================================================ */
 

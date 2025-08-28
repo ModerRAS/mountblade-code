@@ -461,9 +461,9 @@ LAB_18016236a:
     // 检查目标缓冲区容量
     if (*(ulonglong*)(param_2 + 8) < *(ulonglong*)(param_2 + 0x10)) {
         *(ulonglong*)(param_2 + 8) = *(ulonglong*)(param_2 + 8) + 0x20;
-        FUN_180627ae0();
+        CoreEngineDataSystemCaller();
     } else {
-        FUN_180059820(param_2, &temp_buffer);
+        CoreEngineSystemParameterHandler(param_2, &temp_buffer);
     }
     
 LAB_180162395:
@@ -479,7 +479,7 @@ LAB_180162395:
             string_ptr = (int8_t*)0x0;
             buffer_flags = 0;
             
-            FUN_1806277c0(&char_buffer, buffer_flags);
+            CoreEngineDataBufferProcessor(&char_buffer, buffer_flags);
             if (buffer_flags != 0) {
                 memcpy(string_ptr, string_data, buffer_flags + 1);
             }
@@ -552,7 +552,7 @@ uint64_t* CoreEngineSystemInitializer(longlong param_1, uint64_t* param_2, uint6
     // 递归初始化子系统
     if ((system_handle != 0) && (*(longlong*)(system_handle + 0x48) != 0)) {
         init_result = CoreEngineSystemInitializer(system_handle, &temp_buffer, param_3, param_4, 1, 0xfffffffffffffffe);
-        FUN_180628320(param_2, init_result);
+        CoreEngineDataInitializer(param_2, init_result);
         temp_buffer = &system_data_buffer_ptr;
         if (temp_data != 0) {
             CoreEngineMemoryPoolCleaner();
@@ -560,7 +560,7 @@ uint64_t* CoreEngineSystemInitializer(longlong param_1, uint64_t* param_2, uint6
         temp_data = 0;
         init_flags = 0;
         temp_buffer = &system_state_ptr;
-        FUN_1806277c0(param_2, *(int*)(param_2 + 2) + 1);
+        CoreEngineDataBufferProcessor(param_2, *(int*)(param_2 + 2) + 1);
         *(int8_t*)((ulonglong)*(uint*)(param_2 + 2) + param_2[1]) = 0x2e;
         *(int8_t*)((ulonglong)(*(int*)(param_2 + 2) + 1) + param_2[1]) = 0;
         *(int*)(param_2 + 2) = *(int*)(param_2 + 2) + 1;
@@ -568,7 +568,7 @@ uint64_t* CoreEngineSystemInitializer(longlong param_1, uint64_t* param_2, uint6
     
     // 处理系统数据
     if (0 < *(int*)(param_1 + 0x10)) {
-        FUN_1806277c0(param_2, *(int*)(param_2 + 2) + *(int*)(param_1 + 0x10));
+        CoreEngineDataBufferProcessor(param_2, *(int*)(param_2 + 2) + *(int*)(param_1 + 0x10));
         memcpy((ulonglong)*(uint*)(param_2 + 2) + param_2[1], *(uint64_t*)(param_1 + 8), (longlong)(*(int*)(param_1 + 0x10) + 1));
     }
     
@@ -596,7 +596,7 @@ void CoreEngineMemoryManager(void)
     local_data = 0xfffffffffffffffe;
     
     // 分配内存块
-    memory_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x88, 8, 3);
+    memory_handle = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x88, 8, 3);
     temp_buffer = &system_data_buffer_ptr;
     temp_data = 0;
     string_buffer = (int32_t*)0x0;

@@ -1,10 +1,117 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 99_part_09_part091.c - 1 个函数
+// 99_part_09_part091.c - 系统核心数据处理模块
 
-// 函数: void FUN_1805fb170(longlong *param_1)
-void FUN_1805fb170(longlong *param_1)
+/**
+ * @file 99_part_09_part091.c
+ * @brief 系统核心数据处理和状态管理模块
+ * 
+ * 本模块实现系统的核心数据处理功能，包括：
+ * - 数据结构管理和操作
+ * - 系统状态监控和控制
+ * - 内存分配和释放管理
+ * - 参数验证和错误处理
+ * - 系统配置和初始化
+ * 
+ * @author Claude Code
+ * @version 1.0
+ * @date 2025-08-28
+ */
+
+// =============================================================================
+// 系统核心函数别名定义
+// =============================================================================
+
+/**
+ * @brief 系统核心数据处理函数
+ * @param data_ptr 数据指针，指向需要处理的数据结构
+ * @note 这是系统的核心数据处理函数，负责复杂的数据操作和状态管理
+ */
+#define SystemCoreDataProcessor FUN_1805fb170
+
+/**
+ * @brief 系统内存管理器
+ * @param buffer_ptr 缓冲区指针
+ * @param size 分配大小
+ * @param flags 分配标志
+ * @param cleanup_func 清理函数指针
+ * @note 负责系统内存的分配、管理和清理
+ */
+#define SystemMemoryManager FUN_1808fc838
+
+/**
+ * @brief 系统数据结构管理器
+ * @param data_ptr 数据指针
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @return 处理结果
+ * @note 负责复杂数据结构的操作和管理
+ */
+#define SystemDataStructureManager FUN_1805fb030
+
+/**
+ * @brief 系统数据写入器
+ * @param target_ptr 目标指针
+ * @param offset 偏移量
+ * @note 负责数据的写入操作
+ */
+#define SystemDataWriter FUN_18005d190
+
+/**
+ * @brief 系统资源清理器
+ * @param resource_ptr 资源指针
+ * @note 负责系统资源的清理和释放
+ */
+#define SystemResourceCleaner FUN_1805fd350
+
+/**
+ * @brief 系统参数初始化器
+ * @param param_ptr 参数指针
+ * @param value 初始化值
+ * @note 负责系统参数的初始化
+ */
+#define SystemParameterInitializer FUN_1806277c0
+
+/**
+ * @brief 系统数据扩展器
+ * @param data_ptr 数据指针
+ * @param count 扩展数量
+ * @note 负责数据结构的扩展操作
+ */
+#define SystemDataExpander FUN_18026ecc0
+
+/**
+ * @brief 系统数据处理器
+ * @param data_ptr 数据指针
+ * @param value 处理值
+ * @param target_ptr 目标指针
+ * @note 负责数据的处理和转换
+ */
+#define SystemDataProcessor FUN_1805fd490
+
+/**
+ * @brief 系统缓存管理器
+ * @param cache_ptr 缓存指针
+ * @param size 缓存大小
+ * @param flags 缓存标志
+ * @param cleanup_func 清理函数
+ * @note 负责系统缓存的管理
+ */
+#define SystemCacheManager FUN_1808fc8a8
+
+/**
+ * @brief 系统状态验证器
+ * @param state 状态值
+ * @param context 上下文指针
+ * @return 验证结果
+ * @note 负责系统状态的验证和检查
+ */
+#define SystemStateValidator FUN_1808fc050
+
+// 函数: void SystemCoreDataProcessor(longlong *data_ptr)
+void SystemCoreDataProcessor(longlong *data_ptr)
 
 {
   ulonglong uVar1;

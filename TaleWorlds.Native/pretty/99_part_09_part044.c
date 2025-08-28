@@ -139,7 +139,87 @@
 #define SIMD_VECTOR_SIZE            4
 
 // 物理实体类型定义
-typedef struct {\n    uint64_t entity_id;             // 实体唯一标识符\n    float position[3];              // 位置坐标\n    float velocity[3];              // 速度向量\n    float acceleration[3];          // 加速度向量\n    float rotation[4];              // 旋转四元数\n    float angular_velocity[3];      // 角速度\n    float mass;                     // 质量\n    float inverse_mass;             // 质量倒数\n    float damping;                  // 阻尼系数\n    uint32_t collision_group;       // 碰撞组\n    uint32_t collision_mask;        // 碰撞掩码\n    uint8_t is_active;              // 激活状态\n    uint8_t is_kinematic;           // 运动学状态\n    void* user_data;                // 用户数据指针\n} PhysicsEntity;\n\n// 动画状态定义\ntypedef struct {\n    uint32_t state_id;              // 状态ID\n    char state_name[64];            // 状态名称\n    float transition_time;         // 过渡时间\n    float blend_weight;             // 混合权重\n    float playback_speed;          // 播放速度\n    float normalized_time;          // 标准化时间\n    uint8_t is_looping;             // 循环播放标志\n    uint8_t is_transitioning;       // 过渡状态标志\n    void* animation_data;           // 动画数据指针\n    uint32_t bone_count;            // 骨骼数量\n    float* bone_transforms;         // 骨骼变换矩阵\n} AnimationState;\n\n// 物理模拟参数定义\ntypedef struct {\n    float time_step;                // 时间步长\n    float max_time_step;            // 最大时间步长\n    uint32_t iteration_count;       // 迭代次数\n    float convergence_threshold;    // 收敛阈值\n    uint8_t enable_sleeping;        // 启用休眠\n    float sleep_threshold;          // 休眠阈值\n    uint8_t enable_warm_starting;   // 启用热启动\n    uint8_t enable_adaptive_force;   // 启用自适应力\n    float adaptive_force_threshold; // 自适应力阈值\n} SimulationParameters;\n\n// 碰撞检测数据结构\ntypedef struct {\n    uint64_t entity_a;              // 实体A的ID\n    uint64_t entity_b;              // 实体B的ID\n    float contact_point[3];         // 接触点\n    float contact_normal[3];        // 接触法线\n    float penetration_depth;        // 穿透深度\n    float relative_velocity[3];     // 相对速度\n    float impulse_magnitude;        // 冲量大小\n    uint8_t is_valid;               // 有效标志\n    uint8_t is_persistent;          // 持久性标志\n} CollisionData;\n\n// 随机数生成器状态\ntypedef struct {\n    uint32_t seed[RANDOM_SEED_SIZE]; // 随机种子\n    uint32_t state;                 // 当前状态\n    uint32_t count;                 // 计数器\n    float float_scale;              // 浮点数缩放因子\n} RandomGenerator;\n\n// 物理系统统计信息\ntypedef struct {\n    uint32_t active_entities;       // 激活实体数量\n    uint32_t collision_checks;      // 碰撞检查次数\n    uint32_t collision_pairs;      // 碰撞对数量\n    float simulation_time;          // 模拟时间\n    float physics_update_time;      // 物理更新时间\n    float collision_detection_time;  // 碰撞检测时间\n    float animation_update_time;    // 动画更新时间\n    uint32_t memory_usage;          // 内存使用量\n    uint32_t peak_memory_usage;     // 峰值内存使用量\n} PhysicsStatistics;\n\n// 函数别名定义\n#define PhysicsAnimationController   FUN_1805d0cf4"
+typedef struct {
+    uint64_t entity_id;             // 实体唯一标识符
+    float position[3];              // 位置坐标
+    float velocity[3];              // 速度向量
+    float acceleration[3];          // 加速度向量
+    float rotation[4];              // 旋转四元数
+    float angular_velocity[3];      // 角速度
+    float mass;                     // 质量
+    float inverse_mass;             // 质量倒数
+    float damping;                  // 阻尼系数
+    uint32_t collision_group;       // 碰撞组
+    uint32_t collision_mask;        // 碰撞掩码
+    uint8_t is_active;              // 激活状态
+    uint8_t is_kinematic;           // 运动学状态
+    void* user_data;                // 用户数据指针
+} PhysicsEntity;
+
+// 动画状态定义
+typedef struct {
+    uint32_t state_id;              // 状态ID
+    char state_name[64];            // 状态名称
+    float transition_time;         // 过渡时间
+    float blend_weight;             // 混合权重
+    float playback_speed;          // 播放速度
+    float normalized_time;          // 标准化时间
+    uint8_t is_looping;             // 循环播放标志
+    uint8_t is_transitioning;       // 过渡状态标志
+    void* animation_data;           // 动画数据指针
+    uint32_t bone_count;            // 骨骼数量
+    float* bone_transforms;         // 骨骼变换矩阵
+} AnimationState;
+
+// 物理模拟参数定义
+typedef struct {
+    float time_step;                // 时间步长
+    float max_time_step;            // 最大时间步长
+    uint32_t iteration_count;       // 迭代次数
+    float convergence_threshold;    // 收敛阈值
+    uint8_t enable_sleeping;        // 启用休眠
+    float sleep_threshold;          // 休眠阈值
+    uint8_t enable_warm_starting;   // 启用热启动
+    uint8_t enable_adaptive_force;   // 启用自适应力
+    float adaptive_force_threshold; // 自适应力阈值
+} SimulationParameters;
+
+// 碰撞检测数据结构
+typedef struct {
+    uint64_t entity_a;              // 实体A的ID
+    uint64_t entity_b;              // 实体B的ID
+    float contact_point[3];         // 接触点
+    float contact_normal[3];        // 接触法线
+    float penetration_depth;        // 穿透深度
+    float relative_velocity[3];     // 相对速度
+    float impulse_magnitude;        // 冲量大小
+    uint8_t is_valid;               // 有效标志
+    uint8_t is_persistent;          // 持久性标志
+} CollisionData;
+
+// 随机数生成器状态
+typedef struct {
+    uint32_t seed[RANDOM_SEED_SIZE]; // 随机种子
+    uint32_t state;                 // 当前状态
+    uint32_t count;                 // 计数器
+    float float_scale;              // 浮点数缩放因子
+} RandomGenerator;
+
+// 物理系统统计信息
+typedef struct {
+    uint32_t active_entities;       // 激活实体数量
+    uint32_t collision_checks;      // 碰撞检查次数
+    uint32_t collision_pairs;      // 碰撞对数量
+    float simulation_time;          // 模拟时间
+    float physics_update_time;      // 物理更新时间
+    float collision_detection_time;  // 碰撞检测时间
+    float animation_update_time;    // 动画更新时间
+    uint32_t memory_usage;          // 内存使用量
+    uint32_t peak_memory_usage;     // 峰值内存使用量
+} PhysicsStatistics;
+
+// 函数别名定义
+#define PhysicsAnimationController   FUN_1805d0cf4
 
 // 物理动画控制器 (PhysicsAnimationController)
 // 功能：控制物理模拟和动画系统的核心逻辑
