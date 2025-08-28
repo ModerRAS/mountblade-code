@@ -204,7 +204,7 @@ void core_engine_system_initializer_type1(void)
     uint64_t stack_value;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
@@ -230,8 +230,8 @@ void core_engine_system_initializer_type1(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_1000, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -270,7 +270,7 @@ void core_engine_system_initializer_type2(void)
     void *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
@@ -296,8 +296,8 @@ void core_engine_system_initializer_type2(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_0fd8, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -336,7 +336,7 @@ void core_engine_system_initializer_type3(void)
     uint64_t stack_value;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
@@ -362,8 +362,8 @@ void core_engine_system_initializer_type3(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_0fb0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -405,7 +405,7 @@ void core_engine_system_initializer_type4(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &global_var_8184_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    core_system_memory = FUN_180623800(&string_processor);
+    core_system_memory = core_engine_string_processor_register(&string_processor);
     
     return;
 }
@@ -460,7 +460,7 @@ void core_engine_system_initializer_type6(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &global_var_8872_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    core_system_memory = FUN_180623800(&string_processor);
+    core_system_memory = core_engine_string_processor_register(&string_processor);
     
     return;
 }
@@ -493,7 +493,7 @@ void core_engine_system_initializer_type7(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &global_var_9280_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    core_system_memory = FUN_180623800(&string_processor);
+    core_system_memory = core_engine_string_processor_register(&string_processor);
     
     return;
 }
@@ -526,7 +526,7 @@ void core_engine_system_initializer_type8(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &global_var_264_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    core_system_memory = FUN_180623800(&string_processor);
+    core_system_memory = core_engine_string_processor_register(&string_processor);
     
     return;
 }
@@ -559,7 +559,7 @@ void core_engine_system_initializer_type9(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &system_memory_4640, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    core_system_memory = FUN_180623800(&string_processor);
+    core_system_memory = core_engine_string_processor_register(&string_processor);
     
     return;
 }
@@ -592,7 +592,7 @@ void core_engine_system_initializer_type10(void)
     strcpy_s(buffer_data, BUFFER_SIZE, &global_var_736_ptr, parameter_register, 0xfffffffffffffffe);
     
     // 注册字符串处理器
-    core_system_memory = FUN_180623800(&string_processor);
+    core_system_memory = core_engine_string_processor_register(&string_processor);
     
     return;
 }
@@ -622,12 +622,12 @@ void core_engine_system_initializer_type11(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_1802633c0;
+    callback_function = core_engine_callback_handler_type1;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -648,8 +648,8 @@ void core_engine_system_initializer_type11(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_0bb0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -688,12 +688,12 @@ void core_engine_system_initializer_type12(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_180262b00;
+    callback_function = core_engine_callback_handler_type2;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -714,8 +714,8 @@ void core_engine_system_initializer_type12(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_0b88, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -754,12 +754,12 @@ void core_engine_system_initializer_type13(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_18025cc00;
+    callback_function = core_engine_callback_handler_type3;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -780,8 +780,8 @@ void core_engine_system_initializer_type13(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_10a0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -820,12 +820,12 @@ void core_engine_system_initializer_type14(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_18025c000;
+    callback_function = core_engine_callback_handler_type4;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -846,8 +846,8 @@ void core_engine_system_initializer_type14(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_1078, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -886,7 +886,7 @@ void core_engine_system_initializer_type15(void)
     uint64_t stack_value;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
@@ -912,8 +912,8 @@ void core_engine_system_initializer_type15(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_1050, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -952,12 +952,12 @@ void core_engine_system_initializer_type16(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_18025d270;
+    callback_function = core_engine_callback_handler_type5;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -978,8 +978,8 @@ void core_engine_system_initializer_type16(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_1028, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1018,7 +1018,7 @@ void core_engine_system_initializer_type17(void)
     uint64_t stack_value;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
@@ -1044,8 +1044,8 @@ void core_engine_system_initializer_type17(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_1000, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1084,7 +1084,7 @@ void core_engine_system_initializer_type18(void)
     void *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
@@ -1110,8 +1110,8 @@ void core_engine_system_initializer_type18(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_0fd8, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1150,7 +1150,7 @@ void core_engine_system_initializer_type19(void)
     uint64_t stack_value;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
@@ -1176,8 +1176,8 @@ void core_engine_system_initializer_type19(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_0fb0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1216,12 +1216,12 @@ void core_engine_system_initializer_type20(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_18025cc00;
+    callback_function = core_engine_callback_handler_type3;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -1242,8 +1242,8 @@ void core_engine_system_initializer_type20(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_10a0, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1282,12 +1282,12 @@ void core_engine_system_initializer_type21(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_18025c000;
+    callback_function = core_engine_callback_handler_type4;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -1308,8 +1308,8 @@ void core_engine_system_initializer_type21(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_1078, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1348,7 +1348,7 @@ void core_engine_system_initializer_type22(void)
     uint64_t stack_value;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
@@ -1374,8 +1374,8 @@ void core_engine_system_initializer_type22(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_1050, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1414,12 +1414,12 @@ void core_engine_system_initializer_type23(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_18025d270;
+    callback_function = core_engine_callback_handler_type5;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -1440,8 +1440,8 @@ void core_engine_system_initializer_type23(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_1028, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1480,7 +1480,7 @@ void core_engine_system_initializer_type24(void)
     uint64_t stack_value;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
@@ -1506,8 +1506,8 @@ void core_engine_system_initializer_type24(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_1000, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1617,12 +1617,12 @@ void core_engine_data_processor_type1(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_18025e330;
+    callback_function = core_engine_callback_handler_type6;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -1643,8 +1643,8 @@ void core_engine_data_processor_type1(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_0d48, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1683,12 +1683,12 @@ void core_engine_data_processor_type2(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_18025d510;
+    callback_function = core_engine_callback_handler_type7;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -1709,8 +1709,8 @@ void core_engine_data_processor_type2(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_0e28, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
@@ -1749,12 +1749,12 @@ void core_engine_data_processor_type3(void)
     code *callback_function;
 
     // 获取系统注册表管理器
-    registry_manager = (longlong *)FUN_18008d070();
+    registry_manager = core_engine_registry_manager_get();
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
-    callback_function = FUN_1802281a0;
+    callback_function = core_engine_callback_handler_type8;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
 
@@ -1775,8 +1775,8 @@ void core_engine_data_processor_type3(void)
     // 分配新节点或使用现有节点
     if ((parent_node == system_root) || 
         (comparison_result = memcmp(&system_memory_f9e8, parent_node + 4, MEMORY_BLOCK_SIZE), comparison_result < 0)) {
-        allocation_size = FUN_18008f0d0(registry_manager);
-        FUN_18008f140(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
+        allocation_size = core_engine_memory_allocator_calculate(registry_manager);
+        core_engine_memory_allocator_allocate(registry_manager, &allocated_node, parent_node, allocation_size + MEMORY_ALIGNMENT_SIZE, allocation_size);
         parent_node = allocated_node;
     }
 
