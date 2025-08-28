@@ -10,7 +10,7 @@
 //   param_2: 数据缓冲区指针
 //   param_3: 配置参数指针
 //   param_4: 状态标志指针
-void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint64_t *param_3, uint64_t param_4)
+void process_engine_memory_allocation(int64_t param_1, uint64_t *param_2, uint64_t *param_3, uint64_t param_4)
 
 {
   uint *buffer_ptr;
@@ -22,23 +22,23 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
   float float_val3;
   int index_val;
   void *temp_ptr1;
-  longlong context_ptr;
+  int64_t context_ptr;
   uint64_t temp_val1;
   char flag_char;
   int temp_int1;
-  longlong register_rax;
-  longlong temp_long1;
-  longlong temp_long2;
+  int64_t register_rax;
+  int64_t temp_long1;
+  int64_t temp_long2;
   void *temp_ptr2;
   uint64_t register_rbx;
-  longlong temp_long3;
+  int64_t temp_long3;
   uint64_t register_rsi;
   uint64_t register_rdi;
-  ulonglong counter_val;
+  uint64_t counter_val;
   int32_t temp_flag1;
   uint64_t register_r12;
   uint64_t register_r13;
-  ulonglong temp_ulong1;
+  uint64_t temp_ulong1;
   int32_t register_xmm6_a;
   int32_t register_xmm6_b;
   int32_t register_xmm6_c;
@@ -76,8 +76,8 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
   temp_long3 = SYSTEM_DATA_MANAGER_A;
   
   // 设置处理标志
-  *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
-  temp_long3 = *(longlong *)(temp_long3 + 0x1af8);
+  *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
+  temp_long3 = *(int64_t *)(temp_long3 + 0x1af8);
   buffer_ptr = (uint *)(temp_long3 + 0x1a8);
   *buffer_ptr = *buffer_ptr | 1;
   
@@ -96,21 +96,21 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
     
     // 处理数据队列操作
     data_ptr1 = (uint64_t *)
-             (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
-             (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
+             (*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
+             (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14);
     temp_val1 = data_ptr1[1];
     data_ptr2 = (uint64_t *)
              (SYSTEM_DATA_MANAGER_A + 0x16c8 +
-             (longlong)
-             *(int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
-                     (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
+             (int64_t)
+             *(int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x14 +
+                     (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b80) * 0x14) * 0x10);
     *data_ptr2 = *data_ptr1;
     data_ptr2[1] = temp_val1;
     *(int *)(temp_long3 + 0x1b80) = *(int *)(temp_long3 + 0x1b80) + -1;
   }
   
   // 处理数据块循环
-  if (*(longlong *)(param_1 + 0x28) - *(longlong *)(param_1 + 0x20) >> 5 != 0) {
+  if (*(int64_t *)(param_1 + 0x28) - *(int64_t *)(param_1 + 0x20) >> 5 != 0) {
     stack_param90 = 0;
     temp_ulong1 = counter_val;
     do {
@@ -125,7 +125,7 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
       
       // 处理数据项
       process_data_item(counter_val);
-      temp_ptr1 = *(void **)(*(longlong *)(param_1 + 0x20) + 8 + temp_ulong1);
+      temp_ptr1 = *(void **)(*(int64_t *)(param_1 + 0x20) + 8 + temp_ulong1);
       temp_ptr2 = &system_buffer_ptr;
       if (temp_ptr1 != (void *)0x0) {
         temp_ptr2 = temp_ptr1;
@@ -138,18 +138,18 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
       }
       
       temp_long3 = SYSTEM_DATA_MANAGER_A;
-      status_ptr = (int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218);
+      status_ptr = (int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218);
       *status_ptr = *status_ptr + -1;
       
       if (index_val == temp_int1) {
         if (*(char *)(param_1 + 0x70) != '\0') {
-          *(int8_t *)(*(longlong *)(temp_long3 + 0x1af8) + 0xb1) = 1;
-          context_ptr = *(longlong *)(temp_long3 + 0x1af8);
+          *(int8_t *)(*(int64_t *)(temp_long3 + 0x1af8) + 0xb1) = 1;
+          context_ptr = *(int64_t *)(temp_long3 + 0x1af8);
           float_val1 = *(float *)(context_ptr + 0x130);
           float_val2 = *(float *)(context_ptr + 0x10c);
           float_val3 = *(float *)(context_ptr + 0x44);
           *(int8_t *)(context_ptr + 0xb1) = 1;
-          context_ptr = *(longlong *)(temp_long3 + 0x1af8);
+          context_ptr = *(int64_t *)(temp_long3 + 0x1af8);
           *(int32_t *)(context_ptr + 0xa0) = 0x3f000000;
           *(float *)(context_ptr + 0x98) =
                (float)(int)((float_val2 - float_val3) + float_val1 * 0.5 + *(float *)(context_ptr + 0x90));
@@ -158,44 +158,44 @@ void process_engine_memory_allocation(longlong param_1, uint64_t *param_2, uint6
         
         // 处理队列操作
         data_ptr1 = (uint64_t *)
-                 (*(longlong *)(temp_long3 + 0x1b88) + -0x10 +
-                 (longlong)*(int *)(temp_long3 + 0x1b80) * 0x14);
+                 (*(int64_t *)(temp_long3 + 0x1b88) + -0x10 +
+                 (int64_t)*(int *)(temp_long3 + 0x1b80) * 0x14);
         temp_val1 = data_ptr1[1];
         data_ptr2 = (uint64_t *)
                  (temp_long3 + 0x16c8 +
-                 (longlong)
-                 *(int *)(*(longlong *)(temp_long3 + 0x1b88) + -0x14 +
-                         (longlong)*(int *)(temp_long3 + 0x1b80) * 0x14) * 0x10);
+                 (int64_t)
+                 *(int *)(*(int64_t *)(temp_long3 + 0x1b88) + -0x14 +
+                         (int64_t)*(int *)(temp_long3 + 0x1b80) * 0x14) * 0x10);
         *data_ptr2 = *data_ptr1;
         data_ptr2[1] = temp_val1;
         *(int *)(temp_long3 + 0x1b80) = *(int *)(temp_long3 + 0x1b80) + -1;
       }
-      counter_val = (ulonglong)(temp_int1 + 1U);
+      counter_val = (uint64_t)(temp_int1 + 1U);
       temp_ulong1 = temp_ulong1 + 0x20;
-    } while ((ulonglong)(longlong)(int)(temp_int1 + 1U) <
-             (ulonglong)(*(longlong *)(param_1 + 0x28) - *(longlong *)(param_1 + 0x20) >> 5));
+    } while ((uint64_t)(int64_t)(int)(temp_int1 + 1U) <
+             (uint64_t)(*(int64_t *)(param_1 + 0x28) - *(int64_t *)(param_1 + 0x20) >> 5));
   }
   
   // 设置最终状态
   *(bool *)param_4 =
-       *(longlong *)(temp_long3 + 0x1c98) == *(longlong *)(*(longlong *)(temp_long3 + 0x1af8) + 0x3a8);
-  *(int8_t *)(*(longlong *)(temp_long3 + 0x1af8) + 0xb1) = 1;
-  temp_long3 = *(longlong *)(temp_long3 + 0x1af8);
+       *(int64_t *)(temp_long3 + 0x1c98) == *(int64_t *)(*(int64_t *)(temp_long3 + 0x1af8) + 0x3a8);
+  *(int8_t *)(*(int64_t *)(temp_long3 + 0x1af8) + 0xb1) = 1;
+  temp_long3 = *(int64_t *)(temp_long3 + 0x1af8);
   index_val = *(int *)(temp_long3 + 0x1b8);
   temp_int1 = index_val + -1;
   *(int *)(temp_long3 + 0x1b8) = temp_int1;
   if (temp_int1 != 0) {
-    temp_flag1 = *(int32_t *)(*(longlong *)(temp_long3 + 0x1c0) + -8 + (longlong)index_val * 4);
+    temp_flag1 = *(int32_t *)(*(int64_t *)(temp_long3 + 0x1c0) + -8 + (int64_t)index_val * 4);
   }
   *(int32_t *)(temp_long3 + 0x1a8) = temp_flag1;
   
   // 清理资源
   cleanup_resources();
   context_ptr = SYSTEM_DATA_MANAGER_A;
-  temp_long1 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
-  temp_long3 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
-  temp_long2 = (longlong)*(int *)(temp_long3 + -0xc + temp_long1 * 0xc);
-  temp_ulong1 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + temp_long2 * 0xc);
+  temp_long1 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+  temp_long3 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
+  temp_long2 = (int64_t)*(int *)(temp_long3 + -0xc + temp_long1 * 0xc);
+  temp_ulong1 = (uint64_t)*(uint *)(&unknown_var_6056_ptr + temp_long2 * 0xc);
   
   // 处理最终数据块
   if (*(int *)(&unknown_var_6048_ptr + temp_long2 * 0xc) == 4) {
@@ -234,20 +234,20 @@ void optimized_memory_allocation_handler(void)
   float float_val3;
   int index_val;
   void *temp_ptr1;
-  longlong context_ptr;
+  int64_t context_ptr;
   uint64_t temp_val1;
-  longlong temp_long1;
+  int64_t temp_long1;
   char flag_char;
   int temp_int1;
-  longlong temp_long2;
-  longlong temp_long3;
+  int64_t temp_long2;
+  int64_t temp_long3;
   void *temp_ptr2;
-  longlong register_rbx;
-  longlong register_rsi;
+  int64_t register_rbx;
+  int64_t register_rsi;
   int register_edi;
-  ulonglong register_r12;
+  uint64_t register_r12;
   uint64_t register_r13;
-  ulonglong temp_ulong1;
+  uint64_t temp_ulong1;
   int32_t stack_data[2];
   
   temp_ulong1 = register_r12;
@@ -262,7 +262,7 @@ void optimized_memory_allocation_handler(void)
     
     // 处理数据项
     process_data_item(register_edi);
-    temp_ptr1 = *(void **)(*(longlong *)(register_rsi + 0x20) + 8 + temp_ulong1);
+    temp_ptr1 = *(void **)(*(int64_t *)(register_rsi + 0x20) + 8 + temp_ulong1);
     temp_ptr2 = &system_buffer_ptr;
     if (temp_ptr1 != (void *)0x0) {
       temp_ptr2 = temp_ptr1;
@@ -275,18 +275,18 @@ void optimized_memory_allocation_handler(void)
     }
     
     register_rbx = SYSTEM_DATA_MANAGER_A;
-    status_ptr = (int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218);
+    status_ptr = (int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218);
     *status_ptr = *status_ptr + -1;
     
     if (index_val == register_edi) {
       if (*(char *)(register_rsi + 0x70) != (char)register_r12) {
-        *(int8_t *)(*(longlong *)(register_rbx + 0x1af8) + 0xb1) = 1;
-        context_ptr = *(longlong *)(register_rbx + 0x1af8);
+        *(int8_t *)(*(int64_t *)(register_rbx + 0x1af8) + 0xb1) = 1;
+        context_ptr = *(int64_t *)(register_rbx + 0x1af8);
         float_val1 = *(float *)(context_ptr + 0x130);
         float_val2 = *(float *)(context_ptr + 0x10c);
         float_val3 = *(float *)(context_ptr + 0x44);
         *(int8_t *)(context_ptr + 0xb1) = 1;
-        context_ptr = *(longlong *)(register_rbx + 0x1af8);
+        context_ptr = *(int64_t *)(register_rbx + 0x1af8);
         *(int32_t *)(context_ptr + 0xa0) = 0x3f000000;
         *(float *)(context_ptr + 0x98) =
              (float)(int)((float_val2 - float_val3) + float_val1 * 0.5 + *(float *)(context_ptr + 0x90));
@@ -295,43 +295,43 @@ void optimized_memory_allocation_handler(void)
       
       // 处理队列操作
       data_ptr1 = (uint64_t *)
-               (*(longlong *)(register_rbx + 0x1b88) + -0x10 +
-               (longlong)*(int *)(register_rbx + 0x1b80) * 0x14);
+               (*(int64_t *)(register_rbx + 0x1b88) + -0x10 +
+               (int64_t)*(int *)(register_rbx + 0x1b80) * 0x14);
       temp_val1 = data_ptr1[1];
       data_ptr2 = (uint64_t *)
                (register_rbx + 0x16c8 +
-               (longlong)
-               *(int *)(*(longlong *)(register_rbx + 0x1b88) + -0x14 +
-                       (longlong)*(int *)(register_rbx + 0x1b80) * 0x14) * 0x10);
+               (int64_t)
+               *(int *)(*(int64_t *)(register_rbx + 0x1b88) + -0x14 +
+                       (int64_t)*(int *)(register_rbx + 0x1b80) * 0x14) * 0x10);
       *data_ptr2 = *data_ptr1;
       data_ptr2[1] = temp_val1;
       *(int *)(register_rbx + 0x1b80) = *(int *)(register_rbx + 0x1b80) + -1;
     }
     register_edi = register_edi + 1;
     temp_ulong1 = temp_ulong1 + 0x20;
-  } while ((ulonglong)(longlong)register_edi <
-           (ulonglong)(*(longlong *)(register_rsi + 0x28) - *(longlong *)(register_rsi + 0x20) >> 5));
+  } while ((uint64_t)(int64_t)register_edi <
+           (uint64_t)(*(int64_t *)(register_rsi + 0x28) - *(int64_t *)(register_rsi + 0x20) >> 5));
   
   // 设置最终状态
   *(bool *)register_r13 =
-       *(longlong *)(register_rbx + 0x1c98) == *(longlong *)(*(longlong *)(register_rbx + 0x1af8) + 0x3a8);
-  *(int8_t *)(*(longlong *)(register_rbx + 0x1af8) + 0xb1) = 1;
-  context_ptr = *(longlong *)(register_rbx + 0x1af8);
+       *(int64_t *)(register_rbx + 0x1c98) == *(int64_t *)(*(int64_t *)(register_rbx + 0x1af8) + 0x3a8);
+  *(int8_t *)(*(int64_t *)(register_rbx + 0x1af8) + 0xb1) = 1;
+  context_ptr = *(int64_t *)(register_rbx + 0x1af8);
   index_val = *(int *)(context_ptr + 0x1b8);
   temp_int1 = index_val + -1;
   *(int *)(context_ptr + 0x1b8) = temp_int1;
   if (temp_int1 != 0) {
-    register_r12 = (ulonglong)*(uint *)(*(longlong *)(context_ptr + 0x1c0) + -8 + (longlong)index_val * 4);
+    register_r12 = (uint64_t)*(uint *)(*(int64_t *)(context_ptr + 0x1c0) + -8 + (int64_t)index_val * 4);
   }
   *(int *)(context_ptr + 0x1a8) = (int)register_r12;
   
   // 清理资源
   cleanup_resources();
   temp_long1 = SYSTEM_DATA_MANAGER_A;
-  temp_long2 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
-  context_ptr = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
-  temp_long3 = (longlong)*(int *)(context_ptr + -0xc + temp_long2 * 0xc);
-  temp_ulong1 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + temp_long3 * 0xc);
+  temp_long2 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+  context_ptr = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
+  temp_long3 = (int64_t)*(int *)(context_ptr + -0xc + temp_long2 * 0xc);
+  temp_ulong1 = (uint64_t)*(uint *)(&unknown_var_6056_ptr + temp_long3 * 0xc);
   
   // 处理最终数据块
   if (*(int *)(&unknown_var_6048_ptr + temp_long3 * 0xc) == 4) {
@@ -361,36 +361,36 @@ void simplified_state_cleanup(void)
 
 {
   int temp_int1;
-  longlong temp_long1;
-  longlong temp_long2;
+  int64_t temp_long1;
+  int64_t temp_long2;
   int temp_int2;
-  longlong temp_long3;
-  longlong temp_long4;
-  longlong register_rbx;
-  ulonglong temp_ulong1;
+  int64_t temp_long3;
+  int64_t temp_long4;
+  int64_t register_rbx;
+  uint64_t temp_ulong1;
   int32_t register_r12d;
   uint64_t register_r13;
   
   // 设置最终状态
   *(bool *)register_r13 =
-       *(longlong *)(register_rbx + 0x1c98) == *(longlong *)(*(longlong *)(register_rbx + 0x1af8) + 0x3a8);
-  *(int8_t *)(*(longlong *)(register_rbx + 0x1af8) + 0xb1) = 1;
-  temp_long1 = *(longlong *)(register_rbx + 0x1af8);
+       *(int64_t *)(register_rbx + 0x1c98) == *(int64_t *)(*(int64_t *)(register_rbx + 0x1af8) + 0x3a8);
+  *(int8_t *)(*(int64_t *)(register_rbx + 0x1af8) + 0xb1) = 1;
+  temp_long1 = *(int64_t *)(register_rbx + 0x1af8);
   temp_int1 = *(int *)(temp_long1 + 0x1b8);
   temp_int2 = temp_int1 + -1;
   *(int *)(temp_long1 + 0x1b8) = temp_int2;
   if (temp_int2 != 0) {
-    register_r12d = *(int32_t *)(*(longlong *)(temp_long1 + 0x1c0) + -8 + (longlong)temp_int1 * 4);
+    register_r12d = *(int32_t *)(*(int64_t *)(temp_long1 + 0x1c0) + -8 + (int64_t)temp_int1 * 4);
   }
   *(int32_t *)(temp_long1 + 0x1a8) = register_r12d;
   
   // 清理资源
   cleanup_resources();
   temp_long2 = SYSTEM_DATA_MANAGER_A;
-  temp_long3 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
-  temp_long1 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
-  temp_long4 = (longlong)*(int *)(temp_long1 + -0xc + temp_long3 * 0xc);
-  temp_ulong1 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + temp_long4 * 0xc);
+  temp_long3 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+  temp_long1 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
+  temp_long4 = (int64_t)*(int *)(temp_long1 + -0xc + temp_long3 * 0xc);
+  temp_ulong1 = (uint64_t)*(uint *)(&unknown_var_6056_ptr + temp_long4 * 0xc);
   
   // 处理最终数据块
   if (*(int *)(&unknown_var_6048_ptr + temp_long4 * 0xc) == 4) {
@@ -416,26 +416,26 @@ void simplified_state_cleanup(void)
 
 // 函数: 状态标志设置函数
 // 根据索引设置相应的状态标志
-void set_status_flag_by_index(longlong param_1, longlong param_2)
+void set_status_flag_by_index(int64_t param_1, int64_t param_2)
 
 {
-  longlong temp_long1;
-  longlong temp_long2;
-  longlong temp_long3;
-  longlong temp_long4;
-  ulonglong temp_ulong1;
+  int64_t temp_long1;
+  int64_t temp_long2;
+  int64_t temp_long3;
+  int64_t temp_long4;
+  uint64_t temp_ulong1;
   
   // 设置状态标志
   *(int32_t *)(param_2 + 0x1a8) =
-       *(int32_t *)(*(longlong *)(param_2 + 0x1c0) + -8 + param_1 * 4);
+       *(int32_t *)(*(int64_t *)(param_2 + 0x1c0) + -8 + param_1 * 4);
   
   // 清理资源
   cleanup_resources();
   temp_long2 = SYSTEM_DATA_MANAGER_A;
-  temp_long3 = (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
-  temp_long1 = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
-  temp_long4 = (longlong)*(int *)(temp_long1 + -0xc + temp_long3 * 0xc);
-  temp_ulong1 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + temp_long4 * 0xc);
+  temp_long3 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
+  temp_long1 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
+  temp_long4 = (int64_t)*(int *)(temp_long1 + -0xc + temp_long3 * 0xc);
+  temp_ulong1 = (uint64_t)*(uint *)(&unknown_var_6056_ptr + temp_long4 * 0xc);
   
   // 处理数据块
   if (*(int *)(&unknown_var_6048_ptr + temp_long4 * 0xc) == 4) {
@@ -459,12 +459,12 @@ void set_status_flag_by_index(longlong param_1, longlong param_2)
 
 // 函数: 数据块处理函数
 // 根据数据类型处理不同的数据块
-void process_data_block_by_type(longlong param_1, longlong param_2, longlong param_3, longlong param_4)
+void process_data_block_by_type(int64_t param_1, int64_t param_2, int64_t param_3, int64_t param_4)
 
 {
   int temp_int1;
-  longlong register_rax;
-  longlong register_r10;
+  int64_t register_rax;
+  int64_t register_r10;
   
   temp_int1 = *(int *)(register_rax + 4 + register_r10 * 4);
   if (temp_int1 == 1) {
@@ -486,11 +486,11 @@ void process_data_block_by_type(longlong param_1, longlong param_2, longlong par
 
 // 函数: 指针解引用调用函数
 // 安全地解引用指针并调用相应的函数
-void safe_pointer_dereference_call(longlong *param_1)
+void safe_pointer_dereference_call(int64_t *param_1)
 
 {
-  if ((longlong *)*param_1 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_1 + 0x38))();
+  if ((int64_t *)*param_1 != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*param_1 + 0x38))();
   }
   return;
 }
@@ -499,18 +499,18 @@ void safe_pointer_dereference_call(longlong *param_1)
 
 // 函数: 流初始化函数
 // 初始化标准C++流对象
-longlong * initialize_standard_stream(longlong *param_1)
+int64_t * initialize_standard_stream(int64_t *param_1)
 
 {
   uint64_t temp_val1;
   
   temp_val1 = 0xfffffffffffffffe;
-  *param_1 = (longlong)&unknown_var_2368_ptr;
+  *param_1 = (int64_t)&unknown_var_2368_ptr;
   __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ(param_1 + 0x15);
   __0__basic_ostream_DU__char_traits_D_std___std__QEAA_PEAV__basic_streambuf_DU__char_traits_D_std___1__N_Z
             (param_1, param_1 + 1, 0, 0, 1, temp_val1);
-  *(void **)((longlong)*(int *)(*param_1 + 4) + (longlong)param_1) = &unknown_var_2384_ptr;
-  *(int *)((longlong)*(int *)(*param_1 + 4) + -4 + (longlong)param_1) =
+  *(void **)((int64_t)*(int *)(*param_1 + 4) + (int64_t)param_1) = &unknown_var_2384_ptr;
+  *(int *)((int64_t)*(int *)(*param_1 + 4) + -4 + (int64_t)param_1) =
        *(int *)(*param_1 + 4) + -0xa8;
   initialize_stream_helper(param_1 + 1);
   return param_1;
@@ -522,16 +522,16 @@ longlong * initialize_standard_stream(longlong *param_1)
 
 // 函数: 内存区域清理函数
 // 清理指定的内存区域，确保没有内存泄漏
-void cleanup_memory_region(longlong *param_1)
+void cleanup_memory_region(int64_t *param_1)
 
 {
-  longlong temp_long1;
-  longlong temp_long2;
+  int64_t temp_long1;
+  int64_t temp_long2;
   
   temp_long1 = param_1[1];
   for (temp_long2 = *param_1; temp_long2 != temp_long1; temp_long2 = temp_long2 + 0x28) {
     *(uint64_t *)(temp_long2 + 8) = &system_data_buffer_ptr;
-    if (*(longlong *)(temp_long2 + 0x10) != 0) {
+    if (*(int64_t *)(temp_long2 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       trigger_memory_error();
     }
@@ -555,11 +555,11 @@ void cleanup_memory_region(longlong *param_1)
 void recursive_resource_cleanup(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  longlong *array_ptr;
+  int64_t *array_ptr;
   uint temp_uint1;
-  ulonglong temp_ulong1;
+  uint64_t temp_ulong1;
   uint64_t temp_val1;
-  ulonglong counter;
+  uint64_t counter;
   
   if (param_1 == (uint64_t *)0x0) {
     return;
@@ -576,9 +576,9 @@ void recursive_resource_cleanup(uint64_t *param_1, uint64_t param_2, uint64_t pa
       recursive_resource_cleanup(*(uint64_t *)(temp_ulong1 + *array_ptr));
       *(uint64_t *)(temp_ulong1 + *array_ptr) = 0;
       temp_uint1 = (int)counter + 1;
-      counter = (ulonglong)temp_uint1;
+      counter = (uint64_t)temp_uint1;
       temp_ulong1 = temp_ulong1 + 8;
-    } while ((ulonglong)(longlong)(int)temp_uint1 < (ulonglong)(param_1[6] - *array_ptr >> 3));
+    } while ((uint64_t)(int64_t)(int)temp_uint1 < (uint64_t)(param_1[6] - *array_ptr >> 3));
   }
   
   // 调用清理回调函数
@@ -611,15 +611,15 @@ void recursive_resource_cleanup(uint64_t *param_1, uint64_t param_2, uint64_t pa
 
 // 函数: 动态数组扩展函数
 // 动态扩展数组容量并复制数据
-void expand_dynamic_array(longlong *param_1, int32_t *param_2)
+void expand_dynamic_array(int64_t *param_1, int32_t *param_2)
 
 {
   int32_t *src_ptr;
   int32_t *dest_ptr;
   uint64_t *temp_ptr1;
-  longlong temp_long1;
-  longlong temp_long2;
-  longlong temp_long3;
+  int64_t temp_long1;
+  int64_t temp_long2;
+  int64_t temp_long3;
   
   temp_long2 = param_1[1];
   temp_long1 = *param_1;
@@ -640,9 +640,9 @@ LAB_18016d07b:
   dest_ptr = src_ptr;
   if (temp_long1 != temp_long2) {
     temp_ptr1 = (uint64_t *)(dest_ptr + 4);
-    temp_long1 = temp_long1 - (longlong)dest_ptr;
+    temp_long1 = temp_long1 - (int64_t)dest_ptr;
     do {
-      *dest_ptr = *(int32_t *)((longlong)temp_ptr1 + temp_long1 + -0x10);
+      *dest_ptr = *(int32_t *)((int64_t)temp_ptr1 + temp_long1 + -0x10);
       temp_ptr1[-1] = &system_state_ptr;
       *temp_ptr1 = 0;
       *(int32_t *)(temp_ptr1 + 1) = 0;
@@ -650,16 +650,16 @@ LAB_18016d07b:
       temp_ptr1[2] = 0;
       *temp_ptr1 = 0;
       *(int32_t *)(temp_ptr1 + 1) = 0;
-      *(int32_t *)(temp_ptr1 + 1) = *(int32_t *)(temp_long1 + 8 + (longlong)temp_ptr1);
-      *temp_ptr1 = *(uint64_t *)(temp_long1 + (longlong)temp_ptr1);
-      *(int32_t *)((longlong)temp_ptr1 + 0x14) = *(int32_t *)((longlong)temp_ptr1 + temp_long1 + 0x14);
-      *(int32_t *)(temp_ptr1 + 2) = *(int32_t *)((longlong)temp_ptr1 + temp_long1 + 0x10);
-      *(int32_t *)(temp_long1 + 8 + (longlong)temp_ptr1) = 0;
-      *(uint64_t *)(temp_long1 + (longlong)temp_ptr1) = 0;
-      *(uint64_t *)((longlong)temp_ptr1 + temp_long1 + 0x10) = 0;
+      *(int32_t *)(temp_ptr1 + 1) = *(int32_t *)(temp_long1 + 8 + (int64_t)temp_ptr1);
+      *temp_ptr1 = *(uint64_t *)(temp_long1 + (int64_t)temp_ptr1);
+      *(int32_t *)((int64_t)temp_ptr1 + 0x14) = *(int32_t *)((int64_t)temp_ptr1 + temp_long1 + 0x14);
+      *(int32_t *)(temp_ptr1 + 2) = *(int32_t *)((int64_t)temp_ptr1 + temp_long1 + 0x10);
+      *(int32_t *)(temp_long1 + 8 + (int64_t)temp_ptr1) = 0;
+      *(uint64_t *)(temp_long1 + (int64_t)temp_ptr1) = 0;
+      *(uint64_t *)((int64_t)temp_ptr1 + temp_long1 + 0x10) = 0;
       dest_ptr = dest_ptr + 10;
       temp_ptr1 = temp_ptr1 + 5;
-    } while (temp_long1 + -0x10 + (longlong)temp_ptr1 != temp_long2);
+    } while (temp_long1 + -0x10 + (int64_t)temp_ptr1 != temp_long2);
   }
   
   // 添加新元素
@@ -687,7 +687,7 @@ LAB_18016d07b:
   if (temp_long1 != temp_long2) {
     do {
       *(uint64_t *)(temp_long1 + 8) = &system_data_buffer_ptr;
-      if (*(longlong *)(temp_long1 + 0x10) != 0) {
+      if (*(int64_t *)(temp_long1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
         trigger_memory_error();
       }
@@ -701,9 +701,9 @@ LAB_18016d07b:
   
   // 更新数组指针
   if (temp_long1 == 0) {
-    *param_1 = (longlong)src_ptr;
-    param_1[1] = (longlong)(dest_ptr + 10);
-    param_1[2] = (longlong)(src_ptr + temp_long3 * 10);
+    *param_1 = (int64_t)src_ptr;
+    param_1[1] = (int64_t)(dest_ptr + 10);
+    param_1[2] = (int64_t)(src_ptr + temp_long3 * 10);
     return;
   }
                     // WARNING: Subroutine does not return
@@ -716,19 +716,19 @@ LAB_18016d07b:
 
 // 函数: 内存区域重新平衡函数
 // 重新平衡内存区域以提高访问效率
-void rebalance_memory_region(longlong param_1, longlong param_2, int8_t param_3)
+void rebalance_memory_region(int64_t param_1, int64_t param_2, int8_t param_3)
 
 {
   byte temp_byte1;
   int32_t temp_val1;
   int32_t temp_val2;
-  longlong temp_long1;
+  int64_t temp_long1;
   byte *byte_ptr;
   uint temp_uint1;
   uint64_t *ptr8;
-  longlong temp_long2;
-  longlong temp_long3;
-  longlong temp_long4;
+  int64_t temp_long2;
+  int64_t temp_long3;
+  int64_t temp_long4;
   int temp_int1;
   
   if (param_1 != param_2) {
@@ -737,7 +737,7 @@ void rebalance_memory_region(longlong param_1, longlong param_2, int8_t param_3)
     for (temp_long1 = temp_long3; temp_long1 != 0; temp_long1 = temp_long1 >> 1) {
       temp_int1 = temp_int1 + 1;
     }
-    rebalance_memory_helper(param_1, param_2, (longlong)(temp_int1 + -1) * 2, param_3, 0xfffffffffffffffe);
+    rebalance_memory_helper(param_1, param_2, (int64_t)(temp_int1 + -1) * 2, param_3, 0xfffffffffffffffe);
     if (temp_long3 < 0x1d) {
       rebalance_memory_chunk(param_1, param_2);
     }
@@ -746,7 +746,7 @@ void rebalance_memory_region(longlong param_1, longlong param_2, int8_t param_3)
       rebalance_memory_chunk(param_1, temp_long1);
       for (; temp_long1 != param_2; temp_long1 = temp_long1 + 0x20) {
         temp_int1 = *(int *)(temp_long1 + 0x10);
-        temp_long3 = *(longlong *)(temp_long1 + 8);
+        temp_long3 = *(int64_t *)(temp_long1 + 8);
         temp_val1 = *(int32_t *)(temp_long1 + 0x1c);
         temp_val2 = *(int32_t *)(temp_long1 + 0x18);
         *(int32_t *)(temp_long1 + 0x10) = 0;
@@ -756,7 +756,7 @@ void rebalance_memory_region(longlong param_1, longlong param_2, int8_t param_3)
         for (ptr8 = (uint64_t *)(temp_long1 + -0x18); *(int *)(ptr8 + 1) != 0; ptr8 = ptr8 + -4) {
           if (temp_int1 != 0) {
             byte_ptr = (byte *)*ptr8;
-            temp_long4 = temp_long3 - (longlong)byte_ptr;
+            temp_long4 = temp_long3 - (int64_t)byte_ptr;
             do {
               temp_byte1 = *byte_ptr;
               temp_uint1 = (uint)byte_ptr[temp_long4];
@@ -774,19 +774,19 @@ void rebalance_memory_region(longlong param_1, longlong param_2, int8_t param_3)
           *(int32_t *)(ptr8 + 5) = 0;
           *(int32_t *)(ptr8 + 5) = *(int32_t *)(ptr8 + 1);
           ptr8[4] = *ptr8;
-          *(int32_t *)((longlong)ptr8 + 0x34) = *(int32_t *)((longlong)ptr8 + 0x14);
+          *(int32_t *)((int64_t)ptr8 + 0x34) = *(int32_t *)((int64_t)ptr8 + 0x14);
           *(int32_t *)(ptr8 + 6) = *(int32_t *)(ptr8 + 2);
           *(int32_t *)(ptr8 + 1) = 0;
           *ptr8 = 0;
           ptr8[2] = 0;
           temp_long2 = temp_long2 + -0x20;
         }
-        if (*(longlong *)(temp_long2 + 8) != 0) {
+        if (*(int64_t *)(temp_long2 + 8) != 0) {
                     // WARNING: Subroutine does not return
           trigger_memory_error();
         }
         *(int *)(temp_long2 + 0x10) = temp_int1;
-        *(longlong *)(temp_long2 + 8) = temp_long3;
+        *(int64_t *)(temp_long2 + 8) = temp_long3;
         *(int32_t *)(temp_long2 + 0x1c) = temp_val1;
         *(int32_t *)(temp_long2 + 0x18) = temp_val2;
       }
@@ -803,7 +803,7 @@ void rebalance_memory_region(longlong param_1, longlong param_2, int8_t param_3)
 
 // 函数: 数据结构插入函数
 // 向数据结构中插入新元素
-void insert_into_data_structure(longlong *param_1, uint64_t *param_2, longlong param_3, uint64_t param_4)
+void insert_into_data_structure(int64_t *param_1, uint64_t *param_2, int64_t param_3, uint64_t param_4)
 
 {
   int32_t temp_val1;
@@ -811,10 +811,10 @@ void insert_into_data_structure(longlong *param_1, uint64_t *param_2, longlong p
   int32_t temp_val3;
   uint64_t temp_val4;
   uint64_t *temp_ptr1;
-  longlong temp_long1;
-  longlong temp_long2;
+  int64_t temp_long1;
+  int64_t temp_long2;
   uint64_t *temp_ptr2;
-  longlong temp_long3;
+  int64_t temp_long3;
   
   temp_long1 = 0;
   if (param_1[1] != param_1[2]) {
@@ -835,7 +835,7 @@ void insert_into_data_structure(longlong *param_1, uint64_t *param_2, longlong p
     *(int32_t *)(temp_ptr1 + 2) = 0;
     *(int32_t *)(temp_ptr1 + 2) = *(int32_t *)(temp_ptr1 + -2);
     temp_ptr1[1] = temp_ptr1[-3];
-    *(int32_t *)((longlong)temp_ptr1 + 0x1c) = *(int32_t *)((longlong)temp_ptr1 + -4);
+    *(int32_t *)((int64_t)temp_ptr1 + 0x1c) = *(int32_t *)((int64_t)temp_ptr1 + -4);
     *(int32_t *)(temp_ptr1 + 3) = *(int32_t *)(temp_ptr1 + -1);
     *(int32_t *)(temp_ptr1 + -2) = 0;
     temp_ptr1[-3] = 0;
@@ -848,7 +848,7 @@ void insert_into_data_structure(longlong *param_1, uint64_t *param_2, longlong p
     *param_2 = &system_data_buffer_ptr;
     *(int32_t *)(param_2 + 2) = temp_val1;
     param_2[1] = temp_val4;
-    *(int32_t *)((longlong)param_2 + 0x1c) = temp_val2;
+    *(int32_t *)((int64_t)param_2 + 0x1c) = temp_val2;
     *(int32_t *)(param_2 + 3) = temp_val3;
     param_1[1] = param_1[1] + 0x20;
     return;
@@ -864,7 +864,7 @@ void insert_into_data_structure(longlong *param_1, uint64_t *param_2, longlong p
   }
   temp_long1 = allocate_memory_block(system_memory_pool_ptr, temp_long3 << 5, (char)param_1[3], param_4, 0xfffffffffffffffe);
 LAB_18016d59c:
-  temp_ptr1 = (uint64_t *)(((longlong)param_2 - temp_long2 & 0xffffffffffffffe0U) + temp_long1);
+  temp_ptr1 = (uint64_t *)(((int64_t)param_2 - temp_long2 & 0xffffffffffffffe0U) + temp_long1);
   *temp_ptr1 = &system_state_ptr;
   temp_ptr1[1] = 0;
   *(int32_t *)(temp_ptr1 + 2) = 0;
@@ -874,7 +874,7 @@ LAB_18016d59c:
   *(int32_t *)(temp_ptr1 + 2) = 0;
   *(int32_t *)(temp_ptr1 + 2) = *(int32_t *)(param_3 + 0x10);
   temp_ptr1[1] = *(uint64_t *)(param_3 + 8);
-  *(int32_t *)((longlong)temp_ptr1 + 0x1c) = *(int32_t *)(param_3 + 0x1c);
+  *(int32_t *)((int64_t)temp_ptr1 + 0x1c) = *(int32_t *)(param_3 + 0x1c);
   *(int32_t *)(temp_ptr1 + 3) = *(int32_t *)(param_3 + 0x18);
   *(int32_t *)(param_3 + 0x10) = 0;
   *(uint64_t *)(param_3 + 8) = 0;
@@ -906,25 +906,25 @@ LAB_18016d59c:
 
 // 函数: 内存块重排函数
 // 重新排列内存块以提高缓存效率
-void rearrange_memory_blocks(longlong param_1, longlong param_2)
+void rearrange_memory_blocks(int64_t param_1, int64_t param_2)
 
 {
   byte temp_byte1;
   int temp_int1;
   int32_t temp_val1;
   int32_t temp_val2;
-  longlong temp_long1;
-  longlong temp_long2;
+  int64_t temp_long1;
+  int64_t temp_long2;
   byte *byte_ptr;
   uint temp_uint1;
-  longlong temp_long3;
-  longlong temp_long4;
-  longlong temp_long5;
+  int64_t temp_long3;
+  int64_t temp_long4;
+  int64_t temp_long5;
   
   if (param_1 != param_2) {
     for (temp_long4 = param_1 + 0x20; temp_long4 != param_2; temp_long4 = temp_long4 + 0x20) {
       temp_int1 = *(int *)(temp_long4 + 0x10);
-      temp_long1 = *(longlong *)(temp_long4 + 8);
+      temp_long1 = *(int64_t *)(temp_long4 + 8);
       temp_val1 = *(int32_t *)(temp_long4 + 0x1c);
       temp_val2 = *(int32_t *)(temp_long4 + 0x18);
       *(int32_t *)(temp_long4 + 0x10) = 0;
@@ -935,7 +935,7 @@ void rearrange_memory_blocks(longlong param_1, longlong param_2)
       while ((temp_long2 != param_1 && (*(int *)(temp_long2 + -0x10) != 0))) {
         if (temp_int1 != 0) {
           byte_ptr = *(byte **)(temp_long2 + -0x18);
-          temp_long5 = temp_long1 - (longlong)byte_ptr;
+          temp_long5 = temp_long1 - (int64_t)byte_ptr;
           do {
             temp_byte1 = *byte_ptr;
             temp_uint1 = (uint)byte_ptr[temp_long5];
@@ -944,7 +944,7 @@ void rearrange_memory_blocks(longlong param_1, longlong param_2)
           } while (temp_uint1 != 0);
           if ((int)(temp_byte1 - temp_uint1) < 1) break;
         }
-        if (*(longlong *)(temp_long3 + 8) != 0) {
+        if (*(int64_t *)(temp_long3 + 8) != 0) {
                     // WARNING: Subroutine does not return
           trigger_memory_error();
         }
@@ -961,12 +961,12 @@ void rearrange_memory_blocks(longlong param_1, longlong param_2)
         temp_long3 = temp_long3 + -0x20;
         temp_long2 = temp_long2 + -0x20;
       }
-      if (*(longlong *)(temp_long3 + 8) != 0) {
+      if (*(int64_t *)(temp_long3 + 8) != 0) {
                     // WARNING: Subroutine does not return
         trigger_memory_error();
       }
       *(int *)(temp_long3 + 0x10) = temp_int1;
-      *(longlong *)(temp_long3 + 8) = temp_long1;
+      *(int64_t *)(temp_long3 + 8) = temp_long1;
       *(int32_t *)(temp_long3 + 0x1c) = temp_val1;
       *(int32_t *)(temp_long3 + 0x18) = temp_val2;
     }
@@ -991,28 +991,28 @@ process_data_structure_operation(uint64_t param_1, uint64_t param_2, uint64_t pa
 
 
 uint64_t *
-initialize_data_structure(uint64_t *param_1, uint64_t param_2, ulonglong param_3, ulonglong param_4)
+initialize_data_structure(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   int32_t *temp_ptr1;
   char *char_ptr;
-  ulonglong temp_ulong1;
+  uint64_t temp_ulong1;
   uint temp_uint1;
   
   char_ptr = system_context_ptr;
   temp_ulong1 = 0;
   if ((*system_context_ptr == '\0') &&
      (*system_context_ptr = '\x01', param_4 = temp_ulong1,
-     *(longlong *)(char_ptr + 0x10) - *(longlong *)(char_ptr + 8) >> 3 != 0)) {
+     *(int64_t *)(char_ptr + 0x10) - *(int64_t *)(char_ptr + 8) >> 3 != 0)) {
     do {
-      *(uint64_t *)(*(longlong *)(*(longlong *)(char_ptr + 8) + temp_ulong1) + 0x1f8) = 0x3f1a36e2eb1c432d;
-      *(uint64_t *)(*(longlong *)(*(longlong *)(char_ptr + 8) + temp_ulong1) + 0x200) = 0x3f1a36e2eb1c432d;
+      *(uint64_t *)(*(int64_t *)(*(int64_t *)(char_ptr + 8) + temp_ulong1) + 0x1f8) = 0x3f1a36e2eb1c432d;
+      *(uint64_t *)(*(int64_t *)(*(int64_t *)(char_ptr + 8) + temp_ulong1) + 0x200) = 0x3f1a36e2eb1c432d;
       temp_uint1 = (int)param_4 + 1;
-      param_4 = (ulonglong)temp_uint1;
+      param_4 = (uint64_t)temp_uint1;
       param_3 = temp_ulong1 + 8;
       temp_ulong1 = param_3;
-    } while ((ulonglong)(longlong)(int)temp_uint1 <
-             (ulonglong)(*(longlong *)(char_ptr + 0x10) - *(longlong *)(char_ptr + 8) >> 3));
+    } while ((uint64_t)(int64_t)(int)temp_uint1 <
+             (uint64_t)(*(int64_t *)(char_ptr + 0x10) - *(int64_t *)(char_ptr + 8) >> 3));
   }
   *param_1 = &system_state_ptr;
   param_1[1] = 0;

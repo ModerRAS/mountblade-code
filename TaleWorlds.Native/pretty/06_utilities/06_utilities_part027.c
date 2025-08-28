@@ -148,7 +148,7 @@ static Logger g_logger = NULL;
  * 检查系统状态并根据条件执行相应的初始化操作。
  * 当特定条件满足时，重置全局数据状态。
  */
-void utilities_system_status_checker(uint64_t param_1, longlong param_2)
+void utilities_system_status_checker(uint64_t param_1, int64_t param_2)
 {
     char status_flag;
     int system_check_result;
@@ -175,7 +175,7 @@ void utilities_system_status_checker(uint64_t param_1, longlong param_2)
  * 验证系统状态并执行相应的清理和初始化操作。
  * 包含预检查和状态验证逻辑。
  */
-void utilities_system_status_validator(uint64_t param_1, longlong param_2)
+void utilities_system_status_validator(uint64_t param_1, int64_t param_2)
 {
     char validation_flag;
     int validation_result;
@@ -205,7 +205,7 @@ void utilities_system_status_validator(uint64_t param_1, longlong param_2)
  * 处理系统调用并执行相应的操作序列。
  * 包含参数验证和调用路由逻辑。
  */
-void utilities_system_call_handler(uint64_t *param_1, longlong param_2)
+void utilities_system_call_handler(uint64_t *param_1, int64_t param_2)
 {
     FUN_1808fc51c(*(uint64_t *)(param_2 + 0x60), *(int32_t *)(param_2 + 0x68),
                   *(uint64_t *)(param_2 + 0x70), FUN_1808fc074, *(int32_t *)*param_1, param_1);
@@ -234,7 +234,7 @@ bool utilities_parameter_validator(uint64_t *param_1)
  * 管理系统资源并执行相应的资源操作。
  * 根据资源状态执行不同的管理策略。
  */
-void utilities_resource_manager(uint64_t param_1, longlong param_2)
+void utilities_resource_manager(uint64_t param_1, int64_t param_2)
 {
     if (*(char *)(param_2 + 0x20) == '\0') {
         FUN_1808fc914(*(uint64_t *)(param_2 + 0x50), *(uint64_t *)(param_2 + 0x58),
@@ -252,7 +252,7 @@ void utilities_resource_manager(uint64_t param_1, longlong param_2)
  * 高级资源管理器，支持更复杂的资源操作。
  * 包含资源生命周期管理。
  */
-void utilities_advanced_resource_manager(uint64_t param_1, longlong param_2)
+void utilities_advanced_resource_manager(uint64_t param_1, int64_t param_2)
 {
     if (*(char *)(param_2 + 0x20) == '\0') {
         FUN_1808fc914(*(uint64_t *)(param_2 + 0x60), *(uint64_t *)(param_2 + 0x68),
@@ -270,7 +270,7 @@ void utilities_advanced_resource_manager(uint64_t param_1, longlong param_2)
  * 分配系统内存并设置相应的内存结构。
  * 包含内存验证和错误处理。
  */
-int32_t utilities_memory_allocator(uint64_t param_1, longlong param_2)
+int32_t utilities_memory_allocator(uint64_t param_1, int64_t param_2)
 {
     *(uint64_t *)(param_2 + 0x40) = param_1;
     *(uint64_t *)(param_2 + 0x30) = param_1;
@@ -292,7 +292,7 @@ int32_t utilities_memory_allocator(uint64_t param_1, longlong param_2)
  * 清理系统资源并释放相关内存。
  * 执行完整的资源清理流程。
  */
-void utilities_resource_cleaner(uint64_t param_1, longlong param_2)
+void utilities_resource_cleaner(uint64_t param_1, int64_t param_2)
 {
     if (*(char *)(param_2 + 0x20) == '\0') {
         FUN_1808fc914(*(uint64_t *)(param_2 + 0x60), *(uint64_t *)(param_2 + 0x70),
@@ -324,8 +324,8 @@ void utilities_function_call_handler(uint64_t *param_1)
  */
 void utilities_system_initializer(void)
 {
-    longlong iterator_var1;
-    longlong iterator_var2;
+    int64_t iterator_var1;
+    int64_t iterator_var2;
     
     // 设置全局指针
     g_system_global_ptr1 = &system_initialization_ptr;
@@ -646,13 +646,13 @@ void utilities_global_pointer_setter_16(void)
  */
 void utilities_memory_manager(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong *memory_ptr;
+    int64_t *memory_ptr;
     
     memory_ptr = system_config_pointer_data_9200;
     FUN_18008d1f0(param_1, system_config_pointer_data_9200[1], param_3, param_4, 0xfffffffffffffffe);
-    system_config_pointer_data_9200[1] = (longlong)memory_ptr;
-    *system_config_pointer_data_9200 = (longlong)memory_ptr;
-    system_config_pointer_data_9200[2] = (longlong)memory_ptr;
+    system_config_pointer_data_9200[1] = (int64_t)memory_ptr;
+    *system_config_pointer_data_9200 = (int64_t)memory_ptr;
+    system_config_pointer_data_9200[2] = (int64_t)memory_ptr;
     system_config_pointer_data_9208 = 0;
     // 警告：无法恢复跳转表，将间接跳转作为调用处理
     free(system_config_pointer_data_9200, 0x58);
@@ -744,18 +744,18 @@ void utilities_exception_handler(void)
 {
     int *exception_counter;
     uint64_t *exception_ptr;
-    longlong exception_address;
-    ulonglong exception_mask;
+    int64_t exception_address;
+    uint64_t exception_mask;
     
     exception_ptr = system_config_pointer_data_93f8;
     if (system_config_pointer_data_93f8 == (uint64_t *)0x0) {
         return;
     }
     
-    exception_mask = (ulonglong)system_config_pointer_data_93f8 & 0xffffffffffc00000;
+    exception_mask = (uint64_t)system_config_pointer_data_93f8 & 0xffffffffffc00000;
     if (exception_mask != 0) {
-        exception_address = exception_mask + 0x80 + ((longlong)system_config_pointer_data_93f8 - exception_mask >> 0x10) * 0x50;
-        exception_address = exception_address - (ulonglong)*(uint *)(exception_address + 4);
+        exception_address = exception_mask + 0x80 + ((int64_t)system_config_pointer_data_93f8 - exception_mask >> 0x10) * 0x50;
+        exception_address = exception_address - (uint64_t)*(uint *)(exception_address + 4);
         if ((*(void ***)(exception_mask + 0x70) == &ExceptionList) && (*(char *)(exception_address + 0xe) == '\0')) {
             *system_config_pointer_data_93f8 = *(uint64_t *)(exception_address + 0x20);
             *(uint64_t **)(exception_address + 0x20) = exception_ptr;
@@ -843,7 +843,7 @@ void utilities_system_cleaner(void)
             // 系统资源未正确释放，执行错误处理
             FUN_18064e900();
         }
-        if (system_pointer_data_1d18 != (longlong *)0x0) {
+        if (system_pointer_data_1d18 != (int64_t *)0x0) {
             (**(code **)(*system_pointer_data_1d18 + 0x38))();
         }
         if (system_pointer_data_1cf0 != 0) {
@@ -955,14 +955,14 @@ void utilities_system_initializer_2(void)
  */
 void utilities_memory_releaser(void)
 {
-    longlong memory_ptr1;
-    ulonglong memory_size;
+    int64_t memory_ptr1;
+    uint64_t memory_size;
     
     if (system_pointer_data_1f18 != 0) {
         memory_size = system_pointer_data_1f28 - system_pointer_data_1f18 & 0xfffffffffffffff8;
         memory_ptr1 = system_pointer_data_1f18;
         if (0xfff < memory_size) {
-            memory_ptr1 = *(longlong *)(system_pointer_data_1f18 + -8);
+            memory_ptr1 = *(int64_t *)(system_pointer_data_1f18 + -8);
             memory_size = memory_size + 0x27;
             if (0x1f < (system_pointer_data_1f18 - memory_ptr1) - 8U) {
                 // 内存验证失败，执行错误处理
@@ -1646,15 +1646,15 @@ void utilities_mutex_destroyer_8(void)
  */
 void utilities_memory_cleaner_1(void)
 {
-    longlong memory_ptr1;
-    longlong memory_ptr2;
+    int64_t memory_ptr1;
+    int64_t memory_ptr2;
     
     FUN_180067070(&system_cache_config);
     if (0xf < uRam0000000180bfc138) {
         memory_ptr1 = CONCAT71(uRam0000000180bfc121, uRam0000000180bfc120);
         memory_ptr2 = memory_ptr1;
         if (0xfff < uRam0000000180bfc138 + 1) {
-            memory_ptr2 = *(longlong *)(memory_ptr1 + -8);
+            memory_ptr2 = *(int64_t *)(memory_ptr1 + -8);
             if (0x1f < (memory_ptr1 - memory_ptr2) - 8U) {
                 // 内存验证失败，执行错误处理
                 _invalid_parameter_noinfo_noreturn(memory_ptr1 - memory_ptr2, uRam0000000180bfc138 + 0x28);
@@ -1676,14 +1676,14 @@ void utilities_memory_cleaner_1(void)
  */
 void utilities_memory_cleaner_2(void)
 {
-    longlong memory_ptr1;
-    longlong memory_ptr2;
+    int64_t memory_ptr1;
+    int64_t memory_ptr2;
     
     if (0xf < system_control_pointer_data_c118) {
         memory_ptr1 = CONCAT71(uRam0000000180bfc101, system_memory_c100);
         memory_ptr2 = memory_ptr1;
         if (0xfff < system_control_pointer_data_c118 + 1) {
-            memory_ptr2 = *(longlong *)(memory_ptr1 + -8);
+            memory_ptr2 = *(int64_t *)(memory_ptr1 + -8);
             if (0x1f < (memory_ptr1 - memory_ptr2) - 8U) {
                 // 内存验证失败，执行错误处理
                 _invalid_parameter_noinfo_noreturn(memory_ptr1 - memory_ptr2, system_control_pointer_data_c118 + 0x28);
@@ -1704,14 +1704,14 @@ void utilities_memory_cleaner_2(void)
  */
 void utilities_memory_cleaner_3(void)
 {
-    longlong memory_ptr1;
-    longlong memory_ptr2;
+    int64_t memory_ptr1;
+    int64_t memory_ptr2;
     
     if (0xf < uRam0000000180bfc0f0) {
         memory_ptr1 = CONCAT71(uRam0000000180bfc0d9, uRam0000000180bfc0d8);
         memory_ptr2 = memory_ptr1;
         if (0xfff < uRam0000000180bfc0f0 + 1) {
-            memory_ptr2 = *(longlong *)(memory_ptr1 + -8);
+            memory_ptr2 = *(int64_t *)(memory_ptr1 + -8);
             if (0x1f < (memory_ptr1 - memory_ptr2) - 8U) {
                 // 内存验证失败，执行错误处理
                 _invalid_parameter_noinfo_noreturn(memory_ptr1 - memory_ptr2, uRam0000000180bfc0f0 + 0x28);
@@ -1733,14 +1733,14 @@ void utilities_memory_cleaner_3(void)
  */
 void utilities_memory_cleaner_4(void)
 {
-    longlong memory_ptr1;
-    longlong memory_ptr2;
+    int64_t memory_ptr1;
+    int64_t memory_ptr2;
     
     if (0xf < uRam0000000180d499c0) {
         memory_ptr1 = CONCAT71(uRam0000000180d499a9, uRam0000000180d499a8);
         memory_ptr2 = memory_ptr1;
         if (0xfff < uRam0000000180d499c0 + 1) {
-            memory_ptr2 = *(longlong *)(memory_ptr1 + -8);
+            memory_ptr2 = *(int64_t *)(memory_ptr1 + -8);
             if (0x1f < (memory_ptr1 - memory_ptr2) - 8U) {
                 // 内存验证失败，执行错误处理
                 _invalid_parameter_noinfo_noreturn(memory_ptr1 - memory_ptr2, uRam0000000180d499c0 + 0x28);

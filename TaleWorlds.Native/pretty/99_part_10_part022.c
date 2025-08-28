@@ -290,22 +290,22 @@ typedef void (*StateCleanupFunc)(SystemStateManager* manager);  // 状态清理�
 void SystemResourceCleanupAndReleaseProcessor(uint64_t *param_1)
 {
     uint64_t *puVar1;
-    longlong *plVar2;
+    int64_t *plVar2;
     int iVar3;
-    longlong lVar4;
+    int64_t lVar4;
     uint64_t *puVar5;
-    longlong *plVar6;
+    int64_t *plVar6;
     uint uVar7;
-    ulonglong uVar8;
+    uint64_t uVar8;
     uint uVar9;
-    ulonglong uVar10;
+    uint64_t uVar10;
     
     *param_1 = &unknown_var_5848_ptr;
     iVar3 = *(int *)(param_1 + 4);
     if (iVar3 != 0) {
         puVar1 = param_1 + 8;
         do {
-            plVar6 = *(longlong **)(param_1[3] + (ulonglong)(iVar3 - 1) * 8);
+            plVar6 = *(int64_t **)(param_1[3] + (uint64_t)(iVar3 - 1) * 8);
             if (puVar1 != (uint64_t *)0x0) {
                 _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*puVar1);
             }
@@ -318,29 +318,29 @@ void SystemResourceCleanupAndReleaseProcessor(uint64_t *param_1)
                     uVar8 = 0;
                     if (uVar9 != 0) {
                         do {
-                            if (*(longlong **)(uVar8 * 8 + param_1[3]) == plVar6) {
+                            if (*(int64_t **)(uVar8 * 8 + param_1[3]) == plVar6) {
                                 uVar10 = 0;
                                 if (*(int *)(param_1 + 7) != 0) {
                                     do {
-                                        plVar2 = *(longlong **)(param_1[6] + uVar10 * 8);
+                                        plVar2 = *(int64_t **)(param_1[6] + uVar10 * 8);
                                         (**(code **)(*plVar2 + 0x10))(plVar2,plVar6);
                                         uVar9 = (int)uVar10 + 1;
-                                        uVar10 = (ulonglong)uVar9;
+                                        uVar10 = (uint64_t)uVar9;
                                     } while (uVar9 < *(uint *)(param_1 + 7));
                                     uVar9 = *(uint *)(param_1 + 4);
                                 }
                                 *(uint *)(param_1 + 4) = uVar9 - 1;
                                 *(uint64_t *)(param_1[3] + uVar8 * 8) =
-                                     *(uint64_t *)(param_1[3] + (ulonglong)(uVar9 - 1) * 8);
+                                     *(uint64_t *)(param_1[3] + (uint64_t)(uVar9 - 1) * 8);
                             }
                             uVar9 = *(uint *)(param_1 + 4);
                             uVar7 = (int)uVar8 + 1;
-                            uVar8 = (ulonglong)uVar7;
+                            uVar8 = (uint64_t)uVar7;
                         } while (uVar7 < uVar9);
                     }
                 }
                 else {
-                    plVar6 = (longlong *)(**(code **)(*plVar6 + 0x38))();
+                    plVar6 = (int64_t *)(**(code **)(*plVar6 + 0x38))();
                     (**(code **)(*plVar6 + 0x18))(plVar6);
                 }
             }
@@ -354,16 +354,16 @@ void SystemResourceCleanupAndReleaseProcessor(uint64_t *param_1)
     __1MutexImpl_shdfnd_physx__QEAA_XZ(param_1[8]);
     lVar4 = param_1[8];
     if (lVar4 != 0) {
-        plVar6 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
+        plVar6 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
         (**(code **)(*plVar6 + 0x10))(plVar6,lVar4);
     }
-    if ((((*(uint *)((longlong)param_1 + 0x3c) & 0x7fffffff) != 0) &&
-        (-1 < (int)*(uint *)((longlong)param_1 + 0x3c))) && (param_1[6] != 0)) {
-        (**(code **)(**(longlong **)param_1[5] + 0x10))();
+    if ((((*(uint *)((int64_t)param_1 + 0x3c) & 0x7fffffff) != 0) &&
+        (-1 < (int)*(uint *)((int64_t)param_1 + 0x3c))) && (param_1[6] != 0)) {
+        (**(code **)(**(int64_t **)param_1[5] + 0x10))();
     }
-    if ((((*(uint *)((longlong)param_1 + 0x24) & 0x7fffffff) != 0) &&
-        (-1 < (int)*(uint *)((longlong)param_1 + 0x24))) && (param_1[3] != 0)) {
-        (**(code **)(**(longlong **)param_1[2] + 0x10))();
+    if ((((*(uint *)((int64_t)param_1 + 0x24) & 0x7fffffff) != 0) &&
+        (-1 < (int)*(uint *)((int64_t)param_1 + 0x24))) && (param_1[3] != 0)) {
+        (**(code **)(**(int64_t **)param_1[2] + 0x10))();
     }
     *param_1 = &unknown_var_2008_ptr;
     return;
@@ -390,23 +390,23 @@ void SystemResourceCleanupAndReleaseProcessor(uint64_t *param_1)
 void SystemResourceAdvancedCleanupAndReleaseProcessor(uint64_t *param_1)
 {
     uint64_t *puVar1;
-    longlong *plVar2;
+    int64_t *plVar2;
     int iVar3;
     uint64_t in_RAX;
-    longlong lVar4;
+    int64_t lVar4;
     uint64_t *puVar5;
-    longlong *plVar6;
+    int64_t *plVar6;
     uint uVar7;
-    ulonglong uVar8;
+    uint64_t uVar8;
     uint uVar9;
-    ulonglong uVar10;
+    uint64_t uVar10;
     
     *param_1 = in_RAX;
     iVar3 = *(int *)(param_1 + 4);
     if (iVar3 != 0) {
         puVar1 = param_1 + 8;
         do {
-            plVar6 = *(longlong **)(param_1[3] + (ulonglong)(iVar3 - 1) * 8);
+            plVar6 = *(int64_t **)(param_1[3] + (uint64_t)(iVar3 - 1) * 8);
             if (puVar1 != (uint64_t *)0x0) {
                 _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*puVar1);
             }
@@ -419,29 +419,29 @@ void SystemResourceAdvancedCleanupAndReleaseProcessor(uint64_t *param_1)
                     uVar8 = 0;
                     if (uVar9 != 0) {
                         do {
-                            if (*(longlong **)(uVar8 * 8 + param_1[3]) == plVar6) {
+                            if (*(int64_t **)(uVar8 * 8 + param_1[3]) == plVar6) {
                                 uVar10 = 0;
                                 if (*(int *)(param_1 + 7) != 0) {
                                     do {
-                                        plVar2 = *(longlong **)(param_1[6] + uVar10 * 8);
+                                        plVar2 = *(int64_t **)(param_1[6] + uVar10 * 8);
                                         (**(code **)(*plVar2 + 0x10))(plVar2,plVar6);
                                         uVar9 = (int)uVar10 + 1;
-                                        uVar10 = (ulonglong)uVar9;
+                                        uVar10 = (uint64_t)uVar9;
                                     } while (uVar9 < *(uint *)(param_1 + 7));
                                     uVar9 = *(uint *)(param_1 + 4);
                                 }
                                 *(uint *)(param_1 + 4) = uVar9 - 1;
                                 *(uint64_t *)(param_1[3] + uVar8 * 8) =
-                                     *(uint64_t *)(param_1[3] + (ulonglong)(uVar9 - 1) * 8);
+                                     *(uint64_t *)(param_1[3] + (uint64_t)(uVar9 - 1) * 8);
                             }
                             uVar9 = *(uint *)(param_1 + 4);
                             uVar7 = (int)uVar8 + 1;
-                            uVar8 = (ulonglong)uVar7;
+                            uVar8 = (uint64_t)uVar7;
                         } while (uVar7 < uVar9);
                     }
                 }
                 else {
-                    plVar6 = (longlong *)(**(code **)(*plVar6 + 0x38))();
+                    plVar6 = (int64_t *)(**(code **)(*plVar6 + 0x38))();
                     (**(code **)(*plVar6 + 0x18))(plVar6);
                 }
             }
@@ -455,16 +455,16 @@ void SystemResourceAdvancedCleanupAndReleaseProcessor(uint64_t *param_1)
     __1MutexImpl_shdfnd_physx__QEAA_XZ(param_1[8]);
     lVar4 = param_1[8];
     if (lVar4 != 0) {
-        plVar6 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
+        plVar6 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
         (**(code **)(*plVar6 + 0x10))(plVar6,lVar4);
     }
-    if ((((*(uint *)((longlong)param_1 + 0x3c) & 0x7fffffff) != 0) &&
-        (-1 < (int)*(uint *)((longlong)param_1 + 0x3c))) && (param_1[6] != 0)) {
-        (**(code **)(**(longlong **)param_1[5] + 0x10))();
+    if ((((*(uint *)((int64_t)param_1 + 0x3c) & 0x7fffffff) != 0) &&
+        (-1 < (int)*(uint *)((int64_t)param_1 + 0x3c))) && (param_1[6] != 0)) {
+        (**(code **)(**(int64_t **)param_1[5] + 0x10))();
     }
-    if ((((*(uint *)((longlong)param_1 + 0x24) & 0x7fffffff) != 0) &&
-        (-1 < (int)*(uint *)((longlong)param_1 + 0x24))) && (param_1[3] != 0)) {
-        (**(code **)(**(longlong **)param_1[2] + 0x10))();
+    if ((((*(uint *)((int64_t)param_1 + 0x24) & 0x7fffffff) != 0) &&
+        (-1 < (int)*(uint *)((int64_t)param_1 + 0x24))) && (param_1[3] != 0)) {
+        (**(code **)(**(int64_t **)param_1[2] + 0x10))();
     }
     *param_1 = &unknown_var_2008_ptr;
     return;
@@ -488,23 +488,23 @@ void SystemResourceAdvancedCleanupAndReleaseProcessor(uint64_t *param_1)
  * - 支持动态的互斥锁管理
  * - 包含高效的资源释放算法
  */
-void SystemResourceParameterizedCleanupAndReleaseProcessor(longlong param_1)
+void SystemResourceParameterizedCleanupAndReleaseProcessor(int64_t param_1)
 {
     uint64_t *puVar1;
-    longlong *plVar2;
+    int64_t *plVar2;
     int in_EAX;
-    longlong lVar3;
+    int64_t lVar3;
     uint64_t *puVar4;
-    longlong *plVar5;
+    int64_t *plVar5;
     uint uVar6;
-    ulonglong uVar7;
+    uint64_t uVar7;
     uint uVar8;
-    ulonglong uVar9;
+    uint64_t uVar9;
     uint64_t *unaff_RDI;
     
     puVar1 = (uint64_t *)(param_1 + 0x40);
     while( true ) {
-        plVar5 = *(longlong **)(unaff_RDI[3] + (ulonglong)(in_EAX - 1) * 8);
+        plVar5 = *(int64_t **)(unaff_RDI[3] + (uint64_t)(in_EAX - 1) * 8);
         if (puVar1 != (uint64_t *)0x0) {
             _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*puVar1);
         }
@@ -517,29 +517,29 @@ void SystemResourceParameterizedCleanupAndReleaseProcessor(longlong param_1)
                 uVar7 = 0;
                 if (uVar8 != 0) {
                     do {
-                        if (*(longlong **)(uVar7 * 8 + unaff_RDI[3]) == plVar5) {
+                        if (*(int64_t **)(uVar7 * 8 + unaff_RDI[3]) == plVar5) {
                             uVar9 = 0;
                             if (*(int *)(unaff_RDI + 7) != 0) {
                                 do {
-                                    plVar2 = *(longlong **)(unaff_RDI[6] + uVar9 * 8);
+                                    plVar2 = *(int64_t **)(unaff_RDI[6] + uVar9 * 8);
                                     (**(code **)(*plVar2 + 0x10))(plVar2,plVar5);
                                     uVar8 = (int)uVar9 + 1;
-                                    uVar9 = (ulonglong)uVar8;
+                                    uVar9 = (uint64_t)uVar8;
                                 } while (uVar8 < *(uint *)(unaff_RDI + 7));
                                 uVar8 = *(uint *)(unaff_RDI + 4);
                             }
                             *(uint *)(unaff_RDI + 4) = uVar8 - 1;
                             *(uint64_t *)(unaff_RDI[3] + uVar7 * 8) =
-                                 *(uint64_t *)(unaff_RDI[3] + (ulonglong)(uVar8 - 1) * 8);
+                                 *(uint64_t *)(unaff_RDI[3] + (uint64_t)(uVar8 - 1) * 8);
                         }
                         uVar8 = *(uint *)(unaff_RDI + 4);
                         uVar6 = (int)uVar7 + 1;
-                        uVar7 = (ulonglong)uVar6;
+                        uVar7 = (uint64_t)uVar6;
                     } while (uVar6 < uVar8);
                 }
             }
             else {
-                plVar5 = (longlong *)(**(code **)(*plVar5 + 0x38))();
+                plVar5 = (int64_t *)(**(code **)(*plVar5 + 0x38))();
                 (**(code **)(*plVar5 + 0x18))(plVar5);
             }
         }
@@ -549,16 +549,16 @@ void SystemResourceParameterizedCleanupAndReleaseProcessor(longlong param_1)
             __1MutexImpl_shdfnd_physx__QEAA_XZ(unaff_RDI[8]);
             lVar3 = unaff_RDI[8];
             if (lVar3 != 0) {
-                plVar5 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
+                plVar5 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
                 (**(code **)(*plVar5 + 0x10))(plVar5,lVar3);
             }
-            if ((((*(uint *)((longlong)unaff_RDI + 0x3c) & 0x7fffffff) != 0) &&
-                (-1 < (int)*(uint *)((longlong)unaff_RDI + 0x3c))) && (unaff_RDI[6] != 0)) {
-                (**(code **)(**(longlong **)unaff_RDI[5] + 0x10))();
+            if ((((*(uint *)((int64_t)unaff_RDI + 0x3c) & 0x7fffffff) != 0) &&
+                (-1 < (int)*(uint *)((int64_t)unaff_RDI + 0x3c))) && (unaff_RDI[6] != 0)) {
+                (**(code **)(**(int64_t **)unaff_RDI[5] + 0x10))();
             }
-            if ((((*(uint *)((longlong)unaff_RDI + 0x24) & 0x7fffffff) != 0) &&
-                (-1 < (int)*(uint *)((longlong)unaff_RDI + 0x24))) && (unaff_RDI[3] != 0)) {
-                (**(code **)(**(longlong **)unaff_RDI[2] + 0x10))();
+            if ((((*(uint *)((int64_t)unaff_RDI + 0x24) & 0x7fffffff) != 0) &&
+                (-1 < (int)*(uint *)((int64_t)unaff_RDI + 0x24))) && (unaff_RDI[3] != 0)) {
+                (**(code **)(**(int64_t **)unaff_RDI[2] + 0x10))();
             }
             *unaff_RDI = &unknown_var_2008_ptr;
             return;
@@ -585,23 +585,23 @@ void SystemResourceParameterizedCleanupAndReleaseProcessor(longlong param_1)
  */
 void SystemResourceFastCleanupProcessor(void)
 {
-    longlong lVar1;
-    longlong *plVar2;
+    int64_t lVar1;
+    int64_t *plVar2;
     uint64_t *unaff_RDI;
     
     __1MutexImpl_shdfnd_physx__QEAA_XZ(unaff_RDI[8]);
     lVar1 = unaff_RDI[8];
     if (lVar1 != 0) {
-        plVar2 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
+        plVar2 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
         (**(code **)(*plVar2 + 0x10))(plVar2,lVar1);
     }
-    if ((((*(uint *)((longlong)unaff_RDI + 0x3c) & 0x7fffffff) != 0) &&
-        (-1 < (int)*(uint *)((longlong)unaff_RDI + 0x3c))) && (unaff_RDI[6] != 0)) {
-        (**(code **)(**(longlong **)unaff_RDI[5] + 0x10))();
+    if ((((*(uint *)((int64_t)unaff_RDI + 0x3c) & 0x7fffffff) != 0) &&
+        (-1 < (int)*(uint *)((int64_t)unaff_RDI + 0x3c))) && (unaff_RDI[6] != 0)) {
+        (**(code **)(**(int64_t **)unaff_RDI[5] + 0x10))();
     }
-    if ((((*(uint *)((longlong)unaff_RDI + 0x24) & 0x7fffffff) != 0) &&
-        (-1 < (int)*(uint *)((longlong)unaff_RDI + 0x24))) && (unaff_RDI[3] != 0)) {
-        (**(code **)(**(longlong **)unaff_RDI[2] + 0x10))();
+    if ((((*(uint *)((int64_t)unaff_RDI + 0x24) & 0x7fffffff) != 0) &&
+        (-1 < (int)*(uint *)((int64_t)unaff_RDI + 0x24))) && (unaff_RDI[3] != 0)) {
+        (**(code **)(**(int64_t **)unaff_RDI[2] + 0x10))();
     }
     *unaff_RDI = &unknown_var_2008_ptr;
     return;
@@ -625,17 +625,17 @@ void SystemResourceFastCleanupProcessor(void)
  * - 实现灵活的状态管理
  * - 包含完整的资源释放机制
  */
-void SystemResourceConditionalCleanupProcessor(uint64_t param_1,longlong param_2)
+void SystemResourceConditionalCleanupProcessor(uint64_t param_1,int64_t param_2)
 {
     int in_EAX;
     uint64_t *unaff_RDI;
     
     if ((-1 < in_EAX) && (param_2 != 0)) {
-        (**(code **)(**(longlong **)unaff_RDI[5] + 0x10))();
+        (**(code **)(**(int64_t **)unaff_RDI[5] + 0x10))();
     }
-    if ((((*(uint *)((longlong)unaff_RDI + 0x24) & 0x7fffffff) != 0) &&
-        (-1 < (int)*(uint *)((longlong)unaff_RDI + 0x24))) && (unaff_RDI[3] != 0)) {
-        (**(code **)(**(longlong **)unaff_RDI[2] + 0x10))();
+    if ((((*(uint *)((int64_t)unaff_RDI + 0x24) & 0x7fffffff) != 0) &&
+        (-1 < (int)*(uint *)((int64_t)unaff_RDI + 0x24))) && (unaff_RDI[3] != 0)) {
+        (**(code **)(**(int64_t **)unaff_RDI[2] + 0x10))();
     }
     *unaff_RDI = &unknown_var_2008_ptr;
     return;
@@ -660,7 +660,7 @@ void SystemResourceConditionalCleanupProcessor(uint64_t param_1,longlong param_2
  * - 支持标志位控制
  * - 包含内存状态验证
  */
-uint64_t SystemMemoryReleaseProcessorType1(uint64_t param_1,ulonglong param_2)
+uint64_t SystemMemoryReleaseProcessorType1(uint64_t param_1,uint64_t param_2)
 {
     FUN_1806b2b20();
     if ((param_2 & 1) != 0) {
@@ -688,7 +688,7 @@ uint64_t SystemMemoryReleaseProcessorType1(uint64_t param_1,ulonglong param_2)
  * - 实现复杂的释放逻辑
  * - 包含完整的错误处理
  */
-uint64_t SystemMemoryReleaseProcessorType2(uint64_t param_1,ulonglong param_2)
+uint64_t SystemMemoryReleaseProcessorType2(uint64_t param_1,uint64_t param_2)
 {
     FUN_1806b2c20();
     if ((param_2 & 1) != 0) {
@@ -716,10 +716,10 @@ uint64_t SystemMemoryReleaseProcessorType2(uint64_t param_1,ulonglong param_2)
  * - 实现条件性的内存管理
  * - 包含对象生命周期控制
  */
-longlong SystemObjectMemoryReleaseProcessor(longlong param_1,uint param_2)
+int64_t SystemObjectMemoryReleaseProcessor(int64_t param_1,uint param_2)
 {
-    if (*(longlong *)(param_1 + 0x90) != 0) {
-        (**(code **)(*(longlong *)**(uint64_t **)(param_1 + 0x80) + 0x10))();
+    if (*(int64_t *)(param_1 + 0x90) != 0) {
+        (**(code **)(*(int64_t *)**(uint64_t **)(param_1 + 0x80) + 0x10))();
     }
     FUN_1806b2c20(param_1);
     if ((param_2 & 1) != 0) {
@@ -747,7 +747,7 @@ longlong SystemObjectMemoryReleaseProcessor(longlong param_1,uint param_2)
  * - 实现优化的释放算法
  * - 包含完整的错误处理
  */
-uint64_t SystemLargeMemoryReleaseProcessor(uint64_t param_1,ulonglong param_2)
+uint64_t SystemLargeMemoryReleaseProcessor(uint64_t param_1,uint64_t param_2)
 {
     FUN_1806b2ce0();
     if ((param_2 & 1) != 0) {
@@ -775,7 +775,7 @@ uint64_t SystemLargeMemoryReleaseProcessor(uint64_t param_1,ulonglong param_2)
  * - 支持条件性释放
  * - 包含对象生命周期管理
  */
-uint64_t * SystemSmallObjectMemoryReleaseProcessor(uint64_t *param_1,ulonglong param_2)
+uint64_t * SystemSmallObjectMemoryReleaseProcessor(uint64_t *param_1,uint64_t param_2)
 {
     *param_1 = &unknown_var_5768_ptr;
     if ((param_2 & 1) != 0) {
@@ -805,10 +805,10 @@ uint64_t * SystemSmallObjectMemoryReleaseProcessor(uint64_t *param_1,ulonglong p
  */
 uint64_t * SystemCompositeObjectMemoryReleaseProcessor(uint64_t *param_1,uint param_2)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     
     if (param_1[0x15] != 0) {
-        (**(code **)(**(longlong **)param_1[0x13] + 0x10))();
+        (**(code **)(**(int64_t **)param_1[0x13] + 0x10))();
     }
     FUN_1806b2c20(param_1 + 3);
     param_1[2] = &unknown_var_2008_ptr;
@@ -816,7 +816,7 @@ uint64_t * SystemCompositeObjectMemoryReleaseProcessor(uint64_t *param_1,uint pa
     *param_1 = &unknown_var_1848_ptr;
     if ((param_2 & 1) != 0) {
         if ((param_2 & 4) == 0) {
-            plVar1 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
+            plVar1 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
             (**(code **)(*plVar1 + 0x10))(plVar1,param_1);
             return param_1;
         }
@@ -844,7 +844,7 @@ uint64_t * SystemCompositeObjectMemoryReleaseProcessor(uint64_t *param_1,uint pa
  * - 支持状态管理
  * - 包含优化的释放算法
  */
-uint64_t SystemResourceBlockMemoryReleaseProcessor(uint64_t param_1,ulonglong param_2)
+uint64_t SystemResourceBlockMemoryReleaseProcessor(uint64_t param_1,uint64_t param_2)
 {
     FUN_1806b2ea0();
     if ((param_2 & 1) != 0) {
@@ -871,14 +871,14 @@ uint64_t SystemResourceBlockMemoryReleaseProcessor(uint64_t param_1,ulonglong pa
  * - 支持容量检查和扩展
  * - 包含完整的状态同步
  */
-void SystemEventQueueAddProcessor(longlong param_1,uint64_t param_2)
+void SystemEventQueueAddProcessor(int64_t param_1,uint64_t param_2)
 {
     uint64_t uStackX_8;
     
     _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(param_1 + 0x38));
     uStackX_8 = param_2;
     if (*(uint *)(param_1 + 0x130) < (*(uint *)(param_1 + 0x134) & 0x7fffffff)) {
-        *(uint64_t *)(*(longlong *)(param_1 + 0x128) + (ulonglong)*(uint *)(param_1 + 0x130) * 8) =
+        *(uint64_t *)(*(int64_t *)(param_1 + 0x128) + (uint64_t)*(uint *)(param_1 + 0x130) * 8) =
              param_2;
         *(int *)(param_1 + 0x130) = *(int *)(param_1 + 0x130) + 1;
     }
@@ -911,7 +911,7 @@ void SystemEventQueueAddProcessor(longlong param_1,uint64_t param_2)
  * - 实现状态同步机制
  * - 包含完整的错误处理
  */
-void SystemDataQueueAddProcessor(longlong param_1,uint64_t param_2)
+void SystemDataQueueAddProcessor(int64_t param_1,uint64_t param_2)
 {
     uint64_t auStackX_8 [4];
     
@@ -921,7 +921,7 @@ void SystemDataQueueAddProcessor(longlong param_1,uint64_t param_2)
         *(int8_t *)(param_1 + 0x80) = 1;
         return;
     }
-    *(uint64_t *)(*(longlong *)(param_1 + 0x50) + (ulonglong)*(uint *)(param_1 + 0x58) * 8) =
+    *(uint64_t *)(*(int64_t *)(param_1 + 0x50) + (uint64_t)*(uint *)(param_1 + 0x58) * 8) =
        param_2;
     *(int *)(param_1 + 0x58) = *(int *)(param_1 + 0x58) + 1;
     *(int8_t *)(param_1 + 0x80) = 1;
@@ -946,14 +946,14 @@ void SystemDataQueueAddProcessor(longlong param_1,uint64_t param_2)
  * - 支持生命周期管理
  * - 包含回调处理机制
  */
-void SystemObjectRegistrationProcessor(longlong param_1,longlong *param_2)
+void SystemObjectRegistrationProcessor(int64_t param_1,int64_t *param_2)
 {
     uint64_t *puVar1;
-    longlong lVar2;
-    longlong *plVar3;
+    int64_t lVar2;
+    int64_t *plVar3;
     uint uVar4;
-    ulonglong uVar5;
-    longlong *plStackX_8;
+    uint64_t uVar5;
+    int64_t *plStackX_8;
     
     puVar1 = (uint64_t *)(param_1 + 0x40);
     if (puVar1 != (uint64_t *)0x0) {
@@ -963,12 +963,12 @@ void SystemObjectRegistrationProcessor(longlong param_1,longlong *param_2)
     if (lVar2 != 0) {
         lVar2 = (**(code **)(*param_2 + 0x38))(param_2);
         if (lVar2 == param_1) goto FUN_1806b345d;
-        plVar3 = (longlong *)(**(code **)(*param_2 + 0x38))(param_2);
+        plVar3 = (int64_t *)(**(code **)(*param_2 + 0x38))(param_2);
         (**(code **)(*plVar3 + 0x18))(plVar3,param_2);
     }
     plStackX_8 = param_2;
     if (*(uint *)(param_1 + 0x20) < (*(uint *)(param_1 + 0x24) & 0x7fffffff)) {
-        *(longlong **)(*(longlong *)(param_1 + 0x18) + (ulonglong)*(uint *)(param_1 + 0x20) * 8) =
+        *(int64_t **)(*(int64_t *)(param_1 + 0x18) + (uint64_t)*(uint *)(param_1 + 0x20) * 8) =
              param_2;
         *(int *)(param_1 + 0x20) = *(int *)(param_1 + 0x20) + 1;
     }
@@ -979,10 +979,10 @@ void SystemObjectRegistrationProcessor(longlong param_1,longlong *param_2)
     uVar5 = 0;
     if (*(int *)(param_1 + 0x38) != 0) {
         do {
-            plVar3 = *(longlong **)(*(longlong *)(param_1 + 0x30) + uVar5 * 8);
+            plVar3 = *(int64_t **)(*(int64_t *)(param_1 + 0x30) + uVar5 * 8);
             (**(code **)(*plVar3 + 8))(plVar3,param_2);
             uVar4 = (int)uVar5 + 1;
-            uVar5 = (ulonglong)uVar4;
+            uVar5 = (uint64_t)uVar4;
         } while (uVar4 < *(uint *)(param_1 + 0x38));
     }
 FUN_1806b345d:
@@ -1014,14 +1014,14 @@ FUN_1806b345d:
  * - 实现异步操作
  * - 包含完整的错误处理
  */
-void SystemObjectAdvancedRegistrationProcessor(longlong param_1,longlong *param_2)
+void SystemObjectAdvancedRegistrationProcessor(int64_t param_1,int64_t *param_2)
 {
     uint64_t *puVar1;
-    longlong lVar2;
-    longlong *plVar3;
+    int64_t lVar2;
+    int64_t *plVar3;
     uint uVar4;
-    ulonglong uVar5;
-    longlong *in_stack_00000030;
+    uint64_t uVar5;
+    int64_t *in_stack_00000030;
     
     puVar1 = (uint64_t *)(param_1 + 0x40);
     if (puVar1 != (uint64_t *)0x0) {
@@ -1031,12 +1031,12 @@ void SystemObjectAdvancedRegistrationProcessor(longlong param_1,longlong *param_
     if (lVar2 != 0) {
         lVar2 = (**(code **)(*param_2 + 0x38))(param_2);
         if (lVar2 == param_1) goto FUN_1806b345d;
-        plVar3 = (longlong *)(**(code **)(*param_2 + 0x38))(param_2);
+        plVar3 = (int64_t *)(**(code **)(*param_2 + 0x38))(param_2);
         (**(code **)(*plVar3 + 0x18))(plVar3,param_2);
     }
     in_stack_00000030 = param_2;
     if (*(uint *)(param_1 + 0x20) < (*(uint *)(param_1 + 0x24) & 0x7fffffff)) {
-        *(longlong **)(*(longlong *)(param_1 + 0x18) + (ulonglong)*(uint *)(param_1 + 0x20) * 8) =
+        *(int64_t **)(*(int64_t *)(param_1 + 0x18) + (uint64_t)*(uint *)(param_1 + 0x20) * 8) =
              param_2;
         *(int *)(param_1 + 0x20) = *(int *)(param_1 + 0x20) + 1;
     }
@@ -1047,10 +1047,10 @@ void SystemObjectAdvancedRegistrationProcessor(longlong param_1,longlong *param_
     uVar5 = 0;
     if (*(int *)(param_1 + 0x38) != 0) {
         do {
-            plVar3 = *(longlong **)(*(longlong *)(param_1 + 0x30) + uVar5 * 8);
+            plVar3 = *(int64_t **)(*(int64_t *)(param_1 + 0x30) + uVar5 * 8);
             (**(code **)(*plVar3 + 8))(plVar3,param_2);
             uVar4 = (int)uVar5 + 1;
-            uVar5 = (ulonglong)uVar4;
+            uVar5 = (uint64_t)uVar4;
         } while (uVar4 < *(uint *)(param_1 + 0x38));
     }
 FUN_1806b345d:
@@ -1081,17 +1081,17 @@ FUN_1806b345d:
  * - 支持回调处理
  * - 包含线程同步机制
  */
-void SystemObjectActivationProcessor(longlong param_1)
+void SystemObjectActivationProcessor(int64_t param_1)
 {
     uint in_EAX;
     uint64_t *unaff_RBX;
     uint uVar1;
-    ulonglong uVar2;
-    longlong unaff_RSI;
-    longlong *unaff_RDI;
+    uint64_t uVar2;
+    int64_t unaff_RSI;
+    int64_t *unaff_RDI;
     
     if ((uint)param_1 < in_EAX) {
-        *(longlong **)(*(longlong *)(unaff_RSI + 0x18) + param_1 * 8) = unaff_RDI;
+        *(int64_t **)(*(int64_t *)(unaff_RSI + 0x18) + param_1 * 8) = unaff_RDI;
         *(int *)(unaff_RSI + 0x20) = *(int *)(unaff_RSI + 0x20) + 1;
     }
     else {
@@ -1101,9 +1101,9 @@ void SystemObjectActivationProcessor(longlong param_1)
     uVar2 = 0;
     if (*(int *)(unaff_RSI + 0x38) != 0) {
         do {
-            (**(code **)(**(longlong **)(*(longlong *)(unaff_RSI + 0x30) + uVar2 * 8) + 8))();
+            (**(code **)(**(int64_t **)(*(int64_t *)(unaff_RSI + 0x30) + uVar2 * 8) + 8))();
             uVar1 = (int)uVar2 + 1;
-            uVar2 = (ulonglong)uVar1;
+            uVar2 = (uint64_t)uVar1;
         } while (uVar1 < *(uint *)(unaff_RSI + 0x38));
     }
     if (unaff_RBX != (uint64_t *)0x0) {
@@ -1189,12 +1189,12 @@ void SystemForceUnlockProcessor(void)
  * - 支持多回调处理
  * - 包含错误处理机制
  */
-void SystemCallbackRegistrationProcessor(longlong param_1,longlong *param_2)
+void SystemCallbackRegistrationProcessor(int64_t param_1,int64_t *param_2)
 {
     uint64_t *puVar1;
     uint uVar2;
-    ulonglong uVar3;
-    longlong *plStackX_8;
+    uint64_t uVar3;
+    int64_t *plStackX_8;
     
     puVar1 = (uint64_t *)(param_1 + 0x40);
     if (puVar1 != (uint64_t *)0x0) {
@@ -1202,7 +1202,7 @@ void SystemCallbackRegistrationProcessor(longlong param_1,longlong *param_2)
     }
     plStackX_8 = param_2;
     if (*(uint *)(param_1 + 0x38) < (*(uint *)(param_1 + 0x3c) & 0x7fffffff)) {
-        *(longlong **)(*(longlong *)(param_1 + 0x30) + (ulonglong)*(uint *)(param_1 + 0x38) * 8) =
+        *(int64_t **)(*(int64_t *)(param_1 + 0x30) + (uint64_t)*(uint *)(param_1 + 0x38) * 8) =
              param_2;
         *(int *)(param_1 + 0x38) = *(int *)(param_1 + 0x38) + 1;
     }
@@ -1213,9 +1213,9 @@ void SystemCallbackRegistrationProcessor(longlong param_1,longlong *param_2)
     if (*(int *)(param_1 + 0x20) != 0) {
         do {
             (**(code **)(*param_2 + 8))
-                (param_2,*(uint64_t *)(*(longlong *)(param_1 + 0x18) + uVar3 * 8));
+                (param_2,*(uint64_t *)(*(int64_t *)(param_1 + 0x18) + uVar3 * 8));
             uVar2 = (int)uVar3 + 1;
-            uVar3 = (ulonglong)uVar2;
+            uVar3 = (uint64_t)uVar2;
         } while (uVar2 < *(uint *)(param_1 + 0x20));
     }
     if (puVar1 != (uint64_t *)0x0) {
@@ -1247,17 +1247,17 @@ void SystemCallbackRegistrationProcessor(longlong param_1,longlong *param_2)
  * - 实现高效分发机制
  * - 包含完整的状态同步
  */
-void SystemAdvancedEventHandler(longlong param_1,int16_t param_2,ulonglong param_3,int param_4,
-                               ulonglong param_5,ulonglong param_6)
+void SystemAdvancedEventHandler(int64_t param_1,int16_t param_2,uint64_t param_3,int param_4,
+                               uint64_t param_5,uint64_t param_6)
 {
-    longlong lVar1;
-    longlong lVar2;
+    int64_t lVar1;
+    int64_t lVar2;
     int8_t *puVar3;
-    longlong lVar4;
+    int64_t lVar4;
     bool bVar5;
     byte bVar6;
-    ulonglong uVar7;
-    longlong lVar8;
+    uint64_t uVar7;
+    int64_t lVar8;
     byte bVar9;
     int8_t uVar10;
     byte bVar12;
@@ -1269,26 +1269,26 @@ void SystemAdvancedEventHandler(longlong param_1,int16_t param_2,ulonglong param
     int8_t uStack_84;
     byte bStack_83;
     int16_t uStack_82;
-    ulonglong uStack_80;
-    ulonglong uStack_78;
+    uint64_t uStack_80;
+    uint64_t uStack_78;
     uint64_t uStack_70;
     int iStack_68;
     int32_t uStack_64;
-    ulonglong uStack_60;
+    uint64_t uStack_60;
     uint64_t uStack_58;
     int iStack_50;
     int32_t uStack_4c;
-    ulonglong uStack_48;
+    uint64_t uStack_48;
     uint64_t uVar11;
     
     if (*(char *)(param_1 + 0x128) != '\0') {
-        uVar7 = *(ulonglong *)(param_1 + -0x48);
+        uVar7 = *(uint64_t *)(param_1 + -0x48);
         lVar1 = param_1 + -0xb0;
         uStack_80 = uVar7;
         uStackX_10 = param_2;
         if (uVar7 != 0) {
             _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(uVar7 + 8));
-            uStack_80 = *(ulonglong *)(param_1 + -0x48);
+            uStack_80 = *(uint64_t *)(param_1 + -0x48);
         }
         uStack_64 = (uint)uStack_64._2_2_ << 0x10;
         uStack_70 = param_3;
@@ -1296,14 +1296,14 @@ void SystemAdvancedEventHandler(longlong param_1,int16_t param_2,ulonglong param
         if (uStack_80 != 0) {
             _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(uStack_80 + 8));
         }
-        if ((((*(int *)(param_1 + -0x28) == param_4) && (*(ulonglong *)(param_1 + -0x30) == param_3)) &&
+        if ((((*(int *)(param_1 + -0x28) == param_4) && (*(uint64_t *)(param_1 + -0x30) == param_3)) &&
             (*(char *)(param_1 + -0x24) == '\0')) && (*(char *)(param_1 + -0x23) == '\0')) {
             bVar5 = true;
         }
         else {
             bVar5 = false;
         }
-        lVar2 = *(longlong *)(param_1 + -0x20);
+        lVar2 = *(int64_t *)(param_1 + -0x20);
         uVar11 = 3;
         bVar9 = 3;
         uVar10 = 3;
@@ -1330,21 +1330,21 @@ void SystemAdvancedEventHandler(longlong param_1,int16_t param_2,ulonglong param
                     uStack_78 = param_5;
                 }
             }
-            *(ulonglong *)(param_1 + -0x20) = param_5;
-            lVar2 = *(longlong *)(param_1 + -0x38);
+            *(uint64_t *)(param_1 + -0x20) = param_5;
+            lVar2 = *(int64_t *)(param_1 + -0x38);
             FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
             **(int8_t **)(lVar2 + 0x18) = 3;
-            *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 1;
-            lVar2 = *(longlong *)(param_1 + -0x38);
+            *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
+            lVar2 = *(int64_t *)(param_1 + -0x38);
             FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
             **(int8_t **)(lVar2 + 0x18) = uStackX_8;
-            *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 1;
-            lVar2 = *(longlong *)(param_1 + -0x38);
+            *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
+            lVar2 = *(int64_t *)(param_1 + -0x38);
             FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
             puVar3 = *(int8_t **)(lVar2 + 0x18);
             *puVar3 = (char)uStackX_10;
             puVar3[1] = uStackX_10._1_1_;
-            *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
+            *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 2;
             FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&uStack_78,uStack_88);
             if (*(uint *)(param_1 + -0x60) <=
                 (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90))) {
@@ -1387,23 +1387,23 @@ void SystemAdvancedEventHandler(longlong param_1,int16_t param_2,ulonglong param
                     bVar6 = 8;
                 }
             }
-            *(ulonglong *)(param_1 + -0x20) = param_5;
-            lVar2 = *(longlong *)(param_1 + -0x38);
+            *(uint64_t *)(param_1 + -0x20) = param_5;
+            lVar2 = *(int64_t *)(param_1 + -0x38);
             bStackX_9 = bVar12 | bVar6;
             uStackX_a = param_2;
             FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
             **(int8_t **)(lVar2 + 0x18) = 1;
-            *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 1;
-            lVar2 = *(longlong *)(param_1 + -0x38);
+            *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
+            lVar2 = *(int64_t *)(param_1 + -0x38);
             FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 1);
             **(byte **)(lVar2 + 0x18) = bVar12 | bVar6;
-            *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 1;
-            lVar2 = *(longlong *)(param_1 + -0x38);
+            *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 1;
+            lVar2 = *(int64_t *)(param_1 + -0x38);
             FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
             puVar3 = *(int8_t **)(lVar2 + 0x18);
             *puVar3 = (char)uStackX_10;
             puVar3[1] = uStackX_10._1_1_;
-            *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
+            *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 2;
             FUN_1806b2670(&uStack_70,param_1 + -0x38,&uStackX_8);
             if (*(uint *)(param_1 + -0x60) <=
                 (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90))) {
@@ -1418,11 +1418,11 @@ void SystemAdvancedEventHandler(longlong param_1,int16_t param_2,ulonglong param
             // WARNING: Subroutine does not return
             _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(uVar7 + 8));
         }
-        lVar2 = *(longlong *)(param_1 + -0x48);
+        lVar2 = *(int64_t *)(param_1 + -0x48);
         lVar8 = lVar2;
         if (lVar2 != 0) {
             _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(lVar2 + 8));
-            lVar8 = *(longlong *)(param_1 + -0x48);
+            lVar8 = *(int64_t *)(param_1 + -0x48);
         }
         uStack_4c = (uint)uStack_4c._2_2_ << 0x10;
         uStack_58 = param_3;
@@ -1430,14 +1430,14 @@ void SystemAdvancedEventHandler(longlong param_1,int16_t param_2,ulonglong param
         if (lVar8 != 0) {
             _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(lVar8 + 8));
         }
-        if (((*(int *)(param_1 + -0x28) == param_4) && (*(ulonglong *)(param_1 + -0x30) == param_3)) &&
+        if (((*(int *)(param_1 + -0x28) == param_4) && (*(uint64_t *)(param_1 + -0x30) == param_3)) &&
            ((*(char *)(param_1 + -0x24) == '\0' && (*(char *)(param_1 + -0x23) == '\0')))) {
             bVar5 = true;
         }
         else {
             bVar5 = false;
         }
-        lVar4 = *(longlong *)(param_1 + -0x20);
+        lVar4 = *(int64_t *)(param_1 + -0x20);
         if (bVar5) {
             uStack_80 = param_6;
             if (lVar4 != 0) {
@@ -1460,21 +1460,21 @@ void SystemAdvancedEventHandler(longlong param_1,int16_t param_2,ulonglong param
                     }
                 }
             }
-            *(ulonglong *)(param_1 + -0x20) = param_6;
-            lVar4 = *(longlong *)(param_1 + -0x38);
+            *(uint64_t *)(param_1 + -0x20) = param_6;
+            lVar4 = *(int64_t *)(param_1 + -0x38);
             FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
             **(int8_t **)(lVar4 + 0x18) = 4;
-            *(longlong *)(lVar4 + 0x18) = *(longlong *)(lVar4 + 0x18) + 1;
-            lVar4 = *(longlong *)(param_1 + -0x38);
+            *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 1;
+            lVar4 = *(int64_t *)(param_1 + -0x38);
             FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
             **(int8_t **)(lVar4 + 0x18) = uVar10;
-            *(longlong *)(lVar4 + 0x18) = *(longlong *)(lVar4 + 0x18) + 1;
-            lVar4 = *(longlong *)(param_1 + -0x38);
+            *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 1;
+            lVar4 = *(int64_t *)(param_1 + -0x38);
             FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 2);
             puVar3 = *(int8_t **)(lVar4 + 0x18);
             *puVar3 = (char)uStackX_10;
             puVar3[1] = uStackX_10._1_1_;
-            *(longlong *)(lVar4 + 0x18) = *(longlong *)(lVar4 + 0x18) + 2;
+            *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 2;
             FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&uStack_80,uVar11);
         }
         else {
@@ -1513,22 +1513,22 @@ void SystemAdvancedEventHandler(longlong param_1,int16_t param_2,ulonglong param
                     bVar12 = 8;
                 }
             }
-            *(ulonglong *)(param_1 + -0x20) = param_6;
-            lVar4 = *(longlong *)(param_1 + -0x38);
+            *(uint64_t *)(param_1 + -0x20) = param_6;
+            lVar4 = *(int64_t *)(param_1 + -0x38);
             bStack_83 = bVar9 | bVar12;
             FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
             **(int8_t **)(lVar4 + 0x18) = 2;
-            *(longlong *)(lVar4 + 0x18) = *(longlong *)(lVar4 + 0x18) + 1;
-            lVar4 = *(longlong *)(param_1 + -0x38);
+            *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 1;
+            lVar4 = *(int64_t *)(param_1 + -0x38);
             FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 1);
             **(byte **)(lVar4 + 0x18) = bVar9 | bVar12;
-            *(longlong *)(lVar4 + 0x18) = *(longlong *)(lVar4 + 0x18) + 1;
-            lVar4 = *(longlong *)(param_1 + -0x38);
+            *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 1;
+            lVar4 = *(int64_t *)(param_1 + -0x38);
             FUN_1806b5600(lVar4,(*(int *)(lVar4 + 0x18) - *(int *)(lVar4 + 0x10)) + 2);
             puVar3 = *(int8_t **)(lVar4 + 0x18);
             *puVar3 = (char)uStackX_10;
             puVar3[1] = uStackX_10._1_1_;
-            *(longlong *)(lVar4 + 0x18) = *(longlong *)(lVar4 + 0x18) + 2;
+            *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 2;
             FUN_1806b2670(&uStack_58,param_1 + -0x38,&uStack_84);
         }
         if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90)))

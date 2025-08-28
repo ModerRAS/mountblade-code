@@ -53,7 +53,7 @@ typedef enum {
 // 标准化浮点数转换常量
 #define FLOAT_NORMALIZATION_FACTOR 0.003921569f  // 1.0/255.0 浮点数标准化因子
 
-// 函数: void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
+// 函数: void FUN_180279640(int64_t *param_1,int64_t *param_2,char param_3)
 // 渲染系统高级参数和属性设置器
 // 
 // 参数说明:
@@ -78,7 +78,7 @@ typedef enum {
 // - 实现了参数缓存机制
 // - 支持并行处理多个参数设置请求
 
-void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
+void FUN_180279640(int64_t *param_1,int64_t *param_2,char param_3)
 
 {
     // 局部变量声明和初始化
@@ -87,30 +87,30 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
     int32_t uVar3;                // 4字节无符号变量
     int32_t uVar4;                // 4字节无符号变量
     int32_t uVar5;                // 4字节无符号变量
-    longlong lVar6;                   // 长整型变量
-    longlong lVar7;                   // 长整型变量
-    longlong lVar8;                   // 长整型变量
+    int64_t lVar6;                   // 长整型变量
+    int64_t lVar7;                   // 长整型变量
+    int64_t lVar8;                   // 长整型变量
     byte *pbVar9;                    // 字节指针
-    longlong *plVar10;                // 长整型指针
+    int64_t *plVar10;                // 长整型指针
     int iVar11;                      // 整型变量
     int32_t *puVar12;             // 4字节无符号指针
-    longlong lVar13;                  // 长整型变量
-    longlong *plVar14;                // 长整型指针
+    int64_t lVar13;                  // 长整型变量
+    int64_t *plVar14;                // 长整型指针
     void *puVar15;              // 无类型指针
     void *puVar16;              // 无类型指针
-    ulonglong uVar17;                // 无符号长整型变量
-    ulonglong uVar18;                // 无符号长整型变量
+    uint64_t uVar17;                // 无符号长整型变量
+    uint64_t uVar18;                // 无符号长整型变量
     uint uVar19;                     // 无符号整型变量
-    ulonglong uVar20;                // 无符号长整型变量
+    uint64_t uVar20;                // 无符号长整型变量
     
     // 栈变量声明 - 用于临时数据存储
     int8_t auStack_488 [32];     // 32字节的栈缓冲区
-    longlong *plStack_468;           // 栈上的长整型指针
-    longlong *plStack_460;           // 栈上的长整型指针
+    int64_t *plStack_468;           // 栈上的长整型指针
+    int64_t *plStack_460;           // 栈上的长整型指针
     char cStack_458;                 // 栈上的字符变量
-    longlong *plStack_440;           // 栈上的长整型指针
-    longlong *plStack_438;           // 栈上的长整型指针
-    longlong *plStack_430;           // 栈上的长整型指针
+    int64_t *plStack_440;           // 栈上的长整型指针
+    int64_t *plStack_438;           // 栈上的长整型指针
+    int64_t *plStack_430;           // 栈上的长整型指针
     uint64_t uStack_428;           // 栈上的8字节无符号变量
     void *puStack_418;          // 栈上的无类型指针
     byte *pbStack_410;               // 栈上的字节指针
@@ -163,14 +163,14 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
     int iStack_a8;                   // 基础大小变量
     byte abStack_a0 [72];             // 基础参数存储区
     
-    ulonglong uStack_58;             // 栈上的无符号长整型变量，用于校验和计算
+    uint64_t uStack_58;             // 栈上的无符号长整型变量，用于校验和计算
     
     // 初始化栈保护和校验数据
     uStack_428 = 0xfffffffffffffffe;  // 栈保护标记
-    uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_488;  // 校验和计算
+    uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_488;  // 校验和计算
     
     // 初始化主要参数指针
-    plVar14 = (longlong *)param_2[1];  // 获取参数数据指针
+    plVar14 = (int64_t *)param_2[1];  // 获取参数数据指针
     plStack_468 = param_2;              // 保存参数数据指针到栈
     plStack_460 = param_1;              // 保存渲染对象指针到栈
     cStack_458 = param_3;               // 保存操作模式到栈
@@ -186,13 +186,13 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
             case 0:  // 基础参数处理
                 if (cStack_458 == '\0') {
                     // 直接设置模式 - 使用新参数值
-                    *(int32_t *)((longlong)param_1 + 0x324) = puVar12[2];
-                    *(int8_t *)((longlong)param_1 + 0x32c) = 0;
+                    *(int32_t *)((int64_t)param_1 + 0x324) = puVar12[2];
+                    *(int8_t *)((int64_t)param_1 + 0x32c) = 0;
                 }
                 else {
                     // 复制模式 - 从源对象复制参数值
-                    *(int32_t *)((longlong)param_1 + 0x324) = *(int32_t *)(*param_2 + 0x324);
-                    *(int8_t *)((longlong)param_1 + 0x32c) = *(int8_t *)(*param_2 + 0x32c);
+                    *(int32_t *)((int64_t)param_1 + 0x324) = *(int32_t *)(*param_2 + 0x324);
+                    *(int8_t *)((int64_t)param_1 + 0x32c) = *(int8_t *)(*param_2 + 0x32c);
                 }
                 break;
                 
@@ -200,13 +200,13 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                 if (cStack_458 == '\0') {
                     // 材质对象处理逻辑
                     pcVar2 = *(code **)(*param_1 + 0x118);
-                    plStack_440 = *(longlong **)(puVar12 + 2);
-                    if (plStack_440 != (longlong *)0x0) {
+                    plStack_440 = *(int64_t **)(puVar12 + 2);
+                    if (plStack_440 != (int64_t *)0x0) {
                         (**(code **)(*plStack_440 + 0x28))();  // 调用材质初始化函数
                     }
                     (*pcVar2)(param_1,&plStack_440);          // 应用材质参数
                     param_2 = plStack_468;                    // 恢复参数指针
-                    if (plStack_440 != (longlong *)0x0) {
+                    if (plStack_440 != (int64_t *)0x0) {
                         (**(code **)(*plStack_440 + 0x38))();  // 调用材质清理函数
                         param_2 = plStack_468;                // 恢复参数指针
                     }
@@ -214,9 +214,9 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                 else {
                     // 材质参数复制逻辑
                     lVar13 = *param_2;
-                    plVar10 = *(longlong **)(lVar13 + 0x38);
+                    plVar10 = *(int64_t **)(lVar13 + 0x38);
                     param_2 = plStack_468;
-                    if (*(longlong *)(lVar13 + 0x40) - (longlong)plVar10 >> 4 != 0) {
+                    if (*(int64_t *)(lVar13 + 0x40) - (int64_t)plVar10 >> 4 != 0) {
                         (**(code **)(*param_1 + 0x118))(param_1,*plVar10 + 0x1b8);
                         param_2 = plStack_468;
                     }
@@ -226,15 +226,15 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
             case 2:  // 纹理参数处理
                 if (cStack_458 == '\0') {
                     // 纹理对象处理逻辑
-                    plVar10 = *(longlong **)(puVar12 + 2);
-                    if (plVar10 != (longlong *)0x0) {
+                    plVar10 = *(int64_t **)(puVar12 + 2);
+                    if (plVar10 != (int64_t *)0x0) {
                         plStack_438 = plVar10;
                         (**(code **)(*plVar10 + 0x28))(plVar10);  // 调用纹理初始化函数
                         param_2 = plStack_468;
                     }
-                    plStack_438 = (longlong *)param_1[0x77];   // 获取当前纹理对象
-                    param_1[0x77] = (longlong)plVar10;          // 设置新纹理对象
-                    if (plStack_438 != (longlong *)0x0) {
+                    plStack_438 = (int64_t *)param_1[0x77];   // 获取当前纹理对象
+                    param_1[0x77] = (int64_t)plVar10;          // 设置新纹理对象
+                    if (plStack_438 != (int64_t *)0x0) {
                         (**(code **)(*plStack_438 + 0x38))();  // 调用旧纹理清理函数
                         param_2 = plStack_468;
                     }
@@ -254,15 +254,15 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                     puVar12 = (int32_t *)(*param_2 + 0x330);  // 从源对象复制颜色值
                 }
                 (**(code **)(*param_1 + 0x148))(param_1,puVar12);  // 应用颜色参数
-                FUN_180276f30(param_1,(longlong)param_1 + 0x214,1);  // 更新颜色状态
+                FUN_180276f30(param_1,(int64_t)param_1 + 0x214,1);  // 更新颜色状态
                 param_2 = plStack_468;
                 break;
                 
             case 4:  // 着色器参数处理
                 if (cStack_458 == '\0') {
                     // 着色器参数批量设置
-                    plVar10 = (longlong *)param_1[7];
-                    if (plVar10 < (longlong *)param_1[8]) {
+                    plVar10 = (int64_t *)param_1[7];
+                    if (plVar10 < (int64_t *)param_1[8]) {
                         do {
                             lVar13 = *plVar10;
                             uVar3 = puVar12[3];
@@ -273,18 +273,18 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                             *(int32_t *)(lVar13 + 0x2c0) = uVar4;
                             *(int32_t *)(lVar13 + 0x2c4) = uVar5;
                             plVar10 = plVar10 + 2;
-                        } while (plVar10 < (longlong *)param_1[8]);
+                        } while (plVar10 < (int64_t *)param_1[8]);
                     }
                 }
                 else {
                     // 着色器参数复制逻辑
                     lVar13 = *param_2;
-                    plVar10 = *(longlong **)(lVar13 + 0x38);
+                    plVar10 = *(int64_t **)(lVar13 + 0x38);
                     param_2 = plStack_468;
-                    if (*(longlong *)(lVar13 + 0x40) - (longlong)plVar10 >> 4 != 0) {
+                    if (*(int64_t *)(lVar13 + 0x40) - (int64_t)plVar10 >> 4 != 0) {
                         lVar13 = *plVar10;
-                        plVar10 = (longlong *)param_1[7];
-                        if (plVar10 < (longlong *)param_1[8]) {
+                        plVar10 = (int64_t *)param_1[7];
+                        if (plVar10 < (int64_t *)param_1[8]) {
                             do {
                                 lVar7 = *plVar10;
                                 uVar3 = *(int32_t *)(lVar13 + 700);
@@ -295,7 +295,7 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                                 *(int32_t *)(lVar7 + 0x2c0) = uVar4;
                                 *(int32_t *)(lVar7 + 0x2c4) = uVar5;
                                 plVar10 = plVar10 + 2;
-                            } while (plVar10 < (longlong *)param_1[8]);
+                            } while (plVar10 < (int64_t *)param_1[8]);
                         }
                     }
                 }
@@ -310,8 +310,8 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                     if (lVar7 != 0) {
                         do {
                             puVar16 = &unknown_var_3480_ptr;
-                            lVar13 = *(longlong *)(uVar17 + lVar13);
-                            if (*(longlong *)(lVar13 + 0x1b0) == 0) {
+                            lVar13 = *(int64_t *)(uVar17 + lVar13);
+                            if (*(int64_t *)(lVar13 + 0x1b0) == 0) {
                                 lVar7 = lVar13 + 0x10;
                             }
                             else {
@@ -331,26 +331,26 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                                 lVar8 = lVar7 + 1;
                                 lVar6 = lVar7 + 9;
                                 lVar7 = lVar8;
-                            } while (*(char *)((longlong)puVar12 + lVar6) != '\0');
+                            } while (*(char *)((int64_t)puVar12 + lVar6) != '\0');
                             iVar11 = (int)lVar8;
                             if (iStack_3a8 == iVar11) {
                                 if (iStack_3a8 != 0) {
                                     pbVar9 = pbStack_3b0;
                                     do {
-                                        pbVar1 = pbVar9 + (longlong)puVar12 + (8 - (longlong)pbStack_3b0);
+                                        pbVar1 = pbVar9 + (int64_t)puVar12 + (8 - (int64_t)pbStack_3b0);
                                         iVar11 = (uint)*pbVar9 - (uint)*pbVar1;
                                         if (iVar11 != 0) break;
                                         pbVar9 = pbVar9 + 1;
                                     } while (*pbVar1 != 0);
                                 }
                                 if (iVar11 == 0) {
-                                    plVar10 = *(longlong **)(puVar12 + 0x42);
+                                    plVar10 = *(int64_t **)(puVar12 + 0x42);
                                     plStack_430 = plVar10;
-                                    if (plVar10 != (longlong *)0x0) {
+                                    if (plVar10 != (int64_t *)0x0) {
                                         (**(code **)(*plVar10 + 0x28))(plVar10);
                                     }
                                     FUN_180076910(lVar13,&plStack_430);
-                                    if (plVar10 != (longlong *)0x0) {
+                                    if (plVar10 != (int64_t *)0x0) {
                                         (**(code **)(*plVar10 + 0x38))(plVar10);
                                     }
                                     puStack_3b8 = &system_state_ptr;
@@ -361,12 +361,12 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                             }
                             puStack_3b8 = &system_state_ptr;
                             uVar19 = (int)uVar18 + 1;
-                            uVar18 = (ulonglong)uVar19;
+                            uVar18 = (uint64_t)uVar19;
                             uVar17 = uVar17 + 0x10;
                             lVar13 = plStack_460[7];
                             param_2 = plStack_468;
                             param_1 = plStack_460;
-                        } while ((ulonglong)(longlong)(int)uVar19 < (ulonglong)(plStack_460[8] - lVar13 >> 4));
+                        } while ((uint64_t)(int64_t)(int)uVar19 < (uint64_t)(plStack_460[8] - lVar13 >> 4));
                     }
                 }
                 else {
@@ -377,8 +377,8 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                     if (lVar7 != 0) {
                         do {
                             puVar16 = &unknown_var_3480_ptr;
-                            lVar13 = *(longlong *)(uVar18 + lVar13);
-                            if (*(longlong *)(lVar13 + 0x1b0) == 0) {
+                            lVar13 = *(int64_t *)(uVar18 + lVar13);
+                            if (*(int64_t *)(lVar13 + 0x1b0) == 0) {
                                 lVar7 = lVar13 + 0x10;
                             }
                             else {
@@ -398,21 +398,21 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                                 lVar8 = lVar7 + 1;
                                 lVar6 = lVar7 + 9;
                                 lVar7 = lVar8;
-                            } while (*(char *)((longlong)puVar12 + lVar6) != '\0');
+                            } while (*(char *)((int64_t)puVar12 + lVar6) != '\0');
                             iVar11 = (int)lVar8;
                             if (iStack_408 == iVar11) {
                                 if (iStack_408 != 0) {
                                     pbVar9 = pbStack_410;
                                     do {
-                                        pbVar1 = pbVar9 + (longlong)puVar12 + (8 - (longlong)pbStack_410);
+                                        pbVar1 = pbVar9 + (int64_t)puVar12 + (8 - (int64_t)pbStack_410);
                                         iVar11 = (uint)*pbVar9 - (uint)*pbVar1;
                                         if (iVar11 != 0) break;
                                         pbVar9 = pbVar9 + 1;
                                     } while (*pbVar1 != 0);
                                 }
                                 if (iVar11 == 0) {
-                                    FUN_180076910(lVar13,*(longlong *)
-                                        (*(longlong *)(*plStack_468 + 0x38) + uVar17 * 0x10) + 0x1b8);
+                                    FUN_180076910(lVar13,*(int64_t *)
+                                        (*(int64_t *)(*plStack_468 + 0x38) + uVar17 * 0x10) + 0x1b8);
                                     puStack_418 = &system_state_ptr;
                                     param_2 = plStack_468;
                                     param_1 = plStack_460;
@@ -426,19 +426,19 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                             param_2 = plStack_468;
                             param_1 = plStack_460;
                             uVar18 = uVar18 + 0x10;
-                            uVar20 = (ulonglong)uVar19;
-                        } while ((ulonglong)(longlong)(int)uVar19 < (ulonglong)(plStack_460[8] - lVar13 >> 4));
+                            uVar20 = (uint64_t)uVar19;
+                        } while ((uint64_t)(int64_t)(int)uVar19 < (uint64_t)(plStack_460[8] - lVar13 >> 4));
                     }
                 }
                 break;
             }
-            plVar14 = (longlong *)*plVar14;
+            plVar14 = (int64_t *)*plVar14;
         } while (plVar14 != param_2 + 1);
     }
     
     // 栈校验和清理 - 确保栈完整性并执行清理操作
     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_488);
+    FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_488);
 }
 
 

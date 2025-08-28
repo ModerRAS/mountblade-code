@@ -58,9 +58,9 @@ extern void func_0x0001800296e1(void);
 
 // 渲染管线外部函数
 extern void func_0x00018002acc0(unsigned long long param1, unsigned int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, int param6);
-extern void func_0x00018001a840(longlong param1, int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, longlong param6);
+extern void func_0x00018001a840(int64_t param1, int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, int64_t param6);
 extern void func_0x00018002b38a(unsigned long long param1, unsigned int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, int param6);
-extern void func_0x00018001b1ed(longlong param1, unsigned int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, longlong param6);
+extern void func_0x00018001b1ed(int64_t param1, unsigned int param2, unsigned long long param3, unsigned long long param4, unsigned long long param5, int64_t param6);
 extern void FUN_1808fc050(unsigned long long param);
 
 // 全局变量声明
@@ -201,7 +201,7 @@ static void InitializeGlobalCriticalSection(void);
 // 参数: param_1 - 图像数据结构指针
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_ImageDataProcessor(longlong param_1)
+void RenderingSystem_ImageDataProcessor(int64_t param_1)
 
 {
   int16_t channel_data;      // 通道数据值
@@ -255,12 +255,12 @@ void RenderingSystem_ImageDataProcessor(longlong param_1)
 //        param_2 - 验证参数
 // 返回: 验证结果 (true/false)
 //------------------------------------------------------------------------------
-bool RenderingSystem_BufferValidator(longlong param_1, int param_2)
+bool RenderingSystem_BufferValidator(int64_t param_1, int param_2)
 
 {
   byte shift_amount;       // 移位量
-  ulonglong bit_position;  // 位位置
-  ulonglong remaining_bits; // 剩余位数
+  uint64_t bit_position;  // 位位置
+  uint64_t remaining_bits; // 剩余位数
   uint calculated_bits;    // 计算的位数
   bool has_enough_bits;   // 是否有足够的位数
   
@@ -273,8 +273,8 @@ bool RenderingSystem_BufferValidator(longlong param_1, int param_2)
   }
   
   // 获取当前位流状态
-  remaining_bits = *(ulonglong *)(param_1 + 0x10);
-  bit_position = (ulonglong)calculated_bits << 0x38;  // 左移56位
+  remaining_bits = *(uint64_t *)(param_1 + 0x10);
+  bit_position = (uint64_t)calculated_bits << 0x38;  // 左移56位
   has_enough_bits = bit_position <= remaining_bits;
   
   // 如果有足够的位数，更新状态
@@ -287,7 +287,7 @@ bool RenderingSystem_BufferValidator(longlong param_1, int param_2)
   shift_amount = (&global_var_8608_ptr)[calculated_bits];
   *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)shift_amount;
   *(uint *)(param_1 + 0x1c) = calculated_bits << (shift_amount & 0x1f);
-  *(ulonglong *)(param_1 + 0x10) = remaining_bits << (shift_amount & 0x3f);
+  *(uint64_t *)(param_1 + 0x10) = remaining_bits << (shift_amount & 0x3f);
   
   return has_enough_bits;
 }
@@ -302,19 +302,19 @@ bool RenderingSystem_BufferValidator(longlong param_1, int param_2)
 // 参数: param_1 - 内存管理结构指针
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_MemoryManager(longlong param_1)
+void RenderingSystem_MemoryManager(int64_t param_1)
 
 {
   uint buffer_size;      // 缓冲区大小
-  longlong source_ptr;   // 源指针
-  longlong dest_ptr;     // 目标指针
-  longlong temp_ptr;     // 临时指针
+  int64_t source_ptr;   // 源指针
+  int64_t dest_ptr;     // 目标指针
+  int64_t temp_ptr;     // 临时指针
   
   // 主缓冲区复制操作
-  source_ptr = (longlong)*(int *)(param_1 + 0x10);
+  source_ptr = (int64_t)*(int *)(param_1 + 0x10);
   buffer_size = *(uint *)(param_1 + 100);
-  dest_ptr = (((longlong)(*(int *)(param_1 + 4) * *(int *)(param_1 + 0x10)) +
-               *(longlong *)(param_1 + 0x38)) - (ulonglong)buffer_size) - source_ptr;
+  dest_ptr = (((int64_t)(*(int *)(param_1 + 4) * *(int *)(param_1 + 0x10)) +
+               *(int64_t *)(param_1 + 0x38)) - (uint64_t)buffer_size) - source_ptr;
   
   // 执行主缓冲区复制（如果缓冲区大小大于0）
   if (0 < (int)buffer_size) {
@@ -322,9 +322,9 @@ void RenderingSystem_MemoryManager(longlong param_1)
   }
   
   // 处理第一个辅助缓冲区
-  source_ptr = (longlong)*(int *)(param_1 + 0x24);
-  dest_ptr = (longlong)(*(int *)(param_1 + 0x18) * *(int *)(param_1 + 0x24));
-  temp_ptr = ((*(longlong *)(param_1 + 0x40) - (ulonglong)(buffer_size >> 1)) - source_ptr) + dest_ptr;
+  source_ptr = (int64_t)*(int *)(param_1 + 0x24);
+  dest_ptr = (int64_t)(*(int *)(param_1 + 0x18) * *(int *)(param_1 + 0x24));
+  temp_ptr = ((*(int64_t *)(param_1 + 0x40) - (uint64_t)(buffer_size >> 1)) - source_ptr) + dest_ptr;
   
   // 执行第一个辅助缓冲区复制（如果半缓冲区大小大于0）
   if (buffer_size >> 1 != 0) {
@@ -332,7 +332,7 @@ void RenderingSystem_MemoryManager(longlong param_1)
   }
   
   // 处理第二个辅助缓冲区
-  dest_ptr = ((*(longlong *)(param_1 + 0x48) - (ulonglong)(buffer_size >> 1)) - source_ptr) + dest_ptr;
+  dest_ptr = ((*(int64_t *)(param_1 + 0x48) - (uint64_t)(buffer_size >> 1)) - source_ptr) + dest_ptr;
   
   // 执行第二个辅助缓冲区复制（如果半缓冲区大小大于0）
   if (buffer_size >> 1 != 0) {
@@ -353,11 +353,11 @@ void RenderingSystem_MemoryManager(longlong param_1)
 //        param_2 - 初始化数据指针
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_BufferInitializer(longlong param_1, unsigned char* param_2)
+void RenderingSystem_BufferInitializer(int64_t param_1, unsigned char* param_2)
 
 {
                     // WARNING: Subroutine does not return
-  memset((longlong)param_2 - (ulonglong)*(uint *)(param_1 + 100),*param_2,*(uint *)(param_1 + 100));
+  memset((int64_t)param_2 - (uint64_t)*(uint *)(param_1 + 100),*param_2,*(uint *)(param_1 + 100));
 }
 
 
@@ -370,32 +370,32 @@ void RenderingSystem_BufferInitializer(longlong param_1, unsigned char* param_2)
 // 参数: param_1 - 数据结构指针
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_DataCopier(longlong param_1)
+void RenderingSystem_DataCopier(int64_t param_1)
 
 {
   uint uVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   uint uVar4;
   
   uVar1 = *(uint *)(param_1 + 100);
-  lVar3 = *(longlong *)(param_1 + 0x38) - (ulonglong)uVar1;
+  lVar3 = *(int64_t *)(param_1 + 0x38) - (uint64_t)uVar1;
   if (0 < (int)uVar1) {
                     // WARNING: Subroutine does not return
-    memcpy(lVar3 - (ulonglong)(*(int *)(param_1 + 0x10) * uVar1),lVar3,
-           (longlong)*(int *)(param_1 + 0x10));
+    memcpy(lVar3 - (uint64_t)(*(int *)(param_1 + 0x10) * uVar1),lVar3,
+           (int64_t)*(int *)(param_1 + 0x10));
   }
   iVar2 = *(int *)(param_1 + 0x24);
   uVar4 = uVar1 >> 1;
-  lVar3 = *(longlong *)(param_1 + 0x40) - (ulonglong)uVar4;
+  lVar3 = *(int64_t *)(param_1 + 0x40) - (uint64_t)uVar4;
   if (uVar1 >> 1 != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(lVar3 - (ulonglong)(iVar2 * uVar4),lVar3,(longlong)iVar2);
+    memcpy(lVar3 - (uint64_t)(iVar2 * uVar4),lVar3,(int64_t)iVar2);
   }
-  lVar3 = *(longlong *)(param_1 + 0x48) - (ulonglong)uVar4;
+  lVar3 = *(int64_t *)(param_1 + 0x48) - (uint64_t)uVar4;
   if (uVar1 >> 1 != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(lVar3 - (ulonglong)(iVar2 * uVar4),lVar3,(longlong)iVar2);
+    memcpy(lVar3 - (uint64_t)(iVar2 * uVar4),lVar3,(int64_t)iVar2);
   }
   return;
 }
@@ -410,32 +410,32 @@ void RenderingSystem_DataCopier(longlong param_1)
 // 参数: param_1 - 数据结构指针
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_DataReverser(longlong param_1)
+void RenderingSystem_DataReverser(int64_t param_1)
 
 {
   uint uVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   uint uVar4;
   
   uVar1 = *(uint *)(param_1 + 100);
-  lVar3 = *(longlong *)(param_1 + 0x38) - (ulonglong)uVar1;
+  lVar3 = *(int64_t *)(param_1 + 0x38) - (uint64_t)uVar1;
   if (0 < (int)uVar1) {
                     // WARNING: Subroutine does not return
-    memcpy(lVar3 - (ulonglong)(*(int *)(param_1 + 0x10) * uVar1),lVar3,
-           (longlong)*(int *)(param_1 + 0x10));
+    memcpy(lVar3 - (uint64_t)(*(int *)(param_1 + 0x10) * uVar1),lVar3,
+           (int64_t)*(int *)(param_1 + 0x10));
   }
   iVar2 = *(int *)(param_1 + 0x24);
   uVar4 = uVar1 >> 1;
-  lVar3 = *(longlong *)(param_1 + 0x40) - (ulonglong)uVar4;
+  lVar3 = *(int64_t *)(param_1 + 0x40) - (uint64_t)uVar4;
   if (uVar1 >> 1 != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(lVar3 - (ulonglong)(iVar2 * uVar4),lVar3,(longlong)iVar2);
+    memcpy(lVar3 - (uint64_t)(iVar2 * uVar4),lVar3,(int64_t)iVar2);
   }
-  lVar3 = *(longlong *)(param_1 + 0x48) - (ulonglong)uVar4;
+  lVar3 = *(int64_t *)(param_1 + 0x48) - (uint64_t)uVar4;
   if (uVar1 >> 1 != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(lVar3 - (ulonglong)(iVar2 * uVar4),lVar3,(longlong)iVar2);
+    memcpy(lVar3 - (uint64_t)(iVar2 * uVar4),lVar3,(int64_t)iVar2);
   }
   return;
 }
@@ -473,8 +473,8 @@ void RenderingSystem_ThreadInitializer(void (*param_1)(void))
 
 {
   int ref_count;         // 引用计数
-  longlong new_cs;        // 新临界区
-  longlong current_cs;    // 当前临界区
+  int64_t new_cs;        // 新临界区
+  int64_t current_cs;    // 当前临界区
   bool cs_exists;         // 临界区是否存在
   
   // 检查是否已经初始化
@@ -545,8 +545,8 @@ void RenderingSystem_ThreadSynchronizer(void)
 
 {
   int ref_count;         // 引用计数
-  longlong new_cs;        // 新临界区
-  longlong current_cs;    // 当前临界区
+  int64_t new_cs;        // 新临界区
+  int64_t current_cs;    // 当前临界区
   code *callback_func;   // 回调函数指针
   bool cs_exists;         // 临界区是否存在
   
@@ -661,12 +661,12 @@ void RenderingSystem_ThreadFinalizer(void)
 //        param_9 - 变换标志
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_ImageTransformer(longlong param_1, unsigned long long param_2, unsigned long long param_3, unsigned char* param_4,
+void RenderingSystem_ImageTransformer(int64_t param_1, unsigned long long param_2, unsigned long long param_3, unsigned char* param_4,
                                      unsigned char* param_5, int param_6, unsigned long long param_7, unsigned long long param_8, int param_9)
 
 {
   byte bVar1;
-  longlong lVar2;
+  int64_t lVar2;
   code *pcVar3;
   int8_t auStack_68 [32];
   int8_t uStack_48;
@@ -685,11 +685,11 @@ void RenderingSystem_ImageTransformer(longlong param_1, unsigned long long param
   int8_t uStack_3b;
   int8_t uStack_3a;
   int8_t uStack_39;
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
-  lVar2 = (longlong)param_6;
-  bVar1 = *(byte *)(*(longlong *)(param_1 + 0xf00) + 1);
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
+  lVar2 = (int64_t)param_6;
+  bVar1 = *(byte *)(*(int64_t *)(param_1 + 0xf00) + 1);
   uStack_48 = *param_4;
   uStack_40 = *param_5;
   uStack_47 = param_4[lVar2];
@@ -707,16 +707,16 @@ void RenderingSystem_ImageTransformer(longlong param_1, unsigned long long param
   uStack_41 = param_4[lVar2 * 7];
   uStack_39 = param_5[lVar2 * 7];
   if (bVar1 == 0) {
-    pcVar3 = *(code **)(((longlong)*(int *)(param_1 + 0xf10) +
-                        (longlong)*(int *)(param_1 + 0xf14) * 2) * 0x10 + 0x180c0c268);
+    pcVar3 = *(code **)(((int64_t)*(int *)(param_1 + 0xf10) +
+                        (int64_t)*(int *)(param_1 + 0xf14) * 2) * 0x10 + 0x180c0c268);
   }
   else {
-    pcVar3 = *(code **)((ulonglong)bVar1 * 0x10 + 0x180c0c228);
+    pcVar3 = *(code **)((uint64_t)bVar1 * 0x10 + 0x180c0c228);
   }
-  (*pcVar3)(param_7,(longlong)param_9,param_2,&uStack_48);
-  (*pcVar3)(param_8,(longlong)param_9,param_3,&uStack_40);
+  (*pcVar3)(param_7,(int64_t)param_9,param_2,&uStack_48);
+  (*pcVar3)(param_8,(int64_t)param_9,param_3,&uStack_40);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_68);
+  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_68);
 }
 
 
@@ -736,19 +736,19 @@ void RenderingSystem_ImageTransformer(longlong param_1, unsigned long long param
 //        param_6 - 处理标志
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_PixelProcessor(longlong param_1, unsigned long long param_2, unsigned char* param_3, int param_4,
+void RenderingSystem_PixelProcessor(int64_t param_1, unsigned long long param_2, unsigned char* param_3, int param_4,
                                     unsigned long long param_5, int param_6)
 
 {
   byte bVar1;
   int8_t uVar2;
-  longlong lVar3;
+  int64_t lVar3;
   code *pcVar4;
   int8_t auStack_48 [32];
   int8_t auStack_28 [16];
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_48;
   bVar1 = **(byte **)(param_1 + 0xf00);
   lVar3 = 0;
   do {
@@ -758,15 +758,15 @@ void RenderingSystem_PixelProcessor(longlong param_1, unsigned long long param_2
     lVar3 = lVar3 + 1;
   } while (lVar3 < 0x10);
   if (bVar1 == 0) {
-    pcVar4 = *(code **)(((longlong)*(int *)(param_1 + 0xf10) +
-                        (longlong)*(int *)(param_1 + 0xf14) * 2) * 0x10 + 0x180c0c260);
+    pcVar4 = *(code **)(((int64_t)*(int *)(param_1 + 0xf10) +
+                        (int64_t)*(int *)(param_1 + 0xf14) * 2) * 0x10 + 0x180c0c260);
   }
   else {
-    pcVar4 = *(code **)((ulonglong)bVar1 * 0x10 + 0x180c0c220);
+    pcVar4 = *(code **)((uint64_t)bVar1 * 0x10 + 0x180c0c220);
   }
-  (*pcVar4)(param_5,(longlong)param_6,param_2,auStack_28);
+  (*pcVar4)(param_5,(int64_t)param_6,param_2,auStack_28);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_48);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_48);
 }
 
 
@@ -790,22 +790,22 @@ void RenderingSystem_ImageBlockProcessor(unsigned char* param_1, int param_2, in
                                          int param_6, int param_7, int param_8)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
-  lVar1 = (longlong)param_6;
+  lVar1 = (int64_t)param_6;
   param_8 = param_3 + param_6 + param_8;
   if (0 < param_4) {
                     // WARNING: Subroutine does not return
-    memset((longlong)param_1 - lVar1,*param_1,lVar1);
+    memset((int64_t)param_1 - lVar1,*param_1,lVar1);
   }
   if (0 < param_5) {
                     // WARNING: Subroutine does not return
-    memcpy(param_1 + (-(param_2 * param_5) - lVar1),(longlong)param_1 - lVar1,(longlong)param_8);
+    memcpy(param_1 + (-(param_2 * param_5) - lVar1),(int64_t)param_1 - lVar1,(int64_t)param_8);
   }
   if (0 < param_7) {
                     // WARNING: Subroutine does not return
     memcpy(param_1 + (param_2 * param_4 - lVar1),param_1 + ((param_4 + -1) * param_2 - lVar1),
-           (longlong)param_8);
+           (int64_t)param_8);
   }
   return;
 }
@@ -823,11 +823,11 @@ void RenderingSystem_ImageBlockProcessor(unsigned char* param_1, int param_2, in
 //        param_4 - 数据指针
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_ImageDataValidator(int param_1, int param_2, unsigned long long param_3, longlong param_4)
+void RenderingSystem_ImageDataValidator(int param_1, int param_2, unsigned long long param_3, int64_t param_4)
 
 {
-  longlong in_RAX;
-  longlong in_R10;
+  int64_t in_RAX;
+  int64_t in_R10;
   int in_R11D;
   uint64_t unaff_R12;
   int unaff_R13D;
@@ -850,7 +850,7 @@ void RenderingSystem_ImageDataValidator(int param_1, int param_2, unsigned long 
   if (0 < in_stack_000000b0) {
                     // WARNING: Subroutine does not return
     memcpy((unaff_R13D * in_R11D - in_R10) + param_4,
-           ((in_R11D + -1) * unaff_R13D - in_R10) + param_4,(longlong)iStack00000000000000a8);
+           ((in_R11D + -1) * unaff_R13D - in_R10) + param_4,(int64_t)iStack00000000000000a8);
   }
   return;
 }
@@ -891,15 +891,15 @@ void RenderingSystem_TextureManager(int* param_1, int* param_2)
   
   if (0 < param_1[1]) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint64_t *)(param_2 + 0xe),*(uint64_t *)(param_1 + 0xe),(longlong)*param_1);
+    memcpy(*(uint64_t *)(param_2 + 0xe),*(uint64_t *)(param_1 + 0xe),(int64_t)*param_1);
   }
   if (0 < param_1[6]) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint64_t *)(param_2 + 0x10),*(uint64_t *)(param_1 + 0x10),(longlong)param_1[5]);
+    memcpy(*(uint64_t *)(param_2 + 0x10),*(uint64_t *)(param_1 + 0x10),(int64_t)param_1[5]);
   }
   if (0 < param_1[6]) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint64_t *)(param_2 + 0x12),*(uint64_t *)(param_1 + 0x12),(longlong)param_1[5]);
+    memcpy(*(uint64_t *)(param_2 + 0x12),*(uint64_t *)(param_1 + 0x12),(int64_t)param_1[5]);
   }
   iVar1 = param_2[0x19];
   iVar2 = iVar1 / 2;
@@ -954,7 +954,7 @@ void RenderingSystem_BufferOptimizer(int* param_1)
 //        param_6 - 格式指针
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_RenderTargetManager(longlong param_1, unsigned long long param_2, longlong param_3, longlong param_4, int param_5,
+void RenderingSystem_RenderTargetManager(int64_t param_1, unsigned long long param_2, int64_t param_3, int64_t param_4, int param_5,
                                         unsigned short* param_6)
 
 {
@@ -1007,10 +1007,10 @@ void RenderingSystem_RenderTargetManager(longlong param_1, unsigned long long pa
 //        param_5 - 目标格式指针
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_MultiTargetProcessor(longlong param_1, unsigned long long param_2, longlong param_3, int param_4, unsigned short* param_5)
+void RenderingSystem_MultiTargetProcessor(int64_t param_1, unsigned long long param_2, int64_t param_3, int param_4, unsigned short* param_5)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   lVar1 = 4;
   do {
@@ -1053,8 +1053,8 @@ void RenderingSystem_MultiTargetProcessor(longlong param_1, unsigned long long p
 //        param_6 - 转换参数
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_ImageFormatConverter(unsigned long long param_1, longlong param_2, longlong param_3, unsigned int param_4,
-                                        int param_5, longlong param_6)
+void RenderingSystem_ImageFormatConverter(unsigned long long param_1, int64_t param_2, int64_t param_3, unsigned int param_4,
+                                        int param_5, int64_t param_6)
 
 {
   func_0x00018002acc0(param_1,param_4,*(uint64_t *)(param_6 + 8),*(uint64_t *)(param_6 + 0x10),
@@ -1083,11 +1083,11 @@ void RenderingSystem_ImageFormatConverter(unsigned long long param_1, longlong p
 //        param_3 - 增强阈值数组
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char (*param_3)[16])
+void RenderingSystem_ImageEnhancer(int64_t param_1, int param_2, unsigned char (*param_3)[16])
 
 {
   int8_t auVar1 [16];
-  longlong lVar2;
+  int64_t lVar2;
   int8_t (*pauVar3) [16];
   int8_t auVar4 [16];
   int8_t auVar5 [16];
@@ -1100,9 +1100,9 @@ void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char 
   
   auVar1 = render_system_config;
   pauVar3 = (int8_t (*) [16])(param_2 * 4 + param_1);
-  lVar2 = (longlong)param_2;
+  lVar2 = (int64_t)param_2;
   auVar5 = *(int8_t (*) [16])(*pauVar3 + lVar2);
-  auVar7 = *(int8_t (*) [16])((longlong)pauVar3 + lVar2 * -2);
+  auVar7 = *(int8_t (*) [16])((int64_t)pauVar3 + lVar2 * -2);
   auVar4 = psubusb(auVar5,auVar7);
   auVar6 = psubusb(auVar7,auVar5);
   auVar4 = (auVar6 | auVar4) & render_system_config;
@@ -1114,7 +1114,7 @@ void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char 
   auVar10._10_2_ = auVar4._10_2_ >> 1;
   auVar10._12_2_ = auVar4._12_2_ >> 1;
   auVar10._14_2_ = auVar4._14_2_ >> 1;
-  auVar4 = *(int8_t (*) [16])((longlong)pauVar3 + -lVar2);
+  auVar4 = *(int8_t (*) [16])((int64_t)pauVar3 + -lVar2);
   auVar6 = *pauVar3;
   auVar9 = psubusb(auVar4,auVar6);
   auVar8 = psubusb(auVar6,auVar4);
@@ -1195,7 +1195,7 @@ void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char 
   auVar6._14_2_ = auVar10._14_2_ >> 3;
   auVar7 = paddsb(auVar4 ^ render_system_config,auVar6 & render_system_config | auVar11 & render_system_config);
   *pauVar3 = auVar5 ^ render_system_config;
-  *(int8_t (*) [16])((longlong)pauVar3 + -lVar2) = auVar7 ^ auVar1;
+  *(int8_t (*) [16])((int64_t)pauVar3 + -lVar2) = auVar7 ^ auVar1;
   return;
 }
 
@@ -1214,8 +1214,8 @@ void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char 
 //        param_6 - 处理参数
 // 返回: 无
 //------------------------------------------------------------------------------
-void RenderingSystem_PostProcessor(unsigned long long param_1, longlong param_2, longlong param_3, unsigned int param_4,
-                                  unsigned int param_5, longlong param_6)
+void RenderingSystem_PostProcessor(unsigned long long param_1, int64_t param_2, int64_t param_3, unsigned int param_4,
+                                  unsigned int param_5, int64_t param_6)
 
 {
   func_0x00018002b38a(param_1,param_4,*(uint64_t *)(param_6 + 8),*(uint64_t *)(param_6 + 0x10),

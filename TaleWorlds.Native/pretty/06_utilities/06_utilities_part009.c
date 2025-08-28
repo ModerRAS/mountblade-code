@@ -271,12 +271,12 @@ int32_t UtilitiesSystem_DataProcessor(uint64_t param_1)
  * @param param_2 内存大小参数
  * @return 操作结果（64位无符号整数）
  */
-uint64_t UtilitiesSystem_MemoryManager(longlong *param_1, int param_2)
+uint64_t UtilitiesSystem_MemoryManager(int64_t *param_1, int param_2)
 {
     int current_capacity;                     /**< 当前容量 */
-    longlong source_address;                  /**< 源地址 */
+    int64_t source_address;                  /**< 源地址 */
     uint64_t *target_buffer;               /**< 目标缓冲区 */
-    longlong copy_count;                      /**< 复制计数 */
+    int64_t copy_count;                      /**< 复制计数 */
     uint64_t *copy_pointer;                 /**< 复制指针 */
     
     /* 参数验证：检查请求大小是否超过当前容量 */
@@ -302,17 +302,17 @@ uint64_t UtilitiesSystem_MemoryManager(longlong *param_1, int param_2)
             /* 内存分配成功处理 */
             if (target_buffer != (uint64_t *)0x0) {
                 current_capacity = (int)param_1[1];
-                copy_count = (longlong)current_capacity;
+                copy_count = (int64_t)current_capacity;
                 
                 /* 数据复制逻辑 */
                 if ((current_capacity != 0) && (source_address = *param_1, 0 < current_capacity)) {
                     copy_pointer = target_buffer;
                     do {
                         /* 复制数据块 */
-                        *copy_pointer = *(uint64_t *)((source_address - (longlong)target_buffer) + (longlong)copy_pointer);
+                        *copy_pointer = *(uint64_t *)((source_address - (int64_t)target_buffer) + (int64_t)copy_pointer);
                         *(int32_t *)(copy_pointer + 1) =
-                             *(int32_t *)((source_address - (longlong)target_buffer) + 8 + (longlong)copy_pointer);
-                        copy_pointer = (uint64_t *)((longlong)copy_pointer + UTILITIES_MEMORY_BLOCK_SIZE);
+                             *(int32_t *)((source_address - (int64_t)target_buffer) + 8 + (int64_t)copy_pointer);
+                        copy_pointer = (uint64_t *)((int64_t)copy_pointer + UTILITIES_MEMORY_BLOCK_SIZE);
                         copy_count = copy_count + -1;
                     } while (copy_count != 0);
                 }
@@ -324,7 +324,7 @@ uint64_t UtilitiesSystem_MemoryManager(longlong *param_1, int param_2)
     
 MEMORY_CLEANUP:
     /* 清理现有资源 */
-    if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+    if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         /* 释放现有内存资源 */
         FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *param_1, 
@@ -334,8 +334,8 @@ MEMORY_CLEANUP:
     }
     
     /* 更新内存管理器状态 */
-    *param_1 = (longlong)target_buffer;
-    *(int *)((longlong)param_1 + 0xc) = param_2;
+    *param_1 = (int64_t)target_buffer;
+    *(int *)((int64_t)param_1 + 0xc) = param_2;
     
     return UTILITIES_ERROR_SUCCESS;
 }
@@ -353,11 +353,11 @@ MEMORY_CLEANUP:
 uint64_t UtilitiesSystem_ResourceHandler(uint64_t param_1, int param_2)
 {
     int resource_count;                        /**< 资源计数 */
-    longlong resource_address;                 /**< 资源地址 */
+    int64_t resource_address;                 /**< 资源地址 */
     uint64_t *target_buffer;               /**< 目标缓冲区 */
-    longlong copy_count;                      /**< 复制计数 */
+    int64_t copy_count;                      /**< 复制计数 */
     uint64_t *copy_pointer;                 /**< 复制指针 */
-    longlong *resource_pointer;               /**< 资源指针 */
+    int64_t *resource_pointer;               /**< 资源指针 */
     int unaff_EDI;                           /**< 未使用的EDI寄存器 */
     
     /* 初始化目标缓冲区 */
@@ -380,17 +380,17 @@ uint64_t UtilitiesSystem_ResourceHandler(uint64_t param_1, int param_2)
         /* 资源分配成功处理 */
         if (target_buffer != (uint64_t *)0x0) {
             resource_count = (int)unaff_RBX[1];
-            copy_count = (longlong)resource_count;
+            copy_count = (int64_t)resource_count;
             
             /* 数据复制逻辑 */
             if ((resource_count != 0) && (resource_address = *unaff_RBX, 0 < resource_count)) {
                 copy_pointer = target_buffer;
                 do {
                     /* 复制资源数据 */
-                    *copy_pointer = *(uint64_t *)((resource_address - (longlong)target_buffer) + (longlong)copy_pointer);
+                    *copy_pointer = *(uint64_t *)((resource_address - (int64_t)target_buffer) + (int64_t)copy_pointer);
                     *(int32_t *)(copy_pointer + 1) =
-                         *(int32_t *)((resource_address - (longlong)target_buffer) + 8 + (longlong)copy_pointer);
-                    copy_pointer = (uint64_t *)((longlong)copy_pointer + UTILITIES_MEMORY_BLOCK_SIZE);
+                         *(int32_t *)((resource_address - (int64_t)target_buffer) + 8 + (int64_t)copy_pointer);
+                    copy_pointer = (uint64_t *)((int64_t)copy_pointer + UTILITIES_MEMORY_BLOCK_SIZE);
                     copy_count = copy_count + -1;
                 } while (copy_count != 0);
             }
@@ -401,7 +401,7 @@ uint64_t UtilitiesSystem_ResourceHandler(uint64_t param_1, int param_2)
     
 RESOURCE_CLEANUP:
     /* 资源清理逻辑 */
-    if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
+    if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
         /* 释放资源内存 */
         FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *unaff_RBX, 
@@ -411,8 +411,8 @@ RESOURCE_CLEANUP:
     }
     
     /* 更新资源状态 */
-    *unaff_RBX = (longlong)target_buffer;
-    *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
+    *unaff_RBX = (int64_t)target_buffer;
+    *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
     
     return UTILITIES_ERROR_SUCCESS;
 }
@@ -441,9 +441,9 @@ uint64_t UtilitiesSystem_StatusChecker(void)
  * @param param_2 配置大小参数
  * @return 操作结果（64位无符号整数）
  */
-uint64_t UtilitiesSystem_ConfigManager(longlong *param_1, int param_2)
+uint64_t UtilitiesSystem_ConfigManager(int64_t *param_1, int param_2)
 {
-    longlong configuration_address;            /**< 配置地址 */
+    int64_t configuration_address;            /**< 配置地址 */
     
     /* 参数验证：检查配置大小是否超过当前容量 */
     if (param_2 < (int)param_1[1]) {
@@ -468,7 +468,7 @@ uint64_t UtilitiesSystem_ConfigManager(longlong *param_1, int param_2)
                     /* 批量复制配置数据 */
                     memcpy(configuration_address, 
                            *param_1, 
-                           (longlong)(int)param_1[1] * UTILITIES_MEMORY_BLOCK_SIZE);
+                           (int64_t)(int)param_1[1] * UTILITIES_MEMORY_BLOCK_SIZE);
                 }
                 goto CONFIG_CLEANUP;
             }
@@ -478,7 +478,7 @@ uint64_t UtilitiesSystem_ConfigManager(longlong *param_1, int param_2)
     
 CONFIG_CLEANUP:
     /* 清理现有配置 */
-    if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+    if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         /* 释放配置内存 */
         FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *param_1, 
@@ -489,7 +489,7 @@ CONFIG_CLEANUP:
     
     /* 更新配置状态 */
     *param_1 = configuration_address;
-    *(int *)((longlong)param_1 + 0xc) = param_2;
+    *(int *)((int64_t)param_1 + 0xc) = param_2;
     
     return UTILITIES_ERROR_SUCCESS;
 }
@@ -503,32 +503,32 @@ CONFIG_CLEANUP:
  * @param param_1 系统参数（64位长整型）
  * @return 操作结果（64位无符号长整型）
  */
-ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
+uint64_t UtilitiesSystem_AdvancedProcessor(int64_t param_1)
 {
     byte *data_pointer;                       /**< 数据指针 */
     int32_t status_flag;                  /**< 状态标志 */
     uint64_t operation_result;              /**< 操作结果 */
     int processing_status;                   /**< 处理状态 */
-    longlong temp_address;                   /**< 临时地址 */
-    ulonglong final_result;                  /**< 最终结果 */
+    int64_t temp_address;                   /**< 临时地址 */
+    uint64_t final_result;                  /**< 最终结果 */
     int counter_value;                        /**< 计数器值 */
     uint flag_value;                          /**< 标志值 */
     uint temp_flag;                           /**< 临时标志 */
-    ulonglong temp_result;                    /**< 临时结果 */
+    uint64_t temp_result;                    /**< 临时结果 */
     int index_value;                          /**< 索引值 */
     int32_t *flag_pointer;                /**< 标志指针 */
-    longlong *config_pointer;                /**< 配置指针 */
+    int64_t *config_pointer;                /**< 配置指针 */
     int temp_int;                             /**< 临时整型 */
-    longlong temp_long;                       /**< 长整型 */
+    int64_t temp_long;                       /**< 长整型 */
     bool condition_flag;                      /**< 条件标志 */
     int temp_array[2];                       /**< 临时数组 */
     uint temp_array2[2];                     /**< 临时数组2 */
     uint64_t temp_value;                    /**< 临时值 */
     int8_t temp_buffer[8];                /**< 临时缓冲区 */
-    ulonglong stack_value_118;               /**< 栈值118 */
+    uint64_t stack_value_118;               /**< 栈值118 */
     uint64_t stack_value_110;               /**< 栈值110 */
-    longlong *stack_pointer_108;             /**< 栈指针108 */
-    ulonglong stack_value_100;                /**< 栈值100 */
+    int64_t *stack_pointer_108;             /**< 栈指针108 */
+    uint64_t stack_value_100;                /**< 栈值100 */
     int stack_array_f8[2];                   /**< 栈数组f8 */
     void *stack_pointer_f0;             /**< 栈指针f0 */
     int32_t stack_value_e8;                /**< 栈值e8 */
@@ -560,7 +560,7 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
     /* 检查系统活动状态 */
     if ((flag_value & 1) == 0) {
         /* 初始化处理上下文 */
-        stack_pointer_108 = (longlong *)(param_1 + 0x70);
+        stack_pointer_108 = (int64_t *)(param_1 + 0x70);
         stack_value_118 = 0;
         index_value = 0;
         temp_array2[0] = 0;
@@ -582,7 +582,7 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
                 do {
                     index_value = (int)temp_result;
                     temp_address = config_pointer[2];
-                    temp_long = (longlong)temp_array[0];
+                    temp_long = (int64_t)temp_array[0];
                     processing_status = *(int *)(temp_address + 8 + temp_long * 0x10);
                     
                     /* 数据类型处理 */
@@ -606,7 +606,7 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
                                 processing_status = func_0x0001808c7ed0(operation_result);
                             } while (0 < processing_status);
                             
-                            final_result = (ulonglong)temp_array2[0];
+                            final_result = (uint64_t)temp_array2[0];
                             config_pointer = stack_pointer_108;
                         }
                     }
@@ -629,10 +629,10 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
                 
                 /* 验证处理状态 */
                 if (counter_value != (int)config_pointer[1]) {
-                    temp_address = (longlong)counter_value;
+                    temp_address = (int64_t)counter_value;
                     do {
                         if (*(int *)(*config_pointer + temp_address * 4) != -1) {
-                            temp_array[0] = *(int *)(*config_pointer + (longlong)counter_value * 4);
+                            temp_array[0] = *(int *)(*config_pointer + (int64_t)counter_value * 4);
                             goto PROCESSING_CONTINUE;
                         }
                         counter_value = counter_value + 1;
@@ -651,11 +651,11 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
         }
         
         /* 清理处理上下文 */
-        temp_address = (longlong)(index_value + -1);
+        temp_address = (int64_t)(index_value + -1);
         if (-1 < index_value + -1) {
             do {
                 stack_value_100 = stack_value_100 & 0xffffffff00000000;
-                stack_pointer_108 = (longlong *)&unknown_var_4128_ptr;
+                stack_pointer_108 = (int64_t *)&unknown_var_4128_ptr;
                 stack_array_f8[0] = *(int *)(final_result + temp_address * 4);
                 FUN_180891af0(&stack_pointer_108, *(uint64_t *)(param_1 + 0x58));
                 temp_address = temp_address + -1;
@@ -686,8 +686,8 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
         
         /* 清理内存区域 */
         if (index_value < 0) {
-            temp_address = (longlong)-index_value;
-            flag_pointer = (int32_t *)(final_result + (longlong)index_value * 4);
+            temp_address = (int64_t)-index_value;
+            flag_pointer = (int32_t *)(final_result + (int64_t)index_value * 4);
             if (index_value < 0) {
                 for (; temp_address != 0; temp_address = temp_address + -1) {
                     *flag_pointer = 0;
@@ -716,10 +716,10 @@ RESOURCE_CLEANUP_PHASE:
     if (0 < *(int *)(param_1 + 0x20)) {
         do {
             flag_value = (int)temp_result + 1;
-            data_pointer = (byte *)(final_result + 0xb + *(longlong *)(param_1 + 0x18));
+            data_pointer = (byte *)(final_result + 0xb + *(int64_t *)(param_1 + 0x18));
             *data_pointer = *data_pointer & 0xfe;
             final_result = final_result + 0xc;
-            temp_result = (ulonglong)flag_value;
+            temp_result = (uint64_t)flag_value;
         } while ((int)flag_value < *(int *)(param_1 + 0x20));
     }
     
@@ -737,7 +737,7 @@ RESOURCE_CLEANUP_PHASE:
 ADVANCED_PROCESSING_COMPLETE:
     /* 高级处理完成 */
     if ((flag_value >> 0x19 & 1) != 0) {
-        temp_address = *(longlong *)(param_1 + 0xa0);
+        temp_address = *(int64_t *)(param_1 + 0xa0);
         final_result = FUN_18073c4c0(*(uint64_t *)(param_1 + 0x60), param_1 + 0xa0, 0);
         
         /* 验证最终结果 */
@@ -766,9 +766,9 @@ ADVANCED_PROCESSING_COMPLETE:
             }
         }
         /* 系统状态同步处理 */
-        else if ((*(longlong *)(param_1 + 0x98) != 0) && (temp_address != 0)) {
-            *(longlong *)(param_1 + 0x98) =
-                 (*(longlong *)(param_1 + 0x98) - temp_address) + *(longlong *)(param_1 + 0xa0);
+        else if ((*(int64_t *)(param_1 + 0x98) != 0) && (temp_address != 0)) {
+            *(int64_t *)(param_1 + 0x98) =
+                 (*(int64_t *)(param_1 + 0x98) - temp_address) + *(int64_t *)(param_1 + 0xa0);
         }
     }
     
@@ -785,7 +785,7 @@ ADVANCED_PROCESSING_COMPLETE:
  * @param param_2 初始化标志
  * @return 初始化后的对象指针
  */
-uint64_t *UtilitiesSystem_ObjectInitializer(uint64_t *param_1, ulonglong param_2)
+uint64_t *UtilitiesSystem_ObjectInitializer(uint64_t *param_1, uint64_t param_2)
 {
     /* 设置对象默认值 */
     *param_1 = &unknown_var_7840_ptr;
@@ -808,7 +808,7 @@ uint64_t *UtilitiesSystem_ObjectInitializer(uint64_t *param_1, ulonglong param_2
  * @param param_2 清理标志
  * @return 清理后的对象指针
  */
-uint64_t *UtilitiesSystem_ObjectFinalizer(uint64_t *param_1, ulonglong param_2)
+uint64_t *UtilitiesSystem_ObjectFinalizer(uint64_t *param_1, uint64_t param_2)
 {
     /* 设置对象终结状态 */
     *param_1 = &unknown_var_7872_ptr;
@@ -835,7 +835,7 @@ uint64_t *UtilitiesSystem_ObjectFinalizer(uint64_t *param_1, ulonglong param_2)
  * 
  * @param param_1 状态管理参数指针
  */
-void UtilitiesSystem_StateManager(longlong *param_1)
+void UtilitiesSystem_StateManager(int64_t *param_1)
 {
     int operation_result;                     /**< 操作结果 */
     

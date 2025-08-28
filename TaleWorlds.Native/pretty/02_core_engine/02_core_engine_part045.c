@@ -37,18 +37,18 @@ void process_data_structure_initialization(void)
     int32_t data_val2;       // 数据值2
     int32_t data_val3;       // 数据值3
     int32_t data_val4;       // 数据值4
-    longlong input_param;       // 输入参数
-    ulonglong alloc_size;       // 分配大小
-    longlong array_base;        // 数组基地址
+    int64_t input_param;       // 输入参数
+    uint64_t alloc_size;       // 分配大小
+    int64_t array_base;        // 数组基地址
     int element_index;          // 元素索引
-    ulonglong current_offset;   // 当前偏移
+    uint64_t current_offset;   // 当前偏移
     uint *array_ptr1;           // 数组指针1
     uint *array_ptr2;           // 数组指针2
-    ulonglong base_ptr;         // 基础指针
+    uint64_t base_ptr;         // 基础指针
     uint element_count;         // 元素计数
-    ulonglong total_elements;   // 总元素数
-    longlong *data_struct1;     // 数据结构1
-    longlong *data_struct2;     // 数据结构2
+    uint64_t total_elements;   // 总元素数
+    int64_t *data_struct1;     // 数据结构1
+    int64_t *data_struct2;     // 数据结构2
     
     // 根据输入参数确定分配大小
     if (input_param == 0) {
@@ -101,12 +101,12 @@ void process_data_structure_initialization(void)
             if (*array_ptr1 != 0) {
                 do {
                     element_index = (int)current_offset;
-                    current_offset = (ulonglong)(element_index + 1U);
-                    src_ptr1 = (int32_t *)(*(longlong *)(array_ptr1 + 2) + (longlong)element_index * 0x10);
+                    current_offset = (uint64_t)(element_index + 1U);
+                    src_ptr1 = (int32_t *)(*(int64_t *)(array_ptr1 + 2) + (int64_t)element_index * 0x10);
                     data_val1 = src_ptr1[1];
                     data_val2 = src_ptr1[2];
                     data_val3 = src_ptr1[3];
-                    dest_ptr1 = (int32_t *)(*(longlong *)(array_ptr2 + 2) + (longlong)element_index * 0x10);
+                    dest_ptr1 = (int32_t *)(*(int64_t *)(array_ptr2 + 2) + (int64_t)element_index * 0x10);
                     *dest_ptr1 = *src_ptr1;
                     dest_ptr1[1] = data_val1;
                     dest_ptr1[2] = data_val2;
@@ -140,12 +140,12 @@ void process_data_structure_initialization(void)
             if (array_ptr1[10] != 0) {
                 do {
                     element_index = (int)current_offset;
-                    current_offset = (ulonglong)(element_index + 1U);
-                    src_ptr1 = (int32_t *)(*(longlong *)(array_ptr1 + 0xc) + (longlong)element_index * 0x10);
+                    current_offset = (uint64_t)(element_index + 1U);
+                    src_ptr1 = (int32_t *)(*(int64_t *)(array_ptr1 + 0xc) + (int64_t)element_index * 0x10);
                     data_val1 = src_ptr1[1];
                     data_val2 = src_ptr1[2];
                     data_val3 = src_ptr1[3];
-                    dest_ptr1 = (int32_t *)(*(longlong *)(array_ptr2 + 0xc) + (longlong)element_index * 0x10);
+                    dest_ptr1 = (int32_t *)(*(int64_t *)(array_ptr2 + 0xc) + (int64_t)element_index * 0x10);
                     *dest_ptr1 = *src_ptr1;
                     dest_ptr1[1] = data_val1;
                     dest_ptr1[2] = data_val2;
@@ -155,13 +155,13 @@ void process_data_structure_initialization(void)
             
             data_count = *(ushort *)(data_struct2 + 2);
             element_count = (int)alloc_size + 1;
-            alloc_size = (ulonglong)element_count;
+            alloc_size = (uint64_t)element_count;
             base_ptr = base_ptr + 0x50;
         } while ((int)element_count < (int)(uint)data_count);
     }
     
     // 最终数据复制
-    memcpy(data_struct2[1], data_struct1[1], (ulonglong)data_count << 2);
+    memcpy(data_struct2[1], data_struct1[1], (uint64_t)data_count << 2);
 }
 
 /**
@@ -183,14 +183,14 @@ void process_batch_data_structures(void)
     int32_t data_val2;       // 数据值2
     int32_t data_val3;       // 数据值3
     int array_index;            // 数组索引
-    ulonglong current_offset;   // 当前偏移
+    uint64_t current_offset;   // 当前偏移
     uint *array_ptr1;           // 数组指针1
     uint *array_ptr2;           // 数组指针2
-    ulonglong base_ptr;         // 基础指针
+    uint64_t base_ptr;         // 基础指针
     int batch_counter;          // 批处理计数器
-    longlong *data_struct1;     // 数据结构1
-    longlong *data_struct2;     // 数据结构2
-    ulonglong iteration_count;  // 迭代次数
+    int64_t *data_struct1;     // 数据结构1
+    int64_t *data_struct2;     // 数据结构2
+    uint64_t iteration_count;  // 迭代次数
     
     iteration_count = base_ptr;
     do {
@@ -222,12 +222,12 @@ void process_batch_data_structures(void)
         if (*array_ptr1 != 0) {
             do {
                 array_index = (int)current_offset;
-                current_offset = (ulonglong)(array_index + 1U);
-                src_ptr1 = (int32_t *)(*(longlong *)(array_ptr1 + 2) + (longlong)array_index * 0x10);
+                current_offset = (uint64_t)(array_index + 1U);
+                src_ptr1 = (int32_t *)(*(int64_t *)(array_ptr1 + 2) + (int64_t)array_index * 0x10);
                 data_val1 = src_ptr1[1];
                 data_val2 = src_ptr1[2];
                 data_val3 = src_ptr1[3];
-                dest_ptr1 = (int32_t *)(*(longlong *)(array_ptr2 + 2) + (longlong)array_index * 0x10);
+                dest_ptr1 = (int32_t *)(*(int64_t *)(array_ptr2 + 2) + (int64_t)array_index * 0x10);
                 *dest_ptr1 = *src_ptr1;
                 dest_ptr1[1] = data_val1;
                 dest_ptr1[2] = data_val2;
@@ -261,12 +261,12 @@ void process_batch_data_structures(void)
         if (array_ptr1[10] != 0) {
             do {
                 array_index = (int)current_offset;
-                current_offset = (ulonglong)(array_index + 1U);
-                src_ptr1 = (int32_t *)(*(longlong *)(array_ptr1 + 0xc) + (longlong)array_index * 0x10);
+                current_offset = (uint64_t)(array_index + 1U);
+                src_ptr1 = (int32_t *)(*(int64_t *)(array_ptr1 + 0xc) + (int64_t)array_index * 0x10);
                 data_val1 = src_ptr1[1];
                 data_val2 = src_ptr1[2];
                 data_val3 = src_ptr1[3];
-                dest_ptr1 = (int32_t *)(*(longlong *)(array_ptr2 + 0xc) + (longlong)array_index * 0x10);
+                dest_ptr1 = (int32_t *)(*(int64_t *)(array_ptr2 + 0xc) + (int64_t)array_index * 0x10);
                 *dest_ptr1 = *src_ptr1;
                 dest_ptr1[1] = data_val1;
                 dest_ptr1[2] = data_val2;
@@ -279,7 +279,7 @@ void process_batch_data_structures(void)
     } while (batch_counter < (int)(uint)*(ushort *)(data_struct2 + 2));
     
     // 最终数据复制
-    memcpy(data_struct2[1], data_struct1[1], (ulonglong)*(ushort *)(data_struct2 + 2) << 2);
+    memcpy(data_struct2[1], data_struct1[1], (uint64_t)*(ushort *)(data_struct2 + 2) << 2);
 }
 
 /**
@@ -292,11 +292,11 @@ void process_batch_data_structures(void)
 void perform_fast_memory_copy(void)
 {
     ushort copy_size;           // 复制大小
-    longlong *src_struct;      // 源数据结构
-    longlong *dest_struct;     // 目标数据结构
+    int64_t *src_struct;      // 源数据结构
+    int64_t *dest_struct;     // 目标数据结构
     
     // 执行内存复制
-    memcpy(*(uint64_t *)(dest_struct + 8), *(uint64_t *)(src_struct + 8), (ulonglong)copy_size << 2);
+    memcpy(*(uint64_t *)(dest_struct + 8), *(uint64_t *)(src_struct + 8), (uint64_t)copy_size << 2);
 }
 
 /**
@@ -318,11 +318,11 @@ void empty_function_placeholder(void)
  * 原始实现：FUN_180085900
  * 简化实现：上下文对象递归处理
  */
-longlong process_context_recursively(longlong context_ptr)
+int64_t process_context_recursively(int64_t context_ptr)
 {
-    if ((((*(byte *)(context_ptr + 0xfd) & 0x40) == 0) || (*(longlong *)(context_ptr + 0x210) == 0)) &&
-        (*(longlong *)(context_ptr + 0x1b0) != 0)) {
-        context_ptr = process_context_recursively(*(longlong *)(context_ptr + 0x1b0));
+    if ((((*(byte *)(context_ptr + 0xfd) & 0x40) == 0) || (*(int64_t *)(context_ptr + 0x210) == 0)) &&
+        (*(int64_t *)(context_ptr + 0x1b0) != 0)) {
+        context_ptr = process_context_recursively(*(int64_t *)(context_ptr + 0x1b0));
     }
     return context_ptr;
 }
@@ -375,7 +375,7 @@ void resize_array_20byte_elements(int *array_info)
     uint64_t new_buffer;      // 新缓冲区
     
     if (array_info[1] < 1) {
-        if (*(longlong *)(array_info + 2) != 0) {
+        if (*(int64_t *)(array_info + 2) != 0) {
             release_memory_buffer();
         }
         array_info[2] = 0;
@@ -383,9 +383,9 @@ void resize_array_20byte_elements(int *array_info)
         return;
     }
     
-    new_buffer = allocate_memory(system_memory_pool_ptr, (longlong)array_info[1] * 0x14, (char)array_info[8]);
-    if (*(longlong *)(array_info + 2) != 0) {
-        memcpy(new_buffer, *(longlong *)(array_info + 2), (longlong)*array_info * 0x14);
+    new_buffer = allocate_memory(system_memory_pool_ptr, (int64_t)array_info[1] * 0x14, (char)array_info[8]);
+    if (*(int64_t *)(array_info + 2) != 0) {
+        memcpy(new_buffer, *(int64_t *)(array_info + 2), (int64_t)*array_info * 0x14);
     }
     *(uint64_t *)(array_info + 2) = new_buffer;
     return;
@@ -404,8 +404,8 @@ void resize_global_array_20byte(void)
     int *global_array;          // 全局数组指针
     
     new_buffer = allocate_memory();
-    if (*(longlong *)(global_array + 2) != 0) {
-        memcpy(new_buffer, *(longlong *)(global_array + 2), (longlong)*global_array * 0x14);
+    if (*(int64_t *)(global_array + 2) != 0) {
+        memcpy(new_buffer, *(int64_t *)(global_array + 2), (int64_t)*global_array * 0x14);
     }
     *(uint64_t *)(global_array + 2) = new_buffer;
     return;
@@ -418,11 +418,11 @@ void resize_global_array_20byte(void)
  * 原始实现：FUN_180085e9b
  * 简化实现：数据结构指针重置
  */
-void reset_data_structure_pointers(longlong struct_ptr)
+void reset_data_structure_pointers(int64_t struct_ptr)
 {
-    longlong *global_ptr;       // 全局指针
+    int64_t *global_ptr;       // 全局指针
     
-    if (*(longlong *)(struct_ptr + 8) != 0) {
+    if (*(int64_t *)(struct_ptr + 8) != 0) {
         release_memory_buffer();
     }
     *(uint64_t *)(global_ptr + 8) = 0;
@@ -455,7 +455,7 @@ void copy_array_data_20byte(int *dest_array, int *src_array)
         data_buffer = *(uint64_t *)(src_array + 2);
     }
     
-    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (longlong)element_count * 0x14);
+    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (int64_t)element_count * 0x14);
     return;
 }
 
@@ -471,7 +471,7 @@ void resize_array_12byte_elements(int *array_info)
     uint64_t new_buffer;      // 新缓冲区
     
     if (array_info[1] < 1) {
-        if (*(longlong *)(array_info + 2) != 0) {
+        if (*(int64_t *)(array_info + 2) != 0) {
             release_memory_buffer();
         }
         array_info[2] = 0;
@@ -479,9 +479,9 @@ void resize_array_12byte_elements(int *array_info)
         return;
     }
     
-    new_buffer = allocate_memory(system_memory_pool_ptr, (longlong)array_info[1] * 0xc, (char)array_info[8]);
-    if (*(longlong *)(array_info + 2) != 0) {
-        memcpy(new_buffer, *(longlong *)(array_info + 2), (longlong)*array_info * 0xc);
+    new_buffer = allocate_memory(system_memory_pool_ptr, (int64_t)array_info[1] * 0xc, (char)array_info[8]);
+    if (*(int64_t *)(array_info + 2) != 0) {
+        memcpy(new_buffer, *(int64_t *)(array_info + 2), (int64_t)*array_info * 0xc);
     }
     *(uint64_t *)(array_info + 2) = new_buffer;
     return;
@@ -500,8 +500,8 @@ void resize_global_array_12byte(void)
     int *global_array;          // 全局数组指针
     
     new_buffer = allocate_memory();
-    if (*(longlong *)(global_array + 2) != 0) {
-        memcpy(new_buffer, *(longlong *)(global_array + 2), (longlong)*global_array * 0xc);
+    if (*(int64_t *)(global_array + 2) != 0) {
+        memcpy(new_buffer, *(int64_t *)(global_array + 2), (int64_t)*global_array * 0xc);
     }
     *(uint64_t *)(global_array + 2) = new_buffer;
     return;
@@ -514,11 +514,11 @@ void resize_global_array_12byte(void)
  * 原始实现：FUN_180085f8b
  * 简化实现：数据结构指针重置
  */
-void reset_data_structure_pointers_12byte(longlong struct_ptr)
+void reset_data_structure_pointers_12byte(int64_t struct_ptr)
 {
-    longlong *global_ptr;       // 全局指针
+    int64_t *global_ptr;       // 全局指针
     
-    if (*(longlong *)(struct_ptr + 8) != 0) {
+    if (*(int64_t *)(struct_ptr + 8) != 0) {
         release_memory_buffer();
     }
     *(uint64_t *)(global_ptr + 8) = 0;
@@ -551,7 +551,7 @@ void copy_array_data_12byte(int *dest_array, int *src_array)
         data_buffer = *(uint64_t *)(src_array + 2);
     }
     
-    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (longlong)element_count * 0xc);
+    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (int64_t)element_count * 0xc);
     return;
 }
 
@@ -567,7 +567,7 @@ void resize_array_92byte_elements(int *array_info)
     uint64_t new_buffer;      // 新缓冲区
     
     if (array_info[1] < 1) {
-        if (*(longlong *)(array_info + 2) != 0) {
+        if (*(int64_t *)(array_info + 2) != 0) {
             release_memory_buffer();
         }
         array_info[2] = 0;
@@ -575,9 +575,9 @@ void resize_array_92byte_elements(int *array_info)
         return;
     }
     
-    new_buffer = allocate_memory(system_memory_pool_ptr, (longlong)array_info[1] * 0x5c, (char)array_info[8]);
-    if (*(longlong *)(array_info + 2) != 0) {
-        memcpy(new_buffer, *(longlong *)(array_info + 2), (longlong)*array_info * 0x5c);
+    new_buffer = allocate_memory(system_memory_pool_ptr, (int64_t)array_info[1] * 0x5c, (char)array_info[8]);
+    if (*(int64_t *)(array_info + 2) != 0) {
+        memcpy(new_buffer, *(int64_t *)(array_info + 2), (int64_t)*array_info * 0x5c);
     }
     *(uint64_t *)(array_info + 2) = new_buffer;
     return;
@@ -596,8 +596,8 @@ void resize_global_array_92byte(void)
     int *global_array;          // 全局数组指针
     
     new_buffer = allocate_memory();
-    if (*(longlong *)(global_array + 2) != 0) {
-        memcpy(new_buffer, *(longlong *)(global_array + 2), (longlong)*global_array * 0x5c);
+    if (*(int64_t *)(global_array + 2) != 0) {
+        memcpy(new_buffer, *(int64_t *)(global_array + 2), (int64_t)*global_array * 0x5c);
     }
     *(uint64_t *)(global_array + 2) = new_buffer;
     return;
@@ -610,11 +610,11 @@ void resize_global_array_92byte(void)
  * 原始实现：FUN_180086073
  * 简化实现：数据结构指针重置
  */
-void reset_data_structure_pointers_92byte(longlong struct_ptr)
+void reset_data_structure_pointers_92byte(int64_t struct_ptr)
 {
-    longlong *global_ptr;       // 全局指针
+    int64_t *global_ptr;       // 全局指针
     
-    if (*(longlong *)(struct_ptr + 8) != 0) {
+    if (*(int64_t *)(struct_ptr + 8) != 0) {
         release_memory_buffer();
     }
     *(uint64_t *)(global_ptr + 8) = 0;
@@ -647,7 +647,7 @@ void copy_array_data_92byte(int *dest_array, int *src_array)
         data_buffer = *(uint64_t *)(src_array + 2);
     }
     
-    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (longlong)element_count * 0x5c);
+    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (int64_t)element_count * 0x5c);
     return;
 }
 
@@ -677,7 +677,7 @@ void copy_array_data_16byte(int *dest_array, int *src_array)
         data_buffer = *(uint64_t *)(src_array + 2);
     }
     
-    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (longlong)element_count << 4);
+    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (int64_t)element_count << 4);
     return;
 }
 
@@ -713,20 +713,20 @@ int8_t is_identity_matrix(float *matrix_data)
  * 原始实现：FUN_180086270
  * 简化实现：数组元素添加
  */
-void add_element_to_array_24byte(ulonglong *array_info, uint64_t *element_data)
+void add_element_to_array_24byte(uint64_t *array_info, uint64_t *element_data)
 {
     int32_t data_val1;       // 数据值1
     int32_t data_val2;       // 数据值2
     int32_t data_val3;       // 数据值3
     uint64_t data_val4;       // 数据值4
     int32_t *dest_ptr;       // 目标指针
-    longlong capacity;          // 容量
+    int64_t capacity;          // 容量
     uint64_t *write_ptr;      // 写入指针
     uint64_t *base_ptr;       // 基础指针
     
     write_ptr = (uint64_t *)array_info[1];
     if (write_ptr < (uint64_t *)array_info[2]) {
-        array_info[1] = (ulonglong)(write_ptr + 3);
+        array_info[1] = (uint64_t)(write_ptr + 3);
         data_val4 = element_data[1];
         *write_ptr = *element_data;
         write_ptr[1] = data_val4;
@@ -735,7 +735,7 @@ void add_element_to_array_24byte(ulonglong *array_info, uint64_t *element_data)
     }
     
     base_ptr = (uint64_t *)*array_info;
-    capacity = ((longlong)write_ptr - (longlong)base_ptr) / 0x18;
+    capacity = ((int64_t)write_ptr - (int64_t)base_ptr) / 0x18;
     if (capacity == 0) {
         capacity = 1;
     }
@@ -753,12 +753,12 @@ void add_element_to_array_24byte(ulonglong *array_info, uint64_t *element_data)
     
 ARRAY_RESIZE_DONE:
     if (base_ptr != write_ptr) {
-        memmove(dest_ptr, base_ptr, (longlong)write_ptr - (longlong)base_ptr);
+        memmove(dest_ptr, base_ptr, (int64_t)write_ptr - (int64_t)base_ptr);
     }
     
-    data_val1 = *(int32_t *)((longlong)element_data + 4);
+    data_val1 = *(int32_t *)((int64_t)element_data + 4);
     data_val2 = *(int32_t *)(element_data + 1);
-    data_val3 = *(int32_t *)((longlong)element_data + 0xc);
+    data_val3 = *(int32_t *)((int64_t)element_data + 0xc);
     *dest_ptr = *(int32_t *)element_data;
     dest_ptr[1] = data_val1;
     dest_ptr[2] = data_val2;
@@ -769,9 +769,9 @@ ARRAY_RESIZE_DONE:
         release_memory_buffer();
     }
     
-    *array_info = (ulonglong)dest_ptr;
-    array_info[2] = (ulonglong)(dest_ptr + capacity * 6);
-    array_info[1] = (ulonglong)(dest_ptr + 6);
+    *array_info = (uint64_t)dest_ptr;
+    array_info[2] = (uint64_t)(dest_ptr + capacity * 6);
+    array_info[1] = (uint64_t)(dest_ptr + 6);
     return;
 }
 
@@ -782,16 +782,16 @@ ARRAY_RESIZE_DONE:
  * 原始实现：FUN_1800862bb
  * 简化实现：数组元素添加
  */
-void add_element_to_array_24byte_offset(longlong offset, uint64_t element1, uint64_t element2, longlong param4)
+void add_element_to_array_24byte_offset(int64_t offset, uint64_t element1, uint64_t element2, int64_t param4)
 {
     int32_t data_val1;       // 数据值1
     int32_t data_val2;       // 数据值2
     int32_t data_val3;       // 数据值3
     int32_t *dest_ptr;       // 目标指针
-    longlong *array_info;       // 数组信息
+    int64_t *array_info;       // 数组信息
     int32_t *element_ptr;    // 元素指针
-    longlong capacity;          // 容量
-    longlong current_pos;        // 当前位置
+    int64_t capacity;          // 容量
+    int64_t current_pos;        // 当前位置
     
     if (offset / 0x18 == 0) {
         capacity = 1;
@@ -826,9 +826,9 @@ ARRAY_RESIZE_DONE:
         release_memory_buffer();
     }
     
-    *array_info = (longlong)dest_ptr;
-    array_info[2] = (longlong)(dest_ptr + capacity * 6);
-    array_info[1] = (longlong)(dest_ptr + 6);
+    *array_info = (int64_t)dest_ptr;
+    array_info[2] = (int64_t)(dest_ptr + capacity * 6);
+    array_info[1] = (int64_t)(dest_ptr + 6);
     return;
 }
 
@@ -851,7 +851,7 @@ void thunk_release_memory_buffer(void)
  * 原始实现：FUN_1800863a0
  * 简化实现：数组元素添加
  */
-void add_element_to_array_16byte(ulonglong *array_info, uint64_t *element_data)
+void add_element_to_array_16byte(uint64_t *array_info, uint64_t *element_data)
 {
     int32_t data_val1;       // 数据值1
     int32_t data_val2;       // 数据值2
@@ -860,11 +860,11 @@ void add_element_to_array_16byte(ulonglong *array_info, uint64_t *element_data)
     int32_t *dest_ptr;       // 目标指针
     uint64_t *write_ptr;      // 写入指针
     uint64_t *base_ptr;       // 基础指针
-    longlong capacity;          // 容量
+    int64_t capacity;          // 容量
     
     write_ptr = (uint64_t *)array_info[1];
     if (write_ptr < (uint64_t *)array_info[2]) {
-        array_info[1] = (ulonglong)(write_ptr + 2);
+        array_info[1] = (uint64_t)(write_ptr + 2);
         data_val4 = element_data[1];
         *write_ptr = *element_data;
         write_ptr[1] = data_val4;
@@ -872,7 +872,7 @@ void add_element_to_array_16byte(ulonglong *array_info, uint64_t *element_data)
     }
     
     base_ptr = (uint64_t *)*array_info;
-    capacity = (longlong)write_ptr - (longlong)base_ptr >> 4;
+    capacity = (int64_t)write_ptr - (int64_t)base_ptr >> 4;
     if (capacity == 0) {
         capacity = 1;
     }
@@ -890,12 +890,12 @@ void add_element_to_array_16byte(ulonglong *array_info, uint64_t *element_data)
     
 ARRAY_RESIZE_DONE:
     if (base_ptr != write_ptr) {
-        memmove(dest_ptr, base_ptr, (longlong)write_ptr - (longlong)base_ptr);
+        memmove(dest_ptr, base_ptr, (int64_t)write_ptr - (int64_t)base_ptr);
     }
     
-    data_val1 = *(int32_t *)((longlong)element_data + 4);
+    data_val1 = *(int32_t *)((int64_t)element_data + 4);
     data_val2 = *(int32_t *)(element_data + 1);
-    data_val3 = *(int32_t *)((longlong)element_data + 0xc);
+    data_val3 = *(int32_t *)((int64_t)element_data + 0xc);
     *dest_ptr = *(int32_t *)element_data;
     dest_ptr[1] = data_val1;
     dest_ptr[2] = data_val2;
@@ -905,9 +905,9 @@ ARRAY_RESIZE_DONE:
         release_memory_buffer();
     }
     
-    *array_info = (ulonglong)dest_ptr;
-    array_info[2] = (ulonglong)(dest_ptr + capacity * 4);
-    array_info[1] = (ulonglong)(dest_ptr + 4);
+    *array_info = (uint64_t)dest_ptr;
+    array_info[2] = (uint64_t)(dest_ptr + capacity * 4);
+    array_info[1] = (uint64_t)(dest_ptr + 4);
     return;
 }
 
@@ -918,7 +918,7 @@ ARRAY_RESIZE_DONE:
  * 原始实现：FUN_180086490
  * 简化实现：对象实例初始化
  */
-uint64_t *initialize_object_instance(uint64_t *object_ptr, ulonglong init_flags, uint64_t param3, uint64_t param4)
+uint64_t *initialize_object_instance(uint64_t *object_ptr, uint64_t init_flags, uint64_t param3, uint64_t param4)
 {
     object_ptr[4] = &system_data_buffer_ptr;
     if (object_ptr[5] != 0) {
@@ -942,7 +942,7 @@ uint64_t *initialize_object_instance(uint64_t *object_ptr, ulonglong init_flags,
  * 原始实现：FUN_180086530
  * 简化实现：资源清理
  */
-void perform_resource_cleanup(longlong *resource_ptr)
+void perform_resource_cleanup(int64_t *resource_ptr)
 {
     if (*resource_ptr != 0) {
         execute_cleanup_operations();
@@ -957,9 +957,9 @@ void perform_resource_cleanup(longlong *resource_ptr)
  * 原始实现：FUN_180086570
  * 简化实现：字符串对象初始化
  */
-uint64_t *initialize_string_object(uint64_t *string_obj, longlong string_data, uint64_t param3, uint64_t param4)
+uint64_t *initialize_string_object(uint64_t *string_obj, int64_t string_data, uint64_t param3, uint64_t param4)
 {
-    longlong string_length;      // 字符串长度
+    int64_t string_length;      // 字符串长度
     
     *string_obj = &system_state_ptr;
     string_obj[1] = 0;
@@ -1022,7 +1022,7 @@ uint64_t *create_object_typeB(uint64_t param1, int32_t param2)
  * 原始实现：FUN_1800866f0
  * 简化实现：对象B释放
  */
-uint64_t release_object_typeB(uint64_t object_ptr, ulonglong release_flags, uint64_t param3, uint64_t param4)
+uint64_t release_object_typeB(uint64_t object_ptr, uint64_t release_flags, uint64_t param3, uint64_t param4)
 {
     uint64_t release_param;   // 释放参数
     
@@ -1059,13 +1059,13 @@ uint64_t *create_object_typeC(uint64_t param1, int32_t param2)
  * 原始实现：FUN_1800867d0
  * 简化实现：对象C释放
  */
-longlong release_object_typeC(longlong object_ptr, ulonglong release_flags, uint64_t param3, uint64_t param4)
+int64_t release_object_typeC(int64_t object_ptr, uint64_t release_flags, uint64_t param3, uint64_t param4)
 {
     uint64_t release_param;   // 释放参数
     
     release_param = 0xfffffffffffffffe;
-    if (*(longlong **)(object_ptr + 0xb0) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(object_ptr + 0xb0) + 0x38))();
+    if (*(int64_t **)(object_ptr + 0xb0) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(object_ptr + 0xb0) + 0x38))();
     }
     execute_release_sequence(object_ptr);
     if ((release_flags & 1) != 0) {
@@ -1189,7 +1189,7 @@ uint64_t *create_object_typeI(uint64_t param1, int32_t param2)
  * 原始实现：FUN_180086bd0
  * 简化实现：渲染配置初始化
  */
-void initialize_render_configuration(longlong config_ptr, uint64_t param2, longlong param3)
+void initialize_render_configuration(int64_t config_ptr, uint64_t param2, int64_t param3)
 {
     void *config_param1;    // 配置参数1
     void *config_param2;    // 配置参数2
@@ -1294,10 +1294,10 @@ uint64_t *initialize_array_structure(uint64_t *array_ptr)
  * 原始实现：FUN_180086dc0
  * 简化实现：数组资源清理
  */
-void cleanup_array_resources(longlong *array_info)
+void cleanup_array_resources(int64_t *array_info)
 {
-    longlong current_ptr;        // 当前指针
-    longlong end_ptr;            // 结束指针
+    int64_t current_ptr;        // 当前指针
+    int64_t end_ptr;            // 结束指针
     
     current_ptr = array_info[1];
     for (end_ptr = *array_info; end_ptr != current_ptr; end_ptr = end_ptr + 0x60) {
@@ -1316,7 +1316,7 @@ void cleanup_array_resources(longlong *array_info)
  * 原始实现：FUN_180086de0
  * 简化实现：渲染资源释放
  */
-void release_render_resources(longlong resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
+void release_render_resources(int64_t resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 {
     release_render_resource(resource_ptr, *(uint64_t *)(resource_ptr + 0x10), param3, param4, 0xfffffffffffffffe);
     return;
@@ -1329,25 +1329,25 @@ void release_render_resources(longlong resource_ptr, uint64_t param2, uint64_t p
  * 原始实现：FUN_180086e10
  * 简化实现：渲染资源清理
  */
-void cleanup_render_resources(longlong resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
+void cleanup_render_resources(int64_t resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 {
     release_render_resource(resource_ptr, *(uint64_t *)(resource_ptr + 0x10), param3, param4, 0xfffffffffffffffe);
     return;
 }
 
 // 辅助函数声明
-longlong process_array_allocation(ushort data_count);
+int64_t process_array_allocation(ushort data_count);
 void resize_array(uint *array_ptr);
 void execute_resource_release(int32_t flags);
-uint64_t allocate_memory(uint64_t allocator, longlong size, char flags);
+uint64_t allocate_memory(uint64_t allocator, int64_t size, char flags);
 void release_memory_buffer(void);
 void execute_cleanup_operations(void);
 char verify_matrix_components(float *matrix_data, uint64_t *compare_data);
-uint64_t allocate_object_memory(uint64_t allocator, longlong size, longlong align, longlong type, uint64_t flags);
+uint64_t allocate_object_memory(uint64_t allocator, int64_t size, int64_t align, int64_t type, uint64_t flags);
 void initialize_object_data(uint64_t *object, uint64_t param1, int32_t param2);
-void execute_release_sequence(longlong object_ptr);
+void execute_release_sequence(int64_t object_ptr);
 void create_render_context(uint64_t config, uint64_t *context_ptr, uint64_t param2);
-void setup_render_parameters(longlong config_ptr, uint64_t *param1, uint64_t *param2, uint64_t *param3, uint64_t *param4);
-void release_array_element(longlong element_ptr);
-void release_render_resource(longlong resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t flags);
-void strcpy_s(uint64_t dest, longlong dest_size, uint64_t src, uint64_t param4, uint64_t flags);
+void setup_render_parameters(int64_t config_ptr, uint64_t *param1, uint64_t *param2, uint64_t *param3, uint64_t *param4);
+void release_array_element(int64_t element_ptr);
+void release_render_resource(int64_t resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t flags);
+void strcpy_s(uint64_t dest, int64_t dest_size, uint64_t src, uint64_t param4, uint64_t flags);

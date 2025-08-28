@@ -194,7 +194,7 @@ typedef struct {
  * 
  * @note 该函数是系统核心功能的重要组成部分，提供了高效的数据处理能力
  */
-uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* resource_params, longlong output_buffer)
+uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* resource_params, int64_t output_buffer)
 
 {
     /* 数据处理相关的变量 */
@@ -202,18 +202,18 @@ uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* 
     int32_t config_param2;
     int32_t config_param3;
     int32_t config_param4;
-    longlong resource_handle;
+    int64_t resource_handle;
     int status_code;
     uint64_t *memory_block;
-    longlong *state_array;
+    int64_t *state_array;
     uint64_t *temp_pointer;
-    longlong *resource_array;
+    int64_t *resource_array;
     void *data_pointer;
     uint resource_count;
-    longlong *state_pointer;
+    int64_t *state_pointer;
     uint temp_value;
     int iteration_index;
-    longlong *loop_pointer;
+    int64_t *loop_pointer;
     int8_t stack_guard[32];
     uint config_value1;
     uint config_value2;
@@ -222,10 +222,10 @@ uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* 
     void **context_ptr1;
     void **context_ptr2;
     uint64_t guard_value1;
-    ulonglong security_cookie;
+    uint64_t security_cookie;
     uint64_t temp_storage1;
     uint config_array1[6];
-    longlong state_storage;
+    int64_t state_storage;
     uint64_t temp_storage2;
     uint config_array2[6];
     uint64_t temp_storage3;
@@ -242,11 +242,11 @@ uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* 
     int32_t temp_storage11;
     uint64_t temp_storage12;
     int32_t temp_storage13;
-    ulonglong temp_storage14;
+    uint64_t temp_storage14;
     
     /* 初始化安全cookie和栈保护 */
     temp_storage3 = 0xfffffffffffffffe;
-    temp_storage14 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
+    temp_storage14 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard;
     
     /* 提取资源配置参数 */
     config_param2 = resource_params[1];
@@ -281,7 +281,7 @@ uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* 
         memory_block = (uint64_t *)0x0;
     }
     else {
-        memory_block = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,(ulonglong)temp_value << 4,3);
+        memory_block = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,(uint64_t)temp_value << 4,3);
         status_code = 0;
         temp_pointer = memory_block;
         
@@ -291,11 +291,11 @@ uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* 
             temp_pointer[1] = 0;
             status_code = status_code + 1;
             temp_pointer = temp_pointer + 2;
-        } while ((ulonglong)(longlong)status_code < (ulonglong)temp_value);
+        } while ((uint64_t)(int64_t)status_code < (uint64_t)temp_value);
     }
     
     /* 初始化状态数组 */
-    state_array = (longlong *)0x0;
+    state_array = (int64_t *)0x0;
     *(uint64_t **)(output_buffer + 0x1e0) = memory_block;
     
     /* 根据资源类型配置参数 */
@@ -339,7 +339,7 @@ uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* 
 CONFIG_COMPLETE:
     /* 设置配置参数 */
     temp_storage5 = *(int32_t *)context_ptr2;
-    temp_storage6 = *(int32_t *)((longlong)context_ptr2 + 4);
+    temp_storage6 = *(int32_t *)((int64_t)context_ptr2 + 4);
     temp_storage7 = 1;
     temp_storage10 = 1;
     temp_storage11 = 0;
@@ -348,8 +348,8 @@ CONFIG_COMPLETE:
     temp_storage8 = config_value4;
     
     /* 初始化系统资源 */
-    status_code = (**(code **)(**(longlong **)((longlong)system_context + 0x1d78) + 0x28))
-                    (*(longlong **)((longlong)system_context + 0x1d78),&temp_storage5,0,&temp_storage2);
+    status_code = (**(code **)(**(int64_t **)((int64_t)system_context + 0x1d78) + 0x28))
+                    (*(int64_t **)((int64_t)system_context + 0x1d78),&temp_storage5,0,&temp_storage2);
     
     /* 错误处理 */
     if (status_code < 0) {
@@ -358,7 +358,7 @@ CONFIG_COMPLETE:
     
     /* 设置输出缓冲区 */
     *(uint64_t *)(output_buffer + 0x170) = temp_storage2;
-    *(longlong *)(output_buffer + 0x168) = output_buffer;
+    *(int64_t *)(output_buffer + 0x168) = output_buffer;
     state_array = state_array;
     resource_array = state_array;
     state_pointer = state_array;
@@ -368,7 +368,7 @@ CONFIG_COMPLETE:
         do {
             do {
                 temp_storage1 = 0;
-                guard_value1 = (ulonglong)resource_count;
+                guard_value1 = (uint64_t)resource_count;
                 
                 /* 根据状态设置配置 */
                 if (*(int *)(output_buffer + 0x160) == 3) {
@@ -386,12 +386,12 @@ CONFIG_COMPLETE:
                     if (config_value1 != 0) {
                         temp_value = 3;
                     }
-                    security_cookie = (ulonglong)temp_value;
+                    security_cookie = (uint64_t)temp_value;
                 }
                 
                 state_storage = 0;
-                (**(code **)(**(longlong **)((longlong)context_ptr1 + 0x1d78) + 0x50))
-                          (*(longlong **)((longlong)context_ptr1 + 0x1d78),*(uint64_t *)(output_buffer + 0x170),
+                (**(code **)(**(int64_t **)((int64_t)context_ptr1 + 0x1d78) + 0x50))
+                          (*(int64_t **)((int64_t)context_ptr1 + 0x1d78),*(uint64_t *)(output_buffer + 0x170),
                            &guard_value1,&state_storage);
                 
                 /* 处理资源数据 */
@@ -399,33 +399,33 @@ CONFIG_COMPLETE:
                 iteration_index = (int)resource_array;
                 state_array = state_array;
                 
-                if (*(longlong *)(output_buffer + 0x1e0) != 0) {
+                if (*(int64_t *)(output_buffer + 0x1e0) != 0) {
                     if (system_main_module_state != 0) {
-                        *(longlong *)(output_buffer + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
+                        *(int64_t *)(output_buffer + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
                     }
-                    state_array = (longlong *)((longlong)(iteration_index + status_code) * 0x10 + *(longlong *)(output_buffer + 0x1e0));
+                    state_array = (int64_t *)((int64_t)(iteration_index + status_code) * 0x10 + *(int64_t *)(output_buffer + 0x1e0));
                 }
                 
                 state_array[1] = state_storage;
                 state_array = state_array;
                 
-                if (*(longlong *)(output_buffer + 0x1e0) != 0) {
+                if (*(int64_t *)(output_buffer + 0x1e0) != 0) {
                     if (resource_handle != 0) {
-                        *(longlong *)(output_buffer + 0x340) = (longlong)*(int *)(resource_handle + 0x224);
-                        *(longlong *)(output_buffer + 0x340) = (longlong)*(int *)(resource_handle + 0x224);
+                        *(int64_t *)(output_buffer + 0x340) = (int64_t)*(int *)(resource_handle + 0x224);
+                        *(int64_t *)(output_buffer + 0x340) = (int64_t)*(int *)(resource_handle + 0x224);
                     }
-                    state_array = (longlong *)((longlong)(iteration_index + status_code) * 0x10 + *(longlong *)(output_buffer + 0x1e0));
+                    state_array = (int64_t *)((int64_t)(iteration_index + status_code) * 0x10 + *(int64_t *)(output_buffer + 0x1e0));
                 }
                 
                 *state_array = output_buffer;
-                state_array = (longlong *)(ulonglong)(status_code + 1U);
+                state_array = (int64_t *)(uint64_t)(status_code + 1U);
             } while ((int)(status_code + 1U) < 2);
             
             temp_value = (int)state_pointer + 1;
             state_array = state_array;
             system_context = context_ptr1;
-            resource_array = (longlong *)(ulonglong)(iteration_index + 2);
-            state_pointer = (longlong *)(ulonglong)temp_value;
+            resource_array = (int64_t *)(uint64_t)(iteration_index + 2);
+            state_pointer = (int64_t *)(uint64_t)temp_value;
         } while (temp_value < config_value4);
     }
     
@@ -445,9 +445,9 @@ CONFIG_COMPLETE:
     }
     
     /* 处理扩展配置 */
-    if (*(char *)((longlong)context_ptr2 + 0x15) != '\0') {
-        (**(code **)(**(longlong **)((longlong)system_context + 0x1d78) + 0x38))
-                  (*(longlong **)((longlong)system_context + 0x1d78),*(uint64_t *)(output_buffer + 0x170),
+    if (*(char *)((int64_t)context_ptr2 + 0x15) != '\0') {
+        (**(code **)(**(int64_t **)((int64_t)system_context + 0x1d78) + 0x38))
+                  (*(int64_t **)((int64_t)system_context + 0x1d78),*(uint64_t *)(output_buffer + 0x170),
                    config_array1,output_buffer + 0x178);
     }
     
@@ -457,8 +457,8 @@ CONFIG_COMPLETE:
         config_array2[2] = 0;
         config_array2[0] = config_value1;
         config_array2[3] = 1;
-        (**(code **)(**(longlong **)((longlong)system_context + 0x1d78) + 0x38))
-                  (*(longlong **)((longlong)system_context + 0x1d78),*(uint64_t *)(output_buffer + 0x170),
+        (**(code **)(**(int64_t **)((int64_t)system_context + 0x1d78) + 0x38))
+                  (*(int64_t **)((int64_t)system_context + 0x1d78),*(uint64_t *)(output_buffer + 0x170),
                    config_array2,output_buffer + 0x1b0);
     }
     
@@ -468,7 +468,7 @@ CONFIG_COMPLETE:
     LOCK();
     system_system_config_resource = 0;
     UNLOCK();
-    *(longlong *)(output_buffer + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
+    *(int64_t *)(output_buffer + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
     LOCK();
     *(int32_t *)(output_buffer + 0x380) = 2;
     UNLOCK();
@@ -493,7 +493,7 @@ CONFIG_COMPLETE:
     context_ptr1 = &stack_ptr1;
     
     /* 安全返回，防止栈溢出 */
-    FUN_1808fc050(temp_storage14 ^ (ulonglong)stack_guard);
+    FUN_1808fc050(temp_storage14 ^ (uint64_t)stack_guard);
 }
 
 /**
@@ -514,7 +514,7 @@ CONFIG_COMPLETE:
  * 
  * @note 该函数提供了完整的资源初始化和管理功能
  */
-uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong resource_handle)
+uint64_t ResourceInitializer(int64_t system_context, int* init_params, int64_t resource_handle)
 
 {
     /* 资源初始化相关的变量 */
@@ -522,13 +522,13 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     int config_param1;
     int config_param2;
     uint resource_type;
-    ulonglong access_mode;
-    ulonglong resource_flags;
+    uint64_t access_mode;
+    uint64_t resource_flags;
     byte resource_size;
     uint resource_count;
     uint64_t *memory_block;
     void *data_pointer;
-    ulonglong temp_value;
+    uint64_t temp_value;
     int status_code;
     int8_t stack_guard[32];
     void **context_ptr;
@@ -571,11 +571,11 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     uint temp_storage32;
     uint temp_storage33;
     int32_t temp_storage34;
-    ulonglong temp_storage35;
+    uint64_t temp_storage35;
     
     /* 初始化安全cookie和栈保护 */
     temp_storage19 = 0xfffffffffffffffe;
-    temp_storage35 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
+    temp_storage35 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard;
     param_ptr = init_params;
     
     /* 初始化资源句柄 */
@@ -594,7 +594,7 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     temp_storage26 = init_params[1];
     temp_storage27 = init_params[3];
     temp_storage28 = 1;
-    access_mode = (ulonglong)(uint)init_params[4];
+    access_mode = (uint64_t)(uint)init_params[4];
     temp_storage25 = config_param2;
     temp_storage29 = func_0x0001800ab000(access_mode);
     temp_storage30 = 1;
@@ -624,25 +624,25 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     temp_storage33 = temp_storage32;
     
     /* 设置状态标志 */
-    if (*(char *)((longlong)init_params + 0x21) != '\0') {
+    if (*(char *)((int64_t)init_params + 0x21) != '\0') {
         temp_storage33 = STATUS_FLAG_BASIC;
     }
-    if (*(char *)((longlong)init_params + 0x22) != '\0') {
+    if (*(char *)((int64_t)init_params + 0x22) != '\0') {
         temp_storage33 = temp_storage33 | STATUS_FLAG_EXTENDED;
     }
     if ((char)init_params[8] != '\0') {
         temp_storage32 = STATUS_FLAG_SPECIAL;
     }
-    if (*(char *)((longlong)init_params + 0x23) != '\0') {
+    if (*(char *)((int64_t)init_params + 0x23) != '\0') {
         temp_storage32 = temp_storage32 | STATUS_FLAG_ADVANCED;
     }
     
     /* 分配内存块 */
-    if (*(longlong *)(init_params + 10) == 0) {
+    if (*(int64_t *)(init_params + 10) == 0) {
         memory_block = (uint64_t *)0x0;
     }
     else {
-        temp_storage15 = *(uint64_t *)(*(longlong *)(init_params + 10) + 0x10);
+        temp_storage15 = *(uint64_t *)(*(int64_t *)(init_params + 10) + 0x10);
         temp_storage17 = 0;
         temp_storage16 = func_0x000180225d90(access_mode & 0xffffffff);
         temp_storage16 = temp_storage16 * config_param2;
@@ -650,8 +650,8 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     }
     
     /* 初始化系统资源 */
-    config_param2 = (**(code **)(**(longlong **)(system_context + 0x1d78) + 0x28))
-                    (*(longlong **)(system_context + 0x1d78),&temp_storage25,memory_block,&temp_storage12);
+    config_param2 = (**(code **)(**(int64_t **)(system_context + 0x1d78) + 0x28))
+                    (*(int64_t **)(system_context + 0x1d78),&temp_storage25,memory_block,&temp_storage12);
     
     /* 错误处理 */
     if (config_param2 < 0) {
@@ -663,7 +663,7 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     *(uint64_t *)(resource_handle + 0x170) = temp_storage12;
     context_ptr = (void **)FUN_180049b30(buffer2,resource_handle + 0x10);
     *context_ptr = &system_state_ptr;
-    *(longlong *)(resource_handle + 0x168) = resource_handle;
+    *(int64_t *)(resource_handle + 0x168) = resource_handle;
     
     /* 处理资源数据 */
     if ((char)init_params[8] != '\0') {
@@ -676,13 +676,13 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
         }
         temp_value = resource_flags;
         if (resource_type * resource_id != 0) {
-            temp_value = FUN_18062b420(system_memory_pool_ptr,(ulonglong)(resource_type * resource_id) * 8,
+            temp_value = FUN_18062b420(system_memory_pool_ptr,(uint64_t)(resource_type * resource_id) * 8,
                                       CONCAT71((uint7)(byte)(resource_id >> 8),3));
             resource_size = *(byte *)(resource_handle + 0x335);
             resource_count = *(uint *)(resource_handle + 0x35c);
             resource_id = *(ushort *)(resource_handle + 0x332);
         }
-        *(ulonglong *)(resource_handle + 0x180) = temp_value;
+        *(uint64_t *)(resource_handle + 0x180) = temp_value;
         resource_type = (uint)resource_size;
         if ((int)resource_count < (int)(uint)resource_size) {
             resource_type = resource_count;
@@ -696,8 +696,8 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
         temp_storage20 = func_0x0001800ab000(config_param2);
         temp_storage23 = init_params[3];
         temp_storage22 = 0;
-        (**(code **)(**(longlong **)(system_context + 0x1d78) + 0x38))
-                  (*(longlong **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage20,
+        (**(code **)(**(int64_t **)(system_context + 0x1d78) + 0x38))
+                  (*(int64_t **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage20,
                    resource_handle + 0x178);
         
         /* 处理资源循环 */
@@ -733,11 +733,11 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
                         }
                         temp_storage9 = config_param2;
                         temp_storage1 = func_0x0001800ab000(temp_storage3);
-                        (**(code **)(**(longlong **)(system_context + 0x1d78) + 0x38))
-                                  (*(longlong **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage1
+                        (**(code **)(**(int64_t **)(system_context + 0x1d78) + 0x38))
+                                  (*(int64_t **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage1
                                    ,&temp_storage13);
                         *(uint64_t *)
-                         (*(longlong *)(resource_handle + 0x180) + (longlong)(int)(resource_type * status_code + config_param2) * 8) =
+                         (*(int64_t *)(resource_handle + 0x180) + (int64_t)(int)(resource_type * status_code + config_param2) * 8) =
                              temp_storage13;
                         config_param2 = config_param2 + 1;
                         resource_size = *(byte *)(resource_handle + 0x335);
@@ -748,14 +748,14 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
                         }
                     } while (config_param2 < (int)resource_type);
                 }
-                resource_flags = (ulonglong)(status_code + 1U);
+                resource_flags = (uint64_t)(status_code + 1U);
             } while (status_code + 1U < (uint)*(ushort *)(resource_handle + 0x332));
         }
     }
     
     /* 处理扩展资源 */
     temp_value = 0;
-    if (*(char *)((longlong)init_params + 0x23) != '\0') {
+    if (*(char *)((int64_t)init_params + 0x23) != '\0') {
         resource_id = *(ushort *)(resource_handle + 0x332);
         resource_size = *(byte *)(resource_handle + 0x335);
         resource_count = *(uint *)(resource_handle + 0x35c);
@@ -765,13 +765,13 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
         }
         access_mode = temp_value;
         if (resource_type * resource_id != 0) {
-            access_mode = FUN_18062b420(system_memory_pool_ptr,(ulonglong)(resource_type * resource_id) * 8,
+            access_mode = FUN_18062b420(system_memory_pool_ptr,(uint64_t)(resource_type * resource_id) * 8,
                                       CONCAT71((uint7)(byte)(resource_id >> 8),3));
             resource_size = *(byte *)(resource_handle + 0x335);
             resource_count = *(uint *)(resource_handle + 0x35c);
             resource_id = *(ushort *)(resource_handle + 0x332);
         }
-        *(ulonglong *)(resource_handle + 0x210) = access_mode;
+        *(uint64_t *)(resource_handle + 0x210) = access_mode;
         resource_type = (uint)resource_size;
         if ((int)resource_count < (int)(uint)resource_size) {
             resource_type = resource_count;
@@ -783,10 +783,10 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
             config_param2 = init_params[4];
         }
         temp_storage18 = func_0x0001800ab000(config_param2);
-        (**(code **)(**(longlong **)(system_context + 0x1d78) + 0x40))
-                  (*(longlong **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage18,
+        (**(code **)(**(int64_t **)(system_context + 0x1d78) + 0x40))
+                  (*(int64_t **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage18,
                    resource_handle + 0x208);
-        *(longlong *)(resource_handle + 0x200) = resource_handle;
+        *(int64_t *)(resource_handle + 0x200) = resource_handle;
         
         /* 处理扩展资源循环 */
         if (*(short *)(resource_handle + 0x332) != 0) {
@@ -820,11 +820,11 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
                         }
                         temp_storage27 = config_param2;
                         temp_storage24 = func_0x0001800ab000(temp_storage3);
-                        (**(code **)(**(longlong **)(system_context + 0x1d78) + 0x40))
-                                  (*(longlong **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage24
+                        (**(code **)(**(int64_t **)(system_context + 0x1d78) + 0x40))
+                                  (*(int64_t **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage24
                                    ,&temp_storage14);
                         *(uint64_t *)
-                         (*(longlong *)(resource_handle + 0x210) + (longlong)(int)(resource_type * status_code + config_param2) * 8) =
+                         (*(int64_t *)(resource_handle + 0x210) + (int64_t)(int)(resource_type * status_code + config_param2) * 8) =
                              temp_storage14;
                         config_param2 = config_param2 + 1;
                         resource_size = *(byte *)(resource_handle + 0x335);
@@ -835,7 +835,7 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
                         }
                     } while (config_param2 < (int)resource_type);
                 }
-                temp_value = (ulonglong)(status_code + 1U);
+                temp_value = (uint64_t)(status_code + 1U);
             } while (status_code + 1U < (uint)*(ushort *)(resource_handle + 0x332));
         }
     }
@@ -858,7 +858,7 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     LOCK();
     system_system_config_resource = 0;
     UNLOCK();
-    *(longlong *)(resource_handle + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
+    *(int64_t *)(resource_handle + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
     LOCK();
     *(int32_t *)(resource_handle + 0x380) = 2;
     UNLOCK();
@@ -869,15 +869,15 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     *(uint64_t *)(resource_handle + 0xf8) = 0;
     
     if (context_ptr != (void **)0x0) {
-        (**(code **)((longlong)*context_ptr + 0x38))();
+        (**(code **)((int64_t)*context_ptr + 0x38))();
     }
     
-    if (*(longlong **)(init_params + 10) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(init_params + 10) + 0x38))();
+    if (*(int64_t **)(init_params + 10) != (int64_t *)0x0) {
+        (**(code **)(**(int64_t **)(init_params + 10) + 0x38))();
     }
     
     /* 安全返回，防止栈溢出 */
-    FUN_1808fc050(temp_storage35 ^ (ulonglong)stack_guard);
+    FUN_1808fc050(temp_storage35 ^ (uint64_t)stack_guard);
 }
 
 /**
@@ -901,8 +901,8 @@ int32_t * DataCopier(int32_t *dest_ptr, int32_t *src_ptr)
 
 {
     /* 数据复制相关的变量 */
-    longlong *resource_ptr1;
-    longlong *resource_ptr2;
+    int64_t *resource_ptr1;
+    int64_t *resource_ptr2;
     
     /* 复制基本数据结构 */
     *dest_ptr = *src_ptr;
@@ -916,20 +916,20 @@ int32_t * DataCopier(int32_t *dest_ptr, int32_t *src_ptr)
     
     /* 复制状态标志 */
     *(int8_t *)(dest_ptr + 8) = *(int8_t *)(src_ptr + 8);
-    *(int8_t *)((longlong)dest_ptr + 0x21) = *(int8_t *)((longlong)src_ptr + 0x21);
-    *(int8_t *)((longlong)dest_ptr + 0x22) = *(int8_t *)((longlong)src_ptr + 0x22);
-    *(int8_t *)((longlong)dest_ptr + 0x23) = *(int8_t *)((longlong)src_ptr + 0x23);
+    *(int8_t *)((int64_t)dest_ptr + 0x21) = *(int8_t *)((int64_t)src_ptr + 0x21);
+    *(int8_t *)((int64_t)dest_ptr + 0x22) = *(int8_t *)((int64_t)src_ptr + 0x22);
+    *(int8_t *)((int64_t)dest_ptr + 0x23) = *(int8_t *)((int64_t)src_ptr + 0x23);
     
     /* 管理资源引用计数 */
-    resource_ptr1 = *(longlong **)(src_ptr + 10);
-    if (resource_ptr1 != (longlong *)0x0) {
+    resource_ptr1 = *(int64_t **)(src_ptr + 10);
+    if (resource_ptr1 != (int64_t *)0x0) {
         (**(code **)(*resource_ptr1 + 0x28))(resource_ptr1);
     }
     
-    resource_ptr2 = *(longlong **)(dest_ptr + 10);
-    *(longlong **)(dest_ptr + 10) = resource_ptr1;
+    resource_ptr2 = *(int64_t **)(dest_ptr + 10);
+    *(int64_t **)(dest_ptr + 10) = resource_ptr1;
     
-    if (resource_ptr2 != (longlong *)0x0) {
+    if (resource_ptr2 != (int64_t *)0x0) {
         (**(code **)(*resource_ptr2 + 0x38))();
     }
     

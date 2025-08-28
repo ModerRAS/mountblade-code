@@ -78,7 +78,7 @@ void system_initializer_and_config_handler(void);
  * @param param_4 输出参数
  * @return uint64_t 操作结果码
  */
-uint64_t system_config_validator_and_initializer(longlong param_1, ulonglong param_2, uint param_3, int32_t *param_4);
+uint64_t system_config_validator_and_initializer(int64_t param_1, uint64_t param_2, uint param_3, int32_t *param_4);
 
 /**
  * @brief 系统状态更新和同步器
@@ -123,7 +123,7 @@ uint64_t system_parameter_calculator(void);
  * @param param_3 处理选项
  * @return uint64_t 处理结果码
  */
-uint64_t data_validator_and_processor(longlong param_1, uint64_t param_2, int param_3);
+uint64_t data_validator_and_processor(int64_t param_1, uint64_t param_2, int param_3);
 
 /**
  * @brief 数据分配和初始化器
@@ -136,7 +136,7 @@ uint64_t data_validator_and_processor(longlong param_1, uint64_t param_2, int pa
  * @param param_3 初始化参数
  * @return void 无返回值
  */
-void data_allocator_and_initializer(longlong param_1, int param_2, int param_3);
+void data_allocator_and_initializer(int64_t param_1, int param_2, int param_3);
 
 /**
  * @brief 数据传输和复制器
@@ -160,7 +160,7 @@ void data_transmitter_and_copier(uint64_t param_1, uint64_t param_2);
  * @param param_2 读取缓冲区
  * @return void 无返回值
  */
-void data_reader_and_processor(longlong param_1, int param_2);
+void data_reader_and_processor(int64_t param_1, int param_2);
 
 /** @} */
 
@@ -187,7 +187,7 @@ void data_reader_and_processor(longlong param_1, int param_2);
  * @param param_5 状态指针
  * @return uint64_t 解析结果码
  */
-uint64_t protocol_data_parser(longlong param_1, char *param_2, int *param_3, longlong param_4, int *param_5);
+uint64_t protocol_data_parser(int64_t param_1, char *param_2, int *param_3, int64_t param_4, int *param_5);
 
 /**
  * @brief 数据包读取和解析器
@@ -199,9 +199,9 @@ uint64_t protocol_data_parser(longlong param_1, char *param_2, int *param_3, lon
  * @param param_2 输出缓冲区
  * @param param_3 缓冲区大小
  * @param param_4 状态指针
- * @return ulonglong 读取的数据量
+ * @return uint64_t 读取的数据量
  */
-ulonglong packet_reader_and_parser(longlong param_1, char *param_2, int param_3, int *param_4);
+uint64_t packet_reader_and_parser(int64_t param_1, char *param_2, int param_3, int *param_4);
 
 /**
  * @brief 协议状态检查器
@@ -209,9 +209,9 @@ ulonglong packet_reader_and_parser(longlong param_1, char *param_2, int param_3,
  * 检查协议连接状态，验证数据完整性。
  * 处理状态监控和错误检测。
  * 
- * @return ulonglong 状态信息
+ * @return uint64_t 状态信息
  */
-ulonglong protocol_status_checker(void);
+uint64_t protocol_status_checker(void);
 
 /** @} */
 
@@ -245,7 +245,7 @@ void buffer_initializer_and_cleaner(void);
  * @param param_2 输入字符
  * @return int8_t 处理结果
  */
-int8_t character_processor_and_converter(longlong param_1, char param_2);
+int8_t character_processor_and_converter(int64_t param_1, char param_2);
 
 /**
  * @brief 数据流处理器
@@ -256,7 +256,7 @@ int8_t character_processor_and_converter(longlong param_1, char param_2);
  * @param param_1 流处理器
  * @return void 无返回值
  */
-void data_stream_processor(longlong param_1);
+void data_stream_processor(int64_t param_1);
 
 /** @} */
 

@@ -13,12 +13,20 @@ extern void *global_config_704_ptr;   // 渲染系统算法配置指针
 extern uint64_t GET_SECURITY_COOKIE(); // 渲染系统安全校验常量
 
 // 外部函数声明
-extern void FUN_180059ba0(void *resource, void *memory_manager);  // 资源释放函数
-extern void FUN_180296ad0(void *resource);  // 资源清理函数
-extern void FUN_180294c20(void *context, void *algorithm_config, uint32_t *param_3, void *param_4, void *param_5);  // 渲染配置函数
-extern void FUN_180294f50(void *context);  // 渲染处理函数
-extern void *func_0x000180120ce0(uint64_t size, void *memory_manager);  // 内存分配函数
-extern void FUN_1808fc050(uint64_t stack_cookie);  // 栈安全检查函数
+extern void FUN_180059ba0(void *resource, void *memory_manager);  // 资源释放函数 -> RenderingSystem_ResourceReleaser
+extern void FUN_180296ad0(void *resource);  // 资源清理函数 -> RenderingSystem_ResourceCleaner
+extern void FUN_180294c20(void *context, void *algorithm_config, uint32_t *param_3, void *param_4, void *param_5);  // 渲染配置函数 -> RenderingSystem_Configurator
+extern void FUN_180294f50(void *context);  // 渲染处理函数 -> RenderingSystem_Processor
+extern void *func_0x000180120ce0(uint64_t size, void *memory_manager);  // 内存分配函数 -> RenderingSystem_MemoryAllocator
+extern void FUN_1808fc050(uint64_t stack_cookie);  // 栈安全检查函数 -> RenderingSystem_StackChecker
+
+// 函数别名定义
+#define RenderingSystem_ResourceReleaser FUN_180059ba0
+#define RenderingSystem_ResourceCleaner FUN_180296ad0
+#define RenderingSystem_Configurator FUN_180294c20
+#define RenderingSystem_Processor FUN_180294f50
+#define RenderingSystem_MemoryAllocator func_0x000180120ce0
+#define RenderingSystem_StackChecker FUN_1808fc050
 
 /**
  * 渲染资源释放函数

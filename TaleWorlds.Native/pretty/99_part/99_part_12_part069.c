@@ -1054,7 +1054,7 @@ static void HandleCalculationError(UInt32 errorCode, const char* errorMessage)
  * 映射到优化版本的数学计算器
  */
 void FUN_1807fa710(float *param_1, float *param_2, uint param_3, int param_4, int param_5,
-                  longlong param_6, longlong param_7, longlong param_8, longlong param_9, 
+                  int64_t param_6, int64_t param_7, int64_t param_8, int64_t param_9, 
                   float param_10, float param_11, float param_12)
 {
     AdvancedMathCalculator_Optimized(param_1, param_2, param_3, param_4, param_5,

@@ -56,12 +56,12 @@
 // ============================================================================
 
 /** 基础类型别名 */
-typedef longlong ProcessId;               // 进程ID类型
+typedef int64_t ProcessId;               // 进程ID类型
 typedef uint StringLength;                // 字符串长度类型
 typedef uint StringHash;                  // 字符串哈希类型
-typedef ulonglong EntryCount;             // 条目计数类型
-typedef ulonglong CharIndex;              // 字符索引类型
-typedef longlong BufferOffset;            // 缓冲区偏移类型
+typedef uint64_t EntryCount;             // 条目计数类型
+typedef uint64_t CharIndex;              // 字符索引类型
+typedef int64_t BufferOffset;            // 缓冲区偏移类型
 
 /** 字符串处理类型别名 */
 typedef char* StringPtr;                  // 字符串指针类型
@@ -70,15 +70,15 @@ typedef uint64_t* StringArrayPtr;       // 字符串数组指针类型
 typedef void* FormatStringPtr;            // 格式字符串指针类型
 
 /** 游戏对象类型别名 */
-typedef longlong* GameObjectArrayPtr;     // 游戏对象数组指针类型
+typedef int64_t* GameObjectArrayPtr;     // 游戏对象数组指针类型
 typedef void* GameObjectPtr;              // 游戏对象指针类型
-typedef longlong GameObjectHandle;        // 游戏对象句柄类型
+typedef int64_t GameObjectHandle;        // 游戏对象句柄类型
 
 /** 内存管理类型别名 */
 typedef void* MemoryAllocator;            // 内存分配器类型
 typedef void* MemoryHandle;               // 内存句柄类型
 typedef uint AllocationFlags;             // 分配标志类型
-typedef ulonglong AllocationSize;         // 分配大小类型
+typedef uint64_t AllocationSize;         // 分配大小类型
 
 /** 回调函数类型别名 */
 typedef void (*CallbackFunc)(void*, void*);  // 回调函数类型
@@ -277,7 +277,7 @@ extern char DEBUG_MODE_ENABLED;
  * @param param_2 未知参数
  * @param param_3 字符串信息结构体指针
  */
-void BuildProcessIdString(uint64_t param_1, uint64_t param_2, longlong param_3);
+void BuildProcessIdString(uint64_t param_1, uint64_t param_2, int64_t param_3);
 
 /**
  * 处理字符串匹配并执行相应的回调函数
@@ -294,7 +294,7 @@ uint64_t ProcessStringMatchesWithCallbacks(uint64_t param_1, uint64_t param_2, u
  * @param param_1 游戏上下文指针数组
  * @param param_2 对象配置参数
  */
-void CreateAndInitializeGameObject(longlong *param_1, longlong param_2);
+void CreateAndInitializeGameObject(int64_t *param_1, int64_t param_2);
 
 /**
  * 扫描游戏文件并处理找到的资源文件
@@ -310,7 +310,7 @@ void InitializeCoreEngine(void);
  * 清理游戏对象数组，释放相关资源
  * @param param_1 游戏对象数组指针
  */
-void CleanupGameObjectArray(longlong *param_1);
+void CleanupGameObjectArray(int64_t *param_1);
 
 /**
  * 处理游戏对象的回调函数
@@ -319,7 +319,7 @@ void CleanupGameObjectArray(longlong *param_1);
  * @param param_3 回调参数2
  * @param param_4 回调参数3
  */
-void ProcessGameObjectCallbacks(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void ProcessGameObjectCallbacks(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
 
 // ============================================================================
 // 内部函数声明
@@ -361,7 +361,7 @@ uint CalculateStringHash(void *string);
  * @param flags 分配标志
  * @return 分配的内存指针
  */
-void* AllocateMemory(uint64_t allocator, longlong size, uint flags);
+void* AllocateMemory(uint64_t allocator, int64_t size, uint flags);
 
 /**
  * 重新分配内存
@@ -371,7 +371,7 @@ void* AllocateMemory(uint64_t allocator, longlong size, uint flags);
  * @param flags 分配标志
  * @return 重新分配的内存指针
  */
-void* ReallocateMemory(uint64_t allocator, void *ptr, longlong size, uint flags);
+void* ReallocateMemory(uint64_t allocator, void *ptr, int64_t size, uint flags);
 
 /**
  * 释放内存
@@ -423,19 +423,19 @@ uint64_t InitializeTextureManager(uint64_t manager);
  * @param mutex 互斥量指针
  * @param type 互斥量类型
  */
-void InitializeMutex(longlong mutex, int type);
+void InitializeMutex(int64_t mutex, int type);
 
 /**
  * 初始化临界区
  * @param critical_section 临界区指针
  */
-void InitializeCriticalSection(longlong critical_section);
+void InitializeCriticalSection(int64_t critical_section);
 
 /**
  * 销毁游戏对象
  * @param object_ptr 对象指针
  */
-void DestroyGameObject(longlong object_ptr);
+void DestroyGameObject(int64_t object_ptr);
 
 /**
  * 处理对象回调
@@ -445,7 +445,7 @@ void DestroyGameObject(longlong object_ptr);
  * @param param_4 回调参数4
  * @param flags 处理标志
  */
-void ProcessObjectCallbacks(longlong object_ptr, uint64_t callback_table, uint64_t param_3, uint64_t param_4, uint64_t flags);
+void ProcessObjectCallbacks(int64_t object_ptr, uint64_t callback_table, uint64_t param_3, uint64_t param_4, uint64_t flags);
 
 /**
  * 初始化字符串处理器
@@ -466,7 +466,7 @@ void InitializeStringProcessor(uint64_t context, uint64_t **callback_array, uint
  */
 #define CHECK_STACK_COOKIE(cookie, guard) \
     do { \
-        if ((cookie) != (GLOBAL_STACK_COOKIE ^ (ulonglong)(guard))) { \
+        if ((cookie) != (GLOBAL_STACK_COOKIE ^ (uint64_t)(guard))) { \
             /* 堆栈损坏检测 */ \
             __builtin_trap(); \
         } \
@@ -531,19 +531,19 @@ void InitializeStringProcessor(uint64_t context, uint64_t **callback_array, uint
  * @see CalculateStringHash
  * @see GetCurrentProcessId
  */
-void BuildProcessIdString(uint64_t param_1, uint64_t param_2, longlong param_3)
+void BuildProcessIdString(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
     // 局部变量声明
-    longlong buffer_ptr;                    // 缓冲区指针
-    longlong pid_length;                    // 进程ID字符串长度
+    int64_t buffer_ptr;                    // 缓冲区指针
+    int64_t pid_length;                    // 进程ID字符串长度
     int32_t process_id;                  // 进程ID值
     int buffer_size;                        // 缓冲区大小
     uint string_length;                     // 字符串长度
     uint input_length;                      // 输入字符串长度
     int8_t *output_buffer;              // 输出缓冲区指针
-    ulonglong buffer_offset;                // 缓冲区偏移量
+    uint64_t buffer_offset;                // 缓冲区偏移量
     void *format_string_ptr;          // 格式字符串指针
-    longlong char_index;                    // 字符索引
+    int64_t char_index;                    // 字符索引
     uint hash_value;                        // 哈希值
     int8_t stack_guard_228[32];        // 堆栈保护区域1
     int8_t allocation_type;            // 分配类型
@@ -554,7 +554,7 @@ void BuildProcessIdString(uint64_t param_1, uint64_t param_2, longlong param_3)
     uint buffer_capacity;                   // 缓冲区容量
     uint64_t hash_result;                 // 哈希结果
     void *string_stream_ptr;           // 字符串流指针
-    longlong stream_position;               // 流位置
+    int64_t stream_position;               // 流位置
     uint stream_length;                     // 流长度
     uint64_t context_param;               // 上下文参数
     uint64_t param2_copy;                 // 参数2副本
@@ -566,12 +566,12 @@ void BuildProcessIdString(uint64_t param_1, uint64_t param_2, longlong param_3)
     uint64_t security_cookie;             // 安全cookie
     uint64_t param2_copy2;                // 参数2副本2
     char pid_buffer[PID_BUFFER_SIZE];      // 进程ID缓冲区
-    ulonglong stack_canary;                 // 堆栈金丝雀
+    uint64_t stack_canary;                 // 堆栈金丝雀
     
     // 安全检查：设置堆栈安全cookie
     // 用于检测堆栈溢出和缓冲区溢出攻击
     security_cookie = 0xfffffffffffffffe;
-    stack_canary = GLOBAL_STACK_COOKIE ^ (ulonglong)stack_guard_228;
+    stack_canary = GLOBAL_STACK_COOKIE ^ (uint64_t)stack_guard_228;
     
     // 初始化核心变量
     output_buffer = (int8_t *)0x0;      // 输出缓冲区初始化为NULL
@@ -593,7 +593,7 @@ void BuildProcessIdString(uint64_t param_1, uint64_t param_2, longlong param_3)
     // 分配6字节空间用于"PID : "字符串（包括null终止符）
     AllocateStringBuffer(&string_stream_ptr, PID_PREFIX_LENGTH);
     buffer_ptr = stream_position;            // 保存缓冲区指针
-    buffer_offset = (ulonglong)stream_length; // 计算缓冲区偏移量
+    buffer_offset = (uint64_t)stream_length; // 计算缓冲区偏移量
     
     // 写入PID前缀字符串到缓冲区
     // 使用直接内存操作写入"PID : "字符串
@@ -620,7 +620,7 @@ void BuildProcessIdString(uint64_t param_1, uint64_t param_2, longlong param_3)
         // 重新分配缓冲区以容纳进程ID字符串
         AllocateStringBuffer(&string_stream_ptr, (int)pid_length + 7);
         // 复制进程ID字符串到主缓冲区
-        memcpy((ulonglong)stream_length + stream_position, pid_buffer, (longlong)((int)pid_length + 2));
+        memcpy((uint64_t)stream_length + stream_position, pid_buffer, (int64_t)((int)pid_length + 2));
     }
     
     // 根据调试模式选择不同的格式字符串
@@ -650,12 +650,12 @@ void BuildProcessIdString(uint64_t param_1, uint64_t param_2, longlong param_3)
     
     // 获取输入字符串的长度信息
     input_length = *(uint *)(param_3 + 0x10); // 从参数结构体读取长度
-    buffer_offset = (ulonglong)input_length; // 设置缓冲区偏移量
+    buffer_offset = (uint64_t)input_length; // 设置缓冲区偏移量
     string_length = 0;                       // 初始化字符串长度
     
     // 处理输入字符串数据
     // 根据输入字符串的状态选择不同的处理路径
-    if (*(longlong *)(param_3 + 8) == 0) {
+    if (*(int64_t *)(param_3 + 8) == 0) {
 HANDLE_STRING_DATA:
         hash_value = string_length;          // 设置哈希值
         if (input_length != 0) {
@@ -670,7 +670,7 @@ HANDLE_STRING_DATA:
             buffer_size = DEFAULT_ALLOCATION_SIZE;  // 确保最小分配大小
         }
         // 分配内存用于字符串处理
-        output_buffer = (int8_t *)AllocateMemory(GLOBAL_MEMORY_ALLOCATOR, (longlong)buffer_size, MEMORY_ALLOC_FLAG);
+        output_buffer = (int8_t *)AllocateMemory(GLOBAL_MEMORY_ALLOCATOR, (int64_t)buffer_size, MEMORY_ALLOC_FLAG);
         *output_buffer = 0;                   // 初始化缓冲区内容
         temp_buffer_ptr = output_buffer;      // 设置临时缓冲区指针
         string_length = CalculateStringHash(output_buffer); // 计算字符串哈希值
@@ -699,7 +699,7 @@ HANDLE_STRING_DATA:
             if ((int)input_length < DEFAULT_ALLOCATION_SIZE) {
                 input_length = DEFAULT_ALLOCATION_SIZE;  // 确保最小分配大小
             }
-            output_buffer = (int8_t *)AllocateMemory(GLOBAL_MEMORY_ALLOCATOR, (longlong)(int)input_length, MEMORY_ALLOC_FLAG);
+            output_buffer = (int8_t *)AllocateMemory(GLOBAL_MEMORY_ALLOCATOR, (int64_t)(int)input_length, MEMORY_ALLOC_FLAG);
             *output_buffer = 0;               // 初始化新缓冲区
         }
         else {
@@ -784,17 +784,17 @@ uint64_t ProcessStringMatchesWithCallbacks(uint64_t param_1, uint64_t param_2, u
     uint64_t *current_entry;              // 当前条目指针
     uint64_t *array_start;                // 数组开始指针
     uint64_t *array_end;                  // 数组结束指针
-    longlong string_hash;                    // 字符串哈希值
+    int64_t string_hash;                    // 字符串哈希值
     char *keyword_ptr;                       // 关键字指针
     uint processed_chars;                   // 已处理的字符数
     int *string_info_ptr;                    // 字符串信息指针
-    ulonglong entry_count;                  // 条目计数
+    uint64_t entry_count;                  // 条目计数
     uint64_t result;                       // 处理结果
-    ulonglong current_index;                // 当前索引
-    ulonglong char_index;                   // 字符索引
-    longlong length_diff;                    // 长度差值
+    uint64_t current_index;                // 当前索引
+    uint64_t char_index;                   // 字符索引
+    int64_t length_diff;                    // 长度差值
     uint64_t *keyword_table_ptr;          // 关键字表指针
-    ulonglong loop_counter;                 // 循环计数器
+    uint64_t loop_counter;                 // 循环计数器
     void *string_stream_ptr;           // 字符串流指针
     int8_t *string_buffer;               // 字符串缓冲区
     uint string_length;                     // 字符串长度
@@ -803,7 +803,7 @@ uint64_t ProcessStringMatchesWithCallbacks(uint64_t param_1, uint64_t param_2, u
     uint64_t *callback_array_end;          // 回调数组结束指针
     uint64_t callback_context;            // 回调上下文
     int32_t callback_flags;               // 回调标志
-    ulonglong temp_index;                    // 临时索引
+    uint64_t temp_index;                    // 临时索引
     
     // 初始化回调数组系统
     callback_array_start = (uint64_t *)0x0;  // 回调数组开始指针初始化
@@ -819,7 +819,7 @@ uint64_t ProcessStringMatchesWithCallbacks(uint64_t param_1, uint64_t param_2, u
     // 设置数组边界和条目计数
     array_end = callback_array_end;          // 设置数组结束指针
     array_start = callback_array_start;      // 设置数组开始指针
-    entry_count = (longlong)callback_array_end - (longlong)callback_array_start >> 5;  // 计算条目数量
+    entry_count = (int64_t)callback_array_end - (int64_t)callback_array_start >> 5;  // 计算条目数量
     current_entry = array_start;             // 设置当前条目指针
     
     // 检查是否有条目需要处理
@@ -865,7 +865,7 @@ PROCESS_STRING_ENTRY:
     
     // 初始化字符串内容和哈希值
     // 如果字符串数据有效，进行初始化处理
-    if (*(longlong *)(string_info_ptr + -2) != 0) {
+    if (*(int64_t *)(string_info_ptr + -2) != 0) {
         string_length = 0;                   // 初始化字符串长度
         if (string_buffer != (int8_t *)0x0) {
             *string_buffer = 0;               // 初始化缓冲区内容
@@ -884,7 +884,7 @@ PROCESS_STRING_ENTRY:
                 string_buffer[char_index] = string_buffer[char_index] + ' ';  // 转换为空格
             }
             processed_chars = (int)temp_index + 1;  // 更新已处理字符数
-            temp_index = (ulonglong)processed_chars;  // 更新临时索引
+            temp_index = (uint64_t)processed_chars;  // 更新临时索引
             char_index = char_index + 1;      // 移动到下一个字符
         } while (processed_chars < string_length);  // 继续处理直到字符串结束
     }
@@ -898,7 +898,7 @@ PROCESS_STRING_ENTRY:
     keyword_table_ptr = (uint64_t *)&KEYWORD_TABLE_START;  // 设置关键字表指针
     do {
         keyword_ptr = (char *)*keyword_table_ptr;  // 获取当前关键字指针
-        length_diff = string_hash - (longlong)keyword_ptr;  // 计算长度差值
+        length_diff = string_hash - (int64_t)keyword_ptr;  // 计算长度差值
         
         // 逐字符比较字符串是否匹配
         // 使用循环比较每个字符直到发现不匹配或字符串结束
@@ -913,14 +913,14 @@ PROCESS_STRING_ENTRY:
         
         // 移动到下一个关键字
         keyword_table_ptr = keyword_table_ptr + 1;
-        if (KEYWORD_TABLE_END < (longlong)keyword_table_ptr) {
+        if (KEYWORD_TABLE_END < (int64_t)keyword_table_ptr) {
             // 未找到匹配项，清理资源并跳过
             string_stream_ptr = &GLOBAL_STRING_STREAM;  // 重置字符串流指针
             if (string_buffer != (int8_t *)0x0) {
                 FreeMemory();                // 释放字符串缓冲区内存
             }
             string_buffer = (int8_t *)0x0;   // 重置字符串缓冲区指针
-            string_hash_result = (ulonglong)string_hash_result._4_4_ << 0x20;  // 更新哈希结果
+            string_hash_result = (uint64_t)string_hash_result._4_4_ << 0x20;  // 更新哈希结果
             string_stream_ptr = &GLOBAL_STRING_STREAM;  // 重置字符串流指针
             result = 1;                      // 设置未找到匹配项的结果
             goto EXECUTE_CALLBACKS;          // 跳转到回调执行阶段
@@ -934,14 +934,14 @@ PROCESS_STRING_ENTRY:
         FreeMemory();                        // 释放字符串缓冲区内存
     }
     string_buffer = (int8_t *)0x0;       // 重置字符串缓冲区指针
-    string_hash_result = (ulonglong)string_hash_result._4_4_ << 0x20;  // 更新哈希结果
+    string_hash_result = (uint64_t)string_hash_result._4_4_ << 0x20;  // 更新哈希结果
     string_stream_ptr = &GLOBAL_STRING_STREAM;  // 重置字符串流指针
     
     // 移动到下一个条目进行处理
     processed_chars = (int)current_index + 1;  // 计算已处理的条目数
-    current_index = (ulonglong)processed_chars;  // 更新当前索引
+    current_index = (uint64_t)processed_chars;  // 更新当前索引
     string_info_ptr = string_info_ptr + 8;   // 移动到下一个字符串信息
-    if (entry_count <= (ulonglong)(longlong)(int)processed_chars) goto PROCESS_CALLBACKS;  // 检查是否处理完毕
+    if (entry_count <= (uint64_t)(int64_t)(int)processed_chars) goto PROCESS_CALLBACKS;  // 检查是否处理完毕
     goto PROCESS_STRING_ENTRY;               // 继续处理下一个字符串条目
 }
 
@@ -997,7 +997,7 @@ PROCESS_STRING_ENTRY:
  * @todo 添加更详细的错误处理和日志记录
  * @todo 实现对象创建的性能监控和统计
  */
-void CreateAndInitializeGameObject(longlong *param_1, longlong param_2)
+void CreateAndInitializeGameObject(int64_t *param_1, int64_t param_2)
 {
     /**
      * 函数实现说明：
@@ -1046,12 +1046,12 @@ void CreateAndInitializeGameObject(longlong *param_1, longlong param_2)
      * 伪代码实现：
      * 
      * ```c
-     * void CreateAndInitializeGameObject(longlong *context_array, longlong config_param)
+     * void CreateAndInitializeGameObject(int64_t *context_array, int64_t config_param)
      * {
      *     // 1. 安全检查和堆栈保护
      *     uint64_t security_cookie;
      *     int8_t stack_guard[32];
-     *     security_cookie = GLOBAL_STACK_COOKIE ^ (ulonglong)stack_guard;
+     *     security_cookie = GLOBAL_STACK_COOKIE ^ (uint64_t)stack_guard;
      *     
      *     // 2. 参数验证
      *     if (context_array == NULL || config_param == 0) {
@@ -1292,7 +1292,7 @@ void InitializeCoreEngine(void)
     uint64_t *puVar1;                      // 对象指针1
     uint64_t *puVar2;                      // 对象指针2
     uint64_t uVar3;                       // 临时变量
-    longlong lVar4;                          // 长整型变量
+    int64_t lVar4;                          // 长整型变量
     
     // 创建并初始化第一个核心对象
     // 分配0x198字节的内存用于第一个核心对象
@@ -1302,7 +1302,7 @@ void InitializeCoreEngine(void)
     *puVar1 = &GLOBAL_CALLBACK_TABLE;       // 设置回调表指针
     *(int16_t *)(puVar2 + 0x1a) = 1;     // 设置对象状态标志
     *(int32_t *)(puVar2 + 9) = 0;         // 初始化对象属性
-    *(int8_t *)((longlong)puVar2 + 0x54) = 0;  // 清零对象数据区
+    *(int8_t *)((int64_t)puVar2 + 0x54) = 0;  // 清零对象数据区
     *puVar1 = &GLOBAL_FUNCTION_TABLE;        // 设置函数表指针
     
     // 创建并初始化第二个核心对象
@@ -1312,7 +1312,7 @@ void InitializeCoreEngine(void)
     *puVar1 = &GLOBAL_CALLBACK_TABLE;       // 设置回调表指针
     *(int16_t *)(puVar2 + 0x31) = 1;     // 设置第二个对象状态标志
     *(int32_t *)(puVar2 + 0x20) = 0;      // 初始化第二个对象属性
-    *(int8_t *)((longlong)puVar2 + 0x10c) = 0;  // 清零第二个对象数据区
+    *(int8_t *)((int64_t)puVar2 + 0x10c) = 0;  // 清零第二个对象数据区
     *puVar1 = &GLOBAL_FUNCTION_TABLE;        // 设置函数表指针
     
     // 初始化全局对象指针和系统状态
@@ -1405,10 +1405,10 @@ void InitializeCoreEngine(void)
  * @todo 实现更智能的清理策略
  * @todo 添加清理进度监控
  */
-void CleanupGameObjectArray(longlong *param_1)
+void CleanupGameObjectArray(int64_t *param_1)
 {
-    longlong lVar1;                          // 数组结束指针
-    longlong lVar2;                          // 当前对象指针
+    int64_t lVar1;                          // 数组结束指针
+    int64_t lVar2;                          // 当前对象指针
     
     // 获取对象数组的边界
     lVar1 = param_1[1];                      // 获取数组结束指针
@@ -1475,7 +1475,7 @@ void CleanupGameObjectArray(longlong *param_1)
  * @todo 实现回调函数的错误处理
  * @todo 添加回调函数的调试信息
  */
-void ProcessGameObjectCallbacks(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void ProcessGameObjectCallbacks(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层的对象回调处理函数
     // 从游戏对象中提取回调表指针并传递所有参数

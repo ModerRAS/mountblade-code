@@ -3,37 +3,37 @@
 
 // 99_part_03_part073.c - 2 个函数
 
-// 函数: void FUN_18023e4f0(longlong *param_1)
-void FUN_18023e4f0(longlong *param_1)
+// 函数: void FUN_18023e4f0(int64_t *param_1)
+void FUN_18023e4f0(int64_t *param_1)
 
 {
   int iVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong lVar5;
+  int64_t *plVar2;
+  int64_t lVar3;
+  int64_t *plVar4;
+  int64_t lVar5;
   uint64_t uVar6;
   uint64_t uVar7;
   
   uVar7 = 0xfffffffffffffffe;
-  param_1 = (longlong *)*param_1;
-  if ((*(longlong *)(*param_1 + 0x348) != 0) && (*(int *)(*param_1 + 0x350) != -1)) {
+  param_1 = (int64_t *)*param_1;
+  if ((*(int64_t *)(*param_1 + 0x348) != 0) && (*(int *)(*param_1 + 0x350) != -1)) {
     uVar6 = FUN_1801781f0();
     *(uint64_t *)(*param_1 + 0x1f0) = uVar6;
-    plVar2 = (longlong *)*param_1;
+    plVar2 = (int64_t *)*param_1;
     lVar3 = plVar2[0x3e];
     if (lVar3 != 0) {
-      if (plVar2 != (longlong *)0x0) {
+      if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x28))(plVar2);
       }
-      plVar4 = *(longlong **)(lVar3 + 0x10);
-      *(longlong **)(lVar3 + 0x10) = plVar2;
-      if (plVar4 != (longlong *)0x0) {
+      plVar4 = *(int64_t **)(lVar3 + 0x10);
+      *(int64_t **)(lVar3 + 0x10) = plVar2;
+      if (plVar4 != (int64_t *)0x0) {
         (**(code **)(*plVar4 + 0x38))();
       }
       lVar3 = *param_1;
       iVar1 = *(int *)(system_main_module_state + 0x224);
-      *(longlong *)(lVar3 + 0x340) = (longlong)iVar1;
+      *(int64_t *)(lVar3 + 0x340) = (int64_t)iVar1;
       LOCK();
       *(int32_t *)(lVar3 + 0x380) = 2;
       UNLOCK();
@@ -46,7 +46,7 @@ void FUN_18023e4f0(longlong *param_1)
     }
   }
   lVar3 = *param_1;
-  if (*(longlong *)(lVar3 + 0x1f0) == 0) {
+  if (*(int64_t *)(lVar3 + 0x1f0) == 0) {
     lVar5 = param_1[5];
     uVar6 = FUN_1800c0100();
     FUN_1800a5810(system_message_buffer,uVar6,1,0,lVar3,(int)lVar5,uVar7);
@@ -56,7 +56,7 @@ void FUN_18023e4f0(longlong *param_1)
   }
                     // WARNING: Could not recover jumptable at 0x00018023e617. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*(longlong *)*param_1 + 0x38))();
+  (**(code **)(*(int64_t *)*param_1 + 0x38))();
   return;
 }
 
@@ -64,10 +64,10 @@ void FUN_18023e4f0(longlong *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18023e620(longlong *param_1,longlong *param_2,int param_3,uint64_t param_4)
+int64_t FUN_18023e620(int64_t *param_1,int64_t *param_2,int param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   if (param_3 == 3) {
     return 0x180c03ec0;
@@ -105,10 +105,10 @@ longlong FUN_18023e620(longlong *param_1,longlong *param_2,int param_3,uint64_t 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18023e750(longlong *param_1,longlong *param_2,int param_3,uint64_t param_4)
+int64_t FUN_18023e750(int64_t *param_1,int64_t *param_2,int param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   if (param_3 == 3) {
     return 0x180c03d80;
@@ -146,10 +146,10 @@ longlong FUN_18023e750(longlong *param_1,longlong *param_2,int param_3,uint64_t 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18023e880(longlong *param_1,longlong *param_2,int param_3,uint64_t param_4)
+int64_t FUN_18023e880(int64_t *param_1,int64_t *param_2,int param_3,uint64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   if (param_3 == 3) {
     return 0x180c03d40;
@@ -190,14 +190,14 @@ longlong FUN_18023e880(longlong *param_1,longlong *param_2,int param_3,uint64_t 
 
 
 
-// 函数: void FUN_18023eac0(longlong param_1,longlong param_2,uint64_t param_3,longlong *param_4)
-void FUN_18023eac0(longlong param_1,longlong param_2,uint64_t param_3,longlong *param_4)
+// 函数: void FUN_18023eac0(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t *param_4)
+void FUN_18023eac0(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t *param_4)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong *plVar4;
+  int64_t lVar1;
+  int64_t lVar2;
+  int64_t lVar3;
+  int64_t *plVar4;
   uint64_t *puVar5;
   int32_t uVar6;
   int32_t uVar7;
@@ -205,7 +205,7 @@ void FUN_18023eac0(longlong param_1,longlong param_2,uint64_t param_3,longlong *
   uint64_t uVar9;
   
   lVar1 = param_4[1];
-  lVar2 = *(longlong *)(param_1 + 8);
+  lVar2 = *(int64_t *)(param_1 + 8);
   lVar3 = *param_4;
   uVar9 = *(uint64_t *)(lVar1 + 0x2ec);
   *(uint64_t *)(lVar3 + 0x14) = *(uint64_t *)(lVar1 + 0x2e4);
@@ -227,8 +227,8 @@ void FUN_18023eac0(longlong param_1,longlong param_2,uint64_t param_3,longlong *
   *(int32_t *)(lVar3 + 0x5c) = uVar7;
   *(int32_t *)(lVar3 + 0x60) = uVar8;
   *(uint64_t *)(lVar3 + 100) = *(uint64_t *)(lVar1 + 0x334);
-  plVar4 = (longlong *)*param_4;
-  if ((((char)plVar4[2] == '\0') && (*(char *)((longlong)plVar4 + 0x11) == '\0')) && (*plVar4 != 0))
+  plVar4 = (int64_t *)*param_4;
+  if ((((char)plVar4[2] == '\0') && (*(char *)((int64_t)plVar4 + 0x11) == '\0')) && (*plVar4 != 0))
   {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -237,7 +237,7 @@ void FUN_18023eac0(longlong param_1,longlong param_2,uint64_t param_3,longlong *
   *plVar4 = lVar2;
   plVar4[1] = param_2;
   puVar5 = (uint64_t *)*param_4;
-  if ((*(char *)((longlong)puVar5 + 0x66) == '\0') && (*(char *)(puVar5 + 2) != '\0')) {
+  if ((*(char *)((int64_t)puVar5 + 0x66) == '\0') && (*(char *)(puVar5 + 2) != '\0')) {
     uVar9 = FUN_18062b420(system_memory_pool_ptr,puVar5[1],3);
                     // WARNING: Subroutine does not return
     memcpy(uVar9,*puVar5,puVar5[1]);

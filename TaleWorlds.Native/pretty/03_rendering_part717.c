@@ -25,7 +25,7 @@ void FUN_180683f90(int8_t (*param_1) [16],int8_t (*param_2) [16],int param_3)
   int8_t auVar2 [12];
   int8_t auVar3 [12];
   int8_t auVar4 [12];
-  longlong lVar5;
+  int64_t lVar5;
   int8_t auVar6 [16];
   int8_t auVar7 [16];
   int8_t auVar10 [16];
@@ -159,14 +159,14 @@ void FUN_180683f90(int8_t (*param_1) [16],int8_t (*param_2) [16],int param_3)
   int8_t auVar116 [16];
   
   auVar128 = psllw(*param_1,2);
-  auVar119 = psllw(*(int8_t (*) [16])(*param_1 + (longlong)param_3 * 2),2);
-  auVar125 = psllw(*(int8_t (*) [16])(*param_1 + (longlong)(param_3 * 2) * 2),2);
-  auVar95 = psllw(*(int8_t (*) [16])(*param_1 + (longlong)(param_3 * 3) * 2),2);
-  auVar75 = psllw(*(int8_t (*) [16])(*param_1 + (longlong)(param_3 * 4) * 2),2);
-  auVar52 = psllw(*(int8_t (*) [16])(*param_1 + (longlong)(param_3 * 5) * 2),2);
-  auVar82 = psllw(*(int8_t (*) [16])(*param_1 + (longlong)(param_3 * 6) * 2),2);
+  auVar119 = psllw(*(int8_t (*) [16])(*param_1 + (int64_t)param_3 * 2),2);
+  auVar125 = psllw(*(int8_t (*) [16])(*param_1 + (int64_t)(param_3 * 2) * 2),2);
+  auVar95 = psllw(*(int8_t (*) [16])(*param_1 + (int64_t)(param_3 * 3) * 2),2);
+  auVar75 = psllw(*(int8_t (*) [16])(*param_1 + (int64_t)(param_3 * 4) * 2),2);
+  auVar52 = psllw(*(int8_t (*) [16])(*param_1 + (int64_t)(param_3 * 5) * 2),2);
+  auVar82 = psllw(*(int8_t (*) [16])(*param_1 + (int64_t)(param_3 * 6) * 2),2);
   lVar5 = 2;
-  auVar113 = psllw(*(int8_t (*) [16])(*param_1 + (longlong)(param_3 * 7) * 2),2);
+  auVar113 = psllw(*(int8_t (*) [16])(*param_1 + (int64_t)(param_3 * 7) * 2),2);
   do {
     sVar59 = auVar82._0_2_ + auVar119._0_2_;
     sVar65 = auVar82._2_2_ + auVar119._2_2_;
@@ -492,14 +492,14 @@ void FUN_180683f90(int8_t (*param_1) [16],int8_t (*param_2) [16],int param_3)
     auVar92._12_2_ = auVar91._14_2_;
     auVar92._0_12_ = auVar88;
     auVar92._14_2_ = auVar14._14_2_;
-    auVar56._8_4_ = (int)((ulonglong)auVar112._0_8_ >> 0x20);
+    auVar56._8_4_ = (int)((uint64_t)auVar112._0_8_ >> 0x20);
     auVar56._0_8_ = auVar112._0_8_;
-    auVar56._12_4_ = (int)((ulonglong)auVar74._0_8_ >> 0x20);
+    auVar56._12_4_ = (int)((uint64_t)auVar74._0_8_ >> 0x20);
     auVar75._4_4_ = uVar73;
     auVar75._0_4_ = uVar111;
-    auVar15._8_4_ = (int)((ulonglong)auVar88._0_8_ >> 0x20);
+    auVar15._8_4_ = (int)((uint64_t)auVar88._0_8_ >> 0x20);
     auVar15._0_8_ = auVar88._0_8_;
-    auVar15._12_4_ = (int)((ulonglong)auVar81._0_8_ >> 0x20);
+    auVar15._12_4_ = (int)((uint64_t)auVar81._0_8_ >> 0x20);
     auVar75._12_4_ = uVar80;
     auVar75._8_4_ = uVar87;
     auVar93._0_8_ = CONCAT44(auVar81._8_4_,auVar88._8_4_);

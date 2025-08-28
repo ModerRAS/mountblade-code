@@ -81,18 +81,18 @@ typedef struct {
 typedef struct {
     float* position_data;         // 位置数据指针 (X,Y,Z数组)
     float* texture_data;          // 纹理数据指针 (U,V数组)
-    longlong* geometry_data;      // 几何数据指针 (网格和变换数据)
+    int64_t* geometry_data;      // 几何数据指针 (网格和变换数据)
     unsigned int data_size;       // 数据大小 (字节)
     unsigned int flags;           // 参数标志 (位掩码)
 } RenderingParameters;
 
 // 函数别名定义
 typedef void (*RenderingEmptyFunction)(void);
-typedef ulonglong (*TextureMappingFunction)(longlong param_1, float* param_2, longlong* param_3);
-typedef longlong (*GeometryTransformFunction)(uint64_t param_1, uint64_t param_2, uint64_t param_3);
-typedef longlong (*AdvancedRenderingFunction)(void);
-typedef void (*AdvancedTextureMappingFunction)(longlong param_1, float* param_2, longlong param_3, ulonglong param_4, float* param_5, uint64_t* param_6);
-typedef void (*RenderingStateFunction)(uint64_t param_1, uint64_t param_2, longlong param_3);
+typedef uint64_t (*TextureMappingFunction)(int64_t param_1, float* param_2, int64_t* param_3);
+typedef int64_t (*GeometryTransformFunction)(uint64_t param_1, uint64_t param_2, uint64_t param_3);
+typedef int64_t (*AdvancedRenderingFunction)(void);
+typedef void (*AdvancedTextureMappingFunction)(int64_t param_1, float* param_2, int64_t param_3, uint64_t param_4, float* param_5, uint64_t* param_6);
+typedef void (*RenderingStateFunction)(uint64_t param_1, uint64_t param_2, int64_t param_3);
 
 // 具体函数别名
 #define RenderingSystemEmptyOperation FUN_180395821
@@ -144,7 +144,7 @@ void FUN_180395821(void)
  * @param param_1 输入参数1，包含渲染系统状态信息
  * @param param_2 纹理坐标数据指针，包含X、Y、Z坐标信息
  * @param param_3 几何数据指针，包含网格和变换信息
- * @return ulonglong 返回处理后的纹理映射结果，0表示未找到匹配
+ * @return uint64_t 返回处理后的纹理映射结果，0表示未找到匹配
  * 
  * @note 支持多种纹理映射算法和优化策略
  * @note 使用距离阈值1.5进行快速筛选
@@ -154,29 +154,29 @@ void FUN_180395821(void)
  * @see FUN_18038d2f0
  * @see FUN_18038d6a0
  */
-ulonglong FUN_180395830(longlong param_1, float *param_2, longlong *param_3)
+uint64_t FUN_180395830(int64_t param_1, float *param_2, int64_t *param_3)
 {
     // 局部变量声明
     byte bVar1;                    // 字节变量，用于纹理状态标志检查
-    longlong lVar2;                // 长整型变量，用于中间计算结果存储
+    int64_t lVar2;                // 长整型变量，用于中间计算结果存储
     char cVar3;                    // 字符变量，用于纹理坐标验证结果
     int iVar4;                     // 整型变量，用于主循环计数器
     int iVar5;                     // 整型变量，用于Y坐标计算和索引
     int iVar6;                     // 整型变量，用于X坐标计算和索引
     int iVar7;                     // 整型变量，用于边界检查和限制
-    ulonglong *puVar8;             // 无符号长整型指针，用于纹理数据数组访问
-    ulonglong uVar9;               // 无符号长整型，用于迭代控制和计数
-    ulonglong uVar10;              // 无符号长整型，用于数据大小和边界计算
-    ulonglong uVar11;              // 无符号长整型，用于数组索引和结果存储
+    uint64_t *puVar8;             // 无符号长整型指针，用于纹理数据数组访问
+    uint64_t uVar9;               // 无符号长整型，用于迭代控制和计数
+    uint64_t uVar10;              // 无符号长整型，用于数据大小和边界计算
+    uint64_t uVar11;              // 无符号长整型，用于数组索引和结果存储
     int iVar12;                    // 整型变量，用于第二重循环控制
-    ulonglong uVar13;              // 无符号长整型，用于存储最佳匹配结果
-    ulonglong uVar14;              // 无符号长整型，用于纹理标志位解析
+    uint64_t uVar13;              // 无符号长整型，用于存储最佳匹配结果
+    uint64_t uVar14;              // 无符号长整型，用于纹理标志位解析
     float fVar15;                  // 浮点变量，用于当前距离计算
     float fVar16;                  // 浮点变量，用于存储最小距离值
     float fVar17;                  // 浮点变量，用于最大浮点值比较
-    ulonglong *puStackX_20;        // 栈变量指针，用于临时纹理数据存储
+    uint64_t *puStackX_20;        // 栈变量指针，用于临时纹理数据存储
     int iStack_a4;                 // 栈变量，用于网格宽度边界检查
-    longlong lStack_a0;            // 栈变量，用于搜索方向循环控制
+    int64_t lStack_a0;            // 栈变量，用于搜索方向循环控制
   
     // 初始化变量
     uVar13 = 0;                    // 初始化最佳匹配结果为0，表示未找到匹配
@@ -184,19 +184,19 @@ ulonglong FUN_180395830(longlong param_1, float *param_2, longlong *param_3)
     fVar16 = RENDERING_MAX_FLOAT_VALUE;  // 设置最小距离初始值为最大值
     
     // 检查数据有效性 - 验证纹理数据数组是否为空
-    if (*(longlong *)(param_1 + 0x480) - *(longlong *)(param_1 + 0x478) >> 3 == 0) {
+    if (*(int64_t *)(param_1 + 0x480) - *(int64_t *)(param_1 + 0x478) >> 3 == 0) {
         return 0;  // 数据无效时返回0，表示无可用纹理数据
     }
     
     // 初始化纹理数据访问指针 - 获取纹理数据数组
     uVar9 = uVar13;
-    puStackX_20 = (ulonglong *)func_0x000180388c90(param_3);  // 获取纹理数据指针
+    puStackX_20 = (uint64_t *)func_0x000180388c90(param_3);  // 获取纹理数据指针
     uVar11 = uVar9 & 0xffffffff;  // 初始化数组索引
-    puVar8 = (ulonglong *)*puStackX_20;  // 获取纹理数据数组起始地址
+    puVar8 = (uint64_t *)*puStackX_20;  // 获取纹理数据数组起始地址
     
     // 计算数据大小 - 计算纹理数据数组的元素个数
-    uVar10 = (ulonglong)((longlong)puStackX_20[1] + (7 - (longlong)puVar8)) >> 3;
-    if ((ulonglong *)puStackX_20[1] < puVar8) {
+    uVar10 = (uint64_t)((int64_t)puStackX_20[1] + (7 - (int64_t)puVar8)) >> 3;
+    if ((uint64_t *)puStackX_20[1] < puVar8) {
         uVar10 = uVar9;  // 数据越界时设置为0，防止数组越界
     }
   // 第一阶段：遍历纹理数据寻找最佳匹配
@@ -207,7 +207,7 @@ ulonglong FUN_180395830(longlong param_1, float *param_2, longlong *param_3)
       
       // 提取纹理状态标志
       bVar1 = *(byte *)(uVar9 + 0x139);  // 获取纹理标志字节
-      uVar14 = (ulonglong)bVar1;          // 转换为无符号长整型
+      uVar14 = (uint64_t)bVar1;          // 转换为无符号长整型
       
       // 检查纹理是否有效且符合条件
       // 条件1：纹理激活 (bVar1 & 1) != 0
@@ -254,17 +254,17 @@ ulonglong FUN_180395830(longlong param_1, float *param_2, longlong *param_3)
   }
   
   // 计算X坐标网格索引 - 使用精度偏移量避免边界问题
-  iVar6 = (int)(((param_2[1] - *(float *)((longlong)param_3 + 0xc)) - RENDERING_COORDINATE_PRECISION) /
-               *(float *)((longlong)param_3 + 0x1c));
+  iVar6 = (int)(((param_2[1] - *(float *)((int64_t)param_3 + 0xc)) - RENDERING_COORDINATE_PRECISION) /
+               *(float *)((int64_t)param_3 + 0x1c));
   
   // 检查X坐标边界，确保在有效范围内
-  if ((-1 < iVar6) && (iVar12 = iVar6, *(int *)((longlong)param_3 + 0x24) <= iVar6)) {
-    iVar12 = *(int *)((longlong)param_3 + 0x24) + -1;  // 限制为最大有效索引
+  if ((-1 < iVar6) && (iVar12 = iVar6, *(int *)((int64_t)param_3 + 0x24) <= iVar6)) {
+    iVar12 = *(int *)((int64_t)param_3 + 0x24) + -1;  // 限制为最大有效索引
   }
   // 第三阶段：多方向纹理搜索
   lVar2 = param_3[4];  // 获取网格高度
   iVar6 = -1;          // 初始化搜索方向索引
-  iStack_a4 = (int)((ulonglong)lVar2 >> 0x20);  // 获取网格宽度
+  iStack_a4 = (int)((uint64_t)lVar2 >> 0x20);  // 获取网格宽度
   lStack_a0 = 9;       // 设置搜索方向计数器（8个方向 + 默认）
   
   // 开始多方向搜索循环
@@ -278,9 +278,9 @@ ulonglong FUN_180395830(longlong param_1, float *param_2, longlong *param_3)
       iVar5 = iVar7;
 joined_r0x000180395b3d:
       if (0 < iVar12) {
-        iVar4 = iVar5 * *(int *)((longlong)param_3 + 0x24) + -1;
+        iVar4 = iVar5 * *(int *)((int64_t)param_3 + 0x24) + -1;
 code_r0x000180395a7c:
-        puStackX_20 = (ulonglong *)(*param_3 + (longlong)(iVar4 + iVar12) * 0x28 + 8);
+        puStackX_20 = (uint64_t *)(*param_3 + (int64_t)(iVar4 + iVar12) * 0x28 + 8);
         goto code_r0x000180395b5d;
       }
       break;
@@ -288,7 +288,7 @@ code_r0x000180395a7c:
     // 方向1：向右搜索 (X+1)
     case 1:
       if (iVar12 + 1 < iStack_a4) {
-        iVar4 = iVar7 * *(int *)((longlong)param_3 + 0x24) + 1;
+        iVar4 = iVar7 * *(int *)((int64_t)param_3 + 0x24) + 1;
         goto code_r0x000180395a7c;
       }
       break;
@@ -298,9 +298,9 @@ code_r0x000180395a7c:
       iVar5 = iVar7 + -1;
       if (0 < iVar7) {
 code_r0x000180395ac1:
-        puStackX_20 = (ulonglong *)
+        puStackX_20 = (uint64_t *)
                       (*param_3 +
-                       (longlong)(iVar5 * *(int *)((longlong)param_3 + 0x24) + iVar12) * 0x28 + 8);
+                       (int64_t)(iVar5 * *(int *)((int64_t)param_3 + 0x24) + iVar12) * 0x28 + 8);
         goto code_r0x000180395b5d;
       }
       break;
@@ -323,7 +323,7 @@ code_r0x000180395ac1:
       if (0 < iVar7) {
 code_r0x000180395b15:
         if (iVar12 + 1 < iStack_a4) {
-          iVar4 = iVar5 * *(int *)((longlong)param_3 + 0x24) + 1;
+          iVar4 = iVar5 * *(int *)((int64_t)param_3 + 0x24) + 1;
           goto code_r0x000180395a7c;
         }
       }
@@ -344,9 +344,9 @@ code_r0x000180395b15:
     // 默认情况：执行最终搜索和距离计算
     default:
 code_r0x000180395b5d:
-      puVar8 = (ulonglong *)*puStackX_20;
-      uVar10 = (ulonglong)((longlong)puStackX_20[1] + (7 - (longlong)puVar8)) >> 3;
-      if ((ulonglong *)puStackX_20[1] < puVar8) {
+      puVar8 = (uint64_t *)*puStackX_20;
+      uVar10 = (uint64_t)((int64_t)puStackX_20[1] + (7 - (int64_t)puVar8)) >> 3;
+      if ((uint64_t *)puStackX_20[1] < puVar8) {
         uVar10 = uVar9;
       }
       if (uVar10 != 0) {
@@ -385,55 +385,55 @@ code_r0x000180395b5d:
  * @param param_1 输入参数1，包含变换矩阵信息
  * @param param_2 输入参数2，包含几何状态信息
  * @param param_3 输入参数3，包含几何数据指针
- * @return longlong 返回处理后的几何变换结果
+ * @return int64_t 返回处理后的几何变换结果
  * 
  * @note 支持复杂的几何变换算法
  * @note 使用优化的搜索策略提高性能
  * @see GeometryTransformFunction
  */
-longlong FUN_18039586d(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+int64_t FUN_18039586d(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
   byte bVar1;
-  longlong lVar2;
+  int64_t lVar2;
   char cVar3;
   int iVar4;
   int iVar5;
   int iVar6;
   int iVar7;
-  longlong *plVar8;
+  int64_t *plVar8;
   float *unaff_RBP;
-  ulonglong uVar9;
-  ulonglong uVar10;
-  longlong lVar11;
+  uint64_t uVar9;
+  uint64_t uVar10;
+  int64_t lVar11;
   int iVar12;
-  ulonglong in_R11;
-  ulonglong uVar13;
-  longlong *unaff_R14;
-  longlong unaff_R15;
+  uint64_t in_R11;
+  uint64_t uVar13;
+  int64_t *unaff_R14;
+  int64_t unaff_R15;
   float fVar14;
   float fVar15;
   float fVar16;
   int iStackX_24;
-  longlong lStack0000000000000028;
+  int64_t lStack0000000000000028;
   uint64_t in_stack_000000d8;
-  longlong *in_stack_000000e0;
-  ulonglong *puStack00000000000000e8;
+  int64_t *in_stack_000000e0;
+  uint64_t *puStack00000000000000e8;
   
-  puStack00000000000000e8 = (ulonglong *)func_0x000180388c90(param_3);
+  puStack00000000000000e8 = (uint64_t *)func_0x000180388c90(param_3);
   fVar16 = 3.4028235e+38;
   uVar10 = in_R11 & 0xffffffff;
   fVar15 = 3.4028235e+38;
-  plVar8 = (longlong *)*puStack00000000000000e8;
-  uVar9 = (ulonglong)((longlong)puStack00000000000000e8[1] + (7 - (longlong)plVar8)) >> 3;
-  if ((longlong *)puStack00000000000000e8[1] < plVar8) {
+  plVar8 = (int64_t *)*puStack00000000000000e8;
+  uVar9 = (uint64_t)((int64_t)puStack00000000000000e8[1] + (7 - (int64_t)plVar8)) >> 3;
+  if ((int64_t *)puStack00000000000000e8[1] < plVar8) {
     uVar9 = in_R11;
   }
   if (uVar9 != 0) {
     do {
       lVar11 = *plVar8;
       bVar1 = *(byte *)(lVar11 + 0x139);
-      uVar13 = (ulonglong)bVar1;
+      uVar13 = (uint64_t)bVar1;
       if (((((bVar1 & 1) != 0) && ((bVar1 & 2) == 0)) &&
           (cVar3 = FUN_18038d0a0(lVar11), cVar3 != '\0')) &&
          ((unaff_R15 == 0 || ((uVar13 & 4) != 0)))) {
@@ -459,14 +459,14 @@ longlong FUN_18039586d(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   if ((-1 < iVar6) && (iVar7 = iVar6, (int)unaff_R14[4] <= iVar6)) {
     iVar7 = (int)unaff_R14[4] + -1;
   }
-  iVar6 = (int)(((unaff_RBP[1] - *(float *)((longlong)unaff_R14 + 0xc)) - 1e-06) /
-               *(float *)((longlong)unaff_R14 + 0x1c));
-  if ((-1 < iVar6) && (iVar12 = iVar6, *(int *)((longlong)unaff_R14 + 0x24) <= iVar6)) {
-    iVar12 = *(int *)((longlong)unaff_R14 + 0x24) + -1;
+  iVar6 = (int)(((unaff_RBP[1] - *(float *)((int64_t)unaff_R14 + 0xc)) - 1e-06) /
+               *(float *)((int64_t)unaff_R14 + 0x1c));
+  if ((-1 < iVar6) && (iVar12 = iVar6, *(int *)((int64_t)unaff_R14 + 0x24) <= iVar6)) {
+    iVar12 = *(int *)((int64_t)unaff_R14 + 0x24) + -1;
   }
   lVar11 = unaff_R14[4];
   iVar6 = -1;
-  iStackX_24 = (int)((ulonglong)lVar11 >> 0x20);
+  iStackX_24 = (int)((uint64_t)lVar11 >> 0x20);
   lStack0000000000000028 = 9;
   do {
     iVar4 = (int)lVar11;
@@ -475,15 +475,15 @@ longlong FUN_18039586d(uint64_t param_1,uint64_t param_2,uint64_t param_3)
       iVar5 = iVar7;
 joined_r0x000180395b3d:
       if (0 < iVar12) {
-        iVar4 = iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + -1;
+        iVar4 = iVar5 * *(int *)((int64_t)unaff_R14 + 0x24) + -1;
 code_r0x000180395a7c:
-        puStack00000000000000e8 = (ulonglong *)(*unaff_R14 + (longlong)(iVar4 + iVar12) * 0x28 + 8);
+        puStack00000000000000e8 = (uint64_t *)(*unaff_R14 + (int64_t)(iVar4 + iVar12) * 0x28 + 8);
         goto code_r0x000180395b5d;
       }
       break;
     case 1:
       if (iVar12 + 1 < iStackX_24) {
-        iVar4 = iVar7 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+        iVar4 = iVar7 * *(int *)((int64_t)unaff_R14 + 0x24) + 1;
         goto code_r0x000180395a7c;
       }
       break;
@@ -492,8 +492,8 @@ code_r0x000180395a7c:
       if (0 < iVar7) {
 code_r0x000180395ac1:
         puStack00000000000000e8 =
-             (ulonglong *)
-             (*unaff_R14 + (longlong)(iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + iVar12) * 0x28
+             (uint64_t *)
+             (*unaff_R14 + (int64_t)(iVar5 * *(int *)((int64_t)unaff_R14 + 0x24) + iVar12) * 0x28
              + 8);
         goto code_r0x000180395b5d;
       }
@@ -511,7 +511,7 @@ code_r0x000180395ac1:
       if (0 < iVar7) {
 code_r0x000180395b15:
         if (iVar12 + 1 < iStackX_24) {
-          iVar4 = iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+          iVar4 = iVar5 * *(int *)((int64_t)unaff_R14 + 0x24) + 1;
           goto code_r0x000180395a7c;
         }
       }
@@ -526,9 +526,9 @@ code_r0x000180395b15:
       break;
     default:
 code_r0x000180395b5d:
-      plVar8 = (longlong *)*puStack00000000000000e8;
-      uVar9 = (ulonglong)((longlong)puStack00000000000000e8[1] + (7 - (longlong)plVar8)) >> 3;
-      if ((longlong *)puStack00000000000000e8[1] < plVar8) {
+      plVar8 = (int64_t *)*puStack00000000000000e8;
+      uVar9 = (uint64_t)((int64_t)puStack00000000000000e8[1] + (7 - (int64_t)plVar8)) >> 3;
+      if ((int64_t *)puStack00000000000000e8[1] < plVar8) {
         uVar9 = in_R11;
       }
       unaff_R14 = in_stack_000000e0;
@@ -565,7 +565,7 @@ code_r0x000180395b5d:
  * - 距离计算和匹配
  * - 循环缓冲区处理
  * 
- * @return longlong 返回处理后的几何变换结果
+ * @return int64_t 返回处理后的几何变换结果
  * 
  * @note 使用寄存器优化的高效算法
  * @note 支持多种几何变换模式
@@ -623,40 +623,40 @@ code_r0x000180395b5d:
  * 
  */
 
-longlong FUN_1803958d2(void)
+int64_t FUN_1803958d2(void)
 
 {
   byte bVar1;
-  longlong lVar2;
+  int64_t lVar2;
   char cVar3;
   int iVar4;
   int iVar5;
   int iVar6;
   int iVar7;
-  longlong *unaff_RBX;
+  int64_t *unaff_RBX;
   float *unaff_RBP;
-  ulonglong uVar8;
-  longlong unaff_RSI;
-  longlong *plVar9;
-  longlong unaff_RDI;
-  longlong lVar10;
+  uint64_t uVar8;
+  int64_t unaff_RSI;
+  int64_t *plVar9;
+  int64_t unaff_RDI;
+  int64_t lVar10;
   int iVar11;
-  longlong *unaff_R14;
-  ulonglong uVar12;
-  longlong unaff_R15;
+  int64_t *unaff_R14;
+  uint64_t uVar12;
+  int64_t unaff_R15;
   float fVar13;
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
   int iStackX_24;
-  longlong lStack0000000000000028;
+  int64_t lStack0000000000000028;
   uint64_t in_stack_000000d8;
-  longlong *in_stack_000000e0;
-  ulonglong *in_stack_000000e8;
+  int64_t *in_stack_000000e0;
+  uint64_t *in_stack_000000e8;
   
   do {
     lVar10 = *unaff_RBX;
     bVar1 = *(byte *)(lVar10 + 0x139);
-    uVar8 = (ulonglong)bVar1;
+    uVar8 = (uint64_t)bVar1;
     if (((((bVar1 & 1) != 0) && ((bVar1 & 2) == 0)) &&
         (cVar3 = FUN_18038d0a0(lVar10), cVar3 != '\0')) && ((unaff_R15 == 0 || ((uVar8 & 4) != 0))))
     {
@@ -677,14 +677,14 @@ longlong FUN_1803958d2(void)
     if ((-1 < iVar6) && (iVar7 = iVar6, (int)unaff_R14[4] <= iVar6)) {
       iVar7 = (int)unaff_R14[4] + -1;
     }
-    iVar6 = (int)(((unaff_RBP[1] - *(float *)((longlong)unaff_R14 + 0xc)) - 1e-06) /
-                 *(float *)((longlong)unaff_R14 + 0x1c));
-    if ((-1 < iVar6) && (iVar11 = iVar6, *(int *)((longlong)unaff_R14 + 0x24) <= iVar6)) {
-      iVar11 = *(int *)((longlong)unaff_R14 + 0x24) + -1;
+    iVar6 = (int)(((unaff_RBP[1] - *(float *)((int64_t)unaff_R14 + 0xc)) - 1e-06) /
+                 *(float *)((int64_t)unaff_R14 + 0x1c));
+    if ((-1 < iVar6) && (iVar11 = iVar6, *(int *)((int64_t)unaff_R14 + 0x24) <= iVar6)) {
+      iVar11 = *(int *)((int64_t)unaff_R14 + 0x24) + -1;
     }
     lVar10 = unaff_R14[4];
     iVar6 = -1;
-    iStackX_24 = (int)((ulonglong)lVar10 >> 0x20);
+    iStackX_24 = (int)((uint64_t)lVar10 >> 0x20);
     lStack0000000000000028 = 9;
     do {
       uVar8 = 0;
@@ -694,15 +694,15 @@ longlong FUN_1803958d2(void)
         iVar5 = iVar7;
 joined_r0x000180395b3d:
         if (0 < iVar11) {
-          iVar4 = iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + -1;
+          iVar4 = iVar5 * *(int *)((int64_t)unaff_R14 + 0x24) + -1;
 code_r0x000180395a7c:
-          in_stack_000000e8 = (ulonglong *)(*unaff_R14 + (longlong)(iVar4 + iVar11) * 0x28 + 8);
+          in_stack_000000e8 = (uint64_t *)(*unaff_R14 + (int64_t)(iVar4 + iVar11) * 0x28 + 8);
           goto code_r0x000180395b5d;
         }
         break;
       case 1:
         if (iVar11 + 1 < iStackX_24) {
-          iVar4 = iVar7 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+          iVar4 = iVar7 * *(int *)((int64_t)unaff_R14 + 0x24) + 1;
           goto code_r0x000180395a7c;
         }
         break;
@@ -711,9 +711,9 @@ code_r0x000180395a7c:
         if (0 < iVar7) {
 code_r0x000180395ac1:
           in_stack_000000e8 =
-               (ulonglong *)
+               (uint64_t *)
                (*unaff_R14 +
-                (longlong)(iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + iVar11) * 0x28 + 8);
+                (int64_t)(iVar5 * *(int *)((int64_t)unaff_R14 + 0x24) + iVar11) * 0x28 + 8);
           goto code_r0x000180395b5d;
         }
         break;
@@ -730,7 +730,7 @@ code_r0x000180395ac1:
         if (0 < iVar7) {
 code_r0x000180395b15:
           if (iVar11 + 1 < iStackX_24) {
-            iVar4 = iVar5 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+            iVar4 = iVar5 * *(int *)((int64_t)unaff_R14 + 0x24) + 1;
             goto code_r0x000180395a7c;
           }
         }
@@ -745,9 +745,9 @@ code_r0x000180395b15:
         break;
       default:
 code_r0x000180395b5d:
-        plVar9 = (longlong *)*in_stack_000000e8;
-        uVar12 = (ulonglong)((longlong)in_stack_000000e8[1] + (7 - (longlong)plVar9)) >> 3;
-        if ((longlong *)in_stack_000000e8[1] < plVar9) {
+        plVar9 = (int64_t *)*in_stack_000000e8;
+        uVar12 = (uint64_t)((int64_t)in_stack_000000e8[1] + (7 - (int64_t)plVar9)) >> 3;
+        if ((int64_t *)in_stack_000000e8[1] < plVar9) {
           uVar12 = uVar8;
         }
         unaff_R14 = in_stack_000000e0;
@@ -803,36 +803,36 @@ void FUN_180395967(void)
  * - 最佳匹配结果选择
  * - 坐标变换和映射
  * 
- * @return longlong 返回处理后的纹理搜索结果
+ * @return int64_t 返回处理后的纹理搜索结果
  * 
  * @note 使用优化的搜索算法
  * @note 支持8个方向的纹理搜索
  * @note 使用栈变量提高性能
  * @see AdvancedRenderingFunction
  */
-longlong FUN_180395999(void)
+int64_t FUN_180395999(void)
 
 {
   int iVar1;
   int iVar2;
   int iVar3;
-  longlong lVar4;
+  int64_t lVar4;
   float *unaff_RBP;
-  ulonglong uVar5;
-  longlong *plVar6;
+  uint64_t uVar5;
+  int64_t *plVar6;
   int iVar7;
-  longlong *unaff_R14;
-  ulonglong uVar8;
-  longlong unaff_R15;
+  int64_t *unaff_R14;
+  uint64_t uVar8;
+  int64_t unaff_R15;
   float fVar9;
   float unaff_XMM7_Da;
   int iStackX_24;
-  longlong lStack0000000000000028;
-  longlong lStack0000000000000030;
+  int64_t lStack0000000000000028;
+  int64_t lStack0000000000000030;
   int iStack00000000000000d0;
   uint64_t in_stack_000000d8;
-  longlong *in_stack_000000e0;
-  ulonglong *in_stack_000000e8;
+  int64_t *in_stack_000000e0;
+  uint64_t *in_stack_000000e8;
   
   iVar3 = (int)(((*unaff_RBP - *(float *)(unaff_R14 + 1)) - 1e-06) / *(float *)(unaff_R14 + 3));
   iVar7 = 0;
@@ -840,14 +840,14 @@ longlong FUN_180395999(void)
   if ((-1 < iVar3) && (iStack00000000000000d0 = iVar3, (int)unaff_R14[4] <= iVar3)) {
     iStack00000000000000d0 = (int)unaff_R14[4] + -1;
   }
-  iVar3 = (int)(((unaff_RBP[1] - *(float *)((longlong)unaff_R14 + 0xc)) - 1e-06) /
-               *(float *)((longlong)unaff_R14 + 0x1c));
-  if ((-1 < iVar3) && (iVar7 = iVar3, *(int *)((longlong)unaff_R14 + 0x24) <= iVar3)) {
-    iVar7 = *(int *)((longlong)unaff_R14 + 0x24) + -1;
+  iVar3 = (int)(((unaff_RBP[1] - *(float *)((int64_t)unaff_R14 + 0xc)) - 1e-06) /
+               *(float *)((int64_t)unaff_R14 + 0x1c));
+  if ((-1 < iVar3) && (iVar7 = iVar3, *(int *)((int64_t)unaff_R14 + 0x24) <= iVar3)) {
+    iVar7 = *(int *)((int64_t)unaff_R14 + 0x24) + -1;
   }
   lVar4 = unaff_R14[4];
   iVar3 = -1;
-  iStackX_24 = (int)((ulonglong)lVar4 >> 0x20);
+  iStackX_24 = (int)((uint64_t)lVar4 >> 0x20);
   lStack0000000000000028 = 9;
   lStack0000000000000030 = lVar4;
   do {
@@ -858,15 +858,15 @@ longlong FUN_180395999(void)
       iVar2 = iStack00000000000000d0;
 joined_r0x000180395b3d:
       if (0 < iVar7) {
-        iVar1 = iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + -1;
+        iVar1 = iVar2 * *(int *)((int64_t)unaff_R14 + 0x24) + -1;
 code_r0x000180395a7c:
-        in_stack_000000e8 = (ulonglong *)(*unaff_R14 + (longlong)(iVar1 + iVar7) * 0x28 + 8);
+        in_stack_000000e8 = (uint64_t *)(*unaff_R14 + (int64_t)(iVar1 + iVar7) * 0x28 + 8);
         goto code_r0x000180395b5d;
       }
       break;
     case 1:
       if (iVar7 + 1 < iStackX_24) {
-        iVar1 = iStack00000000000000d0 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+        iVar1 = iStack00000000000000d0 * *(int *)((int64_t)unaff_R14 + 0x24) + 1;
         goto code_r0x000180395a7c;
       }
       break;
@@ -875,8 +875,8 @@ code_r0x000180395a7c:
       if (0 < iStack00000000000000d0) {
 code_r0x000180395ac1:
         in_stack_000000e8 =
-             (ulonglong *)
-             (*unaff_R14 + (longlong)(iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + iVar7) * 0x28 +
+             (uint64_t *)
+             (*unaff_R14 + (int64_t)(iVar2 * *(int *)((int64_t)unaff_R14 + 0x24) + iVar7) * 0x28 +
              8);
         goto code_r0x000180395b5d;
       }
@@ -894,7 +894,7 @@ code_r0x000180395ac1:
       if (0 < iStack00000000000000d0) {
 code_r0x000180395b15:
         if (iVar7 + 1 < iStackX_24) {
-          iVar1 = iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+          iVar1 = iVar2 * *(int *)((int64_t)unaff_R14 + 0x24) + 1;
           goto code_r0x000180395a7c;
         }
       }
@@ -909,9 +909,9 @@ code_r0x000180395b15:
       break;
     default:
 code_r0x000180395b5d:
-      plVar6 = (longlong *)*in_stack_000000e8;
-      uVar8 = (ulonglong)((longlong)in_stack_000000e8[1] + (7 - (longlong)plVar6)) >> 3;
-      if ((longlong *)in_stack_000000e8[1] < plVar6) {
+      plVar6 = (int64_t *)*in_stack_000000e8;
+      uVar8 = (uint64_t)((int64_t)in_stack_000000e8[1] + (7 - (int64_t)plVar6)) >> 3;
+      if ((int64_t *)in_stack_000000e8[1] < plVar6) {
         uVar8 = uVar5;
       }
       unaff_R14 = in_stack_000000e0;
@@ -950,35 +950,35 @@ code_r0x000180395b5d:
  * 
  * @param param_1 输入参数1，包含X坐标信息
  * @param param_2 输入参数2，包含偏移量信息
- * @return longlong 返回处理后的坐标变换结果
+ * @return int64_t 返回处理后的坐标变换结果
  * 
  * @note 使用高精度浮点数计算
  * @note 支持多种坐标变换模式
  * @see AdvancedRenderingFunction
  */
-longlong FUN_1803959af(float param_1,float param_2)
+int64_t FUN_1803959af(float param_1,float param_2)
 
 {
   int iVar1;
   int iVar2;
   int iVar3;
-  longlong lVar4;
-  longlong unaff_RBP;
-  longlong *plVar5;
+  int64_t lVar4;
+  int64_t unaff_RBP;
+  int64_t *plVar5;
   int iVar6;
-  ulonglong in_R11;
-  longlong *unaff_R14;
-  ulonglong uVar7;
-  longlong unaff_R15;
+  uint64_t in_R11;
+  int64_t *unaff_R14;
+  uint64_t uVar7;
+  int64_t unaff_R15;
   float fVar8;
   float unaff_XMM7_Da;
   int iStackX_24;
-  longlong lStack0000000000000028;
-  longlong lStack0000000000000030;
+  int64_t lStack0000000000000028;
+  int64_t lStack0000000000000030;
   int iStack00000000000000d0;
   uint64_t in_stack_000000d8;
-  longlong *in_stack_000000e0;
-  ulonglong *in_stack_000000e8;
+  int64_t *in_stack_000000e0;
+  uint64_t *in_stack_000000e8;
   
   iVar3 = (int)((param_1 - param_2) / *(float *)(unaff_R14 + 3));
   iVar6 = (int)in_R11;
@@ -986,14 +986,14 @@ longlong FUN_1803959af(float param_1,float param_2)
   if ((-1 < iVar3) && (iStack00000000000000d0 = iVar3, (int)unaff_R14[4] <= iVar3)) {
     iStack00000000000000d0 = (int)unaff_R14[4] + -1;
   }
-  iVar3 = (int)(((*(float *)(unaff_RBP + 4) - *(float *)((longlong)unaff_R14 + 0xc)) - param_2) /
-               *(float *)((longlong)unaff_R14 + 0x1c));
-  if ((-1 < iVar3) && (iVar6 = iVar3, *(int *)((longlong)unaff_R14 + 0x24) <= iVar3)) {
-    iVar6 = *(int *)((longlong)unaff_R14 + 0x24) + -1;
+  iVar3 = (int)(((*(float *)(unaff_RBP + 4) - *(float *)((int64_t)unaff_R14 + 0xc)) - param_2) /
+               *(float *)((int64_t)unaff_R14 + 0x1c));
+  if ((-1 < iVar3) && (iVar6 = iVar3, *(int *)((int64_t)unaff_R14 + 0x24) <= iVar3)) {
+    iVar6 = *(int *)((int64_t)unaff_R14 + 0x24) + -1;
   }
   lVar4 = unaff_R14[4];
   iVar3 = -1;
-  iStackX_24 = (int)((ulonglong)lVar4 >> 0x20);
+  iStackX_24 = (int)((uint64_t)lVar4 >> 0x20);
   lStack0000000000000028 = 9;
   lStack0000000000000030 = lVar4;
   do {
@@ -1003,15 +1003,15 @@ longlong FUN_1803959af(float param_1,float param_2)
       iVar2 = iStack00000000000000d0;
 joined_r0x000180395b3d:
       if (0 < iVar6) {
-        iVar1 = iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + -1;
+        iVar1 = iVar2 * *(int *)((int64_t)unaff_R14 + 0x24) + -1;
 code_r0x000180395a7c:
-        in_stack_000000e8 = (ulonglong *)(*unaff_R14 + (longlong)(iVar1 + iVar6) * 0x28 + 8);
+        in_stack_000000e8 = (uint64_t *)(*unaff_R14 + (int64_t)(iVar1 + iVar6) * 0x28 + 8);
         goto code_r0x000180395b5d;
       }
       break;
     case 1:
       if (iVar6 + 1 < iStackX_24) {
-        iVar1 = iStack00000000000000d0 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+        iVar1 = iStack00000000000000d0 * *(int *)((int64_t)unaff_R14 + 0x24) + 1;
         goto code_r0x000180395a7c;
       }
       break;
@@ -1020,8 +1020,8 @@ code_r0x000180395a7c:
       if (0 < iStack00000000000000d0) {
 code_r0x000180395ac1:
         in_stack_000000e8 =
-             (ulonglong *)
-             (*unaff_R14 + (longlong)(iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + iVar6) * 0x28 +
+             (uint64_t *)
+             (*unaff_R14 + (int64_t)(iVar2 * *(int *)((int64_t)unaff_R14 + 0x24) + iVar6) * 0x28 +
              8);
         goto code_r0x000180395b5d;
       }
@@ -1039,7 +1039,7 @@ code_r0x000180395ac1:
       if (0 < iStack00000000000000d0) {
 code_r0x000180395b15:
         if (iVar6 + 1 < iStackX_24) {
-          iVar1 = iVar2 * *(int *)((longlong)unaff_R14 + 0x24) + 1;
+          iVar1 = iVar2 * *(int *)((int64_t)unaff_R14 + 0x24) + 1;
           goto code_r0x000180395a7c;
         }
       }
@@ -1054,9 +1054,9 @@ code_r0x000180395b15:
       break;
     default:
 code_r0x000180395b5d:
-      plVar5 = (longlong *)*in_stack_000000e8;
-      uVar7 = (ulonglong)((longlong)in_stack_000000e8[1] + (7 - (longlong)plVar5)) >> 3;
-      if ((longlong *)in_stack_000000e8[1] < plVar5) {
+      plVar5 = (int64_t *)*in_stack_000000e8;
+      uVar7 = (uint64_t)((int64_t)in_stack_000000e8[1] + (7 - (int64_t)plVar5)) >> 3;
+      if ((int64_t *)in_stack_000000e8[1] < plVar5) {
         uVar7 = in_R11;
       }
       unaff_R14 = in_stack_000000e0;
@@ -1132,7 +1132,7 @@ void FUN_180395c11(void)
  * @see AdvancedTextureMappingFunction
  * @see rsqrtss
  */
-void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong param_4,float *param_5
+void FUN_180395c50(int64_t param_1,float *param_2,int64_t param_3,uint64_t param_4,float *param_5
                   ,uint64_t *param_6)
 
 {
@@ -1142,11 +1142,11 @@ void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong pa
   float *pfVar3;                  // 浮点指针，用于线段终点坐标
   float *pfVar4;                  // 浮点指针，用于线段起点坐标
   uint64_t uVar5;               // 无类型变量，用于坐标组合
-  longlong lVar6;                 // 长整型变量，用于偏移量计算
+  int64_t lVar6;                 // 长整型变量，用于偏移量计算
   uint64_t *puVar7;             // 无类型指针，用于子节点遍历
   int iVar8;                      // 整型变量，用于循环计数
-  ulonglong uVar9;                // 无符号长整型，用于纹理层索引
-  longlong lVar10;                // 长整型变量，用于纹理层偏移
+  uint64_t uVar9;                // 无符号长整型，用于纹理层索引
+  int64_t lVar10;                // 长整型变量，用于纹理层偏移
   float fVar11;                   // 浮点变量，用于距离平方计算
   int8_t auVar12 [16];        // 数组变量，用于SIMD指令结果
   float fVar13;                   // 浮点变量，用于投影参数计算
@@ -1158,7 +1158,7 @@ void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong pa
   float fStackX_c;                // 栈变量，用于Y方向距离计算
   
   // 初始化纹理层数据
-  lVar10 = (longlong)(int)param_4;  // 获取纹理层索引
+  lVar10 = (int64_t)(int)param_4;  // 获取纹理层索引
   iVar8 = 0;  // 初始化循环计数器
   
   // 复制纹理层数据到目标位置
@@ -1221,7 +1221,7 @@ void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong pa
         // 计算目标点到最近点的距离平方
         fStackX_8 = (float)uVar5;             // 提取最近点X坐标
         fStackX_8 = *param_2 - fStackX_8;    // 计算X方向距离
-        fStackX_c = (float)((ulonglong)uVar5 >> 0x20);  // 提取最近点Y坐标
+        fStackX_c = (float)((uint64_t)uVar5 >> 0x20);  // 提取最近点Y坐标
         fStackX_c = param_2[1] - fStackX_c;   // 计算Y方向距离
         fVar11 = fStackX_8 * fStackX_8 + fStackX_c * fStackX_c;  // 计算距离平方
         
@@ -1241,7 +1241,7 @@ void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong pa
         }
         
         // 获取子节点指针
-        lVar6 = *(longlong *)(lVar6 + (longlong)puVar2);
+        lVar6 = *(int64_t *)(lVar6 + (int64_t)puVar2);
         
         // 检查子节点是否有效且需要递归处理
         // 条件1：子节点纹理激活 (*(byte *)(lVar6 + 0x139) & 1) != 0
@@ -1287,7 +1287,7 @@ void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong pa
  * @note 使用栈空间保存临时数据
  * @see RenderingStateFunction
  */
-void FUN_180395c8e(uint64_t param_1,uint64_t param_2,longlong param_3)
+void FUN_180395c8e(uint64_t param_1,uint64_t param_2,int64_t param_3)
 
 {
   float fVar1;
@@ -1295,18 +1295,18 @@ void FUN_180395c8e(uint64_t param_1,uint64_t param_2,longlong param_3)
   float *pfVar3;
   float *pfVar4;
   uint64_t uVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
+  uint64_t uVar6;
+  uint64_t uVar7;
   uint64_t unaff_RBX;
   uint64_t *puVar8;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   uint64_t unaff_RSI;
   int unaff_EDI;
-  longlong in_R11;
+  int64_t in_R11;
   uint64_t unaff_R12;
   float *unaff_R13;
-  longlong unaff_R14;
-  longlong unaff_R15;
+  int64_t unaff_R14;
+  int64_t unaff_R15;
   float fVar9;
   int8_t auVar10 [16];
   float fVar11;
@@ -1329,7 +1329,7 @@ void FUN_180395c8e(uint64_t param_1,uint64_t param_2,longlong param_3)
   uint64_t *in_stack_000000e8;
   
   *(uint64_t *)(in_R11 + 0x10) = unaff_RBX;
-  uVar7 = (ulonglong)(unaff_EDI + 0x18);
+  uVar7 = (uint64_t)(unaff_EDI + 0x18);
   *(uint64_t *)(in_R11 + -0x30) = unaff_RSI;
   puVar8 = (uint64_t *)(param_3 + 0x60);
   *(uint64_t *)(in_R11 + -0x38) = unaff_R12;
@@ -1369,7 +1369,7 @@ void FUN_180395c8e(uint64_t param_1,uint64_t param_2,longlong param_3)
       uVar7 = 0x18;
       fStack00000000000000c0 = (float)uVar5;
       fStack00000000000000c0 = *unaff_R13 - fStack00000000000000c0;
-      fStack00000000000000c4 = (float)((ulonglong)uVar5 >> 0x20);
+      fStack00000000000000c4 = (float)((uint64_t)uVar5 >> 0x20);
       fStack00000000000000c4 = unaff_R13[1] - fStack00000000000000c4;
       fVar9 = fStack00000000000000c0 * fStack00000000000000c0 +
               fStack00000000000000c4 * fStack00000000000000c4;
@@ -1383,8 +1383,8 @@ void FUN_180395c8e(uint64_t param_1,uint64_t param_2,longlong param_3)
       if (puVar2[2] == unaff_RBP) {
         uVar6 = uVar7;
       }
-      if (((*(byte *)(*(longlong *)(uVar6 + (longlong)puVar2) + 0x139) & 1) != 0) &&
-         (*(int *)(*(longlong *)(uVar6 + (longlong)puVar2) + 0x40 + unaff_R14 * 4) !=
+      if (((*(byte *)(*(int64_t *)(uVar6 + (int64_t)puVar2) + 0x139) & 1) != 0) &&
+         (*(int *)(*(int64_t *)(uVar6 + (int64_t)puVar2) + 0x40 + unaff_R14 * 4) !=
           *(int *)(unaff_R15 + 0x558 + unaff_R14 * 4))) {
         puStack0000000000000028 = in_stack_000000e8;
         FUN_180395c50();

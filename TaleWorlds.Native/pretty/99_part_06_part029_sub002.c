@@ -6,22 +6,22 @@
 void FUN_1803c19c1(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
-  longlong unaff_RBX;
-  longlong in_stack_00000080;
+  int64_t unaff_RBX;
+  int64_t in_stack_00000080;
   
-  if ((*(longlong *)(unaff_RBX + 0x30) != 0) || (*(longlong *)(unaff_RBX + 0x40) != 0)) {
-    if (*(longlong *)(in_stack_00000080 + 0x30) != 0) {
+  if ((*(int64_t *)(unaff_RBX + 0x30) != 0) || (*(int64_t *)(unaff_RBX + 0x40) != 0)) {
+    if (*(int64_t *)(in_stack_00000080 + 0x30) != 0) {
       *(uint64_t *)(unaff_RBX + 0x50) = *(uint64_t *)(in_stack_00000080 + 0x38);
-      *(longlong *)(*(longlong *)(in_stack_00000080 + 0x38) + 0x58) = unaff_RBX;
-      *(longlong *)(in_stack_00000080 + 0x38) = unaff_RBX;
-      *(longlong *)(unaff_RBX + 0x20) = in_stack_00000080;
+      *(int64_t *)(*(int64_t *)(in_stack_00000080 + 0x38) + 0x58) = unaff_RBX;
+      *(int64_t *)(in_stack_00000080 + 0x38) = unaff_RBX;
+      *(int64_t *)(unaff_RBX + 0x20) = in_stack_00000080;
       *(uint64_t *)(unaff_RBX + 0x58) = param_3;
       return;
     }
     *(uint64_t *)(unaff_RBX + 0x50) = param_3;
-    *(longlong *)(in_stack_00000080 + 0x30) = unaff_RBX;
-    *(longlong *)(in_stack_00000080 + 0x38) = unaff_RBX;
-    *(longlong *)(unaff_RBX + 0x20) = in_stack_00000080;
+    *(int64_t *)(in_stack_00000080 + 0x30) = unaff_RBX;
+    *(int64_t *)(in_stack_00000080 + 0x38) = unaff_RBX;
+    *(int64_t *)(unaff_RBX + 0x20) = in_stack_00000080;
     *(uint64_t *)(unaff_RBX + 0x58) = param_3;
   }
   return;

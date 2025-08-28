@@ -7,21 +7,21 @@
 void update_linked_list_node_pointers(void)
 
 {
-  longlong next_node_ptr;          // 下一个节点的指针
-  longlong list_context_ptr;       // 链表上下文指针
-  longlong node_index;             // 节点索引
-  longlong value_offset;            // 值偏移量
-  longlong *node_ptr;               // 当前节点指针
+  int64_t next_node_ptr;          // 下一个节点的指针
+  int64_t list_context_ptr;       // 链表上下文指针
+  int64_t node_index;             // 节点索引
+  int64_t value_offset;            // 值偏移量
+  int64_t *node_ptr;               // 当前节点指针
   
   // 将下一个节点的数据复制到当前节点的0x40偏移位置
-  *(uint64_t *)(node_index + 0x40) = *(uint64_t *)(*(longlong *)(list_context_ptr + 8) + value_offset * 8);
+  *(uint64_t *)(node_index + 0x40) = *(uint64_t *)(*(int64_t *)(list_context_ptr + 8) + value_offset * 8);
   
   // 将当前节点插入到链表中，更新前后节点的指针
-  *(longlong *)(*(longlong *)(list_context_ptr + 8) + value_offset * 8) = node_index;
-  next_node_ptr = *(longlong *)(list_context_ptr + 8);
+  *(int64_t *)(*(int64_t *)(list_context_ptr + 8) + value_offset * 8) = node_index;
+  next_node_ptr = *(int64_t *)(list_context_ptr + 8);
   
   // 更新链表节点计数
-  *(longlong *)(list_context_ptr + 0x18) = *(longlong *)(list_context_ptr + 0x18) + 1;
+  *(int64_t *)(list_context_ptr + 0x18) = *(int64_t *)(list_context_ptr + 0x18) + 1;
   
   // 设置新节点的指针
   *node_ptr = node_index;
@@ -38,15 +38,15 @@ void update_linked_list_node_pointers(void)
 // 函数：生成"Value too large"错误消息
 // 功能：当检测到数值过大时，生成相应的错误消息
 uint64_t *
-generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_value,longlong *error_context,uint64_t error_code)
+generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_value,int64_t *error_context,uint64_t error_code)
 
 {
   uint buffer_size;
-  longlong string_ptr;
-  longlong temp_ptr1;
-  longlong temp_ptr2;
-  longlong temp_ptr3;
-  longlong temp_ptr4;
+  int64_t string_ptr;
+  int64_t temp_ptr1;
+  int64_t temp_ptr2;
+  int64_t temp_ptr3;
+  int64_t temp_ptr4;
   uint64_t format_result;
   void *stack_ptr1;
   int32_t *stack_ptr2;
@@ -59,7 +59,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
   void *stack_var2;
   int stack_var3;
   void *stack_var4;
-  longlong stack_var5;
+  int64_t stack_var5;
   int32_t stack_var6;
   
   // 初始化输出缓冲区
@@ -101,23 +101,23 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
       string_ptr = output_buffer[1];
       
       // 写入"Value too "字符串
-      *(uint64_t *)((ulonglong)buffer_size + string_ptr) = 0x666f2065756c6156;  // "Value "
-      *(int16_t *)((uint64_t *)((ulonglong)buffer_size + string_ptr) + 1) = 0x20;
+      *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0x666f2065756c6156;  // "Value "
+      *(int16_t *)((uint64_t *)((uint64_t)buffer_size + string_ptr) + 1) = 0x20;
       *(int *)(output_buffer + 2) = temp_length;
       
       // 如果有额外数据，追加到缓冲区
       if (0 < stack_var3) {
         FUN_1806277c0(output_buffer,temp_length + stack_var3);
         // 警告：子函数不返回
-        memcpy((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1],stack_var2,(longlong)(stack_var3 + 1));
+        memcpy((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1],stack_var2,(int64_t)(stack_var3 + 1));
       }
       
       // 写入"is "字符串
       FUN_1806277c0(output_buffer,current_length + 0xd);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
-      *(int32_t *)((ulonglong)buffer_size + string_ptr) = 0x20736920;  // " is"
-      *(int8_t *)((int32_t *)((ulonglong)buffer_size + string_ptr) + 1) = 0;
+      *(int32_t *)((uint64_t)buffer_size + string_ptr) = 0x20736920;  // " is"
+      *(int8_t *)((int32_t *)((uint64_t)buffer_size + string_ptr) + 1) = 0;
       *(int *)(output_buffer + 2) = current_length + 0xd;
       
       // 格式化错误消息
@@ -135,12 +135,12 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
       
       current_length = *(int *)(output_buffer + 2) + 1;
       FUN_1806277c0(output_buffer,current_length);
-      *(int16_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]) = 10;  // 换行符
+      *(int16_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]) = 10;  // 换行符
     }
     else {
       // 生成"Possible stack level overflow"错误消息
       FUN_1806277c0(output_buffer,current_length + 0x26);
-      stack_ptr2 = (int32_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+      stack_ptr2 = (int32_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
       
       // 写入"Possible stack level overflow "字符串
       *stack_ptr2 = 0x73736f50;                    // "Poss"
@@ -153,36 +153,36 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
       stack_ptr2[7] = 0x6c617571;                   // "laqu"
       stack_ptr2[8] = 0x20797469;                   // "ity"
       *(int16_t *)(stack_ptr2 + 9) = 0xa3a;      // ":\n"
-      *(int8_t *)((longlong)stack_ptr2 + 0x26) = 0;
+      *(int8_t *)((int64_t)stack_ptr2 + 0x26) = 0;
       *(int *)(output_buffer + 2) = current_length + 0x26;
       
       // 写入版本信息
       FUN_1806277c0(output_buffer,current_length + 0x2e);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
-      *(uint64_t *)((ulonglong)buffer_size + string_ptr) = 0xa776f4c203a2030;  // " L4v:\n"
-      *(int8_t *)((uint64_t *)((ulonglong)buffer_size + string_ptr) + 1) = 0;
+      *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0xa776f4c203a2030;  // " L4v:\n"
+      *(int8_t *)((uint64_t *)((uint64_t)buffer_size + string_ptr) + 1) = 0;
       *(int *)(output_buffer + 2) = current_length + 0x2e;
       
       // 写入"Media version"信息
       FUN_1806277c0(output_buffer,current_length + 0x39);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
-      *(uint64_t *)((ulonglong)buffer_size + string_ptr) = 0x6964654d203a2031;  // " Media v"
-      *(int32_t *)((uint64_t *)((ulonglong)buffer_size + string_ptr) + 1) = 0xa6d75;  // "u:\n"
+      *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0x6964654d203a2031;  // " Media v"
+      *(int32_t *)((uint64_t *)((uint64_t)buffer_size + string_ptr) + 1) = 0xa6d75;  // "u:\n"
       *(int *)(output_buffer + 2) = current_length + 0x39;
       
       // 写入"High version"信息
       FUN_1806277c0(output_buffer,current_length + 0x42);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
-      *(uint64_t *)((ulonglong)buffer_size + string_ptr) = 0x68676948203a2032;  // " High v"
-      *(int16_t *)((uint64_t *)((ulonglong)buffer_size + string_ptr) + 1) = 10;  // "2\n"
+      *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0x68676948203a2032;  // " High v"
+      *(int16_t *)((uint64_t *)((uint64_t)buffer_size + string_ptr) + 1) = 10;  // "2\n"
       *(int *)(output_buffer + 2) = current_length + 0x42;
       
       current_length = current_length + 0x51;
       FUN_1806277c0(output_buffer,current_length);
-      stack_ptr2 = (int32_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+      stack_ptr2 = (int32_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
       
       // 写入版本号3信息
       *stack_ptr2 = 0x203a2033;                    // " :3"
@@ -246,7 +246,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
     
     current_length = *(int *)(output_buffer + 2);
     FUN_1806277c0(output_buffer,current_length + 0x23);
-    stack_ptr2 = (int32_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+    stack_ptr2 = (int32_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
     
     // 写入"Engine config"错误消息
     *stack_ptr2 = 0x69676e45;                    // "Engin"
@@ -286,11 +286,11 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
 // 函数：生成"Possible stack overflow"错误消息
 // 功能：当检测到可能的堆栈溢出时，生成相应的错误消息
 uint64_t *
-generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_value,longlong *error_context,uint64_t error_code)
+generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_value,int64_t *error_context,uint64_t error_code)
 
 {
   uint buffer_size;
-  longlong string_ptr;
+  int64_t string_ptr;
   int32_t *buffer_ptr;
   void *stack_ptr1;
   uint64_t *wide_buffer_ptr;
@@ -301,7 +301,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
   void *stack_var2;
   int stack_var3;
   void *stack_var4;
-  longlong stack_var5;
+  int64_t stack_var5;
   int32_t stack_var6;
   
   // 初始化输出缓冲区
@@ -339,15 +339,15 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     if (string_ptr != 0) {
       // 生成详细的堆栈溢出错误消息
       FUN_1806277c0(output_buffer,current_length + 0x2b);
-      wide_buffer_ptr = (uint64_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+      wide_buffer_ptr = (uint64_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
       
       // 写入"Possible stack overflow "字符串
       *wide_buffer_ptr = 0x656c626973736f50;        // "Possible"
       wide_buffer_ptr[1] = 0x207365756c617620;       // " stack "
       *(int32_t *)(wide_buffer_ptr + 2) = 0x7320666f;  // "over"
-      *(int32_t *)((longlong)wide_buffer_ptr + 0x14) = 0x65657263;  // "rec"
+      *(int32_t *)((int64_t)wide_buffer_ptr + 0x14) = 0x65657263;  // "rec"
       *(int32_t *)(wide_buffer_ptr + 3) = 0x6f68736e;  // "nsio"
-      *(int32_t *)((longlong)wide_buffer_ptr + 0x1c) = 0x6f662074;  // "n fo"
+      *(int32_t *)((int64_t)wide_buffer_ptr + 0x1c) = 0x6f662074;  // "n fo"
       wide_buffer_ptr[4] = 0x2073692074616d72;       // "r missi"
       *(int32_t *)(wide_buffer_ptr + 5) = 0xa203a;       // "ng:\n"
       *(int *)(output_buffer + 2) = current_length + 0x2b;
@@ -356,24 +356,24 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
       FUN_1806277c0(output_buffer,current_length + 0x34);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
-      *(uint64_t *)((ulonglong)buffer_size + string_ptr) = 0x6765704a203a2030;  // " Jpeg:\n"
-      *(int16_t *)((uint64_t *)((ulonglong)buffer_size + string_ptr) + 1) = 10;
+      *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0x6765704a203a2030;  // " Jpeg:\n"
+      *(int16_t *)((uint64_t *)((uint64_t)buffer_size + string_ptr) + 1) = 10;
       *(int *)(output_buffer + 2) = current_length + 0x34;
       
       // 写入引擎版本信息
       FUN_1806277c0(output_buffer,current_length + 0x3c);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
-      *(uint64_t *)((ulonglong)buffer_size + string_ptr) = 0xa676e50203a2031;  // " Eng:\n"
-      *(int8_t *)((uint64_t *)((ulonglong)buffer_size + string_ptr) + 1) = 0;
+      *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0xa676e50203a2031;  // " Eng:\n"
+      *(int8_t *)((uint64_t *)((uint64_t)buffer_size + string_ptr) + 1) = 0;
       *(int *)(output_buffer + 2) = current_length + 0x3c;
       
       current_length = current_length + 0x45;
       FUN_1806277c0(output_buffer,current_length);
       buffer_size = *(uint *)(output_buffer + 2);
       string_ptr = output_buffer[1];
-      *(uint64_t *)((ulonglong)buffer_size + string_ptr) = 0xa736444203a2032;  // " Dds:\n"
-      *(int16_t *)((uint64_t *)((ulonglong)buffer_size + string_ptr) + 1) = 10;
+      *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0xa736444203a2032;  // " Dds:\n"
+      *(int16_t *)((uint64_t *)((uint64_t)buffer_size + string_ptr) + 1) = 10;
       *(int *)(output_buffer + 2) = current_length;
     }
     
@@ -383,23 +383,23 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     string_ptr = output_buffer[1];
     
     // 写入"Value too "字符串
-    *(uint64_t *)((ulonglong)buffer_size + string_ptr) = 0x666f2065756c6156;  // "Value "
-    *(int16_t *)((uint64_t *)((ulonglong)buffer_size + string_ptr) + 1) = 0x20;
+    *(uint64_t *)((uint64_t)buffer_size + string_ptr) = 0x666f2065756c6156;  // "Value "
+    *(int16_t *)((uint64_t *)((uint64_t)buffer_size + string_ptr) + 1) = 0x20;
     *(int *)(output_buffer + 2) = temp_length;
     
     // 如果有额外数据，追加到缓冲区
     if (0 < stack_var3) {
       FUN_1806277c0(output_buffer,temp_length + stack_var3);
       // 警告：子函数不返回
-      memcpy((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1],stack_var2,(longlong)(stack_var3 + 1));
+      memcpy((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1],stack_var2,(int64_t)(stack_var3 + 1));
     }
     
     // 写入"is "字符串
     FUN_1806277c0(output_buffer,current_length + 0xd);
     buffer_size = *(uint *)(output_buffer + 2);
     string_ptr = output_buffer[1];
-    *(int32_t *)((ulonglong)buffer_size + string_ptr) = 0x20736920;  // " is"
-    *(int8_t *)((int32_t *)((ulonglong)buffer_size + string_ptr) + 1) = 0;
+    *(int32_t *)((uint64_t)buffer_size + string_ptr) = 0x20736920;  // " is"
+    *(int8_t *)((int32_t *)((uint64_t)buffer_size + string_ptr) + 1) = 0;
     *(int *)(output_buffer + 2) = current_length + 0xd;
     
     // 格式化错误消息
@@ -409,8 +409,8 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     if (0 < *(int *)(string_ptr + 0x10)) {
       FUN_1806277c0(output_buffer,*(int *)(output_buffer + 2) + *(int *)(string_ptr + 0x10));
       // 警告：子函数不返回
-      memcpy((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1],*(uint64_t *)(string_ptr + 8),
-             (longlong)(*(int *)(string_ptr + 0x10) + 1));
+      memcpy((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1],*(uint64_t *)(string_ptr + 8),
+             (int64_t)(*(int *)(string_ptr + 0x10) + 1));
     }
     
     stack_var4 = &STRING_CONSTANT_EMPTY;
@@ -424,7 +424,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     
     current_length = *(int *)(output_buffer + 2);
     FUN_1806277c0(output_buffer,current_length + 1);
-    *(int16_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]) = 10;  // 换行符
+    *(int16_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]) = 10;  // 换行符
     *(int *)(output_buffer + 2) = current_length + 1;
   }
   else {
@@ -433,7 +433,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     FUN_1800af2c0(_DAT,&stack_var1,&stack_var4,error_code,flag_value);
     current_length = *(int *)(output_buffer + 2);
     FUN_1806277c0(output_buffer,current_length + 0x23);
-    buffer_ptr = (int32_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+    buffer_ptr = (int32_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
     
     // 写入"Module config"错误消息
     *buffer_ptr = 0x75646f4d;                    // "Modul"
@@ -576,7 +576,7 @@ setup_error_handler_callback(uint64_t *callback_struct,uint64_t param_2,uint64_t
 
 // 函数：处理配置命令
 // 功能：根据命令类型处理不同的配置操作，生成相应的响应消息
-uint64_t * process_config_command(longlong command_context,uint64_t *output_buffer,uint64_t input_param)
+uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffer,uint64_t input_param)
 
 {
   int command_type;
@@ -586,11 +586,11 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
   int8_t *string_buffer;
   uint64_t *buffer_ptr;
   void *stack_ptr1;
-  ulonglong temp_ulong;
+  uint64_t temp_ulong;
   int8_t *temp_ptr1;
-  ulonglong temp_ulong2;
+  uint64_t temp_ulong2;
   uint8_t temp_var7;
-  longlong temp_long;
+  int64_t temp_long;
   int temp_int1;
   uint temp_uint;
   uint64_t *temp_ptr2;
@@ -660,7 +660,7 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
       // 复制版本信息到输出缓冲区
       *(int32_t *)(output_buffer + 2) = *(int32_t *)(temp_long + 0x10);
       output_buffer[1] = *(uint64_t *)(temp_long + 8);
-      *(int32_t *)((longlong)output_buffer + 0x1c) = *(int32_t *)(temp_long + 0x1c);
+      *(int32_t *)((int64_t)output_buffer + 0x1c) = *(int32_t *)(temp_long + 0x1c);
       *(int32_t *)(output_buffer + 3) = *(int32_t *)(temp_long + 0x18);
       
       // 清理版本信息缓冲区
@@ -703,7 +703,7 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
           buffer_ptr[1] = 0x20646e616d6d6f63;  // " command "
           buffer_ptr[2] = 0x70797420656e696c;  // "type #"
           *(int16_t *)(buffer_ptr + 3) = 0x2165;  // "e!"
-          *(int8_t *)((longlong)buffer_ptr + 0x1a) = 0;
+          *(int8_t *)((int64_t)buffer_ptr + 0x1a) = 0;
           *(int32_t *)(output_buffer + 2) = 0x1a;
           return output_buffer;
         }
@@ -731,7 +731,7 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
         temp_ptr3 = temp_ptr1;
         
         // 处理配置参数
-        if ((longlong)stack_58 - (longlong)stack_60 >> 5 != 0) {
+        if ((int64_t)stack_58 - (int64_t)stack_60 >> 5 != 0) {
           temp_ulong = 0;
           temp_long = 0;
           buffer_ptr = stack_58;
@@ -739,7 +739,7 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
           temp_ptr3 = temp_ptr1;
           
           do {
-            command_type = *(int *)((longlong)temp_ptr2 + temp_long + 0x10);
+            command_type = *(int *)((int64_t)temp_ptr2 + temp_long + 0x10);
             temp_uint64_t = (uint8_t)(temp_ulong2 >> 8);
             temp_int1 = (int)temp_ptr3;
             
@@ -753,7 +753,7 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
                     temp_uint = 0x10;
                   }
                   temp_ptr1 = (int8_t *)
-                           FUN_18062b420(_DAT,(longlong)(int)temp_uint,CONCAT71(temp_var7,0x13))
+                           FUN_18062b420(_DAT,(int64_t)(int)temp_uint,CONCAT71(temp_var7,0x13))
                   ;
                   *temp_ptr1 = 0;
                   stack_ptr_b8 = (uint64_t *)temp_ptr1;
@@ -766,12 +766,12 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
                 }
               }
               // 警告：子函数不返回
-              memcpy(temp_ptr3 + (longlong)temp_ptr1,*(uint64_t *)((longlong)temp_ptr2 + temp_long + 8),
-                     (longlong)(*(int *)((longlong)temp_ptr2 + temp_long + 0x10) + 1));
+              memcpy(temp_ptr3 + (int64_t)temp_ptr1,*(uint64_t *)((int64_t)temp_ptr2 + temp_long + 8),
+                     (int64_t)(*(int *)((int64_t)temp_ptr2 + temp_long + 0x10) + 1));
             }
             
             temp_uint = (uint)temp_ulong2;
-            if (temp_ulong != ((longlong)buffer_ptr - (longlong)temp_ptr2 >> 5) - 1U) {
+            if (temp_ulong != ((int64_t)buffer_ptr - (int64_t)temp_ptr2 >> 5) - 1U) {
               temp_uint = temp_int1 + 1;
               if (temp_uint != 0) {
                 buffer_size = temp_int1 + 2;
@@ -781,7 +781,7 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
                     buffer_size = 0x10;
                   }
                   temp_ptr1 = (int8_t *)
-                           FUN_18062b420(_DAT,(longlong)(int)buffer_size,CONCAT71(temp_var7,0x13))
+                           FUN_18062b420(_DAT,(int64_t)(int)buffer_size,CONCAT71(temp_var7,0x13))
                   ;
                   *temp_ptr1 = 0;
                 }
@@ -791,12 +791,12 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
                 }
                 stack_ptr_b8 = (uint64_t *)temp_ptr1;
                 stack_a8 = FUN_18064e990(temp_ptr1);
-                temp_ptr1 = (int8_t *)(ulonglong)stack_a8;
+                temp_ptr1 = (int8_t *)(uint64_t)stack_a8;
               }
 LAB_18016195a:
-              temp_ptr3[(longlong)temp_ptr1] = 0x20;
+              temp_ptr3[(int64_t)temp_ptr1] = 0x20;
               temp_ptr1[temp_uint] = 0;
-              temp_ptr3 = (int8_t *)(ulonglong)temp_uint;
+              temp_ptr3 = (int8_t *)(uint64_t)temp_uint;
               buffer_ptr = stack_58;
               temp_ptr2 = stack_60;
               stack_b0 = temp_uint;
@@ -804,10 +804,10 @@ LAB_18016195a:
             }
             
             stack_var8 = temp_uint + 1;
-            temp_ulong2 = (ulonglong)stack_var8;
+            temp_ulong2 = (uint64_t)stack_var8;
             temp_long = temp_long + 0x20;
-            temp_ulong = (ulonglong)(int)stack_var8;
-          } while (temp_ulong < (ulonglong)((longlong)buffer_ptr - (longlong)temp_ptr2 >> 5));
+            temp_ulong = (uint64_t)(int)stack_var8;
+          } while (temp_ulong < (uint64_t)((int64_t)buffer_ptr - (int64_t)temp_ptr2 >> 5));
         }
         
         // 处理配置字符串
@@ -870,7 +870,7 @@ LAB_18016195a:
       stack_88 = 0;
       stack_a0 = &STRING_CONSTANT_EMPTY;
       
-      temp_long = (longlong)stack_ptr_b8 - (longlong)stack_ptr_c0 >> 5;
+      temp_long = (int64_t)stack_ptr_b8 - (int64_t)stack_ptr_c0 >> 5;
       
       if (temp_long == 0) {
         // 无参数处理
@@ -883,9 +883,9 @@ LAB_18016195a:
       }
       else if (temp_long == 1) {
         // 单参数处理
-        if (*(longlong *)(command_context + 0x70) == 0) {
-          if (*(longlong *)(command_context + 0x78) == 0) {
-            if (*(longlong *)(command_context + 0x80) != 0) {
+        if (*(int64_t *)(command_context + 0x70) == 0) {
+          if (*(int64_t *)(command_context + 0x78) == 0) {
+            if (*(int64_t *)(command_context + 0x80) != 0) {
               FUN_180627be0();
             }
           }
@@ -913,7 +913,7 @@ LAB_18016195a:
         buffer_ptr = (uint64_t *)output_buffer[1];
         *buffer_ptr = 0x65732065756c6156;  // "Value s"
         *(int16_t *)(buffer_ptr + 1) = 0x2e74;  // "et."
-        *(int8_t *)((longlong)buffer_ptr + 10) = 0;
+        *(int8_t *)((int64_t)buffer_ptr + 10) = 0;
         *(int32_t *)(output_buffer + 2) = 10;
         
         // 执行清理回调
@@ -938,7 +938,7 @@ LAB_18016195a:
         buffer_ptr[3] = 0x707845202e73746e;  // "nts. Ex"
         buffer_ptr[4] = 0x3020676e69746365;  // "pected 0"
         *(int32_t *)(buffer_ptr + 5) = 0x20726f20;  // " or 1"
-        *(int16_t *)((longlong)buffer_ptr + 0x2c) = 0x31;  // "1"
+        *(int16_t *)((int64_t)buffer_ptr + 0x2c) = 0x31;  // "1"
         *(int32_t *)(output_buffer + 2) = 0x2d;
         
         // 执行清理回调
@@ -961,23 +961,23 @@ LAB_18016195a:
 
 // 函数：在哈希表中查找节点
 // 功能：在给定的哈希表中查找匹配指定键的节点
-longlong find_node_in_hash_table(longlong hash_table_ptr,longlong search_key_ptr)
+int64_t find_node_in_hash_table(int64_t hash_table_ptr,int64_t search_key_ptr)
 
 {
   int key_length1;
   int key_length2;
   int comparison_result;
-  longlong node_ptr;
-  longlong start_ptr;
+  int64_t node_ptr;
+  int64_t start_ptr;
   
-  start_ptr = *(longlong *)(hash_table_ptr + 0x28);
+  start_ptr = *(int64_t *)(hash_table_ptr + 0x28);
   comparison_result = 0;
   
   // 遍历哈希表中的节点
-  if (*(longlong *)(hash_table_ptr + 0x30) - start_ptr >> 3 != 0) {
+  if (*(int64_t *)(hash_table_ptr + 0x30) - start_ptr >> 3 != 0) {
     node_ptr = 0;
     do {
-      start_ptr = *(longlong *)(node_ptr + start_ptr);
+      start_ptr = *(int64_t *)(node_ptr + start_ptr);
       key_length2 = *(int *)(search_key_ptr + 0x10);
       key_length1 = *(int *)(start_ptr + 0x10);
       
@@ -995,10 +995,10 @@ LAB_180161e6a:
       }
       else if (key_length1 == 0) goto LAB_180161e6a;
       
-      start_ptr = *(longlong *)(hash_table_ptr + 0x28);
+      start_ptr = *(int64_t *)(hash_table_ptr + 0x28);
       comparison_result = comparison_result + 1;
       node_ptr = node_ptr + 8;
-    } while ((ulonglong)(longlong)comparison_result < (ulonglong)(*(longlong *)(hash_table_ptr + 0x30) - start_ptr >> 3));
+    } while ((uint64_t)(int64_t)comparison_result < (uint64_t)(*(int64_t *)(hash_table_ptr + 0x30) - start_ptr >> 3));
   }
   
   return 0;

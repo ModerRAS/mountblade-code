@@ -8,28 +8,28 @@
 void update_ui_component_with_float(float value)
 
 {
-  ulonglong *component_ptr;
+  uint64_t *component_ptr;
   float temp_float;
-  longlong temp_long;
-  ulonglong temp_ulong;
+  int64_t temp_long;
+  uint64_t temp_ulong;
   char status_flag;
   float *float_ptr;
   char temp_char;
   uint temp_uint;
   int8_t *data_ptr;
   int32_t temp_int;
-  longlong base_ptr;
-  longlong context_ptr;
-  ulonglong object_id;
-  longlong target_ptr;
+  int64_t base_ptr;
+  int64_t context_ptr;
+  uint64_t object_id;
+  int64_t target_ptr;
   char control_flag;
   int32_t render_flag;
   char update_flag;
   int component_id;
-  ulonglong entity_id;
+  uint64_t entity_id;
   float position_value;
   float scale_value;
-  ulonglong link_ptr;
+  uint64_t link_ptr;
   
   status_flag = (char)render_flag;
   if (value == scale_value) {
@@ -73,12 +73,12 @@ LAB_render_update:
           if (*(float *)(base_ptr + 0xb8) <= *(float *)(base_ptr + 0xbc)) {
             position_value = *(float *)(base_ptr + 0xb8);
           }
-          temp_long = *(longlong *)(context_ptr + 0x3a0);
+          temp_long = *(int64_t *)(context_ptr + 0x3a0);
           position_value = (float)(int)(position_value * *(float *)(base_ptr + 0x18) * 800.0);
           *(float *)(temp_long + 0x40) = *float_ptr * position_value + *(float *)(temp_long + 0x40);
           *(float *)(temp_long + 0x44) = temp_float * position_value + *(float *)(temp_long + 0x44);
           *(char *)(base_ptr + 0x1d07) = status_flag;
-          if (((*(uint *)(*(longlong *)(base_ptr + 0x1cd8) + 0xc) & 0x100) == 0) &&
+          if (((*(uint *)(*(int64_t *)(base_ptr + 0x1cd8) + 0xc) & 0x100) == 0) &&
              (*(float *)(base_ptr + 0x2e04) <= scale_value)) {
             *(int32_t *)(base_ptr + 0x2e04) = *(int32_t *)(base_ptr + 0x1c);
           }
@@ -92,13 +92,13 @@ LAB_render_update:
     }
   }
   if (target_ptr == 0) goto LAB_cleanup_complete;
-  temp_long = *(longlong *)(base_ptr + 0x1c98);
+  temp_long = *(int64_t *)(base_ptr + 0x1c98);
   object_id = entity_id;
   if (temp_long == 0) {
 LAB_entity_cleanup:
     *(int16_t *)(base_ptr + 0x1d06) = 0x100;
-    if (*(longlong *)(target_ptr + 0x3c0) != 0) {
-      target_ptr = *(longlong *)(target_ptr + 0x3c0);
+    if (*(int64_t *)(target_ptr + 0x3c0) != 0) {
+      target_ptr = *(int64_t *)(target_ptr + 0x3c0);
     }
     cleanup_entity_resources(target_ptr);
     update_entity_state(target_ptr);
@@ -108,31 +108,31 @@ LAB_entity_cleanup:
     if (*(int *)(target_ptr + 0x174) == 2) {
       *(int32_t *)(base_ptr + 0x1cfc) = render_flag;
     }
-    if ((*(ulonglong *)(target_ptr + 0x28) != object_id) &&
+    if ((*(uint64_t *)(target_ptr + 0x28) != object_id) &&
        (*(code **)(base_ptr + 0x1578) != (code *)0x0)) {
       (**(code **)(base_ptr + 0x1578))();
     }
   }
-  else if (target_ptr != *(longlong *)(temp_long + 0x3a8)) {
-    object_id = *(ulonglong *)(temp_long + 0x28);
+  else if (target_ptr != *(int64_t *)(temp_long + 0x3a8)) {
+    object_id = *(uint64_t *)(temp_long + 0x28);
     goto LAB_entity_cleanup;
   }
-  *(ulonglong *)(base_ptr + 0x1cd8) = entity_id;
+  *(uint64_t *)(base_ptr + 0x1cd8) = entity_id;
 LAB_cleanup_complete:
-  if ((update_flag != '\0') && (object_id = *(ulonglong *)(base_ptr + 0x1c98), object_id != 0)) {
-    component_ptr = (ulonglong *)(object_id + 0x398);
+  if ((update_flag != '\0') && (object_id = *(uint64_t *)(base_ptr + 0x1c98), object_id != 0)) {
+    component_ptr = (uint64_t *)(object_id + 0x398);
     link_ptr = *component_ptr;
     temp_ulong = object_id;
     while (((link_ptr != entity_id && ((*(byte *)(temp_ulong + 0x174) & 2) == 0)) &&
            ((*(uint *)(temp_ulong + 0xc) & 0x15000000) == 0x1000000))) {
       temp_ulong = *component_ptr;
-      component_ptr = (ulonglong *)(temp_ulong + 0x398);
+      component_ptr = (uint64_t *)(temp_ulong + 0x398);
       link_ptr = *component_ptr;
     }
     if (temp_ulong != object_id) {
       update_entity_state(temp_ulong);
-      *(ulonglong *)(temp_ulong + 0x3c0) = object_id;
-      object_id = *(ulonglong *)(base_ptr + 0x1c98);
+      *(uint64_t *)(temp_ulong + 0x3c0) = object_id;
+      object_id = *(uint64_t *)(base_ptr + 0x1c98);
     }
     *(int16_t *)(base_ptr + 0x1d06) = 0x100;
     if ((*(byte *)(object_id + 0x174) & 2) == 0) {
@@ -140,8 +140,8 @@ LAB_cleanup_complete:
     }
     else {
       temp_uint = *(uint *)(base_ptr + 0x1cfc) ^ 1;
-      link_ptr = (ulonglong)temp_uint;
-      if ((temp_uint == 1) && (*(ulonglong *)(temp_ulong + 0x410) == entity_id)) {
+      link_ptr = (uint64_t)temp_uint;
+      if ((temp_uint == 1) && (*(uint64_t *)(temp_ulong + 0x410) == entity_id)) {
         *(int *)(object_id + 0x3cc) = component_id;
       }
     }
@@ -156,27 +156,27 @@ LAB_cleanup_complete:
 void cleanup_entity_components(void)
 
 {
-  ulonglong *component_ptr;
-  longlong entity_ptr;
-  ulonglong entity_id;
+  uint64_t *component_ptr;
+  int64_t entity_ptr;
+  uint64_t entity_id;
   uint property_id;
-  longlong base_ptr;
-  ulonglong context_id;
-  longlong target_ptr;
+  int64_t base_ptr;
+  uint64_t context_id;
+  int64_t target_ptr;
   int32_t render_flag;
   char update_flag;
-  ulonglong object_id;
-  ulonglong link_ptr;
+  uint64_t object_id;
+  uint64_t link_ptr;
   
-  entity_ptr = *(longlong *)(base_ptr + 0x1c98);
+  entity_ptr = *(int64_t *)(base_ptr + 0x1c98);
   context_id = object_id;
   if (entity_ptr != 0) {
-    if (target_ptr == *(longlong *)(entity_ptr + 0x3a8)) goto LAB_skip_cleanup;
-    context_id = *(ulonglong *)(entity_ptr + 0x28);
+    if (target_ptr == *(int64_t *)(entity_ptr + 0x3a8)) goto LAB_skip_cleanup;
+    context_id = *(uint64_t *)(entity_ptr + 0x28);
   }
   *(int16_t *)(base_ptr + 0x1d06) = 0x100;
-  if (*(longlong *)(target_ptr + 0x3c0) != 0) {
-    target_ptr = *(longlong *)(target_ptr + 0x3c0);
+  if (*(int64_t *)(target_ptr + 0x3c0) != 0) {
+    target_ptr = *(int64_t *)(target_ptr + 0x3c0);
   }
   cleanup_entity_resources(target_ptr);
   update_entity_state(target_ptr);
@@ -186,26 +186,26 @@ void cleanup_entity_components(void)
   if (*(int *)(target_ptr + 0x174) == 2) {
     *(int32_t *)(base_ptr + 0x1cfc) = render_flag;
   }
-  if ((*(ulonglong *)(target_ptr + 0x28) != context_id) && (*(code **)(base_ptr + 0x1578) != (code *)0x0)
+  if ((*(uint64_t *)(target_ptr + 0x28) != context_id) && (*(code **)(base_ptr + 0x1578) != (code *)0x0)
      ) {
     (**(code **)(base_ptr + 0x1578))();
   }
 LAB_skip_cleanup:
-  *(ulonglong *)(base_ptr + 0x1cd8) = object_id;
-  if ((update_flag != '\0') && (context_id = *(ulonglong *)(base_ptr + 0x1c98), context_id != 0)) {
-    component_ptr = (ulonglong *)(context_id + 0x398);
+  *(uint64_t *)(base_ptr + 0x1cd8) = object_id;
+  if ((update_flag != '\0') && (context_id = *(uint64_t *)(base_ptr + 0x1c98), context_id != 0)) {
+    component_ptr = (uint64_t *)(context_id + 0x398);
     link_ptr = *component_ptr;
     entity_id = context_id;
     while (((link_ptr != object_id && ((*(byte *)(entity_id + 0x174) & 2) == 0)) &&
            ((*(uint *)(entity_id + 0xc) & 0x15000000) == 0x1000000))) {
       entity_id = *component_ptr;
-      component_ptr = (ulonglong *)(entity_id + 0x398);
+      component_ptr = (uint64_t *)(entity_id + 0x398);
       link_ptr = *component_ptr;
     }
     if (entity_id != context_id) {
       update_entity_state(entity_id);
-      *(ulonglong *)(entity_id + 0x3c0) = context_id;
-      context_id = *(ulonglong *)(base_ptr + 0x1c98);
+      *(uint64_t *)(entity_id + 0x3c0) = context_id;
+      context_id = *(uint64_t *)(base_ptr + 0x1c98);
     }
     *(int16_t *)(base_ptr + 0x1d06) = 0x100;
     if ((*(byte *)(context_id + 0x174) & 2) == 0) {
@@ -213,8 +213,8 @@ LAB_skip_cleanup:
     }
     else {
       property_id = *(uint *)(base_ptr + 0x1cfc) ^ 1;
-      link_ptr = (ulonglong)property_id;
-      if ((property_id == 1) && (*(ulonglong *)(entity_id + 0x410) == object_id)) {
+      link_ptr = (uint64_t)property_id;
+      if ((property_id == 1) && (*(uint64_t *)(entity_id + 0x410) == object_id)) {
         *(int *)(context_id + 0x3cc) = (int)object_id;
       }
     }
@@ -229,29 +229,29 @@ LAB_skip_cleanup:
 void update_entity_state_simple(void)
 
 {
-  ulonglong *component_ptr;
-  ulonglong entity_id;
+  uint64_t *component_ptr;
+  uint64_t entity_id;
   uint property_id;
-  longlong base_ptr;
-  ulonglong context_id;
-  ulonglong object_id;
-  ulonglong link_ptr;
+  int64_t base_ptr;
+  uint64_t context_id;
+  uint64_t object_id;
+  uint64_t link_ptr;
   
-  context_id = *(ulonglong *)(base_ptr + 0x1c98);
+  context_id = *(uint64_t *)(base_ptr + 0x1c98);
   if (context_id != 0) {
-    component_ptr = (ulonglong *)(context_id + 0x398);
+    component_ptr = (uint64_t *)(context_id + 0x398);
     link_ptr = *component_ptr;
     entity_id = context_id;
     while (((link_ptr != object_id && ((*(byte *)(entity_id + 0x174) & 2) == 0)) &&
            ((*(uint *)(entity_id + 0xc) & 0x15000000) == 0x1000000))) {
       entity_id = *component_ptr;
-      component_ptr = (ulonglong *)(entity_id + 0x398);
+      component_ptr = (uint64_t *)(entity_id + 0x398);
       link_ptr = *component_ptr;
     }
     if (entity_id != context_id) {
       update_entity_state(entity_id);
-      *(ulonglong *)(entity_id + 0x3c0) = context_id;
-      context_id = *(ulonglong *)(base_ptr + 0x1c98);
+      *(uint64_t *)(entity_id + 0x3c0) = context_id;
+      context_id = *(uint64_t *)(base_ptr + 0x1c98);
     }
     *(int16_t *)(base_ptr + 0x1d06) = 0x100;
     if ((*(byte *)(context_id + 0x174) & 2) == 0) {
@@ -259,8 +259,8 @@ void update_entity_state_simple(void)
     }
     else {
       property_id = *(uint *)(base_ptr + 0x1cfc) ^ 1;
-      link_ptr = (ulonglong)property_id;
-      if ((property_id == 1) && (*(ulonglong *)(entity_id + 0x410) == object_id)) {
+      link_ptr = (uint64_t)property_id;
+      if ((property_id == 1) && (*(uint64_t *)(entity_id + 0x410) == object_id)) {
         *(int *)(context_id + 0x3cc) = (int)object_id;
       }
     }
@@ -284,14 +284,14 @@ void render_ui_menu_system(void)
   float menu_height;
   uint menu_flags;
   uint64_t *menu_data;
-  longlong engine_ptr;
+  int64_t engine_ptr;
   int menu_count;
   uint64_t window_handle;
   char *menu_title;
-  longlong menu_list_ptr;
-  longlong menu_item_ptr;
-  longlong current_menu;
-  ulonglong menu_id;
+  int64_t menu_list_ptr;
+  int64_t menu_item_ptr;
+  int64_t current_menu;
+  uint64_t menu_id;
   char *display_name;
   uint64_t temp_stack1;
   int32_t stack_param1;
@@ -301,11 +301,11 @@ void render_ui_menu_system(void)
   
   engine_ptr = global_engine_context;
   if (0.15 < *(float *)(global_engine_context + 0x1cf0) || *(float *)(global_engine_context + 0x1cf0) == 0.15) {
-    if (*(longlong *)(global_engine_context + 0x1ce8) == 0) {
+    if (*(int64_t *)(global_engine_context + 0x1ce8) == 0) {
       window_handle = create_window_handle(&global_window_manager);
       *(uint64_t *)(engine_ptr + 0x1ce8) = window_handle;
     }
-    current_menu = **(longlong **)(engine_ptr + 0x1c70);
+    current_menu = **(int64_t **)(engine_ptr + 0x1c70);
     menu_x = *(float *)(current_menu + 0x10);
     menu_y = *(float *)(current_menu + 0x14);
     *(int32_t *)(engine_ptr + 0x1be0) = 1;
@@ -336,13 +336,13 @@ void render_ui_menu_system(void)
     *(float *)(engine_ptr + 0x1630) = menu_y + menu_y;
     update_window_state(&global_window_manager,0,0xc1347);
     menu_count = *(int *)(engine_ptr + 0x1ab0) + -1;
-    current_menu = (longlong)menu_count;
+    current_menu = (int64_t)menu_count;
     if (-1 < menu_count) {
       do {
-        menu_data = *(uint64_t **)(*(longlong *)(engine_ptr + 0x1ab8) + current_menu * 8);
-        if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75]))
+        menu_data = *(uint64_t **)(*(int64_t *)(engine_ptr + 0x1ab8) + current_menu * 8);
+        if ((*(char *)((int64_t)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75]))
         {
-          menu_flags = *(uint *)((longlong)menu_data + 0xc);
+          menu_flags = *(uint *)((int64_t)menu_data + 0xc);
           if ((menu_flags >> 0x13 & 1) == 0) {
             display_name = (char *)*menu_data;
             menu_title = display_name;
@@ -382,10 +382,10 @@ LAB_display_name:
     }
     finalize_rendering();
     current_menu = global_engine_context;
-    menu_list_ptr = (longlong)*(int *)(global_engine_context + 0x1b90);
-    engine_ptr = *(longlong *)(global_engine_context + 0x1b98);
-    menu_item_ptr = (longlong)*(int *)(engine_ptr + -0xc + menu_list_ptr * 0xc);
-    menu_id = (ulonglong)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
+    menu_list_ptr = (int64_t)*(int *)(global_engine_context + 0x1b90);
+    engine_ptr = *(int64_t *)(global_engine_context + 0x1b98);
+    menu_item_ptr = (int64_t)*(int *)(engine_ptr + -0xc + menu_list_ptr * 0xc);
+    menu_id = (uint64_t)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
     if (*(int *)(&global_menu_type_table + menu_item_ptr * 0xc) == 4) {
       if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 1) {
         *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
@@ -419,15 +419,15 @@ void render_ui_menu_system_alt(void)
   float menu_height;
   uint menu_flags;
   uint64_t *menu_data;
-  longlong engine_ptr;
+  int64_t engine_ptr;
   int menu_count;
   uint64_t window_handle;
   char *menu_title;
-  longlong menu_list_ptr;
-  longlong menu_item_ptr;
-  longlong current_menu;
-  longlong context_ptr;
-  ulonglong menu_id;
+  int64_t menu_list_ptr;
+  int64_t menu_item_ptr;
+  int64_t current_menu;
+  int64_t context_ptr;
+  uint64_t menu_id;
   char *display_name;
   bool should_render;
   int32_t render_param;
@@ -438,7 +438,7 @@ void render_ui_menu_system_alt(void)
     window_handle = create_window_handle(&global_window_manager);
     *(uint64_t *)(context_ptr + 0x1ce8) = window_handle;
   }
-  current_menu = **(longlong **)(context_ptr + 0x1c70);
+  current_menu = **(int64_t **)(context_ptr + 0x1c70);
   menu_x = *(float *)(current_menu + 0x10);
   menu_y = *(float *)(current_menu + 0x14);
   *(int32_t *)(context_ptr + 0x1be0) = 1;
@@ -467,12 +467,12 @@ void render_ui_menu_system_alt(void)
   *(float *)(context_ptr + 0x1630) = menu_y + menu_y;
   update_window_state(&global_window_manager,0,0xc1347);
   menu_count = *(int *)(context_ptr + 0x1ab0) + -1;
-  current_menu = (longlong)menu_count;
+  current_menu = (int64_t)menu_count;
   if (-1 < menu_count) {
     do {
-      menu_data = *(uint64_t **)(*(longlong *)(context_ptr + 0x1ab8) + current_menu * 8);
-      if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75])) {
-        menu_flags = *(uint *)((longlong)menu_data + 0xc);
+      menu_data = *(uint64_t **)(*(int64_t *)(context_ptr + 0x1ab8) + current_menu * 8);
+      if ((*(char *)((int64_t)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75])) {
+        menu_flags = *(uint *)((int64_t)menu_data + 0xc);
         if ((menu_flags >> 0x13 & 1) == 0) {
           display_name = (char *)*menu_data;
           menu_title = display_name;
@@ -513,10 +513,10 @@ LAB_display_name:
   }
   finalize_rendering();
   engine_ptr = global_engine_context;
-  menu_list_ptr = (longlong)*(int *)(global_engine_context + 0x1b90);
-  current_menu = *(longlong *)(global_engine_context + 0x1b98);
-  menu_item_ptr = (longlong)*(int *)(current_menu + -0xc + menu_list_ptr * 0xc);
-  menu_id = (ulonglong)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
+  menu_list_ptr = (int64_t)*(int *)(global_engine_context + 0x1b90);
+  current_menu = *(int64_t *)(global_engine_context + 0x1b98);
+  menu_item_ptr = (int64_t)*(int *)(current_menu + -0xc + menu_list_ptr * 0xc);
+  menu_id = (uint64_t)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
   if (*(int *)(&global_menu_type_table + menu_item_ptr * 0xc) == 4) {
     if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 1) {
       *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
@@ -549,15 +549,15 @@ void render_ui_menu_system_alt2(void)
   float menu_height;
   uint menu_flags;
   uint64_t *menu_data;
-  longlong engine_ptr;
+  int64_t engine_ptr;
   int menu_count;
   uint64_t window_handle;
   char *menu_title;
-  longlong menu_list_ptr;
-  longlong menu_item_ptr;
-  longlong current_menu;
-  longlong context_ptr;
-  ulonglong menu_id;
+  int64_t menu_list_ptr;
+  int64_t menu_item_ptr;
+  int64_t current_menu;
+  int64_t context_ptr;
+  uint64_t menu_id;
   char *display_name;
   bool should_render;
   int32_t render_param;
@@ -568,7 +568,7 @@ void render_ui_menu_system_alt2(void)
     window_handle = create_window_handle(&global_window_manager);
     *(uint64_t *)(context_ptr + 0x1ce8) = window_handle;
   }
-  current_menu = **(longlong **)(context_ptr + 0x1c70);
+  current_menu = **(int64_t **)(context_ptr + 0x1c70);
   menu_x = *(float *)(current_menu + 0x10);
   menu_y = *(float *)(current_menu + 0x14);
   *(int32_t *)(context_ptr + 0x1be0) = 1;
@@ -597,12 +597,12 @@ void render_ui_menu_system_alt2(void)
   *(float *)(context_ptr + 0x1630) = menu_y + menu_y;
   update_window_state(&global_window_manager,0,0xc1347);
   menu_count = *(int *)(context_ptr + 0x1ab0) + -1;
-  current_menu = (longlong)menu_count;
+  current_menu = (int64_t)menu_count;
   if (-1 < menu_count) {
     do {
-      menu_data = *(uint64_t **)(*(longlong *)(context_ptr + 0x1ab8) + current_menu * 8);
-      if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75])) {
-        menu_flags = *(uint *)((longlong)menu_data + 0xc);
+      menu_data = *(uint64_t **)(*(int64_t *)(context_ptr + 0x1ab8) + current_menu * 8);
+      if ((*(char *)((int64_t)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75])) {
+        menu_flags = *(uint *)((int64_t)menu_data + 0xc);
         if ((menu_flags >> 0x13 & 1) == 0) {
           display_name = (char *)*menu_data;
           menu_title = display_name;
@@ -643,10 +643,10 @@ LAB_display_name:
   }
   finalize_rendering();
   engine_ptr = global_engine_context;
-  menu_list_ptr = (longlong)*(int *)(global_engine_context + 0x1b90);
-  current_menu = *(longlong *)(global_engine_context + 0x1b98);
-  menu_item_ptr = (longlong)*(int *)(current_menu + -0xc + menu_list_ptr * 0xc);
-  menu_id = (ulonglong)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
+  menu_list_ptr = (int64_t)*(int *)(global_engine_context + 0x1b90);
+  current_menu = *(int64_t *)(global_engine_context + 0x1b98);
+  menu_item_ptr = (int64_t)*(int *)(current_menu + -0xc + menu_list_ptr * 0xc);
+  menu_id = (uint64_t)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
   if (*(int *)(&global_menu_type_table + menu_item_ptr * 0xc) == 4) {
     if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 1) {
       *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
@@ -675,21 +675,21 @@ void process_menu_items_loop(void)
 {
   uint menu_flags;
   uint64_t *menu_data;
-  longlong engine_ptr;
-  longlong menu_list_ptr;
-  longlong menu_item_ptr;
+  int64_t engine_ptr;
+  int64_t menu_list_ptr;
+  int64_t menu_item_ptr;
   int menu_count;
   char *menu_title;
-  longlong current_menu;
-  longlong context_ptr;
-  ulonglong menu_id;
+  int64_t current_menu;
+  int64_t context_ptr;
+  uint64_t menu_id;
   char *display_name;
   uint64_t temp_stack;
   
   do {
-    menu_data = *(uint64_t **)(*(longlong *)(context_ptr + 0x1ab8) + current_menu * 8);
-    if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75])) {
-      menu_flags = *(uint *)((longlong)menu_data + 0xc);
+    menu_data = *(uint64_t **)(*(int64_t *)(context_ptr + 0x1ab8) + current_menu * 8);
+    if ((*(char *)((int64_t)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75])) {
+      menu_flags = *(uint *)((int64_t)menu_data + 0xc);
       if ((menu_flags >> 0x13 & 1) == 0) {
         display_name = (char *)*menu_data;
         menu_title = display_name;
@@ -728,10 +728,10 @@ LAB_display_name:
     if (current_menu < 0) {
       finalize_rendering();
       menu_list_ptr = global_engine_context;
-      engine_ptr = (longlong)*(int *)(global_engine_context + 0x1b90);
-      current_menu = *(longlong *)(global_engine_context + 0x1b98);
-      menu_item_ptr = (longlong)*(int *)(current_menu + -0xc + engine_ptr * 0xc);
-      menu_id = (ulonglong)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
+      engine_ptr = (int64_t)*(int *)(global_engine_context + 0x1b90);
+      current_menu = *(int64_t *)(global_engine_context + 0x1b98);
+      menu_item_ptr = (int64_t)*(int *)(current_menu + -0xc + engine_ptr * 0xc);
+      menu_id = (uint64_t)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
       if (*(int *)(&global_menu_type_table + menu_item_ptr * 0xc) == 4) {
         if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 1) {
           *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
@@ -760,18 +760,18 @@ LAB_display_name:
 void finalize_menu_rendering(void)
 
 {
-  longlong engine_ptr;
-  longlong menu_list_ptr;
-  longlong menu_item_ptr;
-  longlong current_menu;
-  ulonglong menu_id;
+  int64_t engine_ptr;
+  int64_t menu_list_ptr;
+  int64_t menu_item_ptr;
+  int64_t current_menu;
+  uint64_t menu_id;
   
   finalize_rendering();
   menu_list_ptr = global_engine_context;
-  engine_ptr = (longlong)*(int *)(global_engine_context + 0x1b90);
-  current_menu = *(longlong *)(global_engine_context + 0x1b98);
-  menu_item_ptr = (longlong)*(int *)(current_menu + -0xc + engine_ptr * 0xc);
-  menu_id = (ulonglong)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
+  engine_ptr = (int64_t)*(int *)(global_engine_context + 0x1b90);
+  current_menu = *(int64_t *)(global_engine_context + 0x1b98);
+  menu_item_ptr = (int64_t)*(int *)(current_menu + -0xc + engine_ptr * 0xc);
+  menu_id = (uint64_t)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
   if (*(int *)(&global_menu_type_table + menu_item_ptr * 0xc) == 4) {
     if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 1) {
       *(int32_t *)(menu_id + 0x1628 + global_engine_context) = *(int32_t *)(current_menu + -8 + engine_ptr * 0xc);
@@ -788,14 +788,14 @@ void finalize_menu_rendering(void)
 }
 
 
-// 函数: void update_menu_data_structure(longlong context,longlong list_ptr,longlong item_ptr,longlong menu_id)
+// 函数: void update_menu_data_structure(int64_t context,int64_t list_ptr,int64_t item_ptr,int64_t menu_id)
 // 更新菜单数据结构
-void update_menu_data_structure(longlong context,longlong list_ptr,longlong item_ptr,longlong menu_id)
+void update_menu_data_structure(int64_t context,int64_t list_ptr,int64_t item_ptr,int64_t menu_id)
 
 {
   int menu_type;
-  longlong data_ptr;
-  longlong index_ptr;
+  int64_t data_ptr;
+  int64_t index_ptr;
   
   menu_type = *(int *)(data_ptr + 4 + index_ptr * 4);
   if (menu_type == 1) {
@@ -820,20 +820,20 @@ void update_menu_data_structure(longlong context,longlong list_ptr,longlong item
 void update_animation_system(void)
 
 {
-  longlong entity_ptr;
-  longlong animation_ptr;
+  int64_t entity_ptr;
+  int64_t animation_ptr;
   int frame_count;
-  longlong timeline_ptr;
+  int64_t timeline_ptr;
   uint64_t timeline_handle;
   float current_time;
   
   entity_ptr = global_engine_context;
-  *(int8_t *)(*(longlong *)(global_engine_context + 0x1af8) + 0xb1) = 1;
-  animation_ptr = *(longlong *)(entity_ptr + 0x1af8);
-  if ((*(char *)(animation_ptr + 0xb4) == '\0') && (*(longlong *)(animation_ptr + 0x210) != 0)) {
+  *(int8_t *)(*(int64_t *)(global_engine_context + 0x1af8) + 0xb1) = 1;
+  animation_ptr = *(int64_t *)(entity_ptr + 0x1af8);
+  if ((*(char *)(animation_ptr + 0xb4) == '\0') && (*(int64_t *)(animation_ptr + 0x210) != 0)) {
     initialize_animation_system();
     process_animation_queue();
-    timeline_ptr = *(longlong *)(animation_ptr + 0x210);
+    timeline_ptr = *(int64_t *)(animation_ptr + 0x210);
     timeline_handle = 0;
     current_time = *(float *)(animation_ptr + 0x104);
     if (*(float *)(animation_ptr + 0x104) <= *(float *)(timeline_ptr + 0x20)) {
@@ -860,11 +860,11 @@ void update_animation_system(void)
     *(uint64_t *)(animation_ptr + 0x120) = timeline_handle;
     *(int *)(animation_ptr + 0x128) = (int)timeline_handle;
     finalize_animation_update();
-    animation_ptr = *(longlong *)(*(longlong *)(global_engine_context + 0x1af8) + 0x210);
-    process_animation_delta((*(float *)(((longlong)*(int *)(animation_ptr + 0xc) + 1) * 0x1c +
-                                   *(longlong *)(animation_ptr + 0x38)) -
-                        *(float *)((longlong)*(int *)(animation_ptr + 0xc) * 0x1c +
-                                  *(longlong *)(animation_ptr + 0x38))) *
+    animation_ptr = *(int64_t *)(*(int64_t *)(global_engine_context + 0x1af8) + 0x210);
+    process_animation_delta((*(float *)(((int64_t)*(int *)(animation_ptr + 0xc) + 1) * 0x1c +
+                                   *(int64_t *)(animation_ptr + 0x38)) -
+                        *(float *)((int64_t)*(int *)(animation_ptr + 0xc) * 0x1c +
+                                  *(int64_t *)(animation_ptr + 0x38))) *
                         (*(float *)(animation_ptr + 0x18) - *(float *)(animation_ptr + 0x14)) * 0.65);
   }
   return;
@@ -879,13 +879,13 @@ void update_animation_system(void)
 void update_animation_parameter(int param_index,float param_value)
 
 {
-  longlong entity_ptr;
-  longlong animation_ptr;
+  int64_t entity_ptr;
+  int64_t animation_ptr;
   bool is_valid;
-  longlong frame_data;
+  int64_t frame_data;
   int current_frame;
-  longlong next_frame;
-  longlong frame_offset;
+  int64_t next_frame;
+  int64_t frame_offset;
   float frame_delta;
   float time_value;
   float range_min;
@@ -893,7 +893,7 @@ void update_animation_parameter(int param_index,float param_value)
   
   entity_ptr = global_engine_context;
   while( true ) {
-    animation_ptr = *(longlong *)(*(longlong *)(entity_ptr + 0x1af8) + 0x210);
+    animation_ptr = *(int64_t *)(*(int64_t *)(entity_ptr + 0x1af8) + 0x210);
     if (param_index < 0) {
       param_index = *(int *)(animation_ptr + 0xc);
     }
@@ -903,9 +903,9 @@ void update_animation_parameter(int param_index,float param_value)
       if (param_index < 0) {
         current_frame = *(int *)(animation_ptr + 0xc);
       }
-      frame_data = *(longlong *)(animation_ptr + 0x38);
-      frame_offset = ((longlong)current_frame + 1) * 0x1c;
-      next_frame = (longlong)current_frame * 0x1c;
+      frame_data = *(int64_t *)(animation_ptr + 0x38);
+      frame_offset = ((int64_t)current_frame + 1) * 0x1c;
+      next_frame = (int64_t)current_frame * 0x1c;
       if (*(char *)(animation_ptr + 9) == '\0') {
         frame_delta = *(float *)(frame_offset + frame_data) - *(float *)(next_frame + frame_data);
       }
@@ -925,7 +925,7 @@ void update_animation_parameter(int param_index,float param_value)
        time_value <= param_value)) {
       param_value = time_value;
     }
-    *(float *)((longlong)param_index * 0x1c + *(longlong *)(animation_ptr + 0x38)) =
+    *(float *)((int64_t)param_index * 0x1c + *(int64_t *)(animation_ptr + 0x38)) =
          (param_value - *(float *)(animation_ptr + 0x14)) / (range_max - *(float *)(animation_ptr + 0x14));
     if (!is_valid) break;
     param_index = param_index + 1;

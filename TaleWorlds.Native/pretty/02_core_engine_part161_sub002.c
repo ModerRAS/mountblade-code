@@ -2,8 +2,8 @@
 
 // 02_core_engine_part161_sub002.c - 1 个函数
 
-// 函数: void FUN_18014b164(longlong param_1,uint64_t param_2,uint64_t param_3)
-void FUN_18014b164(longlong param_1,uint64_t param_2,uint64_t param_3)
+// 函数: void FUN_18014b164(int64_t param_1,uint64_t param_2,uint64_t param_3)
+void FUN_18014b164(int64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
   float fVar1;
@@ -11,16 +11,16 @@ void FUN_18014b164(longlong param_1,uint64_t param_2,uint64_t param_3)
   uint64_t uVar3;
   uint64_t uVar4;
   uint64_t uVar5;
-  longlong in_RAX;
+  int64_t in_RAX;
   uint uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
+  uint64_t uVar7;
+  int64_t lVar8;
+  int64_t lVar9;
+  uint64_t uVar10;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
   float *in_R8;
-  ulonglong in_R11;
+  uint64_t in_R11;
   float fVar11;
   float fVar12;
   float fVar13;
@@ -35,7 +35,7 @@ void FUN_18014b164(longlong param_1,uint64_t param_2,uint64_t param_3)
   float fVar20;
   float fVar21;
   
-  uVar19 = (int32_t)((ulonglong)param_3 >> 0x20);
+  uVar19 = (int32_t)((uint64_t)param_3 >> 0x20);
   uVar16 = (int32_t)param_3;
   lVar8 = SUB168(SEXT816(in_RAX) * SEXT816(param_1),8);
   uVar7 = in_R11 & 0xffffffff;
@@ -114,16 +114,16 @@ void FUN_18014b164(longlong param_1,uint64_t param_2,uint64_t param_3)
       in_XMM2_Dc = *(int32_t *)(unaff_RBP + -0x51);
       in_XMM2_Dd = *(int32_t *)(unaff_RBP + -0x4d);
       uVar6 = (int)uVar7 + 1;
-      uVar7 = (ulonglong)uVar6;
+      uVar7 = (uint64_t)uVar6;
       in_R8 = in_R8 + 0xc;
       *(int32_t *)(unaff_RBP + -0x69) = uVar16;
       *(int32_t *)(unaff_RBP + -0x65) = uVar19;
       *(int32_t *)(unaff_RBP + -0x61) = in_XMM2_Dc;
       *(int32_t *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
-    } while ((ulonglong)(longlong)(int)uVar6 < (ulonglong)(lVar9 - lVar8));
+    } while ((uint64_t)(int64_t)(int)uVar6 < (uint64_t)(lVar9 - lVar8));
   }
-  lVar8 = *(longlong *)(unaff_RSI + 0x20);
-  uVar10 = *(longlong *)(unaff_RSI + 0x28) - lVar8 >> 5;
+  lVar8 = *(int64_t *)(unaff_RSI + 0x20);
+  uVar10 = *(int64_t *)(unaff_RSI + 0x28) - lVar8 >> 5;
   uVar7 = in_R11;
   if (uVar10 != 0) {
     do {
@@ -185,8 +185,8 @@ void FUN_18014b164(longlong param_1,uint64_t param_2,uint64_t param_3)
       *(int32_t *)(unaff_RBP + -0x65) = uVar19;
       *(int32_t *)(unaff_RBP + -0x61) = in_XMM2_Dc;
       *(int32_t *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
-      uVar7 = (ulonglong)uVar6;
-    } while ((ulonglong)(longlong)(int)uVar6 < uVar10);
+      uVar7 = (uint64_t)uVar6;
+    } while ((uint64_t)(int64_t)(int)uVar6 < uVar10);
   }
   *(int32_t *)(unaff_RBP + -0x39) = *(int32_t *)(unaff_RBP + -0x79);
   *(int32_t *)(unaff_RBP + -0x35) = *(int32_t *)(unaff_RBP + -0x75);

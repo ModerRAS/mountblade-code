@@ -178,11 +178,11 @@ void System_StackProtectionHandler(void)
   
   // 获取当前堆栈信息
   stack_info.stack_base = (void*)__builtin_frame_address(0);
-  stack_info.security_cookie = (void*)*(ulonglong*)((char*)stack_info.stack_base + 0x8d0);
+  stack_info.security_cookie = (void*)*(uint64_t*)((char*)stack_info.stack_base + 0x8d0);
   
   // 验证堆栈完整性并执行保护操作
   // 如果检测到堆栈异常，系统将终止执行以防止进一步损坏
-  FUN_1808fc050(*(ulonglong*)((char*)stack_info.security_cookie) ^ (ulonglong)&stack_info);
+  FUN_1808fc050(*(uint64_t*)((char*)stack_info.security_cookie) ^ (uint64_t)&stack_info);
 }
 
 /**
@@ -215,10 +215,10 @@ void System_ComponentStateController(void* context, void* component)
   int16_t state_data;
   int32_t render_param;
   uint32_t update_flags;
-  ulonglong stack_protection;
+  uint64_t stack_protection;
   
   // 初始化堆栈保护
-  stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)local_data;
+  stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)local_data;
   
   // 获取组件和系统上下文
   sys_context = (SystemContext*)context;
@@ -230,7 +230,7 @@ void System_ComponentStateController(void* context, void* component)
     render_context = comp_data->render_context;
     if (render_context != (void*)0x0) {
       // 调用组件的状态更新函数
-      (**(code **)(*(longlong*)render_context + 0x50))(render_context, local_data);
+      (**(code **)(*(int64_t*)render_context + 0x50))(render_context, local_data);
       
       // 更新组件的维度信息
       comp_data->width = dimension_data;
@@ -258,7 +258,7 @@ void System_ComponentStateController(void* context, void* component)
   }
   
   // 执行堆栈保护检查
-  FUN_1808fc050(stack_protection ^ (ulonglong)local_data);
+  FUN_1808fc050(stack_protection ^ (uint64_t)local_data);
 }
 
 /**

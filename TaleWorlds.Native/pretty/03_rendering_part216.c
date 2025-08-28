@@ -15,8 +15,8 @@ void FUN_1803911d7(void)
   float *pfVar6;
   uint64_t *puVar7;
   int unaff_EBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
   uint64_t *puVar8;
   int iVar9;
   int in_R11D;
@@ -122,9 +122,9 @@ void FUN_1803911d7(void)
     puVar7 = puVar7 + 1;
   } while (in_R11D < unaff_R12D);
   if ((unaff_R14D != -1) && (unaff_R15D != -1)) {
-    puStack0000000000000090 = *(uint64_t **)(unaff_RSI + 0x60 + (longlong)unaff_R14D * 8);
+    puStack0000000000000090 = *(uint64_t **)(unaff_RSI + 0x60 + (int64_t)unaff_R14D * 8);
     pfVar1 = (float *)puStack0000000000000090[1];
-    puStack0000000000000088 = *(uint64_t **)(unaff_RDI + 0x60 + (longlong)unaff_R15D * 8);
+    puStack0000000000000088 = *(uint64_t **)(unaff_RDI + 0x60 + (int64_t)unaff_R15D * 8);
     pfVar2 = (float *)*puStack0000000000000090;
     pfStack0000000000000080 = (float *)*puStack0000000000000088;
     pfVar4 = (float *)puStack0000000000000088[1];
@@ -176,8 +176,8 @@ void FUN_180391209(void)
   float *pfVar6;
   uint64_t *unaff_RBX;
   int unaff_EBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
   uint64_t *puVar7;
   int iVar8;
   int in_R11D;
@@ -285,9 +285,9 @@ void FUN_180391209(void)
     unaff_RBX = unaff_RBX + 1;
   } while (in_R11D < unaff_R12D);
   if ((unaff_R14D != -1) && (unaff_R15D != -1)) {
-    puStack0000000000000090 = *(uint64_t **)(unaff_RSI + 0x60 + (longlong)unaff_R14D * 8);
+    puStack0000000000000090 = *(uint64_t **)(unaff_RSI + 0x60 + (int64_t)unaff_R14D * 8);
     pfVar1 = (float *)puStack0000000000000090[1];
-    puStack0000000000000088 = *(uint64_t **)(unaff_RDI + 0x60 + (longlong)unaff_R15D * 8);
+    puStack0000000000000088 = *(uint64_t **)(unaff_RDI + 0x60 + (int64_t)unaff_R15D * 8);
     pfVar2 = (float *)*puStack0000000000000090;
     pfStack0000000000000080 = (float *)*puStack0000000000000088;
     pfVar4 = (float *)puStack0000000000000088[1];
@@ -336,8 +336,8 @@ void FUN_18039153e(void)
   float *pfVar3;
   float *pfVar4;
   float *pfVar5;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
   int unaff_R14D;
   int unaff_R15D;
   float fVar6;
@@ -353,9 +353,9 @@ void FUN_18039153e(void)
   uint64_t *puStack0000000000000090;
   
   if (unaff_R15D != -1) {
-    puStack0000000000000090 = *(uint64_t **)(unaff_RSI + 0x60 + (longlong)unaff_R14D * 8);
+    puStack0000000000000090 = *(uint64_t **)(unaff_RSI + 0x60 + (int64_t)unaff_R14D * 8);
     pfVar3 = (float *)puStack0000000000000090[1];
-    puStack0000000000000088 = *(uint64_t **)(unaff_RDI + 0x60 + (longlong)unaff_R15D * 8);
+    puStack0000000000000088 = *(uint64_t **)(unaff_RDI + 0x60 + (int64_t)unaff_R15D * 8);
     pfVar4 = (float *)*puStack0000000000000090;
     pfStack0000000000000080 = (float *)*puStack0000000000000088;
     pfVar5 = (float *)puStack0000000000000088[1];

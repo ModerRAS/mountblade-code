@@ -120,9 +120,9 @@
 typedef struct {
     uint comparison_flags;                         /**< 比较标志位 */
     float precision_threshold;                     /**< 精度阈值 */
-    longlong array_size;                           /**< 数组大小 */
-    longlong param_count;                          /**< 参数计数 */
-    longlong current_index;                        /**< 当前索引 */
+    int64_t array_size;                           /**< 数组大小 */
+    int64_t param_count;                          /**< 参数计数 */
+    int64_t current_index;                        /**< 当前索引 */
 } RenderingParamComparator;
 
 /**
@@ -133,9 +133,9 @@ typedef struct {
     byte *data_ptr;                                /**< 数据指针 */
     uint data_flags;                               /**< 数据标志 */
     char validation_result;                        /**< 验证结果 */
-    longlong data_size;                            /**< 数据大小 */
-    longlong processing_count;                     /**< 处理计数 */
-    longlong current_index;                        /**< 当前索引 */
+    int64_t data_size;                            /**< 数据大小 */
+    int64_t processing_count;                     /**< 处理计数 */
+    int64_t current_index;                        /**< 当前索引 */
 } RenderingDataProcessor;
 
 /**
@@ -146,9 +146,9 @@ typedef struct {
     byte *float_ptr;                               /**< 浮点指针 */
     uint float_flags;                              /**< 浮点标志 */
     char validation_result;                        /**< 验证结果 */
-    longlong float_context;                        /**< 浮点上下文 */
-    longlong processing_count;                     /**< 处理计数 */
-    longlong current_index;                        /**< 当前索引 */
+    int64_t float_context;                        /**< 浮点上下文 */
+    int64_t processing_count;                     /**< 处理计数 */
+    int64_t current_index;                        /**< 当前索引 */
 } RenderingFloatProcessor;
 
 /**
@@ -156,10 +156,10 @@ typedef struct {
  * @details 定义渲染参数设置器的内部状态和数据结构
  */
 typedef struct {
-    ulonglong param_count;                         /**< 参数计数 */
+    uint64_t param_count;                         /**< 参数计数 */
     uint64_t param_value;                       /**< 参数值 */
-    longlong set_context;                          /**< 设置上下文 */
-    longlong current_index;                        /**< 当前索引 */
+    int64_t set_context;                          /**< 设置上下文 */
+    int64_t current_index;                        /**< 当前索引 */
     uint *param_flags;                             /**< 参数标志指针 */
     uint flag_mask;                                /**< 标志掩码 */
     int32_t flag_value;                         /**< 标志值 */
@@ -315,7 +315,7 @@ typedef enum {
  * - 支持同步机制
  * - 避免竞态条件
  */
-void RenderingSystem_ParameterComparator(uint64_t render_context, longlong *param_array1, longlong *param_array2)
+void RenderingSystem_ParameterComparator(uint64_t render_context, int64_t *param_array1, int64_t *param_array2)
 {
     // 参数比较器状态初始化
     RenderingParamComparator comparator;
@@ -332,7 +332,7 @@ void RenderingSystem_ParameterComparator(uint64_t render_context, longlong *para
         
         do {
             // 获取当前参数
-            longlong current_param = *(longlong *)(comparator.current_index + *param_array2);
+            int64_t current_param = *(int64_t *)(comparator.current_index + *param_array2);
             
             // 参数验证
             if (current_param != 0) {
@@ -384,7 +384,7 @@ void RenderingSystem_ParameterComparator(uint64_t render_context, longlong *para
  * @param data_context 数据上下文句柄
  * @param input_data 输入数据
  * @param output_data 输出数据
- * @return ulonglong 处理结果状态
+ * @return uint64_t 处理结果状态
  * 
  * 技术说明：
  * - 处理渲染数据的转换和计算
@@ -414,7 +414,7 @@ void RenderingSystem_ParameterComparator(uint64_t render_context, longlong *para
  * - 避免内存泄漏
  * - 支持内存对齐优化
  */
-ulonglong RenderingSystem_DataProcessor(longlong data_context, uint64_t input_data, longlong *output_data)
+uint64_t RenderingSystem_DataProcessor(int64_t data_context, uint64_t input_data, int64_t *output_data)
 {
     // 数据处理器状态初始化
     RenderingDataProcessor processor;
@@ -431,14 +431,14 @@ ulonglong RenderingSystem_DataProcessor(longlong data_context, uint64_t input_da
     
     // 数据处理循环
     if (processor.data_ptr != 0) {
-        processor.processing_count = (ulonglong)processor.data_ptr & 0xffffffff;
+        processor.processing_count = (uint64_t)processor.data_ptr & 0xffffffff;
         
         do {
             // 获取数据项
-            longlong data_item1 = FUN_18032b880(data_context, 
+            int64_t data_item1 = FUN_18032b880(data_context, 
                                                 *(int32_t *)(processor.current_index + *output_data),
                                                 *(int32_t *)(data_context + SYSTEM_CONTEXT_OFFSET_PARAM));
-            longlong data_item2 = FUN_18032b880(data_context, 
+            int64_t data_item2 = FUN_18032b880(data_context, 
                                                 *(int32_t *)(processor.current_index + *output_data),
                                                 *(int *)(data_context + SYSTEM_CONTEXT_OFFSET_PARAM) + -1);
             
@@ -469,7 +469,7 @@ ulonglong RenderingSystem_DataProcessor(longlong data_context, uint64_t input_da
         } while (processor.processing_count > 0);
     }
     
-    return (ulonglong)processor.data_ptr & SYSTEM_ALIGNMENT_MASK;
+    return (uint64_t)processor.data_ptr & SYSTEM_ALIGNMENT_MASK;
 }
 
 /* ============================================================================
@@ -480,7 +480,7 @@ ulonglong RenderingSystem_DataProcessor(longlong data_context, uint64_t input_da
  * @brief 渲染浮点处理器 - 负责渲染浮点数的高精度处理和计算
  * 
  * @param float_value 浮点数值
- * @return ulonglong 处理结果状态
+ * @return uint64_t 处理结果状态
  * 
  * 技术说明：
  * - 处理渲染浮点数的计算和转换
@@ -510,7 +510,7 @@ ulonglong RenderingSystem_DataProcessor(longlong data_context, uint64_t input_da
  * - 支持舍入模式配置
  * - 实现异常值处理
  */
-ulonglong RenderingSystem_FloatProcessor(float float_value)
+uint64_t RenderingSystem_FloatProcessor(float float_value)
 {
     // 浮点处理器状态初始化
     RenderingFloatProcessor processor;
@@ -523,10 +523,10 @@ ulonglong RenderingSystem_FloatProcessor(float float_value)
     // 浮点处理循环
     do {
         // 获取浮点数项
-        longlong float_item1 = FUN_18032b880(float_value, 
+        int64_t float_item1 = FUN_18032b880(float_value, 
                                             *(int32_t *)(processor.current_index + 0), 
                                             *(int32_t *)(0));
-        longlong float_item2 = FUN_18032b880(0, 
+        int64_t float_item2 = FUN_18032b880(0, 
                                             *(int32_t *)(processor.current_index + 0), 
                                             *(int *)(0) + -1);
         
@@ -555,7 +555,7 @@ ulonglong RenderingSystem_FloatProcessor(float float_value)
         processor.processing_count--;
         
         if (processor.processing_count == 0) {
-            return (ulonglong)processor.float_ptr & SYSTEM_ALIGNMENT_MASK;
+            return (uint64_t)processor.float_ptr & SYSTEM_ALIGNMENT_MASK;
         }
         
     } while (true);
@@ -661,8 +661,8 @@ void RenderingSystem_ParameterSetter(uint64_t render_context, uint *param_flags,
     // 递归处理
     if (setter.recursive_flag != '\0') {
         // 参数数组处理
-        setter.param_count = *(longlong *)(setter.param_flags + 0x66) - 
-                           *(longlong *)(setter.param_flags + 100) >> 3;
+        setter.param_count = *(int64_t *)(setter.param_flags + 0x66) - 
+                           *(int64_t *)(setter.param_flags + 100) >> 3;
         
         if (setter.param_count > 0) {
             setter.param_count = setter.param_count & 0xffffffff;
@@ -671,7 +671,7 @@ void RenderingSystem_ParameterSetter(uint64_t render_context, uint *param_flags,
             do {
                 // 递归设置参数
                 FUN_180329910(render_context, 
-                             *(uint64_t *)(setter.set_context + *(longlong *)(setter.param_flags + 100)), 
+                             *(uint64_t *)(setter.set_context + *(int64_t *)(setter.param_flags + 100)), 
                              setter.flag_mask, 
                              setter.recursive_flag);
                 setter.set_context += 8;
@@ -684,8 +684,8 @@ void RenderingSystem_ParameterSetter(uint64_t render_context, uint *param_flags,
         FUN_1803297e0(render_context, setter.param_flags + 0x30, setter.flag_mask, setter.recursive_flag);
         
         // 子参数处理
-        setter.param_count = *(longlong *)(setter.param_flags + 0x5e) - 
-                           *(longlong *)(setter.param_flags + 0x5c) >> 2;
+        setter.param_count = *(int64_t *)(setter.param_flags + 0x5e) - 
+                           *(int64_t *)(setter.param_flags + 0x5c) >> 2;
         
         if (setter.param_count > 0) {
             setter.param_count = setter.param_count & 0xffffffff;
@@ -693,7 +693,7 @@ void RenderingSystem_ParameterSetter(uint64_t render_context, uint *param_flags,
             do {
                 // 获取子参数
                 setter.param_value = FUN_18032ba60(render_context, 
-                                                   *(int32_t *)(setter.current_index + *(longlong *)(setter.param_flags + 0x5c)), 
+                                                   *(int32_t *)(setter.current_index + *(int64_t *)(setter.param_flags + 0x5c)), 
                                                    setter.flag_value);
                 
                 // 递归设置子参数
@@ -750,9 +750,9 @@ void RenderingSystem_ParameterSetter(uint64_t render_context, uint *param_flags,
 void RenderingSystem_ParameterCleaner(void)
 {
     // 清理状态初始化
-    longlong clean_size = 0;
-    longlong clean_context = 0;
-    ulonglong clean_count = clean_size >> 3 & 0xffffffff;
+    int64_t clean_size = 0;
+    int64_t clean_context = 0;
+    uint64_t clean_count = clean_size >> 3 & 0xffffffff;
     
     // 参数清理循环
     if (clean_count > 0) {
@@ -768,8 +768,8 @@ void RenderingSystem_ParameterCleaner(void)
     FUN_1803297e0();
     
     // 子参数清理
-    clean_count = *(longlong *)(clean_context + SYSTEM_CONTEXT_OFFSET_MAIN) - 
-                 *(longlong *)(clean_context + SYSTEM_CONTEXT_OFFSET_SUB) >> 2;
+    clean_count = *(int64_t *)(clean_context + SYSTEM_CONTEXT_OFFSET_MAIN) - 
+                 *(int64_t *)(clean_context + SYSTEM_CONTEXT_OFFSET_SUB) >> 2;
     
     if (clean_count > 0) {
         clean_count = clean_count & 0xffffffff;
@@ -827,7 +827,7 @@ void RenderingSystem_ResourceManager(void)
 {
     // 资源管理状态初始化
     uint resource_count = 0;
-    ulonglong process_count = (ulonglong)resource_count;
+    uint64_t process_count = (uint64_t)resource_count;
     
     // 资源处理循环
     do {
@@ -966,13 +966,13 @@ void RenderingSystem_StateManager(void)
  * - 支持验证恢复机制
  * - 实现验证统计功能
  */
-void RenderingSystem_ParameterValidator(uint64_t verify_context, longlong verify_data, uint verify_mask, char recursive_flag)
+void RenderingSystem_ParameterValidator(uint64_t verify_context, int64_t verify_data, uint verify_mask, char recursive_flag)
 {
     // 验证状态初始化
     uint *param_ptr;
-    ulonglong verify_count;
-    ulonglong sub_count;
-    longlong current_index = 0;
+    uint64_t verify_count;
+    uint64_t sub_count;
+    int64_t current_index = 0;
     
     // 设置验证标志
     *(uint *)(verify_data + 8) = *(uint *)(verify_data + 8) | verify_mask;
@@ -980,8 +980,8 @@ void RenderingSystem_ParameterValidator(uint64_t verify_context, longlong verify
     // 递归验证
     if (recursive_flag != '\0') {
         // 参数数组验证
-        verify_count = *(longlong *)(verify_data + DATA_PROCESSING_OFFSET_EXTENDED) - 
-                       *(longlong *)(verify_data + DATA_PROCESSING_OFFSET_BASE) >> 3;
+        verify_count = *(int64_t *)(verify_data + DATA_PROCESSING_OFFSET_EXTENDED) - 
+                       *(int64_t *)(verify_data + DATA_PROCESSING_OFFSET_BASE) >> 3;
         
         if (verify_count > 0) {
             verify_count = verify_count & 0xffffffff;
@@ -989,7 +989,7 @@ void RenderingSystem_ParameterValidator(uint64_t verify_context, longlong verify
             do {
                 // 验证参数
                 FUN_180329910(verify_context, 
-                             *(uint64_t *)(current_index + *(longlong *)(verify_data + DATA_PROCESSING_OFFSET_BASE)), 
+                             *(uint64_t *)(current_index + *(int64_t *)(verify_data + DATA_PROCESSING_OFFSET_BASE)), 
                              verify_mask, 
                              recursive_flag);
                 current_index += 8;
@@ -999,29 +999,29 @@ void RenderingSystem_ParameterValidator(uint64_t verify_context, longlong verify
         }
         
         // 子参数验证
-        verify_count = (*(longlong *)(verify_data + DATA_PROCESSING_OFFSET_DATA) - 
-                       *(longlong *)(verify_data + DATA_PROCESSING_OFFSET_SUBDATA)) / DATA_PROCESSING_BLOCK_SIZE;
+        verify_count = (*(int64_t *)(verify_data + DATA_PROCESSING_OFFSET_DATA) - 
+                       *(int64_t *)(verify_data + DATA_PROCESSING_OFFSET_SUBDATA)) / DATA_PROCESSING_BLOCK_SIZE;
         
         if (verify_count > 0) {
             current_index = 0;
             verify_count = verify_count & 0xffffffff;
             
             do {
-                param_ptr = (uint *)(current_index + *(longlong *)(verify_data + DATA_PROCESSING_OFFSET_SUBDATA));
+                param_ptr = (uint *)(current_index + *(int64_t *)(verify_data + DATA_PROCESSING_OFFSET_SUBDATA));
                 *param_ptr = *param_ptr | verify_mask;
                 
                 // 子参数递归验证
-                sub_count = *(longlong *)(current_index + DATA_PROCESSING_OFFSET_EXTENDED + *(longlong *)(verify_data + DATA_PROCESSING_OFFSET_SUBDATA)) -
-                           *(longlong *)(current_index + DATA_PROCESSING_OFFSET_BASE + *(longlong *)(verify_data + DATA_PROCESSING_OFFSET_SUBDATA)) >> 3;
+                sub_count = *(int64_t *)(current_index + DATA_PROCESSING_OFFSET_EXTENDED + *(int64_t *)(verify_data + DATA_PROCESSING_OFFSET_SUBDATA)) -
+                           *(int64_t *)(current_index + DATA_PROCESSING_OFFSET_BASE + *(int64_t *)(verify_data + DATA_PROCESSING_OFFSET_SUBDATA)) >> 3;
                 
                 if (sub_count > 0) {
-                    longlong sub_index = 0;
+                    int64_t sub_index = 0;
                     sub_count = sub_count & 0xffffffff;
                     
                     do {
                         FUN_180329910(verify_context, 
                                      *(uint64_t *)
-                                     (*(longlong *)(current_index + DATA_PROCESSING_OFFSET_BASE + *(longlong *)(verify_data + DATA_PROCESSING_OFFSET_SUBDATA)) + sub_index),
+                                     (*(int64_t *)(current_index + DATA_PROCESSING_OFFSET_BASE + *(int64_t *)(verify_data + DATA_PROCESSING_OFFSET_SUBDATA)) + sub_index),
                                      verify_mask, 
                                      recursive_flag);
                         sub_index += 8;
@@ -1083,19 +1083,19 @@ void RenderingSystem_ParameterOptimizer(uint64_t optimize_context, uint optimize
 {
     // 优化状态初始化
     uint *param_ptr;
-    ulonglong optimize_count;
-    longlong current_index = 0;
+    uint64_t optimize_count;
+    int64_t current_index = 0;
     
     // 参数优化循环
-    optimize_count = (ulonglong)optimize_mask;
+    optimize_count = (uint64_t)optimize_mask;
     
     do {
-        param_ptr = (uint *)(current_index + *(longlong *)(optimize_context + DATA_PROCESSING_OFFSET_SUBDATA));
+        param_ptr = (uint *)(current_index + *(int64_t *)(optimize_context + DATA_PROCESSING_OFFSET_SUBDATA));
         *param_ptr = *param_ptr | optimize_mask;
         
         // 子参数优化
-        optimize_count = *(longlong *)(current_index + DATA_PROCESSING_OFFSET_EXTENDED + *(longlong *)(optimize_context + DATA_PROCESSING_OFFSET_SUBDATA)) -
-                       *(longlong *)(current_index + DATA_PROCESSING_OFFSET_BASE + *(longlong *)(optimize_context + DATA_PROCESSING_OFFSET_SUBDATA)) >> 3;
+        optimize_count = *(int64_t *)(current_index + DATA_PROCESSING_OFFSET_EXTENDED + *(int64_t *)(optimize_context + DATA_PROCESSING_OFFSET_SUBDATA)) -
+                       *(int64_t *)(current_index + DATA_PROCESSING_OFFSET_BASE + *(int64_t *)(optimize_context + DATA_PROCESSING_OFFSET_SUBDATA)) >> 3;
         
         if (optimize_count > 0) {
             optimize_count = optimize_count & 0xffffffff;
@@ -1199,18 +1199,18 @@ void RenderingSystem_SystemCleaner(void)
  * - 支持标记恢复功能
  * - 实现标记统计功能
  */
-void RenderingSystem_ParameterMarker(uint64_t mark_context, longlong mark_data, uint mark_mask, char recursive_flag)
+void RenderingSystem_ParameterMarker(uint64_t mark_context, int64_t mark_data, uint mark_mask, char recursive_flag)
 {
     // 标记状态初始化
-    ulonglong mark_count;
-    longlong current_index = 0;
+    uint64_t mark_count;
+    int64_t current_index = 0;
     
     // 设置标记标志
     *(uint *)(mark_data + RENDER_PARAM_OFFSET_FLAGS) = *(uint *)(mark_data + RENDER_PARAM_OFFSET_FLAGS) | mark_mask;
     
     // 递归标记
     if ((recursive_flag != '\0') && (*(int *)(mark_data + 0x8c) == 2)) {
-        mark_count = *(longlong *)(mark_data + 0xc0) - *(longlong *)(mark_data + 0xb8) >> 3;
+        mark_count = *(int64_t *)(mark_data + 0xc0) - *(int64_t *)(mark_data + 0xb8) >> 3;
         
         if (mark_count > 0) {
             mark_count = mark_count & 0xffffffff;
@@ -1218,7 +1218,7 @@ void RenderingSystem_ParameterMarker(uint64_t mark_context, longlong mark_data, 
             do {
                 // 递归标记参数
                 FUN_180329910(mark_context, 
-                             *(uint64_t *)(*(longlong *)(mark_data + 0xb8) + current_index), 
+                             *(uint64_t *)(*(int64_t *)(mark_data + 0xb8) + current_index), 
                              mark_mask, 
                              recursive_flag);
                 current_index += 8;
@@ -1272,7 +1272,7 @@ void RenderingSystem_ParameterHandler(void)
 {
     // 处理状态初始化
     uint process_count = 0;
-    ulonglong handler_count = (ulonglong)process_count;
+    uint64_t handler_count = (uint64_t)process_count;
     
     // 参数处理循环
     do {

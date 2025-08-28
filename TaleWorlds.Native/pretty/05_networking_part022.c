@@ -28,10 +28,10 @@ void FUN_180853bf0(uint64_t param_1,int param_2)
 
 
 
-uint64_t FUN_180853c50(longlong param_1,uint param_2)
+uint64_t FUN_180853c50(int64_t param_1,uint param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   char cVar2;
   uint64_t uVar3;
   uint64_t uVar4;
@@ -45,18 +45,18 @@ uint64_t FUN_180853c50(longlong param_1,uint param_2)
   
   uVar7 = (param_2 & 0xff | *(uint *)(param_1 + 0xc0)) & ~(param_2 & 0xff ^ 1);
   *(uint *)(param_1 + 0xc0) = uVar7;
-  if ((((uVar7 & 1) == 0) && (*(char *)(*(longlong *)(param_1 + 0x40) + 0x75) == '\0')) &&
-     ((*(longlong *)(param_1 + 0x60) == 0 || (cVar2 = FUN_1808530e0(), cVar2 == '\0')))) {
+  if ((((uVar7 & 1) == 0) && (*(char *)(*(int64_t *)(param_1 + 0x40) + 0x75) == '\0')) &&
+     ((*(int64_t *)(param_1 + 0x60) == 0 || (cVar2 = FUN_1808530e0(), cVar2 == '\0')))) {
     cVar2 = '\0';
   }
   else {
     cVar2 = '\x01';
   }
-  if (*(longlong *)(param_1 + 0x48) != 0) {
-    *(char *)(*(longlong *)(param_1 + 0x48) + 0x2b) = cVar2;
+  if (*(int64_t *)(param_1 + 0x48) != 0) {
+    *(char *)(*(int64_t *)(param_1 + 0x48) + 0x2b) = cVar2;
   }
   if (((cVar2 == '\0') && ((*(byte *)(param_1 + 0xc0) & 1) == 0)) &&
-     (lVar1 = *(longlong *)(param_1 + 0x40), *(char *)(lVar1 + 0x75) == '\0')) {
+     (lVar1 = *(int64_t *)(param_1 + 0x40), *(char *)(lVar1 + 0x75) == '\0')) {
     uStack_18 = *(int32_t *)(lVar1 + 0x10);
     uStack_14 = *(int32_t *)(lVar1 + 0x14);
     uStack_10 = *(int32_t *)(lVar1 + 0x18);
@@ -112,7 +112,7 @@ LAB_180853ee2:
 uint64_t FUN_180853d20(uint64_t *param_1,uint64_t param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   int iVar2;
   float fVar3;
   float fVar4;
@@ -178,7 +178,7 @@ uint64_t FUN_180853d20(uint64_t *param_1,uint64_t param_2)
 byte FUN_180853e60(uint64_t *param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   lVar1 = (**(code **)*param_1)();
   return *(byte *)(lVar1 + 0xc4) & 1;
@@ -186,10 +186,10 @@ byte FUN_180853e60(uint64_t *param_1)
 
 
 
-uint64_t FUN_180853e80(longlong param_1,char param_2)
+uint64_t FUN_180853e80(int64_t param_1,char param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   char cVar2;
   uint64_t uVar3;
   uint64_t uVar4;
@@ -200,11 +200,11 @@ uint64_t FUN_180853e80(longlong param_1,char param_2)
   int32_t uStack_10;
   int32_t uStack_c;
   
-  if (*(longlong *)(param_1 + 0x48) != 0) {
-    *(char *)(*(longlong *)(param_1 + 0x48) + 0x2b) = param_2;
+  if (*(int64_t *)(param_1 + 0x48) != 0) {
+    *(char *)(*(int64_t *)(param_1 + 0x48) + 0x2b) = param_2;
   }
   if (((param_2 == '\0') && ((*(byte *)(param_1 + 0xc0) & 1) == 0)) &&
-     (lVar1 = *(longlong *)(param_1 + 0x40), *(char *)(lVar1 + 0x75) == '\0')) {
+     (lVar1 = *(int64_t *)(param_1 + 0x40), *(char *)(lVar1 + 0x75) == '\0')) {
     uStack_18 = *(int32_t *)(lVar1 + 0x10);
     uStack_14 = *(int32_t *)(lVar1 + 0x14);
     uStack_10 = *(int32_t *)(lVar1 + 0x18);

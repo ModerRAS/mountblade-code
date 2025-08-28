@@ -22,7 +22,7 @@ void FUN_180428a75(void)
 
 
 
-uint64_t FUN_180428a90(longlong param_1)
+uint64_t FUN_180428a90(int64_t param_1)
 
 {
   byte *pbVar1;
@@ -44,7 +44,7 @@ uint64_t FUN_180428a90(longlong param_1)
   }
   else if (*(int *)(param_1 + 0x30) != 0) {
     FUN_18041ee20(param_1);
-    *(longlong *)(param_1 + 0xb8) = *(longlong *)(param_1 + 0xb8) + 1;
+    *(int64_t *)(param_1 + 0xb8) = *(int64_t *)(param_1 + 0xb8) + 1;
     pbVar2 = *(byte **)(param_1 + 0xb8);
     pbVar1 = *(byte **)(param_1 + 0xc0);
   }
@@ -78,7 +78,7 @@ uint64_t FUN_180428a90(longlong param_1)
   }
   if (bVar7 == 1) {
     if ((bVar3 - 1 & 0xf7) != 0) goto FUN_180428d1c;
-    if ((*(longlong *)(param_1 + 0x10) == 0) || (3 < *(int *)(param_1 + 0xc0) - (int)pbVar2)) {
+    if ((*(int64_t *)(param_1 + 0x10) == 0) || (3 < *(int *)(param_1 + 0xc0) - (int)pbVar2)) {
       pbVar2 = pbVar2 + 4;
       *(byte **)(param_1 + 0xb8) = pbVar2;
     }
@@ -101,11 +101,11 @@ uint64_t FUN_180428a90(longlong param_1)
         bVar3 = **(byte **)(param_1 + 0xb8);
         pbVar2 = *(byte **)(param_1 + 0xb8) + 1;
       }
-      pbVar1 = (byte *)((ulonglong)pbVar2 & 0xffffffff);
+      pbVar1 = (byte *)((uint64_t)pbVar2 & 0xffffffff);
     }
     if (((0x18 < bVar3) || ((0x1018100U >> (bVar3 & 0x1f) & 1) == 0)) && (bVar3 != 0x20))
     goto FUN_180428d1c;
-    if ((*(longlong *)(param_1 + 0x10) == 0) ||
+    if ((*(int64_t *)(param_1 + 0x10) == 0) ||
        (iVar8 = *(int *)(param_1 + 0xc0) - (int)pbVar1, 3 < iVar8)) {
       pbVar2 = pbVar2 + 4;
       goto LAB_180428c99;
@@ -116,7 +116,7 @@ uint64_t FUN_180428a90(longlong param_1)
   else {
     if ((((bVar3 - 2 & 0xf6) != 0) || (bVar3 == 0xb)) && (uVar6 = uVar4, bVar3 != 0xb))
     goto FUN_180428d1c;
-    if ((*(longlong *)(param_1 + 0x10) == 0) ||
+    if ((*(int64_t *)(param_1 + 0x10) == 0) ||
        (iVar8 = *(int *)(param_1 + 0xc0) - (int)pbVar2, 8 < iVar8)) {
       pbVar2 = pbVar2 + 9;
 LAB_180428c99:
@@ -160,15 +160,15 @@ FUN_180428d1c:
 
 
 
-ulonglong FUN_180428b2a(char *param_1)
+uint64_t FUN_180428b2a(char *param_1)
 
 {
   byte *pbVar1;
   char cVar2;
   byte bVar3;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   int iVar4;
-  ulonglong unaff_RBP;
+  uint64_t unaff_RBP;
   char unaff_DIL;
   int iVar5;
   byte *pbVar6;
@@ -188,7 +188,7 @@ ulonglong FUN_180428b2a(char *param_1)
   }
   if (unaff_DIL == '\x01') {
     if ((cVar2 - 1U & 0xf7) != 0) goto LAB_180428d12;
-    if (*(ulonglong *)(unaff_RBX + 0x10) == unaff_RBP) {
+    if (*(uint64_t *)(unaff_RBX + 0x10) == unaff_RBP) {
 LAB_180428bbc:
       pbVar1 = (byte *)(param_1 + 4);
       *(byte **)(unaff_RBX + 0xb8) = pbVar1;
@@ -213,11 +213,11 @@ LAB_180428bbc:
         bVar3 = **(byte **)(unaff_RBX + 0xb8);
         pbVar1 = *(byte **)(unaff_RBX + 0xb8) + 1;
       }
-      pbVar6 = (byte *)((ulonglong)pbVar1 & 0xffffffff);
+      pbVar6 = (byte *)((uint64_t)pbVar1 & 0xffffffff);
     }
     if (((0x18 < bVar3) || ((0x1018100U >> (bVar3 & 0x1f) & 1) == 0)) && (bVar3 != 0x20))
     goto LAB_180428d12;
-    if (*(ulonglong *)(unaff_RBX + 0x10) != unaff_RBP) {
+    if (*(uint64_t *)(unaff_RBX + 0x10) != unaff_RBP) {
       iVar5 = *(int *)(unaff_RBX + 0xc0) - (int)pbVar6;
       if (iVar5 < 4) {
         *(uint64_t *)(unaff_RBX + 0xb8) = *(uint64_t *)(unaff_RBX + 0xc0);
@@ -231,7 +231,7 @@ LAB_180428c99:
   }
   else {
     if ((((cVar2 - 2U & 0xf6) != 0) || (cVar2 == '\v')) && (cVar2 != '\v')) goto LAB_180428d12;
-    if (*(ulonglong *)(unaff_RBX + 0x10) == unaff_RBP) {
+    if (*(uint64_t *)(unaff_RBX + 0x10) == unaff_RBP) {
 LAB_180428c95:
       pbVar1 = (byte *)(param_1 + 9);
       goto LAB_180428c99;
@@ -279,7 +279,7 @@ LAB_180428d12:
 int32_t FUN_180428d1c(void)
 
 {
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   int32_t unaff_EBP;
   
   *(uint64_t *)(unaff_RBX + 0xb8) = *(uint64_t *)(unaff_RBX + 200);

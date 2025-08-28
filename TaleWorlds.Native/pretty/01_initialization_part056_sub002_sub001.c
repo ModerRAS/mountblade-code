@@ -104,7 +104,7 @@
 typedef uint EventStatus;                    // 事件状态
 typedef uint EventType;                      // 事件类型
 typedef uint EventPriority;                  // 事件优先级
-typedef ulonglong EventHandle;               // 事件句柄
+typedef uint64_t EventHandle;               // 事件句柄
 typedef void* CallbackFunction;              // 回调函数指针
 typedef int EventErrorCode;                 // 事件错误代码
 
@@ -121,7 +121,7 @@ typedef struct {
     uint event_type;                        // 事件类型
     uint event_priority;                    // 事件优先级
     uint event_size;                        // 事件大小
-    ulonglong event_timestamp;              // 事件时间戳
+    uint64_t event_timestamp;              // 事件时间戳
     void* event_data;                       // 事件数据指针
     void* event_source;                     // 事件源指针
 } EventData;
@@ -136,7 +136,7 @@ typedef struct {
     CallbackFunction callback_func;          // 回调函数指针
     void* callback_context;                 // 回调上下文
     uint callback_flags;                    // 回调标志
-    ulonglong callback_timestamp;            // 回调注册时间戳
+    uint64_t callback_timestamp;            // 回调注册时间戳
 } CallbackEntry;
 
 /**
@@ -324,7 +324,7 @@ uint FUN_18016ea30(CallbackEntry* callback_entry)
  * @param queue_handle 队列句柄
  * @return 队列处理状态码
  */
-uint FUN_18016ea70(ulonglong queue_handle)
+uint FUN_18016ea70(uint64_t queue_handle)
 {
     // 语义化变量定义
     EventQueueManager* queue;               // 事件队列

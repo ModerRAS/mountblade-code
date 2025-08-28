@@ -347,7 +347,7 @@ uint64_t FUN_18006f620(uint64_t param_1, uint64_t param_2)
     
     // 检查线程同步
     if (system_context != NULL) {
-        owner_thread_id = *(int*)(**(longlong**)((uint8_t*)system_context + 8) + THREAD_ID_OFFSET);
+        owner_thread_id = *(int*)(**(int64_t**)((uint8_t*)system_context + 8) + THREAD_ID_OFFSET);
         thread_id = _Thrd_id();
         debug_mode = thread_id == owner_thread_id;
     }
@@ -466,7 +466,7 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 验证线程同步
     if (system_context != NULL) {
-        owner_thread_id = *(int*)(**(longlong**)((uint8_t*)system_context + 8) + THREAD_ID_OFFSET);
+        owner_thread_id = *(int*)(**(int64_t**)((uint8_t*)system_context + 8) + THREAD_ID_OFFSET);
         thread_id = _Thrd_id();
         is_main_thread = thread_id == owner_thread_id;
     }
@@ -659,7 +659,7 @@ uint64_t FUN_18006ff80(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 验证线程同步
     if (system_context != NULL) {
-        owner_thread_id = *(int*)(**(longlong**)((uint8_t*)system_context + 8) + THREAD_ID_OFFSET);
+        owner_thread_id = *(int*)(**(int64_t**)((uint8_t*)system_context + 8) + THREAD_ID_OFFSET);
         thread_id = _Thrd_id();
         is_main_thread = thread_id == owner_thread_id;
     }
@@ -842,7 +842,7 @@ void FUN_180070680(uint64_t param_1, uint64_t param_2)
     
     // 验证线程同步
     if (system_context_ptr != NULL) {
-        owner_thread_id = *(int*)(**(longlong**)((uint8_t*)system_context_ptr + 8) + THREAD_ID_OFFSET);
+        owner_thread_id = *(int*)(**(int64_t**)((uint8_t*)system_context_ptr + 8) + THREAD_ID_OFFSET);
         thread_id = _Thrd_id();
         is_main_thread = thread_id == owner_thread_id;
     }

@@ -3,12 +3,12 @@
 
 // 02_core_engine_part072.c - 1 个函数
 
-// 函数: void FUN_180104cb0(longlong param_1,longlong param_2)
-void FUN_180104cb0(longlong param_1,longlong param_2)
+// 函数: void FUN_180104cb0(int64_t param_1,int64_t param_2)
+void FUN_180104cb0(int64_t param_1,int64_t param_2)
 
 {
   void *puStack_30;
-  longlong lStack_28;
+  int64_t lStack_28;
   int iStack_20;
   uint64_t uStack_18;
   
@@ -20,7 +20,7 @@ void FUN_180104cb0(longlong param_1,longlong param_2)
   iStack_20 = 0;
   System_DataHandler(&puStack_30,&unknown_var_7208_ptr,&unknown_var_7856_ptr,*(int32_t *)(param_1 + 0x5b0),
                 0xfffffffffffffffe);
-  fwrite(lStack_28,1,(longlong)iStack_20,*(uint64_t *)(param_2 + 8));
+  fwrite(lStack_28,1,(int64_t)iStack_20,*(uint64_t *)(param_2 + 8));
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return

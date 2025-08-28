@@ -435,7 +435,7 @@ void CoreEngine_SystemInitializer(uint64_t *param_1, uint64_t param_2, uint64_t 
  */
 void CoreEngine_ConfigModeSetter(uint64_t param_1, int param_2)
 {
-    longlong system_handle;
+    int64_t system_handle;
     int32_t config_param;
     int32_t mode_param;
     int32_t option_param;

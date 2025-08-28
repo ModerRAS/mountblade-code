@@ -78,7 +78,7 @@
  * - 防止重复清理和内存访问冲突
  * - 提供错误处理和恢复机制
  */
-void DataStruct_ClearAndReset(longlong *param_1)
+void DataStruct_ClearAndReset(int64_t *param_1)
 
 {
   uint64_t *data_end_ptr;
@@ -146,12 +146,12 @@ void DataStruct_ClearAndReset(longlong *param_1)
  * - 减少内存分配和释放次数
  * - 优化内存访问模式
  */
-void DataStruct_ResizeLarge(longlong *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+void DataStruct_ResizeLarge(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t *data_end_ptr;
-  ulonglong current_capacity;
-  longlong base_ptr;
+  uint64_t current_capacity;
+  int64_t base_ptr;
   uint64_t *target_ptr;
   
   // 获取数据结构的结束指针和基地址
@@ -159,7 +159,7 @@ void DataStruct_ResizeLarge(longlong *param_1,ulonglong param_2,uint64_t param_3
   base_ptr = *param_1;
   
   // 计算当前容量（以64字节为单位）
-  current_capacity = (longlong)data_end_ptr - base_ptr >> 6;
+  current_capacity = (int64_t)data_end_ptr - base_ptr >> 6;
   
   // 检查是否需要扩容
   if (current_capacity < param_2) {
@@ -230,13 +230,13 @@ void DataStruct_ResizeLarge(longlong *param_1,ulonglong param_2,uint64_t param_3
  * - 提供数据完整性保护
  * - 支持批量数据处理
  */
-void DataStruct_ResizeSmall(longlong *param_1,ulonglong param_2)
+void DataStruct_ResizeSmall(int64_t *param_1,uint64_t param_2)
 
 {
-  longlong current_end;
-  ulonglong current_capacity;
-  longlong base_ptr;
-  longlong target_ptr;
+  int64_t current_end;
+  uint64_t current_capacity;
+  int64_t base_ptr;
+  int64_t target_ptr;
   
   // 获取当前数据结构的结束位置和基地址
   current_end = param_1[1];
@@ -248,7 +248,7 @@ void DataStruct_ResizeSmall(longlong *param_1,ulonglong param_2)
   // 检查是否需要扩容
   if (current_capacity < param_2) {
     // 计算需要增加的容量
-    longlong capacity_increase = param_2 - current_capacity;
+    int64_t capacity_increase = param_2 - current_capacity;
     
     // 调用内存重分配函数进行扩容
     FUN_180263de0(param_1,capacity_increase,current_end - base_ptr,capacity_increase,0xfffffffffffffffe);
@@ -266,7 +266,7 @@ void DataStruct_ResizeSmall(longlong *param_1,ulonglong param_2)
         *(uint64_t *)(target_ptr + 8) = &system_data_buffer_ptr;
         
         // 检查数据块是否正在使用
-        if (*(longlong *)(target_ptr + 0x10) != 0) {
+        if (*(int64_t *)(target_ptr + 0x10) != 0) {
           // 如果数据块正在使用，触发错误处理
           FUN_18064e900();
         }
@@ -326,7 +326,7 @@ void DataStruct_ResizeSmall(longlong *param_1,ulonglong param_2)
  * - 提供错误处理和恢复机制
  * - 确保数据的一致性
  */
-void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
+void MemoryManager_ReallocateLarge(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t *current_end;
@@ -334,25 +334,25 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
   int32_t field_value1;
   int32_t field_value2;
   int32_t field_value3;
-  longlong offset;
+  int64_t offset;
   uint64_t *new_buffer;
   uint64_t *copy_src;
   uint64_t *copy_dst;
   uint64_t *data_start;
-  ulonglong new_capacity;
-  ulonglong required_capacity;
+  uint64_t new_capacity;
+  uint64_t required_capacity;
   
   // 获取当前内存块的结束位置
   current_end = (uint64_t *)param_1[1];
   
   // 检查是否需要扩容
-  if ((ulonglong)(param_1[2] - (longlong)current_end >> 6) < param_2) {
+  if ((uint64_t)(param_1[2] - (int64_t)current_end >> 6) < param_2) {
     
     // 获取当前内存块的起始位置
     data_start = (uint64_t *)*param_1;
     
     // 计算当前容量
-    offset = (longlong)current_end - (longlong)data_start >> 6;
+    offset = (int64_t)current_end - (int64_t)data_start >> 6;
     required_capacity = offset * 2;
     
     // 确保最小容量为1
@@ -379,24 +379,24 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
     
     // 如果存在现有数据，进行数据迁移
     if (data_start != current_end) {
-      offset = (longlong)new_buffer - (longlong)data_start;
+      offset = (int64_t)new_buffer - (int64_t)data_start;
       copy_src = data_start + 1;
       
       do {
         // 初始化新内存块的状态
         *copy_dst = &system_state_ptr;
-        *(uint64_t *)(offset + (longlong)copy_src) = 0;
-        *(int32_t *)(offset + 8 + (longlong)copy_src) = 0;
+        *(uint64_t *)(offset + (int64_t)copy_src) = 0;
+        *(int32_t *)(offset + 8 + (int64_t)copy_src) = 0;
         *copy_dst = &system_data_buffer_ptr;
         
         // 迁移数据字段
-        *(uint64_t *)(offset + 0x10 + (longlong)copy_src) = 0;
-        *(uint64_t *)(offset + (longlong)copy_src) = 0;
-        *(int32_t *)(offset + 8 + (longlong)copy_src) = 0;
-        *(int32_t *)(offset + 8 + (longlong)copy_src) = *(int32_t *)(copy_src + 1);
-        *(uint64_t *)(offset + (longlong)copy_src) = *copy_src;
-        *(int32_t *)(offset + 0x14 + (longlong)copy_src) = *(int32_t *)((longlong)copy_src + 0x14);
-        *(int32_t *)(offset + 0x10 + (longlong)copy_src) = *(int32_t *)(copy_src + 2);
+        *(uint64_t *)(offset + 0x10 + (int64_t)copy_src) = 0;
+        *(uint64_t *)(offset + (int64_t)copy_src) = 0;
+        *(int32_t *)(offset + 8 + (int64_t)copy_src) = 0;
+        *(int32_t *)(offset + 8 + (int64_t)copy_src) = *(int32_t *)(copy_src + 1);
+        *(uint64_t *)(offset + (int64_t)copy_src) = *copy_src;
+        *(int32_t *)(offset + 0x14 + (int64_t)copy_src) = *(int32_t *)((int64_t)copy_src + 0x14);
+        *(int32_t *)(offset + 0x10 + (int64_t)copy_src) = *(int32_t *)(copy_src + 2);
         
         // 清理原始数据
         *(int32_t *)(copy_src + 1) = 0;
@@ -404,20 +404,20 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
         copy_src[2] = 0;
         
         // 迁移剩余字段
-        *(int8_t *)(offset + 0x18 + (longlong)copy_src) = *(int8_t *)(copy_src + 3);
-        *(int8_t *)(offset + 0x19 + (longlong)copy_src) = *(int8_t *)((longlong)copy_src + 0x19);
-        *(int8_t *)(offset + 0x1a + (longlong)copy_src) = *(int8_t *)((longlong)copy_src + 0x1a);
-        *(int8_t *)(offset + 0x1b + (longlong)copy_src) = *(int8_t *)((longlong)copy_src + 0x1b);
-        *(int8_t *)(offset + 0x1c + (longlong)copy_src) = *(int8_t *)((longlong)copy_src + 0x1c);
-        *(int8_t *)(offset + 0x1d + (longlong)copy_src) = *(int8_t *)((longlong)copy_src + 0x1d);
-        *(int32_t *)(offset + 0x20 + (longlong)copy_src) = *(int32_t *)(copy_src + 4);
+        *(int8_t *)(offset + 0x18 + (int64_t)copy_src) = *(int8_t *)(copy_src + 3);
+        *(int8_t *)(offset + 0x19 + (int64_t)copy_src) = *(int8_t *)((int64_t)copy_src + 0x19);
+        *(int8_t *)(offset + 0x1a + (int64_t)copy_src) = *(int8_t *)((int64_t)copy_src + 0x1a);
+        *(int8_t *)(offset + 0x1b + (int64_t)copy_src) = *(int8_t *)((int64_t)copy_src + 0x1b);
+        *(int8_t *)(offset + 0x1c + (int64_t)copy_src) = *(int8_t *)((int64_t)copy_src + 0x1c);
+        *(int8_t *)(offset + 0x1d + (int64_t)copy_src) = *(int8_t *)((int64_t)copy_src + 0x1d);
+        *(int32_t *)(offset + 0x20 + (int64_t)copy_src) = *(int32_t *)(copy_src + 4);
         
         // 迁移扩展字段
         field_value1 = *(int32_t *)(copy_src + 5);
-        field_value2 = *(int32_t *)((longlong)copy_src + 0x2c);
+        field_value2 = *(int32_t *)((int64_t)copy_src + 0x2c);
         field_value3 = *(int32_t *)(copy_src + 6);
-        field_ptr = (int32_t *)((longlong)copy_src + offset + 0x24);
-        *field_ptr = *(int32_t *)((longlong)copy_src + 0x24);
+        field_ptr = (int32_t *)((int64_t)copy_src + offset + 0x24);
+        *field_ptr = *(int32_t *)((int64_t)copy_src + 0x24);
         field_ptr[1] = field_value1;
         field_ptr[2] = field_value2;
         field_ptr[3] = field_value3;
@@ -442,10 +442,10 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
         *current_end = 0;
         *(int32_t *)(current_end + 1) = 0;
         *(int32_t *)(current_end + 3) = 0;
-        *(int16_t *)((longlong)current_end + 0x1c) = 0x100;
+        *(int16_t *)((int64_t)current_end + 0x1c) = 0x100;
         *(int32_t *)(current_end + 4) = 0;
-        *(uint64_t *)((longlong)current_end + 0x24) = 0;
-        *(uint64_t *)((longlong)current_end + 0x2c) = 0;
+        *(uint64_t *)((int64_t)current_end + 0x24) = 0;
+        *(uint64_t *)((int64_t)current_end + 0x2c) = 0;
         
         current_end = current_end + 8;
         required_capacity = required_capacity - 1;
@@ -496,10 +496,10 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
         current_end[1] = 0;
         *(int32_t *)(current_end + 2) = 0;
         *(int32_t *)(current_end + 4) = 0;
-        *(int16_t *)((longlong)current_end + 0x24) = 0x100;
+        *(int16_t *)((int64_t)current_end + 0x24) = 0x100;
         *(int32_t *)(current_end + 5) = 0;
-        *(uint64_t *)((longlong)current_end + 0x2c) = 0;
-        *(uint64_t *)((longlong)current_end + 0x34) = 0;
+        *(uint64_t *)((int64_t)current_end + 0x2c) = 0;
+        *(uint64_t *)((int64_t)current_end + 0x34) = 0;
         
         current_end = current_end + 8;
         required_capacity = required_capacity - 1;
@@ -548,31 +548,31 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
  * - 减少内存分配和释放次数
  * - 优化内存访问模式
  */
-void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
+void MemoryManager_ReallocateSmall(int64_t *param_1,uint64_t param_2)
 
 {
   int8_t *current_end;
   int8_t *new_buffer_start;
   int8_t *new_buffer_ptr;
   uint64_t *data_ptr;
-  longlong offset;
-  longlong base_ptr;
-  ulonglong new_capacity;
+  int64_t offset;
+  int64_t base_ptr;
+  uint64_t new_capacity;
   int8_t *copy_src;
   int8_t *copy_dst;
-  ulonglong init_count;
+  uint64_t init_count;
   
   // 获取当前内存块的结束位置
   current_end = (int8_t *)param_1[1];
   
   // 检查是否需要扩容
-  if ((ulonglong)((param_1[2] - (longlong)current_end) / 0x28) < param_2) {
+  if ((uint64_t)((param_1[2] - (int64_t)current_end) / 0x28) < param_2) {
     
     // 获取当前内存块的起始位置
     new_buffer_start = (int8_t *)*param_1;
     
     // 计算当前容量
-    offset = ((longlong)current_end - (longlong)new_buffer_start) / 0x28;
+    offset = ((int64_t)current_end - (int64_t)new_buffer_start) / 0x28;
     new_capacity = offset * 2;
     
     // 确保最小容量为1
@@ -598,12 +598,12 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
     
     // 如果存在现有数据，进行数据迁移
     if (new_buffer_start != current_end) {
-      offset = (longlong)new_buffer_start - (longlong)copy_dst;
+      offset = (int64_t)new_buffer_start - (int64_t)copy_dst;
       data_ptr = (uint64_t *)(new_buffer_start + 0x10);
       
       do {
         // 迁移数据
-        *new_buffer_ptr = *(int8_t *)(offset + -0x10 + (longlong)data_ptr);
+        *new_buffer_ptr = *(int8_t *)(offset + -0x10 + (int64_t)data_ptr);
         data_ptr[-1] = &system_state_ptr;
         *data_ptr = 0;
         *(int32_t *)(data_ptr + 1) = 0;
@@ -611,18 +611,18 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
         data_ptr[2] = 0;
         *data_ptr = 0;
         *(int32_t *)(data_ptr + 1) = 0;
-        *(int32_t *)(data_ptr + 1) = *(int32_t *)(offset + 8 + (longlong)data_ptr);
-        *data_ptr = *(uint64_t *)(offset + (longlong)data_ptr);
-        *(int32_t *)((longlong)data_ptr + 0x14) = *(int32_t *)(offset + 0x14 + (longlong)data_ptr);
-        *(int32_t *)(data_ptr + 2) = *(int32_t *)(offset + 0x10 + (longlong)data_ptr);
+        *(int32_t *)(data_ptr + 1) = *(int32_t *)(offset + 8 + (int64_t)data_ptr);
+        *data_ptr = *(uint64_t *)(offset + (int64_t)data_ptr);
+        *(int32_t *)((int64_t)data_ptr + 0x14) = *(int32_t *)(offset + 0x14 + (int64_t)data_ptr);
+        *(int32_t *)(data_ptr + 2) = *(int32_t *)(offset + 0x10 + (int64_t)data_ptr);
         
         // 清理原始数据
-        *(int32_t *)(offset + 8 + (longlong)data_ptr) = 0;
-        *(uint64_t *)(offset + (longlong)data_ptr) = 0;
-        *(uint64_t *)(offset + 0x10 + (longlong)data_ptr) = 0;
+        *(int32_t *)(offset + 8 + (int64_t)data_ptr) = 0;
+        *(uint64_t *)(offset + (int64_t)data_ptr) = 0;
+        *(uint64_t *)(offset + 0x10 + (int64_t)data_ptr) = 0;
         
         new_buffer_ptr = new_buffer_ptr + 0x28;
-        new_buffer_start = (int8_t *)((longlong)data_ptr + offset + 0x18);
+        new_buffer_start = (int8_t *)((int64_t)data_ptr + offset + 0x18);
         data_ptr = data_ptr + 5;
       } while (new_buffer_start != current_end);
     }
@@ -654,7 +654,7 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
       
       do {
         *(uint64_t *)(base_ptr + 8) = &system_data_buffer_ptr;
-        if (*(longlong *)(base_ptr + 0x10) != 0) {
+        if (*(int64_t *)(base_ptr + 0x10) != 0) {
           FUN_18064e900();
         }
         *(uint64_t *)(base_ptr + 0x10) = 0;
@@ -672,9 +672,9 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
     }
     
     // 更新内存管理器的指针
-    *param_1 = (longlong)copy_dst;
-    param_1[1] = (longlong)(new_buffer_ptr + param_2 * 0x28);
-    param_1[2] = (longlong)(copy_dst + new_capacity * 0x28);
+    *param_1 = (int64_t)copy_dst;
+    param_1[1] = (int64_t)(new_buffer_ptr + param_2 * 0x28);
+    param_1[2] = (int64_t)(copy_dst + new_capacity * 0x28);
   }
   else {
     // 在现有容量内扩展数据块
@@ -700,7 +700,7 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
       current_end = (int8_t *)param_1[1];
     }
     
-    param_1[1] = (longlong)(current_end + param_2 * 0x28);
+    param_1[1] = (int64_t)(current_end + param_2 * 0x28);
   }
   
   return;
@@ -741,36 +741,36 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
  * - 提供错误处理和恢复
  * - 确保数据的一致性
  */
-ulonglong * HashTable_LookupEntry(uint64_t param_1,ulonglong *param_2,ulonglong *param_3)
+uint64_t * HashTable_LookupEntry(uint64_t param_1,uint64_t *param_2,uint64_t *param_3)
 
 {
-  longlong table_base;
-  longlong *entry_data;
-  ulonglong *current_entry;
-  longlong table_size;
+  int64_t table_base;
+  int64_t *entry_data;
+  uint64_t *current_entry;
+  int64_t table_size;
   
   // 获取哈希表的基础地址
-  table_base = *(longlong *)(system_system_data_pointer + 8);
+  table_base = *(int64_t *)(system_system_data_pointer + 8);
   
   // 计算哈希索引并获取对应的条目
-  current_entry = *(ulonglong **)
-            (table_base + ((param_3[1] ^ *param_3) % (ulonglong)*(uint *)(system_system_data_pointer + 0x10)) * 8);
+  current_entry = *(uint64_t **)
+            (table_base + ((param_3[1] ^ *param_3) % (uint64_t)*(uint *)(system_system_data_pointer + 0x10)) * 8);
   
   // 遍历哈希链表查找匹配的条目
   do {
-    if (current_entry == (ulonglong *)0x0) {
+    if (current_entry == (uint64_t *)0x0) {
       // 未找到匹配的条目
-      table_size = *(longlong *)(system_system_data_pointer + 0x10);
-      current_entry = *(ulonglong **)(table_base + table_size * 8);
+      table_size = *(int64_t *)(system_system_data_pointer + 0x10);
+      current_entry = *(uint64_t **)(table_base + table_size * 8);
       
       // 处理未找到的情况
-      if (current_entry == *(ulonglong **)(table_base + table_size * 8)) {
+      if (current_entry == *(uint64_t **)(table_base + table_size * 8)) {
         *param_2 = 0;
       }
       else {
-        entry_data = (longlong *)current_entry[2];
-        *param_2 = (ulonglong)entry_data;
-        if (entry_data != (longlong *)0x0) {
+        entry_data = (int64_t *)current_entry[2];
+        *param_2 = (uint64_t)entry_data;
+        if (entry_data != (int64_t *)0x0) {
           // 调用条目的处理函数
           (**(code **)(*entry_data + 0x28))();
         }
@@ -780,16 +780,16 @@ ulonglong * HashTable_LookupEntry(uint64_t param_1,ulonglong *param_2,ulonglong 
     
     // 检查是否找到匹配的条目
     if ((*param_3 == *current_entry) && (param_3[1] == current_entry[1])) {
-      if (current_entry != (ulonglong *)0x0) {
-        table_size = *(longlong *)(system_system_data_pointer + 0x10);
+      if (current_entry != (uint64_t *)0x0) {
+        table_size = *(int64_t *)(system_system_data_pointer + 0x10);
         // 找到匹配条目，进行处理
-        if (current_entry == *(ulonglong **)(table_base + table_size * 8)) {
+        if (current_entry == *(uint64_t **)(table_base + table_size * 8)) {
           *param_2 = 0;
         }
         else {
-          entry_data = (longlong *)current_entry[2];
-          *param_2 = (ulonglong)entry_data;
-          if (entry_data != (longlong *)0x0) {
+          entry_data = (int64_t *)current_entry[2];
+          *param_2 = (uint64_t)entry_data;
+          if (entry_data != (int64_t *)0x0) {
             // 调用条目的处理函数
             (**(code **)(*entry_data + 0x28))();
           }
@@ -797,15 +797,15 @@ ulonglong * HashTable_LookupEntry(uint64_t param_1,ulonglong *param_2,ulonglong 
       }
       else {
         // 处理特殊情况
-        table_size = *(longlong *)(system_system_data_pointer + 0x10);
-        current_entry = *(ulonglong **)(table_base + table_size * 8);
-        if (current_entry == *(ulonglong **)(table_base + table_size * 8)) {
+        table_size = *(int64_t *)(system_system_data_pointer + 0x10);
+        current_entry = *(uint64_t **)(table_base + table_size * 8);
+        if (current_entry == *(uint64_t **)(table_base + table_size * 8)) {
           *param_2 = 0;
         }
         else {
-          entry_data = (longlong *)current_entry[2];
-          *param_2 = (ulonglong)entry_data;
-          if (entry_data != (longlong *)0x0) {
+          entry_data = (int64_t *)current_entry[2];
+          *param_2 = (uint64_t)entry_data;
+          if (entry_data != (int64_t *)0x0) {
             // 调用条目的处理函数
             (**(code **)(*entry_data + 0x28))();
           }
@@ -815,7 +815,7 @@ ulonglong * HashTable_LookupEntry(uint64_t param_1,ulonglong *param_2,ulonglong 
     }
     
     // 移动到链表中的下一个条目
-    current_entry = (ulonglong *)current_entry[3];
+    current_entry = (uint64_t *)current_entry[3];
   } while( true );
 }
 

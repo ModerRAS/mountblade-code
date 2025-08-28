@@ -102,7 +102,7 @@ static CoordinateMapping g_coord_mapping = {0};
  * @param system_handle 系统句柄
  * @param transform_data 变换数据指针
  */
-void AdvancedDataTransformer(longlong system_handle, longlong transform_data)
+void AdvancedDataTransformer(int64_t system_handle, int64_t transform_data)
 {
     float min_x, max_x, min_y, max_y;
     float scale_x, scale_y, offset_x, offset_y;
@@ -197,7 +197,7 @@ void AdvancedDataTransformer(longlong system_handle, longlong transform_data)
  * @param render_handle 渲染句柄
  * @param time_scale 时间缩放因子
  */
-void RenderSystemParameterProcessor(longlong render_handle, float time_scale)
+void RenderSystemParameterProcessor(int64_t render_handle, float time_scale)
 {
     float* source_data;
     float* target_data;
@@ -282,7 +282,7 @@ void SystemEmptyOperation(void)
  * @param target_coords 目标坐标指针
  * @param blend_factor 混合因子
  */
-void AdvancedCoordinateMapper(longlong system_handle, float* source_coords, float* target_coords, float blend_factor)
+void AdvancedCoordinateMapper(int64_t system_handle, float* source_coords, float* target_coords, float blend_factor)
 {
     float* source_data;
     float* target_data;
@@ -381,7 +381,7 @@ void AdvancedCoordinateMapper(longlong system_handle, float* source_coords, floa
  * @param time_scale 时间缩放
  * @param blend_factor 混合因子
  */
-void AdvancedRenderingTransformer(longlong render_context, float* source_coords, 
+void AdvancedRenderingTransformer(int64_t render_context, float* source_coords, 
                                 float* target_coords, float time_scale, float blend_factor)
 {
     float* source_data;

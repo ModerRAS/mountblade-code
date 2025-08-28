@@ -168,12 +168,12 @@ float rendering_system_calculate_interpolation(uint32_t* state_data, float targe
 
 // 渲染系统状态和参数函数
 int rendering_system_set_render_target(int64_t* render_context, int64_t render_target);
-uint8_t rendering_system_check_state(longlong context, longlong parameter);
-void rendering_system_set_parameters(longlong render_context, int32_t param_a, int32_t param_b, char param_c);
+uint8_t rendering_system_check_state(int64_t context, int64_t parameter);
+void rendering_system_set_parameters(int64_t render_context, int32_t param_a, int32_t param_b, char param_c);
 
 // 渲染系统队列处理函数
-void rendering_system_process_queue(longlong *queue_ptr);
-void rendering_system_cleanup_queue(longlong *queue_ptr);
+void rendering_system_process_queue(int64_t *queue_ptr);
+void rendering_system_cleanup_queue(int64_t *queue_ptr);
 
 // ============================================================================
 // 函数别名定义 - 提供更具描述性的函数名称
@@ -226,9 +226,9 @@ void rendering_system_cleanup_queue(longlong *queue_ptr);
  * 线程安全: 函数设计为线程安全的初始化操作
  */
 void rendering_system_initialize(void) {
-    longlong *queue_ptr;
+    int64_t *queue_ptr;
     int parameter_type;
-    longlong *command_ptr;
+    int64_t *command_ptr;
     int render_mode;
     int32_t param_a;
     int32_t param_b;
@@ -239,14 +239,14 @@ void rendering_system_initialize(void) {
     int32_t param_g;
     int32_t param_h;
     char state_flag;
-    longlong context_ptr;
-    longlong result_value;
+    int64_t context_ptr;
+    int64_t result_value;
     uint64_t render_context;
-    longlong *next_command;
-    longlong *base_context;
-    longlong queue_base;
+    int64_t *next_command;
+    int64_t *base_context;
+    int64_t queue_base;
     int queue_count;
-    longlong render_object;
+    int64_t render_object;
     float scale_factor;
     float time_value;
     float calculated_value;
@@ -258,12 +258,12 @@ void rendering_system_initialize(void) {
     int32_t queue_param_b;
     int processing_mode;
     uint64_t context_data;
-    longlong queue_context;
+    int64_t queue_context;
     int render_parameter;
     float accumulated_time;
     float final_time;
     int matrix_index;
-    ulonglong stack_ptr;
+    uint64_t stack_ptr;
     int32_t stack_param_a;
     int32_t stack_param_b;
     int32_t stack_param_c;
@@ -271,8 +271,8 @@ void rendering_system_initialize(void) {
     
     // 初始化渲染模式和参数
     render_mode = render_parameter;
-    queue_ptr = (longlong *)(queue_base + 0x38);
-    next_command = (longlong *)(context_ptr + -8);
+    queue_ptr = (int64_t *)(queue_base + 0x38);
+    next_command = (int64_t *)(context_ptr + -8);
     if (context_ptr == 0) {
         next_command = base_context;
     }
@@ -285,7 +285,7 @@ void rendering_system_initialize(void) {
     param_c = stack_param_c;
     param_b = stack_param_b;
     param_a = stack_param_a;
-    if (next_command != (longlong *)0x0) {
+    if (next_command != (int64_t *)0x0) {
         command_ptr = next_command + 1;
         param_e = queue_param_b;
         param_f = queue_param_a;
@@ -297,7 +297,7 @@ void rendering_system_initialize(void) {
     while (stack_param_c = param_h, stack_param_d = param_g, stack_param_a = param_f,
            stack_param_b = param_e, processed_value = base_time, command_ptr != queue_ptr) {
         next_command = command_ptr + -1;
-        if (command_ptr == (longlong *)0x0) {
+        if (command_ptr == (int64_t *)0x0) {
             next_command = base_context;
         }
         scale_factor = (float)(**(code **)(*next_command + 8))(next_command);
@@ -339,7 +339,7 @@ void rendering_system_initialize(void) {
         param_c = stack_param_c;
         param_d = stack_param_d;
         if (command_ptr == queue_ptr) break;
-        next_command = (longlong *)(*command_ptr + -8);
+        next_command = (int64_t *)(*command_ptr + -8);
         if (*command_ptr == 0) {
             next_command = base_context;
         }
@@ -349,7 +349,7 @@ void rendering_system_initialize(void) {
         param_g = stack_param_d;
         param_h = stack_param_c;
         base_time = processed_value;
-        if (next_command != (longlong *)0x0) {
+        if (next_command != (int64_t *)0x0) {
             command_ptr = next_command + 1;
         }
     }
@@ -363,16 +363,16 @@ void rendering_system_initialize(void) {
     
     // 插值计算和处理
     do {
-        calculated_value = *(float *)(&render_parameter + 0x12 + (longlong)base_context * 4);
+        calculated_value = *(float *)(&render_parameter + 0x12 + (int64_t)base_context * 4);
         if (calculated_value != queue_time) {
             time_value = (float)rendering_system_calculate_interpolation(&render_parameter,
-                                                                         *(int32_t *)(&render_parameter + 0x10 + (longlong)base_context * 4),
+                                                                         *(int32_t *)(&render_parameter + 0x10 + (int64_t)base_context * 4),
                                                                          render_mode + 1);
             time_value = (time_value - scale_factor) * calculated_value;
             scale_factor = scale_factor + time_value;
         }
-        base_context = (longlong *)((longlong)base_context + 1);
-    } while ((longlong)base_context < 2);
+        base_context = (int64_t *)((int64_t)base_context + 1);
+    } while ((int64_t)base_context < 2);
     
     // 最终结果计算和应用
     if (queue_count == 1) {
@@ -397,11 +397,11 @@ void rendering_system_initialize(void) {
             func_0x0001808b20c0(queue_base, calculated_value, render_context);
         }
         else {
-            (**(code **)(**(longlong **)(queue_base + 0x28) + 0x10))
-                      (*(longlong **)(queue_base + 0x28), queue_base);
+            (**(code **)(**(int64_t **)(queue_base + 0x28) + 0x10))
+                      (*(int64_t **)(queue_base + 0x28), queue_base);
         }
     }
-    func_0x0001808fc050(stack_ptr ^ (ulonglong)&render_parameter);
+    func_0x0001808fc050(stack_ptr ^ (uint64_t)&render_parameter);
 }
 
 /**
@@ -424,9 +424,9 @@ void rendering_system_initialize(void) {
  * 线程安全: 函数设计为线程安全的清理操作
  */
 void rendering_system_cleanup(void) {
-    longlong *queue_ptr;
+    int64_t *queue_ptr;
     int parameter_type;
-    longlong *command_ptr;
+    int64_t *command_ptr;
     int render_mode;
     int32_t param_a;
     int32_t param_b;
@@ -437,14 +437,14 @@ void rendering_system_cleanup(void) {
     int32_t param_g;
     int32_t param_h;
     char state_flag;
-    longlong context_ptr;
-    longlong result_value;
+    int64_t context_ptr;
+    int64_t result_value;
     uint64_t render_context;
-    longlong *next_command;
-    longlong *base_context;
-    longlong queue_base;
+    int64_t *next_command;
+    int64_t *base_context;
+    int64_t queue_base;
     int queue_count;
-    longlong render_object;
+    int64_t render_object;
     float scale_factor;
     float time_value;
     float calculated_value;
@@ -456,12 +456,12 @@ void rendering_system_cleanup(void) {
     int32_t queue_param_b;
     int processing_mode;
     uint64_t context_data;
-    longlong queue_context;
+    int64_t queue_context;
     int render_parameter;
     float accumulated_time;
     float final_time;
     int matrix_index;
-    ulonglong stack_ptr;
+    uint64_t stack_ptr;
     int32_t stack_param_a;
     int32_t stack_param_b;
     int32_t stack_param_c;
@@ -470,8 +470,8 @@ void rendering_system_cleanup(void) {
     
     // 初始化清理参数
     render_mode = render_parameter;
-    queue_ptr = (longlong *)(queue_base + 0x38);
-    next_command = (longlong *)(context_ptr + -8);
+    queue_ptr = (int64_t *)(queue_base + 0x38);
+    next_command = (int64_t *)(context_ptr + -8);
     if (cleanup_flag) {
         next_command = base_context;
     }
@@ -484,7 +484,7 @@ void rendering_system_cleanup(void) {
     param_c = stack_param_c;
     param_b = stack_param_b;
     param_a = stack_param_a;
-    if (next_command != (longlong *)0x0) {
+    if (next_command != (int64_t *)0x0) {
         command_ptr = next_command + 1;
         param_e = queue_param_b;
         param_f = queue_param_a;
@@ -496,7 +496,7 @@ void rendering_system_cleanup(void) {
     while (stack_param_c = param_h, stack_param_d = param_g, stack_param_a = param_f,
            stack_param_b = param_e, processed_value = base_time, command_ptr != queue_ptr) {
         next_command = command_ptr + -1;
-        if (command_ptr == (longlong *)0x0) {
+        if (command_ptr == (int64_t *)0x0) {
             next_command = base_context;
         }
         scale_factor = (float)(**(code **)(*next_command + 8))(next_command);
@@ -538,7 +538,7 @@ void rendering_system_cleanup(void) {
         param_c = stack_param_c;
         param_d = stack_param_d;
         if (command_ptr == queue_ptr) break;
-        next_command = (longlong *)(*command_ptr + -8);
+        next_command = (int64_t *)(*command_ptr + -8);
         if (*command_ptr == 0) {
             next_command = base_context;
         }
@@ -548,7 +548,7 @@ void rendering_system_cleanup(void) {
         param_g = stack_param_d;
         param_h = stack_param_c;
         base_time = processed_value;
-        if (next_command != (longlong *)0x0) {
+        if (next_command != (int64_t *)0x0) {
             command_ptr = next_command + 1;
         }
     }
@@ -562,16 +562,16 @@ void rendering_system_cleanup(void) {
     
     // 清理时的插值计算
     do {
-        calculated_value = *(float *)(&render_parameter + 0x12 + (longlong)base_context * 4);
+        calculated_value = *(float *)(&render_parameter + 0x12 + (int64_t)base_context * 4);
         if (calculated_value != queue_time) {
             time_value = (float)rendering_system_calculate_interpolation(&render_parameter,
-                                                                         *(int32_t *)(&render_parameter + 0x10 + (longlong)base_context * 4),
+                                                                         *(int32_t *)(&render_parameter + 0x10 + (int64_t)base_context * 4),
                                                                          render_mode + 1);
             time_value = (time_value - scale_factor) * calculated_value;
             scale_factor = scale_factor + time_value;
         }
-        base_context = (longlong *)((longlong)base_context + 1);
-    } while ((longlong)base_context < 2);
+        base_context = (int64_t *)((int64_t)base_context + 1);
+    } while ((int64_t)base_context < 2);
     
     // 清理结果计算
     if (queue_count == 1) {
@@ -596,11 +596,11 @@ void rendering_system_cleanup(void) {
             func_0x0001808b20c0(queue_base, calculated_value, render_context);
         }
         else {
-            (**(code **)(**(longlong **)(queue_base + 0x28) + 0x10))
-                      (*(longlong **)(queue_base + 0x28), queue_base);
+            (**(code **)(**(int64_t **)(queue_base + 0x28) + 0x10))
+                      (*(int64_t **)(queue_base + 0x28), queue_base);
         }
     }
-    func_0x0001808fc050(stack_ptr ^ (ulonglong)&render_parameter);
+    func_0x0001808fc050(stack_ptr ^ (uint64_t)&render_parameter);
 }
 
 /**
@@ -625,14 +625,14 @@ void rendering_system_cleanup(void) {
 void rendering_system_reset_state(void) {
     int parameter_type;
     char state_flag;
-    longlong result_value;
+    int64_t result_value;
     int render_mode;
-    longlong *queue_ptr;
-    longlong *command_ptr;
-    longlong *base_context;
-    longlong *queue_context;
+    int64_t *queue_ptr;
+    int64_t *command_ptr;
+    int64_t *base_context;
+    int64_t *queue_context;
     int queue_count;
-    longlong render_object;
+    int64_t render_object;
     float scale_factor;
     float time_value;
     float calculated_value;
@@ -643,15 +643,15 @@ void rendering_system_reset_state(void) {
     float threshold_value;
     int processing_mode;
     uint64_t context_data;
-    longlong queue_base;
+    int64_t queue_base;
     float render_parameter;
     float accumulated_time;
-    ulonglong stack_ptr;
+    uint64_t stack_ptr;
     
     // 状态重置主循环
     do {
         command_ptr = queue_ptr + -1;
-        if (queue_ptr == (longlong *)0x0) {
+        if (queue_ptr == (int64_t *)0x0) {
             command_ptr = base_context;
         }
         scale_factor = (float)(**(code **)(*command_ptr + 8))(command_ptr);
@@ -687,12 +687,12 @@ void rendering_system_reset_state(void) {
         }
         parameter_type = queue_count;
         if (queue_ptr == queue_context) break;
-        command_ptr = (longlong *)(*queue_ptr + -8);
+        command_ptr = (int64_t *)(*queue_ptr + -8);
         if (*queue_ptr == 0) {
             command_ptr = base_context;
         }
         queue_ptr = base_context;
-        if (command_ptr != (longlong *)0x0) {
+        if (command_ptr != (int64_t *)0x0) {
             queue_ptr = command_ptr + 1;
         }
         base_time = processed_value;
@@ -703,16 +703,16 @@ void rendering_system_reset_state(void) {
     
     // 重置时的插值计算
     do {
-        calculated_value = *(float *)(&render_parameter + 0x12 + (longlong)base_context * 4);
+        calculated_value = *(float *)(&render_parameter + 0x12 + (int64_t)base_context * 4);
         if (calculated_value != queue_time) {
             time_value = (float)rendering_system_calculate_interpolation(&render_parameter,
-                                                                         *(int32_t *)(&render_parameter + 0x10 + (longlong)base_context * 4),
+                                                                         *(int32_t *)(&render_parameter + 0x10 + (int64_t)base_context * 4),
                                                                          parameter_type + 1);
             time_value = (time_value - scale_factor) * calculated_value;
             scale_factor = scale_factor + time_value;
         }
-        base_context = (longlong *)((longlong)base_context + 1);
-    } while ((longlong)base_context < 2);
+        base_context = (int64_t *)((int64_t)base_context + 1);
+    } while ((int64_t)base_context < 2);
     
     // 重置结果计算
     if (processing_mode == 1) {
@@ -737,11 +737,11 @@ void rendering_system_reset_state(void) {
             func_0x0001808b20c0(queue_base, calculated_value, context_data);
         }
         else {
-            (**(code **)(**(longlong **)(queue_base + 0x28) + 0x10))
-                      (*(longlong **)(queue_base + 0x28), queue_base);
+            (**(code **)(**(int64_t **)(queue_base + 0x28) + 0x10))
+                      (*(int64_t **)(queue_base + 0x28), queue_base);
         }
     }
-    func_0x0001808fc050(stack_ptr ^ (ulonglong)&render_parameter);
+    func_0x0001808fc050(stack_ptr ^ (uint64_t)&render_parameter);
 }
 
 /**
@@ -769,10 +769,10 @@ void rendering_system_reset_state(void) {
 void rendering_system_process_command(void* command_data, void* render_context) {
     int parameter_type;
     char state_flag;
-    longlong context_ptr;
-    longlong queue_base;
+    int64_t context_ptr;
+    int64_t queue_base;
     int queue_count;
-    longlong render_object;
+    int64_t render_object;
     float scale_factor;
     float extraout_value;
     float calculated_value;
@@ -783,7 +783,7 @@ void rendering_system_process_command(void* command_data, void* render_context) 
     float render_time;
     float threshold_value;
     int matrix_index;
-    ulonglong stack_ptr;
+    uint64_t stack_ptr;
     
     // 初始化命令处理参数
     parameter_type = matrix_index;
@@ -827,10 +827,10 @@ void rendering_system_process_command(void* command_data, void* render_context) 
             func_0x0001808b20c0(scale_factor, calculated_value);
         }
         else {
-            (**(code **)(**(longlong **)(queue_base + 0x28) + 0x10))();
+            (**(code **)(**(int64_t **)(queue_base + 0x28) + 0x10))();
         }
     }
-    func_0x0001808fc050(stack_ptr ^ (ulonglong)&render_parameter);
+    func_0x0001808fc050(stack_ptr ^ (uint64_t)&render_parameter);
 }
 
 /**
@@ -857,10 +857,10 @@ void rendering_system_process_command(void* command_data, void* render_context) 
 void rendering_system_set_time_scale(float time_scale) {
     char state_flag;
     int render_mode;
-    longlong context_ptr;
-    longlong queue_base;
+    int64_t context_ptr;
+    int64_t queue_base;
     int queue_count;
-    longlong render_object;
+    int64_t render_object;
     float calculated_value;
     float extraout_value;
     float scale_factor;
@@ -869,7 +869,7 @@ void rendering_system_set_time_scale(float time_scale) {
     float queue_time;
     float render_time;
     float threshold_value;
-    ulonglong stack_ptr;
+    uint64_t stack_ptr;
     
     // 时间缩放设置主循环
     do {
@@ -909,10 +909,10 @@ void rendering_system_set_time_scale(float time_scale) {
             func_0x0001808b20c0(time_scale, processed_value);
         }
         else {
-            (**(code **)(**(longlong **)(queue_base + 0x28) + 0x10))();
+            (**(code **)(**(int64_t **)(queue_base + 0x28) + 0x10))();
         }
     }
-    func_0x0001808fc050(stack_ptr ^ (ulonglong)&render_parameter);
+    func_0x0001808fc050(stack_ptr ^ (uint64_t)&render_parameter);
 }
 
 /**
@@ -936,7 +936,7 @@ void rendering_system_set_time_scale(float time_scale) {
  */
 void rendering_system_update_queue(void) {
     char state_flag;
-    longlong queue_base;
+    int64_t queue_base;
     float scale_factor;
     float calculated_value;
     float base_time;
@@ -944,7 +944,7 @@ void rendering_system_update_queue(void) {
     float queue_time;
     float render_time;
     float threshold_value;
-    ulonglong stack_ptr;
+    uint64_t stack_ptr;
     
     // 队列更新计算
     calculated_value = scale_factor;
@@ -960,10 +960,10 @@ void rendering_system_update_queue(void) {
             func_0x0001808b20c0();
         }
         else {
-            (**(code **)(**(longlong **)(queue_base + 0x28) + 0x10))();
+            (**(code **)(**(int64_t **)(queue_base + 0x28) + 0x10))();
         }
     }
-    func_0x0001808fc050(stack_ptr ^ (ulonglong)&render_parameter);
+    func_0x0001808fc050(stack_ptr ^ (uint64_t)&render_parameter);
 }
 
 /**
@@ -987,9 +987,9 @@ void rendering_system_update_queue(void) {
  */
 void rendering_system_flush_commands(void) {
     char state_flag;
-    longlong queue_base;
+    int64_t queue_base;
     int32_t queue_param;
-    ulonglong stack_ptr;
+    uint64_t stack_ptr;
     
     // 执行命令刷新操作
     state_flag = rendering_system_check_state();
@@ -999,10 +999,10 @@ void rendering_system_flush_commands(void) {
             func_0x0001808b20c0();
         }
         else {
-            (**(code **)(**(longlong **)(queue_base + 0x28) + 0x10))();
+            (**(code **)(**(int64_t **)(queue_base + 0x28) + 0x10))();
         }
     }
-    func_0x0001808fc050(stack_ptr ^ (ulonglong)&render_parameter);
+    func_0x0001808fc050(stack_ptr ^ (uint64_t)&render_parameter);
 }
 
 // ============================================================================
@@ -1035,23 +1035,23 @@ void rendering_system_flush_commands(void) {
  * 线程安全: 函数设计为线程安全的矩阵分配操作
  */
 uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_data) {
-    longlong *queue_ptr;
+    int64_t *queue_ptr;
     uint64_t *context_ptr;
     char allocation_flag;
-    longlong *command_ptr;
+    int64_t *command_ptr;
     uint64_t result_value;
-    longlong *next_command;
-    longlong *stack_ptr;
+    int64_t *next_command;
+    int64_t *stack_ptr;
     
     // 初始化矩阵分配参数
-    queue_ptr = (longlong *)(matrix_id + 0x10);
-    next_command = (longlong *)0x0;
-    stack_ptr = (longlong *)(*(longlong *)(matrix_id + 0x10) + -8);
-    if (*(longlong *)(matrix_id + 0x10) == 0) {
+    queue_ptr = (int64_t *)(matrix_id + 0x10);
+    next_command = (int64_t *)0x0;
+    stack_ptr = (int64_t *)(*(int64_t *)(matrix_id + 0x10) + -8);
+    if (*(int64_t *)(matrix_id + 0x10) == 0) {
         stack_ptr = next_command;
     }
-    if (stack_ptr == (longlong *)0x0) {
-        stack_ptr = (longlong *)0x0;
+    if (stack_ptr == (int64_t *)0x0) {
+        stack_ptr = (int64_t *)0x0;
     }
     else {
         stack_ptr = stack_ptr + 1;
@@ -1060,10 +1060,10 @@ uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_dat
     // 矩阵分配逻辑
     if (stack_ptr == queue_ptr) {
         if (stack_ptr != queue_ptr) {
-            *(longlong *)stack_ptr[1] = *stack_ptr;
-            *(longlong *)(*stack_ptr + 8) = stack_ptr[1];
-            stack_ptr[1] = (longlong)stack_ptr;
-            *stack_ptr = (longlong)stack_ptr;
+            *(int64_t *)stack_ptr[1] = *stack_ptr;
+            *(int64_t *)(*stack_ptr + 8) = stack_ptr[1];
+            stack_ptr[1] = (int64_t)stack_ptr;
+            *stack_ptr = (int64_t)stack_ptr;
             allocation_flag = func_0x0001808b22c0(matrix_id);
             if (allocation_flag == '\0') {
                 for (context_ptr = *(uint64_t **)(matrix_id + 0x20); context_ptr != (uint64_t *)(matrix_id + 0x20);
@@ -1083,15 +1083,15 @@ uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_dat
     else {
         do {
             command_ptr = stack_ptr + -1;
-            if (stack_ptr == (longlong *)0x0) {
+            if (stack_ptr == (int64_t *)0x0) {
                 command_ptr = next_command;
             }
             if (command_ptr == matrix_data) {
                 if (stack_ptr != queue_ptr) {
-                    *(longlong *)stack_ptr[1] = *stack_ptr;
-                    *(longlong *)(*stack_ptr + 8) = stack_ptr[1];
-                    stack_ptr[1] = (longlong)stack_ptr;
-                    *stack_ptr = (longlong)stack_ptr;
+                    *(int64_t *)stack_ptr[1] = *stack_ptr;
+                    *(int64_t *)(*stack_ptr + 8) = stack_ptr[1];
+                    stack_ptr[1] = (int64_t)stack_ptr;
+                    *stack_ptr = (int64_t)stack_ptr;
                     allocation_flag = func_0x0001808b22c0(matrix_id);
                     if (allocation_flag == '\0') {
                         for (context_ptr = *(uint64_t **)(matrix_id + 0x20); context_ptr != (uint64_t *)(matrix_id + 0x20);
@@ -1111,12 +1111,12 @@ uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_dat
             if (stack_ptr == queue_ptr) {
                 return 0x1c;
             }
-            command_ptr = (longlong *)(*stack_ptr + -8);
+            command_ptr = (int64_t *)(*stack_ptr + -8);
             if (*stack_ptr == 0) {
                 command_ptr = next_command;
             }
             stack_ptr = next_command;
-            if (command_ptr != (longlong *)0x0) {
+            if (command_ptr != (int64_t *)0x0) {
                 stack_ptr = command_ptr + 1;
             }
         } while (stack_ptr != queue_ptr);
@@ -1150,36 +1150,36 @@ uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_dat
  * 线程安全: 函数设计为线程安全的矩阵变换操作
  */
 uint64_t rendering_system_transform_matrix(int64_t matrix_id, int64_t transform_data) {
-    longlong *queue_ptr;
+    int64_t *queue_ptr;
     char transform_flag;
-    longlong result_value;
-    longlong command_data;
+    int64_t result_value;
+    int64_t command_data;
     uint transform_param;
-    longlong *command_ptr;
+    int64_t *command_ptr;
     float *matrix_data;
-    longlong matrix_offset;
-    longlong *next_command;
+    int64_t matrix_offset;
+    int64_t *next_command;
     int32_t transform_result;
     float transform_stack[2];
     
     // 初始化矩阵变换参数
-    next_command = (longlong *)0x0;
-    command_ptr = (longlong *)(*(longlong *)(matrix_id + 0x10) + -8);
-    if (*(longlong *)(matrix_id + 0x10) == 0) {
+    next_command = (int64_t *)0x0;
+    command_ptr = (int64_t *)(*(int64_t *)(matrix_id + 0x10) + -8);
+    if (*(int64_t *)(matrix_id + 0x10) == 0) {
         command_ptr = next_command;
     }
     queue_ptr = next_command;
-    if (command_ptr != (longlong *)0x0) {
+    if (command_ptr != (int64_t *)0x0) {
         queue_ptr = command_ptr + 1;
     }
     
     // 矩阵变换主循环
     do {
-        if (queue_ptr == (longlong *)(matrix_id + 0x10)) {
+        if (queue_ptr == (int64_t *)(matrix_id + 0x10)) {
             return 0;
         }
         command_ptr = queue_ptr + -1;
-        if (queue_ptr == (longlong *)0x0) {
+        if (queue_ptr == (int64_t *)0x0) {
             command_ptr = next_command;
         }
         transform_flag = (**(code **)(*command_ptr + 8))(command_ptr);
@@ -1187,8 +1187,8 @@ uint64_t rendering_system_transform_matrix(int64_t matrix_id, int64_t transform_
             *(int *)(transform_data + 0x28) = *(int *)(transform_data + 0x28) + 1;
             transform_stack[0] = 0.0f;
             transform_result = (**(code **)(*command_ptr + 0x10))(command_ptr, transform_stack);
-            if ((*(int *)(transform_data + 4) == 1) && (*(longlong *)(transform_data + 0x30) != 0)) {
-                transform_result = func_0x0001808c6590(*(longlong *)(transform_data + 0x30), transform_result);
+            if ((*(int *)(transform_data + 4) == 1) && (*(int64_t *)(transform_data + 0x30) != 0)) {
+                transform_result = func_0x0001808c6590(*(int64_t *)(transform_data + 0x30), transform_result);
             }
             matrix_data = (float *)(transform_data + 0x18);
             if (transform_stack[0] == 1.0f) {
@@ -1217,20 +1217,20 @@ uint64_t rendering_system_transform_matrix(int64_t matrix_id, int64_t transform_
                     return 0x1c;
                 }
                 *(float *)(result_value + transform_data) = transform_stack[0];
-                *(int32_t *)((ulonglong)transform_param + transform_data) = *(int32_t *)(transform_data + 0xc);
+                *(int32_t *)((uint64_t)transform_param + transform_data) = *(int32_t *)(transform_data + 0xc);
                 func_0x0001808b2d60(transform_data, transform_result);
                 *(int *)(transform_data + 0x28) = *(int *)(transform_data + 0x28) + -1;
             }
         }
-        if (queue_ptr == (longlong *)(matrix_id + 0x10)) {
+        if (queue_ptr == (int64_t *)(matrix_id + 0x10)) {
             return 0;
         }
-        command_ptr = (longlong *)(*queue_ptr + -8);
+        command_ptr = (int64_t *)(*queue_ptr + -8);
         if (*queue_ptr == 0) {
             command_ptr = next_command;
         }
         queue_ptr = command_ptr + 1;
-        if (command_ptr == (longlong *)0x0) {
+        if (command_ptr == (int64_t *)0x0) {
             queue_ptr = next_command;
         }
     } while( true );
@@ -1266,8 +1266,8 @@ float rendering_system_calculate_interpolation(uint32_t* state_data, float targe
     // 基础插值计算
     if (interpolation_mode < 1) {
         result_value = (float)state_data[2];
-        if ((state_data[1] == 0) && (*(longlong *)(state_data + 0xc) != 0)) {
-            result_value = (float)func_0x0001808c6500(*(longlong *)(state_data + 0xc), result_value);
+        if ((state_data[1] == 0) && (*(int64_t *)(state_data + 0xc) != 0)) {
+            result_value = (float)func_0x0001808c6500(*(int64_t *)(state_data + 0xc), result_value);
         }
         return result_value;
     }
@@ -1281,10 +1281,10 @@ float rendering_system_calculate_interpolation(uint32_t* state_data, float targe
             return target_value;
         case 2:
             if (state_data[1] != 1) {
-                if (*(longlong *)(state_data + 0xc) == 0) {
+                if (*(int64_t *)(state_data + 0xc) == 0) {
                     return target_value + 0.0f;
                 }
-                result_value = (float)func_0x0001808c6500(*(longlong *)(state_data + 0xc), 0);
+                result_value = (float)func_0x0001808c6500(*(int64_t *)(state_data + 0xc), 0);
                 return result_value + target_value;
             }
             if (target_value <= MIN_FLOAT_THRESHOLD) {
@@ -1328,7 +1328,7 @@ float rendering_system_calculate_interpolation(uint32_t* state_data, float targe
  * 线程安全: 函数设计为线程安全的渲染目标设置操作
  */
 int rendering_system_set_render_target(int64_t* render_context, int64_t render_target) {
-    longlong *queue_ptr;
+    int64_t *queue_ptr;
     int result_code;
     int status_code;
     
@@ -1339,10 +1339,10 @@ int rendering_system_set_render_target(int64_t* render_context, int64_t render_t
     
     // 清理当前渲染目标
     if (render_context[9] != 0) {
-        *(longlong *)render_context[1] = *render_context;
-        *(longlong *)(*render_context + 8) = render_context[1];
-        render_context[1] = (longlong)render_context;
-        *render_context = (longlong)render_context;
+        *(int64_t *)render_context[1] = *render_context;
+        *(int64_t *)(*render_context + 8) = render_context[1];
+        render_context[1] = (int64_t)render_context;
+        *render_context = (int64_t)render_context;
         func_0x0001808b22c0();
     }
     
@@ -1353,12 +1353,12 @@ int rendering_system_set_render_target(int64_t* render_context, int64_t render_t
     }
     
     // 验证和配置新的渲染目标
-    queue_ptr = (longlong *)*render_context;
+    queue_ptr = (int64_t *)*render_context;
     status_code = 0;
     if (queue_ptr != render_context) {
         result_code = 0;
         do {
-            queue_ptr = (longlong *)*queue_ptr;
+            queue_ptr = (int64_t *)*queue_ptr;
             result_code = result_code + 1;
         } while (queue_ptr != render_context);
         if (result_code != 0) {
@@ -1368,10 +1368,10 @@ int rendering_system_set_render_target(int64_t* render_context, int64_t render_t
     }
     
     // 完成渲染目标设置
-    render_context[1] = *(longlong *)(render_target + 0x28);
+    render_context[1] = *(int64_t *)(render_target + 0x28);
     *render_context = render_target + 0x20;
-    *(longlong **)(render_target + 0x28) = render_context;
-    *(longlong **)render_context[1] = render_context;
+    *(int64_t **)(render_target + 0x28) = render_context;
+    *(int64_t **)render_context[1] = render_context;
     if (status_code == 0) {
         return 0;
     }
@@ -1403,7 +1403,7 @@ int rendering_system_set_render_target(int64_t* render_context, int64_t render_t
  * 异常处理: 函数内部包含状态检查的完整性验证
  * 线程安全: 函数设计为线程安全的状态检查操作
  */
-uint8_t rendering_system_check_state(longlong context, longlong parameter) {
+uint8_t rendering_system_check_state(int64_t context, int64_t parameter) {
     char state_flag;
     
     // 基础状态检查
@@ -1412,7 +1412,7 @@ uint8_t rendering_system_check_state(longlong context, longlong parameter) {
     }
     
     // 详细状态验证
-    state_flag = (**(code **)(**(longlong **)(context + 0x28) + 0x20))();
+    state_flag = (**(code **)(**(int64_t **)(context + 0x28) + 0x20))();
     if ((state_flag == '\0') && (state_flag = func_0x0001808b2c50(context), state_flag == '\0')) {
         return 1;
     }
@@ -1443,12 +1443,12 @@ uint8_t rendering_system_check_state(longlong context, longlong parameter) {
  * 异常处理: 函数内部包含参数设置的合法性检查
  * 线程安全: 函数设计为线程安全的参数设置操作
  */
-void rendering_system_set_parameters(longlong render_context, int32_t param_a, int32_t param_b, char param_c) {
+void rendering_system_set_parameters(int64_t render_context, int32_t param_a, int32_t param_b, char param_c) {
     int32_t render_mode;
     
     // 确定渲染模式
     render_mode = 5;
-    if ((param_c != '\0') && (render_mode = 5, *(short *)(*(longlong *)(render_context + 0x20) + 0x4a) == 1)) {
+    if ((param_c != '\0') && (render_mode = 5, *(short *)(*(int64_t *)(render_context + 0x20) + 0x4a) == 1)) {
         render_mode = 4;
     }
     
@@ -1482,12 +1482,12 @@ void rendering_system_set_parameters(longlong render_context, int32_t param_a, i
  * 异常处理: 函数内部包含队列处理的完整错误处理机制
  * 线程安全: 函数设计为线程安全的队列处理操作
  */
-void rendering_system_process_queue(longlong *queue_ptr) {
+void rendering_system_process_queue(int64_t *queue_ptr) {
     uint64_t *context_ptr;
-    longlong queue_data;
+    int64_t queue_data;
     int process_status;
     uint64_t result_value;
-    longlong process_data;
+    int64_t process_data;
     
     // 初始化队列处理参数
     context_ptr = (uint64_t *)queue_ptr[1];
@@ -1495,7 +1495,7 @@ void rendering_system_process_queue(longlong *queue_ptr) {
         ((context_ptr[0xb] == 0 ||
          (((*(uint *)(context_ptr + 0x11) >> 2 & 1) == 0 || (process_status = func_0x0001808b4e20(context_ptr), process_status == 0))))))
         && ((context_ptr[9] == 0 ||
-            (((*(int *)(context_ptr + 0xe) == -1 && (*(int *)((longlong)context_ptr + 0x74) == -1)) ||
+            (((*(int *)(context_ptr + 0xe) == -1 && (*(int *)((int64_t)context_ptr + 0x74) == -1)) ||
              (process_status = func_0x000180862910(context_ptr[9], context_ptr), process_status == 0)))))) {
         result_value = (**(code **)*context_ptr)(context_ptr);
         process_status = func_0x0001808b5a30(context_ptr, result_value);
@@ -1546,10 +1546,10 @@ void rendering_system_process_queue(longlong *queue_ptr) {
  * 异常处理: 函数内部包含队列清理的完整性检查
  * 线程安全: 函数设计为线程安全的队列清理操作
  */
-void rendering_system_cleanup_queue(longlong *queue_ptr) {
-    longlong queue_data;
+void rendering_system_cleanup_queue(int64_t *queue_ptr) {
+    int64_t queue_data;
     int process_status;
-    longlong process_data;
+    int64_t process_data;
     uint64_t *context_ptr;
     
     // 初始化队列清理参数
@@ -1560,7 +1560,7 @@ void rendering_system_cleanup_queue(longlong *queue_ptr) {
             return;
         }
         if (((context_ptr[9] != 0) &&
-            ((*(int *)(context_ptr + 0xe) != -1 || (*(int *)((longlong)context_ptr + 0x74) != -1)))) &&
+            ((*(int *)(context_ptr + 0xe) != -1 || (*(int *)((int64_t)context_ptr + 0x74) != -1)))) &&
            (process_status = func_0x000180862910(), process_status != 0)) {
             return;
         }

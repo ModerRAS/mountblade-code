@@ -19,20 +19,20 @@
 //   param_2 - 数据源指针
 //   param_3 - 上下文参数1
 //   param_4 - 上下文参数2
-void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong data_source, uint64_t context_param1, uint64_t context_param2)
+void EngineDataStructure_AdvancedProcessor(int64_t *engine_context, int64_t data_source, uint64_t context_param1, uint64_t context_param2)
 
 {
   uint64_t *temp_ptr1;
   uint64_t *temp_ptr2;
-  longlong context_data;
+  int64_t context_data;
   uint64_t *array_ptr;
-  longlong iteration_data;
+  int64_t iteration_data;
   void *resource_ptr;
   void *stack_resource1;
-  longlong stack_data1;
+  int64_t stack_data1;
   int stack_count;
   void *stack_resource2;
-  longlong stack_data2;
+  int64_t stack_data2;
   int32_t stack_flags1;
   uint64_t stack_data3;
   int32_t stack_flags2;
@@ -47,8 +47,8 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
   if (0 < stack_count) {
     FUN_1806277c0(context_data + 0x60780, *(int *)(context_data + 0x60790) + stack_count);
     // 执行内存复制操作
-    memcpy((ulonglong)*(uint *)(context_data + 0x60790) + *(longlong *)(context_data + 0x60788), stack_data1,
-           (longlong)(stack_count + 1));
+    memcpy((uint64_t)*(uint *)(context_data + 0x60790) + *(int64_t *)(context_data + 0x60788), stack_data1,
+           (int64_t)(stack_count + 1));
   }
   
   // 初始化数组指针
@@ -75,8 +75,8 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
   temp_ptr1[1] = array_ptr;
   
   // 遍历数据源并处理每个元素
-  for (iteration_data = *(longlong *)(data_source + 8); iteration_data != data_source; iteration_data = func_0x00018066bd70(iteration_data)) {
-    longlong array_base = engine_context[1];
+  for (iteration_data = *(int64_t *)(data_source + 8); iteration_data != data_source; iteration_data = func_0x00018066bd70(iteration_data)) {
+    int64_t array_base = engine_context[1];
     
     // 为当前元素创建资源
     FUN_180627ae0(&stack_resource2, iteration_data + 0x20);
@@ -97,7 +97,7 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
       *(int32_t *)(temp_ptr1 + 2) = 0;
       *(int32_t *)(temp_ptr1 + 2) = stack_flags1;
       temp_ptr1[1] = stack_data2;
-      *(int32_t *)((longlong)temp_ptr1 + 0x1c) = stack_data3._4_4_;
+      *(int32_t *)((int64_t)temp_ptr1 + 0x1c) = stack_data3._4_4_;
       *(int32_t *)(temp_ptr1 + 3) = (int32_t)stack_data3;
       stack_flags1 = 0;
       stack_data2 = 0;
@@ -122,10 +122,10 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
   
   // 处理最终数据
   FUN_1801bb3a0(*(uint64_t *)engine_context[1], ((uint64_t *)engine_context[1])[1], 0);
-  context_data = ((longlong *)engine_context[1])[1];
+  context_data = ((int64_t *)engine_context[1])[1];
   
   // 遍历处理后的数据并更新引擎状态
-  for (iteration_data = *(longlong *)engine_context[1]; iteration_data != context_data; iteration_data = iteration_data + 0x28) {
+  for (iteration_data = *(int64_t *)engine_context[1]; iteration_data != context_data; iteration_data = iteration_data + 0x28) {
     resource_ptr = &STRING_CONST_18098bc73;
     if (*(void **)(iteration_data + 8) != (void *)0x0) {
       resource_ptr = *(void **)(iteration_data + 8);

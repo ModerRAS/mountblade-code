@@ -49,8 +49,8 @@
 void SystemExceptionHandlerWithCleanup(void)
 
 {
-  longlong unaff_RBP;
-  longlong unaff_R13;
+  int64_t unaff_RBP;
+  int64_t unaff_R13;
   
   // 复制异常处理状态信息
   *(int32_t *)(unaff_R13 + SYSTEM_EXCEPTION_HANDLER_OFFSET) = 
@@ -61,8 +61,8 @@ void SystemExceptionHandlerWithCleanup(void)
   
   // 执行内存保护操作（不返回）
   SystemMemoryProtectionFunction(
-    *(ulonglong *)(unaff_RBP + SYSTEM_MEMORY_PROTECTION_KEY) ^ 
-    (ulonglong)&stack0x00000000
+    *(uint64_t *)(unaff_RBP + SYSTEM_MEMORY_PROTECTION_KEY) ^ 
+    (uint64_t)&stack0x00000000
   );
 }
 
@@ -75,12 +75,12 @@ void SystemExceptionHandlerWithCleanup(void)
 void SystemCriticalExceptionHandler(void)
 
 {
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   
   // 执行内存保护操作（不返回）
   SystemMemoryProtectionFunction(
-    *(ulonglong *)(unaff_RBP + SYSTEM_MEMORY_PROTECTION_KEY) ^ 
-    (ulonglong)&stack0x00000000
+    *(uint64_t *)(unaff_RBP + SYSTEM_MEMORY_PROTECTION_KEY) ^ 
+    (uint64_t)&stack0x00000000
   );
 }
 
@@ -93,12 +93,12 @@ void SystemCriticalExceptionHandler(void)
 void SystemFatalExceptionHandler(void)
 
 {
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   
   // 执行内存保护操作（不返回）
   SystemMemoryProtectionFunction(
-    *(ulonglong *)(unaff_RBP + SYSTEM_MEMORY_PROTECTION_KEY) ^ 
-    (ulonglong)&stack0x00000000
+    *(uint64_t *)(unaff_RBP + SYSTEM_MEMORY_PROTECTION_KEY) ^ 
+    (uint64_t)&stack0x00000000
   );
 }
 

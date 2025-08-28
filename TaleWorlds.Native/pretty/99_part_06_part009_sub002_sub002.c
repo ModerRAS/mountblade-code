@@ -284,7 +284,7 @@ extern const void* global_state_2432;   /** 系统地址表7 */
 // =============================================================================
 
 /** 系统参数处理和状态管理主函数 */
-void FUN_1803aad40(longlong param_1, longlong param_2, char param_3);
+void FUN_1803aad40(int64_t param_1, int64_t param_2, char param_3);
 
 /** 系统子功能函数声明 */
 void FUN_1806277c0(void* param_1, size_t param_2);
@@ -297,7 +297,7 @@ void FUN_1803aef00(void* param_1, void* param_2);
 void FUN_1806279c0(void* param_1, void* param_2);
 void FUN_180080810(void* param_1, void* param_2);
 void FUN_180417b70(void* param_1, void* param_2, uint32_t param_3);
-void* FUN_180049b30(void* param_1, longlong param_2);
+void* FUN_180049b30(void* param_1, int64_t param_2);
 void FUN_1800b8300(void* param_1, void* param_2);
 void FUN_180060b80(void* param_1, void* param_2);
 void FUN_18023c450(void* param_1, int param_2, int param_3, void* param_4);
@@ -401,12 +401,12 @@ void FUN_1808fc050(uint64_t param_1);
  * - 优化系统调用和操作
  * - 支持批量处理和缓存
  */
-void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
+void FUN_1803aad40(int64_t param_1, int64_t param_2, char param_3)
 {
     // 局部变量声明
     byte *pbVar1;
     int iVar2;
-    longlong ***ppplVar3;
+    int64_t ***ppplVar3;
     int32_t uVar4;
     int32_t uVar5;
     int32_t *puVar6;
@@ -414,16 +414,16 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     void **ppuVar8;
     uint64_t uVar9;
     byte *pbVar10;
-    longlong ***ppplVar11;
+    int64_t ***ppplVar11;
     void *puVar12;
-    ulonglong uVar13;
+    uint64_t uVar13;
     uint uVar14;
     int32_t uVar15;
     float fVar16;
     
     // 栈变量声明
     int8_t auStack_5d8 [32];
-    longlong ***ppplStack_5b8;
+    int64_t ***ppplStack_5b8;
     int8_t *puStack_5b0;
     uint uStack_5a8;
     uint64_t uStack_5a0;
@@ -432,19 +432,19 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     uint64_t uStack_588;
     uint64_t uStack_580;
     uint uStack_578;
-    longlong ***ppplStack_570;
-    longlong ***ppplStack_568;
+    int64_t ***ppplStack_570;
+    int64_t ***ppplStack_568;
     char cStack_560;
-    longlong ****pppplStack_558;
-    longlong ***ppplStack_550;
-    longlong **pplStack_548;
-    longlong ****pppplStack_540;
-    longlong ***appplStack_538 [2];
+    int64_t ****pppplStack_558;
+    int64_t ***ppplStack_550;
+    int64_t **pplStack_548;
+    int64_t ****pppplStack_540;
+    int64_t ***appplStack_538 [2];
     code *pcStack_528;
     void *puStack_520;
     uint64_t uStack_518;
-    longlong ***ppplStack_510;
-    longlong ***ppplStack_508;
+    int64_t ***ppplStack_510;
+    int64_t ***ppplStack_508;
     void *puStack_4f8;
     int8_t *puStack_4f0;
     int32_t uStack_4e8;
@@ -466,25 +466,25 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     byte *pbStack_2d0;
     int iStack_2c8;
     void *puStack_278;
-    longlong lStack_270;
+    int64_t lStack_270;
     int iStack_268;
     void *puStack_218;
-    longlong lStack_210;
+    int64_t lStack_210;
     int iStack_208;
     void *puStack_1b8;
-    longlong lStack_1b0;
+    int64_t lStack_1b0;
     int iStack_1a8;
     void *apuStack_158 [12];
     void *apuStack_f8 [20];
-    ulonglong uStack_58;
+    uint64_t uStack_58;
     
     // 初始化系统参数
     uStack_518 = 0xfffffffffffffffe;
-    uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_5d8;
+    uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_5d8;
     uStack_578 = 0;
     uVar9 = *(uint64_t *)(param_1 + 0xe20);
     uVar15 = *(int32_t *)(param_1 + 0xe1c);
-    ppplStack_5b8 = (longlong ***)&global_state_3456_ptr;
+    ppplStack_5b8 = (int64_t ***)&global_state_3456_ptr;
     uStack_5a0 = 0;
     puStack_5b0 = (int8_t *)0x0;
     uStack_5a8 = 0;
@@ -498,7 +498,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
             puVar12 = system_system_control_memory;
         }
         // 复制配置数据
-        memcpy(puStack_5b0, puVar12, (longlong)(system_system_control_memory + 1));
+        memcpy(puStack_5b0, puVar12, (int64_t)(system_system_control_memory + 1));
     }
     
     // 处理系统配置
@@ -513,7 +513,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     *(uint *)(param_2 + 0x30c) = *(uint *)(param_2 + 0x30c) & 0xfffffffe;
     
     // 清理系统资源
-    ppplStack_5b8 = (longlong ***)&global_state_3456_ptr;
+    ppplStack_5b8 = (int64_t ***)&global_state_3456_ptr;
     if (puStack_5b0 != (int8_t *)0x0) {
         FUN_18064e900();
     }
@@ -521,7 +521,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     // 重置系统状态
     puStack_5b0 = (int8_t *)0x0;
     uStack_5a0 = uStack_5a0 & 0xffffffff00000000;
-    ppplStack_5b8 = (longlong ***)&global_state_720_ptr;
+    ppplStack_5b8 = (int64_t ***)&global_state_720_ptr;
     
     // 处理系统配置和状态
     uVar9 = *(uint64_t *)(param_1 + 0xe20);
@@ -529,7 +529,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     puStack_598 = &global_state_3456_ptr;
     uStack_580 = (code *)0x0;
     puStack_590 = (int8_t *)0x0;
-    uStack_588 = (code *)((ulonglong)uStack_588._4_4_ << 0x20);
+    uStack_588 = (code *)((uint64_t)uStack_588._4_4_ << 0x20);
     
     // 初始化系统配置
     FUN_1806277c0(&puStack_598, system_system_control_memory);
@@ -539,12 +539,12 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
             puVar12 = system_system_control_memory;
         }
         // 复制配置数据
-        memcpy(puStack_590, puVar12, (longlong)(system_system_control_memory + 1));
+        memcpy(puStack_590, puVar12, (int64_t)(system_system_control_memory + 1));
     }
     
     // 处理系统配置
     if ((system_system_control_memory != (void *)0x0) &&
-        (uStack_588 = (code *)((ulonglong)uStack_588 & 0xffffffff00000000),
+        (uStack_588 = (code *)((uint64_t)uStack_588 & 0xffffffff00000000),
          puStack_590 != (int8_t *)0x0)) {
         *puStack_590 = 0;
     }
@@ -563,7 +563,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     
     // 重置系统状态
     puStack_590 = (int8_t *)0x0;
-    uStack_580 = (code *)((ulonglong)uStack_580 & 0xffffffff00000000);
+    uStack_580 = (code *)((uint64_t)uStack_580 & 0xffffffff00000000);
     puStack_598 = &global_state_720_ptr;
     
     // 继续处理系统配置和状态...
@@ -608,7 +608,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     puStack_398 = &global_state_720_ptr;
     
     // 系统终结处理
-    FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_5d8);
+    FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_5d8);
 }
 
 // =============================================================================

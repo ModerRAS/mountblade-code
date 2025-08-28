@@ -70,7 +70,7 @@
  * - 提供系统调用接口
  * - 实现参数处理和错误处理
  */
-void utilities_data_processor_type1(longlong param_1, int32_t *param_2)
+void utilities_data_processor_type1(int64_t param_1, int32_t *param_2)
 {
     // 简化实现：高级数据处理逻辑
     // 原始实现包含复杂的数据结构处理和系统调用
@@ -172,7 +172,7 @@ void utilities_system_no_operation_type1(void)
  * - 提供系统操作接口
  * - 实现参数处理和错误处理
  */
-uint64_t utilities_advanced_data_processor(longlong param_1, longlong param_2)
+uint64_t utilities_advanced_data_processor(int64_t param_1, int64_t param_2)
 {
     // 简化实现：高级配置处理逻辑
     // 原始实现包含复杂的配置处理和系统操作
@@ -268,7 +268,7 @@ void utilities_system_no_operation_type2(void)
  * - 提供系统调用接口
  * - 实现参数处理和错误处理
  */
-uint64_t utilities_data_processor_type4(longlong param_1, int32_t *param_2)
+uint64_t utilities_data_processor_type4(int64_t param_1, int32_t *param_2)
 {
     // 简化实现：数据验证处理逻辑
     // 原始实现包含复杂的数据验证和系统调用
@@ -371,7 +371,7 @@ void utilities_system_no_operation_type3(void)
  * - 提供数据验证功能
  * - 实现错误处理机制
  */
-void utilities_data_processor_type6(longlong param_1, uint *param_2)
+void utilities_data_processor_type6(int64_t param_1, uint *param_2)
 {
     // 简化实现：参数处理逻辑
     // 原始实现包含复杂的参数处理和系统调用
@@ -410,7 +410,7 @@ void utilities_data_processor_type6(longlong param_1, uint *param_2)
  * - 提供参数处理接口
  * - 实现错误处理机制
  */
-uint64_t utilities_data_processor_type7(longlong param_1, uint64_t *param_2)
+uint64_t utilities_data_processor_type7(int64_t param_1, uint64_t *param_2)
 {
     // 简化实现：数组处理逻辑
     // 原始实现包含复杂的数组处理和系统调用
@@ -441,7 +441,7 @@ uint64_t utilities_data_processor_type7(longlong param_1, uint64_t *param_2)
  * 
  * @param param_1 系统上下文参数
  * @param param_2 数据参数指针
- * @return ulonglong 处理结果状态码
+ * @return uint64_t 处理结果状态码
  * 
  * 技术说明：
  * - 该函数处理数据解析
@@ -449,7 +449,7 @@ uint64_t utilities_data_processor_type7(longlong param_1, uint64_t *param_2)
  * - 提供系统调用接口
  * - 实现参数处理和错误处理
  */
-ulonglong utilities_data_processor_type8(longlong param_1, uint64_t *param_2)
+uint64_t utilities_data_processor_type8(int64_t param_1, uint64_t *param_2)
 {
     // 简化实现：数据解析逻辑
     // 原始实现包含复杂的数据解析和系统调用
@@ -478,7 +478,7 @@ ulonglong utilities_data_processor_type8(longlong param_1, uint64_t *param_2)
  * - 参数处理
  * - 错误处理
  * 
- * @return ulonglong 处理结果状态码
+ * @return uint64_t 处理结果状态码
  * 
  * 技术说明：
  * - 该函数处理数据解析
@@ -486,7 +486,7 @@ ulonglong utilities_data_processor_type8(longlong param_1, uint64_t *param_2)
  * - 提供系统调用接口
  * - 实现参数处理和错误处理
  */
-ulonglong utilities_data_processor_type9(void)
+uint64_t utilities_data_processor_type9(void)
 {
     // 简化实现：数据解析逻辑
     // 原始实现包含复杂的数据解析和系统调用

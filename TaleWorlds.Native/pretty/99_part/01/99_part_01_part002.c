@@ -26,18 +26,18 @@
  * 游戏数据处理器
  * 处理游戏核心数据，包括状态管理、数据转换、缓存操作等
  */
-void game_data_processor(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4)
+void game_data_processor(uint64_t param_1, int64_t *param_2, int64_t param_3, byte param_4)
 {
     int8_t uVar1;
-    longlong lVar2;
-    longlong lVar3;
+    int64_t lVar2;
+    int64_t lVar3;
     int8_t *puVar4;
-    longlong lVar5;
+    int64_t lVar5;
     int8_t *puVar6;
-    longlong lVar7;
-    ulonglong uVar8;
+    int64_t lVar7;
+    uint64_t uVar8;
     int8_t *puVar9;
-    longlong *unaff_R15;
+    int64_t *unaff_R15;
     uint in_stack_00000080;
     
     // 处理数据初始化和状态设置
@@ -45,7 +45,7 @@ void game_data_processor(uint64_t param_1, longlong *param_2, longlong param_3, 
         lVar2 = *param_2;
         lVar3 = param_2[1];
         if (0 < (int)in_stack_00000080) {
-            uVar8 = (ulonglong)in_stack_00000080;
+            uVar8 = (uint64_t)in_stack_00000080;
             do {
                 process_data_buffer(lVar3, 9);
                 if (lVar2 != 0) {
@@ -78,7 +78,7 @@ void game_data_processor(uint64_t param_1, longlong *param_2, longlong param_3, 
         lVar7 = 0;
     }
     else {
-        lVar7 = *(longlong *)(param_3 + 0x18);
+        lVar7 = *(int64_t *)(param_3 + 0x18);
         puVar6 = puVar4;
     }
     puVar9 = (int8_t *)0x180d48d24;
@@ -917,7 +917,7 @@ void unification_integration_processor(void *unification_context)
  * 处理数据缓冲区
  * 内部函数：处理数据缓冲区操作
  */
-static void process_data_buffer(longlong buffer, int operation)
+static void process_data_buffer(int64_t buffer, int operation)
 {
     // 数据缓冲区处理逻辑
     if (buffer != 0) {
@@ -930,7 +930,7 @@ static void process_data_buffer(longlong buffer, int operation)
  * 追加数据到缓冲区
  * 内部函数：将数据追加到缓冲区
  */
-static void append_data_to_buffer(longlong buffer, longlong data)
+static void append_data_to_buffer(int64_t buffer, int64_t data)
 {
     // 数据追加逻辑
     if (buffer != 0 && data != 0) {
@@ -943,7 +943,7 @@ static void append_data_to_buffer(longlong buffer, longlong data)
  * 执行数据处理序列
  * 内部函数：执行预定义的数据处理序列
  */
-static void execute_data_processing_sequence(longlong buffer, longlong data)
+static void execute_data_processing_sequence(int64_t buffer, int64_t data)
 {
     // 数据处理序列执行逻辑
     if (buffer != 0) {
@@ -956,7 +956,7 @@ static void execute_data_processing_sequence(longlong buffer, longlong data)
  * 完成数据处理
  * 内部函数：完成数据处理的最终步骤
  */
-static void finalize_data_processing(longlong buffer, longlong data)
+static void finalize_data_processing(int64_t buffer, int64_t data)
 {
     // 数据处理完成逻辑
     if (buffer != 0) {

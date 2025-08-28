@@ -276,16 +276,16 @@ void FUN_1802fa68a(void);
 void FUN_1802fa7fb(void);
 
 /** 系统参数处理函数声明 */
-void FUN_1802fa820(longlong param_1, float param_2, uint64_t param_3);
+void FUN_1802fa820(int64_t param_1, float param_2, uint64_t param_3);
 
 /** 系统数据更新函数声明 */
-void FUN_1802fa848(longlong param_1, float param_2);
+void FUN_1802fa848(int64_t param_1, float param_2);
 
 /** 系统状态同步函数声明 */
 void FUN_1802fa991(void);
 
 /** 系统资源管理函数声明 */
-void FUN_1802fa9b8(longlong param_1, uint64_t param_2);
+void FUN_1802fa9b8(int64_t param_1, uint64_t param_2);
 
 /** 系统空操作函数声明 */
 void FUN_1802fabe4(void);
@@ -300,15 +300,15 @@ void FUN_1802faca2(void);
 void FUN_1802fad4b(void);
 
 /** 系统子功能函数声明 */
-void FUN_1802f9480(longlong param_1, float param_2, longlong param_3, uint64_t param_4);
+void FUN_1802f9480(int64_t param_1, float param_2, int64_t param_3, uint64_t param_4);
 void FUN_18008d070(void);
 void FUN_18008f0d0(void* param_1);
-void FUN_18008f140(void* param_1, void* param_2, void* param_3, longlong param_4, longlong param_5);
+void FUN_18008f140(void* param_1, void* param_2, void* param_3, int64_t param_4, int64_t param_5);
 void FUN_1802285e0(void);
 void FUN_18008f0d0(void* param_1);
 void FUN_1801985e0(uint64_t param_1, void* param_2, int param_3, void* param_4, int param_5);
 void FUN_180300d00(void* param_1);
-void FUN_18062b420(void* param_1, longlong param_2, int param_3);
+void FUN_18062b420(void* param_1, int64_t param_2, int param_3);
 void FUN_18064e900(void);
 void FUN_1808fc050(uint64_t param_1);
 void FUN_1808fd200(void);
@@ -476,12 +476,12 @@ void FUN_1802fa68a(void)
             // 检查资源阈值
             if (*(float*)(resource_context + 0x174) <= threshold_value) {
                 // 执行资源处理回调
-                (**(code **)(**(longlong **)(*(longlong *)(system_context + 0x1a8) + resource_index * 8) + 0x1c8))();
+                (**(code **)(**(int64_t **)(*(int64_t *)(system_context + 0x1a8) + resource_index * 8) + 0x1c8))();
             }
             else {
                 // 计算距离并进行比较
-                result_ptr = (float *)(**(code **)(**(longlong **)
-                                          (*(longlong *)(system_context + 0x1a8) + resource_index * 8) + 0x198))();
+                result_ptr = (float *)(**(code **)(**(int64_t **)
+                                          (*(int64_t *)(system_context + 0x1a8) + resource_index * 8) + 0x198))();
                 
                 distance1 = result_ptr[4] - *result_ptr;
                 distance2 = result_ptr[5] - result_ptr[1];
@@ -502,7 +502,7 @@ void FUN_1802fa68a(void)
                 // 检查阈值条件
                 if (*(float*)(resource_context + 0x174) <= distance3 * max_threshold) {
                     // 执行资源处理回调
-                    (**(code **)(**(longlong **)(*(longlong *)(system_context + 0x1a8) + resource_index * 8) + 0x1c8))();
+                    (**(code **)(**(int64_t **)(*(int64_t *)(system_context + 0x1a8) + resource_index * 8) + 0x1c8))();
                 }
             }
             
@@ -511,7 +511,7 @@ void FUN_1802fa68a(void)
     }
     
     // 清理系统资源
-    FUN_1808fc050(*(ulonglong *)(system_context + 0x80) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(system_context + 0x80) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -528,7 +528,7 @@ void FUN_1802fa68a(void)
 void FUN_1802fa7fb(void)
 {
     // 系统状态管理实现
-    FUN_1808fc050(*(ulonglong *)(system_context + 0x80) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(system_context + 0x80) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -546,10 +546,10 @@ void FUN_1802fa7fb(void)
  * - 同步参数数据
  * - 处理参数相关事件
  */
-void FUN_1802fa820(longlong param_1, float param_2, uint64_t param_3)
+void FUN_1802fa820(int64_t param_1, float param_2, uint64_t param_3)
 {
     // 局部变量声明
-    longlong* context_ptr;
+    int64_t* context_ptr;
     uint8_t* status_ptr;
     float updated_value;
     int operation_count;
@@ -578,15 +578,15 @@ void FUN_1802fa820(longlong param_1, float param_2, uint64_t param_3)
             *(ushort*)(param_1 + 0xa8) = *(ushort*)(param_1 + 0xa8) & 0xfffe;
             
             // 处理资源循环
-            resource_count = *(longlong*)(param_1 + 0x1d0) - *(longlong*)(param_1 + 0x1c8) >> 3;
+            resource_count = *(int64_t*)(param_1 + 0x1d0) - *(int64_t*)(param_1 + 0x1c8) >> 3;
             if (resource_count != 0) {
                 resource_index = 0;
                 do {
-                    context_ptr = *(longlong **)(*(longlong*)(param_1 + 0x1c8) + resource_index * 8);
+                    context_ptr = *(int64_t **)(*(int64_t*)(param_1 + 0x1c8) + resource_index * 8);
                     (**(code **)(*context_ptr + 0x1b8))(context_ptr, param_2, param_3);
                     
                     if ((**(code **)(*context_ptr + 0x138))(context_ptr) != '\0') {
-                        FUN_1801985e0(*(uint64_t *)(*(longlong *)(param_1 + 0x10) + 0x20), context_ptr, 2, param_1, 0);
+                        FUN_1801985e0(*(uint64_t *)(*(int64_t *)(param_1 + 0x10) + 0x20), context_ptr, 2, param_1, 0);
                     }
                     
                     resource_index++;
@@ -600,8 +600,8 @@ void FUN_1802fa820(longlong param_1, float param_2, uint64_t param_3)
     if (0 < operation_count) {
         resource_index = 0;
         do {
-            FUN_1802f9480((longlong)*(char *)((longlong)resource_index + *(longlong *)(param_1 + 0xb0)) * 0x100 +
-                          *(longlong *)(param_1 + 0x18), param_2, param_1, param_3);
+            FUN_1802f9480((int64_t)*(char *)((int64_t)resource_index + *(int64_t *)(param_1 + 0xb0)) * 0x100 +
+                          *(int64_t *)(param_1 + 0x18), param_2, param_1, param_3);
             resource_index++;
         } while (resource_index < operation_count);
     }
@@ -627,7 +627,7 @@ void FUN_1802fa820(longlong param_1, float param_2, uint64_t param_3)
  * - 同步数据信息
  * - 清理过期数据
  */
-void FUN_1802fa848(longlong param_1, float param_2)
+void FUN_1802fa848(int64_t param_1, float param_2)
 {
     // 系统数据更新实现
     // [详细的数据更新逻辑]
@@ -664,7 +664,7 @@ void FUN_1802fa991(void)
  * - 清理过期资源
  * - 优化资源使用
  */
-void FUN_1802fa9b8(longlong param_1, uint64_t param_2)
+void FUN_1802fa9b8(int64_t param_1, uint64_t param_2)
 {
     // 系统资源管理实现
     // [详细的资源管理逻辑]
@@ -718,7 +718,7 @@ void FUN_1802faca2(void)
 {
     // 系统配置处理实现
     FUN_180300d00(&stack0x00000030);
-    (**(code **)(**(longlong **)(system_context + 0x210) + 0x38))(*(longlong **)(system_context + 0x210));
+    (**(code **)(**(int64_t **)(system_context + 0x210) + 0x38))(*(int64_t **)(system_context + 0x210));
     memset(&stack0x00000030, 0, 0x1050);
 }
 
@@ -795,8 +795,8 @@ void FUN_1802fad4b(void)
     } while (iteration_count < *(char*)(system_context + 0x20));
     
     // 执行系统回调
-    (**(code **)(*(longlong *)(system_context + 0x210) + 0x50))
-              (*(uint64_t *)(*(longlong *)(system_context + 0x210) + 0x48), &stack0x00000030);
+    (**(code **)(*(int64_t *)(system_context + 0x210) + 0x50))
+              (*(uint64_t *)(*(int64_t *)(system_context + 0x210) + 0x48), &stack0x00000030);
     
     // 处理阈值检查
     if (0.0 <= threshold_value) {
@@ -816,7 +816,7 @@ void FUN_1802fad4b(void)
     *(ushort*)(system_context + 0xa8) = *(ushort*)(system_context + 0xa8) | 1;
     
     // 清理系统资源
-    FUN_1808fc050(*(ulonglong *)(system_context + 0xf80) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(system_context + 0xf80) ^ (uint64_t)&stack0x00000000);
 }
 
 // =============================================================================

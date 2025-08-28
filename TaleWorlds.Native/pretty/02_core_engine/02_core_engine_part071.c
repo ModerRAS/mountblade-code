@@ -18,12 +18,12 @@ extern uint64_t SYSTEM_FILE_COUNTER_ADDR;  // 引擎文件句柄计数
 // 函数：初始化引擎状态
 // 参数：param_1 - 引擎上下文指针，param_2 - 初始化标志
 // 功能：设置引擎的初始状态，包括内存分配和基础配置
-void initialize_engine_state(longlong *engine_context, int8_t init_flag)
+void initialize_engine_state(int64_t *engine_context, int8_t init_flag)
 {
     uint64_t config_data;
-    longlong *temp_context;
+    int64_t *temp_context;
     uint64_t memory_handle;
-    longlong *allocated_memory;
+    int64_t *allocated_memory;
     uint64_t stack_data[8];
     int32_t init_params[6];
     
@@ -37,7 +37,7 @@ void initialize_engine_state(longlong *engine_context, int8_t init_flag)
     
     // 设置初始化参数
     init_params[0] = (int32_t)config_data;
-    init_params[1] = (int32_t)((ulonglong)config_data >> 0x20);
+    init_params[1] = (int32_t)((uint64_t)config_data >> 0x20);
     init_params[2] = CONCAT31(init_params[2]._1_3_, init_flag);
     
     // 初始化栈数据
@@ -46,12 +46,12 @@ void initialize_engine_state(longlong *engine_context, int8_t init_flag)
     stack_data[1] = init_params[2];
     
     // 创建引擎实例
-    allocated_memory = (longlong *)create_engine_instance(memory_handle, &stack_data[0]);
+    allocated_memory = (int64_t *)create_engine_instance(memory_handle, &stack_data[0]);
     temp_context = allocated_memory;
     config_data = system_context_ptr;
     
     // 初始化引擎实例
-    if (allocated_memory != (longlong *)0x0) {
+    if (allocated_memory != (int64_t *)0x0) {
         // 调用引擎初始化函数
         (**(code **)(*allocated_memory + 0x28))(allocated_memory);
         config_data = system_context_ptr;
@@ -65,7 +65,7 @@ void initialize_engine_state(longlong *engine_context, int8_t init_flag)
     set_engine_status(config_data, &temp_context);
     
     // 清理资源
-    if (allocated_memory != (longlong *)0x0) {
+    if (allocated_memory != (int64_t *)0x0) {
         (**(code **)(*allocated_memory + 0x38))(allocated_memory);
     }
     return;
@@ -74,12 +74,12 @@ void initialize_engine_state(longlong *engine_context, int8_t init_flag)
 // 函数：更新渲染参数
 // 参数：param_1 - 渲染上下文指针
 // 功能：更新渲染系统的各种参数，包括分辨率、纹理设置等
-uint64_t update_render_parameters(longlong *render_context)
+uint64_t update_render_parameters(int64_t *render_context)
 {
-    longlong *context_ptr;
+    int64_t *context_ptr;
     char status_flag;
     uint64_t *texture_data;
-    longlong render_config;
+    int64_t render_config;
     void *file_path;
     int resolution_x;
     int resolution_y;
@@ -89,7 +89,7 @@ uint64_t update_render_parameters(longlong *render_context)
     int8_t stack_params[4];
     int stack_temp_x;
     uint64_t file_handle;
-    longlong file_size;
+    int64_t file_size;
     void *buffer_ptr;
     uint buffer_size;
     
@@ -156,7 +156,7 @@ uint64_t update_render_parameters(longlong *render_context)
     }
     
     // 检查纹理启用状态
-    if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) {
+    if ((*(int64_t *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) {
         enable_texture = *(int *)(render_config + 0x2140) != 0;
     } else {
         enable_texture = false;
@@ -164,7 +164,7 @@ uint64_t update_render_parameters(longlong *render_context)
     
     // 设置纹理质量
     if ((!enable_texture) || (*(int *)(render_config + 0x2144) == *(int *)(render_config + 0x2140))) {
-        if (((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) &&
+        if (((*(int64_t *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) &&
             (*(int *)(render_config + 0x2140) == 0)) {
             quality_factor = *(float *)(render_config + 0x20d0);
         } else {
@@ -205,7 +205,7 @@ apply_texture_settings:
     }
     
     // 检查设备状态
-    if (-1 < *(int *)(*(longlong *)(core_system_data_render + 0x2018) + 0x330)) {
+    if (-1 < *(int *)(*(int64_t *)(core_system_data_render + 0x2018) + 0x330)) {
         buffer_ptr = (void *)0x180103d14;
         check_device_status();
     }
@@ -282,8 +282,8 @@ apply_texture_settings:
 // 功能：根据当前状态设置引擎配置参数
 void set_engine_configuration(void)
 {
-    longlong config_data;
-    longlong context_data;
+    int64_t config_data;
+    int64_t context_data;
     int resolution_x;
     int resolution_y;
     int stack_res_x;
@@ -325,10 +325,10 @@ void set_engine_configuration(void)
 // 功能：处理引擎的各种属性设置，包括渲染、纹理、质量等
 uint64_t process_engine_properties(void)
 {
-    longlong *context_ptr;
+    int64_t *context_ptr;
     char status_flag;
     uint64_t *texture_data;
-    longlong render_config;
+    int64_t render_config;
     void *file_path;
     uint64_t render_mode;
     bool enable_texture;
@@ -336,7 +336,7 @@ uint64_t process_engine_properties(void)
     void *return_address;
     uint stack_size;
     uint64_t file_handle;
-    longlong file_size;
+    int64_t file_size;
     void *buffer_ptr;
     
     // 获取渲染配置
@@ -351,7 +351,7 @@ uint64_t process_engine_properties(void)
     }
     
     // 检查纹理启用状态
-    if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) {
+    if ((*(int64_t *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) {
         enable_texture = *(int *)(render_config + 0x2140) != 0;
     } else {
         enable_texture = false;
@@ -359,7 +359,7 @@ uint64_t process_engine_properties(void)
     
     // 设置纹理质量
     if ((!enable_texture) || (*(int *)(render_config + 0x2144) == *(int *)(render_config + 0x2140))) {
-        if (((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) &&
+        if (((*(int64_t *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(render_config + 0x540) < 1)) &&
             (*(int *)(render_config + 0x2140) == 0)) {
             quality_factor = *(float *)(render_config + 0x20d0);
         } else {
@@ -400,7 +400,7 @@ apply_settings:
     }
     
     // 检查设备状态
-    if (-1 < *(int *)(*(longlong *)(core_system_data_render + 0x2018) + 0x330)) {
+    if (-1 < *(int *)(*(int64_t *)(core_system_data_render + 0x2018) + 0x330)) {
         buffer_ptr = (void *)0x180103d14;
         check_device_status();
     }
@@ -475,12 +475,12 @@ apply_settings:
 // 功能：根据不同的渲染模式初始化渲染系统的各项设置
 void initialize_render_system(uint64_t renderer_instance, int render_mode)
 {
-    longlong renderer_data;
-    longlong display_info;
+    int64_t renderer_data;
+    int64_t display_info;
     char config_status;
     uint resolution_x;
     uint resolution_y;
-    longlong monitor_info;
+    int64_t monitor_info;
     uint display_width;
     void *config_path;
     int screen_width;
@@ -578,15 +578,15 @@ void initialize_render_system(uint64_t renderer_instance, int render_mode)
     
 apply_mode_settings:
     // 获取显示信息
-    display_info = *(longlong *)(*(longlong *)(system_main_module_state + 8) + 0x18);
-    screen_height = (int)((*(longlong *)(*(longlong *)(system_main_module_state + 8) + 0x20) - display_info) / 0x70);
+    display_info = *(int64_t *)(*(int64_t *)(system_main_module_state + 8) + 0x18);
+    screen_height = (int)((*(int64_t *)(*(int64_t *)(system_main_module_state + 8) + 0x20) - display_info) / 0x70);
     
     // 确定屏幕分辨率
     if ((screen_height < 2) || (screen_height <= *(int *)(SYSTEM_STATE_MANAGER + 0x1f10))) {
         screen_height = GetSystemMetrics(0);
         screen_width = GetSystemMetrics(1);
     } else {
-        monitor_info = (longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x1f10) * 0x70;
+        monitor_info = (int64_t)*(int *)(SYSTEM_STATE_MANAGER + 0x1f10) * 0x70;
         resolution_x = *(int *)(monitor_info + 0x60 + display_info) - *(int *)(monitor_info + 0x58 + display_info);
         display_width = (int)resolution_x >> 0x1f;
         resolution_y = *(int *)(monitor_info + 100 + display_info) - *(int *)(monitor_info + 0x5c + display_info);
@@ -605,7 +605,7 @@ apply_mode_settings:
     render_params[1] = 0;
     
     // 检查配置文件
-    if ((*(longlong *)(renderer_data + 0x1b80) != 0) &&
+    if ((*(int64_t *)(renderer_data + 0x1b80) != 0) &&
         (config_status = (**(code **)(renderer_data + 0x1b88))(render_params), render_params[1] = render_params[0], config_status == '\0')) {
         if (system_debug_flag == '\0') {
             config_path = &system_buffer_ptr;
@@ -623,7 +623,7 @@ apply_mode_settings:
 // 函数：处理渲染器命令
 // 参数：param_1 - 渲染器实例，param_2 - 命令参数，param_3 - 值参数
 // 功能：处理渲染器的各种命令设置
-uint64_t process_renderer_command(uint64_t renderer_instance, longlong command_param, longlong value_param)
+uint64_t process_renderer_command(uint64_t renderer_instance, int64_t command_param, int64_t value_param)
 {
     int command_id;
     int32_t value;
@@ -678,7 +678,7 @@ uint64_t process_renderer_command(uint64_t renderer_instance, longlong command_p
 // 函数：初始化渲染管线
 // 参数：param_1 - 渲染器实例
 // 功能：初始化完整的渲染管线，包括各种渲染技术和效果
-void initialize_render_pipeline(longlong renderer_instance)
+void initialize_render_pipeline(int64_t renderer_instance)
 {
     char config_found;
     int32_t config_value;
@@ -711,11 +711,11 @@ void initialize_render_pipeline(longlong renderer_instance)
     void *effect_ptr;
     int8_t *effect_string_ptr;
     int32_t effect_buffer_value;
-    ulonglong checksum;
+    uint64_t checksum;
     
     // 初始化文件句柄和校验和
     file_handle = 0xfffffffffffffffe;
-    checksum = GET_SECURITY_COOKIE() ^ (ulonglong)render_config;
+    checksum = GET_SECURITY_COOKIE() ^ (uint64_t)render_config;
     render_flags = 0;
     
     // 设置最小质量要求
@@ -738,7 +738,7 @@ void initialize_render_pipeline(longlong renderer_instance)
     if (config_found != '\0') {
         stack_config[0] = 0;
         config_value = 0;
-        if ((*(longlong *)(renderer_instance + 0x1f00) != 0) &&
+        if ((*(int64_t *)(renderer_instance + 0x1f00) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1f08))(stack_config), config_value = stack_config[0], config_found == '\0')) {
             if (system_debug_flag == '\0') {
                 config_path = &system_buffer_ptr;
@@ -752,7 +752,7 @@ void initialize_render_pipeline(longlong renderer_instance)
         *(int32_t *)(renderer_instance + 0x1ea0) = config_value;
         stack_config[0] = 0x200;
         config_value = 0x200;
-        if ((*(longlong *)(renderer_instance + 0x1db0) != 0) &&
+        if ((*(int64_t *)(renderer_instance + 0x1db0) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1db8))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
             if (system_debug_flag == '\0') {
                 config_path = &system_buffer_ptr;
@@ -765,7 +765,7 @@ void initialize_render_pipeline(longlong renderer_instance)
         }
         *(int32_t *)(renderer_instance + 0x1d50) = config_value;
         stack_config[0] = 0x200;
-        if ((*(longlong *)(renderer_instance + 0x1e20) == 0) ||
+        if ((*(int64_t *)(renderer_instance + 0x1e20) == 0) ||
            (config_found = (**(code **)(renderer_instance + 0x1e28))(&stack_config[0]), config_found != '\0')) {
             *(int32_t *)(renderer_instance + 0x1dc0) = stack_config[0];
         } else {
@@ -780,7 +780,7 @@ void initialize_render_pipeline(longlong renderer_instance)
         }
         stack_config[0] = 100;
         config_value = 100;
-        if ((*(longlong *)(renderer_instance + 0x1b10) != 0) &&
+        if ((*(int64_t *)(renderer_instance + 0x1b10) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1b18))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
             if (system_debug_flag == '\0') {
                 config_path = &system_buffer_ptr;
@@ -814,7 +814,7 @@ void initialize_render_pipeline(longlong renderer_instance)
         buffer_ptr = &global_state_720_ptr;
         if (config_found != '\0') {
             stack_config[0] = 100;
-            if ((*(longlong *)(renderer_instance + 0x1b10) != 0) &&
+            if ((*(int64_t *)(renderer_instance + 0x1b10) != 0) &&
                (config_found = (**(code **)(renderer_instance + 0x1b18))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
                 if (system_debug_flag == '\0') {
                     config_path = &system_buffer_ptr;
@@ -830,7 +830,7 @@ void initialize_render_pipeline(longlong renderer_instance)
     } else {
         stack_config[0] = 1;
         default_value = 1;
-        if ((*(longlong *)(renderer_instance + 0x1f00) != 0) &&
+        if ((*(int64_t *)(renderer_instance + 0x1f00) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1f08))(&stack_config[0]), default_value = stack_config[0], config_found == '\0')) {
             if (system_debug_flag == '\0') {
                 config_path = &system_buffer_ptr;
@@ -843,7 +843,7 @@ void initialize_render_pipeline(longlong renderer_instance)
         }
         *(int32_t *)(renderer_instance + 0x1ea0) = default_value;
         stack_config[0] = 100;
-        if ((*(longlong *)(renderer_instance + 0x1b10) == 0) ||
+        if ((*(int64_t *)(renderer_instance + 0x1b10) == 0) ||
            (config_found = (**(code **)(renderer_instance + 0x1b18))(&stack_config[0]), config_value = stack_config[0], config_found != '\0')) {
 apply_config_value:
             *(int32_t *)(renderer_instance + 0x1ab0) = config_value;
@@ -929,7 +929,7 @@ finalize_pipeline:
     if (config_found != '\0') {
         stack_config[0] = 1;
         config_value = 1;
-        if ((*(longlong *)(renderer_instance + 0x1f00) != 0) &&
+        if ((*(int64_t *)(renderer_instance + 0x1f00) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1f08))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
             if (system_debug_flag == '\0') {
                 config_path = &system_buffer_ptr;
@@ -943,7 +943,7 @@ finalize_pipeline:
         *(int32_t *)(renderer_instance + 0x1ea0) = config_value;
         stack_config[0] = 0x780;
         config_value = 0x780;
-        if ((*(longlong *)(renderer_instance + 0x1db0) != 0) &&
+        if ((*(int64_t *)(renderer_instance + 0x1db0) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1db8))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
             if (system_debug_flag == '\0') {
                 config_path = &system_buffer_ptr;
@@ -957,7 +957,7 @@ finalize_pipeline:
         *(int32_t *)(renderer_instance + 0x1d50) = config_value;
         stack_config[0] = 0x438;
         config_value = 0x438;
-        if ((*(longlong *)(renderer_instance + 0x1e20) != 0) &&
+        if ((*(int64_t *)(renderer_instance + 0x1e20) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1e28))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
             if (system_debug_flag == '\0') {
                 config_path = &system_buffer_ptr;
@@ -982,7 +982,7 @@ finalize_pipeline:
     
     if (config_found != '\0') {
         stack_config[0] = 1;
-        if ((*(longlong *)(renderer_instance + 0x1c60) == 0) ||
+        if ((*(int64_t *)(renderer_instance + 0x1c60) == 0) ||
            (config_found = (**(code **)(renderer_instance + 0x1c68))(&stack_config[0]), config_found != '\0')) {
             *(int32_t *)(renderer_instance + 0x1c00) = stack_config[0];
         } else {
@@ -997,7 +997,7 @@ finalize_pipeline:
         }
         stack_config[0] = 0;
         config_value = 0;
-        if ((*(longlong *)(renderer_instance + 0x1330) != 0) &&
+        if ((*(int64_t *)(renderer_instance + 0x1330) != 0) &&
            (config_found = (**(code **)(renderer_instance + 0x1338))(&stack_config[0]), config_value = stack_config[0], config_found == '\0')) {
             if (system_debug_flag == '\0') {
                 config_path = &system_buffer_ptr;
@@ -1010,7 +1010,7 @@ finalize_pipeline:
         }
         *(int32_t *)(renderer_instance + 0x12d0) = config_value;
         stack_config[0] = 0;
-        if ((*(longlong *)(renderer_instance + 0xc30) == 0) ||
+        if ((*(int64_t *)(renderer_instance + 0xc30) == 0) ||
            (config_found = (**(code **)(renderer_instance + 0xc38))(&stack_config[0]), config_found != '\0')) {
             *(int32_t *)(renderer_instance + 0xbd0) = stack_config[0];
         } else {
@@ -1030,5 +1030,5 @@ finalize_pipeline:
     update_render_system(renderer_instance);
     
     // 使用校验和验证
-    validate_pipeline_setup(checksum ^ (ulonglong)render_config);
+    validate_pipeline_setup(checksum ^ (uint64_t)render_config);
 }

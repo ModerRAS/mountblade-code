@@ -38,10 +38,10 @@ typedef uint8_t SystemByte;                      // 系统字节类型
 typedef uint32_t SystemColor;                     // 系统颜色类型
 typedef float SystemFloat;                        // 系统浮点类型
 typedef char SystemChar;                          // 系统字符类型
-typedef longlong SystemInt64;                     // 系统64位整数类型
+typedef int64_t SystemInt64;                     // 系统64位整数类型
 typedef int SystemInt32;                          // 系统32位整数类型
 typedef uint32_t SystemUInt32;                    // 系统32位无符号整数类型
-typedef ulonglong SystemUInt64;                   // 系统64位无符号整数类型
+typedef uint64_t SystemUInt64;                   // 系统64位无符号整数类型
 typedef code* SystemCodePointer;                  // 系统代码指针类型
 typedef void* SystemDataPointer;             // 系统数据指针类型
 typedef int8_t* SystemBufferPointer;           // 系统缓冲区指针类型

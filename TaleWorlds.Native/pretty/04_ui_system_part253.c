@@ -306,13 +306,13 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
         
         do {
             // 主处理循环
-            stack_int_value5 = *(int *)((longlong)&UI_RENDERER_STACK_OFFSET + stack_context * 4);
-            stack_int_ptr = (int *)((ulonglong)*(uint *)(render_context + 0x18 + stack_context * 4) * UI_RENDERER_TABLE_SIZE + 0x180beb380);
+            stack_int_value5 = *(int *)((int64_t)&UI_RENDERER_STACK_OFFSET + stack_context * 4);
+            stack_int_ptr = (int *)((uint64_t)*(uint *)(render_context + 0x18 + stack_context * 4) * UI_RENDERER_TABLE_SIZE + 0x180beb380);
             
             if (stack_int_value5 != 0) {
                 do {
                     // 内层处理循环
-                    data_register = (ulonglong)data_register2;
+                    data_register = (uint64_t)data_register2;
                     data_flags = (uint)data_register;
                     register_value = (int)data_pointer;
                     
@@ -330,18 +330,18 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                         
                         if (data_flags == 3) {
                             // 3D模式处理
-                            temp_context = *(longlong *)(stack_context + 0x70);
+                            temp_context = *(int64_t *)(stack_context + 0x70);
                             stack_index = 1;
                             stack_context3 = 1;
                         }
                         else {
                             // 其他模式处理
-                            temp_context = *(longlong *)(stack_context + 0x58 + (longlong)(int)data_flags * 8);
+                            temp_context = *(int64_t *)(stack_context + 0x58 + (int64_t)(int)data_flags * 8);
                             stack_index = 3;
                             stack_context3 = 3;
                         }
                         
-                        temp_float = *(float *)(temp_context + (longlong)(temp_int << ((byte)cache_index & UI_RENDERER_SHIFT_MASK)) * 4);
+                        temp_float = *(float *)(temp_context + (int64_t)(temp_int << ((byte)cache_index & UI_RENDERER_SHIFT_MASK)) * 4);
                         data_register = data_register;
                         cache_index = data_flags;
                     }
@@ -352,18 +352,18 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     
                     while (data_register2 = (uint)control_value, control_value < 0) {
                         // 控制序列解码和处理
-                        temp_context = *(longlong *)(context_data + 0x178);
+                        temp_context = *(int64_t *)(context_data + 0x178);
                         short_buffer_ptr = short_buffer_ptr + 1;
                         temp_int = *(int *)(temp_context + 0x48a8);
                         control_flag = **(char **)(temp_context + 0x48b0);
                         *(int *)(temp_context + 0x48a8) = temp_int + 1;
-                        data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                        *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                        data_pointer = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                        data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                        *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                        data_pointer = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                         *data_pointer = *data_pointer & 7;
                         
                         if ((char)(control_flag << ((byte)temp_int & UI_RENDERER_SHIFT_MASK)) < '\0') {
-                            short_buffer_ptr = short_buffer_ptr + -(longlong)(int)data_register2;
+                            short_buffer_ptr = short_buffer_ptr + -(int64_t)(int)data_register2;
                         }
                         
                         register_value = register_value + -1;
@@ -371,25 +371,25 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     }
                     
                     // 数据变换处理
-                    temp_context = (longlong)(int)data_flags;
+                    temp_context = (int64_t)(int)data_flags;
                     temp_int = (int)data_register2 >> UI_RENDERER_BIT_SHIFT;
                     data_register2 = data_register2 & UI_RENDERER_CONTROL_MASK;
                     
                     if (temp_int == UI_RENDERER_CONTROL_MASK) {
                         // 高位处理
-                        *(uint *)((longlong)&stack_int_value3 + temp_context * 4) = data_register;
+                        *(uint *)((int64_t)&stack_int_value3 + temp_context * 4) = data_register;
                         register_value = register_value + (-1 - *stack_int_ptr);
                         loop_counter = UISystem_ProcessDataBatch();
-                        temp_context = *(longlong *)(context_data + 0x178);
+                        temp_context = *(int64_t *)(context_data + 0x178);
                         temp_int = *(int *)(temp_context + 0x48a8);
                         control_flag = **(char **)(temp_context + 0x48b0);
                         *(int *)(temp_context + 0x48a8) = temp_int + 1;
-                        data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                        *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                        data_pointer = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                        data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                        *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                        data_pointer = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                         *data_pointer = *data_pointer & 7;
                         
-                        float result_float = temp_float * *(float *)((longlong)(loop_counter + 0xf) * 4 + 0x180c398a0);
+                        float result_float = temp_float * *(float *)((int64_t)(loop_counter + 0xf) * 4 + 0x180c398a0);
                         if ((char)(control_flag << ((byte)temp_int & UI_RENDERER_SHIFT_MASK)) < '\0') {
                             *float_buffer_ptr = *position_data + result_float;
                             *position_data = *position_data - result_float;
@@ -405,17 +405,17 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     }
                     else {
                         // 标准变换处理
-                        *(uint *)((longlong)&stack_int_value3 + temp_context * 4) = data_register;
-                        temp_context = *(longlong *)(context_data + 0x178);
+                        *(uint *)((int64_t)&stack_int_value3 + temp_context * 4) = data_register;
+                        temp_context = *(int64_t *)(context_data + 0x178);
                         temp_int = *(int *)(temp_context + 0x48a8);
                         control_flag = **(char **)(temp_context + 0x48b0);
                         *(int *)(temp_context + 0x48a8) = temp_int + 1;
-                        data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                        *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                        data_pointer = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                        data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                        *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                        data_pointer = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                         *data_pointer = *data_pointer & 7;
                         
-                        float result_float = temp_float * *(float *)((longlong)temp_int * 4 + 0x180c398a0);
+                        float result_float = temp_float * *(float *)((int64_t)temp_int * 4 + 0x180c398a0);
                         if ((char)(control_flag << ((byte)temp_int & UI_RENDERER_SHIFT_MASK)) < '\0') {
                             register_value = register_value + -1;
                             *float_buffer_ptr = *position_data + result_float;
@@ -434,19 +434,19 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     
                     if (data_register2 == UI_RENDERER_CONTROL_MASK) {
                         // 第二次变换处理
-                        *(uint *)((longlong)&stack_int_value3 + temp_context * 4) = data_register;
+                        *(uint *)((int64_t)&stack_int_value3 + temp_context * 4) = data_register;
                         register_value = register_value + (-1 - *stack_int_ptr);
                         loop_counter = UISystem_ProcessDataBatch();
-                        temp_context = *(longlong *)(context_data + 0x178);
+                        temp_context = *(int64_t *)(context_data + 0x178);
                         temp_int = *(int *)(temp_context + 0x48a8);
                         control_flag = **(char **)(temp_context + 0x48b0);
                         *(int *)(temp_context + 0x48a8) = temp_int + 1;
-                        data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                        *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                        data_pointer = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                        data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                        *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                        data_pointer = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                         *data_pointer = *data_pointer & 7;
                         
-                        float result_float = temp_float * *(float *)((longlong)(loop_counter + 0xf) * 4 + 0x180c398a0);
+                        float result_float = temp_float * *(float *)((int64_t)(loop_counter + 0xf) * 4 + 0x180c398a0);
                         if ((char)(control_flag << ((byte)temp_int & UI_RENDERER_SHIFT_MASK)) < '\0') {
                             *float_buffer_ptr = *position_data + result_float;
                             *position_data = *position_data - result_float;
@@ -460,17 +460,17 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                         *float_buffer_ptr = *position_data;
                     }
                     else {
-                        *(uint *)((longlong)&stack_int_value3 + temp_context * 4) = data_register;
-                        temp_context = *(longlong *)(context_data + 0x178);
+                        *(uint *)((int64_t)&stack_int_value3 + temp_context * 4) = data_register;
+                        temp_context = *(int64_t *)(context_data + 0x178);
                         temp_int = *(int *)(temp_context + 0x48a8);
                         control_flag = **(char **)(temp_context + 0x48b0);
                         *(int *)(temp_context + 0x48a8) = temp_int + 1;
-                        data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                        *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                        data_pointer = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                        data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                        *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                        data_pointer = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                         *data_pointer = *data_pointer & 7;
                         
-                        float result_float = temp_float * *(float *)((ulonglong)data_register2 * 4 + 0x180c398a0);
+                        float result_float = temp_float * *(float *)((uint64_t)data_register2 * 4 + 0x180c398a0);
                         if ((char)(control_flag << ((byte)temp_int & UI_RENDERER_SHIFT_MASK)) < '\0') {
                             register_value = register_value + -1;
                             *float_buffer_ptr = *position_data + result_float;
@@ -484,10 +484,10 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     }
                     
                     // 更新循环变量
-                    data_register2 = (ulonglong)data_register;
-                    data_pointer = (ulonglong)(int)stack_index;
-                    data_pointer = (ulonglong)(register_value - 1);
-                    data_register = (ulonglong)cache_index;
+                    data_register2 = (uint64_t)data_register;
+                    data_pointer = (uint64_t)(int)stack_index;
+                    data_pointer = (uint64_t)(register_value - 1);
+                    data_register = (uint64_t)cache_index;
                     float_buffer_ptr = float_buffer_ptr + data_pointer;
                     position_data = position_data + data_pointer;
                     stack_int_value5 = stack_int_value5 + -1;
@@ -503,7 +503,7 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
         
         // 后处理循环
         while ((stack_int_value2 != 0 && (stack_int_value2 = register_value, 0 < register_value))) {
-            short_buffer_ptr = *(short **)((ulonglong)*(uint *)(render_context + 0x54) * UI_RENDERER_TABLE_SIZE + 0x180beb588);
+            short_buffer_ptr = *(short **)((uint64_t)*(uint *)(render_context + 0x54) * UI_RENDERER_TABLE_SIZE + 0x180beb588);
             control_value = *short_buffer_ptr;
             
             while (control_value < 0) {
@@ -513,24 +513,24 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     break;
                 }
                 
-                temp_context = *(longlong *)(context_data + 0x178);
+                temp_context = *(int64_t *)(context_data + 0x178);
                 register_value = *(int *)(temp_context + 0x48a8);
                 control_flag = **(char **)(temp_context + 0x48b0);
                 *(int *)(temp_context + 0x48a8) = register_value + 1;
-                data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                data_pointer = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                data_pointer = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                 *data_pointer = *data_pointer & 7;
                 
                 if ((char)(control_flag << ((byte)register_value & UI_RENDERER_SHIFT_MASK)) < '\0') {
-                    short_buffer_ptr = short_buffer_ptr + -(longlong)control_value;
+                    short_buffer_ptr = short_buffer_ptr + -(int64_t)control_value;
                 }
                 
                 register_value = register_value + -1;
                 control_value = *short_buffer_ptr;
             }
             
-            data_pointer = (ulonglong)stack_index;
+            data_pointer = (uint64_t)stack_index;
             data_flags = 0;
             
             do {
@@ -538,7 +538,7 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                 if ((data_flags & 1) == 0) {
                     if (register_value == 0) {
                         int_buffer_ptr = int_buffer_ptr + 2;
-                        data_register = (ulonglong)*int_buffer_ptr;
+                        data_register = (uint64_t)*int_buffer_ptr;
                         register_value = *int_buffer_ptr - 2;
                         position_data = stack_float_ptr + int_buffer_ptr[-1];
                         data_register = data_register;
@@ -548,18 +548,18 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                         index_data = index_data + 1;
                         
                         if (*int_buffer_ptr == 3) {
-                            temp_context = *(longlong *)(stack_context + 0x70);
+                            temp_context = *(int64_t *)(stack_context + 0x70);
                             data_pointer = 1;
                         }
                         else {
-                            temp_context = *(longlong *)(stack_context + 0x58 + data_register * 8);
+                            temp_context = *(int64_t *)(stack_context + 0x58 + data_register * 8);
                             data_pointer = 3;
                         }
                         
-                        temp_float = *(float *)(temp_context + (longlong)(temp_int << ((byte)cache_index & UI_RENDERER_SHIFT_MASK)) * 4);
+                        temp_float = *(float *)(temp_context + (int64_t)(temp_int << ((byte)cache_index & UI_RENDERER_SHIFT_MASK)) * 4);
                         stack_index = (uint)data_pointer;
                     }
-                    data_pointer = (ulonglong)(register_value - 1);
+                    data_pointer = (uint64_t)(register_value - 1);
                 }
                 
                 if (((int)control_value & UI_RENDERER_BIT_TEST_MASK >> ((byte)data_flags & UI_RENDERER_SHIFT_MASK)) == 0) {
@@ -567,17 +567,17 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                 }
                 else {
                     register_value = register_value + -1;
-                    *(uint *)((longlong)&stack_int_value3 + (longlong)(int)data_register * 4) = data_register;
+                    *(uint *)((int64_t)&stack_int_value3 + (int64_t)(int)data_register * 4) = data_register;
                     if (register_value < 0) break;
                     
-                    temp_context = *(longlong *)(context_data + 0x178);
+                    temp_context = *(int64_t *)(context_data + 0x178);
                     temp_int = *(int *)(temp_context + 0x48a8);
                     control_flag = **(char **)(temp_context + 0x48b0);
                     *(int *)(temp_context + 0x48a8) = temp_int + 1;
-                    data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                    *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                    data_pointer = (ulonglong)stack_index;
-                    data_pointer = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                    data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                    *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                    data_pointer = (uint64_t)stack_index;
+                    data_pointer = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                     *data_pointer = *data_pointer & 7;
                     register_value = register_value;
                     
@@ -603,7 +603,7 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
         
         // 最终处理阶段
         if (int_buffer_ptr < stack_int_ptr2) {
-            temp_context = (longlong)(int)data_pointer;
+            temp_context = (int64_t)(int)data_pointer;
             do {
                 register_value = (int)data_pointer;
                 if (register_value == 0) {
@@ -619,7 +619,7 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     }
                     float_buffer_ptr = position_data + UI_RENDERER_DATA_OFFSET;
                 }
-                data_pointer = (ulonglong)(register_value - 1);
+                data_pointer = (uint64_t)(register_value - 1);
                 *float_buffer_ptr = *position_data;
                 float_buffer_ptr[temp_context] = position_data[temp_context];
                 float_buffer_ptr = float_buffer_ptr + temp_context + (int)data_pointer;
@@ -630,8 +630,8 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
         }
         
         // 更新状态信息
-        stack_int_value3 = (int)((ulonglong)stack_int_value4 >> 0x20);
-        stack_int_value4 = (int)((ulonglong)stack_int_value3 >> 0x20);
+        stack_int_value3 = (int)((uint64_t)stack_int_value4 >> 0x20);
+        stack_int_value4 = (int)((uint64_t)stack_int_value3 >> 0x20);
         *(int *)(stack_context + 0x30) = stack_int_value2 + 1;
         register_value = stack_int_value3 + 1;
         if (stack_int_value3 < stack_int_value2) {
@@ -644,10 +644,10 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
         }
         *(int *)(stack_context + 0x3c) = stack_int_value4 + 1;
         if (stack_int_value3 != -1) {
-            control_code = *(UI_ControlCode *)((stack_context2 * 0xe + (longlong)stack_int_value3) * 4 + 0x180c42734);
+            control_code = *(UI_ControlCode *)((stack_context2 * 0xe + (int64_t)stack_int_value3) * 4 + 0x180c42734);
             goto FINALIZE_RENDERER;
         }
-        data_pointer = (ulonglong)(stack_int_value4 + 1);
+        data_pointer = (uint64_t)(stack_int_value4 + 1);
     }
     else {
         // 标准渲染模式处理
@@ -663,8 +663,8 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
         stack_int_ptr2 = int_buffer_ptr;
         
         do {
-            stack_int_ptr = (int *)((ulonglong)*(uint *)(render_context + 0x18 + stack_context * 4) * UI_RENDERER_TABLE_SIZE + 0x180beb380);
-            for (stack_int_value5 = *(int *)((longlong)&UI_RENDERER_STACK_OFFSET + stack_context * 4); stack_int_value5 != 0; stack_int_value5 = stack_int_value5 + -1) {
+            stack_int_ptr = (int *)((uint64_t)*(uint *)(render_context + 0x18 + stack_context * 4) * UI_RENDERER_TABLE_SIZE + 0x180beb380);
+            for (stack_int_value5 = *(int *)((int64_t)&UI_RENDERER_STACK_OFFSET + stack_context * 4); stack_int_value5 != 0; stack_int_value5 = stack_int_value5 + -1) {
                 data_flags = (uint)data_pointer;
                 data_register2 = (uint)data_register;
                 if (data_register2 == 0) {
@@ -673,32 +673,32 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     temp_int = *int_buffer_ptr;
                     int_buffer_ptr = int_buffer_ptr + 1;
                     data_flags = data_pointer[1];
-                    data_pointer = (ulonglong)data_flags;
+                    data_pointer = (uint64_t)data_flags;
                     data_register2 = *data_pointer;
-                    data_register = (ulonglong)data_register2;
+                    data_register = (uint64_t)data_register2;
                     data_pointer = data_pointer + 2;
                     register_value = register_value + temp_int << ((byte)cache_index & UI_RENDERER_SHIFT_MASK);
                     stack_index = data_flags;
                     stack_int_ptr2 = int_buffer_ptr;
                     if (UI_RENDERER_MAX_ITERATIONS < register_value) break;
-                    temp_float = *(float *)(*(longlong *)(render_context + 0x70) + (longlong)register_value * 4);
+                    temp_float = *(float *)(*(int64_t *)(render_context + 0x70) + (int64_t)register_value * 4);
                 }
                 
                 // 控制序列处理
                 short_buffer_ptr = *(short **)(stack_int_ptr + 2);
                 control_value = *short_buffer_ptr;
                 while (data_register2 = (uint)control_value, control_value < 0) {
-                    temp_context = *(longlong *)(context_data + 0x178);
+                    temp_context = *(int64_t *)(context_data + 0x178);
                     short_buffer_ptr = short_buffer_ptr + 1;
                     register_value = *(int *)(temp_context + 0x48a8);
                     control_flag = **(char **)(temp_context + 0x48b0);
                     *(int *)(temp_context + 0x48a8) = register_value + 1;
-                    data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                    *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                    data_flags = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                    data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                    *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                    data_flags = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                     *data_flags = *data_flags & 7;
                     if ((char)(control_flag << ((byte)register_value & UI_RENDERER_SHIFT_MASK)) < '\0') {
-                        short_buffer_ptr = short_buffer_ptr + -(longlong)(int)data_register2;
+                        short_buffer_ptr = short_buffer_ptr + -(int64_t)(int)data_register2;
                     }
                     register_value = register_value + -1;
                     control_value = *short_buffer_ptr;
@@ -710,16 +710,16 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                 if (register_value == UI_RENDERER_CONTROL_MASK) {
                     register_value = register_value + (-1 - *stack_int_ptr);
                     temp_int = UISystem_ProcessDataBatch();
-                    temp_context = *(longlong *)(context_data + 0x178);
+                    temp_context = *(int64_t *)(context_data + 0x178);
                     register_value = *(int *)(temp_context + 0x48a8);
                     control_flag = **(char **)(temp_context + 0x48b0);
                     *(int *)(temp_context + 0x48a8) = register_value + 1;
-                    data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                    *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                    data_flags = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                    data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                    *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                    data_flags = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                     *data_flags = *data_flags & 7;
                     
-                    float result_float = temp_float * *(float *)((longlong)(temp_int + 0xf) * 4 + 0x180c398a0);
+                    float result_float = temp_float * *(float *)((int64_t)(temp_int + 0xf) * 4 + 0x180c398a0);
                     if ((char)(control_flag << ((byte)register_value & UI_RENDERER_SHIFT_MASK)) < '\0') {
                         *float_buffer_ptr = *position_data + result_float;
                         *position_data = *position_data - result_float;
@@ -735,16 +735,16 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     *float_buffer_ptr = *position_data;
                 }
                 else {
-                    temp_context = *(longlong *)(context_data + 0x178);
+                    temp_context = *(int64_t *)(context_data + 0x178);
                     temp_int = *(int *)(temp_context + 0x48a8);
                     control_flag = **(char **)(temp_context + 0x48b0);
                     *(int *)(temp_context + 0x48a8) = temp_int + 1;
-                    data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                    *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                    data_flags = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                    data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                    *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                    data_flags = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                     *data_flags = *data_flags & 7;
                     
-                    float result_float = temp_float * *(float *)((longlong)register_value * 4 + 0x180c398a0);
+                    float result_float = temp_float * *(float *)((int64_t)register_value * 4 + 0x180c398a0);
                     if ((char)(control_flag << ((byte)temp_int & UI_RENDERER_SHIFT_MASK)) < '\0') {
                         register_value = register_value + -1;
                         *float_buffer_ptr = *position_data + result_float;
@@ -763,16 +763,16 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     data_register = stack_index;
                     register_value = register_value + (-1 - *stack_int_ptr);
                     temp_int = UISystem_ProcessDataBatch();
-                    temp_context = *(longlong *)(context_data + 0x178);
+                    temp_context = *(int64_t *)(context_data + 0x178);
                     register_value = *(int *)(temp_context + 0x48a8);
                     control_flag = **(char **)(temp_context + 0x48b0);
                     *(int *)(temp_context + 0x48a8) = register_value + 1;
-                    data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                    *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                    data_flags = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                    data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                    *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                    data_flags = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                     *data_flags = *data_flags & 7;
                     
-                    float result_float = temp_float * *(float *)((longlong)(temp_int + 0xf) * 4 + 0x180c398a0);
+                    float result_float = temp_float * *(float *)((int64_t)(temp_int + 0xf) * 4 + 0x180c398a0);
                     if ((char)(control_flag << ((byte)register_value & UI_RENDERER_SHIFT_MASK)) < '\0') {
                         float_buffer_ptr[1] = result_float + position_data[1];
                         position_data[1] = position_data[1] - result_float;
@@ -786,17 +786,17 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     float_buffer_ptr[1] = position_data[1];
                 }
                 else {
-                    temp_context = *(longlong *)(context_data + 0x178);
+                    temp_context = *(int64_t *)(context_data + 0x178);
                     data_register = stack_index;
                     register_value = *(int *)(temp_context + 0x48a8);
                     control_flag = **(char **)(temp_context + 0x48b0);
                     *(int *)(temp_context + 0x48a8) = register_value + 1;
-                    data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                    *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                    data_flags = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                    data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                    *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                    data_flags = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                     *data_flags = *data_flags & 7;
                     
-                    float result_float = temp_float * *(float *)((ulonglong)stack_index * 4 + 0x180c398a0);
+                    float result_float = temp_float * *(float *)((uint64_t)stack_index * 4 + 0x180c398a0);
                     if ((char)(control_flag << ((byte)register_value & UI_RENDERER_SHIFT_MASK)) < '\0') {
                         register_value = register_value + -1;
                         float_buffer_ptr[1] = result_float + position_data[1];
@@ -809,8 +809,8 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     }
                 }
                 
-                data_pointer = (ulonglong)stack_index;
-                data_register = (ulonglong)(data_register2 - 1);
+                data_pointer = (uint64_t)stack_index;
+                data_register = (uint64_t)(data_register2 - 1);
                 float_buffer_ptr = float_buffer_ptr + 2;
                 position_data = position_data + 2;
                 render_context = stack_context;
@@ -821,7 +821,7 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
         
         // 最终清理和同步
         while ((stack_int_value2 != 0 && (0 < register_value))) {
-            short_buffer_ptr = *(short **)((ulonglong)*(uint *)(render_context + 0x54) * UI_RENDERER_TABLE_SIZE + 0x180beb588);
+            short_buffer_ptr = *(short **)((uint64_t)*(uint *)(render_context + 0x54) * UI_RENDERER_TABLE_SIZE + 0x180beb588);
             control_value = *short_buffer_ptr;
             while (control_value < 0) {
                 short_buffer_ptr = short_buffer_ptr + 1;
@@ -830,16 +830,16 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     render_context = stack_context;
                     break;
                 }
-                temp_context = *(longlong *)(context_data + 0x178);
+                temp_context = *(int64_t *)(context_data + 0x178);
                 register_value = *(int *)(temp_context + 0x48a8);
                 control_flag = **(char **)(temp_context + 0x48b0);
                 *(int *)(temp_context + 0x48a8) = register_value + 1;
-                data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                data_flags = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                data_flags = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                 *data_flags = *data_flags & 7;
                 if ((char)(control_flag << ((byte)register_value & UI_RENDERER_SHIFT_MASK)) < '\0') {
-                    short_buffer_ptr = short_buffer_ptr + -(longlong)control_value;
+                    short_buffer_ptr = short_buffer_ptr + -(int64_t)control_value;
                 }
                 render_context = stack_context;
                 register_value = register_value + -1;
@@ -858,9 +858,9 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                         temp_int = *int_buffer_ptr;
                         int_buffer_ptr = int_buffer_ptr + 1;
                         index_data = index_data + 1;
-                        temp_float = *(float *)(*(longlong *)(render_context + 0x70) + (longlong)(register_value + temp_int << ((byte)cache_index & UI_RENDERER_SHIFT_MASK)) * 4);
+                        temp_float = *(float *)(*(int64_t *)(render_context + 0x70) + (int64_t)(register_value + temp_int << ((byte)cache_index & UI_RENDERER_SHIFT_MASK)) * 4);
                     }
-                    data_register = (ulonglong)(data_register2 - 1);
+                    data_register = (uint64_t)(data_register2 - 1);
                 }
                 if (((int)control_value & UI_RENDERER_BIT_TEST_MASK >> ((byte)data_flags & UI_RENDERER_SHIFT_MASK)) == 0) {
                     *float_buffer_ptr = *position_data;
@@ -869,13 +869,13 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
                     register_value = register_value + -1;
                     data_register = stack_index;
                     if (register_value < 1) break;
-                    temp_context = *(longlong *)(context_data + 0x178);
+                    temp_context = *(int64_t *)(context_data + 0x178);
                     temp_int = *(int *)(temp_context + 0x48a8);
                     control_flag = **(char **)(temp_context + 0x48b0);
                     *(int *)(temp_context + 0x48a8) = temp_int + 1;
-                    data_ptr = (longlong *)(*(longlong *)(context_data + 0x178) + 0x48b0);
-                    *data_ptr = *data_ptr + ((longlong)*(int *)(*(longlong *)(context_data + 0x178) + 0x48a8) >> 3);
-                    data_flags = (uint *)(*(longlong *)(context_data + 0x178) + 0x48a8);
+                    data_ptr = (int64_t *)(*(int64_t *)(context_data + 0x178) + 0x48b0);
+                    *data_ptr = *data_ptr + ((int64_t)*(int *)(*(int64_t *)(context_data + 0x178) + 0x48a8) >> 3);
+                    data_flags = (uint *)(*(int64_t *)(context_data + 0x178) + 0x48a8);
                     *data_flags = *data_flags & 7;
                     register_value = register_value;
                     if ((char)(control_flag << ((byte)temp_int & UI_RENDERER_SHIFT_MASK)) < '\0') {
@@ -897,14 +897,14 @@ void UISystem_AdvancedDataRenderer(UI_ContextHandle context_handle, UI_FloatBuff
         }
         
         // 最终数据同步
-        register_value = (int)((longlong)stack_float_ptr + (0x1200 - (longlong)float_buffer_ptr) >> 2) >> 1;
+        register_value = (int)((int64_t)stack_float_ptr + (0x1200 - (int64_t)float_buffer_ptr) >> 2) >> 1;
         for (; register_value != 0; register_value = register_value + -1) {
             *float_buffer_ptr = *position_data;
             float_buffer_ptr[1] = position_data[1];
             position_data = position_data + 2;
             float_buffer_ptr = float_buffer_ptr + 2;
         }
-        data_pointer = (ulonglong)(data_register + 1);
+        data_pointer = (uint64_t)(data_register + 1);
         *(uint *)(stack_context + 0x3c) = data_register + 1;
     }
     
@@ -917,7 +917,7 @@ FINALIZE_RENDERER:
     // 内存清理和资源释放
     if (UI_RENDERER_CLEANUP_THRESHOLD < register_value) {
         data_flags = (register_value - 0x11U >> 4) + 1;
-        data_pointer = (ulonglong)data_flags;
+        data_pointer = (uint64_t)data_flags;
         register_value = register_value + data_flags * -0x10;
         do {
             UISystem_ProcessDataBatch(context_data, 0x10);
@@ -929,7 +929,7 @@ FINALIZE_RENDERER:
     }
     
     // 调用渲染器初始化函数
-    UISystem_InitializeRendererContext(return_address ^ (ulonglong)&stack_int_value3);
+    UISystem_InitializeRendererContext(return_address ^ (uint64_t)&stack_int_value3);
 }
 
 // 技术说明：

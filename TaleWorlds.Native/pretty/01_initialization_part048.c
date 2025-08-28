@@ -208,7 +208,7 @@ typedef struct {
  * - 支持异步资源清理
  * - 包含状态验证和错误处理
  */
-void InitializationSystem_ResourceManager(longlong param_1)
+void InitializationSystem_ResourceManager(int64_t param_1)
 {
     ResourceContext resource_context;
     StateContext state_context;
@@ -255,7 +255,7 @@ void InitializationSystem_ResourceManager(longlong param_1)
         }
         
         // 检查是否需要执行资源清理
-        if ((((*(longlong*)(param_1 + 0x210) != 0) &&
+        if ((((*(int64_t*)(param_1 + 0x210) != 0) &&
              (FUN_1800791a0(param_1), *(SystemByte*)(param_1 + 0xfc) == 0)) &&
             (*(SystemByte*)(param_1 + 0xf4) == 0)) &&
            (((*(byte*)(param_1 + 0xfd) & 0x20) == 0 || ((*(byte*)(param_1 + 0xfe) & 1) == 0)))) {
@@ -305,7 +305,7 @@ void InitializationSystem_ResourceManager(longlong param_1)
  * - 包含配置参数验证
  * - 提供详细的验证结果
  */
-uint64_t InitializationSystem_StateValidator(longlong param_1)
+uint64_t InitializationSystem_StateValidator(int64_t param_1)
 {
     SystemByte system_flags;
     StateContext state_context;
@@ -337,8 +337,8 @@ uint64_t InitializationSystem_StateValidator(longlong param_1)
         }
         
         // 验证状态配置
-        if ((*(longlong*)(param_1 + 0x1e0) == 0) ||
-           (*(SystemByte*)(*(StateContext*)(param_1 + 0x1e0) + 0x15 + (ulonglong)validation_result * 0x18) < 2)) {
+        if ((*(int64_t*)(param_1 + 0x1e0) == 0) ||
+           (*(SystemByte*)(*(StateContext*)(param_1 + 0x1e0) + 0x15 + (uint64_t)validation_result * 0x18) < 2)) {
             return 0;
         }
     }
@@ -368,7 +368,7 @@ uint64_t InitializationSystem_StateValidator(longlong param_1)
  * - 包含资源分配策略
  * - 提供状态同步机制
  */
-int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
+int InitializationSystem_ParameterProcessor(int64_t param_1, int64_t *param_2)
 {
     ResourceContext resource_context;
     StateContext state_context;
@@ -377,11 +377,11 @@ int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
     char validation_flag;
     int process_result;
     uint config_hash;
-    longlong resource_handle;
+    int64_t resource_handle;
     char *config_string;
-    longlong config_data;
-    ulonglong hash_value;
-    ulonglong config_key;
+    int64_t config_data;
+    uint64_t hash_value;
+    uint64_t config_key;
     int32_t extraout_XMM0_Da;
     int32_t config_result;
     uint64_t stack protector;
@@ -389,8 +389,8 @@ int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
     uint64_t *config_buffer;
     uint stack_cookie;
     uint64_t security_cookie;
-    ulonglong *hash_table;
-    longlong *resource_table;
+    uint64_t *hash_table;
+    int64_t *resource_table;
     code *callback_func;
     code *guard_func;
     uint64_t temp_stack[6];
@@ -402,8 +402,8 @@ int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
     process_result = 0;
     
     // 验证基本条件
-    if (((*(longlong*)(param_1 + 0x1b8) != 0) && (process_result = 0, (*(byte*)(param_2 + 1) & 4) == 0)) &&
-       (*(char*)((longlong)param_2 + 0x12) == 0)) {
+    if (((*(int64_t*)(param_1 + 0x1b8) != 0) && (process_result = 0, (*(byte*)(param_2 + 1) & 4) == 0)) &&
+       (*(char*)((int64_t)param_2 + 0x12) == 0)) {
         process_result = FUN_18022d470();
     }
     
@@ -413,8 +413,8 @@ int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
         if (validation_flag == 0) {
             // 处理资源清理
             if ((char)param_2[2] != 0) {
-                hash_table = (ulonglong*)0x0;
-                resource_table = (longlong*)0x0;
+                hash_table = (uint64_t*)0x0;
+                resource_table = (int64_t*)0x0;
                 callback_func = (code*)0x0;
                 guard_func = _guard_check_icall;
                 FUN_1800b6f90(extraout_XMM0_Da, param_1, &hash_table);
@@ -461,31 +461,31 @@ int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
         config_hash = config_hash * 0x21 + (int)validation_flag;
         validation_flag = *config_string;
     }
-    hash_value = (ulonglong)config_hash;
+    hash_value = (uint64_t)config_hash;
     if ((config_hash & 1) != 0) {
-        hash_value = (ulonglong)config_hash | 0x400000000;
+        hash_value = (uint64_t)config_hash | 0x400000000;
     }
     
     // 处理配置信息
     config_data = param_2[9];
     if (config_data != 0) {
-        resource_table = (longlong*)(*(longlong*)(config_data + 8) + *(ulonglong*)(config_data + 0x10) * 8);
-        hash_table = (ulonglong*)*resource_table;
-        resource_table = (longlong*)
-                 (*(longlong*)(config_data + 8) + (hash_value % (*(ulonglong*)(config_data + 0x10) & 0xffffffff)) * 8);
+        resource_table = (int64_t*)(*(int64_t*)(config_data + 8) + *(uint64_t*)(config_data + 0x10) * 8);
+        hash_table = (uint64_t*)*resource_table;
+        resource_table = (int64_t*)
+                 (*(int64_t*)(config_data + 8) + (hash_value % (*(uint64_t*)(config_data + 0x10) & 0xffffffff)) * 8);
         
         // 查找配置项
-        for (hash_table = (ulonglong*)*resource_table;
-             (hash_table != (ulonglong*)0x0 && (hash_value != *hash_table));
-             hash_table = (ulonglong*)hash_table[1]) {
+        for (hash_table = (uint64_t*)*resource_table;
+             (hash_table != (uint64_t*)0x0 && (hash_value != *hash_table));
+             hash_table = (uint64_t*)hash_table[1]) {
         }
-        if (hash_table != (ulonglong*)0x0) goto CONFIG_PROCESSING_COMPLETE;
+        if (hash_table != (uint64_t*)0x0) goto CONFIG_PROCESSING_COMPLETE;
     }
     
     // 分配新的配置资源
     resource_table = param_2 + 5;
     config_data = param_2[7] - *resource_table;
-    if ((ulonglong)(config_data / 0x18) < 0x100) {
+    if ((uint64_t)(config_data / 0x18) < 0x100) {
         resource_handle = FUN_18062b420(system_memory_pool_ptr, 0x1800, (char)param_2[8]);
         config_data = *resource_table;
         if (config_data != param_2[6]) {
@@ -514,30 +514,30 @@ int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
     }
     param_2[6] = *resource_table;
     config_data = param_2[9];
-    hash_value = hash_value % (ulonglong)*(uint*)(config_data + 0x10);
+    hash_value = hash_value % (uint64_t)*(uint*)(config_data + 0x10);
     
     // 更新配置哈希表
-    for (hash_table = *(ulonglong**)(*(longlong*)(config_data + 8) + hash_value * 8); hash_table != (ulonglong*)0x0;
-         hash_table = (ulonglong*)hash_table[1]) {
+    for (hash_table = *(uint64_t**)(*(int64_t*)(config_data + 8) + hash_value * 8); hash_table != (uint64_t*)0x0;
+         hash_table = (uint64_t*)hash_table[1]) {
         if (hash_value == *hash_table) goto CONFIG_PROCESSING_COMPLETE;
     }
     
     // 添加新的配置项
-    resource_table = *(longlong**)(config_data + 0x30);
-    config_key = (longlong)(int)resource_table[2] + 0xfU & 0xfffffffffffffff0;
+    resource_table = *(int64_t**)(config_data + 0x30);
+    config_key = (int64_t)(int)resource_table[2] + 0xfU & 0xfffffffffffffff0;
     *(int*)(resource_table + 2) = (int)config_key + 0x10;
-    hash_table = (ulonglong*)(*resource_table + config_key);
+    hash_table = (uint64_t*)(*resource_table + config_key);
     *hash_table = hash_value;
     hash_table[1] = 0;
     FUN_18066c220(config_data + 0x20, &temp_stack, *(int32_t*)(config_data + 0x10), *(int32_t*)(config_data + 0x18),
                   1);
     if ((char)temp_stack != 0) {
-        hash_value = hash_value % (ulonglong)temp_stack._4_4_;
+        hash_value = hash_value % (uint64_t)temp_stack._4_4_;
         FUN_180083b20(config_data, temp_stack._4_4_);
     }
-    hash_table[1] = *(ulonglong*)(*(longlong*)(config_data + 8) + hash_value * 8);
-    *(ulonglong**)(*(longlong*)(config_data + 8) + hash_value * 8) = hash_table;
-    *(longlong*)(config_data + 0x18) = *(longlong*)(config_data + 0x18) + 1;
+    hash_table[1] = *(uint64_t*)(*(int64_t*)(config_data + 8) + hash_value * 8);
+    *(uint64_t**)(*(int64_t*)(config_data + 8) + hash_value * 8) = hash_table;
+    *(int64_t*)(config_data + 0x18) = *(int64_t*)(config_data + 0x18) + 1;
     
 CONFIG_PROCESSING_COMPLETE:
     FUN_180080df0(&stack_buffer[0]);
@@ -566,7 +566,7 @@ CONFIG_PROCESSING_COMPLETE:
  * - 包含内存泄漏防护
  * - 提供状态重置功能
  */
-void InitializationSystem_ResourceCleaner(longlong *param_1)
+void InitializationSystem_ResourceCleaner(int64_t *param_1)
 {
     ResourceContext resource_start;
     ResourceContext resource_end;
@@ -608,7 +608,7 @@ void InitializationSystem_ResourceCleaner(longlong *param_1)
  * @param param_1 - 系统上下文指针
  * 
  * 返回值：
- * @return ulonglong - 同步结果和状态信息
+ * @return uint64_t - 同步结果和状态信息
  * 
  * 技术说明：
  * - 实现多线程同步机制
@@ -616,31 +616,31 @@ void InitializationSystem_ResourceCleaner(longlong *param_1)
  * - 包含异常处理功能
  * - 提供资源状态管理
  */
-ulonglong InitializationSystem_StateSynchronizer(longlong param_1)
+uint64_t InitializationSystem_StateSynchronizer(int64_t param_1)
 {
     int *status_counter;
     SystemByte system_flags;
     StateContext state_context;
-    ulonglong sync_result;
-    longlong resource_offset;
-    longlong system_base;
+    uint64_t sync_result;
+    int64_t resource_offset;
+    int64_t system_base;
     
     // 处理系统资源状态
-    if (*(longlong*)(param_1 + 0x1b8) != 0) {
+    if (*(int64_t*)(param_1 + 0x1b8) != 0) {
         resource_offset = 0xb8;
         system_base = system_main_module_state;
         do {
-            state_context = *(StateContext*)(resource_offset + *(longlong*)(param_1 + 0x1b8));
-            if ((((state_context != 0) && (*(longlong*)(*(StateContext*)(param_1 + 0x1b8) + 0x328 + resource_offset) == 0)) &&
-                ((*(uint*)(state_context + 0x328) & 0x20000000) == 0)) && (*(longlong*)(state_context + 0x370) == 0)) {
-                if (*(longlong*)(state_context + 0x1d8) == 0) {
+            state_context = *(StateContext*)(resource_offset + *(int64_t*)(param_1 + 0x1b8));
+            if ((((state_context != 0) && (*(int64_t*)(*(StateContext*)(param_1 + 0x1b8) + 0x328 + resource_offset) == 0)) &&
+                ((*(uint*)(state_context + 0x328) & 0x20000000) == 0)) && (*(int64_t*)(state_context + 0x370) == 0)) {
+                if (*(int64_t*)(state_context + 0x1d8) == 0) {
                     FUN_18023b050(state_context, 0);
                     system_base = system_main_module_state;
-                    status_counter = (int*)(*(StateContext*)(resource_offset + *(longlong*)(param_1 + 0x1b8)) + 0x3a8);
+                    status_counter = (int*)(*(StateContext*)(resource_offset + *(int64_t*)(param_1 + 0x1b8)) + 0x3a8);
                     *status_counter = *status_counter + 1;
                 }
                 else if (system_base != 0) {
-                    *(longlong*)(state_context + 0x340) = (longlong)*(int*)(system_base + 0x224);
+                    *(int64_t*)(state_context + 0x340) = (int64_t)*(int*)(system_base + 0x224);
                 }
             }
             resource_offset = resource_offset + 8;
@@ -650,7 +650,7 @@ ulonglong InitializationSystem_StateSynchronizer(longlong param_1)
     // 处理系统标志
     system_flags = *(SystemByte*)(param_1 + 0xf9);
     if (system_flags != 0) {
-        if (*(longlong*)(param_1 + 0x1d8) != 0) {
+        if (*(int64_t*)(param_1 + 0x1d8) != 0) {
             FUN_18064e900();
         }
         *(uint64_t*)(param_1 + 0x1d8) = 0;
@@ -659,12 +659,12 @@ ulonglong InitializationSystem_StateSynchronizer(longlong param_1)
         *(SystemByte*)(param_1 + 0xf9) = 0;
         UNLOCK();
     }
-    sync_result = (ulonglong)system_flags;
+    sync_result = (uint64_t)system_flags;
     
     // 处理系统状态
-    if (*(longlong*)(param_1 + 0x1e8) != 0) {
+    if (*(int64_t*)(param_1 + 0x1e8) != 0) {
         FUN_180080060();
-        sync_result = *(ulonglong*)(param_1 + 0x1f0);
+        sync_result = *(uint64_t*)(param_1 + 0x1f0);
         *(uint64_t*)(param_1 + 0x1e8) = 0;
         if (sync_result != 0) {
             *(SystemByte*)(sync_result + 0xfe) = *(SystemByte*)(sync_result + 0xfe) & 0xfb;
@@ -695,29 +695,29 @@ ulonglong InitializationSystem_StateSynchronizer(longlong param_1)
  * - 包含资源管理功能
  * - 提供状态监控支持
  */
-void InitializationSystem_ConfigManager(longlong *param_1)
+void InitializationSystem_ConfigManager(int64_t *param_1)
 {
     uint64_t config_handle;
-    ulonglong *config_data;
-    ulonglong config_flag;
-    longlong *resource_table;
-    longlong resource_handle;
+    uint64_t *config_data;
+    uint64_t config_flag;
+    int64_t *resource_table;
+    int64_t resource_handle;
     SystemByte system_mode;
     int8_t security_buffer[32];
-    ulonglong *temp_buffer;
+    uint64_t *temp_buffer;
     uint64_t buffer_control;
     void *data_pointer;
-    ulonglong *config_pointer;
-    ulonglong config_info[2];
+    uint64_t *config_pointer;
+    uint64_t config_info[2];
     uint64_t stack_control;
     char cleanup_flag_1;
     char cleanup_flag_2;
     char cleanup_flag_3;
-    ulonglong security_cookie;
+    uint64_t security_cookie;
     
     // 设置栈保护
     buffer_control = 0xfffffffffffffffe;
-    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+    security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
     
     // 获取配置句柄
     config_handle = *(uint64_t*)(param_1[0x37] + 0x1e0);
@@ -732,17 +732,17 @@ void InitializationSystem_ConfigManager(longlong *param_1)
     data_pointer = &system_state_ptr;
     if (config_flag != 0) {
         resource_handle = param_1[0x37];
-        if ((*(ulonglong*)(resource_handle + 0x140) & config_flag) != 0) {
-            system_mode = *(SystemByte*)((longlong)param_1 + 0xfd) & 0x20;
+        if ((*(uint64_t*)(resource_handle + 0x140) & config_flag) != 0) {
+            system_mode = *(SystemByte*)((int64_t)param_1 + 0xfd) & 0x20;
             resource_table = param_1;
             if (system_mode == 0) {
-                resource_table = (longlong*)func_0x000180085de0(param_1[0x36]);
+                resource_table = (int64_t*)func_0x000180085de0(param_1[0x36]);
             }
             if (((*(uint*)(resource_table + 0x20) & 0x8000000) == 0) && (system_mode != 0)) {
-                temp_buffer = (ulonglong*)param_1;
+                temp_buffer = (uint64_t*)param_1;
                 (**(code**)(*param_1 + 0x28))(param_1);
                 data_pointer = (void*)0x0;
-                config_pointer = (ulonglong*)0x0;
+                config_pointer = (uint64_t*)0x0;
                 temp_buffer = &config_flag;
                 stack_control = 0;
                 config_info[0] = 0;
@@ -754,17 +754,17 @@ void InitializationSystem_ConfigManager(longlong *param_1)
                 FUN_18022f410(&data_pointer);
                 resource_handle = param_1[0x37];
             }
-            if ((*(ulonglong*)(resource_handle + 0x140) & config_flag) != 0) goto CONFIG_UPDATE_COMPLETE;
+            if ((*(uint64_t*)(resource_handle + 0x140) & config_flag) != 0) goto CONFIG_UPDATE_COMPLETE;
         }
         resource_table = param_1;
-        if ((*(SystemByte*)((longlong)param_1 + 0xfd) & 0x20) == 0) {
-            resource_table = (longlong*)func_0x000180085de0(param_1[0x36]);
+        if ((*(SystemByte*)((int64_t)param_1 + 0xfd) & 0x20) == 0) {
+            resource_table = (int64_t*)func_0x000180085de0(param_1[0x36]);
         }
         if ((*(uint*)(resource_table + 0x20) & 0x8000000) != 0) {
-            temp_buffer = (ulonglong*)param_1;
+            temp_buffer = (uint64_t*)param_1;
             (**(code**)(*param_1 + 0x28))(param_1);
             data_pointer = (void*)0x0;
-            config_pointer = (ulonglong*)0x0;
+            config_pointer = (uint64_t*)0x0;
             temp_buffer = &config_flag;
             stack_control = 0;
             config_info[0] = 0;
@@ -772,7 +772,7 @@ void InitializationSystem_ConfigManager(longlong *param_1)
             FUN_18022f2e0(&data_pointer, param_1, 0);
             (**(code**)(*param_1 + 0x38))(param_1);
             FUN_180238950(&data_pointer);
-            if (config_pointer != (ulonglong*)0x0) {
+            if (config_pointer != (uint64_t*)0x0) {
                 if (cleanup_flag_3 != 0) {
                     FUN_180075b70(data_pointer);
                 }
@@ -785,8 +785,8 @@ void InitializationSystem_ConfigManager(longlong *param_1)
                 }
                 config_data = config_pointer;
                 temp_buffer = config_pointer;
-                config_pointer = (ulonglong*)0x0;
-                if (config_data != (ulonglong*)0x0) {
+                config_pointer = (uint64_t*)0x0;
+                if (config_data != (uint64_t*)0x0) {
                     (**(code**)(*config_data + 0x38))();
                 }
             }
@@ -796,7 +796,7 @@ void InitializationSystem_ConfigManager(longlong *param_1)
     
 CONFIG_UPDATE_COMPLETE:
     // 清理安全cookie并退出
-    FUN_1808fc050(security_cookie ^ (ulonglong)security_buffer);
+    FUN_1808fc050(security_cookie ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -822,10 +822,10 @@ CONFIG_UPDATE_COMPLETE:
  * - 包含访问控制机制
  * - 提供安全审计功能
  */
-uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong param_2)
+uint64_t InitializationSystem_PermissionValidator(int64_t param_1, int64_t param_2)
 {
     uint *status_counter;
-    longlong *resource_table;
+    int64_t *resource_table;
     uint permission_level;
     code *validation_callback;
     bool permission_granted;
@@ -833,10 +833,10 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
     char access_mode;
     int validation_result;
     uint permission_hash;
-    longlong resource_context;
-    longlong resource_data;
-    longlong config_context;
-    ulonglong permission_key;
+    int64_t resource_context;
+    int64_t resource_data;
+    int64_t config_context;
+    uint64_t permission_key;
     code *security_callback;
     bool access_allowed;
     uint64_t permission_info;
@@ -846,7 +846,7 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
     int32_t access_control;
     int8_t permission_status;
     uint64_t stack_buffer[6];
-    longlong stack_data;
+    int64_t stack_data;
     uint64_t resource_info[6];
     int32_t validation_flags;
     uint64_t config_data;
@@ -858,7 +858,7 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
     }
     
     // 获取资源表
-    resource_data = *(longlong*)(param_1 + 0x1b8);
+    resource_data = *(int64_t*)(param_1 + 0x1b8);
     system_mode = *(SystemByte*)(resource_data + 0x38c);
     if (system_mode == 9) {
         system_mode = func_0x00018022d300();
@@ -866,8 +866,8 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
     }
     
     // 验证资源访问权限
-    if ((*(longlong*)(resource_context + 0x1e0) == 0) ||
-       (((resource_data = (ulonglong)system_mode * 0x18,
+    if ((*(int64_t*)(resource_context + 0x1e0) == 0) ||
+       (((resource_data = (uint64_t)system_mode * 0x18,
          *(char*)(*(StateContext*)(resource_context + 0x1e0) + 0x15 + resource_data) != 3 &&
          *(char*)(*(StateContext*)(resource_context + 0x1e0) + 0x15 + resource_data) != 4)) &&
         *(char*)(*(StateContext*)(resource_context + 0x1e0) + resource_data + 0x15) != 2)) {
@@ -902,16 +902,16 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
                 resource_context = 0xb8;
                 security_callback = (code*)&unknown_var_128_ptr;
                 do {
-                    resource_data = *(StateContext*)(resource_context + *(longlong*)(param_1 + 0x1b8));
-                    if (((resource_data != 0) && (config_context = *(longlong*)(resource_data + 0x370), config_context != 0)) &&
+                    resource_data = *(StateContext*)(resource_context + *(int64_t*)(param_1 + 0x1b8));
+                    if (((resource_data != 0) && (config_context = *(int64_t*)(resource_data + 0x370), config_context != 0)) &&
                        ((access_mode = func_0x0001802434e0(), access_mode != 0 &&
                         ((*(char*)(config_context + 0xde) != 0 &&
                          (permission_granted = true, (*(SystemByte*)(param_2 + 0x1bd8) & 0x20) != 0)))))) {
                         
                         // 执行安全回调
-                        validation_callback = *(code**)(**(longlong**)(param_2 + 0x3580) + 0xb8);
+                        validation_callback = *(code**)(**(int64_t**)(param_2 + 0x3580) + 0xb8);
                         if (validation_callback == security_callback) {
-                            config_context = (*(longlong**)(param_2 + 0x3580))[0xda];
+                            config_context = (*(int64_t**)(param_2 + 0x3580))[0xda];
                         }
                         else {
                             config_context = (*validation_callback)();
@@ -922,12 +922,12 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
                         *status_counter = *status_counter + 1;
                         UNLOCK();
                         permission_hash = permission_level >> 10;
-                        permission_key = (ulonglong)permission_hash;
+                        permission_key = (uint64_t)permission_hash;
                         
                         // 分配权限资源
-                        if (*(longlong*)(config_context + 0x3f70 + (ulonglong)permission_hash * 8) == 0) {
+                        if (*(int64_t*)(config_context + 0x3f70 + (uint64_t)permission_hash * 8) == 0) {
                             resource_data = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
-                            resource_table = (longlong*)(config_context + 0x3f70 + permission_key * 8);
+                            resource_table = (int64_t*)(config_context + 0x3f70 + permission_key * 8);
                             LOCK();
                             access_allowed = *resource_table == 0;
                             if (access_allowed) {
@@ -936,7 +936,7 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
                             UNLOCK();
                             if (access_allowed) {
                                 LOCK();
-                                *(SystemByte*)(permission_key + 0x48 + (longlong)status_counter) = 0;
+                                *(SystemByte*)(permission_key + 0x48 + (int64_t)status_counter) = 0;
                                 UNLOCK();
                             }
                             else {
@@ -944,17 +944,17 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
                                     FUN_18064e900();
                                 }
                                 do {
-                                } while (*(char*)(permission_key + 0x48 + (longlong)status_counter) != 0);
+                                } while (*(char*)(permission_key + 0x48 + (int64_t)status_counter) != 0);
                             }
                         }
                         else {
                             do {
-                            } while (*(char*)(permission_key + 0x48 + (longlong)status_counter) != 0);
+                            } while (*(char*)(permission_key + 0x48 + (int64_t)status_counter) != 0);
                         }
                         
                         // 更新权限信息
-                        *(longlong*)(*(longlong*)(config_context + 0x3f70 + permission_key * 8) + 
-                                      (ulonglong)(permission_level + permission_hash * -0x400) * 8) = resource_data;
+                        *(int64_t*)(*(int64_t*)(config_context + 0x3f70 + permission_key * 8) + 
+                                      (uint64_t)(permission_level + permission_hash * -0x400) * 8) = resource_data;
                         security_callback = (code*)&unknown_var_128_ptr;
                     }
                     resource_context = resource_context + 8;

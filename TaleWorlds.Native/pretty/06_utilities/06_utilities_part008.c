@@ -113,17 +113,17 @@ typedef struct {
  * 5. 更新系统状态和计数器
  * 6. 返回处理结果
  */
-void Utilities_ProcessData(longlong system_handle, int8_t *output_ptr, int *counter_ptr) {
+void Utilities_ProcessData(int64_t system_handle, int8_t *output_ptr, int *counter_ptr) {
     // 局部变量声明
     byte status_flag;
-    longlong temp_var1;
+    int64_t temp_var1;
     char state_char;
     int current_index;
     uint64_t result_var;
-    longlong temp_var2;
-    longlong base_offset;
+    int64_t temp_var2;
+    int64_t base_offset;
     int max_index;
-    longlong data_offset;
+    int64_t data_offset;
     float float_value1;
     float float_value2;
     
@@ -131,26 +131,26 @@ void Utilities_ProcessData(longlong system_handle, int8_t *output_ptr, int *coun
     int8_t stack_buffer_738[68];        // 栈缓冲区1
     int32_t stack_value_6f4;             // 栈值1
     int *stack_counter_ptr;                 // 栈计数器指针
-    longlong stack_offset_6e0;               // 栈偏移量1
-    longlong stack_offset_6b8;               // 栈偏移量2
-    longlong stack_array_6b0[13];            // 栈数组
+    int64_t stack_offset_6e0;               // 栈偏移量1
+    int64_t stack_offset_6b8;               // 栈偏移量2
+    int64_t stack_array_6b0[13];            // 栈数组
     int8_t stack_buffer_648[1536];      // 大栈缓冲区
-    ulonglong security_cookie;              // 安全cookie
+    uint64_t security_cookie;              // 安全cookie
     
     // 安全cookie初始化
-    security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_738;
+    security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_738;
     
     // 获取当前索引和基础偏移量
     current_index = *(int *)(system_handle + 0xac);
-    base_offset = (longlong)current_index;
+    base_offset = (int64_t)current_index;
     stack_counter_ptr = counter_ptr;
     
     // 检查索引范围
     if (current_index < *(int *)(system_handle + 0x20)) {
         // 获取数据偏移量和相关信息
-        stack_offset_6e0 = *(longlong *)(system_handle + 0x18);
+        stack_offset_6e0 = *(int64_t *)(system_handle + 0x18);
         stack_offset_6b8 = base_offset * 3;
-        data_offset = (longlong)*(int *)(stack_offset_6e0 + base_offset * 0xc) + *(longlong *)(system_handle + 8);
+        data_offset = (int64_t)*(int *)(stack_offset_6e0 + base_offset * 0xc) + *(int64_t *)(system_handle + 8);
         state_char = *(char *)(stack_offset_6e0 + 8 + base_offset * 0xc);
         
         // 根据状态字符分支处理
@@ -185,8 +185,8 @@ void Utilities_ProcessData(longlong system_handle, int8_t *output_ptr, int *coun
             }
             
             // 获取系统偏移量和状态
-            temp_var1 = *(longlong *)(system_handle + 0xa0);
-            temp_var2 = *(longlong *)(system_handle + 0x98);
+            temp_var1 = *(int64_t *)(system_handle + 0xa0);
+            temp_var2 = *(int64_t *)(system_handle + 0x98);
             if (temp_var2 == 0) {
                 // 第二次浮点数计算
                 float_value2 = (float)*(uint *)(system_handle + 0x68) * float_value2;
@@ -195,13 +195,13 @@ void Utilities_ProcessData(longlong system_handle, int8_t *output_ptr, int *coun
                     (float_value2 = float_value2 - 9.223372e+18, float_value2 < 9.223372e+18)) {
                     temp_var2 = -0x8000000000000000;
                 }
-                temp_var2 = temp_var1 - ((longlong)float_value2 + temp_var2);
-                *(longlong *)(system_handle + 0x98) = temp_var2;
+                temp_var2 = temp_var1 - ((int64_t)float_value2 + temp_var2);
+                *(int64_t *)(system_handle + 0x98) = temp_var2;
             }
             
             // 状态标志检查和处理
             status_flag = *(byte *)(system_handle + 0x6c);
-            if (*(longlong *)(system_handle + 0xc0) != 0) {
+            if (*(int64_t *)(system_handle + 0xc0) != 0) {
                 result_var = FUN_180895ef0(system_handle);
                 current_index = (**(code **)(system_handle + 0xc0))
                     (result_var, current_index, *(int32_t *)(data_offset + 0x18), 
@@ -211,13 +211,13 @@ void Utilities_ProcessData(longlong system_handle, int8_t *output_ptr, int *coun
             
             // 复杂条件检查和数据复制
             if (((((status_flag & 2) != 0 || 
-                   (longlong)float_value1 + base_offset < temp_var1 - temp_var2) &&
+                   (int64_t)float_value1 + base_offset < temp_var1 - temp_var2) &&
                   (current_index = *stack_counter_ptr, *stack_counter_ptr = current_index + 1, current_index < 10)) &&
                  ((*(uint *)(system_handle + 0x6c) >> 0x18 & 1) == 0)) &&
                 (((*(uint *)(system_handle + 0x6c) >> 0x19 & 1) != 0 && 
                   (max_index == *(int *)(system_handle + 0xb0))))) {
                 // 数据复制处理
-                memcpy(stack_buffer_648, data_offset, (longlong)*(int *)(data_offset + 8));
+                memcpy(stack_buffer_648, data_offset, (int64_t)*(int *)(data_offset + 8));
             }
         }
         else {
@@ -234,7 +234,7 @@ void Utilities_ProcessData(longlong system_handle, int8_t *output_ptr, int *coun
                 // 状态7处理
                 state_char = func_0x000180881f80(*(uint64_t *)(system_handle + 0x58));
                 if (state_char == '\0') {
-                    if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(system_handle + 0x58) + 0x90) + 0x790) + 0x1c8) != 0) {
+                    if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(system_handle + 0x58) + 0x90) + 0x790) + 0x1c8) != 0) {
                         *output_ptr = 0;
                         goto cleanup_handler;
                     }
@@ -268,12 +268,12 @@ void Utilities_ProcessData(longlong system_handle, int8_t *output_ptr, int *coun
     
 cleanup_handler:
     // 清理处理
-    FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer_738);
+    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer_738);
     return;
 
 data_copy_handler:
     // 数据复制处理分支
-    memcpy(stack_buffer_648, data_offset, (longlong)*(int *)(data_offset + 8));
+    memcpy(stack_buffer_648, data_offset, (int64_t)*(int *)(data_offset + 8));
     goto cleanup_handler;
 }
 
@@ -287,24 +287,24 @@ data_copy_handler:
  * @param param2 系统参数2
  * @param param3 系统参数3
  */
-void Utilities_HandleOperation(longlong param1, uint64_t param2, int *param3) {
+void Utilities_HandleOperation(int64_t param1, uint64_t param2, int *param3) {
     // 局部变量声明
-    longlong temp_var1;
+    int64_t temp_var1;
     char state_char;
     int temp_index1;
     int temp_index2;
-    longlong data_offset;
-    longlong base_offset;
+    int64_t data_offset;
+    int64_t base_offset;
     uint64_t result_var;
-    longlong temp_var3;
+    int64_t temp_var3;
     float float_value1;
     float float_value2;
     
     // 寄存器变量（来自原始代码）
     int unaff_EBX;
     int32_t unaff_0000001c;
-    longlong unaff_RBP;
-    longlong unaff_RDI;
+    int64_t unaff_RBP;
+    int64_t unaff_RDI;
     char in_R11B;
     int8_t *unaff_R13;
     
@@ -314,9 +314,9 @@ void Utilities_HandleOperation(longlong param1, uint64_t param2, int *param3) {
     
     // 计算基础偏移量
     base_offset = CONCAT44(unaff_0000001c, unaff_EBX) + CONCAT44(unaff_0000001c, unaff_EBX) * 2;
-    data_offset = (longlong)*(int *)(in_RAX + base_offset * 4) + *(longlong *)(param1 + 8);
+    data_offset = (int64_t)*(int *)(in_RAX + base_offset * 4) + *(int64_t *)(param1 + 8);
     state_char = *(char *)(in_RAX + 8 + base_offset * 4);
-    *(longlong *)(unaff_RBP + -0x80) = base_offset;
+    *(int64_t *)(unaff_RBP + -0x80) = base_offset;
     
     // 状态匹配检查
     if (state_char == in_R11B) {
@@ -348,8 +348,8 @@ void Utilities_HandleOperation(longlong param1, uint64_t param2, int *param3) {
         }
         
         // 获取系统变量
-        temp_var1 = *(longlong *)(param1 + 0xa0);
-        temp_var3 = *(longlong *)(param1 + 0x98);
+        temp_var1 = *(int64_t *)(param1 + 0xa0);
+        temp_var3 = *(int64_t *)(param1 + 0x98);
         if (temp_var3 == 0) {
             float_value2 = (float)*(uint *)(param1 + 0x68) * float_value2;
             temp_var3 = 0;
@@ -357,18 +357,18 @@ void Utilities_HandleOperation(longlong param1, uint64_t param2, int *param3) {
                 (float_value2 = float_value2 - 9.223372e+18, float_value2 < 9.223372e+18)) {
                 temp_var3 = -0x8000000000000000;
             }
-            temp_var3 = temp_var1 - ((longlong)float_value2 + temp_var3);
-            *(longlong *)(unaff_RDI + 0x98) = temp_var3;
+            temp_var3 = temp_var1 - ((int64_t)float_value2 + temp_var3);
+            *(int64_t *)(unaff_RDI + 0x98) = temp_var3;
         }
         
         // 条件检查和状态处理
-        state_char = (longlong)float_value1 + base_offset < temp_var1 - temp_var3;
+        state_char = (int64_t)float_value1 + base_offset < temp_var1 - temp_var3;
         if ((*(byte *)(unaff_RDI + 0x6c) & 2) != 0) {
             state_char = in_R11B;
         }
         
         // 回调函数处理
-        if (*(longlong *)(unaff_RDI + 0xc0) != 0) {
+        if (*(int64_t *)(unaff_RDI + 0xc0) != 0) {
             result_var = FUN_180895ef0();
             temp_index1 = (**(code **)(unaff_RDI + 0xc0))
                 (result_var, unaff_EBX, *(int32_t *)(data_offset + 0x18),
@@ -384,7 +384,7 @@ void Utilities_HandleOperation(longlong param1, uint64_t param2, int *param3) {
             (((*(uint *)(unaff_RDI + 0x6c) >> 0x19 & 1) != 0 && 
               (temp_index2 == *(int *)(unaff_RDI + 0xb0))))) {
             // 数据复制处理
-            memcpy(unaff_RBP + -0x10, data_offset, (longlong)*(int *)(data_offset + 8));
+            memcpy(unaff_RBP + -0x10, data_offset, (int64_t)*(int *)(data_offset + 8));
         }
     }
     else {
@@ -399,7 +399,7 @@ void Utilities_HandleOperation(longlong param1, uint64_t param2, int *param3) {
         if (state_char == '\a') {
             state_char = func_0x000180881f80(*(uint64_t *)(param1 + 0x58));
             if (state_char == '\0') {
-                if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(unaff_RDI + 0x58) + 0x90) + 0x790) + 0x1c8) != 0) {
+                if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(unaff_RDI + 0x58) + 0x90) + 0x790) + 0x1c8) != 0) {
                     *unaff_R13 = 0;
                     goto cleanup_handler;
                 }
@@ -411,12 +411,12 @@ void Utilities_HandleOperation(longlong param1, uint64_t param2, int *param3) {
                 goto data_copy_handler;
             
             in_stack_00000040._4_4_ = *(int32_t *)(data_offset + 0x20);
-            temp_index2 = FUN_180895c60(param1, unaff_EBX, (longlong)&in_stack_00000040 + 4);
+            temp_index2 = FUN_180895c60(param1, unaff_EBX, (int64_t)&in_stack_00000040 + 4);
             if (temp_index2 != 0) goto cleanup_handler;
             
             temp_index2 = func_0x00018088c530(in_stack_00000040._4_4_, unaff_RBP + -0x78);
             if ((temp_index2 != 0) || 
-                (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
+                (*(int *)(*(int64_t *)(unaff_RBP + -0x78) + 0x30) != 2))
                 goto data_copy_handler;
         }
     }
@@ -426,12 +426,12 @@ void Utilities_HandleOperation(longlong param1, uint64_t param2, int *param3) {
     
 cleanup_handler:
     // 清理处理
-    FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&in_stack_00000040);
+    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x5f0) ^ (uint64_t)&in_stack_00000040);
     return;
 
 data_copy_handler:
     // 数据复制处理分支
-    memcpy(unaff_RBP + -0x10, data_offset, (longlong)*(int *)(data_offset + 8));
+    memcpy(unaff_RBP + -0x10, data_offset, (int64_t)*(int *)(data_offset + 8));
     goto cleanup_handler;
 }
 
@@ -439,10 +439,10 @@ data_copy_handler:
  * 工具系统上下文清理器 - 清理系统上下文和资源
  */
 void Utilities_CleanupContext(void) {
-    longlong unaff_RBP;
+    int64_t unaff_RBP;
     
     // 清理处理
-    FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x5f0) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -454,12 +454,12 @@ void Utilities_CleanupContext(void) {
  * @param search_index 搜索索引
  * @param result_ptr 结果指针，用于返回查找结果
  */
-void Utilities_FindEntry(longlong system_handle, int search_index, uint64_t *result_ptr) {
+void Utilities_FindEntry(int64_t system_handle, int search_index, uint64_t *result_ptr) {
     // 局部变量声明
     uint64_t temp_value;
     int *temp_ptr;
-    longlong temp_offset1;
-    longlong temp_offset2;
+    int64_t temp_offset1;
+    int64_t temp_offset2;
     int temp_value1;
     
     // 初始化结果
@@ -467,9 +467,9 @@ void Utilities_FindEntry(longlong system_handle, int search_index, uint64_t *res
     result_ptr[1] = 0;
     
     // 获取临时指针和值
-    temp_ptr = (int *)(**(code **)(*(longlong *)
-        ((longlong)*(int *)(*(longlong *)(system_handle + 0x18) + (longlong)search_index * 0xc) +
-        *(longlong *)(system_handle + 8)) + 0x50))();
+    temp_ptr = (int *)(**(code **)(*(int64_t *)
+        ((int64_t)*(int *)(*(int64_t *)(system_handle + 0x18) + (int64_t)search_index * 0xc) +
+        *(int64_t *)(system_handle + 8)) + 0x50))();
     
     if (temp_ptr == (int *)0x0) {
         temp_value1 = 0;
@@ -480,12 +480,12 @@ void Utilities_FindEntry(longlong system_handle, int search_index, uint64_t *res
     
     // 搜索处理
     if (search_index + 1 < *(int *)(system_handle + 0x20)) {
-        temp_offset2 = (longlong)(search_index + 1);
-        temp_ptr = (int *)(*(longlong *)(system_handle + 0x18) + temp_offset2 * 0xc);
+        temp_offset2 = (int64_t)(search_index + 1);
+        temp_ptr = (int *)(*(int64_t *)(system_handle + 0x18) + temp_offset2 * 0xc);
         
         // 循环搜索匹配条目
         while (((char)temp_ptr[2] != '\x02' ||
-               (temp_offset1 = (longlong)*temp_ptr + *(longlong *)(system_handle + 8), 
+               (temp_offset1 = (int64_t)*temp_ptr + *(int64_t *)(system_handle + 8), 
                 *(int *)(temp_offset1 + 0x20) != temp_value1))) {
             temp_offset2 = temp_offset2 + 1;
             temp_ptr = temp_ptr + 3;
@@ -512,11 +512,11 @@ void Utilities_FindEntry(longlong system_handle, int search_index, uint64_t *res
  * @param hash_value_ptr 哈希值指针
  * @return 处理结果状态码
  */
-uint64_t Utilities_ProcessHash(longlong system_handle, int param_index, uint *hash_value_ptr) {
+uint64_t Utilities_ProcessHash(int64_t system_handle, int param_index, uint *hash_value_ptr) {
     // 局部变量声明
     uint hash_value;
-    longlong temp_offset1;
-    longlong temp_offset2;
+    int64_t temp_offset1;
+    int64_t temp_offset2;
     uint64_t *callback_ptr;
     int temp_index;
     int32_t temp_stack_value;
@@ -527,17 +527,17 @@ uint64_t Utilities_ProcessHash(longlong system_handle, int param_index, uint *ha
         if (hash_value != 0) {
             // 哈希表处理条件检查
             if (((*(int *)(system_handle + 0x94) != 0) && (*(int *)(system_handle + 0x78) != 0)) &&
-                (temp_index = *(int *)(*(longlong *)(system_handle + 0x70) +
-                    (longlong)(int)(*(int *)(system_handle + 0x78) - 1U & hash_value) * 4), 
+                (temp_index = *(int *)(*(int64_t *)(system_handle + 0x70) +
+                    (int64_t)(int)(*(int *)(system_handle + 0x78) - 1U & hash_value) * 4), 
                  temp_index != -1)) {
                 
-                temp_offset1 = *(longlong *)(system_handle + 0x80);
+                temp_offset1 = *(int64_t *)(system_handle + 0x80);
                 
                 // 哈希表搜索循环
                 do {
-                    temp_offset2 = (longlong)temp_index;
+                    temp_offset2 = (int64_t)temp_index;
                     if (*(uint *)(temp_offset1 + temp_offset2 * 0x10) == hash_value) {
-                        temp_stack_value = (uint)((ulonglong)*(uint64_t *)
+                        temp_stack_value = (uint)((uint64_t)*(uint64_t *)
                             (temp_offset1 + 8 + temp_offset2 * 0x10) >> 0x20);
                         if (temp_stack_value != 0) {
                             *hash_value_ptr = temp_stack_value;
@@ -553,8 +553,8 @@ uint64_t Utilities_ProcessHash(longlong system_handle, int param_index, uint *ha
 callback_handler:
             // 回调函数处理
             callback_ptr = (uint64_t *)
-                ((longlong)*(int *)(*(longlong *)(system_handle + 0x18) + (longlong)param_index * 0xc) +
-                *(longlong *)(system_handle + 8));
+                ((int64_t)*(int *)(*(int64_t *)(system_handle + 0x18) + (int64_t)param_index * 0xc) +
+                *(int64_t *)(system_handle + 8));
             
             if (callback_ptr != (uint64_t *)0x0) {
                 (**(code **)*callback_ptr)();
@@ -576,30 +576,30 @@ callback_handler:
  * @param param4 参数4
  * @return 处理结果状态码
  */
-uint64_t Utilities_HandleHashOp(longlong param1, uint64_t param2, longlong param3, uint param4) {
+uint64_t Utilities_HandleHashOp(int64_t param1, uint64_t param2, int64_t param3, uint param4) {
     // 局部变量声明
-    longlong temp_offset1;
-    longlong temp_offset2;
+    int64_t temp_offset1;
+    int64_t temp_offset2;
     uint64_t *callback_ptr;
     int temp_index;
     int *result_ptr;
-    longlong system_handle;
+    int64_t system_handle;
     bool zero_flag;
     int stack_value;
     
     // 条件检查和处理
     if (((!zero_flag) && (*(int *)(param1 + 0x78) != 0)) &&
-        (temp_index = *(int *)(*(longlong *)(system_handle + 0x70) +
-            (longlong)(int)(*(int *)(param1 + 0x78) - 1U & param4) * 4), 
+        (temp_index = *(int *)(*(int64_t *)(system_handle + 0x70) +
+            (int64_t)(int)(*(int *)(param1 + 0x78) - 1U & param4) * 4), 
          temp_index != -1)) {
         
-        temp_offset1 = *(longlong)(system_handle + 0x80);
+        temp_offset1 = *(int64_t)(system_handle + 0x80);
         
         // 哈希搜索循环
         do {
-            temp_offset2 = (longlong)temp_index;
+            temp_offset2 = (int64_t)temp_index;
             if (*(uint *)(temp_offset1 + temp_offset2 * 0x10) == param4) {
-                stack_value = (int)((ulonglong)*(uint64_t *)
+                stack_value = (int)((uint64_t)*(uint64_t *)
                     (temp_offset1 + 8 + temp_offset2 * 0x10) >> 0x20);
                 if (stack_value != 0) {
                     *result_ptr = stack_value;
@@ -615,8 +615,8 @@ uint64_t Utilities_HandleHashOp(longlong param1, uint64_t param2, longlong param
 callback_handler:
     // 回调处理
     callback_ptr = (uint64_t *)
-        ((longlong)*(int *)(*(longlong *)(system_handle + 0x18) + param3 * 0xc) +
-        *(longlong)(system_handle + 8));
+        ((int64_t)*(int *)(*(int64_t *)(system_handle + 0x18) + param3 * 0xc) +
+        *(int64_t)(system_handle + 8));
     
     if (callback_ptr != (uint64_t *)0x0) {
         (**(code **)*callback_ptr)();
@@ -634,18 +634,18 @@ callback_handler:
  * @param param3 参数3
  * @return 提取的数值或状态码
  */
-uint64_t Utilities_ExtractValue(longlong param1, uint64_t param2, longlong param3) {
+uint64_t Utilities_ExtractValue(int64_t param1, uint64_t param2, int64_t param3) {
     // 局部变量声明
     uint64_t extracted_value;
-    longlong array_offset;
+    int64_t array_offset;
     uint64_t *callback_ptr;
     int *result_ptr;
-    longlong system_handle;
+    int64_t system_handle;
     uint64_t stack_value;
     
     // 数值提取
     extracted_value = *(uint64_t *)(param1 + 8 + array_offset * 8);
-    stack_value._4_4_ = (int)((ulonglong)extracted_value >> 0x20);
+    stack_value._4_4_ = (int)((uint64_t)extracted_value >> 0x20);
     
     if (stack_value._4_4_ != 0) {
         *result_ptr = stack_value._4_4_;
@@ -654,8 +654,8 @@ uint64_t Utilities_ExtractValue(longlong param1, uint64_t param2, longlong param
     
     // 回调处理
     callback_ptr = (uint64_t *)
-        ((longlong)*(int *)(*(longlong *)(system_handle + 0x18) + param3 * 0xc) +
-        *(longlong)(system_handle + 8));
+        ((int64_t)*(int *)(*(int64_t *)(system_handle + 0x18) + param3 * 0xc) +
+        *(int64_t)(system_handle + 8));
     
     if (callback_ptr != (uint64_t *)0x0) {
         stack_value = extracted_value;
@@ -686,7 +686,7 @@ uint64_t Utilities_GetDefaultError(void) {
  * @param value_ptr 值指针
  * @return 插入结果状态码
  */
-uint64_t Utilities_InsertHashEntry(longlong *hash_table_ptr, uint *key_ptr, uint64_t *value_ptr) {
+uint64_t Utilities_InsertHashEntry(int64_t *hash_table_ptr, uint *key_ptr, uint64_t *value_ptr) {
     // 局部变量声明
     uint key_value;
     int current_index;
@@ -695,8 +695,8 @@ uint64_t Utilities_InsertHashEntry(longlong *hash_table_ptr, uint *key_ptr, uint
     uint64_t temp_value;
     uint64_t *new_entry_ptr;
     int new_index;
-    longlong table_offset;
-    longlong entry_offset;
+    int64_t table_offset;
+    int64_t entry_offset;
     uint *existing_key_ptr;
     uint existing_key;
     int *index_ptr;
@@ -710,7 +710,7 @@ uint64_t Utilities_InsertHashEntry(longlong *hash_table_ptr, uint *key_ptr, uint
         }
         
         key_value = *key_ptr;
-        table_offset = (longlong)(int)((int)hash_table_ptr[1] - 1U & key_value);
+        table_offset = (int64_t)(int)((int)hash_table_ptr[1] - 1U & key_value);
         index_ptr = (int *)(*hash_table_ptr + table_offset * 4);
         current_index = *(int *)(*hash_table_ptr + table_offset * 4);
         
@@ -718,7 +718,7 @@ uint64_t Utilities_InsertHashEntry(longlong *hash_table_ptr, uint *key_ptr, uint
         if (current_index != -1) {
             table_offset = hash_table_ptr[2];
             do {
-                entry_offset = (longlong)current_index;
+                entry_offset = (int64_t)current_index;
                 if (*(uint *)(table_offset + entry_offset * 0x10) == key_value) {
                     // 更新现有条目
                     *(uint64_t *)(table_offset + 8 + entry_offset * 0x10) = *value_ptr;
@@ -738,8 +738,8 @@ uint64_t Utilities_InsertHashEntry(longlong *hash_table_ptr, uint *key_ptr, uint
             new_index = current_index + 1;
             
             // 计算新容量
-            existing_key = (int)*(uint *)((longlong)hash_table_ptr + 0x1c) >> 0x1f;
-            temp_index1 = (*(uint *)((longlong)hash_table_ptr + 0x1c) ^ existing_key) - existing_key;
+            existing_key = (int)*(uint *)((int64_t)hash_table_ptr + 0x1c) >> 0x1f;
+            temp_index1 = (*(uint *)((int64_t)hash_table_ptr + 0x1c) ^ existing_key) - existing_key;
             
             if (temp_index1 < new_index) {
                 // 容量扩展计算
@@ -763,14 +763,14 @@ uint64_t Utilities_InsertHashEntry(longlong *hash_table_ptr, uint *key_ptr, uint
             }
             
             // 创建新条目
-            new_entry_ptr = (uint64_t *)((longlong)(int)hash_table_ptr[3] * 0x10 + hash_table_ptr[2]);
+            new_entry_ptr = (uint64_t *)((int64_t)(int)hash_table_ptr[3] * 0x10 + hash_table_ptr[2]);
             *new_entry_ptr = CONCAT44(0xffffffff, key_value);
             new_entry_ptr[1] = temp_value;
             *(int *)(hash_table_ptr + 3) = (int)hash_table_ptr[3] + 1;
         }
         else {
             // 重用现有条目
-            existing_key_ptr = (uint *)((longlong)current_index * 0x10 + hash_table_ptr[2]);
+            existing_key_ptr = (uint *)((int64_t)current_index * 0x10 + hash_table_ptr[2]);
             *(uint *)(hash_table_ptr + 4) = existing_key_ptr[1];
             existing_key_ptr[1] = 0xffffffff;
             *existing_key_ptr = *key_ptr;
@@ -779,7 +779,7 @@ uint64_t Utilities_InsertHashEntry(longlong *hash_table_ptr, uint *key_ptr, uint
         
         // 更新索引链接
         *index_ptr = current_index;
-        *(int *)((longlong)hash_table_ptr + 0x24) = *(int *)((longlong)hash_table_ptr + 0x24) + 1;
+        *(int *)((int64_t)hash_table_ptr + 0x24) = *(int *)((int64_t)hash_table_ptr + 0x24) + 1;
         result_code = 0;
     }
     return result_code;
@@ -794,32 +794,32 @@ uint64_t Utilities_InsertHashEntry(longlong *hash_table_ptr, uint *key_ptr, uint
  */
 uint64_t Utilities_UpdateHashEntry(uint64_t param1, int param2) {
     // 局部变量声明
-    longlong table_offset;
+    int64_t table_offset;
     int array_index;
     int temp_index1;
     int temp_index2;
     uint64_t result_code;
     uint64_t *entry_ptr;
     int new_index;
-    longlong entry_offset;
+    int64_t entry_offset;
     int32_t *value_ptr;
     uint hash_key;
     int expanded_size;
     int *index_ptr;
-    longlong *hash_table_ptr;
+    int64_t *hash_table_ptr;
     uint64_t *value_data_ptr;
     int32_t *key_ptr;
     uint64_t stack_value;
     
     // 获取索引指针
-    index_ptr = (int *)(*hash_table_ptr + (longlong)array_index * 4);
-    array_index = *(int *)(*hash_table_ptr + (longlong)array_index * 4);
+    index_ptr = (int *)(*hash_table_ptr + (int64_t)array_index * 4);
+    array_index = *(int *)(*hash_table_ptr + (int64_t)array_index * 4);
     
     // 查找现有条目
     if (array_index != -1) {
         table_offset = hash_table_ptr[2];
         do {
-            entry_offset = (longlong)array_index;
+            entry_offset = (int64_t)array_index;
             if (*(int *)(table_offset + entry_offset * 0x10) == param2) {
                 // 更新条目值
                 *(uint64_t *)(table_offset + 8 + entry_offset * 0x10) = *value_data_ptr;
@@ -839,8 +839,8 @@ uint64_t Utilities_UpdateHashEntry(uint64_t param1, int param2) {
         new_index = array_index + 1;
         
         // 计算新容量
-        hash_key = (int)*(uint *)((longlong)hash_table_ptr + 0x1c) >> 0x1f;
-        temp_index1 = (*(uint *)((longlong)hash_table_ptr + 0x1c) ^ hash_key) - hash_key;
+        hash_key = (int)*(uint *)((int64_t)hash_table_ptr + 0x1c) >> 0x1f;
+        temp_index1 = (*(uint *)((int64_t)hash_table_ptr + 0x1c) ^ hash_key) - hash_key;
         
         if (temp_index1 < new_index) {
             // 容量扩展计算
@@ -864,14 +864,14 @@ uint64_t Utilities_UpdateHashEntry(uint64_t param1, int param2) {
         }
         
         // 创建新条目
-        entry_ptr = (uint64_t *)((longlong)(int)hash_table_ptr[3] * 0x10 + hash_table_ptr[2]);
+        entry_ptr = (uint64_t *)((int64_t)(int)hash_table_ptr[3] * 0x10 + hash_table_ptr[2]);
         *entry_ptr = CONCAT44(0xffffffff, param2);
         entry_ptr[1] = stack_value;
         *(int *)(hash_table_ptr + 3) = (int)hash_table_ptr[3] + 1;
     }
     else {
         // 重用现有条目
-        value_ptr = (int32_t *)((longlong)array_index * 0x10 + hash_table_ptr[2]);
+        value_ptr = (int32_t *)((int64_t)array_index * 0x10 + hash_table_ptr[2]);
         *(int32_t *)(hash_table_ptr + 4) = value_ptr[1];
         value_ptr[1] = 0xffffffff;
         *value_ptr = *key_ptr;
@@ -880,7 +880,7 @@ uint64_t Utilities_UpdateHashEntry(uint64_t param1, int param2) {
     
     // 更新索引链接
     *index_ptr = array_index;
-    *(int *)((longlong)hash_table_ptr + 0x24) = *(int *)((longlong)hash_table_ptr + 0x24) + 1;
+    *(int *)((int64_t)hash_table_ptr + 0x24) = *(int *)((int64_t)hash_table_ptr + 0x24) + 1;
     return UTILITIES_SUCCESS;
 }
 
@@ -901,7 +901,7 @@ uint64_t Utilities_InsertArrayEntry(uint64_t param1, int32_t param2) {
     uint hash_key;
     int expanded_size;
     int *index_ptr;
-    longlong array_base;
+    int64_t array_base;
     uint64_t *value_data_ptr;
     int32_t *key_ptr;
     uint64_t stack_value;
@@ -941,14 +941,14 @@ uint64_t Utilities_InsertArrayEntry(uint64_t param1, int32_t param2) {
         
         // 创建新条目
         entry_ptr = (uint64_t *)
-            ((longlong)*(int *)(array_base + 0x18) * 0x10 + *(longlong *)(array_base + 0x10));
+            ((int64_t)*(int *)(array_base + 0x18) * 0x10 + *(int64_t *)(array_base + 0x10));
         *entry_ptr = CONCAT44(0xffffffff, param2);
         entry_ptr[1] = stack_value;
         *(int *)(array_base + 0x18) = *(int *)(array_base + 0x18) + 1;
     }
     else {
         // 重用现有条目
-        value_ptr = (int32_t *)((longlong)temp_index2 * 0x10 + *(longlong *)(array_base + 0x10));
+        value_ptr = (int32_t *)((int64_t)temp_index2 * 0x10 + *(int64_t *)(array_base + 0x10));
         *(int32_t *)(array_base + 0x20) = value_ptr[1];
         value_ptr[1] = 0xffffffff;
         *value_ptr = *key_ptr;
@@ -969,7 +969,7 @@ uint64_t Utilities_InsertArrayEntry(uint64_t param1, int32_t param2) {
  * @param array_base 数组基地址
  * @return 设置结果状态码
  */
-uint64_t Utilities_SetArrayValue(longlong array_index, uint64_t param2, longlong array_base) {
+uint64_t Utilities_SetArrayValue(int64_t array_index, uint64_t param2, int64_t array_base) {
     uint64_t *value_data_ptr;
     
     // 设置数组数值
@@ -995,7 +995,7 @@ uint64_t Utilities_ResizeArray(int min_size, int requested_size, uint64_t param3
     uint64_t *new_entry_ptr;
     int32_t *key_ptr;
     int32_t temp_value;
-    longlong array_base;
+    int64_t array_base;
     uint64_t stack_value;
     
     // 确保最小大小
@@ -1008,7 +1008,7 @@ uint64_t Utilities_ResizeArray(int min_size, int requested_size, uint64_t param3
     if ((int)result_code == 0) {
         // 创建新条目
         new_entry_ptr = (uint64_t *)
-            ((longlong)*(int *)(array_base + 0x18) * 0x10 + *(longlong *)(array_base + 0x10));
+            ((int64_t)*(int *)(array_base + 0x18) * 0x10 + *(int64_t *)(array_base + 0x10));
         *new_entry_ptr = stack_value;
         new_entry_ptr[1] = param5;
         *(int *)(array_base + 0x18) = *(int *)(array_base + 0x18) + 1;

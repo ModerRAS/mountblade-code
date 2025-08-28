@@ -33,7 +33,7 @@ int8_t FUN_180591c6d(void)
   float fVar15;
   int8_t unaff_SIL;
   float *unaff_R12;
-  longlong unaff_R15;
+  int64_t unaff_R15;
   int32_t uVar16;
   int32_t unaff_XMM6_Da;
   int32_t unaff_XMM6_Db;
@@ -114,8 +114,8 @@ int8_t FUN_180591c6d(void)
 
 
 
-// 函数: void FUN_180591d90(longlong param_1,longlong param_2,float param_3)
-void FUN_180591d90(longlong param_1,longlong param_2,float param_3)
+// 函数: void FUN_180591d90(int64_t param_1,int64_t param_2,float param_3)
+void FUN_180591d90(int64_t param_1,int64_t param_2,float param_3)
 
 {
   char cVar1;
@@ -195,15 +195,15 @@ void FUN_180591d90(longlong param_1,longlong param_2,float param_3)
 
 
 
-// 函数: void FUN_180591dbf(longlong param_1,uint64_t param_2,float param_3)
-void FUN_180591dbf(longlong param_1,uint64_t param_2,float param_3)
+// 函数: void FUN_180591dbf(int64_t param_1,uint64_t param_2,float param_3)
+void FUN_180591dbf(int64_t param_1,uint64_t param_2,float param_3)
 
 {
   int32_t uVar1;
   char cVar2;
-  longlong in_RAX;
-  longlong in_RDX;
-  longlong unaff_RBX;
+  int64_t in_RAX;
+  int64_t in_RDX;
+  int64_t unaff_RBX;
   uint64_t unaff_RDI;
   bool in_ZF;
   float fVar3;
@@ -236,11 +236,11 @@ void FUN_180591dbf(longlong param_1,uint64_t param_2,float param_3)
   *(int32_t *)(in_RAX + -0x40) = unaff_XMM9_Dc;
   *(int32_t *)(in_RAX + -0x3c) = unaff_XMM9_Dd;
   *(int *)(in_RAX + -0x68) = (int)in_XMM0_Qa;
-  *(int *)(in_RAX + -100) = (int)((ulonglong)in_XMM0_Qa >> 0x20);
+  *(int *)(in_RAX + -100) = (int)((uint64_t)in_XMM0_Qa >> 0x20);
   *(int32_t *)(in_RAX + -0x60) = in_XMM0_Dc;
   *(int32_t *)(in_RAX + -0x5c) = in_XMM0_Dd;
   *(int *)(in_RAX + -0x78) = (int)param_2;
-  *(int *)(in_RAX + -0x74) = (int)((ulonglong)param_2 >> 0x20);
+  *(int *)(in_RAX + -0x74) = (int)((uint64_t)param_2 >> 0x20);
   *(int32_t *)(in_RAX + -0x70) = in_XMM1_Dc;
   *(int32_t *)(in_RAX + -0x6c) = in_XMM1_Dd;
   if (in_ZF) {
@@ -303,7 +303,7 @@ void FUN_180591dbf(longlong param_1,uint64_t param_2,float param_3)
 void FUN_180591de2(void)
 
 {
-  longlong in_RAX;
+  int64_t in_RAX;
   uint64_t unaff_XMM6_Qa;
   uint64_t unaff_XMM6_Qb;
   uint64_t unaff_XMM7_Qa;
@@ -332,8 +332,8 @@ void FUN_180591ed5(void)
 
 {
   char cVar1;
-  longlong unaff_RBX;
-  longlong unaff_RDI;
+  int64_t unaff_RBX;
+  int64_t unaff_RDI;
   float fVar2;
   float fVar3;
   float fVar4;
@@ -394,7 +394,7 @@ void FUN_180591ed5(void)
 void FUN_180591fd2(void)
 
 {
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   float fVar1;
   float fVar2;
   float fVar3;
