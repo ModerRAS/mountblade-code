@@ -727,8 +727,19 @@ LAB_180166808:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 系统状态处理函数
+ * 处理系统状态，进行系统清理和状态更新
+ * 
+ * @param param_1 系统参数1
+ * @param param_2 数据缓冲区指针
+ * @param param_3 系统参数3
+ * @param param_4 系统参数4
+ * @return 处理后的数据缓冲区指针
+ */
+// 函数: uint64_t* CoreEngineSystemStateHandler(uint64_t, uint64_t*, uint64_t, uint64_t)
 uint64_t *
-FUN_180166950(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+CoreEngineSystemStateHandler(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int32_t *puVar1;

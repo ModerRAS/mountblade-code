@@ -91,7 +91,7 @@ float * FUN_1804bc610(uint64_t param_1,float *param_2,int64_t param_3)
   }
   lVar3 = puVar5[5];
   if (lVar3 == 0) {
-    FUN_180626f80(&unknown_var_7976_ptr);
+    SystemDataInitializer(&unknown_var_7976_ptr);
   }
   else {
     iVar1 = *(int *)(lVar3 + 0x298);

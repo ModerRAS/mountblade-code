@@ -615,7 +615,7 @@ void FUN_180707df0(int64_t param_1,int64_t param_2,uint64_t param_3,int param_4,
   *(int *)(param_1 + 0x168c) = iVar8;
                     // WARNING: Subroutine does not return
   uStack_7a0 = 0x18070b5ad;
-  FUN_1808fc050(uStack_f8 ^ (uint64_t)&iStack_748);
+  SystemSecurityChecker(uStack_f8 ^ (uint64_t)&iStack_748);
 }
 
 

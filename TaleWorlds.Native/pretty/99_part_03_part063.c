@@ -751,22 +751,22 @@ void FUN_180235f71(void)
     if (in_stack_00000070 != 0) {
       FUN_18007f840(in_stack_00000070);
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar43);
+      CoreEngineMemoryPoolCleaner(lVar43);
     }
     if (in_stack_00000078 != 0) {
       FUN_18007f840(in_stack_00000078);
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar39);
+      CoreEngineMemoryPoolCleaner(lVar39);
     }
     dVar4 = unaff_RBP[-0x10];
     if (dVar4 != 0.0) {
       FUN_18007f840(dVar4);
                     // WARNING: Subroutine does not return
-      FUN_18064e900(dVar4);
+      CoreEngineMemoryPoolCleaner(dVar4);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050((uint64_t)unaff_RBP[0x28] ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker((uint64_t)unaff_RBP[0x28] ^ (uint64_t)&stack0x00000000);
 }
 
 

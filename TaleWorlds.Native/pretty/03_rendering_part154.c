@@ -1037,7 +1037,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     pipeline_pointer = &system_state_ptr;
     
     // 调用渲染管线处理
-    FUN_1808fc050(stack_protection ^ (uint64_t)stack_guard_array);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)stack_guard_array);
 }
 
 /**
@@ -1141,10 +1141,10 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
                 if (buffer_size < RENDERING_SYSTEM_MAX_ARRAY_SIZE) {
                     operation_flag = RENDERING_SYSTEM_MAX_ARRAY_SIZE;
                 }
-                string_pointer = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)operation_flag, 0x13);
+                string_pointer = (int8_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)operation_flag, 0x13);
                 *string_pointer = 0;
                 buffer_pointer = (uint64_t *)string_pointer;
-                validation_result = FUN_18064e990(string_pointer);
+                validation_result = CoreEngineSystemCleanup(string_pointer);
                 buffer_size_64 = CONCAT44(buffer_size_64._4_4_, validation_result);
                 memcpy(string_pointer, index_counter, buffer_size);
             }
@@ -1177,10 +1177,10 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     buffer_size_64 = 0;
     buffer_pointer = (uint64_t *)0x0;
     buffer_status = 0;
-    data_pointer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
+    data_pointer = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
     *(int8_t *)data_pointer = 0;
     buffer_pointer = data_pointer;
-    validation_result = FUN_18064e990(data_pointer);
+    validation_result = CoreEngineSystemCleanup(data_pointer);
     buffer_size_64 = CONCAT44(buffer_size_64._4_4_, validation_result);
     *data_pointer = 0x615020746e657665;
     *(int16_t *)(data_pointer + 1) = 0x6874;
@@ -1188,7 +1188,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     buffer_status = 10;
     FUN_1803460a0(param_1, &config_pointer, param_1 + 0x12, 9);
     config_pointer = &system_data_buffer_ptr;
-    FUN_18064e900(data_pointer);
+    CoreEngineMemoryPoolCleaner(data_pointer);
 }
 
 /**
@@ -1252,14 +1252,14 @@ void RenderingSystem_ResourceReleaser(uint64_t *param_1, uint64_t param_2, uint6
     FUN_180058370(param_1 + 0x1a, param_1[0x1c], param_3, param_4, resource_handle);
     param_1[0x16] = &system_data_buffer_ptr;
     if (param_1[0x17] != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     param_1[0x17] = 0;
     *(int32_t *)(param_1 + 0x19) = 0;
     param_1[0x16] = &system_state_ptr;
     param_1[0x12] = &system_data_buffer_ptr;
     if (param_1[0x13] != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     param_1[0x13] = 0;
     *(int32_t *)(param_1 + 0x15) = 0;
@@ -1512,7 +1512,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     config_pointer = &system_state_ptr;
     
     // 调用参数处理管线
-    FUN_1808fc050(stack_protection ^ (uint64_t)stack_guard_array);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)stack_guard_array);
 }
 
 /**
@@ -1619,7 +1619,7 @@ void RenderingSystem_AdvancedParameterManager(int64_t param_1, int64_t param_2, 
                 buffer_size_64 = 0;
                 string_pointer = (int8_t *)0x0;
                 string_buffer_length = 0;
-                FUN_1806277c0(&config_pointer, operation_flag);
+                CoreEngineDataBufferProcessor(&config_pointer, operation_flag);
                 string_pointer = string_buffer;
                 if (0 < operation_flag) {
                     resource_data = &system_buffer_ptr;
@@ -1653,7 +1653,7 @@ void RenderingSystem_AdvancedParameterManager(int64_t param_1, int64_t param_2, 
                     if (resource_size == 0) {
                         resource_size = 1;
 ADVANCED_PARAM_PROCESSOR:
-                        loop_counter = FUN_18062b420(system_memory_pool_ptr, resource_size << 5, (char)param_3[3]);
+                        loop_counter = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, resource_size << 5, (char)param_3[3]);
                         shader_pointer = (uint64_t *)param_3[1];
                         resource_pointer = *param_3;
                     }
@@ -1685,7 +1685,7 @@ ADVANCED_PARAM_PROCESSOR:
                         object_pointer = (uint64_t *)*param_3;
                     }
                     if (object_pointer != (uint64_t *)0x0) {
-                        FUN_18064e900(object_pointer);
+                        CoreEngineMemoryPoolCleaner(object_pointer);
                     }
                     *param_3 = loop_counter;
                     param_3[1] = (int64_t)pipeline_pointer;
@@ -1705,7 +1705,7 @@ ADVANCED_PARAM_PROCESSOR:
             (**(code **)*config_pointer)(config_pointer, 0);
         }
         if (object_array[0] != (int64_t *)0x0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
     }
     else if ((buffer_size == 0x0c) &&
@@ -1716,14 +1716,14 @@ ADVANCED_PARAM_PROCESSOR:
             FUN_180627910(&config_pointer, *shader_pointer);
             if ((uint64_t)param_3[1] < (uint64_t)param_3[2]) {
                 param_3[1] = param_3[1] + 0x20;
-                FUN_180627ae0();
+                CoreEngineDataTransformer();
             }
             else {
                 FUN_180059820(param_3, &config_pointer);
             }
             config_pointer = &system_data_buffer_ptr;
             if (string_pointer != (int8_t *)0x0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
             string_pointer = (int8_t *)0x0;
             buffer_size_64 = buffer_size_64 & 0xffffffff00000000;
@@ -1732,7 +1732,7 @@ ADVANCED_PARAM_PROCESSOR:
             resource_size = resource_size + -1;
         } while (resource_size != 0);
     }
-    FUN_1808fc050(stack_protection ^ (uint64_t)stack_guard_array);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)stack_guard_array);
 }
 
 /**
@@ -1950,10 +1950,10 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     component_buffer_size = 0;
     component_buffer = (int32_t *)0x0;
     component_status = 0;
-    component_pointer_ptr = (int32_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
+    component_pointer_ptr = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
     *(int8_t *)component_pointer_ptr = 0;
     component_buffer = component_pointer_ptr;
-    initialization_result = FUN_18064e990(component_pointer_ptr);
+    initialization_result = CoreEngineSystemCleanup(component_pointer_ptr);
     component_buffer_size = CONCAT44(component_buffer_size._4_4_, initialization_result);
     *component_pointer_ptr = 0x4d207349;
     component_pointer_ptr[1] = 0x65747361;
@@ -1962,7 +1962,7 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     component_status = 0x0f;
     FUN_1803460a0(param_1, &component_data, param_1 + 0x2a, 3);
     component_data = &system_data_buffer_ptr;
-    FUN_18064e900(component_pointer_ptr);
+    CoreEngineMemoryPoolCleaner(component_pointer_ptr);
 }
 
 /**
@@ -1981,14 +1981,14 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
 int64_t RenderingSystem_Destroyer(int64_t param_1, uint64_t param_2) {
     *(uint64_t *)(param_1 + 0x180) = &system_data_buffer_ptr;
     if (*(int64_t *)(param_1 + 0x188) != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     *(uint64_t *)(param_1 + 0x188) = 0;
     *(int32_t *)(param_1 + 0x198) = 0;
     *(uint64_t *)(param_1 + 0x180) = &system_state_ptr;
     *(uint64_t *)(param_1 + 0x158) = &system_data_buffer_ptr;
     if (*(int64_t *)(param_1 + 0x160) != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     *(uint64_t *)(param_1 + 0x160) = 0;
     *(int32_t *)(param_1 + 0x170) = 0;
@@ -2027,7 +2027,7 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     uint64_t stack_guard;
     uint64_t stack_data[48];
     
-    resource_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x1a8, 8, 3);
+    resource_pointer = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x1a8, 8, 3);
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
     FUN_1803624e0(resource_pointer, param_2, param_1);
     *resource_pointer = &unknown_var_8440_ptr;
@@ -2055,10 +2055,10 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     system_buffer_size = 0;
     system_buffer = (int32_t *)0x0;
     system_status = 0;
-    system_pointer_ptr = (int32_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
+    system_pointer_ptr = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
     *(int8_t *)system_pointer_ptr = 0;
     system_buffer = system_pointer_ptr;
-    creation_result = FUN_18064e990(system_pointer_ptr);
+    creation_result = CoreEngineSystemCleanup(system_pointer_ptr);
     system_buffer_size = CONCAT44(system_buffer_size._4_4_, creation_result);
     *system_pointer_ptr = 0x4d207349;
     system_pointer_ptr[1] = 0x65747361;
@@ -2067,7 +2067,7 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     system_status = 0x0f;
     FUN_1803460a0(resource_pointer, &system_data, resource_pointer + 0x2a, 3);
     system_data = &system_data_buffer_ptr;
-    FUN_18064e900(system_pointer_ptr);
+    CoreEngineMemoryPoolCleaner(system_pointer_ptr);
 }
 
 // ============================================================================

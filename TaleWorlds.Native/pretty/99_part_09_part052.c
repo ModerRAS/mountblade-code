@@ -182,7 +182,7 @@ LAB_1805d5331:
   }
   *(uint *)(param_1 + 1) = *(uint *)(param_1 + 1) | 0x2000;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_88 ^ (uint64_t)auStack_198);
+  SystemSecurityChecker(uStack_88 ^ (uint64_t)auStack_198);
 }
 
 

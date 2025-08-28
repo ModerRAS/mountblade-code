@@ -302,9 +302,9 @@ LAB_1800a7660:
         if (iVar2 < MIN_ALLOCATION_SIZE) {
             iVar2 = MIN_ALLOCATION_SIZE;
         }
-        puStack_910 = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)iVar2, MEMORY_ALLOC_TYPE_STRING);
+        puStack_910 = (int8_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)iVar2, MEMORY_ALLOC_TYPE_STRING);
         *puStack_910 = 0;
-        uVar3 = FUN_18064e990(puStack_910);
+        uVar3 = CoreEngineSystemCleanup(puStack_910);
         uStack_900 = CONCAT44(uStack_900._4_4_, uVar3);
         if (iStack_7a0 != 0) {
             memcpy(puStack_910, puStack_7a8, iStack_7a0 + 1);
