@@ -1085,122 +1085,168 @@ int InitializeRenderContext(RenderObject* render_object)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_180560df0(undefined8 param_1,longlong param_2)
-
+/*==============================================================================
+函数别名: CloneRenderObject - 克隆渲染对象
+原始函数: FUN_180560df0
+参数:
+  allocator - 内存分配器
+  source_object - 源渲染对象
+返回:
+  RenderObject* - 克隆的渲染对象指针
+描述:
+  创建一个渲染对象的副本，复制所有渲染状态和资源。
+===============================================================================*/
+RenderObject* CloneRenderObject(undefined8 allocator, RenderObject* source_object)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined8 uVar4;
-  longlong lVar5;
+  undefined4 flags1;
+  undefined4 flags2;
+  undefined4 flags3;
+  undefined8 object_ptr;
+  RenderObject* cloned_object;
   
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x1b8,8,0x1a);
-  lVar5 = FUN_180560660(uVar4);
-  if (param_2 != 0) {
-    *(undefined4 *)(lVar5 + 8) = *(undefined4 *)(param_2 + 8);
-    *(undefined4 *)(lVar5 + 0xc) = *(undefined4 *)(param_2 + 0xc);
-    *(undefined4 *)(lVar5 + 0x10) = *(undefined4 *)(param_2 + 0x10);
-    *(undefined4 *)(lVar5 + 0x14) = *(undefined4 *)(param_2 + 0x14);
-    *(undefined4 *)(lVar5 + 0x18) = *(undefined4 *)(param_2 + 0x18);
-    *(undefined4 *)(lVar5 + 0x1c) = *(undefined4 *)(param_2 + 0x1c);
-    *(undefined4 *)(lVar5 + 0x20) = *(undefined4 *)(param_2 + 0x20);
-    uVar4 = *(undefined8 *)(param_2 + 0x2c);
-    *(undefined8 *)(lVar5 + 0x24) = *(undefined8 *)(param_2 + 0x24);
-    *(undefined8 *)(lVar5 + 0x2c) = uVar4;
-    *(undefined8 *)(lVar5 + 0x38) = *(undefined8 *)(param_2 + 0x38);
-    *(undefined4 *)(lVar5 + 0x40) = *(undefined4 *)(param_2 + 0x40);
-    uVar1 = *(undefined4 *)(param_2 + 0x48);
-    uVar2 = *(undefined4 *)(param_2 + 0x4c);
-    uVar3 = *(undefined4 *)(param_2 + 0x50);
-    *(undefined4 *)(lVar5 + 0x44) = *(undefined4 *)(param_2 + 0x44);
-    *(undefined4 *)(lVar5 + 0x48) = uVar1;
-    *(undefined4 *)(lVar5 + 0x4c) = uVar2;
-    *(undefined4 *)(lVar5 + 0x50) = uVar3;
-    FUN_180627be0(lVar5 + 0x58,param_2 + 0x58);
-    FUN_180627be0(lVar5 + 0x78,param_2 + 0x78);
-    FUN_180627be0(lVar5 + 0x98,param_2 + 0x98);
-    FUN_180627be0(lVar5 + 0xb8,param_2 + 0xb8);
-    FUN_180627be0(lVar5 + 0xd8,param_2 + 0xd8);
-    FUN_180627be0(lVar5 + 0xf8,param_2 + 0xf8);
-    FUN_180627be0(lVar5 + 0x118,param_2 + 0x118);
-    *(undefined4 *)(lVar5 + 0x138) = *(undefined4 *)(param_2 + 0x138);
-    *(undefined4 *)(lVar5 + 0x13c) = *(undefined4 *)(param_2 + 0x13c);
-    *(undefined4 *)(lVar5 + 0x140) = *(undefined4 *)(param_2 + 0x140);
-    *(undefined4 *)(lVar5 + 0x144) = *(undefined4 *)(param_2 + 0x144);
-    *(undefined1 *)(lVar5 + 0x148) = *(undefined1 *)(param_2 + 0x148);
-    FUN_1805604e0(lVar5 + 0x150,param_2 + 0x150);
-    FUN_180627be0(lVar5 + 0x170,param_2 + 0x170);
-    FUN_180627be0(lVar5 + 400,param_2 + 400);
-    *(undefined1 *)(lVar5 + 0x1b0) = *(undefined1 *)(param_2 + 0x1b0);
-    *(undefined1 *)(lVar5 + 0x1b1) = *(undefined1 *)(param_2 + 0x1b1);
-    *(undefined1 *)(lVar5 + 0x1b2) = *(undefined1 *)(param_2 + 0x1b2);
+  // 分配新的渲染对象内存
+  object_ptr = FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE, 8, 0x1a);
+  cloned_object = InitializeRenderObject(object_ptr);
+  
+  // 如果源对象存在，复制所有属性
+  if (source_object != 0) {
+    // 复制基础属性
+    *(undefined4 *)(cloned_object + 8) = *(undefined4 *)(source_object + 8);
+    *(undefined4 *)(cloned_object + 0xc) = *(undefined4 *)(source_object + 0xc);
+    *(undefined4 *)(cloned_object + 0x10) = *(undefined4 *)(source_object + 0x10);
+    *(undefined4 *)(cloned_object + 0x14) = *(undefined4 *)(source_object + 0x14);
+    *(undefined4 *)(cloned_object + 0x18) = *(undefined4 *)(source_object + 0x18);
+    *(undefined4 *)(cloned_object + 0x1c) = *(undefined4 *)(source_object + 0x1c);
+    *(undefined4 *)(cloned_object + 0x20) = *(undefined4 *)(source_object + 0x20);
+    
+    // 复制矩阵和变换
+    object_ptr = *(undefined8 *)(source_object + 0x2c);
+    *(undefined8 *)(cloned_object + 0x24) = *(undefined8 *)(source_object + 0x24);
+    *(undefined8 *)(cloned_object + 0x2c) = object_ptr;
+    *(undefined8 *)(cloned_object + 0x38) = *(undefined8 *)(source_object + 0x38);
+    
+    // 复制渲染状态
+    *(undefined4 *)(cloned_object + 0x40) = *(undefined4 *)(source_object + 0x40);
+    flags1 = *(undefined4 *)(source_object + 0x48);
+    flags2 = *(undefined4 *)(source_object + 0x4c);
+    flags3 = *(undefined4 *)(source_object + 0x50);
+    *(undefined4 *)(cloned_object + 0x44) = *(undefined4 *)(source_object + 0x44);
+    *(undefined4 *)(cloned_object + 0x48) = flags1;
+    *(undefined4 *)(cloned_object + 0x4c) = flags2;
+    *(undefined4 *)(cloned_object + 0x50) = flags3;
+    
+    // 复制各种渲染资源
+    FUN_180627be0(cloned_object + 0x58, source_object + 0x58);  // 纹理资源
+    FUN_180627be0(cloned_object + 0x78, source_object + 0x78);  // 材质资源
+    FUN_180627be0(cloned_object + 0x98, source_object + 0x98);  // 着色器资源
+    FUN_180627be0(cloned_object + 0xb8, source_object + 0xb8);  // 顶点缓冲区
+    FUN_180627be0(cloned_object + 0xd8, source_object + 0xd8);  // 索引缓冲区
+    FUN_180627be0(cloned_object + 0xf8, source_object + 0xf8);  // 常量缓冲区
+    FUN_180627be0(cloned_object + 0x118, source_object + 0x118); // 采样器状态
+    
+    // 复制混合和深度状态
+    *(undefined4 *)(cloned_object + 0x138) = *(undefined4 *)(source_object + 0x138);
+    *(undefined4 *)(cloned_object + 0x13c) = *(undefined4 *)(source_object + 0x13c);
+    *(undefined4 *)(cloned_object + 0x140) = *(undefined4 *)(source_object + 0x140);
+    *(undefined4 *)(cloned_object + 0x144) = *(undefined4 *)(source_object + 0x144);
+    *(undefined1 *)(cloned_object + 0x148) = *(undefined1 *)(source_object + 0x148);
+    
+    // 复制渲染数据
+    CopyRenderData(cloned_object + 0x150, source_object + 0x150);
+    FUN_180627be0(cloned_object + 0x170, source_object + 0x170);  // 扩展数据1
+    FUN_180627be0(cloned_object + 400, source_object + 400);       // 扩展数据2
+    
+    // 复制渲染标志
+    *(undefined1 *)(cloned_object + 0x1b0) = *(undefined1 *)(source_object + 0x1b0);
+    *(undefined1 *)(cloned_object + 0x1b1) = *(undefined1 *)(source_object + 0x1b1);
+    *(undefined1 *)(cloned_object + 0x1b2) = *(undefined1 *)(source_object + 0x1b2);
   }
-  return lVar5;
+  
+  return cloned_object;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180560fa0(longlong param_1)
-
+/*==============================================================================
+函数别名: EnsureRenderContext - 确保渲染上下文存在
+原始函数: FUN_180560fa0
+参数:
+  render_object - 渲染对象指针
+返回:
+  int - 成功返回1，失败返回0
+描述:
+  确保渲染对象有有效的渲染上下文，如果没有则创建一个。
+===============================================================================*/
+int EnsureRenderContext(RenderObject* render_object)
 {
-  byte bVar1;
-  int iVar2;
-  undefined8 in_RAX;
-  longlong lVar3;
-  ulonglong uVar4;
-  byte *pbVar5;
-  undefined *puVar6;
-  uint uVar7;
-  undefined4 auStackX_8 [2];
-  longlong lStackX_10;
-  longlong alStack_38 [4];
+  byte hash_byte;
+  int context_id;
+  undefined8 existing_context;
+  longlong context;
+  ulonglong hash_value;
+  byte *name_ptr;
+  undefined *object_name;
+  uint name_length;
+  undefined4 stack_buffer [2];
+  longlong context_ref;
+  longlong call_stack [4];
   
-  if (*(longlong *)(param_1 + 0xb0) != 0) {
-    return in_RAX;
+  // 检查是否已有上下文
+  if (*(longlong *)(render_object + 0xb0) != 0) {
+    return existing_context;  // 返回现有上下文
   }
-  alStack_38[1] = 0x180560fb8;
-  lVar3 = FUN_180560a90();
-  *(longlong *)(param_1 + 0xb0) = lVar3;
-  lStackX_10 = lVar3;
-  FUN_18053de40(0x180c95f38,alStack_38,lVar3 + 0x10);
-  iVar2 = _DAT_180c95fa8;
-  if (alStack_38[0] == *(longlong *)(_DAT_180c95f40 + _DAT_180c95f48 * 8)) {
-    uVar4 = 0xcbf29ce484222325;
-    pbVar5 = &DAT_18098bc73;
-    if (*(byte **)(lVar3 + 0x18) != (byte *)0x0) {
-      pbVar5 = *(byte **)(lVar3 + 0x18);
+  
+  // 创建新的渲染上下文
+  call_stack[1] = 0x180560fb8;
+  context = CreateRenderContext();
+  *(longlong *)(render_object + 0xb0) = context;
+  context_ref = context;
+  FUN_18053de40(0x180c95f38, call_stack, context + 0x10);
+  context_id = _DAT_180c95fa8;
+  
+  // 检查是否需要创建新的哈希条目
+  if (call_stack[0] == *(longlong *)(_DAT_180c95f40 + _DAT_180c95f48 * 8)) {
+    // 计算名称哈希值
+    hash_value = HASH_SEED;
+    name_ptr = &DAT_18098bc73;
+    if (*(byte **)(context + 0x18) != (byte *)0x0) {
+      name_ptr = *(byte **)(context + 0x18);
     }
-    uVar7 = 0;
-    if (*(uint *)(lVar3 + 0x20) != 0) {
+    name_length = 0;
+    if (*(uint *)(context + 0x20) != 0) {
       do {
-        bVar1 = *pbVar5;
-        pbVar5 = pbVar5 + 1;
-        uVar7 = uVar7 + 1;
-        uVar4 = (uVar4 ^ bVar1) * 0x100000001b3;
-      } while (uVar7 < *(uint *)(lVar3 + 0x20));
+        hash_byte = *name_ptr;
+        name_ptr = name_ptr + 1;
+        name_length = name_length + 1;
+        hash_value = (hash_value ^ hash_byte) * HASH_MULTIPLIER;
+      } while (name_length < *(uint *)(context + 0x20));
     }
-    FUN_18053df50(0x180c95f38,alStack_38,uVar7,lVar3 + 0x10,uVar4);
-    *(int *)(alStack_38[0] + 0x58) = iVar2;
-    auStackX_8[0] = (undefined4)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
-    FUN_1800571e0(&DAT_180c95f68,auStackX_8);
-    *(int *)(lVar3 + 0x68) = _DAT_180c95fa8;
+    
+    // 注册哈希条目
+    FUN_18053df50(0x180c95f38, call_stack, name_length, context + 0x10, hash_value);
+    *(int *)(call_stack[0] + 0x58) = context_id;
+    stack_buffer[0] = (undefined4)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
+    FUN_1800571e0(&DAT_180c95f68, stack_buffer);
+    *(int *)(context + 0x68) = _DAT_180c95fa8;
     _DAT_180c95fa8 = _DAT_180c95fa8 + 1;
-    FUN_18005ea90(&DAT_180c95f88,&lStackX_10);
+    FUN_18005ea90(&DAT_180c95f88, &context_ref);
   }
   else {
-    if (*(int *)(_DAT_180c95f68 + (longlong)*(int *)(alStack_38[0] + 0x58) * 4) != -1) {
-      puVar6 = &DAT_18098bc73;
-      if (*(undefined **)(lVar3 + 0x18) != (undefined *)0x0) {
-        puVar6 = *(undefined **)(lVar3 + 0x18);
+    // 检查哈希冲突
+    if (*(int *)(_DAT_180c95f68 + (longlong)*(int *)(call_stack[0] + 0x58) * 4) != -1) {
+      object_name = &DAT_18098bc73;
+      if (*(undefined **)(context + 0x18) != (undefined *)0x0) {
+        object_name = *(undefined **)(context + 0x18);
       }
-      FUN_180627020(&UNK_180a338e0,puVar6);
+      FUN_180627020(&UNK_180a338e0, object_name);
       return 0;
     }
-    *(int *)(_DAT_180c95f68 + (longlong)*(int *)(alStack_38[0] + 0x58) * 4) =
+    // 更新哈希表索引
+    *(int *)(_DAT_180c95f68 + (longlong)*(int *)(call_stack[0] + 0x58) * 4) =
          (int)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
-    FUN_18005ea90(&DAT_180c95f88,&lStackX_10);
+    FUN_18005ea90(&DAT_180c95f88, &context_ref);
   }
   return 1;
 }
@@ -1211,53 +1257,73 @@ undefined8 FUN_180560fa0(longlong param_1)
 
 
 
-// 函数: void FUN_180560fe0(longlong param_1)
-void FUN_180560fe0(longlong param_1)
-
+/*==============================================================================
+函数别名: ReleaseRenderContext - 释放渲染上下文
+原始函数: FUN_180560fe0
+参数:
+  render_object - 渲染对象指针
+返回:
+  void
+描述:
+  释放渲染对象的上下文资源，清理相关的渲染状态和数据。
+===============================================================================*/
+void ReleaseRenderContext(RenderObject* render_object)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong alStack_58 [10];
+  longlong *context_ptr;
+  longlong resource_count;
+  longlong current_context;
+  longlong *context_list;
+  longlong resource_data [10];
   
-  if (*(longlong *)(param_1 + 0xb0) != 0) {
+  // 检查是否有渲染上下文
+  if (*(longlong *)(render_object + 0xb0) != 0) {
+    // 释放上下文资源
     FUN_18053a220(&DAT_180c95f30);
-    FUN_18053e3f0(*(undefined8 *)(param_1 + 0xb0));
-    *(undefined8 *)(param_1 + 0xb0) = 0;
-    lVar3 = *_DAT_180c961e8;
-    plVar4 = _DAT_180c961e8;
-    if (lVar3 == 0) {
-      lVar3 = _DAT_180c961e8[1];
-      plVar1 = _DAT_180c961e8;
-      while (plVar4 = plVar1 + 1, lVar3 == 0) {
-        lVar3 = plVar1[2];
-        plVar1 = plVar4;
+    FUN_18053e3f0(*(undefined8 *)(render_object + 0xb0));
+    *(undefined8 *)(render_object + 0xb0) = 0;
+    
+    // 遍历资源列表进行清理
+    current_context = *_DAT_180c961e8;
+    context_list = _DAT_180c961e8;
+    if (current_context == 0) {
+      // 查找下一个非空上下文
+      current_context = _DAT_180c961e8[1];
+      context_ptr = _DAT_180c961e8;
+      while (context_list = context_ptr + 1, current_context == 0) {
+        current_context = context_ptr[2];
+        context_ptr = context_list;
       }
     }
-    while (lVar3 != _DAT_180c961e8[_DAT_180c961f0]) {
-      alStack_58[0] = *(longlong *)(lVar3 + 0x10);
-      alStack_58[1] = *(undefined8 *)(lVar3 + 0x18);
-      alStack_58[2] = *(undefined8 *)(lVar3 + 0x20);
-      alStack_58[3] = *(undefined8 *)(lVar3 + 0x28);
-      alStack_58[4] = *(undefined8 *)(lVar3 + 0x30);
-      alStack_58[5] = *(undefined8 *)(lVar3 + 0x38);
-      alStack_58[6] = *(undefined8 *)(lVar3 + 0x40);
-      alStack_58[7] = *(undefined8 *)(lVar3 + 0x48);
-      alStack_58[8] = *(undefined8 *)(lVar3 + 0x50);
-      alStack_58[9] = *(undefined8 *)(lVar3 + 0x58);
-      lVar2 = 0;
+    
+    // 遍历所有上下文资源
+    while (current_context != _DAT_180c961e8[_DAT_180c961f0]) {
+      // 复制资源数据到栈缓冲区
+      resource_data[0] = *(longlong *)(current_context + 0x10);
+      resource_data[1] = *(undefined8 *)(current_context + 0x18);
+      resource_data[2] = *(undefined8 *)(current_context + 0x20);
+      resource_data[3] = *(undefined8 *)(current_context + 0x28);
+      resource_data[4] = *(undefined8 *)(current_context + 0x30);
+      resource_data[5] = *(undefined8 *)(current_context + 0x38);
+      resource_data[6] = *(undefined8 *)(current_context + 0x40);
+      resource_data[7] = *(undefined8 *)(current_context + 0x48);
+      resource_data[8] = *(undefined8 *)(current_context + 0x50);
+      resource_data[9] = *(undefined8 *)(current_context + 0x58);
+      
+      // 检查资源是否全部释放
+      resource_count = 0;
       do {
-        if (alStack_58[lVar2] == 0) {
-          return;
+        if (resource_data[resource_count] == 0) {
+          return;  // 资源已全部释放
         }
-        lVar2 = lVar2 + 1;
-      } while (lVar2 < 10);
-      lVar3 = *(longlong *)(lVar3 + 0x60);
-      while (lVar3 == 0) {
-        plVar1 = plVar4 + 1;
-        plVar4 = plVar4 + 1;
-        lVar3 = *plVar1;
+        resource_count = resource_count + 1;
+      } while (resource_count < 10);
+      
+      // 移动到下一个上下文
+      current_context = *(longlong *)(current_context + 0x60);
+      while (current_context == 0) {
+        context_ptr = context_list + 1;
+        context_list = context_list + 1;
+        current_context = *context_ptr;
       }
     }
   }
