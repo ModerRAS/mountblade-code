@@ -20,14 +20,14 @@
  *=============================================================================*/
 
 /* 标准整数类型 */
-typedef uint8_t undefined1;      /* 8位无符号整数 */
-typedef uint16_t undefined2;     /* 16位无符号整数 */
-typedef uint32_t undefined4;     /* 32位无符号整数 */
-typedef uint64_t undefined8;     /* 64位无符号整数 */
+typedef uint8_t int8_t;      /* 8位无符号整数 */
+typedef uint16_t int16_t;     /* 16位无符号整数 */
+typedef uint32_t int32_t;     /* 32位无符号整数 */
+typedef uint64_t uint64_t;     /* 64位无符号整数 */
 
 /* 指针和大小类型 */
-typedef uintptr_t undefined8;    /* 指针大小整数 */
-typedef size_t undefined8;       /* 大小类型 */
+typedef uintptr_t uint64_t;    /* 指针大小整数 */
+typedef size_t uint64_t;       /* 大小类型 */
 
 /* 浮点类型 */
 typedef float float32_t;         /* 32位浮点数 */
