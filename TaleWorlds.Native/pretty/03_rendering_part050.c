@@ -420,7 +420,7 @@ void RenderObject_Release(longlong object_handle)
       *resource_counter = *resource_counter - 1;
     }
     // 释放引用表数据
-    FUN_180059ba0(context_data, SYSTEM_DATA_MANAGER_B);
+    SystemMemoryAllocator(context_data, SYSTEM_DATA_MANAGER_B);
   }
   
   *(uint64_t *)(object_handle + RENDER_MAX_OBJECTS) = 0;
@@ -542,7 +542,7 @@ void RenderObject_ReleaseByIndex(longlong object_handle, longlong index)
       *resource_counter = *resource_counter - 1;
     }
     // 释放引用表数据
-    FUN_180059ba0(context_data, SYSTEM_DATA_MANAGER_B);
+    SystemMemoryAllocator(context_data, SYSTEM_DATA_MANAGER_B);
   }
   
   *(ulonglong *)(object_handle + RENDER_MAX_OBJECTS) = index;

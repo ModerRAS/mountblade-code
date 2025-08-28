@@ -396,7 +396,7 @@ void InitializationSystem_RegistrySearchAndInsert2(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -405,7 +405,7 @@ void InitializationSystem_RegistrySearchAndInsert2(void)
     
     // 搜索目标节点
     while (node_flag == 0) {
-        compare_result = memcmp(current_node + 4, &system_memory_c768, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        compare_result = memcmp(current_node + 4, &InitializationSystemMemoryKey2, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         if (compare_result < 0) {
             child_node = (void*)current_node[2];
             current_node = parent_node;
@@ -418,16 +418,16 @@ void InitializationSystem_RegistrySearchAndInsert2(void)
     }
     
     // 插入新节点
-    if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c768, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+    if ((parent_node == root_node) || (compare_result = memcmp(&InitializationSystemMemoryKey2, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
     // 设置节点数据
     parent_node[6] = 0x4770584fbb1df897;
     parent_node[7] = 0x47f249e43f66f2ab;
-    parent_node[8] = &unknown_var_3520_ptr;
+    parent_node[8] = &InitializationSystemNodeData2;
     parent_node[9] = 1;
     parent_node[10] = node_value;
     
@@ -913,7 +913,7 @@ void InitializationSystem_RegistrySearchAndInsert11(void)
     uint8_t local_buffer[INITIALIZATION_SYSTEM_STRING_BUFFER_SIZE];
     
     // 初始化配置基础指针
-    config_base = &unknown_var_3432_ptr;
+    config_base = &InitializationSystemConfigBase;
     string_buffer = local_buffer;
     
     // 清空字符串缓冲区
@@ -921,10 +921,10 @@ void InitializationSystem_RegistrySearchAndInsert11(void)
     buffer_size = 0x12;
     
     // 安全复制配置字符串
-    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &unknown_var_4992_ptr, register_value, 0xfffffffffffffffe);
+    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &InitializationSystemConfigData2, register_value, 0xfffffffffffffffe);
     
     // 注册配置到系统
-    init_system_string = FUN_180623800(&config_base);
+    InitializationSystemString = InitializationSystemStringProcessor(&config_base);
     
     return;
 }
@@ -944,7 +944,7 @@ void InitializationSystem_RegistrySearchAndInsert12(void)
     uint8_t local_buffer[INITIALIZATION_SYSTEM_STRING_BUFFER_SIZE];
     
     // 初始化配置基础指针
-    config_base = &unknown_var_3432_ptr;
+    config_base = &InitializationSystemConfigBase;
     string_buffer = local_buffer;
     
     // 清空字符串缓冲区
@@ -952,10 +952,10 @@ void InitializationSystem_RegistrySearchAndInsert12(void)
     buffer_size = 8;
     
     // 安全复制配置字符串
-    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &unknown_var_6248_ptr, register_value, 0xfffffffffffffffe);
+    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &InitializationSystemConfigData3, register_value, 0xfffffffffffffffe);
     
     // 注册配置到系统
-    init_system_string = FUN_180623800(&config_base);
+    InitializationSystemString = InitializationSystemStringProcessor(&config_base);
     
     return;
 }
@@ -1378,8 +1378,8 @@ int InitializationSystem_GlobalDataInitializer2(void)
     uint64_t register_value;
     
     // 初始化全局数据指针
-    init_system_control_string = &unknown_var_3432_ptr;
-    init_system_control_string = &system_memory_a368;
+    InitializationSystemControlString = &InitializationSystemConfigBase;
+    InitializationSystemControlString = &InitializationSystemGlobalData3;
     
     // 返回初始化状态
     return 0;

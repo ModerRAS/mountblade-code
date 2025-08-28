@@ -817,7 +817,8 @@ ulonglong UISystem_SimpleComponentSearch_SimpleSearch(void)
 
 
 
-ulonglong FUN_180747c73(void)
+// 函数: ulonglong FUN_180747c73(void) - UI组件通用搜索函数
+ulonglong UISystem_GeneralComponentSearch_GeneralSearch(void)
 
 {
   uint uVar1;
