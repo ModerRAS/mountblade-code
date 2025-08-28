@@ -836,108 +836,110 @@ LAB_18030d811:
 
 
 
-// 函数: void FUN_18030d960(undefined8 param_1,longlong param_2,longlong param_3,undefined1 param_4,
-void FUN_18030d960(undefined8 param_1,longlong param_2,longlong param_3,undefined1 param_4,
-                  undefined4 param_5,undefined4 param_6,longlong *param_7,float *param_8)
+// 函数: 使用参数渲染对象
+// 参数: render_context - 渲染上下文, start_pos - 起始位置, end_pos - 结束位置, render_flag - 渲染标志
+//        param_5 - 参数5, param_6 - 参数6, render_data - 渲染数据, transform_matrix - 变换矩阵
+void rendering_system_render_objects_with_parameters(undefined8 render_context, longlong start_pos, longlong end_pos, undefined1 render_flag,
+                                                    undefined4 param_5, undefined4 param_6, longlong *render_data, float *transform_matrix)
 
 {
-  float fVar1;
-  float fVar2;
-  float *pfVar3;
-  longlong lVar4;
-  undefined8 uVar5;
-  uint uVar6;
-  float *pfVar7;
-  longlong lVar8;
-  undefined4 uVar9;
-  longlong lStack_b8;
-  undefined8 uStack_98;
-  undefined4 uStack_90;
-  undefined4 uStack_8c;
-  undefined2 uStack_88;
-  undefined1 uStack_86;
-  undefined4 uStack_84;
-  undefined1 uStack_80;
-  undefined8 uStack_78;
-  longlong lStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  undefined4 uStack_58;
-  undefined8 uStack_50;
+  float scale_factor;
+  float position_offset;
+  float *vertex_ptr;
+  longlong vertex_count;
+  undefined8 color_data;
+  uint alpha_value;
+  float *texture_coord;
+  longlong texture_offset;
+  undefined4 render_mode;
+  longlong object_handle;
+  undefined8 render_params;
+  longlong stack_data_b8;
+  undefined8 stack_data_98;
+  undefined4 stack_data_90;
+  undefined4 stack_data_8c;
+  undefined2 stack_data_88;
+  undefined1 stack_data_86;
+  undefined4 stack_data_84;
+  undefined1 stack_data_80;
+  undefined8 stack_data_78;
+  longlong stack_data_70;
+  undefined8 stack_data_68;
+  undefined8 stack_data_60;
+  undefined4 stack_data_58;
+  undefined8 stack_data_50;
   
-  if (param_8[0x21] == 0.0) {
-    FUN_18030eaf0(param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8);
+  if (transform_matrix[0x21] == 0.0) {
+    FUN_18030eaf0(render_context, start_pos, end_pos, render_flag, param_5, param_6, render_data, transform_matrix);
   }
-  else if (param_8[0x21] == 2.8026e-45) {
-    fVar1 = *param_8;
-    param_3 = param_3 - param_2;
-    pfVar3 = (float *)(param_2 + 0x24);
-    lStack_b8 = 3;
+  else if (transform_matrix[0x21] == 2.8026e-45) {
+    scale_factor = *transform_matrix;
+    end_pos = end_pos - start_pos;
+    vertex_ptr = (float *)(start_pos + 0x24);
+    stack_data_b8 = RENDER_OBJECT_VERTEX_COUNT;
     do {
-      *param_8 = fVar1;
-      lVar8 = 3;
-      pfVar7 = pfVar3;
+      *transform_matrix = scale_factor;
+      vertex_count = RENDER_OBJECT_VERTEX_COUNT;
+      texture_coord = vertex_ptr;
       do {
-        lVar4 = FUN_18030f1e0(param_1);
-        FUN_180076910(lVar4,param_7);
-        fVar2 = param_8[8];
-        uVar6 = (uint)fVar2 >> 0x10 & 0xff;
-        *(float *)(lVar4 + 0x238) = (float)uVar6 * 0.003921569;
-        *(float *)(lVar4 + 0x23c) = (float)((uint)fVar2 >> 8 & 0xff) * 0.003921569;
-        *(float *)(lVar4 + 0x240) = (float)((uint)fVar2 & 0xff) * 0.003921569;
-        *(float *)(lVar4 + 0x244) = (float)((uint)fVar2 >> 0x18) * 0.003921569;
-        if (*(longlong *)(lVar4 + 0x2c8) == 0) {
-          *(uint *)(lVar4 + 0x100) = *(uint *)(lVar4 + 0x100) | 8;
-          uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0xd0,4,9);
-                    // WARNING: Subroutine does not return
-          memset(uVar5,0,0xd0);
+        object_handle = FUN_18030f1e0(render_context);
+        FUN_180076910(object_handle, render_data);
+        position_offset = transform_matrix[8];
+        alpha_value = (uint)position_offset >> 0x10 & 0xff;
+        *(float *)(object_handle + 0x238) = (float)alpha_value * 0.003921569;
+        *(float *)(object_handle + 0x23c) = (float)((uint)position_offset >> 8 & 0xff) * 0.003921569;
+        *(float *)(object_handle + 0x240) = (float)((uint)position_offset & 0xff) * 0.003921569;
+        *(float *)(object_handle + 0x244) = (float)((uint)position_offset >> 0x18) * 0.003921569;
+        if (*(longlong *)(object_handle + 0x2c8) == 0) {
+          *(uint *)(object_handle + 0x100) = *(uint *)(object_handle + 0x100) | 8;
+          color_data = FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_DATA_SIZE, 4, 9);
+          memset(color_data, 0, RENDER_OBJECT_DATA_SIZE);
         }
-        param_8[0x1b] = pfVar7[-7] - pfVar7[-9];
-        param_8[0x1c] = *pfVar7 - pfVar7[-8];
-        param_8[0x1d] = *(float *)(param_3 + -0x24 + (longlong)pfVar7);
-        param_8[0x1f] = *(float *)(param_3 + -0x1c + (longlong)pfVar7);
-        param_8[0x1e] = *(float *)(param_3 + -0x20 + (longlong)pfVar7);
-        param_8[0x20] = *(float *)(param_3 + (longlong)pfVar7);
-        FUN_18030ef70(uVar6,lVar4,param_8);
-        *param_8 = param_8[0x1b] + *param_8;
-        FUN_18030d6e0(param_1);
-        pfVar7 = pfVar7 + 2;
-        lVar8 = lVar8 + -1;
-      } while (lVar8 != 0);
-      param_8[1] = param_8[1] + param_8[0x1c];
-      pfVar3 = pfVar3 + 8;
-      lStack_b8 = lStack_b8 + -1;
-    } while (lStack_b8 != 0);
+        transform_matrix[0x1b] = texture_coord[-7] - texture_coord[-9];
+        transform_matrix[0x1c] = *texture_coord - texture_coord[-8];
+        transform_matrix[0x1d] = *(float *)(end_pos + -0x24 + (longlong)texture_coord);
+        transform_matrix[0x1f] = *(float *)(end_pos + -0x1c + (longlong)texture_coord);
+        transform_matrix[0x1e] = *(float *)(end_pos + -0x20 + (longlong)texture_coord);
+        transform_matrix[0x20] = *(float *)(end_pos + (longlong)texture_coord);
+        FUN_18030ef70(alpha_value, object_handle, transform_matrix);
+        *transform_matrix = transform_matrix[0x1b] + *transform_matrix;
+        FUN_18030d6e0(render_context);
+        texture_coord = texture_coord + 2;
+        vertex_count = vertex_count + -1;
+      } while (vertex_count != 0);
+      transform_matrix[1] = transform_matrix[1] + transform_matrix[0x1c];
+      vertex_ptr = vertex_ptr + 8;
+      stack_data_b8 = stack_data_b8 + -1;
+    } while (stack_data_b8 != 0);
   }
   else {
-    lVar8 = FUN_18030f1e0();
-    FUN_180076910(lVar8,param_7);
-    fVar1 = param_8[8];
-    *(float *)(lVar8 + 0x238) = (float)((uint)fVar1 >> 0x10 & 0xff) * 0.003921569;
-    *(float *)(lVar8 + 0x23c) = (float)((uint)fVar1 >> 8 & 0xff) * 0.003921569;
-    *(float *)(lVar8 + 0x240) = (float)((uint)fVar1 & 0xff) * 0.003921569;
-    *(float *)(lVar8 + 0x244) = (float)((uint)fVar1 >> 0x18) * 0.003921569;
-    uVar9 = FUN_18007e930(lVar8);
-    FUN_18030ef70(uVar9,lVar8,param_8);
-    FUN_18030d6e0(param_1);
+    vertex_count = FUN_18030f1e0();
+    FUN_180076910(vertex_count, render_data);
+    scale_factor = transform_matrix[8];
+    *(float *)(vertex_count + 0x238) = (float)((uint)scale_factor >> 0x10 & 0xff) * 0.003921569;
+    *(float *)(vertex_count + 0x23c) = (float)((uint)scale_factor >> 8 & 0xff) * 0.003921569;
+    *(float *)(vertex_count + 0x240) = (float)((uint)scale_factor & 0xff) * 0.003921569;
+    *(float *)(vertex_count + 0x244) = (float)((uint)scale_factor >> 0x18) * 0.003921569;
+    render_mode = FUN_18007e930(vertex_count);
+    FUN_18030ef70(render_mode, vertex_count, transform_matrix);
+    FUN_18030d6e0(render_context);
   }
-  if (*param_7 != 0) {
-    uStack_98 = 0;
-    uStack_90 = 0;
-    uStack_8c = 0xffffffff;
-    uStack_88 = 1;
-    uStack_86 = 0;
-    uStack_84 = 0xffffffff;
-    uStack_80 = 1;
-    uStack_78 = 0;
-    lStack_70 = 0;
-    uStack_68 = 0;
-    uStack_60 = 0;
-    uStack_58 = 3;
-    uStack_50 = 0;
-    FUN_18022d470(*param_7,&uStack_98);
-    if (lStack_70 != 0) {
-                    // WARNING: Subroutine does not return
+  if (*render_data != 0) {
+    stack_data_98 = 0;
+    stack_data_90 = 0;
+    stack_data_8c = 0xffffffff;
+    stack_data_88 = 1;
+    stack_data_86 = 0;
+    stack_data_84 = 0xffffffff;
+    stack_data_80 = 1;
+    stack_data_78 = 0;
+    stack_data_70 = 0;
+    stack_data_68 = 0;
+    stack_data_60 = 0;
+    stack_data_58 = 3;
+    stack_data_50 = 0;
+    FUN_18022d470(*render_data, &stack_data_98);
+    if (stack_data_70 != 0) {
       FUN_18064e900();
     }
   }
