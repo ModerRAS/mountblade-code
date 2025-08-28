@@ -724,7 +724,7 @@ void UIMemoryInitializer(UI_SYSTEM_CONTEXT* context, uint32_t memory_size, int i
     }
     
     // 分配内存
-    memory_handle = FUN_1807c4200(context, init_flag << 2);
+    memory_handle = SystemMemoryAllocator(context, init_flag << 2);
     if (memory_handle != 0) {
         // 初始化内存区域
         memset(security_buffer, 0, 0x84);

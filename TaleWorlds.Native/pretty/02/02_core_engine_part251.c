@@ -593,7 +593,7 @@ void resize_object_array(longlong *object_array_ptr,uint64_t param_2,uint64_t pa
     
     // 释放旧内存
     if (old_array_ptr != (uint64_t *)0x0) {
-      FUN_18064e900(old_array_ptr);
+      MemoryPool_ReleaseMemory(old_array_ptr);
     }
     
     // 更新数组指针
@@ -688,7 +688,7 @@ void expand_object_array(longlong *object_array_ptr,uint64_t param_2,uint64_t pa
   }
   
   if (new_memory != (uint64_t *)0x0) {
-    FUN_18064e900(new_memory);
+    MemoryPool_ReleaseMemory(new_memory);
   }
   return;
 }
@@ -789,7 +789,7 @@ EXPANSION_DONE:
     return;
   }
   
-  FUN_18064e900(temp_ptr);
+  MemoryPool_ReleaseMemory(temp_ptr);
 }
 
 /**
@@ -846,9 +846,9 @@ void cleanup_engine_resource_manager(longlong resource_manager)
           resource_ptr[1] = 0;
           *(int32_t *)(resource_ptr + 3) = 0;
           *resource_ptr = &unknown_var_720_ptr;
-          FUN_18064e900(resource_ptr);
+          MemoryPool_ReleaseMemory(resource_ptr);
         }
-        FUN_18064e900();
+        MemoryPool_ReleaseMemory();
       }
       *(uint64_t *)(table_ptr + index * 8) = 0;
       index = index + 1;
