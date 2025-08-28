@@ -951,8 +951,7 @@ LAB_1800db339:
 
 
 
-// 函数: void FUN_1800db370(float param_1,longlong *param_2,int *param_3)
-void FUN_1800db370(float param_1,longlong *param_2,int *param_3)
+void ParameterValidator(float param_1, longlong *param_2, int *param_3)
 
 {
   longlong lVar1;
@@ -969,7 +968,7 @@ void FUN_1800db370(float param_1,longlong *param_2,int *param_3)
         (*(char *)(lVar1 + 0x157) != *(char *)((longlong)param_3 + 0x17))))))) ||
      ((*(char *)(lVar1 + 0x156) != *(char *)((longlong)param_3 + 0x16) ||
       (*(int *)(lVar1 + 0x380) == 0)))) {
-    plVar2 = (longlong *)FUN_1800b1d80(param_1,&plStackX_20,in_RCX,param_3,0xfffffffffffffffe);
+    plVar2 = (longlong *)ParameterHandler(param_1, &plStackX_20, in_RCX, param_3, 0xfffffffffffffffe);
     lVar1 = *plVar2;
     *plVar2 = 0;
     plVar2 = (longlong *)*param_2;
@@ -994,9 +993,8 @@ void FUN_1800db370(float param_1,longlong *param_2,int *param_3)
 
 
 
-// 函数: void FUN_1800db460(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4,
-void FUN_1800db460(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4,
-                  int8_t param_5,uint64_t param_6,int32_t param_7)
+void AdvancedResourceManager(longlong param_1, longlong *param_2, uint64_t param_3, uint64_t param_4,
+                           int8_t param_5, uint64_t param_6, int32_t param_7)
 
 {
   longlong lVar1;
@@ -1058,7 +1056,7 @@ void FUN_1800db460(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
       puVar3 = *(void **)(param_1 + 8);
     }
     strcpy_s(auStack_c0,0x80,puVar3);
-    plVar2 = (longlong *)FUN_1800b1230(system_resource_state,&plStack_f0,&puStack_d8,&uStack_138);
+    plVar2 = (longlong *)ResourceAllocator(system_resource_state, &plStack_f0, &puStack_d8, &uStack_138);
     lVar1 = *plVar2;
     *plVar2 = 0;
     plStack_f8 = (longlong *)*param_2;
