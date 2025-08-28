@@ -748,8 +748,8 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 }
                 
                 // 清理和优化连接
-                FUN_18038b160(new_connection_handle);
-                FUN_18038af00(new_connection_handle);
+                RenderingSystem_ConnectionHandleCleanup(new_connection_handle);
+                RenderingSystem_ConnectionAllocator(new_connection_handle);
                 temp_index = middle_handle;
                 
                 if (*(longlong*)(new_connection_handle + 0xb0) != 0) {
@@ -776,7 +776,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 
                 *(uint*)(new_connection_handle + RENDER_OFFSET_GEOMETRY_DATA) = source_connection_index;
                 
-                FUN_18038b160(optimization_result);
+                RenderingSystem_ConnectionHandleCleanup(optimization_result);
                 FUN_18038af00(optimization_result);
                 
                 if (*(longlong*)(optimization_result + 0xb0) != 0) {

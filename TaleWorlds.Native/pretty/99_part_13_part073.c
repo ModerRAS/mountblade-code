@@ -733,7 +733,7 @@ void ResourceConfigurationApply(longlong config_ptr, uint64_t resource_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1808da7b0(longlong param_1,uint64_t *param_2,uint param_3,longlong *param_4)
+uint64_t ResourceObjectCreate(longlong resource_handle, uint64_t *create_params, uint create_flags, longlong *output_ptr)
 
 {
   longlong lVar1;
@@ -932,7 +932,7 @@ void FUN_1808da910(uint64_t *param_1,longlong *param_2)
 
 
 
-uint64_t FUN_1808daa00(uint64_t param_1,longlong param_2)
+uint64_t ResourceStatusGet(uint64_t resource_handle, longlong resource_ptr)
 
 {
   uint64_t uVar1;
