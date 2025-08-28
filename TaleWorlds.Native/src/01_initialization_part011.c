@@ -929,510 +929,610 @@ void InitializationSystemCoreRegistrar13(void)
 
 
 
-// 函数: void FUN_180040ee0(void)
-void FUN_180040ee0(void)
+/**
+ * @brief 初始化系统核心注册器14
+ * 
+ * 该函数负责在系统注册表中查找第十四个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统核心组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar14(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_14, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_14, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x43330a43fcdb3653;
-  puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
-  puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
-  return;
+    
+    /* 设置配置数据 - 核心组件类型 */
+    target_node->config_id = 0x43330a43fcdb3653;
+    target_node->config_hash = 0xdcfdc333a769ec93;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_14;
+    target_node->config_flags = INIT_COMPONENT_TYPE_CORE;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_180040fe0(void)
-void FUN_180040fe0(void)
+/**
+ * @brief 初始化系统核心注册器15
+ * 
+ * 该函数负责在系统注册表中查找第十五个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统扩展组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar15(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_15, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_15, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x431d7c8d7c475be2;
-  puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
-  puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
-  return;
+    
+    /* 设置配置数据 - 扩展组件类型 */
+    target_node->config_id = 0x431d7c8d7c475be2;
+    target_node->config_hash = 0xb97f048d2153e1b0;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_15;
+    target_node->config_flags = INIT_COMPONENT_TYPE_EXTENSION;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1800410e0(void)
-void FUN_1800410e0(void)
+/**
+ * @brief 初始化系统核心注册器16
+ * 
+ * 该函数负责在系统注册表中查找第十六个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统插件组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar16(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_16, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_16, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4b2d79e470ee4e2c;
-  puVar7[7] = 0x9c552acd3ed5548d;
-  puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    /* 设置配置数据 - 插件组件类型 */
+    target_node->config_id = 0x4b2d79e470ee4e2c;
+    target_node->config_hash = 0x9c552acd3ed5548d;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_16;
+    target_node->config_flags = INIT_COMPONENT_TYPE_PLUGIN;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1800411e0(void)
-void FUN_1800411e0(void)
+/**
+ * @brief 初始化系统核心注册器17
+ * 
+ * 该函数负责在系统注册表中查找第十七个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统服务组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar17(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_17, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_17, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x49086ba08ab981a7;
-  puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
-  return;
+    
+    /* 设置配置数据 - 服务组件类型 */
+    target_node->config_id = 0x49086ba08ab981a7;
+    target_node->config_hash = 0xa9191d34ad910696;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_17;
+    target_node->config_flags = INIT_COMPONENT_TYPE_SERVICE;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1800412e0(void)
-void FUN_1800412e0(void)
+/**
+ * @brief 初始化系统核心注册器18
+ * 
+ * 该函数负责在系统注册表中查找第十八个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统核心组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar18(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_18, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_18, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x402feffe4481676e;
-  puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    /* 设置配置数据 - 核心组件类型 */
+    target_node->config_id = 0x402feffe4481676e;
+    target_node->config_hash = 0xd4c2151109de93a0;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_18;
+    target_node->config_flags = INIT_COMPONENT_TYPE_CORE;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1800413e0(void)
-void FUN_1800413e0(void)
+/**
+ * @brief 初始化系统核心注册器19
+ * 
+ * 该函数负责在系统注册表中查找第十九个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统扩展组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar19(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  puStackX_18 = &UNK_1800868c0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_19, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_19, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4384dcc4b6d3f417;
-  puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
-  puVar7[10] = puStackX_18;
-  return;
+    
+    /* 设置配置数据 - 扩展组件类型 */
+    target_node->config_id = 0x4384dcc4b6d3f417;
+    target_node->config_hash = 0x92a15d52fe2679bd;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_19;
+    target_node->config_flags = INIT_COMPONENT_TYPE_EXTENSION;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1800414e0(void)
-void FUN_1800414e0(void)
+/**
+ * @brief 初始化系统核心注册器20
+ * 
+ * 该函数负责在系统注册表中查找第二十个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统插件组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar20(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_20, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_20, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4140994454d56503;
-  puVar7[7] = 0x399eced9bb5517ad;
-  puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    /* 设置配置数据 - 插件组件类型 */
+    target_node->config_id = 0x4140994454d56503;
+    target_node->config_hash = 0x399eced9bb5517ad;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_20;
+    target_node->config_flags = INIT_COMPONENT_TYPE_PLUGIN;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1800415e0(void)
-void FUN_1800415e0(void)
+/**
+ * @brief 初始化系统核心注册器21
+ * 
+ * 该函数负责在系统注册表中查找第二十一个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统服务组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar21(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_21, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_21, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x42bea5b911d9c4bf;
-  puVar7[7] = 0x1aa83fc0020dc1b6;
-  puVar7[8] = &UNK_1809fd0d8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    /* 设置配置数据 - 服务组件类型 */
+    target_node->config_id = 0x42bea5b911d9c4bf;
+    target_node->config_hash = 0x1aa83fc0020dc1b6;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_21;
+    target_node->config_flags = INIT_COMPONENT_TYPE_SERVICE;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1800416e0(void)
-void FUN_1800416e0(void)
+/**
+ * @brief 初始化系统核心注册器22
+ * 
+ * 该函数负责在系统注册表中查找第二十二个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统核心组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar22(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_22, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_22, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x46c54bc98fc3fc2a;
-  puVar7[7] = 0x727b256e3af32585;
-  puVar7[8] = &UNK_180a2ca90;
-  puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    /* 设置配置数据 - 核心组件类型 */
+    target_node->config_id = 0x46c54bc98fc3fc2a;
+    target_node->config_hash = 0x727b256e3af32585;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_22;
+    target_node->config_flags = INIT_COMPONENT_TYPE_CORE;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1800417e0(void)
-void FUN_1800417e0(void)
+/**
+ * @brief 初始化系统核心注册器23
+ * 
+ * 该函数负责在系统注册表中查找第二十三个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统扩展组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar23(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_23, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_23, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x41ffd0b76c1e136f;
-  puVar7[7] = 0x25db30365f277abb;
-  puVar7[8] = &UNK_180a2cab0;
-  puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    /* 设置配置数据 - 扩展组件类型 */
+    target_node->config_id = 0x41ffd0b76c1e136f;
+    target_node->config_hash = 0x25db30365f277abb;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_23;
+    target_node->config_flags = INIT_COMPONENT_TYPE_EXTENSION;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
@@ -1518,51 +1618,61 @@ int InitializationSystemConfigManager(void)
 }
 
 
-// 函数: void FUN_180041af0(void)
-void FUN_180041af0(void)
+/**
+ * @brief 初始化系统高级配置处理器
+ * 
+ * 该函数负责处理系统的高级配置项，包括配置数据的验证、
+ * 配置参数的优化和配置状态的监控。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemAdvancedConfigProcessor(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_ADVANCED_1, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_ADVANCED_1, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x46c54bc98fc3fc2a;
-  puVar7[7] = 0x727b256e3af32585;
-  puVar7[8] = &UNK_180a2ca90;
-  puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    /* 设置配置数据 - 高级配置类型 */
+    target_node->config_id = 0x46c54bc98fc3fc2a;
+    target_node->config_hash = 0x727b256e3af32585;
+    target_node->config_data = &INIT_SYSTEM_DATA_ADVANCED_1;
+    target_node->config_flags = INIT_COMPONENT_TYPE_SERVICE;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
