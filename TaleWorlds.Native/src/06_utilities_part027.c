@@ -485,13 +485,23 @@ void FUN_180941630(void)
 
 
 
-// 函数: void FUN_180941650(void)
+// =============================================================================
+// 线程同步清理器 (ThreadSynchronizationCleaner)
+// =============================================================================
+// 功能：清理线程同步资源并释放相关锁
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180941650(void)
 
 {
+  // 销毁互斥锁
   _Mtx_destroy_in_situ();
-                    // WARNING: Could not recover jumptable at 0x000180941680. Too many branches
-                    // WARNING: Treating indirect jump as call
+  
+  // WARNING: Could not recover jumptable at 0x000180941680. Too many branches
+  // WARNING: Treating indirect jump as call
+  
+  // 销毁条件变量
   _Cnd_destroy_in_situ();
   return;
 }
@@ -500,13 +510,23 @@ void FUN_180941650(void)
 
 
 
-// 函数: void FUN_180941690(void)
+// =============================================================================
+// 线程资源清理器 (ThreadResourceCleaner)
+// =============================================================================
+// 功能：清理线程资源并释放相关同步对象
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180941690(void)
 
 {
+  // 销毁互斥锁
   _Mtx_destroy_in_situ();
-                    // WARNING: Could not recover jumptable at 0x0001809416c0. Too many branches
-                    // WARNING: Treating indirect jump as call
+  
+  // WARNING: Could not recover jumptable at 0x0001809416c0. Too many branches
+  // WARNING: Treating indirect jump as call
+  
+  // 销毁条件变量
   _Cnd_destroy_in_situ();
   return;
 }
@@ -515,13 +535,23 @@ void FUN_180941690(void)
 
 
 
-// 函数: void FUN_1809416d0(void)
+// =============================================================================
+// 线程锁清理器 (ThreadLockCleaner)
+// =============================================================================
+// 功能：清理线程锁并释放相关资源
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_1809416d0(void)
 
 {
+  // 销毁互斥锁
   _Mtx_destroy_in_situ();
-                    // WARNING: Could not recover jumptable at 0x000180941700. Too many branches
-                    // WARNING: Treating indirect jump as call
+  
+  // WARNING: Could not recover jumptable at 0x000180941700. Too many branches
+  // WARNING: Treating indirect jump as call
+  
+  // 销毁条件变量
   _Cnd_destroy_in_situ();
   return;
 }
@@ -530,13 +560,23 @@ void FUN_1809416d0(void)
 
 
 
-// 函数: void FUN_180941710(void)
+// =============================================================================
+// 线程状态清理器 (ThreadStateCleaner)
+// =============================================================================
+// 功能：清理线程状态并释放相关资源
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180941710(void)
 
 {
+  // 销毁互斥锁
   _Mtx_destroy_in_situ();
-                    // WARNING: Could not recover jumptable at 0x000180941740. Too many branches
-                    // WARNING: Treating indirect jump as call
+  
+  // WARNING: Could not recover jumptable at 0x000180941740. Too many branches
+  // WARNING: Treating indirect jump as call
+  
+  // 销毁条件变量
   _Cnd_destroy_in_situ();
   return;
 }
@@ -547,12 +587,20 @@ void FUN_180941710(void)
 
 
 
-// 函数: void FUN_1809417a0(void)
+// =============================================================================
+// 系统句柄清理器 (SystemHandleCleaner)
+// =============================================================================
+// 功能：清理系统句柄并释放相关资源
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_1809417a0(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
-                    // WARNING: Treating indirect jump as call
+  // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
+  // WARNING: Treating indirect jump as call
+  
+  // 关闭系统句柄
   CloseHandle(_DAT_180c91900);
   return;
 }
@@ -561,12 +609,20 @@ void FUN_1809417a0(void)
 
 
 
-// 函数: void FUN_1809417c0(void)
+// =============================================================================
+// 互斥锁清理器 (MutexCleaner)
+// =============================================================================
+// 功能：清理互斥锁并释放相关资源
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_1809417c0(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
-                    // WARNING: Treating indirect jump as call
+  // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
+  // WARNING: Treating indirect jump as call
+  
+  // 销毁指定位置的互斥锁
   _Mtx_destroy_in_situ(0x180c91910);
   return;
 }
@@ -577,11 +633,18 @@ void FUN_1809417c0(void)
 
 
 
-// 函数: void FUN_1809417e0(void)
+// =============================================================================
+// 系统数据指针重置器 (SystemDataPointerResetter)
+// =============================================================================
+// 功能：重置系统数据指针并设置默认值
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_1809417e0(void)
 
 {
-  _DAT_180d49160 = &UNK_18098bcb0;
+  // 重置系统数据指针并设置为默认值
+  _DAT_180d49160 = &UNK_18098bcb0;  // 设置默认数据指针
   return;
 }
 
@@ -591,11 +654,18 @@ void FUN_1809417e0(void)
 
 
 
-// 函数: void FUN_180941800(void)
+// =============================================================================
+// 系统状态指针重置器 (SystemStatePointerResetter)
+// =============================================================================
+// 功能：重置系统状态指针并设置默认值
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180941800(void)
 
 {
-  _DAT_180bf64d0 = &UNK_18098bcb0;
+  // 重置系统状态指针并设置为默认值
+  _DAT_180bf64d0 = &UNK_18098bcb0;  // 设置默认状态指针
   return;
 }
 
@@ -605,11 +675,18 @@ void FUN_180941800(void)
 
 
 
-// 函数: void FUN_180941820(void)
+// =============================================================================
+// 系统配置指针重置器 (SystemConfigPointerResetter)
+// =============================================================================
+// 功能：重置系统配置指针并设置默认值
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180941820(void)
 
 {
-  _DAT_180bf6530 = &UNK_18098bcb0;
+  // 重置系统配置指针并设置为默认值
+  _DAT_180bf6530 = &UNK_18098bcb0;  // 设置默认配置指针
   return;
 }
 
@@ -619,11 +696,18 @@ void FUN_180941820(void)
 
 
 
-// 函数: void FUN_180941840(void)
+// =============================================================================
+// 系统资源指针重置器 (SystemResourcePointerResetter)
+// =============================================================================
+// 功能：重置系统资源指针并设置默认值
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180941840(void)
 
 {
-  _DAT_180bf6590 = &UNK_18098bcb0;
+  // 重置系统资源指针并设置为默认值
+  _DAT_180bf6590 = &UNK_18098bcb0;  // 设置默认资源指针
   return;
 }
 
