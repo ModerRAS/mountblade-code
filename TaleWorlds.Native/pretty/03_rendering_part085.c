@@ -274,6 +274,15 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     *(int*)((longlong)render_resource + 0xd62) = *(ushort*)((longlong)param_5 + 0x32c);
     *(int*)((longlong)render_resource + 0xd64) = *(ushort*)((longlong)param_5 + 0x32e);
     
+    // 设置高级渲染参数
+    *(int*)((longlong)render_resource + 1) = 0x10141;  // 渲染模式标志
+    *(int*)((longlong)render_resource + 0x473c) = 0;   // 清空高级参数
+    
+    // 设置渲染状态标志
+    *(char*)((longlong)render_resource + 0x11c37) = 1;
+    *(char*)((longlong)render_resource + 0x1bd9) |= 2;
+    *(char*)((longlong)render_resource + 0x6f6) |= 0x40;
+    
     // 注意：原实现包含更多的渲染控制逻辑
     // 这里只保留了基本的结构框架
 }
