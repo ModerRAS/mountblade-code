@@ -9,8 +9,8 @@
 // - UNK_* -> 常量名 (system_constant_*, base_address_*, string_data_*, etc.)
 
 // 全局变量定义
-undefined memory_block_fc740;
-undefined system_constant_c790;
+void* memory_block_fc740;
+void* system_constant_c790;
 
 // 初始化控制变量
 control_flag_5240 = 1;
@@ -94,10 +94,10 @@ int initialize_module_2cfc0(void)
 }
 
 // 设置线程函数 - 设置线程2d010
-int setup_thread_2d010(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int setup_thread_2d010(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c910a8,2,param_3,param_4,uVar2);
@@ -107,10 +107,10 @@ int setup_thread_2d010(undefined8 param_1,undefined8 param_2,undefined8 param_3,
 }
 
 // 设置线程函数 - 设置线程2d060
-int setup_thread_2d060(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int setup_thread_2d060(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91148,2,param_3,param_4,uVar2);
