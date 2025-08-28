@@ -1,35 +1,42 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part009_sub001_sub001.c - 27 个函数
+// 02_core_engine_part009_sub001_sub001.c - 核心引擎模块子组件1
+// 本文件包含27个函数，主要负责进程管理、线程管理、互斥锁初始化等核心功能
 
-#include "TaleWorlds.Native.Split.h"
+// 全局变量声明
+extern void *current_process_handle;
+extern void *global_mutex_1;
+extern void *global_mutex_2;
+extern int thread_local_data_initialized;
+extern int global_counter;
+extern void *global_data_structure;
+extern int process_initialization_status;
 
-// 02_core_engine_part009_sub001.c - 28 个函数
-
-#include "TaleWorlds.Native.Split.h"
-
-// 02_core_engine_part009.c - 28 个函数
-
-
-
-// 函数: void FUN_180043560(void)
-void FUN_180043560(void)
-
+/**
+ * 获取当前进程句柄
+ * 功能：获取当前进程的句柄并存储到全局变量中
+ */
+void get_current_process_handle(void)
 {
-  _DAT_180c96218 = GetCurrentProcess();
-  return;
+    current_process_handle = GetCurrentProcess();
+    return;
 }
 
 
 
-int FUN_180043580(void)
-
+/**
+ * 初始化系统核心组件
+ * 功能：初始化系统的核心组件并返回初始化状态
+ * 返回值：初始化成功返回0，失败返回-1
+ */
+int initialize_system_core(void)
 {
-  longlong lVar1;
-  
-  FUN_180629770();
-  lVar1 = FUN_1808fc7d0(&UNK_180943130);
-  return (lVar1 != 0) - 1;
+    longlong result;
+    
+    // 调用初始化函数
+    FUN_180629770();
+    result = FUN_1808fc7d0(&UNK_180943130);
+    return (result != 0) - 1;
 }
 
 

@@ -63,6 +63,7 @@ void update_transform_matrix_and_sync(void)
   longlong global_engine_data;
   undefined4 *matrix_block_data;
   uint *index_array_data;
+  uint *index_array_ptr;
   ulonglong memory_page_start;
   ulonglong memory_page_end;
   bool is_memory_allocated;
@@ -312,8 +313,11 @@ void update_transform_matrix_and_sync(void)
 
 
 
-// 函数: void FUN_180079309(longlong param_1,uint param_2,undefined8 param_3,float *param_4)
-void FUN_180079309(longlong param_1,uint param_2,undefined8 param_3,float *param_4)
+/**
+ * 处理矩阵变换和同步更新
+ * 根据传入的参数处理矩阵数据，包括变换计算和线程同步
+ */
+void process_matrix_transform_and_sync(longlong render_context, uint matrix_index, undefined8 sync_param, float *matrix_data)
 
 {
   longlong *plVar1;
@@ -602,8 +606,11 @@ void FUN_180079309(longlong param_1,uint param_2,undefined8 param_3,float *param
 
 
 
-// 函数: void FUN_18007940e(void)
-void FUN_18007940e(void)
+/**
+ * 执行线程同步操作
+ * 处理线程间的数据同步和内存管理
+ */
+void execute_thread_synchronization(void)
 
 {
   longlong *plVar1;
@@ -812,7 +819,11 @@ void FUN_18007940e(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined * FUN_180079430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 获取变换矩阵指针
+ * 根据参数计算并返回变换矩阵的指针地址
+ */
+undefined * get_transform_matrix_pointer(longlong context_base, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -829,8 +840,11 @@ undefined * FUN_180079430(longlong param_1,undefined8 param_2,undefined8 param_3
       _DAT_180d49168 = &DAT_180d49178;
 
 
-// 函数: void FUN_180079520(longlong param_1)
-void FUN_180079520(longlong param_1)
+/**
+ * 重置线程状态标志
+ * 重置线程的状态标志，确保线程处于正确的初始状态
+ */
+void reset_thread_status_flags(longlong thread_context)
 
 {
   longlong lVar1;
@@ -858,7 +872,11 @@ void FUN_180079520(longlong param_1)
 
 
 
-undefined1 FUN_18007953e(void)
+/**
+ * 获取并清除线程状态
+ * 获取当前线程状态并清除相关标志
+ */
+undefined1 get_and_clear_thread_status(void)
 
 {
   undefined1 *puVar1;

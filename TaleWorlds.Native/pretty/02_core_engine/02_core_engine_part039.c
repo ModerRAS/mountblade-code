@@ -140,77 +140,77 @@ float * calculate_bounding_box(float *object_ptr)
     stack_temp_90 = 0;
     mesh_data_ptr = current_vertex;
     FUN_18007f770(&mesh_data_ptr);
-    if (*(int *)(stack_temp_88 + 0x10) != 0) {
+    if (*(int *)(vertex_array_info + 0x10) != 0) {
       do {
-        current_vertex = (float *)((longlong)(int)vertex_count * 0x10 + *(longlong *)(stack_temp_88 + 0x18));
-        stack_temp_a8 = *current_vertex;
-        if (*min_bounds_ptr < stack_temp_a8) {
-          stack_temp_a8 = *min_bounds_ptr;
+        current_vertex = (float *)((longlong)(int)vertex_count * 0x10 + *(longlong *)(vertex_array_info + 0x18));
+        temp_max_x = *current_vertex;
+        if (*min_bounds_ptr < temp_max_x) {
+          temp_max_x = *min_bounds_ptr;
         }
-        stack_temp_a4 = current_vertex[1];
-        if (object_ptr[0x9e] < stack_temp_a4) {
-          stack_temp_a4 = object_ptr[0x9e];
+        temp_max_y = current_vertex[1];
+        if (object_ptr[0x9e] < temp_max_y) {
+          temp_max_y = object_ptr[0x9e];
         }
-        stack_temp_a0 = current_vertex[2];
-        if (object_ptr[0x9f] < stack_temp_a0) {
-          stack_temp_a0 = object_ptr[0x9f];
+        temp_max_z = current_vertex[2];
+        if (object_ptr[0x9f] < temp_max_z) {
+          temp_max_z = object_ptr[0x9f];
         }
-        *(ulonglong *)min_bounds_ptr = CONCAT44(stack_temp_a4,stack_temp_a8);
-        *(ulonglong *)(object_ptr + 0x9f) = CONCAT44(stack_temp_9c,stack_temp_a0);
-        stack_temp_b8 = *current_vertex;
-        if (stack_temp_b8 < object_ptr[0xa1]) {
-          stack_temp_b8 = object_ptr[0xa1];
+        *(ulonglong *)min_bounds_ptr = CONCAT44(temp_max_y,temp_max_x);
+        *(ulonglong *)(object_ptr + 0x9f) = CONCAT44(temp_padding_2,temp_max_z);
+        temp_min_x = *current_vertex;
+        if (temp_min_x < object_ptr[0xa1]) {
+          temp_min_x = object_ptr[0xa1];
         }
-        stack_temp_b4 = current_vertex[1];
-        if (stack_temp_b4 < object_ptr[0xa2]) {
-          stack_temp_b4 = object_ptr[0xa2];
+        temp_min_y = current_vertex[1];
+        if (temp_min_y < object_ptr[0xa2]) {
+          temp_min_y = object_ptr[0xa2];
         }
-        stack_temp_b0 = current_vertex[2];
-        if (stack_temp_b0 < object_ptr[0xa3]) {
-          stack_temp_b0 = object_ptr[0xa3];
+        temp_min_z = current_vertex[2];
+        if (temp_min_z < object_ptr[0xa3]) {
+          temp_min_z = object_ptr[0xa3];
         }
-        *(ulonglong *)(object_ptr + 0xa1) = CONCAT44(stack_temp_b4,stack_temp_b8);
-        *(ulonglong *)(object_ptr + 0xa3) = CONCAT44(stack_temp_ac,stack_temp_b0);
+        *(ulonglong *)(object_ptr + 0xa1) = CONCAT44(temp_min_y,temp_min_x);
+        *(ulonglong *)(object_ptr + 0xa3) = CONCAT44(temp_padding_1,temp_min_z);
         vertex_count = vertex_count + 1;
-      } while (vertex_count < *(uint *)(stack_temp_88 + 0x10));
+      } while (vertex_count < *(uint *)(vertex_array_info + 0x10));
     }
-    current_vertex = *(float **)(object_ptr + 0x6e);
-    if ((current_vertex != (float *)0x0) && (((uint)current_vertex[0x4e] & 0x3000) != 0)) {
-      stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);
-      stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);
-      stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);
-      stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);
-      stack_temp_58 = *(undefined **)(object_ptr + 0x50);
-      stack_temp_50 = object_ptr[0x52];
-      stack_temp_4c = object_ptr[0x53];
-      stack_temp_48 = *(undefined **)(object_ptr + 0x54);
-      stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);
-      FUN_180085c10(&stack_temp_78);
-      FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
-      current_vertex = *(float **)(object_ptr + 0x6e);
-      if (((uint)current_vertex[0x4e] & 0x3000) == 0x2000) {
-        stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);
-        stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);
-        stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);
-        stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);
-        stack_temp_58 = *(undefined **)(object_ptr + 0x50);
-        stack_temp_50 = object_ptr[0x52];
-        stack_temp_4c = object_ptr[0x53];
-        stack_temp_48 = *(undefined **)(object_ptr + 0x54);
-        stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);
-        FUN_180085ac0(&stack_temp_78,0x3fc90fdb);
-        FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
-        stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);
-        stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);
-        stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);
-        stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);
-        stack_temp_58 = *(undefined **)(object_ptr + 0x50);
-        stack_temp_50 = object_ptr[0x52];
-        stack_temp_4c = object_ptr[0x53];
-        stack_temp_48 = *(undefined **)(object_ptr + 0x54);
-        stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);
-        FUN_180085970(&stack_temp_78);
-        current_vertex = (float *)FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
+    transform_ptr = *(float **)(object_ptr + 0x6e);
+    if ((transform_ptr != (float *)0x0) && (((uint)transform_ptr[0x4e] & 0x3000) != 0)) {
+      temp_data_2 = *(undefined8 *)(object_ptr + 0x48);
+      temp_data_3 = *(undefined8 *)(object_ptr + 0x4a);
+      temp_data_4 = *(undefined8 *)(object_ptr + 0x4c);
+      temp_data_5 = *(undefined8 *)(object_ptr + 0x4e);
+      temp_ptr_1 = *(undefined **)(object_ptr + 0x50);
+      temp_float_1 = object_ptr[0x52];
+      temp_float_2 = object_ptr[0x53];
+      temp_ptr_2 = *(undefined **)(object_ptr + 0x54);
+      temp_data_6 = *(undefined8 *)(object_ptr + 0x56);
+      FUN_180085c10(&temp_data_2);
+      FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&temp_data_2);
+      transform_ptr = *(float **)(object_ptr + 0x6e);
+      if (((uint)transform_ptr[0x4e] & 0x3000) == 0x2000) {
+        temp_data_2 = *(undefined8 *)(object_ptr + 0x48);
+        temp_data_3 = *(undefined8 *)(object_ptr + 0x4a);
+        temp_data_4 = *(undefined8 *)(object_ptr + 0x4c);
+        temp_data_5 = *(undefined8 *)(object_ptr + 0x4e);
+        temp_ptr_1 = *(undefined **)(object_ptr + 0x50);
+        temp_float_1 = object_ptr[0x52];
+        temp_float_2 = object_ptr[0x53];
+        temp_ptr_2 = *(undefined **)(object_ptr + 0x54);
+        temp_data_6 = *(undefined8 *)(object_ptr + 0x56);
+        FUN_180085ac0(&temp_data_2,0x3fc90fdb);
+        FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&temp_data_2);
+        temp_data_2 = *(undefined8 *)(object_ptr + 0x48);
+        temp_data_3 = *(undefined8 *)(object_ptr + 0x4a);
+        temp_data_4 = *(undefined8 *)(object_ptr + 0x4c);
+        temp_data_5 = *(undefined8 *)(object_ptr + 0x4e);
+        temp_ptr_1 = *(undefined **)(object_ptr + 0x50);
+        temp_float_1 = object_ptr[0x52];
+        temp_float_2 = object_ptr[0x53];
+        temp_ptr_2 = *(undefined **)(object_ptr + 0x54);
+        temp_data_6 = *(undefined8 *)(object_ptr + 0x56);
+        FUN_180085970(&temp_data_2);
+        transform_ptr = (float *)FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&temp_data_2);
       }
     }
     transform_ptr = mesh_data_ptr;
@@ -235,9 +235,9 @@ float * calculate_bounding_box(float *object_ptr)
       object_ptr[0xa7] = (object_ptr[0xa3] + object_ptr[0x9f]) * 0.5;
       object_ptr[0xa8] = 3.4028235e+38;
       time_value = 0.0;
-      remaining_vertices = (ulonglong)*(uint *)(stack_temp_88 + 0x10);
-      if (0 < (int)*(uint *)(stack_temp_88 + 0x10)) {
-        current_vertex = *(float **)(stack_temp_88 + 0x18);
+      remaining_vertices = (ulonglong)*(uint *)(vertex_array_info + 0x10);
+      if (0 < (int)*(uint *)(vertex_array_info + 0x10)) {
+        current_vertex = *(float **)(vertex_array_info + 0x18);
         max_distance = time_value;
         do {
           time_value = (*current_vertex - object_ptr[0xa5]) * (*current_vertex - object_ptr[0xa5]) +
@@ -273,18 +273,18 @@ LAB_180075f4f:
       LOCK();
       min_bounds_ptr = transform_ptr + 0x3a;
       time_value = *min_bounds_ptr;
-      current_vertex = (float *)(ulonglong)(uint)time_value;
+      transform_ptr = (float *)(ulonglong)(uint)time_value;
       *min_bounds_ptr = (float)((int)*min_bounds_ptr + -1);
       UNLOCK();
       if (lock_status == '\0') {
         if ((((time_value == 1.4013e-45) && (*(longlong *)(mesh_data_ptr + 0x84) != 0)) &&
-            (current_vertex = mesh_data_ptr, FUN_1800791a0(mesh_data_ptr), *(char *)(current_vertex + 0x3f) == '\0')) &&
-           ((*(char *)(current_vertex + 0x3d) == '\0' &&
-            (((*(byte *)((longlong)current_vertex + 0xfd) & 0x20) == 0 ||
-             ((*(byte *)((longlong)current_vertex + 0xfe) & 1) == 0)))))) {
-          mesh_ptr = *(longlong **)(current_vertex + 0x84);
-          current_vertex[0x84] = 0.0;
-          current_vertex[0x85] = 0.0;
+            (transform_ptr = mesh_data_ptr, FUN_1800791a0(mesh_data_ptr), *(char *)(transform_ptr + 0x3f) == '\0')) &&
+           ((*(char *)(transform_ptr + 0x3d) == '\0' &&
+            (((*(byte *)((longlong)transform_ptr + 0xfd) & 0x20) == 0 ||
+             ((*(byte *)((longlong)transform_ptr + 0xfe) & 1) == 0)))))) {
+          mesh_ptr = *(longlong **)(transform_ptr + 0x84);
+          transform_ptr[0x84] = 0.0;
+          transform_ptr[0x85] = 0.0;
           if (mesh_ptr != (longlong *)0x0) {
             (**(code **)(*mesh_ptr + 0x38))();
           }
@@ -292,12 +292,12 @@ LAB_180075f4f:
         LOCK();
         byte_flag = *(byte *)(transform_ptr + 0x3b);
         *(byte *)(transform_ptr + 0x3b) = 0;
-        current_vertex = (float *)(ulonglong)byte_flag;
+        transform_ptr = (float *)(ulonglong)byte_flag;
         UNLOCK();
       }
     }
   }
-  return current_vertex;
+  return transform_ptr;
 }
 
 
