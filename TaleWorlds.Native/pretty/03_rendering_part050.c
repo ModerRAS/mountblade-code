@@ -1134,7 +1134,7 @@ void RenderSystem_AdvancedConfigure(longlong system_handle, uint64_t *output_dat
           resource_pointer = param13;
         }
         
-        resource_manager = FUN_180294c20(texture_format, &unknown_var_704_ptr, param3, &param6, resource_pointer);
+        resource_manager = SystemResourceProcessor(texture_format, &unknown_var_704_ptr, param3, &param6, resource_pointer);
         *(int32_t *)(resource_manager + 0xc) = 0x3f800000;
       }
       

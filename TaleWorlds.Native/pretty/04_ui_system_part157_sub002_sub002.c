@@ -80,6 +80,9 @@ typedef uint64_t UIRenderHandle;               // UI渲染句柄
 #define UISystemAdvancedDataHandler               FUN_18075f4c0
 #define UISystemMemoryManager                     FUN_18075f4c0
 
+// UI系统安全验证器
+#define UISystem_SecurityValidate                  FUN_1808fc050
+
 //------------------------------------------------------------------------------
 // UI系统高级子模块处理函数
 // 功能：执行UI系统高级子模块的处理和管理，包括组件状态管理、
