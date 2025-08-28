@@ -237,165 +237,185 @@ void empty_function_placeholder2(void)
 
 
 
-// 函数: void FUN_1801364d0(longlong param_1,longlong param_2)
-void FUN_1801364d0(longlong param_1,longlong param_2)
+/**
+ * 处理游戏对象链接和状态管理
+ * @param context 上下文指针
+ * @param obj_data 对象数据指针
+ */
+void manage_game_object_links(longlong context, longlong obj_data)
 
 {
-  uint *puVar1;
-  undefined4 uVar2;
-  undefined4 *puVar3;
-  int iVar4;
-  undefined8 *puVar5;
-  longlong lVar6;
-  longlong lVar7;
-  ulonglong uVar8;
-  undefined8 *puVar9;
-  uint uVar10;
-  undefined8 *puVar11;
-  undefined8 *puVar12;
-  int iVar13;
-  undefined1 auStackX_8 [8];
-  undefined8 *puStackX_10;
-  undefined1 *puStackX_18;
-  undefined8 *puStackX_20;
-  undefined8 uVar14;
+  uint *flag_ptr;                   // 标志指针
+  undefined4 obj_id;                 // 对象ID
+  undefined4 *temp_obj_ptr;         // 临时对象指针
+  int count;                        // 计数器
+  undefined8 *main_obj_ptr;         // 主对象指针
+  longlong link_target;             // 链接目标
+  longlong source_obj;               // 源对象
+  ulonglong flag_value;             // 标志值
+  undefined8 *null_ptr;             // 空指针
+  uint obj_flags;                   // 对象标志
+  undefined8 *target_obj;            // 目标对象
+  undefined8 *result_obj;            // 结果对象
+  int link_index;                   // 链接索引
+  undefined1 stack_buffer[8];       // 栈缓冲区
+  undefined8 *stack_obj_ptr;         // 栈对象指针
+  undefined1 *stack_data_ptr;        // 栈数据指针
+  undefined8 *stack_temp_ptr;        // 栈临时指针
+  undefined8 special_flag;          // 特殊标志
   
-  uVar14 = 0xfffffffffffffffe;
-  lVar6 = *(longlong *)(param_2 + 0x18);
-  lVar7 = *(longlong *)(param_2 + 8);
-  puVar5 = *(undefined8 **)(param_2 + 0x10);
-  puVar9 = (undefined8 *)0x0;
-  iVar13 = 0;
-  puVar11 = puVar9;
-  if (lVar6 != 0) {
-    puVar11 = *(undefined8 **)(lVar6 + 0x410);
-    *(undefined8 *)(lVar6 + 0x410) = 0;
-    if (puVar11 == (undefined8 *)0x0) {
-      iVar13 = *(int *)(lVar6 + 8);
+  special_flag = 0xfffffffffffffffe;
+  link_target = *(longlong *)(obj_data + 0x18);
+  source_obj = *(longlong *)(obj_data + 8);
+  main_obj_ptr = *(undefined8 **)(obj_data + 0x10);
+  null_ptr = (undefined8 *)0x0;
+  link_index = 0;
+  target_obj = null_ptr;
+  
+  // 获取目标对象信息
+  if (link_target != 0) {
+    target_obj = *(undefined8 **)(link_target + 0x410);
+    *(undefined8 *)(link_target + 0x410) = 0;
+    if (target_obj == (undefined8 *)0x0) {
+      link_index = *(int *)(link_target + 8);
     }
-    else if (puVar11[2] == 0) {
-      iVar13 = *(int *)(puVar11[6] + 0x18);
-      if (iVar13 == 0) {
-        iVar13 = *(int *)(puVar11[6] + 0x14);
+    else if (target_obj[2] == 0) {
+      link_index = *(int *)(target_obj[6] + 0x18);
+      if (link_index == 0) {
+        link_index = *(int *)(target_obj[6] + 0x14);
       }
     }
   }
-  if (puVar5 == (undefined8 *)0x0) {
-    puVar5 = (undefined8 *)FUN_180135960(param_1,0);
-    puVar5[7] = *(undefined8 *)(lVar7 + 0x40);
-    puVar5[8] = *(undefined8 *)(lVar7 + 0x48);
-    if (*(longlong *)(lVar7 + 0x410) == 0) {
-      FUN_180136b10(puVar5,lVar7,1);
-      puVar1 = (uint *)(*(longlong *)(puVar5[6] + 8) + 4);
-      *puVar1 = *puVar1 & 0xffbfffff;
-      *(byte *)(lVar7 + 0x432) = *(byte *)(lVar7 + 0x432) | 1;
+  
+  // 创建或使用现有主对象
+  if (main_obj_ptr == (undefined8 *)0x0) {
+    main_obj_ptr = (undefined8 *)FUN_180135960(context, 0);
+    main_obj_ptr[7] = *(undefined8 *)(source_obj + 0x40);
+    main_obj_ptr[8] = *(undefined8 *)(source_obj + 0x48);
+    if (*(longlong *)(source_obj + 0x410) == 0) {
+      FUN_180136b10(main_obj_ptr, source_obj, 1);
+      flag_ptr = (uint *)(*(longlong *)(main_obj_ptr[6] + 8) + 4);
+      *flag_ptr = *flag_ptr & 0xffbfffff;
+      *(byte *)(source_obj + 0x432) = *(byte *)(source_obj + 0x432) | 1;
     }
   }
-  uVar10 = *(uint *)(param_2 + 0x20);
-  puVar12 = puVar5;
-  if (uVar10 != 0xffffffff) {
-    uVar8 = (ulonglong)((uVar10 & 0xfffffffd) == 0);
-    FUN_18013a1b0(param_1,puVar5,1 < uVar10,uVar8,*(undefined4 *)(param_2 + 0x24),puVar11,uVar14);
-    lVar7 = puVar5[uVar8 + 2];
-    puVar12 = (undefined8 *)puVar5[(uVar8 ^ 1) + 2];
-    puVar12[0xd] = puVar5[0xd];
-    *(byte *)(lVar7 + 0xa0) =
-         *(byte *)(lVar7 + 0xa0) ^ (*(byte *)(lVar7 + 0xa0) ^ *(byte *)(puVar5 + 0x14)) & 0x20;
-    *(byte *)(lVar7 + 0xa0) =
-         (*(byte *)(lVar7 + 0xa0) ^ *(byte *)(puVar5 + 0x14)) & 0x40 ^ *(byte *)(lVar7 + 0xa0);
-    *(byte *)(puVar5 + 0x14) = *(byte *)(puVar5 + 0x14) & 0xdf;
+  
+  // 处理对象标志
+  obj_flags = *(uint *)(obj_data + 0x20);
+  result_obj = main_obj_ptr;
+  if (obj_flags != 0xffffffff) {
+    flag_value = (ulonglong)((obj_flags & 0xfffffffd) == 0);
+    FUN_18013a1b0(context, main_obj_ptr, 1 < obj_flags, flag_value, *(undefined4 *)(obj_data + 0x24), target_obj, special_flag);
+    source_obj = main_obj_ptr[flag_value + 2];
+    result_obj = (undefined8 *)main_obj_ptr[(flag_value ^ 1) + 2];
+    result_obj[0xd] = main_obj_ptr[0xd];
+    *(byte *)(source_obj + 0xa0) =
+         *(byte *)(source_obj + 0xa0) ^ (*(byte *)(source_obj + 0xa0) ^ *(byte *)(main_obj_ptr + 0x14)) & 0x20;
+    *(byte *)(source_obj + 0xa0) =
+         (*(byte *)(source_obj + 0xa0) ^ *(byte *)(main_obj_ptr + 0x14)) & 0x40 ^ *(byte *)(source_obj + 0xa0);
+    *(byte *)(main_obj_ptr + 0x14) = *(byte *)(main_obj_ptr + 0x14) & 0xdf;
   }
-  *(byte *)(puVar12 + 0x14) = *(byte *)(puVar12 + 0x14) & 0xbf;
-  if (puVar12 != puVar11) {
-    iVar4 = *(int *)(puVar12 + 4);
-    if ((0 < iVar4) && (puVar12[6] == 0)) {
+  
+  *(byte *)(result_obj + 0x14) = *(byte *)(result_obj + 0x14) & 0xbf;
+  
+  // 处理对象链接关系
+  if (result_obj != target_obj) {
+    count = *(int *)(result_obj + 4);
+    if ((0 < count) && (result_obj[6] == 0)) {
       if (_DAT_180c8a9b0 != 0) {
         *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
       }
-      puStackX_10 = (undefined8 *)func_0x000180120ce0(0x60,_DAT_180c8a9a8);
-      puStackX_18 = auStackX_8;
-      puVar5 = puVar9;
-      if (puStackX_10 != (undefined8 *)0x0) {
-        *puStackX_10 = 0;
-        puStackX_10[1] = 0;
-        *(undefined4 *)(puStackX_10 + 5) = 0x7f7fffff;
-        *(undefined4 *)((longlong)puStackX_10 + 0x2c) = 0x7f7fffff;
-        *(undefined4 *)(puStackX_10 + 6) = 0xff7fffff;
-        *(undefined4 *)((longlong)puStackX_10 + 0x34) = 0xff7fffff;
-        puStackX_10[2] = 0;
-        puStackX_10[3] = 0;
-        puStackX_10[4] = 0xffffffffffffffff;
-        puStackX_10[7] = 0;
-        puStackX_10[8] = 0;
-        puStackX_10[9] = 0;
-        puStackX_10[10] = 0;
-        *(undefined4 *)(puStackX_10 + 0xb) = 0xffff0000;
-        puVar5 = puStackX_10;
+      stack_obj_ptr = (undefined8 *)func_0x000180120ce0(0x60, _DAT_180c8a9a8);
+      stack_data_ptr = stack_buffer;
+      main_obj_ptr = null_ptr;
+      if (stack_obj_ptr != (undefined8 *)0x0) {
+        // 初始化栈对象
+        *stack_obj_ptr = 0;
+        stack_obj_ptr[1] = 0;
+        *(undefined4 *)(stack_obj_ptr + 5) = 0x7f7fffff;
+        *(undefined4 *)((longlong)stack_obj_ptr + 0x2c) = 0x7f7fffff;
+        *(undefined4 *)(stack_obj_ptr + 6) = 0xff7fffff;
+        *(undefined4 *)((longlong)stack_obj_ptr + 0x34) = 0xff7fffff;
+        stack_obj_ptr[2] = 0;
+        stack_obj_ptr[3] = 0;
+        stack_obj_ptr[4] = 0xffffffffffffffff;
+        stack_obj_ptr[7] = 0;
+        stack_obj_ptr[8] = 0;
+        stack_obj_ptr[9] = 0;
+        stack_obj_ptr[10] = 0;
+        *(undefined4 *)(stack_obj_ptr + 0xb) = 0xffff0000;
+        main_obj_ptr = stack_obj_ptr;
       }
-      puVar12[6] = puVar5;
-      iVar4 = *(int *)(puVar12 + 4);
-      puVar5 = puVar9;
-      puStackX_20 = puStackX_10;
-      if (0 < iVar4) {
+      result_obj[6] = main_obj_ptr;
+      count = *(int *)(result_obj + 4);
+      main_obj_ptr = null_ptr;
+      stack_temp_ptr = stack_obj_ptr;
+      if (0 < count) {
         do {
-          FUN_18011bbb0(puVar12[6],0,*(undefined8 *)(puVar12[5] + (longlong)puVar9));
-          uVar10 = (int)puVar5 + 1;
-          puVar9 = puVar9 + 1;
-          iVar4 = *(int *)(puVar12 + 4);
-          puVar5 = (undefined8 *)(ulonglong)uVar10;
-        } while ((int)uVar10 < iVar4);
+          FUN_18011bbb0(result_obj[6], 0, *(undefined8 *)(result_obj[5] + (longlong)null_ptr));
+          obj_flags = (int)main_obj_ptr + 1;
+          null_ptr = null_ptr + 1;
+          count = *(int *)(result_obj + 4);
+          main_obj_ptr = (undefined8 *)(ulonglong)obj_flags;
+        } while ((int)obj_flags < count);
       }
     }
-    if (puVar11 == (undefined8 *)0x0) {
-      if (lVar6 != 0) {
-        iVar4 = *(int *)(lVar6 + 0x418);
-        puVar12[0xe] = lVar6;
-        FUN_180136b10(puVar12,lVar6,1);
-        if (iVar4 != 0) {
-          FUN_18013bf60(iVar4,*(undefined4 *)puVar12);
+    
+    // 处理不同的链接情况
+    if (target_obj == (undefined8 *)0x0) {
+      if (link_target != 0) {
+        count = *(int *)(link_target + 0x418);
+        result_obj[0xe] = link_target;
+        FUN_180136b10(result_obj, link_target, 1);
+        if (count != 0) {
+          FUN_18013bf60(count, *(undefined4 *)result_obj);
         }
       }
     }
-    else if (puVar11[2] == 0) {
-      uVar2 = *(undefined4 *)puVar11;
-      FUN_180136f60(puVar12,puVar11);
-      FUN_18013bf60(uVar2,*(undefined4 *)puVar12);
-      FUN_1801359f0(param_1,puVar11,1);
+    else if (target_obj[2] == 0) {
+      obj_id = *(undefined4 *)target_obj;
+      FUN_180136f60(result_obj, target_obj);
+      FUN_18013bf60(obj_id, *(undefined4 *)result_obj);
+      FUN_1801359f0(context, target_obj, 1);
     }
     else {
-      if (0 < iVar4) {
-        puVar3 = (undefined4 *)puVar11[0x10];
-        FUN_180136f60(puVar12,puVar3);
-        FUN_180136f60(puVar3,puVar12);
-        FUN_18013bf60(*(undefined4 *)puVar12,*puVar3);
+      if (0 < count) {
+        temp_obj_ptr = (undefined4 *)target_obj[0x10];
+        FUN_180136f60(result_obj, temp_obj_ptr);
+        FUN_180136f60(temp_obj_ptr, result_obj);
+        FUN_18013bf60(*(undefined4 *)result_obj, *temp_obj_ptr);
       }
-      if ((*(byte *)(puVar12 + 0x14) & 0x20) != 0) {
-        lVar6 = FUN_180121fa0(*(undefined8 *)(param_1 + 0x2df8),
-                              *(undefined4 *)((longlong)puVar11 + 0x94));
-        *(byte *)(lVar6 + 0xa0) = *(byte *)(lVar6 + 0xa0) | 0x20;
-        *(byte *)(puVar12 + 0x14) = *(byte *)(puVar12 + 0x14) & 0xdf;
+      if ((*(byte *)(result_obj + 0x14) & 0x20) != 0) {
+        link_target = FUN_180121fa0(*(undefined8 *)(context + 0x2df8),
+                              *(undefined4 *)((longlong)target_obj + 0x94));
+        *(byte *)(link_target + 0xa0) = *(byte *)(link_target + 0xa0) | 0x20;
+        *(byte *)(result_obj + 0x14) = *(byte *)(result_obj + 0x14) & 0xdf;
       }
-      lVar6 = puVar11[2];
-      puVar12[2] = lVar6;
-      lVar7 = puVar11[3];
-      puVar12[3] = lVar7;
-      if (lVar6 != 0) {
-        *(undefined8 **)(lVar6 + 8) = puVar12;
-        lVar7 = puVar12[3];
+      link_target = target_obj[2];
+      result_obj[2] = link_target;
+      source_obj = target_obj[3];
+      result_obj[3] = source_obj;
+      if (link_target != 0) {
+        *(undefined8 **)(link_target + 8) = result_obj;
+        source_obj = result_obj[3];
       }
-      if (lVar7 != 0) {
-        *(undefined8 **)(lVar7 + 8) = puVar12;
+      if (source_obj != 0) {
+        *(undefined8 **)(source_obj + 8) = result_obj;
       }
-      *(undefined4 *)(puVar12 + 10) = *(undefined4 *)(puVar11 + 10);
-      puVar12[9] = puVar11[9];
-      puVar11[3] = 0;
-      puVar11[2] = 0;
-      FUN_1801359f0(param_1,puVar11,1);
+      *(undefined4 *)(result_obj + 10) = *(undefined4 *)(target_obj + 10);
+      result_obj[9] = target_obj[9];
+      target_obj[3] = 0;
+      target_obj[2] = 0;
+      FUN_1801359f0(context, target_obj, 1);
     }
   }
-  if (puVar12[6] != 0) {
-    *(int *)(puVar12[6] + 0x18) = iVar13;
+  
+  // 更新链接索引
+  if (result_obj[6] != 0) {
+    *(int *)(result_obj[6] + 0x18) = link_index;
   }
+  
+  // 更新全局时间值
   if (*(float *)(_DAT_180c8a9b0 + 0x2e04) <= 0.0) {
     *(undefined4 *)(_DAT_180c8a9b0 + 0x2e04) = *(undefined4 *)(_DAT_180c8a9b0 + 0x1c);
   }

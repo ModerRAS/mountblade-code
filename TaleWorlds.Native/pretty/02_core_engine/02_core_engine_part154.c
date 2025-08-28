@@ -648,26 +648,37 @@ void copy_string_to_new_memory(longlong source_string, longlong string_length)
 
 
 
-// 函数: void FUN_18013cb34(longlong param_1,longlong param_2)
-void FUN_18013cb34(longlong param_1,longlong param_2)
-
+/**
+ * 使用寄存器值的字符串复制函数
+ * 与copy_string_to_new_memory类似，但使用寄存器中的值
+ * 
+ * @param source_string 源字符串指针
+ * @param string_length 字符串长度，如果为0则使用寄存器RBX计算
+ * 
+ * 注意：此函数使用寄存器R13作为全局数据指针，而不是全局变量
+ */
+void copy_string_with_register_values(longlong source_string, longlong string_length)
 {
-  undefined8 uVar1;
-  longlong unaff_RBX;
-  longlong unaff_R13;
+  undefined8 new_memory;
+  longlong register_rbx;
+  longlong global_data;
   
-  if (param_2 == 0) {
-    unaff_RBX = -1;
+  // 如果长度为0，使用RBX寄存器计算字符串长度
+  if (string_length == 0) {
+    register_rbx = -1;
     do {
-      unaff_RBX = unaff_RBX + 1;
-    } while (*(char *)(param_1 + unaff_RBX) != '\0');
+      register_rbx = register_rbx + 1;
+    } while (*(char *)(source_string + register_rbx) != '\0');
   }
-  if (unaff_R13 != 0) {
-    *(int *)(unaff_R13 + 0x3a8) = *(int *)(unaff_R13 + 0x3a8) + 1;
+  
+  // 使用R13寄存器更新内存分配计数器
+  if (global_data != 0) {
+    *(int *)(global_data + 0x3a8) = *(int *)(global_data + 0x3a8) + 1;
   }
-  uVar1 = func_0x000180120ce0(unaff_RBX + 1,_DAT_180c8a9a8);
-                    // WARNING: Subroutine does not return
-  memcpy(uVar1,param_1,unaff_RBX);
+  
+  // 分配内存并复制字符串
+  new_memory = func_0x000180120ce0(register_rbx + 1, _DAT_180c8a9a8);
+  memcpy(new_memory, source_string, register_rbx);
 }
 
 
@@ -769,16 +780,22 @@ LAB_18013cd32:
 
 
 
-// 函数: void FUN_18013cd49(void)
-void FUN_18013cd49(void)
-
+/**
+ * 使用寄存器R14的资源清理函数
+ * 减少内存分配计数器并调用清理函数
+ * 
+ * 注意：此函数使用R14寄存器作为条件判断
+ */
+void cleanup_with_r14_register(void)
 {
-  longlong unaff_R14;
+  longlong register_r14;
   
-  if ((unaff_R14 != 0) && (_DAT_180c8a9b0 != 0)) {
+  // 如果R14寄存器不为0且全局数据存在，减少分配计数器
+  if ((register_r14 != 0) && (_DAT_180c8a9b0 != 0)) {
     *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
   }
-                    // WARNING: Subroutine does not return
+  
+  // 调用清理函数
   FUN_180059ba0();
 }
 
@@ -788,14 +805,22 @@ void FUN_18013cd49(void)
 
 
 
-// 函数: void FUN_18013cd62(void)
-void FUN_18013cd62(void)
-
+/**
+ * 简单的资源清理函数
+ * 减少内存分配计数器并调用清理函数
+ * 
+ * 简化实现说明：
+ * - 原始实现：检查全局数据指针并更新计数器
+ * - 简化实现：保持原有逻辑，添加中文注释说明清理过程
+ */
+void simple_cleanup(void)
 {
+  // 如果全局数据存在，减少分配计数器
   if (_DAT_180c8a9b0 != 0) {
     *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
   }
-                    // WARNING: Subroutine does not return
+  
+  // 调用清理函数
   FUN_180059ba0();
 }
 
@@ -899,22 +924,36 @@ LAB_18013cd32:
 
 
 
-// 函数: void FUN_18013cdc0(longlong param_1)
-void FUN_18013cdc0(longlong param_1)
-
+/**
+ * 将数据写入指定路径的文件
+ * 准备数据缓冲区，打开文件并写入内容
+ * 
+ * @param file_path 文件路径指针
+ * 
+ * 简化实现说明：
+ * - 原始实现：重置全局标志，使用栈变量作为大小参数
+ * - 简化实现：保持原有逻辑，添加中文注释说明文件写入过程
+ */
+void write_data_to_file(longlong file_path)
 {
-  undefined8 uVar1;
-  longlong lVar2;
-  undefined8 uStackX_8;
+  undefined8 data_buffer;
+  longlong file_handle;
+  undefined8 data_size;
   
+  // 重置全局标志
   *(undefined4 *)(_DAT_180c8a9b0 + 0x2e04) = 0;
-  if (param_1 != 0) {
-    uStackX_8 = 0;
-    uVar1 = FUN_18013ce40(&uStackX_8);
-    lVar2 = FUN_180121300(param_1,&UNK_180a06794);
-    if (lVar2 != 0) {
-      fwrite(uVar1,1,uStackX_8,lVar2);
-      fclose(lVar2);
+  
+  if (file_path != 0) {
+    data_size = 0;
+    // 准备要写入的数据
+    data_buffer = FUN_18013ce40(&data_size);
+    // 打开文件
+    file_handle = FUN_180121300(file_path, &UNK_180a06794);
+    
+    if (file_handle != 0) {
+      // 写入数据并关闭文件
+      fwrite(data_buffer, 1, data_size, file_handle);
+      fclose(file_handle);
     }
   }
   return;
@@ -924,19 +963,29 @@ void FUN_18013cdc0(longlong param_1)
 
 
 
-// 函数: void FUN_18013cde7(void)
-void FUN_18013cde7(void)
-
+/**
+ * 将数据写入默认文件
+ * 使用默认路径准备数据并写入文件
+ * 
+ * 简化实现说明：
+ * - 原始实现：使用栈参数作为数据大小，无参数调用函数
+ * - 简化实现：保持原有逻辑，添加中文注释说明默认文件写入过程
+ */
+void write_data_to_default_file(void)
 {
-  undefined8 uVar1;
-  longlong lVar2;
-  undefined8 in_stack_00000030;
+  undefined8 data_buffer;
+  longlong file_handle;
+  undefined8 data_size;
   
-  uVar1 = FUN_18013ce40();
-  lVar2 = FUN_180121300();
-  if (lVar2 != 0) {
-    fwrite(uVar1,1,in_stack_00000030,lVar2);
-    fclose(lVar2);
+  // 准备要写入的数据
+  data_buffer = FUN_18013ce40();
+  // 打开默认文件
+  file_handle = FUN_180121300();
+  
+  if (file_handle != 0) {
+    // 写入数据并关闭文件
+    fwrite(data_buffer, 1, data_size, file_handle);
+    fclose(file_handle);
   }
   return;
 }
