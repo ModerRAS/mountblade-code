@@ -207,6 +207,7 @@ void compare_and_merge_render_objects(undefined8 *render_obj1, undefined8 render
     material_offset = 0;
     merge_state = 0;
     merge_context = render_obj2;
+    merge_length = 0;
     
     // 创建合并数据结构
     merged_data = create_render_merge_data(_GLOBAL_RENDER_CONTEXT, 0x1c8, 8, 3);
@@ -214,7 +215,7 @@ void compare_and_merge_render_objects(undefined8 *render_obj1, undefined8 render
     merge_position = object_offset;
     
     // 准备合并源数据
-    prepare_merge_source(&merge_target, render_obj1 + 0x3e);
+    prepare_merge_source(&merge_source, render_obj1 + 0x3e);
     
     // 清理合并数据中的特殊标记
     while ((0 < (int)merge_length && (texture_offset = strstr(merge_source, &GLOBAL_CLEAN_MARKER), texture_offset != 0))) {
@@ -311,7 +312,7 @@ void compare_and_merge_render_objects(undefined8 *render_obj1, undefined8 render
     // 检查是否需要合并
     should_merge = 0 < (int)merge_length;
     if (0 < (int)merge_length) {
-        material_offset = find_render_object_by_id(_GLOBAL_TEXTURE_MANAGER, &merge_target);
+        material_offset = find_render_object_by_id(_GLOBAL_TEXTURE_MANAGER, merge_source);
         if ((should_merge) && (material_offset != 0)) {
             should_merge = true;
             batch_count = (int)(*(longlong *)(material_offset + 0x40) - *(longlong *)(material_offset + 0x38) >> 4);
@@ -560,6 +561,8 @@ undefined1 apply_render_state_differences(undefined8 param1, undefined8 param2, 
     undefined1 apply_flag;
     ulonglong loop_index;
     longlong range_limit;
+    
+    apply_flag = 0;
     
     texture_count = 0;
     if (param3 != 0) {
