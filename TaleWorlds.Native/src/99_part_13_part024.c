@@ -1264,67 +1264,73 @@ error_handling:
 
 
 
-// 函数: void FUN_1808b5110(void)
-void FUN_1808b5110(void)
-
+// 函数21: 系统对象处理器和状态验证器（简化版）
+// 功能：处理系统对象和验证状态，这是函数20的简化版本，用于特定的对象处理场景
+void SystemObjectProcessorAndStateValidatorSimplified(void)
 {
-  short sVar1;
-  char cVar2;
-  int iVar3;
-  longlong in_RAX;
-  longlong lVar4;
-  int *piVar5;
-  undefined8 *unaff_R12;
-  longlong unaff_R14;
-  longlong unaff_R15;
-  undefined4 uStack0000000000000070;
-  undefined2 uStack0000000000000074;
-  undefined1 in_stack_00000078;
-  int in_stack_00000080;
-  ulonglong in_stack_000000b0;
-  
-  (**(code **)(in_RAX + 0x40))();
-  lVar4 = (**(code **)(*(longlong *)*unaff_R12 + 0x140))((longlong *)*unaff_R12,&stack0x00000070,1);
-  if (lVar4 == 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18076b390(&stack0x00000088,0x27,&UNK_180958180,uStack0000000000000070,uStack0000000000000074
-                 );
-  }
-  *(longlong *)(unaff_R14 + 0x40) = lVar4;
-  iVar3 = FUN_1808b2950();
-  if ((((((iVar3 != 0) || (cVar2 = func_0x0001808c5780(), cVar2 == '\0')) ||
-        (iVar3 = FUN_1808b5a30(), iVar3 != 0)) ||
-       (((*(short *)(unaff_R15 + 0xc) == 7 && ((*(uint *)(unaff_R14 + 0x88) >> 3 & 1) != 0)) &&
-        (iVar3 = FUN_1808b59b0(), iVar3 != 0)))) ||
-      ((*(short *)(unaff_R15 + 0xc) == 6 &&
-       ((((piVar5 = (int *)func_0x0001808da6d0(), *piVar5 != 0 || (piVar5[1] != 0)) ||
-         ((piVar5[2] != 0 || (piVar5[3] != 0)))) && (iVar3 = FUN_1808b4e20(), iVar3 != 0)))))) ||
-     ((*(short *)(unaff_R15 + 0xc) == 7 && (iVar3 = FUN_1808b4d60(), iVar3 != 0))))
-  goto LAB_1808b536d;
-  lVar4 = *(longlong *)(unaff_R14 + 0x40);
-  sVar1 = *(short *)(lVar4 + 0xc);
-  if ((ushort)(sVar1 - 4U) < 2) {
-    iVar3 = FUN_1808b5eb0();
-  }
-  else if (sVar1 == 6) {
-    iVar3 = FUN_180740c00(*(undefined8 *)(unaff_R14 + 0x30),&stack0x00000080);
-    if (((iVar3 != 0) || (in_stack_00000080 != 0x18)) || (iVar3 = FUN_1808b2f30(), iVar3 != 0))
-    goto LAB_1808b536d;
-    func_0x0001808da6d0(lVar4,&stack0x00000070);
-    iVar3 = FUN_1808b4440();
-  }
-  else {
-    if (sVar1 != 7) goto LAB_1808b536d;
-    iVar3 = FUN_1808b4320();
-  }
-  if (((iVar3 == 0) &&
-      (iVar3 = FUN_180740ff0(*(undefined8 *)(unaff_R14 + 0x30),*(undefined1 *)(lVar4 + 0x40)),
-      iVar3 == 0)) && ((iVar3 = FUN_1808b3f80(), iVar3 == 0 && (sVar1 == 7)))) {
-    FUN_1808b2f30();
-  }
-LAB_1808b536d:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+    SystemContext* context = GetCurrentContext();
+    SystemObject* current_obj = NULL;
+    SystemStatus status;
+    SystemError error = SYSTEM_ERROR_NONE;
+    SystemObjectData obj_data;
+    SystemValidationResult validation;
+    
+    // 执行对象处理
+    ProcessObjectContext(context);
+    current_obj = ProcessObjectChain(GetCurrentObjects(), &obj_data, 1);
+    if (current_obj == NULL) {
+        // 处理对象链失败
+        HandleObjectChainFailure(&context->security_ctx, 0x27, &obj_data);
+    }
+    context->current_object = current_obj;
+    
+    // 验证对象状态
+    error = ValidateObjectState(context);
+    if ((((((error != SYSTEM_ERROR_NONE) ||
+           (status = CheckObjectStatus(context->current_object), status == STATUS_INVALID)) ||
+          (error = ProcessObjectValidation(context, current_obj), error != SYSTEM_ERROR_NONE)) ||
+         (((GetObjectType(current_obj) == OBJECT_TYPE_SPECIAL && IsSpecialProcessingEnabled(context)) &&
+           (error = ProcessSpecialObject(context), error != SYSTEM_ERROR_NONE)))) ||
+        ((GetObjectType(current_obj) == OBJECT_TYPE_COMPLEX &&
+         ((((validation = ValidateComplexObject(current_obj, &obj_data), 
+            validation.result != VALIDATION_OK || (validation.secondary_result != VALIDATION_OK))) ||
+           ((validation.tertiary_result != VALIDATION_OK || (validation.quaternary_result != VALIDATION_OK)))) && 
+          (error = InitializeDeviceObject(context), error != SYSTEM_ERROR_NONE))
+         )))) || ((GetObjectType(current_obj) == OBJECT_TYPE_SPECIAL &&
+                  (error = ProcessSpecialObjectChain(context, current_obj), error != SYSTEM_ERROR_NONE)))) {
+        goto error_handling;
+    }
+    
+    // 处理不同类型的对象
+    current_obj = GetContextObject(context);
+    SystemObjectType obj_type = GetObjectType(current_obj);
+    if (IsObjectTypeSimple(obj_type)) {
+        error = ProcessSimpleObject(context, current_obj);
+    }
+    else if (obj_type == OBJECT_TYPE_COMPLEX) {
+        error = GetObjectConfiguration(context->config_handle, &obj_data);
+        if (((error != SYSTEM_ERROR_NONE) || (obj_data.config_type != CONFIG_TYPE_STANDARD)) || 
+            (error = InitializeObjectContext(context, 0), error != SYSTEM_ERROR_NONE)) {
+            goto error_handling;
+        }
+        error = ProcessComplexObject(context, current_obj);
+    }
+    else {
+        if (obj_type != OBJECT_TYPE_SPECIAL) goto error_handling;
+        error = ProcessSpecialObjectContext(context, current_obj);
+    }
+    
+    // 验证处理结果
+    if (((error == SYSTEM_ERROR_NONE) &&
+         (error = ValidateObjectProcessing(context->config_handle, GetObjectData(current_obj)),
+         error == SYSTEM_ERROR_NONE)) && 
+        ((error = FinalizeObjectProcessing(context, current_obj), error == SYSTEM_ERROR_NONE && (obj_type == OBJECT_TYPE_SPECIAL)))) {
+        InitializeObjectContext(context, 0);
+    }
+
+error_handling:
+    // 执行安全清理
+    ExecuteSecurityCleanup(&context->security_ctx);
 }
 
 
@@ -1332,16 +1338,15 @@ LAB_1808b536d:
 
 
 
-// 函数: void FUN_1808b519f(void)
-void FUN_1808b519f(void)
-
+// 函数22: 系统错误处理器和异常管理器
+// 功能：处理系统错误和异常情况，执行错误恢复和系统保护
+void SystemErrorHandlerAndExceptionManager(void)
 {
-  uint uStack0000000000000028;
-  undefined8 in_stack_00000070;
-  
-  uStack0000000000000028 = (uint)in_stack_00000070._6_2_;
-                    // WARNING: Subroutine does not return
-  FUN_18076b390();
+    SystemErrorContext* error_ctx = GetCurrentErrorContext();
+    SystemErrorCode error_code = GetErrorCode(error_ctx);
+    
+    // 执行错误处理
+    HandleSystemError(error_code);
 }
 
 
@@ -1349,56 +1354,67 @@ void FUN_1808b519f(void)
 
 
 
-// 函数: void FUN_1808b51da(void)
-void FUN_1808b51da(void)
-
+// 函数23: 系统对象处理器和状态验证器（优化版）
+// 功能：处理系统对象和验证状态，这是函数20和21的优化版本，用于高性能对象处理场景
+void SystemObjectProcessorAndStateValidatorOptimized(void)
 {
-  short sVar1;
-  longlong lVar2;
-  char cVar3;
-  int iVar4;
-  int *piVar5;
-  undefined8 unaff_R13;
-  longlong unaff_R14;
-  longlong unaff_R15;
-  int in_stack_00000080;
-  ulonglong in_stack_000000b0;
-  
-  *(undefined8 *)(unaff_R14 + 0x40) = unaff_R13;
-  iVar4 = FUN_1808b2950();
-  if ((((((iVar4 != 0) || (cVar3 = func_0x0001808c5780(), cVar3 == '\0')) ||
-        (iVar4 = FUN_1808b5a30(), iVar4 != 0)) ||
-       (((*(short *)(unaff_R15 + 0xc) == 7 && ((*(uint *)(unaff_R14 + 0x88) >> 3 & 1) != 0)) &&
-        (iVar4 = FUN_1808b59b0(), iVar4 != 0)))) ||
-      ((*(short *)(unaff_R15 + 0xc) == 6 &&
-       ((((piVar5 = (int *)func_0x0001808da6d0(), *piVar5 != 0 || (piVar5[1] != 0)) ||
-         ((piVar5[2] != 0 || (piVar5[3] != 0)))) && (iVar4 = FUN_1808b4e20(), iVar4 != 0)))))) ||
-     ((*(short *)(unaff_R15 + 0xc) == 7 && (iVar4 = FUN_1808b4d60(), iVar4 != 0))))
-  goto LAB_1808b536d;
-  lVar2 = *(longlong *)(unaff_R14 + 0x40);
-  sVar1 = *(short *)(lVar2 + 0xc);
-  if ((ushort)(sVar1 - 4U) < 2) {
-    iVar4 = FUN_1808b5eb0();
-  }
-  else if (sVar1 == 6) {
-    iVar4 = FUN_180740c00(*(undefined8 *)(unaff_R14 + 0x30),&stack0x00000080);
-    if (((iVar4 != 0) || (in_stack_00000080 != 0x18)) || (iVar4 = FUN_1808b2f30(), iVar4 != 0))
-    goto LAB_1808b536d;
-    func_0x0001808da6d0(lVar2,&stack0x00000070);
-    iVar4 = FUN_1808b4440();
-  }
-  else {
-    if (sVar1 != 7) goto LAB_1808b536d;
-    iVar4 = FUN_1808b4320();
-  }
-  if (((iVar4 == 0) &&
-      (iVar4 = FUN_180740ff0(*(undefined8 *)(unaff_R14 + 0x30),*(undefined1 *)(lVar2 + 0x40)),
-      iVar4 == 0)) && ((iVar4 = FUN_1808b3f80(), iVar4 == 0 && (sVar1 == 7)))) {
-    FUN_1808b2f30();
-  }
-LAB_1808b536d:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+    SystemContext* context = GetCurrentContext();
+    SystemObject* current_obj = GetDefaultObject();
+    SystemStatus status;
+    SystemError error = SYSTEM_ERROR_NONE;
+    SystemObjectData obj_data;
+    SystemValidationResult validation;
+    
+    // 设置当前对象
+    context->current_object = current_obj;
+    
+    // 验证对象状态
+    error = ValidateObjectState(context);
+    if ((((((error != SYSTEM_ERROR_NONE) ||
+           (status = CheckObjectStatus(context->current_object), status == STATUS_INVALID)) ||
+          (error = ProcessObjectValidation(context, current_obj), error != SYSTEM_ERROR_NONE)) ||
+         (((GetObjectType(current_obj) == OBJECT_TYPE_SPECIAL && IsSpecialProcessingEnabled(context)) &&
+           (error = ProcessSpecialObject(context), error != SYSTEM_ERROR_NONE)))) ||
+        ((GetObjectType(current_obj) == OBJECT_TYPE_COMPLEX &&
+         ((((validation = ValidateComplexObject(current_obj, &obj_data), 
+            validation.result != VALIDATION_OK || (validation.secondary_result != VALIDATION_OK))) ||
+           ((validation.tertiary_result != VALIDATION_OK || (validation.quaternary_result != VALIDATION_OK)))) && 
+          (error = InitializeDeviceObject(context), error != SYSTEM_ERROR_NONE))
+         )))) || ((GetObjectType(current_obj) == OBJECT_TYPE_SPECIAL &&
+                  (error = ProcessSpecialObjectChain(context, current_obj), error != SYSTEM_ERROR_NONE)))) {
+        goto error_handling;
+    }
+    
+    // 处理不同类型的对象
+    current_obj = GetContextObject(context);
+    SystemObjectType obj_type = GetObjectType(current_obj);
+    if (IsObjectTypeSimple(obj_type)) {
+        error = ProcessSimpleObject(context, current_obj);
+    }
+    else if (obj_type == OBJECT_TYPE_COMPLEX) {
+        error = GetObjectConfiguration(context->config_handle, &obj_data);
+        if (((error != SYSTEM_ERROR_NONE) || (obj_data.config_type != CONFIG_TYPE_STANDARD)) || 
+            (error = InitializeObjectContext(context, 0), error != SYSTEM_ERROR_NONE)) {
+            goto error_handling;
+        }
+        error = ProcessComplexObject(context, current_obj);
+    }
+    else {
+        if (obj_type != OBJECT_TYPE_SPECIAL) goto error_handling;
+        error = ProcessSpecialObjectContext(context, current_obj);
+    }
+    
+    // 验证处理结果
+    if (((error == SYSTEM_ERROR_NONE) &&
+         (error = ValidateObjectProcessing(context->config_handle, GetObjectData(current_obj)),
+         error == SYSTEM_ERROR_NONE)) && 
+        ((error = FinalizeObjectProcessing(context, current_obj), error == SYSTEM_ERROR_NONE && (obj_type == OBJECT_TYPE_SPECIAL)))) {
+        InitializeObjectContext(context, 0);
+    }
+
+error_handling:
+    // 执行安全清理
+    ExecuteSecurityCleanup(&context->security_ctx);
 }
 
 
