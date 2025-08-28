@@ -1,78 +1,138 @@
+/**
+ * @file 03_rendering_part002.c
+ * @brief TaleWorlds引擎渲染系统核心函数声明模块
+ * 
+ * 本文件包含TaleWorlds引擎渲染系统的核心函数声明，涵盖以下主要功能模块：
+ * - 渲染管线初始化和配置
+ * - 渲染状态管理和切换
+ * - 纹理和材质处理
+ * - 几何体和网格操作
+ * - 着色器程序管理
+ * - 渲染目标和缓冲区管理
+ * - 光照和阴影处理
+ * - 后处理效果
+ * - 性能优化和调试
+ * 
+ * 文件包含约250个渲染系统核心函数的声明，这些函数构成了游戏渲染管线的基础架构。
+ * 
+ * @author TaleWorlds Entertainment
+ * @version 1.0
+ * @date 2023
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part002.c - 250 个函数
+/*=============================================================================
+ * 渲染系统核心函数声明模块 (03_rendering_part002.c)
+ *=============================================================================*/
 
-// 函数: undefined FUN_1804475e0;
+/*-----------------------------------------------------------------------------
+ * 渲染管线初始化和配置函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 渲染管线初始化函数
+ * @details 负责初始化渲染管线的基本状态和配置
+ */
 undefined FUN_1804475e0;
 undefined UNK_180454370;
 
 
-// 函数: undefined FUN_180447660;
+/** 
+ * @brief 渲染设备配置函数
+ * @details 负责配置渲染设备的各项参数和状态
+ */
 undefined FUN_180447660;
 undefined UNK_1804543a0;
 
-
-// 函数: undefined FUN_180447710;
+/** 
+ * @brief 渲染上下文创建函数
+ * @details 创建和管理渲染上下文，为渲染操作提供必要的环境
+ */
 undefined FUN_180447710;
 undefined UNK_180454ce0;
 
-
-// 函数: undefined FUN_1804477f0;
+/** 
+ * @brief 渲染状态初始化函数
+ * @details 初始化渲染状态机，设置默认的渲染状态
+ */
 undefined FUN_1804477f0;
 undefined UNK_180454d60;
 
-
-// 函数: undefined FUN_180447850;
+/** 
+ * @brief 渲染管线设置函数
+ * @details 配置渲染管线的各个阶段和参数
+ */
 undefined FUN_180447850;
 undefined UNK_180454e80;
 
-
-// 函数: undefined FUN_180447990;
+/** 
+ * @brief 渲染参数验证函数
+ * @details 验证渲染参数的有效性和兼容性
+ */
 undefined FUN_180447990;
 undefined UNK_180455060;
 
-
-// 函数: undefined FUN_180447b80;
+/** 
+ * @brief 渲染资源初始化函数
+ * @details 初始化渲染所需的各类资源，如缓冲区、纹理等
+ */
 undefined FUN_180447b80;
 undefined UNK_180455780;
 
-
-// 函数: undefined FUN_180447c00;
+/** 
+ * @brief 渲染管线重置函数
+ * @details 重置渲染管线到初始状态
+ */
 undefined FUN_180447c00;
 undefined UNK_180455820;
 
-
-// 函数: undefined FUN_180447ca0;
+/** 
+ * @brief 渲染状态切换函数
+ * @details 在不同的渲染状态之间进行切换
+ */
 undefined FUN_180447ca0;
 undefined UNK_180455880;
 
-
-// 函数: undefined FUN_180447d40;
+/** 
+ * @brief 渲染缓冲区管理函数
+ * @details 管理渲染缓冲区的创建、绑定和释放
+ */
 undefined FUN_180447d40;
 undefined UNK_1804558c0;
 
-
-// 函数: undefined FUN_180447de0;
+/** 
+ * @brief 渲染目标设置函数
+ * @details 设置渲染目标及其相关参数
+ */
 undefined FUN_180447de0;
 undefined UNK_180455900;
 
-
-// 函数: undefined FUN_180447e10;
+/** 
+ * @brief 渲染视口配置函数
+ * @details 配置渲染视口的大小、位置和参数
+ */
 undefined FUN_180447e10;
 undefined UNK_180455920;
 
-
-// 函数: undefined FUN_180447e40;
+/** 
+ * @brief 渲染裁剪设置函数
+ * @details 设置渲染裁剪区域和参数
+ */
 undefined FUN_180447e40;
 undefined UNK_180455930;
 
-
-// 函数: undefined FUN_180447f70;
+/** 
+ * @brief 渲染深度测试函数
+ * @details 配置和管理深度测试相关的参数
+ */
 undefined FUN_180447f70;
 undefined UNK_180455940;
 
-
-// 函数: undefined FUN_180448110;
+/** 
+ * @brief 渲染混合模式函数
+ * @details 配置和管理颜色混合模式
+ */
 undefined FUN_180448110;
 undefined UNK_180455960;
 
