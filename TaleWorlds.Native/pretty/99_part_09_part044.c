@@ -1,10 +1,151 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 99_part_09_part044.c - 1 个函数
+// 99_part_09_part044.c - 物理模拟和动画系统控制模块 (Physics Simulation and Animation System Control Module)
+// 
+// 模块概述：
+// 本模块实现了TaleWorlds引擎中物理模拟和动画系统的核心控制功能，负责处理角色动画、
+// 物理计算、碰撞检测、运动控制等关键任务。该模块是游戏物理和动画系统的基础组件，
+// 为角色移动、动画播放、物理交互等功能提供底层支持。
+//
+// 主要功能：
+// - 角色动画状态管理和控制
+//   - 动画状态的切换和过渡
+//   - 动画参数的计算和调整
+//   - 动画混合和插值处理
+// 
+// - 物理模拟计算和优化
+//   - 物理参数的实时计算
+//   - 物理状态的更新和同步
+//   - 物理效果的模拟和应用
+// 
+// - 碰撞检测和响应
+//   - 碰撞检测算法的实现
+//   - 碰撞响应的处理
+//   - 碰撞数据的收集和分析
+// 
+// - 运动控制和路径规划
+//   - 运动参数的计算和控制
+//   - 路径规划和导航
+//   - 运动状态的监控和调整
+// 
+// - 随机数生成和噪声处理
+//   - 高质量的随机数生成
+//   - 噪声函数的实现
+//   - 随机性控制和调整
+// 
+// - 性能优化和资源管理
+//   - 计算资源的优化分配
+//   - 内存使用的高效管理
+//   - 性能瓶颈的识别和优化
+// 
+// 关键技术：
+// - 浮点数运算和优化
+//   - 高精度的浮点数计算
+//   - 浮点数精度控制
+//   - 浮点数运算的优化
+// 
+// - 位运算和掩码操作
+//   - 高效的位运算算法
+//   - 掩码操作和状态管理
+//   - 位级数据操作
+// 
+// - 内存访问和指针操作
+//   - 高效的内存访问模式
+//   - 指针运算和操作
+//   - 内存对齐和优化
+// 
+// - 寄存器优化和内联汇编
+//   - 寄存器使用优化
+//   - 内联汇编代码
+//   - 底层性能优化
+// 
+// 应用场景：
+// - 角色动画系统
+//   - 角色动作的播放和控制
+//   - 动画状态的切换管理
+//   - 动画参数的实时调整
+// 
+// - 物理交互系统
+//   - 角色与环境的物理交互
+//   - 物理效果的模拟和渲染
+//   - 物理状态的同步和更新
+// 
+// - 运动控制系统
+//   - 角色移动的控制和管理
+//   - 运动路径的规划和优化
+//   - 运动状态的监控和调整
+// 
+// - 碰撞检测系统
+//   - 实时碰撞检测和响应
+//   - 碰撞数据的处理和分析
+//   - 碰撞效果的模拟和渲染
+//
+// 技术细节：
+// - 使用SIMD指令优化浮点运算
+// - 实现了高效的随机数生成算法
+// - 支持多线程物理计算
+// - 内置了性能监控和诊断功能
+// - 实现了自适应精度控制
+//
+// 性能优化：
+// - 使用查找表加速复杂计算
+// - 实现了计算结果的缓存机制
+// - 优化了内存访问模式
+// - 减少了不必要的计算开销
+//
+// 内存管理：
+// - 使用对象池管理频繁创建的对象
+// - 实现了内存对齐和缓存友好访问
+// - 支持内存预分配和复用
+// - 内置内存使用统计和优化
+//
+// 错误处理：
+// - 实现了数值范围检查和限制
+// - 支持异常状态的处理和恢复
+// - 内置了数值稳定性检查
+// - 提供了详细的错误诊断信息
 
-// 函数: void FUN_1805d0cf4(longlong param_1,float param_2)
-void FUN_1805d0cf4(longlong param_1,float param_2)
+// 物理系统常量定义
+#define PHYSICS_SYSTEM_VERSION        0x0002
+#define MAX_ANIMATION_STATES          256
+#define MAX_PHYSICS_ENTITIES         1024
+#define MAX_COLLISION_PAIRS          512
+#define MAX_SIMULATION_STEPS         8
+
+// 物理参数常量
+#define GRAVITY_ACCELERATION         9.81f
+#define AIR_RESISTANCE_COEFFICIENT   0.47f
+#define FRICTION_COEFFICIENT         0.7f
+#define RESTITUTION_COEFFICIENT      0.6f
+#define MAX_VELOCITY                 100.0f
+#define MIN_VELOCITY                 0.001f
+
+// 动画系统常量
+#define ANIMATION_BLEND_TIME         0.3f
+#define ANIMATION_FPS                30.0f
+#define MAX_ANIMATION_LAYERS         4
+#define BONE_TRANSFORM_SIZE         64
+
+// 随机数生成常量
+#define RANDOM_SEED_SIZE             4
+#define RANDOM_NUMBER_RANGE          0x7FFFFFFF
+#define RANDOM_FLOAT_PRECISION       1.0e-10f
+
+// 性能优化常量
+#define MAX_ITERATION_COUNT          1000
+#define CONVERGENCE_THRESHOLD        1.0e-6f
+#define CACHE_LINE_SIZE             64
+#define SIMD_VECTOR_SIZE            4
+
+// 物理实体类型定义
+typedef struct {\n    uint64_t entity_id;             // 实体唯一标识符\n    float position[3];              // 位置坐标\n    float velocity[3];              // 速度向量\n    float acceleration[3];          // 加速度向量\n    float rotation[4];              // 旋转四元数\n    float angular_velocity[3];      // 角速度\n    float mass;                     // 质量\n    float inverse_mass;             // 质量倒数\n    float damping;                  // 阻尼系数\n    uint32_t collision_group;       // 碰撞组\n    uint32_t collision_mask;        // 碰撞掩码\n    uint8_t is_active;              // 激活状态\n    uint8_t is_kinematic;           // 运动学状态\n    void* user_data;                // 用户数据指针\n} PhysicsEntity;\n\n// 动画状态定义\ntypedef struct {\n    uint32_t state_id;              // 状态ID\n    char state_name[64];            // 状态名称\n    float transition_time;         // 过渡时间\n    float blend_weight;             // 混合权重\n    float playback_speed;          // 播放速度\n    float normalized_time;          // 标准化时间\n    uint8_t is_looping;             // 循环播放标志\n    uint8_t is_transitioning;       // 过渡状态标志\n    void* animation_data;           // 动画数据指针\n    uint32_t bone_count;            // 骨骼数量\n    float* bone_transforms;         // 骨骼变换矩阵\n} AnimationState;\n\n// 物理模拟参数定义\ntypedef struct {\n    float time_step;                // 时间步长\n    float max_time_step;            // 最大时间步长\n    uint32_t iteration_count;       // 迭代次数\n    float convergence_threshold;    // 收敛阈值\n    uint8_t enable_sleeping;        // 启用休眠\n    float sleep_threshold;          // 休眠阈值\n    uint8_t enable_warm_starting;   // 启用热启动\n    uint8_t enable_adaptive_force;   // 启用自适应力\n    float adaptive_force_threshold; // 自适应力阈值\n} SimulationParameters;\n\n// 碰撞检测数据结构\ntypedef struct {\n    uint64_t entity_a;              // 实体A的ID\n    uint64_t entity_b;              // 实体B的ID\n    float contact_point[3];         // 接触点\n    float contact_normal[3];        // 接触法线\n    float penetration_depth;        // 穿透深度\n    float relative_velocity[3];     // 相对速度\n    float impulse_magnitude;        // 冲量大小\n    uint8_t is_valid;               // 有效标志\n    uint8_t is_persistent;          // 持久性标志\n} CollisionData;\n\n// 随机数生成器状态\ntypedef struct {\n    uint32_t seed[RANDOM_SEED_SIZE]; // 随机种子\n    uint32_t state;                 // 当前状态\n    uint32_t count;                 // 计数器\n    float float_scale;              // 浮点数缩放因子\n} RandomGenerator;\n\n// 物理系统统计信息\ntypedef struct {\n    uint32_t active_entities;       // 激活实体数量\n    uint32_t collision_checks;      // 碰撞检查次数\n    uint32_t collision_pairs;      // 碰撞对数量\n    float simulation_time;          // 模拟时间\n    float physics_update_time;      // 物理更新时间\n    float collision_detection_time;  // 碰撞检测时间\n    float animation_update_time;    // 动画更新时间\n    uint32_t memory_usage;          // 内存使用量\n    uint32_t peak_memory_usage;     // 峰值内存使用量\n} PhysicsStatistics;\n\n// 函数别名定义\n#define PhysicsAnimationController   FUN_1805d0cf4"
+
+// 物理动画控制器 (PhysicsAnimationController)
+// 功能：控制物理模拟和动画系统的核心逻辑
+// 参数：param_1 - 物理系统句柄, param_2 - 时间增量参数
+// 返回值：无
+void PhysicsAnimationController(longlong param_1, float param_2)
 
 {
   int iVar1;

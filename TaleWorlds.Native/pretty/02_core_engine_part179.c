@@ -82,12 +82,30 @@ typedef struct {
 // 函数别名定义
 //============================================================================
 
+// 主要函数别名
 #define CoreEngineDataProcessor FUN_180161eb0
 #define CoreEngineResourceAllocator FUN_180161f80
 #define CoreEngineStringHandler FUN_180162220
 #define CoreEngineSystemInitializer FUN_1801624e0
 #define CoreEngineMemoryManager FUN_180162600
 #define CoreEngineConfigurationProcessor FUN_180165950
+
+// 内存管理函数别名
+#define CoreEngineMemoryPoolAllocator FUN_18062b420
+#define CoreEngineMemoryPoolReallocator FUN_18062b1e0
+#define CoreEngineMemoryPoolInitializer FUN_18064e990
+#define CoreEngineMemoryPoolCleaner FUN_18064e900
+
+// 数据处理函数别名
+#define CoreEngineDataBufferProcessor FUN_1806277c0
+#define CoreEngineDataStringProcessor FUN_180627ce0
+#define CoreEngineDataSystemCaller FUN_180627ae0
+#define CoreEngineDataInitializer FUN_180628320
+
+// 系统调用函数别名
+#define CoreEngineSystemCleanup FUN_18004e7a0
+#define CoreEngineSystemParameterHandler FUN_180059820
+#define CoreEngineMemoryTransfer FUN_1801614d0
 
 //============================================================================
 // 枚举定义
@@ -174,7 +192,7 @@ void CoreEngineDataProcessor(longlong param_1, longlong param_2)
     }
     
     // 分配新的内存空间
-    new_buffer = (CoreEngineDataPointer)FUN_18062b420(system_memory_pool_ptr, data_size * 8, *(int8_t*)(param_1 + 0x40));
+    new_buffer = (CoreEngineDataPointer)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, data_size * 8, *(int8_t*)(param_1 + 0x40));
     data_start = *(CoreEngineDataPointer*)(param_1 + 0x28);
     data_current = *(CoreEngineDataPointer*)(param_1 + 0x30);
     
@@ -196,7 +214,7 @@ LAB_180161f28:
     }
     
     // 清理旧内存
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -252,7 +270,7 @@ CoreEngineDataPointer CoreEngineResourceAllocator(longlong param_1, CoreEngineDa
             string_flags = 0;
             
             // 处理字符串数据
-            FUN_1806277c0(&result_buffer, *(int32_t*)(current_data + 0x10));
+            CoreEngineDataBufferProcessor(&result_buffer, *(int32_t*)(current_data + 0x10));
             
             if (*(int*)(current_data + 0x10) != 0) {
                 memcpy(string_buffer, *(uint64_t*)(current_data + 8), *(int*)(current_data + 0x10) + 1);
@@ -307,7 +325,7 @@ CoreEngineDataPointer CoreEngineResourceAllocator(longlong param_1, CoreEngineDa
                     if (data_size == 0) {
                         data_size = CORE_ENGINE_DEFAULT_CAPACITY;
 LAB_180162130:
-                        temp_buffer = (CoreEngineDataPointer)FUN_18062b420(system_memory_pool_ptr, data_size * 8, (char)param_2[3]);
+                        temp_buffer = (CoreEngineDataPointer)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, data_size * 8, (char)param_2[3]);
                         result_array = (CoreEngineDataPointer)param_2[1];
                     } else {
                         data_size = data_size * 2;
@@ -324,7 +342,7 @@ LAB_180162130:
                     // 添加新数据
                     *temp_buffer = current_data;
                     if (*param_2 != 0) {
-                        FUN_18064e900();
+                        CoreEngineMemoryPoolCleaner();
                     }
                     
                     // 更新指针
@@ -337,7 +355,7 @@ LAB_180162130:
             // 清理临时缓冲区
             result_buffer = &system_data_buffer_ptr;
             if (string_buffer != (int8_t*)0x0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
             
             index = (int)found_count + 1;
@@ -389,7 +407,7 @@ void CoreEngineStringHandler(longlong param_1, longlong param_2, uint64_t* param
         
         // 处理字符串数据
         if (param_3[1] != 0) {
-            FUN_1806277c0(&temp_buffer, buffer_size);
+            CoreEngineDataBufferProcessor(&temp_buffer, buffer_size);
         }
         
         if (char_count != 0) {
@@ -408,9 +426,9 @@ LAB_18016236a:
         if (*(int*)(param_1 + 0x20) == 0) goto LAB_180162395;
     } else {
         // 处理复杂字符串操作
-        string_length = FUN_180627ce0(param_3, &char_buffer, param_1, param_4, 0xfffffffffffffffe);
+        string_length = CoreEngineDataStringProcessor(param_3, &char_buffer, param_1, param_4, 0xfffffffffffffffe);
         if (string_data != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         buffer_flags = *(uint*)(string_length + 0x10);
@@ -424,7 +442,7 @@ LAB_18016236a:
         
         char_buffer = &system_data_buffer_ptr;
         if (string_ptr != (int8_t*)0x0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         string_ptr = (int8_t*)0x0;
@@ -432,7 +450,7 @@ LAB_18016236a:
         char_buffer = &system_state_ptr;
         
         if (*(int*)(param_1 + 0x20) == 0) {
-            FUN_1806277c0(&temp_buffer, buffer_flags + 1);
+            CoreEngineDataBufferProcessor(&temp_buffer, buffer_flags + 1);
             *(int8_t*)((ulonglong)buffer_flags + string_data) = 0x2e;
             *(int8_t*)((ulonglong)(buffer_flags + 1) + string_data) = 0;
             buffer_flags = buffer_flags + 1;
@@ -496,9 +514,9 @@ LAB_180162395:
             *param_3 = &system_state_ptr;
             return;
         }
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -537,7 +555,7 @@ uint64_t* CoreEngineSystemInitializer(longlong param_1, uint64_t* param_2, uint6
         FUN_180628320(param_2, init_result);
         temp_buffer = &system_data_buffer_ptr;
         if (temp_data != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         temp_data = 0;
         init_flags = 0;
