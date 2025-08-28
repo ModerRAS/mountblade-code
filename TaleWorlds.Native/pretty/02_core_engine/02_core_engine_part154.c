@@ -14,6 +14,14 @@
 // - 原始实现：生成的C代码，包含FUN_*函数名和地址引用
 // - 简化实现：重命名函数和变量，添加中文注释，保持功能一致性
 
+// 函数别名定义
+// StringProcessor_FormatAndWrite - 字符串格式化和写入处理器 (原FUN_18013c760)
+// StringStorage_CreateCopy - 字符串存储副本创建器 (原FUN_1801210b0)
+// MemoryManager_Allocate - 内存管理分配器 (原func_0x000180120ce0)
+// ResourceCleaner_Release - 资源清理释放器 (原FUN_180059ba0)
+// FileHandler_Open - 文件处理器打开器 (原FUN_180121300)
+// DataBuffer_Prepare - 数据缓冲区准备器 (原FUN_18013ce40)
+
 // 全局变量引用
 extern longlong _DAT_180c8a9b0;      // 核心引擎全局数据结构指针
 extern uint64_t _DAT_180c8a9a8;     // 内存分配器相关

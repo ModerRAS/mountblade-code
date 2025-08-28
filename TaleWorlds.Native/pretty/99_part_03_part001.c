@@ -859,7 +859,7 @@ void FileDataWriter(uint64_t param_1)
             uStack_58 = 0;
             auStack_50[0] = 0;
             aiStack_d4[1] = 1;
-            FUN_18004b860(&puStack_68,&UNK_1809fd0a0,0x130a7);
+            SystemConfigurator2(&puStack_68,&UNK_1809fd0a0,0x130a7);
             iStack_d8 = 0;
             fread(&iStack_d8,4,1,lVar1);
             if (iStack_d8 < 9) {
@@ -1004,7 +1004,7 @@ void FileManager(void)
             iStack_58 = 0;
             auStack_50[0] = 0;
             aiStack_b8[1] = 1;
-            FUN_18004b860(&puStack_68,&UNK_1809fd0a0,0x130a7);
+            SystemConfigurator2(&puStack_68,&UNK_1809fd0a0,0x130a7);
             aiStack_b8[0] = iStack_58;
             fwrite(aiStack_b8,4,1,lVar1);
             puVar6 = &DAT_18098bc73;
