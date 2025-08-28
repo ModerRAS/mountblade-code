@@ -102,38 +102,44 @@ void RenderingSystem_InitializeRenderState(undefined8 render_context)
 
 
 
-// 函数: void FUN_1803692d0(undefined8 *param_1)
-void FUN_1803692d0(undefined8 *param_1)
-
+/**
+ * @brief 渲染系统上下文创建器
+ * 
+ * 该函数负责创建渲染系统的上下文环境。
+ * 支持内存分配、字符串处理、参数设置和资源管理等高级渲染功能。
+ * 
+ * @param context_ptr 上下文指针指针
+ * @return void
+ */
+void RenderingSystem_CreateRenderContext(undefined8 *context_ptr)
 {
-  undefined4 uVar1;
-  undefined8 *puVar2;
-  undefined *puStack_108;
-  undefined8 *puStack_100;
-  undefined4 uStack_f8;
-  undefined8 uStack_f0;
-  undefined8 uStack_28;
-  
-  uStack_28 = 0xfffffffffffffffe;
-  puVar2 = param_1;
-  FUN_1803456e0();
-  *puVar2 = &UNK_180a20cc0;
-  puStack_108 = &UNK_180a3c3e0;
-  uStack_f0 = 0;
-  puStack_100 = (undefined8 *)0x0;
-  uStack_f8 = 0;
-  puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)puVar2 = 0;
-  puStack_100 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
-  uStack_f0 = CONCAT44(uStack_f0._4_4_,uVar1);
-  *puVar2 = 0x6f4d6f54656d6954;
-  *(undefined4 *)(puVar2 + 1) = 0x416564;
-  uStack_f8 = 0xb;
-  FUN_1803460a0(param_1,&puStack_108,param_1 + 0xe,2);
-  puStack_108 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(puVar2);
+    undefined4 string_length;
+    undefined8 *context_data;
+    undefined *cleanup_handler;
+    undefined8 *string_buffer;
+    undefined4 buffer_length;
+    undefined8 thread_counter;
+    undefined8 magic_cookie;
+    
+    thread_counter = 0xfffffffffffffffe;
+    context_data = context_ptr;
+    FUN_1803456e0();
+    *context_data = &UNK_180a20cc0;
+    cleanup_handler = &UNK_180a3c3e0;
+    thread_counter = 0;
+    string_buffer = (undefined8 *)0x0;
+    buffer_length = 0;
+    context_data = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    *(undefined1 *)context_data = 0;
+    string_buffer = context_data;
+    string_length = FUN_18064e990(context_data);
+    thread_counter = CONCAT44(thread_counter._4_4_, string_length);
+    *context_data = RENDERING_SYSTEM_MAGIC_COOKIE_1;
+    *(undefined4 *)(context_data + 1) = RENDERING_SYSTEM_MAGIC_COOKIE_2;
+    buffer_length = 0xb;
+    FUN_1803460a0(context_ptr, &cleanup_handler, context_ptr + 0xe, 2);
+    cleanup_handler = &UNK_180a3c3e0;
+    FUN_18064e900(context_data);
 }
 
 

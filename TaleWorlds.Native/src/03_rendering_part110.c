@@ -1,9 +1,58 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part110.c - 6 个函数
+/**
+ * @file 03_rendering_part110.c
+ * @brief 渲染系统高级资源管理和数据处理模块
+ * 
+ * 本模块包含6个核心函数，涵盖渲染系统高级资源管理、数据处理、
+ * 内存分配、文件操作、线程同步和系统清理等高级渲染功能。
+ */
 
-// 函数: void FUN_180333a00(longlong param_1,uint param_2)
-void FUN_180333a00(longlong param_1,uint param_2)
+/**
+ * @defgroup rendering_constants 渲染系统常量定义
+ * @{
+ */
+#define RENDERING_RESOURCE_POOL_SIZE 0x100000
+#define RENDERING_BUFFER_SIZE 0x18
+#define RENDERING_HASH_TABLE_SIZE 0x80
+#define RENDERING_DATA_BLOCK_SIZE 0xe0
+#define RENDERING_LARGE_BUFFER_SIZE 0x1b0
+#define RENDERING_THREAD_TIMEOUT 0x30000
+#define RENDERING_ALIGNMENT_MASK 0x1f
+#define RENDERING_MAX_ITERATIONS 0x40
+#define RENDERING_MUTEX_TIMEOUT_MS 0x30000
+#define RENDERING_CLEANUP_FLAG 3
+#define RENDERING_RESOURCE_ID_OFFSET 0x6c8
+#define RENDERING_CONTEXT_OFFSET 0x9f8
+#define RENDERING_OUTPUT_OFFSET 0xa00
+/* @} */
+
+/**
+ * @defgroup rendering_function_aliases 渲染系统函数别名
+ * @{
+ */
+#define RenderingSystem_RemoveResourceData FUN_180333a00
+#define RenderingSystem_InitializeResourceHandler FUN_1803342d0
+#define RenderingSystem_CreateResourcePath FUN_180334430
+#define RenderingSystem_CreateDataPath FUN_180334500
+#define RenderingSystem_ProcessResourceData FUN_1803345c0
+#define RenderingSystem_ManageResourceData FUN_1803347d0
+#define RenderingSystem_OptimizeResourceData FUN_18033483c
+#define RenderingSystem_CleanupResourceHandler FUN_180334921
+#define RenderingSystem_GetResourceData FUN_180334930
+/* @} */
+
+/**
+ * @brief 渲染系统资源数据移除器
+ * 
+ * 该函数负责移除渲染系统资源数据，包括资源查找、数据清理、
+ * 内存释放、哈希表操作和线程同步等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param resource_id 资源ID
+ * @return void
+ */
+void RenderingSystem_RemoveResourceData(longlong resource_context, uint resource_id)
 
 {
   ulonglong *puVar1;
