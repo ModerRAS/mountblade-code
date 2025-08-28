@@ -465,7 +465,7 @@ uint64_t UI_SecurityCheck(longlong *system_ptr_ptr)
     // 检查系统指针是否有效
     if (*system_ptr_ptr != 0) {
         // 执行安全清理（此函数不返回）
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *system_ptr_ptr, &UNK_18095ac80, 0x76f, 1);
+        UI_InternalCleanup(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *system_ptr_ptr, &UNK_18095ac80, 0x76f, 1);
     }
     
     return UI_SYSTEM_SUCCESS;
