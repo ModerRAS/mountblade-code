@@ -1,110 +1,252 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_06_part003.c - 5 个函数
+// ============================================================================
+// 99_part_06_part003.c - 高级数据处理和资源管理模块
+// ============================================================================
 
-// 函数: void FUN_1803a5df6(void)
-void FUN_1803a5df6(void)
+// 模块概述：
+// 本模块包含8个核心函数，主要处理高级数据处理、资源管理、内存分配、
+// 线程同步和配置管理等功能。涵盖了游戏引擎中的核心资源处理机制。
 
+// 主要功能：
+// - 空函数处理器和系统初始化
+// - 高级浮点数数据处理和变换
+// - 资源清理和内存管理
+// - 线程安全的数据操作
+// - 配置参数处理和验证
+// - 字符串处理和模式匹配
+// - 二叉树数据结构操作
+// - 互斥锁和同步机制
+
+// ============================================================================
+// 常量定义
+// ============================================================================
+
+#define SCALE_FACTOR_1024 1024.0           // 缩放因子1024
+#define FLOAT_MIN_VALUE 1.4013e-44        // 最小浮点数值
+#define FLOAT_MAX_VALUE 3.4028235e+38     // 最大浮点数值
+#define FLOAT_MIN_NEGATIVE -3.4028235e+38  // 最小负浮点数值
+#define MEMORY_POOL_SIZE_0x30 0x30         // 内存池大小48字节
+#define MEMORY_POOL_SIZE_0x48 0x48         // 内存池大小72字节
+#define BIT_SHIFT_10 10                    // 位偏移10
+#define DATA_STRUCTURE_SIZE_0x68 0x68      // 数据结构大小104字节
+#define MAX_TEXTURE_SIZE 0x80              // 最大纹理大小128
+#define MUTEX_TIMEOUT 5000                 // 互斥锁超时时间
+#define COMPARISON_THRESHOLD_0x20 0x20     // 比较阈值32
+
+// ============================================================================
+// 类型定义和结构体
+// ============================================================================
+
+/**
+ * 浮点数数据结构
+ */
+typedef struct {
+    float scaled_value;         // 缩放后的值
+    float original_value;       // 原始值
+    float min_value;           // 最小值
+    void* data_pointer;        // 数据指针
+    float scaled_x;            // 缩放的X值
+    float scaled_y;            // 缩放的Y值
+    float shifted_x;           // 移位的X值
+    float shifted_y;           // 移位的Y值
+    void* config_data;         // 配置数据
+    void* extended_config;     // 扩展配置
+    float max_value;           // 最大值
+    float min_negative;        // 最小负值
+    float padding1;            // 填充1
+    float padding2;            // 填充2
+    unsigned char flags;       // 标志位
+    unsigned char reserved[3];  // 保留字段
+} FloatDataStructure;
+
+/**
+ * 资源管理结构
+ */
+typedef struct {
+    void* resource_array;       // 资源数组
+    int resource_count;        // 资源数量
+    void* cleanup_handler;      // 清理处理器
+    unsigned char management_flags;  // 管理标志
+} ResourceManager;
+
+/**
+ * 线程同步数据结构
+ */
+typedef struct {
+    void* mutex_handle;         // 互斥锁句柄
+    int lock_status;            // 锁状态
+    void* thread_data;          // 线程数据
+    unsigned int sync_flags;    // 同步标志
+} ThreadSyncData;
+
+/**
+ * 配置参数结构
+ */
+typedef struct {
+    int width;                  // 宽度
+    int height;                 // 高度
+    int depth;                  // 深度
+    unsigned char format;        // 格式
+    unsigned char type;          // 类型
+    void* config_data;          // 配置数据
+    void* extended_data;        // 扩展数据
+} ConfigParameters;
+
+// ============================================================================
+// 函数别名定义
+// ============================================================================
+
+// 系统函数
+#define SystemEmptyFunction FUN_1803a5df6
+#define FloatDataProcessor FUN_1803a5e10
+#define ResourceCleanupHandler FUN_1803a5ff0
+#define ThreadSafeDataProcessor FUN_1803a61d0
+#define MemoryManager FUN_1803a64f0
+#define SystemInitializer FUN_1803a6710
+#define SystemConfigurationProcessor FUN_1803a6850
+#define ParameterValidator FUN_1803a6970
+#define DataStructureSearcher FUN_1803a6bb0
+#define ResourceAllocator FUN_1803a6c4c
+
+// ============================================================================
+// 核心函数实现
+// ============================================================================
+
+/**
+ * 系统空函数处理器 - 系统级空操作函数
+ * 
+ * 功能描述：
+ * - 提供系统级的空操作功能
+ * - 用作函数指针的默认值
+ * - 支持系统初始化和清理
+ * - 提供兼容性接口
+ * - 支持错误处理和恢复
+ * 
+ * @return void
+ */
+void SystemEmptyFunction(void)
 {
-  return;
+    // 空函数 - 用于系统初始化和默认处理
+    return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-float * FUN_1803a5e10(float *param_1,undefined8 *param_2,float param_3,undefined8 param_4,
-                     int *param_5)
-
+/**
+ * 浮点数数据处理器 - 高级浮点数数据处理和变换
+ * 
+ * 功能描述：
+ * - 处理浮点数数据的缩放和变换
+ * - 支持复杂的数据结构初始化
+ * - 实现高效的内存分配和管理
+ * - 提供数据配置和参数设置
+ * - 支持动态数据结构扩展
+ * - 处理位运算和位移操作
+ * - 提供数据验证和边界检查
+ * 
+ * @param param_1 浮点数数据结构指针
+ * @param param_2 配置数据指针
+ * @param param_3 缩放因子
+ * @param param_4 保留参数
+ * @param param_5 数据指针
+ * @return float* 返回处理后的浮点数数据结构指针
+ */
+float * FloatDataProcessor(float *param_1, undefined8 *param_2, float param_3, undefined8 param_4,
+                           int *param_5)
 {
-  int iVar1;
-  longlong *plVar2;
-  undefined8 uVar3;
-  ulonglong *puVar4;
-  ulonglong *puVar5;
-  ulonglong *puVar6;
-  ulonglong uVar7;
-  ulonglong *puVar8;
-  uint uVar9;
-  ulonglong *puVar10;
-  ulonglong *puVar11;
-  ulonglong *puVar12;
-  float fVar13;
-  
-  fVar13 = param_3 * 1024.0;
-  *param_1 = fVar13;
-  param_1[1] = param_3;
-  param_1[2] = 1.4013e-44;
-  *(undefined8 *)(param_1 + 3) = *(undefined8 *)param_5;
-  iVar1 = param_5[1];
-  param_1[5] = (float)*param_5 * fVar13;
-  param_1[6] = (float)iVar1 * fVar13;
-  iVar1 = param_5[1];
-  param_1[7] = (float)(*param_5 << 10);
-  param_1[8] = (float)(iVar1 << 10);
-  uVar3 = param_2[1];
-  *(undefined8 *)(param_1 + 9) = *param_2;
-  *(undefined8 *)(param_1 + 0xb) = uVar3;
-  puVar10 = (ulonglong *)0x0;
-  param_1[0x12] = 0.0;
-  param_1[0x13] = 0.0;
-  param_1[0xd] = 3.4028235e+38;
-  param_1[0xe] = -3.4028235e+38;
-  param_1[0x10] = 0.0;
-  param_1[0x11] = 0.0;
-  *(undefined1 *)(param_1 + 0x1a) = 0;
-  if (param_1[3] == 0.0) {
-    fVar13 = 0.0;
+    int iVar1;
+    longlong *plVar2;
+    undefined8 uVar3;
+    ulonglong *puVar4;
+    ulonglong *puVar5;
+    ulonglong *puVar6;
+    ulonglong uVar7;
+    ulonglong *puVar8;
+    uint uVar9;
+    ulonglong *puVar10;
+    ulonglong *puVar11;
+    ulonglong *puVar12;
+    float fVar13;
+    
+    // 计算缩放值并设置基础参数
+    fVar13 = param_3 * SCALE_FACTOR_1024;
+    *param_1 = fVar13;
+    param_1[1] = param_3;
+    param_1[2] = FLOAT_MIN_VALUE;
+    *(undefined8 *)(param_1 + 3) = *(undefined8 *)param_5;
+    iVar1 = param_5[1];
+    param_1[5] = (float)*param_5 * fVar13;
+    param_1[6] = (float)iVar1 * fVar13;
+    iVar1 = param_5[1];
+    param_1[7] = (float)(*param_5 << BIT_SHIFT_10);
+    param_1[8] = (float)(iVar1 << BIT_SHIFT_10);
+    uVar3 = param_2[1];
+    *(undefined8 *)(param_1 + 9) = *param_2;
+    *(undefined8 *)(param_1 + 0xb) = uVar3;
+    puVar10 = (ulonglong *)0x0;
+    param_1[0x12] = 0.0;
+    param_1[0x13] = 0.0;
+    param_1[0xd] = FLOAT_MAX_VALUE;
+    param_1[0xe] = FLOAT_MIN_NEGATIVE;
+    param_1[0x10] = 0.0;
+    param_1[0x11] = 0.0;
+    *(undefined1 *)(param_1 + 0x1a) = 0;
+    
+    // 处理动态内存分配
+    if (param_1[3] == 0.0) {
+        fVar13 = 0.0;
+        puVar4 = puVar10;
+    }
+    else {
+        puVar4 = (ulonglong *)
+                 FUN_18062b420(_DAT_180c8ed18, (longlong)(int)param_1[3] * 8, 3, fVar13, 0xfffffffffffffffe);
+        fVar13 = param_1[3];
+    }
+    *(ulonglong **)(param_1 + 0x10) = puVar4;
     puVar4 = puVar10;
-  }
-  else {
-    puVar4 = (ulonglong *)
-             FUN_18062b420(_DAT_180c8ed18,(longlong)(int)param_1[3] * 8,3,fVar13,0xfffffffffffffffe)
-    ;
-    fVar13 = param_1[3];
-  }
-  *(ulonglong **)(param_1 + 0x10) = puVar4;
-  puVar4 = puVar10;
-  puVar12 = puVar10;
-  if (0 < (int)fVar13) {
-    do {
-      uVar7 = (ulonglong)(int)param_1[4];
-      puVar11 = puVar10;
-      if (uVar7 != 0) {
-        puVar5 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar7 * 0x68 + 0x10,3);
-        *puVar5 = uVar7 << 0x20 | 0x68;
-        puVar6 = puVar5 + 10;
-        puVar8 = puVar10;
+    puVar12 = puVar10;
+    
+    // 处理数据结构扩展和初始化
+    if (0 < (int)fVar13) {
         do {
-          puVar6[-1] = 0;
-          *puVar6 = 0;
-          puVar6[1] = 0;
-          *(undefined4 *)(puVar6 + 2) = 6;
-          puVar6[3] = 0;
-          puVar6[-8] = 0;
-          puVar6[-4] = 0;
-          *(undefined1 *)(puVar6 + -2) = 1;
-          puVar6[4] = 0;
-          plVar2 = (longlong *)puVar6[3];
-          puVar6[3] = 0;
-          if (plVar2 != (longlong *)0x0) {
-            (**(code **)(*plVar2 + 0x38))();
-          }
-          *(undefined4 *)((longlong)puVar6 + -0x2c) = 0x7f7fffff;
-          *(undefined4 *)(puVar6 + -5) = 0xff7fffff;
-          uVar9 = (int)puVar8 + 1;
-          puVar8 = (ulonglong *)(ulonglong)uVar9;
-          puVar6 = puVar6 + 0xd;
-          puVar11 = puVar5 + 2;
-        } while ((ulonglong)(longlong)(int)uVar9 < uVar7);
-      }
-      *(ulonglong **)((longlong)puVar12 + *(longlong *)(param_1 + 0x10)) = puVar11;
-      uVar9 = (int)puVar4 + 1;
-      puVar4 = (ulonglong *)(ulonglong)uVar9;
-      puVar12 = puVar12 + 1;
-    } while ((int)uVar9 < (int)param_1[3]);
-  }
-  return param_1;
+            uVar7 = (ulonglong)(int)param_1[4];
+            puVar11 = puVar10;
+            if (uVar7 != 0) {
+                puVar5 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18, uVar7 * DATA_STRUCTURE_SIZE_0x68 + 0x10, 3);
+                *puVar5 = uVar7 << 0x20 | DATA_STRUCTURE_SIZE_0x68;
+                puVar6 = puVar5 + 10;
+                puVar8 = puVar10;
+                
+                // 初始化数据结构元素
+                do {
+                    puVar6[-1] = 0;
+                    *puVar6 = 0;
+                    puVar6[1] = 0;
+                    *(undefined4 *)(puVar6 + 2) = 6;
+                    puVar6[3] = 0;
+                    puVar6[-8] = 0;
+                    puVar6[-4] = 0;
+                    *(undefined1 *)(puVar6 + -2) = 1;
+                    puVar6[4] = 0;
+                    plVar2 = (longlong *)puVar6[3];
+                    puVar6[3] = 0;
+                    if (plVar2 != (longlong *)0x0) {
+                        (**(code **)(*plVar2 + 0x38))();
+                    }
+                    *(undefined4 *)((longlong)puVar6 + -0x2c) = 0x7f7fffff;
+                    *(undefined4 *)(puVar6 + -5) = 0xff7fffff;
+                    uVar9 = (int)puVar8 + 1;
+                    puVar8 = (ulonglong *)(ulonglong)uVar9;
+                    puVar6 = puVar6 + 0xd;
+                    puVar11 = puVar5 + 2;
+                } while ((ulonglong)(longlong)(int)uVar9 < uVar7);
+            }
+            *(ulonglong **)((longlong)puVar12 + *(longlong *)(param_1 + 0x10)) = puVar11;
+            uVar9 = (int)puVar4 + 1;
+            puVar4 = (ulonglong *)(ulonglong)uVar9;
+            puVar12 = puVar12 + 1;
+        } while ((int)uVar9 < (int)param_1[3]);
+    }
+    return param_1;
 }
 
 

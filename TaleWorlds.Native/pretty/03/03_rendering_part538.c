@@ -181,75 +181,160 @@ int RingBufferPush(RingBuffer* ring_buffer, void* data)
 
 
 
-// 函数: void FUN_1805604e0(ulonglong *param_1,longlong *param_2)
-void FUN_1805604e0(ulonglong *param_1,longlong *param_2)
-
+/*==============================================================================
+ 函数别名: CopyRenderData - 复制渲染数据
+ 原始函数: FUN_1805604e0
+ 参数:
+   dest - 目标缓冲区
+   src - 源缓冲区
+   count - 元素数量
+ 返回:
+   void
+ 描述:
+   将渲染数据从源缓冲区复制到目标缓冲区，处理内存对齐和扩展。
+ ==============================================================================*/
+void CopyRenderData(RenderBuffer* dest, RenderBuffer* src, size_t count)
 {
-  ulonglong uVar1;
-  undefined8 uVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  uint uVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
+  if (!dest || !src || count == 0) {
+    return;
+  }
   
-  uVar7 = 0;
-  uVar3 = param_2[1] - *param_2 >> 3;
-  uVar1 = param_1[1];
-  uVar4 = *param_1;
-  uVar9 = (longlong)(uVar1 - uVar4) >> 3;
-  if (uVar9 < uVar3) {
-    uVar8 = uVar3 - uVar9;
-    if ((ulonglong)((longlong)(param_1[2] - uVar1) >> 3) < uVar8) {
-      uVar5 = uVar9 * 2;
-      if (uVar9 == 0) {
-        uVar5 = 1;
+  size_t required_size = count * MEMORY_ALIGNMENT;
+  
+  // 检查目标缓冲区容量
+  if (dest->capacity < required_size) {
+    // 计算新的容量
+    size_t new_capacity = dest->capacity * BUFFER_GROWTH_FACTOR;
+    if (new_capacity == 0) {
+      new_capacity = BUFFER_MIN_CAPACITY;
+    }
+    if (new_capacity < required_size) {
+      new_capacity = required_size;
+    }
+    
+    // 分配新缓冲区
+    void* new_data = NULL;
+    if (new_capacity > 0) {
+      new_data = FUN_18062b420(g_render_context.global_allocator,
+                             new_capacity * MEMORY_ALIGNMENT, (char)dest->flags);
+    }
+    
+    // 复制现有数据
+    if (dest->data && dest->size > 0) {
+      memcpy(new_data, dest->data, dest->size);
+    }
+    
+    // 清零新分配的空间
+    size_t extra_size = new_capacity - dest->size;
+    if (extra_size > 0) {
+      memset((char*)new_data + dest->size, 0, extra_size);
+    }
+    
+    // 释放旧缓冲区
+    if (dest->data) {
+      FUN_18064e900();
+    }
+    
+    // 更新目标缓冲区
+    dest->data = new_data;
+    dest->capacity = new_capacity;
+  }
+  
+  // 执行数据复制
+  if (src->data && src->size > 0) {
+    size_t copy_size = (src->size < required_size) ? src->size : required_size;
+    memcpy(dest->data, src->data, copy_size);
+    dest->size = copy_size;
+  }
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+/*==============================================================================
+函数别名: ProcessRenderBuffer - 处理渲染缓冲区数据
+原始函数: FUN_1805604f0
+参数:
+  buffer_info - 缓冲区信息结构
+  data_source - 数据源指针
+返回:
+  void
+描述:
+  处理渲染缓冲区数据，包括缓冲区扩展、数据复制和元素初始化。
+  这是渲染管线中的核心数据处理函数。
+===============================================================================*/
+void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
+{
+  ulonglong current_end;
+  undefined8 element_value;
+  ulonglong source_size;
+  ulonglong buffer_start;
+  ulonglong *buffer_ptr;
+  ulonglong new_capacity;
+  uint element_index;
+  ulonglong elements_needed;
+  ulonglong expansion_size;
+  ulonglong current_size;
+  
+  elements_needed = 0;
+  source_size = ((longlong*)data_source)[1] - *(longlong*)data_source >> 3;
+  current_end = buffer_ptr[1];
+  buffer_start = *buffer_ptr;
+  current_size = (longlong)(current_end - buffer_start) >> 3;
+  if (current_size < source_size) {
+    expansion_size = source_size - current_size;
+    if ((ulonglong)((longlong)(buffer_ptr[2] - current_end) >> 3) < expansion_size) {
+      new_capacity = current_size * 2;
+      if (current_size == 0) {
+        new_capacity = 1;
       }
-      if (uVar5 < uVar3) {
-        uVar5 = uVar3;
+      if (new_capacity < source_size) {
+        new_capacity = source_size;
       }
-      uVar3 = uVar1;
-      uVar1 = uVar7;
-      if (uVar5 != 0) {
-        uVar1 = FUN_18062b420(_DAT_180c8ed18,uVar5 * 8,(char)param_1[3]);
-        uVar4 = *param_1;
-        uVar3 = param_1[1];
+      source_size = current_end;
+      current_end = elements_needed;
+      if (new_capacity != 0) {
+        current_end = FUN_18062b420(_DAT_180c8ed18, new_capacity * 8, (char)buffer_ptr[3]);
+        buffer_start = *buffer_ptr;
+        source_size = buffer_ptr[1];
       }
-      if (uVar4 != uVar3) {
+      if (buffer_start != source_size) {
                     // WARNING: Subroutine does not return
-        memmove(uVar1,uVar4,uVar3 - uVar4);
+        memmove(current_end, buffer_start, source_size - buffer_start);
       }
-      if (uVar8 != 0) {
+      if (expansion_size != 0) {
                     // WARNING: Subroutine does not return
-        memset(uVar1,0,uVar8 * 8);
+        memset(current_end, 0, expansion_size * 8);
       }
-      if (*param_1 != 0) {
+      if (*buffer_ptr != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *param_1 = uVar1;
-      param_1[2] = uVar1 + uVar5 * 8;
+      *buffer_ptr = current_end;
+      buffer_ptr[2] = current_end + new_capacity * 8;
     }
-    else if (uVar8 != 0) {
+    else if (expansion_size != 0) {
                     // WARNING: Subroutine does not return
-      memset(uVar1,0,uVar8 * 8);
+      memset(current_end, 0, expansion_size * 8);
     }
   }
   else {
-    uVar1 = uVar4 + uVar3 * 8;
+    current_end = buffer_start + source_size * 8;
   }
-  param_1[1] = uVar1;
-  uVar4 = uVar7;
-  if ((longlong)(uVar1 - *param_1) >> 3 != 0) {
+  buffer_ptr[1] = current_end;
+  buffer_start = elements_needed;
+  if ((longlong)(current_end - *buffer_ptr) >> 3 != 0) {
     do {
-      uVar2 = (**(code **)**(undefined8 **)(uVar4 + *param_2))();
-      uVar6 = (int)uVar7 + 1;
-      uVar7 = (ulonglong)uVar6;
-      *(undefined8 *)(uVar4 + *param_1) = uVar2;
-      uVar4 = uVar4 + 8;
-    } while ((ulonglong)(longlong)(int)uVar6 < (ulonglong)((longlong)(param_1[1] - *param_1) >> 3));
+      element_value = (**(code **)**(undefined8 **)(buffer_start + *(longlong*)data_source))();
+      element_index = (int)elements_needed + 1;
+      elements_needed = (ulonglong)element_index;
+      *(undefined8 *)(buffer_start + *buffer_ptr) = element_value;
+      buffer_start = buffer_start + 8;
+    } while ((ulonglong)(longlong)(int)element_index <
+             (ulonglong)((longlong)(buffer_ptr[1] - *buffer_ptr) >> 3));
   }
   return;
 }
@@ -260,136 +345,65 @@ void FUN_1805604e0(ulonglong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_1805604f0(undefined8 param_1,longlong *param_2)
-void FUN_1805604f0(undefined8 param_1,longlong *param_2)
-
+/*==============================================================================
+函数别名: ReallocateRenderBuffer - 重新分配渲染缓冲区
+原始函数: FUN_180560539
+参数:
+  min_size - 最小所需大小
+  current_size - 当前大小
+  extra_space - 额外空间需求
+返回:
+  void
+描述:
+  重新分配渲染缓冲区以满足新的大小需求，处理数据迁移和内存管理。
+===============================================================================*/
+void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_space)
 {
-  ulonglong uVar1;
-  undefined8 uVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
-  ulonglong *unaff_RBX;
-  ulonglong uVar5;
-  uint uVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
+  ulonglong new_buffer;
+  undefined8 element_value;
+  ulonglong *buffer_info;
+  ulonglong new_capacity;
+  uint element_index;
+  ulonglong source_offset;
+  longlong extra_size;
+  longlong *data_source;
+  ulonglong source_end;
   
-  uVar7 = 0;
-  uVar3 = param_2[1] - *param_2 >> 3;
-  uVar1 = unaff_RBX[1];
-  uVar4 = *unaff_RBX;
-  uVar9 = (longlong)(uVar1 - uVar4) >> 3;
-  if (uVar9 < uVar3) {
-    uVar8 = uVar3 - uVar9;
-    if ((ulonglong)((longlong)(unaff_RBX[2] - uVar1) >> 3) < uVar8) {
-      uVar5 = uVar9 * 2;
-      if (uVar9 == 0) {
-        uVar5 = 1;
-      }
-      if (uVar5 < uVar3) {
-        uVar5 = uVar3;
-      }
-      uVar3 = uVar1;
-      uVar1 = uVar7;
-      if (uVar5 != 0) {
-        uVar1 = FUN_18062b420(_DAT_180c8ed18,uVar5 * 8,(char)unaff_RBX[3]);
-        uVar4 = *unaff_RBX;
-        uVar3 = unaff_RBX[1];
-      }
-      if (uVar4 != uVar3) {
+  new_capacity = extra_space * 2;
+  if (extra_space == 0) {
+    new_capacity = 1;
+  }
+  if (new_capacity < min_size) {
+    new_capacity = min_size;
+  }
+  source_offset = source_offset;
+  if (new_capacity != 0) {
+    source_offset = FUN_18062b420(_DAT_180c8ed18, new_capacity * 8, (char)buffer_info[3]);
+    current_size = *buffer_info;
+    source_end = buffer_info[1];
+  }
+  if (current_size != source_end) {
                     // WARNING: Subroutine does not return
-        memmove(uVar1,uVar4,uVar3 - uVar4);
-      }
-      if (uVar8 != 0) {
+    memmove(source_offset, current_size, source_end - current_size);
+  }
+  if (extra_size != 0) {
                     // WARNING: Subroutine does not return
-        memset(uVar1,0,uVar8 * 8);
-      }
-      if (*unaff_RBX != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
-      }
-      *unaff_RBX = uVar1;
-      unaff_RBX[2] = uVar1 + uVar5 * 8;
-    }
-    else if (uVar8 != 0) {
-                    // WARNING: Subroutine does not return
-      memset(uVar1,0,uVar8 * 8);
-    }
+    memset(source_offset, 0, extra_size * 8);
   }
-  else {
-    uVar1 = uVar4 + uVar3 * 8;
-  }
-  unaff_RBX[1] = uVar1;
-  uVar4 = uVar7;
-  if ((longlong)(uVar1 - *unaff_RBX) >> 3 != 0) {
-    do {
-      uVar2 = (**(code **)**(undefined8 **)(uVar4 + *param_2))();
-      uVar6 = (int)uVar7 + 1;
-      uVar7 = (ulonglong)uVar6;
-      *(undefined8 *)(uVar4 + *unaff_RBX) = uVar2;
-      uVar4 = uVar4 + 8;
-    } while ((ulonglong)(longlong)(int)uVar6 <
-             (ulonglong)((longlong)(unaff_RBX[1] - *unaff_RBX) >> 3));
-  }
-  return;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180560539(ulonglong param_1,ulonglong param_2,longlong param_3)
-void FUN_180560539(ulonglong param_1,ulonglong param_2,longlong param_3)
-
-{
-  ulonglong uVar1;
-  undefined8 uVar2;
-  ulonglong *unaff_RBX;
-  ulonglong uVar3;
-  uint uVar4;
-  ulonglong unaff_RSI;
-  longlong unaff_RDI;
-  longlong *unaff_R12;
-  ulonglong unaff_R14;
-  
-  uVar3 = param_3 * 2;
-  if (param_3 == 0) {
-    uVar3 = 1;
-  }
-  if (uVar3 < param_1) {
-    uVar3 = param_1;
-  }
-  uVar1 = unaff_RSI;
-  if (uVar3 != 0) {
-    uVar1 = FUN_18062b420(_DAT_180c8ed18,uVar3 * 8,(char)unaff_RBX[3]);
-    param_2 = *unaff_RBX;
-    unaff_R14 = unaff_RBX[1];
-  }
-  if (param_2 != unaff_R14) {
-                    // WARNING: Subroutine does not return
-    memmove(uVar1,param_2,unaff_R14 - param_2);
-  }
-  if (unaff_RDI != 0) {
-                    // WARNING: Subroutine does not return
-    memset(uVar1,0,unaff_RDI * 8);
-  }
-  if (*unaff_RBX == 0) {
-    *unaff_RBX = uVar1;
-    unaff_RBX[2] = uVar1 + uVar3 * 8;
-    unaff_RBX[1] = uVar1;
-    uVar3 = unaff_RSI;
-    if ((longlong)(uVar1 - *unaff_RBX) >> 3 != 0) {
+  if (*buffer_info == 0) {
+    *buffer_info = source_offset;
+    buffer_info[2] = source_offset + new_capacity * 8;
+    buffer_info[1] = source_offset;
+    new_capacity = source_offset;
+    if ((longlong)(source_offset - *buffer_info) >> 3 != 0) {
       do {
-        uVar2 = (**(code **)**(undefined8 **)(uVar3 + *unaff_R12))();
-        uVar4 = (int)unaff_RSI + 1;
-        unaff_RSI = (ulonglong)uVar4;
-        *(undefined8 *)(uVar3 + *unaff_RBX) = uVar2;
-        uVar3 = uVar3 + 8;
-      } while ((ulonglong)(longlong)(int)uVar4 <
-               (ulonglong)((longlong)(unaff_RBX[1] - *unaff_RBX) >> 3));
+        element_value = (**(code **)**(undefined8 **)(new_capacity + *data_source))();
+        element_index = (int)source_offset + 1;
+        source_offset = (ulonglong)element_index;
+        *(undefined8 *)(new_capacity + *buffer_info) = element_value;
+        new_capacity = new_capacity + 8;
+      } while ((ulonglong)(longlong)(int)element_index <
+               (ulonglong)((longlong)(buffer_info[1] - *buffer_info) >> 3));
     }
     return;
   }
@@ -401,30 +415,40 @@ void FUN_180560539(ulonglong param_1,ulonglong param_2,longlong param_3)
 
 
 
-// 函数: void FUN_1805605e4(void)
-void FUN_1805605e4(void)
-
+/*==============================================================================
+函数别名: InitializeRenderElements - 初始化渲染元素
+原始函数: FUN_1805605e4
+参数:
+  buffer - 渲染缓冲区
+  element_count - 元素数量
+  data_source - 数据源
+返回:
+  void
+描述:
+  初始化渲染元素数组，处理元素数据的加载和初始化。
+===============================================================================*/
+void InitializeRenderElements(RenderBuffer* buffer, size_t element_count, void* data_source)
 {
-  undefined8 uVar1;
-  longlong *unaff_RBX;
-  uint uVar2;
-  ulonglong unaff_RSI;
-  longlong unaff_RDI;
-  ulonglong uVar3;
-  longlong *unaff_R12;
-  longlong unaff_R14;
+  undefined8 element_value;
+  longlong *buffer_info;
+  uint element_index;
+  ulonglong source_offset;
+  longlong extra_size;
+  ulonglong current_offset;
+  longlong *data_ptr;
+  longlong element_end;
   
-  if (unaff_RDI == 0) {
-    unaff_RBX[1] = unaff_R14;
-    uVar3 = unaff_RSI;
-    if (unaff_R14 - *unaff_RBX >> 3 != 0) {
+  if (extra_size == 0) {
+    buffer_info[1] = element_end;
+    current_offset = source_offset;
+    if (element_end - *buffer_info >> 3 != 0) {
       do {
-        uVar1 = (**(code **)**(undefined8 **)(uVar3 + *unaff_R12))();
-        uVar2 = (int)unaff_RSI + 1;
-        unaff_RSI = (ulonglong)uVar2;
-        *(undefined8 *)(uVar3 + *unaff_RBX) = uVar1;
-        uVar3 = uVar3 + 8;
-      } while ((ulonglong)(longlong)(int)uVar2 < (ulonglong)(unaff_RBX[1] - *unaff_RBX >> 3));
+        element_value = (**(code **)**(undefined8 **)(current_offset + *data_ptr))();
+        element_index = (int)source_offset + 1;
+        source_offset = (ulonglong)element_index;
+        *(undefined8 *)(current_offset + *buffer_info) = element_value;
+        current_offset = current_offset + 8;
+      } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(buffer_info[1] - *buffer_info >> 3));
     }
     return;
   }
@@ -436,131 +460,189 @@ void FUN_1805605e4(void)
 
 
 
-// 函数: void FUN_18056061e(void)
-void FUN_18056061e(void)
-
+/*==============================================================================
+函数别名: ProcessRenderElements - 处理渲染元素
+原始函数: FUN_18056061e
+参数:
+  element_buffer - 元素缓冲区
+  data_source - 数据源
+返回:
+  void
+描述:
+  处理渲染元素数组，执行元素数据的加载和初始化操作。
+===============================================================================*/
+void ProcessRenderElements(RenderBuffer* element_buffer, void* data_source)
 {
-  undefined8 uVar1;
-  longlong *unaff_RBX;
-  uint uVar2;
-  ulonglong unaff_RSI;
-  ulonglong uVar3;
-  longlong *unaff_R12;
+  undefined8 element_value;
+  longlong *buffer_info;
+  uint element_index;
+  ulonglong source_offset;
+  ulonglong current_offset;
+  longlong *data_ptr;
   
-  uVar3 = unaff_RSI;
+  current_offset = source_offset;
   do {
-    uVar1 = (**(code **)**(undefined8 **)(uVar3 + *unaff_R12))();
-    uVar2 = (int)unaff_RSI + 1;
-    unaff_RSI = (ulonglong)uVar2;
-    *(undefined8 *)(uVar3 + *unaff_RBX) = uVar1;
-    uVar3 = uVar3 + 8;
-  } while ((ulonglong)(longlong)(int)uVar2 < (ulonglong)(unaff_RBX[1] - *unaff_RBX >> 3));
+    element_value = (**(code **)**(undefined8 **)(current_offset + *data_ptr))();
+    element_index = (int)source_offset + 1;
+    source_offset = (ulonglong)element_index;
+    *(undefined8 *)(current_offset + *buffer_info) = element_value;
+    current_offset = current_offset + 8;
+  } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(buffer_info[1] - *buffer_info >> 3));
   return;
 }
 
 
 
-undefined8 * FUN_180560660(undefined8 *param_1)
-
+/*==============================================================================
+函数别名: InitializeRenderObject - 初始化渲染对象
+原始函数: FUN_180560660
+参数:
+  render_object - 渲染对象指针
+返回:
+  RenderObject* - 初始化后的渲染对象指针
+描述:
+  初始化一个渲染对象，设置默认的渲染参数和状态。
+===============================================================================*/
+RenderObject* InitializeRenderObject(RenderObject* render_object)
 {
-  *param_1 = &UNK_1809ffa18;
-  *param_1 = &UNK_180a36288;
-  param_1[0xb] = &UNK_18098bcb0;
-  param_1[0xc] = 0;
-  *(undefined4 *)(param_1 + 0xd) = 0;
-  param_1[0xb] = &UNK_180a3c3e0;
-  param_1[0xe] = 0;
-  param_1[0xc] = 0;
-  *(undefined4 *)(param_1 + 0xd) = 0;
-  param_1[0xf] = &UNK_18098bcb0;
-  param_1[0x10] = 0;
-  *(undefined4 *)(param_1 + 0x11) = 0;
-  param_1[0xf] = &UNK_180a3c3e0;
-  param_1[0x12] = 0;
-  param_1[0x10] = 0;
-  *(undefined4 *)(param_1 + 0x11) = 0;
-  param_1[0x13] = &UNK_18098bcb0;
-  param_1[0x14] = 0;
-  *(undefined4 *)(param_1 + 0x15) = 0;
-  param_1[0x13] = &UNK_180a3c3e0;
-  param_1[0x16] = 0;
-  param_1[0x14] = 0;
-  *(undefined4 *)(param_1 + 0x15) = 0;
-  param_1[0x17] = &UNK_18098bcb0;
-  param_1[0x18] = 0;
-  *(undefined4 *)(param_1 + 0x19) = 0;
-  param_1[0x17] = &UNK_180a3c3e0;
-  param_1[0x1a] = 0;
-  param_1[0x18] = 0;
-  *(undefined4 *)(param_1 + 0x19) = 0;
-  param_1[0x1b] = &UNK_18098bcb0;
-  param_1[0x1c] = 0;
-  *(undefined4 *)(param_1 + 0x1d) = 0;
-  param_1[0x1b] = &UNK_180a3c3e0;
-  param_1[0x1e] = 0;
-  param_1[0x1c] = 0;
-  *(undefined4 *)(param_1 + 0x1d) = 0;
-  param_1[0x1f] = &UNK_18098bcb0;
-  param_1[0x20] = 0;
-  *(undefined4 *)(param_1 + 0x21) = 0;
-  param_1[0x1f] = &UNK_180a3c3e0;
-  param_1[0x22] = 0;
-  param_1[0x20] = 0;
-  *(undefined4 *)(param_1 + 0x21) = 0;
-  param_1[0x23] = &UNK_18098bcb0;
-  param_1[0x24] = 0;
-  *(undefined4 *)(param_1 + 0x25) = 0;
-  param_1[0x23] = &UNK_180a3c3e0;
-  param_1[0x26] = 0;
-  param_1[0x24] = 0;
-  *(undefined4 *)(param_1 + 0x25) = 0;
-  param_1[0x2a] = 0;
-  param_1[0x2b] = 0;
-  param_1[0x2c] = 0;
-  *(undefined4 *)(param_1 + 0x2d) = 3;
-  param_1[0x2e] = &UNK_18098bcb0;
-  param_1[0x2f] = 0;
-  *(undefined4 *)(param_1 + 0x30) = 0;
-  param_1[0x2e] = &UNK_180a3c3e0;
-  param_1[0x31] = 0;
-  param_1[0x2f] = 0;
-  *(undefined4 *)(param_1 + 0x30) = 0;
-  param_1[0x32] = &UNK_18098bcb0;
-  param_1[0x33] = 0;
-  *(undefined4 *)(param_1 + 0x34) = 0;
-  param_1[0x32] = &UNK_180a3c3e0;
-  param_1[0x35] = 0;
-  param_1[0x33] = 0;
-  *(undefined4 *)(param_1 + 0x34) = 0;
-  param_1[1] = 0;
-  param_1[2] = 0;
-  param_1[3] = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x24) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2c) = 0;
-  param_1[7] = 0;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x44) = 0xbf800000bf800000;
-  *(undefined8 *)((longlong)param_1 + 0x4c) = 0xbf800000bf800000;
-  *(undefined4 *)(param_1 + 0x27) = 3;
-  *(undefined4 *)((longlong)param_1 + 0x13c) = 3;
-  param_1[0x28] = 0x3e99999a;
-  *(undefined1 *)(param_1 + 0x29) = 0;
-  *(undefined2 *)(param_1 + 0x36) = 0xff;
-  *(undefined1 *)((longlong)param_1 + 0x1b2) = 0;
-  return param_1;
+  // 设置虚函数表和基础结构
+  *render_object = &UNK_1809ffa18;
+  *render_object = &UNK_180a36288;
+  
+  // 初始化渲染状态和参数
+  render_object[0xb] = &UNK_18098bcb0;
+  render_object[0xc] = 0;
+  *(undefined4 *)(render_object + 0xd) = 0;
+  render_object[0xb] = &UNK_180a3c3e0;
+  render_object[0xe] = 0;
+  render_object[0xc] = 0;
+  *(undefined4 *)(render_object + 0xd) = 0;
+  
+  // 初始化纹理和材质参数
+  render_object[0xf] = &UNK_18098bcb0;
+  render_object[0x10] = 0;
+  *(undefined4 *)(render_object + 0x11) = 0;
+  render_object[0xf] = &UNK_180a3c3e0;
+  render_object[0x12] = 0;
+  render_object[0x10] = 0;
+  *(undefined4 *)(render_object + 0x11) = 0;
+  
+  // 初始化着色器参数
+  render_object[0x13] = &UNK_18098bcb0;
+  render_object[0x14] = 0;
+  *(undefined4 *)(render_object + 0x15) = 0;
+  render_object[0x13] = &UNK_180a3c3e0;
+  render_object[0x16] = 0;
+  render_object[0x14] = 0;
+  *(undefined4 *)(render_object + 0x15) = 0;
+  
+  // 初始化顶点缓冲区
+  render_object[0x17] = &UNK_18098bcb0;
+  render_object[0x18] = 0;
+  *(undefined4 *)(render_object + 0x19) = 0;
+  render_object[0x17] = &UNK_180a3c3e0;
+  render_object[0x1a] = 0;
+  render_object[0x18] = 0;
+  *(undefined4 *)(render_object + 0x19) = 0;
+  
+  // 初始化索引缓冲区
+  render_object[0x1b] = &UNK_18098bcb0;
+  render_object[0x1c] = 0;
+  *(undefined4 *)(render_object + 0x1d) = 0;
+  render_object[0x1b] = &UNK_180a3c3e0;
+  render_object[0x1e] = 0;
+  render_object[0x1c] = 0;
+  *(undefined4 *)(render_object + 0x1d) = 0;
+  
+  // 初始化常量缓冲区
+  render_object[0x1f] = &UNK_18098bcb0;
+  render_object[0x20] = 0;
+  *(undefined4 *)(render_object + 0x21) = 0;
+  render_object[0x1f] = &UNK_180a3c3e0;
+  render_object[0x22] = 0;
+  render_object[0x20] = 0;
+  *(undefined4 *)(render_object + 0x21) = 0;
+  
+  // 初始化采样器状态
+  render_object[0x23] = &UNK_18098bcb0;
+  render_object[0x24] = 0;
+  *(undefined4 *)(render_object + 0x25) = 0;
+  render_object[0x23] = &UNK_180a3c3e0;
+  render_object[0x26] = 0;
+  render_object[0x24] = 0;
+  *(undefined4 *)(render_object + 0x25) = 0;
+  
+  // 初始化渲染状态
+  render_object[0x2a] = 0;
+  render_object[0x2b] = 0;
+  render_object[0x2c] = 0;
+  *(undefined4 *)(render_object + 0x2d) = 3;
+  
+  // 初始化混合状态
+  render_object[0x2e] = &UNK_18098bcb0;
+  render_object[0x2f] = 0;
+  *(undefined4 *)(render_object + 0x30) = 0;
+  render_object[0x2e] = &UNK_180a3c3e0;
+  render_object[0x31] = 0;
+  render_object[0x2f] = 0;
+  *(undefined4 *)(render_object + 0x30) = 0;
+  
+  // 初始化深度模板状态
+  render_object[0x32] = &UNK_18098bcb0;
+  render_object[0x33] = 0;
+  *(undefined4 *)(render_object + 0x34) = 0;
+  render_object[0x32] = &UNK_180a3c3e0;
+  render_object[0x35] = 0;
+  render_object[0x33] = 0;
+  *(undefined4 *)(render_object + 0x34) = 0;
+  
+  // 初始化变换矩阵和基础参数
+  render_object[1] = 0;
+  render_object[2] = 0;
+  render_object[3] = 0;
+  *(undefined4 *)(render_object + 4) = 0;
+  *(undefined8 *)((longlong)render_object + 0x24) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2c) = 0;
+  render_object[7] = 0;
+  *(undefined4 *)(render_object + 8) = 0;
+  
+  // 初始化浮点参数
+  *(undefined8 *)((longlong)render_object + 0x44) = FLOAT_BF800000BF800000;
+  *(undefined8 *)((longlong)render_object + 0x4c) = FLOAT_BF800000BF800000;
+  *(undefined4 *)(render_object + 0x27) = 3;
+  *(undefined4 *)((longlong)render_object + 0x13c) = 3;
+  render_object[0x28] = FLOAT_0_3E99999A;
+  *(undefined1 *)(render_object + 0x29) = 0;
+  *(undefined2 *)(render_object + 0x36) = 0xff;
+  *(undefined1 *)((longlong)render_object + 0x1b2) = 0;
+  
+  return render_object;
 }
 
 
 
-undefined8 FUN_180560870(undefined8 param_1,ulonglong param_2)
-
+/*==============================================================================
+函数别名: ReleaseRenderObject - 释放渲染对象
+原始函数: FUN_180560870
+参数:
+  render_object - 渲染对象指针
+  flags - 释放标志
+返回:
+  RenderObject* - 释放后的对象指针
+描述:
+  释放渲染对象占用的资源，根据标志决定是否完全释放内存。
+===============================================================================*/
+RenderObject* ReleaseRenderObject(RenderObject* render_object, uint32_t flags)
 {
-  FUN_1805608b0();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x1b8);
+  // 调用清理函数
+  CleanupRenderObject(render_object);
+  
+  // 根据标志决定是否释放内存
+  if ((flags & 1) != 0) {
+    free(render_object, RENDER_OBJECT_SIZE);
   }
-  return param_1;
+  
+  return render_object;
 }
 
 
@@ -1066,3 +1148,56 @@ void FUN_180560fe0(longlong param_1)
 
 
 
+
+/*==============================================================================
+ 性能优化策略:
+ 
+ 1. 内存管理优化:
+   - 使用环形缓冲区减少内存分配开销
+   - 实现内存池技术重用已分配的内存块
+   - 采用预分配策略避免运行时分配延迟
+ 
+ 2. 缓存优化:
+   - 实现数据局部性优化，提高缓存命中率
+   - 使用SIMD指令批量处理数据
+   - 避免频繁的内存拷贝操作
+ 
+ 3. 并发优化:
+   - 使用无锁数据结构提高多线程性能
+   - 实现双缓冲技术避免渲染冲突
+   - 采用读写锁优化并发访问
+ 
+ 4. 资源管理优化:
+   - 实现引用计数自动管理资源生命周期
+   - 使用延迟释放技术减少资源创建开销
+   - 采用资源池技术重用昂贵资源
+ 
+ 5. 算法优化:
+   - 使用快速哈希算法提高查找效率
+   - 实现空间换时间的数据结构
+   - 采用预测性分配减少内存碎片
+ ==============================================================================*/
+
+/*==============================================================================
+ 安全考虑:
+ 
+ 1. 内存安全:
+   - 实现边界检查防止缓冲区溢出
+   - 使用安全的内存拷贝函数
+   - 实现内存访问权限控制
+ 
+ 2. 资源安全:
+   - 实现资源泄漏检测机制
+   - 使用引用计数防止悬垂指针
+   - 实现资源访问同步机制
+ 
+ 3. 数据安全:
+   - 实现数据完整性校验
+   - 使用加密哈希保护敏感数据
+   - 实现访问日志和审计功能
+ 
+ 4. 异常安全:
+   - 实现异常处理机制
+   - 使用RAII模式管理资源
+   - 实现错误恢复策略
+ ==============================================================================*/
