@@ -681,107 +681,160 @@ LAB_18057b6d9:
   
   // 标签：最终变换处理阶段
   FINAL_TRANSFORM_PROCESS:
-LAB_18057b795:
-  fVar11 = in_stack_00000078;
-  fVar10 = fStack0000000000000074;
-  fVar9 = in_stack_00000070;
-  fVar14 = *(float *)(unaff_RBX + 0xe8);
-  fVar20 = *(float *)(unaff_RBX + 0xec);
-  fVar16 = *(float *)(unaff_RBX + 0xf0);
-  fVar19 = *(float *)(unaff_RBX + 0xf4);
-  fVar22 = *(float *)(unaff_RBX + 0xd8);
-  fVar24 = *(float *)(unaff_RBX + 0xdc);
-  fVar30 = *(float *)(unaff_RBX + 0xe0);
-  fVar2 = *(float *)(unaff_RBX + 200);
-  fVar3 = *(float *)(unaff_RBX + 0xcc);
-  fVar4 = *(float *)(unaff_RBX + 0xd0);
-  unaff_RBP[0xc] = fVar27 * fVar3 + fVar26 * fVar2 + fVar28 * fVar4;
-  unaff_RBP[0xd] = fVar27 * fVar24 + fVar26 * fVar22 + fVar28 * fVar30;
-  unaff_RBP[0xe] = fVar27 * fVar20 + fVar26 * fVar14 + fVar28 * fVar16;
-  unaff_RBP[0xf] = fVar27 * fVar19 + fVar26 * fVar19 + fVar28 * fVar19;
-  unaff_RBP[0x10] =
-       fStack0000000000000074 * fVar3 + in_stack_00000070 * fVar2 + in_stack_00000078 * fVar4;
-  unaff_RBP[0x11] =
-       fStack0000000000000074 * fVar24 + in_stack_00000070 * fVar22 + in_stack_00000078 * fVar30;
-  unaff_RBP[0x12] =
-       fStack0000000000000074 * fVar20 + in_stack_00000070 * fVar14 + in_stack_00000078 * fVar16;
-  unaff_RBP[0x13] =
-       fStack0000000000000074 * fVar19 + in_stack_00000070 * fVar19 + in_stack_00000078 * fVar19;
-  unaff_RBP[0x14] = fVar25 * fVar2 + fVar31 * fVar3 + fVar18 * fVar4;
-  unaff_RBP[0x15] = fVar25 * fVar22 + fVar31 * fVar24 + fVar18 * fVar30;
-  unaff_RBP[0x16] = fVar25 * fVar14 + fVar31 * fVar20 + fVar18 * fVar16;
-  unaff_RBP[0x17] = fVar25 * fVar19 + fVar31 * fVar19 + fVar18 * fVar19;
-  FUN_1801c1720(unaff_RBP + 0xc,&stack0x00000030);
-  fVar31 = *(float *)(unaff_R14 + 0x38);
-  lVar13 = ((longlong)unaff_R13B + -1) * 0x1b0;
-  *(longlong *)(unaff_RBP + -0xc) = lVar13;
-  fVar30 = fStack0000000000000030 * 100.0 * fVar31 + *(float *)(unaff_RBX + 0x58);
-  fVar22 = fStack0000000000000034 * 100.0 * fVar31 + *(float *)(unaff_RBX + 0x5c);
-  fVar19 = fStack0000000000000038 * 100.0 * fVar31 + *(float *)(unaff_RBX + 0x60);
-  *(float *)(unaff_RBX + 0x58) = fVar30;
-  *(float *)(unaff_RBX + 0x5c) = fVar22;
-  *(float *)(unaff_RBX + 0x60) = fVar19;
-  in_stack_00000048 =
-       *(int *)(lVar13 + 0x110 + *(longlong *)(*(longlong *)(unaff_R14 + 0x208) + 0x140));
-  fVar25 = *(float *)(unaff_RBX + 0x58);
-  fVar18 = *(float *)(unaff_RBX + 0x5c);
-  fVar14 = *(float *)(unaff_RBX + 0x60);
-  lVar13 = (longlong)in_stack_00000048 * 0x60 +
-           *(longlong *)(*(longlong *)(unaff_R14 + 0x208) + 0x158);
-  fVar16 = 1.0 - (*(float *)(lVar13 + 0x40) + *(float *)(lVar13 + 0x3c));
-  fVar24 = fVar18 * fVar18 + fVar25 * fVar25 + fVar14 * fVar14;
-  unaff_RBP[0xc] = 1.1754944e-38;
-  unaff_RBP[0xd] = 0.0;
-  unaff_RBP[0xe] = 0.0;
-  unaff_RBP[0xf] = 0.0;
-  fVar20 = fVar24;
-  if (fVar24 <= 1.1754944e-38) {
-    fVar20 = 1.1754944e-38;
+// 第八阶段：最终矩阵变换和渲染参数计算
+  // 获取标准化后的输入向量分量
+  weight_z = input_z;                                  // 标准化输入Z分量
+  weight_y = input_y;                                  // 标准化输入Y分量
+  input_x = input_x;                                   // 标准化输入X分量
+  
+  // 获取四元数缓冲区数据
+  quaternion_x = *(float *)(render_data_ptr + 0xe8);   // 四元数X分量
+  quaternion_y = *(float *)(render_data_ptr + 0xec);   // 四元数Y分量
+  quaternion_w = *(float *)(render_data_ptr + 0xf0);   // 四元数W分量
+  normal_z = *(float *)(render_data_ptr + 0xf4);       // 法线Z分量
+  
+  // 获取备份缓冲区数据
+  result_x = *(float *)(render_data_ptr + 0xd8);       // 备份X分量
+  result_y = *(float *)(render_data_ptr + 0xdc);       // 备份Y分量
+  result_z = *(float *)(render_data_ptr + 0xe0);       // 备份Z分量
+  
+  // 获取顶点坐标缓冲区数据
+  vertex_x = *(float *)(render_data_ptr + 200);        // 顶点X坐标
+  vertex_y = *(float *)(render_data_ptr + 0xcc);       // 顶点Y坐标
+  vertex_z = *(float *)(render_data_ptr + 0xd0);       // 顶点Z坐标
+  
+  // 计算第一行变换矩阵（顶点坐标变换）
+  stack_frame_ptr[0xc] = vertex_y * vertex_y + vertex_x * vertex_x + vertex_z * vertex_z;
+  stack_frame_ptr[0xd] = vertex_y * result_y + vertex_x * result_x + vertex_z * result_z;
+  stack_frame_ptr[0xe] = vertex_y * quaternion_y + vertex_x * quaternion_x + vertex_z * quaternion_w;
+  stack_frame_ptr[0xf] = vertex_y * normal_z + vertex_x * normal_z + vertex_z * normal_z;
+  
+  // 计算第二行变换矩阵（标准化输入向量变换）
+  stack_frame_ptr[0x10] = weight_y * vertex_y + input_x * vertex_x + weight_z * vertex_z;
+  stack_frame_ptr[0x11] = weight_y * result_y + input_x * result_x + weight_z * result_z;
+  stack_frame_ptr[0x12] = weight_y * quaternion_y + input_x * quaternion_x + weight_z * quaternion_w;
+  stack_frame_ptr[0x13] = weight_y * normal_z + input_x * normal_z + weight_z * normal_z;
+  
+  // 计算第三行变换矩阵（四元数变换）
+  stack_frame_ptr[0x14] = quaternion_x * vertex_x + quaternion_y * vertex_y + quaternion_w * vertex_z;
+  stack_frame_ptr[0x15] = quaternion_x * result_x + quaternion_y * result_y + quaternion_w * result_z;
+  stack_frame_ptr[0x16] = quaternion_x * quaternion_x + quaternion_y * quaternion_y + quaternion_w * quaternion_w;
+  stack_frame_ptr[0x17] = quaternion_x * normal_z + quaternion_y * normal_z + quaternion_w * normal_z;
+  
+  // 对变换矩阵进行标准化处理
+  RenderingSystem_NormalizeVector(stack_frame_ptr + 0xc, &stack0x00000030);
+  
+  // 获取时间参数和计算索引
+  input_time = *(float *)(resource_ptr + 0x38);
+  temp_long1 = ((longlong)index_flag + -1) * 0x1b0;
+  *(longlong *)(stack_frame_ptr + -0xc) = temp_long1;
+  
+  // 计算100倍缩放的时间相关变换参数
+  result_z = result_z * HUNDRED * input_time + *(float *)(render_data_ptr + 0x58);
+  result_y = result_y * HUNDRED * input_time + *(float *)(render_data_ptr + 0x5c);
+  normal_z = normal_z * HUNDRED * input_time + *(float *)(render_data_ptr + 0x60);
+  
+  // 存储变换参数到渲染数据
+  *(float *)(render_data_ptr + 0x58) = result_z;        // 存储Z变换参数
+  *(float *)(render_data_ptr + 0x5c) = result_y;        // 存储Y变换参数
+  *(float *)(render_data_ptr + 0x60) = normal_z;        // 存储Z变换参数
+  
+  // 获取骨骼索引和计算骨骼变换矩阵
+  bone_index = *(int *)(temp_long1 + 0x110 + *(longlong *)(*(longlong *)(resource_ptr + 0x208) + 0x140));
+  
+  // 获取变换参数
+  quaternion_x = *(float *)(render_data_ptr + 0x58);    // X变换参数
+  quaternion_w = *(float *)(render_data_ptr + 0x5c);    // Y变换参数
+  input_time = *(float *)(render_data_ptr + 0x60);      // Z变换参数
+  
+  // 计算骨骼数据指针
+  temp_long1 = (longlong)bone_index * 0x60 + *(longlong *)(*(longlong *)(resource_ptr + 0x208) + 0x158);
+  
+  // 计算权重因子
+  quaternion_w = 1.0f - (*(float *)(temp_long1 + 0x40) + *(float *)(temp_long1 + 0x3c));
+  
+  // 计算变换向量的长度平方
+  distance_sq = quaternion_w * quaternion_w + quaternion_x * quaternion_x + input_time * input_time;
+  
+  // 初始化标准化向量
+  stack_frame_ptr[0xc] = FLOAT_MIN;                     // 最小浮点数
+  stack_frame_ptr[0xd] = 0.0f;                          // 零值
+  stack_frame_ptr[0xe] = 0.0f;                          // 零值
+  stack_frame_ptr[0xf] = 0.0f;                          // 零值
+  
+  normalized_value = distance_sq;                       // 备份距离平方
+  if (distance_sq <= FLOAT_MIN) {
+    normalized_value = FLOAT_MIN;                       // 防止除零错误
   }
-  fVar19 = SQRT(fVar30 * fVar30 + fVar22 * fVar22 + fVar19 * fVar19) * 17.5 * fVar16 * fVar31;
-  fVar16 = fVar16 * 1.25 * fVar31;
-  if (fVar19 <= fVar16) {
-    fVar19 = fVar16;
+  
+  // 计算距离相关的缩放因子
+  normal_z = SQRT(result_z * result_z + result_y * result_y + normal_z * normal_z) * 
+              DISTANCE_SCALE_FACTOR * quaternion_w * input_time;
+  
+  // 计算偏置缩放因子
+  quaternion_w = quaternion_w * BIAS_SCALE_FACTOR * input_time;
+  
+  // 选择较大的缩放因子
+  if (normal_z <= quaternion_w) {
+    normal_z = quaternion_w;                             // 使用偏置缩放因子
   }
-  auVar17 = rsqrtss(ZEXT416((uint)fVar20),ZEXT416((uint)fVar20));
-  fVar16 = auVar17._0_4_;
-  fVar20 = fVar16 * 0.5 * (3.0 - fVar20 * fVar16 * fVar16);
-  if (fVar19 <= fVar20 * fVar24) {
-    *(float *)(unaff_RBX + 0x58) = fVar30 - fVar19 * fVar25 * fVar20;
-    *(float *)(unaff_RBX + 0x5c) = *(float *)(unaff_RBX + 0x5c) - fVar19 * fVar18 * fVar20;
-    in_stack_00000040 = *(float *)(unaff_RBX + 0x60) - fVar19 * fVar14 * fVar20;
-    *(float *)(unaff_RBX + 0x60) = in_stack_00000040;
+  
+  // 使用SIMD指令计算逆平方根
+  simd_result = rsqrtss(ZEXT416((uint)normalized_value), ZEXT416((uint)normalized_value));
+  quaternion_w = simd_result._0_4_;
+  normalized_value = quaternion_w * INVERSE_RSQRT_FACTOR * (3.0f - normalized_value * quaternion_w * quaternion_w);
+  
+  // 应用距离限制和变换
+  if (normal_z <= normalized_value * distance_sq) {
+    *(float *)(render_data_ptr + 0x58) = result_z - normal_z * quaternion_x * normalized_value;
+    *(float *)(render_data_ptr + 0x5c) = *(float *)(render_data_ptr + 0x5c) - normal_z * quaternion_w * normalized_value;
+    input_x = *(float *)(render_data_ptr + 0x60) - normal_z * input_time * normalized_value;
+    *(float *)(render_data_ptr + 0x60) = input_x;       // 存储最终的Z变换参数
   }
   else {
-    *(undefined8 *)(unaff_RBX + 0x58) = 0;
-    in_stack_00000040 = 0.0;
-    *(undefined8 *)(unaff_RBX + 0x60) = 0;
+    // 超出距离限制，重置为零
+    *(undefined8 *)(render_data_ptr + 0x58) = 0;         // 重置X变换参数
+    input_x = 0.0f;                                      // 重置输入X
+    *(undefined8 *)(render_data_ptr + 0x60) = 0;         // 重置Z变换参数
   }
-  fVar25 = *(float *)(unaff_RBX + 0xcc);
-  fVar18 = *(float *)(unaff_RBX + 0xd0);
-  fVar14 = *(float *)(unaff_RBX + 0xdc);
-  fVar20 = *(float *)(unaff_RBX + 200);
-  fVar16 = *(float *)(unaff_RBX + 0xd8);
-  fVar19 = *(float *)(unaff_RBX + 0xe0);
-  fVar22 = *(float *)(unaff_RBX + 0xe8);
-  *unaff_RBP = fVar25 * fVar27 + fVar20 * fVar26 + fVar18 * fVar28;
-  unaff_RBP[1] = fVar25 * fVar10 + fVar20 * fVar9 + fVar18 * fVar11;
-  unaff_RBP[2] = fVar25 * fVar21 + fVar20 * fVar15 + fVar18 * fVar29;
-  unaff_RBP[3] = fVar25 * fVar23 + fVar20 * fVar23 + fVar18 * fVar23;
-  fVar25 = *(float *)(unaff_RBX + 0xec);
-  fVar18 = *(float *)(unaff_RBX + 0xf0);
-  unaff_RBP[4] = fVar14 * fVar27 + fVar16 * fVar26 + fVar19 * fVar28;
-  unaff_RBP[5] = fVar14 * fVar10 + fVar16 * fVar9 + fVar19 * fVar11;
-  unaff_RBP[6] = fVar14 * fVar21 + fVar16 * fVar15 + fVar19 * fVar29;
-  unaff_RBP[7] = fVar14 * fVar23 + fVar16 * fVar23 + fVar19 * fVar23;
-  unaff_RBP[8] = fVar25 * fVar27 + fVar22 * fVar26 + fVar18 * fVar28;
-  unaff_RBP[9] = fVar25 * fVar10 + fVar22 * fVar9 + fVar18 * fVar11;
-  unaff_RBP[10] = fVar25 * fVar21 + fVar22 * fVar15 + fVar18 * fVar29;
-  unaff_RBP[0xb] = fVar25 * fVar23 + fVar22 * fVar23 + fVar18 * fVar23;
-  in_stack_00000050 = fVar31;
-  FUN_18063b470(&stack0x00000030);
-                    // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar31 * *(float *)(unaff_RBX + 0x58) * 0.5);
+  
+  // 获取最终变换矩阵数据
+  quaternion_x = *(float *)(render_data_ptr + 0xcc);     // 最终矩阵X分量
+  quaternion_w = *(float *)(render_data_ptr + 0xd0);     // 最终矩阵Y分量
+  input_time = *(float *)(render_data_ptr + 0xdc);       // 最终矩阵Z分量
+  normal_z = *(float *)(render_data_ptr + 200);          // 最终矩阵W分量
+  result_x = *(float *)(render_data_ptr + 0xd8);         // 最终变换X
+  result_y = *(float *)(render_data_ptr + 0xe0);         // 最终变换Y
+  result_z = *(float *)(render_data_ptr + 0xe8);         // 最终变换Z
+  
+  // 构建最终的4x3变换矩阵
+  *stack_frame_ptr = quaternion_x * vertex_y + normal_z * vertex_x + quaternion_w * vertex_z;
+  stack_frame_ptr[1] = quaternion_x * weight_y + normal_z * input_x + quaternion_w * weight_z;
+  stack_frame_ptr[2] = quaternion_x * quaternion_y + normal_z * quaternion_x + quaternion_w * quaternion_w;
+  stack_frame_ptr[3] = quaternion_x * normal_z + normal_z * normal_z + quaternion_w * normal_z;
+  
+  // 第二行变换矩阵
+  quaternion_y = *(float *)(render_data_ptr + 0xec);     // 四元数Y分量
+  quaternion_w = *(float *)(render_data_ptr + 0xf0);     // 四元数W分量
+  stack_frame_ptr[4] = input_time * vertex_y + result_x * vertex_x + result_y * vertex_z;
+  stack_frame_ptr[5] = input_time * weight_y + result_x * input_x + result_y * weight_z;
+  stack_frame_ptr[6] = input_time * quaternion_y + result_x * quaternion_x + result_y * quaternion_w;
+  stack_frame_ptr[7] = input_time * normal_z + result_x * normal_z + result_y * normal_z;
+  
+  // 第三行变换矩阵
+  stack_frame_ptr[8] = quaternion_y * vertex_y + result_z * vertex_x + quaternion_w * vertex_z;
+  stack_frame_ptr[9] = quaternion_y * weight_y + result_z * input_x + quaternion_w * weight_z;
+  stack_frame_ptr[10] = quaternion_y * quaternion_y + result_z * quaternion_x + quaternion_w * quaternion_w;
+  stack_frame_ptr[0xb] = quaternion_y * normal_z + result_z * normal_z + quaternion_w * normal_z;
+  
+  // 存储时间参数
+  input_time = input_time;                                // 备份时间参数
+  
+  // 调用变换处理函数（不返回）
+  RenderingSystem_ProcessTransform(&stack0x00000030);
+  
+  // 应用最终变换
+  RenderingSystem_ApplyFinalTransform(input_time * *(float *)(render_data_ptr + 0x58) * HALF);
 }
 
 

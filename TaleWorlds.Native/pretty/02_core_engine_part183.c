@@ -755,7 +755,7 @@ longlong *CoreEngineProcessString(undefined8 param_1, longlong *param_2, undefin
             }
             puStack_58 = &UNK_180a3c3e0;
             if (puVar5 != (undefined1 *)0x0) {
-                FUN_18064e900(puVar5);
+                FUN_18064e900();
             }
             puStack_50 = (undefined1 *)0x0;
             uStack_40 = 0;
