@@ -85,12 +85,12 @@ void advanced_data_processor_and_resource_manager(
     void* long_ptr1;               // 长指针1
     void* ptr1;                    // 通用指针1
     void* long_ptr2;               // 长指针2
-    void* undefined_ptr1;           // 未定义指针1
+    void* data_ptr1;           // 未定义指针1
     long long temp_long1;          // 临时长整数1
     void* long_ptr3;               // 长指针3
     void* ptr2;                    // 通用指针2
-    void* undefined_ptr2;          // 未定义指针2
-    void* undefined_ptr3;          // 未定义指针3
+    void* data_ptr2;          // 未定义指针2
+    void* data_ptr3;          // 未定义指针3
     void* ptr3;                    // 通用指针3
     void* ptr4;                    // 通用指针4
     uint temp_uint2;               // 临时无符号整数2
@@ -247,12 +247,12 @@ process_data:
         *(int*)((long long)long_ptr2 + 0x3c) = temp_int3;
         *(int*)(long_ptr2 + 8) = stack_int1;
         *(int*)((long long)long_ptr2 + 0x44) = resource_type;
-        undefined_ptr3 = &DAT;
+        data_ptr3 = &DAT;
         if (*(void**)((long long)data_source + 8) != (void*)0x0) {
-            undefined_ptr3 = *(void**)((long long)data_source + 8);
+            data_ptr3 = *(void**)((long long)data_source + 8);
         }
         stack_long_ptr3 = long_ptr2;
-        ((void(*)(void**, void*))(*indirect_ptr1)[2])(indirect_ptr1, undefined_ptr3);
+        ((void(*)(void**, void*))(*indirect_ptr1)[2])(indirect_ptr1, data_ptr3);
         temp_int1 = operation_type;
         *(int*)(long_ptr2 + 9) = operation_type;
         *(int*)(long_ptr2 + 0x2d) = stack_int2;
@@ -344,21 +344,21 @@ process_data:
             }
             
             // 处理资源队列
-            undefined_ptr2 = (void*)long_ptr4[1];
-            if (undefined_ptr2 < (void*)long_ptr4[2]) {
-                long_ptr4[1] = (long long)(undefined_ptr2 + 1);
-                *undefined_ptr2 = long_ptr2;
+            data_ptr2 = (void*)long_ptr4[1];
+            if (data_ptr2 < (void*)long_ptr4[2]) {
+                long_ptr4[1] = (long long)(data_ptr2 + 1);
+                *data_ptr2 = long_ptr2;
                 ((void(*)(void*))(*(void**)(*long_ptr2 + 0x28)))(long_ptr2);
             }
             else {
                 // 处理队列扩展
                 ptr1 = (void*)*long_ptr4;
-                temp_long1 = (long long)undefined_ptr2 - (long long)ptr1 >> 3;
+                temp_long1 = (long long)data_ptr2 - (long long)ptr1 >> 3;
                 if (temp_long1 == 0) {
                     temp_long1 = 1;
 expand_queue:
                     ptr3 = (void*)((MemoryAllocatorFunc)FUN_18062b420)(GLOBAL_DATA_PTR_180c8ed18, temp_long1 * 8);
-                    undefined_ptr2 = (void*)long_ptr4[1];
+                    data_ptr2 = (void*)long_ptr4[1];
                     ptr1 = (void*)*long_ptr4;
                     stack_ptr2 = ptr3;
                 }
@@ -370,7 +370,7 @@ expand_queue:
                 }
                 
                 // 执行数据迁移
-                for (; ptr1 != undefined_ptr2; ptr1 = ptr1 + 1) {
+                for (; ptr1 != data_ptr2; ptr1 = ptr1 + 1) {
                     *ptr3 = *ptr1;
                     *ptr1 = 0;
                     ptr3 = ptr3 + 1;
@@ -412,8 +412,8 @@ expand_queue:
             __Throw_C_error_std__YAXH_Z(temp_int2);
         }
         temp_uint2 = priority_level;
-        undefined_ptr2 = ptr2 + 0xe8;
-        ptr1 = undefined_ptr2;
+        data_ptr2 = ptr2 + 0xe8;
+        ptr1 = data_ptr2;
         ptr2 = (void*)ptr2[0xea];
         
         // 搜索合适的资源位置
@@ -428,10 +428,10 @@ expand_queue:
         }
         
         // 创建或获取资源
-        if ((ptr1 == undefined_ptr2) || (priority_level < *(unsigned int*)(ptr1 + 4))) {
+        if ((ptr1 == data_ptr2) || (priority_level < *(unsigned int*)(ptr1 + 4))) {
             stack_ptr1 = &priority_level;
             stack_buffer2 = ptr1;
-            ptr1 = (void*)((void*)FUN_1800b90a0(undefined_ptr2, stack_buffer2, undefined_ptr2, ptr1));
+            ptr1 = (void*)((void*)FUN_1800b90a0(data_ptr2, stack_buffer2, data_ptr2, ptr1));
             ptr1 = (void*)*ptr1;
         }
         
@@ -462,11 +462,11 @@ expand_queue:
                     long_ptr1 = stack_long_ptr3;
                 }
                 stack_long_ptr3 = long_ptr1;
-                undefined_ptr3 = &DAT;
+                data_ptr3 = &DAT;
                 if (*(void**)((long long)data_source + 8) != (void*)0x0) {
-                    undefined_ptr3 = *(void**)((long long)data_source + 8);
+                    data_ptr3 = *(void**)((long long)data_source + 8);
                 }
-                ((void(*)(void**, void*))(*(void**)(long_ptr4[10] + 0x10)))(long_ptr4 + 10, undefined_ptr3);
+                ((void(*)(void**, void*))(*(void**)(long_ptr4[10] + 0x10)))(long_ptr4 + 10, data_ptr3);
                 long_ptr1 = long_ptr4;
             }
             long_ptr4 = long_ptr4 + 1;
@@ -500,11 +500,11 @@ expand_queue:
     stack_ptr12 = stack_buffer3;
     stack_buffer3[0] = 0;
     stack_uint2 = *(unsigned int*)((long long)data_source + 0x10);
-    undefined_ptr3 = &DAT;
+    data_ptr3 = &DAT;
     if (*(void**)((long long)data_source + 8) != (void*)0x0) {
-        undefined_ptr3 = *(void**)((long long)data_source + 8);
+        data_ptr3 = *(void**)((long long)data_source + 8);
     }
-    strcpy_s(stack_buffer3, 0x80, undefined_ptr3);
+    strcpy_s(stack_buffer3, 0x80, data_ptr3);
     stack_ptr11 = &UNK_18098bcb0;
     *(unsigned int*)((long long)long_ptr1 + 0x16c) = *(unsigned int*)(GLOBAL_DATA_PTR_180c86870 + 0x224);
     *stack_ptr4 = long_ptr1;

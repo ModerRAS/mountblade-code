@@ -1,32 +1,28 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 06_utilities_part001.c - 101 个函数
+// TaleWorlds.Native 工具模块 - 内存管理和系统核心功能
 
-#include "TaleWorlds.Native.Split.h"
-
-// 06_utilities.c - 473 个函数
-
-
-// 函数: void* FUN_1809414f0;
-void* FUN_1809414f0;
-void* DAT_180bf5290;
-void* DAT_180bf52a0;
-void* DAT_180bf52c0;
-void* DAT_180bf52c8;
-void* DAT_180bf52d0;
-void* DAT_180bf52d8;
-int8_t DAT_180bf5240;
-void* DAT_180bf52a8;
-void* DAT_180bf52b0;
-int8_t DAT_180bf52e0;
-void* UNK_180a3c3e0;
-uint64_t UNK_180bf5278;
-uint64_t UNK_180bf5298;
-void* DAT_180bf5320;
-void* DAT_180bf5328;
-void* DAT_180bf5330;
-void* DAT_180bf5338;
-void* UNK_18098bb30;
+// 内存管理核心函数
+void* FUN_1809414f0;  // 主内存分配器
+void* DAT_180bf5290;  // 内存池头部指针
+void* DAT_180bf52a0;  // 内存池尾部指针
+void* DAT_180bf52c0;  // 当前分配位置
+void* DAT_180bf52c8;  // 内存块大小表
+void* DAT_180bf52d0;  // 内存对齐表
+void* DAT_180bf52d8;  // 内存统计信息
+int8_t DAT_180bf5240;  // 内存管理器状态
+void* DAT_180bf52a8;  // 大块内存分配器
+void* DAT_180bf52b0;  // 小块内存分配器
+int8_t DAT_180bf52e0;  // 内存碎片整理状态
+void* UNK_180a3c3e0;  // 虚拟内存管理器
+uint64_t UNK_180bf5278;  // 已分配内存总数
+uint64_t UNK_180bf5298;  // 可用内存总数
+void* DAT_180bf5320;  // 内存分配回调表
+void* DAT_180bf5328;  // 内存释放回调表
+void* DAT_180bf5330;  // 内存重分配回调表
+void* DAT_180bf5338;  // 内存验证回调表
+void* UNK_18098bb30;  // 内存调试信息
 
 
 // 函数: void* FUN_180941590;

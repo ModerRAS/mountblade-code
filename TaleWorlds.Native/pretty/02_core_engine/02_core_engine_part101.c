@@ -227,7 +227,7 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
   float stack_float1;
   float stack_float2;
   ulonglong stack_ulong;
-  uint64_t stack_undefined[3];
+  uint64_t stack_render_params[4];  // 渲染参数数组
   float stack_float3;
   float stack_float4;
   float stack_float5;
@@ -292,10 +292,10 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
       }
       stack_ulong = 0;
       stack_float1 = position_data[2] - *(float *)(context_var2 + 0x165c);
-      stack_undefined[0] = (char *)CONCAT44((position_data[1] + *(float *)(context_var2 + 0x1660)) - (float)(int)(*(float *)(context_var2 + 0x19f8) * 0.25), height);
+      stack_render_params[0] = (char *)CONCAT44((position_data[1] + *(float *)(context_var2 + 0x1660)) - (float)(int)(*(float *)(context_var2 + 0x19f8) * 0.25), height);
       stack_float3 = position_data[3] - *(float *)(context_var2 + 0x1660);
       stack_float4 = y_position;
-      FUN_1801224c0(render_context, &stack_undefined[0], &stack_float1, &_DAT, 0, 0, &stack_temp1, 0);
+      FUN_1801224c0(render_context, &stack_render_params[0], &stack_float1, &_DAT, 0, 0, &stack_temp1, 0);
       render_target = _DAT;
     }
     
@@ -315,8 +315,8 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
       temp_var5 = *(uint64_t *)(render_target + 0x154);
       temp_var6 = *(uint64_t *)(render_target + 0x15c);
       temp_var7 = *(uint64_t *)(render_target + 0x164);
-      stack_undefined[0] = (char *)CONCAT44(position_data[1] + *(float *)(context_var2 + 0x1660) + y_position, (position_data[2] - *(float *)(context_var2 + 0x165c)) - y_position);
-      char_flag = FUN_18010fd40(font_id, &stack_undefined[0], y_position);
+      stack_render_params[0] = (char *)CONCAT44(position_data[1] + *(float *)(context_var2 + 0x1660) + y_position, (position_data[2] - *(float *)(context_var2 + 0x165c)) - y_position);
+      char_flag = FUN_18010fd40(font_id, &stack_render_params[0], y_position);
       render_target = _DAT;
       stack_float1 = (float)((uint)stack_float1 & 0xff);
       if (char_flag != '\0') {
@@ -349,8 +349,8 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
     }
     else {
       result = stack_ulong & 0xffffffff00000000;
-      stack_undefined[0] = (char *)0x0;
-      font_data = (float *)FUN_180297340(*(uint64_t *)(render_target + 0x19f0), &stack_undefined[1], *(int32_t *)(render_target + 0x19f8), (y_position - height) - 4.0, result, text_start, text_current, &stack_undefined[0]);
+      stack_render_params[0] = (char *)0x0;
+      font_data = (float *)FUN_180297340(*(uint64_t *)(render_target + 0x19f0), &stack_render_params[1], *(int32_t *)(render_target + 0x19f8), (y_position - height) - 4.0, result, text_start, text_current, &stack_undefined[0]);
       y_position = *font_data;
       text_found = stack_undefined[0] == text_start;
       text_end = stack_undefined[0];
@@ -359,7 +359,7 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
           int_var1 = FUN_180121550(&stack_undefined[0], text_start, text_current);
           text_end = text_start + int_var1;
           result = result & 0xffffffff00000000;
-          font_data = (float *)FUN_180297340(*(uint64_t *)(render_target + 0x19f0), &stack_undefined[1], *(int32_t *)(render_target + 0x19f8), 0x7f7fffff, result, text_start, text_end, 0);
+          font_data = (float *)FUN_180297340(*(uint64_t *)(render_target + 0x19f0), &stack_render_params[1], *(int32_t *)(render_target + 0x19f8), 0x7f7fffff, result, text_start, text_end, 0);
           y_position = *font_data;
         }
         text_found = text_end == text_start;
@@ -370,12 +370,12 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
           if ((text_end[-1] != ' ') && (text_current = text_end, text_end[-1] != '\t')) break;
           text_current = text_end + -1;
           result = result & 0xffffffff00000000;
-          font_data = (float *)FUN_180297340(*(uint64_t *)(render_target + 0x19f0), &stack_undefined[1], *(int32_t *)(render_target + 0x19f8), 0x7f7fffff, result, text_current, text_end, 0);
+          font_data = (float *)FUN_180297340(*(uint64_t *)(render_target + 0x19f0), &stack_render_params[1], *(int32_t *)(render_target + 0x19f8), 0x7f7fffff, result, text_current, text_end, 0);
           y_position = y_position - *font_data;
           text_end = text_current;
         } while (text_start < text_current);
       }
-      stack_undefined[0] = (char *)0x0;
+      stack_render_params[0] = (char *)0x0;
       FUN_1801224c0(render_context, &stack_float5, &stack_float4, text_start, text_current, &stack_float3, &stack_undefined[0], 0);
       y_position = stack_float5 + y_position + 1.0;
       if (((char)stack_temp1 == '\0') && (y_position + 5.0 < position_data[2] || y_position + 5.0 == position_data[2])) {
@@ -383,7 +383,7 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
         stack_undefined[2] = *(int32_t *)(_DAT + 0x16cc);
         stack_undefined[3] = *(int32_t *)(_DAT + 0x16d0);
         stack_float3 = *(float *)(_DAT + 0x16d4) * *(float *)(_DAT + 0x1628);
-        temp_var1 = func_0x000180121e20(&stack_undefined[1]);
+        temp_var1 = func_0x000180121e20(&stack_render_params[1]);
         render_target = *(longlong *)(*(longlong *)(render_context + 0x38) + 8);
         stack_float2 = (float)(int)((*(float *)(render_target + 0x60) + *(float *)(render_target + 0xc)) - 0.5) + stack_float6;
         stack_temp1 = (ulonglong)(uint)(stack_float2 + 1.0) << 0x20;
