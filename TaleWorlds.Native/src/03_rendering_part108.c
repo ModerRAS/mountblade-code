@@ -127,13 +127,13 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
       resource_array_ptr = (undefined4 *)*resource_manager_ptr;
     }
   }
-  uVar19 = 0;
-  lStackX_10 = param_2;
-  uStackX_18 = param_3;
-  if (puVar16 != (undefined4 *)puVar2[*(longlong *)(param_1 + 0xa00)]) {
+  item_count = 0;
+  output_handle = output_handle;
+  resource_data_param = resource_data;
+  if (resource_array_ptr != (undefined4 *)resource_pool_ptr[*(longlong *)(render_context + 0xa00)]) {
     do {
-      lVar23 = *(longlong *)(puVar16 + 2);
-      lVar22 = *(longlong *)(lVar23 + 8);
+      resource_offset = *(longlong *)(resource_array_ptr + 2);
+      data_offset = *(longlong *)(resource_offset + 8);
       for (piVar12 = *(int **)(lVar22 + (uVar13 % (ulonglong)*(uint *)(lVar23 + 0x10)) * 8);
           piVar12 != (int *)0x0; piVar12 = *(int **)(piVar12 + 4)) {
         if ((int)uVar13 == *piVar12) {
