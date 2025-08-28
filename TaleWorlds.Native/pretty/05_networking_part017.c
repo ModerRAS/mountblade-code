@@ -176,7 +176,7 @@
 #define NetworkingSystem_DefaultConfig network_default_config_ptr
 
 // 网络配置指针
-#define NetworkingSystem_ConfigPtr UNK_18095af38
+#define NetworkingSystem_ConfigPtr network_config_global_ptr
 
 // 系统安全Cookie变量 - 用于栈保护和安全检查
 #define NetworkingSystem_SecurityCookie _DAT_180bf00a8
