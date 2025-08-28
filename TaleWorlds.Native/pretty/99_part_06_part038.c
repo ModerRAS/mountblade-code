@@ -430,7 +430,7 @@ LAB_1803cab3b:
         *(uint64_t *)(lVar10 + 0x20) = *puVar16;
         *(int32_t *)(lVar10 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-        FUN_18066bdc0(lVar10,ppppppplVar9,&ppppppplStack_f8,uVar22);
+        SystemNetworkHandler(lVar10,ppppppplVar9,&ppppppplStack_f8,uVar22);
       }
 LAB_1803cab7d:
       *(int *)(ppppppplVar11 + 5) = iVar19;
@@ -556,7 +556,7 @@ LAB_1803cae34:
               *(int64_t *******)(lVar10 + 0x20) = pppppplVar12;
               *(int32_t *)(lVar10 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-              FUN_18066bdc0(lVar10,ppppppplVar11,&ppppppplStack_f8,uVar22);
+              SystemNetworkHandler(lVar10,ppppppplVar11,&ppppppplStack_f8,uVar22);
             }
 LAB_1803cae81:
             bVar6 = (byte)*(int32_t *)(ppppppplVar9 + 5);

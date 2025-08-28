@@ -90,7 +90,7 @@ LAB_1806579f0:
     *(uint64_t *)(data_difference + 0x40) = 0;
     
     // 调用UI系统处理函数（该函数不返回）
-    FUN_18066bdc0(data_difference, data_ptr, (void *)UI_SYSTEM_GLOBAL_DATA_1, process_status);
+    SystemNetworkHandler(data_difference, data_ptr, (void *)UI_SYSTEM_GLOBAL_DATA_1, process_status);
 }
 
 /**

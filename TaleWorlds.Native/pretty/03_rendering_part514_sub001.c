@@ -56,7 +56,7 @@
 
 // 主要渲染功能函数
 #define RenderMainProcessor Render_Processor  // 渲染主处理器
-#define RenderSceneProcessor FUN_180542260  // 渲染场景处理器
+#define RenderSceneProcessor RenderSceneProcessor  // 渲染场景处理器
 #define RenderWorldProcessor FUN_180542286  // 渲染世界处理器
 #define RenderNullProcessor FUN_1805422e2  // 渲染空处理器
 #define RenderComplexProcessor FUN_1805422f0  // 渲染复杂处理器
