@@ -348,7 +348,7 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
     char char_var;
     int int_var1;
     int int_var2;
-    uint64_t undefined_var1;
+    uint64_t memory_block_id;  // 内存块标识符
     void **ptr_ptr_var1;
     uint64_t *ptr_var1;
     uint uint_var1;
@@ -441,8 +441,8 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
                 stack_var9 = 3;
                 stack_var2 = uint_var1 + 5;
                 
-                undefined_var1 = FUN_18062b1e0(_DAT, 0x20, 8, 3);
-                stack_var8 = FUN_180627ae0(undefined_var1, &stack_ptr1);
+                memory_block_id = FUN_18062b1e0(_DAT, 0x20, 8, 3);
+                stack_var8 = FUN_180627ae0(memory_block_id, &stack_ptr1);
                 
                 ptr_var1 = (uint64_t *)(**(code **)(**(longlong **)(param1 + 0x1b0) + 0x60))();
                 if ((void *)*ptr_var1 == &UNK_180a14060) {
