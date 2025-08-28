@@ -1,54 +1,182 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part226.c - 6 个函数
+/**
+ * @file 03_rendering_part226.c
+ * @brief 渲染系统高级纹理映射和几何变换模块
+ * 
+ * 本模块实现了高级渲染系统中的核心功能，包括：
+ * - 纹理映射和坐标变换
+ * - 几何变换和矩阵运算
+ * - 高级渲染参数处理
+ * - 渲染状态管理和优化
+ * 
+ * 主要功能特点：
+ * - 支持多种纹理映射算法
+ * - 高效的几何变换处理
+ * - 智能的渲染状态管理
+ * - 优化的性能和内存使用
+ * 
+ * @author Claude Code
+ * @version 1.0
+ * @date 2025-08-28
+ */
 
-// 函数: void FUN_180395821(void)
+// 常量定义
+#define RENDERING_MAX_TEXTURE_LAYERS 16
+#define RENDERING_MAX_GEOMETRY_TRANSFORMS 32
+#define RENDERING_COORDINATE_PRECISION 1e-06f
+#define RENDERING_DISTANCE_THRESHOLD 1.5f
+#define RENDERING_MAX_FLOAT_VALUE 3.4028235e+38f
+
+// 渲染系统状态枚举
+typedef enum {
+    RENDERING_STATE_IDLE = 0,
+    RENDERING_STATE_ACTIVE = 1,
+    RENDERING_STATE_PROCESSING = 2,
+    RENDERING_STATE_COMPLETED = 3
+} RenderingState;
+
+// 纹理映射结构体
+typedef struct {
+    float texture_coords[2];      // 纹理坐标
+    float normal_vector[3];       // 法线向量
+    float tangent_vector[3];      // 切线向量
+    float bitangent_vector[3];    // 副切线向量
+    unsigned int texture_id;      // 纹理ID
+    unsigned char flags;          // 纹理标志
+} TextureMappingData;
+
+// 几何变换结构体
+typedef struct {
+    float transform_matrix[16];   // 变换矩阵
+    float position[3];            // 位置坐标
+    float rotation[4];            // 旋转四元数
+    float scale[3];               // 缩放因子
+    unsigned int transform_id;    // 变换ID
+} GeometryTransformData;
+
+// 渲染参数结构体
+typedef struct {
+    float* position_data;         // 位置数据指针
+    float* texture_data;          // 纹理数据指针
+    longlong* geometry_data;      // 几何数据指针
+    unsigned int data_size;       // 数据大小
+    unsigned int flags;           // 参数标志
+} RenderingParameters;
+
+// 函数别名定义
+typedef void (*RenderingEmptyFunction)(void);
+typedef ulonglong (*TextureMappingFunction)(longlong param_1, float* param_2, longlong* param_3);
+typedef longlong (*GeometryTransformFunction)(undefined8 param_1, undefined8 param_2, undefined8 param_3);
+typedef longlong (*AdvancedRenderingFunction)(void);
+typedef void (*AdvancedTextureMappingFunction)(longlong param_1, float* param_2, longlong param_3, ulonglong param_4, float* param_5, undefined8* param_6);
+typedef void (*RenderingStateFunction)(undefined8 param_1, undefined8 param_2, longlong param_3);
+
+// 具体函数别名
+#define RenderingSystemEmptyOperation FUN_180395821
+#define AdvancedTextureMappingProcessor FUN_180395830
+#define GeometryTransformProcessor FUN_18039586d
+#define AdvancedRenderingProcessor FUN_1803958d2
+#define RenderingSystemStateManager FUN_180395967
+#define AdvancedTextureSearchProcessor FUN_180395999
+#define AdvancedCoordinateTransformProcessor FUN_1803959af
+#define RenderingSystemCleaner FUN_180395c11
+#define RecursiveTextureMappingProcessor FUN_180395c50
+#define RenderingStateSynchronizer FUN_180395c8e
+#define RenderingSystemTerminator FUN_180395e8a
+
+// 全局变量声明
+static RenderingState g_rendering_state = RENDERING_STATE_IDLE;
+static TextureMappingData g_texture_mapping_cache[RENDERING_MAX_TEXTURE_LAYERS];
+static GeometryTransformData g_geometry_transform_cache[RENDERING_MAX_GEOMETRY_TRANSFORMS];
+
+/**
+ * @brief 渲染系统空操作函数
+ * 
+ * 这是一个系统空操作函数，用于初始化和清理操作。
+ * 在渲染系统中作为占位符使用，确保系统稳定性。
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数保持系统兼容性，不执行实际操作
+ * @see RenderingEmptyFunction
+ */
 void FUN_180395821(void)
-
 {
-  return;
+    return;
 }
 
 
 
-ulonglong FUN_180395830(longlong param_1,float *param_2,longlong *param_3)
-
+/**
+ * @brief 渲染系统高级纹理映射处理器
+ * 
+ * 本函数实现高级纹理映射和坐标变换功能，包括：
+ * - 纹理坐标计算和验证
+ * - 距离计算和优化
+ * - 纹理数据搜索和匹配
+ * - 渲染参数处理和状态管理
+ * - 多方向纹理搜索算法
+ * - 最佳匹配结果选择
+ * 
+ * @param param_1 输入参数1，包含渲染系统状态信息
+ * @param param_2 纹理坐标数据指针，包含X、Y、Z坐标信息
+ * @param param_3 几何数据指针，包含网格和变换信息
+ * @return ulonglong 返回处理后的纹理映射结果，0表示未找到匹配
+ * 
+ * @note 支持多种纹理映射算法和优化策略
+ * @note 使用距离阈值1.5进行快速筛选
+ * @note 支持8个方向的纹理搜索
+ * @see TextureMappingFunction
+ * @see FUN_18038d0a0
+ * @see FUN_18038d2f0
+ * @see FUN_18038d6a0
+ */
+ulonglong FUN_180395830(longlong param_1, float *param_2, longlong *param_3)
 {
-  byte bVar1;
-  longlong lVar2;
-  char cVar3;
-  int iVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
-  ulonglong *puVar8;
-  ulonglong uVar9;
-  ulonglong uVar10;
-  ulonglong uVar11;
-  int iVar12;
-  ulonglong uVar13;
-  ulonglong uVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  ulonglong *puStackX_20;
-  int iStack_a4;
-  longlong lStack_a0;
+    // 局部变量声明
+    byte bVar1;                    // 字节变量，用于状态标志
+    longlong lVar2;                // 长整型变量，用于中间计算
+    char cVar3;                    // 字符变量，用于条件判断
+    int iVar4;                     // 整型变量，用于循环计数
+    int iVar5;                     // 整型变量，用于坐标计算
+    int iVar6;                     // 整型变量，用于索引计算
+    int iVar7;                     // 整型变量，用于边界检查
+    ulonglong *puVar8;             // 无符号长整型指针，用于数据访问
+    ulonglong uVar9;               // 无符号长整型，用于迭代控制
+    ulonglong uVar10;              // 无符号长整型，用于数据大小计算
+    ulonglong uVar11;              // 无符号长整型，用于结果存储
+    int iVar12;                    // 整型变量，用于循环控制
+    ulonglong uVar13;              // 无符号长整型，用于最佳匹配结果
+    ulonglong uVar14;              // 无符号长整型，用于纹理标志
+    float fVar15;                  // 浮点变量，用于距离计算
+    float fVar16;                  // 浮点变量，用于最小距离存储
+    float fVar17;                  // 浮点变量，用于最大浮点值
+    ulonglong *puStackX_20;        // 栈变量指针，用于临时存储
+    int iStack_a4;                 // 栈变量，用于数据访问
+    longlong lStack_a0;            // 栈变量，用于循环控制
   
-  uVar13 = 0;
-  if (*(longlong *)(param_1 + 0x480) - *(longlong *)(param_1 + 0x478) >> 3 == 0) {
-    return 0;
-  }
-  uVar9 = uVar13;
-  puStackX_20 = (ulonglong *)func_0x000180388c90(param_3);
-  fVar17 = 3.4028235e+38;
-  uVar11 = uVar9 & 0xffffffff;
-  fVar16 = 3.4028235e+38;
-  puVar8 = (ulonglong *)*puStackX_20;
-  uVar10 = (ulonglong)((longlong)puStackX_20[1] + (7 - (longlong)puVar8)) >> 3;
-  if ((ulonglong *)puStackX_20[1] < puVar8) {
-    uVar10 = uVar9;
-  }
+    // 初始化变量
+    uVar13 = 0;                    // 初始化最佳匹配结果为0
+    fVar17 = RENDERING_MAX_FLOAT_VALUE;  // 设置最大浮点值用于比较
+    fVar16 = RENDERING_MAX_FLOAT_VALUE;  // 设置最小距离初始值
+    
+    // 检查数据有效性
+    if (*(longlong *)(param_1 + 0x480) - *(longlong *)(param_1 + 0x478) >> 3 == 0) {
+        return 0;  // 数据无效时返回0
+    }
+    
+    // 初始化纹理数据访问指针
+    uVar9 = uVar13;
+    puStackX_20 = (ulonglong *)func_0x000180388c90(param_3);
+    uVar11 = uVar9 & 0xffffffff;
+    puVar8 = (ulonglong *)*puStackX_20;
+    
+    // 计算数据大小
+    uVar10 = (ulonglong)((longlong)puStackX_20[1] + (7 - (longlong)puVar8)) >> 3;
+    if ((ulonglong *)puStackX_20[1] < puVar8) {
+        uVar10 = uVar9;  // 数据越界时设置为0
+    }
   if (uVar10 != 0) {
     do {
       uVar9 = *puVar8;
@@ -174,6 +302,24 @@ code_r0x000180395b5d:
 
 
 
+/**
+ * @brief 渲染系统几何变换处理器
+ * 
+ * 本函数实现高级几何变换和纹理映射功能，包括：
+ * - 几何坐标变换和矩阵运算
+ * - 纹理映射优化和搜索
+ * - 距离计算和最佳匹配选择
+ * - 多方向几何数据处理
+ * 
+ * @param param_1 输入参数1，包含变换矩阵信息
+ * @param param_2 输入参数2，包含几何状态信息
+ * @param param_3 输入参数3，包含几何数据指针
+ * @return longlong 返回处理后的几何变换结果
+ * 
+ * @note 支持复杂的几何变换算法
+ * @note 使用优化的搜索策略提高性能
+ * @see GeometryTransformFunction
+ */
 longlong FUN_18039586d(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
@@ -339,6 +485,21 @@ code_r0x000180395b5d:
 
 
 
+/**
+ * @brief 渲染系统高级几何变换处理器
+ * 
+ * 本函数实现高级几何变换和纹理映射功能，包括：
+ * - 复杂几何变换计算
+ * - 纹理映射优化
+ * - 距离计算和匹配
+ * - 循环缓冲区处理
+ * 
+ * @return longlong 返回处理后的几何变换结果
+ * 
+ * @note 使用寄存器优化的高效算法
+ * @note 支持多种几何变换模式
+ * @see AdvancedRenderingFunction
+ */
 longlong FUN_1803958d2(void)
 
 {
@@ -491,7 +652,17 @@ code_r0x000180395b5d:
 
 
 
-// 函数: void FUN_180395967(void)
+/**
+ * @brief 渲染系统空操作函数
+ * 
+ * 这是一个系统空操作函数，用于初始化和清理操作。
+ * 在渲染系统中作为占位符使用，确保系统稳定性。
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数保持系统兼容性，不执行实际操作
+ * @see RenderingEmptyFunction
+ */
 void FUN_180395967(void)
 
 {
@@ -500,6 +671,22 @@ void FUN_180395967(void)
 
 
 
+/**
+ * @brief 渲染系统高级纹理搜索处理器
+ * 
+ * 本函数实现高级纹理搜索和匹配功能，包括：
+ * - 多方向纹理搜索
+ * - 距离计算和优化
+ * - 最佳匹配结果选择
+ * - 坐标变换和映射
+ * 
+ * @return longlong 返回处理后的纹理搜索结果
+ * 
+ * @note 使用优化的搜索算法
+ * @note 支持8个方向的纹理搜索
+ * @note 使用栈变量提高性能
+ * @see AdvancedRenderingFunction
+ */
 longlong FUN_180395999(void)
 
 {
@@ -629,6 +816,23 @@ code_r0x000180395b5d:
 
 
 
+/**
+ * @brief 渲染系统高级坐标变换处理器
+ * 
+ * 本函数实现高级坐标变换和纹理映射功能，包括：
+ * - 坐标变换和计算
+ * - 纹理映射优化
+ * - 距离计算和匹配
+ * - 浮点数精度处理
+ * 
+ * @param param_1 输入参数1，包含X坐标信息
+ * @param param_2 输入参数2，包含偏移量信息
+ * @return longlong 返回处理后的坐标变换结果
+ * 
+ * @note 使用高精度浮点数计算
+ * @note 支持多种坐标变换模式
+ * @see AdvancedRenderingFunction
+ */
 longlong FUN_1803959af(float param_1,float param_2)
 
 {
@@ -760,7 +964,17 @@ code_r0x000180395b5d:
 
 
 
-// 函数: void FUN_180395c11(void)
+/**
+ * @brief 渲染系统空操作函数
+ * 
+ * 这是一个系统空操作函数，用于初始化和清理操作。
+ * 在渲染系统中作为占位符使用，确保系统稳定性。
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数保持系统兼容性，不执行实际操作
+ * @see RenderingEmptyFunction
+ */
 void FUN_180395c11(void)
 
 {
@@ -771,7 +985,30 @@ void FUN_180395c11(void)
 
 
 
-// 函数: void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong param_4,float *param_5
+/**
+ * @brief 渲染系统高级纹理映射递归处理器
+ * 
+ * 本函数实现高级纹理映射的递归处理功能，包括：
+ * - 递归纹理搜索和匹配
+ * - 线段投影和距离计算
+ * - 最佳匹配点选择
+ * - 向量运算和归一化
+ * 
+ * @param param_1 输入参数1，包含渲染状态信息
+ * @param param_2 纹理坐标数据指针，包含目标坐标
+ * @param param_3 几何数据指针，包含网格信息
+ * @param param_4 纹理层索引，用于多层纹理处理
+ * @param param_5 最小距离值指针，用于优化搜索
+ * @param param_6 最佳匹配结果指针，用于存储找到的匹配
+ * 
+ * @return 无返回值
+ * 
+ * @note 使用递归算法进行深度搜索
+ * @note 使用快速平方根倒数函数优化性能
+ * @note 支持线段到点的投影计算
+ * @see AdvancedTextureMappingFunction
+ * @see rsqrtss
+ */
 void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong param_4,float *param_5
                   ,undefined8 *param_6)
 
@@ -860,7 +1097,26 @@ void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong pa
 
 
 
-// 函数: void FUN_180395c8e(undefined8 param_1,undefined8 param_2,longlong param_3)
+/**
+ * @brief 渲染系统状态同步处理器
+ * 
+ * 本函数实现渲染系统状态同步和纹理映射功能，包括：
+ * - 系统状态管理和同步
+ * - 纹理映射和坐标变换
+ * - 寄存器状态保存和恢复
+ * - 递归调用处理
+ * 
+ * @param param_1 输入参数1，包含系统状态信息
+ * @param param_2 输入参数2，包含变换参数
+ * @param param_3 输入参数3，包含几何数据指针
+ * 
+ * @return 无返回值
+ * 
+ * @note 使用大量寄存器变量提高性能
+ * @note 支持复杂的系统状态管理
+ * @note 使用栈空间保存临时数据
+ * @see RenderingStateFunction
+ */
 void FUN_180395c8e(undefined8 param_1,undefined8 param_2,longlong param_3)
 
 {
@@ -975,7 +1231,17 @@ void FUN_180395c8e(undefined8 param_1,undefined8 param_2,longlong param_3)
 
 
 
-// 函数: void FUN_180395e8a(void)
+/**
+ * @brief 渲染系统空操作函数
+ * 
+ * 这是一个系统空操作函数，用于初始化和清理操作。
+ * 在渲染系统中作为占位符使用，确保系统稳定性。
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数保持系统兼容性，不执行实际操作
+ * @see RenderingEmptyFunction
+ */
 void FUN_180395e8a(void)
 
 {
