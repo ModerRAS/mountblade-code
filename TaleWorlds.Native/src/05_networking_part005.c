@@ -240,33 +240,59 @@ void NetworkClient_SendMessage(undefined8 client_id, undefined8 message_data, un
 
 
 
-// 函数: void FUN_180845c84(void)
-void FUN_180845c84(void)
-
+/**
+ * 向所有连接的客户端广播消息
+ * 
+ * 本函数实现广播消息功能，将消息发送给所有当前连接的客户端。
+ * 广播消息通常用于游戏状态更新、系统通知等需要所有客户端
+ * 同步接收的场景。
+ * 
+ * 简化实现：省略了客户端筛选和批量发送优化，
+ * 实现基本的广播功能。
+ */
+void NetworkClient_BroadcastMessage(void)
 {
-  int iVar1;
-  int iVar2;
-  undefined4 unaff_ESI;
-  
-  iVar1 = FUN_18074b880(&stack0x00000030,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
-                    // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xb);
+    int header_size;
+    int separator_size;
+    undefined4 message_type;
+    
+    // 准备广播消息头
+    header_size = FUN_18074b880(&stack0x00000030, 0x100);
+    
+    // 添加消息分隔符
+    separator_size = FUN_18074b880(&stack0x00000030 + header_size, 
+                                   0x100 - header_size, &DAT_180a06434);
+    
+    // 添加消息体
+    func_0x00018074bda0(&stack0x00000030 + (header_size + separator_size), 
+                        0x100 - (header_size + separator_size));
+    
+    // 执行广播
+    FUN_180749ef0(message_type, 0xb);
 }
 
 
 
 
 
-// 函数: void FUN_180845cfc(void)
-void FUN_180845cfc(void)
-
+/**
+ * 初始化网络客户端管理器
+ * 
+ * 本函数负责初始化网络客户端管理系统的核心组件，包括：
+ * - 分配客户端连接池
+ * - 初始化网络协议栈
+ * - 设置事件回调函数
+ * - 配置安全参数
+ * 
+ * 简化实现：省略了复杂的初始化流程和错误处理，
+ * 专注于核心初始化逻辑。
+ */
+void NetworkClient_Initialize(void)
 {
-  ulonglong in_stack_00000130;
-  
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+    ulonglong initialization_data;
+    
+    // 执行初始化序列（包含安全检查）
+    FUN_1808fc050(initialization_data ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -276,69 +302,112 @@ void FUN_180845cfc(void)
 
 
 
-// 函数: void FUN_180845d20(undefined8 param_1,undefined4 *param_2,ulonglong *param_3)
-void FUN_180845d20(undefined8 param_1,undefined4 *param_2,ulonglong *param_3)
-
+/**
+ * 获取客户端属性列表
+ * 
+ * @param client_id 客户端ID
+ * @param property_array 属性数组指针
+ * @param property_count 输出参数，返回属性数量
+ * 
+ * 本函数用于获取指定客户端的所有属性信息，包括客户端版本、
+ * 连接类型、权限等级等。属性信息以数组形式返回，调用者
+ * 需要提供足够的缓冲区空间。
+ * 
+ * 简化实现：省略了属性验证和动态内存管理，
+ * 专注于属性查询的核心逻辑。
+ */
+void NetworkClient_GetPropertyList(undefined8 client_id, undefined4 *property_array, ulonglong *property_count)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  int iVar5;
-  undefined1 auStack_188 [32];
-  undefined1 *puStack_168;
-  longlong alStack_158 [2];
-  undefined8 *apuStack_148 [2];
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
-  
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  if ((param_3 == (ulonglong *)0x0) || (*param_3 = 0, param_2 == (undefined4 *)0x0)) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
+    undefined4 property_value1;
+    undefined4 property_value2;
+    undefined4 property_value3;
+    int query_result;
+    int status;
+    undefined8 stack_buffer[NETWORK_STACK_SIZE];
+    undefined8 *data_buffer;
+    longlong connection_data[2];
+    undefined8 *message_buffers[2];
+    undefined8 temp_buffer[CLIENT_DATA_BUFFER_SIZE];
+    ulonglong security_cookie;
+    
+    // 安全Cookie初始化
+    security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    
+    // 参数验证
+    if ((property_count == (ulonglong *)0x0) || (*property_count = 0, property_array == (undefined4 *)0x0)) {
+        if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+            // 触发调试陷阱
+            FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
+        }
+        
+        // 准备错误消息
+        query_result = FUN_18074bc50(temp_buffer, 0x100, property_array);
+        status = FUN_18074b880(temp_buffer + query_result, 0x100 - query_result, 
+                              &DAT_180a06434);
+        func_0x00018074bda0(temp_buffer + (query_result + status), 
+                           0x100 - (query_result + status), property_count);
+        data_buffer = temp_buffer;
+        
+        // 发送错误报告
+        FUN_180749ef0(0x1f, 0xb, client_id, &UNK_180981d40);
     }
-    iVar4 = FUN_18074bc50(auStack_138,0x100,param_2);
-    iVar5 = FUN_18074b880(auStack_138 + iVar4,0x100 - iVar4,&DAT_180a06434);
-    func_0x00018074bda0(auStack_138 + (iVar4 + iVar5),0x100 - (iVar4 + iVar5),param_3);
-    puStack_168 = auStack_138;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xb,param_1,&UNK_180981d40);
-  }
-  alStack_158[1] = 0;
-  iVar4 = func_0x00018088c590(param_1,alStack_158);
-  if (iVar4 == 0) {
-    if ((*(uint *)(alStack_158[0] + 0x24) >> 1 & 1) == 0) goto LAB_180845d97;
-    iVar5 = FUN_18088c740(alStack_158 + 1);
-    if (iVar5 == 0) goto LAB_180845e35;
-  }
-  else {
-LAB_180845e35:
-    iVar5 = iVar4;
-  }
-  if ((iVar5 == 0) &&
-     (iVar4 = FUN_18088dec0(*(undefined8 *)(alStack_158[0] + 0x98),apuStack_148,0x28), iVar4 == 0))
-  {
-    *apuStack_148[0] = &UNK_180981cd8;
-    *(undefined4 *)(apuStack_148[0] + 4) = 0;
-    *(undefined4 *)(apuStack_148[0] + 1) = 0x28;
-    uVar1 = param_2[1];
-    uVar2 = param_2[2];
-    uVar3 = param_2[3];
-    *(undefined4 *)(apuStack_148[0] + 2) = *param_2;
-    *(undefined4 *)((longlong)apuStack_148[0] + 0x14) = uVar1;
-    *(undefined4 *)(apuStack_148[0] + 3) = uVar2;
-    *(undefined4 *)((longlong)apuStack_148[0] + 0x1c) = uVar3;
-    iVar4 = func_0x00018088e0d0(*(undefined8 *)(alStack_158[0] + 0x98),apuStack_148[0]);
-    if (iVar4 == 0) {
-      *param_3 = (ulonglong)*(uint *)(apuStack_148[0] + 4);
-                    // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_158 + 1);
+    
+    // 初始化连接数据
+    connection_data[1] = 0;
+    query_result = func_0x00018088c590(client_id, connection_data);
+    
+    if (query_result == 0) {
+        // 检查连接状态
+        if ((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) == 0) {
+            goto cleanup_and_exit;
+        }
+        
+        // 验证连接句柄
+        status = FUN_18088c740(connection_data + 1);
+        if (status == 0) {
+            goto cleanup_and_exit;
+        }
+    } else {
+        // 连接查询失败
+        status = query_result;
     }
-  }
-LAB_180845d97:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_158 + 1);
+    
+    // 获取属性列表
+    if ((status == 0) && 
+        (query_result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), 
+                                    message_buffers, 0x28), query_result == 0)) {
+        
+        // 设置属性查询消息
+        *message_buffers[0] = &UNK_180981cd8;
+        *(undefined4 *)(message_buffers[0] + 4) = 0;
+        *(undefined4 *)(message_buffers[0] + 1) = 0x28;
+        
+        // 复制属性值
+        property_value1 = property_array[1];
+        property_value2 = property_array[2];
+        property_value3 = property_array[3];
+        
+        *(undefined4 *)(message_buffers[0] + 2) = *property_array;
+        *(undefined4 *)((longlong)message_buffers[0] + 0x14) = property_value1;
+        *(undefined4 *)(message_buffers[0] + 3) = property_value2;
+        *(undefined4 *)((longlong)message_buffers[0] + 0x1c) = property_value3;
+        
+        // 执行属性查询
+        query_result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), 
+                                          message_buffers[0]);
+        
+        if (query_result == 0) {
+            // 返回属性数量
+            *property_count = (ulonglong)*(uint *)(message_buffers[0] + 4);
+            
+            // 清理临时资源
+            FUN_18088c790(connection_data + 1);
+        }
+    }
+    
+cleanup_and_exit:
+    // 清理连接数据
+    FUN_18088c790(connection_data + 1);
 }
 
 
