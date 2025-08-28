@@ -83,90 +83,90 @@ void Render_System_Placeholder(void)
 
 
 // 函数: void FUN_1802777f0(longlong param_1)
-void FUN_1802777f0(longlong param_1)
-
+// 处理渲染对象数组
+void Process_Render_Object_Array(longlong render_context)
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  longlong *plStack_70;
-  undefined1 auStack_68 [8];
-  longlong *plStack_60;
-  undefined4 uStack_58;
-  longlong *plStack_50;
-  undefined2 uStack_48;
-  char cStack_46;
+  longlong *render_obj;
+  longlong *temp_obj;
+  longlong *obj_iterator;
+  longlong *stack_obj_70;
+  undefined1 context_buffer[8];
+  longlong *stack_obj_60;
+  undefined4 process_flag;
+  longlong *stack_obj_50;
+  undefined2 status_flag;
+  char cleanup_flag;
   
-  plVar3 = *(longlong **)(param_1 + 0x38);
-  if (plVar3 < *(longlong **)(param_1 + 0x40)) {
+  obj_iterator = *(longlong **)(render_context + 0x38);
+  if (obj_iterator < *(longlong **)(render_context + 0x40)) {
     do {
-      plVar1 = (longlong *)*plVar3;
-      if (plVar1[0x42] == 0) {
-        plVar1[0x3f] = 0;
-        plVar1[0x40] = 0;
-        *(undefined4 *)(plVar1 + 0x41) = 0;
-        FUN_180079520(plVar1);
+      render_obj = (longlong *)*obj_iterator;
+      if (render_obj[0x42] == 0) {
+        render_obj[0x3f] = 0;
+        render_obj[0x40] = 0;
+        *(undefined4 *)(render_obj + 0x41) = 0;
+        FUN_180079520(render_obj);
       }
       else {
-        (**(code **)(*plVar1 + 0x28))();
-        plStack_50 = (longlong *)0x0;
-        plStack_60 = (longlong *)0x0;
-        auStack_68[0] = 0;
-        (**(code **)(*plVar1 + 0x28))(plVar1);
-        uStack_58 = 0;
-        plStack_60 = plVar1;
-        FUN_18007f4c0(auStack_68);
-        plVar2 = plStack_50;
-        if (plStack_50 != (longlong *)0x0) {
-          (**(code **)(*plStack_50 + 0x28))(plStack_50);
+        (**(code **)(*render_obj + 0x28))();
+        stack_obj_50 = (longlong *)0x0;
+        stack_obj_60 = (longlong *)0x0;
+        context_buffer[0] = 0;
+        (**(code **)(*render_obj + 0x28))(render_obj);
+        process_flag = 0;
+        stack_obj_60 = render_obj;
+        FUN_18007f4c0(context_buffer);
+        temp_obj = stack_obj_50;
+        if (stack_obj_50 != (longlong *)0x0) {
+          (**(code **)(*stack_obj_50 + 0x28))(stack_obj_50);
         }
-        plStack_70 = plVar2;
-        uStack_48 = 0;
-        cStack_46 = '\0';
-        (**(code **)(*plVar1 + 0x38))(plVar1);
-        *(undefined4 *)(plVar2 + 2) = 0;
-        *(undefined4 *)(plVar2 + 7) = 0;
-        *(undefined4 *)(plVar2 + 0x11) = 0;
-        *(undefined4 *)(plVar2 + 0xc) = 0;
-        *(undefined2 *)(plVar2 + 0x18) = 0;
-        if (plVar2[0x17] != 0) {
+        stack_obj_70 = temp_obj;
+        status_flag = 0;
+        cleanup_flag = '\0';
+        (**(code **)(*render_obj + 0x38))(render_obj);
+        *(undefined4 *)(temp_obj + 2) = 0;
+        *(undefined4 *)(temp_obj + 7) = 0;
+        *(undefined4 *)(temp_obj + 0x11) = 0;
+        *(undefined4 *)(temp_obj + 0xc) = 0;
+        *(undefined2 *)(temp_obj + 0x18) = 0;
+        if (temp_obj[0x17] != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        plVar2[0x17] = 0;
-        FUN_180085530(plVar2[0x16]);
-        plVar2[0x16] = 0;
-        *(undefined4 *)(plVar2 + 0x19) = 0;
-        uStack_48 = 0x101;
-        if ((plVar1 != (longlong *)0x0) && (plVar2 != (longlong *)0x0)) {
-          if (cStack_46 != '\0') {
+        temp_obj[0x17] = 0;
+        FUN_180085530(temp_obj[0x16]);
+        temp_obj[0x16] = 0;
+        *(undefined4 *)(temp_obj + 0x19) = 0;
+        status_flag = 0x101;
+        if ((render_obj != (longlong *)0x0) && (temp_obj != (longlong *)0x0)) {
+          if (cleanup_flag != '\0') {
             FUN_180075b70();
           }
-          FUN_18007f6a0(auStack_68);
-          if ((char)uStack_48 != '\0') {
-            FUN_180079520(plVar1);
+          FUN_18007f6a0(context_buffer);
+          if ((char)status_flag != '\0') {
+            FUN_180079520(render_obj);
           }
-          if (uStack_48._1_1_ != '\0') {
-            FUN_180079520(plVar1);
+          if (status_flag._1_1_ != '\0') {
+            FUN_180079520(render_obj);
           }
-          plStack_70 = (longlong *)0x0;
-          if (plVar2 != (longlong *)0x0) {
-            (**(code **)(*plVar2 + 0x38))();
+          stack_obj_70 = (longlong *)0x0;
+          if (temp_obj != (longlong *)0x0) {
+            (**(code **)(*temp_obj + 0x38))();
           }
         }
-        FUN_18007f6a0(auStack_68);
-        if (plStack_50 != (longlong *)0x0) {
-          (**(code **)(*plStack_50 + 0x38))();
+        FUN_18007f6a0(context_buffer);
+        if (stack_obj_50 != (longlong *)0x0) {
+          (**(code **)(*stack_obj_50 + 0x38))();
         }
-        if (plStack_70 != (longlong *)0x0) {
-          (**(code **)(*plStack_70 + 0x38))();
+        if (stack_obj_70 != (longlong *)0x0) {
+          (**(code **)(*stack_obj_70 + 0x38))();
         }
-        if (plVar1 != (longlong *)0x0) {
-          (**(code **)(*plVar1 + 0x38))();
+        if (render_obj != (longlong *)0x0) {
+          (**(code **)(*render_obj + 0x38))();
         }
       }
-      plVar3 = plVar3 + 2;
-    } while (plVar3 < *(longlong **)(param_1 + 0x40));
+      obj_iterator = obj_iterator + 2;
+    } while (obj_iterator < *(longlong **)(render_context + 0x40));
   }
   return;
 }
@@ -176,7 +176,8 @@ void FUN_1802777f0(longlong param_1)
 
 
 // 函数: void FUN_180277a20(longlong param_1,byte param_2)
-void FUN_180277a20(longlong param_1,byte param_2)
+// 渲染对象位图处理和清理
+void Process_Render_Object_Bitmap(longlong render_context,byte flag_mask)
 
 {
   uint uVar1;
