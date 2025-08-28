@@ -124,6 +124,60 @@ typedef void (*SystemConfigRegistrar7)(void);
 #define SystemConfig_RegisterManager7 FUN_1800406b0
 
 /**
+ * @brief 初始化系统配置注册管理器8
+ * 
+ * 该函数负责初始化系统配置注册管理器的第八个实例，
+ * 进行系统配置的注册、内存分配和初始化设置。
+ */
+typedef void (*SystemConfigRegistrar8)(void);
+#define SystemConfig_RegisterManager8 FUN_1800407b0
+
+/**
+ * @brief 初始化系统配置注册管理器9
+ * 
+ * 该函数负责初始化系统配置注册管理器的第九个实例，
+ * 进行系统配置的注册、内存分配和初始化设置。
+ */
+typedef void (*SystemConfigRegistrar9)(void);
+#define SystemConfig_RegisterManager9 FUN_1800408b0
+
+/**
+ * @brief 初始化系统配置注册管理器10
+ * 
+ * 该函数负责初始化系统配置注册管理器的第十个实例，
+ * 进行系统配置的注册、内存分配和初始化设置。
+ */
+typedef void (*SystemConfigRegistrar10)(void);
+#define SystemConfig_RegisterManager10 FUN_1800409b0
+
+/**
+ * @brief 初始化系统配置注册管理器11
+ * 
+ * 该函数负责初始化系统配置注册管理器的第十一个实例，
+ * 进行系统配置的注册、内存分配和初始化设置。
+ */
+typedef void (*SystemConfigRegistrar11)(void);
+#define SystemConfig_RegisterManager11 FUN_180040ab0
+
+/**
+ * @brief 初始化系统配置注册管理器12
+ * 
+ * 该函数负责初始化系统配置注册管理器的第十二个实例，
+ * 进行系统配置的注册、内存分配和初始化设置。
+ */
+typedef void (*SystemConfigRegistrar12)(void);
+#define SystemConfig_RegisterManager12 FUN_180040bb0
+
+/**
+ * @brief 初始化系统配置注册管理器13
+ * 
+ * 该函数负责初始化系统配置注册管理器的第十三个实例，
+ * 进行系统配置的注册、内存分配和初始化设置。
+ */
+typedef void (*SystemConfigRegistrar13)(void);
+#define SystemConfig_RegisterManager13 FUN_180040cb0
+
+/**
  * @brief 获取系统配置完成回调函数
  * 
  * 该函数返回系统配置完成时的回调函数指针。
