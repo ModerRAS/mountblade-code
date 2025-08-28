@@ -303,7 +303,7 @@ typedef struct {
  * ============================================================================ */
 
 // 网络连接处理器 - 处理网络连接的建立和管理
-void NetworkingSystem_ConnectionProcessor(NetworkHandle *network_interface, ConnectionHandle connection_params, longlong config_data, ConnectionHandle *connection_result)
+void NetworkingSystem_ConnectionProcessor(NetworkHandle *network_interface, ConnectionHandle connection_params, int64_t config_data, ConnectionHandle *connection_result)
 
 {
   ConnectionHandle temp_result_1;

@@ -918,13 +918,13 @@ void core_engine_data_initializer(uint64_t *data_ptr)
  * @param src_ptr 源数据指针
  * @return 处理结果：成功返回目标指针，失败返回错误码
  */
-longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
+int64_t core_engine_data_processor(int64_t dest_ptr, int64_t src_ptr)
 {
     uint data_flag;
     void *string_ptr;
-    longlong buffer_size;
-    longlong block_count;
-    longlong allocated_memory;
+    int64_t buffer_size;
+    int64_t block_count;
+    int64_t allocated_memory;
     uint64_t *data_block;
     void *char_ptr;
     
@@ -932,7 +932,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     StringInitializer();
     
     // 计算第一块数据的大小和数量
-    buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x28) - *(longlong *)(src_ptr + CORE_OFFSET_0x20);
+    buffer_size = *(int64_t *)(src_ptr + CORE_OFFSET_0x28) - *(int64_t *)(src_ptr + CORE_OFFSET_0x20);
     buffer_size = buffer_size / CORE_ENGINE_BUFFER_SIZE_0x26 + (buffer_size >> 0x3f);
     allocated_memory = 0;
     block_count = (buffer_size >> 2) - (buffer_size >> 0x3f);
@@ -946,15 +946,15 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     }
     
     // 设置第一块数据的指针和大小
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x20) = allocated_memory;
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x28) = allocated_memory;
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x30) = block_count * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x20) = allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x28) = allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x30) = block_count * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
     data_block = *(uint64_t **)(dest_ptr + CORE_OFFSET_0x20);
-    buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x28);
+    buffer_size = *(int64_t *)(src_ptr + CORE_OFFSET_0x28);
     
     // 复制第一块数据
-    if (*(longlong *)(src_ptr + CORE_OFFSET_0x20) != buffer_size) {
-        block_count = *(longlong *)(src_ptr + CORE_OFFSET_0x20) - (longlong)data_block;
+    if (*(int64_t *)(src_ptr + CORE_OFFSET_0x20) != buffer_size) {
+        block_count = *(int64_t *)(src_ptr + CORE_OFFSET_0x20) - (int64_t)data_block;
         do {
             // 初始化数据块头部
             *data_block = &core_engine_vtable_active;
@@ -966,15 +966,15 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             *(int8_t *)(data_block + 3) = 0;
             
             // 复制数据字段
-            *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
-            string_ptr = *(void **)(block_count + 8 + (longlong)data_block);
+            *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (int64_t)data_block);
+            string_ptr = *(void **)(block_count + 8 + (int64_t)data_block);
             char_ptr = &core_engine_string_data;
             if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
             strcpy_s(data_block[1], CORE_ENGINE_STRING_SIZE_0x80, char_ptr);
             data_block = data_block + 0x13;
-        } while (block_count + (longlong)data_block != buffer_size);
+        } while (block_count + (int64_t)data_block != buffer_size);
     }
     
     // 更新第一块数据的结束指针
@@ -987,7 +987,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     DataBlockCopier(dest_ptr + CORE_OFFSET_0xe0, src_ptr + CORE_OFFSET_0xe0);
     
     // 计算第二块数据的大小和数量
-    buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x180) - *(longlong *)(src_ptr + CORE_OFFSET_0x178);
+    buffer_size = *(int64_t *)(src_ptr + CORE_OFFSET_0x180) - *(int64_t *)(src_ptr + CORE_OFFSET_0x178);
     buffer_size = buffer_size / CORE_ENGINE_BUFFER_SIZE_0x26 + (buffer_size >> 0x3f);
     block_count = (buffer_size >> 2) - (buffer_size >> 0x3f);
     data_flag = *(uint *)(src_ptr + 400);
@@ -1000,15 +1000,15 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     }
     
     // 设置第二块数据的指针和大小
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x178) = allocated_memory;
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x180) = allocated_memory;
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x188) = block_count * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x178) = allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x180) = allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x188) = block_count * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
     data_block = *(uint64_t **)(dest_ptr + CORE_OFFSET_0x178);
-    buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x180);
+    buffer_size = *(int64_t *)(src_ptr + CORE_OFFSET_0x180);
     
     // 复制第二块数据
-    if (*(longlong *)(src_ptr + CORE_OFFSET_0x178) != buffer_size) {
-        block_count = *(longlong *)(src_ptr + CORE_OFFSET_0x178) - (longlong)data_block;
+    if (*(int64_t *)(src_ptr + CORE_OFFSET_0x178) != buffer_size) {
+        block_count = *(int64_t *)(src_ptr + CORE_OFFSET_0x178) - (int64_t)data_block;
         do {
             // 初始化数据块头部
             *data_block = &core_engine_vtable_active;
@@ -1020,15 +1020,15 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             *(int8_t *)(data_block + 3) = 0;
             
             // 复制数据字段
-            *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
-            string_ptr = *(void **)(block_count + 8 + (longlong)data_block);
+            *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (int64_t)data_block);
+            string_ptr = *(void **)(block_count + 8 + (int64_t)data_block);
             char_ptr = &core_engine_string_data;
             if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
             strcpy_s(data_block[1], CORE_ENGINE_STRING_SIZE_0x80, char_ptr);
             data_block = data_block + 0x13;
-        } while (block_count + (longlong)data_block != buffer_size);
+        } while (block_count + (int64_t)data_block != buffer_size);
     }
     
     // 更新第二块数据的结束指针
@@ -1038,7 +1038,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     DataStructureProcessor(dest_ptr + CORE_OFFSET_0x198, src_ptr + CORE_OFFSET_0x198, CORE_ENGINE_BLOCK_SIZE_0x98, 5, DataBlockCopier, DataValidator);
     
     // 计算第三块数据的大小和数量
-    buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x498) - *(longlong *)(src_ptr + CORE_OFFSET_0x490);
+    buffer_size = *(int64_t *)(src_ptr + CORE_OFFSET_0x498) - *(int64_t *)(src_ptr + CORE_OFFSET_0x490);
     buffer_size = buffer_size / CORE_ENGINE_BUFFER_SIZE_0x26 + (buffer_size >> 0x3f);
     block_count = (buffer_size >> 2) - (buffer_size >> 0x3f);
     data_flag = *(uint *)(src_ptr + CORE_OFFSET_0x4a8);
@@ -1051,15 +1051,15 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     }
     
     // 设置第三块数据的指针和大小
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x490) = allocated_memory;
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x498) = allocated_memory;
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x4a0) = block_count * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x490) = allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x498) = allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x4a0) = block_count * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
     data_block = *(uint64_t **)(dest_ptr + CORE_OFFSET_0x490);
-    buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x498);
+    buffer_size = *(int64_t *)(src_ptr + CORE_OFFSET_0x498);
     
     // 复制第三块数据
-    if (*(longlong *)(src_ptr + CORE_OFFSET_0x490) != buffer_size) {
-        block_count = *(longlong *)(src_ptr + CORE_OFFSET_0x490) - (longlong)data_block;
+    if (*(int64_t *)(src_ptr + CORE_OFFSET_0x490) != buffer_size) {
+        block_count = *(int64_t *)(src_ptr + CORE_OFFSET_0x490) - (int64_t)data_block;
         do {
             // 初始化数据块头部
             *data_block = &core_engine_vtable_active;
@@ -1071,15 +1071,15 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             *(int8_t *)(data_block + 3) = 0;
             
             // 复制数据字段
-            *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
-            string_ptr = *(void **)(block_count + 8 + (longlong)data_block);
+            *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (int64_t)data_block);
+            string_ptr = *(void **)(block_count + 8 + (int64_t)data_block);
             char_ptr = &core_engine_string_data;
             if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
             strcpy_s(data_block[1], CORE_ENGINE_STRING_SIZE_0x80, char_ptr);
             data_block = data_block + 0x13;
-        } while (block_count + (longlong)data_block != buffer_size);
+        } while (block_count + (int64_t)data_block != buffer_size);
     }
     
     // 更新第三块数据的结束指针
@@ -1092,7 +1092,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     DataBlockCopier(dest_ptr + CORE_OFFSET_0x1020, src_ptr + CORE_OFFSET_0x1020);
     
     // 计算第四块数据的大小和数量
-    buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x10c0) - *(longlong *)(src_ptr + CORE_OFFSET_0x10b8);
+    buffer_size = *(int64_t *)(src_ptr + CORE_OFFSET_0x10c0) - *(int64_t *)(src_ptr + CORE_OFFSET_0x10b8);
     buffer_size = buffer_size / CORE_ENGINE_BUFFER_SIZE_0x26 + (buffer_size >> 0x3f);
     buffer_size = (buffer_size >> 2) - (buffer_size >> 0x3f);
     data_flag = *(uint *)(src_ptr + CORE_OFFSET_0x10d0);
@@ -1104,15 +1104,15 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     }
     
     // 设置第四块数据的指针和大小
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x10b8) = allocated_memory;
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x10c0) = allocated_memory;
-    *(longlong *)(dest_ptr + CORE_OFFSET_0x10c8) = buffer_size * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x10b8) = allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x10c0) = allocated_memory;
+    *(int64_t *)(dest_ptr + CORE_OFFSET_0x10c8) = buffer_size * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
     data_block = *(uint64_t **)(dest_ptr + CORE_OFFSET_0x10b8);
-    buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x10c0);
+    buffer_size = *(int64_t *)(src_ptr + CORE_OFFSET_0x10c0);
     
     // 复制第四块数据
-    if (*(longlong *)(src_ptr + CORE_OFFSET_0x10b8) != buffer_size) {
-        allocated_memory = *(longlong *)(src_ptr + CORE_OFFSET_0x10b8) - (longlong)data_block;
+    if (*(int64_t *)(src_ptr + CORE_OFFSET_0x10b8) != buffer_size) {
+        allocated_memory = *(int64_t *)(src_ptr + CORE_OFFSET_0x10b8) - (int64_t)data_block;
         do {
             // 初始化数据块头部
             *data_block = &core_engine_vtable_active;
@@ -1124,15 +1124,15 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             *(int8_t *)(data_block + 3) = 0;
             
             // 复制数据字段
-            *(int32_t *)(data_block + 2) = *(int32_t *)(allocated_memory + CORE_OFFSET_0x10 + (longlong)data_block);
-            string_ptr = *(void **)(allocated_memory + 8 + (longlong)data_block);
+            *(int32_t *)(data_block + 2) = *(int32_t *)(allocated_memory + CORE_OFFSET_0x10 + (int64_t)data_block);
+            string_ptr = *(void **)(allocated_memory + 8 + (int64_t)data_block);
             char_ptr = &core_engine_string_data;
             if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
             strcpy_s(data_block[1], CORE_ENGINE_STRING_SIZE_0x80, char_ptr);
             data_block = data_block + 0x13;
-        } while (allocated_memory + (longlong)data_block != buffer_size);
+        } while (allocated_memory + (int64_t)data_block != buffer_size);
     }
     
     // 更新第四块数据的结束指针
@@ -1166,12 +1166,12 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
  * @param resource_flags 资源标志
  * @return 处理结果：成功返回资源指针，失败返回错误码
  */
-longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resource_ptr, longlong config_data, uint64_t resource_flags)
+int64_t *core_engine_resource_manager(uint64_t resource_type, int64_t *resource_ptr, int64_t config_data, uint64_t resource_flags)
 {
     uint64_t *resource_block_1;
     uint64_t *resource_block_2;
-    longlong resource_handle;
-    longlong resource_count;
+    int64_t resource_handle;
+    int64_t resource_count;
     uint64_t resource_id;
     void *resource_data;
     void *stack_data_1;
@@ -1179,7 +1179,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
     int32_t stack_data_3;
     uint64_t stack_data_4;
     void *stack_data_5;
-    longlong stack_data_6;
+    int64_t stack_data_6;
     int32_t stack_data_7;
     
     resource_handle = core_engine_resource_handle;
@@ -1194,12 +1194,12 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
     }
     
     stack_data_2 = (int8_t *)0x0;
-    stack_data_4 = (ulonglong)stack_data_4._4_4_ << 0x20;
+    stack_data_4 = (uint64_t)stack_data_4._4_4_ << 0x20;
     stack_data_1 = &core_engine_vtable_active;
-    *resource_ptr = (longlong)&core_engine_vtable_active;
+    *resource_ptr = (int64_t)&core_engine_vtable_active;
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 2) = 0;
-    *resource_ptr = (longlong)&core_engine_vtable_default;
+    *resource_ptr = (int64_t)&core_engine_vtable_default;
     resource_ptr[3] = 0;
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 2) = 0;
@@ -1237,10 +1237,10 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
         if (*(void **)(config_data + 8) != (void *)0x0) {
             resource_data = *(void **)(config_data + 8);
         }
-        memcpy(stack_data_2, resource_data, (longlong)(*(int *)(config_data + CORE_OFFSET_0x10) + 1));
+        memcpy(stack_data_2, resource_data, (int64_t)(*(int *)(config_data + CORE_OFFSET_0x10) + 1));
     }
     
-    if (*(longlong *)(config_data + 8) != 0) {
+    if (*(int64_t *)(config_data + 8) != 0) {
         stack_data_3 = 0;
         if (stack_data_2 != (int8_t *)0x0) {
             *stack_data_2 = 0;
@@ -1263,12 +1263,12 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
         *(int32_t *)(resource_block_2 + 2) = 0;
         *(int32_t *)(resource_block_2 + 2) = stack_data_3;
         resource_block_2[1] = stack_data_2;
-        *(uint *)((longlong)resource_block_2 + 0x1c) = stack_data_4._4_4_;
+        *(uint *)((int64_t)resource_block_2 + 0x1c) = stack_data_4._4_4_;
         *(int32_t *)(resource_block_2 + 3) = (int32_t)stack_data_4;
         stack_data_3 = 0;
         stack_data_2 = (int8_t *)0x0;
         stack_data_4 = 0;
-        *(longlong *)(resource_handle + CORE_OFFSET_0x10) = *(longlong *)(resource_handle + CORE_OFFSET_0x10) + 0x20;
+        *(int64_t *)(resource_handle + CORE_OFFSET_0x10) = *(int64_t *)(resource_handle + CORE_OFFSET_0x10) + 0x20;
     }
     
     stack_data_1 = &core_engine_vtable_default;
@@ -1290,11 +1290,11 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
  * @param string_data 字符串数据
  * @return 处理结果：成功返回处理后的字符串指针，失败返回错误码
  */
-longlong core_engine_string_processor(longlong *context_ptr, longlong string_data)
+int64_t core_engine_string_processor(int64_t *context_ptr, int64_t string_data)
 {
     int32_t format_flag;
     char *char_ptr;
-    longlong string_length;
+    int64_t string_length;
     int16_t *string_buffer;
     void *temp_ptr;
     uint char_count;
@@ -1309,8 +1309,8 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
     void *stack_ptr_4;
     int16_t *stack_ptr_5;
     int32_t stack_data_5;
-    ulonglong stack_data_6;
-    longlong stack_data_7;
+    uint64_t stack_data_6;
+    int64_t stack_data_7;
     uint64_t stack_data_8;
     
     stack_data_8 = 0xfffffffffffffffe;
@@ -1398,21 +1398,21 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
  * @param input_data 输入数据
  * @return 处理结果：成功返回配置指针，失败返回错误码
  */
-longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
+int64_t *core_engine_config_parser(int64_t *config_ptr, int64_t input_data)
 {
     char current_char;
     uint64_t *config_block;
     bool quote_flag;
     uint char_count;
     int8_t *string_buffer;
-    ulonglong buffer_size;
+    uint64_t buffer_size;
     int8_t *temp_ptr_1;
     int8_t *temp_ptr_2;
     uint string_length;
-    longlong buffer_offset;
+    int64_t buffer_offset;
     uint *flag_ptr;
-    ulonglong temp_size_1;
-    ulonglong temp_size_2;
+    uint64_t temp_size_1;
+    uint64_t temp_size_2;
     int8_t *heap_ptr;
     char *src_ptr;
     char *dest_ptr;
@@ -1462,40 +1462,40 @@ longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
                                 if ((int)char_count < CORE_ENGINE_BLOCK_SIZE_0x10) {
                                     char_count = CORE_ENGINE_BLOCK_SIZE_0x10;
                                 }
-                                temp_ptr_1 = (int8_t *)MemoryAllocator(core_engine_memory_pool, (longlong)(int)char_count, CORE_ENGINE_ALLOC_SIZE_0x13);
+                                temp_ptr_1 = (int8_t *)MemoryAllocator(core_engine_memory_pool, (int64_t)(int)char_count, CORE_ENGINE_ALLOC_SIZE_0x13);
                                 *temp_ptr_1 = 0;
                             }
                             else {
                                 if (char_count <= (uint)temp_ptr_2) goto SKIP_REALLOCATION;
                                 temp_ptr_1 = (int8_t *)MemoryReallocator(core_engine_memory_pool, temp_ptr_1, char_count, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
                             }
-                            buffer_size = (ulonglong)temp_ptr_1 & 0xffffffffffc00000;
+                            buffer_size = (uint64_t)temp_ptr_1 & 0xffffffffffc00000;
                             if (buffer_size == 0) {
                                 temp_ptr_2 = (int8_t *)0x0;
                             }
                             else {
-                                buffer_offset = ((longlong)temp_ptr_1 - buffer_size >> 0x10) * 0x50 + 0x80 + buffer_size;
-                                flag_ptr = (uint *)(buffer_offset - (ulonglong)*(uint *)(buffer_offset + 4));
-                                if ((*(byte *)((longlong)flag_ptr + 0xe) & 2) == 0) {
-                                    temp_ptr_2 = (int8_t *)(ulonglong)flag_ptr[7];
+                                buffer_offset = ((int64_t)temp_ptr_1 - buffer_size >> 0x10) * 0x50 + 0x80 + buffer_size;
+                                flag_ptr = (uint *)(buffer_offset - (uint64_t)*(uint *)(buffer_offset + 4));
+                                if ((*(byte *)((int64_t)flag_ptr + 0xe) & 2) == 0) {
+                                    temp_ptr_2 = (int8_t *)(uint64_t)flag_ptr[7];
                                     if ((int8_t *)0x3ffffff < temp_ptr_2) {
-                                        temp_ptr_2 = (int8_t *)((ulonglong)*flag_ptr << 0x10);
+                                        temp_ptr_2 = (int8_t *)((uint64_t)*flag_ptr << 0x10);
                                     }
                                 }
                                 else {
-                                    temp_size_1 = (ulonglong)flag_ptr[7];
+                                    temp_size_1 = (uint64_t)flag_ptr[7];
                                     if (temp_size_1 < 0x4000000) {
-                                        temp_size_2 = (ulonglong)flag_ptr[7];
+                                        temp_size_2 = (uint64_t)flag_ptr[7];
                                     }
                                     else {
-                                        temp_size_2 = (ulonglong)*flag_ptr << 0x10;
+                                        temp_size_2 = (uint64_t)*flag_ptr << 0x10;
                                     }
                                     if (0x3ffffff < temp_size_1) {
-                                        temp_size_1 = (ulonglong)*flag_ptr << 0x10;
+                                        temp_size_1 = (uint64_t)*flag_ptr << 0x10;
                                     }
                                     temp_ptr_2 = (int8_t *)
-                                             (temp_size_1 - ((longlong)temp_ptr_1 -
-                                                      (((longlong)((longlong)flag_ptr + (-0x80 - buffer_size)) / 0x50) *
+                                             (temp_size_1 - ((int64_t)temp_ptr_1 -
+                                                      (((int64_t)((int64_t)flag_ptr + (-0x80 - buffer_size)) / 0x50) *
                                                        0x10000 + buffer_size)) % temp_size_2);
                                 }
                             }
@@ -1503,9 +1503,9 @@ longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
                             stack_ptr_2 = temp_ptr_1;
                         }
 SKIP_REALLOCATION:
-                        temp_ptr_2[(longlong)temp_ptr_1] = current_char;
+                        temp_ptr_2[(int64_t)temp_ptr_1] = current_char;
                         temp_ptr_1[string_length] = 0;
-                        heap_ptr = (int8_t *)(ulonglong)string_length;
+                        heap_ptr = (int8_t *)(uint64_t)string_length;
                         stack_data_1 = string_length;
                     }
                     dest_ptr = src_ptr + 1;
@@ -1517,7 +1517,7 @@ SKIP_REALLOCATION:
             // 将配置项添加到配置结构中
             config_block = (uint64_t *)config_ptr[1];
             if (config_block < (uint64_t *)config_ptr[2]) {
-                config_ptr[1] = (longlong)(config_block + 4);
+                config_ptr[1] = (int64_t)(config_block + 4);
                 *config_block = &core_engine_vtable_active;
                 config_block[1] = 0;
                 *(int32_t *)(config_block + 2) = 0;
@@ -1534,7 +1534,7 @@ SKIP_REALLOCATION:
                     if ((int8_t *)config_block[1] != (int8_t *)0x0) {
                         *(int8_t *)config_block[1] = 0;
                     }
-                    *(int32_t *)((longlong)config_block + 0x1c) = 0;
+                    *(int32_t *)((int64_t)config_block + 0x1c) = 0;
                 }
             }
             else {
@@ -1578,54 +1578,54 @@ SKIP_REALLOCATION:
  * @param config_data 配置数据
  * @return 处理结果：成功返回数据指针，失败返回错误码
  */
-longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, uint64_t config_data)
+int64_t *core_engine_data_manager(uint64_t manager_type, int64_t *data_ptr, uint64_t config_data)
 {
     uint64_t *data_block_1;
     uint64_t data_id;
-    longlong data_handle;
-    longlong **data_array;
-    longlong data_offset;
-    longlong data_size;
-    ulonglong element_count;
+    int64_t data_handle;
+    int64_t **data_array;
+    int64_t data_offset;
+    int64_t data_size;
+    uint64_t element_count;
     uint element_index;
-    longlong *element_ptr;
+    int64_t *element_ptr;
     int temp_int;
     uint64_t *temp_ptr_1;
-    longlong *temp_ptr_2;
-    longlong *temp_ptr_3;
-    ulonglong temp_size;
-    longlong *stack_ptr_1;
+    int64_t *temp_ptr_2;
+    int64_t *temp_ptr_3;
+    uint64_t temp_size;
+    int64_t *stack_ptr_1;
     uint stack_data_1;
     void *stack_ptr_2;
     int8_t *stack_ptr_3;
     uint stack_data_2;
-    ulonglong stack_data_3;
+    uint64_t stack_data_3;
     void *stack_ptr_4;
-    longlong stack_data_5;
-    ulonglong stack_data_6;
+    int64_t stack_data_5;
+    uint64_t stack_data_6;
     void *stack_ptr_5;
     uint64_t stack_data_7;
     int32_t stack_data_8;
     void *stack_ptr_6;
-    longlong stack_data_9;
+    int64_t stack_data_9;
     uint stack_data_10;
     uint64_t stack_data_11;
-    longlong *stack_ptr_7;
-    longlong *stack_ptr_8;
-    longlong *stack_ptr_9;
+    int64_t *stack_ptr_7;
+    int64_t *stack_ptr_8;
+    int64_t *stack_ptr_9;
     int32_t stack_data_12;
     void *stack_ptr_10;
-    longlong stack_data_11;
+    int64_t stack_data_11;
     uint stack_data_13;
-    ulonglong stack_data_14;
+    uint64_t stack_data_14;
     void *stack_ptr_11;
-    longlong stack_data_15;
+    int64_t stack_data_15;
     int32_t stack_data_16;
     uint64_t stack_data_17;
     
     data_id = core_engine_resource_handle;
     stack_data_17 = 0xfffffffffffffffe;
-    temp_ptr_2 = (longlong *)0x0;
+    temp_ptr_2 = (int64_t *)0x0;
     stack_data_8 = 0;
     ContextInitializer(&stack_ptr_6, config_data);
     temp_ptr_3 = temp_ptr_2;
@@ -1634,12 +1634,12 @@ longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, ui
     // 处理输入数据
     if (stack_data_10 != 0) {
         do {
-            if ((byte)(*(char *)(stack_data_9 + (longlong)stack_ptr_9) + 0xbfU) < 0x1a) {
-                *(char *)(stack_data_9 + (longlong)stack_ptr_9) = *(char *)(stack_data_9 + (longlong)stack_ptr_9) + ' ';
+            if ((byte)(*(char *)(stack_data_9 + (int64_t)stack_ptr_9) + 0xbfU) < 0x1a) {
+                *(char *)(stack_data_9 + (int64_t)stack_ptr_9) = *(char *)(stack_data_9 + (int64_t)stack_ptr_9) + ' ';
             }
             element_index = (int)temp_ptr_3 + 1;
-            temp_ptr_3 = (longlong *)(ulonglong)element_index;
-            stack_ptr_9 = (longlong *)((longlong)stack_ptr_9 + 1);
+            temp_ptr_3 = (int64_t *)(uint64_t)element_index;
+            stack_ptr_9 = (int64_t *)((int64_t)stack_ptr_9 + 1);
         } while (element_index < stack_data_10);
     }
     
@@ -1650,17 +1650,17 @@ longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, ui
     // 处理第二部分数据
     if (stack_data_13 != 0) {
         do {
-            if ((byte)(*(char *)(stack_data_11 + (longlong)stack_ptr_9) + 0xbfU) < 0x1a) {
-                *(char *)(stack_data_11 + (longlong)stack_ptr_9) = *(char *)(stack_data_11 + (longlong)stack_ptr_9) + ' ';
+            if ((byte)(*(char *)(stack_data_11 + (int64_t)stack_ptr_9) + 0xbfU) < 0x1a) {
+                *(char *)(stack_data_11 + (int64_t)stack_ptr_9) = *(char *)(stack_data_11 + (int64_t)stack_ptr_9) + ' ';
             }
             element_index = (int)temp_ptr_3 + 1;
-            temp_ptr_3 = (longlong *)(ulonglong)element_index;
-            stack_ptr_9 = (longlong *)((longlong)stack_ptr_9 + 1);
+            temp_ptr_3 = (int64_t *)(uint64_t)element_index;
+            stack_ptr_9 = (int64_t *)((int64_t)stack_ptr_9 + 1);
         } while (element_index < stack_data_13);
     }
     
     temp_int = stack_data_10 - 1;
-    data_handle = (longlong)temp_int;
+    data_handle = (int64_t)temp_int;
     if (-1 < temp_int) {
         do {
             if (*(char *)(stack_data_9 + data_handle) == '.') {
@@ -1670,35 +1670,35 @@ longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, ui
                         ErrorHandler();
                     }
                     stack_data_10 = *(uint *)(data_handle + CORE_OFFSET_0x10);
-                    stack_data_9 = *(longlong *)(data_handle + 8);
+                    stack_data_9 = *(int64_t *)(data_handle + 8);
                     stack_data_11 = *(uint64_t *)(data_handle + 0x18);
                     *(int32_t *)(data_handle + CORE_OFFSET_0x10) = 0;
                     *(uint64_t *)(data_handle + 8) = 0;
                     *(uint64_t *)(data_handle + 0x18) = 0;
-                    stack_ptr_7 = (longlong *)&core_engine_vtable_default;
-                    if (stack_ptr_8 != (longlong *)0x0) {
+                    stack_ptr_7 = (int64_t *)&core_engine_vtable_default;
+                    if (stack_ptr_8 != (int64_t *)0x0) {
                         ErrorHandler();
                     }
-                    stack_ptr_8 = (longlong *)0x0;
+                    stack_ptr_8 = (int64_t *)0x0;
                     stack_data_12 = 0;
-                    stack_ptr_7 = (longlong *)&core_engine_vtable_active;
+                    stack_ptr_7 = (int64_t *)&core_engine_vtable_active;
                     data_handle = StringParser(&stack_ptr_10, &stack_ptr_7, temp_int + 1, stack_data_13);
                     if (stack_data_11 != 0) {
                         ErrorHandler();
                     }
                     stack_data_13 = *(uint *)(data_handle + CORE_OFFSET_0x10);
-                    stack_data_11 = *(longlong *)(data_handle + 8);
-                    stack_data_6 = *(ulonglong *)(data_handle + 0x18);
+                    stack_data_11 = *(int64_t *)(data_handle + 8);
+                    stack_data_6 = *(uint64_t *)(data_handle + 0x18);
                     *(int32_t *)(data_handle + CORE_OFFSET_0x10) = 0;
                     *(uint64_t *)(data_handle + 8) = 0;
                     *(uint64_t *)(data_handle + 0x18) = 0;
-                    stack_ptr_7 = (longlong *)&core_engine_vtable_default;
-                    if (stack_ptr_8 != (longlong *)0x0) {
+                    stack_ptr_7 = (int64_t *)&core_engine_vtable_default;
+                    if (stack_ptr_8 != (int64_t *)0x0) {
                         ErrorHandler();
                     }
-                    stack_ptr_8 = (longlong *)0x0;
+                    stack_ptr_8 = (int64_t *)0x0;
                     stack_data_12 = 0;
-                    stack_ptr_7 = (longlong *)&core_engine_vtable_active;
+                    stack_ptr_7 = (int64_t *)&core_engine_vtable_active;
                     goto PROCESS_DATA;
                 }
                 break;
@@ -1722,24 +1722,24 @@ PROCESS_DATA:
     
     // 处理有效数据
     if (data_handle != 0) {
-        stack_ptr_7 = (longlong *)0x0;
-        stack_ptr_8 = (longlong *)0x0;
-        stack_ptr_9 = (longlong *)0x0;
+        stack_ptr_7 = (int64_t *)0x0;
+        stack_ptr_8 = (int64_t *)0x0;
+        stack_ptr_9 = (int64_t *)0x0;
         stack_data_12 = 3;
-        data_array = (longlong **)DataHandleCreator(data_handle, &stack_ptr_11, &stack_ptr_10);
-        stack_ptr_1 = (longlong *)0x0;
+        data_array = (int64_t **)DataHandleCreator(data_handle, &stack_ptr_11, &stack_ptr_10);
+        stack_ptr_1 = (int64_t *)0x0;
         temp_ptr_3 = temp_ptr_2;
         if (&stack_ptr_7 != data_array) {
             stack_ptr_4 = (void *)0x0;
             stack_data_5 = 0;
             stack_data_3 = 0;
-            stack_data_7 = CONCAT44((int)((ulonglong)stack_data_7 >> 0x20), 3);
+            stack_data_7 = CONCAT44((int)((uint64_t)stack_data_7 >> 0x20), 3);
             stack_ptr_1 = *data_array;
-            *data_array = (longlong *)0x0;
+            *data_array = (int64_t *)0x0;
             temp_ptr_3 = data_array[1];
-            data_array[1] = (longlong *)0x0;
+            data_array[1] = (int64_t *)0x0;
             stack_ptr_9 = data_array[2];
-            data_array[2] = (longlong *)0x0;
+            data_array[2] = (int64_t *)0x0;
             stack_data_12 = *(int32_t *)(data_array + 3);
             *(int32_t *)(data_array + 3) = 3;
             stack_ptr_7 = stack_ptr_1;
@@ -1750,7 +1750,7 @@ PROCESS_DATA:
             ErrorHandler();
         }
         stack_data_1 = 0;
-        temp_size = (longlong)temp_ptr_3 - (longlong)stack_ptr_1 >> 3;
+        temp_size = (int64_t)temp_ptr_3 - (int64_t)stack_ptr_1 >> 3;
         stack_data_14 = temp_size;
         
         // 处理数据元素
@@ -1770,7 +1770,7 @@ PROCESS_DATA:
                     memcpy(stack_ptr_3, *(uint64_t *)(data_handle + 8), *(int *)(data_handle + CORE_OFFSET_0x10) + 1);
                 }
                 
-                if (*(longlong *)(data_handle + 8) != 0) {
+                if (*(int64_t *)(data_handle + 8) != 0) {
                     stack_data_2 = 0;
                     if (stack_ptr_3 != (int8_t *)0x0) {
                         *stack_ptr_3 = 0;
@@ -1785,7 +1785,7 @@ PROCESS_DATA:
                     stack_data_5 = 0;
                     stack_data_3 = stack_data_3 & 0xffffffff00000000;
                     stack_data_8 = 3;
-                    temp_size = (ulonglong)stack_data_10;
+                    temp_size = (uint64_t)stack_data_10;
                     if (stack_data_9 != 0) {
                         ConfigBlockInitializer(&stack_ptr_4, temp_size);
                     }
@@ -1807,7 +1807,7 @@ PROCESS_DATA:
                     }
                     stack_data_2 = *(uint *)(data_handle + CORE_OFFSET_0x10);
                     stack_ptr_3 = *(int8_t **)(data_handle + 8);
-                    stack_data_3 = *(ulonglong *)(data_handle + 0x18);
+                    stack_data_3 = *(uint64_t *)(data_handle + 0x18);
                     *(int32_t *)(data_handle + CORE_OFFSET_0x10) = 0;
                     *(uint64_t *)(data_handle + 8) = 0;
                     *(uint64_t *)(data_handle + 0x18) = 0;
@@ -1824,7 +1824,7 @@ PROCESS_DATA:
                         ErrorHandler();
                     }
                     stack_data_5 = 0;
-                    stack_data_7 = (ulonglong)stack_data_7._4_4_ << 0x20;
+                    stack_data_7 = (uint64_t)stack_data_7._4_4_ << 0x20;
                     stack_ptr_4 = &core_engine_vtable_active;
                 }
                 
@@ -1837,13 +1837,13 @@ PROCESS_DATA:
                 }
                 
                 temp_size = data_ptr[1];
-                if (temp_size < (ulonglong)data_ptr[2]) {
+                if (temp_size < (uint64_t)data_ptr[2]) {
                     data_ptr[1] = temp_size + 0x20;
                     StringInitializer(temp_size, &stack_ptr_2);
                     stack_data_1 = (uint)temp_ptr_2;
                 }
                 else {
-                    data_handle = (longlong)(temp_size - *data_ptr) >> 5;
+                    data_handle = (int64_t)(temp_size - *data_ptr) >> 5;
                     if (data_handle == 0) {
                         data_handle = 1;
 ALLOCATE_MEMORY:
@@ -1879,12 +1879,12 @@ ALLOCATE_MEMORY:
                 stack_data_3 = stack_data_3 & 0xffffffff00000000;
                 stack_ptr_2 = &core_engine_vtable_active;
                 stack_data_1 = stack_data_1 + 1;
-                temp_ptr_2 = (longlong *)(ulonglong)stack_data_1;
+                temp_ptr_2 = (int64_t *)(uint64_t)stack_data_1;
                 stack_ptr_1 = stack_ptr_1 + 1;
-            } while ((ulonglong)(longlong)(int)stack_data_1 < temp_size);
+            } while ((uint64_t)(int64_t)(int)stack_data_1 < temp_size);
         }
         
-        if (stack_ptr_7 != (longlong *)0x0) {
+        if (stack_ptr_7 != (int64_t *)0x0) {
             ErrorHandler();
         }
     }
@@ -1956,7 +1956,7 @@ core_engine_interface_initializer(uint64_t *interface_ptr, uint64_t *config_ptr,
  * @return 处理结果：成功返回配置指针，失败返回错误码
  */
 uint64_t *
-core_engine_parameter_handler(longlong *param_array, uint64_t *config_ptr, uint64_t config_data, uint64_t process_flags)
+core_engine_parameter_handler(int64_t *param_array, uint64_t *config_ptr, uint64_t config_data, uint64_t process_flags)
 {
     uint64_t process_result;
     void *stack_ptr_1;
@@ -1987,7 +1987,7 @@ core_engine_parameter_handler(longlong *param_array, uint64_t *config_ptr, uint6
             *config_ptr = &core_engine_vtable_default;
             *(int32_t *)(config_ptr + 2) = stack_data_2;
             config_ptr[1] = stack_data_1;
-            *(int32_t *)((longlong)config_ptr + 0x1c) = stack_data_3._4_4_;
+            *(int32_t *)((int64_t)config_ptr + 0x1c) = stack_data_3._4_4_;
             *(int32_t *)(config_ptr + 3) = (int32_t)stack_data_3;
         }
     }
@@ -2011,7 +2011,7 @@ core_engine_parameter_handler(longlong *param_array, uint64_t *config_ptr, uint6
  * @param recovery_mode 恢复模式
  * @return 处理结果：成功返回错误处理结果，失败返回错误码
  */
-longlong core_engine_error_handler(uint32_t error_code, void* error_context, uint32_t recovery_mode)
+int64_t core_engine_error_handler(uint32_t error_code, void* error_context, uint32_t recovery_mode)
 {
     uint32_t error_level;
     uint32_t recovery_action;
@@ -2093,7 +2093,7 @@ longlong core_engine_error_handler(uint32_t error_code, void* error_context, uin
  * @param duration 监控持续时间
  * @return 处理结果：成功返回性能监控结果，失败返回错误码
  */
-longlong core_engine_performance_monitor(uint32_t monitor_type, uint32_t sample_interval, uint32_t duration)
+int64_t core_engine_performance_monitor(uint32_t monitor_type, uint32_t sample_interval, uint32_t duration)
 {
     uint32_t sample_count;
     uint32_t current_sample;
@@ -2191,7 +2191,7 @@ longlong core_engine_performance_monitor(uint32_t monitor_type, uint32_t sample_
  * @param flags 优化标志
  * @return 处理结果：成功返回优化后的内存状态，失败返回错误码
  */
-longlong core_engine_memory_optimizer(uint32_t optimization_type, uint32_t target_memory, uint32_t flags)
+int64_t core_engine_memory_optimizer(uint32_t optimization_type, uint32_t target_memory, uint32_t flags)
 {
     uint32_t current_memory;
     uint32_t memory_before;
@@ -2267,7 +2267,7 @@ longlong core_engine_memory_optimizer(uint32_t optimization_type, uint32_t targe
  * @param timeout_ms 超时时间
  * @return 处理结果：成功返回线程安全操作结果，失败返回错误码
  */
-longlong core_engine_thread_safety_controller(uint32_t operation_type, void* resource_ptr, uint32_t timeout_ms)
+int64_t core_engine_thread_safety_controller(uint32_t operation_type, void* resource_ptr, uint32_t timeout_ms)
 {
     uint32_t result;
     uint32_t lock_acquired;
@@ -2332,7 +2332,7 @@ longlong core_engine_thread_safety_controller(uint32_t operation_type, void* res
  * @param alert_threshold 警报阈值
  * @return 处理结果：成功返回监控状态，失败返回错误码
  */
-longlong core_engine_system_monitor(uint32_t monitor_level, uint32_t check_interval, uint32_t alert_threshold)
+int64_t core_engine_system_monitor(uint32_t monitor_level, uint32_t check_interval, uint32_t alert_threshold)
 {
     uint32_t health_score;
     uint32_t system_load;
@@ -2399,7 +2399,7 @@ longlong core_engine_system_monitor(uint32_t monitor_level, uint32_t check_inter
  * @param analysis_depth 分析深度
  * @return 处理结果：成功返回分析结果，失败返回错误码
  */
-longlong core_engine_data_analyzer(uint32_t analysis_type, void* data_source, uint32_t analysis_depth)
+int64_t core_engine_data_analyzer(uint32_t analysis_type, void* data_source, uint32_t analysis_depth)
 {
     uint32_t pattern_count;
     uint32_t anomaly_count;
@@ -2447,7 +2447,7 @@ longlong core_engine_data_analyzer(uint32_t analysis_type, void* data_source, ui
  * @param debug_flags 调试标志
  * @return 处理结果：成功返回调试状态，失败返回错误码
  */
-longlong core_engine_debug_manager(uint32_t debug_mode, void* debug_context, uint32_t debug_flags)
+int64_t core_engine_debug_manager(uint32_t debug_mode, void* debug_context, uint32_t debug_flags)
 {
     uint32_t breakpoint_count;
     uint32_t variable_count;
@@ -2489,7 +2489,7 @@ longlong core_engine_debug_manager(uint32_t debug_mode, void* debug_context, uin
  * @param test_flags 测试标志
  * @return 处理结果：成功返回测试结果，失败返回错误码
  */
-longlong core_engine_test_manager(uint32_t test_type, void* test_suite, uint32_t test_flags)
+int64_t core_engine_test_manager(uint32_t test_type, void* test_suite, uint32_t test_flags)
 {
     uint32_t test_count;
     uint32_t passed_count;
@@ -2539,7 +2539,7 @@ longlong core_engine_test_manager(uint32_t test_type, void* test_suite, uint32_t
  * @param migration_flags 迁移标志
  * @return 处理结果：成功返回兼容性状态，失败返回错误码
  */
-longlong core_engine_compatibility_manager(uint32_t target_version, uint32_t compatibility_mode, uint32_t migration_flags)
+int64_t core_engine_compatibility_manager(uint32_t target_version, uint32_t compatibility_mode, uint32_t migration_flags)
 {
     uint32_t version_check;
     uint32_t legacy_support;
@@ -2594,7 +2594,7 @@ longlong core_engine_compatibility_manager(uint32_t target_version, uint32_t com
  * @param init_flags 初始化标志
  * @return 处理结果：成功返回系统状态，失败返回错误码
  */
-longlong core_engine_initialization_completer(void* system_ptr, void* config_ptr, uint32_t init_flags)
+int64_t core_engine_initialization_completer(void* system_ptr, void* config_ptr, uint32_t init_flags)
 {
     uint32_t validation_result;
     uint32_t monitor_result;
@@ -2653,7 +2653,7 @@ longlong core_engine_initialization_completer(void* system_ptr, void* config_ptr
  * @param validation_flags 验证标志
  * @return 验证结果：成功返回验证状态，失败返回错误码
  */
-longlong core_engine_data_validator(void* data_ptr, uint32_t data_size, uint32_t validation_flags)
+int64_t core_engine_data_validator(void* data_ptr, uint32_t data_size, uint32_t validation_flags)
 {
     uint32_t result;
     uint32_t checksum;
@@ -2706,7 +2706,7 @@ longlong core_engine_data_validator(void* data_ptr, uint32_t data_size, uint32_t
  * @param conversion_flags 转换标志
  * @return 转换结果：成功返回转换状态，失败返回错误码
  */
-longlong core_engine_data_transformer(void* source_data, void* target_data, uint32_t conversion_type, uint32_t conversion_flags)
+int64_t core_engine_data_transformer(void* source_data, void* target_data, uint32_t conversion_type, uint32_t conversion_flags)
 {
     uint32_t result;
     uint32_t conversion_result;
@@ -2792,7 +2792,7 @@ void* core_engine_resource_allocator(uint32_t resource_type, uint32_t resource_s
  * @param scheduling_flags 调度标志
  * @return 调度结果：成功返回调度状态，失败返回错误码
  */
-longlong core_engine_event_scheduler(void* event_ptr, uint32_t priority, uint32_t scheduling_flags)
+int64_t core_engine_event_scheduler(void* event_ptr, uint32_t priority, uint32_t scheduling_flags)
 {
     uint32_t scheduling_result;
     uint32_t queue_result;
@@ -2830,7 +2830,7 @@ longlong core_engine_event_scheduler(void* event_ptr, uint32_t priority, uint32_
  * @param cache_flags 缓存标志
  * @return 管理结果：成功返回缓存状态，失败返回错误码
  */
-longlong core_engine_cache_manager(uint32_t cache_type, uint32_t cache_size, uint32_t cache_flags)
+int64_t core_engine_cache_manager(uint32_t cache_type, uint32_t cache_size, uint32_t cache_flags)
 {
     uint32_t cache_result;
     uint32_t optimization_result;
@@ -2868,7 +2868,7 @@ longlong core_engine_cache_manager(uint32_t cache_type, uint32_t cache_size, uin
  * @param scan_flags 扫描标志
  * @return 扫描结果：成功返回安全状态，失败返回错误码
  */
-longlong core_engine_security_scanner(uint32_t scan_type, uint32_t scan_depth, uint32_t scan_flags)
+int64_t core_engine_security_scanner(uint32_t scan_type, uint32_t scan_depth, uint32_t scan_flags)
 {
     uint32_t scan_result;
     uint32_t security_result;
@@ -2901,7 +2901,7 @@ longlong core_engine_security_scanner(uint32_t scan_type, uint32_t scan_depth, u
  * @param log_flags 日志标志
  * @return 记录结果：成功返回日志状态，失败返回错误码
  */
-longlong core_engine_logger(uint32_t log_level, const char* log_message, uint32_t log_flags)
+int64_t core_engine_logger(uint32_t log_level, const char* log_message, uint32_t log_flags)
 {
     uint32_t log_result;
     
@@ -2932,7 +2932,7 @@ longlong core_engine_logger(uint32_t log_level, const char* log_message, uint32_
  * @param tuning_flags 调谐标志
  * @return 调谐结果：成功返回性能状态，失败返回错误码
  */
-longlong core_engine_performance_tuner(uint32_t tuning_type, uint32_t target_performance, uint32_t tuning_flags)
+int64_t core_engine_performance_tuner(uint32_t tuning_type, uint32_t target_performance, uint32_t tuning_flags)
 {
     uint32_t tuning_result;
     uint32_t optimization_result;
@@ -2965,7 +2965,7 @@ longlong core_engine_performance_tuner(uint32_t tuning_type, uint32_t target_per
  * @param session_flags 会话标志
  * @return 管理结果：成功返回会话状态，失败返回错误码
  */
-longlong core_engine_session_manager(uint32_t session_type, void* session_config, uint32_t session_flags)
+int64_t core_engine_session_manager(uint32_t session_type, void* session_config, uint32_t session_flags)
 {
     uint32_t session_result;
     uint32_t state_result;
