@@ -823,7 +823,7 @@ void FUN_1802635b0(int64_t param_1)
     *puVar2 = &system_data_buffer_ptr;
     if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
-      CoreEngineMemoryPoolCleaner();
+      FUN_18064e900();
     }
     puVar2[1] = 0;
     *(int32_t *)(puVar2 + 3) = 0;
@@ -831,7 +831,7 @@ void FUN_1802635b0(int64_t param_1)
   }
   if (*(int64_t *)(param_1 + 8) != 0) {
                     // WARNING: Subroutine does not return
-    CoreEngineMemoryPoolCleaner();
+    FUN_18064e900();
   }
   return;
 }
