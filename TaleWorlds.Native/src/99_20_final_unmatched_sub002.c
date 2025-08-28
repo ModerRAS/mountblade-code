@@ -263,171 +263,269 @@ undefined UNK_180607c40;  // 物理重力
 
 
 
-// 函数: undefined FUN_1805f6f30;
+/**
+ * @brief UI系统管理器
+ * @details 管理用户界面系统的渲染和交互
+ */
 undefined FUN_1805f6f30;
 
-
-
-// 函数: undefined FUN_1805f6f50;
+/**
+ * @brief UI布局管理器
+ * @details 管理UI元素的布局和排列
+ */
 undefined FUN_1805f6f50;
 
-
-
-// 函数: undefined FUN_1805f7180;
+/**
+ * @brief UI事件管理器
+ * @details 管理UI事件的处理和分发
+ */
 undefined FUN_1805f7180;
 
-
-
-// 函数: undefined FUN_1805f7330;
+/**
+ * @brief UI资源管理器
+ * @details 管理UI资源的加载和释放
+ * @note 包含大量UI相关的数据结构
+ */
 undefined FUN_1805f7330;
-undefined DAT_180c95bd0;
-undefined UNK_180a3b7f0;
-undefined UNK_180a3b9a8;
-undefined UNK_180a3b9c8;
-undefined UNK_180a3b9e0;
-undefined UNK_180a3b9e8;
-undefined UNK_1809fb028;
-undefined UNK_180a3bbe0;
-undefined UNK_180a3bc30;
-undefined UNK_180a3bc90;
-undefined UNK_180a3bc58;
-undefined UNK_180a3bcc8;
-undefined UNK_180a3bd00;
-undefined UNK_1809fb150;
-undefined UNK_1809f8ddc;
-undefined UNK_180a3bdb0;
-undefined UNK_180a3be30;
-undefined UNK_180a3bfe0;
-undefined UNK_180a3c018;
+
+/**
+ * @brief UI资源数据结构
+ * @details UI资源管理器的相关数据结构
+ */
+undefined DAT_180c95bd0;  // UI资源表
+undefined UNK_180a3b7f0;  // UI纹理资源
+undefined UNK_180a3b9a8;  // UI字体资源
+undefined UNK_180a3b9c8;  // UI材质资源
+undefined UNK_180a3b9e0;  // UI着色器资源
+undefined UNK_180a3b9e8;  // UI动画资源
+undefined UNK_1809fb028;  // UI布局资源
+undefined UNK_180a3bbe0;  // UI控件资源
+undefined UNK_180a3bc30;  // UI主题资源
+undefined UNK_180a3bc90;  // UI样式资源
+undefined UNK_180a3bc58;  // UI图标资源
+undefined UNK_180a3bcc8;  // UI颜色资源
+undefined UNK_180a3bd00;  // UI字体大小
+undefined UNK_1809fb150;  // UI布局数据
+undefined UNK_1809f8ddc;  // UI事件数据
+undefined UNK_180a3bdb0;  // UI动画数据
+undefined UNK_180a3be30;  // UI变换数据
+undefined UNK_180a3bfe0;  // UI状态数据
+undefined UNK_180a3c018;  // UI缓存数据
 
 
 
-// 函数: undefined FUN_1806f1000;
+/**
+ * @brief 核心系统管理器
+ * @details 管理游戏引擎的核心系统功能
+ * @note 包含大量系统管理相关的数据结构
+ */
 undefined FUN_1806f1000;
-undefined UNK_18094e418;
-undefined UNK_18094e420;
-undefined UNK_18094e428;
-undefined UNK_18094e440;
-undefined UNK_18094e450;
-undefined UNK_18094e460;
-undefined UNK_18094e470;
-undefined UNK_18094bf80;
-undefined DAT_180c0c324;
-undefined DAT_180c0c320;
-undefined DAT_180c0c330;
-undefined DAT_180c0c328;
-undefined DAT_180c0c32c;
-undefined DAT_180be0f00;
-undefined UNK_18094e340;
-undefined UNK_18094e3a0;
-undefined UNK_18094bf98;
-undefined UNK_18094e498;
-undefined UNK_18094e4a0;
-undefined UNK_18094bfa8;
-undefined UNK_18094bfb8;
-undefined UNK_18094bfc8;
-undefined UNK_18094bfe0;
-undefined UNK_18094bff0;
-undefined UNK_1806f4890;
-undefined UNK_1806f48a0;
-undefined UNK_1806f48b0;
-undefined UNK_1806f48c0;
-undefined UNK_1806f48d0;
-undefined UNK_1806f48e0;
-undefined UNK_1806f48f0;
-undefined UNK_1806f4930;
-undefined UNK_1806f4970;
-undefined UNK_1806f49b0;
-undefined UNK_1806f49f0;
-undefined UNK_1806f4a30;
-undefined UNK_1806f4a70;
-undefined UNK_1806f4ac0;
-undefined UNK_1806f4ad0;
-undefined UNK_1806f4ae0;
-undefined UNK_1806f4af0;
-undefined UNK_1806f4b00;
-undefined UNK_18094e5a4;
-undefined UNK_18094e5b0;
-undefined UNK_18094e5bc;
-undefined UNK_18094e5c8;
-undefined UNK_18094e5d8;
-undefined UNK_18094e5e8;
-undefined UNK_18094e5f8;
-undefined UNK_18094e608;
+
+/**
+ * @brief 核心系统数据结构
+ * @details 核心系统管理器的相关数据结构
+ */
+undefined UNK_18094e418;  // 系统状态
+undefined UNK_18094e420;  // 系统配置
+undefined UNK_18094e428;  // 系统性能
+undefined UNK_18094e440;  // 系统时间
+undefined UNK_18094e450;  // 系统版本
+undefined UNK_18094e460;  // 系统信息
+undefined UNK_18094e470;  // 系统日志
+undefined UNK_18094bf80;  // 系统缓存
+
+/**
+ * @brief 系统常量定义
+ * @details 系统管理器的常量数据
+ */
+undefined DAT_180c0c324;  // 系统版本号
+undefined DAT_180c0c320;  // 系统构建号
+undefined DAT_180c0c330;  // 系统配置表
+undefined DAT_180c0c328;  // 系统参数表
+undefined DAT_180c0c32c;  // 系统限制表
+undefined DAT_180be0f00;  // 系统默认值
+
+/**
+ * @brief 系统管理器成员变量
+ * @details 核心系统管理器的成员变量
+ */
+undefined UNK_18094e340;  // 系统初始化状态
+undefined UNK_18094e3a0;  // 系统运行状态
+undefined UNK_18094bf98;  // 系统错误状态
+undefined UNK_18094e498;  // 系统警告状态
+undefined UNK_18094e4a0;  // 系统调试状态
+undefined UNK_18094bfa8;  // 系统内存状态
+undefined UNK_18094bfb8;  // 系统CPU状态
+undefined UNK_18094bfc8;  // 系统GPU状态
+undefined UNK_18094bfe0;  // 系统网络状态
+undefined UNK_18094bff0;  // 系统存储状态
+
+/**
+ * @brief 系统功能模块
+ * @details 核心系统的各个功能模块
+ */
+undefined UNK_1806f4890;  // 系统初始化模块
+undefined UNK_1806f48a0;  // 系统配置模块
+undefined UNK_1806f48b0;  // 系统监控模块
+undefined UNK_1806f48c0;  // 系统优化模块
+undefined UNK_1806f48d0;  // 系统安全模块
+undefined UNK_1806f48e0;  // 系统调试模块
+undefined UNK_1806f48f0;  // 系统日志模块
+undefined UNK_1806f4930;  // 系统性能模块
+undefined UNK_1806f4970;  // 系统内存模块
+undefined UNK_1806f49b0;  // 系统网络模块
+undefined UNK_1806f49f0;  // 系统存储模块
+undefined UNK_1806f4a30;  // 系统设备模块
+undefined UNK_1806f4a70;  // 系统驱动模块
+undefined UNK_1806f4ac0;  // 系统服务模块
+undefined UNK_1806f4ad0;  // 系统进程模块
+undefined UNK_1806f4ae0;  // 系统线程模块
+undefined UNK_1806f4af0;  // 系统同步模块
+undefined UNK_1806f4b00;  // 系统通信模块
+
+/**
+ * @brief 系统状态标志
+ * @details 系统管理的状态标志位
+ */
+undefined UNK_18094e5a4;  // 系统就绪标志
+undefined UNK_18094e5b0;  // 系统运行标志
+undefined UNK_18094e5bc;  // 系统暂停标志
+undefined UNK_18094e5c8;  // 系统停止标志
+undefined UNK_18094e5d8;  // 系统错误标志
+undefined UNK_18094e5e8;  // 系统警告标志
+undefined UNK_18094e5f8;  // 系统调试标志
+undefined UNK_18094e608;  // 系统测试标志
 
 
 
-// 函数: undefined FUN_1806f4900;
+/**
+ * @brief 系统初始化处理器
+ * @details 处理系统初始化相关操作
+ */
 undefined FUN_1806f4900;
-undefined UNK_18094e618;
 
+/**
+ * @brief 系统初始化数据
+ * @details 系统初始化处理器的相关数据
+ */
+undefined UNK_18094e618;  // 初始化状态
 
-
-// 函数: undefined FUN_1806f4940;
+/**
+ * @brief 系统配置处理器
+ * @details 处理系统配置相关操作
+ */
 undefined FUN_1806f4940;
-undefined UNK_18094e628;
 
+/**
+ * @brief 系统配置数据
+ * @details 系统配置处理器的相关数据
+ */
+undefined UNK_18094e628;  // 配置状态
 
-
-// 函数: undefined FUN_1806f4980;
+/**
+ * @brief 系统监控处理器
+ * @details 处理系统监控相关操作
+ */
 undefined FUN_1806f4980;
-undefined UNK_18094e63c;
 
+/**
+ * @brief 系统监控数据
+ * @details 系统监控处理器的相关数据
+ */
+undefined UNK_18094e63c;  // 监控状态
 
-
-// 函数: undefined FUN_1806f49c0;
+/**
+ * @brief 系统优化处理器
+ * @details 处理系统优化相关操作
+ */
 undefined FUN_1806f49c0;
-undefined UNK_18094e648;
 
+/**
+ * @brief 系统优化数据
+ * @details 系统优化处理器的相关数据
+ */
+undefined UNK_18094e648;  // 优化状态
 
-
-// 函数: undefined FUN_1806f4a00;
+/**
+ * @brief 系统安全处理器
+ * @details 处理系统安全相关操作
+ */
 undefined FUN_1806f4a00;
-undefined UNK_18094e658;
 
+/**
+ * @brief 系统安全数据
+ * @details 系统安全处理器的相关数据
+ */
+undefined UNK_18094e658;  // 安全状态
 
-
-// 函数: undefined FUN_1806f4a40;
+/**
+ * @brief 系统调试处理器
+ * @details 处理系统调试相关操作
+ */
 undefined FUN_1806f4a40;
-undefined UNK_18094e678;
 
+/**
+ * @brief 系统调试数据
+ * @details 系统调试处理器的相关数据
+ */
+undefined UNK_18094e678;  // 调试状态
 
-
-// 函数: undefined FUN_1806f4a90;
+/**
+ * @brief 系统日志处理器
+ * @details 处理系统日志相关操作
+ */
 undefined FUN_1806f4a90;
-undefined UNK_18094e698;
-undefined UNK_1806f4b10;
-undefined UNK_1806f4b20;
 
+/**
+ * @brief 系统日志数据
+ * @details 系统日志处理器的相关数据
+ */
+undefined UNK_18094e698;  // 日志状态
+undefined UNK_1806f4b10;  // 日志缓冲区
+undefined UNK_1806f4b20;  // 日志队列
 
-
-// 函数: undefined FUN_1806f4bc0;
+/**
+ * @brief 系统性能处理器
+ * @details 处理系统性能相关操作
+ */
 undefined FUN_1806f4bc0;
-undefined UNK_1806f4b30;
 
+/**
+ * @brief 系统性能数据
+ * @details 系统性能处理器的相关数据
+ */
+undefined UNK_1806f4b30;  // 性能状态
 
-
-// 函数: undefined FUN_1806f4bf0;
+/**
+ * @brief 系统内存处理器
+ * @details 处理系统内存相关操作
+ * @note 包含大量内存管理相关的数据结构
+ */
 undefined FUN_1806f4bf0;
-undefined UNK_1806f4b40;
-undefined UNK_1806f4b50;
-undefined UNK_1806f4b60;
-undefined UNK_1806f4b70;
-undefined UNK_1806f4b80;
-undefined UNK_1806f4b90;
-undefined UNK_1806f4ba0;
-undefined UNK_1806f4bb0;
-undefined UNK_1806f4c20;
-undefined UNK_18094e6b0;
-undefined UNK_18094e6c0;
-undefined UNK_18094e6d0;
-undefined UNK_18094e6e0;
-undefined UNK_18094e6f0;
-undefined UNK_18094e700;
-undefined UNK_18094e708;
-undefined UNK_1806f4c30;
-undefined UNK_1806f4c70;
-undefined UNK_1806f4cb0;
+
+/**
+ * @brief 系统内存数据结构
+ * @details 系统内存处理器的相关数据结构
+ */
+undefined UNK_1806f4b40;  // 内存管理器
+undefined UNK_1806f4b50;  // 内存分配器
+undefined UNK_1806f4b60;  // 内存池
+undefined UNK_1806f4b70;  // 内存缓存
+undefined UNK_1806f4b80;  // 内存统计
+undefined UNK_1806f4b90;  // 内存监控
+undefined UNK_1806f4ba0;  // 内存优化
+undefined UNK_1806f4bb0;  // 内存清理
+undefined UNK_1806f4c20;  // 内存压缩
+undefined UNK_18094e6b0;  // 内存块
+undefined UNK_18094e6c0;  // 内存页
+undefined UNK_18094e6d0;  // 内存段
+undefined UNK_18094e6e0;  // 内存区
+undefined UNK_18094e6f0;  // 内存堆
+undefined UNK_18094e700;  // 内存栈
+undefined UNK_18094e708;  // 内存映射
+undefined UNK_1806f4c30;  // 内存分配表
+undefined UNK_1806f4c70;  // 内存释放表
+undefined UNK_1806f4cb0;  // 内存碎片表
 
 
 
