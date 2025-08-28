@@ -678,141 +678,195 @@ void error_handler_critical(void)
 
 
 
-// 函数: void FUN_1800ee210(longlong *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800ee210(longlong *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 动态数组扩容函数
+ * @param array_info 数组信息结构指针
+ * @param required_size 需要的大小
+ * @param param3 第三个参数
+ * @param param4 第四个参数
+ * @return 无返回值
+ * 
+ * 该函数用于动态扩容数组，主要功能包括：
+ * - 检查是否需要扩容
+ * - 计算新的容量
+ * - 分配新的内存空间
+ * - 复制现有数据
+ * - 清理旧的数据
+ * - 更新数组信息
+ */
+void dynamic_array_expand(longlong *array_info, ulonglong required_size, undefined8 param3, undefined8 param4)
 {
-  undefined8 *puVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  ulonglong uVar8;
-  longlong *plVar9;
-  ulonglong uVar10;
-  
-  puVar7 = (undefined8 *)param_1[1];
-  if ((ulonglong)(param_1[2] - (longlong)puVar7 >> 5) < param_2) {
-    puVar6 = (undefined8 *)*param_1;
-    lVar3 = (longlong)puVar7 - (longlong)puVar6 >> 5;
-    uVar10 = lVar3 * 2;
-    if (lVar3 == 0) {
-      uVar10 = 1;
-    }
-    if (uVar10 < lVar3 + param_2) {
-      uVar10 = lVar3 + param_2;
-    }
-    puVar4 = (undefined8 *)0x0;
-    if (uVar10 != 0) {
-      puVar4 = (undefined8 *)
-               FUN_18062b420(_DAT_180c8ed18,uVar10 << 5,(char)param_1[3],param_4,0xfffffffffffffffe)
-      ;
-      puVar7 = (undefined8 *)param_1[1];
-      puVar6 = (undefined8 *)*param_1;
-    }
-    puVar5 = puVar4;
-    if (puVar6 != puVar7) {
-      lVar3 = (longlong)puVar4 - (longlong)puVar6;
-      puVar6 = puVar6 + 1;
-      do {
-        *puVar5 = puVar6[-1];
-        puVar6[-1] = 0;
-        *(undefined8 *)((longlong)puVar6 + lVar3) = *puVar6;
-        *puVar6 = 0;
-        *(undefined8 *)(lVar3 + 8 + (longlong)puVar6) = puVar6[1];
-        puVar6[1] = 0;
-        *(undefined8 *)(lVar3 + 0x10 + (longlong)puVar6) = puVar6[2];
-        puVar6[2] = 0;
-        puVar5 = puVar5 + 4;
-        puVar1 = puVar6 + 3;
-        puVar6 = puVar6 + 4;
-      } while (puVar1 != puVar7);
-    }
-    puVar7 = puVar5;
-    uVar8 = param_2;
-    if (param_2 != 0) {
-      do {
-        puVar7[1] = 0;
-        puVar7[2] = 0;
-        puVar7[3] = 0;
-        *puVar7 = 0;
-        puVar7[1] = 0;
-        puVar7[2] = 0;
-        puVar7[3] = 0;
-        puVar7 = puVar7 + 4;
-        uVar8 = uVar8 - 1;
-      } while (uVar8 != 0);
-    }
-    plVar2 = (longlong *)param_1[1];
-    plVar9 = (longlong *)*param_1;
-    if (plVar9 != plVar2) {
-      do {
-        if ((longlong *)plVar9[3] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)plVar9[3] + 0x38))();
+    undefined8 *current_end;
+    longlong *current_start;
+    longlong size_diff;
+    undefined8 *new_memory;
+    undefined8 *new_pos;
+    undefined8 *old_start;
+    undefined8 *old_end;
+    ulonglong count;
+    longlong *old_array;
+    ulonglong new_capacity;
+    
+    // 获取当前数组信息
+    current_end = (undefined8 *)array_info[1];
+    
+    // 检查是否需要扩容
+    if ((ulonglong)(array_info[2] - (longlong)current_end >> 5) < required_size) {
+        old_start = (undefined8 *)*array_info;
+        size_diff = (longlong)current_end - (longlong)old_start >> 5;
+        new_capacity = size_diff * 2;
+        
+        // 确保最小容量
+        if (size_diff == 0) {
+            new_capacity = 1;
         }
-        if ((longlong *)plVar9[2] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)plVar9[2] + 0x38))();
+        
+        // 确保足够容纳所需大小
+        if (new_capacity < size_diff + required_size) {
+            new_capacity = size_diff + required_size;
         }
-        if ((longlong *)plVar9[1] != (longlong *)0x0) {
-          (**(code **)(*(longlong *)plVar9[1] + 0x38))();
+        
+        // 分配新的内存空间
+        new_memory = (undefined8 *)0x0;
+        if (new_capacity != 0) {
+            new_memory = (undefined8 *)
+                         memory_allocator(MEMORY_POOL, new_capacity << 5, (char)array_info[3], param4, INVALID_HANDLE);
+            current_end = (undefined8 *)array_info[1];
+            old_start = (undefined8 *)*array_info;
         }
-        if ((longlong *)*plVar9 != (longlong *)0x0) {
-          (**(code **)(*(longlong *)*plVar9 + 0x38))();
+        
+        new_pos = new_memory;
+        
+        // 复制现有数据
+        if (old_start != current_end) {
+            size_diff = (longlong)new_memory - (longlong)old_start;
+            old_start = old_start + 1;
+            do {
+                *new_pos = old_start[-1];
+                old_start[-1] = 0;
+                *(undefined8 *)((longlong)old_start + size_diff) = *old_start;
+                *old_start = 0;
+                *(undefined8 *)(size_diff + 8 + (longlong)old_start) = old_start[1];
+                old_start[1] = 0;
+                *(undefined8 *)(size_diff + 0x10 + (longlong)old_start) = old_start[2];
+                old_start[2] = 0;
+                new_pos = new_pos + 4;
+                old_start = old_start + 4;
+            } while (old_start != current_end);
         }
-        plVar9 = plVar9 + 4;
-      } while (plVar9 != plVar2);
-      plVar9 = (longlong *)*param_1;
+        
+        // 初始化新分配的空间
+        current_end = new_pos;
+        count = required_size;
+        if (required_size != 0) {
+            do {
+                current_end[1] = 0;
+                current_end[2] = 0;
+                current_end[3] = 0;
+                *current_end = 0;
+                current_end[1] = 0;
+                current_end[2] = 0;
+                current_end[3] = 0;
+                current_end = current_end + 4;
+                count = count - 1;
+            } while (count != 0);
+        }
+        
+        // 清理旧数组中的资源
+        old_array = (longlong *)array_info[1];
+        current_start = (longlong *)*array_info;
+        if (current_start != old_array) {
+            do {
+                if ((longlong *)current_start[3] != (longlong *)0x0) {
+                    (**(code **)(*(longlong *)current_start[3] + OFFSET_0x30))();
+                }
+                if ((longlong *)current_start[2] != (longlong *)0x0) {
+                    (**(code **)(*(longlong *)current_start[2] + OFFSET_0x30))();
+                }
+                if ((longlong *)current_start[1] != (longlong *)0x0) {
+                    (**(code **)(*(longlong *)current_start[1] + OFFSET_0x30))();
+                }
+                if ((longlong *)*current_start != (longlong *)0x0) {
+                    (**(code **)(*(longlong *)*current_start + OFFSET_0x30))();
+                }
+                current_start = current_start + 4;
+            } while (current_start != old_array);
+            current_start = (longlong *)*array_info;
+        }
+        
+        // 释放旧内存
+        if (current_start != (longlong *)0x0) {
+            error_handler_critical(current_start);
+        }
+        
+        // 更新数组信息
+        *array_info = (longlong)new_memory;
+        array_info[1] = (longlong)(new_pos + required_size * 4);
+        array_info[2] = (longlong)(new_memory + new_capacity * 4);
     }
-    if (plVar9 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(plVar9);
+    else {
+        // 不需要扩容，直接初始化新空间
+        count = required_size;
+        if (required_size != 0) {
+            do {
+                current_end[1] = 0;
+                current_end[2] = 0;
+                current_end[3] = 0;
+                *current_end = 0;
+                current_end[1] = 0;
+                current_end[2] = 0;
+                current_end[3] = 0;
+                current_end = current_end + 4;
+                count = count - 1;
+            } while (count != 0);
+            current_end = (undefined8 *)array_info[1];
+        }
+        array_info[1] = (longlong)(current_end + required_size * 4);
     }
-    *param_1 = (longlong)puVar4;
-    param_1[1] = (longlong)(puVar5 + param_2 * 4);
-    param_1[2] = (longlong)(puVar4 + uVar10 * 4);
-  }
-  else {
-    uVar10 = param_2;
-    if (param_2 != 0) {
-      do {
-        puVar7[1] = 0;
-        puVar7[2] = 0;
-        puVar7[3] = 0;
-        *puVar7 = 0;
-        puVar7[1] = 0;
-        puVar7[2] = 0;
-        puVar7[3] = 0;
-        puVar7 = puVar7 + 4;
-        uVar10 = uVar10 - 1;
-      } while (uVar10 != 0);
-      puVar7 = (undefined8 *)param_1[1];
-    }
-    param_1[1] = (longlong)(puVar7 + param_2 * 4);
-  }
-  return;
+    
+    return;
 }
 
+// 函数别名
+#define array_expand_dynamic       dynamic_array_expand
 
 
 
 
 
-// 函数: void FUN_1800ee430(longlong param_1)
-void FUN_1800ee430(longlong param_1)
 
+/**
+ * @brief 内存块清理函数
+ * @param memory_block 内存块指针
+ * @return 无返回值
+ * 
+ * 该函数用于清理内存块，主要功能包括：
+ * - 设置清理标记
+ * - 验证内存块状态
+ * - 重置内存块字段
+ * - 更新清理状态
+ */
+void memory_block_cleanup(longlong memory_block)
 {
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
-  return;
+    // 设置清理标记
+    *(undefined8 *)(memory_block + 8) = &CLEANUP_FLAG_ACTIVE;
+    
+    // 检查内存块是否已被占用
+    if (*(longlong *)(memory_block + OFFSET_0x10) != 0) {
+        // 如果内存块被占用，调用错误处理函数
+        error_handler_critical();
+    }
+    
+    // 重置内存块状态
+    *(undefined8 *)(memory_block + OFFSET_0x10) = 0;
+    *(undefined4 *)(memory_block + OFFSET_0x20) = 0;
+    *(undefined8 *)(memory_block + 8) = &CLEANUP_FLAG_INACTIVE;
+    
+    return;
 }
+
+// 函数别名
+#define memory_block_clean         memory_block_cleanup
 
 
 
