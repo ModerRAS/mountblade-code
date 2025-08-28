@@ -131,7 +131,7 @@ void FUN_18020ccb0(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   puStack_68 = core_system_data_memory;
   uVar18 = *system_main_module_state;
   uStackX_8 = param_1;
-  FUN_1806279c0(&plStack_b8);
+  SystemCore_EncryptionEngine0(&plStack_b8);
   iStack_8c = FUN_180141820(uVar18,&plStack_b8);
   plStack_b8 = (int64_t *)&system_data_buffer_ptr;
   if (plStack_b0 != (int64_t *)0x0) {

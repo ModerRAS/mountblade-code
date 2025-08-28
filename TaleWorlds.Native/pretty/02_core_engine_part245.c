@@ -436,7 +436,7 @@ void FUN_18020e9b0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   param_1[8] = lVar2;
   *(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 0xc) =
        (int)param_1[10];
-  FUN_1806279c0(&puStack_30,param_1 + 2,param_3,param_4,uVar3);
+  SystemCore_EncryptionEngine0(&puStack_30,param_1 + 2,param_3,param_4,uVar3);
   FUN_180623fd0(param_1[8],&puStack_30);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {

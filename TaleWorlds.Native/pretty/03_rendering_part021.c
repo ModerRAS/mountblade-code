@@ -84,7 +84,7 @@ void FUN_18027ba80(int64_t param_1,uint64_t param_2,int8_t param_3)
   if (*(int *)(param_1 + 0x324) < 1) {
     return;
   }
-  FUN_1806279c0(auStack_198);
+  SystemCore_EncryptionEngine0(auStack_198);
   iVar20 = uStack_188 + -1;
   lVar7 = (int64_t)iVar20;
   if (-1 < iVar20) {

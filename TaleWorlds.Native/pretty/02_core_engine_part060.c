@@ -241,7 +241,7 @@ void SystemDataProcessor(uint64_t param_1, int64_t param_2, int64_t param_3, cha
     (**(code **)(*(int64_t *)(param_3 + 0x20) + 0x10))((int64_t *)(param_3 + 0x20), &system_data_143c);
     
     // 数据缓冲区管理
-    FUN_1806279c0(&system_ptr1, param_2);
+    SystemCore_EncryptionEngine0(&system_ptr1, param_2);
     processing_context = FUN_18009ba60(core_data_ptr + 8, &system_ptr1);
     system_ptr1 = &system_data_buffer_ptr;
     context2 = processing_context;
@@ -362,7 +362,7 @@ LAB_180096e94:
     // 数据处理扩展
     if (*(char *)(processing_context + 0x126) != '\0') {
         // 复杂数据处理逻辑
-        FUN_1806279c0(temp_buffer2, param_2);
+        SystemCore_EncryptionEngine0(temp_buffer2, param_2);
         lock_result = data_index + 6;
         CoreEngineDataBufferProcessor(temp_buffer2, lock_result);
         data_buffer = (int32_t *)(data_ptr + data_index);

@@ -848,8 +848,8 @@ LAB_18008807f:
         *(int32_t *)(puVar11 + 0x10) = uStack_88;
         *(int32_t *)(puVar11 + 0x14) = uStack_84;
         puStack_d8 = puVar11;
-        FUN_1806279c0(puVar11 + 0x18,param_2);
-        FUN_1806279c0(puVar11 + 0x38,param_3);
+        SystemCore_EncryptionEngine0(puVar11 + 0x18,param_2);
+        SystemCore_EncryptionEngine0(puVar11 + 0x38,param_3);
         puVar24 = (uint64_t *)(puVar11 + 0x58);
         *puVar24 = &system_state_ptr;
         *(uint64_t *)(puVar11 + 0x60) = 0;

@@ -500,7 +500,7 @@ char StringMatch_Resource_Find(uint64_t param_1,int64_t *param_2)
     if (*(void **)(*param_2 + 0x18) != (void *)0x0) {
       puVar7 = *(void **)(*param_2 + 0x18);
     }
-    FUN_180626f80(&unknown_var_7912_ptr,puVar7);
+    SystemCore_ResourceManager0(&unknown_var_7912_ptr,puVar7);
   }
   if ((int64_t *)*param_2 != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)*param_2 + 0x38))();

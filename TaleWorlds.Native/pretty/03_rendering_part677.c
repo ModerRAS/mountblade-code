@@ -543,7 +543,7 @@ void FUN_180657040(uint64_t *param_1)
   iStack_50 = 6;
   strcpy_s(auStack_48,0x10,&unknown_var_2588_ptr);
   uStack_b8 = 1;
-  FUN_1806279c0(&puStack_b0,&puStack_60);
+  SystemCore_EncryptionEngine0(&puStack_b0,&puStack_60);
   uStack_b8 = 0;
   puStack_60 = &system_state_ptr;
   iVar9 = uStack_a0 + 8;

@@ -205,7 +205,7 @@ void FUN_1800a73e0(int64_t param_1, uint64_t param_2, int64_t param_3, int8_t pa
     // 调用初始化函数
     FUN_1802230e0(param_1, &lStack_810, param_10, param_11);
     uVar5 = FUN_180624440(apuStack_2d8, param_2);
-    FUN_1806279c0(auStack_7b0, uVar5);
+    SystemCore_EncryptionEngine0(auStack_7b0, uVar5);
     apuStack_2d8[0] = &system_state_ptr;
     puStack_858 = &system_data_buffer_ptr;
     uStack_840 = 0;
@@ -322,7 +322,7 @@ LAB_1800a7660:
     
     // 数据处理逻辑
     uVar5 = FUN_180627600(apuStack_518, uStack_790);
-    FUN_1806279c0(auStack_750, uVar5);
+    SystemCore_EncryptionEngine0(auStack_750, uVar5);
     apuStack_518[0] = &system_state_ptr;
     puStack_638 = &unknown_var_2008_ptr;
     puStack_630 = auStack_620;

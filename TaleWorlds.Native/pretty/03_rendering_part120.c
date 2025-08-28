@@ -40,7 +40,7 @@ void FUN_18033ce60(uint64_t *param_1)
   uVar1 = *param_1;
   uStack_b8 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_f8;
-  FUN_1806279c0(&puStack_d8);
+  SystemCore_EncryptionEngine0(&puStack_d8);
   FUN_1800b2a30();
   puStack_d8 = &system_data_buffer_ptr;
   if (lStack_d0 != 0) {

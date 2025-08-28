@@ -796,7 +796,7 @@ void FUN_1803f74f0(int64_t *param_1,int64_t param_2)
           if ((void *)param_1[3] != (void *)0x0) {
             puVar7 = (void *)param_1[3];
           }
-          FUN_180626f80(&unknown_var_7200_ptr,puVar7);
+          SystemCore_ResourceManager0(&unknown_var_7200_ptr,puVar7);
         }
         goto LAB_1803f78fe;
       }

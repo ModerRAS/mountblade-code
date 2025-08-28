@@ -384,7 +384,7 @@ void FUN_180414420(uint64_t param_1,int8_t (*param_2) [16],int64_t param_3)
   uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_168;
   lVar4 = *system_main_module_state;
   puStack_d0 = auStack_68;
-  uVar3 = FUN_1806279c0(auStack_68,param_1);
+  uVar3 = SystemCore_EncryptionEngine0(auStack_68,param_1);
   iVar2 = FUN_180142220(lVar4,uVar3);
   if ((iVar2 < 0) ||
      (lVar4 = *(int64_t *)(*system_main_module_state + 0x888),

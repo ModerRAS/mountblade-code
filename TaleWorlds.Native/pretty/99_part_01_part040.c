@@ -691,7 +691,7 @@ void FUN_1800c9eb0(uint64_t param_1,int64_t param_2)
       auVar7._0_4_ = (float)(int)(iVar3 + (uVar2 & 1 ^ 1));
     }
     iVar3 = (int)(int64_t)auVar7._0_4_ * (int)(int64_t)auVar6._0_4_;
-    FUN_1806279c0(&puStack_60,param_2 + 0x3520);
+    SystemCore_EncryptionEngine0(&puStack_60,param_2 + 0x3520);
     uVar2 = uStack_50 + 0x18;
     CoreMemoryPoolProcessor(&puStack_60,uVar2);
     puVar4 = (uint64_t *)((uint64_t)uStack_50 + lStack_58);
@@ -721,7 +721,7 @@ void FUN_1800c9eb0(uint64_t param_1,int64_t param_2)
     lStack_58 = 0;
     uStack_48 = 0;
     puStack_60 = &system_state_ptr;
-    FUN_1806279c0(&puStack_60,param_2 + 0x3520);
+    SystemCore_EncryptionEngine0(&puStack_60,param_2 + 0x3520);
     uVar2 = uStack_50 + 0x1a;
     CoreMemoryPoolProcessor(&puStack_60,uVar2);
     puVar4 = (uint64_t *)((uint64_t)uStack_50 + lStack_58);
@@ -752,7 +752,7 @@ void FUN_1800c9eb0(uint64_t param_1,int64_t param_2)
     lStack_58 = 0;
     uStack_48 = 0;
     puStack_60 = &system_state_ptr;
-    FUN_1806279c0(&puStack_60,param_2 + 0x3520);
+    SystemCore_EncryptionEngine0(&puStack_60,param_2 + 0x3520);
     uVar2 = uStack_50 + 0x11;
     CoreMemoryPoolProcessor(&puStack_60,uVar2);
     puVar4 = (uint64_t *)((uint64_t)uStack_50 + lStack_58);
@@ -780,7 +780,7 @@ void FUN_1800c9eb0(uint64_t param_1,int64_t param_2)
     lStack_58 = 0;
     uStack_48 = 0;
     puStack_60 = &system_state_ptr;
-    FUN_1806279c0(&puStack_60,param_2 + 0x3520);
+    SystemCore_EncryptionEngine0(&puStack_60,param_2 + 0x3520);
     iVar5 = uStack_50 + 0x18;
     CoreMemoryPoolProcessor(&puStack_60,iVar5);
     puVar4 = (uint64_t *)((uint64_t)uStack_50 + lStack_58);

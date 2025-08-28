@@ -92,7 +92,7 @@ void update_render_object_status(int64_t render_context, int64_t *object_list)
         }
         else {
           // 处理错误情况
-          FUN_180626f80(&unknown_var_5232_ptr);
+          SystemCore_ResourceManager0(&unknown_var_5232_ptr);
         }
       }
       list_iterator = list_iterator + 2;

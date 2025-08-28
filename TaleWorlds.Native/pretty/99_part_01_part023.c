@@ -49,7 +49,7 @@ uint64_t FUN_1800b6de0(int64_t param_1,int64_t param_2,char param_3)
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
   puVar1 = (uint64_t *)(param_1 + 0xa90);
-  FUN_1806279c0(&puStack_40,param_2);
+  SystemCore_EncryptionEngine0(&puStack_40,param_2);
   puVar11 = *(uint64_t **)(param_1 + 0xaa0);
   puVar8 = puVar1;
   if (puVar11 != (uint64_t *)0x0) {

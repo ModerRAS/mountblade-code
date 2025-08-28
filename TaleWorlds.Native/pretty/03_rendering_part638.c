@@ -241,7 +241,7 @@ void FUN_180624910(uint64_t param_1)
   uStack_478 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4c8;
   uVar1 = FUN_180624440(apuStack_468,param_1);
-  FUN_1806279c0(&puStack_498,uVar1);
+  SystemCore_EncryptionEngine0(&puStack_498,uVar1);
   apuStack_468[0] = &system_state_ptr;
   uStack_4a0 = 0x118;
   puStack_4a8 = auStack_248;
@@ -284,7 +284,7 @@ void FUN_180624a00(uint64_t param_1)
   uStack_478 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4c8;
   uVar1 = FUN_180624440(apuStack_468,param_1);
-  FUN_1806279c0(&puStack_498,uVar1);
+  SystemCore_EncryptionEngine0(&puStack_498,uVar1);
   apuStack_468[0] = &system_state_ptr;
   uStack_4a0 = 0x118;
   puStack_4a8 = auStack_248;
@@ -327,7 +327,7 @@ void FUN_180624af0(uint64_t param_1)
   uStack_478 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4c8;
   uVar1 = FUN_180624440(apuStack_468,param_1);
-  FUN_1806279c0(&puStack_498,uVar1);
+  SystemCore_EncryptionEngine0(&puStack_498,uVar1);
   apuStack_468[0] = &system_state_ptr;
   uStack_4a0 = 0x118;
   puStack_4a8 = auStack_248;
@@ -521,7 +521,7 @@ LAB_180624d38:
                     // WARNING: Subroutine does not return
               memcpy(puStack_180 + uStack_178,puVar8,(int64_t)((int)lVar5 + 2));
             }
-            FUN_1806279c0(param_1,&puStack_188);
+            SystemCore_EncryptionEngine0(param_1,&puStack_188);
             puStack_188 = &system_state_ptr;
             puStack_e8 = &system_state_ptr;
           }
@@ -562,7 +562,7 @@ LAB_180624d38:
                     // WARNING: Subroutine does not return
             memcpy(puStack_180 + uStack_178,puVar8,(int64_t)((int)lVar5 + 2));
           }
-          FUN_1806279c0(param_1,&puStack_188);
+          SystemCore_EncryptionEngine0(param_1,&puStack_188);
           puStack_188 = &system_state_ptr;
           puStack_e8 = &system_state_ptr;
         }
@@ -614,7 +614,7 @@ LAB_180624d38:
                     // WARNING: Subroutine does not return
           memcpy(puStack_180 + uStack_178,puVar8,(int64_t)((int)lVar5 + 2));
         }
-        FUN_1806279c0(param_1,&puStack_188);
+        SystemCore_EncryptionEngine0(param_1,&puStack_188);
         puStack_188 = &system_state_ptr;
         puStack_e8 = &system_state_ptr;
       }
@@ -1011,7 +1011,7 @@ void FUN_180625b30(uint64_t param_1,uint64_t param_2,int32_t param_3)
   void *puStack_30;
   int64_t lStack_28;
   
-  FUN_1806279c0(&puStack_30);
+  SystemCore_EncryptionEngine0(&puStack_30);
   FUN_1806259b0(&puStack_30,param_3);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {

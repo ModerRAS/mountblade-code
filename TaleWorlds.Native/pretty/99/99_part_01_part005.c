@@ -215,7 +215,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, int64_t r
     
     // 系统资源分配
     local_var2 = FUN_180624440(local_stack_ptr_array, &local_stack_ptr5);
-    FUN_1806279c0(&local_stack_ptr_ptr, local_var2);
+    SystemCore_EncryptionEngine0(&local_stack_ptr_ptr, local_var2);
     
     // 资源句柄管理
     local_stack_ptr_array[0] = &system_state_ptr;
@@ -250,7 +250,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, int64_t r
     
     // 资源状态检查
     if (local_stack_value7 == 0) {
-        FUN_180626f80(&unknown_var_2560_ptr, resource_data);
+        SystemCore_ResourceManager0(&unknown_var_2560_ptr, resource_data);
     }
     
     // 系统资源清理

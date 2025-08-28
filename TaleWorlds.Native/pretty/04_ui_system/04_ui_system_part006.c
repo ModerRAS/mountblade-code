@@ -46,7 +46,7 @@
 #define free_resource_memory    CoreEngineMemoryPoolCleaner
 #define process_resource_path   CoreEngineDataTransformer
 #define compare_resource_names  FUN_180657530
-#define process_resource_config FUN_1806279c0
+#define process_resource_config SystemCore_EncryptionEngine0
 #define load_resource_list      FUN_18062c5f0
 #define validate_security_cookie SystemSecurityChecker
 #define insert_resource_node    FUN_18066bdc0
@@ -609,7 +609,7 @@ void ui_initialize_resource_loader(uint64_t *param_1)
   config_count = 6;
   strcpy_s(config_array, 0x10, &unknown_var_2588_ptr);
   buffer_flag = 1;
-  FUN_1806279c0(&string_ptr, &format_handler);
+  SystemCore_EncryptionEngine0(&string_ptr, &format_handler);
   buffer_flag = 0;
   format_handler = &system_state_ptr;
   config_count = path_size + 8;

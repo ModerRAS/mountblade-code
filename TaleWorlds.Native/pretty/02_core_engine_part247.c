@@ -437,7 +437,7 @@ void FUN_180213e10(int64_t param_1,uint64_t param_2)
     __Throw_C_error_std__YAXH_Z(iVar2);
   }
   uVar4 = FUN_180624440(apuStack_258,param_2);
-  FUN_1806279c0(&puStack_290,uVar4);
+  SystemCore_EncryptionEngine0(&puStack_290,uVar4);
   apuStack_258[0] = &system_state_ptr;
   uStack_298 = 0;
   puVar7 = &system_buffer_ptr;

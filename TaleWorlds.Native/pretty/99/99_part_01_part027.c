@@ -1088,7 +1088,7 @@ int64_t FUN_1800ba230(int64_t renderer_context)
     *(uint64_t**)(renderer_context + 8) = &system_memory_0000;
     *(uint64_t*)(renderer_context + 0x18) = 0;
     *(uint32_t*)(renderer_context + 0x28) = 0;
-    FUN_1806279c0(renderer_context + 0x30);
+    SystemCore_EncryptionEngine0(renderer_context + 0x30);
     return renderer_context;
 }
 

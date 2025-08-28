@@ -509,7 +509,7 @@ bool check_system_status(int64_t system_context)
     int buffer_index;
     
     status_array = (uint64_t *)(system_context + 0x2e0);
-    FUN_1806279c0(&context_ptr);
+    SystemCore_EncryptionEngine0(&context_ptr);
     status_entry = *(uint64_t **)(system_context + 0x2f0);
     previous_entry = status_array;
     if (status_entry != (uint64_t *)0x0) {

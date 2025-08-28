@@ -723,7 +723,7 @@ LAB_1804ad428:
     }
   }
   if (iStack_50 == 0) {
-    FUN_180626f80(&unknown_var_8296_ptr);
+    SystemCore_ResourceManager0(&unknown_var_8296_ptr);
   }
   else {
     uVar10 = 0;
@@ -745,7 +745,7 @@ LAB_1804ad428:
     if (puStack_58 != (void *)0x0) {
       puVar6 = puStack_58;
     }
-    FUN_180626f80(&unknown_var_8320_ptr,puVar6,&unknown_var_8396_ptr);
+    SystemCore_ResourceManager0(&unknown_var_8320_ptr,puVar6,&unknown_var_8396_ptr);
   }
   cVar9 = -1;
 LAB_1804ad4c8:

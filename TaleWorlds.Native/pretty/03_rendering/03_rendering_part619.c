@@ -516,7 +516,7 @@ EFFECT_PROCESSOR_LABEL4:
   }
   
   stack_value1 = int_value1;
-  FUN_180626f80(pointer_value3);
+  SystemCore_ResourceManager0(pointer_value3);
   stack_pointer1 = &system_data_buffer_ptr;
   
   if (stack_pointer2 == (int32_t *)0x0) {

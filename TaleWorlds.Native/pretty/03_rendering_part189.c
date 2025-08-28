@@ -692,7 +692,7 @@ void FUN_18037a770(int64_t param_1,int64_t param_2)
     FUN_180624910(&puStack_3b8);
   }
   FUN_180627ae0(&puStack_370,param_2 + 0x1f0);
-  FUN_1806279c0(&puStack_390,param_1 + 0x10);
+  SystemCore_EncryptionEngine0(&puStack_390,param_1 + 0x10);
   puStack_3d8 = &system_data_buffer_ptr;
   uStack_3c0 = 0;
   puStack_3d0 = (int8_t *)0x0;

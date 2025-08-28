@@ -302,7 +302,7 @@ LAB_18060e558:
         puVar8 = puStack_60;
     }
     uStack_58 = iVar12;
-    FUN_180626f80(puVar8);
+    SystemCore_ResourceManager0(puVar8);
     puStack_68 = &system_data_buffer_ptr;
     if (puStack_60 == (int32_t *)0x0) {
         return;

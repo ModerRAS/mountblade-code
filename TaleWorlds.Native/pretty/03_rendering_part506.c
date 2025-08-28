@@ -248,7 +248,7 @@ LAB_1805394ce:
       if (*(void **)(param_2 + 8) != (void *)0x0) {
         puVar6 = *(void **)(param_2 + 8);
       }
-      FUN_180626f80(&unknown_var_7456_ptr,puVar6);
+      SystemCore_ResourceManager0(&unknown_var_7456_ptr,puVar6);
 LAB_1805394fd:
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_648);
@@ -501,7 +501,7 @@ int32_t FUN_18053a410(int64_t param_1,int param_2,int param_3,uint64_t param_4)
     if ((param_3 < (int)((render_system_memory - render_system_memory) / 0x68)) &&
        (*(int *)(*(int64_t *)(lVar4 + 0x78) + lVar5 * 8) < 0)) {
       lVar5 = lVar5 * 0x68 + render_system_memory;
-      FUN_1806279c0(auStack_30,lVar4,render_system_memory,param_4,0xfffffffffffffffe);
+      SystemCore_EncryptionEngine0(auStack_30,lVar4,render_system_memory,param_4,0xfffffffffffffffe);
       uVar3 = uStack_20 + 0x12;
       CoreMemoryPoolProcessor(auStack_30,uVar3);
       puVar1 = (int32_t *)(puStack_28 + uStack_20);
@@ -593,7 +593,7 @@ LAB_18053a64e:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_2 + 8);
   }
-  FUN_180626f80(&unknown_var_7952_ptr,puVar6);
+  SystemCore_ResourceManager0(&unknown_var_7952_ptr,puVar6);
   return 0;
 }
 

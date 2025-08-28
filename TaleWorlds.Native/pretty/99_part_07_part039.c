@@ -303,7 +303,7 @@ void FUN_1804bf9e0(int64_t param_1,int64_t param_2)
     strcpy_s(*(uint64_t *)(param_1 + 8),0x90);
     return;
   }
-  FUN_180626f80(&unknown_var_616_ptr,0x90,param_2);
+  SystemCore_ResourceManager0(&unknown_var_616_ptr,0x90,param_2);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;

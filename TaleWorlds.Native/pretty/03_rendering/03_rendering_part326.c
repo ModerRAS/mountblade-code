@@ -74,7 +74,7 @@ extern int8_t system_debug_flag;
 // 外部函数声明
 // ============================================================================
 
-extern void FUN_180626f80(uint64_t param_1, uint64_t param_2);
+extern void SystemCore_ResourceManager0(uint64_t param_1, uint64_t param_2);
 extern void FUN_18010cdf0(int64_t param_1, int param_2);
 extern void FUN_18010d9f0(int64_t param_1, int param_2);
 extern void FUN_18010da70(int64_t param_1, int param_2);
@@ -155,7 +155,7 @@ void rendering_system_parameter_handler1(void)
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_470) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_470);
             }
-            FUN_180626f80(&global_config_544_ptr, data_pointer);
+            SystemCore_ResourceManager0(&global_config_544_ptr, data_pointer);
         }
         
         // 更新渲染参数
@@ -215,7 +215,7 @@ void rendering_system_parameter_handler2(void)
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150);
             }
-            FUN_180626f80(&global_config_544_ptr, data_pointer);
+            SystemCore_ResourceManager0(&global_config_544_ptr, data_pointer);
         }
         
         // 更新高级渲染参数
@@ -1693,7 +1693,7 @@ void rendering_system_parameter_handler3(uint64_t param_1, int32_t param_2)
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0);
             }
-            FUN_180626f80(&global_config_544_ptr, data_pointer);
+            SystemCore_ResourceManager0(&global_config_544_ptr, data_pointer);
         }
         
         *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) = 
@@ -1745,7 +1745,7 @@ void rendering_system_parameter_handler4(uint64_t param_1, int32_t param_2)
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120);
             }
-            FUN_180626f80(&global_config_544_ptr, data_pointer);
+            SystemCore_ResourceManager0(&global_config_544_ptr, data_pointer);
         }
         
         *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1110) = 

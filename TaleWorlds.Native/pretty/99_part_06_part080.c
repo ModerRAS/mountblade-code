@@ -51,7 +51,7 @@
 #define ResourceManager_LoadResource() FUN_1801f8ea0()
 
 /* 状态管理函数 */
-#define StateManager_UpdateState() FUN_180626f80()
+#define StateManager_UpdateState() SystemCore_ResourceManager0()
 #define StateManager_TransitionState() FUN_180049bf0()
 
 /* 系统常量定义 */

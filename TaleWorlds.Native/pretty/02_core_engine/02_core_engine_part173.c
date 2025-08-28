@@ -743,7 +743,7 @@ void set_engine_path_string(uint64_t param_1, int64_t path_ptr)
   lStack_48 = param_2;
   strcpy_s(auStack_28,0x10,&unknown_var_2588_ptr);
   uStack_58 = 2;
-  FUN_1806279c0(param_2,&puStack_40);
+  SystemCore_EncryptionEngine0(param_2,&puStack_40);
   uStack_58 = 1;
   puStack_40 = &system_state_ptr;
   iVar1 = *(int *)(param_2 + 0x10) + 7;

@@ -72,7 +72,7 @@ void initialize_resource_processing(uint64_t system_handle, int64_t resource_dat
   uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_958;
   lStack_800 = param_3;
   (**(code **)(*(int64_t *)(param_3 + 0x20) + 0x10))((int64_t *)(param_3 + 0x20),&system_flag_143c);
-  FUN_1806279c0(&puStack_7d8,param_2);
+  SystemCore_EncryptionEngine0(&puStack_7d8,param_2);
   lVar9 = FUN_18009ba60(puVar4 + 8,&puStack_7d8);
   puStack_7d8 = &system_data_buffer_ptr;
   lStack_808 = lVar9;
@@ -155,7 +155,7 @@ LAB_180096e94:
   FUN_180095da0(puVar4,param_3,lVar9);
   FUN_18012cfe0();
   if (*(char *)(lVar9 + 0x126) != '\0') {
-    FUN_1806279c0(auStack_858,param_2);
+    SystemCore_EncryptionEngine0(auStack_858,param_2);
     iVar7 = uStack_848 + 6;
     CoreEngineDataBufferProcessor(auStack_858,iVar7);
     puVar11 = (int32_t *)(puStack_850 + uStack_848);

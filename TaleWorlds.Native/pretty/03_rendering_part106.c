@@ -485,7 +485,7 @@ void RenderingSystem_OptimizeResourceData(int64_t render_context, int64_t output
     fread(puVar13,4,(int64_t)aiStackX_10[0],*(uint64_t *)(param_2 + 8));
     fread(lVar14,4,(int64_t)aiStackX_10[0],*(uint64_t *)(param_2 + 8));
     fread(plVar15,8,(int64_t)aiStackX_10[0],*(uint64_t *)(param_2 + 8));
-    FUN_1806279c0(&puStack_e8,param_3);
+    SystemCore_EncryptionEngine0(&puStack_e8,param_3);
     uVar11 = uStack_d8;
     uVar8 = uStack_d8 + 1;
     FUN_1806277c0(&puStack_e8,uVar8);
@@ -745,7 +745,7 @@ void RenderingSystem_CompressRenderData(int64_t render_context, int64_t output_h
     piVar13 = piStack_f8;
     fread(lVar14,4,(int64_t)aiStackX_8[0],*(uint64_t *)(param_2 + 8));
     fread(piVar13,4,(int64_t)aiStackX_8[0],*(uint64_t *)(param_2 + 8));
-    FUN_1806279c0(&puStack_148,param_3);
+    SystemCore_EncryptionEngine0(&puStack_148,param_3);
     uVar11 = uStack_138;
     uVar9 = uStack_138 + 1;
     FUN_1806277c0(&puStack_148,uVar9);

@@ -1071,7 +1071,7 @@ void UISystem_ResourceManager(uint64_t *resource_context)
   context_size = 6;
   strcpy_s(context_buffer,0x10,&unknown_var_2588_ptr);
   buffer_flag = 1;
-  FUN_1806279c0(&data_buffer,&context_ptr);
+  SystemCore_EncryptionEngine0(&data_buffer,&context_ptr);
   buffer_flag = 0;
   context_ptr = &system_state_ptr;
   resource_count = data_size + 8;

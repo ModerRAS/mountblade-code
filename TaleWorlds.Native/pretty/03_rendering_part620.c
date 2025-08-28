@@ -3,8 +3,8 @@
 
 // 03_rendering_part620.c - 13 个函数
 
-// 函数: void FUN_18060f430(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_4)
-void FUN_18060f430(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void RenderingSystemBuffer(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_4)
+void RenderingSystemBuffer(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_4)
 
 {
   void *puVar1;

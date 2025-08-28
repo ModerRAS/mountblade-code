@@ -897,7 +897,7 @@ void RenderingSystemResourceLoader(int64_t render_context, int64_t file_handle)
     
     // 检查文件句柄
     if (resource_buffer[1] == 0) {
-        FUN_180626f80(&unknown_var_7632_ptr);
+        SystemCore_ResourceManager0(&unknown_var_7632_ptr);
         if (resource_buffer[1] != 0) {
             fclose();
             resource_buffer[1] = 0;

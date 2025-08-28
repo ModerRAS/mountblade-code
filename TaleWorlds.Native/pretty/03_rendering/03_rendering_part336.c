@@ -1254,7 +1254,7 @@ void RenderingSystem_RenderProcessor(int64_t *param_1, int64_t param_2, uint64_t
     char cStack_26;
     
     if (param_2 == 0) {
-        FUN_180626f80(&unknown_var_9928_ptr);
+        SystemCore_ResourceManager0(&unknown_var_9928_ptr);
     }
     else {
         if (param_1 != (int64_t *)0x0) {

@@ -86,7 +86,7 @@ extern uint64_t global_var_720;
 // ============================================================================
 
 extern void FUN_18023a940(uint64_t param_1);
-extern void FUN_1806279c0(void *param_1);
+extern void SystemCore_EncryptionEngine0(void *param_1);
 extern void FUN_1800b2a30(void);
 extern void CoreEngine_MemoryPoolManager(uint64_t param_1);
 extern void FUN_1808fc050(uint64_t param_1);

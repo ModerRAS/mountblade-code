@@ -81,7 +81,7 @@ void FUN_18061c7a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_260 = uStack_260 & 0xffffffff00000000;
   puStack_278 = &system_state_ptr;
   FUN_180062340(system_message_context,3,acStack_248);
-  FUN_180626f80(acStack_248);
+  SystemCore_ResourceManager0(acStack_248);
   (**(code **)(render_system_data_memory + 0x2f0))();
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_2a8);

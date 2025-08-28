@@ -30,7 +30,7 @@ void FUN_18020f530(void);               // 清理函数
 void FUN_1800466d0(int64_t param_1);    // 初始化函数
 void FUN_18005ee30(int64_t param_1, int param_2, uint64_t *param_3, int32_t param_4, int64_t param_5); // 内存分配
 void FUN_180060fc0(int64_t param_1, int64_t *param_2); // 任务队列操作
-void FUN_1806279c0(uint64_t *param_1, int64_t *param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5); // 线程创建
+void SystemCore_EncryptionEngine0(uint64_t *param_1, int64_t *param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5); // 线程创建
 void FUN_180623fd0(int64_t param_1, uint64_t *param_2); // 线程设置
 void CoreEngineMemoryPoolReallocator(int64_t param_1, int param_2, int param_3, int param_4, int64_t param_5); // 对象创建
 void FUN_1808fc418(int param_1);        // 内存分配
@@ -578,7 +578,7 @@ void create_worker_thread(int64_t *thread_block, uint64_t param2, uint64_t param
     thread_block[8] = lVar2;
     *(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 0xc) =
          (int)thread_block[10];
-    FUN_1806279c0(&puStack_30, thread_block + 2, param3, param4, uVar3);
+    SystemCore_EncryptionEngine0(&puStack_30, thread_block + 2, param3, param4, uVar3);
     FUN_180623fd0(thread_block[8], &puStack_30);
     puStack_30 = &global_var_3456_ptr;
     if (lStack_28 != 0) {

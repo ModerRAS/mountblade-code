@@ -134,7 +134,7 @@ void FUN_18013f6f0(int64_t param_1)
   uStack_198 = 0;
   FUN_180056f70(param_1 + 0x20,system_main_module_state + 0x290);
   ppuStack_168 = &puStack_190;
-  uVar4 = FUN_1806279c0(&puStack_190,param_1 + 0x20);
+  uVar4 = SystemCore_EncryptionEngine0(&puStack_190,param_1 + 0x20);
   iVar2 = FUN_180142220(param_1,uVar4);
   if (*(char *)((int64_t)iVar2 + *(int64_t *)(param_1 + 0x8c8)) == '\0') {
     FUN_180056f70(param_1 + 0x438,(int64_t)iVar2 * 0x20 + *(int64_t *)(param_1 + 0x888));
@@ -659,7 +659,7 @@ void FUN_180142300(int64_t param_1,uint64_t *param_2,int64_t param_3)
   uVar10 = FUN_1800babf0(&puStack_e0,&puStack_100);
   iVar6 = FUN_180142220(param_1,uVar10);
   if (*(char *)((int64_t)iVar6 + *(int64_t *)(param_1 + 0x8c8)) == '\0') {
-    FUN_1806279c0(param_2,param_3);
+    SystemCore_EncryptionEngine0(param_2,param_3);
     uStack_108 = 1;
     puStack_100 = &system_data_buffer_ptr;
     if (puStack_f8 != (int16_t *)0x0) {

@@ -509,7 +509,7 @@ uint64_t * FUN_1801616b0(int64_t param_1,uint64_t *param_2,uint64_t param_3)
   }
   else {
     if (iVar1 == 1) {
-      FUN_1806279c0(&puStack_a0,param_3);
+      SystemCore_EncryptionEngine0(&puStack_a0,param_3);
       FUN_180169c30(&puStack_80,&puStack_a0);
       puStack_a0 = &system_data_buffer_ptr;
       if (puStack_98 != (void *)0x0) {
@@ -570,7 +570,7 @@ uint64_t * FUN_1801616b0(int64_t param_1,uint64_t *param_2,uint64_t param_3)
           return param_2;
         }
         FUN_1801624e0(param_1,&puStack_a0);
-        FUN_1806279c0(&puStack_80,param_3);
+        SystemCore_EncryptionEngine0(&puStack_80,param_3);
         FUN_180169c30(&puStack_60);
         puStack_80 = (uint64_t *)&system_data_buffer_ptr;
         if (puStack_78 != (uint64_t *)0x0) {
@@ -695,7 +695,7 @@ LAB_18016195a:
                     // WARNING: Subroutine does not return
         CoreEngine_MemoryPoolManager(puVar5);
       }
-      FUN_1806279c0(&puStack_a0,param_3);
+      SystemCore_EncryptionEngine0(&puStack_a0,param_3);
       FUN_180169c30(&puStack_c0,&puStack_a0);
       puStack_a0 = &system_data_buffer_ptr;
       if (puStack_98 != (void *)0x0) {

@@ -806,7 +806,7 @@ uint64_t FUN_180572610(int64_t param_1,uint64_t param_2,int param_3)
   }
   uVar4 = CoreMemoryPoolValidator(&puStack_50);
   puVar3 = render_system_data_config;
-  FUN_1806279c0(&puStack_70,uVar4);
+  SystemCore_EncryptionEngine0(&puStack_70,uVar4);
   puVar10 = (uint64_t *)puVar3[2];
   puVar9 = puVar3;
   if (puVar10 != (uint64_t *)0x0) {
@@ -869,7 +869,7 @@ LAB_18057271a:
   uStack_58 = 0;
   puStack_70 = &system_state_ptr;
   if (puVar6 == puVar3) {
-    uVar4 = FUN_1806279c0(&puStack_70,uVar4);
+    uVar4 = SystemCore_EncryptionEngine0(&puStack_70,uVar4);
     puVar6 = (uint64_t *)FUN_18018c160(puVar3,uVar4);
   }
   else {

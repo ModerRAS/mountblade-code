@@ -455,7 +455,7 @@ void FUN_18062d0d0(uint64_t param_1,int64_t param_2)
   cVar2 = FUN_180624a00();
   if (cVar2 != '\0') {
     uVar4 = FUN_180624440(&uStack_498,param_1);
-    FUN_1806279c0(&puStack_718,uVar4);
+    SystemCore_EncryptionEngine0(&puStack_718,uVar4);
     uStack_498 = &system_state_ptr;
     uVar6 = uStack_708 + 2;
     CoreEngineDataBufferProcessor(&puStack_718,uVar6);
@@ -471,7 +471,7 @@ void FUN_18062d0d0(uint64_t param_1,int64_t param_2)
         if ((((sStack_6bc != 0x2e) || (sStack_6ba != 0)) &&
             ((sStack_6bc != 0x2e || ((sStack_6ba != 0x2e || (sStack_6b8 != 0)))))) &&
            ((abStack_6e8[0] & 0x10) == 0)) {
-          FUN_1806279c0(&puStack_738,param_1);
+          SystemCore_EncryptionEngine0(&puStack_738,param_1);
           if (*(char *)((uint64_t)(uStack_728 - 1) + lStack_730) != '/') {
             uVar6 = uStack_728 + 1;
             CoreEngineDataBufferProcessor(&puStack_738,uVar6);
@@ -583,7 +583,7 @@ void FUN_18062d3b0(int64_t param_1,int64_t param_2,uint64_t param_3)
   cVar2 = FUN_180624a00();
   if (cVar2 != '\0') {
     uVar4 = FUN_180624440(apuStack_588,param_1);
-    FUN_1806279c0(&puStack_848,uVar4);
+    SystemCore_EncryptionEngine0(&puStack_848,uVar4);
     apuStack_588[0] = &system_state_ptr;
     uVar7 = uStack_838 + 2;
     CoreEngineDataBufferProcessor(&puStack_848,uVar7);
@@ -608,7 +608,7 @@ void FUN_18062d3b0(int64_t param_1,int64_t param_2,uint64_t param_3)
           uStack_8a0 = 0x104;
           if ((abStack_7d8[0] & 0x10) == 0) {
             WideCharToMultiByte(0xfde9,0,&sStack_7ac,0xffffffff);
-            FUN_1806279c0(&puStack_868,param_1);
+            SystemCore_EncryptionEngine0(&puStack_868,param_1);
             if (*(char *)((uint64_t)(uStack_858 - 1) + lStack_860) != '/') {
               uVar7 = uStack_858 + 1;
               CoreEngineDataBufferProcessor(&puStack_868,uVar7);
@@ -635,7 +635,7 @@ void FUN_18062d3b0(int64_t param_1,int64_t param_2,uint64_t param_3)
             }
             uVar4 = FUN_180627910(&puStack_808,acStack_368);
             uVar4 = FUN_180627560(apuStack_588,uVar4);
-            FUN_1806279c0(&puStack_828,uVar4);
+            SystemCore_EncryptionEngine0(&puStack_828,uVar4);
             FUN_180066df0(param_3,&puStack_828);
             puStack_828 = &system_data_buffer_ptr;
             if (lStack_820 != 0) {
@@ -756,7 +756,7 @@ void FUN_18062d860(uint64_t param_1)
   uStack_4a8 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4f8;
   uVar2 = FUN_180624440(apuStack_468,param_1);
-  FUN_1806279c0(&puStack_4c8,uVar2);
+  SystemCore_EncryptionEngine0(&puStack_4c8,uVar2);
   apuStack_468[0] = &system_state_ptr;
   uStack_4d0 = 0x118;
   puStack_4d8 = auStack_248;
@@ -846,7 +846,7 @@ void FUN_18062da70(uint64_t param_1)
   uStack_478 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4c8;
   uVar1 = FUN_180624440(apuStack_468,param_1);
-  FUN_1806279c0(&puStack_498,uVar1);
+  SystemCore_EncryptionEngine0(&puStack_498,uVar1);
   apuStack_468[0] = &system_state_ptr;
   uStack_4a0 = 0x118;
   puStack_4a8 = auStack_248;
@@ -894,10 +894,10 @@ void FUN_18062db60(uint64_t param_1,uint64_t param_2)
   uStack_6b8 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_728;
   uVar2 = FUN_180624440(apuStack_6a8,param_1);
-  FUN_1806279c0(&puStack_6d8,uVar2);
+  SystemCore_EncryptionEngine0(&puStack_6d8,uVar2);
   apuStack_6a8[0] = &system_state_ptr;
   uVar2 = FUN_180624440(apuStack_6a8,param_2);
-  FUN_1806279c0(&puStack_6f8,uVar2);
+  SystemCore_EncryptionEngine0(&puStack_6f8,uVar2);
   apuStack_6a8[0] = &system_state_ptr;
   uStack_700 = 0x118;
   puStack_708 = auStack_488;
@@ -958,10 +958,10 @@ void FUN_18062dce0(uint64_t param_1)
   uStack_6b8 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_728;
   uVar1 = FUN_180624440(apuStack_6a8);
-  FUN_1806279c0(&puStack_6d8,uVar1);
+  SystemCore_EncryptionEngine0(&puStack_6d8,uVar1);
   apuStack_6a8[0] = &system_state_ptr;
   uVar1 = FUN_180624440(apuStack_6a8,param_1);
-  FUN_1806279c0(&puStack_6f8,uVar1);
+  SystemCore_EncryptionEngine0(&puStack_6f8,uVar1);
   apuStack_6a8[0] = &system_state_ptr;
   uStack_700 = 0x118;
   puStack_708 = auStack_488;

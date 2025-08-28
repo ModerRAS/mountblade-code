@@ -634,7 +634,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
   else {
     if (command_type == 1) {
       // 处理版本查询命令
-      FUN_1806279c0(&stack_a0,input_param);
+      SystemCore_EncryptionEngine0(&stack_a0,input_param);
       FUN_180169c30(&stack_80,&stack_a0);
       stack_a0 = &STRING_CONSTANT_EMPTY;
       
@@ -710,7 +710,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
         
         // 处理复杂配置命令
         FUN_1801624e0(command_context,&stack_a0);
-        FUN_1806279c0(&stack_80,input_param);
+        SystemCore_EncryptionEngine0(&stack_80,input_param);
         FUN_180169c30(&stack_60);
         stack_80 = (uint64_t *)&STRING_CONSTANT_EMPTY;
         
@@ -858,7 +858,7 @@ LAB_18016195a:
       }
       
       // 处理简单配置命令
-      FUN_1806279c0(&stack_a0,input_param);
+      SystemCore_EncryptionEngine0(&stack_a0,input_param);
       FUN_180169c30(&stack_ptr_c0,&stack_a0);
       stack_a0 = &STRING_CONSTANT_EMPTY;
       

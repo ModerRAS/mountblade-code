@@ -573,7 +573,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, int64_t 
     temp_char = FUN_180624a00(&temp_ptr5);
     if (temp_char != '\0') {
       temp_var1 = FUN_180624440(pointer_array, &temp_ptr5);
-      FUN_1806279c0(&temp_ptr3, temp_var1);
+      SystemCore_EncryptionEngine0(&temp_ptr3, temp_var1);
       pointer_array[0] = &system_state_ptr;
       temp_ptr2 = &system_buffer_ptr;
       if (temp_ptr4 != (void *)0x0) {

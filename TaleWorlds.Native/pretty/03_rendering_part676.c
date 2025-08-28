@@ -62,7 +62,7 @@ void FUN_180653ef0(void)
   uStack_170 = 6;
   strcpy_s(auStack_168,0x10,&unknown_var_2588_ptr);
   uStack_298 = 1;
-  FUN_1806279c0(auStack_1a8,&puStack_180);
+  SystemCore_EncryptionEngine0(auStack_1a8,&puStack_180);
   uStack_298 = 0;
   puStack_180 = &system_state_ptr;
   FUN_180624730(auStack_158,auStack_1a8);

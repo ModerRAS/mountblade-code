@@ -332,7 +332,7 @@ void FUN_18023b050(int64_t *param_1,char param_2)
         }
       }
       if (param_2 == '\0') {
-        FUN_1806279c0(&puStack_460,param_1 + 2);
+        SystemCore_EncryptionEngine0(&puStack_460,param_1 + 2);
         uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
         ppplStack_4c0 = (int64_t ***)aplStack_420;
         puStack_410 = &unknown_var_4672_ptr;
@@ -640,7 +640,7 @@ code * FUN_18023baa0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint par
                   &uStack_2a0,&uStack_298);
   }
   else {
-    FUN_180626f80(&unknown_var_2792_ptr);
+    SystemCore_ResourceManager0(&unknown_var_2792_ptr);
     uStack_2a0 = 0;
     uStack_298 = 0;
   }

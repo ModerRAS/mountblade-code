@@ -603,7 +603,7 @@ LAB_1801f0caa:
   uStack_38 = 6;
   strcpy_s(auStack_30,0x10,&unknown_var_2588_ptr);
   uStack_98 = 1;
-  FUN_1806279c0(&puStack_90,&puStack_48);
+  SystemCore_EncryptionEngine0(&puStack_90,&puStack_48);
   uStack_98 = 0;
   puStack_48 = &system_state_ptr;
   iVar5 = uStack_80 + 0x12;

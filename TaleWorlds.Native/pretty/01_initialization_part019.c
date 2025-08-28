@@ -182,7 +182,7 @@ void FUN_18004f920(void)
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
   uStack_40 = 3;
-  strcpy_s(auStack_38,0x10,&unknown_var_5748_ptr);
+  strcpy_s(auStack_38,0x10,&init_system_param1_ptr);
   puStack_78 = &system_data_buffer_ptr;
   uStack_60 = 0;
   puStack_70 = (int32_t *)0x0;
@@ -209,7 +209,7 @@ void FUN_18004f920(void)
   puStack_78 = &system_state_ptr;
   puStack_50 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_5776_ptr);
+  FUN_180062300(system_message_context,&init_system_param2_ptr);
 }
 
 
@@ -281,7 +281,7 @@ void FUN_180050b00(void)
     *(int8_t *)(pplVar9 + 2) = 0;
     UNLOCK();
     pplVar9[3] = (int64_t *)0xffffffffffffffff;
-    *pplVar9 = (int64_t *)&unknown_var_2640_ptr;
+    *pplVar9 = (int64_t *)&init_system_param3_ptr;
     *(int32_t *)(pplVar9 + 5) = 4;
     pplVar9[4] = plVar1;
     ppplStack_70 = (int64_t ***)pplVar9;
@@ -401,7 +401,7 @@ void FUN_180050b30(int64_t param_1)
     *(int8_t *)(pplVar8 + 2) = 0;
     UNLOCK();
     pplVar8[3] = (int64_t *)0xffffffffffffffff;
-    *pplVar8 = (int64_t *)&unknown_var_2640_ptr;
+    *pplVar8 = (int64_t *)&init_system_param3_ptr;
     *(int32_t *)(pplVar8 + 5) = 4;
     pplVar8[4] = plVar1;
     ppplStack_70 = (int64_t ***)pplVar8;
@@ -825,7 +825,7 @@ bool FUN_180051f00(int64_t param_1)
   int iStack_20;
   
   puVar1 = (uint64_t *)(param_1 + 0x2e0);
-  FUN_1806279c0(&puStack_30);
+  SystemCore_EncryptionEngine0(&puStack_30);
   puVar8 = *(uint64_t **)(param_1 + 0x2f0);
   puVar11 = puVar1;
   if (puVar8 != (uint64_t *)0x0) {

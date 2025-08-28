@@ -715,7 +715,7 @@ void FUN_180227790(int64_t param_1,int64_t param_2,int32_t *param_3)
         else {
 LAB_180227e59:
           if (*(char *)(param_3 + 9) != '\x01') {
-            FUN_1806279c0(&uStack_168,lVar23 + 0xa0 + uVar38);
+            SystemCore_EncryptionEngine0(&uStack_168,lVar23 + 0xa0 + uVar38);
             if (fStack_158 == 0.0) {
               SystemOptimizationProcessor(&unknown_var_8296_ptr);
               cVar24 = -1;

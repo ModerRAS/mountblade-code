@@ -452,7 +452,7 @@ void FUN_18036d4a0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
     lVar1 = *(int64_t *)(lVar3 + 0xb8);
     for (lVar3 = *(int64_t *)(lVar3 + 0xb0); lVar3 != lVar1; lVar3 = lVar3 + 0x110) {
       if (*(char *)(lVar3 + 0x108) == '\0') {
-        FUN_1806279c0(&puStack_40,lVar3);
+        SystemCore_EncryptionEngine0(&puStack_40,lVar3);
         FUN_180066df0(param_3,&puStack_40);
         puStack_40 = &system_data_buffer_ptr;
         if (lStack_38 != 0) {

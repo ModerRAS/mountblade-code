@@ -285,7 +285,7 @@ bool FUN_1800890a0(int64_t *param_1)
   
   lVar7 = *param_1;
   puVar8 = (uint64_t *)(lVar7 + 0x48);
-  FUN_1806279c0();
+  SystemCore_EncryptionEngine0();
   puVar10 = *(uint64_t **)(lVar7 + 0x58);
   puVar3 = puVar8;
   if (puVar10 != (uint64_t *)0x0) {
@@ -373,7 +373,7 @@ uint64_t FUN_1800891d0(int64_t *param_1,uint64_t param_2)
   
   lVar9 = *param_1;
   plVar10 = (int64_t *)(lVar9 + 0x48);
-  FUN_1806279c0();
+  SystemCore_EncryptionEngine0();
   bVar3 = false;
   plVar12 = *(int64_t **)(lVar9 + 0x58);
   plVar4 = plVar10;
@@ -434,7 +434,7 @@ LAB_18008927d:
 LAB_1800892bd:
   if (plVar5 == plVar10) {
     lVar9 = param_1[1];
-    FUN_1806279c0(&puStack_48,param_2);
+    SystemCore_EncryptionEngine0(&puStack_48,param_2);
     bVar3 = true;
     plVar5 = (int64_t *)FUN_180058080(lVar9,auStackX_8,&puStack_48);
     if (*plVar5 == lVar9) {

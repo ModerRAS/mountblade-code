@@ -492,7 +492,7 @@ create_engine_scene_manager(uint64_t *param_1,uint64_t param_2,uint64_t *param_3
   uVar4 = system_global_data_ptr;
   uStack_88 = 0xfffffffffffffffe;
   plStackX_20 = param_4;
-  FUN_1806279c0(&puStack_a8,*param_3,param_3,(char)param_4,0);
+  SystemCore_EncryptionEngine0(&puStack_a8,*param_3,param_3,(char)param_4,0);
   CoreEngineDataTransformer(&puStack_c8,&puStack_a8);
   uVar2 = system_context_ptr;
   uVar3 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);

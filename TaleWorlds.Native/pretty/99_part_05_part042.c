@@ -554,7 +554,7 @@ float * FUN_1802f4040(int64_t *param_1,float *param_2,char param_3,char param_4)
         plStackX_10 = plVar3;
         if (plVar3 != (int64_t *)0x0) {
           (**(code **)(*plVar3 + 0x28))(plVar3);
-          uVar14 = FUN_1806279c0(&puStack_78,plVar3 + 2);
+          uVar14 = SystemCore_EncryptionEngine0(&puStack_78,plVar3 + 2);
           while ((0 < (int)uStack_68 &&
                  (lVar6 = strstr(lStack_70,&system_data_ff10), uVar14 = extraout_XMM0_Da, lVar6 != 0)))
           {

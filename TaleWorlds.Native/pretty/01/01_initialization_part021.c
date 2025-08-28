@@ -99,7 +99,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_offset = 0;
   stack_size = 0;
   resource_offset = *engine_context;
-  FUN_1806279c0(&stack_resource_ptr,resource_params);
+  SystemCore_EncryptionEngine0(&stack_resource_ptr,resource_params);
   resource_index = FUN_1801426a0(resource_offset,&stack_resource_ptr);
   stack_resource_ptr = &system_data_buffer_ptr;
   if (stack_resource_data != 0) {

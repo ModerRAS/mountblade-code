@@ -398,7 +398,7 @@ FUN_1803c9d00(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t param_4,
     if (*(void **)(*param_3 + 0x18) != (void *)0x0) {
       puVar9 = *(void **)(*param_3 + 0x18);
     }
-    FUN_180626f80(&unknown_var_4896_ptr,(double)fVar12,puVar9);
+    SystemCore_ResourceManager0(&unknown_var_4896_ptr,(double)fVar12,puVar9);
     fVar12 = 1.0;
   }
   uStack_d8 = (int32_t)param_3[9];
@@ -406,7 +406,7 @@ FUN_1803c9d00(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t param_4,
   uStack_e0 = (int32_t)param_3[8];
   cVar2 = FUN_1806b7380(plVar5,fVar12,&uStack_e0,0);
   if (cVar2 == '\0') {
-    FUN_180626f80(&unknown_var_3192_ptr);
+    SystemCore_ResourceManager0(&unknown_var_3192_ptr);
   }
   (**(code **)(*plVar5 + 0x100))(plVar5,&fStack_f0);
   if (fStack_f0 <= 0.1) {

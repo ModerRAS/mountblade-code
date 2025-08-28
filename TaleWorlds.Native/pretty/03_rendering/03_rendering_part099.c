@@ -312,7 +312,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
     if ((param_4 >> 2 & 1) != 0) goto LAB_180327215;
     if ((bVar10) && (0 < (int)(*(int64_t *)(param_1 + 0x138) - *(int64_t *)(param_1 + 0x130) >> 3))) {
         if (*(int64_t *)(param_3 + 0x2d0) == 0) {
-            FUN_1806279c0(&puStack_108,param_3 + 0x10);
+            SystemCore_EncryptionEngine0(&puStack_108,param_3 + 0x10);
             
             // 字符串处理和搜索逻辑
             while ((0 < (int)(uint)uStack_f8 && (lVar15 = strstr(lStack_100,&system_memory_ff10), lVar15 != 0))) {
@@ -423,7 +423,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
                 if (lVar17 == 0) goto LAB_180326da7;
                 cVar11 = FUN_1801ef300(uVar26,param_3,lVar17);
                 if (cVar11 == '\0') {
-                    FUN_180626f80(&unknown_var_1920_ptr);
+                    SystemCore_ResourceManager0(&unknown_var_1920_ptr);
                     goto LAB_180326e7a;
                 }
                 lVar19 = FUN_1801ef620(extraout_XMM0_Da_02,param_3,lVar17);

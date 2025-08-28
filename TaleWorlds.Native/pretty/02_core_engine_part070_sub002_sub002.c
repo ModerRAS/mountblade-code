@@ -1207,7 +1207,7 @@ uint64_t FUN_180103800(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64
   void *puStack_28;
   uint uStack_20;
   
-  FUN_1806279c0(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_EncryptionEngine0(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
   uVar8 = 0;
   if (uStack_20 != 0) {
     lVar9 = 0;

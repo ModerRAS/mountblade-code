@@ -634,7 +634,7 @@ int8_t FUN_1800755c0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   int64_t lStack_28;
   
   uVar2 = 0xfffffffffffffffe;
-  FUN_1806279c0(&puStack_30);
+  SystemCore_EncryptionEngine0(&puStack_30);
   uVar1 = FUN_180063510(param_1 + 0x218,&puStack_30,param_3,param_4,uVar2);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {

@@ -142,7 +142,7 @@ LAB_1800b60e2:
   }
   uVar4 = uStack_e8._4_4_;
   uStack_88 = CONCAT44(uStack_e8._4_4_,(int32_t)uStack_88);
-  FUN_1806279c0(&puStack_60,param_1 + 0x10);
+  SystemCore_EncryptionEngine0(&puStack_60,param_1 + 0x10);
   puStack_c0 = &system_data_buffer_ptr;
   uStack_a8 = 0;
   puStack_b8 = (int8_t *)0x0;

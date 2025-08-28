@@ -349,7 +349,7 @@ void FUN_18031a020(uint64_t *param_1,int64_t param_2,int32_t param_3)
   uStack_124 = uVar6;
   uStack_100 = param_3;
   puStack_f0 = param_1;
-  FUN_1806279c0(&puStack_158,param_2 + 0x10);
+  SystemCore_EncryptionEngine0(&puStack_158,param_2 + 0x10);
   uVar1 = uStack_148;
   uVar3 = uStack_148 + 1;
   CoreMemoryPoolProcessor(&puStack_158,uVar3);

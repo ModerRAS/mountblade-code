@@ -39,7 +39,7 @@ extern void *default_error_handler;
 // 外部函数声明
 extern void log_render_error(void *message_table, void *handler);
 extern void FUN_18005ea90(int64_t context, uint64_t *param);
-extern void FUN_180626f80(void *error_ptr, void *handler);
+extern void SystemCore_ResourceManager0(void *error_ptr, void *handler);
 
 // 辅助函数：设置材质参数
 // 功能：统一的材质参数设置接口，减少代码重复

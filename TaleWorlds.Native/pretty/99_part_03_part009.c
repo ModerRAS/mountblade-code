@@ -709,7 +709,7 @@ void FUN_1801cffc0(int64_t *param_1,int64_t *param_2)
   }
   else {
     FUN_180627c50(&puStack_68,&unknown_var_1492_ptr);
-    lVar5 = FUN_1806279c0(&puStack_48,*param_2 + 0x10);
+    lVar5 = SystemCore_EncryptionEngine0(&puStack_48,*param_2 + 0x10);
     uVar6 = FUN_1800ade00(*(int32_t *)((int64_t)param_2 + 0xa4));
     System_DataHandler(&puStack_48,&unknown_var_1480_ptr,uVar6);
     System_DataHandler(&puStack_48,&unknown_var_1484_ptr,*(int16_t *)((int64_t)param_2 + 0x14));

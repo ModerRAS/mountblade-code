@@ -649,7 +649,7 @@ int8_t CheckTransformStatus(int64_t transform_data, uint64_t param2, uint64_t pa
   int64_t check_result;
   
   error_code = 0xfffffffffffffffe;
-  FUN_1806279c0(&stack_data);
+  SystemCore_EncryptionEngine0(&stack_data);
   status_result = FUN_180063510(transform_data + 0x218,&stack_data,param3,param4,error_code);
   stack_data = &VTABLE_TransformObject6;
   if (check_result != 0) {

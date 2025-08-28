@@ -684,7 +684,7 @@ void RenderingSystemBatchProcessor(
     }
     
     // 设置默认批处理参数
-    FUN_180626f80(&unknown_var_9576_ptr);
+    SystemCore_ResourceManager0(&unknown_var_9576_ptr);
     *param_2 = RENDERING_MATH_FLOAT_ONE;
     param_2[1] = RENDERING_MATH_FLOAT_ZERO;
     param_2[2] = RENDERING_MATH_DOUBLE_ONE;
@@ -834,7 +834,7 @@ void RenderingSystemVectorProcessor(
     }
     
     // 设置默认向量参数
-    FUN_180626f80(&unknown_var_9344_ptr);
+    SystemCore_ResourceManager0(&unknown_var_9344_ptr);
     *param_2 = RENDERING_MATH_FLOAT_ONE;
     param_2[1] = RENDERING_MATH_FLOAT_ZERO;
     param_2[2] = RENDERING_MATH_DOUBLE_ONE;
@@ -881,7 +881,7 @@ void RenderingSystemParameterHandler(
     }
     
     // 设置默认参数
-    FUN_180626f80(&unknown_var_9400_ptr);
+    SystemCore_ResourceManager0(&unknown_var_9400_ptr);
     *param_2 = RENDERING_MATH_FLOAT_ONE;
     param_2[1] = RENDERING_MATH_FLOAT_ZERO;
     param_2[2] = RENDERING_MATH_DOUBLE_ONE;

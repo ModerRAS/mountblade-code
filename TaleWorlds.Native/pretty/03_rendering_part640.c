@@ -108,7 +108,7 @@ CoreMemoryPoolValidator(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint6
 
 
 uint64_t *
-FUN_1806279c0(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+SystemCore_EncryptionEngine0(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   void *puVar1;

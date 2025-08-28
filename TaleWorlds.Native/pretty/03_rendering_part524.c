@@ -99,7 +99,7 @@ LAB_180551280:
     }
   }
 LAB_1805513ad:
-  FUN_180626f80(&unknown_var_2592_ptr);
+  SystemCore_ResourceManager0(&unknown_var_2592_ptr);
   *param_1 = 0xfffffffe;
   goto LAB_1805513c0;
   while (pcVar5 = pcVar4, pcVar4 != (char *)0x5) {

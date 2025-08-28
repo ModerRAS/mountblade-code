@@ -705,8 +705,8 @@ FUN_1801ec160(uint64_t *param_1,int64_t param_2,uint64_t *param_3,uint64_t param
     param_1[0x1c] = *(uint64_t *)(param_2 + 0x20);
   }
   FUN_180627ae0(param_1 + 0x1e,param_3);
-  FUN_1806279c0(param_1 + 0x22,param_4);
-  FUN_1806279c0(param_1 + 0x26,param_5);
+  SystemCore_EncryptionEngine0(param_1 + 0x22,param_4);
+  SystemCore_EncryptionEngine0(param_1 + 0x26,param_5);
   param_1[3] = 0xfffffffffffffffc;
   FUN_1801ec300(param_2,*(uint64_t *)(param_2 + 0x10));
   *param_3 = &system_data_buffer_ptr;
@@ -946,7 +946,7 @@ void FUN_1801ec6a0(uint64_t param_1,int32_t param_2)
       if (*(void **)(lVar1 + 0x630) != (void *)0x0) {
         puVar3 = *(void **)(lVar1 + 0x630);
       }
-      FUN_180626f80(&unknown_var_544_ptr,puVar3);
+      SystemCore_ResourceManager0(&unknown_var_544_ptr,puVar3);
     }
     *(int32_t *)(lVar1 + 0x620) = *(int32_t *)(lVar1 + 0x668);
     return;

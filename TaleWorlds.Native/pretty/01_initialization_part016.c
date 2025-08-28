@@ -633,7 +633,7 @@ void initialize_engine_system(void)
   file_flags = 6;
   strcpy_s(file_path, 16, &default_config_path_180a3c07c);
   file_flags = 1;
-  FUN_1806279c0(stack_buffer + 64, &file_handle);
+  SystemCore_EncryptionEngine0(stack_buffer + 64, &file_handle);
   file_flags = 0;
   file_handle = &global_vtable_18098bcb0;
   buffer_size = path_length + 15;

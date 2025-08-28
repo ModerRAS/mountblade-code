@@ -705,7 +705,7 @@ LAB_1804b680e:
             if (puStack_48 != (void *)0x0) {
               puVar11 = puStack_48;
             }
-            FUN_180626f80(&unknown_var_24_ptr,puVar11);
+            SystemCore_ResourceManager0(&unknown_var_24_ptr,puVar11);
             pcVar6 = pcVar17;
 LAB_1804b6867:
             *(char **)(pcVar14 + *(int64_t *)(param_1 + 0x3b8)) = pcVar6;

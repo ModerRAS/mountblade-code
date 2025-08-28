@@ -696,7 +696,7 @@ void FUN_1802a7680(int64_t param_1,uint64_t *param_2)
     (**(code **)(puStack_3e8 + 0x10))(&puStack_3e8,puVar12);
     apuStack_268[0] = &system_state_ptr;
     uVar6 = FUN_180627490(apuStack_298,&puStack_3e8);
-    FUN_1806279c0(&puStack_3b0,uVar6);
+    SystemCore_EncryptionEngine0(&puStack_3b0,uVar6);
     apuStack_298[0] = &system_state_ptr;
     uVar11 = uVar8;
     uVar10 = uVar8;

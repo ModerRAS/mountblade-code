@@ -306,7 +306,7 @@ void FUN_1802dd2b0(int64_t param_1,int64_t param_2)
      ((*(int *)(lVar9 + 0x1d0) != -1 && (*(int *)(lVar9 + 0x1d0) != 0)))) {
     lVar27 = *(int64_t *)(param_1 + 0x280);
     if ((*(int64_t *)(lVar27 + 0x3c8) == 0) && (system_system_data_config != 0)) {
-      uVar33 = FUN_1806279c0(&uStack_c8,lVar27 + 0x160);
+      uVar33 = SystemCore_EncryptionEngine0(&uStack_c8,lVar27 + 0x160);
       uVar33 = FUN_180177da0(uVar33,&uStack_c8);
       *(uint64_t *)(lVar27 + 0x3c8) = uVar33;
       uStack_c8 = &system_data_buffer_ptr;
@@ -317,7 +317,7 @@ void FUN_1802dd2b0(int64_t param_1,int64_t param_2)
       uStack_c0 = 0;
       uStack_b0._0_4_ = 0;
       uStack_c8 = &system_state_ptr;
-      uVar33 = FUN_1806279c0(&uStack_c8,lVar27 + 0x198);
+      uVar33 = SystemCore_EncryptionEngine0(&uStack_c8,lVar27 + 0x198);
       uVar33 = FUN_180177da0(uVar33,&uStack_c8);
       *(uint64_t *)(lVar27 + 0x3d0) = uVar33;
       uStack_c8 = &system_data_buffer_ptr;

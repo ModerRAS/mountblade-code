@@ -637,7 +637,7 @@ void FUN_18062bed0(uint64_t param_1)
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_608;
   uStack_5d8 = 0;
   uVar1 = FUN_180624440(apuStack_468,param_1);
-  FUN_1806279c0(&puStack_5d0,uVar1);
+  SystemCore_EncryptionEngine0(&puStack_5d0,uVar1);
   apuStack_468[0] = &system_state_ptr;
   uStack_5e0 = 0x118;
   puStack_5e8 = auStack_248;
@@ -666,7 +666,7 @@ void FUN_18062bed0(uint64_t param_1)
     if (puStack_5c8 != (void *)0x0) {
       puVar3 = puStack_5c8;
     }
-    FUN_180626f80(&unknown_var_4840_ptr,puVar3);
+    SystemCore_ResourceManager0(&unknown_var_4840_ptr,puVar3);
   }
   puStack_5a8 = auStack_4e8;
   *(void **)((int64_t)apuStack_598 + (int64_t)*(int *)(apuStack_598[0] + 4)) = &unknown_var_7544_ptr
@@ -704,7 +704,7 @@ uint64_t FUN_18062c100(uint64_t param_1)
   
   uVar5 = 0xfffffffffffffffe;
   uVar4 = 0;
-  FUN_1806279c0(&puStack_28);
+  SystemCore_EncryptionEngine0(&puStack_28);
   uVar2 = 0;
   if (uStack_18 != 0) {
     lVar1 = 0;
@@ -767,7 +767,7 @@ void FUN_18062c1e0(uint64_t param_1,char param_2)
   if (cVar1 == '\0') {
     if (param_2 != '\0') {
       uVar2 = FUN_180624440(apuStack_488,param_1);
-      FUN_1806279c0(auStack_4b8,uVar2);
+      SystemCore_EncryptionEngine0(auStack_4b8,uVar2);
       apuStack_488[0] = &system_state_ptr;
       uVar4 = 0;
       if (uStack_4a8 != 0) {
@@ -835,7 +835,7 @@ void FUN_18062c470(uint64_t param_1)
   uStack_470 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4f8;
   uVar3 = FUN_180624440(apuStack_468,param_1);
-  FUN_1806279c0(&puStack_4c8,uVar3);
+  SystemCore_EncryptionEngine0(&puStack_4c8,uVar3);
   apuStack_468[0] = &system_state_ptr;
   puVar4 = &system_buffer_ptr;
   if (puStack_4c0 != (void *)0x0) {
@@ -920,7 +920,7 @@ void FUN_18062c5f0(uint64_t param_1,int64_t param_2)
   cVar2 = FUN_180624a00();
   if (cVar2 != '\0') {
     uVar4 = FUN_180624440(&uStack_498,param_1);
-    FUN_1806279c0(&puStack_718,uVar4);
+    SystemCore_EncryptionEngine0(&puStack_718,uVar4);
     uStack_498 = &system_state_ptr;
     if (*(char *)((uint64_t)(uStack_708 - 1) + lStack_710) == '/') {
       uVar6 = uStack_708 + 1;
@@ -943,7 +943,7 @@ void FUN_18062c5f0(uint64_t param_1,int64_t param_2)
         if ((((sStack_6bc != 0x2e) || (sStack_6ba != 0)) &&
             ((sStack_6bc != 0x2e || ((sStack_6ba != 0x2e || (sStack_6b8 != 0)))))) &&
            ((abStack_6e8[0] & 0x10) != 0)) {
-          FUN_1806279c0(&puStack_738,param_1);
+          SystemCore_EncryptionEngine0(&puStack_738,param_1);
           if (*(char *)((uint64_t)(uStack_728 - 1) + lStack_730) != '/') {
             uVar6 = uStack_728 + 1;
             CoreMemoryPoolProcessor(&puStack_738,uVar6);

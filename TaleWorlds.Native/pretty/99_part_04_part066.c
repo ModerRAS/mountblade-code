@@ -87,7 +87,7 @@ void FUN_1802c2560(int64_t param_1,int64_t param_2)
       *(int16_t *)((uint64_t)uStack_88 + lStack_90) = 0x2f2f;
       *(int8_t *)((int16_t *)((uint64_t)uStack_88 + lStack_90) + 1) = 0;
       uStack_88 = 2;
-      FUN_1806279c0(&puStack_58,param_2);
+      SystemCore_EncryptionEngine0(&puStack_58,param_2);
       uVar1 = uStack_88;
       puStack_78 = &system_data_buffer_ptr;
       uStack_60 = 0;

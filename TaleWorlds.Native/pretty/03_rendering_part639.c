@@ -94,7 +94,7 @@ typedef struct {
 #define RenderingSystem_DebugStringGenerator5 FUN_180626a80
 #define RenderingSystem_StringLengthCalculator FUN_180626eb0
 #define RenderingSystem_DebugStringFormatter3 FUN_180626ee0
-#define RenderingSystem_DebugFunctionExecutor1 FUN_180626f80
+#define RenderingSystem_DebugFunctionExecutor1 SystemCore_ResourceManager0
 #define RenderingSystem_DebugStringFormatter4 FUN_180627020
 #define RenderingSystem_DebugStringFormatter5 FUN_1806270c0
 #define RenderingSystem_DebugFunctionExecutor2 FUN_180627160
@@ -151,14 +151,14 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
     uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
     
     /* 初始化字符串缓冲区 */
-    FUN_1806279c0(auStack_88);
+    SystemCore_EncryptionEngine0(auStack_88);
     puStack_68 = &system_data_buffer_ptr;
     uStack_50 = 0;
     uStack_60 = 0;
     uStack_58 = 0;
     
     /* 处理格式化参数 */
-    FUN_1806279c0(auStack_48, param_3);
+    SystemCore_EncryptionEngine0(auStack_48, param_3);
     lVar1 = FUN_1806256c0(&puStack_b8, auStack_88, 3);
     
     /* 获取调试字符串指针 */
@@ -237,10 +237,10 @@ void RenderingSystem_DebugStringFormatter2(uint64_t param_1, uint64_t param_2, u
     uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_f8;
     
     /* 初始化多个参数缓冲区 */
-    FUN_1806279c0(auStack_a8);
-    FUN_1806279c0(auStack_88, param_3);
-    FUN_1806279c0(auStack_68, param_4);
-    FUN_1806279c0(auStack_48, param_5);
+    SystemCore_EncryptionEngine0(auStack_a8);
+    SystemCore_EncryptionEngine0(auStack_88, param_3);
+    SystemCore_EncryptionEngine0(auStack_68, param_4);
+    SystemCore_EncryptionEngine0(auStack_48, param_5);
     
     /* 处理多参数格式化 */
     FUN_1806256c0(&puStack_d8, auStack_a8, 4);
@@ -403,7 +403,7 @@ void RenderingSystem_DebugStringGenerator2(void)
     int iStack_20;             /* 额外内容长度 */
     
     /* 初始化字符串缓冲区 */
-    FUN_1806279c0(&puStack_30);
+    SystemCore_EncryptionEngine0(&puStack_30);
     CoreMemoryPoolValidator(&puStack_50, &system_memory_c230);
     
     /* 获取当前缓冲区长度 */
@@ -874,7 +874,7 @@ void RenderingSystem_DebugStringGenerator4(void)
     int iStack_20;             /* 额外内容长度 */
     
     /* 初始化字符串缓冲区 */
-    FUN_1806279c0(&puStack_30);
+    SystemCore_EncryptionEngine0(&puStack_30);
     CoreMemoryPoolValidator(&puStack_50, &system_memory_c230);
     
     /* 获取当前缓冲区长度 */
@@ -1100,7 +1100,7 @@ void RenderingSystem_DebugStringGenerator5(void)
     strcpy_s(auStack_98, 0x10, &unknown_var_2588_ptr);
     
     /* 初始化主字符串缓冲区 */
-    FUN_1806279c0(&puStack_160, &puStack_b0);
+    SystemCore_EncryptionEngine0(&puStack_160, &puStack_b0);
     uVar1 = uStack_150;
     uStack_168 = 0;
     puStack_b0 = &system_state_ptr;
@@ -1161,7 +1161,7 @@ void RenderingSystem_DebugStringGenerator5(void)
             strcpy_s(auStack_70, 0x10, &unknown_var_2588_ptr);
             
             /* 初始化备用字符串缓冲区 */
-            FUN_1806279c0(&puStack_140, &puStack_88);
+            SystemCore_EncryptionEngine0(&puStack_140, &puStack_88);
             uVar1 = uStack_130;
             uStack_168 = 0;
             puStack_88 = &system_state_ptr;
@@ -1223,7 +1223,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                 strcpy_s(auStack_48, 0x10, &unknown_var_2588_ptr);
                 
                 /* 初始化第三备用字符串缓冲区 */
-                FUN_1806279c0(&puStack_120, &puStack_60);
+                SystemCore_EncryptionEngine0(&puStack_120, &puStack_60);
                 uVar1 = uStack_110;
                 puStack_60 = &system_state_ptr;
                 

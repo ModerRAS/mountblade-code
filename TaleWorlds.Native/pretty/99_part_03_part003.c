@@ -543,7 +543,7 @@ uint64_t FUN_1801c6d60(uint64_t param_1,int64_t param_2,int *param_3)
   puVar9[4] = 0x3a20726f6620646e;
   *(int8_t *)(puVar9 + 5) = 0;
   uStack_a0 = 0x28;
-  FUN_1806279c0(&puStack_90,param_2);
+  SystemCore_EncryptionEngine0(&puStack_90,param_2);
   puStack_d0 = &system_data_buffer_ptr;
   uStack_b8 = 0;
   puStack_c8 = (uint64_t *)0x0;

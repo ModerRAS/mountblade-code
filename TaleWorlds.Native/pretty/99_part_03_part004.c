@@ -540,7 +540,7 @@ int64_t FUN_1801c85f0(void)
     lVar4 = 0;
   }
   else {
-    FUN_1806279c0(&puStack_40,lVar4 + 0x10);
+    SystemCore_EncryptionEngine0(&puStack_40,lVar4 + 0x10);
     lVar2 = FUN_1802aaef0(system_resource_state + 0xac0);
     if (lVar2 == 0) {
       lVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x50,0x10,3,plVar5,pauVar6,uVar7);
@@ -551,7 +551,7 @@ int64_t FUN_1801c85f0(void)
       *(void **)(lVar2 + 8) = &system_flag_0000;
       *(uint64_t *)(lVar2 + 0x18) = 0;
       *(int32_t *)(lVar2 + 0x28) = 0;
-      FUN_1806279c0(lVar2 + 0x30,&puStack_40);
+      SystemCore_EncryptionEngine0(lVar2 + 0x30,&puStack_40);
       *(int64_t *)(lVar4 + 0x15b8) = lVar2;
       FUN_1802ab0c0(system_resource_state + 0xac0);
     }
@@ -637,7 +637,7 @@ void FUN_1801c8840(uint64_t param_1,uint64_t param_2,uint64_t param_3,int32_t *p
   uStack_40 = 0xfffffffffffffffe;
   uStackX_8 = param_1;
   auStackX_18[0] = param_3;
-  uVar8 = FUN_1806279c0(&puStack_a8);
+  uVar8 = SystemCore_EncryptionEngine0(&puStack_a8);
   puStack_c8 = &system_data_buffer_ptr;
   uStack_b0 = 0;
   puStack_c0 = (void *)0x0;

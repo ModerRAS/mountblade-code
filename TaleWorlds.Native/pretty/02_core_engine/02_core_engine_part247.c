@@ -509,7 +509,7 @@ void add_event_to_queue(int64_t event_context, uint64_t event_data)
   
   // 解析事件数据
   parsed_data = FUN_180624440(security_buffer, event_data);
-  FUN_1806279c0(&temp_string, parsed_data);
+  SystemCore_EncryptionEngine0(&temp_string, parsed_data);
   
   security_buffer[0] = &system_state_ptr;
   debug_handle = 0;

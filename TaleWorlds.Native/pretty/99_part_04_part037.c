@@ -360,10 +360,10 @@ void FUN_1802a83f0(uint64_t param_1,uint64_t param_2)
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_318;
   uVar10 = 0;
   uVar4 = FUN_180624440(apuStack_268,param_1);
-  FUN_1806279c0(&puStack_2c0,uVar4);
+  SystemCore_EncryptionEngine0(&puStack_2c0,uVar4);
   apuStack_268[0] = &system_state_ptr;
   uVar4 = FUN_180627490(apuStack_290,&puStack_2c0);
-  FUN_1806279c0(&puStack_2e0,uVar4);
+  SystemCore_EncryptionEngine0(&puStack_2e0,uVar4);
   apuStack_290[0] = &system_state_ptr;
   uVar6 = uVar10;
   uVar7 = uVar10;

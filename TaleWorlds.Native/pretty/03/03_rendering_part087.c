@@ -481,7 +481,7 @@ void render_system_parameter_processor(uint64_t *render_context, int64_t texture
     data_source = render_context;
     
     // 初始化纹理数据流
-    FUN_1806279c0(&data_target, texture_data + 0x10);
+    SystemCore_EncryptionEngine0(&data_target, texture_data + 0x10);
     texture_size = data_size;
     texture_count = data_size + 1;
     CoreMemoryPoolProcessor(&data_target, texture_count);

@@ -59,7 +59,7 @@ bool FUN_1805feec0(uint64_t param_1,char param_2)
 uint64_t FUN_1805fef00(void)
 
 {
-  FUN_180626f80(&unknown_var_7496_ptr);
+  SystemCore_ResourceManager0(&unknown_var_7496_ptr);
   return 0;
 }
 

@@ -621,7 +621,7 @@ LAB_1800b56df:
         if (*(void **)(*param_2 + 0x18) != (void *)0x0) {
             puVar7 = *(void **)(*param_2 + 0x18);
         }
-        FUN_180626f80(&unknown_var_7912_ptr, puVar7);
+        SystemCore_ResourceManager0(&unknown_var_7912_ptr, puVar7);
     }
     
     // 清理事件处理器

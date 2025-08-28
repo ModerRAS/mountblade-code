@@ -229,7 +229,7 @@ LAB_1801cb5d2:
               uVar14 = FUN_180079430(*(uint64_t *)plVar21[7]);
               lVar13 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,(int8_t)uStack_2c0);
               puVar23 = (uint64_t *)(lVar13 + 0x20);
-              FUN_1806279c0(puVar23,uVar14);
+              SystemCore_EncryptionEngine0(puVar23,uVar14);
               lStack_240 = lVar13;
               bVar2 = true;
               pppppppuVar5 = &pppppppuStack_2e8;
@@ -242,7 +242,7 @@ LAB_1801cb5d2:
           if (lVar13 != 0) {
             lVar24 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,(int8_t)uStack_2c0);
             puVar23 = (uint64_t *)(lVar24 + 0x20);
-            FUN_1806279c0(puVar23,lVar13 + 0x10);
+            SystemCore_EncryptionEngine0(puVar23,lVar13 + 0x10);
             lStack_240 = lVar24;
             bVar2 = true;
             pppppppuVar5 = &pppppppuStack_2e8;
@@ -427,7 +427,7 @@ LAB_1801cc020:
   lVar13 = *(int64_t *)(*plStack_340 + 0x1b8);
   lVar24 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,(int8_t)uStack_2f0);
   puVar23 = (uint64_t *)(lVar24 + 0x20);
-  FUN_1806279c0(puVar23,lVar13 + 0x10);
+  SystemCore_EncryptionEngine0(puVar23,lVar13 + 0x10);
   bVar2 = true;
   pppppppuVar5 = &pppppppuStack_318;
   pppppppuVar15 = pppppppuStack_308;

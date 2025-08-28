@@ -643,7 +643,7 @@ int64_t FUN_1800ba230(int64_t param_1)
   *(void **)(param_1 + 8) = &system_data_0000;
   *(uint64_t *)(param_1 + 0x18) = 0;
   *(int32_t *)(param_1 + 0x28) = 0;
-  FUN_1806279c0(param_1 + 0x30);
+  SystemCore_EncryptionEngine0(param_1 + 0x30);
   return param_1;
 }
 

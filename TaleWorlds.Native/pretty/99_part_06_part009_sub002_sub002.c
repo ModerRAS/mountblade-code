@@ -294,7 +294,7 @@ void* FUN_1802bfbb0(void* param_1, void* param_2, float param_3);
 void FUN_180417a90(void* param_1, void* param_2, uint32_t param_3);
 void FUN_1800b08e0(void* param_1, void* param_2, void* param_3, int param_4);
 void FUN_1803aef00(void* param_1, void* param_2);
-void FUN_1806279c0(void* param_1, void* param_2);
+void SystemCore_EncryptionEngine0(void* param_1, void* param_2);
 void FUN_180080810(void* param_1, void* param_2);
 void FUN_180417b70(void* param_1, void* param_2, uint32_t param_3);
 void* FUN_180049b30(void* param_1, int64_t param_2);
@@ -335,7 +335,7 @@ void SystemSecurityChecker(uint64_t param_1);
 #define SystemExecute FUN_1803aef00
 
 /** 系统配置函数别名 */
-#define SystemConfigure FUN_1806279c0
+#define SystemConfigure SystemCore_EncryptionEngine0
 
 /** 系统处理函数别名 */
 #define SystemProcess FUN_180080810

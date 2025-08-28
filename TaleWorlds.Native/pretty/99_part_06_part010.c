@@ -338,7 +338,7 @@ void FUN_1803ae570(uint64_t param_1,uint64_t param_2,int64_t param_3)
   
   uStack_498 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4d8;
-  FUN_1806279c0(&puStack_4b8);
+  SystemCore_EncryptionEngine0(&puStack_4b8);
   uVar5 = uStack_4a8 + 0x19;
   CoreMemoryPoolProcessor(&puStack_4b8,uVar5);
   puVar3 = (int32_t *)((uint64_t)uStack_4a8 + lStack_4b0);
@@ -446,7 +446,7 @@ void FUN_1803ae820(uint64_t param_1,int64_t param_2)
   
   uStack_478 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4b8;
-  FUN_1806279c0(&puStack_498,param_1);
+  SystemCore_EncryptionEngine0(&puStack_498,param_1);
   uVar5 = uStack_488 + 0x19;
   CoreMemoryPoolProcessor(&puStack_498,uVar5);
   puVar3 = (int32_t *)((uint64_t)uStack_488 + lStack_490);

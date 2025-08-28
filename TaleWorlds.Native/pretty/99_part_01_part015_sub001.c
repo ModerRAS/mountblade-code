@@ -249,10 +249,10 @@ int8_t FUN_1800af2c0(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   uint64_t uStack_38;
   
   uStack_38 = 0xfffffffffffffffe;
-  FUN_1806279c0(&puStack_78);
+  SystemCore_EncryptionEngine0(&puStack_78);
   CoreEngineDataTransformer(&puStack_98,param_3);
   plVar2 = param_1 + 0x12;
-  FUN_1806279c0(&puStack_b8,param_2);
+  SystemCore_EncryptionEngine0(&puStack_b8,param_2);
   plVar20 = (int64_t *)param_1[0x14];
   plVar15 = plVar2;
   if (plVar20 != (int64_t *)0x0) {

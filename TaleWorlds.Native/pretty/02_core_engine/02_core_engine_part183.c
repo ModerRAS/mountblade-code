@@ -351,7 +351,7 @@ int64_t *CoreEngineDataManager(uint64_t resource_type, int64_t *resource_ptr, in
     
     // 初始化数据管理器
     lVar3 = core_system_data_memory;
-    FUN_1806279c0(&puStack_78, param_3, param_3, param_4, 0, 0xfffffffffffffffe);
+    SystemCore_EncryptionEngine0(&puStack_78, param_3, param_3, param_4, 0, 0xfffffffffffffffe);
     lVar4 = FUN_180169350(lVar3, &puStack_78);
     puStack_78 = &system_data_buffer_ptr;
     
@@ -813,7 +813,7 @@ int64_t *CoreEnginePathParser(uint64_t manager_type, int64_t *data_ptr, uint64_t
     uStack_48 = 0xfffffffffffffffe;
     plVar12 = (int64_t *)0x0;
     uStack_d8 = 0;
-    FUN_1806279c0(&puStack_d0, param_3);
+    SystemCore_EncryptionEngine0(&puStack_d0, param_3);
     plVar9 = plVar12;
     plVar13 = plVar12;
     
@@ -829,7 +829,7 @@ int64_t *CoreEnginePathParser(uint64_t manager_type, int64_t *data_ptr, uint64_t
         } while (uVar8 < uStack_c0);
     }
     
-    FUN_1806279c0(&puStack_90, param_3);
+    SystemCore_EncryptionEngine0(&puStack_90, param_3);
     plVar9 = plVar12;
     plVar13 = plVar12;
     if (uStack_80 != 0) {

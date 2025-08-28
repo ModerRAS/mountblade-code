@@ -746,7 +746,7 @@ void FUN_180631420(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   uStack_378 = (int32_t)lVar3;
   strcpy_s(auStack_370,0x100,param_1);
   uVar4 = FUN_180624440(apuStack_268,&puStack_388);
-  FUN_1806279c0(&puStack_3b0,uVar4);
+  SystemCore_EncryptionEngine0(&puStack_3b0,uVar4);
   apuStack_268[0] = &system_state_ptr;
   puStack_388 = &system_state_ptr;
   alStack_3d0[0] = -1;

@@ -431,7 +431,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
             void_ptr = *(void**)(long_val + RENDERING_SYSTEM_OFFSET_0x290);
         }
         stack_ulong2 = 0x18036b358;
-        FUN_180626f80(&unknown_var_1504_ptr, void_ptr);
+        SystemCore_ResourceManager0(&unknown_var_1504_ptr, void_ptr);
     }
     
     // 更新对象状态

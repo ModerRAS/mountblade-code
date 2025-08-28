@@ -415,7 +415,7 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, int64_t param_2
   texture_manager = param_1;
   
   // 创建纹理缓冲区
-  FUN_1806279c0(&render_context, param_2 + 0x10);
+  SystemCore_EncryptionEngine0(&render_context, param_2 + 0x10);
   texture_index = buffer_size;
   texture_size = buffer_size + 1;
   FUN_1806277c0(&render_context, texture_size);

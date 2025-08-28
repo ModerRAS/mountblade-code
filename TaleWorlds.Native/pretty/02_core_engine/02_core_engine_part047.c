@@ -216,7 +216,7 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
     } while (stack_data_2 < total_items);
     if (processing_index != 0) goto LAB_180088ac9;
   }
-  FUN_180626f80(&unknown_var_8232_ptr);
+  SystemCore_ResourceManager0(&unknown_var_8232_ptr);
 LAB_180088ac9:
   next_item_ptr = (int64_t *)data_array_ptr[0x17];
   if (next_item_ptr != data_array_ptr + 0x16) {
@@ -286,7 +286,7 @@ bool validate_data_structure_integrity(int64_t *param_1)
   
   base_address = *param_1;
   start_node_ptr = (uint64_t *)(base_address + 0x48);
-  FUN_1806279c0();
+  SystemCore_EncryptionEngine0();
   current_node_ptr = *(uint64_t **)(base_address + 0x58);
   next_node_ptr = start_node_ptr;
   if (current_node_ptr != (uint64_t *)0x0) {
@@ -376,7 +376,7 @@ uint64_t find_and_process_data_node(int64_t *param_1, uint64_t param_2)
   
   base_address = *param_1;
   start_node_ptr = (int64_t *)(base_address + 0x48);
-  FUN_1806279c0();
+  SystemCore_EncryptionEngine0();
   processing_flag = false;
   next_node_ptr = *(int64_t **)(base_address + 0x58);
   current_node_ptr = start_node_ptr;
@@ -437,7 +437,7 @@ LAB_18008927d:
 LAB_1800892bd:
   if (target_node_ptr == start_node_ptr) {
     base_address = param_1[1];
-    FUN_1806279c0(&stack_ptr, param_2);
+    SystemCore_EncryptionEngine0(&stack_ptr, param_2);
     processing_flag = true;
     target_node_ptr = (int64_t *)FUN_180058080(base_address, temp_stack, &stack_ptr);
     if (*target_node_ptr == base_address) {

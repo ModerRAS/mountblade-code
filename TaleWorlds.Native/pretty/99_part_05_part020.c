@@ -59,7 +59,7 @@ void FUN_1802e4d10(int64_t param_1,int64_t param_2)
   lVar7 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,3);
   *(int64_t *)(lVar7 + 0x20) = lVar6;
   *(int64_t *)(lVar7 + 0x28) = param_1;
-  FUN_1806279c0(&puStack_8a0,param_2);
+  SystemCore_EncryptionEngine0(&puStack_8a0,param_2);
   lVar6 = FUN_1802e5300(param_1,&puStack_8a0);
   uVar13 = 0;
   if (lVar6 != 0) {
@@ -356,7 +356,7 @@ uint64_t FUN_1802e5300(int64_t param_1)
   int iStack_20;
   
   puVar1 = (uint64_t *)(param_1 + 0x150);
-  FUN_1806279c0(&puStack_30);
+  SystemCore_EncryptionEngine0(&puStack_30);
   puVar9 = *(uint64_t **)(param_1 + 0x160);
   puVar7 = puVar1;
   if (puVar9 != (uint64_t *)0x0) {

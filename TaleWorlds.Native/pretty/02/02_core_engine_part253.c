@@ -797,7 +797,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
       default_ptr = *(void **)(file_handle + 8);
     }
     buffer_size2 = string_size;
-    FUN_180626f80(&unknown_var_5040_ptr, default_ptr);
+    SystemCore_ResourceManager0(&unknown_var_5040_ptr, default_ptr);
     string_ptr = &system_data_buffer_ptr;
     if (data_offset != 0) {
                     // WARNING: Subroutine does not return

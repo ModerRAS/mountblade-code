@@ -134,7 +134,7 @@ LAB_18054ffe0:
       goto LAB_180550158;
     }
   }
-  FUN_180626f80(&unknown_var_1744_ptr);
+  SystemCore_ResourceManager0(&unknown_var_1744_ptr);
   *param_1 = 0xffffffff;
 LAB_180550158:
   *(int8_t *)(param_1 + 1) = 0;

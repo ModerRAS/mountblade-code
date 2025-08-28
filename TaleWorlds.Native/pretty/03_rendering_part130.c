@@ -698,7 +698,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       param_3[0xa4] = **(int32_t **)(lVar19 + 0x20);
       break;
     case 5:
-      uVar17 = FUN_1806279c0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
+      uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
       lVar19 = FUN_1803466a0(param_1,uVar17);
       puVar1 = *(int32_t **)(lVar19 + 0x20);
       uStack_48 = *puVar1;
@@ -720,7 +720,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       *(uint64_t *)(param_3 + 0x18) = **(uint64_t **)(lVar19 + 0x20);
       break;
     case 7:
-      uVar17 = FUN_1806279c0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
+      uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
       lVar19 = FUN_1803466a0(param_1,uVar17);
       *(uint64_t *)(param_3 + 0x1a) = **(uint64_t **)(lVar19 + 0x20);
       puStack_28 = &system_data_buffer_ptr;
@@ -730,7 +730,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       }
       break;
     case 8:
-      uVar17 = FUN_1806279c0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
+      uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
       lVar19 = FUN_1803466a0(param_1,uVar17);
       *(uint64_t *)(param_3 + 0x1c) = **(uint64_t **)(lVar19 + 0x20);
       puStack_28 = &system_data_buffer_ptr;
@@ -749,7 +749,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
                     // WARNING: Subroutine does not return
       memcpy(param_3 + 0x60,puVar18,(int64_t)iStack_38);
     case 10:
-      uVar17 = FUN_1806279c0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
+      uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
       lVar19 = FUN_1803466a0(param_1,uVar17);
       *(uint64_t *)(param_3 + 0x1e) = **(uint64_t **)(lVar19 + 0x20);
       puStack_28 = &system_data_buffer_ptr;
@@ -759,7 +759,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       }
       break;
     case 0xc:
-      uVar17 = FUN_1806279c0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
+      uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
       lVar19 = FUN_1803466a0(param_1,uVar17);
       puVar1 = *(int32_t **)(lVar19 + 0x20);
       uStack_48 = *puVar1;
@@ -777,7 +777,7 @@ void FUN_180345b70(uint64_t param_1,uint64_t param_2,int32_t *param_3,uint param
       param_3[0x13] = uStack_3c;
       break;
     case 0xd:
-      uVar17 = FUN_1806279c0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
+      uVar17 = SystemCore_EncryptionEngine0(&puStack_28,param_2,param_3,lVar19,0,0xfffffffffffffffe);
       lVar19 = FUN_1803466a0(param_1,uVar17);
       puVar1 = *(int32_t **)(lVar19 + 0x20);
       uVar2 = puVar1[1];
@@ -902,7 +902,7 @@ void FUN_1803460a0(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
   uint64_t uStack_30;
   int32_t uStack_28;
   
-  FUN_1806279c0(&puStack_50);
+  SystemCore_EncryptionEngine0(&puStack_50);
   puVar1 = *(uint64_t **)(param_1 + 0x58);
   uStack_30 = param_3;
   uStack_28 = param_4;

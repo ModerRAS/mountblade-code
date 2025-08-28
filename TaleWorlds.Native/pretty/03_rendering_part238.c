@@ -872,7 +872,7 @@ void FUN_180400f00(int64_t *param_1,int64_t param_2)
   auStack_200[0] = 0;
   uStack_208 = 0x13;
   strcpy_s(auStack_200,0x20,&unknown_var_6304_ptr);
-  FUN_1806279c0(&puStack_248,&puStack_218);
+  SystemCore_EncryptionEngine0(&puStack_248,&puStack_218);
   puStack_218 = &system_state_ptr;
   if (0 < *(int *)(param_2 + 0x3530)) {
     CoreEngineDataBufferProcessor(&puStack_248,uStack_238 + *(int *)(param_2 + 0x3530));
@@ -885,7 +885,7 @@ void FUN_180400f00(int64_t *param_1,int64_t param_2)
   auStack_200[0] = 0;
   uStack_208 = 0x13;
   strcpy_s(auStack_200,0x20,&unknown_var_6248_ptr);
-  FUN_1806279c0(&puStack_268,&puStack_218);
+  SystemCore_EncryptionEngine0(&puStack_268,&puStack_218);
   puStack_218 = &system_state_ptr;
   if (0 < *(int *)(param_2 + 0x3530)) {
     CoreEngineDataBufferProcessor(&puStack_268,uStack_258 + *(int *)(param_2 + 0x3530));

@@ -386,7 +386,7 @@ LAB_180569148:
                           iVar4 = FormatMessageA(0x1000,0,uVar6,0x400);
                           if (iVar4 == 0) {
                             uVar6 = GetLastError();
-                            FUN_180626f80(&unknown_var_3400_ptr,uVar6);
+                            SystemCore_ResourceManager0(&unknown_var_3400_ptr,uVar6);
                           }
                           puStack_bd0 = &system_buffer_ptr;
                           if (param_2[1] != (void *)0x0) {
@@ -424,7 +424,7 @@ LAB_18056945f:
   iVar4 = FormatMessageA(0x1000,0,uVar6,0x400);
   if (iVar4 == 0) {
     uVar6 = GetLastError();
-    FUN_180626f80(&unknown_var_3400_ptr,uVar6);
+    SystemCore_ResourceManager0(&unknown_var_3400_ptr,uVar6);
   }
   puStack_bd0 = &system_buffer_ptr;
   if (param_2[1] != (void *)0x0) {

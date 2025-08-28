@@ -499,7 +499,7 @@ LAB_18039d470:
     }
     if (0x10 < iVar9) {
       iVar9 = 0x10;
-      FUN_180626f80(&unknown_var_7176_ptr,0x10,puVar10,pcVar2,0xfffffffffffffffe);
+      SystemCore_ResourceManager0(&unknown_var_7176_ptr,0x10,puVar10,pcVar2,0xfffffffffffffffe);
     }
   }
   FUN_180057340((int64_t *)(param_1 + 0x230),(int64_t)iVar9);

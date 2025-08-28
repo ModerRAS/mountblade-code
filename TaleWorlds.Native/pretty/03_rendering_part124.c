@@ -350,7 +350,7 @@ uint64_t *ShaderPipelineGenerator(uint64_t param_1, uint64_t *param_2, uint64_t 
 #define CoreEngineMemoryPoolCleaner              MemoryDeallocator
 
 // 缓冲区管理函数别名
-#define FUN_1806279c0              BufferAllocator
+#define SystemCore_EncryptionEngine0              BufferAllocator
 #define CoreEngineDataBufferProcessor              BufferExpander
 #define FUN_180627be0              ShaderConfigSetter
 #define FUN_18062dee0              FileStreamOpener
@@ -868,7 +868,7 @@ void ShaderSourceCompiler(uint64_t param_1, int64_t param_2, int64_t param_3, ui
 #define CoreEngineMemoryPoolCleaner              MemoryDeallocator
 
 // 缓冲区管理函数别名
-#define FUN_1806279c0              BufferAllocator
+#define SystemCore_EncryptionEngine0              BufferAllocator
 #define CoreEngineDataBufferProcessor              BufferExpander
 #define FUN_180627be0              ShaderConfigSetter
 #define FUN_18062dee0              FileStreamOpener

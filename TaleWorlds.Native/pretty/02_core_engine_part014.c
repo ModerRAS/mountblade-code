@@ -396,7 +396,7 @@ void FUN_180054360(int64_t *param_1,int64_t param_2)
   lStack_1d8 = 0;
   uStack_1d0 = 0;
   lVar6 = *param_1;
-  FUN_1806279c0(&puStack_168,param_2);
+  SystemCore_EncryptionEngine0(&puStack_168,param_2);
   iVar2 = FUN_1801426a0(lVar6,&puStack_168);
   puStack_168 = &system_data_buffer_ptr;
   if (lStack_160 != 0) {

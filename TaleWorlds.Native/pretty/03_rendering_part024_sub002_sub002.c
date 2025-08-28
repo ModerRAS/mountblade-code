@@ -268,7 +268,7 @@ LAB_18027e092:
           FUN_180284830(auStack_108,&uStack_188,ppppppuVar22,&ppppppuStackX_10,(int64_t)iVar35);
           pppppppuVar29 = uStack_188;
           uVar13 = FUN_180079430(*(uint64_t *)(uVar38 + (int64_t)param_2[7]));
-          FUN_1806279c0(&puStack_b8,uVar13);
+          SystemCore_EncryptionEngine0(&puStack_b8,uVar13);
           pbVar24 = &system_buffer_ptr;
           if (pbStack_b0 != (byte *)0x0) {
             pbVar24 = pbStack_b0;

@@ -457,7 +457,7 @@ void initialize_resource_manager(int64_t *context_ptr)
         }
         if (!bVar26) {
           uVar9 = FUN_180624440(&uStack_268,pppppppuVar14 + 8);
-          FUN_1806279c0(&puStack_330,uVar9);
+          SystemCore_EncryptionEngine0(&puStack_330,uVar9);
           uStack_268 = &system_state_ptr;
           ppppppuVar19 = (uint64_t ******)&system_buffer_ptr;
           if (pppppppuVar14[5] != (uint64_t ******)0x0) {

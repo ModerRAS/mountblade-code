@@ -435,7 +435,7 @@ int64_t * FUN_1800b2cd0(int64_t *param_1,int64_t *param_2,int64_t param_3,uint64
   uVar16 = 0;
   plStackX_8 = param_1;
   plStackX_10 = param_2;
-  FUN_1806279c0(&puStack_60,param_4,param_3,param_4,0,0xfffffffffffffffe);
+  SystemCore_EncryptionEngine0(&puStack_60,param_4,param_3,param_4,0,0xfffffffffffffffe);
   uVar13 = uStack_50 + 1;
   CoreEngineDataBufferProcessor(&puStack_60,uVar13);
   (pbStack_58 + uStack_50)[0] = 0x2f;

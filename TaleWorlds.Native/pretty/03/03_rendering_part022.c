@@ -702,7 +702,7 @@ void export_material_data(int64_t mesh_data_ptr)
   }
   
   // 初始化文件路径缓冲区
-  FUN_1806279c0(path_buffer);
+  SystemCore_EncryptionEngine0(path_buffer);
   index = path_length + -1;
   file_offset = (int64_t)index;
   if (-1 < index) {

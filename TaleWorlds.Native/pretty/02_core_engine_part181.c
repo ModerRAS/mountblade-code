@@ -526,7 +526,7 @@ void FUN_1801676b0(uint64_t param_1,uint64_t param_2,int64_t *param_3)
     cVar3 = FUN_180624a00(&puStack_510);
     if (cVar3 != '\0') {
       uVar7 = FUN_180624440(apuStack_488,&puStack_510);
-      FUN_1806279c0(&puStack_530,uVar7);
+      SystemCore_EncryptionEngine0(&puStack_530,uVar7);
       apuStack_488[0] = &system_state_ptr;
       puVar10 = &system_buffer_ptr;
       if (puStack_528 != (void *)0x0) {

@@ -247,7 +247,7 @@ LAB_180408ade:
       if (puStack_2f0 != (void *)0x0) {
         puVar15 = puStack_2f0;
       }
-      FUN_180626f80(&unknown_var_7696_ptr,puVar15);
+      SystemCore_ResourceManager0(&unknown_var_7696_ptr,puVar15);
       puStack_420 = puVar20;
     }
     else {
@@ -327,7 +327,7 @@ LAB_180408c50:
               strcpy_s(puStack_350,0x40);
             }
             else {
-              FUN_180626f80(&unknown_var_616_ptr,0x40,lVar22);
+              SystemCore_ResourceManager0(&unknown_var_616_ptr,0x40,lVar22);
               iStack_348 = 0;
               *puStack_350 = 0;
             }
@@ -339,7 +339,7 @@ LAB_180408c50:
             if (puStack_350 != (int8_t *)0x0) {
               puVar16 = puStack_350;
             }
-            FUN_180626f80(&unknown_var_6880_ptr,puVar16);
+            SystemCore_ResourceManager0(&unknown_var_6880_ptr,puVar16);
           }
           else {
             puStack_1d8 = &unknown_var_3480_ptr;
@@ -378,7 +378,7 @@ LAB_180408d90:
                     fVar28 = (float)strcpy_s(puStack_1d0,0x40);
                   }
                   else {
-                    fVar28 = (float)FUN_180626f80(&unknown_var_616_ptr,0x40,lVar22);
+                    fVar28 = (float)SystemCore_ResourceManager0(&unknown_var_616_ptr,0x40,lVar22);
                     iStack_1c8 = 0;
                     *puStack_1d0 = 0;
                   }
@@ -553,7 +553,7 @@ LAB_180409142:
                     uVar29 = strcpy_s(puStack_230,0x40);
                   }
                   else {
-                    uVar29 = FUN_180626f80(&unknown_var_616_ptr,0x40,lVar22);
+                    uVar29 = SystemCore_ResourceManager0(&unknown_var_616_ptr,0x40,lVar22);
                     iStack_228 = 0;
                     *puStack_230 = 0;
                   }
@@ -575,7 +575,7 @@ LAB_180409142:
                       if (puStack_230 != (int8_t *)0x0) {
                         puVar14 = puStack_230;
                       }
-                      FUN_180626f80(&unknown_var_7176_ptr,puVar14,puVar15,puVar16);
+                      SystemCore_ResourceManager0(&unknown_var_7176_ptr,puVar14,puVar15,puVar16);
                       puStack_118 = &unknown_var_3480_ptr;
                       puStack_110 = auStack_100;
                       auStack_100[0] = 0;
@@ -623,7 +623,7 @@ LAB_180409362:
                         uVar29 = strcpy_s(puStack_290,0x40);
                       }
                       else {
-                        uVar29 = FUN_180626f80(&unknown_var_616_ptr,0x40,lVar22);
+                        uVar29 = SystemCore_ResourceManager0(&unknown_var_616_ptr,0x40,lVar22);
                         iStack_288 = 0;
                         *puStack_290 = 0;
                       }
@@ -645,7 +645,7 @@ LAB_180409362:
                           if (puStack_290 != (int8_t *)0x0) {
                             puVar14 = puStack_290;
                           }
-                          FUN_180626f80(&unknown_var_7392_ptr,puVar14,puVar15,puVar16);
+                          SystemCore_ResourceManager0(&unknown_var_7392_ptr,puVar14,puVar15,puVar16);
                           puStack_b8 = &unknown_var_3480_ptr;
                           puStack_b0 = auStack_a0;
                           auStack_a0[0] = 0;
@@ -669,7 +669,7 @@ LAB_180409362:
                             if (puStack_290 != (int8_t *)0x0) {
                               puVar14 = puStack_290;
                             }
-                            FUN_180626f80(&unknown_var_7472_ptr,puVar14,puVar15,puVar16);
+                            SystemCore_ResourceManager0(&unknown_var_7472_ptr,puVar14,puVar15,puVar16);
                             iVar4 = -1;
                           }
                           piVar21[1] = iVar4;
@@ -806,7 +806,7 @@ LAB_1804097a6:
                         strcpy_s(puStack_170,0x40);
                       }
                       else {
-                        FUN_180626f80(&unknown_var_616_ptr,0x40,lVar22);
+                        SystemCore_ResourceManager0(&unknown_var_616_ptr,0x40,lVar22);
                         iStack_168 = 0;
                         *puStack_170 = 0;
                       }
@@ -863,7 +863,7 @@ LAB_1804098f6:
                           if (puStack_3d0 != (void *)0x0) {
                             puVar15 = puStack_3d0;
                           }
-                          FUN_180626f80(&unknown_var_7328_ptr,puVar15);
+                          SystemCore_ResourceManager0(&unknown_var_7328_ptr,puVar15);
                         }
                         piVar21[4] = iVar4;
                       }
@@ -952,7 +952,7 @@ LAB_180409ba0:
                       }
                       else {
 LAB_180409b79:
-                        FUN_180626f80(&unknown_var_7840_ptr);
+                        SystemCore_ResourceManager0(&unknown_var_7840_ptr);
                         if (uStack_408 == 4) goto LAB_180409ba0;
                       }
                       bVar27 = false;
@@ -974,7 +974,7 @@ LAB_180409afb:
               if (puStack_390 != (void *)0x0) {
                 puVar15 = puStack_390;
               }
-              fVar28 = (float)FUN_180626f80(&unknown_var_7672_ptr,puVar15);
+              fVar28 = (float)SystemCore_ResourceManager0(&unknown_var_7672_ptr,puVar15);
 LAB_180409dd3:
               pcVar25 = "collision_effect";
               do {
@@ -1155,7 +1155,7 @@ LAB_180409cce:
       }
       AdvancedSystemOptimizer(lVar6,&system_data_6430,afStack_374);
       if (afStack_374[0] <= 0.0) {
-        fVar28 = (float)FUN_180626f80(&unknown_var_7600_ptr);
+        fVar28 = (float)SystemCore_ResourceManager0(&unknown_var_7600_ptr);
       }
       else {
         fVar28 = 1.0 / afStack_374[0];
@@ -1222,7 +1222,7 @@ LAB_180409d70:
         }
         else {
 LAB_180409d4a:
-          FUN_180626f80(&unknown_var_7936_ptr);
+          SystemCore_ResourceManager0(&unknown_var_7936_ptr);
           if (uStack_3e8 == 4) goto LAB_180409d70;
         }
         bVar27 = false;

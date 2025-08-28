@@ -131,7 +131,7 @@ void FUN_1801d7560(void)
   iStack_278 = 6;
   strcpy_s(auStack_270,0x10,&unknown_var_2588_ptr);
   uStack_2f8 = 1;
-  FUN_1806279c0(&puStack_2d0,&puStack_288);
+  SystemCore_EncryptionEngine0(&puStack_2d0,&puStack_288);
   uStack_2f8 = 0;
   puStack_288 = &system_state_ptr;
   iVar8 = uStack_2c0 + 0x10;

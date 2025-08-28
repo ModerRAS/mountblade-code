@@ -832,7 +832,7 @@ void FUN_180443320(int64_t param_1,uint64_t param_2,uint64_t *param_3)
       if (puVar3 != (void *)0x0) {
         puVar7 = puVar3;
       }
-      FUN_180626f80(&unknown_var_9728_ptr,puVar7,puVar9);
+      SystemCore_ResourceManager0(&unknown_var_9728_ptr,puVar7,puVar9);
       *param_3 = 0x3f800000;
       param_3[1] = 0;
       param_3[2] = 0x3f80000000000000;

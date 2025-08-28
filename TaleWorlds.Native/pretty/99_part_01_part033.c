@@ -375,7 +375,7 @@ int64_t * FUN_1800c1520(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64
   int32_t uStack_20;
   
   puVar1 = (uint64_t *)(param_1 + 0x20);
-  FUN_1806279c0(&puStack_38,param_3,param_3,param_4,0,0xfffffffffffffffe);
+  SystemCore_EncryptionEngine0(&puStack_38,param_3,param_3,param_4,0,0xfffffffffffffffe);
   puVar10 = *(uint64_t **)(param_1 + 0x30);
   puVar8 = puVar1;
   if (puVar10 != (uint64_t *)0x0) {
@@ -552,7 +552,7 @@ int32_t FUN_1800c17c0(void)
   
   lVar12 = system_system_data_config;
   puVar1 = (uint64_t *)(system_system_data_config + 0xa0);
-  FUN_1806279c0(&puStack_30);
+  SystemCore_EncryptionEngine0(&puStack_30);
   puVar10 = *(uint64_t **)(lVar12 + 0xb0);
   puVar8 = puVar1;
   if (puVar10 != (uint64_t *)0x0) {

@@ -102,9 +102,9 @@ void FUN_1801d6240(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t par
   *puVar1 = plVar4;
   (**(code **)(*plVar4 + 0x28))(plVar4);
   *(int8_t *)(system_main_module_state + 0x60) = 1;
-  FUN_1806279c0(&puStack_290,param_2);
-  FUN_1806279c0(&puStack_2b0,param_3);
-  FUN_1806279c0(&puStack_2d0,param_4);
+  SystemCore_EncryptionEngine0(&puStack_290,param_2);
+  SystemCore_EncryptionEngine0(&puStack_2b0,param_3);
+  SystemCore_EncryptionEngine0(&puStack_2d0,param_4);
   uVar3 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
   puStack_248 = auStack_270;
   ppuStack_2d8 = &puStack_240;

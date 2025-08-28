@@ -276,7 +276,7 @@ void FUN_1800a73e0(int64_t param_1, uint64_t param_2, int64_t param_3, int8_t pa
   
   // 路径处理初始化
   uVar5 = FUN_180624440(apuStack_2d8, param_2);  // 处理基础路径字符串
-  FUN_1806279c0(auStack_7b0, uVar5);               // 初始化路径缓冲区
+  SystemCore_EncryptionEngine0(auStack_7b0, uVar5);               // 初始化路径缓冲区
   apuStack_2d8[0] = &system_state_ptr;                // 设置路径数组初始值
   
   // 字符串处理初始化
@@ -426,7 +426,7 @@ LAB_1800a7660:
   
   // 处理第二个路径字符串
   uVar5 = FUN_180627600(apuStack_518, uStack_790);  // 处理路径参数
-  FUN_1806279c0(auStack_750, uVar5);               // 初始化文件缓冲区
+  SystemCore_EncryptionEngine0(auStack_750, uVar5);               // 初始化文件缓冲区
   apuStack_518[0] = &system_state_ptr;                // 设置路径数组初始值
   
   // 文件名处理初始化
@@ -471,7 +471,7 @@ LAB_1800a7660:
   // ==================== 路径构建准备 ====================
   
   // 完成文件名处理
-  FUN_1806279c0(auStack_788, &puStack_638);         // 完成文件名处理
+  SystemCore_EncryptionEngine0(auStack_788, &puStack_638);         // 完成文件名处理
   uStack_838 = 0;                                   // 重置路径控制标志
   puStack_638 = &system_state_ptr;                    // 重置字符串指针1
   
@@ -751,7 +751,7 @@ LAB_1800a7f91:
     memcpy(puStack_958 + uStack_950,acStack_b8,(int64_t)((int)lVar8 + 2));
   }
   uVar5 = FUN_1806276d0(apuStack_3f8,auStack_7b0);
-  FUN_1806279c0(auStack_938,uVar5);
+  SystemCore_EncryptionEngine0(auStack_938,uVar5);
   uVar11 = uStack_928;
   apuStack_3f8[0] = &system_state_ptr;
   uVar16 = uStack_928 + 1;

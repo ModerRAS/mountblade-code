@@ -903,7 +903,7 @@ LAB_1803e47e4:
               }
               uStack_d8 = uStack_d8 & 0xffffffff;
             }
-            FUN_1806279c0(&puStack_80,&system_data_ab10 + (int64_t)iStack_178 * 0x98);
+            SystemCore_EncryptionEngine0(&puStack_80,&system_data_ab10 + (int64_t)iStack_178 * 0x98);
             System_DataHandler(&puStack_198,&unknown_var_8816_ptr,uVar6,uVar8);
             puStack_80 = &system_data_buffer_ptr;
             if (lStack_78 != 0) {

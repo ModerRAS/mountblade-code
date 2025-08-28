@@ -446,7 +446,7 @@ void FUN_180176de0(void)
         }
         if (!bVar26) {
           uVar14 = FUN_180624440(&uStack_268,pppppppuVar12 + 8);
-          FUN_1806279c0(&puStack_330,uVar14);
+          SystemCore_EncryptionEngine0(&puStack_330,uVar14);
           uStack_268 = &system_state_ptr;
           ppppppuVar18 = (uint64_t ******)&system_buffer_ptr;
           if (pppppppuVar12[5] != (uint64_t ******)0x0) {

@@ -283,7 +283,7 @@ void RenderingObjectProcessor(int64_t param_1, int32_t param_2)
  * 渲染系统批处理执行函数
  * 批量处理渲染操作，提高渲染效率
  */
-void FUN_1804439e4(void)
+void RenderingSystem_ExecuteRenderBatch(void)
 {
     int64_t render_context;
     int32_t render_state;
@@ -306,7 +306,7 @@ void FUN_1804439e4(void)
  * 渲染系统空函数1
  * 占位符函数，用于保持接口一致性
  */
-void FUN_180443a27(void)
+void RenderingSystem_EmptyFunction_1(void)
 {
     return;
 }
@@ -319,7 +319,7 @@ void FUN_180443a27(void)
  * @param param_2 资源参数
  * @return 资源管理器指针
  */
-int64_t * FUN_180443a40(int64_t *resource_manager, int64_t param_2)
+int64_t * RenderingSystem_GetRenderResource(int64_t *resource_manager, int64_t param_2)
 {
     int64_t *resource_ptr;
     int32_t resource_status;
@@ -347,7 +347,7 @@ int64_t * FUN_180443a40(int64_t *resource_manager, int64_t param_2)
  * @param param_2 资源参数
  * @return 资源容器指针
  */
-uint64_t * FUN_180443aa0(uint64_t *resource_container, int64_t *param_2)
+uint64_t * RenderingSystem_AcquireRenderResource(uint64_t *resource_container, int64_t *param_2)
 {
     int32_t resource_status;
     int64_t *resource_ptr;
@@ -371,7 +371,7 @@ uint64_t * FUN_180443aa0(uint64_t *resource_container, int64_t *param_2)
  * 渲染系统上下文初始化函数
  * 初始化渲染上下文，设置必要的渲染参数和状态
  */
-void FUN_180443b00(void)
+void RenderingSystem_InitializeRenderContext(void)
 {
     char *string_ptr;
     uint64_t *resource_ptr;
@@ -475,30 +475,30 @@ void FUN_180443b00(void)
             system_data = system_data + 1;
         } while (*string_ptr != '\0');
         
-        FUN_1800671b0(stack_array_178, &system_buffer_d0f8);
+        StringInitializer(stack_array_178, &system_buffer_d0f8);
         stack_data_140 = 1;
         stack_ptr_198 = (uint64_t *)0x100000000;
         stack_data_190 = 2;
-        FUN_180189600(&stack_data_158, &stack_ptr_198, stack_array_18c);
+        DataProcessor(&stack_data_158, &stack_ptr_198, stack_array_18c);
         stack_ptr_198 = (uint64_t *)&unknown_var_9744_ptr;
         stack_ptr_188 = context_manager;
-        FUN_180188620(stack_array_138, &stack_ptr_198);
+        DataManager(stack_array_138, &stack_ptr_198);
         stack_data_1b8 = 0;
         stack_data_1b0 = 0xf;
         stack_data_1c8 = 0;
         stack_ptr_198 = &stack_data_1a8;
         stack_data_1a8 = 0;
         stack_data_1a0 = 0;
-        stack_data_1a8 = FUN_180188560();
-        FUN_180183a20(stack_array_178, stack_array_1d0);
+        stack_data_1a8 = DataInitializer();
+        StringProcessor(stack_array_178, stack_array_1d0);
         
         if (-1 < stack_array_1d0[0]) {
             config_data = func_0x0001801836e0();
-            FUN_180062300(system_message_context, &unknown_var_9712_ptr, config_data);
+            MessageProcessor(system_message_context, &unknown_var_9712_ptr, config_data);
         }
         
         config_data = func_0x0001801836e0();
-        FUN_180062300(system_message_context, &unknown_var_9856_ptr, config_data);
+        MessageProcessor(system_message_context, &unknown_var_9856_ptr, config_data);
     }
     
     // 设置渲染配置
@@ -515,7 +515,7 @@ void FUN_180443b00(void)
  * @param param_3 命令参数2
  * @param param_4 命令参数3
  */
-void FUN_180443b40(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void RenderingSystem_ProcessRenderCommand(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int8_t command_buffer_30 [48];
     
@@ -523,7 +523,7 @@ void FUN_180443b40(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     CoreMemoryPoolValidator(command_buffer_30, param_1, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     
     // 执行渲染命令
-    FUN_1801865a0();
+    RenderingCommandExecutor();
     return;
 }
 
@@ -534,7 +534,7 @@ void FUN_180443b40(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @param param_1 参数类型
  * @param param_2 参数值
  */
-void FUN_180443b80(uint64_t param_1, int8_t param_2)
+void RenderingSystem_SetRenderParameters(uint64_t param_1, int8_t param_2)
 {
     int64_t *parameter_manager;
     int64_t system_context;
@@ -586,7 +586,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
             string_length = string_length + 1;
         } while (parameter_data[string_length] != '\0');
         
-        FUN_1800671b0(parameter_buffer_40);
+        StringInitializer(parameter_buffer_40);
         parameter_manager = *(int64_t **)(system_context + 8);
         parameter_ptr_b8 = &parameter_ptr_a0;
         parameter_ptr_a0 = &unknown_var_760_ptr;
@@ -595,7 +595,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
         parameter_flag_20 = param_2;
         
         (**(code **)(*parameter_manager + 0x20))(parameter_manager, parameter_buffer_40, &parameter_ptr_a0, 0);
-        FUN_180067070(parameter_buffer_40);
+        StringValidator(parameter_buffer_40);
         *parameter_ptr = &system_data_buffer_ptr;
         
         if (parameter_ptr[1] != 0) {
@@ -615,7 +615,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
  * 
  * @param param_1 资源指针
  */
-void FUN_180443d10(uint64_t param_1)
+void RenderingSystem_DestroyRenderResource(uint64_t param_1)
 {
     int8_t resource_buffer_50 [32];
     int8_t resource_buffer_30 [40];
@@ -625,7 +625,7 @@ void FUN_180443d10(uint64_t param_1)
     CoreMemoryPoolValidator(resource_buffer_30, param_1);
     
     // 执行资源销毁
-    FUN_180186880();
+    ResourceDestroyer();
     return;
 }
 
@@ -635,7 +635,7 @@ void FUN_180443d10(uint64_t param_1)
  * 
  * @param param_1 资源指针
  */
-void FUN_180443d70(uint64_t param_1)
+void RenderingSystem_ReleaseRenderResource(uint64_t param_1)
 {
     int8_t resource_buffer_50 [32];
     int8_t resource_buffer_30 [40];
@@ -645,7 +645,7 @@ void FUN_180443d70(uint64_t param_1)
     CoreMemoryPoolValidator(resource_buffer_30, param_1);
     
     // 执行资源释放
-    FUN_180186ac0();
+    ResourceReleaser();
     return;
 }
 
@@ -658,7 +658,7 @@ void FUN_180443d70(uint64_t param_1)
  * @param param_3 数据目标
  * @param param_4 处理标志
  */
-void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void RenderingSystem_ProcessRenderData(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int64_t *data_processor_1;
     int32_t data_status;

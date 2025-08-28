@@ -585,7 +585,7 @@ void FUN_1801f0f90(uint64_t param_1,int64_t param_2)
   uStack_38 = 6;
   strcpy_s(auStack_30,0x10,&unknown_var_2588_ptr);
   uStack_78 = 1;
-  FUN_1806279c0(&puStack_70,&puStack_48);
+  SystemCore_EncryptionEngine0(&puStack_70,&puStack_48);
   uVar2 = uStack_60;
   uStack_78 = 0;
   puStack_48 = &system_state_ptr;

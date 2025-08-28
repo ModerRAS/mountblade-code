@@ -733,7 +733,7 @@ void FUN_18023ccc0(int64_t *param_1)
         }
       }
       if (cVar4 == '\0') {
-        FUN_1806279c0(&puStack_460,param_1 + 2);
+        SystemCore_EncryptionEngine0(&puStack_460,param_1 + 2);
         uVar9 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
         ppplStack_4c0 = (int64_t ***)aplStack_420;
         puStack_410 = &unknown_var_4672_ptr;

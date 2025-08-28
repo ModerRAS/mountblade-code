@@ -1019,7 +1019,7 @@ void FUN_18044a810(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_
   }
   lVar3 = FUN_1800b6de0(system_resource_state,&puStack_58,0);
   if (lVar3 == 0) {
-    FUN_180626f80(&unknown_var_104_ptr,param_1);
+    SystemCore_ResourceManager0(&unknown_var_104_ptr,param_1);
   }
   else {
     if ((0 < *(int *)(render_system_data_memory + 0x700)) &&
@@ -1046,7 +1046,7 @@ void FUN_18044a810(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_
       CoreMemoryPoolInitializer(puVar4);
     }
     if ((param_2 != -1) && (*(int *)(lVar3 + 0x58) < param_2)) {
-      FUN_180626f80(&unknown_var_288_ptr,param_1,*(int *)(lVar3 + 0x58),param_2);
+      SystemCore_ResourceManager0(&unknown_var_288_ptr,param_1,*(int *)(lVar3 + 0x58),param_2);
     }
   }
   puStack_58 = &system_data_buffer_ptr;

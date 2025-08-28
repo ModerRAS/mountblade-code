@@ -621,7 +621,7 @@ int32_t FUN_180191c00(int64_t param_1)
   int iStack_20;
   
   puVar2 = *(uint64_t **)(param_1 + 0x30);
-  FUN_1806279c0(&puStack_30);
+  SystemCore_EncryptionEngine0(&puStack_30);
   puVar10 = (uint64_t *)puVar2[2];
   puVar8 = puVar2;
   if (puVar10 != (uint64_t *)0x0) {

@@ -851,7 +851,7 @@ int FUN_18060be80(uint64_t param_1,int8_t param_2)
   puVar2 = (uint64_t *)0x180c95e98;
 LAB_18060becd:
   if (puVar2[5] == 0) {
-    FUN_180626f80(&unknown_var_7872_ptr);
+    SystemCore_ResourceManager0(&unknown_var_7872_ptr);
     return 0;
   }
   return *(int *)(puVar2[5] + 0x298) + -1;

@@ -597,7 +597,7 @@ int64_t * FUN_1801e76c0(int64_t param_1,int64_t *param_2,uint64_t param_3)
   char acStackX_8 [8];
   
   lVar3 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(param_1 + 0x28));
-  FUN_1806279c0(lVar3 + 0x20,param_3);
+  SystemCore_EncryptionEngine0(lVar3 + 0x20,param_3);
   lVar4 = FUN_1800590b0(param_1,acStackX_8,lVar3 + 0x20);
   if (acStackX_8[0] == '\0') {
     FUN_18005d1f0();

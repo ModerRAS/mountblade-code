@@ -110,7 +110,7 @@ void FUN_1803c2600(int64_t param_1,uint64_t param_2,uint64_t param_3)
   iStack_290 = 0;
   lStack_2d8 = param_1;
   FUN_18031ed90(param_3,&puStack_2a0);
-  FUN_1806279c0(&puStack_248,param_2);
+  SystemCore_EncryptionEngine0(&puStack_248,param_2);
   iVar13 = uStack_238 + 0xd;
   CoreMemoryPoolProcessor(&puStack_248,iVar13);
   puVar11 = (uint64_t *)(puStack_240 + uStack_238);

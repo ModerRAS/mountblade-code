@@ -917,7 +917,7 @@ void FUN_18045c3f0(uint64_t param_1)
   lVar4 = FUN_180628ca0();
 LAB_18045c493:
   uVar3 = FUN_180624440(apuStack_238,lVar4);
-  uVar3 = FUN_1806279c0(&puStack_290,uVar3);
+  uVar3 = SystemCore_EncryptionEngine0(&puStack_290,uVar3);
   uStack_298 = 1;
   apuStack_238[0] = &system_state_ptr;
   (*pcVar1)(system_cache_buffer,uVar3);

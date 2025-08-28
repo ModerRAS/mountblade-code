@@ -283,7 +283,7 @@ int32_t RenderingSystem_ExportResourceData(int64_t render_context, int64_t outpu
   plStack_70 = (int64_t *)0x0;
   uStack_68 = 3;
   lStackX_10 = param_2;
-  FUN_1806279c0(&puStack_108,param_3);
+  SystemCore_EncryptionEngine0(&puStack_108,param_3);
   uVar4 = uStack_f8;
   uVar13 = uStack_f8 + 1;
   CoreEngineDataBufferProcessor(&puStack_108,uVar13);
@@ -654,7 +654,7 @@ void RenderingSystem_ProcessTexturePath(int64_t render_context, int64_t output_h
   uStack_b0 = 3;
   lStack_a8 = param_1;
   lStack_a0 = param_2;
-  FUN_1806279c0(&puStack_f0,param_3);
+  SystemCore_EncryptionEngine0(&puStack_f0,param_3);
   uVar6 = uStack_e0 + 0x11;
   CoreEngineDataBufferProcessor(&puStack_f0,uVar6);
   puVar5 = (int32_t *)((uint64_t)uStack_e0 + lStack_e8);
@@ -813,7 +813,7 @@ int32_t RenderingSystem_OptimizeRenderData(int64_t render_context, int64_t outpu
   puStack_90 = (int32_t *)0x0;
   puStack_88 = (int32_t *)0x0;
   uStack_80 = 3;
-  FUN_1806279c0(&puStack_f8,param_3);
+  SystemCore_EncryptionEngine0(&puStack_f8,param_3);
   uVar1 = uStack_e8;
   uVar10 = uStack_e8 + 1;
   CoreEngineDataBufferProcessor(&puStack_f8,uVar10);

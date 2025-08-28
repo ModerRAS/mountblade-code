@@ -75,7 +75,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
             if (*(void**)(engine_context + 0xf0) != (void*)0x0) {
                 data_ptr = *(void**)(engine_context + 0xf0);
             }
-            FUN_180626f80(&unknown_var_544_ptr, data_ptr);
+            SystemCore_ResourceManager0(&unknown_var_544_ptr, data_ptr);
         }
         config_value = *(int32_t*)(engine_context + 0x128);
     }
@@ -92,7 +92,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
                 if (*(void**)(engine_context + 0xf0) != (void*)0x0) {
                     data_ptr = *(void**)(engine_context + 0xf0);
                 }
-                FUN_180626f80(&unknown_var_544_ptr, data_ptr);
+                SystemCore_ResourceManager0(&unknown_var_544_ptr, data_ptr);
             }
             config_value = *(int32_t*)(engine_context + 0x128);
         }
