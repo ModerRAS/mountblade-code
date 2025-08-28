@@ -535,52 +535,61 @@ SHADOW_PROCESSING_BRANCH:
       }
       *(float*)(context + 0x584) = float_var1;
     }
-    if (-1 < *(int *)(param_1 + 0x560)) {
-      uStack_248 = 0;
-      uStack_230 = 0x1000000;
-      uStack_244 = 0;
-      uStack_240 = 0x3f800000;
-      uStack_23c = 0xbe4ccccd;
-      uStack_238 = 0xbe4ccccd;
-      uStack_234 = 0x3ecccccd;
-      uStack_22c = 0;
-      puStack_258 = (undefined *)((ulonglong)uVar21 << 0x20);
-      puStack_250 = (undefined4 *)0x80000000;
-      lVar15 = *(longlong *)(param_1 + 0x8d8) + 0x30a0 + (longlong)*(int *)(param_1 + 0x560) * 0xa60
-      ;
-      FUN_18051ec50(lVar15,&puStack_258);
-      iVar7 = FUN_18053a410(&DAT_180c95f30,*(undefined4 *)(*(longlong *)(lVar15 + 0x590) + 0xac),
-                            uVar21);
-      iVar7 = *(int *)(_DAT_180c95f68 + (longlong)iVar7 * 4);
-      if (iVar7 == -1) {
-        lVar16 = 0;
+    
+    // 处理有效索引的渲染管线
+    if (-1 < *(int*)(context + 0x560)) {
+      render_flags = 0;
+      render_mode = 0x1000000;
+      render_quality = 0;
+      render_intensity = 1.0f;
+      render_threshold = -0.3f;
+      render_scale = -0.3f;
+      render_offset = 0.4f;
+      render_reserved = 0;
+      render_params = (char*)((ulonglong)texture_id << 0x20);
+      render_data = (char*)0x80000000;
+      
+      longlong pipeline_ptr = *(longlong*)(context + 0x8d8) + 0x30a0 + (longlong)*(int*)(context + 0x560) * 0xa60;
+      FUN_18051ec50(pipeline_ptr, &render_params);
+      
+      // 获取管线质量数据
+      quality_index = FUN_18053a410(&DAT_180c95f30, *(uint*)(*(longlong*)(pipeline_ptr + 0x590) + 0xac), texture_id);
+      quality_index = *(int*)(_DAT_180c95f68 + (longlong)quality_index * 4);
+      longlong pipeline_quality_data = 0;
+      if (quality_index == -1) {
+        pipeline_quality_data = 0;
       }
       else {
-        lVar16 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar7 * 8);
+        pipeline_quality_data = *(longlong*)(_DAT_180c95f88 + (longlong)quality_index * 8);
       }
-      if (iStackX_8 == 1) {
-        *(undefined4 *)(lVar15 + 0x670) = 0xffffffff;
-        fVar25 = *(float *)(lVar16 + 0x1dc);
-        *(float *)(lVar15 + 0x584) = -fVar25;
-        if (fVar25 <= -0.0) {
-          *(float *)(lVar15 + 0x584) = *(float *)(lVar16 + 0x1e8) - *(float *)(lVar16 + 0x188);
+      
+      // 高质量模式处理
+      if (pipeline_mode == 1) {
+        *(uint*)(pipeline_ptr + 0x670) = 0xffffffff;
+        float_var1 = *(float*)(pipeline_quality_data + 0x1dc);
+        *(float*)(pipeline_ptr + 0x584) = -float_var1;
+        if (float_var1 <= -0.0) {
+          *(float*)(pipeline_ptr + 0x584) = *(float*)(pipeline_quality_data + 0x1e8) - *(float*)(pipeline_quality_data + 0x188);
         }
       }
-      *(longlong *)(lVar15 + 0x6b8) =
-           *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar15 + 0x6c0) * 8) + 200000;
-      lVar14 = FUN_180532320(lVar16);
-      FUN_18052e450(lVar15,0xffffffff,1,*(float *)(lVar16 + 0x188) * *(float *)(lVar14 + 8));
-      FUN_18052e130(param_1,0xffffffff,1);
-      uVar21 = uStack_264;
+      
+      // 设置管线时间戳和参数
+      *(longlong*)(pipeline_ptr + 0x6b8) = *(longlong*)(&DAT_180c8ed30 + (longlong)*(int*)(pipeline_ptr + 0x6c0) * 8) + RENDERING_TIME_OFFSET;
+      longlong scale_factor_ptr = FUN_180532320(pipeline_quality_data);
+      FUN_18052e450(pipeline_ptr, 0xffffffff, 1, *(float*)(pipeline_quality_data + 0x188) * *(float*)(scale_factor_ptr + 8));
+      FUN_18052e130(context, 0xffffffff, 1);
+      texture_id = stack_uint1;
+      
+      // 根据渲染模式优化管线
       if ((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) {
-        FUN_180530dd0(lVar15);
-        uVar21 = uStack_264;
+        FUN_180530dd0(pipeline_ptr);
+        texture_id = stack_uint1;
       }
     }
-    *(longlong *)(param_1 + 0xa10) =
-         *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0xa18) * 8) + 10000;
-    *(undefined8 *)(param_1 + 0x9f8) =
-         *(undefined8 *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0xa00) * 8);
+    
+    // 设置渲染坐标和时间参数
+    *(longlong*)(context + 0xa10) = *(longlong*)(&DAT_180c8ed30 + (longlong)*(int*)(context + 0xa18) * 8) + RENDERING_COORDINATE_SCALE;
+    *(longlong*)(context + 0x9f8) = *(longlong*)(&DAT_180c8ed30 + (longlong)*(int*)(context + 0xa00) * 8);
   }
   else {
     lVar15 = *(longlong *)(param_1 + 0x590);
