@@ -1,112 +1,198 @@
+/**
+ * @file 04_ui_system_part205_original.c
+ * @brief UI系统管理模块（美化版本）
+ * @details 该模块包含UI系统的核心管理函数，负责UI初始化、事件处理、
+ *          内存管理、渲染和数据处理等功能。
+ * 
+ * 主要功能：
+ * - UI系统初始化和关闭
+ * - 事件处理和状态管理
+ * - 内存分配和资源管理
+ * - 渲染器初始化和处理
+ * - 数据处理和变换
+ * - 链表和批量处理
+ * 
+ * 技术特点：
+ * - 支持多种UI组件类型
+ * - 高效的内存管理机制
+ * - 完整的错误处理
+ * - 灵活的渲染系统
+ * - 强大的数据处理能力
+ * 
+ * @author Claude Code
+ * @version 1.0
+ * @date 2025-08-28
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part205.c - UI系统管理模块
-// 本模块包含UI系统的核心管理函数，负责UI初始化、事件处理、内存管理等功能
+/*==============================================================================
+ * 系统常量定义
+ *==============================================================================*/
 
-// 系统常量定义
-#define UI_SYSTEM_SUCCESS 0x0           // UI系统操作成功
-#define UI_SYSTEM_ERROR_INIT 0x1f        // UI系统初始化错误
-#define UI_SYSTEM_ERROR_MEMORY 0x26      // UI系统内存分配错误
-#define UI_SYSTEM_ERROR_STATE 0x42       // UI系统状态错误
-#define UI_SYSTEM_ERROR_PARAM 0x43       // UI系统参数错误
+/** UI系统状态常量 */
+#define UI_SYSTEM_SUCCESS               0x00        /**< UI系统操作成功 */
+#define UI_SYSTEM_ERROR_INIT            0x1f        /**< UI系统初始化错误 */
+#define UI_SYSTEM_ERROR_MEMORY          0x26        /**< UI系统内存分配错误 */
+#define UI_SYSTEM_ERROR_STATE           0x42        /**< UI系统状态错误 */
+#define UI_SYSTEM_ERROR_PARAM           0x43        /**< UI系统参数错误 */
 
-// UI系统偏移量常量
-#define UI_OFFSET_VTABLE 0x400           // 虚函数表偏移量
-#define UI_OFFSET_STATUS 0x31            // 状态标志偏移量
-#define UI_OFFSET_SIZE 0x24              // 尺寸信息偏移量
-#define UI_OFFSET_COUNT 0x14             // 计数器偏移量
-#define UI_OFFSET_DATA 0x48              // 数据指针偏移量
-#define UI_OFFSET_WIDTH 0x280            // 宽度信息偏移量
-#define UI_OFFSET_CLEANUP 0x368          // 清理函数偏移量
-#define UI_OFFSET_HANDLER 0x3a8          // 事件处理器偏移量
-#define UI_OFFSET_RENDER 0x3b0           // 渲染器偏移量
+/** UI系统错误代码 */
+#define UI_ERROR_INVALID_DATA           0x43        /**< 无效数据错误 */
+#define UI_ERROR_INVALID_MODE           0x1f        /**< 无效模式错误 */
+#define UI_ERROR_MEMORY_FAILED          0x26        /**< 内存分配失败错误 */
 
-// 额外的UI系统错误代码
-#define UI_ERROR_INVALID_DATA 0x43       // 无效数据错误
-#define UI_ERROR_INVALID_MODE 0x1f        // 无效模式错误
-#define UI_ERROR_MEMORY_FAILED 0x26      // 内存分配失败错误
+/** UI系统内存管理常量 */
+#define UI_MEMORY_ALIGNMENT             0x10        /**< 内存对齐大小 (16字节) */
+#define UI_MEMORY_BLOCK_MIN            0x10        /**< 最小内存块大小 */
+#define UI_MEMORY_BLOCK_MAX            0xfff0       /**< 最大内存块大小 */
 
-// UI系统内存管理常量
-#define UI_MEMORY_ALIGNMENT 0x10          // 内存对齐大小 (16字节)
-#define UI_MEMORY_BLOCK_MIN 0x10         // 最小内存块大小
-#define UI_MEMORY_BLOCK_MAX 0xfff0       // 最大内存块大小
+/** UI系统渲染常量 */
+#define UI_RENDER_VERTEX_SIZE           4           /**< 顶点大小 */
+#define UI_RENDER_TEXTURE_COORDS       2           /**< 纹理坐标数量 */
+#define UI_RENDER_BATCH_SIZE           0x6c0       /**< 批处理大小 */
 
-// UI系统渲染常量
-#define UI_RENDER_VERTEX_SIZE 4           // 顶点大小
-#define UI_RENDER_TEXTURE_COORDS 2       // 纹理坐标数量
-#define UI_RENDER_BATCH_SIZE 0x6c0        // 批处理大小
+/** UI系统偏移量常量 */
+#define UI_OFFSET_VTABLE                0x400       /**< 虚函数表偏移量 */
+#define UI_OFFSET_STATUS               0x31        /**< 状态标志偏移量 */
+#define UI_OFFSET_SIZE                 0x24        /**< 尺寸信息偏移量 */
+#define UI_OFFSET_COUNT                0x14        /**< 计数器偏移量 */
+#define UI_OFFSET_DATA                 0x48        /**< 数据指针偏移量 */
+#define UI_OFFSET_WIDTH                0x280       /**< 宽度信息偏移量 */
+#define UI_OFFSET_CLEANUP              0x368       /**< 清理函数偏移量 */
+#define UI_OFFSET_HANDLER              0x3a8       /**< 事件处理器偏移量 */
+#define UI_OFFSET_RENDER               0x3b0       /**< 渲染器偏移量 */
 
-// UI系统组件类型定义
+/*==============================================================================
+ * 类型定义
+ *==============================================================================*/
+
+/** UI系统组件类型定义 */
 typedef struct {
-    uint64_t* vtable;        // 虚函数表指针
-    uint32_t status;         // 组件状态
-    uint32_t size;           // 组件尺寸
-    uint32_t count;          // 元素计数
-    void* data;              // 数据指针
-    void* renderer;          // 渲染器指针
-    void* handler;          // 事件处理器
+    uint64_t* vtable;        /**< 虚函数表指针 */
+    uint32_t status;         /**< 组件状态 */
+    uint32_t size;           /**< 组件尺寸 */
+    uint32_t count;          /**< 元素计数 */
+    void* data;              /**< 数据指针 */
+    void* renderer;          /**< 渲染器指针 */
+    void* handler;          /**< 事件处理器 */
 } UIComponent;
 
-// UI系统内存管理器类型定义
+/** UI系统内存管理器类型定义 */
 typedef struct {
-    void* primary_buffer;    // 主缓冲区
-    void* secondary_buffer;  // 次缓冲区
-    void* index_buffer;      // 索引缓冲区
-    uint32_t buffer_size;    // 缓冲区大小
-    uint32_t element_count;  // 元素数量
+    void* primary_buffer;    /**< 主缓冲区 */
+    void* secondary_buffer;  /**< 次缓冲区 */
+    void* index_buffer;      /**< 索引缓冲区 */
+    uint32_t buffer_size;    /**< 缓冲区大小 */
+    uint32_t element_count;  /**< 元素数量 */
 } UIMemoryManager;
 
-// UI系统渲染器类型定义
+/** UI系统渲染器类型定义 */
 typedef struct {
-    float* vertex_buffer;    // 顶点缓冲区
-    float* texture_coords;   // 纹理坐标
-    uint32_t vertex_count;   // 顶点数量
-    uint32_t texture_id;     // 纹理ID
+    float* vertex_buffer;    /**< 顶点缓冲区 */
+    float* texture_coords;   /**< 纹理坐标 */
+    uint32_t vertex_count;   /**< 顶点数量 */
+    uint32_t texture_id;     /**< 纹理ID */
 } UIRenderer;
 
-// UI系统事件处理器类型定义
+/** UI系统事件处理器类型定义 */
 typedef struct {
-    void (*on_click)(void*);     // 点击事件
-    void (*on_hover)(void*);     // 悬停事件
-    void (*on_scroll)(void*);    // 滚动事件
-    void (*on_focus)(void*);     // 焦点事件
+    void (*on_click)(void*);     /**< 点击事件 */
+    void (*on_hover)(void*);     /**< 悬停事件 */
+    void (*on_scroll)(void*);    /**< 滚动事件 */
+    void (*on_focus)(void*);     /**< 焦点事件 */
 } UIEventHandler;
 
-// 函数别名定义
-#define UI_EmptyFunction FUN_180788e4d
-#define UI_InitializeSystem FUN_180788e60
-#define UI_ShutdownSystem FUN_180788f20
-#define UI_SecurityCheck FUN_180788f70
-#define UI_ProcessEvents FUN_180788fe0
-#define UI_TraverseComponents FUN_180789122
-#define UI_ProcessLoop FUN_18078913f
-#define UI_ReturnSuccess FUN_1807891b1
-#define UI_ReturnSuccess2 FUN_1807891bb
-#define UI_CleanupResources FUN_1807891d0
-#define UI_ReleaseResources FUN_180789205
-#define UI_ResetSystem FUN_180789221
-#define UI_ResetSystem2 FUN_18078922b
-#define UI_ClearSystem FUN_18078923c
-#define UI_BatchProcess FUN_180789283
-#define UI_ProcessLinkedList FUN_180789292
-#define UI_EmptyFunction2 FUN_1807892d1
-#define UI_EmptyFunction3 FUN_1807892d6
-#define UI_CheckStatus FUN_180789300
-#define UI_RecursiveProcess FUN_180789360
-#define UI_AllocateMemory FUN_180789470
-#define UI_AllocateMemory2 FUN_1807894bb
-#define UI_AllocateMemory3 FUN_1807894e0
-#define UI_EmptyFunction4 FUN_1807895a2
-#define UI_SetupMemory FUN_1807895b5
-#define UI_InitializeRenderer FUN_18078961b
-#define UI_InitializeRenderer2 FUN_1807896ae
-#define UI_InitializeRenderer3 FUN_18078971b
-#define UI_HandleMemoryError FUN_18078978e
-#define UI_HandleInitError FUN_180789798
-#define UI_ProcessData FUN_1807897b0
+/** 基础类型别名 */
+typedef uint64_t ui_handle_t;            /**< UI句柄类型 */
+typedef uint32_t ui_status_t;            /**< UI状态类型 */
+typedef uint32_t ui_result_t;            /**< UI结果类型 */
+typedef uint32_t ui_flags_t;             /**< UI标志类型 */
+typedef void*     ui_context_t;           /**< UI上下文类型 */
 
-// 简化实现：剩余的FUN_函数调用
-// 这些函数保持原始实现，但在后续优化中需要进一步完善
+/** 内存管理类型 */
+typedef uint64_t memory_block_t;          /**< 内存块类型 */
+typedef uint32_t memory_size_t;          /**< 内存大小类型 */
+typedef uint32_t memory_flags_t;         /**< 内存标志类型 */
+typedef void*     memory_ptr_t;           /**< 内存指针类型 */
+
+/*==============================================================================
+ * 函数别名定义
+ *==============================================================================*/
+
+/** 系统基础函数别名 */
+#define UI_EmptyFunction              FUN_180788e4d    /**< UI系统空函数 */
+#define UI_InitializeSystem           FUN_180788e60    /**< UI系统初始化函数 */
+#define UI_ShutdownSystem             FUN_180788f20    /**< UI系统关闭函数 */
+#define UI_SecurityCheck              FUN_180788f70    /**< UI系统安全检查函数 */
+#define UI_ProcessEvents              FUN_180788fe0    /**< UI系统事件处理函数 */
+
+/** 组件处理函数别名 */
+#define UI_TraverseComponents         FUN_180789122    /**< UI组件遍历处理函数 */
+#define UI_ProcessLoop                FUN_18078913f    /**< UI系统循环处理函数 */
+#define UI_ReturnSuccess              FUN_1807891b1    /**< UI系统返回成功状态函数 */
+#define UI_ReturnSuccess2             FUN_1807891bb    /**< UI系统返回成功状态函数2 */
+
+/** 资源管理函数别名 */
+#define UI_CleanupResources           FUN_1807891d0    /**< UI系统资源清理函数 */
+#define UI_ReleaseResources           FUN_180789205    /**< UI系统资源释放函数 */
+#define UI_ResetSystem                FUN_180789221    /**< UI系统重置函数 */
+#define UI_ResetSystem2               FUN_18078922b    /**< UI系统重置函数2 */
+#define UI_ClearSystem                FUN_18078923c    /**< UI系统清理函数 */
+
+/** 批量处理函数别名 */
+#define UI_BatchProcess               FUN_180789283    /**< UI系统批量处理函数 */
+#define UI_ProcessLinkedList          FUN_180789292    /**< UI系统链表处理函数 */
+
+/** 状态检查函数别名 */
+#define UI_EmptyFunction2             FUN_1807892d1    /**< UI系统空函数2 */
+#define UI_EmptyFunction3             FUN_1807892d6    /**< UI系统空函数3 */
+#define UI_CheckStatus                FUN_180789300    /**< UI系统状态检查函数 */
+#define UI_RecursiveProcess           FUN_180789360    /**< UI系统递归处理函数 */
+
+/** 内存分配函数别名 */
+#define UI_AllocateMemory             FUN_180789470    /**< UI系统内存分配函数 */
+#define UI_AllocateMemory2            FUN_1807894bb    /**< UI系统内存分配函数2 */
+#define UI_AllocateMemory3            FUN_1807894e0    /**< UI系统内存分配函数3 */
+
+/** 渲染器函数别名 */
+#define UI_EmptyFunction4             FUN_1807895a2    /**< UI系统空函数4 */
+#define UI_SetupMemory                FUN_1807895b5    /**< UI系统内存设置函数 */
+#define UI_InitializeRenderer         FUN_18078961b    /**< UI系统渲染器初始化函数 */
+#define UI_InitializeRenderer2        FUN_1807896ae    /**< UI系统渲染器初始化函数2 */
+#define UI_InitializeRenderer3        FUN_18078971b    /**< UI系统渲染器初始化函数3 */
+
+/** 错误处理函数别名 */
+#define UI_HandleMemoryError           FUN_18078978e    /**< UI系统内存错误处理函数 */
+#define UI_HandleInitError             FUN_180789798    /**< UI系统初始化错误处理函数 */
+#define UI_ProcessData                FUN_1807897b0    /**< UI系统数据处理函数 */
+
+/** 外部函数别名 */
+#define SystemState_Validator         FUN_1807881c0    /**< 系统状态验证器 */
+#define UI_InternalInit               FUN_180768360    /**< UI内部初始化函数 */
+#define UI_InternalCleanup            FUN_180768400    /**< UI内部清理函数 */
+#define UI_MemoryAllocator            FUN_180741e10    /**< UI内存分配器 */
+#define UI_ProcessorInit              FUN_1807682e0    /**< UI处理器初始化函数 */
+#define UI_ErrorHandler               FUN_1808fd400    /**< UI错误处理器 */
+#define UI_EventProcessor             FUN_180767c00    /**< UI事件处理器 */
+#define UI_DataTransformer            FUN_1807863b0    /**< UI数据变换器 */
+
+/*==============================================================================
+ * 全局变量声明
+ *==============================================================================*/
+
+/** 外部全局变量引用 */
+extern uint64_t UNK_18095ac80;               /**< UI系统全局数据结构 */
+extern uint64_t UNK_18095ad08;               /**< UI系统事件数据结构 */
+extern uint64_t UNK_18095ad20;               /**< UI系统特殊事件数据结构 */
+extern uint64_t UNK_18095ad40;               /**< UI系统内存数据结构 */
+extern uint64_t UNK_1807872a0;               /**< UI系统处理器数据结构 */
+extern uint64_t UNK_180be12f0;               /**< UI系统配置基地址 */
+extern uint64_t _DAT_180c108d0;              /**< UI系统处理函数表 */
+
+/*==============================================================================
+ * 核心函数实现
+ *==============================================================================*/
 
 /**
  * UI_BatchProcess - UI系统批量处理
