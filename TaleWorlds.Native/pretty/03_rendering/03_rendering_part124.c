@@ -130,7 +130,7 @@ void ShaderFileGenerator(undefined8 param_1, longlong param_2, undefined8 param_
   puStack_c0 = &g_MemoryManager;
   if (puStack_b8 != (undefined *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    MemoryDeallocator();
   }
   puStack_b8 = (undefined *)0x0;
   uStack_a8 = 0;
@@ -138,7 +138,7 @@ void ShaderFileGenerator(undefined8 param_1, longlong param_2, undefined8 param_
   puStack_88 = &g_MemoryManager;
   if (puStack_80 != (undefined *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    MemoryDeallocator();
   }
   puStack_80 = (undefined *)0x0;
   uStack_70 = 0;
@@ -227,7 +227,7 @@ undefined8 *ShaderHeaderGenerator(undefined8 param_1, undefined8 *param_2, undef
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
   iVar1 = *(int *)(param_2 + 2);
-  FUN_1806277c0(param_2,iVar1 + 0x17,param_3,param_4,1,0xfffffffffffffffe);
+  BufferExpander(param_2, iVar1 + 0x17, param_3, param_4, 1, 0xfffffffffffffffe);
   puVar2 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 2) + param_2[1]);
   *puVar2 = 0x66656423;
   puVar2[1] = 0x20656e69;
@@ -235,7 +235,7 @@ undefined8 *ShaderHeaderGenerator(undefined8 param_1, undefined8 *param_2, undef
   puVar2[3] = 0x414d574f;
   *(undefined8 *)(puVar2 + 4) = 0xa535341505f50;
   *(int *)(param_2 + 2) = iVar1 + 0x17;
-  uVar3 = FUN_18033eb00(0x66656423,param_2,param_3);
+  uVar3 = ShaderValidator(0x66656423, param_2, param_3);
   uVar3 = ShaderOptimizer(uVar3, param_2, param_3);
   uVar3 = ShaderLinker(uVar3, param_2, param_3);
   ShaderFinalizer(uVar3, param_2, param_3);
@@ -274,7 +274,7 @@ undefined8 *ShaderPipelineGenerator(undefined8 param_1, undefined8 *param_2, und
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
   iVar1 = *(int *)(param_2 + 2);
-  FUN_1806277c0(param_2,iVar1 + 0x22,param_3,param_4,1,0xfffffffffffffffe);
+  BufferExpander(param_2, iVar1 + 0x22, param_3, param_4, 1, 0xfffffffffffffffe);
   puVar2 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 2) + param_2[1]);
   *puVar2 = 0x66656423;
   puVar2[1] = 0x20656e69;

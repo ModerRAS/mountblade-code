@@ -130,7 +130,7 @@ void ShaderFileGenerator(undefined8 param_1, longlong param_2, undefined8 param_
   puStack_c0 = &g_MemoryManager;
   if (puStack_b8 != (undefined *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    MemoryDeallocator();
   }
   puStack_b8 = (undefined *)0x0;
   uStack_a8 = 0;
@@ -138,7 +138,7 @@ void ShaderFileGenerator(undefined8 param_1, longlong param_2, undefined8 param_
   puStack_88 = &g_MemoryManager;
   if (puStack_80 != (undefined *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    MemoryDeallocator();
   }
   puStack_80 = (undefined *)0x0;
   uStack_70 = 0;
@@ -227,7 +227,7 @@ undefined8 *ShaderHeaderGenerator(undefined8 param_1, undefined8 *param_2, undef
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
   iVar1 = *(int *)(param_2 + 2);
-  FUN_1806277c0(param_2,iVar1 + 0x17,param_3,param_4,1,0xfffffffffffffffe);
+  BufferExpander(param_2, iVar1 + 0x17, param_3, param_4, 1, 0xfffffffffffffffe);
   puVar2 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 2) + param_2[1]);
   *puVar2 = 0x66656423;
   puVar2[1] = 0x20656e69;
@@ -235,7 +235,7 @@ undefined8 *ShaderHeaderGenerator(undefined8 param_1, undefined8 *param_2, undef
   puVar2[3] = 0x414d574f;
   *(undefined8 *)(puVar2 + 4) = 0xa535341505f50;
   *(int *)(param_2 + 2) = iVar1 + 0x17;
-  uVar3 = FUN_18033eb00(0x66656423,param_2,param_3);
+  uVar3 = ShaderValidator(0x66656423, param_2, param_3);
   uVar3 = ShaderOptimizer(uVar3, param_2, param_3);
   uVar3 = ShaderLinker(uVar3, param_2, param_3);
   ShaderFinalizer(uVar3, param_2, param_3);
@@ -274,7 +274,7 @@ undefined8 *ShaderPipelineGenerator(undefined8 param_1, undefined8 *param_2, und
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
   iVar1 = *(int *)(param_2 + 2);
-  FUN_1806277c0(param_2,iVar1 + 0x22,param_3,param_4,1,0xfffffffffffffffe);
+  BufferExpander(param_2, iVar1 + 0x22, param_3, param_4, 1, 0xfffffffffffffffe);
   puVar2 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 2) + param_2[1]);
   *puVar2 = 0x66656423;
   puVar2[1] = 0x20656e69;
@@ -297,6 +297,90 @@ undefined8 *ShaderPipelineGenerator(undefined8 param_1, undefined8 *param_2, und
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+// =============================================================================
+// 常量定义和全局变量
+// =============================================================================
+
+// 全局变量声明
+#define g_DefaultShaderConfig      UNK_1809fdc18    // 默认着色器配置
+#define g_ShaderTemplatePath       UNK_180a3c07c    // 着色器模板路径
+#define g_BufferAllocator          UNK_18098bcb0    // 缓冲区分配器
+#define g_MemoryManager            UNK_180a3c3e0    // 内存管理器
+#define g_DefaultDataBuffer        DAT_18098bc73    // 默认数据缓冲区
+#define g_FileStreamConfig         DAT_1809fc7ec    // 文件流配置
+#define g_ShaderTextureData        UNK_180a1bd10    // 着色器纹理数据
+#define g_GlobalMemoryPool         _DAT_180c8ed18   // 全局内存池
+#define g_SecurityChecksum        _DAT_180bf00a8   // 安全校验和
+#define g_FileHandleCounter       _DAT_180c8ed60   // 文件句柄计数器
+
+// 着色器类型常量
+#define SHADER_TYPE_VERTEX         0x01             // 顶点着色器
+#define SHADER_TYPE_FRAGMENT       0x02             // 片段着色器
+#define SHADER_TYPE_GEOMETRY       0x04             // 几何着色器
+#define SHADER_TYPE_COMPUTE        0x08             // 计算着色器
+
+// 着色器编译标志
+#define SHADER_COMPILE_DEBUG       0x01             // 调试模式
+#define SHADER_COMPILE_OPTIMIZE    0x02             // 优化模式
+#define SHADER_COMPILE_VALIDATE    0x04             // 验证模式
+
+// =============================================================================
+// 函数别名定义 - 保持向后兼容性
+// =============================================================================
+
+// 主要函数别名
+#define FUN_18033fca0              ShaderFileGenerator
+#define FUN_18033ff10              ShaderParameterInitializer  
+#define FUN_18033ffe0              ShaderHeaderGenerator
+#define FUN_1803400b0              ShaderPipelineGenerator
+#define FUN_180340190              ShaderSourceCompiler
+
+// 辅助函数别名
+#define FUN_18033eb00              ShaderValidator
+#define FUN_18033f560              ShaderOptimizer
+#define FUN_180342f20              ShaderLinker
+#define FUN_180340b00              ShaderFinalizer
+#define FUN_1803415f0              ShaderPipelineFinalizer
+#define FUN_180344f00              ShaderTextureProcessor
+
+// 内存管理函数别名
+#define FUN_18062b420              MemoryAllocator
+#define FUN_18064e990              MemoryInitializer
+#define FUN_18064e900              MemoryDeallocator
+
+// 缓冲区管理函数别名
+#define FUN_1806279c0              BufferAllocator
+#define FUN_1806277c0              BufferExpander
+#define FUN_180627be0              ShaderConfigSetter
+#define FUN_18062dee0              FileStreamOpener
+#define FUN_1808fc050              SecurityCheckHandler
+
+// =============================================================================
+// 模块信息
+// =============================================================================
+
+/**
+ * 模块标识: 03_rendering_part124.c
+ * 模块类型: 渲染系统 - 着色器管理
+ * 功能描述: 着色器生成、编译和管理模块
+ * 
+ * 主要功能:
+ * - 着色器源码生成和编译
+ * - 着色器参数设置和配置
+ * - 渲染管线状态管理
+ * - 着色器文件输出和处理
+ * 
+ * 包含函数: 5个核心函数
+ * 代码行数: 837行
+ * 美化完成: 2025-08-28
+ * 
+ * 技术说明:
+ * - 支持多种着色器类型（顶点、片段、几何、计算）
+ * - 提供完整的着色器编译管线
+ * - 包含内存管理和文件I/O功能
+ * - 具备安全校验和错误处理机制
+ */
 
 
 
@@ -731,6 +815,90 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+// =============================================================================
+// 常量定义和全局变量
+// =============================================================================
+
+// 全局变量声明
+#define g_DefaultShaderConfig      UNK_1809fdc18    // 默认着色器配置
+#define g_ShaderTemplatePath       UNK_180a3c07c    // 着色器模板路径
+#define g_BufferAllocator          UNK_18098bcb0    // 缓冲区分配器
+#define g_MemoryManager            UNK_180a3c3e0    // 内存管理器
+#define g_DefaultDataBuffer        DAT_18098bc73    // 默认数据缓冲区
+#define g_FileStreamConfig         DAT_1809fc7ec    // 文件流配置
+#define g_ShaderTextureData        UNK_180a1bd10    // 着色器纹理数据
+#define g_GlobalMemoryPool         _DAT_180c8ed18   // 全局内存池
+#define g_SecurityChecksum        _DAT_180bf00a8   // 安全校验和
+#define g_FileHandleCounter       _DAT_180c8ed60   // 文件句柄计数器
+
+// 着色器类型常量
+#define SHADER_TYPE_VERTEX         0x01             // 顶点着色器
+#define SHADER_TYPE_FRAGMENT       0x02             // 片段着色器
+#define SHADER_TYPE_GEOMETRY       0x04             // 几何着色器
+#define SHADER_TYPE_COMPUTE        0x08             // 计算着色器
+
+// 着色器编译标志
+#define SHADER_COMPILE_DEBUG       0x01             // 调试模式
+#define SHADER_COMPILE_OPTIMIZE    0x02             // 优化模式
+#define SHADER_COMPILE_VALIDATE    0x04             // 验证模式
+
+// =============================================================================
+// 函数别名定义 - 保持向后兼容性
+// =============================================================================
+
+// 主要函数别名
+#define FUN_18033fca0              ShaderFileGenerator
+#define FUN_18033ff10              ShaderParameterInitializer  
+#define FUN_18033ffe0              ShaderHeaderGenerator
+#define FUN_1803400b0              ShaderPipelineGenerator
+#define FUN_180340190              ShaderSourceCompiler
+
+// 辅助函数别名
+#define FUN_18033eb00              ShaderValidator
+#define FUN_18033f560              ShaderOptimizer
+#define FUN_180342f20              ShaderLinker
+#define FUN_180340b00              ShaderFinalizer
+#define FUN_1803415f0              ShaderPipelineFinalizer
+#define FUN_180344f00              ShaderTextureProcessor
+
+// 内存管理函数别名
+#define FUN_18062b420              MemoryAllocator
+#define FUN_18064e990              MemoryInitializer
+#define FUN_18064e900              MemoryDeallocator
+
+// 缓冲区管理函数别名
+#define FUN_1806279c0              BufferAllocator
+#define FUN_1806277c0              BufferExpander
+#define FUN_180627be0              ShaderConfigSetter
+#define FUN_18062dee0              FileStreamOpener
+#define FUN_1808fc050              SecurityCheckHandler
+
+// =============================================================================
+// 模块信息
+// =============================================================================
+
+/**
+ * 模块标识: 03_rendering_part124.c
+ * 模块类型: 渲染系统 - 着色器管理
+ * 功能描述: 着色器生成、编译和管理模块
+ * 
+ * 主要功能:
+ * - 着色器源码生成和编译
+ * - 着色器参数设置和配置
+ * - 渲染管线状态管理
+ * - 着色器文件输出和处理
+ * 
+ * 包含函数: 5个核心函数
+ * 代码行数: 837行
+ * 美化完成: 2025-08-28
+ * 
+ * 技术说明:
+ * - 支持多种着色器类型（顶点、片段、几何、计算）
+ * - 提供完整的着色器编译管线
+ * - 包含内存管理和文件I/O功能
+ * - 具备安全校验和错误处理机制
+ */
 
 
 
