@@ -616,7 +616,7 @@ uint UISystem_ParameterProcessor(longlong context, uint componentIndex, UIFloatV
 
 
 
-uint FUN_1807485dc(uint64_t param_1,uint64_t param_2,longlong param_3)
+uint UISystem_VectorCalculator(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 {
   uint64_t uVar1;
@@ -798,7 +798,7 @@ uint FUN_1807485dc(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 
 
-uint FUN_1807487b0(uint64_t param_1,uint64_t param_2,longlong param_3,float param_4)
+uint UISystem_AdvancedVectorCalculator(uint64_t param_1,uint64_t param_2,longlong param_3,float param_4)
 
 {
   uint64_t uVar1;
@@ -918,7 +918,7 @@ uint FUN_1807487b0(uint64_t param_1,uint64_t param_2,longlong param_3,float para
 
 
 
-uint64_t FUN_180748b0a(void)
+uint64_t UISystem_ErrorCodeGenerator(void)
 
 {
   return 0x1f;
@@ -926,7 +926,7 @@ uint64_t FUN_180748b0a(void)
 
 
 
-uint64_t FUN_180748b40(longlong param_1,int *param_2)
+uint64_t UISystem_ParameterValidator(longlong param_1,int *param_2)
 
 {
   float fVar1;
@@ -983,8 +983,8 @@ uint64_t FUN_180748b40(longlong param_1,int *param_2)
 
 
 
-// 函数: void FUN_180748dd0(longlong param_1)
-void FUN_180748dd0(longlong param_1)
+// 函数: void UISystem_StateSynchronizer(longlong param_1)
+void UISystem_StateSynchronizer(longlong param_1)
 
 {
   int iVar1;
@@ -998,7 +998,7 @@ void FUN_180748dd0(longlong param_1)
 
 
 
-uint64_t FUN_180748e20(longlong param_1,int param_2,uint64_t param_3,uint64_t param_4)
+uint64_t UISystem_DataUpdater(longlong param_1,int param_2,uint64_t param_3,uint64_t param_4)
 
 {
   if (param_1 != 0) {
