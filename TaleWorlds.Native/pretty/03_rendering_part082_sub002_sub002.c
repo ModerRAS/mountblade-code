@@ -96,6 +96,34 @@
 #define RenderingSystemResourceManager2 FUN_1804389f0     // 渲染系统资源管理器2
 #define RenderingSystemShaderCompiler FUN_180438680       // 渲染系统着色器编译器
 #define RenderingSystemTextureCompressor FUN_180438c70    // 渲染系统纹理压缩器
+#define RenderingSystemMemoryOptimizer FUN_18043c350       // 渲染系统内存优化器
+#define RenderingSystemCacheManager FUN_18043c370          // 渲染系统缓存管理器
+#define RenderingSystemGarbageCollector FUN_18043c740      // 渲染系统垃圾收集器
+#define RenderingSystemMemoryPool FUN_18043c6b0            // 渲染系统内存池
+#define RenderingSystemHeapManager FUN_18043c3b0           // 渲染系统堆管理器
+#define RenderingSystemStackAllocator FUN_18043c510       // 渲染系统栈分配器
+#define RenderingSystemVirtualMemory FUN_18043c0f0         // 渲染系统虚拟内存
+#define RenderingSystemPageManager FUN_18043c020           // 渲染系统页面管理器
+#define RenderingSystemMemoryTracker FUN_18043c060         // 渲染系统内存跟踪器
+#define RenderingSystemMemoryProfiler FUN_18043c290         // 渲染系统内存分析器
+#define RenderingSystemMemoryDebugger FUN_18043c2e0        // 渲染系统内存调试器
+#define RenderingSystemMemoryMonitor FUN_18043c0b0         // 渲染系统内存监控器
+#define RenderingSystemMemoryAuditor FUN_18043c230         // 渲染系统内存审计器
+#define RenderingSystemMemoryValidator FUN_18043c160       // 渲染系统内存验证器
+#define RenderingSystemMemoryCleaner FUN_18043c6e0         // 渲染系统内存清理器
+#define RenderingSystemMemoryCompactor FUN_18043bff0        // 渲染系统内存压缩器
+#define RenderingSystemMemoryDefragmenter FUN_18043bfb0    // 渲染系统内存碎片整理器
+#define RenderingSystemMemoryMapper FUN_18043cb50           // 渲染系统内存映射器
+#define RenderingSystemMemorySerializer FUN_18043c820       // 渲染系统内存序列化器
+#define RenderingSystemMemoryDeserializer FUN_18043c8e0    // 渲染系统内存反序列化器
+#define RenderingSystemMemoryEncryptor FUN_18043cae0        // 渲染系统内存加密器
+#define RenderingSystemMemoryDecryptor FUN_18043c7a0        // 渲染系统内存解密器
+#define RenderingSystemMemoryArchiver FUN_18043caa0         // 渲染系统内存存档器
+#define RenderingSystemMemoryRestorer FUN_18043d100         // 渲染系统内存恢复器
+#define RenderingSystemMemoryBackup FUN_18043cbd0           // 渲染系统内存备份器
+#define RenderingSystemSystemInitializer FUN_180441a00      // 渲染系统系统初始化器
+#define RenderingSystemSystemFinalizer FUN_1804403d0        // 渲染系统系统终结器
+#define RenderingSystemSystemLoader FUN_18043fe70           // 渲染系统系统加载器
 
 // 函数: void FUN_180310b50(int64_t param_1)
 void FUN_180310b50(int64_t param_1)
@@ -166,8 +194,8 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x3e,&unknown_var_5280_ptr);
   (**(code **)(param_1 + 0x60))(0x3f,&unknown_var_9872_ptr);
   (**(code **)(param_1 + 0x60))(0x40,&unknown_var_9840_ptr);
-  (**(code **)(param_1 + 0x60))(0x41,FUN_18043b290);
-  (**(code **)(param_1 + 0x60))(0x42,FUN_180438560);
+  (**(code **)(param_1 + 0x60))(0x41,RenderingSystemFontRenderer);
+  (**(code **)(param_1 + 0x60))(0x42,RenderingSystemTextProcessor);
   (**(code **)(param_1 + 0x60))(0x43,&unknown_var_4944_ptr);
   (**(code **)(param_1 + 0x60))(0x44,&unknown_var_9904_ptr);
   (**(code **)(param_1 + 0x60))(0x45,&unknown_var_4720_ptr);
@@ -177,19 +205,19 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x49,&unknown_var_5072_ptr);
   (**(code **)(param_1 + 0x60))(0x4a,&unknown_var_8224_ptr);
   (**(code **)(param_1 + 0x60))(0x4b,&unknown_var_5120_ptr);
-  (**(code **)(param_1 + 0x60))(0x4c,FUN_180438210);
+  (**(code **)(param_1 + 0x60))(0x4c,RenderingSystemInputHandler);
   (**(code **)(param_1 + 0x60))(0x4d,&unknown_var_4976_ptr);
   (**(code **)(param_1 + 0x60))(0x4e,&unknown_var_384_ptr);
-  (**(code **)(param_1 + 0x60))(0x4f,FUN_18043bbe0);
-  (**(code **)(param_1 + 0x60))(0x50,FUN_180438940);
+  (**(code **)(param_1 + 0x60))(0x4f,RenderingSystemEventDispatcher);
+  (**(code **)(param_1 + 0x60))(0x50,RenderingSystemUIManager);
   (**(code **)(param_1 + 0x60))(0x51,&unknown_var_6880_ptr);
   (**(code **)(param_1 + 0x60))(0x52,&unknown_var_5968_ptr);
-  (**(code **)(param_1 + 0x60))(0x53,FUN_1804386b0);
-  (**(code **)(param_1 + 0x60))(0x54,FUN_180438350);
-  (**(code **)(param_1 + 0x60))(0x55,FUN_18043ab40);
-  (**(code **)(param_1 + 0x60))(0x56,FUN_18043a140);
+  (**(code **)(param_1 + 0x60))(0x53,RenderingSystemAudioProcessor);
+  (**(code **)(param_1 + 0x60))(0x54,RenderingSystemVideoPlayer);
+  (**(code **)(param_1 + 0x60))(0x55,RenderingSystemParticleEngine);
+  (**(code **)(param_1 + 0x60))(0x56,RenderingSystemPhysicsSimulator);
   (**(code **)(param_1 + 0x60))(0x57,&unknown_var_5440_ptr);
-  (**(code **)(param_1 + 0x60))(0x58,FUN_1804382b0);
+  (**(code **)(param_1 + 0x60))(0x58,RenderingSystemCollisionDetector);
   (**(code **)(param_1 + 0x60))(0x59,&unknown_var_5040_ptr);
   (**(code **)(param_1 + 0x60))(0x5a,&unknown_var_4848_ptr);
   (**(code **)(param_1 + 0x60))(0x5b,&unknown_var_4880_ptr);
@@ -197,14 +225,14 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x5d,&unknown_var_320_ptr);
   (**(code **)(param_1 + 0x60))(0x5e,&unknown_var_8224_ptr);
   (**(code **)(param_1 + 0x60))(0x5f,&unknown_var_4752_ptr);
-  (**(code **)(param_1 + 0x60))(0x60,FUN_180438c50);
-  (**(code **)(param_1 + 0x60))(0x61,FUN_1804389f0);
+  (**(code **)(param_1 + 0x60))(0x60,RenderingSystemNetworkManager);
+  (**(code **)(param_1 + 0x60))(0x61,RenderingSystemResourceManager2);
   (**(code **)(param_1 + 0x60))(0x62,&unknown_var_9248_ptr);
   (**(code **)(param_1 + 0x60))(99,&unknown_var_7744_ptr);
   (**(code **)(param_1 + 0x60))(100,&unknown_var_9808_ptr);
-  (**(code **)(param_1 + 0x60))(0x65,FUN_180438680);
+  (**(code **)(param_1 + 0x60))(0x65,RenderingSystemShaderCompiler);
   (**(code **)(param_1 + 0x60))(0x66,&unknown_var_7744_ptr);
-  (**(code **)(param_1 + 0x60))(0x67,FUN_180438c70);
+  (**(code **)(param_1 + 0x60))(0x67,RenderingSystemTextureCompressor);
   (**(code **)(param_1 + 0x60))(0x68,&unknown_var_9792_ptr);
   (**(code **)(param_1 + 0x60))(0x69,&unknown_var_7712_ptr);
   (**(code **)(param_1 + 0x60))(0x6a,FUN_18043c350);
