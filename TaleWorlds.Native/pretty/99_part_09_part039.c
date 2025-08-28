@@ -1,4 +1,4 @@
-#define StatusChecker FUN_1805b7ac0  // 状态检查器
+#define StatusChecker System_StatusChecker  // 状态检查器
 
 #include "TaleWorlds.Native.Split.h"
 
