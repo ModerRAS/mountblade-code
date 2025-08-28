@@ -1368,7 +1368,7 @@ void utilities_system_state_cleaner_and_terminator(void)
     }
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
-    FUN_180059ee0(0x180c919f0);
+    utilities_system_finalizer(0x180c919f0);
 
 
 // 函数: void FUN_180941d00(void)
@@ -1452,7 +1452,7 @@ void FUN_180941dd0(void)
 void FUN_180941e00(void)
 
 {
-  FUN_180320e20(0x180d497e0);
+  utilities_system_memory_initializer(0x180d497e0);
   if (*system_memory_status_ptr != 0) {
                     // WARNING: Subroutine does not return
     utilities_system_error_handler();
@@ -2489,8 +2489,8 @@ void FUN_180942720(void)
 #define utilities_system_memory_handler utilities_system_memory_handler
 #define utilities_system_exception_recovery FUN_18064d630
 #define utilities_system_cleanup_handler FUN_18005a050
-#define utilities_system_finalizer FUN_180059ee0
-#define utilities_system_memory_initializer FUN_180320e20
+#define utilities_system_finalizer utilities_system_finalizer
+#define utilities_system_memory_initializer utilities_system_memory_initializer
 #define utilities_system_memory_finalizer FUN_180320b20
 #define utilities_system_buffer_handler FUN_180067070
 #define utilities_system_parameter_validator FUN_1808fd8d4

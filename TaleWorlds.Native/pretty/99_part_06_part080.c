@@ -14,6 +14,45 @@
  * - 性能监控和优化
  */
 
+/* 函数别名定义 - 系统资源管理和状态同步模块 */
+
+/* 内存管理函数 */
+#define MemoryManager_CreateResourceBuffer() FUN_1800bdc80()
+#define MemoryManager_AllocateResource() FUN_1800b1230()
+#define MemoryManager_ReleaseResource() FUN_180060b80()
+#define MemoryManager_FreeMemoryBlock() FUN_180045af0()
+
+/* 系统初始化函数 */
+#define SystemInitializer_Initialize() FUN_1801f9920()
+#define SystemInitializer_InitializeWithContext() FUN_1801f9270()
+#define SystemInitializer_InitializeAdvanced() FUN_1801fa180()
+
+/* 系统安全检查函数 */
+#define SystemSecurityChecker_VerifyAccess() FUN_1808fc050()
+#define SystemSecurityChecker_CheckPermissions() FUN_1808fc838()
+#define SystemSecurityChecker_ValidateContext() FUN_1808fc8a8()
+
+/* 数据处理函数 */
+#define DataProcessor_TransformData() FUN_180244ff0()
+#define DataProcessor_ApplyTransform() FUN_180056f10()
+#define DataProcessor_ProcessData() FUN_1801f9aa0()
+#define DataProcessor_CompressData() FUN_18029ef00()
+#define DataProcessor_DecompressData() FUN_18029de40()
+
+/* 字符串处理函数 */
+#define StringProcessor_EncodeString() FUN_1802c22a0()
+#define StringProcessor_DecodeString() FUN_1802c2560()
+#define StringProcessor_FormatString() FUN_1802c2ac0()
+
+/* 资源管理函数 */
+#define ResourceManager_CreateInstance() FUN_1800bdc80()
+#define ResourceManager_FindResource() FUN_18062b1e0()
+#define ResourceManager_LoadResource() FUN_1801f8ea0()
+
+/* 状态管理函数 */
+#define StateManager_UpdateState() FUN_180626f80()
+#define StateManager_TransitionState() FUN_180049bf0()
+
 /* 系统常量定义 */
 #define SYSTEM_STATE_ACTIVE          0x00
 #define SYSTEM_STATE_INACTIVE        0x01
