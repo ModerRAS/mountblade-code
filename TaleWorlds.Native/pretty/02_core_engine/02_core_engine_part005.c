@@ -1,51 +1,63 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part005.c - 31 个函数
+// 02_core_engine_part005.c - 核心引擎注册表初始化模块
+// 本模块包含31个注册表初始化函数，用于初始化各种系统组件
 
-// 函数: void FUN_180036850(void)
-void FUN_180036850(void)
-
+/**
+ * 初始化基础渲染系统注册表项
+ * 注册ID: 180036850
+ * 功能：设置基础渲染相关的系统参数和回调函数
+ */
+void initialize_base_rendering_registry(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char registry_flag;
+  undefined8 *registry_root;
+  int compare_result;
+  longlong *registry_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_entry;
+  undefined8 callback_parameter;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取注册表管理器实例
+  registry_manager = (longlong *)get_registry_manager();
+  registry_root = (undefined8 *)*registry_manager;
+  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  callback_parameter = 0;
+  previous_node = registry_root;
+  current_node = (undefined8 *)registry_root[1];
+  
+  // 在注册表中查找匹配的条目
+  while (registry_flag == '\0') {
+    compare_result = memcmp(current_node + 4, &BASE_RENDERING_SIGNATURE, 0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    registry_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要创建新的注册表条目
+  if ((previous_node == registry_root) || 
+      (compare_result = memcmp(&BASE_RENDERING_SIGNATURE, previous_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_registry_entry(registry_manager);
+    insert_registry_entry(registry_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
+    previous_node = new_entry;
   }
-  puVar7[6] = 0x402feffe4481676e;
-  puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  
+  // 设置注册表条目的参数
+  previous_node[6] = 0x402feffe4481676e;  // 渲染系统标识符
+  previous_node[7] = 0xd4c2151109de93a0;  // 渲染系统版本信息
+  previous_node[8] = &base_rendering_vtable;  // 虚函数表指针
+  previous_node[9] = 0;  // 保留字段
+  previous_node[10] = callback_parameter;  // 回调参数
   return;
 }
 

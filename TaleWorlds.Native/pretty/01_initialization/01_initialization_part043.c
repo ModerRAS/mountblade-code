@@ -226,59 +226,70 @@ LAB_1800722f5:
         }
         uStack_116 = 1;
       }
-      puStack_110 = &UNK_180a3c3e0;
+      // 准备日志记录缓冲区
+      puStack_110 = &GLOBAL_STRING_END;
       uStack_f8 = 0;
       puStack_108 = (undefined *)0x0;
       uStack_100 = 0;
+      
       if (cVar2 == '\0') {
-        lVar9 = FUN_1800f9ce0(&puStack_f0,0);
+        // 获取日志信息
+        lVar9 = get_log_information(&puStack_f0, 0);
         uStack_100 = *(uint *)(lVar9 + 0x10);
         puStack_108 = *(undefined1 **)(lVar9 + 8);
         uStack_f8 = *(ulonglong *)(lVar9 + 0x18);
+        
+        // 清理日志信息
         *(undefined4 *)(lVar9 + 0x10) = 0;
         *(undefined8 *)(lVar9 + 8) = 0;
         *(undefined8 *)(lVar9 + 0x18) = 0;
-        puStack_f0 = &UNK_180a3c3e0;
+        puStack_f0 = &GLOBAL_STRING_END;
+        
         if (lStack_e8 != 0) {
-                    // WARNING: Subroutine does not return
-          FUN_18064e900();
+          release_memory_handler();
         }
         lStack_e8 = 0;
         uStack_d8 = 0;
-        puStack_f0 = &UNK_18098bcb0;
+        puStack_f0 = &GLOBAL_STRING_HANDLER;
       }
+      // 构建错误信息字符串
       puVar10 = puStack_108;
-      puStack_138 = &UNK_180a3c3e0;
+      puStack_138 = &GLOBAL_STRING_END;
       uStack_120 = 0;
       puStack_130 = (undefined1 *)0x0;
       uStack_128 = 0;
-      puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x15,0x13);
+      
+      // 分配内存并构建错误信息
+      puStack_130 = (undefined1 *)allocate_string_memory(_DAT_180c8ed18, 0x15, 0x13);
       *puStack_130 = 0;
-      uVar6 = FUN_18064e990(puStack_130);
-      uStack_120 = CONCAT44(uStack_120._4_4_,uVar6);
+      uVar6 = get_string_length(puStack_130);
+      uStack_120 = CONCAT44(uStack_120._4_4_, uVar6);
+      
+      // 写入错误信息: "Notification Assignment !"
       puVar12 = (undefined4 *)(puStack_130 + uStack_128);
-      *puVar12 = 0x69746f4e;
-      puVar12[1] = 0x61636966;
-      puVar12[2] = 0x6e6f6974;
-      puVar12[3] = 0x73734120;
-      puVar12[4] = 0x21747265;
+      *puVar12 = 0x69746f4e;  // "Noti"
+      puVar12[1] = 0x61636966;  // "fica"
+      puVar12[2] = 0x6e6f6974;  // "tion"
+      puVar12[3] = 0x73734120;  // " Ass"
+      puVar12[4] = 0x21747265;  // "ert!"
       *(undefined1 *)(puVar12 + 5) = 0;
       uStack_128 = 0x14;
+      // 添加换行符
       if (puStack_130 == (undefined1 *)0x0) {
         uStack_128 = 0x14;
-        puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x16,0x13);
+        puStack_130 = (undefined1 *)allocate_string_memory(_DAT_180c8ed18, 0x16, 0x13);
         *puStack_130 = 0;
 LAB_180072521:
-        uVar7 = FUN_18064e990(puStack_130);
-        uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
+        uVar7 = get_string_length(puStack_130);
+        uStack_120 = CONCAT44(uStack_120._4_4_, uVar7);
       }
       else if (uVar6 < 0x16) {
         puStack_148 = (undefined1 *)CONCAT71(puStack_148._1_7_,0x13);
         uStack_128 = 0x14;
-        puStack_130 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_130,0x16,0x10);
+        puStack_130 = (undefined1 *)reallocate_string_memory(_DAT_180c8ed18, puStack_130, 0x16, 0x10);
         goto LAB_180072521;
       }
-      *(undefined2 *)(puStack_130 + uStack_128) = 10;
+      *(undefined2 *)(puStack_130 + uStack_128) = 10;  // 换行符
       uStack_128 = 0x15;
       uVar6 = 0x16;
       if (puStack_130 == (undefined1 *)0x0) {
@@ -596,8 +607,9 @@ LAB_1800729bd:
       }
 
 
-// 函数: void FUN_180072e80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180072e80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 处理事件通知
+// 原始函数名：FUN_180072e80
+void handle_event_notification(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   longlong *plVar1;
@@ -605,14 +617,15 @@ void FUN_180072e80(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   undefined *puStack_30;
   longlong lStack_28;
   
-  plVar1 = *(longlong **)(_DAT_180c86870 + 0x2b0);
+  // 获取事件处理器
+  plVar1 = *(longlong **)(GLOBAL_ENGINE_CONTEXT + 0x2b0);
   if (plVar1 != (longlong *)0x0) {
-    uVar2 = (**(code **)(*plVar1 + 0x110))(plVar1,&puStack_30,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005d190(param_2,uVar2);
-    puStack_30 = &UNK_180a3c3e0;
+    // 调用事件处理函数
+    uVar2 = (**(code **)(*plVar1 + 0x110))(plVar1, &puStack_30, param_3, param_4, 0xfffffffffffffffe);
+    process_event_result(param_2, uVar2);
+    puStack_30 = &GLOBAL_STRING_END;
     if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+      release_memory_handler();
     }
   }
   return;
@@ -622,7 +635,9 @@ void FUN_180072e80(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
+// 函数: 检查系统状态
+// 原始函数名：FUN_180072f00
+bool check_system_status(undefined8 param_1, undefined8 *param_2)
 
 {
   undefined4 uVar1;
@@ -667,23 +682,30 @@ bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
   longlong lStack_48;
   undefined8 uStack_40;
   
+  // 初始化变量
   uStack_40 = 0xfffffffffffffffe;
   puVar5 = (undefined8 *)0x0;
   iVar3 = 0;
-  WaitForSingleObject(_DAT_180c91900,300000);
+  
+  // 等待信号量（超时5分钟）
+  WaitForSingleObject(GLOBAL_SEMAPHORE, 300000);
   lStack_48 = _DAT_180c82868;
   if (_DAT_180c82868 != 0) {
-    FUN_18005dab0(_DAT_180c82868);
+    execute_system_check(_DAT_180c82868);
   }
-  puStack_f0 = &UNK_180a3c3e0;
+  
+  // 初始化字符串缓冲区
+  puStack_f0 = &GLOBAL_STRING_END;
   uStack_d8 = 0;
   puStack_e8 = (undefined2 *)0x0;
   uStack_e0 = 0;
-  puStack_e8 = (undefined2 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  
+  // 创建分隔符字符串
+  puStack_e8 = (undefined2 *)allocate_string_memory(_DAT_180c8ed18, 0x10, 0x13);
   *(undefined1 *)puStack_e8 = 0;
-  uVar1 = FUN_18064e990(puStack_e8);
-  uStack_d8 = CONCAT44(uStack_d8._4_4_,uVar1);
-  *puStack_e8 = 0xa0a;
+  uVar1 = get_string_length(puStack_e8);
+  uStack_d8 = CONCAT44(uStack_d8._4_4_, uVar1);
+  *puStack_e8 = 0xa0a;  // 换行符
   *(undefined1 *)(puStack_e8 + 1) = 0;
   uStack_e0 = 2;
   puStack_d0 = &UNK_180a3c3e0;

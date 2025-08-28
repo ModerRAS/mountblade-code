@@ -22,82 +22,82 @@
 void initialize_skeletal_animation_system(longlong animation_context)
 
 {
-  int *piVar1;
-  uint *puVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  float fVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  undefined1 auVar8 [16];
-  bool bVar9;
-  int *piVar10;
-  int iVar11;
-  longlong lVar12;
-  int *piVar13;
-  int *piVar14;
-  int *piVar15;
-  int *piVar16;
-  longlong lVar17;
-  float *pfVar18;
-  uint uVar19;
-  int *piVar20;
-  longlong lVar21;
-  longlong lVar22;
-  longlong lVar23;
-  longlong lVar24;
-  int *piVar25;
-  int *piVar26;
-  int iVar27;
-  ulonglong uVar28;
-  undefined4 *puVar29;
-  ulonglong uVar30;
-  longlong lVar31;
-  uint *puVar32;
-  uint uVar33;
-  int *piVar34;
-  undefined1 (*pauVar35) [16];
-  ulonglong uVar36;
-  undefined1 (*pauVar37) [16];
-  ulonglong uVar38;
-  longlong *plVar39;
-  longlong lVar40;
-  ulonglong uVar41;
-  undefined1 (*pauVar42) [16];
-  longlong lVar43;
-  bool bVar44;
-  float fVar45;
-  float fVar46;
-  undefined1 auVar47 [16];
-  float fVar48;
-  float fVar49;
-  float fVar50;
-  float fVar51;
-  float fVar52;
-  float fVar53;
-  int iStackX_10;
-  ulonglong uStackX_18;
-  ulonglong uStackX_20;
-  int *piStack_218;
-  int *piStack_210;
-  int *piStack_208;
-  undefined4 uStack_200;
-  int *piStack_1f8;
-  int *piStack_1f0;
-  int iStack_1e8;
-  undefined1 (*pauStack_1e0) [16];
-  ulonglong uStack_1d8;
-  longlong lStack_1d0;
-  uint uStack_1c8;
-  uint uStack_1c0;
-  undefined4 uStack_1bc;
-  undefined8 uStack_1b8;
-  int *piStack_1b0;
-  undefined4 uStack_1a8;
-  undefined8 uStack_1a0;
-  undefined8 uStack_198;
-  int *piStack_190;
-  undefined4 uStack_188;
+  int *bone_count_ptr;           // 骨骼数量指针
+  uint *bone_flag_ptr;           // 骨骼标志指针
+  undefined8 *transform_matrix1; // 变换矩阵1
+  undefined8 *transform_matrix2; // 变换矩阵2
+  float weight_value;            // 权重值
+  undefined8 matrix_data1;       // 矩阵数据1
+  undefined8 matrix_data2;       // 矩阵数据2
+  undefined1 normal_vector[16];  // 法线向量
+  bool is_valid_transform;       // 是否有效变换
+  int *temp_index_ptr;           // 临时索引指针
+  int bone_count;                // 骨骼数量
+  longlong temp_addr1;           // 临时地址1
+  int *array_ptr1;               // 数组指针1
+  int *array_ptr2;               // 数组指针2
+  int *array_ptr3;               // 数组指针3
+  int *array_ptr4;               // 数组指针4
+  longlong data_offset;          // 数据偏移
+  float *float_array;            // 浮点数组
+  uint bone_id;                  // 骨骼ID
+  int *current_ptr;              // 当前指针
+  longlong vertex_data_addr;     // 顶点数据地址
+  longlong animation_data_addr;  // 动画数据地址
+  longlong matrix_addr;          // 矩阵地址
+  longlong frame_data_addr;      // 帧数据地址
+  int *index_ptr1;               // 索引指针1
+  int *index_ptr2;               // 索引指针2
+  int frame_index;               // 帧索引
+  ulonglong memory_size;          // 内存大小
+  undefined4 *buffer_ptr;         // 缓冲区指针
+  ulonglong array_size;          // 数组大小
+  longlong temp_addr2;           // 临时地址2
+  uint *uint_array;              // 无符号整数数组
+  uint vertex_id;                // 顶点ID
+  int *vertex_ptr;               // 顶点指针
+  undefined1 (*data_buffer) [16]; // 数据缓冲区
+  ulonglong buffer_size1;         // 缓冲区大小1
+  undefined1 (*buffer_ptr2) [16]; // 缓冲区指针2
+  ulonglong buffer_size2;         // 缓冲区大小2
+  longlong *long_array;           // 长整数数组
+  longlong temp_addr3;           // 临时地址3
+  ulonglong temp_size1;           // 临时大小1
+  undefined1 (*temp_buffer) [16]; // 临时缓冲区
+  longlong temp_offset;           // 临时偏移
+  bool has_influence;            // 是否有影响
+  float vector_x;                // 向量X分量
+  float vector_y;                // 向量Y分量
+  undefined1 temp_vector[16];    // 临时向量
+  float normal_x;                // 法线X分量
+  float normal_y;                // 法线Y分量
+  float normal_z;                // 法线Z分量
+  float vector1_x;               // 向量1的X分量
+  float vector1_y;               // 向量1的Y分量
+  float vector1_z;               // 向量1的Z分量
+  int stack_counter;              // 堆栈计数器
+  ulonglong bone_influences;     // 骨骼影响数量
+  ulonglong remaining_bones;     // 剩余骨骼数量
+  int *bone_array_ptr;           // 骨骼数组指针
+  int *vertex_array_ptr;         // 顶点数组指针
+  int *temp_array_ptr;           // 临时数组指针
+  undefined4 array_flags;        // 数组标志
+  int *influence_ptr;            // 影响指针
+  int *frame_ptr;                // 帧指针
+  int total_frames;              // 总帧数
+  undefined1 (*matrix_buffer) [16]; // 矩阵缓冲区
+  ulonglong matrix_count;        // 矩阵数量
+  longlong current_bone;         // 当前骨骼
+  uint processing_flags;         // 处理标志
+  uint vertex_flags;             // 顶点标志
+  undefined4 alignment_pad;      // 对齐填充
+  undefined8 matrix_data;        // 矩阵数据
+  int *stack_ptr;                // 堆栈指针
+  undefined4 stack_flags;        // 堆栈标志
+  undefined8 stack_data1;        // 堆栈数据1
+  undefined8 stack_data2;        // 堆栈数据2
+  int *temp_stack_ptr;           // 临时堆栈指针
+  undefined4 temp_stack_flags;   // 临时堆栈标志
   undefined8 uStack_180;
   float fStack_178;
   float fStack_174;
