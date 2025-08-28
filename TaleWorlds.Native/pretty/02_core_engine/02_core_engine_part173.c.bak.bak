@@ -545,7 +545,7 @@ int64_t * dequeue_and_return_resource(int64_t resource_manager, int64_t *output_
     if (plVar1 != (int64_t *)0x0) {
       (**(code **)(*plVar1 + 0x28))(plVar1);
     }
-    RenderingSystem_ObjectListProcessor(param_1 + 0x168,(int64_t)iVar2 + -1,param_3,param_4,uVar3,uVar4);
+    FUN_1800b8630(param_1 + 0x168,(int64_t)iVar2 + -1,param_3,param_4,uVar3,uVar4);
     *param_2 = (int64_t)plVar1;
   }
   iVar2 = _Mtx_unlock(param_1 + 0xd0);

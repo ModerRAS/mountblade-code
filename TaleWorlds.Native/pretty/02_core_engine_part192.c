@@ -276,8 +276,9 @@ uint64_t * SystemMemoryAllocator(uint64_t *memory_pool,uint64_t allocation_flags
 
 
 
-// 函数: void FUN_180175120(uint64_t param_1,int64_t param_2)
-void FUN_180175120(uint64_t param_1,int64_t param_2)
+// 函数: void SystemStringConverter(uint64_t system_context,int64_t string_data)
+// 功能: 系统字符串转换器，负责宽字符到多字符的转换和安全检查
+void SystemStringConverter(uint64_t system_context,int64_t string_data)
 
 {
   int64_t lVar1;
@@ -301,8 +302,9 @@ void FUN_180175120(uint64_t param_1,int64_t param_2)
 
 
 
-// 函数: void FUN_180175180(uint64_t param_1,int64_t param_2)
-void FUN_180175180(uint64_t param_1,int64_t param_2)
+// 函数: void SystemConfigProcessor(uint64_t system_context,int64_t config_data)
+// 功能: 系统配置处理器，负责配置数据处理、字符串拼接和系统状态更新
+void SystemConfigProcessor(uint64_t system_context,int64_t config_data)
 
 {
   int64_t lVar1;
