@@ -313,22 +313,22 @@ void SystemDataProcessor(uint64_t param_1, int64_t param_2, int64_t param_3, cha
     // 系统功能调用
     func_0x00018012e760();
     context_array[0] = 0;
-    status_flag = FUN_18010f6f0(&unknown_var_1920_ptr, context_array, 0);
+    status_flag = FUN_18010f6f0(system_context_flag_ptr, context_array, 0);
     
     // 状态处理
     if (status_flag != '\0') {
-        system_ptr1 = &unknown_var_672_ptr;
+        system_ptr1 = system_config_data_ptr;
         system_ptr2 = temp_buffer3;
         temp_buffer3[0] = 0;
         data_index = 0x11;
-        strcpy_s(temp_buffer3, 0x20, &unknown_var_1896_ptr);
+        strcpy_s(temp_buffer3, 0x20, system_string_data_ptr);
         SystemUtilityFunction(core_data_ptr, param_2, &system_ptr1);
         system_ptr1 = &system_state_ptr;
     }
     
     // 继续处理状态
     func_0x00018012e760();
-    status_flag = FUN_180111070(&unknown_var_1944_ptr, processing_context + 0x124);
+    status_flag = FUN_180111070(system_status_flag_ptr, processing_context + 0x124);
     
     if ((status_flag != '\0') && 
         (completion_flag = (uint)processing_flag, array_size = completion_flag, *(char *)(processing_context + 0x124) != '\0')) {
@@ -338,9 +338,9 @@ void SystemDataProcessor(uint64_t param_1, int64_t param_2, int64_t param_3, cha
     
     // 系统状态更新
     func_0x00018012e760();
-    FUN_180111070(&unknown_var_1936_ptr, processing_context + 0x125);
+    FUN_180111070(system_processing_flag_ptr, processing_context + 0x125);
     func_0x00018012e760();
-    FUN_180111070(&unknown_var_1960_ptr, processing_context + 0x126);
+    FUN_180111070(system_manager_flag_ptr, processing_context + 0x126);
     
     system_manager = SYSTEM_DATA_MANAGER_A;
     *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
