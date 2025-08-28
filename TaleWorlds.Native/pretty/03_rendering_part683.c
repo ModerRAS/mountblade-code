@@ -835,11 +835,117 @@ LAB_18065a765:
                     // WARNING: Subroutine does not return
       uStack_8 = 0x18065aa9f;
       fStack000000000000007c = param_11._4_4_;
-      FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);
+      RenderingSystem_SecurityChecker(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);  // 调用安全检查器
     }
   } while( true );
 }
 
+// 辅助函数实现
+
+/**
+ * 角度归一化函数
+ * 将角度归一化到[-π, π]范围内
+ * 
+ * @param angle 输入角度
+ * @return 归一化后的角度
+ */
+float RenderingSystem_NormalizeAngle(float angle) {
+    while (angle > RENDER_PI) {
+        angle -= RENDER_TWO_PI;
+    }
+    while (angle < -RENDER_PI) {
+        angle += RENDER_TWO_PI;
+    }
+    return angle;
+}
+
+/**
+ * 角度差值计算函数
+ * 计算两个角度之间的最小差值
+ * 
+ * @param angle1 第一个角度
+ * @param angle2 第二个角度
+ * @return 角度差值
+ */
+float RenderingSystem_CalculateAngleDifference(float angle1, float angle2) {
+    float diff = angle1 - angle2;
+    while (diff > RENDER_PI) {
+        diff -= RENDER_TWO_PI;
+    }
+    while (diff < -RENDER_PI) {
+        diff += RENDER_TWO_PI;
+    }
+    return diff;
+}
+
+/**
+ * 向量插值函数
+ * 对多个向量进行插值计算
+ * 
+ * @param vectors 向量数组
+ * @param count 向量数量
+ * @param factor 插值因子
+ * @return 插值结果
+ */
+float RenderingSystem_PerformVectorInterpolation(float* vectors, int count, float factor) {
+    float result = 0.0f;
+    for (int i = 0; i < count; i++) {
+        result += vectors[i] * factor;
+    }
+    return result;
+}
+
+/**
+ * 数学计算优化函数
+ * 对输入数据进行数学优化处理
+ * 
+ * @param input 输入数据
+ * @param output 输出数据
+ * @param size 数据大小
+ */
+void RenderingSystem_OptimizeMathCalculations(float* input, float* output, int size) {
+    for (int i = 0; i < size; i++) {
+        // 使用快速平方根倒数进行优化
+        if (ABS(input[i]) > RENDER_EPSILON) {
+            output[i] = RenderingSystem_FastRSQRT(input[i]);
+        } else {
+            output[i] = 0.0f;
+        }
+    }
+}
+
+/**
+ * 渲染参数验证函数
+ * 验证渲染参数的有效性
+ * 
+ * @param params 渲染参数结构体
+ * @return 验证结果
+ */
+bool RenderingSystem_ValidateRenderParameters(const RenderParameters* params) {
+    if (!params) return false;
+    
+    // 验证角度值
+    if (!RenderingSystem_IsAngleValid(params->angle)) {
+        return false;
+    }
+    
+    // 验证幅度值
+    if (isnan(params->magnitude) || isinf(params->magnitude)) {
+        return false;
+    }
+    
+    // 验证插值因子范围
+    if (params->interpolation < 0.0f || params->interpolation > 1.0f) {
+        return false;
+    }
+    
+    // 验证阈值
+    if (params->threshold < 0.0f) {
+        return false;
+    }
+    
+    return true;
+}
 
 
 

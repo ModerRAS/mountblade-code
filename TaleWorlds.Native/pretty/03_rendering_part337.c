@@ -1541,24 +1541,24 @@ void associate_object_with_system(int64_t *object, int64_t *system)
 //============================================================================
 
 // 导出核心数据处理函数
-EXPORT_FUNCTION(RenderDataProcessor, FUN_1804485c0);
-EXPORT_FUNCTION(RenderDataProcessor, FUN_1804489a0);
+EXPORT_FUNCTION(RenderDataProcessor, RenderingSystem_DataProcessor);
+EXPORT_FUNCTION(RenderDataProcessor, RenderingSystem_DataManager);
 EXPORT_FUNCTION(RenderObjectManager, RenderingSystem_DataInitializer);
-EXPORT_FUNCTION(RenderParamHandler, FUN_180448df0);
-EXPORT_FUNCTION(MemoryAllocator, FUN_180448e50);
+EXPORT_FUNCTION(RenderParamHandler, RenderingSystem_DataCleaner);
+EXPORT_FUNCTION(MemoryAllocator, RenderingSystem_DataValidator);
 
 // 导出查询和管理函数
-EXPORT_FUNCTION(StateController, FUN_180448ea0);
-EXPORT_FUNCTION(StateController, FUN_180448f00);
-EXPORT_FUNCTION(RenderParamHandler, FUN_180448f50);
-EXPORT_FUNCTION(RenderParamHandler, FUN_180448fb0);
-EXPORT_FUNCTION(RenderParamHandler, FUN_180449000);
+EXPORT_FUNCTION(StateController, RenderingSystem_StatusChecker);
+EXPORT_FUNCTION(StateController, RenderingSystem_Controller);
+EXPORT_FUNCTION(RenderParamHandler, RenderingSystem_Counter);
+EXPORT_FUNCTION(RenderParamHandler, RenderingSystem_Updater);
+EXPORT_FUNCTION(RenderParamHandler, RenderingSystem_InfoGetter);
 
 // 导出高级处理函数
-EXPORT_FUNCTION(BatchProcessor, FUN_180449070);
-EXPORT_FUNCTION(DataValidator, FUN_1804491c0);
-EXPORT_FUNCTION(PerformanceOptimizer, FUN_180449230);
-EXPORT_FUNCTION(StructureManager, FUN_180449300);
-EXPORT_FUNCTION(RenderObjectManager, FUN_1804496f0);
-EXPORT_FUNCTION(MemoryAllocator, FUN_180449780);
-EXPORT_FUNCTION(RenderObjectManager, FUN_180449850);
+EXPORT_FUNCTION(BatchProcessor, RenderingSystem_OperationHandler);
+EXPORT_FUNCTION(DataValidator, RenderingSystem_QueryHandler);
+EXPORT_FUNCTION(PerformanceOptimizer, RenderingSystem_Finalizer);
+EXPORT_FUNCTION(StructureManager, RenderingSystem_DataAllocator);
+EXPORT_FUNCTION(RenderObjectManager, RenderingSystem_BatchProcessor);
+EXPORT_FUNCTION(MemoryAllocator, RenderingSystem_Resetter);
+EXPORT_FUNCTION(RenderObjectManager, RenderingSystem_HandleManager);
