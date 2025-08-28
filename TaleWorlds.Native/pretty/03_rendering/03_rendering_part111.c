@@ -1,13 +1,31 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part111.c - 渲染系统高级数据处理和变换模块
-// 包含8个核心函数，涵盖渲染系统数据变换、矩阵运算、资源管理、内存处理、
-// 数据序列化、状态管理、文件操作和批量处理等高级渲染功能
+/**
+ * 03_rendering_part111.c - 渲染系统高级数据处理和资源管理模块
+ * 
+ * 本模块包含8个核心函数，主要实现渲染系统的高级数据处理、资源管理、
+ * 插值计算、数据序列化和反序列化等功能。这些函数负责处理复杂的渲染数据，
+ * 包括浮点数插值、资源数据管理、内存操作和数据流处理等。
+ * 
+ * 主要功能：
+ * - 渲染数据插值和混合计算
+ * - 资源数据的高级处理和管理
+ * - 数据序列化和反序列化
+ * - 内存管理和数据流操作
+ * - 渲染系统优化处理
+ */
 
+// ============================================================================
 // 常量定义
+// ============================================================================
+
+/** 渲染数据块大小常量 */
 #define RENDERING_DATA_BLOCK_SIZE 0xb0
+
+/** 渲染数据偏移量常量 */
 #define RENDERING_DATA_OFFSET_0x10 0x10
 #define RENDERING_DATA_OFFSET_0x20 0x20
+#define RENDERING_DATA_OFFSET_0x24 0x24
 #define RENDERING_DATA_OFFSET_0x28 0x28
 #define RENDERING_DATA_OFFSET_0x30 0x30
 #define RENDERING_DATA_OFFSET_0x50 0x50
@@ -18,50 +36,56 @@
 #define RENDERING_DATA_OFFSET_0x850 0x850
 #define RENDERING_DATA_OFFSET_0x858 0x858
 #define RENDERING_DATA_OFFSET_0x868 0x868
-#define RENDERING_DATA_OFFSET_0x860 0x860
 #define RENDERING_DATA_OFFSET_0x958 0x958
 #define RENDERING_DATA_OFFSET_0x968 0x968
-#define RENDERING_DATA_OFFSET_0x13c 0x13c
-#define RENDERING_DATA_OFFSET_0x144 0x144
-#define RENDERING_DATA_OFFSET_0x160 0x160
-#define RENDERING_DATA_OFFSET_0x2d8 0x2d8
-#define RENDERING_DATA_OFFSET_0x51d0 0x51d0
-#define RENDERING_DATA_OFFSET_0x51d8 0x51d8
-#define RENDERING_BUFFER_SIZE_0x20000 0x20000
 
-// 浮点常量
+/** 渲染系统内存偏移量 */
+#define RENDERING_CONTEXT_OFFSET_0x13c 0x13c
+#define RENDERING_CONTEXT_OFFSET_0x144 0x144
+#define RENDERING_CONTEXT_OFFSET_0x160 0x160
+#define RENDERING_CONTEXT_OFFSET_0x2d8 0x2d8
+#define RENDERING_CONTEXT_OFFSET_0x51d0 0x51d0
+#define RENDERING_CONTEXT_OFFSET_0x51d8 0x51d8
+
+/** 浮点数精度常量 */
+#define FLOAT_PRECISION_EPSILON 1.1754944e-38
+#define FLOAT_MIN_THRESHOLD 0.001
+#define FLOAT_MAX_THRESHOLD 0.999
+#define FLOAT_NORMALIZATION_THRESHOLD 0.9995
+
+/** 内存操作常量 */
+#define MEMORY_BLOCK_SIZE_0x20000 0x20000
+#define MEMORY_BLOCK_SIZE_0x100 0x100
+#define MEMORY_BLOCK_SIZE_8 8
+#define MEMORY_BLOCK_SIZE_4 4
+
+/** 文件操作常量 */
+#define FILE_IO_BUFFER_SIZE 8
+#define FILE_IO_CHUNK_SIZE 1
+
+/** 通用常量 */
 #define RENDERING_FLOAT_1_0 1.0f
-#define RENDERING_FLOAT_0_999 0.999f
-#define RENDERING_FLOAT_0_9995 0.9995f
-#define RENDERING_FLOAT_0_001 0.001f
-#define RENDERING_FLOAT_3_4028235e38 3.4028235e+38f
-#define RENDERING_FLOAT_1_1754944e38 1.1754944e-38f
 #define RENDERING_FLOAT_0_5 0.5f
 #define RENDERING_FLOAT_3_0 3.0f
-
-// 整数常量
+#define RENDERING_FLOAT_MAX 3.4028235e+38f
 #define RENDERING_INT_MINUS_5 -5
 #define RENDERING_UINT_MAX 0xffffffff
-#define RENDERING_UINT_0x7f7fffff 0x7f7fffff
-#define RENDERING_INT_0x20000 0x20000
-#define RENDERING_INT_0xc 0xc
-#define RENDERING_INT_0x8 0x8
-#define RENDERING_INT_0x4 0x4
-#define RENDERING_INT_0x3f 0x3f
 
-// 函数别名定义
-#define rendering_system_data_transformer FUN_180334b80
-#define rendering_system_matrix_processor FUN_180334bf1
-#define rendering_system_empty_function_1 FUN_180334fd7
-#define rendering_system_resource_manager FUN_180335000
-#define rendering_system_memory_handler FUN_1803350cd
-#define rendering_system_data_serializer FUN_180335140
-#define rendering_system_empty_function_2 FUN_18033519d
-#define rendering_system_empty_function_3 FUN_1803351a2
-#define rendering_system_file_processor FUN_1803351b0
-#define rendering_system_batch_processor FUN_180335590
+// ============================================================================
+// 全局变量引用
+// ============================================================================
 
+/** 渲染系统全局数据引用 */
+extern undefined8 _DAT_180bf00a8;
+extern undefined8 _DAT_180c8ed18;
+extern undefined8 DAT_18098bc73;
+extern undefined8 UNK_18098bcb0;
+extern undefined8 UNK_180a3c3e0;
+
+// ============================================================================
 // 外部函数声明
+// ============================================================================
+
 extern void FUN_1802feba0(longlong param_1, longlong param_2);
 extern void FUN_1808fc050(ulonglong param_1);
 extern void FUN_180179aa0(undefined8 param_1, undefined8 param_2, int param_3, undefined8 param_4, int param_5);
@@ -73,6 +97,60 @@ extern void FUN_18020d730(undefined8 param_1, undefined8 param_2);
 extern void FUN_18062b420(undefined8 param_1, longlong param_2, undefined1 param_3);
 extern void FUN_18064e900(undefined8 param_1);
 extern longlong func_0x00018066bd70(longlong param_1);
+
+// ============================================================================
+// 函数声明
+// ============================================================================
+
+void RenderingSystem_ProcessDataInterpolation(longlong render_context, longlong data_manager, 
+                                           longlong resource_context, longlong output_context, 
+                                           uint process_flag, uint filter_mask);
+void RenderingSystem_ExecuteAdvancedProcessing(undefined8 process_context, undefined8 data_context, 
+                                              longlong render_context, uint operation_flag);
+void RenderingSystem_CleanupProcessingData(void);
+undefined8 *RenderingSystem_ManageResourceData(longlong resource_manager);
+undefined4 RenderingSystem_ProcessResourceData(undefined8 *resource_data, int process_type);
+void RenderingSystem_ReleaseResourceData(void);
+void RenderingSystem_InitializeResourceProcessing(void);
+void RenderingSystem_FinalizeResourceProcessing(void);
+void RenderingSystem_SerializeResourceData(longlong resource_context, longlong file_context, 
+                                          longlong data_context, undefined8 serialize_flag);
+void RenderingSystem_DeserializeResourceData(longlong resource_context, longlong file_context, 
+                                            undefined8 deserialize_flag);
+
+// ============================================================================
+// 函数别名定义（用于向后兼容）
+// ============================================================================
+
+/** 渲染系统数据插值处理器别名 */
+#define rendering_system_data_transformer RenderingSystem_ProcessDataInterpolation
+
+/** 渲染系统高级处理器别名 */
+#define rendering_system_matrix_processor RenderingSystem_ExecuteAdvancedProcessing
+
+/** 渲染系统清理处理器别名 */
+#define rendering_system_empty_function_1 RenderingSystem_CleanupProcessingData
+
+/** 渲染系统资源数据管理器别名 */
+#define rendering_system_resource_manager RenderingSystem_ManageResourceData
+
+/** 渲染系统资源数据处理器别名 */
+#define rendering_system_memory_handler RenderingSystem_ProcessResourceData
+
+/** 渲染系统资源数据释放器别名 */
+#define rendering_system_data_serializer RenderingSystem_ReleaseResourceData
+
+/** 渲染系统资源处理初始化器别名 */
+#define rendering_system_empty_function_2 RenderingSystem_InitializeResourceProcessing
+
+/** 渲染系统资源处理终结器别名 */
+#define rendering_system_empty_function_3 RenderingSystem_FinalizeResourceProcessing
+
+/** 渲染系统资源数据序列化器别名 */
+#define rendering_system_file_processor RenderingSystem_SerializeResourceData
+
+/** 渲染系统资源数据反序列化器别名 */
+#define rendering_system_batch_processor RenderingSystem_DeserializeResourceData
 
 // 渲染系统数据变换器函数
 /**

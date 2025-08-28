@@ -183,7 +183,7 @@ void RenderingSystem_LoadResourceData(longlong resource_context, longlong file_c
   undefined1 uStack_56;
   
   lStackX_10 = 0;
-  uStackX_18 = param_3;
+  uStackX_18 = data_context;
   fread(&lStackX_10,8,1,*(undefined8 *)(file_context + 8));
   lStack_70 = 0;
   plStack_68 = (longlong *)0x0;
@@ -348,8 +348,8 @@ void RenderingSystem_SaveResourceDataEx(longlong resource_context, longlong file
   uStack_58 = 0;
   uStack_56 = 3;
   uVar2 = *(undefined8 *)(resource_context + 0x8c8);
-  lStackX_18 = param_3;
-  FUN_180639bf0(&lStack_70,8,param_3,param_4,0xfffffffffffffffe);
+  lStackX_18 = data_context;
+  FUN_180639bf0(&lStack_70,8,data_context,save_flag,0xfffffffffffffffe);
   *(undefined8 *)puStack_68 = uVar2;
   puVar8 = (uint *)((longlong)puStack_68 + 8);
   lStackX_20 = resource_context + 0x8a8;
@@ -452,7 +452,7 @@ void RenderingSystem_LoadResourceDataEx(longlong resource_context, longlong file
   undefined1 uStack_4e;
   
   lStackX_10 = 0;
-  uStackX_18 = param_3;
+  uStackX_18 = data_context;
   fread(&lStackX_10,8,1,*(undefined8 *)(file_context + 8));
   lStack_68 = 0;
   puStack_60 = (uint *)0x0;
