@@ -670,41 +670,41 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
                 (resource_manager[1] - *resource_manager), resource_base >> 6 == resource_base >> 0x3f)) ||
      ((resource_base = resource_manager[7], resource_base == 0 &&
       ((data_count < 1 && (*(float *)((longlong)resource_manager + 0x2c) <= 0.0)))))) {
-    lVar11 = *param_1;
-    uVar22 = 0;
-    lVar20 = SUB168(SEXT816(-0x7777777777777777) * SEXT816(param_1[1] - lVar11),8) +
-             (param_1[1] - lVar11);
-    uVar24 = uVar22;
-    uVar25 = uVar22;
-    if (lVar20 >> 6 != lVar20 >> 0x3f) {
+    resource_base = *resource_manager;
+    ullong_counter1 = 0;
+    temp_long4 = SUB168(SEXT816(-0x7777777777777777) * SEXT816(resource_manager[1] - resource_base),8) +
+             (resource_manager[1] - resource_base);
+    ullong_counter3 = ullong_counter1;
+    ullong_counter4 = ullong_counter1;
+    if (temp_long4 >> 6 != temp_long4 >> 0x3f) {
       do {
-        lVar20 = *(longlong *)(lVar11 + uVar25);
-        uVar12 = uVar22;
-        uVar23 = uVar22;
-        if (*(longlong *)(lVar20 + 0x40) - *(longlong *)(lVar20 + 0x38) >> 4 != 0) {
+        temp_long4 = *(longlong *)(resource_base + ullong_counter4);
+        data_offset = ullong_counter1;
+        ullong_counter2 = ullong_counter1;
+        if (*(longlong *)(temp_long4 + 0x40) - *(longlong *)(temp_long4 + 0x38) >> 4 != 0) {
           do {
-            if (((*(byte *)(*(longlong *)(lVar20 + 0x38) + 8 + uVar12) & 1) != 0) &&
-               (lVar16 = *(longlong *)(*(longlong *)(lVar20 + 0x38) + uVar12),
-               (*(uint *)(lVar16 + 0x100) & 0x800) != 0)) {
-              *(undefined4 *)(*(longlong *)(lVar16 + 0x2d0) + 0x10) = 0;
-              *(undefined4 *)(*(longlong *)(lVar16 + 0x2d0) + 0xc) = 0;
-              *(undefined4 *)(*(longlong *)(lVar16 + 0x2d0) + 0x14) = 0;
-              *(undefined4 *)(*(longlong *)(lVar16 + 0x2d0) + 0x18) = 0;
-              lVar20 = *(longlong *)(lVar11 + uVar25);
+            if (((*(byte *)(*(longlong *)(temp_long4 + 0x38) + 8 + data_offset) & 1) != 0) &&
+               (temp_long3 = *(longlong *)(*(longlong *)(temp_long4 + 0x38) + data_offset),
+               (*(uint *)(temp_long3 + 0x100) & 0x800) != 0)) {
+              *(undefined4 *)(*(longlong *)(temp_long3 + 0x2d0) + 0x10) = 0;
+              *(undefined4 *)(*(longlong *)(temp_long3 + 0x2d0) + 0xc) = 0;
+              *(undefined4 *)(*(longlong *)(temp_long3 + 0x2d0) + 0x14) = 0;
+              *(undefined4 *)(*(longlong *)(temp_long3 + 0x2d0) + 0x18) = 0;
+              temp_long4 = *(longlong *)(resource_base + ullong_counter4);
             }
-            uVar19 = (int)uVar23 + 1;
-            uVar12 = uVar12 + 0x10;
-            uVar23 = (ulonglong)uVar19;
-          } while ((ulonglong)(longlong)(int)uVar19 <
-                   (ulonglong)(*(longlong *)(lVar20 + 0x40) - *(longlong *)(lVar20 + 0x38) >> 4));
+            temp_uint4 = (int)ullong_counter2 + 1;
+            data_offset = data_offset + 0x10;
+            ullong_counter2 = (ulonglong)temp_uint4;
+          } while ((ulonglong)(longlong)(int)temp_uint4 <
+                   (ulonglong)(*(longlong *)(temp_long4 + 0x40) - *(longlong *)(temp_long4 + 0x38) >> 4));
         }
-        lVar11 = *param_1;
-        uVar19 = (int)uVar24 + 1;
-        lVar20 = SUB168(SEXT816(-0x7777777777777777) * SEXT816(param_1[1] - lVar11),8) +
-                 (param_1[1] - lVar11);
-        uVar24 = (ulonglong)uVar19;
-        uVar25 = uVar25 + 0x78;
-      } while ((ulonglong)(longlong)(int)uVar19 < (ulonglong)((lVar20 >> 6) - (lVar20 >> 0x3f)));
+        resource_base = *resource_manager;
+        temp_uint4 = (int)ullong_counter3 + 1;
+        temp_long4 = SUB168(SEXT816(-0x7777777777777777) * SEXT816(resource_manager[1] - resource_base),8) +
+                 (resource_manager[1] - resource_base);
+        ullong_counter3 = (ulonglong)temp_uint4;
+        ullong_counter4 = ullong_counter4 + 0x78;
+      } while ((ulonglong)(longlong)(int)temp_uint4 < (ulonglong)((temp_long4 >> 6) - (temp_long4 >> 0x3f)));
     }
   }
   else {
