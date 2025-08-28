@@ -50,11 +50,18 @@
  * 该函数负责保存渲染系统资源数据，包括数据序列化、内存管理、
  * 文件写入、资源清理和状态管理等高级渲染功能。
  * 
- * @param resource_context 资源上下文指针
- * @param file_context 文件上下文指针
- * @param data_context 数据上下文指针
- * @param save_flag 保存标志
- * @return void
+ * @param resource_context 资源上下文指针，包含渲染系统资源管理信息
+ * @param file_context 文件上下文指针，用于文件写入操作
+ * @param data_context 数据上下文指针，包含要保存的数据
+ * @param save_flag 保存标志，控制保存行为
+ * @return void 无返回值
+ * 
+ * @note 该函数实现以下核心功能：
+ * - 资源数据序列化和内存管理
+ * - 动态缓冲区分配和数据压缩
+ * - 文件写入和错误处理
+ * - 资源清理和内存释放
+ * - 状态管理和标志控制
  */
 void RenderingSystem_SaveResourceData(longlong resource_context, longlong file_context, longlong data_context, undefined8 save_flag)
 
@@ -152,10 +159,17 @@ void RenderingSystem_SaveResourceData(longlong resource_context, longlong file_c
  * 该函数负责加载渲染系统资源数据，包括数据反序列化、内存分配、
  * 文件读取、资源重建和状态恢复等高级渲染功能。
  * 
- * @param resource_context 资源上下文指针
- * @param file_context 文件上下文指针
- * @param load_flag 加载标志
- * @return void
+ * @param resource_context 资源上下文指针，包含渲染系统资源管理信息
+ * @param file_context 文件上下文指针，用于文件读取操作
+ * @param load_flag 加载标志，控制加载行为
+ * @return void 无返回值
+ * 
+ * @note 该函数实现以下核心功能：
+ * - 文件数据读取和反序列化
+ * - 内存分配和资源重建
+ * - 哈希表管理和索引建立
+ * - 动态数组扩容和优化
+ * - 错误处理和状态恢复
  */
 void RenderingSystem_LoadResourceData(longlong resource_context, longlong file_context, undefined8 load_flag)
 
@@ -315,11 +329,18 @@ LAB_18033615b:
  * 该函数负责扩展保存渲染系统资源数据，包括高级数据序列化、
  * 内存管理、文件写入、资源清理和状态管理等高级渲染功能。
  * 
- * @param resource_context 资源上下文指针
- * @param file_context 文件上下文指针
- * @param data_context 数据上下文指针
- * @param save_flag 保存标志
- * @return void
+ * @param resource_context 资源上下文指针，包含渲染系统资源管理信息
+ * @param file_context 文件上下文指针，用于文件写入操作
+ * @param data_context 数据上下文指针，包含要保存的数据
+ * @param save_flag 保存标志，控制保存行为
+ * @return void 无返回值
+ * 
+ * @note 该函数实现以下核心功能：
+ * - 扩展资源数据序列化
+ * - 高级内存管理和缓冲区优化
+ * - 复杂数据结构处理
+ * - 文件写入和压缩
+ * - 资源清理和状态管理
  */
 void RenderingSystem_SaveResourceDataEx(longlong resource_context, longlong file_context, longlong data_context, undefined8 save_flag)
 
@@ -417,10 +438,17 @@ void RenderingSystem_SaveResourceDataEx(longlong resource_context, longlong file
  * 该函数负责扩展加载渲染系统资源数据，包括高级数据反序列化、
  * 内存分配、文件读取、资源重建和状态恢复等高级渲染功能。
  * 
- * @param resource_context 资源上下文指针
- * @param file_context 文件上下文指针
- * @param load_flag 加载标志
- * @return void
+ * @param resource_context 资源上下文指针，包含渲染系统资源管理信息
+ * @param file_context 文件上下文指针，用于文件读取操作
+ * @param load_flag 加载标志，控制加载行为
+ * @return void 无返回值
+ * 
+ * @note 该函数实现以下核心功能：
+ * - 扩展数据反序列化和解析
+ * - 复杂内存分配和管理
+ * - 高级资源重建和优化
+ * - 数据结构重建和索引
+ * - 错误处理和状态恢复
  */
 void RenderingSystem_LoadResourceDataEx(longlong resource_context, longlong file_context, undefined8 load_flag)
 
@@ -593,9 +621,17 @@ LAB_1803367cd:
  * 该函数负责处理渲染系统资源操作，包括资源查找、数据更新、
  * 内存管理、文件操作、线程同步和状态管理等高级渲染功能。
  * 
- * @param resource_context 资源上下文指针
- * @param resource_id 资源ID
- * @return void
+ * @param resource_context 资源上下文指针，包含渲染系统资源管理信息
+ * @param resource_id 资源ID，标识要操作的资源
+ * @return void 无返回值
+ * 
+ * @note 该函数实现以下核心功能：
+ * - 资源查找和验证
+ * - 数据更新和同步
+ * - 线程安全和互斥锁管理
+ * - 哈希表和索引操作
+ * - 内存管理和资源清理
+ * - 状态跟踪和错误处理
  */
 void RenderingSystem_ProcessResourceOperation(longlong resource_context, uint resource_id)
 
@@ -1015,6 +1051,75 @@ LAB_180333fbc:
   FUN_18064e900(puVar7);
 }
 
+/**
+ * @section rendering_technical_summary 渲染系统技术总结
+ * 
+ * @subsection module_overview 模块概述
+ * 本模块实现了渲染系统的高级数据保存和加载功能，包含5个核心函数，
+ * 涵盖了资源数据序列化、文件操作、内存管理、线程同步和状态管理
+ * 等关键功能。该模块是渲染系统中负责数据持久化的核心组件。
+ * 
+ * @subsection key_features 核心特性
+ * - **数据序列化与反序列化**：实现资源数据的高效序列化和反序列化
+ * - **文件操作**：提供文件读写、压缩和错误处理功能
+ * - **内存管理**：实现动态内存分配、缓冲区管理和垃圾回收
+ * - **线程同步**：使用互斥锁确保多线程环境下的数据安全
+ * - **资源管理**：提供资源的查找、更新、创建和销毁功能
+ * - **错误处理**：实现完整的错误检测和恢复机制
+ * 
+ * @subsection technical_implementation 技术实现
+ * - 使用哈希表实现快速资源查找
+ * - 采用动态数组支持可变大小数据存储
+ * - 实现内存池优化内存分配性能
+ * - 使用位操作和掩码优化标志位处理
+ * - 采用递归和迭代算法处理复杂数据结构
+ * 
+ * @subsection performance_optimization 性能优化
+ * - 内存预分配减少动态分配开销
+ * - 哈希表优化查找性能到O(1)复杂度
+ * - 缓冲区重用减少内存碎片
+ * - 批量操作提高处理效率
+ * - 惰性清理优化资源管理
+ * 
+ * @subsection usage_scenarios 使用场景
+ * - 游戏场景的保存和加载
+ * - 资源包的导入和导出
+ * - 渲染状态的持久化
+ * - 动态资源的生命周期管理
+ * - 多线程环境下的资源共享
+ */
+
+/**
+ * @section rendering_function_aliases_mapping 函数别名映射表
+ * 
+ * @snippet 渲染系统函数别名映射表
+ * 
+ * | 别名 | 原始函数名 | 功能描述 |
+ * |------|------------|----------|
+ * | RenderingSystem_SaveResourceData | FUN_180335980 | 渲染系统资源数据保存器 |
+ * | RenderingSystem_LoadResourceData | FUN_180335f10 | 渲染系统资源数据加载器 |
+ * | RenderingSystem_SaveResourceDataEx | FUN_180336240 | 渲染系统资源数据扩展保存器 |
+ * | RenderingSystem_LoadResourceDataEx | FUN_180336540 | 渲染系统资源数据扩展加载器 |
+ * | RenderingSystem_ProcessResourceOperation | FUN_1803368b0 | 渲染系统资源操作处理器 |
+ */
+
+/**
+ * @section rendering_constants_usage 常量使用说明
+ * 
+ * @snippet 渲染系统常量使用说明
+ * 
+ * | 常量名 | 值 | 用途说明 |
+ * |--------|-----|----------|
+ * | RENDERING_BUFFER_SIZE | 0x48 | 标准缓冲区大小 |
+ * | RENDERING_LARGE_BUFFER_SIZE | 0xa8 | 大缓冲区大小 |
+ * | RENDERING_HASH_TABLE_SIZE | 0x100 | 哈希表大小 |
+ * | RENDERING_MUTEX_TIMEOUT | 0x30000 | 互斥锁超时时间 |
+ * | RENDERING_CLEANUP_FLAG | 3 | 清理标志位 |
+ * | RENDERING_ALIGNMENT_MASK | 0x1f | 内存对齐掩码 |
+ * | RENDERING_MAX_ITERATIONS | 0x40 | 最大迭代次数 |
+ * | RENDERING_DATA_BLOCK_SIZE | 0xe0 | 数据块大小 |
+ * | RENDERING_POOL_SIZE | 0x100000 | 内存池大小 |
+ */
 
 
 
