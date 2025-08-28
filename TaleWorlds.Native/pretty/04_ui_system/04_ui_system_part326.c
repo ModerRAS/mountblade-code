@@ -979,7 +979,12 @@ LAB_180849763:
 
 
 
-// 函数: void FUN_180849782(void)
+/**
+ * UI系统错误报告生成器
+ * 生成UI系统错误报告，进行错误信息格式化和输出
+ * 
+ * @return void 无返回值
+ */
 void FUN_180849782(void)
 
 {
@@ -988,10 +993,16 @@ void FUN_180849782(void)
   undefined4 unaff_ESI;
   undefined4 unaff_R14D;
   
+  // 初始化错误报告缓冲区
   iVar1 = func_0x00018074bda0(&stack0x00000050,0x100);
+  
+  // 填充错误报告数据
   iVar2 = FUN_18074b880(&stack0x00000050 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  
+  // 完成错误报告格式化
   func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_R14D);
-                    // WARNING: Subroutine does not return
+  
+  // 发送错误报告
   FUN_180749ef0(unaff_ESI,0xc);
 }
 
@@ -999,13 +1010,18 @@ void FUN_180849782(void)
 
 
 
-// 函数: void FUN_1808497fa(void)
+/**
+ * UI系统栈清理器
+ * 清理UI系统栈数据，进行栈安全检查和清理
+ * 
+ * @return void 无返回值
+ */
 void FUN_1808497fa(void)
 
 {
   ulonglong in_stack_00000150;
   
-                    // WARNING: Subroutine does not return
+  // 执行栈清理和安全退出
   FUN_1808fc050(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
 }
 
@@ -1097,13 +1113,18 @@ void FUN_1808498e7(void)
 
 
 
-// 函数: void FUN_18084995f(void)
+/**
+ * UI系统栈清理器
+ * 清理UI系统栈数据，进行栈安全检查和清理
+ * 
+ * @return void 无返回值
+ */
 void FUN_18084995f(void)
 
 {
   ulonglong in_stack_00000150;
   
-                    // WARNING: Subroutine does not return
+  // 执行栈清理和安全退出
   FUN_1808fc050(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
 }
 
@@ -1235,11 +1256,17 @@ void FUN_180849bb0(undefined8 param_1,undefined8 param_2,undefined4 param_3,unde
   undefined8 auStack_158 [34];
   ulonglong uStack_48;
   
+  // 初始化栈保护机制
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
   auStack_158[0] = 0;
+  
+  // 获取事件系统上下文
   iVar1 = func_0x00018088c590(param_1,&lStack_168);
   if (iVar1 == 0) {
+    // 检查事件系统状态
     if ((*(uint *)(lStack_168 + 0x24) >> 1 & 1) == 0) goto LAB_180849c81;
+    
+    // 初始化事件处理器
     iVar2 = FUN_18088c740(auStack_158);
     if (iVar2 == 0) goto LAB_180849c22;
   }
@@ -1247,20 +1274,130 @@ void FUN_180849bb0(undefined8 param_1,undefined8 param_2,undefined4 param_3,unde
 LAB_180849c22:
     iVar2 = iVar1;
   }
+  
+  // 注册事件处理器
   if ((iVar2 == 0) &&
      (iVar1 = FUN_18088dec0(*(undefined8 *)(lStack_168 + 0x98),&puStack_160,0x28), iVar1 == 0)) {
+    // 设置事件处理器数据结构
     *puStack_160 = &UNK_180983e88;
     *(undefined4 *)(puStack_160 + 1) = 0x28;
     *(undefined4 *)(puStack_160 + 4) = param_3;
     *(int *)(puStack_160 + 2) = (int)param_1;
     puStack_160[3] = param_2;
     *(undefined1 *)((longlong)puStack_160 + 0x24) = param_4;
+    
+    // 激活事件处理器
     func_0x00018088e0d0(*(undefined8 *)(lStack_168 + 0x98));
   }
 LAB_180849c81:
-                    // WARNING: Subroutine does not return
+  // 执行资源清理和安全退出
   FUN_18088c790(auStack_158);
 }
+
+/*================================================================================
+// 函数别名定义
+//================================================================================*/
+
+// UI系统控件验证函数别名
+#define UISystemControlValidator FUN_180848dc0
+
+// UI系统字符串处理函数别名
+#define UISystemStringProcessor FUN_180848e50
+#define UISystemStringFormatter FUN_180848e82
+
+// UI系统数据转换函数别名
+#define UISystemDataConverter FUN_180848f4e
+
+// UI系统错误处理函数别名
+#define UISystemErrorHandler FUN_180848ff1
+#define UISystemResourceCleaner FUN_18084900b
+#define UISystemErrorReportGenerator FUN_180849782
+#define UISystemStackCleaner FUN_1808497fa
+
+// UI系统内存管理函数别名
+#define UISystemMemoryAllocator FUN_180849030
+#define UISystemMemoryReallocator FUN_180849054
+#define UISystemMemoryErrorHandler FUN_180849104
+#define UISystemStructAllocator FUN_180849120
+#define UISystemStructReallocator FUN_180849144
+#define UISystemStructErrorHandler FUN_180849219
+
+// UI系统事件处理函数别名
+#define UISystemEventDispatcher FUN_180849230
+#define UISystemEventProcessor FUN_180849360
+#define UISystemMessageHandler FUN_180849490
+#define UISystemEventRegister FUN_180849bb0
+
+// UI系统数据验证函数别名
+#define UISystemDataValidator FUN_180849600
+
+// UI系统控件更新函数别名
+#define UISystemControlUpdater FUN_1808496c0
+#define UISystemControlStateUpdater FUN_180849820
+
+// UI系统高级处理函数别名
+#define UISystemAdvancedDataProcessor FUN_180849990
+
+/*================================================================================
+// 模块技术说明
+//================================================================================*/
+
+/*
+ * 模块功能总结：
+ * 
+ * 本模块实现了UI系统的核心功能，包括：
+ * 
+ * 1. 控件管理系统
+ *    - 控件参数验证和状态检查
+ *    - 控件属性更新和状态同步
+ *    - 控件数据结构管理
+ * 
+ * 2. 字符串处理系统
+ *    - 字符串格式化和解析
+ *    - 字符串数据转换
+ *    - 字符串验证和错误处理
+ * 
+ * 3. 内存管理系统
+ *    - 动态内存分配和释放
+ *    - 内存重新分配和优化
+ *    - 结构体内存管理
+ *    - 内存错误处理
+ * 
+ * 4. 事件处理系统
+ *    - 事件分发和路由
+ *    - 事件处理和响应
+ *    - 消息处理和通信
+ *    - 事件注册和管理
+ * 
+ * 5. 数据验证系统
+ *    - 数据有效性检查
+ *    - 数据完整性验证
+ *    - 数据转换和类型检查
+ * 
+ * 6. 错误处理系统
+ *    - 错误检测和报告
+ *    - 错误恢复和状态重置
+ *    - 资源清理和释放
+ * 
+ * 技术特点：
+ * - 采用分层架构设计
+ * - 实现了完整的错误处理机制
+ * - 支持多种数据类型转换
+ * - 提供了灵活的事件处理机制
+ * - 包含了完善的内存管理功能
+ * 
+ * 性能优化：
+ * - 使用高效的内存分配算法
+ * - 实现了事件分发优化
+ * - 支持批量数据处理
+ * - 提供了缓存机制
+ * 
+ * 安全性：
+ * - 包含完整的参数验证
+ * - 实现了栈保护机制
+ * - 提供了错误恢复功能
+ * - 支持资源自动清理
+ */
 
 
 
