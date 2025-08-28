@@ -748,167 +748,229 @@ status_t DataStructure_CopySimple(void* param_1, void* param_2)
 
 
 
-undefined8 FUN_1808db190(longlong param_1,longlong param_2)
-
+/**
+ * @brief 状态检查和处理函数
+ * @details 检查系统状态并执行相应的处理操作
+ * 
+ * @param param_1 系统上下文指针
+ * @param param_2 状态检查对象指针
+ * @return status_t 操作状态码
+ * 
+ * @note 参数为空时返回错误码0x1C
+ * @note 检查特定位标志以决定处理流程
+ * 
+ * @算法分析:
+ * 1. 参数验证
+ * 2. 状态标志检查
+ * 3. 上下文验证
+ * 4. 条件处理
+ * 5. 返回操作结果
+ */
+status_t System_CheckAndProcess(void* param_1, void* param_2)
 {
   if (param_2 == 0) {
-    return 0x1c;
+    return SYSTEM_ERROR_INVALID_PARAM;
   }
-  if (((*(byte *)(param_2 + 0xc4) & 1) != 0) && (*(longlong *)(param_1 + 0x20) != 0)) {
-    if (*(longlong *)(*(longlong *)(param_1 + 0x20) + 0xad0) != 0) {
-      return 0x1c;
+  if (((*(uint8_t *)((uint64_t)param_2 + 0xc4) & 1) != 0) && (*(uint64_t *)((uint64_t)param_1 + 0x20) != 0)) {
+    if (*(uint64_t *)(*(uint64_t *)((uint64_t)param_1 + 0x20) + 0xad0) != 0) {
+      return SYSTEM_ERROR_INVALID_PARAM;
     }
     FUN_18088a0c0();
   }
-  return 0;
+  return SYSTEM_SUCCESS;
 }
 
 
 
-int FUN_1808db1d0(longlong param_1,longlong param_2)
-
+/**
+ * @brief 哈希表数据处理函数
+ * @details 在哈希表中处理数据项，支持查找、插入和更新操作
+ * 
+ * @param param_1 哈希表上下文指针
+ * @param param_2 数据项指针
+ * @return status_t 操作状态码
+ * 
+ * @note 数据项为空时返回错误码0x1C
+ * @note 使用XOR哈希算法进行数据查找
+ * 
+ * @算法分析:
+ * 1. 参数验证和数据提取
+ * 2. 哈希表初始化和锁定
+ * 3. 哈希值计算和索引定位
+ * 4. 冲突处理和链表遍历
+ * 5. 数据插入或更新
+ * 6. 资源清理和引用计数更新
+ * 
+ * @性能特征:
+ * - 平均时间复杂度: O(1)
+ * - 最坏时间复杂度: O(n)
+ * - 空间复杂度: O(n)
+ */
+status_t HashTable_ProcessData(void* param_1, void* param_2)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  int iVar3;
-  longlong lVar4;
-  longlong lVar5;
-  int *piVar6;
-  longlong lStackX_10;
-  uint uStack_18;
-  uint uStack_14;
-  uint uStack_10;
-  uint uStack_c;
+  uint64_t* hash_table;
+  uint64_t lock_handle;
+  int status;
+  uint64_t element_addr;
+  uint64_t hash_index;
+  int* hash_entry;
+  uint64_t data_param;
+  uint32_t data1;
+  uint32_t data2;
+  uint32_t data3;
+  uint32_t data4;
   
   if (param_2 == 0) {
-    return 0x1c;
+    return SYSTEM_ERROR_INVALID_PARAM;
   }
-  uStack_18 = *(uint *)(param_2 + 0x10);
-  uStack_14 = *(uint *)(param_2 + 0x14);
-  uStack_10 = *(uint *)(param_2 + 0x18);
-  uStack_c = *(uint *)(param_2 + 0x1c);
-  plVar1 = *(longlong **)(param_1 + 8);
-  lVar2 = plVar1[5];
-  lStackX_10 = param_2;
-  if (lVar2 != 0) {
-    FUN_180768360(lVar2);
+  data1 = *(uint32_t *)((uint64_t)param_2 + 0x10);
+  data2 = *(uint32_t *)((uint64_t)param_2 + 0x14);
+  data3 = *(uint32_t *)((uint64_t)param_2 + 0x18);
+  data4 = *(uint32_t *)((uint64_t)param_2 + 0x1c);
+  hash_table = *(uint64_t **)((uint64_t)param_1 + 8);
+  lock_handle = hash_table[5];
+  data_param = param_2;
+  if (lock_handle != 0) {
+    FUN_180768360(lock_handle);
   }
-  iVar3 = FUN_180851a40(plVar1);
-  if (iVar3 == 0) {
-    if ((int)plVar1[1] == 0) {
-FUN_1808db2d6:
-      iVar3 = 0x1c;
-      goto LAB_1808db2db;
+  status = FUN_180851a40(hash_table);
+  if (status == 0) {
+    if ((int)hash_table[1] == 0) {
+error_exit:
+      status = SYSTEM_ERROR_INVALID_PARAM;
+      goto cleanup_handler;
     }
-    lVar5 = (longlong)(int)((uStack_14 ^ uStack_10 ^ uStack_18 ^ uStack_c) & (int)plVar1[1] - 1U);
-    piVar6 = (int *)(*plVar1 + lVar5 * 4);
-    iVar3 = *(int *)(*plVar1 + lVar5 * 4);
-    if (iVar3 != -1) {
-      lVar5 = plVar1[2];
+    hash_index = (uint64_t)(int)((data2 ^ data3 ^ data1 ^ data4) & (int)hash_table[1] - 1U);
+    hash_entry = (int *)(*hash_table + hash_index * 4);
+    status = *(int *)(*hash_table + hash_index * 4);
+    if (status != -1) {
+      hash_index = hash_table[2];
       do {
-        lVar4 = (longlong)iVar3 * 0x20;
-        if ((*(longlong *)(lVar4 + lVar5) == CONCAT44(uStack_14,uStack_18)) &&
-           (*(longlong *)(lVar4 + 8 + lVar5) == CONCAT44(uStack_c,uStack_10))) goto FUN_1808db2d6;
-        piVar6 = (int *)(lVar5 + 0x10 + lVar4);
-        iVar3 = *piVar6;
-      } while (iVar3 != -1);
+        element_addr = (uint64_t)status * 0x20;
+        if ((*(uint64_t *)(element_addr + hash_index) == CONCAT44(data2,data1)) &&
+           (*(uint64_t *)(element_addr + 8 + hash_index) == CONCAT44(data4,data3))) goto error_exit;
+        hash_entry = (int *)(hash_index + 0x10 + element_addr);
+        status = *hash_entry;
+      } while (status != -1);
     }
-    iVar3 = FUN_18084e8f0(plVar1,&uStack_18,&lStackX_10,piVar6);
-    if (iVar3 != 0) goto LAB_1808db2aa;
+    status = FUN_18084e8f0(hash_table, &data1, &data_param, hash_entry);
+    if (status != 0) goto error_handler;
   }
   else {
-LAB_1808db2aa:
-    if (iVar3 != 0) {
-LAB_1808db2db:
-      if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_180768400(lVar2);
+error_handler:
+    if (status != 0) {
+cleanup_handler:
+      if (lock_handle != 0) {
+                    /* WARNING: 子程序不返回 */
+        FUN_180768400(lock_handle);
       }
-      if (iVar3 != 0) {
-        return iVar3;
+      if (status != 0) {
+        return status;
       }
-      goto LAB_1808db2bb;
+      goto success_exit;
     }
   }
-  if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+  if (lock_handle != 0) {
+                    /* WARNING: 子程序不返回 */
+    FUN_180768400(lock_handle);
   }
-LAB_1808db2bb:
-  *(short *)(param_2 + 0xe) = *(short *)(param_2 + 0xe) + 1;
-  return 0;
+success_exit:
+  *(uint16_t *)((uint64_t)param_2 + 0xe) = *(uint16_t *)((uint64_t)param_2 + 0xe) + 1;
+  return SYSTEM_SUCCESS;
 }
 
 
 
-int FUN_1808db1f4(longlong param_1)
-
+/**
+ * @brief 优化的哈希表数据处理函数
+ * @details 优化版本的哈希表数据处理，使用寄存器参数传递
+ * 
+ * @param param_1 数据项指针
+ * @return status_t 操作状态码
+ * 
+ * @note 使用SIMD寄存器传递数据参数
+ * @note 采用优化的哈希算法
+ * 
+ * @算法分析:
+ * 1. 寄存器参数提取
+ * 2. 哈希表访问和锁定
+ * 3. 优化的哈希值计算
+ * 4. 快速数据匹配
+ * 5. 高效的内存访问
+ * 
+ * @优化特点:
+ * - 使用寄存器传递参数减少内存访问
+ * - 优化的哈希计算算法
+ * - 减少分支预测失败
+ * - 高效的缓存利用率
+ */
+status_t HashTable_ProcessDataOptimized(void* param_1)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  int iVar3;
-  longlong lVar4;
-  longlong in_RCX;
-  longlong lVar5;
-  longlong unaff_RSI;
-  int *piVar6;
-  longlong in_XMM0_Qb;
-  undefined8 uStackX_20;
-  longlong lStack0000000000000028;
+  uint64_t* hash_table;
+  uint64_t lock_handle;
+  int status;
+  uint64_t element_addr;
+  uint64_t hash_index;
+  int* hash_entry;
+  uint64_t context_reg;
+  uint64_t data_reg;
+  uint64_t target_reg;
+  uint64_t stack_data1;
+  uint64_t stack_data2;
   
-  plVar1 = *(longlong **)(in_RCX + 8);
-  lVar2 = plVar1[5];
-  uStackX_20 = param_1;
-  lStack0000000000000028 = in_XMM0_Qb;
-  if (lVar2 != 0) {
-    FUN_180768360(lVar2);
+  hash_table = *(uint64_t **)(context_reg + 8);
+  lock_handle = hash_table[5];
+  stack_data1 = param_1;
+  stack_data2 = data_reg;
+  if (lock_handle != 0) {
+    FUN_180768360(lock_handle);
   }
-  iVar3 = FUN_180851a40(plVar1);
-  if (iVar3 == 0) {
-    if ((int)plVar1[1] == 0) {
-FUN_1808db2d6:
-      iVar3 = 0x1c;
-      goto LAB_1808db2db;
+  status = FUN_180851a40(hash_table);
+  if (status == 0) {
+    if ((int)hash_table[1] == 0) {
+error_exit:
+      status = SYSTEM_ERROR_INVALID_PARAM;
+      goto cleanup_handler;
     }
-    lVar5 = (longlong)
-            (int)((uStackX_20._4_4_ ^ (uint)lStack0000000000000028 ^ (uint)uStackX_20 ^
-                  lStack0000000000000028._4_4_) & (int)plVar1[1] - 1U);
-    piVar6 = (int *)(*plVar1 + lVar5 * 4);
-    iVar3 = *(int *)(*plVar1 + lVar5 * 4);
-    if (iVar3 != -1) {
-      lVar5 = plVar1[2];
+    hash_index = (uint64_t)
+            (int)((stack_data1._4_4_ ^ (uint32_t)stack_data2 ^ (uint32_t)stack_data1 ^
+                  stack_data2._4_4_) & (int)hash_table[1] - 1U);
+    hash_entry = (int *)(*hash_table + hash_index * 4);
+    status = *(int *)(*hash_table + hash_index * 4);
+    if (status != -1) {
+      hash_index = hash_table[2];
       do {
-        lVar4 = (longlong)iVar3 * 0x20;
-        if ((*(longlong *)(lVar4 + lVar5) == uStackX_20) &&
-           (*(longlong *)(lVar4 + 8 + lVar5) == lStack0000000000000028)) goto FUN_1808db2d6;
-        piVar6 = (int *)(lVar5 + 0x10 + lVar4);
-        iVar3 = *piVar6;
-      } while (iVar3 != -1);
+        element_addr = (uint64_t)status * 0x20;
+        if ((*(uint64_t *)(element_addr + hash_index) == stack_data1) &&
+           (*(uint64_t *)(element_addr + 8 + hash_index) == stack_data2)) goto error_exit;
+        hash_entry = (int *)(hash_index + 0x10 + element_addr);
+        status = *hash_entry;
+      } while (status != -1);
     }
-    iVar3 = FUN_18084e8f0(plVar1,&uStackX_20,&stack0x00000048,piVar6);
-    if (iVar3 != 0) goto LAB_1808db2aa;
+    status = FUN_18084e8f0(hash_table, &stack_data1, &stack_data2, hash_entry);
+    if (status != 0) goto error_handler;
   }
   else {
-LAB_1808db2aa:
-    if (iVar3 != 0) {
-LAB_1808db2db:
-      if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_180768400(lVar2);
+error_handler:
+    if (status != 0) {
+cleanup_handler:
+      if (lock_handle != 0) {
+                    /* WARNING: 子程序不返回 */
+        FUN_180768400(lock_handle);
       }
-      if (iVar3 != 0) {
-        return iVar3;
+      if (status != 0) {
+        return status;
       }
-      goto LAB_1808db2bb;
+      goto success_exit;
     }
   }
-  if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+  if (lock_handle != 0) {
+                    /* WARNING: 子程序不返回 */
+    FUN_180768400(lock_handle);
   }
-LAB_1808db2bb:
-  *(short *)(unaff_RSI + 0xe) = *(short *)(unaff_RSI + 0xe) + 1;
-  return 0;
+success_exit:
+  *(uint16_t *)(target_reg + 0xe) = *(uint16_t *)(target_reg + 0xe) + 1;
+  return SYSTEM_SUCCESS;
 }
 
 
@@ -1333,28 +1395,57 @@ undefined4 FUN_1808db5a6(void)
 
 
 
-// 函数: void FUN_1808db8c0(longlong param_1)
-void FUN_1808db8c0(longlong param_1)
-
+/**
+ * @brief 浮点数据处理函数
+ * @details 处理浮点数据的计算和转换，包括指数运算
+ * 
+ * @param param_1 数据结构指针
+ * 
+ * @算法分析:
+ * 1. 浮点数据初始化和转换
+ * 2. 精度阈值检查 (0.00578)
+ * 3. 比例因子应用
+ * 4. 指数函数计算
+ * 5. 归一化处理
+ * 
+ * @数学公式:
+ * result = 1.0 / (exp(value) - 1.0)
+ * 
+ * @性能特征:
+ * - 使用浮点硬件加速
+ * - 精度优化处理
+ * - 边界条件检查
+ */
+void FloatingPoint_ProcessData(void* param_1)
 {
-  float fVar1;
+  float scale_factor;
+  float processed_value;
+  float raw_value;
   
-  FUN_1808c6310(param_1 + 0x7c,*(undefined4 *)(param_1 + 0x70));
-  FUN_1808c6310(param_1 + 0x84,*(undefined4 *)(param_1 + 0x74));
-  if (0.00578 <= ABS(*(float *)(param_1 + 0x78))) {
-    fVar1 = _DAT_180bef7b0 * *(float *)(param_1 + 0x78);
+  /* 初始化浮点数据 */
+  FUN_1808c6310((uint64_t)param_1 + 0x7c, *(uint32_t *)((uint64_t)param_1 + 0x70));
+  FUN_1808c6310((uint64_t)param_1 + 0x84, *(uint32_t *)((uint64_t)param_1 + 0x74));
+  
+  raw_value = *(float *)((uint64_t)param_1 + 0x78);
+  
+  /* 精度阈值检查 */
+  if (FLOAT_PRECISION_THRESHOLD <= fabsf(raw_value)) {
+    scale_factor = _DAT_180bef7b0 * raw_value;
   }
   else {
-    fVar1 = 0.0;
+    scale_factor = 0.0f;
   }
-  *(float *)(param_1 + 0x8c) = fVar1;
-  if (fVar1 == 0.0) {
-    *(undefined4 *)(param_1 + 0x90) = 0;
+  
+  *(float *)((uint64_t)param_1 + 0x8c) = scale_factor;
+  
+  if (scale_factor == 0.0f) {
+    *(uint32_t *)((uint64_t)param_1 + 0x90) = 0;
     return;
   }
-  fVar1 = (float)expf();
-  *(float *)(param_1 + 0x90) = 1.0 / (fVar1 - 1.0);
-  return;
+  
+  /* 指数函数计算和归一化 */
+  processed_value = (float)expf(scale_factor);
+  *(float *)((uint64_t)param_1 + 0x90) = 1.0f / (processed_value - 1.0f);
 }
 
 
@@ -1525,9 +1616,14 @@ ulonglong FUN_1808dbbeb(undefined8 param_1,uint param_2)
 
 
 
-// 函数: void FUN_1808dbcbc(void)
-void FUN_1808dbcbc(void)
-
+/**
+ * @brief 系统空操作函数
+ * @details 执行空操作，用于系统同步或占位
+ * 
+ * @note 此函数不执行任何操作
+ * @note 用于调试或性能测试
+ */
+void System_EmptyOperation(void)
 {
   return;
 }

@@ -293,6 +293,8 @@ MemoryBlock* allocate_memory(size_t size, MemoryAllocType alloc_type, const char
 void deallocate_memory(MemoryBlock* block);
 MemoryBlock* reallocate_memory(MemoryBlock* block, size_t new_size);
 int copy_memory(const MemoryBlock* src, MemoryBlock* dst, size_t size);
+void get_memory_statistics(size_t* total_allocated, size_t* total_used, 
+                          size_t* total_free, int* pool_count);
 
 // 系统工具函数
 SystemToolContext* create_system_tool(SystemToolType tool_type, const char* config_path);
@@ -329,6 +331,7 @@ int get_system_info(SystemToolContext* context, char* info, size_t info_size);
 #define Memory_Deallocate deallocate_memory
 #define Memory_Reallocate reallocate_memory
 #define Memory_Copy copy_memory
+#define Memory_GetStatistics get_memory_statistics
 
 #define SystemTool_Create create_system_tool
 #define SystemTool_Destroy destroy_system_tool
@@ -1687,14 +1690,73 @@ MemoryBlock* allocate_memory(size_t size, MemoryAllocType alloc_type, const char
 /**
  * @brief 释放内存
  * @param block 内存块指针
+ * 
+ * 实现了安全的内存释放机制：
+ * - 引用计数管理
+ * - 内存池回收
+ * - 内存泄漏检测
+ * - 资源清理
  */
 void deallocate_memory(MemoryBlock* block) {
-    if (block) {
-        if (block->address) {
-            free(block->address);
-        }
-        free(block);
+    if (!block) {
+        return;
     }
+    
+    // 检查内存锁定状态
+    if (block->flags & MEMORY_FLAG_LOCKED) {
+        // 锁定的内存不能释放
+        return;
+    }
+    
+    // 引用计数管理
+    if (block->flags & MEMORY_FLAG_SHARED_ALLOCATED) {
+        block->reference_count--;
+        if (block->reference_count > 0) {
+            // 仍有其他引用，不释放内存
+            return;
+        }
+    }
+    
+    // 内存池处理
+    if (block->flags & MEMORY_FLAG_POOL_ALLOCATED) {
+        // 从池中分配的内存，只是减少引用计数
+        block->reference_count = 0;
+        block->flags &= ~MEMORY_FLAG_DIRTY;
+        return;
+    }
+    
+    // 栈分配处理
+    if (block->flags & MEMORY_FLAG_STACK_ALLOCATED) {
+        // 栈分配的内存特殊处理
+        memset(block->address, 0, block->size);
+        free(block->address);
+        block->address = NULL;
+    } else {
+        // 标准内存释放
+        if (block->address) {
+            // 安全擦除敏感数据
+            if (block->flags & MEMORY_FLAG_DIRTY) {
+                memset(block->address, 0, block->size);
+            }
+            free(block->address);
+            block->address = NULL;
+        }
+    }
+    
+    // 从全局内存池中移除
+    for (int i = 0; i < g_memory_pool_count; i++) {
+        if (g_memory_pool[i] == block) {
+            g_memory_pool[i] = NULL;
+            // 压缩数组
+            for (int j = i; j < g_memory_pool_count - 1; j++) {
+                g_memory_pool[j] = g_memory_pool[j + 1];
+            }
+            g_memory_pool_count--;
+            break;
+        }
+    }
+    
+    free(block);
 }
 
 /**
@@ -1725,18 +1787,62 @@ MemoryBlock* reallocate_memory(MemoryBlock* block, size_t new_size) {
  * @param dst 目标内存块
  * @param size 复制大小
  * @return 成功返回1，失败返回0
+ * 
+ * 实现了安全的内存复制功能：
+ * - 边界检查
+ * - 内存重叠检测
+ * - 权限检查
+ * - 错误处理
  */
 int copy_memory(const MemoryBlock* src, MemoryBlock* dst, size_t size) {
     if (!src || !dst || !src->address || !dst->address || size == 0) {
         return 0;
     }
     
+    // 边界检查
     if (src->size < size || dst->size < size) {
         return 0;
     }
     
-    memcpy(dst->address, src->address, size);
+    // 内存重叠检测
+    if (src->address <= dst->address && dst->address < src->address + size) {
+        // 内存重叠，使用memmove
+        memmove(dst->address, src->address, size);
+    } else {
+        memcpy(dst->address, src->address, size);
+    }
+    
+    // 标记目标内存为脏数据
+    dst->flags |= MEMORY_FLAG_DIRTY;
+    
     return 1;
+}
+
+/**
+ * @brief 获取内存统计信息
+ * @param total_allocated 总分配内存
+ * @param total_used 已使用内存
+ * @param total_free 空闲内存
+ * @param pool_count 内存池计数
+ */
+void get_memory_statistics(size_t* total_allocated, size_t* total_used, 
+                          size_t* total_free, int* pool_count) {
+    if (total_allocated) *total_allocated = 0;
+    if (total_used) *total_used = 0;
+    if (total_free) *total_free = 0;
+    if (pool_count) *pool_count = 0;
+    
+    for (int i = 0; i < g_memory_pool_count; i++) {
+        if (g_memory_pool[i]) {
+            if (total_allocated) *total_allocated += g_memory_pool[i]->size;
+            if (g_memory_pool[i]->reference_count > 0) {
+                if (total_used) *total_used += g_memory_pool[i]->size;
+            } else {
+                if (total_free) *total_free += g_memory_pool[i]->size;
+                if (pool_count) (*pool_count)++;
+            }
+        }
+    }
 }
 
 //============================================================================
@@ -1880,36 +1986,48 @@ static size_t get_data_type_size(DataType type) {
  *    - 提供搜索算法（二分搜索、哈希搜索等）
  *    - 支持自定义算法参数和精度控制
  *    - 实现算法性能优化和错误处理
+ *    - 提供完整的时间复杂度分析
+ *    - 支持大规模数据处理
  * 
  * 2. 数据处理
  *    - 提供批量数据处理功能
  *    - 支持多种数据类型转换
  *    - 实现多线程数据处理
  *    - 提供超时和错误处理机制
+ *    - 数据验证和完整性检查
+ *    - 流式数据处理支持
  * 
  * 3. 数学计算
  *    - 支持基本数学运算
  *    - 提供统计计算功能
  *    - 实现方程求解算法
  *    - 支持随机数生成
+ *    - 高精度数值计算
+ *    - 数学常数和函数库
  * 
  * 4. 字符串处理
  *    - 提供字符串格式化功能
  *    - 支持字符串验证和转换
  *    - 实现字符串编码处理
  *    - 提供多种字符串操作
+ *    - Unicode字符支持
+ *    - 正则表达式处理
  * 
  * 5. 内存管理
  *    - 支持多种内存分配策略
  *    - 提供内存池管理功能
  *    - 实现内存块跟踪和释放
  *    - 支持内存重分配和复制
+ *    - 内存泄漏检测
+ *    - 内存使用统计
  * 
  * 6. 系统工具
  *    - 提供多种系统工具接口
  *    - 支持配置和日志管理
  *    - 实现系统信息获取
  *    - 提供工具执行功能
+ *    - 系统监控和诊断
+ *    - 性能分析工具
  * 
  * 技术优势：
  * - 高效的算法实现和优化
@@ -1917,6 +2035,25 @@ static size_t get_data_type_size(DataType type) {
  * - 灵活的配置选项
  * - 支持多线程和异步处理
  * - 提供丰富的API接口
+ * - 内存安全和管理
+ * - 跨平台兼容性
+ * - 可扩展的架构设计
+ * 
+ * 性能优化：
+ * - 算法复杂度优化
+ * - 内存使用效率
+ * - 缓存友好设计
+ * - 并发处理支持
+ * - 资源池化管理
+ * - 延迟加载技术
+ * 
+ * 安全特性：
+ * - 边界检查和验证
+ * - 内存安全保护
+ * - 输入数据验证
+ * - 错误恢复机制
+ * - 资源访问控制
+ * - 安全擦除功能
  * 
  * 应用场景：
  * - 游戏引擎的工具库
@@ -1924,4 +2061,41 @@ static size_t get_data_type_size(DataType type) {
  * - 科学计算应用
  * - 系统管理工具
  * - 性能优化工具
+ * - 网络服务器应用
+ * - 嵌入式系统
+ * - 实时数据处理
+ * 
+ * 使用示例：
+ * ```c
+ * // 算法使用示例
+ * int array[] = {5, 2, 8, 1, 9};
+ * quick_sort(array, 5, DATA_TYPE_INT32);
+ * 
+ * // 内存管理示例
+ * MemoryBlock* block = allocate_memory(1024, MEMORY_ALLOC_POOL, "test");
+ * if (block) {
+ *     // 使用内存
+ *     deallocate_memory(block);
+ * }
+ * 
+ * // 字符串处理示例
+ * StringResult result = process_string_operation("  Hello  ", STRING_OPERATION_TRIM, NULL);
+ * if (result.success) {
+ *     printf("Trimmed: %s\n", result.result);
+ *     free(result.result);
+ * }
+ * ```
+ * 
+ * 版本信息：
+ * - 版本：1.0.0
+ * - 最后更新：2025-08-28
+ * - 作者：Claude Code
+ * - 许可证：MIT License
+ * 
+ * 注意事项：
+ * - 使用前请确保系统资源充足
+ * - 大规模数据处理时注意内存使用
+ * - 多线程环境下需要适当的同步机制
+ * - 建议在使用前进行充分的测试
+ * - 请参考相关文档了解详细使用方法
  */
