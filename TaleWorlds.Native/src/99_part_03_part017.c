@@ -101,6 +101,96 @@
 #define SEARCH_MODE_PREFIX 0x02
 #define SEARCH_MODE_FUZZY 0x03
 
+/* ============================================================================
+ * 类型别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 基础类型别名
+typedef undefined8 DataHandle;           // 数据句柄
+typedef undefined8 StructureHandle;     // 结构句柄
+typedef undefined8 NodeHandle;          // 节点句柄
+typedef undefined8 SearchHandle;        // 搜索句柄
+typedef undefined8 MemoryHandle;        // 内存句柄
+typedef undefined8 StringHandle;        // 字符串句柄
+typedef undefined8 ResourceHandle;      // 资源句柄
+
+// 状态类型别名
+typedef undefined4 ProcessingStatus;    // 处理状态
+typedef undefined4 SearchStatus;        // 搜索状态
+typedef undefined4 MemoryStatus;        // 内存状态
+typedef undefined4 ValidationStatus;    // 验证状态
+
+// 标志类型别名
+typedef undefined4 ProcessingFlags;     // 处理标志
+typedef undefined4 SearchFlags;         // 搜索标志
+typedef undefined4 MemoryFlags;         // 内存标志
+typedef undefined4 StructureFlags;      // 结构标志
+
+// 数据类型别名
+typedef undefined1 DataByte;            // 数据字节
+typedef undefined2 DataWord;            // 数据字
+typedef undefined4 DataDword;           // 数据双字
+typedef undefined8 DataQword;           // 数据四字
+
+// 指针类型别名
+typedef void* ProcessingContext;        // 处理上下文
+typedef void* SearchContext;            // 搜索上下文
+typedef void* MemoryContext;            // 内存上下文
+typedef void* StructureContext;         // 结构上下文
+
+// 函数指针类型别名
+typedef int (*ProcessingCallback)(void*);    // 处理回调函数
+typedef int (*SearchCallback)(void*);        // 搜索回调函数
+typedef int (*MemoryCallback)(void*);        // 内存回调函数
+
+// 枚举类型别名
+typedef enum {
+    PROCESSING_STATE_IDLE = 0,
+    PROCESSING_STATE_INITIALIZING = 1,
+    PROCESSING_STATE_PROCESSING = 2,
+    PROCESSING_STATE_FINALIZING = 3,
+    PROCESSING_STATE_ERROR = 4
+} ProcessingState;
+
+typedef enum {
+    SEARCH_STATE_READY = 0,
+    SEARCH_STATE_SEARCHING = 1,
+    SEARCH_STATE_FOUND = 2,
+    SEARCH_STATE_NOT_FOUND = 3,
+    SEARCH_STATE_ERROR = 4
+} SearchState;
+
+typedef enum {
+    MEMORY_STATE_FREE = 0,
+    MEMORY_STATE_ALLOCATED = 1,
+    MEMORY_STATE_LOCKED = 2,
+    MEMORY_STATE_CORRUPTED = 3
+} MemoryState;
+
+// 结构体类型别名
+typedef struct {
+    DataHandle handle;
+    StructureHandle structure;
+    ProcessingStatus status;
+    ProcessingFlags flags;
+    void* user_data;
+} ProcessingInfo;
+
+typedef struct {
+    SearchHandle handle;
+    DataHandle data;
+    SearchStatus status;
+    SearchFlags flags;
+    void* user_data;
+} SearchInfo;
+
+typedef struct {
+    MemoryHandle handle;
+    uint64_t size;
+    MemoryStatus status;
+    void* data_ptr;
+} MemoryInfo;
+
 /* 数据结构类型定义 */
 typedef struct {
     uint64_t* data_ptr;
