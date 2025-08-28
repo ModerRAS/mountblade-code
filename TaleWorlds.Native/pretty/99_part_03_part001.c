@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // 99_part_03_part001.c - 高级数据处理和文件操作模块
@@ -78,6 +79,7 @@
 #define SystemStringHandler FUN_1800baa80       // 系统字符串处理器
 #define SystemResourceBinder FUN_18005d190      // 系统资源绑定器
 #define SystemPathProcessor FUN_180627be0       // 系统路径处理器
+#define SystemDataComparator FUN_1801eb6f0      // 系统数据比较器
 
 // 系统常量和函数指针
 #define SystemFunctionPointer1 FUN_1801eb5a0     // 系统函数指针1
@@ -98,7 +100,7 @@
 #define system_config_string_4 system_config_render_data_string      // 系统配置字符串4
 
 // 系统安全常量
-#define system_stack_cookie _DAT_180bf00a8        // 系统栈cookie（用于安全检查）
+#define system_stack_cookie GET_SECURITY_COOKIE()        // 系统栈cookie（用于安全检查）
 #define system_null_ptr system_null_data_ptr             // 系统空指针
 #define system_alt_null_ptr system_alt_null_data_ptr          // 系统备用空指针
 
@@ -124,8 +126,8 @@
 #define system_buffer_end system_buffer_end_addr            // 系统缓冲区结束地址
 
 // 系统全局变量
-#define system_file_counter _DAT_180c8ed60         // 系统文件计数器
-#define system_handle_counter _DAT_180c8ed64       // 系统句柄计数器
+#define system_file_counter SYSTEM_FILE_COUNTER_ADDR         // 系统文件计数器
+#define system_handle_counter SYSTEM_HANDLE_COUNTER_ADDR       // 系统句柄计数器
 #define system_debug_flag system_debug_flag             // 系统调试标志
 #define system_debug_flag2 system_debug_flag2            // 系统调试标志2
 #define system_module_state _DAT_180c86908         // 系统模块状态
@@ -204,31 +206,31 @@ void DataStructureInitializer(uint64_t **param_1, longlong param_2)
         do {
             lVar8 = lVar3 + 1;
             if (*(char *)(*(longlong *)(param_2 + 8) + lVar3) != system_config_string_1[lVar3])
-                goto LAB_1801c4476;
+                goto CONFIG_STRING_1_MISMATCH;
             lVar3 = lVar8;
         } while (lVar8 != 8);
     }
     else {
-    LAB_1801c4476:
+    CONFIG_STRING_1_MISMATCH:
         if (iVar2 == 5) {
             lVar3 = 0;
             do {
                 lVar8 = lVar3 + 1;
                 if (*(char *)(*(longlong *)(param_2 + 8) + lVar3) != system_config_string_2[lVar3])
-                    goto LAB_1801c44a6;
+                    goto CONFIG_STRING_2_MISMATCH;
                 lVar3 = lVar8;
             } while (lVar8 != 6);
         }
         else {
-        LAB_1801c44a6:
+        CONFIG_STRING_2_MISMATCH:
             if ((iVar2 != 8) ||
                 ((iVar2 = strcmp(*(uint64_t *)(param_2 + 8), system_config_string_3), iVar2 != 0 &&
                  (iVar2 = strcmp(*(uint64_t *)(param_2 + 8), system_config_string_4), iVar2 != 0))))
-                goto LAB_1801c44da;
+                goto CONFIG_VALIDATION_FAILED;
         }
     }
     uVar9 = 1;
-LAB_1801c44da:
+CONFIG_VALIDATION_FAILED:
     SystemInitializer(system_context_ptr);
     SystemResourceTracker(puVar1);
     uVar4 = SystemMemoryAllocator(system_memory_pool_ptr,0x580,8,3);
@@ -630,7 +632,7 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
                         puStack_d0 = puVar4 + 6;
                         puStack_c8 = puVar4 + 5;
                         lStack_c0 = (longlong)puVar4 + 0x34;
-                        cVar6 = func_0x0001801eb6f0(&lStack_e0,&lStack_110);
+                        cVar6 = SystemDataComparator(&lStack_e0,&lStack_110);
                         if (cVar6 == '\0') {
                             puVar9 = puVar4;
                             puVar4 = (uint64_t *)puVar4[1];
@@ -640,7 +642,7 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
                         }
                     }
                     if (puVar9 == puVar1) {
-                    LAB_1801c4b08:
+                    NODE_INSERTION_REQUIRED:
                         puStack_218 = &uStack_1c0;
                         puVar9 = (uint64_t *)SystemNodeManager(puVar1,&lStack_168);
                         puVar9 = (uint64_t *)*puVar9;
@@ -658,8 +660,8 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
                         puStack_68 = &uStack_1b8;
                         lStack_60 = (longlong)&uStack_1b0 + 4;
                         puStack_58 = &uStack_1c0;
-                        cVar6 = func_0x0001801eb6f0(&lStack_80,&lStack_b0);
-                        if (cVar6 != '\0') goto LAB_1801c4b08;
+                        cVar6 = SystemDataComparator(&lStack_80,&lStack_b0);
+                        if (cVar6 != '\0') goto NODE_INSERTION_REQUIRED;
                     }
                     *(uint *)(puVar9 + 8) = uVar2;
                     lVar16 = (uStack_1a8 & 0xff) * 0x70;
