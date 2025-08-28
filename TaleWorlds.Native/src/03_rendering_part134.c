@@ -253,7 +253,13 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
 
 
 
-// 函数: void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// =============================================================================
+// 渲染系统场景对象释放器 (RenderingSystemSceneObjectReleaser)
+// =============================================================================
+// 功能：安全释放场景对象及其相关资源，处理内存管理和状态更新
+// 参数：param_1 - 渲染系统上下文，param_2 - 场景对象，param_3/4 - 标志位
+// 返回值：无
+// =============================================================================
 void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -281,44 +287,58 @@ void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefine
   ulonglong uVar9;
   
   uVar11 = 0xfffffffffffffffe;
+  
+  // 获取场景对象的引用
   plVar1 = *(longlong **)(param_2 + 0x1b8);
   plStackX_10 = plVar1;
   if (plVar1 != (longlong *)0x0) {
+    // 调用对象的释放方法
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
+  
   uVar9 = 0;
   puStack_80 = &UNK_180a3c3e0;
   uStack_68 = 0;
   puStack_78 = (undefined4 *)0x0;
   uStack_70 = 0;
+  
+  // 创建调试信息字符串 "_usemesh_begin_design"
   puVar4 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x11,0x13,param_4,uVar11);
   *(undefined1 *)puVar4 = 0;
   puStack_78 = puVar4;
   uVar3 = FUN_18064e990(puVar4);
   uStack_68 = CONCAT44(uStack_68._4_4_,uVar3);
-  *puVar4 = 0x5f657375;
-  puVar4[1] = 0x6873656d;
-  puVar4[2] = 0x6e65625f;
-  puVar4[3] = 0x676e6964;
+  *puVar4 = 0x5f657375;        // "_use"
+  puVar4[1] = 0x6873656d;     // "mesh"
+  puVar4[2] = 0x6e65625f;     // "neb_"
+  puVar4[3] = 0x676e6964;     // "gnid"
   *(undefined1 *)(puVar4 + 4) = 0;
   uStack_70 = 0x10;
+  
+  // 检查对象状态
   lVar5 = FUN_180240430(plVar1[0x3c],&puStack_80,0);
   if (lVar5 != 0) {
     uVar6 = FUN_180240430(plVar1[0x3c],&puStack_80,0);
     if ((plVar1[0x28] & uVar6) == 0) {
+      // 获取对象的管理器引用
       puVar7 = (undefined8 *)FUN_18022cb40(plVar1,&plStackX_20);
       plVar2 = (longlong *)*puVar7;
       *puVar7 = 0;
       plStackX_10 = plVar2;
       plStackX_18 = plVar1;
+      
+      // 释放对象和管理器
       if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
       }
       if (plStackX_20 != (longlong *)0x0) {
         (**(code **)(*plStackX_20 + 0x38))();
       }
+      
+      // 检查对象是否可以安全释放
       uVar6 = FUN_180240430(plVar2[0x3c],&puStack_80,1);
       if (uVar6 == 0) {
+        // 记录释放事件
         puVar10 = &DAT_18098bc73;
         if ((undefined *)plVar2[3] != (undefined *)0x0) {
           puVar10 = (undefined *)plVar2[3];
@@ -326,10 +346,15 @@ void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefine
         FUN_1806272a0(&UNK_180a13bd8,puVar4,puVar10);
       }
       else {
+        // 更新对象状态
         plVar2[0x28] = plVar2[0x28] | uVar6;
         FUN_18022dd60(plVar2);
       }
+      
+      // 清理场景对象的引用
       FUN_180076910(param_2,&plStackX_10);
+      
+      // 获取相关的渲染对象列表
       lStack_60 = 0;
       lStack_58 = 0;
       uStack_50 = 0;
@@ -337,6 +362,8 @@ void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefine
       FUN_1802e8c60(*(undefined8 *)(param_1 + 0x18),&lStack_60);
       FUN_1802ec150(*(undefined8 *)(param_1 + 0x18),1);
       uVar6 = uVar9;
+      
+      // 释放所有相关的渲染对象
       if (lStack_58 - lStack_60 >> 3 != 0) {
         do {
           FUN_1802ec150(*(undefined8 *)(uVar6 + lStack_60),1);
@@ -345,14 +372,16 @@ void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefine
           uVar6 = uVar6 + 8;
         } while ((ulonglong)(longlong)(int)uVar8 < (ulonglong)(lStack_58 - lStack_60 >> 3));
       }
+      
+      // 清理临时内存
       if (lStack_60 != 0) {
-                    // WARNING: Subroutine does not return
         FUN_18064e900();
       }
     }
   }
+  
+  // 清理调试信息
   puStack_80 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
   FUN_18064e900(puVar4);
 }
 
