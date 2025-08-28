@@ -807,36 +807,63 @@ void DoubleBufferManager_SwapBuffers(longlong bufferManager)
 
 
 
-uint64_t * FUN_1803f8a80(uint64_t *param_1,int32_t param_2,int32_t param_3)
-
+/**
+ * @brief 资源管理器构造函数
+ * 
+ * 负责初始化和创建资源管理器实例
+ * 设置资源管理器的初始状态和回调函数
+ * 
+ * @param resourceManager 资源管理器指针
+ * @param initialCapacity 初始容量
+ * @param maxCapacity 最大容量
+ * 
+ * @return 资源管理器指针
+ */
+uint64_t * ResourceManager_Constructor(uint64_t *resourceManager, int32_t initialCapacity, int32_t maxCapacity)
 {
-  longlong *plVar1;
-  longlong *plVar2;
+  longlong *resourceList;
+  longlong *resourceCache;
   
-  FUN_1801fa180();
-  *param_1 = &UNK_180a0ef58;
-  *(int32_t *)(param_1 + 0x8a) = param_2;
-  *(int32_t *)((longlong)param_1 + 0x454) = param_3;
-  *param_1 = &UNK_180a263c0;
-  FUN_1808fc838(param_1 + 0x8b,8,2,&SUB_18005d5f0,FUN_180045af0);
-  param_1[0x8d] = 0;
-  *(int32_t *)(param_1 + 0x8e) = 0;
-  *(int32_t *)((longlong)param_1 + 0x474) = 4;
-  plVar1 = (longlong *)param_1[0x8c];
-  param_1[0x8c] = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  /* 初始化资源管理器 */
+  SystemResourceManager_Initialize();
+  *resourceManager = &ResourceManager_VTable_Initialize;
+  
+  /* 设置容量参数 */
+  *(int32_t *)(resourceManager + 0x8a) = initialCapacity;
+  *(int32_t *)((longlong)resourceManager + 0x454) = maxCapacity;
+  
+  /* 设置资源管理器虚函数表 */
+  *resourceManager = &ResourceManager_VTable_Main;
+  
+  /* 初始化资源缓存系统 */
+  ResourceCache_Initialize(resourceManager + 0x8b, 8, 2, &ResourceCache_SubTable, ResourceCache_Callback);
+  
+  /* 初始化资源管理器状态 */
+  resourceManager[0x8d] = 0;
+  *(int32_t *)(resourceManager + 0x8e) = 0;
+  *(int32_t *)((longlong)resourceManager + 0x474) = 4;
+  
+  /* 清理资源列表 */
+  resourceList = (longlong *)resourceManager[0x8c];
+  resourceManager[0x8c] = 0;
+  if (resourceList != (longlong *)0x0) {
+    (**(code **)(*resourceList + 0x38))();
   }
-  plVar1 = (longlong *)param_1[0x8c];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
+  
+  /* 再次清理资源列表（确保完全清理） */
+  resourceList = (longlong *)resourceManager[0x8c];
+  if (resourceList != (longlong *)0x0) {
+    (**(code **)(*resourceList + 0x28))(resourceList);
   }
-  plVar2 = (longlong *)param_1[0x8b];
-  param_1[0x8b] = plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  
+  /* 清理资源缓存 */
+  resourceCache = (longlong *)resourceManager[0x8b];
+  resourceManager[0x8b] = resourceList;
+  if (resourceCache != (longlong *)0x0) {
+    (**(code **)(*resourceCache + 0x38))();
   }
-  return param_1;
+  
+  return resourceManager;
 }
 
 
