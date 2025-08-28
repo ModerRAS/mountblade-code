@@ -1311,24 +1311,28 @@ undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefine
     *(int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x50) = (int)processing_params;
     *(undefined1 *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c) = 0; /* 清除状态标志 */
     timing_info = *(longlong *)(unaff_RBP + 0x7f);
-    if (((*(byte *)(lVar23 + 0x400) & 1) != 0) && (*(char *)(lVar11 + 0x78) == '\0')) {
-      FUN_1807ccbe0();
-      lVar11 = *(longlong *)(unaff_RBP + 0x7f);
-      uVar12 = (uint)*(byte *)(unaff_RBP + 0x67);
+    /* 系统状态检查和处理 */
+    if (((*(byte *)(calculation_result + 0x400) & 1) != 0) && (*(char *)(timing_info + 0x78) == '\0')) {
+      FUN_1807ccbe0(); /* 初始化系统状态 */
+      timing_info = *(longlong *)(unaff_RBP + 0x7f);
+      iteration_count = (uint)*(byte *)(unaff_RBP + 0x67);
     }
-    if (((*(byte *)(lVar23 + 0x457) & 1) != 0) && (*(char *)(lVar11 + 0x90) == '\0')) {
-      FUN_1807ccbe0();
-      lVar11 = *(longlong *)(unaff_RBP + 0x7f);
+    
+    if (((*(byte *)(calculation_result + 0x457) & 1) != 0) && (*(char *)(timing_info + 0x90) == '\0')) {
+      FUN_1807ccbe0(); /* 初始化第二个系统状态 */
+      timing_info = *(longlong *)(unaff_RBP + 0x7f);
     }
-    if (*(char *)(lVar11 + 0xbc) != '\0') {
-      *(int *)(lVar11 + 0xb0) = *(int *)(lVar11 + 0xb0) - (uint)*(ushort *)(lVar23 + 0x50c);
-      lVar11 = *(longlong *)(unaff_RBP + 0x7f);
-      if (*(int *)(lVar11 + 0xb0) < 0) {
-        *(undefined4 *)(lVar11 + 0xb0) = 0;
-        lVar11 = *(longlong *)(unaff_RBP + 0x7f);
+    
+    /* 处理缓冲区计数器 */
+    if (*(char *)(timing_info + 0xbc) != '\0') {
+      *(int *)(timing_info + 0xb0) = *(int *)(timing_info + 0xb0) - (uint)*(ushort *)(calculation_result + 0x50c);
+      timing_info = *(longlong *)(unaff_RBP + 0x7f);
+      if (*(int *)(timing_info + 0xb0) < 0) {
+        *(undefined4 *)(timing_info + 0xb0) = 0; /* 确保计数器不为负数 */
+        timing_info = *(longlong *)(unaff_RBP + 0x7f);
       }
-      *(byte *)(lVar11 + 0x3c) = *(byte *)(lVar11 + 0x3c) | 2;
-      lVar11 = *(longlong *)(unaff_RBP + 0x7f);
+      *(byte *)(timing_info + 0x3c) = *(byte *)(timing_info + 0x3c) | 2; /* 设置状态标志 */
+      timing_info = *(longlong *)(unaff_RBP + 0x7f);
     }
     lVar19 = *(longlong *)(unaff_RBP + -1);
     bVar18 = *(byte *)(lVar19 + 2);
