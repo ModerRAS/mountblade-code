@@ -486,53 +486,61 @@ void Engine_UpdateStateAndManageResources(longlong engine_instance, longlong con
 
 
 
-// 函数: void FUN_18012d11e(void)
-void FUN_18012d11e(void)
+// 函数: void Engine_UpdateTransformDataAndRefCount(longlong engine_instance, longlong context_obj, longlong target_instance)
+void Engine_UpdateTransformDataAndRefCount(longlong engine_instance, longlong context_obj, longlong target_instance)
 
 {
-  float fVar1;
-  longlong lVar2;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  float fVar3;
+  float transform_offset_y;
+  float scale_factor;
+  longlong transform_handle;
+  longlong current_context;
+  longlong result_context;
+  float computed_scale;
   
-  if (((*(longlong *)(unaff_RBP + 0x408) != 0) && ((*(byte *)(unaff_RBP + 0x432) & 2) != 0)) &&
-     (lVar2 = *(longlong *)(*(longlong *)(unaff_RBP + 0x408) + 0x68), lVar2 != 0)) {
-    fVar3 = *(float *)(unaff_RBP + 0x11c);
-    fVar1 = *(float *)(unaff_RBP + 0x74);
-    *(float *)(lVar2 + 0x118) =
-         (*(float *)(unaff_RBP + 0x118) + *(float *)(unaff_RBP + 0x70)) - *(float *)(lVar2 + 0x70);
-    *(float *)(lVar2 + 0x11c) = (fVar3 + fVar1) - *(float *)(lVar2 + 0x74);
+  // 更新变换数据
+  if (((*(longlong *)(context_obj + 0x408) != 0) && ((*(byte *)(context_obj + 0x432) & 2) != 0)) &&
+     (transform_handle = *(longlong *)(*(longlong *)(context_obj + 0x408) + 0x68), transform_handle != 0)) {
+    transform_offset_y = *(float *)(context_obj + 0x11c);
+    scale_factor = *(float *)(context_obj + 0x74);
+    // 计算并设置新的变换位置
+    *(float *)(transform_handle + 0x118) =
+         (*(float *)(context_obj + 0x118) + *(float *)(context_obj + 0x70)) - *(float *)(transform_handle + 0x70);
+    *(float *)(transform_handle + 0x11c) = (transform_offset_y + scale_factor) - *(float *)(transform_handle + 0x74);
   }
-  *(int *)(unaff_RDI + 0x1ad0) = *(int *)(unaff_RDI + 0x1ad0) + -1;
-  if ((*(uint *)(unaff_RBP + 0xc) & 0x4000000) != 0) {
-    *(int *)(unaff_RDI + 0x1bc0) = *(int *)(unaff_RDI + 0x1bc0) + -1;
+  
+  // 减少引用计数
+  *(int *)(target_instance + 0x1ad0) = *(int *)(target_instance + 0x1ad0) + -1;
+  if ((*(uint *)(context_obj + 0xc) & 0x4000000) != 0) {
+    *(int *)(target_instance + 0x1bc0) = *(int *)(target_instance + 0x1bc0) + -1;
   }
-  if (*(int *)(unaff_RDI + 0x1ad0) != 0) {
-    unaff_RSI = *(longlong *)
-                 (*(longlong *)(unaff_RDI + 0x1ad8) + -8 +
-                 (longlong)*(int *)(unaff_RDI + 0x1ad0) * 8);
+  
+  // 获取当前上下文对象
+  if (*(int *)(target_instance + 0x1ad0) != 0) {
+    current_context = *(longlong *)
+                 (*(longlong *)(target_instance + 0x1ad8) + -8 +
+                 (longlong)*(int *)(target_instance + 0x1ad0) * 8);
   }
-  *(longlong *)(unaff_RBX + 0x1af8) = unaff_RSI;
-  if (unaff_RSI != 0) {
-    fVar3 = *(float *)(unaff_RBX + 0x19fc) * *(float *)(unaff_RSI + 0x2d8) *
-            *(float *)(unaff_RSI + 0x2dc);
-    *(float *)(unaff_RBX + 0x1a10) = fVar3;
-    *(float *)(unaff_RBX + 0x19f8) = fVar3;
+  *(longlong *)(engine_instance + 0x1af8) = current_context;
+  
+  // 计算缩放因子
+  if (current_context != 0) {
+    computed_scale = *(float *)(engine_instance + 0x19fc) * *(float *)(current_context + 0x2d8) *
+                   *(float *)(current_context + 0x2dc);
+    *(float *)(engine_instance + 0x1a10) = computed_scale;
+    *(float *)(engine_instance + 0x19f8) = computed_scale;
   }
-  if (*(longlong *)(unaff_RDI + 0x1af8) != 0) {
-    lVar2 = *(longlong *)(*(longlong *)(unaff_RDI + 0x1af8) + 0x28);
-    if (lVar2 != 0) {
-      *(undefined4 *)(lVar2 + 0x54) = *(undefined4 *)(unaff_RBX + 0x1a90);
+  
+  // 更新当前对象并触发回调
+  if (*(longlong *)(target_instance + 0x1af8) != 0) {
+    result_context = *(longlong *)(*(longlong *)(target_instance + 0x1af8) + 0x28);
+    if (result_context != 0) {
+      *(uint32_t *)(result_context + 0x54) = *(uint32_t *)(engine_instance + 0x1a90);
     }
-    if (((*(longlong *)(unaff_RBX + 0x1c78) != lVar2) &&
-        (*(longlong *)(unaff_RBX + 0x1c78) = lVar2, lVar2 != 0)) &&
-       (*(code **)(unaff_RBX + 0x15c0) != (code *)0x0)) {
-                    // WARNING: Could not recover jumptable at 0x00018012d226. Too many branches
-                    // WARNING: Treating indirect jump as call
-      (**(code **)(unaff_RBX + 0x15c0))();
+    if (((*(longlong *)(engine_instance + 0x1c78) != result_context) &&
+        (*(longlong *)(engine_instance + 0x1c78) = result_context, result_context != 0)) &&
+       (*(code **)(engine_instance + 0x15c0) != (code *)0x0)) {
+      // 调用对象更新回调函数
+      (**(code **)(engine_instance + 0x15c0))();
       return;
     }
   }
@@ -543,53 +551,61 @@ void FUN_18012d11e(void)
 
 
 
-// 函数: void FUN_18012d123(void)
-void FUN_18012d123(void)
+// 函数: void Engine_ApplyTransformAndDecrementRefCount(longlong engine_instance, longlong context_obj, longlong target_instance)
+void Engine_ApplyTransformAndDecrementRefCount(longlong engine_instance, longlong context_obj, longlong target_instance)
 
 {
-  float fVar1;
-  longlong lVar2;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  float fVar3;
+  float transform_offset_y;
+  float scale_factor;
+  longlong transform_handle;
+  longlong current_context;
+  longlong result_context;
+  float computed_scale;
   
-  if (((*(longlong *)(unaff_RBP + 0x408) != 0) && ((*(byte *)(unaff_RBP + 0x432) & 2) != 0)) &&
-     (lVar2 = *(longlong *)(*(longlong *)(unaff_RBP + 0x408) + 0x68), lVar2 != 0)) {
-    fVar3 = *(float *)(unaff_RBP + 0x11c);
-    fVar1 = *(float *)(unaff_RBP + 0x74);
-    *(float *)(lVar2 + 0x118) =
-         (*(float *)(unaff_RBP + 0x118) + *(float *)(unaff_RBP + 0x70)) - *(float *)(lVar2 + 0x70);
-    *(float *)(lVar2 + 0x11c) = (fVar3 + fVar1) - *(float *)(lVar2 + 0x74);
+  // 应用变换数据
+  if (((*(longlong *)(context_obj + 0x408) != 0) && ((*(byte *)(context_obj + 0x432) & 2) != 0)) &&
+     (transform_handle = *(longlong *)(*(longlong *)(context_obj + 0x408) + 0x68), transform_handle != 0)) {
+    transform_offset_y = *(float *)(context_obj + 0x11c);
+    scale_factor = *(float *)(context_obj + 0x74);
+    // 计算并设置新的变换位置
+    *(float *)(transform_handle + 0x118) =
+         (*(float *)(context_obj + 0x118) + *(float *)(context_obj + 0x70)) - *(float *)(transform_handle + 0x70);
+    *(float *)(transform_handle + 0x11c) = (transform_offset_y + scale_factor) - *(float *)(transform_handle + 0x74);
   }
-  *(int *)(unaff_RDI + 0x1ad0) = *(int *)(unaff_RDI + 0x1ad0) + -1;
-  if ((*(uint *)(unaff_RBP + 0xc) & 0x4000000) != 0) {
-    *(int *)(unaff_RDI + 0x1bc0) = *(int *)(unaff_RDI + 0x1bc0) + -1;
+  
+  // 减少引用计数
+  *(int *)(target_instance + 0x1ad0) = *(int *)(target_instance + 0x1ad0) + -1;
+  if ((*(uint *)(context_obj + 0xc) & 0x4000000) != 0) {
+    *(int *)(target_instance + 0x1bc0) = *(int *)(target_instance + 0x1bc0) + -1;
   }
-  if (*(int *)(unaff_RDI + 0x1ad0) != 0) {
-    unaff_RSI = *(longlong *)
-                 (*(longlong *)(unaff_RDI + 0x1ad8) + -8 +
-                 (longlong)*(int *)(unaff_RDI + 0x1ad0) * 8);
+  
+  // 获取当前上下文对象
+  if (*(int *)(target_instance + 0x1ad0) != 0) {
+    current_context = *(longlong *)
+                 (*(longlong *)(target_instance + 0x1ad8) + -8 +
+                 (longlong)*(int *)(target_instance + 0x1ad0) * 8);
   }
-  *(longlong *)(unaff_RBX + 0x1af8) = unaff_RSI;
-  if (unaff_RSI != 0) {
-    fVar3 = *(float *)(unaff_RBX + 0x19fc) * *(float *)(unaff_RSI + 0x2d8) *
-            *(float *)(unaff_RSI + 0x2dc);
-    *(float *)(unaff_RBX + 0x1a10) = fVar3;
-    *(float *)(unaff_RBX + 0x19f8) = fVar3;
+  *(longlong *)(engine_instance + 0x1af8) = current_context;
+  
+  // 计算缩放因子
+  if (current_context != 0) {
+    computed_scale = *(float *)(engine_instance + 0x19fc) * *(float *)(current_context + 0x2d8) *
+                   *(float *)(current_context + 0x2dc);
+    *(float *)(engine_instance + 0x1a10) = computed_scale;
+    *(float *)(engine_instance + 0x19f8) = computed_scale;
   }
-  if (*(longlong *)(unaff_RDI + 0x1af8) != 0) {
-    lVar2 = *(longlong *)(*(longlong *)(unaff_RDI + 0x1af8) + 0x28);
-    if (lVar2 != 0) {
-      *(undefined4 *)(lVar2 + 0x54) = *(undefined4 *)(unaff_RBX + 0x1a90);
+  
+  // 更新当前对象并触发回调
+  if (*(longlong *)(target_instance + 0x1af8) != 0) {
+    result_context = *(longlong *)(*(longlong *)(target_instance + 0x1af8) + 0x28);
+    if (result_context != 0) {
+      *(uint32_t *)(result_context + 0x54) = *(uint32_t *)(engine_instance + 0x1a90);
     }
-    if (((*(longlong *)(unaff_RBX + 0x1c78) != lVar2) &&
-        (*(longlong *)(unaff_RBX + 0x1c78) = lVar2, lVar2 != 0)) &&
-       (*(code **)(unaff_RBX + 0x15c0) != (code *)0x0)) {
-                    // WARNING: Could not recover jumptable at 0x00018012d226. Too many branches
-                    // WARNING: Treating indirect jump as call
-      (**(code **)(unaff_RBX + 0x15c0))();
+    if (((*(longlong *)(engine_instance + 0x1c78) != result_context) &&
+        (*(longlong *)(engine_instance + 0x1c78) = result_context, result_context != 0)) &&
+       (*(code **)(engine_instance + 0x15c0) != (code *)0x0)) {
+      // 调用对象更新回调函数
+      (**(code **)(engine_instance + 0x15c0))();
       return;
     }
   }
