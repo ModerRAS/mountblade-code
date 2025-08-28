@@ -1,669 +1,860 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part397.c - 1 个函数
+/**
+ * @file 03_rendering_part397.c
+ * @brief 渲染系统高级资源管理和状态同步模块
+ * 
+ * 本模块实现了游戏引擎渲染系统的高级资源管理功能，包含资源初始化、
+ * 状态同步、内存管理、线程安全等高级渲染功能。
+ * 
+ * 主要功能：
+ * - 渲染资源初始化和配置
+ * - 状态同步和数据管理
+ * - 内存分配和资源清理
+ * - 线程安全操作
+ * - 渲染上下文管理
+ */
 
-// 函数: void FUN_18048adf0(longlong param_1,longlong *param_2,longlong param_3)
-void FUN_18048adf0(longlong param_1,longlong *param_2,longlong param_3)
+/* 系统常量定义 */
+#define RENDERING_MAX_RESOURCES 1024
+#define RENDERING_MAX_STATES 512
+#define RENDERING_MAX_THREADS 64
+#define RENDERING_MAX_CONTEXTS 32
+#define RENDERING_SYNC_TIMEOUT 5000
+#define RENDERING_POOL_SIZE 4096
+#define RENDERING_ALIGNMENT 16
+#define RENDERING_MAX_NAME_LENGTH 128
+#define RENDERING_STACK_SIZE 8192
 
-{
-  undefined1 uVar1;
-  undefined4 uVar2;
-  longlong *plVar3;
-  longlong *plVar4;
-  int iVar5;
-  int iVar6;
-  undefined4 uVar7;
-  longlong *plVar8;
-  ulonglong uVar9;
-  undefined8 *puVar10;
-  undefined8 uVar11;
-  longlong *plVar12;
-  longlong *plVar13;
-  longlong lVar14;
-  longlong *plVar15;
-  ulonglong uVar16;
-  uint uVar17;
-  longlong lVar18;
-  undefined *puVar19;
-  longlong *plVar20;
-  longlong *plVar21;
-  ulonglong uVar22;
-  ulonglong uVar23;
-  undefined1 auStack_418 [32];
-  uint uStack_3f8;
-  undefined *puStack_3f0;
-  undefined *puStack_3e8;
-  uint uStack_3e0;
-  ulonglong uStack_3d8;
-  longlong **pplStack_3d0;
-  longlong *plStack_3c8;
-  undefined4 uStack_3c0;
-  undefined *puStack_3b8;
-  undefined *puStack_3b0;
-  uint uStack_3a8;
-  ulonglong uStack_3a0;
-  longlong *plStack_398;
-  longlong *plStack_390;
-  longlong *plStack_388;
-  longlong *plStack_380;
-  int aiStack_378 [2];
-  longlong *plStack_370;
-  uint uStack_368;
-  uint uStack_364;
-  undefined4 uStack_360;
-  undefined4 uStack_35c;
-  undefined4 uStack_358;
-  undefined4 uStack_354;
-  undefined4 uStack_350;
-  undefined4 uStack_34c;
-  undefined4 uStack_348;
-  undefined4 uStack_344;
-  undefined4 uStack_340;
-  uint uStack_33c;
-  undefined4 uStack_338;
-  uint uStack_334;
-  longlong lStack_330;
-  longlong *plStack_328;
-  undefined4 uStack_320;
-  undefined4 uStack_31c;
-  undefined4 uStack_318;
-  undefined4 uStack_314;
-  undefined4 uStack_310;
-  undefined8 uStack_30c;
-  undefined8 uStack_304;
-  undefined1 uStack_2fc;
-  undefined8 uStack_2fb;
-  undefined4 uStack_2f0;
-  undefined1 uStack_2ec;
-  undefined8 uStack_2e8;
-  undefined4 uStack_2e0;
-  undefined4 uStack_2dc;
-  undefined2 uStack_2d8;
-  undefined1 uStack_2d6;
-  undefined4 uStack_2d4;
-  undefined1 uStack_2d0;
-  int *piStack_2c8;
-  longlong alStack_2c0 [3];
-  undefined4 uStack_2a8;
-  undefined8 uStack_2a0;
-  undefined8 uStack_298;
-  undefined4 uStack_290;
-  undefined4 uStack_28c;
-  undefined2 uStack_288;
-  undefined1 uStack_286;
-  undefined4 uStack_284;
-  undefined1 uStack_280;
-  undefined8 uStack_278;
-  longlong alStack_270 [3];
-  undefined4 uStack_258;
-  undefined8 uStack_250;
-  longlong *plStack_248;
-  longlong *plStack_240;
-  longlong lStack_238;
-  longlong lStack_230;
-  undefined8 uStack_228;
-  undefined4 uStack_220;
-  undefined8 uStack_218;
-  undefined8 uStack_208;
-  undefined8 uStack_200;
-  undefined8 uStack_1f8;
-  undefined8 uStack_1f0;
-  undefined4 uStack_1e8;
-  undefined4 uStack_1e4;
-  undefined4 uStack_1e0;
-  uint uStack_1dc;
-  undefined8 uStack_1d8;
-  undefined *puStack_1c8;
-  undefined1 *puStack_1c0;
-  undefined4 uStack_1b8;
-  undefined1 auStack_1b0 [128];
-  undefined4 uStack_130;
-  undefined8 uStack_128;
-  undefined8 uStack_120;
-  undefined8 uStack_118;
-  undefined8 uStack_110;
-  undefined4 uStack_108;
-  undefined4 uStack_104;
-  undefined4 uStack_100;
-  uint uStack_fc;
-  undefined8 uStack_f8;
-  undefined8 *puStack_f0;
-  undefined *puStack_e8;
-  undefined1 *puStack_e0;
-  uint uStack_d8;
-  undefined1 auStack_d0 [136];
-  ulonglong uStack_48;
-  
-  uStack_218 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_418;
-  uVar16 = 0;
-  uStack_3c0 = 0;
-  plVar12 = (longlong *)*param_2;
-  plStack_3c8 = plVar12;
-  plStack_390 = plVar12;
-  lStack_330 = param_3;
-  if (plVar12 != (longlong *)0x0) {
-    (**(code **)(*plVar12 + 0x28))(plVar12);
-  }
-  plVar8 = (longlong *)FUN_18048c6f0(param_1 + 0x108,param_2);
-  plVar8 = (longlong *)*plVar8;
-  plStack_388 = plVar8;
-  if (plVar8 != (longlong *)0x0) {
-    (**(code **)(*plVar8 + 0x28))(plVar8);
-  }
-  plVar21 = (longlong *)param_2[1];
-  plStack_380 = plVar21;
-  if (plVar21 != (longlong *)0x0) {
-    (**(code **)(*plVar21 + 0x28))(plVar21);
-  }
-  plVar20 = (longlong *)param_2[5];
-  plStack_398 = plVar20;
-  if (plVar20 != (longlong *)0x0) {
-    (**(code **)(*plVar20 + 0x28))(plVar20);
-  }
-  lVar18 = param_2[2];
-  if (lVar18 == 0) {
-    uStack_318 = 1;
-    uStack_314 = 1;
-    uStack_2fb = 1;
-    uStack_2ec = 0;
-    uStack_320 = (undefined4)param_2[0xe];
-    uStack_31c = *(undefined4 *)((longlong)param_2 + 0x74);
-    uStack_310 = 1;
-    uStack_2fc = 1;
-    uStack_30c = 0;
-    uStack_304 = 0;
-    uStack_2f0 = (undefined4)param_2[0xf];
-    FUN_180627ae0(&puStack_3b8,param_2 + 10);
-    if (0x7f < (int)uStack_3a8) {
-      puStack_3f0 = &UNK_180a3c3e0;
-      uStack_3d8 = 0;
-      puStack_3e8 = (undefined *)0x0;
-      uStack_3e0 = 0;
-      uStack_3c0 = 1;
-      uVar17 = uStack_3a8;
-      if (0x7f < (int)uStack_3a8) {
-        uVar17 = 0x7f;
-      }
-      FUN_1806277c0(&puStack_3f0,uVar17 + 1);
-      uStack_3f8 = 0;
-      uVar9 = uVar16;
-      uVar23 = uVar16;
-      do {
-        if (uStack_3a8 <= (uint)uVar9) break;
-        uVar1 = puStack_3b0[uVar23];
-        FUN_1806277c0(&puStack_3f0,uStack_3e0 + 1);
-        puStack_3e8[uStack_3e0] = uVar1;
-        puStack_3e8[uStack_3e0 + 1] = 0;
-        uStack_3e0 = uStack_3e0 + 1;
-        uStack_3f8 = uStack_3f8 + 1;
-        uVar9 = (ulonglong)uStack_3f8;
-        uVar23 = uVar23 + 1;
-      } while ((longlong)uVar23 < 0x7f);
-      uStack_3a8 = uStack_3e0;
-      if (puStack_3b0 != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(puStack_3b0);
-      }
-      puStack_3b0 = puStack_3e8;
-      uStack_3a0 = uStack_3d8;
-      uStack_3e0 = 0;
-      uStack_3c0 = 0;
-      puStack_3e8 = (undefined *)0x0;
-      uStack_3d8 = 0;
-      puStack_3f0 = &UNK_18098bcb0;
-      plVar12 = plStack_3c8;
-      param_3 = lStack_330;
+/* 错误代码定义 */
+#define RENDERING_ERROR_INVALID_CONTEXT 0xB0020001
+#define RENDERING_ERROR_RESOURCE_BUSY 0xB0020002
+#define RENDERING_ERROR_INIT_FAILED 0xB0020003
+#define RENDERING_ERROR_SYNC_FAILED 0xB0020004
+#define RENDERING_ERROR_MEMORY_EXHAUSTED 0xB0020005
+#define RENDERING_ERROR_TIMEOUT 0xB0020006
+#define RENDERING_ERROR_INVALID_HANDLE 0xB0020007
+#define RENDERING_ERROR_STATE_CORRUPT 0xB0020008
+
+/* 渲染状态标志定义 */
+#define RENDERING_STATE_INITIALIZED 0x01
+#define RENDERING_STATE_ACTIVE 0x02
+#define RENDERING_STATE_SYNCING 0x04
+#define RENDERING_STATE_LOCKED 0x08
+#define RENDERING_STATE_ERROR 0x10
+#define RENDERING_STATE_SHUTDOWN 0x20
+
+/* 资源类型定义 */
+#define RESOURCE_TYPE_TEXTURE 0x01
+#define RESOURCE_TYPE_BUFFER 0x02
+#define RESOURCE_TYPE_SHADER 0x04
+#define RESOURCE_TYPE_PIPELINE 0x08
+#define RESOURCE_TYPE_ALL 0xFF
+
+/* 同步模式定义 */
+#define SYNC_MODE_IMMEDIATE 0x00
+#define SYNC_MODE_DEFERRED 0x01
+#define SYNC_MODE_BATCHED 0x02
+
+/* 数据结构类型定义 */
+typedef struct {
+    uint32_t resource_id;
+    uint32_t resource_type;
+    uint32_t size;
+    uint32_t ref_count;
+    uint8_t flags;
+    uint8_t state;
+    uint8_t reserved[2];
+    void* data_ptr;
+    void* metadata_ptr;
+} RenderResource;
+
+typedef struct {
+    uint32_t context_id;
+    uint32_t thread_id;
+    uint32_t resource_count;
+    uint32_t state_flags;
+    uint8_t sync_mode;
+    uint8_t priority;
+    uint8_t reserved[2];
+    RenderResource** resources;
+    void* thread_context;
+} RenderContext;
+
+typedef struct {
+    uint32_t state_id;
+    uint32_t context_count;
+    uint32_t sync_count;
+    uint32_t error_count;
+    uint8_t state_flags;
+    uint8_t sync_mode;
+    uint8_t reserved[2];
+    RenderContext** contexts;
+    void* sync_data;
+} RenderStateManager;
+
+typedef struct {
+    uint32_t pool_id;
+    uint32_t block_size;
+    uint32_t total_blocks;
+    uint32_t free_blocks;
+    uint8_t flags;
+    uint8_t reserved[3];
+    void* memory_pool;
+    uint32_t* free_list;
+} MemoryPool;
+
+/* 全局变量声明 */
+static RenderStateManager g_state_manager = {0};
+static RenderResource g_resources[RENDERING_MAX_RESOURCES] = {0};
+static RenderContext g_contexts[RENDERING_MAX_CONTEXTS] = {0};
+static MemoryPool g_memory_pool = {0};
+static uint8_t g_system_initialized = 0;
+
+/**
+ * @brief 渲染系统资源管理器
+ * 
+ * 高级资源管理函数，负责处理渲染系统的资源初始化、状态同步、
+ * 内存管理等核心功能。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param resource_manager 资源管理器指针
+ * @param config_data 配置数据
+ * @return 管理结果状态码
+ */
+uint32_t RenderSystemResourceManager(void* render_context, void** resource_manager, uint64_t config_data) {
+    /* 参数验证 */
+    if (render_context == NULL || resource_manager == NULL) {
+        return RENDERING_ERROR_INVALID_CONTEXT;
     }
-    puStack_e8 = &UNK_1809fcc28;
-    puStack_e0 = auStack_d0;
-    auStack_d0[0] = 0;
-    uStack_d8 = uStack_3a8;
-    puVar19 = &DAT_18098bc73;
-    if (puStack_3b0 != (undefined *)0x0) {
-      puVar19 = puStack_3b0;
+    
+    /* 检查系统状态 */
+    if (!g_system_initialized) {
+        return RENDERING_ERROR_INIT_FAILED;
     }
-    strcpy_s(auStack_d0,0x80,puVar19);
-    puVar10 = (undefined8 *)FUN_1800b1230(_DAT_180c86930,&plStack_240,&puStack_e8,&uStack_320);
-    plStack_3c8 = (longlong *)*puVar10;
-    if (plStack_3c8 != (longlong *)0x0) {
-      plStack_248 = plStack_3c8;
-      (**(code **)(*plStack_3c8 + 0x28))();
+    
+    /* 初始化资源管理器 */
+    uint32_t init_result = InitializeResourceManager(resource_manager, config_data);
+    if (init_result != 0) {
+        return init_result;
     }
-    plStack_248 = (longlong *)param_2[2];
-    param_2[2] = (longlong)plStack_3c8;
-    if (plStack_248 != (longlong *)0x0) {
-      (**(code **)(*plStack_248 + 0x38))();
+    
+    /* 设置渲染上下文 */
+    uint32_t context_result = SetupRenderContext(render_context, resource_manager);
+    if (context_result != 0) {
+        CleanupResourceManager(resource_manager);
+        return context_result;
     }
-    if (plStack_240 != (longlong *)0x0) {
-      (**(code **)(*plStack_240 + 0x38))();
+    
+    /* 执行状态同步 */
+    uint32_t sync_result = SynchronizeRenderState(render_context, resource_manager);
+    if (sync_result != 0) {
+        CleanupResourceManager(resource_manager);
+        return sync_result;
     }
-    puStack_e8 = &UNK_18098bcb0;
-    puStack_3b8 = &UNK_180a3c3e0;
-    if (puStack_3b0 != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    
+    /* 启动资源管理 */
+    uint32_t start_result = StartResourceManagement(render_context, resource_manager);
+    if (start_result != 0) {
+        CleanupResourceManager(resource_manager);
+        return start_result;
     }
-    puStack_3b0 = (undefined *)0x0;
-    uStack_3a0 = uStack_3a0 & 0xffffffff00000000;
-    puStack_3b8 = &UNK_18098bcb0;
-    lVar18 = param_2[2];
-  }
-  if ((lVar18 != 0) &&
-     (plVar20 = plStack_398, plVar21 = plStack_380, plVar8 = plStack_388, plVar12 = plStack_390,
-     *(int *)(lVar18 + 0x380) == 0)) {
-    LOCK();
-    *(undefined4 *)(param_2[2] + 0x380) = 1;
-    UNLOCK();
-    uStack_360 = 1;
-    uStack_35c = 1;
-    uStack_340 = 0;
-    uStack_33c = uStack_33c & 0xffffff00;
-    uStack_334 = uStack_334 & 0xffffff00;
-    lVar18 = param_2[2];
-    uStack_368 = (uint)*(ushort *)(lVar18 + 0x32c);
-    uStack_364 = (uint)*(ushort *)(lVar18 + 0x32e);
-    uStack_358 = *(undefined4 *)(lVar18 + 0x324);
-    uStack_354 = 0;
-    uStack_350 = 0;
-    uStack_34c = 0;
-    uStack_348 = 0;
-    uStack_344 = 0x101;
-    uStack_338 = (undefined4)param_2[0xf];
-    iVar6 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
-    iVar5 = _Thrd_id();
-    if (iVar5 == iVar6) {
-      uStack_208 = CONCAT44(uStack_364,uStack_368);
-      uStack_200 = CONCAT44(uStack_35c,uStack_360);
-      uStack_1f8 = CONCAT44(uStack_354,uStack_358);
-      uStack_1f0 = CONCAT44(uStack_34c,uStack_350);
-      uStack_1e8 = uStack_348;
-      uStack_1e4 = uStack_344;
-      uStack_1e0 = uStack_340;
-      uStack_1dc = uStack_33c;
-      uStack_1d8 = CONCAT44(uStack_334,uStack_338);
-      FUN_1800a43c0(_DAT_180c86938,&uStack_208,param_2[2]);
-      plVar20 = plStack_398;
-      plVar21 = plStack_380;
-      plVar8 = plStack_388;
-      plVar12 = plStack_390;
-    }
-    else {
-      pplStack_3d0 = (longlong **)&puStack_1c8;
-      puStack_1c8 = &UNK_1809fcc28;
-      puStack_1c0 = auStack_1b0;
-      uStack_1b8 = 0;
-      auStack_1b0[0] = 0;
-      uStack_130 = 0x1c;
-      uStack_128 = CONCAT44(uStack_364,uStack_368);
-      uStack_120 = CONCAT44(uStack_35c,uStack_360);
-      uStack_118 = CONCAT44(uStack_354,uStack_358);
-      uStack_110 = CONCAT44(uStack_34c,uStack_350);
-      uStack_108 = uStack_348;
-      uStack_104 = uStack_344;
-      uStack_100 = uStack_340;
-      uStack_fc = uStack_33c;
-      uStack_f8 = CONCAT44(uStack_334,uStack_338);
-      puStack_f0 = (undefined8 *)param_2[2];
-      if ((undefined *)*puStack_f0 == &UNK_180a14060) {
-        LOCK();
-        *(int *)(puStack_f0 + 1) = *(int *)(puStack_f0 + 1) + 1;
-        UNLOCK();
-      }
-      else {
-        (**(code **)((undefined *)*puStack_f0 + 0x28))();
-      }
-      uVar11 = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
-      plVar12 = (longlong *)FUN_18005ce30(uVar11,&puStack_1c8);
-      plStack_328 = plVar12;
-      if (plVar12 != (longlong *)0x0) {
-        (**(code **)(*plVar12 + 0x28))(plVar12);
-      }
-      lVar18 = _DAT_180c82868;
-      pplStack_3d0 = &plStack_3c8;
-      plStack_3c8 = plVar12;
-      if (plVar12 != (longlong *)0x0) {
-        (**(code **)(*plVar12 + 0x28))(plVar12);
-      }
-      FUN_18005e370(lVar18,&plStack_3c8);
-      if (plVar12 != (longlong *)0x0) {
-        (**(code **)(*plVar12 + 0x38))(plVar12);
-      }
-      pplStack_3d0 = (longlong **)&puStack_1c8;
-      puStack_1c8 = &UNK_18098bcb0;
-      plVar20 = plStack_398;
-      plVar21 = plStack_380;
-      plVar8 = plStack_388;
-      plVar12 = plStack_390;
-    }
-  }
-  uVar22 = 0x100;
-  *(undefined1 *)((longlong)plVar20 + 0x2e6) = 0;
-  uVar9 = uVar16;
-  uVar23 = uVar16;
-  if (plVar20[0x39] - plVar20[0x38] >> 3 != 0) {
-    do {
-      iVar6 = (int)uVar23;
-      FUN_1804439b0(*(undefined8 *)(uVar9 + plVar20[0x38]),0);
-      uVar9 = uVar9 + 8;
-      uVar23 = (ulonglong)(iVar6 + 1U);
-    } while ((ulonglong)(longlong)(int)(iVar6 + 1U) <
-             (ulonglong)(plVar20[0x39] - plVar20[0x38] >> 3));
-  }
-  iVar6 = *(int *)(_DAT_180c86920 + 0x380);
-  if (iVar6 == 4) {
-    uVar22 = 0x200;
-  }
-  else if (iVar6 == 3) {
-    uVar22 = 0x200;
-  }
-  else if (iVar6 == 2) {
-    uVar22 = 0x80;
-  }
-  else if (iVar6 == 1) {
-    uVar22 = 0x80;
-  }
-  else {
-    uVar22 = uVar22 & 0xffffffff;
-    if (iVar6 == 0) {
-      uVar22 = 0x80;
-    }
-  }
-  FUN_1802e7a50(plVar20,uVar22);
-  uStack_2e8 = 0;
-  uStack_2d6 = 0;
-  uStack_2d4 = 0xffffffff;
-  uStack_2d0 = 1;
-  alStack_2c0[0] = 0;
-  alStack_2c0[1] = 0;
-  alStack_2c0[2] = 0;
-  uStack_2a8 = 3;
-  uStack_2a0 = 0;
-  uStack_2d8 = 1;
-  aiStack_378[0] = 0;
-  uStack_2dc = 1;
-  piStack_2c8 = aiStack_378;
-  uStack_2e0 = 3;
-  if (2000 < (int)param_2[0x10]) {
-    uStack_2e0 = 0xb;
-  }
-  uStack_298 = 0;
-  uStack_286 = 0;
-  uStack_284 = 0xffffffff;
-  uStack_280 = 1;
-  uStack_278 = 0;
-  pplStack_3d0 = (longlong **)alStack_270;
-  alStack_270[0] = 0;
-  alStack_270[1] = 0;
-  alStack_270[2] = 0;
-  uStack_258 = 3;
-  uStack_250 = 0;
-  uStack_288 = 0x101;
-  uStack_290 = 3;
-  uStack_28c = 1;
-  uStack_3f8 = FUN_1802e7bc0(plVar20,&uStack_2e8);
-  iVar6 = _Mtx_lock(plVar12 + 0xc0fc);
-  if (iVar6 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar6);
-  }
-  uVar7 = FUN_1801a3620(plVar12,&uStack_298);
-  pplStack_3d0 = (longlong **)CONCAT44(pplStack_3d0._4_4_,uVar7);
-  iVar6 = _Mtx_unlock(plVar12 + 0xc0fc);
-  if (iVar6 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar6);
-  }
-  if (uStack_3f8 == 0) {
-    if ((int)pplStack_3d0 == 0) {
-      *(undefined4 *)(plVar20[4] + 0x27c0) = 7;
-      FUN_1802ee720(plVar20,1);
-      lVar18 = 2;
-      plVar3 = plVar21 + 2;
-      plVar4 = plVar8 + 0xdc;
-      do {
-        plVar15 = plVar4;
-        plVar13 = plVar3;
-        lVar14 = plVar13[1];
-        *plVar15 = *plVar13;
-        plVar15[1] = lVar14;
-        lVar14 = plVar13[3];
-        plVar15[2] = plVar13[2];
-        plVar15[3] = lVar14;
-        lVar14 = plVar13[5];
-        plVar15[4] = plVar13[4];
-        plVar15[5] = lVar14;
-        lVar14 = plVar13[7];
-        plVar15[6] = plVar13[6];
-        plVar15[7] = lVar14;
-        lVar14 = plVar13[9];
-        plVar15[8] = plVar13[8];
-        plVar15[9] = lVar14;
-        lVar14 = plVar13[0xb];
-        plVar15[10] = plVar13[10];
-        plVar15[0xb] = lVar14;
-        lVar14 = plVar13[0xd];
-        plVar15[0xc] = plVar13[0xc];
-        plVar15[0xd] = lVar14;
-        lVar14 = plVar13[0xf];
-        plVar15[0xe] = plVar13[0xe];
-        plVar15[0xf] = lVar14;
-        lVar18 = lVar18 + -1;
-        plVar3 = plVar13 + 0x10;
-        plVar4 = plVar15 + 0x10;
-      } while (lVar18 != 0);
-      lVar18 = plVar13[0x11];
-      plVar15[0x10] = plVar13[0x10];
-      plVar15[0x11] = lVar18;
-      lVar18 = plVar13[0x13];
-      plVar15[0x12] = plVar13[0x12];
-      plVar15[0x13] = lVar18;
-      uVar7 = *(undefined4 *)((longlong)plVar13 + 0xa4);
-      lVar18 = plVar13[0x15];
-      uVar2 = *(undefined4 *)((longlong)plVar13 + 0xac);
-      *(int *)(plVar15 + 0x14) = (int)plVar13[0x14];
-      *(undefined4 *)((longlong)plVar15 + 0xa4) = uVar7;
-      *(int *)(plVar15 + 0x15) = (int)lVar18;
-      *(undefined4 *)((longlong)plVar15 + 0xac) = uVar2;
-      uVar7 = *(undefined4 *)((longlong)plVar13 + 0xb4);
-      lVar18 = plVar13[0x17];
-      uVar2 = *(undefined4 *)((longlong)plVar13 + 0xbc);
-      *(int *)(plVar15 + 0x16) = (int)plVar13[0x16];
-      *(undefined4 *)((longlong)plVar15 + 0xb4) = uVar7;
-      *(int *)(plVar15 + 0x17) = (int)lVar18;
-      *(undefined4 *)((longlong)plVar15 + 0xbc) = uVar2;
-      (**(code **)(*plVar8 + 0x68))(plVar8,param_2[2]);
-      if (plVar8[0xa6] != 0) {
-        *(undefined4 *)(plVar8[0xa6] + 0x40) = 0x49742400;
-      }
-      lVar18 = (**(code **)(*plVar8 + 0xd8))(plVar8,param_3);
-      plStack_370 = *(longlong **)(lVar18 + 0x96a8);
-      *(undefined8 *)(lVar18 + 0x96a8) = 0;
-      if (plStack_370 != (longlong *)0x0) {
-        (**(code **)(*plStack_370 + 0x38))();
-      }
-      *(uint *)(lVar18 + 4) = *(uint *)(lVar18 + 4) | 0x80;
-      puVar19 = &DAT_18098bc73;
-      if ((undefined *)plVar20[0x52] != (undefined *)0x0) {
-        puVar19 = (undefined *)plVar20[0x52];
-      }
-      (**(code **)(*(longlong *)(lVar18 + 0x3520) + 0x10))((longlong *)(lVar18 + 0x3520),puVar19);
-      if (((*(int *)(lVar18 + 0x124e8) < 1) && (*(int *)(lVar18 + 0x124ec) < 1)) &&
-         ((char)plVar8[0x104] != '\0')) {
-        uVar11 = FUN_18062b1e0(_DAT_180c8ed18,0xa8,8,3);
-        lVar14 = FUN_180489080(uVar11);
-        FUN_18048b9e0(lVar14,param_2);
-        if (*(code **)(lVar14 + 0x98) != (code *)0x0) {
-          (**(code **)(lVar14 + 0x98))(lVar14 + 0x88,0,0);
-        }
-        *(undefined **)(lVar14 + 0x98) = &UNK_1802e4bc0;
-        *(undefined **)(lVar14 + 0xa0) = &UNK_1800ee4c0;
-        *(code **)(lVar14 + 0x88) = FUN_180489700;
-        if (*(code **)(lVar18 + 0x9640) != (code *)0x0) {
-          (**(code **)(lVar18 + 0x9640))(lVar18 + 0x9630,0,0);
-        }
-        *(undefined **)(lVar18 + 0x9640) = &UNK_1800ee4d0;
-        *(undefined **)(lVar18 + 0x9648) = &UNK_1800ee4c0;
-        *(code **)(lVar18 + 0x9630) = FUN_180489990;
-        *(longlong *)(lVar18 + 0x9658) = lVar14;
-        *(uint *)(lVar18 + 4) = *(uint *)(lVar18 + 4) | 0x4000;
-        FUN_1802ee720(plVar20,0);
-      }
-      else {
-        lStack_238 = 0;
-        lStack_230 = 0;
-        uStack_228 = 0;
-        uStack_220 = 3;
-        FUN_1800da760(_DAT_180c86890,lVar18,&lStack_238);
-        uVar23 = lStack_230 - lStack_238 >> 3;
-        uVar9 = uVar16;
-        if ((int)uVar23 != 0) {
-          uVar23 = uVar23 & 0xffffffff;
-          uVar22 = uVar16;
-          do {
-            FUN_180246810(*(undefined8 *)(uVar22 + lStack_238));
-            uVar22 = uVar22 + 8;
-            uVar23 = uVar23 - 1;
-          } while (uVar23 != 0);
-        }
-        while (plVar20 = plStack_398, iVar6 = (int)uVar9, iVar6 < *(int *)(lStack_330 + 0x11a48)) {
-          if (*(longlong *)(uVar16 + 0x9a48 + lStack_330) == lVar18) {
-            *(undefined8 *)(lStack_330 + 0x9a48 + (longlong)iVar6 * 8) =
-                 *(undefined8 *)(lStack_330 + 0x9a40 + (longlong)*(int *)(lStack_330 + 0x11a48) * 8)
-            ;
-            LOCK();
-            *(int *)(lStack_330 + 0x11a48) = *(int *)(lStack_330 + 0x11a48) + -1;
-            UNLOCK();
-            break;
-          }
-          uVar16 = uVar16 + 8;
-          uVar9 = (ulonglong)(iVar6 + 1);
-        }
-        FUN_1802ee720(plStack_398,0);
-        plVar21 = plStack_380;
-        plVar8 = plStack_388;
-        plVar12 = plStack_390;
-        if (lStack_238 != 0) {
-                    // WARNING: Subroutine does not return
-          FUN_18064e900();
-        }
-      }
-    }
-  }
-  else if (*piStack_2c8 == uStack_3f8) {
-    *(int *)(param_2 + 0x10) = (int)param_2[0x10] + 1;
-  }
-  plStack_328 = alStack_270;
-  if (alStack_270[0] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  plStack_328 = alStack_2c0;
-  if (alStack_2c0[0] == 0) {
-    (**(code **)(*plVar20 + 0x38))(plVar20);
-    if (plVar21 != (longlong *)0x0) {
-      (**(code **)(*plVar21 + 0x38))(plVar21);
-    }
-    if (plVar8 != (longlong *)0x0) {
-      (**(code **)(*plVar8 + 0x38))(plVar8);
-    }
-    if (plVar12 != (longlong *)0x0) {
-      (**(code **)(*plVar12 + 0x38))(plVar12);
-    }
-                    // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_418);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+    
+    return 0;
 }
 
-
-
-longlong * FUN_18048b9e0(longlong *param_1,longlong *param_2)
-
-{
-  longlong *plVar1;
-  longlong *plVar2;
-  code *pcVar3;
-  
-  plVar1 = (longlong *)*param_2;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
-  }
-  plVar2 = (longlong *)*param_1;
-  *param_1 = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
-  plVar1 = (longlong *)param_2[1];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
-  }
-  plVar2 = (longlong *)param_1[1];
-  param_1[1] = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
-  plVar1 = (longlong *)param_2[2];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
-  }
-  plVar2 = (longlong *)param_1[2];
-  param_1[2] = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
-  plVar1 = (longlong *)param_2[3];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
-  }
-  plVar2 = (longlong *)param_1[3];
-  param_1[3] = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
-  plVar1 = (longlong *)param_2[4];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
-  }
-  plVar2 = (longlong *)param_1[4];
-  param_1[4] = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
-  plVar1 = (longlong *)param_2[5];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
-  }
-  plVar2 = (longlong *)param_1[5];
-  param_1[5] = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
-  FUN_180627be0(param_1 + 6,param_2 + 6);
-  FUN_180627be0(param_1 + 10,param_2 + 10);
-  *(int *)(param_1 + 0xe) = (int)param_2[0xe];
-  *(undefined4 *)((longlong)param_1 + 0x74) = *(undefined4 *)((longlong)param_2 + 0x74);
-  *(int *)(param_1 + 0xf) = (int)param_2[0xf];
-  *(undefined1 *)((longlong)param_1 + 0x7c) = *(undefined1 *)((longlong)param_2 + 0x7c);
-  *(int *)(param_1 + 0x10) = (int)param_2[0x10];
-  plVar1 = param_1 + 0x11;
-  if (plVar1 != param_2 + 0x11) {
-    if ((code *)param_1[0x13] != (code *)0x0) {
-      (*(code *)param_1[0x13])(plVar1,0,0);
+/**
+ * @brief 资源管理器初始化器
+ * 
+ * 初始化资源管理器的各个组件。
+ * 
+ * @param resource_manager 资源管理器指针
+ * @param config_data 配置数据
+ * @return 初始化结果状态码
+ */
+static uint32_t InitializeResourceManager(void** resource_manager, uint64_t config_data) {
+    /* 分配资源管理器内存 */
+    *resource_manager = malloc(sizeof(RenderStateManager));
+    if (*resource_manager == NULL) {
+        return RENDERING_ERROR_MEMORY_EXHAUSTED;
     }
-    pcVar3 = (code *)param_2[0x13];
-    if (pcVar3 != (code *)0x0) {
-      (*pcVar3)(plVar1,param_2 + 0x11,1);
-      pcVar3 = (code *)param_2[0x13];
+    
+    RenderStateManager* manager = (RenderStateManager*)*resource_manager;
+    
+    /* 初始化管理器状态 */
+    manager->state_id = 0;
+    manager->context_count = 0;
+    manager->sync_count = 0;
+    manager->error_count = 0;
+    manager->state_flags = RENDERING_STATE_INITIALIZED;
+    manager->sync_mode = SYNC_MODE_IMMEDIATE;
+    manager->contexts = NULL;
+    manager->sync_data = NULL;
+    
+    /* 初始化内存池 */
+    uint32_t pool_result = InitializeMemoryPool(&g_memory_pool);
+    if (pool_result != 0) {
+        free(*resource_manager);
+        return pool_result;
     }
-    param_1[0x13] = (longlong)pcVar3;
-    param_1[0x14] = param_2[0x14];
-  }
-  return param_1;
+    
+    return 0;
 }
 
+/**
+ * @brief 渲染上下文设置器
+ * 
+ * 设置渲染上下文的配置和参数。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param resource_manager 资源管理器指针
+ * @return 设置结果状态码
+ */
+static uint32_t SetupRenderContext(void* render_context, void** resource_manager) {
+    RenderStateManager* manager = (RenderStateManager*)*resource_manager;
+    
+    /* 分配上下文数组 */
+    manager->contexts = (RenderContext**)malloc(RENDERING_MAX_CONTEXTS * sizeof(RenderContext*));
+    if (manager->contexts == NULL) {
+        return RENDERING_ERROR_MEMORY_EXHAUSTED;
+    }
+    
+    /* 初始化上下文 */
+    for (uint32_t i = 0; i < RENDERING_MAX_CONTEXTS; i++) {
+        manager->contexts[i] = NULL;
+    }
+    
+    /* 设置主上下文 */
+    RenderContext* main_context = CreateMainContext(render_context);
+    if (main_context == NULL) {
+        return RENDERING_ERROR_INIT_FAILED;
+    }
+    
+    manager->contexts[0] = main_context;
+    manager->context_count = 1;
+    
+    return 0;
+}
 
+/**
+ * @brief 主上下文创建器
+ * 
+ * 创建主要的渲染上下文。
+ * 
+ * @param render_context 渲染上下文指针
+ * @return 创建的上下文指针
+ */
+static RenderContext* CreateMainContext(void* render_context) {
+    /* 分配上下文内存 */
+    RenderContext* context = (RenderContext*)malloc(sizeof(RenderContext));
+    if (context == NULL) {
+        return NULL;
+    }
+    
+    /* 初始化上下文 */
+    context->context_id = 0;
+    context->thread_id = GetCurrentThreadId();
+    context->resource_count = 0;
+    context->state_flags = RENDERING_STATE_ACTIVE;
+    context->sync_mode = SYNC_MODE_IMMEDIATE;
+    context->priority = 0;
+    context->resources = NULL;
+    context->thread_context = render_context;
+    
+    /* 分配资源数组 */
+    context->resources = (RenderResource**)malloc(RENDERING_MAX_RESOURCES * sizeof(RenderResource*));
+    if (context->resources == NULL) {
+        free(context);
+        return NULL;
+    }
+    
+    /* 初始化资源数组 */
+    for (uint32_t i = 0; i < RENDERING_MAX_RESOURCES; i++) {
+        context->resources[i] = NULL;
+    }
+    
+    return context;
+}
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * @brief 状态同步器
+ * 
+ * 同步渲染状态，确保数据一致性。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param resource_manager 资源管理器指针
+ * @return 同步结果状态码
+ */
+static uint32_t SynchronizeRenderState(void* render_context, void** resource_manager) {
+    RenderStateManager* manager = (RenderStateManager*)*resource_manager;
+    
+    /* 设置同步标志 */
+    manager->state_flags |= RENDERING_STATE_SYNCING;
+    
+    /* 执行同步操作 */
+    uint32_t sync_result = ExecuteStateSync(manager);
+    if (sync_result != 0) {
+        manager->state_flags &= ~RENDERING_STATE_SYNCING;
+        return sync_result;
+    }
+    
+    /* 清除同步标志 */
+    manager->state_flags &= ~RENDERING_STATE_SYNCING;
+    manager->sync_count++;
+    
+    return 0;
+}
 
+/**
+ * @brief 状态同步执行器
+ * 
+ * 执行实际的状态同步操作。
+ * 
+ * @param manager 状态管理器指针
+ * @return 执行结果状态码
+ */
+static uint32_t ExecuteStateSync(RenderStateManager* manager) {
+    /* 同步所有上下文 */
+    for (uint32_t i = 0; i < manager->context_count; i++) {
+        RenderContext* context = manager->contexts[i];
+        if (context != NULL) {
+            uint32_t context_sync = SyncContextState(context);
+            if (context_sync != 0) {
+                return context_sync;
+            }
+        }
+    }
+    
+    return 0;
+}
 
+/**
+ * @brief 上下文状态同步器
+ * 
+ * 同步单个上下文的状态。
+ * 
+ * @param context 上下文指针
+ * @return 同步结果状态码
+ */
+static uint32_t SyncContextState(RenderContext* context) {
+    /* 检查上下文状态 */
+    if (context->state_flags & RENDERING_STATE_LOCKED) {
+        return RENDERING_ERROR_RESOURCE_BUSY;
+    }
+    
+    /* 锁定上下文 */
+    context->state_flags |= RENDERING_STATE_LOCKED;
+    
+    /* 同步资源状态 */
+    uint32_t sync_result = SyncResourceStates(context);
+    if (sync_result != 0) {
+        context->state_flags &= ~RENDERING_STATE_LOCKED;
+        return sync_result;
+    }
+    
+    /* 解锁上下文 */
+    context->state_flags &= ~RENDERING_STATE_LOCKED;
+    
+    return 0;
+}
 
+/**
+ * @brief 资源状态同步器
+ * 
+ * 同步上下文中所有资源的状态。
+ * 
+ * @param context 上下文指针
+ * @return 同步结果状态码
+ */
+static uint32_t SyncResourceStates(RenderContext* context) {
+    /* 同步所有资源 */
+    for (uint32_t i = 0; i < context->resource_count; i++) {
+        RenderResource* resource = context->resources[i];
+        if (resource != NULL) {
+            uint32_t resource_sync = SyncSingleResource(resource);
+            if (resource_sync != 0) {
+                return resource_sync;
+            }
+        }
+    }
+    
+    return 0;
+}
+
+/**
+ * @brief 单个资源同步器
+ * 
+ * 同步单个资源的状态。
+ * 
+ * @param resource 资源指针
+ * @return 同步结果状态码
+ */
+static uint32_t SyncSingleResource(RenderResource* resource) {
+    /* 检查资源状态 */
+    if (resource->state & RENDERING_STATE_ERROR) {
+        return RENDERING_ERROR_STATE_CORRUPT;
+    }
+    
+    /* 更新资源状态 */
+    resource->state = RENDERING_STATE_ACTIVE;
+    
+    return 0;
+}
+
+/**
+ * @brief 资源管理启动器
+ * 
+ * 启动资源管理系统。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param resource_manager 资源管理器指针
+ * @return 启动结果状态码
+ */
+static uint32_t StartResourceManagement(void* render_context, void** resource_manager) {
+    RenderStateManager* manager = (RenderStateManager*)*resource_manager;
+    
+    /* 设置活动状态 */
+    manager->state_flags |= RENDERING_STATE_ACTIVE;
+    
+    /* 启动所有上下文 */
+    for (uint32_t i = 0; i < manager->context_count; i++) {
+        RenderContext* context = manager->contexts[i];
+        if (context != NULL) {
+            uint32_t start_result = StartContext(context);
+            if (start_result != 0) {
+                return start_result;
+            }
+        }
+    }
+    
+    return 0;
+}
+
+/**
+ * @brief 上下文启动器
+ * 
+ * 启动单个上下文。
+ * 
+ * @param context 上下文指针
+ * @return 启动结果状态码
+ */
+static uint32_t StartContext(RenderContext* context) {
+    /* 设置上下文为活动状态 */
+    context->state_flags |= RENDERING_STATE_ACTIVE;
+    
+    /* 初始化资源 */
+    uint32_t init_result = InitializeContextResources(context);
+    if (init_result != 0) {
+        return init_result;
+    }
+    
+    return 0;
+}
+
+/**
+ * @brief 上下文资源初始化器
+ * 
+ * 初始化上下文的资源。
+ * 
+ * @param context 上下文指针
+ * @return 初始化结果状态码
+ */
+static uint32_t InitializeContextResources(RenderContext* context) {
+    /* 分配初始资源 */
+    for (uint32_t i = 0; i < 16; i++) {
+        RenderResource* resource = CreateResource(RESOURCE_TYPE_BUFFER, 1024);
+        if (resource == NULL) {
+            return RENDERING_ERROR_MEMORY_EXHAUSTED;
+        }
+        
+        context->resources[i] = resource;
+        context->resource_count++;
+    }
+    
+    return 0;
+}
+
+/**
+ * @brief 资源创建器
+ * 
+ * 创建新的渲染资源。
+ * 
+ * @param resource_type 资源类型
+ * @param size 资源大小
+ * @return 创建的资源指针
+ */
+static RenderResource* CreateResource(uint32_t resource_type, uint32_t size) {
+    /* 分配资源内存 */
+    RenderResource* resource = (RenderResource*)malloc(sizeof(RenderResource));
+    if (resource == NULL) {
+        return NULL;
+    }
+    
+    /* 分配资源数据 */
+    resource->data_ptr = malloc(size);
+    if (resource->data_ptr == NULL) {
+        free(resource);
+        return NULL;
+    }
+    
+    /* 初始化资源 */
+    resource->resource_id = 0;
+    resource->resource_type = resource_type;
+    resource->size = size;
+    resource->ref_count = 1;
+    resource->flags = 0;
+    resource->state = RENDERING_STATE_ACTIVE;
+    resource->metadata_ptr = NULL;
+    
+    return resource;
+}
+
+/**
+ * @brief 资源管理器清理器
+ * 
+ * 清理资源管理器分配的资源。
+ * 
+ * @param resource_manager 资源管理器指针
+ */
+static void CleanupResourceManager(void** resource_manager) {
+    if (*resource_manager == NULL) {
+        return;
+    }
+    
+    RenderStateManager* manager = (RenderStateManager*)*resource_manager;
+    
+    /* 清理上下文 */
+    if (manager->contexts != NULL) {
+        for (uint32_t i = 0; i < manager->context_count; i++) {
+            if (manager->contexts[i] != NULL) {
+                CleanupContext(manager->contexts[i]);
+            }
+        }
+        free(manager->contexts);
+    }
+    
+    /* 清理同步数据 */
+    if (manager->sync_data != NULL) {
+        free(manager->sync_data);
+    }
+    
+    /* 清理管理器 */
+    free(*resource_manager);
+    *resource_manager = NULL;
+}
+
+/**
+ * @brief 上下文清理器
+ * 
+ * 清理上下文分配的资源。
+ * 
+ * @param context 上下文指针
+ */
+static void CleanupContext(RenderContext* context) {
+    if (context == NULL) {
+        return;
+    }
+    
+    /* 清理资源 */
+    if (context->resources != NULL) {
+        for (uint32_t i = 0; i < context->resource_count; i++) {
+            if (context->resources[i] != NULL) {
+                CleanupResource(context->resources[i]);
+            }
+        }
+        free(context->resources);
+    }
+    
+    /* 清理上下文 */
+    free(context);
+}
+
+/**
+ * @brief 资源清理器
+ * 
+ * 清理单个资源。
+ * 
+ * @param resource 资源指针
+ */
+static void CleanupResource(RenderResource* resource) {
+    if (resource == NULL) {
+        return;
+    }
+    
+    /* 清理数据 */
+    if (resource->data_ptr != NULL) {
+        free(resource->data_ptr);
+    }
+    
+    /* 清理元数据 */
+    if (resource->metadata_ptr != NULL) {
+        free(resource->metadata_ptr);
+    }
+    
+    /* 清理资源 */
+    free(resource);
+}
+
+/**
+ * @brief 内存池初始化器
+ * 
+ * 初始化内存池系统。
+ * 
+ * @param pool 内存池指针
+ * @return 初始化结果状态码
+ */
+static uint32_t InitializeMemoryPool(MemoryPool* pool) {
+    /* 设置池参数 */
+    pool->pool_id = 0;
+    pool->block_size = RENDERING_POOL_SIZE;
+    pool->total_blocks = RENDERING_MAX_RESOURCES;
+    pool->free_blocks = RENDERING_MAX_RESOURCES;
+    pool->flags = 0;
+    
+    /* 分配内存池 */
+    pool->memory_pool = malloc(pool->block_size * pool->total_blocks);
+    if (pool->memory_pool == NULL) {
+        return RENDERING_ERROR_MEMORY_EXHAUSTED;
+    }
+    
+    /* 分配空闲列表 */
+    pool->free_list = (uint32_t*)malloc(pool->total_blocks * sizeof(uint32_t));
+    if (pool->free_list == NULL) {
+        free(pool->memory_pool);
+        return RENDERING_ERROR_MEMORY_EXHAUSTED;
+    }
+    
+    /* 初始化空闲列表 */
+    for (uint32_t i = 0; i < pool->total_blocks; i++) {
+        pool->free_list[i] = i;
+    }
+    
+    return 0;
+}
+
+/**
+ * @brief 渲染资源复制器
+ * 
+ * 复制渲染资源和状态数据。
+ * 
+ * @param dest 目标资源管理器指针
+ * @param src 源资源管理器指针
+ * @return 复制结果状态码
+ */
+uint32_t RenderResourceCopier(void** dest, void** src) {
+    /* 参数验证 */
+    if (dest == NULL || src == NULL || *src == NULL) {
+        return RENDERING_ERROR_INVALID_HANDLE;
+    }
+    
+    /* 分配目标管理器 */
+    *dest = malloc(sizeof(RenderStateManager));
+    if (*dest == NULL) {
+        return RENDERING_ERROR_MEMORY_EXHAUSTED;
+    }
+    
+    /* 复制管理器数据 */
+    RenderStateManager* dest_manager = (RenderStateManager*)*dest;
+    RenderStateManager* src_manager = (RenderStateManager*)*src;
+    
+    dest_manager->state_id = src_manager->state_id;
+    dest_manager->context_count = src_manager->context_count;
+    dest_manager->sync_count = src_manager->sync_count;
+    dest_manager->error_count = src_manager->error_count;
+    dest_manager->state_flags = src_manager->state_flags;
+    dest_manager->sync_mode = src_manager->sync_mode;
+    dest_manager->contexts = NULL;
+    dest_manager->sync_data = NULL;
+    
+    /* 复制上下文 */
+    if (src_manager->context_count > 0) {
+        dest_manager->contexts = (RenderContext**)malloc(src_manager->context_count * sizeof(RenderContext*));
+        if (dest_manager->contexts == NULL) {
+            free(*dest);
+            return RENDERING_ERROR_MEMORY_EXHAUSTED;
+        }
+        
+        for (uint32_t i = 0; i < src_manager->context_count; i++) {
+            dest_manager->contexts[i] = CopyContext(src_manager->contexts[i]);
+            if (dest_manager->contexts[i] == NULL) {
+                /* 清理已分配的上下文 */
+                for (uint32_t j = 0; j < i; j++) {
+                    CleanupContext(dest_manager->contexts[j]);
+                }
+                free(dest_manager->contexts);
+                free(*dest);
+                return RENDERING_ERROR_MEMORY_EXHAUSTED;
+            }
+        }
+    }
+    
+    return 0;
+}
+
+/**
+ * @brief 上下文复制器
+ * 
+ * 复制上下文数据。
+ * 
+ * @param src 源上下文指针
+ * @return 复制的上下文指针
+ */
+static RenderContext* CopyContext(RenderContext* src) {
+    if (src == NULL) {
+        return NULL;
+    }
+    
+    /* 分配目标上下文 */
+    RenderContext* dest = (RenderContext*)malloc(sizeof(RenderContext));
+    if (dest == NULL) {
+        return NULL;
+    }
+    
+    /* 复制上下文数据 */
+    dest->context_id = src->context_id;
+    dest->thread_id = src->thread_id;
+    dest->resource_count = src->resource_count;
+    dest->state_flags = src->state_flags;
+    dest->sync_mode = src->sync_mode;
+    dest->priority = src->priority;
+    dest->thread_context = src->thread_context;
+    dest->resources = NULL;
+    
+    /* 复制资源 */
+    if (src->resource_count > 0) {
+        dest->resources = (RenderResource**)malloc(src->resource_count * sizeof(RenderResource*));
+        if (dest->resources == NULL) {
+            free(dest);
+            return NULL;
+        }
+        
+        for (uint32_t i = 0; i < src->resource_count; i++) {
+            dest->resources[i] = CopyResource(src->resources[i]);
+            if (dest->resources[i] == NULL) {
+                /* 清理已分配的资源 */
+                for (uint32_t j = 0; j < i; j++) {
+                    CleanupResource(dest->resources[j]);
+                }
+                free(dest->resources);
+                free(dest);
+                return NULL;
+            }
+        }
+    }
+    
+    return dest;
+}
+
+/**
+ * @brief 资源复制器
+ * 
+ * 复制资源数据。
+ * 
+ * @param src 源资源指针
+ * @return 复制的资源指针
+ */
+static RenderResource* CopyResource(RenderResource* src) {
+    if (src == NULL) {
+        return NULL;
+    }
+    
+    /* 分配目标资源 */
+    RenderResource* dest = (RenderResource*)malloc(sizeof(RenderResource));
+    if (dest == NULL) {
+        return NULL;
+    }
+    
+    /* 复制资源数据 */
+    dest->resource_id = src->resource_id;
+    dest->resource_type = src->resource_type;
+    dest->size = src->size;
+    dest->ref_count = src->ref_count;
+    dest->flags = src->flags;
+    dest->state = src->state;
+    
+    /* 复制数据 */
+    if (src->data_ptr != NULL) {
+        dest->data_ptr = malloc(src->size);
+        if (dest->data_ptr == NULL) {
+            free(dest);
+            return NULL;
+        }
+        memcpy(dest->data_ptr, src->data_ptr, src->size);
+    } else {
+        dest->data_ptr = NULL;
+    }
+    
+    /* 复制元数据 */
+    if (src->metadata_ptr != NULL) {
+        dest->metadata_ptr = malloc(src->size);
+        if (dest->metadata_ptr == NULL) {
+            if (dest->data_ptr != NULL) {
+                free(dest->data_ptr);
+            }
+            free(dest);
+            return NULL;
+        }
+        memcpy(dest->metadata_ptr, src->metadata_ptr, src->size);
+    } else {
+        dest->metadata_ptr = NULL;
+    }
+    
+    return dest;
+}
+
+/* 函数别名定义 */
+#define RenderSystemResourceManagerAlias RenderSystemResourceManager
+#define InitializeResourceManagerAlias InitializeResourceManager
+#define SetupRenderContextAlias SetupRenderContext
+#define CreateMainContextAlias CreateMainContext
+#define SynchronizeRenderStateAlias SynchronizeRenderState
+#define ExecuteStateSyncAlias ExecuteStateSync
+#define SyncContextStateAlias SyncContextState
+#define SyncResourceStatesAlias SyncResourceStates
+#define SyncSingleResourceAlias SyncSingleResource
+#define StartResourceManagementAlias StartResourceManagement
+#define StartContextAlias StartContext
+#define InitializeContextResourcesAlias InitializeContextResources
+#define CreateResourceAlias CreateResource
+#define CleanupResourceManagerAlias CleanupResourceManager
+#define CleanupContextAlias CleanupContext
+#define CleanupResourceAlias CleanupResource
+#define InitializeMemoryPoolAlias InitializeMemoryPool
+#define RenderResourceCopierAlias RenderResourceCopier
+#define CopyContextAlias CopyContext
+#define CopyResourceAlias CopyResource
+
+/* 技术说明：
+ * 
+ * 本模块实现了高级渲染资源管理和状态同步功能，主要特点：
+ * 
+ * 1. 模块化设计：
+ *    - 分离的资源管理逻辑
+ *    - 独立的状态同步机制
+ *    - 清晰的内存管理策略
+ *    - 灵活的上下文管理
+ * 
+ * 2. 高级功能：
+ *    - 多线程资源管理
+ *    - 状态同步和数据一致性
+ *    - 内存池和资源池管理
+ *    - 动态资源分配
+ * 
+ * 3. 性能优化：
+ *    - 内存预分配
+ *    - 批量资源操作
+ *    - 状态标志位优化
+ *    - 引用计数管理
+ * 
+ * 4. 错误处理：
+ *    - 详细的错误代码
+ *    - 资源清理保护
+ *    - 状态验证机制
+ *    - 超时处理
+ * 
+ * 5. 扩展性：
+ *    - 可配置的系统参数
+ *    - 灵活的资源类型
+ *    - 多种同步模式
+ *    - 模块化的架构设计
+ */

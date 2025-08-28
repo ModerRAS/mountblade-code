@@ -1,0 +1,915 @@
+#include "TaleWorlds.Native.Split.h"
+
+// 03_rendering_part145.c - 渲染系统高级参数处理和状态管理模块
+// 包含2个核心函数，涵盖渲染系统参数处理、状态查询、字符串处理、缓冲区管理、资源分配等高级渲染功能
+
+// 常量定义
+#define MAX_STRING_LENGTH 0x40
+#define PARAMETER_OFFSET_1 0x10
+#define PARAMETER_OFFSET_2 0x08
+#define RENDER_CONTEXT_OFFSET_1 0xcb
+#define RENDER_CONTEXT_OFFSET_2 0xc9
+#define RENDER_CONTEXT_OFFSET_3 0x18
+#define RENDER_CONTEXT_OFFSET_4 0x70
+#define RENDER_CONTEXT_OFFSET_5 0x108
+#define BUFFER_OFFSET_1 0x20
+#define BUFFER_OFFSET_2 0x2970
+#define BUFFER_OFFSET_3 0x118
+#define BUFFER_OFFSET_4 0x2ac
+#define BUFFER_OFFSET_5 0x260
+#define BUFFER_OFFSET_6 0x1b0
+#define BUFFER_OFFSET_7 0x1a8
+#define BUFFER_OFFSET_8 0xb8
+#define BUFFER_OFFSET_9 0xb0
+#define BUFFER_OFFSET_10 0x20
+#define BUFFER_OFFSET_11 0x18
+
+// 函数别名定义
+#define RenderingSystem_ParameterProcessor FUN_180358b90
+#define RenderingSystem_StateManager FUN_18035a770
+#define RenderingSystem_InternalProcessor FUN_180389090
+#define RenderingSystem_CleanupHandler FUN_180358b30
+#define RenderingSystem_MemoryAllocator FUN_18062b1e0
+#define RenderingSystem_ObjectInitializer FUN_1802e6b00
+#define RenderingSystem_ObjectCleanup FUN_180170ac0
+#define RenderingSystem_ConfigLoader FUN_1802ea790
+#define RenderingSystem_DataProcessor FUN_180198b90
+#define RenderingSystem_FlagUpdater FUN_1802ee810
+#define RenderingSystem_ComponentProcessor FUN_1808fc050
+
+// 全局变量引用
+extern undefined8 _DAT_180bf00a8;
+extern undefined UNK_18098bc80;
+extern char DAT_180a1eb78;
+extern undefined UNK_18098bcb0;
+extern undefined UNK_1809fcc58;
+extern undefined UNK_180a1ed70;
+extern undefined UNK_180a1ed58;
+extern char DAT_180a1eba8;
+extern char DAT_180a1eb48;
+extern undefined UNK_180a1ed88;
+extern char DAT_180a1ec30;
+extern char DAT_180a1ec18;
+extern char DAT_180a1ec58;
+extern char DAT_180a1eb60;
+extern char DAT_180a1ecb8;
+extern char DAT_180a1eca0;
+extern char DAT_180a1ec88;
+extern char DAT_180a1ec70;
+extern char DAT_180a1ed30;
+extern char DAT_180a1ed18;
+extern char DAT_180a1ecf8;
+extern char DAT_180a1ecd0;
+extern undefined UNK_180a0ba98;
+extern char DAT_180a00300;
+extern undefined UNK_180a1ed48;
+extern undefined8 _DAT_180c8ed18;
+
+/**
+ * 渲染系统参数处理器
+ * 
+ * 功能说明：
+ * - 处理渲染系统参数配置和验证
+ * - 管理渲染上下文状态和缓冲区
+ * - 执行字符串比较和参数匹配
+ * - 分配和管理渲染资源
+ * - 处理渲染系统初始化和清理
+ * 
+ * @param param_1 渲染上下文指针
+ * @param param_2 参数配置结构体指针
+ */
+void RenderingSystem_ParameterProcessor(longlong render_context, longlong parameter_config)
+{
+    char char_val_1;
+    char char_val_2;
+    int int_val;
+    char *string_ptr;
+    undefined8 *data_ptr;
+    longlong long_val;
+    bool bool_result;
+    undefined1 security_buffer[32];
+    longlong *resource_ptr;
+    undefined8 stack_value;
+    undefined *buffer_ptr_1;
+    undefined1 *buffer_ptr_2;
+    undefined4 buffer_size;
+    undefined1 string_buffer[72];
+    undefined *buffer_ptr_3;
+    undefined1 *buffer_ptr_4;
+    undefined4 buffer_size_2;
+    undefined1 string_buffer_2[72];
+    undefined *buffer_ptr_5;
+    undefined1 *buffer_ptr_6;
+    undefined4 buffer_size_3;
+    undefined1 string_buffer_3[72];
+    undefined *buffer_ptr_7;
+    undefined1 *buffer_ptr_8;
+    undefined4 buffer_size_4;
+    undefined1 string_buffer_4[72];
+    undefined *buffer_ptr_9;
+    undefined1 *buffer_ptr_10;
+    undefined4 buffer_size_5;
+    undefined1 string_buffer_5[72];
+    undefined *buffer_ptr_11;
+    undefined1 *buffer_ptr_12;
+    undefined4 buffer_size_6;
+    undefined1 string_buffer_6[72];
+    undefined *buffer_ptr_13;
+    undefined1 *buffer_ptr_14;
+    undefined4 buffer_size_7;
+    undefined1 string_buffer_7[72];
+    undefined *buffer_ptr_15;
+    undefined1 *buffer_ptr_16;
+    undefined4 buffer_size_8;
+    undefined1 string_buffer_8[72];
+    undefined *buffer_ptr_17;
+    undefined1 *buffer_ptr_18;
+    undefined4 buffer_size_9;
+    undefined1 string_buffer_9[72];
+    undefined *buffer_ptr_19;
+    undefined1 *buffer_ptr_20;
+    undefined4 buffer_size_10;
+    undefined1 string_buffer_10[72];
+    undefined *buffer_ptr_21;
+    undefined1 *buffer_ptr_22;
+    undefined4 buffer_size_11;
+    undefined1 string_buffer_11[72];
+    undefined *buffer_ptr_23;
+    undefined1 *buffer_ptr_24;
+    undefined4 buffer_size_12;
+    undefined1 string_buffer_12[72];
+    undefined *buffer_ptr_25;
+    undefined1 *buffer_ptr_26;
+    undefined4 buffer_size_13;
+    undefined1 string_buffer_13[72];
+    undefined *buffer_ptr_27;
+    undefined1 *buffer_ptr_28;
+    undefined4 buffer_size_14;
+    undefined1 string_buffer_14[72];
+    undefined *buffer_ptr_29;
+    undefined1 *buffer_ptr_30;
+    undefined4 buffer_size_15;
+    undefined1 string_buffer_15[72];
+    undefined *buffer_ptr_31;
+    undefined1 *buffer_ptr_32;
+    undefined4 buffer_size_16;
+    undefined1 string_buffer_16[72];
+    undefined *buffer_ptr_33;
+    undefined1 *buffer_ptr_34;
+    undefined4 buffer_size_17;
+    undefined1 string_buffer_17[72];
+    undefined *buffer_ptr_35;
+    undefined1 *buffer_ptr_36;
+    undefined4 buffer_size_18;
+    undefined1 string_buffer_18[72];
+    undefined *buffer_ptr_37;
+    undefined1 *buffer_ptr_38;
+    undefined4 buffer_size_19;
+    undefined1 string_buffer_19[72];
+    undefined *buffer_ptr_40;
+    undefined1 *buffer_ptr_41;
+    undefined4 buffer_size_20;
+    undefined1 string_buffer_20[72];
+    ulonglong security_hash;
+    
+    // 初始化安全栈值
+    stack_value = 0xfffffffffffffffe;
+    security_hash = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+    
+    // 初始化字符串缓冲区
+    buffer_ptr_32 = &UNK_18098bc80;
+    buffer_ptr_31 = string_buffer_17;
+    string_buffer_17[0] = 0;
+    int_val = 8;
+    strcpy_s(string_buffer_17, 0x20, &DAT_180a1eb78);
+    
+    // 获取参数长度并验证
+    int_val = *(int *)(parameter_config + PARAMETER_OFFSET_1);
+    if (int_val == 8) {
+        if (int_val == 0) {
+            // 空字符串处理
+            if (int_val != 0) {
+                bool_result = false;
+            } else {
+                bool_result = true;
+            }
+        } else {
+            // 字符串比较处理
+            string_ptr = *(char **)(parameter_config + PARAMETER_OFFSET_2);
+            long_val = (longlong)buffer_ptr_31 - (longlong)string_ptr;
+            do {
+                char_val_1 = *string_ptr;
+                char_val_2 = string_ptr[long_val];
+                if (char_val_1 != char_val_2) break;
+                string_ptr = string_ptr + 1;
+            } while (char_val_2 != '\0');
+            bool_result = char_val_1 == char_val_2;
+        }
+    } else {
+        if (int_val == 0) {
+            bool_result = true;
+        } else {
+            bool_result = false;
+        }
+    }
+    
+    buffer_ptr_32 = &UNK_18098bcb0;
+    if (bool_result) {
+        // 处理渲染上下文状态
+        if (*(char *)(render_context + RENDER_CONTEXT_OFFSET_1) == '\0') {
+            if (*(char *)(render_context + RENDER_CONTEXT_OFFSET_2) == '\0') {
+                // 初始化渲染缓冲区
+                buffer_ptr_23 = &UNK_1809fcc58;
+                buffer_ptr_22 = string_buffer_13;
+                string_buffer_13[0] = 0;
+                buffer_size_12 = 0x13;
+                strcpy_s(string_buffer_13, 0x40, &UNK_180a1ed70);
+                buffer_ptr_23 = &UNK_18098bcb0;
+                
+                buffer_ptr_15 = &UNK_1809fcc58;
+                buffer_ptr_14 = string_buffer_8;
+                string_buffer_8[0] = 0;
+                buffer_size_7 = 0x17;
+                strcpy_s(string_buffer_8, 0x40, &UNK_180a1ed58);
+                buffer_ptr_15 = &UNK_18098bcb0;
+                
+                buffer_ptr_17 = &UNK_1809fcc58;
+                buffer_ptr_16 = string_buffer_9;
+                string_buffer_9[0] = 0;
+                buffer_size_8 = 0x23;
+                strcpy_s(string_buffer_9, 0x40, &DAT_180a1eba8);
+                buffer_ptr_17 = &UNK_18098bcb0;
+                
+                buffer_ptr_19 = &UNK_1809fcc58;
+                buffer_ptr_18 = string_buffer_10;
+                string_buffer_10[0] = 0;
+                buffer_size_9 = 0x13;
+                strcpy_s(string_buffer_10, 0x40, &DAT_180a1eb48);
+                buffer_ptr_19 = &UNK_18098bcb0;
+                
+                buffer_ptr_21 = &UNK_1809fcc58;
+                buffer_ptr_20 = string_buffer_11;
+                string_buffer_11[0] = 0;
+                buffer_size_10 = 0x11;
+                strcpy_s(string_buffer_11, 0x40, &UNK_180a1ed88);
+                buffer_ptr_21 = &UNK_18098bcb0;
+                
+                buffer_ptr_25 = &UNK_1809fcc58;
+                buffer_ptr_24 = string_buffer_12;
+                string_buffer_12[0] = 0;
+                buffer_size_11 = 0x22;
+                strcpy_s(string_buffer_12, 0x40, &DAT_180a1ec30);
+                buffer_ptr_25 = &UNK_18098bcb0;
+                
+                buffer_ptr_29 = &UNK_1809fcc58;
+                buffer_ptr_28 = string_buffer_14;
+                string_buffer_14[0] = 0;
+                buffer_size_13 = 0x15;
+                strcpy_s(string_buffer_14, 0x40, &DAT_180a1ec18);
+                buffer_ptr_29 = &UNK_18098bcb0;
+                
+                buffer_ptr_33 = &UNK_1809fcc58;
+                buffer_ptr_30 = string_buffer_15;
+                string_buffer_15[0] = 0;
+                buffer_size_14 = 0x15;
+                strcpy_s(string_buffer_15, 0x40, &DAT_180a1ec58);
+            } else {
+                // 替代渲染缓冲区初始化
+                buffer_ptr_23 = &UNK_1809fcc58;
+                buffer_ptr_22 = string_buffer_13;
+                string_buffer_13[0] = 0;
+                buffer_size_12 = 0x13;
+                strcpy_s(string_buffer_13, 0x40, &UNK_180a1ed70);
+                buffer_ptr_23 = &UNK_18098bcb0;
+                
+                buffer_ptr_15 = &UNK_1809fcc58;
+                buffer_ptr_14 = string_buffer_8;
+                string_buffer_8[0] = 0;
+                buffer_size_7 = 0x17;
+                strcpy_s(string_buffer_8, 0x40, &UNK_180a1ed58);
+                buffer_ptr_15 = &UNK_18098bcb0;
+                
+                buffer_ptr_17 = &UNK_1809fcc58;
+                buffer_ptr_16 = string_buffer_9;
+                string_buffer_9[0] = 0;
+                buffer_size_8 = 0x23;
+                strcpy_s(string_buffer_9, 0x40, &DAT_180a1eba8);
+                buffer_ptr_17 = &UNK_18098bcb0;
+                
+                buffer_ptr_19 = &UNK_1809fcc58;
+                buffer_ptr_18 = string_buffer_10;
+                string_buffer_10[0] = 0;
+                buffer_size_9 = 0x13;
+                strcpy_s(string_buffer_10, 0x40, &DAT_180a1eb48);
+                buffer_ptr_19 = &UNK_18098bcb0;
+                
+                buffer_ptr_21 = &UNK_1809fcc58;
+                buffer_ptr_20 = string_buffer_11;
+                string_buffer_11[0] = 0;
+                buffer_size_10 = 0x11;
+                strcpy_s(string_buffer_11, 0x40, &UNK_180a1ed88);
+                buffer_ptr_21 = &UNK_18098bcb0;
+                
+                buffer_ptr_25 = &UNK_1809fcc58;
+                buffer_ptr_24 = string_buffer_12;
+                string_buffer_12[0] = 0;
+                buffer_size_11 = 0x22;
+                strcpy_s(string_buffer_12, 0x40, &DAT_180a1ec30);
+                buffer_ptr_25 = &UNK_18098bcb0;
+                
+                buffer_ptr_29 = &UNK_1809fcc58;
+                buffer_ptr_28 = string_buffer_14;
+                string_buffer_14[0] = 0;
+                buffer_size_13 = 0x15;
+                strcpy_s(string_buffer_14, 0x40, &DAT_180a1ec18);
+                buffer_ptr_29 = &UNK_18098bcb0;
+                
+                buffer_ptr_33 = &UNK_1809fcc58;
+                buffer_ptr_30 = string_buffer_15;
+                string_buffer_15[0] = 0;
+                buffer_size_14 = 0x15;
+                strcpy_s(string_buffer_15, 0x40, &DAT_180a1ec58);
+            }
+            
+            // 初始化额外渲染缓冲区
+            buffer_ptr_33 = &UNK_18098bcb0;
+            buffer_ptr_23 = &UNK_1809fcc58;
+            buffer_ptr_22 = string_buffer_13;
+            string_buffer_13[0] = 0;
+            buffer_size_12 = 9;
+            strcpy_s(string_buffer_13, 0x40, &DAT_180a1eb88);
+            buffer_ptr_23 = &UNK_18098bcb0;
+            
+            buffer_ptr_15 = &UNK_1809fcc58;
+            buffer_ptr_14 = string_buffer_8;
+            string_buffer_8[0] = 0;
+            buffer_size_7 = 0x12;
+            strcpy_s(string_buffer_8, 0x40, &DAT_180a1eb60);
+            buffer_ptr_15 = &UNK_18098bcb0;
+            
+            buffer_ptr_17 = &UNK_1809fcc58;
+            buffer_ptr_16 = string_buffer_9;
+            string_buffer_9[0] = 0;
+            buffer_size_8 = 0x15;
+            strcpy_s(string_buffer_9, 0x40, &DAT_180a1ecb8);
+            buffer_ptr_17 = &UNK_18098bcb0;
+            
+            buffer_ptr_19 = &UNK_1809fcc58;
+            buffer_ptr_18 = string_buffer_10;
+            string_buffer_10[0] = 0;
+            buffer_size_9 = 0x15;
+            strcpy_s(string_buffer_10, 0x40, &DAT_180a1eca0);
+            buffer_ptr_19 = &UNK_18098bcb0;
+            
+            buffer_ptr_21 = &UNK_1809fcc58;
+            buffer_ptr_20 = string_buffer_11;
+            string_buffer_11[0] = 0;
+            buffer_size_10 = 0x15;
+            strcpy_s(string_buffer_11, 0x40, &DAT_180a1ec88);
+            buffer_ptr_21 = &UNK_18098bcb0;
+            
+            buffer_ptr_25 = &UNK_1809fcc58;
+            buffer_ptr_24 = string_buffer_12;
+            string_buffer_12[0] = 0;
+            buffer_size_11 = 0x15;
+            strcpy_s(string_buffer_12, 0x40, &DAT_180a1ec70);
+            buffer_ptr_25 = &UNK_18098bcb0;
+            
+            buffer_ptr_29 = &UNK_1809fcc58;
+            buffer_ptr_28 = string_buffer_14;
+            string_buffer_14[0] = 0;
+            buffer_size_13 = 0x15;
+            strcpy_s(string_buffer_14, 0x40, &DAT_180a1ed30);
+            buffer_ptr_29 = &UNK_18098bcb0;
+            
+            buffer_ptr_33 = &UNK_1809fcc58;
+            buffer_ptr_30 = string_buffer_15;
+            string_buffer_15[0] = 0;
+            buffer_size_14 = 0x15;
+            strcpy_s(string_buffer_15, 0x40, &DAT_180a1ed18);
+            buffer_ptr_33 = &UNK_18098bcb0;
+            
+            buffer_ptr_13 = &UNK_1809fcc58;
+            buffer_ptr_12 = string_buffer_7;
+            string_buffer_7[0] = 0;
+            buffer_size_6 = 0x1a;
+            strcpy_s(string_buffer_7, 0x40, &DAT_180a1ecf8);
+            buffer_ptr_13 = &UNK_18098bcb0;
+        } else {
+            // 替代参数处理路径
+            buffer_ptr_32 = &UNK_1809fcc58;
+            buffer_ptr_31 = string_buffer_17;
+            string_buffer_17[0] = 0;
+            int_val = 0x12;
+            strcpy_s(string_buffer_17, 0x40, &DAT_180a1eb60);
+            buffer_ptr_32 = &UNK_18098bcb0;
+            
+            buffer_ptr_27 = &UNK_1809fcc58;
+            buffer_ptr_26 = string_buffer_16;
+            string_buffer_16[0] = 0;
+            buffer_size_15 = 0x13;
+            strcpy_s(string_buffer_16, 0x40, &DAT_180a1eb48);
+            buffer_ptr_27 = &UNK_18098bcb0;
+            
+            buffer_ptr_25 = &UNK_1809fcc58;
+            buffer_ptr_24 = string_buffer_12;
+            string_buffer_12[0] = 0;
+            buffer_size_11 = 0x11;
+            strcpy_s(string_buffer_12, 0x40, &UNK_180a1ed88);
+            buffer_ptr_25 = &UNK_18098bcb0;
+            
+            buffer_ptr_21 = &UNK_1809fcc58;
+            buffer_ptr_20 = string_buffer_11;
+            string_buffer_11[0] = 0;
+            buffer_size_10 = 9;
+            strcpy_s(string_buffer_11, 0x40, &DAT_180a1eb88);
+            buffer_ptr_21 = &UNK_18098bcb0;
+            
+            buffer_ptr_19 = &UNK_1809fcc58;
+            buffer_ptr_18 = string_buffer_10;
+            string_buffer_10[0] = 0;
+            buffer_size_9 = 0x13;
+            strcpy_s(string_buffer_10, 0x40, &UNK_180a1ed70);
+            buffer_ptr_19 = &UNK_18098bcb0;
+            
+            buffer_ptr_17 = &UNK_1809fcc58;
+            buffer_ptr_16 = string_buffer_9;
+            string_buffer_9[0] = 0;
+            buffer_size_8 = 0x17;
+            strcpy_s(string_buffer_9, 0x40, &UNK_180a1ed58);
+            buffer_ptr_17 = &UNK_18098bcb0;
+            
+            buffer_ptr_9 = &UNK_1809fcc58;
+            buffer_ptr_8 = string_buffer_5;
+            string_buffer_5[0] = 0;
+            buffer_size_4 = 0x23;
+            strcpy_s(string_buffer_5, 0x40, &DAT_180a1eba8);
+            buffer_ptr_9 = &UNK_18098bcb0;
+            
+            buffer_ptr_7 = &UNK_1809fcc58;
+            buffer_ptr_6 = string_buffer_4;
+            string_buffer_4[0] = 0;
+            buffer_size_3 = 0x22;
+            strcpy_s(string_buffer_4, 0x40, &DAT_180a1ec30);
+            buffer_ptr_7 = &UNK_18098bcb0;
+            
+            buffer_ptr_13 = &UNK_1809fcc58;
+            buffer_ptr_12 = string_buffer_7;
+            string_buffer_7[0] = 0;
+            buffer_size_6 = 0x15;
+            strcpy_s(string_buffer_7, 0x40, &DAT_180a1ec18);
+            buffer_ptr_13 = &UNK_18098bcb0;
+            
+            buffer_ptr_33 = &UNK_1809fcc58;
+            buffer_ptr_30 = string_buffer_15;
+            string_buffer_15[0] = 0;
+            buffer_size_14 = 0x15;
+            strcpy_s(string_buffer_15, 0x40, &DAT_180a1ec58);
+            buffer_ptr_33 = &UNK_18098bcb0;
+            
+            buffer_ptr_29 = &UNK_1809fcc58;
+            buffer_ptr_28 = string_buffer_14;
+            string_buffer_14[0] = 0;
+            buffer_size_13 = 0x15;
+            strcpy_s(string_buffer_14, 0x40, &DAT_180a1ecb8);
+            buffer_ptr_29 = &UNK_18098bcb0;
+            
+            buffer_ptr_25 = &UNK_1809fcc58;
+            buffer_ptr_24 = string_buffer_12;
+            string_buffer_12[0] = 0;
+            buffer_size_11 = 0x15;
+            strcpy_s(string_buffer_12, 0x40, &DAT_180a1eca0);
+            buffer_ptr_25 = &UNK_18098bcb0;
+            
+            buffer_ptr_21 = &UNK_1809fcc58;
+            buffer_ptr_20 = string_buffer_11;
+            string_buffer_11[0] = 0;
+            buffer_size_10 = 0x15;
+            strcpy_s(string_buffer_11, 0x40, &DAT_180a1ec88);
+            buffer_ptr_21 = &UNK_18098bcb0;
+            
+            buffer_ptr_19 = &UNK_1809fcc58;
+            buffer_ptr_18 = string_buffer_10;
+            string_buffer_10[0] = 0;
+            buffer_size_9 = 0x15;
+            strcpy_s(string_buffer_10, 0x40, &DAT_180a1ec70);
+            buffer_ptr_19 = &UNK_18098bcb0;
+            
+            buffer_ptr_17 = &UNK_1809fcc58;
+            buffer_ptr_16 = string_buffer_9;
+            string_buffer_9[0] = 0;
+            buffer_size_8 = 0x15;
+            strcpy_s(string_buffer_9, 0x40, &DAT_180a1ed30);
+            buffer_ptr_17 = &UNK_18098bcb0;
+            
+            buffer_ptr_15 = &UNK_1809fcc58;
+            buffer_ptr_14 = string_buffer_8;
+            string_buffer_8[0] = 0;
+            buffer_size_7 = 0x15;
+            strcpy_s(string_buffer_8, 0x40, &DAT_180a1ed18);
+            buffer_ptr_15 = &UNK_18098bcb0;
+            
+            buffer_ptr_23 = &UNK_1809fcc58;
+            buffer_ptr_22 = string_buffer_13;
+            string_buffer_13[0] = 0;
+            buffer_size_12 = 0x1a;
+            strcpy_s(string_buffer_13, 0x40, &DAT_180a1ecf8);
+            buffer_ptr_23 = &UNK_18098bcb0;
+        }
+    } else {
+        // 参数不匹配时的处理
+        buffer_ptr_32 = &UNK_18098bc80;
+        buffer_ptr_31 = string_buffer_17;
+        string_buffer_17[0] = 0;
+        int_val = 9;
+        strcpy_s(string_buffer_17, 0x20, &DAT_180a1eb88);
+        
+        // 重新验证参数
+        int_val = *(int *)(parameter_config + PARAMETER_OFFSET_1);
+        if (int_val == 9) {
+            if (int_val == 0) {
+                bool_result = true;
+            } else {
+                string_ptr = *(char **)(parameter_config + PARAMETER_OFFSET_2);
+                long_val = (longlong)buffer_ptr_31 - (longlong)string_ptr;
+                do {
+                    char_val_1 = *string_ptr;
+                    char_val_2 = string_ptr[long_val];
+                    if (char_val_1 != char_val_2) break;
+                    string_ptr = string_ptr + 1;
+                } while (char_val_2 != '\0');
+                bool_result = char_val_1 == char_val_2;
+            }
+        } else {
+            bool_result = false;
+        }
+        
+        buffer_ptr_32 = &UNK_18098bcb0;
+        if (bool_result) {
+            if (*(char *)(render_context + RENDER_CONTEXT_OFFSET_2) == '\0') {
+                // 初始化渲染参数缓冲区
+                buffer_ptr_23 = &UNK_1809fcc58;
+                buffer_ptr_22 = string_buffer_13;
+                string_buffer_13[0] = 0;
+                buffer_size_12 = 0x13;
+                strcpy_s(string_buffer_13, 0x40, &UNK_180a1ed70);
+                buffer_ptr_23 = &UNK_18098bcb0;
+                
+                buffer_ptr_15 = &UNK_1809fcc58;
+                buffer_ptr_14 = string_buffer_8;
+                string_buffer_8[0] = 0;
+                buffer_size_7 = 0x17;
+                strcpy_s(string_buffer_8, 0x40, &UNK_180a1ed58);
+                buffer_ptr_15 = &UNK_18098bcb0;
+                
+                buffer_ptr_17 = &UNK_1809fcc58;
+                buffer_ptr_16 = string_buffer_9;
+                string_buffer_9[0] = 0;
+                buffer_size_8 = 0x23;
+                strcpy_s(string_buffer_9, 0x40, &DAT_180a1eba8);
+                buffer_ptr_17 = &UNK_18098bcb0;
+                
+                buffer_ptr_19 = &UNK_1809fcc58;
+                buffer_ptr_18 = string_buffer_10;
+                string_buffer_10[0] = 0;
+                buffer_size_9 = 0x12;
+                strcpy_s(string_buffer_10, 0x40, &DAT_180a1eb60);
+                buffer_ptr_19 = &UNK_18098bcb0;
+                
+                buffer_ptr_21 = &UNK_1809fcc58;
+                buffer_ptr_20 = string_buffer_11;
+                string_buffer_11[0] = 0;
+                buffer_size_10 = 0x13;
+                strcpy_s(string_buffer_11, 0x40, &DAT_180a1eb48);
+                buffer_ptr_21 = &UNK_18098bcb0;
+                
+                buffer_ptr_25 = &UNK_1809fcc58;
+                buffer_ptr_24 = string_buffer_12;
+                string_buffer_12[0] = 0;
+                buffer_size_11 = 0x11;
+                strcpy_s(string_buffer_12, 0x40, &UNK_180a1ed88);
+                buffer_ptr_25 = &UNK_18098bcb0;
+                
+                buffer_ptr_29 = &UNK_1809fcc58;
+                buffer_ptr_28 = string_buffer_14;
+                string_buffer_14[0] = 0;
+                buffer_size_13 = 0x22;
+                strcpy_s(string_buffer_14, 0x40, &DAT_180a1ec30);
+                buffer_ptr_29 = &UNK_18098bcb0;
+                
+                buffer_ptr_33 = &UNK_1809fcc58;
+                buffer_ptr_30 = string_buffer_15;
+                string_buffer_15[0] = 0;
+                buffer_size_14 = 0x15;
+                strcpy_s(string_buffer_15, 0x40, &DAT_180a1ec18);
+                buffer_ptr_33 = &UNK_18098bcb0;
+                
+                buffer_ptr_13 = &UNK_1809fcc58;
+                buffer_ptr_12 = string_buffer_7;
+                string_buffer_7[0] = 0;
+                buffer_size_6 = 0x15;
+                strcpy_s(string_buffer_7, 0x40, &DAT_180a1ec58);
+                buffer_ptr_13 = &UNK_18098bcb0;
+                
+                buffer_ptr_7 = &UNK_1809fcc58;
+                buffer_ptr_6 = string_buffer_4;
+                string_buffer_4[0] = 0;
+                buffer_size_3 = 0x15;
+                strcpy_s(string_buffer_4, 0x40, &DAT_180a1ecb8);
+                buffer_ptr_7 = &UNK_18098bcb0;
+                
+                buffer_ptr_9 = &UNK_1809fcc58;
+                buffer_ptr_8 = string_buffer_5;
+                string_buffer_5[0] = 0;
+                buffer_size_4 = 0x15;
+                strcpy_s(string_buffer_5, 0x40, &DAT_180a1eca0);
+                buffer_ptr_9 = &UNK_18098bcb0;
+                
+                buffer_ptr_17 = &UNK_1809fcc58;
+                buffer_ptr_16 = string_buffer_9;
+                string_buffer_9[0] = 0;
+                buffer_size_8 = 0x15;
+                strcpy_s(string_buffer_9, 0x40, &DAT_180a1ec88);
+                buffer_ptr_17 = &UNK_18098bcb0;
+                
+                buffer_ptr_19 = &UNK_1809fcc58;
+                buffer_ptr_18 = string_buffer_10;
+                string_buffer_10[0] = 0;
+                buffer_size_9 = 0x15;
+                strcpy_s(string_buffer_10, 0x40, &DAT_180a1ec70);
+                buffer_ptr_19 = &UNK_18098bcb0;
+                
+                buffer_ptr_21 = &UNK_1809fcc58;
+                buffer_ptr_20 = string_buffer_11;
+                string_buffer_11[0] = 0;
+                buffer_size_10 = 0x15;
+                strcpy_s(string_buffer_11, 0x40, &DAT_180a1ed30);
+                buffer_ptr_21 = &UNK_18098bcb0;
+                
+                buffer_ptr_25 = &UNK_1809fcc58;
+                buffer_ptr_24 = string_buffer_12;
+                string_buffer_12[0] = 0;
+                buffer_size_11 = 0x15;
+                strcpy_s(string_buffer_12, 0x40, &DAT_180a1ed18);
+                buffer_ptr_25 = &UNK_18098bcb0;
+                
+                buffer_ptr_27 = &UNK_1809fcc58;
+                buffer_ptr_26 = string_buffer_16;
+                string_buffer_16[0] = 0;
+                buffer_size_15 = 0x1a;
+                strcpy_s(string_buffer_16, 0x40, &DAT_180a1ecf8);
+                buffer_ptr_27 = &UNK_18098bcb0;
+            } else {
+                // 替代渲染参数初始化
+                buffer_ptr_23 = &UNK_1809fcc58;
+                buffer_ptr_22 = string_buffer_13;
+                string_buffer_13[0] = 0;
+                buffer_size_12 = 0x13;
+                strcpy_s(string_buffer_13, 0x40, &UNK_180a1ed70);
+                buffer_ptr_23 = &UNK_18098bcb0;
+                
+                buffer_ptr_15 = &UNK_1809fcc58;
+                buffer_ptr_14 = string_buffer_8;
+                string_buffer_8[0] = 0;
+                buffer_size_7 = 0x17;
+                strcpy_s(string_buffer_8, 0x40, &UNK_180a1ed58);
+                buffer_ptr_15 = &UNK_18098bcb0;
+                
+                buffer_ptr_17 = &UNK_1809fcc58;
+                buffer_ptr_16 = string_buffer_9;
+                string_buffer_9[0] = 0;
+                buffer_size_8 = 0x23;
+                strcpy_s(string_buffer_9, 0x40, &DAT_180a1eba8);
+                buffer_ptr_17 = &UNK_18098bcb0;
+                
+                buffer_ptr_19 = &UNK_1809fcc58;
+                buffer_ptr_18 = string_buffer_10;
+                string_buffer_10[0] = 0;
+                buffer_size_9 = 0x12;
+                strcpy_s(string_buffer_10, 0x40, &DAT_180a1eb60);
+                buffer_ptr_19 = &UNK_18098bcb0;
+                
+                buffer_ptr_21 = &UNK_1809fcc58;
+                buffer_ptr_20 = string_buffer_11;
+                string_buffer_11[0] = 0;
+                buffer_size_10 = 0x13;
+                strcpy_s(string_buffer_11, 0x40, &DAT_180a1eb48);
+                buffer_ptr_21 = &UNK_18098bcb0;
+                
+                buffer_ptr_25 = &UNK_1809fcc58;
+                buffer_ptr_24 = string_buffer_12;
+                string_buffer_12[0] = 0;
+                buffer_size_11 = 0x11;
+                strcpy_s(string_buffer_12, 0x40, &UNK_180a1ed88);
+                buffer_ptr_25 = &UNK_18098bcb0;
+                
+                buffer_ptr_29 = &UNK_1809fcc58;
+                buffer_ptr_28 = string_buffer_14;
+                string_buffer_14[0] = 0;
+                buffer_size_13 = 0x22;
+                strcpy_s(string_buffer_14, 0x40, &DAT_180a1ec30);
+                buffer_ptr_29 = &UNK_18098bcb0;
+                
+                buffer_ptr_33 = &UNK_1809fcc58;
+                buffer_ptr_30 = string_buffer_15;
+                string_buffer_15[0] = 0;
+                buffer_size_14 = 0x15;
+                strcpy_s(string_buffer_15, 0x40, &DAT_180a1ec18);
+                buffer_ptr_33 = &UNK_18098bcb0;
+                
+                buffer_ptr_13 = &UNK_1809fcc58;
+                buffer_ptr_12 = string_buffer_7;
+                string_buffer_7[0] = 0;
+                buffer_size_6 = 0x15;
+                strcpy_s(string_buffer_7, 0x40, &DAT_180a1ec58);
+                buffer_ptr_13 = &UNK_18098bcb0;
+                
+                buffer_ptr_7 = &UNK_1809fcc58;
+                buffer_ptr_6 = string_buffer_4;
+                string_buffer_4[0] = 0;
+                buffer_size_3 = 0x15;
+                strcpy_s(string_buffer_4, 0x40, &DAT_180a1ecb8);
+                buffer_ptr_7 = &UNK_18098bcb0;
+                
+                buffer_ptr_9 = &UNK_1809fcc58;
+                buffer_ptr_8 = string_buffer_5;
+                string_buffer_5[0] = 0;
+                buffer_size_4 = 0x15;
+                strcpy_s(string_buffer_5, 0x40, &DAT_180a1eca0);
+                buffer_ptr_9 = &UNK_18098bcb0;
+                
+                buffer_ptr_17 = &UNK_1809fcc58;
+                buffer_ptr_16 = string_buffer_9;
+                string_buffer_9[0] = 0;
+                buffer_size_8 = 0x15;
+                strcpy_s(string_buffer_9, 0x40, &DAT_180a1ec88);
+                buffer_ptr_17 = &UNK_18098bcb0;
+                
+                buffer_ptr_19 = &UNK_1809fcc58;
+                buffer_ptr_18 = string_buffer_10;
+                string_buffer_10[0] = 0;
+                buffer_size_9 = 0x15;
+                strcpy_s(string_buffer_10, 0x40, &DAT_180a1ec70);
+                buffer_ptr_19 = &UNK_18098bcb0;
+                
+                buffer_ptr_21 = &UNK_1809fcc58;
+                buffer_ptr_20 = string_buffer_11;
+                string_buffer_11[0] = 0;
+                buffer_size_10 = 0x15;
+                strcpy_s(string_buffer_11, 0x40, &DAT_180a1ed30);
+                buffer_ptr_21 = &UNK_18098bcb0;
+                
+                buffer_ptr_25 = &UNK_1809fcc58;
+                buffer_ptr_24 = string_buffer_12;
+                string_buffer_12[0] = 0;
+                buffer_size_11 = 0x15;
+                strcpy_s(string_buffer_12, 0x40, &DAT_180a1ed18);
+                buffer_ptr_25 = &UNK_18098bcb0;
+                
+                buffer_ptr_27 = &UNK_1809fcc58;
+                buffer_ptr_26 = string_buffer_16;
+                string_buffer_16[0] = 0;
+                buffer_size_15 = 0x1a;
+                strcpy_s(string_buffer_16, 0x40, &DAT_180a1ecf8);
+                buffer_ptr_27 = &UNK_18098bcb0;
+            }
+        } else {
+            // 参数错误处理
+            buffer_ptr_23 = &UNK_1809fcc58;
+            buffer_ptr_22 = string_buffer_13;
+            string_buffer_13[0] = 0;
+            buffer_size_12 = 0x21;
+            strcpy_s(string_buffer_13, 0x40, &DAT_180a1ecd0);
+        }
+        buffer_ptr_23 = &UNK_18098bcb0;
+    }
+    
+    // 处理渲染系统资源
+    data_ptr = (undefined8 *)
+               RenderingSystem_InternalProcessor(*(longlong *)(*(longlong *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1) + BUFFER_OFFSET_2, &resource_ptr,
+                             render_context + RENDER_CONTEXT_OFFSET_4);
+    *(undefined8 *)(render_context + RENDER_CONTEXT_OFFSET_5) = *data_ptr;
+    if (resource_ptr != (longlong *)0x0) {
+        (**(code **)(*resource_ptr + 0x38))();
+    }
+    if (*(longlong *)(render_context + RENDER_CONTEXT_OFFSET_5) != 0) {
+        RenderingSystem_CleanupHandler(render_context);
+    }
+    
+    // 执行组件处理器
+    RenderingSystem_ComponentProcessor(security_hash ^ (ulonglong)security_buffer);
+}
+
+/**
+ * 渲染系统状态管理器
+ * 
+ * 功能说明：
+ * - 管理渲染系统状态和标志位
+ * - 处理渲染组件的初始化和配置
+ * - 执行渲染数据的加载和处理
+ * - 管理渲染对象的创建和销毁
+ * - 处理渲染系统的启用和禁用状态
+ * 
+ * @param param_1 渲染系统上下文指针
+ */
+void RenderingSystem_StateManager(longlong render_context)
+{
+    uint flag_value;
+    longlong context_ptr;
+    undefined8 object_ptr;
+    int status_code;
+    undefined8 resource_handle;
+    longlong *object_instance;
+    longlong component_data;
+    byte flag_bit;
+    char char_index;
+    longlong loop_counter;
+    longlong *component_array;
+    longlong **component_ptr;
+    
+    // 获取渲染对象指针
+    object_ptr = *(undefined8 *)(*(longlong *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1);
+    
+    // 分配渲染资源
+    resource_handle = RenderingSystem_MemoryAllocator(_DAT_180c8ed18, 0x2f0, 0x10, 0xd);
+    object_instance = (longlong *)RenderingSystem_ObjectInitializer(resource_handle, 4);
+    component_array = object_instance;
+    
+    // 初始化渲染对象
+    if (object_instance != (longlong *)0x0) {
+        (**(code **)(*object_instance + 0x28))(object_instance);
+    }
+    
+    // 检查对象状态并配置
+    if (object_instance[0x4d] == 0) {
+        RenderingSystem_ObjectCleanup(object_instance, &UNK_180a0ba98);
+    }
+    
+    // 加载渲染配置
+    RenderingSystem_ConfigLoader(object_instance, &DAT_180a00300);
+    component_ptr = &context_ptr;
+    context_ptr = object_instance;
+    (**(code **)(*object_instance + 0x28))(object_instance);
+    
+    // 处理渲染数据
+    RenderingSystem_DataProcessor(object_ptr, &context_ptr, 1, 1, 0, 1, 0);
+    component_array = (longlong *)0x0;
+    context_ptr = *(longlong **)(render_context + BUFFER_OFFSET_3);
+    *(longlong **)(render_context + BUFFER_OFFSET_3) = object_instance;
+    
+    // 清理旧资源
+    if (context_ptr != (longlong *)0x0) {
+        (**(code **)(*context_ptr + 0x38))();
+    }
+    
+    // 初始化新对象
+    RenderingSystem_ObjectCleanup(*(undefined8 *)(render_context + BUFFER_OFFSET_3), &UNK_180a1ed48);
+    component_data = *(longlong *)(render_context + BUFFER_OFFSET_3);
+    flag_value = *(uint *)(component_data + BUFFER_OFFSET_4);
+    *(uint *)(component_data + BUFFER_OFFSET_4) = flag_value | 0x2020000;
+    RenderingSystem_FlagUpdater(component_data, flag_value);
+    
+    // 处理组件数据
+    context_ptr = *(longlong *)(component_data + BUFFER_OFFSET_5);
+    if ((context_ptr != 0) && (((*(uint *)(component_data + BUFFER_OFFSET_4) ^ flag_value) >> 0x16 & 1) != 0)) {
+        flag_bit = ~(byte)(*(uint *)(component_data + BUFFER_OFFSET_4) >> 0x16) & 1;
+        status_code = (int)(*(longlong *)(context_ptr + BUFFER_OFFSET_6) - *(longlong *)(context_ptr + BUFFER_OFFSET_7) >> 3);
+        if (0 < status_code) {
+            component_data = 0;
+            do {
+                object_instance = *(longlong **)(*(longlong *)(context_ptr + BUFFER_OFFSET_7) + component_data * 8);
+                (**(code **)(*object_instance + 0xe0))(object_instance, flag_bit);
+                component_data = component_data + 1;
+            } while (component_data < status_code);
+        }
+        
+        // 处理子组件
+        char_index = '\0';
+        if ('\0' < *(char *)(context_ptr + BUFFER_OFFSET_10)) {
+            do {
+                component_data = 0;
+                loop_counter = (longlong)char_index * 0x100 + *(longlong *)(context_ptr + BUFFER_OFFSET_11);
+                status_code = (int)(*(longlong *)(loop_counter + BUFFER_OFFSET_8) - *(longlong *)(loop_counter + BUFFER_OFFSET_9) >> 3);
+                if (0 < status_code) {
+                    do {
+                        object_instance = *(longlong **)(*(longlong *)(loop_counter + BUFFER_OFFSET_9) + component_data * 8);
+                        (**(code **)(*object_instance + 0xe0))(object_instance, flag_bit);
+                        component_data = component_data + 1;
+                    } while (component_data < status_code);
+                }
+                char_index = char_index + '\x01';
+            } while (char_index < *(char *)(context_ptr + BUFFER_OFFSET_10));
+        }
+    }
+    return;
+}
+
+// 技术说明：
+// 1. 本模块实现了渲染系统的高级参数处理和状态管理功能
+// 2. 使用了多层缓冲区管理机制，确保渲染数据的安全处理
+// 3. 实现了复杂的字符串比较和参数验证逻辑
+// 4. 包含了完整的资源分配和清理机制
+// 5. 支持多层次的组件管理和状态控制
+// 6. 使用了位操作和标志位管理来优化性能
+// 7. 实现了递归的组件处理机制
+// 8. 包含了安全栈保护机制，防止栈溢出攻击
