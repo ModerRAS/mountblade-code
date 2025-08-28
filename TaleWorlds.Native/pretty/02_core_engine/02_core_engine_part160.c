@@ -779,113 +779,157 @@ undefined8 * cleanup_engine_resource_manager(undefined8 *resource_ptr, ulonglong
 
 
 
-// 函数: void FUN_18014a370(longlong param_1,char param_2,undefined1 *param_3)
-void FUN_18014a370(longlong param_1,char param_2,undefined1 *param_3)
-
+/**
+ * 处理引擎状态回调并执行清理操作
+ * @param context_ptr 上下文指针
+ * @param state_flag 状态标志
+ * @param callback_data 回调数据指针
+ */
+void process_engine_state_callback(longlong context_ptr, char state_flag, undefined1 *callback_data)
 {
-  longlong *plVar1;
-  char cVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  longlong lVar5;
-  code *pcVar6;
-  longlong lStack_148;
-  undefined1 auStack_140 [16];
-  code *pcStack_130;
-  code *pcStack_128;
-  undefined8 auStack_120 [2];
-  code *pcStack_110;
-  undefined *puStack_108;
-  longlong lStack_100;
-  undefined1 auStack_f8 [16];
-  code *pcStack_e8;
-  code *pcStack_e0;
-  undefined1 auStack_d8 [16];
-  code *pcStack_c8;
-  undefined8 uStack_b0;
-  undefined1 auStack_a8 [40];
-  undefined1 auStack_80 [40];
-  undefined1 auStack_58 [48];
+  longlong *callback_chain;
+  char callback_result;
+  undefined8 cleanup_result;
+  longlong context_handle;
+  longlong state_data;
+  code *callback_func;
+  undefined8 *context_data;
+  longlong render_data;
+  undefined8 render_param;
+  code *render_callback;
+  undefined1 cleanup_buffer1 [16];
+  code *cleanup_func1;
+  code *cleanup_func2;
+  undefined8 render_params [2];
+  code *render_handler1;
+  undefined *render_target;
+  longlong cleanup_data;
+  undefined1 cleanup_buffer2 [16];
+  code *final_cleanup1;
+  code *final_cleanup2;
+  undefined1 init_buffer [40];
+  undefined1 temp_buffer [40];
+  undefined1 final_buffer [48];
   
-  uStack_b0 = 0xfffffffffffffffe;
-  if (*(longlong *)(param_1 + 0xb8) == 0) {
-    if (*(longlong *)(param_1 + 0xa8) == 0) {
-      uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x130,8,6);
-                    // WARNING: Subroutine does not return
-      memset(uVar3,0,0x130);
+  // 设置清理标志
+  cleanup_result = 0xfffffffffffffffe;
+  
+  // 检查是否已经初始化
+  if (*(longlong *)(context_ptr + 0xb8) == 0) {
+    // 检查上下文是否需要初始化
+    if (*(longlong *)(context_ptr + 0xa8) == 0) {
+      cleanup_result = allocate_memory_block(global_memory_pool, 0x130, 8, 6);
+      memset(cleanup_result, 0, 0x130);
     }
-    pcStack_e8 = (code *)0x0;
-    pcStack_e0 = _guard_check_icall;
-    lStack_100 = param_1;
-    if (auStack_f8 != param_3) {
-      pcVar6 = *(code **)(param_3 + 0x10);
-      if (pcVar6 != (code *)0x0) {
-        (*pcVar6)(auStack_f8,param_3,1);
-        pcVar6 = *(code **)(param_3 + 0x10);
+    
+    // 初始化清理函数
+    cleanup_func1 = (code *)0x0;
+    cleanup_func2 = _guard_check_icall;
+    context_handle = context_ptr;
+    
+    // 设置回调数据
+    if (cleanup_buffer1 != callback_data) {
+      render_callback = *(code **)(callback_data + 0x10);
+      if (render_callback != (code *)0x0) {
+        (*render_callback)(cleanup_buffer1, callback_data, 1);
+        render_callback = *(code **)(callback_data + 0x10);
       }
-      pcStack_e0 = *(code **)(param_3 + 0x18);
-      pcStack_e8 = pcVar6;
+      cleanup_func2 = *(code **)(callback_data + 0x18);
+      cleanup_func1 = render_callback;
     }
-    pcStack_130 = (code *)0x0;
-    pcStack_128 = _guard_check_icall;
-    lStack_148 = param_1;
-    if (auStack_140 != param_3) {
-      pcVar6 = *(code **)(param_3 + 0x10);
-      if (pcVar6 != (code *)0x0) {
-        (*pcVar6)(auStack_140,param_3,1);
-        pcVar6 = *(code **)(param_3 + 0x10);
+    
+    // 初始化最终清理函数
+    final_cleanup1 = (code *)0x0;
+    final_cleanup2 = _guard_check_icall;
+    cleanup_data = context_ptr;
+    
+    // 设置回调数据
+    if (cleanup_buffer2 != callback_data) {
+      render_callback = *(code **)(callback_data + 0x10);
+      if (render_callback != (code *)0x0) {
+        (*render_callback)(cleanup_buffer2, callback_data, 1);
+        render_callback = *(code **)(callback_data + 0x10);
       }
-      pcStack_128 = *(code **)(param_3 + 0x18);
-      pcStack_130 = pcVar6;
+      final_cleanup2 = *(code **)(callback_data + 0x18);
+      final_cleanup1 = render_callback;
     }
-    if (param_2 == '\0') {
-      plVar1 = *(longlong **)(*(longlong *)(param_1 + 0xa8) + 0x88);
-      pcVar6 = *(code **)(*plVar1 + 0x70);
-      lVar4 = FUN_18014aa50(auStack_a8,&lStack_148);
-      lVar5 = FUN_18014aa50(auStack_80,lVar4);
-      pcStack_110 = FUN_18014f3f0;
-      puStack_108 = &UNK_18014f3d0;
-      uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x28,8,DAT_180bf65bc);
-      FUN_18014aa50(uVar3,lVar5);
-      auStack_120[0] = uVar3;
-      if (*(code **)(lVar5 + 0x18) != (code *)0x0) {
-        (**(code **)(lVar5 + 0x18))(lVar5 + 8,0,0);
+    
+    // 根据状态标志选择不同的处理路径
+    if (state_flag == '\0') {
+      // 获取回调链
+      callback_chain = *(longlong **)(*(longlong *)(context_ptr + 0xa8) + 0x88);
+      callback_func = *(code **)(*callback_chain + 0x70);
+      
+      // 初始化渲染数据
+      state_data = initialize_render_context(init_buffer, &cleanup_data);
+      render_data = initialize_render_context(temp_buffer, state_data);
+      
+      // 设置渲染处理器
+      render_handler1 = render_context_finalizer;
+      render_target = &render_target_address;
+      
+      // 分配渲染参数
+      render_param = allocate_memory_block(global_memory_pool, 0x28, 8, memory_allocation_flags);
+      initialize_render_context(render_param, render_data);
+      render_params[0] = render_param;
+      
+      // 清理渲染数据
+      if (*(code **)(render_data + 0x18) != (code *)0x0) {
+        (**(code **)(render_data + 0x18))(render_data + 8, 0, 0);
       }
-      if (*(code **)(lVar4 + 0x18) != (code *)0x0) {
-        (**(code **)(lVar4 + 0x18))(lVar4 + 8,0,0);
+      if (*(code **)(state_data + 0x18) != (code *)0x0) {
+        (**(code **)(state_data + 0x18))(state_data + 8, 0, 0);
       }
-      uVar3 = FUN_18014aa50(auStack_58,&lStack_100);
-      FUN_18014e700(auStack_d8,uVar3);
-      (*pcVar6)(plVar1,&DAT_180a00d48,*(longlong *)(param_1 + 0xa8) + 0xc,0,auStack_d8,auStack_120);
-      if (pcStack_c8 != (code *)0x0) {
-        (*pcStack_c8)(auStack_d8,0,0);
+      
+      // 初始化最终数据
+      cleanup_data = initialize_render_context(final_buffer, &context_handle);
+      initialize_render_system(cleanup_buffer2, cleanup_data);
+      
+      // 执行主回调函数
+      (*callback_func)(callback_chain, &engine_callback_target, *(longlong *)(context_ptr + 0xa8) + 0xc, 0, cleanup_buffer2, render_params);
+      
+      // 清理资源
+      if (render_handler1 != (code *)0x0) {
+        (*render_handler1)(render_params, 0, 0);
       }
-      if (pcStack_110 != (code *)0x0) {
-        (*pcStack_110)(auStack_120,0,0);
+      if (final_cleanup1 != (code *)0x0) {
+        (*final_cleanup1)(cleanup_buffer2, 0, 0);
       }
     }
     else {
-      plVar1 = *(longlong **)(*(longlong *)(param_1 + 0xa8) + 0x88);
-      pcVar6 = *(code **)(*plVar1 + 0x60);
-      uVar3 = FUN_18014aa50(auStack_d8,&lStack_100);
-      FUN_18014e700(auStack_120,uVar3);
-      cVar2 = (*pcVar6)(plVar1,&DAT_180a00d48,*(longlong *)(param_1 + 0xa8) + 0xc,0,auStack_120);
-      if (pcStack_110 != (code *)0x0) {
-        (*pcStack_110)(auStack_120,0,0);
+      // 获取备用回调链
+      callback_chain = *(longlong **)(*(longlong *)(context_ptr + 0xa8) + 0x88);
+      callback_func = *(code **)(*callback_chain + 0x60);
+      
+      // 初始化渲染数据
+      cleanup_data = initialize_render_context(cleanup_buffer2, &context_handle);
+      initialize_render_system(render_params, cleanup_data);
+      
+      // 执行回调函数
+      callback_result = (*callback_func)(callback_chain, &engine_callback_target, *(longlong *)(context_ptr + 0xa8) + 0xc, 0, render_params);
+      
+      // 清理渲染参数
+      if (render_handler1 != (code *)0x0) {
+        (*render_handler1)(render_params, 0, 0);
       }
-      if ((cVar2 == '\0') && (pcStack_130 != (code *)0x0)) {
-        (*pcStack_128)(0,lStack_148,auStack_140);
+      
+      // 根据回调结果决定是否执行额外清理
+      if ((callback_result == '\0') && (final_cleanup1 != (code *)0x0)) {
+        (*final_cleanup2)(0, cleanup_data, cleanup_buffer1);
       }
     }
-    if (pcStack_130 != (code *)0x0) {
-      (*pcStack_130)(auStack_140,0,0);
+    
+    // 执行最终清理
+    if (final_cleanup1 != (code *)0x0) {
+      (*final_cleanup1)(cleanup_buffer1, 0, 0);
     }
-    if (pcStack_e8 != (code *)0x0) {
-      (*pcStack_e8)(auStack_f8,0,0);
+    if (cleanup_func1 != (code *)0x0) {
+      (*cleanup_func1)(cleanup_buffer2, 0, 0);
     }
   }
   else {
-    (**(code **)(param_3 + 0x18))(1,param_1);
+    // 已初始化，直接执行回调
+    (**(code **)(callback_data + 0x18))(1, context_ptr);
   }
   return;
 }
@@ -896,165 +940,220 @@ void FUN_18014a370(longlong param_1,char param_2,undefined1 *param_3)
 
 
 
-// 函数: void FUN_18014a720(void)
-void FUN_18014a720(void)
-
+/**
+ * 初始化引擎系统并分配内存
+ */
+void initialize_engine_system(void)
 {
-  undefined8 uVar1;
+  undefined8 system_handle;
   
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x130,8,3);
-                    // WARNING: Subroutine does not return
-  memset(uVar1,0,0x130);
+  // 分配系统内存
+  system_handle = allocate_memory_block(global_memory_pool, 0x130, 8, 3);
+  // 初始化内存为零
+  memset(system_handle, 0, 0x130);
 }
 
 
 
-undefined8 * FUN_18014a900(undefined8 *param_1)
-
+/**
+ * 初始化引擎资源表
+ * @param resource_ptr 资源指针
+ * @return 返回资源指针
+ */
+undefined8 * initialize_engine_resource_table(undefined8 *resource_ptr)
 {
-  *param_1 = 0;
-  param_1[1] = 0;
-  param_1[2] = 0;
-  *(undefined4 *)(param_1 + 3) = 3;
-  param_1[4] = 0;
-  param_1[5] = 0;
-  param_1[6] = 0;
-  *(undefined4 *)(param_1 + 7) = 3;
-  param_1[8] = 0;
-  param_1[9] = 0;
-  param_1[10] = 0;
-  *(undefined4 *)(param_1 + 0xb) = 3;
-  param_1[0xc] = &UNK_18098bcb0;
-  param_1[0xd] = 0;
-  *(undefined4 *)(param_1 + 0xe) = 0;
-  param_1[0xc] = &UNK_1809fcc28;
-  param_1[0xd] = param_1 + 0xf;
-  *(undefined4 *)(param_1 + 0xe) = 0;
-  *(undefined1 *)(param_1 + 0xf) = 0;
-  *(undefined4 *)(param_1 + 0x25) = 0;
-  param_1[0x1f] = 0;
-  param_1[0x20] = 0;
-  param_1[0x21] = 0;
-  param_1[0x22] = 0;
-  param_1[0x23] = 0;
-  param_1[0x24] = 0;
-  return param_1;
+  // 初始化资源表的基本结构
+  *resource_ptr = 0;
+  resource_ptr[1] = 0;
+  resource_ptr[2] = 0;
+  *(undefined4 *)(resource_ptr + 3) = 3;
+  resource_ptr[4] = 0;
+  resource_ptr[5] = 0;
+  resource_ptr[6] = 0;
+  *(undefined4 *)(resource_ptr + 7) = 3;
+  resource_ptr[8] = 0;
+  resource_ptr[9] = 0;
+  resource_ptr[10] = 0;
+  *(undefined4 *)(resource_ptr + 0xb) = 3;
+  
+  // 设置资源表项
+  resource_ptr[0xc] = &engine_resource_entry1;
+  resource_ptr[0xd] = 0;
+  *(undefined4 *)(resource_ptr + 0xe) = 0;
+  resource_ptr[0xc] = &engine_resource_entry2;
+  resource_ptr[0xd] = resource_ptr + 0xf;
+  *(undefined4 *)(resource_ptr + 0xe) = 0;
+  *(undefined1 *)(resource_ptr + 0xf) = 0;
+  
+  // 清理和初始化其他字段
+  *(undefined4 *)(resource_ptr + 0x25) = 0;
+  resource_ptr[0x1f] = 0;
+  resource_ptr[0x20] = 0;
+  resource_ptr[0x21] = 0;
+  resource_ptr[0x22] = 0;
+  resource_ptr[0x23] = 0;
+  resource_ptr[0x24] = 0;
+  return resource_ptr;
 }
 
 
 
 
 
-// 函数: void FUN_18014a9d0(undefined8 *param_1)
-void FUN_18014a9d0(undefined8 *param_1)
-
+/**
+ * 清理引擎资源并重置状态
+ * @param resource_ptr 资源指针
+ */
+void cleanup_engine_resources_and_reset(undefined8 *resource_ptr)
 {
-  FUN_18014e570();
-  FUN_18014e4d0();
-  FUN_18014e470();
-  *param_1 = &UNK_180a3c3e0;
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  // 执行清理操作
+  cleanup_engine_system();
+  cleanup_engine_subsystem();
+  cleanup_engine_core();
+  
+  // 设置资源指针
+  *resource_ptr = &engine_cleanup_target;
+  
+  // 检查资源状态
+  if (resource_ptr[1] != 0) {
+    // 触发错误处理
+    trigger_resource_error();
   }
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 3) = 0;
-  *param_1 = &UNK_18098bcb0;
+  
+  // 重置资源状态
+  resource_ptr[1] = 0;
+  *(undefined4 *)(resource_ptr + 3) = 0;
+  *resource_ptr = &engine_resource_entry1;
   return;
 }
 
 
 
-undefined8 *
-FUN_18014aa50(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 复制引擎上下文数据
+ * @param dest_ptr 目标指针
+ * @param src_ptr 源指针
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 返回目标指针
+ */
+undefined8 * copy_engine_context_data(undefined8 *dest_ptr, undefined8 *src_ptr, undefined8 param3, undefined8 param4)
 {
-  code *pcVar1;
+  code *copy_func;
   
-  *param_1 = *param_2;
-  param_1[3] = 0;
-  param_1[4] = _guard_check_icall;
-  if (param_1 + 1 != param_2 + 1) {
-    pcVar1 = (code *)param_2[3];
-    if (pcVar1 != (code *)0x0) {
-      (*pcVar1)(param_1 + 1,param_2 + 1,1,param_4,0xfffffffffffffffe);
-      pcVar1 = (code *)param_2[3];
+  // 复制基本数据
+  *dest_ptr = *src_ptr;
+  dest_ptr[3] = 0;
+  dest_ptr[4] = _guard_check_icall;
+  
+  // 如果需要深度复制
+  if (dest_ptr + 1 != src_ptr + 1) {
+    copy_func = (code *)src_ptr[3];
+    if (copy_func != (code *)0x0) {
+      // 执行深度复制函数
+      (*copy_func)(dest_ptr + 1, src_ptr + 1, 1, param4, 0xfffffffffffffffe);
+      copy_func = (code *)src_ptr[3];
     }
-    param_1[3] = pcVar1;
-    param_1[4] = param_2[4];
+    dest_ptr[3] = copy_func;
+    dest_ptr[4] = src_ptr[4];
   }
-  return param_1;
+  return dest_ptr;
 }
 
 
 
 
 
-// 函数: void FUN_18014aae0(longlong *param_1)
-void FUN_18014aae0(longlong *param_1)
-
+/**
+ * 清理引擎回调链表
+ * @param chain_ptr 链表指针
+ */
+void cleanup_engine_callback_chain(longlong *chain_ptr)
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong chain_end;
+  longlong current_item;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x88) {
-    FUN_18014c7d0(lVar2);
+  chain_end = chain_ptr[1];
+  
+  // 遍历链表进行清理
+  for (current_item = *chain_ptr; current_item != chain_end; current_item = current_item + 0x88) {
+    cleanup_callback_item(current_item);
   }
-  if (*param_1 == 0) {
+  
+  // 检查链表是否为空
+  if (*chain_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+  
+  // 触发错误处理
+  trigger_cleanup_error();
 }
 
 
 
 
 
-// 函数: void FUN_18014ab00(longlong *param_1)
-void FUN_18014ab00(longlong *param_1)
-
+/**
+ * 清理引擎资源池
+ * @param pool_ptr 资源池指针
+ */
+void cleanup_engine_resource_pool(longlong *pool_ptr)
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong pool_end;
+  longlong current_item;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x60) {
-    FUN_18014d790(lVar2);
+  pool_end = pool_ptr[1];
+  
+  // 遍历资源池进行清理
+  for (current_item = *pool_ptr; current_item != pool_end; current_item = current_item + 0x60) {
+    cleanup_resource_item(current_item);
   }
-  if (*param_1 == 0) {
+  
+  // 检查资源池是否为空
+  if (*pool_ptr == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+  
+  // 触发错误处理
+  trigger_cleanup_error();
 }
 
 
 
 
 
-// 函数: void FUN_18014ab20(longlong *param_1)
-void FUN_18014ab20(longlong *param_1)
-
+/**
+ * 清理引擎数据结构
+ * @param data_ptr 数据指针
+ */
+void cleanup_engine_data_structure(longlong *data_ptr)
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong data_end;
+  longlong current_item;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x48) {
-    *(undefined8 *)(lVar2 + 0x28) = &UNK_180a3c3e0;
-    if (*(longlong *)(lVar2 + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+  data_end = data_ptr[1];
+  
+  // 遍历数据结构进行清理
+  for (current_item = *data_ptr; current_item != data_end; current_item = current_item + 0x48) {
+    // 设置清理标记
+    *(undefined8 *)(current_item + 0x28) = &engine_cleanup_target;
+    
+    // 检查资源状态
+    if (*(longlong *)(current_item + 0x30) != 0) {
+      // 触发错误处理
+      trigger_resource_error();
     }
-    *(undefined8 *)(lVar2 + 0x30) = 0;
-    *(undefined4 *)(lVar2 + 0x40) = 0;
-    *(undefined8 *)(lVar2 + 0x28) = &UNK_18098bcb0;
+    
+    // 清理资源
+    *(undefined8 *)(current_item + 0x30) = 0;
+    *(undefined4 *)(current_item + 0x40) = 0;
+    *(undefined8 *)(current_item + 0x28) = &engine_resource_entry1;
   }
-  if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 检查数据指针是否有效
+  if (*data_ptr != 0) {
+    // 触发错误处理
+    trigger_resource_error();
   }
   return;
 }
