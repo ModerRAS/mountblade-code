@@ -326,7 +326,7 @@ FUN_1802b54b3:
         FUN_18026a670(param_1,unaff_RSI + 0xa8);
         *(int *)(unaff_RSI + 0x40) = *(int *)(unaff_RSI + 0x40) + 2;
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(param_9 ^ (uint64_t)&stack0x00000000);
+        SystemSecurityChecker(param_9 ^ (uint64_t)&stack0x00000000);
       }
       lVar12 = (int64_t)&unknown_var_5088_ptr - (int64_t)pcVar10;
       while (*pcVar10 == pcVar10[lVar12]) {
@@ -698,7 +698,7 @@ FUN_1802b54b3:
         FUN_18026a670(param_1,unaff_RSI + 0xa8);
         *(int *)(unaff_RSI + 0x40) = *(int *)(unaff_RSI + 0x40) + 2;
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(param_9 ^ (uint64_t)&stack0x00000000);
+        SystemSecurityChecker(param_9 ^ (uint64_t)&stack0x00000000);
       }
       lVar11 = (int64_t)&unknown_var_5088_ptr - (int64_t)pcVar9;
       while (*pcVar9 == pcVar9[lVar11]) {

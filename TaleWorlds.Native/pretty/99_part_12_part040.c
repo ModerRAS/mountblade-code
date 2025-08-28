@@ -227,7 +227,7 @@ LAB_18075fba0:
                   plVar7[1] = (int64_t)plVar7;
                   *plVar7 = (int64_t)plVar7;
                     // WARNING: Subroutine does not return
-                  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar7,&unknown_var_1040_ptr,0xb73,
+                  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar7,&unknown_var_1040_ptr,0xb73,
                                 1);
                 }
               }
@@ -245,7 +245,7 @@ LAB_18075fba0:
           }
           if ((*(uint *)(param_1 + 100) >> 1 & 1) != 0) {
                     // WARNING: Subroutine does not return
-            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(param_1 + 0xe8),
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(param_1 + 0xe8),
                           &unknown_var_1040_ptr,0xb8f,1);
           }
           if ((*(uint *)(param_1 + 100) >> 9 & 1) == 0) {
@@ -258,7 +258,7 @@ LAB_18075fba0:
               param_1 = *(int64_t *)(param_1 + 0x130);
             }
                     // WARNING: Subroutine does not return
-            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_1040_ptr,uVar8,1);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_1040_ptr,uVar8,1);
           }
           uVar6 = 0;
         }
@@ -267,7 +267,7 @@ LAB_18075fba0:
         if (*(int64_t *)(param_1 + 0x1f0) == 0) {
 LAB_18075fb15:
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar5,&unknown_var_1040_ptr,0xb53,1);
+          SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar5,&unknown_var_1040_ptr,0xb53,1);
         }
         uVar6 = FUN_180743cc0(*(uint64_t *)(param_1 + 0xa8),0);
         if ((int)uVar6 == 0) {
@@ -565,7 +565,7 @@ LAB_1807e613d:
       *(uint *)(param_1 + 0x288) = uVar8 * *(int *)(param_1 + 0x2ec) + 0x1f & 0xffffffe0;
       if (*(int64_t *)(param_1 + 0x270) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(lVar7 + 0x30,*(int64_t *)(param_1 + 0x270),&system_buffer_ptr,0,1);
+        SystemDataValidator(lVar7 + 0x30,*(int64_t *)(param_1 + 0x270),&system_buffer_ptr,0,1);
       }
       if (auStackX_8[0] != 0) {
         lVar7 = FUN_180742050(lVar7 + 0x30,*(int *)(param_1 + 0x288) + 0x20,&system_buffer_ptr,0,
@@ -605,7 +605,7 @@ LAB_1807e613d:
     *(int *)(param_1 + 0x328) = aiStackX_10[0];
     if (*(int64_t *)(param_1 + 800) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(lVar7 + 0x30,*(int64_t *)(param_1 + 800),&system_buffer_ptr,0,1);
+      SystemDataValidator(lVar7 + 0x30,*(int64_t *)(param_1 + 800),&system_buffer_ptr,0,1);
     }
     if (aiStackX_10[0] == 0) goto LAB_1807e60dd;
     uVar9 = uVar9 & 0xffffffff00000000;
@@ -667,7 +667,7 @@ LAB_1807e613d:
       *(uint *)(unaff_RBX + 0x288) = uVar6 * *(int *)(unaff_RBX + 0x2ec) + 0x1f & 0xffffffe0;
       if (*(int64_t *)(unaff_RBX + 0x270) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(unaff_R15 + 0x30,*(int64_t *)(unaff_RBX + 0x270),&system_buffer_ptr,0,1);
+        SystemDataValidator(unaff_R15 + 0x30,*(int64_t *)(unaff_RBX + 0x270),&system_buffer_ptr,0,1);
       }
       if (param_2 != 0) {
         lVar4 = FUN_180742050(unaff_R15 + 0x30,*(int *)(unaff_RBX + 0x288) + 0x20,&system_buffer_ptr,0,
@@ -706,7 +706,7 @@ LAB_1807e613d:
     *(int *)(unaff_RBX + 0x328) = in_EAX;
     if (*(int64_t *)(unaff_RBX + 800) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(unaff_R15 + 0x30,*(int64_t *)(unaff_RBX + 800),&system_buffer_ptr,0,1);
+      SystemDataValidator(unaff_R15 + 0x30,*(int64_t *)(unaff_RBX + 800),&system_buffer_ptr,0,1);
     }
     if (in_EAX == 0) goto LAB_1807e60dd;
     lVar4 = FUN_180742050(unaff_R15 + 0x30,*(int32_t *)(unaff_RBX + 0x328),&system_buffer_ptr,0,

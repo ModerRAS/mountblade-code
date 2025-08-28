@@ -219,7 +219,7 @@ void FUN_1803387a0(int64_t *param_1,int64_t param_2)
         if (lVar29 == 0) {
           lVar29 = 1;
 LAB_180338b93:
-          puVar21 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar29 << 6,(char)param_1[0x2d]);
+          puVar21 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar29 << 6,(char)param_1[0x2d]);
           puVar24 = (uint64_t *)*puVar2;
           puVar27 = (uint64_t *)param_1[0x2b];
         }
@@ -246,7 +246,7 @@ LAB_180338b93:
         *(int32_t *)((int64_t)puVar21 + 0x3c) = uVar10;
         if (*puVar2 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         *puVar2 = (uint64_t)puVar21;
         param_1[0x2c] = (int64_t)(puVar21 + lVar29 * 8);
@@ -264,7 +264,7 @@ LAB_180338b93:
       lVar23 = 0;
     }
     else {
-      lVar23 = FUN_18062b420(system_memory_pool_ptr,uVar32,(char)param_1[0x31]);
+      lVar23 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,uVar32,(char)param_1[0x31]);
       lVar29 = param_1[0x2e];
     }
     if (lVar29 != param_1[0x2f]) {
@@ -273,7 +273,7 @@ LAB_180338b93:
     }
     if (lVar29 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     param_1[0x2e] = lVar23;
     param_1[0x30] = lVar23 + uVar32;
@@ -294,7 +294,7 @@ LAB_180338b93:
         if ((int64_t)puVar28 - (int64_t)puVar25 == 0) {
           lVar29 = 1;
 LAB_180338d21:
-          puVar22 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,lVar29,(char)param_1[0x31]);
+          puVar22 = (int8_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar29,(char)param_1[0x31]);
           puVar25 = (int8_t *)param_1[0x2e];
           puVar28 = (int8_t *)param_1[0x2f];
         }
@@ -310,7 +310,7 @@ LAB_180338d21:
         *puVar22 = uVar4;
         if (param_1[0x2e] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         param_1[0x2e] = (int64_t)puVar22;
         param_1[0x30] = (int64_t)(puVar22 + lVar29);

@@ -465,7 +465,7 @@ uint64_t FUN_1807b5bc0(int64_t param_1,int64_t *param_2)
   
   uVar1 = *(ushort *)*param_2;
   *param_2 = (int64_t)((ushort *)*param_2 + 1);
-  lVar2 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),(uint)uVar1 * 2,&unknown_var_5648_ptr,0xc0,
+  lVar2 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),(uint)uVar1 * 2,&unknown_var_5648_ptr,0xc0,
                         0,0,1);
   *(int64_t *)(param_1 + 0x4428) = lVar2;
   if (lVar2 == 0) {

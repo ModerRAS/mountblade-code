@@ -143,7 +143,7 @@ void string_search_replace(int64_t str_obj, int64_t search_str, int64_t replace_
   }
   temp_ptr = &global_vtable_18098bcb0;
   // 执行字符串处理
-  FUN_1808fc050(stack_var ^ (unsigned long long)stack_buffer);
+  SystemSecurityChecker(stack_var ^ (unsigned long long)stack_buffer);
 }
 
 // 函数：带缓冲区的字符串初始化
@@ -198,7 +198,7 @@ void set_string_content(int64_t str_obj, int64_t src_str)
     return;
   }
   // 处理长字符串
-  FUN_180626f80(&string_allocator_18098bc48, MAX_SHORT_PATH_LENGTH, src_str);
+  SystemDataInitializer(&string_allocator_18098bc48, MAX_SHORT_PATH_LENGTH, src_str);
   *(unsigned int *)(str_obj + 16) = 0;
   **(unsigned char **)(str_obj + 8) = 0;
   return;
@@ -278,7 +278,7 @@ void short_string_search_replace(int64_t str_obj, int64_t search_str, int64_t re
   }
   temp_ptr = &global_vtable_18098bcb0;
   // 执行字符串处理
-  FUN_1808fc050(stack_var ^ (unsigned long long)stack_buffer);
+  SystemSecurityChecker(stack_var ^ (unsigned long long)stack_buffer);
 }
 
 // 函数：初始化带长度的短字符串
@@ -310,7 +310,7 @@ void cleanup_object_references(void *obj_ptr)
   ((void **)obj_ptr)[4] = &global_vtable_180a3c3e0;
   if (((void **)obj_ptr)[5] != 0) {
     // 释放引用
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   ((void **)obj_ptr)[5] = 0;
   *(unsigned int *)((char *)obj_ptr + 56) = 0;
@@ -318,7 +318,7 @@ void cleanup_object_references(void *obj_ptr)
   *(void **)obj_ptr = &global_vtable_180a3c3e0;
   if (((void **)obj_ptr)[1] != 0) {
     // 释放引用
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   ((void **)obj_ptr)[1] = 0;
   *(unsigned int *)((char *)obj_obj + 24) = 0;
@@ -336,7 +336,7 @@ void cleanup_object_recursive(void *parent_obj, void *child_obj, void *attr1, vo
   ((void **)child_obj)[8] = &global_vtable_180a3c3e0;
   if (((void **)child_obj)[9] != 0) {
     // 释放引用
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   ((void **)child_obj)[9] = 0;
   *(unsigned int *)((char *)child_obj + 88) = 0;
@@ -344,13 +344,13 @@ void cleanup_object_recursive(void *parent_obj, void *child_obj, void *attr1, vo
   ((void **)child_obj)[4] = &global_vtable_180a3c3e0;
   if (((void **)child_obj)[5] != 0) {
     // 释放引用
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   ((void **)child_obj)[5] = 0;
   *(unsigned int *)((char *)child_obj + 56) = 0;
   ((void **)child_obj)[4] = &global_vtable_18098bcb0;
   // 释放对象
-  FUN_18064e900(child_obj);
+  CoreEngineMemoryPoolCleaner(child_obj);
 }
 
 // 函数：清理对象包装器1
@@ -380,7 +380,7 @@ void cleanup_simple_object(void *obj_ptr)
   *(void **)obj_ptr = &global_vtable_180a3c3e0;
   if (((void **)obj_ptr)[1] != 0) {
     // 释放引用
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   ((void **)obj_ptr)[1] = 0;
   *(unsigned int *)((char *)obj_ptr + 24) = 0;
@@ -409,7 +409,7 @@ void set_long_string_content(int64_t str_obj, int64_t src_str)
     return;
   }
   // 处理超长字符串
-  FUN_180626f80(&string_allocator_18098bc48, MAX_PATH_LENGTH, src_str);
+  SystemDataInitializer(&string_allocator_18098bc48, MAX_PATH_LENGTH, src_str);
   *(unsigned int *)(str_obj + 16) = 0;
   **(unsigned char **)(str_obj + 8) = 0;
   return;
@@ -433,7 +433,7 @@ void *threadsafe_insert_element(int64_t container, unsigned int element, void *a
   void *end_ptr;
   unsigned long long capacity;
   
-  element_ptr = FUN_18062b420(system_memory_pool_ptr, element, 3, attr2, MUTEX_TIMEOUT_INFINITE);
+  element_ptr = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, element, 3, attr2, MUTEX_TIMEOUT_INFINITE);
   lock_result = _Mtx_lock(container + 40);
   if (lock_result != 0) {
     __Throw_C_error_std__YAXH_Z(lock_result);
@@ -450,7 +450,7 @@ void *threadsafe_insert_element(int64_t container, unsigned int element, void *a
     capacity = 1;
 resize_container:
     new_element_ptr = (void *)
-             FUN_18062b420(system_memory_pool_ptr, capacity * 8, *(unsigned char *)(container + 32), attr2, MUTEX_TIMEOUT_INFINITE);
+             CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, capacity * 8, *(unsigned char *)(container + 32), attr2, MUTEX_TIMEOUT_INFINITE);
     current_ptr = *(void **)(container + 16);
     new_container_ptr = *(void **)(container + 8);
   }
@@ -466,7 +466,7 @@ resize_container:
   *(void **)new_element_ptr = element_ptr;
   if (*(int64_t *)(container + 8) != 0) {
     // 释放旧容器
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(void **)(container + 8) = new_element_ptr;
   *(void **)(container + 16) = (void *)new_element_ptr + 8;
@@ -486,7 +486,7 @@ void cleanup_thread_container(void *container)
   _Mtx_destroy_in_situ();
   if (((void **)container)[1] != 0) {
     // 释放引用
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(void **)container = &global_vtable_1809fcd18;
   return;
@@ -516,8 +516,8 @@ void *allocate_resource(int64_t resource_ptr, void *resource)
   void *allocated_resource;
   int64_t resource_size;
   
-  allocated_resource = FUN_18062b1e0(system_memory_pool_ptr, resource, 16, 6);
-  resource_size = FUN_18064e990(allocated_resource);
+  allocated_resource = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, resource, 16, 6);
+  resource_size = CoreEngineSystemCleanup(allocated_resource);
   *(int64_t *)(resource_ptr + 8) = *(int64_t *)(resource_ptr + 8) + resource_size;
   return allocated_resource;
 }
@@ -527,11 +527,11 @@ void release_resource(int64_t resource_ptr, void *resource)
 {
   int64_t resource_size;
   
-  resource_size = FUN_18064e990(resource);
+  resource_size = CoreEngineSystemCleanup(resource);
   *(int64_t *)(resource_ptr + 8) = *(int64_t *)(resource_ptr + 8) - resource_size;
   if (resource != 0) {
     // 释放资源
-    FUN_18064e900(resource);
+    CoreEngineMemoryPoolCleaner(resource);
   }
   return;
 }
@@ -562,7 +562,7 @@ bool check_engine_configuration(void)
   
   FUN_1800ba940(&file_path);
   buffer_size = path_length + 17;
-  FUN_1806277c0(&file_path, buffer_size);
+  CoreEngineDataBufferProcessor(&file_path, buffer_size);
   config_ptr = (unsigned int *)(file_path + path_length);
   *config_ptr = 0x69676e65;  // "engine"
   config_ptr[1] = 0x635f656e;  // "n_enc"
@@ -601,7 +601,7 @@ bool check_engine_configuration(void)
   file_path = &global_vtable_180a3c3e0;
   if (file_path != (void *)0x0) {
     // 释放文件路径
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return has_config;
 }
@@ -637,14 +637,14 @@ void initialize_engine_system(void)
   file_flags = 0;
   file_handle = &global_vtable_18098bcb0;
   buffer_size = path_length + 15;
-  FUN_1806277c0(stack_buffer + 64, buffer_size);
+  CoreEngineDataBufferProcessor(stack_buffer + 64, buffer_size);
   config_ptr = (unsigned int *)(temp_ptr + path_length);
   *config_ptr = 0x72657375;  // "user"
   config_ptr[1] = 0x6e6f635f;  // "_con"
   config_ptr[2] = 0x2e676966;  // "fig."
   config_ptr[3] = 0x747874;  // "txt"
   path_length = buffer_size;
-  config_file = (void *)FUN_18062b1e0(system_memory_pool_ptr, 24, 8, 3);
+  config_file = (void *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 24, 8, 3);
   temp_ptr = &default_string_18098bc73;
   if (temp_ptr != (void *)0x0) {
     temp_ptr = temp_ptr;
@@ -654,7 +654,7 @@ void initialize_engine_system(void)
   FUN_18062dee0(config_file, temp_ptr, &config_file_path_1809fcfbc);
   if (((void **)config_file)[1] == 0) {
     // 释放配置文件
-    FUN_18064e900(config_file);
+    CoreEngineMemoryPoolCleaner(config_file);
   }
   FUN_1800aecf0(init_system_data_string, config_file);
   FUN_18062de90(config_file);
@@ -666,7 +666,7 @@ void initialize_engine_system(void)
     UNLOCK();
   }
   // 释放配置文件
-  FUN_18064e900(config_file);
+  CoreEngineMemoryPoolCleaner(config_file);
 }
 
 // 函数：初始化内存分配器
@@ -674,11 +674,11 @@ void initialize_memory_allocator(void)
 {
   void *allocator;
   
-  allocator = FUN_18062b1e0(system_memory_pool_ptr, 0xd20, 8, 3);
+  allocator = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xd20, 8, 3);
   system_resource_state = FUN_1800b4a40(allocator);
-  allocator = FUN_18062b1e0(system_memory_pool_ptr, 0x138, 8, 3);
+  allocator = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x138, 8, 3);
   init_system_data_string = FUN_180086ca0(allocator);
-  allocator = FUN_18062b1e0(system_memory_pool_ptr, 0x50, 8, 3);
+  allocator = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x50, 8, 3);
   // 清零内存
   memset(allocator, 0, 0x50);
 }
@@ -721,7 +721,7 @@ void cleanup_path_string(void)
     } while (length < length);
   }
   file_path[char_count] = 0;
-  path_ptr = (void **)FUN_18062b1e0(system_memory_pool_ptr, 40, 8, CONCAT71((int7)(path_length >> 8), 3));
+  path_ptr = (void **)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 40, 8, CONCAT71((int7)(path_length >> 8), 3));
   temp_ptr = &default_string_18098bc73;
   if (file_path != (void *)0x0) {
     temp_ptr = file_path;
@@ -775,7 +775,7 @@ void shutdown_engine_system(void)
             (engine_ptr, 0, (void (*)(void))(*engine_ptr + 16), in_R9, MUTEX_TIMEOUT_INFINITE);
     if (component_state != 0) {
       // 释放组件
-      FUN_18064e900(component_state);
+      CoreEngineMemoryPoolCleaner(component_state);
     }
   }
   *(void **)(engine_state + 48) = 0;
@@ -792,7 +792,7 @@ void shutdown_engine_system(void)
     *(void **)(engine_state + 16) = &global_vtable_1809fcce0;
     *(void **)(engine_state + 8) = &global_vtable_1809fcca0;
     // 释放引擎
-    FUN_18064e900(engine_state);
+    CoreEngineMemoryPoolCleaner(engine_state);
   }
   init_system_data_string = 0;
   timeEndPeriod(1);
@@ -800,7 +800,7 @@ void shutdown_engine_system(void)
   if (system_resource_state != 0) {
     FUN_1800b4550(system_resource_state);
     // 释放内存分配器
-    FUN_18064e900(engine_state);
+    CoreEngineMemoryPoolCleaner(engine_state);
   }
   system_resource_state = 0;
   return;
@@ -822,21 +822,21 @@ void *build_module_path(void *path_obj, void *module_name, void *attr1, void *at
   ((void **)path_obj)[3] = 0;
   ((void **)path_obj)[1] = 0;
   *(unsigned int *)((char *)path_obj + 16) = 0;
-  FUN_1806277c0(path_obj, 0, attr1, attr2, 0, MUTEX_TIMEOUT_INFINITE);
+  CoreEngineDataBufferProcessor(path_obj, 0, attr1, attr2, 0, MUTEX_TIMEOUT_INFINITE);
   *(unsigned int *)((char *)path_obj + 16) = 0;
   if ((unsigned char *)((void **)path_obj)[1] != (unsigned char *)0x0) {
     *(unsigned char *)((void **)path_obj)[1] = 0;
   }
   total_length = *(int *)((char *)path_obj + 16);
   path_length = total_length + 6;
-  FUN_1806277c0(path_obj, path_length, attr1, attr2, 1, MUTEX_TIMEOUT_INFINITE);
+  CoreEngineDataBufferProcessor(path_obj, path_length, attr1, attr2, 1, MUTEX_TIMEOUT_INFINITE);
   path_ptr = (unsigned int *)((unsigned long)*(unsigned int *)((char *)path_obj + 16) + ((void **)path_obj)[1]);
   *path_ptr = 0x2e2f2e2e;  // "../.."
   *(unsigned short *)(path_ptr + 1) = 0x2f2e;  // "/."
   *(unsigned char *)((int64_t)path_ptr + 6) = 0;
   *(int *)((char *)path_obj + 16) = path_length;
   total_length = total_length + 42;
-  FUN_1806277c0(path_obj, total_length);
+  CoreEngineDataBufferProcessor(path_obj, total_length);
   module_ptr = (void **)((unsigned long)*(unsigned int *)((char *)path_obj + 16) + ((void **)path_obj)[1]);
   *module_ptr = 0x736c6f6f542f2e2eULL;  // "../Tools/Tales"
   module_ptr[1] = 0x747541747365542fULL;  // "/Test/Attribute"
@@ -879,7 +879,7 @@ void load_configuration_file(char config_type)
   }
   FUN_1800ba940(&file_path);
   buffer_size = path_length + 17;
-  FUN_1806277c0(&file_path, buffer_size);
+  CoreEngineDataBufferProcessor(&file_path, buffer_size);
   config_data = (unsigned int *)(file_path + path_length);
   *config_data = 0x69676e65;  // "engine"
   config_data[1] = 0x635f656e;  // "n_enc"
@@ -925,7 +925,7 @@ void load_configuration_file(char config_type)
     return version_info;
   }
   // 释放文件路径
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 // 函数：检查主线程
@@ -999,7 +999,7 @@ void initialize_version_string(void *version_obj)
   flags = 1;
   version_str = &global_vtable_18098bcb0;
   // 执行版本处理
-  FUN_1808fc050(stack_var ^ (unsigned long long)stack_buffer);
+  SystemSecurityChecker(stack_var ^ (unsigned long long)stack_buffer);
 }
 
 // 函数：初始化系统配置
@@ -1079,7 +1079,7 @@ void cleanup_module_container(int64_t container, void *attr1, void *attr2, void 
   if (module_ptr != (void *)0x0) {
     FUN_18004b790(container, *module_ptr, attr2, attr3, MUTEX_TIMEOUT_INFINITE);
     // 释放模块
-    FUN_18064e900(module_ptr);
+    CoreEngineMemoryPoolCleaner(module_ptr);
   }
   return;
 }
@@ -1093,7 +1093,7 @@ void cleanup_resource_container(int64_t container, void *attr1, void *attr2, voi
   if (resource_ptr != (void *)0x0) {
     FUN_18004b790(container, *resource_ptr, attr2, attr3, MUTEX_TIMEOUT_INFINITE);
     // 释放资源
-    FUN_18064e900(resource_ptr);
+    CoreEngineMemoryPoolCleaner(resource_ptr);
   }
   return;
 }
