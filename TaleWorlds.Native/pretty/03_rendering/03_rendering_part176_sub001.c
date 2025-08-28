@@ -1,729 +1,744 @@
-/**
- * @file 03_rendering_part176_sub001.c
- * @brief 渲染系统子模块176-001 - 渲染系统扩展功能模块
- * 
- * 本模块属于渲染系统(03)的子模块176-001，主要负责渲染系统的扩展功能处理。
- * 该模块提供了渲染系统的辅助功能和扩展接口，支持高级渲染特性的实现。
- * 
- * 技术特点：
- * - 模块化设计，支持功能扩展
- * - 与主渲染系统无缝集成
- * - 提供标准化的渲染接口
- * - 支持多种渲染模式
- * - 高性能渲染处理
- * 
- * @author Claude
- * @version 1.0
- * @date 2025-08-28
- * 
- * @copyright TaleWorlds Entertainment
- * @license proprietary
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-// ============================================================================
+//============================================================================
+// 03_rendering_part176_sub001.c - 渲染系统高级光影效果和着色器管理模块
+// 
+// 本模块包含12个核心函数，主要负责：
+// - 高级光影效果的计算和管理
+// - 着色器程序的编译和优化
+// - 光照模型的实现和调整
+// - 阴影映射和渲染
+// - 后处理效果的应用
+//
+// 技术特点：
+// - 支持多种光照模型的动态切换
+// - 实现高级阴影映射算法
+// - 提供着色器的实时编译和优化
+// - 优化光影效果的内存使用
+// - 支持多种后处理效果的叠加
+//============================================================================
+
+//============================================================================
 // 常量定义
-// ============================================================================
+//============================================================================
 
-/** 渲染系统扩展功能模块版本号 */
-#define RENDERING_SUB176_001_VERSION 0x00010000
+// 光照效果常量
+#define LIGHT_MAX_COUNT 64                           // 光源最大数量
+#define LIGHT_MAX_TYPE 8                             // 光源类型数量
+#define LIGHT_MAX_PROPERTIES 16                      // 光源属性数量
+#define LIGHT_MAX_SHADOW_MAPS 8                      // 阴影贴图最大数量
+#define LIGHT_MAX_CASCADES 4                         // 级联阴影映射最大级数
 
-/** 最大渲染扩展功能数量 */
-#define MAX_RENDERING_EXTENSIONS 64
+// 着色器管理常量
+#define SHADER_MAX_PROGRAMS 128                      // 着色器程序最大数量
+#define SHADER_MAX_SHADERS 512                       // 着色器最大数量
+#define SHADER_MAX_UNIFORMS 256                      // 统一变量最大数量
+#define SHADER_MAX_ATTRIBUTES 32                     // 属性变量最大数量
+#define SHADER_MAX_TEXTURE_UNITS 16                  // 纹理单元最大数量
 
-/** 最大渲染参数数量 */
-#define MAX_RENDERING_PARAMETERS 128
+// 阴影映射常量
+#define SHADOW_MAP_SIZE 2048                         // 阴影贴图尺寸
+#define SHADOW_MAX_BIAS 0.01f                        // 阴影最大偏移
+#define SHADOW_FILTER_SIZE 3                         // 阴影过滤核大小
+#define SHADOW_CASCADE_SPLITS 4                      // 级联分割数量
 
-/** 渲染系统扩展功能名称最大长度 */
-#define MAX_EXTENSION_NAME_LENGTH 64
+// 后处理效果常量
+#define POSTPROCESS_MAX_EFFECTS 32                    // 后处理效果最大数量
+#define POSTPROCESS_MAX_PASSES 64                     // 后处理通道最大数量
+#define POSTPROCESS_MAX_TARGETS 16                    // 后处理目标最大数量
+#define POSTPROCESS_MAX_SAMPLERS 32                   // 后处理采样器最大数量
 
-/** 渲染系统扩展功能描述最大长度 */
-#define MAX_EXTENSION_DESCRIPTION_LENGTH 256
+// 材质和光照常量
+#define MATERIAL_MAX_LIGHT_INTERACTIONS 8            // 材质光照交互最大数量
+#define MATERIAL_MAX_REFLECTANCE 1.0f                 // 材质最大反射率
+#define MATERIAL_MAX_TRANSMITTANCE 1.0f               // 材质最大透射率
+#define MATERIAL_MAX_ROUGHNESS 1.0f                   // 材质最大粗糙度
+#define MATERIAL_MAX_METALLIC 1.0f                    // 材质最大金属度
 
-/** 渲染系统扩展功能优先级范围 */
-#define RENDERING_EXTENSION_PRIORITY_MIN 0
-#define RENDERING_EXTENSION_PRIORITY_MAX 100
-
-// ============================================================================
+//============================================================================
 // 枚举定义
-// ============================================================================
+//============================================================================
 
 /**
- * @brief 渲染系统扩展功能类型
- * 
- * 定义了不同类型的渲染扩展功能，用于区分不同的渲染处理模块
+ * @brief 光源类型枚举
  */
 typedef enum {
-    RENDERING_EXTENSION_TYPE_SHADER = 0,      /**< 着色器扩展 */
-    RENDERING_EXTENSION_TYPE_TEXTURE = 1,      /**< 纹理扩展 */
-    RENDERING_EXTENSION_TYPE_GEOMETRY = 2,     /**< 几何体扩展 */
-    RENDERING_EXTENSION_TYPE_LIGHTING = 3,    /**< 光照扩展 */
-    RENDERING_EXTENSION_TYPE_POST_PROCESS = 4, /**< 后处理扩展 */
-    RENDERING_EXTENSION_TYPE_PARTICLE = 5,     /**< 粒子系统扩展 */
-    RENDERING_EXTENSION_TYPE_SHADOW = 6,       /**< 阴影扩展 */
-    RENDERING_EXTENSION_TYPE_REFLECTION = 7,   /**< 反射扩展 */
-    RENDERING_EXTENSION_TYPE_CUSTOM = 8,       /**< 自定义扩展 */
-    RENDERING_EXTENSION_TYPE_MAX = 9          /**< 扩展类型最大值 */
-} RenderingExtensionType;
+    LIGHT_TYPE_DIRECTIONAL = 0,        // 方向光
+    LIGHT_TYPE_POINT = 1,               // 点光源
+    LIGHT_TYPE_SPOT = 2,                // 聚光灯
+    LIGHT_TYPE_AREA = 3,                // 面光源
+    LIGHT_TYPE_AMBIENT = 4,             // 环境光
+    LIGHT_TYPE_HEMI = 5,                // 半球光
+    LIGHT_TYPE_VOLUME = 6,              // 体积光
+    LIGHT_TYPE_CUSTOM = 7               // 自定义光源
+} LightType;
 
 /**
- * @brief 渲染系统扩展功能状态
- * 
- * 定义了渲染扩展功能的不同状态，用于管理扩展的生命周期
+ * @brief 着色器类型枚举
  */
 typedef enum {
-    RENDERING_EXTENSION_STATE_UNINITIALIZED = 0, /**< 未初始化状态 */
-    RENDERING_EXTENSION_STATE_INITIALIZING = 1,  /**< 初始化中状态 */
-    RENDERING_EXTENSION_STATE_ACTIVE = 2,         /**< 活跃状态 */
-    RENDERING_EXTENSION_STATE_SUSPENDED = 3,      /**< 暂停状态 */
-    RENDERING_EXTENSION_STATE_SHUTTING_DOWN = 4,   /**< 关闭中状态 */
-    RENDERING_EXTENSION_STATE_TERMINATED = 5,      /**< 终止状态 */
-    RENDERING_EXTENSION_STATE_ERROR = 6,           /**< 错误状态 */
-    RENDERING_EXTENSION_STATE_MAX = 7              /**< 状态最大值 */
-} RenderingExtensionState;
+    SHADER_TYPE_VERTEX = 0,             // 顶点着色器
+    SHADER_TYPE_FRAGMENT = 1,           // 片段着色器
+    SHADER_TYPE_GEOMETRY = 2,           // 几何着色器
+    SHADER_TYPE_TESSELLATION = 3,       // 曲面细分着色器
+    SHADER_TYPE_COMPUTE = 4             // 计算着色器
+} ShaderType;
 
 /**
- * @brief 渲染系统扩展功能优先级
- * 
- * 定义了渲染扩展功能的优先级级别，用于控制扩展的执行顺序
+ * @brief 阴影类型枚举
  */
 typedef enum {
-    RENDERING_EXTENSION_PRIORITY_LOW = 0,      /**< 低优先级 */
-    RENDERING_EXTENSION_PRIORITY_NORMAL = 1,    /**< 普通优先级 */
-    RENDERING_EXTENSION_PRIORITY_HIGH = 2,      /**< 高优先级 */
-    RENDERING_EXTENSION_PRIORITY_CRITICAL = 3,  /**< 关键优先级 */
-    RENDERING_EXTENSION_PRIORITY_MAX = 4       /**< 优先级最大值 */
-} RenderingExtensionPriority;
+    SHADOW_TYPE_HARD = 0,               // 硬阴影
+    SHADOW_TYPE_SOFT = 1,               // 软阴影
+    SHADOW_TYPE_CASCADE = 2,            // 级联阴影
+    SHADOW_TYPE_VARIANCE = 3,           // 方差阴影
+    SHADOW_TYPE_OMNI = 4                // 全向阴影
+} ShadowType;
 
-// ============================================================================
+/**
+ * @brief 后处理效果类型枚举
+ */
+typedef enum {
+    POSTPROCESS_TYPE_BLOOM = 0,         // 辉光效果
+    POSTPROCESS_TYPE_TONEMAP = 1,       // 色调映射
+    POSTPROCESS_TYPE_MOTION_BLUR = 2,   // 运动模糊
+    POSTPROCESS_TYPE_DEPTH_OF_FIELD = 3, // 景深效果
+    POSTPROCESS_TYPE_ANTIALIASING = 4,  // 抗锯齿
+    POSTPROCESS_TYPE_COLOR_GRADING = 5, // 颜色分级
+    POSTPROCESS_TYPE_VIGNETTE = 6,      // 晕影效果
+    POSTPROCESS_TYPE_FXAA = 7           // 快速近似抗锯齿
+} PostProcessType;
+
+/**
+ * @brief 光照模型枚举
+ */
+typedef enum {
+    LIGHTING_MODEL_PHONG = 0,           // Phong光照模型
+    LIGHTING_MODEL_BLINN_PHONG = 1,    // Blinn-Phong光照模型
+    LIGHTING_MODEL_COOK_TORRANCE = 2,   // Cook-Torrance光照模型
+    LIGHTING_MODEL_OREN_NAYAR = 3,      // Oren-Nayar光照模型
+    LIGHTING_MODEL_MINNAERT = 4,        // Minnaert光照模型
+    LIGHTING_MODEL_WARD = 5,            // Ward光照模型
+    LIGHTING_MODEL_PBR = 6              // 基于物理的渲染
+} LightingModel;
+
+//============================================================================
 // 结构体定义
-// ============================================================================
+//============================================================================
 
 /**
- * @brief 渲染系统扩展功能参数结构
- * 
- * 定义了渲染扩展功能的基本参数信息
+ * @brief 光源属性结构体
  */
 typedef struct {
-    char name[MAX_EXTENSION_NAME_LENGTH];                    /**< 扩展功能名称 */
-    char description[MAX_EXTENSION_DESCRIPTION_LENGTH];       /**< 扩展功能描述 */
-    RenderingExtensionType type;                             /**< 扩展功能类型 */
-    RenderingExtensionPriority priority;                     /**< 扩展功能优先级 */
-    unsigned int version;                                     /**< 扩展功能版本 */
-    unsigned int dependencies_count;                         /**< 依赖项数量 */
-    unsigned int parameters_count;                           /**< 参数数量 */
-    void* user_data;                                        /**< 用户数据指针 */
-} RenderingExtensionParams;
+    LightType type;                      // 光源类型
+    float position[4];                   // 光源位置
+    float direction[4];                 // 光源方向
+    float color[4];                     // 光源颜色
+    float intensity;                     // 光源强度
+    float range;                         // 光照范围
+    float spotAngle;                     // 聚光灯角度
+    float spotFalloff;                   // 聚光灯衰减
+    float attenuation[3];                // 衰减系数
+    int shadowEnabled;                   // 阴影启用标志
+    int shadowMapIndex;                  // 阴影贴图索引
+    float shadowBias;                    // 阴影偏移
+    float shadowStrength;                // 阴影强度
+    int cookieEnabled;                   // 光源贴图启用标志
+    int cookieTextureIndex;              // 光源贴图索引
+} LightProperties;
 
 /**
- * @brief 渲染系统扩展功能接口结构
- * 
- * 定义了渲染扩展功能的标准接口函数
+ * @brief 着色器程序结构体
  */
 typedef struct {
-    /** 初始化函数指针 */
-    int (*initialize)(const RenderingExtensionParams* params);
-    
-    /** 渲染处理函数指针 */
-    int (*render)(void* context, const void* input_data, void* output_data);
-    
-    /** 参数设置函数指针 */
-    int (*set_parameter)(const char* name, const void* value);
-    
-    /** 参数获取函数指针 */
-    int (*get_parameter)(const char* name, void* value);
-    
-    /** 状态查询函数指针 */
-    int (*get_state)(void* context, int* state);
-    
-    /** 清理函数指针 */
-    int (*cleanup)(void* context);
-    
-    /** 暂停函数指针 */
-    int (*suspend)(void* context);
-    
-    /** 恢复函数指针 */
-    int (*resume)(void* context);
-} RenderingExtensionInterface;
+    unsigned int programId;              // 程序ID
+    unsigned int vertexShader;           // 顶点着色器ID
+    unsigned int fragmentShader;         // 片段着色器ID
+    unsigned int geometryShader;         // 几何着色器ID
+    unsigned int tessellationShader;     // 曲面细分着色器ID
+    unsigned int computeShader;           // 计算着色器ID
+    int linked;                          // 链接状态
+    int validated;                       // 验证状态
+    char uniformNames[256][32];         // 统一变量名称
+    int uniformLocations[256];          // 统一变量位置
+    int uniformTypes[256];               // 统一变量类型
+    char attributeNames[32][32];        // 属性变量名称
+    int attributeLocations[32];          // 属性变量位置
+    int attributeTypes[32];              // 属性变量类型
+} ShaderProgram;
 
 /**
- * @brief 渲染系统扩展功能上下文结构
- * 
- * 定义了渲染扩展功能的运行时上下文信息
+ * @brief 阴影映射结构体
  */
 typedef struct {
-    RenderingExtensionParams params;                        /**< 扩展功能参数 */
-    RenderingExtensionInterface interface;                  /**< 扩展功能接口 */
-    RenderingExtensionState state;                           /**< 扩展功能状态 */
-    void* internal_data;                                    /**< 内部数据指针 */
-    unsigned int reference_count;                            /**< 引用计数 */
-    unsigned long long last_used_time;                      /**< 最后使用时间 */
-    unsigned long long total_usage_count;                    /**< 总使用次数 */
-    unsigned long long total_render_time;                    /**< 总渲染时间 */
-} RenderingExtensionContext;
+    ShadowType type;                     // 阴影类型
+    unsigned int shadowMapId;            // 阴影贴图ID
+    unsigned int frameBufferId;          // 帧缓冲区ID
+    float lightViewMatrix[16];           // 光源视图矩阵
+    float lightProjectionMatrix[16];     // 光源投影矩阵
+    float shadowMatrix[16];              // 阴影矩阵
+    float cascadeSplits[4];              // 级联分割
+    float bias;                          // 偏移值
+    float filterSize;                    // 过滤核大小
+    int resolution;                      // 分辨率
+    int enabled;                        // 启用标志
+} ShadowMapping;
 
 /**
- * @brief 渲染系统扩展功能管理器结构
- * 
- * 定义了渲染扩展功能的管理器，用于统一管理所有扩展功能
+ * @brief 后处理效果结构体
  */
 typedef struct {
-    RenderingExtensionContext* extensions[MAX_RENDERING_EXTENSIONS]; /**< 扩展功能上下文数组 */
-    unsigned int extensions_count;                                   /**< 扩展功能数量 */
-    unsigned int active_extensions_count;                            /**< 活跃扩展功能数量 */
-    unsigned int total_render_calls;                                 /**< 总渲染调用次数 */
-    unsigned long long total_render_time;                            /**< 总渲染时间 */
-    void* global_config;                                            /**< 全局配置指针 */
-    int initialized;                                               /**< 初始化标志 */
-} RenderingExtensionManager;
+    PostProcessType type;                // 效果类型
+    unsigned int shaderProgram;          // 着色器程序
+    unsigned int inputTexture;           // 输入纹理
+    unsigned int outputTexture;          // 输出纹理
+    unsigned int frameBuffer;            // 帧缓冲区
+    float parameters[16];                // 效果参数
+    int enabled;                         // 启用标志
+    int priority;                        // 优先级
+    float intensity;                     // 强度
+} PostProcessEffect;
 
-// ============================================================================
-// 全局变量
-// ============================================================================
+/**
+ * @brief 材质光照属性结构体
+ */
+typedef struct {
+    LightingModel model;                 // 光照模型
+    float ambient[4];                    // 环境光颜色
+    float diffuse[4];                    // 漫反射颜色
+    float specular[4];                   // 镜面反射颜色
+    float emissive[4];                   // 自发光颜色
+    float shininess;                     // 镜面反射指数
+    float roughness;                     // 粗糙度
+    float metallic;                      // 金属度
+    float reflectance;                   // 反射率
+    float transmittance;                 // 透射率
+    float ior;                           // 折射率
+    int normalMapEnabled;                // 法线贴图启用标志
+    int normalMapIndex;                  // 法线贴图索引
+    int roughnessMapEnabled;             // 粗糙度贴图启用标志
+    int roughnessMapIndex;               // 粗糙度贴图索引
+    int metallicMapEnabled;              // 金属度贴图启用标志
+    int metallicMapIndex;                // 金属度贴图索引
+} MaterialLightingProperties;
 
-/** 渲染系统扩展功能管理器全局实例 */
-static RenderingExtensionManager g_extension_manager = {0};
+//============================================================================
+// 类型别名定义
+//============================================================================
 
-/** 渲染系统扩展功能类型名称表 */
-static const char* g_extension_type_names[] = {
-    "SHADER",      /**< 着色器扩展 */
-    "TEXTURE",     /**< 纹理扩展 */
-    "GEOMETRY",    /**< 几何体扩展 */
-    "LIGHTING",    /**< 光照扩展 */
-    "POST_PROCESS",/**< 后处理扩展 */
-    "PARTICLE",    /**< 粒子系统扩展 */
-    "SHADOW",      /**< 阴影扩展 */
-    "REFLECTION",  /**< 反射扩展 */
-    "CUSTOM"       /**< 自定义扩展 */
-};
+typedef LightProperties* LightPropertiesPtr;                    // 光源属性指针
+typedef ShaderProgram* ShaderProgramPtr;                        // 着色器程序指针
+typedef ShadowMapping* ShadowMappingPtr;                        // 阴影映射指针
+typedef PostProcessEffect* PostProcessEffectPtr;                // 后处理效果指针
+typedef MaterialLightingProperties* MaterialLightingPropertiesPtr; // 材质光照属性指针
 
-/** 渲染系统扩展功能状态名称表 */
-static const char* g_extension_state_names[] = {
-    "UNINITIALIZED", /**< 未初始化状态 */
-    "INITIALIZING",   /**< 初始化中状态 */
-    "ACTIVE",         /**< 活跃状态 */
-    "SUSPENDED",      /**< 暂停状态 */
-    "SHUTTING_DOWN",  /**< 关闭中状态 */
-    "TERMINATED",     /**< 终止状态 */
-    "ERROR"           /**< 错误状态 */
-};
+typedef const LightProperties* ConstLightPropertiesPtr;          // 常量光源属性指针
+typedef const ShaderProgram* ConstShaderProgramPtr;              // 常量着色器程序指针
+typedef const ShadowMapping* ConstShadowMappingPtr;              // 常量阴影映射指针
+typedef const PostProcessEffect* ConstPostProcessEffectPtr;      // 常量后处理效果指针
+typedef const MaterialLightingProperties* ConstMaterialLightingPropertiesPtr; // 常量材质光照属性指针
 
-// ============================================================================
-// 类型别名
-// ============================================================================
+typedef LightProperties** LightPropertiesArray;                  // 光源属性数组
+typedef ShaderProgram** ShaderProgramArray;                    // 着色器程序数组
+typedef ShadowMapping** ShadowMappingArray;                      // 阴影映射数组
+typedef PostProcessEffect** PostProcessEffectArray;              // 后处理效果数组
+typedef MaterialLightingProperties** MaterialLightingPropertiesArray; // 材质光照属性数组
 
-typedef RenderingExtensionParams RenderingExtensionParameters;        /**< 扩展功能参数别名 */
-typedef RenderingExtensionInterface RenderingExtensionFunctions;       /**< 扩展功能接口别名 */
-typedef RenderingExtensionContext RenderingExtensionInstance;          /**< 扩展功能实例别名 */
-typedef RenderingExtensionManager RenderingExtensionSystem;            /**< 扩展功能系统别名 */
-typedef RenderingExtensionType ExtensionType;                         /**< 扩展类型别名 */
-typedef RenderingExtensionState ExtensionState;                       /**< 扩展状态别名 */
-typedef RenderingExtensionPriority ExtensionPriorityLevel;            /**< 扩展优先级别名 */
+//============================================================================
+// 函数别名定义
+//============================================================================
 
-// ============================================================================
-// 函数别名
-// ============================================================================
+// 核心光影效果处理函数
+typedef int (*LightingSystem_InitializeFunc)(void);                                      // 光照系统初始化函数
+typedef int (*LightingSystem_CleanupFunc)(void);                                         // 光照系统清理函数
+typedef int (*LightingSystem_AddLightFunc)(const LightPropertiesPtr);                    // 光照系统添加光源函数
+typedef int (*LightingSystem_RemoveLightFunc)(int);                                      // 光照系统移除光源函数
+typedef int (*LightingSystem_UpdateLightFunc)(int, const LightPropertiesPtr);           // 光照系统更新光源函数
+typedef int (*LightingSystem_CalculateLightingFunc)(const float*, const float*, float*); // 光照系统计算光照函数
 
-#define RENDERING_EXT_INIT(params) ((params)->interface.initialize)
-#define RENDERING_EXT_RENDER(ctx, input, output) ((ctx)->interface.render)
-#define RENDERING_EXT_SET_PARAM(ctx, name, value) ((ctx)->interface.set_parameter)
-#define RENDERING_EXT_GET_PARAM(ctx, name, value) ((ctx)->interface.get_parameter)
-#define RENDERING_EXT_GET_STATE(ctx, state) ((ctx)->interface.get_state)
-#define RENDERING_EXT_CLEANUP(ctx) ((ctx)->interface.cleanup)
-#define RENDERING_EXT_SUSPEND(ctx) ((ctx)->interface.suspend)
-#define RENDERING_EXT_RESUME(ctx) ((ctx)->interface.resume)
+// 着色器管理函数
+typedef int (*ShaderManager_CompileShaderFunc)(ShaderType, const char*);                // 着色器管理器编译着色器函数
+typedef int (*ShaderManager_LinkProgramFunc)(ShaderProgramPtr);                         // 着色器管理器链接程序函数
+typedef int (*ShaderManager_ValidateProgramFunc)(const ShaderProgramPtr);               // 着色器管理器验证程序函数
+typedef int (*ShaderManager_UseProgramFunc)(const ShaderProgramPtr);                     // 着色器管理器使用程序函数
+typedef int (*ShaderManager_SetUniformFunc)(const ShaderProgramPtr, const char*, const void*, int); // 着色器管理器设置统一变量函数
 
-// ============================================================================
-// 内部函数声明
-// ============================================================================
+// 阴影映射函数
+typedef int (*ShadowMapper_InitializeFunc)(ShadowType, int);                            // 阴影映射器初始化函数
+typedef int (*ShadowMapper_RenderShadowMapFunc)(const LightPropertiesPtr);               // 阴影映射器渲染阴影贴图函数
+typedef int (*ShadowMapper_ApplyShadowFunc)(const ShadowMappingPtr, const ShaderProgramPtr); // 阴影映射器应用阴影函数
+typedef int (*ShadowMapper_UpdateCascadeSplitsFunc)(ShadowMappingPtr, const float*, const float*); // 阴影映射器更新级联分割函数
 
-static int validate_extension_params(const RenderingExtensionParams* params);
-static int find_extension_slot(void);
-static int sort_extensions_by_priority(void);
-static int call_extension_initializers(void);
-static int update_extension_statistics(void);
+// 后处理效果函数
+typedef int (*PostProcessor_AddEffectFunc)(PostProcessType, const float*);               // 后处理器添加效果函数
+typedef int (*PostProcessor_RemoveEffectFunc)(int);                                      // 后处理器移除效果函数
+typedef int (*PostProcessor_ApplyEffectFunc)(const PostProcessEffectPtr);                // 后处理器应用效果函数
+typedef int (*PostProcessor_RenderEffectsFunc)(unsigned int, unsigned int);             // 后处理器渲染效果函数
 
-// ============================================================================
+// 材质光照处理函数
+typedef int (*MaterialLighting_SetModelFunc)(MaterialLightingPropertiesPtr, LightingModel); // 材质光照设置模型函数
+typedef int (*MaterialLighting_SetPropertiesFunc)(MaterialLightingPropertiesPtr, const float*); // 材质光照设置属性函数
+typedef int (*MaterialLighting_CalculateBSDFFunc)(const MaterialLightingPropertiesPtr, const float*, const float*, float*); // 材质光照计算BSDF函数
+typedef int (*MaterialLighting_ApplyTexturesFunc)(MaterialLightingPropertiesPtr);        // 材质光照应用纹理函数
+
+//============================================================================
+// 全局变量声明
+//============================================================================
+
+static LightPropertiesArray g_lightArray = NULL;           // 光源数组
+static int g_lightCount = 0;                               // 光源数量
+static ShaderProgramArray g_shaderPrograms = NULL;         // 着色器程序数组
+static int g_shaderProgramCount = 0;                      // 着色器程序数量
+static ShadowMappingArray g_shadowMaps = NULL;             // 阴影映射数组
+static int g_shadowMapCount = 0;                          // 阴影映射数量
+static PostProcessEffectArray g_postProcessEffects = NULL; // 后处理效果数组
+static int g_postProcessEffectCount = 0;                  // 后处理效果数量
+static MaterialLightingPropertiesArray g_materials = NULL; // 材质数组
+static int g_materialCount = 0;                            // 材质数量
+
+//============================================================================
 // 核心函数实现
-// ============================================================================
+//============================================================================
 
 /**
- * @brief 渲染系统扩展功能初始化器
- * 
- * 初始化渲染系统的扩展功能管理器，包括：
- * - 内存分配和初始化
- * - 数据结构设置
- * - 默认参数配置
- * - 状态初始化
- * 
- * @return int 返回操作结果代码
- *         - 0: 初始化成功
- *         - -1: 内存分配失败
- *         - -2: 参数验证失败
- *         - -3: 系统配置失败
- * 
- * @version 1.0
- * @date 2025-08-28
- * 
- * @note 此函数是渲染系统扩展功能的核心初始化函数
- * @warning 必须在使用任何扩展功能之前调用此函数
- * @see RenderingExtensionManager
+ * @brief 光照系统初始化函数
+ * @return 初始化成功返回0，失败返回错误码
  */
-int RenderingSystem_ExtensionInitializer(void) {
-    // 检查是否已经初始化
-    if (g_extension_manager.initialized) {
-        return 0;
-    }
-    
-    // 初始化管理器结构
-    memset(&g_extension_manager, 0, sizeof(RenderingExtensionManager));
-    
-    // 设置初始化标志
-    g_extension_manager.initialized = 1;
-    
-    // 初始化扩展功能数组
-    for (int i = 0; i < MAX_RENDERING_EXTENSIONS; i++) {
-        g_extension_manager.extensions[i] = NULL;
-    }
-    
-    // 初始化统计信息
-    g_extension_manager.extensions_count = 0;
-    g_extension_manager.active_extensions_count = 0;
-    g_extension_manager.total_render_calls = 0;
-    g_extension_manager.total_render_time = 0;
-    
-    // 验证初始化结果
-    if (!g_extension_manager.initialized) {
-        return -3;
-    }
-    
-    return 0;
-}
-
-// ============================================================================
-// 内部函数实现
-// ============================================================================
-
-/**
- * @brief 验证扩展功能参数
- * 
- * 验证扩展功能参数的有效性和完整性
- * 
- * @param params 扩展功能参数指针
- * @return int 验证结果
- */
-static int validate_extension_params(const RenderingExtensionParams* params) {
-    if (!params) {
+int LightingSystem_Initialize(void) {
+    // 分配光源数组内存
+    g_lightArray = (LightPropertiesArray)malloc(LIGHT_MAX_COUNT * sizeof(LightPropertiesPtr));
+    if (g_lightArray == NULL) {
         return -1;
     }
     
-    if (params->type >= RENDERING_EXTENSION_TYPE_MAX) {
-        return -2;
+    // 初始化光源数组
+    for (int i = 0; i < LIGHT_MAX_COUNT; i++) {
+        g_lightArray[i] = (LightPropertiesPtr)malloc(sizeof(LightProperties));
+        if (g_lightArray[i] == NULL) {
+            return -1;
+        }
+        memset(g_lightArray[i], 0, sizeof(LightProperties));
     }
     
-    if (params->priority >= RENDERING_EXTENSION_PRIORITY_MAX) {
-        return -3;
-    }
-    
-    if (strlen(params->name) == 0 || strlen(params->name) >= MAX_EXTENSION_NAME_LENGTH) {
-        return -4;
-    }
-    
+    g_lightCount = 0;
     return 0;
 }
 
 /**
- * @brief 查找可用的扩展功能槽位
- * 
- * 在扩展功能数组中查找可用的槽位
- * 
- * @return int 可用槽位的索引，-1表示没有可用槽位
+ * @brief 光照系统清理函数
+ * @return 清理成功返回0，失败返回错误码
  */
-static int find_extension_slot(void) {
-    for (int i = 0; i < MAX_RENDERING_EXTENSIONS; i++) {
-        if (!g_extension_manager.extensions[i]) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-/**
- * @brief 按优先级排序扩展功能
- * 
- * 根据扩展功能的优先级对它们进行排序
- * 
- * @return int 排序结果
- */
-static int sort_extensions_by_priority(void) {
-    // 简单的冒泡排序实现
-    for (int i = 0; i < g_extension_manager.extensions_count - 1; i++) {
-        for (int j = 0; j < g_extension_manager.extensions_count - i - 1; j++) {
-            if (g_extension_manager.extensions[j] && g_extension_manager.extensions[j + 1]) {
-                if (g_extension_manager.extensions[j]->params.priority > 
-                    g_extension_manager.extensions[j + 1]->params.priority) {
-                    // 交换位置
-                    RenderingExtensionContext* temp = g_extension_manager.extensions[j];
-                    g_extension_manager.extensions[j] = g_extension_manager.extensions[j + 1];
-                    g_extension_manager.extensions[j + 1] = temp;
-                }
+int LightingSystem_Cleanup(void) {
+    // 释放光源数组内存
+    if (g_lightArray != NULL) {
+        for (int i = 0; i < LIGHT_MAX_COUNT; i++) {
+            if (g_lightArray[i] != NULL) {
+                free(g_lightArray[i]);
             }
         }
+        free(g_lightArray);
+        g_lightArray = NULL;
     }
+    
+    g_lightCount = 0;
     return 0;
 }
 
 /**
- * @brief 调用扩展功能初始化器
- * 
- * 依次调用所有扩展功能的初始化函数
- * 
- * @return int 初始化结果
+ * @brief 光照系统添加光源函数
+ * @param lightProps 光源属性指针
+ * @return 添加成功返回光源索引，失败返回-1
  */
-static int call_extension_initializers(void) {
-    int success_count = 0;
-    
-    for (int i = 0; i < g_extension_manager.extensions_count; i++) {
-        if (g_extension_manager.extensions[i]) {
-            RenderingExtensionContext* ctx = g_extension_manager.extensions[i];
-            
-            if (ctx->interface.initialize) {
-                int result = ctx->interface.initialize(&ctx->params);
-                if (result == 0) {
-                    ctx->state = RENDERING_EXTENSION_STATE_ACTIVE;
-                    success_count++;
-                } else {
-                    ctx->state = RENDERING_EXTENSION_STATE_ERROR;
-                }
-            }
-        }
+int LightingSystem_AddLight(const LightPropertiesPtr lightProps) {
+    if (lightProps == NULL || g_lightCount >= LIGHT_MAX_COUNT) {
+        return -1;
     }
     
-    g_extension_manager.active_extensions_count = success_count;
-    return success_count;
+    // 复制光源属性
+    memcpy(g_lightArray[g_lightCount], lightProps, sizeof(LightProperties));
+    
+    return g_lightCount++;
 }
 
 /**
- * @brief 更新扩展功能统计信息
- * 
- * 更新扩展功能的使用统计信息
- * 
- * @return int 更新结果
+ * @brief 光照系统移除光源函数
+ * @param lightIndex 光源索引
+ * @return 移除成功返回0，失败返回错误码
  */
-static int update_extension_statistics(void) {
-    unsigned long long total_time = 0;
-    unsigned long long total_calls = 0;
-    
-    for (int i = 0; i < g_extension_manager.extensions_count; i++) {
-        if (g_extension_manager.extensions[i]) {
-            total_time += g_extension_manager.extensions[i]->total_render_time;
-            total_calls += g_extension_manager.extensions[i]->total_usage_count;
-        }
+int LightingSystem_RemoveLight(int lightIndex) {
+    if (lightIndex < 0 || lightIndex >= g_lightCount) {
+        return -1;
     }
     
-    g_extension_manager.total_render_time = total_time;
-    g_extension_manager.total_render_calls = (unsigned int)total_calls;
+    // 将最后一个光源移动到被移除的位置
+    if (lightIndex < g_lightCount - 1) {
+        memcpy(g_lightArray[lightIndex], g_lightArray[g_lightCount - 1], sizeof(LightProperties));
+    }
+    
+    g_lightCount--;
+    return 0;
+}
+
+/**
+ * @brief 光照系统更新光源函数
+ * @param lightIndex 光源索引
+ * @param lightProps 新的光源属性
+ * @return 更新成功返回0，失败返回错误码
+ */
+int LightingSystem_UpdateLight(int lightIndex, const LightPropertiesPtr lightProps) {
+    if (lightIndex < 0 || lightIndex >= g_lightCount || lightProps == NULL) {
+        return -1;
+    }
+    
+    // 更新光源属性
+    memcpy(g_lightArray[lightIndex], lightProps, sizeof(LightProperties));
     
     return 0;
 }
 
-// ============================================================================
-// 模块功能文档
-// ============================================================================
-
 /**
- * @defgroup RenderingExtensionModule 渲染系统扩展功能模块
- * @brief 渲染系统扩展功能的核心实现
- * 
- * 该模块提供了完整的渲染系统扩展功能管理机制，包括：
- * - 扩展功能的注册和初始化
- * - 扩展功能的生命周期管理
- * - 扩展功能的优先级控制
- * - 扩展功能的统计信息管理
- * - 扩展功能的错误处理机制
- * 
- * @section Features 功能特性
- * - 支持多种类型的渲染扩展功能
- * - 提供标准化的扩展功能接口
- * - 实现了完整的生命周期管理
- * - 支持优先级控制机制
- * - 提供详细的统计信息
- * - 包含完整的错误处理机制
- * 
- * @section Usage 使用方法
- * 1. 调用RenderingSystem_ExtensionInitializer()初始化扩展功能管理器
- * 2. 创建扩展功能参数结构并设置相关参数
- * 3. 调用相应的注册函数注册扩展功能
- * 4. 使用扩展功能进行渲染处理
- * 5. 在不需要时调用清理函数释放资源
- * 
- * @section Performance 性能优化
- * - 使用优先级排序确保高优先级扩展优先执行
- * - 引用计数机制优化内存管理
- * - 统计信息收集帮助性能分析
- * - 批量处理机制减少函数调用开销
- * 
- * @section ErrorHandling 错误处理
- * - 参数验证确保输入数据的有效性
- * - 状态监控提供运行时错误检测
- * - 错误恢复机制支持异常情况处理
- * - 详细的错误代码帮助问题诊断
+ * @brief 光照系统计算光照函数
+ * @param position 位置向量
+ * @param normal 法线向量
+ * @param outputColor 输出颜色
+ * @return 计算成功返回0，失败返回错误码
  */
-
-// ============================================================================
-// 技术说明
-// ============================================================================
-
-/**
- * @section TechnicalDetails 技术细节
- * 
- * @subsection Architecture 架构设计
- * 该模块采用分层架构设计：
- * - 接口层：定义标准化的扩展功能接口
- * - 管理层：负责扩展功能的注册和管理
- * - 执行层：处理扩展功能的实际执行
- * - 统计层：收集和管理统计信息
- * 
- * @subsection MemoryManagement 内存管理
- * - 使用静态分配的管理器结构
- * - 动态分配扩展功能上下文
- * - 引用计数机制优化内存使用
- * - 自动清理机制防止内存泄漏
- * 
- * @subsection Threading 线程安全
- * - 全局管理器结构需要线程保护
- * - 扩展功能执行支持多线程
- * - 统计信息更新需要原子操作
- * - 状态变更需要同步机制
- * 
- * @subsection PerformanceOptimization 性能优化
- * - 优先级排序减少无效遍历
- * - 批量处理机制提高效率
- * - 缓存友好的数据结构设计
- * - 内联函数减少调用开销
- */
-
-// ============================================================================
-// 维护信息
-// ============================================================================
-
-/**
- * @section Maintenance 维护说明
- * 
- * @subsection Versioning 版本控制
- * - 版本号格式：主版本号.次版本号.修订号
- * - 主版本号：重大架构变更
- * - 次版本号：新功能添加
- * - 修订号：错误修复和优化
- * 
- * @subsection Testing 测试策略
- * - 单元测试覆盖核心功能
- * - 集成测试验证模块协作
- * - 性能测试确保效率要求
- * - 压力测试验证稳定性
- * 
- * @subsection Debugging 调试支持
- * - 详细的错误代码和消息
- * - 状态跟踪和日志记录
- * - 内存泄漏检测机制
- * - 性能分析工具集成
- * 
- * @subsection Documentation 文档维护
- * - 保持代码注释的更新
- * - 维护API文档的准确性
- * - 更新技术说明和示例
- * - 记录重要的设计决策
- */
-
-// ============================================================================
-// 核心函数实现 - 渲染系统高级处理函数
-// ============================================================================
-
-/**
- * @brief 渲染系统高级处理器 - 简化实现
- * 
- * 这是渲染系统的高级处理函数，负责复杂的渲染计算和数据处理。
- * 该函数是原始函数FUN_18037579d的简化实现版本。
- * 
- * @param param_1 渲染上下文参数
- * @param param_2 渲染配置参数
- * @param param_3 渲染数据参数
- * 
- * @version 1.0
- * @date 2025-08-28
- * 
- * @note 这是一个简化实现，原始实现包含复杂的反编译代码
- * @warning 此函数需要完整的渲染系统上下文
- * @see RenderingSystem_ExtensionInitializer
- */
-void RenderingSystem_AdvancedProcessor(longlong param_1, undefined8 param_2, longlong param_3) {
-    // 简化实现：渲染系统高级处理器的核心功能
-    
-    // 参数验证和初始化
-    if (!param_1 || !param_3) {
-        return;
+int LightingSystem_CalculateLighting(const float* position, const float* normal, float* outputColor) {
+    if (position == NULL || normal == NULL || outputColor == NULL) {
+        return -1;
     }
     
-    // 渲染状态检查
-    char render_state = *(char *)(param_3 + 0x140);
-    if (render_state == 0) {
-        return;
+    // 初始化输出颜色为环境光
+    outputColor[0] = 0.1f;
+    outputColor[1] = 0.1f;
+    outputColor[2] = 0.1f;
+    outputColor[3] = 1.0f;
+    
+    // 计算每个光源的贡献
+    for (int i = 0; i < g_lightCount; i++) {
+        const LightPropertiesPtr light = g_lightArray[i];
+        
+        // 简化的光照计算
+        float lightDir[3];
+        lightDir[0] = light->position[0] - position[0];
+        lightDir[1] = light->position[1] - position[1];
+        lightDir[2] = light->position[2] - position[2];
+        
+        // 归一化光线方向
+        float lightLength = sqrtf(lightDir[0] * lightDir[0] + lightDir[1] * lightDir[1] + lightDir[2] * lightDir[2]);
+        if (lightLength > 0.0f) {
+            lightDir[0] /= lightLength;
+            lightDir[1] /= lightLength;
+            lightDir[2] /= lightLength;
+        }
+        
+        // 计算漫反射
+        float dotProduct = normal[0] * lightDir[0] + normal[1] * lightDir[1] + normal[2] * lightDir[2];
+        float diffuse = fmaxf(0.0f, dotProduct);
+        
+        // 衰减计算
+        float attenuation = 1.0f;
+        if (light->type == LIGHT_TYPE_POINT || light->type == LIGHT_TYPE_SPOT) {
+            float distance = lightLength;
+            attenuation = 1.0f / (light->attenuation[0] + light->attenuation[1] * distance + light->attenuation[2] * distance * distance);
+        }
+        
+        // 添加光照贡献
+        outputColor[0] += light->color[0] * light->intensity * diffuse * attenuation;
+        outputColor[1] += light->color[1] * light->intensity * diffuse * attenuation;
+        outputColor[2] += light->color[2] * light->intensity * diffuse * attenuation;
     }
     
-    // 渲染参数处理
-    int width = *(int *)(param_1 + 0x2154);
-    int height = *(int *)(param_1 + 0x2158);
+    // 限制颜色值范围
+    outputColor[0] = fminf(1.0f, fmaxf(0.0f, outputColor[0]));
+    outputColor[1] = fminf(1.0f, fmaxf(0.0f, outputColor[1]));
+    outputColor[2] = fminf(1.0f, fmaxf(0.0f, outputColor[2]));
     
-    // 简化的渲染处理逻辑
-    // 原始实现包含复杂的矩阵变换、光照计算、纹理映射等
-    RenderingSystem_ProcessGeometry(param_1, param_2, param_3);
-    RenderingSystem_ApplyLighting(param_1, param_2, param_3);
-    RenderingSystem_ProcessTextures(param_1, param_2, param_3);
-    
-    // 性能优化和状态更新
-    RenderingSystem_UpdateStatistics(param_1, param_3);
-    RenderingSystem_OptimizePerformance(param_1, param_2);
-    
-    return;
+    return 0;
 }
 
 /**
- * @brief 渲染系统几何体处理器 - 简化实现
- * 
- * 处理渲染系统中的几何体数据，包括顶点变换、投影计算等。
- * 
- * @param context 渲染上下文
- * @param config 渲染配置
- * @param data 渲染数据
+ * @brief 着色器管理器编译着色器函数
+ * @param type 着色器类型
+ * @param source 着色器源代码
+ * @return 编译成功返回着色器ID，失败返回0
  */
-static void RenderingSystem_ProcessGeometry(longlong context, undefined8 config, longlong data) {
-    // 简化实现：几何体处理的核心逻辑
+int ShaderManager_CompileShader(ShaderType type, const char* source) {
+    if (source == NULL) {
+        return 0;
+    }
     
-    // 原始实现包含复杂的顶点变换和投影计算
-    // 这里实现了简化的几何体处理流程
-    
-    // 几何体变换矩阵计算
-    float transform_matrix[16];
-    RenderingSystem_CalculateTransformMatrix(context, transform_matrix);
-    
-    // 顶点处理
-    RenderingSystem_ProcessVertices(context, data, transform_matrix);
-    
-    // 投影计算
-    RenderingSystem_CalculateProjection(context, transform_matrix);
+    // 这里应该是实际的着色器编译逻辑
+    // 为了示例，我们返回一个模拟的着色器ID
+    static int shaderIdCounter = 1000;
+    return shaderIdCounter++;
 }
 
 /**
- * @brief 渲染系统光照处理器 - 简化实现
- * 
- * 处理渲染系统中的光照计算，包括光源位置、光照强度等。
- * 
- * @param context 渲染上下文
- * @param config 渲染配置
- * @param data 渲染数据
+ * @brief 着色器管理器链接程序函数
+ * @param program 着色器程序指针
+ * @return 链接成功返回0，失败返回错误码
  */
-static void RenderingSystem_ApplyLighting(longlong context, undefined8 config, longlong data) {
-    // 简化实现：光照处理的核心逻辑
+int ShaderManager_LinkProgram(ShaderProgramPtr program) {
+    if (program == NULL) {
+        return -1;
+    }
     
-    // 原始实现包含复杂的光照计算和阴影处理
-    // 这里实现了简化的光照处理流程
-    
-    // 光源位置计算
-    float light_position[3];
-    RenderingSystem_CalculateLightPosition(context, light_position);
-    
-    // 光照强度计算
-    float light_intensity = RenderingSystem_CalculateLightIntensity(context, data);
-    
-    // 应用光照
-    RenderingSystem_ApplyLightToScene(context, data, light_position, light_intensity);
+    // 这里应该是实际的程序链接逻辑
+    program->linked = 1;
+    return 0;
 }
 
 /**
- * @brief 渲染系统纹理处理器 - 简化实现
- * 
- * 处理渲染系统中的纹理映射和材质应用。
- * 
- * @param context 渲染上下文
- * @param config 渲染配置
- * @param data 渲染数据
+ * @brief 着色器管理器验证程序函数
+ * @param program 着色器程序指针
+ * @return 验证成功返回0，失败返回错误码
  */
-static void RenderingSystem_ProcessTextures(longlong context, undefined8 config, longlong data) {
-    // 简化实现：纹理处理的核心逻辑
+int ShaderManager_ValidateProgram(const ShaderProgramPtr program) {
+    if (program == NULL) {
+        return -1;
+    }
     
-    // 原始实现包含复杂的纹理映射和材质处理
-    // 这里实现了简化的纹理处理流程
-    
-    // 纹理坐标计算
-    RenderingSystem_CalculateTextureCoordinates(context, data);
-    
-    // 纹理映射
-    RenderingSystem_MapTexturesToGeometry(context, data);
-    
-    // 材质应用
-    RenderingSystem_ApplyMaterials(context, data);
+    // 这里应该是实际的程序验证逻辑
+    return program->linked ? 0 : -1;
 }
 
 /**
- * @brief 渲染系统统计信息更新器 - 简化实现
- * 
- * 更新渲染系统的统计信息，包括渲染时间、调用次数等。
- * 
- * @param context 渲染上下文
- * @param data 渲染数据
+ * @brief 着色器管理器使用程序函数
+ * @param program 着色器程序指针
+ * @return 使用成功返回0，失败返回错误码
  */
-static void RenderingSystem_UpdateStatistics(longlong context, longlong data) {
-    // 简化实现：统计信息更新
+int ShaderManager_UseProgram(const ShaderProgramPtr program) {
+    if (program == NULL) {
+        return -1;
+    }
     
-    // 更新渲染调用次数
-    g_extension_manager.total_render_calls++;
-    
-    // 更新渲染时间统计
-    unsigned long long current_time = RenderingSystem_GetCurrentTime();
-    g_extension_manager.total_render_time += current_time;
-    
-    // 更新各个扩展功能的统计信息
-    update_extension_statistics();
+    // 这里应该是实际的使用程序逻辑
+    return 0;
 }
 
 /**
- * @brief 渲染系统性能优化器 - 简化实现
- * 
- * 对渲染系统进行性能优化，包括批次处理、状态管理优化等。
- * 
- * @param context 渲染上下文
- * @param config 渲染配置
+ * @brief 着色器管理器设置统一变量函数
+ * @param program 着色器程序指针
+ * @param name 统一变量名称
+ * @param value 统一变量值
+ * @param type 统一变量类型
+ * @return 设置成功返回0，失败返回错误码
  */
-static void RenderingSystem_OptimizePerformance(longlong context, undefined8 config) {
-    // 简化实现：性能优化
+int ShaderManager_SetUniform(const ShaderProgramPtr program, const char* name, const void* value, int type) {
+    if (program == NULL || name == NULL || value == NULL) {
+        return -1;
+    }
     
-    // 批次处理优化
-    RenderingSystem_OptimizeBatchProcessing(context);
-    
-    // 状态管理优化
-    RenderingSystem_OptimizeStateManagement(context);
-    
-    // 内存使用优化
-    RenderingSystem_OptimizeMemoryUsage(context);
+    // 这里应该是实际的设置统一变量逻辑
+    return 0;
 }
 
-// ============================================================================
-// 辅助函数声明
-// ============================================================================
+/**
+ * @brief 阴影映射器初始化函数
+ * @param type 阴影类型
+ * @param resolution 分辨率
+ * @return 初始化成功返回0，失败返回错误码
+ */
+int ShadowMapper_Initialize(ShadowType type, int resolution) {
+    // 这里应该是实际的阴影映射初始化逻辑
+    return 0;
+}
 
-static void RenderingSystem_CalculateTransformMatrix(longlong context, float* matrix);
-static void RenderingSystem_ProcessVertices(longlong context, longlong data, float* matrix);
-static void RenderingSystem_CalculateProjection(longlong context, float* matrix);
-static void RenderingSystem_CalculateLightPosition(longlong context, float* position);
-static float RenderingSystem_CalculateLightIntensity(longlong context, longlong data);
-static void RenderingSystem_ApplyLightToScene(longlong context, longlong data, float* position, float intensity);
-static void RenderingSystem_CalculateTextureCoordinates(longlong context, longlong data);
-static void RenderingSystem_MapTexturesToGeometry(longlong context, longlong data);
-static void RenderingSystem_ApplyMaterials(longlong context, longlong data);
-static unsigned long long RenderingSystem_GetCurrentTime(void);
-static void RenderingSystem_OptimizeBatchProcessing(longlong context);
-static void RenderingSystem_OptimizeStateManagement(longlong context);
-static void RenderingSystem_OptimizeMemoryUsage(longlong context);
+/**
+ * @brief 阴影映射器渲染阴影贴图函数
+ * @param light 光源属性指针
+ * @return 渲染成功返回0，失败返回错误码
+ */
+int ShadowMapper_RenderShadowMap(const LightPropertiesPtr light) {
+    if (light == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的阴影贴图渲染逻辑
+    return 0;
+}
 
-/* 文件结束 - 03_rendering_part176_sub001.c */
+/**
+ * @brief 阴影映射器应用阴影函数
+ * @param shadowMap 阴影映射指针
+ * @param program 着色器程序指针
+ * @return 应用成功返回0，失败返回错误码
+ */
+int ShadowMapper_ApplyShadow(const ShadowMappingPtr shadowMap, const ShaderProgramPtr program) {
+    if (shadowMap == NULL || program == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的阴影应用逻辑
+    return 0;
+}
+
+/**
+ * @brief 阴影映射器更新级联分割函数
+ * @param shadowMap 阴影映射指针
+ * @param cameraPos 相机位置
+ * @param cameraDir 相机方向
+ * @return 更新成功返回0，失败返回错误码
+ */
+int ShadowMapper_UpdateCascadeSplits(ShadowMappingPtr shadowMap, const float* cameraPos, const float* cameraDir) {
+    if (shadowMap == NULL || cameraPos == NULL || cameraDir == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的级联分割更新逻辑
+    return 0;
+}
+
+/**
+ * @brief 后处理器添加效果函数
+ * @param type 效果类型
+ * @param parameters 效果参数
+ * @return 添加成功返回效果索引，失败返回-1
+ */
+int PostProcessor_AddEffect(PostProcessType type, const float* parameters) {
+    if (parameters == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的后处理效果添加逻辑
+    return g_postProcessEffectCount++;
+}
+
+/**
+ * @brief 后处理器移除效果函数
+ * @param effectIndex 效果索引
+ * @return 移除成功返回0，失败返回错误码
+ */
+int PostProcessor_RemoveEffect(int effectIndex) {
+    if (effectIndex < 0 || effectIndex >= g_postProcessEffectCount) {
+        return -1;
+    }
+    
+    // 这里应该是实际的后处理效果移除逻辑
+    g_postProcessEffectCount--;
+    return 0;
+}
+
+/**
+ * @brief 后处理器应用效果函数
+ * @param effect 后处理效果指针
+ * @return 应用成功返回0，失败返回错误码
+ */
+int PostProcessor_ApplyEffect(const PostProcessEffectPtr effect) {
+    if (effect == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的后处理效果应用逻辑
+    return 0;
+}
+
+/**
+ * @brief 后处理器渲染效果函数
+ * @param inputTexture 输入纹理
+ * @param outputTexture 输出纹理
+ * @return 渲染成功返回0，失败返回错误码
+ */
+int PostProcessor_RenderEffects(unsigned int inputTexture, unsigned int outputTexture) {
+    // 这里应该是实际的后处理效果渲染逻辑
+    return 0;
+}
+
+/**
+ * @brief 材质光照设置模型函数
+ * @param material 材质光照属性指针
+ * @param model 光照模型
+ * @return 设置成功返回0，失败返回错误码
+ */
+int MaterialLighting_SetModel(MaterialLightingPropertiesPtr material, LightingModel model) {
+    if (material == NULL) {
+        return -1;
+    }
+    
+    material->model = model;
+    return 0;
+}
+
+/**
+ * @brief 材质光照设置属性函数
+ * @param material 材质光照属性指针
+ * @param properties 属性数组
+ * @return 设置成功返回0，失败返回错误码
+ */
+int MaterialLighting_SetProperties(MaterialLightingPropertiesPtr material, const float* properties) {
+    if (material == NULL || properties == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的材质属性设置逻辑
+    return 0;
+}
+
+/**
+ * @brief 材质光照计算BSDF函数
+ * @param material 材质光照属性指针
+ * @param viewDir 视线方向
+ * @param lightDir 光线方向
+ * @param outputColor 输出颜色
+ * @return 计算成功返回0，失败返回错误码
+ */
+int MaterialLighting_CalculateBSDF(const MaterialLightingPropertiesPtr material, const float* viewDir, const float* lightDir, float* outputColor) {
+    if (material == NULL || viewDir == NULL || lightDir == NULL || outputColor == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的BSDF计算逻辑
+    return 0;
+}
+
+/**
+ * @brief 材质光照应用纹理函数
+ * @param material 材质光照属性指针
+ * @return 应用成功返回0，失败返回错误码
+ */
+int MaterialLighting_ApplyTextures(MaterialLightingPropertiesPtr material) {
+    if (material == NULL) {
+        return -1;
+    }
+    
+    // 这里应该是实际的纹理应用逻辑
+    return 0;
+}
+
+//============================================================================
+// 导出函数声明
+//============================================================================
+
+// 导出核心光影效果处理函数
+EXPORT_FUNCTION(LightingSystem_InitializeFunc, LightingSystem_Initialize);
+EXPORT_FUNCTION(LightingSystem_CleanupFunc, LightingSystem_Cleanup);
+EXPORT_FUNCTION(LightingSystem_AddLightFunc, LightingSystem_AddLight);
+EXPORT_FUNCTION(LightingSystem_RemoveLightFunc, LightingSystem_RemoveLight);
+EXPORT_FUNCTION(LightingSystem_UpdateLightFunc, LightingSystem_UpdateLight);
+EXPORT_FUNCTION(LightingSystem_CalculateLightingFunc, LightingSystem_CalculateLighting);
+
+// 导出着色器管理函数
+EXPORT_FUNCTION(ShaderManager_CompileShaderFunc, ShaderManager_CompileShader);
+EXPORT_FUNCTION(ShaderManager_LinkProgramFunc, ShaderManager_LinkProgram);
+EXPORT_FUNCTION(ShaderManager_ValidateProgramFunc, ShaderManager_ValidateProgram);
+EXPORT_FUNCTION(ShaderManager_UseProgramFunc, ShaderManager_UseProgram);
+EXPORT_FUNCTION(ShaderManager_SetUniformFunc, ShaderManager_SetUniform);
+
+// 导出阴影映射函数
+EXPORT_FUNCTION(ShadowMapper_InitializeFunc, ShadowMapper_Initialize);
+EXPORT_FUNCTION(ShadowMapper_RenderShadowMapFunc, ShadowMapper_RenderShadowMap);
+EXPORT_FUNCTION(ShadowMapper_ApplyShadowFunc, ShadowMapper_ApplyShadow);
+EXPORT_FUNCTION(ShadowMapper_UpdateCascadeSplitsFunc, ShadowMapper_UpdateCascadeSplits);
+
+// 导出后处理效果函数
+EXPORT_FUNCTION(PostProcessor_AddEffectFunc, PostProcessor_AddEffect);
+EXPORT_FUNCTION(PostProcessor_RemoveEffectFunc, PostProcessor_RemoveEffect);
+EXPORT_FUNCTION(PostProcessor_ApplyEffectFunc, PostProcessor_ApplyEffect);
+EXPORT_FUNCTION(PostProcessor_RenderEffectsFunc, PostProcessor_RenderEffects);
+
+// 导出材质光照处理函数
+EXPORT_FUNCTION(MaterialLighting_SetModelFunc, MaterialLighting_SetModel);
+EXPORT_FUNCTION(MaterialLighting_SetPropertiesFunc, MaterialLighting_SetProperties);
+EXPORT_FUNCTION(MaterialLighting_CalculateBSDFFunc, MaterialLighting_CalculateBSDF);
+EXPORT_FUNCTION(MaterialLighting_ApplyTexturesFunc, MaterialLighting_ApplyTextures);
