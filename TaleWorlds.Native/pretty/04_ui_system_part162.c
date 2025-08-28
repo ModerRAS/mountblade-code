@@ -235,7 +235,7 @@ static void ui_system_handle_exception(void)
 {
     // 简化实现：调用系统异常处理函数
     // 原始实现包含复杂的堆栈恢复和资源清理逻辑
-    FUN_1808fc050(0);
+    UISystem_SecurityChecker(0);
 }
 
 /**
@@ -514,7 +514,7 @@ static int32_t ui_system_sync_control_state(uint32_t control_id, int8_t sync_mod
         if (*(int64_t*)(g_ui_system_context->controls[control_id].control_data + 0x210) == 0) {
             // 检查是否需要强制更新
             if ((!has_active_data) || (has_pending_update)) goto sync_complete;
-            result = FUN_18075e410(control_id);
+            result = UISystem_ControlStateGetter(control_id);
             if (result == 0) goto sync_complete;
         }
         else {
