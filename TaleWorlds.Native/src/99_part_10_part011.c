@@ -1,20 +1,131 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_10_part011.c - 17 个函数
+/**
+ * 99_part_10_part011.c - 数据结构和数组处理模块
+ * 
+ * 本模块包含17个核心函数，主要功能：
+ * - 数据结构指针管理和数组处理
+ * - 内存分配和数据复制
+ * - 结构体初始化和配置
+ * - 数组遍历和元素操作
+ * - 动态数组管理和扩容
+ * 
+ * 主要函数：
+ * - ArrayPointerInitializerAndDataManager：数组指针初始化器和数据管理器
+ * - StructureDataProcessorAndArrayHandler：结构体数据处理器和数组处理器
+ * - MemoryAllocatorAndDataCopier：内存分配器和数据复制器
+ * - DynamicArrayManagerAndExpander：动态数组管理器和扩容器
+ * - StructureInitializerAndConfigurator：结构体初始化器和配置器
+ */
 
-// 函数: void FUN_1806a900e(void)
-void FUN_1806a900e(void)
+// 常量定义
+#define ARRAY_ELEMENT_SIZE_120 0x78
+#define ARRAY_ELEMENT_SIZE_16 0x10
+#define ARRAY_ELEMENT_SIZE_8 8
+#define POINTER_SIZE_8 8
+#define DEFAULT_FLOAT_VALUE 0x3f400000
+#define MAX_UINT_VALUE 0xffffffff
+#define MEMORY_BLOCK_SIZE_64 0x40
+#define MEMORY_BLOCK_SIZE_184 0xb8
+#define MEMORY_BLOCK_SIZE_428 0x1ac
 
-{
-  longlong unaff_RSI;
-  
-  *(longlong *)(unaff_RSI + 0x38) = *(longlong *)(unaff_RSI + 0x70);
-  *(ulonglong *)(unaff_RSI + 0x40) =
-       (ulonglong)*(uint *)(unaff_RSI + 0x78) * 0x78 + *(longlong *)(unaff_RSI + 0x70);
-  *(longlong *)(unaff_RSI + 0x50) = *(longlong *)(unaff_RSI + 0x80);
-  *(ulonglong *)(unaff_RSI + 0x58) =
-       *(longlong *)(unaff_RSI + 0x80) + (ulonglong)*(uint *)(unaff_RSI + 0x88) * 4;
-  return;
+// 类型别名
+typedef void* ArrayPointer;
+typedef longlong StructurePointer;
+typedef uint ArrayIndex;
+typedef ulonglong MemorySize;
+typedef undefined8* DataBuffer;
+typedef longlong* ArrayIterator;
+typedef uint ElementCount;
+typedef ulonglong ArrayCapacity;
+
+// 枚举定义
+typedef enum {
+    ARRAY_OPERATION_SUCCESS = 0,
+    ARRAY_OPERATION_FAILURE = 1,
+    MEMORY_ALLOCATION_SUCCESS = 0,
+    MEMORY_ALLOCATION_FAILURE = 1
+} OperationStatus;
+
+typedef enum {
+    ELEMENT_SIZE_SMALL = 4,
+    ELEMENT_SIZE_MEDIUM = 8,
+    ELEMENT_SIZE_LARGE = 0x78,
+    ELEMENT_SIZE_EXTRA_LARGE = 0x10
+} ElementSizeType;
+
+typedef enum {
+    ARRAY_TYPE_FIXED = 0,
+    ARRAY_TYPE_DYNAMIC = 1,
+    ARRAY_TYPE_HYBRID = 2
+} ArrayType;
+
+// 结构体定义
+typedef struct {
+    ArrayPointer base_pointer;
+    ArrayPointer data_pointer;
+    ElementCount element_count;
+    ArrayCapacity array_capacity;
+    ElementSizeType element_size;
+    ArrayType array_type;
+} ArrayManager;
+
+typedef struct {
+    StructurePointer structure_base;
+    DataBuffer data_buffer;
+    MemorySize buffer_size;
+    OperationStatus operation_status;
+    ElementCount active_elements;
+} StructureDataProcessor;
+
+typedef struct {
+    ArrayIterator iterator_start;
+    ArrayIterator iterator_end;
+    ArrayIndex current_index;
+    ElementCount total_elements;
+    MemorySize iteration_step;
+} ArrayIteratorContext;
+
+/**
+ * 数组指针初始化器和数据管理器
+ * 
+ * 功能：
+ * - 初始化数组指针和管理器结构
+ * - 计算数组容量和边界
+ * - 管理数据指针的内存布局
+ * - 处理大小数组的配置
+ * 
+ * 参数：
+ * - 无直接参数，通过寄存器访问上下文
+ * 
+ * 返回值：
+ * - void：无返回值，直接操作内存结构
+ * 
+ * 技术实现：
+ * - 使用指针算术计算数组边界
+ * - 支持动态大小数组的容量计算
+ * - 处理不同元素大小的数组配置
+ */
+void ArrayPointerInitializerAndDataManager(void) {
+    StructurePointer context_pointer;
+    
+    // 初始化主数据指针
+    *(longlong *)(context_pointer + 0x38) = *(longlong *)(context_pointer + 0x70);
+    
+    // 计算大数组的容量边界（120字节元素）
+    *(ulonglong *)(context_pointer + 0x40) = 
+        (ulonglong)*(uint *)(context_pointer + 0x78) * ARRAY_ELEMENT_SIZE_120 + 
+        *(longlong *)(context_pointer + 0x70);
+    
+    // 初始化次数据指针
+    *(longlong *)(context_pointer + 0x50) = *(longlong *)(context_pointer + 0x80);
+    
+    // 计算小数组的容量边界（4字节元素）
+    *(ulonglong *)(context_pointer + 0x58) = 
+        *(longlong *)(context_pointer + 0x80) + 
+        (ulonglong)*(uint *)(context_pointer + 0x88) * ELEMENT_SIZE_SMALL;
+    
+    return;
 }
 
 
