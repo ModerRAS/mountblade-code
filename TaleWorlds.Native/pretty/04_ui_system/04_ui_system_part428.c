@@ -221,117 +221,118 @@ undefined8 ui_system_data_validator_2(longlong param_1, longlong *param_2)
                 
                 // 执行类型切换验证
                 if (*(int *)(param_2[1] + UI_OFFSET_0x18) == 0) {
-          switch(*(undefined4 *)(param_1 + 0x60)) {
-          default:
-            auStackX_18[0] = 0;
-            break;
-          case 1:
-            auStackX_18[0] = 1;
-            break;
-          case 2:
-            auStackX_18[0] = 2;
-            break;
-          case 3:
-            auStackX_18[0] = 3;
-            break;
-          case 4:
-            auStackX_18[0] = 4;
-            break;
-          case 5:
-            auStackX_18[0] = 5;
-            break;
-          case 6:
-            auStackX_18[0] = 6;
-            break;
-          case 7:
-            auStackX_18[0] = 7;
-            break;
-          case 8:
-            auStackX_18[0] = 8;
-            break;
-          case 9:
-            auStackX_18[0] = 9;
-            break;
-          case 10:
-            auStackX_18[0] = 10;
-            break;
-          case 0xb:
-            auStackX_18[0] = 0xb;
-            break;
-          case 0xc:
-            auStackX_18[0] = 0xc;
-            break;
-          case 0xd:
-            auStackX_18[0] = 0xd;
-            break;
-          case 0xe:
-            auStackX_18[0] = 0xe;
-            break;
-          case 0xf:
-            auStackX_18[0] = 0xf;
-            break;
-          case 0x10:
-            auStackX_18[0] = 0x10;
-            break;
-          case 0x11:
-            auStackX_18[0] = 0x11;
-            break;
-          case 0x12:
-            auStackX_18[0] = 0x12;
-            break;
-          case 0x13:
-            auStackX_18[0] = 0x13;
-            break;
-          case 0x14:
-            auStackX_18[0] = 0x14;
-            break;
-          case 0x15:
-            auStackX_18[0] = 0x15;
-            break;
-          case 0x16:
-            auStackX_18[0] = 0x16;
-            break;
-          case 0x17:
-            auStackX_18[0] = 0x17;
-            break;
-          case 0x18:
-            auStackX_18[0] = 0x18;
-            break;
-          case 0x19:
-            auStackX_18[0] = 0x19;
-            break;
-          case 0x1a:
-            auStackX_18[0] = 0x1a;
-            break;
-          case 0x1b:
-            auStackX_18[0] = 0x1b;
-            break;
-          case 0x1c:
-            auStackX_18[0] = 0x1c;
-            break;
-          case 0x1d:
-            auStackX_18[0] = 0x1d;
-            break;
-          case 0x1e:
-            auStackX_18[0] = 0x1e;
-            break;
-          case 0x1f:
-            auStackX_18[0] = 0x1f;
-            break;
-          case 0x20:
-            auStackX_18[0] = 0x20;
-            break;
-          case 0x21:
-            auStackX_18[0] = 0x21;
-            break;
-          case 0x22:
-            auStackX_18[0] = 0x22;
-            break;
-          case 0x23:
-            auStackX_18[0] = 0x23;
-            break;
-          case 0x24:
-            auStackX_18[0] = 0x24;
+                    // 根据数据类型进行切换处理
+                    switch(*(undefined4 *)(param_1 + UI_OFFSET_0x60)) {
+                    default:
+                        type_switch_stack[0] = 0;
+                        break;
+                    case 1:
+                        type_switch_stack[0] = 1;
+                        break;
+                    case 2:
+                        type_switch_stack[0] = 2;
+                        break;
+                    case 3:
+                        type_switch_stack[0] = 3;
+                        break;
+                    case 4:
+                        type_switch_stack[0] = 4;
+                        break;
+                    case 5:
+                        type_switch_stack[0] = 5;
+                        break;
+                    case 6:
+                        type_switch_stack[0] = 6;
+                        break;
+                    case 7:
+                        type_switch_stack[0] = 7;
+                        break;
+                    case 8:
+                        type_switch_stack[0] = 8;
+                        break;
+                    case 9:
+                        type_switch_stack[0] = 9;
+                        break;
+                    case 10:
+                        type_switch_stack[0] = 10;
+                        break;
+                    case 0xb:
+                        type_switch_stack[0] = 0xb;
+                        break;
+                    case 0xc:
+                        type_switch_stack[0] = 0xc;
+                        break;
+                    case 0xd:
+                        type_switch_stack[0] = 0xd;
+                        break;
+                    case 0xe:
+                        type_switch_stack[0] = 0xe;
+                        break;
+                    case 0xf:
+                        type_switch_stack[0] = 0xf;
+                        break;
+                    case 0x10:
+                        type_switch_stack[0] = 0x10;
+                        break;
+                    case 0x11:
+                        type_switch_stack[0] = 0x11;
+                        break;
+                    case 0x12:
+                        type_switch_stack[0] = 0x12;
+                        break;
+                    case 0x13:
+                        type_switch_stack[0] = 0x13;
+                        break;
+                    case 0x14:
+                        type_switch_stack[0] = 0x14;
+                        break;
+                    case 0x15:
+                        type_switch_stack[0] = 0x15;
+                        break;
+                    case 0x16:
+                        type_switch_stack[0] = 0x16;
+                        break;
+                    case 0x17:
+                        type_switch_stack[0] = 0x17;
+                        break;
+                    case 0x18:
+                        type_switch_stack[0] = 0x18;
+                        break;
+                    case 0x19:
+                        type_switch_stack[0] = 0x19;
+                        break;
+                    case 0x1a:
+                        type_switch_stack[0] = 0x1a;
+                        break;
+                    case 0x1b:
+                        type_switch_stack[0] = 0x1b;
+                        break;
+                    case 0x1c:
+                        type_switch_stack[0] = 0x1c;
+                        break;
+                    case 0x1d:
+                        type_switch_stack[0] = 0x1d;
+                        break;
+                    case 0x1e:
+                        type_switch_stack[0] = 0x1e;
+                        break;
+                    case 0x1f:
+                        type_switch_stack[0] = 0x1f;
+                        break;
+                    case 0x20:
+                        type_switch_stack[0] = 0x20;
+                        break;
+                    case 0x21:
+                        type_switch_stack[0] = 0x21;
+                        break;
+                    case 0x22:
+                        type_switch_stack[0] = 0x22;
+                        break;
+                    case 0x23:
+                        type_switch_stack[0] = 0x23;
+                        break;
+                    case 0x24:
+                        type_switch_stack[0] = 0x24;
           }
           uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
                             (*(undefined8 **)(*param_2 + 8),auStackX_18,4);
