@@ -68,30 +68,40 @@ void cleanup_linked_list_memory(longlong context, undefined8 param2, undefined8 
 
 
 
-// 函数: void FUN_1801864e0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1801864e0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 释放缓冲区内存
+ * 安全地释放缓冲区内存并重置相关指针
+ * 
+ * @param buffer_ptr 缓冲区指针数组
+ * @param param2 保留参数
+ * @param param3 保留参数
+ * @param param4 保留参数
+ */
+void free_buffer_memory(longlong *buffer_ptr, undefined8 param2, undefined8 param3, undefined8 param_4)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
+  longlong buffer_start;
+  longlong buffer_end;
+  ulonglong buffer_size;
+  longlong actual_start;
   
-  lVar1 = *param_1;
-  if (lVar1 != 0) {
-    uVar3 = param_1[2] - lVar1 & 0xfffffffffffffffc;
-    lVar2 = lVar1;
-    if (0xfff < uVar3) {
-      lVar2 = *(longlong *)(lVar1 + -8);
-      if (0x1f < (lVar1 - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn
-                  (lVar1 - lVar2,uVar3 + 0x27,lVar2,param_4,0xfffffffffffffffe);
+  buffer_start = *buffer_ptr;
+  if (buffer_start != 0) {
+    buffer_size = buffer_ptr[2] - buffer_start & 0xfffffffffffffffc;
+    actual_start = buffer_start;
+    
+    // 检查缓冲区大小是否超出限制
+    if (0xfff < buffer_size) {
+      actual_start = *(longlong *)(buffer_start + -8);
+      if (0x1f < (buffer_start - actual_start) - 8U) {
+        // 缓冲区大小验证失败
+        _invalid_parameter_noinfo_noreturn(buffer_start - actual_start, buffer_size + 0x27, actual_start, param4, 0xfffffffffffffffe);
       }
     }
-    free(lVar2);
-    *param_1 = 0;
-    param_1[1] = 0;
-    param_1[2] = 0;
+    free(actual_start);
+    *buffer_ptr = 0;
+    buffer_ptr[1] = 0;
+    buffer_ptr[2] = 0;
   }
   return;
 }

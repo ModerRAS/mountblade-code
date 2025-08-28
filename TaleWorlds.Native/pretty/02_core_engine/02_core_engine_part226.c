@@ -125,25 +125,25 @@ void initialize_engine_render_config(longlong engine_context, longlong render_co
     }
   }
   if (is_initialized) {
-    *(float *)(*(longlong *)(param_1 + 0x380) + 0x90) =
-         *(float *)(param_1 + 0x5b9c) + *(float *)(param_1 + 0x5b9c);
-    fVar14 = 1.0 - *(float *)(param_1 + 0x3ecc);
-    fVar13 = 0.0;
-    if ((0.0 <= fVar14) && (fVar13 = fVar14, 1.0 <= fVar14)) {
-      fVar13 = 1.0;
+    *(float *)(*(longlong *)(engine_context + 0x380) + 0x90) =
+         *(float *)(engine_context + 0x5b9c) + *(float *)(engine_context + 0x5b9c);
+    alpha_value = 1.0 - *(float *)(engine_context + 0x3ecc);
+    float_value = 0.0;
+    if ((0.0 <= alpha_value) && (float_value = alpha_value, 1.0 <= alpha_value)) {
+      float_value = 1.0;
     }
-    *(float *)(*(longlong *)(param_1 + 0x380) + 0xa8) = fVar13;
-    *(float *)(*(longlong *)(param_1 + 0x380) + 0xa0) = *(float *)(param_1 + 0x3ec8) * 50.0 + 0.001;
-    *(float *)(*(longlong *)(param_1 + 0x380) + 0x9c) = (float)*(byte *)(param_1 + 0x3f31);
-    *(undefined1 *)(param_1 + 0x3f31) = 0;
-    lVar9 = *(longlong *)(param_1 + 0x380);
-    uVar8 = *(undefined8 *)(lVar9 + 0x98);
-    *(undefined8 *)(param_2 + 0x12650) = *(undefined8 *)(lVar9 + 0x90);
-    *(undefined8 *)(param_2 + 0x12658) = uVar8;
-    uVar8 = *(undefined8 *)(lVar9 + 0xa8);
-    *(undefined8 *)(param_2 + 0x12660) = *(undefined8 *)(lVar9 + 0xa0);
-    *(undefined8 *)(param_2 + 0x12668) = uVar8;
-    *(undefined1 *)(param_2 + 0x125b0) = 1;
+    *(float *)(*(longlong *)(engine_context + 0x380) + 0xa8) = float_value;
+    *(float *)(*(longlong *)(engine_context + 0x380) + 0xa0) = *(float *)(engine_context + 0x3ec8) * 50.0 + 0.001;
+    *(float *)(*(longlong *)(engine_context + 0x380) + 0x9c) = (float)*(byte *)(engine_context + 0x3f31);
+    *(undefined1 *)(engine_context + 0x3f31) = 0;
+    engine_ptr = *(longlong *)(engine_context + 0x380);
+    config_data = *(undefined8 *)(engine_ptr + 0x98);
+    *(undefined8 *)(render_context + 0x12650) = *(undefined8 *)(engine_ptr + 0x90);
+    *(undefined8 *)(render_context + 0x12658) = config_data;
+    config_data = *(undefined8 *)(engine_ptr + 0xa8);
+    *(undefined8 *)(render_context + 0x12660) = *(undefined8 *)(engine_ptr + 0xa0);
+    *(undefined8 *)(render_context + 0x12668) = config_data;
+    *(undefined1 *)(render_context + 0x125b0) = 1;
     uStack_98 = 0x3f800000;
     uStack_90 = 0;
     uStack_88 = 0x3f80000000000000;
@@ -321,11 +321,11 @@ void initialize_engine_render_config(longlong engine_context, longlong render_co
 
 
 
-longlong * FUN_18019cf00(longlong *param_1,longlong *param_2)
+longlong * swap_resource_pointers(longlong *dest_ptr, longlong *src_ptr)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
+  longlong *dest_resource;
+  longlong *src_resource;
   
   plVar1 = (longlong *)*param_2;
   if (plVar1 != (longlong *)0x0) {
