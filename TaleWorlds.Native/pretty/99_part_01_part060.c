@@ -159,7 +159,7 @@ void RenderingSystemAdvancedParameterProcessor(RenderingParameterFloat param_1, 
     RenderingSystemFlags status_flags;                // 状态标志
     uint temp_uint;                                  // 临时无符号整数
     longlong temp_long;                              // 临时长整型
-    uint64_t temp_undefined;                       // 未定义类型临时变量
+    uint64_t temp_var;                       // 临时变量
     
     /*========================================
     *  参数验证和初始化
@@ -229,13 +229,13 @@ void RenderingSystemAdvancedParameterProcessor(RenderingParameterFloat param_1, 
     *  角度计算和三角函数
     *========================================*/
     // 计算正切值
-    temp_undefined._0_8_ = tanf(*(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x14c) * RENDERING_ANGLE_FACTOR);
-    temp_undefined._8_8_ = *(uint64_t *)&comparison_result;
-    temp_undefined._4_12_ = temp_undefined._4_12_;
-    temp_undefined._0_4_ = (RenderingParameterFloat)temp_undefined._0_8_ / *(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x150);
+    temp_var._0_8_ = tanf(*(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x14c) * RENDERING_ANGLE_FACTOR);
+    temp_var._8_8_ = *(uint64_t *)&comparison_result;
+    temp_var._4_12_ = temp_var._4_12_;
+    temp_var._0_4_ = (RenderingParameterFloat)temp_var._0_8_ / *(RenderingParameterFloat *)(global_calculation_context.data_pointer + 0x150);
     
     // 计算反正切值
-    angle_result = (RenderingParameterFloat)atanf(temp_undefined._0_8_);
+    angle_result = (RenderingParameterFloat)atanf(temp_var._0_8_);
     *(RenderingParameterFloat *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + RENDERING_OFFSET_1C68) = angle_result + angle_result;
     
     /*========================================
@@ -280,18 +280,18 @@ void RenderingSystemAdvancedParameterProcessor(RenderingParameterFloat param_1, 
             temp_long = (**(code **)(*memory_ptr + 0xb8))(memory_ptr, stack_temp[0x16/4], stack_temp[0x18/4], 
                                                                stack_temp[0x20/4], stack_temp[0x22/4]);
             // 更新全局状态
-            global_calculation_context.base_pointer = _DAT_180c86938;
-            global_calculation_context.data_pointer = _DAT_180c86920;
-            temp_undefined = *(uint64_t *)&comparison_result;
+            global_calculation_context.base_pointer = _DAT;
+            global_calculation_context.data_pointer = _DAT;
+            temp_var = *(uint64_t *)&comparison_result;
         }
         
         // 执行状态检查和更新
         if (temp_long != 0) {
             code_ptr = *(code **)(**(longlong **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
             if (code_ptr != (code *)&UNK_1802426a0) {
-                temp_undefined = (*code_ptr)();
-                global_calculation_context.base_pointer = _DAT_180c86938;
-                global_calculation_context.data_pointer = _DAT_180c86920;
+                temp_var = (*code_ptr)();
+                global_calculation_context.base_pointer = _DAT;
+                global_calculation_context.data_pointer = _DAT;
             }
             
             // 更新渲染状态
@@ -301,16 +301,16 @@ void RenderingSystemAdvancedParameterProcessor(RenderingParameterFloat param_1, 
             if (code_ptr == (code *)&UNK_1802426a0) {
                 temp_long = (*(longlong **)(global_calculation_context.data_pointer + 0x3580))[0xda];
             } else {
-                temp_long = (*code_ptr)(temp_undefined);
-                global_calculation_context.base_pointer = _DAT_180c86938;
-                global_calculation_context.data_pointer = _DAT_180c86920;
+                temp_long = (*code_ptr)(temp_var);
+                global_calculation_context.base_pointer = _DAT;
+                global_calculation_context.data_pointer = _DAT;
             }
             
             // 更新渲染参数
-            temp_undefined = *(uint64_t *)(temp_long + 0x3f44);
+            temp_var = *(uint64_t *)(temp_long + 0x3f44);
             temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
             *(uint64_t *)(temp_long + 0x1d70) = *(uint64_t *)(temp_long + 0x3f3c);
-            *(uint64_t *)(temp_long + 0x1d78) = temp_undefined;
+            *(uint64_t *)(temp_long + 0x1d78) = temp_var;
             
             // 继续状态更新
             code_ptr = *(code **)(**(longlong **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
@@ -318,8 +318,8 @@ void RenderingSystemAdvancedParameterProcessor(RenderingParameterFloat param_1, 
                 temp_long = (*(longlong **)(global_calculation_context.data_pointer + 0x3580))[0xda];
             } else {
                 temp_long = (*code_ptr)();
-                global_calculation_context.base_pointer = _DAT_180c86938;
-                global_calculation_context.data_pointer = _DAT_180c86920;
+                global_calculation_context.base_pointer = _DAT;
+                global_calculation_context.data_pointer = _DAT;
             }
             
             *(int32_t *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d7c) = *(int32_t *)(temp_long + 0x3f38);
@@ -392,7 +392,7 @@ void RenderingSystemTransformCalculator(void)
     RenderingSystemPointer memory_ptr;                // 内存指针
     RenderingSystemCodePtr code_ptr;                  // 代码指针
     longlong temp_long;                              // 临时长整型
-    uint64_t temp_undefined;                       // 未定义类型临时变量
+    uint64_t temp_var;                       // 临时变量
     uint temp_uint;                                  // 临时无符号整数
     int32_t stack_temp;                            // 栈临时变量
     
@@ -410,8 +410,8 @@ void RenderingSystemTransformCalculator(void)
         code_ptr = *(code **)(**(longlong **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
         if (code_ptr != (code *)global_transform_params.matrix_values) {
             (*code_ptr)();
-            global_calculation_context.base_pointer = _DAT_180c86938;
-            global_calculation_context.data_pointer = _DAT_180c86920;
+            global_calculation_context.base_pointer = _DAT;
+            global_calculation_context.data_pointer = _DAT;
         }
         
         // 更新渲染参数
@@ -422,15 +422,15 @@ void RenderingSystemTransformCalculator(void)
             temp_long = (*(longlong **)(global_calculation_context.data_pointer + 0x3580))[0xda];
         } else {
             temp_long = (*code_ptr)();
-            global_calculation_context.base_pointer = _DAT_180c86938;
-            global_calculation_context.data_pointer = _DAT_180c86920;
+            global_calculation_context.base_pointer = _DAT;
+            global_calculation_context.data_pointer = _DAT;
         }
         
         // 获取渲染数据
-        temp_undefined = *(uint64_t *)(temp_long + 0x3f44);
+        temp_var = *(uint64_t *)(temp_long + 0x3f44);
         temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
         *(uint64_t *)(temp_long + 0x1d70) = *(uint64_t *)(temp_long + 0x3f3c);
-        *(uint64_t *)(temp_long + 0x1d78) = temp_undefined;
+        *(uint64_t *)(temp_long + 0x1d78) = temp_var;
         
         // 继续初始化
         code_ptr = *(code **)(**(longlong **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
@@ -438,8 +438,8 @@ void RenderingSystemTransformCalculator(void)
             temp_long = (*(longlong **)(global_calculation_context.data_pointer + 0x3580))[0xda];
         } else {
             temp_long = (*code_ptr)();
-            global_calculation_context.base_pointer = _DAT_180c86938;
-            global_calculation_context.data_pointer = _DAT_180c86920;
+            global_calculation_context.base_pointer = _DAT;
+            global_calculation_context.data_pointer = _DAT;
         }
         
         *(int32_t *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d7c) = *(int32_t *)(temp_long + 0x3f38);
@@ -596,9 +596,9 @@ void RenderingSystemTransformCalculator(void)
         
         // 更新内存数据
         temp_long = *(longlong *)(global_calculation_context.base_pointer + 0x1cd8);
-        temp_undefined = *(uint64_t *)(global_calculation_context.reserved_memory + 0x2a4);
+        temp_var = *(uint64_t *)(global_calculation_context.reserved_memory + 0x2a4);
         *(uint64_t *)(temp_long + 0x1d00) = *(uint64_t *)(global_calculation_context.reserved_memory + 0x29c);
-        *(uint64_t *)(temp_long + 0x1d08) = temp_undefined;
+        *(uint64_t *)(temp_long + 0x1d08) = temp_var;
         *(int32_t *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d38) = 
              *(int32_t *)(global_calculation_context.reserved_memory + 0x2ac);
         *(int32_t *)(*(longlong *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d3c) = 

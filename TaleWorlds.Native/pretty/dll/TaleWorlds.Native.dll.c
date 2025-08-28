@@ -27,17 +27,17 @@
 // 全局变量声明区域
 // =============================================================================
 
-// 数据变量声明 (DAT_ 前缀)
-extern uint8_t DAT_1809fc740;    // 全局数据变量
-extern uint8_t DAT_1809fc768;    // 配置数据变量
-extern uint8_t DAT_18098c9b8;    // 系统数据变量
-extern uint8_t DAT_18098c940;    // 状态数据变量
-extern uint8_t DAT_18098c918;    // 缓存数据变量
-extern uint8_t DAT_18098c968;    // 资源数据变量
-extern uint8_t DAT_18098c990;    // 管理数据变量
-extern uint8_t DAT_18098c9e0;    // 控制数据变量
-extern uint8_t DAT_18098c8f0;    // 处理数据变量
-extern uint8_t DAT_18098c8c8;    // 通信数据变量
+// 数据变量声明 (DAT 前缀)
+extern uint8_t DAT;    // 全局数据变量
+extern uint8_t DAT;    // 配置数据变量
+extern uint8_t DAT;    // 系统数据变量
+extern uint8_t DAT;    // 状态数据变量
+extern uint8_t DAT;    // 缓存数据变量
+extern uint8_t DAT;    // 资源数据变量
+extern uint8_t DAT;    // 管理数据变量
+extern uint8_t DAT;    // 控制数据变量
+extern uint8_t DAT;    // 处理数据变量
+extern uint8_t DAT;    // 通信数据变量
 
 // 未知类型变量声明 (UNK_ 前缀)
 extern uint8_t UNK_18098c790;    // 未知类型变量1
@@ -66,8 +66,8 @@ extern uint8_t FUN_1809416d0;    // 资源管理函数
 extern uint8_t FUN_180941710;    // 内存管理函数
 
 // 特殊类型变量声明
-extern int8_t DAT_180bf5240;   // 1字节特殊变量
-extern int8_t DAT_180bf52e0;   // 1字节状态变量
+extern int8_t DAT;   // 1字节特殊变量
+extern int8_t DAT;   // 1字节状态变量
 extern uint64_t UNK_180bf5278;   // 8字节未知变量
 extern uint64_t UNK_180bf5298;   // 8字节配置变量
 
@@ -76,44 +76,44 @@ extern uint64_t UNK_180bf5298;   // 8字节配置变量
 // =============================================================================
 
 // 渲染系统变量组
-extern uint8_t DAT_180bf5268;    // 渲染配置数据
-extern uint8_t DAT_180bf5270;    // 渲染状态数据
-extern uint8_t DAT_180bf5280;    // 渲染缓冲数据
-extern uint8_t DAT_180bf5288;    // 渲染纹理数据
-extern uint8_t DAT_180bf5290;    // 渲染着色器数据
-extern uint8_t DAT_180bf52a0;    // 渲染模型数据
-extern uint8_t DAT_180bf52c0;    // 渲染灯光数据
-extern uint8_t DAT_180bf52c8;    // 渲染相机数据
-extern uint8_t DAT_180bf52d0;    // 渲染材质数据
-extern uint8_t DAT_180bf52d8;    // 渲染效果数据
-extern uint8_t DAT_180bf52a8;    // 渲染资源数据
-extern uint8_t DAT_180bf52b0;    // 渲染队列数据
+extern uint8_t DAT;    // 渲染配置数据
+extern uint8_t DAT;    // 渲染状态数据
+extern uint8_t DAT;    // 渲染缓冲数据
+extern uint8_t DAT;    // 渲染纹理数据
+extern uint8_t DAT;    // 渲染着色器数据
+extern uint8_t DAT;    // 渲染模型数据
+extern uint8_t DAT;    // 渲染灯光数据
+extern uint8_t DAT;    // 渲染相机数据
+extern uint8_t DAT;    // 渲染材质数据
+extern uint8_t DAT;    // 渲染效果数据
+extern uint8_t DAT;    // 渲染资源数据
+extern uint8_t DAT;    // 渲染队列数据
 
 // UI系统变量组
-extern uint8_t DAT_180bf5770;    // UI配置数据
-extern uint8_t DAT_180bf5778;    // UI状态数据
-extern uint8_t DAT_180bf5780;    // UI布局数据
-extern uint8_t DAT_180bf5788;    // UI控件数据
-extern uint8_t DAT_180bf5208;    // UI主题数据
-extern uint8_t DAT_180bf5210;    // UI字体数据
-extern uint8_t DAT_180bf5218;    // UI颜色数据
-extern uint8_t DAT_180bf5220;    // UI样式数据
+extern uint8_t DAT;    // UI配置数据
+extern uint8_t DAT;    // UI状态数据
+extern uint8_t DAT;    // UI布局数据
+extern uint8_t DAT;    // UI控件数据
+extern uint8_t DAT;    // UI主题数据
+extern uint8_t DAT;    // UI字体数据
+extern uint8_t DAT;    // UI颜色数据
+extern uint8_t DAT;    // UI样式数据
 
 // 音频系统变量组
-extern uint8_t DAT_180bf5bc0;    // 音频配置数据
-extern uint8_t DAT_180bf5bc8;    // 音频状态数据
-extern uint8_t DAT_180bf5bd0;    // 音频缓冲数据
-extern uint8_t DAT_180bf5bd8;    // 音频效果数据
-extern uint8_t DAT_180bf5c30;    // 音频音量数据
-extern uint8_t DAT_180bf5c38;    // 音频音调数据
-extern uint8_t DAT_180bf5c40;    // 音频声道数据
-extern uint8_t DAT_180bf5c48;    // 音频采样数据
+extern uint8_t DAT;    // 音频配置数据
+extern uint8_t DAT;    // 音频状态数据
+extern uint8_t DAT;    // 音频缓冲数据
+extern uint8_t DAT;    // 音频效果数据
+extern uint8_t DAT;    // 音频音量数据
+extern uint8_t DAT;    // 音频音调数据
+extern uint8_t DAT;    // 音频声道数据
+extern uint8_t DAT;    // 音频采样数据
 
 // 网络系统变量组
-extern uint8_t DAT_180bf6080;    // 网络配置数据
-extern uint8_t DAT_180bf6088;    // 网络状态数据
-extern uint8_t DAT_180bf6090;    // 网络连接数据
-extern uint8_t DAT_180bf6098;    // 网络协议数据
+extern uint8_t DAT;    // 网络配置数据
+extern uint8_t DAT;    // 网络状态数据
+extern uint8_t DAT;    // 网络连接数据
+extern uint8_t DAT;    // 网络协议数据
 
 // =============================================================================
 // 系统函数指针组
@@ -154,36 +154,36 @@ extern uint8_t UNK_1809fcc28;    // 系统配置变量
 extern uint8_t UNK_1809ffa30;    // 系统数据变量
 extern uint8_t UNK_1809ff978;    // 系统信息变量
 extern uint8_t UNK_1809ff990;    // 系统资源变量
-extern uint8_t DAT_1809ff9e8;    // 系统设置变量
-extern uint8_t DAT_1809ff9c0;    // 系统参数变量
-extern uint8_t DAT_1809fe0d0;    // 系统缓存变量
+extern uint8_t DAT;    // 系统设置变量
+extern uint8_t DAT;    // 系统参数变量
+extern uint8_t DAT;    // 系统缓存变量
 extern uint8_t UNK_1809fd0d8;    // 系统调试变量
 
 // 系统数据区域
-extern uint8_t DAT_180a010a0;    // 接口模块数据
+extern uint8_t DAT;    // 接口模块数据
 extern uint8_t UNK_180a00370;    // 接口状态数据
 extern uint8_t FUN_18025cc00;    // 接口处理函数
-extern uint8_t DAT_180a01078;    // 核心模块数据
+extern uint8_t DAT;    // 核心模块数据
 extern uint8_t UNK_180a00388;    // 核心状态数据
 extern uint8_t FUN_18025c000;    // 核心处理函数
-extern uint8_t DAT_180a01050;    // 数据模块数据
+extern uint8_t DAT;    // 数据模块数据
 extern uint8_t UNK_180a003a0;    // 数据状态数据
-extern uint8_t DAT_180a01028;    // 服务模块数据
+extern uint8_t DAT;    // 服务模块数据
 extern uint8_t UNK_180a003b8;    // 服务状态数据
 extern uint8_t FUN_18025d270;    // 服务处理函数
-extern uint8_t DAT_180a01000;    // 资源模块数据
+extern uint8_t DAT;    // 资源模块数据
 extern uint8_t UNK_180a003d0;    // 资源状态数据
 
 // 系统工具变量
-extern uint8_t DAT_180a00fd8;    // 工具配置数据
+extern uint8_t DAT;    // 工具配置数据
 extern uint8_t UNK_1800868c0;    // 工具状态数据
 extern uint8_t UNK_180a003e8;    // 工具处理数据
-extern uint8_t DAT_180a00fb0;    // 工具缓存数据
+extern uint8_t DAT;    // 工具缓存数据
 extern uint8_t UNK_180a00400;    // 工具资源数据
-extern uint8_t DAT_180a00e28;    // 工具输入数据
+extern uint8_t DAT;    // 工具输入数据
 extern uint8_t FUN_18025d510;    // 工具处理函数
 extern uint8_t UNK_180a00430;    // 工具输出数据
-extern uint8_t DAT_180a00d48;    // 工具计算数据
+extern uint8_t DAT;    // 工具计算数据
 extern uint8_t FUN_18025e330;    // 工具算法函数
 extern uint8_t UNK_180a00460;    // 工具结果数据
 
@@ -192,69 +192,69 @@ extern uint8_t UNK_180a00460;    // 工具结果数据
 // =============================================================================
 
 // 扩展系统变量
-extern uint8_t DAT_180a00bb0;    // 扩展配置数据
+extern uint8_t DAT;    // 扩展配置数据
 extern uint8_t UNK_180a004a8;    // 扩展状态数据
 extern uint8_t FUN_1802633c0;    // 扩展处理函数
-extern uint8_t DAT_180a00b88;    // 扩展模块数据
+extern uint8_t DAT;    // 扩展模块数据
 extern uint8_t UNK_180a004c0;    // 扩展资源数据
 extern uint8_t FUN_180262b00;    // 扩展管理函数
 
 // 渲染系统变量
-extern uint8_t DAT_180bf64d0;    // 渲染配置数据
-extern uint8_t DAT_180bf64d8;    // 渲染状态数据
-extern uint8_t DAT_180bf64e0;    // 渲染缓冲数据
-extern uint8_t DAT_180bf64e8;    // 渲染纹理数据
+extern uint8_t DAT;    // 渲染配置数据
+extern uint8_t DAT;    // 渲染状态数据
+extern uint8_t DAT;    // 渲染缓冲数据
+extern uint8_t DAT;    // 渲染纹理数据
 extern uint8_t UNK_180a004dc;    // 渲染着色器数据
-extern uint8_t DAT_180bf6530;    // 渲染模型数据
-extern uint8_t DAT_180bf6538;    // 渲染灯光数据
-extern uint8_t DAT_180bf6540;    // 渲染相机数据
-extern uint8_t DAT_180bf6548;    // 渲染材质数据
+extern uint8_t DAT;    // 渲染模型数据
+extern uint8_t DAT;    // 渲染灯光数据
+extern uint8_t DAT;    // 渲染相机数据
+extern uint8_t DAT;    // 渲染材质数据
 
 // UI系统变量
 extern uint8_t UNK_180a004e8;    // UI配置数据
-extern uint8_t DAT_180bf6590;    // UI状态数据
-extern uint8_t DAT_180bf6598;    // UI布局数据
-extern uint8_t DAT_180bf65a0;    // UI控件数据
-extern uint8_t DAT_180bf65a8;    // UI样式数据
+extern uint8_t DAT;    // UI状态数据
+extern uint8_t DAT;    // UI布局数据
+extern uint8_t DAT;    // UI控件数据
+extern uint8_t DAT;    // UI样式数据
 extern uint8_t UNK_180a004f8;    // UI主题数据
-extern uint8_t DAT_180bf65c0;    // UI字体数据
-extern uint8_t DAT_180bf65c8;    // UI颜色数据
-extern uint8_t DAT_180bf65d0;    // UI动画数据
-extern uint8_t DAT_180bf65d8;    // UI效果数据
+extern uint8_t DAT;    // UI字体数据
+extern uint8_t DAT;    // UI颜色数据
+extern uint8_t DAT;    // UI动画数据
+extern uint8_t DAT;    // UI效果数据
 
 // =============================================================================
 // 系统配置和状态变量
 // =============================================================================
 
 // 配置管理变量
-extern uint8_t DAT_180bf6620;    // 配置数据变量
-extern uint8_t DAT_180bf6628;    // 配置状态变量
-extern uint8_t DAT_180bf6630;    // 配置缓冲变量
-extern uint8_t DAT_180bf6638;    // 配置资源变量
+extern uint8_t DAT;    // 配置数据变量
+extern uint8_t DAT;    // 配置状态变量
+extern uint8_t DAT;    // 配置缓冲变量
+extern uint8_t DAT;    // 配置资源变量
 extern uint8_t UNK_180a00528;    // 配置处理变量
 extern uint8_t FUN_1809418a0;    // 配置管理函数
 
 // 状态管理变量
-extern uint8_t DAT_180bf6650;    // 状态数据变量
-extern uint8_t DAT_180bf6658;    // 状态缓冲变量
-extern uint8_t DAT_180bf6660;    // 状态资源变量
-extern uint8_t DAT_180bf6668;    // 状态处理变量
+extern uint8_t DAT;    // 状态数据变量
+extern uint8_t DAT;    // 状态缓冲变量
+extern uint8_t DAT;    // 状态资源变量
+extern uint8_t DAT;    // 状态处理变量
 extern uint8_t UNK_180a00538;    // 状态控制变量
 extern uint8_t FUN_1809418c0;    // 状态管理函数
 
 // 系统资源变量
-extern uint8_t DAT_180bf66b0;    // 资源数据变量
-extern uint8_t DAT_180bf66b8;    // 资源状态变量
-extern uint8_t DAT_180bf66c0;    // 资源缓冲变量
-extern uint8_t DAT_180bf66c8;    // 资源处理变量
+extern uint8_t DAT;    // 资源数据变量
+extern uint8_t DAT;    // 资源状态变量
+extern uint8_t DAT;    // 资源缓冲变量
+extern uint8_t DAT;    // 资源处理变量
 extern uint8_t UNK_180a00540;    // 资源控制变量
 extern uint8_t FUN_1809418e0;    // 资源管理函数
 
 // 系统工具变量
-extern uint8_t DAT_180bf52e8;    // 工具数据变量
-extern uint8_t DAT_180bf52f0;    // 工具状态变量
-extern uint8_t DAT_180bf52f8;    // 工具缓冲变量
-extern uint8_t DAT_180bf5300;    // 工具资源变量
+extern uint8_t DAT;    // 工具数据变量
+extern uint8_t DAT;    // 工具状态变量
+extern uint8_t DAT;    // 工具缓冲变量
+extern uint8_t DAT;    // 工具资源变量
 extern uint8_t UNK_180a01300;    // 工具控制变量
 extern uint8_t FUN_180941980;    // 工具管理函数
 
@@ -263,19 +263,19 @@ extern uint8_t FUN_180941980;    // 工具管理函数
 // =============================================================================
 
 // 系统通信变量
-extern uint8_t DAT_180bf5738;    // 通信数据变量
-extern uint8_t DAT_180bf5740;    // 通信状态变量
-extern uint8_t DAT_180bf5748;    // 通信缓冲变量
-extern uint8_t DAT_180bf5750;    // 通信资源变量
+extern uint8_t DAT;    // 通信数据变量
+extern uint8_t DAT;    // 通信状态变量
+extern uint8_t DAT;    // 通信缓冲变量
+extern uint8_t DAT;    // 通信资源变量
 extern uint8_t UNK_180a01330;    // 通信控制变量
 extern uint8_t FUN_1809419a0;    // 通信管理函数
 
 // 系统管理变量
-extern int8_t DAT_180c910f8;   // 系统管理变量1
-extern int8_t DAT_180c91198;   // 系统管理变量2
-extern int8_t DAT_180c91238;   // 系统管理变量3
-extern int8_t DAT_180c912d8;   // 系统管理变量4
-extern uint8_t DAT_180c91900;    // 系统配置变量
+extern int8_t DAT;   // 系统管理变量1
+extern int8_t DAT;   // 系统管理变量2
+extern int8_t DAT;   // 系统管理变量3
+extern int8_t DAT;   // 系统管理变量4
+extern uint8_t DAT;    // 系统配置变量
 extern uint8_t UNK_180a3c3e0;    // 系统控制变量
 extern uint8_t UNK_18098bb30;    // 系统状态变量
 extern uint8_t UNK_18098bc80;    // 系统资源变量

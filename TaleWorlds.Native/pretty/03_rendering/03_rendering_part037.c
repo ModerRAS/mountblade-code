@@ -67,7 +67,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     uint64_t *******temp_hash_ptr;
     uint *uint_ptr;
     longlong temp_long;
-    uint64_t temp_undefined;
+    uint64_t temp_var;
     ulonglong hash_val1;
     ulonglong hash_val2;
     uint string_length;
@@ -126,19 +126,19 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     
     // 初始化栈保护和变量
     stack_undefined6 = INFINITE_UINT;
-    stack_guard = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_guard = _DAT ^ (ulonglong)stack_buffer1;
     hash_val1 = 0;
     stack_uint9 = 0;
     stack_long2 = render_context;
     stack_undefined5 = resource_param;
-    stack_undefined7 = resource_param;
+    stack_uint64_t = resource_param;
     
     // 检查系统状态并确定时间值
-    if (*(void **)*_DAT_180c8ed08 == &UNK_18098bb88) {
-        char_val = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
+    if (*(void **)*_DAT == &UNK_18098bb88) {
+        char_val = *(int *)(_DAT + 0xe0) != 0;
     }
     else {
-        char_val = (**(code **)(*(void **)*_DAT_180c8ed08 + 0x48))();
+        char_val = (**(code **)(*(void **)*_DAT + 0x48))();
     }
     
     // 根据系统状态设置时间值
@@ -174,7 +174,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
             stack_buffer3[0] = '\0';
             stack_uint12 = *(uint *)(long_val + 0x20);
             ptr_val = *(void **)(long_val + 0x18);
-            undefined_ptr = &DAT_18098bc73;
+            undefined_ptr = &DAT;
             
             // 获取资源名称
             if (ptr_val != (void *)0x0) {
@@ -183,21 +183,21 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
             strcpy_s(stack_buffer3, MAX_STRING_LENGTH, undefined_ptr);
             
             // 检查字符串长度是否符合要求
-            if (stack_uint12 < _DAT_180bf90c0) {
+            if (stack_uint12 < _DAT) {
             LAB_string_length_check:
                 bool_result = false;
             }
             else {
-                if (_DAT_180bf90c0 != 0) {
+                if (_DAT != 0) {
                     temp_char_ptr = stack_char_ptr2;
                     temp_mem_ptr = mem_ptr;
                     do {
-                        if (*temp_char_ptr != temp_char_ptr[_DAT_180bf90b8 - (longlong)stack_char_ptr2]) 
+                        if (*temp_char_ptr != temp_char_ptr[_DAT - (longlong)stack_char_ptr2]) 
                             goto LAB_string_length_check;
                         uint_result = (int)temp_mem_ptr + 1;
                         temp_mem_ptr = (uint64_t *)(ulonglong)uint_result;
                         temp_char_ptr = temp_char_ptr + 1;
-                    } while (uint_result < _DAT_180bf90c0);
+                    } while (uint_result < _DAT);
                 }
                 bool_result = true;
             }
@@ -254,7 +254,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
                     if (long_val == 0) {
                         long_val = 1;
                     LAB_expand_resource_array:
-                        mem_ptr = (uint64_t *)allocate_rendering_memory(_DAT_180c8ed18, long_val << 5, (int8_t)stack_uint6);
+                        mem_ptr = (uint64_t *)allocate_rendering_memory(_DAT, long_val << 5, (int8_t)stack_uint6);
                     }
                     else {
                         long_val = long_val * 2;
@@ -312,7 +312,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     stack_hash_ptr1 = &stack_hash_ptr1;
     stack_hash_ptr2 = &stack_hash_ptr1;
     stack_hash_ptr3 = (uint64_t *******)0x0;
-    stack_undefined3 = 0;
+    stack_uint32_t = 0;
     stack_long1 = 0;
     stack_ptr1 = &UNK_180a3c3e0;
     stack_int8_t = 0;
@@ -320,23 +320,23 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     stack_uint1 = 0;
     
     // 分配字符串缓冲区
-    if (0 < (int)_DAT_180bf90c0) {
-        int_val = _DAT_180bf90c0 + 1;
+    if (0 < (int)_DAT) {
+        int_val = _DAT + 1;
         if (int_val < MIN_ALLOCATION_SIZE) {
             int_val = MIN_ALLOCATION_SIZE;
         }
-        byte_ptr = (int8_t *)allocate_rendering_memory(_DAT_180c8ed18, (longlong)int_val, MEMORY_ALIGNMENT_0X13);
+        byte_ptr = (int8_t *)allocate_rendering_memory(_DAT, (longlong)int_val, MEMORY_ALIGNMENT_0X13);
         *byte_ptr = 0;
         stack_char_ptr = byte_ptr;
         uint_val = get_string_hash(byte_ptr);
         stack_int8_t = CONCAT44(stack_int8_t._4_4_, uint_val);
-        memcpy(byte_ptr, _DAT_180bf90b8, (longlong)(int)(_DAT_180bf90c0 + 1));
+        memcpy(byte_ptr, _DAT, (longlong)(int)(_DAT + 1));
     }
     
     // 初始化字符串处理
     string_length = 1;
     stack_resource_ptr4 = (uint64_t *)CONCAT44(stack_resource_ptr4._4_4_, 1);
-    char_ptr = (char *)allocate_rendering_memory(_DAT_180c8ed18, 0x10, MEMORY_ALIGNMENT_0X13);
+    char_ptr = (char *)allocate_rendering_memory(_DAT, 0x10, MEMORY_ALIGNMENT_0X13);
     *char_ptr = '\0';
     stack_char_ptr = char_ptr;
     uint_result = get_string_hash(char_ptr);
@@ -347,27 +347,27 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     stack_uint1 = 1;
     
     // 处理附加字符串数据
-    if (0 < _DAT_180bf5b98) {
-        if (_DAT_180bf5b98 != -1) {
+    if (0 < _DAT) {
+        if (_DAT != -1) {
             if (char_ptr == (char *)0x0) {
-                int_val = _DAT_180bf5b98 + 2;
+                int_val = _DAT + 2;
                 if (int_val < MIN_ALLOCATION_SIZE) {
                     int_val = MIN_ALLOCATION_SIZE;
                 }
-                char_ptr = (char *)allocate_rendering_memory(_DAT_180c8ed18, (longlong)int_val, MEMORY_ALIGNMENT_0X13);
+                char_ptr = (char *)allocate_rendering_memory(_DAT, (longlong)int_val, MEMORY_ALIGNMENT_0X13);
                 *char_ptr = '\0';
             }
             else {
-                if (_DAT_180bf5b98 + 2U <= uint_result) goto LAB_string_copy;
+                if (_DAT + 2U <= uint_result) goto LAB_string_copy;
                 stack_val1 = MEMORY_ALIGNMENT_0X13;
-                char_ptr = (char *)resize_string_buffer(_DAT_180c8ed18, char_ptr, _DAT_180bf5b98 + 2U, 0x10);
+                char_ptr = (char *)resize_string_buffer(_DAT, char_ptr, _DAT + 2U, 0x10);
             }
             stack_char_ptr = char_ptr;
             uint_val = get_string_hash(char_ptr);
             stack_int8_t = CONCAT44(stack_int8_t._4_4_, uint_val);
         }
     LAB_string_copy:
-        memcpy(char_ptr + 1, _DAT_180bf5b90, (longlong)(_DAT_180bf5b98 + 1));
+        memcpy(char_ptr + 1, _DAT, (longlong)(_DAT + 1));
     }
     
     // 处理资源哈希表
@@ -418,7 +418,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
                 if (long_val == 0) {
                     long_val = 1;
                 LAB_expand_hash_table:
-                    resource_block = (uint64_t *)allocate_rendering_memory(_DAT_180c8ed18, long_val << 5, (int8_t)stack_uint5);
+                    resource_block = (uint64_t *)allocate_rendering_memory(_DAT, long_val << 5, (int8_t)stack_uint5);
                 }
                 else {
                     long_val = long_val * 2;
@@ -465,7 +465,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     }
     
     // 设置渲染上下文状态
-    if ((bool_result) && (DAT_180c82860 == '\0')) {
+    if ((bool_result) && (DAT == '\0')) {
         flag_val = 1;
     }
     else {
@@ -622,7 +622,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
         if (int_val < MIN_ALLOCATION_SIZE) {
             int_val = MIN_ALLOCATION_SIZE;
         }
-        byte_ptr = (int8_t *)allocate_rendering_memory(_DAT_180c8ed18, (longlong)int_val, MEMORY_ALIGNMENT_0X13);
+        byte_ptr = (int8_t *)allocate_rendering_memory(_DAT, (longlong)int_val, MEMORY_ALIGNMENT_0X13);
         *byte_ptr = 0;
         hash_val1 = (ulonglong)byte_ptr & 0xffffffffffc00000;
         
@@ -667,11 +667,11 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
 LAB_resource_processing_complete:
     // 设置渲染参数
     uint_result = *(uint *)((longlong)alloc_ptr + 0x1c);
-    *(float *)(stack_long2 + 0x15c) = (float)_DAT_180c8ed30 * FLOAT_SCALE_FACTOR;
+    *(float *)(stack_long2 + 0x15c) = (float)_DAT * FLOAT_SCALE_FACTOR;
     stack_int16_t._4_4_ = uint_result;
     
     // 生成随机哈希值
-    generate_random_hash(_DAT_180c86930, stack_undefined5, &stack_ptr2, 1);
+    generate_random_hash(_DAT, stack_undefined5, &stack_ptr2, 1);
     stack_uint9 = 1;
     stack_ptr2 = &UNK_180a3c3e0;
     
@@ -774,7 +774,7 @@ LAB_final_separator_found:
         if (long_val == 0) {
             long_val = 1;
         LAB_expand_resource_list:
-            resource_block = (uint64_t *)allocate_rendering_memory(_DAT_180c8ed18, long_val << 5, (int8_t)stack_uint7);
+            resource_block = (uint64_t *)allocate_rendering_memory(_DAT, long_val << 5, (int8_t)stack_uint7);
         }
         else {
             long_val = long_val * 2;
@@ -798,7 +798,7 @@ LAB_final_separator_found:
     }
     
     // 最终资源处理和哈希表更新
-    temp_undefined = 0;
+    temp_var = 0;
     stack_ptr_array = &stack_ptr3;
     stack_ptr3 = &UNK_180a3c3e0;
     stack_ulong1 = 0;
@@ -819,7 +819,7 @@ LAB_final_separator_found:
     
     // 处理资源条目
     process_resource_entry(stack_buffer2, alloc_ptr);
-    long_val = allocate_rendering_memory(_DAT_180c8ed18, 0x60, (int8_t)stack_uint8);
+    long_val = allocate_rendering_memory(_DAT, 0x60, (int8_t)stack_uint8);
     initialize_string_resource(long_val + 0x20, &stack_ptr3);
     
     // 更新哈希表
@@ -861,11 +861,11 @@ LAB_final_separator_found:
                 } while (uint_result != 0);
                 if (0 < (int)(byte_val - uint_result)) goto LAB_final_hash_processing;
             }
-            temp_undefined = 1;
+            temp_var = 1;
         }
     }
     
 LAB_final_hash_processing:
     // 完成资源处理
-    finalize_resource_processing(long_val, nested_array_ptr, &stack_hash_ptr1, temp_undefined);
+    finalize_resource_processing(long_val, nested_array_ptr, &stack_hash_ptr1, temp_var);
 }

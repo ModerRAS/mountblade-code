@@ -99,7 +99,7 @@ ulonglong *render_bounding_box_calculate_triangles(
   uint64_t temp_ulong3;
   uint64_t temp_ulong4;
   ulonglong vertex_array_size;
-  uint8_t temp_undefined7;
+  uint8_t temp_var7;
   int32_t *uint_ptr3;
   int32_t *uint_ptr4;
   float *float_ptr8;
@@ -524,7 +524,7 @@ triangle_processing_start:
             stack_float2 = (float)((ulonglong)*(uint64_t *)current_vertex >> 0x20);
             stack_float3 = (float)*(uint64_t *)(stack_vertex_ptr2 + -3);
             stack_float4 = (float)((ulonglong)*(uint64_t *)(stack_vertex_ptr2 + -3) >> 0x20);
-            temp_undefined7 = (uint8_t)((ulonglong)current_vertex >> 8);
+            temp_uint64_t = (uint8_t)((ulonglong)current_vertex >> 8);
             
             if (temp_vertex2 < temp_vertex1) {
               *temp_vertex2 = stack_float1;
@@ -539,7 +539,7 @@ triangle_processing_start:
               if (stack_long1 == 0) {
                 stack_long1 = 1;
 vertex_alloc_loop1:
-                temp_vertex3 = (float *)allocate_render_memory(g_global_memory_pool, stack_long1 * 0x14, CONCAT71(temp_undefined7, 3));
+                temp_vertex3 = (float *)allocate_render_memory(g_global_memory_pool, stack_long1 * 0x14, CONCAT71(temp_var7, 3));
               }
               else {
                 stack_long1 = stack_long1 * 2;
@@ -588,7 +588,7 @@ vertex_alloc_loop1:
               if (stack_long1 == 0) {
                 stack_long1 = 1;
 vertex_alloc_loop2:
-                temp_vertex2 = (float *)allocate_render_memory(g_global_memory_pool, stack_long1 * 0x14, CONCAT71(temp_undefined7, 3));
+                temp_vertex2 = (float *)allocate_render_memory(g_global_memory_pool, stack_long1 * 0x14, CONCAT71(temp_var7, 3));
               }
               else {
                 stack_long1 = stack_long1 * 2;
@@ -635,7 +635,7 @@ vertex_alloc_loop2:
               if (stack_long1 == 0) {
                 stack_long1 = 1;
 vertex_alloc_loop3:
-                temp_vertex3 = (float *)allocate_render_memory(g_global_memory_pool, stack_long1 * 0x14, CONCAT71(temp_undefined7, 3));
+                temp_vertex3 = (float *)allocate_render_memory(g_global_memory_pool, stack_long1 * 0x14, CONCAT71(temp_var7, 3));
               }
               else {
                 stack_long1 = stack_long1 * 2;

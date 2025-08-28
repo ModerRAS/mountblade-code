@@ -269,7 +269,7 @@ time_value_processing:
                                             if (undefined_ptr4[1] != 0) {
                                                 temp_long2 = undefined_ptr4[1];
                                             }
-                                            FUN_18010cbc0(temp_long2, &DAT_180a06430, &stack_uint1);
+                                            FUN_18010cbc0(temp_long2, &DAT, &stack_uint1);
                                             break;
                                         }
                                         
@@ -301,7 +301,7 @@ time_value_processing:
                                     if (temp_long2 == 0) {
                                         temp_long2 = 1;
 curve_buffer_expansion:
-                                        uint_ptr1 = (int32_t *)FUN_18062b420(_DAT_180c8ed18);
+                                        uint_ptr1 = (int32_t *)FUN_18062b420(_DAT);
                                         uint_ptr3 = *(int32_t **)(param_1 + 200);
                                         uint_ptr2 = *(int32_t **)(param_1 + 0xca);
                                     }
@@ -454,7 +454,7 @@ value_processing:
                                         if (temp_long2 == 0) {
                                             temp_long2 = 1;
 alpha_buffer_expansion:
-                                            undefined_ptr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, temp_long2 * 8);
+                                            undefined_ptr1 = (uint64_t *)FUN_18062b420(_DAT, temp_long2 * 8);
                                             undefined_ptr3 = *(uint64_t **)(param_1 + 0xd0);
                                             undefined_ptr4 = *(uint64_t **)(param_1 + 0xd2);
                                         }
@@ -709,7 +709,7 @@ alpha_value_extraction:
                                             if (temp_long2 == 0) {
                                                 temp_long2 = 1;
 alpha_buffer_processing:
-                                                undefined_ptr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, temp_long2 * 8);
+                                                undefined_ptr1 = (uint64_t *)FUN_18062b420(_DAT, temp_long2 * 8);
                                                 undefined_ptr3 = *(uint64_t **)(param_1 + 0xd0);
                                                 undefined_ptr4 = *(uint64_t **)(param_1 + 0xd2);
                                             }
@@ -1127,9 +1127,9 @@ void animation_parameter_configurator(longlong param_1, uint64_t param_2, longlo
         
         *undefined_ptr1 = &UNK_180a180f4;
         undefined_ptr1[2] = string_ptr2 + -0x180a180f3;
-        FUN_180630b20(param_3, undefined_ptr1, &DAT_180a03a84, param_2);
+        FUN_180630b20(param_3, undefined_ptr1, &DAT, param_2);
         FUN_180630c80(param_3, undefined_ptr1, &UNK_180a015b0, 1);
-        FUN_18062f990(param_3, undefined_ptr1, &DAT_180a0b1c0);
+        FUN_18062f990(param_3, undefined_ptr1, &DAT);
         FUN_18062f990(param_3, undefined_ptr1, &UNK_180a180b0);
         
         // 链接曲线节点

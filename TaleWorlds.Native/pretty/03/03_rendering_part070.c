@@ -85,7 +85,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
   longlong *temp_long_pointer_3;
   longlong *temp_long_pointer_4;
   longlong *temp_long_pointer_5;
-  void **temp_undefined_pointer;
+  void **temp_var_pointer;
   uint64_t temp_var_3;
   int *temp_int_pointer_2;
   uint64_t temp_var_4;
@@ -104,8 +104,8 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
   int32_t temp_param_5;
   int32_t temp_param_6;
   int32_t temp_param_7;
-  void *temp_undefined_1;
-  int8_t *temp_undefined_2;
+  void *temp_var_1;
+  int8_t *temp_var_2;
   int32_t temp_param_8;
   int8_t temp_buffer_2[128];
   int32_t temp_param_9;
@@ -113,8 +113,8 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
   longlong temp_long_4;
   uint64_t temp_var_9;
   longlong temp_long_5;
-  void *temp_undefined_3;
-  int8_t *temp_undefined_4;
+  void *temp_var_3;
+  int8_t *temp_var_4;
   int32_t temp_param_10;
   int8_t temp_buffer_3[128];
   int32_t temp_param_11;
@@ -122,18 +122,18 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
   longlong temp_long_6;
   uint64_t temp_var_11;
   longlong temp_long_7;
-  void *temp_undefined_5;
-  int8_t *temp_undefined_6;
+  void *temp_var_5;
+  int8_t *temp_var_6;
   int32_t temp_param_12;
   int8_t temp_buffer_4[72];
-  void *temp_undefined_7;
-  int8_t *temp_undefined_8;
+  void *temp_var_7;
+  int8_t *temp_var_8;
   int32_t temp_param_13;
   int8_t temp_buffer_5[72];
   ulonglong stack_checksum;
   
   temp_var_3 = RENDERING_SYSTEM_STACK_GUARD_VALUE;
-  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  stack_checksum = _DAT ^ (ulonglong)security_buffer;
   item_count = 0;
   bit_count = 0;
   resource_array = *(longlong **)(render_context + 0x1b90);
@@ -195,14 +195,14 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         if ((0.0 <= scale_factor) && (normalized_factor = scale_factor, 1.0 <= scale_factor)) {
           normalized_factor = 1.0;
         }
-        quality_factor = *(float *)(_DAT_180c86870 + 0x388);
+        quality_factor = *(float *)(_DAT + 0x388);
         FUN_180287b30(data_context + 0xf0,temp_buffer);
         temp_param_4 = 0;
         temp_param_5 = 0;
         temp_param_6 = 0;
         temp_param_7 = 0x3f800000;
-        temp_undefined_5 = &UNK_1809fcc58;
-        temp_undefined_6 = temp_buffer_4;
+        temp_var_5 = &UNK_1809fcc58;
+        temp_var_6 = temp_buffer_4;
         temp_buffer_4[0] = 0;
         temp_param_12 = 0x1e;
         temp_var = strcpy_s(temp_buffer_4,RENDERING_SYSTEM_STRING_LENGTH_0X40,&UNK_180a1a228);
@@ -212,10 +212,10 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         temp_param_10 = 0x50;
         temp_float_2 = 0.0;
         temp_float_1 = 4.2039e-45;
-        temp_undefined_2 = (int8_t *)CONCAT44(temp_undefined_2._4_4_,0x61);
+        temp_var_2 = (int8_t *)CONCAT44(temp_var_2._4_4_,0x61);
         temp_int_1 = item_count;
         memory_block = (uint64_t *)
-                 FUN_1800b0a10(temp_var,&temp_long_pointer_4,*(int32_t *)(data_context + 0x1bd4),&temp_undefined_5);
+                 FUN_1800b0a10(temp_var,&temp_long_pointer_4,*(int32_t *)(data_context + 0x1bd4),&temp_var_5);
         temp_var = *memory_block;
         *memory_block = 0;
         temp_long_pointer_5 = *(longlong **)(render_context + 0x68);
@@ -226,9 +226,9 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         if (temp_long_pointer_4 != (longlong *)0x0) {
           (**(code **)(*temp_long_pointer_4 + 0x38))();
         }
-        temp_undefined_5 = &UNK_18098bcb0;
-        temp_undefined_7 = &UNK_1809fcc58;
-        temp_undefined_8 = temp_buffer_5;
+        temp_var_5 = &UNK_18098bcb0;
+        temp_var_7 = &UNK_1809fcc58;
+        temp_var_8 = temp_buffer_5;
         temp_buffer_5[0] = 0;
         temp_param_13 = 0x21;
         temp_var = strcpy_s(temp_buffer_5,RENDERING_SYSTEM_STRING_LENGTH_0X40,&UNK_180a1a200);
@@ -238,10 +238,10 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         temp_param_10 = 0x1b0;
         temp_float_2 = 0.0;
         temp_float_1 = 4.2039e-45;
-        temp_undefined_2 = (int8_t *)CONCAT44(temp_undefined_2._4_4_,0x61);
+        temp_var_2 = (int8_t *)CONCAT44(temp_var_2._4_4_,0x61);
         temp_int_1 = item_count;
         memory_block = (uint64_t *)
-                 FUN_1800b0a10(temp_var,&temp_long_pointer_3,*(int32_t *)(data_context + 0x1bd4),&temp_undefined_7);
+                 FUN_1800b0a10(temp_var,&temp_long_pointer_3,*(int32_t *)(data_context + 0x1bd4),&temp_var_7);
         temp_var = *memory_block;
         *memory_block = 0;
         temp_long_pointer_5 = *(longlong **)(render_context + 0x70);
@@ -252,7 +252,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         if (temp_long_pointer_3 != (longlong *)0x0) {
           (**(code **)(*temp_long_pointer_3 + 0x38))();
         }
-        temp_undefined_7 = &UNK_18098bcb0;
+        temp_var_7 = &UNK_18098bcb0;
         temp_uint_2 = 0;
         if (0 < item_count) {
           temp_pointer_array = (longlong **)(render_context + 0x980);
@@ -270,7 +270,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
             do {
               bit_count = (int)checksum_value;
               if (*(longlong *)uint_pointer == 0) {
-                base_address = FUN_18062b420(_DAT_180c8ed18,RENDERING_SYSTEM_BUFFER_SIZE_0X28000,0x25);
+                base_address = FUN_18062b420(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X28000,0x25);
                 LOCK();
                 allocation_success = *(longlong *)((longlong)resource_pointer + ((longlong)bit_count * 2 + 2) * 4) == 0;
                 if (allocation_success) {
@@ -315,7 +315,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
             do {
               bit_count = (int)checksum_value;
               if (*resource_array == 0) {
-                temp_address = FUN_18062b420(_DAT_180c8ed18,RENDERING_SYSTEM_BUFFER_SIZE_0XD8000,0x25);
+                temp_address = FUN_18062b420(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0XD8000,0x25);
                 buffer_pointer = (longlong *)(base_address + 0x1290 + (longlong)bit_count * 8);
                 LOCK();
                 allocation_success = *buffer_pointer == 0;
@@ -348,7 +348,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
               resource_array = resource_array + 1;
               string_pointer = string_pointer + 1;
             } while ((longlong)(string_pointer + (-0x808 - temp_long_3)) <= (longlong)(ulonglong)lock_value);
-            temp_undefined_2 = temp_buffer;
+            temp_var_2 = temp_buffer;
             temp_float_1 = normalized_factor * RENDERING_SYSTEM_SCALE_FACTOR_0_875;
             temp_float_2 = 1.0 / quality_factor;
             FUN_1803076d0(temp_long_4,
@@ -361,9 +361,9 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
             item_count = temp_int_2;
           } while ((int)temp_uint_2 < temp_int_2);
         }
-        temp_pointer_array = (longlong **)&temp_undefined_1;
-        temp_undefined_1 = &UNK_1809fcc28;
-        temp_undefined_2 = temp_buffer_2;
+        temp_pointer_array = (longlong **)&temp_var_1;
+        temp_var_1 = &UNK_1809fcc28;
+        temp_var_2 = temp_buffer_2;
         temp_param_8 = 0;
         temp_buffer_2[0] = 0;
         temp_param_9 = 0xb;
@@ -371,13 +371,13 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         temp_var_9 = RENDERING_SYSTEM_BUFFER_SIZE_0X28000;
         temp_long_6 = render_context + 0x988;
         temp_long_5 = (longlong)item_count * RENDERING_SYSTEM_SIZE_0X50;
-        temp_var = FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
-        resource_array = (longlong *)FUN_18005ce30(temp_var,&temp_undefined_1);
+        temp_var = FUN_18062b1e0(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
+        resource_array = (longlong *)FUN_18005ce30(temp_var,&temp_var_1);
         temp_pointer_3 = (longlong **)resource_array;
         if (resource_array != (longlong *)0x0) {
           (**(code **)(*resource_array + 0x28))(resource_array);
         }
-        temp_var = _DAT_180c82868;
+        temp_var = _DAT;
         temp_pointer_array = &temp_long_pointer_2;
         temp_long_pointer_2 = resource_array;
         if (resource_array != (longlong *)0x0) {
@@ -387,10 +387,10 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         if (resource_array != (longlong *)0x0) {
           (**(code **)(*resource_array + 0x38))(resource_array);
         }
-        temp_undefined_1 = &UNK_18098bcb0;
-        temp_pointer_3 = (longlong **)&temp_undefined_3;
-        temp_undefined_3 = &UNK_1809fcc28;
-        temp_undefined_4 = temp_buffer_3;
+        temp_var_1 = &UNK_18098bcb0;
+        temp_pointer_3 = (longlong **)&temp_var_3;
+        temp_var_3 = &UNK_1809fcc28;
+        temp_var_4 = temp_buffer_3;
         temp_param_10 = 0;
         temp_buffer_3[0] = 0;
         temp_param_11 = 0xb;
@@ -398,13 +398,13 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         temp_var_11 = RENDERING_SYSTEM_BUFFER_SIZE_0XD8000;
         temp_long_7 = render_context + 0x1290;
         temp_long_6 = (longlong)item_count * RENDERING_SYSTEM_SIZE_0X1B0;
-        temp_var = FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
-        resource_array = (longlong *)FUN_18005ce30(temp_var,&temp_undefined_3);
-        temp_undefined_pointer = (void **)resource_array;
+        temp_var = FUN_18062b1e0(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
+        resource_array = (longlong *)FUN_18005ce30(temp_var,&temp_var_3);
+        temp_var_pointer = (void **)resource_array;
         if (resource_array != (longlong *)0x0) {
           (**(code **)(*resource_array + 0x28))(resource_array);
         }
-        temp_var = _DAT_180c82868;
+        temp_var = _DAT;
         temp_pointer_3 = &temp_long_pointer_1;
         temp_long_pointer_1 = resource_array;
         if (resource_array != (longlong *)0x0) {
@@ -414,8 +414,8 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         if (resource_array != (longlong *)0x0) {
           (**(code **)(*resource_array + 0x38))(resource_array);
         }
-        temp_undefined_pointer = &temp_undefined_3;
-        temp_undefined_3 = &UNK_18098bcb0;
+        temp_var_pointer = &temp_var_3;
+        temp_var_3 = &UNK_18098bcb0;
       }
       goto LAB_1803084bf;
     }
@@ -447,7 +447,7 @@ void rendering_system_data_processor(uint *data_pointer, int32_t *data_value)
   resource_index = lock_value >> RENDERING_SYSTEM_SHIFT_0XB;
   checksum_value = (ulonglong)resource_index;
   if (*(longlong *)(data_pointer + (ulonglong)resource_index * 2 + 2) == 0) {
-    memory_block = FUN_18062b420(_DAT_180c8ed18,RENDERING_SYSTEM_BUFFER_SIZE_0X2000,0x18);
+    memory_block = FUN_18062b420(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X2000,0x18);
     LOCK();
     allocation_success = *(longlong *)(data_pointer + checksum_value * 2 + 2) == 0;
     if (allocation_success) {
@@ -692,7 +692,7 @@ longlong rendering_system_memory_manager(longlong *memory_pointer, longlong *tar
   }
   else {
     if (operation_type == 1) {
-      target_data = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_BUFFER_SIZE_0X38,8,DAT_180bf65bc,0xfffffffffffffffe);
+      target_data = (uint64_t *)FUN_18062b1e0(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X38,8,DAT,0xfffffffffffffffe);
       source_pointer = (uint64_t *)*target_pointer;
       temp_var = source_pointer[1];
       *target_data = *source_pointer;

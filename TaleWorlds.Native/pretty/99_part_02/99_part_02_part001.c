@@ -227,8 +227,8 @@ void QuickSortImplementation(void)
  */
 void DataStructureComparator(longlong *param_1, uint64_t *param_2, int8_t param_3)
 {
-    int32_t *puVar1;
-    int32_t *puVar2;
+    int32_t *puVar;
+    int32_t *puVar;
     int iVar3;
     ulonglong uVar4;
     uint uVar5;
@@ -240,7 +240,7 @@ void DataStructureComparator(longlong *param_1, uint64_t *param_2, int8_t param_
     longlong *plVar11;
     longlong lVar12;
     uint uVar13;
-    ulonglong *puVar14;
+    ulonglong *puVar;
     longlong lVar15;
     uint uVar16;
     int iVar17;
@@ -301,46 +301,46 @@ void DataStructureComparator(longlong *param_1, uint64_t *param_2, int8_t param_
             FUN_1800ea540(&uStack_48, &lStack_58);
             uVar6 = *(uint *)(param_2 + 1);
             for (; uVar16 != uVar6; uVar16 = uVar16 + 1) {
-                puVar14 = (ulonglong *)
+                puVar = (ulonglong *)
                           (*(longlong *)(lVar12 + 8 + (ulonglong)(uVar16 >> 0xb) * 8) +
                           (ulonglong)(uVar16 + (uVar16 >> 0xb) * -0x800) * 0x10);
-                uVar10 = *puVar14;
-                plVar11 = (longlong *)puVar14[1];
+                uVar10 = *puVar;
+                plVar11 = (longlong *)puVar[1];
                 uVar18 = uVar16;
                 uVar5 = uVar16;
                 while( true ) {
                     uVar5 = uVar5 - 1;
-                    puVar14 = (ulonglong *)
+                    puVar = (ulonglong *)
                               (*(longlong *)(lVar12 + 8 + (ulonglong)(uVar5 >> 0xb) * 8) +
                               (ulonglong)(uVar5 & 0x7ff) * 0x10);
-                    uVar4 = *puVar14;
+                    uVar4 = *puVar;
                     bVar19 = uVar10 < uVar4;
                     if (uVar10 == uVar4) {
-                        bVar19 = *(int *)(*(longlong *)(*(longlong *)puVar14[1] + 0x18) + 0x184) <
+                        bVar19 = *(int *)(*(longlong *)(*(longlong *)puVar[1] + 0x18) + 0x184) <
                                  *(int *)(*(longlong *)(*plVar11 + 0x18) + 0x184);
                     }
                     uVar13 = uVar18 >> 0xb;
                     if (!bVar19) break;
-                    puVar1 = (int32_t *)
+                    puVar = (int32_t *)
                              (*(longlong *)(lVar12 + 8 + (ulonglong)(uVar5 >> 0xb) * 8) +
                              (ulonglong)(uVar5 & 0x7ff) * 0x10);
-                    uVar7 = puVar1[1];
-                    uVar8 = puVar1[2];
-                    uVar9 = puVar1[3];
-                    puVar2 = (int32_t *)
+                    uVar7 = puVar[1];
+                    uVar8 = puVar[2];
+                    uVar9 = puVar[3];
+                    puVar = (int32_t *)
                              (*(longlong *)(lVar12 + 8 + (ulonglong)uVar13 * 8) +
                              (ulonglong)(uVar18 + uVar13 * -0x800) * 0x10);
-                    *puVar2 = *puVar1;
-                    puVar2[1] = uVar7;
-                    puVar2[2] = uVar8;
-                    puVar2[3] = uVar9;
+                    *puVar = *puVar;
+                    puVar[1] = uVar7;
+                    puVar[2] = uVar8;
+                    puVar[3] = uVar9;
                     uVar18 = uVar18 - 1;
                 }
-                puVar14 = (ulonglong *)
+                puVar = (ulonglong *)
                           (*(longlong *)(lVar12 + 8 + (ulonglong)uVar13 * 8) +
                           (ulonglong)(uVar18 + uVar13 * -0x800) * 0x10);
-                *puVar14 = uVar10;
-                puVar14[1] = (ulonglong)plVar11;
+                *puVar = uVar10;
+                puVar[1] = (ulonglong)plVar11;
             }
         }
     }
@@ -376,9 +376,9 @@ void DataStructureComparator(longlong *param_1, uint64_t *param_2, int8_t param_
  */
 void ArraySortOptimizer(int32_t *param_1, uint64_t *param_2, int8_t param_3)
 {
-    uint64_t *puVar1;
-    int32_t *puVar2;
-    int32_t *puVar3;
+    uint64_t *puVar;
+    int32_t *puVar;
+    int32_t *puVar;
     uint64_t uVar4;
     longlong lVar5;
     longlong *plVar6;
@@ -390,7 +390,7 @@ void ArraySortOptimizer(int32_t *param_1, uint64_t *param_2, int8_t param_3)
     longlong in_RAX;
     longlong lVar12;
     uint uVar13;
-    ulonglong *puVar14;
+    ulonglong *puVar;
     longlong unaff_RBP;
     uint64_t *unaff_RSI;
     uint uVar15;
@@ -466,11 +466,11 @@ void ArraySortOptimizer(int32_t *param_1, uint64_t *param_2, int8_t param_3)
                 *(int32_t *)(unaff_RBP + -0x11) = uVar21;
                 *(int32_t *)(unaff_RBP + -0xd) = uVar22;
                 lVar5 = *(longlong *)(unaff_RBP + -0x19);
-                puVar1 = (uint64_t *)
+                puVar = (uint64_t *)
                          (*(longlong *)(lVar12 + 8 + (ulonglong)(uVar15 >> 0xb) * 8) +
                          (ulonglong)(uVar15 + (uVar15 >> 0xb) * -0x800) * 0x10);
-                uVar4 = *puVar1;
-                uVar11 = puVar1[1];
+                uVar4 = *puVar;
+                uVar11 = puVar[1];
                 *(uint64_t *)(unaff_RBP + -0x29) = uVar4;
                 *(uint64_t *)(unaff_RBP + -0x21) = uVar11;
                 plVar6 = *(longlong **)(unaff_RBP + -0x21);
@@ -479,38 +479,38 @@ void ArraySortOptimizer(int32_t *param_1, uint64_t *param_2, int8_t param_3)
                 uVar9 = uVar15;
                 while( true ) {
                     uVar9 = uVar9 - 1;
-                    puVar14 = (ulonglong *)
+                    puVar = (ulonglong *)
                               (*(longlong *)(lVar12 + 8 + (ulonglong)(uVar9 >> 0xb) * 8) +
                               (ulonglong)(uVar9 & 0x7ff) * 0x10);
-                    uVar8 = *puVar14;
+                    uVar8 = *puVar;
                     bVar18 = uVar7 < uVar8;
                     if (uVar7 == uVar8) {
-                        bVar18 = *(int *)(*(longlong *)(*(longlong *)puVar14[1] + 0x18) + 0x184) <
+                        bVar18 = *(int *)(*(longlong *)(*(longlong *)puVar[1] + 0x18) + 0x184) <
                                  *(int *)(*(longlong *)(*plVar6 + 0x18) + 0x184);
                     }
                     uVar13 = uVar17 >> 0xb;
                     if (!bVar18) break;
-                    puVar2 = (int32_t *)
+                    puVar = (int32_t *)
                              (*(longlong *)(lVar12 + 8 + (ulonglong)(uVar9 >> 0xb) * 8) +
                              (ulonglong)(uVar9 & 0x7ff) * 0x10);
-                    uVar19 = puVar2[1];
-                    uVar20 = puVar2[2];
-                    uVar21 = puVar2[3];
-                    puVar3 = (int32_t *)
+                    uVar19 = puVar[1];
+                    uVar20 = puVar[2];
+                    uVar21 = puVar[3];
+                    puVar = (int32_t *)
                              (*(longlong *)(lVar5 + 8 + (ulonglong)uVar13 * 8) +
                              (ulonglong)(uVar17 + uVar13 * -0x800) * 0x10);
-                    *puVar3 = *puVar2;
-                    puVar3[1] = uVar19;
-                    puVar3[2] = uVar20;
-                    puVar3[3] = uVar21;
+                    *puVar = *puVar;
+                    puVar[1] = uVar19;
+                    puVar[2] = uVar20;
+                    puVar[3] = uVar21;
                     uVar17 = uVar17 - 1;
                 }
                 uVar15 = uVar15 + 1;
                 lVar5 = *(longlong *)(lVar5 + 8 + (ulonglong)uVar13 * 8);
                 *(uint *)(unaff_RBP + -0x31) = uVar15;
-                puVar1 = (uint64_t *)(lVar5 + (ulonglong)(uVar17 + uVar13 * -0x800) * 0x10);
-                *puVar1 = uVar4;
-                puVar1[1] = uVar11;
+                puVar = (uint64_t *)(lVar5 + (ulonglong)(uVar17 + uVar13 * -0x800) * 0x10);
+                *puVar = uVar4;
+                puVar[1] = uVar11;
                 if (uVar15 == uVar10) break;
                 uVar19 = *(int32_t *)(unaff_RBP + -0x39);
                 uVar20 = *(int32_t *)(unaff_RBP + -0x35);
@@ -550,9 +550,9 @@ void ArraySortOptimizer(int32_t *param_1, uint64_t *param_2, int8_t param_3)
  */
 void MemoryBlockSorter(uint64_t param_1, uint64_t param_2)
 {
-    uint64_t *puVar1;
-    int32_t *puVar2;
-    int32_t *puVar3;
+    uint64_t *puVar;
+    int32_t *puVar;
+    int32_t *puVar;
     longlong lVar4;
     longlong lVar5;
     longlong *plVar6;
@@ -563,7 +563,7 @@ void MemoryBlockSorter(uint64_t param_1, uint64_t param_2)
     uint64_t uVar11;
     uint64_t uVar12;
     uint uVar13;
-    ulonglong *puVar14;
+    ulonglong *puVar;
     uint64_t unaff_RBX;
     longlong unaff_RBP;
     uint uVar15;
@@ -603,11 +603,11 @@ void MemoryBlockSorter(uint64_t param_1, uint64_t param_2)
             *(int32_t *)(unaff_RBP + -0x11) = uVar20;
             *(int32_t *)(unaff_RBP + -0xd) = uVar21;
             lVar5 = *(longlong *)(unaff_RBP + -0x19);
-            puVar1 = (uint64_t *)
+            puVar = (uint64_t *)
                      (*(longlong *)(lVar4 + 8 + (ulonglong)(uVar15 >> 0xb) * 8) +
                      (ulonglong)(uVar15 + (uVar15 >> 0xb) * -0x800) * 0x10);
-            uVar11 = *puVar1;
-            uVar12 = puVar1[1];
+            uVar11 = *puVar;
+            uVar12 = puVar[1];
             *(uint64_t *)(unaff_RBP + -0x29) = uVar11;
             *(uint64_t *)(unaff_RBP + -0x21) = uVar12;
             plVar6 = *(longlong **)(unaff_RBP + -0x21);
@@ -616,38 +616,38 @@ void MemoryBlockSorter(uint64_t param_1, uint64_t param_2)
             uVar9 = uVar15;
             while( true ) {
                 uVar9 = uVar9 - 1;
-                puVar14 = (ulonglong *)
+                puVar = (ulonglong *)
                           (*(longlong *)(lVar4 + 8 + (ulonglong)(uVar9 >> 0xb) * 8) +
                           (ulonglong)(uVar9 & 0x7ff) * 0x10);
-                uVar8 = *puVar14;
+                uVar8 = *puVar;
                 bVar17 = uVar7 < uVar8;
                 if (uVar7 == uVar8) {
-                    bVar17 = *(int *)(*(longlong *)(*(longlong *)puVar14[1] + 0x18) + 0x184) <
+                    bVar17 = *(int *)(*(longlong *)(*(longlong *)puVar[1] + 0x18) + 0x184) <
                              *(int *)(*(longlong *)(*plVar6 + 0x18) + 0x184);
                 }
                 uVar13 = uVar16 >> 0xb;
                 if (!bVar17) break;
-                puVar2 = (int32_t *)
+                puVar = (int32_t *)
                          (*(longlong *)(lVar4 + 8 + (ulonglong)(uVar9 >> 0xb) * 8) +
                          (ulonglong)(uVar9 & 0x7ff) * 0x10);
-                uVar18 = puVar2[1];
-                uVar19 = puVar2[2];
-                uVar20 = puVar2[3];
-                puVar3 = (int32_t *)
+                uVar18 = puVar[1];
+                uVar19 = puVar[2];
+                uVar20 = puVar[3];
+                puVar = (int32_t *)
                          (*(longlong *)(lVar5 + 8 + (ulonglong)uVar13 * 8) +
                          (ulonglong)(uVar16 + uVar13 * -0x800) * 0x10);
-                *puVar3 = *puVar2;
-                puVar3[1] = uVar18;
-                puVar3[2] = uVar19;
-                puVar3[3] = uVar20;
+                *puVar = *puVar;
+                puVar[1] = uVar18;
+                puVar[2] = uVar19;
+                puVar[3] = uVar20;
                 uVar16 = uVar16 - 1;
             }
             uVar15 = uVar15 + 1;
             lVar5 = *(longlong *)(lVar5 + 8 + (ulonglong)uVar13 * 8);
             *(uint *)(unaff_RBP + -0x31) = uVar15;
-            puVar1 = (uint64_t *)(lVar5 + (ulonglong)(uVar16 + uVar13 * -0x800) * 0x10);
-            *puVar1 = uVar11;
-            puVar1[1] = uVar12;
+            puVar = (uint64_t *)(lVar5 + (ulonglong)(uVar16 + uVar13 * -0x800) * 0x10);
+            *puVar = uVar11;
+            puVar[1] = uVar12;
             if (uVar15 == uVar10) break;
             uVar18 = *(int32_t *)(unaff_RBP + -0x39);
             uVar19 = *(int32_t *)(unaff_RBP + -0x35);
@@ -686,8 +686,8 @@ void MemoryBlockSorter(uint64_t param_1, uint64_t param_2)
  */
 void DataInsertionSorter(uint64_t param_1, uint64_t param_2)
 {
-    uint64_t *puVar1;
-    uint64_t *puVar2;
+    uint64_t *puVar;
+    uint64_t *puVar;
     longlong lVar3;
     longlong *plVar4;
     ulonglong uVar5;
@@ -696,7 +696,7 @@ void DataInsertionSorter(uint64_t param_1, uint64_t param_2)
     uint64_t uVar8;
     uint64_t uVar9;
     uint uVar10;
-    ulonglong *puVar11;
+    ulonglong *puVar;
     longlong unaff_RBP;
     uint unaff_ESI;
     longlong unaff_RDI;
@@ -717,11 +717,11 @@ void DataInsertionSorter(uint64_t param_1, uint64_t param_2)
         *(int32_t *)(unaff_RBP + -0x11) = in_XMM1_Dc;
         *(int32_t *)(unaff_RBP + -0xd) = in_XMM1_Dd;
         lVar3 = *(longlong *)(unaff_RBP + -0x19);
-        puVar1 = (uint64_t *)
+        puVar = (uint64_t *)
                  (*(longlong *)(unaff_RDI + 8 + (ulonglong)(unaff_ESI >> 0xb) * 8) +
                  (ulonglong)(unaff_ESI + (unaff_ESI >> 0xb) * -0x800) * 0x10);
-        uVar7 = *puVar1;
-        uVar8 = puVar1[1];
+        uVar7 = *puVar;
+        uVar8 = puVar[1];
         *(uint64_t *)(unaff_RBP + -0x29) = uVar7;
         *(uint64_t *)(unaff_RBP + -0x21) = uVar8;
         plVar4 = *(longlong **)(unaff_RBP + -0x21);
@@ -730,34 +730,34 @@ void DataInsertionSorter(uint64_t param_1, uint64_t param_2)
         uVar13 = unaff_ESI;
         while( true ) {
             uVar13 = uVar13 - 1;
-            puVar11 = (ulonglong *)
+            puVar = (ulonglong *)
                       (*(longlong *)(unaff_RDI + 8 + (ulonglong)(uVar13 >> 0xb) * 8) +
                       (ulonglong)(uVar13 & 0x7ff) * 0x10);
-            uVar6 = *puVar11;
+            uVar6 = *puVar;
             bVar14 = uVar5 < uVar6;
             if (uVar5 == uVar6) {
-                bVar14 = *(int *)(*(longlong *)(*(longlong *)puVar11[1] + 0x18) + 0x184) <
+                bVar14 = *(int *)(*(longlong *)(*(longlong *)puVar[1] + 0x18) + 0x184) <
                          *(int *)(*(longlong *)(*plVar4 + 0x18) + 0x184);
             }
             uVar10 = uVar12 >> 0xb;
             if (!bVar14) break;
-            puVar1 = (uint64_t *)
+            puVar = (uint64_t *)
                      (*(longlong *)(unaff_RDI + 8 + (ulonglong)(uVar13 >> 0xb) * 8) +
                      (ulonglong)(uVar13 & 0x7ff) * 0x10);
-            uVar9 = puVar1[1];
-            puVar2 = (uint64_t *)
+            uVar9 = puVar[1];
+            puVar = (uint64_t *)
                      (*(longlong *)(lVar3 + 8 + (ulonglong)uVar10 * 8) +
                      (ulonglong)(uVar12 + uVar10 * -0x800) * 0x10);
-            *puVar2 = *puVar1;
-            puVar2[1] = uVar9;
+            *puVar = *puVar;
+            puVar[1] = uVar9;
             uVar12 = uVar12 - 1;
         }
         unaff_ESI = unaff_ESI + 1;
         lVar3 = *(longlong *)(lVar3 + 8 + (ulonglong)uVar10 * 8);
         *(uint *)(unaff_RBP + -0x31) = unaff_ESI;
-        puVar1 = (uint64_t *)(lVar3 + (ulonglong)(uVar12 + uVar10 * -0x800) * 0x10);
-        *puVar1 = uVar7;
-        puVar1[1] = uVar8;
+        puVar = (uint64_t *)(lVar3 + (ulonglong)(uVar12 + uVar10 * -0x800) * 0x10);
+        *puVar = uVar7;
+        puVar[1] = uVar8;
         if (unaff_ESI == unaff_R12D) break;
         uVar15 = *(int32_t *)(unaff_RBP + -0x39);
         uVar16 = *(int32_t *)(unaff_RBP + -0x35);
@@ -906,8 +906,8 @@ void DataBlockProcessor(uint64_t param_1, uint64_t param_2)
  */
 void MemoryDataOptimizer(longlong *param_1, longlong param_2)
 {
-    uint64_t *puVar1;
-    uint64_t *puVar2;
+    uint64_t *puVar;
+    uint64_t *puVar;
     uint64_t uVar3;
     uint64_t uVar4;
     uint uVar5;
@@ -935,9 +935,9 @@ void MemoryDataOptimizer(longlong *param_1, longlong param_2)
             uVar17 = (ulonglong)(uVar13 + (uVar13 >> 0xb) * -0x800);
             lVar7 = *(longlong *)(lVar11 + 8 + (ulonglong)(uVar13 >> 0xb) * 8);
             uVar3 = *(uint64_t *)(lVar7 + 0x10 + uVar17 * 0x18);
-            puVar1 = (uint64_t *)(lVar7 + uVar17 * 0x18);
-            uVar8 = *puVar1;
-            uVar9 = puVar1[1];
+            puVar = (uint64_t *)(lVar7 + uVar17 * 0x18);
+            uVar8 = *puVar;
+            uVar9 = puVar[1];
             uVar14 = uVar13;
             uVar18 = uVar13;
             while (uVar18 != uVar5) {
@@ -949,22 +949,22 @@ void MemoryDataOptimizer(longlong *param_1, longlong param_2)
                                             (ulonglong)uVar16 * 0x18));
                 if (cVar15 == '\0') break;
                 lVar7 = *(longlong *)(lVar12 + 8 + (ulonglong)(uVar18 >> 0xb) * 8);
-                puVar1 = (uint64_t *)(lVar7 + (ulonglong)uVar16 * 0x18);
-                uVar10 = puVar1[1];
+                puVar = (uint64_t *)(lVar7 + (ulonglong)uVar16 * 0x18);
+                uVar10 = puVar[1];
                 uVar4 = *(uint64_t *)(lVar7 + 0x10 + (ulonglong)uVar16 * 0x18);
                 lVar7 = *(longlong *)(lVar12 + 8 + (ulonglong)(uVar14 >> 0xb) * 8);
                 uVar17 = (ulonglong)(uVar14 + (uVar14 >> 0xb) * -0x800);
-                puVar2 = (uint64_t *)(lVar7 + uVar17 * 0x18);
-                *puVar2 = *puVar1;
-                puVar2[1] = uVar10;
+                puVar = (uint64_t *)(lVar7 + uVar17 * 0x18);
+                *puVar = *puVar;
+                puVar[1] = uVar10;
                 *(uint64_t *)(lVar7 + 0x10 + uVar17 * 0x18) = uVar4;
                 uVar14 = uVar14 - 1;
             }
             uVar17 = (ulonglong)(uVar14 + (uVar14 >> 0xb) * -0x800);
             lVar7 = *(longlong *)(lVar12 + 8 + (ulonglong)(uVar14 >> 0xb) * 8);
-            puVar1 = (uint64_t *)(lVar7 + uVar17 * 0x18);
-            *puVar1 = uVar8;
-            puVar1[1] = uVar9;
+            puVar = (uint64_t *)(lVar7 + uVar17 * 0x18);
+            *puVar = uVar8;
+            puVar[1] = uVar9;
             *(uint64_t *)(lVar7 + 0x10 + uVar17 * 0x18) = uVar3;
         }
     }
@@ -1003,8 +1003,8 @@ void MemoryDataOptimizer(longlong *param_1, longlong param_2)
 void AdvancedDataSorter(uint64_t param_1, uint64_t param_2, uint param_3, uint64_t param_4,
                         uint64_t param_5)
 {
-    uint64_t *puVar1;
-    uint64_t *puVar2;
+    uint64_t *puVar;
+    uint64_t *puVar;
     uint64_t uVar3;
     uint64_t uVar4;
     longlong lVar5;
@@ -1059,9 +1059,9 @@ void AdvancedDataSorter(uint64_t param_1, uint64_t param_2, uint param_3, uint64
             uVar11 = (ulonglong)(uVar14 + (uVar14 >> 0xb) * -0x800);
             lVar5 = *(longlong *)(lStackX_20 + 8 + (ulonglong)(uVar14 >> 0xb) * 8);
             uVar3 = *(uint64_t *)(lVar5 + 0x10 + uVar11 * 0x18);
-            puVar1 = (uint64_t *)(lVar5 + uVar11 * 0x18);
-            uVar6 = *puVar1;
-            uVar7 = puVar1[1];
+            puVar = (uint64_t *)(lVar5 + uVar11 * 0x18);
+            uVar6 = *puVar;
+            uVar7 = puVar[1];
             uVar13 = uVar14;
             uVar12 = uVar14;
             uVar15 = uVar14;
@@ -1079,15 +1079,15 @@ void AdvancedDataSorter(uint64_t param_1, uint64_t param_2, uint param_3, uint64
                     param_3 = in_stack_000000e0;
                     if (cVar9 == '\0') break;
                     lVar5 = *(longlong *)(lStackX_20 + 8 + (ulonglong)(uVar15 >> 0xb) * 8);
-                    puVar1 = (uint64_t *)(lVar5 + (ulonglong)uVar10 * 0x18);
-                    uVar8 = puVar1[1];
+                    puVar = (uint64_t *)(lVar5 + (ulonglong)uVar10 * 0x18);
+                    uVar8 = puVar[1];
                     uVar4 = *(uint64_t *)(lVar5 + 0x10 + (ulonglong)uVar10 * 0x18);
                     uVar13 = uVar12 - 1;
                     lVar5 = *(longlong *)(lStackX_20 + 8 + (ulonglong)(uVar12 >> 0xb) * 8);
                     uVar11 = (ulonglong)(uVar12 + (uVar12 >> 0xb) * -0x800);
-                    puVar2 = (uint64_t *)(lVar5 + uVar11 * 0x18);
-                    *puVar2 = *puVar1;
-                    puVar2[1] = uVar8;
+                    puVar = (uint64_t *)(lVar5 + uVar11 * 0x18);
+                    *puVar = *puVar;
+                    puVar[1] = uVar8;
                     *(uint64_t *)(lVar5 + 0x10 + uVar11 * 0x18) = uVar4;
                     uVar12 = uVar13;
                 } while (uVar15 != in_stack_000000e0);
@@ -1095,9 +1095,9 @@ void AdvancedDataSorter(uint64_t param_1, uint64_t param_2, uint param_3, uint64
             uVar14 = uVar14 + 1;
             uVar11 = (ulonglong)(uVar13 + (uVar13 >> 0xb) * -0x800);
             lVar5 = *(longlong *)(lStackX_20 + 8 + (ulonglong)(uVar13 >> 0xb) * 8);
-            puVar1 = (uint64_t *)(lVar5 + uVar11 * 0x18);
-            *puVar1 = uVar6;
-            puVar1[1] = uVar7;
+            puVar = (uint64_t *)(lVar5 + uVar11 * 0x18);
+            *puVar = uVar6;
+            puVar[1] = uVar7;
             *(uint64_t *)(lVar5 + 0x10 + uVar11 * 0x18) = uVar3;
         } while (uVar14 != in_stack_000000d0);
     }
@@ -1136,8 +1136,8 @@ void AdvancedDataSorter(uint64_t param_1, uint64_t param_2, uint param_3, uint64
 void OptimizedDataSorter(uint64_t param_1, uint64_t param_2, uint param_3, uint64_t param_4,
                          uint param_5)
 {
-    uint64_t *puVar1;
-    uint64_t *puVar2;
+    uint64_t *puVar;
+    uint64_t *puVar;
     uint64_t uVar3;
     uint64_t uVar4;
     longlong lVar5;
@@ -1187,9 +1187,9 @@ void OptimizedDataSorter(uint64_t param_1, uint64_t param_2, uint param_3, uint6
         uStack0000000000000048 = param_5;
         lVar5 = *(longlong *)(CONCAT44(uStackX_24, uStackX_20) + 8 + (ulonglong)(unaff_EBP >> 0xb) * 8);
         uVar3 = *(uint64_t *)(lVar5 + 0x10 + uVar11 * 0x18);
-        puVar1 = (uint64_t *)(lVar5 + uVar11 * 0x18);
-        uVar6 = *puVar1;
-        uVar7 = puVar1[1];
+        puVar = (uint64_t *)(lVar5 + uVar11 * 0x18);
+        uVar6 = *puVar;
+        uVar7 = puVar[1];
         uVar13 = param_5;
         if (unaff_EBP != param_3) {
             uVar12 = param_5;
@@ -1207,15 +1207,15 @@ void OptimizedDataSorter(uint64_t param_1, uint64_t param_2, uint param_3, uint6
                 if (cVar9 == '\0') break;
                 lVar5 = *(longlong *)(CONCAT44(uStackX_24, uStackX_20) + 8 + (ulonglong)(param_5 >> 0xb) * 8)
                 ;
-                puVar1 = (uint64_t *)(lVar5 + (ulonglong)uVar10 * 0x18);
-                uVar8 = puVar1[1];
+                puVar = (uint64_t *)(lVar5 + (ulonglong)uVar10 * 0x18);
+                uVar8 = puVar[1];
                 uVar4 = *(uint64_t *)(lVar5 + 0x10 + (ulonglong)uVar10 * 0x18);
                 uVar13 = uVar12 - 1;
                 lVar5 = *(longlong *)(CONCAT44(uStackX_24, uStackX_20) + 8 + (ulonglong)(uVar12 >> 0xb) * 8);
                 uVar11 = (ulonglong)(uVar12 + (uVar12 >> 0xb) * -0x800);
-                puVar2 = (uint64_t *)(lVar5 + uVar11 * 0x18);
-                *puVar2 = *puVar1;
-                puVar2[1] = uVar8;
+                puVar = (uint64_t *)(lVar5 + uVar11 * 0x18);
+                *puVar = *puVar;
+                puVar[1] = uVar8;
                 *(uint64_t *)(lVar5 + 0x10 + uVar11 * 0x18) = uVar4;
                 uVar12 = uVar13;
             } while (param_5 != in_stack_000000e0);
@@ -1223,9 +1223,9 @@ void OptimizedDataSorter(uint64_t param_1, uint64_t param_2, uint param_3, uint6
         unaff_EBP = unaff_EBP + 1;
         uVar11 = (ulonglong)(uVar13 + (uVar13 >> 0xb) * -0x800);
         lVar5 = *(longlong *)(CONCAT44(uStackX_24, uStackX_20) + 8 + (ulonglong)(uVar13 >> 0xb) * 8);
-        puVar1 = (uint64_t *)(lVar5 + uVar11 * 0x18);
-        *puVar1 = uVar6;
-        puVar1[1] = uVar7;
+        puVar = (uint64_t *)(lVar5 + uVar11 * 0x18);
+        *puVar = uVar6;
+        puVar[1] = uVar7;
         *(uint64_t *)(lVar5 + 0x10 + uVar11 * 0x18) = uVar3;
         param_5 = unaff_EBP;
         if (unaff_EBP == in_stack_000000d0) {

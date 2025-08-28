@@ -171,7 +171,7 @@ void rendering_system_setup_render_context(uint64_t *param1_ptr)
     stack_ptr2 = (uint64_t *)0x0;
     stack_param1 = 0;
     
-    context_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    context_ptr = (uint64_t *)FUN_18062b420(_DAT, 0x10, 0x13);
     *(int8_t *)context_ptr = 0;
     stack_ptr2 = context_ptr;
     float_param = FUN_18064e990(context_ptr);
@@ -290,7 +290,7 @@ void rendering_system_execute_render_pipeline(longlong param1)
     ulonglong stack_param16;
     
     stack_param14 = 0xfffffffffffffffe;
-    stack_param16 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_param16 = _DAT ^ (ulonglong)stack_buffer1;
     
     if (*(char *)(*(longlong *)(param1 + 0x18) + 0x2e5) != '\0') {
         FUN_180305a80();
@@ -317,7 +317,7 @@ void rendering_system_execute_render_pipeline(longlong param1)
             stack_param15 = 0xc;
             
             strcpy_s(stack_buffer2, RENDER_STRING_SIZE_0X80, &UNK_180a1a070);
-            FUN_1800b1230(_DAT_180c86930, &stack_ptr1, &stack_ptr2, &stack_param1);
+            FUN_1800b1230(_DAT, &stack_ptr1, &stack_ptr2, &stack_param1);
             
             stack_ptr2 = &UNK_18098bcb0;
             (**(code **)(**(longlong **)(param1 + 0x1b0) + 0x68))
@@ -373,13 +373,13 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
     ulonglong stack_var10;
     
     stack_var4 = 0xfffffffffffffffe;
-    stack_var10 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_var10 = _DAT ^ (ulonglong)stack_buffer1;
     
     if (*(char *)(*(longlong *)(param1 + 0x18) + 0x2e5) != '\0') {
         int_var2 = *(int *)(param2 + 0x10);
         
         if ((int_var2 != 0x18) && (int_var2 == 0x10)) {
-            int_var1 = strcmp(*(uint64_t *)(param2 + 8), &DAT_180a098c8);
+            int_var1 = strcmp(*(uint64_t *)(param2 + 8), &DAT);
             if (int_var1 == 0) {
                 FUN_180305a80(param1);
                 int_var2 = *(int *)(param2 + 0x10);
@@ -387,7 +387,7 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
         }
         
         if (int_var2 == 0xd) {
-            int_var1 = strcmp(*(uint64_t *)(param2 + 8), &DAT_180a098b8);
+            int_var1 = strcmp(*(uint64_t *)(param2 + 8), &DAT);
             if ((int_var1 == 0) && (*(longlong *)(param1 + 0x1b0) != 0)) {
                 *(int8_t *)(*(longlong *)(param1 + 0x1b0) + 0x100) = *(int8_t *)(param1 + 0x1f0);
                 int_var2 = *(int *)(param2 + 0x10);
@@ -395,7 +395,7 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
         }
         
         if ((int_var2 != 0xc) && (int_var2 == 10)) {
-            int_var2 = strcmp(*(uint64_t *)(param2 + 8), &DAT_180a09928);
+            int_var2 = strcmp(*(uint64_t *)(param2 + 8), &DAT);
             if ((int_var2 == 0) && (*(longlong *)(param1 + 0x1b0) != 0)) {
                 // 处理纹理路径和参数
                 FUN_1800ba9c0(&stack_ptr1);
@@ -441,7 +441,7 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
                 stack_var9 = 3;
                 stack_var2 = uint_var1 + 5;
                 
-                undefined_var1 = FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, 3);
+                undefined_var1 = FUN_18062b1e0(_DAT, 0x20, 8, 3);
                 stack_var8 = FUN_180627ae0(undefined_var1, &stack_ptr1);
                 
                 ptr_var1 = (uint64_t *)(**(code **)(**(longlong **)(param1 + 0x1b0) + 0x60))();
@@ -455,7 +455,7 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
                 }
                 
                 stack_var7 = (**(code **)(**(longlong **)(param1 + 0x1b0) + 0x60))();
-                undefined_var1 = FUN_18062b1e0(_DAT_180c8ed18, 0x100, 8, 3);
+                undefined_var1 = FUN_18062b1e0(_DAT, 0x100, 8, 3);
                 ptr_ptr_var1 = (void **)FUN_18005ce30(undefined_var1, &stack_ptr3);
                 stack_ptr2 = ptr_ptr_var1;
                 
@@ -463,7 +463,7 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
                     (**(code **)(*ptr_ptr_var1 + 0x28))(ptr_ptr_var1);
                 }
                 
-                undefined_var1 = _DAT_180c82868;
+                undefined_var1 = _DAT;
                 stack_ptr_ptr1 = stack_ptr_array;
                 stack_ptr_array[0] = ptr_ptr_var1;
                 
@@ -903,7 +903,7 @@ void rendering_system_process_render_batch_operations(longlong param1)
     ulonglong stack_var33;
     
     stack_var14 = 0xfffffffffffffffe;
-    stack_var33 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_var33 = _DAT ^ (ulonglong)stack_buffer1;
     
     if (*(char *)(param1 + 0xa4) != '\0') {
         FUN_1802f1cd0(*(uint64_t *)(param1 + 0x18), &stack_ptr3);
@@ -980,7 +980,7 @@ void rendering_system_process_render_batch_operations(longlong param1)
         stack_ptr2 = (uint64_t *)0x0;
         stack_var3 = 0;
         
-        ptr_var1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        ptr_var1 = (uint64_t *)FUN_18062b420(_DAT, 0x10, 0x13);
         *(int8_t *)ptr_var1 = 0;
         stack_ptr2 = ptr_var1;
         uint_var1 = FUN_18064e990(ptr_var1);
@@ -989,7 +989,7 @@ void rendering_system_process_render_batch_operations(longlong param1)
         stack_var3 = 9;
         stack_var5._0_4_ = uint_var1;
         
-        FUN_180626eb0(&stack_var24, 0x20, &DAT_180a06430, (double)*(float *)(param1 + 0xa0));
+        FUN_180626eb0(&stack_var24, 0x20, &DAT, (double)*(float *)(param1 + 0xa0));
         
         long_var1 = -1;
         do {
@@ -1001,7 +1001,7 @@ void rendering_system_process_render_batch_operations(longlong param1)
             int_var1 = (int)long_var2;
             if ((int_var1 != -10) && (uint_var1 < int_var1 + 0xbU)) {
                 stack_var1 = CONCAT71(stack_var1._1_7_, 0x13);
-                ptr_var1 = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, ptr_var1, int_var1 + 0xbU, 0x10);
+                ptr_var1 = (uint64_t *)FUN_18062b8b0(_DAT, ptr_var1, int_var1 + 0xbU, 0x10);
                 stack_ptr2 = ptr_var1;
                 stack_var5._0_4_ = FUN_18064e990(ptr_var1);
             }
@@ -1016,9 +1016,9 @@ void rendering_system_process_render_batch_operations(longlong param1)
         stack_var2 = 0;
         stack_var1 = 0;
         
-        FUN_180632d00(_DAT_180c8ed68, &stack_var11, &stack_ptr1, _DAT_180bf6648);
-        long_var1 = _DAT_180c8ed68;
-        undefined_var1 = _DAT_180bf6648;
+        FUN_180632d00(_DAT, &stack_var11, &stack_ptr1, _DAT);
+        long_var1 = _DAT;
+        undefined_var1 = _DAT;
         
         stack_var15 = RENDER_FLOAT_ONE_0X3F800000;
         stack_var16 = 0;
@@ -1033,9 +1033,9 @@ void rendering_system_process_render_batch_operations(longlong param1)
         stack_var20 = 0;
         stack_var23 = RENDER_FLOAT_ONE_0X3F800000;
         
-        if (*(char *)(_DAT_180c8ed68 + 0x50) != '\0') {
-            stack_var11 = _DAT_180c8ed68;
-            int_var1 = _Mtx_lock(_DAT_180c8ed68);
+        if (*(char *)(_DAT + 0x50) != '\0') {
+            stack_var11 = _DAT;
+            int_var1 = _Mtx_lock(_DAT);
             if (int_var1 != 0) {
                 __Throw_C_error_std__YAXH_Z(int_var1);
             }

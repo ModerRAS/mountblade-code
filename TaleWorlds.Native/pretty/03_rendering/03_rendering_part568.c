@@ -55,7 +55,7 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t ma
   int mode_index;                                    // 模式索引，用于选择不同的渲染模式
   float temp_float1, temp_float2, temp_float3;       // 通用临时浮点变量
   uint64_t temp_int8_t, temp_int16_t;       // 通用临时8字节变量
-  uint64_t temp_undefined3, temp_int32_t;       // 通用临时8字节变量
+  uint64_t temp_var3, temp_int32_t;       // 通用临时8字节变量
   float matrix_element1, matrix_element2;           // 矩阵元素变量
   float *result_array_ptr;                          // 结果数组指针
   longlong temp_long1;                               // 通用临时长整型变量
@@ -380,7 +380,7 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t ma
   quaternion_w = *(float *)(render_data_ptr + 0x6c);
   temp_int8_t = *(uint64_t *)(render_data_ptr + 0xe0);
   temp_int16_t = *(uint64_t *)(render_data_ptr + 200);
-  temp_undefined3 = *(uint64_t *)(render_data_ptr + 0xd0);
+  temp_uint32_t = *(uint64_t *)(render_data_ptr + 0xd0);
   
   // 存储矩阵数据到栈帧
   *(uint64_t *)(stack_frame_ptr + 0x10) = *(uint64_t *)(render_data_ptr + 0xd8);
@@ -398,7 +398,7 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t ma
   
   // 存储矩阵数据到栈帧
   *(uint64_t *)(stack_frame_ptr + 0xc) = temp_int16_t;
-  *(uint64_t *)(stack_frame_ptr + 0xe) = temp_undefined3;
+  *(uint64_t *)(stack_frame_ptr + 0xe) = temp_var3;
   
   // 获取四元数数据
   quaternion_y = *(float *)(render_data_ptr + 0xec);
@@ -664,7 +664,7 @@ LAB_18057b6d9:
   // 提取矩阵数据
   temp_int8_t = *(uint64_t *)(stack_frame_ptr + 0xe);
   temp_int16_t = *(uint64_t *)(stack_frame_ptr + 0x10);
-  temp_undefined3 = *(uint64_t *)(stack_frame_ptr + 0x12);
+  temp_uint32_t = *(uint64_t *)(stack_frame_ptr + 0x12);
   
   // 获取四元数数据
   quaternion_x = stack_frame_ptr[-0x20];              // 四元数X分量
@@ -687,7 +687,7 @@ LAB_18057b6d9:
   
   // 存储矩阵数据到渲染数据
   *(uint64_t *)(render_data_ptr + 0xd8) = temp_int16_t;  // 存储矩阵数据1
-  *(uint64_t *)(render_data_ptr + 0xe0) = temp_undefined3;  // 存储矩阵数据2
+  *(uint64_t *)(render_data_ptr + 0xe0) = temp_var3;  // 存储矩阵数据2
   *(uint64_t *)(render_data_ptr + 0xe8) = temp_int8_t;  // 存储矩阵数据3
   *(uint64_t *)(render_data_ptr + 0xf0) = temp_int32_t;  // 存储矩阵数据4
   

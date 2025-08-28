@@ -85,7 +85,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
   
   // 检查错误上下文大小
   if (error_context[1] - *error_context >> 5 == 0) {
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &DAT;
     if (stack_var2 != (void *)0x0) {
       stack_ptr1 = stack_var2;
     }
@@ -121,7 +121,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
       *(int *)(output_buffer + 2) = current_length + 0xd;
       
       // 格式化错误消息
-      format_result = FUN_1800af9f0(_DAT_180c86920,&stack_var4,&stack_var1,error_code,flag_value);
+      format_result = FUN_1800af9f0(_DAT,&stack_var4,&stack_var1,error_code,flag_value);
       FUN_180628320(output_buffer,format_result);
       
       stack_var4 = &STRING_CONSTANT_EMPTY;
@@ -195,7 +195,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
   else {
     // 处理其他错误情况
     FUN_180627ae0(&stack_var4);
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &DAT;
     if (stack_var2 != (void *)0x0) {
       stack_ptr1 = stack_var2;
     }
@@ -203,7 +203,7 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
     // 搜索不同的错误模式
     string_ptr = strstr(stack_ptr1,&STRING_PATTERN_TOO_LARGE);
     if (string_ptr == 0) {
-      FUN_1800af2c0(_DAT_180c86920,&stack_var1,&stack_var4);
+      FUN_1800af2c0(_DAT,&stack_var1,&stack_var4);
     }
     else {
       flag_value = atoi(stack_var5);
@@ -211,25 +211,25 @@ generate_value_too_large_error_message(uint64_t *output_buffer,uint64_t input_va
     }
     
     // 搜索更多错误模式
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &DAT;
     if (stack_var2 != (void *)0x0) {
       stack_ptr1 = stack_var2;
     }
     string_ptr = strstr(stack_ptr1,&STRING_PATTERN_TYPE1);
     
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &DAT;
     if (stack_var2 != (void *)0x0) {
       stack_ptr1 = stack_var2;
     }
     temp_ptr1 = strstr(stack_ptr1,&STRING_PATTERN_TYPE2);
     
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &DAT;
     if (stack_var2 != (void *)0x0) {
       stack_ptr1 = stack_var2;
     }
     temp_ptr2 = strstr(stack_ptr1,&STRING_PATTERN_TYPE3);
     
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &DAT;
     if (stack_var2 != (void *)0x0) {
       stack_ptr1 = stack_var2;
     }
@@ -327,7 +327,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
   
   // 检查错误上下文大小
   if (error_context[1] - *error_context >> 5 == 0) {
-    stack_ptr1 = &DAT_18098bc73;
+    stack_ptr1 = &DAT;
     if (stack_var2 != (void *)0x0) {
       stack_ptr1 = stack_var2;
     }
@@ -403,7 +403,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
     *(int *)(output_buffer + 2) = current_length + 0xd;
     
     // 格式化错误消息
-    string_ptr = FUN_1800af9f0(_DAT_180c8a9c8,&stack_var4,&stack_var1);
+    string_ptr = FUN_1800af9f0(_DAT,&stack_var4,&stack_var1);
     
     // 如果格式化结果有内容，追加到缓冲区
     if (0 < *(int *)(string_ptr + 0x10)) {
@@ -430,7 +430,7 @@ generate_possible_stack_overflow_error(uint64_t *output_buffer,uint64_t input_va
   else {
     // 处理其他错误情况
     FUN_180627ae0(&stack_var4);
-    FUN_1800af2c0(_DAT_180c8a9c8,&stack_var1,&stack_var4,error_code,flag_value);
+    FUN_1800af2c0(_DAT,&stack_var1,&stack_var4,error_code,flag_value);
     current_length = *(int *)(output_buffer + 2);
     FUN_1806277c0(output_buffer,current_length + 0x23);
     buffer_ptr = (int32_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
@@ -589,7 +589,7 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
   ulonglong temp_ulong;
   int8_t *temp_ptr1;
   ulonglong temp_ulong2;
-  uint8_t temp_undefined7;
+  uint8_t temp_var7;
   longlong temp_long;
   int temp_int1;
   uint temp_uint;
@@ -740,7 +740,7 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
           
           do {
             command_type = *(int *)((longlong)temp_ptr2 + temp_long + 0x10);
-            temp_undefined7 = (uint8_t)(temp_ulong2 >> 8);
+            temp_uint64_t = (uint8_t)(temp_ulong2 >> 8);
             temp_int1 = (int)temp_ptr3;
             
             if (0 < command_type) {
@@ -753,14 +753,14 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
                     temp_uint = 0x10;
                   }
                   temp_ptr1 = (int8_t *)
-                           FUN_18062b420(_DAT_180c8ed18,(longlong)(int)temp_uint,CONCAT71(temp_undefined7,0x13))
+                           FUN_18062b420(_DAT,(longlong)(int)temp_uint,CONCAT71(temp_var7,0x13))
                   ;
                   *temp_ptr1 = 0;
                   stack_ptr_b8 = (uint64_t *)temp_ptr1;
                   stack_a8 = FUN_18064e990(temp_ptr1);
                 }
                 else if ((uint)temp_ptr1 < temp_uint) {
-                  temp_ptr1 = (int8_t *)FUN_18062b8b0(_DAT_180c8ed18,temp_ptr1,temp_uint,0x10,0x13);
+                  temp_ptr1 = (int8_t *)FUN_18062b8b0(_DAT,temp_ptr1,temp_uint,0x10,0x13);
                   stack_ptr_b8 = (uint64_t *)temp_ptr1;
                   stack_a8 = FUN_18064e990(temp_ptr1);
                 }
@@ -781,13 +781,13 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
                     buffer_size = 0x10;
                   }
                   temp_ptr1 = (int8_t *)
-                           FUN_18062b420(_DAT_180c8ed18,(longlong)(int)buffer_size,CONCAT71(temp_undefined7,0x13))
+                           FUN_18062b420(_DAT,(longlong)(int)buffer_size,CONCAT71(temp_var7,0x13))
                   ;
                   *temp_ptr1 = 0;
                 }
                 else {
                   if (buffer_size <= (uint)temp_ptr1) goto LAB_18016195a;
-                  temp_ptr1 = (int8_t *)FUN_18062b8b0(_DAT_180c8ed18,temp_ptr1,buffer_size,0x10,0x13);
+                  temp_ptr1 = (int8_t *)FUN_18062b8b0(_DAT,temp_ptr1,buffer_size,0x10,0x13);
                 }
                 stack_ptr_b8 = (uint64_t *)temp_ptr1;
                 stack_a8 = FUN_18064e990(temp_ptr1);
@@ -811,20 +811,20 @@ LAB_18016195a:
         }
         
         // 处理配置字符串
-        temp_ptr3 = &DAT_18098bc73;
+        temp_ptr3 = &DAT;
         if (temp_ptr1 != (int8_t *)0x0) {
           temp_ptr3 = temp_ptr1;
         }
         
-        stack_ptr1 = &DAT_18098bc73;
+        stack_ptr1 = &DAT;
         if (stack_98 != (void *)0x0) {
           stack_ptr1 = stack_98;
         }
         
         // 执行配置处理
-        temp_long = (**(code **)(_DAT_180c8f008 + 0x48))(stack_ptr1,temp_ptr3);
+        temp_long = (**(code **)(_DAT + 0x48))(stack_ptr1,temp_ptr3);
         
-        stack_ptr1 = &DAT_18098bc73;
+        stack_ptr1 = &DAT;
         if (*(void **)(temp_long + 8) != (void *)0x0) {
           stack_ptr1 = *(void **)(temp_long + 8);
         }

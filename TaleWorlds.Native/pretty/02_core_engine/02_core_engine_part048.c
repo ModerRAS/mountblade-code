@@ -4,11 +4,11 @@
 // 本文件包含字符串搜索、内存管理和错误处理相关功能
 
 // 全局变量声明
-uint64_t _DAT_180bf00a8;  // 引擎配置数据
-uint64_t _DAT_180c868a8;  // 核心引擎数据结构
-uint64_t _DAT_180c86928;  // 错误处理系统
-uint64_t _DAT_180c8ed18;  // 内存管理器
-uint64_t _DAT_180bf6688;  // 字符串常量池
+uint64_t _DAT;  // 引擎配置数据
+uint64_t _DAT;  // 核心引擎数据结构
+uint64_t _DAT;  // 错误处理系统
+uint64_t _DAT;  // 内存管理器
+uint64_t _DAT;  // 字符串常量池
 uint64_t UNK_180a00648;   // 错误消息指针
 uint64_t UNK_180a00680;   // 系统消息指针
 uint64_t UNK_180a0055c;   // 警告消息指针
@@ -17,7 +17,7 @@ uint64_t UNK_180a006b0;   // 状态消息指针
 uint64_t UNK_180a3c3e0;   // 内存管理对象
 uint64_t UNK_1809fdc18;   // 默认字符串
 uint64_t UNK_18098bcb0;   // 空指针标记
-uint64_t DAT_1809fe2c8;   // 搜索模式字符串
+uint64_t DAT;   // 搜索模式字符串
 
 /**
  * 处理字符串搜索和内存管理
@@ -140,32 +140,32 @@ void process_string_search_and_memory_management(void)
     
     // 初始化栈变量
     stack_int8_t2 = 0xfffffffffffffffe;
-    stack_ulong10 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+    stack_ulong10 = _DAT ^ (ulonglong)stack_buffer1;
     temp_ulong2 = 0;
     stack_uint1 = 0;
-    stack_long4 = _DAT_180c868a8;
-    search_index = (int)((*(longlong *)(_DAT_180c868a8 + 0x10) - *(longlong *)(_DAT_180c868a8 + 8)) / 0x60);
+    stack_long4 = _DAT;
+    search_index = (int)((*(longlong *)(_DAT + 0x10) - *(longlong *)(_DAT + 8)) / 0x60);
     
     // 搜索匹配的字符串模式
     if (0 < search_index) {
-        long_pointer = (longlong *)(*(longlong *)(_DAT_180c868a8 + 8) + 8);
+        long_pointer = (longlong *)(*(longlong *)(_DAT + 8) + 8);
         address_value = temp_ulong2;
         temp_ulong1 = temp_ulong2;
         do {
             temp_int1 = (int)temp_ulong1;
             if ((int)long_pointer[1] == 6) {
                 temp_ulong1 = temp_ulong2;
-                while (loop_counter = temp_ulong1 + 1, *(char *)(*long_pointer + temp_ulong1) == (&DAT_1809fd128)[temp_ulong1]) {
+                while (loop_counter = temp_ulong1 + 1, *(char *)(*long_pointer + temp_ulong1) == (&DAT)[temp_ulong1]) {
                     temp_ulong1 = loop_counter;
                     if (loop_counter == 7) {
                         if (temp_int1 == -1) goto error_handler;
                         stack_long7 = (longlong)
-                                     (int)(*(longlong *)(_DAT_180c868a8 + 0x30) -
-                                           *(longlong *)(_DAT_180c868a8 + 0x28) >> 5);
+                                     (int)(*(longlong *)(_DAT + 0x30) -
+                                           *(longlong *)(_DAT + 0x28) >> 5);
                         if (stack_long7 < 1) goto cleanup_handler;
                         stack_long5 = 0;
                         stack_long2 = (longlong)temp_int1 * 0x60;
-                        offset_value = _DAT_180c868a8;
+                        offset_value = _DAT;
                         goto process_string_match;
                     }
                 }
@@ -177,14 +177,14 @@ void process_string_search_and_memory_management(void)
     }
 error_handler:
                     // 调用错误处理函数
-    handle_error_message(_DAT_180c86928,&UNK_180a00648);
+    handle_error_message(_DAT,&UNK_180a00648);
 process_string_match:
     array_pointer = stack_long2;
     temp_uint1 = 0;
     temp_long2 = stack_long5 * 0x20 + *(longlong *)(offset_value + 0x28);
-    temp_pointer1 = &DAT_18098bc73;
-    if (_DAT_180bf6688 != (void *)0x0) {
-        temp_pointer1 = _DAT_180bf6688;
+    temp_pointer1 = &DAT;
+    if (_DAT != (void *)0x0) {
+        temp_pointer1 = _DAT;
     }
     data_pointer = -1;
     do {
@@ -213,13 +213,13 @@ process_string_match:
     if (match_found) {
         search_index = *(int *)(stack_long2 + 0x5c + *(longlong *)(offset_value + 8));
         address_value = (ulonglong)search_index;
-        current_char = *(char *)(address_value + *(longlong *)(*_DAT_180c86870 + 0x8c8));
+        current_char = *(char *)(address_value + *(longlong *)(*_DAT + 0x8c8));
         if (current_char == '\0') {
             stack_pointer23 = &UNK_1809fdc18;
             stack_pointer24 = stack_buffer5;
             stack_buffer5[0] = 0;
             stack_uint13 = 0;
-            strcpy_s(stack_buffer5,0x10,&DAT_18098bc73);
+            strcpy_s(stack_buffer5,0x10,&DAT);
             result_pointer = &stack_pointer23;
             temp_uint1 = (uint)temp_ulong2 | 2;
         }
@@ -239,7 +239,7 @@ process_string_match:
         
         // 复制字符串数据
         if (0 < *(int *)(result_pointer + 2)) {
-            temp_pointer1 = &DAT_18098bc73;
+            temp_pointer1 = &DAT;
             if (result_pointer[1] != (void *)0x0) {
                 temp_pointer1 = result_pointer[1];
             }
@@ -274,8 +274,8 @@ process_string_match:
         
         // 检查索引范围
         if ((search_index < 0) ||
-           (offset_value = *(longlong *)(*_DAT_180c86870 + 0x888),
-           (ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x890) - offset_value >> 5) <= address_value)) {
+           (offset_value = *(longlong *)(*_DAT + 0x888),
+           (ulonglong)(*(longlong *)(*_DAT + 0x890) - offset_value >> 5) <= address_value)) {
             offset_value = allocate_memory_block();
         }
         else {
@@ -307,16 +307,16 @@ process_string_match:
         }
         
         // 设置字符串比较参数
-        stack_pointer1 = &DAT_18098bc73;
+        stack_pointer1 = &DAT;
         if (*(void **)(temp_long2 + 8) != (void *)0x0) {
             stack_pointer1 = *(void **)(temp_long2 + 8);
         }
         temp_pointer1 = *(void **)(stack_long2 + 0x28 + *(longlong *)(stack_long4 + 8));
-        temp_pointer2 = &DAT_18098bc73;
+        temp_pointer2 = &DAT;
         if (temp_pointer1 != (void *)0x0) {
             temp_pointer2 = temp_pointer1;
         }
-        temp_pointer20 = &DAT_18098bc73;
+        temp_pointer20 = &DAT;
         if (stack_pointer5 != (int8_t *)0x0) {
             temp_pointer20 = stack_pointer5;
         }
@@ -333,11 +333,11 @@ process_string_match:
             stack_long3 = 0;
             stack_uint2 = 0;
             temp_pointer1 = *(void **)(stack_long2 + 0x28 + *(longlong *)(array_pointer + 8));
-            temp_pointer2 = &DAT_18098bc73;
+            temp_pointer2 = &DAT;
             if (temp_pointer1 != (void *)0x0) {
                 temp_pointer2 = temp_pointer1;
             }
-            temp_pointer20 = &DAT_18098bc73;
+            temp_pointer20 = &DAT;
             if (temp_buffer1 != (int8_t *)0x0) {
                 temp_pointer20 = temp_buffer1;
             }
@@ -389,7 +389,7 @@ process_string_match:
             
             // 复制第三个字符串数据
             if (0 < stack_int2) {
-                temp_pointer1 = &DAT_18098bc73;
+                temp_pointer1 = &DAT;
                 if (stack_pointer26 != (void *)0x0) {
                     temp_pointer1 = stack_pointer26;
                 }
@@ -429,11 +429,11 @@ process_string_match:
             
             // 处理字符串数据处理结果
             if (compare_char == '\0') {
-                temp_pointer1 = &DAT_18098bc73;
+                temp_pointer1 = &DAT;
                 if (stack_pointer18 != (void *)0x0) {
                     temp_pointer1 = stack_pointer18;
                 }
-                temp_pointer2 = &DAT_18098bc73;
+                temp_pointer2 = &DAT;
                 if (stack_pointer14 != (void *)0x0) {
                     temp_pointer2 = stack_pointer14;
                 }
@@ -496,8 +496,8 @@ process_string_match:
     else {
         search_index = *(int *)(stack_long2 + 0x5c + *(longlong *)(offset_value + 8));
         if ((search_index < 0) ||
-           (data_pointer = *(longlong *)(*_DAT_180c86870 + 0x888),
-           (ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x890) - data_pointer >> 5) <=
+           (data_pointer = *(longlong *)(*_DAT + 0x888),
+           (ulonglong)(*(longlong *)(*_DAT + 0x890) - data_pointer >> 5) <=
            (ulonglong)(longlong)search_index)) {
             data_pointer = allocate_memory_block();
         }
@@ -515,7 +515,7 @@ process_string_match:
             if (search_index < 0x10) {
                 search_index = 0x10;
             }
-            stack_pointer9 = (int8_t *)allocate_buffer(_DAT_180c8ed18,(longlong)search_index,0x13);
+            stack_pointer9 = (int8_t *)allocate_buffer(_DAT,(longlong)search_index,0x13);
             *stack_pointer9 = 0;
             address_value = (ulonglong)stack_pointer9 & 0xffffffffffc00000;
             if (address_value != 0) {
@@ -565,16 +565,16 @@ process_string_match:
         stack_ulong6 = 0;
         stack_long3 = 0;
         stack_uint6 = 0;
-        stack_pointer1 = &DAT_18098bc73;
+        stack_pointer1 = &DAT;
         if (*(void **)(temp_long2 + 8) != (void *)0x0) {
             stack_pointer1 = *(void **)(temp_long2 + 8);
         }
         temp_pointer1 = *(void **)(array_pointer + 0x28 + *(longlong *)(offset_value + 8));
-        temp_pointer2 = &DAT_18098bc73;
+        temp_pointer2 = &DAT;
         if (temp_pointer1 != (void *)0x0) {
             temp_pointer2 = temp_pointer1;
         }
-        temp_buffer1 = &DAT_18098bc73;
+        temp_buffer1 = &DAT;
         if (stack_pointer9 != (int8_t *)0x0) {
             temp_buffer1 = stack_pointer9;
         }
@@ -606,7 +606,7 @@ process_string_match:
             // 处理字符串处理结果
             if (stack_long9 - stack_long8 >> 3 != 0) {
                 array_pointer = offset_value + 0x48;
-                temp_long2 = allocate_buffer(_DAT_180c8ed18,0x40,*(int8_t *)(offset_value + 0x70));
+                temp_long2 = allocate_buffer(_DAT,0x40,*(int8_t *)(offset_value + 0x70));
                 setup_string_processor(temp_long2 + 0x20,&stack_pointer12);
                 data_pointer = execute_string_operations(array_pointer,stack_char1,temp_long2 + 0x20);
                 if (stack_char1[0] != '\0') {
@@ -703,12 +703,12 @@ void process_string_search_and_validation(uint64_t search_param1, longlong searc
     int32_t stack_uint1;
     uint64_t stack_int8_t;
     
-    data_pointer1 = _DAT_180c868a8;
-    string_pointer = &DAT_18098bc73;
+    data_pointer1 = _DAT;
+    string_pointer = &DAT;
     if (*(void **)(search_param2 + 8) != (void *)0x0) {
         string_pointer = *(void **)(search_param2 + 8);
     }
-    data_pointer2 = search_string_pattern(string_pointer,&DAT_1809fe2c8,search_param3,search_param4,0xfffffffffffffffe);
+    data_pointer2 = search_string_pattern(string_pointer,&DAT,search_param3,search_param4,0xfffffffffffffffe);
     if (data_pointer2 == 0) {
         stack_pointer1 = &UNK_180a3c3e0;
         stack_int8_t = 0;
@@ -718,7 +718,7 @@ void process_string_search_and_validation(uint64_t search_param1, longlong searc
         
         // 复制字符串内容
         if (0 < *(int *)(search_param2 + 0x10)) {
-            string_pointer = &DAT_18098bc73;
+            string_pointer = &DAT;
             if (*(void **)(search_param2 + 8) != (void *)0x0) {
                 string_pointer = *(void **)(search_param2 + 8);
             }

@@ -247,7 +247,7 @@ process_data:
         *(int*)((long long)long_ptr2 + 0x3c) = temp_int3;
         *(int*)(long_ptr2 + 8) = stack_int1;
         *(int*)((long long)long_ptr2 + 0x44) = resource_type;
-        undefined_ptr3 = &DAT_18098bc73;
+        undefined_ptr3 = &DAT;
         if (*(void**)((long long)data_source + 8) != (void*)0x0) {
             undefined_ptr3 = *(void**)((long long)data_source + 8);
         }
@@ -462,7 +462,7 @@ expand_queue:
                     long_ptr1 = stack_long_ptr3;
                 }
                 stack_long_ptr3 = long_ptr1;
-                undefined_ptr3 = &DAT_18098bc73;
+                undefined_ptr3 = &DAT;
                 if (*(void**)((long long)data_source + 8) != (void*)0x0) {
                     undefined_ptr3 = *(void**)((long long)data_source + 8);
                 }
@@ -500,7 +500,7 @@ expand_queue:
     stack_ptr12 = stack_buffer3;
     stack_buffer3[0] = 0;
     stack_uint2 = *(unsigned int*)((long long)data_source + 0x10);
-    undefined_ptr3 = &DAT_18098bc73;
+    undefined_ptr3 = &DAT;
     if (*(void**)((long long)data_source + 8) != (void*)0x0) {
         undefined_ptr3 = *(void**)((long long)data_source + 8);
     }

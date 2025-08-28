@@ -147,7 +147,7 @@ void rendering_parameter_calculator_type1(void)
     int int_param4;
     int int_param5;
     int int_param6;
-    uint64_t temp_undefined;
+    uint64_t temp_var;
     longlong *long_ptr;
     uint64_t *undefined_ptr1;
     uint64_t *undefined_ptr2;
@@ -325,24 +325,24 @@ void rendering_parameter_calculator_type1(void)
             
             // 执行矩阵变换
             undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr1 + loop_counter1 + RENDERING_SIZE_0X120);
-            temp_undefined = undefined_ptr2[1];
+            temp_var = undefined_ptr2[1];
             *undefined_ptr1 = *undefined_ptr2;
-            undefined_ptr1[1] = temp_undefined;
+            undefined_ptr1[1] = temp_var;
             
             undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr1 + loop_counter1 + RENDERING_SIZE_0X130);
-            temp_undefined = undefined_ptr2[1];
+            temp_var = undefined_ptr2[1];
             undefined_ptr1[RENDERING_INDEX_2] = *undefined_ptr2;
-            undefined_ptr1[RENDERING_INDEX_3] = temp_undefined;
+            undefined_ptr1[RENDERING_INDEX_3] = temp_var;
             
             undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr1 + loop_counter1 + RENDERING_SIZE_0X140);
-            temp_undefined = undefined_ptr2[1];
+            temp_var = undefined_ptr2[1];
             undefined_ptr1[RENDERING_INDEX_4] = *undefined_ptr2;
-            undefined_ptr1[RENDERING_INDEX_5] = temp_undefined;
+            undefined_ptr1[RENDERING_INDEX_5] = temp_var;
             
             undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr1 + loop_counter1 + RENDERING_SIZE_0X150);
-            temp_undefined = undefined_ptr2[1];
+            temp_var = undefined_ptr2[1];
             undefined_ptr1[RENDERING_INDEX_6] = *undefined_ptr2;
-            undefined_ptr1[RENDERING_INDEX_7] = temp_undefined;
+            undefined_ptr1[RENDERING_INDEX_7] = temp_var;
             
             undefined_ptr1 = undefined_ptr1 + RENDERING_INDEX_8;
         } while (loop_counter2 < RENDERING_SIZE_0X58);
@@ -378,21 +378,21 @@ rendering_state_set:
             *(float *)(temp_long2 + 0x5c) = ((float)int_param1 * RENDERING_FLOAT_0_9) / (float)int_param2;
             
             // 矩阵数据复制
-            temp_undefined = *(uint64_t *)(base_long + RENDERING_OFFSET_0X1D8);
+            temp_var = *(uint64_t *)(base_long + RENDERING_OFFSET_0X1D8);
             *(uint64_t *)(temp_long2 + RENDERING_SIZE_0XB0) = *(uint64_t *)(base_long + RENDERING_OFFSET_0X1D0);
-            *(uint64_t *)(temp_long2 + RENDERING_SIZE_0XB8) = temp_undefined;
+            *(uint64_t *)(temp_long2 + RENDERING_SIZE_0XB8) = temp_var;
             
-            temp_undefined = *(uint64_t *)(base_long + RENDERING_OFFSET_0X1E8);
+            temp_var = *(uint64_t *)(base_long + RENDERING_OFFSET_0X1E8);
             *(uint64_t *)(temp_long2 + RENDERING_SIZE_0XC0) = *(uint64_t *)(base_long + RENDERING_OFFSET_0X1E0);
-            *(uint64_t *)(temp_long2 + 200) = temp_undefined;
+            *(uint64_t *)(temp_long2 + 200) = temp_var;
             
-            temp_undefined = *(uint64_t *)(base_long + RENDERING_OFFSET_0X1F8);
+            temp_var = *(uint64_t *)(base_long + RENDERING_OFFSET_0X1F8);
             *(uint64_t *)(temp_long2 + RENDERING_SIZE_0XD0) = *(uint64_t *)(base_long + RENDERING_OFFSET_0X1F0);
-            *(uint64_t *)(temp_long2 + RENDERING_SIZE_0XD8) = temp_undefined;
+            *(uint64_t *)(temp_long2 + RENDERING_SIZE_0XD8) = temp_var;
             
-            temp_undefined = *(uint64_t *)(base_long + RENDERING_OFFSET_0X208);
+            temp_var = *(uint64_t *)(base_long + RENDERING_OFFSET_0X208);
             *(uint64_t *)(temp_long2 + RENDERING_SIZE_0XE0) = *(uint64_t *)(base_long + RENDERING_OFFSET_0X200);
-            *(uint64_t *)(temp_long2 + RENDERING_SIZE_0XE8) = temp_undefined;
+            *(uint64_t *)(temp_long2 + RENDERING_SIZE_0XE8) = temp_var;
         }
     }
     
@@ -422,7 +422,7 @@ void rendering_parameter_calculator_type2(void)
     int32_t temp_uint1;
     int32_t temp_uint2;
     int32_t temp_uint3;
-    uint64_t temp_undefined;
+    uint64_t temp_var;
     uint64_t *undefined_ptr1;
     uint64_t *undefined_ptr2;
     uint64_t *base_ptr;
@@ -556,19 +556,19 @@ void rendering_parameter_calculator_type2(void)
         
         // 执行矩阵变换
         undefined_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X120);
-        temp_undefined = undefined_ptr2[1];
+        temp_var = undefined_ptr2[1];
         *context_ptr = *undefined_ptr2;
-        context_ptr[1] = temp_undefined;
+        context_ptr[1] = temp_var;
         
         undefined_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X130);
-        temp_undefined = undefined_ptr2[1];
+        temp_var = undefined_ptr2[1];
         context_ptr[RENDERING_INDEX_2] = *undefined_ptr2;
-        context_ptr[RENDERING_INDEX_3] = temp_undefined;
+        context_ptr[RENDERING_INDEX_3] = temp_var;
         
         undefined_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X140);
-        temp_undefined = undefined_ptr2[1];
+        temp_var = undefined_ptr2[1];
         context_ptr[RENDERING_INDEX_4] = *undefined_ptr2;
-        context_ptr[RENDERING_INDEX_5] = temp_undefined;
+        context_ptr[RENDERING_INDEX_5] = temp_var;
         
         uint_ptr = (int32_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X150);
         temp_uint1 = uint_ptr[1];
@@ -684,7 +684,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     stack_uint64_t = 0xfffffffffffffffe;
     stack_char[0] = *(char *)(param_3 + 0x20);
     undefined_ptr1 = (uint64_t *)0x0;
-    stack_undefined3 = 0;
+    stack_uint32_t = 0;
     stack_ushort = 0xff00;
     stack_int32_t = 0;
     stack_undefined5 = 0xffffffffffffffff;
@@ -693,7 +693,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     stack_uint3 = 0xffffffff;
     stack_undefined6 = 0;
     stack_ushort1 = RENDERING_FLAG_0X400;
-    stack_undefined7 = 0;
+    stack_uint64_t = 0;
     stack_uint4 = 0;
     stack_uint64_t = 0;
     stack_uint1 = 0;
@@ -710,7 +710,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     
     // 调用渲染系统初始化函数
     (**(code **)(**(longlong **)(long_param3 + 0x27e8) + 0x1c8))
-            (*(longlong **)(long_param3 + 0x27e8), param_3, long_param3, &DAT_180a00300, &stack_undefined3);
+            (*(longlong **)(long_param3 + 0x27e8), param_3, long_param3, &DAT, &stack_undefined3);
     
     // 设置数据范围
     long_param1 = param_1 + 0x100;
@@ -734,7 +734,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
         
         if (undefined_ptr2 != (uint64_t *)0x0) {
             undefined_ptr1 = (uint64_t *)
-                     rendering_memory_allocator(_DAT_180c8ed18, (longlong)undefined_ptr2 * 8, (int8_t)stack_uint);
+                     rendering_memory_allocator(_DAT, (longlong)undefined_ptr2 * 8, (int8_t)stack_uint);
         }
     }
     
@@ -750,7 +750,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     }
     
     // 检查全局标志
-    if (*(int *)(_DAT_180c86920 + 0x1c0) == 0) {
+    if (*(int *)(_DAT + 0x1c0) == 0) {
         long_ptr_ptr = stack_long_ptr;
         heap_ptr_ptr = &heap_ptr1;
         char_ptr = stack_char;
@@ -763,7 +763,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
         stack_long1 = param_1;
         
         // 分配内存并设置回调
-        stack_long_ptr[0] = (longlong *)rendering_memory_manager(_DAT_180c8ed18, 0x28, 8, DAT_180bf65bc);
+        stack_long_ptr[0] = (longlong *)rendering_memory_manager(_DAT, 0x28, 8, DAT);
         *stack_long_ptr[0] = (longlong)heap_ptr_ptr;
         stack_long_ptr[0][1] = (longlong)char_ptr;
         *(int32_t *)(stack_long_ptr[0] + RENDERING_INDEX_8) = (int32_t)stack_int8_t;
@@ -774,7 +774,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
         long_param3 = (longlong)heap_ptr2 - (longlong)heap_ptr1;
     }
     else {
-        if (*(int *)(_DAT_180c86920 + 0x1c0) != 1) goto alternative_path;
+        if (*(int *)(_DAT + 0x1c0) != 1) goto alternative_path;
         
         long_ptr_ptr = stack_long_ptr;
         heap_ptr_ptr = &heap_ptr1;
@@ -788,7 +788,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
         stack_long1 = param_1;
         
         // 分配内存并设置回调（替代路径）
-        stack_long_ptr[0] = (longlong *)rendering_memory_manager(_DAT_180c8ed18, 0x28, 8, DAT_180bf65bc);
+        stack_long_ptr[0] = (longlong *)rendering_memory_manager(_DAT, 0x28, 8, DAT);
         *stack_long_ptr[0] = (longlong)heap_ptr_ptr;
         stack_long_ptr[0][1] = (longlong)char_ptr;
         *(int32_t *)(stack_long_ptr[0] + RENDERING_INDEX_8) = (int32_t)stack_int8_t;
@@ -829,10 +829,10 @@ alternative_path:
 // ===========================================
 
 /** 渲染系统数据表 */
-extern ulonglong DAT_180a00300;
-extern uint64_t _DAT_180c8ed18;
-extern uint64_t DAT_180bf65bc;
-extern uint64_t _DAT_180c86920;
+extern ulonglong DAT;
+extern uint64_t _DAT;
+extern uint64_t DAT;
+extern uint64_t _DAT;
 
 /** 渲染系统栈变量 */
 extern uint64_t stack0x00000000;

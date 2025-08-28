@@ -86,13 +86,13 @@ void process_engine_data(uint64_t engine_context, int operation_type, void **dat
   ulonglong stack_ulonglong_3;
   
   // 获取引擎全局数据指针
-  long_var_1 = _DAT_180c8aa40;
+  long_var_1 = _DAT;
   stack_8_5 = 0xfffffffffffffffe;
-  stack_ulonglong_3 = _DAT_180bf00a8 ^ (ulonglong)stack_array_1;
+  stack_ulonglong_3 = _DAT ^ (ulonglong)stack_array_1;
   ulonglong_var_1 = 0;
   uint_var_3 = 0;
   stack_4_1 = 0;
-  stack_long_1 = _DAT_180c8aa40;
+  stack_long_1 = _DAT;
   stack_ptr_ptr_1 = data_params;
   stack_ptr_ptr_2 = data_params;
   
@@ -100,16 +100,16 @@ void process_engine_data(uint64_t engine_context, int operation_type, void **dat
   if (operation_type == 1) {
     // 初始化操作
     ptr_undefined_1 = *(void **)
-               ((longlong)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 + 0x18 +
-               *(longlong *)(_DAT_180c86938 + 0x1d20));
-    ptr_undefined_2 = &DAT_18098bc73;
+               ((longlong)*(int *)(_DAT + 0x1d40) * 0xd0 + 0x18 +
+               *(longlong *)(_DAT + 0x1d20));
+    ptr_undefined_2 = &DAT;
     if (ptr_undefined_1 != (void *)0x0) {
       ptr_undefined_2 = ptr_undefined_1;
     }
     // 调用初始化回调函数
-    (**(code **)(*(longlong *)(_DAT_180c8aa40 + 0x20) + 0x10))(_DAT_180c8aa40 + 0x20,ptr_undefined_2);
+    (**(code **)(*(longlong *)(_DAT + 0x20) + 0x10))(_DAT + 0x20,ptr_undefined_2);
     long_var_2 = FUN_180623de0(stack_ptr_array_1);
-    ptr_undefined_1 = &DAT_18098bc73;
+    ptr_undefined_1 = &DAT;
     if (*(void **)(long_var_2 + 8) != (void *)0x0) {
       ptr_undefined_1 = *(void **)(long_var_2 + 8);
     }
@@ -149,7 +149,7 @@ void process_engine_data(uint64_t engine_context, int operation_type, void **dat
     
     // 分配浮点数数组内存
     FUN_18014e8b0(&stack_float_ptr_1,
-                  *(longlong *)(_DAT_180c8aa40 + 0x70) - *(longlong *)(_DAT_180c8aa40 + 0x68) >> 2);
+                  *(longlong *)(_DAT + 0x70) - *(longlong *)(_DAT + 0x68) >> 2);
     long_var_2 = *(longlong *)(long_var_1 + 0x70);
     float_ptr_5 = stack_float_ptr_1;
     float_ptr_1 = stack_float_ptr_2;
@@ -346,11 +346,11 @@ void process_engine_data(uint64_t engine_context, int operation_type, void **dat
   }
   
   // 处理其他操作类型（省略大量重复代码，保留主要结构）
-  if (*(int *)(_DAT_180c8aa40 + 0x60) == 2) {
+  if (*(int *)(_DAT + 0x60) == 2) {
     if (operation_type == 0) {
-      if (*(char *)(_DAT_180c8aa40 + 0xda) == '\0') {
-        if (DAT_180c82860 != '\0') {
-          FUN_180202180(_DAT_180c8aa40);
+      if (*(char *)(_DAT + 0xda) == '\0') {
+        if (DAT != '\0') {
+          FUN_180202180(_DAT);
         }
         goto CLEANUP_HANDLER;
       }
@@ -372,7 +372,7 @@ void process_engine_data(uint64_t engine_context, int operation_type, void **dat
       // ... 原始实现包含复杂的数据处理循环
     }
   }
-  else if ((*(int *)(_DAT_180c8aa40 + 0x60) == 1) && (operation_type == 0)) {
+  else if ((*(int *)(_DAT + 0x60) == 1) && (operation_type == 0)) {
 CLEANUP_HANDLER:
     // 清理操作
     *(uint64_t *)(long_var_1 + 0x70) = *(uint64_t *)(long_var_1 + 0x68);
@@ -389,10 +389,10 @@ CLEANUP_HANDLER:
   
   // 处理其他操作类型
   if (operation_type == 3) {
-    FUN_180627be0(_DAT_180c8aa40,data_params);
+    FUN_180627be0(_DAT,data_params);
   }
   else if (operation_type == 4) {
-    FUN_180202660(_DAT_180c8aa40);
+    FUN_180202660(_DAT);
     *(int32_t *)(long_var_1 + 0xdc) = 1;
   }
   

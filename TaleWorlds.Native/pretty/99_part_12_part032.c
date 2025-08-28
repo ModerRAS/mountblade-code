@@ -485,7 +485,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
     Bool bVar16;
     UInt32 uVar17;
     Float32Ptr pfVar18, pfVar19, pfVar22, pfVar23, pfVar24;
-    UInt8Ptr puVar20;
+    UInt8Ptr puVar;
     UInt64 uVar21;
     Int32 iVar25;
     Int64 lVar26;
@@ -500,7 +500,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
     UInt64_undefined auStack_38[2];          // 栈数组38
     
     // 安全检查和初始化
-    auStack_38[0] = _DAT_180bf00a8 ^ (UInt64)auStack_38;
+    auStack_38[0] = _DAT ^ (UInt64)auStack_38;
     lVar26 = (Int64)(Int32)param_6;
     bVar16 = true;
     
@@ -513,7 +513,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
         afStack_c0[INDEX_16] = FLOAT_SPECIAL_NEGATIVE;
         afStack_c0[INDEX_17] = FLOAT_SMALL_VALUE;
         SystemCallWrapper1();
-        puVar20 = auStack_78;
+        puVar = auStack_78;
     }
     else if (param_6 == 6) {
         // 模式6：扩展矩阵处理
@@ -523,7 +523,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
         afStack_c0[INDEX_16] = FLOAT_SPECIAL_NEGATIVE_2;
         afStack_c0[INDEX_17] = FLOAT_SMALL_VALUE;
         SystemCallWrapper2();
-        puVar20 = auStack_78;
+        puVar = auStack_78;
     }
     else if (param_6 == 8) {
         // 模式8：优化矩阵变换处理
@@ -535,7 +535,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
         fVar6 = param_4[INDEX_231]; // 0xe7 = 231
         fVar7 = param_4[INDEX_198]; // 0xc6 = 198
         fVar8 = param_4[INDEX_165]; // 0xa5 = 165
-        puVar20 = auStack_78;
+        puVar = auStack_78;
         
         if (param_3 != 0) {
             lVar26 = (Int64)param_1 - (Int64)param_2;
@@ -566,7 +566,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                     
                     param_2 = param_2 + INDEX_8;
                     param_3 = param_3 - INDEX_1;
-                    puVar20 = auStack_78;
+                    puVar = auStack_78;
                 } while (param_3 != 0);
             }
             else {
@@ -594,7 +594,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                     
                     param_3 = param_3 - INDEX_1;
                     param_2 = param_2 + INDEX_8;
-                    puVar20 = auStack_78;
+                    puVar = auStack_78;
                 } while (param_3 != 0);
             }
         }
@@ -667,7 +667,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
         
         if (bVar16) {
             if (uVar17 == 0) {
-                puVar20 = auStack_108;
+                puVar = auStack_108;
                 if (param_3 != 0) {
                     do {
                         pfVar19 = param_2;
@@ -758,12 +758,12 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                         param_1 = param_1 + lVar26;
                         param_2 = param_2 + lVar26;
                         param_3 = param_3 - INDEX_1;
-                        puVar20 = auStack_108;
+                        puVar = auStack_108;
                     } while (param_3 != 0);
                 }
             }
             else {
-                puVar20 = auStack_108;
+                puVar = auStack_108;
                 if (param_3 != 0) {
                     do {
                         pfVar19 = param_2;
@@ -881,13 +881,13 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                         param_1 = param_1 + lVar26;
                         param_2 = param_2 + lVar26;
                         param_3 = param_3 - INDEX_1;
-                        puVar20 = auStack_108;
+                        puVar = auStack_108;
                     } while (param_3 != 0);
                 }
             }
         }
         else if (uVar17 == 0) {
-            puVar20 = auStack_108;
+            puVar = auStack_108;
             if (param_3 != 0) {
                 do {
                     pfVar19 = param_2;
@@ -1008,12 +1008,12 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                     param_1 = param_1 + lVar26;
                     param_2 = param_2 + lVar26;
                     param_3 = param_3 - INDEX_1;
-                    puVar20 = auStack_108;
+                    puVar = auStack_108;
                 } while (param_3 != 0);
             }
         }
         else {
-            puVar20 = auStack_108;
+            puVar = auStack_108;
             if (param_3 != 0) {
                 do {
                     pfVar19 = param_2;
@@ -1169,14 +1169,14 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                     param_1 = param_1 + lVar26;
                     param_2 = param_2 + lVar26;
                     param_3 = param_3 - INDEX_1;
-                    puVar20 = auStack_108;
+                    puVar = auStack_108;
                 } while (param_3 != 0);
             }
         }
     }
     
     // 系统清理和返回
-    *(UInt64_void *)(puVar20 - INDEX_8) = 0x1807e06c3;
+    *(UInt64_void *)(puVar - INDEX_8) = 0x1807e06c3;
     SystemCleanupHandler(auStack_38[0] ^ (UInt64)auStack_38);
 }
 

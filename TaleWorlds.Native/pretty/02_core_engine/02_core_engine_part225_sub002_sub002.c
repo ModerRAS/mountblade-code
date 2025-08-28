@@ -93,7 +93,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   
   // 初始化栈变量
   stack_uint64_t_6 = 0xfffffffffffffffe;
-  stack_ulonglong = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_32;
+  stack_ulonglong = _DAT ^ (ulonglong)stack_buffer_32;
   // 检查实体是否有自定义数据，如果有则设置到指定位置
   if (entity_context[0xc170] != 0) {
     *(longlong *)(entity_context[0x66] + 0x68) = entity_context[0xc170];
@@ -226,7 +226,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       *(int32_t *)((longlong)ptr_long2 + 0xbc) = temp_int32_t;
       
       // 清理组件系统资源
-      temp_long2 = _DAT_180c82868;
+      temp_long2 = _DAT;
       stack_uint64_t_1 = &stack_ptr_long3;
       stack_ptr_long3 = (longlong *)entity_context[0x534];
       if (stack_ptr_long3 != (longlong *)0x0) {
@@ -272,7 +272,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   *(char *)((longlong)param_2 + 0x124c4) = (char)param_1[0x1033];
   if ((((param_3 == '\0') || (*(char *)((longlong)param_1 + 0x3e05) == '\0')) ||
       ((*(byte *)(param_1 + 0x7c1) & 2) != 0)) ||
-     ((*(int *)(_DAT_180c86920 + 0xc40) < 1 ||
+     ((*(int *)(_DAT + 0xc40) < 1 ||
       (cStack_308 = '\x01', *(longlong **)(param_2[0x6b0] + 0x588) != param_1)))) {
     cStack_308 = '\0';
   }
@@ -300,20 +300,20 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     uVar10 = 1;
   }
   *(int8_t *)(param_2 + 0x1347) = uVar10;
-  lVar22 = _DAT_180c868c0;
+  lVar22 = _DAT;
   lVar20 = 1;
   if (bVar8) {
-    plVar17 = *(longlong **)(_DAT_180c868c0 + 0x10408);
-    plVar21 = *(longlong **)(_DAT_180c868c0 + 0x10400);
+    plVar17 = *(longlong **)(_DAT + 0x10408);
+    plVar21 = *(longlong **)(_DAT + 0x10400);
     lVar25 = (longlong)plVar17 - (longlong)plVar21 >> 3;
-    if (plVar17 < *(longlong **)(_DAT_180c868c0 + 0x10410)) {
-      *(longlong **)(_DAT_180c868c0 + 0x10408) = plVar17 + 1;
+    if (plVar17 < *(longlong **)(_DAT + 0x10410)) {
+      *(longlong **)(_DAT + 0x10408) = plVar17 + 1;
       *plVar17 = (longlong)(param_1 + 0xae);
     }
     else {
       if ((lVar25 == 0) || (lVar20 = lVar25 * 2, lVar20 != 0)) {
         plVar14 = (longlong *)
-                  FUN_18062b420(_DAT_180c8ed18,lVar20 * 8,*(int8_t *)(_DAT_180c868c0 + 0x10418))
+                  FUN_18062b420(_DAT,lVar20 * 8,*(int8_t *)(_DAT + 0x10418))
         ;
         plVar17 = *(longlong **)(lVar22 + 0x10408);
         plVar21 = *(longlong **)(lVar22 + 0x10400);
@@ -335,7 +335,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   }
   if ((int)param_1[0x4f8] < 7) {
     *(int8_t *)(param_2 + 0x38c) = 1;
-    uVar10 = func_0x0001800e2bf0(_DAT_180c86890,param_2);
+    uVar10 = func_0x0001800e2bf0(_DAT,param_2);
     *(int8_t *)((longlong)param_2 + 0x1c61) = uVar10;
     if ((int)param_2[1] == -1) {
       bVar24 = 0;
@@ -350,7 +350,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   else {
     FUN_180304010(param_2[0x6b0]);
   }
-  pplVar13 = (longlong **)FUN_18062b1e0(_DAT_180c8ed18,0xd0,8,3);
+  pplVar13 = (longlong **)FUN_18062b1e0(_DAT,0xd0,8,3);
   uStack_300 = pplVar13;
   FUN_180049830(pplVar13);
   *pplVar13 = (longlong *)&UNK_180a0c3d8;
@@ -368,7 +368,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   }
   FUN_1802e5be0(param_1 + 0x1045,param_2);
   if (param_1[0x75] != 0) {
-    pplVar13 = (longlong **)FUN_18062b1e0(_DAT_180c8ed18,0xd0,8,3);
+    pplVar13 = (longlong **)FUN_18062b1e0(_DAT,0xd0,8,3);
     uStack_300 = pplVar13;
     FUN_180049830(pplVar13);
     *pplVar13 = (longlong *)&UNK_180a0c348;
@@ -381,7 +381,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       (*(code *)(*pplStack_288)[7])();
     }
   }
-  FUN_18005e250(_DAT_180c82868,*plVar14,param_1[0x6d] - *plVar14 >> 3);
+  FUN_18005e250(_DAT,*plVar14,param_1[0x6d] - *plVar14 >> 3);
   if (((cStack_308 != '\0') && (*(char *)((longlong)param_1 + 0x60b91) != '\0')) &&
      (1 < (int)param_1[0x4f8])) {
     *(int32_t *)(param_2[0x6b0] + 0x5b0) = *(int32_t *)((longlong)param_1 + 0x27bc);
@@ -636,7 +636,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       else {
         bVar8 = true;
       }
-      if (((*(int *)(_DAT_180c86890 + 0x12d8) == 0x12) || ((*(byte *)(lVar20 + 0x1bd8) & 0x20) == 0)
+      if (((*(int *)(_DAT + 0x12d8) == 0x12) || ((*(byte *)(lVar20 + 0x1bd8) & 0x20) == 0)
           ) || (((*(longlong *)(lVar20 + 0x99b8) == 0 ||
                  ((*(uint *)(*(longlong *)(lVar20 + 0x99b8) + 0x98) & 0x8000101e) == 0)) &&
                 (((*(char *)(lVar20 + 0x124c4) == '\0' && (!bVar8)) &&
@@ -690,26 +690,26 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     FUN_1802ea790(param_1[0x1040]);
     *(byte *)(param_1[0x1040] + 0x2e8) = *(byte *)(param_1[0x1040] + 0x2e8) & 0xef;
   }
-  if ((param_1[0x103f] != 0) && (*(char *)(_DAT_180c86890 + 0x1504) == '\x01')) {
+  if ((param_1[0x103f] != 0) && (*(char *)(_DAT + 0x1504) == '\x01')) {
     FUN_1802ee720();
   }
   if (param_1[0x89] != 0) {
     FUN_18037c8d0();
   }
-  lVar20 = _DAT_180c82868;
+  lVar20 = _DAT;
   if (*(int *)(param_2[0x6b0] + 0x110) != 0) {
     if ((*(byte *)(param_2 + 0x37b) & 2) != 0) {
       plVar21 = (longlong *)param_1[0x534];
-      if ((plVar21 != (longlong *)0x0) && (_DAT_180c82868 != 0)) {
+      if ((plVar21 != (longlong *)0x0) && (_DAT != 0)) {
         uStack_300 = &plStack_278;
         plStack_278 = plVar21;
         (**(code **)(*plVar21 + 0x28))();
         FUN_18005e6a0(lVar20,&plStack_278,0);
       }
-      if (*(char *)(_DAT_180c86950 + 0x162f) != '\0') {
+      if (*(char *)(_DAT + 0x162f) != '\0') {
         FUN_180389b20(param_1 + 0x534);
       }
-      if ((*(char *)(_DAT_180c86950 + 0x1630) != '\0') &&
+      if ((*(char *)(_DAT + 0x1630) != '\0') &&
          ((longlong *)param_1[0x535] != (longlong *)0x0)) {
         (**(code **)(*(longlong *)param_1[0x535] + 0x40))();
       }
@@ -731,7 +731,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
             lVar22 = (longlong)plVar21 - (longlong)plVar17 >> 3;
             lVar20 = 1;
             if ((lVar22 == 0) || (lVar20 = lVar22 * 2, lVar20 != 0)) {
-              plVar15 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar20 * 8,(char)param_1[0x7d1]);
+              plVar15 = (longlong *)FUN_18062b420(_DAT,lVar20 * 8,(char)param_1[0x7d1]);
               plVar21 = (longlong *)param_1[1999];
               plVar17 = (longlong *)param_1[0x7ce];
             }
@@ -766,7 +766,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       lStack_250 = 0;
     }
     else {
-      lStack_250 = FUN_18062b420(_DAT_180c8ed18,lVar20 * 8,uStack_238 & 0xff);
+      lStack_250 = FUN_18062b420(_DAT,lVar20 * 8,uStack_238 & 0xff);
     }
     lStack_240 = lStack_250 + lVar20 * 8;
     lVar20 = param_1[0x7ce];
@@ -786,7 +786,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
         lVar20 = lVar20 + 8;
       } while ((ulonglong)(longlong)iVar11 < (ulonglong)(param_1[0x1d] - *plVar14 >> 3));
     }
-    uVar16 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
+    uVar16 = FUN_18062b1e0(_DAT,0xe0,8,3);
     uStack_300 = &plStack_1d0;
     puStack_1c0 = &UNK_1801bc960;
     pcStack_1b8 = FUN_1801bc8d0;
@@ -805,9 +805,9 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       (**(code **)(*plStack_1e8 + 0x38))();
     }
     *(uint64_t *)(param_1[0xc18e] + 0x18) = 0xfffffffffffffffc;
-    lVar20 = _DAT_180c82868;
+    lVar20 = _DAT;
     plVar14 = (longlong *)param_1[0xc18e];
-    if (*(int *)(_DAT_180c8a9c8 + 0x380) == 0) {
+    if (*(int *)(_DAT + 0x380) == 0) {
       uStack_300 = &plStack_270;
       plStack_270 = plVar14;
       if (plVar14 != (longlong *)0x0) {
@@ -828,7 +828,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
         (**(code **)(*plVar14 + 0x70))();
       }
     }
-    uVar16 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
+    uVar16 = FUN_18062b1e0(_DAT,0xe0,8,3);
     uStack_300 = &plStack_1b0;
     puStack_1a0 = &UNK_1801bc890;
     puStack_198 = &UNK_1801bc880;
@@ -847,9 +847,9 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       (**(code **)(*plStack_1e0 + 0x38))();
     }
     *(uint64_t *)(param_1[0xc18f] + 0x18) = 0xfffffffffffffffe;
-    lVar20 = _DAT_180c82868;
+    lVar20 = _DAT;
     plVar14 = (longlong *)param_1[0xc18f];
-    if (*(int *)(_DAT_180c8a9c8 + 0x380) == 0) {
+    if (*(int *)(_DAT + 0x380) == 0) {
       uStack_300 = &plStack_268;
       plStack_268 = plVar14;
       if (plVar14 != (longlong *)0x0) {
@@ -877,7 +877,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
        (iVar6 = (int)(param_1[0xb6] - param_1[0xb5] >> 0x3f),
        iVar11 = (int)((param_1[0xb6] - param_1[0xb5]) / 0xc) + iVar6,
        iVar11 != iVar6 && -1 < iVar11 - iVar6)) {
-      pplVar13 = (longlong **)FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
+      pplVar13 = (longlong **)FUN_18062b1e0(_DAT,0xe8,8,3);
       bVar24 = *(byte *)(param_2 + 0x37b);
       uStack_300 = pplVar13;
       FUN_180049830(pplVar13);
@@ -894,9 +894,9 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       if (pplStack_258 != (longlong **)0x0) {
         (*(code *)(*pplStack_258)[7])();
       }
-      lVar20 = _DAT_180c82868;
+      lVar20 = _DAT;
       plVar14 = (longlong *)param_1[0x4ce];
-      if (*(int *)(_DAT_180c8a9c8 + 0x380) == 0) {
+      if (*(int *)(_DAT + 0x380) == 0) {
         pplStack_258 = &plStack_260;
         plStack_260 = plVar14;
         if (plVar14 != (longlong *)0x0) {
@@ -906,20 +906,20 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       }
       else {
         (**(code **)(*plVar14 + 0x60))();
-        puVar3 = (uint64_t *)param_1[0x4ce];
-        if ((void *)*puVar3 == &UNK_180a0c2b8) {
+        puVar = (uint64_t *)param_1[0x4ce];
+        if ((void *)*puVar == &UNK_180a0c2b8) {
           LOCK();
-          *(int8_t *)(puVar3 + 2) = 1;
+          *(int8_t *)(puVar + 2) = 1;
           UNLOCK();
-          FUN_1800466d0(puVar3 + 4);
+          FUN_1800466d0(puVar + 4);
         }
         else {
-          (**(code **)((void *)*puVar3 + 0x70))();
+          (**(code **)((void *)*puVar + 0x70))();
         }
       }
     }
   }
-  lVar25 = _DAT_180c82868;
+  lVar25 = _DAT;
   plVar14 = param_1 + 0x6c;
   lVar20 = param_1[0x6d];
   lVar22 = *plVar14;
@@ -1042,7 +1042,7 @@ uint32_t process_entity_data_transfer(longlong *entity_data)
   *(uint64_t *)(temp_long2 + 0x126d8) = temp_uint64_t_5;
   
   // 设置状态标志
-  *(byte *)(*(longlong *)(entity_data + 200) + 0x126a0) = *(byte *)(_DAT_180c86870 + 0x224) & 1;
+  *(byte *)(*(longlong *)(entity_data + 200) + 0x126a0) = *(byte *)(_DAT + 0x224) & 1;
   *(int8_t *)(*(longlong *)(entity_data + 200) + 0x12670) = 1;
   
   // 线程安全地获取并重置状态值
