@@ -1,36 +1,59 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part118.c - 14 个函数
+// 03_rendering_part118.c - 渲染系统内存管理和数据结构操作
+// 
+// 本文件包含渲染系统中的核心内存管理和数据结构操作函数：
+// 1. 动态数组管理 - 支持数组的大小调整和内存重新分配
+// 2. 哈希表操作 - 提供线程安全的哈希表插入、查找和删除功能
+// 3. 内存管理 - 包括内存分配、释放和清理操作
+// 4. 对象生命周期管理 - 对象的创建、复制和销毁
+// 5. 线程安全操作 - 使用互斥锁保证多线程环境下的数据一致性
+//
+// 主要功能模块：
+// - 动态数组：Rendering_ArrayResize, Rendering_ArrayExpand, Rendering_ArrayCopy
+// - 哈希表：Rendering_HashTableInsert, Rendering_HashTableRemove, Rendering_HashTableClear, Rendering_HashTableAdd
+// - 内存管理：Rendering_MemoryCleanup, Rendering_MemoryRelease, Rendering_MemoryFree, Rendering_MemoryManager
+// - 对象操作：Rendering_ObjectInitialize, Rendering_ObjectCreate, Rendering_ObjectCopy
+// - 线程安全：Rendering_ThreadSafeUpdate, Rendering_ThreadSafeLookup
+//
+// 全局变量：
+// - MemoryAllocator_180c8ed18: 内存分配器实例
+// - VirtualTable_18098bcb0, VirtualTable_1809fcc58: 虚函数表
+// - DataStructure_180be0000: 数据结构实例
 
-// 函数: void FUN_18033ab50(longlong *param_1,ulonglong param_2)
-void FUN_18033ab50(longlong *param_1,ulonglong param_2)
-
+// 函数: void Rendering_ArrayResize_18033ab50(longlong *param_1,ulonglong param_2)
+// 功能：动态调整数组大小
+// 参数：
+//   param_1 - 数组控制结构指针（包含起始地址、结束地址、容量等信息）
+//   param_2 - 新的数组大小（元素个数）
+// 说明：该函数根据需要扩展或收缩数组，处理内存重新分配和数据迁移
+void Rendering_ArrayResize_18033ab50(longlong *param_1, ulonglong param_2)
 {
-  longlong lVar1;
-  undefined4 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  undefined1 *puVar5;
-  ulonglong uVar6;
-  undefined4 *puVar7;
-  longlong lVar8;
-  longlong in_stack_00000008;
+    longlong lVar1;
+    undefined4 *puVar2;
+    longlong lVar3;
+    ulonglong uVar4;
+    undefined1 *puVar5;
+    ulonglong uVar6;
+    undefined4 *puVar7;
+    longlong lVar8;
+    longlong in_stack_00000008;
   
-  lVar8 = param_1[1];
-  lVar1 = *param_1;
-  uVar4 = (lVar8 - lVar1) / 0xb0;
-  if (param_2 <= uVar4) {
-    lVar3 = param_2 * 0xb0 + lVar1;
-    if (lVar3 != lVar8) {
-      do {
-        FUN_180320a20(lVar3);
-        lVar3 = lVar3 + 0xb0;
-      } while (lVar3 != lVar8);
-      lVar1 = *param_1;
+    lVar8 = param_1[1];
+    lVar1 = *param_1;
+    uVar4 = (lVar8 - lVar1) / 0xb0;
+    if (param_2 <= uVar4) {
+        lVar3 = param_2 * 0xb0 + lVar1;
+        if (lVar3 != lVar8) {
+            do {
+                FUN_180320a20(lVar3);
+                lVar3 = lVar3 + 0xb0;
+            } while (lVar3 != lVar8);
+            lVar1 = *param_1;
+        }
+        param_1[1] = param_2 * 0xb0 + lVar1;
+        return;
     }
-    param_1[1] = param_2 * 0xb0 + lVar1;
-    return;
-  }
   param_2 = param_2 - uVar4;
   puVar7 = (undefined4 *)param_1[1];
   if ((ulonglong)((param_1[2] - (longlong)puVar7) / 0xb0) < param_2) {
@@ -45,7 +68,7 @@ void FUN_18033ab50(longlong *param_1,ulonglong param_2)
     }
     lVar1 = 0;
     if (uVar4 != 0) {
-      lVar1 = FUN_18062b420(_DAT_180c8ed18,uVar4 * 0xb0,(char)param_1[3]);
+      lVar1 = FUN_18062b420(MemoryAllocator_180c8ed18,uVar4 * 0xb0,(char)param_1[3]);
       puVar7 = (undefined4 *)param_1[1];
       lVar8 = *param_1;
     }
@@ -54,10 +77,10 @@ void FUN_18033ab50(longlong *param_1,ulonglong param_2)
       puVar5 = (undefined1 *)(in_stack_00000008 + 0x48);
       uVar6 = param_2;
       do {
-        *(undefined **)(puVar5 + -0x18) = &UNK_18098bcb0;
+        *(undefined **)(puVar5 + -0x18) = &VirtualTable_18098bcb0;
         *(undefined8 *)(puVar5 + -0x10) = 0;
         *(undefined4 *)(puVar5 + -8) = 0;
-        *(undefined **)(puVar5 + -0x18) = &UNK_1809fcc58;
+        *(undefined **)(puVar5 + -0x18) = &VirtualTable_1809fcc58;
         *(undefined1 **)(puVar5 + -0x10) = puVar5;
         *(undefined4 *)(puVar5 + -8) = 0;
         *puVar5 = 0;
@@ -92,10 +115,10 @@ void FUN_18033ab50(longlong *param_1,ulonglong param_2)
       puVar2 = puVar7 + 0x12;
       uVar4 = param_2;
       do {
-        *(undefined **)(puVar2 + -6) = &UNK_18098bcb0;
+        *(undefined **)(puVar2 + -6) = &VirtualTable_18098bcb0;
         *(undefined8 *)(puVar2 + -4) = 0;
         puVar2[-2] = 0;
-        *(undefined **)(puVar2 + -6) = &UNK_1809fcc58;
+        *(undefined **)(puVar2 + -6) = &VirtualTable_1809fcc58;
         *(undefined4 **)(puVar2 + -4) = puVar2;
         puVar2[-2] = 0;
         *(undefined1 *)puVar2 = 0;
@@ -117,14 +140,21 @@ void FUN_18033ab50(longlong *param_1,ulonglong param_2)
 
 
 
-longlong FUN_18033ac00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: longlong Rendering_ObjectInitialize_18033ac00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 功能：初始化渲染对象
+// 参数：
+//   param_1 - 对象指针
+//   param_2, param_3, param_4 - 初始化参数
+// 返回值：初始化后的对象指针
+// 说明：设置对象的默认值，包括浮点参数、互斥锁等
+longlong Rendering_ObjectInitialize_18033ac00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   *(undefined4 *)(param_1 + 0x20) = 0x3f800000;
   *(undefined4 *)(param_1 + 0x24) = 0x40000000;
   *(undefined4 *)(param_1 + 0x2c) = 3;
   *(undefined8 *)(param_1 + 0x10) = 1;
-  *(undefined **)(param_1 + 8) = &DAT_180be0000;
+  *(undefined **)(param_1 + 8) = &DataStructure_180be0000;
   *(undefined8 *)(param_1 + 0x18) = 0;
   *(undefined4 *)(param_1 + 0x28) = 0;
   _Mtx_init_in_situ(param_1 + 0x30,2,param_3,param_4,0xfffffffffffffffe);
@@ -135,8 +165,13 @@ longlong FUN_18033ac00(longlong param_1,undefined8 param_2,undefined8 param_3,un
 
 
 
-// 函数: void FUN_18033ac70(longlong param_1,undefined8 param_2)
-void FUN_18033ac70(longlong param_1,undefined8 param_2)
+// 函数: void Rendering_ThreadSafeUpdate_18033ac70(longlong param_1,undefined8 param_2)
+// 功能：线程安全的数据更新
+// 参数：
+//   param_1 - 包含互斥锁的对象指针
+//   param_2 - 要更新的数据
+// 说明：使用互斥锁确保多线程环境下的数据安全更新
+void Rendering_ThreadSafeUpdate_18033ac70(longlong param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -159,8 +194,8 @@ void FUN_18033ac70(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18033ad00(longlong param_1)
-void FUN_18033ad00(longlong param_1)
+// 函数: void Rendering_MemoryCleanup_18033ad00(longlong param_1)
+void Rendering_MemoryCleanup_18033ad00(longlong param_1)
 
 {
   ulonglong uVar1;
@@ -193,8 +228,8 @@ void FUN_18033ad00(longlong param_1)
 
 
 
-// 函数: void FUN_18033ad29(void)
-void FUN_18033ad29(void)
+// 函数: void Rendering_MemoryRelease_18033ad29(void)
+void Rendering_MemoryRelease_18033ad29(void)
 
 {
   longlong lVar1;
@@ -221,8 +256,8 @@ void FUN_18033ad29(void)
 
 
 
-// 函数: void FUN_18033ad68(longlong param_1)
-void FUN_18033ad68(longlong param_1)
+// 函数: void Rendering_SetValue_18033ad68(longlong param_1)
+void Rendering_SetValue_18033ad68(longlong param_1)
 
 {
   undefined8 unaff_R15;
@@ -233,7 +268,14 @@ void FUN_18033ad68(longlong param_1)
 
 
 
-longlong FUN_18033ad80(longlong param_1,uint *param_2)
+// 函数: longlong Rendering_HashTableRemove_18033ad80(longlong param_1,uint *param_2)
+// 功能：从哈希表中移除指定键值对
+// 参数：
+//   param_1 - 哈希表指针
+//   param_2 - 要移除的键值指针
+// 返回值：移除操作前后的元素数量差
+// 说明：在哈希表中查找并移除指定键，处理链表冲突
+longlong Rendering_HashTableRemove_18033ad80(longlong param_1,uint *param_2)
 
 {
   uint *puVar1;
@@ -274,8 +316,8 @@ longlong FUN_18033ad80(longlong param_1,uint *param_2)
 
 
 
-// 函数: void FUN_18033ae70(longlong param_1)
-void FUN_18033ae70(longlong param_1)
+// 函数: void Rendering_HashTableClear_18033ae70(longlong param_1)
+void Rendering_HashTableClear_18033ae70(longlong param_1)
 
 {
   ulonglong uVar1;
@@ -309,9 +351,8 @@ void FUN_18033ae70(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_18033af10(longlong param_1,undefined8 *param_2,undefined8 param_3,int *param_4,ulonglong param_5
-             )
+// 函数: undefined8 *Rendering_HashTableInsert_18033af10(longlong param_1,undefined8 *param_2,undefined8 param_3,int *param_4,ulonglong param_5)
+undefined8 *Rendering_HashTableInsert_18033af10(longlong param_1,undefined8 *param_2,undefined8 param_3,int *param_4,ulonglong param_5)
 
 {
   undefined8 *puVar1;
@@ -337,7 +378,7 @@ FUN_18033af10(longlong param_1,undefined8 *param_2,undefined8 param_3,int *param
   }
   FUN_18066c220(param_1 + 0x20,&param_5,(ulonglong)*(uint *)(param_1 + 0x10),
                 *(undefined4 *)(param_1 + 0x18),1);
-  piVar5 = (int *)FUN_18062b420(_DAT_180c8ed18,0x40,*(undefined1 *)(param_1 + 0x2c));
+  piVar5 = (int *)FUN_18062b420(MemoryAllocator_180c8ed18,0x40,*(undefined1 *)(param_1 + 0x2c));
   *piVar5 = *param_4;
   piVar4 = piVar5 + 2;
   piVar5[8] = 0;
@@ -362,7 +403,7 @@ FUN_18033af10(longlong param_1,undefined8 *param_2,undefined8 param_3,int *param
     *(undefined1 *)(param_2 + 2) = 1;
     return param_2;
   }
-  uVar6 = FUN_18062b1e0(_DAT_180c8ed18,(ulonglong)param_5._4_4_ * 8 + 8,8,
+  uVar6 = FUN_18062b1e0(MemoryAllocator_180c8ed18,(ulonglong)param_5._4_4_ * 8 + 8,8,
                         *(undefined1 *)(param_1 + 0x2c));
                     // WARNING: Subroutine does not return
   memset(uVar6,0,(ulonglong)param_5._4_4_ * 8);
@@ -372,8 +413,8 @@ FUN_18033af10(longlong param_1,undefined8 *param_2,undefined8 param_3,int *param
 
 
 
-// 函数: void FUN_18033b120(longlong *param_1)
-void FUN_18033b120(longlong *param_1)
+// 函数: void Rendering_IteratorCleanup_18033b120(longlong *param_1)
+void Rendering_IteratorCleanup_18033b120(longlong *param_1)
 
 {
   longlong *plVar1;
@@ -399,8 +440,8 @@ void FUN_18033b120(longlong *param_1)
 
 
 
-// 函数: void FUN_18033b1a0(longlong param_1)
-void FUN_18033b1a0(longlong param_1)
+// 函数: void Rendering_MemoryFree_18033b1a0(longlong param_1)
+void Rendering_MemoryFree_18033b1a0(longlong param_1)
 
 {
   ulonglong uVar1;
@@ -433,8 +474,8 @@ void FUN_18033b1a0(longlong param_1)
 
 
 
-// 函数: void FUN_18033b1c9(void)
-void FUN_18033b1c9(void)
+// 函数: void Rendering_MemoryDeallocate_18033b1c9(void)
+void Rendering_MemoryDeallocate_18033b1c9(void)
 
 {
   longlong lVar1;
@@ -461,8 +502,8 @@ void FUN_18033b1c9(void)
 
 
 
-// 函数: void FUN_18033b208(longlong param_1)
-void FUN_18033b208(longlong param_1)
+// 函数: void Rendering_SetFieldValue_18033b208(longlong param_1)
+void Rendering_SetFieldValue_18033b208(longlong param_1)
 
 {
   undefined8 unaff_R15;
@@ -475,7 +516,8 @@ void FUN_18033b208(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18033b220(longlong param_1,undefined8 *param_2,uint *param_3)
+// 函数: undefined8 *Rendering_HashTableAdd_18033b220(longlong param_1,undefined8 *param_2,uint *param_3)
+undefined8 *Rendering_HashTableAdd_18033b220(longlong param_1,undefined8 *param_2,uint *param_3)
 
 {
   uint uVar1;
@@ -495,7 +537,7 @@ undefined8 * FUN_18033b220(longlong param_1,undefined8 *param_2,uint *param_3)
   lVar7 = *(longlong *)(param_1 + 8) + uVar8 * 8;
   do {
     if (puVar5 == (uint *)0x0) {
-      puVar5 = (uint *)FUN_18062b420(_DAT_180c8ed18,0x18,*(undefined1 *)(param_1 + 0x2c));
+      puVar5 = (uint *)FUN_18062b420(MemoryAllocator_180c8ed18,0x18,*(undefined1 *)(param_1 + 0x2c));
       uVar2 = param_3[1];
       uVar3 = param_3[2];
       uVar4 = param_3[3];
@@ -534,8 +576,8 @@ LAB_18033b2fa:
 
 
 
-// 函数: void FUN_18033b330(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18033b330(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void Rendering_ObjectCreate_18033b330(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void Rendering_ObjectCreate_18033b330(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -557,7 +599,8 @@ void FUN_18033b330(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-undefined8 FUN_18033b3a0(longlong param_1,uint param_2)
+// 函数: undefined8 Rendering_ThreadSafeLookup_18033b3a0(longlong param_1,uint param_2)
+undefined8 Rendering_ThreadSafeLookup_18033b3a0(longlong param_1,uint param_2)
 
 {
   longlong lVar1;
@@ -601,7 +644,8 @@ LAB_18033b418:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18033b460(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: longlong Rendering_ObjectCopy_18033b460(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+longlong Rendering_ObjectCopy_18033b460(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   uint uVar1;
@@ -668,7 +712,7 @@ longlong FUN_18033b460(longlong param_1,longlong param_2,undefined8 param_3,unde
   lVar7 = 0;
   lVar6 = lVar7;
   if (lVar8 != 0) {
-    lVar6 = FUN_18062b420(_DAT_180c8ed18,lVar8 * 8,uVar1 & 0xff,param_4,uVar9);
+    lVar6 = FUN_18062b420(MemoryAllocator_180c8ed18,lVar8 * 8,uVar1 & 0xff,param_4,uVar9);
   }
   *(longlong *)(param_1 + 0x130) = lVar6;
   *(longlong *)(param_1 + 0x138) = lVar6;
@@ -685,7 +729,7 @@ longlong FUN_18033b460(longlong param_1,longlong param_2,undefined8 param_3,unde
   *(uint *)(param_1 + 0x168) = uVar1;
   lVar6 = lVar7;
   if (lVar8 != 0) {
-    lVar6 = FUN_18062b420(_DAT_180c8ed18,lVar8 << 6,uVar1 & 0xff,param_4,uVar9);
+    lVar6 = FUN_18062b420(MemoryAllocator_180c8ed18,lVar8 << 6,uVar1 & 0xff,param_4,uVar9);
   }
   *(longlong *)(param_1 + 0x150) = lVar6;
   *(longlong *)(param_1 + 0x158) = lVar6;
@@ -698,7 +742,7 @@ longlong FUN_18033b460(longlong param_1,longlong param_2,undefined8 param_3,unde
     uVar1 = *(uint *)(param_2 + 0x188);
     *(uint *)(param_1 + 0x188) = uVar1;
     if (lVar6 != 0) {
-      lVar7 = FUN_18062b420(_DAT_180c8ed18,lVar6,uVar1 & 0xff,param_4,uVar9);
+      lVar7 = FUN_18062b420(MemoryAllocator_180c8ed18,lVar6,uVar1 & 0xff,param_4,uVar9);
     }
     *(longlong *)(param_1 + 0x170) = lVar7;
     *(longlong *)(param_1 + 0x178) = lVar7;
@@ -722,8 +766,8 @@ longlong FUN_18033b460(longlong param_1,longlong param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_18033b720(longlong param_1)
-void FUN_18033b720(longlong param_1)
+// 函数: void Rendering_MemoryManager_18033b720(longlong param_1)
+void Rendering_MemoryManager_18033b720(longlong param_1)
 
 {
   int *piVar1;
@@ -762,7 +806,8 @@ void FUN_18033b720(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_18033b760(longlong *param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+// 函数: longlong *Rendering_ArrayCopy_18033b760(longlong *param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+longlong *Rendering_ArrayCopy_18033b760(longlong *param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 
 {
   uint uVar1;
@@ -776,7 +821,7 @@ longlong * FUN_18033b760(longlong *param_1,longlong *param_2,undefined8 param_3,
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,lVar3 * 8,uVar1 & 0xff,param_4,0xfffffffffffffffe);
+    lVar2 = FUN_18062b420(MemoryAllocator_180c8ed18,lVar3 * 8,uVar1 & 0xff,param_4,0xfffffffffffffffe);
   }
   *param_1 = lVar2;
   param_1[1] = lVar2;
@@ -794,8 +839,8 @@ longlong * FUN_18033b760(longlong *param_1,longlong *param_2,undefined8 param_3,
 
 
 
-// 函数: void FUN_18033b800(longlong param_1)
-void FUN_18033b800(longlong param_1)
+// 函数: void Rendering_MemoryHandler_18033b800(longlong param_1)
+void Rendering_MemoryHandler_18033b800(longlong param_1)
 
 {
   int *piVar1;
@@ -836,8 +881,8 @@ void FUN_18033b800(longlong param_1)
 
 
 
-// 函数: void FUN_18033b840(longlong *param_1,ulonglong param_2)
-void FUN_18033b840(longlong *param_1,ulonglong param_2)
+// 函数: void Rendering_ArrayExpand_18033b840(longlong *param_1,ulonglong param_2)
+void Rendering_ArrayExpand_18033b840(longlong *param_1,ulonglong param_2)
 
 {
   longlong lVar1;
@@ -863,7 +908,7 @@ void FUN_18033b840(longlong *param_1,ulonglong param_2)
     }
     lVar1 = 0;
     if (uVar4 != 0) {
-      lVar1 = FUN_18062b420(_DAT_180c8ed18,uVar4 * 0xb0,(char)param_1[3]);
+      lVar1 = FUN_18062b420(MemoryAllocator_180c8ed18,uVar4 * 0xb0,(char)param_1[3]);
       puVar6 = (undefined4 *)param_1[1];
       lVar7 = *param_1;
     }
@@ -874,10 +919,10 @@ void FUN_18033b840(longlong *param_1,ulonglong param_2)
       uVar5 = param_2;
       do {
         puStackX_8 = puVar2 + -0x12;
-        *(undefined **)(puVar2 + -6) = &UNK_18098bcb0;
+        *(undefined **)(puVar2 + -6) = &VirtualTable_18098bcb0;
         *(undefined8 *)(puVar2 + -4) = 0;
         puVar2[-2] = 0;
-        *(undefined **)(puVar2 + -6) = &UNK_1809fcc58;
+        *(undefined **)(puVar2 + -6) = &VirtualTable_1809fcc58;
         *(undefined4 **)(puVar2 + -4) = puVar2;
         puVar2[-2] = 0;
         *(undefined1 *)puVar2 = 0;
@@ -913,10 +958,10 @@ void FUN_18033b840(longlong *param_1,ulonglong param_2)
       puVar2 = puVar6 + 0x12;
       uVar4 = param_2;
       do {
-        *(undefined **)(puVar2 + -6) = &UNK_18098bcb0;
+        *(undefined **)(puVar2 + -6) = &VirtualTable_18098bcb0;
         *(undefined8 *)(puVar2 + -4) = 0;
         puVar2[-2] = 0;
-        *(undefined **)(puVar2 + -6) = &UNK_1809fcc58;
+        *(undefined **)(puVar2 + -6) = &VirtualTable_1809fcc58;
         *(undefined4 **)(puVar2 + -4) = puVar2;
         puVar2[-2] = 0;
         *(undefined1 *)puVar2 = 0;
