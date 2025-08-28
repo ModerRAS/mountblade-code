@@ -538,7 +538,7 @@ static int32_t ui_system_sync_control_state(uint32_t control_id, int8_t sync_mod
         
         if (sync_data_ptr == 0) {
             if (context_ptr != 0) {
-                FUN_180743d60(context_ptr, 7);
+                UISystem_ContextCleaner(context_ptr, 7);
             }
             result = 0x26;
             goto sync_complete;
@@ -555,13 +555,13 @@ static int32_t ui_system_sync_control_state(uint32_t control_id, int8_t sync_mod
         result = func_0x00018078b810(*(uint64_t*)(g_ui_system_context->controls[control_id].control_data + 0xa8));
         if (result == 0) {
             if (context_ptr != 0) {
-                FUN_180743d60(context_ptr, 7);
+                UISystem_ContextCleaner(context_ptr, 7);
             }
             goto sync_complete;
         }
         
         if (context_ptr != 0) {
-            FUN_180743d60(context_ptr, 7);
+            UISystem_ContextCleaner(context_ptr, 7);
         }
     }
     
@@ -570,7 +570,7 @@ static int32_t ui_system_sync_control_state(uint32_t control_id, int8_t sync_mod
 sync_complete:
     // 清理资源
     if ((context_ptr != 0) && (context_ptr != 0)) {
-        FUN_180743d60(context_ptr, 7);
+        UISystem_ContextCleaner(context_ptr, 7);
     }
     
     return result;
