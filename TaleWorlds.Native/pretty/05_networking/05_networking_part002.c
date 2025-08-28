@@ -451,7 +451,7 @@ int process_encrypted_packet_validation(longlong encryption_config, longlong dat
   bytes_processed = bytes_processed + bytes_validated;
   
   // 执行签名验证
-  bytes_validated = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_key);
+  bytes_validated = validate_packet_signature(bytes_processed + data_ptr, data_size - bytes_processed, signature_key);
   return bytes_validated + bytes_processed;
 }
 
@@ -495,7 +495,7 @@ int process_secure_data_validation(longlong security_config, longlong data_ptr, 
   bytes_processed = bytes_processed + bytes_validated;
   
   // 执行签名验证
-  bytes_validated = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_key);
+  bytes_validated = validate_packet_signature(bytes_processed + data_ptr, data_size - bytes_processed, signature_key);
   return bytes_validated + bytes_processed;
 }
 
@@ -539,7 +539,7 @@ int process_composite_data_validation(longlong validation_config, longlong data_
   bytes_processed = bytes_processed + bytes_validated;
   
   // 执行签名验证
-  bytes_validated = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_key);
+  bytes_validated = validate_packet_signature(bytes_processed + data_ptr, data_size - bytes_processed, signature_key);
   return bytes_validated + bytes_processed;
 }
 
@@ -581,7 +581,7 @@ int process_extended_data_validation(longlong extended_config, longlong data_ptr
   bytes_processed = bytes_processed + bytes_validated;
   
   // 执行最终签名验证
-  bytes_validated = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_key);
+  bytes_validated = validate_packet_signature(bytes_processed + data_ptr, data_size - bytes_processed, signature_key);
   return bytes_validated + bytes_processed;
 }
 
