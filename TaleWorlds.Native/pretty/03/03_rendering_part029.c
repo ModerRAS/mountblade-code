@@ -7,7 +7,6 @@
 void process_rendering_materials(longlong *render_context, longlong material_data, 
                                 longlong source_data, longlong target_data, 
                                 uint render_flags)
-                  )
 
 {
   undefined8 transform_matrix1;
@@ -236,15 +235,16 @@ void compare_rendering_data(undefined8 *render_obj1, undefined8 render_obj2)
   longlong obj_array3[6];
   ulonglong stack_cookie;
   
-  uStack_4d8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_538;
-  lVar9 = 0;
-  uStack_518 = 0;
-  uStack_508 = param_2;
-  uVar6 = FUN_18062b1e0(_DAT_180c8ed18,0x1c8,8,3);
-  lVar7 = FUN_180339110(uVar6);
-  lStack_4e0 = lVar7;
-  FUN_180627ae0(&puStack_500,param_1 + 0x3e);
+  // 初始化安全保护和比较上下文
+  security_cookie = 0xfffffffffffffffe;
+  stack_cookie = _GLOBAL_RENDER_GUARD ^ (ulonglong)security_key;
+  data_ptr3 = 0;
+  context_flags = 0;
+  render_state = render_obj2;
+  hash_value = create_render_context(_GLOBAL_RENDER_CONTEXT, 0x1c8, 8, 3);
+  compare_context = get_render_object_offset(hash_value);
+  context_handle = compare_context;
+  prepare_render_source(&comparison_buffer1, render_obj1 + 0x3e);
   while ((0 < (int)uStack_4f0 && (lVar8 = strstr(puStack_4f8,&DAT_180a0ff10), lVar8 != 0))) {
     iVar15 = 6;
     iVar5 = (int)lVar8 - (int)puStack_4f8;
