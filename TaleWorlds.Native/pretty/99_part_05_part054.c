@@ -405,7 +405,7 @@ void FUN_1802fbee0(longlong param_1,char param_2,longlong *param_3)
   if (iVar5 == 0) {
     cVar4 = func_0x000180282950();
     if (cVar4 != '\0') {
-      uVar8 = FUN_18062b1e0(_DAT_180c8ed18,200,8,3,uVar8);
+      uVar8 = FUN_18062b1e0(system_memory_pool_ptr,200,8,3,uVar8);
       plVar7 = (longlong *)FUN_18030b420(uVar8,param_3,0);
       if (plVar7 != (longlong *)0x0) {
         (**(code **)(*plVar7 + 0x28))(plVar7);
@@ -476,7 +476,7 @@ void FUN_1802fbf30(longlong param_1,char param_2,longlong *param_3,uint64_t para
   if (iVar4 == 0) {
     cVar3 = func_0x000180282950();
     if (cVar3 != '\0') {
-      uVar7 = FUN_18062b1e0(_DAT_180c8ed18,200,8,3,uVar7);
+      uVar7 = FUN_18062b1e0(system_memory_pool_ptr,200,8,3,uVar7);
       plVar6 = (longlong *)FUN_18030b420(uVar7,param_3,0);
       if (plVar6 != (longlong *)0x0) {
         (**(code **)(*plVar6 + 0x28))(plVar6);
@@ -560,7 +560,7 @@ void FUN_1802fc0f0(longlong param_1,longlong *param_2,uint64_t param_3,int8_t pa
   if (iVar5 == 0) {
     cVar4 = func_0x000180282950(param_2);
     if (cVar4 != '\0') {
-      uVar6 = FUN_18062b1e0(_DAT_180c8ed18,200,8,3);
+      uVar6 = FUN_18062b1e0(system_memory_pool_ptr,200,8,3);
       plVar7 = (longlong *)FUN_18030b420(uVar6,param_2,1);
       plStackX_18 = plVar7;
       if (plVar7 != (longlong *)0x0) {

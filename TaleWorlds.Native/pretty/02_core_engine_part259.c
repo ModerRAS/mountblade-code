@@ -282,7 +282,7 @@ void FUN_180227690(longlong param_1)
   void *puVar6;
   
   if (*(char *)(*(longlong *)(param_1 + 0x20) + 0x18) == '\0') {
-    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x1e0,0x10,3,0xfffffffffffffffe);
+    uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x1e0,0x10,3,0xfffffffffffffffe);
     plVar5 = (longlong *)FUN_18040af60(uVar4);
     if (plVar5 != (longlong *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
@@ -300,7 +300,7 @@ void FUN_180227690(longlong param_1)
     (**(code **)(*plVar5 + 0x10))(plVar5,puVar6);
     *(longlong *)(*(longlong *)(param_1 + 0xb0) + 0xa8) = param_1;
     *(int8_t *)(*(longlong *)(param_1 + 0xb0) + 0xb1) = 1;
-    lVar2 = _DAT_180c86930;
+    lVar2 = system_resource_state;
     plVar5 = *(longlong **)(param_1 + 0xb0);
     iVar3 = (**(code **)(*plVar5 + 0x60))(plVar5);
     *(int8_t *)((longlong)plVar5 + 0xb2) = 1;

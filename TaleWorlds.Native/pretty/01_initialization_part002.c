@@ -160,7 +160,7 @@ void FUN_18002d550(void)
   strcpy_s(auStack_88, 0x80, &unknown_var_5216_ptr, in_R9, 0xfffffffffffffffe);
   
   /* 存储处理结果 */
-  _DAT_180c9190c = FUN_180623800(&puStack_a0);
+  init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 

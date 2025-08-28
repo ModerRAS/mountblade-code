@@ -214,12 +214,12 @@ void LinkedListNodeInitializer(uint64_t param_1)
     // 检查内存分配是否成功
     if (puVar1 != (uint64_t *)0x0) {
         // 初始化节点数据
-        *puVar1 = _DAT_180c82800;        // 设置前驱节点指针
+        *puVar1 = system_system_data_file;        // 设置前驱节点指针
         puVar1[1] = param_1;             // 设置节点数据
     }
     
     // 更新全局链表头指针
-    _DAT_180c82800 = puVar1;
+    system_system_data_file = puVar1;
     
     return;
 }

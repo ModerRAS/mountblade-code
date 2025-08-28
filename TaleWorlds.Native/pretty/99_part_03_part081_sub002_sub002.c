@@ -438,7 +438,7 @@ void FUN_180246810(int32_t *param_1)
   LOCK();
   param_1[0x264e] = 0;
   UNLOCK();
-  lVar5 = _DAT_180c86890 + 0xee0;
+  lVar5 = system_parameter_buffer + 0xee0;
   *(uint64_t *)(param_1 + 0x263e) = 0;
   *(uint64_t *)(param_1 + 0x2640) = 0;
   *(uint64_t *)(param_1 + 0x2642) = 0;

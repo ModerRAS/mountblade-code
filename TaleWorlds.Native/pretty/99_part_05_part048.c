@@ -140,7 +140,7 @@ void FUN_1802f8a10(uint64_t *param_1)
       FUN_18064e900(lVar2);
     }
   }
-  uVar3 = _DAT_180c8ed18;
+  uVar3 = system_memory_pool_ptr;
   param_1[0xb] = 0;
   uVar3 = FUN_18062b1e0(uVar3,0x11b0,0x10,4);
   lVar2 = FUN_180434170(uVar3);
@@ -170,7 +170,7 @@ void FUN_1802f8a31(void)
   
   lVar1 = __RTCastToVoid();
   (**(code **)(*unaff_RBX + 0x20))();
-  uVar2 = _DAT_180c8ed18;
+  uVar2 = system_memory_pool_ptr;
   if (lVar1 == 0) {
     unaff_RDI[0xb] = 0;
     uVar2 = FUN_18062b1e0(uVar2,0x11b0,0x10,4);
@@ -201,7 +201,7 @@ void FUN_1802f8a5c(void)
   longlong lVar2;
   uint64_t *unaff_RDI;
   
-  uVar1 = _DAT_180c8ed18;
+  uVar1 = system_memory_pool_ptr;
   unaff_RDI[0xb] = 0;
   uVar1 = FUN_18062b1e0(uVar1,0x11b0,0x10,4);
   lVar2 = FUN_180434170(uVar1);
@@ -263,7 +263,7 @@ void FUN_1802f8b20(uint64_t *param_1,float param_2)
   else {
     cVar6 = (**(code **)((void *)*param_1 + 0xe8))(param_1);
   }
-  if ((cVar6 != '\0') && (*(char *)(_DAT_180c86878 + 0x210) == '\0')) {
+  if ((cVar6 != '\0') && (*(char *)(system_system_data_config + 0x210) == '\0')) {
     plVar4 = *(longlong **)(param_1[0xb] + 8);
     lVar5 = *plVar4;
     if ((lVar5 != 0) && ((0.99 < *(float *)(plVar4 + 2) && (*(short *)(lVar5 + 0x7c) != -1)))) {
@@ -583,7 +583,7 @@ uint64_t * FUN_1802f9080(uint64_t param_1,uint64_t param_2)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0xfffffffffffffffe);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3,0xfffffffffffffffe);
   *puVar1 = &unknown_var_1864_ptr;
   *puVar1 = &unknown_var_1608_ptr;
   puVar1[9] = 0;
@@ -632,7 +632,7 @@ void FUN_1802f9110(longlong *param_1,longlong *param_2,longlong param_3,uint64_t
   if (iVar3 == 0) {
     cVar2 = func_0x000180282950();
     if (cVar2 != '\0') {
-      uVar4 = FUN_18062b1e0(_DAT_180c8ed18,200,8,3);
+      uVar4 = FUN_18062b1e0(system_memory_pool_ptr,200,8,3);
       plVar5 = (longlong *)FUN_18030b420(uVar4,param_2);
       plStackX_18 = plVar5;
       if (plVar5 != (longlong *)0x0) {
