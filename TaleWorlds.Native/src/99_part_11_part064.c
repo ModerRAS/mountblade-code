@@ -1155,79 +1155,92 @@ CLEANUP_AND_EXIT:
 
 
 
-// 函数: void FUN_1807c48c6(void)
-void FUN_1807c48c6(void)
+/**
+ * 资源初始化器 - 初始化系统资源
+ * 
+ * 功能：
+ * - 初始化系统资源
+ * - 设置资源参数
+ * - 分配资源缓冲区
+ * - 配置资源状态
+ * 
+ * @param resource_context 资源上下文（通过寄存器传递）
+ * @param resource_flag 资源标志（通过寄存器传递）
+ * @return 无返回值
+ */
+void resource_initializer(void)
 
 {
-  int iVar1;
-  longlong unaff_RBX;
-  undefined4 unaff_ESI;
-  longlong lVar2;
-  longlong in_stack_00000038;
-  ulonglong in_stack_00000050;
+  int init_result;
+  longlong resource_context;
+  undefined4 resource_flag;
+  longlong string_length;
+  longlong temp_string;
+  ulonglong stack_checksum;
   
-  iVar1 = FUN_18076b6f0(&UNK_18097c600,&stack0x00000040);
-  if (iVar1 == 0) {
-    iVar1 = FUN_1807c5610();
+  init_result = string_compare_function(&GLOBAL_STRING_TABLE, &stack_temp_buffer);
+  if (init_result == 0) {
+    init_result = resource_init_function1();
   }
   else {
-    iVar1 = FUN_18076b6f0(&UNK_18097c608,&stack0x00000040,10);
-    if (iVar1 == 0) {
-      iVar1 = FUN_1807c59a0();
+    init_result = string_compare_function(&GLOBAL_STRING_TABLE2, &stack_temp_buffer, 10);
+    if (init_result == 0) {
+      init_result = resource_init_function2();
     }
     else {
-      iVar1 = FUN_18076b6f0(&UNK_18097c618,&stack0x00000040,0xc);
-      if (iVar1 == 0) {
-        iVar1 = FUN_1807c4b10();
+      init_result = string_compare_function(&GLOBAL_STRING_TABLE3, &stack_temp_buffer, 0xc);
+      if (init_result == 0) {
+        init_result = resource_init_function3();
       }
       else {
-        iVar1 = FUN_18076b6f0(&UNK_18097c628,&stack0x00000040,0xc);
-        if (iVar1 == 0) {
-          iVar1 = FUN_1807c5ed0();
+        init_result = string_compare_function(&GLOBAL_STRING_TABLE4, &stack_temp_buffer, 0xc);
+        if (init_result == 0) {
+          init_result = resource_init_function4();
         }
         else {
-          iVar1 = FUN_18076b6f0(&UNK_18097c638,&stack0x00000040,0xc);
-          if (iVar1 == 0) {
-            iVar1 = FUN_1807c5030();
+          init_result = string_compare_function(&GLOBAL_STRING_TABLE5, &stack_temp_buffer, 0xc);
+          if (init_result == 0) {
+            init_result = resource_init_function5();
           }
           else {
-            iVar1 = func_0x000180769a80(*(undefined8 *)(unaff_RBX + 0x170),&stack0x00000038);
-            if (iVar1 != 0) goto LAB_1807c4ae3;
-            iVar1 = func_0x00018076b690(in_stack_00000038);
-            lVar2 = (longlong)(iVar1 + -4);
-            iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2,&UNK_18097c648,4);
-            if ((((iVar1 != 0) &&
-                 (iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2,&UNK_18097c650,4),
-                 iVar1 != 0)) &&
-                (iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2,&UNK_18097c658,4), iVar1 != 0
-                )) && (iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2,&UNK_18097c660,4),
-                      iVar1 != 0)) goto LAB_1807c4ae3;
-            iVar1 = FUN_1807c5c50();
+            init_result = read_string_function(*(undefined8 *)(resource_context + 0x170), &temp_string);
+            if (init_result != 0) goto CLEANUP_AND_EXIT;
+            init_result = get_string_length_function(temp_string);
+            string_length = (longlong)(init_result + -4);
+            init_result = string_compare_function(temp_string + string_length, &GLOBAL_STRING_TABLE6, 4);
+            if ((((init_result != 0) &&
+                 (init_result = string_compare_function(temp_string + string_length, &GLOBAL_STRING_TABLE7, 4),
+                 init_result != 0)) &&
+                (init_result = string_compare_function(temp_string + string_length, &GLOBAL_STRING_TABLE8, 4), init_result != 0
+                )) && (init_result = string_compare_function(temp_string + string_length, &GLOBAL_STRING_TABLE9, 4),
+                      init_result != 0)) goto CLEANUP_AND_EXIT;
+            init_result = resource_init_function6();
           }
         }
       }
     }
   }
-  if (iVar1 == 0) {
-    *(undefined8 *)(unaff_RBX + 0x178) = 0;
-    *(undefined8 *)(unaff_RBX + 0x180) = 0;
-    *(undefined8 *)(unaff_RBX + 0x188) = 0;
-    *(undefined8 *)(unaff_RBX + 400) = 0;
-    *(undefined8 *)(unaff_RBX + 0x198) = 0;
-    *(undefined8 *)(unaff_RBX + 0x1a0) = 0;
-    *(undefined8 *)(unaff_RBX + 0x1a8) = 0;
-    *(undefined8 **)(unaff_RBX + 8) = (undefined8 *)(unaff_RBX + 0x178);
-    *(undefined4 *)(unaff_RBX + 0x18) = unaff_ESI;
-    iVar1 = FUN_180769080(*(undefined8 *)(unaff_RBX + 0x170));
-    if (iVar1 == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(undefined8 *)(unaff_RBX + 0x170),
-                    &UNK_18097c670,0xb4,1);
+  if (init_result == 0) {
+    /* 初始化资源数据结构 */
+    *(undefined8 *)(resource_context + 0x178) = 0;
+    *(undefined8 *)(resource_context + 0x180) = 0;
+    *(undefined8 *)(resource_context + 0x188) = 0;
+    *(undefined8 *)(resource_context + 400) = 0;
+    *(undefined8 *)(resource_context + 0x198) = 0;
+    *(undefined8 *)(resource_context + 0x1a0) = 0;
+    *(undefined8 *)(resource_context + 0x1a8) = 0;
+    *(undefined8 **)(resource_context + 8) = (undefined8 *)(resource_context + 0x178);
+    *(undefined4 *)(resource_context + 0x18) = resource_flag;
+    init_result = resource_check_function(*(undefined8 *)(resource_context + 0x170));
+    if (init_result == 0) {
+      /* 执行资源初始化 - 此函数不返回 */
+      resource_processing_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), *(undefined8 *)(resource_context + 0x170),
+                    &GLOBAL_PROCESS_BUFFER, 0xb4, 1);
     }
   }
-LAB_1807c4ae3:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+CLEANUP_AND_EXIT:
+  /* 清理并退出 */
+  stack_cleanup_function(stack_checksum ^ (ulonglong)&stack_base_address);
 }
 
 
@@ -1235,14 +1248,25 @@ LAB_1807c4ae3:
 
 
 
-// 函数: void FUN_1807c4ae8(void)
-void FUN_1807c4ae8(void)
+/**
+ * 栈清理器 - 清理栈空间
+ * 
+ * 功能：
+ * - 清理栈空间
+ * - 释放栈资源
+ * - 重置栈状态
+ * - 执行栈保护检查
+ * 
+ * @param stack_checksum 栈校验和（通过栈传递）
+ * @return 无返回值（函数不返回）
+ */
+void stack_cleanup(void)
 
 {
-  ulonglong in_stack_00000050;
+  ulonglong stack_checksum;
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  /* 执行栈清理 - 此函数不返回 */
+  stack_cleanup_function(stack_checksum ^ (ulonglong)&stack_base_address);
 }
 
 
