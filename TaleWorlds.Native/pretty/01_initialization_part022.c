@@ -3,8 +3,8 @@
 
 // 01_initialization_part022.c - 25 个函数
 
-// 函数: void FUN_180056150(int64_t param_1)
-void FUN_180056150(int64_t param_1)
+// 函数: void SystemInitializer(int64_t param_1)
+void SystemInitializer(int64_t param_1)
 
 {
   char cVar1;
@@ -156,8 +156,8 @@ LAB_180056228:
 
 
 
-// 函数: void FUN_180056410(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180056410(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemDataProcessor(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void SystemDataProcessor(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t *puVar1;
@@ -245,8 +245,8 @@ void FUN_180056410(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 
 
 
-// 函数: void FUN_1800565f0(int64_t *param_1)
-void FUN_1800565f0(int64_t *param_1)
+// 函数: void SystemMemoryManager(int64_t *param_1)
+void SystemMemoryManager(int64_t *param_1)
 
 {
   uint64_t *puVar1;
@@ -309,7 +309,7 @@ void FUN_1800565f0(int64_t *param_1)
 
 
 
-uint64_t FUN_1800567c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+uint64_t SystemResourceAllocator(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uVar1;
@@ -328,8 +328,8 @@ uint64_t FUN_1800567c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
 
 
 
-// 函数: void FUN_180056810(int64_t param_1)
-void FUN_180056810(int64_t param_1)
+// 函数: void SystemConfigurator(int64_t param_1)
+void SystemConfigurator(int64_t param_1)
 
 {
   uint uVar1;

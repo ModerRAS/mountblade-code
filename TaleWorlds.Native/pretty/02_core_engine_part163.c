@@ -127,6 +127,10 @@ static uint32_t g_active_operations = 0;                  // 活跃操作数
 #define CoreEngineDataCleaner FUN_18014c7d0
 #define CoreEngineDataStructureSwapper FUN_18014c850
 #define CoreEngineSystemDataManager FUN_18014c9e0
+#define CoreEngineMemoryPoolInitializer FUN_18014e7d0
+#define CoreEngineMemoryPoolExpander FUN_18014e8b0
+#define CoreEngineDataArrayInitializer FUN_18014e020
+#define CoreEngineSystemEventProcessor FUN_18014a370
 
 /**
  * 核心引擎高级数据处理器
