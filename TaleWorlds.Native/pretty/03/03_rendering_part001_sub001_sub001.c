@@ -86,178 +86,183 @@ undefined UNK_180a05138;  // 管线缓存设置
 
 
 
-// 函数: undefined FUN_180651d20;
-undefined FUN_180651d20;
-undefined UNK_180180860;
-undefined UNK_1801808a0;
-undefined UNK_1801808b0;
-undefined UNK_1801808f0;
-undefined UNK_180180900;
-undefined UNK_18021cb40;
-undefined UNK_180941b00;
-undefined UNK_180a09c50;
-undefined UNK_180a09cf0;
-undefined UNK_180a0f0b8;
-undefined UNK_180a3dca0;
-undefined UNK_180a3dcb0;
-undefined UNK_180a3e030;
+// 函数: 初始化渲染缓冲区
+// 负责初始化渲染所需的缓冲区资源，包括颜色、深度、模板缓冲区
+undefined init_render_buffers;
+undefined buffer_config;        // 缓冲区配置参数
+undefined buffer_format;        // 缓冲区格式设置
+undefined buffer_size;          // 缓冲区尺寸配置
+undefined buffer_alignment;     // 缓冲区对齐设置
+undefined buffer_flags;         // 缓冲区标志位
+undefined device_info;          // 设备信息结构
+undefined surface_desc;         // 渲染表面描述
+undefined color_format;         // 颜色格式设置
+undefined depth_format;         // 深度格式设置
+undefined buffer_layout;        // 缓冲区布局
+undefined memory_pool;           // 内存池管理
+undefined resource_handle;      // 资源句柄
+undefined buffer_type;          // 缓冲区类型
+undefined usage_flags;          // 使用标志位
 
 
 
 
-// 函数: undefined FUN_18031c090;
-undefined FUN_18031c090;
-undefined UNK_180a0b348;
-undefined UNK_180a0b358;
-undefined UNK_180a0b368;
-undefined UNK_180a0b378;
-undefined UNK_180a0b388;
-undefined UNK_180a0b390;
-undefined UNK_180a0b3a8;
-undefined DAT_180a0b3b8;
-undefined UNK_180a0b3c0;
-undefined UNK_180a0b3d4;
-undefined UNK_180a0b3e0;
-undefined UNK_180a0b3f0;
-undefined UNK_180a0b408;
-undefined UNK_180a0b420;
-undefined UNK_180a0b438;
-undefined UNK_180a0b450;
-undefined UNK_180a0b480;
-undefined UNK_180a0b498;
-undefined UNK_180a0b4b0;
-undefined UNK_180a0b4e0;
-undefined UNK_180a0b500;
-undefined UNK_180a0b518;
-undefined UNK_180a0b530;
-undefined UNK_180a0b550;
-undefined UNK_180a0b568;
-undefined DAT_180a0b57c;
-undefined UNK_180a0b590;
-undefined UNK_180a0b5a0;
-undefined UNK_180a0b5b8;
-undefined UNK_180a0b5d8;
-undefined UNK_180a0c288;
-char DAT_180d48d64;
-undefined UNK_1801bc820;
-undefined UNK_1801bc840;
-char DAT_180c82847;
-undefined DAT_180a3fc80;
-undefined UNK_18027d980;
-undefined UNK_180a03038;
-undefined DAT_180a40490;
-undefined DAT_180d49630;
+// 函数: 创建纹理资源
+// 负责创建和管理纹理资源，包括2D纹理、3D纹理、立方体贴图等
+undefined create_texture_resource;
+undefined texture_params;       // 纹理参数配置
+undefined texture_format;       // 纹理格式设置
+undefined texture_dimensions;  // 纹理尺寸配置
+undefined texture_mips;         // 纹理MIP层级
+undefined texture_filter;       // 纹理过滤模式
+undefined texture_wrap;         // 纹理包裹模式
+undefined texture_border;      // 纹理边框颜色
+undefined texture_compare;      // 纹理比较模式
+undefined texture_data;         // 纹理数据指针
+undefined texture_size;         // 纹理数据大小
+undefined texture_pitch;        // 纹理行间距
+undefined texture_slice;        // 纹理切片大小
+undefined texture_usage;        // 纹理用途标志
+undefined texture_bind;        // 纹理绑定点
+undefined texture_access;       // 纹理访问权限
+undefined texture_misc;         // 纹理杂项标志
+undefined texture_type;         // 纹理类型
+undefined texture_array;        // 纹理数组大小
+undefined texture_samples;     // 多重采样数量
+undefined texture_layout;       // 纹理布局
+undefined texture_queue;        // 纹理队列
+undefined texture_sync;         // 纹理同步对象
+undefined texture_memory;       // 纹理内存池
+undefined texture_flags;        // 纹理标志位
+undefined texture_heap;         // 纹理堆内存
+undefined texture_desc;         // 纹理描述符
+undefined texture_handle;       // 纹理句柄
+undefined texture_state;        // 纹理状态
+undefined texture_view;         // 纹理视图
+undefined texture_resource;     // 纹理资源指针
+char texture_init_flag;         // 纹理初始化标志
+undefined texture_allocator;    // 纹理分配器
+undefined texture_deallocator;  // 纹理解分配器
+char texture_active;           // 纹理激活状态
+undefined texture_cache;        // 纹理缓存
+undefined texture_manager;      // 纹理管理器
+undefined texture_pool;         // 纹理池
+undefined texture_registry;     // 纹理注册表
+undefined texture_counter;      // 纹理计数器
 
 
 
 
-// 函数: undefined FUN_180627c50;
-undefined FUN_180627c50;
-undefined UNK_180a0cfd4;
-undefined UNK_180a0cfd8;
-undefined UNK_180a0cfdc;
-undefined UNK_180a0cfe8;
-undefined UNK_180a0cff0;
-undefined UNK_180a0cff8;
-undefined UNK_180a0d000;
-undefined UNK_180a0d008;
-undefined UNK_180a0d040;
-undefined UNK_180a06780;
-undefined UNK_180a0d010;
-undefined UNK_180a0d048;
-undefined UNK_180a0d08c;
-undefined UNK_180a0159c;
-undefined UNK_180a0d0e0;
-undefined UNK_180a0d100;
-undefined UNK_180a0d128;
-undefined UNK_180a0d138;
-undefined UNK_180a0d148;
-undefined UNK_180a0d150;
-undefined UNK_180a0d160;
-undefined UNK_180a0d190;
-undefined DAT_1809fccb0;
-undefined UNK_180a0d298;
-undefined UNK_180a0d2a0;
-undefined UNK_180a0d2a8;
-undefined UNK_180a0d2b0;
-undefined UNK_180a0d2e0;
-undefined UNK_180a0d2e8;
-undefined UNK_180a0d2d4;
-undefined UNK_180a0d2f0;
-undefined UNK_180a0d2f8;
-undefined UNK_180a0d318;
-undefined UNK_180a0d330;
+// 函数: 设置渲染状态
+// 负责设置渲染管线状态，包括混合、深度测试、模板测试等
+undefined set_render_state;
+undefined blend_enable;         // 混合使能标志
+undefined blend_op;             // 混合操作
+undefined blend_src;            // 源混合因子
+undefined blend_dst;            // 目标混合因子
+undefined blend_color;          // 混合颜色
+undefined depth_enable;         // 深度测试使能
+undefined depth_func;           // 深度比较函数
+undefined depth_write;          // 深度写入使能
+undefined depth_bias;           // 深度偏移
+undefined depth_scale;          // 深度缩放
+undefined stencil_enable;       // 模板测试使能
+undefined stencil_func;         // 模板比较函数
+undefined stencil_ref;          // 模板参考值
+undefined stencil_mask;         // 模板掩码
+undefined stencil_write;        // 模板写入掩码
+undefined stencil_op;           // 模板操作
+undefined rasterizer_state;     // 光栅化状态
+undefined rasterizer_desc;      // 光栅化描述符
+undefined rasterizer_flags;     // 光栅化标志
+undefined rasterizer_mode;      // 光栅化模式
+undefined rasterizer_fill;      // 填充模式
+undefined rasterizer_cull;      // 剔除模式
+undefined rasterizer_front;     // 前面朝向
+undefined rasterizer_depth;     // 深度偏移设置
+undefined rasterizer_scissor;   // 剪裁测试设置
+undefined rasterizer_multisample; // 多重采样设置
+undefined rasterizer_line;      // 线条设置
+undefined rasterizer_point;     // 点设置
+undefined rasterizer_clip;      // 裁剪距离
 
 
 
 
-// 函数: undefined FUN_180304860;
-undefined FUN_180304860;
-undefined UNK_180a18dc8;
-undefined UNK_180a18dd0;
-undefined UNK_180a19e48;
-undefined UNK_180a09858;
-undefined UNK_180a1a070;
-undefined DAT_180bf6648;
+// 函数: 编译着色器
+// 负责编译顶点着色器、片段着色器等
+undefined compile_shader;
+undefined shader_source;        // 着色器源代码
+undefined shader_type;          // 着色器类型
+undefined shader_entry;         // 着色器入口点
+undefined shader_version;       // 着色器版本
+undefined shader_flags;         // 着色器编译标志
+undefined shader_result;        // 编译结果状态
 
 
 
 
-// 函数: undefined FUN_1803089a0;
-undefined FUN_1803089a0;
-undefined UNK_180308990;
-undefined UNK_180a1a248;
-undefined UNK_180a1a258;
-undefined UNK_180a1a278;
-undefined DAT_180bfaea8;
-undefined DAT_180bfaea0;
-undefined DAT_180bfaeb8;
-undefined UNK_180a1a200;
-undefined UNK_180a1a228;
+// 函数: 链接着色器程序
+// 负责将编译好的着色器链接成完整的着色器程序
+undefined link_shader_program;
+undefined program_handle;       // 程序句柄
+undefined vertex_shader;       // 顶点着色器
+undefined fragment_shader;     // 片段着色器
+undefined geometry_shader;     // 几何着色器
+undefined program_status;      // 程序状态
+undefined program_info;        // 程序信息
+undefined program_log;         // 程序日志
+undefined attrib_location;     // 属性位置
+undefined uniform_location;     // 统一变量位置
 
 
 
 
-// 函数: undefined FUN_180306d20;
-undefined FUN_180306d20;
-undefined UNK_180a1a3d0;
-undefined UNK_180a1a368;
-undefined UNK_180a1a4a0;
-undefined DAT_180a09de8;
-undefined UNK_180a1a490;
-undefined DAT_18098be48;
-undefined UNK_180a1029c;
+// 函数: 创建顶点缓冲区
+// 负责创建和管理顶点缓冲区对象
+undefined create_vertex_buffer;
+undefined buffer_data;          // 缓冲区数据
+undefined buffer_size;          // 缓冲区大小
+undefined buffer_usage;          // 缓冲区使用方式
+undefined buffer_format;        // 缓冲区格式
+undefined buffer_stride;        // 缓冲区步长
+undefined buffer_handle;        // 缓冲区句柄
+undefined buffer_flags;         // 缓冲区标志
+undefined vertex_desc;          // 顶点描述符
 
 
 
 
-// 函数: undefined FUN_18030cdf0;
-undefined FUN_18030cdf0;
-undefined UNK_180a1a430;
-undefined UNK_180a1a440;
-undefined UNK_180a1a470;
-undefined UNK_180a1a478;
-undefined UNK_180a1a480;
-undefined UNK_180a1a488;
+// 函数: 创建索引缓冲区
+// 负责创建和管理索引缓冲区对象
+undefined create_index_buffer;
+undefined index_data;           // 索引数据
+undefined index_count;          // 索引数量
+undefined index_format;         // 索引格式
+undefined buffer_handle;        // 缓冲区句柄
+undefined buffer_usage;         // 缓冲区使用方式
+undefined buffer_flags;         // 缓冲区标志
 
 
 
 
-// 函数: undefined FUN_18030ccf0;
-undefined FUN_18030ccf0;
+// 函数: 绑定缓冲区
+// 负责绑定缓冲区到渲染管线
+undefined bind_buffer;
 
 
 
 
-// 函数: undefined FUN_180627a70;
-undefined FUN_180627a70;
-undefined UNK_180a1a710;
-undefined UNK_180a1a838;
-undefined UNK_180a1a6b0;
-undefined UNK_180a1a6f0;
-undefined UNK_180a1a6e0;
-undefined UNK_180046230;
-undefined UNK_18021b060;
+// 函数: 创建帧缓冲区
+// 负责创建和管理帧缓冲区对象
+undefined create_framebuffer;
+undefined framebuffer_desc;     // 帧缓冲区描述符
+undefined color_attachments;    // 颜色附件
+undefined depth_attachment;     // 深度附件
+undefined stencil_attachment;   // 模板附件
+undefined framebuffer_handle;   // 帧缓冲区句柄
+undefined framebuffer_status;   // 帧缓冲区状态
+undefined render_target;        // 渲染目标
 
 
 
