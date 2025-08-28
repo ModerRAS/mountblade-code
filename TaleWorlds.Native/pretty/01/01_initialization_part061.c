@@ -2,45 +2,48 @@
 
 // 01_initialization_part061.c - 11 个函数
 
-// 函数: void FUN_18007f176(void)
-void FUN_18007f176(void)
+/**
+ * 初始化数据转换函数 - 将源数据转换为浮点数和整数混合格式
+ * 功能：将整数数组转换为浮点数和整数混合的格式，用于初始化数据结构
+ */
+void InitializeDataConversion(void)
 
 {
-  int *piVar1;
-  longlong lVar2;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  int *piVar3;
-  longlong lVar4;
-  longlong unaff_R14;
-  longlong lVar5;
+  int *source_ptr;
+  longlong data_count;
+  longlong source_base;
+  longlong context_ptr;
+  int *current_ptr;
+  longlong loop_counter;
+  longlong data_size;
+  longlong offset;
   
-  lVar5 = -8 - unaff_RBP;
-  lVar4 = (unaff_R14 - 4U >> 2) + 1;
-  lVar2 = lVar4 * 4;
-  piVar3 = (int *)(unaff_RBP + 8);
+  offset = -8 - source_base;
+  loop_counter = (data_size - 4U >> 2) + 1;
+  data_count = loop_counter * 4;
+  current_ptr = (int *)(source_base + 8);
   do {
-    piVar1 = piVar3 + 8;
-    *(float *)((longlong)piVar3 + **(longlong **)(unaff_RDI + 0x2d0) + lVar5) = (float)piVar3[-2];
-    *(int *)((longlong)piVar3 + **(longlong **)(unaff_RDI + 0x2d0) + 4 + lVar5) = piVar3[-1];
-    *(float *)((longlong)piVar3 + **(longlong **)(unaff_RDI + 0x2d0) + 8 + lVar5) = (float)*piVar3;
-    *(int *)((longlong)piVar3 + **(longlong **)(unaff_RDI + 0x2d0) + 0xc + lVar5) = piVar3[1];
-    *(float *)((**(longlong **)(unaff_RDI + 0x2d0) - unaff_RBP) + -0x18 + (longlong)piVar1) =
-         (float)piVar3[2];
-    *(int *)((longlong)piVar3 + **(longlong **)(unaff_RDI + 0x2d0) + 0x14 + lVar5) = piVar3[3];
-    *(float *)((**(longlong **)(unaff_RDI + 0x2d0) - unaff_RBP) + -0x10 + (longlong)piVar1) =
-         (float)piVar3[4];
-    *(int *)((longlong)piVar3 + **(longlong **)(unaff_RDI + 0x2d0) + 0x1c + lVar5) = piVar3[5];
-    lVar4 = lVar4 + -1;
-    piVar3 = piVar1;
-  } while (lVar4 != 0);
-  for (; lVar2 < unaff_R14; lVar2 = lVar2 + 1) {
-    *(float *)(**(longlong **)(unaff_RDI + 0x2d0) + lVar2 * 8) =
-         (float)*(int *)(unaff_RBP + lVar2 * 8);
-    *(undefined4 *)(**(longlong **)(unaff_RDI + 0x2d0) + 4 + lVar2 * 8) =
-         *(undefined4 *)(unaff_RBP + 4 + lVar2 * 8);
+    source_ptr = current_ptr + 8;
+    *(float *)((longlong)current_ptr + **(longlong **)(context_ptr + 0x2d0) + offset) = (float)current_ptr[-2];
+    *(int *)((longlong)current_ptr + **(longlong **)(context_ptr + 0x2d0) + 4 + offset) = current_ptr[-1];
+    *(float *)((longlong)current_ptr + **(longlong **)(context_ptr + 0x2d0) + 8 + offset) = (float)*current_ptr;
+    *(int *)((longlong)current_ptr + **(longlong **)(context_ptr + 0x2d0) + 0xc + offset) = current_ptr[1];
+    *(float *)((**(longlong **)(context_ptr + 0x2d0) - source_base) + -0x18 + (longlong)source_ptr) =
+         (float)current_ptr[2];
+    *(int *)((longlong)current_ptr + **(longlong **)(context_ptr + 0x2d0) + 0x14 + offset) = current_ptr[3];
+    *(float *)((**(longlong **)(context_ptr + 0x2d0) - source_base) + -0x10 + (longlong)source_ptr) =
+         (float)current_ptr[4];
+    *(int *)((longlong)current_ptr + **(longlong **)(context_ptr + 0x2d0) + 0x1c + offset) = current_ptr[5];
+    loop_counter = loop_counter + -1;
+    current_ptr = source_ptr;
+  } while (loop_counter != 0);
+  for (; data_count < data_size; data_count = data_count + 1) {
+    *(float *)(**(longlong **)(context_ptr + 0x2d0) + data_count * 8) =
+         (float)*(int *)(source_base + data_count * 8);
+    *(undefined4 *)(**(longlong **)(context_ptr + 0x2d0) + 4 + data_count * 8) =
+         *(undefined4 *)(source_base + 4 + data_count * 8);
   }
-  *(int *)(*(longlong *)(unaff_RDI + 0x2d0) + 8) = (int)unaff_R14;
+  *(int *)(*(longlong *)(context_ptr + 0x2d0) + 8) = (int)data_size;
   return;
 }
 
@@ -48,25 +51,28 @@ void FUN_18007f176(void)
 
 
 
-// 函数: void FUN_18007f27a(void)
-void FUN_18007f27a(void)
+/**
+ * 数据块转换函数 - 将源数据块转换为浮点数和整数混合格式
+ * 功能：遍历数据块，将整数转换为浮点数和整数的混合格式
+ */
+void ConvertDataBlock(void)
 
 {
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  longlong unaff_R14;
+  longlong start_index;
+  longlong source_base;
+  longlong context_ptr;
+  longlong end_index;
   
-  if (unaff_RBX < unaff_R14) {
+  if (start_index < end_index) {
     do {
-      *(float *)(**(longlong **)(unaff_RDI + 0x2d0) + unaff_RBX * 8) =
-           (float)*(int *)(unaff_RBP + unaff_RBX * 8);
-      *(undefined4 *)(**(longlong **)(unaff_RDI + 0x2d0) + 4 + unaff_RBX * 8) =
-           *(undefined4 *)(unaff_RBP + 4 + unaff_RBX * 8);
-      unaff_RBX = unaff_RBX + 1;
-    } while (unaff_RBX < unaff_R14);
+      *(float *)(**(longlong **)(context_ptr + 0x2d0) + start_index * 8) =
+           (float)*(int *)(source_base + start_index * 8);
+      *(undefined4 *)(**(longlong **)(context_ptr + 0x2d0) + 4 + start_index * 8) =
+           *(undefined4 *)(source_base + 4 + start_index * 8);
+      start_index = start_index + 1;
+    } while (start_index < end_index);
   }
-  *(int *)(*(longlong *)(unaff_RDI + 0x2d0) + 8) = (int)unaff_R14;
+  *(int *)(*(longlong *)(context_ptr + 0x2d0) + 8) = (int)end_index;
   return;
 }
 
@@ -74,91 +80,102 @@ void FUN_18007f27a(void)
 
 
 
-// 函数: void FUN_18007f2cf(void)
-void FUN_18007f2cf(void)
+/**
+ * 设置数据大小函数 - 设置数据结构的大小
+ * 功能：将数据大小信息写入到指定的数据结构中
+ */
+void SetDataSize(void)
 
 {
-  longlong unaff_RDI;
-  undefined4 unaff_R14D;
+  longlong context_ptr;
+  undefined4 data_size;
   
-  *(undefined4 *)(*(longlong *)(unaff_RDI + 0x2d0) + 8) = unaff_R14D;
+  *(undefined4 *)(*(longlong *)(context_ptr + 0x2d0) + 8) = data_size;
   return;
 }
 
 
 
-undefined8 * FUN_18007f2f0(undefined8 *param_1)
+/**
+ * 初始化数据结构函数 - 初始化数据结构指针和标志位
+ * 功能：设置数据结构的指针指向全局常量，并初始化各个标志位
+ */
+undefined8 * InitializeDataStructure(undefined8 *data_structure)
 
 {
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_1809fffc8;
-  param_1[2] = 0;
-  param_1[3] = 0;
-  *(undefined1 *)(param_1 + 6) = 3;
-  param_1[7] = 0;
-  param_1[8] = 0;
-  *(undefined1 *)(param_1 + 0xb) = 3;
-  param_1[0xc] = 0;
-  param_1[0xd] = 0;
-  *(undefined1 *)(param_1 + 0x10) = 3;
-  param_1[0x11] = 0;
-  param_1[0x12] = 0;
-  *(undefined1 *)(param_1 + 0x15) = 3;
-  *(undefined2 *)(param_1 + 0x18) = 0;
-  param_1[0x16] = 0;
-  param_1[0x17] = 0;
-  param_1[0x19] = 0;
-  param_1[0x1a] = 0;
-  *(undefined1 *)(param_1 + 0x1d) = 3;
-  *(undefined1 *)(param_1 + 6) = 0xf;
-  *(undefined1 *)(param_1 + 0xb) = 0xf;
-  *(undefined1 *)(param_1 + 0x10) = 0xf;
-  *(undefined1 *)(param_1 + 0x15) = 0xf;
-  *(undefined1 *)(param_1 + 0x1d) = 0xf;
-  return param_1;
+  *data_structure = &GLOBAL_DATA_TABLE_180a21690;
+  *data_structure = &GLOBAL_DATA_TABLE_180a21720;
+  *(undefined4 *)(data_structure + 1) = 0;
+  *data_structure = &GLOBAL_DATA_BASE_1809fffc8;
+  data_structure[2] = 0;
+  data_structure[3] = 0;
+  *(undefined1 *)(data_structure + 6) = 3;
+  data_structure[7] = 0;
+  data_structure[8] = 0;
+  *(undefined1 *)(data_structure + 0xb) = 3;
+  data_structure[0xc] = 0;
+  data_structure[0xd] = 0;
+  *(undefined1 *)(data_structure + 0x10) = 3;
+  data_structure[0x11] = 0;
+  data_structure[0x12] = 0;
+  *(undefined1 *)(data_structure + 0x15) = 3;
+  *(undefined2 *)(data_structure + 0x18) = 0;
+  data_structure[0x16] = 0;
+  data_structure[0x17] = 0;
+  data_structure[0x19] = 0;
+  data_structure[0x1a] = 0;
+  *(undefined1 *)(data_structure + 0x1d) = 3;
+  *(undefined1 *)(data_structure + 6) = 0xf;
+  *(undefined1 *)(data_structure + 0xb) = 0xf;
+  *(undefined1 *)(data_structure + 0x10) = 0xf;
+  *(undefined1 *)(data_structure + 0x15) = 0xf;
+  *(undefined1 *)(data_structure + 0x1d) = 0xf;
+  return data_structure;
 }
 
 
 
-undefined8 * FUN_18007f3b0(undefined8 *param_1,ulonglong param_2)
+/**
+ * 清理数据结构函数 - 清理数据结构并释放资源
+ * 功能：检查并清理数据结构的各个状态，根据标志位决定是否释放内存
+ */
+undefined8 * CleanupDataStructure(undefined8 *data_structure,ulonglong cleanup_flags)
 
 {
-  *param_1 = &UNK_1809fffc8;
-  if (param_1[0x1a] != 0) {
+  *data_structure = &GLOBAL_DATA_BASE_1809fffc8;
+  if (data_structure[0x1a] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    HandleErrorCondition();
   }
-  FUN_180085530(param_1[0x16]);
-  param_1[0x16] = 0;
-  if (param_1[0x17] != 0) {
+  CleanupResource(data_structure[0x16]);
+  data_structure[0x16] = 0;
+  if (data_structure[0x17] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    HandleErrorCondition();
   }
-  param_1[0x17] = 0;
-  if (param_1[0x12] != 0) {
+  data_structure[0x17] = 0;
+  if (data_structure[0x12] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    HandleErrorCondition();
   }
-  if (param_1[0xd] != 0) {
+  if (data_structure[0xd] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    HandleErrorCondition();
   }
-  if (param_1[8] != 0) {
+  if (data_structure[8] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    HandleErrorCondition();
   }
-  if (param_1[3] != 0) {
+  if (data_structure[3] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    HandleErrorCondition();
   }
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xf0);
+  *data_structure = &GLOBAL_DATA_TABLE_180a21720;
+  *data_structure = &GLOBAL_DATA_TABLE_180a21690;
+  if ((cleanup_flags & 1) != 0) {
+    free(data_structure,0xf0);
   }
-  return param_1;
+  return data_structure;
 }
 
 
@@ -167,85 +184,88 @@ undefined8 * FUN_18007f3b0(undefined8 *param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_18007f4c0(undefined1 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18007f4c0(undefined1 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 线程同步处理函数 - 处理线程同步和资源管理
+ * 功能：处理线程同步，检查状态标志，管理资源生命周期
+ */
+void ThreadSyncHandler(undefined1 *sync_context,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  char cVar4;
-  int iVar5;
-  undefined4 uVar6;
-  longlong lVar7;
-  undefined *puVar8;
-  bool bVar9;
-  undefined8 uVar10;
+  longlong index;
+  longlong *current_resource;
+  longlong *previous_resource;
+  char status_flag;
+  int thread_id;
+  undefined4 thread_id_copy;
+  longlong context_base;
+  undefined *message_ptr;
+  bool wait_condition;
+  undefined8 timeout_value;
   
-  uVar10 = 0xfffffffffffffffe;
-  bVar9 = false;
-  if ((*(byte *)(*(longlong *)(param_1 + 8) + 0xfd) & 0x20) != 0) {
-    FUN_18007baa0();
-    lVar7 = 0;
+  timeout_value = 0xfffffffffffffffe;
+  wait_condition = false;
+  if ((*(byte *)(*(longlong *)(sync_context + 8) + 0xfd) & 0x20) != 0) {
+    ProcessAsyncOperations();
+    context_base = 0;
     do {
-      cVar4 = *(char *)(*(longlong *)(*(longlong *)(param_1 + 8) + 0x1e0) + 0x15 + lVar7 * 0x18);
-      if (cVar4 == '\x01') {
+      status_flag = *(char *)(*(longlong *)(*(longlong *)(sync_context + 8) + 0x1e0) + 0x15 + context_base * 0x18);
+      if (status_flag == '\x01') {
         Sleep(0);
-        bVar9 = true;
+        wait_condition = true;
       }
-      lVar1 = lVar7 + 1;
-      lVar7 = 0;
-      if (cVar4 != '\x01') {
-        lVar7 = lVar1;
+      index = context_base + 1;
+      context_base = 0;
+      if (status_flag != '\x01') {
+        context_base = index;
       }
-    } while (lVar7 < 0x10);
-    if ((bVar9) &&
-       ((lVar7 = *(longlong *)(param_1 + 8), *(char *)(lVar7 + 0xfa) == '\0' ||
-        (*(char *)(lVar7 + 0xfb) == '\0')))) {
-      puVar8 = &DAT_18098bc73;
-      if (*(undefined **)(lVar7 + 0x18) != (undefined *)0x0) {
-        puVar8 = *(undefined **)(lVar7 + 0x18);
+    } while (context_base < 0x10);
+    if ((wait_condition) &&
+       ((context_base = *(longlong *)(sync_context + 8), *(char *)(context_base + 0xfa) == '\0' ||
+        (*(char *)(context_base + 0xfb) == '\0')))) {
+      message_ptr = &GLOBAL_ERROR_MESSAGE_18098bc73;
+      if (*(undefined **)(context_base + 0x18) != (undefined *)0x0) {
+        message_ptr = *(undefined **)(context_base + 0x18);
       }
                     // WARNING: Subroutine does not return
-      FUN_180062300(_DAT_180c86928,&UNK_1809ffc28,puVar8,param_4,uVar10);
+      SendMessageToHandler(GLOBAL_HANDLER_TABLE_180c86928,&GLOBAL_MESSAGE_QUEUE_1809ffc28,message_ptr,param_4,timeout_value);
     }
   }
-  lVar7 = *(longlong *)(param_1 + 8);
+  context_base = *(longlong *)(sync_context + 8);
   while( true ) {
     LOCK();
-    cVar4 = *(char *)(lVar7 + 0xec);
-    bVar9 = cVar4 == '\0';
-    if (bVar9) {
-      *(char *)(lVar7 + 0xec) = '\x01';
-      cVar4 = '\0';
+    status_flag = *(char *)(context_base + 0xec);
+    wait_condition = status_flag == '\0';
+    if (wait_condition) {
+      *(char *)(context_base + 0xec) = '\x01';
+      status_flag = '\0';
     }
     UNLOCK();
-    if (bVar9) break;
-    iVar5 = _Thrd_id();
-    if (*(int *)(lVar7 + 0xf0) == iVar5) goto LAB_18007f5cb;
+    if (wait_condition) break;
+    thread_id = _Thrd_id();
+    if (*(int *)(context_base + 0xf0) == thread_id) goto ACQUIRE_LOCK_SUCCESS;
     Sleep();
   }
-  cVar4 = '\0';
-LAB_18007f5cb:
-  uVar6 = _Thrd_id();
-  *(undefined4 *)(lVar7 + 0xf0) = uVar6;
-  if (cVar4 == '\0') {
-    *param_1 = 1;
+  status_flag = '\0';
+ACQUIRE_LOCK_SUCCESS:
+  thread_id_copy = _Thrd_id();
+  *(undefined4 *)(context_base + 0xf0) = thread_id_copy;
+  if (status_flag == '\0') {
+    *sync_context = 1;
   }
-  while (*(int *)(lVar7 + 0xe8) != 0) {
+  while (*(int *)(context_base + 0xe8) != 0) {
     Sleep(0);
   }
-  if ((*(uint *)(param_1 + 0x10) & 1) == 0) {
-    FUN_18007eb80(*(undefined8 *)(param_1 + 8),(byte)(*(uint *)(param_1 + 0x10) >> 2) & 1);
+  if ((*(uint *)(sync_context + 0x10) & 1) == 0) {
+    ProcessResourceFlags(*(undefined8 *)(sync_context + 8),(byte)(*(uint *)(sync_context + 0x10) >> 2) & 1);
   }
-  plVar2 = *(longlong **)(*(longlong *)(param_1 + 8) + 0x210);
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))(plVar2);
+  current_resource = *(longlong **)(*(longlong *)(sync_context + 8) + 0x210);
+  if (current_resource != (longlong *)0x0) {
+    (**(code **)(*current_resource + 0x28))(current_resource);
   }
-  plVar3 = *(longlong **)(param_1 + 0x18);
-  *(longlong **)(param_1 + 0x18) = plVar2;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  previous_resource = *(longlong **)(sync_context + 0x18);
+  *(longlong **)(sync_context + 0x18) = current_resource;
+  if (previous_resource != (longlong *)0x0) {
+    (**(code **)(*previous_resource + 0x38))();
   }
   return;
 }

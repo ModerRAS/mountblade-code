@@ -3,308 +3,352 @@
 // 01_initialization_part053.c - 2 个函数
 
 // 函数: void FUN_180079270(longlong param_1,longlong param_2)
+// 功能: 处理游戏对象的初始化和矩阵变换
+// 参数: param_1 - 游戏对象指针, param_2 - 参数数据指针
 void FUN_180079270(longlong param_1,longlong param_2)
-
 {
-  longlong *plVar1;
-  int *piVar2;
-  longlong *plVar3;
-  byte *pbVar4;
-  undefined8 *puVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  undefined1 uVar15;
-  char cVar16;
-  longlong lVar17;
-  float *pfVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  undefined8 uVar31;
-  undefined4 uVar32;
-  longlong lVar33;
-  longlong *plVar34;
-  longlong lVar35;
-  uint uVar36;
-  int iVar37;
-  uint uVar38;
-  int iVar39;
-  ulonglong uVar40;
-  char *pcVar41;
-  uint *puVar42;
-  int iVar43;
-  int iVar44;
-  int iVar45;
-  undefined4 *puVar46;
-  uint *puVar47;
-  ulonglong uVar48;
-  ulonglong uVar49;
-  bool bVar50;
-  
-  lVar17 = _DAT_180c86890;
-  lVar33 = param_1;
-  if ((*(byte *)(param_1 + 0xfd) & 0x20) == 0) {
-    lVar33 = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
-  }
-  LOCK();
-  piVar2 = (int *)(lVar17 + 0xed8);
-  iVar43 = *piVar2;
-  *piVar2 = *piVar2 + *(int *)(lVar33 + 0x200);
-  UNLOCK();
-  lVar17 = *(longlong *)(param_1 + 600);
-  uVar15 = *(undefined1 *)(param_2 + 0x24);
-  uVar32 = *(undefined4 *)(param_2 + 0x20);
-  cVar16 = *(char *)(param_2 + 0xd);
-  *(undefined4 *)(lVar17 + 0x48) = *(undefined4 *)(lVar17 + 0x2c);
-  *(undefined4 *)(lVar17 + 0x50) = *(undefined4 *)(lVar17 + 0x4c);
-  *(int *)(lVar17 + 0x4c) = iVar43;
-  *(undefined1 *)(lVar17 + 0x44) = uVar15;
-  *(undefined4 *)(lVar17 + 0x2c) = uVar32;
-  if (cVar16 != -1) {
-    uVar38 = (int)*(char *)(param_2 + 0xd) + *(int *)(param_2 + 0x18);
-    pfVar18 = (float *)**(longlong **)(param_1 + 600);
-    uVar36 = uVar38 >> 0xd;
-    lVar17 = *(longlong *)
-              ((longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc30 +
-              (ulonglong)uVar36 * 8);
-    lVar33 = (ulonglong)(uVar38 + uVar36 * -0x2000) * 0x40;
-    uVar31 = ((undefined8 *)(lVar17 + lVar33))[1];
-    *(undefined8 *)pfVar18 = *(undefined8 *)(lVar17 + lVar33);
-    *(undefined8 *)(pfVar18 + 2) = uVar31;
-    puVar5 = (undefined8 *)(lVar17 + 0x10 + lVar33);
-    uVar31 = puVar5[1];
-    *(undefined8 *)(pfVar18 + 4) = *puVar5;
-    *(undefined8 *)(pfVar18 + 6) = uVar31;
-    puVar5 = (undefined8 *)(lVar17 + 0x20 + lVar33);
-    uVar31 = puVar5[1];
-    *(undefined8 *)(pfVar18 + 8) = *puVar5;
-    *(undefined8 *)(pfVar18 + 10) = uVar31;
-    puVar5 = (undefined8 *)(lVar17 + 0x30 + lVar33);
-    uVar31 = puVar5[1];
-    *(undefined8 *)(pfVar18 + 0xc) = *puVar5;
-    *(undefined8 *)(pfVar18 + 0xe) = uVar31;
-    lVar17 = *(longlong *)(param_2 + 0x10);
-    fVar19 = pfVar18[8];
-    fVar20 = pfVar18[9];
-    fVar21 = pfVar18[10];
-    fVar22 = pfVar18[0xb];
-    fVar23 = *pfVar18;
-    fVar24 = pfVar18[1];
-    fVar25 = pfVar18[2];
-    fVar26 = pfVar18[3];
-    fVar27 = pfVar18[4];
-    fVar28 = pfVar18[5];
-    fVar29 = pfVar18[6];
-    fVar30 = pfVar18[7];
-    fVar6 = *(float *)(lVar17 + 0x374);
-    fVar7 = *(float *)(lVar17 + 0x370);
-    fVar8 = *(float *)(lVar17 + 0x378);
-    fVar9 = *(float *)(lVar17 + 900);
-    fVar10 = *(float *)(lVar17 + 0x394);
-    fVar11 = *(float *)(lVar17 + 0x380);
-    fVar12 = *(float *)(lVar17 + 0x388);
-    fVar13 = *(float *)(lVar17 + 0x390);
-    fVar14 = *(float *)(lVar17 + 0x398);
-    *pfVar18 = fVar6 * fVar27 + fVar7 * fVar23 + fVar8 * fVar19;
-    pfVar18[1] = fVar6 * fVar28 + fVar7 * fVar24 + fVar8 * fVar20;
-    pfVar18[2] = fVar6 * fVar29 + fVar7 * fVar25 + fVar8 * fVar21;
-    pfVar18[3] = fVar6 * fVar30 + fVar7 * fVar26 + fVar8 * fVar22;
-    pfVar18[4] = fVar9 * fVar27 + fVar11 * fVar23 + fVar12 * fVar19;
-    pfVar18[5] = fVar9 * fVar28 + fVar11 * fVar24 + fVar12 * fVar20;
-    pfVar18[6] = fVar9 * fVar29 + fVar11 * fVar25 + fVar12 * fVar21;
-    pfVar18[7] = fVar9 * fVar30 + fVar11 * fVar26 + fVar12 * fVar22;
-    pfVar18[8] = fVar10 * fVar27 + fVar13 * fVar23 + fVar14 * fVar19;
-    pfVar18[9] = fVar10 * fVar28 + fVar13 * fVar24 + fVar14 * fVar20;
-    pfVar18[10] = fVar10 * fVar29 + fVar13 * fVar25 + fVar14 * fVar21;
-    pfVar18[0xb] = fVar10 * fVar30 + fVar13 * fVar26 + fVar14 * fVar22;
-  }
-  lVar17 = *(longlong *)(param_1 + 600);
-  if (*(int *)(lVar17 + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
-    iVar43 = *(int *)(lVar17 + 0x1c) + *(int *)(lVar17 + 0x18);
-    *(int *)(lVar17 + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
-    if (0 < iVar43) {
-      lVar33 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-      uVar32 = FUN_180080380(lVar33,iVar43);
-      *(undefined4 *)(lVar17 + 0x30) = uVar32;
-      FUN_1800802e0(lVar33,uVar32);
-      if (*(longlong *)(lVar17 + 0x10) == 0) {
-        if (*(int *)(lVar17 + 0x18) != 0) {
-          *(undefined4 *)(lVar17 + 0x2c) = *(undefined4 *)(lVar17 + 0x30);
-          return;
-        }
-      }
-      else {
-        cVar16 = *(char *)(lVar17 + 0x44);
-        uVar40 = (ulonglong)cVar16;
-        plVar1 = (longlong *)(lVar17 + 0x38);
-        iVar43 = (int)cVar16;
-        if (*(int *)(lVar17 + 0x40) == (int)cVar16) {
-          plVar34 = (longlong *)*plVar1;
-        }
-        else {
-          *(int *)(lVar17 + 0x40) = iVar43;
-          if (*plVar1 != 0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900();
-          }
-          *plVar1 = 0;
-          if (cVar16 == '\0') {
-            plVar34 = (longlong *)0x0;
-            *plVar1 = 0;
-          }
-          else {
-            plVar34 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(longlong)cVar16 * 4);
-            *plVar1 = (longlong)plVar34;
-          }
-        }
-        if (plVar34 != (longlong *)0x0) {
-          iVar44 = 0;
-          uVar36 = (uint)cVar16;
-          iVar45 = iVar44;
-          if ((0 < iVar43) && (0xf < uVar36)) {
-            iVar39 = *(int *)(lVar17 + 0x2c);
-            plVar3 = (longlong *)((longlong)plVar34 + (longlong)(cVar16 + -1) * 4);
-            if ((((longlong *)(lVar17 + 0x2c) < plVar34) || (plVar3 < (longlong *)(lVar17 + 0x2c)))
-               && ((plVar1 < plVar34 || (iVar45 = 0, plVar3 < plVar1)))) {
-              uVar38 = uVar36 & 0x8000000f;
-              if ((int)uVar38 < 0) {
-                uVar38 = (uVar38 - 1 | 0xfffffff0) + 1;
-              }
-              plVar34 = plVar34 + 4;
-              iVar37 = 8;
-              do {
-                *(int *)(plVar34 + -4) = iVar44 + iVar39;
-                *(int *)((longlong)plVar34 + -0x1c) = iVar44 + 1 + iVar39;
-                *(int *)(plVar34 + -3) = iVar44 + 2 + iVar39;
-                *(int *)((longlong)plVar34 + -0x14) = iVar44 + 3 + iVar39;
-                iVar44 = iVar44 + 0x10;
-                *(int *)(plVar34 + -2) = iVar37 + -4 + iVar39;
-                *(int *)((longlong)plVar34 + -0xc) = iVar37 + -3 + iVar39;
-                *(int *)(plVar34 + -1) = iVar37 + -2 + iVar39;
-                *(int *)((longlong)plVar34 + -4) = iVar37 + -1 + iVar39;
-                *(int *)plVar34 = iVar37 + iVar39;
-                *(int *)((longlong)plVar34 + 4) = iVar37 + 1 + iVar39;
-                *(int *)(plVar34 + 1) = iVar37 + 2 + iVar39;
-                *(int *)((longlong)plVar34 + 0xc) = iVar37 + 3 + iVar39;
-                *(int *)(plVar34 + 2) = iVar37 + 4 + iVar39;
-                *(int *)((longlong)plVar34 + 0x14) = iVar37 + 5 + iVar39;
-                *(int *)(plVar34 + 3) = iVar37 + 6 + iVar39;
-                *(int *)((longlong)plVar34 + 0x1c) = iVar37 + 7 + iVar39;
-                plVar34 = plVar34 + 8;
-                iVar37 = iVar37 + 0x10;
-                iVar45 = iVar44;
-              } while (iVar44 < (int)(uVar36 - uVar38));
-            }
-          }
-          for (lVar33 = (longlong)iVar45; lVar33 < (longlong)uVar40; lVar33 = lVar33 + 1) {
-            iVar44 = *(int *)(lVar17 + 0x2c) + iVar45;
-            iVar45 = iVar45 + 1;
-            *(int *)(*plVar1 + lVar33 * 4) = iVar44;
-          }
-          iVar45 = *(int *)(lVar17 + 0x18);
-          iVar44 = 0;
-          if (0 < (longlong)iVar45) {
-            lVar33 = 0;
-            do {
-              iVar39 = *(int *)(lVar17 + 0x30) + iVar44;
-              iVar44 = iVar44 + 1;
-              pbVar4 = (byte *)(*(longlong *)(lVar17 + 0x10) + lVar33);
-              lVar33 = lVar33 + 1;
-              *(int *)(*plVar1 + (ulonglong)*pbVar4 * 4) = iVar39;
-            } while (lVar33 < iVar45);
-          }
-        }
-        puVar42 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
-                          _DAT_180c86890 + 0x9d0);
-        if (iVar43 == 0) {
-          uVar36 = (int)cVar16 - 1;
-        }
-        else {
-          LOCK();
-          uVar36 = *puVar42;
-          *puVar42 = *puVar42 + (int)cVar16;
-          UNLOCK();
-          uVar48 = (ulonglong)(uVar36 >> 0xb);
-          uVar49 = (ulonglong)(cVar16 + -1 + uVar36 >> 0xb);
-          if (uVar48 <= uVar49) {
-            pcVar41 = (char *)((longlong)puVar42 + uVar48 + 0x108);
-            lVar33 = (uVar49 - uVar48) + 1;
-            puVar47 = puVar42 + uVar48 * 2 + 2;
-            do {
-              iVar45 = (int)uVar48;
-              if (*(longlong *)puVar47 == 0) {
-                lVar35 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
-                LOCK();
-                bVar50 = *(longlong *)(puVar42 + (longlong)iVar45 * 2 + 2) == 0;
-                if (bVar50) {
-                  *(longlong *)(puVar42 + (longlong)iVar45 * 2 + 2) = lVar35;
+    longlong *game_object_ptr;
+    int *counter_ptr;
+    longlong *temp_ptr1;
+    byte *byte_ptr;
+    undefined8 *data_ptr;
+    float matrix_row1_x, matrix_row1_y, matrix_row1_z;
+    float matrix_row2_x, matrix_row2_y, matrix_row2_z;
+    float matrix_row3_x, matrix_row3_y, matrix_row3_z;
+    float result_matrix[12];
+    undefined1 flag_byte;
+    char index_char;
+    longlong temp_long;
+    float *transform_matrix;
+    float temp_float1, temp_float2, temp_float3, temp_float4;
+    float temp_float5, temp_float6, temp_float7, temp_float8;
+    float temp_float9, temp_float10, temp_float11, temp_float12;
+    undefined8 temp_undefined8;
+    undefined4 temp_undefined4;
+    longlong offset_value;
+    longlong *array_ptr;
+    longlong loop_counter;
+    uint chunk_index;
+    int temp_int1;
+    uint temp_uint1;
+    int temp_int2;
+    ulonglong temp_ulong1;
+    char *char_ptr;
+    uint *uint_ptr;
+    int item_count;
+    int array_size;
+    int loop_index;
+    undefined4 *data_array;
+    uint *chunk_ptr;
+    ulonglong chunk_start;
+    ulonglong chunk_end;
+    bool is_allocated;
+    
+    // 获取全局数据地址
+    temp_long = _DAT_180c86890;
+    offset_value = param_1;
+    
+    // 检查对象标志位
+    if ((*(byte *)(param_1 + 0xfd) & 0x20) == 0) {
+        offset_value = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
+    }
+    
+    // 更新全局计数器
+    LOCK();
+    counter_ptr = (int *)(temp_long + 0xed8);
+    item_count = *counter_ptr;
+    *counter_ptr = *counter_ptr + *(int *)(offset_value + 0x200);
+    UNLOCK();
+    
+    // 获取游戏对象数据
+    temp_long = *(longlong *)(param_1 + 600);
+    flag_byte = *(undefined1 *)(param_2 + 0x24);
+    temp_undefined4 = *(undefined4 *)(param_2 + 0x20);
+    index_char = *(char *)(param_2 + 0xd);
+    
+    // 保存当前状态
+    *(undefined4 *)(temp_long + 0x48) = *(undefined4 *)(temp_long + 0x2c);
+    *(undefined4 *)(temp_long + 0x50) = *(undefined4 *)(temp_long + 0x4c);
+    *(int *)(temp_long + 0x4c) = item_count;
+    *(undefined1 *)(temp_long + 0x44) = flag_byte;
+    *(undefined4 *)(temp_long + 0x2c) = temp_undefined4;
+    
+    // 处理矩阵变换
+    if (index_char != -1) {
+        temp_uint1 = (int)*(char *)(param_2 + 0xd) + *(int *)(param_2 + 0x18);
+        transform_matrix = (float *)**(longlong **)(param_1 + 600);
+        chunk_index = temp_uint1 >> 0xd;
+        
+        // 计算矩阵数据地址
+        temp_long = *(longlong *)
+                   ((longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc30 +
+                   (ulonglong)chunk_index * 8);
+        offset_value = (ulonglong)(temp_uint1 + chunk_index * -0x2000) * 0x40;
+        
+        // 加载矩阵数据
+        temp_undefined8 = ((undefined8 *)(temp_long + offset_value))[1];
+        *(undefined8 *)transform_matrix = *(undefined8 *)(temp_long + offset_value);
+        *(undefined8 *)(transform_matrix + 2) = temp_undefined8;
+        
+        // 加载第二行矩阵数据
+        data_ptr = (undefined8 *)(temp_long + 0x10 + offset_value);
+        temp_undefined8 = data_ptr[1];
+        *(undefined8 *)(transform_matrix + 4) = *data_ptr;
+        *(undefined8 *)(transform_matrix + 6) = temp_undefined8;
+        
+        // 加载第三行矩阵数据
+        data_ptr = (undefined8 *)(temp_long + 0x20 + offset_value);
+        temp_undefined8 = data_ptr[1];
+        *(undefined8 *)(transform_matrix + 8) = *data_ptr;
+        *(undefined8 *)(transform_matrix + 10) = temp_undefined8;
+        
+        // 加载第四行矩阵数据
+        data_ptr = (undefined8 *)(temp_long + 0x30 + offset_value);
+        temp_undefined8 = data_ptr[1];
+        *(undefined8 *)(transform_matrix + 0xc) = *data_ptr;
+        *(undefined8 *)(transform_matrix + 0xe) = temp_undefined8;
+        
+        // 获取变换矩阵数据
+        temp_long = *(longlong *)(param_2 + 0x10);
+        temp_float1 = transform_matrix[8];
+        temp_float2 = transform_matrix[9];
+        temp_float3 = transform_matrix[10];
+        temp_float4 = transform_matrix[0xb];
+        temp_float5 = *transform_matrix;
+        temp_float6 = transform_matrix[1];
+        temp_float7 = transform_matrix[2];
+        temp_float8 = transform_matrix[3];
+        temp_float9 = transform_matrix[4];
+        temp_float10 = transform_matrix[5];
+        temp_float11 = transform_matrix[6];
+        temp_float12 = transform_matrix[7];
+        
+        // 获取变换参数
+        matrix_row1_x = *(float *)(temp_long + 0x374);
+        matrix_row1_y = *(float *)(temp_long + 0x370);
+        matrix_row1_z = *(float *)(temp_long + 0x378);
+        matrix_row2_x = *(float *)(temp_long + 900);
+        matrix_row2_y = *(float *)(temp_long + 0x394);
+        matrix_row2_z = *(float *)(temp_long + 0x380);
+        matrix_row3_x = *(float *)(temp_long + 0x388);
+        matrix_row3_y = *(float *)(temp_long + 0x390);
+        matrix_row3_z = *(float *)(temp_long + 0x398);
+        
+        // 执行矩阵变换计算
+        *transform_matrix = matrix_row1_x * temp_float9 + matrix_row1_y * temp_float5 + matrix_row1_z * temp_float1;
+        transform_matrix[1] = matrix_row1_x * temp_float10 + matrix_row1_y * temp_float6 + matrix_row1_z * temp_float2;
+        transform_matrix[2] = matrix_row1_x * temp_float11 + matrix_row1_y * temp_float7 + matrix_row1_z * temp_float3;
+        transform_matrix[3] = matrix_row1_x * temp_float12 + matrix_row1_y * temp_float8 + matrix_row1_z * temp_float4;
+        transform_matrix[4] = matrix_row2_x * temp_float9 + matrix_row2_z * temp_float5 + matrix_row3_x * temp_float1;
+        transform_matrix[5] = matrix_row2_x * temp_float10 + matrix_row2_z * temp_float6 + matrix_row3_x * temp_float2;
+        transform_matrix[6] = matrix_row2_x * temp_float11 + matrix_row2_z * temp_float7 + matrix_row3_x * temp_float3;
+        transform_matrix[7] = matrix_row2_x * temp_float12 + matrix_row2_z * temp_float8 + matrix_row3_x * temp_float4;
+        transform_matrix[8] = matrix_row2_y * temp_float9 + matrix_row3_y * temp_float5 + matrix_row3_z * temp_float1;
+        transform_matrix[9] = matrix_row2_y * temp_float10 + matrix_row3_y * temp_float6 + matrix_row3_z * temp_float2;
+        transform_matrix[10] = matrix_row2_y * temp_float11 + matrix_row3_y * temp_float7 + matrix_row3_z * temp_float3;
+        transform_matrix[0xb] = matrix_row2_y * temp_float12 + matrix_row3_y * temp_float8 + matrix_row3_z * temp_float4;
+    }
+    
+    // 检查是否需要更新
+    temp_long = *(longlong *)(param_1 + 600);
+    if (*(int *)(temp_long + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
+        item_count = *(int *)(temp_long + 0x1c) + *(int *)(temp_long + 0x18);
+        *(int *)(temp_long + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
+        
+        if (0 < item_count) {
+            // 分配内存
+            offset_value = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+            temp_undefined4 = FUN_180080380(offset_value, item_count);
+            *(undefined4 *)(temp_long + 0x30) = temp_undefined4;
+            FUN_1800802e0(offset_value, temp_undefined4);
+            
+            // 检查数据指针
+            if (*(longlong *)(temp_long + 0x10) == 0) {
+                if (*(int *)(temp_long + 0x18) != 0) {
+                    *(undefined4 *)(temp_long + 0x2c) = *(undefined4 *)(temp_long + 0x30);
+                    return;
                 }
-                UNLOCK();
-                if (bVar50) {
-                  LOCK();
-                  *(undefined1 *)((longlong)iVar45 + 0x108 + (longlong)puVar42) = 0;
-                  UNLOCK();
+            }
+            else {
+                // 处理数组分配
+                index_char = *(char *)(temp_long + 0x44);
+                temp_ulong1 = (ulonglong)index_char;
+                game_object_ptr = (longlong *)(temp_long + 0x38);
+                item_count = (int)index_char;
+                
+                if (*(int *)(temp_long + 0x40) == (int)index_char) {
+                    array_ptr = (longlong *)*game_object_ptr;
                 }
                 else {
-                  if (lVar35 != 0) {
-                    // WARNING: Subroutine does not return
-                    FUN_18064e900();
-                  }
-                  do {
-                  } while (*pcVar41 != '\0');
+                    *(int *)(temp_long + 0x40) = item_count;
+                    if (*game_object_ptr != 0) {
+                        // 释放旧内存
+                        FUN_18064e900();
+                    }
+                    *game_object_ptr = 0;
+                    
+                    if (index_char == '\0') {
+                        array_ptr = (longlong *)0x0;
+                        *game_object_ptr = 0;
+                    }
+                    else {
+                        // 分配新内存
+                        array_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)index_char * 4);
+                        *game_object_ptr = (longlong)array_ptr;
+                    }
                 }
-              }
-              else {
-                do {
-                } while (*pcVar41 != '\0');
-              }
-              uVar48 = (ulonglong)(iVar45 + 1);
-              puVar47 = puVar47 + 2;
-              pcVar41 = pcVar41 + 1;
-              lVar33 = lVar33 + -1;
-            } while (lVar33 != 0);
-          }
+                
+                // 初始化数组数据
+                if (array_ptr != (longlong *)0x0) {
+                    array_size = 0;
+                    chunk_index = (uint)index_char;
+                    loop_index = array_size;
+                    
+                    if ((0 < item_count) && (0xf < chunk_index)) {
+                        temp_int2 = *(int *)(temp_long + 0x2c);
+                        temp_ptr1 = (longlong *)((longlong)array_ptr + (longlong)(index_char + -1) * 4);
+                        
+                        if ((((longlong *)(temp_long + 0x2c) < array_ptr) || (temp_ptr1 < (longlong *)(temp_long + 0x2c))) &&
+                           ((game_object_ptr < array_ptr || (loop_index = 0, temp_ptr1 < game_object_ptr)))) {
+                            
+                            temp_uint1 = chunk_index & 0x8000000f;
+                            if ((int)temp_uint1 < 0) {
+                                temp_uint1 = (temp_uint1 - 1 | 0xfffffff0) + 1;
+                            }
+                            
+                            array_ptr = array_ptr + 4;
+                            temp_int1 = 8;
+                            
+                            // 批量初始化数组
+                            do {
+                                *(int *)(array_ptr + -4) = array_size + temp_int2;
+                                *(int *)((longlong)array_ptr + -0x1c) = array_size + 1 + temp_int2;
+                                *(int *)(array_ptr + -3) = array_size + 2 + temp_int2;
+                                *(int *)((longlong)array_ptr + -0x14) = array_size + 3 + temp_int2;
+                                array_size = array_size + 0x10;
+                                *(int *)(array_ptr + -2) = temp_int1 + -4 + temp_int2;
+                                *(int *)((longlong)array_ptr + -0xc) = temp_int1 + -3 + temp_int2;
+                                *(int *)(array_ptr + -1) = temp_int1 + -2 + temp_int2;
+                                *(int *)((longlong)array_ptr + -4) = temp_int1 + -1 + temp_int2;
+                                *(int *)array_ptr = temp_int1 + temp_int2;
+                                *(int *)((longlong)array_ptr + 4) = temp_int1 + 1 + temp_int2;
+                                *(int *)(array_ptr + 1) = temp_int1 + 2 + temp_int2;
+                                *(int *)((longlong)array_ptr + 0xc) = temp_int1 + 3 + temp_int2;
+                                *(int *)(array_ptr + 2) = temp_int1 + 4 + temp_int2;
+                                *(int *)((longlong)array_ptr + 0x14) = temp_int1 + 5 + temp_int2;
+                                *(int *)(array_ptr + 3) = temp_int1 + 6 + temp_int2;
+                                *(int *)((longlong)array_ptr + 0x1c) = temp_int1 + 7 + temp_int2;
+                                array_ptr = array_ptr + 8;
+                                temp_int1 = temp_int1 + 0x10;
+                                loop_index = array_size;
+                            } while (array_size < (int)(chunk_index - temp_uint1));
+                        }
+                    }
+                    
+                    // 填充剩余数组元素
+                    for (offset_value = (longlong)loop_index; offset_value < (longlong)temp_ulong1; offset_value = offset_value + 1) {
+                        array_size = *(int *)(temp_long + 0x2c) + loop_index;
+                        loop_index = loop_index + 1;
+                        *(int *)(*game_object_ptr + offset_value * 4) = array_size;
+                    }
+                    
+                    // 处理数据映射
+                    loop_index = *(int *)(temp_long + 0x18);
+                    array_size = 0;
+                    if (0 < (longlong)loop_index) {
+                        offset_value = 0;
+                        do {
+                            temp_int2 = *(int *)(temp_long + 0x30) + array_size;
+                            array_size = array_size + 1;
+                            byte_ptr = (byte *)(*(longlong *)(temp_long + 0x10) + offset_value);
+                            offset_value = offset_value + 1;
+                            *(int *)(*game_object_ptr + (ulonglong)*byte_ptr * 4) = temp_int2;
+                        } while (offset_value < loop_index);
+                    }
+                }
+                
+                // 处理内存块分配
+                uint_ptr = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0);
+                
+                if (item_count == 0) {
+                    temp_uint1 = (int)index_char - 1;
+                }
+                else {
+                    LOCK();
+                    temp_uint1 = *uint_ptr;
+                    *uint_ptr = *uint_ptr + (int)index_char;
+                    UNLOCK();
+                    
+                    chunk_start = (ulonglong)(temp_uint1 >> 0xb);
+                    chunk_end = (ulonglong)(index_char + -1 + temp_uint1 >> 0xb);
+                    
+                    if (chunk_start <= chunk_end) {
+                        char_ptr = (char *)((longlong)uint_ptr + chunk_start + 0x108);
+                        offset_value = (chunk_end - chunk_start) + 1;
+                        chunk_ptr = uint_ptr + chunk_start * 2 + 2;
+                        
+                        do {
+                            loop_index = (int)chunk_start;
+                            if (*(longlong *)chunk_ptr == 0) {
+                                loop_counter = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+                                LOCK();
+                                is_allocated = *(longlong *)(uint_ptr + (longlong)loop_index * 2 + 2) == 0;
+                                if (is_allocated) {
+                                    *(longlong *)(uint_ptr + (longlong)loop_index * 2 + 2) = loop_counter;
+                                }
+                                UNLOCK();
+                                
+                                if (is_allocated) {
+                                    LOCK();
+                                    *(undefined1 *)((longlong)loop_index + 0x108 + (longlong)uint_ptr) = 0;
+                                    UNLOCK();
+                                }
+                                else {
+                                    if (loop_counter != 0) {
+                                        FUN_18064e900();
+                                    }
+                                    do {
+                                    } while (*char_ptr != '\0');
+                                }
+                            }
+                            else {
+                                do {
+                                } while (*char_ptr != '\0');
+                            }
+                            chunk_start = (ulonglong)(loop_index + 1);
+                            chunk_ptr = chunk_ptr + 2;
+                            char_ptr = char_ptr + 1;
+                            offset_value = offset_value + -1;
+                        } while (offset_value != 0);
+                    }
+                }
+                
+                // 复制数据到内存块
+                data_array = *(undefined4 **)(temp_long + 0x38);
+                temp_uint1 = temp_uint1 >> 0xb;
+                *(uint *)(temp_long + 0x2c) = temp_uint1;
+                
+                if (temp_uint1 == (int)index_char + temp_uint1 >> 0xb) {
+                    memcpy(*(longlong *)(uint_ptr + (ulonglong)temp_uint1 * 2 + 2) +
+                           (ulonglong)(temp_uint1 + temp_uint1 * -0x800) * 4, data_array, (temp_ulong1 & 0xffffffff) << 2);
+                }
+                
+                if (item_count != 0) {
+                    temp_ulong1 = temp_ulong1 & 0xffffffff;
+                    do {
+                        temp_undefined4 = *data_array;
+                        data_array = data_array + 1;
+                        *(undefined4 *)
+                         (*(longlong *)(uint_ptr + (ulonglong)(temp_uint1 >> 0xb) * 2 + 2) +
+                         (ulonglong)(temp_uint1 + (temp_uint1 >> 0xb) * -0x800) * 4) = temp_undefined4;
+                        temp_ulong1 = temp_ulong1 - 1;
+                        temp_uint1 = temp_uint1 + 1;
+                    } while (temp_ulong1 != 0);
+                }
+            }
         }
-        puVar46 = *(undefined4 **)(lVar17 + 0x38);
-        uVar38 = uVar36 >> 0xb;
-        *(uint *)(lVar17 + 0x2c) = uVar36;
-        if (uVar38 == (int)cVar16 + uVar36 >> 0xb) {
-                    // WARNING: Subroutine does not return
-          memcpy(*(longlong *)(puVar42 + (ulonglong)uVar38 * 2 + 2) +
-                 (ulonglong)(uVar36 + uVar38 * -0x800) * 4,puVar46,(uVar40 & 0xffffffff) << 2);
-        }
-        if (iVar43 != 0) {
-          uVar40 = uVar40 & 0xffffffff;
-          do {
-            uVar32 = *puVar46;
-            puVar46 = puVar46 + 1;
-            *(undefined4 *)
-             (*(longlong *)(puVar42 + (ulonglong)(uVar36 >> 0xb) * 2 + 2) +
-             (ulonglong)(uVar36 + (uVar36 >> 0xb) * -0x800) * 4) = uVar32;
-            uVar40 = uVar40 - 1;
-            uVar36 = uVar36 + 1;
-          } while (uVar40 != 0);
-        }
-      }
     }
-  }
-  return;
+    return;
 }
 
 
@@ -314,310 +358,354 @@ void FUN_180079270(longlong param_1,longlong param_2)
 
 
 // 函数: void FUN_180079284(longlong param_1)
+// 功能: 处理游戏对象的初始化和矩阵变换（第二个版本）
+// 参数: param_1 - 游戏对象指针
 void FUN_180079284(longlong param_1)
-
 {
-  longlong *plVar1;
-  int *piVar2;
-  longlong *plVar3;
-  byte *pbVar4;
-  undefined8 *puVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  undefined1 uVar15;
-  char cVar16;
-  longlong lVar17;
-  float *pfVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  undefined8 uVar31;
-  undefined4 uVar32;
-  longlong lVar33;
-  longlong *plVar34;
-  longlong lVar35;
-  uint uVar36;
-  int iVar37;
-  uint uVar38;
-  int iVar39;
-  ulonglong uVar40;
-  char *pcVar41;
-  uint *puVar42;
-  int iVar43;
-  longlong unaff_RDI;
-  int iVar44;
-  int iVar45;
-  undefined4 *puVar46;
-  uint *puVar47;
-  ulonglong uVar48;
-  ulonglong uVar49;
-  bool in_ZF;
-  bool bVar50;
-  
-  lVar17 = _DAT_180c86890;
-  lVar33 = param_1;
-  if (in_ZF) {
-    lVar33 = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
-  }
-  LOCK();
-  piVar2 = (int *)(lVar17 + 0xed8);
-  iVar43 = *piVar2;
-  *piVar2 = *piVar2 + *(int *)(lVar33 + 0x200);
-  UNLOCK();
-  lVar17 = *(longlong *)(param_1 + 600);
-  uVar15 = *(undefined1 *)(unaff_RDI + 0x24);
-  uVar32 = *(undefined4 *)(unaff_RDI + 0x20);
-  cVar16 = *(char *)(unaff_RDI + 0xd);
-  *(undefined4 *)(lVar17 + 0x48) = *(undefined4 *)(lVar17 + 0x2c);
-  *(undefined4 *)(lVar17 + 0x50) = *(undefined4 *)(lVar17 + 0x4c);
-  *(int *)(lVar17 + 0x4c) = iVar43;
-  *(undefined1 *)(lVar17 + 0x44) = uVar15;
-  *(undefined4 *)(lVar17 + 0x2c) = uVar32;
-  if (cVar16 != -1) {
-    uVar38 = (int)*(char *)(unaff_RDI + 0xd) + *(int *)(unaff_RDI + 0x18);
-    pfVar18 = (float *)**(longlong **)(param_1 + 600);
-    uVar36 = uVar38 >> 0xd;
-    lVar17 = *(longlong *)
-              ((longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc30 +
-              (ulonglong)uVar36 * 8);
-    lVar33 = (ulonglong)(uVar38 + uVar36 * -0x2000) * 0x40;
-    uVar31 = ((undefined8 *)(lVar17 + lVar33))[1];
-    *(undefined8 *)pfVar18 = *(undefined8 *)(lVar17 + lVar33);
-    *(undefined8 *)(pfVar18 + 2) = uVar31;
-    puVar5 = (undefined8 *)(lVar17 + 0x10 + lVar33);
-    uVar31 = puVar5[1];
-    *(undefined8 *)(pfVar18 + 4) = *puVar5;
-    *(undefined8 *)(pfVar18 + 6) = uVar31;
-    puVar5 = (undefined8 *)(lVar17 + 0x20 + lVar33);
-    uVar31 = puVar5[1];
-    *(undefined8 *)(pfVar18 + 8) = *puVar5;
-    *(undefined8 *)(pfVar18 + 10) = uVar31;
-    puVar5 = (undefined8 *)(lVar17 + 0x30 + lVar33);
-    uVar31 = puVar5[1];
-    *(undefined8 *)(pfVar18 + 0xc) = *puVar5;
-    *(undefined8 *)(pfVar18 + 0xe) = uVar31;
-    lVar17 = *(longlong *)(unaff_RDI + 0x10);
-    fVar19 = pfVar18[8];
-    fVar20 = pfVar18[9];
-    fVar21 = pfVar18[10];
-    fVar22 = pfVar18[0xb];
-    fVar23 = *pfVar18;
-    fVar24 = pfVar18[1];
-    fVar25 = pfVar18[2];
-    fVar26 = pfVar18[3];
-    fVar27 = pfVar18[4];
-    fVar28 = pfVar18[5];
-    fVar29 = pfVar18[6];
-    fVar30 = pfVar18[7];
-    fVar6 = *(float *)(lVar17 + 0x374);
-    fVar7 = *(float *)(lVar17 + 0x370);
-    fVar8 = *(float *)(lVar17 + 0x378);
-    fVar9 = *(float *)(lVar17 + 900);
-    fVar10 = *(float *)(lVar17 + 0x394);
-    fVar11 = *(float *)(lVar17 + 0x380);
-    fVar12 = *(float *)(lVar17 + 0x388);
-    fVar13 = *(float *)(lVar17 + 0x390);
-    fVar14 = *(float *)(lVar17 + 0x398);
-    *pfVar18 = fVar6 * fVar27 + fVar7 * fVar23 + fVar8 * fVar19;
-    pfVar18[1] = fVar6 * fVar28 + fVar7 * fVar24 + fVar8 * fVar20;
-    pfVar18[2] = fVar6 * fVar29 + fVar7 * fVar25 + fVar8 * fVar21;
-    pfVar18[3] = fVar6 * fVar30 + fVar7 * fVar26 + fVar8 * fVar22;
-    pfVar18[4] = fVar9 * fVar27 + fVar11 * fVar23 + fVar12 * fVar19;
-    pfVar18[5] = fVar9 * fVar28 + fVar11 * fVar24 + fVar12 * fVar20;
-    pfVar18[6] = fVar9 * fVar29 + fVar11 * fVar25 + fVar12 * fVar21;
-    pfVar18[7] = fVar9 * fVar30 + fVar11 * fVar26 + fVar12 * fVar22;
-    pfVar18[8] = fVar10 * fVar27 + fVar13 * fVar23 + fVar14 * fVar19;
-    pfVar18[9] = fVar10 * fVar28 + fVar13 * fVar24 + fVar14 * fVar20;
-    pfVar18[10] = fVar10 * fVar29 + fVar13 * fVar25 + fVar14 * fVar21;
-    pfVar18[0xb] = fVar10 * fVar30 + fVar13 * fVar26 + fVar14 * fVar22;
-  }
-  lVar17 = *(longlong *)(param_1 + 600);
-  if (*(int *)(lVar17 + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
-    iVar43 = *(int *)(lVar17 + 0x1c) + *(int *)(lVar17 + 0x18);
-    *(int *)(lVar17 + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
-    if (0 < iVar43) {
-      lVar33 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-      uVar32 = FUN_180080380(lVar33,iVar43);
-      *(undefined4 *)(lVar17 + 0x30) = uVar32;
-      FUN_1800802e0(lVar33,uVar32);
-      if (*(longlong *)(lVar17 + 0x10) == 0) {
-        if (*(int *)(lVar17 + 0x18) != 0) {
-          *(undefined4 *)(lVar17 + 0x2c) = *(undefined4 *)(lVar17 + 0x30);
-          return;
-        }
-      }
-      else {
-        cVar16 = *(char *)(lVar17 + 0x44);
-        uVar40 = (ulonglong)cVar16;
-        plVar1 = (longlong *)(lVar17 + 0x38);
-        iVar43 = (int)cVar16;
-        if (*(int *)(lVar17 + 0x40) == (int)cVar16) {
-          plVar34 = (longlong *)*plVar1;
-        }
-        else {
-          *(int *)(lVar17 + 0x40) = iVar43;
-          if (*plVar1 != 0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900();
-          }
-          *plVar1 = 0;
-          if (cVar16 == '\0') {
-            plVar34 = (longlong *)0x0;
-            *plVar1 = 0;
-          }
-          else {
-            plVar34 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(longlong)cVar16 * 4);
-            *plVar1 = (longlong)plVar34;
-          }
-        }
-        if (plVar34 != (longlong *)0x0) {
-          iVar44 = 0;
-          uVar36 = (uint)cVar16;
-          iVar45 = iVar44;
-          if ((0 < iVar43) && (0xf < uVar36)) {
-            iVar39 = *(int *)(lVar17 + 0x2c);
-            plVar3 = (longlong *)((longlong)plVar34 + (longlong)(cVar16 + -1) * 4);
-            if ((((longlong *)(lVar17 + 0x2c) < plVar34) || (plVar3 < (longlong *)(lVar17 + 0x2c)))
-               && ((plVar1 < plVar34 || (iVar45 = 0, plVar3 < plVar1)))) {
-              uVar38 = uVar36 & 0x8000000f;
-              if ((int)uVar38 < 0) {
-                uVar38 = (uVar38 - 1 | 0xfffffff0) + 1;
-              }
-              plVar34 = plVar34 + 4;
-              iVar37 = 8;
-              do {
-                *(int *)(plVar34 + -4) = iVar44 + iVar39;
-                *(int *)((longlong)plVar34 + -0x1c) = iVar44 + 1 + iVar39;
-                *(int *)(plVar34 + -3) = iVar44 + 2 + iVar39;
-                *(int *)((longlong)plVar34 + -0x14) = iVar44 + 3 + iVar39;
-                iVar44 = iVar44 + 0x10;
-                *(int *)(plVar34 + -2) = iVar37 + -4 + iVar39;
-                *(int *)((longlong)plVar34 + -0xc) = iVar37 + -3 + iVar39;
-                *(int *)(plVar34 + -1) = iVar37 + -2 + iVar39;
-                *(int *)((longlong)plVar34 + -4) = iVar37 + -1 + iVar39;
-                *(int *)plVar34 = iVar37 + iVar39;
-                *(int *)((longlong)plVar34 + 4) = iVar37 + 1 + iVar39;
-                *(int *)(plVar34 + 1) = iVar37 + 2 + iVar39;
-                *(int *)((longlong)plVar34 + 0xc) = iVar37 + 3 + iVar39;
-                *(int *)(plVar34 + 2) = iVar37 + 4 + iVar39;
-                *(int *)((longlong)plVar34 + 0x14) = iVar37 + 5 + iVar39;
-                *(int *)(plVar34 + 3) = iVar37 + 6 + iVar39;
-                *(int *)((longlong)plVar34 + 0x1c) = iVar37 + 7 + iVar39;
-                plVar34 = plVar34 + 8;
-                iVar37 = iVar37 + 0x10;
-                iVar45 = iVar44;
-              } while (iVar44 < (int)(uVar36 - uVar38));
-            }
-          }
-          for (lVar33 = (longlong)iVar45; lVar33 < (longlong)uVar40; lVar33 = lVar33 + 1) {
-            iVar44 = *(int *)(lVar17 + 0x2c) + iVar45;
-            iVar45 = iVar45 + 1;
-            *(int *)(*plVar1 + lVar33 * 4) = iVar44;
-          }
-          iVar45 = *(int *)(lVar17 + 0x18);
-          iVar44 = 0;
-          if (0 < (longlong)iVar45) {
-            lVar33 = 0;
-            do {
-              iVar39 = *(int *)(lVar17 + 0x30) + iVar44;
-              iVar44 = iVar44 + 1;
-              pbVar4 = (byte *)(*(longlong *)(lVar17 + 0x10) + lVar33);
-              lVar33 = lVar33 + 1;
-              *(int *)(*plVar1 + (ulonglong)*pbVar4 * 4) = iVar39;
-            } while (lVar33 < iVar45);
-          }
-        }
-        puVar42 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
-                          _DAT_180c86890 + 0x9d0);
-        if (iVar43 == 0) {
-          uVar36 = (int)cVar16 - 1;
-        }
-        else {
-          LOCK();
-          uVar36 = *puVar42;
-          *puVar42 = *puVar42 + (int)cVar16;
-          UNLOCK();
-          uVar48 = (ulonglong)(uVar36 >> 0xb);
-          uVar49 = (ulonglong)(cVar16 + -1 + uVar36 >> 0xb);
-          if (uVar48 <= uVar49) {
-            pcVar41 = (char *)((longlong)puVar42 + uVar48 + 0x108);
-            lVar33 = (uVar49 - uVar48) + 1;
-            puVar47 = puVar42 + uVar48 * 2 + 2;
-            do {
-              iVar45 = (int)uVar48;
-              if (*(longlong *)puVar47 == 0) {
-                lVar35 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
-                LOCK();
-                bVar50 = *(longlong *)(puVar42 + (longlong)iVar45 * 2 + 2) == 0;
-                if (bVar50) {
-                  *(longlong *)(puVar42 + (longlong)iVar45 * 2 + 2) = lVar35;
+    longlong *game_object_ptr;
+    int *counter_ptr;
+    longlong *temp_ptr1;
+    byte *byte_ptr;
+    undefined8 *data_ptr;
+    float matrix_row1_x, matrix_row1_y, matrix_row1_z;
+    float matrix_row2_x, matrix_row2_y, matrix_row2_z;
+    float matrix_row3_x, matrix_row3_y, matrix_row3_z;
+    float result_matrix[12];
+    undefined1 flag_byte;
+    char index_char;
+    longlong temp_long;
+    float *transform_matrix;
+    float temp_float1, temp_float2, temp_float3, temp_float4;
+    float temp_float5, temp_float6, temp_float7, temp_float8;
+    float temp_float9, temp_float10, temp_float11, temp_float12;
+    undefined8 temp_undefined8;
+    undefined4 temp_undefined4;
+    longlong offset_value;
+    longlong *array_ptr;
+    longlong loop_counter;
+    uint chunk_index;
+    int temp_int1;
+    uint temp_uint1;
+    int temp_int2;
+    ulonglong temp_ulong1;
+    char *char_ptr;
+    uint *uint_ptr;
+    int item_count;
+    longlong unaff_RDI;
+    int array_size;
+    int loop_index;
+    undefined4 *data_array;
+    uint *chunk_ptr;
+    ulonglong chunk_start;
+    ulonglong chunk_end;
+    bool in_ZF;
+    bool is_allocated;
+    
+    // 获取全局数据地址
+    temp_long = _DAT_180c86890;
+    offset_value = param_1;
+    
+    // 根据标志位决定是否使用偏移地址
+    if (in_ZF) {
+        offset_value = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
+    }
+    
+    // 更新全局计数器
+    LOCK();
+    counter_ptr = (int *)(temp_long + 0xed8);
+    item_count = *counter_ptr;
+    *counter_ptr = *counter_ptr + *(int *)(offset_value + 0x200);
+    UNLOCK();
+    
+    // 获取游戏对象数据
+    temp_long = *(longlong *)(param_1 + 600);
+    flag_byte = *(undefined1 *)(unaff_RDI + 0x24);
+    temp_undefined4 = *(undefined4 *)(unaff_RDI + 0x20);
+    index_char = *(char *)(unaff_RDI + 0xd);
+    
+    // 保存当前状态
+    *(undefined4 *)(temp_long + 0x48) = *(undefined4 *)(temp_long + 0x2c);
+    *(undefined4 *)(temp_long + 0x50) = *(undefined4 *)(temp_long + 0x4c);
+    *(int *)(temp_long + 0x4c) = item_count;
+    *(undefined1 *)(temp_long + 0x44) = flag_byte;
+    *(undefined4 *)(temp_long + 0x2c) = temp_undefined4;
+    
+    // 处理矩阵变换
+    if (index_char != -1) {
+        temp_uint1 = (int)*(char *)(unaff_RDI + 0xd) + *(int *)(unaff_RDI + 0x18);
+        transform_matrix = (float *)**(longlong **)(param_1 + 600);
+        chunk_index = temp_uint1 >> 0xd;
+        
+        // 计算矩阵数据地址
+        temp_long = *(longlong *)
+                   ((longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc30 +
+                   (ulonglong)chunk_index * 8);
+        offset_value = (ulonglong)(temp_uint1 + chunk_index * -0x2000) * 0x40;
+        
+        // 加载矩阵数据
+        temp_undefined8 = ((undefined8 *)(temp_long + offset_value))[1];
+        *(undefined8 *)transform_matrix = *(undefined8 *)(temp_long + offset_value);
+        *(undefined8 *)(transform_matrix + 2) = temp_undefined8;
+        
+        // 加载第二行矩阵数据
+        data_ptr = (undefined8 *)(temp_long + 0x10 + offset_value);
+        temp_undefined8 = data_ptr[1];
+        *(undefined8 *)(transform_matrix + 4) = *data_ptr;
+        *(undefined8 *)(transform_matrix + 6) = temp_undefined8;
+        
+        // 加载第三行矩阵数据
+        data_ptr = (undefined8 *)(temp_long + 0x20 + offset_value);
+        temp_undefined8 = data_ptr[1];
+        *(undefined8 *)(transform_matrix + 8) = *data_ptr;
+        *(undefined8 *)(transform_matrix + 10) = temp_undefined8;
+        
+        // 加载第四行矩阵数据
+        data_ptr = (undefined8 *)(temp_long + 0x30 + offset_value);
+        temp_undefined8 = data_ptr[1];
+        *(undefined8 *)(transform_matrix + 0xc) = *data_ptr;
+        *(undefined8 *)(transform_matrix + 0xe) = temp_undefined8;
+        
+        // 获取变换矩阵数据
+        temp_long = *(longlong *)(unaff_RDI + 0x10);
+        temp_float1 = transform_matrix[8];
+        temp_float2 = transform_matrix[9];
+        temp_float3 = transform_matrix[10];
+        temp_float4 = transform_matrix[0xb];
+        temp_float5 = *transform_matrix;
+        temp_float6 = transform_matrix[1];
+        temp_float7 = transform_matrix[2];
+        temp_float8 = transform_matrix[3];
+        temp_float9 = transform_matrix[4];
+        temp_float10 = transform_matrix[5];
+        temp_float11 = transform_matrix[6];
+        temp_float12 = transform_matrix[7];
+        
+        // 获取变换参数
+        matrix_row1_x = *(float *)(temp_long + 0x374);
+        matrix_row1_y = *(float *)(temp_long + 0x370);
+        matrix_row1_z = *(float *)(temp_long + 0x378);
+        matrix_row2_x = *(float *)(temp_long + 900);
+        matrix_row2_y = *(float *)(temp_long + 0x394);
+        matrix_row2_z = *(float *)(temp_long + 0x380);
+        matrix_row3_x = *(float *)(temp_long + 0x388);
+        matrix_row3_y = *(float *)(temp_long + 0x390);
+        matrix_row3_z = *(float *)(temp_long + 0x398);
+        
+        // 执行矩阵变换计算
+        *transform_matrix = matrix_row1_x * temp_float9 + matrix_row1_y * temp_float5 + matrix_row1_z * temp_float1;
+        transform_matrix[1] = matrix_row1_x * temp_float10 + matrix_row1_y * temp_float6 + matrix_row1_z * temp_float2;
+        transform_matrix[2] = matrix_row1_x * temp_float11 + matrix_row1_y * temp_float7 + matrix_row1_z * temp_float3;
+        transform_matrix[3] = matrix_row1_x * temp_float12 + matrix_row1_y * temp_float8 + matrix_row1_z * temp_float4;
+        transform_matrix[4] = matrix_row2_x * temp_float9 + matrix_row2_z * temp_float5 + matrix_row3_x * temp_float1;
+        transform_matrix[5] = matrix_row2_x * temp_float10 + matrix_row2_z * temp_float6 + matrix_row3_x * temp_float2;
+        transform_matrix[6] = matrix_row2_x * temp_float11 + matrix_row2_z * temp_float7 + matrix_row3_x * temp_float3;
+        transform_matrix[7] = matrix_row2_x * temp_float12 + matrix_row2_z * temp_float8 + matrix_row3_x * temp_float4;
+        transform_matrix[8] = matrix_row2_y * temp_float9 + matrix_row3_y * temp_float5 + matrix_row3_z * temp_float1;
+        transform_matrix[9] = matrix_row2_y * temp_float10 + matrix_row3_y * temp_float6 + matrix_row3_z * temp_float2;
+        transform_matrix[10] = matrix_row2_y * temp_float11 + matrix_row3_y * temp_float7 + matrix_row3_z * temp_float3;
+        transform_matrix[0xb] = matrix_row2_y * temp_float12 + matrix_row3_y * temp_float8 + matrix_row3_z * temp_float4;
+    }
+    
+    // 检查是否需要更新
+    temp_long = *(longlong *)(param_1 + 600);
+    if (*(int *)(temp_long + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
+        item_count = *(int *)(temp_long + 0x1c) + *(int *)(temp_long + 0x18);
+        *(int *)(temp_long + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
+        
+        if (0 < item_count) {
+            // 分配内存
+            offset_value = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+            temp_undefined4 = FUN_180080380(offset_value, item_count);
+            *(undefined4 *)(temp_long + 0x30) = temp_undefined4;
+            FUN_1800802e0(offset_value, temp_undefined4);
+            
+            // 检查数据指针
+            if (*(longlong *)(temp_long + 0x10) == 0) {
+                if (*(int *)(temp_long + 0x18) != 0) {
+                    *(undefined4 *)(temp_long + 0x2c) = *(undefined4 *)(temp_long + 0x30);
+                    return;
                 }
-                UNLOCK();
-                if (bVar50) {
-                  LOCK();
-                  *(undefined1 *)((longlong)iVar45 + 0x108 + (longlong)puVar42) = 0;
-                  UNLOCK();
+            }
+            else {
+                // 处理数组分配
+                index_char = *(char *)(temp_long + 0x44);
+                temp_ulong1 = (ulonglong)index_char;
+                game_object_ptr = (longlong *)(temp_long + 0x38);
+                item_count = (int)index_char;
+                
+                if (*(int *)(temp_long + 0x40) == (int)index_char) {
+                    array_ptr = (longlong *)*game_object_ptr;
                 }
                 else {
-                  if (lVar35 != 0) {
-                    // WARNING: Subroutine does not return
-                    FUN_18064e900();
-                  }
-                  do {
-                  } while (*pcVar41 != '\0');
+                    *(int *)(temp_long + 0x40) = item_count;
+                    if (*game_object_ptr != 0) {
+                        // 释放旧内存
+                        FUN_18064e900();
+                    }
+                    *game_object_ptr = 0;
+                    
+                    if (index_char == '\0') {
+                        array_ptr = (longlong *)0x0;
+                        *game_object_ptr = 0;
+                    }
+                    else {
+                        // 分配新内存
+                        array_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)index_char * 4);
+                        *game_object_ptr = (longlong)array_ptr;
+                    }
                 }
-              }
-              else {
-                do {
-                } while (*pcVar41 != '\0');
-              }
-              uVar48 = (ulonglong)(iVar45 + 1);
-              puVar47 = puVar47 + 2;
-              pcVar41 = pcVar41 + 1;
-              lVar33 = lVar33 + -1;
-            } while (lVar33 != 0);
-          }
+                
+                // 初始化数组数据
+                if (array_ptr != (longlong *)0x0) {
+                    array_size = 0;
+                    chunk_index = (uint)index_char;
+                    loop_index = array_size;
+                    
+                    if ((0 < item_count) && (0xf < chunk_index)) {
+                        temp_int2 = *(int *)(temp_long + 0x2c);
+                        temp_ptr1 = (longlong *)((longlong)array_ptr + (longlong)(index_char + -1) * 4);
+                        
+                        if ((((longlong *)(temp_long + 0x2c) < array_ptr) || (temp_ptr1 < (longlong *)(temp_long + 0x2c))) &&
+                           ((game_object_ptr < array_ptr || (loop_index = 0, temp_ptr1 < game_object_ptr)))) {
+                            
+                            temp_uint1 = chunk_index & 0x8000000f;
+                            if ((int)temp_uint1 < 0) {
+                                temp_uint1 = (temp_uint1 - 1 | 0xfffffff0) + 1;
+                            }
+                            
+                            array_ptr = array_ptr + 4;
+                            temp_int1 = 8;
+                            
+                            // 批量初始化数组
+                            do {
+                                *(int *)(array_ptr + -4) = array_size + temp_int2;
+                                *(int *)((longlong)array_ptr + -0x1c) = array_size + 1 + temp_int2;
+                                *(int *)(array_ptr + -3) = array_size + 2 + temp_int2;
+                                *(int *)((longlong)array_ptr + -0x14) = array_size + 3 + temp_int2;
+                                array_size = array_size + 0x10;
+                                *(int *)(array_ptr + -2) = temp_int1 + -4 + temp_int2;
+                                *(int *)((longlong)array_ptr + -0xc) = temp_int1 + -3 + temp_int2;
+                                *(int *)(array_ptr + -1) = temp_int1 + -2 + temp_int2;
+                                *(int *)((longlong)array_ptr + -4) = temp_int1 + -1 + temp_int2;
+                                *(int *)array_ptr = temp_int1 + temp_int2;
+                                *(int *)((longlong)array_ptr + 4) = temp_int1 + 1 + temp_int2;
+                                *(int *)(array_ptr + 1) = temp_int1 + 2 + temp_int2;
+                                *(int *)((longlong)array_ptr + 0xc) = temp_int1 + 3 + temp_int2;
+                                *(int *)(array_ptr + 2) = temp_int1 + 4 + temp_int2;
+                                *(int *)((longlong)array_ptr + 0x14) = temp_int1 + 5 + temp_int2;
+                                *(int *)(array_ptr + 3) = temp_int1 + 6 + temp_int2;
+                                *(int *)((longlong)array_ptr + 0x1c) = temp_int1 + 7 + temp_int2;
+                                array_ptr = array_ptr + 8;
+                                temp_int1 = temp_int1 + 0x10;
+                                loop_index = array_size;
+                            } while (array_size < (int)(chunk_index - temp_uint1));
+                        }
+                    }
+                    
+                    // 填充剩余数组元素
+                    for (offset_value = (longlong)loop_index; offset_value < (longlong)temp_ulong1; offset_value = offset_value + 1) {
+                        array_size = *(int *)(temp_long + 0x2c) + loop_index;
+                        loop_index = loop_index + 1;
+                        *(int *)(*game_object_ptr + offset_value * 4) = array_size;
+                    }
+                    
+                    // 处理数据映射
+                    loop_index = *(int *)(temp_long + 0x18);
+                    array_size = 0;
+                    if (0 < (longlong)loop_index) {
+                        offset_value = 0;
+                        do {
+                            temp_int2 = *(int *)(temp_long + 0x30) + array_size;
+                            array_size = array_size + 1;
+                            byte_ptr = (byte *)(*(longlong *)(temp_long + 0x10) + offset_value);
+                            offset_value = offset_value + 1;
+                            *(int *)(*game_object_ptr + (ulonglong)*byte_ptr * 4) = temp_int2;
+                        } while (offset_value < loop_index);
+                    }
+                }
+                
+                // 处理内存块分配
+                uint_ptr = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0);
+                
+                if (item_count == 0) {
+                    temp_uint1 = (int)index_char - 1;
+                }
+                else {
+                    LOCK();
+                    temp_uint1 = *uint_ptr;
+                    *uint_ptr = *uint_ptr + (int)index_char;
+                    UNLOCK();
+                    
+                    chunk_start = (ulonglong)(temp_uint1 >> 0xb);
+                    chunk_end = (ulonglong)(index_char + -1 + temp_uint1 >> 0xb);
+                    
+                    if (chunk_start <= chunk_end) {
+                        char_ptr = (char *)((longlong)uint_ptr + chunk_start + 0x108);
+                        offset_value = (chunk_end - chunk_start) + 1;
+                        chunk_ptr = uint_ptr + chunk_start * 2 + 2;
+                        
+                        do {
+                            loop_index = (int)chunk_start;
+                            if (*(longlong *)chunk_ptr == 0) {
+                                loop_counter = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+                                LOCK();
+                                is_allocated = *(longlong *)(uint_ptr + (longlong)loop_index * 2 + 2) == 0;
+                                if (is_allocated) {
+                                    *(longlong *)(uint_ptr + (longlong)loop_index * 2 + 2) = loop_counter;
+                                }
+                                UNLOCK();
+                                
+                                if (is_allocated) {
+                                    LOCK();
+                                    *(undefined1 *)((longlong)loop_index + 0x108 + (longlong)uint_ptr) = 0;
+                                    UNLOCK();
+                                }
+                                else {
+                                    if (loop_counter != 0) {
+                                        FUN_18064e900();
+                                    }
+                                    do {
+                                    } while (*char_ptr != '\0');
+                                }
+                            }
+                            else {
+                                do {
+                                } while (*char_ptr != '\0');
+                            }
+                            chunk_start = (ulonglong)(loop_index + 1);
+                            chunk_ptr = chunk_ptr + 2;
+                            char_ptr = char_ptr + 1;
+                            offset_value = offset_value + -1;
+                        } while (offset_value != 0);
+                    }
+                }
+                
+                // 复制数据到内存块
+                data_array = *(undefined4 **)(temp_long + 0x38);
+                temp_uint1 = temp_uint1 >> 0xb;
+                *(uint *)(temp_long + 0x2c) = temp_uint1;
+                
+                if (temp_uint1 == (int)index_char + temp_uint1 >> 0xb) {
+                    memcpy(*(longlong *)(uint_ptr + (ulonglong)temp_uint1 * 2 + 2) +
+                           (ulonglong)(temp_uint1 + temp_uint1 * -0x800) * 4, data_array, (temp_ulong1 & 0xffffffff) << 2);
+                }
+                
+                if (item_count != 0) {
+                    temp_ulong1 = temp_ulong1 & 0xffffffff;
+                    do {
+                        temp_undefined4 = *data_array;
+                        data_array = data_array + 1;
+                        *(undefined4 *)
+                         (*(longlong *)(uint_ptr + (ulonglong)(temp_uint1 >> 0xb) * 2 + 2) +
+                         (ulonglong)(temp_uint1 + (temp_uint1 >> 0xb) * -0x800) * 4) = temp_undefined4;
+                        temp_ulong1 = temp_ulong1 - 1;
+                        temp_uint1 = temp_uint1 + 1;
+                    } while (temp_ulong1 != 0);
+                }
+            }
         }
-        puVar46 = *(undefined4 **)(lVar17 + 0x38);
-        uVar38 = uVar36 >> 0xb;
-        *(uint *)(lVar17 + 0x2c) = uVar36;
-        if (uVar38 == (int)cVar16 + uVar36 >> 0xb) {
-                    // WARNING: Subroutine does not return
-          memcpy(*(longlong *)(puVar42 + (ulonglong)uVar38 * 2 + 2) +
-                 (ulonglong)(uVar36 + uVar38 * -0x800) * 4,puVar46,(uVar40 & 0xffffffff) << 2);
-        }
-        if (iVar43 != 0) {
-          uVar40 = uVar40 & 0xffffffff;
-          do {
-            uVar32 = *puVar46;
-            puVar46 = puVar46 + 1;
-            *(undefined4 *)
-             (*(longlong *)(puVar42 + (ulonglong)(uVar36 >> 0xb) * 2 + 2) +
-             (ulonglong)(uVar36 + (uVar36 >> 0xb) * -0x800) * 4) = uVar32;
-            uVar40 = uVar40 - 1;
-            uVar36 = uVar36 + 1;
-          } while (uVar40 != 0);
-        }
-      }
     }
-  }
-  return;
+    return;
 }
 
 

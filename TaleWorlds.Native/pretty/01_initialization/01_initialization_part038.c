@@ -642,59 +642,64 @@ expand_queue:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18006cc8d(undefined8 param_1,undefined8 param_2,longlong param_3)
-void FUN_18006cc8d(undefined8 param_1,undefined8 param_2,longlong param_3)
+/**
+ * 资源队列扩展函数
+ * 扩展资源队列的容量以适应更多资源
+ * @param param1 未使用参数
+ * @param param2 未使用参数  
+ * @param queue_ptr 资源队列指针
+ */
+void ResourceQueue_Expand(undefined8 param1,undefined8 param2,longlong *queue_ptr)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong in_RAX;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong *unaff_RDI;
-  longlong in_R10;
-  longlong in_stack_00000050;
+  longlong old_buffer;
+  longlong queue_end;
+  longlong range_start;
+  longlong range_end;
+  longlong capacity;
+  longlong new_buffer;
+  longlong new_position;
+  longlong unused_param1 = param1;
+  longlong unused_param2 = param2;
   
-  lVar4 = SUB168(SEXT816(in_RAX) * SEXT816(param_3 - in_R10),8);
-  lVar4 = (lVar4 >> 7) - (lVar4 >> 0x3f);
-  if (lVar4 == 0) {
-    lVar4 = 1;
+  // 计算新的队列容量  
+  capacity = SUB168(SEXT816(range_end - range_start) * SEXT816(param2 - param1),8);
+  capacity = (capacity >> 7) - (capacity >> 0x3f);
+  if (capacity == 0) {
+    capacity = 1;
   }
   else {
-    lVar4 = lVar4 * 2;
-    if (lVar4 == 0) {
-      lVar3 = 0;
-      goto LAB_18006ccef;
+    capacity = capacity * 2;
+    if (capacity == 0) {
+      new_buffer = 0;
+      goto expand_complete;
     }
   }
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar4 * 0x1a8,(char)unaff_RDI[3]);
-  param_3 = unaff_RDI[1];
-  in_R10 = *unaff_RDI;
-LAB_18006ccef:
-  FUN_18006de00(&stack0x00000050,in_R10,param_3,lVar3);
-  lVar2 = in_stack_00000050;
-  FUN_18006cd80(in_stack_00000050);
-  lVar1 = unaff_RDI[1];
-  lVar5 = *unaff_RDI;
-  if (lVar5 != lVar1) {
+  
+  // 分配新的缓冲区
+  new_buffer = FUN_18062b420(_DAT_180c8ed18,capacity * 0x1a8,(char)queue_ptr[3]);
+  range_end = queue_ptr[1];
+  range_start = *queue_ptr;
+expand_complete:
+  FUN_18006de00(&new_position,range_start,range_end,new_buffer);
+  queue_end = new_position;
+  FUN_18006cd80(new_position);
+  old_buffer = queue_ptr[1];
+  new_buffer = *queue_ptr;
+  if (new_buffer != old_buffer) {
     do {
-      FUN_180069530(lVar5);
-      lVar5 = lVar5 + 0x1a8;
-    } while (lVar5 != lVar1);
-    lVar5 = *unaff_RDI;
+      FUN_180069530(new_buffer);
+      new_buffer = new_buffer + 0x1a8;
+    } while (new_buffer != old_buffer);
+    new_buffer = *queue_ptr;
   }
-  if (lVar5 != 0) {
+  if (new_buffer != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lVar5);
+    FUN_18064e900(new_buffer);
   }
-  *unaff_RDI = lVar3;
-  unaff_RDI[1] = lVar2 + 0x1a8;
-  unaff_RDI[2] = lVar4 * 0x1a8 + lVar3;
+  *queue_ptr = new_buffer;
+  queue_ptr[1] = queue_end + 0x1a8;
+  queue_ptr[2] = capacity * 0x1a8 + new_buffer;
   return;
 }
 
@@ -702,8 +707,11 @@ LAB_18006ccef:
 
 
 
-// 函数: void FUN_18006cd43(void)
-void FUN_18006cd43(void)
+/**
+ * 资源释放函数
+ * 释放指定的资源并清理相关数据
+ */
+void Resource_Release(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -712,47 +720,56 @@ void FUN_18006cd43(void)
 
 
 
-longlong FUN_18006cd80(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 资源复制函数
+ * 复制资源数据到新的位置
+ * @param dest_ptr 目标位置指针
+ * @param src_ptr 源位置指针
+ * @param param3 未使用参数
+ * @param param4 未使用参数
+ * @return 目标位置指针
+ */
+longlong Resource_Copy(longlong dest_ptr,longlong src_ptr,undefined8 param3,undefined8 param4)
 
 {
-  code *pcVar1;
-  undefined8 uVar2;
+  code *callback_func;
+  undefined8 temp_value;
   
-  uVar2 = 0xfffffffffffffffe;
+  temp_value = 0xfffffffffffffffe;
   FUN_180068ff0();
-  *(undefined8 *)(param_1 + 0x118) = *(undefined8 *)(param_2 + 0x118);
-  *(undefined8 *)(param_1 + 0x120) = *(undefined8 *)(param_2 + 0x120);
-  *(undefined8 *)(param_1 + 0x128) = *(undefined8 *)(param_2 + 0x128);
-  *(undefined8 *)(param_1 + 0x130) = *(undefined8 *)(param_2 + 0x130);
-  *(undefined8 *)(param_1 + 0x138) = *(undefined8 *)(param_2 + 0x138);
-  *(undefined1 *)(param_1 + 0x140) = *(undefined1 *)(param_2 + 0x140);
-  *(undefined8 *)(param_1 + 0x158) = 0;
-  *(code **)(param_1 + 0x160) = _guard_check_icall;
-  if (param_1 + 0x148 != param_2 + 0x148) {
-    pcVar1 = *(code **)(param_2 + 0x158);
-    if (pcVar1 != (code *)0x0) {
-      (*pcVar1)(param_1 + 0x148,param_2 + 0x148,1,param_4,uVar2);
-      pcVar1 = *(code **)(param_2 + 0x158);
+  *(undefined8 *)(dest_ptr + 0x118) = *(undefined8 *)(src_ptr + 0x118);
+  *(undefined8 *)(dest_ptr + 0x120) = *(undefined8 *)(src_ptr + 0x120);
+  *(undefined8 *)(dest_ptr + 0x128) = *(undefined8 *)(src_ptr + 0x128);
+  *(undefined8 *)(dest_ptr + 0x130) = *(undefined8 *)(src_ptr + 0x130);
+  *(undefined8 *)(dest_ptr + 0x138) = *(undefined8 *)(src_ptr + 0x138);
+  *(undefined1 *)(dest_ptr + 0x140) = *(undefined1 *)(src_ptr + 0x140);
+  *(undefined8 *)(dest_ptr + 0x158) = 0;
+  *(code **)(dest_ptr + 0x160) = _guard_check_icall;
+  if (dest_ptr + 0x148 != src_ptr + 0x148) {
+    callback_func = *(code **)(src_ptr + 0x158);
+    if (callback_func != (code *)0x0) {
+      (*callback_func)(dest_ptr + 0x148,src_ptr + 0x148,1,param4,temp_value);
+      callback_func = *(code **)(src_ptr + 0x158);
     }
-    *(code **)(param_1 + 0x158) = pcVar1;
-    *(undefined8 *)(param_1 + 0x160) = *(undefined8 *)(param_2 + 0x160);
+    *(code **)(dest_ptr + 0x158) = callback_func;
+    *(undefined8 *)(dest_ptr + 0x160) = *(undefined8 *)(src_ptr + 0x160);
   }
-  *(undefined8 *)(param_1 + 0x178) = 0;
-  *(code **)(param_1 + 0x180) = _guard_check_icall;
-  if (param_1 + 0x168 != param_2 + 0x168) {
-    pcVar1 = *(code **)(param_2 + 0x178);
-    if (pcVar1 != (code *)0x0) {
-      (*pcVar1)(param_1 + 0x168,param_2 + 0x168,1);
-      pcVar1 = *(code **)(param_2 + 0x178);
+  *(undefined8 *)(dest_ptr + 0x178) = 0;
+  *(code **)(dest_ptr + 0x180) = _guard_check_icall;
+  if (dest_ptr + 0x168 != src_ptr + 0x168) {
+    callback_func = *(code **)(src_ptr + 0x178);
+    if (callback_func != (code *)0x0) {
+      (*callback_func)(dest_ptr + 0x168,src_ptr + 0x168,1);
+      callback_func = *(code **)(src_ptr + 0x178);
     }
-    *(code **)(param_1 + 0x178) = pcVar1;
-    *(undefined8 *)(param_1 + 0x180) = *(undefined8 *)(param_2 + 0x180);
+    *(code **)(dest_ptr + 0x178) = callback_func;
+    *(undefined8 *)(dest_ptr + 0x180) = *(undefined8 *)(src_ptr + 0x180);
   }
-  *(undefined8 *)(param_1 + 0x188) = *(undefined8 *)(param_2 + 0x188);
-  *(undefined8 *)(param_1 + 400) = *(undefined8 *)(param_2 + 400);
-  *(undefined8 *)(param_1 + 0x198) = *(undefined8 *)(param_2 + 0x198);
-  *(undefined8 *)(param_1 + 0x1a0) = *(undefined8 *)(param_2 + 0x1a0);
-  return param_1;
+  *(undefined8 *)(dest_ptr + 0x188) = *(undefined8 *)(src_ptr + 0x188);
+  *(undefined8 *)(dest_ptr + 400) = *(undefined8 *)(src_ptr + 400);
+  *(undefined8 *)(dest_ptr + 0x198) = *(undefined8 *)(src_ptr + 0x198);
+  *(undefined8 *)(dest_ptr + 0x1a0) = *(undefined8 *)(src_ptr + 0x1a0);
+  return dest_ptr;
 }
 
 

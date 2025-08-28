@@ -397,32 +397,35 @@ undefined8 * CleanupTransformMemory(undefined8 *object, ulonglong flags)
 
 
 
-undefined8 *
-FUN_180074fb0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+// 函数: undefined8 * SetTransformString - 设置变换字符串
+// 为变换对象设置字符串值
+undefined8 * SetTransformString(undefined8 param1, undefined8 *string_ptr, undefined8 param3, undefined8 param_4)
 
 {
-  *param_2 = &UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
-  param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 7;
-  strcpy_s(param_2[1],0x80,&UNK_1809ffa30,param_4,0,0xfffffffffffffffe);
-  return param_2;
+  *string_ptr = &STRING_Empty;
+  string_ptr[1] = 0;
+  *(undefined4 *)(string_ptr + 2) = 0;
+  *string_ptr = &STRING_Constant;
+  string_ptr[1] = string_ptr + 3;
+  *(undefined1 *)(string_ptr + 3) = 0;
+  *(undefined4 *)(string_ptr + 2) = 7;
+  strcpy_s(string_ptr[1],0x80,&STRING_DefaultValue,param_4,0,0xfffffffffffffffe);
+  return string_ptr;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180075030(undefined8 *param_1,char param_2,char param_3)
+// 函数: undefined8 * InitializeComplexTransformObject - 初始化复杂变换对象
+// 初始化一个复杂的变换对象，包含多个属性和状态
+undefined8 * InitializeComplexTransformObject(undefined8 *object, char param2, char param3)
 
 {
-  longlong *plVar1;
-  byte bVar2;
-  longlong *plVar3;
-  longlong *plVar4;
+  longlong *temp_ptr;
+  byte byte_flag;
+  longlong *cleanup_ptr1;
+  longlong *cleanup_ptr2;
   
   *param_1 = &UNK_180a21690;
   *param_1 = &UNK_180a21720;
@@ -620,35 +623,39 @@ undefined8 * FUN_180075030(undefined8 *param_1,char param_2,char param_3)
 
 
 
-undefined8 FUN_180075580(undefined8 param_1,ulonglong param_2)
+// 函数: undefined8 ReleaseTransformResources - 释放变换资源
+// 释放变换对象相关的资源，根据标志决定是否释放内存
+undefined8 ReleaseTransformResources(undefined8 object, ulonglong flags)
 
 {
   FUN_1800756e0();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x300);
+  if ((flags & 1) != 0) {
+    free(object,0x300);
   }
-  return param_1;
+  return object;
 }
 
 
 
-undefined1 FUN_1800755c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: undefined1 CheckTransformStatus - 检查变换状态
+// 检查变换对象的状态，返回状态信息
+undefined1 CheckTransformStatus(longlong transform_data, undefined8 param2, undefined8 param3, undefined8 param_4)
 
 {
-  undefined1 uVar1;
-  undefined8 uVar2;
-  undefined *puStack_30;
-  longlong lStack_28;
+  undefined1 status_result;
+  undefined8 error_code;
+  undefined *stack_data;
+  longlong check_result;
   
-  uVar2 = 0xfffffffffffffffe;
-  FUN_1806279c0(&puStack_30);
-  uVar1 = FUN_180063510(param_1 + 0x218,&puStack_30,param_3,param_4,uVar2);
-  puStack_30 = &UNK_180a3c3e0;
-  if (lStack_28 != 0) {
+  error_code = 0xfffffffffffffffe;
+  FUN_1806279c0(&stack_data);
+  status_result = FUN_180063510(transform_data + 0x218,&stack_data,param3,param4,error_code);
+  stack_data = &VTABLE_TransformObject6;
+  if (check_result != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  return uVar1;
+  return status_result;
 }
 
 
@@ -657,24 +664,23 @@ undefined1 FUN_1800755c0(longlong param_1,undefined8 param_2,undefined8 param_3,
 
 
 
-// 函数: void FUN_180075630(longlong param_1,undefined8 *param_2)
-void FUN_180075630(longlong param_1,undefined8 *param_2)
+// 函数: void ProcessTransformData - 处理变换数据
+// 处理变换数据，计算边界框和相关信息
+void ProcessTransformData(longlong transform_data, undefined8 *data_source)
 
 {
-  undefined8 *puVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  undefined8 uVar7;
-  char cVar8;
-  longlong lVar9;
-  longlong *plVar10;
-  uint uVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
+  undefined8 *transform_array;
+  longlong *transform_manager;
+  longlong element_data;
+  undefined4 word_data1;
+  undefined4 word_data2;
+  undefined4 word_data3;
+  undefined8 quad_data;
+  char has_transform;
+  longlong transform_address;
+  longlong *array_iterator;
+  uint transform_flags;
+  float min_x, min_y, min_z;
   float fVar15;
   float fVar16;
   float fVar17;
@@ -833,14 +839,15 @@ void FUN_180075630(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_1800756e0(undefined8 *param_1)
-void FUN_1800756e0(undefined8 *param_1)
+// 函数: void DestroyTransformObject - 销毁变换对象
+// 销毁变换对象，释放所有相关资源
+void DestroyTransformObject(undefined8 *object)
 
 {
-  byte *pbVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  undefined8 uVar4;
+  byte *flag_byte;
+  longlong *resource_ptr;
+  longlong resource_handle;
+  undefined8 error_code;
   
   uVar4 = 0xfffffffffffffffe;
   *param_1 = &UNK_180a00270;
@@ -941,12 +948,25 @@ void FUN_1800756e0(undefined8 *param_1)
   if ((longlong *)param_1[0x23] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x23] + 0x38))();
   }
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *object = &VTABLE_TransformObject3;
+  object[2] = &STRING_Empty;
+  *object = &VTABLE_TransformObject2;
+  *object = &VTABLE_TransformObject;
   return;
 }
+
+// 常量定义:
+// VTABLE_TransformObject - 变换对象虚函数表
+// VTABLE_TransformObject2 - 变换对象虚函数表2
+// VTABLE_TransformObject3 - 变换对象虚函数表3
+// VTABLE_TransformObject4 - 变换对象虚函数表4
+// VTABLE_TransformObject5 - 变换对象虚函数表5
+// VTABLE_TransformObject6 - 变换对象虚函数表6
+// STRING_Empty - 空字符串
+// STRING_Constant - 常量字符串
+// STRING_DefaultValue - 默认值字符串
+// FUNC_180277350 - 变换处理函数
+
 
 
 

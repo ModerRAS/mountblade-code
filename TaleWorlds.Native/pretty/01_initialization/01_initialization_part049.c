@@ -1,37 +1,52 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part049.c - 2 个函数
+// 01_initialization_part049.c - 3 个函数
 
-// 函数: void FUN_180077710(longlong param_1)
-void FUN_180077710(longlong param_1)
+/**
+ * 清理异常列表中的节点
+ * 从异常列表中移除指定的节点，如果引用计数为0则触发清理
+ * 
+ * @param context 上下文指针，包含要清理的节点信息
+ */
+void CleanupExceptionListNode(longlong context)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *refCount;
+  void **nodePtr;
+  longlong nodeBase;
+  ulonglong pageBase;
   
-  puVar2 = *(undefined8 **)(param_1 + 0x28);
-  if (puVar2 == (undefined8 *)0x0) {
+  // 获取要清理的节点指针
+  nodePtr = *(void ***)(context + 0x28);
+  if (nodePtr == (void **)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  
+  // 计算页面基址和节点位置
+  pageBase = (ulonglong)nodePtr & 0xffffffffffc00000;
+  if (pageBase != 0) {
+    nodeBase = pageBase + 0x80 + ((longlong)nodePtr - pageBase >> 0x10) * 0x50;
+    nodeBase = nodeBase - (ulonglong)*(uint *)(nodeBase + 4);
+    
+    // 检查是否是有效的异常列表节点
+    if ((*(void ***)(pageBase + 0x70) == &ExceptionList) && (*(char *)(nodeBase + 0xe) == '\0')) {
+      // 从链表中移除节点
+      *nodePtr = *(void **)(nodeBase + 0x20);
+      *(void **)(nodeBase + 0x20) = nodePtr;
+      
+      // 减少引用计数
+      refCount = (int *)(nodeBase + 0x18);
+      *refCount = *refCount - 1;
+      if (*refCount == 0) {
+        // 引用计数为0，触发清理
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      // 处理异常情况
+      func_0x00018064e870(pageBase,CONCAT71(0xff000000,*(void ***)(pageBase + 0x70) == &ExceptionList),
+                          nodePtr,pageBase,0xfffffffffffffffe);
     }
   }
   return;
@@ -39,10 +54,21 @@ void FUN_180077710(longlong param_1)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 全局变量地址警告：以'_'开头的全局变量与同一地址的较小符号重叠
 
-ulonglong FUN_180077750(longlong param_1,uint *param_2,float *param_3,longlong param_4,
-                       longlong param_5)
+/**
+ * 处理渲染对象的矩阵变换和渲染状态
+ * 该函数负责设置对象的变换矩阵、材质参数和渲染状态，是核心渲染管线的一部分
+ * 
+ * @param rendererContext 渲染器上下文，包含渲染状态和对象信息
+ * @param materialParams 材质参数指针，包含渲染所需的材质数据
+ * @param transformMatrix 变换矩阵数组，包含16个浮点数用于3D变换
+ * @param objectData 对象数据指针，包含要渲染的对象信息
+ * @param renderState 渲染状态指针，包含当前渲染的状态信息
+ * @return 渲染结果状态码
+ */
+ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams, float *transformMatrix, longlong objectData,
+                       longlong renderState)
 
 {
   float fVar1;
