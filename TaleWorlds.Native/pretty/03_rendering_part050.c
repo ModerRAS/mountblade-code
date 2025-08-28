@@ -954,7 +954,7 @@ void RenderSystem_ConfigureParameters(longlong system_handle, uint64_t *output_d
           resource_pointer = param13;
         }
         
-        resource_manager = FUN_180294c20(system_handle, &unknown_var_704_ptr, param3, &param6, resource_pointer);
+        resource_manager = SystemResourceProcessor(system_handle, &unknown_var_704_ptr, param3, &param6, resource_pointer);
         *(int32_t *)(resource_manager + 0xc) = 0x3f800000;
       }
       
