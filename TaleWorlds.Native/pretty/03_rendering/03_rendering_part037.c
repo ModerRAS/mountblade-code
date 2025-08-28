@@ -62,7 +62,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     uint64_t *resource_block;
     uint temp_uint;
     uint64_t *alloc_ptr;
-    void *undefined_ptr;
+    void *data_ptr;
     uint64_t *******hash_table_ptr;
     uint64_t *******temp_hash_ptr;
     uint *uint_ptr;
@@ -174,11 +174,11 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
             stack_buffer3[0] = '\0';
             stack_uint12 = *(uint *)(long_val + 0x20);
             ptr_val = *(void **)(long_val + 0x18);
-            undefined_ptr = &DAT;
+            data_ptr = &DAT;
             
             // 获取资源名称
             if (ptr_val != (void *)0x0) {
-                undefined_ptr = ptr_val;
+                data_ptr = ptr_val;
             }
             strcpy_s(stack_buffer3, MAX_STRING_LENGTH, undefined_ptr);
             
