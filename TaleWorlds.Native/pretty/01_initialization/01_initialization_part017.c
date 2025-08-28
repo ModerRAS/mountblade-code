@@ -91,93 +91,96 @@ undefined8 * Initialize_VTable_Pointer_B(undefined8 *vtable, ulonglong flags)
 
 
 
-// 函数: void FUN_18004b860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004b860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void Format_String_To_Buffer(longlong buffer_context, undefined8 format_str, undefined8 param_3, undefined8 param_4)
+// 格式化字符串到缓冲区
+void Format_String_To_Buffer(longlong buffer_context, undefined8 format_str, undefined8 param_3, undefined8 param_4)
 {
-  longlong lVar1;
-  int iVar2;
-  ulonglong *puVar3;
-  longlong lVar4;
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  longlong str_length;
+  int buffer_available;
+  ulonglong *printf_func;
+  longlong char_index;
+  undefined8 formatted_param_3;
+  undefined8 formatted_param_4;
   undefined1 auStack_78 [32];
-  undefined8 uStack_58;
-  undefined8 *puStack_50;
-  char acStack_48 [32];
-  ulonglong uStack_28;
+  undefined8 buffer_size;
+  undefined8 *buffer_ptr;
+  char formatted_string [32];
+  ulonglong stack_cookie;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
-  uStackX_18 = param_3;
-  uStackX_20 = param_4;
-  puVar3 = (ulonglong *)func_0x00018004b9a0();
-  uStack_58 = 0;
-  puStack_50 = &uStackX_18;
-  __stdio_common_vsprintf(*puVar3 | 1,acStack_48,0x20,param_2);
-  lVar1 = -1;
+  stack_cookie = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
+  formatted_param_3 = param_3;
+  formatted_param_4 = param_4;
+  printf_func = (ulonglong *)func_0x00018004b9a0();
+  buffer_size = 0;
+  buffer_ptr = &formatted_param_3;
+  __stdio_common_vsprintf(*printf_func | 1, formatted_string, 0x20, format_str);
+  str_length = -1;
   do {
-    lVar4 = lVar1;
-    lVar1 = lVar4 + 1;
-  } while (acStack_48[lVar4 + 1] != '\0');
-  iVar2 = (int)(lVar4 + 1);
-  if ((0 < iVar2) && (*(uint *)(param_1 + 0x10) + iVar2 < 0x1f)) {
+    char_index = str_length;
+    str_length = char_index + 1;
+  } while (formatted_string[char_index + 1] != '\0');
+  buffer_available = (int)(char_index + 1);
+  if ((0 < buffer_available) && (*(uint *)(buffer_context + 0x10) + buffer_available < 0x1f)) {
                     // WARNING: Subroutine does not return
-    memcpy((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8),acStack_48,
-           (longlong)((int)lVar4 + 2));
+    memcpy((ulonglong)*(uint *)(buffer_context + 0x10) + *(longlong *)(buffer_context + 8), formatted_string,
+           (longlong)((int)char_index + 2));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_78);
+  FUN_1808fc050(stack_cookie ^ (ulonglong)auStack_78);
 }
 
 
 
-undefined8 * FUN_18004b920(undefined8 *param_1,ulonglong param_2)
-
+// 函数: undefined8 * Initialize_VTable_Pointer_C(undefined8 *vtable, ulonglong flags)
+// 初始化虚表指针C
+undefined8 * Initialize_VTable_Pointer_C(undefined8 *vtable, ulonglong flags)
 {
-  *param_1 = &UNK_1809fcce0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,8);
+  *vtable = &UNK_1809fcce0;
+  if ((flags & 1) != 0) {
+    free(vtable, 8);
   }
-  return param_1;
+  return vtable;
 }
 
 
 
-undefined8 * FUN_18004b960(undefined8 *param_1,ulonglong param_2)
-
+// 函数: undefined8 * Initialize_VTable_Pointer_D(undefined8 *vtable, ulonglong flags)
+// 初始化虚表指针D
+undefined8 * Initialize_VTable_Pointer_D(undefined8 *vtable, ulonglong flags)
 {
-  *param_1 = &UNK_1809fcd18;
-  if ((param_2 & 1) != 0) {
-    free(param_1,8);
+  *vtable = &UNK_1809fcd18;
+  if ((flags & 1) != 0) {
+    free(vtable, 8);
   }
-  return param_1;
+  return vtable;
 }
 
 
 
-int FUN_18004b9b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: int Safe_VSprintf(undefined8 buffer, undefined8 format, undefined8 param_3, undefined8 param_4)
+// 安全的格式化字符串输出
+int Safe_VSprintf(undefined8 buffer, undefined8 format, undefined8 param_3, undefined8 param_4)
 {
-  int iVar1;
-  ulonglong *puVar2;
+  int result;
+  ulonglong *printf_func;
   
-  puVar2 = (ulonglong *)func_0x00018004b9a0();
-  iVar1 = __stdio_common_vsprintf(*puVar2 | 1,param_1,param_2,param_3,0,param_4);
-  if (iVar1 < 0) {
-    iVar1 = -1;
+  printf_func = (ulonglong *)func_0x00018004b9a0();
+  result = __stdio_common_vsprintf(*printf_func | 1, buffer, format, param_3, 0, param_4);
+  if (result < 0) {
+    result = -1;
   }
-  return iVar1;
+  return result;
 }
 
 
 
 
 
-// 函数: void FUN_18004ba30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004ba30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void Process_Resource_Type_A(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 处理资源类型A
+void Process_Resource_Type_A(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_1800582b0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_1800582b0(resource_context, *(undefined8 *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
@@ -185,11 +188,11 @@ void FUN_18004ba30(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004ba60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004ba60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void Process_Resource_Type_B(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 处理资源类型B
+void Process_Resource_Type_B(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_1800582b0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_1800582b0(resource_context, *(undefined8 *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
@@ -199,16 +202,16 @@ void FUN_18004ba60(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004ba90(undefined8 *param_1)
-void FUN_18004ba90(undefined8 *param_1)
-
+// 函数: void Unlock_Global_Mutex(undefined8 *resource_ptr)
+// 解锁全局互斥锁
+void Unlock_Global_Mutex(undefined8 *resource_ptr)
 {
-  int iVar1;
+  int unlock_result;
   
-  _DAT_180c8a9b0 = *param_1;
-  iVar1 = _Mtx_unlock(0x180c91970);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  _DAT_180c8a9b0 = *resource_ptr;
+  unlock_result = _Mtx_unlock(0x180c91970);
+  if (unlock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(unlock_result);
   }
   return;
 }
@@ -217,11 +220,11 @@ void FUN_18004ba90(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18004bad0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004bad0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void Process_Resource_Type_C(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 处理资源类型C
+void Process_Resource_Type_C(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_180058370(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058370(resource_context, *(undefined8 *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
@@ -229,11 +232,11 @@ void FUN_18004bad0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004bb00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004bb00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void Process_Resource_Type_D(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 处理资源类型D
+void Process_Resource_Type_D(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_180058370(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058370(resource_context, *(undefined8 *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
@@ -241,11 +244,11 @@ void FUN_18004bb00(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004bb30(longlong param_1)
-void FUN_18004bb30(longlong param_1)
-
+// 函数: void Initialize_Subsystem_A(longlong system_context)
+// 初始化子系统A
+void Initialize_Subsystem_A(longlong system_context)
 {
-  FUN_180057010(param_1 + 0x60);
+  FUN_180057010(system_context + 0x60);
   return;
 }
 
@@ -253,11 +256,11 @@ void FUN_18004bb30(longlong param_1)
 
 
 
-// 函数: void FUN_18004bb60(longlong param_1)
-void FUN_18004bb60(longlong param_1)
-
+// 函数: void Initialize_Subsystem_B(longlong system_context)
+// 初始化子系统B
+void Initialize_Subsystem_B(longlong system_context)
 {
-  FUN_180057010(param_1 + 0x60);
+  FUN_180057010(system_context + 0x60);
   return;
 }
 
@@ -267,53 +270,53 @@ void FUN_18004bb60(longlong param_1)
 
 
 
-// 函数: void FUN_18004bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void Cleanup_Resource_Array(undefined8 context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 清理资源数组
+void Cleanup_Resource_Array(undefined8 context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 *puVar1;
-  longlong lVar2;
-  int iVar3;
-  longlong lVar4;
+  undefined8 *resource_item;
+  longlong array_context;
+  int item_count;
+  longlong item_index;
   
-  lVar2 = _DAT_180c8a9f0;
-  iVar3 = (int)(*(longlong *)(_DAT_180c8a9f0 + 0x38) - *(longlong *)(_DAT_180c8a9f0 + 0x30) >> 3);
-  lVar4 = 0;
-  if (0 < iVar3) {
+  array_context = _DAT_180c8a9f0;
+  item_count = (int)(*(longlong *)(_DAT_180c8a9f0 + 0x38) - *(longlong *)(_DAT_180c8a9f0 + 0x30) >> 3);
+  item_index = 0;
+  if (0 < item_count) {
     do {
-      puVar1 = *(undefined8 **)(*(longlong *)(lVar2 + 0x30) + lVar4 * 8);
-      if (puVar1 != (undefined8 *)0x0) {
-        puVar1[4] = &UNK_180a3c3e0;
-        if (puVar1[5] != 0) {
+      resource_item = *(undefined8 **)(*(longlong *)(array_context + 0x30) + item_index * 8);
+      if (resource_item != (undefined8 *)0x0) {
+        resource_item[4] = &UNK_180a3c3e0;
+        if (resource_item[5] != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        puVar1[5] = 0;
-        *(undefined4 *)(puVar1 + 7) = 0;
-        puVar1[4] = &UNK_18098bcb0;
-        *puVar1 = &UNK_180a3c3e0;
-        if (puVar1[1] == 0) {
-          puVar1[1] = 0;
-          *(undefined4 *)(puVar1 + 3) = 0;
-          *puVar1 = &UNK_18098bcb0;
+        resource_item[5] = 0;
+        *(undefined4 *)(resource_item + 7) = 0;
+        resource_item[4] = &UNK_18098bcb0;
+        *resource_item = &UNK_180a3c3e0;
+        if (resource_item[1] == 0) {
+          resource_item[1] = 0;
+          *(undefined4 *)(resource_item + 3) = 0;
+          *resource_item = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-          FUN_18064e900(puVar1);
+          FUN_18064e900(resource_item);
         }
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *(undefined8 *)(*(longlong *)(lVar2 + 0x30) + lVar4 * 8) = 0;
-      lVar4 = lVar4 + 1;
-    } while (lVar4 < iVar3);
+      *(undefined8 *)(*(longlong *)(array_context + 0x30) + item_index * 8) = 0;
+      item_index = item_index + 1;
+    } while (item_index < item_count);
   }
-  *(undefined8 *)(lVar2 + 0x38) = *(undefined8 *)(lVar2 + 0x30);
-  lVar4 = lVar2 + 0x50;
-  FUN_180058370(lVar4,*(undefined8 *)(lVar2 + 0x60),param_3,param_4,0xfffffffffffffffe);
-  *(longlong *)lVar4 = lVar4;
-  *(longlong *)(lVar2 + 0x58) = lVar4;
-  *(undefined8 *)(lVar2 + 0x60) = 0;
-  *(undefined1 *)(lVar2 + 0x68) = 0;
-  *(undefined8 *)(lVar2 + 0x70) = 0;
+  *(undefined8 *)(array_context + 0x38) = *(undefined8 *)(array_context + 0x30);
+  item_index = array_context + 0x50;
+  FUN_180058370(item_index, *(undefined8 *)(array_context + 0x60), param_3, param_4, 0xfffffffffffffffe);
+  *(longlong *)item_index = item_index;
+  *(longlong *)(array_context + 0x58) = item_index;
+  *(undefined8 *)(array_context + 0x60) = 0;
+  *(undefined1 *)(array_context + 0x68) = 0;
+  *(undefined8 *)(array_context + 0x70) = 0;
   return;
 }
 
@@ -321,11 +324,11 @@ void FUN_18004bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_18004bcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004bcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void Process_Resource_Type_E(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 处理资源类型E
+void Process_Resource_Type_E(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_180058420(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058420(resource_context, *(undefined8 *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
@@ -333,56 +336,57 @@ void FUN_18004bcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004bce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004bce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void Process_Resource_Type_F(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 处理资源类型F
+void Process_Resource_Type_F(longlong resource_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_180058420(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058420(resource_context, *(undefined8 *)(resource_context + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
 
 
-undefined8 * FUN_18004bd10(undefined8 *param_1)
-
+// 函数: undefined8 * Initialize_Memory_Manager(undefined8 *manager)
+// 初始化内存管理器
+undefined8 * Initialize_Memory_Manager(undefined8 *manager)
 {
-  *param_1 = &UNK_18098bcb0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809fcc58;
-  param_1[1] = param_1 + 3;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *(undefined1 *)(param_1 + 3) = 0;
-  FUN_180142b20(param_1 + 0xb);
-  param_1[0x74] = 0;
-  param_1[0x75] = 0;
-  param_1[0x76] = 0;
-  *(undefined4 *)(param_1 + 0x77) = 3;
-  param_1[0x78] = 0;
-  param_1[0x79] = 0;
-  param_1[0x7a] = 0;
-  *(undefined4 *)(param_1 + 0x7b) = 3;
-  param_1[0x7c] = 0;
-  param_1[0x7d] = 0;
-  param_1[0x7e] = 0;
-  *(undefined4 *)(param_1 + 0x7f) = 3;
-  param_1[0x80] = 0;
-  param_1[0x81] = 0;
-  param_1[0x82] = 0;
-  *(undefined4 *)(param_1 + 0x83) = 3;
-  param_1[0x84] = 0;
-  param_1[0x85] = 0;
-  param_1[0x86] = 0;
-  *(undefined4 *)(param_1 + 0x87) = 3;
-  param_1[0x88] = 0;
-  param_1[0x89] = 0;
-  param_1[0x8a] = 0;
-  *(undefined4 *)(param_1 + 0x8b) = 3;
-  param_1[0x8c] = 0;
-  param_1[0x8d] = 0;
-  param_1[0x8e] = 0;
-  *(undefined4 *)(param_1 + 0x8f) = 3;
-  return param_1;
+  *manager = &UNK_18098bcb0;
+  manager[1] = 0;
+  *(undefined4 *)(manager + 2) = 0;
+  *manager = &UNK_1809fcc58;
+  manager[1] = manager + 3;
+  *(undefined4 *)(manager + 2) = 0;
+  *(undefined1 *)(manager + 3) = 0;
+  FUN_180142b20(manager + 0xb);
+  manager[0x74] = 0;
+  manager[0x75] = 0;
+  manager[0x76] = 0;
+  *(undefined4 *)(manager + 0x77) = 3;
+  manager[0x78] = 0;
+  manager[0x79] = 0;
+  manager[0x7a] = 0;
+  *(undefined4 *)(manager + 0x7b) = 3;
+  manager[0x7c] = 0;
+  manager[0x7d] = 0;
+  manager[0x7e] = 0;
+  *(undefined4 *)(manager + 0x7f) = 3;
+  manager[0x80] = 0;
+  manager[0x81] = 0;
+  manager[0x82] = 0;
+  *(undefined4 *)(manager + 0x83) = 3;
+  manager[0x84] = 0;
+  manager[0x85] = 0;
+  manager[0x86] = 0;
+  *(undefined4 *)(manager + 0x87) = 3;
+  manager[0x88] = 0;
+  manager[0x89] = 0;
+  manager[0x8a] = 0;
+  *(undefined4 *)(manager + 0x8b) = 3;
+  manager[0x8c] = 0;
+  manager[0x8d] = 0;
+  manager[0x8e] = 0;
+  *(undefined4 *)(manager + 0x8f) = 3;
+  return manager;
 }
 
 
