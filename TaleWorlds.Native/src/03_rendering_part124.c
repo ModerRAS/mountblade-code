@@ -1,9 +1,38 @@
+/**
+ * 03_rendering_part124.c - 渲染系统着色器生成和管理模块
+ * 
+ * 本模块包含5个核心函数，主要负责：
+ * - 着色器源码生成和编译
+ * - 着色器参数设置和配置
+ * - 渲染管线状态管理
+ * - 着色器文件输出和处理
+ * 
+ * 主要功能：
+ * 1. 生成顶点着色器和片段着色器源码
+ * 2. 配置着色器参数和宏定义
+ * 3. 管理着色器编译和链接过程
+ * 4. 处理着色器文件I/O操作
+ * 
+ * 包含函数：5个
+ * 模块类型：渲染系统 - 着色器管理
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part124.c - 2 个函数
-
-// 函数: void FUN_18033fca0(undefined8 param_1,longlong param_2,undefined8 param_3)
-void FUN_18033fca0(undefined8 param_1,longlong param_2,undefined8 param_3)
+/**
+ * 着色器文件生成器 - 生成着色器源码文件
+ * 
+ * 此函数负责生成着色器源码文件，包括：
+ * - 创建着色器文件头信息
+ * - 设置着色器类型和版本
+ * - 添加着色器参数和宏定义
+ * - 写入着色器主函数
+ * 
+ * @param param_1 渲染上下文句柄
+ * @param param_2 着色器参数缓冲区
+ * @param param_3 着色器配置选项
+ */
+void ShaderFileGenerator(undefined8 param_1, longlong param_2, undefined8 param_3)
 
 {
   undefined4 *puVar1;
@@ -120,8 +149,22 @@ void FUN_18033fca0(undefined8 param_1,longlong param_2,undefined8 param_3)
 
 
 
-undefined8 *
-FUN_18033ff10(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 着色器参数初始化器 - 初始化着色器参数缓冲区
+ * 
+ * 此函数负责初始化着色器参数缓冲区，包括：
+ * - 设置缓冲区初始状态
+ * - 配置着色器类型标识
+ * - 分配参数内存空间
+ * - 设置默认参数值
+ * 
+ * @param param_1 渲染设备句柄
+ * @param param_2 参数缓冲区指针
+ * @param param_3 着色器类型
+ * @param param_4 保留参数
+ * @return 初始化后的参数缓冲区指针
+ */
+undefined8 *ShaderParameterInitializer(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
 
 {
   int iVar1;
@@ -154,8 +197,22 @@ FUN_18033ff10(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 
 
 
-undefined8 *
-FUN_18033ffe0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 着色器头文件生成器 - 生成着色器头文件
+ * 
+ * 此函数负责生成着色器头文件，包括：
+ * - 创建着色器声明和定义
+ * - 添加常量和宏定义
+ * - 设置着色器接口
+ * - 生成头文件结构
+ * 
+ * @param param_1 渲染设备句柄
+ * @param param_2 头文件缓冲区指针
+ * @param param_3 着色器类型
+ * @param param_4 保留参数
+ * @return 生成的头文件缓冲区指针
+ */
+undefined8 *ShaderHeaderGenerator(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
 
 {
   int iVar1;
@@ -187,8 +244,22 @@ FUN_18033ffe0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 
 
 
-undefined8 *
-FUN_1803400b0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 着色器管线生成器 - 生成渲染管线着色器
+ * 
+ * 此函数负责生成渲染管线着色器，包括：
+ * - 创建顶点着色器
+ * - 生成片段着色器
+ * - 设置着色器阶段
+ * - 配置管线状态
+ * 
+ * @param param_1 渲染设备句柄
+ * @param param_2 管线缓冲区指针
+ * @param param_3 着色器类型
+ * @param param_4 保留参数
+ * @return 生成的管线着色器缓冲区指针
+ */
+undefined8 *ShaderPipelineGenerator(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
 
 {
   int iVar1;
@@ -229,8 +300,21 @@ FUN_1803400b0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 
 
 
-// 函数: void FUN_180340190(undefined8 param_1,longlong param_2,longlong param_3,undefined8 param_4)
-void FUN_180340190(undefined8 param_1,longlong param_2,longlong param_3,undefined8 param_4)
+/**
+ * 着色器源码编译器 - 编译着色器源码
+ * 
+ * 此函数负责编译着色器源码，包括：
+ * - 解析着色器源码
+ * - 预处理宏定义
+ * - 生成着色器二进制码
+ * - 处理编译错误
+ * 
+ * @param param_1 渲染设备句柄
+ * @param param_2 源码缓冲区
+ * @param param_3 着色器参数
+ * @param param_4 编译选项
+ */
+void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3, undefined8 param_4)
 
 {
   undefined4 uVar1;
