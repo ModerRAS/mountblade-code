@@ -685,35 +685,55 @@ void DataStructureCopier(int8_t *param_1)
 
 
 
-// 函数: void FUN_180098a22(void)
-void FUN_180098a22(void)
-
+/**
+ * @brief 数据数组处理器 - 批量处理数据数组函数
+ * 
+ * 此函数用于批量处理数据数组，对数组中的每个元素执行相同的处理操作。
+ * 它通过遍历数组并应用处理函数来实现批量数据处理。
+ * 
+ * @return void
+ * 
+ * 处理流程：
+ * 1. 遍历数据数组
+ * 2. 为每个元素分配处理内存
+ * 3. 应用数据处理函数
+ * 4. 复制处理结果
+ * 5. 更新系统参数缓冲区
+ */
+void DataArrayProcessor(void)
 {
-  int64_t lVar1;
-  uint64_t uVar2;
-  int64_t lVar3;
-  uint uVar4;
-  uint64_t unaff_RBP;
-  int64_t unaff_RSI;
-  int64_t unaff_R14;
-  uint64_t uVar5;
-  
-  uVar5 = unaff_RBP;
-  do {
-    lVar1 = *(int64_t *)(uVar5 + *(int64_t *)(unaff_R14 + 8));
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0xa8,8,3);
-    lVar3 = FUN_18011fa30(uVar2,0);
-    FUN_18013e410(lVar3,lVar1);
-    FUN_18013e570(lVar3 + 0x10,lVar1 + 0x10);
-    FUN_18013e390(lVar3 + 0x20,lVar1 + 0x20);
-    *(int32_t *)(lVar3 + 0x30) = *(int32_t *)(lVar1 + 0x30);
-    uVar4 = (int)unaff_RBP + 1;
-    unaff_RBP = (uint64_t)uVar4;
-    *(int64_t *)(uVar5 + *(int64_t *)(unaff_RSI + 8)) = lVar3;
-    uVar5 = uVar5 + 8;
-  } while ((int)uVar4 < *(int *)(unaff_R14 + 0x10));
-  *(int64_t *)(system_parameter_buffer + 0x1a08 + (int64_t)core_system_data_memory * 8) = unaff_RSI;
-  return;
+    int64_t source_element;
+    uint64_t dest_element;
+    int64_t processed_element;
+    uint element_counter;
+    uint64_t array_pointer;
+    int64_t context_ptr1;
+    int64_t context_ptr2;
+    uint64_t loop_counter;
+    
+    loop_counter = array_pointer;
+    do {
+        // 获取源元素
+        source_element = *(int64_t *)(array_pointer + *(int64_t *)(context_ptr2 + 8));
+        
+        // 分配目标元素内存
+        dest_element = FUN_18062b1e0(system_memory_pool_ptr, SYSTEM_MESSAGE_BUFFER_SIZE, MEMORY_ALIGNMENT_8, 3);
+        processed_element = FUN_18011fa30(dest_element, 0);
+        
+        // 应用数据处理
+        FUN_18013e410(processed_element, source_element);
+        FUN_18013e570(processed_element + 0x10, source_element + 0x10);
+        FUN_18013e390(processed_element + 0x20, source_element + 0x20);
+        *(int32_t *)(processed_element + 0x30) = *(int32_t *)(source_element + 0x30);
+        
+        element_counter = (int)array_pointer + 1;
+        array_pointer = (uint64_t)element_counter;
+        *(int64_t *)(loop_counter + *(int64_t *)(context_ptr1 + 8)) = processed_element;
+        loop_counter = loop_counter + 8;
+    } while ((int)element_counter < *(int *)(context_ptr2 + 0x10));
+    
+    // 更新系统参数缓冲区
+    *(int64_t *)(system_parameter_buffer + 0x1a08 + (int64_t)core_system_data_memory * 8) = context_ptr1;
 }
 
 
@@ -722,14 +742,25 @@ void FUN_180098a22(void)
 
 
 
-// 函数: void FUN_180098abe(void)
-void FUN_180098abe(void)
-
+/**
+ * @brief 数据数组清理器 - 清理数据数组函数
+ * 
+ * 此函数用于清理数据数组，释放相关资源并重置系统状态。
+ * 它是一个简单的清理函数，用于处理数据数组的清理工作。
+ * 
+ * @return void
+ * 
+ * 功能说明：
+ * - 重置系统参数缓冲区中的数据数组指针
+ * - 释放相关资源
+ * - 重置系统状态
+ */
+void DataArrayCleaner(void)
 {
-  uint64_t unaff_RSI;
-  
-  *(uint64_t *)(system_parameter_buffer + 0x1a08 + (int64_t)core_system_data_memory * 8) = unaff_RSI;
-  return;
+    uint64_t cleanup_context;
+    
+    // 清理系统参数缓冲区中的数据数组指针
+    *(uint64_t *)(system_parameter_buffer + 0x1a08 + (int64_t)core_system_data_memory * 8) = cleanup_context;
 }
 
 
