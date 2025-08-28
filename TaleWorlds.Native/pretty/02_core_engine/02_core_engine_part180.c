@@ -1,9 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part180.c - 1 个函数
+// 02_core_engine_part180.c - 引擎初始化和字符串处理模块
+// 本模块包含引擎核心初始化、字符串搜索、数据处理和系统资源管理功能
+// 主要负责引擎启动时的初始化操作、字符串匹配搜索、内存管理和线程同步
 
-// 函数: void FUN_1801659e0(void)
-void FUN_1801659e0(void)
+// 函数: void initialize_engine_system(void)
+// 功能: 初始化引擎系统，配置字符串处理和事件处理
+// 参数: 无
+// 返回: 无
+void initialize_engine_system(void)
 
 {
   longlong *plVar1;
@@ -70,7 +75,15 @@ void FUN_1801659e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 *
-FUN_180165bb0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4)
+search_string_in_data(undefined8 param_1, undefined8 *param_2, undefined8 param_3, longlong *param_4)
+
+{
+  // 在数据结构中搜索指定字符串
+  // param_1: 搜索上下文
+  // param_2: 输出缓冲区
+  // param_3: 搜索参数
+  // param_4: 数据指针
+  // 返回: 包含搜索结果的缓冲区指针
 
 {
   longlong lVar1;
@@ -236,7 +249,15 @@ LAB_180165e38:
 
 
 undefined8 *
-FUN_180165f80(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4)
+process_resource_data(undefined8 param_1, undefined8 *param_2, undefined8 param_3, longlong *param_4)
+
+{
+  // 处理资源数据，执行字符串搜索和数据提取
+  // param_1: 资源管理器
+  // param_2: 输出缓冲区
+  // param_3: 处理参数
+  // param_4: 资源数据指针
+  // 返回: 包含处理结果的缓冲区指针
 
 {
   uint uVar1;
@@ -343,7 +364,15 @@ LAB_18016612b:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 *
-FUN_1801661b0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4)
+search_and_extract_strings(undefined8 param_1, undefined8 *param_2, undefined8 param_3, longlong *param_4)
+
+{
+  // 搜索并提取字符串数据
+  // param_1: 搜索上下文
+  // param_2: 输出缓冲区
+  // param_3: 搜索参数
+  // param_4: 数据指针
+  // 返回: 包含提取结果的缓冲区指针
 
 {
   longlong lVar1;
@@ -511,7 +540,15 @@ LAB_180166438:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 *
-FUN_180166580(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4)
+filter_and_process_strings(undefined8 param_1, undefined8 *param_2, undefined8 param_3, longlong *param_4)
+
+{
+  // 过滤并处理字符串数据
+  // param_1: 过滤上下文
+  // param_2: 输出缓冲区
+  // param_3: 过滤参数
+  // param_4: 数据指针
+  // 返回: 包含过滤结果的缓冲区指针
 
 {
   longlong lVar1;
@@ -679,7 +716,15 @@ LAB_180166808:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 *
-FUN_180166950(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+cleanup_engine_resources(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+
+{
+  // 清理引擎资源，释放内存和同步线程
+  // param_1: 清理上下文
+  // param_2: 输出缓冲区
+  // param_3: 清理参数
+  // param_4: 资源指针
+  // 返回: 包含清理结果的缓冲区指针
 
 {
   undefined4 *puVar1;
@@ -746,7 +791,15 @@ FUN_180166950(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 *
-FUN_180166b10(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+process_and_sort_data(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+
+{
+  // 处理并排序数据，执行数据分析和排序操作
+  // param_1: 处理上下文
+  // param_2: 输出缓冲区
+  // param_3: 处理参数
+  // param_4: 数据指针
+  // 返回: 包含排序结果的缓冲区指针
 
 {
   longlong *plVar1;

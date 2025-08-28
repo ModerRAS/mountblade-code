@@ -1162,27 +1162,38 @@ void cleanup_engine_data_structure(longlong *data_ptr)
 
 
 
-// 函数: void FUN_18014ab40(longlong *param_1)
-void FUN_18014ab40(longlong *param_1)
-
+/**
+ * 清理引擎内存块
+ * @param memory_ptr 内存指针
+ */
+void cleanup_engine_memory_blocks(longlong *memory_ptr)
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong memory_end;
+  longlong current_block;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x38) {
-    *(undefined8 *)(lVar2 + 0x18) = &UNK_180a3c3e0;
-    if (*(longlong *)(lVar2 + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+  memory_end = memory_ptr[1];
+  
+  // 遍历内存块进行清理
+  for (current_block = *memory_ptr; current_block != memory_end; current_block = current_block + 0x38) {
+    // 设置清理标记
+    *(undefined8 *)(current_block + 0x18) = &engine_cleanup_target;
+    
+    // 检查内存状态
+    if (*(longlong *)(current_block + 0x20) != 0) {
+      // 触发错误处理
+      trigger_resource_error();
     }
-    *(undefined8 *)(lVar2 + 0x20) = 0;
-    *(undefined4 *)(lVar2 + 0x30) = 0;
-    *(undefined8 *)(lVar2 + 0x18) = &UNK_18098bcb0;
+    
+    // 清理内存
+    *(undefined8 *)(current_block + 0x20) = 0;
+    *(undefined4 *)(current_block + 0x30) = 0;
+    *(undefined8 *)(current_block + 0x18) = &engine_resource_entry1;
   }
-  if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 检查内存指针是否有效
+  if (*memory_ptr != 0) {
+    // 触发错误处理
+    trigger_resource_error();
   }
   return;
 }
@@ -1193,66 +1204,84 @@ void FUN_18014ab40(longlong *param_1)
 
 
 
-// 函数: void FUN_18014ab60(undefined8 *param_1,undefined8 param_2)
-void FUN_18014ab60(undefined8 *param_1,undefined8 param_2)
-
+/**
+ * 处理引擎资源并执行回调
+ * @param resource_ptr 资源指针
+ * @param callback_param 回调参数
+ */
+void process_engine_resources_and_callback(undefined8 *resource_ptr, undefined8 callback_param)
 {
-  longlong lVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined *puStack_b8;
-  longlong lStack_b0;
-  undefined4 uStack_a8;
-  undefined8 uStack_a0;
-  undefined8 uStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined4 uStack_80;
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined4 uStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined8 uStack_48;
-  undefined4 uStack_40;
-  undefined8 uStack_38;
+  longlong resource_table;
+  int resource_index;
+  longlong resource_data;
+  undefined *cleanup_target;
+  longlong cleanup_handle;
+  undefined4 cleanup_flags;
+  undefined8 resource_param1;
+  undefined8 resource_param2;
+  undefined8 resource_param3;
+  undefined8 resource_param4;
+  undefined4 alloc_flags1;
+  undefined8 alloc_param1;
+  undefined8 alloc_param2;
+  undefined8 alloc_param3;
+  undefined4 alloc_flags2;
+  undefined8 cleanup_param1;
+  undefined8 cleanup_param2;
+  undefined8 cleanup_param3;
+  undefined4 alloc_flags3;
+  undefined8 cleanup_param4;
   
-  lVar1 = _DAT_180c8aa00;
-  uStack_38 = 0xfffffffffffffffe;
-  lVar3 = 0;
-  if (*(int *)(*(longlong *)(*(longlong *)*param_1 + 0x20) + 0x20) != 0) {
-    iVar2 = FUN_180191c00(_DAT_180c8aa00,*(longlong *)(*(longlong *)*param_1 + 0x20) + 0x10);
-    lVar3 = 0;
-    if (iVar2 != -1) {
-      lVar3 = (longlong)iVar2 * 0x68 + *(longlong *)(lVar1 + 0x38);
+  // 获取资源表
+  resource_table = global_resource_table;
+  cleanup_param4 = 0xfffffffffffffffe;
+  resource_data = 0;
+  
+  // 检查资源状态
+  if (*(int *)(*(longlong *)(*(longlong *)*resource_ptr + 0x20) + 0x20) != 0) {
+    // 获取资源索引
+    resource_index = find_resource_index(global_resource_table, *(longlong *)(*(longlong *)*resource_ptr + 0x20) + 0x10);
+    resource_data = 0;
+    if (resource_index != -1) {
+      // 计算资源数据位置
+      resource_data = (longlong)resource_index * 0x68 + *(longlong *)(resource_table + 0x38);
     }
   }
-  puStack_b8 = &UNK_180a3c3e0;
-  uStack_a0 = 0;
-  lStack_b0 = 0;
-  uStack_a8 = 0;
-  uStack_98 = 0;
-  uStack_90 = 0;
-  uStack_88 = 0;
-  uStack_80 = 6;
-  uStack_78 = 0;
-  uStack_70 = 0;
-  uStack_68 = 0;
-  uStack_60 = 6;
-  uStack_58 = 0;
-  uStack_50 = 0;
-  uStack_48 = 0;
-  uStack_40 = 6;
-  FUN_18025e700(&puStack_b8,param_2);
-  FUN_18025fe70(*(undefined8 *)(param_1[1] + 0xb8),&puStack_b8,lVar3);
-  FUN_18014e570(&uStack_58);
-  FUN_18014e4d0(&uStack_78);
-  FUN_18014e470(&uStack_98);
-  puStack_b8 = &UNK_180a3c3e0;
-  if (lStack_b0 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 初始化清理目标
+  cleanup_target = &engine_cleanup_target;
+  resource_param1 = 0;
+  cleanup_handle = 0;
+  cleanup_flags = 0;
+  resource_param2 = 0;
+  resource_param3 = 0;
+  resource_param4 = 0;
+  alloc_flags1 = 6;
+  alloc_param1 = 0;
+  alloc_param2 = 0;
+  alloc_param3 = 0;
+  alloc_flags2 = 6;
+  cleanup_param1 = 0;
+  cleanup_param2 = 0;
+  cleanup_param3 = 0;
+  alloc_flags3 = 6;
+  
+  // 处理回调参数
+  process_callback_parameters(&cleanup_target, callback_param);
+  execute_resource_callback(*(undefined8 *)(resource_ptr[1] + 0xb8), &cleanup_target, resource_data);
+  
+  // 清理资源
+  cleanup_resource_system(&cleanup_param1);
+  cleanup_resource_subsystem(&cleanup_param2);
+  cleanup_resource_core(&cleanup_param3);
+  
+  // 重置清理目标
+  cleanup_target = &engine_cleanup_target;
+  
+  // 检查清理状态
+  if (cleanup_handle != 0) {
+    // 触发错误处理
+    trigger_resource_error();
   }
   return;
 }
@@ -1261,39 +1290,57 @@ void FUN_18014ab60(undefined8 *param_1,undefined8 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_18014acf0(longlong param_1,longlong *param_2)
-
+/**
+ * 克隆引擎上下文
+ * @param source_ptr 源上下文指针
+ * @param dest_ptr 目标上下文指针
+ * @return 返回目标上下文指针
+ */
+longlong * clone_engine_context(longlong source_ptr, longlong *dest_ptr)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
-  undefined *puVar4;
-  undefined4 uVar5;
-  undefined8 uVar6;
+  longlong context_data;
+  undefined8 context_handle;
+  longlong *cloned_context;
+  undefined *name_ptr;
+  undefined4 init_flag;
+  undefined8 cleanup_flags;
   
-  uVar6 = 0xfffffffffffffffe;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x140,0x10,3,0,0xfffffffffffffffe);
-  plVar3 = (longlong *)FUN_18014a1b0(uVar2);
-  *param_2 = (longlong)plVar3;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x28))(plVar3);
+  cleanup_flags = 0xfffffffffffffffe;
+  
+  // 分配上下文内存
+  context_handle = allocate_memory_block(global_memory_pool, 0x140, 0x10, 3, 0, 0xfffffffffffffffe);
+  cloned_context = (longlong *)initialize_context_structure(context_handle);
+  *dest_ptr = (longlong)cloned_context;
+  
+  // 初始化克隆的上下文
+  if (cloned_context != (longlong *)0x0) {
+    (**(code **)(*cloned_context + 0x28))(cloned_context);
   }
-  uVar5 = 1;
-  *(undefined8 *)(*param_2 + 0xa8) = *(undefined8 *)(param_1 + 0xa8);
-  lVar1 = *param_2;
-  *(undefined4 *)(lVar1 + 0x20) = *(undefined4 *)(param_1 + 0x20);
-  puVar4 = &DAT_18098bc73;
-  if (*(undefined **)(param_1 + 0x18) != (undefined *)0x0) {
-    puVar4 = *(undefined **)(param_1 + 0x18);
+  
+  init_flag = 1;
+  
+  // 复制上下文数据
+  *(undefined8 *)(*dest_ptr + 0xa8) = *(undefined8 *)(source_ptr + 0xa8);
+  context_data = *dest_ptr;
+  *(undefined4 *)(context_data + 0x20) = *(undefined4 *)(source_ptr + 0x20);
+  
+  // 复制名称
+  name_ptr = &default_context_name;
+  if (*(undefined **)(source_ptr + 0x18) != (undefined *)0x0) {
+    name_ptr = *(undefined **)(source_ptr + 0x18);
   }
-  strcpy_s(*(undefined8 *)(lVar1 + 0x18),0x80,puVar4);
-  *(undefined8 *)(*param_2 + 0xb8) = 0;
-  if (*(longlong *)(param_1 + 0xb8) != 0) {
-    uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x130,8,6,uVar5,uVar6);
-                    // WARNING: Subroutine does not return
-    memset(uVar2,0,0x130);
+  strcpy_s(*(undefined8 *)(context_data + 0x18), 0x80, name_ptr);
+  
+  // 设置清理标志
+  *(undefined8 *)(*dest_ptr + 0xb8) = 0;
+  
+  // 如果需要额外的初始化
+  if (*(longlong *)(source_ptr + 0xb8) != 0) {
+    context_handle = allocate_memory_block(global_memory_pool, 0x130, 8, 6, init_flag, cleanup_flags);
+    memset(context_handle, 0, 0x130);
   }
-  return param_2;
+  
+  return dest_ptr;
 }
 
 
@@ -1302,89 +1349,115 @@ longlong * FUN_18014acf0(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_18014ae10(longlong *param_1,longlong *param_2)
-void FUN_18014ae10(longlong *param_1,longlong *param_2)
-
+/**
+ * 复制引擎数据结构
+ * @param dest_ptr 目标数据指针
+ * @param src_ptr 源数据指针
+ */
+void copy_engine_data_structure(longlong *dest_ptr, longlong *src_ptr)
 {
-  longlong lVar1;
-  ulonglong uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  longlong lVar5;
-  longlong lVar6;
-  ulonglong uVar7;
-  undefined *puVar8;
-  longlong lVar9;
+  longlong data_field1;
+  ulonglong available_size;
+  undefined4 field_value1;
+  undefined4 field_value2;
+  longlong src_start;
+  longlong src_end;
+  ulonglong required_size;
+  undefined *name_ptr;
+  longlong data_size;
   
-  lVar5 = param_2[0x20];
-  param_1[0x1f] = param_2[0x1f];
-  param_1[0x20] = lVar5;
-  uVar3 = *(undefined4 *)((longlong)param_2 + 0x10c);
-  lVar5 = param_2[0x22];
-  uVar4 = *(undefined4 *)((longlong)param_2 + 0x114);
-  *(int *)(param_1 + 0x21) = (int)param_2[0x21];
-  *(undefined4 *)((longlong)param_1 + 0x10c) = uVar3;
-  *(int *)(param_1 + 0x22) = (int)lVar5;
-  *(undefined4 *)((longlong)param_1 + 0x114) = uVar4;
-  uVar3 = *(undefined4 *)((longlong)param_2 + 0x11c);
-  lVar5 = param_2[0x24];
-  uVar4 = *(undefined4 *)((longlong)param_2 + 0x124);
-  *(int *)(param_1 + 0x23) = (int)param_2[0x23];
-  *(undefined4 *)((longlong)param_1 + 0x11c) = uVar3;
-  *(int *)(param_1 + 0x24) = (int)lVar5;
-  *(undefined4 *)((longlong)param_1 + 0x124) = uVar4;
-  *(int *)(param_1 + 0x25) = (int)param_2[0x25];
-  if (param_1 != param_2) {
-    lVar5 = *param_2;
-    lVar1 = param_2[1];
-    lVar9 = lVar1 - lVar5;
-    lVar6 = lVar9 / 6 + (lVar9 >> 0x3f);
-    uVar7 = (lVar6 >> 3) - (lVar6 >> 0x3f);
-    if ((ulonglong)((param_1[2] - *param_1) / 0x30) < uVar7) {
-      if (uVar7 == 0) {
-        lVar6 = 0;
+  // 复制基本字段
+  data_field1 = src_ptr[0x20];
+  dest_ptr[0x1f] = src_ptr[0x1f];
+  dest_ptr[0x20] = data_field1;
+  
+  // 复制配置字段
+  field_value1 = *(undefined4 *)((longlong)src_ptr + 0x10c);
+  data_field1 = src_ptr[0x22];
+  field_value2 = *(undefined4 *)((longlong)src_ptr + 0x114);
+  *(int *)(dest_ptr + 0x21) = (int)src_ptr[0x21];
+  *(undefined4 *)((longlong)dest_ptr + 0x10c) = field_value1;
+  *(int *)(dest_ptr + 0x22) = (int)data_field1;
+  *(undefined4 *)((longlong)dest_ptr + 0x114) = field_value2;
+  
+  // 复制更多配置字段
+  field_value1 = *(undefined4 *)((longlong)src_ptr + 0x11c);
+  data_field1 = src_ptr[0x24];
+  field_value2 = *(undefined4 *)((longlong)src_ptr + 0x124);
+  *(int *)(dest_ptr + 0x23) = (int)src_ptr[0x23];
+  *(undefined4 *)((longlong)dest_ptr + 0x11c) = field_value1;
+  *(int *)(dest_ptr + 0x24) = (int)data_field1;
+  *(undefined4 *)((longlong)dest_ptr + 0x124) = field_value2;
+  *(int *)(dest_ptr + 0x25) = (int)src_ptr[0x25];
+  
+  // 如果需要深度复制
+  if (dest_ptr != src_ptr) {
+    src_start = *src_ptr;
+    src_end = src_ptr[1];
+    data_size = src_end - src_start;
+    
+    // 计算需要的内存大小
+    required_size = (data_size / 6 + (data_size >> 0x3f));
+    required_size = (required_size >> 3) - (required_size >> 0x3f);
+    
+    // 检查是否有足够的空间
+    if ((ulonglong)((dest_ptr[2] - *dest_ptr) / 0x30) < required_size) {
+      // 分配新的内存空间
+      if (required_size == 0) {
+        data_size = 0;
       }
       else {
-        lVar6 = FUN_18062b420(_DAT_180c8ed18,uVar7 * 0x30,(char)param_1[3]);
+        data_size = allocate_memory_block(global_memory_pool, required_size * 0x30, (char)dest_ptr[3]);
       }
-      if (lVar5 != lVar1) {
-                    // WARNING: Subroutine does not return
-        memmove(lVar6,lVar5,lVar9);
+      
+      // 复制数据
+      if (src_start != src_end) {
+        memmove(data_size, src_start, data_size);
       }
-      if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
+      
+      // 清理原有数据
+      if (*dest_ptr != 0) {
+        cleanup_existing_data();
       }
-      *param_1 = lVar6;
-      lVar6 = uVar7 * 0x30 + lVar6;
-      param_1[1] = lVar6;
-      param_1[2] = lVar6;
+      
+      // 设置新的数据指针
+      *dest_ptr = data_size;
+      data_size = required_size * 0x30 + data_size;
+      dest_ptr[1] = data_size;
+      dest_ptr[2] = data_size;
     }
     else {
-      uVar2 = (param_1[1] - *param_1) / 0x30;
-      if (uVar2 < uVar7) {
-        lVar6 = uVar2 * 0x30 + lVar5;
-        FUN_18014fb60(lVar5,lVar6);
-        lVar5 = FUN_18014fb60(lVar6,lVar1,param_1[1]);
+      // 使用现有空间
+      available_size = (dest_ptr[1] - *dest_ptr) / 0x30;
+      if (available_size < required_size) {
+        data_size = available_size * 0x30 + src_start;
+        resize_data_block(src_start, data_size);
+        data_size = resize_data_block(data_size, src_end, dest_ptr[1]);
       }
       else {
-        lVar5 = FUN_18014fb60(lVar5,lVar1);
+        data_size = resize_data_block(src_start, src_end);
       }
-      param_1[1] = lVar5;
+      dest_ptr[1] = data_size;
     }
   }
-  FUN_18014e160(param_1 + 4,param_2 + 4);
-  if (param_1 + 8 != param_2 + 8) {
-    FUN_18014eff0(param_1 + 8,param_2[8],param_2[9]);
+  
+  // 复制数据块
+  copy_data_blocks(dest_ptr + 4, src_ptr + 4);
+  
+  // 复制额外数据
+  if (dest_ptr + 8 != src_ptr + 8) {
+    copy_additional_data(dest_ptr + 8, src_ptr[8], src_ptr[9]);
   }
-  *(int *)(param_1 + 0xe) = (int)param_2[0xe];
-  puVar8 = &DAT_18098bc73;
-  if ((undefined *)param_2[0xd] != (undefined *)0x0) {
-    puVar8 = (undefined *)param_2[0xd];
+  
+  // 复制剩余字段
+  *(int *)(dest_ptr + 0xe) = (int)src_ptr[0xe];
+  
+  // 复制名称
+  name_ptr = &default_data_name;
+  if ((undefined *)src_ptr[0xd] != (undefined *)0x0) {
+    name_ptr = (undefined *)src_ptr[0xd];
   }
-                    // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
-                    // WARNING: Treating indirect jump as call
-  strcpy_s(param_1[0xd],0x80,puVar8);
+  strcpy_s(dest_ptr[0xd], 0x80, name_ptr);
   return;
 }
 
