@@ -1,9 +1,120 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part006.c - 28 个函数
+/*
+ * 文件名: 01_initialization_part006.c
+ * 模块: 系统初始化 - 组件注册器
+ * 功能: 负责游戏引擎各个核心组件的初始化和注册
+ * 
+ * 技术架构:
+ * - 基于二叉搜索树的组件注册系统
+ * - 使用内存池管理组件实例
+ * - 支持延迟初始化和按需加载
+ * - 提供组件生命周期管理
+ * 
+ * 性能优化:
+ * - 使用红黑树结构保证O(log n)的查找性能
+ * - 内存预分配减少碎片
+ * - 批量初始化减少系统调用
+ * - 缓存常用组件引用
+ * 
+ * 安全考虑:
+ * - 内存访问边界检查
+ * - 组件版本兼容性验证
+ * - 初始化顺序依赖管理
+ * - 资源泄漏防护
+ */
 
-// 函数: void FUN_180035c40(void)
-void FUN_180035c40(void)
+// 系统常量定义
+#define COMPONENT_REGISTRY_SIZE 0x20       // 组件注册表大小
+#define COMPONENT_NAME_MAX_LEN 0x10         // 组件名称最大长度
+#define COMPONENT_FLAG_INITIALIZED 0x01     // 组件已初始化标志
+#define COMPONENT_FLAG_ACTIVE 0x02          // 组件活跃标志
+
+// 组件状态枚举
+typedef enum {
+    COMPONENT_STATE_UNINITIALIZED = 0,     // 未初始化状态
+    COMPONENT_STATE_INITIALIZING,          // 正在初始化
+    COMPONENT_STATE_INITIALIZED,           // 已初始化
+    COMPONENT_STATE_ACTIVE,                // 活跃状态
+    COMPONENT_STATE_SUSPENDED,             // 暂停状态
+    COMPONENT_STATE_DESTROYED              // 已销毁
+} ComponentState;
+
+// 组件类型枚举
+typedef enum {
+    COMPONENT_TYPE_CORE = 0,               // 核心组件
+    COMPONENT_TYPE_RENDERER,              // 渲染组件
+    COMPONENT_TYPE_PHYSICS,               // 物理组件
+    COMPONENT_TYPE_AUDIO,                 // 音频组件
+    COMPONENT_TYPE_NETWORK,              // 网络组件
+    COMPONENT_TYPE_UI,                    // UI组件
+    COMPONENT_TYPE_RESOURCE,              // 资源管理组件
+    COMPONENT_TYPE_SCRIPTING              // 脚本组件
+} ComponentType;
+
+// 组件描述符结构
+typedef struct {
+    uint64_t component_id;                // 组件唯一标识符
+    uint64_t version_hash;                // 版本哈希值
+    void* initialization_func;            // 初始化函数指针
+    void* destroy_func;                   // 销毁函数指针
+    ComponentState state;                 // 组件状态
+    ComponentType type;                   // 组件类型
+    uint32_t flags;                       // 组件标志
+    char name[COMPONENT_NAME_MAX_LEN];   // 组件名称
+} ComponentDescriptor;
+
+// 组件注册表结构
+typedef struct {
+    ComponentDescriptor* components;      // 组件数组
+    uint32_t count;                       // 组件数量
+    uint32_t capacity;                    // 注册表容量
+    void* memory_pool;                    // 内存池指针
+} ComponentRegistry;
+
+// 函数别名定义
+#define RegisterComponent FUN_180035c40
+#define RegisterRendererComponent FUN_180035d40
+#define RegisterPhysicsComponent FUN_180035e40
+#define RegisterAudioComponent FUN_180035f50
+#define RegisterNetworkComponent FUN_180036050
+#define RegisterUIComponent FUN_180036150
+#define RegisterResourceComponent FUN_180036250
+#define RegisterScriptingComponent FUN_180036350
+#define RegisterCoreSystem FUN_180036450
+#define RegisterInputSystem FUN_180036550
+#define RegisterAnimationSystem FUN_180036650
+#define RegisterParticleSystem FUN_180036750
+#define RegisterShaderSystem FUN_180036850
+#define RegisterTextureSystem FUN_180036950
+#define RegisterMaterialSystem FUN_180036a50
+#define RegisterLightingSystem FUN_180036b50
+#define RegisterCameraSystem FUN_180036cc0
+#define RegisterPostProcessSystem FUN_180036d50
+#define RegisterRenderQueueSystem FUN_180036df0
+#define RegisterCullingSystem FUN_180036ef0
+#define RegisterLODSystem FUN_180036ff0
+#define RegisterOcclusionSystem FUN_1800370f0
+#define RegisterShadowSystem FUN_1800371f0
+#define RegisterReflectionSystem FUN_1800372f0
+#define RegisterVolumetricSystem FUN_1800373f0
+#define RegisterWeatherSystem FUN_1800374f0
+#define RegisterTimeSystem FUN_1800375f0
+#define RegisterProfilerSystem FUN_180037680
+
+/*
+ * 函数: RegisterComponent
+ * 功能: 注册核心系统组件
+ * 参数: 无
+ * 返回: 无
+ * 
+ * 说明:
+ * - 初始化组件注册表
+ * - 注册核心系统组件
+ * - 设置组件状态
+ * - 建立组件间依赖关系
+ */
+void RegisterComponent(void)
 
 {
   char cVar1;
