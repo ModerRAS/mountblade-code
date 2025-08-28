@@ -2,8 +2,8 @@
 
 // 01_initialization_part025.c - 14 个函数
 
-// 函数: void FUN_180059000(longlong *param_1)
-void FUN_180059000(longlong *param_1)
+// 函数: 初始化资源管理器
+void initialize_resource_manager(longlong *context_ptr)
 
 {
   undefined8 *******pppppppuVar1;

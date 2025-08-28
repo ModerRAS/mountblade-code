@@ -1011,12 +1011,14 @@ void execute_stage_callback(longlong stage_ptr, undefined8 param_2, undefined8 p
 
 
 
-// 函数: void FUN_18005ab20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005ab20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void execute_buffer_callback(longlong buffer_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 执行缓冲区回调函数，调用特定缓冲区的处理函数
+void execute_buffer_callback(longlong buffer_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  if (*(code **)(param_1 + 0x10) != (code *)0x0) {
-    (**(code **)(param_1 + 0x10))(param_1,0,0,param_4,0xfffffffffffffffe);
+  // 检查是否存在回调函数
+  if (*(code **)(buffer_ptr + 0x10) != (code *)0x0) {
+    // 调用缓冲区回调函数
+    (**(code **)(buffer_ptr + 0x10))(buffer_ptr, 0, 0, param_4, 0xfffffffffffffffe);
   }
   return;
 }
@@ -1025,29 +1027,33 @@ void FUN_18005ab20(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18005ab50(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005ab50(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void cleanup_render_stage(longlong stage_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 清理渲染阶段，释放相关资源并重置状态
+void cleanup_render_stage(longlong stage_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  if (*(code **)(param_1 + 0x68) != (code *)0x0) {
-    (**(code **)(param_1 + 0x68))(param_1 + 0x58,0,0,param_4,0xfffffffffffffffe);
+  // 调用阶段析构函数
+  if (*(code **)(stage_ptr + 0x68) != (code *)0x0) {
+    (**(code **)(stage_ptr + 0x68))(stage_ptr + 0x58, 0, 0, param_4, 0xfffffffffffffffe);
   }
-  *(undefined8 *)(param_1 + 0x30) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 清理第一个缓冲区
+  *(undefined8 *)(stage_ptr + 0x30) = &UNK_180a3c3e0;  // 设置默认缓冲区
+  if (*(longlong *)(stage_ptr + 0x38) != 0) {
+    FUN_18064e900();  // 释放缓冲区内存
   }
-  *(undefined8 *)(param_1 + 0x38) = 0;
-  *(undefined4 *)(param_1 + 0x48) = 0;
-  *(undefined8 *)(param_1 + 0x30) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x10) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *(undefined8 *)(stage_ptr + 0x38) = 0;  // 清空缓冲区指针
+  *(undefined4 *)(stage_ptr + 0x48) = 0;  // 清空缓冲区标志
+  *(undefined8 *)(stage_ptr + 0x30) = &UNK_18098bcb0;  // 设置缓冲区状态
+  
+  // 清理第二个缓冲区
+  *(undefined8 *)(stage_ptr + 0x10) = &UNK_180a3c3e0;  // 设置默认缓冲区
+  if (*(longlong *)(stage_ptr + 0x18) != 0) {
+    FUN_18064e900();  // 释放缓冲区内存
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  *(undefined4 *)(param_1 + 0x28) = 0;
-  *(undefined8 *)(param_1 + 0x10) = &UNK_18098bcb0;
+  *(undefined8 *)(stage_ptr + 0x18) = 0;  // 清空缓冲区指针
+  *(undefined4 *)(stage_ptr + 0x28) = 0;  // 清空缓冲区标志
+  *(undefined8 *)(stage_ptr + 0x10) = &UNK_18098bcb0;  // 设置缓冲区状态
+  
   return;
 }
 
@@ -1057,37 +1063,49 @@ void FUN_18005ab50(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18005ac00(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005ac00(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void process_device_definition(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 处理设备定义字符串，创建并配置设备对象
+void process_device_definition(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined4 uVar1;
-  undefined4 *puVar2;
-  undefined *puStack_50;
-  undefined4 *puStack_48;
-  undefined4 uStack_40;
-  undefined8 uStack_38;
+  undefined4 string_length;
+  undefined4 *device_string;
+  undefined *stack_ptr1;
+  undefined4 *stack_ptr2;
+  undefined4 stack_length;
+  undefined8 stack_param;
   
-  puStack_50 = &UNK_180a3c3e0;
-  uStack_38 = 0;
-  puStack_48 = (undefined4 *)0x0;
-  uStack_40 = 0;
-  puVar2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x13,0x13,param_4,0xfffffffffffffffe);
-  *(undefined1 *)puVar2 = 0;
-  puStack_48 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
-  uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
-  *puVar2 = 0x65766544;
-  puVar2[1] = 0x6d706f6c;
-  puVar2[2] = 0x20746e65;
-  puVar2[3] = 0x666e6f63;
-  *(undefined2 *)(puVar2 + 4) = 0x6769;
-  *(undefined1 *)((longlong)puVar2 + 0x12) = 0;
-  uStack_40 = 0x12;
-  FUN_1800ae520(param_1,&puStack_50);
-  puStack_50 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(puVar2);
+  // 设置栈参数
+  stack_ptr1 = &UNK_180a3c3e0;
+  stack_param = 0;
+  stack_ptr2 = (undefined4 *)0x0;
+  stack_length = 0;
+  
+  // 分配设备字符串内存
+  device_string = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x13, 0x13, param_4, 0xfffffffffffffffe);
+  *(undefined1 *)device_string = 0;  // 初始化字符串
+  stack_ptr2 = device_string;
+  
+  // 获取字符串长度
+  string_length = FUN_18064e990(device_string);
+  stack_param = CONCAT44(stack_param._4_4_, string_length);
+  
+  // 设置设备定义字符串 "Device development config"
+  *device_string = 0x65766544;        // "Deve"
+  device_string[1] = 0x6d706f6c;      // "lopme"
+  device_string[2] = 0x20746e65;      // "ent "
+  device_string[3] = 0x666e6f63;      // "conf"
+  *(undefined2 *)(device_string + 4) = 0x6769;  // "ig"
+  *(undefined1 *)((longlong)device_string + 0x12) = 0;  // 字符串结束符
+  
+  // 设置字符串长度
+  stack_length = 0x12;  // 18个字符
+  
+  // 处理设备定义
+  FUN_1800ae520(param_1, &stack_ptr1);
+  stack_ptr1 = &UNK_180a3c3e0;
+  
+  // 临时字符串内存（不返回）
+  FUN_18064e900(device_string);
 }
 
 

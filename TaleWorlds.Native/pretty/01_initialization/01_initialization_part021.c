@@ -932,12 +932,12 @@ void emergency_exit_handler(undefined8 exit_context, undefined4 exit_code)
   code *system_call_handler;  // 系统调用处理函数
   
   if (_DAT_180c8f008 != 0) {
-    func_0x00018005a410(_DAT_180c8f008 + 8);
+    func_0x00018005a410(_DAT_180c8f008 + 8);  // 调用清理函数
   }
-  Sleep(2000);
-  _Exit(param_2);
-  pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  Sleep(2000);  // 等待2秒确保清理完成
+  _Exit(exit_code);  // 退出程序
+  system_call_handler = (code *)swi(3);  // 获取系统调用处理函数
+  (*system_call_handler)();  // 执行系统调用
   return;
 }
 
@@ -964,39 +964,48 @@ void perform_system_cleanup(void)
   undefined8 register_value;  // 寄存器值
   undefined8 security_cookie;  // 安全cookie
   
-  pcVar3 = _DAT_180c8a9d8;
-  uVar6 = 0xfffffffffffffffe;
+  config_data = _DAT_180c8a9d8;
+  security_cookie = 0xfffffffffffffffe;
   if (*_DAT_180c8a9d8 != '\0') {
-    puVar1 = (undefined8 *)*_DAT_180c86960;
-    iVar4 = _Mtx_lock(0x180c91970);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    cleanup_list = (undefined8 *)*_DAT_180c86960;
+    lock_result = _Mtx_lock(0x180c91970);
+    if (lock_result != 0) {
+      __Throw_C_error_std__YAXH_Z(lock_result);  // 锁定失败，抛出异常
     }
-    uVar2 = _DAT_180c8a9b0;
-    _DAT_180c8a9b0 = *puVar1;
-    FUN_1801299b0(&UNK_1809fd9a0,0,0,in_R9,uVar6);
-    FUN_18010f010(&UNK_1809fd9b0,*(undefined4 *)(pcVar3 + 4));
-    FUN_18010f010(&UNK_1809fd9d0,*(undefined4 *)(pcVar3 + 8));
-    FUN_18010f010(&UNK_1809fd9f0,*(undefined4 *)(pcVar3 + 0xc));
-    FUN_18010f010(&UNK_1809fda10,*(undefined4 *)(pcVar3 + 0x10));
-    FUN_18010f010(&UNK_1809fda30,*(undefined4 *)(pcVar3 + 0x14));
-    FUN_18010f010(&UNK_1809fda58,*(undefined4 *)(pcVar3 + 0x18));
-    for (pcVar5 = *(char **)(pcVar3 + 0x28); pcVar5 != pcVar3 + 0x20;
-        pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&UNK_1809fda80,*(undefined4 *)(pcVar5 + 0x20),*(undefined4 *)(pcVar5 + 0x24));
+    list_state = _DAT_180c8a9b0;
+    _DAT_180c8a9b0 = *cleanup_list;
+    FUN_1801299b0(&UNK_1809fd9a0,0,0,register_value,security_cookie);
+    
+    // 清理配置数据的基本字段
+    FUN_18010f010(&UNK_1809fd9b0,*(undefined4 *)(config_data + 4));
+    FUN_18010f010(&UNK_1809fd9d0,*(undefined4 *)(config_data + 8));
+    FUN_18010f010(&UNK_1809fd9f0,*(undefined4 *)(config_data + 0xc));
+    FUN_18010f010(&UNK_1809fda10,*(undefined4 *)(config_data + 0x10));
+    FUN_18010f010(&UNK_1809fda30,*(undefined4 *)(config_data + 0x14));
+    FUN_18010f010(&UNK_1809fda58,*(undefined4 *)(config_data + 0x18));
+    
+    // 清理第一个数据块列表
+    for (iterator_ptr = *(char **)(config_data + 0x28); iterator_ptr != config_data + 0x20;
+        iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
+      FUN_18010f010(&UNK_1809fda80,*(undefined4 *)(iterator_ptr + 0x20),*(undefined4 *)(iterator_ptr + 0x24));
     }
-    for (pcVar5 = *(char **)(pcVar3 + 0x58); pcVar5 != pcVar3 + 0x50;
-        pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&UNK_1809fdaa8,*(undefined4 *)(pcVar5 + 0x20),*(undefined4 *)(pcVar5 + 0x24));
+    
+    // 清理第二个数据块列表
+    for (iterator_ptr = *(char **)(config_data + 0x58); iterator_ptr != config_data + 0x50;
+        iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
+      FUN_18010f010(&UNK_1809fdaa8,*(undefined4 *)(iterator_ptr + 0x20),*(undefined4 *)(iterator_ptr + 0x24));
     }
-    FUN_18010f010(&UNK_1809fdad0,*(undefined4 *)(pcVar3 + 0x80));
-    FUN_18010f010(&UNK_1809fdaf8,*(undefined4 *)(pcVar3 + 0x84));
-    FUN_18010f010(&UNK_1809fdb20,*(undefined4 *)(pcVar3 + 0x88));
-    FUN_18012cfe0();
-    _DAT_180c8a9b0 = uVar2;
-    iVar4 = _Mtx_unlock(0x180c91970);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    
+    // 清理剩余的配置字段
+    FUN_18010f010(&UNK_1809fdad0,*(undefined4 *)(config_data + 0x80));
+    FUN_18010f010(&UNK_1809fdaf8,*(undefined4 *)(config_data + 0x84));
+    FUN_18010f010(&UNK_1809fdb20,*(undefined4 *)(config_data + 0x88));
+    
+    FUN_18012cfe0();  // 执行最终清理
+    _DAT_180c8a9b0 = list_state;
+    lock_result = _Mtx_unlock(0x180c91970);
+    if (lock_result != 0) {
+      __Throw_C_error_std__YAXH_Z(lock_result);  // 解锁失败，抛出异常
     }
   }
   return;

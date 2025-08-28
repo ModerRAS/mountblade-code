@@ -713,11 +713,15 @@ void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefin
 
 
 
-// 函数: void FUN_180061290(undefined8 *param_1)
-void FUN_180061290(undefined8 *param_1)
+/**
+ * 关闭句柄
+ * 关闭指定的句柄
+ * @param handle_ptr 句柄指针
+ */
+void 关闭句柄(undefined8 *handle_ptr)
 
 {
-  CloseHandle(*param_1);
+  CloseHandle(*handle_ptr);
   return;
 }
 
@@ -725,54 +729,67 @@ void FUN_180061290(undefined8 *param_1)
 
 
 
-// 函数: void FUN_1800612b0(undefined8 *param_1)
-void FUN_1800612b0(undefined8 *param_1)
+/**
+ * 销毁互斥锁和清理资源
+ * 销毁互斥锁并清理相关资源
+ * @param mutex_ptr 互斥锁指针
+ */
+void 销毁互斥锁清理资源(undefined8 *mutex_ptr)
 
 {
-  *param_1 = &UNK_180a3cf50;
-  if (*(char *)((longlong)param_1 + 0xb1) != '\0') {
+  *mutex_ptr = &UNK_180a3cf50;
+  if (*(char *)((longlong)mutex_ptr + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *param_1 = &UNK_180a30778;
-  param_1[7] = &UNK_180a3c3e0;
-  if (param_1[8] != 0) {
+  *mutex_ptr = &UNK_180a30778;
+  mutex_ptr[7] = &UNK_180a3c3e0;
+  if (mutex_ptr[8] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  param_1[8] = 0;
-  *(undefined4 *)(param_1 + 10) = 0;
-  param_1[7] = &UNK_18098bcb0;
-  param_1[1] = &UNK_180a3c3e0;
-  if (param_1[2] != 0) {
+  mutex_ptr[8] = 0;
+  *(undefined4 *)(mutex_ptr + 10) = 0;
+  mutex_ptr[7] = &UNK_18098bcb0;
+  mutex_ptr[1] = &UNK_180a3c3e0;
+  if (mutex_ptr[2] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  param_1[2] = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
-  param_1[1] = &UNK_18098bcb0;
+  mutex_ptr[2] = 0;
+  *(undefined4 *)(mutex_ptr + 4) = 0;
+  mutex_ptr[1] = &UNK_18098bcb0;
   return;
 }
 
 
 
+/**
+ * 释放互斥锁和内存
+ * 释放互斥锁并根据标志释放内存
+ * @param mutex_ptr 互斥锁指针
+ * @param flags 释放标志
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 互斥锁指针
+ */
 undefined8 *
-FUN_180061300(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+释放互斥锁和内存(undefined8 *mutex_ptr,ulonglong flags,undefined8 param3,undefined8 param4)
 
 {
-  undefined8 uVar1;
+  undefined8 alloc_flags;
   
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a3cf50;
-  if (*(char *)((longlong)param_1 + 0xb1) != '\0') {
+  alloc_flags = 0xfffffffffffffffe;
+  *mutex_ptr = &UNK_180a3cf50;
+  if (*(char *)((longlong)mutex_ptr + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  FUN_1805065c0(param_1);
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xb8,param_3,param_4,uVar1);
+  FUN_1805065c0(mutex_ptr);
+  if ((flags & 1) != 0) {
+    free(mutex_ptr,0xb8,param3,param4,alloc_flags);
   }
-  return param_1;
+  return mutex_ptr;
 }
 
 
@@ -781,8 +798,13 @@ FUN_180061300(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180061380(undefined8 param_1,longlong param_2)
-void FUN_180061380(undefined8 param_1,longlong param_2)
+/**
+ * 初始化线程池和相关资源
+ * 初始化线程池以及相关的内存资源
+ * @param param1 参数1
+ * @param config_ptr 配置指针
+ */
+void 初始化线程池资源(undefined8 param1,longlong config_ptr)
 
 {
   longlong lVar1;

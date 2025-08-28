@@ -288,6 +288,7 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
     if (uVar6 < (*puVar7 >> 2) + (*puVar7 >> 1)) break;
     puVar7 = (ulonglong *)param_1[6];
   }
+  // 查找可用的线程数据槽位
   puVar11 = (undefined8 *)*param_1;
   while (puVar11 != (undefined8 *)0x0) {
     if ((*(char *)(puVar11 + 2) != '\0') && (*(char *)(puVar11 + 9) == '\0')) {
@@ -306,10 +307,13 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
       puVar11 = puVar15;
     }
   }
+  
+  // 没有找到可用槽位，创建新的线程数据结构
   bVar17 = false;
   puVar8 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x68,10);
   puVar11 = puVar15;
   if (puVar8 != (undefined8 *)0x0) {
+    // 初始化新的线程数据结构
     puVar8[1] = 0;
     *(undefined1 *)(puVar8 + 2) = 0;
     puVar8[3] = 0;
@@ -324,10 +328,16 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
     *puVar8 = &UNK_1809ff3e8;
     puVar8[0xb] = 0x20;
     puVar8[0xc] = 0;
+    
+    // 初始化线程数据结构
     FUN_18005f430(puVar8);
+    
+    // 增加线程数据计数
     LOCK();
     *(int *)(param_1 + 1) = (int)param_1[1] + 1;
     UNLOCK();
+    
+    // 将新的线程数据结构添加到链表头部
     lVar9 = *param_1;
     do {
       puVar11 = (undefined8 *)(lVar9 + 8);
@@ -347,18 +357,24 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
       puVar11 = puVar8;
     } while (!bVar16);
   }
+  
 LAB_18006d3bb:
+  // 检查是否成功分配了线程数据结构
   if (puVar11 == (undefined8 *)0x0) {
     LOCK();
     param_1[7] = param_1[7] + -1;
     UNLOCK();
     return (undefined8 *)0x0;
   }
+  
+  // 如果是重用的数据结构，减少活跃线程计数
   if (bVar17) {
     LOCK();
     param_1[7] = param_1[7] + -1;
     UNLOCK();
   }
+  
+  // 将线程数据结构插入到哈希表中
   do {
     uVar13 = uVar13 & *puVar7 - 1;
     if (*(int *)(puVar7[1] + uVar13 * 0x10) == 0) {
@@ -380,14 +396,27 @@ LAB_18006d3bb:
 
 
 
-undefined8 FUN_18006d450(undefined8 param_1,ulonglong param_2)
+/**
+ * 释放线程本地存储数据
+ * 根据标志位决定是否释放线程数据结构
+ * 原函数名：FUN_18006d450
+ * 
+ * @param thread_data 线程数据指针
+ * @param flags 释放标志位，第0位为1时表示需要释放内存
+ * @return 返回传入的线程数据指针
+ */
+undefined8 FreeThreadLocalStorageData(undefined8 thread_data, ulonglong flags)
 
 {
+  // 确保内存池管理器已初始化
   FUN_18006cf00();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x68);
+  
+  // 如果标志位要求释放内存，则释放线程数据结构
+  if ((flags & 1) != 0) {
+    free(thread_data, 0x68);
   }
-  return param_1;
+  
+  return thread_data;
 }
 
 

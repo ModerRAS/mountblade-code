@@ -766,8 +766,10 @@ bool validate_and_process_condition(longlong context, undefined8 param_2)
 
 
 
-// 函数: void FUN_18005c930(undefined8 *param_1,undefined8 param_2,int *param_3)
-void FUN_18005c930(undefined8 *param_1,undefined8 param_2,int *param_3)
+// 函数: void insert_node_into_structure(undefined8 *root_node, undefined8 param_2, int *value)
+// 功能: 在有序数据结构中插入新节点
+// 参数: root_node - 根节点指针，param_2 - 插入参数，value - 要插入的值
+void insert_node_into_structure(undefined8 *root_node, undefined8 param_2, int *value)
 
 {
   int iVar1;
@@ -778,9 +780,9 @@ void FUN_18005c930(undefined8 *param_1,undefined8 param_2,int *param_3)
   undefined8 uVar6;
   
   lVar4 = FUN_18062b420(_DAT_180c8ed18,0x28,*(undefined1 *)(param_1 + 5));
-  iVar1 = *param_3;
+  iVar1 = *value;
   bVar2 = true;
-  *(int *)(lVar4 + 0x20) = iVar1;
+  *(int *)(lVar4 + 0x20) = iVar1; // 存储要插入的值
   puVar5 = (undefined8 *)param_1[2];
   puVar3 = param_1;
   while (puVar5 != (undefined8 *)0x0) {
@@ -817,8 +819,10 @@ LAB_18005c9be:
 
 
 
-// 函数: void FUN_18005ca20(longlong param_1,undefined4 param_2)
-void FUN_18005ca20(longlong param_1,undefined4 param_2)
+// 函数: void set_status_flag(longlong context, undefined4 flag)
+// 功能: 设置状态标志，处理条件检查和错误处理
+// 参数: context - 上下文指针，flag - 要设置的标志
+void set_status_flag(longlong context, undefined4 flag)
 
 {
   char cVar1;
@@ -835,19 +839,23 @@ void FUN_18005ca20(longlong param_1,undefined4 param_2)
       }
       FUN_180626f80(&UNK_18098bc00,puVar2);
     }
-    *(undefined4 *)(param_1 + 0x1ea0) = *(undefined4 *)(param_1 + 0x1ee8);
+    *(undefined4 *)(context + 0x1ea0) = *(undefined4 *)(context + 0x1ee8); // 设置状态标志
     return;
   }
-  *(undefined4 *)(param_1 + 0x1ea0) = param_2;
+  *(undefined4 *)(context + 0x1ea0) = flag; // 设置标志
   return;
 }
 
 
 
-undefined8 * FUN_18005caa0(undefined8 *param_1,longlong param_2)
+// 函数: undefined8 * copy_and_initialize_data_structure(undefined8 *dest, longlong src)
+// 功能: 复制和初始化数据结构
+// 参数: dest - 目标指针，src - 源数据
+// 返回: 目标指针
+undefined8 * copy_and_initialize_data_structure(undefined8 *dest, longlong src)
 
 {
-  *param_1 = &UNK_18098bcb0;
+  *dest = &UNK_18098bcb0; // 初始化指针
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
   *param_1 = &UNK_180a3c3e0;
@@ -858,7 +866,7 @@ undefined8 * FUN_18005caa0(undefined8 *param_1,longlong param_2)
   param_1[1] = *(undefined8 *)(param_2 + 8);
   *(undefined4 *)((longlong)param_1 + 0x1c) = *(undefined4 *)(param_2 + 0x1c);
   *(undefined4 *)(param_1 + 3) = *(undefined4 *)(param_2 + 0x18);
-  *(undefined4 *)(param_2 + 0x10) = 0;
+  *(undefined4 *)(src + 0x10) = 0; // 清空源数据
   *(undefined8 *)(param_2 + 8) = 0;
   *(undefined8 *)(param_2 + 0x18) = 0;
   param_1[4] = &UNK_18098bcb0;
@@ -880,10 +888,14 @@ undefined8 * FUN_18005caa0(undefined8 *param_1,longlong param_2)
 
 
 
-longlong FUN_18005cb60(longlong param_1)
+// 函数: longlong cleanup_and_reset_structure(longlong structure)
+// 功能: 清理和重置数据结构
+// 参数: structure - 要清理的数据结构
+// 返回: 清理后的数据结构指针
+longlong cleanup_and_reset_structure(longlong structure)
 
 {
-  *(undefined8 *)(param_1 + 0x40) = &UNK_180a3c3e0;
+  *(undefined8 *)(structure + 0x40) = &UNK_180a3c3e0; // 设置安全标记
   if (*(longlong *)(param_1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -908,8 +920,10 @@ longlong FUN_18005cb60(longlong param_1)
 
 
 
-// 函数: void FUN_18005cc00(undefined **param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005cc00(undefined **param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void register_or_add_component(undefined **registry, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 注册或添加组件到注册表
+// 参数: registry - 注册表指针，param_2 - 组件类型，param_3 - 组件数据，param_4 - 标志
+void register_or_add_component(undefined **registry, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   byte bVar1;
@@ -1252,7 +1266,7 @@ longlong FUN_18005d190(longlong param_1,longlong param_2)
   *(undefined8 *)(param_1 + 8) = *(undefined8 *)(param_2 + 8);
   *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(param_2 + 0x1c);
   *(undefined4 *)(param_1 + 0x18) = *(undefined4 *)(param_2 + 0x18);
-  *(undefined4 *)(param_2 + 0x10) = 0;
+  *(undefined4 *)(src + 0x10) = 0; // 清空源数据
   *(undefined8 *)(param_2 + 8) = 0;
   *(undefined8 *)(param_2 + 0x18) = 0;
   return param_1;

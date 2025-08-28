@@ -550,149 +550,155 @@ void initialize_system_buffers(undefined8 system_param)
 
 
 
-// 函数: void FUN_180063b30(undefined8 param_1,longlong param_2)
-void FUN_180063b30(undefined8 param_1,longlong param_2)
+// 函数: void write_log_to_file(undefined8 file_handle, longlong message_data)
+// 功能: 将日志消息写入文件，包括系统信息和自定义消息
+void write_log_to_file(undefined8 file_handle, longlong message_data)
 
 {
-  char *pcVar1;
-  undefined *puVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong lVar6;
-  undefined8 uStack_48;
-  longlong lStack_40;
-  undefined *puStack_30;
-  undefined *puStack_28;
-  undefined4 uStack_18;
+  char *message_ptr;
+  undefined *default_message;
+  longlong message_length;
+  longlong system_prefix_length;
+  longlong temp_var1;
+  longlong temp_var2;
+  undefined8 log_buffer;
+  longlong file_stream;
+  undefined *message_ptr2;
+  undefined *message_ptr3;
+  undefined4 stack_var;
   
-  uStack_48 = 0;
-  lStack_40 = 0;
-  FUN_180627e10(param_1,&puStack_30,&UNK_1809fe800);
-  puVar2 = &DAT_18098bc73;
-  if (puStack_28 != (undefined *)0x0) {
-    puVar2 = puStack_28;
+  log_buffer = 0;
+  file_stream = 0;
+  initialize_file_stream(file_handle,&message_ptr2,&UNK_1809fe800);
+  default_message = &DAT_18098bc73;
+  if (message_ptr3 != (undefined *)0x0) {
+    default_message = message_ptr3;
   }
-  FUN_18062dee0(&uStack_48,puVar2,&UNK_1809fe80c);
-  lVar6 = lStack_40;
-  lVar5 = -1;
-  lVar3 = lVar5;
-  lVar4 = lVar5;
-  if (param_2 != 0) {
+  initialize_log_buffer(&log_buffer,default_message,&UNK_1809fe80c);
+  file_stream2 = file_stream;
+  temp_var2 = -1;
+  message_length = temp_var2;
+  system_prefix_length = temp_var2;
+  if (message_data != 0) {
     do {
-      lVar3 = lVar3 + 1;
-    } while (*(char *)(param_2 + lVar3) != '\0');
-    if (lVar3 != 0) {
-      fwrite(param_2,lVar3,1,lStack_40);
+      message_length = message_length + 1;
+    } while (*(char *)(message_data + message_length) != '\0');
+    if (message_length != 0) {
+      fwrite(message_data,message_length,1,file_stream);
     }
   }
   do {
-    lVar3 = lVar4 + 1;
-    pcVar1 = (char *)(lVar4 + 0x180c84871);
-    lVar4 = lVar3;
-  } while (*pcVar1 != '\0');
-  if (lVar3 != 0) {
-    fwrite(&DAT_1809fe810,0x30,1,lVar6);
-    fwrite(&DAT_180c84870,lVar3,1,lVar6);
+    message_length = system_prefix_length + 1;
+    message_ptr = (char *)(system_prefix_length + 0x180c84871);
+    system_prefix_length = message_length;
+  } while (*message_ptr != '\0');
+  if (message_length != 0) {
+    fwrite(&DAT_1809fe810,0x30,1,file_stream2);
+    fwrite(&DAT_180c84870,message_length,1,file_stream2);
+  }
+  fclose(file_stream);
+  return;
+}
 
 
-// 函数: void FUN_180063cf0(void)
-void FUN_180063cf0(void)
+// 函数: void scan_file_system(void)
+// 功能: 扫描文件系统，查找特定文件并执行相关操作
+void scan_file_system(void)
 
 {
-  undefined *puVar1;
-  bool bVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  int iVar6;
-  longlong lVar7;
-  longlong lVar8;
-  undefined *puVar9;
-  uint uVar10;
-  undefined8 *puVar12;
-  ulonglong uVar13;
-  int iVar14;
-  longlong lVar15;
-  uint uVar16;
-  undefined1 auStack_2f8 [32];
-  undefined8 *puStack_2d8;
-  undefined8 *puStack_2d0;
-  undefined8 uStack_2c8;
-  undefined4 uStack_2c0;
-  undefined8 *puStack_2b0;
-  undefined8 *puStack_2a8;
-  undefined8 uStack_2a0;
-  undefined4 uStack_298;
-  undefined *puStack_290;
-  longlong lStack_288;
-  undefined4 uStack_278;
-  undefined8 uStack_270;
-  undefined1 auStack_268 [32];
-  longlong lStack_248;
-  undefined1 auStack_238 [512];
-  ulonglong uStack_38;
-  ulonglong uVar11;
+  undefined *file_path;
+  bool is_match;
+  undefined8 *file_list1;
+  undefined8 *file_list2;
+  undefined8 *file_list3;
+  int file_length;
+  longlong char_index1;
+  longlong char_index2;
+  undefined *file_name;
+  uint file_count;
+  undefined8 *current_file;
+  ulonglong scan_index;
+  int best_match_index;
+  longlong latest_time;
+  uint total_files;
+  undefined1 security_buffer [32];
+  undefined8 *file_array1;
+  undefined8 *file_array2;
+  undefined8 array1_size;
+  undefined4 array1_flags;
+  undefined8 *file_array3;
+  undefined8 *file_array4;
+  undefined8 array2_size;
+  undefined4 array2_flags;
+  undefined *file_scanner;
+  longlong scanner_handle;
+  undefined4 scanner_flags;
+  undefined8 stack_cookie;
+  undefined1 stat_buffer [32];
+  longlong file_time;
+  undefined1 zero_buffer [512];
+  ulonglong security_check;
+  ulonglong file_index;
   
-  uStack_270 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2f8;
-  uVar11 = 0;
-  FUN_1800ba980(&puStack_290);
-  puStack_2d8 = (undefined8 *)0x0;
-  puStack_2d0 = (undefined8 *)0x0;
-  uStack_2c8 = 0;
-  uStack_2c0 = 3;
-  puStack_2b0 = (undefined8 *)0x0;
-  puStack_2a8 = (undefined8 *)0x0;
-  uStack_2a0 = 0;
-  uStack_298 = 3;
-  FUN_18062d3b0(&puStack_290,&puStack_2d8,&puStack_2b0);
-  iVar14 = -1;
-  lVar15 = -0x8000000000000000;
-  uVar16 = (uint)((longlong)puStack_2d0 - (longlong)puStack_2d8 >> 5);
-  uVar13 = uVar11;
-  puVar3 = puStack_2d0;
-  puVar12 = puStack_2b0;
-  puVar4 = puStack_2a8;
-  if (uVar16 != 0) {
+  stack_cookie = 0xfffffffffffffffe;
+  security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  file_index = 0;
+  initialize_file_scanner(&file_scanner);
+  file_array1 = (undefined8 *)0x0;
+  file_array2 = (undefined8 *)0x0;
+  array1_size = 0;
+  array1_flags = 3;
+  file_array3 = (undefined8 *)0x0;
+  file_array4 = (undefined8 *)0x0;
+  array2_size = 0;
+  array2_flags = 3;
+  populate_file_arrays(&file_scanner,&file_array1,&file_array3);
+  best_match_index = -1;
+  latest_time = -0x8000000000000000;
+  total_files = (uint)((longlong)file_array2 - (longlong)file_array1 >> 5);
+  scan_index = file_index;
+  file_list1 = file_array2;
+  current_file = file_array3;
+  file_list2 = file_array4;
+  if (total_files != 0) {
     do {
-      iVar6 = *(int *)((longlong)puStack_2d8 + uVar13 + 0x10);
-      if (iVar6 < 4) {
-LAB_180063de9:
-        bVar2 = false;
+      file_length = *(int *)((longlong)file_array1 + scan_index + 0x10);
+      if (file_length < 4) {
+not_found:
+        is_match = false;
       }
       else {
-        lVar7 = 0;
+        char_index1 = 0;
         do {
-          lVar8 = lVar7 + 1;
-          if (*(char *)(*(longlong *)((longlong)puStack_2d8 + uVar13 + 8) + (longlong)(iVar6 + -4) +
-                       lVar7) != (&UNK_1809fe85c)[lVar7]) goto LAB_180063de9;
-          lVar7 = lVar8;
-        } while (lVar8 != 5);
-        bVar2 = true;
+          char_index2 = char_index1 + 1;
+          if (*(char *)(*(longlong *)((longlong)file_array1 + scan_index + 8) + (longlong)(file_length + -4) +
+                       char_index1) != (&UNK_1809fe85c)[char_index1]) goto not_found;
+          char_index1 = char_index2;
+        } while (char_index2 != 5);
+        is_match = true;
       }
-      if (bVar2) {
-        puVar1 = *(undefined **)((longlong)puStack_2d8 + uVar13 + 8);
-        puVar9 = &DAT_18098bc73;
-        if (puVar1 != (undefined *)0x0) {
-          puVar9 = puVar1;
+      if (is_match) {
+        file_path = *(undefined **)((longlong)file_array1 + scan_index + 8);
+        file_name = &DAT_18098bc73;
+        if (file_path != (undefined *)0x0) {
+          file_name = file_path;
         }
-        iVar6 = _stat64i32(puVar9,auStack_268);
-        if ((iVar6 != -1) && (lVar15 < lStack_248)) {
-          lVar15 = lStack_248;
-          iVar14 = (int)uVar11;
+        file_length = _stat64i32(file_name,stat_buffer);
+        if ((file_length != -1) && (latest_time < file_time)) {
+          latest_time = file_time;
+          best_match_index = (int)file_index;
         }
       }
-      uVar10 = (int)uVar11 + 1;
-      uVar11 = (ulonglong)uVar10;
-      uVar13 = uVar13 + 0x20;
-    } while (uVar10 < uVar16);
-    puVar3 = puStack_2d0;
-    puVar12 = puStack_2b0;
-    puVar4 = puStack_2a8;
-    if (-1 < iVar14) {
+      file_count = (int)file_index + 1;
+      file_index = (ulonglong)file_count;
+      scan_index = scan_index + 0x20;
+    } while (file_count < total_files);
+    file_list1 = file_array2;
+    current_file = file_array3;
+    file_list2 = file_array4;
+    if (-1 < best_match_index) {
                     // WARNING: Subroutine does not return
-      memset(auStack_238,0,0x200);
+      memset(zero_buffer,0,0x200);
     }
   }
   for (; puVar5 = puStack_2a8, puStack_2d0 = puVar3, puVar12 != puStack_2a8; puVar12 = puVar12 + 4)
@@ -882,132 +888,135 @@ void FUN_180064010(undefined8 param_1)
 
 
 
-// 函数: void FUN_180064400(void)
-void FUN_180064400(void)
+// 函数: void initialize_system_resources(void)
+// 功能: 初始化系统资源，调用底层初始化函数
+void initialize_system_resources(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  initialize_core_system();
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1800649d0(undefined8 param_1)
+// 函数: ulonglong process_file_operations(undefined8 file_handle)
+// 功能: 处理文件操作，包括文件读取、写入和资源管理
+ulonglong process_file_operations(undefined8 file_handle)
 
 {
-  char cVar1;
-  ulonglong uVar2;
-  undefined *puVar3;
-  undefined8 *puVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined *puStack_b8;
-  longlong lStack_b0;
-  int iStack_a8;
-  ulonglong uStack_a0;
-  undefined8 *puStack_98;
-  undefined8 *puStack_90;
-  undefined8 uStack_88;
-  undefined4 uStack_80;
-  undefined8 uStack_78;
-  longlong lStack_70;
-  undefined *puStack_58;
-  undefined *puStack_50;
-  undefined4 uStack_40;
-  undefined8 uStack_38;
+  char status_char;
+  ulonglong operation_result;
+  undefined *default_path;
+  undefined8 *file_list1;
+  longlong file_handle2;
+  undefined8 *file_list2;
+  undefined8 *file_list3;
+  undefined *output_buffer;
+  longlong stream_handle;
+  int buffer_size;
+  ulonglong buffer_pos;
+  undefined8 *file_array1;
+  undefined8 *file_array2;
+  undefined8 array1_size;
+  undefined4 array1_flags;
+  undefined8 log_buffer;
+  longlong log_handle;
+  undefined *message_ptr;
+  undefined *custom_message;
+  undefined4 message_flags;
+  undefined8 stack_cookie;
   
-  uStack_38 = 0xfffffffffffffffe;
-  puStack_98 = (undefined8 *)0x0;
-  puStack_90 = (undefined8 *)0x0;
-  uStack_88 = 0;
-  uStack_80 = 3;
-  cVar1 = FUN_180064400(&puStack_98);
-  puVar7 = puStack_90;
-  puVar6 = puStack_98;
-  if ((cVar1 == '\0') || (puStack_98 == puStack_90)) {
-    FUN_1800622d0(_DAT_180c86928,5,3,&UNK_1809fe8b0);
-    uVar2 = FUN_1800623e0();
-    puVar4 = puVar6;
+  stack_cookie = 0xfffffffffffffffe;
+  file_array1 = (undefined8 *)0x0;
+  file_array2 = (undefined8 *)0x0;
+  array1_size = 0;
+  array1_flags = 3;
+  status_char = initialize_system_resources(&file_array1);
+  file_list3 = file_array2;
+  file_list2 = file_array1;
+  if ((status_char == '\0') || (file_array1 == file_array2)) {
+    log_system_message(_DAT_180c86928,5,3,&UNK_1809fe8b0);
+    operation_result = get_operation_result();
+    file_list1 = file_list2;
   }
   else {
-    uStack_78 = 0;
-    lStack_70 = 0;
-    FUN_180627e10(param_1,&puStack_58,&UNK_1809fe898);
-    puVar3 = &DAT_18098bc73;
-    if (puStack_50 != (undefined *)0x0) {
-      puVar3 = puStack_50;
+    log_buffer = 0;
+    log_handle = 0;
+    initialize_file_stream(file_handle,&message_ptr,&UNK_1809fe898);
+    default_path = &DAT_18098bc73;
+    if (custom_message != (undefined *)0x0) {
+      default_path = custom_message;
     }
-    FUN_18062dee0(&uStack_78,puVar3,&UNK_1809fe80c);
-    uVar2 = (longlong)puVar7 - (longlong)puVar6 >> 5;
-    puStack_b8 = &UNK_180a3c3e0;
-    uStack_a0 = 0;
-    lStack_b0 = 0;
-    iStack_a8 = 0;
-    if ((int)uVar2 != 0) {
-      puVar4 = puVar6 + 1;
-      uVar2 = uVar2 & 0xffffffff;
+    initialize_log_buffer(&log_buffer,default_path,&UNK_1809fe80c);
+    operation_result = (longlong)file_list3 - (longlong)file_list2 >> 5;
+    output_buffer = &UNK_180a3c3e0;
+    buffer_pos = 0;
+    stream_handle = 0;
+    buffer_size = 0;
+    if ((int)operation_result != 0) {
+      file_list1 = file_list2 + 1;
+      operation_result = operation_result & 0xffffffff;
       do {
-        puVar3 = &DAT_18098bc73;
-        if ((undefined *)*puVar4 != (undefined *)0x0) {
-          puVar3 = (undefined *)*puVar4;
+        default_path = &DAT_18098bc73;
+        if ((undefined *)*file_list1 != (undefined *)0x0) {
+          default_path = (undefined *)*file_list1;
         }
-        FUN_180628040(&puStack_b8,&UNK_1809fe62c,puVar3);
-        puVar4 = puVar4 + 4;
-        uVar2 = uVar2 - 1;
-      } while (uVar2 != 0);
+        write_error_message(&output_buffer,&UNK_1809fe62c,default_path);
+        file_list1 = file_list1 + 4;
+        operation_result = operation_result - 1;
+      } while (operation_result != 0);
     }
-    lVar5 = lStack_70;
-    uVar2 = fwrite(lStack_b0,1,(longlong)iStack_a8,lStack_70);
-    if (lVar5 != 0) {
-      fclose(lVar5);
-      lStack_70 = 0;
+    file_handle2 = log_handle;
+    operation_result = fwrite(stream_handle,1,(longlong)buffer_size,log_handle);
+    if (file_handle2 != 0) {
+      fclose(file_handle2);
+      log_handle = 0;
       LOCK();
-      uVar2 = (ulonglong)_DAT_180c8ed60;
+      operation_result = (ulonglong)_DAT_180c8ed60;
       UNLOCK();
-      lVar5 = 0;
-      puVar6 = puStack_98;
-      puVar7 = puStack_90;
+      file_handle2 = 0;
+      file_list2 = file_array1;
+      file_list3 = file_array2;
       _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
     }
-    puStack_b8 = &UNK_180a3c3e0;
-    if (lStack_b0 != 0) {
+    output_buffer = &UNK_180a3c3e0;
+    if (stream_handle != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      release_string_buffer();
     }
-    lStack_b0 = 0;
-    uStack_a0 = uStack_a0 & 0xffffffff00000000;
-    puStack_b8 = &UNK_18098bcb0;
-    puStack_58 = &UNK_180a3c3e0;
-    if (puStack_50 != (undefined *)0x0) {
+    stream_handle = 0;
+    buffer_pos = buffer_pos & 0xffffffff00000000;
+    output_buffer = &UNK_18098bcb0;
+    message_ptr = &UNK_180a3c3e0;
+    if (custom_message != (undefined *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      release_string_buffer();
     }
-    puStack_50 = (undefined *)0x0;
-    uStack_40 = 0;
-    puStack_58 = &UNK_18098bcb0;
-    puVar4 = puVar6;
-    if (lVar5 != 0) {
-      uVar2 = fclose(lVar5);
-      lStack_70 = 0;
+    custom_message = (undefined *)0x0;
+    message_flags = 0;
+    message_ptr = &UNK_18098bcb0;
+    file_list1 = file_list2;
+    if (file_handle2 != 0) {
+      operation_result = fclose(file_handle2);
+      log_handle = 0;
       LOCK();
       _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
       UNLOCK();
-      puVar6 = puStack_98;
-      puVar7 = puStack_90;
-      puVar4 = puStack_98;
+      file_list2 = file_array1;
+      file_list3 = file_array2;
+      file_list1 = file_array1;
     }
   }
-  for (; puVar6 != puVar7; puVar6 = puVar6 + 4) {
-    uVar2 = (**(code **)*puVar6)(puVar6,0);
+  for (; file_list2 != file_list3; file_list2 = file_list2 + 4) {
+    operation_result = (**(code **)*file_list2)(file_list2,0);
   }
-  if (puVar4 != (undefined8 *)0x0) {
+  if (file_list1 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar4);
+    release_string_buffer(file_list1);
   }
-  return uVar2;
+  return operation_result;
 }
 
 
