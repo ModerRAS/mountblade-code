@@ -81,6 +81,9 @@ void render_advanced_data_processing_controller(void)
   longlong render_resource_handle;
   int render_context_id;
   longlong render_texture_handle;
+  char render_context_flag;
+  float render_interpolation_value;
+  float render_clamped_value;
   
   // 初始化渲染管线状态
   render_flag = FUN_180128040(&texture_handle,&render_mode,1);
@@ -169,31 +172,32 @@ void render_advanced_data_processing_controller(void)
           ((*(longlong *)(_DAT_180c8a9b0 + 0x1b78) == 0 ||
            (render_resource_handle != *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b78) + 0x3a0))))))))) ||
        ((*(byte *)(render_context_ptr + 0x1a8) & 4) != 0)) goto LAB_180299abc;
-    if ((*(int *)(lVar15 + 0x144) == *(int *)(lVar15 + 8)) ||
-       (*(int *)(lVar15 + 0x144) == *(int *)(lVar15 + 0x84))) {
-      cVar5 = *(char *)(lVar15 + 0xb1);
+    if ((*(int *)(render_context_ptr + 0x144) == *(int *)(render_context_ptr + 8)) ||
+       (*(int *)(render_context_ptr + 0x144) == *(int *)(render_context_ptr + 0x84))) {
+      render_context_flag = *(char *)(render_context_ptr + 0xb1);
       goto joined_r0x0001802999aa;
     }
   }
   else {
     if ((*(int *)(_DAT_180c8a9b0 + 0x1ca0) == 0) ||
-       (*(int *)(_DAT_180c8a9b0 + 0x1ca0) != *(int *)(lVar15 + 0x144))) goto LAB_180299abc;
-    if (*(int *)(lVar15 + 0x144) == *(int *)(lVar15 + 8)) {
-      cVar5 = *(char *)(lVar15 + 0xb1);
+       (*(int *)(_DAT_180c8a9b0 + 0x1ca0) != *(int *)(render_context_ptr + 0x144))) goto LAB_180299abc;
+    if (*(int *)(render_context_ptr + 0x144) == *(int *)(render_context_ptr + 8)) {
+      render_context_flag = *(char *)(render_context_ptr + 0xb1);
 joined_r0x0001802999aa:
-      if (cVar5 != '\0') goto LAB_180299abc;
+      if (render_context_flag != '\0') goto LAB_180299abc;
     }
   }
-  fVar18 = (*(float *)(in_stack_00000068 + 0x118) - unaff_XMM12_Da) /
+  // 计算渲染插值参数
+  render_interpolation_value = (*(float *)(render_data_block_3 + 0x118) - unaff_XMM12_Da) /
            (unaff_XMM15_Da - unaff_XMM12_Da);
-  fVar24 = unaff_XMM7_Da;
-  if ((unaff_XMM7_Da <= fVar18) && (fVar24 = fVar18, 0.9999 <= fVar18)) {
-    fVar24 = 0.9999;
+  render_clamped_value = unaff_XMM7_Da;
+  if ((unaff_XMM7_Da <= render_interpolation_value) && (render_clamped_value = render_interpolation_value, 0.9999 <= render_interpolation_value)) {
+    render_clamped_value = 0.9999;
   }
-  iVar9 = (int)((float)iVar9 * fVar24);
-  iStack0000000000000050 = iVar9;
+  render_index = (int)((float)render_index * render_clamped_value);
+  render_state_index = render_index;
   FUN_18012e810();
-  FUN_18010f010(&UNK_180a16f48,iVar9);
+  FUN_18010f010(&UNK_180a16f48,render_index);
   if (0 < (longlong)unaff_R14) {
     puVar10 = *(undefined8 **)(unaff_RBP + 0xc0);
     *(longlong *)(unaff_RBP + 0xa8) = *(longlong *)(unaff_RBP + 0xa8) - (longlong)puVar10;
