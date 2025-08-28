@@ -3,6 +3,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+// 渲染系统高级参数处理和状态管理常量定义
+#define RenderingSystem_ParameterValidator FUN_1805bd4d0  // 渲染系统参数验证器
+#define RenderingSystem_StateController FUN_1805bd570  // 渲染系统状态控制器
+#define RenderingSystem_DataProcessor FUN_18050e440  // 渲染系统数据处理器
+#define RenderingSystem_ConfigManager FUN_1805bdb70  // 渲染系统配置管理器
+#define RenderingSystem_EmptyProcessor1 FUN_180602e71  // 渲染系统空处理器1
+#define RenderingSystem_ParameterCalculator FUN_1805d8e60  // 渲染系统参数计算器
+
 // 03_rendering_part612.c - 9 个函数
 
 // 函数: void FUN_180602b09(void)
