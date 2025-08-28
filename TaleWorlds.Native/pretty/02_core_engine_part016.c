@@ -1,10 +1,163 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
+/**
+ * @file 02_core_engine_part016.c
+ * @brief 核心引擎高级数据结构和内存管理模块
+ * 
+ * 本模块是核心引擎的重要组成部分，主要负责：
+ * - 高级数据结构的动态管理和优化
+ * - 内存池的高效分配和释放策略
+ * - 数据缓冲区的智能管理和扩展
+ * - 系统资源的生命周期管理和清理
+ * - 复杂数据结构的创建和维护
+ * - 内存安全性和性能优化
+ * 
+ * 该文件作为核心引擎的高级子模块，提供了全面的数据结构管理支持，
+ * 包括内存分配、数据操作、资源清理等核心功能。
+ * 
+ * 主要功能模块：
+ * 1. 内存池管理器 - 负责内存的分配和释放
+ * 2. 数据结构处理器 - 负责复杂数据结构的操作
+ * 3. 缓冲区管理器 - 负责数据缓冲区的管理
+ * 4. 资源清理器 - 负责系统资源的清理
+ * 5. 系统状态管理器 - 负责状态监控和管理
+ * 
+ * @version 2.0
+ * @date 2025-08-28
+ * @author Claude Code
+ */
+
+/* ============================================================================
+ * 核心引擎高级数据结构管理常量定义
+ * ============================================================================ */
+
+/**
+ * @brief 核心引擎高级数据结构管理接口
+ * @details 定义核心引擎高级数据结构管理的参数和接口函数
+ * 
+ * 核心功能：
+ * - 高级数据结构的动态管理和优化
+ * - 内存池的高效分配和释放策略
+ * - 数据缓冲区的智能管理和扩展
+ * - 系统资源的生命周期管理和清理
+ * - 复杂数据结构的创建和维护
+ * - 内存安全性和性能优化
+ * 
+ * 技术特点：
+ * - 高效的内存管理策略
+ * - 智能的数据结构操作
+ * - 完善的资源清理机制
+ * - 内存安全性和性能优化
+ * 
+ * @note 该文件作为核心引擎的高级子模块，提供全面的数据结构管理支持
+ */
+
+/* ============================================================================
+ * 系统常量定义
+ * ============================================================================ */
+
+// 内存管理相关常量
+#define MEMORY_POOL_SIZE 0x1000              // 内存池大小
+#define MEMORY_BLOCK_SIZE 0x40               // 内存块大小
+#define MEMORY_ALIGNMENT 8                   // 内存对齐大小
+#define MEMORY_EXPANSION_FACTOR 2            // 内存扩展因子
+
+// 数据结构相关常量
+#define DATA_BUFFER_SIZE 0x48                // 数据缓冲区大小
+#define DATA_STRUCTURE_SIZE 0x20             // 数据结构大小
+#define DATA_ALIGNMENT 8                     // 数据对齐大小
+
+// 系统状态常量
+#define SYSTEM_STATUS_ACTIVE 0x01            // 系统活动状态
+#define SYSTEM_STATUS_IDLE 0x02              // 系统空闲状态
+#define SYSTEM_STATUS_BUSY 0x03              // 系统繁忙状态
+#define SYSTEM_STATUS_ERROR 0x04             // 系统错误状态
+
+// 错误代码常量
+#define MEMORY_SUCCESS 0x00000000           // 内存操作成功
+#define MEMORY_ERROR_ALLOC_FAILED 0xFFFF0001 // 内存分配失败
+#define MEMORY_ERROR_INVALID_PARAM 0xFFFF0002 // 无效参数
+#define MEMORY_ERROR_OUT_OF_MEMORY 0xFFFF0003 // 内存不足
+
+/* ============================================================================
+ * FUN_函数别名定义
+ * ============================================================================ */
+
+// 内存管理函数别名
+#define CoreEngineMemoryPoolAllocator FUN_18062b420     // 核心引擎内存池分配器
+#define CoreEngineMemoryPoolCleaner FUN_18064e900       // 核心引擎内存池清理器
+#define CoreEngineMemoryPoolInitializer FUN_18064d630   // 核心引擎内存池初始化器
+
+// 数据结构处理函数别名
+#define CoreEngineDataBufferProcessor CoreEngineDataBufferProcessor     // 核心引擎数据缓冲区处理器
+#define CoreEngineDataStructureManager CoreEngineDataStructureManager    // 核心引擎数据结构管理器
+#define CoreEngineDataBufferCleaner CoreEngineDataBufferCleaner       // 核心引擎数据缓冲区清理器
+#define CoreEngineDataOffsetCalculator CoreEngineDataOffsetCalculator    // 核心引擎数据偏移计算器
+#define CoreEngineDataStructureOptimizer FUN_180057490  // 核心引擎数据结构优化器
+
+// 系统组件管理函数别名
+#define CoreEngineComponentProcessor FUN_180058c20      // 核心引擎组件处理器
+#define CoreEngineResourceManager FUN_1800582b0         // 核心引擎资源管理器
+#define CoreEngineStateManager FUN_180058370            // 核心引擎状态管理器
+#define CoreEngineErrorHandler FUN_180058420            // 核心引擎错误处理器
+#define CoreEngineSystemInitializer FUN_180058210       // 核心引擎系统初始化器
+
+// 高级处理函数别名
+#define CoreEngineAdvancedProcessor FUN_180057510       // 核心引擎高级处理器
+#define CoreEngineOptimizationManager FUN_180057530     // 核心引擎优化管理器
+#define CoreEngineResourceHandler FUN_180057550         // 核心引擎资源处理器
+#define CoreEngineSystemController FUN_180057556        // 核心引擎系统控制器
+#define CoreEngineMemoryManager FUN_180057580           // 核心引擎内存管理器
+#define CoreEngineDataValidator FUN_1800575b6            // 核心引擎数据验证器
+#define CoreEngineSystemCleaner FUN_1800575d4            // 核心引擎系统清理器
+
+// 核心功能函数别名
+#define CoreEngineSystemProcessor FUN_1800575f0          // 核心引擎系统处理器
+#define CoreEngineDataController FUN_180057610           // 核心引擎数据控制器
+#define CoreEngineMemoryController FUN_180057680         // 核心引擎内存控制器
+#define CoreEngineBufferManager FUN_180057730            // 核心引擎缓冲区管理器
+#define CoreEngineSystemMonitor FUN_180057790             // 核心引擎系统监控器
+#define CoreEngineDataProcessor FUN_180057796            // 核心引擎数据处理器
+#define CoreEngineResourceMonitor FUN_1800577c0           // 核心引擎资源监控器
+#define CoreEngineSystemValidator FUN_1800577f6          // 核心引擎系统验证器
+#define CoreEngineMemoryValidator FUN_180057814           // 核心引擎内存验证器
+#define CoreEngineStructureManager FUN_180057830         // 核心引擎结构管理器
+
+// 高级系统函数别名
+#define CoreEngineSystemOptimizer FUN_1800578a0          // 核心引擎系统优化器
+#define CoreEngineDataAnalyzer FUN_180057980              // 核心引擎数据分析器
+#define CoreEngineMemoryAnalyzer FUN_180057b00           // 核心引擎内存分析器
+#define CoreEngineStructureCleaner FUN_180057bf0          // 核心引擎结构清理器
+#define CoreEngineBufferProcessor FUN_180057cb0           // 核心引擎缓冲区处理器
+#define CoreEngineSystemConfigurator FUN_180057d70        // 核心引擎系统配置器
+#define CoreEngineDataOptimizer FUN_180057e90             // 核心引擎数据优化器
+#define CoreEngineStructureProcessor FUN_180057ec0        // 核心引擎结构处理器
+#define CoreEngineResourceManager2 FUN_180057ee0           // 核心引擎资源管理器2
+#define CoreEngineSystemHandler FUN_180057f10             // 核心引擎系统处理器
+
+// 辅助函数别名
+#define CoreEngineDataInitializer FUN_180058020           // 核心引擎数据初始化器
+#define CoreEngineStructureInitializer FUN_180058710      // 核心引擎结构初始化器
+#define CoreEngineDataHandler FUN_1800587d0                // 核心引擎数据处理器
+#define CoreEngineResourceCleaner FUN_18005cb60           // 核心引擎资源清理器
+#define CoreEngineSystemManager FUN_18005e570             // 核心引擎系统管理器
+#define CoreEngineMemoryTransfer FUN_180627ae0             // 核心引擎内存传输器
+#define CoreEngineDataTransformer FUN_180628210            // 核心引擎数据转换器
+#define CoreEngineSystemConfigurator2 FUN_180627ae0        // 核心引擎系统配置器2
+#define CoreEngineResourceAllocator FUN_1800590b0         // 核心引擎资源分配器
+#define CoreEngineSystemInitializer2 FUN_18005d1f0        // 核心引擎系统初始化器2
+#define CoreEngineDataProcessor2 FUN_18066bdc0             // 核心引擎数据处理器2
+#define CoreEngineSystemCleaner2 FUN_180174950            // 核心引擎系统清理器2
+#define CoreEngineParameterHandler FUN_180059820          // 核心引擎参数处理器
+#define CoreEngineErrorHandler2 FUN_18005d580             // 核心引擎错误处理器2
+#define CoreEngineSystemValidator2 FUN_180090420          // 核心引擎系统验证器2
+#define CoreEngineMemoryCleaner2 FUN_180090380            // 核心引擎内存清理器2
+
 // 02_core_engine_part016.c - 31 个函数
 
-// 函数: void FUN_180057340(int64_t *param_1,uint64_t param_2)
-void FUN_180057340(int64_t *param_1,uint64_t param_2)
+// 函数: void CoreEngineDataBufferProcessor(int64_t *param_1,uint64_t param_2)
+void CoreEngineDataBufferProcessor(int64_t *param_1,uint64_t param_2)
 
 {
   int64_t lVar1;
@@ -69,8 +222,8 @@ void FUN_180057340(int64_t *param_1,uint64_t param_2)
 
 
 
-// 函数: void FUN_18005736b(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
-void FUN_18005736b(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
+// 函数: void CoreEngineDataStructureManager(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
+void CoreEngineDataStructureManager(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
 
 {
   int64_t in_RAX;
@@ -126,8 +279,8 @@ void FUN_18005736b(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
 
 
 
-// 函数: void FUN_180057446(void)
-void FUN_180057446(void)
+// 函数: void CoreEngineDataBufferCleaner(void)
+void CoreEngineDataBufferCleaner(void)
 
 {
   int64_t unaff_RBX;
@@ -146,8 +299,8 @@ void FUN_180057446(void)
 
 
 
-// 函数: void FUN_180057479(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
-void FUN_180057479(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
+// 函数: void CoreEngineDataOffsetCalculator(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
+void CoreEngineDataOffsetCalculator(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
 
 {
   int64_t unaff_RBX;
