@@ -24,6 +24,19 @@
 #include "TaleWorlds.Native.Split.h"
 
 //==============================================================================
+// 函数别名定义 - 系统核心功能函数
+//==============================================================================
+
+// 系统核心功能函数别名
+#define SystemCoreInitializer      FUN_00000000    // 系统核心初始化器
+#define SystemStateSetter          FUN_00000001    // 系统状态设置器
+#define SystemFlagSetter           FUN_00000002    // 系统标志设置器
+#define SystemServiceStopper        FUN_00000003    // 系统服务停止器
+#define SystemResourceReleaser     FUN_00000004    // 系统资源释放器
+#define SystemStateCleaner         FUN_00000005    // 系统状态清理器
+#define SystemStateQuerier         FUN_00000006    // 系统状态查询器
+
+//==============================================================================
 // 系统常量和类型定义
 //==============================================================================
 
@@ -78,19 +91,19 @@ SystemHandle SystemInitializer(uint64_t param1, uint64_t param2)
     }
     
     // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
+    handle = (SystemHandle)SystemCoreInitializer(param1, param2);
     if (handle == (SystemHandle)0) {
         return (SystemHandle)SYSTEM_ERROR_MEMORY;
     }
     
     // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
+    local_10 = SystemStateSetter(handle, SYSTEM_STATE_INIT);
     if (local_10 != SYSTEM_SUCCESS) {
         return (SystemHandle)SYSTEM_ERROR_STATE;
     }
     
     // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
+    local_c = SystemFlagSetter(handle, SYSTEM_FLAG_ENABLED);
     if (local_c != SYSTEM_SUCCESS) {
         return (SystemHandle)SYSTEM_ERROR_STATE;
     }
