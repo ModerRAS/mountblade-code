@@ -1011,7 +1011,7 @@ int32_t InitializationSystem_LogEvent(void)
  * - 状态历史记录
  * - 状态预测分析
  * 
- * @return undefined 状态监控结果状态
+ * @return int32_t 状态监控结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_StateMonitor(void)
 {
@@ -1059,7 +1059,7 @@ int32_t InitializationSystem_StateMonitor(void)
  * - 错误统计分析
  * - 错误预防措施
  * 
- * @return undefined 错误处理结果状态
+ * @return int32_t 错误处理结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_ErrorHandler(void)
 {
@@ -1105,7 +1105,7 @@ int32_t InitializationSystem_ErrorHandler(void)
  * 
  * 该函数负责系统内部初始化工作。
  * 
- * @return undefined 初始化结果状态
+ * @return int32_t 初始化结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_InternalInit(void)
 {
