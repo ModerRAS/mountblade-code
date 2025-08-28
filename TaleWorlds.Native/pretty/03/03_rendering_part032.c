@@ -1,18 +1,24 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part032.c - 渲染系统模块第32部分
-// 本文件包含9个函数，主要处理渲染数据结构、缓冲区管理和纹理操作
+// 本文件包含9个函数，主要处理渲染数据结构管理、缓冲区操作和资源清理
 
 // 全局变量声明
 undefined8 _DAT_180c8ed18;  // 内存分配器
 undefined8 _DAT_180c8ed60;  // 渲染上下文
 undefined8 _DAT_180c8a9b0;  // 引擎状态数据
+undefined8 UNK_180a3c3e0;   // 渲染资源管理器
+undefined8 UNK_18098bcb0;   // 纹理管理器
+undefined8 UNK_1809fcc58;   // 缓冲区管理器
+undefined8 UNK_180a21720;   // 渲染状态管理器
+undefined8 UNK_180a21690;   // 渲染队列管理器
+undefined8 DAT_18098bc73;   // 默认渲染数据
 
 /**
- * 渲染数据结构插入函数
+ * 渲染数据插入函数
  * 向渲染数据结构中插入新的数据项，支持动态扩容
  * 
- * 原始实现：FUN_180284cf0
+ * 原始函数名: FUN_180284cf0
  * 
  * @param data_struct_ptr 渲染数据结构指针
  * @param data_item_ptr 要插入的数据项指针
@@ -56,7 +62,7 @@ void insert_rendering_data_item(ulonglong *data_struct_ptr, undefined8 *data_ite
   }
   
   // 分配新内存
-  dest_ptr = (undefined8 *)allocate_rendering_memory(_DAT_180c8ed18, capacity << 4, (char)data_struct_ptr[3]);
+  dest_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, capacity << 4, (char)data_struct_ptr[3]);
   current_ptr = (undefined8 *)data_struct_ptr[1];
   source_ptr = (undefined8 *)*data_struct_ptr;
   buffer_ptr = dest_ptr;
@@ -86,20 +92,14 @@ copy_data:
     return;
   }
   // 错误处理
-  trigger_rendering_error();
+  FUN_18064e900();
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 
 /**
  * 渲染缓冲区预留函数
  * 为渲染缓冲区预留指定大小的空间
  * 
- * 原始实现：FUN_180284de0
+ * 原始函数名: FUN_180284de0
  * 
  * @param buffer_ptr 缓冲区指针
  * @param reserve_size 预留大小
@@ -132,445 +132,891 @@ void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
     }
     
     // 分配新缓冲区
-    new_buffer = (undefined8 *)allocate_rendering_memory(_DAT_180c8ed18, required_size << 4, (char)buffer_ptr[3]);
+    new_buffer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, required_size << 4, (char)buffer_ptr[3]);
     buffer_end = (undefined8 *)buffer_ptr[1];
     buffer_start = (undefined8 *)*buffer_ptr;
     temp_ptr = new_buffer;
     
-    // 复制数据
-    for (; buffer_start != buffer_end; buffer_start = buffer_start + 2) {
-      *temp_ptr = *buffer_start;
-      temp_ptr[1] = buffer_start[1];
-      temp_ptr = temp_ptr + 2;
+    // 复制数据并清理旧数据
+    if (buffer_start != buffer_end) {
+      offset = (longlong)buffer_start - (longlong)new_buffer;
+      current_size = 8 - (longlong)buffer_start;
+      do {
+        *temp_ptr = *buffer_start;
+        *buffer_start = 0;
+        data_ptr = (undefined4 *)((longlong)new_buffer + current_size + (longlong)buffer_start);
+        *data_ptr = *(undefined4 *)((longlong)data_ptr + offset);
+        buffer_start = buffer_start + 2;
+        temp_ptr = temp_ptr + 2;
+      } while (buffer_start != buffer_end);
+    }
+    
+    // 初始化预留空间
+    temp_ptr = new_buffer + (buffer_end - buffer_start);
+    new_size = reserve_size;
+    if (reserve_size != 0) {
+      do {
+        temp_ptr[1] = 0;
+        *temp_ptr = 0;
+        new_size = new_size - 1;
+        temp_ptr = temp_ptr + 2;
+      } while (new_size != 0);
     }
     
     // 释放旧缓冲区
-    if (*buffer_ptr != 0) {
-      release_rendering_buffer(buffer_start);
+    size_ptr = (longlong *)buffer_ptr[1];
+    iter_ptr = (longlong *)*buffer_ptr;
+    if (iter_ptr != size_ptr) {
+      do {
+        if ((longlong *)*iter_ptr != (longlong *)0x0) {
+          (**(code **)(*(longlong *)*iter_ptr + 0x38))();
+        }
+        iter_ptr = iter_ptr + 2;
+      } while (iter_ptr != size_ptr);
+      iter_ptr = (longlong *)*buffer_ptr;
+    }
+    if (iter_ptr != (longlong *)0x0) {
+      FUN_18064e900(iter_ptr);
     }
     
     // 更新指针
-    *buffer_ptr = (ulonglong)new_buffer;
-    buffer_ptr[2] = (ulonglong)(new_buffer + required_size * 2);
-    buffer_ptr[1] = (ulonglong)temp_ptr;
+    *buffer_ptr = (longlong)new_buffer;
+    buffer_ptr[1] = (longlong)(temp_ptr + reserve_size * 2);
+    buffer_ptr[2] = (longlong)(new_buffer + required_size * 2);
+  }
+  else {
+    // 有足够空间，直接预留
+    new_size = reserve_size;
+    if (reserve_size != 0) {
+      do {
+        buffer_end[1] = 0;
+        *buffer_end = 0;
+        buffer_end = buffer_end + 2;
+        new_size = new_size - 1;
+      } while (new_size != 0);
+      buffer_end = (undefined8 *)buffer_ptr[1];
+    }
+    buffer_ptr[1] = (longlong)(buffer_end + reserve_size * 2);
   }
   return;
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 
 /**
  * 渲染数据清理函数
  * 清理渲染数据结构，释放相关资源
  * 
- * 原始实现：FUN_180284f70
+ * 原始函数名: FUN_180284f90
  * 
- * @param data_ptr 数据指针
- * @param cleanup_flag 清理标志
+ * @param data_start_ptr 数据起始指针
+ * @param data_end_ptr 数据结束指针
  */
-void cleanup_rendering_data(undefined8 *data_ptr, undefined8 cleanup_flag)
+void cleanup_rendering_data(longlong *data_start_ptr, longlong *data_end_ptr)
 
 {
-  undefined8 *buffer_start;
-  undefined8 *buffer_end;
-  undefined8 *current_ptr;
-  undefined8 *next_ptr;
-  undefined8 temp_value;
-  
-  buffer_start = (undefined8 *)data_ptr[1];
-  buffer_end = (undefined8 *)data_ptr[2];
-  
-  // 遍历并清理数据
-  for (current_ptr = buffer_start; current_ptr != buffer_end; current_ptr = next_ptr) {
-    next_ptr = current_ptr + 2;
-    temp_value = current_ptr[1];
-    
-    // 清理数据项
-    cleanup_data_item(current_ptr, temp_value);
-    
-    // 标记为已清理
-    *current_ptr = 0;
-    current_ptr[1] = 0;
-  }
-  
-  // 重置缓冲区
-  data_ptr[1] = (ulonglong)buffer_start;
-  
-  if (cleanup_flag != 0) {
-    // 释放整个缓冲区
-    if (*data_ptr != 0) {
-      release_rendering_buffer((undefined8 *)*data_ptr);
-      *data_ptr = 0;
-      data_ptr[1] = 0;
-      data_ptr[2] = 0;
-    }
-  }
-  return;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-/**
- * 渲染状态查询函数
- * 查询渲染系统的当前状态
- * 
- * 原始实现：FUN_180285050
- * 
- * @param status_ptr 状态指针
- * @param query_type 查询类型
- * @return 查询结果
- */
-undefined8 query_rendering_status(undefined8 *status_ptr, int query_type)
-
-{
-  undefined8 result;
-  undefined8 *data_ptr;
-  int status_code;
-  
-  result = 0;
-  data_ptr = (undefined8 *)*status_ptr;
-  
-  switch(query_type) {
-    case 0: // 查询缓冲区大小
-      if (data_ptr != (undefined8 *)0x0) {
-        result = (ulonglong)((longlong)status_ptr[2] - (longlong)data_ptr >> 4);
-      }
-      break;
-      
-    case 1: // 查询已用空间
-      if (data_ptr != (undefined8 *)0x0) {
-        result = (ulonglong)((longlong)status_ptr[1] - (longlong)data_ptr >> 4);
-      }
-      break;
-      
-    case 2: // 查询系统状态
-      status_code = get_rendering_system_status();
-      result = (ulonglong)status_code;
-      break;
-      
-    case 3: // 查询内存使用
-      result = get_rendering_memory_usage();
-      break;
-      
-    default:
-      // 未知查询类型
-      result = 0xffffffffffffffff;
-      break;
-  }
-  
-  return result;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-/**
- * 渲染纹理更新函数
- * 更新渲染纹理数据
- * 
- * 原始实现：FUN_180285120
- * 
- * @param texture_ptr 纹理指针
- * @param data_ptr 数据指针
- * @param update_size 更新大小
- */
-void update_rendering_texture(undefined8 *texture_ptr, undefined8 *data_ptr, int update_size)
-
-{
-  undefined8 *texture_data;
-  int texture_size;
-  undefined8 *update_ptr;
-  int remaining_size;
-  
-  texture_data = (undefined8 *)texture_ptr[1];
-  texture_size = *(int *)((longlong)texture_ptr + 0x10);
-  
-  if (texture_data != (undefined8 *)0x0) {
-    update_ptr = data_ptr;
-    remaining_size = update_size;
-    
-    // 批量更新纹理数据
-    while (remaining_size > 0) {
-      // 更新纹理块
-      update_texture_block(texture_data, update_ptr, remaining_size);
-      
-      // 移动到下一块
-      texture_data = texture_data + 0x40;
-      update_ptr = update_ptr + 0x40;
-      remaining_size = remaining_size - 0x40;
-      
-      if (remaining_size <= 0) break;
-      
-      // 检查纹理边界
-      if (texture_data >= (undefined8 *)texture_ptr[2]) {
-        texture_data = (undefined8 *)texture_ptr[1];
-      }
-    }
-    
-    // 标记纹理为已更新
-    *(undefined1 *)((longlong)texture_ptr + 0x18) = 1;
-  }
-  return;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-/**
- * 渲染缓冲区刷新函数
- * 刷新渲染缓冲区，确保所有数据都已提交
- * 
- * 原始实现：FUN_180285200
- * 
- * @param buffer_ptr 缓冲区指针
- * @param flush_type 刷新类型
- */
-void flush_rendering_buffer(undefined8 *buffer_ptr, int flush_type)
-
-{
-  undefined8 *buffer_start;
-  undefined8 *buffer_end;
-  undefined8 *current_ptr;
-  undefined8 temp_value;
-  
-  buffer_start = (undefined8 *)buffer_ptr[1];
-  buffer_end = (undefined8 *)buffer_ptr[2];
-  
-  if (buffer_start != buffer_end) {
-    current_ptr = buffer_start;
-    
+  if (data_start_ptr != data_end_ptr) {
     do {
-      temp_value = current_ptr[1];
-      
-      // 处理缓冲区项
-      process_buffer_item(current_ptr, temp_value, flush_type);
-      
-      current_ptr = current_ptr + 2;
-    } while (current_ptr != buffer_end);
-    
-    // 重置缓冲区
-    buffer_ptr[1] = (ulonglong)buffer_start;
+      if ((longlong *)*data_start_ptr != (longlong *)0x0) {
+        (**(code **)(*(longlong *)*data_start_ptr + 0x38))();
+      }
+      data_start_ptr = data_start_ptr + 2;
+    } while (data_start_ptr != data_end_ptr);
   }
-  
-  // 执行刷新操作
-  execute_buffer_flush(flush_type);
   return;
 }
 
+/**
+ * 渲染数据移动函数
+ * 移动渲染数据到新的位置
+ * 
+ * 原始函数名: FUN_180284fe0
+ * 
+ * @param source_ptr 源数据指针
+ * @param source_end_ptr 源数据结束指针
+ * @param dest_ptr 目标数据指针
+ * @return 移动后的目标指针
+ */
+undefined8 * move_rendering_data(undefined8 *source_ptr, undefined8 *source_end_ptr, undefined8 *dest_ptr)
 
+{
+  undefined4 *data_ptr;
+  longlong offset;
+  longlong dest_offset;
+  
+  if (source_ptr != source_end_ptr) {
+    offset = (longlong)source_ptr - (longlong)dest_ptr;
+    dest_offset = (longlong)dest_ptr + (8 - (longlong)source_ptr);
+    do {
+      *dest_ptr = *source_ptr;
+      *source_ptr = 0;
+      data_ptr = (undefined4 *)(dest_offset + (longlong)source_ptr);
+      *data_ptr = *(undefined4 *)((longlong)data_ptr + offset);
+      source_ptr = source_ptr + 2;
+      dest_ptr = dest_ptr + 2;
+    } while (source_ptr != source_end_ptr);
+  }
+  return dest_ptr;
+}
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * 渲染资源清理函数类型1
+ * 清理渲染资源，处理资源引用
+ * 
+ * 原始函数名: FUN_180285040
+ * 
+ * @param resource_ptr 资源指针
+ */
+void cleanup_rendering_resources_type1(longlong resource_ptr)
 
+{
+  longlong resource_array_ptr;
+  undefined8 *current_resource;
+  ulonglong resource_count;
+  ulonglong resource_index;
+  
+  resource_count = *(ulonglong *)(resource_ptr + 0x10);
+  resource_array_ptr = *(longlong *)(resource_ptr + 8);
+  resource_index = 0;
+  if (resource_count != 0) {
+    do {
+      current_resource = *(undefined8 **)(resource_array_ptr + resource_index * 8);
+      if (current_resource != (undefined8 *)0x0) {
+        if (current_resource[4] != 0) {
+          FUN_18064e900();
+        }
+        *current_resource = &UNK_180a3c3e0;
+        if (current_resource[1] == 0) {
+          current_resource[1] = 0;
+          *(undefined4 *)(current_resource + 3) = 0;
+          *current_resource = &UNK_18098bcb0;
+          FUN_18064e900(current_resource);
+        }
+        FUN_18064e900();
+      }
+      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      resource_index = resource_index + 1;
+    } while (resource_index < resource_count);
+    resource_count = *(ulonglong *)(resource_ptr + 0x10);
+  }
+  *(undefined8 *)(resource_ptr + 0x18) = 0;
+  if ((1 < resource_count) && (*(longlong *)(resource_ptr + 8) != 0)) {
+    FUN_18064e900();
+  }
+  return;
+}
 
+/**
+ * 渲染资源清理函数类型2
+ * 清理渲染资源，处理资源引用
+ * 
+ * 原始函数名: FUN_180285060
+ * 
+ * @param resource_ptr 资源指针
+ */
+void cleanup_rendering_resources_type2(longlong resource_ptr)
+
+{
+  longlong resource_array_ptr;
+  undefined8 *current_resource;
+  ulonglong resource_count;
+  ulonglong resource_index;
+  
+  resource_count = *(ulonglong *)(resource_ptr + 0x10);
+  resource_array_ptr = *(longlong *)(resource_ptr + 8);
+  resource_index = 0;
+  if (resource_count != 0) {
+    do {
+      current_resource = *(undefined8 **)(resource_array_ptr + resource_index * 8);
+      if (current_resource != (undefined8 *)0x0) {
+        if (current_resource[4] != 0) {
+          FUN_18064e900();
+        }
+        *current_resource = &UNK_180a3c3e0;
+        if (current_resource[1] == 0) {
+          current_resource[1] = 0;
+          *(undefined4 *)(current_resource + 3) = 0;
+          *current_resource = &UNK_18098bcb0;
+          FUN_18064e900(current_resource);
+        }
+        FUN_18064e900();
+      }
+      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      resource_index = resource_index + 1;
+    } while (resource_index < resource_count);
+    resource_count = *(ulonglong *)(resource_ptr + 0x10);
+  }
+  *(undefined8 *)(resource_ptr + 0x18) = 0;
+  if ((1 < resource_count) && (*(longlong *)(resource_ptr + 8) != 0)) {
+    FUN_18064e900();
+  }
+  return;
+}
+
+/**
+ * 渲染资源清理函数类型3
+ * 清理渲染资源，处理资源引用
+ * 
+ * 原始函数名: FUN_180285080
+ * 
+ * @param resource_ptr 资源指针
+ */
+void cleanup_rendering_resources_type3(longlong resource_ptr)
+
+{
+  longlong resource_array_ptr;
+  undefined8 *current_resource;
+  ulonglong resource_count;
+  ulonglong resource_index;
+  
+  resource_count = *(ulonglong *)(resource_ptr + 0x10);
+  resource_array_ptr = *(longlong *)(resource_ptr + 8);
+  resource_index = 0;
+  if (resource_count != 0) {
+    do {
+      current_resource = *(undefined8 **)(resource_array_ptr + resource_index * 8);
+      if (current_resource != (undefined8 *)0x0) {
+        if (current_resource[4] != 0) {
+          FUN_18064e900();
+        }
+        *current_resource = &UNK_180a3c3e0;
+        if (current_resource[1] == 0) {
+          current_resource[1] = 0;
+          *(undefined4 *)(current_resource + 3) = 0;
+          *current_resource = &UNK_18098bcb0;
+          FUN_18064e900(current_resource);
+        }
+        FUN_18064e900();
+      }
+      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      resource_index = resource_index + 1;
+    } while (resource_index < resource_count);
+    resource_count = *(ulonglong *)(resource_ptr + 0x10);
+  }
+  *(undefined8 *)(resource_ptr + 0x18) = 0;
+  if ((1 < resource_count) && (*(longlong *)(resource_ptr + 8) != 0)) {
+    FUN_18064e900();
+  }
+  return;
+}
+
+/**
+ * 渲染数据初始化函数
+ * 初始化渲染数据结构
+ * 
+ * 原始函数名: FUN_180285190
+ * 
+ * @param data_ptr 数据指针
+ * @param init_count 初始化数量
+ */
+void initialize_rendering_data(longlong data_ptr, longlong init_count)
+
+{
+  undefined4 *data_field_ptr;
+  
+  if (init_count != 0) {
+    data_field_ptr = (undefined4 *)(data_ptr + 0x168);
+    do {
+      // 初始化渲染数据结构
+      *(undefined **)(data_field_ptr + -0x5a) = &UNK_18098bcb0;
+      *(undefined8 *)(data_field_ptr + -0x58) = 0;
+      data_field_ptr[-0x56] = 0;
+      *(undefined **)(data_field_ptr + -0x5a) = &UNK_1809fcc58;
+      *(undefined4 **)(data_field_ptr + -0x58) = data_field_ptr + -0x54;
+      data_field_ptr[-0x56] = 0;
+      *(undefined1 *)(data_field_ptr + -0x54) = 0;
+      
+      // 设置渲染状态
+      *(undefined **)(data_field_ptr + -0x16) = &UNK_18098bcb0;
+      *(undefined8 *)(data_field_ptr + -0x14) = 0;
+      data_field_ptr[-0x12] = 0;
+      *(undefined **)(data_field_ptr + -0x16) = &UNK_180a3c3e0;
+      *(undefined8 *)(data_field_ptr + -0x10) = 0;
+      *(undefined8 *)(data_field_ptr + -0x14) = 0;
+      data_field_ptr[-0x12] = 0;
+      *(undefined8 *)(data_field_ptr + -0xe) = 0;
+      *(undefined8 *)(data_field_ptr + -0xc) = 0;
+      *(undefined8 *)(data_field_ptr + -10) = 0;
+      data_field_ptr[-8] = 3;
+      *(undefined8 *)(data_field_ptr + -6) = 0;
+      *(undefined8 *)(data_field_ptr + -4) = 0;
+      *(undefined8 *)(data_field_ptr + -2) = 0;
+      *data_field_ptr = 3;
+      *(undefined8 *)(data_field_ptr + 2) = 0;
+      *(undefined8 *)(data_field_ptr + 4) = 0;
+      *(undefined8 *)(data_field_ptr + 6) = 0;
+      data_field_ptr[8] = 3;
+      
+      // 设置渲染参数
+      *(undefined8 *)(data_field_ptr + -0x43) = 0;
+      data_field_ptr[-0x41] = 0;
+      data_field_ptr[-0x3a] = 0;
+      data_field_ptr[-0x39] = 0;
+      data_field_ptr[-0x38] = 0;
+      data_field_ptr[-0x37] = 0x3f800000;  // 1.0f
+      data_field_ptr[-0x36] = 0;
+      data_field_ptr[-0x35] = 0;
+      data_field_ptr[-0x34] = 0;
+      data_field_ptr[-0x33] = 0x3f800000;  // 1.0f
+      *(undefined8 *)(data_field_ptr + -0x32) = 0;
+      *(undefined8 *)(data_field_ptr + -0x30) = 0;
+      *(undefined8 *)(data_field_ptr + -0x2e) = 0;
+      *(undefined8 *)(data_field_ptr + -0x2c) = 0;
+      *(undefined8 *)(data_field_ptr + -0x2a) = 0;
+      *(undefined8 *)(data_field_ptr + -0x28) = 0;
+      *(undefined8 *)(data_field_ptr + -0x26) = 0x3f800000;  // 1.0f
+      *(undefined8 *)(data_field_ptr + -0x24) = 0;
+      *(undefined8 *)(data_field_ptr + -0x22) = 0x3f80000000000000;  // 1.0
+      *(undefined8 *)(data_field_ptr + -0x20) = 0;
+      *(undefined8 *)(data_field_ptr + -0x1e) = 0;
+      *(undefined8 *)(data_field_ptr + -0x1c) = 0x3f800000;  // 1.0f
+      *(undefined8 *)(data_field_ptr + -0x1a) = 0;
+      *(undefined8 *)(data_field_ptr + -0x18) = 0x3f80000000000000;  // 1.0
+      
+      // 设置渲染标志
+      data_field_ptr[-0x44] = 0;
+      *(undefined8 *)(data_field_ptr + -0x40) = 0;
+      *(undefined8 *)(data_field_ptr + -0x3e) = 0;
+      *(undefined8 *)(data_field_ptr + -0x3c) = 0;
+      data_field_ptr[0xc] = 0xffffffff;  // 最大无符号整数
+      *(undefined8 *)(data_field_ptr + 10) = 0;
+      data_field_ptr = data_field_ptr + 0x68;
+      init_count = init_count - 1;
+    } while (init_count != 0);
+  }
+  return;
+}
+
+/**
+ * 渲染资源清理函数类型4
+ * 清理渲染资源，处理资源引用
+ * 
+ * 原始函数名: FUN_180285410
+ * 
+ * @param resource_ptr 资源指针
+ */
+void cleanup_rendering_resources_type4(longlong resource_ptr)
+
+{
+  longlong resource_array_ptr;
+  undefined8 *current_resource;
+  ulonglong resource_count;
+  ulonglong resource_index;
+  
+  resource_count = *(ulonglong *)(resource_ptr + 0x18);
+  resource_array_ptr = *(longlong *)(resource_ptr + 0x10);
+  resource_index = 0;
+  if (resource_count != 0) {
+    do {
+      current_resource = *(undefined8 **)(resource_array_ptr + resource_index * 8);
+      if (current_resource != (undefined8 *)0x0) {
+        if (current_resource[4] != 0) {
+          FUN_18064e900();
+        }
+        *current_resource = &UNK_180a3c3e0;
+        if (current_resource[1] == 0) {
+          current_resource[1] = 0;
+          *(undefined4 *)(current_resource + 3) = 0;
+          *current_resource = &UNK_18098bcb0;
+          FUN_18064e900(current_resource);
+        }
+        FUN_18064e900();
+      }
+      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      resource_index = resource_index + 1;
+    } while (resource_index < resource_count);
+    resource_count = *(ulonglong *)(resource_ptr + 0x18);
+  }
+  *(undefined8 *)(resource_ptr + 0x20) = 0;
+  if ((1 < resource_count) && (*(longlong *)(resource_ptr + 0x10) != 0)) {
+    FUN_18064e900();
+  }
+  return;
+}
+
+/**
+ * 渲染数据创建函数
+ * 创建渲染数据结构
+ * 
+ * 原始函数名: FUN_180285440
+ * 
+ * @param data_ptr 数据指针
+ * @param src_data_ptr 源数据指针
+ * @param src_data_end_ptr 源数据结束指针
+ * @param dest_data_ptr 目标数据指针
+ * @return 创建后的数据指针
+ */
+longlong * create_rendering_data(longlong *data_ptr, undefined4 *src_data_ptr, undefined4 *src_data_end_ptr, undefined8 *dest_data_ptr)
+
+{
+  undefined8 *new_data_ptr;
+  undefined4 *src_field_ptr;
+  undefined4 data_field1;
+  undefined8 data_value1;
+  undefined4 data_field2;
+  undefined4 data_field3;
+  undefined4 *temp_ptr;
+  undefined *name_ptr;
+  
+  *data_ptr = (longlong)dest_data_ptr;
+  if (src_data_ptr != src_data_end_ptr) {
+    src_field_ptr = src_data_ptr + 0x5a;
+    do {
+      // 初始化数据结构
+      *dest_data_ptr = &UNK_18098bcb0;
+      dest_data_ptr[1] = 0;
+      *(undefined4 *)(dest_data_ptr + 2) = 0;
+      *dest_data_ptr = &UNK_1809fcc58;
+      dest_data_ptr[1] = dest_data_ptr + 3;
+      *(undefined4 *)(dest_data_ptr + 2) = 0;
+      *(undefined1 *)(dest_data_ptr + 3) = 0;
+      
+      // 复制数据字段
+      *(undefined4 *)(dest_data_ptr + 2) = src_field_ptr[-0x56];
+      name_ptr = &DAT_18098bc73;
+      if (*(undefined **)(src_field_ptr + -0x58) != (undefined *)0x0) {
+        name_ptr = *(undefined **)(src_field_ptr + -0x58);
+      }
+      strcpy_s(dest_data_ptr[1], 0x40, name_ptr);
+      
+      // 复制渲染参数
+      *(undefined4 *)(dest_data_ptr + 0xb) = src_field_ptr[-0x44];
+      *(undefined4 *)((longlong)dest_data_ptr + 0x5c) = src_field_ptr[-0x43];
+      *(undefined4 *)(dest_data_ptr + 0xc) = src_field_ptr[-0x42];
+      *(undefined4 *)((longlong)dest_data_ptr + 100) = src_field_ptr[-0x41];
+      *(undefined4 *)(dest_data_ptr + 0xd) = src_field_ptr[-0x40];
+      *(undefined4 *)((longlong)dest_data_ptr + 0x6c) = src_field_ptr[-0x3f];
+      *(undefined4 *)(dest_data_ptr + 0xe) = src_field_ptr[-0x3e];
+      *(undefined4 *)((longlong)dest_data_ptr + 0x74) = src_field_ptr[-0x3d];
+      *(undefined4 *)(dest_data_ptr + 0xf) = src_field_ptr[-0x3c];
+      *(undefined4 *)((longlong)dest_data_ptr + 0x7c) = src_field_ptr[-0x3b];
+      
+      // 复制变换矩阵
+      data_value1 = *(undefined8 *)(src_field_ptr + -0x38);
+      dest_data_ptr[0x10] = *(undefined8 *)(src_field_ptr + -0x3a);
+      dest_data_ptr[0x11] = data_value1;
+      data_value1 = *(undefined8 *)(src_field_ptr + -0x34);
+      dest_data_ptr[0x12] = *(undefined8 *)(src_field_ptr + -0x36);
+      dest_data_ptr[0x13] = data_value1;
+      data_value1 = *(undefined8 *)(src_field_ptr + -0x30);
+      dest_data_ptr[0x14] = *(undefined8 *)(src_field_ptr + -0x32);
+      dest_data_ptr[0x15] = data_value1;
+      data_value1 = *(undefined8 *)(src_field_ptr + -0x2c);
+      dest_data_ptr[0x16] = *(undefined8 *)(src_field_ptr + -0x2e);
+      dest_data_ptr[0x17] = data_value1;
+      data_value1 = *(undefined8 *)(src_field_ptr + -0x28);
+      dest_data_ptr[0x18] = *(undefined8 *)(src_field_ptr + -0x2a);
+      dest_data_ptr[0x19] = data_value1;
+      data_value1 = *(undefined8 *)(src_field_ptr + -0x24);
+      dest_data_ptr[0x1a] = *(undefined8 *)(src_field_ptr + -0x26);
+      dest_data_ptr[0x1b] = data_value1;
+      data_value1 = *(undefined8 *)(src_field_ptr + -0x20);
+      dest_data_ptr[0x1c] = *(undefined8 *)(src_field_ptr + -0x22);
+      dest_data_ptr[0x1d] = data_value1;
+      
+      // 复制颜色值
+      data_field1 = src_field_ptr[-0x1d];
+      data_field2 = src_field_ptr[-0x1c];
+      data_field3 = src_field_ptr[-0x1b];
+      *(undefined4 *)(dest_data_ptr + 0x1e) = src_field_ptr[-0x1e];
+      *(undefined4 *)((longlong)dest_data_ptr + 0xf4) = data_field1;
+      *(undefined4 *)(dest_data_ptr + 0x1f) = data_field2;
+      *(undefined4 *)((longlong)dest_data_ptr + 0xfc) = data_field3;
+      data_field1 = src_field_ptr[-0x19];
+      data_field2 = src_field_ptr[-0x18];
+      data_field3 = src_field_ptr[-0x17];
+      *(undefined4 *)(dest_data_ptr + 0x20) = src_field_ptr[-0x1a];
+      *(undefined4 *)((longlong)dest_data_ptr + 0x104) = data_field1;
+      *(undefined4 *)(dest_data_ptr + 0x21) = data_field2;
+      *(undefined4 *)((longlong)dest_data_ptr + 0x10c) = data_field3;
+      
+      // 设置渲染状态
+      dest_data_ptr[0x22] = &UNK_18098bcb0;
+      dest_data_ptr[0x23] = 0;
+      *(undefined4 *)(dest_data_ptr + 0x24) = 0;
+      dest_data_ptr[0x22] = &UNK_180a3c3e0;
+      dest_data_ptr[0x25] = 0;
+      dest_data_ptr[0x23] = 0;
+      *(undefined4 *)(dest_data_ptr + 0x24) = 0;
+      *(undefined4 *)(dest_data_ptr + 0x24) = src_field_ptr[-0x12];
+      dest_data_ptr[0x23] = *(undefined8 *)(src_field_ptr + -0x14);
+      *(undefined4 *)((longlong)dest_data_ptr + 300) = src_field_ptr[-0xf];
+      *(undefined4 *)(dest_data_ptr + 0x25) = src_field_ptr[-0x10];
+      src_field_ptr[-0x12] = 0;
+      *(undefined8 *)(src_field_ptr + -0x14) = 0;
+      *(undefined8 *)(src_field_ptr + -0x10) = 0;
+      
+      // 交换数据
+      new_data_ptr = dest_data_ptr + 0x26;
+      *new_data_ptr = 0;
+      dest_data_ptr[0x27] = 0;
+      dest_data_ptr[0x28] = 0;
+      *(undefined4 *)(dest_data_ptr + 0x29) = src_field_ptr[-8];
+      data_value1 = *new_data_ptr;
+      *new_data_ptr = *(undefined8 *)(src_field_ptr + -0xe);
+      *(undefined8 *)(src_field_ptr + -0xe) = data_value1;
+      data_value1 = dest_data_ptr[0x27];
+      dest_data_ptr[0x27] = *(undefined8 *)(src_field_ptr + -0xc);
+      *(undefined8 *)(src_field_ptr + -0xc) = data_value1;
+      data_value1 = dest_data_ptr[0x28];
+      dest_data_ptr[0x28] = *(undefined8 *)(src_field_ptr + -10);
+      *(undefined8 *)(src_field_ptr + -10) = data_value1;
+      data_field1 = *(undefined4 *)(dest_data_ptr + 0x29);
+      *(undefined4 *)(dest_data_ptr + 0x29) = src_field_ptr[-8];
+      src_field_ptr[-8] = data_field1;
+      
+      // 交换更多数据
+      new_data_ptr = dest_data_ptr + 0x2a;
+      *new_data_ptr = 0;
+      dest_data_ptr[0x2b] = 0;
+      dest_data_ptr[0x2c] = 0;
+      *(undefined4 *)(dest_data_ptr + 0x2d) = *src_field_ptr;
+      data_value1 = *new_data_ptr;
+      *new_data_ptr = *(undefined8 *)(src_field_ptr + -6);
+      *(undefined8 *)(src_field_ptr + -6) = data_value1;
+      data_value1 = dest_data_ptr[0x2b];
+      dest_data_ptr[0x2b] = *(undefined8 *)(src_field_ptr + -4);
+      *(undefined8 *)(src_field_ptr + -4) = data_value1;
+      data_value1 = dest_data_ptr[0x2c];
+      dest_data_ptr[0x2c] = *(undefined8 *)(src_field_ptr + -2);
+      *(undefined8 *)(src_field_ptr + -2) = data_value1;
+      data_field1 = *(undefined4 *)(dest_data_ptr + 0x2d);
+      *(undefined4 *)(dest_data_ptr + 0x2d) = *src_field_ptr;
+      *src_field_ptr = data_field1;
+      
+      // 交换最后的数据
+      new_data_ptr = dest_data_ptr + 0x2e;
+      *new_data_ptr = 0;
+      dest_data_ptr[0x2f] = 0;
+      dest_data_ptr[0x30] = 0;
+      *(undefined4 *)(dest_data_ptr + 0x31) = src_field_ptr[8];
+      data_value1 = *new_data_ptr;
+      *new_data_ptr = *(undefined8 *)(src_field_ptr + 2);
+      *(undefined8 *)(src_field_ptr + 2) = data_value1;
+      data_value1 = dest_data_ptr[0x2f];
+      dest_data_ptr[0x2f] = *(undefined8 *)(src_field_ptr + 4);
+      *(undefined8 *)(src_field_ptr + 4) = data_value1;
+      data_value1 = dest_data_ptr[0x30];
+      dest_data_ptr[0x30] = *(undefined8 *)(src_field_ptr + 6);
+      *(undefined8 *)(src_field_ptr + 6) = data_value1;
+      data_field1 = *(undefined4 *)(dest_data_ptr + 0x31);
+      *(undefined4 *)(dest_data_ptr + 0x31) = src_field_ptr[8];
+      src_field_ptr[8] = data_field1;
+      
+      // 完成数据创建
+      dest_data_ptr[0x32] = *(undefined8 *)(src_field_ptr + 10);
+      *(undefined4 *)(dest_data_ptr + 0x33) = src_field_ptr[0xc];
+      *data_ptr = *data_ptr + 0x1a0;
+      dest_data_ptr = (undefined8 *)*data_ptr;
+      new_data_ptr = src_field_ptr + 0xe;
+      src_field_ptr = src_field_ptr + 0x68;
+    } while (new_data_ptr != src_data_end_ptr);
+  }
+  return data_ptr;
+}
+
+/**
+ * 渲染内存分配函数
+ * 分配渲染系统所需的内存
+ * 
+ * 原始函数名: FUN_180285760
+ * 
+ * @param memory_ptr 内存指针
+ * @param allocation_size 分配大小
+ */
+void allocate_rendering_memory(longlong memory_ptr, longlong allocation_size)
+
+{
+  longlong *memory_manager_ptr;
+  ulonglong aligned_size;
+  
+  memory_manager_ptr = *(longlong **)(memory_ptr + 0x30);
+  aligned_size = (longlong)(int)memory_manager_ptr[2] + 7U & 0xfffffffffffffff8;
+  *(int *)(memory_manager_ptr + 2) = (int)aligned_size + ((int)allocation_size + 1) * 8;
+  memset(*memory_manager_ptr + aligned_size, 0, allocation_size * 8);
+}
+
+/**
+ * 渲染状态更新函数
+ * 更新渲染系统状态
+ * 
+ * 原始函数名: FUN_180285840
+ * 
+ * @param state_ptr 状态指针
+ * @param update_flag 更新标志
+ * @return 更新结果
+ */
+undefined1 update_rendering_state(longlong state_ptr, undefined1 update_flag)
+
+{
+  uint state_flags;
+  longlong state_data_ptr;
+  char state_char;
+  undefined1 update_result;
+  uint flag_mask;
+  undefined1 temp_flag;
+  longlong list_offset;
+  longlong list_start;
+  int list_index;
+  
+  list_start = *(longlong *)(state_ptr + 0x38);
+  list_index = 0;
+  update_result = 1;
+  if (*(longlong *)(state_ptr + 0x40) - list_start >> 4 != 0) {
+    list_offset = 0;
+    temp_flag = update_result;
+    do {
+      list_start = *(longlong *)(list_offset + list_start);
+      state_data_ptr = *(longlong *)(list_start + 0x1b8);
+      state_char = *(char *)(state_data_ptr + 0x38c);
+      if (state_char == '\t') {
+        state_flags = *(uint *)(state_data_ptr + 0x388);
+        if ((state_flags >> 0x1e & 1) == 0) {
+          if ((state_flags >> 0x1c & 1) == 0) {
+            flag_mask = state_flags & 0x1000000;
+            if ((int)state_flags < 0) {
+              if ((state_flags >> 0x1b & 1) == 0) {
+                state_char = (flag_mask != 0) + '\f';
+              }
+              else {
+                state_char = (flag_mask != 0) + '\x0e';
+              }
+            }
+            else if ((state_flags >> 0x19 & 1) == 0) {
+              state_char = flag_mask != 0;
+            }
+            else if ((state_flags >> 0x1b & 1) == 0) {
+              state_char = (flag_mask != 0) + '\x02';
+            }
+            else {
+              state_char = (flag_mask != 0) + '\a';
+            }
+          }
+          else {
+            state_char = '\x04';
+          }
+        }
+        *(char *)(state_data_ptr + 0x38c) = state_char;
+      }
+      state_char = FUN_18007b240(list_start, list_start + 0x1e8, state_char, update_flag);
+      if (state_char == '\0') {
+        *(byte *)(list_start + 0xfe) = *(byte *)(list_start + 0xfe) & 0xfb;
+      }
+      list_start = *(longlong *)(state_ptr + 0x38);
+      update_result = 0;
+      if (state_char != '\0') {
+        update_result = temp_flag;
+      }
+      list_index = list_index + 1;
+      list_offset = list_offset + 0x10;
+      temp_flag = update_result;
+    } while ((ulonglong)(longlong)list_index < (ulonglong)(*(longlong *)(state_ptr + 0x40) - list_start >> 4));
+  }
+  return update_result;
+}
+
+/**
+ * 渲染状态更新函数变体
+ * 更新渲染系统状态的变体实现
+ * 
+ * 原始函数名: FUN_180285873
+ * 
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @return 更新结果
+ */
+undefined1 update_rendering_state_variant(undefined8 param1, undefined8 param2, longlong param3)
+
+{
+  uint state_flags;
+  longlong state_data_ptr;
+  longlong list_offset;
+  char state_char;
+  undefined1 update_result;
+  uint flag_mask;
+  longlong list_start;
+  int list_index;
+  
+  list_offset = 0;
+  do {
+    state_data_ptr = *(longlong *)(list_offset + param3);
+    list_start = *(longlong *)(state_data_ptr + 0x1b8);
+    state_char = *(char *)(list_start + 0x38c);
+    if (state_char == '\t') {
+      state_flags = *(uint *)(list_start + 0x388);
+      if ((state_flags >> 0x1e & 1) == 0) {
+        if ((state_flags >> 0x1c & 1) == 0) {
+          flag_mask = state_flags & 0x1000000;
+          if ((int)state_flags < 0) {
+            if ((state_flags >> 0x1b & 1) == 0) {
+              state_char = (flag_mask != 0) + '\f';
+            }
+            else {
+              state_char = (flag_mask != 0) + '\x0e';
+            }
+          }
+          else if ((state_flags >> 0x19 & 1) == 0) {
+            state_char = flag_mask != 0;
+          }
+          else if ((state_flags >> 0x1b & 1) == 0) {
+            state_char = (flag_mask != 0) + '\x02';
+          }
+          else {
+            state_char = (flag_mask != 0) + '\a';
+          }
+        }
+        else {
+          state_char = '\x04';
+        }
+      }
+      *(char *)(list_start + 0x38c) = state_char;
+    }
+    state_char = FUN_18007b240(state_data_ptr, state_data_ptr + 0x1e8, state_char, param2);
+    if (state_char == '\0') {
+      *(byte *)(state_data_ptr + 0xfe) = *(byte *)(state_data_ptr + 0xfe) & 0xfb;
+    }
+    param3 = *(longlong *)(param1 + 0x38);
+    update_result = 0;
+    if (state_char != '\0') {
+      update_result = param2;
+    }
+    list_index = list_index + 1;
+    list_offset = list_offset + 0x10;
+    param2 = update_result;
+  } while ((ulonglong)(longlong)list_index < (ulonglong)(*(longlong *)(param1 + 0x40) - param3 >> 4));
+  return update_result;
+}
+
+/**
+ * 渲染状态获取函数
+ * 获取渲染系统状态
+ * 
+ * 原始函数名: FUN_18028596b
+ * 
+ * @return 当前状态
+ */
+undefined1 get_rendering_state(void)
+
+{
+  undefined1 current_state;
+  
+  return current_state;
+}
 
 /**
  * 渲染资源释放函数
- * 释放渲染相关的资源
+ * 释放渲染资源
  * 
- * 原始实现：FUN_1802852e0
+ * 原始函数名: FUN_180285a10
  * 
  * @param resource_ptr 资源指针
  * @param release_flags 释放标志
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 释放后的资源指针
  */
-void release_rendering_resources(undefined8 *resource_ptr, int release_flags)
+undefined8 * release_rendering_resource(undefined8 *resource_ptr, ulonglong release_flags, undefined8 param3, undefined8 param4)
 
 {
-  undefined8 *resource_data;
-  int resource_count;
-  undefined8 *current_resource;
-  int resource_type;
+  undefined8 free_flag;
   
-  resource_data = (undefined8 *)resource_ptr[1];
-  resource_count = *(int *)((longlong)resource_ptr + 0x20);
-  
-  if (resource_data != (undefined8 *)0x0 && resource_count != 0) {
-    current_resource = resource_data;
-    
-    // 遍历并释放资源
-    do {
-      resource_type = *(int *)((longlong)current_resource + 4);
-      
-      // 根据类型释放资源
-      switch(resource_type) {
-        case 1: // 纹理资源
-          release_texture_resource(current_resource);
-          break;
-        case 2: // 缓冲区资源
-          release_buffer_resource(current_resource);
-          break;
-        case 3: // 着色器资源
-          release_shader_resource(current_resource);
-          break;
-        default:
-          // 未知资源类型
-          break;
-      }
-      
-      current_resource = current_resource + 0x20;
-      resource_count = resource_count - 1;
-    } while (resource_count != 0);
-    
-    // 释放资源数组
-    release_resource_array(resource_data);
-    
-    // 重置资源指针
-    resource_ptr[1] = 0;
-    *(int *)((longlong)resource_ptr + 0x20) = 0;
+  free_flag = 0xfffffffffffffffe;
+  if ((longlong *)resource_ptr[4] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)resource_ptr[4] + 0x38))();
   }
-  
-  if (release_flags != 0) {
-    // 完全释放资源管理器
-    release_resource_manager(resource_ptr);
+  if ((longlong *)resource_ptr[3] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)resource_ptr[3] + 0x38))();
   }
-  return;
+  *resource_ptr = &UNK_180a21720;
+  *resource_ptr = &UNK_180a21690;
+  if ((release_flags & 1) != 0) {
+    free(resource_ptr, 0x30, param3, param4, free_flag);
+  }
+  return resource_ptr;
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 
 /**
- * 渲染性能统计函数
- * 收集渲染性能统计数据
+ * 渲染向量计算函数
+ * 计算渲染相关的向量运算
  * 
- * 原始实现：FUN_1802853c0
+ * 原始函数名: FUN_180285b40
  * 
- * @param stats_ptr 统计数据指针
- * @param frame_count 帧数
+ * @param vector_ptr1 向量指针1
+ * @param result_ptr 结果指针
+ * @param vector_ptr2 向量指针2
+ * @return 计算结果指针
  */
-void collect_rendering_stats(undefined8 *stats_ptr, int frame_count)
+float * calculate_rendering_vector(float *vector_ptr1, float *result_ptr, float *vector_ptr2)
 
 {
-  undefined8 *frame_data;
-  float avg_fps;
-  float frame_time;
-  float gpu_time;
-  int draw_calls;
+  float vec1_x;
+  float vec1_y;
+  float vec1_z;
+  float vec1_w;
+  float vec2_x;
+  float vec2_y;
+  float vec2_z;
+  float vec2_w;
+  float cross_x;
+  float cross_y;
+  float cross_z;
+  float dot_product;
+  float result_x;
+  float result_y;
+  float result_z;
   
-  frame_data = (undefined8 *)stats_ptr[1];
-  
-  if (frame_data != (undefined8 *)0x0) {
-    // 计算平均FPS
-    avg_fps = calculate_average_fps(frame_data, frame_count);
-    *(float *)((longlong)stats_ptr + 0x10) = avg_fps;
-    
-    // 计算帧时间
-    frame_time = calculate_frame_time(frame_data, frame_count);
-    *(float *)((longlong)stats_ptr + 0x14) = frame_time;
-    
-    // 计算GPU时间
-    gpu_time = calculate_gpu_time(frame_data, frame_count);
-    *(float *)((longlong)stats_ptr + 0x18) = gpu_time;
-    
-    // 统计绘制调用
-    draw_calls = count_draw_calls(frame_data, frame_count);
-    *(int *)((longlong)stats_ptr + 0x1c) = draw_calls;
-    
-    // 更新统计时间戳
-    *(undefined8 *)((longlong)stats_ptr + 0x20) = get_current_timestamp();
-  }
-  return;
+  vec2_x = *vector_ptr2;
+  vec1_x = *vector_ptr1;
+  vec1_w = -vector_ptr1[3];
+  vec2_y = vector_ptr2[1];
+  vec2_z = vector_ptr2[2];
+  vec1_z = -vector_ptr1[2];
+  result_ptr[3] = 3.4028235e+38;  // 最大浮点数
+  vec1_y = -vector_ptr1[1];
+  cross_z = vec2_z * vec1_z - vector_ptr2[1] * vec1_w;
+  cross_y = vec2_x * vec1_w - vector_ptr2[2] * vec1_y;
+  cross_z = cross_z + cross_z;
+  cross_x = vec2_y * vec1_y - vec2_x * vec1_z;
+  cross_y = cross_y + cross_y;
+  cross_x = cross_x + cross_x;
+  vec2_z = vector_ptr2[2];
+  *result_ptr = (cross_x * vec1_z - cross_y * vec1_w) + cross_z * vec1_x + vec2_x;
+  vec2_x = vector_ptr2[1];
+  result_ptr[2] = (cross_y * vec1_y - cross_z * vec1_z) + cross_x * vec1_x + vec2_z;
+  result_ptr[1] = (cross_z * vec1_w - cross_x * vec1_y) + cross_y * vec1_x + vec2_x;
+  return result_ptr;
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 
 /**
- * 渲染错误处理函数
- * 处理渲染系统中的错误
+ * 渲染距离计算函数
+ * 计算渲染相关的距离
  * 
- * 原始实现：FUN_1802854a0
+ * 原始函数名: FUN_180285c90
  * 
- * @param error_code 错误代码
- * @param context_ptr 上下文指针
- * @return 错误处理结果
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param position_ptr 位置指针
+ * @return 计算结果
  */
-int handle_rendering_error(int error_code, undefined8 *context_ptr)
+undefined8 calculate_rendering_distance(longlong param1, undefined8 param2, float *position_ptr)
 
 {
-  int result;
-  undefined8 error_data;
-  undefined8 *error_info;
+  float distance_x;
+  float distance_y;
+  float distance_z;
+  undefined4 max_distance;
   
-  result = -1;
-  error_data = get_error_data(error_code);
-  error_info = (undefined8 *)context_ptr[1];
-  
-  if (error_info != (undefined8 *)0x0) {
-    // 记录错误信息
-    log_error_message(error_data, error_info);
-    
-    // 根据错误类型处理
-    switch(error_code) {
-      case 1: // 内存不足
-        result = handle_out_of_memory_error(context_ptr);
-        break;
-      case 2: // 设备丢失
-        result = handle_device_lost_error(context_ptr);
-        break;
-      case 3: // 着色器编译失败
-        result = handle_shader_compilation_error(context_ptr);
-        break;
-      case 4: // 纹理加载失败
-        result = handle_texture_load_error(context_ptr);
-        break;
-      default:
-        // 未知错误
-        result = handle_unknown_error(context_ptr);
-        break;
-    }
-    
-    // 更新错误统计
-    update_error_statistics(error_code);
-  }
-  
-  return result;
+  distance_x = *position_ptr - *(float *)(param1 + 0x10);
+  distance_y = position_ptr[1] - *(float *)(param1 + 0x14);
+  distance_z = position_ptr[2] - *(float *)(param1 + 0x18);
+  max_distance = 0x7f7fffff;  // 最大浮点数
+  FUN_180285b40(0x7f7fffff, distance_y, &distance_x);
+  return param2;
 }
-
 
 // 辅助函数声明（在其他文件中实现）
-undefined8 allocate_rendering_memory(undefined8 allocator, ulonglong size, char flags);
-void release_rendering_buffer(undefined8 *buffer);
-void cleanup_data_item(undefined8 *item_ptr, undefined8 item_data);
-int get_rendering_system_status(void);
-undefined8 get_rendering_memory_usage(void);
-void update_texture_block(undefined8 *texture, undefined8 *data, int size);
-void process_buffer_item(undefined8 *item, undefined8 data, int type);
-void execute_buffer_flush(int flush_type);
-void release_texture_resource(undefined8 *resource);
-void release_buffer_resource(undefined8 *resource);
-void release_shader_resource(undefined8 *resource);
-void release_resource_array(undefined8 *array);
-void release_resource_manager(undefined8 *manager);
-float calculate_average_fps(undefined8 *data, int frames);
-float calculate_frame_time(undefined8 *data, int frames);
-float calculate_gpu_time(undefined8 *data, int frames);
-int count_draw_calls(undefined8 *data, int frames);
-undefined8 get_current_timestamp(void);
-void log_error_message(undefined8 error, undefined8 *info);
-int handle_out_of_memory_error(undefined8 *context);
-int handle_device_lost_error(undefined8 *context);
-int handle_shader_compilation_error(undefined8 *context);
-int handle_texture_load_error(undefined8 *context);
-int handle_unknown_error(undefined8 *context);
-void update_error_statistics(int error_code);
-void trigger_rendering_error(void);
+void FUN_18062b420(undefined8 allocator, ulonglong size, char flags);
+void FUN_18064e900(void);
+void FUN_18007b240(longlong param1, longlong param2, char param3, undefined1 param4);
+void memset(void *ptr, int value, size_t num);
+void free(void *ptr, size_t size, undefined8 param3, undefined8 param4, undefined8 param5);
+void strcpy_s(char *dest, size_t dest_size, const char *src);
