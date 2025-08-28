@@ -460,47 +460,52 @@ void RenderingSystem_ProcessRectangleArea(longlong render_context, float *start_
 
 
 // 函数: void FUN_180293ab9(undefined4 param_1)
-void FUN_180293ab9(undefined4 param_1)
+// 功能: 渲染系统坐标偏移处理函数（寄存器变量版本）
+// 参数: param_1 - 渲染上下文指针
+void RenderingSystem_ProcessCoordinateOffset(undefined4 render_context)
 
 {
-  float *unaff_RBP;
-  float *unaff_RSI;
-  byte in_R10B;
-  float in_XMM4_Da;
-  float unaff_XMM6_Da;
-  float fVar1;
-  float fVar2;
-  float unaff_XMM9_Da;
-  float fStack0000000000000088;
-  float fStack000000000000008c;
+  float *coord_ptr1;
+  float *coord_ptr2;
+  byte offset_flags;
+  float base_coord_x;
+  float offset_distance;
+  float offset_x;
+  float offset_y;
+  float base_offset_x;
+  float temp_coord_x;
+  float temp_coord_y;
   
-  fStack000000000000008c = unaff_XMM6_Da;
-  if ((in_R10B & 1) == 0) {
-    fStack000000000000008c = 0.0;
+  temp_coord_y = offset_distance;
+  // 根据标志位设置X轴偏移
+  if ((offset_flags & 1) == 0) {
+    temp_coord_y = 0.0;
   }
-  fVar2 = unaff_XMM6_Da;
-  if ((in_R10B & 2) == 0) {
-    fVar2 = 0.0;
+  offset_y = offset_distance;
+  // 根据标志位设置Y轴偏移
+  if ((offset_flags & 2) == 0) {
+    offset_y = 0.0;
   }
-  fVar1 = unaff_XMM6_Da;
-  if ((in_R10B & 8) == 0) {
-    fVar1 = 0.0;
+  offset_x = offset_distance;
+  // 根据标志位设置X轴偏移
+  if ((offset_flags & 8) == 0) {
+    offset_x = 0.0;
   }
-  if ((in_R10B & 4) == 0) {
-    unaff_XMM6_Da = 0.0;
+  if ((offset_flags & 4) == 0) {
+    offset_distance = 0.0;
   }
-  fStack0000000000000088 = unaff_XMM9_Da + fStack000000000000008c;
-  fStack000000000000008c = in_XMM4_Da + fStack000000000000008c;
-  FUN_180293730(param_1,&stack0x00000088);
-  fStack000000000000008c = fVar2 + unaff_RBP[1];
-  fStack0000000000000088 = *unaff_RSI - fVar2;
-  FUN_180293730(fStack0000000000000088,&stack0x00000088,fVar2,9,0xc);
-  fStack0000000000000088 = *unaff_RSI - fVar1;
-  fStack000000000000008c = unaff_RSI[1] - fVar1;
-  FUN_180293730(fStack0000000000000088,&stack0x00000088,fVar1,0,3);
-  fStack0000000000000088 = unaff_XMM6_Da + *unaff_RBP;
-  fStack000000000000008c = unaff_RSI[1] - unaff_XMM6_Da;
-  FUN_180293730(fStack0000000000000088,&stack0x00000088,unaff_XMM6_Da,3,6);
+  temp_coord_x = base_offset_x + temp_coord_y;
+  temp_coord_y = base_coord_x + temp_coord_y;
+  FUN_180293730(render_context, &temp_coord_x);
+  temp_coord_y = offset_y + coord_ptr1[1];
+  temp_coord_x = *coord_ptr2 - offset_y;
+  FUN_180293730(temp_coord_x, &temp_coord_x, offset_y, 9, 0xc);
+  temp_coord_x = *coord_ptr2 - offset_x;
+  temp_coord_y = coord_ptr2[1] - offset_x;
+  FUN_180293730(temp_coord_x, &temp_coord_x, offset_x, 0, 3);
+  temp_coord_x = offset_distance + *coord_ptr1;
+  temp_coord_y = coord_ptr2[1] - offset_distance;
+  FUN_180293730(temp_coord_x, &temp_coord_x, offset_distance, 3, 6);
   return;
 }
 
@@ -509,63 +514,73 @@ void FUN_180293ab9(undefined4 param_1)
 
 
 // 函数: void FUN_180293c0e(void)
-void FUN_180293c0e(void)
+// 功能: 渲染系统双坐标点处理函数（寄存器变量版本）
+void RenderingSystem_ProcessDualCoordinates(void)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  int iVar4;
-  longlong unaff_RBX;
-  int *piVar5;
-  undefined4 *unaff_RBP;
-  undefined4 *unaff_RSI;
-  int iVar6;
-  undefined4 uStack000000000000008c;
+  undefined4 coord_x;
+  int buffer_capacity;
+  int current_count;
+  int new_capacity;
+  longlong render_context_reg;
+  int *buffer_count_ptr;
+  undefined4 *coord_ptr1;
+  undefined4 *coord_ptr2;
+  int default_capacity;
+  undefined4 coord_y;
   
-  piVar5 = (int *)(unaff_RBX + 0x80);
-  FUN_18011d9a0(piVar5);
-  uVar1 = *unaff_RSI;
-  iVar6 = 8;
-  uStack000000000000008c = unaff_RBP[1];
-  iVar3 = *piVar5;
-  iVar2 = *(int *)(unaff_RBX + 0x84);
-  if (iVar3 == iVar2) {
-    if (iVar2 == 0) {
-      iVar2 = 8;
+  buffer_count_ptr = (int *)(render_context_reg + 0x80);
+  FUN_18011d9a0(buffer_count_ptr);
+  coord_x = *coord_ptr2;
+  default_capacity = 8;
+  coord_y = coord_ptr1[1];
+  current_count = *buffer_count_ptr;
+  buffer_capacity = *(int *)(render_context_reg + 0x84);
+  
+  // 检查缓冲区是否需要扩展
+  if (current_count == buffer_capacity) {
+    if (buffer_capacity == 0) {
+      buffer_capacity = 8;
     }
     else {
-      iVar2 = iVar2 / 2 + iVar2;
+      buffer_capacity = buffer_capacity / 2 + buffer_capacity;
     }
-    iVar4 = iVar3 + 1;
-    if (iVar3 + 1 < iVar2) {
-      iVar4 = iVar2;
+    new_capacity = current_count + 1;
+    if (current_count + 1 < buffer_capacity) {
+      new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(piVar5,iVar4);
-    iVar3 = *piVar5;
+    FUN_18011dc70(buffer_count_ptr, new_capacity);
+    current_count = *buffer_count_ptr;
   }
-  *(ulonglong *)(*(longlong *)(unaff_RBX + 0x88) + (longlong)iVar3 * 8) =
-       CONCAT44(uStack000000000000008c,uVar1);
-  *piVar5 = *piVar5 + 1;
-  FUN_18011d9a0(piVar5);
-  uVar1 = *unaff_RBP;
-  uStack000000000000008c = unaff_RSI[1];
-  iVar3 = *piVar5;
-  iVar2 = *(int *)(unaff_RBX + 0x84);
-  if (iVar3 == iVar2) {
-    if (iVar2 != 0) {
-      iVar6 = iVar2 + iVar2 / 2;
+  
+  // 存储第一个坐标点
+  *(ulonglong *)(*(longlong *)(render_context_reg + 0x88) + (longlong)current_count * 8) =
+       CONCAT44(coord_y, coord_x);
+  *buffer_count_ptr = *buffer_count_ptr + 1;
+  
+  FUN_18011d9a0(buffer_count_ptr);
+  coord_x = *coord_ptr1;
+  coord_y = coord_ptr2[1];
+  current_count = *buffer_count_ptr;
+  buffer_capacity = *(int *)(render_context_reg + 0x84);
+  
+  // 检查缓冲区是否需要扩展
+  if (current_count == buffer_capacity) {
+    if (buffer_capacity != 0) {
+      default_capacity = buffer_capacity + buffer_capacity / 2;
     }
-    iVar2 = iVar3 + 1;
-    if (iVar3 + 1 < iVar6) {
-      iVar2 = iVar6;
+    buffer_capacity = current_count + 1;
+    if (current_count + 1 < default_capacity) {
+      buffer_capacity = default_capacity;
     }
-    FUN_18011dc70(piVar5,iVar2);
-    iVar3 = *piVar5;
+    FUN_18011dc70(buffer_count_ptr, buffer_capacity);
+    current_count = *buffer_count_ptr;
   }
-  *(ulonglong *)(*(longlong *)(unaff_RBX + 0x88) + (longlong)iVar3 * 8) =
-       CONCAT44(uStack000000000000008c,uVar1);
-  *piVar5 = *piVar5 + 1;
+  
+  // 存储第二个坐标点
+  *(ulonglong *)(*(longlong *)(render_context_reg + 0x88) + (longlong)current_count * 8) =
+       CONCAT44(coord_y, coord_x);
+  *buffer_count_ptr = *buffer_count_ptr + 1;
   return;
 }
 
@@ -574,61 +589,71 @@ void FUN_180293c0e(void)
 
 
 // 函数: void FUN_180293c12(void)
-void FUN_180293c12(void)
+// 功能: 渲染系统双坐标点处理函数2（寄存器变量版本）
+void RenderingSystem_ProcessDualCoordinates2(void)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  int iVar4;
-  int *unaff_RBX;
-  undefined4 *unaff_RBP;
-  undefined4 *unaff_RSI;
-  int iVar5;
-  undefined4 uStack000000000000008c;
+  undefined4 coord_x;
+  int buffer_capacity;
+  int current_count;
+  int new_capacity;
+  int *buffer_count_ptr;
+  undefined4 *coord_ptr1;
+  undefined4 *coord_ptr2;
+  int default_capacity;
+  undefined4 coord_y;
   
   FUN_18011d9a0();
-  uVar1 = *unaff_RSI;
-  iVar5 = 8;
-  uStack000000000000008c = unaff_RBP[1];
-  iVar3 = *unaff_RBX;
-  iVar2 = unaff_RBX[1];
-  if (iVar3 == iVar2) {
-    if (iVar2 == 0) {
-      iVar2 = 8;
+  coord_x = *coord_ptr2;
+  default_capacity = 8;
+  coord_y = coord_ptr1[1];
+  current_count = *buffer_count_ptr;
+  buffer_capacity = buffer_count_ptr[1];
+  
+  // 检查缓冲区是否需要扩展
+  if (current_count == buffer_capacity) {
+    if (buffer_capacity == 0) {
+      buffer_capacity = 8;
     }
     else {
-      iVar2 = iVar2 / 2 + iVar2;
+      buffer_capacity = buffer_capacity / 2 + buffer_capacity;
     }
-    iVar4 = iVar3 + 1;
-    if (iVar3 + 1 < iVar2) {
-      iVar4 = iVar2;
+    new_capacity = current_count + 1;
+    if (current_count + 1 < buffer_capacity) {
+      new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(uVar1,iVar4);
-    iVar3 = *unaff_RBX;
+    FUN_18011dc70(coord_x, new_capacity);
+    current_count = *buffer_count_ptr;
   }
-  *(ulonglong *)(*(longlong *)(unaff_RBX + 2) + (longlong)iVar3 * 8) =
-       CONCAT44(uStack000000000000008c,uVar1);
-  *unaff_RBX = *unaff_RBX + 1;
+  
+  // 存储第一个坐标点
+  *(ulonglong *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)current_count * 8) =
+       CONCAT44(coord_y, coord_x);
+  *buffer_count_ptr = *buffer_count_ptr + 1;
+  
   FUN_18011d9a0();
-  uVar1 = *unaff_RBP;
-  uStack000000000000008c = unaff_RSI[1];
-  iVar3 = *unaff_RBX;
-  iVar2 = unaff_RBX[1];
-  if (iVar3 == iVar2) {
-    if (iVar2 != 0) {
-      iVar5 = iVar2 + iVar2 / 2;
+  coord_x = *coord_ptr1;
+  coord_y = coord_ptr2[1];
+  current_count = *buffer_count_ptr;
+  buffer_capacity = buffer_count_ptr[1];
+  
+  // 检查缓冲区是否需要扩展
+  if (current_count == buffer_capacity) {
+    if (buffer_capacity != 0) {
+      default_capacity = buffer_capacity + buffer_capacity / 2;
     }
-    iVar2 = iVar3 + 1;
-    if (iVar3 + 1 < iVar5) {
-      iVar2 = iVar5;
+    buffer_capacity = current_count + 1;
+    if (current_count + 1 < default_capacity) {
+      buffer_capacity = default_capacity;
     }
-    FUN_18011dc70(uVar1,iVar2);
-    iVar3 = *unaff_RBX;
+    FUN_18011dc70(coord_x, buffer_capacity);
+    current_count = *buffer_count_ptr;
   }
-  *(ulonglong *)(*(longlong *)(unaff_RBX + 2) + (longlong)iVar3 * 8) =
-       CONCAT44(uStack000000000000008c,uVar1);
-  *unaff_RBX = *unaff_RBX + 1;
+  
+  // 存储第二个坐标点
+  *(ulonglong *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)current_count * 8) =
+       CONCAT44(coord_y, coord_x);
+  *buffer_count_ptr = *buffer_count_ptr + 1;
   return;
 }
 
@@ -637,9 +662,11 @@ void FUN_180293c12(void)
 
 
 // 函数: void FUN_180293cfe(void)
-void FUN_180293cfe(void)
+// 功能: 渲染系统空操作函数3
+void RenderingSystem_NoOperation3(void)
 
 {
+  // 空操作函数
   return;
 }
 
@@ -648,61 +675,75 @@ void FUN_180293cfe(void)
 
 
 // 函数: void FUN_180293d20(longlong param_1,float *param_2,float *param_3,uint param_4,undefined4 param_5)
-void FUN_180293d20(longlong param_1,float *param_2,float *param_3,uint param_4,undefined4 param_5)
+// 功能: 渲染系统纹理坐标对齐处理函数
+// 参数: param_1 - 渲染上下文指针, param_2 - 起始纹理坐标, param_3 - 结束纹理坐标, param_4 - 渲染标志, param_5 - 纹理参数
+void RenderingSystem_AlignTextureCoordinates(longlong render_context, float *start_texcoord, float *end_texcoord, uint render_flags, undefined4 texture_param)
 
 {
-  int *piVar1;
-  float fVar2;
-  float fVar3;
-  int iVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
+  int *buffer_count_ptr;
+  float texcoord_u;
+  float texcoord_v;
+  int new_capacity;
+  int buffer_capacity;
+  int current_count;
+  int default_capacity;
   
-  if ((param_4 & 0xff000000) != 0) {
-    fVar2 = *param_2;
-    piVar1 = (int *)(param_1 + 0x80);
-    iVar5 = *(int *)(param_1 + 0x84);
-    iVar7 = 8;
-    fVar3 = param_2[1];
-    iVar6 = *piVar1;
-    if (iVar6 == iVar5) {
-      if (iVar5 == 0) {
-        iVar5 = 8;
+  // 检查渲染标志是否有效
+  if ((render_flags & 0xff000000) != 0) {
+    texcoord_u = *start_texcoord;
+    buffer_count_ptr = (int *)(render_context + 0x80);
+    buffer_capacity = *(int *)(render_context + 0x84);
+    default_capacity = 8;
+    texcoord_v = start_texcoord[1];
+    current_count = *buffer_count_ptr;
+    
+    // 检查缓冲区是否需要扩展
+    if (current_count == buffer_capacity) {
+      if (buffer_capacity == 0) {
+        buffer_capacity = 8;
       }
       else {
-        iVar5 = iVar5 / 2 + iVar5;
+        buffer_capacity = buffer_capacity / 2 + buffer_capacity;
       }
-      iVar4 = iVar6 + 1;
-      if (iVar6 + 1 < iVar5) {
-        iVar4 = iVar5;
+      new_capacity = current_count + 1;
+      if (current_count + 1 < buffer_capacity) {
+        new_capacity = buffer_capacity;
       }
-      FUN_18011dc70(piVar1,iVar4);
-      iVar6 = *piVar1;
+      FUN_18011dc70(buffer_count_ptr, new_capacity);
+      current_count = *buffer_count_ptr;
     }
-    *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar6 * 8) =
-         CONCAT44(fVar3 + 0.5,fVar2 + 0.5);
-    *piVar1 = *piVar1 + 1;
-    fVar2 = *param_3;
-    fVar3 = param_3[1];
-    iVar5 = *piVar1;
-    iVar6 = *(int *)(param_1 + 0x84);
-    if (iVar5 == iVar6) {
-      if (iVar6 != 0) {
-        iVar7 = iVar6 + iVar6 / 2;
+    
+    // 存储对齐后的起始纹理坐标
+    *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+         CONCAT44(texcoord_v + 0.5, texcoord_u + 0.5);
+    *buffer_count_ptr = *buffer_count_ptr + 1;
+    
+    texcoord_u = *end_texcoord;
+    texcoord_v = end_texcoord[1];
+    buffer_capacity = *buffer_count_ptr;
+    current_count = *(int *)(render_context + 0x84);
+    
+    // 检查缓冲区是否需要扩展
+    if (buffer_capacity == current_count) {
+      if (current_count != 0) {
+        default_capacity = current_count + current_count / 2;
       }
-      iVar6 = iVar5 + 1;
-      if (iVar5 + 1 < iVar7) {
-        iVar6 = iVar7;
+      current_count = buffer_capacity + 1;
+      if (buffer_capacity + 1 < default_capacity) {
+        current_count = default_capacity;
       }
-      FUN_18011dc70(piVar1,iVar6);
-      iVar5 = *piVar1;
+      FUN_18011dc70(buffer_count_ptr, current_count);
+      buffer_capacity = *buffer_count_ptr;
     }
-    *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar5 * 8) =
-         CONCAT44(fVar3 + 0.5,fVar2 + 0.5);
-    *piVar1 = *piVar1 + 1;
-    FUN_1802923e0(param_1,*(undefined8 *)(param_1 + 0x88),*piVar1,param_4,0,param_5);
-    *piVar1 = 0;
+    
+    // 存储对齐后的结束纹理坐标
+    *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)buffer_capacity * 8) =
+         CONCAT44(texcoord_v + 0.5, texcoord_u + 0.5);
+    *buffer_count_ptr = *buffer_count_ptr + 1;
+    
+    // 执行纹理坐标渲染
+    FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *buffer_count_ptr, render_flags, 0, texture_param);
+    *buffer_count_ptr = 0;
   }
   return;
 }
@@ -712,75 +753,92 @@ void FUN_180293d20(longlong param_1,float *param_2,float *param_3,uint param_4,u
 
 
 // 函数: void FUN_180293d4c(float param_1,longlong param_2,float *param_3,undefined8 param_4,
-void FUN_180293d4c(float param_1,longlong param_2,float *param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6)
+// 功能: 渲染系统高级纹理坐标处理函数（寄存器变量版本）
+// 参数: param_1 - 坐标X, param_2 - 渲染上下文指针, param_3 - 纹理坐标数组, param_4 - 数据指针1, param_5 - 数据指针2, param_6 - 数据指针3
+void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_context, float *texture_coords, undefined8 data_ptr1, undefined8 data_ptr2, undefined8 data_ptr3)
 
 {
-  int *piVar1;
-  float fVar2;
-  float fVar3;
-  int iVar4;
-  int iVar5;
-  int iVar6;
-  longlong in_RAX;
-  longlong in_RCX;
-  undefined4 unaff_EBP;
-  longlong unaff_RSI;
-  int iVar7;
-  undefined8 unaff_RDI;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 in_stack_00000080;
+  int *buffer_count_ptr;
+  float texcoord_u;
+  float texcoord_v;
+  int new_capacity;
+  int buffer_capacity;
+  int current_count;
+  longlong data_ptr_reg;
+  longlong context_reg;
+  undefined4 render_flags;
+  longlong context_reg2;
+  int default_capacity;
+  undefined8 texture_data;
+  undefined4 color_r;
+  undefined4 color_g;
+  undefined4 color_b;
+  undefined4 color_a;
+  undefined4 stack_param;
   
-  *(undefined8 *)(in_RAX + 0x10) = unaff_RDI;
-  piVar1 = (int *)(in_RCX + 0x80);
-  iVar5 = *(int *)(in_RCX + 0x84);
-  *(undefined4 *)(in_RAX + -0x18) = unaff_XMM6_Da;
-  *(undefined4 *)(in_RAX + -0x14) = unaff_XMM6_Db;
-  *(undefined4 *)(in_RAX + -0x10) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_RAX + -0xc) = unaff_XMM6_Dd;
-  iVar7 = 8;
-  *(float *)(in_RAX + -0x28) = param_1 + 0.5;
-  *(float *)(in_RAX + -0x24) = *(float *)(param_2 + 4) + 0.5;
-  iVar6 = *piVar1;
-  if (iVar6 == iVar5) {
-    if (iVar5 == 0) {
-      iVar5 = 8;
+  // 设置纹理数据
+  *(undefined8 *)(data_ptr_reg + 0x10) = texture_data;
+  buffer_count_ptr = (int *)(context_reg + 0x80);
+  buffer_capacity = *(int *)(context_reg + 0x84);
+  
+  // 设置颜色值
+  *(undefined4 *)(data_ptr_reg + -0x18) = color_r;
+  *(undefined4 *)(data_ptr_reg + -0x14) = color_g;
+  *(undefined4 *)(data_ptr_reg + -0x10) = color_b;
+  *(undefined4 *)(data_ptr_reg + -0xc) = color_a;
+  default_capacity = 8;
+  
+  // 对齐坐标
+  *(float *)(data_ptr_reg + -0x28) = coord_x + 0.5;
+  *(float *)(data_ptr_reg + -0x24) = *(float *)(render_context + 4) + 0.5;
+  current_count = *buffer_count_ptr;
+  
+  // 检查缓冲区是否需要扩展
+  if (current_count == buffer_capacity) {
+    if (buffer_capacity == 0) {
+      buffer_capacity = 8;
     }
     else {
-      iVar5 = iVar5 / 2 + iVar5;
+      buffer_capacity = buffer_capacity / 2 + buffer_capacity;
     }
-    iVar4 = iVar6 + 1;
-    if (iVar6 + 1 < iVar5) {
-      iVar4 = iVar5;
+    new_capacity = current_count + 1;
+    if (current_count + 1 < buffer_capacity) {
+      new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(piVar1,iVar4);
-    iVar6 = *piVar1;
+    FUN_18011dc70(buffer_count_ptr, new_capacity);
+    current_count = *buffer_count_ptr;
   }
-  *(undefined8 *)(*(longlong *)(in_RCX + 0x88) + (longlong)iVar6 * 8) = param_6;
-  *piVar1 = *piVar1 + 1;
-  fVar2 = *param_3;
-  fVar3 = param_3[1];
-  iVar5 = *piVar1;
-  iVar6 = *(int *)(in_RCX + 0x84);
-  if (iVar5 == iVar6) {
-    if (iVar6 != 0) {
-      iVar7 = iVar6 + iVar6 / 2;
+  
+  // 存储纹理数据
+  *(undefined8 *)(*(longlong *)(context_reg + 0x88) + (longlong)current_count * 8) = data_ptr3;
+  *buffer_count_ptr = *buffer_count_ptr + 1;
+  
+  texcoord_u = *texture_coords;
+  texcoord_v = texture_coords[1];
+  buffer_capacity = *buffer_count_ptr;
+  current_count = *(int *)(context_reg + 0x84);
+  
+  // 检查缓冲区是否需要扩展
+  if (buffer_capacity == current_count) {
+    if (current_count != 0) {
+      default_capacity = current_count + current_count / 2;
     }
-    iVar6 = iVar5 + 1;
-    if (iVar5 + 1 < iVar7) {
-      iVar6 = iVar7;
+    current_count = buffer_capacity + 1;
+    if (buffer_capacity + 1 < default_capacity) {
+      current_count = default_capacity;
     }
-    FUN_18011dc70(piVar1,iVar6);
-    iVar5 = *piVar1;
+    FUN_18011dc70(buffer_count_ptr, current_count);
+    buffer_capacity = *buffer_count_ptr;
   }
-  *(ulonglong *)(*(longlong *)(in_RCX + 0x88) + (longlong)iVar5 * 8) =
-       CONCAT44(fVar3 + 0.5,fVar2 + 0.5);
-  *piVar1 = *piVar1 + 1;
-  FUN_1802923e0(in_stack_00000080,*(undefined8 *)(unaff_RSI + 0x88),*piVar1,unaff_EBP,0);
-  *piVar1 = 0;
+  
+  // 存储对齐后的纹理坐标
+  *(ulonglong *)(*(longlong *)(context_reg + 0x88) + (longlong)buffer_capacity * 8) =
+       CONCAT44(texcoord_v + 0.5, texcoord_u + 0.5);
+  *buffer_count_ptr = *buffer_count_ptr + 1;
+  
+  // 执行纹理渲染
+  FUN_1802923e0(stack_param, *(undefined8 *)(context_reg2 + 0x88), *buffer_count_ptr, render_flags, 0);
+  *buffer_count_ptr = 0;
   return;
 }
 
@@ -789,7 +847,9 @@ void FUN_180293d4c(float param_1,longlong param_2,float *param_3,undefined8 para
 
 
 // 函数: void FUN_180293d5d(float param_1,longlong param_2)
-void FUN_180293d5d(float param_1,longlong param_2)
+// 功能: 渲染系统坐标对齐处理函数（寄存器变量版本）
+// 参数: param_1 - 坐标X, param_2 - 渲染上下文指针
+void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
 
 {
   float fVar1;
