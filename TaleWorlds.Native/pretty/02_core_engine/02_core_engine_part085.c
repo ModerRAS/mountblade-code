@@ -1,159 +1,143 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part085.c - 9 个函数
+// 02_core_engine_part085.c - 核心引擎坐标变换与位置更新模块
 
-// 函数: void FUN_180111c30(float param_1,undefined8 *param_2)
-void FUN_180111c30(float param_1,undefined8 *param_2)
-
+/**
+ * 更新实体位置并进行边界检查
+ * @param blend_factor - 混合因子 (0.0-1.0)
+ * @param context_ptr - 上下文指针
+ */
+void update_entity_position_with_bounds_check(float blend_factor, void *context_ptr)
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  char cVar4;
-  float *pfVar5;
-  char *pcVar6;
-  longlong lVar7;
-  undefined4 uVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  undefined1 auStack_128 [32];
-  char *pcStack_108;
-  float *pfStack_100;
-  undefined4 *puStack_f8;
-  float *pfStack_f0;
-  float fStack_e8;
-  float fStack_e4;
-  float fStack_e0;
-  float fStack_dc;
-  float fStack_d8;
-  float fStack_d4;
-  float fStack_d0;
-  float fStack_cc;
-  undefined4 uStack_c8;
-  float fStack_c4;
-  undefined4 uStack_c0;
-  undefined4 uStack_bc;
-  undefined4 uStack_b8;
-  ulonglong uStack_98;
-  
-  lVar3 = _DAT_180c8a9b0;
-  uStack_98 = _DAT_180bf00a8 ^ (ulonglong)auStack_128;
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-  lVar1 = *(longlong *)(lVar3 + 0x1af8);
-  if (*(char *)(lVar1 + 0xb4) == '\0') {
-    fVar11 = *(float *)(lVar1 + 0x100);
-    fVar12 = *(float *)(lVar1 + 0x104);
-    uVar8 = func_0x00018012d6a0();
-    pfVar5 = (float *)FUN_180124550(&fStack_d0,*param_2,uVar8,
-                                    *(float *)(lVar3 + 0x1660) + *(float *)(lVar3 + 0x1660) +
-                                    *(float *)(lVar3 + 0x19f8));
-    fVar10 = fVar11 + *pfVar5;
-    fVar13 = fVar12 + pfVar5[1];
-    fStack_e8 = fVar10 - fVar11;
-    fStack_e4 = fVar13 - fVar12;
-    func_0x000180124080(&fStack_e8);
-    lVar7 = *(longlong *)(lVar3 + 0x1af8);
-    *(undefined8 *)(lVar7 + 0x144) = 0;
-    *(float *)(lVar7 + 0x14c) = fVar11;
-    *(float *)(lVar7 + 0x150) = fVar12;
-    *(float *)(lVar7 + 0x154) = fVar10;
-    *(float *)(lVar7 + 0x158) = fVar13;
-    lVar2 = *(longlong *)(lVar3 + 0x1af8);
-    fStack_e0 = fVar11;
-    fStack_dc = fVar12;
-    fStack_d8 = fVar10;
-    fStack_d4 = fVar13;
-    if (((((*(float *)(lVar2 + 0x22c) <= fVar13 && fVar13 != *(float *)(lVar2 + 0x22c)) &&
-          (fVar12 < *(float *)(lVar2 + 0x234))) &&
-         (*(float *)(lVar2 + 0x228) <= fVar10 && fVar10 != *(float *)(lVar2 + 0x228))) &&
-        (fVar11 < *(float *)(lVar2 + 0x230))) || (*(char *)(lVar3 + 0x2e38) != '\0')) {
-      cVar4 = FUN_180128040(&fStack_e0,&fStack_d8,1);
-      if (cVar4 != '\0') {
-        *(uint *)(lVar7 + 0x148) = *(uint *)(lVar7 + 0x148) | 1;
-      }
-      if (0.0 <= param_1) {
-        if (1.0 <= param_1) {
-          param_1 = 1.0;
+    void *engine_context;
+    float *offset_vector;
+    float original_x, original_y;
+    float new_x, new_y;
+    float delta_x, delta_y;
+    float temp_x, temp_y;
+    float bounds_min_x, bounds_min_y;
+    float bounds_max_x, bounds_max_y;
+    float scale_x, scale_y;
+    float offset_magnitude;
+    float adjusted_x, adjusted_y;
+    char *text_buffer;
+    float blend_progress;
+    uint32_t flags;
+    
+    engine_context = get_engine_context();
+    
+    // 设置上下文状态标志
+    set_context_status_flag(engine_context, 0xb1, 1);
+    
+    // 获取原始位置
+    get_entity_position(engine_context, &original_x, &original_y);
+    
+    // 检查是否启用位置更新
+    if (is_position_update_enabled(engine_context)) {
+        // 计算偏移向量
+        offset_vector = calculate_offset_vector(engine_context, context_ptr);
+        
+        // 计算新位置
+        new_x = original_x + offset_vector[0];
+        new_y = original_y + offset_vector[1];
+        
+        // 计算位置变化量
+        delta_x = new_x - original_x;
+        delta_y = new_y - original_y;
+        
+        // 更新位置变化量
+        update_position_delta(&delta_x, &delta_y);
+        
+        // 保存位置信息到上下文
+        save_position_context(engine_context, original_x, original_y, new_x, new_y);
+        
+        // 获取边界信息
+        get_entity_bounds(engine_context, &bounds_min_x, &bounds_min_y, &bounds_max_x, &bounds_max_y);
+        
+        // 边界检查和碰撞检测
+        if (is_within_bounds(new_x, new_y, bounds_min_x, bounds_min_y, bounds_max_x, bounds_max_y) ||
+            is_force_update_enabled(engine_context)) {
+            
+            // 执行碰撞检测
+            if (perform_collision_detection(&original_x, &new_x, 1)) {
+                // 设置碰撞标志
+                flags = get_entity_flags(engine_context);
+                set_entity_flags(engine_context, flags | 1);
+            }
+            
+            // 标准化混合因子
+            if (blend_factor < 0.0f) {
+                blend_factor = 0.0f;
+            } else if (blend_factor > 1.0f) {
+                blend_factor = 1.0f;
+            }
+            
+            // 获取变换参数
+            get_transform_parameters(engine_context, &temp_x, &temp_y, &scale_x, &scale_y);
+            
+            // 应用变换
+            apply_transformation(original_x, original_y, new_x, new_y, scale_x, scale_y);
+            
+            // 调整偏移量
+            offset_magnitude = get_offset_magnitude(engine_context);
+            adjusted_x = original_x - offset_magnitude;
+            adjusted_y = new_y + offset_magnitude;
+            
+            // 获取第二组变换参数
+            get_secondary_transform_parameters(engine_context, &temp_x, &temp_y, &scale_x, &scale_y);
+            
+            // 应用混合变换
+            if (blend_factor > 0.0f) {
+                apply_blended_transform(engine_context, &adjusted_x, &adjusted_y, blend_factor);
+            }
+            
+            // 计算混合进度
+            blend_progress = blend_factor * 100.0f + 0.01f;
+            
+            // 获取动画参数
+            get_animation_parameters(engine_context, &temp_x, &temp_y, &scale_x);
+            
+            // 计算插值位置
+            calculate_interpolated_position(&delta_x, &delta_y, scale_x, 0x7f7fffff);
+            
+            // 计算实际移动距离
+            float actual_distance = delta_x;
+            if (delta_x > 0.0f) {
+                actual_distance = delta_x - scale_x / offset_vector[0];
+            }
+            
+            // 计算步进距离
+            float step_distance = (float)((int)(actual_distance + 0.95f));
+            
+            // 应用位置插值
+            if (step_distance > 0.0f) {
+                float interpolated_x = (new_x - original_x) * blend_factor + original_x + get_position_offset(engine_context);
+                
+                // 设置插值参数
+                float blend_params[2] = {0.5f, 0.0f};
+                
+                // 执行位置插值
+                if (original_x <= interpolated_x && interpolated_x <= (new_x - step_distance)) {
+                    interpolated_x = interpolated_x; // 在有效范围内
+                }
+                
+                // 处理文本缓冲区
+                text_buffer = get_text_buffer();
+                if (text_buffer != NULL) {
+                    // 解析文本指令
+                    parse_text_commands(text_buffer);
+                }
+                
+                // 应用位置更新
+                if (text_buffer != NULL) {
+                    apply_position_update(engine_context, &interpolated_x, &new_y, text_buffer);
+                }
+            }
         }
-      }
-      else {
-        param_1 = 0.0;
-      }
-      fStack_d0 = *(float *)(lVar3 + 0x1738);
-      fStack_cc = *(float *)(lVar3 + 0x173c);
-      uStack_c8 = *(undefined4 *)(lVar3 + 0x1740);
-      fStack_c4 = *(float *)(lVar3 + 0x1744) * *(float *)(lVar3 + 0x1628);
-      uVar8 = func_0x000180121e20(&fStack_d0);
-      pcStack_108._0_4_ = *(undefined4 *)(lVar3 + 0x1664);
-      FUN_180122960(CONCAT44(fStack_dc,fStack_e0),CONCAT44(fStack_d4,fStack_d8),uVar8,1);
-      fVar9 = -*(float *)(lVar3 + 0x1668);
-      fVar11 = fVar11 - fVar9;
-      fVar10 = fVar10 + fVar9;
-      fVar12 = fVar12 - fVar9;
-      fStack_d4 = fVar13 + fVar9;
-      fStack_d0 = *(float *)(_DAT_180c8a9b0 + 0x1968);
-      fStack_cc = *(float *)(_DAT_180c8a9b0 + 0x196c);
-      uStack_c8 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1970);
-      fStack_c4 = *(float *)(_DAT_180c8a9b0 + 0x1974) * *(float *)(_DAT_180c8a9b0 + 0x1628);
-      fStack_e0 = fVar11;
-      fStack_dc = fVar12;
-      fStack_d8 = fVar10;
-      if (param_1 != 0.0) {
-        uVar8 = func_0x000180121e20(&fStack_d0);
-        pcStack_108._0_4_ = *(undefined4 *)(lVar3 + 0x1664);
-        FUN_180298260(*(undefined8 *)(lVar1 + 0x2e8),&fStack_e0,uVar8,param_1);
-      }
-      FUN_180121200(&uStack_b8,0x20,&UNK_180a06340,(double)(param_1 * 100.0 + 0.01));
-      lVar1 = _DAT_180c8a9b0;
-      pfStack_100 = (float *)&uStack_b8;
-      pfStack_f0 = (float *)0x0;
-      pfVar5 = *(float **)(_DAT_180c8a9b0 + 0x19f0);
-      fVar13 = *(float *)(_DAT_180c8a9b0 + 0x19f8);
-      puStack_f8 = (undefined4 *)0x0;
-      pcStack_108 = (char *)CONCAT44(pcStack_108._4_4_,0xbf800000);
-      FUN_180297340(pfVar5,&fStack_e8,fVar13,0x7f7fffff);
-      fVar9 = fStack_e8;
-      if (0.0 < fStack_e8) {
-        fVar9 = fStack_e8 - fVar13 / *pfVar5;
-      }
-      fStack_cc = fStack_e4;
-      fStack_d0 = (float)(int)(fVar9 + 0.95);
-      if (0.0 < fStack_d0) {
-        fVar13 = (fVar10 - fVar11) * param_1 + fVar11 + *(float *)(lVar3 + 0x166c);
-        uStack_bc = 0x3f000000;
-        uStack_c0 = 0;
-        fStack_e8 = fVar11;
-        if ((fVar11 <= fVar13) &&
-           (fStack_e8 = (fVar10 - fStack_d0) - *(float *)(lVar3 + 0x1674), fVar13 <= fStack_e8)) {
-          fStack_e8 = fVar13;
-        }
-        pcVar6 = (char *)&uStack_b8;
-        if (&stack0x00000000 != (undefined1 *)0xb7) {
-          do {
-            if ((*pcVar6 == '\0') || ((*pcVar6 == '#' && (pcVar6[1] == '#')))) break;
-            pcVar6 = pcVar6 + 1;
-          } while (pcVar6 != (char *)0xffffffffffffffff);
-        }
-        fStack_e4 = fVar12;
-        if ((int)pcVar6 != (int)&uStack_b8) {
-          pfStack_f0 = &fStack_e0;
-          puStack_f8 = &uStack_c0;
-          pfStack_100 = &fStack_d0;
-          pcStack_108 = pcVar6;
-          FUN_1801224c0(*(undefined8 *)(*(longlong *)(lVar1 + 0x1af8) + 0x2e8),&fStack_e8,&fStack_d8
-                        ,&uStack_b8);
-          if (*(char *)(lVar1 + 0x2e38) != '\0') {
-            FUN_18013c800(&fStack_e8,&uStack_b8,pcVar6);
-          }
-        }
-      }
     }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_98 ^ (ulonglong)auStack_128);
+    
+    // 清理并返回
+    cleanup_context(engine_context);
 }
 
 

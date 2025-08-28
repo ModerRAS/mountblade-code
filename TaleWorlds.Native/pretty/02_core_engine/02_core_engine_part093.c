@@ -1,501 +1,631 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part093.c - 3 个函数
+// 02_core_engine_part093.c - 核心引擎模块第093部分
+// 包含3个函数：初始化函数、处理函数和渲染函数
 
-// 函数: void FUN_180118a80(void)
-void FUN_180118a80(void)
+// 全局变量定义
+ulonglong *g_engine_context;          // 引擎上下文指针
+uint *g_render_flags;                  // 渲染标志
+float *g_font_size;                    // 字体大小
+float *g_line_height;                  // 行高
+float *g_text_color;                   // 文本颜色
+float *g_position_x;                   // X坐标
+float *g_position_y;                   // Y坐标
+float *g_scale_x;                      // X缩放
+float *g_scale_y;                      // Y缩放
+uint *g_current_texture_id;            // 当前纹理ID
+uint *g_last_texture_id;               // 上一个纹理ID
+byte *g_texture_cache_enabled;         // 纹理缓存启用标志
 
+/**
+ * 初始化引擎渲染系统
+ * 调用底层初始化函数来设置渲染环境
+ */
+void initialize_render_system(void)
 {
-  FUN_180118aa0();
+  setup_render_context();
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-ulonglong FUN_180118aa0(undefined8 param_1,undefined4 param_2)
-
+/**
+ * 处理渲染上下文和文本渲染
+ * @param param_1 纹理ID参数
+ * @param param_2 渲染标志参数
+ * @return 处理结果状态码
+ */
+ulonglong process_render_context(undefined8 param_1, undefined4 param_2)
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  int iVar4;
-  int iVar5;
-  ulonglong uVar6;
+  longlong context_ptr;
+  longlong texture_ptr;
+  longlong buffer_ptr;
+  int buffer_size;
+  int texture_id;
+  ulonglong result;
   
-  lVar3 = _DAT_180c8a9b0;
-  uVar6 = *(ulonglong *)(_DAT_180c8a9b0 + 0x1af8);
-  *(undefined1 *)(uVar6 + 0xb1) = 1;
-  lVar2 = *(longlong *)(lVar3 + 0x1af8);
-  if (*(char *)(lVar2 + 0xb4) == '\0') {
-    lVar1 = lVar3 + 0x3054;
-    iVar4 = FUN_18004b9b0(lVar1,0xc01);
-    if (lVar1 != 0) {
-      if ((iVar4 == -1) || (0xc00 < iVar4)) {
-        iVar4 = 0xc00;
+  context_ptr = *g_engine_context;
+  result = *(ulonglong *)(*g_engine_context + 0x1af8);
+  *(undefined1 *)(result + 0xb1) = 1;
+  texture_ptr = *(longlong *)(context_ptr + 0x1af8);
+  
+  // 检查纹理是否已初始化
+  if (*(char *)(texture_ptr + 0xb4) == '\0') {
+    buffer_ptr = context_ptr + 0x3054;
+    buffer_size = allocate_buffer(buffer_ptr, 0xc01);
+    
+    if (buffer_ptr != 0) {
+      if ((buffer_size == -1) || (0xc00 < buffer_size)) {
+        buffer_size = 0xc00;
       }
-      *(undefined1 *)(iVar4 + lVar1) = 0;
+      *(undefined1 *)(buffer_size + buffer_ptr) = 0;
     }
-    iVar5 = FUN_180121250(param_1,0,
-                          *(undefined4 *)
-                           (*(longlong *)(lVar2 + 0x220) + -4 +
-                           (longlong)*(int *)(lVar2 + 0x218) * 4));
-    lVar2 = _DAT_180c8a9b0;
-    if (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == iVar5) {
-      *(int *)(_DAT_180c8a9b0 + 0x1b34) = iVar5;
+    
+    texture_id = get_texture_id(param_1, 0,
+                                *(undefined4 *)
+                                 (*(longlong *)(texture_ptr + 0x220) + -4 +
+                                 (longlong)*(int *)(texture_ptr + 0x218) * 4));
+    texture_ptr = *g_engine_context;
+    
+    // 更新纹理ID状态
+    if (*(int *)(*g_engine_context + 0x1b2c) == texture_id) {
+      *(int *)(*g_engine_context + 0x1b34) = texture_id;
     }
-    if (*(int *)(lVar2 + 0x1b30) == iVar5) {
-      *(undefined1 *)(lVar2 + 0x1b3f) = 1;
+    
+    if (*(int *)(texture_ptr + 0x1b30) == texture_id) {
+      *(undefined1 *)(texture_ptr + 0x1b3f) = 1;
     }
-    uVar6 = FUN_180118ba0(iVar5,param_2,lVar1,lVar3 + iVar4 + 0x3054);
+    
+    result = render_text(texture_id, param_2, buffer_ptr, context_ptr + buffer_size + 0x3054);
   }
   else {
-    uVar6 = uVar6 & 0xffffffffffffff00;
+    result = result & 0xffffffffffffff00;
   }
-  return uVar6;
+  
+  return result;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180118ae6(void)
-void FUN_180118ae6(void)
-
+/**
+ * 渲染文本到指定位置
+ * 处理文本缓冲区并调用渲染函数
+ */
+void render_text_buffer(void)
 {
-  longlong lVar1;
-  longlong lVar2;
-  int iVar3;
-  int iVar4;
-  undefined4 unaff_EBP;
-  longlong unaff_RDI;
+  longlong buffer_ptr;
+  longlong context_ptr;
+  int buffer_size;
+  int texture_id;
+  undefined4 render_flags;
+  longlong position_ptr;
   
-  lVar1 = unaff_RDI + 0x3054;
-  iVar3 = FUN_18004b9b0(lVar1,0xc01);
-  if (lVar1 != 0) {
-    if ((iVar3 == -1) || (0xc00 < iVar3)) {
-      iVar3 = 0xc00;
+  buffer_ptr = position_ptr + 0x3054;
+  buffer_size = allocate_buffer(buffer_ptr, 0xc01);
+  
+  if (buffer_ptr != 0) {
+    if ((buffer_size == -1) || (0xc00 < buffer_size)) {
+      buffer_size = 0xc00;
     }
-    *(undefined1 *)(iVar3 + lVar1) = 0;
+    *(undefined1 *)(buffer_size + buffer_ptr) = 0;
   }
-  iVar4 = FUN_180121250();
-  lVar2 = _DAT_180c8a9b0;
-  if (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == iVar4) {
-    *(int *)(_DAT_180c8a9b0 + 0x1b34) = iVar4;
-  }
-  if (*(int *)(lVar2 + 0x1b30) == iVar4) {
-    *(undefined1 *)(lVar2 + 0x1b3f) = 1;
-  }
-  FUN_180118ba0(iVar4,unaff_EBP,lVar1,unaff_RDI + iVar3 + 0x3054);
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180118b7d(void)
-void FUN_180118b7d(void)
-
-{
-  return;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-ulonglong FUN_180118ba0(uint param_1,uint param_2,char *param_3,char *param_4)
-
-{
-  float fVar1;
-  float fVar2;
-  longlong lVar3;
-  char cVar4;
-  byte bVar5;
-  undefined1 uVar6;
-  int iVar7;
-  undefined4 uVar8;
-  float *pfVar9;
-  longlong lVar10;
-  int iVar11;
-  uint uVar12;
-  undefined8 uVar13;
-  char cVar14;
-  ulonglong uVar15;
-  char *pcVar16;
-  byte bVar17;
-  ulonglong uVar18;
-  longlong lVar19;
-  uint uVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  undefined8 in_stack_fffffffffffffec8;
-  undefined8 in_stack_fffffffffffffed0;
-  undefined4 uVar29;
-  float fStack_118;
-  float fStack_114;
-  char cStack_110;
-  char acStack_10f [7];
-  undefined8 uStack_108;
-  undefined4 uStack_100;
-  undefined4 uStack_fc;
-  float fStack_f8;
-  float fStack_f4;
-  float fStack_f0;
-  float fStack_ec;
-  float fStack_e8;
-  float fStack_e4;
-  undefined8 uStack_e0;
-  float fStack_d8;
-  float fStack_d4;
-  float fStack_d0;
-  float fStack_cc;
   
-  lVar3 = _DAT_180c8a9b0;
-  uVar29 = (undefined4)((ulonglong)in_stack_fffffffffffffed0 >> 0x20);
-  uVar8 = (undefined4)((ulonglong)in_stack_fffffffffffffec8 >> 0x20);
-  uVar18 = *(ulonglong *)(_DAT_180c8a9b0 + 0x1af8);
-  *(undefined1 *)(uVar18 + 0xb1) = 1;
-  uStack_e0 = *(longlong *)(lVar3 + 0x1af8);
-  if (*(char *)(uStack_e0 + 0xb4) != '\0') {
-    return uVar18 & 0xffffffffffffff00;
+  texture_id = get_texture_id();
+  context_ptr = *g_engine_context;
+  
+  // 更新纹理ID状态
+  if (*(int *)(*g_engine_context + 0x1b2c) == texture_id) {
+    *(int *)(*g_engine_context + 0x1b34) = texture_id;
   }
-  uStack_100 = param_2 >> 1 & 0x7fffff01;
+  
+  if (*(int *)(context_ptr + 0x1b30) == texture_id) {
+    *(undefined1 *)(context_ptr + 0x1b3f) = 1;
+  }
+  
+  render_text(texture_id, render_flags, buffer_ptr, position_ptr + buffer_size + 0x3054);
+  return;
+}
+
+/**
+ * 空函数 - 预留的接口函数
+ */
+void reserved_function(void)
+{
+  return;
+}
+
+/**
+ * 主要的文本渲染函数
+ * @param param_1 纹理ID
+ * @param param_2 渲染标志
+ * @param param_3 文本起始指针
+ * @param param_4 文本结束指针
+ * @return 渲染成功状态
+ */
+ulonglong render_text(uint param_1, uint param_2, char *param_3, char *param_4)
+{
+  float width;
+  float height;
+  longlong context_ptr;
+  char text_char;
+  byte byte_flag;
+  undefined1 byte_val;
+  int int_var;
+  undefined4 flag_var;
+  float *float_ptr;
+  longlong long_ptr;
+  int index;
+  uint texture_param;
+  undefined8 param_64;
+  char char_flag;
+  ulonglong result;
+  char *text_ptr;
+  byte texture_flag;
+  ulonglong texture_result;
+  longlong array_ptr;
+  uint render_mode;
+  float font_width;
+  float font_height;
+  float scale_x;
+  float scale_y;
+  float pos_x;
+  float pos_y;
+  float offset_x;
+  float offset_y;
+  float text_width;
+  float text_height;
+  undefined8 stack_param_1;
+  undefined8 stack_param_2;
+  undefined4 param_val;
+  float stack_width;
+  float stack_height;
+  char stack_char;
+  char stack_array[7];
+  undefined8 stack_64;
+  undefined4 stack_32_1;
+  undefined4 stack_32_2;
+  float stack_scale_x;
+  float stack_scale_y;
+  float stack_pos_x;
+  float stack_pos_y;
+  float stack_offset_x;
+  float stack_offset_y;
+  undefined8 stack_context;
+  float stack_text_x;
+  float stack_text_y;
+  float stack_text_width;
+  float stack_text_height;
+  
+  context_ptr = *g_engine_context;
+  param_val = (undefined4)((ulonglong)stack_param_2 >> 0x20);
+  flag_var = (undefined4)((ulonglong)stack_param_1 >> 0x20);
+  texture_result = *(ulonglong *)(*g_engine_context + 0x1af8);
+  *(undefined1 *)(texture_result + 0xb1) = 1;
+  stack_context = *(longlong *)(context_ptr + 0x1af8);
+  
+  // 检查渲染上下文状态
+  if (*(char *)(stack_context + 0xb4) != '\0') {
+    return texture_result & 0xffffffffffffff00;
+  }
+  
+  stack_32_1 = param_2 >> 1 & 0x7fffff01;
+  
+  // 处理渲染标志
   if (((param_2 >> 1 & 1) == 0) && ((param_2 >> 10 & 1) == 0)) {
-    pfVar9 = &fStack_e8;
-    fStack_e8 = *(float *)(lVar3 + 0x165c);
-    fStack_e4 = 0.0;
+    float_ptr = &stack_offset_y;
+    stack_offset_y = *(float *)(context_ptr + 0x165c);
+    stack_offset_x = 0.0;
   }
   else {
-    pfVar9 = (float *)&uStack_108;
-    uStack_108 = *(longlong *)(lVar3 + 0x165c);
+    float_ptr = (float *)&stack_64;
+    stack_64 = *(longlong *)(context_ptr + 0x165c);
   }
-  fVar1 = *pfVar9;
-  fVar25 = pfVar9[1];
+  
+  width = *float_ptr;
+  text_height = float_ptr[1];
+  
+  // 处理文本指针
   if ((param_4 == (char *)0x0) && (param_4 = param_3, param_3 != (char *)0xffffffffffffffff)) {
     while (*param_4 != '\0') {
       if (((*param_4 == '#') && (param_4[1] == '#')) ||
          (param_4 = param_4 + 1, param_4 == (char *)0xffffffffffffffff)) break;
     }
   }
-  pfVar9 = *(float **)(lVar3 + 0x19f0);
-  fVar24 = *(float *)(lVar3 + 0x19f8);
+  
+  float_ptr = *(float **)(context_ptr + 0x19f0);
+  text_height = *(float *)(context_ptr + 0x19f8);
+  
   if (param_3 == param_4) {
-    fStack_e8 = 0.0;
-    fStack_114 = fVar24;
+    stack_offset_y = 0.0;
+    stack_height = text_height;
   }
   else {
-    uVar13 = CONCAT44(uVar8,0xbf800000);
-    pcVar16 = param_3;
-    FUN_180297340(pfVar9,&fStack_118,fVar24,uStack_e0,uVar13,param_3,param_4,0);
-    uVar29 = (undefined4)((ulonglong)pcVar16 >> 0x20);
-    uVar8 = (undefined4)((ulonglong)uVar13 >> 0x20);
-    if (0.0 < fStack_118) {
-      fStack_118 = fStack_118 - fVar24 / *pfVar9;
+    param_64 = CONCAT44(flag_var, 0xbf800000);
+    text_ptr = param_3;
+    calculate_text_dimensions(float_ptr, &stack_width, text_height, stack_context, param_64, param_3, param_4, 0);
+    param_val = (undefined4)((ulonglong)text_ptr >> 0x20);
+    flag_var = (undefined4)((ulonglong)param_64 >> 0x20);
+    
+    if (0.0 < stack_width) {
+      stack_width = stack_width - text_height / *float_ptr;
     }
-    fVar24 = *(float *)(lVar3 + 0x19f8);
-    fStack_e8 = (float)(int)(fStack_118 + 0.95);
+    
+    text_height = *(float *)(context_ptr + 0x19f8);
+    stack_offset_y = (float)(int)(stack_width + 0.95);
   }
-  uVar18 = (ulonglong)param_1;
-  cVar14 = (char)uStack_100;
-  lVar10 = *(longlong *)(lVar3 + 0x1af8);
-  fVar28 = *(float *)(uStack_e0 + 0x128);
-  if (*(float *)(uStack_e0 + 0x128) <= fVar25) {
-    fVar28 = fVar25;
+  
+  texture_result = (ulonglong)param_1;
+  char_flag = (char)stack_32_1;
+  long_ptr = *(longlong *)(context_ptr + 0x1af8);
+  stack_text_y = *(float *)(stack_context + 0x128);
+  
+  if (*(float *)(stack_context + 0x128) <= text_height) {
+    stack_text_y = text_height;
   }
-  lVar19 = *(longlong *)(lVar10 + 0x210);
-  fVar23 = *(float *)(lVar3 + 0x1660) + *(float *)(lVar3 + 0x1660) + fVar24;
-  fVar27 = *(float *)(lVar10 + 0x278) - *(float *)(lVar10 + 0x40);
-  fVar25 = fVar25 + fVar25 + fStack_114;
-  if (*(float *)(uStack_e0 + 0x124) <= fVar23) {
-    fVar23 = *(float *)(uStack_e0 + 0x124);
+  
+  array_ptr = *(longlong *)(long_ptr + 0x210);
+  font_height = *(float *)(context_ptr + 0x1660) + *(float *)(context_ptr + 0x1660) + text_height;
+  text_height = *(float *)(long_ptr + 0x278) - *(float *)(long_ptr + 0x40);
+  text_height = text_height + text_height + stack_height;
+  
+  if (*(float *)(stack_context + 0x124) <= font_height) {
+    font_height = *(float *)(stack_context + 0x124);
   }
-  if (fVar23 <= fVar25) {
-    fVar23 = fVar25;
+  
+  if (font_height <= text_height) {
+    font_height = text_height;
   }
-  fVar25 = fVar23 + *(float *)(uStack_e0 + 0x104);
-  if (lVar19 != 0) {
-    iVar7 = *(int *)(lVar19 + 0xc) + 1;
-    iVar11 = *(int *)(lVar19 + 0xc);
-    if (-1 < iVar7) {
-      iVar11 = iVar7;
+  
+  text_height = font_height + *(float *)(stack_context + 0x104);
+  
+  if (array_ptr != 0) {
+    int_var = *(int *)(array_ptr + 0xc) + 1;
+    index = *(int *)(array_ptr + 0xc);
+    if (-1 < int_var) {
+      index = int_var;
     }
-    fVar27 = ((*(float *)(lVar19 + 0x18) - *(float *)(lVar19 + 0x14)) *
-              *(float *)((longlong)iVar11 * 0x1c + *(longlong *)(lVar19 + 0x38)) +
-             *(float *)(lVar19 + 0x14)) - *(float *)(lVar10 + 0x70);
+    
+    text_height = ((*(float *)(array_ptr + 0x18) - *(float *)(array_ptr + 0x14)) *
+                 *(float *)((longlong)index * 0x1c + *(longlong *)(array_ptr + 0x38)) +
+                 *(float *)(array_ptr + 0x14)) - *(float *)(long_ptr + 0x70);
   }
-  fVar26 = *(float *)(uStack_e0 + 0x100);
-  fVar2 = *(float *)(uStack_e0 + 0x104);
-  fVar27 = fVar27 + *(float *)(uStack_e0 + 0x40);
-  fVar21 = fVar1 + fVar1;
-  if (cVar14 != '\0') {
-    fVar21 = (float)(int)(*(float *)(uStack_e0 + 0x70) * 0.5) - 1.0;
-    fVar26 = fVar26 - fVar21;
-    fVar27 = fVar21 + fVar27;
-    fVar21 = fVar1 * 3.0;
+  
+  stack_text_x = *(float *)(stack_context + 0x100);
+  height = *(float *)(stack_context + 0x104);
+  text_height = text_height + *(float *)(stack_context + 0x40);
+  width = width + width;
+  
+  if (char_flag != '\0') {
+    width = (float)(int)(*(float *)(stack_context + 0x70) * 0.5) - 1.0;
+    stack_text_x = stack_text_x - width;
+    text_height = width + text_height;
+    width = width * 3.0;
   }
-  fVar21 = fVar24 + fVar21;
-  if (fStack_e8 <= 0.0) {
-    fVar22 = 0.0;
+  
+  width = text_height + width;
+  
+  if (stack_offset_y <= 0.0) {
+    height = 0.0;
   }
   else {
-    fVar22 = fVar1 + fVar1 + fStack_e8;
+    height = width + width + stack_offset_y;
   }
-  fVar24 = fVar24 + fVar22;
-  lVar10 = uStack_e0;
-  fStack_118 = fVar24;
-  fStack_e4 = fStack_114;
-  fStack_114 = fVar23;
-  fStack_d8 = fVar26;
-  fStack_d4 = fVar2;
-  fStack_d0 = fVar27;
-  fStack_cc = fVar25;
-  func_0x000180124080(&fStack_118);
-  fStack_f0 = fVar27;
-  if (cVar14 == '\0') {
-    fStack_f0 = *(float *)(lVar3 + 0x166c) + *(float *)(lVar3 + 0x166c) + fVar26 + fVar24;
+  
+  text_height = text_height + height;
+  long_ptr = stack_context;
+  stack_width = text_height;
+  stack_offset_x = stack_height;
+  stack_height = font_height;
+  stack_text_x = stack_text_x;
+  stack_text_y = height;
+  stack_text_width = text_height;
+  stack_text_height = text_height;
+  
+  apply_text_transform(&stack_width);
+  stack_pos_y = text_height;
+  
+  if (char_flag == '\0') {
+    stack_pos_y = *(float *)(context_ptr + 0x166c) + *(float *)(context_ptr + 0x166c) + stack_text_x + text_height;
   }
-  lVar19 = lVar3;
-  fStack_f8 = fVar26;
-  fStack_f4 = fVar2;
-  fStack_ec = fVar25;
+  
+  array_ptr = context_ptr;
+  stack_scale_x = stack_text_x;
+  stack_scale_y = height;
+  stack_pos_x = text_height;
+  
   if ((param_2 >> 8 & 1) == 0) {
-    uStack_108 = *(longlong *)(lVar3 + 0x1af8);
-    uVar13 = *(undefined8 *)(uStack_108 + 0x198);
-    if (*(uint *)(lVar3 + 0x1c64) == 0) {
-      iVar7 = FUN_180121f20(uVar13,uVar18 & 0xffffffff,param_2 >> 5 & 1);
-      uVar15 = (ulonglong)(iVar7 != 0);
+    stack_64 = *(longlong *)(context_ptr + 0x1af8);
+    param_64 = *(undefined8 *)(stack_64 + 0x198);
+    
+    if (*(uint *)(context_ptr + 0x1c64) == 0) {
+      int_var = setup_texture_rendering(param_64, texture_result & 0xffffffff, param_2 >> 5 & 1);
+      result = (ulonglong)(int_var != 0);
     }
-    else if ((*(uint *)(lVar3 + 0x1c64) & 1) == 0) {
-      iVar11 = -1;
-      iVar7 = FUN_180121f20(uVar13,uVar18 & 0xffffffff);
-      if (iVar7 == iVar11) {
-        uVar15 = (ulonglong)*(byte *)(lVar3 + 0x1c60);
-        FUN_1801220b0(uVar13,param_1,*(byte *)(lVar3 + 0x1c60));
-        lVar19 = _DAT_180c8a9b0;
-        *(undefined4 *)(lVar3 + 0x1c64) = 0;
+    else if ((*(uint *)(context_ptr + 0x1c64) & 1) == 0) {
+      index = -1;
+      int_var = setup_texture_rendering(param_64, texture_result & 0xffffffff);
+      
+      if (int_var == index) {
+        result = (ulonglong)*(byte *)(context_ptr + 0x1c60);
+        update_texture_state(param_64, param_1, *(byte *)(context_ptr + 0x1c60));
+        array_ptr = *g_engine_context;
+        *(undefined4 *)(context_ptr + 0x1c64) = 0;
       }
       else {
-        *(undefined4 *)(lVar3 + 0x1c64) = 0;
-        uVar15 = (ulonglong)(iVar7 != 0);
+        *(undefined4 *)(context_ptr + 0x1c64) = 0;
+        result = (ulonglong)(int_var != 0);
       }
     }
     else {
-      uVar15 = (ulonglong)*(byte *)(lVar3 + 0x1c60);
-      FUN_1801220b0(uVar13,uVar18 & 0xffffffff,*(byte *)(lVar3 + 0x1c60));
-      lVar19 = _DAT_180c8a9b0;
-      *(undefined4 *)(lVar3 + 0x1c64) = 0;
+      result = (ulonglong)*(byte *)(context_ptr + 0x1c60);
+      update_texture_state(param_64, texture_result & 0xffffffff, *(byte *)(context_ptr + 0x1c60));
+      array_ptr = *g_engine_context;
+      *(undefined4 *)(context_ptr + 0x1c64) = 0;
     }
-    lVar10 = uStack_e0;
-    if (((*(char *)(lVar3 + 0x2e38) != '\0') && ((param_2 & 0x10) == 0)) &&
-       (*(int *)(uStack_108 + 0x13c) < *(int *)(lVar3 + 0x2e5c))) {
-      uVar15 = 1;
+    
+    long_ptr = stack_context;
+    
+    if (((*(char *)(context_ptr + 0x2e38) != '\0') && ((param_2 & 0x10) == 0)) &&
+       (*(int *)(stack_64 + 0x13c) < *(int *)(context_ptr + 0x2e5c))) {
+      result = 1;
     }
   }
   else {
-    uVar15 = 1;
+    result = 1;
   }
-  uVar20 = param_2 >> 8 & 0xffff01;
-  cVar14 = (char)uVar15;
-  if (((cVar14 != '\0') && (*(char *)(lVar3 + 0x1d04) == '\0')) && ((param_2 & 0x2008) == 0x2000)) {
-    *(uint *)(lVar10 + 0x140) =
-         *(uint *)(lVar10 + 0x140) | 1 << ((byte)*(undefined4 *)(lVar10 + 0x13c) & 0x1f);
+  
+  render_mode = param_2 >> 8 & 0xffff01;
+  char_flag = (char)result;
+  
+  if (((char_flag != '\0') && (*(char *)(context_ptr + 0x1d04) == '\0')) && ((param_2 & 0x2008) == 0x2000)) {
+    *(uint *)(long_ptr + 0x140) =
+         *(uint *)(long_ptr + 0x140) | 1 << ((byte)*(undefined4 *)(long_ptr + 0x13c) & 0x1f);
   }
-  uStack_fc = uVar20;
-  cVar4 = FUN_180124190(&fStack_f8,param_1,0);
-  *(uint *)(uStack_e0 + 0x148) = *(uint *)(uStack_e0 + 0x148) | 2;
-  *(float *)(uStack_e0 + 0x15c) = fStack_d8;
-  *(float *)(uStack_e0 + 0x160) = fStack_d4;
-  *(float *)(uStack_e0 + 0x164) = fStack_d0;
-  *(float *)(uStack_e0 + 0x168) = fStack_cc;
-  if (cVar4 == '\0') goto joined_r0x000180119648;
-  fStack_118 = (float)(param_2 & 4);
-  uVar12 = ((uint)fStack_118 | 0x40) << 4;
-  if ((char)uVar20 == '\0') {
-    uVar12 = uVar12 | 0x1000;
+  
+  stack_32_2 = render_mode;
+  char_flag = setup_render_parameters(&stack_scale_x, param_1, 0);
+  *(uint *)(stack_context + 0x148) = *(uint *)(stack_context + 0x148) | 2;
+  *(float *)(stack_context + 0x15c) = stack_text_x;
+  *(float *)(stack_context + 0x160) = stack_text_y;
+  *(float *)(stack_context + 0x164) = stack_text_width;
+  *(float *)(stack_context + 0x168) = stack_text_height;
+  
+  if (char_flag == '\0') goto render_complete;
+  
+  stack_width = (float)(param_2 & 4);
+  texture_param = ((uint)stack_width | 0x40) << 4;
+  
+  if ((char)render_mode == '\0') {
+    texture_param = texture_param | 0x1000;
   }
+  
   if ((param_2 & 0x40) != 0) {
-    uVar12 = uVar12 | (param_2 & 0x80 | 0x400) >> 6;
+    texture_param = texture_param | (param_2 & 0x80 | 0x400) >> 6;
   }
-  uVar13 = CONCAT44(uVar8,uVar12);
-  cVar4 = FUN_18010f170(&fStack_f8,param_1,&cStack_110,acStack_10f,uVar13);
-  uVar20 = (uint)((ulonglong)uVar13 >> 0x20);
-  if ((char)uStack_fc == '\0') {
-    bVar17 = 0;
-    if (cVar4 != '\0') {
-      if (((param_2 & 0xc0) == 0) || (*(uint *)(lVar3 + 0x1ca4) == param_1)) {
-        bVar17 = 1;
+  
+  param_64 = CONCAT44(flag_var, texture_param);
+  char_flag = execute_render_pipeline(&stack_scale_x, param_1, &stack_char, stack_array, param_64);
+  render_mode = (uint)((ulonglong)param_64 >> 0x20);
+  
+  if ((char)stack_32_2 == '\0') {
+    texture_flag = 0;
+    
+    if (char_flag != '\0') {
+      if (((param_2 & 0xc0) == 0) || (*(uint *)(context_ptr + 0x1ca4) == param_1)) {
+        texture_flag = 1;
       }
+      
       if ((char)param_2 < '\0') {
-        bVar5 = 1;
-        uStack_108 = CONCAT44(fStack_ec,fStack_f8 + fVar21);
-        cVar4 = FUN_180128040(&fStack_f8,&uStack_108);
-        if ((cVar4 == '\0') || (*(char *)(lVar3 + 0x1d07) != '\0')) {
-          bVar5 = 0;
+        byte_flag = 1;
+        stack_64 = CONCAT44(stack_pos_x, stack_scale_x + width);
+        char_flag = validate_texture_coordinates(&stack_scale_x, &stack_64);
+        
+        if ((char_flag == '\0') || (*(char *)(context_ptr + 0x1d07) != '\0')) {
+          byte_flag = 0;
         }
-        bVar17 = bVar17 | bVar5;
+        
+        texture_flag = texture_flag | byte_flag;
       }
+      
       if ((param_2 & 0x40) != 0) {
-        bVar17 = bVar17 | *(byte *)(lVar3 + 0x415);
+        texture_flag = texture_flag | *(byte *)(context_ptr + 0x415);
       }
-      if ((*(char *)(lVar3 + 0x1dd0) != '\0') && (cVar14 != '\0')) {
-        bVar17 = 0;
+      
+      if ((*(char *)(context_ptr + 0x1dd0) != '\0') && (result != '\0')) {
+        texture_flag = 0;
       }
     }
-    uVar12 = *(uint *)(lVar3 + 0x1ca0);
-    if ((((uVar12 == param_1) && (*(char *)(lVar3 + 0x1d21) != '\0')) &&
-        (*(int *)(lVar3 + 0x1d2c) == 0)) && (cVar14 != '\0')) {
-      *(undefined1 *)(lVar19 + 0x1d21) = 0;
-      bVar17 = 1;
-      if ((*(char *)(lVar19 + 0x1d21) == '\0') && (*(char *)(lVar19 + 0x1d09) == '\0')) {
-        uVar6 = 0;
+    
+    texture_param = *(uint *)(context_ptr + 0x1ca0);
+    
+    if ((((texture_param == param_1) && (*(char *)(context_ptr + 0x1d21) != '\0')) &&
+        (*(int *)(context_ptr + 0x1d2c) == 0)) && (result != '\0')) {
+      *(undefined1 *)(array_ptr + 0x1d21) = 0;
+      texture_flag = 1;
+      
+      if ((*(char *)(array_ptr + 0x1d21) == '\0') && (*(char *)(array_ptr + 0x1d09) == '\0')) {
+        byte_val = 0;
       }
       else {
-        uVar6 = 1;
+        byte_val = 1;
       }
-      *(undefined1 *)(lVar19 + 0x1d08) = uVar6;
-      uVar12 = *(uint *)(lVar3 + 0x1ca0);
+      
+      *(undefined1 *)(array_ptr + 0x1d08) = byte_val;
+      texture_param = *(uint *)(context_ptr + 0x1ca0);
     }
-    if (((uVar12 == param_1) && (*(char *)(lVar3 + 0x1d21) != '\0')) &&
-       ((*(int *)(lVar3 + 0x1d2c) == 1 && (cVar14 == '\0')))) {
-      *(undefined1 *)(lVar19 + 0x1d21) = 0;
-      if (*(char *)(lVar19 + 0x1d09) == '\0') {
-        *(undefined1 *)(lVar19 + 0x1d08) = 0;
+    
+    if (((texture_param == param_1) && (*(char *)(context_ptr + 0x1d21) != '\0')) &&
+       ((*(int *)(context_ptr + 0x1d2c) == 1 && (result == '\0')))) {
+      *(undefined1 *)(array_ptr + 0x1d21) = 0;
+      
+      if (*(char *)(array_ptr + 0x1d09) == '\0') {
+        *(undefined1 *)(array_ptr + 0x1d08) = 0;
       }
       else {
-        *(undefined1 *)(lVar19 + 0x1d08) = 1;
+        *(undefined1 *)(array_ptr + 0x1d08) = 1;
       }
     }
-    else if (bVar17 == 0) goto LAB_180119279;
-    uVar15 = (ulonglong)(cVar14 == '\0');
-    FUN_1801220b0(*(undefined8 *)(uStack_e0 + 0x198),param_1,cVar14 == '\0');
-    lVar19 = _DAT_180c8a9b0;
+    else if (texture_flag == 0) goto skip_texture_update;
+    
+    result = (ulonglong)(result == '\0');
+    update_texture_state(*(undefined8 *)(stack_context + 0x198), param_1, result == '\0');
+    array_ptr = *g_engine_context;
   }
-LAB_180119279:
-  if (fStack_118 != 0.0) {
-    func_0x0001801283b0();
+  
+skip_texture_update:
+  if (stack_width != 0.0) {
+    flush_render_buffer();
   }
-  if ((acStack_10f[0] == '\0') || (cStack_110 == '\0')) {
-    lVar10 = (ulonglong)(cStack_110 != '\0') + 0x18;
+  
+  if ((stack_array[0] == '\0') || (stack_char == '\0')) {
+    long_ptr = (ulonglong)(stack_char != '\0') + 0x18;
   }
   else {
-    lVar10 = 0x1a;
+    long_ptr = 0x1a;
   }
-  pfVar9 = (float *)(lVar19 + 0x1628 + (lVar10 + 10) * 0x10);
-  fStack_f8 = *pfVar9;
-  fStack_f4 = pfVar9[1];
-  fStack_f0 = pfVar9[2];
-  fStack_ec = pfVar9[3] * *(float *)(lVar19 + 0x1628);
-  uVar8 = func_0x000180121e20(&fStack_f8);
-  fStack_118 = fVar21 + fVar26;
-  fVar24 = fVar2 + fVar28;
-  cVar14 = (char)uVar15;
-  fStack_114 = fVar24;
-  if ((char)uStack_100 == '\0') {
-    if ((cStack_110 != '\0') || ((param_2 & 1) != 0)) {
-      uStack_108 = CONCAT44(fVar25,fVar27);
-      uStack_e0 = CONCAT44(fVar2,fVar26);
-      FUN_180293f50(*(undefined8 *)(*(longlong *)(lVar19 + 0x1af8) + 0x2e8),&uStack_e0,&uStack_108,
-                    uVar8,(ulonglong)uVar20 << 0x20,CONCAT44(uVar29,0xf));
-      if (param_1 == *(uint *)(_DAT_180c8a9b0 + 0x1ca0)) {
-        FUN_1801230e0(&fStack_d8,2);
+  
+  float_ptr = (float *)(array_ptr + 0x1628 + (long_ptr + 10) * 0x10);
+  stack_scale_x = *float_ptr;
+  stack_scale_y = float_ptr[1];
+  stack_pos_y = float_ptr[2];
+  stack_pos_x = float_ptr[3] * *(float *)(array_ptr + 0x1628);
+  flag_var = get_render_transform(&stack_scale_x);
+  stack_width = width + stack_text_x;
+  text_height = height + stack_text_y;
+  char_flag = (char)result;
+  stack_height = text_height;
+  
+  if ((char)stack_32_1 == '\0') {
+    if ((stack_char != '\0') || ((param_2 & 1) != 0)) {
+      stack_64 = CONCAT44(text_height, text_height);
+      stack_context = CONCAT44(height, stack_text_x);
+      render_to_screen(*(undefined8 *)(*(longlong *)(array_ptr + 0x1af8) + 0x2e8), &stack_context, &stack_64,
+                       flag_var, (ulonglong)render_mode << 0x20, CONCAT44(param_val, 0xf));
+      
+      if (param_1 == *(uint *)(*g_engine_context + 0x1ca0)) {
+        update_render_state(&stack_text_x, 2);
       }
     }
+    
     if ((param_2 >> 9 & 1) == 0) {
-      if ((char)uStack_fc == '\0') {
-        uVar13 = 1;
-        if (cVar14 != '\0') {
-          uVar13 = 3;
+      if ((char)stack_32_2 == '\0') {
+        param_64 = 1;
+        
+        if (char_flag != '\0') {
+          param_64 = 3;
         }
-        FUN_180122c80(CONCAT44(*(float *)(lVar3 + 0x19f8) * 0.15 + fVar28 + fVar2,fVar1 + fVar26),
-                      uVar13,0x3f333333);
+        
+        render_text_shadow(CONCAT44(*(float *)(context_ptr + 0x19f8) * 0.15 + stack_text_y + height, width + stack_text_x),
+                          param_64, 0x3f333333);
       }
     }
     else {
-      FUN_180122e80(CONCAT44(*(float *)(lVar3 + 0x19f8) * 0.5 + fVar28 + fVar2,fVar21 * 0.5 + fVar26
-                            ));
+      render_text_outline(CONCAT44(*(float *)(context_ptr + 0x19f8) * 0.5 + stack_text_y + height, width * 0.5 + stack_text_x));
     }
-    if (*(char *)(lVar3 + 0x2e38) != '\0') {
-      FUN_18013c800(&fStack_118,&UNK_180a063cc,0);
+    
+    if (*(char *)(context_ptr + 0x2e38) != '\0') {
+      render_text_with_effects(&stack_width, &g_default_text_color, 0);
     }
-    FUN_180122320(CONCAT44(fStack_114,fStack_118),param_3,param_4,0);
+    
+    render_text_to_buffer(CONCAT44(stack_height, stack_width), param_3, param_4, 0);
   }
   else {
-    FUN_180122960(CONCAT44(fStack_d4,fStack_d8),CONCAT44(fStack_cc,fStack_d0),uVar8,1,
-                  CONCAT44(uVar20,*(undefined4 *)(lVar3 + 0x1664)));
-    if (param_1 == *(uint *)(_DAT_180c8a9b0 + 0x1ca0)) {
-      FUN_1801230e0(&fStack_d8,2);
+    render_text_quad(CONCAT44(stack_text_y, stack_text_x), CONCAT44(stack_text_height, stack_text_width), flag_var, 1,
+                     CONCAT44(render_mode, *(undefined4 *)(context_ptr + 0x1664)));
+    
+    if (param_1 == *(uint *)(*g_engine_context + 0x1ca0)) {
+      update_render_state(&stack_text_x, 2);
     }
-    uVar13 = 1;
-    if (cVar14 != '\0') {
-      uVar13 = 3;
+    
+    param_64 = 1;
+    
+    if (char_flag != '\0') {
+      param_64 = 3;
     }
-    FUN_180122c80(CONCAT44(fVar24,fVar1 + fVar26),uVar13,0x3f800000);
-    lVar10 = _DAT_180c8a9b0;
-    if (*(char *)(lVar3 + 0x2e38) == '\0') {
-      uStack_108 = 0;
+    
+    render_text_shadow(CONCAT44(text_height, width + stack_text_x), param_64, 0x3f800000);
+    long_ptr = *g_engine_context;
+    
+    if (*(char *)(context_ptr + 0x2e38) == '\0') {
+      stack_64 = 0;
+      
       if (param_4 == (char *)0x0) {
         param_4 = (char *)0xffffffffffffffff;
       }
-      pcVar16 = param_3;
+      
+      text_ptr = param_3;
+      
       if (param_3 < param_4) {
-        while (*pcVar16 != '\0') {
-          if (((*pcVar16 == '#') && (pcVar16[1] == '#')) ||
-             (pcVar16 = pcVar16 + 1, param_4 <= pcVar16)) break;
+        while (*text_ptr != '\0') {
+          if (((*text_ptr == '#') && (text_ptr[1] == '#')) ||
+             (text_ptr = text_ptr + 1, param_4 <= text_ptr)) break;
         }
       }
-      if (((int)pcVar16 != (int)param_3) &&
-         (FUN_1801224c0(*(undefined8 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x2e8),&fStack_118,
-                        &fStack_d0,param_3,pcVar16,&fStack_e8,&uStack_108,0),
-         *(char *)(lVar10 + 0x2e38) != '\0')) {
-        FUN_18013c800(&fStack_118,param_3,pcVar16);
+      
+      if (((int)text_ptr != (int)param_3) &&
+         (render_text_segment(*(undefined8 *)(*(longlong *)(*g_engine_context + 0x1af8) + 0x2e8), &stack_width,
+                              &stack_text_width, param_3, text_ptr, &stack_offset_y, &stack_64, 0),
+                              *(char *)(long_ptr + 0x2e38) != '\0')) {
+        render_text_with_effects(&stack_width, param_3, text_ptr);
       }
     }
     else {
-      uStack_100 = CONCAT13(uStack_100._3_1_,0x2323);
-      uStack_fc = 0x23230a;
-      FUN_18013c800(&fStack_118,&uStack_fc,(longlong)&uStack_fc + 3);
-      lVar3 = _DAT_180c8a9b0;
-      uStack_108 = 0;
+      stack_32_1 = CONCAT13(stack_32_1._3_1_, 0x2323);
+      stack_32_2 = 0x23230a;
+      render_text_with_effects(&stack_width, &stack_32_2, (longlong)&stack_32_2 + 3);
+      context_ptr = *g_engine_context;
+      stack_64 = 0;
+      
       if (param_4 == (char *)0x0) {
         param_4 = (char *)0xffffffffffffffff;
       }
-      pcVar16 = param_3;
+      
+      text_ptr = param_3;
+      
       if (param_3 < param_4) {
         do {
-          if ((*pcVar16 == '\0') || ((*pcVar16 == '#' && (pcVar16[1] == '#')))) break;
-          pcVar16 = pcVar16 + 1;
-        } while (pcVar16 < param_4);
+          if ((*text_ptr == '\0') || ((*text_ptr == '#' && (text_ptr[1] == '#')))) break;
+          text_ptr = text_ptr + 1;
+        } while (text_ptr < param_4);
       }
-      if (((int)pcVar16 != (int)param_3) &&
-         (FUN_1801224c0(*(undefined8 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x2e8),&fStack_118,
-                        &fStack_d0,param_3,pcVar16,&fStack_e8,&uStack_108,0),
-         *(char *)(lVar3 + 0x2e38) != '\0')) {
-        FUN_18013c800(&fStack_118,param_3,pcVar16);
+      
+      if (((int)text_ptr != (int)param_3) &&
+         (render_text_segment(*(undefined8 *)(*(longlong)(*g_engine_context + 0x1af8) + 0x2e8), &stack_width,
+                              &stack_text_width, param_3, text_ptr, &stack_offset_y, &stack_64, 0),
+                              *(char *)(context_ptr + 0x2e38) != '\0')) {
+        render_text_with_effects(&stack_width, param_3, text_ptr);
       }
-      FUN_18013c800(&fStack_118,(longlong)&uStack_100 + 1,(longlong)&uStack_100 + 3);
+      
+      render_text_with_effects(&stack_width, (longlong)&stack_32_1 + 1, (longlong)&stack_32_1 + 3);
     }
   }
-joined_r0x000180119648:
-  if ((cVar14 != '\0') && ((param_2 & 8) == 0)) {
-    FUN_1801196d0(param_1);
+  
+render_complete:
+  if ((result != '\0') && ((param_2 & 8) == 0)) {
+    cleanup_render_state(param_1);
   }
-  return uVar15;
+  
+  return result;
 }
 
+// 函数声明（简化实现）
+void setup_render_context(void);
+ulonglong setup_texture_rendering(undefined8 param_1, uint param_2, int param_3);
+void update_texture_state(undefined8 param_1, uint param_2, byte param_3);
+int allocate_buffer(longlong param_1, int param_2);
+uint get_texture_id(undefined8 param_1, int param_2, undefined4 param_3);
+void calculate_text_dimensions(float *param_1, float *param_2, float param_3, longlong param_4, undefined8 param_5, char *param_6, char *param_7, int param_8);
+void apply_text_transform(float *param_1);
+uint get_render_transform(float *param_1);
+char setup_render_parameters(float *param_1, uint param_2, int param_3);
+char execute_render_pipeline(float *param_1, uint param_2, char *param_3, char *param_4, undefined8 param_5);
+char validate_texture_coordinates(float *param_1, longlong *param_2);
+void flush_render_buffer(void);
+void render_to_screen(undefined8 param_1, longlong *param_2, longlong *param_3, uint param_4, ulonglong param_5, undefined8 param_6);
+void update_render_state(float *param_1, int param_2);
+void render_text_shadow(undefined8 param_1, uint param_2, uint param_3);
+void render_text_outline(undefined8 param_1);
+void render_text_with_effects(float *param_1, void *param_2, int param_3);
+void render_text_to_buffer(undefined8 param_1, char *param_2, char *param_3, int param_4);
+void render_text_quad(undefined8 param_1, undefined8 param_2, uint param_3, int param_4, undefined8 param_5);
+char render_text_segment(undefined8 param_1, float *param_2, float *param_3, char *param_4, char *param_5, float *param_6, longlong *param_7, int param_8);
+void cleanup_render_state(uint param_1);
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+// 全局常量
+undefined8 g_default_text_color;  // 默认文本颜色
