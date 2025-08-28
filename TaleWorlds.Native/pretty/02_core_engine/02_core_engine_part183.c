@@ -14,10 +14,15 @@
 // 7. initialize_data_buffer - 数据缓冲区初始化
 // 8. process_data_type_conversion - 数据类型转换处理
 
-// 函数: void initialize_data_pointers(undefined8 *data_structure)
-// 功能: 初始化数据结构指针，设置默认值和引用关系
-// 原始实现：FUN_180168ab0
-// 简化实现：数据指针初始化函数
+/**
+ * 初始化数据结构指针
+ * 主要功能：设置数据结构的指针指向默认对象
+ * 
+ * 原始实现：FUN_180168ab0
+ * 简化实现：数据指针初始化函数
+ * 
+ * @param data_structure 数据结构指针数组
+ */
 void initialize_data_pointers(undefined8 *data_structure)
 
 {
@@ -30,12 +35,19 @@ void initialize_data_pointers(undefined8 *data_structure)
 
 
 
-// 全局变量重叠警告：以下函数使用的全局变量可能与较小符号重叠
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: longlong copy_data_structure(longlong dest_ptr, longlong src_ptr)
-// 功能: 复制数据结构，包括内存分配、数据拷贝和引用管理
-// 原始实现：FUN_180168af0
-// 简化实现：数据结构复制函数
+/**
+ * 复制数据结构
+ * 主要功能：复制数据结构，包括内存分配、数据拷贝和引用管理
+ * 
+ * 原始实现：FUN_180168af0
+ * 简化实现：数据结构复制函数
+ * 
+ * @param dest_ptr 目标数据结构指针
+ * @param src_ptr 源数据结构指针
+ * @return 目标数据结构指针
+ */
 longlong copy_data_structure(longlong dest_ptr, longlong src_ptr)
 
 {
@@ -51,43 +63,185 @@ longlong copy_data_structure(longlong dest_ptr, longlong src_ptr)
   initialize_memory_manager();
   
   // 计算第一块数据区域的大小和元素数量
-  size_calc = calculate_data_region_size(src_ptr + 0x28, src_ptr + 0x20);
-  element_count = calculate_element_count(size_calc);
-  buffer_ptr = 0;
+  size_calc = *(longlong *)(src_ptr + 0x28) - *(longlong *)(src_ptr + 0x20);
+  size_calc = size_calc / 0x26 + (size_calc >> 0x3f);
+  element_count = 0;
+  size_calc = (size_calc >> 2) - (size_calc >> 0x3f);
   
   // 获取元素标志并设置到目标结构
   element_flags = *(uint *)(src_ptr + 0x38);
   *(uint *)(dest_ptr + 0x38) = element_flags;
+  buffer_ptr = element_count;
   
   // 分配内存并初始化数据块
-  if (element_count != 0) {
-    buffer_ptr = allocate_data_block(MEMORY_POOL_HANDLE, element_count * 0x98, element_flags & 0xff);
+  if (size_calc != 0) {
+    buffer_ptr = allocate_data_block(MEMORY_POOL_HANDLE, size_calc * 0x98, element_flags & 0xff);
   }
   
   // 设置目标数据结构的指针
-  setup_data_pointers(dest_ptr, buffer_ptr, element_count);
+  *(longlong *)(dest_ptr + 0x20) = buffer_ptr;
+  *(longlong *)(dest_ptr + 0x28) = buffer_ptr;
+  *(longlong *)(dest_ptr + 0x30) = size_calc * 0x98 + buffer_ptr;
   
   // 复制数据内容
   data_block = *(undefined8 **)(dest_ptr + 0x20);
-  copy_data_content(data_block, src_ptr, dest_ptr);
+  buffer_ptr = *(longlong *)(src_ptr + 0x28);
+  if (*(longlong *)(src_ptr + 0x20) != buffer_ptr) {
+    size_calc = *(longlong *)(src_ptr + 0x20) - (longlong)data_block;
+    do {
+      *data_block = &DEFAULT_OBJECT_PTR;
+      data_block[1] = 0;
+      *(undefined4 *)(data_block + 2) = 0;
+      *data_block = &CLEANUP_CONTEXT;
+      data_block[1] = data_block + 3;
+      *(undefined4 *)(data_block + 2) = 0;
+      *(undefined1 *)(data_block + 3) = 0;
+      *(undefined4 *)(data_block + 2) = *(undefined4 *)(size_calc + 0x10 + (longlong)data_block);
+      element_data = *(undefined **)(size_calc + 8 + (longlong)data_block);
+      string_ptr = &DEFAULT_STRING_DATA;
+      if (element_data != (undefined *)0x0) {
+        string_ptr = element_data;
+      }
+      strcpy_s(data_block[1], 0x80, string_ptr);
+      data_block = data_block + 0x13;
+    } while (size_calc + (longlong)data_block != buffer_ptr);
+  }
   
-  // 复制基础属性
-  copy_basic_attributes(dest_ptr, src_ptr);
+  *(undefined8 **)(dest_ptr + 0x28) = data_block;
+  copy_basic_attributes(dest_ptr + 0x40, src_ptr + 0x40);
+  *(undefined1 *)(dest_ptr + 0xd8) = *(undefined1 *)(src_ptr + 0xd8);
+  *(undefined4 *)(dest_ptr + 0xdc) = *(undefined4 *)(src_ptr + 0xdc);
+  copy_basic_attributes(dest_ptr + 0xe0, src_ptr + 0xe0);
   
   // 处理第二块数据区域
-  process_second_data_region(dest_ptr, src_ptr);
+  buffer_ptr = *(longlong *)(src_ptr + 0x180) - *(longlong *)(src_ptr + 0x178);
+  buffer_ptr = buffer_ptr / 0x26 + (buffer_ptr >> 0x3f);
+  size_calc = (buffer_ptr >> 2) - (buffer_ptr >> 0x3f);
+  element_flags = *(uint *)(src_ptr + 400);
+  *(uint *)(dest_ptr + 400) = element_flags;
+  buffer_ptr = element_count;
+  if (size_calc != 0) {
+    buffer_ptr = allocate_data_block(MEMORY_POOL_HANDLE, size_calc * 0x98, element_flags & 0xff);
+  }
+  *(longlong *)(dest_ptr + 0x178) = buffer_ptr;
+  *(longlong *)(dest_ptr + 0x180) = buffer_ptr;
+  *(longlong *)(dest_ptr + 0x188) = size_calc * 0x98 + buffer_ptr;
+  
+  data_block = *(undefined8 **)(dest_ptr + 0x178);
+  buffer_ptr = *(longlong *)(src_ptr + 0x180);
+  if (*(longlong *)(src_ptr + 0x178) != buffer_ptr) {
+    size_calc = *(longlong *)(src_ptr + 0x178) - (longlong)data_block;
+    do {
+      *data_block = &DEFAULT_OBJECT_PTR;
+      data_block[1] = 0;
+      *(undefined4 *)(data_block + 2) = 0;
+      *data_block = &CLEANUP_CONTEXT;
+      data_block[1] = data_block + 3;
+      *(undefined4 *)(data_block + 2) = 0;
+      *(undefined1 *)(data_block + 3) = 0;
+      *(undefined4 *)(data_block + 2) = *(undefined4 *)(size_calc + 0x10 + (longlong)data_block);
+      element_data = *(undefined **)(size_calc + 8 + (longlong)data_block);
+      string_ptr = &DEFAULT_STRING_DATA;
+      if (element_data != (undefined *)0x0) {
+        string_ptr = element_data;
+      }
+      strcpy_s(data_block[1], 0x80, string_ptr);
+      data_block = data_block + 0x13;
+    } while (size_calc + (longlong)data_block != buffer_ptr);
+  }
+  
+  *(undefined8 **)(dest_ptr + 0x180) = data_block;
+  process_data_array(dest_ptr + 0x198, src_ptr + 0x198, 0x98, 5, copy_basic_attributes, cleanup_function);
   
   // 处理第三块数据区域
-  process_third_data_region(dest_ptr, src_ptr);
+  buffer_ptr = *(longlong *)(src_ptr + 0x498) - *(longlong *)(src_ptr + 0x490);
+  buffer_ptr = buffer_ptr / 0x26 + (buffer_ptr >> 0x3f);
+  size_calc = (buffer_ptr >> 2) - (buffer_ptr >> 0x3f);
+  element_flags = *(uint *)(src_ptr + 0x4a8);
+  *(uint *)(dest_ptr + 0x4a8) = element_flags;
+  buffer_ptr = element_count;
+  if (size_calc != 0) {
+    buffer_ptr = allocate_data_block(MEMORY_POOL_HANDLE, size_calc * 0x98, element_flags & 0xff);
+  }
+  *(longlong *)(dest_ptr + 0x490) = buffer_ptr;
+  *(longlong *)(dest_ptr + 0x498) = buffer_ptr;
+  *(longlong *)(dest_ptr + 0x4a0) = size_calc * 0x98 + buffer_ptr;
   
-  // 复制其他数据块
-  copy_additional_data_blocks(dest_ptr, src_ptr);
+  data_block = *(undefined8 **)(dest_ptr + 0x490);
+  buffer_ptr = *(longlong *)(src_ptr + 0x498);
+  if (*(longlong *)(src_ptr + 0x490) != buffer_ptr) {
+    size_calc = *(longlong *)(src_ptr + 0x490) - (longlong)data_block;
+    do {
+      *data_block = &DEFAULT_OBJECT_PTR;
+      data_block[1] = 0;
+      *(undefined4 *)(data_block + 2) = 0;
+      *data_block = &CLEANUP_CONTEXT;
+      data_block[1] = data_block + 3;
+      *(undefined4 *)(data_block + 2) = 0;
+      *(undefined1 *)(data_block + 3) = 0;
+      *(undefined4 *)(data_block + 2) = *(undefined4 *)(size_calc + 0x10 + (longlong)data_block);
+      element_data = *(undefined **)(size_calc + 8 + (longlong)data_block);
+      string_ptr = &DEFAULT_STRING_DATA;
+      if (element_data != (undefined *)0x0) {
+        string_ptr = element_data;
+      }
+      strcpy_s(data_block[1], 0x80, string_ptr);
+      data_block = data_block + 0x13;
+    } while (size_calc + (longlong)data_block != buffer_ptr);
+  }
+  
+  *(undefined8 **)(dest_ptr + 0x498) = data_block;
+  process_data_array(dest_ptr + 0x4b0, src_ptr + 0x4b0, 0x58, 0x10, process_extended_data, cleanup_function);
+  process_data_array(dest_ptr + 0xa30, src_ptr + 0xa30, 0x98, 9, copy_basic_attributes, cleanup_function);
+  copy_basic_attributes(dest_ptr + 0xf88, src_ptr + 0xf88);
+  copy_basic_attributes(dest_ptr + 0x1020, src_ptr + 0x1020);
   
   // 处理第四块数据区域
-  process_fourth_data_region(dest_ptr, src_ptr);
+  buffer_ptr = *(longlong *)(src_ptr + 0x10c0) - *(longlong *)(src_ptr + 0x10b8);
+  buffer_ptr = buffer_ptr / 0x26 + (buffer_ptr >> 0x3f);
+  buffer_ptr = (buffer_ptr >> 2) - (buffer_ptr >> 0x3f);
+  element_flags = *(uint *)(src_ptr + 0x10d0);
+  *(uint *)(dest_ptr + 0x10d0) = element_flags;
+  if (buffer_ptr != 0) {
+    element_count = allocate_data_block(MEMORY_POOL_HANDLE, buffer_ptr * 0x98, element_flags & 0xff);
+  }
+  *(longlong *)(dest_ptr + 0x10b8) = element_count;
+  *(longlong *)(dest_ptr + 0x10c0) = element_count;
+  *(longlong *)(dest_ptr + 0x10c8) = buffer_ptr * 0x98 + element_count;
   
-  // 设置最终状态和标志
-  setup_final_state(dest_ptr, src_ptr);
+  data_block = *(undefined8 **)(dest_ptr + 0x10b8);
+  buffer_ptr = *(longlong *)(src_ptr + 0x10c0);
+  if (*(longlong *)(src_ptr + 0x10b8) != buffer_ptr) {
+    element_count = *(longlong *)(src_ptr + 0x10b8) - (longlong)data_block;
+    do {
+      *data_block = &DEFAULT_OBJECT_PTR;
+      data_block[1] = 0;
+      *(undefined4 *)(data_block + 2) = 0;
+      *data_block = &CLEANUP_CONTEXT;
+      data_block[1] = data_block + 3;
+      *(undefined4 *)(data_block + 2) = 0;
+      *(undefined1 *)(data_block + 3) = 0;
+      *(undefined4 *)(data_block + 2) = *(undefined4 *)(element_count + 0x10 + (longlong)data_block);
+      element_data = *(undefined **)(element_count + 8 + (longlong)data_block);
+      string_ptr = &DEFAULT_STRING_DATA;
+      if (element_data != (undefined *)0x0) {
+        string_ptr = element_data;
+      }
+      strcpy_s(data_block[1], 0x80, string_ptr);
+      data_block = data_block + 0x13;
+    } while (element_count + (longlong)data_block != buffer_ptr);
+  }
+  
+  *(undefined8 **)(dest_ptr + 0x10c0) = data_block;
+  initialize_memory_manager(dest_ptr + 0x10d8, src_ptr + 0x10d8);
+  *(undefined1 *)(dest_ptr + 0x10f8) = *(undefined1 *)(src_ptr + 0x10f8);
+  *(undefined1 *)(dest_ptr + 0x10f9) = *(undefined1 *)(src_ptr + 0x10f9);
+  copy_basic_attributes(dest_ptr + 0x1100, src_ptr + 0x1100);
+  copy_basic_attributes(dest_ptr + 0x1198, src_ptr + 0x1198);
+  copy_basic_attributes(dest_ptr + 0x1230, src_ptr + 0x1230);
+  copy_basic_attributes(dest_ptr + 0x12c8, src_ptr + 0x12c8);
+  copy_basic_attributes(dest_ptr + 0x1360, src_ptr + 0x1360);
+  copy_basic_attributes(dest_ptr + 0x13f8, src_ptr + 0x13f8);
   
   return dest_ptr;
 }
@@ -239,13 +393,20 @@ longlong * process_resource_data(undefined8 resource_type, longlong *output_buff
 
 
 
-// 警告：移除了不可达的代码块 (ram,0x000180169be0)
-// 全局变量重叠警告：以下函数使用的全局变量可能与较小符号重叠
+// WARNING: Removing unreachable block (ram,0x000180169be0)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: longlong validate_string_format(longlong *validator, longlong input_string)
-// 功能: 验证字符串格式，检查分隔符和有效性
-// 原始实现：FUN_180169350
-// 简化实现：字符串格式验证函数
+/**
+ * 验证字符串格式
+ * 主要功能：验证字符串格式，检查分隔符和有效性
+ * 
+ * 原始实现：FUN_180169350
+ * 简化实现：字符串格式验证函数
+ * 
+ * @param validator 验证器指针
+ * @param input_string 输入字符串指针
+ * @return 验证结果
+ */
 longlong validate_string_format(longlong *validator, longlong input_string)
 
 {
@@ -969,6 +1130,7 @@ process_data_type_conversion(longlong *input_data, undefined8 *output_buffer, un
 
 // 内存管理函数
 void initialize_memory_manager(void);
+void initialize_memory_manager(longlong *dest, longlong *src);
 longlong allocate_data_block(longlong pool_id, longlong size, char flags);
 void setup_data_pointers(longlong *dest, longlong buffer_ptr, longlong element_count);
 void copy_data_content(undefined8 *data_block, longlong *src, longlong *dest);
@@ -980,6 +1142,9 @@ void process_fourth_data_region(longlong *dest, longlong *src);
 void setup_final_state(longlong *dest, longlong *src);
 longlong calculate_data_region_size(longlong *end_ptr, longlong *start_ptr);
 longlong calculate_element_count(longlong size_calc);
+void process_data_array(longlong *dest, longlong *src, longlong size, longlong count, void *copy_func, void *cleanup_func);
+void process_extended_data(longlong *dest, longlong *src);
+void cleanup_function(longlong *dest, longlong *src);
 
 // 资源处理函数
 void initialize_processing_context(undefined **context, longlong input, longlong param3, 

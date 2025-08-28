@@ -55,46 +55,46 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
   *write_ptr = 2;
   buffer[1] = buffer[1] + 4;
   serialize_material_data(&RENDER_MATERIAL_TABLE,*(uint *)(render_object + 0x18),buffer);
-  puVar11 = (undefined4 *)param_2[1];
-  uVar12 = *(uint *)(param_1 + 0x1c);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  write_ptr = (uint *)buffer[1];
+  mask_value = *(uint *)(render_object + 0x1c);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer,(longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  uVar16 = 0;
-  *puVar11 = 0;
-  lVar9 = *param_2;
-  lVar7 = param_2[1] + 4;
-  param_2[1] = lVar7;
-  uVar8 = uVar16;
-  if (lVar9 != 0) {
-    uVar8 = lVar7 - lVar9;
+  zero_counter = 0;
+  *write_ptr = 0;
+  buffer_start = *buffer;
+  offset_value = buffer[1] + 4;
+  buffer[1] = offset_value;
+  index_counter = zero_counter;
+  if (buffer_start != 0) {
+    index_counter = offset_value - buffer_start;
   }
-  if ((ulonglong)((lVar9 - lVar7) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(lVar7 - lVar9) + 4);
-    lVar7 = param_2[1];
+  if ((ulonglong)((buffer_start - offset_value) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer,(offset_value - buffer_start) + 4);
+    offset_value = buffer[1];
   }
-  param_2[1] = lVar7 + 4;
-  puVar14 = (undefined8 *)&UNK_18098e1c0;
-  uVar13 = uVar16;
+  buffer[1] = offset_value + 4;
+  entry_ptr = (undefined8 *)&RENDER_FLAG_TABLE;
+  entry_count = zero_counter;
   do {
-    if ((*(uint *)(puVar14 + 1) & uVar12) != 0) {
-      FUN_180639de0(param_2,*puVar14);
-      uVar13 = (ulonglong)((int)uVar13 + 1);
+    if ((*(uint *)(entry_ptr + 1) & mask_value) != 0) {
+      write_buffer_entry(buffer,*entry_ptr);
+      entry_count = (ulonglong)((int)entry_count + 1);
     }
-    puVar14 = puVar14 + 2;
-  } while ((longlong)puVar14 < 0x18098e220);
-  *(int *)(uVar8 + *param_2) = (int)uVar13;
-  pcVar5 = (char *)0x180bf8ff8;
-  uVar8 = uVar16;
+    entry_ptr = entry_ptr + 2;
+  } while ((longlong)entry_ptr < 0x18098e220);
+  *(int *)(index_counter + *buffer) = (int)entry_count;
+  char_ptr = (char *)0x180bf8ff8;
+  index_counter = zero_counter;
   do {
-    if (*pcVar5 == *(char *)(param_1 + 0x134)) {
-      FUN_180639de0(param_2,*(undefined8 *)((longlong)(int)uVar8 * 0x10 + 0x180bf8ff0));
+    if (*char_ptr == *(char *)(render_object + 0x134)) {
+      write_buffer_entry(buffer,*(undefined8 *)((longlong)(int)index_counter * 0x10 + 0x180bf8ff0));
       break;
     }
-    uVar8 = (ulonglong)((int)uVar8 + 1);
-    pcVar5 = pcVar5 + 0x10;
-  } while ((longlong)pcVar5 < 0x180bf90b8);
+    index_counter = (ulonglong)((int)index_counter + 1);
+    char_ptr = char_ptr + 0x10;
+  } while ((longlong)char_ptr < 0x180bf90b8);
   puVar11 = (undefined4 *)param_2[1];
   if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 0x11) {
     FUN_180639bf0(param_2,(longlong)puVar11 + (0x10 - *param_2));

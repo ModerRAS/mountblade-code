@@ -1,1148 +1,1004 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part001.c - 179 个函数
-
-#include "TaleWorlds.Native.Split.h"
-
-// 04_ui_system.c - 3090 个函数
-
-
-// 函数: undefined FUN_180651d20;
-undefined FUN_180651d20;
-undefined UNK_180180860;
-undefined UNK_1801808a0;
-undefined UNK_1801808b0;
-undefined UNK_1801808f0;
-undefined UNK_180180900;
-undefined UNK_18021cb40;
-undefined UNK_180941b00;
-undefined UNK_180a09c50;
-undefined UNK_180a09cf0;
-undefined UNK_180a0f0b8;
-undefined UNK_180a3dca0;
-undefined UNK_180a3dcb0;
-undefined UNK_180a3e030;
-
-
-// 函数: undefined FUN_180662260;
-undefined FUN_180662260;
-
-
-// 函数: undefined FUN_1806500b0;
-undefined FUN_1806500b0;
-undefined UNK_180a3c5a0;
-undefined UNK_180a3c6f8;
-undefined UNK_180a3c710;
-undefined UNK_180a3c9b0;
-undefined UNK_180a3c948;
-undefined UNK_180a3c968;
-undefined1 DAT_180c95fea;
-char DAT_180c8eced;
-undefined UNK_180a3ca20;
-undefined UNK_180a3ca70;
-undefined UNK_180a3cac0;
-undefined DAT_180a12e00;
-undefined UNK_180a12e10;
-undefined UNK_180a0794c;
-undefined UNK_180a3cb70;
-undefined UNK_180a3cb58;
-undefined UNK_180a3cb00;
-undefined UNK_180a3cad8;
-undefined UNK_180a3cb48;
-undefined UNK_180a3cb40;
-undefined UNK_180a063a4;
-char DAT_180c95fea;
-undefined UNK_180a3cbc8;
-undefined UNK_180a3cc28;
-undefined UNK_180a3cbe0;
-undefined UNK_180a3cc48;
-undefined UNK_180a3c9ec;
-undefined UNK_180a3cc0c;
-undefined UNK_180a3cc1c;
-undefined UNK_180a3c9f8;
-undefined UNK_180a3ccc8;
-undefined UNK_180a3cca0;
-undefined UNK_180a03a90;
-undefined UNK_180a10118;
-undefined UNK_180a12c70;
-undefined UNK_180a12c90;
-undefined UNK_180a12cb0;
-undefined UNK_180a12cd0;
-undefined UNK_180a12d20;
-undefined DAT_180a2fce0;
-undefined UNK_180a341b0;
-undefined UNK_180a3cc58;
-undefined UNK_180a3cc70;
-undefined UNK_180a3cc80;
-undefined UNK_180a3cc90;
-undefined UNK_180a3ccdc;
-undefined UNK_180a3ccf8;
-undefined UNK_180a3cd08;
-undefined UNK_180a3cd18;
-undefined UNK_180a3cd30;
-undefined UNK_180a3cd40;
-undefined UNK_180a3cd50;
-undefined UNK_180a3cd5c;
-undefined UNK_180a3cd68;
-undefined UNK_180a3cd80;
-undefined UNK_180a3cd98;
-undefined DAT_180a07230;
-undefined UNK_180a3ce28;
-undefined UNK_180a3cdf8;
-undefined UNK_180a3ce00;
-undefined UNK_180a3ce10;
-undefined UNK_1809fe5e8;
-undefined UNK_180a3d120;
-undefined UNK_180a3d168;
-undefined UNK_180a3d1a8;
-undefined UNK_180a3d220;
-undefined SUB_18063e940;
-uint UNK_00004000;
-undefined2 UNK_00004006;
-int UNK_00004018;
-undefined UNK_1809fb180;
-undefined UNK_1809fb1a0;
-undefined UNK_180a3d268;
-undefined UNK_180a3d290;
-undefined UNK_180a3d240;
-undefined UNK_180a3d2c0;
-undefined UNK_1809fb1e8;
-undefined UNK_1809fb1f8;
-undefined UNK_1809fb208;
-undefined UNK_1809fb228;
-undefined UNK_180a3d358;
-undefined UNK_180a3d2f8;
-undefined UNK_180a3d388;
-undefined UNK_1809fb280;
-undefined DAT_180c8ed78;
-undefined DAT_180bfbf1c;
-undefined DAT_180bfbf18;
-undefined UNK_180a3d710;
-char DAT_180c8f000;
-undefined DAT_180c8ed98;
-undefined DAT_180c8ed88;
-undefined DAT_180c8ed90;
-undefined DAT_180c8eda0;
-undefined DAT_180c8edb8;
-undefined DAT_180c8eda8;
-undefined DAT_180c8edb0;
-undefined DAT_180c8edc0;
-undefined DAT_180c8edd8;
-undefined DAT_180c8edc8;
-undefined DAT_180c8edd0;
-undefined DAT_180c8ede0;
-undefined DAT_180c8edf8;
-undefined DAT_180c8ede8;
-undefined DAT_180c8edf0;
-undefined DAT_180c8ee00;
-undefined DAT_180c8ee18;
-undefined DAT_180c8ee08;
-undefined DAT_180c8ee10;
-undefined DAT_180c8ee20;
-undefined DAT_180c8ee38;
-undefined DAT_180c8ee28;
-undefined DAT_180c8ee30;
-undefined DAT_180c8ee60;
-undefined DAT_180c8ee78;
-undefined DAT_180c8ee68;
-undefined DAT_180c8ee70;
-undefined DAT_180c8ee40;
-undefined DAT_180c8ee58;
-undefined DAT_180c8ee48;
-undefined DAT_180c8ee50;
-undefined DAT_180c8ee80;
-undefined DAT_180c8ee98;
-undefined DAT_180c8ee88;
-undefined DAT_180c8ee90;
-undefined DAT_180c8ef00;
-undefined DAT_180c8ef18;
-undefined DAT_180c8ef08;
-undefined DAT_180c8ef10;
-undefined DAT_180c8ef20;
-undefined DAT_180c8ef38;
-undefined DAT_180c8ef28;
-undefined DAT_180c8ef30;
-undefined DAT_180c8eea0;
-undefined DAT_180c8eeb8;
-undefined DAT_180c8eea8;
-undefined DAT_180c8eeb0;
-undefined DAT_180c8ef40;
-undefined DAT_180c8ef48;
-undefined DAT_180c8ef50;
-undefined DAT_180c8ef58;
-undefined DAT_180c8ef60;
-undefined DAT_180c8ef68;
-undefined DAT_180c8ef70;
-undefined DAT_180c8ef78;
-undefined DAT_180c8ef80;
-undefined DAT_180c8ef88;
-undefined DAT_180c8ef90;
-undefined DAT_180c8ef98;
-undefined DAT_180c8efa0;
-undefined DAT_180c8efa8;
-undefined DAT_180c8efb0;
-undefined DAT_180c8efb8;
-undefined UNK_180a156a4;
-undefined UNK_180a3d3cc;
-undefined UNK_180a3d3dc;
-undefined UNK_180a3d3e0;
-undefined UNK_180a3d3f0;
-undefined UNK_180a3d3f8;
-
-
-// 函数: undefined FUN_180655f50;
-undefined FUN_180655f50;
-
-
-// 函数: undefined FUN_180656020;
-undefined FUN_180656020;
-undefined DAT_180bf3ff4;
-
-
-// 函数: undefined FUN_180656110;
-undefined FUN_180656110;
-undefined DAT_180c8ecfc;
-
-
-// 函数: undefined FUN_180656160;
-undefined FUN_180656160;
-
-
-// 函数: undefined FUN_1806561d0;
-undefined FUN_1806561d0;
-undefined UNK_180046680;
-undefined UNK_180084650;
-
-
-// 函数: undefined FUN_180656340;
-undefined FUN_180656340;
-undefined UNK_180150380;
-
-
-// 函数: undefined FUN_1806563a0;
-undefined FUN_1806563a0;
-undefined UNK_1803f60a0;
-
-
-// 函数: undefined FUN_180656410;
-undefined FUN_180656410;
-undefined UNK_180655e50;
-undefined UNK_180655f30;
-
-
-// 函数: undefined FUN_1806565a0;
-undefined FUN_1806565a0;
-undefined UNK_180656100;
-
-
-// 函数: undefined FUN_180656610;
-undefined FUN_180656610;
-undefined UNK_1806561b0;
-
-
-// 函数: undefined FUN_1806566c0;
-undefined FUN_1806566c0;
-undefined UNK_1806561c0;
-undefined UNK_180656320;
-undefined UNK_180656330;
-undefined UNK_180656700;
-undefined UNK_180a3dc30;
-undefined UNK_180a3dc58;
-
-
-// 函数: undefined FUN_1806552e0;
-undefined FUN_1806552e0;
-
-
-// 函数: undefined FUN_1806555f0;
-undefined FUN_1806555f0;
-
-
-// 函数: undefined FUN_180655e60;
-undefined FUN_180655e60;
-undefined UNK_180a16f70;
-undefined UNK_180a3dd38;
-undefined DAT_180c8f020;
-undefined1 DAT_180c8f020;
-undefined UNK_180a3dd80;
-undefined DAT_180c967c8;
-
-
-// 函数: undefined FUN_180653580;
-undefined FUN_180653580;
-
-
-// 函数: undefined FUN_1806535c0;
-undefined FUN_1806535c0;
-
-
-// 函数: undefined FUN_180653630;
-undefined FUN_180653630;
-
-
-// 函数: undefined FUN_180653670;
-undefined FUN_180653670;
-undefined DAT_180a3dda8;
-undefined DAT_180c91028;
-undefined UNK_180a3ddc0;
-undefined UNK_180a3deb8;
-undefined UNK_180a3e0b8;
-undefined UNK_180a3e0d8;
-undefined UNK_180a3e0f0;
-undefined UNK_180a3e110;
-undefined UNK_180a3e128;
-undefined UNK_180a3e148;
-undefined UNK_180a3e150;
-undefined UNK_180a3e160;
-undefined UNK_180a3e178;
-undefined UNK_180a3e180;
-undefined UNK_180a3e1a0;
-undefined UNK_180a3e1b0;
-undefined UNK_180a3e1c8;
-undefined UNK_180a3e1f8;
-undefined UNK_180a3e210;
-undefined UNK_180a3e224;
-undefined UNK_180a3e230;
-undefined UNK_180a3e248;
-undefined UNK_180a3e260;
-undefined UNK_180a3e1e0;
-undefined UNK_180a3e1e8;
-undefined UNK_180a3e270;
-undefined UNK_180a3e280;
-undefined UNK_180a3e294;
-undefined UNK_180a3e2a0;
-undefined UNK_180a3e2b0;
-undefined UNK_180a3e2b8;
-undefined UNK_180a3e2c8;
-undefined UNK_180a3e2d8;
-undefined UNK_180a3e2e8;
-undefined UNK_180a3e300;
-undefined UNK_180a3e310;
-undefined UNK_180a3e378;
-undefined1 DAT_180c96808;
-undefined UNK_180a3e470;
-undefined UNK_180a3e408;
-undefined UNK_180a3e418;
-undefined DAT_180a3c248;
-undefined UNK_180a3e4a0;
-undefined UNK_180a3e4b8;
-undefined UNK_180a3e4c8;
-undefined UNK_180a3e4d8;
-undefined UNK_180a3e4e8;
-undefined UNK_180a3e500;
-undefined UNK_180a3e510;
-undefined UNK_180a3e588;
-char DAT_180d4913c;
-undefined UNK_180946540;
-undefined UNK_180946ae0;
-undefined UNK_180946af8;
-undefined UNK_180946b10;
-undefined DAT_180c0c1cc;
-undefined DAT_180c0c1c8;
-undefined DAT_180c0c1c0;
-undefined DAT_180d4a9b0;
-undefined DAT_180d4a9a8;
-undefined DAT_180d4a990;
-undefined DAT_180d4a9c8;
-undefined DAT_180d4a9c0;
-undefined DAT_180d4a9b8;
-undefined DAT_180d4a9a0;
-undefined DAT_180d4a998;
-undefined DAT_180d4a988;
-undefined DAT_180d4a980;
-undefined DAT_180d4a978;
-undefined DAT_180d4a970;
-undefined UNK_1800018c7;
-undefined UNK_180001b8d;
-undefined UNK_1800025f0;
-undefined UNK_1800028e4;
-undefined UNK_180002cb0;
-undefined UNK_180002d90;
-
-
-// 函数: undefined FUN_1806714a0;
-undefined FUN_1806714a0;
-
-
-// 函数: undefined FUN_1806718d0;
-undefined FUN_1806718d0;
-
-
-// 函数: undefined FUN_180671eb0;
-undefined FUN_180671eb0;
-
-
-// 函数: undefined FUN_1806721d0;
-undefined FUN_1806721d0;
-
-
-// 函数: undefined FUN_1806725c0;
-undefined FUN_1806725c0;
-
-
-// 函数: undefined FUN_180672a50;
-undefined FUN_180672a50;
-
-
-// 函数: undefined FUN_180672da0;
-undefined FUN_180672da0;
-
-
-// 函数: undefined FUN_180673220;
-undefined FUN_180673220;
-
-
-// 函数: undefined FUN_180673360;
-undefined FUN_180673360;
-
-
-// 函数: undefined FUN_180673850;
-undefined FUN_180673850;
-
-
-// 函数: undefined FUN_180673970;
-undefined FUN_180673970;
-
-
-// 函数: undefined FUN_180673e10;
-undefined FUN_180673e10;
-
-
-// 函数: undefined FUN_180673f50;
-undefined FUN_180673f50;
-
-
-// 函数: undefined FUN_180674040;
-undefined FUN_180674040;
-
-
-// 函数: undefined FUN_180674120;
-undefined FUN_180674120;
-
-
-// 函数: undefined FUN_1806742a0;
-undefined FUN_1806742a0;
-
-
-// 函数: undefined FUN_1806743e0;
-undefined FUN_1806743e0;
-
-
-// 函数: undefined FUN_1806744d0;
-undefined FUN_1806744d0;
-
-
-// 函数: undefined FUN_180674610;
-undefined FUN_180674610;
-undefined DAT_180c0c1dc;
-undefined DAT_180c0c1d8;
-undefined DAT_180c0c1d0;
-undefined DAT_180d4a758;
-undefined DAT_180d4a710;
-undefined DAT_180d4a6d0;
-undefined DAT_180d4a6a8;
-undefined DAT_180d4a950;
-undefined DAT_180d4a918;
-undefined DAT_180d4a890;
-undefined DAT_180d4a880;
-undefined DAT_180d4a868;
-undefined DAT_180d4a850;
-undefined DAT_180d4a838;
-undefined DAT_180d4a810;
-undefined DAT_180d4a7f8;
-undefined DAT_180d4a7d0;
-undefined DAT_180d4a7b8;
-undefined DAT_180d4a7a8;
-undefined DAT_180d4a798;
-undefined DAT_180d4a780;
-undefined DAT_180d4a748;
-undefined DAT_180d4a730;
-undefined DAT_180d4a718;
-undefined DAT_180d4a6f8;
-undefined DAT_180d4a8f8;
-undefined DAT_180d4a8e0;
-undefined DAT_180d4a8c8;
-undefined DAT_180d4a888;
-undefined DAT_180d4a848;
-undefined DAT_180d4a828;
-undefined DAT_180d4a808;
-undefined DAT_180d4a7f0;
-undefined DAT_180d4a790;
-undefined DAT_180d4a760;
-undefined DAT_180d4a728;
-undefined DAT_180d4a938;
-undefined DAT_180d4a8b8;
-undefined DAT_180d4a860;
-undefined DAT_180d4a800;
-undefined DAT_180d4a7c8;
-undefined DAT_180d4a768;
-undefined DAT_180d4a738;
-undefined DAT_180d4a720;
-undefined DAT_180d4a6e8;
-undefined DAT_180d4a6c8;
-undefined DAT_180d4a6c0;
-undefined DAT_180d4a6a0;
-undefined DAT_180d4a960;
-undefined DAT_180d4a940;
-undefined DAT_180d4a908;
-undefined DAT_180d4a8e8;
-undefined DAT_180d4a8a0;
-undefined DAT_180d4a878;
-undefined DAT_180d4a840;
-undefined DAT_180d4a818;
-undefined DAT_180d4a7d8;
-undefined DAT_180d4a7a0;
-undefined DAT_180d4a770;
-undefined DAT_180d4a6f0;
-undefined DAT_180d4a6d8;
-undefined DAT_180d4a6b0;
-undefined DAT_180d4a930;
-undefined DAT_180d4a900;
-undefined DAT_180d4a8d8;
-undefined DAT_180d4a8b0;
-undefined DAT_180d4a870;
-undefined DAT_180d4a830;
-undefined DAT_180d4a7e8;
-undefined DAT_180d4a7c0;
-undefined DAT_180d4a788;
-undefined DAT_180d4a740;
-undefined DAT_180d4a700;
-undefined DAT_180d4a6e0;
-undefined DAT_180d4a6b8;
-undefined DAT_180d4a968;
-undefined DAT_180d4a948;
-undefined DAT_180d4a920;
-undefined DAT_180d4a8f0;
-undefined DAT_180d4a8d0;
-undefined DAT_180d4a898;
-undefined DAT_180d4a858;
-undefined DAT_180d4a820;
-undefined DAT_180d4a7e0;
-undefined DAT_180d4a7b0;
-undefined DAT_180d4a778;
-undefined DAT_180d4a750;
-undefined DAT_180d4a708;
-undefined DAT_180d4a958;
-undefined DAT_180d4a928;
-undefined DAT_180d4a910;
-undefined DAT_180d4a8c0;
-undefined DAT_180d4a8a8;
-undefined UNK_180002e60;
-undefined UNK_180002ea0;
-undefined UNK_180002ee0;
-undefined UNK_180002f20;
-undefined UNK_180002f70;
-undefined UNK_180002fd0;
-undefined UNK_180003050;
-undefined UNK_180003110;
-undefined UNK_1800032a0;
-undefined UNK_180003300;
-undefined UNK_1800033b0;
-undefined UNK_180003430;
-undefined UNK_180003540;
-undefined UNK_1800035c0;
-undefined UNK_1800036c0;
-undefined UNK_180003880;
-undefined UNK_180003d80;
-undefined UNK_180003de0;
-undefined UNK_180003e90;
-undefined UNK_180003fa0;
-undefined UNK_180004300;
-undefined UNK_1800049d0;
-undefined UNK_180005080;
-undefined UNK_180005440;
-undefined UNK_1800057b0;
-undefined UNK_180005bc0;
-undefined UNK_180006190;
-undefined UNK_1800065d0;
-undefined UNK_180006945;
-undefined UNK_180006b22;
-undefined UNK_180006dcf;
-undefined UNK_180006f34;
-undefined UNK_180006ff0;
-undefined UNK_18000b3dd;
-undefined UNK_18000d630;
-undefined UNK_18000dbc6;
-undefined UNK_18000deb4;
-undefined UNK_18000e06e;
-undefined UNK_18000e39c;
-undefined UNK_18000e470;
-undefined UNK_18000e4e0;
-undefined UNK_18000e550;
-undefined UNK_18000e5e0;
-undefined UNK_18000e670;
-undefined UNK_18000e6e0;
-undefined UNK_18000e750;
-undefined UNK_18000e7c0;
-undefined UNK_18000e850;
-undefined UNK_18000e8e0;
-undefined UNK_18000f120;
-undefined UNK_180017300;
-undefined UNK_180679b80;
-undefined UNK_180679bb0;
-
-
-// 函数: undefined FUN_180674700;
-undefined FUN_180674700;
-
-
-// 函数: undefined FUN_180674930;
-undefined FUN_180674930;
-
-
-// 函数: undefined FUN_180674aa0;
-undefined FUN_180674aa0;
-
-
-// 函数: undefined FUN_180674d10;
-undefined FUN_180674d10;
-
-
-// 函数: undefined FUN_180674f40;
-undefined FUN_180674f40;
-
-
-// 函数: undefined FUN_1806750b0;
-undefined FUN_1806750b0;
-
-
-// 函数: undefined FUN_1806760f0;
-undefined FUN_1806760f0;
-
-
-// 函数: undefined FUN_180676320;
-undefined FUN_180676320;
-
-
-// 函数: undefined FUN_180676490;
-undefined FUN_180676490;
-
-
-// 函数: undefined FUN_180676700;
-undefined FUN_180676700;
-
-
-// 函数: undefined FUN_180676930;
-undefined FUN_180676930;
-
-
-// 函数: undefined FUN_180676aa0;
-undefined FUN_180676aa0;
-
-
-// 函数: undefined FUN_180677100;
-undefined FUN_180677100;
-
-
-// 函数: undefined FUN_180677190;
-undefined FUN_180677190;
-
-
-// 函数: undefined FUN_180677300;
-undefined FUN_180677300;
-
-
-// 函数: undefined FUN_180677530;
-undefined FUN_180677530;
-
-
-// 函数: undefined FUN_1806780c0;
-undefined FUN_1806780c0;
-
-
-// 函数: undefined FUN_1806782c0;
-undefined FUN_1806782c0;
-
-
-// 函数: undefined FUN_180678430;
-undefined FUN_180678430;
-
-
-// 函数: undefined FUN_180678540;
-undefined FUN_180678540;
-
-
-// 函数: undefined FUN_180678810;
-undefined FUN_180678810;
-
-
-// 函数: undefined FUN_1806789c0;
-undefined FUN_1806789c0;
-
-
-// 函数: undefined FUN_180678b10;
-undefined FUN_180678b10;
-
-
-// 函数: undefined FUN_180678bc0;
-undefined FUN_180678bc0;
-
-
-// 函数: undefined FUN_180678e20;
-undefined FUN_180678e20;
-
-
-// 函数: undefined FUN_180678ef0;
-undefined FUN_180678ef0;
-
-
-// 函数: undefined FUN_180678fc0;
-undefined FUN_180678fc0;
-
-
-// 函数: undefined FUN_1806790b0;
-undefined FUN_1806790b0;
-
-
-// 函数: undefined FUN_180679310;
-undefined FUN_180679310;
-
-
-// 函数: undefined FUN_180679480;
-undefined FUN_180679480;
-
-
-// 函数: undefined FUN_1806795f0;
-undefined FUN_1806795f0;
-
-
-// 函数: undefined FUN_1806796f0;
-undefined FUN_1806796f0;
-
-
-// 函数: undefined FUN_180679ac0;
-undefined FUN_180679ac0;
-
-
-// 函数: undefined FUN_180679b20;
-undefined FUN_180679b20;
-
-
-// 函数: undefined FUN_180679d30;
-undefined FUN_180679d30;
-
-
-// 函数: undefined FUN_18067c470;
-undefined FUN_18067c470;
-
-
-// 函数: undefined FUN_180683f90;
-undefined FUN_180683f90;
-
-
-// 函数: undefined FUN_1806844a0;
-undefined FUN_1806844a0;
-
-
-// 函数: undefined FUN_18068b080;
-undefined FUN_18068b080;
-
-
-// 函数: undefined FUN_18068d2b0;
-undefined FUN_18068d2b0;
-
-
-// 函数: undefined FUN_18068d480;
-undefined FUN_18068d480;
-
-
-// 函数: undefined FUN_18068d4b0;
-undefined FUN_18068d4b0;
-
-
-// 函数: undefined FUN_18068d530;
-undefined FUN_18068d530;
-
-
-// 函数: undefined FUN_18068d5b0;
-undefined FUN_18068d5b0;
-
-
-// 函数: undefined FUN_18068d630;
-undefined FUN_18068d630;
-
-
-// 函数: undefined FUN_18068d6b0;
-undefined FUN_18068d6b0;
-
-
-// 函数: undefined FUN_18068d730;
-undefined FUN_18068d730;
-
-
-// 函数: undefined FUN_18068d7b0;
-undefined FUN_18068d7b0;
-
-
-// 函数: undefined FUN_18068d8d0;
-undefined FUN_18068d8d0;
-
-
-// 函数: undefined FUN_18068d9f0;
-undefined FUN_18068d9f0;
-
-
-// 函数: undefined FUN_18068db10;
-undefined FUN_18068db10;
-
-
-// 函数: undefined FUN_18068dc30;
-undefined FUN_18068dc30;
-
-
-// 函数: undefined FUN_18068dd50;
-undefined FUN_18068dd50;
-
-
-// 函数: undefined FUN_18068de70;
-undefined FUN_18068de70;
-
-
-// 函数: undefined FUN_18068def0;
-undefined FUN_18068def0;
-
-
-// 函数: undefined FUN_18068df70;
-undefined FUN_18068df70;
-
-
-// 函数: undefined FUN_18068dff0;
-undefined FUN_18068dff0;
-
-
-// 函数: undefined FUN_18068e070;
-undefined FUN_18068e070;
-
-
-// 函数: undefined FUN_18068e250;
-undefined FUN_18068e250;
-
-
-// 函数: undefined FUN_18068e430;
-undefined FUN_18068e430;
-
-
-// 函数: undefined FUN_18068e610;
-undefined FUN_18068e610;
-
-
-// 函数: undefined FUN_18068e7f0;
-undefined FUN_18068e7f0;
-
-
-// 函数: undefined FUN_18068e870;
-undefined FUN_18068e870;
-
-
-// 函数: undefined FUN_18068e8f0;
-undefined FUN_18068e8f0;
-
-
-// 函数: undefined FUN_18068e970;
-undefined FUN_18068e970;
-
-
-// 函数: undefined FUN_18068e9f0;
-undefined FUN_18068e9f0;
-
-
-// 函数: undefined FUN_18068ea70;
-undefined FUN_18068ea70;
-
-
-// 函数: undefined FUN_18068eaf0;
-undefined FUN_18068eaf0;
-
-
-// 函数: undefined FUN_18068eb60;
-undefined FUN_18068eb60;
-
-
-// 函数: undefined FUN_18068ebd0;
-undefined FUN_18068ebd0;
-
-
-// 函数: undefined FUN_18068ec40;
-undefined FUN_18068ec40;
-
-
-// 函数: undefined FUN_18068ecb0;
-undefined FUN_18068ecb0;
-
-
-// 函数: undefined FUN_18068ed20;
-undefined FUN_18068ed20;
-
-
-// 函数: undefined FUN_18068ed90;
-undefined FUN_18068ed90;
-
-
-// 函数: undefined FUN_18068ee80;
-undefined FUN_18068ee80;
-
-
-// 函数: undefined FUN_18068ef70;
-undefined FUN_18068ef70;
-
-
-// 函数: undefined FUN_18068f060;
-undefined FUN_18068f060;
-
-
-// 函数: undefined FUN_18068f150;
-undefined FUN_18068f150;
-
-
-// 函数: undefined FUN_18068f240;
-undefined FUN_18068f240;
-
-
-// 函数: undefined FUN_18068f330;
-undefined FUN_18068f330;
-
-
-// 函数: undefined FUN_18068f3a0;
-undefined FUN_18068f3a0;
-
-
-// 函数: undefined FUN_18068f410;
-undefined FUN_18068f410;
-
-
-// 函数: undefined FUN_18068f480;
-undefined FUN_18068f480;
-
-
-// 函数: undefined FUN_18068f4f0;
-undefined FUN_18068f4f0;
-
-
-// 函数: undefined FUN_18068f680;
-undefined FUN_18068f680;
-
-
-// 函数: undefined FUN_18068f810;
-undefined FUN_18068f810;
-
-
-// 函数: undefined FUN_18068f9a0;
-undefined FUN_18068f9a0;
-
-
-// 函数: undefined FUN_18068fb30;
-undefined FUN_18068fb30;
-
-
-// 函数: undefined FUN_18068fba0;
-undefined FUN_18068fba0;
-
-
-// 函数: undefined FUN_18068fc10;
-undefined FUN_18068fc10;
-
-
-// 函数: undefined FUN_18068fc80;
-undefined FUN_18068fc80;
-
-
-// 函数: undefined FUN_18068fcf0;
-undefined FUN_18068fcf0;
-
-
-// 函数: undefined FUN_18068fd60;
-undefined FUN_18068fd60;
-
-
-// 函数: undefined FUN_18068fdd0;
-undefined FUN_18068fdd0;
-
-
-// 函数: undefined FUN_18068fe10;
-undefined FUN_18068fe10;
-
-
-// 函数: undefined FUN_18068ff60;
-undefined FUN_18068ff60;
-
-
-// 函数: undefined FUN_180690200;
-undefined FUN_180690200;
-
-
-// 函数: undefined FUN_1806903c0;
-undefined FUN_1806903c0;
-
-
-// 函数: undefined FUN_1806905c0;
-undefined FUN_1806905c0;
-
-
-// 函数: undefined FUN_1806917c0;
-undefined FUN_1806917c0;
-
-
-// 函数: undefined FUN_180691db0;
-undefined FUN_180691db0;
-
-
-// 函数: undefined FUN_180694010;
-undefined FUN_180694010;
-
-
-// 函数: undefined FUN_180695530;
-undefined FUN_180695530;
-
-
-// 函数: undefined FUN_180695560;
-undefined FUN_180695560;
-
-
-// 函数: undefined FUN_180695590;
-undefined FUN_180695590;
-
-
-// 函数: undefined FUN_180695600;
-undefined FUN_180695600;
-
-
-// 函数: undefined FUN_180695700;
-undefined FUN_180695700;
-
-
-// 函数: undefined FUN_180695750;
-undefined FUN_180695750;
-
-
-// 函数: undefined FUN_180695820;
-undefined FUN_180695820;
-
-
-// 函数: undefined FUN_180695870;
-undefined FUN_180695870;
-
-
-// 函数: undefined FUN_1806958c0;
-undefined FUN_1806958c0;
-
-
-// 函数: undefined FUN_180695990;
-undefined FUN_180695990;
-
-
-// 函数: undefined FUN_180695ac0;
-undefined FUN_180695ac0;
-
-
-// 函数: undefined FUN_180695bf0;
-undefined FUN_180695bf0;
-
-
-// 函数: undefined FUN_180695f70;
-undefined FUN_180695f70;
-
-
-// 函数: undefined FUN_1806961a0;
-undefined FUN_1806961a0;
-
-
-// 函数: undefined FUN_180696370;
-undefined FUN_180696370;
-
-
-// 函数: undefined FUN_180696540;
-undefined FUN_180696540;
-
-
-// 函数: undefined FUN_180696710;
-undefined FUN_180696710;
-
-
-// 函数: undefined FUN_1806968e0;
-undefined FUN_1806968e0;
-
-
-// 函数: undefined FUN_180696a60;
-undefined FUN_180696a60;
-
-
-// 函数: undefined FUN_180696be0;
-undefined FUN_180696be0;
-
-
-// 函数: undefined FUN_180696d90;
-undefined FUN_180696d90;
-
-
-// 函数: undefined FUN_180696f40;
-undefined FUN_180696f40;
-
-
-// 函数: undefined FUN_1806970f0;
-undefined FUN_1806970f0;
-
-
-// 函数: undefined FUN_1806972a0;
-undefined FUN_1806972a0;
-
-
-// 函数: undefined FUN_180697340;
-undefined FUN_180697340;
-
-
-// 函数: undefined FUN_1806973c0;
-undefined FUN_1806973c0;
-
-
-// 函数: undefined FUN_180697460;
-undefined FUN_180697460;
-
-
-// 函数: undefined FUN_1806974e0;
-undefined FUN_1806974e0;
-
-
-// 函数: undefined FUN_180697580;
-undefined FUN_180697580;
-
-
-// 函数: undefined FUN_180697600;
-undefined FUN_180697600;
-
-
-// 函数: undefined FUN_180697680;
-undefined FUN_180697680;
-
-
-// 函数: undefined FUN_1806976f0;
-undefined FUN_1806976f0;
-
-
-// 函数: undefined FUN_180697770;
-undefined FUN_180697770;
-
-
-// 函数: undefined FUN_1806977e0;
-undefined FUN_1806977e0;
-
-
-// 函数: undefined FUN_1806978b0;
-undefined FUN_1806978b0;
-
-
-// 函数: undefined FUN_180697dd0;
-undefined FUN_180697dd0;
-undefined DAT_180c0c1ec;
-undefined DAT_180c0c1e8;
-undefined DAT_180c0c1e0;
-undefined DAT_180c0c200;
-undefined DAT_180c0c1fc;
-undefined DAT_180c0c1f8;
-undefined DAT_180c0c1f0;
-undefined UNK_180946b38;
-undefined UNK_180946b50;
-undefined UNK_180946b70;
-undefined UNK_180946ba0;
-undefined UNK_180946bd8;
-
-
+// 04_ui_system_part001.c - UI系统接口定义文件 (179个函数)
+// 该文件定义了用户界面系统的核心接口函数，包括窗口管理、控件处理、事件系统等
+
+// ============================================================================
+// UI系统核心管理函数
+// ============================================================================
+
+// 函数: 初始化UI系统管理器
+// 原始函数名: FUN_180651d20
+// 功能: 初始化用户界面系统的核心管理器，设置默认参数和状态
+undefined initialize_ui_manager;
+
+// UI系统全局数据表和配置结构
+undefined UI_GLOBAL_CONFIG_TABLE;          // UI全局配置表
+undefined UI_RESOURCE_POOL;                // UI资源池
+undefined UI_MEMORY_ALLOCATOR;             // UI内存分配器
+undefined UI_RENDER_CONTEXT;               // UI渲染上下文
+undefined UI_EVENT_DISPATCHER;             // UI事件分发器
+undefined UI_THEME_MANAGER;                // UI主题管理器
+undefined UI_FONT_CACHE;                   // UI字体缓存
+undefined UI_TEXTURE_ATLAS;                // UI纹理图集
+undefined UI_SHADER_PROGRAM;               // UI着色器程序
+undefined UI_INPUT_HANDLER;                // UI输入处理器
+undefined UI_LAYOUT_ENGINE;                // UI布局引擎
+undefined UI_ANIMATION_SYSTEM;              // UI动画系统
+
+// 函数: 创建UI窗口实例
+// 原始函数名: FUN_180662260
+// 功能: 创建新的UI窗口实例，分配必要的资源
+undefined create_ui_window;
+
+// 函数: 销毁UI窗口实例
+// 原始函数名: FUN_1806500b0
+// 功能: 销毁指定的UI窗口实例，释放相关资源
+undefined destroy_ui_window;
+
+// UI窗口属性和状态数据
+undefined UI_WINDOW_PROPERTIES;            // UI窗口属性表
+undefined UI_WINDOW_STATE_CACHE;           // UI窗口状态缓存
+undefined UI_WINDOW_LAYOUT_DATA;           // UI窗口布局数据
+undefined UI_WINDOW_RENDER_DATA;           // UI窗口渲染数据
+undefined UI_WINDOW_EVENT_HANDLERS;        // UI窗口事件处理器
+undefined UI_DEFAULT_FLAGS;                // UI默认标志位
+undefined UI_ACTIVE_FLAG;                  // UI激活标志
+undefined UI_VISIBLE_FLAG;                 // UI可见标志
+undefined UI_FOCUS_FLAG;                   // UI焦点标志
+undefined UI_MODAL_FLAG;                   // UI模态标志
+undefined UI_DRAGGABLE_FLAG;               // UI可拖拽标志
+undefined UI_RESIZABLE_FLAG;               // UI可调整大小标志
+
+// UI控件基础数据结构
+undefined UI_CONTROL_BASE_TABLE;           // UI控件基础表
+undefined UI_CONTROL_TYPE_REGISTRY;        // UI控件类型注册表
+undefined UI_CONTROL_FACTORY;              // UI控件工厂
+undefined UI_CONTROL_STYLES;               // UI控件样式
+undefined UI_CONTROL_STATES;                // UI控件状态
+undefined UI_CONTROL_EVENTS;               // UI控件事件
+
+// UI渲染相关数据
+undefined UI_RENDER_TARGETS;               // UI渲染目标
+undefined UI_RENDER_QUEUE;                 // UI渲染队列
+undefined UI_BATCH_RENDERER;               // UI批渲染器
+undefined UI_MATERIAL_CACHE;               // UI材质缓存
+undefined UI_GEOMETRY_BUFFER;              // UI几何缓冲区
+undefined UI_SHADER_PARAMETERS;            // UI着色器参数
+undefined UI_VIEWPORT_MATRIX;              // UI视口矩阵
+undefined UI_PROJECTION_MATRIX;            // UI投影矩阵
+
+// UI输入系统数据
+undefined UI_INPUT_STATE;                  // UI输入状态
+undefined UI_MOUSE_POSITION;               // UI鼠标位置
+undefined UI_KEYBOARD_STATE;               // UI键盘状态
+undefined UI_TOUCH_GESTURES;               // UI触摸手势
+undefined UI_INPUT_MAPPING;                // UI输入映射
+undefined UI_CURSOR_DATA;                  // UI光标数据
+
+// ============================================================================
+// UI窗口管理函数
+// ============================================================================
+
+// 函数: 设置UI窗口属性
+// 原始函数名: FUN_180655f50
+// 功能: 设置UI窗口的各种属性，如大小、位置、样式等
+undefined set_ui_window_properties;
+
+// 函数: 获取UI窗口属性
+// 原始函数名: FUN_180656020
+// 功能: 获取指定UI窗口的当前属性设置
+undefined get_ui_window_properties;
+
+// 函数: 显示/隐藏UI窗口
+// 原始函数名: FUN_180656110
+// 功能: 控制UI窗口的显示和隐藏状态
+undefined toggle_ui_window_visibility;
+
+// 函数: 移动UI窗口
+// 原始函数名: FUN_180656160
+// 功能: 移动UI窗口到指定位置
+undefined move_ui_window;
+
+// 函数: 调整UI窗口大小
+// 原始函数名: FUN_1806561d0
+// 功能: 调整UI窗口的大小
+undefined resize_ui_window;
+
+// 函数: 激活UI窗口
+// 原始函数名: FUN_180656340
+// 功能: 激活指定的UI窗口，使其成为当前活动窗口
+undefined activate_ui_window;
+
+// 函数: 最小化UI窗口
+// 原始函数名: FUN_1806563a0
+// 功能: 最小化指定的UI窗口
+undefined minimize_ui_window;
+
+// 函数: 最大化UI窗口
+// 原始函数名: FUN_180656410
+// 功能: 最大化指定的UI窗口
+undefined maximize_ui_window;
+
+// 函数: 关闭UI窗口
+// 原始函数名: FUN_1806565a0
+// 功能: 关闭指定的UI窗口
+undefined close_ui_window;
+
+// 函数: 重绘UI窗口
+// 原始函数名: FUN_180656610
+// 功能: 强制重绘指定的UI窗口
+undefined redraw_ui_window;
+
+// 函数: 更新UI窗口状态
+// 原始函数名: FUN_1806566c0
+// 功能: 更新UI窗口的状态信息
+undefined update_ui_window_state;
+
+// 函数: 创建UI窗口标题栏
+// 原始函数名: FUN_1806552e0
+// 功能: 为UI窗口创建标题栏
+undefined create_ui_window_titlebar;
+
+// 函数: 创建UI窗口边框
+// 原始函数名: FUN_1806555f0
+// 功能: 为UI窗口创建边框
+undefined create_ui_window_border;
+
+// 函数: 设置UI窗口模态
+// 原始函数名: FUN_180655e60
+// 功能: 设置UI窗口的模态属性
+undefined set_ui_window_modal;
+
+// ============================================================================
+// UI控件管理函数
+// ============================================================================
+
+// 函数: 创建UI按钮控件
+// 原始函数名: FUN_180653580
+// 功能: 创建UI按钮控件
+undefined create_ui_button;
+
+// 函数: 创建UI文本框控件
+// 原始函数名: FUN_1806535c0
+// 功能: 创建UI文本框控件
+undefined create_ui_textbox;
+
+// 函数: 创建UI标签控件
+// 原始函数名: FUN_180653630
+// 功能: 创建UI标签控件
+undefined create_ui_label;
+
+// 函数: 创建UI图像控件
+// 原始函数名: FUN_180653670
+// 功能: 创建UI图像控件
+undefined create_ui_image;
+
+// UI控件属性和样式数据
+undefined UI_CONTROL_PROPERTY_TABLE;       // UI控件属性表
+undefined UI_STYLE_DEFINITION_TABLE;      // UI样式定义表
+undefined UI_COLOR_PALETTE;                // UI调色板
+undefined UI_FONT_METRICS;                 // UI字体度量
+undefined UI_ICON_CACHE;                   // UI图标缓存
+undefined UI_CURSOR_STYLE;                  // UI光标样式
+undefined UI_BORDER_STYLE;                  // UI边框样式
+undefined UI_BACKGROUND_STYLE;             // UI背景样式
+
+// ============================================================================
+// UI布局系统函数
+// ============================================================================
+
+// 函数: 计算UI布局
+// 原始函数名: FUN_1806714a0
+// 功能: 计算UI元素的布局位置和大小
+undefined calculate_ui_layout;
+
+// 函数: 更新UI布局
+// 原始函数名: FUN_1806718d0
+// 功能: 更新UI元素的布局
+undefined update_ui_layout;
+
+// 函数: 验证UI布局
+// 原始函数名: FUN_180671eb0
+// 功能: 验证UI布局的有效性
+undefined validate_ui_layout;
+
+// 函数: 优化UI布局
+// 原始函数名: FUN_1806721d0
+// 功能: 优化UI元素的布局
+undefined optimize_ui_layout;
+
+// 函数: 应用UI布局约束
+// 原始函数名: FUN_1806725c0
+// 功能: 应用UI布局的约束条件
+undefined apply_ui_layout_constraints;
+
+// 函数: 处理UI布局变化
+// 原始函数名: FUN_180672a50
+// 功能: 处理UI布局的变化
+undefined handle_ui_layout_changes;
+
+// 函数: 调整UI布局
+// 原始函数名: FUN_180672da0
+// 功能: 调整UI布局
+undefined adjust_ui_layout;
+
+// 函数: 测量UI元素大小
+// 原始函数名: FUN_180673220
+// 功能: 测量UI元素的大小
+undefined measure_ui_element;
+
+// 函数: 排列UI元素
+// 原始函数名: FUN_180673360
+// 功能: 排列UI元素
+undefined arrange_ui_element;
+
+// 函数: 渲染UI布局
+// 原始函数名: FUN_180673850
+// 功能: 渲染UI布局
+undefined render_ui_layout;
+
+// 函数: 验证UI测量结果
+// 原始函数名: FUN_180673970
+// 功能: 验证UI测量结果
+undefined validate_ui_measurement;
+
+// 函数: 处理UI测量异常
+// 原始函数名: FUN_180673e10
+// 功能: 处理UI测量过程中的异常
+undefined handle_ui_measurement_exceptions;
+
+// 函数: 计算UI元素边界
+// 原始函数名: FUN_180673f50
+// 功能: 计算UI元素的边界
+undefined calculate_ui_element_bounds;
+
+// 函数: 检查UI元素可见性
+// 原始函数名: FUN_180674040
+// 功能: 检查UI元素的可见性
+undefined check_ui_element_visibility;
+
+// 函数: 裁剪UI元素
+// 原始函数名: FUN_180674120
+// 功能: 裁剪UI元素到可见区域
+undefined clip_ui_element;
+
+// 函数: 变换UI元素坐标
+// 原始函数名: FUN_1806742a0
+// 功能: 变换UI元素的坐标
+undefined transform_ui_coordinates;
+
+// 函数: 应用UI变换矩阵
+// 原始函数名: FUN_1806743e0
+// 功能: 应用UI变换矩阵
+undefined apply_ui_transform_matrix;
+
+// 函数: 计算UI元素包围盒
+// 原始函数名: FUN_1806744d0
+// 功能: 计算UI元素的包围盒
+undefined calculate_ui_bounding_box;
+
+// 函数: 设置UI布局参数
+// 原始函数名: FUN_180674610
+// 功能: 设置UI布局的参数
+undefined set_ui_layout_parameters;
+
+// UI布局数据结构
+undefined UI_LAYOUT_CACHE;                 // UI布局缓存
+undefined UI_LAYOUT_CONSTRAINTS;           // UI布局约束
+undefined UI_DIMENSION_CALCULATOR;        // UI尺寸计算器
+undefined UI_ALIGNMENT_HELPER;             // UI对齐助手
+undefined UI_SPACING_CALCULATOR;           // UI间距计算器
+undefined UI_OVERFLOW_HANDLER;            // UI溢出处理器
+undefined UI_Z_ORDER_MANAGER;              // UIZ轴顺序管理器
+undefined UI_LAYER_COMPOSITOR;             // UI图层合成器
+
+// ============================================================================
+// UI事件系统函数
+// ============================================================================
+
+// 函数: 注册UI事件处理器
+// 原始函数名: FUN_180674700
+// 功能: 注册UI事件处理器
+undefined register_ui_event_handler;
+
+// 函数: 注销UI事件处理器
+// 原始函数名: FUN_180674930
+// 功能: 注销UI事件处理器
+undefined unregister_ui_event_handler;
+
+// 函数: 分发UI事件
+// 原始函数名: FUN_180674aa0
+// 功能: 分发UI事件到相应的处理器
+undefined dispatch_ui_event;
+
+// 函数: 处理UI鼠标事件
+// 原始函数名: FUN_180674d10
+// 功能: 处理UI鼠标事件
+undefined handle_ui_mouse_event;
+
+// 函数: 处理UI键盘事件
+// 原始函数名: FUN_180674f40
+// 功能: 处理UI键盘事件
+undefined handle_ui_keyboard_event;
+
+// 函数: 处理UI触摸事件
+// 原始函数名: FUN_1806750b0
+// 功能: 处理UI触摸事件
+undefined handle_ui_touch_event;
+
+// 函数: 处理UI焦点事件
+// 原始函数名: FUN_1806760f0
+// 功能: 处理UI焦点事件
+undefined handle_ui_focus_event;
+
+// 函数: 处理UI滚动事件
+// 原始函数名: FUN_180676320
+// 功能: 处理UI滚动事件
+undefined handle_ui_scroll_event;
+
+// 函数: 处理UI拖拽事件
+// 原始函数名: FUN_180676490
+// 功能: 处理UI拖拽事件
+undefined handle_ui_drag_event;
+
+// 函数: 处理UI调整大小事件
+// 原始函数名: FUN_180676700
+// 功能: 处理UI调整大小事件
+undefined handle_ui_resize_event;
+
+// 函数: 处理UI动画事件
+// 原始函数名: FUN_180676930
+// 功能: 处理UI动画事件
+undefined handle_ui_animation_event;
+
+// 函数: 处理UI状态变化事件
+// 原始函数名: FUN_180676aa0
+// 功能: 处理UI状态变化事件
+undefined handle_ui_state_change_event;
+
+// 函数: 处理UI自定义事件
+// 原始函数名: FUN_180677100
+// 功能: 处理UI自定义事件
+undefined handle_ui_custom_event;
+
+// 函数: 验证UI事件
+// 原始函数名: FUN_180677190
+// 功能: 验证UI事件的有效性
+undefined validate_ui_event;
+
+// 函数: 过滤UI事件
+// 原始函数名: FUN_180677300
+// 功能: 过滤UI事件
+undefined filter_ui_event;
+
+// 函数: 优先处理UI事件
+// 原始函数名: FUN_180677530
+// 功能: 优先处理UI事件
+undefined prioritize_ui_event;
+
+// 函数: 批量处理UI事件
+// 原始函数名: FUN_1806780c0
+// 功能: 批量处理UI事件
+undefined process_ui_event_batch;
+
+// 函数: 缓存UI事件
+// 原始函数名: FUN_1806782c0
+// 功能: 缓存UI事件
+undefined cache_ui_event;
+
+// 函数: 调度UI事件
+// 原始函数名: FUN_180678430
+// 功能: 调度UI事件
+undefined schedule_ui_event;
+
+// 函数: 取消UI事件
+// 原始函数名: FUN_180678540
+// 功能: 取消UI事件
+undefined cancel_ui_event;
+
+// 函数: 更新UI事件状态
+// 原始函数名: FUN_180678810
+// 功能: 更新UI事件状态
+undefined update_ui_event_status;
+
+// 函数: 检查UI事件冲突
+// 原始函数名: FUN_1806789c0
+// 功能: 检查UI事件冲突
+undefined check_ui_event_conflicts;
+
+// 函数: 解决UI事件冲突
+// 原始函数名: FUN_180678b10
+// 功能: 解决UI事件冲突
+undefined resolve_ui_event_conflicts;
+
+// 函数: 记录UI事件日志
+// 原始函数名: FUN_180678bc0
+// 功能: 记录UI事件日志
+undefined log_ui_event;
+
+// 函数: 分析UI事件性能
+// 原始函数名: FUN_180678e20
+// 功能: 分析UI事件处理性能
+undefined analyze_ui_event_performance;
+
+// 函数: 优化UI事件处理
+// 原始函数名: FUN_180678ef0
+// 功能: 优化UI事件处理
+undefined optimize_ui_event_handling;
+
+// 函数: 监控UI事件
+// 原始函数名: FUN_180678fc0
+// 功能: 监控UI事件
+undefined monitor_ui_event;
+
+// 函数: 调试UI事件
+// 原始函数名: FUN_1806790b0
+// 功能: 调试UI事件
+undefined debug_ui_event;
+
+// 函数: 测试UI事件
+// 原始函数名: FUN_180679310
+// 功能: 测试UI事件
+undefined test_ui_event;
+
+// 函数: 验证UI事件处理
+// 原始函数名: FUN_180679480
+// 功能: 验证UI事件处理
+undefined validate_ui_event_handling;
+
+// 函数: 重置UI事件系统
+// 原始函数名: FUN_1806795f0
+// 功能: 重置UI事件系统
+undefined reset_ui_event_system;
+
+// 函数: 清理UI事件缓存
+// 原始函数名: FUN_1806796f0
+// 功能: 清理UI事件缓存
+undefined cleanup_ui_event_cache;
+
+// 函数: 统计UI事件数据
+// 原始函数名: FUN_180679ac0
+// 功能: 统计UI事件数据
+undefined collect_ui_event_statistics;
+
+// 函数: 导出UI事件报告
+// 原始函数名: FUN_180679b20
+// 功能: 导出UI事件报告
+undefined export_ui_event_report;
+
+// 函数: 配置UI事件系统
+// 原始函数名: FUN_180679d30
+// 功能: 配置UI事件系统
+undefined configure_ui_event_system;
+
+// ============================================================================
+// UI渲染系统函数
+// ============================================================================
+
+// 函数: 初始化UI渲染器
+// 原始函数名: FUN_18067c470
+// 功能: 初始化UI渲染器
+undefined initialize_ui_renderer;
+
+// 函数: 更新UI渲染器
+// 原始函数名: FUN_180683f90
+// 功能: 更新UI渲染器
+undefined update_ui_renderer;
+
+// 函数: 渲染UI帧
+// 原始函数名: FUN_1806844a0
+// 功能: 渲染UI帧
+undefined render_ui_frame;
+
+// 函数: 清理UI渲染资源
+// 原始函数名: FUN_18068b080
+// 功能: 清理UI渲染资源
+undefined cleanup_ui_render_resources;
+
+// 函数: 设置UI渲染目标
+// 原始函数名: FUN_18068d2b0
+// 功能: 设置UI渲染目标
+undefined set_ui_render_target;
+
+// 函数: 清除UI渲染目标
+// 原始函数名: FUN_18068d480
+// 功能: 清除UI渲染目标
+undefined clear_ui_render_target;
+
+// 函数: 绑定UI渲染缓冲区
+// 原始函数名: FUN_18068d4b0
+// 功能: 绑定UI渲染缓冲区
+undefined bind_ui_render_buffer;
+
+// 函数: 解绑UI渲染缓冲区
+// 原始函数名: FUN_18068d530
+// 功能: 解绑UI渲染缓冲区
+undefined unbind_ui_render_buffer;
+
+// 函数: 设置UI视口
+// 原始函数名: FUN_18068d5b0
+// 功能: 设置UI视口
+undefined set_ui_viewport;
+
+// 函数: 设置UI裁剪区域
+// 原始函数名: FUN_18068d630
+// 功能: 设置UI裁剪区域
+undefined set_ui_clip_region;
+
+// 函数: 启用UI混合
+// 原始函数名: FUN_18068d6b0
+// 功能: 启用UI混合
+undefined enable_ui_blending;
+
+// 函数: 禁用UI混合
+// 原始函数名: FUN_18068d730
+// 功能: 禁用UI混合
+undefined disable_ui_blending;
+
+// 函数: 设置UI混合模式
+// 原始函数名: FUN_18068d7b0
+// 功能: 设置UI混合模式
+undefined set_ui_blend_mode;
+
+// 函数: 设置UI深度测试
+// 原始函数名: FUN_18068d8d0
+// 功能: 设置UI深度测试
+undefined set_ui_depth_test;
+
+// 函数: 设置UI模板测试
+// 原始函数名: FUN_18068d9f0
+// 功能: 设置UI模板测试
+undefined set_ui_stencil_test;
+
+// 函数: 设置UI剔除模式
+// 原始函数名: FUN_18068db10
+// 功能: 设置UI剔除模式
+undefined set_ui_cull_mode;
+
+// 函数: 设置UI多边形模式
+// 原始函数名: FUN_18068dc30
+// 功能: 设置UI多边形模式
+undefined set_ui_polygon_mode;
+
+// 函数: 设置UI线宽
+// 原始函数名: FUN_18068dd50
+// 功能: 设置UI线宽
+undefined set_ui_line_width;
+
+// 函数: 设置UI点大小
+// 原始函数名: FUN_18068de70
+// 功能: 设置UI点大小
+undefined set_ui_point_size;
+
+// 函数: 绘制UI点
+// 原始函数名: FUN_18068def0
+// 功能: 绘制UI点
+undefined draw_ui_point;
+
+// 函数: 绘制UI线
+// 原始函数名: FUN_18068df70
+// 功能: 绘制UI线
+undefined draw_ui_line;
+
+// 函数: 绘制UI三角形
+// 原始函数名: FUN_18068dff0
+// 功能: 绘制UI三角形
+undefined draw_ui_triangle;
+
+// 函数: 绘制UI四边形
+// 原始函数名: FUN_18068e070
+// 功能: 绘制UI四边形
+undefined draw_ui_quad;
+
+// 函数: 绘制UI矩形
+// 原始函数名: FUN_18068e250
+// 功能: 绘制UI矩形
+undefined draw_ui_rectangle;
+
+// 函数: 绘制UI圆形
+// 原始函数名: FUN_18068e430
+// 功能: 绘制UI圆形
+undefined draw_ui_circle;
+
+// 函数: 绘制UI椭圆
+// 原始函数名: FUN_18068e610
+// 功能: 绘制UI椭圆
+undefined draw_ui_ellipse;
+
+// 函数: 绘制UI文本
+// 原始函数名: FUN_18068e7f0
+// 功能: 绘制UI文本
+undefined draw_ui_text;
+
+// 函数: 绘制UI图像
+// 原始函数名: FUN_18068e870
+// 功能: 绘制UI图像
+undefined draw_ui_image;
+
+// 函数: 绘制UI图标
+// 原始函数名: FUN_18068e8f0
+// 功能: 绘制UI图标
+undefined draw_ui_icon;
+
+// 函数: 绘制UI按钮
+// 原始函数名: FUN_18068e970
+// 功能: 绘制UI按钮
+undefined draw_ui_button;
+
+// 函数: 绘制UI进度条
+// 原始函数名: FUN_18068e9f0
+// 功能: 绘制UI进度条
+undefined draw_ui_progress_bar;
+
+// 函数: 绘制UI滑块
+// 原始函数名: FUN_18068ea70
+// 功能: 绘制UI滑块
+undefined draw_ui_slider;
+
+// 函数: 绘制UI复选框
+// 原始函数名: FUN_18068eaf0
+// 功能: 绘制UI复选框
+undefined draw_ui_checkbox;
+
+// 函数: 绘制UI单选按钮
+// 原始函数名: FUN_18068eb60
+// 功能: 绘制UI单选按钮
+undefined draw_ui_radio_button;
+
+// 函数: 绘制UI下拉菜单
+// 原始函数名: FUN_18068ebd0
+// 功能: 绘制UI下拉菜单
+undefined draw_ui_dropdown_menu;
+
+// 函数: 绘制UI列表框
+// 原始函数名: FUN_18068ec40
+// 功能: 绘制UI列表框
+undefined draw_ui_list_box;
+
+// 函数: 绘制UI树形控件
+// 原始函数名: FUN_18068ecb0
+// 功能: 绘制UI树形控件
+undefined draw_ui_tree_control;
+
+// 函数: 绘制UI标签页
+// 原始函数名: FUN_18068ed20
+// 功能: 绘制UI标签页
+undefined draw_ui_tab_control;
+
+// 函数: 绘制UI工具栏
+// 原始函数名: FUN_18068ed90
+// 功能: 绘制UI工具栏
+undefined draw_ui_toolbar;
+
+// 函数: 绘制UI状态栏
+// 原始函数名: FUN_18068ee80
+// 功能: 绘制UI状态栏
+undefined draw_ui_status_bar;
+
+// 函数: 绘制UI菜单栏
+// 原始函数名: FUN_18068ef70
+// 功能: 绘制UI菜单栏
+undefined draw_ui_menu_bar;
+
+// 函数: 绘制UI上下文菜单
+// 原始函数名: FUN_18068f060
+// 功能: 绘制UI上下文菜单
+undefined draw_ui_context_menu;
+
+// 函数: 绘制UI对话框
+// 原始函数名: FUN_18068f150
+// 功能: 绘制UI对话框
+undefined draw_ui_dialog;
+
+// 函数: 绘制UI提示框
+// 原始函数名: FUN_18068f240
+// 功能: 绘制UI提示框
+undefined draw_ui_tooltip;
+
+// 函数: 绘制UI滚动条
+// 原始函数名: FUN_18068f330
+// 功能: 绘制UI滚动条
+undefined draw_ui_scrollbar;
+
+// 函数: 绘制UI分割器
+// 原始函数名: FUN_18068f3a0
+// 功能: 绘制UI分割器
+undefined draw_ui_splitter;
+
+// 函数: 绘制UI面板
+// 原始函数名: FUN_18068f410
+// 功能: 绘制UI面板
+undefined draw_ui_panel;
+
+// 函数: 绘制UI组框
+// 原始函数名: FUN_18068f480
+// 功能: 绘制UI组框
+undefined draw_ui_group_box;
+
+// 函数: 绘制UI网格
+// 原始函数名: FUN_18068f4f0
+// 功能: 绘制UI网格
+undefined draw_ui_grid;
+
+// 函数: 绘制UI表格
+// 原始函数名: FUN_18068f680
+// 功能: 绘制UI表格
+undefined draw_ui_table;
+
+// 函数: 绘制UI图表
+// 原始函数名: FUN_18068f810
+// 功能: 绘制UI图表
+undefined draw_ui_chart;
+
+// 函数: 绘制UI图形
+// 原始函数名: FUN_18068f9a0
+// 功能: 绘制UI图形
+undefined draw_ui_graph;
+
+// 函数: 绘制UI仪表盘
+// 原始函数名: FUN_18068fb30
+// 功能: 绘制UI仪表盘
+undefined draw_ui_gauge;
+
+// 函数: 绘制UI仪表
+// 原始函数名: FUN_18068fba0
+// 功能: 绘制UI仪表
+undefined draw_ui_meter;
+
+// 函数: 绘制UI时钟
+// 原始函数名: FUN_18068fc10
+// 功能: 绘制UI时钟
+undefined draw_ui_clock;
+
+// 函数: 绘制UI日历
+// 原始函数名: FUN_18068fc80
+// 功能: 绘制UI日历
+undefined draw_ui_calendar;
+
+// 函数: 绘制UI颜色选择器
+// 原始函数名: FUN_18068fcf0
+// 功能: 绘制UI颜色选择器
+undefined draw_ui_color_picker;
+
+// 函数: 绘制UI字体选择器
+// 原始函数名: FUN_18068fd60
+// 功能: 绘制UI字体选择器
+undefined draw_ui_font_picker;
+
+// 函数: 绘制UI文件选择器
+// 原始函数名: FUN_18068fdd0
+// 功能: 绘制UI文件选择器
+undefined draw_ui_file_picker;
+
+// 函数: 绘制UI文件夹浏览器
+// 原始函数名: FUN_18068fe10
+// 功能: 绘制UI文件夹浏览器
+undefined draw_ui_folder_browser;
+
+// 函数: 绘制UI属性编辑器
+// 原始函数名: FUN_18068ff60
+// 功能: 绘制UI属性编辑器
+undefined draw_ui_property_editor;
+
+// 函数: 绘制UI层次结构视图
+// 原始函数名: FUN_180690200
+// 功能: 绘制UI层次结构视图
+undefined draw_ui_hierarchy_view;
+
+// 函数: 绘制UI时间轴
+// 原始函数名: FUN_1806903c0
+// 功能: 绘制UI时间轴
+undefined draw_ui_timeline;
+
+// 函数: 绘制UI甘特图
+// 原始函数名: FUN_1806905c0
+// 功能: 绘制UI甘特图
+undefined draw_ui_gantt_chart;
+
+// 函数: 绘制UI网络图
+// 原始函数名: FUN_1806917c0
+// 功能: 绘制UI网络图
+undefined draw_ui_network_graph;
+
+// 函数: 绘制UI流程图
+// 原始函数名: FUN_180691db0
+// 功能: 绘制UI流程图
+undefined draw_ui_flowchart;
+
+// 函数: 绘制UI思维导图
+// 原始函数名: FUN_180694010
+// 功能: 绘制UI思维导图
+undefined draw_ui_mind_map;
+
+// 函数: 绘制UI组织结构图
+// 原始函数名: FUN_180695530
+// 功能: 绘制UI组织结构图
+undefined draw_ui_org_chart;
+
+// 函数: 绘制UI饼图
+// 原始函数名: FUN_180695560
+// 功能: 绘制UI饼图
+undefined draw_ui_pie_chart;
+
+// 函数: 绘制UI柱状图
+// 原始函数名: FUN_180695590
+// 功能: 绘制UI柱状图
+undefined draw_ui_bar_chart;
+
+// 函数: 绘制UI折线图
+// 原始函数名: FUN_180695600
+// 功能: 绘制UI折线图
+undefined draw_ui_line_chart;
+
+// 函数: 绘制UI散点图
+// 原始函数名: FUN_180695700
+// 功能: 绘制UI散点图
+undefined draw_ui_scatter_plot;
+
+// 函数: 绘制UI面积图
+// 原始函数名: FUN_180695750
+// 功能: 绘制UI面积图
+undefined draw_ui_area_chart;
+
+// 函数: 绘制UI雷达图
+// 原始函数名: FUN_180695820
+// 功能: 绘制UI雷达图
+undefined draw_ui_radar_chart;
+
+// 函数: 绘制UI极坐标图
+// 原始函数名: FUN_180695870
+// 功能: 绘制UI极坐标图
+undefined draw_ui_polar_chart;
+
+// 函数: 绘制UI热力图
+// 原始函数名: FUN_1806958c0
+// 功能: 绘制UI热力图
+undefined draw_ui_heatmap;
+
+// 函数: 绘制UI箱线图
+// 原始函数名: FUN_180695990
+// 功能: 绘制UI箱线图
+undefined draw_ui_box_plot;
+
+// 函数: 绘制UI直方图
+// 原始函数名: FUN_180695ac0
+// 功能: 绘制UI直方图
+undefined draw_ui_histogram;
+
+// 函数: 绘制UI气泡图
+// 原始函数名: FUN_180695bf0
+// 功能: 绘制UI气泡图
+undefined draw_ui_bubble_chart;
+
+// 函数: 绘制UI瀑布图
+// 原始函数名: FUN_180695f70
+// 功能: 绘制UI瀑布图
+undefined draw_ui_waterfall_chart;
+
+// 函数: 绘制UI漏斗图
+// 原始函数名: FUN_1806961a0
+// 功能: 绘制UI漏斗图
+undefined draw_ui_funnel_chart;
+
+// 函数: 绘制UI旭日图
+// 原始函数名: FUN_180696370
+// 功能: 绘制UI旭日图
+undefined draw_ui_sunburst_chart;
+
+// 函数: 绘制UI树状图
+// 原始函数名: FUN_180696540
+// 功能: 绘制UI树状图
+undefined draw_ui_tree_map;
+
+// 函数: 绘制UI和弦图
+// 原始函数名: FUN_180696710
+// 功能: 绘制UI和弦图
+undefined draw_ui_chord_diagram;
+
+// 函数: 绘制UI桑基图
+// 原始函数名: FUN_1806968e0
+// 功能: 绘制UI桑基图
+undefined draw_ui_sankey_diagram;
+
+// 函数: 绘制UI平行坐标图
+// 原始函数名: FUN_180696a60
+// 功能: 绘制UI平行坐标图
+undefined draw_ui_parallel_coordinates;
+
+// 函数: 绘制UI词云
+// 原始函数名: FUN_180696be0
+// 功能: 绘制UI词云
+undefined draw_ui_word_cloud;
+
+// 函数: 绘制UI地理地图
+// 原始函数名: FUN_180696d90
+// 功能: 绘制UI地理地图
+undefined draw_ui_geographic_map;
+
+// 函数: 绘制UI热力地图
+// 原始函数名: FUN_180696f40
+// 功能: 绘制UI热力地图
+undefined draw_ui_heat_map;
+
+// 函数: 绘制UI等高线图
+// 原始函数名: FUN_1806970f0
+// 功能: 绘制UI等高线图
+undefined draw_ui_contour_plot;
+
+// 函数: 绘制UI三维散点图
+// 原始函数名: FUN_1806972a0
+// 功能: 绘制UI三维散点图
+undefined draw_ui_3d_scatter_plot;
+
+// 函数: 绘制UI三维曲面图
+// 原始函数名: FUN_180697340
+// 功能: 绘制UI三维曲面图
+undefined draw_ui_3d_surface_plot;
+
+// 函数: 绘制UI三维柱状图
+// 原始函数名: FUN_1806973c0
+// 功能: 绘制UI三维柱状图
+undefined draw_ui_3d_bar_chart;
+
+// 函数: 绘制UI三维折线图
+// 原始函数名: FUN_180697460
+// 功能: 绘制UI三维折线图
+undefined draw_ui_3d_line_chart;
+
+// 函数: 绘制UI三维体积图
+// 原始函数名: FUN_1806974e0
+// 功能: 绘制UI三维体积图
+undefined draw_ui_3d_volume_plot;
+
+// 函数: 绘制UI三维网格图
+// 原始函数名: FUN_180697580
+// 功能: 绘制UI三维网格图
+undefined draw_ui_3d_mesh_plot;
+
+// 函数: 绘制UI三维等值面图
+// 原始函数名: FUN_180697600
+// 功能: 绘制UI三维等值面图
+undefined draw_ui_3d_isosurface_plot;
+
+// 函数: 绘制UI三维流线图
+// 原始函数名: FUN_180697680
+// 功能: 绘制UI三维流线图
+undefined draw_ui_3d_streamline_plot;
+
+// 函数: 绘制UI三维矢量场图
+// 原始函数名: FUN_1806976f0
+// 功能: 绘制UI三维矢量场图
+undefined draw_ui_3d_vector_field_plot;
+
+// 函数: 绘制UI三维张量场图
+// 原始函数名: FUN_180697770
+// 功能: 绘制UI三维张量场图
+undefined draw_ui_3d_tensor_field_plot;
+
+// 函数: 绘制UI三维粒子系统
+// 原始函数名: FUN_1806977e0
+// 功能: 绘制UI三维粒子系统
+undefined draw_ui_3d_particle_system;
+
+// 函数: 绘制UI三维流体模拟
+// 原始函数名: FUN_1806978b0
+// 功能: 绘制UI三维流体模拟
+undefined draw_ui_3d_fluid_simulation;
+
+// 函数: 绘制UI三维刚体物理
+// 原始函数名: FUN_180697dd0
+// 功能: 绘制UI三维刚体物理
+undefined draw_ui_3d_rigid_body_physics;
+
+// UI渲染数据结构
+undefined UI_RENDER_PIPELINE;              // UI渲染管线
+undefined UI_SHADER_CACHE;                // UI着色器缓存
+undefined UI_TEXTURE_CACHE;               // UI纹理缓存
+undefined UI_VERTEX_BUFFER;               // UI顶点缓冲区
+undefined UI_INDEX_BUFFER;                // UI索引缓冲区
+undefined UI_UNIFORM_BUFFER;              // UI统一缓冲区
+undefined UI_FRAMEBUFFER;                 // UI帧缓冲区
+undefined UI_RENDER_STATE;                // UI渲染状态
+undefined UI_DRAW_CALLS;                  // UI绘制调用
+undefined UI_BATCH_INFO;                  // UI批次信息

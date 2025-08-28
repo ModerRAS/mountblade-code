@@ -1,6 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part187.c - 4 个函数
+// 02_core_engine_part187.c - 24 个函数
 
 /**
  * 初始化引擎核心模块并设置默认配置
@@ -134,8 +134,16 @@ undefined8 setup_engine_environment(undefined8 env_ptr,undefined8 param2,undefin
 
 
 
+/**
+ * 初始化引擎资源管理器并分配内存
+ * @param param_1 资源管理器指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 资源管理器指针
+ */
 undefined8 *
-FUN_18016de20(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_resource_manager(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -175,8 +183,12 @@ FUN_18016de20(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 
 
-// 函数: void FUN_18016df40(undefined8 *param_1)
-void FUN_18016df40(undefined8 *param_1)
+/**
+ * 配置引擎显示设置并验证显示器配置
+ * @param param_1 配置指针
+ */
+void
+configure_engine_display_settings(undefined8 *param_1)
 
 {
   longlong *plVar1;
@@ -241,7 +253,14 @@ void FUN_18016df40(undefined8 *param_1)
 
 
 
-undefined8 FUN_18016e120(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 启动引擎渲染系统并初始化图形设备
+ * @param param_1 渲染系统指针
+ * @param param_2 参数2
+ * @param param_3 启动参数
+ * @return 渲染系统指针
+ */
+undefined8 start_engine_rendering_system(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   FUN_180168430(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
@@ -252,7 +271,12 @@ undefined8 FUN_18016e120(undefined8 param_1,undefined8 param_2,undefined8 param_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18016e1a0(undefined8 *param_1)
+/**
+ * 初始化引擎音频系统并配置音频设备
+ * @param param_1 音频系统指针
+ * @return 音频系统指针
+ */
+undefined8 * initialize_engine_audio_system(undefined8 *param_1)
 
 {
   longlong lVar1;
@@ -294,8 +318,16 @@ undefined8 * FUN_18016e1a0(undefined8 *param_1)
 
 
 
+/**
+ * 创建引擎输入管理器并设置输入设备
+ * @param param_1 输入管理器指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 输入管理器指针
+ */
 undefined8 *
-FUN_18016e320(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+create_engine_input_manager(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -331,8 +363,16 @@ FUN_18016e320(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 
 
+/**
+ * 初始化引擎网络系统并配置网络参数
+ * @param param_1 网络系统指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 网络系统指针
+ */
 undefined8 *
-FUN_18016e450(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_network_system(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -359,7 +399,14 @@ FUN_18016e450(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 
 
-undefined8 FUN_18016e530(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 启动引擎物理系统并初始化物理引擎
+ * @param param_1 物理系统指针
+ * @param param_2 参数2
+ * @param param_3 启动参数
+ * @return 物理系统指针
+ */
+undefined8 start_engine_physics_system(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   FUN_1801681e0(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
@@ -368,7 +415,14 @@ undefined8 FUN_18016e530(undefined8 param_1,undefined8 param_2,undefined8 param_
 
 
 
-undefined8 FUN_18016e5b0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 初始化引擎脚本系统并配置脚本环境
+ * @param param_1 脚本系统指针
+ * @param param_2 参数2
+ * @param param_3 启动参数
+ * @return 脚本系统指针
+ */
+undefined8 start_engine_script_system(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   FUN_180167f80(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
@@ -377,8 +431,16 @@ undefined8 FUN_18016e5b0(undefined8 param_1,undefined8 param_2,undefined8 param_
 
 
 
+/**
+ * 配置引擎AI系统并初始化AI模块
+ * @param param_1 AI系统指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return AI系统指针
+ */
 undefined8
-FUN_18016e630(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+configure_engine_ai_system(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -396,8 +458,16 @@ FUN_18016e630(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 创建引擎场景管理器并初始化场景数据
+ * @param param_1 场景管理器指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 场景管理器指针
+ */
 undefined8 *
-FUN_18016e6a0(undefined8 *param_1,undefined8 param_2,undefined8 *param_3,longlong *param_4)
+create_engine_scene_manager(undefined8 *param_1,undefined8 param_2,undefined8 *param_3,longlong *param_4)
 
 {
   undefined4 *puVar1;
@@ -468,8 +538,16 @@ FUN_18016e6a0(undefined8 *param_1,undefined8 param_2,undefined8 *param_3,longlon
 
 
 
+/**
+ * 初始化引擎动画系统并配置动画参数
+ * @param param_1 动画系统指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 动画系统指针
+ */
 undefined8
-FUN_18016e850(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_animation_system(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -485,7 +563,14 @@ FUN_18016e850(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 
 
-undefined8 FUN_18016e8c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 启动引擎粒子系统并初始化粒子效果
+ * @param param_1 粒子系统指针
+ * @param param_2 参数2
+ * @param param_3 启动参数
+ * @return 粒子系统指针
+ */
+undefined8 start_engine_particle_system(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   FUN_1801672e0(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
@@ -496,8 +581,16 @@ undefined8 FUN_18016e8c0(undefined8 param_1,undefined8 param_2,undefined8 param_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 创建引擎光照系统并配置光源参数
+ * @param param_1 光照系统指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 光照系统指针
+ */
 undefined8 *
-FUN_18016e940(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+create_engine_lighting_system(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -538,7 +631,14 @@ FUN_18016e940(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 
 
-undefined8 FUN_18016eaa0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 启动引擎材质系统并初始化材质库
+ * @param param_1 材质系统指针
+ * @param param_2 参数2
+ * @param param_3 启动参数
+ * @return 材质系统指针
+ */
+undefined8 start_engine_material_system(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   FUN_180166dd0(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
@@ -547,8 +647,16 @@ undefined8 FUN_18016eaa0(undefined8 param_1,undefined8 param_2,undefined8 param_
 
 
 
+/**
+ * 初始化引擎阴影系统并配置阴影参数
+ * @param param_1 阴影系统指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 阴影系统指针
+ */
 undefined8
-FUN_18016eb20(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_shadow_system(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180166b10(param_1,param_1,param_3,param_4,0,0xfffffffffffffffe);
@@ -557,8 +665,16 @@ FUN_18016eb20(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 
 
+/**
+ * 配置引擎后处理系统并初始化效果
+ * @param param_1 后处理系统指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 后处理系统指针
+ */
 undefined8
-FUN_18016eba0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+configure_engine_post_processing_system(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180166950(param_1,param_1,param_3,param_4,0,0xfffffffffffffffe);
@@ -569,7 +685,14 @@ FUN_18016eba0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18016ec20(undefined8 param_1,undefined8 param_2,longlong *param_3)
+/**
+ * 处理引擎渲染队列并提交渲染命令
+ * @param param_1 渲染队列指针
+ * @param param_2 参数2
+ * @param param_3 队列数据
+ * @return 渲染队列指针
+ */
+undefined8 process_engine_render_queue(undefined8 param_1,undefined8 param_2,longlong *param_3)
 
 {
   undefined *puVar1;
@@ -589,7 +712,15 @@ undefined8 FUN_18016ec20(undefined8 param_1,undefined8 param_2,longlong *param_3
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18016ecb0(undefined8 param_1,undefined8 param_2,longlong *param_3,undefined8 param_4)
+/**
+ * 管理引擎纹理资源并处理纹理缓存
+ * @param param_1 纹理管理器指针
+ * @param param_2 参数2
+ * @param param_3 纹理数据
+ * @param param_4 参数4
+ * @return 纹理管理器指针
+ */
+undefined8 manage_engine_texture_resources(undefined8 param_1,undefined8 param_2,longlong *param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -656,8 +787,16 @@ undefined8 FUN_18016ecb0(undefined8 param_1,undefined8 param_2,longlong *param_3
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 初始化引擎着色器系统并编译着色器
+ * @param param_1 着色器系统指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 着色器系统指针
+ */
 undefined8 *
-FUN_18016eeb0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_shader_system(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -685,8 +824,16 @@ FUN_18016eeb0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 创建引擎缓冲区管理器并分配内存
+ * @param param_1 缓冲区管理器指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 缓冲区管理器指针
+ */
 undefined8 *
-FUN_18016ef90(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+create_engine_buffer_manager(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -724,8 +871,16 @@ FUN_18016ef90(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 管理引擎着色器参数并更新uniform变量
+ * @param param_1 着色器管理器指针
+ * @param param_2 参数2
+ * @param param_3 着色器参数
+ * @param param_4 参数4
+ * @return 着色器管理器指针
+ */
 undefined8 *
-FUN_18016f090(undefined8 *param_1,undefined8 param_2,longlong *param_3,undefined8 param_4)
+manage_engine_shader_parameters(undefined8 *param_1,undefined8 param_2,longlong *param_3,undefined8 param_4)
 
 {
   int *piVar1;
@@ -789,7 +944,14 @@ LAB_18016f158:
 
 
 
-undefined8 FUN_18016f240(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 启动引擎几何系统并初始化几何数据
+ * @param param_1 几何系统指针
+ * @param param_2 参数2
+ * @param param_3 启动参数
+ * @return 几何系统指针
+ */
+undefined8 start_engine_geometry_system(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   FUN_180166580(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
@@ -798,7 +960,14 @@ undefined8 FUN_18016f240(undefined8 param_1,undefined8 param_2,undefined8 param_
 
 
 
-undefined8 FUN_18016f2c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 初始化引擎网格系统并处理网格数据
+ * @param param_1 网格系统指针
+ * @param param_2 参数2
+ * @param param_3 启动参数
+ * @return 网格系统指针
+ */
+undefined8 start_engine_mesh_system(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   FUN_1801661b0(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
@@ -807,7 +976,14 @@ undefined8 FUN_18016f2c0(undefined8 param_1,undefined8 param_2,undefined8 param_
 
 
 
-undefined8 FUN_18016f340(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 启动引擎骨骼系统并初始化骨骼动画
+ * @param param_1 骨骼系统指针
+ * @param param_2 参数2
+ * @param param_3 启动参数
+ * @return 骨骼系统指针
+ */
+undefined8 start_engine_skeleton_system(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   FUN_180165f80(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
@@ -816,7 +992,14 @@ undefined8 FUN_18016f340(undefined8 param_1,undefined8 param_2,undefined8 param_
 
 
 
-undefined8 FUN_18016f3c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 初始化引擎变形系统并处理变形动画
+ * @param param_1 变形系统指针
+ * @param param_2 参数2
+ * @param param_3 启动参数
+ * @return 变形系统指针
+ */
+undefined8 start_engine_morph_system(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
   FUN_180165bb0(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
@@ -827,8 +1010,16 @@ undefined8 FUN_18016f3c0(undefined8 param_1,undefined8 param_2,undefined8 param_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 创建引擎渲染管线并配置渲染状态
+ * @param param_1 渲染管线指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 渲染管线指针
+ */
 undefined8 *
-FUN_18016f440(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+create_engine_render_pipeline(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -853,8 +1044,16 @@ FUN_18016f440(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 初始化引擎帧缓冲区并设置渲染目标
+ * @param param_1 帧缓冲区指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 帧缓冲区指针
+ */
 undefined8 *
-FUN_18016f4f0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_framebuffer(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -887,8 +1086,16 @@ FUN_18016f4f0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 配置引擎深度缓冲区并设置深度测试
+ * @param param_1 深度缓冲区指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 深度缓冲区指针
+ */
 undefined8 *
-FUN_18016f5d0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+configure_engine_depth_buffer(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -911,8 +1118,16 @@ FUN_18016f5d0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 
 
+/**
+ * 初始化引擎模板缓冲区并设置模板测试
+ * @param param_1 模板缓冲区指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 模板缓冲区指针
+ */
 undefined8
-FUN_18016f680(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 *param_4)
+initialize_engine_stencil_buffer(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 *param_4)
 
 {
   undefined *puVar1;
@@ -929,8 +1144,16 @@ FUN_18016f680(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 创建引擎渲染目标并设置输出缓冲区
+ * @param param_1 渲染目标指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 渲染目标指针
+ */
 undefined8 *
-FUN_18016f720(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+create_engine_render_target(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 uVar1;
@@ -958,8 +1181,16 @@ FUN_18016f720(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 
 
+/**
+ * 初始化引擎视口系统并设置视口参数
+ * @param param_1 视口系统指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 视口系统指针
+ */
 undefined8
-FUN_18016f7d0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_viewport_system(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -977,7 +1208,15 @@ FUN_18016f7d0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18016f840(undefined8 param_1,undefined8 param_2,longlong *param_3,longlong *param_4)
+/**
+ * 配置引擎裁剪区域并设置裁剪参数
+ * @param param_1 裁剪区域指针
+ * @param param_2 参数2
+ * @param param_3 裁剪参数1
+ * @param param_4 裁剪参数2
+ * @return 裁剪区域指针
+ */
+undefined8 configure_engine_scissor_region(undefined8 param_1,undefined8 param_2,longlong *param_3,longlong *param_4)
 
 {
   undefined8 uVar1;
@@ -1017,8 +1256,11 @@ undefined8 FUN_18016f840(undefined8 param_1,undefined8 param_2,longlong *param_3
 
 
 
-// 函数: void FUN_18016f990(undefined8 *param_1)
-void FUN_18016f990(undefined8 *param_1)
+/**
+ * 重置引擎渲染状态并清理渲染缓存
+ * @param param_1 渲染状态指针
+ */
+void reset_engine_render_state(undefined8 *param_1)
 
 {
   FUN_1800547b0();
@@ -1030,8 +1272,16 @@ void FUN_18016f990(undefined8 *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 初始化引擎清除操作并设置清除颜色
+ * @param param_1 清除操作指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 清除操作指针
+ */
 undefined8
-FUN_18016f9f0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_clear_operation(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined *puVar1;
@@ -1049,8 +1299,16 @@ FUN_18016f9f0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 
 
+/**
+ * 启动引擎绘制系统并初始化绘制命令
+ * @param param_1 绘制系统指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 绘制系统指针
+ */
 undefined8
-FUN_18016fa80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+start_engine_drawing_system(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180165950(param_1,param_1,param_3,param_4,0,0xfffffffffffffffe);
@@ -1061,8 +1319,16 @@ FUN_18016fa80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 创建引擎索引缓冲区并设置索引数据
+ * @param param_1 索引缓冲区指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 索引缓冲区指针
+ */
 undefined8 *
-FUN_18016fb00(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+create_engine_index_buffer(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -1087,8 +1353,16 @@ FUN_18016fb00(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 
 
+/**
+ * 初始化引擎顶点缓冲区并设置顶点数据
+ * @param param_1 顶点缓冲区指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 顶点缓冲区指针
+ */
 undefined8 *
-FUN_18016fbe0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_vertex_buffer(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined4 *puVar1;
@@ -1115,8 +1389,16 @@ FUN_18016fbe0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 
 
+/**
+ * 管理引擎实例化数据并处理实例化绘制
+ * @param param_1 实例化数据指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 实例化数据指针
+ */
 undefined8 *
-FUN_18016fcc0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 *param_4)
+manage_engine_instanced_data(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 *param_4)
 
 {
   longlong lVar1;
@@ -1148,14 +1430,24 @@ FUN_18016fcc0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 
 
+/**
+ * 初始化引擎间接绘制并设置间接参数
+ * @param param_1 间接绘制指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 间接绘制指针
+ */
 undefined8 *
-FUN_18016fdf0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_indirect_drawing(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
 
 
-// 函数: void FUN_18016ff6f(void)
-void FUN_18016ff6f(void)
+/**
+ * 清理引擎资源并释放内存
+ */
+void cleanup_engine_resources(void)
 
 {
   return;
