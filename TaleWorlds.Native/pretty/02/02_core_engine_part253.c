@@ -1190,29 +1190,32 @@ void initialize_system_module5(void)
 
 
 
-// 函数: void FUN_18021bff0(void)
-void FUN_18021bff0(void)
+/**
+ * 初始化消息处理系统
+ * 初始化消息处理系统并设置消息队列
+ */
+void initialize_message_system(void)
 
 {
-  undefined4 uVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  undefined1 auStack_1c8 [48];
-  undefined4 uStack_198;
-  undefined4 uStack_190;
-  undefined *puStack_108;
-  undefined8 *puStack_100;
-  undefined4 uStack_f8;
-  undefined8 uStack_f0;
-  longlong lStack_c0;
-  undefined1 auStack_90 [32];
-  undefined8 uStack_70;
-  ulonglong uStack_38;
+  undefined4 message_flags;
+  longlong queue_start;
+  undefined8 *message_handler;
+  undefined1 stack_buffer1 [48];
+  undefined4 queue_size;
+  undefined4 max_messages;
+  undefined *message_ptr;
+  undefined8 *message_buffer;
+  undefined4 message_count;
+  undefined8 message_timeout;
+  longlong queue_capacity;
+  undefined1 stack_buffer2 [32];
+  undefined8 stack_cookie;
+  ulonglong security_cookie;
   
-  uStack_70 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_1c8;
-  uStack_198 = 0;
-  _DAT_180c8aa60 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3);
+  stack_cookie = 0xfffffffffffffffe;
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+  queue_size = 0;
+  _DAT_180c8aa60 = FUN_18062b1e0(_DAT_180c8ed18, 0x30, 8, 3);
   *(undefined4 *)(_DAT_180c8aa60 + 0x19) = 0;
   *(undefined2 *)(_DAT_180c8aa60 + 0x1d) = 0;
   *(undefined1 *)(_DAT_180c8aa60 + 0x1f) = 0;
@@ -1222,42 +1225,45 @@ void FUN_18021bff0(void)
   *(undefined8 *)(_DAT_180c8aa60 + 0x10) = 0;
   *(undefined1 *)(_DAT_180c8aa60 + 0x18) = 0;
   *(undefined8 *)(_DAT_180c8aa60 + 0x20) = 0;
-  lStack_c0 = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
-  uStack_190 = 0;
-  if (0 < (int)lStack_c0) {
-    lVar2 = *(longlong *)(*_DAT_180c86870 + 0x888);
-    if (*(longlong *)(*_DAT_180c86870 + 0x890) - lVar2 >> 5 == 0) {
-      lVar2 = FUN_180628ca0();
+  queue_capacity = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
+  max_messages = 0;
+  if (0 < (int)queue_capacity) {
+    queue_start = *(longlong *)(*_DAT_180c86870 + 0x888);
+    if (*(longlong *)(*_DAT_180c86870 + 0x890) - queue_start >> 5 == 0) {
+      queue_start = FUN_180628ca0();
     }
-    puStack_108 = &UNK_180a3c3e0;
-    uStack_f0 = 0;
-    puStack_100 = (undefined8 *)0x0;
-    uStack_f8 = 0;
-    puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-    *(undefined1 *)puVar3 = 0;
-    puStack_100 = puVar3;
-    uVar1 = FUN_18064e990(puVar3);
-    uStack_f0 = CONCAT44(uStack_f0._4_4_,uVar1);
-    *puVar3 = 0x506873654d76614e;
-    *(undefined4 *)(puVar3 + 1) = 0x61666572;
-    *(undefined2 *)((longlong)puVar3 + 0xc) = 0x7362;
-    *(undefined1 *)((longlong)puVar3 + 0xe) = 0;
-    uStack_f8 = 0xe;
-    FUN_180627ce0(lVar2,auStack_90,&puStack_108);
-    puStack_108 = &UNK_180a3c3e0;
+    message_ptr = &UNK_180a3c3e0;
+    message_timeout = 0;
+    message_buffer = (undefined8 *)0x0;
+    message_count = 0;
+    message_handler = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    *(undefined1 *)message_handler = 0;
+    message_buffer = message_handler;
+    message_flags = FUN_18064e990(message_handler);
+    message_timeout = CONCAT44(message_timeout._4_4_, message_flags);
+    *message_handler = 0x506873654d76614e;  // "NevMeshP"
+    *(undefined4 *)(message_handler + 1) = 0x61666572;  // "refa"
+    *(undefined2 *)((longlong)message_handler + 0xc) = 0x7362;  // "bs"
+    *(undefined1 *)((longlong)message_handler + 0xe) = 0;
+    message_count = 0xe;
+    FUN_180627ce0(queue_start, stack_buffer2, &message_ptr);
+    message_ptr = &UNK_180a3c3e0;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar3);
+    FUN_18064e900(message_handler);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_1c8);
+  FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer1);
 }
 
 
 
 
 
-// 函数: void FUN_18021cb50(void)
-void FUN_18021cb50(void)
+/**
+ * 初始化系统模块6
+ * 初始化系统的第六个模块
+ */
+void initialize_system_module6(void)
 
 {
                     // WARNING: Subroutine does not return

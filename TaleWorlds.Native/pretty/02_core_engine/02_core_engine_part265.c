@@ -1345,31 +1345,69 @@ uint 处理对象更新事件(longlong object_ptr, longlong *event_params) {
 
 /**
  * 发送对象销毁通知
- * @param object_ptr 对象指针
+ * 向系统发送对象即将销毁的通知，以便相关系统进行清理工作
+ * 
+ * @param object_ptr 对象指针，要发送销毁通知的对象
+ * 
+ * 功能说明：
+ * 1. 获取对象的类型信息
+ * 2. 设置销毁事件标志
+ * 3. 复制销毁事件名称
+ * 4. 注册销毁事件监听器
+ * 5. 清理事件资源
+ * 
+ * 事件处理：
+ * - 使用组件事件标志进行通知
+ * - 事件名称标识为对象销毁事件
+ * - 通过事件系统通知相关组件
+ * - 确保所有依赖系统收到通知
+ * 
+ * 清理流程：
+ * - 设置事件字符串缓冲区
+ * - 复制标准销毁事件名称
+ * - 注册事件监听器
+ * - 清理临时资源
+ * 
+ * 注意事项：
+ * - 函数不会返回，内部调用堆栈保护清理函数
+ * - 销毁通知对系统稳定性很重要
+ * - 需要确保所有相关系统都收到通知
  */
-void send_object_destruction_notification(longlong object_ptr) {
-  undefined8 object_data;
-  undefined1 stack_buffer1[32];
-  undefined8 stack_value1;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_value2;
-  undefined1 stack_buffer2[32];
-  ulonglong stack_value3;
+void 发送对象销毁通知(longlong object_ptr) {
+  undefined8 object_type_data;       // 对象类型数据
+  undefined1 stack_protection_buffer[32]; // 堆栈保护缓冲区
+  undefined8 stack_temp_value_1;    // 堆栈临时值1
+  undefined *event_flag_ptr;        // 事件标志指针
+  undefined1 *event_name_ptr;       // 事件名称指针
+  undefined4 event_name_length;     // 事件名称长度
+  undefined1 destruction_event_buffer[32]; // 销毁事件缓冲区
+  ulonglong stack_protection_value;  // 堆栈保护值
   
-  stack_value1 = 0xfffffffffffffffe;
-  stack_value3 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
-  object_data = *(undefined8 *)(object_ptr + 0x1e0);
-  stack_ptr1 = &COMPONENT_EVENT_FLAG;
-  stack_ptr2 = stack_buffer2;
-  stack_buffer2[0] = 0;
-  stack_value2 = 0x11;
-  strcpy_s(stack_buffer2, 0x20, &OBJECT_DESTROY_EVENT_NAME);
-  register_event_listener(object_data, &stack_ptr1, 0);
-  stack_ptr1 = &MEMORY_CLEANUP_FLAG;
+  // 初始化堆栈保护
+  stack_temp_value_1 = DEFAULT_STACK_PROTECTION;
+  stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)stack_protection_buffer;
+  
+  // 获取对象类型信息
+  object_type_data = *(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
+  
+  // 设置事件标志和名称指针
+  event_flag_ptr = &COMPONENT_EVENT_FLAG;
+  event_name_ptr = destruction_event_buffer;
+  destruction_event_buffer[0] = 0;
+  event_name_length = 0x11;  // 事件名称长度
+  
+  // 复制销毁事件名称到缓冲区
+  strcpy_s(destruction_event_buffer, EVENT_STRING_MAX_LENGTH, &OBJECT_DESTROY_EVENT_NAME);
+  
+  // 注册销毁事件监听器
+  // 参数：对象类型数据，事件标志指针，事件类型（0表示销毁事件）
+  register_event_listener(object_type_data, &event_flag_ptr, 0);
+  
+  // 清理事件资源
+  event_flag_ptr = &MEMORY_CLEANUP_FLAG;
   
   // WARNING: Subroutine does not return
-  cleanup_stack_protection(stack_value3 ^ (ulonglong)stack_buffer1);
+  cleanup_stack_protection(stack_protection_value ^ (ulonglong)stack_protection_buffer);
 }
 
 /**
