@@ -1,4 +1,4 @@
-#include "FUN_1808995c0_definition.h"
+#include "CoreSystem_StateManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 /**

@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -497,7 +501,7 @@ LAB_1802ad6d5:
             if (puVar2[1] != 0) {
               lVar8 = puVar2[1];
             }
-            FUN_180049bf0(&puStack_138,lVar8);
+            DataStructureManager0(&puStack_138,lVar8);
             break;
           }
           lVar8 = (int64_t)&processed_var_4600_ptr - (int64_t)pcVar11;
@@ -575,7 +579,7 @@ LAB_1802ad2f4:
           if (puVar2[1] != 0) {
             lVar8 = puVar2[1];
           }
-          FUN_180049bf0(&puStack_138,lVar8);
+          DataStructureManager0(&puStack_138,lVar8);
           if (0 < iStack_128) {
             puVar5 = &system_buffer_ptr;
             if (puStack_130 != (void *)0x0) {

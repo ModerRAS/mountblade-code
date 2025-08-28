@@ -1,3 +1,4 @@
+#include "FUN_1808555a0_definition.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -1035,7 +1036,7 @@ uint64_t FUN_18085a980(int64_t param_1)
     }
   }
   iVar4 = SystemStatusChecker(param_1 + 0xb8);
-  if ((iVar4 == 0) && (iVar4 = FUN_1808555a0(param_1 + 200), iVar4 == 0)) {
+  if ((iVar4 == 0) && (iVar4 = SystemCoreProcessor(param_1 + 200), iVar4 == 0)) {
     *(int32_t *)(param_1 + 0xd8) = 0xffffffff;
     *(int32_t *)(param_1 + 0xdc) = 0;
   }

@@ -1,3 +1,4 @@
+#include "FUN_1808555a0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -400,46 +401,46 @@ uint64_t FUN_180873cd0(int64_t *param_1)
   uint uVar4;
   
   iVar2 = SystemLockProcessor(param_1 + 0x19);
-  if ((iVar2 == 0) && (iVar2 = FUN_1808555a0(param_1 + 0x1b), iVar2 == 0)) {
+  if ((iVar2 == 0) && (iVar2 = SystemCoreProcessor(param_1 + 0x1b), iVar2 == 0)) {
     *(int32_t *)(param_1 + 0x1d) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0xec) = 0;
   }
-  FUN_1808555a0(param_1 + 0x1b);
+  SystemCoreProcessor(param_1 + 0x1b);
   SystemLockProcessor(param_1 + 0x19);
   iVar2 = SystemLockProcessor(param_1 + 0x14);
-  if ((iVar2 == 0) && (iVar2 = FUN_1808555a0(param_1 + 0x16), iVar2 == 0)) {
+  if ((iVar2 == 0) && (iVar2 = SystemCoreProcessor(param_1 + 0x16), iVar2 == 0)) {
     *(int32_t *)(param_1 + 0x18) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0xc4) = 0;
   }
-  FUN_1808555a0(param_1 + 0x16);
+  SystemCoreProcessor(param_1 + 0x16);
   SystemLockProcessor(param_1 + 0x14);
   iVar2 = SystemLockProcessor(param_1 + 0xf);
-  if ((iVar2 == 0) && (iVar2 = FUN_1808555a0(param_1 + 0x11), iVar2 == 0)) {
+  if ((iVar2 == 0) && (iVar2 = SystemCoreProcessor(param_1 + 0x11), iVar2 == 0)) {
     *(int32_t *)(param_1 + 0x13) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x9c) = 0;
   }
-  FUN_1808555a0(param_1 + 0x11);
+  SystemCoreProcessor(param_1 + 0x11);
   SystemLockProcessor(param_1 + 0xf);
   iVar2 = SystemLockProcessor(param_1 + 10);
-  if ((iVar2 == 0) && (iVar2 = FUN_1808555a0(param_1 + 0xc), iVar2 == 0)) {
+  if ((iVar2 == 0) && (iVar2 = SystemCoreProcessor(param_1 + 0xc), iVar2 == 0)) {
     *(int32_t *)(param_1 + 0xe) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x74) = 0;
   }
-  FUN_1808555a0(param_1 + 0xc);
+  SystemCoreProcessor(param_1 + 0xc);
   SystemLockProcessor(param_1 + 10);
   iVar2 = SystemLockProcessor(param_1 + 5);
-  if ((iVar2 == 0) && (iVar2 = FUN_1808555a0(param_1 + 7), iVar2 == 0)) {
+  if ((iVar2 == 0) && (iVar2 = SystemCoreProcessor(param_1 + 7), iVar2 == 0)) {
     *(int32_t *)(param_1 + 9) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x4c) = 0;
   }
-  FUN_1808555a0(param_1 + 7);
+  SystemCoreProcessor(param_1 + 7);
   SystemLockProcessor(param_1 + 5);
   iVar2 = SystemLockProcessor(param_1);
-  if ((iVar2 == 0) && (iVar2 = FUN_1808555a0(param_1 + 2), iVar2 == 0)) {
+  if ((iVar2 == 0) && (iVar2 = SystemCoreProcessor(param_1 + 2), iVar2 == 0)) {
     *(int32_t *)(param_1 + 4) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x24) = 0;
   }
-  FUN_1808555a0(param_1 + 2);
+  SystemCoreProcessor(param_1 + 2);
   uVar4 = *(uint *)((int64_t)param_1 + 0xc);
   if ((int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f)) < 0) {
     if (0 < (int)param_1[1]) {

@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 /* UIManager - FUN_18086b47c 的语义化别名 */
 #define UIManager FUN_18086b47c
 
@@ -55,7 +59,7 @@
 
 /* 状态管理函数 */
 #define StateManager_UpdateState() SystemCore_ResourceManager0()
-#define StateManager_TransitionState() FUN_180049bf0()
+#define StateManager_TransitionState() DataStructureManager0()
 
 /* 系统常量定义 */
 #define SYSTEM_STATE_ACTIVE          0x00

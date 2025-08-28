@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -885,7 +889,7 @@ LAB_1803ba454:
                   if (puVar11[1] != 0) {
                     lVar4 = puVar11[1];
                   }
-                  FUN_180049bf0(&puStack_98,lVar4);
+                  DataStructureManager0(&puStack_98,lVar4);
                   uVar3 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x240,0x10,3);
                   uVar3 = FUN_1802fb490(uVar3);
                   FUN_180056f10(*(int64_t *)(param_1 + 0x28) + 0x260,uVar3);

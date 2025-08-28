@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
@@ -161,7 +165,7 @@ void FUN_1800cd7d0(int64_t param_1,int64_t param_2)
   puStack_840 = auStack_830;
   uStack_838 = 0;
   auStack_830[0] = 0;
-  FUN_180049bf0(&puStack_848,&rendering_buffer_2592_ptr);
+  DataStructureManager0(&puStack_848,&rendering_buffer_2592_ptr);
   FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_848);
   func_0x0001800e2bf0(param_1,param_2);
   FUN_1800cd410(param_1);
@@ -261,7 +265,7 @@ void FUN_1800cd7d0(int64_t param_1,int64_t param_2)
     puStack_7e0 = auStack_7d0;
     uStack_7d8 = 0;
     auStack_7d0[0] = 0;
-    FUN_180049bf0(&puStack_7e8,&rendering_buffer_2648_ptr);
+    DataStructureManager0(&puStack_7e8,&rendering_buffer_2648_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_7e8);
     lVar10 = *(int64_t *)(system_message_buffer + 0x1cd8);
     if (((*(int64_t *)(lVar10 + 0x8510) != 0) || (*(int *)(lVar10 + 0x88a4) != -1)) ||
@@ -542,7 +546,7 @@ LAB_1800cdf36:
     puStack_780 = auStack_770;
     uStack_778 = 0;
     auStack_770[0] = 0;
-    FUN_180049bf0(&puStack_788,&system_data_3e88);
+    DataStructureManager0(&puStack_788,&system_data_3e88);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_788);
     puStack_3c8 = &memory_allocator_3480_ptr;
     puStack_3c0 = auStack_3b0;
@@ -566,7 +570,7 @@ LAB_1800cdf36:
     puStack_720 = auStack_710;
     uStack_718 = 0;
     auStack_710[0] = 0;
-    FUN_180049bf0(&puStack_728,&rendering_buffer_2744_ptr);
+    DataStructureManager0(&puStack_728,&rendering_buffer_2744_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_728);
     puStack_368 = &memory_allocator_3480_ptr;
     puStack_360 = auStack_350;
@@ -606,7 +610,7 @@ LAB_1800cdf36:
     puStack_6c0 = auStack_6b0;
     uStack_6b8 = 0;
     auStack_6b0[0] = 0;
-    FUN_180049bf0(&puStack_6c8,&rendering_buffer_2736_ptr);
+    DataStructureManager0(&puStack_6c8,&rendering_buffer_2736_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_6c8);
     puStack_308 = &memory_allocator_3480_ptr;
     puStack_300 = auStack_2f0;
@@ -641,7 +645,7 @@ LAB_1800cdf36:
     puStack_660 = auStack_650;
     uStack_658 = 0;
     auStack_650[0] = 0;
-    FUN_180049bf0(&puStack_668,&rendering_buffer_2736_ptr);
+    DataStructureManager0(&puStack_668,&rendering_buffer_2736_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_668);
     puStack_2a8 = &memory_allocator_3480_ptr;
     puStack_2a0 = auStack_290;
@@ -710,7 +714,7 @@ LAB_1800cdf36:
     puStack_600 = auStack_5f0;
     uStack_5f8 = 0;
     auStack_5f0[0] = 0;
-    FUN_180049bf0(&puStack_608,&system_data_3ec0);
+    DataStructureManager0(&puStack_608,&system_data_3ec0);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_608);
     puStack_248 = &memory_allocator_3480_ptr;
     puStack_240 = auStack_230;
@@ -725,7 +729,7 @@ LAB_1800cdf36:
     puStack_420 = auStack_410;
     uStack_418 = 0;
     auStack_410[0] = 0;
-    FUN_180049bf0(&puStack_428,&rendering_buffer_2856_ptr);
+    DataStructureManager0(&puStack_428,&rendering_buffer_2856_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_428);
     FUN_1802c22a0(&uStack_8c9,&rendering_buffer_2856_ptr);
     FUN_1802d0d30(param_1,param_2);
@@ -741,7 +745,7 @@ LAB_1800cdf36:
     puStack_5a0 = auStack_590;
     uStack_598 = 0;
     auStack_590[0] = 0;
-    FUN_180049bf0(&puStack_5a8,&system_data_3f00);
+    DataStructureManager0(&puStack_5a8,&system_data_3f00);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_5a8);
     puStack_1e8 = &memory_allocator_3480_ptr;
     puStack_1e0 = auStack_1d0;
@@ -761,7 +765,7 @@ LAB_1800cdf36:
     puStack_540 = auStack_530;
     uStack_538 = 0;
     auStack_530[0] = 0;
-    FUN_180049bf0(&puStack_548,&system_data_3f58);
+    DataStructureManager0(&puStack_548,&system_data_3f58);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_548);
     FUN_1802c22a0(&uStack_8c7,&system_data_3f58);
     puStack_188 = &memory_allocator_3480_ptr;
@@ -799,7 +803,7 @@ LAB_1800cdf36:
     puStack_4e0 = auStack_4d0;
     uStack_4d8 = 0;
     auStack_4d0[0] = 0;
-    FUN_180049bf0(&puStack_4e8,&rendering_buffer_2944_ptr);
+    DataStructureManager0(&puStack_4e8,&rendering_buffer_2944_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_4e8);
     puStack_128 = &memory_allocator_3480_ptr;
     puStack_120 = auStack_110;
@@ -823,7 +827,7 @@ LAB_1800cdf36:
     puStack_480 = auStack_470;
     uStack_478 = 0;
     auStack_470[0] = 0;
-    FUN_180049bf0(&puStack_488,&rendering_buffer_2932_ptr);
+    DataStructureManager0(&puStack_488,&rendering_buffer_2932_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_488);
     puStack_c8 = &memory_allocator_3480_ptr;
     puStack_c0 = auStack_b0;

@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -251,7 +255,7 @@ void FUN_1802c64d0(int64_t *param_1,uint64_t param_2)
   puStack_a0 = auStack_90;
   uStack_98 = 0;
   auStack_90[0] = 0;
-  FUN_180049bf0(&puStack_a8,&processed_var_8408_ptr);
+  DataStructureManager0(&puStack_a8,&processed_var_8408_ptr);
   FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_a8);
   auStack_2b8[0] = 0;
   lVar6 = param_1[4];
@@ -377,7 +381,7 @@ void FUN_1802c64d0(int64_t *param_1,uint64_t param_2)
     puStack_160 = auStack_150;
     uStack_158 = 0;
     auStack_150[0] = 0;
-    FUN_180049bf0(&puStack_168,&processed_var_8336_ptr);
+    DataStructureManager0(&puStack_168,&processed_var_8336_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_168);
     uStack_2c0 = 1;
     uStack_2c8 = 0xffffffff;
@@ -406,7 +410,7 @@ void FUN_1802c64d0(int64_t *param_1,uint64_t param_2)
     ppuStack_100 = (void **)auStack_f0;
     uStack_f8 = 0;
     auStack_f0[0] = auStack_f0[0] & 0xffffff00;
-    FUN_180049bf0(&puStack_108,&processed_var_8352_ptr);
+    DataStructureManager0(&puStack_108,&processed_var_8352_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_108);
     lVar4 = system_main_module_state;
     lVar6 = *(int64_t *)(system_message_buffer + 0x1cd8);

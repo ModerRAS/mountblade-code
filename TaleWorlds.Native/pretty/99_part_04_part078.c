@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
@@ -95,7 +99,7 @@ void FUN_1802cf670(int64_t param_1,int64_t param_2)
     puStack_4d0 = auStack_4c0;
     uStack_4c8 = 0;
     auStack_4c0[0] = 0;
-    FUN_180049bf0(&puStack_4d8,&processed_var_9384_ptr);
+    DataStructureManager0(&puStack_4d8,&processed_var_9384_ptr);
     uVar16 = FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_4d8);
     uVar16 = FUN_1800c7b10(uVar16,param_2);
     FUN_1800c78b0(uVar16,param_2);
@@ -171,7 +175,7 @@ void FUN_1802cf670(int64_t param_1,int64_t param_2)
         uStack_528 = 0;
         auStack_520[0] = 0;
         if (puVar11 != (void *)0x0) {
-          FUN_180049bf0(&puStack_538);
+          DataStructureManager0(&puStack_538);
           FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_538);
         }
         if ((uVar2 >> 0x10 & 1) != 0) {

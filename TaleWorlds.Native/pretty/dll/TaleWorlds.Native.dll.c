@@ -39,7 +39,7 @@ extern uint8_t DAT;    // 控制数据变量
 extern uint8_t DAT;    // 处理数据变量
 extern uint8_t DAT;    // 通信数据变量
 
-// 未知类型变量声明 (UNK_ 前缀)
+// 全局配置变量声明
 extern uint8_t global_config_3504;    // 未知类型变量1
 extern uint8_t global_config_3520;    // 未知类型变量2
 extern uint8_t global_config_3544;    // 未知类型变量3

@@ -1,3 +1,4 @@
+#include "FUN_1806d7170_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_11_part002.c - 11 个函数
@@ -76,7 +77,7 @@ LAB_1806d5e06:
       } while (uVar12 != 0);
       do {
         uVar4 = *(uint64_t *)(puStack_5d0 + lVar9);
-        FUN_1806d7170(param_1,&processed_var_9224_ptr);
+        SystemValidator(param_1,&processed_var_9224_ptr);
         iVar1 = *(int *)(*param_1 + 0x10);
         if ((iVar1 != 0) &&
            (puVar8 = (uint64_t *)(*(int64_t *)(*param_1 + 8) + (uint64_t)(iVar1 - 1) * 0x10),
@@ -206,7 +207,7 @@ LAB_1806d5e06:
     } while (unaff_R14 != 0);
     do {
       uVar4 = *(uint64_t *)(lVar9 + *(int64_t *)(unaff_RBP + 0x138));
-      FUN_1806d7170();
+      SystemValidator();
       iVar1 = *(int *)(*unaff_RBX + 0x10);
       if ((iVar1 != 0) &&
          (puVar8 = (uint64_t *)(*(int64_t *)(*unaff_RBX + 8) + (uint64_t)(iVar1 - 1) * 0x10),
@@ -377,8 +378,8 @@ void FUN_1806d6010(int64_t *param_1,int64_t param_2)
   uVar6 = (**(code **)(*(int64_t *)param_1[2] + 0x38))();
   switch(uVar6) {
   case 0:
-    FUN_1806d7170(param_1,&ui_system_data_1520_ptr);
-    FUN_1806d7170(param_1,&processed_var_9496_ptr);
+    SystemValidator(param_1,&ui_system_data_1520_ptr);
+    SystemValidator(param_1,&processed_var_9496_ptr);
     auStackX_8[0] = 0;
     auStackX_8[1] = 0;
     _getGeometry_PxShapeGeometryPropertyHelper_physx__QEBA_NPEBVPxShape_2_AEAVPxSphereGeometry_2__Z
@@ -400,8 +401,8 @@ void FUN_1806d6010(int64_t *param_1,int64_t param_2)
     FUN_1806c10d0(&lStack_1e8,auStack_208,0);
     break;
   case 1:
-    FUN_1806d7170(param_1,&ui_system_data_1520_ptr);
-    FUN_1806d7170(param_1,&processed_var_9520_ptr);
+    SystemValidator(param_1,&ui_system_data_1520_ptr);
+    SystemValidator(param_1,&processed_var_9520_ptr);
     auStackX_20[0] = 1;
     _getGeometry_PxShapeGeometryPropertyHelper_physx__QEBA_NPEBVPxShape_2_AEAVPxPlaneGeometry_2__Z
               (param_2 + 0x18,param_1[2],auStackX_20);
@@ -414,8 +415,8 @@ void FUN_1806d6010(int64_t *param_1,int64_t param_2)
     puVar1[3] = 0;
     break;
   case 2:
-    FUN_1806d7170(param_1,&ui_system_data_1520_ptr);
-    FUN_1806d7170(param_1,&processed_var_9448_ptr);
+    SystemValidator(param_1,&ui_system_data_1520_ptr);
+    SystemValidator(param_1,&processed_var_9448_ptr);
     auStack_208[0] = 2;
     auStack_208[1] = 0;
     uStack_200 = (uint64_t)uStack_200._4_4_ << 0x20;
@@ -438,8 +439,8 @@ void FUN_1806d6010(int64_t *param_1,int64_t param_2)
     FUN_1806ce230(&lStack_1a8,&lStack_1e8,0);
     break;
   case 3:
-    FUN_1806d7170(param_1,&ui_system_data_1520_ptr);
-    FUN_1806d7170(param_1,&processed_var_9432_ptr);
+    SystemValidator(param_1,&ui_system_data_1520_ptr);
+    SystemValidator(param_1,&processed_var_9432_ptr);
     auStack_208[0] = 3;
     auStack_208[1] = 0;
     uStack_200 = 0;
@@ -461,8 +462,8 @@ void FUN_1806d6010(int64_t *param_1,int64_t param_2)
     FUN_1806c0d90(&lStack_1a8,auStack_168,0);
     break;
   case 4:
-    FUN_1806d7170(param_1,&ui_system_data_1520_ptr);
-    FUN_1806d7170(param_1,&processed_var_9472_ptr);
+    SystemValidator(param_1,&ui_system_data_1520_ptr);
+    SystemValidator(param_1,&processed_var_9472_ptr);
     uStack_1cc = 0x3f800000;
     lStack_1e0 = 0x3f8000003f800000;
     uStack_1d8._0_4_ = 0;
@@ -490,8 +491,8 @@ void FUN_1806d6010(int64_t *param_1,int64_t param_2)
     FUN_1806ce3e0(auStack_168,&lStack_1a8,0);
     break;
   case 5:
-    FUN_1806d7170(param_1,&ui_system_data_1520_ptr);
-    FUN_1806d7170(param_1,&processed_var_9536_ptr);
+    SystemValidator(param_1,&ui_system_data_1520_ptr);
+    SystemValidator(param_1,&processed_var_9536_ptr);
     uStack_1cc = 0x3f800000;
     lStack_1e0 = 0x3f8000003f800000;
     uStack_1d8._0_4_ = 0;
@@ -518,8 +519,8 @@ void FUN_1806d6010(int64_t *param_1,int64_t param_2)
     FUN_1806d26b0(auStack_168,&lStack_1a8,0);
     break;
   case 6:
-    FUN_1806d7170(param_1,&ui_system_data_1520_ptr);
-    FUN_1806d7170(param_1,&processed_var_9560_ptr);
+    SystemValidator(param_1,&ui_system_data_1520_ptr);
+    SystemValidator(param_1,&processed_var_9560_ptr);
     auStack_208[0] = 6;
     uStack_200 = 0;
     uStack_1f8 = 0x3f800000;
@@ -905,7 +906,7 @@ void FUN_1806d68d0(int64_t *param_1,int64_t param_2)
   
   lVar4 = (**(code **)(param_2 + 0x10))(param_1[2]);
   if (lVar4 != 0) {
-    FUN_1806d7170(param_1,&processed_var_9592_ptr);
+    SystemValidator(param_1,&processed_var_9592_ptr);
     sVar1 = *(short *)(lVar4 + 8);
     lVar5 = 0;
     if (sVar1 == 0xe) {

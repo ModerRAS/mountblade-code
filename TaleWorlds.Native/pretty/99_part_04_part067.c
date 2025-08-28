@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
@@ -65,7 +69,7 @@ void FUN_1802c3ab0(void **param_1,int64_t param_2)
     puStack_160 = auStack_150;
     uStack_158 = 0;
     auStack_150[0] = 0;
-    FUN_180049bf0(&puStack_168,&processed_var_7960_ptr);
+    DataStructureManager0(&puStack_168,&processed_var_7960_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_168);
     lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
     if (((*(int64_t *)(lVar1 + 0x8438) != 0) || (*(int *)(lVar1 + 0x8838) != -1)) ||
@@ -107,7 +111,7 @@ void FUN_1802c3ab0(void **param_1,int64_t param_2)
       puStack_280 = auStack_270;
       uStack_278 = 0;
       auStack_270[0] = 0;
-      FUN_180049bf0(&puStack_288,&processed_var_7928_ptr);
+      DataStructureManager0(&puStack_288,&processed_var_7928_ptr);
       FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_288);
       lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
       puVar3 = *param_1;
@@ -153,7 +157,7 @@ void FUN_1802c3ab0(void **param_1,int64_t param_2)
     puStack_100 = auStack_f0;
     uStack_f8 = 0;
     auStack_f0[0] = 0;
-    FUN_180049bf0(&puStack_108,&processed_var_7932_ptr);
+    DataStructureManager0(&puStack_108,&processed_var_7932_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_108);
     lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
     puVar3 = param_1[2];
@@ -217,14 +221,14 @@ void FUN_1802c3ab0(void **param_1,int64_t param_2)
     uStack_278 = 0;
     auStack_270[0] = 0;
     ppuStack_2b0 = param_1;
-    FUN_180049bf0(&puStack_288,&processed_var_8020_ptr);
+    DataStructureManager0(&puStack_288,&processed_var_8020_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_288);
     ppuStack_2b8 = &puStack_a8;
     puStack_a8 = &memory_allocator_3480_ptr;
     puStack_a0 = auStack_90;
     uStack_98 = 0;
     auStack_90[0] = 0;
-    FUN_180049bf0(&puStack_a8,&processed_var_8024_ptr);
+    DataStructureManager0(&puStack_a8,&processed_var_8024_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_a8);
     FUN_1802c4970(&ppuStack_2b0,0);
     FUN_1802c2ac0(&puStack_a8);
@@ -233,7 +237,7 @@ void FUN_1802c3ab0(void **param_1,int64_t param_2)
     puStack_220 = auStack_210;
     uStack_218 = 0;
     auStack_210[0] = 0;
-    FUN_180049bf0(&puStack_228,&processed_var_7984_ptr);
+    DataStructureManager0(&puStack_228,&processed_var_7984_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_228);
     FUN_1802c4970(&ppuStack_2b0,1);
     FUN_1802c2ac0(&puStack_228);
@@ -243,7 +247,7 @@ void FUN_1802c3ab0(void **param_1,int64_t param_2)
     puStack_1c0 = auStack_1b0;
     uStack_1b8 = 0;
     auStack_1b0[0] = 0;
-    FUN_180049bf0(&puStack_1c8,&processed_var_8000_ptr);
+    DataStructureManager0(&puStack_1c8,&processed_var_8000_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_1c8);
     lVar5 = system_main_module_state;
     lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
@@ -284,7 +288,7 @@ void FUN_1802c3ab0(void **param_1,int64_t param_2)
     puStack_220 = auStack_210;
     uStack_218 = 0;
     auStack_210[0] = 0;
-    FUN_180049bf0(&puStack_228,&processed_var_8088_ptr);
+    DataStructureManager0(&puStack_228,&processed_var_8088_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_228);
     pppuStack_2c8._0_4_ = 0xffffffff;
     RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0,param_1[7],0x20);
@@ -323,7 +327,7 @@ void FUN_1802c3ab0(void **param_1,int64_t param_2)
     puStack_1c0 = auStack_1b0;
     uStack_1b8 = 0;
     auStack_1b0[0] = 0;
-    FUN_180049bf0(&puStack_1c8,&processed_var_8112_ptr);
+    DataStructureManager0(&puStack_1c8,&processed_var_8112_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_1c8);
     do {
       iVar8 = (int)ppuVar9;

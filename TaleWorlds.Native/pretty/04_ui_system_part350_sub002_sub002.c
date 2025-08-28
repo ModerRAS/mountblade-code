@@ -1,3 +1,4 @@
+#include "FUN_1808555a0_definition.h"
 /* 函数别名定义: MemoryCacheController */
 #define MemoryCacheController MemoryCacheController
 
@@ -209,7 +210,7 @@
 #define UISystem_DataManager FUN_1808554a0
 
 // UI系统控制器 - 控制系统操作
-#define UISystem_Controller FUN_1808555a0
+#define UISystem_Controller SystemCoreProcessor
 
 // UI系统处理器 - 处理系统任务
 #define UISystem_Processor FUN_1808553b0

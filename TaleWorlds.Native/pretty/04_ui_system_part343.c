@@ -1,3 +1,4 @@
+#include "FUN_1808555a0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -654,7 +655,7 @@ uint64_t FUN_18085555e(uint64_t param_1,uint64_t param_2,uint param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1808555a0(int64_t *param_1)
+uint64_t SystemCoreProcessor(int64_t *param_1)
 
 {
   int iVar1;

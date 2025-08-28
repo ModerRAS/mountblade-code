@@ -1,4 +1,4 @@
-#include "FUN_1808995c0_definition.h"
+#include "CoreSystem_StateManager0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 06_utilities_part020_sub002_sub002.c - 1 个函数

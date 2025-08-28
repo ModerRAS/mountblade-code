@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -206,8 +210,8 @@ FUN_180049bb0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 
 
 
-// 函数: void FUN_180049bf0(int64_t param_1,int64_t param_2)
-void FUN_180049bf0(int64_t param_1,int64_t param_2)
+// 函数: void DataStructureManager0(int64_t param_1,int64_t param_2)
+void DataStructureManager0(int64_t param_1,int64_t param_2)
 
 {
   int64_t lVar1;

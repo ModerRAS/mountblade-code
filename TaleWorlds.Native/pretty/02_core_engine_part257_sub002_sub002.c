@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 /**
  * @file 02_core_engine_part257_sub002_sub002.c
  * @brief 核心引擎数据处理和状态管理模块
@@ -51,7 +55,7 @@
 #define CoreEngine_DataProcessor FUN_1802230e0
 
 // 内存分配器
-#define CoreEngine_MemoryAllocator FUN_180049bf0
+#define CoreEngine_MemoryAllocator DataStructureManager0
 
 // 数据初始化器
 #define CoreEngine_DataInitializer SystemCommunicationProcessor
@@ -63,7 +67,7 @@
 #define CoreEngine_ResourceManager FUN_180226020
 
 // 状态同步器
-#define CoreEngine_StateSynchronizer FUN_180049bf0
+#define CoreEngine_StateSynchronizer DataStructureManager0
 
 // 消息处理器
 #define CoreEngine_MessageProcessor SystemCommunicationProcessor

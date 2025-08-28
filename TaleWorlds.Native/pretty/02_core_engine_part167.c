@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -562,7 +566,7 @@ void FUN_180150ae0(int64_t param_1)
     puStack_140 = auStack_130;
     uStack_138 = 0;
     auStack_130[0] = 0;
-    FUN_180049bf0(&puStack_148,&system_ptr_143c);
+    DataStructureManager0(&puStack_148,&system_ptr_143c);
     uVar19 = FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_148);
     plVar5 = plStack_180;
     if (*(char *)(system_parameter_buffer + 0x12e7) != '\0') {

@@ -1,3 +1,4 @@
+#include "FUN_1808555a0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -733,11 +734,11 @@ void FUN_1808bbb80(uint64_t *param_1)
   FUN_1808d7a10(param_1 + 0x59);
   func_0x0001808b6360(param_1 + 0x57);
   iVar1 = SystemStatusChecker(param_1 + 0x4d);
-  if ((iVar1 == 0) && (iVar1 = FUN_1808555a0(param_1 + 0x4f), iVar1 == 0)) {
+  if ((iVar1 == 0) && (iVar1 = SystemCoreProcessor(param_1 + 0x4f), iVar1 == 0)) {
     *(int32_t *)(param_1 + 0x51) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x28c) = 0;
   }
-  FUN_1808555a0(param_1 + 0x4f);
+  SystemCoreProcessor(param_1 + 0x4f);
   SystemStatusChecker(param_1 + 0x4d);
   iVar1 = SystemStatusChecker(param_1 + 0x48);
   if ((iVar1 == 0) && (iVar1 = SystemCore_FileSystem0(param_1 + 0x4a), iVar1 == 0)) {

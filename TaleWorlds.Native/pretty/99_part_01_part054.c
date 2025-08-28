@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
@@ -51,7 +55,7 @@ void FUN_1800db610(int64_t param_1,int64_t param_2)
   puStack_a0 = auStack_90;
   uStack_98 = 0;
   auStack_90[0] = 0;
-  FUN_180049bf0(&puStack_a8,&memory_allocator_3380_ptr);
+  DataStructureManager0(&puStack_a8,&memory_allocator_3380_ptr);
   FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_a8);
   lVar8 = *(int64_t *)(param_2 + 0x99c0);
   if (lVar8 == 0) {
@@ -162,7 +166,7 @@ LAB_1800dbcff:
         puStack_100 = auStack_f0;
         uStack_f8 = 0;
         auStack_f0[0] = 0;
-        FUN_180049bf0(&puStack_108,&memory_allocator_3432_ptr);
+        DataStructureManager0(&puStack_108,&memory_allocator_3432_ptr);
         FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_108);
         FUN_1800dd660(param_1,param_2);
         FUN_1802c2ac0(&puStack_108);
@@ -451,7 +455,7 @@ void FUN_1800dc070(void **param_1,int64_t param_2,char param_3)
   uStack_98 = 0;
   auStack_90[0] = 0;
   if (puVar13 != (int32_t *)0x0) {
-    FUN_180049bf0(&puStack_a8);
+    DataStructureManager0(&puStack_a8);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_a8);
   }
   if (param_3 == '\0') {
@@ -462,7 +466,7 @@ void FUN_1800dc070(void **param_1,int64_t param_2,char param_3)
     puStack_1a0 = auStack_190;
     uStack_198 = 0;
     auStack_190[0] = 0;
-    FUN_180049bf0(&puStack_1a8,&memory_allocator_3540_ptr);
+    DataStructureManager0(&puStack_1a8,&memory_allocator_3540_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_1a8);
     lVar8 = system_message_buffer;
     *(uint64_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x83f0) = 0;
@@ -472,7 +476,7 @@ void FUN_1800dc070(void **param_1,int64_t param_2,char param_3)
     puStack_140 = auStack_130;
     uStack_138 = 0;
     auStack_130[0] = 0;
-    FUN_180049bf0(&puStack_148,&system_data_3ec0);
+    DataStructureManager0(&puStack_148,&system_data_3ec0);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_148);
     FUN_1800dbd90(param_1,lVar3,param_2);
     lVar10 = FUN_180245280(param_2);
@@ -549,7 +553,7 @@ void FUN_1800dc070(void **param_1,int64_t param_2,char param_3)
     puStack_1a0 = auStack_190;
     uStack_198 = 0;
     auStack_190[0] = 0;
-    FUN_180049bf0(&puStack_1a8,&processed_var_5240_ptr);
+    DataStructureManager0(&puStack_1a8,&processed_var_5240_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_1a8);
     if ((*(byte *)(param_2 + 0x1bd8) & 0x20) != 0) {
       lVar8 = FUN_180245280(param_2);

@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -100,7 +104,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   lStack_e8 = 0;
   uStack_e0 = 0;
   puStack_158 = param_2;
-  FUN_180049bf0(&puStack_148,&processed_var_5240_ptr);
+  DataStructureManager0(&puStack_148,&processed_var_5240_ptr);
   (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
   ppuVar2 = (void **)param_2[1];
   if (ppuVar2 < (void **)param_2[2]) {
@@ -178,7 +182,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_4992_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_4992_ptr);
     puVar6 = &system_buffer_ptr;
     if (*(void **)(param_4 + 8) != (void *)0x0) {
       puVar6 = *(void **)(param_4 + 8);
@@ -211,7 +215,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5360_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5360_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -240,7 +244,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5280_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5280_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -269,7 +273,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5304_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5304_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -298,7 +302,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5456_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5456_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -327,7 +331,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5472_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5472_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -356,7 +360,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5392_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5392_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -385,7 +389,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5416_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5416_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -414,7 +418,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5544_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5544_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -443,7 +447,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5568_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5568_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -472,7 +476,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5496_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5496_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -501,7 +505,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5520_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5520_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -530,7 +534,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5664_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5664_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -559,7 +563,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5688_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5688_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -588,7 +592,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5600_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5600_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -618,7 +622,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       uStack_d8 = 0;
       lStack_e8 = 0;
       uStack_e0 = 0;
-      FUN_180049bf0(&puStack_148,&processed_var_5792_ptr);
+      DataStructureManager0(&puStack_148,&processed_var_5792_ptr);
       (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
       uVar7 = param_2[1];
       if (uVar7 < (uint64_t)param_2[2]) {
@@ -648,7 +652,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       uStack_d8 = 0;
       lStack_e8 = 0;
       uStack_e0 = 0;
-      FUN_180049bf0(&puStack_148,&processed_var_5760_ptr);
+      DataStructureManager0(&puStack_148,&processed_var_5760_ptr);
       (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
       uVar7 = param_2[1];
       if (uVar7 < (uint64_t)param_2[2]) {
@@ -679,7 +683,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5632_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5632_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -709,7 +713,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5696_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5696_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -739,7 +743,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5728_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5728_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -769,7 +773,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5880_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5880_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -799,7 +803,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5904_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5904_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -829,7 +833,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5824_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5824_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -859,7 +863,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5848_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5848_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -889,7 +893,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5960_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5960_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -919,7 +923,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     uStack_d8 = 0;
     lStack_e8 = 0;
     uStack_e0 = 0;
-    FUN_180049bf0(&puStack_148,&processed_var_5992_ptr);
+    DataStructureManager0(&puStack_148,&processed_var_5992_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
     if (uVar7 < (uint64_t)param_2[2]) {
@@ -991,7 +995,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
         if (puStack_188 != (int8_t *)0x0) {
           puVar8 = puStack_188;
         }
-        FUN_180049bf0(&puStack_148,puVar8);
+        DataStructureManager0(&puStack_148,puVar8);
         puVar6 = &system_data_8120;
         if ((uStack_168 & param_8) == 0) {
           puVar6 = &system_data_89e8;
@@ -1041,7 +1045,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   uStack_58 = 0;
   lStack_68 = 0;
   uStack_60 = 0;
-  FUN_180049bf0(&puStack_c8,&processed_var_5936_ptr);
+  DataStructureManager0(&puStack_c8,&processed_var_5936_ptr);
   switch(param_5) {
   default:
     puVar6 = &memory_allocator_352_ptr;

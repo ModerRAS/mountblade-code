@@ -1,3 +1,7 @@
+/* 函数别名定义: DataStructureManager */
+#define DataStructureManager DataStructureManager
+
+
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
 
@@ -69,7 +73,7 @@ void FUN_1800dca70(uint64_t param_1,int64_t param_2)
   puStack_100 = auStack_f0;
   uStack_f8 = 0;
   auStack_f0[0] = 0;
-  FUN_180049bf0(&puStack_108,&system_data_3ec0);
+  DataStructureManager0(&puStack_108,&system_data_3ec0);
   FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_108);
   plVar8 = plVar9;
   while (iVar7 = (int)plVar8, (uint64_t)(int64_t)iVar7 < (uint64_t)*(uint *)(param_2 + 0x2230)) {
@@ -98,7 +102,7 @@ void FUN_1800dca70(uint64_t param_1,int64_t param_2)
     puStack_a0 = auStack_90;
     uStack_98 = 0;
     auStack_90[0] = 0;
-    FUN_180049bf0(&puStack_a8,&system_data_41f0);
+    DataStructureManager0(&puStack_a8,&system_data_41f0);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_a8);
     FUN_1802c22a0(auStack_137,&system_data_41f0);
     lVar2 = FUN_180245280(param_2);
@@ -330,7 +334,7 @@ void FUN_1800dd0e0(int64_t param_1,int64_t param_2,char param_3)
     puStack_a0 = auStack_90;
     uStack_98 = 0;
     auStack_90[0] = 0;
-    FUN_180049bf0(&puStack_a8,&memory_allocator_3576_ptr);
+    DataStructureManager0(&puStack_a8,&memory_allocator_3576_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_a8);
     FUN_1802c22a0(auStack_d8,&memory_allocator_3576_ptr);
     FUN_1802e5f00(param_2,param_2 + 0x34e8);
