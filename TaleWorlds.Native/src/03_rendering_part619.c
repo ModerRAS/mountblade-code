@@ -1,9 +1,63 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part619.c - 15 个函数
+/*=============================================================================
+ * 03_rendering_part619.c - 渲染系统高级资源管理和字符串处理模块
+ * 
+ * 本模块包含15个核心函数，涵盖渲染系统高级资源管理、字符串处理、
+ * 哈希表操作、内存管理、数据验证、参数处理、状态管理和系统清理等高级渲染功能。
+ *=============================================================================*/
 
-// 函数: void FUN_18060e170(int param_1,uint param_2,float param_3,longlong param_4)
-void FUN_18060e170(int param_1,uint param_2,float param_3,longlong param_4)
+/* 渲染系统常量定义 */
+#define RENDERING_SYSTEM_THRESHOLD_5_0      5.0f    /* 渲染系统阈值5.0 */
+#define RENDERING_SYSTEM_THRESHOLD_10_0     10.0f   /* 渲染系统阈值10.0 */
+#define RENDERING_SYSTEM_THRESHOLD_16_0     16.0f   /* 渲染系统阈值16.0 */
+#define RENDERING_SYSTEM_THRESHOLD_21_0     21.0f   /* 渲染系统阈值21.0 */
+#define RENDERING_SYSTEM_HASH_TABLE_SIZE     0x60    /* 渲染系统哈希表大小 */
+#define RENDERING_SYSTEM_STRING_BUFFER_SIZE  0x170   /* 渲染系统字符串缓冲区大小 */
+#define RENDERING_SYSTEM_DATA_OFFSET_0x28   0x28    /* 渲染系统数据偏移量0x28 */
+#define RENDERING_SYSTEM_DATA_OFFSET_0x30   0x30    /* 渲染系统数据偏移量0x30 */
+#define RENDERING_SYSTEM_DATA_OFFSET_0x5c8  0x5c8   /* 渲染系统数据偏移量0x5c8 */
+#define RENDERING_SYSTEM_DATA_OFFSET_0x5d0  0x5d0   /* 渲染系统数据偏移量0x5d0 */
+#define RENDERING_SYSTEM_FLAG_ENABLE         1       /* 渲染系统标志启用 */
+#define RENDERING_SYSTEM_FLAG_DISABLE        0       /* 渲染系统标志禁用 */
+
+/* 渲染系统函数别名定义 */
+#define RenderingSystem_ProcessResourceRequest          FUN_18060e170  /* 渲染系统资源请求处理器 */
+#define RenderingSystem_ValidateResourceData            FUN_18060e5e0  /* 渲染系统资源数据验证器 */
+#define RenderingSystem_FindResourceInHashTable         FUN_18060e650  /* 渲染系统哈希表资源查找器 */
+#define RenderingSystem_CollectResourceMatches          FUN_18060e720  /* 渲染系统资源匹配收集器 */
+#define RenderingSystem_ProcessResourceBatch            FUN_18060e762  /* 渲染系统资源批量处理器 */
+#define RenderingSystem_EmptyFunction1                  FUN_18060e7e0  /* 渲染系统空函数1 */
+#define RenderingSystem_InitializeResourceTable          FUN_18060e7f0  /* 渲染系统资源表初始化器 */
+#define RenderingSystem_UpdateResourceState             FUN_18060e860  /* 渲染系统资源状态更新器 */
+#define RenderingSystem_CreateResourceContext           FUN_18060e8a0  /* 渲染系统资源上下文创建器 */
+#define RenderingSystem_FindResourceByPointer           FUN_18060ece0  /* 渲染系统指针资源查找器 */
+#define RenderingSystem_AddResourceToTable              FUN_18060ee30  /* 渲染系统资源表添加器 */
+#define RenderingSystem_RemoveResourceFromTable         FUN_18060ef00  /* 渲染系统资源表移除器 */
+#define RenderingSystem_ReleaseResourceReference        FUN_18060ef16  /* 渲染系统资源引用释放器 */
+#define RenderingSystem_EmptyFunction2                  FUN_18060ef6e  /* 渲染系统空函数2 */
+#define RenderingSystem_EmptyFunction3                  FUN_18060ef9a  /* 渲染系统空函数3 */
+#define RenderingSystem_CleanupResourcePointer          FUN_18060efa0  /* 渲染系统资源指针清理器 */
+#define RenderingSystem_GetResourceProperty             FUN_18060efd0  /* 渲染系统资源属性获取器 */
+#define RenderingSystem_CheckResourceCapability          FUN_18060f040  /* 渲染系统资源能力检查器 */
+#define RenderingSystem_GetResourceExtendedProperty     FUN_18060f0d0  /* 渲染系统资源扩展属性获取器 */
+#define RenderingSystem_ExtractResourceData             FUN_18060f140  /* 渲染系统资源数据提取器 */
+#define RenderingSystem_GetResourceIdentifier           FUN_18060f1b0  /* 渲染系统资源标识符获取器 */
+#define RenderingSystem_GetResourceParameter            FUN_18060f240  /* 渲染系统资源参数获取器 */
+#define RenderingSystem_GetResourceIndex                FUN_18060f2b0  /* 渲染系统资源索引获取器 */
+#define RenderingSystem_ProcessResourceCommand          FUN_18060f370  /* 渲染系统资源命令处理器 */
+
+/**
+ * 渲染系统资源请求处理器
+ * 
+ * 根据参数阈值处理渲染资源请求，支持不同级别的资源分配和管理。
+ * 
+ * @param param_1   渲染参数ID
+ * @param param_2   渲染标志位
+ * @param param_3   阈值参数，用于确定资源分配级别
+ * @param param_4   输出缓冲区指针
+ */
+void RenderingSystem_ProcessResourceRequest(int param_1, uint param_2, float param_3, longlong param_4)
 
 {
   undefined8 uVar1;
