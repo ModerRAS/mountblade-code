@@ -1,171 +1,213 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part076.c - 1 个函数
+// 02_core_engine_part076.c - 核心引擎模块第076部分
+// 功能：初始化和管理引擎的各种状态和配置
 
-// 函数: void FUN_180109920(longlong param_1)
-void FUN_180109920(longlong param_1)
+// 全局变量和常量定义
+static const char* ENGINE_CONFIG_PATH = "engine_config";
+static const char* RENDER_SETTINGS_PATH = "render_settings";
+static const char* PHYSICS_SETTINGS_PATH = "physics_settings";
+static const char* DEBUG_MODE_FLAG = "debug_mode_enabled";
 
+// 函数：初始化引擎状态管理器
+// 参数：engine_context - 引擎上下文指针
+// 功能：初始化和管理引擎的各种状态和配置，包括渲染、物理和调试设置
+void initialize_engine_state_manager(longlong engine_context)
 {
-  char cVar1;
-  undefined4 uVar2;
-  undefined *puVar3;
-  uint uVar4;
-  undefined1 auStack_118 [32];
-  undefined4 auStack_f8 [2];
-  undefined4 auStack_f0 [2];
-  uint uStack_e8;
-  undefined8 uStack_e0;
-  undefined *puStack_d8;
-  undefined1 *puStack_d0;
-  undefined4 uStack_c8;
-  undefined1 auStack_c0 [32];
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [32];
-  undefined *puStack_68;
-  undefined1 *puStack_60;
-  undefined4 uStack_58;
-  undefined1 auStack_50 [32];
-  ulonglong uStack_30;
-  
-  uStack_e0 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
-  uStack_e8 = 0;
-  auStack_f0[0] = 0;
-  uVar2 = 0;
-  if ((*(longlong *)(param_1 + 0x370) != 0) &&
-     (cVar1 = (**(code **)(param_1 + 0x378))(auStack_f0), uVar2 = auStack_f0[0], cVar1 == '\0')) {
-    if (DAT_180c82860 == '\0') {
-      puVar3 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 800) != (undefined *)0x0) {
-        puVar3 = *(undefined **)(param_1 + 800);
-      }
-      FUN_180626f80(&UNK_18098bc00,puVar3);
-    }
-    uVar2 = *(undefined4 *)(param_1 + 0x358);
-  }
-  *(undefined4 *)(param_1 + 0x310) = uVar2;
-  puStack_d8 = &UNK_18098bc80;
-  puStack_d0 = auStack_c0;
-  auStack_c0[0] = 0;
-  uStack_c8 = 0xb;
-  strcpy_s(auStack_c0,0x20,&UNK_180a05528);
-  cVar1 = FUN_180051f00(_DAT_180c86870,&puStack_d8);
-  puStack_d8 = &UNK_18098bcb0;
-  if (cVar1 != '\0') {
-    auStack_f0[0] = 1;
-    uVar2 = 1;
-    if ((*(longlong *)(param_1 + 0x680) != 0) &&
-       (cVar1 = (**(code **)(param_1 + 0x688))(auStack_f0), uVar2 = auStack_f0[0], cVar1 == '\0')) {
-      if (DAT_180c82860 == '\0') {
-        puVar3 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x630) != (undefined *)0x0) {
-          puVar3 = *(undefined **)(param_1 + 0x630);
+    char operation_result;
+    uint32_t config_value;
+    void* config_pointer;
+    uint32_t status_flags;
+    
+    // 栈变量定义
+    char render_config_buffer[32];
+    uint32_t render_config_values[2];
+    uint32_t render_config_backup[2];
+    uint32_t render_status;
+    uint64_t render_context_handle;
+    void* render_config_ptr;
+    char* render_data_ptr;
+    uint32_t render_control;
+    
+    char physics_config_buffer[32];
+    void* physics_config_ptr;
+    char* physics_data_ptr;
+    uint32_t physics_control;
+    
+    char debug_config_buffer[32];
+    void* debug_config_ptr;
+    char* debug_data_ptr;
+    uint32_t debug_control;
+    
+    char system_config_buffer[32];
+    uint64_t system_context_id;
+    
+    // 初始化系统上下文
+    render_context_handle = 0xfffffffffffffffe;
+    system_context_id = get_system_context_id() ^ (uint64_t)render_config_buffer;
+    status_flags = 0;
+    render_config_backup[0] = 0;
+    config_value = 0;
+    
+    // 检查并初始化渲染配置
+    if ((*(longlong*)(engine_context + 0x370) != 0) &&
+        (operation_result = (**(code **)(engine_context + 0x378))(render_config_backup), 
+         config_value = render_config_backup[0], operation_result == '\0')) {
+        
+        if (!is_debug_mode_enabled()) {
+            config_pointer = &default_engine_config;
+            if (*(void**)(engine_context + 800) != (void*)0x0) {
+                config_pointer = *(void**)(engine_context + 800);
+            }
+            apply_engine_configuration(&global_engine_settings, config_pointer);
         }
-        FUN_180626f80(&UNK_18098bc00,puVar3);
-      }
-      uVar2 = *(undefined4 *)(param_1 + 0x668);
+        config_value = *(uint32_t*)(engine_context + 0x358);
     }
-    *(undefined4 *)(param_1 + 0x620) = uVar2;
-    auStack_f8[0] = 1;
-    uVar2 = 1;
-    if ((*(longlong *)(param_1 + 0x450) != 0) &&
-       (cVar1 = (**(code **)(param_1 + 0x458))(auStack_f8), uVar2 = auStack_f8[0], cVar1 == '\0')) {
-      if (DAT_180c82860 == '\0') {
-        puVar3 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x400) != (undefined *)0x0) {
-          puVar3 = *(undefined **)(param_1 + 0x400);
+    *(uint32_t*)(engine_context + 0x310) = config_value;
+    
+    // 设置渲染配置
+    render_config_ptr = &render_settings_template;
+    render_data_ptr = physics_config_buffer;
+    physics_config_buffer[0] = 0;
+    render_control = 0xb;
+    strcpy_s(physics_config_buffer, 0x20, &render_config_path);
+    operation_result = process_configuration_request(get_config_manager(), &render_config_ptr);
+    
+    render_config_ptr = &physics_settings_template;
+    if (operation_result != '\0') {
+        render_config_backup[0] = 1;
+        config_value = 1;
+        
+        // 检查并初始化物理配置
+        if ((*(longlong*)(engine_context + 0x680) != 0) &&
+            (operation_result = (**(code **)(engine_context + 0x688))(render_config_backup), 
+             config_value = render_config_backup[0], operation_result == '\0')) {
+            
+            if (!is_debug_mode_enabled()) {
+                config_pointer = &default_engine_config;
+                if (*(void**)(engine_context + 0x630) != (void*)0x0) {
+                    config_pointer = *(void**)(engine_context + 0x630);
+                }
+                apply_engine_configuration(&global_engine_settings, config_pointer);
+            }
+            config_value = *(uint32_t*)(engine_context + 0x668);
         }
-        FUN_180626f80(&UNK_18098bc00,puVar3);
-      }
-      uVar2 = *(undefined4 *)(param_1 + 0x438);
-    }
-    *(undefined4 *)(param_1 + 0x3f0) = uVar2;
-  }
-  puStack_68 = &UNK_18098bc80;
-  puStack_60 = auStack_50;
-  auStack_50[0] = 0;
-  uStack_58 = 8;
-  strcpy_s(auStack_50,0x20,&UNK_1809fd150);
-  uVar4 = 1;
-  uStack_e8 = 1;
-  cVar1 = FUN_180051f00(_DAT_180c86870,&puStack_68);
-  if (cVar1 == '\0') {
-    puStack_a0 = &UNK_18098bc80;
-    puStack_98 = auStack_88;
-    auStack_88[0] = 0;
-    uStack_90 = 0x14;
-    strcpy_s(auStack_88,0x20,&UNK_1809fd220);
-    uVar4 = 3;
-    uStack_e8 = 3;
-    cVar1 = FUN_180051f00(_DAT_180c86870,&puStack_a0);
-    if (cVar1 == '\0') goto LAB_180109ba3;
-  }
-  cVar1 = '\x01';
-LAB_180109ba3:
-  if ((uVar4 & 2) != 0) {
-    uStack_e8 = uVar4 & 0xfffffffd;
-    puStack_a0 = &UNK_18098bcb0;
-    uVar4 = uStack_e8;
-  }
-  if ((uVar4 & 1) != 0) {
-    uStack_e8 = uVar4 & 0xfffffffe;
-    puStack_68 = &UNK_18098bcb0;
-  }
-  if (cVar1 != '\0') {
-    auStack_f8[0] = 0;
-    uVar2 = 0;
-    if ((*(longlong *)(param_1 + 0x680) != 0) &&
-       (cVar1 = (**(code **)(param_1 + 0x688))(auStack_f8), uVar2 = auStack_f8[0], cVar1 == '\0')) {
-      if (DAT_180c82860 == '\0') {
-        puVar3 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x630) != (undefined *)0x0) {
-          puVar3 = *(undefined **)(param_1 + 0x630);
+        *(uint32_t*)(engine_context + 0x620) = config_value;
+        
+        // 检查并初始化调试配置
+        render_config_values[0] = 1;
+        config_value = 1;
+        if ((*(longlong*)(engine_context + 0x450) != 0) &&
+            (operation_result = (**(code **)(engine_context + 0x458))(render_config_values), 
+             config_value = render_config_values[0], operation_result == '\0')) {
+            
+            if (!is_debug_mode_enabled()) {
+                config_pointer = &default_engine_config;
+                if (*(void**)(engine_context + 0x400) != (void*)0x0) {
+                    config_pointer = *(void**)(engine_context + 0x400);
+                }
+                apply_engine_configuration(&global_engine_settings, config_pointer);
+            }
+            config_value = *(uint32_t*)(engine_context + 0x438);
         }
-        FUN_180626f80(&UNK_18098bc00,puVar3);
-      }
-      uVar2 = *(undefined4 *)(param_1 + 0x668);
+        *(uint32_t*)(engine_context + 0x3f0) = config_value;
     }
-    *(undefined4 *)(param_1 + 0x620) = uVar2;
-    auStack_f8[0] = 1;
-    uVar2 = 1;
-    if ((*(longlong *)(param_1 + 0x450) == 0) ||
-       (cVar1 = (**(code **)(param_1 + 0x458))(auStack_f8), uVar2 = auStack_f8[0], cVar1 != '\0')) {
-      *(undefined4 *)(param_1 + 0x3f0) = uVar2;
+    
+    // 设置系统配置
+    debug_config_ptr = &render_settings_template;
+    debug_data_ptr = debug_config_buffer;
+    debug_config_buffer[0] = 0;
+    debug_control = 8;
+    strcpy_s(debug_config_buffer, 0x20, &system_config_path);
+    status_flags = 1;
+    operation_result = process_configuration_request(get_config_manager(), &debug_config_ptr);
+    
+    if (operation_result == '\0') {
+        debug_config_ptr = &render_settings_template;
+        debug_data_ptr = system_config_buffer;
+        system_config_buffer[0] = 0;
+        debug_control = 0x14;
+        strcpy_s(system_config_buffer, 0x20, &extended_config_path);
+        status_flags = 3;
+        operation_result = process_configuration_request(get_config_manager(), &debug_config_ptr);
+        if (operation_result == '\0') goto config_complete;
     }
-    else {
-      if (DAT_180c82860 == '\0') {
-        puVar3 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x400) != (undefined *)0x0) {
-          puVar3 = *(undefined **)(param_1 + 0x400);
+    
+    operation_result = '\x01';
+    
+config_complete:
+    // 处理配置标志位
+    if ((status_flags & 2) != 0) {
+        status_flags = status_flags & 0xfffffffd;
+        debug_config_ptr = &physics_settings_template;
+        status_flags = status_flags;
+    }
+    
+    if ((status_flags & 1) != 0) {
+        status_flags = status_flags & 0xfffffffe;
+        debug_config_ptr = &physics_settings_template;
+    }
+    
+    // 最终配置应用
+    if (operation_result != '\0') {
+        render_config_values[0] = 0;
+        config_value = 0;
+        
+        // 应用物理配置
+        if ((*(longlong*)(engine_context + 0x680) != 0) &&
+            (operation_result = (**(code **)(engine_context + 0x688))(render_config_values), 
+             config_value = render_config_values[0], operation_result == '\0')) {
+            
+            if (!is_debug_mode_enabled()) {
+                config_pointer = &default_engine_config;
+                if (*(void**)(engine_context + 0x630) != (void*)0x0) {
+                    config_pointer = *(void**)(engine_context + 0x630);
+                }
+                apply_engine_configuration(&global_engine_settings, config_pointer);
+            }
+            config_value = *(uint32_t*)(engine_context + 0x668);
         }
-        FUN_180626f80(&UNK_18098bc00,puVar3);
-      }
-      *(undefined4 *)(param_1 + 0x3f0) = *(undefined4 *)(param_1 + 0x438);
+        *(uint32_t*)(engine_context + 0x620) = config_value;
+        
+        // 应用调试配置
+        render_config_values[0] = 1;
+        config_value = 1;
+        if ((*(longlong*)(engine_context + 0x450) == 0) ||
+            (operation_result = (**(code **)(engine_context + 0x458))(render_config_values), 
+             config_value = render_config_values[0], operation_result != '\0')) {
+            *(uint32_t*)(engine_context + 0x3f0) = config_value;
+        } else {
+            if (!is_debug_mode_enabled()) {
+                config_pointer = &default_engine_config;
+                if (*(void**)(engine_context + 0x400) != (void*)0x0) {
+                    config_pointer = *(void**)(engine_context + 0x400);
+                }
+                apply_engine_configuration(&global_engine_settings, config_pointer);
+            }
+            *(uint32_t*)(engine_context + 0x3f0) = *(uint32_t*)(engine_context + 0x438);
+        }
     }
-  }
-  auStack_f8[0] = 0;
-  if ((*(longlong *)(param_1 + 0x680) == 0) ||
-     (cVar1 = (**(code **)(param_1 + 0x688))(auStack_f8), cVar1 != '\0')) {
-    *(undefined4 *)(param_1 + 0x620) = auStack_f8[0];
-  }
-  else {
-    if (DAT_180c82860 == '\0') {
-      puVar3 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x630) != (undefined *)0x0) {
-        puVar3 = *(undefined **)(param_1 + 0x630);
-      }
-      FUN_180626f80(&UNK_18098bc00,puVar3);
+    
+    // 最终状态设置
+    render_config_values[0] = 0;
+    if ((*(longlong*)(engine_context + 0x680) == 0) ||
+        (operation_result = (**(code **)(engine_context + 0x688))(render_config_values), 
+         operation_result != '\0')) {
+        *(uint32_t*)(engine_context + 0x620) = render_config_values[0];
+    } else {
+        if (!is_debug_mode_enabled()) {
+            config_pointer = &default_engine_config;
+            if (*(void**)(engine_context + 0x630) != (void*)0x0) {
+                config_pointer = *(void**)(engine_context + 0x630);
+            }
+            apply_engine_configuration(&global_engine_settings, config_pointer);
+        }
+        *(uint32_t*)(engine_context + 0x620) = *(uint32_t*)(engine_context + 0x668);
     }
-    *(undefined4 *)(param_1 + 0x620) = *(undefined4 *)(param_1 + 0x668);
-  }
-  FUN_1800b0380(param_1);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_118);
+    
+    // 调用引擎初始化完成函数
+    complete_engine_initialization(engine_context);
+    
+    // 清理和返回
+    cleanup_system_context(system_context_id ^ (uint64_t)render_config_buffer);
 }
-
-
-
-
-
