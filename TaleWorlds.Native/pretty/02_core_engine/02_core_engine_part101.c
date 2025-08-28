@@ -1,1087 +1,962 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part101.c - 23 个函数
+// 02_core_engine_part101.c - 核心引擎模块第101部分
+// 包含23个函数，主要处理内存分配、数组操作、文本渲染等功能
 
-// 函数: void FUN_18011cdf8(void)
-void FUN_18011cdf8(void)
+// 全局变量
+longlong _DAT_180c8a9b0;  // 引擎全局上下文指针
+char _DAT_1809fdf28;      // 常量字符串指针
 
+// 函数：引擎初始化完成检查
+void check_engine_initialization_complete(void)
 {
+  // 空函数，可能作为初始化完成标记
   return;
 }
 
-
-
-
-
-// 函数: void FUN_18011ce11(void)
-void FUN_18011ce11(void)
-
+// 函数：重置引擎状态
+void reset_engine_state(void)
 {
+  // 空函数，用于重置引擎状态
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-float * FUN_18011ce30(float *param_1,char *param_2,char param_3)
-
+// 函数：计算文本渲染宽度
+float * calculate_text_rendering_width(float *output_result, char *text_start, char render_flag)
 {
-  float *pfVar1;
-  longlong lVar2;
-  char *pcVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fStackX_8;
-  float fStackX_c;
+  float *font_data;
+  longlong engine_context;
+  char *text_end;
+  float line_height;
+  float max_width;
+  float text_width;
+  float char_spacing;
+  float stack_temp1;
+  float stack_temp2;
   
-  lVar2 = _DAT_180c8a9b0;
-  pcVar3 = param_2;
-  if (param_2 != (char *)0xffffffffffffffff) {
+  engine_context = _DAT_180c8a9b0;
+  text_end = text_start;
+  
+  // 查找文本结束位置（跳过注释标记##）
+  if (text_start != (char *)0xffffffffffffffff) {
     while( true ) {
-      if (*pcVar3 == '\0') break;
-      if (((*pcVar3 == '#') && (pcVar3[1] == '#')) ||
-         (pcVar3 = pcVar3 + 1, pcVar3 == (char *)0xffffffffffffffff)) break;
+      if (*text_end == '\0') break;
+      if (((*text_end == '#') && (text_end[1] == '#')) ||
+         (text_end = text_end + 1, text_end == (char *)0xffffffffffffffff)) break;
     }
   }
-  pfVar1 = *(float **)(_DAT_180c8a9b0 + 0x19f0);
-  fVar5 = *(float *)(_DAT_180c8a9b0 + 0x19f8);
-  if (param_2 == pcVar3) {
-    fVar4 = 0.0;
-    fStackX_c = fVar5;
+  
+  font_data = *(float **)(_DAT_180c8a9b0 + 0x19f0);
+  max_width = *(float *)(_DAT_180c8a9b0 + 0x19f8);
+  
+  if (text_start == text_end) {
+    text_width = 0.0;
+    stack_temp2 = max_width;
   }
   else {
-    FUN_180297340(pfVar1,&fStackX_8,fVar5,0x7f7fffff,0xbf800000,param_2,pcVar3,0);
-    if (0.0 < fStackX_8) {
-      fStackX_8 = fStackX_8 - fVar5 / *pfVar1;
+    // 计算文本宽度
+    FUN_180297340(font_data, &stack_temp1, max_width, 0x7f7fffff, 0xbf800000, text_start, text_end, 0);
+    if (0.0 < stack_temp1) {
+      stack_temp1 = stack_temp1 - max_width / *font_data;
     }
-    fVar4 = (float)(int)(fStackX_8 + 0.95);
+    text_width = (float)(int)(stack_temp1 + 0.95);
   }
-  if (param_3 == '\0') {
-    fVar5 = 1.0;
+  
+  if (render_flag == '\0') {
+    max_width = 1.0;
   }
   else {
-    fVar5 = *(float *)(lVar2 + 0x1674) + *(float *)(lVar2 + 0x19f8);
+    max_width = *(float *)(engine_context + 0x1674) + *(float *)(engine_context + 0x19f8);
   }
-  fVar6 = *(float *)(lVar2 + 0x19f8) * 20.0;
-  fVar5 = *(float *)(lVar2 + 0x165c) + fVar5 + *(float *)(lVar2 + 0x165c) + fVar4;
-  param_1[1] = *(float *)(lVar2 + 0x1660) + *(float *)(lVar2 + 0x1660) + fStackX_c;
-  if (fVar6 <= fVar5) {
-    fVar5 = fVar6;
+  
+  char_spacing = *(float *)(engine_context + 0x19f8) * 20.0;
+  max_width = *(float *)(engine_context + 0x165c) + max_width + *(float *)(engine_context + 0x165c) + text_width;
+  output_result[1] = *(float *)(engine_context + 0x1660) + *(float *)(engine_context + 0x1660) + stack_temp2;
+  
+  if (char_spacing <= max_width) {
+    max_width = char_spacing;
   }
-  *param_1 = fVar5;
-  return param_1;
+  
+  *output_result = max_width;
+  return output_result;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011cf80(longlong param_1,float *param_2,uint param_3,undefined4 param_4)
-void FUN_18011cf80(longlong param_1,float *param_2,uint param_3,undefined4 param_4)
-
+// 函数：添加渲染元素到队列
+void add_render_element_to_queue(longlong render_context, float *position_data, uint render_flags, undefined4 render_type)
 {
-  int *piVar1;
-  int iVar2;
-  longlong lVar3;
-  int iVar4;
-  int iVar5;
-  undefined4 uVar6;
-  int iVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fStackX_8;
-  float fStackX_c;
-  uint uVar11;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  undefined4 uStack_60;
-  float fStack_5c;
+  int *queue_count;
+  int current_count;
+  longlong engine_context;
+  int queue_capacity;
+  int new_capacity;
+  undefined4 temp_flags;
+  int element_size;
+  float y_offset;
+  float x_position;
+  float z_position;
+  float height;
+  float stack_temp1;
+  float stack_temp2;
+  uint processed_flags;
+  undefined4 stack_flags[3];
+  float stack_float;
   
-  lVar3 = _DAT_180c8a9b0;
-  fStackX_8 = *param_2;
-  fVar10 = param_2[1];
-  fVar8 = (param_2[2] - fStackX_8) * 0.5 - 1.0;
-  if (*(float *)(_DAT_180c8a9b0 + 0x169c) <= fVar8) {
-    fVar8 = *(float *)(_DAT_180c8a9b0 + 0x169c);
+  engine_context = _DAT_180c8a9b0;
+  stack_temp1 = *position_data;
+  z_position = position_data[1];
+  height = (position_data[2] - stack_temp1) * 0.5 - 1.0;
+  
+  // 限制高度范围
+  if (*(float *)(_DAT_180c8a9b0 + 0x169c) <= height) {
+    height = *(float *)(_DAT_180c8a9b0 + 0x169c);
   }
-  if (fVar8 <= 0.0) {
-    fVar8 = 0.0;
+  if (height <= 0.0) {
+    height = 0.0;
   }
-  if ((param_3 >> 0x15 & 1) == 0) {
-    fVar9 = -1.0;
+  
+  // 处理渲染标志
+  if ((render_flags >> 0x15 & 1) == 0) {
+    y_offset = -1.0;
   }
   else {
-    fVar9 = 0.0;
+    y_offset = 0.0;
   }
-  fVar9 = fVar9 + param_2[3];
-  piVar1 = (int *)(param_1 + 0x80);
-  iVar5 = *piVar1;
-  iVar7 = 8;
-  iVar4 = *(int *)(param_1 + 0x84);
-  fStackX_c = fVar9;
-  if (iVar5 == iVar4) {
-    if (iVar4 == 0) {
-      iVar4 = 8;
+  y_offset = y_offset + position_data[3];
+  
+  queue_count = (int *)(render_context + 0x80);
+  current_count = *queue_count;
+  element_size = 8;
+  queue_capacity = *(int *)(render_context + 0x84);
+  stack_temp2 = y_offset;
+  
+  // 扩展队列容量
+  if (current_count == queue_capacity) {
+    if (queue_capacity == 0) {
+      queue_capacity = 8;
     }
     else {
-      iVar4 = iVar4 / 2 + iVar4;
+      queue_capacity = queue_capacity / 2 + queue_capacity;
     }
-    iVar2 = iVar5 + 1;
-    if (iVar5 + 1 < iVar4) {
-      iVar2 = iVar4;
+    new_capacity = current_count + 1;
+    if (current_count + 1 < queue_capacity) {
+      new_capacity = queue_capacity;
     }
-    FUN_18011dc70(piVar1,iVar2);
-    iVar5 = *piVar1;
+    FUN_18011dc70(queue_count, new_capacity);
+    current_count = *queue_count;
   }
-  fVar10 = fVar10 + 1.0 + fVar8;
-  *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar5 * 8) =
-       CONCAT44(fStackX_c,fStackX_8);
-  *piVar1 = *piVar1 + 1;
-  fStackX_8 = fVar8 + *param_2;
-  fStackX_c = fVar10;
-  FUN_180293730(param_1,&fStackX_8,fVar8,6,9);
-  fStackX_8 = param_2[2] - fVar8;
-  uVar11 = 0;
-  fStackX_c = fVar10;
-  FUN_180293730(param_1,&fStackX_8,fVar8,9,0xc);
-  fStackX_8 = param_2[2];
-  iVar5 = *piVar1;
-  iVar4 = *(int *)(param_1 + 0x84);
-  fStackX_c = fVar9;
-  if (iVar5 == iVar4) {
-    if (iVar4 != 0) {
-      iVar7 = iVar4 + iVar4 / 2;
+  
+  z_position = z_position + 1.0 + height;
+  *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+       CONCAT44(stack_temp2, stack_temp1);
+  *queue_count = *queue_count + 1;
+  
+  stack_temp1 = height + *position_data;
+  stack_temp2 = z_position;
+  FUN_180293730(render_context, &stack_temp1, height, 6, 9);
+  
+  stack_temp1 = position_data[2] - height;
+  processed_flags = 0;
+  stack_temp2 = z_position;
+  FUN_180293730(render_context, &stack_temp1, height, 9, 0xc);
+  
+  stack_temp1 = position_data[2];
+  current_count = *queue_count;
+  queue_capacity = *(int *)(render_context + 0x84);
+  stack_temp2 = y_offset;
+  
+  // 再次扩展队列容量
+  if (current_count == queue_capacity) {
+    if (queue_capacity != 0) {
+      element_size = queue_capacity + queue_capacity / 2;
     }
-    iVar4 = iVar5 + 1;
-    if (iVar5 + 1 < iVar7) {
-      iVar4 = iVar7;
+    queue_capacity = current_count + 1;
+    if (current_count + 1 < element_size) {
+      queue_capacity = element_size;
     }
-    FUN_18011dc70(piVar1,iVar4);
-    iVar5 = *piVar1;
+    FUN_18011dc70(queue_count, queue_capacity);
+    current_count = *queue_count;
   }
-  *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar5 * 8) =
-       CONCAT44(fStackX_c,fStackX_8);
-  *piVar1 = *piVar1 + 1;
-  FUN_180293190(param_1,*(undefined8 *)(param_1 + 0x88),*piVar1,param_4);
-  fVar10 = *(float *)(lVar3 + 0x16a0);
-  if (0.0 < fVar10) {
-    uStack_68 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1718);
-    uStack_64 = *(undefined4 *)(_DAT_180c8a9b0 + 0x171c);
-    uStack_60 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1720);
-    fStack_5c = *(float *)(_DAT_180c8a9b0 + 0x1724) * *(float *)(_DAT_180c8a9b0 + 0x1628);
-    uVar6 = func_0x000180121e20(&uStack_68);
-    FUN_1802923e0(param_1,*(undefined8 *)(param_1 + 0x88),*piVar1,uVar6,uVar11 & 0xffffff00,fVar10);
+  
+  *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+       CONCAT44(stack_temp2, stack_temp1);
+  *queue_count = *queue_count + 1;
+  
+  FUN_180293190(render_context, *(undefined8 *)(render_context + 0x88), *queue_count, render_type);
+  
+  height = *(float *)(engine_context + 0x16a0);
+  if (0.0 < height) {
+    stack_flags[0] = *(undefined4 *)(_DAT_180c8a9b0 + 0x1718);
+    stack_flags[1] = *(undefined4 *)(_DAT_180c8a9b0 + 0x171c);
+    stack_flags[2] = *(undefined4 *)(_DAT_180c8a9b0 + 0x1720);
+    stack_float = *(float *)(_DAT_180c8a9b0 + 0x1724) * *(float *)(_DAT_180c8a9b0 + 0x1628);
+    temp_flags = func_0x000180121e20(&stack_flags);
+    FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *queue_count, temp_flags, processed_flags & 0xffffff00, height);
   }
-  *piVar1 = 0;
+  
+  *queue_count = 0;
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-ulonglong FUN_18011d200(longlong param_1,float *param_2,uint param_3,char *param_4,int param_5,
-                       int param_6)
-
+// 函数：处理文本布局
+ulonglong process_text_layout(longlong render_context, float *position_data, uint layout_flags, char *text_start, int text_id, int font_id)
 {
-  undefined4 uVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  char cVar8;
-  int iVar9;
-  undefined4 uVar10;
-  char *pcVar11;
-  ulonglong uVar12;
-  float *pfVar13;
-  char *pcVar14;
-  int iVar15;
-  longlong lVar16;
-  bool bVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  undefined8 uStackX_10;
-  uint uStackX_18;
-  float fStackX_20;
-  float fStackX_24;
-  ulonglong in_stack_fffffffffffffee8;
-  undefined8 uStack_f8;
-  float fStack_f0;
-  float fStack_ec;
-  undefined4 uStack_e8;
-  undefined4 uStack_e4;
-  undefined4 uStack_e0;
-  float fStack_dc;
-  float fStack_d8;
-  float fStack_d4;
-  float fStack_d0;
-  float fStack_cc;
+  undefined4 temp_var1;
+  longlong context_var1;
+  longlong context_var2;
+  undefined8 temp_var4;
+  undefined8 temp_var5;
+  undefined8 temp_var6;
+  undefined8 temp_var7;
+  char char_flag;
+  int int_var1;
+  undefined4 temp_var10;
+  char *text_current;
+  ulonglong result;
+  float *font_data;
+  char *text_end;
+  int char_count;
+  longlong render_target;
+  bool text_found;
+  float text_width;
+  float x_position;
+  float y_position;
+  float width;
+  float height;
+  undefined8 stack_temp1;
+  uint stack_flags;
+  float stack_float1;
+  float stack_float2;
+  ulonglong stack_ulong;
+  undefined8 stack_undefined[3];
+  float stack_float3;
+  float stack_float4;
+  float stack_float5;
+  float stack_float6;
+  float stack_float7;
   
-  lVar3 = _DAT_180c8a9b0;
-  pcVar11 = param_4;
-  if (param_4 != (char *)0xffffffffffffffff) {
-    while (*pcVar11 != '\0') {
-      if (((*pcVar11 == '#') && (pcVar11[1] == '#')) ||
-         (pcVar11 = pcVar11 + 1, pcVar11 == (char *)0xffffffffffffffff)) break;
+  context_var2 = _DAT_180c8a9b0;
+  text_current = text_start;
+  
+  // 查找文本结束位置
+  if (text_start != (char *)0xffffffffffffffff) {
+    while (*text_current != '\0') {
+      if (((*text_current == '#') && (text_current[1] == '#')) ||
+         (text_current = text_current + 1, text_current == (char *)0xffffffffffffffff)) break;
     }
   }
-  pfVar13 = *(float **)(_DAT_180c8a9b0 + 0x19f0);
-  iVar15 = 0;
-  fVar20 = *(float *)(_DAT_180c8a9b0 + 0x19f8);
-  uStackX_18 = param_3;
-  if (param_4 == pcVar11) {
-    fVar19 = 0.0;
-    fStack_ec = fVar20;
+  
+  font_data = *(float **)(_DAT_180c8a9b0 + 0x19f0);
+  char_count = 0;
+  y_position = *(float *)(_DAT_180c8a9b0 + 0x19f8);
+  stack_flags = layout_flags;
+  
+  if (text_start == text_current) {
+    x_position = 0.0;
+    stack_float2 = y_position;
   }
   else {
-    in_stack_fffffffffffffee8 = CONCAT44((int)(in_stack_fffffffffffffee8 >> 0x20),0xbf800000);
-    FUN_180297340(pfVar13,&uStackX_10,fVar20,0x7f7fffff,in_stack_fffffffffffffee8,param_4,pcVar11,0)
-    ;
-    fVar19 = (float)uStackX_10;
-    if (0.0 < (float)uStackX_10) {
-      fVar19 = (float)uStackX_10 - fVar20 / *pfVar13;
+    stack_ulong = CONCAT44((int)(stack_ulong >> 0x20), 0xbf800000);
+    FUN_180297340(font_data, &stack_temp1, y_position, 0x7f7fffff, stack_ulong, text_start, text_current, 0);
+    x_position = (float)stack_temp1;
+    if (0.0 < (float)stack_temp1) {
+      x_position = (float)stack_temp1 - y_position / *font_data;
     }
-    pcVar11 = (char *)(ulonglong)(uint)(int)(fVar19 + 0.95);
-    fStack_ec = uStackX_10._4_4_;
-    fVar19 = (float)(int)(fVar19 + 0.95);
+    text_current = (char *)(ulonglong)(uint)(int)(x_position + 0.95);
+    stack_float2 = stack_temp1._4_4_;
+    x_position = (float)(int)(x_position + 0.95);
   }
-  if (1.0 < param_2[2] - *param_2) {
-    fVar20 = param_2[2] - *(float *)(lVar3 + 0x165c);
-    fVar21 = *param_2 + *(float *)(lVar3 + 0x165c);
-    fStack_d4 = param_2[1] + *(float *)(lVar3 + 0x1660);
-    fStack_cc = param_2[3];
-    lVar16 = lVar3;
-    fStack_f0 = fVar19;
-    fStack_d8 = fVar21;
-    fStack_d0 = fVar20;
-    if ((uStackX_18 & 1) != 0) {
-      pfVar13 = *(float **)(lVar3 + 0x19f0);
-      fVar18 = *(float *)(lVar3 + 0x19f8);
-      FUN_180297340(pfVar13,&uStackX_10,fVar18,0x7f7fffff,0xbf800000,&DAT_1809fdf28,0,0);
-      if (0.0 < (float)uStackX_10) {
-        uStackX_10._0_4_ = (float)uStackX_10 - fVar18 / *pfVar13;
+  
+  if (1.0 < position_data[2] - *position_data) {
+    y_position = position_data[2] - *(float *)(context_var2 + 0x165c);
+    height = *position_data + *(float *)(context_var2 + 0x165c);
+    stack_float6 = position_data[1] + *(float *)(context_var2 + 0x1660);
+    stack_float7 = position_data[3];
+    render_target = context_var2;
+    stack_float3 = x_position;
+    stack_float5 = height;
+    stack_float4 = y_position;
+    
+    if ((stack_flags & 1) != 0) {
+      font_data = *(float **)(context_var2 + 0x19f0);
+      y_position = *(float *)(context_var2 + 0x19f8);
+      FUN_180297340(font_data, &stack_temp1, y_position, 0x7f7fffff, 0xbf800000, &_DAT_1809fdf28, 0, 0);
+      if (0.0 < (float)stack_temp1) {
+        stack_temp1._0_4_ = (float)stack_temp1 - y_position / *font_data;
       }
-      fVar18 = (float)uStackX_10 + 0.95;
-      uStackX_10 = 0;
-      fVar20 = fVar20 - (float)(int)fVar18;
-      fVar18 = *(float *)(lVar3 + 0x165c) + *param_2 + fVar19 + 2.0;
-      if (fVar20 <= fVar18) {
-        fVar18 = fVar20;
+      y_position = (float)stack_temp1 + 0.95;
+      stack_temp1 = 0;
+      y_position = y_position - (float)(int)y_position;
+      height = *(float *)(context_var2 + 0x165c) + *position_data + x_position + 2.0;
+      if (y_position <= height) {
+        height = y_position;
       }
-      in_stack_fffffffffffffee8 = 0;
-      fStackX_20 = param_2[2] - *(float *)(lVar3 + 0x165c);
-      uStack_f8 = (char *)CONCAT44((param_2[1] + *(float *)(lVar3 + 0x1660)) -
-                                   (float)(int)(*(float *)(lVar3 + 0x19f8) * 0.25),fVar18);
-      fStackX_24 = param_2[3] - *(float *)(lVar3 + 0x1660);
-      fStack_d0 = fVar20;
-      FUN_1801224c0(param_1,&uStack_f8,&fStackX_20,&DAT_1809fdf28,0,0,&uStackX_10,0);
-      lVar16 = _DAT_180c8a9b0;
+      stack_ulong = 0;
+      stack_float1 = position_data[2] - *(float *)(context_var2 + 0x165c);
+      stack_undefined[0] = (char *)CONCAT44((position_data[1] + *(float *)(context_var2 + 0x1660)) - (float)(int)(*(float *)(context_var2 + 0x19f8) * 0.25), height);
+      stack_float3 = position_data[3] - *(float *)(context_var2 + 0x1660);
+      stack_float4 = y_position;
+      FUN_1801224c0(render_context, &stack_undefined[0], &stack_float1, &_DAT_1809fdf28, 0, 0, &stack_temp1, 0);
+      render_target = _DAT_180c8a9b0;
     }
-    uVar12 = uStackX_10;
-    fStackX_20 = (float)((uint)fStackX_20 & 0xffffff00);
-    uStackX_10 = uStackX_10 & 0xffffffffffffff00;
-    if ((param_6 != 0) &&
-       (((*(int *)(lVar3 + 0x1b18) == param_5 || (*(int *)(lVar3 + 0x1b18) == param_6)) ||
-        (*(int *)(lVar3 + 0x1b2c) == param_6)))) {
-      lVar16 = *(longlong *)(lVar16 + 0x1af8);
-      fVar18 = *(float *)(lVar3 + 0x19f8) * 0.5;
-      uStackX_10 = CONCAT71(SUB87(uVar12,1),1);
-      uVar10 = *(undefined4 *)(lVar16 + 0x144);
-      uVar1 = *(undefined4 *)(lVar16 + 0x148);
-      uVar4 = *(undefined8 *)(lVar16 + 0x14c);
-      uVar5 = *(undefined8 *)(lVar16 + 0x154);
-      uVar6 = *(undefined8 *)(lVar16 + 0x15c);
-      uVar7 = *(undefined8 *)(lVar16 + 0x164);
-      uStack_f8 = (char *)CONCAT44(param_2[1] + *(float *)(lVar3 + 0x1660) + fVar18,
-                                   (param_2[2] - *(float *)(lVar3 + 0x165c)) - fVar18);
-      cVar8 = FUN_18010fd40(param_6,&uStack_f8,fVar18);
-      lVar16 = _DAT_180c8a9b0;
-      fStackX_20 = (float)((uint)fStackX_20 & 0xff);
-      if (cVar8 != '\0') {
-        fStackX_20 = 1.4013e-45;
+    
+    result = stack_temp1;
+    stack_float1 = (float)((uint)stack_float1 & 0xffffff00);
+    stack_temp1 = stack_temp1 & 0xffffffffffffff00;
+    
+    if ((font_id != 0) &&
+       (((*(int *)(context_var2 + 0x1b18) == text_id || (*(int *)(context_var2 + 0x1b18) == font_id)) ||
+        (*(int *)(context_var2 + 0x1b2c) == font_id))) {
+      render_target = *(longlong *)(render_target + 0x1af8);
+      y_position = *(float *)(context_var2 + 0x19f8) * 0.5;
+      stack_temp1 = CONCAT71(SUB87(result, 1), 1);
+      temp_var10 = *(undefined4 *)(render_target + 0x144);
+      temp_var1 = *(undefined4 *)(render_target + 0x148);
+      temp_var4 = *(undefined8 *)(render_target + 0x14c);
+      temp_var5 = *(undefined8 *)(render_target + 0x154);
+      temp_var6 = *(undefined8 *)(render_target + 0x15c);
+      temp_var7 = *(undefined8 *)(render_target + 0x164);
+      stack_undefined[0] = (char *)CONCAT44(position_data[1] + *(float *)(context_var2 + 0x1660) + y_position, (position_data[2] - *(float *)(context_var2 + 0x165c)) - y_position);
+      char_flag = FUN_18010fd40(font_id, &stack_undefined[0], y_position);
+      render_target = _DAT_180c8a9b0;
+      stack_float1 = (float)((uint)stack_float1 & 0xff);
+      if (char_flag != '\0') {
+        stack_float1 = 1.4013e-45;
       }
-      lVar2 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-      *(undefined4 *)(lVar2 + 0x144) = uVar10;
-      *(undefined4 *)(lVar2 + 0x148) = uVar1;
-      *(undefined8 *)(lVar2 + 0x14c) = uVar4;
-      *(undefined8 *)(lVar2 + 0x154) = uVar5;
-      *(undefined8 *)(lVar2 + 0x15c) = uVar6;
-      *(undefined8 *)(lVar2 + 0x164) = uVar7;
-      if (((uStackX_18 & 4) == 0) && (*(float *)(lVar16 + 0x42c) == 0.0)) {
-        fStackX_20 = 1.4013e-45;
+      context_var1 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+      *(undefined4 *)(context_var1 + 0x144) = temp_var10;
+      *(undefined4 *)(context_var1 + 0x148) = temp_var1;
+      *(undefined8 *)(context_var1 + 0x14c) = temp_var4;
+      *(undefined8 *)(context_var1 + 0x154) = temp_var5;
+      *(undefined8 *)(context_var1 + 0x15c) = temp_var6;
+      *(undefined8 *)(context_var1 + 0x164) = temp_var7;
+      if (((stack_flags & 4) == 0) && (*(float *)(render_target + 0x42c) == 0.0)) {
+        stack_float1 = 1.4013e-45;
       }
-      fStack_d0 = fVar20 - (fVar18 + fVar18);
+      stack_float4 = y_position - (y_position + y_position);
     }
-    pcVar11 = param_4;
-    if (param_4 != (char *)0xffffffffffffffff) {
-      while (*pcVar11 != '\0') {
-        if (((*pcVar11 == '#') && (pcVar11[1] == '#')) ||
-           (pcVar11 = pcVar11 + 1, pcVar11 == (char *)0xffffffffffffffff)) break;
+    
+    text_current = text_start;
+    if (text_start != (char *)0xffffffffffffffff) {
+      while (*text_current != '\0') {
+        if (((*text_current == '#') && (text_current[1] == '#')) ||
+           (text_current = text_current + 1, text_current == (char *)0xffffffffffffffff)) break;
       }
     }
-    if (fVar19 <= fVar20 - fVar21) {
-      uStackX_10 = 0;
-      FUN_1801224c0(param_1,&fStack_d8,&fStack_d0,param_4,pcVar11,&fStack_f0,&uStackX_10,0);
+    
+    if (x_position <= y_position - height) {
+      stack_temp1 = 0;
+      FUN_1801224c0(render_context, &stack_float5, &stack_float4, text_start, text_current, &stack_float3, &stack_temp1, 0);
     }
     else {
-      uVar12 = in_stack_fffffffffffffee8 & 0xffffffff00000000;
-      uStack_f8 = (char *)0x0;
-      pfVar13 = (float *)FUN_180297340(*(undefined8 *)(lVar3 + 0x19f0),&uStack_e8,
-                                       *(undefined4 *)(lVar3 + 0x19f8),(fVar20 - fVar21) - 4.0,
-                                       uVar12,param_4,pcVar11,&uStack_f8);
-      fVar20 = *pfVar13;
-      bVar17 = uStack_f8 == param_4;
-      pcVar14 = uStack_f8;
-      if (bVar17) {
-        if (uStack_f8 < pcVar11) {
-          iVar9 = FUN_180121550(&uStack_f8,param_4,pcVar11);
-          pcVar14 = param_4 + iVar9;
-          uVar12 = uVar12 & 0xffffffff00000000;
-          pfVar13 = (float *)FUN_180297340(*(undefined8 *)(lVar3 + 0x19f0),&uStack_e8,
-                                           *(undefined4 *)(lVar3 + 0x19f8),0x7f7fffff,uVar12,param_4
-                                           ,pcVar14,0);
-          fVar20 = *pfVar13;
+      result = stack_ulong & 0xffffffff00000000;
+      stack_undefined[0] = (char *)0x0;
+      font_data = (float *)FUN_180297340(*(undefined8 *)(render_target + 0x19f0), &stack_undefined[1], *(undefined4 *)(render_target + 0x19f8), (y_position - height) - 4.0, result, text_start, text_current, &stack_undefined[0]);
+      y_position = *font_data;
+      text_found = stack_undefined[0] == text_start;
+      text_end = stack_undefined[0];
+      if (text_found) {
+        if (stack_undefined[0] < text_current) {
+          int_var1 = FUN_180121550(&stack_undefined[0], text_start, text_current);
+          text_end = text_start + int_var1;
+          result = result & 0xffffffff00000000;
+          font_data = (float *)FUN_180297340(*(undefined8 *)(render_target + 0x19f0), &stack_undefined[1], *(undefined4 *)(render_target + 0x19f8), 0x7f7fffff, result, text_start, text_end, 0);
+          y_position = *font_data;
         }
-        bVar17 = pcVar14 == param_4;
+        text_found = text_end == text_start;
       }
-      pcVar11 = pcVar14;
-      if (param_4 <= pcVar14 && !bVar17) {
+      text_current = text_end;
+      if (text_start <= text_end && !text_found) {
         do {
-          if ((pcVar14[-1] != ' ') && (pcVar11 = pcVar14, pcVar14[-1] != '\t')) break;
-          pcVar11 = pcVar14 + -1;
-          uVar12 = uVar12 & 0xffffffff00000000;
-          pfVar13 = (float *)FUN_180297340(*(undefined8 *)(lVar3 + 0x19f0),&uStack_e8,
-                                           *(undefined4 *)(lVar3 + 0x19f8),0x7f7fffff,uVar12,pcVar11
-                                           ,pcVar14,0);
-          fVar20 = fVar20 - *pfVar13;
-          pcVar14 = pcVar11;
-        } while (param_4 < pcVar11);
+          if ((text_end[-1] != ' ') && (text_current = text_end, text_end[-1] != '\t')) break;
+          text_current = text_end + -1;
+          result = result & 0xffffffff00000000;
+          font_data = (float *)FUN_180297340(*(undefined8 *)(render_target + 0x19f0), &stack_undefined[1], *(undefined4 *)(render_target + 0x19f8), 0x7f7fffff, result, text_current, text_end, 0);
+          y_position = y_position - *font_data;
+          text_end = text_current;
+        } while (text_start < text_current);
       }
-      uStack_f8 = (char *)0x0;
-      FUN_1801224c0(param_1,&fStack_d8,&fStack_d0,param_4,pcVar11,&fStack_f0,&uStack_f8,0);
-      fVar20 = fStack_d8 + fVar20 + 1.0;
-      if (((char)uStackX_10 == '\0') && (fVar20 + 5.0 < param_2[2] || fVar20 + 5.0 == param_2[2])) {
-        uStack_e8 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
-        uStack_e4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
-        uStack_e0 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
-        fStack_dc = *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
-        uVar10 = func_0x000180121e20(&uStack_e8);
-        lVar3 = *(longlong *)(*(longlong *)(param_1 + 0x38) + 8);
-        fStack_ec = (float)(int)((*(float *)(lVar3 + 0x60) + *(float *)(lVar3 + 0xc)) - 0.5) +
-                    fStack_d4;
-        uStackX_10 = (ulonglong)(uint)(fStack_ec + 1.0) << 0x20;
+      stack_undefined[0] = (char *)0x0;
+      FUN_1801224c0(render_context, &stack_float5, &stack_float4, text_start, text_current, &stack_float3, &stack_undefined[0], 0);
+      y_position = stack_float5 + y_position + 1.0;
+      if (((char)stack_temp1 == '\0') && (y_position + 5.0 < position_data[2] || y_position + 5.0 == position_data[2])) {
+        stack_undefined[1] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
+        stack_undefined[2] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
+        stack_undefined[3] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
+        stack_float3 = *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
+        temp_var1 = func_0x000180121e20(&stack_undefined[1]);
+        render_target = *(longlong *)(*(longlong *)(render_context + 0x38) + 8);
+        stack_float2 = (float)(int)((*(float *)(render_target + 0x60) + *(float *)(render_target + 0xc)) - 0.5) + stack_float6;
+        stack_temp1 = (ulonglong)(uint)(stack_float2 + 1.0) << 0x20;
         do {
-          pcVar11 = (char *)((ulonglong)pcVar11 & 0xffffffff00000000);
-          fVar19 = (float)iVar15 + (float)iVar15;
-          fStack_f0 = fVar19 + fVar20;
-          uStackX_10 = CONCAT44(uStackX_10._4_4_,fVar20 + 1.0 + fVar19);
-          FUN_180293f50(param_1,&fStack_f0,&uStackX_10,uVar10,pcVar11,0xf);
-          iVar15 = iVar15 + 1;
-        } while (iVar15 < 3);
+          text_current = (char *)((ulonglong)text_current & 0xffffffff00000000);
+          x_position = (float)char_count + (float)char_count;
+          stack_float3 = x_position + y_position;
+          stack_temp1 = CONCAT44(stack_temp1._4_4_, y_position + 1.0 + x_position);
+          FUN_180293f50(render_context, &stack_float3, &stack_temp1, temp_var1, text_current, 0xf);
+          char_count = char_count + 1;
+        } while (char_count < 3);
       }
     }
-    uVar12 = (ulonglong)fStackX_20._0_1_;
+    result = (ulonglong)stack_float1._0_1_;
   }
   else {
-    uVar12 = (ulonglong)pcVar11 & 0xffffffffffffff00;
+    result = (ulonglong)text_current & 0xffffffffffffff00;
   }
-  return uVar12;
+  return result;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined1 FUN_18011d36f(float param_1,float param_2,ulonglong param_3,undefined8 param_4)
-
+// 函数：处理字符渲染
+undefined1 process_character_rendering(float param_1, float param_2, ulonglong param_3, undefined8 param_4)
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  byte bVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  undefined8 uVar9;
-  undefined8 uVar10;
-  undefined8 uVar11;
-  char cVar12;
-  int iVar13;
-  undefined4 uVar14;
-  float *pfVar15;
-  char *pcVar16;
-  longlong unaff_RBP;
-  char cVar17;
-  uint uVar18;
-  char *unaff_RSI;
-  longlong unaff_RDI;
-  char *pcVar19;
-  float *unaff_R12;
-  longlong unaff_R13;
-  char *unaff_R14;
-  longlong unaff_R15;
-  bool bVar20;
-  float fVar21;
-  float fVar22;
-  undefined8 extraout_XMM0_Qa;
-  undefined8 extraout_XMM0_Qa_00;
-  undefined8 extraout_XMM0_Qa_01;
-  undefined8 uVar23;
-  float unaff_XMM6_Da;
-  float unaff_XMM8_Da;
-  float unaff_XMM9_Da;
-  float fVar24;
-  undefined4 unaff_XMM11_Da;
-  float unaff_XMM12_Da;
-  float unaff_XMM14_Da;
-  undefined8 in_stack_00000020;
-  char *in_stack_00000040;
-  float in_stack_00000048;
-  float fStack000000000000004c;
-  undefined4 in_stack_00000050;
-  undefined4 uStack0000000000000054;
-  undefined4 in_stack_00000058;
-  float fStack000000000000005c;
-  float fStack0000000000000060;
-  float fStack0000000000000064;
-  float fStack0000000000000068;
+  float temp_float1;
+  float temp_float2;
+  float temp_float3;
+  byte byte_flag;
+  undefined4 temp_var5;
+  undefined4 temp_var6;
+  longlong context_var1;
+  longlong context_var2;
+  undefined8 temp_var9;
+  undefined8 temp_var10;
+  undefined8 temp_var11;
+  char char_flag1;
+  int int_var1;
+  undefined4 temp_var14;
+  float *font_data;
+  char *text_ptr;
+  longlong stack_context;
+  char char_flag2;
+  uint uint_var1;
+  char *text_ptr2;
+  longlong text_id;
+  longlong font_id;
+  char *text_start;
+  float *position_data;
+  longlong render_context;
+  bool bool_flag;
+  float char_width;
+  float line_height;
+  undefined8 temp_result;
+  undefined8 temp_result2;
+  undefined8 temp_result3;
+  float stack_float1;
+  float stack_float2;
+  float stack_float3;
+  float stack_float4;
+  float stack_float5;
+  float stack_float6;
+  float stack_float7;
+  float stack_float8;
+  undefined4 stack_flags[3];
+  float stack_float9;
   
-  uVar14 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
-  fVar24 = unaff_XMM9_Da - param_2;
-  param_2 = unaff_XMM14_Da + param_2;
-  fStack0000000000000064 = param_1 + *(float *)(unaff_RDI + 0x1660);
-  *(float *)(unaff_RBP + -0x7d) = unaff_R12[3];
-  fStack0000000000000060 = param_2;
-  fStack0000000000000068 = fVar24;
+  temp_var14 = (undefined4)((ulonglong)temp_result >> 0x20);
+  stack_float8 = temp_result3 - param_2;
+  param_2 = temp_result2 + param_2;
+  stack_float7 = param_1 + *(float *)(render_context + 0x1660);
+  *(float *)(stack_context + -0x7d) = position_data[3];
+  stack_float6 = param_2;
+  stack_float8 = stack_float8;
+  
   if ((param_3 & 1) != 0) {
-    pfVar15 = *(float **)(unaff_RDI + 0x19f0);
-    fVar22 = *(float *)(unaff_RDI + 0x19f8);
-    FUN_180297340(pfVar15,unaff_RBP + 0x5f,fVar22,param_4,CONCAT44(uVar14,unaff_XMM11_Da));
-    fVar21 = *(float *)(unaff_RBP + 0x5f);
-    if (unaff_XMM8_Da < fVar21) {
-      fVar21 = fVar21 - fVar22 / *pfVar15;
+    font_data = *(float **)(render_context + 0x19f0);
+    line_height = *(float *)(render_context + 0x19f8);
+    FUN_180297340(font_data, stack_context + 0x5f, line_height, param_4, CONCAT44(temp_var14, temp_result._0_4_));
+    char_width = *(float *)(stack_context + 0x5f);
+    if (temp_result2 < char_width) {
+      char_width = char_width - line_height / *font_data;
     }
-    fVar22 = *(float *)(unaff_R15 + 0x165c);
-    fVar1 = unaff_R12[1];
-    fVar2 = *(float *)(unaff_R15 + 0x1660);
-    fVar3 = *(float *)(unaff_R15 + 0x19f8);
-    *(char **)(unaff_RBP + 0x5f) = unaff_RSI;
-    fVar24 = fVar24 - (float)(int)(fVar21 + 0.95);
-    fVar21 = fVar22 + *unaff_R12 + unaff_XMM6_Da + 2.0;
-    if (fVar24 <= fVar21) {
-      fVar21 = fVar24;
+    line_height = *(float *)(font_id + 0x165c);
+    temp_float1 = position_data[1];
+    temp_float2 = *(float *)(font_id + 0x1660);
+    temp_float3 = *(float *)(font_id + 0x19f8);
+    *(char **)(stack_context + 0x5f) = text_ptr2;
+    stack_float8 = stack_float8 - (float)(int)(char_width + 0.95);
+    char_width = line_height + *position_data + temp_result._0_4_ + 2.0;
+    if (stack_float8 <= char_width) {
+      char_width = stack_float8;
     }
-    fVar22 = unaff_R12[2] - fVar22;
-    in_stack_00000040 = (char *)CONCAT44((fVar1 + fVar2) - (float)(int)(fVar3 * 0.25),fVar21);
-    fVar21 = unaff_R12[3];
-    fVar1 = *(float *)(unaff_R15 + 0x1660);
-    *(float *)(unaff_RBP + 0x6f) = fVar22;
-    *(float *)(unaff_RBP + 0x73) = fVar21 - fVar1;
-    pcVar19 = unaff_RSI;
-    fStack0000000000000068 = fVar24;
-    FUN_1801224c0(fVar22,&stack0x00000040,unaff_RBP + 0x6f,&DAT_1809fdf28);
-    uVar14 = (undefined4)((ulonglong)pcVar19 >> 0x20);
-    unaff_RDI = _DAT_180c8a9b0;
+    line_height = position_data[2] - line_height;
+    text_start = (char *)CONCAT44((temp_float1 + temp_float2) - (float)(int)(temp_float3 * 0.25), char_width);
+    char_width = position_data[3];
+    temp_float1 = *(float *)(font_id + 0x1660);
+    *(float *)(stack_context + 0x6f) = line_height;
+    *(float *)(stack_context + 0x73) = char_width - temp_float1;
+    text_ptr = text_ptr2;
+    stack_float8 = stack_float8;
+    FUN_1801224c0(line_height, &text_start, stack_context + 0x6f, &_DAT_1809fdf28);
+    temp_var14 = (undefined4)((ulonglong)text_ptr >> 0x20);
+    render_context = _DAT_180c8a9b0;
   }
-  iVar13 = *(int *)(unaff_RBP + 0x7f);
-  cVar17 = (char)unaff_RSI;
-  *(char *)(unaff_RBP + 0x6f) = cVar17;
-  *(char *)(unaff_RBP + 0x5f) = cVar17;
-  if ((iVar13 != 0) &&
-     (((*(int *)(unaff_R15 + 0x1b18) == *(int *)(unaff_RBP + 0x77) ||
-       (*(int *)(unaff_R15 + 0x1b18) == iVar13)) || (*(int *)(unaff_R15 + 0x1b2c) == iVar13)))) {
-    lVar7 = *(longlong *)(unaff_RDI + 0x1af8);
-    fVar22 = *(float *)(unaff_R15 + 0x19f8) * 0.5;
-    *(undefined1 *)(unaff_RBP + 0x5f) = 1;
-    uVar5 = *(undefined4 *)(lVar7 + 0x144);
-    uVar6 = *(undefined4 *)(lVar7 + 0x148);
-    uVar23 = *(undefined8 *)(lVar7 + 0x14c);
-    uVar9 = *(undefined8 *)(lVar7 + 0x154);
-    uVar10 = *(undefined8 *)(lVar7 + 0x15c);
-    uVar11 = *(undefined8 *)(lVar7 + 0x164);
-    in_stack_00000040 =
-         (char *)CONCAT44(unaff_R12[1] + *(float *)(unaff_R15 + 0x1660) + fVar22,
-                          (unaff_R12[2] - *(float *)(unaff_R15 + 0x165c)) - fVar22);
-    cVar12 = FUN_18010fd40(iVar13,&stack0x00000040,fVar22);
-    lVar7 = _DAT_180c8a9b0;
-    uVar18 = *(uint *)(unaff_RBP + 0x6f) & 0xff;
-    if (cVar12 != '\0') {
-      uVar18 = 1;
+  
+  int_var1 = *(int *)(stack_context + 0x7f);
+  char_flag2 = (char)text_ptr2;
+  *(char *)(stack_context + 0x6f) = char_flag2;
+  *(char *)(stack_context + 0x5f) = char_flag2;
+  
+  if ((int_var1 != 0) &&
+     (((*(int *)(font_id + 0x1b18) == *(int *)(stack_context + 0x77) ||
+       (*(int *)(font_id + 0x1b18) == int_var1)) || (*(int *)(font_id + 0x1b2c) == int_var1)))) {
+    context_var1 = *(longlong *)(render_context + 0x1af8);
+    line_height = *(float *)(font_id + 0x19f8) * 0.5;
+    *(undefined1 *)(stack_context + 0x5f) = 1;
+    temp_var5 = *(undefined4 *)(context_var1 + 0x144);
+    temp_var6 = *(undefined4 *)(context_var1 + 0x148);
+    temp_result = *(undefined8 *)(context_var1 + 0x14c);
+    temp_var9 = *(undefined8 *)(context_var1 + 0x154);
+    temp_var10 = *(undefined8 *)(context_var1 + 0x15c);
+    temp_var11 = *(undefined8 *)(context_var1 + 0x164);
+    text_start = (char *)CONCAT44(position_data[1] + *(float *)(font_id + 0x1660) + line_height, (position_data[2] - *(float *)(font_id + 0x165c)) - line_height);
+    char_flag1 = FUN_18010fd40(int_var1, &text_start, line_height);
+    context_var1 = _DAT_180c8a9b0;
+    uint_var1 = *(uint *)(stack_context + 0x6f) & 0xff;
+    if (char_flag1 != '\0') {
+      uint_var1 = 1;
     }
-    bVar4 = *(byte *)(unaff_RBP + 0x67);
-    *(uint *)(unaff_RBP + 0x6f) = uVar18;
-    lVar8 = *(longlong *)(lVar7 + 0x1af8);
-    *(undefined4 *)(lVar8 + 0x144) = uVar5;
-    *(undefined4 *)(lVar8 + 0x148) = uVar6;
-    *(undefined8 *)(lVar8 + 0x14c) = uVar23;
-    *(undefined8 *)(lVar8 + 0x154) = uVar9;
-    *(undefined8 *)(lVar8 + 0x15c) = uVar10;
-    *(undefined8 *)(lVar8 + 0x164) = uVar11;
-    if (((bVar4 & 4) == 0) && (*(float *)(lVar7 + 0x42c) == unaff_XMM8_Da)) {
-      *(undefined1 *)(unaff_RBP + 0x6f) = 1;
+    byte_flag = *(byte *)(stack_context + 0x67);
+    *(uint *)(stack_context + 0x6f) = uint_var1;
+    context_var2 = *(longlong *)(context_var1 + 0x1af8);
+    *(undefined4 *)(context_var2 + 0x144) = temp_var5;
+    *(undefined4 *)(context_var2 + 0x148) = temp_var6;
+    *(undefined8 *)(context_var2 + 0x14c) = temp_result;
+    *(undefined8 *)(context_var2 + 0x154) = temp_var9;
+    *(undefined8 *)(context_var2 + 0x15c) = temp_var10;
+    *(undefined8 *)(context_var2 + 0x164) = temp_var11;
+    if (((byte_flag & 4) == 0) && (*(float *)(context_var1 + 0x42c) == temp_result2)) {
+      *(undefined1 *)(stack_context + 0x6f) = 1;
     }
-    fStack0000000000000068 = fVar24 - (fVar22 + fVar22);
+    stack_float8 = stack_float8 - (line_height + line_height);
   }
-  pcVar19 = unaff_R14;
-  if (unaff_R14 != (char *)0xffffffffffffffff) {
+  
+  text_ptr = text_start;
+  if (text_start != (char *)0xffffffffffffffff) {
     do {
-      if ((*pcVar19 == '\0') || ((*pcVar19 == '#' && (pcVar19[1] == '#')))) break;
-      pcVar19 = pcVar19 + 1;
-    } while (pcVar19 != (char *)0xffffffffffffffff);
+      if ((*text_ptr == '\0') || ((*text_ptr == '#' && (text_ptr[1] == '#')))) break;
+      text_ptr = text_ptr + 1;
+    } while (text_ptr != (char *)0xffffffffffffffff);
   }
-  if (unaff_XMM12_Da <= fVar24 - param_2) {
-    *(char **)(unaff_RBP + 0x5f) = unaff_RSI;
+  
+  if (temp_result._0_4_ <= stack_float8 - param_2) {
+    *(char **)(stack_context + 0x5f) = text_ptr2;
     FUN_1801224c0();
   }
   else {
-    in_stack_00000040 = unaff_RSI;
-    pfVar15 = (float *)FUN_180297340(*(undefined8 *)(unaff_R15 + 0x19f0),&stack0x00000050,
-                                     *(undefined4 *)(unaff_R15 + 0x19f8),(fVar24 - param_2) - 4.0,
-                                     CONCAT44(uVar14,unaff_XMM8_Da));
-    fVar24 = *pfVar15;
-    bVar20 = in_stack_00000040 == unaff_R14;
-    pcVar16 = in_stack_00000040;
-    uVar23 = extraout_XMM0_Qa;
-    if (bVar20) {
-      if (in_stack_00000040 < pcVar19) {
-        iVar13 = FUN_180121550(&stack0x00000040);
-        pcVar16 = unaff_R14 + iVar13;
-        pfVar15 = (float *)FUN_180297340(*(undefined8 *)(unaff_R15 + 0x19f0),&stack0x00000050,
-                                         *(undefined4 *)(unaff_R15 + 0x19f8));
-        fVar24 = *pfVar15;
-        uVar23 = extraout_XMM0_Qa_00;
+    text_start = text_ptr2;
+    font_data = (float *)FUN_180297340(*(undefined8 *)(font_id + 0x19f0), &stack_flags[0], *(undefined4 *)(font_id + 0x19f8), (stack_float8 - param_2) - 4.0, CONCAT44(temp_var14, temp_result2));
+    stack_float8 = *font_data;
+    bool_flag = text_start == text_start;
+    text_ptr = text_start;
+    temp_result = temp_result2;
+    if (bool_flag) {
+      if (text_start < text_ptr) {
+        int_var1 = FUN_180121550(&stack_flags[0]);
+        text_ptr = text_start + int_var1;
+        font_data = (float *)FUN_180297340(*(undefined8 *)(font_id + 0x19f0), &stack_flags[0], *(undefined4 *)(font_id + 0x19f8));
+        stack_float8 = *font_data;
+        temp_result = temp_result3;
       }
-      bVar20 = pcVar16 == unaff_R14;
+      bool_flag = text_ptr == text_start;
     }
-    if (unaff_R14 <= pcVar16 && !bVar20) {
+    if (text_start <= text_ptr && !bool_flag) {
       do {
-        if ((pcVar16[-1] != ' ') && (pcVar16[-1] != '\t')) break;
-        pcVar16 = pcVar16 + -1;
-        pfVar15 = (float *)FUN_180297340(*(undefined8 *)(unaff_R15 + 0x19f0),&stack0x00000050,
-                                         *(undefined4 *)(unaff_R15 + 0x19f8));
-        fVar24 = fVar24 - *pfVar15;
-        uVar23 = extraout_XMM0_Qa_01;
-      } while (unaff_R14 < pcVar16);
+        if ((text_ptr[-1] != ' ') && (text_ptr[-1] != '\t')) break;
+        text_ptr = text_ptr + -1;
+        font_data = (float *)FUN_180297340(*(undefined8 *)(font_id + 0x19f0), &stack_flags[0], *(undefined4 *)(font_id + 0x19f8));
+        stack_float8 = stack_float8 - *font_data;
+        temp_result = temp_result._0_4_;
+      } while (text_start < text_ptr);
     }
-    FUN_1801224c0(uVar23,&stack0x00000060,&stack0x00000068);
-    fVar24 = fStack0000000000000060 + fVar24 + 1.0;
-    if ((*(char *)(unaff_RBP + 0x5f) == cVar17) &&
-       (fVar24 + 5.0 < unaff_R12[2] || fVar24 + 5.0 == unaff_R12[2])) {
-      in_stack_00000050 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
-      uStack0000000000000054 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
-      in_stack_00000058 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
-      fStack000000000000005c =
-           *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
-      uVar14 = func_0x000180121e20(&stack0x00000050);
-      lVar7 = *(longlong *)(*(longlong *)(unaff_R13 + 0x38) + 8);
-      fStack000000000000004c =
-           (float)(int)((*(float *)(lVar7 + 0x60) + *(float *)(lVar7 + 0xc)) - 0.5) +
-           fStack0000000000000064;
-      *(float *)(unaff_RBP + 99) = fStack000000000000004c + 1.0;
+    FUN_1801224c0(temp_result, &stack_flags[1], &stack_flags[2]);
+    stack_float8 = stack_float6 + stack_float8 + 1.0;
+    if ((*(char *)(stack_context + 0x5f) == char_flag2) &&
+       (stack_float8 + 5.0 < position_data[2] || stack_float8 + 5.0 == position_data[2])) {
+      stack_flags[0] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
+      stack_flags[1] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
+      stack_flags[2] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
+      stack_float9 = *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
+      temp_var14 = func_0x000180121e20(&stack_flags[0]);
+      context_var1 = *(longlong *)(*(longlong *)(render_context + 0x38) + 8);
+      stack_float5 = (float)(int)((*(float *)(context_var1 + 0x60) + *(float *)(context_var1 + 0xc)) - 0.5) + stack_float7;
+      *(float *)(stack_context + 99) = stack_float5 + 1.0;
       do {
-        in_stack_00000048 = (float)(int)unaff_RSI;
-        in_stack_00000048 = in_stack_00000048 + in_stack_00000048;
-        fVar22 = fVar24 + 1.0 + in_stack_00000048;
-        in_stack_00000048 = in_stack_00000048 + fVar24;
-        *(float *)(unaff_RBP + 0x5f) = fVar22;
-        FUN_180293f50(fVar22,&stack0x00000048,unaff_RBP + 0x5f,uVar14,unaff_XMM8_Da);
-        uVar18 = (int)unaff_RSI + 1;
-        unaff_RSI = (char *)(ulonglong)uVar18;
-      } while ((int)uVar18 < 3);
+        stack_float4 = (float)(int)text_ptr2;
+        stack_float4 = stack_float4 + stack_float4;
+        line_height = stack_float8 + 1.0 + stack_float4;
+        stack_float4 = stack_float4 + stack_float8;
+        *(float *)(stack_context + 0x5f) = line_height;
+        FUN_180293f50(line_height, &stack_float4, stack_context + 0x5f, temp_var14, temp_result2);
+        uint_var1 = (int)text_ptr2 + 1;
+        text_ptr2 = (char *)(ulonglong)uint_var1;
+      } while ((int)uint_var1 < 3);
     }
   }
-  return *(undefined1 *)(unaff_RBP + 0x6f);
+  return *(undefined1 *)(stack_context + 0x6f);
 }
 
-
-
-
-
-// 函数: void FUN_18011d8b8(void)
-void FUN_18011d8b8(void)
-
+// 函数：清理渲染缓存
+void clear_render_cache(void)
 {
+  // 空函数，用于清理渲染缓存
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011d900(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18011d900(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：释放渲染资源
+void free_render_resources(longlong resource_handle, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  longlong lVar1;
+  longlong resource_data;
   
-  lVar1 = *(longlong *)(param_1 + 8);
-  if (lVar1 != 0) {
+  resource_data = *(longlong *)(resource_handle + 8);
+  if (resource_data != 0) {
     if (_DAT_180c8a9b0 != 0) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    // 警告：子函数不返回
+    FUN_180059ba0(resource_data, _DAT_180c8a9a8, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_18011d940(int *param_1,undefined4 *param_2)
-void FUN_18011d940(int *param_1,undefined4 *param_2)
-
+// 函数：向整型数组添加元素
+void add_element_to_int_array(int *array_ptr, undefined4 *element)
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
+  int current_size;
+  int capacity;
+  int new_size;
+  int new_capacity;
   
-  iVar3 = *param_1;
-  iVar2 = param_1[1];
-  if (iVar3 == iVar2) {
-    if (iVar2 == 0) {
-      iVar2 = 8;
+  current_size = *array_ptr;
+  capacity = array_ptr[1];
+  
+  if (current_size == capacity) {
+    if (capacity == 0) {
+      capacity = 8;
     }
     else {
-      iVar2 = iVar2 / 2 + iVar2;
+      capacity = capacity / 2 + capacity;
     }
-    iVar1 = iVar3 + 1;
-    if (iVar3 + 1 < iVar2) {
-      iVar1 = iVar2;
+    new_size = current_size + 1;
+    if (current_size + 1 < capacity) {
+      new_size = capacity;
     }
-    FUN_18011dbd0(param_1,iVar1);
-    iVar3 = *param_1;
+    FUN_18011dbd0(array_ptr, new_size);
+    current_size = *array_ptr;
   }
-  *(undefined4 *)(*(longlong *)(param_1 + 2) + (longlong)iVar3 * 4) = *param_2;
-  *param_1 = *param_1 + 1;
+  
+  *(undefined4 *)(*(longlong *)(array_ptr + 2) + (longlong)current_size * 4) = *element;
+  *array_ptr = *array_ptr + 1;
   return;
 }
 
-
-
-
-
-// 函数: void FUN_18011d9a0(int *param_1,undefined8 *param_2)
-void FUN_18011d9a0(int *param_1,undefined8 *param_2)
-
+// 函数：向64位数组添加元素
+void add_element_to_uint64_array(int *array_ptr, undefined8 *element)
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
+  int current_size;
+  int capacity;
+  int new_size;
+  int new_capacity;
   
-  iVar3 = *param_1;
-  iVar2 = param_1[1];
-  if (iVar3 == iVar2) {
-    if (iVar2 == 0) {
-      iVar2 = 8;
+  current_size = *array_ptr;
+  capacity = array_ptr[1];
+  
+  if (current_size == capacity) {
+    if (capacity == 0) {
+      capacity = 8;
     }
     else {
-      iVar2 = iVar2 / 2 + iVar2;
+      capacity = capacity / 2 + capacity;
     }
-    iVar1 = iVar3 + 1;
-    if (iVar3 + 1 < iVar2) {
-      iVar1 = iVar2;
+    new_size = current_size + 1;
+    if (current_size + 1 < capacity) {
+      new_size = capacity;
     }
-    FUN_18011dc70(param_1,iVar1);
-    iVar3 = *param_1;
+    FUN_18011dc70(array_ptr, new_size);
+    current_size = *array_ptr;
   }
-  *(undefined8 *)(*(longlong *)(param_1 + 2) + (longlong)iVar3 * 8) = *param_2;
-  *param_1 = *param_1 + 1;
+  
+  *(undefined8 *)(*(longlong *)(array_ptr + 2) + (longlong)current_size * 8) = *element;
+  *array_ptr = *array_ptr + 1;
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011da00(int *param_1,int param_2)
-void FUN_18011da00(int *param_1,int param_2)
-
+// 函数：调整字节数组容量
+void resize_byte_array_capacity(int *array_ptr, int new_capacity)
 {
-  undefined8 uVar1;
+  undefined8 new_buffer;
   
-  if (param_1[1] < param_2) {
+  if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
-    uVar1 = func_0x000180120ce0((longlong)param_2,_DAT_180c8a9a8);
-    if (*(longlong *)(param_1 + 2) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(uVar1,*(longlong *)(param_1 + 2),(longlong)*param_1);
+    new_buffer = func_0x000180120ce0((longlong)new_capacity, _DAT_180c8a9a8);
+    if (*(longlong *)(array_ptr + 2) != 0) {
+      // 警告：子函数不返回
+      memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr);
     }
-    *(undefined8 *)(param_1 + 2) = uVar1;
-    param_1[1] = param_2;
+    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    array_ptr[1] = new_capacity;
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011da1c(void)
-void FUN_18011da1c(void)
-
+// 函数：扩展字节数组
+void expand_byte_array(void)
 {
-  longlong in_RAX;
-  undefined8 uVar1;
-  int *unaff_RBX;
-  int unaff_EDI;
+  longlong context_ptr;
+  undefined8 new_buffer;
+  int *array_ptr;
+  int new_size;
   
-  if (in_RAX != 0) {
-    *(int *)(in_RAX + 0x3a8) = *(int *)(in_RAX + 0x3a8) + 1;
+  if (context_ptr != 0) {
+    *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + 1;
   }
-  uVar1 = func_0x000180120ce0();
-  if (*(longlong *)(unaff_RBX + 2) != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(uVar1,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX);
+  new_buffer = func_0x000180120ce0((longlong)new_size, _DAT_180c8a9a8);
+  if (*(longlong *)(array_ptr + 2) != 0) {
+    // 警告：子函数不返回
+    memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr);
   }
-  *(undefined8 *)(unaff_RBX + 2) = uVar1;
-  unaff_RBX[1] = unaff_EDI;
+  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  array_ptr[1] = new_size;
   return;
 }
 
-
-
-
-
-// 函数: void FUN_18011da85(void)
-void FUN_18011da85(void)
-
+// 函数：初始化内存管理器
+void initialize_memory_manager(void)
 {
+  // 空函数，用于初始化内存管理器
   return;
 }
 
-
-
-
-
-// 函数: void FUN_18011da90(int *param_1,int param_2)
-void FUN_18011da90(int *param_1,int param_2)
-
+// 函数：设置数组大小
+void set_array_size(int *array_ptr, int new_size)
 {
-  int iVar1;
-  int iVar2;
+  int current_capacity;
+  int new_capacity;
+  int temp_size;
   
-  iVar1 = param_1[1];
-  if (iVar1 < param_2) {
-    if (iVar1 == 0) {
-      iVar1 = 8;
+  current_capacity = array_ptr[1];
+  if (current_capacity < new_size) {
+    if (current_capacity == 0) {
+      current_capacity = 8;
     }
     else {
-      iVar1 = iVar1 / 2 + iVar1;
+      current_capacity = current_capacity / 2 + current_capacity;
     }
-    iVar2 = param_2;
-    if (param_2 < iVar1) {
-      iVar2 = iVar1;
+    new_capacity = new_size;
+    if (new_size < current_capacity) {
+      new_capacity = current_capacity;
     }
-    FUN_18011da00(param_1,iVar2);
+    FUN_18011da00(array_ptr, new_capacity);
   }
-  *param_1 = param_2;
+  *array_ptr = new_size;
   return;
 }
 
-
-
-
-
-// 函数: void FUN_18011dae0(int *param_1,int param_2)
-void FUN_18011dae0(int *param_1,int param_2)
-
+// 函数：确保数组容量
+void ensure_array_capacity(int *array_ptr, int required_capacity)
 {
-  int iVar1;
-  int iVar2;
+  int current_capacity;
+  int new_capacity;
+  int temp_size;
   
-  iVar1 = param_1[1];
-  if (iVar1 < param_2) {
-    if (iVar1 == 0) {
-      iVar1 = 8;
+  current_capacity = array_ptr[1];
+  if (current_capacity < required_capacity) {
+    if (current_capacity == 0) {
+      current_capacity = 8;
     }
     else {
-      iVar1 = iVar1 / 2 + iVar1;
+      current_capacity = current_capacity / 2 + current_capacity;
     }
-    iVar2 = param_2;
-    if (param_2 < iVar1) {
-      iVar2 = iVar1;
+    new_capacity = required_capacity;
+    if (required_capacity < current_capacity) {
+      new_capacity = current_capacity;
     }
-    FUN_18011dd10(param_1,iVar2);
+    FUN_18011dd10(array_ptr, new_capacity);
   }
-  *param_1 = param_2;
+  *array_ptr = required_capacity;
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011db30(int *param_1,int param_2)
-void FUN_18011db30(int *param_1,int param_2)
-
+// 函数：调整结构体数组容量
+void resize_struct_array_capacity(int *array_ptr, int new_capacity)
 {
-  undefined8 uVar1;
+  undefined8 new_buffer;
   
-  if (param_1[1] < param_2) {
+  if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
-    uVar1 = func_0x000180120ce0((longlong)param_2 * 0x28,_DAT_180c8a9a8);
-    if (*(longlong *)(param_1 + 2) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(uVar1,*(longlong *)(param_1 + 2),(longlong)*param_1 * 0x28);
+    new_buffer = func_0x000180120ce0((longlong)new_capacity * 0x28, _DAT_180c8a9a8);
+    if (*(longlong *)(array_ptr + 2) != 0) {
+      // 警告：子函数不返回
+      memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 0x28);
     }
-    *(undefined8 *)(param_1 + 2) = uVar1;
-    param_1[1] = param_2;
+    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    array_ptr[1] = new_capacity;
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011db4c(void)
-void FUN_18011db4c(void)
-
+// 函数：扩展结构体数组
+void expand_struct_array(void)
 {
-  longlong in_RAX;
-  undefined8 uVar1;
-  int *unaff_RBX;
-  longlong unaff_RDI;
+  longlong context_ptr;
+  undefined8 new_buffer;
+  int *array_ptr;
+  longlong new_size;
   
-  if (in_RAX != 0) {
-    *(int *)(in_RAX + 0x3a8) = *(int *)(in_RAX + 0x3a8) + 1;
+  if (context_ptr != 0) {
+    *(int *)(context_ptr + 0x3a8) = *(int)(context_ptr + 0x3a8) + 1;
   }
-  uVar1 = func_0x000180120ce0(unaff_RDI * 0x28,_DAT_180c8a9a8);
-  if (*(longlong *)(unaff_RBX + 2) != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(uVar1,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX * 0x28);
+  new_buffer = func_0x000180120ce0(new_size * 0x28, _DAT_180c8a9a8);
+  if (*(longlong *)(array_ptr + 2) != 0) {
+    // 警告：子函数不返回
+    memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 0x28);
   }
-  *(undefined8 *)(unaff_RBX + 2) = uVar1;
-  unaff_RBX[1] = (int)unaff_RDI;
+  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  array_ptr[1] = (int)new_size;
   return;
 }
 
-
-
-
-
-// 函数: void FUN_18011dbc2(void)
-void FUN_18011dbc2(void)
-
+// 函数：初始化渲染器
+void initialize_renderer(void)
 {
+  // 空函数，用于初始化渲染器
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011dbd0(int *param_1,int param_2)
-void FUN_18011dbd0(int *param_1,int param_2)
-
+// 函数：调整浮点数数组容量
+void resize_float_array_capacity(int *array_ptr, int new_capacity)
 {
-  undefined8 uVar1;
+  undefined8 new_buffer;
   
-  if (param_1[1] < param_2) {
+  if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
-    uVar1 = func_0x000180120ce0((longlong)param_2 << 2,_DAT_180c8a9a8);
-    if (*(longlong *)(param_1 + 2) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(uVar1,*(longlong *)(param_1 + 2),(longlong)*param_1 << 2);
+    new_buffer = func_0x000180120ce0((longlong)new_capacity << 2, _DAT_180c8a9a8);
+    if (*(longlong *)(array_ptr + 2) != 0) {
+      // 警告：子函数不返回
+      memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 2);
     }
-    *(undefined8 *)(param_1 + 2) = uVar1;
-    param_1[1] = param_2;
+    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    array_ptr[1] = new_capacity;
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011dbec(void)
-void FUN_18011dbec(void)
-
+// 函数：扩展浮点数数组
+void expand_float_array(void)
 {
-  longlong in_RAX;
-  undefined8 uVar1;
-  int *unaff_RBX;
-  longlong unaff_RDI;
+  longlong context_ptr;
+  undefined8 new_buffer;
+  int *array_ptr;
+  longlong new_size;
   
-  if (in_RAX != 0) {
-    *(int *)(in_RAX + 0x3a8) = *(int *)(in_RAX + 0x3a8) + 1;
+  if (context_ptr != 0) {
+    *(int *)(context_ptr + 0x3a8) = *(int)(context_ptr + 0x3a8) + 1;
   }
-  uVar1 = func_0x000180120ce0(unaff_RDI << 2,_DAT_180c8a9a8);
-  if (*(longlong *)(unaff_RBX + 2) != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(uVar1,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX << 2);
+  new_buffer = func_0x000180120ce0(new_size << 2, _DAT_180c8a9a8);
+  if (*(longlong *)(array_ptr + 2) != 0) {
+    // 警告：子函数不返回
+    memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 2);
   }
-  *(undefined8 *)(unaff_RBX + 2) = uVar1;
-  unaff_RBX[1] = (int)unaff_RDI;
+  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  array_ptr[1] = (int)new_size;
   return;
 }
 
-
-
-
-
-// 函数: void FUN_18011dc5d(void)
-void FUN_18011dc5d(void)
-
+// 函数：清理资源
+void cleanup_resources(void)
 {
+  // 空函数，用于清理资源
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011dc70(int *param_1,int param_2)
-void FUN_18011dc70(int *param_1,int param_2)
-
+// 函数：调整64位数组容量
+void resize_uint64_array_capacity(int *array_ptr, int new_capacity)
 {
-  undefined8 uVar1;
+  undefined8 new_buffer;
   
-  if (param_1[1] < param_2) {
+  if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
-    uVar1 = func_0x000180120ce0((longlong)param_2 << 3,_DAT_180c8a9a8);
-    if (*(longlong *)(param_1 + 2) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(uVar1,*(longlong *)(param_1 + 2),(longlong)*param_1 << 3);
+    new_buffer = func_0x000180120ce0((longlong)new_capacity << 3, _DAT_180c8a9a8);
+    if (*(longlong *)(array_ptr + 2) != 0) {
+      // 警告：子函数不返回
+      memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 3);
     }
-    *(undefined8 *)(param_1 + 2) = uVar1;
-    param_1[1] = param_2;
+    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    array_ptr[1] = new_capacity;
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011dc8c(void)
-void FUN_18011dc8c(void)
-
+// 函数：扩展64位数组
+void expand_uint64_array(void)
 {
-  longlong in_RAX;
-  undefined8 uVar1;
-  int *unaff_RBX;
-  longlong unaff_RDI;
+  longlong context_ptr;
+  undefined8 new_buffer;
+  int *array_ptr;
+  longlong new_size;
   
-  if (in_RAX != 0) {
-    *(int *)(in_RAX + 0x3a8) = *(int *)(in_RAX + 0x3a8) + 1;
+  if (context_ptr != 0) {
+    *(int *)(context_ptr + 0x3a8) = *(int)(context_ptr + 0x3a8) + 1;
   }
-  uVar1 = func_0x000180120ce0(unaff_RDI << 3,_DAT_180c8a9a8);
-  if (*(longlong *)(unaff_RBX + 2) != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(uVar1,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX << 3);
+  new_buffer = func_0x000180120ce0(new_size << 3, _DAT_180c8a9a8);
+  if (*(longlong *)(array_ptr + 2) != 0) {
+    // 警告：子函数不返回
+    memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 3);
   }
-  *(undefined8 *)(unaff_RBX + 2) = uVar1;
-  unaff_RBX[1] = (int)unaff_RDI;
+  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  array_ptr[1] = (int)new_size;
   return;
 }
 
-
-
-
-
-// 函数: void FUN_18011dcfd(void)
-void FUN_18011dcfd(void)
-
+// 函数：重置计数器
+void reset_counter(void)
 {
+  // 空函数，用于重置计数器
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011dd10(int *param_1,int param_2)
-void FUN_18011dd10(int *param_1,int param_2)
-
+// 函数：调整16位数组容量
+void resize_uint16_array_capacity(int *array_ptr, int new_capacity)
 {
-  undefined8 uVar1;
+  undefined8 new_buffer;
   
-  if (param_1[1] < param_2) {
+  if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
-    uVar1 = func_0x000180120ce0((longlong)param_2 * 2,_DAT_180c8a9a8);
-    if (*(longlong *)(param_1 + 2) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(uVar1,*(longlong *)(param_1 + 2),(longlong)*param_1 * 2);
+    new_buffer = func_0x000180120ce0((longlong)new_capacity * 2, _DAT_180c8a9a8);
+    if (*(longlong *)(array_ptr + 2) != 0) {
+      // 警告：子函数不返回
+      memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 2);
     }
-    *(undefined8 *)(param_1 + 2) = uVar1;
-    param_1[1] = param_2;
+    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    array_ptr[1] = new_capacity;
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18011dd2c(void)
-void FUN_18011dd2c(void)
-
+// 函数：扩展16位数组
+void expand_uint16_array(void)
 {
-  longlong in_RAX;
-  undefined8 uVar1;
-  int *unaff_RBX;
-  longlong unaff_RDI;
+  longlong context_ptr;
+  undefined8 new_buffer;
+  int *array_ptr;
+  longlong new_size;
   
-  if (in_RAX != 0) {
-    *(int *)(in_RAX + 0x3a8) = *(int *)(in_RAX + 0x3a8) + 1;
+  if (context_ptr != 0) {
+    *(int *)(context_ptr + 0x3a8) = *(int)(context_ptr + 0x3a8) + 1;
   }
-  uVar1 = func_0x000180120ce0(unaff_RDI * 2,_DAT_180c8a9a8);
-  if (*(longlong *)(unaff_RBX + 2) != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(uVar1,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX * 2);
+  new_buffer = func_0x000180120ce0(new_size * 2, _DAT_180c8a9a8);
+  if (*(longlong *)(array_ptr + 2) != 0) {
+    // 警告：子函数不返回
+    memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 2);
   }
-  *(undefined8 *)(unaff_RBX + 2) = uVar1;
-  unaff_RBX[1] = (int)unaff_RDI;
+  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  array_ptr[1] = (int)new_size;
   return;
 }
-
-
-
-
-

@@ -2,47 +2,47 @@
 
 // 02_core_engine_part108.c - 6 个函数
 
-// 函数: void FUN_180123f30(int param_1,longlong param_2)
-void FUN_180123f30(int param_1,longlong param_2)
-
+// 函数: void set_render_context(int context_id, longlong context_ptr)
+// 设置渲染上下文，将指定的上下文ID和指针关联到全局状态中
+void set_render_context(int context_id, longlong context_ptr)
 {
-  float *pfVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  int iVar8;
-  longlong lVar9;
+  float *position_ptr;
+  float offset_x;
+  float offset_y;
+  float width;
+  float height;
+  float base_x;
+  float base_y;
+  int layout_index;
+  longlong global_context;
   
-  lVar9 = _DAT_180c8a9b0;
-  iVar8 = *(int *)(param_2 + 0x16c);
-  if (*(longlong *)(_DAT_180c8a9b0 + 0x1c98) != param_2) {
-    *(undefined1 *)(_DAT_180c8a9b0 + 0x1d09) = 0;
+  global_context = global_render_context;
+  layout_index = *(int *)(context_ptr + 0x16c);
+  if (*(longlong *)(global_render_context + 0x1c98) != context_ptr) {
+    *(undefined1 *)(global_render_context + 0x1d09) = 0;
   }
-  *(int *)(lVar9 + 0x1ca0) = param_1;
-  *(longlong *)(lVar9 + 0x1c98) = param_2;
-  *(int *)(lVar9 + 0x1cfc) = iVar8;
-  *(int *)(param_2 + 0x3c8 + (longlong)iVar8 * 4) = param_1;
-  if (*(int *)(param_2 + 0x144) == param_1) {
-    fVar2 = *(float *)(param_2 + 0x150);
-    fVar3 = *(float *)(param_2 + 0x44);
-    fVar4 = *(float *)(param_2 + 0x154);
-    fVar5 = *(float *)(param_2 + 0x40);
-    fVar6 = *(float *)(param_2 + 0x158);
-    fVar7 = *(float *)(param_2 + 0x44);
-    pfVar1 = (float *)(param_2 + ((longlong)iVar8 + 0x3d) * 0x10);
-    *pfVar1 = *(float *)(param_2 + 0x14c) - *(float *)(param_2 + 0x40);
-    pfVar1[1] = fVar2 - fVar3;
-    pfVar1[2] = fVar4 - fVar5;
-    pfVar1[3] = fVar6 - fVar7;
+  *(int *)(global_context + 0x1ca0) = context_id;
+  *(longlong *)(global_context + 0x1c98) = context_ptr;
+  *(int *)(global_context + 0x1cfc) = layout_index;
+  *(int *)(context_ptr + 0x3c8 + (longlong)layout_index * 4) = context_id;
+  if (*(int *)(context_ptr + 0x144) == context_id) {
+    offset_x = *(float *)(context_ptr + 0x150);
+    offset_y = *(float *)(context_ptr + 0x44);
+    width = *(float *)(context_ptr + 0x154);
+    height = *(float *)(context_ptr + 0x40);
+    base_x = *(float *)(context_ptr + 0x158);
+    base_y = *(float *)(context_ptr + 0x44);
+    position_ptr = (float *)(context_ptr + ((longlong)layout_index + 0x3d) * 0x10);
+    *position_ptr = *(float *)(context_ptr + 0x14c) - *(float *)(context_ptr + 0x40);
+    position_ptr[1] = offset_x - offset_y;
+    position_ptr[2] = width - height;
+    position_ptr[3] = base_x - base_y;
   }
-  if (*(int *)(lVar9 + 0x1b60) == 2) {
-    *(undefined1 *)(lVar9 + 0x1d07) = 1;
+  if (*(int *)(global_context + 0x1b60) == 2) {
+    *(undefined1 *)(global_context + 0x1d07) = 1;
     return;
   }
-  *(undefined1 *)(lVar9 + 0x1d06) = 1;
+  *(undefined1 *)(global_context + 0x1d06) = 1;
   return;
 }
 
@@ -50,56 +50,57 @@ void FUN_180123f30(int param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180124190(float *param_1,int param_2,float *param_3)
-
+// 函数: ulonglong setup_render_parameters(float *position_params, int render_flags, float *override_params)
+// 设置渲染参数，包括位置、渲染标志和可能的覆盖参数
+ulonglong setup_render_parameters(float *position_params, int render_flags, float *override_params)
 {
-  longlong lVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  longlong lVar5;
-  char cVar6;
-  float *pfVar7;
-  ulonglong uVar8;
+  longlong render_context;
+  longlong context_data;
+  undefined8 position_data;
+  undefined8 size_data;
+  longlong global_context;
+  char render_status;
+  float *final_params;
+  ulonglong result;
   
-  lVar5 = _DAT_180c8a9b0;
-  lVar1 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-  if (((param_2 != 0) &&
-      (((*(uint *)(lVar1 + 0x178) = *(uint *)(lVar1 + 0x178) | *(uint *)(lVar1 + 0x170),
-        *(int *)(lVar5 + 0x1ca0) == param_2 || (*(char *)(lVar5 + 0x1d08) != '\0')) &&
-       (lVar2 = *(longlong *)(lVar5 + 0x1c98),
-       *(longlong *)(lVar2 + 0x3b8) == *(longlong *)(lVar1 + 0x3b8))))) &&
-     ((lVar1 == lVar2 || (((*(uint *)(lVar2 + 0xc) | *(uint *)(lVar1 + 0xc)) >> 0x17 & 1) != 0)))) {
-    pfVar7 = param_1;
-    if (param_3 != (float *)0x0) {
-      pfVar7 = param_3;
+  global_context = global_render_context;
+  render_context = *(longlong *)(global_render_context + 0x1af8);
+  if (((render_flags != 0) &&
+      (((*(uint *)(render_context + 0x178) = *(uint *)(render_context + 0x178) | *(uint *)(render_context + 0x170),
+        *(int *)(global_context + 0x1ca0) == render_flags || (*(char *)(global_context + 0x1d08) != '\0')) &&
+       (context_data = *(longlong *)(global_context + 0x1c98),
+       *(longlong *)(context_data + 0x3b8) == *(longlong *)(render_context + 0x3b8))))) &&
+     ((render_context == context_data || (((*(uint *)(context_data + 0xc) | *(uint *)(render_context + 0xc)) >> 0x17 & 1) != 0)))) {
+    final_params = position_params;
+    if (override_params != (float *)0x0) {
+      final_params = override_params;
     }
-    FUN_1801314c0(lVar1,pfVar7,param_2);
+    update_render_state(render_context, final_params, render_flags);
   }
-  *(int *)(lVar1 + 0x144) = param_2;
-  uVar3 = *(undefined8 *)param_1;
-  uVar4 = *(undefined8 *)(param_1 + 2);
-  *(undefined4 *)(lVar1 + 0x148) = 0;
-  *(undefined8 *)(lVar1 + 0x14c) = uVar3;
-  *(undefined8 *)(lVar1 + 0x154) = uVar4;
-  lVar2 = *(longlong *)(lVar5 + 0x1af8);
-  pfVar7 = (float *)(lVar2 + 0x228);
-  if ((((*(float *)(lVar2 + 0x22c) <= param_1[3] && param_1[3] != *(float *)(lVar2 + 0x22c)) &&
-       (param_1[1] < *(float *)(lVar2 + 0x234))) &&
-      ((*pfVar7 <= param_1[2] && param_1[2] != *pfVar7 && (*param_1 < *(float *)(lVar2 + 0x230)))))
-     || (((param_2 != 0 && (param_2 == *(int *)(lVar5 + 0x1b2c))) ||
-         (*(char *)(lVar5 + 0x2e38) != '\0')))) {
-    uVar8 = 1;
-    cVar6 = FUN_180128040(param_1,param_1 + 2,1);
-    if (cVar6 != '\0') {
-      *(uint *)(lVar1 + 0x148) = *(uint *)(lVar1 + 0x148) | 1;
+  *(int *)(render_context + 0x144) = render_flags;
+  position_data = *(undefined8 *)position_params;
+  size_data = *(undefined8 *)(position_params + 2);
+  *(undefined4 *)(render_context + 0x148) = 0;
+  *(undefined8 *)(render_context + 0x14c) = position_data;
+  *(undefined8 *)(render_context + 0x154) = size_data;
+  context_data = *(longlong *)(global_context + 0x1af8);
+  final_params = (float *)(context_data + 0x228);
+  if ((((*(float *)(context_data + 0x22c) <= position_params[3] && position_params[3] != *(float *)(context_data + 0x22c)) &&
+       (position_params[1] < *(float *)(context_data + 0x234))) &&
+      ((*final_params <= position_params[2] && position_params[2] != *final_params && (*position_params < *(float *)(context_data + 0x230)))))
+     || (((render_flags != 0 && (render_flags == *(int *)(global_context + 0x1b2c))) ||
+         (*(char *)(global_context + 0x2e38) != '\0')))) {
+    result = 1;
+    render_status = validate_render_parameters(position_params, position_params + 2, 1);
+    if (render_status != '\0') {
+      *(uint *)(render_context + 0x148) = *(uint *)(render_context + 0x148) | 1;
     }
-    uVar8 = uVar8 & 0xff;
+    result = result & 0xff;
   }
   else {
-    uVar8 = (ulonglong)pfVar7 & 0xffffffffffffff00;
+    result = (ulonglong)final_params & 0xffffffffffffff00;
   }
-  return uVar8;
+  return result;
 }
 
 
