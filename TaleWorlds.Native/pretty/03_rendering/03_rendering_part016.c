@@ -731,12 +731,12 @@ void Cleanup_Render_Object_References(longlong render_context)
   longlong lVar6;
   bool bVar7;
   
-  iVar4 = (int)(*(longlong *)(param_1 + 0x40) - *(longlong *)(param_1 + 0x38) >> 4);
+  iVar4 = (int)(*(longlong *)(render_context + 0x40) - *(longlong *)(render_context + 0x38) >> 4);
   lVar5 = (longlong)iVar4;
   if (0 < iVar4) {
     lVar6 = 0;
     do {
-      lVar2 = *(longlong *)(lVar6 + *(longlong *)(param_1 + 0x38));
+      lVar2 = *(longlong *)(lVar6 + *(longlong *)(render_context + 0x38));
       iVar4 = _Mtx_lock(0x180c91910);
       if (iVar4 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar4);
@@ -800,16 +800,16 @@ int Calculate_Rendering_Priority(longlong render_context, longlong render_obj)
   undefined8 *puVar2;
   int iVar3;
   
-  puVar2 = *(undefined8 **)(param_1 + 0x38);
+  puVar2 = *(undefined8 **)(render_context + 0x38);
   iVar3 = 0;
-  if (puVar2 < *(undefined8 **)(param_1 + 0x40)) {
+  if (puVar2 < *(undefined8 **)(render_context + 0x40)) {
     do {
-      if ((*(uint *)(param_2 + 0xc) & *(uint *)(puVar2 + 1)) != 0) {
-        iVar1 = FUN_180076c50(*puVar2,param_2);
+      if ((*(uint *)(render_obj + 0xc) & *(uint *)(puVar2 + 1)) != 0) {
+        iVar1 = FUN_180076c50(*puVar2,render_obj);
         iVar3 = iVar3 + iVar1;
       }
       puVar2 = puVar2 + 2;
-    } while (puVar2 < *(undefined8 **)(param_1 + 0x40));
+    } while (puVar2 < *(undefined8 **)(render_context + 0x40));
   }
   return iVar3;
 }
@@ -839,8 +839,8 @@ undefined8 Validate_Render_Object_State(longlong render_context)
   longlong *plVar10;
   bool bVar11;
   
-  plVar10 = *(longlong **)(param_1 + 0x38);
-  bVar11 = plVar10 < *(longlong **)(param_1 + 0x40);
+  plVar10 = *(longlong **)(render_context + 0x38);
+  bVar11 = plVar10 < *(longlong **)(render_context + 0x40);
   do {
     if (!bVar11) {
       return 1;
@@ -895,7 +895,7 @@ LAB_1802775f0:
       }
     }
     plVar10 = plVar10 + 2;
-    bVar11 = plVar10 < *(longlong **)(param_1 + 0x40);
+    bVar11 = plVar10 < *(longlong **)(render_context + 0x40);
   } while( true );
 }
 
@@ -922,10 +922,10 @@ void Reset_Rendering_Flags(longlong render_context, uint flags_to_reset)
   longlong lVar6;
   longlong *plVar7;
   
-  plVar7 = *(longlong **)(param_1 + 0x38);
-  if (plVar7 < *(longlong **)(param_1 + 0x40)) {
+  plVar7 = *(longlong **)(render_context + 0x38);
+  if (plVar7 < *(longlong **)(render_context + 0x40)) {
     do {
-      if ((*(uint *)(plVar7 + 1) & param_2) != 0) {
+      if ((*(uint *)(plVar7 + 1) & flags_to_reset) != 0) {
         lVar3 = *plVar7;
         if (*(longlong *)(lVar3 + 0x1b8) != 0) {
           lVar6 = 0xb8;
@@ -968,7 +968,7 @@ void Reset_Rendering_Flags(longlong render_context, uint flags_to_reset)
         }
       }
       plVar7 = plVar7 + 2;
-    } while (plVar7 < *(longlong **)(param_1 + 0x40));
+    } while (plVar7 < *(longlong **)(render_context + 0x40));
   }
   return;
 }

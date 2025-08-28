@@ -584,128 +584,157 @@ PROCESSING_FAILED:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18027606a(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 渲染参数计算函数
+ * 计算渲染变换矩阵和参数，执行距离检查和元素处理
+ * @param transform_param_1 变换参数1
+ * @param transform_param_2 变换参数2
+ * @param transform_param_3 变换参数3
+ * @param transform_param_4 变换参数4
+ * @return 处理结果标志
+ */
+ulonglong Calculate_Render_Parameters(undefined8 transform_param_1, undefined8 transform_param_2, undefined8 transform_param_3, undefined8 transform_param_4)
 
 {
-  float fVar1;
-  float fVar2;
-  longlong lVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  byte bVar12;
-  int iVar13;
-  ulonglong in_RAX;
-  ulonglong uVar14;
-  undefined8 *unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  longlong in_R9;
-  uint unaff_R13D;
-  byte unaff_R14B;
-  longlong lVar15;
-  float fVar16;
-  float in_XMM0_Dc;
-  float in_XMM0_Dd;
-  float fVar17;
-  float in_XMM1_Dc;
-  float in_XMM1_Dd;
-  float fVar18;
-  float in_XMM2_Dc;
-  float in_XMM2_Dd;
-  float in_XMM3_Dc;
-  float in_XMM3_Dd;
-  float fVar19;
-  float in_XMM5_Da;
-  float in_XMM5_Db;
-  float in_XMM5_Dc;
-  float in_XMM5_Dd;
+  float matrix_scale;
+  float distance_calc;
+  longlong element_ptr;
+  float transform_x;
+  float transform_y;
+  float transform_z;
+  float transform_w;
+  float matrix_x;
+  float matrix_y;
+  float matrix_z;
+  float matrix_w;
+  float scale_x;
+  float scale_y;
+  float scale_z;
+  float scale_w;
+  byte render_result;
+  int element_count;
+  ulonglong context_data;
+  ulonglong result_flag;
+  undefined8 *render_context;
+  longlong stack_base;
+  longlong render_state;
+  longlong element_array;
+  longlong matrix_params;
+  uint element_bitmask;
+  byte success_flag;
+  longlong distance_context;
+  float camera_distance;
+  float render_x;
+  float float_param_1;
+  float float_param_2;
+  float render_y;
+  float float_param_3;
+  float float_param_4;
+  float render_z;
+  float matrix_value_1;
+  float matrix_value_2;
+  float matrix_value_3;
+  float matrix_value_4;
+  float matrix_value_5;
+  float matrix_value_6;
+  float matrix_value_7;
+  float matrix_value_8;
   
-  fVar4 = *(float *)(in_R9 + 0x20);
-  fVar5 = *(float *)(in_R9 + 0x24);
-  fVar6 = *(float *)(in_R9 + 0x28);
-  fVar7 = *(float *)(in_R9 + 0x2c);
-  fVar8 = *(float *)(in_R9 + 0x10);
-  fVar9 = *(float *)(in_R9 + 0x14);
-  fVar10 = *(float *)(in_R9 + 0x18);
-  fVar11 = *(float *)(in_R9 + 0x1c);
-  fVar19 = *(float *)(unaff_RBX + 0x68);
-  fVar16 = *(float *)(unaff_RBX + 0x69);
-  fVar17 = *(float *)(unaff_RBX + 0x6a);
-  *(float *)(unaff_RBP + -0x21) = (float)param_3 * fVar8 + (float)param_1 + (float)param_2 * fVar4;
-  *(float *)(unaff_RBP + -0x1d) =
-       (float)((ulonglong)param_3 >> 0x20) * fVar9 + (float)((ulonglong)param_1 >> 0x20) +
-       (float)((ulonglong)param_2 >> 0x20) * fVar5;
-  *(float *)(unaff_RBP + -0x19) = in_XMM2_Dc * fVar10 + in_XMM0_Dc + in_XMM1_Dc * fVar6;
-  *(float *)(unaff_RBP + -0x15) = in_XMM2_Dd * fVar11 + in_XMM0_Dd + in_XMM1_Dd * fVar7;
-  fVar18 = *(float *)((longlong)unaff_RBX + 0x354);
-  fVar1 = *(float *)(unaff_RBX + 0x6b);
-  *(float *)(unaff_RBP + -0x11) = (float)param_4 * fVar8 + fVar19 * in_XMM5_Da + fVar16 * fVar4;
-  *(float *)(unaff_RBP + -0xd) =
-       (float)((ulonglong)param_4 >> 0x20) * fVar9 + fVar19 * in_XMM5_Db + fVar16 * fVar5;
-  *(float *)(unaff_RBP + -9) = in_XMM3_Dc * fVar10 + fVar19 * in_XMM5_Dc + fVar16 * fVar6;
-  *(float *)(unaff_RBP + -5) = in_XMM3_Dd * fVar11 + fVar19 * in_XMM5_Dd + fVar16 * fVar7;
-  fVar19 = *(float *)((longlong)unaff_RBX + 0x364);
-  fVar16 = *(float *)(unaff_RBX + 0x6c);
-  fVar2 = *(float *)(unaff_RBX + 0x6d);
-  *(float *)(unaff_RBP + -1) = fVar18 * fVar8 + fVar17 * in_XMM5_Da + fVar1 * fVar4;
-  *(float *)(unaff_RBP + 3) = fVar18 * fVar9 + fVar17 * in_XMM5_Db + fVar1 * fVar5;
-  *(float *)(unaff_RBP + 7) = fVar18 * fVar10 + fVar17 * in_XMM5_Dc + fVar1 * fVar6;
-  *(float *)(unaff_RBP + 0xb) = fVar18 * fVar11 + fVar17 * in_XMM5_Dd + fVar1 * fVar7;
-  fVar17 = *(float *)(in_R9 + 0x34);
-  fVar18 = *(float *)(in_R9 + 0x38);
-  fVar1 = *(float *)(in_R9 + 0x3c);
-  *(float *)(unaff_RBP + 0xf) =
-       fVar19 * fVar8 + fVar16 * in_XMM5_Da + fVar2 * fVar4 + *(float *)(in_R9 + 0x30);
-  *(float *)(unaff_RBP + 0x13) = fVar19 * fVar9 + fVar16 * in_XMM5_Db + fVar2 * fVar5 + fVar17;
-  *(float *)(unaff_RBP + 0x17) = fVar19 * fVar10 + fVar16 * in_XMM5_Dc + fVar2 * fVar6 + fVar18;
-  *(float *)(unaff_RBP + 0x1b) = fVar19 * fVar11 + fVar16 * in_XMM5_Dd + fVar2 * fVar7 + fVar1;
-  if ((in_RAX != 0) && (fVar19 = *(float *)(unaff_RBX + 0xd), fVar19 != 3.4028235e+38)) {
-    if ((undefined *)*unaff_RBX == &UNK_180a169b8) {
-      lVar15 = (longlong)unaff_RBX + 0x214;
+  // 读取矩阵参数
+  transform_x = *(float *)(matrix_params + 0x20);
+  transform_y = *(float *)(matrix_params + 0x24);
+  transform_z = *(float *)(matrix_params + 0x28);
+  transform_w = *(float *)(matrix_params + 0x2c);
+  matrix_x = *(float *)(matrix_params + 0x10);
+  matrix_y = *(float *)(matrix_params + 0x14);
+  matrix_z = *(float *)(matrix_params + 0x18);
+  matrix_w = *(float *)(matrix_params + 0x1c);
+  matrix_value_1 = *(float *)(render_context + 0x68);
+  matrix_value_2 = *(float *)(render_context + 0x69);
+  matrix_value_3 = *(float *)(render_context + 0x6a);
+  
+  // 计算第一行变换
+  *(float *)(stack_base + -0x21) = (float)transform_param_3 * matrix_x + (float)transform_param_1 + (float)transform_param_2 * transform_x;
+  *(float *)(stack_base + -0x1d) =
+       (float)((ulonglong)transform_param_3 >> 0x20) * matrix_y + (float)((ulonglong)transform_param_1 >> 0x20) +
+       (float)((ulonglong)transform_param_2 >> 0x20) * transform_y;
+  *(float *)(stack_base + -0x19) = float_param_3 * matrix_z + float_param_1 + float_param_2 * transform_z;
+  *(float *)(stack_base + -0x15) = float_param_4 * matrix_w + float_param_2 + float_param_2 * transform_w;
+  
+  render_z = *(float *)((longlong)render_context + 0x354);
+  matrix_scale = *(float *)(render_context + 0x6b);
+  
+  // 计算第二行变换
+  *(float *)(stack_base + -0x11) = (float)transform_param_4 * matrix_x + matrix_value_1 * matrix_value_5 + matrix_value_2 * transform_x;
+  *(float *)(stack_base + -0xd) =
+       (float)((ulonglong)transform_param_4 >> 0x20) * matrix_y + matrix_value_1 * matrix_value_6 + matrix_value_2 * transform_y;
+  *(float *)(stack_base + -9) = matrix_value_7 * matrix_z + matrix_value_1 * matrix_value_7 + matrix_value_2 * transform_z;
+  *(float *)(stack_base + -5) = matrix_value_8 * matrix_w + matrix_value_1 * matrix_value_8 + matrix_value_2 * transform_w;
+  
+  matrix_value_1 = *(float *)((longlong)render_context + 0x364);
+  matrix_value_2 = *(float *)(render_context + 0x6c);
+  distance_calc = *(float *)(render_context + 0x6d);
+  
+  // 计算第三行变换
+  *(float *)(stack_base + -1) = render_z * matrix_x + matrix_value_3 * matrix_value_5 + matrix_scale * transform_x;
+  *(float *)(stack_base + 3) = render_z * matrix_y + matrix_value_3 * matrix_value_6 + matrix_scale * transform_y;
+  *(float *)(stack_base + 7) = render_z * matrix_z + matrix_value_3 * matrix_value_7 + matrix_scale * transform_z;
+  *(float *)(stack_base + 0xb) = render_z * matrix_w + matrix_value_3 * matrix_value_8 + matrix_scale * transform_w;
+  
+  matrix_value_3 = *(float *)(matrix_params + 0x34);
+  render_z = *(float *)(matrix_params + 0x38);
+  matrix_scale = *(float *)(matrix_params + 0x3c);
+  
+  // 计算第四行变换（带平移）
+  *(float *)(stack_base + 0xf) =
+       matrix_value_1 * matrix_x + matrix_value_2 * matrix_value_5 + distance_calc * transform_x + *(float *)(matrix_params + 0x30);
+  *(float *)(stack_base + 0x13) = matrix_value_1 * matrix_y + matrix_value_2 * matrix_value_6 + distance_calc * transform_y + matrix_value_3;
+  *(float *)(stack_base + 0x17) = matrix_value_1 * matrix_z + matrix_value_2 * matrix_value_7 + distance_calc * transform_z + render_z;
+  *(float *)(stack_base + 0x1b) = matrix_value_1 * matrix_w + matrix_value_2 * matrix_value_8 + distance_calc * transform_w + matrix_scale;
+  
+  // 距离检查
+  if ((context_data != 0) && (matrix_value_1 = *(float *)(render_context + 0xd), matrix_value_1 != 3.4028235e+38)) {
+    if ((undefined *)*render_context == &STANDARD_RENDER_CONTEXT) {
+      distance_context = (longlong)render_context + 0x214;
     }
     else {
-      lVar15 = (**(code **)((undefined *)*unaff_RBX + 0x198))();
-      fVar19 = *(float *)(unaff_RBX + 0xd);
-      in_RAX = *(ulonglong *)(unaff_RSI + 0x28);
+      distance_context = (**(code **)((undefined *)*render_context + 0x198))();
+      matrix_value_1 = *(float *)(render_context + 0xd);
+      context_data = *(ulonglong *)(render_state + 0x28);
     }
-    fVar18 = *(float *)(in_RAX + 0x124) - *(float *)(unaff_RBP + 0x13);
-    fVar17 = *(float *)(in_RAX + 0x120) - *(float *)(unaff_RBP + 0xf);
-    fVar16 = *(float *)(in_RAX + 0x128) - *(float *)(unaff_RBP + 0x17);
-    if (fVar19 * fVar19 <
-        (fVar18 * fVar18 + fVar17 * fVar17 + fVar16 * fVar16) -
-        *(float *)(lVar15 + 0x30) * *(float *)(lVar15 + 0x30)) {
-      return in_RAX & 0xffffffffffffff00;
+    render_z = *(float *)(context_data + 0x124) - *(float *)(stack_base + 0x13);
+    matrix_value_3 = *(float *)(context_data + 0x120) - *(float *)(stack_base + 0xf);
+    matrix_value_2 = *(float *)(context_data + 0x128) - *(float *)(stack_base + 0x17);
+    if (matrix_value_1 * matrix_value_1 <
+        (render_z * render_z + matrix_value_3 * matrix_value_3 + matrix_value_2 * matrix_value_2) -
+        *(float *)(distance_context + 0x30) * *(float *)(distance_context + 0x30)) {
+      return context_data & 0xffffffffffffff00;
     }
   }
-  iVar13 = (int)((longlong)(unaff_RBX[8] - unaff_RBX[7]) >> 4);
-  lVar15 = (longlong)iVar13;
-  if (iVar13 < 1) {
-    uVar14 = (ulonglong)unaff_R14B;
+  
+  // 处理渲染元素
+  element_count = (int)((longlong)(render_context[8] - render_context[7]) >> 4);
+  distance_context = (longlong)element_count;
+  if (element_count < 1) {
+    result_flag = (ulonglong)success_flag;
   }
   else {
     do {
-      lVar3 = *(longlong *)(unaff_RDI + unaff_RBX[7]);
-      if ((lVar3 != 0) && ((*(uint *)(unaff_RDI + 8 + unaff_RBX[7]) & unaff_R13D) != 0)) {
-        if (((*(byte *)(unaff_RSI + 0x1bd8) & 0x20) != 0) &&
-           ((*(uint *)(lVar3 + 0x100) & 0x400000) != 0)) {
-          *(undefined4 *)(unaff_RBX + 0x65) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      element_ptr = *(longlong *)(element_array + render_context[7]);
+      if ((element_ptr != 0) && ((*(uint *)(element_array + 8 + render_context[7]) & element_bitmask) != 0)) {
+        if (((*(byte *)(render_state + 0x1bd8) & 0x20) != 0) &&
+           ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
+          *(undefined4 *)(render_context + 0x65) = *(undefined4 *)(GLOBAL_RENDER_DATA + 0x224);
         }
-        bVar12 = FUN_180077750();
-        unaff_R14B = unaff_R14B & bVar12;
+        render_result = process_render_element();
+        success_flag = success_flag & render_result;
       }
-      unaff_RDI = unaff_RDI + 0x10;
-      lVar15 = lVar15 + -1;
-    } while (lVar15 != 0);
-    uVar14 = (ulonglong)unaff_R14B;
+      element_array = element_array + 0x10;
+      distance_context = distance_context + -1;
+    } while (distance_context != 0);
+    result_flag = (ulonglong)success_flag;
   }
-  return uVar14;
+  return result_flag;
 }
 
 

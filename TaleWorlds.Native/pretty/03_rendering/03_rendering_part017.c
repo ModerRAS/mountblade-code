@@ -504,9 +504,12 @@ LAB_180277eb2:
 
 
 // 函数: void FUN_180277f3a(void)
-void FUN_180277f3a(void)
+// 渲染对象收集完成处理
+void Complete_Render_Object_Collection(void)
 
 {
+  // 此函数为占位符，用于标记渲染对象收集操作的完成
+  // 在渲染流水线中作为同步点使用
   return;
 }
 
