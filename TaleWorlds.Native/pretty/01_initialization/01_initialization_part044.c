@@ -533,23 +533,25 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
 
 
 
-// 函数: void serialize_mesh_data_buffer(longlong param_1)
-// 功能: 序列化网格数据到预分配缓冲区
-// 参数: param_1 - 网格数据源句柄
-// 返回: 无
-// 说明: 此函数与serialize_mesh_data类似，但使用预分配的缓冲区，
-//       适用于性能敏感的场景。减少了动态内存分配的开销。
-void serialize_mesh_data_buffer(longlong param_1)
-
+/**
+ * 序列化网格数据到预分配缓冲区
+ * 主要功能：与serialize_mesh_data类似，但使用预分配的缓冲区，减少动态内存分配开销
+ * 
+ * 原始实现：FUN_180073adc
+ * 简化实现：预分配缓冲区网格序列化函数
+ * 
+ * @param mesh_handle 网格数据源句柄
+ */
+void serialize_mesh_data_buffer(longlong mesh_handle)
 {
-  ushort uVar1;
-  undefined8 uVar2;
-  int *piVar3;
-  undefined4 *puVar4;
-  uint *puVar5;
-  longlong lVar6;
-  longlong *unaff_RBX;
-  longlong lVar7;
+  ushort vertex_count;             // 顶点计数
+  undefined8 data_ptr;             // 数据指针
+  int *buffer_pos;                 // 缓冲区位置指针
+  undefined4 *data_writer;          // 数据写入器
+  uint *uint_writer;               // 无符号整数写入器
+  longlong mesh_size;              // 网格大小
+  longlong *global_buffer;          // 全局缓冲区指针
+  longlong vertex_offset;          // 顶点偏移量;
   int iVar8;
   ulonglong uVar9;
   longlong lVar10;
@@ -711,23 +713,25 @@ void serialize_mesh_data_buffer(longlong param_1)
 
 
 
-// 函数: void process_mesh_batch(uint *param_1)
-// 功能: 批量处理网格数据
-// 参数: param_1 - 批处理参数和目标缓冲区
-// 返回: 无
-// 说明: 此函数优化了多个网格数据的处理流程，通过批处理
-//       提高了性能。适用于需要同时处理多个3D模型的场景。
-void process_mesh_batch(uint *param_1)
-
+/**
+ * 批量处理网格数据
+ * 主要功能：优化多个网格数据的处理流程，通过批处理提高性能
+ * 
+ * 原始实现：FUN_180073b64
+ * 简化实现：网格数据批处理函数
+ * 
+ * @param batch_params 批处理参数和目标缓冲区
+ */
+void process_mesh_batch(uint *batch_params)
 {
-  ushort uVar1;
-  undefined8 uVar2;
-  undefined4 *puVar3;
-  uint *puVar4;
-  longlong *unaff_RBX;
-  longlong lVar5;
-  ulonglong uVar6;
-  longlong unaff_R12;
+  ushort vertex_count;             // 顶点计数
+  undefined8 data_ptr;             // 数据指针
+  undefined4 *data_writer;          // 数据写入器
+  uint *uint_writer;               // 无符号整数写入器
+  longlong *buffer_manager;        // 缓冲区管理器
+  longlong mesh_offset;             // 网格偏移量
+  ulonglong data_size;             // 数据大小
+  longlong batch_counter;          // 批处理计数器;
   uint unaff_R13D;
   longlong unaff_R15;
   
@@ -873,23 +877,25 @@ void process_mesh_batch(uint *param_1)
 
 
 
-// 函数: void write_buffer_header(undefined4 *param_1)
-// 功能: 写入缓冲区头部信息
-// 参数: param_1 - 目标缓冲区指针
-// 返回: 无
-// 说明: 此函数在缓冲区开始位置写入标准的头部信息，
-//       包括版本号、数据类型、大小等元数据，便于后续解析。
-void write_buffer_header(undefined4 *param_1)
-
+/**
+ * 写入缓冲区头部信息
+ * 主要功能：在缓冲区开始位置写入标准的头部信息，包括版本号、数据类型、大小等元数据
+ * 
+ * 原始实现：FUN_180073e0b
+ * 简化实现：缓冲区头部写入函数
+ * 
+ * @param buffer_ptr 目标缓冲区指针
+ */
+void write_buffer_header(undefined4 *buffer_ptr)
 {
-  ushort uVar1;
-  undefined8 uVar2;
-  undefined4 *puVar3;
-  uint *puVar4;
-  longlong lVar5;
-  longlong *unaff_RBX;
-  ulonglong uVar6;
-  undefined4 unaff_R13D;
+  ushort header_value;             // 头部值
+  undefined8 data_ptr;             // 数据指针
+  undefined4 *header_writer;       // 头部写入器
+  uint *uint_writer;               // 无符号整数写入器
+  longlong write_offset;            // 写入偏移量
+  longlong *buffer_manager;        // 缓冲区管理器
+  ulonglong data_size;             // 数据大小
+  undefined4 header_flags;         // 头部标志;
   longlong unaff_R15;
   
   if ((ulonglong)((*unaff_RBX - (longlong)param_1) + unaff_RBX[2]) < 5) {
@@ -963,23 +969,25 @@ void write_buffer_header(undefined4 *param_1)
 
 
 
-// 函数: void initialize_buffer_writer(void)
-// 功能: 初始化缓冲区写入器
-// 参数: 无
-// 返回: 无
-// 说明: 此函数初始化用于高效写入数据的缓冲区管理器，
-//       设置内部状态和缓冲区，为后续的数据写入做准备。
+/**
+ * 初始化缓冲区写入器
+ * 主要功能：初始化用于高效写入数据的缓冲区管理器，设置内部状态和缓冲区
+ * 
+ * 原始实现：FUN_180073e23
+ * 简化实现：缓冲区写入器初始化函数
+ * 
+ * @param 无参数
+ */
 void initialize_buffer_writer(void)
-
 {
-  ushort uVar1;
-  undefined8 uVar2;
-  undefined4 *puVar3;
-  uint *puVar4;
-  longlong lVar5;
-  longlong *unaff_RBX;
-  ulonglong uVar6;
-  undefined4 unaff_R13D;
+  ushort init_value;               // 初始化值
+  undefined8 data_ptr;             // 数据指针
+  undefined4 *buffer_writer;       // 缓冲区写入器
+  uint *uint_writer;               // 无符号整数写入器
+  longlong write_offset;            // 写入偏移量
+  longlong *buffer_manager;        // 缓冲区管理器
+  ulonglong data_size;             // 数据大小
+  undefined4 init_flags;           // 初始化标志;
   longlong unaff_R15;
   
   FUN_180639bf0();
@@ -1050,22 +1058,24 @@ void initialize_buffer_writer(void)
 
 
 
-// 函数: void finalize_buffer_writer(void)
-// 功能: 完成缓冲区写入操作
-// 参数: 无
-// 返回: 无
-// 说明: 此函数完成缓冲区的写入操作，处理最后的清理工作，
-//       确保所有数据都被正确写入，并重置写入器状态。
+/**
+ * 完成缓冲区写入操作
+ * 主要功能：完成缓冲区的写入操作，处理最后的清理工作，确保所有数据都被正确写入
+ * 
+ * 原始实现：FUN_180073f90
+ * 简化实现：缓冲区写入器完成函数
+ * 
+ * @param 无参数
+ */
 void finalize_buffer_writer(void)
-
 {
-  ushort uVar1;
-  undefined8 uVar2;
-  uint *puVar3;
-  longlong lVar4;
-  longlong *unaff_RBX;
-  ulonglong uVar5;
-  longlong unaff_R15;
+  ushort final_value;              // 最终值
+  undefined8 data_ptr;             // 数据指针
+  uint *uint_writer;               // 无符号整数写入器
+  longlong final_offset;           // 最终偏移量
+  longlong *buffer_manager;        // 缓冲区管理器
+  ulonglong remaining_size;        // 剩余大小
+  longlong resource_handle;        // 资源句柄;
   
   FUN_180639bf0();
   *(undefined4 *)unaff_RBX[1] = 0x10;

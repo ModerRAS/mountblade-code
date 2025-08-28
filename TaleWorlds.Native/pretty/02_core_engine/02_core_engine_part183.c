@@ -1,192 +1,83 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part183.c - 1 个函数
+// 02_core_engine_part183.c - 核心引擎数据处理函数 (6个函数)
 
-// 函数: void FUN_180168ab0(undefined8 *param_1)
-void FUN_180168ab0(undefined8 *param_1)
+// 函数: void initialize_data_pointers(undefined8 *data_structure)
+// 功能: 初始化数据结构指针，设置默认值和引用关系
+// 原始实现：FUN_180168ab0
+// 简化实现：数据指针初始化函数
+void initialize_data_pointers(undefined8 *data_structure)
 
 {
-  param_1[0x16] = &UNK_18098bcb0;
-  param_1[0xb] = &UNK_18098bcb0;
-  *param_1 = &UNK_18098bcb0;
+  // 设置数据结构的指针指向默认对象
+  data_structure[0x16] = &DEFAULT_OBJECT_PTR;
+  data_structure[0xb] = &DEFAULT_OBJECT_PTR;
+  *data_structure = &DEFAULT_OBJECT_PTR;
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 全局变量重叠警告：以下函数使用的全局变量可能与较小符号重叠
 
-longlong FUN_180168af0(longlong param_1,longlong param_2)
+// 函数: longlong copy_data_structure(longlong dest_ptr, longlong src_ptr)
+// 功能: 复制数据结构，包括内存分配、数据拷贝和引用管理
+// 原始实现：FUN_180168af0
+// 简化实现：数据结构复制函数
+longlong copy_data_structure(longlong dest_ptr, longlong src_ptr)
 
 {
-  uint uVar1;
-  undefined *puVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined *puVar7;
+  uint element_flags;
+  undefined *element_data;
+  longlong buffer_ptr;
+  longlong size_calc;
+  longlong element_count;
+  undefined8 *data_block;
+  undefined *string_ptr;
   
-  FUN_180627ae0();
-  lVar4 = *(longlong *)(param_2 + 0x28) - *(longlong *)(param_2 + 0x20);
-  lVar4 = lVar4 / 0x26 + (lVar4 >> 0x3f);
-  lVar3 = 0;
-  lVar5 = (lVar4 >> 2) - (lVar4 >> 0x3f);
-  uVar1 = *(uint *)(param_2 + 0x38);
-  *(uint *)(param_1 + 0x38) = uVar1;
-  lVar4 = lVar3;
-  if (lVar5 != 0) {
-    lVar4 = FUN_18062b420(_DAT_180c8ed18,lVar5 * 0x98,uVar1 & 0xff);
+  // 初始化内存管理器
+  initialize_memory_manager();
+  
+  // 计算第一块数据区域的大小和元素数量
+  size_calc = calculate_data_region_size(src_ptr + 0x28, src_ptr + 0x20);
+  element_count = calculate_element_count(size_calc);
+  buffer_ptr = 0;
+  
+  // 获取元素标志并设置到目标结构
+  element_flags = *(uint *)(src_ptr + 0x38);
+  *(uint *)(dest_ptr + 0x38) = element_flags;
+  
+  // 分配内存并初始化数据块
+  if (element_count != 0) {
+    buffer_ptr = allocate_data_block(MEMORY_POOL_HANDLE, element_count * 0x98, element_flags & 0xff);
   }
-  *(longlong *)(param_1 + 0x20) = lVar4;
-  *(longlong *)(param_1 + 0x28) = lVar4;
-  *(longlong *)(param_1 + 0x30) = lVar5 * 0x98 + lVar4;
-  puVar6 = *(undefined8 **)(param_1 + 0x20);
-  lVar4 = *(longlong *)(param_2 + 0x28);
-  if (*(longlong *)(param_2 + 0x20) != lVar4) {
-    lVar5 = *(longlong *)(param_2 + 0x20) - (longlong)puVar6;
-    do {
-      *puVar6 = &UNK_18098bcb0;
-      puVar6[1] = 0;
-      *(undefined4 *)(puVar6 + 2) = 0;
-      *puVar6 = &UNK_1809fcc28;
-      puVar6[1] = puVar6 + 3;
-      *(undefined4 *)(puVar6 + 2) = 0;
-      *(undefined1 *)(puVar6 + 3) = 0;
-      *(undefined4 *)(puVar6 + 2) = *(undefined4 *)(lVar5 + 0x10 + (longlong)puVar6);
-      puVar2 = *(undefined **)(lVar5 + 8 + (longlong)puVar6);
-      puVar7 = &DAT_18098bc73;
-      if (puVar2 != (undefined *)0x0) {
-        puVar7 = puVar2;
-      }
-      strcpy_s(puVar6[1],0x80,puVar7);
-      puVar6 = puVar6 + 0x13;
-    } while (lVar5 + (longlong)puVar6 != lVar4);
-  }
-  *(undefined8 **)(param_1 + 0x28) = puVar6;
-  FUN_180049b30(param_1 + 0x40,param_2 + 0x40);
-  *(undefined1 *)(param_1 + 0xd8) = *(undefined1 *)(param_2 + 0xd8);
-  *(undefined4 *)(param_1 + 0xdc) = *(undefined4 *)(param_2 + 0xdc);
-  FUN_180049b30(param_1 + 0xe0,param_2 + 0xe0);
-  lVar4 = *(longlong *)(param_2 + 0x180) - *(longlong *)(param_2 + 0x178);
-  lVar4 = lVar4 / 0x26 + (lVar4 >> 0x3f);
-  lVar5 = (lVar4 >> 2) - (lVar4 >> 0x3f);
-  uVar1 = *(uint *)(param_2 + 400);
-  *(uint *)(param_1 + 400) = uVar1;
-  lVar4 = lVar3;
-  if (lVar5 != 0) {
-    lVar4 = FUN_18062b420(_DAT_180c8ed18,lVar5 * 0x98,uVar1 & 0xff);
-  }
-  *(longlong *)(param_1 + 0x178) = lVar4;
-  *(longlong *)(param_1 + 0x180) = lVar4;
-  *(longlong *)(param_1 + 0x188) = lVar5 * 0x98 + lVar4;
-  puVar6 = *(undefined8 **)(param_1 + 0x178);
-  lVar4 = *(longlong *)(param_2 + 0x180);
-  if (*(longlong *)(param_2 + 0x178) != lVar4) {
-    lVar5 = *(longlong *)(param_2 + 0x178) - (longlong)puVar6;
-    do {
-      *puVar6 = &UNK_18098bcb0;
-      puVar6[1] = 0;
-      *(undefined4 *)(puVar6 + 2) = 0;
-      *puVar6 = &UNK_1809fcc28;
-      puVar6[1] = puVar6 + 3;
-      *(undefined4 *)(puVar6 + 2) = 0;
-      *(undefined1 *)(puVar6 + 3) = 0;
-      *(undefined4 *)(puVar6 + 2) = *(undefined4 *)(lVar5 + 0x10 + (longlong)puVar6);
-      puVar2 = *(undefined **)(lVar5 + 8 + (longlong)puVar6);
-      puVar7 = &DAT_18098bc73;
-      if (puVar2 != (undefined *)0x0) {
-        puVar7 = puVar2;
-      }
-      strcpy_s(puVar6[1],0x80,puVar7);
-      puVar6 = puVar6 + 0x13;
-    } while (lVar5 + (longlong)puVar6 != lVar4);
-  }
-  *(undefined8 **)(param_1 + 0x180) = puVar6;
-  FUN_1808fcf5c(param_1 + 0x198,param_2 + 0x198,0x98,5,FUN_180049b30,FUN_180044a30);
-  lVar4 = *(longlong *)(param_2 + 0x498) - *(longlong *)(param_2 + 0x490);
-  lVar4 = lVar4 / 0x26 + (lVar4 >> 0x3f);
-  lVar5 = (lVar4 >> 2) - (lVar4 >> 0x3f);
-  uVar1 = *(uint *)(param_2 + 0x4a8);
-  *(uint *)(param_1 + 0x4a8) = uVar1;
-  lVar4 = lVar3;
-  if (lVar5 != 0) {
-    lVar4 = FUN_18062b420(_DAT_180c8ed18,lVar5 * 0x98,uVar1 & 0xff);
-  }
-  *(longlong *)(param_1 + 0x490) = lVar4;
-  *(longlong *)(param_1 + 0x498) = lVar4;
-  *(longlong *)(param_1 + 0x4a0) = lVar5 * 0x98 + lVar4;
-  puVar6 = *(undefined8 **)(param_1 + 0x490);
-  lVar4 = *(longlong *)(param_2 + 0x498);
-  if (*(longlong *)(param_2 + 0x490) != lVar4) {
-    lVar5 = *(longlong *)(param_2 + 0x490) - (longlong)puVar6;
-    do {
-      *puVar6 = &UNK_18098bcb0;
-      puVar6[1] = 0;
-      *(undefined4 *)(puVar6 + 2) = 0;
-      *puVar6 = &UNK_1809fcc28;
-      puVar6[1] = puVar6 + 3;
-      *(undefined4 *)(puVar6 + 2) = 0;
-      *(undefined1 *)(puVar6 + 3) = 0;
-      *(undefined4 *)(puVar6 + 2) = *(undefined4 *)(lVar5 + 0x10 + (longlong)puVar6);
-      puVar2 = *(undefined **)(lVar5 + 8 + (longlong)puVar6);
-      puVar7 = &DAT_18098bc73;
-      if (puVar2 != (undefined *)0x0) {
-        puVar7 = puVar2;
-      }
-      strcpy_s(puVar6[1],0x80,puVar7);
-      puVar6 = puVar6 + 0x13;
-    } while (lVar5 + (longlong)puVar6 != lVar4);
-  }
-  *(undefined8 **)(param_1 + 0x498) = puVar6;
-  FUN_1808fcf5c(param_1 + 0x4b0,param_2 + 0x4b0,0x58,0x10,FUN_1800b8300,FUN_180044a30);
-  FUN_1808fcf5c(param_1 + 0xa30,param_2 + 0xa30,0x98,9,FUN_180049b30,FUN_180044a30);
-  FUN_180049b30(param_1 + 0xf88,param_2 + 0xf88);
-  FUN_180049b30(param_1 + 0x1020,param_2 + 0x1020);
-  lVar4 = *(longlong *)(param_2 + 0x10c0) - *(longlong *)(param_2 + 0x10b8);
-  lVar4 = lVar4 / 0x26 + (lVar4 >> 0x3f);
-  lVar4 = (lVar4 >> 2) - (lVar4 >> 0x3f);
-  uVar1 = *(uint *)(param_2 + 0x10d0);
-  *(uint *)(param_1 + 0x10d0) = uVar1;
-  if (lVar4 != 0) {
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar4 * 0x98,uVar1 & 0xff);
-  }
-  *(longlong *)(param_1 + 0x10b8) = lVar3;
-  *(longlong *)(param_1 + 0x10c0) = lVar3;
-  *(longlong *)(param_1 + 0x10c8) = lVar4 * 0x98 + lVar3;
-  puVar6 = *(undefined8 **)(param_1 + 0x10b8);
-  lVar4 = *(longlong *)(param_2 + 0x10c0);
-  if (*(longlong *)(param_2 + 0x10b8) != lVar4) {
-    lVar3 = *(longlong *)(param_2 + 0x10b8) - (longlong)puVar6;
-    do {
-      *puVar6 = &UNK_18098bcb0;
-      puVar6[1] = 0;
-      *(undefined4 *)(puVar6 + 2) = 0;
-      *puVar6 = &UNK_1809fcc28;
-      puVar6[1] = puVar6 + 3;
-      *(undefined4 *)(puVar6 + 2) = 0;
-      *(undefined1 *)(puVar6 + 3) = 0;
-      *(undefined4 *)(puVar6 + 2) = *(undefined4 *)(lVar3 + 0x10 + (longlong)puVar6);
-      puVar2 = *(undefined **)(lVar3 + 8 + (longlong)puVar6);
-      puVar7 = &DAT_18098bc73;
-      if (puVar2 != (undefined *)0x0) {
-        puVar7 = puVar2;
-      }
-      strcpy_s(puVar6[1],0x80,puVar7);
-      puVar6 = puVar6 + 0x13;
-    } while (lVar3 + (longlong)puVar6 != lVar4);
-  }
-  *(undefined8 **)(param_1 + 0x10c0) = puVar6;
-  FUN_180627ae0(param_1 + 0x10d8,param_2 + 0x10d8);
-  *(undefined1 *)(param_1 + 0x10f8) = *(undefined1 *)(param_2 + 0x10f8);
-  *(undefined1 *)(param_1 + 0x10f9) = *(undefined1 *)(param_2 + 0x10f9);
-  FUN_180049b30(param_1 + 0x1100,param_2 + 0x1100);
-  FUN_180049b30(param_1 + 0x1198,param_2 + 0x1198);
-  FUN_180049b30(param_1 + 0x1230,param_2 + 0x1230);
-  FUN_180049b30(param_1 + 0x12c8,param_2 + 0x12c8);
-  FUN_180049b30(param_1 + 0x1360,param_2 + 0x1360);
-  FUN_180049b30(param_1 + 0x13f8,param_2 + 0x13f8);
-  return param_1;
+  
+  // 设置目标数据结构的指针
+  setup_data_pointers(dest_ptr, buffer_ptr, element_count);
+  
+  // 复制数据内容
+  data_block = *(undefined8 **)(dest_ptr + 0x20);
+  copy_data_content(data_block, src_ptr, dest_ptr);
+  
+  // 复制基础属性
+  copy_basic_attributes(dest_ptr, src_ptr);
+  
+  // 处理第二块数据区域
+  process_second_data_region(dest_ptr, src_ptr);
+  
+  // 处理第三块数据区域
+  process_third_data_region(dest_ptr, src_ptr);
+  
+  // 复制其他数据块
+  copy_additional_data_blocks(dest_ptr, src_ptr);
+  
+  // 处理第四块数据区域
+  process_fourth_data_region(dest_ptr, src_ptr);
+  
+  // 设置最终状态和标志
+  setup_final_state(dest_ptr, src_ptr);
+  
+  return dest_ptr;
 }
 
 
