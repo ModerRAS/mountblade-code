@@ -6,8 +6,16 @@
 // 全局变量声明
 undefined8 _DAT_180c8ed18;  // 内存分配器引用
 undefined8 _DAT_180bf00a8;  // 加密密钥相关
+undefined8 _DAT_180c86930;  // 初始化地址
+undefined8 UNK_1809ffa18;  // 对象模板
+undefined8 UNK_1809ff9a8;  // 对象模板
+undefined8 UNK_180a21690;  // 上下文模板
+undefined8 UNK_180a21720;  // 上下文模板
+undefined8 UNK_180a02e68;  // 上下文模板
+undefined8 UNK_180a13a28;  // 上下文模板
 undefined8 UNK_1809fcc28;  // 未知数据结构
 undefined8 UNK_18098bcb0;  // 未知数据结构
+undefined8 DAT_18098bc73;  // 默认名称指针
 
 /**
  * 处理数据流中的序列化数据
@@ -278,5 +286,16 @@ void cleanup_data_processor(longlong processor)
 }
 
 // 辅助函数声明（简化实现）
-void allocate_memory(undefined8 allocator, ulonglong size, ulonglong align, int type, ulonglong flags);
+longlong allocate_memory(undefined8 allocator, ulonglong size, longlong align);
+longlong allocate_memory_with_flags(undefined8 allocator, ulonglong size, longlong align, longlong flags, longlong guard);
 void cleanup_memory(void);
+void handle_memory_error(void);
+void process_item_count(longlong *data_ptr, longlong count);
+void FUN_180074b30(longlong *data_ptr, longlong count);
+void FUN_1802abe00(longlong addr, longlong context);
+void FUN_1800b55b0(void);
+void FUN_180049910(undefined8 **context, uint *data, uint size);
+void FUN_1808fc050(ulonglong param);
+longlong FUN_18062b420(undefined8 allocator, ulonglong size, longlong align);
+longlong FUN_18062b1e0(undefined8 allocator, ulonglong size, longlong align, longlong flags, longlong guard);
+void FUN_18064e900(void);
