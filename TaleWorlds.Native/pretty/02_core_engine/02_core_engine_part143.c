@@ -1,9 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part143.c - 8 个函数
+// 02_core_engine_part143.c - 核心引擎模块第143部分
+// 包含8个函数，主要涉及渲染状态管理、内存清理和初始化操作
 
-// 函数: void FUN_180134c48(void)
-void FUN_180134c48(void)
+// 函数: 处理渲染状态更新和边界检查
+// 参数: 通过寄存器传递多个参数
+// 功能: 更新渲染边界状态，处理碰撞检测，管理渲染队列
+void update_render_state_with_bounds(void)
 
 {
   undefined4 *puVar1;
@@ -161,8 +164,10 @@ void FUN_180134c48(void)
 
 
 
-// 函数: void FUN_180134c57(void)
-void FUN_180134c57(void)
+// 函数: 处理渲染状态更新的变体版本
+// 参数: 通过寄存器传递多个参数
+// 功能: 与update_render_state_with_bounds类似，但使用不同的寄存器布局
+void update_render_state_variant(void)
 
 {
   undefined4 *puVar1;
@@ -317,8 +322,10 @@ void FUN_180134c57(void)
 
 
 
-// 函数: void FUN_180134eb0(void)
-void FUN_180134eb0(void)
+// 函数: 处理特定渲染场景的状态更新
+// 参数: 通过寄存器传递参数
+// 功能: 更新特定渲染场景的状态，处理边界条件
+void update_specific_render_scene(void)
 
 {
   float fVar1;
@@ -384,8 +391,10 @@ void FUN_180134eb0(void)
 
 
 
-// 函数: void FUN_180134f9f(void)
-void FUN_180134f9f(void)
+// 函数: 重置渲染状态
+// 参数: 通过寄存器传递参数
+// 功能: 重置渲染相关的状态变量和缓冲区
+void reset_render_state(void)
 
 {
   longlong unaff_RBX;
@@ -404,8 +413,10 @@ void FUN_180134f9f(void)
 
 
 
-// 函数: void FUN_180134fb8(void)
-void FUN_180134fb8(void)
+// 函数: 清理渲染状态
+// 参数: 通过寄存器传递参数
+// 功能: 清理渲染状态，释放相关资源
+void cleanup_render_state(void)
 
 {
   longlong unaff_RBX;
@@ -426,8 +437,10 @@ void FUN_180134fb8(void)
 
 
 
-// 函数: void FUN_180135010(int param_1,undefined8 param_2,uint param_3)
-void FUN_180135010(int param_1,undefined8 param_2,uint param_3)
+// 函数: 初始化渲染参数
+// 参数: param_1 - 整数参数，param_2 - 64位参数，param_3 - 无符号整数参数
+// 功能: 根据参数初始化渲染设置，处理不同的渲染模式
+void initialize_render_parameters(int render_mode, undefined8 context_handle, uint flags)
 
 {
   longlong lVar1;
@@ -455,8 +468,9 @@ void FUN_180135010(int param_1,undefined8 param_2,uint param_3)
 
 
 
-// 函数: void FUN_180135090(void)
-void FUN_180135090(void)
+// 函数: 重置渲染系统状态
+// 功能: 重置渲染系统的全局状态，清理内存和缓冲区
+void reset_render_system_state(void)
 
 {
   undefined8 uVar1;
@@ -493,7 +507,10 @@ void FUN_180135090(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180135160(void)
+// 函数: 获取渲染状态标志
+// 返回值: 包含渲染状态信息的64位值
+// 功能: 检查当前渲染状态，返回相应的状态标志
+ulonglong get_render_status_flags(void)
 
 {
   int iVar1;
@@ -538,7 +555,11 @@ ulonglong FUN_180135160(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_180135260(undefined8 param_1,undefined8 *param_2)
+// 函数: 设置渲染上下文
+// 参数: param_1 - 上下文句柄，param_2 - 参数数组指针
+// 返回值: 操作结果状态码
+// 功能: 设置渲染上下文，配置相关参数
+longlong set_render_context(undefined8 context_handle, undefined8 *parameter_array)
 
 {
   undefined8 *puVar1;
@@ -567,7 +588,10 @@ longlong FUN_180135260(undefined8 param_1,undefined8 *param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_180135320(void)
+// 函数: 获取渲染上下文
+// 返回值: 渲染上下文指针，失败时返回0
+// 功能: 获取当前的渲染上下文，验证上下文有效性
+longlong get_render_context(void)
 
 {
   longlong lVar1;
@@ -602,7 +626,11 @@ longlong FUN_180135320(void)
 
 
 
-undefined8 * FUN_180135420(undefined8 *param_1)
+// 函数: 初始化渲染数据结构
+// 参数: param_1 - 要初始化的数据结构指针
+// 返回值: 初始化后的数据结构指针
+// 功能: 初始化渲染相关的数据结构，设置默认值
+undefined8 * initialize_render_data_structure(undefined8 *data_structure)
 
 {
   longlong lVar1;
@@ -652,8 +680,10 @@ undefined8 * FUN_180135420(undefined8 *param_1)
 
 
 
-// 函数: void FUN_180135510(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180135510(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 清理渲染资源
+// 参数: param_1 - 资源管理器指针，param_2 - 清理参数，param_3 - 回调参数，param_4 - 附加参数
+// 功能: 清理渲染相关的资源，释放内存，处理资源依赖关系
+void cleanup_render_resources(longlong resource_manager, undefined8 cleanup_params, undefined8 callback_params, undefined8 additional_params)
 
 {
   longlong lVar1;

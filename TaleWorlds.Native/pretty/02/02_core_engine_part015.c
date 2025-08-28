@@ -243,8 +243,13 @@ void initialize_system_configuration(void)
 
 
 
-// 函数: void FUN_180056150(longlong param_1)
-void FUN_180056150(longlong param_1)
+/**
+ * 合并和处理对象数组
+ * 遍历对象数组，合并重复项并处理相关数据
+ * 
+ * @param param_1 对象数组指针
+ */
+void merge_and_process_object_array(longlong param_1)
 
 {
   char cVar1;
@@ -396,8 +401,16 @@ LAB_180056228:
 
 
 
-// 函数: void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 递归清理对象资源
+ * 递归地清理对象及其子对象的资源
+ * 
+ * @param param_1 对象指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ */
+void recursively_cleanup_object_resources(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   ulonglong *puVar1;
@@ -485,8 +498,13 @@ void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_1800565f0(longlong *param_1)
-void FUN_1800565f0(longlong *param_1)
+/**
+ * 初始化对象管理器
+ * 创建并初始化对象管理器的相关数据结构
+ * 
+ * @param param_1 对象管理器指针
+ */
+void initialize_object_manager(longlong *param_1)
 
 {
   undefined8 *puVar1;
@@ -549,7 +567,17 @@ void FUN_1800565f0(longlong *param_1)
 
 
 
-undefined8 FUN_1800567c0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 释放对象内存
+ * 根据标志位释放对象的内存资源
+ * 
+ * @param param_1 对象指针
+ * @param param_2 释放标志
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 返回对象指针
+ */
+undefined8 release_object_memory(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -568,8 +596,13 @@ undefined8 FUN_1800567c0(undefined8 param_1,ulonglong param_2,undefined8 param_3
 
 
 
-// 函数: void FUN_180056810(longlong param_1)
-void FUN_180056810(longlong param_1)
+/**
+ * 监控和报告系统状态
+ * 定期检查系统状态并生成报告
+ * 
+ * @param param_1 监控器指针
+ */
+void monitor_and_report_system_status(longlong param_1)
 
 {
   uint uVar1;
@@ -708,8 +741,16 @@ void FUN_180056810(longlong param_1)
 
 
 
-// 函数: void FUN_180056b30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180056b30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 执行系统清理操作
+ * 执行系统的清理和关闭操作
+ * 
+ * @param param_1 参数1
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ */
+void execute_system_cleanup(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -754,8 +795,15 @@ void FUN_180056b30(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_180056c50(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
-void FUN_180056c50(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
+/**
+ * 处理异步操作
+ * 处理系统的异步操作和回调
+ * 
+ * @param param_1 参数1
+ * @param param_2 参数2指针
+ * @param param_3 参数3
+ */
+void process_async_operation(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
 
 {
   undefined8 uVar1;
@@ -819,7 +867,14 @@ void FUN_180056c50(undefined8 param_1,undefined8 *param_2,undefined4 param_3)
 
 
 
-undefined8 * FUN_180056de0(undefined8 *param_1)
+/**
+ * 重置对象指针数组
+ * 重置对象指针数组为初始状态
+ * 
+ * @param param_1 对象指针数组
+ * @return 返回重置后的数组指针
+ */
+undefined8 * reset_object_pointer_array(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -831,7 +886,14 @@ undefined8 * FUN_180056de0(undefined8 *param_1)
 
 
 
-undefined8 * FUN_180056e10(undefined8 *param_1)
+/**
+ * 清空对象指针数组
+ * 清空对象指针数组的内容
+ * 
+ * @param param_1 对象指针数组
+ * @return 返回清空后的数组指针
+ */
+undefined8 * clear_object_pointer_array(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -845,8 +907,11 @@ undefined8 * FUN_180056e10(undefined8 *param_1)
 
 
 
-// 函数: void FUN_180056e40(void)
-void FUN_180056e40(void)
+/**
+ * 初始化对象池
+ * 初始化对象池的相关数据结构
+ */
+void initialize_object_pool(void)
 
 {
   FUN_180057010();
@@ -855,7 +920,14 @@ void FUN_180056e40(void)
 
 
 
-undefined8 * FUN_180056e60(undefined8 *param_1)
+/**
+ * 设置对象池配置
+ * 设置对象池的配置参数
+ * 
+ * @param param_1 对象池配置指针
+ * @return 返回配置后的指针
+ */
+undefined8 * configure_object_pool(undefined8 *param_1)
 
 {
   *param_1 = 0;
@@ -867,7 +939,14 @@ undefined8 * FUN_180056e60(undefined8 *param_1)
 
 
 
-undefined8 * FUN_180056e90(undefined8 *param_1)
+/**
+ * 初始化高级对象池
+ * 初始化高级对象池的完整数据结构
+ * 
+ * @param param_1 高级对象池指针
+ * @return 返回初始化后的指针
+ */
+undefined8 * initialize_advanced_object_pool(undefined8 *param_1)
 
 {
   undefined8 *puVar1;
@@ -891,7 +970,15 @@ undefined8 * FUN_180056e90(undefined8 *param_1)
 
 
 
-longlong * FUN_180056f10(longlong *param_1,longlong *param_2)
+/**
+ * 更新对象管理器引用
+ * 更新对象管理器的引用计数和指针
+ * 
+ * @param param_1 管理器指针
+ * @param param_2 新的对象指针
+ * @return 返回更新后的管理器指针
+ */
+longlong * update_object_manager_reference(longlong *param_1,longlong *param_2)
 
 {
   longlong *plVar1;
@@ -911,8 +998,14 @@ longlong * FUN_180056f10(longlong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180056f70(longlong param_1,longlong param_2)
-void FUN_180056f70(longlong param_1,longlong param_2)
+/**
+ * 复制字符串到对象
+ * 安全地将字符串复制到对象的字符串缓冲区
+ * 
+ * @param param_1 目标对象指针
+ * @param param_2 源字符串指针
+ */
+void copy_string_to_object(longlong param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -948,8 +1041,13 @@ void FUN_180056f70(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180057010(longlong *param_1)
-void FUN_180057010(longlong *param_1)
+/**
+ * 清理对象池
+ * 清理对象池中的所有对象
+ * 
+ * @param param_1 对象池指针
+ */
+void cleanup_object_pool(longlong *param_1)
 
 {
   longlong *plVar1;
@@ -977,8 +1075,13 @@ void FUN_180057010(longlong *param_1)
 
 
 
-// 函数: void FUN_180057029(longlong param_1)
-void FUN_180057029(longlong param_1)
+/**
+ * 清理对象池扩展
+ * 清理对象池的扩展功能
+ * 
+ * @param param_1 对象池指针
+ */
+void cleanup_object_pool_extended(longlong param_1)
 
 {
   longlong unaff_RSI;
@@ -1004,8 +1107,11 @@ void FUN_180057029(longlong param_1)
 
 
 
-// 函数: void FUN_180057062(void)
-void FUN_180057062(void)
+/**
+ * 重置对象池扩展
+ * 重置对象池的扩展功能
+ */
+void reset_object_pool_extended(void)
 
 {
   longlong unaff_RSI;
@@ -1019,8 +1125,18 @@ void FUN_180057062(void)
 
 
 
+/**
+ * 初始化字符串对象
+ * 初始化字符串对象的相关数据
+ * 
+ * @param param_1 字符串对象指针
+ * @param param_2 字符串数据
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 返回初始化后的对象指针
+ */
 undefined8 *
-FUN_180057090(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+initialize_string_object(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -1047,8 +1163,13 @@ FUN_180057090(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
 
 
 
-// 函数: void FUN_180057110(longlong *param_1)
-void FUN_180057110(longlong *param_1)
+/**
+ * 清理回调链
+ * 清理对象回调链中的所有回调
+ * 
+ * @param param_1 回调链指针
+ */
+void cleanup_callback_chain(longlong *param_1)
 
 {
   undefined8 *puVar1;
@@ -1072,8 +1193,16 @@ void FUN_180057110(longlong *param_1)
 
 
 
-// 函数: void FUN_180057170(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180057170(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 执行回调链
+ * 执行回调链中的所有回调函数
+ * 
+ * @param param_1 回调链指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ */
+void execute_callback_chain(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -1098,8 +1227,14 @@ void FUN_180057170(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_1800571e0(longlong *param_1,undefined4 *param_2)
-void FUN_1800571e0(longlong *param_1,undefined4 *param_2)
+/**
+ * 添加元素到动态数组
+ * 向动态数组中添加新元素，必要时扩容
+ * 
+ * @param param_1 动态数组指针
+ * @param param_2 要添加的元素指针
+ */
+void add_element_to_dynamic_array(longlong *param_1,undefined4 *param_2)
 
 {
   longlong lVar1;
@@ -1148,8 +1283,13 @@ LAB_18005726e:
 
 
 
-// 函数: void FUN_1800572d0(longlong param_1)
-void FUN_1800572d0(longlong param_1)
+/**
+ * 重置对象容器
+ * 重置对象容器为初始状态
+ * 
+ * @param param_1 对象容器指针
+ */
+void reset_object_container(longlong param_1)
 
 {
   undefined8 *puVar1;
@@ -1172,8 +1312,11 @@ void FUN_1800572d0(longlong param_1)
 
 
 
-// 函数: void FUN_1800572e6(void)
-void FUN_1800572e6(void)
+/**
+ * 清理对象容器扩展
+ * 清理对象容器的扩展功能
+ */
+void cleanup_object_container_extended(void)
 
 {
   FUN_18004b790();
@@ -1185,8 +1328,11 @@ void FUN_1800572e6(void)
 
 
 
-// 函数: void FUN_180057314(void)
-void FUN_180057314(void)
+/**
+ * 重置对象容器扩展
+ * 重置对象容器的扩展功能
+ */
+void reset_object_container_extended(void)
 
 {
   longlong unaff_RBX;
