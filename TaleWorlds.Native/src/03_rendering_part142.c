@@ -84,175 +84,295 @@ typedef undefined8* RenderStatePtr;
 // 返回值：无
 //------------------------------------------------------------------------------
 void FUN_180352bf0(undefined8 *param_1)
-
 {
-  longlong *plVar1;
-  undefined4 uVar2;
-  undefined4 *puVar3;
-  undefined8 *puVar4;
-  undefined8 uVar5;
-  undefined *puStack_80;
-  undefined4 *puStack_78;
-  undefined4 uStack_70;
-  undefined8 uStack_68;
-  
-  uVar5 = 0xfffffffffffffffe;
-  puVar4 = param_1;
-  FUN_1803456e0();
-  *puVar4 = &UNK_180a1e978;
-  plVar1 = puVar4 + 0xf;
-  *plVar1 = (longlong)&UNK_18098bcb0;
-  puVar4[0x10] = 0;
-  *(undefined4 *)(puVar4 + 0x11) = 0;
-  *plVar1 = (longlong)&UNK_180a3c3e0;
-  puVar4[0x12] = 0;
-  puVar4[0x10] = 0;
-  *(undefined4 *)(puVar4 + 0x11) = 0;
-  *(undefined1 *)(puVar4 + 0xe) = 0;
-  (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_180a1e968);
-  puStack_80 = &UNK_180a3c3e0;
-  uStack_68 = 0;
-  puStack_78 = (undefined4 *)0x0;
-  uStack_70 = 0;
-  puVar3 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x1f,0x13);
-  *(undefined1 *)puVar3 = 0;
-  puStack_78 = puVar3;
-  uVar2 = FUN_18064e990(puVar3);
-  uStack_68 = CONCAT44(uStack_68._4_4_,uVar2);
-  *puVar3 = 0x74726150;
-  puVar3[1] = 0x206c6169;
-  puVar3[2] = 0x656b6142;
-  puVar3[3] = 0x726f4620;
-  *(undefined8 *)(puVar3 + 4) = 0x746e657272754320;
-  puVar3[6] = 0x76654c20;
-  *(undefined2 *)(puVar3 + 7) = 0x6c65;
-  *(undefined1 *)((longlong)puVar3 + 0x1e) = 0;
-  uStack_70 = 0x1e;
-  FUN_1803460a0(param_1,&puStack_80,param_1 + 0xe,0xb,uVar5);
-  puStack_80 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(puVar3);
-}
-
-
-
-longlong FUN_180352dc0(longlong param_1,ulonglong param_2)
-
-{
-  *(undefined8 *)(param_1 + 0x78) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x80) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  *(undefined8 *)(param_1 + 0x80) = 0;
-  *(undefined4 *)(param_1 + 0x90) = 0;
-  *(undefined8 *)(param_1 + 0x78) = &UNK_18098bcb0;
-  FUN_1803457d0(param_1);
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x98);
-  }
-  return param_1;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180352e50(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180352e50(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  int iVar1;
-  undefined4 uVar2;
-  undefined4 *puVar3;
-  undefined *puStack_60;
-  undefined4 *puStack_58;
-  undefined4 uStack_50;
-  undefined8 uStack_48;
-  undefined *puStack_40;
-  undefined4 *puStack_38;
-  undefined4 uStack_30;
-  undefined8 uStack_28;
-  
-  if ((*(int *)(param_2 + 0x10) == 0xf) &&
-     (iVar1 = strcmp(*(undefined8 *)(param_2 + 8),&DAT_180a1e938,(char)param_3,param_4,
-                     0xfffffffffffffffe), iVar1 == 0)) {
-    puStack_60 = &UNK_180a3c3e0;
-    uStack_48 = 0;
-    puStack_58 = (undefined4 *)0x0;
-    uStack_50 = 0;
-    puVar3 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-    *(undefined1 *)puVar3 = 0;
-    puStack_58 = puVar3;
+    // 局部变量定义
+    longlong *plVar1;           // 渲染对象内部指针
+    undefined4 uVar2;           // 临时变量
+    undefined4 *puVar3;         // 缓冲区指针
+    undefined8 *puVar4;         // 渲染对象指针
+    undefined8 uVar5;           // 标志变量
+    undefined *puStack_80;       // 栈参数1
+    undefined4 *puStack_78;     // 栈参数2
+    undefined4 uStack_70;        // 栈参数3
+    undefined8 uStack_68;        // 栈参数4
+    
+    // 初始化标志变量
+    uVar5 = 0xfffffffffffffffe;  // 渲染系统标志
+    
+    // 设置渲染对象指针
+    puVar4 = param_1;
+    
+    // 调用渲染系统初始化函数
+    FUN_1803456e0();
+    
+    // 设置渲染对象的基本配置
+    *puVar4 = &UNK_180a1e978;   // 设置渲染对象类型
+    
+    // 配置渲染对象的虚函数表
+    plVar1 = puVar4 + 0xf;       // 虚函数表指针位置
+    *plVar1 = (longlong)&UNK_18098bcb0;  // 设置默认虚函数表
+    
+    // 初始化渲染对象的状态字段
+    puVar4[0x10] = 0;            // 状态字段1
+    *(undefined4 *)(puVar4 + 0x11) = 0;  // 状态字段2
+    
+    // 更新虚函数表指针
+    *plVar1 = (longlong)&UNK_180a3c3e0;  // 设置新的虚函数表
+    
+    // 重置状态字段
+    puVar4[0x12] = 0;            // 状态字段3
+    puVar4[0x10] = 0;            // 状态字段1重置
+    *(undefined4 *)(puVar4 + 0x11) = 0;  // 状态字段2重置
+    *(undefined1 *)(puVar4 + 0xe) = 0;   // 标志位重置
+    
+    // 调用虚函数表的初始化方法
+    (**(code **)(*plVar1 + 0x10))(plVar1, &DAT_180a1e968);
+    
+    // 准备栈参数用于配置消息
+    puStack_80 = &UNK_180a3c3e0;  // 配置类型指针
+    uStack_68 = 0;                // 配置参数1
+    puStack_78 = (undefined4 *)0x0;  // 配置数据指针
+    uStack_70 = 0;                // 配置参数2
+    
+    // 分配配置缓冲区
+    puVar3 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x1f, 0x13);
+    *(undefined1 *)puVar3 = 0;    // 初始化缓冲区
+    
+    // 设置配置数据指针
+    puStack_78 = puVar3;
+    
+    // 获取配置数据句柄
     uVar2 = FUN_18064e990(puVar3);
-    *puVar3 = 0x6d726f4e;
-    *(undefined2 *)(puVar3 + 1) = 0x6c61;
-    *(undefined1 *)((longlong)puVar3 + 6) = 0;
-    uStack_50 = 6;
-    uStack_48._0_4_ = uVar2;
-    FUN_180066df0(param_3,&puStack_60);
-    puStack_60 = &UNK_180a3c3e0;
-    if (puStack_58 != (undefined4 *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
-    }
-    puStack_58 = (undefined4 *)0x0;
-    uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
-    puStack_60 = &UNK_18098bcb0;
-    puStack_40 = &UNK_180a3c3e0;
-    uStack_28 = 0;
-    puStack_38 = (undefined4 *)0x0;
-    uStack_30 = 0;
-    puVar3 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-    *(undefined1 *)puVar3 = 0;
-    puStack_38 = puVar3;
-    uVar2 = FUN_18064e990(puVar3);
-    uStack_28 = CONCAT44(uStack_28._4_4_,uVar2);
-    *puVar3 = 0x68676948;
-    *(undefined1 *)(puVar3 + 1) = 0;
-    uStack_30 = 4;
-    FUN_180066df0(param_3,&puStack_40);
-    puStack_40 = &UNK_180a3c3e0;
-    if (puStack_38 != (undefined4 *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
-    }
-  }
-  return;
+    uStack_68 = CONCAT44(uStack_68._4_4_, uVar2);
+    
+    // 设置配置消息内容："Part Bake Frame Control Level"
+    *puVar3 = 0x74726150;         // "Part"
+    puVar3[1] = 0x206c6169;       // " lai"
+    puVar3[2] = 0x656b6142;       // "akeB"
+    puVar3[3] = 0x726f4620;       // "Fro "
+    *(undefined8 *)(puVar3 + 4) = 0x746e657272754320;  // "Current Level"
+    puVar3[6] = 0x76654c20;       // "ve L"
+    *(undefined2 *)(puVar3 + 7) = 0x6c65;  // "el"
+    *(undefined1 *)((longlong)puVar3 + 0x1e) = 0;  // 字符串结束符
+    
+    // 设置配置消息长度
+    uStack_70 = 0x1e;            // 消息长度30字节
+    
+    // 调用配置处理函数
+    FUN_1803460a0(param_1, &puStack_80, param_1 + 0xe, 0xb, uVar5);
+    
+    // 清理配置缓冲区
+    puStack_80 = &UNK_180a3c3e0;
+    FUN_18064e900(puVar3);        // 释放缓冲区内存
 }
 
 
 
-undefined8 *
-FUN_180352ff0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
+//------------------------------------------------------------------------------
+// 渲染对象清理函数
+// 功能：清理渲染对象，释放资源并可选择释放内存
+// 参数：param_1 - 渲染对象指针
+//       param_2 - 清理标志位
+// 返回值：longlong - 渲染对象指针
+//------------------------------------------------------------------------------
+longlong FUN_180352dc0(longlong param_1, ulonglong param_2)
 {
-  *param_2 = &UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
-  param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 0x13;
-  strcpy_s(param_2[1],0x80,&UNK_180a1eb30,param_4,0,0xfffffffffffffffe);
-  return param_2;
+    // 设置渲染对象为清理状态
+    *(undefined8 *)(param_1 + 0x78) = &UNK_180a3c3e0;  // 清理状态标志
+    
+    // 检查是否有未释放的资源
+    if (*(longlong *)(param_1 + 0x80) != 0) {
+        // 如果有未释放的资源，调用错误处理函数
+        FUN_18064e900();  // 不返回
+    }
+    
+    // 重置渲染对象的资源指针
+    *(undefined8 *)(param_1 + 0x80) = 0;  // 资源指针清零
+    *(undefined4 *)(param_1 + 0x90) = 0;  // 引用计数清零
+    
+    // 设置渲染对象为已清理状态
+    *(undefined8 *)(param_1 + 0x78) = &UNK_18098bcb0;  // 清理完成标志
+    
+    // 调用渲染对象清理回调函数
+    FUN_1803457d0(param_1);
+    
+    // 根据标志位决定是否释放内存
+    if ((param_2 & 1) != 0) {
+        // 如果设置了自动清理标志，释放对象内存
+        free(param_1, 0x98);  // 释放RENDER_OBJECT_BASE_SIZE大小的内存
+    }
+    
+    // 返回渲染对象指针
+    return param_1;
+}
+
+
+
+//------------------------------------------------------------------------------
+// 渲染对象配置处理函数
+// 功能：处理渲染对象的配置信息，根据特定条件执行配置操作
+// 参数：param_1 - 渲染对象句柄
+//       param_2 - 配置数据指针
+//       param_3 - 配置参数1
+//       param_4 - 配置参数2
+// 返回值：无
+//------------------------------------------------------------------------------
+void FUN_180352e50(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+{
+    // 局部变量定义
+    int iVar1;                   // 比较结果
+    undefined4 uVar2;           // 临时变量
+    undefined4 *puVar3;         // 缓冲区指针
+    undefined *puStack_60;       // 栈参数1
+    undefined4 *puStack_58;     // 栈参数2
+    undefined4 uStack_50;        // 栈参数3
+    undefined8 uStack_48;        // 栈参数4
+    undefined *puStack_40;       // 栈参数5
+    undefined4 *puStack_38;     // 栈参数6
+    undefined4 uStack_30;        // 栈参数7
+    undefined8 uStack_28;        // 栈参数8
+    
+    // 检查配置数据是否匹配特定条件
+    // 条件：配置数据长度为0xf，且配置名称匹配特定字符串
+    if ((*(int *)(param_2 + 0x10) == 0xf) &&
+        (iVar1 = strcmp(*(undefined8 *)(param_2 + 8), &DAT_180a1e938, (char)param_3, param_4,
+                        0xfffffffffffffffe), iVar1 == 0)) {
+        
+        // 第一阶段：处理 "Normal" 配置消息
+        puStack_60 = &UNK_180a3c3e0;  // 配置类型指针
+        uStack_48 = 0;                // 配置参数1
+        puStack_58 = (undefined4 *)0x0;  // 配置数据指针
+        uStack_50 = 0;                // 配置参数2
+        
+        // 分配配置缓冲区
+        puVar3 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        *(undefined1 *)puVar3 = 0;    // 初始化缓冲区
+        
+        // 设置配置数据指针
+        puStack_58 = puVar3;
+        
+        // 获取配置数据句柄
+        uVar2 = FUN_18064e990(puVar3);
+        
+        // 设置配置消息内容："Normal"
+        *puVar3 = 0x6d726f4e;         // "Norm"
+        *(undefined2 *)(puVar3 + 1) = 0x6c61;  // "al"
+        *(undefined1 *)((longlong)puVar3 + 6) = 0;  // 字符串结束符
+        
+        // 设置配置消息长度
+        uStack_50 = 6;                // 消息长度6字节
+        uStack_48._0_4_ = uVar2;      // 设置句柄
+        
+        // 调用配置处理函数
+        FUN_180066df0(param_3, &puStack_60);
+        
+        // 清理第一阶段配置缓冲区
+        puStack_60 = &UNK_180a3c3e0;
+        if (puStack_58 != (undefined4 *)0x0) {
+            FUN_18064e900();  // 释放缓冲区内存
+        }
+        
+        // 重置栈参数
+        puStack_58 = (undefined4 *)0x0;
+        uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
+        puStack_60 = &UNK_18098bcb0;
+        
+        // 第二阶段：处理 "High" 配置消息
+        puStack_40 = &UNK_180a3c3e0;  // 配置类型指针
+        uStack_28 = 0;                // 配置参数1
+        puStack_38 = (undefined4 *)0x0;  // 配置数据指针
+        uStack_30 = 0;                // 配置参数2
+        
+        // 分配配置缓冲区
+        puVar3 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        *(undefined1 *)puVar3 = 0;    // 初始化缓冲区
+        
+        // 设置配置数据指针
+        puStack_38 = puVar3;
+        
+        // 获取配置数据句柄
+        uVar2 = FUN_18064e990(puVar3);
+        uStack_28 = CONCAT44(uStack_28._4_4_, uVar2);
+        
+        // 设置配置消息内容："High"
+        *puVar3 = 0x68676948;         // "High"
+        *(undefined1 *)(puVar3 + 1) = 0;  // 字符串结束符
+        
+        // 设置配置消息长度
+        uStack_30 = 4;                // 消息长度4字节
+        
+        // 调用配置处理函数
+        FUN_180066df0(param_3, &puStack_40);
+        
+        // 清理第二阶段配置缓冲区
+        puStack_40 = &UNK_180a3c3e0;
+        if (puStack_38 != (undefined4 *)0x0) {
+            FUN_18064e900();  // 释放缓冲区内存
+        }
+    }
+    
+    // 函数返回
+    return;
+}
+
+
+
+//------------------------------------------------------------------------------
+// 渲染数据创建函数
+// 功能：创建渲染数据对象，初始化数据结构和配置
+// 参数：param_1 - 渲染对象句柄
+//       param_2 - 数据对象指针
+//       param_3 - 创建参数1
+//       param_4 - 创建参数2
+// 返回值：undefined8* - 创建的数据对象指针
+//------------------------------------------------------------------------------
+undefined8 * FUN_180352ff0(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+{
+    // 初始化数据对象的基本状态
+    *param_2 = &UNK_18098bcb0;  // 设置初始状态
+    param_2[1] = 0;             // 清空数据指针
+    *(undefined4 *)(param_2 + 2) = 0;  // 清空数据长度
+    
+    // 设置数据对象的类型和配置
+    *param_2 = &UNK_1809fcc28;  // 设置数据对象类型
+    param_2[1] = param_2 + 3;   // 设置数据缓冲区指针
+    *(undefined1 *)(param_2 + 3) = 0;  // 初始化缓冲区
+    *(undefined4 *)(param_2 + 2) = 0x13;  // 设置缓冲区大小
+    
+    // 复制配置数据到缓冲区
+    strcpy_s(param_2[1], 0x80, &UNK_180a1eb30, param_4, 0, 0xfffffffffffffffe);
+    
+    // 返回创建的数据对象指针
+    return param_2;
 }
 
 
 
 
 
-// 函数: void FUN_180353070(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180353070(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+//------------------------------------------------------------------------------
+// 渲染对象属性设置函数
+// 功能：设置渲染对象的属性和配置参数
+// 参数：param_1 - 渲染对象指针
+//       param_2 - 属性类型
+//       param_3 - 属性值1
+//       param_4 - 属性值2
+// 返回值：无
+//------------------------------------------------------------------------------
+void FUN_180353070(undefined8 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  *param_1 = &UNK_180a1cdc0;
-  FUN_1802f5b10(param_1 + 4,param_1[6],param_3,param_4,0xfffffffffffffffe);
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  return;
+    // 设置渲染对象的属性类型
+    *param_1 = &UNK_180a1cdc0;  // 属性类型标识
+    
+    // 调用属性设置处理函数
+    FUN_1802f5b10(param_1 + 4, param_1[6], param_3, param_4, 0xfffffffffffffffe);
+    
+    // 更新渲染对象的配置状态
+    *param_1 = &UNK_180a21720;  // 配置状态1
+    *param_1 = &UNK_180a21690;  // 配置状态2
+    
+    // 函数返回
+    return;
 }
 
 

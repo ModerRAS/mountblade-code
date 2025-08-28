@@ -1745,99 +1745,301 @@ undefined4 RenderSystem_ExecuteDraw(longlong param_1, undefined8 param_2, undefi
 
 
 
-// 函数: void FUN_180547c50(longlong param_1,undefined4 param_2,undefined4 param_3)
-void FUN_180547c50(longlong param_1,undefined4 param_2,undefined4 param_3)
-
+/*==============================================================================
+ * 函数: RenderSystem_BroadcastCommand - 渲染系统命令广播函数
+ * 
+ * 功能描述：
+ *   向渲染系统中的所有对象广播命令，用于批量操作
+ *   这是一个命令广播函数，遍历渲染队列中的所有对象并执行命令
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 命令参数（32位）
+ *   param_3 - 附加参数（32位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 计算渲染队列中的对象数量
+ *   2. 遍历队列中的每个对象
+ *   3. 对每个对象调用命令执行函数
+ *   4. 重复直到所有对象处理完毕
+ * 
+ * 队列处理：
+ *   - 队列起始地址：param_1 + 0xe0
+ *   - 队列结束地址：param_1 + 0xe8
+ *   - 对象大小：8字节（指针大小）
+ *   - 命令执行函数偏移：0x1c0
+ * 
+ * 注意事项：
+ *   - 支持批量对象操作
+ *   - 使用虚函数表调用对象方法
+ *   - 自动计算队列中的对象数量
+ *   - 同步执行所有对象的命令
+ * 
+ * 简化实现：
+ *   原始实现：队列遍历和命令广播逻辑
+ *   简化实现：保持原有广播逻辑，添加了详细的队列处理说明
+ =============================================================================*/
+void RenderSystem_BroadcastCommand(longlong param_1, undefined4 param_2, undefined4 param_3)
 {
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  
-  iVar2 = (int)(*(longlong *)(param_1 + 0xe8) - *(longlong *)(param_1 + 0xe0) >> 3);
-  if (0 < iVar2) {
-    lVar3 = 0;
+    longlong *plVar1;
+    int iVar2;
+    longlong lVar3;
+    
+    // 计算渲染队列中的对象数量
+    iVar2 = (int)(*(longlong *)(param_1 + 0xe8) - *(longlong *)(param_1 + 0xe0) >> 3);
+    
+    // 检查是否有对象需要处理
+    if (0 < iVar2) {
+        lVar3 = 0;
+        
+        // 遍历队列中的每个对象
+        do {
+            // 获取当前对象指针
+            plVar1 = *(longlong **)(*(longlong *)(param_1 + 0xe0) + lVar3 * 8);
+            
+            // 调用对象的命令执行函数
+            (**(code **)(*plVar1 + 0x1c0))(plVar1, param_2, param_3);
+            
+            // 移动到下一个对象
+            lVar3 = lVar3 + 1;
+        } while (lVar3 < iVar2);
+    }
+    
+    return;
+}
+
+
+
+
+
+/*==============================================================================
+ * 函数: RenderSystem_ProcessQueue - 渲染系统队列处理函数
+ * 
+ * 功能描述：
+ *   处理渲染系统队列中的所有命令，这是队列处理的核心函数
+ *   负责执行队列中的所有渲染命令，通常由系统内部调用
+ * 
+ * 参数：
+ *   无（使用寄存器传递的隐式参数）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 初始化队列索引
+ *   2. 遍历队列中的每个对象
+ *   3. 对每个对象调用命令处理函数
+ *   4. 重复直到所有队列项处理完毕
+ * 
+ * 隐式参数：
+ *   - unaff_RDI: 渲染上下文指针
+ *   - unaff_RSI: 队列对象数量
+ *   - unaff_R14D: 命令参数1
+ *   - unaff_EBP: 命令参数2
+ * 
+ * 队列处理：
+ *   - 队列起始地址：unaff_RDI + 0xe0
+ *   - 对象大小：8字节
+ *   - 命令处理函数偏移：0x1c0
+ *   - 使用索引遍历队列
+ * 
+ * 注意事项：
+ *   - 这是一个内部函数，通常由系统调用
+ *   - 使用寄存器传递参数，不通过栈
+ *   - 与RenderSystem_BroadcastCommand功能相似
+ *   - 但使用不同的参数传递方式
+ * 
+ * 简化实现：
+ *   原始实现：寄存器参数的队列处理逻辑
+ *   简化实现：保持原有队列处理逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_ProcessQueue(void)
+{
+    longlong *plVar1;
+    longlong lVar2;
+    undefined4 unaff_EBP;          // 命令参数2（通过寄存器传递）
+    longlong unaff_RSI;            // 队列对象数量（通过寄存器传递）
+    longlong unaff_RDI;            // 渲染上下文指针（通过寄存器传递）
+    undefined4 unaff_R14D;         // 命令参数1（通过寄存器传递）
+    
+    // 初始化队列索引
+    lVar2 = 0;
+    
+    // 遍历队列中的所有对象
     do {
-      plVar1 = *(longlong **)(*(longlong *)(param_1 + 0xe0) + lVar3 * 8);
-      (**(code **)(*plVar1 + 0x1c0))(plVar1,param_2,param_3);
-      lVar3 = lVar3 + 1;
-    } while (lVar3 < iVar2);
-  }
-  return;
+        // 获取当前对象指针
+        plVar1 = *(longlong **)(*(longlong *)(unaff_RDI + 0xe0) + lVar2 * 8);
+        
+        // 调用对象的命令处理函数
+        (**(code **)(*plVar1 + 0x1c0))(plVar1, unaff_R14D, unaff_EBP);
+        
+        // 移动到下一个队列项
+        lVar2 = lVar2 + 1;
+    } while (lVar2 < unaff_RSI);
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_180547c87(void)
-void FUN_180547c87(void)
-
+/*==============================================================================
+ * 函数: RenderSystem_EmptyFunction - 渲染系统空函数
+ * 
+ * 功能描述：
+ *   这是一个空函数，通常用作占位符或默认回调函数
+ *   在渲染系统中用于填充不需要实际操作的函数指针
+ * 
+ * 参数：
+ *   无
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 功能用途：
+ *   - 作为默认回调函数
+ *   - 填充函数表中的空位
+ *   - 提供安全的空操作
+ *   - 避免空指针调用
+ * 
+ * 注意事项：
+ *   - 这是一个安全的空函数
+ *   - 不执行任何操作
+ *   - 可以安全地被调用
+ *   - 不会产生副作用
+ * 
+ * 简化实现：
+ *   原始实现：简单的空函数
+ *   简化实现：保持原有空函数逻辑，添加了详细的功能说明
+ =============================================================================*/
+void RenderSystem_EmptyFunction(void)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  undefined4 unaff_EBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  undefined4 unaff_R14D;
-  
-  lVar2 = 0;
-  do {
-    plVar1 = *(longlong **)(*(longlong *)(unaff_RDI + 0xe0) + lVar2 * 8);
-    (**(code **)(*plVar1 + 0x1c0))(plVar1,unaff_R14D,unaff_EBP);
-    lVar2 = lVar2 + 1;
-  } while (lVar2 < unaff_RSI);
-  return;
+    // 这是一个空函数，不执行任何操作
+    // 用作占位符或默认回调函数
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_180547cb7(void)
-void FUN_180547cb7(void)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetRenderTarget - 渲染系统渲染目标设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的渲染目标，用于控制渲染输出的目标缓冲区
+ *   这是一个渲染目标设置函数，通过渲染队列异步设置渲染目标
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 渲染目标参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置渲染目标处理回调函数
+ *   2. 准备渲染目标参数数组
+ *   3. 设置渲染目标参数
+ *   4. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用16字节的渲染目标参数数组
+ *   - 支持异步渲染目标设置
+ *   - 渲染目标参数为64位，适合存储渲染目标句柄
+ *   - 可以设置不同的渲染目标（如纹理、缓冲区等）
+ * 
+ * 简化实现：
+ *   原始实现：简单的渲染目标参数打包和队列发送
+ *   简化实现：保持原有渲染目标设置逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_SetRenderTarget(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  return;
+    undefined8 auStack_30 [2];      // 渲染目标参数数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 渲染目标处理回调
+    
+    // 设置渲染目标处理回调函数
+    puStack_20 = &UNK_18054a7c0;
+    pcStack_18 = FUN_18054a750;
+    
+    // 准备渲染目标参数数组
+    auStack_30[0] = param_2;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_180547cd0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180547cd0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetClearFlags - 渲染系统清除标志设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的清除标志，用于控制渲染前缓冲区的清除操作
+ *   这是一个清除标志设置函数，通过渲染队列异步设置清除参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 清除标志参数（8位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置清除标志处理回调函数
+ *   2. 准备清除标志参数数组（24字节）
+ *   3. 设置清除标志参数
+ *   4. 发送到渲染队列处理
+ * 
+ * 清除标志说明：
+ *   - 8位清除标志，每位代表不同的清除操作
+ *   - 可以组合多个清除标志
+ *   - 常见清除标志包括：颜色缓冲区、深度缓冲区、模板缓冲区等
+ * 
+ * 注意事项：
+ *   - 使用24字节的清除标志参数数组
+ *   - 支持异步清除标志设置
+ *   - 清除标志为8位，适合设置各种清除操作
+ *   - 在渲染开始前设置清除操作
+ * 
+ * 简化实现：
+ *   原始实现：简单的清除标志参数打包和队列发送
+ *   简化实现：保持原有清除标志设置逻辑，添加了详细的标志说明
+ =============================================================================*/
+void RenderSystem_SetClearFlags(longlong param_1, undefined1 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 auStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_20 = &UNK_18054a7c0;
-  pcStack_18 = FUN_18054a750;
-  auStack_30[0] = param_2;
-  FUN_18054a4b0(param_1 + 0xe0,auStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180547d30(longlong param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180547d30(longlong param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  undefined1 auStackX_10 [24];
-  undefined1 *apuStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  puStack_20 = &UNK_18054a710;
-  pcStack_18 = FUN_18054a6a0;
-  apuStack_30[0] = auStackX_10;
-  auStackX_10[0] = param_2;
-  FUN_18054a4b0(param_1 + 0xe0,apuStack_30,param_3,param_4,0xfffffffffffffffe);
-  return;
+    undefined1 auStackX_10 [24];    // 清除标志参数数组
+    undefined1 *apuStack_30 [2];    // 参数指针数组
+    undefined *puStack_20;           // 回调函数指针
+    code *pcStack_18;               // 清除标志处理回调
+    
+    // 设置清除标志处理回调函数
+    puStack_20 = &UNK_18054a710;
+    pcStack_18 = FUN_18054a6a0;
+    
+    // 准备清除标志参数数组
+    apuStack_30[0] = auStackX_10;
+    
+    // 设置清除标志参数
+    auStackX_10[0] = param_2;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    return;
 }
 
 
