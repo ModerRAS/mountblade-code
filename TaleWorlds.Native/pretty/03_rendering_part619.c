@@ -157,7 +157,7 @@ void RenderingSystem_ProcessResourceRequest(int param_1, uint param_2, float par
   *(int16_t *)(puStack_60 + 5) = 0x6563;
   *(int8_t *)((longlong)puStack_60 + 0x16) = 0;
   uStack_58 = 0x16;
-  FUN_180628380(&puStack_68,param_1);
+  RenderingSystem_DataContextInitializer(&puStack_68,param_1);
   uVar11 = uStack_58 + 0xc;
   if (uVar11 != 0) {
     uVar3 = uStack_58 + 0xd;
