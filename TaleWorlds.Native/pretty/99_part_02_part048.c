@@ -1130,7 +1130,7 @@ void array_reallocator_1056byte(longlong *param_1, uint64_t param_2, uint64_t pa
             plVar11[0x1a] = plVar12[0x1b];
             *(int *)(plVar11 + 0x1b) = (int)plVar12[0x1c];
             *(int32_t *)((longlong)plVar11 + 0xdc) = *(int32_t *)((longlong)plVar12 + 0xe4);
-            FUN_1801bd980(plVar11 + 0x1d, plVar12 + 0x1e);
+            data_converter(plVar11 + 0x1d, plVar12 + 0x1e);
             plVar12 = plVar12 + 0x84;
             plVar11 = plVar11 + 0x84;
         } while (plVar12 != plVar5);
@@ -1142,7 +1142,7 @@ void array_reallocator_1056byte(longlong *param_1, uint64_t param_2, uint64_t pa
     param_1[2] = lVar10;
     *(uint *)(param_1 + 3) = uVar4;
     for (lVar10 = lVar6; lVar10 != lVar9; lVar10 = lVar10 + 0x420) {
-        FUN_1801bd090(lVar10);
+        data_validator(lVar10);
     }
     if (lVar6 != 0) {
         // WARNING: Subroutine does not return
