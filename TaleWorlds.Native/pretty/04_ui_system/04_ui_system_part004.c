@@ -569,9 +569,9 @@ LAB_18065258b:
 
 
 
-// 函数: void FUN_1806526f0(void)
-void FUN_1806526f0(void)
-
+// 函数: ui_initialize_stack_buffer - 初始化UI堆栈缓冲区
+// 功能: 初始化UI系统的堆栈缓冲区，用于临时数据存储
+void ui_initialize_stack_buffer(void)
 {
   undefined1 auStack_2a8 [144];
   undefined8 uStack_218;
@@ -580,8 +580,8 @@ void FUN_1806526f0(void)
   
   uStack_218 = 0xfffffffffffffffe;
   uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
-                    // WARNING: Subroutine does not return
-  memset(auStack_178,0,0x118);
+  // 警告：子函数不返回
+  memset(auStack_178, 0, 0x118);
 }
 
 
@@ -590,9 +590,10 @@ void FUN_1806526f0(void)
 
 
 
-// 函数: void FUN_180652b60(undefined8 param_1,longlong *param_2)
-void FUN_180652b60(undefined8 param_1,longlong *param_2)
-
+// 函数: ui_process_thread_safe_operation - 处理UI线程安全操作
+// 参数: param_1 - 操作参数, param_2 - 数据指针
+// 功能: 在线程安全的环境下处理UI操作，使用互斥锁保护
+void ui_process_thread_safe_operation(undefined8 param_1, longlong *param_2)
 {
   int iVar1;
   longlong lVar2;
@@ -614,22 +615,24 @@ void FUN_180652b60(undefined8 param_1,longlong *param_2)
   lVar2 = (param_2[1] - *param_2) / 6 + (param_2[1] - *param_2 >> 0x3f);
   if ((int)(lVar2 >> 2) != (int)(lVar2 >> 0x3f)) {
     FUN_180629090(auStack_d30);
-                    // WARNING: Subroutine does not return
-    memset(auStack_848,0,0x800);
+    // 警告：子函数不返回
+    memset(auStack_848, 0, 0x800);
   }
   iVar1 = _Mtx_unlock(0x180c96740);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
   }
-                    // WARNING: Subroutine does not return
+  // 警告：子函数不返回
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_de8);
 }
 
 
 
+// 函数: ui_format_component_string - 格式化UI组件字符串
+// 参数: param_1 - 组件数据指针, param_2 - 输出字符串, param_3/4 - 格式化参数
+// 功能: 格式化UI组件的字符串表示
 undefined8 *
-FUN_180653220(longlong *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
+ui_format_component_string(longlong *param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
 {
   char *pcVar1;
   undefined *puVar2;
@@ -645,7 +648,7 @@ FUN_180653220(longlong *param_1,undefined8 *param_2,undefined8 param_3,undefined
   longlong lVar4;
   
   lVar6 = 0;
-  FUN_180627910(&puStack_38,&DAT_18098bc73,param_3,param_4,0,0xfffffffffffffffe);
+  FUN_180627910(&puStack_38, &DAT_18098bc73, param_3, param_4, 0, 0xfffffffffffffffe);
   lVar4 = -1;
   do {
     lVar3 = lVar4 + 1;
@@ -655,12 +658,12 @@ FUN_180653220(longlong *param_1,undefined8 *param_2,undefined8 param_3,undefined
   if (lVar3 == 0) {
     uVar5 = param_1[1] - *param_1 >> 5;
     if ((int)uVar5 == 0) {
-      FUN_180627910(param_2,&UNK_180a3dd38);
+      FUN_180627910(param_2, &UNK_180a3dd38);
       puStack_38 = &UNK_180a3c3e0;
       if (lStack_30 == 0) {
         return param_2;
       }
-                    // WARNING: Subroutine does not return
+      // 警告：子函数不返回
       FUN_18064e900();
     }
     uVar5 = uVar5 & 0xffffffff;
@@ -670,7 +673,7 @@ FUN_180653220(longlong *param_1,undefined8 *param_2,undefined8 param_3,undefined
       if (puVar2 != (undefined *)0x0) {
         puVar7 = puVar2;
       }
-      FUN_180628040(&puStack_38,&UNK_1809fe62c,puVar7);
+      FUN_180628040(&puStack_38, &UNK_1809fe62c, puVar7);
       lVar6 = lVar6 + 0x20;
       uVar5 = uVar5 - 1;
     } while (uVar5 != 0);
@@ -693,19 +696,10 @@ FUN_180653220(longlong *param_1,undefined8 *param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_1806533a0(longlong param_1)
-void FUN_1806533a0(longlong param_1)
-
-{
-  uint uVar1;
-  longlong lVar2;
-  
-  if (param_1 == 0) {
-
-
-// 函数: void FUN_1806533b4(longlong param_1)
-void FUN_1806533b4(longlong param_1)
-
+// 函数: ui_copy_string_safely - 安全复制UI字符串
+// 参数: param_1 - 源字符串指针
+// 功能: 安全地复制UI字符串，限制最大长度
+void ui_copy_string_safely(longlong param_1)
 {
   uint uVar1;
   longlong lVar2;
@@ -718,17 +712,17 @@ void FUN_1806533b4(longlong param_1)
   if (0x1fff < uVar1) {
     uVar1 = 0x1fff;
   }
-                    // WARNING: Subroutine does not return
-  memcpy(&DAT_180c8f020,param_1,(longlong)(int)uVar1);
+  // 警告：子函数不返回
+  memcpy(&DAT_180c8f020, param_1, (longlong)(int)uVar1);
 }
 
 
 
 
 
-// 函数: void FUN_18065340f(void)
-void FUN_18065340f(void)
-
+// 函数: ui_execute_software_interrupt - 执行UI软件中断
+// 功能: 执行UI系统的软件中断，用于底层系统调用
+void ui_execute_software_interrupt(void)
 {
   code *pcVar1;
   
@@ -740,9 +734,11 @@ void FUN_18065340f(void)
 
 
 
+// 函数: ui_convert_mono_string - 转换Mono字符串
+// 参数: param_1 - 输出缓冲区, param_2 - Mono字符串, param_3/4 - 转换参数
+// 功能: 将Mono字符串转换为UTF-8字符串
 undefined8 *
-FUN_180653420(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
+ui_convert_mono_string(undefined8 *param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
 {
   undefined8 uVar1;
   undefined4 uVar2;
@@ -757,7 +753,7 @@ FUN_180653420(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
   uVar2 = 0;
   if ((param_2 != 0) && (*(int *)(param_2 + 0x10) != 0)) {
     uVar1 = mono_string_to_utf8(param_2);
-    FUN_180627910(auStack_28,uVar1,param_3,param_4,uVar2,uVar3);
+    FUN_180627910(auStack_28, uVar1, param_3, param_4, uVar2, uVar3);
     mono_free(uVar1);
     *param_1 = &UNK_18098bcb0;
     param_1[1] = 0;
@@ -770,7 +766,7 @@ FUN_180653420(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
     return param_1;
   }
   uVar3 = FUN_180628ca0();
-  FUN_180627ae0(param_1,uVar3);
+  FUN_180627ae0(param_1, uVar3);
   return param_1;
 }
 
@@ -778,24 +774,26 @@ FUN_180653420(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
 
 
 
-// 函数: void FUN_180653530(undefined8 param_1)
-void FUN_180653530(undefined8 param_1)
-
+// 函数: ui_output_debug_string - 输出UI调试字符串
+// 参数: param_1 - 调试字符串
+// 功能: 输出UI系统的调试信息
+void ui_output_debug_string(undefined8 param_1)
 {
   FUN_1806533a0();
   OutputDebugStringA(param_1);
   FUN_180626ee0(&UNK_180a3dd80);
+}
 
-
-// 函数: void FUN_180653670(longlong param_1,longlong param_2)
-void FUN_180653670(longlong param_1,longlong param_2)
-
+// 函数: ui_allocate_zeroed_memory - 分配并清零UI内存
+// 参数: param_1 - 大小, param_2 - 数量
+// 功能: 为UI系统分配并清零内存
+void ui_allocate_zeroed_memory(longlong param_1, longlong param_2)
 {
   undefined8 uVar1;
   
-  uVar1 = FUN_18062b420(_DAT_180c8ed18,param_1 * param_2,0x19);
-                    // WARNING: Subroutine does not return
-  memset(uVar1,0,param_1 * param_2);
+  uVar1 = FUN_18062b420(_DAT_180c8ed18, param_1 * param_2, 0x19);
+  // 警告：子函数不返回
+  memset(uVar1, 0, param_1 * param_2);
 }
 
 
