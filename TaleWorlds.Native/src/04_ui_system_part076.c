@@ -1,48 +1,87 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part076.c - 6 个函数
+// 04_ui_system_part076.c - UI系统音频处理和控制模块
+// 包含6个核心函数：音频信号处理、音频格式转换、UI系统初始化、资源清理等
 
-// 函数: void FUN_18070fc68(undefined8 param_1,uint param_2,int param_3)
-void FUN_18070fc68(undefined8 param_1,uint param_2,int param_3)
+// 全局常量定义
+static const float AUDIO_MAX_CLAMP_VALUE = 2.0f;          // 音频最大钳位值
+static const float AUDIO_MIN_CLAMP_VALUE = -2.0f;         // 音频最小钳位值
+static const float AUDIO_NORMALIZATION_FACTOR = 1.0000002f; // 音频归一化因子
+static const float UNITY_THRESHOLD = 1.0f;                 // 统一阈值
+static const float COMPRESSION_OFFSET = 1.0f;              // 压缩偏移量
+static const int AUDIO_BUFFER_SIZE = 0x430;                // 音频缓冲区大小
+static const int AUDIO_CONFIG_OFFSET = 0x10c0;             // 音频配置偏移量
+
+// 全局变量引用
+extern const float _g_audio_max_values[16];     // 音频最大值数组 (原 _DAT_180a401b0)
+extern const float _g_audio_min_values[16];     // 音频最小值数组 (原 _DAT_18094ed40)
+extern const void* _g_audio_format_table[16];  // 音频格式表 (原 UNK_180953620)
+
+/**
+ * 处理音频信号裁剪和归一化
+ * 对输入的音频数据进行范围限制和动态处理
+ * 
+ * @param audio_context 音频处理上下文
+ * @param sample_count 采样数量
+ * @param start_offset 起始偏移量
+ * @param in_r10 输入寄存器R10（音频数据指针）
+ * @param in_r11 输入寄存器R11（缓冲区基地址）
+ * @param unaff_r13d 未使用的R13D寄存器值
+ * @param unaff_r14 未使用的R14寄存器值
+ * @param stack_param 栈参数（处理结果存储）
+ */
+void ui_system_process_audio_clamping(void* audio_context, uint sample_count, int start_offset, 
+                                     float* in_r10, longlong in_r11, int unaff_r13d, 
+                                     longlong unaff_r14, float* stack_param)
 
 {
-  bool bVar1;
-  undefined1 auVar2 [16];
-  undefined1 auVar3 [16];
-  int iVar4;
-  undefined1 (*pauVar5) [16];
-  uint uVar6;
-  int iVar7;
-  int iVar8;
-  longlong lVar9;
-  float *pfVar10;
-  longlong lVar11;
-  float *pfVar12;
-  int iVar13;
-  longlong lVar14;
-  longlong lVar15;
-  int iVar16;
-  ulonglong uVar17;
-  int iVar18;
-  float *in_R10;
-  longlong in_R11;
-  longlong lVar19;
-  int unaff_R13D;
-  int iVar20;
-  longlong unaff_R14;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  undefined1 auVar26 [16];
-  float *in_stack_000000c8;
+  bool process_complete;
+  float audio_min_bounds[16];
+  float audio_max_bounds[16];
+  int loop_counter;
+  float (*audio_buffer_ptr)[16];
+  uint remaining_samples;
+  int block_index;
+  int channel_offset;
+  longlong sample_index;
+  float *current_sample;
+  longlong temp_offset1;
+  float *temp_sample_ptr;
+  int channel_count;
+  longlong buffer_offset1;
+  longlong buffer_offset2;
+  int segment_start;
+  ulonglong block_count;
+  int samples_processed;
+  float *input_data_ptr;
+  longlong input_buffer_base;
+  longlong total_samples;
+  int unaff_r13d_local;
+  int total_channels;
+  longlong unaff_r14_local;
+  float current_value;
+  float temp_value1;
+  float temp_value2;
+  float temp_value3;
+  float temp_value4;
+  float peak_value;
+  float temp_bounds[16];
+  float *result_storage;
   
-  auVar3 = _DAT_180a401b0;
-  auVar2 = _DAT_18094ed40;
-  if (0 < (int)param_2) {
-    if (0xf < param_2) {
-      uVar6 = param_2 & 0x8000000f;
+  // 加载音频边界值
+  memcpy(audio_max_bounds, _g_audio_max_values, sizeof(audio_max_bounds));
+  memcpy(audio_min_bounds, _g_audio_min_values, sizeof(audio_min_bounds));
+  
+  // 初始化局部变量
+  input_data_ptr = in_r10;
+  input_buffer_base = in_r11;
+  unaff_r13d_local = unaff_r13d;
+  unaff_r14_local = unaff_r14;
+  result_storage = stack_param;
+  
+  if (0 < (int)sample_count) {
+    if (0xf < sample_count) {
+      remaining_samples = sample_count & 0x8000000f;
       if ((int)uVar6 < 0) {
         uVar6 = (uVar6 - 1 | 0xfffffff0) + 1;
       }
@@ -365,8 +404,21 @@ LAB_1807100a5:
 
 
 
-// 函数: void FUN_18070fe0f(void)
-void FUN_18070fe0f(void)
+/**
+ * 高级音频信号处理和动态压缩
+ * 执行复杂的音频信号处理，包括动态范围压缩和信号增强
+ * 
+ * @param in_r10 输入寄存器R10（音频数据指针）
+ * @param in_r11 输入寄存器R11（缓冲区基地址）
+ * @param unaff_r13d 未使用的R13D寄存器值
+ * @param unaff_r14 未使用的R14寄存器值
+ * @param xmm3_da XMM3寄存器值（最小阈值）
+ * @param xmm4_da XMM4寄存器值（最大阈值）
+ * @param stack_param 栈参数（处理结果存储）
+ */
+void ui_system_advanced_audio_processing(float* in_r10, longlong in_r11, int unaff_r13d, 
+                                        longlong unaff_r14, float xmm3_da, float xmm4_da, 
+                                        float* stack_param)
 
 {
   float *pfVar1;
@@ -637,8 +689,11 @@ LAB_1807100a5:
 
 
 
-// 函数: void FUN_1807104af(void)
-void FUN_1807104af(void)
+/**
+ * UI系统空函数占位符
+ * 用于保持函数表结构完整性
+ */
+void ui_system_placeholder_function_1(void)
 
 {
   return;
@@ -648,8 +703,11 @@ void FUN_1807104af(void)
 
 
 
-// 函数: void FUN_1807104b7(void)
-void FUN_1807104b7(void)
+/**
+ * UI系统空函数占位符
+ * 用于保持函数表结构完整性
+ */
+void ui_system_placeholder_function_2(void)
 
 {
   return;
@@ -661,9 +719,20 @@ void FUN_1807104b7(void)
 
 
 
-// 函数: void FUN_180710510(longlong param_1,int *param_2,int param_3,int param_4,undefined8 param_5,
-void FUN_180710510(longlong param_1,int *param_2,int param_3,int param_4,undefined8 param_5,
-                  undefined8 param_6,undefined8 param_7)
+/**
+ * UI系统音频初始化和配置
+ * 初始化UI系统的音频处理模块，配置音频参数和缓冲区
+ * 
+ * @param ui_context UI系统上下文
+ * @param audio_config 音频配置数组
+ * @param config_type 配置类型
+ * @param init_flags 初始化标志
+ * @param param5 参数5（音频处理句柄）
+ * @param param6 参数6（附加配置）
+ * @param param7 参数7（扩展参数）
+ */
+void ui_system_initialize_audio_config(longlong ui_context, int* audio_config, int config_type, 
+                                       int init_flags, void* param5, void* param6, void* param7)
 
 {
   undefined4 uVar1;
@@ -983,8 +1052,13 @@ LAB_180710a34:
 
 
 
-// 函数: void FUN_180710fc0(longlong param_1)
-void FUN_180710fc0(longlong param_1)
+/**
+ * UI系统音频资源清理
+ * 清理UI系统中的音频资源，重置相关状态
+ * 
+ * @param ui_context UI系统上下文指针
+ */
+void ui_system_cleanup_audio_resources(longlong ui_context)
 
 {
   longlong lVar1;
