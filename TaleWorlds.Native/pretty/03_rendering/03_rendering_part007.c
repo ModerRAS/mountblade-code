@@ -74,7 +74,7 @@ void serialize_render_data_extended(uint32_t* render_data, longlong* serializati
     if (0 < element_count) {
         element_offset = 0;
         do {
-            serialize_resource_entry_extended(serialization_context, (longlong)current_index * 0x60 + *(longlong*)(render_data + 0x4a));
+            perform_serialization_cleanup();
             word_ptr = (uint32_t*)serialization_context[1];
             data_word = *(uint32_t*)(element_offset + 0x58 + *(longlong*)(render_data + 0x4a));
             
