@@ -22,21 +22,21 @@ void quick_sort_string_pointers(ulonglong *result_ptr,longlong *left_ptr,longlon
   longlong string_val2;
   longlong *partition_ptr;
   
-  plVar11 = param_2 + ((longlong)param_3 - (longlong)param_2 >> 4);
-  lVar2 = (longlong)param_3 + (-8 - (longlong)param_2) >> 3;
-  if (lVar2 < 0x29) {
-    plVar8 = param_3 + -1;
-    plVar5 = param_2;
+  partition_ptr = left_ptr + ((longlong)right_ptr - (longlong)left_ptr >> 4);
+  offset_diff = (longlong)right_ptr + (-8 - (longlong)left_ptr) >> 3;
+  if (offset_diff < 0x29) {
+    temp_ptr4 = right_ptr + -1;
+    temp_ptr1 = left_ptr;
   }
   else {
-    lVar2 = lVar2 + 1 >> 3;
-    FUN_18021a050(param_2,param_2 + lVar2,param_2 + lVar2 * 2);
-    FUN_18021a050(plVar11 + -lVar2,plVar11,plVar11 + lVar2);
-    plVar8 = param_3 + (-1 - lVar2);
-    FUN_18021a050(param_3 + lVar2 * -2 + -1,plVar8,param_3 + -1);
-    plVar5 = param_2 + lVar2;
+    offset_diff = offset_diff + 1 >> 3;
+    swap_string_pointers(left_ptr,left_ptr + offset_diff,left_ptr + offset_diff * 2);
+    swap_string_pointers(partition_ptr + -offset_diff,partition_ptr,partition_ptr + offset_diff);
+    temp_ptr4 = right_ptr + (-1 - offset_diff);
+    swap_string_pointers(right_ptr + offset_diff * -2 + -1,temp_ptr4,right_ptr + -1);
+    temp_ptr1 = left_ptr + offset_diff;
   }
-  FUN_18021a050(plVar5,plVar11,plVar8);
+  swap_string_pointers(temp_ptr1,partition_ptr,temp_ptr4);
   plVar5 = plVar11 + 1;
   if (param_2 < plVar11) {
     lVar2 = *plVar11;

@@ -1,131 +1,136 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part252.c - 9 个函数
+// 02_core_engine_part252.c - 核心引擎模块第252部分
+// 本文件包含内存管理、数据结构操作和排序算法相关函数
 
-// 函数: void FUN_1802187b0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1802187b0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void reallocate_and_copy_data_structure(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 重新分配数据结构内存并复制数据
+void reallocate_and_copy_data_structure(longlong *data_structure_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 *puVar4;
-  longlong lVar5;
-  longlong lStack_40;
-  longlong lStack_38;
-  longlong lStack_30;
-  undefined4 uStack_28;
+  longlong old_start;
+  longlong old_end;
+  longlong new_memory;
+  undefined8 *dest_ptr;
+  longlong item_count;
+  longlong saved_start;
+  longlong saved_end;
+  longlong saved_capacity;
+  undefined4 saved_flags;
   
-  lVar2 = param_1[1];
-  lVar5 = *param_1;
-  lStack_40 = 0;
-  lStack_38 = 0;
-  lVar3 = 0;
-  lStack_30 = 0;
-  uStack_28 = (undefined4)param_1[3];
-  lVar1 = (lVar2 - lVar5) / 0x28;
-  if (lVar1 != 0) {
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar1 * 0x28,(undefined1)uStack_28,param_4,
+  old_end = data_structure_ptr[1];
+  old_start = *data_structure_ptr;
+  saved_start = 0;
+  saved_end = 0;
+  new_memory = 0;
+  saved_capacity = 0;
+  saved_flags = (undefined4)data_structure_ptr[3];
+  item_count = (old_end - old_start) / 0x28;
+  if (item_count != 0) {
+    new_memory = allocate_memory_blocks(_GLOBAL_MEMORY_POOL, item_count * 0x28, (undefined1)saved_flags, param_4,
                           0xfffffffffffffffe);
   }
-  lVar1 = lVar3 + lVar1 * 0x28;
-  if (lVar5 != lVar2) {
-    puVar4 = (undefined8 *)(lVar3 + 8);
+  item_count = new_memory + item_count * 0x28;
+  if (old_start != old_end) {
+    dest_ptr = (undefined8 *)(new_memory + 8);
     do {
-      puVar4[-1] = &UNK_18098bcb0;
-      *puVar4 = 0;
-      *(undefined4 *)(puVar4 + 1) = 0;
-      puVar4[-1] = &UNK_180a3c3e0;
-      puVar4[2] = 0;
-      *puVar4 = 0;
-      *(undefined4 *)(puVar4 + 1) = 0;
-      *(undefined4 *)(puVar4 + 1) = *(undefined4 *)(lVar5 + 0x10);
-      *puVar4 = *(undefined8 *)(lVar5 + 8);
-      *(undefined4 *)((longlong)puVar4 + 0x14) = *(undefined4 *)(lVar5 + 0x1c);
-      *(undefined4 *)(puVar4 + 2) = *(undefined4 *)(lVar5 + 0x18);
-      *(undefined4 *)(lVar5 + 0x10) = 0;
-      *(undefined8 *)(lVar5 + 8) = 0;
-      *(undefined8 *)(lVar5 + 0x18) = 0;
-      puVar4[3] = *(undefined8 *)(lVar5 + 0x20);
-      lVar5 = lVar5 + 0x28;
-      puVar4 = puVar4 + 5;
-    } while (lVar5 != lVar2);
+      dest_ptr[-1] = &VTABLE_DESTRUCTOR_1;
+      *dest_ptr = 0;
+      *(undefined4 *)(dest_ptr + 1) = 0;
+      dest_ptr[-1] = &VTABLE_DESTRUCTOR_2;
+      dest_ptr[2] = 0;
+      *dest_ptr = 0;
+      *(undefined4 *)(dest_ptr + 1) = 0;
+      *(undefined4 *)(dest_ptr + 1) = *(undefined4 *)(old_start + 0x10);
+      *dest_ptr = *(undefined8 *)(old_start + 8);
+      *(undefined4 *)((longlong)dest_ptr + 0x14) = *(undefined4 *)(old_start + 0x1c);
+      *(undefined4 *)(dest_ptr + 2) = *(undefined4 *)(old_start + 0x18);
+      *(undefined4 *)(old_start + 0x10) = 0;
+      *(undefined8 *)(old_start + 8) = 0;
+      *(undefined8 *)(old_start + 0x18) = 0;
+      dest_ptr[3] = *(undefined8 *)(old_start + 0x20);
+      old_start = old_start + 0x28;
+      dest_ptr = dest_ptr + 5;
+    } while (old_start != old_end);
   }
-  lStack_40 = *param_1;
-  *param_1 = lVar3;
-  lStack_38 = param_1[1];
-  param_1[1] = lVar1;
-  lStack_30 = param_1[2];
-  param_1[2] = lVar1;
-  lVar2 = param_1[3];
-  *(undefined4 *)(param_1 + 3) = uStack_28;
-  uStack_28 = (int)lVar2;
-  FUN_180048980(&lStack_40);
+  saved_start = *data_structure_ptr;
+  *data_structure_ptr = new_memory;
+  saved_end = data_structure_ptr[1];
+  data_structure_ptr[1] = item_count;
+  saved_capacity = data_structure_ptr[2];
+  data_structure_ptr[2] = item_count;
+  old_end = data_structure_ptr[3];
+  *(undefined4 *)(data_structure_ptr + 3) = saved_flags;
+  saved_flags = (int)old_end;
+  cleanup_temporary_data(&saved_start);
   return;
 }
 
 
 
-longlong FUN_180218920(longlong *param_1,undefined8 *param_2,undefined8 *param_3)
+// 函数: longlong dynamic_array_insert_and_expand(longlong *array_ptr, undefined8 *insert_pos, undefined8 *new_item)
+// 功能: 在动态数组中插入元素并自动扩展容量
+longlong dynamic_array_insert_and_expand(longlong *array_ptr, undefined8 *insert_pos, undefined8 *new_item)
 
 {
-  ulonglong uVar1;
-  code *pcVar2;
-  longlong lVar3;
-  undefined8 *puVar4;
-  ulonglong uVar5;
-  longlong lVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puVar9;
-  longlong lVar10;
-  ulonglong uVar11;
+  ulonglong current_capacity;
+  code *error_handler;
+  longlong current_size;
+  undefined8 *new_array;
+  ulonglong new_capacity;
+  longlong old_start;
+  ulonglong required_capacity;
+  undefined8 *old_data;
+  undefined8 *old_end;
+  undefined8 *copy_dest;
+  longlong insert_index;
+  ulonglong final_capacity;
   
-  lVar6 = *param_1;
-  lVar10 = (longlong)param_2 - lVar6 >> 3;
-  lVar3 = param_1[1] - lVar6 >> 3;
-  if (lVar3 == 0x1fffffffffffffff) {
-    FUN_180189990();
-    pcVar2 = (code *)swi(3);
-    lVar6 = (*pcVar2)();
-    return lVar6;
+  old_start = *array_ptr;
+  insert_index = (longlong)insert_pos - old_start >> 3;
+  current_size = array_ptr[1] - old_start >> 3;
+  if (current_size == 0x1fffffffffffffff) {
+    handle_array_overflow();
+    error_handler = (code *)swi(3);
+    old_start = (*error_handler)();
+    return old_start;
   }
-  uVar1 = lVar3 + 1;
-  uVar5 = param_1[2] - lVar6 >> 3;
-  uVar11 = uVar1;
-  if ((uVar5 <= 0x1fffffffffffffff - (uVar5 >> 1)) &&
-     (uVar11 = (uVar5 >> 1) + uVar5, uVar11 < uVar1)) {
-    uVar11 = uVar1;
+  current_capacity = current_size + 1;
+  required_capacity = array_ptr[2] - old_start >> 3;
+  final_capacity = current_capacity;
+  if ((required_capacity <= 0x1fffffffffffffff - (required_capacity >> 1)) &&
+     (final_capacity = (required_capacity >> 1) + required_capacity, final_capacity < current_capacity)) {
+    final_capacity = current_capacity;
   }
-  lVar6 = uVar11 * 8;
-  if (0x1fffffffffffffff < uVar11) {
-    lVar6 = -1;
+  old_start = final_capacity * 8;
+  if (0x1fffffffffffffff < final_capacity) {
+    old_start = -1;
   }
-  puVar4 = (undefined8 *)FUN_180067110(lVar6);
-  puVar4[lVar10] = *param_3;
-  puVar8 = (undefined8 *)param_1[1];
-  puVar7 = (undefined8 *)*param_1;
-  puVar9 = puVar4;
-  if (param_2 == puVar8) {
-    for (; puVar7 != puVar8; puVar7 = puVar7 + 1) {
-      *puVar9 = *puVar7;
-      puVar9 = puVar9 + 1;
+  new_array = (undefined8 *)allocate_memory(old_start);
+  new_array[insert_index] = *new_item;
+  old_end = (undefined8 *)array_ptr[1];
+  old_data = (undefined8 *)*array_ptr;
+  copy_dest = new_array;
+  if (insert_pos == old_end) {
+    for (; old_data != old_end; old_data = old_data + 1) {
+      *copy_dest = *old_data;
+      copy_dest = copy_dest + 1;
     }
   }
   else {
-    for (; puVar7 != param_2; puVar7 = puVar7 + 1) {
-      *puVar9 = *puVar7;
-      puVar9 = puVar9 + 1;
+    for (; old_data != insert_pos; old_data = old_data + 1) {
+      *copy_dest = *old_data;
+      copy_dest = copy_dest + 1;
     }
-    puVar7 = (undefined8 *)param_1[1];
-    puVar8 = puVar4 + lVar10 + 1;
-    for (; param_2 != puVar7; param_2 = param_2 + 1) {
-      *puVar8 = *param_2;
-      puVar8 = puVar8 + 1;
+    old_data = (undefined8 *)array_ptr[1];
+    old_end = new_array + insert_index + 1;
+    for (; insert_pos != old_data; insert_pos = insert_pos + 1) {
+      *old_end = *insert_pos;
+      old_end = old_end + 1;
     }
   }
-  FUN_180217bb0(param_1,puVar4,uVar1,uVar11);
-  return *param_1 + lVar10 * 8;
+  resize_dynamic_array(array_ptr, new_array, current_capacity, final_capacity);
+  return *array_ptr + insert_index * 8;
 }
 
 
