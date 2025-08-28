@@ -737,3 +737,164 @@ extern void process_transform_matrix(float *matrix);
 extern uint calculate_transform_matrix(float *matrix);
 extern void submit_render_command(void *command, float *pos1, float *pos2, uint matrix, float alpha);
 extern void cleanup_render_entry(longlong entry);
+
+// ============================================================================
+// 函数别名定义
+// ============================================================================
+
+/**
+ * @brief 渲染队列管理器初始化函数别名
+ * 
+ * 原始函数名：initialize_render_queue_manager
+ * 功能：初始化渲染队列管理器的状态和参数
+ */
+#define RenderQueueManager_Initialize initialize_render_queue_manager
+
+/**
+ * @brief 渲染队列条目比较函数别名
+ * 
+ * 原始函数名：compare_render_queue_entries
+ * 功能：用于渲染队列条目排序的比较函数
+ */
+#define RenderQueueManager_CompareEntries compare_render_queue_entries
+
+/**
+ * @brief 添加渲染条目函数别名
+ * 
+ * 原始函数名：add_render_queue_entry
+ * 功能：向渲染队列添加新的渲染条目
+ */
+#define RenderQueueManager_AddEntry add_render_queue_entry
+
+/**
+ * @brief 添加渲染条目（寄存器优化）函数别名
+ * 
+ * 原始函数名：add_render_queue_entry_registers
+ * 功能：寄存器优化版本的渲染条目添加函数
+ */
+#define RenderQueueManager_AddEntryOptimized add_render_queue_entry_registers
+
+/**
+ * @brief 重新分配渲染队列函数别名
+ * 
+ * 原始函数名：reallocate_render_queue
+ * 功能：重新分配渲染队列的内存空间
+ */
+#define RenderQueueManager_Reallocate reallocate_render_queue
+
+/**
+ * @brief 处理渲染条目函数别名
+ * 
+ * 原始函数名：process_render_entry
+ * 功能：处理单个渲染条目的变换和提交
+ */
+#define RenderQueueManager_ProcessEntry process_render_entry
+
+/**
+ * @brief 检查渲染状态函数别名
+ * 
+ * 原始函数名：check_render_status
+ * 功能：检查渲染系统的当前状态
+ */
+#define RenderQueueManager_CheckStatus check_render_status
+
+/**
+ * @brief 移除渲染条目函数别名
+ * 
+ * 原始函数名：remove_render_queue_entry
+ * 功能：从渲染队列中移除指定的渲染条目
+ */
+#define RenderQueueManager_RemoveEntry remove_render_queue_entry
+
+/**
+ * @brief 批量移除渲染条目函数别名
+ * 
+ * 原始函数名：remove_render_queue_entries_batch
+ * 功能：批量移除指定数量的渲染条目
+ */
+#define RenderQueueManager_RemoveBatch remove_render_queue_entries_batch
+
+/**
+ * @brief 快速移除渲染条目函数别名
+ * 
+ * 原始函数名：remove_render_queue_entry_fast
+ * 功能：快速移除渲染条目，仅更新引用计数
+ */
+#define RenderQueueManager_RemoveEntryFast remove_render_queue_entry_fast
+
+// ============================================================================
+// 技术架构说明
+// ============================================================================
+
+/**
+ * @defgroup RenderQueueModule 渲染队列管理模块
+ * @brief TaleWorlds引擎渲染队列管理系统的核心实现
+ * 
+ * ## 架构设计
+ * 
+ * 本模块采用分层架构设计，包含以下核心组件：
+ * 
+ * ### 1. 队列管理层
+ * - 负责渲染队列的创建、销毁和容量管理
+ * - 实现动态扩容机制，支持队列的自动增长
+ * - 提供线程安全的队列操作接口
+ * 
+ * ### 2. 条目管理层
+ * - 管理渲染条目的生命周期
+ * - 提供条目的添加、移除和批量处理功能
+ * - 实现条目的排序和优先级管理
+ * 
+ * ### 3. 资源管理层
+ * - 负责渲染资源的动态分配和释放
+ * - 实现内存池管理和垃圾回收机制
+ * - 提供资源的引用计数管理
+ * 
+ * ### 4. 状态管理层
+ * - 监控渲染系统的运行状态
+ * - 提供状态查询和控制接口
+ * - 实现错误处理和恢复机制
+ * 
+ * ## 性能优化策略
+ * 
+ * ### 1. 内存优化
+ * - 使用动态扩容策略，避免频繁的内存分配
+ * - 实现内存池管理，减少内存碎片
+ * - 采用引用计数机制，及时释放无用资源
+ * 
+ * ### 2. 算法优化
+ * - 使用快速排序算法对渲染条目进行排序
+ * - 实现批量处理机制，减少函数调用开销
+ * - 采用缓存友好的数据结构设计
+ * 
+ * ### 3. 并发优化
+ * - 提供线程安全的队列操作接口
+ * - 实现无锁数据结构，提高并发性能
+ * - 支持异步渲染队列处理
+ * 
+ * ## 使用示例
+ * 
+ * ```c
+ * // 初始化渲染队列管理器
+ * RenderQueueManager_Initialize();
+ * 
+ * // 添加渲染条目
+ * uint8_t result = RenderQueueManager_AddEntry(render_data, position_data, flags, transform_data);
+ * 
+ * // 检查渲染状态
+ * uint8_t status = RenderQueueManager_CheckStatus();
+ * 
+ * // 移除渲染条目
+ * RenderQueueManager_RemoveEntry();
+ * ```
+ * 
+ * ## 注意事项
+ * 
+ * 1. 在使用渲染队列管理器之前，必须先调用初始化函数
+ * 2. 渲染条目的添加和移除操作应该在同一线程中进行
+ * 3. 在大量渲染条目操作时，建议使用批量处理接口
+ * 4. 注意监控内存使用情况，及时释放无用资源
+ * 
+ * @see TaleWorlds.Native 引擎核心模块
+ * @see 渲染系统模块
+ * @see 内存管理模块
+ */
