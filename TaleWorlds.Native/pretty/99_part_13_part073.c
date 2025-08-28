@@ -1202,7 +1202,7 @@ LAB_1808dae06:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1808dae30(longlong param_1,uint64_t *param_2)
+int ResourceHandleInitialize(longlong resource_ptr, uint64_t *init_params)
 
 {
   longlong *plVar1;
@@ -1283,7 +1283,7 @@ int FUN_1808dae30(longlong param_1,uint64_t *param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1808dae4c(uint param_1,longlong param_2)
+int ResourceHandleCleanup(uint cleanup_flags, longlong resource_ptr)
 
 {
   longlong *plVar1;
