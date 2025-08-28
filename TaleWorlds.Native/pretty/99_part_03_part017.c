@@ -671,7 +671,7 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                         
                         stack_value = 0;
                         stack_param_32 = 0;
-                        stack_data = &UNK_18098bcb0;
+                        stack_data = &system_alt_null_ptr;
                         
                         /* 重复树搜索 */
                         node_pointer = (uint64_t*)data_structure[2];
