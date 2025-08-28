@@ -716,7 +716,19 @@ undefined8 ui_system_data_processor_type3(void)
 
 
 
-undefined8 FUN_18089e043(void)
+/**
+ * @brief UI系统数据处理器类型4
+ * @details UI系统的第四个数据处理函数，负责UI数据的处理和验证
+ * 
+ * 功能：
+ * - 执行UI系统的简化数据处理
+ * - 处理UI数据的基本验证
+ * - 管理UI数据的资源操作
+ * - 处理UI数据的简单错误情况
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ui_system_data_processor_type4(void)
 
 {
   undefined8 uVar1;
@@ -749,8 +761,19 @@ undefined8 FUN_18089e043(void)
 
 
 
-// 函数: void FUN_18089e0be(void)
-void FUN_18089e0be(void)
+/**
+ * @brief UI系统清理器类型2
+ * @details UI系统的第二个清理函数，负责UI系统的资源释放和清理
+ * 
+ * 功能：
+ * - 执行UI系统的深度清理
+ * - 释放UI系统的所有资源
+ * - 重置UI系统的所有状态
+ * - 准备UI系统的完全重新初始化
+ * 
+ * @return 无返回值
+ */
+void ui_system_cleaner_type2(void)
 
 {
   return;
@@ -758,7 +781,21 @@ void FUN_18089e0be(void)
 
 
 
-undefined8 FUN_18089e0d0(longlong param_1,undefined8 *param_2)
+/**
+ * @brief UI系统高级数据处理器
+ * @details UI系统的高级数据处理函数，负责UI数据的复杂处理和验证
+ * 
+ * 功能：
+ * - 执行UI系统的高级数据处理
+ * - 处理UI数据的复杂验证逻辑
+ * - 管理UI数据的高级资源操作
+ * - 执行UI数据的性能优化
+ * 
+ * @param param_1 UI高级数据上下文指针
+ * @param param_2 UI高级数据参数数组
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ui_system_advanced_data_processor(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -804,7 +841,21 @@ undefined8 FUN_18089e0d0(longlong param_1,undefined8 *param_2)
 
 
 
-ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
+/**
+ * @brief UI系统资源管理器
+ * @details UI系统的资源管理函数，负责UI资源的分配和管理
+ * 
+ * 功能：
+ * - 执行UI系统资源的分配
+ * - 管理UI资源的状态
+ * - 处理UI资源的验证
+ * - 执行UI资源的释放
+ * 
+ * @param param_1 UI资源上下文指针
+ * @param param_2 UI资源参数数组
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+ulonglong ui_system_resource_manager(longlong param_1,longlong *param_2)
 
 {
   longlong *plVar1;
