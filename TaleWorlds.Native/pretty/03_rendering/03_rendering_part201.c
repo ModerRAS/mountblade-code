@@ -640,6 +640,10 @@ void rendering_system_initializer(void)
  * @param param_3 渲染状态参数
  */
 void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param_3)
+// 参数说明：
+// param_1 - 渲染上下文参数
+// param_2 - 渲染配置参数
+// param_3 - 渲染状态参数
 {
     int int_param1;                         // 整数参数1
     int int_param2;                         // 整数参数2
