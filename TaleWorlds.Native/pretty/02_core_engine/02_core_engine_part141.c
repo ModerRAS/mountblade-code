@@ -15,6 +15,9 @@
 // 渲染效果处理函数
 #define RenderEffectProcessor                  RenderEffectProcessor
 
+// 内存管理函数
+#define func_0x000180120ce0                     MemoryAllocator
+
 // 02_core_engine_part141.c - 核心引擎模块第141部分
 // 包含4个函数定义：渲染队列管理和动画效果处理相关函数
 
@@ -135,7 +138,7 @@ int * find_or_create_render_entry(longlong render_context, int render_id, ulongl
             if (SYSTEM_DATA_MANAGER_A != 0) {
                 *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
             }
-            uVar4 = func_0x000180120ce0((longlong)iVar8 << 6,SYSTEM_DATA_MANAGER_B,search_key,lVar9,
+            uVar4 = MemoryAllocator((longlong)iVar8 << 6,SYSTEM_DATA_MANAGER_B,search_key,lVar9,
                                       0xfffffffffffffffe);
             if (*(longlong *)(render_context + 0x2d0) != 0) {
                 // 复制现有数据到新内存块
