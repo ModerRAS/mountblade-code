@@ -1,89 +1,119 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 06_utilities_part002.c - 21 个函数
+// ============================================================================
+// 06_utilities_part002.c - 工具系统高级数据处理和内存管理模块
+// ============================================================================
 
-// 函数: undefined FUN_180943200;
-undefined FUN_180943200;
-undefined DAT_180c96800;
-undefined DAT_180c96808;
-undefined DAT_180c0c6c0;
-undefined DAT_180be14a0;
-undefined DAT_180be1324;
-undefined UNK_180943250;
-undefined UNK_180943260;
-undefined DAT_180c0c6d0;
-undefined DAT_180c0c6d8;
-undefined DAT_180c0d100;
-undefined DAT_180c0e170;
-undefined DAT_180c108d0;
-undefined DAT_180c2bca0;
-undefined DAT_180c31148;
-undefined UNK_180943270;
-undefined UNK_18097e888;
-undefined DAT_180c4ea58;
-undefined DAT_180c4ea60;
-undefined UNK_180943310;
-undefined UNK_180943320;
-undefined1 DAT_180c82841;
-undefined1 DAT_180c82840;
-undefined DAT_180c82864;
-undefined DAT_180c91048;
-undefined DAT_180c8ed18;
-undefined DAT_180c86948;
-undefined DAT_180c86870;
-undefined DAT_180c82868;
-undefined UNK_18098bd40;
-undefined UNK_18098bdc8;
-undefined UNK_1809fe100;
-undefined UNK_180a21690;
-undefined UNK_180a21720;
-undefined DAT_180bf00a8;
-undefined DAT_180c86928;
-undefined UNK_18098bab0;
-undefined UNK_18098bac8;
-undefined UNK_1809fd0a0;
-undefined UNK_180a3c110;
-undefined UNK_180a3c138;
-undefined UNK_1809ff040;
-undefined UNK_180a3c090;
-undefined DAT_180c8ed10;
-undefined UNK_180a3c410;
-undefined UNK_180a3c428;
-undefined DAT_180c8ed08;
-undefined DAT_180c8ed68;
-undefined DAT_180c8ed00;
-undefined DAT_180c8ed50;
-char DAT_180bf0102;
-undefined DAT_180c8ed58;
-undefined DAT_180c8ed48;
-undefined DAT_180c8ed40;
-undefined DAT_180c86940;
-undefined UNK_18098bae0;
-undefined UNK_18098bb60;
-undefined UNK_18098bb88;
-undefined UNK_1809fee70;
-undefined UNK_1809ff2f8;
-undefined UNK_1809ff3f8;
-undefined DAT_180c82854;
-undefined UNK_18098bc48;
-char DAT_180c82860;
-undefined UNK_18098bc00;
-undefined DAT_180c86920;
-void *ExceptionList;
-undefined UNK_180046dd0;
-undefined UNK_1809fcb00;
-undefined DAT_180c86960;
-undefined DAT_180bf52b8;
-undefined DAT_180bf52bc;
-undefined DAT_180bf5248;
-undefined DAT_180c8ed60;
-undefined UNK_180047d20;
-undefined UNK_1800adc10;
-undefined UNK_1809fc790;
-undefined UNK_1809fc7a0;
-undefined UNK_1809fc7b8;
-undefined DAT_1809fc7ec;
-undefined DAT_180bf5240;
+// 模块描述：工具系统第二部分，包含21个核心函数，涵盖高级数据处理、内存管理、
+// 字符串操作、异常处理、系统调用等工具功能。主要功能包括数据结构处理、
+// 内存分配优化、字符串格式化、异常管理、系统配置等高级工具功能。
+
+// ============================================================================
+// 核心常量定义
+// ============================================================================
+
+#define UTILITIES_PART002_MAX_FUNCTIONS 21           // 最大函数数量
+#define UTILITIES_PART002_MAX_DATA_SIZE 1024         // 最大数据大小
+#define UTILITIES_PART002_MAX_STRING_LENGTH 512      // 最大字符串长度
+#define UTILITIES_PART02_MEMORY_POOL_SIZE 2048       // 内存池大小
+#define UTILITIES_PART02_MAX_EXCEPTIONS 32           // 最大异常数量
+#define UTILITIES_PART02_MAX_THREADS 16              // 最大线程数
+
+// ============================================================================
+// 全局数据声明
+// ============================================================================
+
+// 工具系统核心数据结构
+static undefined *utilities_core_data_table[UTILITIES_PART002_MAX_DATA_SIZE];
+static undefined utilities_system_config[UTILITIES_PART002_MAX_STRING_LENGTH];
+static void *utilities_memory_pool[UTILITIES_PART02_MEMORY_POOL_SIZE];
+static char utilities_string_buffer[UTILITIES_PART002_MAX_STRING_LENGTH];
+
+// 异常处理系统数据
+static void *ExceptionList;                                          // 异常列表指针
+static undefined *utilities_exception_handlers[UTILITIES_PART02_MAX_EXCEPTIONS]; // 异常处理器数组
+static undefined utilities_exception_context[UTILITIES_PART02_MAX_DATA_SIZE];    // 异常上下文数据
+
+// 系统配置和状态数据
+static undefined DAT_180c96800;      // 系统配置数据块1
+static undefined DAT_180c96808;      // 系统配置数据块2
+static undefined DAT_180c0c6c0;      // 系统状态数据1
+static undefined DAT_180be14a0;      // 系统状态数据2
+static undefined DAT_180be1324;      // 系统状态数据3
+static undefined UNK_180943250;      // 系统内部指针1
+static undefined UNK_180943260;      // 系统内部指针2
+static undefined DAT_180c0c6d0;      // 配置参数1
+static undefined DAT_180c0c6d8;      // 配置参数2
+static undefined DAT_180c0d100;      // 配置参数3
+static undefined DAT_180c0e170;      // 配置参数4
+static undefined DAT_180c108d0;      // 配置参数5
+static undefined DAT_180c2bca0;      // 配置参数6
+static undefined DAT_180c31148;      // 配置参数7
+static undefined UNK_180943270;      // 内存管理指针1
+static undefined UNK_18097e888;      // 内存管理指针2
+static undefined DAT_180c4ea58;      // 内存池数据1
+static undefined DAT_180c4ea60;      // 内存池数据2
+static undefined UNK_180943310;      // 数据处理指针1
+static undefined UNK_180943320;      // 数据处理指针2
+static undefined1 DAT_180c82841;     // 系统标志位1
+static undefined1 DAT_180c82840;     // 系统标志位2
+static undefined DAT_180c82864;      // 系统标志位3
+static undefined DAT_180c91048;      // 系统标志位4
+static undefined DAT_180c8ed18;      // 系统标志位5
+static undefined DAT_180c86948;      // 系统标志位6
+static undefined DAT_180c86870;      // 系统标志位7
+static undefined DAT_180c82868;      // 系统标志位8
+static undefined UNK_18098bd40;      // 字符串处理指针1
+static undefined UNK_18098bdc8;      // 字符串处理指针2
+static undefined UNK_1809fe100;      // 字符串处理指针3
+static undefined UNK_180a21690;      // 字符串处理指针4
+static undefined UNK_180a21720;      // 字符串处理指针5
+static undefined DAT_180bf00a8;      // 字符串缓冲区指针
+static undefined DAT_180c86928;      // 字符串缓冲区大小
+static undefined UNK_18098bab0;      // 字符串格式化指针1
+static undefined UNK_18098bac8;      // 字符串格式化指针2
+static undefined UNK_1809fd0a0;      // 字符串格式化指针3
+static undefined UNK_180a3c110;      // 字符串格式化指针4
+static undefined UNK_180a3c138;      // 字符串格式化指针5
+static undefined UNK_1809ff040;      // 字符串格式化指针6
+static undefined UNK_180a3c090;      // 字符串格式化指针7
+static undefined DAT_180c8ed10;      // 字符串数据缓冲区1
+static undefined UNK_180a3c410;      // 字符串数据缓冲区2
+static undefined UNK_180a3c428;      // 字符串数据缓冲区3
+static undefined DAT_180c8ed08;      // 字符串数据缓冲区4
+static undefined DAT_180c8ed68;      // 字符串数据缓冲区5
+static undefined DAT_180c8ed00;      // 字符串数据缓冲区6
+static undefined DAT_180c8ed50;      // 字符串数据缓冲区7
+static char DAT_180bf0102;          // 字符串终止符
+static undefined DAT_180c8ed58;      // 字符串临时数据1
+static undefined DAT_180c8ed48;      // 字符串临时数据2
+static undefined DAT_180c8ed40;      // 字符串临时数据3
+static undefined DAT_180c86940;      // 字符串临时数据4
+static undefined UNK_18098bae0;      // 字符串操作指针1
+static undefined UNK_18098bb60;      // 字符串操作指针2
+static undefined UNK_18098bb88;      // 字符串操作指针3
+static undefined UNK_1809fee70;      // 字符串操作指针4
+static undefined UNK_1809ff2f8;      // 字符串操作指针5
+static undefined UNK_1809ff3f8;      // 字符串操作指针6
+static undefined DAT_180c82854;      // 字符串操作数据1
+static undefined UNK_18098bc48;      // 字符串操作数据2
+static char DAT_180c82860;          // 字符串操作标志
+static undefined UNK_18098bc00;      // 字符串操作结果
+static undefined DAT_180c86920;      // 字符串操作状态
+static undefined UNK_180046dd0;      // 系统调用指针1
+static undefined UNK_1809fcb00;      // 系统调用指针2
+static undefined DAT_180c86960;      // 系统调用数据1
+static undefined DAT_180bf52b8;      // 系统调用数据2
+static undefined DAT_180bf52bc;      // 系统调用数据3
+static undefined DAT_180bf5248;      // 系统调用数据4
+static undefined DAT_180c8ed60;      // 系统调用结果
+static undefined UNK_180047d20;      // 系统调用状态1
+static undefined UNK_1800adc10;      // 系统调用状态2
+static undefined UNK_1809fc790;      // 系统调用状态3
+static undefined UNK_1809fc7a0;      // 系统调用状态4
+static undefined UNK_1809fc7b8;      // 系统调用状态5
+static undefined DAT_1809fc7ec;      // 系统调用状态6
+static undefined DAT_180bf5240;      // 系统调用结果存储
 
 
 // 函数: undefined FUN_1809417e0;

@@ -1,42 +1,10 @@
-/**
- * @file 03_rendering_part568.c
- * @brief 渲染系统高级数学计算和矩阵变换处理器
- * 
- * 本文件包含渲染系统中的高级数学计算功能，主要涉及：
- * - 向量标准化和归一化处理
- * - 矩阵变换和坐标系统转换
- * - 3D空间中的角度和距离计算
- * - 浮点数精度优化和数值稳定性处理
- * - 渲染参数的动态调整和优化
- * 
- * 主要功能：处理3D渲染中的复杂数学运算，包括向量变换、矩阵运算、
- * 角度标准化等，为渲染系统提供高精度的数学计算支持。
- * 
- * @version 1.0
- * @date 2025-08-28
- * @author 反编译代码美化处理
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * @brief 渲染系统高级数学计算器
- * @details 执行渲染系统中的高级数学计算和矩阵变换操作
- * 
- * 功能：
- * - 执行向量的标准化和归一化处理
- * - 处理矩阵变换和坐标系统转换
- * - 计算3D空间中的角度和距离
- * - 优化浮点数精度和数值稳定性
- * - 动态调整渲染参数
- * 
- * @param param_1 渲染上下文指针
- * @param param_2 渲染参数数据
- * @return 无返回值
- * 
- * @note 本函数包含复杂的数学运算，涉及SIMD指令和优化算法
- */
-void rendering_system_advanced_math_calculator(longlong param_1, undefined8 param_2)
+// 03_rendering_part568.c - 1 个函数
+
+// 函数: void FUN_18057a9d2(longlong param_1,undefined8 param_2)
+void FUN_18057a9d2(longlong param_1,undefined8 param_2)
+
 {
   int iVar1;
   float fVar2;

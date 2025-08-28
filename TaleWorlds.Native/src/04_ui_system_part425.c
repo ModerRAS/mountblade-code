@@ -38,7 +38,21 @@ void ui_system_initializer(void)
 
 
 
-ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
+/**
+ * @brief UI系统处理器类型1
+ * @details UI系统的核心处理函数，负责UI数据的处理和验证
+ * 
+ * 功能：
+ * - 处理UI系统数据的验证和检查
+ * - 管理UI系统状态和参数
+ * - 执行UI系统的资源分配和释放
+ * - 处理UI系统的错误和异常情况
+ * 
+ * @param param_1 UI上下文指针
+ * @param param_2 UI系统参数数组
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+ulonglong ui_system_processor_type1(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
