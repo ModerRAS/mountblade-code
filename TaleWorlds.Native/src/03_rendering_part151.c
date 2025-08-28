@@ -469,10 +469,13 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   
   // 第四阶段：管线完整性检查
   // 验证顶点管线和片段管线是否都成功激活
+  // 这是关键的错误检查点，确保双管线架构的完整性
   if ((plStack_3b0 == (longlong *)0x0) || (plStack_3f8 == (longlong *)0x0)) {
     FUN_180627020(&UNK_180a1f6f0);                    // 管线激活失败，调用错误处理函数
   }
   else {
+    // 管线激活成功，开始执行核心渲染算法
+    // 设置顶点管线处理器的配置参数
     uStack_3e8 = (undefined **)alStack_1b8;
     uStack_3e0 = &plStack_3b0;
     pcStack_3c8 = (code *)&UNK_180360340;
@@ -497,61 +500,96 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
     if (pcStack_3c8 != (code *)0x0) {
       (*pcStack_3c8)(auStack_3d8,0,0);
     }
-    pcStack_3c8 = (code *)0x0;
-    pcStack_3c0 = (code *)CONCAT44(pcStack_3c0._4_4_,3);
-    fVar24 = (float)(uStack_15c & 0xffff);
-    fVar26 = 1.0 / fVar24;
-    afStack_418[0] = 0.0;
-    puStack_3d0 = (undefined8 *)0x0;
-    auStack_3d8 = (undefined1  [8])0x0;
-    puVar16 = puStack_3d0;
-    auVar9 = auStack_3d8;
-    puVar20 = puVar10;
-    _auStack_3d8 = ZEXT816(0);
+    // 第五阶段：纹理坐标映射和质量分析
+    // 初始化纹理坐标映射算法的参数
+    pcStack_3c8 = (code *)0x0;                          // 重置管线回调函数
+    pcStack_3c0 = (code *)CONCAT44(pcStack_3c0._4_4_,3); // 设置管线模式标志
+    
+    // 获取顶点数量并计算纹理坐标映射的步长
+    fVar24 = (float)(uStack_15c & 0xffff);              // 提取顶点数量（低16位）
+    fVar26 = 1.0 / fVar24;                               // 计算纹理坐标映射步长倒数
+    
+    // 初始化纹理坐标映射算法的工作变量
+    afStack_418[0] = 0.0;                                // 重置质量累加器
+    puStack_3d0 = (undefined8 *)0x0;                    // 初始化纹理坐标指针
+    auStack_3d8 = (undefined1  [8])0x0;                 // 初始化纹理坐标数据
+    puVar16 = puStack_3d0;                               // 设置纹理坐标工作指针
+    auVar9 = auStack_3d8;                                // 设置纹理坐标数据
+    puVar20 = puVar10;                                   // 保存原始纹理坐标指针
+    _auStack_3d8 = ZEXT816(0);                           // 清空纹理坐标状态
+    
+    // 开始顶点级别的纹理坐标映射循环
+    // 这是一个复杂的嵌套循环，用于处理每个顶点的纹理坐标映射
     if (0 < (int)fVar24) {
       do {
         iVar4 = 0;
         fVar27 = SUB84(puVar10,0);
         if (0 < (int)fVar24) {
-          fVar28 = (float)(int)SUB84(puVar10,0);
-          fVar25 = fVar28 + 0.5;
+          // 计算当前顶点的基准坐标和偏移量
+          fVar28 = (float)(int)SUB84(puVar10,0);            // 获取顶点X坐标
+          fVar25 = fVar28 + 0.5;                            // 计算X坐标的中心点偏移
           pfStack_3a8 = (float *)((ulonglong)(uint)((fVar24 - fVar25) * fVar26) << 0x20);
-          puVar10 = puVar16;
-          puVar19 = (undefined8 *)auVar9;
+          puVar10 = puVar16;                                // 重置纹理坐标指针
+          puVar19 = (undefined8 *)auVar9;                   // 设置纹理坐标数据指针
+          
+          // 开始Y坐标方向的纹理坐标映射循环
           do {
-            fVar23 = (float)iVar4 + 0.5;
+            fVar23 = (float)iVar4 + 0.5;                   // 计算Y坐标的中心点偏移
             pfStack_3a8 = (float *)CONCAT44(pfStack_3a8._4_4_,fVar23 * fVar26);
+            
+            // 获取当前纹理坐标点的质量值
             lVar8 = FUN_1802a11e0(alStack_1b8,&uStack_3e8,pfStack_3a8,1);
-            fVar27 = *(float *)(lVar8 + 8);
-            iVar17 = -1;
-            fVar22 = fVar27;
+            fVar27 = *(float *)(lVar8 + 8);                 // 提取质量值
+            
+            // 初始化周围采样点的质量累加器
+            iVar17 = -1;                                    // Y方向采样点索引
+            fVar22 = fVar27;                                 // 质量累加器初始化
+            
+            // 执行2x2多重采样以计算平均质量
+            // 这是质量分析算法的核心部分，通过周围采样点的质量值
+            // 来评估当前纹理坐标的质量，实现抗锯齿和质量优化
             do {
-              iVar15 = -1;
+              iVar15 = -1;                                  // X方向采样点索引
               do {
+                // 跳过中心点（已经计算过）
                 if ((iVar15 != 0) || (iVar17 != 0)) {
+                  // 计算周围采样点的纹理坐标
                   uStack_3f0 = CONCAT44((fVar24 - ((float)iVar17 + fVar25)) * fVar26,
                                         ((float)iVar15 + fVar23) * fVar26);
+                  
+                  // 获取周围采样点的质量值
                   lVar8 = FUN_1802a11e0(alStack_1b8,&fStack_2f0,uStack_3f0,1);
-                  fVar22 = fVar22 + *(float *)(lVar8 + 8);
+                  fVar22 = fVar22 + *(float *)(lVar8 + 8);  // 累加质量值
                 }
-                iVar15 = iVar15 + 1;
-              } while (iVar15 < 2);
-              iVar17 = iVar17 + 1;
-            } while (iVar17 < 2);
+                iVar15 = iVar15 + 1;                        // X方向采样点索引递增
+              } while (iVar15 < 2);                         // X方向采样范围：-1, 0, 1
+              iVar17 = iVar17 + 1;                          // Y方向采样点索引递增
+            } while (iVar17 < 2);                           // Y方向采样范围：-1, 0, 1
             puVar16 = puVar10;
             auVar9 = (undefined1  [8])puVar19;
+            // 质量阈值判断和优化算法
+            // 检查当前纹理坐标是否满足质量要求：
+            // - 中心点质量 < 0.5：表示需要优化
+            // - 平均质量 > 0.5：表示周围采样点质量较好
+            // - 平均质量 < 1.5：表示质量不会过高（避免过度优化）
             if (((fVar27 < 0.5) && (0.5 < fVar22)) && (fVar22 < 1.5)) {
+              // 质量条件满足，保存优化后的纹理坐标
               uStack_408 = CONCAT44(fVar24 - fVar28,(float)iVar4);
+              
+              // 检查是否可以直接写入现有缓冲区
               if (puVar10 < puVar20) {
+                // 缓冲区有足够空间，直接写入
                 puVar16 = puVar10 + 1;
                 puStack_3d0 = puVar16;
                 *puVar10 = uStack_408;
               }
               else {
+                // 缓冲区空间不足，需要重新分配
                 lVar8 = (longlong)puVar10 - (longlong)puVar19 >> 3;
                 if (lVar8 == 0) {
                   lVar8 = 1;
 LAB_18035f156:
+                  // 重新分配更大的缓冲区（当前大小的2倍）
                   auVar9 = (undefined1  [8])FUN_18062b420(_DAT_180c8ed18,lVar8 * 8,3);
                 }
                 else {
@@ -559,16 +597,24 @@ LAB_18035f156:
                   if (lVar8 != 0) goto LAB_18035f156;
                   auVar9 = (undefined1  [8])0x0;
                 }
+                
+                // 复制现有数据到新缓冲区
                 if (puVar19 != puVar10) {
                     // WARNING: Subroutine does not return
                   memmove(auVar9,puVar19,(longlong)puVar10 - (longlong)puVar19);
                 }
+                
+                // 写入新的纹理坐标数据
                 *(undefined8 *)auVar9 = uStack_408;
                 puVar16 = (undefined8 *)((longlong)auVar9 + 8);
+                
+                // 释放旧的缓冲区内存
                 if (puVar19 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900(puVar19);
                 }
+                
+                // 更新缓冲区指针和状态
                 puStack_3d0 = puVar16;
                 auStack_3d8 = auVar9;
                 puVar20 = (undefined8 *)((longlong)auVar9 + lVar8 * 8);
