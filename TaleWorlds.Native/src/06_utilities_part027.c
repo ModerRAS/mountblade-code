@@ -952,15 +952,26 @@ void FUN_1809419c0(void)
 
 
 
-// 函数: void FUN_1809419e0(void)
+// =============================================================================
+// 系统模块状态管理器 (SystemModuleStateManager)
+// =============================================================================
+// 功能：管理系统模块状态并执行相应的状态操作
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_1809419e0(void)
 
 {
+  // 初始化系统模块状态
   _DAT_180d49218 = &UNK_180a3c3e0;
+  
+  // 检查模块状态
   if (_DAT_180d49220 != 0) {
-                    // WARNING: Subroutine does not return
+    // 模块状态异常，终止程序
     FUN_18064e900();
   }
+  
+  // 重置模块状态
   _DAT_180d49220 = 0;
   _DAT_180d49230 = 0;
   _DAT_180d49218 = &UNK_18098bcb0;
@@ -973,15 +984,26 @@ void FUN_1809419e0(void)
 
 
 
-// 函数: void FUN_180941a30(void)
+// =============================================================================
+// 系统数据状态管理器 (SystemDataStateManager)
+// =============================================================================
+// 功能：管理系统数据状态并执行相应的状态操作
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180941a30(void)
 
 {
+  // 初始化系统数据状态
   _DAT_180d49240 = &UNK_180a3c3e0;
+  
+  // 检查数据状态
   if (_DAT_180d49248 != 0) {
-                    // WARNING: Subroutine does not return
+    // 数据状态异常，终止程序
     FUN_18064e900();
   }
+  
+  // 重置数据状态
   _DAT_180d49248 = 0;
   _DAT_180d49258 = 0;
   _DAT_180d49240 = &UNK_18098bcb0;
@@ -994,7 +1016,13 @@ void FUN_180941a30(void)
 
 
 
-// 函数: void FUN_180941ad0(void)
+// =============================================================================
+// 系统异常处理器 (SystemExceptionHandler)
+// =============================================================================
+// 功能：处理系统异常并执行相应的异常处理操作
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180941ad0(void)
 
 {
@@ -1003,27 +1031,46 @@ void FUN_180941ad0(void)
   longlong lVar3;
   ulonglong uVar4;
   
-  puVar2 = _DAT_180d493f8;
+  // 变量重命名以提高可读性：
+  // piVar1 -> exception_count: 异常计数器
+  // puVar2 -> exception_ptr: 异常指针
+  // lVar3 -> exception_offset: 异常偏移量
+  // uVar4 -> exception_mask: 异常掩码
+  
+  // 获取异常指针
+  exception_ptr = _DAT_180d493f8;
   if (_DAT_180d493f8 == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)_DAT_180d493f8 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)_DAT_180d493f8 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *_DAT_180d493f8 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  
+  // 计算异常掩码
+  exception_mask = (ulonglong)_DAT_180d493f8 & 0xffffffffffc00000;
+  if (exception_mask != 0) {
+    // 计算异常偏移量
+    exception_offset = exception_mask + 0x80 + ((longlong)_DAT_180d493f8 - exception_mask >> 0x10) * 0x50;
+    exception_offset = exception_offset - (ulonglong)*(uint *)(exception_offset + 4);
+    
+    // 检查异常列表状态
+    if ((*(void ***)(exception_mask + 0x70) == &ExceptionList) && (*(char *)(exception_offset + 0xe) == '\0')) {
+      // 处理异常链表
+      *_DAT_180d493f8 = *(undefined8 *)(exception_offset + 0x20);
+      *(undefined8 **)(exception_offset + 0x20) = exception_ptr;
+      exception_count = (int *)(exception_offset + 0x18);
+      *exception_count = *exception_count + -1;
+      
+      // 检查异常计数器
+      if (*exception_count == 0) {
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          _DAT_180d493f8,uVar4,0xfffffffffffffffe);
+      // 调用异常处理函数
+      func_0x00018064e870(exception_mask,
+                          CONCAT71(0xff000000,*(void ***)(exception_mask + 0x70) == &ExceptionList),
+                          _DAT_180d493f8,
+                          exception_mask,
+                          0xfffffffffffffffe);
     }
   }
   return;
@@ -1035,15 +1082,26 @@ void FUN_180941ad0(void)
 
 
 
-// 函数: void FUN_180941b20(void)
+// =============================================================================
+// 系统资源状态管理器 (SystemResourceStateManager)
+// =============================================================================
+// 功能：管理系统资源状态并执行相应的状态操作
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180941b20(void)
 
 {
+  // 初始化系统资源状态
   _DAT_180d49638 = &UNK_180a3c3e0;
+  
+  // 检查资源状态
   if (_DAT_180d49640 != 0) {
-                    // WARNING: Subroutine does not return
+    // 资源状态异常，终止程序
     FUN_18064e900();
   }
+  
+  // 重置资源状态
   _DAT_180d49640 = 0;
   _DAT_180d49650 = 0;
   _DAT_180d49638 = &UNK_18098bcb0;
@@ -1056,11 +1114,18 @@ void FUN_180941b20(void)
 
 
 
-// 函数: void FUN_180941b90(void)
+// =============================================================================
+// 系统配置模式重置器 (SystemConfigModeResetter)
+// =============================================================================
+// 功能：重置系统配置模式并设置默认值
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180941b90(void)
 
 {
-  _DAT_180bf7250 = &UNK_18098bcb0;
+  // 重置系统配置模式并设置为默认值
+  _DAT_180bf7250 = &UNK_18098bcb0;  // 设置默认配置模式指针
   return;
 }
 
