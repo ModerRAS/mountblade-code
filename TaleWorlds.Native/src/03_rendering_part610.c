@@ -104,6 +104,64 @@ typedef RenderingError RenderingResourceError;
 typedef RenderingError RenderingStateError;
 
 /*==============================================================================
+    渲染系统高级处理模块 - 函数别名定义
+==============================================================================*/
+
+// 渲染系统参数处理函数别名
+void RenderingSystemAdvancedParameterProcessor(
+    longlong system_handle, int param_index, int param_value, 
+    unsigned char validation_flag, unsigned char processing_flag, int comparison_value
+);
+
+// 渲染系统数据处理函数别名
+void RenderingSystemAdvancedDataProcessor(
+    longlong system_handle, unsigned long long param1, unsigned long long param2
+);
+
+// 渲染系统状态管理函数别名
+void RenderingSystemStateManager(
+    longlong system_handle, unsigned long long param1, unsigned long long param2
+);
+
+// 渲染系统标志检查函数别名
+void RenderingSystemFlagChecker(
+    longlong system_handle, int param_index, int param_value, 
+    unsigned long long param1, short param2
+);
+
+// 渲染系统条件处理函数别名
+void RenderingSystemConditionHandler(
+    longlong system_handle, unsigned long long param1, unsigned long long param2, 
+    unsigned int param3, longlong *param4, unsigned char param5, unsigned long long param6
+);
+
+// 渲染系统数学计算函数别名
+void RenderingSystemFloatCalculator(
+    longlong system_handle, int param_index, unsigned char param_value
+);
+
+// 渲染系统内存访问函数别名
+void RenderingSystemMemoryAccessor(
+    longlong system_handle, unsigned long long param1, unsigned long long param2
+);
+
+// 渲染系统系统调用函数别名
+void RenderingSystemSystemCaller(
+    longlong system_handle, unsigned long long param1, int param2, unsigned char param3
+);
+
+// 渲染系统参数设置函数别名
+void RenderingSystemParameterSetter(
+    longlong system_handle, unsigned long long param1, longlong param2
+);
+
+// 渲染系统数据验证函数别名
+void RenderingSystemDataValidator(
+    longlong system_handle, int param_index, int param_value, 
+    unsigned long long param1, short param2
+);
+
+/*==============================================================================
     渲染系统高级处理模块 - 核心函数实现
 ==============================================================================*/
 
@@ -128,30 +186,37 @@ void RenderingSystemAdvancedParameterProcessor(
 )
 
 {
-  int iVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int validation_result;
+  longlong system_data_ptr;
+  longlong registry_ptr;
   
-  iVar1 = param_3;
-  if (param_2 != 0) {
-    iVar1 = *(int *)(*(longlong *)(param_1 + 0x8f8) + 0x9e0);
+  // 获取参数值进行验证
+  validation_result = param_value;
+  if (param_index != 0) {
+    validation_result = *(int *)(*(longlong *)(system_handle + 0x8f8) + 0x9e0);
   }
-  if ((-1 < iVar1) &&
-     (*(int *)((longlong)iVar1 * 0x1f8 + 0xf8 + *(longlong *)(param_1 + 0x8f8)) != param_6)) {
-    FUN_180537bd0();
+  
+  // 验证参数范围和条件
+  if ((-1 < validation_result) &&
+     (*(int *)((longlong)validation_result * 0x1f8 + 0xf8 + *(longlong *)(system_handle + 0x8f8)) != comparison_value)) {
+    FUN_180537bd0(); // 调用验证失败处理函数
   }
-  lVar3 = *(longlong *)(param_1 + 0x8f8);
-  iVar1 = *(int *)(lVar3 + 0x9e0 + (longlong)param_2 * 4);
-  if (iVar1 != param_3) {
+  
+  // 获取系统数据指针
+  registry_ptr = *(longlong *)(system_handle + 0x8f8);
+  validation_result = *(int *)(registry_ptr + 0x9e0 + (longlong)param_index * 4);
+  
+  // 检查参数变化并进行处理
+  if (validation_result != param_value) {
     if ((((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) &&
-        (lVar2 = *(longlong *)(lVar3 + 0x9e8 + (longlong)param_2 * 8), lVar2 != 0)) &&
-       ((*(uint *)((longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + 0x58 + *(longlong *)(lVar2 + 0xd0)) &
+        (system_data_ptr = *(longlong *)(registry_ptr + 0x9e8 + (longlong)param_index * 8), system_data_ptr != 0)) &&
+       ((*(uint *)((longlong)*(int *)(system_data_ptr + 0xf0) * 0xa0 + 0x58 + *(longlong *)(system_data_ptr + 0xd0)) &
         0x3000) != 0)) {
-      FUN_18050c740(param_1,iVar1,8);
-      lVar3 = *(longlong *)(param_1 + 0x8f8);
+      FUN_18050c740(system_handle, validation_result, 8); // 处理参数变化
+      registry_ptr = *(longlong *)(system_handle + 0x8f8);
     }
-    FUN_180536e20(lVar3,param_2,param_3,param_4,param_5);
-    FUN_18050c1c0(param_1);
+    FUN_180536e20(registry_ptr, param_index, param_value, validation_flag, processing_flag);
+    FUN_18050c1c0(system_handle); // 更新系统状态
   }
   return;
 }
@@ -160,13 +225,24 @@ void RenderingSystemAdvancedParameterProcessor(
 
 
 
-// 函数: void FUN_1806000c0(longlong param_1,undefined8 param_2,undefined8 param_3)
-void FUN_1806000c0(longlong param_1,undefined8 param_2,undefined8 param_3)
-
+/**
+ * 渲染系统高级数据处理器
+ * 处理渲染系统的高级数据处理和状态管理
+ * 
+ * @param system_handle 渲染系统句柄
+ * @param param1 参数1
+ * @param param2 参数2
+ */
+void RenderingSystemAdvancedDataProcessor(
+    longlong system_handle, 
+    unsigned long long param1, 
+    unsigned long long param2
+)
 {
-  undefined1 auStackX_8 [32];
+  unsigned char temp_buffer[32];
   
-  FUN_180537bd0(*(undefined8 *)(param_1 + 0x8f8),param_2,param_3,auStackX_8);
+  // 调用数据处理函数
+  FUN_180537bd0(*(unsigned long long *)(system_handle + 0x8f8), param1, param2, temp_buffer);
   return;
 }
 
