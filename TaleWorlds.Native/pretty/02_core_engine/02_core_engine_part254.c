@@ -785,9 +785,10 @@ ProcessObjectParameters(undefined8 *objectType, longlong *outputBuffer, undefine
 
 
 
+// 函数14: 处理对象参数（变体）
 longlong *
-FUN_18021f710(undefined8 *param_1,longlong *param_2,undefined8 param_3,ulonglong param_4,
-             undefined8 param_5,undefined4 param_6)
+ProcessObjectParametersVariant(undefined8 *objectType, longlong *outputBuffer, undefined8 param3, ulonglong param4,
+                                  undefined8 param5, undefined4 param6)
 
 {
   int iVar1;
@@ -826,8 +827,9 @@ FUN_18021f710(undefined8 *param_1,longlong *param_2,undefined8 param_3,ulonglong
 
 
 
+// 函数15: 初始化对象管理器
 undefined8 *
-FUN_18021f7f0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+InitializeObjectManager(undefined8 *objectManager, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
   longlong lVar1;
