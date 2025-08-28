@@ -152,7 +152,7 @@ LAB_18027baf2:
         plStack_b0 = plVar12;
         fread(plVar12,1,(int64_t)aiStack_178[0],puVar8[1]);
         *(int8_t *)((int64_t)aiStack_178[0] + (int64_t)plVar12) = 0;
-        CoreMemoryPoolValidator(&puStack_d8,plVar12);
+        FUN_180627910(&puStack_d8,plVar12);
         while ((0 < (int)uStack_c8 && (lVar7 = strstr(puStack_d0,&system_data_ff10), lVar7 != 0))) {
           iVar22 = 6;
           iVar20 = (int)lVar7 - (int)puStack_d0;

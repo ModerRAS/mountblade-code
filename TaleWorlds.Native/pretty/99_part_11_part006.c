@@ -418,7 +418,7 @@ void FUN_1806da9d0(int64_t param_1,int32_t param_2)
   *(int32_t *)(param_1 + 0x1c) = 0;
   *(int32_t *)(param_1 + 0x20) = 0x3f800000;
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(param_2);
+  AdvancedSystemController(param_2);
 }
 
 
@@ -435,7 +435,7 @@ void FUN_1806daa30(int64_t param_1,int32_t param_2)
   *(uint64_t *)(param_1 + 0x18) = 0;
   *(int32_t *)(param_1 + 0x20) = 0x3f800000;
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(param_2);
+  AdvancedSystemController(param_2);
 }
 
 
@@ -448,7 +448,7 @@ void FUN_1806daa90(uint64_t param_1,int32_t param_2)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(param_2);
+  AdvancedSystemController(param_2);
 }
 
 
@@ -461,7 +461,7 @@ void FUN_1806dab20(uint64_t param_1,int32_t param_2)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(param_2);
+  AdvancedSystemController(param_2);
 }
 
 
@@ -479,7 +479,7 @@ void FUN_1806dab90(uint64_t *param_1,int32_t param_2)
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0x3f800000;
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(param_2);
+  AdvancedSystemController(param_2);
 }
 
 
@@ -492,7 +492,7 @@ void FUN_1806dac00(uint64_t param_1,int32_t param_2)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(param_2);
+  AdvancedSystemController(param_2);
 }
 
 

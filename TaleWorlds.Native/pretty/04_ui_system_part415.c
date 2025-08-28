@@ -724,7 +724,7 @@ LAB_180898629:
   }
 LAB_18089866f:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_300 + 1);
+  AdvancedSystemProcessor(alStack_300 + 1);
 }
 
 

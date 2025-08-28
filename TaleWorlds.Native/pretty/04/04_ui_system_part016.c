@@ -102,7 +102,7 @@ extern const void* global_state_1984_ptr;       // UI系统内存数据
 // ====================== 外部函数声明 ======================
 extern void func_0x000180668820(int64_t param_1);
 extern void func_0x0001806689f0(int64_t param_1, int64_t param_2);
-extern void FUN_1808fd400(uint param_1);
+extern void AdvancedSystemController(uint param_1);
 extern void FUN_1808fd200(void);
 extern void FUN_180669700(int64_t param_1, void* param_2, uint64_t param_3, int param_4, uint64_t param_5);
 extern void SystemSecurityChecker(uint64_t param_1);
@@ -429,7 +429,7 @@ void ui_system_exception_handler_1(int64_t param_1)
     // 简化实现：异常处理器1
     // 原实现包含异常处理和错误恢复逻辑
     
-    FUN_1808fd400(*(uint *)(param_1 + 0x20) ^ 0x80000000);
+    AdvancedSystemController(*(uint *)(param_1 + 0x20) ^ 0x80000000);
 }
 
 /**
@@ -444,7 +444,7 @@ void ui_system_exception_handler_2(int64_t param_1)
     // 简化实现：异常处理器2
     // 原实现包含异常处理和错误恢复逻辑
     
-    FUN_1808fd400(*(uint *)(param_1 + 0x20) ^ 0x80000000);
+    AdvancedSystemController(*(uint *)(param_1 + 0x20) ^ 0x80000000);
 }
 
 /**
@@ -502,7 +502,7 @@ void ui_system_render_processor(int64_t param_1)
                     
                     // 调用渲染函数
                     FUN_180669700(current_ptr + -0x1298, 0, 0, data_index, 0);
-                    FUN_1808fd400(*(int32_t *)(param_1 + 0x20));
+                    AdvancedSystemController(*(int32_t *)(param_1 + 0x20));
                 }
             }
             data_index = data_index + 1;

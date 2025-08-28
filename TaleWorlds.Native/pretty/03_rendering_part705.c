@@ -158,7 +158,7 @@ void FUN_180672da0(int64_t param_1,int64_t param_2,int64_t param_3,short *param_
   puStack_f8 = &uStack_dc;
   (*(code *)puStack_c0[1])(lVar13,uStack_e4,lVar9,iVar7);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_50 ^ (uint64_t)auStack_118);
+  SystemSecurityChecker(uStack_50 ^ (uint64_t)auStack_118);
 }
 
 
@@ -767,7 +767,7 @@ void FUN_180673360(int64_t param_1,int64_t *param_2)
   *(short *)(lVar3 + 0x1e) = sVar19 * auStack_108._14_2_;
   *(int8_t *)param_2[5] = uVar31;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_b8 ^ (uint64_t)auStack_108);
+  SystemSecurityChecker(uStack_b8 ^ (uint64_t)auStack_108);
 }
 
 

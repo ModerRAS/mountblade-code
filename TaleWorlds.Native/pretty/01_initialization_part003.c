@@ -238,7 +238,7 @@ void FUN_18002f270(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -263,8 +263,8 @@ void FUN_18002f270(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1078, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -295,7 +295,7 @@ void FUN_18002f370(void)
     uint64_t null_callback;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -320,8 +320,8 @@ void FUN_18002f370(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1050, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -352,7 +352,7 @@ void FUN_18002f470(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -377,8 +377,8 @@ void FUN_18002f470(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1028, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -409,7 +409,7 @@ void FUN_18002f570(void)
     uint64_t null_callback;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -434,8 +434,8 @@ void FUN_18002f570(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1000, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -466,7 +466,7 @@ void FUN_18002f670(void)
     void* system_data_ptr;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -491,8 +491,8 @@ void FUN_18002f670(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fd8, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -523,7 +523,7 @@ void FUN_18002f770(void)
     uint64_t null_callback;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -548,8 +548,8 @@ void FUN_18002f770(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fb0, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -580,7 +580,7 @@ void FUN_18002f870(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -605,8 +605,8 @@ void FUN_18002f870(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_10a0, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -637,7 +637,7 @@ void FUN_18002f970(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -662,8 +662,8 @@ void FUN_18002f970(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1078, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -694,7 +694,7 @@ void FUN_18002fa70(void)
     uint64_t null_callback;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -719,8 +719,8 @@ void FUN_18002fa70(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1050, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -751,7 +751,7 @@ void FUN_18002fb70(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -776,8 +776,8 @@ void FUN_18002fb70(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1028, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -808,7 +808,7 @@ void FUN_18002fc70(void)
     uint64_t null_callback;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -833,8 +833,8 @@ void FUN_18002fc70(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1000, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -865,7 +865,7 @@ void FUN_18002fd70(void)
     void* system_data_ptr;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -890,8 +890,8 @@ void FUN_18002fd70(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fd8, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -922,7 +922,7 @@ void FUN_18002fe70(void)
     uint64_t null_callback;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -947,8 +947,8 @@ void FUN_18002fe70(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fb0, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -979,7 +979,7 @@ void FUN_18002ff70(void)
     uint64_t null_callback;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1004,8 +1004,8 @@ void FUN_18002ff70(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_e0d0, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1036,7 +1036,7 @@ void FUN_180030070(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1061,8 +1061,8 @@ void FUN_180030070(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0d48, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1093,7 +1093,7 @@ void FUN_180030170(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1118,8 +1118,8 @@ void FUN_180030170(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_10a0, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1150,7 +1150,7 @@ void FUN_180030270(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1175,8 +1175,8 @@ void FUN_180030270(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1078, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1207,7 +1207,7 @@ void FUN_180030370(void)
     uint64_t null_callback;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1232,8 +1232,8 @@ void FUN_180030370(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1050, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1264,7 +1264,7 @@ void FUN_180030470(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1289,8 +1289,8 @@ void FUN_180030470(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1028, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1321,7 +1321,7 @@ void FUN_180030570(void)
     uint64_t null_callback;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1346,8 +1346,8 @@ void FUN_180030570(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_1000, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1378,7 +1378,7 @@ void FUN_180030670(void)
     void* system_data_ptr;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1403,8 +1403,8 @@ void FUN_180030670(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fd8, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1435,7 +1435,7 @@ void FUN_180030770(void)
     uint64_t null_callback;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1460,8 +1460,8 @@ void FUN_180030770(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_0fb0, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1539,7 +1539,7 @@ void FUN_180031a10(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1564,8 +1564,8 @@ void FUN_180031a10(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_f9e8, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1596,7 +1596,7 @@ void FUN_180031b10(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1621,8 +1621,8 @@ void FUN_180031b10(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_f9c0, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     
@@ -1653,7 +1653,7 @@ void FUN_180031c10(void)
     SystemInitializer callback_func;
     
     // 获取系统句柄
-    system_handle = (SystemHandle)FUN_18008d070();
+    system_handle = (SystemHandle)RenderGraphicsManager();
     component_ptr = (ComponentPointer)*system_handle;
     
     // 遍历组件链表
@@ -1678,8 +1678,8 @@ void FUN_180031c10(void)
     // 如果未找到合适节点，创建新节点
     if ((current_node == component_ptr) || 
         (compare_result = memcmp(&system_memory_f9e8, current_node + 4, 0x10), compare_result < 0)) {
-        int64_t allocation_size = FUN_18008f0d0(system_handle);
-        FUN_18008f140(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
+        int64_t allocation_size = RenderPipelineProcessor(system_handle);
+        RenderShaderProcessor(system_handle, &found_node, current_node, allocation_size + 0x20, allocation_size);
         current_node = found_node;
     }
     

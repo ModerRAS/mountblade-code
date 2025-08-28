@@ -1,7 +1,91 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 01_initialization_part025.c - 14 个函数
+// 02_core_engine_part018.c - 10 个函数
+
+// 函数: void FUN_180058f00(uint64_t param_1,uint64_t *param_2)
+void FUN_180058f00(uint64_t param_1,uint64_t *param_2)
+
+{
+  (*(code *)*param_2)();
+  return;
+}
+
+
+
+// WARNING: Removing unreachable block (ram,0x00018017747d)
+// WARNING: Removing unreachable block (ram,0x000180177a18)
+// WARNING: Removing unreachable block (ram,0x000180177a22)
+// WARNING: Removing unreachable block (ram,0x000180177a2e)
+// WARNING: Removing unreachable block (ram,0x000180177a35)
+// WARNING: Removing unreachable block (ram,0x000180177581)
+// WARNING: Removing unreachable block (ram,0x000180177590)
+// WARNING: Removing unreachable block (ram,0x00018017759c)
+// WARNING: Removing unreachable block (ram,0x0001801775a3)
+// WARNING: Removing unreachable block (ram,0x0001801775b3)
+// WARNING: Removing unreachable block (ram,0x0001801775c0)
+// WARNING: Removing unreachable block (ram,0x0001801775cc)
+// WARNING: Removing unreachable block (ram,0x0001801775d3)
+// WARNING: Removing unreachable block (ram,0x000180177263)
+// WARNING: Removing unreachable block (ram,0x000180177296)
+// WARNING: Removing unreachable block (ram,0x00018017726a)
+// WARNING: Removing unreachable block (ram,0x000180177274)
+// WARNING: Removing unreachable block (ram,0x000180177280)
+// WARNING: Removing unreachable block (ram,0x000180177287)
+// WARNING: Removing unreachable block (ram,0x000180177290)
+// WARNING: Removing unreachable block (ram,0x000180177298)
+// WARNING: Removing unreachable block (ram,0x00018017753a)
+// WARNING: Removing unreachable block (ram,0x000180177540)
+// WARNING: Removing unreachable block (ram,0x000180177550)
+// WARNING: Removing unreachable block (ram,0x00018017755c)
+// WARNING: Removing unreachable block (ram,0x000180177563)
+// WARNING: Removing unreachable block (ram,0x0001801772c2)
+// WARNING: Removing unreachable block (ram,0x0001801772d0)
+// WARNING: Removing unreachable block (ram,0x0001801772dc)
+// WARNING: Removing unreachable block (ram,0x0001801772e3)
+// WARNING: Removing unreachable block (ram,0x00018017764c)
+// WARNING: Removing unreachable block (ram,0x00018017749a)
+// WARNING: Removing unreachable block (ram,0x0001801774a8)
+// WARNING: Removing unreachable block (ram,0x0001801774aa)
+// WARNING: Removing unreachable block (ram,0x000180176fc3)
+// WARNING: Removing unreachable block (ram,0x000180177722)
+// WARNING: Removing unreachable block (ram,0x00018017729d)
+// WARNING: Removing unreachable block (ram,0x00018017766b)
+// WARNING: Removing unreachable block (ram,0x000180177677)
+// WARNING: Removing unreachable block (ram,0x000180177679)
+// WARNING: Removing unreachable block (ram,0x00018017739f)
+// WARNING: Removing unreachable block (ram,0x0001801773a6)
+// WARNING: Removing unreachable block (ram,0x0001801773b0)
+// WARNING: Removing unreachable block (ram,0x0001801773bc)
+// WARNING: Removing unreachable block (ram,0x0001801773c3)
+// WARNING: Removing unreachable block (ram,0x00018017731b)
+// WARNING: Removing unreachable block (ram,0x000180177321)
+// WARNING: Removing unreachable block (ram,0x000180177330)
+// WARNING: Removing unreachable block (ram,0x00018017733c)
+// WARNING: Removing unreachable block (ram,0x000180177343)
+// WARNING: Removing unreachable block (ram,0x00018017734b)
+// WARNING: Removing unreachable block (ram,0x000180177356)
+// WARNING: Removing unreachable block (ram,0x000180177360)
+// WARNING: Removing unreachable block (ram,0x00018017736c)
+// WARNING: Removing unreachable block (ram,0x000180177373)
+// WARNING: Removing unreachable block (ram,0x00018017737b)
+// WARNING: Removing unreachable block (ram,0x000180177385)
+// WARNING: Removing unreachable block (ram,0x0001801773cb)
+// WARNING: Removing unreachable block (ram,0x000180177381)
+// WARNING: Removing unreachable block (ram,0x0001801773cd)
+// WARNING: Removing unreachable block (ram,0x0001801773d6)
+// WARNING: Removing unreachable block (ram,0x0001801773da)
+// WARNING: Removing unreachable block (ram,0x0001801773e4)
+// WARNING: Removing unreachable block (ram,0x0001801773eb)
+// WARNING: Removing unreachable block (ram,0x000180177400)
+// WARNING: Removing unreachable block (ram,0x00018017740c)
+// WARNING: Removing unreachable block (ram,0x000180177413)
+// WARNING: Removing unreachable block (ram,0x00018017741e)
+// WARNING: Removing unreachable block (ram,0x000180177417)
+// WARNING: Removing unreachable block (ram,0x000180177420)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
 
 // 函数: void FUN_180059000(int64_t *param_1)
 void FUN_180059000(int64_t *param_1)
@@ -83,7 +167,7 @@ void FUN_180059000(int64_t *param_1)
   uStack_30 = 0x18005902b;
   lVar10 = FUN_180175aa0(uVar9);
   uVar7 = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1dc0);
-  init_system_data_memory = lVar10;
+  core_system_data_memory = lVar10;
   *(int32_t *)(lVar10 + 0x1e0) = *(int32_t *)(SYSTEM_STATE_MANAGER + 0x1d50);
   *(int32_t *)(lVar10 + 0x1e4) = uVar7;
   uStack_30 = 0x180059066;
@@ -91,8 +175,8 @@ void FUN_180059000(int64_t *param_1)
   uStack_298 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_3b8;
   uStack_378 = 0;
-  lStack_310 = init_system_data_memory;
-  *(uint64_t *)(init_system_data_memory + 0xf0) = 0;
+  lStack_310 = core_system_data_memory;
+  *(uint64_t *)(core_system_data_memory + 0xf0) = 0;
   uStack_338 = 3;
   ppppppuStack_360 = &ppppppuStack_360;
   ppppppuStack_358 = &ppppppuStack_360;
@@ -463,12 +547,12 @@ void FUN_180059000(int64_t *param_1)
           if (pppppppuVar14[5] != (uint64_t ******)0x0) {
             ppppppuVar19 = pppppppuVar14[5];
           }
-          DataValidator(&puStack_308,ppppppuVar19);
+          FUN_180627910(&puStack_308,ppppppuVar19);
           puVar17 = &system_buffer_ptr;
           if (puStack_328 != (void *)0x0) {
             puVar17 = puStack_328;
           }
-          DataValidator(&puStack_2e8,puVar17);
+          FUN_180627910(&puStack_2e8,puVar17);
           FUN_1801762b0(lVar12,&puStack_2e8,&puStack_308,&uStack_48);
           puStack_2e8 = &system_data_buffer_ptr;
           if (lStack_2e0 != 0) {
@@ -825,196 +909,6 @@ void FUN_1800595c0(uint64_t *param_1)
   *(int32_t *)(param_1 + 3) = 0;
   *param_1 = &system_state_ptr;
   return;
-}
-
-
-
-
-
-// 函数: void FUN_180059620(int64_t *param_1)
-void FUN_180059620(int64_t *param_1)
-
-{
-  int64_t lVar1;
-  int64_t lVar2;
-  
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x50) {
-    FUN_1800596a0(lVar2);
-  }
-  if (*param_1 == 0) {
-    return;
-  }
-                    // WARNING: Subroutine does not return
-  CoreEngineMemoryPoolCleaner();
-}
-
-
-
-
-
-// 函数: void FUN_180059640(int64_t *param_1)
-void FUN_180059640(int64_t *param_1)
-
-{
-  int64_t lVar1;
-  int64_t lVar2;
-  
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x50) {
-    FUN_1800596a0(lVar2);
-  }
-  if (*param_1 == 0) {
-    return;
-  }
-                    // WARNING: Subroutine does not return
-  CoreEngineMemoryPoolCleaner();
-}
-
-
-
-
-
-// 函数: void FUN_1800596a0(uint64_t *param_1)
-void FUN_1800596a0(uint64_t *param_1)
-
-{
-  param_1[4] = &system_data_buffer_ptr;
-  if (param_1[5] != 0) {
-                    // WARNING: Subroutine does not return
-    CoreEngineMemoryPoolCleaner();
-  }
-  param_1[5] = 0;
-  *(int32_t *)(param_1 + 7) = 0;
-  param_1[4] = &system_state_ptr;
-  *param_1 = &system_data_buffer_ptr;
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
-    CoreEngineMemoryPoolCleaner();
-  }
-  param_1[1] = 0;
-  *(int32_t *)(param_1 + 3) = 0;
-  *param_1 = &system_state_ptr;
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180059730(int64_t param_1)
-void FUN_180059730(int64_t param_1)
-
-{
-  if (*(int64_t *)(param_1 + 8) != 0) {
-                    // WARNING: Subroutine does not return
-    CoreEngineMemoryPoolCleaner();
-  }
-  _Mtx_destroy_in_situ();
-  return;
-}
-
-
-
-uint64_t * FUN_180059780(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
-
-{
-  uint64_t *puVar1;
-  uint64_t *puVar2;
-  int64_t lVar3;
-  
-  if (param_1 != param_2) {
-    lVar3 = (int64_t)param_3 - (int64_t)param_1;
-    puVar2 = param_1 + 1;
-    do {
-      *param_3 = &system_state_ptr;
-      *(uint64_t *)(lVar3 + (int64_t)puVar2) = 0;
-      *(int32_t *)(lVar3 + 8 + (int64_t)puVar2) = 0;
-      *param_3 = &system_data_buffer_ptr;
-      *(uint64_t *)(lVar3 + 0x10 + (int64_t)puVar2) = 0;
-      *(uint64_t *)(lVar3 + (int64_t)puVar2) = 0;
-      *(int32_t *)(lVar3 + 8 + (int64_t)puVar2) = 0;
-      *(int32_t *)(lVar3 + 8 + (int64_t)puVar2) = *(int32_t *)(puVar2 + 1);
-      *(uint64_t *)(lVar3 + (int64_t)puVar2) = *puVar2;
-      *(int32_t *)(lVar3 + 0x14 + (int64_t)puVar2) = *(int32_t *)((int64_t)puVar2 + 0x14);
-      *(int32_t *)(lVar3 + 0x10 + (int64_t)puVar2) = *(int32_t *)(puVar2 + 2);
-      *(int32_t *)(puVar2 + 1) = 0;
-      *puVar2 = 0;
-      puVar2[2] = 0;
-      param_3 = param_3 + 4;
-      puVar1 = puVar2 + 3;
-      puVar2 = puVar2 + 4;
-    } while (puVar1 != param_2);
-  }
-  return param_3;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180059820(int64_t *param_1,uint64_t param_2)
-void FUN_180059820(int64_t *param_1,uint64_t param_2)
-
-{
-  uint64_t *puVar1;
-  int64_t lVar2;
-  int64_t lVar3;
-  int64_t lVar4;
-  uint64_t *puVar5;
-  int64_t lVar6;
-  
-  lVar3 = param_1[1];
-  lVar4 = *param_1;
-  lVar6 = lVar3 - lVar4 >> 5;
-  if (lVar6 == 0) {
-    lVar6 = 1;
-  }
-  else {
-    lVar6 = lVar6 * 2;
-    if (lVar6 == 0) {
-      lVar2 = 0;
-      goto LAB_180059885;
-    }
-  }
-  lVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar6 << 5,(char)param_1[3]);
-  lVar3 = param_1[1];
-  lVar4 = *param_1;
-LAB_180059885:
-  lVar3 = FUN_180059780(lVar4,lVar3,lVar2);
-  CoreEngineDataTransformer(lVar3,param_2);
-  puVar1 = (uint64_t *)param_1[1];
-  puVar5 = (uint64_t *)*param_1;
-  if (puVar5 != puVar1) {
-    do {
-      (**(code **)*puVar5)(puVar5,0);
-      puVar5 = puVar5 + 4;
-    } while (puVar5 != puVar1);
-    puVar5 = (uint64_t *)*param_1;
-  }
-  if (puVar5 == (uint64_t *)0x0) {
-    *param_1 = lVar2;
-    param_1[2] = lVar6 * 0x20 + lVar2;
-    param_1[1] = lVar3 + 0x20;
-    return;
-  }
-                    // WARNING: Subroutine does not return
-  CoreEngineMemoryPoolCleaner(puVar5);
-}
-
-
-
-uint64_t *
-FUN_180059900(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
-{
-  *param_1 = &system_state_ptr;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x28,param_3,param_4,0xfffffffffffffffe);
-  }
-  return param_1;
 }
 
 

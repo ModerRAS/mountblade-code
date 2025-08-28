@@ -146,7 +146,7 @@ void FUN_180066320(uint64_t param_1,uint64_t param_2,char param_3,char param_4,
   cVar1 = (**(code **)**(uint64_t **)(init_system_data_memory + 0x18))();
   iVar4 = 0;
   if (cVar1 != '\0') {
-    FUN_180627910(&puStack_1b8,&system_memory_4870);
+    DataValidator(&puStack_1b8,&system_memory_4870);
     FUN_180065f00(&puStack_1b8,0);
     puStack_1b8 = &system_data_buffer_ptr;
     if (lStack_1b0 != 0) {
@@ -199,7 +199,7 @@ void FUN_180066320(uint64_t param_1,uint64_t param_2,char param_3,char param_4,
   else {
 LAB_18006650a:
     FUN_180052070(&puStack_198);
-    uVar5 = FUN_180627910(&puStack_138,&system_memory_eb50);
+    uVar5 = DataValidator(&puStack_138,&system_memory_eb50);
     iVar4 = FUN_180628d60(&puStack_198,uVar5);
     puStack_138 = &system_data_buffer_ptr;
     if (lStack_130 != 0) {

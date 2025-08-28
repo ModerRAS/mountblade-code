@@ -243,7 +243,7 @@ void FUN_18040b99d(int64_t param_1,int64_t param_2,char param_3,int param_4,uint
       (auVar10._0_4_ = fVar25 * fVar25 + fVar22 * fVar22 + fVar24 * fVar24,
       0.98010004 < auVar10._0_4_)) && (auVar10._0_4_ < 1.0201)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(fVar23 * 0.5);
+    AdvancedSystemController(fVar23 * 0.5);
   }
   _param_6 = ZEXT812(0);
   if (iVar2 == 0) {
@@ -332,7 +332,7 @@ void FUN_18040b99d(int64_t param_1,int64_t param_2,char param_3,int param_4,uint
         iVar2 = -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400((float)iVar2 * fVar17 * -0.5);
+      AdvancedSystemController((float)iVar2 * fVar17 * -0.5);
     }
     if (iVar2 != 1) {
       if (auVar10._0_4_ < 0.0) {
@@ -342,7 +342,7 @@ void FUN_18040b99d(int64_t param_1,int64_t param_2,char param_3,int param_4,uint
         fVar18 = -0.5;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(fVar18 * fVar17);
+      AdvancedSystemController(fVar18 * fVar17);
     }
     FUN_18040f4d0(&stack0x00000020);
   }
@@ -393,7 +393,7 @@ void FUN_18040b99d(int64_t param_1,int64_t param_2,char param_3,int param_4,uint
       }
       uVar8 = atan2f(-fVar18);
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(uVar8);
+      AdvancedSystemController(uVar8);
     }
   }
   fVar23 = *(float *)(unaff_RBP + 0xb8) * *(float *)(lVar5 + 0x34);
@@ -407,14 +407,14 @@ void FUN_18040b99d(int64_t param_1,int64_t param_2,char param_3,int param_4,uint
         fVar18 = 0.5;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(fVar18 * fVar23);
+      AdvancedSystemController(fVar18 * fVar23);
     }
     if (iVar2 != 1) {
       if (in_stack_00000068 < 0.0) {
         fVar18 = 0.5;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(fVar18 * fVar23);
+      AdvancedSystemController(fVar18 * fVar23);
     }
     FUN_18040f4d0(&stack0x00000040);
     if (1e-05 < fVar19) {
@@ -422,7 +422,7 @@ void FUN_18040b99d(int64_t param_1,int64_t param_2,char param_3,int param_4,uint
       auVar13 = ZEXT416((uint)fVar17);
       if ((0.98010004 < fVar17) && (fVar17 < 1.0201)) {
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(fVar19 * 0.5);
+        AdvancedSystemController(fVar19 * 0.5);
       }
     }
     fVar17 = fStack000000000000004c * fStack000000000000004c +
@@ -615,7 +615,7 @@ void FUN_18040bec0(void)
         iVar2 = -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400((float)iVar2 * fVar18 * -0.5);
+      AdvancedSystemController((float)iVar2 * fVar18 * -0.5);
     }
     if (unaff_EBX != 1) {
       if (auVar13._0_4_ < unaff_XMM11_Da) {
@@ -625,7 +625,7 @@ void FUN_18040bec0(void)
         fVar12 = -0.5;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(fVar12 * fVar18);
+      AdvancedSystemController(fVar12 * fVar18);
     }
     FUN_18040f4d0(&stack0x00000020);
   }
@@ -676,7 +676,7 @@ void FUN_18040bec0(void)
       }
       uVar7 = atan2f(-fVar12);
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(uVar7);
+      AdvancedSystemController(uVar7);
     }
   }
   auVar13._0_4_ = *(float *)(unaff_RBP + 0xb8) * *(float *)(unaff_R13 + 0x34);
@@ -690,14 +690,14 @@ void FUN_18040bec0(void)
         fVar12 = 0.5;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(fVar12 * auVar13._0_4_);
+      AdvancedSystemController(fVar12 * auVar13._0_4_);
     }
     if (unaff_EBX != 1) {
       if (fStack0000000000000068 < unaff_XMM11_Da) {
         fVar12 = 0.5;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(fVar12 * auVar13._0_4_);
+      AdvancedSystemController(fVar12 * auVar13._0_4_);
     }
     FUN_18040f4d0(&stack0x00000040);
     if (1e-05 < fVar16) {
@@ -705,7 +705,7 @@ void FUN_18040bec0(void)
       auVar11 = ZEXT416((uint)fVar18);
       if ((0.98010004 < fVar18) && (fVar18 < 1.0201)) {
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(fVar16 * 0.5);
+        AdvancedSystemController(fVar16 * 0.5);
       }
     }
     fVar18 = fStack000000000000004c * fStack000000000000004c +

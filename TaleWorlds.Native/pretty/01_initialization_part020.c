@@ -428,7 +428,7 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   if ((init_system_data_counter != 0) &&
      ((*(int *)(SYSTEM_STATE_MANAGER + 900) != *(int *)(SYSTEM_STATE_MANAGER + 0x380) ||
       (*(int *)(SYSTEM_STATE_MANAGER + 0x3f4) != *(int *)(SYSTEM_STATE_MANAGER + 0x3f0))))) {
-    callback_param = FUN_18062b1e0(system_memory_pool_ptr, 0x40, 8, 3);
+    callback_param = SystemStateHandler(system_memory_pool_ptr, 0x40, 8, 3);
     temp_stack_pointer = temp_array2;
     temp_pointer3 = &unknown_var_5328_ptr;
     temp_pointer4 = &unknown_var_5312_ptr;
@@ -560,7 +560,7 @@ void InitializationSystem_StringProcessor(StringHandle string_buffer, int64_t bu
   }
   
   temp_counter2 = string_length + 5;
-  FUN_1806277c0(buffer_size, temp_counter2);
+  SystemConfigController(buffer_size, temp_counter2);
   string_pointer = (int32_t *)((uint64_t)*(uint *)(buffer_size + 0x10) + *(int64_t *)(buffer_size + 8));
   *string_pointer = 0x3a757067;  // ":upg"
   *(int16_t *)(string_pointer + 1) = 0x20;  // " "
@@ -568,18 +568,18 @@ void InitializationSystem_StringProcessor(StringHandle string_buffer, int64_t bu
   
   // 处理缓冲区数据
   if (0 < stack_value2) {
-    FUN_1806277c0(buffer_size, temp_counter2 + stack_value2);
+    SystemConfigController(buffer_size, temp_counter2 + stack_value2);
     memcpy((uint64_t)*(uint *)(buffer_size + 0x10) + *(int64_t *)(buffer_size + 8), temp_param3,
            (int64_t)(stack_value2 + 1));
   }
   
   // 继续字符串处理
-  FUN_1806277c0(buffer_size, string_length + 6);
+  SystemConfigController(buffer_size, string_length + 6);
   *(int16_t *)((uint64_t)*(uint *)(buffer_size + 0x10) + *(int64_t *)(buffer_size + 8)) = 10;
   *(int *)(buffer_size + 0x10) = string_length + 6;
   
   temp_counter2 = string_length + 0xb;
-  FUN_1806277c0(buffer_size, temp_counter2);
+  SystemConfigController(buffer_size, temp_counter2);
   string_pointer = (int32_t *)((uint64_t)*(uint *)(buffer_size + 0x10) + *(int64_t *)(buffer_size + 8));
   *string_pointer = 0x3a757063;  // ":upc"
   *(int16_t *)(string_pointer + 1) = 0x20;  // " "
@@ -587,13 +587,13 @@ void InitializationSystem_StringProcessor(StringHandle string_buffer, int64_t bu
   
   // 处理第二段缓冲区数据
   if (0 < stack_value1) {
-    FUN_1806277c0(buffer_size, temp_counter2 + stack_value1);
+    SystemConfigController(buffer_size, temp_counter2 + stack_value1);
     memcpy((uint64_t)*(uint *)(buffer_size + 0x10) + *(int64_t *)(buffer_size + 8), temp_param2,
            (int64_t)(stack_value1 + 1));
   }
   
   // 完成字符串处理
-  FUN_1806277c0(buffer_size, string_length + 0xc);
+  SystemConfigController(buffer_size, string_length + 0xc);
   *(int16_t *)((uint64_t)*(uint *)(buffer_size + 0x10) + *(int64_t *)(buffer_size + 8)) = 10;
   *(int *)(buffer_size + 0x10) = string_length + 0xc;
   
@@ -602,7 +602,7 @@ void InitializationSystem_StringProcessor(StringHandle string_buffer, int64_t bu
   temp_pointer2 = &system_state_ptr;
   
   // 清理安全cookie并退出
-  FUN_1808fc050(security_cookie ^ (uint64_t)temp_buffer);
+  SystemDataManager(security_cookie ^ (uint64_t)temp_buffer);
 }
 
 /**
@@ -673,7 +673,7 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   stack_value = 0;
   stack_counter = 0;
   
-  FUN_1806277c0(&temp_pointer3, 6);
+  SystemConfigController(&temp_pointer3, 6);
   system_manager = stack_value;
   memory_size = (uint64_t)stack_counter;
   
@@ -695,7 +695,7 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   
   // 复制进程名称到缓冲区
   if (0 < (int)(resource_manager + 1)) {
-    FUN_1806277c0(&temp_pointer3, (int)resource_manager + 7);
+    SystemConfigController(&temp_pointer3, (int)resource_manager + 7);
     memcpy((uint64_t)stack_counter + system_manager, process_name_buffer, (int64_t)((int)resource_manager + 2));
   }
   
@@ -705,7 +705,7 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
     temp_pointer = &unknown_var_6256_ptr;
   }
   
-  FUN_180627910(temp_buffer2, temp_pointer);
+  DataValidator(temp_buffer2, temp_pointer);
   temp_pointer4 = &system_data_buffer_ptr;
   temp_param5 = 0;
   temp_param6 = 0;
@@ -735,10 +735,10 @@ RESOURCE_ALLOCATION_COMPLETE:
     }
     
     // 分配内存资源
-    memory_pointer = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)iteration_count, 0x13);
+    memory_pointer = (int8_t *)SystemMemoryManager(system_memory_pool_ptr, (int64_t)iteration_count, 0x13);
     *memory_pointer = 0;
     temp_pointer2 = memory_pointer;
-    resource_counter = FUN_18064e990(memory_pointer);
+    resource_counter = DataFlowController(memory_pointer);
     temp_param1 = CONCAT44(temp_param1._4_4_, resource_counter);
     goto RESOURCE_ALLOCATION_COMPLETE;
   }
@@ -759,17 +759,17 @@ RESOURCE_ALLOCATION_COMPLETE:
       if ((int)allocation_counter < 0x10) {
         allocation_counter = 0x10;
       }
-      memory_pointer = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)allocation_counter, 0x13);
+      memory_pointer = (int8_t *)SystemMemoryManager(system_memory_pool_ptr, (int64_t)(int)allocation_counter, 0x13);
       *memory_pointer = 0;
     }
     else {
       if (allocation_counter <= temp_counter) goto RESOURCE_EXTENSION_COMPLETE;
       temp_flag = 0x13;
-      memory_pointer = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr, memory_pointer, allocation_counter, 0x10);
+      memory_pointer = (int8_t *)DataStructureManager(system_memory_pool_ptr, memory_pointer, allocation_counter, 0x10);
     }
     
     temp_pointer2 = memory_pointer;
-    process_id = FUN_18064e990(memory_pointer);
+    process_id = DataFlowController(memory_pointer);
     temp_param1 = CONCAT44(temp_param1._4_4_, process_id);
   }
   
@@ -852,7 +852,7 @@ CALLBACK_PROCESSING_COMPLETE:
     
     // 清理资源并返回
     if (callback_array != (uint64_t *)0x0) {
-      FUN_18064e900(callback_array);
+      SystemCoreProcessor(callback_array);
     }
     return completion_status;
   }
@@ -868,7 +868,7 @@ CALLBACK_PROCESSING_LOOP:
   memory_pointer = (int8_t *)0x0;
   memory_size = 0;
   
-  FUN_1806277c0(&temp_pointer1, *function_pointer);
+  SystemConfigController(&temp_pointer1, *function_pointer);
   
   // 处理字符串数据
   if (*function_pointer != 0) {
@@ -922,7 +922,7 @@ CALLBACK_PROCESSING_LOOP:
     if (0x1809fde87 < (int64_t)resource_pointer) {
       temp_pointer1 = &system_data_buffer_ptr;
       if (memory_pointer != (int8_t *)0x0) {
-        FUN_18064e900();
+        SystemCoreProcessor();
       }
       memory_pointer = (int8_t *)0x0;
       temp_param2 = (uint64_t)temp_param2._4_4_ << 0x20;
@@ -935,7 +935,7 @@ CALLBACK_PROCESSING_LOOP:
   // 清理临时资源
   temp_pointer1 = &system_data_buffer_ptr;
   if (memory_pointer != (int8_t *)0x0) {
-    FUN_18064e900();
+    SystemCoreProcessor();
   }
   memory_pointer = (int8_t *)0x0;
   temp_param2 = (uint64_t)temp_param2._4_4_ << 0x20;

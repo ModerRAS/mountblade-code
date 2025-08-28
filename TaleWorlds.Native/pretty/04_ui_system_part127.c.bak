@@ -41,7 +41,7 @@ void FUN_1807417b0(uint64_t param_1,int32_t param_2,int32_t param_3)
     func_0x00018074b7d0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,7,param_1,&unknown_var_7744_ptr);
+    FUN_180749ef0(iVar1,7,param_1,&unknown_var_7744_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_178);
@@ -65,7 +65,7 @@ void FUN_180741810(void)
   iVar2 = SystemDataProcessor(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074b7d0(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_EBP);
                     // WARNING: Subroutine does not return
-  DataTransformer(unaff_ESI,7);
+  FUN_180749ef0(unaff_ESI,7);
 }
 
 
@@ -112,7 +112,7 @@ void FUN_1807418b0(uint64_t param_1,int32_t param_2)
     func_0x00018074b830(auStack_128,0x100,param_2);
     puStack_148 = auStack_128;
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,8,param_1,&unknown_var_8040_ptr);
+    FUN_180749ef0(iVar1,8,param_1,&unknown_var_8040_ptr);
   }
 LAB_180741958:
   if (lStack_138 != 0) {
@@ -169,7 +169,7 @@ void FUN_1807419a0(uint64_t param_1,uint64_t param_2,int32_t param_3,int32_t par
     func_0x00018074b7d0(auStack_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_5);
     puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,8,param_1,&unknown_var_8064_ptr);
+    FUN_180749ef0(iVar1,8,param_1,&unknown_var_8064_ptr);
   }
 FUN_180741b27:
   if (lStack_158 != 0) {
@@ -232,7 +232,7 @@ void FUN_1807419bd(uint64_t param_1,uint64_t param_2,int32_t param_3,int32_t par
     func_0x00018074b7d0(&stack0x00000050 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),in_stack_000001c0
                        );
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,8,param_1,&unknown_var_8064_ptr,&stack0x00000050);
+    FUN_180749ef0(iVar1,8,param_1,&unknown_var_8064_ptr,&stack0x00000050);
   }
 FUN_180741b27:
   if (lStack0000000000000040 != 0) {
@@ -269,7 +269,7 @@ void FUN_180741a43(void)
   iVar2 = SystemDataProcessor(&stack0x00000050 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074b7d0(&stack0x00000050 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_R15D);
                     // WARNING: Subroutine does not return
-  DataTransformer(unaff_ESI,8);
+  FUN_180749ef0(unaff_ESI,8);
 }
 
 

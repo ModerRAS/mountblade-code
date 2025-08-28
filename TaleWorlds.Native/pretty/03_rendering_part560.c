@@ -617,7 +617,7 @@ LAB_1805781ca:
   }
 LAB_180578237:
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar30);
+  AdvancedSystemController(fVar30);
 }
 
 

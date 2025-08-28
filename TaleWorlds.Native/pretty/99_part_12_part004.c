@@ -84,7 +84,7 @@ void FUN_1807c9b50(int64_t param_1,int param_2,int param_3,int param_4,int param
     FUN_180768650(param_1,&uStack_78,8);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_a8);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_a8);
 }
 
 
@@ -172,7 +172,7 @@ void FUN_1807c9b88(int32_t param_1)
   uVar9 = FUN_180768650(uVar9,unaff_RBP + -0x48,0x28);
   FUN_180768650(uVar9,unaff_RBP + -0x50,8);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x20) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x20) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -187,7 +187,7 @@ void FUN_1807c9cfc(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x20) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x20) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -202,17 +202,17 @@ uint64_t FUN_1807c9db0(int64_t param_1)
   lVar1 = *(int64_t *)(param_1 + 0x230);
   if ((lVar1 != 0) && (lVar1 != param_1 + 0x208)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar1,&unknown_var_8368_ptr,0x1ae,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar1,&unknown_var_8368_ptr,0x1ae,1);
   }
   if (*(int64_t *)(param_1 + 0x1f8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x1f8),
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x1f8),
                   &unknown_var_8368_ptr,0x1b3,1);
   }
   *(int32_t *)(param_1 + 0x200) = 0;
   if (*(int64_t *)(param_1 + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x1e8),
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x1e8),
                   &unknown_var_8368_ptr,0x1b9,1);
   }
   *(int32_t *)(param_1 + 0x1e0) = 0;
@@ -294,7 +294,7 @@ void FUN_1807ca010(int64_t param_1,uint param_2)
   if (*(int *)(param_1 + 0x110) == -1) {
     uStack_68 = CONCAT71(uStack_68._1_7_,1);
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x230),
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x230),
                   &unknown_var_8368_ptr,0x95);
   }
   puVar2 = (uint64_t *)(param_1 + 0x180);
@@ -537,7 +537,7 @@ LAB_1807ca6d1:
   }
 FUN_1807ca2c6:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_88);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_88);
 }
 
 
@@ -602,7 +602,7 @@ void FUN_1807ca099(void)
   if ((iVar13 != 0) || (*(int64_t *)(unaff_RBX + 0x230) == 0)) goto LAB_1807ca2b6;
   if (*(int *)(unaff_RBX + 0x110) == -1) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x230),
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x230),
                   &unknown_var_8368_ptr,0x95,(char)unaff_EBP);
   }
   puVar2 = (uint64_t *)(unaff_RBX + 0x180);
@@ -840,7 +840,7 @@ LAB_1807ca6d1:
   }
 LAB_1807ca2b6:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000060 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000060 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -855,7 +855,7 @@ void FUN_1807ca2c6(void)
   uint64_t in_stack_00000060;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000060 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000060 ^ (uint64_t)&stack0x00000000);
 }
 
 

@@ -99,7 +99,7 @@
 /** 系统调用和内存管理器 */
 #define SystemMemoryAllocator CoreEngineMemoryPoolAllocator     /** 系统内存分配器 */
 #define SystemMemoryDeallocator FUN_18005e110    /** 系统内存释放器 */
-#define SystemMemoryReallocator FUN_18062b8b0   /** 系统内存重分配器 */
+#define SystemMemoryReallocator DataValidator   /** 系统内存重分配器 */
 #define SystemDataCopier CoreEngineDataTransformer          /** 系统数据复制器 */
 #define SystemConfigurator CoreEngineDataBufferProcessor         /** 系统配置器 */
 #define SystemErrorHandler CoreEngineMemoryPoolCleaner         /** 系统错误处理器 */

@@ -784,7 +784,7 @@ void FUN_18082e5c0(uint64_t param_1, uint64_t param_2, int param_3, int param_4)
     
     // WARNING: 子程序不返回
     // 执行系统调用
-    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_f8);
+    SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_f8);
 }
 
 /**
@@ -842,7 +842,7 @@ void FUN_18082e78c(void)
     
     // WARNING: 子程序不返回
     // 执行错误处理调用
-    FUN_1808fc050(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
 }
 
 /**

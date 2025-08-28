@@ -189,7 +189,7 @@ LAB_1804b8006:
            (puVar10 = &unknown_var_5412_ptr, (pcVar17[1] + 0xa8U & 0xdf) != 0)) {
           puVar10 = &unknown_var_2208_ptr;
         }
-        FUN_18010cbc0(pcVar17,puVar10,aiStackX_18,puVar12,uVar19);
+        AdvancedSystemOptimizer(pcVar17,puVar10,aiStackX_18,puVar12,uVar19);
 LAB_1804b8060:
         lVar9 = param_1 + (int64_t)aiStackX_18[0] * 0x28;
         pcVar17 = "key";
@@ -757,7 +757,7 @@ LAB_1804b8a0b:
           }
           else {
             if (uVar5 <= (uint)pcVar10) goto LAB_1804b8a97;
-            puVar9 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar9,uVar5,0x10,0x13);
+            puVar9 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar9,uVar5,0x10,0x13);
           }
           puStack_88 = puVar9;
           uVar6 = CoreEngineSystemCleanup(puVar9);

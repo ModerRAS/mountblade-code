@@ -259,7 +259,7 @@ LAB_180243c26:
     else {
       if (uVar7 <= uVar16) goto LAB_180243cb3;
       uStack_d8 = 0x13;
-      puVar13 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar13,uVar7,0x10);
+      puVar13 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar13,uVar7,0x10);
     }
     puStack_b8 = puVar13;
     uStack_a8._0_4_ = CoreEngineSystemCleanup(puVar13);
@@ -322,7 +322,7 @@ LAB_180243da1:
     else {
       if (uVar16 <= (uint)plStack_80) goto LAB_180243e2b;
       uStack_d8 = 0x13;
-      puVar13 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar13,uVar16,0x10);
+      puVar13 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar13,uVar16,0x10);
     }
     puStack_98 = puVar13;
     uStack_88._0_4_ = CoreEngineSystemCleanup(puVar13);
@@ -390,7 +390,7 @@ LAB_180243f24:
     else {
       if (uVar7 <= uVar16) goto LAB_180243fae;
       uStack_d8 = 0x13;
-      puVar13 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar13,uVar7,0x10);
+      puVar13 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar13,uVar7,0x10);
     }
     puStack_b8 = puVar13;
     uStack_a8._0_4_ = CoreEngineSystemCleanup(puVar13);
@@ -825,7 +825,7 @@ void FUN_180244860(int64_t *param_1,int64_t param_2)
     if (0 < iVar4) {
       if ((iVar4 != -0x16) && (uVar3 < iVar4 + 0x17U)) {
         uStack_158 = 0x13;
-        puVar6 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar6,iVar4 + 0x17U,0x10);
+        puVar6 = (int32_t *)DataValidator(system_memory_pool_ptr,puVar6,iVar4 + 0x17U,0x10);
         puStack_140 = puVar6;
         uStack_130._0_4_ = CoreEngineSystemCleanup(puVar6);
         iVar4 = *(int *)(param_2 + 0x3530);
@@ -879,7 +879,7 @@ void FUN_180244860(int64_t *param_1,int64_t param_2)
     if (0 < iVar4) {
       if ((iVar4 != -0x1b) && (uVar3 < iVar4 + 0x1cU)) {
         uStack_158 = 0x13;
-        puVar6 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar6,iVar4 + 0x1cU,0x10);
+        puVar6 = (int32_t *)DataValidator(system_memory_pool_ptr,puVar6,iVar4 + 0x1cU,0x10);
         puStack_140 = puVar6;
         uStack_130._0_4_ = CoreEngineSystemCleanup(puVar6);
         iVar4 = *(int *)(param_2 + 0x3530);

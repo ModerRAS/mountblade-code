@@ -236,7 +236,7 @@ LAB_1801b6d83:
   if (0 < iVar16) {
     if ((iVar16 != -0x11) && (uVar7 < iVar16 + 0x12U)) {
       uStack_368 = 0x13;
-      puVar13 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar13,iVar16 + 0x12U,0x10);
+      puVar13 = (uint64_t *)DataValidator(system_memory_pool_ptr,puVar13,iVar16 + 0x12U,0x10);
       puStack_320 = puVar13;
       uStack_310._0_4_ = CoreEngineSystemCleanup(puVar13);
       iVar16 = (int)plVar1[0x9d];
@@ -489,7 +489,7 @@ void FUN_1801b77f0(int64_t param_1,uint64_t param_2,int64_t param_3)
         FUN_1808fc838(auStack_138,0x30,4,FUN_1801c2890);
         uStack_78 = 0;
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(fVar8);
+        AdvancedSystemController(fVar8);
       }
       lVar1 = *(int64_t *)(param_1 + 8);
       *(int32_t *)(lVar1 + 0x3414) = *(int32_t *)(lVar1 + 0x367c);

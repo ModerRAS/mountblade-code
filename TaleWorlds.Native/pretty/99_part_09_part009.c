@@ -404,7 +404,7 @@ LAB_1805c1cc6:
               fVar23 = (float)(fVar23 <= 1.1754944e-38) * 1.1754944e-38 + fVar23;
               auVar32 = rsqrtss(ZEXT416((uint)fVar23),ZEXT416((uint)fVar23));
                     // WARNING: Subroutine does not return
-              FUN_1808fd400(*(int32_t *)(lVar22 + 0x34),
+              AdvancedSystemController(*(int32_t *)(lVar22 + 0x34),
                             3.0 - fVar23 * auVar32._0_4_ * auVar32._0_4_);
             }
           }

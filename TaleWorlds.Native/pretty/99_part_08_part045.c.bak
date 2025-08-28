@@ -575,7 +575,7 @@ void FUN_1805a6ff0(float *param_1,float param_2,float *param_3,int32_t param_4)
   if ((0.001 < fStack_58) && (0.001 < fVar6)) {
     uVar5 = atanf((SQRT(fVar6) - fVar8) * (-0.101978384 / fStack_58));
                     // WARNING: Subroutine does not return
-    AdvancedSystemController(uVar5);
+    FUN_1808fd400(uVar5);
   }
   fVar9 = fStack_54 * fStack_54 + fVar9;
   auVar7 = rsqrtss(ZEXT416((uint)fVar9),ZEXT416((uint)fVar9));

@@ -673,7 +673,7 @@ void FUN_180202660(int64_t param_1)
   if (*(char *)(param_1 + 0xd9) != '\0') {
     puVar4 = &unknown_var_1256_ptr;
   }
-  FUN_180627910(auStack_58,puVar4);
+  CoreMemoryPoolValidator(auStack_58,puVar4);
   uVar1 = *(uint64_t *)(param_1 + 0xe8);
   puStack_158 = &system_data_buffer_ptr;
   uStack_140 = 0;

@@ -224,7 +224,7 @@ void FUN_180535970(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   cVar1 = func_0x000180522f60();
   if (cVar1 != '\0') {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(lVar6 + 0x34));
+    AdvancedSystemController(*(int32_t *)(lVar6 + 0x34));
   }
   if (-0.6 <= *(float *)(lVar6 + 0x20)) {
     if (0.7 < *(float *)(lVar6 + 0x20)) {
@@ -474,7 +474,7 @@ void FUN_18053598c(int32_t param_1)
   render_status_valid = func_0x000180522f60();
   if (render_status_valid != '\0') {
     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(render_data_ptr + 0x34));
+    AdvancedSystemController(*(int32_t *)(render_data_ptr + 0x34));
   }
   
   // 步骤9：执行坐标范围检查和数学计算
@@ -714,7 +714,7 @@ void FUN_1805359c5(void)
   render_flag_status = func_0x000180522f60();
   if (render_flag_status != '\0') {
     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(render_data_ptr + 0x34));
+    AdvancedSystemController(*(int32_t *)(render_data_ptr + 0x34));
   }
   
   // 步骤7：执行坐标范围检查和数学计算

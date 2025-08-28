@@ -304,34 +304,85 @@ void render_transform_matrix_compute(render_transform_stack_t *transform_stack)
     return;
 }
 
+//==============================================================================
+// 渲染变换栈条件更新函数
+//==============================================================================
 
-
-
-
-// 函数: void FUN_18034fabd(void)
-void FUN_18034fabd(void)
-
+/**
+ * @brief 条件更新渲染变换栈
+ * @note 根据标志位决定是否使用缓存的变换数据
+ *       优化渲染性能，避免不必要的计算
+ */
+void render_transform_stack_conditional_update(void)
 {
-  int64_t unaff_RBX;
-  int64_t unaff_RBP;
-  int32_t unaff_XMM14_Da;
-  int32_t unaff_XMM14_Dc;
-  uint64_t in_stack_00000030;
-  uint64_t in_stack_00000038;
-  int32_t uStack0000000000000040;
-  int32_t uStack0000000000000044;
-  int32_t uStack0000000000000048;
-  int32_t uStack000000000000004c;
-  int32_t uStack0000000000000050;
-  int32_t uStack0000000000000054;
-  int32_t uStack0000000000000058;
-  int32_t uStack000000000000005c;
-  int32_t in_stack_00000060;
-  int32_t in_stack_00000068;
-  
-  if (*(char *)(unaff_RBX + 0x99) != '\0') {
-    in_stack_00000030 = *(uint64_t *)(unaff_RBP + -0x70);
-    in_stack_00000038 = *(uint64_t *)(unaff_RBP + -0x68);
+    // 原始函数: void FUN_18034fabd(void)
+    int64_t unaff_RBX;
+    int64_t unaff_RBP;
+    int32_t unaff_XMM14_Da;
+    int32_t unaff_XMM14_Dc;
+    uint64_t in_stack_00000030;
+    uint64_t in_stack_00000038;
+    int32_t uStack0000000000000040;
+    int32_t uStack0000000000000044;
+    int32_t uStack0000000000000048;
+    int32_t uStack000000000000004c;
+    int32_t uStack0000000000000050;
+    int32_t uStack0000000000000054;
+    int32_t uStack0000000000000058;
+    int32_t uStack000000000000005c;
+    int32_t in_stack_00000060;
+    int32_t in_stack_00000068;
+    
+    // 检查是否需要使用缓存的变换数据
+    if (*(char *)(unaff_RBX + 0x99) != '\0') {
+        // 加载缓存的变换数据
+        in_stack_00000030 = *(uint64_t *)(unaff_RBP + -0x70);
+        in_stack_00000038 = *(uint64_t *)(unaff_RBP + -0x68);
+        uStack0000000000000040 = *(int32_t *)(unaff_RBP + -0x60);
+        uStack0000000000000044 = *(int32_t *)(unaff_RBP + -0x5c);
+        uStack0000000000000048 = *(int32_t *)(unaff_RBP + -0x58);
+        uStack000000000000004c = *(int32_t *)(unaff_RBP + -0x54);
+        uStack0000000000000050 = *(int32_t *)(unaff_RBP + -0x50);
+        uStack0000000000000054 = *(int32_t *)(unaff_RBP + -0x4c);
+        uStack0000000000000058 = *(int32_t *)(unaff_RBP + -0x48);
+        uStack000000000000005c = *(int32_t *)(unaff_RBP + -0x44);
+        in_stack_00000060 = unaff_XMM14_Da;
+        in_stack_00000068 = unaff_XMM14_Dc;
+    }
+    
+    // 应用变换矩阵
+    FUN_1802ea790(*(uint64_t *)(unaff_RBX + 0x18), &stack0x00000030);
+    return;
+}
+
+//==============================================================================
+// 渲染变换栈直接更新函数
+//==============================================================================
+
+/**
+ * @brief 直接更新渲染变换栈
+ * @note 强制使用最新的变换数据，不进行条件检查
+ *       确保渲染状态的及时更新
+ */
+void render_transform_stack_direct_update(void)
+{
+    // 原始函数: void FUN_18034facf(void)
+    int64_t unaff_RBX;
+    int64_t unaff_RBP;
+    uint64_t uStack0000000000000030;
+    uint64_t uStack0000000000000038;
+    int32_t uStack0000000000000040;
+    int32_t uStack0000000000000044;
+    int32_t uStack0000000000000048;
+    int32_t uStack000000000000004c;
+    int32_t uStack0000000000000050;
+    int32_t uStack0000000000000054;
+    int32_t uStack0000000000000058;
+    int32_t uStack000000000000005c;
+    
+    // 直接加载变换数据
+    uStack0000000000000030 = *(uint64_t *)(unaff_RBP + -0x70);
+    uStack0000000000000038 = *(uint64_t *)(unaff_RBP + -0x68);
     uStack0000000000000040 = *(int32_t *)(unaff_RBP + -0x60);
     uStack0000000000000044 = *(int32_t *)(unaff_RBP + -0x5c);
     uStack0000000000000048 = *(int32_t *)(unaff_RBP + -0x58);
@@ -340,11 +391,52 @@ void FUN_18034fabd(void)
     uStack0000000000000054 = *(int32_t *)(unaff_RBP + -0x4c);
     uStack0000000000000058 = *(int32_t *)(unaff_RBP + -0x48);
     uStack000000000000005c = *(int32_t *)(unaff_RBP + -0x44);
-    in_stack_00000060 = unaff_XMM14_Da;
-    in_stack_00000068 = unaff_XMM14_Dc;
-  }
-  FUN_1802ea790(*(uint64_t *)(unaff_RBX + 0x18),&stack0x00000030);
-  return;
+    
+    // 应用变换矩阵
+    FUN_1802ea790(*(uint64_t *)(unaff_RBX + 0x18), &stack0x00000030);
+    return;
+}
+
+//==============================================================================
+// 渲染空操作函数
+//==============================================================================
+
+/**
+ * @brief 渲染系统空操作函数
+ * @note 用作占位符或初始化时的空操作
+ *       保持函数接口的一致性
+ */
+void render_no_operation(void)
+{
+    // 原始函数: void FUN_18034fb07(void)
+    return;
+}
+
+//==============================================================================
+// 渲染数据结构初始化函数
+//==============================================================================
+
+/**
+ * @brief 初始化渲染数据结构
+ * @param param_1 数据结构指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 初始化后的数据结构指针
+ * @note 设置渲染数据结构的初始状态和内存管理
+ */
+render_uint64_t *render_data_structure_initialize(render_uint64_t *param_1, render_uint64_t param_2, render_uint64_t param_3, render_uint64_t param_4)
+{
+    // 原始函数: uint64_t * FUN_18034fb20(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+    uint64_t uVar1;
+    
+    uVar1 = 0xfffffffffffffffe;
+    *param_1 = &unknown_var_9680_ptr;
+    FUN_1803457d0();
+    if ((param_2 & 1) != 0) {
+        free(param_1, 0x78, param_3, param_4, uVar1);
+    }
+    return param_1;
 }
 
 

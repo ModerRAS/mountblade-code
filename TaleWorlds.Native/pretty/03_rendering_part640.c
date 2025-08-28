@@ -25,7 +25,7 @@ void CoreEngineDataBufferProcessor(int64_t param_1,int param_2)
       *(int32_t *)(param_1 + 0x18) = uVar1;
     }
     else if (*(uint *)(param_1 + 0x18) < uVar2) {
-      uVar3 = FUN_18062b8b0(system_memory_pool_ptr,*(int64_t *)(param_1 + 8),uVar2,0x10,0x13);
+      uVar3 = DataValidator(system_memory_pool_ptr,*(int64_t *)(param_1 + 8),uVar2,0x10,0x13);
       *(uint64_t *)(param_1 + 8) = uVar3;
       uVar1 = CoreEngineSystemCleanup(uVar3);
       *(int32_t *)(param_1 + 0x18) = uVar1;
@@ -73,7 +73,7 @@ FUN_1806278a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 
 
 uint64_t *
-FUN_180627910(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+CoreMemoryPoolValidator(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uVar1;
@@ -575,7 +575,7 @@ void FUN_180628210(int64_t param_1,int64_t param_2,int param_3)
   int64_t lStack_28;
   uint uStack_20;
   
-  FUN_180627910(&puStack_30);
+  CoreMemoryPoolValidator(&puStack_30);
   lVar1 = -1;
   do {
     lVar1 = lVar1 + 1;

@@ -636,7 +636,7 @@ LAB_18027e6bc:
                 uStack_220._0_4_ = CoreEngineSystemCleanup(pbStack_230);
               }
               else if ((uint)uStack_220 < uVar9) {
-                pbStack_230 = (byte *)DataValidator(system_memory_pool_ptr,pbStack_230,uVar9,0x10,0x13);
+                pbStack_230 = (byte *)FUN_18062b8b0(system_memory_pool_ptr,pbStack_230,uVar9,0x10,0x13);
                 uVar37 = (uint64_t)pbStack_230 & 0xffffffffffc00000;
                 if (uVar37 == 0) {
                   uStack_220._0_4_ = 0;

@@ -101,7 +101,7 @@ typedef struct {
 
 // 函数别名定义
 #define RenderingSystem_AdvancedAngleCalculator FUN_1806598ca
-#define RenderingSystem_ErrorHandler FUN_1808fd400
+#define RenderingSystem_ErrorHandler AdvancedSystemController
 #define RenderingSystem_MathProcessor FUN_18065c070
 #define RenderingSystem_InterpolationCalculator FUN_18065bf60
 #define RenderingSystem_MemoryAccessor FUN_18065fd40

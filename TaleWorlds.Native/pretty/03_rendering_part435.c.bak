@@ -579,7 +579,7 @@ void FUN_180506a80(uint64_t param_1,int32_t param_2)
 
 {
                     // WARNING: Subroutine does not return
-  AdvancedSystemController(param_2);
+  FUN_1808fd400(param_2);
 }
 
 

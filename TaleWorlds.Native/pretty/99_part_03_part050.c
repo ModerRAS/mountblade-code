@@ -402,7 +402,7 @@ void FUN_1801ff450(int64_t param_1)
     puStack_148 = &system_data_buffer_ptr;
     if (puStack_140 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     puStack_140 = (void *)0x0;
     uStack_130 = uStack_130 & 0xffffffff00000000;
@@ -410,7 +410,7 @@ void FUN_1801ff450(int64_t param_1)
     puStack_128 = &system_data_buffer_ptr;
     if (lStack_120 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     lStack_120 = 0;
     uStack_110 = uStack_110 & 0xffffffff00000000;

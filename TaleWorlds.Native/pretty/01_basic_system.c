@@ -364,7 +364,7 @@ void RegisterSystemCallback(void* callback_data)
     code *callback_function;
     
     /* 获取回调管理器指针 */
-    manager_ptr = (int64_t *)FUN_18008d070();
+    manager_ptr = (int64_t *)RenderGraphicsManager();
     base_ptr = (uint64_t *)*manager_ptr;
     status = *(char *)((int64_t)base_ptr[1] + 0x19);
     callback_function = FUN_18007fcd0;
@@ -387,8 +387,8 @@ void RegisterSystemCallback(void* callback_data)
     
     /* 如果需要创建新的回调节点 */
     if ((prev_ptr == base_ptr) || (compare_result = memcmp(&system_memory_c740, prev_ptr + 4, 0x10), compare_result < 0)) {
-        result = FUN_18008f0d0(manager_ptr);
-        FUN_18008f140(manager_ptr, &new_callback, prev_ptr, result + 0x20, result);
+        result = RenderPipelineProcessor(manager_ptr);
+        RenderShaderProcessor(manager_ptr, &new_callback, prev_ptr, result + 0x20, result);
         prev_ptr = new_callback;
     }
     
@@ -423,7 +423,7 @@ void RegisterInputCallback(void* input_data)
     uint64_t callback_data;
     
     /* 获取输入管理器指针 */
-    manager_ptr = (int64_t *)FUN_18008d070();
+    manager_ptr = (int64_t *)RenderGraphicsManager();
     base_ptr = (uint64_t *)*manager_ptr;
     status = *(char *)((int64_t)base_ptr[1] + 0x19);
     callback_data = 0;
@@ -446,8 +446,8 @@ void RegisterInputCallback(void* input_data)
     
     /* 如果需要创建新的回调节点 */
     if ((prev_ptr == base_ptr) || (compare_result = memcmp(&system_memory_c768, prev_ptr + 4, 0x10), compare_result < 0)) {
-        result = FUN_18008f0d0(manager_ptr);
-        FUN_18008f140(manager_ptr, &new_callback, prev_ptr, result + 0x20, result);
+        result = RenderPipelineProcessor(manager_ptr);
+        RenderShaderProcessor(manager_ptr, &new_callback, prev_ptr, result + 0x20, result);
         prev_ptr = new_callback;
     }
     
@@ -482,7 +482,7 @@ void RegisterRenderCallback(void* render_data)
     uint64_t callback_data;
     
     /* 获取渲染管理器指针 */
-    manager_ptr = (int64_t *)FUN_18008d070();
+    manager_ptr = (int64_t *)RenderGraphicsManager();
     base_ptr = (uint64_t *)*manager_ptr;
     status = *(char *)((int64_t)base_ptr[1] + 0x19);
     callback_data = 0;
@@ -505,8 +505,8 @@ void RegisterRenderCallback(void* render_data)
     
     /* 如果需要创建新的回调节点 */
     if ((prev_ptr == base_ptr) || (compare_result = memcmp(&system_memory_c9b8, prev_ptr + 4, 0x10), compare_result < 0)) {
-        result = FUN_18008f0d0(manager_ptr);
-        FUN_18008f140(manager_ptr, &new_callback, prev_ptr, result + 0x20, result);
+        result = RenderPipelineProcessor(manager_ptr);
+        RenderShaderProcessor(manager_ptr, &new_callback, prev_ptr, result + 0x20, result);
         prev_ptr = new_callback;
     }
     

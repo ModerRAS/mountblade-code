@@ -76,7 +76,7 @@ LAB_1800f5d60:
   pcVar2 = (char *)0x0;
 LAB_1800f5d7b:
   if ((unaff_RSI != -0x2c) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "anchor_stiffness";
   do {
@@ -113,7 +113,7 @@ LAB_1800f5e00:
   pcVar2 = (char *)0x0;
 LAB_1800f5e1b:
   if ((unaff_RSI != -0x30) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "bending_stiffness";
   do {
@@ -150,7 +150,7 @@ LAB_1800f5ea0:
   pcVar2 = (char *)0x0;
 LAB_1800f5ebb:
   if ((unaff_RSI != -0x24) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "shearing_stiffness_";
   do {
@@ -187,7 +187,7 @@ LAB_1800f5f40:
   pcVar2 = (char *)0x0;
 LAB_1800f5f5b:
   if ((unaff_RSI != -0x28) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "damping";
   do {
@@ -224,7 +224,7 @@ LAB_1800f5fe0:
   pcVar2 = (char *)0x0;
 LAB_1800f5ffb:
   if ((unaff_RSI != -0x34) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "gravity";
   do {
@@ -261,7 +261,7 @@ LAB_1800f6080:
   pcVar2 = (char *)0x0;
 LAB_1800f609b:
   if ((unaff_RSI != -0x38) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "linear_inertia";
   do {
@@ -298,7 +298,7 @@ LAB_1800f6120:
   pcVar2 = (char *)0x0;
 LAB_1800f613b:
   if ((unaff_RSI != -0x3c) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "max_linear_velocity";
   do {
@@ -335,7 +335,7 @@ LAB_1800f61c0:
   pcVar2 = (char *)0x0;
 LAB_1800f61db:
   if ((unaff_RSI != -0x40) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "linear_velocity_multiplier";
   do {
@@ -372,7 +372,7 @@ LAB_1800f6260:
   pcVar2 = (char *)0x0;
 LAB_1800f627b:
   if ((unaff_RSI != -0x44) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "wind";
   do {
@@ -409,7 +409,7 @@ LAB_1800f6300:
   pcVar2 = (char *)0x0;
 LAB_1800f631b:
   if ((unaff_RSI != -0x4c) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "air_drag_multiplier";
   do {
@@ -422,7 +422,7 @@ LAB_1800f631b:
       unaff_RDI = (char *)0x0;
 LAB_1800f63b8:
       if ((unaff_RSI + 0x48 != 0) && (unaff_RDI != (char *)0x0)) {
-        FUN_18010cbc0(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
+        AdvancedSystemOptimizer(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
       }
       return;
     }
@@ -504,7 +504,7 @@ LAB_1800f5d60:
   }
 LAB_1800f5d7b:
   if ((in_R11 != 0) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "anchor_stiffness";
   do {
@@ -541,7 +541,7 @@ LAB_1800f5e10:
   pcVar2 = (char *)0x0;
 LAB_1800f5e1b:
   if ((unaff_RSI != -0x30) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "bending_stiffness";
   do {
@@ -578,7 +578,7 @@ LAB_1800f5eb0:
   pcVar2 = (char *)0x0;
 LAB_1800f5ebb:
   if ((unaff_RSI != -0x24) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "shearing_stiffness_";
   do {
@@ -615,7 +615,7 @@ LAB_1800f5f50:
   pcVar2 = (char *)0x0;
 LAB_1800f5f5b:
   if ((unaff_RSI != -0x28) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "damping";
   do {
@@ -652,7 +652,7 @@ LAB_1800f5ff0:
   pcVar2 = (char *)0x0;
 LAB_1800f5ffb:
   if ((unaff_RSI != -0x34) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "gravity";
   do {
@@ -689,7 +689,7 @@ LAB_1800f6090:
   pcVar2 = (char *)0x0;
 LAB_1800f609b:
   if ((unaff_RSI != -0x38) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "linear_inertia";
   do {
@@ -726,7 +726,7 @@ LAB_1800f6130:
   pcVar2 = (char *)0x0;
 LAB_1800f613b:
   if ((unaff_RSI != -0x3c) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "max_linear_velocity";
   do {
@@ -763,7 +763,7 @@ LAB_1800f61d0:
   pcVar2 = (char *)0x0;
 LAB_1800f61db:
   if ((unaff_RSI != -0x40) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "linear_velocity_multiplier";
   do {
@@ -800,7 +800,7 @@ LAB_1800f6270:
   pcVar2 = (char *)0x0;
 LAB_1800f627b:
   if ((unaff_RSI != -0x44) && (pcVar2 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar2 = "wind";
   do {
@@ -813,7 +813,7 @@ LAB_1800f627b:
       pcVar2 = (char *)0x0;
 LAB_1800f631b:
       if ((unaff_RSI != -0x4c) && (pcVar2 != (char *)0x0)) {
-        FUN_18010cbc0();
+        AdvancedSystemOptimizer();
       }
       pcVar2 = "air_drag_multiplier";
       do {
@@ -851,7 +851,7 @@ LAB_1800f63ad:
       }
 LAB_1800f63b8:
       if ((unaff_RSI + 0x48 != 0) && (unaff_RDI != (char *)0x0)) {
-        FUN_18010cbc0(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
+        AdvancedSystemOptimizer(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
       }
       return;
     }
@@ -902,7 +902,7 @@ void FUN_1800f6325(int64_t param_1)
   char *pcVar5;
   
   if (param_1 != 0) {
-    FUN_18010cbc0(param_1,&system_data_6430);
+    AdvancedSystemOptimizer(param_1,&system_data_6430);
   }
   pcVar4 = "air_drag_multiplier";
   do {
@@ -915,7 +915,7 @@ void FUN_1800f6325(int64_t param_1)
       unaff_RDI = (char *)0x0;
 LAB_1800f63b8:
       if ((unaff_RSI + 0x48 != 0) && (unaff_RDI != (char *)0x0)) {
-        FUN_18010cbc0(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
+        AdvancedSystemOptimizer(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
       }
       return;
     }

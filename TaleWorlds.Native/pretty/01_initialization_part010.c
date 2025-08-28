@@ -286,7 +286,7 @@ void FUN_18003e510(void)
     uint64_t component_flags;           // 组件标志
 
     // 获取系统上下文
-    system_context = (int64_t *)FUN_18008d070();
+    system_context = (int64_t *)RenderGraphicsManager();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
@@ -314,8 +314,8 @@ void FUN_18003e510(void)
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
         (comparison_result = memcmp(&system_memory_0fb0, previous_node + 4, 0x10), comparison_result < 0)) {
-        memory_size = FUN_18008f0d0(system_context);
-        FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
+        memory_size = RenderPipelineProcessor(system_context);
+        RenderShaderProcessor(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
     }
     
@@ -357,7 +357,7 @@ void FUN_18003e610(void)
     code *callback_function;             // 回调函数
 
     // 获取系统上下文
-    system_context = (int64_t *)FUN_18008d070();
+    system_context = (int64_t *)RenderGraphicsManager();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
@@ -385,8 +385,8 @@ void FUN_18003e610(void)
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
         (comparison_result = memcmp(&system_memory_10a0, previous_node + 4, 0x10), comparison_result < 0)) {
-        memory_size = FUN_18008f0d0(system_context);
-        FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
+        memory_size = RenderPipelineProcessor(system_context);
+        RenderShaderProcessor(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
     }
     
@@ -428,7 +428,7 @@ void FUN_18003e710(void)
     code *service_handler;               // 服务处理函数
 
     // 获取系统上下文
-    system_context = (int64_t *)FUN_18008d070();
+    system_context = (int64_t *)RenderGraphicsManager();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
@@ -456,8 +456,8 @@ void FUN_18003e710(void)
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
         (comparison_result = memcmp(&system_memory_1078, previous_node + 4, 0x10), comparison_result < 0)) {
-        memory_size = FUN_18008f0d0(system_context);
-        FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
+        memory_size = RenderPipelineProcessor(system_context);
+        RenderShaderProcessor(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
     }
     
@@ -499,7 +499,7 @@ void FUN_18003e810(void)
     uint64_t resource_flags;            // 资源标志
 
     // 获取系统上下文
-    system_context = (int64_t *)FUN_18008d070();
+    system_context = (int64_t *)RenderGraphicsManager();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
@@ -527,8 +527,8 @@ void FUN_18003e810(void)
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
         (comparison_result = memcmp(&system_memory_1050, previous_node + 4, 0x10), comparison_result < 0)) {
-        memory_size = FUN_18008f0d0(system_context);
-        FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
+        memory_size = RenderPipelineProcessor(system_context);
+        RenderShaderProcessor(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
     }
     
@@ -570,7 +570,7 @@ void FUN_18003e910(void)
     code *log_handler;                    // 日志处理函数
 
     // 获取系统上下文
-    system_context = (int64_t *)FUN_18008d070();
+    system_context = (int64_t *)RenderGraphicsManager();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
@@ -598,8 +598,8 @@ void FUN_18003e910(void)
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
         (comparison_result = memcmp(&system_memory_1028, previous_node + 4, 0x10), comparison_result < 0)) {
-        memory_size = FUN_18008f0d0(system_context);
-        FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
+        memory_size = RenderPipelineProcessor(system_context);
+        RenderShaderProcessor(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
     }
     
@@ -641,7 +641,7 @@ void FUN_18003ea10(void)
     uint64_t config_flags;             // 配置标志
 
     // 获取系统上下文
-    system_context = (int64_t *)FUN_18008d070();
+    system_context = (int64_t *)RenderGraphicsManager();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
@@ -669,8 +669,8 @@ void FUN_18003ea10(void)
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
         (comparison_result = memcmp(&system_memory_1000, previous_node + 4, 0x10), comparison_result < 0)) {
-        memory_size = FUN_18008f0d0(system_context);
-        FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
+        memory_size = RenderPipelineProcessor(system_context);
+        RenderShaderProcessor(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
     }
     
@@ -712,7 +712,7 @@ void FUN_18003eb10(void)
     void *cache_handler;             // 缓存处理函数
 
     // 获取系统上下文
-    system_context = (int64_t *)FUN_18008d070();
+    system_context = (int64_t *)RenderGraphicsManager();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
@@ -740,8 +740,8 @@ void FUN_18003eb10(void)
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
         (comparison_result = memcmp(&system_memory_0fd8, previous_node + 4, 0x10), comparison_result < 0)) {
-        memory_size = FUN_18008f0d0(system_context);
-        FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
+        memory_size = RenderPipelineProcessor(system_context);
+        RenderShaderProcessor(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
     }
     
@@ -783,7 +783,7 @@ void FUN_18003ec10(void)
     uint64_t storage_flags;            // 存储标志
 
     // 获取系统上下文
-    system_context = (int64_t *)FUN_18008d070();
+    system_context = (int64_t *)RenderGraphicsManager();
     registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
@@ -811,8 +811,8 @@ void FUN_18003ec10(void)
     // 检查是否需要创建新组件
     if ((previous_node == registry_root) || 
         (comparison_result = memcmp(&system_memory_0fb0, previous_node + 4, 0x10), comparison_result < 0)) {
-        memory_size = FUN_18008f0d0(system_context);
-        FUN_18008f140(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
+        memory_size = RenderPipelineProcessor(system_context);
+        RenderShaderProcessor(system_context, &new_component, previous_node, memory_size + 0x20, memory_size);
         previous_node = new_component;
     }
     
@@ -1038,7 +1038,7 @@ void FUN_18003ee90(void)
     code *resource_loader;               // 资源加载器
 
     // 获取系统上下文
-    system_context = (int64_t *)FUN_18008d070();
+    system_context = (int64_t *)RenderGraphicsManager();
     resource_root = (uint64_t *)*system_context;
     
     // 检查资源状态
@@ -1066,8 +1066,8 @@ void FUN_18003ee90(void)
     // 检查是否需要创建新资源
     if ((previous_node == resource_root) || 
         (comparison_result = memcmp(&system_memory_c740, previous_node + 4, 0x10), comparison_result < 0)) {
-        resource_size = FUN_18008f0d0(system_context);
-        FUN_18008f140(system_context, &new_resource, previous_node, resource_size + 0x20, resource_size);
+        resource_size = RenderPipelineProcessor(system_context);
+        RenderShaderProcessor(system_context, &new_resource, previous_node, resource_size + 0x20, resource_size);
         previous_node = new_resource;
     }
     

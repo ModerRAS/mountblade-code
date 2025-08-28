@@ -1024,7 +1024,7 @@ int32_t FUN_180894dd0(int64_t param_1,uint64_t param_2,uint param_3,int64_t para
   }
 LAB_180894ebf:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(auStack_28);
+  AdvancedSystemProcessor(auStack_28);
 }
 
 

@@ -302,7 +302,7 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, int
   if (animation_data[8] != 0.0) {
     // 处理负缩放
     stack_param1 = 0x1806598e8;
-    FUN_1808fd400(-animation_data[8]);
+    AdvancedSystemController(-animation_data[8]);
   }
   
   // 分解变换参数

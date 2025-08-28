@@ -169,7 +169,7 @@ void FUN_180037780(void) {
     uint64_t config_data[2];
     
     // 获取模块链表根节点
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     
     // 检查模块状态
@@ -202,8 +202,8 @@ void FUN_180037780(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -239,7 +239,7 @@ void FUN_180037880(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -268,8 +268,8 @@ void FUN_180037880(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -306,7 +306,7 @@ void FUN_180037980(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -335,8 +335,8 @@ void FUN_180037980(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -373,7 +373,7 @@ void FUN_180037a80(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -402,8 +402,8 @@ void FUN_180037a80(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -440,7 +440,7 @@ void FUN_180037b80(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -469,8 +469,8 @@ void FUN_180037b80(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -507,7 +507,7 @@ void FUN_180037c80(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -536,8 +536,8 @@ void FUN_180037c80(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -574,7 +574,7 @@ void FUN_180037d80(void) {
     char* module_status;
     function_ptr_t init_func;
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     init_func = FUN_180073930; // 资源管理初始化函数
@@ -603,8 +603,8 @@ void FUN_180037d80(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -640,7 +640,7 @@ void FUN_180037e80(void) {
     char* module_status;
     function_ptr_t script_compiler;
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     script_compiler = FUN_180073930; // 脚本编译器函数
@@ -669,8 +669,8 @@ void FUN_180037e80(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -706,7 +706,7 @@ void FUN_180037f80(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -735,8 +735,8 @@ void FUN_180037f80(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -773,7 +773,7 @@ void FUN_180038080(void) {
     char* module_status;
     function_ptr_t animation_engine;
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     animation_engine = FUN_18025e330; // 动画引擎函数
@@ -802,8 +802,8 @@ void FUN_180038080(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1072,7 +1072,7 @@ void FUN_1800386a0(void) {
     char* module_status;
     function_ptr_t service_scheduler;
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     service_scheduler = FUN_18025cc00; // 服务调度器函数
@@ -1101,8 +1101,8 @@ void FUN_1800386a0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1139,7 +1139,7 @@ void FUN_1800387a0(void) {
     char* module_status;
     function_ptr_t memory_manager;
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     memory_manager = FUN_18025c000; // 内存管理器函数
@@ -1168,8 +1168,8 @@ void FUN_1800387a0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1206,7 +1206,7 @@ void FUN_1800388a0(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -1235,8 +1235,8 @@ void FUN_1800388a0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1272,7 +1272,7 @@ void FUN_1800389a0(void) {
     char* module_status;
     function_ptr_t event_dispatcher;
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     event_dispatcher = FUN_18025d270; // 事件分发器函数
@@ -1301,8 +1301,8 @@ void FUN_1800389a0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1338,7 +1338,7 @@ void FUN_180038aa0(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -1367,8 +1367,8 @@ void FUN_180038aa0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1404,7 +1404,7 @@ void FUN_180038ba0(void) {
     char* module_status;
     void* file_system_handler;
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     file_system_handler = &unknown_var_2048_ptr; // 文件系统处理器
@@ -1433,8 +1433,8 @@ void FUN_180038ba0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1470,7 +1470,7 @@ void FUN_180038ca0(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -1499,8 +1499,8 @@ void FUN_180038ca0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1535,7 +1535,7 @@ void FUN_180038da0(void) {
     char* module_status;
     function_ptr_t service_scheduler;
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     service_scheduler = FUN_18025cc00;
@@ -1564,8 +1564,8 @@ void FUN_180038da0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1596,7 +1596,7 @@ void FUN_180038ea0(void) {
     char* module_status;
     function_ptr_t memory_manager;
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     memory_manager = FUN_18025c000;
@@ -1625,8 +1625,8 @@ void FUN_180038ea0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1657,7 +1657,7 @@ void FUN_180038fa0(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -1686,8 +1686,8 @@ void FUN_180038fa0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1717,7 +1717,7 @@ void FUN_1800390a0(void) {
     char* module_status;
     function_ptr_t event_dispatcher;
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     event_dispatcher = FUN_18025d270;
@@ -1746,8 +1746,8 @@ void FUN_1800390a0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }
@@ -1777,7 +1777,7 @@ void FUN_1800391a0(void) {
     char* module_status;
     uint64_t config_data[2];
     
-    root_node = (module_node_t*)FUN_18008d070();
+    root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
     config_data[0] = 0;
@@ -1806,8 +1806,8 @@ void FUN_1800391a0(void) {
             (module_id_t*)(root_node + 1)
         ), comparison_result < 0)) {
         
-        uint64_t memory_offset = FUN_18008f0d0(root_node);
-        FUN_18008f140(root_node, &new_node, current_node, 
+        uint64_t memory_offset = RenderPipelineProcessor(root_node);
+        RenderShaderProcessor(root_node, &new_node, current_node, 
                      memory_offset + MEMORY_ALLOCATION_BASE_SIZE, memory_offset);
         current_node = new_node;
     }

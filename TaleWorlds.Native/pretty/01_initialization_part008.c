@@ -154,7 +154,7 @@ void FUN_1800392a0(void) {
     InitializationSystemSearchDirection search_direction;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -198,8 +198,8 @@ void FUN_1800392a0(void) {
         (comparison_result = memcmp(&system_memory_0fd8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -232,7 +232,7 @@ void FUN_1800393a0(void) {
     InitializationSystemNodeFlags node_flags;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -280,8 +280,8 @@ void FUN_1800393a0(void) {
         (comparison_result = memcmp(&system_memory_0fb0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -315,7 +315,7 @@ void FUN_1800394a0(void) {
     code *callback_function;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -363,8 +363,8 @@ void FUN_1800394a0(void) {
         (comparison_result = memcmp(&system_memory_10a0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -398,7 +398,7 @@ void FUN_1800395a0(void) {
     code *callback_function;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -446,8 +446,8 @@ void FUN_1800395a0(void) {
         (comparison_result = memcmp(&system_memory_1078, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -480,7 +480,7 @@ void FUN_1800396a0(void) {
     InitializationSystemNodeFlags node_flags;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -525,8 +525,8 @@ void FUN_1800396a0(void) {
         (comparison_result = memcmp(&system_memory_1050, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -560,7 +560,7 @@ void FUN_1800397a0(void) {
     InitializationSystemCallback callback_function;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -608,8 +608,8 @@ void FUN_1800397a0(void) {
         (comparison_result = memcmp(&system_memory_1028, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -642,7 +642,7 @@ void FUN_1800398a0(void) {
     InitializationSystemNodeFlags node_flags;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -687,8 +687,8 @@ void FUN_1800398a0(void) {
         (comparison_result = memcmp(&system_memory_1000, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -722,7 +722,7 @@ void FUN_1800399a0(void) {
     InitializationSystemKeyPtr global_key_ptr;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -770,8 +770,8 @@ void FUN_1800399a0(void) {
         (comparison_result = memcmp(&system_memory_0fd8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -804,7 +804,7 @@ void FUN_180039aa0(void) {
     InitializationSystemNodeFlags node_flags;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -849,8 +849,8 @@ void FUN_180039aa0(void) {
         (comparison_result = memcmp(&system_memory_0fb0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -884,7 +884,7 @@ void FUN_180039bb0(void) {
     InitializationSystemCallback callback_function;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -932,8 +932,8 @@ void FUN_180039bb0(void) {
         (comparison_result = memcmp(&system_memory_10a0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -967,7 +967,7 @@ void FUN_180039cb0(void) {
     InitializationSystemCallback callback_function;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1015,8 +1015,8 @@ void FUN_180039cb0(void) {
         (comparison_result = memcmp(&system_memory_1078, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1049,7 +1049,7 @@ void FUN_180039db0(void) {
     InitializationSystemNodeFlags node_flags;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1094,8 +1094,8 @@ void FUN_180039db0(void) {
         (comparison_result = memcmp(&system_memory_1050, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1129,7 +1129,7 @@ void FUN_180039eb0(void) {
     InitializationSystemCallback callback_function;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1177,8 +1177,8 @@ void FUN_180039eb0(void) {
         (comparison_result = memcmp(&system_memory_1028, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1211,7 +1211,7 @@ void FUN_180039fb0(void) {
     InitializationSystemNodeFlags node_flags;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1256,8 +1256,8 @@ void FUN_180039fb0(void) {
         (comparison_result = memcmp(&system_memory_1000, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1291,7 +1291,7 @@ void FUN_18003a0b0(void) {
     InitializationSystemKeyPtr global_key_ptr;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1339,8 +1339,8 @@ void FUN_18003a0b0(void) {
         (comparison_result = memcmp(&system_memory_0fd8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1373,7 +1373,7 @@ void FUN_18003a1b0(void) {
     InitializationSystemNodeFlags node_flags;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1418,8 +1418,8 @@ void FUN_18003a1b0(void) {
         (comparison_result = memcmp(&system_memory_0fb0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1453,7 +1453,7 @@ void FUN_18003a2b0(void) {
     InitializationSystemKeyPtr key_callback;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1501,8 +1501,8 @@ void FUN_18003a2b0(void) {
         (comparison_result = memcmp(&system_memory_c740, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1536,7 +1536,7 @@ void FUN_18003a3b0(void) {
     InitializationSystemKeyPtr key_callback;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1584,8 +1584,8 @@ void FUN_18003a3b0(void) {
         (comparison_result = memcmp(&system_memory_c768, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1619,7 +1619,7 @@ void FUN_18003a4b0(void) {
     InitializationSystemKeyPtr key_callback;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1667,8 +1667,8 @@ void FUN_18003a4b0(void) {
         (comparison_result = memcmp(&system_memory_c9b8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1702,7 +1702,7 @@ void FUN_18003a5b0(void) {
     InitializationSystemKeyPtr key_callback;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1750,8 +1750,8 @@ void FUN_18003a5b0(void) {
         (comparison_result = memcmp(&system_memory_c940, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1785,7 +1785,7 @@ void FUN_18003a6b0(void) {
     InitializationSystemKeyPtr key_callback;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1833,8 +1833,8 @@ void FUN_18003a6b0(void) {
         (comparison_result = memcmp(&system_memory_c918, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1868,7 +1868,7 @@ void FUN_18003a7b0(void) {
     InitializationSystemKeyPtr key_callback;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1916,8 +1916,8 @@ void FUN_18003a7b0(void) {
         (comparison_result = memcmp(&system_memory_c968, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -1951,7 +1951,7 @@ void FUN_18003a8b0(void) {
     InitializationSystemKeyPtr key_callback;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -1999,8 +1999,8 @@ void FUN_18003a8b0(void) {
         (comparison_result = memcmp(&system_memory_c990, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -2034,7 +2034,7 @@ void FUN_18003a9b0(void) {
     InitializationSystemKeyPtr key_callback;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -2082,8 +2082,8 @@ void FUN_18003a9b0(void) {
         (comparison_result = memcmp(&system_memory_c9e0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -2117,7 +2117,7 @@ void FUN_18003aab0(void) {
     InitializationSystemKeyPtr key_callback;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -2165,8 +2165,8 @@ void FUN_18003aab0(void) {
         (comparison_result = memcmp(&system_memory_c8f0, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
@@ -2200,7 +2200,7 @@ void FUN_18003abb0(void) {
     InitializationSystemKeyPtr key_callback;
     
     // 获取系统注册表根节点
-    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)RenderGraphicsManager();
     search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
     
     // 获取当前节点的状态标志
@@ -2248,8 +2248,8 @@ void FUN_18003abb0(void) {
         (comparison_result = memcmp(&system_memory_c8c8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
         
         // 分配新节点的内存空间
-        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
-        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+        memory_info.memory_size = RenderPipelineProcessor(tree_manager.registry_root);
+        RenderShaderProcessor(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
                       memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
         search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }

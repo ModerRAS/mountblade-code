@@ -89,7 +89,7 @@ void FUN_180067f60(int64_t param_1,int64_t param_2)
       *(uint64_t *)(alStack_288[0] + 0x118) = 0;
       puStack_268 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_2e8);
+      SystemDataManager(uStack_48 ^ (uint64_t)auStack_2e8);
     }
     puVar5 = (uint64_t *)(uVar8 * 0x130 + param_1 + 0x2003d0);
     *(uint64_t *)(param_1 + 0x2133d0) = uVar8 + 1;
@@ -369,12 +369,12 @@ FUN_180068860(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4
   if (lVar3 == 0) {
     FUN_18066c220(param_1 + 0x20,&param_5,*(int32_t *)(param_1 + 0x10),
                   *(int32_t *)(param_1 + 0x18),1);
-    lVar3 = FUN_18062b420(system_memory_pool_ptr,0x128,*(int8_t *)(param_1 + 0x2c));
+    lVar3 = SystemMemoryManager(system_memory_pool_ptr,0x128,*(int8_t *)(param_1 + 0x2c));
     FUN_180068ff0(lVar3,param_4);
     *(uint64_t *)(lVar3 + 0x118) = 0;
     *(uint64_t *)(lVar3 + 0x120) = 0;
     if ((char)param_5 != '\0') {
-      uVar4 = FUN_18062b1e0(system_memory_pool_ptr,(uint64_t)param_5._4_4_ * 8 + 8,8,
+      uVar4 = SystemStateHandler(system_memory_pool_ptr,(uint64_t)param_5._4_4_ * 8 + 8,8,
                             *(int8_t *)(param_1 + 0x2c));
                     // WARNING: Subroutine does not return
       memset(uVar4,0,(uint64_t)param_5._4_4_ * 8);
@@ -641,12 +641,12 @@ int64_t FUN_180068ec0(int64_t *param_1,int64_t *param_2,int param_3,uint64_t par
           (**(code **)(lVar2 + 0x10))(lVar2,0,0,param_4,0xfffffffffffffffe);
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        SystemCoreProcessor(lVar2);
       }
     }
     else {
       if (param_3 == 1) {
-        lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x20,8,system_allocation_flags);
+        lVar1 = SystemStateHandler(system_memory_pool_ptr,0x20,8,system_allocation_flags);
         lVar2 = *param_2;
         *(uint64_t *)(lVar1 + 0x10) = 0;
         *(code **)(lVar1 + 0x18) = _guard_check_icall;
@@ -855,7 +855,7 @@ void FUN_180069280(int64_t param_1,int64_t param_2,int64_t param_3)
   }
   puStack_168 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_198);
+  SystemDataManager(uStack_48 ^ (uint64_t)auStack_198);
 }
 
 

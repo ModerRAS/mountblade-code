@@ -641,7 +641,7 @@ LAB_18056e777:
   *(int32_t *)(param_2 + 0x5c4) = 0;
 LAB_18056ea22:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_658);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_658);
 }
 
 

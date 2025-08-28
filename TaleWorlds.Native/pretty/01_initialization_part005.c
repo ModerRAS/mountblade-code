@@ -20,7 +20,7 @@
 //------------------------------------------------------------------------------
 
 // 系统初始化相关变量
-uint8_t FUN_18008d070;                           // 系统初始化核心函数指针
+uint8_t RenderGraphicsManager;                           // 系统初始化核心函数指针
 uint8_t system_memory_0fb0;                           // 系统配置数据块1
 uint8_t system_memory_10a0;                           // 系统配置数据块2
 uint8_t system_memory_1078;                           // 系统配置数据块3
@@ -62,8 +62,8 @@ uint8_t FUN_1802633c0;                           // 系统回调函数8
 uint8_t FUN_180262b00;                           // 系统回调函数9
 
 // 系统工具函数
-uint8_t FUN_18008f0d0;                           // 系统工具函数1
-uint8_t FUN_18008f140;                           // 系统工具函数2
+uint8_t RenderPipelineProcessor;                           // 系统工具函数1
+uint8_t RenderShaderProcessor;                           // 系统工具函数2
 uint8_t unknown_var_2048_ptr;                           // 系统工具变量
 
 // 系统数据缓冲区
@@ -131,9 +131,9 @@ typedef int64_t (*SystemToolFunction)(void);      // 系统工具函数类型
 //------------------------------------------------------------------------------
 
 // 系统初始化函数别名
-#define SystemCoreInitializer                      FUN_18008d070  // 系统核心初始化器
-#define SystemRegistryManager                      FUN_18008f0d0  // 系统注册管理器
-#define SystemMemoryAllocator                      FUN_18008f140  // 系统内存分配器
+#define SystemCoreInitializer                      RenderGraphicsManager  // 系统核心初始化器
+#define SystemRegistryManager                      RenderPipelineProcessor  // 系统注册管理器
+#define SystemMemoryAllocator                      RenderShaderProcessor  // 系统内存分配器
 
 // 系统回调函数别名
 #define SystemCallback_Handler1                     FUN_18025cc00  // 系统回调处理器1

@@ -85,8 +85,8 @@
  * ============================================================================ */
 
 // 内存管理函数别名
-#define CoreEngineMemoryPoolAllocator FUN_18062b420     // 核心引擎内存池分配器
-#define CoreEngineMemoryPoolCleaner FUN_18064e900       // 核心引擎内存池清理器
+#define CoreEngineMemoryPoolAllocator CoreMemoryPoolAllocator     // 核心引擎内存池分配器
+#define CoreEngineMemoryPoolCleaner CoreMemoryPoolInitializer       // 核心引擎内存池清理器
 #define CoreEngineMemoryPoolInitializer FUN_18064d630   // 核心引擎内存池初始化器
 
 // 数据结构处理函数别名
