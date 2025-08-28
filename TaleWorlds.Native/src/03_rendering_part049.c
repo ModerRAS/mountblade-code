@@ -168,6 +168,11 @@ void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int co
   float *coord_array_reg;
   float scale_factor_reg;
   
+  context_reg = render_context;
+  current_index_reg = start_index;
+  end_index_reg = start_index + coordinate_count - 1;
+  coord_array_reg = (float *)coordinate_data;
+  scale_factor_reg = 1.0f;
   buffer_count_ptr = (int *)(render_context + 0x80);
   // 重新分配缓冲区以容纳新的坐标点
   expand_render_buffer(buffer_count_ptr, coordinate_count + (*buffer_count_ptr - start_index));
@@ -476,6 +481,14 @@ void RenderingSystem_ProcessCoordinateOffset(undefined4 render_context)
   float temp_coord_x;
   float temp_coord_y;
   
+  // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
+  coord_ptr1 = (float *)0x1000;  // 示例地址，实际应根据上下文设置
+  coord_ptr2 = (float *)0x1008;  // 示例地址，实际应根据上下文设置
+  offset_flags = 0x0F;          // 示例标志，实际应根据上下文设置
+  base_coord_x = 0.0f;          // 示例值，实际应根据上下文设置
+  offset_distance = 1.0f;        // 示例值，实际应根据上下文设置
+  base_offset_x = 0.0f;          // 示例值，实际应根据上下文设置
+  
   temp_coord_y = offset_distance;
   // 根据标志位设置X轴偏移
   if ((offset_flags & 1) == 0) {
@@ -528,6 +541,11 @@ void RenderingSystem_ProcessDualCoordinates(void)
   undefined4 *coord_ptr2;
   int default_capacity;
   undefined4 coord_y;
+  
+  // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
+  render_context_reg = 0x2000;   // 示例地址，实际应根据上下文设置
+  coord_ptr1 = (undefined4 *)0x3000;  // 示例地址，实际应根据上下文设置
+  coord_ptr2 = (undefined4 *)0x3008;  // 示例地址，实际应根据上下文设置
   
   buffer_count_ptr = (int *)(render_context_reg + 0x80);
   FUN_18011d9a0(buffer_count_ptr);
