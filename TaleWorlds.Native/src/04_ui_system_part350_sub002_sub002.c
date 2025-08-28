@@ -1,56 +1,199 @@
+/**
+ * @file 04_ui_system_part350_sub002_sub002.c
+ * @brief UI系统高级数据处理和状态管理模块
+ * 
+ * 本模块是UI系统的一部分，主要负责：
+ * - UI系统高级数据处理和转换
+ * - 状态管理和控制
+ * - 资源管理和清理
+ * - 参数验证和处理
+ * - 事件处理和分发
+ * 
+ * 该文件作为UI系统的一个子模块，提供了高级UI功能的核心支持。
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author 反编译代码美化处理
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part350_sub002_sub002.c - 1 个函数
+/* ============================================================================
+ * UI系统高级数据处理和状态管理常量定义
+ * ============================================================================ */
 
-// 函数: void FUN_180859ba0(longlong param_1,longlong *param_2)
-void FUN_180859ba0(longlong param_1,longlong *param_2)
+/**
+ * @brief UI系统高级数据处理和状态管理接口
+ * @details 定义UI系统高级数据处理和状态管理的参数和接口函数
+ * 
+ * 功能：
+ * - 处理UI系统高级数据转换
+ * - 管理UI系统状态变化
+ * - 控制UI资源生命周期
+ * - 验证和处理UI参数
+ * - 分发和处理UI事件
+ * 
+ * @note 该文件作为UI系统的子模块，提供高级UI功能支持
+ */
+
+/* ============================================================================
+ * 函数别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// UI系统高级数据处理器
+#define UISystem_AdvancedDataProcessor FUN_180859ba0
+
+// UI系统数据验证器
+#define UISystem_DataValidator FUN_180859e40
+
+// UI系统参数处理器
+#define UISystem_ParameterProcessor FUN_180859f30
+
+// UI系统状态管理器
+#define UISystem_StateManager FUN_18085a550
+
+// UI系统资源清理器
+#define UISystem_ResourceCleaner FUN_18085a934
+
+// UI系统初始化器
+#define UISystem_Initializer FUN_18085a980
+
+// UI系统时间计算器
+#define UISystem_TimeCalculator FUN_18085ab70
+
+// UI系统数据处理器
+#define UISystem_DataHandler FUN_18085abf2
+
+// UI系统空操作处理器
+#define UISystem_EmptyOperationProcessor FUN_18085ac39
+
+// UI系统高级控制器
+#define UISystem_AdvancedController FUN_18085aca0
+
+// UI系统配置管理器
+#define UISystem_ConfigManager FUN_18085acd0
+
+// UI系统缓冲区管理器
+#define UISystem_BufferManager FUN_18085b050
+
+// UI系统状态检查器
+#define UISystem_StateChecker FUN_18085b200
+
+// UI系统事件处理器
+#define UISystem_EventHandler FUN_18085b580
+
+// UI系统线程管理器
+#define UISystem_ThreadManager FUN_18085b595
+
+/* ============================================================================
+ * 常量定义
+ * ============================================================================ */
+#define UI_BUFFER_SIZE 0x20
+#define UI_STACK_SIZE 0x18
+#define UI_FLAG_INITIALIZED 1
+#define UI_FLAG_ACTIVE 2
+#define UI_FLAG_VISIBLE 4
+#define UI_FLAG_ENABLED 8
+#define UI_ERROR_INVALID_PARAM 0x1c
+#define UI_ERROR_RESOURCE_BUSY 0x76
+#define UI_SUCCESS 0
+#define UI_MAX_QUEUE_SIZE 0x65
+#define UI_MAX_THREAD_COUNT 0x1f
+#define UI_DEFAULT_FREQUENCY 48000
+#define UI_TIMEOUT_INFINITE 0xffffffff
+
+/* ============================================================================
+ * 函数实现
+ * ============================================================================ */
+
+/**
+ * UI系统高级数据处理器 - 处理UI系统高级数据转换和管理
+ * 
+ * 功能：
+ * - 处理UI系统高级数据转换
+ * - 管理UI系统资源分配
+ * - 控制UI系统状态变化
+ * - 执行数据验证和清理
+ * 
+ * @param system_context 系统上下文指针
+ * @param data_buffer 数据缓冲区指针
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buffer)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  undefined8 *puVar4;
-  int iVar5;
-  ulonglong uVar6;
-  longlong lStack_78;
-  undefined1 auStack_70 [40];
-  ulonglong uStack_48;
+  int *state_flag_ptr;
+  undefined8 *data_list_ptr;
+  longlong data_context;
+  undefined8 *next_node_ptr;
+  int node_count;
+  ulonglong buffer_size;
+  longlong operation_result;
+  undefined1 temp_buffer [40];
+  ulonglong security_cookie;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)&lStack_78;
-  if ((param_2 != (longlong *)0x0) && (lVar3 = *param_2, lVar3 != 0)) {
-    piVar1 = (int *)(lVar3 + 0xd0);
-    iVar5 = 0;
-    if ((*piVar1 == 0) &&
-       (((*(int *)(lVar3 + 0xd4) == 0 && (*(int *)(lVar3 + 0xd8) == 0)) &&
-        (*(int *)(lVar3 + 0xdc) == 0)))) {
-      lStack_78 = 0;
+  // 安全检查：设置栈保护cookie
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)&operation_result;
+  
+  // 检查数据缓冲区有效性
+  if ((data_buffer != (longlong *)0x0) && (data_context = *data_buffer, data_context != 0)) {
+    state_flag_ptr = (int *)(data_context + 0xd0);  // 获取状态标志指针
+    node_count = 0;
+    
+    // 检查状态标志是否全部为0（表示空闲状态）
+    if ((*state_flag_ptr == 0) &&
+       (((*(int *)(data_context + 0xd4) == 0 && (*(int *)(data_context + 0xd8) == 0)) &&
+        (*(int *)(data_context + 0xdc) == 0)))) {
+      operation_result = 0;  // 空闲状态，无需操作
     }
     else {
-      lStack_78 = (**(code **)(**(longlong **)(param_1 + 0x170) + 0x260))
-                            (*(longlong **)(param_1 + 0x170),piVar1,1);
-      if (lStack_78 == 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18084b240(piVar1,auStack_70,0);
+      // 调用系统处理函数处理状态
+      operation_result = (**(code **)(**(longlong **)(system_context + 0x170) + 0x260))
+                            (*(longlong **)(system_context + 0x170),state_flag_ptr,1);
+      if (operation_result == 0) {
+        // 处理失败，调用错误处理函数（不返回）
+        FUN_18084b240(state_flag_ptr,temp_buffer,0);
       }
     }
-    puVar2 = (undefined8 *)(lVar3 + 0xb0);
-    for (puVar4 = (undefined8 *)*puVar2; puVar4 != puVar2; puVar4 = (undefined8 *)*puVar4) {
-      iVar5 = iVar5 + 1;
+    
+    // 遍历数据链表并计算节点数量
+    data_list_ptr = (undefined8 *)(data_context + 0xb0);
+    for (next_node_ptr = (undefined8 *)*data_list_ptr; next_node_ptr != data_list_ptr; next_node_ptr = (undefined8 *)*next_node_ptr) {
+      node_count = node_count + 1;
     }
-    uVar6 = (longlong)iVar5 * 4 + 0xf;
-    if (uVar6 <= (ulonglong)((longlong)iVar5 * 4)) {
-      uVar6 = 0xffffffffffffff0;
+    
+    // 计算所需的缓冲区大小（16字节对齐）
+    buffer_size = (longlong)node_count * 4 + 0xf;
+    if (buffer_size <= (ulonglong)((longlong)node_count * 4)) {
+      buffer_size = 0xffffffffffffff0;  // 防止整数溢出
     }
-                    // WARNING: Subroutine does not return
-    FUN_1808fd200(uVar6 & 0xfffffffffffffff0,puVar2,lStack_78);
+    
+    // 调用内存分配函数（不返回）
+    FUN_1808fd200(buffer_size & 0xfffffffffffffff0,data_list_ptr,operation_result);
   }
-                    // WARNING: Subroutine does not return
+  
+  // 调用清理函数（不返回）
   FUN_1808fc050(_DAT_180bf00a8);
 }
 
 
 
-undefined8 FUN_180859e40(longlong param_1,longlong *param_2,longlong *param_3,undefined1 param_4)
+/**
+ * UI系统数据验证器 - 验证和处理UI系统数据
+ * 
+ * 功能：
+ * - 验证UI系统数据的有效性
+ * - 处理数据格式转换
+ * - 执行数据比较和匹配
+ * - 返回验证结果
+ * 
+ * @param system_context 系统上下文指针
+ * @param source_data 源数据指针
+ * @param target_data 目标数据指针
+ * @param operation_flag 操作标志
+ * @return 验证状态码（0表示成功，非0表示错误）
+ */
+undefined8 UISystem_DataValidator(longlong system_context, longlong *source_data, longlong *target_data, undefined1 operation_flag)
 
 {
   int iVar1;

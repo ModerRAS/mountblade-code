@@ -788,269 +788,338 @@ undefined8 ui_system_data_processor_4(longlong data_object, longlong *context_pt
 
 
 
-ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
-
+/**
+ * UI系统数据处理器5
+ * 
+ * 执行UI系统数据的验证和处理，支持多种数据类型的处理。
+ * 该函数通过多层验证确保UI系统数据的完整性。
+ * 
+ * @param data_object 数据对象指针
+ * @param context_ptr 上下文指针数组
+ * @return 处理结果：0表示成功，0x1c表示失败
+ */
+ulonglong ui_system_data_processor_5(longlong data_object, longlong *context_ptr)
 {
-  longlong lVar1;
-  uint uVar2;
-  undefined4 *puVar3;
-  ulonglong uVar4;
-  undefined2 auStackX_18 [4];
-  undefined2 auStackX_20 [4];
-  undefined4 auStack_58 [2];
-  undefined4 uStack_50;
-  undefined4 uStack_4c;
-  undefined4 uStack_48;
-  undefined4 uStack_44;
-  undefined1 auStack_40 [40];
-  
-  puVar3 = (undefined4 *)FUN_180847820();
-  uStack_50 = *puVar3;
-  uStack_4c = puVar3[1];
-  uStack_48 = puVar3[2];
-  uStack_44 = puVar3[3];
-  uVar4 = FUN_1808ddd30(param_2,auStack_40,0,0x4c525443,0);
-  if ((int)uVar4 != 0) {
-    return uVar4;
-  }
-  if (*(int *)(param_2[1] + 0x18) == 0) {
-    uVar2 = FUN_180899ef0(*param_2,param_1 + 0x10);
-    uVar4 = (ulonglong)uVar2;
-    if (uVar2 == 0) {
-      if (*(int *)(param_2[1] + 0x18) != 0) {
-        return 0x1c;
-      }
-      uVar2 = FUN_180899ef0(*param_2,param_1 + 0x20);
-      uVar4 = (ulonglong)uVar2;
-      if (uVar2 == 0) {
-        uVar4 = 0x1c;
-        uVar2 = 0;
-        if ((*(uint *)(param_2 + 8) < 0x5a) && (uVar2 = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
-          auStack_58[0] = uStack_50;
-          lVar1 = *param_2;
-          uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                            (*(undefined8 **)(lVar1 + 8),auStack_58,4);
-          if (uVar2 == 0) {
-            auStackX_18[0] = (undefined2)uStack_4c;
-            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                              (*(undefined8 **)(lVar1 + 8),auStackX_18,2);
+    longlong lVar1;
+    uint uVar2;
+    undefined4 *puVar3;
+    ulonglong uVar4;
+    undefined2 auStackX_18 [4];
+    undefined2 auStackX_20 [4];
+    undefined4 auStack_58 [2];
+    undefined4 uStack_50;
+    undefined4 uStack_4c;
+    undefined4 uStack_48;
+    undefined4 uStack_44;
+    undefined1 auStack_40 [40];
+    
+    // 获取数据验证参数
+    puVar3 = (undefined4 *)FUN_180847820();
+    uStack_50 = *puVar3;
+    uStack_4c = puVar3[1];
+    uStack_48 = puVar3[2];
+    uStack_44 = puVar3[3];
+    
+    // 执行数据验证
+    uVar4 = FUN_1808ddd30(context_ptr, auStack_40, 0, UI_DATA_TYPE_CRTC, 0);
+    if ((int)uVar4 != 0) {
+        return uVar4;
+    }
+    
+    // 检查验证状态
+    if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) == 0) {
+        uVar2 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x10);
+        uVar4 = (ulonglong)uVar2;
+        if (uVar2 == 0) {
+            if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) != 0) {
+                return UI_VALIDATION_ERROR;
+            }
+            
+            // 验证数据对象的其他字段
+            uVar2 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x20);
+            uVar4 = (ulonglong)uVar2;
             if (uVar2 == 0) {
-              auStackX_20[0] = uStack_4c._2_2_;
-              uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                (*(undefined8 **)(lVar1 + 8),auStackX_20,2);
-              if (uVar2 == 0) {
-                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                  (*(undefined8 **)(lVar1 + 8),&uStack_48,8);
-              }
+                uVar4 = UI_VALIDATION_ERROR;
+                uVar2 = 0;
+                if ((*(uint *)(context_ptr + 8) < UI_EXTENDED_DATA_SIZE) && 
+                    (uVar2 = UI_VALIDATION_ERROR, *(int *)(context_ptr[1] + UI_OFFSET_0x18) == 0)) {
+                    
+                    // 执行数据验证
+                    auStack_58[0] = uStack_50;
+                    lVar1 = *context_ptr;
+                    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                              (*(undefined8 **)(lVar1 + 8), auStack_58, 4);
+                    if (uVar2 == 0) {
+                        auStackX_18[0] = (undefined2)uStack_4c;
+                        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                                  (*(undefined8 **)(lVar1 + 8), auStackX_18, 2);
+                        if (uVar2 == 0) {
+                            auStackX_20[0] = uStack_4c._2_2_;
+                            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                                      (*(undefined8 **)(lVar1 + 8), auStackX_20, 2);
+                            if (uVar2 == 0) {
+                                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                                          (*(undefined8 **)(lVar1 + 8), &uStack_48, 8);
+                            }
+                        }
+                    }
+                }
+                if (uVar2 != 0) {
+                    return (ulonglong)uVar2;
+                }
+                
+                // 验证数据对象的其他字段
+                if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) == 0) {
+                    uVar2 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x30);
+                    uVar4 = (ulonglong)uVar2;
+                    if (uVar2 == 0) {
+                        uVar4 = FUN_180898e70(context_ptr, data_object + UI_OFFSET_0x40);
+                        if ((int)uVar4 != 0) {
+                            return uVar4;
+                        }
+                        // WARNING: Subroutine does not return
+                        FUN_1808de000(context_ptr, auStack_40);
+                    }
+                }
             }
-          }
         }
-        if (uVar2 != 0) {
-          return (ulonglong)uVar2;
-        }
-        if (*(int *)(param_2[1] + 0x18) == 0) {
-          uVar2 = FUN_180899ef0(*param_2,param_1 + 0x30);
-          uVar4 = (ulonglong)uVar2;
-          if (uVar2 == 0) {
-            uVar4 = FUN_180898e70(param_2,param_1 + 0x40);
-            if ((int)uVar4 != 0) {
-              return uVar4;
-            }
-                    // WARNING: Subroutine does not return
-            FUN_1808de000(param_2,auStack_40);
-          }
-        }
-      }
     }
     return uVar4;
-  }
-  return 0x1c;
 }
 
 
 
-ulonglong FUN_18089f9b3(void)
-
+/**
+ * UI系统数据处理器6
+ * 
+ * 执行UI系统数据的简化验证和处理，支持基本数据类型的处理。
+ * 该函数通过状态检查和验证确保UI系统数据的完整性。
+ * 
+ * @param validation_context 验证上下文指针
+ * @param data_object 数据对象指针
+ * @param context_ptr 上下文指针数组
+ * @param status_flag 状态标志
+ * @return 处理结果：0表示成功，0x1c表示失败
+ */
+ulonglong ui_system_data_processor_6(longlong validation_context, longlong data_object, 
+                                     longlong *context_ptr, uint status_flag)
 {
-  longlong lVar1;
-  uint uVar2;
-  longlong in_RAX;
-  ulonglong uVar3;
-  longlong unaff_RBP;
-  uint unaff_ESI;
-  longlong *unaff_RDI;
-  undefined4 in_stack_00000030;
-  undefined4 uStack0000000000000038;
-  undefined2 uStack000000000000003c;
-  undefined2 uStack000000000000003e;
-  undefined2 in_stack_000000a0;
-  undefined2 in_stack_000000a8;
-  
-  if (*(uint *)(in_RAX + 0x18) != unaff_ESI) {
-    return 0x1c;
-  }
-  uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x10);
-  uVar3 = (ulonglong)uVar2;
-  if (uVar2 == 0) {
-    if (*(uint *)(unaff_RDI[1] + 0x18) != unaff_ESI) {
-      return 0x1c;
+    longlong lVar1;
+    uint uVar2;
+    longlong in_RAX;
+    ulonglong uVar3;
+    longlong unaff_RBP;
+    uint unaff_ESI;
+    longlong *unaff_RDI;
+    undefined4 in_stack_00000030;
+    undefined4 uStack0000000000000038;
+    undefined2 uStack000000000000003c;
+    undefined2 uStack000000000000003e;
+    undefined2 in_stack_000000a0;
+    undefined2 in_stack_000000a8;
+    
+    // 检查验证状态
+    if (*(uint *)(in_RAX + UI_OFFSET_0x18) != status_flag) {
+        return UI_VALIDATION_ERROR;
     }
-    uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x20);
+    
+    // 执行数据验证
+    uVar2 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x10);
     uVar3 = (ulonglong)uVar2;
     if (uVar2 == 0) {
-      uVar3 = 0x1c;
-      uVar2 = unaff_ESI;
-      if ((*(uint *)(unaff_RDI + 8) < 0x5a) &&
-         (uVar2 = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == unaff_ESI)) {
-        in_stack_00000030 = uStack0000000000000038;
-        lVar1 = *unaff_RDI;
-        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                          (*(undefined8 **)(lVar1 + 8),&stack0x00000030,4);
-        if (uVar2 == 0) {
-          in_stack_000000a0 = uStack000000000000003c;
-          uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                            (*(undefined8 **)(lVar1 + 8),&stack0x000000a0,2);
-          if (uVar2 == 0) {
-            in_stack_000000a8 = uStack000000000000003e;
-            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                              (*(undefined8 **)(lVar1 + 8),&stack0x000000a8,2);
-            if (uVar2 == 0) {
-              uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                (*(undefined8 **)(lVar1 + 8),&stack0x00000040,8);
-            }
-          }
+        if (*(uint *)(context_ptr[1] + UI_OFFSET_0x18) != status_flag) {
+            return UI_VALIDATION_ERROR;
         }
-      }
-      if (uVar2 != 0) {
-        return (ulonglong)uVar2;
-      }
-      if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-        uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+        
+        // 验证数据对象的其他字段
+        uVar2 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x20);
         uVar3 = (ulonglong)uVar2;
         if (uVar2 == 0) {
-          uVar3 = FUN_180898e70();
-          if ((int)uVar3 == 0) {
-                    // WARNING: Subroutine does not return
-            FUN_1808de000();
-          }
-          return uVar3;
+            uVar3 = UI_VALIDATION_ERROR;
+            uVar2 = status_flag;
+            if ((*(uint *)(context_ptr + 8) < UI_EXTENDED_DATA_SIZE) &&
+               (uVar2 = UI_VALIDATION_ERROR, *(uint *)(context_ptr[1] + UI_OFFSET_0x18) == status_flag)) {
+                
+                // 执行数据验证
+                in_stack_00000030 = uStack0000000000000038;
+                lVar1 = *context_ptr;
+                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                          (*(undefined8 **)(lVar1 + 8), &stack0x00000030, 4);
+                if (uVar2 == 0) {
+                    in_stack_000000a0 = uStack000000000000003c;
+                    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                              (*(undefined8 **)(lVar1 + 8), &stack0x000000a0, 2);
+                    if (uVar2 == 0) {
+                        in_stack_000000a8 = uStack000000000000003e;
+                        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                                  (*(undefined8 **)(lVar1 + 8), &stack0x000000a8, 2);
+                        if (uVar2 == 0) {
+                            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                                      (*(undefined8 **)(lVar1 + 8), &stack0x00000040, 8);
+                        }
+                    }
+                }
+            }
+            if (uVar2 != 0) {
+                return (ulonglong)uVar2;
+            }
+            
+            // 验证数据对象的其他字段
+            if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) == 0) {
+                uVar2 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x30);
+                uVar3 = (ulonglong)uVar2;
+                if (uVar2 == 0) {
+                    uVar3 = FUN_180898e70();
+                    if ((int)uVar3 == 0) {
+                        // WARNING: Subroutine does not return
+                        FUN_1808de000();
+                    }
+                    return uVar3;
+                }
+            }
         }
-      }
     }
-  }
-  return uVar3;
+    return uVar3;
 }
 
 
 
-ulonglong FUN_18089f9f6(void)
-
+/**
+ * UI系统数据处理器7
+ * 
+ * 执行UI系统数据的简化验证和处理，支持基本数据类型的处理。
+ * 该函数通过状态检查和验证确保UI系统数据的完整性。
+ * 
+ * @param data_object 数据对象指针
+ * @param context_ptr 上下文指针数组
+ * @param status_flag 状态标志
+ * @return 处理结果：0表示成功，0x1c表示失败
+ */
+ulonglong ui_system_data_processor_7(longlong data_object, longlong *context_ptr, uint status_flag)
 {
-  longlong lVar1;
-  uint uVar2;
-  ulonglong uVar3;
-  longlong unaff_RBP;
-  uint unaff_ESI;
-  longlong *unaff_RDI;
-  undefined4 in_stack_00000030;
-  undefined4 uStack0000000000000038;
-  undefined2 uStack000000000000003c;
-  undefined2 uStack000000000000003e;
-  undefined2 in_stack_000000a0;
-  undefined2 in_stack_000000a8;
-  
-  uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x20);
-  uVar3 = (ulonglong)uVar2;
-  if (uVar2 == 0) {
-    uVar3 = 0x1c;
-    uVar2 = unaff_ESI;
-    if ((*(uint *)(unaff_RDI + 8) < 0x5a) &&
-       (uVar2 = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == unaff_ESI)) {
-      in_stack_00000030 = uStack0000000000000038;
-      lVar1 = *unaff_RDI;
-      uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                        (*(undefined8 **)(lVar1 + 8),&stack0x00000030,4);
-      if (uVar2 == 0) {
-        in_stack_000000a0 = uStack000000000000003c;
-        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                          (*(undefined8 **)(lVar1 + 8),&stack0x000000a0,2);
-        if (uVar2 == 0) {
-          in_stack_000000a8 = uStack000000000000003e;
-          uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                            (*(undefined8 **)(lVar1 + 8),&stack0x000000a8,2);
-          if (uVar2 == 0) {
+    longlong lVar1;
+    uint uVar2;
+    ulonglong uVar3;
+    longlong unaff_RBP;
+    uint unaff_ESI;
+    longlong *unaff_RDI;
+    undefined4 in_stack_00000030;
+    undefined4 uStack0000000000000038;
+    undefined2 uStack000000000000003c;
+    undefined2 uStack000000000000003e;
+    undefined2 in_stack_000000a0;
+    undefined2 in_stack_000000a8;
+    
+    // 执行数据验证
+    uVar2 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x20);
+    uVar3 = (ulonglong)uVar2;
+    if (uVar2 == 0) {
+        uVar3 = UI_VALIDATION_ERROR;
+        uVar2 = status_flag;
+        if ((*(uint *)(context_ptr + 8) < UI_EXTENDED_DATA_SIZE) &&
+           (uVar2 = UI_VALIDATION_ERROR, *(uint *)(context_ptr[1] + UI_OFFSET_0x18) == status_flag)) {
+            
+            // 执行数据验证
+            in_stack_00000030 = uStack0000000000000038;
+            lVar1 = *context_ptr;
             uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                              (*(undefined8 **)(lVar1 + 8),&stack0x00000040,8);
-          }
+                      (*(undefined8 **)(lVar1 + 8), &stack0x00000030, 4);
+            if (uVar2 == 0) {
+                in_stack_000000a0 = uStack000000000000003c;
+                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                          (*(undefined8 **)(lVar1 + 8), &stack0x000000a0, 2);
+                if (uVar2 == 0) {
+                    in_stack_000000a8 = uStack000000000000003e;
+                    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                              (*(undefined8 **)(lVar1 + 8), &stack0x000000a8, 2);
+                    if (uVar2 == 0) {
+                        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                                  (*(undefined8 **)(lVar1 + 8), &stack0x00000040, 8);
+                    }
+                }
+            }
         }
-      }
+        if (uVar2 != 0) {
+            return (ulonglong)uVar2;
+        }
+        
+        // 验证数据对象的其他字段
+        if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) == 0) {
+            uVar2 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x30);
+            uVar3 = (ulonglong)uVar2;
+            if (uVar2 == 0) {
+                uVar3 = FUN_180898e70();
+                if ((int)uVar3 != 0) {
+                    return uVar3;
+                }
+                // WARNING: Subroutine does not return
+                FUN_1808de000();
+            }
+        }
+    }
+    return uVar3;
+}
+
+
+
+/**
+ * UI系统数据处理器8
+ * 
+ * 执行UI系统数据的简化验证和处理，支持基本数据类型的处理。
+ * 该函数通过状态检查和验证确保UI系统数据的完整性。
+ * 
+ * @param context_ptr 上下文指针数组
+ * @param data_object 数据对象指针
+ * @param validation_data 验证数据
+ * @return 处理结果：0表示成功，0x1c表示失败
+ */
+ulonglong ui_system_data_processor_8(longlong *context_ptr, longlong data_object, ulonglong validation_data)
+{
+    longlong lVar1;
+    uint uVar2;
+    ulonglong uVar3;
+    ulonglong unaff_RBX;
+    longlong unaff_RBP;
+    longlong *unaff_RDI;
+    undefined8 in_stack_00000038;
+    undefined2 in_stack_000000a0;
+    undefined2 in_stack_000000a8;
+    
+    // 执行数据验证
+    lVar1 = *context_ptr;
+    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))();
+    if (uVar2 == 0) {
+        in_stack_000000a0 = in_stack_00000038._4_2_;
+        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                  (*(undefined8 **)(lVar1 + 8), &stack0x000000a0, 2);
+        if (uVar2 == 0) {
+            in_stack_000000a8 = in_stack_00000038._6_2_;
+            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                      (*(undefined8 **)(lVar1 + 8), &stack0x000000a8, 2);
+            if (uVar2 == 0) {
+                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
+                          (*(undefined8 **)(lVar1 + 8), &stack0x00000040, 8);
+            }
+        }
     }
     if (uVar2 != 0) {
-      return (ulonglong)uVar2;
+        return (ulonglong)uVar2;
     }
-    if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-      uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
-      uVar3 = (ulonglong)uVar2;
-      if (uVar2 == 0) {
-        uVar3 = FUN_180898e70();
-        if ((int)uVar3 != 0) {
-          return uVar3;
+    
+    // 验证数据对象的其他字段
+    if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) == 0) {
+        uVar2 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x30);
+        unaff_RBX = (ulonglong)uVar2;
+        if (uVar2 == 0) {
+            uVar3 = FUN_180898e70();
+            if ((int)uVar3 == 0) {
+                // WARNING: Subroutine does not return
+                FUN_1808de000();
+            }
+            return uVar3;
         }
-                    // WARNING: Subroutine does not return
-        FUN_1808de000();
-      }
     }
-  }
-  return uVar3;
-}
-
-
-
-ulonglong FUN_18089fa3c(void)
-
-{
-  longlong lVar1;
-  uint uVar2;
-  ulonglong uVar3;
-  ulonglong unaff_RBX;
-  longlong unaff_RBP;
-  longlong *unaff_RDI;
-  undefined8 in_stack_00000038;
-  undefined2 in_stack_000000a0;
-  undefined2 in_stack_000000a8;
-  
-  lVar1 = *unaff_RDI;
-  uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))();
-  if (uVar2 == 0) {
-    in_stack_000000a0 = in_stack_00000038._4_2_;
-    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                      (*(undefined8 **)(lVar1 + 8),&stack0x000000a0,2);
-    if (uVar2 == 0) {
-      in_stack_000000a8 = in_stack_00000038._6_2_;
-      uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                        (*(undefined8 **)(lVar1 + 8),&stack0x000000a8,2);
-      if (uVar2 == 0) {
-        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                          (*(undefined8 **)(lVar1 + 8),&stack0x00000040,8);
-      }
-    }
-  }
-  if (uVar2 != 0) {
-    return (ulonglong)uVar2;
-  }
-  if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
-    unaff_RBX = (ulonglong)uVar2;
-    if (uVar2 == 0) {
-      uVar3 = FUN_180898e70();
-      if ((int)uVar3 == 0) {
-                    // WARNING: Subroutine does not return
-        FUN_1808de000();
-      }
-      return uVar3;
-    }
-  }
-  return unaff_RBX & 0xffffffff;
+    return unaff_RBX & 0xffffffff;
 }
 
 
