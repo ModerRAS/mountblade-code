@@ -65,14 +65,14 @@
 #define SystemMemoryAllocator FUN_18062b420
 #define SystemStringHashCalculator FUN_18064e990
 #define SystemContextManager SystemContextManager
-#define SystemMemoryReleaser FUN_18064e900
-#define SystemMemoryDeallocator FUN_1803457d0
-#define SystemMemoryManager FUN_18062b1e0
-#define SystemStringInitializer FUN_18005d190
-#define SystemRenderObjectGetter FUN_1802e8fb0
-#define SystemStringHandleManager FUN_1800b6de0
-#define SystemRenderInitializer FUN_18036b140
-#define SystemHandleProcessor FUN_180389090
+#define SystemMemoryReleaser SystemMemoryReleaser
+#define SystemMemoryDeallocator SystemMemoryDeallocator
+#define SystemMemoryManager SystemMemoryManager
+#define SystemStringInitializer SystemStringInitializer
+#define SystemRenderObjectGetter SystemRenderObjectGetter
+#define SystemStringHandleManager SystemStringHandleManager
+#define SystemRenderInitializer SystemRenderInitializer
+#define SystemHandleProcessor SystemHandleProcessor
 #define SystemRenderUpdater FUN_18036abc0
 #define SystemRenderPostProcessor FUN_18036b380
 /* @} */
@@ -162,7 +162,7 @@ void RenderingSystem_CreateRenderContext(uint64_t *context_ptr)
     buffer_length = 0xb;
     SystemContextManager(context_ptr, &cleanup_handler, context_ptr + 0xe, 2);
     cleanup_handler = &unknown_var_3456_ptr;
-    FUN_18064e900(context_data);
+    SystemMemoryReleaser(context_data);
 }
 
 
@@ -184,7 +184,7 @@ uint64_t RenderingSystem_AllocateRenderMemory(uint64_t memory_ptr, ulonglong all
     uint64_t thread_counter;
     
     thread_counter = 0xfffffffffffffffe;
-    FUN_1803457d0();
+    SystemMemoryDeallocator();
     if ((allocation_flags & 1) != 0) {
         free(memory_ptr, RENDERING_SYSTEM_MEMORY_POOL_SIZE_0x90, size_param, alignment_param, thread_counter);
     }
@@ -221,7 +221,7 @@ void RenderingSystem_SetupRenderParameters(uint64_t param_1, uint64_t param_2)
   uint64_t uStack_28;
   
   uStack_30 = 0x18036981a;
-  puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x90,8,3);
+  puVar3 = (uint64_t *)SystemMemoryManager(_DAT_180c8ed18,0x90,8,3);
   uStack_28 = 0xfffffffffffffffe;
   puVar2 = puVar3;
   FUN_1803456e0(puVar3,param_2,param_1);
@@ -241,7 +241,7 @@ void RenderingSystem_SetupRenderParameters(uint64_t param_1, uint64_t param_2)
   SystemContextManager(puVar3,&puStack_108,puVar3 + 0xe,2);
   puStack_108 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar2);
+  SystemMemoryReleaser(puVar2);
 }
 
 
@@ -447,7 +447,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
  */
 void RenderingSystem_ColorInterpolatorBase(longlong render_context) {
     // 获取渲染对象句柄
-    longlong render_object = FUN_1802e8fb0(*(uint64_t *)(render_context + 0x18));
+    longlong render_object = SystemRenderObjectGetter(*(uint64_t *)(render_context + 0x18));
     if (render_object == 0) {
         return;
     }
@@ -732,12 +732,12 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     buffer_size._0_4_ = string_hash; // 存储哈希值
     
     // 初始化字符串处理器
-    FUN_18005d190(processor_ptr, &string_buffer);
+    SystemStringInitializer(processor_ptr, &string_buffer);
     
     // 清理临时缓冲区
     string_buffer = &unknown_var_3456_ptr;
     if (buffer_ptr != (uint64_t *)0x0) {
-        FUN_18064e900(); // 释放缓冲区内存
+        SystemMemoryReleaser(); // 释放缓冲区内存
     }
     
     // 准备第二个字符串缓冲区
@@ -786,7 +786,7 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     
     // 清理主缓冲区
     string_buffer = &unknown_var_3456_ptr;
-    FUN_18064e900(main_buffer); // 释放主缓冲区内存
+    SystemMemoryReleaser(main_buffer); // 释放主缓冲区内存
 }
 
 
@@ -840,7 +840,7 @@ uint64_t * RenderingSystem_ManagerCleaner(uint64_t *manager, ulonglong cleanup_f
     // 清理扩展数据区域
     manager[0x16] = &unknown_var_3456_ptr; // 设置扩展数据指针
     if (manager[0x17] != 0) {
-        FUN_18064e900(); // 释放扩展数据内存
+        SystemMemoryReleaser(); // 释放扩展数据内存
     }
     manager[0x17] = 0;
     *(int32_t *)(manager + 0x19) = 0; // 清零扩展计数
@@ -851,7 +851,7 @@ uint64_t * RenderingSystem_ManagerCleaner(uint64_t *manager, ulonglong cleanup_f
     // 清理主数据区域
     manager[0xe] = &unknown_var_3456_ptr; // 设置主数据指针
     if (manager[0xf] != 0) {
-        FUN_18064e900(); // 释放主数据内存
+        SystemMemoryReleaser(); // 释放主数据内存
     }
     manager[0xf] = 0;
     *(int32_t *)(manager + 0x11) = 0; // 清零主计数
@@ -860,7 +860,7 @@ uint64_t * RenderingSystem_ManagerCleaner(uint64_t *manager, ulonglong cleanup_f
     manager[0xe] = &unknown_var_720_ptr; // 设置默认主数据
     
     // 调用最终清理函数
-    FUN_1803457d0(manager);
+    SystemMemoryDeallocator(manager);
     
     // 根据清理标志决定是否释放管理器本身
     if ((cleanup_flags & 1) != 0) {
@@ -914,12 +914,12 @@ void RenderingSystem_ParameterInitializer(longlong render_context, uint64_t para
     buffer_hash._0_4_ = hash_value; // 存储哈希值
     
     // 初始化字符串处理器
-    FUN_18005d190(render_context + 0x70, &string_buffer);
+    SystemStringInitializer(render_context + 0x70, &string_buffer);
     
     // 清理字符串缓冲区
     string_buffer = &unknown_var_3456_ptr;
     if (string_ptr != (int32_t *)0x0) {
-        FUN_18064e900(); // 释放字符串内存
+        SystemMemoryReleaser(); // 释放字符串内存
     }
     
     // 准备参数清理
@@ -989,17 +989,17 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
         int32_t string_length = 7;
         strcpy_s(security_buffer, 0x10, &unknown_var_1464_ptr); // 复制调试字符串
         
-        uint64_t string_handle = FUN_1800b6de0(_DAT_180c86930, &string_ptr, 1);
+        uint64_t string_handle = SystemStringHandleManager(_DAT_180c86930, &string_ptr, 1);
         *(uint64_t *)(render_context + 0x98) = string_handle;
         string_ptr = &unknown_var_720_ptr; // 重置字符串指针
     }
     
     // 调用基础初始化函数
-    FUN_18036b140(render_context);
+    SystemRenderInitializer(render_context);
     
     // 设置处理器句柄
     uint64_t *processor_handle = (uint64_t *)
-        FUN_180389090(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970, 
+        SystemHandleProcessor(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970, 
                      (longlong **)&security_buffer, render_context + 0x70);
     *(uint64_t *)(render_context + 0xd8) = *processor_handle;
     
@@ -1061,17 +1061,17 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
         int32_t string_length = 7;
         strcpy_s(security_buffer, 0x10, &unknown_var_1464_ptr); // 复制调试字符串
         
-        uint64_t string_handle = FUN_1800b6de0(_DAT_180c86930, &string_ptr, 1);
+        uint64_t string_handle = SystemStringHandleManager(_DAT_180c86930, &string_ptr, 1);
         *(uint64_t *)(render_context + 0x98) = string_handle;
         string_ptr = &unknown_var_720_ptr; // 重置字符串指针
     }
     
     // 调用基础初始化函数
-    FUN_18036b140(render_context);
+    SystemRenderInitializer(render_context);
     
     // 设置处理器句柄
     uint64_t *processor_handle = (uint64_t *)
-        FUN_180389090(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970, 
+        SystemHandleProcessor(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970, 
                      (longlong **)&security_buffer, render_context + 0x70);
     *(uint64_t *)(render_context + 0xd8) = *processor_handle;
     
@@ -1118,7 +1118,7 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
  */
 void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     // 分配管理器内存
-    uint64_t *manager = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x118, 8, 3);
+    uint64_t *manager = (uint64_t *)SystemMemoryManager(_DAT_180c8ed18, 0x118, 8, 3);
     uint64_t stack_guard = 0xfffffffffffffffe;
     
     uint64_t *manager_ptr = manager;
@@ -1176,12 +1176,12 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     buffer_size._0_4_ = string_hash; // 存储哈希值
     
     // 初始化字符串处理器
-    FUN_18005d190(processor_ptr, &string_buffer);
+    SystemStringInitializer(processor_ptr, &string_buffer);
     
     // 清理临时缓冲区
     string_buffer = &unknown_var_3456_ptr;
     if (buffer_ptr != (uint64_t *)0x0) {
-        FUN_18064e900(); // 释放缓冲区内存
+        SystemMemoryReleaser(); // 释放缓冲区内存
     }
     
     // 准备主字符串缓冲区
@@ -1230,7 +1230,7 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     
     // 清理主缓冲区
     string_buffer = &unknown_var_3456_ptr;
-    FUN_18064e900(main_buffer); // 释放主缓冲区内存
+    SystemMemoryReleaser(main_buffer); // 释放主缓冲区内存
 }
 
 
@@ -1259,7 +1259,7 @@ void RenderingSystem_HandleUpdater(longlong render_context, uint64_t param_2,
                                  uint64_t param_3, uint64_t param_4) {
     // 获取新的句柄
     longlong *new_handle = (longlong *)
-        FUN_180389090(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970,
+        SystemHandleProcessor(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970,
                      (longlong **)&render_context, render_context + 0x70, param_4, 0xfffffffffffffffe);
     
     longlong handle_value = *new_handle;
@@ -1330,7 +1330,7 @@ void RenderingSystem_SimpleHandleSetter(longlong render_context, uint64_t param_
                                       uint64_t param_3, uint64_t param_4) {
     // 获取句柄指针
     uint64_t *handle_ptr = (uint64_t *)
-        FUN_180389090(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970,
+        SystemHandleProcessor(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970,
                      (longlong **)render_context, render_context + 0x70, param_4, 0xfffffffffffffffe);
     
     // 设置句柄值

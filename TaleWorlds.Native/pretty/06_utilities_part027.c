@@ -2285,16 +2285,16 @@ void utilities_system_memory_cleaner(void)
   // lVar2 -> memory_base: 内存基地址
   
   // 检查内存使用量
-  if (0xf < uRam0000000180bfc0f0) {
-    memory_ptr = CONCAT71(uRam0000000180bfc0d9,uRam0000000180bfc0d8);
+  if (0xf < *system_memory_usage_count) {
+    memory_ptr = CONCAT71(*system_buffer_ptr_7,*system_buffer_ptr_6);
     memory_base = memory_ptr;
     
     // 检查内存块大小
-    if (0xfff < uRam0000000180bfc0f0 + 1) {
+    if (0xfff < *system_memory_usage_count + 1) {
       memory_base = *(longlong *)(memory_ptr + -8);
       if (0x1f < (memory_ptr - memory_base) - 8U) {
         // 内存块大小无效，终止程序
-        _invalid_parameter_noinfo_noreturn(memory_ptr - memory_base,uRam0000000180bfc0f0 + 0x28);
+        _invalid_parameter_noinfo_noreturn(memory_ptr - memory_base,*system_memory_usage_count + 0x28);
       }
     }
     
@@ -2331,16 +2331,16 @@ void utilities_system_data_memory_cleaner(void)
   // lVar2 -> data_memory_base: 数据内存基地址
   
   // 检查数据内存使用量
-  if (0xf < uRam0000000180d499c0) {
-    data_memory_ptr = CONCAT71(uRam0000000180d499a9,uRam0000000180d499a8);
+  if (0xf < *system_data_memory_usage_count) {
+    data_memory_ptr = CONCAT71(*system_data_memory_ptr_2,*system_data_memory_ptr_1);
     data_memory_base = data_memory_ptr;
     
     // 检查数据内存块大小
-    if (0xfff < uRam0000000180d499c0 + 1) {
+    if (0xfff < *system_data_memory_usage_count + 1) {
       data_memory_base = *(longlong *)(data_memory_ptr + -8);
       if (0x1f < (data_memory_ptr - data_memory_base) - 8U) {
         // 数据内存块大小无效，终止程序
-        _invalid_parameter_noinfo_noreturn(data_memory_ptr - data_memory_base,uRam0000000180d499c0 + 0x28);
+        _invalid_parameter_noinfo_noreturn(data_memory_ptr - data_memory_base,*system_data_memory_usage_count + 0x28);
       }
     }
     

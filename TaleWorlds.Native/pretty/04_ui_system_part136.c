@@ -765,7 +765,7 @@ void UISystem_DataManager(longlong context)
     int8_t stackBuffer2[48];
     ulonglong stackVar21;
     
-    stackVar21 = _DAT_180bf00a8 ^ (ulonglong)stackBuffer;
+    stackVar21 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer;
     if (*(char *)(context + 8) != '\0') {
         if ((*(code **)(context + UI_OFFSET_11838) != (code *)0x0) &&
            ((*(uint *)(context + UI_OFFSET_11840) & UI_CONST_0X400) != 0)) {
@@ -1107,7 +1107,7 @@ void UISystem_CleanupManager(longlong context)
     ulonglong stackVar;
     ulonglong indexVar;
     
-    stackVar = _DAT_180bf00a8 ^ (ulonglong)stackBuffer;
+    stackVar = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer;
     if (*(char *)(context + 8) == '\0') goto UISystem_ErrorHandler;
     indexVar = 0;
     intVar = 0;

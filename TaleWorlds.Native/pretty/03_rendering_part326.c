@@ -48,6 +48,29 @@
 #define RenderingSystem_ProcessParameterSet4                FUN_18043bf20  /* 渲染系统参数设置处理器4 */
 #define RenderingSystem_ExecuteRenderCommand                FUN_18043bfb0  /* 渲染系统命令执行器 */
 
+/* 系统函数别名定义 */
+#define SystemDataProcessor                                FUN_180626f80  /* 系统数据处理器 */
+#define SystemTransformExecutor                            FUN_18010cdf0  /* 系统变换执行器 */
+#define SystemRenderObjectHandler                           FUN_180171f10  /* 系统渲染对象处理器 */
+#define SystemValueGetter                                   FUN_180438350  /* 系统值获取器 */
+#define SystemDataAccessor                                 FUN_1804386b0  /* 系统数据访问器 */
+#define SystemIndexProcessor                                FUN_180438940  /* 系统索引处理器 */
+#define SystemStatusChecker                                FUN_180104d00  /* 系统状态检查器 */
+#define SystemParameterProcessor1                          FUN_18010d9f0  /* 系统参数处理器1 */
+#define SystemParameterProcessor2                          FUN_18010da70  /* 系统参数处理器2 */
+#define SystemParameterProcessor3                          FUN_18010d870  /* 系统参数处理器3 */
+#define SystemParameterProcessor4                          FUN_18010daf0  /* 系统参数处理器4 */
+#define SystemParameterProcessor5                          FUN_18010cd70  /* 系统参数处理器5 */
+#define SystemInitializer                                  FUN_180103970  /* 系统初始化器 */
+#define SystemCleanupHandler                               FUN_1800b3a40  /* 系统清理处理器 */
+#define SystemMemoryAllocator                              FUN_18062b1e0  /* 系统内存分配器 */
+#define SystemPointerManager                               FUN_18005ce30  /* 系统指针管理器 */
+#define SystemDataManager                                  FUN_18005e370  /* 系统数据管理器 */
+#define SystemExitHandler                                  FUN_18004b1f0  /* 系统退出处理器 */
+#define SystemSecurityChecker                              FUN_1808fc050  /* 系统安全检查器 */
+#define SystemStringFormatter                              FUN_180060680  /* 系统字符串格式化器 */
+#define SystemCommandProcessor                             FUN_1800623b0  /* 系统命令处理器 */
+
 /* 渲染系统全局变量 */
 extern longlong _DAT_180c86920;      /* 渲染系统全局数据指针 */
 extern char system_debug_flag;           /* 渲染系统标志位 */
