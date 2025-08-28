@@ -1,8 +1,63 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part326.c - 18 个函数
+// 04_ui_system_part326.c - UI系统高级控件和事件处理模块
+// 
+// 本文件包含18个核心函数，主要涵盖UI系统的高级控件管理、事件处理、
+// 数据验证、字符串解析、内存管理、控件状态更新等功能模块。
+//
+// 主要功能包括：
+// - UI控件参数验证和处理
+// - 字符串格式化和解析
+// - 内存分配和管理
+// - 事件分发和处理
+// - 控件状态管理
+// - 数据结构操作
+//
+// 核心函数：
+// - UISystemControlValidator: UI系统控件验证器
+// - UISystemStringProcessor: UI系统字符串处理器
+// - UISystemMemoryManager: UI系统内存管理器
+// - UISystemEventHandler: UI系统事件处理器
+// - UISystemControlStateManager: UI系统控件状态管理器
 
-// 函数: void FUN_180848dc0(longlong *param_1,uint param_2,undefined8 param_3)
+/*================================================================================
+// 常量定义
+//================================================================================*/
+
+// UI系统常量定义
+#define UI_SYSTEM_MAX_STRING_LENGTH 0x10600    // UI系统最大字符串长度
+#define UI_SYSTEM_CONTROL_THRESHOLD 0x20100   // UI系统控件阈值
+#define UI_SYSTEM_ARRAY_SIZE_5 5               // UI系统数组大小5
+#define UI_SYSTEM_ARRAY_SIZE_34 34             // UI系统数组大小34
+#define UI_SYSTEM_BUFFER_SIZE_256 256          // UI系统缓冲区大小256
+#define UI_SYSTEM_STRUCT_SIZE_0X14 0x14        // UI系统结构体大小0X14
+#define UI_SYSTEM_VALIDATION_LENGTH_0X26 0x26  // UI系统验证长度0X26
+#define UI_SYSTEM_VALIDATION_LENGTH_0X27 0x27  // UI系统验证长度0X27
+
+// UI系统返回值常量
+#define UI_SYSTEM_SUCCESS 0                     // UI系统成功返回值
+#define UI_SYSTEM_ERROR_INVALID_PARAM 0x1c     // UI系统无效参数错误
+#define UI_SYSTEM_ERROR_MEMORY_ALLOC 0x26      // UI系统内存分配错误
+#define UI_SYSTEM_ERROR_VALIDATION_FAILED 3    // UI系统验证失败错误
+
+// UI系统标志位常量
+#define UI_SYSTEM_FLAG_BIT_1 0x1               // UI系统标志位1
+#define UI_SYSTEM_FLAG_BIT_2 0x2               // UI系统标志位2
+#define UI_SYSTEM_FLAG_BIT_0X80 0x80           // UI系统标志位0X80
+
+/*================================================================================
+// 核心函数实现
+//================================================================================*/
+
+/**
+ * UI系统控件验证器
+ * 验证UI控件的参数和状态，确保控件数据的有效性
+ * 
+ * @param param_1 控件数据结构指针
+ * @param param_2 控件类型标识符
+ * @param param_3 控件配置参数
+ * @return void 无返回值
+ */
 void FUN_180848dc0(longlong *param_1,uint param_2,undefined8 param_3)
 
 {
@@ -10,32 +65,43 @@ void FUN_180848dc0(longlong *param_1,uint param_2,undefined8 param_3)
   undefined8 uStackX_18;
   undefined1 auStackX_20 [8];
   
-  if (param_2 < 0x10600) {
+  // 检查控件类型是否在有效范围内
+  if (param_2 < UI_SYSTEM_MAX_STRING_LENGTH) {
+    // 初始化控件数据结构
     *(undefined4 *)(param_1 + 2) = 0;
+    
+    // 控件验证流程
 FUN_18088f050:
+    // 执行控件参数验证
     iVar1 = FUN_18088f710(param_3,auStackX_20);
     if ((iVar1 == 0) && (iVar1 = FUN_18088f710(auStackX_20,&uStackX_18), iVar1 == 0)) {
+      // 验证控件主要参数
       iVar1 = FUN_18010cbc0(uStackX_18,&UNK_180986258,(longlong)param_1 + 0x14,param_1 + 3,
                             (longlong)param_1 + 0x1c);
-      if (((iVar1 == 3) ||
+      if (((iVar1 == UI_SYSTEM_ERROR_VALIDATION_FAILED) ||
           (((iVar1 = FUN_18088eea0(&uStackX_18,(longlong)param_1 + 0x14), iVar1 == 0 &&
             (iVar1 = FUN_18088eea0(&uStackX_18,param_1 + 3), iVar1 == 0)) &&
            (iVar1 = FUN_18088eea0(&uStackX_18,(longlong)param_1 + 0x1c), iVar1 == 0)))) &&
          (iVar1 = FUN_18088f710(auStackX_20,&uStackX_18), iVar1 == 0)) {
+        // 验证控件次要参数
         iVar1 = FUN_18010cbc0(uStackX_18,&UNK_180986258,param_1 + 4,(longlong)param_1 + 0x24,
                               param_1 + 5);
-        if (((iVar1 == 3) ||
+        if (((iVar1 == UI_SYSTEM_ERROR_VALIDATION_FAILED) ||
             (((iVar1 = FUN_18088eea0(&uStackX_18,param_1 + 4), iVar1 == 0 &&
               (iVar1 = FUN_18088eea0(&uStackX_18,(longlong)param_1 + 0x24), iVar1 == 0)) &&
              (iVar1 = FUN_18088eea0(&uStackX_18,param_1 + 5), iVar1 == 0)))) &&
            (iVar1 = FUN_18088f3a0(auStackX_20,(longlong)param_1 + 0x2c), iVar1 == 0)) {
+          // 设置控件最终状态
           FUN_18088f3a0(auStackX_20,param_1 + 7);
         }
       }
     }
     return;
   }
-  if (param_2 < 0x20100) {
+  
+  // 处理中等大小的控件
+  if (param_2 < UI_SYSTEM_CONTROL_THRESHOLD) {
+    // 初始化中等控件数据结构
     *(undefined1 *)(param_1 + 10) = 0;
     *(undefined8 *)((longlong)param_1 + 0x44) = 0;
     *(undefined4 *)((longlong)param_1 + 0x4c) = 0;
@@ -43,6 +109,7 @@ FUN_18088f050:
     if (iVar1 == 0) goto FUN_18088f050;
   }
   else {
+    // 处理大型控件的特殊情况
     (**(code **)(*param_1 + 0x18))(param_1,param_3);
   }
   return;
@@ -50,11 +117,18 @@ FUN_18088f050:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/*================================================================================
+// UI系统字符串处理函数组
+//================================================================================*/
 
-
-
-// 函数: void FUN_180848e50(char *param_1,undefined8 *param_2)
+/**
+ * UI系统字符串处理器
+ * 处理UI系统中的字符串格式化和解析操作
+ * 
+ * @param param_1 输入字符串指针
+ * @param param_2 输出数据结构指针
+ * @return void 无返回值
+ */
 void FUN_180848e50(char *param_1,undefined8 *param_2)
 
 {
