@@ -5,56 +5,57 @@
 
 // 函数: 清理对象数组并释放资源
 // 原始实现: FUN_180057550
+// 功能: 遍历对象管理器中的对象数组，逐个释放对象资源，并清理内存
 void cleanup_object_array_and_free_resources(longlong object_manager, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-    int *resource_count_ptr;
+    int *memory_pool_count_ptr;
     longlong object_ptr;
     undefined8 *object_array_ptr;
-    longlong manager_data;
-    ulonglong array_size;
+    longlong memory_pool_data;
+    ulonglong object_count;
     ulonglong index;
     
     // 获取对象数组大小
-    array_size = *(ulonglong *)(object_manager + 0x10);
-    manager_data = *(longlong *)(object_manager + 8);
+    object_count = *(ulonglong *)(object_manager + 0x10);
+    memory_pool_data = *(longlong *)(object_manager + 8);
     index = 0;
-    if (array_size != 0) {
+    if (object_count != 0) {
         do {
             // 遍历对象数组
-            object_ptr = *(longlong *)(manager_data + index * 8);
+            object_ptr = *(longlong *)(memory_pool_data + index * 8);
             if (object_ptr != 0) {
                 // 释放对象资源
                 release_object_resources(object_ptr);
             }
             // 清空对象指针
-            *(undefined8 *)(manager_data + index * 8) = 0;
+            *(undefined8 *)(memory_pool_data + index * 8) = 0;
             index = index + 1;
-        } while (index < array_size);
-        array_size = *(ulonglong *)(object_manager + 0x10);
+        } while (index < object_count);
+        object_count = *(ulonglong *)(object_manager + 0x10);
     }
     // 重置管理器状态
     *(undefined8 *)(object_manager + 0x18) = 0;
-    if ((1 < array_size) && (object_array_ptr = *(undefined8 **)(object_manager + 8), object_array_ptr != (undefined8 *)0x0)) {
+    if ((1 < object_count) && (object_array_ptr = *(undefined8 **)(object_manager + 8), object_array_ptr != (undefined8 *)0x0)) {
         // 处理内存池释放
-        array_size = (ulonglong)object_array_ptr & 0xffffffffffc00000;
-        if (array_size != 0) {
-            manager_data = array_size + 0x80 + ((longlong)object_array_ptr - array_size >> 0x10) * 0x50;
-            manager_data = manager_data - (ulonglong)*(uint *)(manager_data + 4);
-            if ((*(void ***)(array_size + 0x70) == &ExceptionList) && (*(char *)(manager_data + 0xe) == '\0')) {
+        object_count = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+        if (object_count != 0) {
+            memory_pool_data = object_count + 0x80 + ((longlong)object_array_ptr - object_count >> 0x10) * 0x50;
+            memory_pool_data = memory_pool_data - (ulonglong)*(uint *)(memory_pool_data + 4);
+            if ((*(void ***)(object_count + 0x70) == &ExceptionList) && (*(char *)(memory_pool_data + 0xe) == '\0')) {
                 // 释放到内存池
-                *object_array_ptr = *(undefined8 *)(manager_data + 0x20);
-                *(undefined8 **)(manager_data + 0x20) = object_array_ptr;
-                resource_count_ptr = (int *)(manager_data + 0x18);
-                *resource_count_ptr = *resource_count_ptr + -1;
-                if (*resource_count_ptr == 0) {
+                *object_array_ptr = *(undefined8 *)(memory_pool_data + 0x20);
+                *(undefined8 **)(memory_pool_data + 0x20) = object_array_ptr;
+                memory_pool_count_ptr = (int *)(memory_pool_data + 0x18);
+                *memory_pool_count_ptr = *memory_pool_count_ptr + -1;
+                if (*memory_pool_count_ptr == 0) {
                     cleanup_memory_pool();
                     return;
                 }
             }
             else {
                 // 使用通用释放函数
-                free_memory_block(array_size, CONCAT71(0xff000000, *(void ***)(array_size + 0x70) == &ExceptionList),
-                                 object_array_ptr, array_size, 0xfffffffffffffffe);
+                free_memory_block(object_count, CONCAT71(0xff000000, *(void ***)(object_count + 0x70) == &ExceptionList),
+                                 object_array_ptr, object_count, 0xfffffffffffffffe);
             }
         }
         return;
@@ -64,56 +65,57 @@ void cleanup_object_array_and_free_resources(longlong object_manager, undefined8
 
 // 函数: 清理对象数组并释放资源（变体1）
 // 原始实现: FUN_180057556
+// 功能: 与主函数类似，但可能在不同的上下文中使用，用于对象资源清理
 void cleanup_object_array_and_free_resources_variant1(longlong object_manager, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-    int *resource_count_ptr;
+    int *memory_pool_count_ptr;
     longlong object_ptr;
     undefined8 *object_array_ptr;
-    longlong manager_data;
-    ulonglong array_size;
+    longlong memory_pool_data;
+    ulonglong object_count;
     ulonglong index;
     
     // 获取对象数组大小
-    array_size = *(ulonglong *)(object_manager + 0x10);
-    manager_data = *(longlong *)(object_manager + 8);
+    object_count = *(ulonglong *)(object_manager + 0x10);
+    memory_pool_data = *(longlong *)(object_manager + 8);
     index = 0;
-    if (array_size != 0) {
+    if (object_count != 0) {
         do {
             // 遍历对象数组
-            object_ptr = *(longlong *)(manager_data + index * 8);
+            object_ptr = *(longlong *)(memory_pool_data + index * 8);
             if (object_ptr != 0) {
                 // 释放对象资源
                 release_object_resources(object_ptr);
             }
             // 清空对象指针
-            *(undefined8 *)(manager_data + index * 8) = 0;
+            *(undefined8 *)(memory_pool_data + index * 8) = 0;
             index = index + 1;
-        } while (index < array_size);
-        array_size = *(ulonglong *)(object_manager + 0x10);
+        } while (index < object_count);
+        object_count = *(ulonglong *)(object_manager + 0x10);
     }
     // 重置管理器状态
     *(undefined8 *)(object_manager + 0x18) = 0;
-    if ((1 < array_size) && (object_array_ptr = *(undefined8 **)(object_manager + 8), object_array_ptr != (undefined8 *)0x0)) {
+    if ((1 < object_count) && (object_array_ptr = *(undefined8 **)(object_manager + 8), object_array_ptr != (undefined8 *)0x0)) {
         // 处理内存池释放
-        array_size = (ulonglong)object_array_ptr & 0xffffffffffc00000;
-        if (array_size != 0) {
-            manager_data = array_size + 0x80 + ((longlong)object_array_ptr - array_size >> 0x10) * 0x50;
-            manager_data = manager_data - (ulonglong)*(uint *)(manager_data + 4);
-            if ((*(void ***)(array_size + 0x70) == &ExceptionList) && (*(char *)(manager_data + 0xe) == '\0')) {
+        object_count = (ulonglong)object_array_ptr & 0xffffffffffc00000;
+        if (object_count != 0) {
+            memory_pool_data = object_count + 0x80 + ((longlong)object_array_ptr - object_count >> 0x10) * 0x50;
+            memory_pool_data = memory_pool_data - (ulonglong)*(uint *)(memory_pool_data + 4);
+            if ((*(void ***)(object_count + 0x70) == &ExceptionList) && (*(char *)(memory_pool_data + 0xe) == '\0')) {
                 // 释放到内存池
-                *object_array_ptr = *(undefined8 *)(manager_data + 0x20);
-                *(undefined8 **)(manager_data + 0x20) = object_array_ptr;
-                resource_count_ptr = (int *)(manager_data + 0x18);
-                *resource_count_ptr = *resource_count_ptr + -1;
-                if (*resource_count_ptr == 0) {
+                *object_array_ptr = *(undefined8 *)(memory_pool_data + 0x20);
+                *(undefined8 **)(memory_pool_data + 0x20) = object_array_ptr;
+                memory_pool_count_ptr = (int *)(memory_pool_data + 0x18);
+                *memory_pool_count_ptr = *memory_pool_count_ptr + -1;
+                if (*memory_pool_count_ptr == 0) {
                     cleanup_memory_pool();
                     return;
                 }
             }
             else {
                 // 使用通用释放函数
-                free_memory_block(array_size, CONCAT71(0xff000000, *(void ***)(array_size + 0x70) == &ExceptionList),
-                                 object_array_ptr, array_size, 0xfffffffffffffffe);
+                free_memory_block(object_count, CONCAT71(0xff000000, *(void ***)(object_count + 0x70) == &ExceptionList),
+                                 object_array_ptr, object_count, 0xfffffffffffffffe);
             }
         }
         return;

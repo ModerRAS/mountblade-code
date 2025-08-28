@@ -316,58 +316,64 @@ void cleanup_resource_manager(longlong *config_ptr)
 
 
 
-// 函数: void FUN_18004d020(undefined8 param_1,longlong param_2)
-void FUN_18004d020(undefined8 param_1,longlong param_2)
+/**
+ * 解析和处理配置字符串
+ * 主要功能：解析配置参数字符串，处理各种格式和编码的配置数据
+ * 
+ * 原始实现：FUN_18004d020
+ * 简化实现：配置字符串解析处理函数
+ */
+void parse_config_string(undefined8 config_handle, longlong string_param)
 
 {
-  byte bVar1;
-  undefined1 uVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  char cVar5;
-  int iVar6;
-  undefined4 uVar7;
-  uint uVar8;
-  longlong lVar9;
-  longlong lVar10;
-  undefined1 *puVar11;
-  char *pcVar12;
-  undefined4 *puVar13;
-  undefined1 *puVar14;
-  byte *pbVar15;
-  undefined1 *puVar16;
-  undefined *puVar17;
-  undefined *puVar18;
-  int iVar19;
-  longlong lVar20;
-  ulonglong uVar21;
-  undefined8 *puVar22;
-  uint uVar23;
-  longlong lVar24;
-  ulonglong uVar25;
-  uint uVar26;
-  undefined8 uVar27;
-  ulonglong uVar28;
-  ulonglong uVar29;
-  uint uVar30;
-  bool bVar31;
-  undefined4 extraout_XMM0_Da;
-  undefined4 extraout_XMM0_Da_00;
-  undefined1 auStack_368 [32];
-  undefined1 uStack_348;
-  char cStack_338;
-  char cStack_337;
-  char acStack_336 [2];
-  uint uStack_334;
-  undefined *puStack_330;
-  char *pcStack_328;
-  uint uStack_320;
-  undefined8 uStack_318;
-  undefined *puStack_310;
-  undefined1 *puStack_308;
-  uint uStack_300;
-  undefined8 uStack_2f8;
-  ulonglong uStack_2f0;
+  byte char_flag;              // 字符标志
+  undefined1 byte_val;         // 字节值
+  undefined8 *ptr_array1;      // 指针数组1
+  undefined8 *ptr_array2;      // 指针数组2
+  char char_val;               // 字符值
+  int int_val;                 // 整型值
+  undefined4 uint_val1;       // 无符号整型值1
+  uint uint_val2;              // 无符号整型值2
+  longlong long_val1;          // 长整型值1
+  longlong long_val2;          // 长整型值2
+  undefined1 *byte_ptr1;      // 字节指针1
+  char *char_ptr;              // 字符指针
+  undefined4 *uint_ptr1;       // 无符号整型指针1
+  undefined1 *byte_ptr2;       // 字节指针2
+  byte *byte_ptr3;            // 字节指针3
+  undefined1 *byte_ptr4;       // 字节指针4
+  undefined *void_ptr1;        // 空指针1
+  undefined *void_ptr2;        // 空指针2
+  int int_val2;                // 整型值2
+  longlong long_val3;          // 长整型值3
+  ulonglong ulong_val1;        // 无符号长整型值1
+  undefined8 *ptr_array3;      // 指针数组3
+  uint uint_val3;              // 无符号整型值3
+  longlong long_val4;          // 长整型值4
+  ulonglong ulong_val2;        // 无符号长整型值2
+  uint uint_val4;              // 无符号整型值4
+  undefined8 uint_val5;        // 无符号整型值5
+  ulonglong ulong_val3;        // 无符号长整型值3
+  ulonglong ulong_val4;        // 无符号长整型值4
+  uint uint_val5;              // 无符号整型值5
+  bool bool_val;               // 布尔值
+  undefined4 xmm_reg1;         // XMM寄存器值1
+  undefined4 xmm_reg2;         // XMM寄存器值2
+  undefined1 stack_buffer1 [32];  // 栈缓冲区1
+  undefined1 stack_val1;         // 栈值1
+  char stack_char1;              // 栈字符1
+  char stack_char2;              // 栈字符2
+  char stack_chars [2];          // 栈字符数组
+  uint stack_uint1;              // 栈无符号整型1
+  undefined *stack_ptr1;         // 栈指针1
+  char *stack_char_ptr;          // 栈字符指针
+  uint stack_uint2;              // 栈无符号整型2
+  undefined8 stack_val2;         // 栈值2
+  undefined *stack_ptr2;         // 栈指针2
+  undefined1 *stack_byte_ptr;    // 栈字节指针
+  uint stack_uint3;              // 栈无符号整型3
+  undefined8 stack_val3;         // 栈值3
+  ulonglong stack_ulong1;        // 栈无符号长整型1
   undefined *puStack_2e8;
   undefined1 *puStack_2e0;
   uint uStack_2d8;
