@@ -997,144 +997,131 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
 
 
 
-// 函数: void FUN_18029de40(longlong param_1,undefined4 param_2)
+// 渲染系统插槽更新函数
+// 更新渲染系统的各种插槽状态
+// param_1: 渲染系统上下文指针
+// param_2: 插槽参数
 void FUN_18029de40(longlong param_1,undefined4 param_2)
-
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  bool bVar3;
-  bool bVar4;
-  bool bVar5;
-  bool bVar6;
-  bool bVar7;
-  bool bVar8;
-  bool bVar9;
-  bool bVar10;
-  undefined1 auStack_88 [32];
-  undefined4 uStack_68;
-  undefined4 uStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined8 uStack_28;
-  undefined8 uStack_20;
-  undefined8 uStack_18;
-  ulonglong uStack_10;
+  longlong slot_data;
+  undefined8 depth_data;
+  bool slot0_changed;
+  bool slot1_changed;
+  bool slot2_changed;
+  bool slot3_changed;
+  bool slot4_changed;
+  bool slot5_changed;
+  bool slot6_changed;
+  bool depth_changed;
+  undefined1 security_buffer[RENDER_BUFFER_SIZE_SMALL];
+  undefined4 update_mask;
+  undefined4 update_count;
+  undefined8 slot_handle0;
+  undefined8 slot_handle1;
+  undefined8 slot_handle2;
+  undefined8 slot_handle3;
+  undefined8 slot_handle4;
+  undefined8 slot_handle5;
+  undefined8 slot_handle6;
+  undefined8 slot_handle_depth;
+  ulonglong security_key;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
-  lVar1 = *(longlong *)(param_1 + 0x83b8);
-  bVar3 = lVar1 != *(longlong *)(param_1 + 0x8378);
-  if (bVar3) {
-    *(longlong *)(param_1 + 0x8378) = lVar1;
+  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  
+  // 检查插槽0的变化
+  slot_data = *(longlong *)(param_1 + 0x83b8);
+  slot0_changed = slot_data != *(longlong *)(param_1 + 0x8378);
+  if (slot0_changed) {
+    *(longlong *)(param_1 + 0x8378) = slot_data;
   }
-  if (lVar1 == 0) {
-    uStack_48 = 0;
+  slot_handle0 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  
+  // 检查插槽1的变化
+  slot_data = *(longlong *)(param_1 + 0x83c0);
+  slot1_changed = slot_data != *(longlong *)(param_1 + 0x8380);
+  if (slot1_changed) {
+    *(longlong *)(param_1 + 0x8380) = slot_data;
   }
-  else {
-    uStack_48 = *(undefined8 *)(lVar1 + 8);
+  slot_handle1 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  
+  // 检查插槽2的变化
+  slot_data = *(longlong *)(param_1 + 0x83c8);
+  slot2_changed = slot_data != *(longlong *)(param_1 + 0x8388);
+  if (slot2_changed) {
+    *(longlong *)(param_1 + 0x8388) = slot_data;
   }
-  lVar1 = *(longlong *)(param_1 + 0x83c0);
-  bVar4 = lVar1 != *(longlong *)(param_1 + 0x8380);
-  if (bVar4) {
-    *(longlong *)(param_1 + 0x8380) = lVar1;
+  slot_handle2 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  
+  // 检查插槽3的变化
+  slot_data = *(longlong *)(param_1 + 0x83d0);
+  slot3_changed = slot_data != *(longlong *)(param_1 + 0x8390);
+  if (slot3_changed) {
+    *(longlong *)(param_1 + 0x8390) = slot_data;
   }
-  if (lVar1 == 0) {
-    uStack_40 = 0;
+  slot_handle3 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  
+  // 检查插槽4的变化
+  slot_data = *(longlong *)(param_1 + 0x83d8);
+  slot4_changed = slot_data != *(longlong *)(param_1 + 0x8398);
+  if (slot4_changed) {
+    *(longlong *)(param_1 + 0x8398) = slot_data;
   }
-  else {
-    uStack_40 = *(undefined8 *)(lVar1 + 8);
+  slot_handle4 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  
+  // 检查插槽5的变化
+  slot_data = *(longlong *)(param_1 + 0x83e0);
+  slot5_changed = slot_data != *(longlong *)(param_1 + 0x83a0);
+  if (slot5_changed) {
+    *(longlong *)(param_1 + 0x83a0) = slot_data;
   }
-  lVar1 = *(longlong *)(param_1 + 0x83c8);
-  bVar5 = lVar1 != *(longlong *)(param_1 + 0x8388);
-  if (bVar5) {
-    *(longlong *)(param_1 + 0x8388) = lVar1;
+  slot_handle5 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  
+  // 检查插槽6的变化
+  slot_data = *(longlong *)(param_1 + 0x83e8);
+  slot6_changed = slot_data != *(longlong *)(param_1 + 0x83a8);
+  if (slot6_changed) {
+    *(longlong *)(param_1 + 0x83a8) = slot_data;
   }
-  if (lVar1 == 0) {
-    uStack_38 = 0;
+  slot_handle6 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  
+  // 检查深度缓冲区的变化
+  slot_data = *(longlong *)(param_1 + 0x83f0);
+  depth_changed = *(longlong *)(param_1 + 0x83b0) != slot_data;
+  if (depth_changed) {
+    *(longlong *)(param_1 + 0x83b0) = slot_data;
   }
-  else {
-    uStack_38 = *(undefined8 *)(lVar1 + 8);
-  }
-  lVar1 = *(longlong *)(param_1 + 0x83d0);
-  bVar6 = lVar1 != *(longlong *)(param_1 + 0x8390);
-  if (bVar6) {
-    *(longlong *)(param_1 + 0x8390) = lVar1;
-  }
-  if (lVar1 == 0) {
-    uStack_30 = 0;
-  }
-  else {
-    uStack_30 = *(undefined8 *)(lVar1 + 8);
-  }
-  lVar1 = *(longlong *)(param_1 + 0x83d8);
-  bVar7 = lVar1 != *(longlong *)(param_1 + 0x8398);
-  if (bVar7) {
-    *(longlong *)(param_1 + 0x8398) = lVar1;
-  }
-  if (lVar1 == 0) {
-    uStack_28 = 0;
-  }
-  else {
-    uStack_28 = *(undefined8 *)(lVar1 + 8);
-  }
-  lVar1 = *(longlong *)(param_1 + 0x83e0);
-  bVar8 = lVar1 != *(longlong *)(param_1 + 0x83a0);
-  if (bVar8) {
-    *(longlong *)(param_1 + 0x83a0) = lVar1;
-  }
-  if (lVar1 == 0) {
-    uStack_20 = 0;
-  }
-  else {
-    uStack_20 = *(undefined8 *)(lVar1 + 8);
-  }
-  lVar1 = *(longlong *)(param_1 + 0x83e8);
-  bVar9 = lVar1 != *(longlong *)(param_1 + 0x83a8);
-  if (bVar9) {
-    *(longlong *)(param_1 + 0x83a8) = lVar1;
-  }
-  if (lVar1 == 0) {
-    uStack_18 = 0;
-  }
-  else {
-    uStack_18 = *(undefined8 *)(lVar1 + 8);
-  }
-  lVar1 = *(longlong *)(param_1 + 0x83f0);
-  bVar10 = *(longlong *)(param_1 + 0x83b0) != lVar1;
-  if (bVar10) {
-    *(longlong *)(param_1 + 0x83b0) = lVar1;
-  }
-  if (lVar1 == 0) {
-    uVar2 = 0;
-  }
-  else {
-    uVar2 = *(undefined8 *)(lVar1 + 8);
-  }
-  if ((bVar9 || (bVar8 || (bVar7 || (bVar6 || (bVar5 || (bVar4 || bVar3)))))) || (bVar10)) {
-    uStack_50 = 0xffffffffffffffff;
-    uStack_58 = 0;
-    uStack_60 = 0xffffffff;
-    uStack_68 = param_2;
+  depth_data = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  
+  // 如果有任何插槽发生变化，则更新渲染系统
+  if ((slot6_changed || (slot5_changed || (slot4_changed || (slot3_changed || 
+       (slot2_changed || (slot1_changed || slot0_changed)))))) || depth_changed) {
+    
+    update_mask = 0xffffffffffffffff;
+    update_count = 0;
+    update_mask = 0xffffffff;
+    update_count = param_2;
+    
+    // 调用渲染核心更新插槽
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x110))
-              (*(longlong **)(param_1 + 0x8400),param_2,&uStack_48,uVar2);
+              (*(longlong **)(param_1 + 0x8400), param_2, &slot_handle0, depth_data);
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_88);
+  
+  // 清理安全缓冲区（函数不返回）
+  FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 
 
 
 
-// 函数: void FUN_18029e060(longlong param_1)
+// 渲染系统状态检查函数
+// 检查渲染系统的当前状态
+// param_1: 渲染系统上下文指针
 void FUN_18029e060(longlong param_1)
-
 {
+  // 检查渲染系统是否就绪
   if (DAT_180c82846 == '\0') {
+    // 调用渲染核心状态检查函数
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0xa8))();
   }
   return;
@@ -1144,13 +1131,24 @@ void FUN_18029e060(longlong param_1)
 
 
 
-// 函数: void FUN_18029e090(longlong param_1,undefined4 param_2,int param_3,undefined4 param_4)
+// 渲染系统参数设置函数
+// 设置渲染系统的各种参数
+// param_1: 渲染系统上下文指针
+// param_2: 参数类型
+// param_3: 参数索引
+// param_4: 参数值
 void FUN_18029e090(longlong param_1,undefined4 param_2,int param_3,undefined4 param_4)
-
 {
+  // 检查渲染系统是否就绪
   if (DAT_180c82846 == '\0') {
+    // 调用渲染核心参数设置函数
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0xa0))
-              (*(longlong **)(param_1 + 0x8400),param_3 * 3,param_4,param_2,0,0);
+              (*(longlong **)(param_1 + 0x8400), 
+               param_3 * 3,    // 参数偏移量计算
+               param_4,        // 参数值
+               param_2,        // 参数类型
+               0,              // 保留参数1
+               0);             // 保留参数2
   }
   return;
 }
@@ -1161,23 +1159,34 @@ void FUN_18029e090(longlong param_1,undefined4 param_2,int param_3,undefined4 pa
 
 
 
-// 函数: void FUN_18029e110(longlong param_1)
+// 渲染系统上下文更新函数
+// 更新渲染系统的上下文信息
+// param_1: 渲染系统上下文指针
 void FUN_18029e110(longlong param_1)
-
 {
-  longlong lVar1;
+  longlong context_data;
   
+  // 检查渲染系统是否就绪
   if (DAT_180c82846 == '\0') {
-    lVar1 = *(longlong *)(*(longlong *)(_DAT_180c86938 + 0x1d50) + 0x18);
-    if (*(longlong *)(param_1 + 0x8240) != lVar1) {
-      *(longlong *)(param_1 + 0x8240) = lVar1;
+    // 获取当前上下文数据
+    context_data = *(longlong *)(*(longlong *)(_DAT_180c86938 + 0x1d50) + 0x18);
+    
+    // 检查上下文是否需要更新
+    if (*(longlong *)(param_1 + 0x8240) != context_data) {
+      *(longlong *)(param_1 + 0x8240) = context_data;
+      
+      // 调用渲染核心更新上下文
       (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x90))
-                (*(longlong **)(param_1 + 0x8400),0,*(undefined4 *)(lVar1 + 0x188),lVar1 + 0x1a0,
-                 lVar1 + 0x260,lVar1 + 0x220);
+                (*(longlong **)(param_1 + 0x8400), 0,
+                 *(undefined4 *)(context_data + 0x188),  // 上下文计数
+                 context_data + 0x1a0,                  // 左边界
+                 context_data + 0x260,                  // 底边界
+                 context_data + 0x220);                 // 顶边界
     }
-                    // WARNING: Could not recover jumptable at 0x00018029e193. Too many branches
-                    // WARNING: Treating indirect jump as call
-    (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x68))(*(longlong **)(param_1 + 0x8400),3);
+    
+    // 调用渲染核心处理函数（警告：无法恢复的跳转表）
+    (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x68))
+              (*(longlong **)(param_1 + 0x8400), 3);
     return;
   }
   return;
@@ -1185,71 +1194,107 @@ void FUN_18029e110(longlong param_1)
 
 
 
+// 渲染系统数据验证函数
+// 验证渲染系统数据的完整性和有效性
+// param_1: 渲染系统上下文指针
+// param_2: 渲染数据指针
+// param_3: 数据偏移量
+// param_4: 数据乘数
+// param_5: 验证标志
+// param_6: 验证结果输出指针
+// 返回值: 验证成功返回true，失败返回false
 bool FUN_18029e1a0(longlong param_1,longlong param_2,int param_3,int param_4,uint param_5,
                   int *param_6)
-
 {
-  int iVar1;
-  longlong lVar2;
-  uint uVar3;
-  uint uVar4;
-  undefined8 uStack_18;
-  uint uStack_10;
+  int validate_result;
+  longlong render_data;
+  uint data_size;
+  uint adjusted_size;
+  undefined8 validate_output;
+  uint validate_flags;
   
-  lVar2 = FUN_18023a940(param_2);
-  uVar4 = (uint)*(byte *)(param_2 + 0x335);
+  // 获取渲染数据
+  render_data = FUN_18023a940(param_2);
+  
+  // 计算数据大小
+  adjusted_size = (uint)*(byte *)(param_2 + 0x335);
   if ((int)*(uint *)(param_2 + 0x35c) < (int)(uint)*(byte *)(param_2 + 0x335)) {
-    uVar4 = *(uint *)(param_2 + 0x35c);
+    adjusted_size = *(uint *)(param_2 + 0x35c);
   }
-  param_3 = uVar4 * param_4 + param_3;
+  
+  // 计算数据偏移量
+  param_3 = adjusted_size * param_4 + param_3;
+  
+  // 根据验证标志设置验证参数
   if (param_5 == 0) {
-    uVar3 = 5;
+    validate_flags = 5;  // 默认验证标志
   }
   else {
-    uVar4 = param_5 & 1;
+    // 根据标志位组合验证参数
+    validate_flags = param_5 & 1;
     if ((param_5 & 8) != 0) {
-      uVar4 = 3;
+      validate_flags = 3;
     }
-    uVar3 = uVar4 | 4;
+    validate_flags = validate_flags | 4;
     if ((param_5 & 2) == 0) {
-      uVar3 = uVar4;
+      validate_flags = validate_flags;
     }
     if ((param_5 & 4) != 0) {
-      uVar3 = uVar3 | 5;
+      validate_flags = validate_flags | 5;
     }
   }
-  iVar1 = (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x70))
-                    (*(longlong **)(param_1 + 0x8400),*(undefined8 *)(lVar2 + 8),param_3,uVar3,0,
-                     &uStack_18);
-  if (iVar1 < 0) {
-    FUN_180220810(iVar1,&UNK_180a173b0);
+  
+  // 调用渲染核心验证数据
+  validate_result = (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x70))
+                    (*(longlong **)(param_1 + 0x8400),
+                     *(undefined8 *)(render_data + 8),  // 数据句柄
+                     param_3,                          // 数据偏移量
+                     validate_flags,                  // 验证标志
+                     0,                               // 保留参数
+                     &validate_output);               // 验证输出
+  
+  // 处理验证错误
+  if (validate_result < 0) {
+    FUN_180220810(validate_result, &UNK_180a173b0);
   }
-  *(undefined8 *)(param_6 + 2) = uStack_18;
-  *(ulonglong *)(param_6 + 4) = (ulonglong)uStack_10;
+  
+  // 输出验证结果
+  *(undefined8 *)(param_6 + 2) = validate_output;
+  *(ulonglong *)(param_6 + 4) = (ulonglong)validate_flags;
   *param_6 = param_3;
-  return -1 < iVar1;
+  
+  return -1 < validate_result;  // 返回验证是否成功
 }
 
 
 
 
 
-// 函数: void FUN_18029e2a0(longlong param_1,undefined8 param_2,undefined4 *param_3)
+// 渲染系统设置应用函数
+// 应用渲染系统的各种设置
+// param_1: 渲染系统上下文指针
+// param_2: 设置数据指针
+// param_3: 设置参数数组指针
 void FUN_18029e2a0(longlong param_1,undefined8 param_2,undefined4 *param_3)
-
 {
-  undefined4 uVar1;
-  longlong *plVar2;
-  code *UNRECOVERED_JUMPTABLE;
-  longlong lVar3;
+  undefined4 setting_value;
+  longlong *render_core;
+  code *apply_function;
+  longlong setting_data;
   
-  plVar2 = *(longlong **)(param_1 + 0x8400);
-  uVar1 = *param_3;
-  UNRECOVERED_JUMPTABLE = *(code **)(*plVar2 + 0x78);
-  lVar3 = FUN_18023a940(param_2);
-                    // WARNING: Could not recover jumptable at 0x00018029e2e4. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*UNRECOVERED_JUMPTABLE)(plVar2,*(undefined8 *)(lVar3 + 8),uVar1);
+  render_core = *(longlong **)(param_1 + 0x8400);
+  setting_value = *param_3;
+  
+  // 获取应用设置函数
+  apply_function = *(code **)(*render_core + 0x78);
+  
+  // 获取设置数据
+  setting_data = FUN_18023a940(param_2);
+  
+  // 调用渲染核心应用设置（警告：无法恢复的跳转表）
+  (*apply_function)(render_core,
+                   *(undefined8 *)(setting_data + 8),  // 设置数据句柄
+                   setting_value);                    // 设置值
   return;
 }
 
