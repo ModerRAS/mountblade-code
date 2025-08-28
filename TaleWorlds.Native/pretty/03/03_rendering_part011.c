@@ -3,21 +3,161 @@
 // 03_rendering_part011.c - 渲染材质处理模块
 // 包含3个函数：材质数据解析、材质序列化、材质结构初始化
 
+// 材质属性标志位枚举
+typedef enum {
+    MATERIAL_FLAG_NONE = 0x00000000,
+    MATERIAL_FLAG_TRANSPARENT = 0x00000001,
+    MATERIAL_FLAG_TRANSLUCENT = 0x00000002,
+    MATERIAL_FLAG_CAST_SHADOWS = 0x00000004,
+    MATERIAL_FLAG_RECEIVE_SHADOWS = 0x00000008,
+    MATERIAL_FLAG_REFLECTIVE = 0x00000010,
+    MATERIAL_FLAG_EMISSIVE = 0x00000020,
+    MATERIAL_FLAG_NORMAL_MAPPED = 0x00000040,
+    MATERIAL_FLAG_SPECULAR_MAPPED = 0x00000080,
+    MATERIAL_FLAG_PARALLAX_MAPPED = 0x00000100,
+    MATERIAL_FLAG_DISPLACEMENT_MAPPED = 0x00000200,
+    MATERIAL_FLAG_LIGHTING_ENABLED = 0x00000400,
+    MATERIAL_FLAG_FOG_ENABLED = 0x00000800,
+    MATERIAL_FLAG_DEPTH_TEST = 0x00001000,
+    MATERIAL_FLAG_DEPTH_WRITE = 0x00002000,
+    MATERIAL_FLAG_STENCIL_TEST = 0x00004000,
+    MATERIAL_FLAG_BLENDING = 0x00008000,
+    MATERIAL_FLAG_ALPHATEST = 0x00010000,
+    MATERIAL_FLAG_WIREFRAME = 0x00020000,
+    MATERIAL_FLAG_DEBUG = 0x00040000,
+    MATERIAL_FLAG_NO_CULL = 0x00080000,
+    MATERIAL_FLAG_CULL_CW = 0x00100000,
+    MATERIAL_FLAG_CULL_CCW = 0x00200000,
+    MATERIAL_FLAG_FRONTFACE = 0x00400000,
+    MATERIAL_FLAG_BACKFACE = 0x00800000
+} material_flags_t;
+
+// 材质类型枚举
+typedef enum {
+    MATERIAL_TYPE_STANDARD = 0,
+    MATERIAL_TYPE_SKIN = 1,
+    MATERIAL_TYPE_CLOTH = 2,
+    MATERIAL_TYPE_METAL = 3,
+    MATERIAL_TYPE_WATER = 4,
+    MATERIAL_TYPE_GLASS = 5,
+    MATERIAL_TYPE_EMISSIVE = 6,
+    MATERIAL_TYPE_TERRAIN = 7,
+    MATERIAL_TYPE_VEGETATION = 8,
+    MATERIAL_TYPE_PARTICLE = 9,
+    MATERIAL_TYPE_UI = 10,
+    MATERIAL_TYPE_POSTPROCESS = 11,
+    MATERIAL_TYPE_CUSTOM = 12
+} material_type_t;
+
+// 着色器类型枚举
+typedef enum {
+    SHADER_TYPE_STANDARD = 0,
+    SHADER_TYPE_SKINNED = 1,
+    SHADER_TYPE_TERRAIN = 2,
+    SHADER_TYPE_VEGETATION = 3,
+    SHADER_TYPE_WATER = 4,
+    SHADER_TYPE_GLASS = 5,
+    SHADER_TYPE_EMISSIVE = 6,
+    SHADER_TYPE_PARTICLE = 7,
+    SHADER_TYPE_UI = 8,
+    SHADER_TYPE_POSTPROCESS = 9,
+    SHADER_TYPE_SHADOW = 10,
+    SHADER_TYPE_DEPTH = 11,
+    SHADER_TYPE_NORMAL = 12,
+    SHADER_TYPE_CUSTOM = 13
+} shader_type_t;
+
+// 材质颜色属性结构体
+typedef struct {
+    float base_color[4];        // 基础颜色 (RGBA)
+    float emissive_color[4];    // 自发光颜色 (RGBA)
+    float specular_color[4];    // 高光颜色 (RGBA)
+    float reflection_color[4];  // 反射颜色 (RGBA)
+    float ambient_color[4];    // 环境光颜色 (RGBA)
+    float diffuse_color[4];    // 漫反射颜色 (RGBA)
+    float rim_color[4];        // 边缘光颜色 (RGBA)
+} material_colors_t;
+
+// 材质纹理变换结构体
+typedef struct {
+    float offset_x;            // 纹理偏移X
+    float offset_y;            // 纹理偏移Y
+    float scale_x;             // 纹理缩放X
+    float scale_y;             // 纹理缩放Y
+    float rotation_matrix[4];  // 纹理旋转矩阵
+    float transform_matrix[12]; // 纹理变换矩阵
+} material_texture_transform_t;
+
+// 材质属性结构体
+typedef struct {
+    float opacity;             // 不透明度 (0.0-1.0)
+    float smoothness;          // 光滑度 (0.0-1.0)
+    float metalness;           // 金属度 (0.0-1.0)
+    float roughness;           // 粗糙度 (0.0-1.0)
+    float reflectance;         // 反射度 (0.0-1.0)
+    float emissive_intensity;  // 自发光强度 (0.0-1.0)
+    float normal_strength;     // 法线强度 (0.0-2.0)
+    float specular_intensity;  // 高光强度 (0.0-1.0)
+    float ao_factor;           // 环境光遮蔽 (0.0-1.0)
+    float ior;                 // 折射率 (1.0-2.5)
+} material_properties_t;
+
+// 材质信息结构体
+typedef struct {
+    void *vtable_ptr;           // 虚函数表指针
+    material_type_t material_type;     // 材质类型
+    material_type_t material_subtype;  // 材质子类型
+    uint32_t material_version;  // 材质版本
+    uint32_t structure_size;    // 结构体大小
+    uint64_t name_hash;         // 材质名称哈希
+    uint32_t material_id;       // 材质ID
+    uint32_t material_group_id;  // 材质组ID
+    material_flags_t flags;     // 材质标志
+    shader_type_t shader_type;  // 着色器类型
+    uint32_t shader_params;     // 着色器参数
+    material_properties_t properties;  // 材质属性
+    material_colors_t colors;   // 材质颜色
+    material_texture_transform_t texture_transform; // 纹理变换
+    void *texture_array[16];    // 纹理数组
+    void *parameter_array[32];  // 参数数组
+} material_info_t;
+
+// 材质序列化上下文结构体
+typedef struct {
+    void *buffer_ptr;           // 缓冲区指针
+    uint32_t buffer_size;       // 缓冲区大小
+    uint32_t data_offset;        // 数据偏移
+    uint32_t flags;              // 序列化标志
+    uint32_t compression_level;  // 压缩级别
+    uint32_t checksum;           // 校验和
+} serialization_context_t;
+
+// 材质数据流结构体
+typedef struct {
+    void *data_ptr;             // 数据指针
+    uint32_t data_size;          // 数据大小
+    uint32_t read_offset;        // 读取偏移
+    uint32_t write_offset;       // 写入偏移
+    uint32_t capacity;           // 容量
+    uint32_t flags;              // 流标志
+} data_stream_t;
+
 //==========================================
 // 渲染材质数据解析函数
 //==========================================
 
 /**
  * 解析渲染材质数据
- * @param material_context 材质上下文指针
+ * @param material_info 材质信息结构体指针
  * @param data_stream 数据流指针
  * 
  * 功能说明：
  * - 从数据流中解析渲染材质的各种属性
  * - 处理材质标志位、纹理、着色器等信息
  * - 支持动态数组扩展和内存管理
+ * - 初始化材质的默认属性值
  */
-void parse_rendering_material_data(longlong material_context, longlong data_stream)
+void parse_rendering_material_data(material_info_t *material_info, data_stream_t *data_stream)
 {
     byte *temp_buffer_ptr;
     uint texture_count;
@@ -310,15 +450,16 @@ void parse_rendering_material_data(longlong material_context, longlong data_stre
 
 /**
  * 序列化渲染材质数据
- * @param material_header 材质头部信息指针
+ * @param material_info 材质信息结构体指针
  * @param serialization_context 序列化上下文指针
  * 
  * 功能说明：
  * - 将渲染材质数据序列化为字节流
  * - 处理材质属性、纹理、着色器等信息的编码
  * - 支持数据压缩和内存优化
+ * - 生成材质数据的校验和
  */
-void serialize_rendering_material(undefined4 *material_header, longlong *serialization_context)
+void serialize_rendering_material(material_info_t *material_info, serialization_context_t *serialization_context)
 {
     int buffer_check_result;
     undefined4 material_flags;
@@ -498,87 +639,114 @@ void serialize_rendering_material(undefined4 *material_header, longlong *seriali
 
 /**
  * 初始化渲染材质结构
- * @param material_structure 材质结构指针
- * @return 返回初始化后的材质结构指针
+ * @param material_info 材质信息结构体指针
+ * @return 返回初始化后的材质信息结构体指针
  * 
  * 功能说明：
  * - 初始化渲染材质结构的所有字段
  * - 设置默认的材质属性值
  * - 准备材质结构用于后续的数据填充
+ * - 初始化纹理变换矩阵为单位矩阵
  */
-undefined8 *initialize_rendering_material_structure(undefined8 *material_structure)
+material_info_t *initialize_rendering_material_structure(material_info_t *material_info)
 {
     // 初始化材质结构的头部信息
-    material_structure[0x24] = 0;      // 材质类型
-    material_structure[0x25] = 0;      // 材质子类型
-    material_structure[0x26] = 0;      // 材质版本
-    *(undefined4 *)(material_structure + 0x27) = 0x11;  // 材质结构大小
+    material_info->material_type = MATERIAL_TYPE_STANDARD;
+    material_info->material_subtype = MATERIAL_TYPE_STANDARD;
+    material_info->material_version = 0;
+    material_info->structure_size = sizeof(material_info_t);
     
     // 初始化材质基本信息
-    *material_structure = 0;            // 材质名称哈希
-    material_structure[1] = 0;          // 材质ID
-    material_structure[2] = 0;          // 材质组ID
-    *(undefined4 *)(material_structure + 0x23) = 0;      // 材质标志
+    material_info->name_hash = 0;
+    material_info->material_id = 0;
+    material_info->material_group_id = 0;
+    material_info->flags = MATERIAL_FLAG_DEPTH_TEST | MATERIAL_FLAG_DEPTH_WRITE;
     
     // 初始化着色器信息
-    *(undefined1 *)((longlong)material_structure + 0x11c) = 0;  // 着色器类型
-    material_structure[0x32] = 0;      // 着色器参数
+    material_info->shader_type = SHADER_TYPE_STANDARD;
+    material_info->shader_params = 0;
     
     // 初始化材质属性默认值
-    *(undefined4 *)(material_structure + 0x28) = 0x3f800000;  // 不透明度 (1.0f)
-    *(undefined4 *)((longlong)material_structure + 0x144) = 0x3f266666;  // 光滑度 (0.65f)
-    *(undefined4 *)(material_structure + 0x29) = 0x3f800000;  // 金属度 (1.0f)
-    *(undefined4 *)((longlong)material_structure + 0x14c) = 0x3f800000;  // 粗糙度 (1.0f)
-    *(undefined4 *)(material_structure + 0x35) = 0x3f800000;  // 反射度 (1.0f)
-    *(undefined4 *)(material_structure + 0x34) = 0;          // 自发光强度
-    *(undefined4 *)((longlong)material_structure + 0x1a4) = 0x3f000000;  // 法线强度 (0.5f)
-    *(undefined4 *)((longlong)material_structure + 0x1ac) = 0x3f800000;  // 高光强度 (1.0f)
-    *(undefined4 *)(material_structure + 0x33) = 0x3f800000;  // 环境光遮蔽 (1.0f)
-    *(undefined4 *)((longlong)material_structure + 0x19c) = 0x3f800000;  // 折射率 (1.0f)
+    material_info->properties.opacity = 1.0f;
+    material_info->properties.smoothness = 0.65f;
+    material_info->properties.metalness = 1.0f;
+    material_info->properties.roughness = 1.0f;
+    material_info->properties.reflectance = 1.0f;
+    material_info->properties.emissive_intensity = 0.0f;
+    material_info->properties.normal_strength = 0.5f;
+    material_info->properties.specular_intensity = 1.0f;
+    material_info->properties.ao_factor = 1.0f;
+    material_info->properties.ior = 1.0f;
     
     // 初始化纹理变换矩阵
-    material_structure[0x2a] = 0;      // 纹理偏移X
-    material_structure[0x2b] = 0;      // 纹理偏移Y
-    material_structure[0x2c] = 0;      // 纹理缩放X
-    material_structure[0x2d] = 0;      // 纹理缩放Y
-    material_structure[0x2e] = 0x3f8000003f800000;  // 纹理旋转 (单位矩阵)
-    material_structure[0x2f] = 0x3f8000003f800000;  // 纹理变换矩阵
-    material_structure[0x30] = 0x3f8000003f800000;  // 纹理变换矩阵
-    material_structure[0x31] = 0x3f8000003f800000;  // 纹理变换矩阵
+    material_info->texture_transform.offset_x = 0.0f;
+    material_info->texture_transform.offset_y = 0.0f;
+    material_info->texture_transform.scale_x = 1.0f;
+    material_info->texture_transform.scale_y = 1.0f;
+    
+    // 初始化纹理旋转矩阵为单位矩阵
+    material_info->texture_transform.rotation_matrix[0] = 1.0f;
+    material_info->texture_transform.rotation_matrix[1] = 0.0f;
+    material_info->texture_transform.rotation_matrix[2] = 0.0f;
+    material_info->texture_transform.rotation_matrix[3] = 1.0f;
+    
+    // 初始化纹理变换矩阵为单位矩阵
+    for (int i = 0; i < 12; i++) {
+        material_info->texture_transform.transform_matrix[i] = (i % 4 == i / 4) ? 1.0f : 0.0f;
+    }
     
     // 初始化材质颜色属性
-    material_structure[3] = 0;          // 基础颜色R
-    material_structure[4] = 0;          // 基础颜色G
-    material_structure[5] = 0;          // 基础颜色B
-    material_structure[6] = 0;          // 基础颜色A
-    material_structure[7] = 0;          // 自发光颜色R
-    material_structure[8] = 0;          // 自发光颜色G
-    material_structure[9] = 0;          // 自发光颜色B
-    material_structure[10] = 0;         // 自发光颜色A
-    material_structure[0xb] = 0;         // 高光颜色R
-    material_structure[0xc] = 0;         // 高光颜色G
-    material_structure[0xd] = 0;         // 高光颜色B
-    material_structure[0xe] = 0;         // 高光颜色A
-    material_structure[0xf] = 0;         // 反射颜色R
-    material_structure[0x10] = 0;         // 反射颜色G
-    material_structure[0x11] = 0;         // 反射颜色B
-    material_structure[0x12] = 0;         // 反射颜色A
-    material_structure[0x13] = 0;         // 环境光颜色R
-    material_structure[0x14] = 0;         // 环境光颜色G
-    material_structure[0x15] = 0;         // 环境光颜色B
-    material_structure[0x16] = 0;         // 环境光颜色A
-    material_structure[0x17] = 0;         // 漫反射颜色R
-    material_structure[0x18] = 0;         // 漫反射颜色G
-    material_structure[0x19] = 0;         // 漫反射颜色B
-    material_structure[0x1a] = 0;         // 漫反射颜色A
-    material_structure[0x1b] = 0;         // 镜面反射颜色R
-    material_structure[0x1c] = 0;         // 镜面反射颜色G
-    material_structure[0x1d] = 0;         // 镜面反射颜色B
-    material_structure[0x1e] = 0;         // 镜面反射颜色A
-    material_structure[0x1f] = 0;         // 边缘光颜色R
-    material_structure[0x20] = 0;         // 边缘光颜色G
-    material_structure[0x21] = 0;         // 边缘光颜色B
-    material_structure[0x22] = 0;         // 边缘光颜色A
+    // 基础颜色 - 白色
+    material_info->colors.base_color[0] = 1.0f;  // R
+    material_info->colors.base_color[1] = 1.0f;  // G
+    material_info->colors.base_color[2] = 1.0f;  // B
+    material_info->colors.base_color[3] = 1.0f;  // A
     
-    return material_structure;
+    // 自发光颜色 - 黑色
+    material_info->colors.emissive_color[0] = 0.0f;  // R
+    material_info->colors.emissive_color[1] = 0.0f;  // G
+    material_info->colors.emissive_color[2] = 0.0f;  // B
+    material_info->colors.emissive_color[3] = 1.0f;  // A
+    
+    // 高光颜色 - 白色
+    material_info->colors.specular_color[0] = 1.0f;  // R
+    material_info->colors.specular_color[1] = 1.0f;  // G
+    material_info->colors.specular_color[2] = 1.0f;  // B
+    material_info->colors.specular_color[3] = 1.0f;  // A
+    
+    // 反射颜色 - 白色
+    material_info->colors.reflection_color[0] = 1.0f;  // R
+    material_info->colors.reflection_color[1] = 1.0f;  // G
+    material_info->colors.reflection_color[2] = 1.0f;  // B
+    material_info->colors.reflection_color[3] = 1.0f;  // A
+    
+    // 环境光颜色 - 黑色
+    material_info->colors.ambient_color[0] = 0.0f;  // R
+    material_info->colors.ambient_color[1] = 0.0f;  // G
+    material_info->colors.ambient_color[2] = 0.0f;  // B
+    material_info->colors.ambient_color[3] = 1.0f;  // A
+    
+    // 漫反射颜色 - 白色
+    material_info->colors.diffuse_color[0] = 1.0f;  // R
+    material_info->colors.diffuse_color[1] = 1.0f;  // G
+    material_info->colors.diffuse_color[2] = 1.0f;  // B
+    material_info->colors.diffuse_color[3] = 1.0f;  // A
+    
+    // 边缘光颜色 - 黑色
+    material_info->colors.rim_color[0] = 0.0f;  // R
+    material_info->colors.rim_color[1] = 0.0f;  // G
+    material_info->colors.rim_color[2] = 0.0f;  // B
+    material_info->colors.rim_color[3] = 1.0f;  // A
+    
+    // 初始化纹理数组
+    for (int i = 0; i < 16; i++) {
+        material_info->texture_array[i] = NULL;
+    }
+    
+    // 初始化参数数组
+    for (int i = 0; i < 32; i++) {
+        material_info->parameter_array[i] = NULL;
+    }
+    
+    return material_info;
 }

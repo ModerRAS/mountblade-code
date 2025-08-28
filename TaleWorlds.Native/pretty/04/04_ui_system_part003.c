@@ -943,7 +943,15 @@ longlong ui_copy_library_data(library_data_t *dest_data, library_data_t *src_dat
 
 
 
-ulonglong FUN_180650b30(longlong param_1,longlong param_2,longlong param_3)
+// 函数: ulonglong ui_parse_pe_resource_section(longlong pe_header, longlong section_offset, longlong resource_data)
+// 功能: 解析PE文件的资源节区，提取资源信息
+// 参数:
+//   pe_header - PE文件头指针
+//   section_offset - 节区偏移量
+//   resource_data - 资源数据指针
+// 返回值: 成功返回资源数据地址，失败返回0
+// 说明: 此函数解析PE文件头中的资源节区，查找RSDS签名并提取调试信息
+ulonglong ui_parse_pe_resource_section(longlong pe_header, longlong section_offset, longlong resource_data)
 
 {
   uint uVar1;
@@ -1006,8 +1014,13 @@ LAB_180650c04:
 
 
 
-// 函数: void FUN_180650c20(longlong param_1)
-void FUN_180650c20(longlong param_1)
+// 函数: void ui_load_library_with_resource_check(longlong library_info)
+// 功能: 加载库文件并检查资源信息
+// 参数:
+//   library_info - 库信息结构体指针
+// 返回值: 无
+// 说明: 此函数加载指定的库文件，解析其PE头中的资源信息，并将其添加到资源树中
+void ui_load_library_with_resource_check(longlong library_info)
 
 {
   short *psVar1;
@@ -1031,7 +1044,8 @@ void FUN_180650c20(longlong param_1)
   ulonglong uStack_18;
   
   uStack_1f0 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_228;
+  // 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_228;  // _DAT_180bf00a8: 栈保护随机种子
   puVar4 = &DAT_18098bc73;
   if (*(undefined **)(param_1 + 8) != (undefined *)0x0) {
     puVar4 = *(undefined **)(param_1 + 8);
@@ -1105,8 +1119,12 @@ LAB_180650dc8:
 
 
 
-// 函数: void FUN_180650e00(void)
-void FUN_180650e00(void)
+// 函数: void ui_create_process_snapshot(void)
+// 功能: 创建进程快照用于模块枚举
+// 参数: 无
+// 返回值: 无
+// 说明: 此函数使用Toolhelp32 API创建当前进程的快照，用于枚举加载的模块
+void ui_create_process_snapshot(void)
 
 {
   int iVar1;
@@ -1120,7 +1138,8 @@ void FUN_180650e00(void)
   ulonglong uStack_38;
   
   uStack_348 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_3c8;
+  // 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
+  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_3c8;  // _DAT_180bf00a8: 栈保护随机种子
   uStack_340 = 0x180c96740;
   iVar1 = _Mtx_lock(0x180c96740);
   if (iVar1 != 0) {
@@ -1152,11 +1171,21 @@ void FUN_180650e00(void)
 
 
 
-// 函数: void FUN_180651540(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180651540(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void ui_tree_operation_wrapper(undefined8 operation_data, undefined8 root_node, 
+//                              undefined8 param_3, undefined8 param_4)
+// 功能: 树操作包装函数，用于执行树节点的特定操作
+// 参数:
+//   operation_data - 操作数据
+//   root_node - 根节点
+//   param_3 - 参数3
+//   param_4 - 参数4
+// 返回值: 无
+// 说明: 这是一个包装函数，调用树节点操作函数并传递特定标志位
+void ui_tree_operation_wrapper(undefined8 operation_data, undefined8 root_node, 
+                             undefined8 param_3, undefined8 param_4)
 
 {
-  FUN_180651560(param_1,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);
+  FUN_180651560(param_1,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);  // _DAT_180c967a0: 库资源树根节点指针
   return;
 }
 
@@ -1164,8 +1193,18 @@ void FUN_180651540(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_180651560(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180651560(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void ui_tree_cleanup_operation(undefined8 param_1, undefined8 *node_ptr, 
+//                                  undefined8 param_3, undefined8 param_4)
+// 功能: 树清理操作函数，用于清理树节点并释放资源
+// 参数:
+//   param_1 - 参数1
+//   node_ptr - 节点指针
+//   param_3 - 参数3
+//   param_4 - 参数4
+// 返回值: 无
+// 说明: 此函数递归清理树节点，释放相关资源
+void ui_tree_cleanup_operation(undefined8 param_1, undefined8 *node_ptr, 
+                             undefined8 param_3, undefined8 param_4)
 
 {
   if (param_2 != (undefined8 *)0x0) {
@@ -1259,9 +1298,19 @@ LAB_1806516e0:
 
 
 
-// 函数: void FUN_180651770(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
-void FUN_180651770(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
-                  ulonglong *param_5)
+// 函数: void ui_tree_node_insert(undefined8 param_1, undefined8 param_2, undefined *param_3, 
+//                           undefined8 param_4, ulonglong *param_5)
+// 功能: 在树中插入新节点，维护树的平衡和顺序
+// 参数:
+//   param_1 - 参数1
+//   param_2 - 参数2
+//   param_3 - 参数3
+//   param_4 - 参数4
+//   param_5 - 参数5指针
+// 返回值: 无
+// 说明: 此函数在二叉树中插入新节点，保持树的排序和平衡
+void ui_tree_node_insert(undefined8 param_1, undefined8 param_2, undefined *param_3, 
+                       undefined8 param_4, ulonglong *param_5)
 
 {
   longlong lVar1;
@@ -1285,8 +1334,13 @@ void FUN_180651770(undefined8 param_1,undefined8 param_2,undefined *param_3,unde
 
 
 
-// 函数: void FUN_180651830(longlong param_1)
-void FUN_180651830(longlong param_1)
+// 函数: void ui_cleanup_resource_pointers(longlong resource_ptr)
+// 功能: 清理资源指针和相关数据结构
+// 参数:
+//   resource_ptr - 资源指针
+// 返回值: 无
+// 说明: 此函数清理资源指针，释放相关内存，重置数据结构
+void ui_cleanup_resource_pointers(longlong resource_ptr)
 
 {
   *(undefined8 *)(param_1 + 0x80) = &UNK_180a3c3e0;
@@ -1326,7 +1380,14 @@ void FUN_180651830(longlong param_1)
 
 
 
-undefined8 * FUN_180651860(undefined8 *param_1,ulonglong param_2)
+// 函数: undefined8 * ui_free_managed_memory_block(undefined8 *memory_ptr, ulonglong flags)
+// 功能: 释放托管内存块，根据标志决定是否真正释放
+// 参数:
+//   memory_ptr - 内存块指针
+//   flags - 释放标志位
+// 返回值: 返回内存块指针
+// 说明: 此函数释放托管内存块，根据标志位决定是否执行实际的内存释放操作
+undefined8 * ui_free_managed_memory_block(undefined8 *memory_ptr, ulonglong flags)
 
 {
   *param_1 = &UNK_180a3dca0;
@@ -1340,13 +1401,19 @@ undefined8 * FUN_180651860(undefined8 *param_1,ulonglong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void pass_managed_library_callback_method_pointers(undefined8 param_1)
+// 函数: void pass_managed_library_callback_method_pointers(undefined8 callback_data)
+// 功能: 传递托管库回调方法指针，用于托管与非托管代码的交互
+// 参数:
+//   callback_data - 回调数据指针，包含托管方法的回调信息
+// 返回值: 无
+// 说明: 此函数通过全局函数指针表调用托管代码的回调方法，实现托管与非托管代码的交互
+void pass_managed_library_callback_method_pointers(undefined8 callback_data)
 
 {
                     // 0x651890  36  pass_managed_library_callback_method_pointers
                     // WARNING: Could not recover jumptable at 0x00018065189d. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*_DAT_180c8f008 + 0x40))(_DAT_180c8f008,param_1);
+  (**(code **)(*_DAT_180c8f008 + 0x40))(_DAT_180c8f008,callback_data);
   return;
 }
 
@@ -1354,11 +1421,17 @@ void pass_managed_library_callback_method_pointers(undefined8 param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void pass_controller_methods(undefined8 param_1)
+// 函数: void pass_controller_methods(undefined8 controller_methods)
+// 功能: 传递控制器方法指针，用于UI控制器方法的注册
+// 参数:
+//   controller_methods - 控制器方法指针，包含UI控制相关的方法信息
+// 返回值: 无
+// 说明: 此函数注册UI控制器方法到全局变量中，供UI系统调用
+void pass_controller_methods(undefined8 controller_methods)
 
 {
                     // 0x6518b0  34  pass_controller_methods
-  _DAT_180c8f018 = param_1;
+  _DAT_180c8f018 = controller_methods;
   return;
 }
 
@@ -1366,17 +1439,30 @@ void pass_controller_methods(undefined8 param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void pass_managed_initialize_method_pointer(undefined8 param_1)
+// 函数: void pass_managed_initialize_method_pointer(undefined8 init_method_ptr)
+// 功能: 传递托管初始化方法指针，用于UI系统的初始化
+// 参数:
+//   init_method_ptr - 初始化方法指针，包含托管代码的初始化逻辑
+// 返回值: 无
+// 说明: 此函数注册托管初始化方法到全局变量中，供UI系统初始化时调用
+void pass_managed_initialize_method_pointer(undefined8 init_method_ptr)
 
 {
                     // 0x6518c0  35  pass_managed_initialize_method_pointer
-  _DAT_180c8f010 = param_1;
+  _DAT_180c8f010 = init_method_ptr;
   return;
 }
 
 
 
-undefined8 FUN_1806518d0(undefined8 param_1,ulonglong param_2)
+// 函数: undefined8 ui_cleanup_managed_resource(undefined8 resource_ptr, ulonglong flags)
+// 功能: 清理托管资源，根据标志决定是否释放资源
+// 参数:
+//   resource_ptr - 资源指针
+//   flags - 清理标志位
+// 返回值: 返回资源指针
+// 说明: 此函数清理托管资源，根据标志位决定是否执行实际的资源释放操作
+undefined8 ui_cleanup_managed_resource(undefined8 resource_ptr, ulonglong flags)
 
 {
   FUN_180651910();
@@ -1392,8 +1478,13 @@ undefined8 FUN_1806518d0(undefined8 param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_180651910(undefined8 *param_1)
-void FUN_180651910(undefined8 *param_1)
+// 函数: void ui_cleanup_global_data_structure(undefined8 *global_ptr)
+// 功能: 清理全局数据结构，重置为初始状态
+// 参数:
+//   global_ptr - 全局数据结构指针
+// 返回值: 无
+// 说明: 此函数清理全局数据结构，释放内存并重置指针
+void ui_cleanup_global_data_structure(undefined8 *global_ptr)
 
 {
   *param_1 = &UNK_180a3dcb0;

@@ -750,67 +750,51 @@ void serialize_material_data(undefined4 *material_header, longlong *data_stream)
 undefined8 * initialize_material_object(undefined8 *material_obj)
 
 {
-  param_1[0x24] = 0;
-  param_1[0x25] = 0;
-  param_1[0x26] = 0;
-  *(undefined4 *)(param_1 + 0x27) = 0x11;
-  *param_1 = 0;
-  param_1[1] = 0;
-  param_1[2] = 0;
-  *(undefined4 *)(param_1 + 0x23) = 0;
-  *(undefined1 *)((longlong)param_1 + 0x11c) = 0;
-  param_1[0x32] = 0;
-  *(undefined4 *)(param_1 + 0x28) = 0x3f800000;
-  *(undefined4 *)((longlong)param_1 + 0x144) = 0x3f266666;
-  *(undefined4 *)(param_1 + 0x29) = 0x3f800000;
-  *(undefined4 *)((longlong)param_1 + 0x14c) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x35) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x34) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x1a4) = 0x3f000000;
-  *(undefined4 *)((longlong)param_1 + 0x1ac) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x33) = 0x3f800000;
-  *(undefined4 *)((longlong)param_1 + 0x19c) = 0x3f800000;
-  param_1[0x2a] = 0;
-  param_1[0x2b] = 0;
-  param_1[0x2c] = 0;
-  param_1[0x2d] = 0;
-  param_1[0x2e] = 0x3f8000003f800000;
-  param_1[0x2f] = 0x3f8000003f800000;
-  param_1[0x30] = 0x3f8000003f800000;
-  param_1[0x31] = 0x3f8000003f800000;
-  param_1[3] = 0;
-  param_1[4] = 0;
-  param_1[5] = 0;
-  param_1[6] = 0;
-  param_1[7] = 0;
-  param_1[8] = 0;
-  param_1[9] = 0;
-  param_1[10] = 0;
-  param_1[0xb] = 0;
-  param_1[0xc] = 0;
-  param_1[0xd] = 0;
-  param_1[0xe] = 0;
-  param_1[0xf] = 0;
-  param_1[0x10] = 0;
-  param_1[0x11] = 0;
-  param_1[0x12] = 0;
-  param_1[0x13] = 0;
-  param_1[0x14] = 0;
-  param_1[0x15] = 0;
-  param_1[0x16] = 0;
-  param_1[0x17] = 0;
-  param_1[0x18] = 0;
-  param_1[0x19] = 0;
-  param_1[0x1a] = 0;
-  param_1[0x1b] = 0;
-  param_1[0x1c] = 0;
-  param_1[0x1d] = 0;
-  param_1[0x1e] = 0;
-  param_1[0x1f] = 0;
-  param_1[0x20] = 0;
-  param_1[0x21] = 0;
-  param_1[0x22] = 0;
-  return param_1;
+  // 初始化材质数据结构
+  material_obj[0x24] = 0;
+  material_obj[0x25] = 0;
+  material_obj[0x26] = 0;
+  *(undefined4 *)(material_obj + 0x27) = 0x11;  // 材质版本标识
+  
+  // 清零基础数据
+  *material_obj = 0;
+  material_obj[1] = 0;
+  material_obj[2] = 0;
+  *(undefined4 *)(material_obj + 0x23) = 0;
+  *(undefined1 *)((longlong)material_obj + 0x11c) = 0;
+  material_obj[0x32] = 0;
+  
+  // 设置默认浮点数值
+  *(undefined4 *)(material_obj + 0x28) = 0x3f800000;  // 1.0f
+  *(undefined4 *)((longlong)material_obj + 0x144) = 0x3f266666;  // 0.65f
+  *(undefined4 *)(material_obj + 0x29) = 0x3f800000;  // 1.0f
+  *(undefined4 *)((longlong)material_obj + 0x14c) = 0x3f800000;  // 1.0f
+  *(undefined4 *)(material_obj + 0x35) = 0x3f800000;  // 1.0f
+  *(undefined4 *)(material_obj + 0x34) = 0;  // 0.0f
+  *(undefined4 *)((longlong)material_obj + 0x1a4) = 0x3f000000;  // 0.5f
+  *(undefined4 *)((longlong)material_obj + 0x1ac) = 0x3f800000;  // 1.0f
+  *(undefined4 *)(material_obj + 0x33) = 0x3f800000;  // 1.0f
+  *(undefined4 *)((longlong)material_obj + 0x19c) = 0x3f800000;  // 1.0f
+  
+  // 清零材质变换矩阵
+  material_obj[0x2a] = 0;
+  material_obj[0x2b] = 0;
+  material_obj[0x2c] = 0;
+  material_obj[0x2d] = 0;
+  
+  // 设置默认变换矩阵值（单位矩阵）
+  material_obj[0x2e] = 0x3f8000003f800000;  // [1.0f, 1.0f]
+  material_obj[0x2f] = 0x3f8000003f800000;  // [1.0f, 1.0f]
+  material_obj[0x30] = 0x3f8000003f800000;  // [1.0f, 1.0f]
+  material_obj[0x31] = 0x3f8000003f800000;  // [1.0f, 1.0f]
+  
+  // 清零纹理和着色器引用
+  int buffer_index;
+  for (buffer_index = 3; buffer_index < 0x23; buffer_index++) {
+    material_obj[buffer_index] = 0;
+  }
+  
+  return material_obj;
 }
 
 
