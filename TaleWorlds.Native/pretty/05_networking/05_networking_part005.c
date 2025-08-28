@@ -592,9 +592,9 @@ void send_simple_network_packet(void)
 void release_network_packet_resources(void)
 
 {
-  ulonglong security_key;
+  ulonglong security_key;    // 安全密钥
   
-                    // WARNING: Subroutine does not return
+  // 执行安全验证和资源清理（函数不返回）
   FUN_1808fc050(security_key ^ (ulonglong)&stack0x00000000);
 }
 
@@ -603,8 +603,12 @@ void release_network_packet_resources(void)
 
 
 
-// 函数: 获取网络连接状态
-void get_network_connection_status(ulonglong connection_handle, undefined4 *status_buffer)
+// 函数: 检查网络连接状态
+// 功能：检查指定网络连接的状态信息，包括连接是否活跃等
+// 参数：connection_handle - 连接句柄，status_buffer - 状态缓冲区
+// 返回：无返回值，结果通过status_buffer返回
+// 注意：函数包含连接验证、状态获取和错误处理机制
+void check_network_connection_status(ulonglong connection_handle, undefined4 *status_buffer)
 
 {
   int connection_result;
