@@ -865,7 +865,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 *(int*)(param_1 + RENDER_OFFSET_PROCESS_COUNTER) = *(int*)(param_1 + RENDER_OFFSET_PROCESS_COUNTER) + 1;
                 optimization_result = RenderingSystem_ConnectionOptimizer(optimization_result, new_connection_handle, *(int32_t*)(param_1 + RENDER_OFFSET_PROCESS_COUNTER));
                 *(int*)(param_1 + RENDER_OFFSET_PROCESS_COUNTER) = *(int*)(param_1 + RENDER_OFFSET_PROCESS_COUNTER) + 1;
-                FUN_18038ee20(optimization_result, optimization_result, *(int32_t*)(param_1 + RENDER_OFFSET_PROCESS_COUNTER));
+                RenderingSystem_ConnectionOptimizer(optimization_result, optimization_result, *(int32_t*)(param_1 + RENDER_OFFSET_PROCESS_COUNTER));
             }
         }
     }

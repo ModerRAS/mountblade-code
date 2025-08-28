@@ -1,10 +1,113 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 99_part_06_part026.c - 2 个函数
+// 99_part_06_part026.c - 场景数据管理和实体处理模块 (Scene Data Management and Entity Processing Module)
+// 
+// 主要功能：
+// - 场景层级数据结构处理和解析
+// - 实体名称和属性管理
+// - 预制体(Prefab)数据加载和处理
+// - 场景对象属性配置和验证
+// - 全局唯一标识符(GUID)处理
+// - 场景升级级别掩码管理
+// - 季节掩码和移动性属性处理
+// 
+// 关键技术：
+// - 树形数据结构遍历和解析
+// - 字符串比较和模式匹配
+// - 内存池管理和动态内存分配
+// - 系统状态标志位操作
+// - 安全Cookie检查和保护
+// 
+// 应用场景：
+// - 游戏场景加载和初始化
+// - 实体属性配置和管理
+// - 场景对象层次结构处理
+// - 预制体实例化和配置
 
-// 函数: void FUN_1803bd8e0(longlong param_1,longlong param_2)
-void FUN_1803bd8e0(longlong param_1,longlong param_2)
+// 系统常量定义
+#define SCENE_SYSTEM_VERSION           0x0001
+#define MAX_GUID_LENGTH               36
+#define MAX_ENTITY_NAME_LENGTH        256
+#define MAX_PREFAB_NAME_LENGTH        512
+#define MAX_SCENE_LEVELS              16
+#define MAX_SEASON_MASK               0xFFFFFFFF
+#define MOBILITY_STATIC               0
+#define MOBILITY_DYNAMIC              1
+#define MOBILITY_KINEMATIC            2
+
+// 场景数据结构常量
+#define SCENE_DATA_BUFFER_SIZE        0x400
+#define ENTITY_ATTRIBUTE_COUNT        32
+#define LEVEL_NAME_LENGTH            8
+#define PREFAB_CHECKSUM_SIZE         16
+
+// 内存池和缓冲区常量
+#define SYSTEM_MEMORY_POOL_SIZE      0x1000
+#define TEMP_BUFFER_SIZE             0x200
+#define SECURITY_COOKIE_VALUE        0xF0000000A
+
+// 错误代码定义
+#define SCENE_LOAD_SUCCESS           0
+#define SCENE_LOAD_FAILED            -1
+#define ENTITY_NOT_FOUND            -2
+#define PREFAB_LOAD_ERROR           -3
+#define GUID_INVALID_FORMAT         -4
+
+// 场景数据类型定义
+typedef struct {
+    uint64_t entity_id;             // 实体唯一标识符
+    char name[MAX_ENTITY_NAME_LENGTH];  // 实体名称
+    uint32_t level_mask;            // 层级掩码
+    uint32_t season_mask;           // 季节掩码
+    uint8_t mobility_type;          // 移动性类型
+    uint8_t is_active;              // 激活状态
+    float lod_bias_factor;          // LOD偏置因子
+    void* prefab_data;              // 预制体数据指针
+    char guid[MAX_GUID_LENGTH];     // 全局唯一标识符
+} SceneEntity;
+
+// 场景层级结构定义
+typedef struct {
+    uint32_t level_id;              // 层级ID
+    char level_name[LEVEL_NAME_LENGTH];  // 层级名称
+    uint32_t entity_count;          // 实体数量
+    SceneEntity** entities;         // 实体指针数组
+    void* parent_level;             // 父级层级指针
+    void* child_levels;             // 子级层级指针
+} SceneLevel;
+
+// 预制体数据结构定义
+typedef struct {
+    uint64_t prefab_id;             // 预制体ID
+    char name[MAX_PREFAB_NAME_LENGTH];  // 预制体名称
+    uint32_t version;               // 版本号
+    uint8_t checksum[PREFAB_CHECKSUM_SIZE];  // 校验和
+    void* prefab_data;              // 预制体数据
+    uint32_t data_size;             // 数据大小
+    uint8_t is_loaded;              // 加载状态
+} PrefabData;
+
+// 场景管理器状态定义
+typedef struct {
+    SceneLevel* root_level;         // 根层级指针
+    uint32_t total_entities;        // 总实体数量
+    uint32_t active_entities;       // 激活实体数量
+    uint8_t is_initialized;         // 初始化状态
+    uint8_t loading_state;           // 加载状态
+    void* memory_pool;               // 内存池指针
+    uint32_t current_season_mask;    // 当前季节掩码
+} SceneManager;
+
+// 函数别名定义
+#define SceneLevelDataProcessor      FUN_1803bd8e0
+#define SceneEntityConfigurator      FUN_1803bdc20
+
+// 场景层级数据处理器 (SceneLevelDataProcessor)
+// 功能：处理场景层级数据结构和实体信息
+// 参数：param_1 - 场景管理器指针, param_2 - 层级数据指针
+// 返回值：无
+void SceneLevelDataProcessor(longlong param_1, longlong param_2)
 
 {
   uint uVar1;
@@ -200,8 +303,11 @@ LAB_1803bdb74:
 
 
 
-// 函数: void FUN_1803bdc20(byte *param_1,longlong param_2,uint64_t param_3)
-void FUN_1803bdc20(byte *param_1,longlong param_2,uint64_t param_3)
+// 场景实体配置器 (SceneEntityConfigurator)
+// 功能：配置场景实体属性和预制体数据
+// 参数：param_1 - 场景管理器指针, param_2 - 实体数据指针, param_3 - 配置标志
+// 返回值：无
+void SceneEntityConfigurator(byte *param_1, longlong param_2, uint64_t param_3)
 
 {
   longlong *plVar1;

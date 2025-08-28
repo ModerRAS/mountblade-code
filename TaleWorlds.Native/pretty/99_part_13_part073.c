@@ -1175,7 +1175,7 @@ uint64_t ResourceValidation(uint64_t resource_handle, longlong validation_ptr)
 
 
 
-int32_t FUN_1808dad80(longlong param_1,longlong param_2)
+int32_t ResourceReferenceUpdate(longlong resource_ptr, longlong ref_params)
 
 {
   int iVar1;
@@ -1524,7 +1524,7 @@ void ResourceSystemShutdown(void)
 
 
 
-int32_t FUN_1808daf3b(void)
+int32_t ResourceGetSystemStatus(void)
 
 {
   int32_t unaff_EBX;
