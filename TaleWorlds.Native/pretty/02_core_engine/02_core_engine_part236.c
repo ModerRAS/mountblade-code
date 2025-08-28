@@ -181,9 +181,9 @@ void release_resource_manager_memory(longlong resource_manager)
                                                             else {
                                                                 add_resource_to_manager(ptr_long, ptr_uint64_t_4 + (longlong)temp_int3 * 3);
                                                             }
-                                                            ptr_undefined = *(int32_t **)
+                                                            data_ptr = *(int32_t **)
                                                                       (*(longlong *)(stack_var8 * 0x20 + 0x4a8 + resource_manager) + -0x18);
-                                                            if (*(longlong *)(ptr_undefined + 2) != 0) {
+                                                            if (*(longlong *)(data_ptr + 2) != 0) {
                                                                 // WARNING: Subroutine does not return
                                                                 handle_memory_error();
                                                             }
@@ -192,9 +192,9 @@ void release_resource_manager_memory(longlong resource_manager)
                                                             ptr_uint64_t_3[2] = 0;
                                                             *ptr_uint64_t_3 = 0;
                                                             ptr_uint64_t_3[1] = 0;
-                                                            *(int32_t *)(ptr_uint64_t_3 + 2) = *ptr_undefined;
-                                                            *(uint64_t **)(ptr_undefined + 2) = ptr_uint64_t_3;
-                                                            *(uint64_t **)(ptr_undefined + 4) = ptr_uint64_t_3;
+                                                            *(int32_t *)(ptr_uint64_t_3 + 2) = *data_ptr;
+                                                            *(uint64_t **)(data_ptr + 2) = ptr_uint64_t_3;
+                                                            *(uint64_t **)(data_ptr + 4) = ptr_uint64_t_3;
                                                             ptr_uint64_t_3 = (uint64_t *)
                                                                      create_resource_instance(resource_manager, stack_array1, temp_int5, 0,
                                                                                            *(int32_t *)(stack_var19 + 0x184),
@@ -409,9 +409,9 @@ void release_resource_manager_memory(longlong resource_manager)
                                                     else {
                                                         add_resource_to_manager(ptr_long, ptr_stack9 + (longlong)temp_int3 * 3);
                                                     }
-                                                    ptr_undefined = *(int32_t **)
+                                                    data_ptr = *(int32_t **)
                                                               (*(longlong *)(stack_var8 * 0x20 + 0x4a8 + resource_manager) + -0x18);
-                                                    if (*(longlong *)(ptr_undefined + 2) != 0) {
+                                                    if (*(longlong *)(data_ptr + 2) != 0) {
                                                         // WARNING: Subroutine does not return
                                                         handle_memory_error();
                                                     }
@@ -419,9 +419,9 @@ void release_resource_manager_memory(longlong resource_manager)
                                                     ptr_uint64_t_3[2] = 0;
                                                     *ptr_uint64_t_3 = 0;
                                                     ptr_uint64_t_3[1] = 0;
-                                                    *(int32_t *)(ptr_uint64_t_3 + 2) = *ptr_undefined;
-                                                    *(uint64_t **)(ptr_undefined + 2) = ptr_uint64_t_3;
-                                                    *(uint64_t **)(ptr_undefined + 4) = ptr_uint64_t_3;
+                                                    *(int32_t *)(ptr_uint64_t_3 + 2) = *data_ptr;
+                                                    *(uint64_t **)(data_ptr + 2) = ptr_uint64_t_3;
+                                                    *(uint64_t **)(data_ptr + 4) = ptr_uint64_t_3;
                                                     ptr_uint64_t_3 = (uint64_t *)
                                                              create_resource_instance(resource_manager, stack_array3, temp_int5, 0, *ptr_int32_t,
                                                                                    stack_flag & 0xffffff00, 1);
@@ -670,24 +670,24 @@ uint64_t * initialize_data_structure(longlong resource_manager, uint64_t *data_p
     ptr_stack2 = ptr_temp + 3;
     ptr_stack1 = ptr_temp;
     initialize_mutex_in_situ(ptr_stack2, 2);
-    ptr_undefined = (uint64_t *)allocate_memory_block(MEMORY_POOL_ADDRESS, 0x18, 8, 3);
-    *(int32_t *)((longlong)ptr_undefined + 0x14) = 0;
-    *ptr_undefined = 0;
-    ptr_undefined[1] = 0;
-    *(int32_t *)(ptr_undefined + 2) = type_id;
-    ptr_temp[1] = (longlong)ptr_undefined;
-    ptr_temp[2] = (longlong)ptr_undefined;
+    data_ptr = (uint64_t *)allocate_memory_block(MEMORY_POOL_ADDRESS, 0x18, 8, 3);
+    *(int32_t *)((longlong)data_ptr + 0x14) = 0;
+    *data_ptr = 0;
+    data_ptr[1] = 0;
+    *(int32_t *)(data_ptr + 2) = type_id;
+    ptr_temp[1] = (longlong)data_ptr;
+    ptr_temp[2] = (longlong)data_ptr;
     *(int32_t *)ptr_temp = type_id;
     *data_ptr = ptr_temp;
     temp_value6 = 1;
     temp_value4 = *(int32_t *)*data_ptr;
     temp_value3 = get_resource_type_flags(type_number);
-    ptr_undefined = (uint64_t *)
+    data_ptr = (uint64_t *)
              create_resource_instance(&RESOURCE_BASE_ADDRESS, &ptr_stack1, *(int32_t *)(resource_manager + 0x298),
                            &RESOURCE_BASE_ADDRESS + (longlong)type_number * 0x98, temp_value5 | 4, 0, temp_value2, temp_value3, temp_value4, 0, 0
                            , 1, temp_value6);
-    temp_value1 = *ptr_undefined;
-    *ptr_undefined = 0;
+    temp_value1 = *data_ptr;
+    *data_ptr = 0;
     ptr_temp = (longlong *)data_ptr[1];
     data_ptr[1] = temp_value1;
     if (ptr_temp != (longlong *)0x0) {
