@@ -121,50 +121,58 @@ void register_render_pipeline_components(void)
 
 
 
-// 函数: void FUN_180035e40(void)
-void FUN_180035e40(void)
+// 函数: 注册动画系统组件
+void register_animation_system_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *null_pointer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  null_pointer = 0;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的动画组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &ANIMATION_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果动画组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&ANIMATION_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x4140994454d56503;
-  puVar7[7] = 0x399eced9bb5517ad;
-  puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  
+  // 设置动画组件属性
+  next_node[6] = ANIMATION_COMPONENT_HASH_1;
+  next_node[7] = ANIMATION_COMPONENT_HASH_2;
+  next_node[8] = &ANIMATION_COMPONENT_VTABLE;
+  next_node[9] = 0;
+  next_node[10] = null_pointer;
   return;
 }
 
@@ -172,50 +180,58 @@ void FUN_180035e40(void)
 
 
 
-// 函数: void FUN_180035f50(void)
-void FUN_180035f50(void)
+// 函数: 注册游戏脚本系统组件
+void register_game_script_system_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *script_initializer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d510;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00e28,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  script_initializer = initialize_game_script_system;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的脚本系统组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &GAME_SCRIPT_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00e28,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果脚本系统组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&GAME_SCRIPT_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x449bafe9b77ddd3c;
-  puVar7[7] = 0xc160408bde99e59f;
-  puVar7[8] = &UNK_180a00430;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置脚本系统组件属性
+  next_node[6] = GAME_SCRIPT_COMPONENT_HASH_1;
+  next_node[7] = GAME_SCRIPT_COMPONENT_HASH_2;
+  next_node[8] = &GAME_SCRIPT_COMPONENT_VTABLE;
+  next_node[9] = 0;
+  next_node[10] = script_initializer;
   return;
 }
 
@@ -459,50 +475,58 @@ void register_network_system_components(void)
 
 
 
-// 函数: void FUN_180036450(void)
-void FUN_180036450(void)
+// 函数: 注册游戏世界管理组件
+void register_game_world_management_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *world_initializer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  world_initializer = initialize_game_world_system;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的世界管理组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &GAME_WORLD_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果世界管理组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&GAME_WORLD_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x43330a43fcdb3653;
-  puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
-  puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置世界管理组件属性
+  next_node[6] = GAME_WORLD_COMPONENT_HASH_1;
+  next_node[7] = GAME_WORLD_COMPONENT_HASH_2;
+  next_node[8] = &GAME_WORLD_COMPONENT_VTABLE;
+  next_node[9] = 1;
+  next_node[10] = world_initializer;
   return;
 }
 
@@ -510,50 +534,58 @@ void FUN_180036450(void)
 
 
 
-// 函数: void FUN_180036550(void)
-void FUN_180036550(void)
+// 函数: 注册游戏实体管理组件
+void register_game_entity_management_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *entity_initializer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  entity_initializer = initialize_game_entity_system;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的实体管理组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &GAME_ENTITY_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果实体管理组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&GAME_ENTITY_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x431d7c8d7c475be2;
-  puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
-  puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置实体管理组件属性
+  next_node[6] = GAME_ENTITY_COMPONENT_HASH_1;
+  next_node[7] = GAME_ENTITY_COMPONENT_HASH_2;
+  next_node[8] = &GAME_ENTITY_COMPONENT_VTABLE;
+  next_node[9] = 4;
+  next_node[10] = entity_initializer;
   return;
 }
 
@@ -561,50 +593,58 @@ void FUN_180036550(void)
 
 
 
-// 函数: void FUN_180036650(void)
-void FUN_180036650(void)
+// 函数: 注册游戏场景管理组件
+void register_game_scene_management_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *null_pointer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  null_pointer = 0;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的场景管理组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &GAME_SCENE_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果场景管理组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&GAME_SCENE_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x4b2d79e470ee4e2c;
-  puVar7[7] = 0x9c552acd3ed5548d;
-  puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  
+  // 设置场景管理组件属性
+  next_node[6] = GAME_SCENE_COMPONENT_HASH_1;
+  next_node[7] = GAME_SCENE_COMPONENT_HASH_2;
+  next_node[8] = &GAME_SCENE_COMPONENT_VTABLE;
+  next_node[9] = 0;
+  next_node[10] = null_pointer;
   return;
 }
 
@@ -612,50 +652,58 @@ void FUN_180036650(void)
 
 
 
-// 函数: void FUN_180036750(void)
-void FUN_180036750(void)
+// 函数: 注册游戏资源管理组件
+void register_game_resource_management_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *resource_initializer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  resource_initializer = initialize_game_resource_system;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的资源管理组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &GAME_RESOURCE_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果资源管理组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&GAME_RESOURCE_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x49086ba08ab981a7;
-  puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置资源管理组件属性
+  next_node[6] = GAME_RESOURCE_COMPONENT_HASH_1;
+  next_node[7] = GAME_RESOURCE_COMPONENT_HASH_2;
+  next_node[8] = &GAME_RESOURCE_COMPONENT_VTABLE;
+  next_node[9] = 0;
+  next_node[10] = resource_initializer;
   return;
 }
 
