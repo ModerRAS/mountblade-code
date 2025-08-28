@@ -1,4 +1,9 @@
 #define SystemInitializer FUN_1808fcb90  // 系统初始化器
+#define ResourceReleaser FUN_18064e900  // 资源释放器
+#define AdvancedMemoryAllocator FUN_18062b420  // 高级内存分配器
+#define MemoryPoolAllocator FUN_18062b1e0  // 内存池分配器
+#define StateQueryProcessor FUN_180080380  // 状态查询处理器
+#define SystemStateUpdater FUN_1800802e0  // 系统状态更新器
 
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
@@ -126,9 +131,9 @@ void FUN_1800792ea(void)
     if (0 < iVar40) {
       uStack0000000000000050 = in_stack_00000058;
       lVar31 = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
-      uVar30 = FUN_180080380(lVar31,iVar40,lVar43,pfVar15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
+      uVar30 = StateQueryProcessor(lVar31,iVar40,lVar43,pfVar15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(int32_t *)(lVar16 + 0x30) = uVar30;
-      FUN_1800802e0(lVar31,uVar30);
+      SystemStateUpdater(lVar31,uVar30);
       if (*(longlong *)(lVar16 + 0x10) == 0) {
         if (*(int *)(lVar16 + 0x18) != 0) {
           *(int32_t *)(lVar16 + 0x2c) = *(int32_t *)(lVar16 + 0x30);
@@ -147,7 +152,7 @@ void FUN_1800792ea(void)
           *(int *)(lVar16 + 0x40) = iVar40;
           if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            ResourceReleaser();
           }
           *plVar1 = 0;
           if (cVar14 == '\0') {
@@ -155,7 +160,7 @@ void FUN_1800792ea(void)
             *plVar1 = 0;
           }
           else {
-            plVar32 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,(longlong)cVar14 * 4);
+            plVar32 = (longlong *)MemoryPoolAllocator(system_memory_pool_ptr,(longlong)cVar14 * 4);
             *plVar1 = (longlong)plVar32;
           }
         }
@@ -235,7 +240,7 @@ void FUN_1800792ea(void)
             do {
               iVar42 = (int)uVar46;
               if (*(longlong *)puVar45 == 0) {
-                lVar43 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
+                lVar43 = AdvancedMemoryAllocator(system_memory_pool_ptr,0x2000,0x25);
                 LOCK();
                 bVar48 = *(longlong *)(puVar39 + (longlong)iVar42 * 2 + 2) == 0;
                 if (bVar48) {
@@ -250,7 +255,7 @@ void FUN_1800792ea(void)
                 else {
                   if (lVar43 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    ResourceReleaser();
                   }
                   do {
                   } while (*pcVar38 != '\0');
@@ -416,9 +421,9 @@ void FUN_180079309(longlong param_1,uint param_2,uint64_t param_3,float *param_4
     if (0 < iVar39) {
       uStack0000000000000050 = in_stack_00000058;
       lVar31 = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
-      uVar29 = FUN_180080380(lVar31,iVar39,param_1,param_4,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
+      uVar29 = StateQueryProcessor(lVar31,iVar39,param_1,param_4,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(int32_t *)(lVar15 + 0x30) = uVar29;
-      FUN_1800802e0(lVar31,uVar29);
+      SystemStateUpdater(lVar31,uVar29);
       if (*(longlong *)(lVar15 + 0x10) == 0) {
         if (*(int *)(lVar15 + 0x18) != 0) {
           *(int32_t *)(lVar15 + 0x2c) = *(int32_t *)(lVar15 + 0x30);
@@ -437,7 +442,7 @@ void FUN_180079309(longlong param_1,uint param_2,uint64_t param_3,float *param_4
           *(int *)(lVar15 + 0x40) = iVar39;
           if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            ResourceReleaser();
           }
           *plVar1 = 0;
           if (cVar14 == '\0') {
@@ -445,7 +450,7 @@ void FUN_180079309(longlong param_1,uint param_2,uint64_t param_3,float *param_4
             *plVar1 = 0;
           }
           else {
-            plVar32 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,(longlong)cVar14 * 4);
+            plVar32 = (longlong *)MemoryPoolAllocator(system_memory_pool_ptr,(longlong)cVar14 * 4);
             *plVar1 = (longlong)plVar32;
           }
         }
@@ -525,7 +530,7 @@ void FUN_180079309(longlong param_1,uint param_2,uint64_t param_3,float *param_4
             do {
               iVar42 = (int)uVar45;
               if (*(longlong *)puVar44 == 0) {
-                lVar33 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
+                lVar33 = AdvancedMemoryAllocator(system_memory_pool_ptr,0x2000,0x25);
                 LOCK();
                 bVar47 = *(longlong *)(puVar38 + (longlong)iVar42 * 2 + 2) == 0;
                 if (bVar47) {
@@ -540,7 +545,7 @@ void FUN_180079309(longlong param_1,uint param_2,uint64_t param_3,float *param_4
                 else {
                   if (lVar33 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    ResourceReleaser();
                   }
                   do {
                   } while (*pcVar37 != '\0');
@@ -628,7 +633,7 @@ void FUN_18007940e(void)
     if (0 < iVar16) {
       uStack0000000000000050 = in_stack_00000058;
       lVar12 = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
-      uVar6 = FUN_180080380(lVar12,iVar16);
+      uVar6 = StateQueryProcessor(lVar12,iVar16);
       *(int32_t *)(lVar5 + 0x30) = uVar6;
       FUN_1800802e0(lVar12,uVar6);
       if (*(longlong *)(lVar5 + 0x10) == 0) {
@@ -649,7 +654,7 @@ void FUN_18007940e(void)
           *(int *)(lVar5 + 0x40) = iVar16;
           if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            ResourceReleaser();
           }
           *plVar1 = 0;
           if (cVar4 == '\0') {
@@ -737,7 +742,7 @@ void FUN_18007940e(void)
             do {
               iVar19 = (int)uVar22;
               if (*(longlong *)puVar21 == 0) {
-                lVar9 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
+                lVar9 = AdvancedMemoryAllocator(system_memory_pool_ptr,0x2000,0x25);
                 LOCK();
                 bVar24 = *(longlong *)(puVar15 + (longlong)iVar19 * 2 + 2) == 0;
                 if (bVar24) {
@@ -752,7 +757,7 @@ void FUN_18007940e(void)
                 else {
                   if (lVar9 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    ResourceReleaser();
                   }
                   do {
                   } while (*pcVar14 != '\0');
