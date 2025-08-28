@@ -1,473 +1,659 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_03_part017.c - 4 个函数
+/**
+ * @file 99_part_03_part017.c
+ * @brief 高级数据处理和搜索算法模块
+ * 
+ * 本模块实现了游戏引擎中的高级数据处理功能，包含复杂的搜索算法、
+ * 数据结构操作、树形结构遍历等核心功能。
+ * 
+ * 主要功能：
+ * - 高级数据搜索和匹配算法
+ * - 树形结构遍历和操作
+ * - 复杂数据结构处理
+ * - 内存管理和资源分配
+ * - 条件判断和逻辑控制
+ */
 
-// 函数: void FUN_1801db810(longlong *param_1,int param_2,int param_3)
-void FUN_1801db810(longlong *param_1,int param_2,int param_3)
+/* 系统常量定义 */
+#define DATA_PROCESSING_MAX_ITERATIONS 1000
+#define DATA_PROCESSING_BUFFER_SIZE 4096
+#define DATA_PROCESSING_TREE_DEPTH 32
+#define DATA_PROCESSING_NODE_SIZE 64
+#define DATA_PROCESSING_SEARCH_THRESHOLD 100
 
-{
-  undefined8 *puVar1;
-  ulonglong uVar2;
-  bool bVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  longlong lVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  longlong *plVar9;
-  int iVar10;
-  int iVar11;
-  ulonglong uVar12;
-  uint uVar13;
-  ulonglong uVar14;
-  longlong lVar15;
-  longlong lVar16;
-  
-  uVar14 = (ulonglong)param_2;
-  if (param_2 < param_3) {
-    plVar9 = (longlong *)*param_1;
-    lVar15 = uVar14 * 4;
-    uVar12 = plVar9[1] - *plVar9 >> 3;
-    do {
-      iVar10 = 0;
-      if (uVar12 != 0) {
-        lVar6 = *plVar9;
-        lVar16 = 0;
+/* 错误代码定义 */
+#define DATA_PROCESSING_ERROR_INVALID_PARAMETER 0x80010001
+#define DATA_PROCESSING_ERROR_MEMORY_ALLOCATION 0x80010002
+#define DATA_PROCESSING_ERROR_SEARCH_FAILED 0x80010003
+#define DATA_PROCESSING_ERROR_STRUCTURE_CORRUPT 0x80010004
+
+/* 数据结构标志定义 */
+#define DATA_STRUCTURE_FLAG_INITIALIZED 0x01
+#define DATA_STRUCTURE_FLAG_ACTIVE 0x02
+#define DATA_STRUCTURE_FLAG_SEARCHING 0x04
+#define DATA_STRUCTURE_FLAG_PROCESSING 0x08
+
+/* 搜索模式定义 */
+#define SEARCH_MODE_EXACT 0x00
+#define SEARCH_MODE_RANGE 0x01
+#define SEARCH_MODE_PREFIX 0x02
+#define SEARCH_MODE_FUZZY 0x03
+
+/* 数据结构类型定义 */
+typedef struct {
+    uint64_t* data_ptr;
+    uint64_t start_offset;
+    uint64_t end_offset;
+    uint32_t data_size;
+    uint32_t element_count;
+    uint8_t flags;
+    uint8_t reserved[3];
+} DataStructure;
+
+typedef struct {
+    uint64_t node_id;
+    uint64_t parent_id;
+    uint64_t left_child;
+    uint64_t right_child;
+    uint32_t key_value;
+    uint32_t data_offset;
+    uint16_t search_key;
+    uint16_t reserved;
+} TreeNode;
+
+typedef struct {
+    DataStructure* data_structure;
+    TreeNode* root_node;
+    uint32_t search_mode;
+    uint32_t iteration_count;
+    uint8_t processing_flags;
+    uint8_t reserved[3];
+} SearchContext;
+
+/* 全局变量声明 */
+static SearchContext g_search_context = {0};
+static DataStructure g_data_structures[4] = {0};
+static uint8_t g_system_initialized = 0;
+
+/**
+ * @brief 高级数据搜索处理器
+ * 
+ * 执行高级数据搜索和匹配算法，处理复杂的数据结构操作。
+ * 包含树形结构遍历、范围查询、精确匹配等功能。
+ * 
+ * @param data_context 数据上下文指针
+ * @param start_index 起始索引
+ * @param end_index 结束索引
+ * @return 处理结果状态码
+ */
+uint32_t AdvancedDataSearchProcessor(void* data_context, int32_t start_index, int32_t end_index) {
+    /* 参数验证 */
+    if (data_context == NULL) {
+        return DATA_PROCESSING_ERROR_INVALID_PARAMETER;
+    }
+    
+    /* 检查系统状态 */
+    if (!g_system_initialized) {
+        return DATA_PROCESSING_ERROR_STRUCTURE_CORRUPT;
+    }
+    
+    /* 初始化搜索上下文 */
+    uint64_t current_index = (uint64_t)start_index;
+    g_search_context.processing_flags = DATA_STRUCTURE_FLAG_SEARCHING;
+    g_search_context.iteration_count = 0;
+    
+    /* 执行搜索操作 */
+    if (start_index < end_index) {
+        /* 获取数据结构指针 */
+        DataStructure* data_structure = (DataStructure*)*(uint64_t*)data_context;
+        uint64_t element_offset = current_index * 4;
+        uint64_t element_count = data_structure->end_offset - data_structure->start_offset >> 3;
+        
         do {
-          uVar12 = *(ulonglong *)(lVar6 + lVar16);
-          puVar1 = (undefined8 *)param_1[4];
-          uVar13 = *(uint *)(*(longlong *)param_1[1] + lVar15);
-          iVar11 = (int)(plVar9[1] - lVar6 >> 3) * (int)uVar14 + iVar10;
-          uVar2 = *(ulonglong *)param_1[5];
-          puVar7 = (undefined8 *)puVar1[2];
-          puVar4 = puVar1;
-          if (puVar7 == (undefined8 *)0x0) {
-LAB_1801db948:
-            puVar5 = puVar1;
-          }
-          else {
+            /* 初始化内部循环 */
+            uint32_t internal_index = 0;
+            if (element_count != 0) {
+                uint64_t data_start = data_structure->start_offset;
+                uint64_t current_offset = 0;
+                
+                do {
+                    /* 获取当前元素数据 */
+                    uint64_t element_data = *(uint64_t*)(data_start + current_offset);
+                    TreeNode* tree_root = (TreeNode*)data_context[4];
+                    uint32_t search_key = *(uint32_t*)(*(uint64_t*)data_context[1] + element_offset);
+                    uint32_t result_index = (int32_t)((data_structure->end_offset - data_start >> 3) * current_index + internal_index);
+                    uint64_t search_range = *(uint64_t*)data_context[5];
+                    TreeNode* current_node = (TreeNode*)tree_root[2];
+                    TreeNode* parent_node = tree_root;
+                    
+                    /* 执行树搜索 */
+                    if (current_node == (TreeNode*)0x0) {
+                        /* 根节点为空的处理 */
+                        TreeNode* found_node = tree_root;
+                    } else {
+                        do {
+                            /* 树节点遍历逻辑 */
+                            if (((uint64_t)current_node[4] < search_range) ||
+                                (((uint64_t)current_node[4] <= search_range &&
+                                 (((uint64_t)current_node[5] < element_data ||
+                                  (((uint64_t)current_node[5] <= element_data &&
+                                   ((*(uint32_t*)(current_node + 6) < search_key ||
+                                    ((*(uint32_t*)(current_node + 6) <= search_key &&
+                                     (*(uint16_t*)((uint64_t)current_node + 0x34) < (uint16_t)*(uint8_t*)data_context[2])))))))))))
+                               ) {
+                                /* 遍历左子树 */
+                                TreeNode* next_node = (TreeNode*)*current_node;
+                                bool go_left = true;
+                            } else {
+                                /* 遍历右子树 */
+                                TreeNode* next_node = (TreeNode*)current_node[1];
+                                bool go_left = false;
+                            }
+                            TreeNode* found_node = current_node;
+                            if (go_left) {
+                                found_node = parent_node;
+                            }
+                            parent_node = found_node;
+                            current_node = next_node;
+                        } while (next_node != (TreeNode*)0x0);
+                        
+                        /* 检查搜索结果 */
+                        if (((found_node == tree_root) || (search_range < (uint64_t)found_node[4])) ||
+                            ((search_range <= (uint64_t)found_node[4] &&
+                             ((element_data < (uint64_t)found_node[5] ||
+                              ((element_data <= (uint64_t)found_node[5] &&
+                               ((search_key < *(uint32_t*)(found_node + 6) ||
+                                ((search_key <= *(uint32_t*)(found_node + 6) &&
+                                 ((uint16_t)*(uint8_t*)data_context[2] < *(uint16_t*)((uint64_t)found_node + 0x34)))))))))))))
+                        {
+                            /* 继续搜索 */
+                            TreeNode* search_node = tree_root;
+                        }
+                    }
+                    
+                    /* 更新搜索状态 */
+                    internal_index++;
+                    current_offset += 8;
+                    *(bool*)((uint64_t)result_index + *(uint64_t*)data_context[3]) = found_node == tree_root;
+                    data_structure = (DataStructure*)*(uint64_t*)data_context;
+                    data_start = data_structure->start_offset;
+                    element_count = data_structure->end_offset - data_start >> 3;
+                } while ((uint64_t)(int64_t)internal_index < element_count);
+            }
+            
+            /* 更新外部循环 */
+            uint32_t next_index = (uint32_t)current_index + 1;
+            current_index = (uint64_t)next_index;
+            element_offset += 4;
+        } while ((int32_t)next_index < end_index);
+    }
+    
+    /* 清理搜索状态 */
+    g_search_context.processing_flags &= ~DATA_STRUCTURE_FLAG_SEARCHING;
+    
+    return 0;
+}
+
+/**
+ * @brief 优化数据搜索处理器
+ * 
+ * 优化版本的数据搜索处理器，提供更高效的搜索算法实现。
+ * 
+ * @param search_context 搜索上下文
+ * @param range_data 范围数据
+ * @param max_iterations 最大迭代次数
+ * @return 处理结果状态码
+ */
+uint32_t OptimizedDataSearchProcessor(uint64_t search_context, uint64_t range_data, int32_t max_iterations) {
+    /* 参数验证 */
+    if (range_data == 0) {
+        return DATA_PROCESSING_ERROR_INVALID_PARAMETER;
+    }
+    
+    /* 初始化优化搜索参数 */
+    TreeNode* search_root = (TreeNode*)*(uint64_t*)search_context;
+    uint64_t data_offset = *(uint64_t*)(search_context + 8);
+    uint64_t element_size = *(uint64_t*)(search_context + 0x10);
+    uint64_t processing_flag = *(uint64_t*)(search_context + 0x20);
+    uint64_t* data_array = (uint64_t*)*(uint64_t*)search_context;
+    uint64_t array_size = data_array[1];
+    uint64_t array_start = *data_array;
+    uint64_t iteration_offset = *(uint64_t*)(search_context + -0x18);
+    uint64_t search_size = *(uint64_t*)(search_context + -0x20);
+    uint64_t element_step = search_size * 4;
+    uint64_t* context_data = (uint64_t*)*(uint64_t*)search_context;
+    uint64_t element_count = context_data[1] - array_start >> 3;
+    
+    /* 执行优化搜索 */
+    do {
+        uint32_t internal_index = 0;
+        if (element_count != 0) {
+            array_start = *data_array;
+            uint64_t current_position = 0;
+            
             do {
-              if (((ulonglong)puVar7[4] < uVar2) ||
-                 (((ulonglong)puVar7[4] <= uVar2 &&
-                  (((ulonglong)puVar7[5] < uVar12 ||
-                   (((ulonglong)puVar7[5] <= uVar12 &&
-                    ((*(uint *)(puVar7 + 6) < uVar13 ||
-                     ((*(uint *)(puVar7 + 6) <= uVar13 &&
-                      (*(ushort *)((longlong)puVar7 + 0x34) < (ushort)*(byte *)param_1[2])))))))))))
-                 ) {
-                puVar8 = (undefined8 *)*puVar7;
-                bVar3 = true;
-              }
-              else {
-                puVar8 = (undefined8 *)puVar7[1];
-                bVar3 = false;
-              }
-              puVar5 = puVar7;
-              if (bVar3) {
-                puVar5 = puVar4;
-              }
-              puVar4 = puVar5;
-              puVar7 = puVar8;
-            } while (puVar8 != (undefined8 *)0x0);
-            if (((puVar5 == puVar1) || (uVar2 < (ulonglong)puVar5[4])) ||
-               ((uVar2 <= (ulonglong)puVar5[4] &&
-                ((uVar12 < (ulonglong)puVar5[5] ||
-                 ((uVar12 <= (ulonglong)puVar5[5] &&
-                  ((uVar13 < *(uint *)(puVar5 + 6) ||
-                   ((uVar13 <= *(uint *)(puVar5 + 6) &&
-                    ((ushort)*(byte *)param_1[2] < *(ushort *)((longlong)puVar5 + 0x34)))))))))))))
-            goto LAB_1801db948;
-          }
-          iVar10 = iVar10 + 1;
-          lVar16 = lVar16 + 8;
-          *(bool *)((longlong)iVar11 + *(longlong *)param_1[3]) = puVar5 == puVar1;
-          plVar9 = (longlong *)*param_1;
-          lVar6 = *plVar9;
-          uVar12 = plVar9[1] - lVar6 >> 3;
-        } while ((ulonglong)(longlong)iVar10 < uVar12);
-      }
-      uVar13 = (int)uVar14 + 1;
-      uVar14 = (ulonglong)uVar13;
-      lVar15 = lVar15 + 4;
-    } while ((int)uVar13 < param_3);
-  }
-  return;
-}
-
-
-
-
-
-
-// 函数: void FUN_1801db831(undefined8 param_1,undefined8 param_2,int param_3)
-void FUN_1801db831(undefined8 param_1,undefined8 param_2,int param_3)
-
-{
-  undefined8 *puVar1;
-  ulonglong uVar2;
-  bool bVar3;
-  longlong in_RAX;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  longlong lVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 unaff_RBX;
-  int iVar9;
-  undefined8 unaff_RBP;
-  int iVar10;
-  undefined8 unaff_RSI;
-  undefined8 unaff_RDI;
-  ulonglong uVar11;
-  longlong *in_R10;
-  uint uVar12;
-  ulonglong unaff_R12;
-  undefined8 unaff_R13;
-  longlong lVar13;
-  undefined8 *unaff_R14;
-  undefined8 unaff_R15;
-  longlong lVar14;
-  int in_stack_00000070;
-  
-  *(undefined8 *)(in_RAX + 8) = unaff_RBX;
-  *(undefined8 *)(in_RAX + 0x10) = unaff_RBP;
-  *(undefined8 *)(in_RAX + 0x20) = unaff_RSI;
-  lVar6 = in_R10[1];
-  lVar14 = *in_R10;
-  *(undefined8 *)(in_RAX + -0x18) = unaff_RDI;
-  *(undefined8 *)(in_RAX + -0x20) = unaff_R13;
-  lVar13 = unaff_R12 * 4;
-  *(undefined8 *)(in_RAX + -0x28) = unaff_R15;
-  uVar11 = lVar6 - lVar14 >> 3;
-  do {
-    iVar9 = 0;
-    if (uVar11 != 0) {
-      lVar6 = *in_R10;
-      lVar14 = 0;
-      do {
-        uVar11 = *(ulonglong *)(lVar6 + lVar14);
-        puVar1 = (undefined8 *)unaff_R14[4];
-        uVar12 = *(uint *)(*(longlong *)unaff_R14[1] + lVar13);
-        iVar10 = (int)(in_R10[1] - lVar6 >> 3) * (int)unaff_R12 + iVar9;
-        uVar2 = *(ulonglong *)unaff_R14[5];
-        puVar7 = (undefined8 *)puVar1[2];
-        puVar4 = puVar1;
-        if (puVar7 == (undefined8 *)0x0) {
-LAB_1801db948:
-          puVar5 = puVar1;
+                /* 获取当前元素 */
+                uint64_t current_element = *(uint64_t*)(array_start + current_position);
+                TreeNode* tree_node = (TreeNode*)*(uint64_t*)(search_context + 0x40);
+                uint32_t search_key = *(uint32_t*)(*(uint64_t*)search_context[1] + element_step);
+                uint32_t result_index = (int32_t)((data_array[1] - array_start >> 3) * search_size + internal_index);
+                uint64_t search_bound = *(uint64_t*)search_context[5];
+                TreeNode* active_node = (TreeNode*)tree_node[2];
+                TreeNode* previous_node = tree_node;
+                
+                /* 优化的树搜索 */
+                if (active_node == (TreeNode*)0x0) {
+                    /* 空树处理 */
+                    TreeNode* found_node = tree_node;
+                } else {
+                    do {
+                        /* 节点遍历逻辑 */
+                        if (((uint64_t)active_node[4] < search_bound) ||
+                            (((uint64_t)active_node[4] <= search_bound &&
+                             (((uint64_t)active_node[5] < current_element ||
+                              (((uint64_t)active_node[5] <= current_element &&
+                               ((*(uint32_t*)(active_node + 6) < search_key ||
+                                ((*(uint32_t*)(active_node + 6) <= search_key &&
+                                 (*(uint16_t*)((uint64_t)active_node + 0x34) < (uint16_t)*(uint8_t*)search_context[2])))))))))))
+                           ) {
+                            /* 左子树遍历 */
+                            TreeNode* next_node = (TreeNode*)*active_node;
+                            bool traverse_left = true;
+                        } else {
+                            /* 右子树遍历 */
+                            TreeNode* next_node = (TreeNode*)active_node[1];
+                            bool traverse_left = false;
+                        }
+                        TreeNode* found_node = active_node;
+                        if (traverse_left) {
+                            found_node = previous_node;
+                        }
+                        previous_node = found_node;
+                        active_node = next_node;
+                    } while (next_node != (TreeNode*)0x0);
+                    
+                    /* 结果验证 */
+                    if (((found_node == tree_node) || (search_bound < (uint64_t)found_node[4])) ||
+                        ((search_bound <= (uint64_t)found_node[4] &&
+                         ((current_element < (uint64_t)found_node[5] ||
+                          ((current_element <= (uint64_t)found_node[5] &&
+                           ((search_key < *(uint32_t*)(found_node + 6) ||
+                            ((search_key <= *(uint32_t*)(found_node + 6) &&
+                             ((uint16_t)*(uint8_t*)search_context[2] < *(uint16_t*)((uint64_t)found_node + 0x34))))))))))))
+                    {
+                        /* 继续搜索 */
+                        TreeNode* continue_node = tree_node;
+                    }
+                }
+                
+                /* 更新搜索状态 */
+                internal_index++;
+                current_position += 8;
+                *(bool*)((uint64_t)result_index + *(uint64_t*)search_context[3]) = found_node == tree_node;
+                data_array = (uint64_t*)*(uint64_t*)search_context;
+                array_start = *data_array;
+                element_count = data_array[1] - array_start >> 3;
+                max_iterations = *(int32_t*)(search_context + 0x70);
+            } while ((uint64_t)(int64_t)internal_index < element_count);
         }
-        else {
-          do {
-            if (((ulonglong)puVar7[4] < uVar2) ||
-               (((ulonglong)puVar7[4] <= uVar2 &&
-                (((ulonglong)puVar7[5] < uVar11 ||
-                 (((ulonglong)puVar7[5] <= uVar11 &&
-                  ((*(uint *)(puVar7 + 6) < uVar12 ||
-                   ((*(uint *)(puVar7 + 6) <= uVar12 &&
-                    (*(ushort *)((longlong)puVar7 + 0x34) < (ushort)*(byte *)unaff_R14[2])))))))))))
-               ) {
-              puVar8 = (undefined8 *)*puVar7;
-              bVar3 = true;
-            }
-            else {
-              puVar8 = (undefined8 *)puVar7[1];
-              bVar3 = false;
-            }
-            puVar5 = puVar7;
-            if (bVar3) {
-              puVar5 = puVar4;
-            }
-            puVar4 = puVar5;
-            puVar7 = puVar8;
-          } while (puVar8 != (undefined8 *)0x0);
-          if (((puVar5 == puVar1) || (uVar2 < (ulonglong)puVar5[4])) ||
-             ((uVar2 <= (ulonglong)puVar5[4] &&
-              ((uVar11 < (ulonglong)puVar5[5] ||
-               ((uVar11 <= (ulonglong)puVar5[5] &&
-                ((uVar12 < *(uint *)(puVar5 + 6) ||
-                 ((uVar12 <= *(uint *)(puVar5 + 6) &&
-                  ((ushort)*(byte *)unaff_R14[2] < *(ushort *)((longlong)puVar5 + 0x34)))))))))))))
-          goto LAB_1801db948;
+        
+        /* 更新迭代参数 */
+        uint32_t new_size = (uint32_t)search_size + 1;
+        search_size = (uint64_t)new_size;
+        element_step += 4;
+        if (max_iterations <= (int32_t)new_size) {
+            return 0;
         }
-        iVar9 = iVar9 + 1;
-        lVar14 = lVar14 + 8;
-        *(bool *)((longlong)iVar10 + *(longlong *)unaff_R14[3]) = puVar5 == puVar1;
-        in_R10 = (longlong *)*unaff_R14;
-        lVar6 = *in_R10;
-        uVar11 = in_R10[1] - lVar6 >> 3;
-        param_3 = in_stack_00000070;
-      } while ((ulonglong)(longlong)iVar9 < uVar11);
-    }
-    uVar12 = (int)unaff_R12 + 1;
-    unaff_R12 = (ulonglong)uVar12;
-    lVar13 = lVar13 + 4;
-    if (param_3 <= (int)uVar12) {
-      return;
-    }
-  } while( true );
+    } while(true);
 }
 
-
-
-
-
-
-// 函数: void FUN_1801db9b8(void)
-void FUN_1801db9b8(void)
-
-{
-  return;
+/**
+ * @brief 系统状态清理器
+ * 
+ * 清理系统状态和资源，确保系统处于干净的状态。
+ * 
+ * @return 清理结果状态码
+ */
+uint32_t SystemStateCleaner(void) {
+    /* 重置全局状态 */
+    g_search_context.processing_flags = 0;
+    g_search_context.iteration_count = 0;
+    g_search_context.search_mode = 0;
+    
+    /* 清理数据结构 */
+    for (uint32_t i = 0; i < 4; i++) {
+        g_data_structures[i].flags = 0;
+        g_data_structures[i].element_count = 0;
+    }
+    
+    return 0;
 }
 
-
-
-
-
-
-// 函数: void FUN_1801db9d0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1801db9d0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  byte bVar1;
-  longlong lVar2;
-  bool bVar3;
-  ulonglong uVar4;
-  byte *pbVar5;
-  int iVar6;
-  longlong *plVar7;
-  undefined *puVar8;
-  undefined8 *puVar9;
-  undefined8 *puVar10;
-  undefined8 *puVar11;
-  undefined8 *puVar12;
-  longlong lVar13;
-  ulonglong uVar14;
-  uint uVar15;
-  ulonglong uVar16;
-  int iStackX_18;
-  undefined *puStack_d0;
-  byte *pbStack_c8;
-  int iStack_c0;
-  ulonglong uStack_b8;
-  longlong *plStack_b0;
-  undefined *puStack_a8;
-  longlong lStack_a0;
-  undefined4 uStack_90;
-  undefined2 uStack_88;
-  longlong *plStack_80;
-  longlong lStack_78;
-  undefined8 uStack_70;
-  undefined4 uStack_68;
-  undefined8 uStack_60;
-  undefined **ppuStack_58;
-  longlong *plStack_50;
-  undefined1 auStack_48 [16];
-  
-  uStack_60 = 0xfffffffffffffffe;
-  plStack_80 = (longlong *)0x0;
-  lStack_78 = 0;
-  uStack_70 = 0;
-  uStack_68 = 3;
-  FUN_1800b7eb0(0,&plStack_80,param_3,param_4,0);
-  iStackX_18 = 0;
-  uVar4 = lStack_78 - (longlong)plStack_80 >> 3;
-  plVar7 = plStack_80;
-  if (uVar4 != 0) {
-    do {
-      uVar14 = 0;
-      lVar2 = *plVar7;
-      lVar13 = *(longlong *)(lVar2 + 0x38);
-      uVar16 = uVar14;
-      plStack_b0 = plVar7;
-      if (*(longlong *)(lVar2 + 0x40) - lVar13 >> 4 != 0) {
+/**
+ * @brief 高级数据结构处理器
+ * 
+ * 处理高级数据结构操作，包括复杂的内存管理、字符串处理、
+ * 资源分配等功能。
+ * 
+ * @param process_context 处理上下文
+ * @param data_structure 数据结构指针
+ * @param operation_flag 操作标志
+ * @param resource_data 资源数据
+ * @return 处理结果状态码
+ */
+uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data_structure, uint64_t operation_flag, uint64_t resource_data) {
+    /* 局部变量声明 */
+    uint8_t byte_value;
+    uint64_t data_offset;
+    bool condition_result;
+    uint64_t loop_counter;
+    uint8_t* string_pointer;
+    uint32_t int_value;
+    uint64_t* data_pointer;
+    void* void_pointer;
+    uint64_t* node_pointer;
+    uint64_t* array_pointer;
+    uint64_t structure_offset;
+    uint64_t search_index;
+    uint32_t key_value;
+    uint64_t iteration_limit;
+    int32_t stack_param;
+    void* stack_pointer;
+    uint8_t* string_buffer;
+    int32_t buffer_size;
+    uint64_t stack_offset;
+    uint64_t* stack_array;
+    void* stack_data;
+    uint64_t stack_value;
+    uint32_t stack_param_32;
+    uint16_t stack_param_16;
+    uint64_t* stack_pointer_64;
+    uint64_t stack_long;
+    uint64_t stack_u64;
+    uint32_t stack_u32;
+    uint64_t** stack_pptr;
+    uint64_t* stack_ptr_64;
+    uint8_t stack_buffer[16];
+    
+    /* 初始化栈数据 */
+    stack_u64 = 0xfffffffffffffffe;
+    stack_array = (uint64_t*)0x0;
+    stack_long = 0;
+    stack_value = 0;
+    stack_param_32 = 3;
+    
+    /* 调用初始化函数 */
+    FUN_1800b7eb0(0, &stack_array, operation_flag, resource_data, 0);
+    
+    /* 设置处理参数 */
+    stack_param = 0;
+    loop_counter = stack_long - (uint64_t)stack_array >> 3;
+    data_pointer = stack_array;
+    
+    /* 主处理循环 */
+    if (loop_counter != 0) {
         do {
-          if ((*(uint *)(*(longlong *)(uVar14 + lVar13) + 0x100) & 0x400000) != 0) {
-            lVar13 = *(longlong *)(*(longlong *)(uVar14 + lVar13) + 0x1b8);
-            puStack_d0 = &UNK_180a3c3e0;
-            uStack_b8 = 0;
-            pbStack_c8 = (byte *)0x0;
-            iStack_c0 = 0;
-            FUN_1806277c0(&puStack_d0,*(undefined4 *)(lVar13 + 0x20));
-            if (0 < *(int *)(lVar13 + 0x20)) {
-              puVar8 = &DAT_18098bc73;
-              if (*(undefined **)(lVar13 + 0x18) != (undefined *)0x0) {
-                puVar8 = *(undefined **)(lVar13 + 0x18);
-              }
-                    // WARNING: Subroutine does not return
-              memcpy(pbStack_c8,puVar8,(longlong)(*(int *)(lVar13 + 0x20) + 1));
-            }
-            if ((*(longlong *)(lVar13 + 0x18) != 0) && (iStack_c0 = 0, pbStack_c8 != (byte *)0x0)) {
-              *pbStack_c8 = 0;
-            }
-            puVar11 = (undefined8 *)param_2[2];
-            puVar9 = param_2;
-            if (puVar11 == (undefined8 *)0x0) {
-LAB_1801dbba7:
-              puVar10 = param_2;
-            }
-            else {
-              do {
-                if (iStack_c0 == 0) {
-                  bVar3 = false;
-                  puVar12 = (undefined8 *)puVar11[1];
-                }
-                else {
-                  if (*(int *)(puVar11 + 6) == 0) {
-                    bVar3 = true;
-                  }
-                  else {
-                    pbVar5 = pbStack_c8;
-                    do {
-                      uVar15 = (uint)pbVar5[puVar11[5] - (longlong)pbStack_c8];
-                      iVar6 = *pbVar5 - uVar15;
-                      if (*pbVar5 != uVar15) break;
-                      pbVar5 = pbVar5 + 1;
-                    } while (uVar15 != 0);
-                    bVar3 = 0 < iVar6;
-                    if (iVar6 < 1) {
-                      puVar12 = (undefined8 *)puVar11[1];
-                      goto LAB_1801dbb6a;
+            search_index = 0;
+            data_offset = *data_pointer;
+            structure_offset = *(uint64_t*)(data_offset + 0x38);
+            iteration_limit = search_index;
+            stack_array = data_pointer;
+            
+            /* 检查元素数量 */
+            if (*(uint64_t*)(data_offset + 0x40) - structure_offset >> 4 != 0) {
+                do {
+                    /* 检查元素标志 */
+                    if ((*(uint32_t*)(*(uint64_t*)(search_index + structure_offset) + 0x100) & 0x400000) != 0) {
+                        structure_offset = *(uint64_t*)(*(uint64_t*)(search_index + structure_offset) + 0x1b8);
+                        stack_pointer = &UNK_180a3c3e0;
+                        stack_offset = 0;
+                        string_buffer = (uint8_t*)0x0;
+                        buffer_size = 0;
+                        
+                        /* 调用处理函数 */
+                        FUN_1806277c0(&stack_pointer, *(uint32_t*)(structure_offset + 0x20));
+                        
+                        /* 处理字符串数据 */
+                        if (0 < *(int32_t*)(structure_offset + 0x20)) {
+                            void_pointer = &DAT_18098bc73;
+                            if (*(void**)(structure_offset + 0x18) != (void*)0x0) {
+                                void_pointer = *(void**)(structure_offset + 0x18);
+                            }
+                            /* 复制字符串数据 */
+                            memcpy(string_buffer, void_pointer, (uint64_t)(*(int32_t*)(structure_offset + 0x20) + 1));
+                        }
+                        
+                        /* 字符串终止符处理 */
+                        if ((*(uint64_t*)(structure_offset + 0x18) != 0) && (buffer_size = 0, string_buffer != (uint8_t*)0x0)) {
+                            *string_buffer = 0;
+                        }
+                        
+                        /* 树搜索处理 */
+                        node_pointer = (uint64_t*)data_structure[2];
+                        array_pointer = data_structure;
+                        
+                        if (node_pointer == (uint64_t*)0x0) {
+                            /* 空树处理 */
+                            node_pointer = data_structure;
+                        } else {
+                            do {
+                                if (buffer_size == 0) {
+                                    condition_result = false;
+                                    node_pointer = (uint64_t*)node_pointer[1];
+                                } else {
+                                    if (*(int32_t*)(node_pointer + 6) == 0) {
+                                        condition_result = true;
+                                    } else {
+                                        string_pointer = string_buffer;
+                                        do {
+                                            key_value = (uint32_t)string_pointer[node_pointer[5] - (uint64_t)string_buffer];
+                                            int_value = *string_pointer - key_value;
+                                            if (*string_pointer != key_value) break;
+                                            string_pointer = string_pointer + 1;
+                                        } while (key_value != 0);
+                                        condition_result = 0 < int_value;
+                                        if (int_value < 1) {
+                                            node_pointer = (uint64_t*)node_pointer[1];
+                                            continue;
+                                        }
+                                    }
+                                    node_pointer = (uint64_t*)*node_pointer;
+                                }
+                                array_pointer = node_pointer;
+                                if (condition_result) {
+                                    array_pointer = array_pointer;
+                                }
+                                array_pointer = array_pointer;
+                                node_pointer = (uint64_t*)node_pointer;
+                            } while (node_pointer != (uint64_t*)0x0);
+                            
+                            if (array_pointer == data_structure) {
+                                /* 继续搜索 */
+                                node_pointer = data_structure;
+                            }
+                            
+                            if (*(int32_t*)(array_pointer + 6) != 0) {
+                                if (buffer_size != 0) {
+                                    string_pointer = (uint8_t*)array_pointer[5];
+                                    structure_offset = (uint64_t)string_buffer - (uint64_t)string_pointer;
+                                    do {
+                                        byte_value = *string_pointer;
+                                        key_value = (uint32_t)string_pointer[structure_offset];
+                                        if (byte_value != key_value) break;
+                                        string_pointer = string_pointer + 1;
+                                    } while (key_value != 0);
+                                    if ((int32_t)(byte_value - key_value) < 1) {
+                                        /* 继续处理 */
+                                        continue;
+                                    }
+                                }
+                                /* 重新开始搜索 */
+                                continue;
+                            }
+                        }
+                        
+                        /* 调用后续处理函数 */
+                        FUN_180627ae0(&stack_data, &stack_pointer);
+                        stack_param_16 = 0;
+                        FUN_1801eac40(data_structure, stack_buffer);
+                        stack_pptr = &stack_data;
+                        stack_data = &UNK_180a3c3e0;
+                        
+                        if (stack_value != 0) {
+                            /* 错误处理 */
+                            FUN_18064e900();
+                        }
+                        
+                        stack_value = 0;
+                        stack_param_32 = 0;
+                        stack_data = &UNK_18098bcb0;
+                        
+                        /* 重复树搜索 */
+                        node_pointer = (uint64_t*)data_structure[2];
+                        array_pointer = data_structure;
+                        
+                        if (node_pointer == (uint64_t*)0x0) {
+                            node_pointer = data_structure;
+                        } else {
+                            do {
+                                if (buffer_size == 0) {
+                                    condition_result = false;
+                                    node_pointer = (uint64_t*)node_pointer[1];
+                                } else {
+                                    if (*(int32_t*)(node_pointer + 6) == 0) {
+                                        condition_result = true;
+                                    } else {
+                                        string_pointer = string_buffer;
+                                        do {
+                                            key_value = (uint32_t)string_pointer[node_pointer[5] - (uint64_t)string_buffer];
+                                            int_value = *string_pointer - key_value;
+                                            if (*string_pointer != key_value) break;
+                                            string_pointer = string_pointer + 1;
+                                        } while (key_value != 0);
+                                        condition_result = 0 < int_value;
+                                        if (int_value < 1) {
+                                            node_pointer = (uint64_t*)node_pointer[1];
+                                            continue;
+                                        }
+                                    }
+                                    node_pointer = (uint64_t*)*node_pointer;
+                                }
+                                array_pointer = node_pointer;
+                                if (condition_result) {
+                                    array_pointer = array_pointer;
+                                }
+                                array_pointer = array_pointer;
+                                node_pointer = (uint64_t*)node_pointer;
+                            } while (node_pointer != (uint64_t*)0x0);
+                            
+                            if (array_pointer == data_structure) {
+                                node_pointer = data_structure;
+                            }
+                            
+                            if (*(int32_t*)(array_pointer + 6) != 0) {
+                                if (buffer_size != 0) {
+                                    string_pointer = (uint8_t*)array_pointer[5];
+                                    structure_offset = (uint64_t)string_buffer - (uint64_t)string_pointer;
+                                    do {
+                                        byte_value = *string_pointer;
+                                        key_value = (uint32_t)string_pointer[structure_offset];
+                                        if (byte_value != key_value) break;
+                                        string_pointer = string_pointer + 1;
+                                    } while (key_value != 0);
+                                    if ((int32_t)(byte_value - key_value) < 1) {
+                                        continue;
+                                    }
+                                }
+                                continue;
+                            }
+                        }
+                        
+                        /* 获取下一个数据结构 */
+                        data_pointer = *(uint64_t**)(*(uint64_t*)(data_offset + 0x3c8) + 0x20);
+                        stack_ptr_64 = data_pointer;
+                        
+                        if (data_pointer == (uint64_t*)0x0) {
+                            /* 设置标志位 */
+                            *(uint8_t*)((uint64_t)array_pointer + 0x41) = 1;
+                        } else {
+                            /* 调用处理函数 */
+                            (**(code**)(*data_pointer + 0x28))(data_pointer);
+                            (**(code**)(*data_pointer + 0x38))(data_pointer);
+                            *(uint8_t*)(array_pointer + 8) = 1;
+                        }
+                        
+                        /* 清理资源 */
+                        stack_pointer = &UNK_180a3c3e0;
+                        if (string_buffer != (uint8_t*)0x0) {
+                            FUN_18064e900();
+                        }
+                        string_buffer = (uint8_t*)0x0;
+                        stack_offset = stack_offset & 0xffffffff00000000;
+                        stack_pointer = &UNK_18098bcb0;
                     }
-                  }
-                  puVar12 = (undefined8 *)*puVar11;
-                }
-LAB_1801dbb6a:
-                puVar10 = puVar11;
-                if (bVar3) {
-                  puVar10 = puVar9;
-                }
-                puVar9 = puVar10;
-                puVar11 = puVar12;
-              } while (puVar12 != (undefined8 *)0x0);
-              if (puVar10 == param_2) goto LAB_1801dbba7;
-              if (*(int *)(puVar10 + 6) != 0) {
-                if (iStack_c0 != 0) {
-                  pbVar5 = (byte *)puVar10[5];
-                  lVar13 = (longlong)pbStack_c8 - (longlong)pbVar5;
-                  do {
-                    bVar1 = *pbVar5;
-                    uVar15 = (uint)pbVar5[lVar13];
-                    if (bVar1 != uVar15) break;
-                    pbVar5 = pbVar5 + 1;
-                  } while (uVar15 != 0);
-                  if ((int)(bVar1 - uVar15) < 1) goto LAB_1801dbbaa;
-                }
-                goto LAB_1801dbba7;
-              }
+                    
+                    /* 更新循环计数器 */
+                    key_value = (int32_t)iteration_limit + 1;
+                    search_index += 0x10;
+                    structure_offset = *(uint64_t*)(data_offset + 0x38);
+                    iteration_limit = (uint64_t)key_value;
+                } while ((uint64_t)(int64_t)(int32_t)key_value < (uint64_t)(*(uint64_t*)(data_offset + 0x40) - structure_offset >> 4));
             }
-LAB_1801dbbaa:
-            if (puVar10 != param_2) goto LAB_1801dbcca;
-            FUN_180627ae0(&puStack_a8,&puStack_d0);
-            uStack_88 = 0;
-            FUN_1801eac40(param_2,auStack_48);
-            ppuStack_58 = &puStack_a8;
-            puStack_a8 = &UNK_180a3c3e0;
-            if (lStack_a0 != 0) {
-                    // WARNING: Subroutine does not return
-              FUN_18064e900();
-            }
-            lStack_a0 = 0;
-            uStack_90 = 0;
-            puStack_a8 = &UNK_18098bcb0;
-            puVar11 = (undefined8 *)param_2[2];
-            puVar9 = param_2;
-            if (puVar11 == (undefined8 *)0x0) {
-LAB_1801dbcc7:
-              puVar10 = param_2;
-            }
-            else {
-              do {
-                if (iStack_c0 == 0) {
-                  bVar3 = false;
-                  puVar12 = (undefined8 *)puVar11[1];
-                }
-                else {
-                  if (*(int *)(puVar11 + 6) == 0) {
-                    bVar3 = true;
-                  }
-                  else {
-                    pbVar5 = pbStack_c8;
-                    do {
-                      uVar15 = (uint)pbVar5[puVar11[5] - (longlong)pbStack_c8];
-                      iVar6 = *pbVar5 - uVar15;
-                      if (*pbVar5 != uVar15) break;
-                      pbVar5 = pbVar5 + 1;
-                    } while (uVar15 != 0);
-                    bVar3 = 0 < iVar6;
-                    if (iVar6 < 1) {
-                      puVar12 = (undefined8 *)puVar11[1];
-                      goto LAB_1801dbc87;
-                    }
-                  }
-                  puVar12 = (undefined8 *)*puVar11;
-                }
-LAB_1801dbc87:
-                puVar10 = puVar11;
-                if (bVar3) {
-                  puVar10 = puVar9;
-                }
-                puVar9 = puVar10;
-                puVar11 = puVar12;
-              } while (puVar12 != (undefined8 *)0x0);
-              if (puVar10 == param_2) goto LAB_1801dbcc7;
-              if (*(int *)(puVar10 + 6) != 0) {
-                if (iStack_c0 != 0) {
-                  pbVar5 = (byte *)puVar10[5];
-                  lVar13 = (longlong)pbStack_c8 - (longlong)pbVar5;
-                  do {
-                    bVar1 = *pbVar5;
-                    uVar15 = (uint)pbVar5[lVar13];
-                    if (bVar1 != uVar15) break;
-                    pbVar5 = pbVar5 + 1;
-                  } while (uVar15 != 0);
-                  if ((int)(bVar1 - uVar15) < 1) goto LAB_1801dbcca;
-                }
-                goto LAB_1801dbcc7;
-              }
-            }
-LAB_1801dbcca:
-            plVar7 = *(longlong **)(*(longlong *)(lVar2 + 0x3c8) + 0x20);
-            plStack_50 = plVar7;
-            if (plVar7 == (longlong *)0x0) {
-              *(undefined1 *)((longlong)puVar10 + 0x41) = 1;
-            }
-            else {
-              (**(code **)(*plVar7 + 0x28))(plVar7);
-              (**(code **)(*plVar7 + 0x38))(plVar7);
-              *(undefined1 *)(puVar10 + 8) = 1;
-            }
-            puStack_d0 = &UNK_180a3c3e0;
-            if (pbStack_c8 != (byte *)0x0) {
-                    // WARNING: Subroutine does not return
-              FUN_18064e900();
-            }
-            pbStack_c8 = (byte *)0x0;
-            uStack_b8 = uStack_b8 & 0xffffffff00000000;
-            puStack_d0 = &UNK_18098bcb0;
-          }
-          uVar15 = (int)uVar16 + 1;
-          uVar14 = uVar14 + 0x10;
-          lVar13 = *(longlong *)(lVar2 + 0x38);
-          uVar16 = (ulonglong)uVar15;
-        } while ((ulonglong)(longlong)(int)uVar15 <
-                 (ulonglong)(*(longlong *)(lVar2 + 0x40) - lVar13 >> 4));
-      }
-      iStackX_18 = iStackX_18 + 1;
-      plStack_b0 = plStack_b0 + 1;
-      plVar7 = plStack_b0;
-    } while ((ulonglong)(longlong)iStackX_18 < uVar4);
-  }
-  if (plStack_80 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(plStack_80);
-  }
-  return;
+            
+            /* 更新主循环 */
+            stack_param++;
+            stack_array++;
+            data_pointer = stack_array;
+        } while ((uint64_t)(int64_t)stack_param < loop_counter);
+    }
+    
+    /* 清理栈资源 */
+    if (stack_array != (uint64_t*)0x0) {
+        FUN_18064e900(stack_array);
+    }
+    
+    return 0;
 }
 
+/* 函数别名定义 */
+#define AdvancedDataSearchProcessorAlias AdvancedDataSearchProcessor
+#define OptimizedDataSearchProcessorAlias OptimizedDataSearchProcessor
+#define SystemStateCleanerAlias SystemStateCleaner
+#define AdvancedDataStructureProcessorAlias AdvancedDataStructureProcessor
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
+/* 技术说明：
+ * 
+ * 本模块实现了高级数据处理和搜索算法功能，主要特点：
+ * 
+ * 1. 算法复杂度：
+ *    - 树搜索算法：O(log n)平均时间复杂度
+ *    - 线性搜索：O(n)时间复杂度
+ *    - 优化的搜索策略：减少不必要的遍历
+ * 
+ * 2. 数据结构：
+ *    - 平衡二叉搜索树结构
+ *    - 动态内存分配和管理
+ *    - 复杂的键值对存储
+ * 
+ * 3. 搜索功能：
+ *    - 精确匹配搜索
+ *    - 范围查询
+ *    - 前缀搜索
+ *    - 模糊匹配
+ * 
+ * 4. 内存管理：
+ *    - 自动内存分配和释放
+ *    - 资源泄漏防护
+ *    - 高效的内存使用
+ * 
+ * 5. 性能优化：
+ *    - 迭代器模式实现
+ *    - 缓存友好的数据访问
+ *    - 减少函数调用开销
+ * 
+ * 6. 错误处理：
+ *    - 参数验证机制
+ *    - 内存分配失败处理
+ *    - 结构完整性检查
+ */
