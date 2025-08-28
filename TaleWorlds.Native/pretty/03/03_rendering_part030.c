@@ -1,102 +1,33 @@
-/*
- * TaleWorlds.Native 渲染系统美化代码 - 第30部分
- * 渲染系统高级对象管理模块
- * 
- * 本文件包含5个渲染相关函数，主要负责：
- * - 渲染对象的高级管理和处理
- * - 复杂的内存管理和数据结构操作
- * - 渲染对象的创建、销毁和更新
- * - 高级渲染效果和材质处理
- */
+#include "TaleWorlds.Native.Split.h"
 
-#include <stdint.h>
-#include <stdbool.h>
+// 03_rendering_part030.c - 渲染系统高级对象管理模块
+// 包含6个函数：渲染对象高级管理器、渲染对象查找器、渲染对象处理器、渲染对象初始化器等
 
-/* 渲染对象类型定义 */
-typedef enum {
-    RENDER_OBJECT_TYPE_BASIC = 0,
-    RENDER_OBJECT_TYPE_MESH = 1,
-    RENDER_OBJECT_TYPE_MATERIAL = 2,
-    RENDER_OBJECT_TYPE_TEXTURE = 3,
-    RENDER_OBJECT_TYPE_SHADER = 4,
-    RENDER_OBJECT_TYPE_LIGHT = 5,
-    RENDER_OBJECT_TYPE_CAMERA = 6,
-    RENDER_OBJECT_TYPE_EFFECT = 7,
-    RENDER_OBJECT_TYPE_MAX = 8
-} RenderObjectType;
+// 全局常量定义
+#define RENDERING_OBJECT_DEFAULT_PTR 0x18098bc73          // 渲染对象默认指针
+#define RENDERING_MEMORY_CONTEXT 0x180c8ed18              // 渲染内存上下文
+#define RENDERING_GLOBAL_DATA_1 0x180c86930               // 渲染全局数据1
+#define RENDERING_INTERFACE_PTR 0x180277350               // 渲染接口指针
+#define RENDERING_STRING_CONSTANT_1 0x1809fcc28           // 渲染字符串常量1
+#define RENDERING_STRING_CONSTANT_2 0x18098bcb0           // 渲染字符串常量2
+#define RENDERING_DATA_STRUCTURE_1 0x180a3c3e0            // 渲染数据结构1
+#define RENDERING_STACK_GUARD 0x180bf00a8                // 渲染堆栈保护
+#define RENDERING_OBJECT_SIGNATURE 0x73656d5f6174656d     // 渲染对象签名 "temat_"
 
-/* 渲染对象状态枚举 */
-typedef enum {
-    RENDER_OBJECT_STATE_INITIALIZING = 0,
-    RENDER_OBJECT_STATE_READY = 1,
-    RENDER_OBJECT_STATE_PROCESSING = 2,
-    RENDER_OBJECT_STATE_UPDATING = 3,
-    RENDER_OBJECT_STATE_FINALIZING = 4,
-    RENDER_OBJECT_STATE_DISPOSING = 5,
-    RENDER_OBJECT_STATE_ERROR = 6,
-    RENDER_OBJECT_STATE_MAX = 7
-} RenderObjectState;
+// 函数别名定义
+#define rendering_object_advanced_manager FUN_180282110    // 渲染对象高级管理器
+#define rendering_object_finder FUN_1802828a0             // 渲染对象查找器
+#define rendering_object_processor FUN_1802829c0          // 渲染对象处理器
+#define rendering_object_initializer FUN_180282be0        // 渲染对象初始化器
+#define rendering_object_data_handler FUN_180282d80       // 渲染对象数据处理器
+#define rendering_object_batch_processor FUN_180282e00    // 渲染对象批处理器
 
-/* 渲染处理阶段枚举 */
-typedef enum {
-    RENDER_PHASE_PREPARE = 0,
-    RENDER_PHASE_SETUP = 1,
-    RENDER_PHASE_EXECUTE = 2,
-    RENDER_PHASE_FINALIZE = 3,
-    RENDER_PHASE_CLEANUP = 4,
-    RENDER_PHASE_MAX = 5
-} RenderPhase;
-
-/* 材质属性结构体 */
-typedef struct {
-    uint32_t material_id;
-    uint32_t shader_program;
-    uint32_t texture_count;
-    uint32_t property_count;
-    float ambient[4];
-    float diffuse[4];
-    float specular[4];
-    float shininess;
-    bool transparency;
-    bool double_sided;
-} MaterialProperties;
-
-/* 渲染对象管理器结构体 */
-typedef struct {
-    uint32_t object_count;
-    uint32_t max_objects;
-    uint32_t active_objects;
-    uint32_t pending_objects;
-    uint32_t disposed_objects;
-    void* object_pool;
-    void* active_list;
-    void* pending_list;
-    void* dispose_list;
-} RenderObjectManager;
-
-/* 渲染对象结构体 */
-typedef struct {
-    uint32_t object_id;
-    RenderObjectType type;
-    RenderObjectState state;
-    uint32_t priority;
-    uint32_t layer_mask;
-    MaterialProperties* material;
-    void* geometry_data;
-    void* shader_data;
-    void* texture_data;
-    void* transform_matrix;
-    void* parent_object;
-    void* child_objects;
-} RenderObject;
-
-/* 函数别名定义 - 保持向后兼容性 */
-void* FUN_180282110 = process_rendering_objects_advanced;
-void* FUN_1802828a0 = find_rendering_object_by_id;
-void* FUN_1802829c0 = update_rendering_object_properties;
-void* FUN_180282be0 = execute_rendering_object_operations;
-void* FUN_180282d80 = create_rendering_object_template;
-void* FUN_180282e00 = initialize_rendering_object_system;
+// 函数声明
+undefined8 rendering_object_finder(longlong *render_context, longlong object_id);
+void rendering_object_processor(longlong process_context, longlong *object_data);
+void rendering_object_initializer(longlong init_context, longlong *object_data, undefined8 param_3, undefined8 param_4);
+undefined8 * rendering_object_data_handler(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4);
+void rendering_object_batch_processor(longlong batch_context, longlong data_stream);
 
 /*
  * 处理高级渲染对象
