@@ -390,38 +390,55 @@ void FUN_18053598c(undefined4 param_1)
   
   // 步骤3：计算渲染上下文地址和偏移量
   render_context_ptr = (longlong)render_stack_index * 0xa60 + 0x30a0 + render_base_address;
-  if ((*(uint *)(lVar3 + 0x56c) >> 0xb & 1) == 0) {
-    *(undefined4 *)(*(longlong *)(lVar3 + 0x20) + 0x148) = 0xbecccccd;
+  
+  // 步骤4：根据渲染标志位设置不同的参数值
+  if ((*(uint *)(render_context_ptr + 0x56c) >> 0xb & 1) == 0) {
+    *(undefined4 *)(*(longlong *)(render_context_ptr + 0x20) + 0x148) = 0xbecccccd;
   }
   else {
-    *(undefined4 *)(*(longlong *)(lVar3 + 0x20) + 0x148) = 0xbe19999a;
+    *(undefined4 *)(*(longlong *)(render_context_ptr + 0x20) + 0x148) = 0xbe19999a;
   }
-  if ((*(uint *)(lVar3 + 0x56c) >> 0xb & 1) == 0) {
-    uVar2 = 0xffffffff;
-    fVar9 = *(float *)(*(longlong *)(lVar3 + 0x20) + 0x20);
-    fVar10 = *(float *)(*(longlong *)(lVar3 + 0x20) + 0x1c);
-    uVar7 = 2;
-    if (*(int *)(*(longlong *)(*(longlong *)(lVar3 + 0x590) + 0x2590) + 0x10) < 5) {
-      uVar7 = 0xffffffff;
+  
+  // 步骤5：根据标志位执行主处理路径
+  if ((*(uint *)(render_context_ptr + 0x56c) >> 0xb & 1) == 0) {
+    // 步骤5.1：初始化渲染参数和坐标
+    render_parameter_id = 0xffffffff;
+    render_coord_x = *(float *)(*(longlong *)(render_context_ptr + 0x20) + 0x20);
+    render_coord_y = *(float *)(*(longlong *)(render_context_ptr + 0x20) + 0x1c);
+    render_mode_config = 2;
+    
+    // 步骤5.2：检查渲染模式配置
+    if (*(int *)(*(longlong *)(*(longlong *)(render_context_ptr + 0x590) + 0x2590) + 0x10) < 5) {
+      render_mode_config = 0xffffffff;
     }
-    if (*(int *)(lVar3 + 0x564) != -1) {
-      uVar2 = *(undefined4 *)
+    
+    // 步骤5.3：获取渲染参数标识符
+    if (*(int *)(render_context_ptr + 0x564) != -1) {
+      render_parameter_id = *(undefined4 *)
                (*(longlong *)
-                 ((longlong)*(int *)(lVar3 + 0x564) * 0xa60 + 0x3638 + *(longlong *)(lVar3 + 0x8d8))
+                 ((longlong)*(int *)(render_context_ptr + 0x564) * 0xa60 + 0x3638 + *(longlong *)(render_context_ptr + 0x8d8))
                + 0x20);
     }
-    iStack_c = FUN_180557b40(*(undefined8 *)(lVar3 + 0x598),uVar2,0,uVar7,0,0,
-                             1.0 < fVar10 * fVar10 + fVar9 * fVar9);
+    
+    // 步骤5.4：执行渲染数据处理
+    render_result_code = FUN_180557b40(*(undefined8 *)(render_context_ptr + 0x598), render_parameter_id, 0, render_mode_config, 0, 0,
+                             1.0 < render_coord_y * render_coord_y + render_coord_x * render_coord_x);
+    
+    // 步骤5.5：检查渲染结果状态
     if (*(int *)(*(longlong *)
-                  ((longlong)*(int *)(*(longlong *)(lVar3 + 0x590) + 0xac) * 0xe0 + 0x78 +
-                  _DAT_180c95fb0) + (longlong)iStack_c * 8) < 0) {
-      return;
+                  ((longlong)*(int *)(*(longlong *)(render_context_ptr + 0x590) + 0xac) * 0xe0 + 0x78 +
+                  _DAT_180c95fb0) + (longlong)render_result_code * 8) < 0) {
+      return;  // 渲染结果无效，退出处理
     }
+    
+    // 步骤5.6：执行系统调用和状态更新
     if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-      FUN_1805ed8d0(*(undefined8 *)(lVar3 + 0x8e0));
+      FUN_1805ed8d0(*(undefined8 *)(render_context_ptr + 0x8e0));
     }
-    uStack_8 = 0;
-    uStack_10 = 0;
+    
+    // 步骤5.7：初始化堆栈参数并跳转到处理完成
+    render_stack_address = 0;
+    render_stack_param = 0;
     goto LAB_18052490a;
   }
   lVar6 = 0;
