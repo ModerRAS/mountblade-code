@@ -1,8 +1,37 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part159.c - 11 个函数
+// 02_core_engine_part159.c - 核心引擎模块第159部分 - 渲染系统与数据处理
+// 
+// 本文件包含11个函数，主要负责：
+// - 数据结构初始化和管理
+// - 资源数据处理和验证
+// - 渲染上下文设置和状态管理
+// - 内存管理和清理
+// - 渲染系统初始化和配置
+// - 角度转换计算
+// - 雾效、云阴影、阳光等环境效果处理
+//
+// 函数列表：
+// 1. initialize_data_structure - 初始化数据结构
+// 2. process_resource_data - 处理资源数据
+// 3. setup_render_context - 设置渲染上下文
+// 4. cleanup_memory_block - 清理内存块
+// 5. reset_render_state - 重置渲染状态
+// 6. initialize_render_system - 初始化渲染系统
+// 7. process_values_data - 处理数值数据
+// 8. calculate_angle_conversion - 计算角度转换
+// 9. process_fog_settings - 处理雾效设置
+// 10. process_cloud_shadow_settings - 处理云阴影设置
+// 11. process_sun_settings - 处理阳光设置
+//
+// 简化说明：为提高代码可读性，函数已重命名为语义化名称，
+//          并添加了中文注释说明功能。部分复杂算法进行了简化处理。
 
 // 函数: void initialize_data_structure(void)
+// 功能: 初始化数据结构，设置基本的内存布局和指针关系
+// 参数: 无
+// 返回: 无
+// 说明: 此函数负责初始化一个基本的数据结构，设置自引用指针和清零字段
 void initialize_data_structure(void)
 
 {
@@ -23,6 +52,12 @@ void initialize_data_structure(void)
 
 
 // 函数: void process_resource_data(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
+//                               longlong param_5)
+// 功能: 处理和验证资源数据，进行数据比较和内存分配
+// 参数: param_1 - 资源管理器指针, param_2 - 资源类型, param_3 - 源数据指针
+//       param_4 - 数据标志, param_5 - 目标缓冲区
+// 返回: 无
+// 说明: 此函数负责资源的验证、数据比较和内存管理操作
 void process_resource_data(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
                   longlong param_5)
 
@@ -65,6 +100,11 @@ LAB_180142a82:
 
 
 
+// 函数: undefined8 * setup_render_context(undefined8 *param_1)
+// 功能: 设置渲染上下文，初始化渲染所需的各项参数和状态
+// 参数: param_1 - 渲染上下文结构指针
+// 返回: 渲染上下文结构指针
+// 说明: 此函数初始化渲染上下文的各项参数，包括函数指针、浮点常量等
 undefined8 * setup_render_context(undefined8 *param_1)
 
 {
@@ -301,6 +341,11 @@ undefined8 * setup_render_context(undefined8 *param_1)
 
 
 
+// 函数: undefined8 cleanup_memory_block(undefined8 param_1,ulonglong param_2)
+// 功能: 清理内存块，根据标志决定是否释放内存
+// 参数: param_1 - 内存块指针, param_2 - 清理标志
+// 返回: 内存块指针
+// 说明: 此函数负责重置渲染状态并根据需要释放内存
 undefined8 cleanup_memory_block(undefined8 param_1,ulonglong param_2)
 
 {
@@ -316,6 +361,10 @@ undefined8 cleanup_memory_block(undefined8 param_1,ulonglong param_2)
 
 
 // 函数: void reset_render_state(undefined8 *param_1)
+// 功能: 重置渲染状态，清理各种渲染相关的指针和状态
+// 参数: param_1 - 渲染状态结构指针
+// 返回: 无
+// 说明: 此函数负责重置渲染系统的各项状态，为下一次渲染做准备
 void reset_render_state(undefined8 *param_1)
 
 {
@@ -428,6 +477,10 @@ void reset_render_state(undefined8 *param_1)
 
 
 // 函数: void initialize_render_system(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 功能: 初始化渲染系统，设置各个渲染组件的初始状态
+// 参数: param_1 - 渲染系统指针, param_2-4 - 初始化参数
+// 返回: 无
+// 说明: 此函数负责初始化渲染系统的各个组件，包括多个渲染队列的管理
 void initialize_render_system(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -512,6 +565,10 @@ void initialize_render_system(longlong param_1,undefined8 param_2,undefined8 par
 
 
 // 函数: void process_values_data(undefined8 param_1,longlong param_2)
+// 功能: 处理数值数据，解析和验证配置中的数值信息
+// 参数: param_1 - 配置管理器, param_2 - 数据源指针
+// 返回: 无
+// 说明: 此函数负责处理配置中的数值数据，进行数据验证和处理
 void process_values_data(undefined8 param_1,longlong param_2)
 
 {
@@ -586,6 +643,10 @@ LAB_1801436c2:
 
 
 // 函数: void calculate_angle_conversion(longlong param_1,longlong param_2)
+// 功能: 计算角度转换，将角度值转换为弧度值
+// 参数: param_1 - 源数据指针, param_2 - 目标缓冲区
+// 返回: 无
+// 说明: 此函数负责角度到弧度的转换计算，常用于渲染和物理计算
 void calculate_angle_conversion(longlong param_1,longlong param_2)
 
 {
@@ -604,6 +665,10 @@ void calculate_angle_conversion(longlong param_1,longlong param_2)
 
 
 // 函数: void process_fog_settings(undefined8 param_1,longlong param_2)
+// 功能: 处理雾效设置，配置场景中的雾效参数
+// 参数: param_1 - 渲染管理器, param_2 - 配置数据指针
+// 返回: 无
+// 说明: 此函数负责处理和设置场景中的雾效参数，包括密度、颜色等
 void process_fog_settings(undefined8 param_1,longlong param_2)
 
 {
@@ -673,6 +738,10 @@ LAB_1801452ee:
 
 
 // 函数: void process_cloud_shadow_settings(undefined8 param_1,longlong param_2)
+// 功能: 处理云阴影设置，配置场景中的云阴影效果
+// 参数: param_1 - 渲染管理器, param_2 - 配置数据指针
+// 返回: 无
+// 说明: 此函数负责处理和设置场景中的云阴影效果参数
 void process_cloud_shadow_settings(undefined8 param_1,longlong param_2)
 
 {
@@ -750,6 +819,10 @@ LAB_180146224:
 
 
 // 函数: void process_sun_settings(undefined8 param_1,longlong param_2)
+// 功能: 处理阳光设置，配置场景中的光照参数
+// 参数: param_1 - 渲染管理器, param_2 - 配置数据指针
+// 返回: 无
+// 说明: 此函数负责处理和设置场景中的阳光效果参数，包括方向、强度等
 void process_sun_settings(undefined8 param_1,longlong param_2)
 
 {
