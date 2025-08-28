@@ -332,34 +332,64 @@ LAB_18052490a:
 
 
 
-// 函数: void FUN_18053598c(undefined4 param_1)
+//------------------------------------------------------------------------------
+// 渲染系统高级处理函数2
+// 功能：执行渲染系统的参数验证和状态控制
+//       根据输入参数验证渲染配置并执行相应的状态管理
+//
+// 参数：
+//   param_1 - 渲染参数标识符（用于验证和控制渲染状态）
+//
+// 返回值：
+//   无
+//
+// 处理流程：
+//   1. 验证渲染参数的有效性
+//   2. 初始化渲染系统状态和配置
+//   3. 根据渲染标志位执行不同的处理路径
+//   4. 执行渲染参数的计算和转换
+//   5. 处理渲染系统的条件判断和分支
+//   6. 更新渲染状态和执行回调
+//
+// 技术要点：
+//   - 实现了复杂的参数验证机制
+//   - 支持多种渲染状态的条件判断
+//   - 包含数学计算和角度处理
+//   - 使用位运算处理渲染标志
+//------------------------------------------------------------------------------
 void FUN_18053598c(undefined4 param_1)
 
 {
-  char cVar1;
-  undefined4 uVar2;
-  longlong lVar3;
-  longlong unaff_RDI;
-  undefined1 uVar4;
-  int *piVar5;
-  longlong lVar6;
-  undefined8 uVar7;
-  longlong *plVar8;
-  float fVar9;
-  float fVar10;
-  int iStack0000000000000030;
-  undefined4 uStack_10;
-  int iStack_c;
-  undefined8 uStack_8;
+  // 语义化变量定义
+  char render_status_valid;                        // 渲染状态有效性标志
+  undefined4 render_parameter_id;                  // 渲染参数标识符
+  longlong render_context_ptr;                     // 渲染上下文指针
+  longlong render_base_address;                    // 渲染基地址
+  undefined1 render_condition_flag;                // 渲染条件标志
+  int *render_flag_pointer;                        // 渲染标志指针
+  longlong render_loop_counter;                    // 渲染循环计数器
+  undefined8 render_mode_config;                   // 渲染模式配置
+  longlong *render_object_array;                   // 渲染对象数组
+  float render_coord_x;                            // 渲染坐标X
+  float render_coord_y;                            // 渲染坐标Y
+  int render_stack_index;                          // 渲染堆栈索引
+  undefined4 render_stack_param;                   // 渲染堆栈参数
+  int render_result_code;                          // 渲染结果代码
+  undefined8 render_stack_address;                 // 渲染堆栈地址
   
-  uStack_8 = 0x18053599e;
-  cVar1 = FUN_18055f260(param_1,&stack0x00000030);
-  uStack_8 = 0x1805359bc;
-  FUN_1804fe350(&UNK_180a301c8,cVar1,&UNK_180a301f8,&stack0x00000030);
-  if (cVar1 == '\0') {
-    return;
+  // 步骤1：初始化渲染状态地址和参数验证
+  render_stack_address = 0x18053599e;
+  render_status_valid = FUN_18055f260(param_1, &render_stack_index);
+  render_stack_address = 0x1805359bc;
+  FUN_1804fe350(&UNK_180a301c8, render_status_valid, &UNK_180a301f8, &render_stack_index);
+  
+  // 步骤2：检查渲染状态有效性，无效则返回
+  if (render_status_valid == '\0') {
+    return;  // 渲染状态无效，退出处理
   }
-  lVar3 = (longlong)iStack0000000000000030 * 0xa60 + 0x30a0 + unaff_RDI;
+  
+  // 步骤3：计算渲染上下文地址和偏移量
+  render_context_ptr = (longlong)render_stack_index * 0xa60 + 0x30a0 + render_base_address;
   if ((*(uint *)(lVar3 + 0x56c) >> 0xb & 1) == 0) {
     *(undefined4 *)(*(longlong *)(lVar3 + 0x20) + 0x148) = 0xbecccccd;
   }
