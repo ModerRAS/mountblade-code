@@ -1326,14 +1326,53 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
 
 
 
-undefined8 FUN_1803a9fc0(undefined8 param_1,ulonglong param_2)
-
+/**
+ * 函数: MemoryManager_ReleaseWithCondition
+ * 
+ * 描述:
+ * 条件性内存释放管理器，根据条件标志释放指定的内存块。
+ * 该函数提供了安全的内存管理机制，只有在满足特定条件时才执行释放操作。
+ * 
+ * 参数:
+ * - param_1: 要释放的内存块指针
+ * - param_2: 条件标志位，用于控制是否执行释放操作
+ * 
+ * 返回值:
+ * - undefined8: 返回原始的内存块指针，便于链式操作
+ * 
+ * 异常处理:
+ * - 在释放前调用系统清理函数 FUN_1803aa090() 确保系统状态一致
+ * - 使用标准的 free 函数进行内存释放，大小为 0xea0 字节
+ * 
+ * 算法复杂度:
+ * - 时间复杂度: O(1)，固定时间的条件检查和内存释放
+ * - 空间复杂度: O(1)，不使用额外的栈空间
+ * 
+ * 依赖项:
+ * - FUN_1803aa090: 系统清理函数
+ * - free: 标准内存释放函数
+ * 
+ * 线程安全:
+ * 该函数不是线程安全的，需要在适当的同步机制保护下调用。
+ * 
+ * 使用示例:
+ * ```c
+ * void* ptr = allocate_memory();
+ * ptr = MemoryManager_ReleaseWithCondition(ptr, 1); // 条件释放
+ * ```
+ */
+undefined8 MemoryManager_ReleaseWithCondition(undefined8 param_1, ulonglong param_2)
 {
-  FUN_1803aa090();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xea0);
-  }
-  return param_1;
+    // 执行系统清理操作
+    FUN_1803aa090();
+    
+    // 检查条件标志，如果最低位为1则执行释放
+    if ((param_2 & MEMORY_RELEASE_CONDITION_FLAG) != 0) {
+        free(param_1, MEMORY_BLOCK_SIZE);
+    }
+    
+    // 返回原始指针以支持链式操作
+    return param_1;
 }
 
 
