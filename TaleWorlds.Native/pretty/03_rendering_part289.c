@@ -257,13 +257,13 @@ uint8_t RenderCalculateResourceSize; // 计算资源大小 - 计算资源内存�
  * =================================================================== */
 
 /* SIMD权重和掩码表 - 用于像素计算的常量数据 */
-uint8_t DAT_180c0c1ec;               // SIMD权重表1 - 像素混合权重
-uint8_t DAT_180c0c1e8;               // SIMD权重表2 - 像素混合权重
-uint8_t DAT_180c0c1e0;               // SIMD权重表3 - 像素混合权重
-uint8_t DAT_180c0c200;               // SIMD掩码表1 - 像素通道掩码
-uint8_t DAT_180c0c1fc;               // SIMD掩码表2 - 像素通道掩码
-uint8_t DAT_180c0c1f8;               // SIMD掩码表3 - 像素通道掩码
-uint8_t DAT_180c0c1f0;               // SIMD掩码表4 - 像素通道掩码
+uint8_t DAT;               // SIMD权重表1 - 像素混合权重
+uint8_t DAT;               // SIMD权重表2 - 像素混合权重
+uint8_t DAT;               // SIMD权重表3 - 像素混合权重
+uint8_t DAT;               // SIMD掩码表1 - 像素通道掩码
+uint8_t DAT;               // SIMD掩码表2 - 像素通道掩码
+uint8_t DAT;               // SIMD掩码表3 - 像素通道掩码
+uint8_t DAT;               // SIMD掩码表4 - 像素通道掩码
 
 /* 渲染系统状态变量 - 渲染系统的内部状态 */
 uint8_t UNK_180946b38;               // 渲染状态1 - 当前渲染状态
@@ -355,7 +355,7 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
     longlong lVar13;
     longlong lVar14;
     int unaff_EBX;
-    uint *puVar15;
+    uint *puVar;
     longlong in_R10;
     longlong in_R11;
     int8_t in_XMM1 [16];
@@ -374,7 +374,7 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
     int8_t auVar27 [16];
     
     /* 加载SIMD权重表 */
-    auVar10 = _DAT_180a3f760;
+    auVar10 = _DAT;
     
     /* 对齐处理参数 */
     uVar12 = param_4 & 0x8000000f;
@@ -386,32 +386,32 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
     lVar13 = in_R10 - (longlong)param_3;
     lVar14 = in_R11 - (longlong)param_3;
     auVar27 = ZEXT416(2);
-    puVar15 = param_3;
+    puVar = param_3;
     
     /* 主要处理循环 - 使用SIMD指令批量处理 */
     do {
         unaff_EBX = unaff_EBX + 0x10;
         
         /* 第一个像素块处理 */
-        auVar17 = pmovzxbd(in_XMM2, ZEXT416(*(uint *)(lVar13 + (longlong)puVar15)));
+        auVar17 = pmovzxbd(in_XMM2, ZEXT416(*(uint *)(lVar13 + (longlong)puVar)));
         auVar17 = pmulld(auVar17, auVar10);
-        auVar16 = pmovzxbd(in_XMM1, ZEXT416(*puVar15));
+        auVar16 = pmovzxbd(in_XMM1, ZEXT416(*puVar));
         auVar19._0_4_ = auVar17._0_4_ + auVar16._0_4_ + 2 >> auVar27;
         auVar19._4_4_ = auVar17._4_4_ + auVar16._4_4_ + 2 >> auVar27;
         auVar19._8_4_ = auVar17._8_4_ + auVar16._8_4_ + 2 >> auVar27;
         auVar19._12_4_ = auVar17._12_4_ + auVar16._12_4_ + 2 >> auVar27;
         
         /* 像素数据重排和混合 */
-        auVar17 = pshuflw(ZEXT416(*puVar15), auVar19, 0xd8);
+        auVar17 = pshuflw(ZEXT416(*puVar), auVar19, 0xd8);
         auVar17 = pshufhw(auVar16, auVar17, 0xd8);
-        uVar1 = *(uint *)(lVar13 + 4 + (longlong)puVar15);
+        uVar1 = *(uint *)(lVar13 + 4 + (longlong)puVar);
         
         /* 像素通道重新排列 */
         auVar16._4_4_ = auVar17._8_4_;
         auVar16._0_4_ = auVar17._0_4_;
         auVar16._8_4_ = auVar17._4_4_;
         auVar16._12_4_ = auVar17._12_4_;
-        auVar16 = auVar16 & _DAT_180a3f910;
+        auVar16 = auVar16 & _DAT;
         
         /* 像素值钳制到有效范围 */
         sVar2 = auVar16._0_2_;
@@ -434,12 +434,12 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
         auVar18[7] = (0 < sVar9) * (sVar9 < 0x100) * auVar16[0xe] - (0xff < sVar9);
         
         /* 保存处理结果 */
-        *(int32_t *)(lVar14 + (longlong)puVar15) = auVar18._0_4_;
+        *(int32_t *)(lVar14 + (longlong)puVar) = auVar18._0_4_;
         
         /* 继续处理第二个像素块 */
         auVar16 = pmovzxbd(auVar18, ZEXT416(uVar1));
         auVar19 = pmulld(auVar16, auVar10);
-        auVar16 = pmovzxbd(auVar17, ZEXT416(puVar15[1]));
+        auVar16 = pmovzxbd(auVar17, ZEXT416(puVar[1]));
         auVar17._0_4_ = auVar19._0_4_ + auVar16._0_4_ + 2 >> auVar27;
         auVar17._4_4_ = auVar19._4_4_ + auVar16._4_4_ + 2 >> auVar27;
         auVar17._8_4_ = auVar19._8_4_ + auVar16._8_4_ + 2 >> auVar27;
@@ -448,8 +448,8 @@ void FUN_1804234a9(uint64_t param_1, uint64_t param_2, uint *param_3, uint param
         /* 重复类似的处理流程... */
         /* （为了简洁，省略了部分重复代码） */
         
-        puVar15 = puVar15 + 4;
-    } while ((longlong)puVar15 - (longlong)param_3 < (longlong)(int)(param_4 - uVar12));
+        puVar = puVar + 4;
+    } while ((longlong)puVar - (longlong)param_3 < (longlong)(int)(param_4 - uVar12));
     
     /* 处理剩余的字节 */
     lVar13 = (longlong)unaff_EBX;
