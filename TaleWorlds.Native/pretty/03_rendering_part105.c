@@ -122,7 +122,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
   }
   aiStack_f8[0] = 1;
   puStack_d0 = (int32_t *)0x0;
-  puStack_c8 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,4,3);
+  puStack_c8 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,4,3);
   lVar3 = lStack_a0;
   *puStack_c8 = *puVar9;
   puStack_d0 = puStack_c8 + 1;
@@ -336,7 +336,7 @@ int32_t RenderingSystem_ExportResourceData(longlong render_context, longlong out
         if (lVar16 == 0) {
           lVar16 = 1;
 LAB_18032e50f:
-          puVar11 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lVar16 * 4,3);
+          puVar11 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lVar16 * 4,3);
         }
         else {
           lVar16 = lVar16 * 2;
@@ -377,7 +377,7 @@ LAB_18032e50f:
         if (lVar18 == 0) {
           lVar18 = 1;
 LAB_18032e5ed:
-          plVar7 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar18 * 8,3);
+          plVar7 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar18 * 8,3);
         }
         else {
           lVar18 = lVar18 * 2;
@@ -410,7 +410,7 @@ LAB_18032e5ed:
         if (lVar16 == 0) {
           lVar16 = 1;
 LAB_18032e696:
-          puVar8 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lVar16 * 4,3);
+          puVar8 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lVar16 * 4,3);
         }
         else {
           lVar16 = lVar16 * 2;
@@ -448,7 +448,7 @@ LAB_18032e696:
         if (lVar16 == 0) {
           lVar16 = 1;
 LAB_18032e74e:
-          piVar9 = (int *)FUN_18062b420(_DAT_180c8ed18,lVar16 * 4,3);
+          piVar9 = (int *)FUN_18062b420(system_memory_pool_ptr,lVar16 * 4,3);
         }
         else {
           lVar16 = lVar16 * 2;
@@ -856,7 +856,7 @@ int32_t RenderingSystem_OptimizeRenderData(longlong render_context, longlong out
         lVar4 = 0;
       }
       else {
-        lVar4 = FUN_18062b420(_DAT_180c8ed18,lVar12 << 4,uStack_48 & 0xff);
+        lVar4 = FUN_18062b420(system_memory_pool_ptr,lVar12 << 4,uStack_48 & 0xff);
       }
       lStack_50 = lVar12 * 0x10 + lVar4;
       lVar12 = *(longlong *)(lVar7 + 0x28);
@@ -877,7 +877,7 @@ int32_t RenderingSystem_OptimizeRenderData(longlong render_context, longlong out
         if (lStack_c0 == 0) {
           lStack_100 = 1;
 LAB_18032f27b:
-          puVar5 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lStack_100 * 4,3);
+          puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lStack_100 * 4,3);
         }
         else {
           lStack_100 = lStack_c0 * 2;
@@ -909,7 +909,7 @@ LAB_18032f27b:
         if (lStack_c8 == 0) {
           lStack_108 = 1;
 LAB_18032f333:
-          puVar6 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lStack_108 * 4,3);
+          puVar6 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lStack_108 * 4,3);
         }
         else {
           lStack_108 = lStack_c8 * 2;

@@ -263,8 +263,8 @@ void FUN_180733a10(longlong param_1,int *param_2,longlong param_3,int16_t *param
   if (0 < (longlong)param_5 >> 1) {
     lVar6 = 0;
     param_3 = param_3 - (longlong)param_4;
-    lVar7 = (longlong)_DAT_180be12e0;
-    lVar8 = (longlong)_DAT_180be12dc;
+    lVar7 = (longlong)ui_system_buffer_config;
+    lVar8 = (longlong)ui_system_buffer_config;
     do {
       iVar4 = *(short *)(param_1 + lVar6 * 4) * 0x400;
       iVar1 = iVar4 - *param_2;
@@ -331,8 +331,8 @@ void FUN_180733a2e(void)
   
   lVar7 = 0;
   lVar4 = unaff_RBX - (longlong)in_R9;
-  lVar8 = (longlong)_DAT_180be12e0;
-  lVar9 = (longlong)_DAT_180be12dc;
+  lVar8 = (longlong)ui_system_buffer_config;
+  lVar9 = (longlong)ui_system_buffer_config;
   do {
     iVar5 = *(short *)(unaff_RBP + lVar7 * 4) * 0x400;
     iVar1 = iVar5 - *unaff_RSI;

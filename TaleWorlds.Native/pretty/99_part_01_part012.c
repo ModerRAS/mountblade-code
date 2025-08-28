@@ -69,7 +69,7 @@ void FUN_1800ab6f0(longlong param_1)
   uint64_t uStack_40;
   ulonglong uStack_38;
   
-  lVar1 = _DAT_180c8aa08;
+  lVar1 = system_global_data_ptr;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_178;
   puStack_f8 = &unknown_var_6248_ptr;
   uStack_f0 = 0;

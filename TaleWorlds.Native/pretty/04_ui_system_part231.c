@@ -26,7 +26,7 @@ void FUN_18079e450(uint64_t param_1,longlong param_2,int param_3)
   int iStackX_18;
   longlong lStackX_20;
   
-  _DAT_180c1b958 = 0;
+  ui_system_config = 0;
   iStackX_18 = 1;
   iVar16 = 1;
   iVar9 = iVar16;
@@ -293,7 +293,7 @@ void FUN_18079ea10(uint64_t param_1,longlong param_2,int param_3)
   int iStackX_18;
   longlong lStackX_20;
   
-  _DAT_180c1b958 = 0;
+  ui_system_config = 0;
   iStackX_18 = 1;
   iVar18 = 1;
   iVar10 = iVar18;
@@ -595,7 +595,7 @@ void FUN_18079f0b0(longlong param_1,float *param_2)
   fVar5 = param_2[0xc] + param_2[0xe];
   fVar10 = param_2[0xc] - param_2[0xe];
   param_2[6] = fVar6 + fVar14;
-  fVar4 = _DAT_180c19958;
+  fVar4 = ui_system_config;
   fVar6 = param_2[9] + param_2[0xb];
   fVar12 = param_2[9] - param_2[0xb];
   param_2[8] = fVar5 + fVar7;

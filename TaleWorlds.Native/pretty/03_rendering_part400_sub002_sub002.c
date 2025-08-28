@@ -226,7 +226,7 @@ void FUN_18048e4d0(longlong param_1,int8_t (*param_2) [16],float *param_3,int pa
   afStack_21c[5] = fStack_368 * fVar71;
   fStack_204 = fStack_364 * fVar71;
   auVar60._16_48_ = auVar38;
-  auVar60._0_16_ = _DAT_180a40780;
+  auVar60._0_16_ = render_system_memory;
   afStack_1fc[0] = fStack_35c * fVar68;
   auStack_200 = (int8_t  [4])(fStack_360 * fVar68);
   afStack_1fc[1] = fStack_358 * fVar68;
@@ -235,8 +235,8 @@ void FUN_18048e4d0(longlong param_1,int8_t (*param_2) [16],float *param_3,int pa
   afStack_1fc[4] = fStack_35c * fVar72;
   afStack_1fc[5] = fStack_358 * fVar72;
   fStack_1e4 = fStack_354 * fVar72;
-  auVar54 = _DAT_180a40490;
-  auVar58 = _DAT_180a40740;
+  auVar54 = render_system_memory;
+  auVar58 = render_system_memory;
   do {
     lVar1 = (ulonglong)*(uint *)(&unknown_var_3920_ptr + lVar16) * 0x10;
     lVar2 = (ulonglong)*(uint *)(&unknown_var_3856_ptr + lVar16) * 0x10;
@@ -364,8 +364,8 @@ void FUN_18048e4d0(longlong param_1,int8_t (*param_2) [16],float *param_3,int pa
   } while (lVar20 != 0);
   auVar36._4_4_ = movmskps(uVar22 * 2,auVar35);
   if (auVar36._4_4_ == 0xf) {
-    auVar58 = minps(auVar58,_DAT_180a403e0);
-    auVar54 = maxps(auVar54,_DAT_180a40720);
+    auVar58 = minps(auVar58,render_system_memory);
+    auVar54 = maxps(auVar54,render_system_memory);
     fVar61 = auVar58._8_4_;
     auVar25._4_4_ = -(uint)(auVar58._4_4_ < auVar54._4_4_);
     auVar25._0_4_ = -(uint)(auVar58._0_4_ < auVar54._0_4_);
@@ -646,21 +646,21 @@ void FUN_18048e4d0(longlong param_1,int8_t (*param_2) [16],float *param_3,int pa
               auStack_150._8_4_ = auVar25._8_4_ * auVar35._8_4_;
               auStack_150._12_4_ = auVar25._12_4_ * auVar35._12_4_;
               auVar54 = vpmaxsd_avx(auVar54,auVar24);
-              auStack_430 = vpminsd_avx(auVar54,_DAT_180a3f840);
+              auStack_430 = vpminsd_avx(auVar54,render_system_memory);
               afStack_140[0] = auVar53._0_4_ * auVar35._0_4_;
               afStack_140[1] = auVar53._4_4_ * auVar35._4_4_;
               afStack_140[2] = auVar53._8_4_ * auVar35._8_4_;
               afStack_140[3] = auVar53._12_4_ * auVar35._12_4_;
               auVar54 = vpmaxsd_avx(auVar56,ZEXT416(0) << 0x20);
-              auStack_440 = vpand_avx(auVar54,_DAT_180a40760);
+              auStack_440 = vpand_avx(auVar54,render_system_memory);
               auVar54 = vpminsd_avx(auVar63,auVar58);
               auVar56 = vpminsd_avx(auVar54,auVar32);
               auVar54 = vpmaxsd_avx(auVar63,auVar58);
               auVar58 = vpmaxsd_avx(auVar56,ZEXT416(0) << 0x20);
               auVar54 = vpmaxsd_avx(auVar54,auVar32);
-              auStack_420 = vpand_avx(auVar58,_DAT_180a40770);
+              auStack_420 = vpand_avx(auVar58,render_system_memory);
               lVar16 = 0;
-              auStack_410 = vpminsd_avx(auVar54,_DAT_180a3f820);
+              auStack_410 = vpminsd_avx(auVar54,render_system_memory);
               do {
                 if (0 < *(int *)(auStack_450 + lVar16)) {
                   uVar7 = *(int32_t *)(auStack_3d0 + lVar16);
@@ -747,12 +747,12 @@ void FUN_18048e4d0(longlong param_1,int8_t (*param_2) [16],float *param_3,int pa
                   auVar54 = vpshufd_avx(ZEXT416(uVar15),0);
                   auVar33._16_16_ = auVar54;
                   auVar33._0_16_ = auVar54;
-                  auVar33 = vpaddd_avx2(auVar33,_DAT_180a407e0);
+                  auVar33 = vpaddd_avx2(auVar33,render_system_memory);
                   auVar29 = vpmulld_avx2(auVar33,auVar39);
                   auVar54 = vpshufd_avx(ZEXT416(uVar8),0);
                   auVar26._16_16_ = auVar54;
                   auVar26._0_16_ = auVar54;
-                  auVar26 = vpaddd_avx2(auVar26,_DAT_180a40820);
+                  auVar26 = vpaddd_avx2(auVar26,render_system_memory);
                   uVar7 = *(int32_t *)(auStack_3a0 + lVar16);
                   auVar27._4_4_ = uVar7;
                   auVar27._0_4_ = uVar7;
@@ -850,7 +850,7 @@ void FUN_18048e4d0(longlong param_1,int8_t (*param_2) [16],float *param_3,int pa
                         auVar40 = auVar41;
                       } while (uVar19 != 0);
                     }
-                    if ((_DAT_180a40880 & auVar29) != (int8_t  [32])0x0) goto LAB_18048f1aa;
+                    if ((render_system_memory & auVar29) != (int8_t  [32])0x0) goto LAB_18048f1aa;
                     _auStack_200 = vpaddd_avx2(_auStack_200,auStack_260);
                     _auStack_220 = vpaddd_avx2(_auStack_220,_auStack_380);
                     _auStack_240 = vpaddd_avx2(_auStack_240,auStack_120);

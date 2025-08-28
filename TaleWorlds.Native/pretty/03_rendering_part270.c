@@ -569,7 +569,7 @@ void FUN_1804182d0(longlong param_1)
   uStack_c8 = 5;
   FUN_180627ae0(&puStack_c0);
   FUN_18041afd0(auStack_a0,&puStack_128);
-  lVar5 = FUN_18062b420(_DAT_180c8ed18,0xa8,*(int8_t *)(param_1 + 0x30));
+  lVar5 = FUN_18062b420(system_memory_pool_ptr,0xa8,*(int8_t *)(param_1 + 0x30));
   ppuVar2 = (void **)(lVar5 + 0x20);
   *ppuVar2 = &unknown_var_720_ptr;
   *(uint64_t *)(lVar5 + 0x28) = 0;

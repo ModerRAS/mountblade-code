@@ -200,7 +200,7 @@ void FUN_180802653(void)
                 } while ((int)uVar8 < *(int *)(*plVar1 + 0x24 + lVar18));
               }
               puVar19 = (uint64_t *)(unaff_RBX + 0x418);
-              _DAT_180c36cd0 = unaff_RBX;
+              ui_system_memory = unaff_RBX;
               *(void **)(unaff_RBX + 0x428) = &unknown_var_6832_ptr;
               *puVar19 = &unknown_var_6880_ptr;
               *(code **)(unaff_RBX + 0x420) = _guard_check_icall;
@@ -407,7 +407,7 @@ void FUN_1808027ec(void)
           }
           puVar17 = (uint64_t *)(unaff_RBX + 0x418);
           plVar2 = (longlong *)*unaff_R13;
-          _DAT_180c36cd0 = unaff_RBX;
+          ui_system_memory = unaff_RBX;
           *(void **)(unaff_RBX + 0x428) = &unknown_var_6832_ptr;
           *puVar17 = &unknown_var_6880_ptr;
           *(code **)(unaff_RBX + 0x420) = _guard_check_icall;

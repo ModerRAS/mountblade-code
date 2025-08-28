@@ -575,11 +575,11 @@ void FUN_1808f14a0(uint64_t *param_1,longlong param_2)
        (uVar1 = (uVar1 >> 1) + uVar1, uVar7 = uVar4, uVar4 < uVar1)) {
       uVar7 = uVar1;
     }
-    if (_DAT_180c69e18 == (code *)0x0) {
+    if (system_system_config == (code *)0x0) {
       uVar3 = malloc(uVar7 * 2 + 2);
     }
     else {
-      uVar3 = (*_DAT_180c69e18)();
+      uVar3 = (*system_system_config)();
     }
     param_1[2] = uVar5;
     param_1[3] = uVar7;
@@ -615,11 +615,11 @@ void FUN_1808f152a(ulonglong param_1)
      (uVar1 = (unaff_R15 >> 1) + unaff_R15, unaff_RSI = param_1, param_1 < uVar1)) {
     unaff_RSI = uVar1;
   }
-  if (_DAT_180c69e18 == (code *)0x0) {
+  if (system_system_config == (code *)0x0) {
     uVar2 = malloc(unaff_RSI * 2 + 2);
   }
   else {
-    uVar2 = (*_DAT_180c69e18)();
+    uVar2 = (*system_system_config)();
   }
   *(uint64_t *)(unaff_RDI + 0x10) = unaff_RBX;
   *(ulonglong *)(unaff_RDI + 0x18) = unaff_RSI;
@@ -651,11 +651,11 @@ void FUN_1808f15f0(longlong *param_1)
 
 {
   if ((7 < (ulonglong)param_1[3]) && (*param_1 != 0)) {
-    if (_DAT_180c69e10 == (code *)0x0) {
+    if (system_system_config == (code *)0x0) {
       free();
     }
     else {
-      (*_DAT_180c69e10)();
+      (*system_system_config)();
     }
   }
   param_1[2] = 0;
@@ -680,11 +680,11 @@ void FUN_1808f1640(longlong *param_1)
   FUN_1808f4510(param_1,auStackX_8,*(uint64_t *)*param_1,(uint64_t *)*param_1,0xfffffffffffffffe
                );
   if (*param_1 != 0) {
-    if (_DAT_180c69e10 == (code *)0x0) {
+    if (system_system_config == (code *)0x0) {
       free();
     }
     else {
-      (*_DAT_180c69e10)();
+      (*system_system_config)();
     }
   }
   return;
@@ -703,11 +703,11 @@ void FUN_1808f1720(void)
 {
   longlong lVar1;
   
-  if (_DAT_180c69e18 == (code *)0x0) {
+  if (system_system_config == (code *)0x0) {
     lVar1 = malloc(0x40);
   }
   else {
-    lVar1 = (*_DAT_180c69e18)();
+    lVar1 = (*system_system_config)();
   }
   *(longlong *)lVar1 = lVar1;
   *(longlong *)(lVar1 + 8) = lVar1;
@@ -725,11 +725,11 @@ uint64_t * FUN_1808f1770(uint64_t *param_1)
 {
   uint64_t *puVar1;
   
-  if (_DAT_180c69e18 == (code *)0x0) {
+  if (system_system_config == (code *)0x0) {
     puVar1 = (uint64_t *)malloc(0x40);
   }
   else {
-    puVar1 = (uint64_t *)(*_DAT_180c69e18)();
+    puVar1 = (uint64_t *)(*system_system_config)();
   }
   *puVar1 = *param_1;
   puVar1[1] = *param_1;

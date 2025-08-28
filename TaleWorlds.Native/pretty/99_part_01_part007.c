@@ -281,7 +281,7 @@ uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* 
         memory_block = (uint64_t *)0x0;
     }
     else {
-        memory_block = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,(ulonglong)temp_value << 4,3);
+        memory_block = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,(ulonglong)temp_value << 4,3);
         status_code = 0;
         temp_pointer = memory_block;
         
@@ -395,13 +395,13 @@ CONFIG_COMPLETE:
                            &guard_value1,&state_storage);
                 
                 /* 处理资源数据 */
-                resource_handle = _DAT_180c86870;
+                resource_handle = system_main_module_state;
                 iteration_index = (int)resource_array;
                 state_array = state_array;
                 
                 if (*(longlong *)(output_buffer + 0x1e0) != 0) {
-                    if (_DAT_180c86870 != 0) {
-                        *(longlong *)(output_buffer + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                    if (system_main_module_state != 0) {
+                        *(longlong *)(output_buffer + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
                     }
                     state_array = (longlong *)((longlong)(iteration_index + status_code) * 0x10 + *(longlong *)(output_buffer + 0x1e0));
                 }
@@ -466,9 +466,9 @@ CONFIG_COMPLETE:
     FUN_18023ce10(output_buffer);
     *(uint *)(output_buffer + 0x324) = config_value3;
     LOCK();
-    _DAT_180d48d28 = 0;
+    system_system_config_resource = 0;
     UNLOCK();
-    *(longlong *)(output_buffer + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+    *(longlong *)(output_buffer + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
     LOCK();
     *(int32_t *)(output_buffer + 0x380) = 2;
     UNLOCK();
@@ -676,7 +676,7 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
         }
         temp_value = resource_flags;
         if (resource_type * resource_id != 0) {
-            temp_value = FUN_18062b420(_DAT_180c8ed18,(ulonglong)(resource_type * resource_id) * 8,
+            temp_value = FUN_18062b420(system_memory_pool_ptr,(ulonglong)(resource_type * resource_id) * 8,
                                       CONCAT71((uint7)(byte)(resource_id >> 8),3));
             resource_size = *(byte *)(resource_handle + 0x335);
             resource_count = *(uint *)(resource_handle + 0x35c);
@@ -765,7 +765,7 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
         }
         access_mode = temp_value;
         if (resource_type * resource_id != 0) {
-            access_mode = FUN_18062b420(_DAT_180c8ed18,(ulonglong)(resource_type * resource_id) * 8,
+            access_mode = FUN_18062b420(system_memory_pool_ptr,(ulonglong)(resource_type * resource_id) * 8,
                                       CONCAT71((uint7)(byte)(resource_id >> 8),3));
             resource_size = *(byte *)(resource_handle + 0x335);
             resource_count = *(uint *)(resource_handle + 0x35c);
@@ -856,9 +856,9 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     context_ptr = &stack_ptr1;
     FUN_18023ce10(resource_handle);
     LOCK();
-    _DAT_180d48d28 = 0;
+    system_system_config_resource = 0;
     UNLOCK();
-    *(longlong *)(resource_handle + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+    *(longlong *)(resource_handle + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
     LOCK();
     *(int32_t *)(resource_handle + 0x380) = 2;
     UNLOCK();

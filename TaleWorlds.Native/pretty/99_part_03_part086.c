@@ -120,7 +120,7 @@ void FUN_18024b8d0(longlong param_1)
   *(int32_t *)(param_1 + 0x12a3c) = 0x3f800000;
   bVar16 = *(byte *)(param_1 + 0x1bd8) & 0x20;
   if ((((bVar16 == 0) && ((*(byte *)(param_1 + 0x1bd9) & 2) == 0)) ||
-      (*(int *)(_DAT_180c8a9c8 + 0xa10) == 0)) || (*(char *)(param_1 + 0x130) == '\0')) {
+      (*(int *)(system_system_data_config + 0xa10) == 0)) || (*(char *)(param_1 + 0x130) == '\0')) {
     uVar11 = 0;
   }
   else {
@@ -236,7 +236,7 @@ void FUN_18024b8d0(longlong param_1)
     lVar13 = (longlong)(int)(*(longlong **)(param_1 + 0x3580))[0x1e];
     fVar3 = afStack_d8[lVar13];
     fVar22 = *(float *)((longlong)&uStack_158 + lVar13 * 4) - 0.5;
-    lVar13 = *(longlong *)(_DAT_180c86890 + 0x7ab8);
+    lVar13 = *(longlong *)(system_parameter_buffer + 0x7ab8);
     if (lVar13 == 0) {
 LAB_18024bd3a:
       uStack_338 = 1.0;

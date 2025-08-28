@@ -217,7 +217,7 @@ LAB_1804677f9:
         if (lVar23 == 0) {
           lVar23 = 1;
 LAB_1804678f3:
-          pfVar20 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar23 * 4,
+          pfVar20 = (float *)FUN_18062b420(system_memory_pool_ptr,lVar23 * 4,
                                            *(int8_t *)(param_1 + 0x110));
           pfVar28 = *(float **)(param_1 + 0x100);
           pfVar26 = *(float **)(param_1 + 0xf8);

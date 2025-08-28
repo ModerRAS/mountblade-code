@@ -424,7 +424,7 @@ LAB_18042ac0d:
     FUN_18041efc0(param_1);
     if (((iVar2 == 0) || (iVar1 <= (int)(0x7fffffff / (longlong)iVar2))) &&
        ((-1 < iVar3 && (iVar3 < 0x20000000)))) {
-      uVar4 = FUN_18062b420(_DAT_180c8ed18,(longlong)(iVar3 * 4),0x22);
+      uVar4 = FUN_18062b420(system_memory_pool_ptr,(longlong)(iVar3 * 4),0x22);
     }
     else {
       uVar4 = 0;
@@ -456,7 +456,7 @@ void FUN_18042ac55(void)
   FUN_18041efc0();
   if ((((unaff_EBP == 0) || (unaff_R14D <= (int)(0x7fffffff / (longlong)unaff_EBP))) &&
       (-1 < unaff_EDI)) && (unaff_EDI < 0x20000000)) {
-    uVar1 = FUN_18062b420(_DAT_180c8ed18,(longlong)(unaff_EDI * 4),0x22);
+    uVar1 = FUN_18062b420(system_memory_pool_ptr,(longlong)(unaff_EDI * 4),0x22);
   }
   else {
     uVar1 = 0;

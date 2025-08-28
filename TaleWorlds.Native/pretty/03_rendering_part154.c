@@ -1141,7 +1141,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
                 if (buffer_size < RENDERING_SYSTEM_MAX_ARRAY_SIZE) {
                     operation_flag = RENDERING_SYSTEM_MAX_ARRAY_SIZE;
                 }
-                string_pointer = (int8_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)operation_flag, 0x13);
+                string_pointer = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)operation_flag, 0x13);
                 *string_pointer = 0;
                 buffer_pointer = (uint64_t *)string_pointer;
                 validation_result = FUN_18064e990(string_pointer);
@@ -1177,7 +1177,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     buffer_size_64 = 0;
     buffer_pointer = (uint64_t *)0x0;
     buffer_status = 0;
-    data_pointer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
+    data_pointer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
     *(int8_t *)data_pointer = 0;
     buffer_pointer = data_pointer;
     validation_result = FUN_18064e990(data_pointer);
@@ -1291,7 +1291,7 @@ void RenderingSystem_StateChecker(longlong *param_1) {
     char system_flag;
     char object_flag;
     
-    if ((*(char *)(_DAT_180c86878 + 0x210) == '\0') && (0 < (int)param_1[0x14])) {
+    if ((*(char *)(render_system_data_pointer + 0x210) == '\0') && (0 < (int)param_1[0x14])) {
         if (((longlong *)param_1[0x24] == (longlong *)0x0) ||
            (system_flag = (**(code **)(*(longlong *)param_1[0x24] + 0xd8))(), system_flag == '\0')) {
             (**(code **)(*param_1 + 0x168))(param_1);
@@ -1375,7 +1375,7 @@ void RenderingSystem_TextureManager(longlong *param_1) {
     // 局部变量定义
     char texture_flag;
     
-    if ((*(char *)(_DAT_180c86878 + 0x210) == '\0') && ((longlong *)param_1[0x24] != (longlong *)0x0)) {
+    if ((*(char *)(render_system_data_pointer + 0x210) == '\0') && ((longlong *)param_1[0x24] != (longlong *)0x0)) {
         texture_flag = (**(code **)(*(longlong *)param_1[0x24] + 0xd8))();
         if (texture_flag != '\0') {
             if ((char)param_1[0x11] == '\0') {
@@ -1599,7 +1599,7 @@ void RenderingSystem_AdvancedParameterManager(longlong param_1, longlong param_2
     
     // 处理不同类型的参数
     if ((buffer_size == 10) && (buffer_size = strcmp(*(uint64_t *)(param_2 + 8), &system_memory_ff70), buffer_size == 0)) {
-        (**(code **)(*_DAT_180c86878 + 0x1e8))(_DAT_180c86878, &object_array[0]);
+        (**(code **)(*render_system_data_pointer + 0x1e8))(render_system_data_pointer, &object_array[0]);
         config_pointer = object_array[2];
         data_pointer = object_array[0];
         if (object_array[0] != object_array[2]) {
@@ -1653,7 +1653,7 @@ void RenderingSystem_AdvancedParameterManager(longlong param_1, longlong param_2
                     if (resource_size == 0) {
                         resource_size = 1;
 ADVANCED_PARAM_PROCESSOR:
-                        loop_counter = FUN_18062b420(_DAT_180c8ed18, resource_size << 5, (char)param_3[3]);
+                        loop_counter = FUN_18062b420(system_memory_pool_ptr, resource_size << 5, (char)param_3[3]);
                         shader_pointer = (uint64_t *)param_3[1];
                         resource_pointer = *param_3;
                     }
@@ -1950,7 +1950,7 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     component_buffer_size = 0;
     component_buffer = (int32_t *)0x0;
     component_status = 0;
-    component_pointer_ptr = (int32_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
+    component_pointer_ptr = (int32_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
     *(int8_t *)component_pointer_ptr = 0;
     component_buffer = component_pointer_ptr;
     initialization_result = FUN_18064e990(component_pointer_ptr);
@@ -2027,7 +2027,7 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     uint64_t stack_guard;
     uint64_t stack_data[48];
     
-    resource_pointer = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x1a8, 8, 3);
+    resource_pointer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x1a8, 8, 3);
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
     FUN_1803624e0(resource_pointer, param_2, param_1);
     *resource_pointer = &unknown_var_8440_ptr;
@@ -2055,7 +2055,7 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     system_buffer_size = 0;
     system_buffer = (int32_t *)0x0;
     system_status = 0;
-    system_pointer_ptr = (int32_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
+    system_pointer_ptr = (int32_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_MAX_ARRAY_SIZE, 0x13);
     *(int8_t *)system_pointer_ptr = 0;
     system_buffer = system_pointer_ptr;
     creation_result = FUN_18064e990(system_pointer_ptr);

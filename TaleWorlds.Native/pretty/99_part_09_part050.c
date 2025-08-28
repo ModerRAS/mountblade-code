@@ -860,7 +860,7 @@ LAB_1805d49c4:
       if (((lVar8 == 0) ||
           ((*(byte *)((longlong)
                       *(int *)((longlong)*(int *)(lVar8 + 0xf0) * 0xa0 + 100 +
-                              *(longlong *)(lVar8 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10)
+                              *(longlong *)(lVar8 + 0xd0)) * 0x170 + 0x140 + system_system_memory) & 0x10)
            == 0)) && (*(longlong *)(lVar5 + 0x280) != 0)) {
         lVar8 = FUN_1805d8cb0(lVar5 + 0x28,auStack_98);
         fVar20 = *(float *)(lVar8 + 4);
@@ -882,10 +882,10 @@ LAB_1805d4589:
                          );
     uVar9 = 0;
     uVar11 = 0;
-    iVar4 = *(int *)(_DAT_180c95f68 + (longlong)iVar4 * 4);
+    iVar4 = *(int *)(system_system_memory + (longlong)iVar4 * 4);
     uVar12 = uVar9;
     if (iVar4 != -1) {
-      uVar12 = *(ulonglong *)(_DAT_180c95f88 + (longlong)iVar4 * 8);
+      uVar12 = *(ulonglong *)(system_system_memory + (longlong)iVar4 * 8);
     }
     if (*(longlong *)(lVar8 + 0x24a8) != 0) {
       uVar11 = (uint)*(uint64_t *)(*(longlong *)(lVar8 + 0x24a8) + 0x1d0);

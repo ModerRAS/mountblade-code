@@ -535,13 +535,13 @@ void FUN_18034ebc0(longlong param_1)
   }
   if (*(longlong *)(lVar4 + 0xd0) != 0) {
     uStack_30 = 0x1802fbb12;
-    FUN_180300a60((longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28,
+    FUN_180300a60((longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28,
                   *(longlong *)(lVar4 + 0xd0),*(int32_t *)(lVar4 + 0x44),(int)cVar20);
     *(ushort *)(lVar4 + 0xa8) = *(ushort *)(lVar4 + 0xa8) | 8;
     return;
   }
   uStack_30 = 0x1802fbadf;
-  uVar19 = FUN_18062b1e0(_DAT_180c8ed18,0x1028,8,3);
+  uVar19 = FUN_18062b1e0(system_memory_pool_ptr,0x1028,8,3);
                     // WARNING: Subroutine does not return
   uStack_30 = 0x1802fbaf2;
   memset(uVar19,0,0x1028);
@@ -743,13 +743,13 @@ void FUN_18034ec05(uint64_t param_1,byte param_2,uint64_t param_3,uint64_t param
   }
   if (*(longlong *)(unaff_RDI + 0xd0) != 0) {
     uStack00000000000000e8 = 0x1802fbb12;
-    FUN_180300a60((longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28,
+    FUN_180300a60((longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28,
                   *(longlong *)(unaff_RDI + 0xd0),*(int32_t *)(unaff_RDI + 0x44),(int)cVar26);
     *(ushort *)(unaff_RDI + 0xa8) = *(ushort *)(unaff_RDI + 0xa8) | 8;
     return;
   }
   uStack00000000000000e8 = 0x1802fbadf;
-  uVar25 = FUN_18062b1e0(_DAT_180c8ed18,0x1028,8,3);
+  uVar25 = FUN_18062b1e0(system_memory_pool_ptr,0x1028,8,3);
                     // WARNING: Subroutine does not return
   uStack00000000000000e8 = 0x1802fbaf2;
   memset(uVar25,0,0x1028);
@@ -789,13 +789,13 @@ void FUN_18034ef52(void)
   }
   if (*(longlong *)(unaff_RDI + 0xd0) != 0) {
     uStack00000000000000e8 = 0x1802fbb12;
-    FUN_180300a60((longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28,
+    FUN_180300a60((longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28,
                   *(longlong *)(unaff_RDI + 0xd0),*(int32_t *)(unaff_RDI + 0x44),(int)cVar2);
     *(ushort *)(unaff_RDI + 0xa8) = *(ushort *)(unaff_RDI + 0xa8) | 8;
     return;
   }
   uStack00000000000000e8 = 0x1802fbadf;
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x1028,8,3);
+  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x1028,8,3);
                     // WARNING: Subroutine does not return
   uStack00000000000000e8 = 0x1802fbaf2;
   memset(uVar1,0,0x1028);

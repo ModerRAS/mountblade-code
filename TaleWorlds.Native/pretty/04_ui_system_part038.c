@@ -82,17 +82,17 @@ void FUN_180675b40(longlong param_1,longlong param_2,char *param_3,longlong para
   if (0 < (int)param_9) {
     uVar18 = (ulonglong)param_9;
     do {
-      auVar13 = _DAT_180946f30;
+      auVar13 = ui_system_config;
       lVar14 = ((longlong)(int)param_6 >> 4) * param_2 + param_1 + param_2 * -3;
       if ((param_6 & 0xf) == 0) {
                     // WARNING: Subroutine does not return
         memcpy(param_3,param_2 * 3 + lVar14,(longlong)param_8);
       }
       auVar67 = *(int8_t (*) [16])((ulonglong)(param_6 & 0xf) * 0x10 + param_5);
-      auVar68 = pshufb(auVar67,_DAT_180946f40);
-      auVar69 = pshufb(auVar67,_DAT_180946f70);
-      auVar70 = pshufb(auVar67,_DAT_180946f90);
-      auVar67 = pshufb(auVar67,_DAT_180946fa0);
+      auVar68 = pshufb(auVar67,ui_system_config);
+      auVar69 = pshufb(auVar67,ui_system_config);
+      auVar70 = pshufb(auVar67,ui_system_config);
+      auVar67 = pshufb(auVar67,ui_system_config);
       if (0 < param_8) {
         pauVar15 = (int8_t (*) [16])(lVar14 + param_2 * 2);
         uVar17 = (ulonglong)((param_8 - 1U >> 4) + 1);

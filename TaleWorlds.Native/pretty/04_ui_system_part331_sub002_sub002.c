@@ -27,13 +27,13 @@ void FUN_18084d068(void)
   
   do {
     FUN_1808fcb90(&system_ptr_ea98);
-    if (_DAT_180c4ea98 == -1) {
-      _DAT_180c4ea94 = unaff_R12D;
+    if (ui_system_ui == -1) {
+      ui_system_ui = unaff_R12D;
       FUN_1808fcb30(&system_ptr_ea98);
     }
     do {
       uVar3 = (uint)unaff_RBP;
-      if (*(int *)(unaff_RBX + 0x14) != _DAT_180c4ea94) {
+      if (*(int *)(unaff_RBX + 0x14) != ui_system_ui) {
         plVar2 = *(longlong **)(unaff_RSI + 0x78);
         plVar9 = plVar2;
         while( true ) {
@@ -87,7 +87,7 @@ LAB_18084cfd9:
         uVar3 = *(uint *)((longlong)unaff_RBX + 0x34);
       }
       *unaff_RDI = uVar3;
-    } while (_DAT_180c4ea98 <= *unaff_R15);
+    } while (ui_system_ui <= *unaff_R15);
   } while( true );
 }
 
@@ -1093,10 +1093,10 @@ void * FUN_18084da10(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180c4ea98) {
+              0x48) < ui_system_ui) {
     FUN_1808fcb90(&system_ptr_ea98);
-    if (_DAT_180c4ea98 == -1) {
-      _DAT_180c4ea94 = 0;
+    if (ui_system_ui == -1) {
+      ui_system_ui = 0;
       FUN_1808fcb30(&system_ptr_ea98);
     }
   }

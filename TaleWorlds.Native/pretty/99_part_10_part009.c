@@ -63,8 +63,8 @@ void FUN_1806a787d(longlong *param_1,longlong *param_2)
       }
       else {
         puVar3 = (uint64_t *)
-                 (**(code **)(*_DAT_180be0050 + 8))
-                           (_DAT_180be0050,0x68,&unknown_var_5616_ptr,&unknown_var_5360_ptr,0x568);
+                 (**(code **)(*system_system_buffer_buffer + 8))
+                           (system_system_buffer_buffer,0x68,&unknown_var_5616_ptr,&unknown_var_5360_ptr,0x568);
         if (puVar3 == (uint64_t *)0x0) {
           FUN_1806a8c20(0,&stack0x00000030);
           puVar3 = puVar6;
@@ -109,8 +109,8 @@ void FUN_1806a787d(longlong *param_1,longlong *param_2)
       }
       else {
         puVar3 = (uint64_t *)
-                 (**(code **)(*_DAT_180be0050 + 8))
-                           (_DAT_180be0050,0xa0,&unknown_var_5616_ptr,&unknown_var_5360_ptr,0x568);
+                 (**(code **)(*system_system_buffer_buffer + 8))
+                           (system_system_buffer_buffer,0xa0,&unknown_var_5616_ptr,&unknown_var_5360_ptr,0x568);
         if (puVar3 == (uint64_t *)0x0) {
           FUN_1806a89c0(0,&stack0x00000030);
           puVar3 = puVar6;
@@ -162,8 +162,8 @@ void FUN_1806a787d(longlong *param_1,longlong *param_2)
       }
       else {
         puVar3 = (uint64_t *)
-                 (**(code **)(*_DAT_180be0050 + 8))
-                           (_DAT_180be0050,0x90,&unknown_var_5616_ptr,&unknown_var_5360_ptr,0x568);
+                 (**(code **)(*system_system_buffer_buffer + 8))
+                           (system_system_buffer_buffer,0x90,&unknown_var_5616_ptr,&unknown_var_5360_ptr,0x568);
         if (puVar3 == (uint64_t *)0x0) {
           FUN_1806a8e00(0,&stack0x00000030);
           puVar3 = puVar6;

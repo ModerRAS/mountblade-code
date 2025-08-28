@@ -442,7 +442,7 @@ void FUN_180347ab0(longlong param_1,longlong *param_2)
           if (lVar3 == 0) {
             lVar3 = 1;
 LAB_180347b86:
-            plVar2 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar3 * 8);
+            plVar2 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar3 * 8);
             plVar4 = (longlong *)param_2[1];
             plVar5 = (longlong *)*param_2;
             plVar7 = plVar2;

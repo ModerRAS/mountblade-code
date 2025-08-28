@@ -360,10 +360,10 @@ void FUN_18078a600(longlong param_1,char param_2)
     iVar3 = FUN_180768280(acStack_48);
     if (iVar3 != 0) goto FUN_18078aa2c;
     if (acStack_48[0] != '\0') {
-      _DAT_180c108d8 = 0x1010101;
-      _DAT_180c108e0 = 0x1010101;
-      _DAT_180c108dc = 0x1010101;
-      _DAT_180c108e4 = 0x1010101;
+      ui_system_config = 0x1010101;
+      ui_system_config = 0x1010101;
+      ui_system_config = 0x1010101;
+      ui_system_config = 0x1010101;
     }
   }
   uVar4 = (ulonglong)*(uint *)(param_1 + 0x116b8);

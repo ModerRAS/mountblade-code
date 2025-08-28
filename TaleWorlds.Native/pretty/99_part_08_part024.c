@@ -229,7 +229,7 @@ uint64_t FUN_1804f7af0(longlong param_1,int param_2,char param_3)
   
   uVar11 = (ulonglong)param_2;
   lVar9 = 0;
-  if ((((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) && (param_3 != '\0')) {
+  if ((((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) && (param_3 != '\0')) {
     iVar6 = _Mtx_lock(0x180c95528);
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
@@ -238,25 +238,25 @@ uint64_t FUN_1804f7af0(longlong param_1,int param_2,char param_3)
     if ((cVar5 != '\0') && (cVar5 = FUN_180645c10(0x180c95578,0xf,&unknown_var_3472_ptr), cVar5 != '\0')) {
       FUN_180645c10(0x180c95578,param_2,&unknown_var_3344_ptr);
     }
-    _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-    iVar6 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-    lVar8 = _DAT_180c92cd8;
+    system_system_memory = system_system_memory & 0xffffffff00000000;
+    iVar6 = (int)(system_system_memory - system_system_memory >> 3);
+    lVar8 = system_system_memory;
     if (0 < iVar6) {
       do {
         lVar2 = *(longlong *)(lVar8 + lVar9 * 8);
         if ((lVar2 != 0) && (*(char *)(*(longlong *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
           FUN_1805b59d0(lVar2,0x180c95578);
-          lVar8 = _DAT_180c92cd8;
+          lVar8 = system_system_memory;
         }
         lVar9 = lVar9 + 1;
       } while (lVar9 < iVar6);
     }
-    if (_DAT_180c96070 != 0) {
-      FUN_180567f30(_DAT_180c92580,0x180c95578);
+    if (system_system_memory != 0) {
+      FUN_180567f30(system_system_memory,0x180c95578);
     }
-    _DAT_180c95b3c = 0;
+    system_system_memory = 0;
                     // WARNING: Subroutine does not return
-    memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+    memset(system_system_memory,0,(longlong)(system_system_memory >> 3));
   }
   uVar12 = *(ulonglong *)(param_1 + 0x87bd10);
   lVar9 = *(longlong *)(param_1 + 0x87bd08);
@@ -332,7 +332,7 @@ void FUN_1804f7e50(longlong param_1,char param_2)
   int iVar1;
   longlong lVar2;
   
-  if ((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) {
+  if ((system_status_flag != 1) && (system_status_flag != 4)) {
     iVar1 = func_0x0001804ca2d0(&system_data_5fc8);
     if ((param_2 != '\0') && (0 < iVar1)) {
       iVar1 = iVar1 + -1;

@@ -321,12 +321,12 @@ uint64_t FUN_18006f620(uint64_t param_1, uint64_t param_2)
     bool debug_mode;
     void* temp_buffer[8];
     
-    system_context = (void*)_DAT_180c82868;
+    system_context = (void*)system_context_ptr;
     result = FUN_1800f9600(param_2);
     
     // 检查系统状态
     if (((char)result != '\0') || 
-        (result = WaitForSingleObject(_DAT_180c91900, SEMAPHORE_TIMEOUT), (int)result != 0)) {
+        (result = WaitForSingleObject(init_system_ui, SEMAPHORE_TIMEOUT), (int)result != 0)) {
         return result & 0xffffffffffffff00;
     }
     
@@ -337,7 +337,7 @@ uint64_t FUN_18006f620(uint64_t param_1, uint64_t param_2)
     
     // 检查调试器状态
     debug_mode = true;
-    system_status = (**(code (**)(void))(**(void***)((uint8_t*)_DAT_180c8ed08 + 0x18)))();
+    system_status = (**(code (**)(void))(**(void***)((uint8_t*)init_system_data_ui + 0x18)))();
     if ((system_status == '\0') && (thread_id = IsDebuggerPresent(), thread_id != 0)) {
         is_debugger_present = true;
     }
@@ -358,7 +358,7 @@ uint64_t FUN_18006f620(uint64_t param_1, uint64_t param_2)
     
     // 处理系统消息
     FUN_180628040(&debug_output, &global_state_3944_ptr, param_2);
-    FUN_180062380(_DAT_180c86928, 5, 0xffffffff00000000, &global_state_3968_ptr);
+    FUN_180062380(system_message_context, 5, 0xffffffff00000000, &global_state_3968_ptr);
     
     // 输出调试信息
     debug_output = &system_buffer_ptr;
@@ -366,14 +366,14 @@ uint64_t FUN_18006f620(uint64_t param_1, uint64_t param_2)
     
     // 处理系统事件
     FUN_18004c2b0(param_2);
-    system_context = _DAT_180c86950;
+    system_context = system_operation_state;
     
     // 处理系统状态更新
-    if (((debug_mode) && (_DAT_180c86950 != NULL)) && 
-        (*(char*)((uint8_t*)_DAT_180c86950 + 0x1609) != '\x01')) {
-        FUN_1801723a0(*(uint64_t*)((uint8_t*)_DAT_180c86870 + 8),
-                      *(char*)((uint8_t*)_DAT_180c868d0 + 0x2028) != '\0',
-                      *(uint32_t*)((uint8_t*)_DAT_180c86950 + 0x160c));
+    if (((debug_mode) && (system_operation_state != NULL)) && 
+        (*(char*)((uint8_t*)system_operation_state + 0x1609) != '\x01')) {
+        FUN_1801723a0(*(uint64_t*)((uint8_t*)system_main_module_state + 8),
+                      *(char*)((uint8_t*)init_system_data_ui + 0x2028) != '\0',
+                      *(uint32_t*)((uint8_t*)system_operation_state + 0x160c));
         *(uint8_t*)((uint8_t*)system_context + 0x1609) = 1;
     }
     
@@ -383,8 +383,8 @@ uint64_t FUN_18006f620(uint64_t param_1, uint64_t param_2)
             ((thread_id = IsDebuggerPresent(), thread_id != 0 && (system_debug_flag2 == '\0')))) {
             MessageBoxA(0, param_2, &global_state_4072_ptr, DEBUG_OUTPUT_FLAGS);
         }
-        else if (*(char*)((uint8_t*)_DAT_180c86928 + 0x18) != '\0') {
-            FUN_1800623b0(_DAT_180c86928, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, &global_state_4072_ptr, param_2);
+        else if (*(char*)((uint8_t*)system_message_context + 0x18) != '\0') {
+            FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, &global_state_4072_ptr, param_2);
         }
     }
     else if (system_debug_flag == '\0') {
@@ -399,7 +399,7 @@ uint64_t FUN_18006f620(uint64_t param_1, uint64_t param_2)
     
     // 清理系统资源
     FUN_1800f96b0(param_2, 0);
-    if (_DAT_180c86870 == 0) {
+    if (system_main_module_state == 0) {
         _Exit(5);
         result = (uint64_t)swi(3);
         return result;
@@ -439,13 +439,13 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     bool is_main_thread;
     uint8_t event_processed;
     
-    system_context = (void*)_DAT_180c82868;
+    system_context = (void*)system_context_ptr;
     event_processed = 0;
     
     // 检查事件状态
     if (((system_debug_flag == '\0') || 
          (process_result = FUN_1800f9600(param_2), (char)process_result != '\0')) ||
-        (process_result = WaitForSingleObject(_DAT_180c91900, SEMAPHORE_TIMEOUT), (int)process_result != 0)) {
+        (process_result = WaitForSingleObject(init_system_ui, SEMAPHORE_TIMEOUT), (int)process_result != 0)) {
         return process_result & 0xffffffffffffff00;
     }
     
@@ -456,7 +456,7 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 检查调试模式
     is_main_thread = true;
-    system_status = (**(code (**)(void))(**(void***)((uint8_t*)_DAT_180c8ed08 + 0x18)))();
+    system_status = (**(code (**)(void))(**(void***)((uint8_t*)init_system_data_ui + 0x18)))();
     if ((system_status == '\0') && (thread_id = IsDebuggerPresent(), thread_id != 0)) {
         is_debug_mode = true;
     }
@@ -491,7 +491,7 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 处理系统消息
     FUN_180628040(&event_data, &global_state_4080_ptr, param_2);
-    FUN_180062380(_DAT_180c86928, 5, 0xffffffff00000000, &global_state_3968_ptr);
+    FUN_180062380(system_message_context, 5, 0xffffffff00000000, &global_state_3968_ptr);
     
     // 输出事件信息
     event_data = &system_buffer_ptr;
@@ -502,8 +502,8 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 处理特殊事件标志
     if (((system_debug_flag != '\0') && (is_debug_mode)) &&
-        ((*(char*)((uint8_t*)_DAT_180c86870 + 0x25) != '\0' ||
-         ((param_3 == '\0' || (*(int*)((uint8_t*)_DAT_180c86870 + 0x340) == 2)))))) {
+        ((*(char*)((uint8_t*)system_main_module_state + 0x25) != '\0' ||
+         ((param_3 == '\0' || (*(int*)((uint8_t*)system_main_module_state + 0x340) == 2)))))) {
         if (system_memory_2851 == '\0') {
             system_handler = (void*)swi(3);
             process_result = (*(uint64_t(*)(void))system_handler)();
@@ -516,16 +516,16 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     if (system_debug_flag2 == '\0') {
         if (is_main_thread) {
             // 处理系统错误状态
-            if (*(uint64_t*)((uint8_t*)_DAT_180c86870 + 8) != 0) {
-                FUN_1801719d0(*(uint64_t*)((uint8_t*)_DAT_180c86870 + 8));
+            if (*(uint64_t*)((uint8_t*)system_main_module_state + 8) != 0) {
+                FUN_1801719d0(*(uint64_t*)((uint8_t*)system_main_module_state + 8));
             }
             
             // 更新系统状态
-            system_context = _DAT_180c86950;
-            if ((_DAT_180c86950 != NULL) && (*(char*)((uint8_t*)_DAT_180c86950 + 0x1609) != '\x01')) {
-                FUN_1801723a0(*(uint64_t*)((uint8_t*)_DAT_180c86870 + 8),
-                              *(char*)((uint8_t*)_DAT_180c868d0 + 0x2028) != '\0',
-                              *(uint32_t*)((uint8_t*)_DAT_180c86950 + 0x160c));
+            system_context = system_operation_state;
+            if ((system_operation_state != NULL) && (*(char*)((uint8_t*)system_operation_state + 0x1609) != '\x01')) {
+                FUN_1801723a0(*(uint64_t*)((uint8_t*)system_main_module_state + 8),
+                              *(char*)((uint8_t*)init_system_data_ui + 0x2028) != '\0',
+                              *(uint32_t*)((uint8_t*)system_operation_state + 0x160c));
                 *(uint8_t*)((uint8_t*)system_context + 0x1609) = 1;
             }
         }
@@ -535,8 +535,8 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
             (system_debug_flag2 == '\0')) {
             MessageBoxA(0, param_2, event_data, 0x41030);
         }
-        else if (*(char*)((uint8_t*)_DAT_180c86928 + 0x18) != '\0') {
-            FUN_1800623b0(_DAT_180c86928, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, event_data, param_2);
+        else if (*(char*)((uint8_t*)system_message_context + 0x18) != '\0') {
+            FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, event_data, param_2);
         }
     }
     else if (system_debug_flag == '\0') {
@@ -545,9 +545,9 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 验证系统状态
     thread_id = FUN_1800f98e0(param_2);
-    if (((!is_debug_mode) && (thread_id == 0)) && (*(char*)((uint8_t*)_DAT_180c86870 + 0x2a) != '\0')) {
-        event_flag = *(uint8_t*)((uint8_t*)_DAT_180c86870 + 0x141);
-        process_result = FUN_180627ae0(&event_data, _DAT_180c86870 + 0x148);
+    if (((!is_debug_mode) && (thread_id == 0)) && (*(char*)((uint8_t*)system_main_module_state + 0x2a) != '\0')) {
+        event_flag = *(uint8_t*)((uint8_t*)system_main_module_state + 0x141);
+        process_result = FUN_180627ae0(&event_data, system_main_module_state + 0x148);
         process_result = FUN_180627ae0(&event_data, process_result);
         
         // 处理错误报告
@@ -558,15 +558,15 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     FUN_1800f96b0(param_2, 0);
     
     // 处理系统退出
-    if (_DAT_180c86870 == 0) {
+    if (system_main_module_state == 0) {
         system_status = '\x01';
     }
     else {
-        system_status = *(char*)((uint8_t*)_DAT_180c86870 + 0x29);
+        system_status = *(char*)((uint8_t*)system_main_module_state + 0x29);
     }
     
-    if (*(char*)((uint8_t*)_DAT_180c86870 + 0x25) != '\0') {
-        FUN_180055f70(_DAT_180c86870, 5);
+    if (*(char*)((uint8_t*)system_main_module_state + 0x25) != '\0') {
+        FUN_180055f70(system_main_module_state, 5);
         system_handler = (void*)swi(3);
         process_result = (*(uint64_t(*)(void))system_handler)();
         return process_result;
@@ -574,16 +574,16 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 设置系统状态
     if (system_status != '\0') {
-        _DAT_180c82854 = 5;
+        init_system_data_ui = 5;
     }
     
     // 执行最终清理
     if ((system_debug_flag2 == '\0') && (is_main_thread)) {
-        if (*(uint64_t*)((uint8_t*)_DAT_180c86870 + 8) != 0) {
+        if (*(uint64_t*)((uint8_t*)system_main_module_state + 8) != 0) {
             FUN_1801718f0();
         }
-        if (_DAT_180c86950 != NULL) {
-            FUN_180092940(_DAT_180c86950, *(uint8_t*)((uint8_t*)_DAT_180c86950 + 0x160a));
+        if (system_operation_state != NULL) {
+            FUN_180092940(system_operation_state, *(uint8_t*)((uint8_t*)system_operation_state + 0x160a));
         }
     }
     
@@ -594,7 +594,7 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 释放信号量
     do {
-        thread_id = ReleaseSemaphore(_DAT_180c91900, 1);
+        thread_id = ReleaseSemaphore(init_system_ui, 1);
     } while (thread_id == 0);
     
     process_result = (uint64_t)event_processed;
@@ -631,14 +631,14 @@ uint64_t FUN_18006ff80(uint64_t param_1, uint64_t param_2, char param_3)
     bool is_main_thread;
     uint32_t allocation_size;
     
-    system_context = (void*)_DAT_180c82868;
+    system_context = (void*)system_context_ptr;
     resource_allocated = 0;
     
     // 检查资源状态
     resource_data = (uint8_t*)register0x00000020;
     if (((system_debug_flag == '\0') ||
         (resource_data = (uint8_t*)FUN_1800f9600(param_2), (char)resource_data != '\0')) ||
-        (resource_data = (uint8_t*)WaitForSingleObject(_DAT_180c91900, SEMAPHORE_TIMEOUT), (int)resource_data != 0)) {
+        (resource_data = (uint8_t*)WaitForSingleObject(init_system_ui, SEMAPHORE_TIMEOUT), (int)resource_data != 0)) {
         return (uint64_t)resource_data & 0xffffffffffffff00;
     }
     
@@ -649,7 +649,7 @@ uint64_t FUN_18006ff80(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 检查系统模式
     is_main_thread = true;
-    system_status = (**(code (**)(void))(**(void***)((uint8_t*)_DAT_180c8ed08 + 0x18)))();
+    system_status = (**(code (**)(void))(**(void***)((uint8_t*)init_system_data_ui + 0x18)))();
     if ((system_status == '\0') && (thread_id = IsDebuggerPresent(), thread_id != 0)) {
         is_debug_mode = true;
     }
@@ -678,7 +678,7 @@ uint64_t FUN_18006ff80(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 处理资源消息
     FUN_180628040(&temp_buffer, &global_state_4136_ptr, param_2);
-    FUN_180062380(_DAT_180c86928, 5, 0xffffffff00000000, &global_state_3968_ptr);
+    FUN_180062380(system_message_context, 5, 0xffffffff00000000, &global_state_3968_ptr);
     
     // 输出资源信息
     temp_buffer = &system_buffer_ptr;
@@ -689,8 +689,8 @@ uint64_t FUN_18006ff80(uint64_t param_1, uint64_t param_2, char param_3)
     
     // 处理资源分配
     if ((system_debug_flag != '\0') && (is_debug_mode)) {
-        if ((*(char*)((uint8_t*)_DAT_180c86870 + 0x25) == '\0') &&
-            ((param_3 != '\0' && (*(int*)((uint8_t*)_DAT_180c86870 + 0x340) != 2)))) {
+        if ((*(char*)((uint8_t*)system_main_module_state + 0x25) == '\0') &&
+            ((param_3 != '\0' && (*(int*)((uint8_t*)system_main_module_state + 0x340) != 2)))) {
             resource_result = 1;
             resource_allocated = 1;
             goto resource_cleanup;
@@ -706,20 +706,20 @@ uint64_t FUN_18006ff80(uint64_t param_1, uint64_t param_2, char param_3)
 resource_cleanup:
     
     // 处理资源状态
-    if (*(int*)((uint8_t*)_DAT_180c86908 + 0x460) == 0) {
+    if (*(int*)((uint8_t*)system_module_state + 0x460) == 0) {
         if (system_debug_flag2 == '\0') {
             if (is_main_thread) {
                 // 处理系统资源状态
-                if (*(uint64_t*)((uint8_t*)_DAT_180c86870 + 8) != 0) {
-                    FUN_1801719d0(*(uint64_t*)((uint8_t*)_DAT_180c86870 + 8));
+                if (*(uint64_t*)((uint8_t*)system_main_module_state + 8) != 0) {
+                    FUN_1801719d0(*(uint64_t*)((uint8_t*)system_main_module_state + 8));
                 }
                 
                 // 更新资源状态
-                system_context = _DAT_180c86950;
-                if ((_DAT_180c86950 != NULL) && (*(char*)((uint8_t*)_DAT_180c86950 + 0x1609) != '\x01')) {
-                    FUN_1801723a0(*(uint64_t*)((uint8_t*)_DAT_180c86870 + 8),
-                                  *(char*)((uint8_t*)_DAT_180c868d0 + 0x2028) != '\0',
-                                  *(uint32_t*)((uint8_t*)_DAT_180c86950 + 0x160c));
+                system_context = system_operation_state;
+                if ((system_operation_state != NULL) && (*(char*)((uint8_t*)system_operation_state + 0x1609) != '\x01')) {
+                    FUN_1801723a0(*(uint64_t*)((uint8_t*)system_main_module_state + 8),
+                                  *(char*)((uint8_t*)init_system_data_ui + 0x2028) != '\0',
+                                  *(uint32_t*)((uint8_t*)system_operation_state + 0x160c));
                     *(uint8_t*)((uint8_t*)system_context + 0x1609) = 1;
                 }
             }
@@ -729,8 +729,8 @@ resource_cleanup:
                 (system_debug_flag2 == '\0')) {
                 MessageBoxA(0, param_2, &global_state_4192_ptr, 0x41030);
             }
-            else if (*(char*)((uint8_t*)_DAT_180c86928 + 0x18) != '\0') {
-                FUN_1800623b0(_DAT_180c86928, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, &global_state_4192_ptr, param_2);
+            else if (*(char*)((uint8_t*)system_message_context + 0x18) != '\0') {
+                FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &global_state_6936_ptr, &global_state_4192_ptr, param_2);
             }
         }
         else if (system_debug_flag == '\0') {
@@ -741,8 +741,8 @@ resource_cleanup:
         thread_id = FUN_1800f98e0(param_2);
         if ((!is_debug_mode) && (thread_id == 0)) {
             // 处理错误报告
-            uint8_t error_flag = *(uint8_t*)((uint8_t*)_DAT_180c86870 + 0x141);
-            void** error_context = (void**)FUN_180627ae0(&temp_buffer, _DAT_180c86870 + 0x148);
+            uint8_t error_flag = *(uint8_t*)((uint8_t*)system_main_module_state + 0x141);
+            void** error_context = (void**)FUN_180627ae0(&temp_buffer, system_main_module_state + 0x148);
             
             resource_result = FUN_180627ae0(&temp_buffer, error_context);
             FUN_180066320(resource_result, &temp_buffer, error_flag, 0, temp_buffer);
@@ -752,15 +752,15 @@ resource_cleanup:
         FUN_1800f96b0(param_2, 0);
         
         // 处理系统退出
-        if (_DAT_180c86870 == 0) {
+        if (system_main_module_state == 0) {
             system_status = '\x01';
         }
         else {
-            system_status = *(char*)((uint8_t*)_DAT_180c86870 + 0x29);
+            system_status = *(char*)((uint8_t*)system_main_module_state + 0x29);
         }
         
-        if (*(char*)((uint8_t*)_DAT_180c86870 + 0x25) != '\0') {
-            FUN_180055f70(_DAT_180c86870, 5);
+        if (*(char*)((uint8_t*)system_main_module_state + 0x25) != '\0') {
+            FUN_180055f70(system_main_module_state, 5);
             system_handler = (void*)swi(3);
             resource_result = (*(uint64_t(*)(void))system_handler)();
             return resource_result;
@@ -768,16 +768,16 @@ resource_cleanup:
         
         // 设置系统状态
         if (system_status != '\0') {
-            _DAT_180c82854 = 5;
+            init_system_data_ui = 5;
         }
         
         // 执行最终清理
         if ((system_debug_flag2 == '\0') && (is_main_thread)) {
-            if (*(uint64_t*)((uint8_t*)_DAT_180c86870 + 8) != 0) {
+            if (*(uint64_t*)((uint8_t*)system_main_module_state + 8) != 0) {
                 FUN_1801718f0();
             }
-            if (_DAT_180c86950 != NULL) {
-                FUN_180092940(_DAT_180c86950, *(uint8_t*)((uint8_t*)_DAT_180c86950 + 0x160a));
+            if (system_operation_state != NULL) {
+                FUN_180092940(system_operation_state, *(uint8_t*)((uint8_t*)system_operation_state + 0x160a));
             }
         }
         
@@ -788,14 +788,14 @@ resource_cleanup:
         
         // 释放信号量
         do {
-            thread_id = ReleaseSemaphore(_DAT_180c91900, 1);
+            thread_id = ReleaseSemaphore(init_system_ui, 1);
         } while (thread_id == 0);
         
         resource_result = (uint64_t)resource_allocated;
     }
     else {
         // 处理替代资源路径
-        if (*(int*)((uint8_t*)_DAT_180c86908 + 0x460) == 1) {
+        if (*(int*)((uint8_t*)system_module_state + 0x460) == 1) {
             FUN_1806272a0(&global_state_4160_ptr, param_2);
         }
         resource_result = (uint64_t)resource_allocated;
@@ -828,21 +828,21 @@ void FUN_180070680(uint64_t param_1, uint64_t param_2)
     uint64_t cleanup_result;
     
     // 检查信号量状态
-    thread_id = WaitForSingleObject(_DAT_180c91900, SEMAPHORE_TIMEOUT);
+    thread_id = WaitForSingleObject(init_system_ui, SEMAPHORE_TIMEOUT);
     if (thread_id != 0) {
         return;
     }
     
     // 检查系统模式
     is_main_thread = true;
-    system_status = (**(code (**)(void))(**(void***)((uint8_t*)_DAT_180c8ed08 + 0x18)))();
+    system_status = (**(code (**)(void))(**(void***)((uint8_t*)init_system_data_ui + 0x18)))();
     if ((system_status == '\0') && (thread_id = IsDebuggerPresent(), thread_id != 0)) {
         is_main_thread = false;
     }
     
     // 验证线程同步
-    if (_DAT_180c82868 != NULL) {
-        owner_thread_id = *(int*)(**(longlong**)((uint8_t*)_DAT_180c82868 + 8) + THREAD_ID_OFFSET);
+    if (system_context_ptr != NULL) {
+        owner_thread_id = *(int*)(**(longlong**)((uint8_t*)system_context_ptr + 8) + THREAD_ID_OFFSET);
         thread_id = _Thrd_id();
         is_main_thread = thread_id == owner_thread_id;
     }
@@ -861,19 +861,19 @@ void FUN_180070680(uint64_t param_1, uint64_t param_2)
     
     // 处理清理消息
     FUN_180628040(&debug_output, &global_state_3944_ptr, param_2);
-    FUN_180062380(_DAT_180c86928, 5, 0xffffffff00000000, &global_state_3968_ptr);
+    FUN_180062380(system_message_context, 5, 0xffffffff00000000, &global_state_3968_ptr);
     
     // 输出调试信息
     debug_output = &system_buffer_ptr;
     OutputDebugStringA(debug_output);
     
     // 执行系统清理
-    system_context = _DAT_180c86950;
-    if (((is_main_thread) && (_DAT_180c86950 != NULL)) && 
-        (*(char*)((uint8_t*)_DAT_180c86950 + 0x1609) != '\x01')) {
-        FUN_1801723a0(*(uint64_t*)((uint8_t*)_DAT_180c86870 + 8),
-                      *(char*)((uint8_t*)_DAT_180c868d0 + 0x2028) != '\0',
-                      *(uint32_t*)((uint8_t*)_DAT_180c86950 + 0x160c));
+    system_context = system_operation_state;
+    if (((is_main_thread) && (system_operation_state != NULL)) && 
+        (*(char*)((uint8_t*)system_operation_state + 0x1609) != '\x01')) {
+        FUN_1801723a0(*(uint64_t*)((uint8_t*)system_main_module_state + 8),
+                      *(char*)((uint8_t*)init_system_data_ui + 0x2028) != '\0',
+                      *(uint32_t*)((uint8_t*)system_operation_state + 0x160c));
         *(uint8_t*)((uint8_t*)system_context + 0x1609) = 1;
     }
     

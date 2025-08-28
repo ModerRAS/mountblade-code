@@ -171,7 +171,7 @@ longlong FUN_18041f180(longlong param_1,int param_2,int param_3,int param_4,int 
         ((param_4 != 0 && ((int)(0x7fffffff / (longlong)param_4) < param_3)))) ||
        ((iVar6 = param_3 * param_4, iVar6 < 0 || (param_5 < 0)))) ||
       ((param_5 != 0 && ((int)(0x7fffffff / (longlong)param_5) < iVar6)))) ||
-     (lVar4 = FUN_18062b420(_DAT_180c8ed18,(longlong)(iVar6 * param_5),0x22), lVar4 == 0)) {
+     (lVar4 = FUN_18062b420(system_memory_pool_ptr,(longlong)(iVar6 * param_5),0x22), lVar4 == 0)) {
     if (param_1 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900(param_1);
@@ -333,7 +333,7 @@ longlong FUN_18041f1a8(void)
         ((unaff_EBX != 0 && ((int)(0x7fffffff / (longlong)unaff_EBX) < unaff_EBP)))) ||
        ((iVar6 = unaff_EBP * unaff_EBX, iVar6 < 0 || (in_stack_00000070 < 0)))) ||
       ((in_stack_00000070 != 0 && ((int)(0x7fffffff / (longlong)in_stack_00000070) < iVar6)))) ||
-     (lVar4 = FUN_18062b420(_DAT_180c8ed18,(longlong)(iVar6 * in_stack_00000070),0x22), lVar4 == 0))
+     (lVar4 = FUN_18062b420(system_memory_pool_ptr,(longlong)(iVar6 * in_stack_00000070),0x22), lVar4 == 0))
   {
     if (unaff_RSI != 0) {
                     // WARNING: Subroutine does not return

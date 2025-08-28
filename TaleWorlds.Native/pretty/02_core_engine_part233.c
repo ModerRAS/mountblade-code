@@ -332,10 +332,10 @@ void FUN_1802037e0(uint64_t param_1,int param_2,longlong param_3)
   int8_t auStack_80 [72];
   ulonglong uStack_38;
   
-  lVar8 = _DAT_180c8aa48;
+  lVar8 = core_system_data_config;
   uStack_108 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
-  puVar9 = (uint64_t *)(_DAT_180c8aa48 + 0x28);
+  puVar9 = (uint64_t *)(core_system_data_config + 0x28);
   puStack_f8 = &unknown_var_3480_ptr;
   pbStack_f0 = abStack_e0;
   abStack_e0[0] = 0;
@@ -777,7 +777,7 @@ LAB_180203d77:
   }
   uVar10 = 0;
 LAB_180203dc0:
-  lVar7 = FUN_18062b420(_DAT_180c8ed18,0x80,(char)param_1[5]);
+  lVar7 = FUN_18062b420(system_memory_pool_ptr,0x80,(char)param_1[5]);
   FUN_1800b8300(lVar7 + 0x20,param_5);
   *(int32_t *)(lVar7 + 0x78) = 0;
                     // WARNING: Subroutine does not return
@@ -821,7 +821,7 @@ LAB_180203e9b:
   }
   uVar4 = 0;
 LAB_180203ea4:
-  lVar5 = FUN_18062b420(_DAT_180c8ed18,0x80,*(int8_t *)(param_1 + 0x28),param_4,
+  lVar5 = FUN_18062b420(system_memory_pool_ptr,0x80,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
   FUN_1800b8300(lVar5 + 0x20,param_5);
   *(int32_t *)(lVar5 + 0x78) = 0;
@@ -854,17 +854,17 @@ longlong * FUN_180203f10(void)
   plVar9 = (longlong *)0x0;
   lStackX_20 = 0;
   cVar6 = FUN_180068a90(0x180c919f0,&lStackX_20);
-  plVar7 = _DAT_180c91cf8;
+  plVar7 = core_system_config;
   lVar10 = lStackX_20;
   do {
-    _DAT_180c91cf8 = plVar7;
+    core_system_config = plVar7;
     lStackX_20 = lVar10;
     if (cVar6 == '\0') {
-      FUN_1802041f0(_DAT_180c91cf0,plVar7,(longlong)plVar7 - (longlong)_DAT_180c91cf0 >> 4,
+      FUN_1802041f0(core_system_config,plVar7,(longlong)plVar7 - (longlong)core_system_config >> 4,
                     uStackX_10);
-      plVar7 = (longlong *)(ulonglong)_DAT_180c91d10;
-      iVar11 = (int)((longlong)_DAT_180c91cf8 - (longlong)_DAT_180c91cf0 >> 4) + -1;
-      fVar12 = (float)(int)_DAT_180c91d10;
+      plVar7 = (longlong *)(ulonglong)core_system_config;
+      iVar11 = (int)((longlong)core_system_config - (longlong)core_system_config >> 4) + -1;
+      fVar12 = (float)(int)core_system_config;
       if (iVar11 < 0) {
 
 

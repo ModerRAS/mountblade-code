@@ -166,7 +166,7 @@ void FUN_1805a0c50(longlong *param_1)
   iVar18 = *(int *)(*(longlong *)(lVar4 + 0x590) + 0x2450 +
                    (longlong)*(int *)((longlong)param_1 + 0x3c) * 0x48);
   if ((iVar18 == -1) ||
-     ((iVar18 = *(int *)((longlong)iVar18 * 0x68 + 0x58 + _DAT_180c96150), iVar18 != 0x1c &&
+     ((iVar18 = *(int *)((longlong)iVar18 * 0x68 + 0x58 + system_system_memory), iVar18 != 0x1c &&
       (iVar18 != 0x1f)))) {
     bVar11 = false;
   }

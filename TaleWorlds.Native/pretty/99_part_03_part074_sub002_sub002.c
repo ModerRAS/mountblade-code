@@ -337,7 +337,7 @@ void FUN_18023ec80(longlong param_1)
         plVar8 = *(longlong **)(param_1 + 0xc0);
         if (plVar8 == plVar1) {
 LAB_18023f4be:
-          uVar7 = FUN_18062b1e0(_DAT_180c8ed18,0x2210,0x10,0x11);
+          uVar7 = FUN_18062b1e0(system_memory_pool_ptr,0x2210,0x10,0x11);
           plVar8 = (longlong *)FUN_18023fe10(uVar7);
           if (plVar8 != (longlong *)0x0) {
             plStack_210 = plVar8;
@@ -472,7 +472,7 @@ LAB_18023f4ae:
           if (lVar21 == 0) {
             lVar21 = 1;
 LAB_18023f87a:
-            pplVar9 = (longlong **)FUN_18062b420(_DAT_180c8ed18,lVar21 * 8,3);
+            pplVar9 = (longlong **)FUN_18062b420(system_memory_pool_ptr,lVar21 * 8,3);
             pplVar23 = pplVar9;
           }
           else {
@@ -505,7 +505,7 @@ LAB_18023f87a:
           pplStack_238 = pplVar20;
           pplStack_230 = pplVar9;
         }
-        lVar21 = _DAT_180c86930;
+        lVar21 = system_resource_state;
         iVar5 = (**(code **)(*plVar8 + 0x60))(plVar8);
         *(int8_t *)((longlong)plVar8 + 0xb2) = 1;
         FUN_1802abe00((longlong)iVar5 * 0x98 + lVar21 + 8,plVar8);

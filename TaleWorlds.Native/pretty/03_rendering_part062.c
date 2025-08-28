@@ -62,10 +62,10 @@ void FUN_18029e500(longlong param_1,longlong param_2,longlong param_3)
   uint64_t uVar3;
   longlong lVar4;
   
-  lVar4 = _DAT_180c86870;
+  lVar4 = system_main_module_state;
   plVar1 = *(longlong **)(param_1 + 0x8400);
   pcVar2 = *(code **)(*plVar1 + 0x170);
-  *(int32_t *)(param_3 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)(param_3 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
   uVar3 = *(uint64_t *)(param_3 + 0x10);
   *(int32_t *)(param_2 + 0x16c) = *(int32_t *)(lVar4 + 0x224);
   (*pcVar2)(plVar1,*(uint64_t *)(param_2 + 0x10),0,0,0,0,uVar3,0,0);
@@ -97,7 +97,7 @@ void FUN_18029e570(longlong param_1,longlong param_2,longlong param_3,int param_
   int32_t uStack_14;
   ulonglong uStack_10;
   
-  lVar3 = _DAT_180c86870;
+  lVar3 = system_main_module_state;
   uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
   plVar1 = *(longlong **)(param_1 + 0x8400);
   aiStack_28[3] = param_6 + param_4;
@@ -107,7 +107,7 @@ void FUN_18029e570(longlong param_1,longlong param_2,longlong param_3,int param_
   uStack_18 = 1;
   uStack_14 = 1;
   pcVar2 = *(code **)(*plVar1 + 0x170);
-  *(int32_t *)(param_3 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)(param_3 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
   *(int32_t *)(param_2 + 0x16c) = *(int32_t *)(lVar3 + 0x224);
   piStack_38 = aiStack_28;
   uStack_40 = 0;
@@ -335,7 +335,7 @@ void FUN_18029ea30(longlong param_1,longlong param_2,int param_3,uint64_t param_
   uStack_18 = 1;
   uStack_14 = 1;
   pcVar2 = *(code **)(*plVar1 + 0x180);
-  *(int32_t *)(param_2 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)(param_2 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
   uStack_48 = param_4;
   aiStack_28[0] = param_3;
   (*pcVar2)(plVar1,*(uint64_t *)(param_2 + 0x10),0,aiStack_28);
@@ -359,7 +359,7 @@ void FUN_18029ead0(longlong param_1,longlong param_2,uint64_t param_3,int param_
   
   plVar1 = *(longlong **)(param_1 + 0x8400);
   pcVar2 = *(code **)(*plVar1 + 0x70);
-  *(int32_t *)(param_2 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)(param_2 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
   (*pcVar2)(plVar1,*(uint64_t *)(param_2 + 0x10),0,4,0,auStack_18);
                     // WARNING: Subroutine does not return
   memcpy(auStack_18[0],param_3,(longlong)param_4);
@@ -489,7 +489,7 @@ void FUN_18029eb90(longlong param_1,longlong param_2,int param_3,int param_4,uin
   else {
     iVar5 = func_0x000180225d90(*(int32_t *)(param_2 + 0x324));
     iVar5 = iVar5 * uVar3 * uVar9;
-    uVar7 = FUN_18062b1e0(_DAT_180c8ed18,iVar5,0x10,3);
+    uVar7 = FUN_18062b1e0(system_memory_pool_ptr,iVar5,0x10,3);
     if (param_6 != (int *)0x0) {
       *param_6 = iVar5;
     }
@@ -884,8 +884,8 @@ void FUN_18029f830(longlong param_1,uint param_2,uint param_3)
   
   uVar13 = (ulonglong)param_2;
   uVar15 = (ulonglong)param_3;
-  lVar14 = *(longlong *)(_DAT_180c86938 + 0x1c90);
-  *(int32_t *)(lVar14 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+  lVar14 = *(longlong *)(system_message_buffer + 0x1c90);
+  *(int32_t *)(lVar14 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
   iVar11 = (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x70))
                      (*(longlong **)(param_1 + 0x8400),*(uint64_t *)(lVar14 + 0x10),0,4,0,
                       apuStack_18);
@@ -893,7 +893,7 @@ void FUN_18029f830(longlong param_1,uint param_2,uint param_3)
     FUN_180220810(iVar11,&unknown_var_1768_ptr);
   }
   uVar6 = param_2 >> 0xe;
-  lVar14 = (longlong)*(int *)(_DAT_180c86890 + 0x1538) * 0x488 + _DAT_180c86890 + 0x1a18;
+  lVar14 = (longlong)*(int *)(system_parameter_buffer + 0x1538) * 0x488 + system_parameter_buffer + 0x1a18;
   if (uVar6 != param_2 + param_3 >> 0xe) {
     if (param_3 != 0) {
       do {
@@ -926,9 +926,9 @@ void FUN_18029f830(longlong param_1,uint param_2,uint param_3)
       } while (uVar15 != 0);
     }
     plVar4 = *(longlong **)(param_1 + 0x8400);
-    lVar14 = *(longlong *)(_DAT_180c86938 + 0x1c90);
+    lVar14 = *(longlong *)(system_message_buffer + 0x1c90);
     UNRECOVERED_JUMPTABLE = *(code **)(*plVar4 + 0x78);
-    *(int32_t *)(lVar14 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(lVar14 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
                     // WARNING: Could not recover jumptable at 0x00018029f9a3. Too many branches
                     // WARNING: Treating indirect jump as call
     (*UNRECOVERED_JUMPTABLE)(plVar4,*(uint64_t *)(lVar14 + 0x10),0,UNRECOVERED_JUMPTABLE);
@@ -954,8 +954,8 @@ void FUN_18029f9b0(longlong param_1,uint64_t param_2,int param_3)
   int iVar2;
   uint64_t auStack_18 [2];
   
-  lVar1 = *(longlong *)(_DAT_180c86938 + 0x1c90);
-  *(int32_t *)(lVar1 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+  lVar1 = *(longlong *)(system_message_buffer + 0x1c90);
+  *(int32_t *)(lVar1 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
   iVar2 = (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x70))
                     (*(longlong **)(param_1 + 0x8400),*(uint64_t *)(lVar1 + 0x10),0,4,0,auStack_18
                     );

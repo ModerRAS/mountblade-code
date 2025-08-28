@@ -586,8 +586,8 @@ void FUN_18083b050(longlong param_1,uint64_t param_2,int param_3,uint64_t param_
   int8_t auVar13 [32];
   int8_t auVar14 [32];
   
-  auVar7 = _DAT_180981460;
-  auVar6 = _DAT_180981440;
+  auVar7 = ui_system_memory_config;
+  auVar6 = ui_system_memory_config;
   lVar9 = (longlong)param_3 * 4 - (longlong)param_5;
   pauVar8 = (int8_t (*) [32])(*param_5 + ((longlong)param_3 >> 1) * 4);
   do {
@@ -738,7 +738,7 @@ void FUN_18083b1f0(uint64_t param_1,int8_t (*param_2) [32],int param_3,int param
   if (0 < param_3) {
     uVar18 = 1;
     do {
-      auVar13 = _DAT_1809815e0;
+      auVar13 = ui_system_memory_config;
       if (0 < (int)uVar18) {
         iVar21 = 4 << (uStackX_8 & 0x1f);
         lVar16 = (longlong)param_4 >> ((longlong)(int)uStackX_8 & 0x3fU);

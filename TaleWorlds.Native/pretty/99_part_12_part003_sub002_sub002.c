@@ -538,7 +538,7 @@ code_r0x0001807c8982:
           if ((plStackX_8 == (longlong *)0x180be7ac0) &&
              (iVar10 = FUN_18080d590(param_1,plVar3,puVar19,&plStackX_8), iVar10 != 0)) {
             plStackX_8 = (longlong *)0x180be7ac0;
-            _DAT_180be7ae8 = &system_data_7a80;
+            system_system_buffer_ui = &system_data_7a80;
           }
           if (*(char *)(lVar20 + 1) != '\0') {
             *(uint *)((longlong)plStackX_8 + 0x44) = (uint)(byte)puVar19[0xc];
@@ -1112,7 +1112,7 @@ code_r0x0001807c8982:
             else {
               lVar12 = 0x180be7ac0;
               *(uint64_t *)(unaff_RBP + 0x20) = 0x180be7ac0;
-              _DAT_180be7ae8 = &system_data_7a80;
+              system_system_buffer_ui = &system_data_7a80;
             }
           }
           if (*(char *)(unaff_R15 + 1) != '\0') {
@@ -1324,7 +1324,7 @@ uint64_t FUN_1807c90a0(longlong param_1,char param_2)
         bVar13 = bVar6 & 0xf;
         bVar14 = bVar6 >> 4;
         if (((longlong *)lStackX_20 == plVar1) && (*(longlong **)(lVar3 + 0x10) == plVar1)) {
-          _DAT_180be7ae8 = &system_data_7a80;
+          system_system_buffer_ui = &system_data_7a80;
           lStackX_20 = 0x180be7ac0;
         }
         if (pcVar11[1] != '\0') {
@@ -1349,7 +1349,7 @@ uint64_t FUN_1807c90a0(longlong param_1,char param_2)
           if ((lStackX_20 == 0x180be7ac0) &&
              (iVar7 = FUN_18080d590(param_1,lVar3,puVar12,&lStackX_20), iVar7 != 0)) {
             lStackX_20 = 0x180be7ac0;
-            _DAT_180be7ae8 = &system_data_7a80;
+            system_system_buffer_ui = &system_data_7a80;
           }
           bVar5 = *pcVar11 - 1;
           *(byte *)(lVar3 + 0xd1) = bVar5;
@@ -1730,7 +1730,7 @@ uint64_t FUN_1807c9148(uint64_t param_1,uint64_t param_2,ulonglong param_3)
     bVar17 = bVar8 & 0xf;
     bVar18 = bVar8 >> 4;
     if ((plVar14 == plVar1) && (*(longlong **)(lVar6 + 0x10) == plVar1)) {
-      _DAT_180be7ae8 = &system_data_7a80;
+      system_system_buffer_ui = &system_data_7a80;
       plVar14 = (longlong *)0x180be7ac0;
     }
     cVar4 = unaff_RSI[1];
@@ -1765,7 +1765,7 @@ uint64_t FUN_1807c9148(uint64_t param_1,uint64_t param_2,ulonglong param_3)
         in_R11B = *(char *)(unaff_RBP + 0x67);
         if (iVar9 != 0) {
           *(uint64_t *)(unaff_RBP + 0x7f) = 0x180be7ac0;
-          _DAT_180be7ae8 = &system_data_7a80;
+          system_system_buffer_ui = &system_data_7a80;
         }
       }
       bVar7 = *unaff_RSI - 1;

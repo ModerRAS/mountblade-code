@@ -30,14 +30,14 @@ void FUN_1807a0430(longlong param_1,int param_2)
   int iStackX_18;
   longlong lStackX_20;
   
-  _DAT_180c19954 = 0;
+  system_system_resource = 0;
   lVar9 = (longlong)(param_2 >> 2);
   iVar18 = 2;
   iVar13 = param_2 >> 1;
-  _DAT_180c1b954 = 1;
-  _DAT_180c19950 = 0x3f800000;
+  system_system_resource = 1;
+  system_system_resource_config = 0x3f800000;
   uVar3 = *(int32_t *)(*(longlong *)(param_1 + 0x14038) + 0x4000);
-  _DAT_180c1b950 = iVar13;
+  system_system_resource = iVar13;
   *(int32_t *)(&system_data_9950 + lVar9 * 4) = uVar3;
   *(int32_t *)(&system_data_9954 + lVar9 * 4) = uVar3;
   if (2 < lVar9) {
@@ -100,7 +100,7 @@ void FUN_1807a0430(longlong param_1,int param_2)
       puVar17 = puVar17 + -2;
     } while (lVar15 < lVar9);
   }
-  _DAT_180c1b958 = 0;
+  system_system_resource = 0;
   iStackX_18 = 1;
   iVar18 = 1;
   iVar12 = iVar18;
@@ -442,7 +442,7 @@ void FUN_1807a04db(uint64_t param_1,uint64_t param_2,longlong param_3,uint param
     puVar17[1] = uVar6;
     puVar17 = puVar17 + -2;
   } while (param_3 < unaff_RBX);
-  _DAT_180c1b958 = 0;
+  system_system_resource = 0;
   iStack0000000000000050 = 1;
   iVar19 = 1;
   iVar12 = iVar19;

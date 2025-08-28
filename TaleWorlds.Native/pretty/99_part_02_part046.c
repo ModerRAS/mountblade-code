@@ -45,7 +45,7 @@ void FUN_1801b84e0(uint *param_1,longlong param_2)
         if (lVar12 == 0) {
           lVar12 = 1;
 LAB_1801b8583:
-          puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar12 << 5,3);
+          puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar12 << 5,3);
         }
         else {
           lVar12 = lVar12 * 2;

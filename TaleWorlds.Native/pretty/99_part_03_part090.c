@@ -71,7 +71,7 @@ longlong FUN_18024d1b0(longlong param_1,longlong param_2,uint64_t param_3,uint64
     lVar4 = 0;
   }
   else {
-    lVar4 = FUN_18062b420(_DAT_180c8ed18,lVar5 * 0x98,uVar2 & 0xff,param_4,uVar8);
+    lVar4 = FUN_18062b420(system_memory_pool_ptr,lVar5 * 0x98,uVar2 & 0xff,param_4,uVar8);
   }
   *(longlong *)(param_1 + 0x20) = lVar4;
   *(longlong *)(param_1 + 0x28) = lVar4;
@@ -124,7 +124,7 @@ longlong FUN_18024d300(longlong param_1,longlong param_2)
     lVar3 = 0;
   }
   else {
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar4 << 6,uVar2 & 0xff);
+    lVar3 = FUN_18062b420(system_memory_pool_ptr,lVar4 << 6,uVar2 & 0xff);
   }
   *plVar1 = lVar3;
   *(longlong *)(param_1 + 0x28) = lVar3;
@@ -214,7 +214,7 @@ void FUN_18024d490(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     if (lVar9 == 0) goto LAB_18024d500;
   }
   puVar4 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar9 << 6,(char)param_1[3],param_4,0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr,lVar9 << 6,(char)param_1[3],param_4,0xfffffffffffffffe);
   puVar11 = (int32_t *)param_1[1];
   puVar5 = (int32_t *)*param_1;
 LAB_18024d500:
@@ -314,7 +314,7 @@ void FUN_18024d670(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     if (lVar9 == 0) goto LAB_18024d6e0;
   }
   puVar4 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar9 << 6,(char)param_1[3],param_4,0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr,lVar9 << 6,(char)param_1[3],param_4,0xfffffffffffffffe);
   puVar11 = (int32_t *)param_1[1];
   puVar5 = (int32_t *)*param_1;
 LAB_18024d6e0:
@@ -410,7 +410,7 @@ void FUN_18024d850(uint64_t *param_1,longlong param_2)
     if (lVar5 == 0) goto LAB_18024d8da;
   }
   puVar2 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar5 * 0x30,*(int8_t *)(param_1 + 3),puVar4,
+           FUN_18062b420(system_memory_pool_ptr,lVar5 * 0x30,*(int8_t *)(param_1 + 3),puVar4,
                          0xfffffffffffffffe);
   puVar7 = (uint64_t *)param_1[1];
   puVar4 = (uint64_t *)*param_1;
@@ -515,7 +515,7 @@ longlong * FUN_18024da80(longlong *param_1,longlong *param_2,longlong *param_3,l
         lVar5 = 0;
       }
       else {
-        lVar5 = FUN_18062b420(_DAT_180c8ed18,lVar6 * 0x98,uVar3 & 0xff);
+        lVar5 = FUN_18062b420(system_memory_pool_ptr,lVar6 * 0x98,uVar3 & 0xff);
       }
       *(longlong *)(param_4 + 0x20) = lVar5;
       *(longlong *)(param_4 + 0x28) = lVar5;

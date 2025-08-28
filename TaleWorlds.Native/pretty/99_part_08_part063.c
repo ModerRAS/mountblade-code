@@ -78,7 +78,7 @@ void FUN_1805b41ef(longlong param_1,uint64_t param_2,int32_t *param_3,uint64_t p
     in_EAX = *(int *)(param_1 + 0x18);
   }
   if ((in_EAX != param_3[5]) || (*(short *)(param_1 + 0x14) != *(short *)(param_3 + 4))) {
-    FUN_180062340(_DAT_180c86928,2);
+    FUN_180062340(system_message_context,2);
     uVar2 = unaff_RBX[1];
     uVar3 = unaff_RBX[2];
     uVar4 = unaff_RBX[3];
@@ -88,12 +88,12 @@ void FUN_1805b41ef(longlong param_1,uint64_t param_2,int32_t *param_3,uint64_t p
     *(int32_t *)(unaff_R14 + 0x10) = uVar4;
     *(uint64_t *)(unaff_R14 + 0x14) = *(uint64_t *)(unaff_RBX + 4);
   }
-  if (((*(longlong *)(unaff_R14 + 0x58f8) == 0) || (_DAT_180c96070 == 0)) ||
+  if (((*(longlong *)(unaff_R14 + 0x58f8) == 0) || (system_system_config == 0)) ||
      (iVar13 = *(int *)(*(longlong *)(unaff_R14 + 0x58f8) + 0x18), iVar13 < 0)) {
     param_11 = 0;
   }
   else {
-    param_11 = _DAT_180c96070 + 0x30a0 + (longlong)iVar13 * 0xa60;
+    param_11 = system_system_config + 0x30a0 + (longlong)iVar13 * 0xa60;
   }
   param_10 = 0;
   cVar8 = FUN_180646b50();
@@ -123,11 +123,11 @@ LAB_1805b4350:
       cVar8 = FUN_18055f260(lVar11);
       if (cVar8 == '\0') goto LAB_1805b4442;
       if (auStackX_20[0] != 0) {
-        _DAT_180c95dc8 = lVar11;
-        cVar8 = (**(code **)(_DAT_180c8ece0 + 0x140))
+        system_system_config = lVar11;
+        cVar8 = (**(code **)(system_system_data_config + 0x140))
                           (*(int32_t *)(*(longlong *)(unaff_R14 + 0x58f8) + 0x4c));
         bVar14 = cVar8 != '\0';
-        _DAT_180c95dc8 = 0;
+        system_system_config = 0;
 LAB_1805b441a:
         if (!bVar14) goto LAB_1805b4445;
         goto LAB_1805b4350;

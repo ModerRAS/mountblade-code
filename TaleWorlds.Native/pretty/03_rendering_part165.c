@@ -58,7 +58,7 @@ uint64_t * FUN_18036e820(uint64_t param_1,uint64_t param_2)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x88,8,3,0xfffffffffffffffe);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x88,8,3,0xfffffffffffffffe);
   FUN_1803456e0(puVar1,param_2,param_1);
   *puVar1 = &unknown_var_2888_ptr;
   puVar1[0xe] = 0;
@@ -98,7 +98,7 @@ void FUN_18036e890(longlong param_1)
   uStack_58 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_98;
   uStack_78 = 0;
-  puVar4 = (uint64_t *)FUN_1800be9a0(_DAT_180c86898,&plStack_60,0);
+  puVar4 = (uint64_t *)FUN_1800be9a0(render_system_data_config,&plStack_60,0);
   uStack_78 = 1;
   puVar4 = (uint64_t *)FUN_18022cb40(*puVar4,&plStack_68);
   uVar2 = *puVar4;
@@ -178,7 +178,7 @@ void FUN_18036eaa0(longlong param_1,int32_t param_2,int32_t param_3,int32_t para
   longlong *plStackX_8;
   
   FUN_18036e730();
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x300,0x10,3);
+  uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,3);
   plVar4 = (longlong *)FUN_180075030(uVar3,1);
   if (plVar4 != (longlong *)0x0) {
     plStackX_8 = plVar4;
@@ -196,7 +196,7 @@ void FUN_18036eaa0(longlong param_1,int32_t param_2,int32_t param_3,int32_t para
     *puVar1 = *puVar1 | 8;
     FUN_180076910(*(uint64_t *)(param_1 + 0x78),param_1 + 0x80);
     FUN_18036ecf0(param_1,param_2,param_3,param_4,param_5,param_6);
-    uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,3);
+    uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,3);
     plVar4 = (longlong *)FUN_180275090(uVar3);
     if (plVar4 != (longlong *)0x0) {
       plStackX_8 = plVar4;
@@ -548,7 +548,7 @@ void FUN_180370550(uint64_t *param_1)
   uStack_1c0 = 0;
   puStack_1d0 = (int32_t *)0x0;
   uStack_1c8 = 0;
-  puVar4 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x1b,0x13);
+  puVar4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x1b,0x13);
   *(int8_t *)puVar4 = 0;
   puStack_1d0 = puVar4;
   uVar3 = FUN_18064e990(puVar4);
@@ -637,11 +637,11 @@ void FUN_1803719d0(longlong param_1)
   char cVar1;
   int8_t uVar2;
   
-  cVar1 = *(char *)(_DAT_180c86870 + 0x1ed);
+  cVar1 = *(char *)(system_main_module_state + 0x1ed);
   while ((cVar1 != '\0' && (**(char **)(param_1 + 0xc0) == '\0'))) {
     uVar2 = FUN_18017ef40();
     **(int8_t **)(param_1 + 0xc0) = uVar2;
-    cVar1 = *(char *)(_DAT_180c86870 + 0x1ed);
+    cVar1 = *(char *)(system_main_module_state + 0x1ed);
   }
   return;
 }

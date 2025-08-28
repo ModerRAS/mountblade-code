@@ -108,9 +108,9 @@ FUN_1803d06e0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   *(uint64_t *)(puVar3 + 0x470a) = 0x3f80000000000000;
   puVar3[0x268b] = 0xffffffff;
   puVar3[1] = 0x100;
-  puVar3[0x473c] = _DAT_180bf65ec;
+  puVar3[0x473c] = system_system_control_config;
   *(int8_t *)((longlong)puVar3 + 0x11c37) = 0;
-  FUN_1801be080(puVar3 + 2,_DAT_180c86890 + 0x13c8,0x3f800000,param_4,uVar4);
+  FUN_1801be080(puVar3 + 2,system_parameter_buffer + 0x13c8,0x3f800000,param_4,uVar4);
   *(int8_t *)(puVar3 + 0x25c4) = 3;
   plVar2 = *(longlong **)(puVar3 + 0x25a4);
   *(uint64_t *)(puVar3 + 0x25a4) = 0;

@@ -290,7 +290,7 @@ void FUN_180471ab0(longlong param_1,float *param_2,longlong param_3)
       uStack_604 = puVar4[1];
       uStack_600 = puVar4[2];
       uStack_5fc = puVar4[3];
-      lStack_6c8 = _DAT_180c8a990 + 0x48;
+      lStack_6c8 = render_system_data_memory + 0x48;
       uStack_6d0 = 0x3f800000;
       uStack_6d8 = 0x3dcccccd;
       uStack_6e0 = 0x3dcccccd;
@@ -398,9 +398,9 @@ uint64_t * FUN_1804721d0(uint64_t *param_1,char param_2)
   }
   *param_1 = 0;
   param_1[1] = 0;
-  lVar1 = _DAT_180c92488;
+  lVar1 = render_system_memory;
   if (param_2 != '\0') {
-    lVar1 = _DAT_180c92498;
+    lVar1 = render_system_memory;
   }
   if (lVar1 != 0) {
     LOCK();
@@ -408,9 +408,9 @@ uint64_t * FUN_1804721d0(uint64_t *param_1,char param_2)
     UNLOCK();
   }
   *param_1 = *puVar2;
-  lVar1 = _DAT_180c92488;
+  lVar1 = render_system_memory;
   if (param_2 != '\0') {
-    lVar1 = _DAT_180c92498;
+    lVar1 = render_system_memory;
   }
   param_1[1] = lVar1;
   return param_1;

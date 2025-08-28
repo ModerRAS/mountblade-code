@@ -656,8 +656,8 @@ void FUN_18040e790(longlong *param_1,float param_2,int32_t *param_3)
     } while (iVar14 < (int)(uint)uVar3);
   }
   uVar16 = uVar3 + 1;
-  lVar9 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)uVar16 * 4,4);
-  lVar10 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)uVar16 << 4,4);
+  lVar9 = FUN_18062b420(system_memory_pool_ptr,(ulonglong)uVar16 * 4,4);
+  lVar10 = FUN_18062b420(system_memory_pool_ptr,(ulonglong)uVar16 << 4,4);
   lVar13 = (longlong)iVar14;
   if (0 < iVar14) {
     lVar11 = 0;
@@ -753,8 +753,8 @@ void FUN_18040e930(longlong *param_1,float param_2,int32_t *param_3)
     } while (iVar14 < (int)(uint)uVar3);
   }
   uVar16 = uVar3 + 1;
-  lVar9 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)uVar16 * 4,4);
-  lVar10 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)uVar16 << 4,4);
+  lVar9 = FUN_18062b420(system_memory_pool_ptr,(ulonglong)uVar16 * 4,4);
+  lVar10 = FUN_18062b420(system_memory_pool_ptr,(ulonglong)uVar16 << 4,4);
   lVar13 = (longlong)iVar14;
   if (0 < iVar14) {
     lVar11 = 0;

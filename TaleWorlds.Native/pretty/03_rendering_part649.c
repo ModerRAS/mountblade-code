@@ -914,12 +914,12 @@ void FUN_180636dc0(uint64_t param_1,float *param_2,float param_3,int32_t param_4
   float fStack_30;
   int32_t uStack_2c;
   
-  uVar1 = _DAT_180c8ed68;
+  uVar1 = render_system_data_memory;
   fStack_38 = param_3 * *param_2;
   fStack_34 = param_3 * param_2[1];
   uStack_2c = 0x7f7fffff;
   fStack_30 = param_3 * param_2[2];
-  FUN_180633110(_DAT_180c8ed68,param_2 + 0xc,&fStack_38,0xffff4000,0,param_4);
+  FUN_180633110(render_system_data_memory,param_2 + 0xc,&fStack_38,0xffff4000,0,param_4);
   fStack_38 = param_3 * param_2[4];
   uStack_2c = 0x7f7fffff;
   fStack_34 = param_3 * param_2[5];

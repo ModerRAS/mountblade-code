@@ -753,7 +753,7 @@ longlong FUN_18053ed70(longlong *param_1,longlong *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -788,8 +788,8 @@ void FUN_18053ee50(ulonglong *param_1)
   
   FUN_180626f80(&unknown_var_8896_ptr);
   for (puVar1 = *(ulonglong **)
-                 (*(longlong *)(_DAT_180c95f30 + 8) +
-                 (*param_1 % (ulonglong)*(uint *)(_DAT_180c95f30 + 0x10)) * 8);
+                 (*(longlong *)(render_system_config + 8) +
+                 (*param_1 % (ulonglong)*(uint *)(render_system_config + 0x10)) * 8);
       puVar1 != (ulonglong *)0x0; puVar1 = (ulonglong *)puVar1[7]) {
     if (*param_1 == *puVar1) goto LAB_18053eeb0;
   }
@@ -797,7 +797,7 @@ void FUN_18053ee50(ulonglong *param_1)
 LAB_18053eeb0:
   if (puVar1 == (ulonglong *)0x0) {
     *(int8_t *)
-     (*(longlong *)(*(longlong *)(_DAT_180c95f30 + 8) + *(longlong *)(_DAT_180c95f30 + 0x10) * 8) +
+     (*(longlong *)(*(longlong *)(render_system_config + 8) + *(longlong *)(render_system_config + 0x10) * 8) +
      0x34) = 1;
     return;
   }
@@ -818,8 +818,8 @@ void FUN_18053ef20(uint64_t *param_1,uint64_t param_2,uint64_t param_3,ulonglong
   ulonglong *puVar1;
   
   for (puVar1 = *(ulonglong **)
-                 (*(longlong *)(_DAT_180c95f30 + 8) +
-                 (*param_4 % (ulonglong)*(uint *)(_DAT_180c95f30 + 0x10)) * 8);
+                 (*(longlong *)(render_system_config + 8) +
+                 (*param_4 % (ulonglong)*(uint *)(render_system_config + 0x10)) * 8);
       puVar1 != (ulonglong *)0x0; puVar1 = (ulonglong *)puVar1[7]) {
     if (*param_4 == *puVar1) goto LAB_18053ef74;
   }
@@ -827,7 +827,7 @@ void FUN_18053ef20(uint64_t *param_1,uint64_t param_2,uint64_t param_3,ulonglong
 LAB_18053ef74:
   if (puVar1 == (ulonglong *)0x0) {
     puVar1 = *(ulonglong **)
-              (*(longlong *)(_DAT_180c95f30 + 8) + *(longlong *)(_DAT_180c95f30 + 0x10) * 8);
+              (*(longlong *)(render_system_config + 8) + *(longlong *)(render_system_config + 0x10) * 8);
   }
   *(int8_t *)((longlong)puVar1 + 0x22) = 4;
   FUN_180639bf0(puVar1 + 1,param_2);

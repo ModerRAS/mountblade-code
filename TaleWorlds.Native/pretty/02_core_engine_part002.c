@@ -511,7 +511,7 @@ void FUN_180030870(void)
   auStack_88[0] = 0;
   uStack_90 = 8;
   strcpy_s(auStack_88,0x80,&unknown_var_2216_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c919e0 = FUN_180623800(&puStack_a0);
+  core_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -525,8 +525,8 @@ int FUN_180030900(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _DAT_180bf6750 = &unknown_var_3480_ptr;
-  _DAT_180bf6758 = &system_data_6768;
+  core_system_control_ui = &unknown_var_3480_ptr;
+  core_system_control_ui = &system_data_6768;
 
 
 // 函数: void FUN_180031a10(void)
@@ -1107,7 +1107,7 @@ void FUN_180032510(void)
   auStack_88[0] = 0;
   uStack_90 = 0xb;
   strcpy_s(auStack_88,0x80,&unknown_var_7240_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d54 = FUN_180623800(&puStack_a0);
+  core_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 

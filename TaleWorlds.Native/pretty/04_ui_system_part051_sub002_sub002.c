@@ -182,7 +182,7 @@ void FUN_180691db0(int8_t (*param_1) [16],ulonglong *param_2,int param_3)
   int8_t auVar163 [16];
   int8_t auVar164 [16];
   
-  auVar39 = _DAT_180a3f880;
+  auVar39 = ui_system_string;
   auVar31 = param_1[1];
   auVar89 = param_1[3];
   auVar114 = param_1[2];
@@ -307,8 +307,8 @@ void FUN_180691db0(int8_t (*param_1) [16],ulonglong *param_2,int param_3)
     auVar124._10_2_ = auVar92._10_2_;
     auVar124._12_2_ = auVar118._6_2_;
     auVar124._14_2_ = auVar118._10_2_;
-    auVar98 = pmaddwd(auVar145,_DAT_180947430);
-    auVar150 = pmaddwd(auVar145,_DAT_1809473b0);
+    auVar98 = pmaddwd(auVar145,ui_system_string);
+    auVar150 = pmaddwd(auVar145,ui_system_string);
     auVar108._2_2_ = auVar160._14_2_;
     auVar108._0_2_ = auVar160._2_2_;
     auVar108._4_2_ = auVar165._2_2_;
@@ -333,10 +333,10 @@ void FUN_180691db0(int8_t (*param_1) [16],ulonglong *param_2,int param_3)
     auVar136._4_12_ = auVar137._4_12_;
     auVar136._2_2_ = auVar116._14_2_;
     auVar136._0_2_ = auVar116._2_2_;
-    auVar29 = pmaddwd(auVar108,_DAT_1809480d0);
-    auVar109 = pmaddwd(auVar108,_DAT_1809480a0);
-    auVar127 = pmaddwd(auVar136,_DAT_1809480d0);
-    auVar141 = pmaddwd(auVar136,_DAT_1809480a0);
+    auVar29 = pmaddwd(auVar108,ui_system_string);
+    auVar109 = pmaddwd(auVar108,ui_system_string);
+    auVar127 = pmaddwd(auVar136,ui_system_string);
+    auVar141 = pmaddwd(auVar136,ui_system_string);
     auVar99._0_4_ = auVar98._0_4_ + 0x2000 >> 0xe;
     auVar99._4_4_ = auVar98._4_4_ + 0x2000 >> 0xe;
     auVar99._8_4_ = auVar98._8_4_ + 0x2000 >> 0xe;
@@ -354,8 +354,8 @@ void FUN_180691db0(int8_t (*param_1) [16],ulonglong *param_2,int param_3)
     auVar128._8_4_ = auVar127._8_4_ + 0x2000 >> 0xe;
     auVar128._12_4_ = auVar127._12_4_ + 0x2000 >> 0xe;
     auVar109 = packssdw(auVar128,auVar30);
-    auVar29 = pmaddwd(auVar124,_DAT_180947430);
-    auVar98 = pmaddwd(auVar124,_DAT_1809473b0);
+    auVar29 = pmaddwd(auVar124,ui_system_string);
+    auVar98 = pmaddwd(auVar124,ui_system_string);
     auVar142._0_4_ = auVar141._0_4_ + 0x2000 >> 0xe;
     auVar142._4_4_ = auVar141._4_4_ + 0x2000 >> 0xe;
     auVar142._8_4_ = auVar141._8_4_ + 0x2000 >> 0xe;
@@ -419,14 +419,14 @@ void FUN_180691db0(int8_t (*param_1) [16],ulonglong *param_2,int param_3)
     auVar143._10_2_ = auVar92._12_2_;
     auVar143._12_2_ = auVar118._4_2_;
     auVar143._14_2_ = auVar118._12_2_;
-    auVar89 = pmaddwd(auVar111,_DAT_1809480e0);
-    auVar114 = pmaddwd(auVar111,_DAT_1809480b0);
-    auVar165 = pmaddwd(auVar162,_DAT_180947510);
-    auVar118 = pmaddwd(auVar117,_DAT_180947510);
+    auVar89 = pmaddwd(auVar111,ui_system_string);
+    auVar114 = pmaddwd(auVar111,ui_system_string);
+    auVar165 = pmaddwd(auVar162,ui_system_string);
+    auVar118 = pmaddwd(auVar117,ui_system_string);
     auVar92 = psubsw(auVar127,auVar29);
-    auVar31 = pmaddwd(auVar117,_DAT_1809473f0);
+    auVar31 = pmaddwd(auVar117,ui_system_string);
     auVar98 = paddsw(auVar29,auVar127);
-    auVar160 = pmaddwd(auVar162,_DAT_1809473f0);
+    auVar160 = pmaddwd(auVar162,ui_system_string);
     auVar116._0_4_ = auVar89._0_4_ + 0x2000 >> 0xe;
     auVar116._4_4_ = auVar89._4_4_ + 0x2000 >> 0xe;
     auVar116._8_4_ = auVar89._8_4_ + 0x2000 >> 0xe;
@@ -453,8 +453,8 @@ void FUN_180691db0(int8_t (*param_1) [16],ulonglong *param_2,int param_3)
     auVar161._8_4_ = auVar160._8_4_ + 0x2000 >> 0xe;
     auVar161._12_4_ = auVar160._12_4_ + 0x2000 >> 0xe;
     auVar160 = packssdw(auVar161,auVar89);
-    auVar31 = pmaddwd(auVar143,_DAT_1809480e0);
-    auVar89 = pmaddwd(auVar143,_DAT_1809480b0);
+    auVar31 = pmaddwd(auVar143,ui_system_string);
+    auVar89 = pmaddwd(auVar143,ui_system_string);
     auVar114._0_4_ = auVar31._0_4_ + 0x2000 >> 0xe;
     auVar114._4_4_ = auVar31._4_4_ + 0x2000 >> 0xe;
     auVar114._8_4_ = auVar31._8_4_ + 0x2000 >> 0xe;
@@ -491,12 +491,12 @@ void FUN_180691db0(int8_t (*param_1) [16],ulonglong *param_2,int param_3)
     auVar101._0_2_ = auVar92._0_2_;
     auVar101._2_2_ = auVar89._0_2_;
     auVar127 = psubsw(auVar29,auVar31);
-    auVar89 = pmaddwd(auVar101,_DAT_180947510);
-    auVar31 = pmaddwd(auVar118,_DAT_180947510);
+    auVar89 = pmaddwd(auVar101,ui_system_string);
+    auVar31 = pmaddwd(auVar118,ui_system_string);
     auVar29 = paddsw(auVar116,auVar160);
-    auVar114 = pmaddwd(auVar118,_DAT_1809473f0);
+    auVar114 = pmaddwd(auVar118,ui_system_string);
     auVar109 = psubsw(auVar160,auVar116);
-    auVar165 = pmaddwd(auVar101,_DAT_1809473f0);
+    auVar165 = pmaddwd(auVar101,ui_system_string);
     auVar116 = paddsw(auVar29,auVar98);
     auVar160._0_4_ = auVar89._0_4_ + 0x2000 >> 0xe;
     auVar160._4_4_ = auVar89._4_4_ + 0x2000 >> 0xe;
@@ -526,8 +526,8 @@ void FUN_180691db0(int8_t (*param_1) [16],ulonglong *param_2,int param_3)
     lVar27 = lVar27 + -1;
   } while (lVar27 != 0);
   uVar1 = *param_2;
-  auVar116 = paddsw(auVar116,_DAT_180a3f880);
-  auVar114 = paddsw(auVar114,_DAT_180a3f880);
+  auVar116 = paddsw(auVar116,ui_system_string);
+  auVar114 = paddsw(auVar114,ui_system_string);
   auVar38._8_6_ = 0;
   auVar38._0_8_ = uVar1;
   auVar38[0xe] = (char)(uVar1 >> 0x38);
@@ -562,10 +562,10 @@ void FUN_180691db0(int8_t (*param_1) [16],ulonglong *param_2,int param_3)
   auVar7._2_12_ = auVar8;
   auVar7[1] = uVar153;
   auVar7[0] = (char)(uVar1 >> 8);
-  auVar31 = paddsw(auVar31,_DAT_180a3f880);
-  auVar160 = paddsw(auVar160,_DAT_180a3f880);
+  auVar31 = paddsw(auVar31,ui_system_string);
+  auVar160 = paddsw(auVar160,ui_system_string);
   auVar116 = psraw(auVar116,5);
-  auVar165 = paddsw(auVar165,_DAT_180a3f880);
+  auVar165 = paddsw(auVar165,ui_system_string);
   sVar126 = auVar116._0_2_ + CONCAT11(uVar152,(char)uVar1);
   sVar129 = auVar116._2_2_ + auVar7._0_2_;
   sVar130 = auVar116._4_2_ + auVar8._0_2_;
@@ -575,7 +575,7 @@ void FUN_180691db0(int8_t (*param_1) [16],ulonglong *param_2,int param_3)
   sVar134 = auVar116._12_2_ + auVar36._12_2_;
   sVar135 = auVar116._14_2_ + auVar37._14_2_;
   auVar114 = psraw(auVar114,5);
-  auVar89 = paddsw(auVar89,_DAT_180a3f880);
+  auVar89 = paddsw(auVar89,ui_system_string);
   *param_2 = CONCAT17((0 < sVar135) * (sVar135 < 0x100) * (char)sVar135 - (0xff < sVar135),
                       CONCAT16((0 < sVar134) * (sVar134 < 0x100) * (char)sVar134 - (0xff < sVar134),
                                CONCAT15((0 < sVar133) * (sVar133 < 0x100) * (char)sVar133 -

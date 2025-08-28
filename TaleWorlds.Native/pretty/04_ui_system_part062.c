@@ -518,16 +518,16 @@ void FUN_180699f40(longlong param_1)
   }
   else {
     if (*(int *)(param_1 + 0x1e88) == 0) {
-      *(uint64_t *)(param_1 + 0xf98) = _DAT_180d4a980;
-      *(uint64_t *)(param_1 + 4000) = _DAT_180d4a978;
-      *(uint64_t *)(param_1 + 0xfa8) = _DAT_180d4a970;
-      uVar2 = _DAT_180d4a988;
+      *(uint64_t *)(param_1 + 0xf98) = ui_system_config_config;
+      *(uint64_t *)(param_1 + 4000) = ui_system_config_config;
+      *(uint64_t *)(param_1 + 0xfa8) = ui_system_config_config;
+      uVar2 = ui_system_config_config;
     }
     else {
       *(void **)(param_1 + 0xf98) = &unknown_var_8356_ptr;
       *(void **)(param_1 + 4000) = &unknown_var_8044_ptr;
-      *(uint64_t *)(param_1 + 0xfa8) = _DAT_180d4a9a8;
-      uVar2 = _DAT_180d4a9b0;
+      *(uint64_t *)(param_1 + 0xfa8) = ui_system_config_config;
+      uVar2 = ui_system_config_global_data;
     }
     *(uint64_t *)(param_1 + 0xfb0) = uVar2;
     if (((*(int *)(param_1 + 0x4420) != 0) && (*(int *)(param_1 + 0x4418) != 0)) &&

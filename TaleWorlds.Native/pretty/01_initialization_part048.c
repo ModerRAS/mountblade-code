@@ -486,7 +486,7 @@ int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
     resource_table = param_2 + 5;
     config_data = param_2[7] - *resource_table;
     if ((ulonglong)(config_data / 0x18) < 0x100) {
-        resource_handle = FUN_18062b420(_DAT_180c8ed18, 0x1800, (char)param_2[8]);
+        resource_handle = FUN_18062b420(system_memory_pool_ptr, 0x1800, (char)param_2[8]);
         config_data = *resource_table;
         if (config_data != param_2[6]) {
             // 移动现有配置数据
@@ -628,14 +628,14 @@ ulonglong InitializationSystem_StateSynchronizer(longlong param_1)
     // 处理系统资源状态
     if (*(longlong*)(param_1 + 0x1b8) != 0) {
         resource_offset = 0xb8;
-        system_base = _DAT_180c86870;
+        system_base = system_main_module_state;
         do {
             state_context = *(StateContext*)(resource_offset + *(longlong*)(param_1 + 0x1b8));
             if ((((state_context != 0) && (*(longlong*)(*(StateContext*)(param_1 + 0x1b8) + 0x328 + resource_offset) == 0)) &&
                 ((*(uint*)(state_context + 0x328) & 0x20000000) == 0)) && (*(longlong*)(state_context + 0x370) == 0)) {
                 if (*(longlong*)(state_context + 0x1d8) == 0) {
                     FUN_18023b050(state_context, 0);
-                    system_base = _DAT_180c86870;
+                    system_base = system_main_module_state;
                     status_counter = (int*)(*(StateContext*)(resource_offset + *(longlong*)(param_1 + 0x1b8)) + 0x3a8);
                     *status_counter = *status_counter + 1;
                 }
@@ -926,7 +926,7 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
                         
                         // 分配权限资源
                         if (*(longlong*)(config_context + 0x3f70 + (ulonglong)permission_hash * 8) == 0) {
-                            resource_data = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
+                            resource_data = FUN_18062b420(system_memory_pool_ptr, 0x2000, 0x25);
                             resource_table = (longlong*)(config_context + 0x3f70 + permission_key * 8);
                             LOCK();
                             access_allowed = *resource_table == 0;

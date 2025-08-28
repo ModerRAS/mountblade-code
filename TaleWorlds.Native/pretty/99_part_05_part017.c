@@ -305,7 +305,7 @@ int32_t * FUN_1802e1950(int *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
       puVar10[0x4938] = 0;
       *(int8_t *)(puVar10 + 0x25c4) = 0;
       puVar10[0x6e] = 0x40008182;
-      FUN_1801be080(puVar10 + 2,_DAT_180c86890 + 0x13b0);
+      FUN_1801be080(puVar10 + 2,system_parameter_buffer + 0x13b0);
       lVar13 = *(longlong *)(*(longlong *)(param_1 + 10) + 0x60b80);
       if (lVar13 != 0) {
         *(int8_t *)(lVar13 + 0x170) = 1;

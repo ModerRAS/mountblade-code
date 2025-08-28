@@ -420,7 +420,7 @@ LAB_18086350f:
   *(uint *)(param_1 + 0x2d8) =
        (-(uint)(abStackX_8[0] != 0) & 0x1000 | *(uint *)(param_1 + 0x2d8)) & ~uVar12;
   lVar9 = *(longlong *)(*(longlong *)(*(longlong *)(param_1 + 0x88) + 0xd0) + 0x30);
-  if (lVar9 == _DAT_180bef7b8) {
+  if (lVar9 == ui_system_buffer_config) {
 LAB_180863615:
     if (*(longlong *)(param_1 + 0x2d0) == 0) goto LAB_180863724;
     auStackX_10[0] = 0;
@@ -588,7 +588,7 @@ LAB_18086350f:
   *(uint *)(param_1 + 0x2d8) =
        (-(uint)(in_stack_00000050 != 0) & 0x1000 | *(uint *)(param_1 + 0x2d8)) & ~uVar7;
   lVar9 = *(longlong *)(*(longlong *)(*(longlong *)(param_1 + 0x88) + 0xd0) + 0x30);
-  if (lVar9 == _DAT_180bef7b8) {
+  if (lVar9 == ui_system_buffer_config) {
 LAB_180863615:
     if (((*(longlong *)(param_1 + 0x2d0) == 0) ||
         (in_stack_00000058 = uVar15,

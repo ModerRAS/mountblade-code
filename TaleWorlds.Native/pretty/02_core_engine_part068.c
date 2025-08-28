@@ -549,7 +549,7 @@ longlong * FUN_18009f9d0(longlong param_1,uint64_t param_2,uint64_t param_3,uint
   int8_t auStack_30 [24];
   
   __0_Lockit_std__QEAA_H_Z(auStackX_8,0,param_3,param_4,0xfffffffffffffffe);
-  plStackX_10 = _DAT_180d48d30;
+  plStackX_10 = core_system_config_config;
   uVar1 = __Bid_locale_std__QEAA_KXZ(_id___codecvt_DDU_Mbstatet___std__2V0locale_2_A_exref);
   lVar2 = *(longlong *)(param_1 + 8);
   if (uVar1 < *(ulonglong *)(lVar2 + 0x18)) {
@@ -583,7 +583,7 @@ LAB_18009fa43:
     plStackX_18 = plStackX_10;
     FUN_1808ffb84(plStackX_10);
     (**(code **)(*plVar3 + 8))(plVar3);
-    _DAT_180d48d30 = plStackX_10;
+    core_system_config_config = plStackX_10;
     plStackX_18 = (longlong *)0x0;
     plVar3 = plStackX_10;
   }

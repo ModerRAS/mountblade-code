@@ -41,7 +41,7 @@ void FUN_180364880(longlong param_1)
   
   uStack_70 = 0xfffffffffffffffe;
   uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
-  if (*(char *)(_DAT_180c86878 + 0x210) != '\0') goto LAB_180364d42;
+  if (*(char *)(render_system_data_memory + 0x210) != '\0') goto LAB_180364d42;
   lVar4 = *(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20);
   uVar12 = 0;
   puStack_90 = &unknown_var_3456_ptr;
@@ -202,7 +202,7 @@ LAB_180364c1e:
     *(int32_t *)(param_1 + 0x174) = *(int32_t *)(lVar4 + 0x1c);
   }
   else {
-    lVar4 = FUN_180213440(_DAT_180c86878,param_1 + 0x90,0);
+    lVar4 = FUN_180213440(render_system_data_memory,param_1 + 0x90,0);
     if (lVar4 == 0) {
       FUN_180627be0(param_1 + 0x158,param_1 + 0x90);
     }
@@ -495,9 +495,9 @@ void FUN_180364fe0(longlong *param_1)
   }
   cVar1 = '\0';
   lVar2 = param_1[3];
-  fStack_d8 = (float)*(uint64_t *)(_DAT_180c86878 + 0x1b8);
-  fStack_d4 = (float)((ulonglong)*(uint64_t *)(_DAT_180c86878 + 0x1b8) >> 0x20);
-  fStack_d0 = (float)*(uint64_t *)(_DAT_180c86878 + 0x1c0);
+  fStack_d8 = (float)*(uint64_t *)(render_system_data_memory + 0x1b8);
+  fStack_d4 = (float)((ulonglong)*(uint64_t *)(render_system_data_memory + 0x1b8) >> 0x20);
+  fStack_d0 = (float)*(uint64_t *)(render_system_data_memory + 0x1c0);
   if ((int)param_1[0x34] == 0) {
     fStack_d4 = *(float *)(lVar2 + 0xa4) - fStack_d4;
     fVar5 = SQRT(*(float *)(lVar2 + 0x30) * *(float *)(lVar2 + 0x30) +

@@ -627,7 +627,7 @@ char * FUN_18040d750(char *param_1,char param_2)
   uint64_t *puVar1;
   
   *param_1 = param_2;
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x60,8,3,0xfffffffffffffffe);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x60,8,3,0xfffffffffffffffe);
   *(uint64_t *)((longlong)puVar1 + 0x14) = 0;
   *(uint64_t *)((longlong)puVar1 + 0x1c) = 0;
   *(uint64_t *)((longlong)puVar1 + 0x24) = 0;
@@ -758,7 +758,7 @@ longlong FUN_18040d890(longlong param_1,uint64_t param_2)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x60,8,3,0xfffffffffffffffe);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x60,8,3,0xfffffffffffffffe);
   *(uint64_t *)((longlong)puVar1 + 0x14) = 0;
   *(uint64_t *)((longlong)puVar1 + 0x1c) = 0;
   *(uint64_t *)((longlong)puVar1 + 0x24) = 0;

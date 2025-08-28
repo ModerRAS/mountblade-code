@@ -192,7 +192,7 @@ void FUN_180567fd0(longlong *param_1,uint64_t *param_2,uint64_t *param_3,uint64_
       puStack_5f0 = (void *)param_2[1];
     }
     puStack_5f8 = &unknown_var_8632_ptr;
-    FUN_1800623b0(_DAT_180c86928,0,0x10000000000,8);
+    FUN_1800623b0(system_message_context,0,0x10000000000,8);
     puVar12 = &system_buffer_ptr;
     if ((void *)param_2[1] != (void *)0x0) {
       puVar12 = (void *)param_2[1];
@@ -407,7 +407,7 @@ LAB_1805688a3:
       param_2 = puStack_560;
       puStack_5e8 = auStack_468;
       puStack_5f8 = &unknown_var_8672_ptr;
-      FUN_1800623b0(_DAT_180c86928,0,0x10000000000,3);
+      FUN_1800623b0(system_message_context,0,0x10000000000,3);
     }
     puStack_4f8 = &unknown_var_3456_ptr;
     if (puStack_4f0 != (void *)0x0) {

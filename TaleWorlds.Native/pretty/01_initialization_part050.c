@@ -227,7 +227,7 @@ void FUN_180077ad8(void)
   uVar22 = in_stack_00000068;
   uVar21 = in_stack_00000060;
   bVar30 = *(byte *)(lVar29 + 0x1bd8);
-  iVar6 = *(int *)(_DAT_180c86870 + 0x224);
+  iVar6 = *(int *)(system_main_module_state + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
      ((*(int *)(unaff_RBX + 0x1d0) == iVar6 || (*(int *)(unaff_RBX + 0x1d0) == iVar6 + -1)))) {
     bVar31 = 0;
@@ -382,7 +382,7 @@ void FUN_180077c96(void)
   uVar20 = in_stack_00000068;
   uVar19 = in_stack_00000060;
   bVar28 = *(byte *)(unaff_R13 + 0x1bd8);
-  iVar6 = *(int *)(_DAT_180c86870 + 0x224);
+  iVar6 = *(int *)(system_main_module_state + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
      ((*(int *)(unaff_RBX + 0x1d0) == iVar6 || (*(int *)(unaff_RBX + 0x1d0) == iVar6 + -1)))) {
     bVar27 = 0;
@@ -555,7 +555,7 @@ void FUN_180077dc6(void)
   uVar20 = in_stack_00000068;
   uVar19 = in_stack_00000060;
   bVar28 = *(byte *)(unaff_R13 + 0x1bd8);
-  iVar6 = *(int *)(_DAT_180c86870 + 0x224);
+  iVar6 = *(int *)(system_main_module_state + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
      ((*(int *)(unaff_RBX + 0x1d0) == iVar6 || (*(int *)(unaff_RBX + 0x1d0) == iVar6 + -1)))) {
     bVar27 = 0;
@@ -633,7 +633,7 @@ void FUN_180077dec(void)
   uVar3 = in_stack_00000068;
   uVar2 = in_stack_00000060;
   bVar11 = *(byte *)(unaff_R13 + 0x1bd8);
-  iVar1 = *(int *)(_DAT_180c86870 + 0x224);
+  iVar1 = *(int *)(system_main_module_state + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
      ((*(int *)(unaff_RBX + 0x1d0) == iVar1 || (*(int *)(unaff_RBX + 0x1d0) == iVar1 + -1)))) {
     bVar10 = 0;

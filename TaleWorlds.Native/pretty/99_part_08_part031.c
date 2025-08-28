@@ -98,7 +98,7 @@ void FUN_1804fe960(uint64_t param_1,char param_2,uint64_t param_3,int32_t *param
     puStack_170 = puStack_a8;
   }
   puStack_178 = &unknown_var_5184_ptr;
-  FUN_1800623b0(_DAT_180c86928,0,0x40000000000,0xc);
+  FUN_1800623b0(system_message_context,0,0x40000000000,0xc);
   puStack_f8 = auStack_90;
   _Mtx_destroy_in_situ(auStack_90);
   FUN_1805065c0(alStack_e8);
@@ -214,7 +214,7 @@ void FUN_1804fec00(uint64_t param_1,char param_2,uint64_t param_3,int8_t *param_
     puStack_180 = puStack_a8;
   }
   puStack_188 = &unknown_var_5184_ptr;
-  FUN_1800623b0(_DAT_180c86928,0,0x40000000000,0xc);
+  FUN_1800623b0(system_message_context,0,0x40000000000,0xc);
   puStack_160 = auStack_90;
   _Mtx_destroy_in_situ(auStack_90);
   FUN_1805065c0(alStack_e8);
@@ -323,7 +323,7 @@ void FUN_1804feec0(uint64_t param_1,char param_2,uint64_t param_3,int32_t *param
     puStack_170 = puStack_a8;
   }
   puStack_178 = &unknown_var_5184_ptr;
-  FUN_1800623b0(_DAT_180c86928,0,0x40000000000,0xc);
+  FUN_1800623b0(system_message_context,0,0x40000000000,0xc);
   puStack_f8 = auStack_90;
   _Mtx_destroy_in_situ(auStack_90);
   FUN_1805065c0(alStack_e8);
@@ -406,7 +406,7 @@ void FUN_1804ff150(uint64_t param_1,char param_2,uint64_t param_3,uint64_t param
     puStack_120 = puStack_88;
   }
   puStack_128 = &unknown_var_5184_ptr;
-  FUN_1800623b0(_DAT_180c86928,0,0x40000000000,0xc);
+  FUN_1800623b0(system_message_context,0,0x40000000000,0xc);
   puStack_d0 = auStack_70;
   _Mtx_destroy_in_situ(auStack_70);
   FUN_1805065c0(alStack_c8);
@@ -598,7 +598,7 @@ void FUN_1804ff630(void)
 {
   longlong lVar1;
   
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0x2a5e8,10);
+  lVar1 = FUN_18062b420(system_memory_pool_ptr,0x2a5e8,10);
   if (lVar1 == 0) {
     return;
   }
@@ -926,7 +926,7 @@ longlong * FUN_1804ffcd0(longlong *param_1,longlong *param_2,uint64_t param_3,ui
     lVar3 = 0;
   }
   else {
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar2 * 0xcb0,uVar1 & 0xff,param_4,0xfffffffffffffffe);
+    lVar3 = FUN_18062b420(system_memory_pool_ptr,lVar2 * 0xcb0,uVar1 & 0xff,param_4,0xfffffffffffffffe);
   }
   *param_1 = lVar3;
   param_1[1] = lVar3;

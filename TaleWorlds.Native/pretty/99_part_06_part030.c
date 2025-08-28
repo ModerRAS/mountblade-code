@@ -651,7 +651,7 @@ longlong * FUN_1803c2430(longlong param_1,longlong *param_2,uint64_t param_3,uin
   uint64_t *puStackX_8;
   longlong lStackX_10;
   
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0x78,*(int8_t *)(param_1 + 0x28),param_4,
+  lVar4 = FUN_18062b420(system_memory_pool_ptr,0x78,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
   puVar1 = (uint64_t *)(lVar4 + 0x20);
   FUN_1800b8300(puVar1,param_3);

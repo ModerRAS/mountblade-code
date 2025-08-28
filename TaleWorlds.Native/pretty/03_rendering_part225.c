@@ -515,7 +515,7 @@ void FUN_180395270(longlong param_1,int param_2,byte param_3)
               if (lVar11 == 0) {
                 lVar11 = 1;
 LAB_180395496:
-                plVar2 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar11 * 8,3);
+                plVar2 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar11 * 8,3);
                 uVar14 = extraout_XMM0_Da;
               }
               else {

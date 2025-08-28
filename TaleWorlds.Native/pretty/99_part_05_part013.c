@@ -65,7 +65,7 @@ void FUN_1802dccd0(longlong param_1,longlong param_2)
   }
   if ((uVar11 & 2) == 0) {
     if (((((*(byte *)(param_2 + 0x1bd8) & 0x20) == 0) && ((*(byte *)(param_2 + 0x1bd9) & 2) == 0))
-        || (*(int *)(_DAT_180c8a9c8 + 0xa10) == 0)) ||
+        || (*(int *)(system_system_data_config + 0xa10) == 0)) ||
        (uVar15 = 6, *(char *)(param_2 + 0x130) == '\0')) {
       uVar15 = 3;
     }
@@ -191,10 +191,10 @@ void FUN_1802dccd0(longlong param_1,longlong param_2)
   if ((uVar12 >> 0x16 & 1) != 0) {
     if ((*(longlong *)(param_1 + 0x1b8) != 0) && ((uVar11 >> 8 & 1) != 0)) {
       if (*(int *)(*(longlong *)(param_1 + 0x1b8) + 0x14) == 0) {
-        uVar9 = ~*(ulonglong *)(_DAT_180c8a980 + 0x300) & uVar9;
+        uVar9 = ~*(ulonglong *)(system_system_data_config + 0x300) & uVar9;
       }
       else {
-        uVar9 = *(ulonglong *)(_DAT_180c8a980 + 0x300) | uVar9;
+        uVar9 = *(ulonglong *)(system_system_data_config + 0x300) | uVar9;
       }
       *(ulonglong *)(param_1 + 0x208) = uVar9;
     }
@@ -344,7 +344,7 @@ void FUN_1802dccdc(longlong param_1,longlong param_2)
   }
   if ((uVar15 & 2) == 0) {
     if (((((*(byte *)(param_2 + 0x1bd8) & 0x20) == 0) && ((*(byte *)(param_2 + 0x1bd9) & 2) == 0))
-        || (*(int *)(_DAT_180c8a9c8 + 0xa10) == 0)) ||
+        || (*(int *)(system_system_data_config + 0xa10) == 0)) ||
        (uVar19 = 6, *(char *)(param_2 + 0x130) == '\0')) {
       uVar19 = 3;
     }
@@ -470,10 +470,10 @@ void FUN_1802dccdc(longlong param_1,longlong param_2)
   if ((uVar16 >> 0x16 & 1) != 0) {
     if ((*(longlong *)(param_1 + 0x1b8) != 0) && ((uVar15 >> 8 & 1) != 0)) {
       if (*(int *)(*(longlong *)(param_1 + 0x1b8) + 0x14) == 0) {
-        uVar13 = ~*(ulonglong *)(_DAT_180c8a980 + 0x300) & uVar13;
+        uVar13 = ~*(ulonglong *)(system_system_data_config + 0x300) & uVar13;
       }
       else {
-        uVar13 = *(ulonglong *)(_DAT_180c8a980 + 0x300) | uVar13;
+        uVar13 = *(ulonglong *)(system_system_data_config + 0x300) | uVar13;
       }
       *(ulonglong *)(param_1 + 0x208) = uVar13;
     }

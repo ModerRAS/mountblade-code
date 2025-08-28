@@ -245,7 +245,7 @@ void FUN_1802b8b50(ulonglong *param_1)
       goto joined_r0x0001802b8c01;
     }
   }
-  puVar5 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar7 * 0x70,(char)param_1[3]);
+  puVar5 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar7 * 0x70,(char)param_1[3]);
   puVar6 = (uint64_t *)*param_1;
   puVar8 = (uint64_t *)param_1[1];
 joined_r0x0001802b8c01:

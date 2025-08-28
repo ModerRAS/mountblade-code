@@ -172,7 +172,7 @@ void FUN_180527330(void)
      (*(float *)(unaff_RSI + 0x2c) <= unaff_XMM6_Da && unaff_XMM6_Da != *(float *)(unaff_RSI + 0x2c)
      )) {
     uStack_8 = 0x18052743e;
-    FUN_18052bfa0(in_stack_00000028,10,*(int32_t *)(*(longlong *)(_DAT_180c8aa00 + 0x20) + 100));
+    FUN_18052bfa0(in_stack_00000028,10,*(int32_t *)(*(longlong *)(render_system_data_memory + 0x20) + 100));
   }
   lVar6 = *(longlong *)(unaff_RDI + 0x20);
   fVar17 = *(float *)(lVar6 + 0xd8);
@@ -256,7 +256,7 @@ void FUN_180527330(void)
         uStack_110 = uStack_120;
         uStack_10c = uStack_11c;
         func_0x0001805345e0(&uStack_270);
-        lVar6 = _DAT_180c8ece0;
+        lVar6 = render_system_data_memory;
         uStack_270 = 0x1000000;
         uStack_268 = 0;
         uStack_248 = 0;
@@ -295,12 +295,12 @@ void FUN_180527330(void)
         uStack_1d0 = uVar8;
         fStack_1cc = fVar18;
         uStack_1c8 = uVar9;
-        if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x30))(iVar2);
+        if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x30))(iVar2);
         }
         iVar3 = *(int *)(lVar12 * 0xa60 + lVar5 + 0x30b8);
-        if ((iVar3 != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x30))(iVar3);
+        if ((iVar3 != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x30))(iVar3);
         }
         uStack_b0 = uStack_190;
         uStack_a8 = uStack_188;
@@ -328,11 +328,11 @@ void FUN_180527330(void)
         (**(code **)(lVar6 + 0x1e0))
                   (*(int32_t *)(*(longlong *)(unaff_RDI + 0x8d8) + 0x98d928),&uStack_270,
                    &uStack_b0,iVar3,iVar2);
-        if ((iVar3 != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x18))(iVar3);
+        if ((iVar3 != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x18))(iVar3);
         }
-        if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x18))(iVar2);
+        if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x18))(iVar2);
         }
       }
       return;
@@ -561,7 +561,7 @@ void FUN_18052745f(uint64_t param_1,uint64_t param_2,longlong param_3,uint param
       uStack_110 = uStack_120;
       uStack_10c = uStack_11c;
       func_0x0001805345e0(&uStack_270);
-      lVar4 = _DAT_180c8ece0;
+      lVar4 = render_system_data_memory;
       uStack_270 = 0x1000000;
       uStack_268 = 0;
       uStack_248 = 0;
@@ -600,12 +600,12 @@ void FUN_18052745f(uint64_t param_1,uint64_t param_2,longlong param_3,uint param
       uStack_1d0 = uVar7;
       uStack_1cc = uVar15;
       uStack_1c8 = uVar8;
-      if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code **)(_DAT_180c8f008 + 0x30))(iVar2);
+      if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+        (**(code **)(system_cache_buffer + 0x30))(iVar2);
       }
       iVar3 = *(int *)(lVar11 * 0xa60 + lVar5 + 0x30b8);
-      if ((iVar3 != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code **)(_DAT_180c8f008 + 0x30))(iVar3);
+      if ((iVar3 != 0) && (system_cache_buffer != 0)) {
+        (**(code **)(system_cache_buffer + 0x30))(iVar3);
       }
       uStack_b0 = uStack_190;
       uStack_a8 = uStack_188;
@@ -634,11 +634,11 @@ void FUN_18052745f(uint64_t param_1,uint64_t param_2,longlong param_3,uint param
       (**(code **)(lVar4 + 0x1e0))
                 (*(int32_t *)(*(longlong *)(unaff_RDI + 0x8d8) + 0x98d928),&uStack_270,&uStack_b0
                  ,iVar3,iVar2);
-      if ((iVar3 != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code **)(_DAT_180c8f008 + 0x18))(iVar3);
+      if ((iVar3 != 0) && (system_cache_buffer != 0)) {
+        (**(code **)(system_cache_buffer + 0x18))(iVar3);
       }
-      if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-        (**(code **)(_DAT_180c8f008 + 0x18))(iVar2);
+      if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+        (**(code **)(system_cache_buffer + 0x18))(iVar2);
       }
     }
     return;

@@ -177,7 +177,7 @@ FUN_180392a30(longlong param_1,longlong param_2,longlong param_3,float *param_4,
   if (lVar12 == 0) {
     lVar12 = 1;
 LAB_180392d30:
-    plVar10 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar12 * 0x18,uStack_1c8 & 0xff);
+    plVar10 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar12 * 0x18,uStack_1c8 & 0xff);
   }
   else {
     lVar12 = lVar12 * 2;
@@ -458,7 +458,7 @@ LAB_1803930a3:
             if (lVar12 == 0) {
               lVar12 = 1;
 LAB_1803933ce:
-              plVar10 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar12 * 0x18,uStack_1c8 & 0xff);
+              plVar10 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar12 * 0x18,uStack_1c8 & 0xff);
               plVar21 = plStack_1d8;
             }
             else {

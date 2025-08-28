@@ -94,7 +94,7 @@ void FUN_1802089d7(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t p
             *(int32_t *)(lVar11 + 8 + uVar27) = *(int32_t *)(lVar14 + 0x1c);
             *(byte *)(lVar9 + 0xfe) = *(byte *)(lVar9 + 0xfe) & 0xf7;
             *(uint *)(lVar9 + 0x100) = *(uint *)(lVar9 + 0x100) | 0x800;
-            uVar5 = _DAT_180c8ed18;
+            uVar5 = system_memory_pool_ptr;
             *(int32_t *)(lVar9 + 0x10c) = uVar2;
             bVar7 = (byte)unaff_R14;
             if (lVar4 == 0) {
@@ -116,8 +116,8 @@ void FUN_1802089d7(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t p
 LAB_180208aa2:
             if (iVar15 < 0) goto LAB_180208d4a;
           }
-          puVar17 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 +
-                            _DAT_180c86890 + 0xb8);
+          puVar17 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x9c8) * 0x488 +
+                            system_parameter_buffer + 0xb8);
           if (unaff_EBX == 0) {
             uVar1 = 0xffffffff;
           }
@@ -136,7 +136,7 @@ LAB_180208aa2:
               do {
                 iVar15 = (int)uVar21;
                 if (*(longlong *)puVar24 == 0) {
-                  lVar11 = FUN_18062b420(_DAT_180c8ed18,0x4000,0x25);
+                  lVar11 = FUN_18062b420(system_memory_pool_ptr,0x4000,0x25);
                   LOCK();
                   bVar25 = *(longlong *)(puVar17 + (longlong)iVar15 * 2 + 2) == 0;
                   if (bVar25) {
@@ -181,7 +181,7 @@ LAB_180208aa2:
           *(uint *)(*(longlong *)(lVar9 + 0x2d0) + 0x14) = unaff_EBX;
           *(uint *)(*(longlong *)(lVar9 + 0x2d0) + 0x18) = uVar1;
           *(int32_t *)(*(longlong *)(lVar9 + 0x2d0) + 0xc) =
-               *(int32_t *)(_DAT_180c86870 + 0x224);
+               *(int32_t *)(system_main_module_state + 0x224);
           param_3 = param_9;
           uVar18 = (uint)param_6;
           if (0 < (int)unaff_EBX) {
@@ -859,7 +859,7 @@ void FUN_180209330(uint64_t *param_1,longlong param_2,uint64_t param_3)
   uVar2 = *(int32_t *)(param_2 + 0xbc);
   uVar3 = *(int32_t *)(param_2 + 0xc0);
   uVar4 = *(int32_t *)(param_2 + 0xc4);
-  lVar7 = FUN_18062b420(_DAT_180c8ed18,0x38,*(int8_t *)(param_1 + 5));
+  lVar7 = FUN_18062b420(system_memory_pool_ptr,0x38,*(int8_t *)(param_1 + 5));
   bVar10 = true;
   *(int32_t *)(lVar7 + 0x20) = uVar1;
   *(int32_t *)(lVar7 + 0x24) = uVar2;

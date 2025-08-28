@@ -554,7 +554,7 @@ void core_engine_config_parameter_processor(uint64_t config_handle, longlong par
     stack_data_1 = 0;
     
     // 分配字符串缓冲区
-    string_buffer = (int16_t *)MemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
+    string_buffer = (int16_t *)MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)string_buffer = 0;
     buffer_ptr = (void *)string_buffer;
     format_result = FormatProcessor(string_buffer);
@@ -583,7 +583,7 @@ PROCESS_DATA:
         }
         
         // 分配数据缓冲区
-        temp_ptr = (int8_t *)MemoryAllocator(_DAT_180c8ed18, (longlong)buffer_size, 0x13);
+        temp_ptr = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)buffer_size, 0x13);
         *temp_ptr = 0;
         param_size = FormatProcessor(temp_ptr);
         goto PROCESS_DATA;
@@ -601,7 +601,7 @@ PROCESS_DATA:
             if ((int)buffer_size < 0x10) {
                 buffer_size = 0x10;
             }
-            temp_ptr = (int8_t *)MemoryAllocator(_DAT_180c8ed18, (longlong)(int)buffer_size, 0x13);
+            temp_ptr = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
             *temp_ptr = 0;
         }
         else {
@@ -620,7 +620,7 @@ FINALIZE_STRING:
                 ErrorHandler(string_buffer);
                 return;
             }
-            temp_ptr = (int8_t *)MemoryReallocator(_DAT_180c8ed18, temp_ptr, buffer_size, 0x10, 0x13);
+            temp_ptr = (int8_t *)MemoryReallocator(system_memory_pool_ptr, temp_ptr, buffer_size, 0x10, 0x13);
         }
         FormatProcessor(temp_ptr);
     }
@@ -668,7 +668,7 @@ void core_engine_data_structure_manager(uint64_t struct_handle, longlong source_
     uint64_t stack_data_9;
     
     // 获取全局数据指针
-    global_data_ptr = (uint64_t *)_DAT_180c868c8;
+    global_data_ptr = (uint64_t *)core_system_data_memory;
     
     // 初始化结构数据
     struct_ptr[0] = 0;
@@ -1195,12 +1195,12 @@ void core_engine_string_parser(longlong string_data)
                                     if ((int)stack_data_9 < 0x10) {
                                         stack_data_9 = 0x10;
                                     }
-                                    stack_ptr_9 = (int8_t *)MemoryAllocator(_DAT_180c8ed18, (longlong)(int)stack_data_9, 0x13);
+                                    stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)(int)stack_data_9, 0x13);
                                     *stack_ptr_9 = 0;
                                     FormatProcessor(stack_ptr_9);
                                 }
                                 else if ((uint)stack_ptr_8 < stack_data_9) {
-                                    stack_ptr_9 = (int8_t *)MemoryReallocator(_DAT_180c8ed18, stack_ptr_9, stack_data_9, 0x10, 0x13);
+                                    stack_ptr_9 = (int8_t *)MemoryReallocator(system_memory_pool_ptr, stack_ptr_9, stack_data_9, 0x10, 0x13);
                                     FormatProcessor(stack_ptr_9);
                                 }
                             }
@@ -1216,7 +1216,7 @@ void core_engine_string_parser(longlong string_data)
                                 if ((int)stack_data_6 < 0x10) {
                                     stack_data_6 = 0x10;
                                 }
-                                stack_ptr_9 = (int8_t *)MemoryAllocator(_DAT_180c8ed18, (longlong)(int)stack_data_6, 0x13);
+                                stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)(int)stack_data_6, 0x13);
                                 *stack_ptr_9 = 0;
                                 stack_data_14 = (ulonglong)stack_ptr_9 & 0xffffffffffc00000;
                                 stack_ptr_8 = stack_ptr_10;
@@ -1254,7 +1254,7 @@ void core_engine_string_parser(longlong string_data)
                                 stack_ptr_8 = (int8_t *)((ulonglong)stack_ptr_8 & 0xffffffff);
                             }
                             else if ((uint)stack_ptr_8 < stack_data_6) {
-                                stack_ptr_9 = (int8_t *)MemoryReallocator(_DAT_180c8ed18, stack_ptr_9, stack_data_6, 0x10, 0x13);
+                                stack_ptr_9 = (int8_t *)MemoryReallocator(system_memory_pool_ptr, stack_ptr_9, stack_data_6, 0x10, 0x13);
                                 stack_data_6 = FormatProcessor(stack_ptr_9);
                                 stack_ptr_8 = (int8_t *)(ulonglong)stack_data_6;
                             }
@@ -1269,7 +1269,7 @@ void core_engine_string_parser(longlong string_data)
                                 if ((int)stack_data_6 < 0x10) {
                                     stack_data_6 = 0x10;
                                 }
-                                stack_ptr_9 = (int8_t *)MemoryAllocator(_DAT_180c8ed18, (longlong)(int)stack_data_6, 0x13);
+                                stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)(int)stack_data_6, 0x13);
                                 *stack_ptr_9 = 0;
                                 stack_data_14 = (ulonglong)stack_ptr_9 & 0xffffffffffc00000;
                                 stack_ptr_8 = stack_ptr_10;
@@ -1307,7 +1307,7 @@ void core_engine_string_parser(longlong string_data)
                                 stack_ptr_8 = (int8_t *)((ulonglong)stack_ptr_8 & 0xffffffff);
                             }
                             else if ((uint)stack_ptr_8 < stack_data_6) {
-                                stack_ptr_9 = (int8_t *)MemoryReallocator(_DAT_180c8ed18, stack_ptr_9, stack_data_6, 0x10, 0x13);
+                                stack_ptr_9 = (int8_t *)MemoryReallocator(system_memory_pool_ptr, stack_ptr_9, stack_data_6, 0x10, 0x13);
                                 stack_data_6 = FormatProcessor(stack_ptr_9);
                                 stack_ptr_8 = (int8_t *)(ulonglong)stack_data_6;
                             }
@@ -1332,7 +1332,7 @@ void core_engine_string_parser(longlong string_data)
                             if ((int)stack_data_9 < 0x10) {
                                 stack_data_9 = 0x10;
                             }
-                            stack_ptr_9 = (int8_t *)MemoryAllocator(_DAT_180c8ed18, (longlong)(int)stack_data_9, 0x13);
+                            stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)(int)stack_data_9, 0x13);
                             *stack_ptr_9 = 0;
                         }
                         else {
@@ -1341,7 +1341,7 @@ CONTINUE_PROCESSING:
                                 memcpy(stack_ptr_16 + (longlong)stack_ptr_9, *stack_ptr_12, (longlong)((int)*stack_ptr_12 + 1));
                             }
                             else {
-                                stack_ptr_9 = (int8_t *)MemoryReallocator(_DAT_180c8ed18, stack_ptr_9, stack_data_9, 0x10, 0x13);
+                                stack_ptr_9 = (int8_t *)MemoryReallocator(system_memory_pool_ptr, stack_ptr_9, stack_data_9, 0x10, 0x13);
                             }
                         }
                         FormatProcessor(stack_ptr_9);
@@ -1409,7 +1409,7 @@ CONTINUE_PROCESSING:
                             stack_data_9 = 0x10;
                         }
                         
-                        stack_ptr_10 = (int8_t *)MemoryAllocator(_DAT_180c8ed18, (longlong)stack_data_9, &unknown_var_563_ptr);
+                        stack_ptr_10 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (longlong)stack_data_9, &unknown_var_563_ptr);
                         *stack_ptr_10 = 0;
                         FormatProcessor(stack_ptr_10);
                         memcpy(stack_ptr_10, stack_ptr_15, stack_data_13);
@@ -1438,7 +1438,7 @@ CONTINUE_PROCESSING:
                     if (stack_ptr_13 == 0) {
                         stack_ptr_13 = 1;
 ALLOCATE_MEMORY:
-                        stack_ptr_9 = (int8_t *)MemoryAllocator(_DAT_180c8ed18, stack_ptr_13 << 5, (char)stack_ptr_13[3]);
+                        stack_ptr_9 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, stack_ptr_13 << 5, (char)stack_ptr_13[3]);
                         stack_ptr_11 = (uint64_t *)stack_ptr_12[1];
                         stack_ptr_11 = *stack_ptr_12;
                     }

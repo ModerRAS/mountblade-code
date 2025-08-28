@@ -442,7 +442,7 @@ void FUN_180345a10(longlong param_1,ulonglong *param_2)
   if ((ulonglong)((longlong)(param_2[2] - uVar3) >> 5) < uVar5) {
     uVar2 = uVar4;
     if (uVar5 != 0) {
-      uVar2 = FUN_18062b420(_DAT_180c8ed18,uVar5 * 0x20,(char)param_2[3]);
+      uVar2 = FUN_18062b420(system_memory_pool_ptr,uVar5 * 0x20,(char)param_2[3]);
       uVar3 = *param_2;
     }
     uVar3 = FUN_180059780(uVar3,param_2[1],uVar2);
@@ -502,7 +502,7 @@ void FUN_180345a5f(ulonglong param_1)
   
   uVar2 = unaff_RSI;
   if (unaff_RBP != 0) {
-    uVar2 = FUN_18062b420(_DAT_180c8ed18,unaff_RBP << 5,(char)unaff_RBX[3]);
+    uVar2 = FUN_18062b420(system_memory_pool_ptr,unaff_RBP << 5,(char)unaff_RBX[3]);
     param_1 = *unaff_RBX;
   }
   uVar3 = FUN_180059780(param_1,unaff_RBX[1],uVar2);
@@ -559,7 +559,7 @@ void FUN_180345a69(ulonglong param_1)
   
   uVar2 = unaff_RSI;
   if (unaff_RBP != 0) {
-    uVar2 = FUN_18062b420(_DAT_180c8ed18,unaff_RBP << 5,(char)unaff_RBX[3]);
+    uVar2 = FUN_18062b420(system_memory_pool_ptr,unaff_RBP << 5,(char)unaff_RBX[3]);
     param_1 = *unaff_RBX;
   }
   uVar3 = FUN_180059780(param_1,unaff_RBX[1],uVar2);

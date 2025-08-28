@@ -32,7 +32,7 @@ void FUN_18023e4f0(longlong *param_1)
         (**(code **)(*plVar4 + 0x38))();
       }
       lVar3 = *param_1;
-      iVar1 = *(int *)(_DAT_180c86870 + 0x224);
+      iVar1 = *(int *)(system_main_module_state + 0x224);
       *(longlong *)(lVar3 + 0x340) = (longlong)iVar1;
       LOCK();
       *(int32_t *)(lVar3 + 0x380) = 2;
@@ -49,7 +49,7 @@ void FUN_18023e4f0(longlong *param_1)
   if (*(longlong *)(lVar3 + 0x1f0) == 0) {
     lVar5 = param_1[5];
     uVar6 = FUN_1800c0100();
-    FUN_1800a5810(_DAT_180c86938,uVar6,1,0,lVar3,(int)lVar5,uVar7);
+    FUN_1800a5810(system_message_buffer,uVar6,1,0,lVar3,(int)lVar5,uVar7);
     if (param_1[3] != 0) {
       (*(code *)param_1[4])(0,*param_1,param_1 + 1);
     }
@@ -87,7 +87,7 @@ longlong FUN_18023e620(longlong *param_1,longlong *param_2,int param_3,uint64_t 
   }
   else {
     if (param_3 == 1) {
-      lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags);
+      lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,system_allocation_flags);
       FUN_18023c3b0(lVar1,*param_2);
       *param_1 = lVar1;
       return 0;
@@ -128,7 +128,7 @@ longlong FUN_18023e750(longlong *param_1,longlong *param_2,int param_3,uint64_t 
   }
   else {
     if (param_3 == 1) {
-      lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags);
+      lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,system_allocation_flags);
       FUN_18023c3b0(lVar1,*param_2);
       *param_1 = lVar1;
       return 0;
@@ -169,7 +169,7 @@ longlong FUN_18023e880(longlong *param_1,longlong *param_2,int param_3,uint64_t 
   }
   else {
     if (param_3 == 1) {
-      lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x60,8,system_allocation_flags);
+      lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x60,8,system_allocation_flags);
       FUN_18023c2e0(lVar1,*param_2);
       *param_1 = lVar1;
       return 0;
@@ -238,7 +238,7 @@ void FUN_18023eac0(longlong param_1,longlong param_2,uint64_t param_3,longlong *
   plVar4[1] = param_2;
   puVar5 = (uint64_t *)*param_4;
   if ((*(char *)((longlong)puVar5 + 0x66) == '\0') && (*(char *)(puVar5 + 2) != '\0')) {
-    uVar9 = FUN_18062b420(_DAT_180c8ed18,puVar5[1],3);
+    uVar9 = FUN_18062b420(system_memory_pool_ptr,puVar5[1],3);
                     // WARNING: Subroutine does not return
     memcpy(uVar9,*puVar5,puVar5[1]);
   }

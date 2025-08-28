@@ -369,7 +369,7 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
     new_buffer = (uint64_t *)0x0;
     if (required_capacity != 0) {
       new_buffer = (uint64_t *)
-               FUN_18062b420(_DAT_180c8ed18,required_capacity << 6,*(int8_t *)(param_1 + 3),param_4,
+               FUN_18062b420(system_memory_pool_ptr,required_capacity << 6,*(int8_t *)(param_1 + 3),param_4,
                              0xfffffffffffffffe);
       current_end = (uint64_t *)param_1[1];
       data_start = (uint64_t *)*param_1;
@@ -589,7 +589,7 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
     copy_dst = (int8_t *)0x0;
     if (new_capacity != 0) {
       copy_dst = (int8_t *)
-               FUN_18062b420(_DAT_180c8ed18,new_capacity * 0x28,(char)param_1[3],current_end,0xfffffffffffffffe);
+               FUN_18062b420(system_memory_pool_ptr,new_capacity * 0x28,(char)param_1[3],current_end,0xfffffffffffffffe);
       current_end = (int8_t *)param_1[1];
       new_buffer_start = (int8_t *)*param_1;
     }
@@ -750,17 +750,17 @@ ulonglong * HashTable_LookupEntry(uint64_t param_1,ulonglong *param_2,ulonglong 
   longlong table_size;
   
   // 获取哈希表的基础地址
-  table_base = *(longlong *)(_DAT_180c8a9e8 + 8);
+  table_base = *(longlong *)(system_system_data_pointer + 8);
   
   // 计算哈希索引并获取对应的条目
   current_entry = *(ulonglong **)
-            (table_base + ((param_3[1] ^ *param_3) % (ulonglong)*(uint *)(_DAT_180c8a9e8 + 0x10)) * 8);
+            (table_base + ((param_3[1] ^ *param_3) % (ulonglong)*(uint *)(system_system_data_pointer + 0x10)) * 8);
   
   // 遍历哈希链表查找匹配的条目
   do {
     if (current_entry == (ulonglong *)0x0) {
       // 未找到匹配的条目
-      table_size = *(longlong *)(_DAT_180c8a9e8 + 0x10);
+      table_size = *(longlong *)(system_system_data_pointer + 0x10);
       current_entry = *(ulonglong **)(table_base + table_size * 8);
       
       // 处理未找到的情况
@@ -781,7 +781,7 @@ ulonglong * HashTable_LookupEntry(uint64_t param_1,ulonglong *param_2,ulonglong 
     // 检查是否找到匹配的条目
     if ((*param_3 == *current_entry) && (param_3[1] == current_entry[1])) {
       if (current_entry != (ulonglong *)0x0) {
-        table_size = *(longlong *)(_DAT_180c8a9e8 + 0x10);
+        table_size = *(longlong *)(system_system_data_pointer + 0x10);
         // 找到匹配条目，进行处理
         if (current_entry == *(ulonglong **)(table_base + table_size * 8)) {
           *param_2 = 0;
@@ -797,7 +797,7 @@ ulonglong * HashTable_LookupEntry(uint64_t param_1,ulonglong *param_2,ulonglong 
       }
       else {
         // 处理特殊情况
-        table_size = *(longlong *)(_DAT_180c8a9e8 + 0x10);
+        table_size = *(longlong *)(system_system_data_pointer + 0x10);
         current_entry = *(ulonglong **)(table_base + table_size * 8);
         if (current_entry == *(ulonglong **)(table_base + table_size * 8)) {
           *param_2 = 0;

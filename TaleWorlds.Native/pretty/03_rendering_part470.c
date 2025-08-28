@@ -205,8 +205,8 @@ void RenderingSystem_AdvancedParameterProcessor(RenderingContextHandle context, 
     stack_uint2 = 0;
     
     // 检测渲染模式并设置模式标志
-    if ((_DAT_180c92514 == RENDERING_SYSTEM_MODE_HIGH_QUALITY) || 
-        (_DAT_180c92514 == RENDERING_SYSTEM_MODE_ULTRA_QUALITY)) {
+    if ((system_status_flag == RENDERING_SYSTEM_MODE_HIGH_QUALITY) || 
+        (system_status_flag == RENDERING_SYSTEM_MODE_ULTRA_QUALITY)) {
         mode_flag = 1;
     }
     else {
@@ -257,7 +257,7 @@ void RenderingSystem_AdvancedParameterProcessor(RenderingContextHandle context, 
         if (mode_flag != 0) goto SHADOW_PROCESSING_BRANCH;
         
         // 处理标准模式下的渲染管线
-        if ((((_DAT_180c92514 - 2U) & 0xfffffffc) == 0) && (_DAT_180c92514 != RENDERING_SYSTEM_MODE_ULTRA_QUALITY)) {
+        if ((((system_status_flag - 2U) & 0xfffffffc) == 0) && (system_status_flag != RENDERING_SYSTEM_MODE_ULTRA_QUALITY)) {
             data_pointer = *(longlong **)(context + 0x8e0);
             index_var1 = _Mtx_lock(0x180c95528);
             if (index_var1 != 0) {
@@ -273,32 +273,32 @@ void RenderingSystem_AdvancedParameterProcessor(RenderingContextHandle context, 
             }
             
             long_var2 = *(longlong *)(*data_pointer + 0x8e8);
-            _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-            index_var1 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+            render_system_memory = render_system_memory & 0xffffffff00000000;
+            index_var1 = (int)(render_system_memory - render_system_memory >> 3);
             
             // 处理渲染对象列表
             if (0 < index_var1) {
                 long_var1 = 0;
-                long_var3 = _DAT_180c92cd8;
+                long_var3 = render_system_memory;
                 do {
                     temp_long = *(longlong *)(long_var3 + long_var1 * 8);
                     if (((temp_long != 0) && 
                          (*(char *)(*(longlong *)(temp_long + 0x58f8) + 0x1c) != '\0')) &&
                         (*(longlong *)(temp_long + 0x58f8) != long_var2)) {
                         FUN_1805b59d0(temp_long, 0x180c95578);
-                        long_var3 = _DAT_180c92cd8;
+                        long_var3 = render_system_memory;
                     }
                     long_var1 = long_var1 + 1;
                 } while (long_var1 < index_var1);
             }
             
             // 处理渲染缓存
-            if (_DAT_180c96070 != 0) {
-                FUN_180567f30(_DAT_180c92580, 0x180c95578);
+            if (render_system_memory != 0) {
+                FUN_180567f30(render_system_memory, 0x180c95578);
             }
-            _DAT_180c95b3c = 0;
+            render_system_memory = 0;
             // 清理渲染缓存
-            memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+            memset(render_system_memory, 0, (longlong)(render_system_memory >> 3));
         }
     }
     
@@ -337,12 +337,12 @@ SHADOW_PROCESSING_BRANCH:
     *uint_pointer = 0;
     
     // 处理渲染回调函数
-    if ((((uint_value2 & 2) != 0) && (uint_value2 = uint_value2 & 0xfffffffd, stack_uint2 = uint_value2, stack_uint1 != 0)) && (_DAT_180c8f008 != 0)) {
-        (**(code **)(_DAT_180c8f008 + 0x18))();
+    if ((((uint_value2 & 2) != 0) && (uint_value2 = uint_value2 & 0xfffffffd, stack_uint2 = uint_value2, stack_uint1 != 0)) && (system_cache_buffer != 0)) {
+        (**(code **)(system_cache_buffer + 0x18))();
     }
     
-    if ((((uint_value2 & 1) != 0) && (uint_value2 = uint_value2 & 0xfffffffe, stack_uint2 = uint_value2, (int)stack_pipeline1 != 0)) && (_DAT_180c8f008 != 0)) {
-        (**(code **)(_DAT_180c8f008 + 0x18))();
+    if ((((uint_value2 & 1) != 0) && (uint_value2 = uint_value2 & 0xfffffffe, stack_uint2 = uint_value2, (int)stack_pipeline1 != 0)) && (system_cache_buffer != 0)) {
+        (**(code **)(system_cache_buffer + 0x18))();
     }
     
     // 根据模式获取渲染参数
@@ -373,7 +373,7 @@ SHADOW_PROCESSING_BRANCH:
             uint_value1 = int_pointer[1];
             if ((stack_uint1 == uint_value1) ||
                 ((((longlong)(int)stack_uint1 != -1 && (uint_value1 != 0xffffffff)) &&
-                 ((long_var2 = *(longlong *)((longlong)*(int *)(*(longlong *)(context + 0x590) + 0xac) * 0xe0 + _DAT_180c95fb0 + 0x78),
+                 ((long_var2 = *(longlong *)((longlong)*(int *)(*(longlong *)(context + 0x590) + 0xac) * 0xe0 + render_system_memory + 0x78),
                    index_var1 = *(int *)(long_var2 + 4 + (longlong)(int)stack_uint1 * 8),
                    index_var1 == *(int *)(long_var2 + 4 + (longlong)(int)uint_value1 * 8) && (index_var1 != -1)))))) {
                 pipeline_mode = (*int_pointer >> 10 & 7U) - 1;
@@ -399,13 +399,13 @@ SHADOW_PROCESSING_BRANCH:
     // 计算渲染质量参数
     uint_value2 = *(uint *)(*(longlong *)(context + 0x590) + 0xac);
     index_var1 = FUN_18053a410(&system_memory_5f30, uint_value2, stack_uint1);
-    index_var1 = *(int *)(_DAT_180c95f68 + (longlong)index_var1 * 4);
+    index_var1 = *(int *)(render_system_memory + (longlong)index_var1 * 4);
     
     if (index_var1 == -1) {
         long_var2 = 0;
     }
     else {
-        long_var2 = *(longlong *)(_DAT_180c95f88 + (longlong)index_var1 * 8);
+        long_var2 = *(longlong *)(render_system_memory + (longlong)index_var1 * 8);
     }
     
     // 计算渲染质量权重
@@ -418,13 +418,13 @@ SHADOW_PROCESSING_BRANCH:
     while ((float_var1 == 0.0f && (index_var1 != -1))) {
         float_var3 = float_var3 + float_var2;
         index_var1 = FUN_18053a410(&system_memory_5f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
-        index_var1 = *(int *)(_DAT_180c95f68 + (longlong)index_var1 * 4);
+        index_var1 = *(int *)(render_system_memory + (longlong)index_var1 * 4);
         
         if (index_var1 == -1) {
             long_var3 = 0;
         }
         else {
-            long_var3 = *(longlong *)(_DAT_180c95f88 + (longlong)index_var1 * 8);
+            long_var3 = *(longlong *)(render_system_memory + (longlong)index_var1 * 8);
         }
         
         float_var1 = *(float *)(long_var3 + 0x1d8);
@@ -443,13 +443,13 @@ SHADOW_PROCESSING_BRANCH:
         while ((float_var1 == 0.0f && (index_var1 != -1))) {
             float_var4 = float_var4 + float_var2;
             index_var1 = FUN_18053a410(&system_memory_5f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
-            index_var1 = *(int *)(_DAT_180c95f68 + (longlong)index_var1 * 4);
+            index_var1 = *(int *)(render_system_memory + (longlong)index_var1 * 4);
             
             if (index_var1 == -1) {
                 long_var3 = 0;
             }
             else {
-                long_var3 = *(longlong *)(_DAT_180c95f88 + (longlong)index_var1 * 8);
+                long_var3 = *(longlong *)(render_system_memory + (longlong)index_var1 * 8);
             }
             
             float_var1 = *(float *)(long_var3 + 0x1e0);
@@ -480,28 +480,28 @@ SHADOW_PROCESSING_BRANCH:
     
     // 处理渲染系统错误和状态检查
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-                 0x48) < _DAT_180d49ed8) && (FUN_1808fcb90(&system_memory_9ed8), _DAT_180d49ed8 == -1)) {
+                 0x48) < render_system_config_memory) && (FUN_1808fcb90(&system_memory_9ed8), render_system_config_memory == -1)) {
       // 错误处理：创建和初始化错误信息结构
       char* error_msg_ptr = &unknown_var_3456_ptr;
       uint error_code = 0;
       uint error_subtype = 0;
       char* error_data_ptr = (char*)0x0;
       uint error_flags = 0;
-      char* error_buffer = (char*)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+      char* error_buffer = (char*)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
       *(char*)error_buffer = 0;
       error_data_ptr = error_buffer;
       error_code = FUN_18064e990(error_buffer);
       *error_buffer = 'D'; *(error_buffer+1) = 'a'; *(error_buffer+2) = 't'; *(error_buffer+3) = 'a'; *(error_buffer+4) = 'h';
       *(ushort*)(error_buffer + 1) = 'h';
       error_flags = 5;
-      _DAT_180d49edc = FUN_180571e20(&system_memory_60c0, &error_msg_ptr);
+      render_system_config_memory = FUN_180571e20(&system_memory_60c0, &error_msg_ptr);
       error_msg_ptr = &unknown_var_3456_ptr;
       // 错误处理完成，程序终止
       FUN_18064e900(error_buffer);
     }
     
     longlong quality_data_ptr = 0;
-    FUN_180508510(context, _DAT_180d49edc, 0, 0);
+    FUN_180508510(context, render_system_config_memory, 0, 0);
     
     // 设置渲染参数结构
     uint render_flags = 0;
@@ -521,9 +521,9 @@ SHADOW_PROCESSING_BRANCH:
     
     // 查找纹理质量数据
     int quality_index = FUN_18053a410(&system_memory_5f30, *(uint*)(*(longlong*)(context + 0x590) + 0xac), texture_id);
-    quality_index = *(int*)(_DAT_180c95f68 + (longlong)quality_index * 4);
+    quality_index = *(int*)(render_system_memory + (longlong)quality_index * 4);
     if (quality_index != -1) {
-      quality_data_ptr = *(longlong*)(_DAT_180c95f88 + (longlong)quality_index * 8);
+      quality_data_ptr = *(longlong*)(render_system_memory + (longlong)quality_index * 8);
     }
     
     // 处理高质量渲染模式
@@ -555,13 +555,13 @@ SHADOW_PROCESSING_BRANCH:
       
       // 获取管线质量数据
       quality_index = FUN_18053a410(&system_memory_5f30, *(uint*)(*(longlong*)(pipeline_ptr + 0x590) + 0xac), texture_id);
-      quality_index = *(int*)(_DAT_180c95f68 + (longlong)quality_index * 4);
+      quality_index = *(int*)(render_system_memory + (longlong)quality_index * 4);
       longlong pipeline_quality_data = 0;
       if (quality_index == -1) {
         pipeline_quality_data = 0;
       }
       else {
-        pipeline_quality_data = *(longlong*)(_DAT_180c95f88 + (longlong)quality_index * 8);
+        pipeline_quality_data = *(longlong*)(render_system_memory + (longlong)quality_index * 8);
       }
       
       // 高质量模式处理
@@ -582,7 +582,7 @@ SHADOW_PROCESSING_BRANCH:
       texture_id = stack_uint1;
       
       // 根据渲染模式优化管线
-      if ((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) {
+      if ((system_status_flag != 1) && (system_status_flag != 4)) {
         FUN_180530dd0(pipeline_ptr);
         texture_id = stack_uint1;
       }
@@ -639,62 +639,62 @@ SHADOW_PROCESSING_BRANCH:
       uVar24 = *(int32_t *)((longlong)param_3 + 0x24);
       uVar22 = param_3[10];
     }
-    uStack_218 = _DAT_180c8ece0;
+    uStack_218 = render_system_data_memory;
     iVar7 = *(int *)(param_1 + 0x18);
     uStack_228 = CONCAT44(uStack_228._4_4_,iVar7);
-    if ((iVar7 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar7);
+    if ((iVar7 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(iVar7);
     }
     uStack_260 = uVar23 | 8;
     iVar8 = (**(code **)(uStack_218 + 0x1e8))
                       (*(int32_t *)(*(longlong *)(param_1 + 0x8d8) + 0x98d928),uStack_208,iVar7,
                        uVar24,uVar22);
     uStack_260 = uVar23;
-    if ((iVar7 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(iVar7);
+    if ((iVar7 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(iVar7);
     }
     FUN_18051fa40(param_1,iVar8);
     iVar7 = *(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8)
                     + 0x48);
     if (iVar8 == 4) {
-      uVar12 = _DAT_180d49ee4;
-      if ((iVar7 < _DAT_180d49ee0) &&
-         (FUN_1808fcb90(&system_memory_9ee0), uVar12 = _DAT_180d49ee4, _DAT_180d49ee0 == -1)) {
+      uVar12 = render_system_config_memory;
+      if ((iVar7 < render_system_config_memory) &&
+         (FUN_1808fcb90(&system_memory_9ee0), uVar12 = render_system_config_memory, render_system_config_memory == -1)) {
         puStack_258 = &unknown_var_3456_ptr;
         uStack_240 = 0;
         uStack_23c = 0;
         puStack_250 = (int32_t *)0x0;
         uStack_248 = 0;
-        puVar11 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+        puVar11 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
         *(int8_t *)puVar11 = 0;
         puStack_250 = puVar11;
         uStack_240 = FUN_18064e990(puVar11);
         *puVar11 = 0x74616544;
         *(int16_t *)(puVar11 + 1) = 0x68;
         uStack_248 = 5;
-        _DAT_180d49ee4 = FUN_180571e20(&system_memory_60c0,&puStack_258);
+        render_system_config_memory = FUN_180571e20(&system_memory_60c0,&puStack_258);
         puStack_258 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar11);
       }
     }
     else {
-      uVar12 = _DAT_180d49eec;
-      if ((iVar7 < _DAT_180d49ee8) &&
-         (FUN_1808fcb90(&system_memory_9ee8), uVar12 = _DAT_180d49eec, _DAT_180d49ee8 == -1)) {
+      uVar12 = render_system_config_memory;
+      if ((iVar7 < render_system_config_memory) &&
+         (FUN_1808fcb90(&system_memory_9ee8), uVar12 = render_system_config_memory, render_system_config_memory == -1)) {
         puStack_258 = &unknown_var_3456_ptr;
         uStack_240 = 0;
         uStack_23c = 0;
         puStack_250 = (int32_t *)0x0;
         uStack_248 = 0;
-        puVar11 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+        puVar11 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
         *(int8_t *)puVar11 = 0;
         puStack_250 = puVar11;
         uStack_240 = FUN_18064e990(puVar11);
         *puVar11 = 0x6e757453;
         *(int8_t *)(puVar11 + 1) = 0;
         uStack_248 = 4;
-        _DAT_180d49eec = FUN_180571e20(&system_memory_60c0,&puStack_258);
+        render_system_config_memory = FUN_180571e20(&system_memory_60c0,&puStack_258);
         puStack_258 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar11);
@@ -707,10 +707,10 @@ SHADOW_PROCESSING_BRANCH:
     uVar21 = uStack_264;
     iVar7 = FUN_18053a410(&system_memory_5f30,*(int32_t *)(*(longlong *)(param_1 + 0x590) + 0xac),
                           uStack_264);
-    iVar7 = *(int *)(_DAT_180c95f68 + (longlong)iVar7 * 4);
+    iVar7 = *(int *)(render_system_memory + (longlong)iVar7 * 4);
     lVar15 = 0;
     if (iVar7 != -1) {
-      lVar15 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar7 * 8);
+      lVar15 = *(longlong *)(render_system_memory + (longlong)iVar7 * 8);
     }
     if (bVar20 == 0) {
       if ((*(char *)(param_2 + 0x50) == '\0') ||
@@ -843,9 +843,9 @@ SHADOW_PROCESSING_BRANCH:
       FUN_1808fd400();
     }
   }
-  fVar25 = _DAT_180c96488;
+  fVar25 = render_system_memory;
   uStack_130 = 0xffffffff;
-  if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
+  if ((system_status_flag == 1) || (system_status_flag == 4)) {
     uStack_188 = *param_3;
     uStack_180 = param_3[1];
     uStack_178 = param_3[2];
@@ -913,7 +913,7 @@ SHADOW_PROCESSING_BRANCH:
     uStack_19c = uStack_12c;
   }
   uStack_160 = CONCAT44(iStack_220,(int32_t)uStack_160);
-  if (((bVar20 == 0) && ((_DAT_180c92514 - 2U & 0xfffffffc) == 0)) && (_DAT_180c92514 != 4)) {
+  if (((bVar20 == 0) && ((system_status_flag - 2U & 0xfffffffc) == 0)) && (system_status_flag != 4)) {
     plVar3 = *(longlong **)(param_1 + 0x8e0);
     iVar7 = _Mtx_lock(0x180c95528);
     if (iVar7 != 0) {
@@ -921,28 +921,28 @@ SHADOW_PROCESSING_BRANCH:
     }
     FUN_1805ae650(0x180c95578,*(int32_t *)(*plVar3 + 0x10),&uStack_188);
     lVar16 = 0;
-    _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-    iVar7 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-    lVar15 = _DAT_180c92cd8;
+    render_system_memory = render_system_memory & 0xffffffff00000000;
+    iVar7 = (int)(render_system_memory - render_system_memory >> 3);
+    lVar15 = render_system_memory;
     if (0 < iVar7) {
       do {
         lVar14 = *(longlong *)(lVar15 + lVar16 * 8);
         if ((lVar14 != 0) && (*(char *)(*(longlong *)(lVar14 + 0x58f8) + 0x1c) != '\0')) {
           FUN_1805b59d0(lVar14,0x180c95578);
-          lVar15 = _DAT_180c92cd8;
+          lVar15 = render_system_memory;
         }
         lVar16 = lVar16 + 1;
       } while (lVar16 < iVar7);
     }
-    if (_DAT_180c96070 != 0) {
-      FUN_180567f30(_DAT_180c92580,0x180c95578);
+    if (render_system_memory != 0) {
+      FUN_180567f30(render_system_memory,0x180c95578);
     }
-    _DAT_180c95b3c = 0;
+    render_system_memory = 0;
                     // WARNING: Subroutine does not return
-    memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+    memset(render_system_memory,0,(longlong)(render_system_memory >> 3));
   }
   // 应用最终渲染缩放和变换
-  *(float *)(context + 0xa30) = _DAT_180c96488 * *(float *)(context + 0xa30);
+  *(float *)(context + 0xa30) = render_system_memory * *(float *)(context + 0xa30);
   *(float *)(context + 0xa34) = float_var1 * *(float *)(context + 0xa34);
   *(float *)(context + 0xa38) = float_var1 * *(float *)(context + 0xa38);
   
@@ -954,21 +954,21 @@ SHADOW_PROCESSING_BRANCH:
   else {
     int callback_id = *(int *)((longlong)stack_index1 * 0xa60 + 0x30b8 + *(longlong *)(context + 0x8d8));
     uint callback_status = stack_uint2;
-    if ((callback_id != 0) && (_DAT_180c8f008 != 0)) {
+    if ((callback_id != 0) && (system_cache_buffer != 0)) {
       stack_uint2 = callback_id;
-      (**(code **)(_DAT_180c8f008 + 0x30))(callback_id);
+      (**(code **)(system_cache_buffer + 0x30))(callback_id);
     }
   }
   
   // 执行最终渲染回调处理
   uint final_flags = stack_uint2;
-  longlong render_system_ptr = _DAT_180c8ece0;
+  longlong render_system_ptr = render_system_data_memory;
   uint render_flags = *(uint *)(context + 0x568);
   int render_context_id = *(int *)(context + 0x18);
   stack_uint2 = render_context_id;
   
-  if ((render_context_id != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x30))(render_context_id);
+  if ((render_context_id != 0) && (system_cache_buffer != 0)) {
+    (**(code **)(system_cache_buffer + 0x30))(render_context_id);
   }
   
   // 设置最终渲染标志和参数
@@ -1068,8 +1068,8 @@ int RenderingSystem_QualityCalculator(RenderingParameters* params, float thresho
     }
     
     // 获取渲染模式标志
-    if ((_DAT_180c92514 == RENDERING_SYSTEM_MODE_HIGH_QUALITY) || 
-        (_DAT_180c92514 == RENDERING_SYSTEM_MODE_ULTRA_QUALITY)) {
+    if ((system_status_flag == RENDERING_SYSTEM_MODE_HIGH_QUALITY) || 
+        (system_status_flag == RENDERING_SYSTEM_MODE_ULTRA_QUALITY)) {
         mode_flag = 1;
     }
     else {

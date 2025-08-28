@@ -341,7 +341,7 @@ typedef struct {
 extern ulonglong GET_SECURITY_COOKIE();
 
 /** 系统标识符变量 */
-extern ulonglong _DAT_180bf00a0;
+extern ulonglong system_system_control_ui;
 
 /** 安全检查指针变量 */
 extern longlong global_state_8824_ptr;
@@ -482,7 +482,7 @@ void SystemInitializerAndRandomSeedGenerator(void)
     }
     
     /* 设置系统标识符为系统ID的反码 */
-    _DAT_180bf00a0 = ~GET_SECURITY_COOKIE();
+    system_system_control_ui = ~GET_SECURITY_COOKIE();
     
     return;
 }
@@ -873,7 +873,7 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
     angle_y = input_vector._4_4_;
     
     /* 执行范围检查和掩码操作 */
-    temp_vector7 = input_vector & _DAT_180d9f600;
+    temp_vector7 = input_vector & system_system_ui;
     pi_inverse = (float)system_memory_f5d0;
     range_check_x = -(uint)(FLOAT_MAX_NORMAL < temp_vector7._0_4_);
     range_check_y = -(uint)(FLOAT_MAX_NORMAL < temp_vector7._4_4_);
@@ -916,7 +916,7 @@ ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
     int_w = (int)(input_vector._12_4_ * MATH_PI_INVERSE);
     
     /* 检查浮点数范围 */
-    temp_vector7 = input_vector & _DAT_180d9f600;
+    temp_vector7 = input_vector & system_system_ui;
     input_x = temp_vector7._0_4_;
     temp_vector6._0_4_ = -(uint)(FLOAT_MAX_EXPONENT < (int)input_x);
     
@@ -999,7 +999,7 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
   int8_t aauStack_38 [3] [16];
   
     /* 获取输入向量参数 */
-    temp_vector1 = input_vector & _DAT_180d9fd20;
+    temp_vector1 = input_vector & system_system_ui;
     input_x = temp_vector1._0_4_;
     input_y = temp_vector1._4_4_;
     input_w = temp_vector1._12_4_;
@@ -1038,7 +1038,7 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
         /* 返回计算结果 */
         return CONCAT44(0, 0); /* 简化实现 */
     }
-  aauStack_d8[0] = in_XMM0 & _DAT_180d9fd20;
+  aauStack_d8[0] = in_XMM0 & system_system_ui;
   fVar7 = aauStack_d8[0]._0_4_;
   auVar37._0_4_ = -(uint)(0x4e800000 < (int)fVar7);
   fVar12 = aauStack_d8[0]._4_4_;
@@ -1052,9 +1052,9 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       auVar32._4_4_ = 0;
       auVar32._8_4_ = (int)((double)fVar12 * 0.6366197723675814);
       auVar32._12_4_ = 0;
-      auVar32 = auVar32 | _DAT_180d9fda0;
-      dVar26 = SUB168(_DAT_180d9fd90 | auVar32,0) - 6755399441055744.0;
-      dVar29 = SUB168(_DAT_180d9fd90 | auVar32,8) - 6755399441055744.0;
+      auVar32 = auVar32 | system_system_ui;
+      dVar26 = SUB168(system_system_ui | auVar32,0) - 6755399441055744.0;
+      dVar29 = SUB168(system_system_ui | auVar32,8) - 6755399441055744.0;
       dVar17 = (double)fVar7 - dVar26 * 1.5707950592041016;
       dVar21 = (double)fVar12 - dVar29 * 1.5707950592041016;
       dVar18 = dVar17 - dVar26 * 1.267590960196685e-06;
@@ -1071,7 +1071,7 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       dVar24 = dVar23 + dVar18;
       dVar22 = dVar21 - dVar26 * -1.3350302175814904e-19;
       dVar25 = dVar24 - dVar29 * -1.3350302175814904e-19;
-      auVar8 = _DAT_180d9fd30 & auVar33 ^ _DAT_180d9fd30;
+      auVar8 = system_system_ui & auVar33 ^ system_system_ui;
       fVar16 = (float)(((dVar17 + (dVar19 - dVar21) +
                         ((dVar21 - dVar22) - dVar26 * -1.3350302175814904e-19)) -
                        dVar26 * 1.6446256936324258e-26) + dVar22);
@@ -1091,15 +1091,15 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       fVar11 = (float)(int)fVar10 - 0.5;
       fVar35 = ((fVar16 - fVar35 * fVar6) - fVar36 * fVar6) - fVar6 * 1.5099067e-07;
       fVar36 = ((fVar20 - fVar27 * fVar11) - fVar28 * fVar11) - fVar11 * 1.5099067e-07;
-      uStack_b8 = SUB164(auVar8 ^ _DAT_180d9fdc0,0);
-      uStack_b4 = SUB164(auVar8 ^ _DAT_180d9fdc0,4);
+      uStack_b8 = SUB164(auVar8 ^ system_system_ui,0);
+      uStack_b4 = SUB164(auVar8 ^ system_system_ui,4);
       auVar30._0_4_ = (uint)((double)fVar7 * 0.6366197723675814);
       auVar30._4_4_ = 0;
       auVar30._8_4_ = (int)((double)fVar12 * 0.6366197723675814);
       auVar30._12_4_ = 0;
-      auVar30 = auVar30 | _DAT_180d9fda0;
-      dVar26 = SUB168(_DAT_180d9fd90 | auVar30,0) - 6755399441055744.0;
-      dVar29 = SUB168(_DAT_180d9fd90 | auVar30,8) - 6755399441055744.0;
+      auVar30 = auVar30 | system_system_ui;
+      dVar26 = SUB168(system_system_ui | auVar30,0) - 6755399441055744.0;
+      dVar29 = SUB168(system_system_ui | auVar30,8) - 6755399441055744.0;
       dVar17 = (double)fVar7 - dVar26 * 1.5707950592041016;
       dVar21 = (double)fVar12 - dVar29 * 1.5707950592041016;
       dVar18 = dVar17 - dVar26 * 1.267590960196685e-06;
@@ -1116,7 +1116,7 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
       dVar24 = dVar23 + dVar18;
       dVar22 = dVar21 - dVar26 * -1.3350302175814904e-19;
       dVar25 = dVar24 - dVar29 * -1.3350302175814904e-19;
-      auVar37 = _DAT_180d9fd30 & auVar31 ^ _DAT_180d9fd30;
+      auVar37 = system_system_ui & auVar31 ^ system_system_ui;
       fVar27 = (float)(((dVar17 + (dVar19 - dVar21) +
                         ((dVar21 - dVar22) - dVar26 * -1.3350302175814904e-19)) -
                        dVar26 * 1.6446256936324258e-26) + dVar22);

@@ -165,7 +165,7 @@ void FUN_18054a3b0(longlong param_1,uint64_t param_2,int32_t param_3)
   auStackX_18[0] = param_3;
   auStackX_8[0] = func_0x0001804bb950(lVar1);
   puVar3 = (uint64_t *)0x180c95e98;
-  puVar2 = _DAT_180c95ea8;
+  puVar2 = render_system_config;
   while (puVar2 != (uint64_t *)0x0) {
     if (*(uint *)(puVar2 + 4) < auStackX_8[0]) {
       puVar2 = (uint64_t *)*puVar2;
@@ -459,7 +459,7 @@ longlong FUN_18054a9d0(longlong *param_1,longlong *param_2,uint64_t param_3,uint
   }
   else {
     if (iVar4 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,system_allocation_flags);
+      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,system_allocation_flags);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -945,7 +945,7 @@ longlong FUN_18054b530(longlong *param_1,longlong *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;

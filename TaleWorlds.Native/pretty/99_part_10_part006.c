@@ -585,7 +585,7 @@ void FUN_1806a62f0(uint64_t *param_1)
 {
   if (param_1 != (uint64_t *)0x0) {
     (**(code **)*param_1)(param_1,0);
-    (**(code **)(*_DAT_180be0050 + 0x10))(_DAT_180be0050,param_1);
+    (**(code **)(*system_system_buffer_config + 0x10))(system_system_buffer_config,param_1);
   }
   return;
 }

@@ -21,7 +21,7 @@ void FUN_1805cfd80(longlong *param_1)
   
   iVar9 = *(int *)(*(longlong *)(*param_1 + 0x590) + 0x2498);
   if ((iVar9 == -1) ||
-     ((iVar9 = *(int *)((longlong)iVar9 * 0x68 + 0x58 + _DAT_180c96150), 3 < iVar9 - 0x13U &&
+     ((iVar9 = *(int *)((longlong)iVar9 * 0x68 + 0x58 + system_system_config), 3 < iVar9 - 0x13U &&
       (iVar9 != 0x20)))) {
     if ((*(byte *)(param_1 + 2) & 0x80) == 0) {
       FUN_1805d4440(param_1 + 1);
@@ -140,7 +140,7 @@ void FUN_1805cfd80(longlong *param_1)
     }
     iVar3 = *(int *)(*(longlong *)((longlong)iVar3 * 0xa60 + 0x3630 + param_1[0x291]) + 0x2498);
     if (iVar3 != -1) {
-      iVar9 = *(int *)((longlong)iVar3 * 0x68 + 0x5c + _DAT_180c96150);
+      iVar9 = *(int *)((longlong)iVar3 * 0x68 + 0x5c + system_system_config);
     }
   }
 LAB_1805d00bb:
@@ -310,7 +310,7 @@ void FUN_1805cfdcb(void)
     }
     iVar3 = *(int *)(*(longlong *)((longlong)iVar3 * 0xa60 + 0x3630 + unaff_RBX[0x291]) + 0x2498);
     if (iVar3 != -1) {
-      iVar9 = *(int *)((longlong)iVar3 * 0x68 + 0x5c + _DAT_180c96150);
+      iVar9 = *(int *)((longlong)iVar3 * 0x68 + 0x5c + system_system_config);
     }
   }
 LAB_1805d00bb:
@@ -471,7 +471,7 @@ void FUN_1805cfe5c(void)
     }
     iVar3 = *(int *)(*(longlong *)((longlong)iVar3 * 0xa60 + 0x3630 + unaff_RBX[0x291]) + 0x2498);
     if (iVar3 != -1) {
-      iVar9 = *(int *)((longlong)iVar3 * 0x68 + 0x5c + _DAT_180c96150);
+      iVar9 = *(int *)((longlong)iVar3 * 0x68 + 0x5c + system_system_config);
     }
   }
 LAB_1805d00bb:
@@ -582,7 +582,7 @@ void FUN_1805cffc0(void)
     }
     iVar3 = *(int *)(*(longlong *)((longlong)iVar3 * 0xa60 + 0x3630 + unaff_RBX[0x291]) + 0x2498);
     if (iVar3 != -1) {
-      iVar9 = *(int *)((longlong)iVar3 * 0x68 + 0x5c + _DAT_180c96150);
+      iVar9 = *(int *)((longlong)iVar3 * 0x68 + 0x5c + system_system_config);
     }
   }
 LAB_1805d00bb:
@@ -824,7 +824,7 @@ void FUN_1805d0390(longlong *param_1)
         (lVar2 = func_0x0001805b6e80(param_1 + 1),
         (*(byte *)((longlong)
                    *(int *)((longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + 100 +
-                           *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) !=
+                           *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + system_system_config) & 0x10) !=
         0)))) {
       return;
     }

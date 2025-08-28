@@ -362,7 +362,7 @@ void FUN_180492355(void)
                    ((int)uVar81 >= auVar85._8_4_) * uVar81;
           uVar44 = (uint)((int)uVar83 < auVar85._12_4_) * auVar85._12_4_ |
                    ((int)uVar83 >= auVar85._12_4_) * uVar83;
-          in_stack_00000060 = auVar50 & _DAT_180a40770;
+          in_stack_00000060 = auVar50 & render_system_ui;
           uStack0000000000000070 =
                (uint)(0x167 < (int)uVar38) * 0x167 | (0x167 >= (int)uVar38) * uVar38;
           uStack0000000000000074 =
@@ -511,7 +511,7 @@ void FUN_180492355(void)
                     auVar50 = auVar66;
                   } while (uVar34 != 0);
                 }
-                if ((_DAT_180a40570 & auVar39) != (int8_t  [16])0x0) goto FUN_180492a34;
+                if ((render_system_ui & auVar39) != (int8_t  [16])0x0) goto FUN_180492a34;
                 auVar87._0_4_ = auVar86._0_4_ + *(int *)unaff_RBP[3];
                 auVar87._4_4_ = auVar86._4_4_ + *(int *)(unaff_RBP[3] + 4);
                 auVar87._8_4_ = auVar86._8_4_ + *(int *)(unaff_RBP[3] + 8);

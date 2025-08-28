@@ -903,7 +903,7 @@ void FUN_180036b50(void)
   auStack_88[0] = 0;
   uStack_90 = 0xc;
   strcpy_s(auStack_88,0x80,&unknown_var_8816_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91da4 = FUN_180623800(&puStack_a0);
+  init_system_memory = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -917,8 +917,8 @@ int FUN_180036be0(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _DAT_180bf90b0 = &unknown_var_672_ptr;
-  _DAT_180bf90b8 = &system_memory_90c8;
+  init_system_control_memory = &unknown_var_672_ptr;
+  init_system_control_memory = &system_memory_90c8;
 
 
 // 函数: void FUN_180036cc0(void)
@@ -936,7 +936,7 @@ void FUN_180036cc0(void)
   auStack_88[0] = 0;
   uStack_90 = 0x16;
   strcpy_s(auStack_88,0x80,&system_memory_6c50,in_R9,0xfffffffffffffffe);
-  _DAT_180c91da8 = FUN_180623800(&puStack_a0);
+  init_system_memory = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -961,7 +961,7 @@ void FUN_180036d50(void)
   auStack_88[0] = 0;
   uStack_90 = 0x16;
   strcpy_s(auStack_88,0x80,&system_memory_6c38,in_R9,0xfffffffffffffffe);
-  _DAT_180c91dac = FUN_180623800(&puStack_a0);
+  init_system_memory = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -1394,7 +1394,7 @@ void FUN_1800375f0(void)
   auStack_88[0] = 0;
   uStack_90 = 0x1c;
   strcpy_s(auStack_88,0x80,&unknown_var_4568_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91ee8 = FUN_180623800(&puStack_a0);
+  init_system_memory = FUN_180623800(&puStack_a0);
   return;
 }
 

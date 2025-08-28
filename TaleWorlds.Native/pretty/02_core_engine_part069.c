@@ -252,7 +252,7 @@ extern uint64_t global_state_7304_ptr;               /**< 全局状态数据结�
 extern uint64_t global_state_3456_ptr;               /**< 全局错误处理结构 */
 extern uint64_t global_state_720_ptr;               /**< 全局系统配置结构 */
 extern uint64_t SYSTEM_STATE_MANAGER;             /**< 全局数据表基地址 */
-extern uint64_t _DAT_180c8a9c8;             /**< 全局状态表基地址 */
+extern uint64_t core_system_data_config;             /**< 全局状态表基地址 */
 
 /*==============================================================================
  * 核心函数实现
@@ -941,7 +941,7 @@ void CoreEngine_ConfigModeSetter(uint64_t param_1, int param_2)
         CoreEngine_SetConfig2F0(system_handle, adjustment_param);
         
         // 条件配置设置（基于全局状态）
-        if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != 0) {
+        if (*(int *)(core_system_data_config + 0xcb0) != 0) {
             if ((param_2 == 0) || (param_2 == 1)) {
                 option_param = 0;
             }
@@ -954,7 +954,7 @@ void CoreEngine_ConfigModeSetter(uint64_t param_1, int param_2)
             CoreEngine_SetConfig270(system_handle, option_param);
         }
         
-        if (*(int *)(_DAT_180c8a9c8 + 0xd20) != 0) {
+        if (*(int *)(core_system_data_config + 0xd20) != 0) {
             if ((param_2 == 0) || (param_2 == 1)) {
                 option_param = 0;
             }
@@ -967,7 +967,7 @@ void CoreEngine_ConfigModeSetter(uint64_t param_1, int param_2)
             CoreEngine_SetConfig1F0(system_handle, option_param);
         }
         
-        if (*(int *)(_DAT_180c8a9c8 + 0xd90) != 0) {
+        if (*(int *)(core_system_data_config + 0xd90) != 0) {
             if ((param_2 == 0) || (param_2 == 1)) {
                 option_param = 0;
             }
@@ -980,7 +980,7 @@ void CoreEngine_ConfigModeSetter(uint64_t param_1, int param_2)
             CoreEngine_SetConfig170_2(system_handle, option_param);
         }
         
-        if (*(int *)(_DAT_180c8a9c8 + 0xe00) != 0) {
+        if (*(int *)(core_system_data_config + 0xe00) != 0) {
             option_param = 1;
             if (((param_2 != 0) && (param_2 != 1)) &&
                 ((option_param = mode_param, param_2 != 2 && ((param_2 != 3 && (param_2 == 5)))))) {
@@ -989,7 +989,7 @@ void CoreEngine_ConfigModeSetter(uint64_t param_1, int param_2)
             CoreEngine_SetConfig0F0(system_handle, option_param);
         }
         
-        if (*(int *)(_DAT_180c8a9c8 + 0xe70) != 0) {
+        if (*(int *)(core_system_data_config + 0xe70) != 0) {
             option_param = 0;
             if ((((param_2 != 0) && (option_param = setting_param, param_2 != 1)) && (param_2 != 2)) &&
                 ((param_2 != 3 && (param_2 == 5)))) {
@@ -1053,19 +1053,19 @@ void CoreEngine_GlobalInitializer(void)
     CoreEngine_SetConfig2F0();
     
     // 条件配置初始化（基于全局状态）
-    if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != 0) {
+    if (*(int *)(core_system_data_config + 0xcb0) != 0) {
         CoreEngine_SetConfig270();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd20) != 0) {
+    if (*(int *)(core_system_data_config + 0xd20) != 0) {
         CoreEngine_SetConfig1F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd90) != 0) {
+    if (*(int *)(core_system_data_config + 0xd90) != 0) {
         CoreEngine_SetConfig170_2();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe00) != 0) {
+    if (*(int *)(core_system_data_config + 0xe00) != 0) {
         CoreEngine_SetConfig0F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe70) != 0) {
+    if (*(int *)(core_system_data_config + 0xe70) != 0) {
         CoreEngine_SetConfig070();
     }
 }
@@ -1125,19 +1125,19 @@ void CoreEngine_StateInitializer(void)
     CoreEngine_SetConfig2F0();
     
     // 状态相关的条件配置
-    if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != state_param) {
+    if (*(int *)(core_system_data_config + 0xcb0) != state_param) {
         CoreEngine_SetConfig270();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd20) != state_param) {
+    if (*(int *)(core_system_data_config + 0xd20) != state_param) {
         CoreEngine_SetConfig1F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd90) != state_param) {
+    if (*(int *)(core_system_data_config + 0xd90) != state_param) {
         CoreEngine_SetConfig170_2();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe00) != state_param) {
+    if (*(int *)(core_system_data_config + 0xe00) != state_param) {
         CoreEngine_SetConfig0F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe70) != state_param) {
+    if (*(int *)(core_system_data_config + 0xe70) != state_param) {
         CoreEngine_SetConfig070();
     }
 }
@@ -1197,19 +1197,19 @@ void CoreEngine_ComponentInitializer(void)
     CoreEngine_SetConfig2F0();
     
     // 组件相关的条件配置
-    if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != component_param) {
+    if (*(int *)(core_system_data_config + 0xcb0) != component_param) {
         CoreEngine_SetConfig270();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd20) != component_param) {
+    if (*(int *)(core_system_data_config + 0xd20) != component_param) {
         CoreEngine_SetConfig1F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd90) != component_param) {
+    if (*(int *)(core_system_data_config + 0xd90) != component_param) {
         CoreEngine_SetConfig170_2();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe00) != component_param) {
+    if (*(int *)(core_system_data_config + 0xe00) != component_param) {
         CoreEngine_SetConfig0F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe70) != component_param) {
+    if (*(int *)(core_system_data_config + 0xe70) != component_param) {
         CoreEngine_SetConfig070();
     }
 }
@@ -1259,19 +1259,19 @@ void CoreEngine_ConfigProcessor(void)
     CoreEngine_SetConfig2F0();
     
     // 配置相关的条件处理
-    if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != config_param) {
+    if (*(int *)(core_system_data_config + 0xcb0) != config_param) {
         CoreEngine_SetConfig270();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd20) != config_param) {
+    if (*(int *)(core_system_data_config + 0xd20) != config_param) {
         CoreEngine_SetConfig1F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd90) != config_param) {
+    if (*(int *)(core_system_data_config + 0xd90) != config_param) {
         CoreEngine_SetConfig170_2();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe00) != config_param) {
+    if (*(int *)(core_system_data_config + 0xe00) != config_param) {
         CoreEngine_SetConfig0F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe70) != config_param) {
+    if (*(int *)(core_system_data_config + 0xe70) != config_param) {
         CoreEngine_SetConfig070();
     }
 }
@@ -1300,19 +1300,19 @@ void CoreEngine_ConfigValidator(void)
     CoreEngine_SetConfig2F0();
     
     // 配置验证检查
-    if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != validation_param) {
+    if (*(int *)(core_system_data_config + 0xcb0) != validation_param) {
         CoreEngine_SetConfig270();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd20) != validation_param) {
+    if (*(int *)(core_system_data_config + 0xd20) != validation_param) {
         CoreEngine_SetConfig1F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd90) != validation_param) {
+    if (*(int *)(core_system_data_config + 0xd90) != validation_param) {
         CoreEngine_SetConfig170_2();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe00) != validation_param) {
+    if (*(int *)(core_system_data_config + 0xe00) != validation_param) {
         CoreEngine_SetConfig0F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe70) != validation_param) {
+    if (*(int *)(core_system_data_config + 0xe70) != validation_param) {
         CoreEngine_SetConfig070();
     }
 }
@@ -1341,16 +1341,16 @@ void CoreEngine_ConfigFinalizer(void)
     CoreEngine_SetConfig270();
     
     // 配置完成处理
-    if (*(int *)(_DAT_180c8a9c8 + 0xd20) != finalization_param) {
+    if (*(int *)(core_system_data_config + 0xd20) != finalization_param) {
         CoreEngine_SetConfig1F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xd90) != finalization_param) {
+    if (*(int *)(core_system_data_config + 0xd90) != finalization_param) {
         CoreEngine_SetConfig170_2();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe00) != finalization_param) {
+    if (*(int *)(core_system_data_config + 0xe00) != finalization_param) {
         CoreEngine_SetConfig0F0();
     }
-    if (*(int *)(_DAT_180c8a9c8 + 0xe70) != finalization_param) {
+    if (*(int *)(core_system_data_config + 0xe70) != finalization_param) {
         CoreEngine_SetConfig070();
     }
 }

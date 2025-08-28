@@ -503,7 +503,7 @@ uint64_t * FUN_180436ae0(uint64_t *param_1)
   longlong *plVar3;
   int32_t uStack_14;
   
-  plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x160,0x10,3,0xfffffffffffffffe);
+  plVar3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x160,0x10,3,0xfffffffffffffffe);
   *plVar3 = (longlong)&unknown_var_3552_ptr;
   *plVar3 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar3 + 1) = 0;

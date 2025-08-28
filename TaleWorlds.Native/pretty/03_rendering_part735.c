@@ -65,16 +65,16 @@ extern void FUN_1808fc050(unsigned long long param);
 
 // 全局变量声明
 extern unsigned char global_var_8608_ptr[];
-extern unsigned long long _DAT_180c0c218;
-extern unsigned long long _DAT_180c0c21c;
-extern unsigned long long _DAT_180c0c210;
+extern unsigned long long render_system_config;
+extern unsigned long long render_system_config;
+extern unsigned long long render_system_config;
 extern unsigned long long GET_SECURITY_COOKIE();
-extern unsigned char _DAT_180d9e5d0[16];
-extern unsigned char _DAT_180d9e5c0[16];
-extern unsigned char _DAT_180d9e5f0[16];
-extern unsigned char _DAT_180d9e600[16];
-extern unsigned char _DAT_180d9e650[16];
-extern unsigned char _DAT_180d9e640[16];
+extern unsigned char render_system_config[16];
+extern unsigned char render_system_config[16];
+extern unsigned char render_system_config[16];
+extern unsigned char render_system_config[16];
+extern unsigned char render_system_config[16];
+extern unsigned char render_system_config[16];
 
 // SIMD指令集函数声明
 static inline void* psubusb(void* a, void* b) { return (void*)((unsigned long long)a - (unsigned long long)b); }
@@ -478,10 +478,10 @@ void RenderingSystem_ThreadInitializer(void (*param_1)(void))
   bool cs_exists;         // 临界区是否存在
   
   // 检查是否已经初始化
-  if (_DAT_180c0c21c == 0) {
+  if (render_system_config == 0) {
     // 增加引用计数
     LOCK();
-    _DAT_180c0c218 = _DAT_180c0c218 + 1;
+    render_system_config = render_system_config + 1;
     UNLOCK();
     
     // 创建新的临界区
@@ -490,12 +490,12 @@ void RenderingSystem_ThreadInitializer(void (*param_1)(void))
     
     // 设置全局临界区
     LOCK();
-    cs_exists = _DAT_180c0c210 != 0;
+    cs_exists = render_system_config != 0;
     current_cs = new_cs;
     if (cs_exists) {
-      current_cs = _DAT_180c0c210;  // 使用现有临界区
+      current_cs = render_system_config;  // 使用现有临界区
     }
-    _DAT_180c0c210 = current_cs;
+    render_system_config = current_cs;
     UNLOCK();
     
     // 如果临界区已存在，清理新创建的
@@ -505,25 +505,25 @@ void RenderingSystem_ThreadInitializer(void (*param_1)(void))
     }
     
     // 进入临界区执行初始化
-    EnterCriticalSection(_DAT_180c0c210);
-    if (_DAT_180c0c21c == 0) {
+    EnterCriticalSection(render_system_config);
+    if (render_system_config == 0) {
       (*param_1)();        // 执行初始化函数
-      _DAT_180c0c21c = 1;  // 标记为已初始化
+      render_system_config = 1;  // 标记为已初始化
     }
-    LeaveCriticalSection(_DAT_180c0c210);
+    LeaveCriticalSection(render_system_config);
     
     // 减少引用计数
     LOCK();
-    ref_count = _DAT_180c0c218 + -1;
+    ref_count = render_system_config + -1;
     UNLOCK();
-    cs_exists = _DAT_180c0c218 == 1;
-    _DAT_180c0c218 = ref_count;
+    cs_exists = render_system_config == 1;
+    render_system_config = ref_count;
     
     // 如果引用计数为0，清理临界区
     if (cs_exists) {
-      DeleteCriticalSection(_DAT_180c0c210);
-      free(_DAT_180c0c210);
-      _DAT_180c0c210 = 0;
+      DeleteCriticalSection(render_system_config);
+      free(render_system_config);
+      render_system_config = 0;
     }
   }
   return;
@@ -552,7 +552,7 @@ void RenderingSystem_ThreadSynchronizer(void)
   
   // 增加线程引用计数
   LOCK();
-  _DAT_180c0c218 = _DAT_180c0c218 + 1;
+  render_system_config = render_system_config + 1;
   UNLOCK();
   
   // 创建新的临界区
@@ -561,12 +561,12 @@ void RenderingSystem_ThreadSynchronizer(void)
   
   // 设置全局临界区
   LOCK();
-  cs_exists = _DAT_180c0c210 != 0;
+  cs_exists = render_system_config != 0;
   current_cs = new_cs;
   if (cs_exists) {
-    current_cs = _DAT_180c0c210;  // 使用现有临界区
+    current_cs = render_system_config;  // 使用现有临界区
   }
-  _DAT_180c0c210 = current_cs;
+  render_system_config = current_cs;
   UNLOCK();
   
   // 如果临界区已存在，清理新创建的
@@ -576,25 +576,25 @@ void RenderingSystem_ThreadSynchronizer(void)
   }
   
   // 进入临界区执行同步操作
-  EnterCriticalSection(_DAT_180c0c210);
-  if (_DAT_180c0c21c == 0) {
+  EnterCriticalSection(render_system_config);
+  if (render_system_config == 0) {
     (*callback_func)();   // 执行回调函数
-    _DAT_180c0c21c = 1;   // 标记为已同步
+    render_system_config = 1;   // 标记为已同步
   }
-  LeaveCriticalSection(_DAT_180c0c210);
+  LeaveCriticalSection(render_system_config);
   
   // 减少引用计数
   LOCK();
-  ref_count = _DAT_180c0c218 + -1;
+  ref_count = render_system_config + -1;
   UNLOCK();
-  cs_exists = _DAT_180c0c218 == 1;
-  _DAT_180c0c218 = ref_count;
+  cs_exists = render_system_config == 1;
+  render_system_config = ref_count;
   
   // 如果引用计数为0，清理临界区
   if (cs_exists) {
-    DeleteCriticalSection(_DAT_180c0c210);
-    free(_DAT_180c0c210);
-    _DAT_180c0c210 = 0;
+    DeleteCriticalSection(render_system_config);
+    free(render_system_config);
+    render_system_config = 0;
   }
   return;
 }
@@ -620,23 +620,23 @@ void RenderingSystem_ThreadFinalizer(void)
   
   // 执行终止化函数
   (*finalizer_func)();
-  _DAT_180c0c21c = 1;    // 标记为已终止
+  render_system_config = 1;    // 标记为已终止
   
   // 离开临界区
-  LeaveCriticalSection(_DAT_180c0c210);
+  LeaveCriticalSection(render_system_config);
   
   // 减少引用计数
   LOCK();
-  ref_count = _DAT_180c0c218 + -1;
+  ref_count = render_system_config + -1;
   UNLOCK();
-  should_cleanup = _DAT_180c0c218 == 1;
-  _DAT_180c0c218 = ref_count;
+  should_cleanup = render_system_config == 1;
+  render_system_config = ref_count;
   
   // 如果引用计数为0，清理临界区资源
   if (should_cleanup) {
-    DeleteCriticalSection(_DAT_180c0c210);
-    free(_DAT_180c0c210);
-    _DAT_180c0c210 = 0;
+    DeleteCriticalSection(render_system_config);
+    free(render_system_config);
+    render_system_config = 0;
   }
   return;
 }
@@ -1098,14 +1098,14 @@ void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char 
   int8_t auVar10 [16];
   int8_t auVar11 [16];
   
-  auVar1 = _DAT_180d9e5d0;
+  auVar1 = render_system_config;
   pauVar3 = (int8_t (*) [16])(param_2 * 4 + param_1);
   lVar2 = (longlong)param_2;
   auVar5 = *(int8_t (*) [16])(*pauVar3 + lVar2);
   auVar7 = *(int8_t (*) [16])((longlong)pauVar3 + lVar2 * -2);
   auVar4 = psubusb(auVar5,auVar7);
   auVar6 = psubusb(auVar7,auVar5);
-  auVar4 = (auVar6 | auVar4) & _DAT_180d9e5c0;
+  auVar4 = (auVar6 | auVar4) & render_system_config;
   auVar10._0_2_ = auVar4._0_2_ >> 1;
   auVar10._2_2_ = auVar4._2_2_ >> 1;
   auVar10._4_2_ = auVar4._4_2_ >> 1;
@@ -1137,13 +1137,13 @@ void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char 
   auVar8[0xd] = -(auVar10[0xd] == '\0');
   auVar8[0xe] = -(auVar10[0xe] == '\0');
   auVar8[0xf] = -(auVar10[0xf] == '\0');
-  auVar7 = psubsb(auVar7 ^ _DAT_180d9e5d0,auVar5 ^ _DAT_180d9e5d0);
-  auVar5 = psubsb(auVar6 ^ _DAT_180d9e5d0,auVar4 ^ _DAT_180d9e5d0);
+  auVar7 = psubsb(auVar7 ^ render_system_config,auVar5 ^ render_system_config);
+  auVar5 = psubsb(auVar6 ^ render_system_config,auVar4 ^ render_system_config);
   auVar7 = paddsb(auVar7,auVar5);
   auVar7 = paddsb(auVar7,auVar5);
   auVar5 = paddsb(auVar7,auVar5);
-  auVar10 = paddsb(auVar8 & auVar5,_DAT_180d9e5f0);
-  auVar5 = paddsb(auVar8 & auVar5,_DAT_180d9e600);
+  auVar10 = paddsb(auVar8 & auVar5,render_system_config);
+  auVar5 = paddsb(auVar8 & auVar5,render_system_config);
   auVar9[0] = -(auVar5[0] < '\0');
   auVar9[1] = -(auVar5[1] < '\0');
   auVar9[2] = -(auVar5[2] < '\0');
@@ -1168,7 +1168,7 @@ void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char 
   auVar7._10_2_ = auVar5._10_2_ >> 3;
   auVar7._12_2_ = auVar5._12_2_ >> 3;
   auVar7._14_2_ = auVar5._14_2_ >> 3;
-  auVar5 = psubsb(auVar6 ^ _DAT_180d9e5d0,auVar7 & _DAT_180d9e650 | auVar9 & _DAT_180d9e640);
+  auVar5 = psubsb(auVar6 ^ render_system_config,auVar7 & render_system_config | auVar9 & render_system_config);
   auVar11[0] = -(auVar10[0] < '\0');
   auVar11[1] = -(auVar10[1] < '\0');
   auVar11[2] = -(auVar10[2] < '\0');
@@ -1193,8 +1193,8 @@ void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char 
   auVar6._10_2_ = auVar10._10_2_ >> 3;
   auVar6._12_2_ = auVar10._12_2_ >> 3;
   auVar6._14_2_ = auVar10._14_2_ >> 3;
-  auVar7 = paddsb(auVar4 ^ _DAT_180d9e5d0,auVar6 & _DAT_180d9e650 | auVar11 & _DAT_180d9e640);
-  *pauVar3 = auVar5 ^ _DAT_180d9e5d0;
+  auVar7 = paddsb(auVar4 ^ render_system_config,auVar6 & render_system_config | auVar11 & render_system_config);
+  *pauVar3 = auVar5 ^ render_system_config;
   *(int8_t (*) [16])((longlong)pauVar3 + -lVar2) = auVar7 ^ auVar1;
   return;
 }

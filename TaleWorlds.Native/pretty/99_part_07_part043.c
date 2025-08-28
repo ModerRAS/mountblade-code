@@ -408,7 +408,7 @@ void FUN_1804c4310(longlong *param_1,ulonglong param_2)
     lVar1 = 0;
   }
   else {
-    lVar1 = FUN_18062b420(_DAT_180c8ed18,uVar3 * 200,(char)param_1[3]);
+    lVar1 = FUN_18062b420(system_memory_pool_ptr,uVar3 * 200,(char)param_1[3]);
     lVar6 = *param_1;
     puVar4 = (uint64_t *)param_1[1];
   }
@@ -467,7 +467,7 @@ void FUN_1804c4385(void)
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,uVar4 * 200,(char)unaff_RDI[3]);
+    lVar2 = FUN_18062b420(system_memory_pool_ptr,uVar4 * 200,(char)unaff_RDI[3]);
     in_R10 = *unaff_RDI;
     unaff_RSI = unaff_RDI[1];
   }

@@ -304,7 +304,7 @@ LAB_1805ca608:
   lVar8 = param_1[0x1d];
   if (((lVar8 == 0) || (*(int *)(lVar8 + 0x568) != 1)) ||
      ((*(byte *)((longlong)*(int *)(*(longlong *)(param_2 + 0xd0) + 100 + lVar10) * 0x170 + 0x140 +
-                _DAT_180c95ff0) & 0x10) != 0)) goto LAB_1805ca818;
+                system_system_config) & 0x10) != 0)) goto LAB_1805ca818;
   lVar7 = FUN_180516fe0(*param_1,&fStack_e8,param_2,auStackX_18[0]);
   fVar15 = *(float *)(lVar7 + 4) +
            *(float *)(*(longlong *)(param_2 + 0xd0) + 0x88 + lVar10) * *(float *)(param_2 + 0x48) *
@@ -332,11 +332,11 @@ joined_r0x0001805ca7a1:
     auStackX_18[0] = (int)(fVar15 / fVar14) + 0x3f800000U >> 1;
   }
 LAB_1805ca818:
-  lVar7 = _DAT_180c95ff0;
+  lVar7 = system_system_config;
   lVar8 = *(longlong *)(param_2 + 0xd0);
   if ((*(byte *)(lVar8 + 0x50 + lVar10) & 0x40) != 0) {
     if (bVar13 == 0) {
-      if ((*(byte *)((longlong)*(int *)(lVar8 + 100 + lVar10) * 0x170 + 0x140 + _DAT_180c95ff0) &
+      if ((*(byte *)((longlong)*(int *)(lVar8 + 100 + lVar10) * 0x170 + 0x140 + system_system_config) &
           0x10) != 0) {
         FUN_1805c9f10(param_1);
       }
@@ -494,7 +494,7 @@ LAB_1805ca608:
   lVar6 = unaff_RDI[0x1d];
   if (((lVar6 == 0) || (*(int *)(lVar6 + 0x568) != 1)) ||
      ((*(byte *)((longlong)*(int *)(*(longlong *)(unaff_RBP + 0xd0) + 100 + unaff_RSI) * 0x170 +
-                 0x140 + _DAT_180c95ff0) & 0x10) != 0)) goto LAB_1805ca818;
+                 0x140 + system_system_config) & 0x10) != 0)) goto LAB_1805ca818;
   lVar7 = FUN_180516fe0(*unaff_RDI,&fStackX_20);
   fVar12 = *(float *)(lVar7 + 4) +
            *(float *)(*(longlong *)(unaff_RBP + 0xd0) + 0x88 + unaff_RSI) *
@@ -523,11 +523,11 @@ joined_r0x0001805ca7a1:
     in_stack_00000120 = (int)(fVar12 / fVar11) + 0x3f800000U >> 1;
   }
 LAB_1805ca818:
-  lVar7 = _DAT_180c95ff0;
+  lVar7 = system_system_config;
   lVar6 = *(longlong *)(unaff_RBP + 0xd0);
   if ((*(byte *)(lVar6 + 0x50 + unaff_RSI) & 0x40) != 0) {
     if (bVar10 == 0) {
-      if ((*(byte *)((longlong)*(int *)(lVar6 + 100 + unaff_RSI) * 0x170 + 0x140 + _DAT_180c95ff0) &
+      if ((*(byte *)((longlong)*(int *)(lVar6 + 100 + unaff_RSI) * 0x170 + 0x140 + system_system_config) &
           0x10) != 0) {
         FUN_1805c9f10();
       }
@@ -670,7 +670,7 @@ LAB_1805ca608:
   lVar7 = unaff_RDI[0x1d];
   if (((lVar7 == 0) || (*(int *)(lVar7 + 0x568) != 1)) ||
      ((*(byte *)((longlong)*(int *)(*(longlong *)(unaff_RBP + 0xd0) + 100 + unaff_RSI) * 0x170 +
-                 0x140 + _DAT_180c95ff0) & 0x10) != 0)) goto LAB_1805ca818;
+                 0x140 + system_system_config) & 0x10) != 0)) goto LAB_1805ca818;
   lVar6 = FUN_180516fe0(*unaff_RDI,&fStackX_20);
   fVar11 = *(float *)(lVar6 + 4) +
            *(float *)(*(longlong *)(unaff_RBP + 0xd0) + 0x88 + unaff_RSI) *
@@ -699,11 +699,11 @@ joined_r0x0001805ca7a1:
     in_stack_00000120 = (int)(fVar11 / fVar10) + 0x3f800000U >> 1;
   }
 LAB_1805ca818:
-  lVar6 = _DAT_180c95ff0;
+  lVar6 = system_system_config;
   lVar7 = *(longlong *)(unaff_RBP + 0xd0);
   if ((*(byte *)(lVar7 + 0x50 + unaff_RSI) & 0x40) != 0) {
     if (bVar9 == 0) {
-      if ((*(byte *)((longlong)*(int *)(lVar7 + 100 + unaff_RSI) * 0x170 + 0x140 + _DAT_180c95ff0) &
+      if ((*(byte *)((longlong)*(int *)(lVar7 + 100 + unaff_RSI) * 0x170 + 0x140 + system_system_config) &
           0x10) != 0) {
         FUN_1805c9f10();
       }
@@ -831,7 +831,7 @@ LAB_1805ca54f:
   lVar6 = unaff_RDI[0x1d];
   if (((lVar6 == 0) || (*(int *)(lVar6 + 0x568) != 1)) ||
      ((*(byte *)((longlong)*(int *)(*(longlong *)(unaff_RBP + 0xd0) + 100 + unaff_RSI) * 0x170 +
-                 0x140 + _DAT_180c95ff0) & 0x10) != 0)) goto LAB_1805ca818;
+                 0x140 + system_system_config) & 0x10) != 0)) goto LAB_1805ca818;
   lVar5 = FUN_180516fe0(*unaff_RDI,&fStackX_20);
   fVar8 = *(float *)(lVar5 + 4) +
           *(float *)(*(longlong *)(unaff_RBP + 0xd0) + 0x88 + unaff_RSI) *
@@ -860,11 +860,11 @@ joined_r0x0001805ca7a1:
     in_stack_00000120 = (int)(fVar8 / fVar9) + 0x3f800000U >> 1;
   }
 LAB_1805ca818:
-  lVar5 = _DAT_180c95ff0;
+  lVar5 = system_system_config;
   lVar6 = *(longlong *)(unaff_RBP + 0xd0);
   if ((*(byte *)(lVar6 + 0x50 + unaff_RSI) & 0x40) != 0) {
     if (unaff_R14B == '\0') {
-      if ((*(byte *)((longlong)*(int *)(lVar6 + 100 + unaff_RSI) * 0x170 + 0x140 + _DAT_180c95ff0) &
+      if ((*(byte *)((longlong)*(int *)(lVar6 + 100 + unaff_RSI) * 0x170 + 0x140 + system_system_config) &
           0x10) != 0) {
         FUN_1805c9f10();
       }

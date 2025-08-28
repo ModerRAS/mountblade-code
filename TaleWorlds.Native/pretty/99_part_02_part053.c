@@ -62,7 +62,7 @@ void FUN_1801beba8(longlong param_1,uint64_t *param_2)
               if (lVar1 == 0) {
                 lVar1 = 1;
 LAB_1801bec67:
-                plVar2 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar1 * 8);
+                plVar2 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar1 * 8);
                 plVar3 = (longlong *)plVar6[-1];
                 plVar5 = (longlong *)*plVar6;
               }
@@ -170,7 +170,7 @@ void FUN_1801bed30(longlong *param_1,uint64_t *param_2,int param_3)
     lVar1 = lVar1 * 2;
     if (lVar1 == 0) goto LAB_1801bee38;
   }
-  puVar2 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar1 * 8,(char)param_1[7]);
+  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar1 * 8,(char)param_1[7]);
   puVar5 = (uint64_t *)param_1[4];
   puVar4 = (uint64_t *)param_1[5];
 LAB_1801bee38:
@@ -238,7 +238,7 @@ void FUN_1801bed55(byte param_1,longlong param_2)
     lVar1 = lVar1 * 2;
     if (lVar1 == 0) goto LAB_1801bee38;
   }
-  puVar2 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar1 * 8,*(int8_t *)(unaff_RBX + 0x38));
+  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar1 * 8,*(int8_t *)(unaff_RBX + 0x38));
   puVar4 = *(uint64_t **)(unaff_RBX + 0x20);
   puVar3 = *(uint64_t **)(unaff_RBX + 0x28);
 LAB_1801bee38:
@@ -298,7 +298,7 @@ void FUN_1801bed95(void)
     if (lVar1 == 0) goto LAB_1801bee38;
   }
   unaff_R12 = (uint64_t *)
-              FUN_18062b420(_DAT_180c8ed18,lVar1 * 8,*(int8_t *)(unaff_RBX + 0x38));
+              FUN_18062b420(system_memory_pool_ptr,lVar1 * 8,*(int8_t *)(unaff_RBX + 0x38));
   puVar2 = *(uint64_t **)(unaff_RBX + 0x20);
   puVar3 = *(uint64_t **)(unaff_RBX + 0x28);
 LAB_1801bee38:
@@ -352,7 +352,7 @@ void FUN_1801bedc8(byte param_1)
     if (lVar1 == 0) goto LAB_1801bee38;
   }
   unaff_R12 = (uint64_t *)
-              FUN_18062b420(_DAT_180c8ed18,lVar1 * 8,*(int8_t *)(unaff_RBX + 0x38));
+              FUN_18062b420(system_memory_pool_ptr,lVar1 * 8,*(int8_t *)(unaff_RBX + 0x38));
   puVar2 = *(uint64_t **)(unaff_RBX + 0x20);
   puVar3 = *(uint64_t **)(unaff_RBX + 0x28);
 LAB_1801bee38:
@@ -554,7 +554,7 @@ void FUN_1801bef80(longlong *param_1,ulonglong param_2)
   puVar4 = (int32_t *)0x0;
   if (uVar12 != 0) {
     puVar4 = (int32_t *)
-             FUN_18062b420(_DAT_180c8ed18,uVar12 * 0x28,(char)param_1[3],puVar10,0xfffffffffffffffe)
+             FUN_18062b420(system_memory_pool_ptr,uVar12 * 0x28,(char)param_1[3],puVar10,0xfffffffffffffffe)
     ;
     puVar10 = (int32_t *)param_1[1];
     puVar7 = (int32_t *)*param_1;
@@ -702,7 +702,7 @@ void FUN_1801bf280(longlong *param_1,ulonglong param_2,uint64_t param_3,uint64_t
     puVar5 = (uint64_t *)0x0;
     if (uVar9 != 0) {
       puVar5 = (uint64_t *)
-               FUN_18062b420(_DAT_180c8ed18,uVar9 << 5,(char)param_1[3],param_4,0xfffffffffffffffe);
+               FUN_18062b420(system_memory_pool_ptr,uVar9 << 5,(char)param_1[3],param_4,0xfffffffffffffffe);
       puVar7 = (uint64_t *)param_1[1];
       puVar10 = (uint64_t *)*param_1;
     }
@@ -834,7 +834,7 @@ void FUN_1801bf4d0(uint64_t *param_1)
             (**(code **)(*plVar2 + 0x28))(plVar2);
           }
           plVar2[3] = (longlong)(int)(1 << (*(int *)((longlong)param_1 + 0xc) + 2U & 0x1f) | 1);
-          uVar5 = _DAT_180c82868;
+          uVar5 = system_context_ptr;
           plStackX_10 = plVar2;
           (**(code **)(*plVar2 + 0x28))(plVar2);
           FUN_18005e110(uVar5,&plStackX_10);
@@ -850,7 +850,7 @@ void FUN_1801bf4d0(uint64_t *param_1)
             if (lVar6 == 0) {
               lVar6 = 1;
 LAB_1801bf606:
-              plVar7 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar6 * 8,3);
+              plVar7 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar6 * 8,3);
               plVar13 = plVar7;
             }
             else {
@@ -885,7 +885,7 @@ LAB_1801bf606:
           plVar12 = plVar13;
         } while (plVar8 != plStackX_20);
       }
-      uVar5 = _DAT_180c82868;
+      uVar5 = system_context_ptr;
       uVar11 = (longlong)plStack_60 - (longlong)plVar13 >> 3;
       do {
         bVar4 = false;

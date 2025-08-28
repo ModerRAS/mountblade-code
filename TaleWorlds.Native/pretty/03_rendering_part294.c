@@ -91,7 +91,7 @@ uint64_t FUN_180424a70(longlong param_1,uint64_t param_2,int param_3)
     for (iVar3 = *(int *)(param_1 + 0x28) - *(int *)(param_1 + 0x20); iVar3 < iVar2 + param_3;
         iVar3 = iVar3 * 2) {
     }
-    lVar1 = FUN_18062b680(_DAT_180c8ed18,*(uint64_t *)(param_1 + 0x20),(longlong)iVar3,
+    lVar1 = FUN_18062b680(system_memory_pool_ptr,*(uint64_t *)(param_1 + 0x20),(longlong)iVar3,
                           CONCAT71((uint7)(uint3)((uint)param_3 >> 8),0x22));
     if (lVar1 != 0) {
       *(longlong *)(param_1 + 0x20) = lVar1;

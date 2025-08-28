@@ -220,7 +220,7 @@ void FUN_18061d2b5(longlong param_1,uint64_t param_2,ulonglong param_3,longlong 
       uVar15 = uVar25;
       uVar25 = uVar24;
       if (uVar26 != 0) {
-        uVar25 = FUN_18062b420(_DAT_180c8ed18,uVar26 * 8,*(int8_t *)(unaff_RDI + 0x140));
+        uVar25 = FUN_18062b420(system_memory_pool_ptr,uVar26 * 8,*(int8_t *)(unaff_RDI + 0x140));
         uVar18 = *(ulonglong *)(unaff_RDI + 0x128);
         uVar15 = *(ulonglong *)(unaff_RDI + 0x130);
       }
@@ -262,7 +262,7 @@ void FUN_18061d2b5(longlong param_1,uint64_t param_2,ulonglong param_3,longlong 
       lVar23 = 0;
     }
     else {
-      lVar23 = FUN_18062b420(_DAT_180c8ed18,uVar24 << 5,*(int8_t *)(unaff_RDI + 0x80));
+      lVar23 = FUN_18062b420(system_memory_pool_ptr,uVar24 << 5,*(int8_t *)(unaff_RDI + 0x80));
       lVar14 = *(longlong *)(unaff_RDI + 0x68);
     }
     if (lVar14 != *(longlong *)(unaff_RDI + 0x70)) {
@@ -284,7 +284,7 @@ void FUN_18061d2b5(longlong param_1,uint64_t param_2,ulonglong param_3,longlong 
     }
     else {
       puVar11 = (int32_t *)
-                FUN_18062b420(_DAT_180c8ed18,uVar24 << 6,*(int8_t *)(unaff_RDI + 0xa0));
+                FUN_18062b420(system_memory_pool_ptr,uVar24 << 6,*(int8_t *)(unaff_RDI + 0xa0));
       lVar14 = *(longlong *)(unaff_RDI + 0x88);
     }
     lVar23 = *(longlong *)(unaff_RDI + 0x90);
@@ -333,7 +333,7 @@ void FUN_18061d2b5(longlong param_1,uint64_t param_2,ulonglong param_3,longlong 
       lVar23 = 0;
     }
     else {
-      lVar23 = FUN_18062b420(_DAT_180c8ed18,uVar20 * 0x30,*(int8_t *)(unaff_RDI + 0x1a0));
+      lVar23 = FUN_18062b420(system_memory_pool_ptr,uVar20 * 0x30,*(int8_t *)(unaff_RDI + 0x1a0));
       lVar14 = *(longlong *)(unaff_RDI + 0x188);
     }
     if (lVar14 != *(longlong *)(unaff_RDI + 400)) {
@@ -355,7 +355,7 @@ void FUN_18061d2b5(longlong param_1,uint64_t param_2,ulonglong param_3,longlong 
       lVar23 = 0;
     }
     else {
-      lVar23 = FUN_18062b420(_DAT_180c8ed18,uVar24 * 8,*(int8_t *)(unaff_RDI + 0x160));
+      lVar23 = FUN_18062b420(system_memory_pool_ptr,uVar24 * 8,*(int8_t *)(unaff_RDI + 0x160));
       lVar14 = *(longlong *)(unaff_RDI + 0x148);
     }
     if (lVar14 != *(longlong *)(unaff_RDI + 0x150)) {

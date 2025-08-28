@@ -361,16 +361,16 @@ void FUN_180298890(uint64_t param_1,float *param_2,float *param_3,ulonglong para
 void FUN_180298c20(ulonglong param_1,uint param_2)
 
 {
-  if (_DAT_180c96838 < param_2 + _DAT_180c96850) {
-    _DAT_180c96850 = param_2 + _DAT_180c96850;
+  if (render_system_config < param_2 + render_system_config) {
+    render_system_config = param_2 + render_system_config;
     return;
   }
-  if (param_1 < _DAT_180c96848) {
-    _DAT_180c96850 = _DAT_180c96838 + 1;
+  if (param_1 < render_system_config) {
+    render_system_config = render_system_config + 1;
     return;
   }
                     // WARNING: Subroutine does not return
-  memcpy(_DAT_180c96850,param_1);
+  memcpy(render_system_config,param_1);
 }
 
 
@@ -385,11 +385,11 @@ byte * FUN_180298c80(byte *param_1)
   bVar1 = *param_1;
   if (0x1f < bVar1) {
     if (0x7f < bVar1) {
-      func_0x000180298bc0((_DAT_180c96850 - (ulonglong)param_1[1]) + -1,bVar1 - 0x7f);
+      func_0x000180298bc0((render_system_config - (ulonglong)param_1[1]) + -1,bVar1 - 0x7f);
       return param_1 + 2;
     }
     if (0x3f < bVar1) {
-      func_0x000180298bc0(((_DAT_180c96850 + (ulonglong)bVar1 * -0x100) - (ulonglong)param_1[1]) +
+      func_0x000180298bc0(((render_system_config + (ulonglong)bVar1 * -0x100) - (ulonglong)param_1[1]) +
                           0x3fff,param_1[2] + 1);
       return param_1 + 3;
     }
@@ -397,12 +397,12 @@ byte * FUN_180298c80(byte *param_1)
     return param_1 + ((ulonglong)*param_1 - 0x1e);
   }
   if (0x17 < bVar1) {
-    func_0x000180298bc0(((_DAT_180c96850 + (ulonglong)CONCAT11(bVar1,param_1[1]) * -0x100) -
+    func_0x000180298bc0(((render_system_config + (ulonglong)CONCAT11(bVar1,param_1[1]) * -0x100) -
                         (ulonglong)param_1[2]) + 0x17ffff,param_1[3] + 1);
     return param_1 + 4;
   }
   if (0xf < bVar1) {
-    func_0x000180298bc0(((_DAT_180c96850 + (ulonglong)CONCAT11(bVar1,param_1[1]) * -0x100) -
+    func_0x000180298bc0(((render_system_config + (ulonglong)CONCAT11(bVar1,param_1[1]) * -0x100) -
                         (ulonglong)param_1[2]) + 0xfffff,
                         (uint)param_1[4] + (uint)param_1[3] * 0x100 + 1);
     return param_1 + 5;
@@ -416,12 +416,12 @@ byte * FUN_180298c80(byte *param_1)
     return param_1 + (ulonglong)param_1[1] * 0x100 + 4 + (ulonglong)param_1[2];
   }
   if (bVar1 == 6) {
-    func_0x000180298bc0(((_DAT_180c96850 + (ulonglong)CONCAT11(param_1[1],param_1[2]) * -0x100) -
+    func_0x000180298bc0(((render_system_config + (ulonglong)CONCAT11(param_1[1],param_1[2]) * -0x100) -
                         (ulonglong)param_1[3]) + -1,param_1[4] + 1);
     return param_1 + 5;
   }
   if (bVar1 == 4) {
-    func_0x000180298bc0(((_DAT_180c96850 + (ulonglong)CONCAT11(param_1[1],param_1[2]) * -0x100) -
+    func_0x000180298bc0(((render_system_config + (ulonglong)CONCAT11(param_1[1],param_1[2]) * -0x100) -
                         (ulonglong)param_1[3]) + -1,(uint)param_1[5] + (uint)param_1[4] * 0x100 + 1)
     ;
     param_1 = param_1 + 6;
@@ -464,15 +464,15 @@ uint FUN_180298ee0(byte *param_1,byte *param_2)
     uVar19 = (uint)param_2[8] * 0x1000000 + (uint)param_2[9] * 0x10000 + (uint)param_2[10] * 0x100 +
              (uint)param_2[0xb];
     pbVar15 = param_1 + uVar19;
-    _DAT_180c96838 = pbVar15;
-    _DAT_180c96840 = param_1;
-    _DAT_180c96848 = param_2;
-    _DAT_180c96850 = param_1;
+    render_system_config = pbVar15;
+    render_system_config = param_1;
+    render_system_config = param_2;
+    render_system_config = param_1;
     pbVar3 = (byte *)FUN_180298c80(param_2 + 0x10);
     pbVar4 = pbVar3;
     if (pbVar3 != param_2 + 0x10) {
       do {
-        if (pbVar15 < _DAT_180c96850) {
+        if (pbVar15 < render_system_config) {
           return 0;
         }
         pbVar3 = (byte *)FUN_180298c80(pbVar4);
@@ -480,7 +480,7 @@ uint FUN_180298ee0(byte *param_1,byte *param_2)
         pbVar4 = pbVar3;
       } while (bVar20);
     }
-    if (((*pbVar3 == 5) && (pbVar3[1] == 0xfa)) && (_DAT_180c96850 == pbVar15)) {
+    if (((*pbVar3 == 5) && (pbVar3[1] == 0xfa)) && (render_system_config == pbVar15)) {
       uVar17 = 0;
       uVar12 = 1;
       uVar14 = uVar19;

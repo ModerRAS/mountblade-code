@@ -223,11 +223,11 @@ void FUN_180383ef0(longlong param_1,longlong param_2,longlong param_3)
     *(int *)(param_3 + 0x9a28) = iVar6;
     *(longlong *)(param_3 + 0x9a20) = lVar11 + 0x570;
     FUN_18024edc0(*(uint64_t *)(param_1 + 0xa0),*(uint64_t *)(param_2 + 0x3580));
-    lVar4 = _DAT_180c868c0;
+    lVar4 = render_system_data_config;
     uVar7 = 0;
     *(int8_t *)
      ((longlong)*(int *)(param_3 + 0x9a28) +
-     ((longlong)*(int *)(*(longlong *)(param_2 + 0x3580) + 0x628) + 0x200) * 0x80 + _DAT_180c868c0)
+     ((longlong)*(int *)(*(longlong *)(param_2 + 0x3580) + 0x628) + 0x200) * 0x80 + render_system_data_config)
          = 1;
     lVar9 = *(longlong *)(param_2 + 0x3580);
     iVar6 = *(int *)(param_3 + 0x9a28);
@@ -315,11 +315,11 @@ void FUN_180383f5b(int param_1,longlong param_2)
   *(int *)(unaff_RBX + 0x9a28) = param_1;
   *(longlong *)(unaff_RBX + 0x9a20) = param_2;
   FUN_18024edc0(*(uint64_t *)(unaff_RSI + 0xa0),*(uint64_t *)(unaff_RDI + 0x3580));
-  lVar4 = _DAT_180c868c0;
+  lVar4 = render_system_data_config;
   uVar8 = 0;
   *(int8_t *)
    ((longlong)*(int *)(unaff_RBX + 0x9a28) +
-   ((longlong)*(int *)(*(longlong *)(unaff_RDI + 0x3580) + 0x628) + 0x200) * 0x80 + _DAT_180c868c0)
+   ((longlong)*(int *)(*(longlong *)(unaff_RDI + 0x3580) + 0x628) + 0x200) * 0x80 + render_system_data_config)
        = 1;
   lVar5 = *(longlong *)(unaff_RDI + 0x3580);
   iVar7 = *(int *)(unaff_RBX + 0x9a28);
@@ -456,7 +456,7 @@ void FUN_180384140(longlong param_1,longlong param_2,longlong param_3,int param_
   longlong lVar9;
   
   lVar9 = (longlong)param_4;
-  if ((*(char *)(_DAT_180c86870 + 0xfb) != '\0') && (0 < param_4)) {
+  if ((*(char *)(system_main_module_state + 0xfb) != '\0') && (0 < param_4)) {
     lVar8 = 0;
     do {
       lVar7 = *(longlong *)(param_3 + lVar8 * 8);

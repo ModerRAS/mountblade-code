@@ -38,7 +38,7 @@ void FUN_1808e5800(longlong *param_1,longlong param_2,int param_3,int32_t param_
     *(uint64_t *)(lVar12 + 0x18 + lVar13 * 0x28) = 0;
     *(uint64_t *)(lVar12 + 0x20 + lVar13 * 0x28) = 0;
     *(int *)(param_1 + 4) = (int)param_1[4] + 1;
-    puVar6 = _DAT_00000000;
+    puVar6 = system_system_config;
     if (plVar1 != (longlong *)0x0) {
       puVar6 = (uint64_t *)(param_1[3] + lVar13 * 0x28);
       *plVar1 = (longlong)puVar6;

@@ -256,10 +256,10 @@ typedef struct {
 // =============================================================================
 
 /** 系统全局配置表 */
-extern const void* _DAT_180c8ed18;  /** 系统配置表1 */
-extern const void* _DAT_1809ff9c0;  /** 系统配置表2 */
-extern const void* _DAT_1809ff990;  /** 系统配置表3 */
-extern const void* _DAT_180c86870;  /** 系统配置表4 */
+extern const void* system_memory_pool_ptr;  /** 系统配置表1 */
+extern const void* system_system_config;  /** 系统配置表2 */
+extern const void* system_system_config;  /** 系统配置表3 */
+extern const void* system_main_module_state;  /** 系统配置表4 */
 
 /** 系统全局地址表 */
 extern const void* global_state_5056;   /** 系统地址表1 */
@@ -812,7 +812,7 @@ void FUN_1802fad4b(void)
     }
     
     // 更新系统状态
-    *(uint32_t*)(system_context + 0x50) = *(uint32_t*)(_DAT_180c86870 + 0x224);
+    *(uint32_t*)(system_context + 0x50) = *(uint32_t*)(system_main_module_state + 0x224);
     *(ushort*)(system_context + 0xa8) = *(ushort*)(system_context + 0xa8) | 1;
     
     // 清理系统资源

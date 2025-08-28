@@ -259,16 +259,16 @@ typedef struct {
 // =============================================================================
 
 /** 系统全局配置表 */
-extern const void* _DAT_180bf9220;  /** 系统配置表1 */
-extern const void* _DAT_180bf9218;  /** 系统配置表2 */
-extern const void* _DAT_180bf9460;  /** 系统配置表3 */
-extern const void* _DAT_180bf9458;  /** 系统配置表4 */
-extern const void* _DAT_180bf9400;  /** 系统配置表5 */
-extern const void* _DAT_180bf93f8;  /** 系统配置表6 */
-extern const void* _DAT_180bf94c0;  /** 系统配置表7 */
-extern const void* _DAT_180bf94b8;  /** 系统配置表8 */
-extern const void* _DAT_180bf91c0;  /** 系统配置表9 */
-extern const void* _DAT_180bf91b8;  /** 系统配置表10 */
+extern const void* system_system_control_memory;  /** 系统配置表1 */
+extern const void* system_system_control_memory;  /** 系统配置表2 */
+extern const void* system_system_control_memory;  /** 系统配置表3 */
+extern const void* system_system_control_memory;  /** 系统配置表4 */
+extern const void* system_system_control_memory;  /** 系统配置表5 */
+extern const void* system_system_control_memory;  /** 系统配置表6 */
+extern const void* system_system_control_memory;  /** 系统配置表7 */
+extern const void* system_system_control_memory;  /** 系统配置表8 */
+extern const void* system_system_control_memory;  /** 系统配置表9 */
+extern const void* system_system_control_memory;  /** 系统配置表10 */
 
 /** 系统全局地址表 */
 extern const void* global_state_3456_ptr;   /** 系统地址表1 */
@@ -491,18 +491,18 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     cStack_560 = param_3;
     
     // 初始化系统配置
-    FUN_1806277c0(&ppplStack_5b8, _DAT_180bf9220);
-    if (0 < _DAT_180bf9220) {
+    FUN_1806277c0(&ppplStack_5b8, system_system_control_memory);
+    if (0 < system_system_control_memory) {
         puVar12 = &system_buffer_ptr;
-        if (_DAT_180bf9218 != (void *)0x0) {
-            puVar12 = _DAT_180bf9218;
+        if (system_system_control_memory != (void *)0x0) {
+            puVar12 = system_system_control_memory;
         }
         // 复制配置数据
-        memcpy(puStack_5b0, puVar12, (longlong)(_DAT_180bf9220 + 1));
+        memcpy(puStack_5b0, puVar12, (longlong)(system_system_control_memory + 1));
     }
     
     // 处理系统配置
-    if ((_DAT_180bf9218 != (void *)0x0) && (uStack_5a8 = 0, puStack_5b0 != (int8_t *)0x0)) {
+    if ((system_system_control_memory != (void *)0x0) && (uStack_5a8 = 0, puStack_5b0 != (int8_t *)0x0)) {
         *puStack_5b0 = 0;
     }
     
@@ -532,18 +532,18 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     uStack_588 = (code *)((ulonglong)uStack_588._4_4_ << 0x20);
     
     // 初始化系统配置
-    FUN_1806277c0(&puStack_598, _DAT_180bf9460);
-    if (0 < _DAT_180bf9460) {
+    FUN_1806277c0(&puStack_598, system_system_control_memory);
+    if (0 < system_system_control_memory) {
         puVar12 = &system_buffer_ptr;
-        if (_DAT_180bf9458 != (void *)0x0) {
-            puVar12 = _DAT_180bf9458;
+        if (system_system_control_memory != (void *)0x0) {
+            puVar12 = system_system_control_memory;
         }
         // 复制配置数据
-        memcpy(puStack_590, puVar12, (longlong)(_DAT_180bf9460 + 1));
+        memcpy(puStack_590, puVar12, (longlong)(system_system_control_memory + 1));
     }
     
     // 处理系统配置
-    if ((_DAT_180bf9458 != (void *)0x0) &&
+    if ((system_system_control_memory != (void *)0x0) &&
         (uStack_588 = (code *)((ulonglong)uStack_588 & 0xffffffff00000000),
          puStack_590 != (int8_t *)0x0)) {
         *puStack_590 = 0;

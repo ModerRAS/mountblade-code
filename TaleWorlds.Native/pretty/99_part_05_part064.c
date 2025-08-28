@@ -728,7 +728,7 @@ void FUN_1803a1330(longlong param_1,longlong param_2,ulonglong param_3,int32_t p
         if (iVar7 < 0x10) {
           iVar9 = 0x10;
         }
-        puVar4 = (int8_t *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar9,0x13);
+        puVar4 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)iVar9,0x13);
         *puVar4 = 0;
         puStack_e0 = puVar4;
         uVar3 = FUN_18064e990(puVar4);

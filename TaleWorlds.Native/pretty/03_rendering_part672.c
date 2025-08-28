@@ -475,40 +475,40 @@ void FUN_18064f4b0(void)
   int32_t uVar1;
   int32_t uVar2;
   
-  if (_DAT_180bf4b28 == 0) {
-    _DAT_180bf4b20 = &ExceptionList;
-    _DAT_180bf4b28 = FUN_18064f210(FUN_18064f4b0);
+  if (render_system_control_config == 0) {
+    render_system_control_config = &ExceptionList;
+    render_system_control_config = FUN_18064f210(FUN_18064f4b0);
     FUN_18064f2b0(0x180bf4b40);
-    if (_DAT_180bf4bc0 < 1) {
+    if (render_system_control_config < 1) {
       FUN_18064ed50(0x180bf4b40);
-      _DAT_180bf4bc0 = 0x10;
+      render_system_control_config = 0x10;
     }
-    uVar1 = *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80);
-    *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80) = 0;
-    _DAT_180bf4bc0 = _DAT_180bf4bc0 + -1;
-    if (_DAT_180bf4bc0 < 1) {
+    uVar1 = *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80);
+    *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80) = 0;
+    render_system_control_config = render_system_control_config + -1;
+    if (render_system_control_config < 1) {
       FUN_18064ed50(0x180bf4b40);
-      _DAT_180bf4bc0 = 0x10;
+      render_system_control_config = 0x10;
     }
-    uVar2 = *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80);
-    *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80) = 0;
-    _DAT_180bf4bc0 = _DAT_180bf4bc0 + -1;
-    _DAT_180bf4b30 = CONCAT44(uVar1,uVar2);
-    if (_DAT_180bf4bc0 < 1) {
+    uVar2 = *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80);
+    *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80) = 0;
+    render_system_control_config = render_system_control_config + -1;
+    render_system_control_config = CONCAT44(uVar1,uVar2);
+    if (render_system_control_config < 1) {
       FUN_18064ed50(0x180bf4b40);
-      _DAT_180bf4bc0 = 0x10;
+      render_system_control_config = 0x10;
     }
-    uVar1 = *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80);
-    *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80) = 0;
-    _DAT_180bf4bc0 = _DAT_180bf4bc0 + -1;
-    if (_DAT_180bf4bc0 < 1) {
+    uVar1 = *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80);
+    *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80) = 0;
+    render_system_control_config = render_system_control_config + -1;
+    if (render_system_control_config < 1) {
       FUN_18064ed50(0x180bf4b40);
-      _DAT_180bf4bc0 = 0x10;
+      render_system_control_config = 0x10;
     }
-    uVar2 = *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80);
-    *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80) = 0;
-    _DAT_180bf4bc0 = _DAT_180bf4bc0 + -1;
-    _DAT_180bf4b38 = CONCAT44(uVar1,uVar2);
+    uVar2 = *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80);
+    *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80) = 0;
+    render_system_control_config = render_system_control_config + -1;
+    render_system_control_config = CONCAT44(uVar1,uVar2);
   }
   return;
 }
@@ -527,39 +527,39 @@ void FUN_18064f4d2(void)
   int32_t uVar2;
   uint64_t in_RAX;
   
-  _DAT_180bf4b20 = in_RAX;
-  _DAT_180bf4b28 = FUN_18064f210();
+  render_system_control_config = in_RAX;
+  render_system_control_config = FUN_18064f210();
   FUN_18064f2b0(0x180bf4b40);
-  if (_DAT_180bf4bc0 < 1) {
+  if (render_system_control_config < 1) {
     FUN_18064ed50(0x180bf4b40);
-    _DAT_180bf4bc0 = 0x10;
+    render_system_control_config = 0x10;
   }
-  uVar1 = *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80);
-  *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80) = 0;
-  _DAT_180bf4bc0 = _DAT_180bf4bc0 + -1;
-  if (_DAT_180bf4bc0 < 1) {
+  uVar1 = *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80);
+  *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80) = 0;
+  render_system_control_config = render_system_control_config + -1;
+  if (render_system_control_config < 1) {
     FUN_18064ed50(0x180bf4b40);
-    _DAT_180bf4bc0 = 0x10;
+    render_system_control_config = 0x10;
   }
-  uVar2 = *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80);
-  *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80) = 0;
-  _DAT_180bf4bc0 = _DAT_180bf4bc0 + -1;
-  _DAT_180bf4b30 = CONCAT44(uVar1,uVar2);
-  if (_DAT_180bf4bc0 < 1) {
+  uVar2 = *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80);
+  *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80) = 0;
+  render_system_control_config = render_system_control_config + -1;
+  render_system_control_config = CONCAT44(uVar1,uVar2);
+  if (render_system_control_config < 1) {
     FUN_18064ed50(0x180bf4b40);
-    _DAT_180bf4bc0 = 0x10;
+    render_system_control_config = 0x10;
   }
-  uVar1 = *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80);
-  *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80) = 0;
-  _DAT_180bf4bc0 = _DAT_180bf4bc0 + -1;
-  if (_DAT_180bf4bc0 < 1) {
+  uVar1 = *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80);
+  *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80) = 0;
+  render_system_control_config = render_system_control_config + -1;
+  if (render_system_control_config < 1) {
     FUN_18064ed50(0x180bf4b40);
-    _DAT_180bf4bc0 = 0x10;
+    render_system_control_config = 0x10;
   }
-  uVar2 = *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80);
-  *(int32_t *)((longlong)(0x10 - _DAT_180bf4bc0) * 4 + 0x180bf4b80) = 0;
-  _DAT_180bf4bc0 = _DAT_180bf4bc0 + -1;
-  _DAT_180bf4b38 = CONCAT44(uVar1,uVar2);
+  uVar2 = *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80);
+  *(int32_t *)((longlong)(0x10 - render_system_control_config) * 4 + 0x180bf4b80) = 0;
+  render_system_control_config = render_system_control_config + -1;
+  render_system_control_config = CONCAT44(uVar1,uVar2);
   return;
 }
 
@@ -598,9 +598,9 @@ ulonglong FUN_18064f640(void)
   if ((void *)*puVar11 != &unknown_var_7056_ptr) {
     return CONCAT71((int7)((ulonglong)lVar8 >> 8),1);
   }
-  if ((_DAT_180bf4b20 == (void **)0x0) || (_DAT_180bf4b20 == &ExceptionList)) {
+  if ((render_system_control_config == (void **)0x0) || (render_system_control_config == &ExceptionList)) {
     FUN_18064f4b0();
-    uVar2 = _DAT_180bf664c;
+    uVar2 = render_system_control_config;
     *puVar11 = 0x180bf4000;
     uVar6 = FlsSetValue(uVar2);
     return uVar6 & 0xffffffffffffff00;
@@ -689,7 +689,7 @@ ulonglong FUN_18064f640(void)
     uVar3 = *(int32_t *)((longlong)plVar5 + (longlong)(0x10 - iVar7) * 4 + 0xb80);
     *(int32_t *)((longlong)plVar5 + (longlong)(0x10 - iVar7) * 4 + 0xb80) = 0;
     *(int *)(plVar5 + 0x178) = (int)plVar5[0x178] + -1;
-    uVar4 = _DAT_180bf664c;
+    uVar4 = render_system_control_config;
     plVar5[0x167] = CONCAT44(uVar2,uVar3);
     *plVar5 = (longlong)plVar1;
     plVar5[0x180] = (longlong)plVar5;
@@ -725,9 +725,9 @@ ulonglong FUN_18064f683(void)
   int8_t *unaff_R15;
   bool in_ZF;
   
-  if ((in_ZF) || (_DAT_180bf4b20 == &ExceptionList)) {
+  if ((in_ZF) || (render_system_control_config == &ExceptionList)) {
     FUN_18064f4b0();
-    uVar2 = _DAT_180bf664c;
+    uVar2 = render_system_control_config;
     *unaff_R14 = 0x180bf4000;
     uVar6 = FlsSetValue(uVar2);
     return uVar6 & 0xffffffffffffff00;
@@ -815,7 +815,7 @@ ulonglong FUN_18064f683(void)
     uVar3 = *(int32_t *)((longlong)plVar5 + (longlong)(0x10 - iVar7) * 4 + 0xb80);
     *(int32_t *)((longlong)plVar5 + (longlong)(0x10 - iVar7) * 4 + 0xb80) = 0;
     *(int *)(plVar5 + 0x178) = (int)plVar5[0x178] + -1;
-    uVar4 = _DAT_180bf664c;
+    uVar4 = render_system_control_config;
     plVar5[0x167] = CONCAT44(uVar2,uVar3);
     *plVar5 = (longlong)plVar1;
     plVar5[0x180] = (longlong)plVar5;
@@ -925,7 +925,7 @@ ulonglong FUN_18064f6ed(void)
     uVar3 = *(int32_t *)((longlong)unaff_RBX + (longlong)(0x10 - iVar6) * 4 + 0xb80);
     *(int32_t *)((longlong)unaff_RBX + (longlong)(0x10 - iVar6) * 4 + 0xb80) = 0;
     *(int *)(unaff_RBX + 0x178) = (int)unaff_RBX[0x178] + -1;
-    uVar4 = _DAT_180bf664c;
+    uVar4 = render_system_control_config;
     unaff_RBX[0x167] = CONCAT44(uVar2,uVar3);
     *unaff_RBX = (longlong)plVar1;
     unaff_RBX[0x180] = (longlong)unaff_RBX;
@@ -951,7 +951,7 @@ int8_t FUN_18064f93b(void)
   uint64_t *unaff_R14;
   
   FUN_18064f4b0();
-  uVar1 = _DAT_180bf664c;
+  uVar1 = render_system_control_config;
   *unaff_R14 = 0x180bf4000;
   FlsSetValue(uVar1);
   return 0;

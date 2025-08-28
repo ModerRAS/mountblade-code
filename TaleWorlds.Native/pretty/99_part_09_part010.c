@@ -366,7 +366,7 @@ LAB_1805c1cc6:
   lVar21 = *unaff_RBX;
   if ((((*(int *)(lVar21 + 0x920) != 0) && ((*(uint *)(lVar21 + 0x56c) & 0x100000) != 0)) &&
       ((*(uint *)(unaff_RBX + 0x413) >> 8 & 1) == 0)) &&
-     ((_DAT_180c92514 == 0 || (_DAT_180c92514 == 5)))) {
+     ((system_status_flag == 0 || (system_status_flag == 5)))) {
     unaff_RDI[8] = 100000.0;
     lVar21 = *unaff_RBX;
   }

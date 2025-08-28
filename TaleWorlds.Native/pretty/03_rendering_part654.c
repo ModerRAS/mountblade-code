@@ -508,7 +508,7 @@ void FUN_18063cde0(longlong *param_1,int8_t *param_2)
       if (lVar12 == 0) {
         lVar12 = 1;
 LAB_18063cebe:
-        plVar7 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar12 << 4);
+        plVar7 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar12 << 4);
         plVar9 = (longlong *)param_1[1];
         lVar8 = *param_1;
       }

@@ -717,7 +717,7 @@ FUN_180275540(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[0x79] = 0;
   FUN_1802786d0(param_1);
   *(int32_t *)(param_1 + 1) = 0;
-  lVar1 = FUN_1800b6de0(_DAT_180c86930,param_2,1);
+  lVar1 = FUN_1800b6de0(system_resource_state,param_2,1);
   if (lVar1 != 0) {
     FUN_180275a60(lVar1,param_1,1);
   }
@@ -929,7 +929,7 @@ uint64_t * FUN_1802759e0(uint64_t param_1,uint64_t *param_2)
   uint64_t uVar1;
   longlong *plVar2;
   
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,0x16,0,0xfffffffffffffffe);
+  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,0x16,0,0xfffffffffffffffe);
   plVar2 = (longlong *)FUN_180275090(uVar1);
   *param_2 = plVar2;
   if (plVar2 != (longlong *)0x0) {

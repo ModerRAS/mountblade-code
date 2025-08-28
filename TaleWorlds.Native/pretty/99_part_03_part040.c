@@ -38,7 +38,7 @@ void FUN_1801f1ca0(uint64_t param_1,longlong param_2,int param_3)
   longlong lStack_48;
   uint64_t uStack_40;
   
-  lVar4 = _DAT_180c8aa28;
+  lVar4 = system_system_data_config;
   if (0 < param_3) {
     uStack_40 = 0xfffffffffffffffe;
     lVar15 = (longlong)param_3;
@@ -260,8 +260,8 @@ ulonglong FUN_1801f20c0(uint64_t param_1,longlong param_2,int32_t param_3)
   uint uVar13;
   ulonglong uVar14;
   
-  lVar4 = _DAT_180c8aa28;
-  iVar5 = _Mtx_lock(_DAT_180c8aa28);
+  lVar4 = system_system_data_config;
+  iVar5 = _Mtx_lock(system_system_data_config);
   if (iVar5 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar5);
   }
@@ -330,9 +330,9 @@ int32_t * FUN_1801f21f0(uint64_t param_1,int32_t *param_2,longlong param_3)
   uint uVar13;
   ulonglong uVar14;
   
-  lVar5 = _DAT_180c8aa28;
+  lVar5 = system_system_data_config;
   uVar12 = 0;
-  iVar6 = _Mtx_lock(_DAT_180c8aa28);
+  iVar6 = _Mtx_lock(system_system_data_config);
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
   }
@@ -704,7 +704,7 @@ longlong * FUN_1801f2f70(longlong *param_1,longlong *param_2)
     lVar3 = 0;
   }
   else {
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar4 * 0x548,uVar2 & 0xff);
+    lVar3 = FUN_18062b420(system_memory_pool_ptr,lVar4 * 0x548,uVar2 & 0xff);
   }
   *param_1 = lVar3;
   param_1[1] = lVar3;
@@ -777,7 +777,7 @@ void FUN_1801f3190(longlong *param_1,int32_t *param_2)
     if (lVar7 == 0) goto LAB_1801f3218;
   }
   puVar4 = (int32_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar7 * 0x48,(char)param_1[3],lVar9,0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr,lVar7 * 0x48,(char)param_1[3],lVar9,0xfffffffffffffffe);
   lVar10 = param_1[1];
   lVar9 = *param_1;
 LAB_1801f3218:
@@ -895,7 +895,7 @@ longlong * FUN_1801f34f0(longlong *param_1,longlong *param_2,uint64_t param_3,ui
     lVar4 = 0;
   }
   else {
-    lVar4 = FUN_18062b420(_DAT_180c8ed18,lVar5 * 0x50,uVar2 & 0xff,param_4,0xfffffffffffffffe);
+    lVar4 = FUN_18062b420(system_memory_pool_ptr,lVar5 * 0x50,uVar2 & 0xff,param_4,0xfffffffffffffffe);
   }
   *param_1 = lVar4;
   param_1[1] = lVar4;

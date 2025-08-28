@@ -118,7 +118,7 @@ LAB_1803b4f47:
         piVar12 = piVar2 + 1;
         if (*piVar2 != 0) {
           piStack_58 = piVar12;
-          puVar4 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,0x23);
+          puVar4 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,0x23);
           *puVar4 = 0;
           puVar4[1] = 0;
           *(int16_t *)(puVar4 + 2) = 0;
@@ -293,7 +293,7 @@ LAB_1803b54a7:
               uVar8 = 0;
             }
             else {
-              uVar8 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar14,
+              uVar8 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar14,
                                     CONCAT71((uint7)((ulonglong)lVar6 >> 8) & 0xffffff,3),
                                     uVar5 & 0xffffffff,0xfffffffffffffffe);
             }

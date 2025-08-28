@@ -38,7 +38,7 @@ void FUN_18018c360(uint64_t param_1,uint64_t param_2,uint64_t *param_3,longlong 
   int iStack_50;
   uint64_t uStack_48;
   
-  lVar6 = _DAT_180c8a9f0;
+  lVar6 = core_system_data_ui;
   pcVar22 = "base";
   do {
     pcVar23 = pcVar22;
@@ -170,7 +170,7 @@ LAB_18018c580:
       puVar9 = puVar10;
       if (puVar10 == (uint64_t *)0x0) {
 LAB_18018c727:
-        puVar10 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x48,8,3);
+        puVar10 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x48,8,3);
         *puVar10 = &unknown_var_720_ptr;
         puVar10[1] = 0;
         *(int32_t *)(puVar10 + 2) = 0;
@@ -255,7 +255,7 @@ LAB_18018c864:
             lVar14 = 1;
 LAB_18018c8a6:
             puVar11 = (uint64_t *)
-                      FUN_18062b420(_DAT_180c8ed18,lVar14 * 8,*(int8_t *)(lVar6 + 0x48));
+                      FUN_18062b420(system_memory_pool_ptr,lVar14 * 8,*(int8_t *)(lVar6 + 0x48));
             puVar16 = *(uint64_t **)(lVar6 + 0x38);
             puVar9 = *(uint64_t **)(lVar6 + 0x30);
           }
@@ -387,8 +387,8 @@ LAB_18018c714:
         puVar10 = *(uint64_t **)(*(longlong *)(lVar6 + 0x30) + (longlong)*(int *)(puVar9 + 8) * 8)
         ;
       }
-      (**(code **)(**(longlong **)(_DAT_180c86870 + 0x2b0) + 0x58))
-                (*(longlong **)(_DAT_180c86870 + 0x2b0),puVar10,*param_5);
+      (**(code **)(**(longlong **)(system_main_module_state + 0x2b0) + 0x58))
+                (*(longlong **)(system_main_module_state + 0x2b0),puVar10,*param_5);
       pcVar22 = "face_animation_record";
       do {
         pcVar23 = pcVar22;
@@ -652,7 +652,7 @@ LAB_18018cdaa:
   }
   uVar8 = 1;
 LAB_18018cd30:
-  lVar7 = FUN_18062b420(_DAT_180c8ed18,0x68,*(int8_t *)(param_1 + 5));
+  lVar7 = FUN_18062b420(system_memory_pool_ptr,0x68,*(int8_t *)(param_1 + 5));
   FUN_180627ae0(lVar7 + 0x20,param_4);
   puVar4 = (uint64_t *)(lVar7 + 0x40);
   *puVar4 = 0;
@@ -701,7 +701,7 @@ void FUN_18018cde0(longlong param_1,uint64_t param_2,longlong param_3,uint64_t p
   }
   uVar6 = 1;
 LAB_18018ce62:
-  lVar5 = FUN_18062b420(_DAT_180c8ed18,0x68,*(int8_t *)(param_1 + 0x28),param_4,
+  lVar5 = FUN_18062b420(system_memory_pool_ptr,0x68,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
   FUN_180627ae0(lVar5 + 0x20,param_5);
   puVar4 = (uint64_t *)(lVar5 + 0x40);

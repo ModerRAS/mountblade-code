@@ -196,7 +196,7 @@ FUN_1800e545a:
             do {
               iVar25 = (int)uVar20;
               if (*(longlong *)puVar26 == 0) {
-                lVar14 = FUN_18062b420(_DAT_180c8ed18,0xc000,CONCAT71((int7)(uVar22 >> 8),0x25));
+                lVar14 = FUN_18062b420(system_memory_pool_ptr,0xc000,CONCAT71((int7)(uVar22 >> 8),0x25));
                 uVar22 = (ulonglong)iVar25;
                 LOCK();
                 bVar27 = *(longlong *)(unaff_RDI + uVar22 * 2 + 2) == 0;
@@ -433,7 +433,7 @@ FUN_1800e5450:
             do {
               iVar24 = (int)uVar21;
               if (*(longlong *)puVar26 == 0) {
-                lVar14 = FUN_18062b420(_DAT_180c8ed18,0xc000,CONCAT71((int7)(uVar23 >> 8),0x25));
+                lVar14 = FUN_18062b420(system_memory_pool_ptr,0xc000,CONCAT71((int7)(uVar23 >> 8),0x25));
                 uVar23 = (ulonglong)iVar24;
                 LOCK();
                 bVar27 = *(longlong *)(unaff_RDI + uVar23 * 2 + 2) == 0;
@@ -660,7 +660,7 @@ LAB_1800e544b:
             do {
               iVar16 = (int)uVar18;
               if (*(longlong *)puVar23 == 0) {
-                lVar11 = FUN_18062b420(_DAT_180c8ed18,0xc000,CONCAT71((int7)(uVar21 >> 8),0x25));
+                lVar11 = FUN_18062b420(system_memory_pool_ptr,0xc000,CONCAT71((int7)(uVar21 >> 8),0x25));
                 uVar21 = (ulonglong)iVar16;
                 LOCK();
                 bVar24 = *(longlong *)(unaff_RDI + uVar21 * 2 + 2) == 0;
@@ -812,7 +812,7 @@ void FUN_1800e5450(void)
             do {
               iVar18 = (int)uVar15;
               if (*(longlong *)puVar20 == 0) {
-                lVar10 = FUN_18062b420(_DAT_180c8ed18,0xc000,CONCAT71((int7)(uVar17 >> 8),0x25));
+                lVar10 = FUN_18062b420(system_memory_pool_ptr,0xc000,CONCAT71((int7)(uVar17 >> 8),0x25));
                 uVar17 = (ulonglong)iVar18;
                 LOCK();
                 bVar21 = *(longlong *)(unaff_RDI + uVar17 * 2 + 2) == 0;
