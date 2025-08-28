@@ -270,7 +270,7 @@ void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2)
                 if (iVar2 != -1) {
                     iVar2 = SystemDataProcessor(param_1, 0);
                     uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
-                    if (iVar2 != 0) goto FUN_1808c3dad;
+                    if (iVar2 != 0) goto SystemErrorHandlerExit;
                     plVar10 = (int64_t *)param_1[9];
                     plVar11 = param_1 + 9;
                     while (plVar10 != plVar11) {
@@ -322,7 +322,7 @@ void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2)
                                 lVar3 = CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
                                 lVar4 = CONCAT44(uStack_8c, uStack_90);
                                 if ((lVar3 == *(int64_t *)(lVar6 + SYSTEM_OFFSET_0X10)) && (lVar4 == *(int64_t *)(lVar6 + SYSTEM_OFFSET_0X18))) {
-                                    puVar7 = (int32_t *)FUN_180847820();
+                                    puVar7 = (int32_t *)SystemMemoryAllocator();
                                     uStack_98._0_4_ = *puVar7;
                                     uStack_98._4_4_ = puVar7[1];
                                     uStack_90 = puVar7[2];
@@ -335,24 +335,24 @@ void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2)
                             ((((int)((uint64_t)lVar3 >> 0x20) != 0 || ((int)lVar4 != 0)) ||
                             ((int)((uint64_t)lVar4 >> 0x20) != 0)))) {
                             aplStack_88[0] = (int64_t *)0x0;
-                            iVar2 = FUN_1808bc240(param_1[4], &uStack_98, 0xffffffff, aplStack_88);
+                            iVar2 = SystemDataChecker(param_1[4], &uStack_98, 0xffffffff, aplStack_88);
                             plVar10 = aplStack_88[0];
                             uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
-                            if (iVar2 != 0) goto FUN_1808c3dad;
+                            if (iVar2 != 0) goto SystemErrorHandlerExit;
                             if (aplStack_88[0] != (int64_t *)0x0) {
                                 plStack_68 = param_1;
                                 uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
-                                if (param_1 == (int64_t *)0x0) goto FUN_1808c3dad;
+                                if (param_1 == (int64_t *)0x0) goto SystemErrorHandlerExit;
                                 plStack_78 = aplStack_88[0];
                                 iVar2 = FUN_1808c4160(param_1 + 9, &plStack_78);
                                 uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
-                                if (iVar2 != 0) goto FUN_1808c3dad;
+                                if (iVar2 != 0) goto SystemErrorHandlerExit;
                                 iVar2 = FUN_1808c4570(param_1);
                                 uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
-                                if (iVar2 != 0) goto FUN_1808c3dad;
+                                if (iVar2 != 0) goto SystemErrorHandlerExit;
                                 iVar2 = FUN_1808c4160(plVar10 + 7, &plStack_68);
                                 uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
-                                if (iVar2 != 0) goto FUN_1808c3dad;
+                                if (iVar2 != 0) goto SystemErrorHandlerExit;
                             }
                         }
                     }
@@ -361,7 +361,7 @@ void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2)
         }
         uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
     }
-    goto FUN_1808c3dad;
+    goto SystemErrorHandlerExit;
 LAB_1808c3b65:
     if (plVar10 != plStack_68) {
         uStack_a8 = 1;
@@ -526,7 +526,7 @@ void SystemResourceManager(int32_t param_1, uint64_t param_2, int64_t param_3)
                             lVar12 = *(int64_t *)(unaff_RBP + -0x31);
                             if ((lVar8 == *(int64_t *)(lVar10 + SYSTEM_OFFSET_0X10)) &&
                                 (lVar12 == *(int64_t *)(lVar10 + SYSTEM_OFFSET_0X18))) {
-                                puVar11 = (int32_t *)FUN_180847820();
+                                puVar11 = (int32_t *)SystemMemoryAllocator();
                                 uVar4 = puVar11[1];
                                 uVar5 = puVar11[2];
                                 uVar6 = puVar11[3];

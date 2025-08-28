@@ -102,6 +102,10 @@ SystemState system_current_state = SYSTEM_STATE_READY;
 #define CoreEngine_MemoryPoolCleaner FUN_18064e900
 #define CoreEngine_DataTransformer FUN_1806298d0
 #define CoreEngine_MemoryTransfer FUN_18062b1e0
+#define CoreEngine_MemoryPoolReallocator FUN_18062b420
+#define CoreEngine_DataProcessor2 FUN_18005ea90
+#define CoreEngine_DataValidator FUN_180057bf0
+#define CoreEngine_ArrayInitializer FUN_18011dd10
 
 // 函数: void CoreEngine_DataProcessor(uint64_t param_1,uint64_t *param_2,int64_t param_3,int64_t *param_4,
 // 核心引擎数据处理器 - 处理系统数据流和参数计算
