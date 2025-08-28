@@ -484,81 +484,81 @@ void Cleanup_Thread_Local_Storage(longlong tls_context)
 
 
 
-// 函数: void FUN_18004bf50(longlong *param_1)
-void FUN_18004bf50(longlong *param_1)
-
+// 函数: void Cleanup_Object_Manager(longlong *object_manager)
+// 清理对象管理器
+void Cleanup_Object_Manager(longlong *object_manager)
 {
-  longlong lVar1;
+  longlong manager_data;
   
-  lVar1 = *param_1;
-  if (lVar1 == 0) {
-    *param_1 = 0;
-    if ((longlong *)param_1[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)param_1[2] + 0x38))();
+  manager_data = *object_manager;
+  if (manager_data == 0) {
+    *object_manager = 0;
+    if ((longlong *)object_manager[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)object_manager[2] + 0x38))();
     }
-    if ((longlong *)param_1[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)param_1[1] + 0x38))();
+    if ((longlong *)object_manager[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)object_manager[1] + 0x38))();
     }
     return;
   }
-  if (*(longlong *)(lVar1 + 8) != 0) {
+  if (*(longlong *)(manager_data + 8) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   _Mtx_destroy_in_situ();
                     // WARNING: Subroutine does not return
-  FUN_18064e900(lVar1);
+  FUN_18064e900(manager_data);
 }
 
 
 
 
 
-// 函数: void FUN_18004bff0(longlong param_1)
-void FUN_18004bff0(longlong param_1)
-
+// 函数: void Cleanup_Memory_Pool(longlong memory_pool)
+// 清理内存池
+void Cleanup_Memory_Pool(longlong memory_pool)
 {
-  int *piVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
+  int *ref_count;
+  longlong pool_item;
+  undefined8 *pool_ptr;
+  longlong heap_base;
+  ulonglong item_index;
+  ulonglong pool_size;
   
-  uVar6 = *(ulonglong *)(param_1 + 0x10);
-  lVar4 = *(longlong *)(param_1 + 8);
-  uVar5 = 0;
-  if (uVar6 != 0) {
+  pool_size = *(ulonglong *)(memory_pool + 0x10);
+  heap_base = *(longlong *)(memory_pool + 8);
+  item_index = 0;
+  if (pool_size != 0) {
     do {
-      lVar2 = *(longlong *)(lVar4 + uVar5 * 8);
-      if (lVar2 != 0) {
+      pool_item = *(longlong *)(heap_base + item_index * 8);
+      if (pool_item != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        FUN_18064e900(pool_item);
       }
-      *(undefined8 *)(lVar4 + uVar5 * 8) = 0;
-      uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar6);
-    uVar6 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(heap_base + item_index * 8) = 0;
+      item_index = item_index + 1;
+    } while (item_index < pool_size);
+    pool_size = *(ulonglong *)(memory_pool + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar6) && (puVar3 = *(undefined8 **)(param_1 + 8), puVar3 != (undefined8 *)0x0)) {
-    uVar6 = (ulonglong)puVar3 & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar3 - uVar6 >> 0x10) * 0x50;
-      lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar3 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+  *(undefined8 *)(memory_pool + 0x18) = 0;
+  if ((1 < pool_size) && (pool_ptr = *(undefined8 **)(memory_pool + 8), pool_ptr != (undefined8 *)0x0)) {
+    pool_size = (ulonglong)pool_ptr & 0xffffffffffc00000;
+    if (pool_size != 0) {
+      heap_base = pool_size + 0x80 + ((longlong)pool_ptr - pool_size >> 0x10) * 0x50;
+      heap_base = heap_base - (ulonglong)*(uint *)(heap_base + 4);
+      if ((*(void ***)(pool_size + 0x70) == &ExceptionList) && (*(char *)(heap_base + 0xe) == '\0')) {
+        *pool_ptr = *(undefined8 *)(heap_base + 0x20);
+        *(undefined8 **)(heap_base + 0x20) = pool_ptr;
+        ref_count = (int *)(heap_base + 0x18);
+        *ref_count = *ref_count + -1;
+        if (*ref_count == 0) {
           FUN_18064d630();
           return;
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar3,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(pool_size, CONCAT71(0xff000000, *(void ***)(pool_size + 0x70) == &ExceptionList),
+                            pool_ptr, pool_size, 0xfffffffffffffffe);
       }
     }
     return;
@@ -570,18 +570,18 @@ void FUN_18004bff0(longlong param_1)
 
 
 
-// 函数: void FUN_18004c010(longlong *param_1)
-void FUN_18004c010(longlong *param_1)
-
+// 函数: void Cleanup_Object_Manager_List(longlong *manager_list)
+// 清理对象管理器列表
+void Cleanup_Object_Manager_List(longlong *manager_list)
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong list_end;
+  longlong current_item;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x18) {
-    FUN_18004bf50(lVar2);
+  list_end = manager_list[1];
+  for (current_item = *manager_list; current_item != list_end; current_item = current_item + 0x18) {
+    FUN_18004bf50(current_item);
   }
-  if (*param_1 == 0) {
+  if (*manager_list == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -592,20 +592,20 @@ void FUN_18004c010(longlong *param_1)
 
 
 
-// 函数: void FUN_18004c030(longlong *param_1)
-void FUN_18004c030(longlong *param_1)
-
+// 函数: void Cleanup_Callback_List(longlong *callback_list)
+// 清理回调列表
+void Cleanup_Callback_List(longlong *callback_list)
 {
-  longlong *plVar1;
-  longlong *plVar2;
+  longlong *list_end;
+  longlong *current_callback;
   
-  plVar1 = (longlong *)param_1[1];
-  for (plVar2 = (longlong *)*param_1; plVar2 != plVar1; plVar2 = plVar2 + 1) {
-    if ((longlong *)*plVar2 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar2 + 0x38))();
+  list_end = (longlong *)callback_list[1];
+  for (current_callback = (longlong *)*callback_list; current_callback != list_end; current_callback = current_callback + 1) {
+    if ((longlong *)*current_callback != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*current_callback + 0x38))();
     }
   }
-  if (*param_1 == 0) {
+  if (*callback_list == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -614,32 +614,33 @@ void FUN_18004c030(longlong *param_1)
 
 
 
-undefined8 * FUN_18004c050(undefined8 *param_1)
-
+// 函数: undefined8 * Initialize_Empty_Container(undefined8 *container)
+// 初始化空容器
+undefined8 * Initialize_Empty_Container(undefined8 *container)
 {
-  *param_1 = 0;
-  param_1[1] = 0;
-  param_1[2] = 0;
-  *(undefined4 *)(param_1 + 3) = 3;
-  return param_1;
+  *container = 0;
+  container[1] = 0;
+  container[2] = 0;
+  *(undefined4 *)(container + 3) = 3;
+  return container;
 }
 
 
 
 
 
-// 函数: void FUN_18004c090(longlong *param_1)
-void FUN_18004c090(longlong *param_1)
-
+// 函数: void Cleanup_Manager_Container(longlong *manager_container)
+// 清理管理器容器
+void Cleanup_Manager_Container(longlong *manager_container)
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong container_end;
+  longlong current_manager;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x18) {
-    FUN_18004bf50(lVar2);
+  container_end = manager_container[1];
+  for (current_manager = *manager_container; current_manager != container_end; current_manager = current_manager + 0x18) {
+    FUN_18004bf50(current_manager);
   }
-  if (*param_1 == 0) {
+  if (*manager_container == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -650,51 +651,51 @@ void FUN_18004c090(longlong *param_1)
 
 
 
-// 函数: void FUN_18004c0b0(longlong param_1)
-void FUN_18004c0b0(longlong param_1)
-
+// 函数: void Cleanup_Allocator_Pool(longlong allocator_pool)
+// 清理分配器池
+void Cleanup_Allocator_Pool(longlong allocator_pool)
 {
-  int *piVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
+  int *ref_count;
+  longlong pool_item;
+  undefined8 *pool_ptr;
+  longlong heap_base;
+  ulonglong item_index;
+  ulonglong pool_size;
   
-  uVar6 = *(ulonglong *)(param_1 + 0x10);
-  lVar4 = *(longlong *)(param_1 + 8);
-  uVar5 = 0;
-  if (uVar6 != 0) {
+  pool_size = *(ulonglong *)(allocator_pool + 0x10);
+  heap_base = *(longlong *)(allocator_pool + 8);
+  item_index = 0;
+  if (pool_size != 0) {
     do {
-      lVar2 = *(longlong *)(lVar4 + uVar5 * 8);
-      if (lVar2 != 0) {
+      pool_item = *(longlong *)(heap_base + item_index * 8);
+      if (pool_item != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        FUN_18064e900(pool_item);
       }
-      *(undefined8 *)(lVar4 + uVar5 * 8) = 0;
-      uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar6);
-    uVar6 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(heap_base + item_index * 8) = 0;
+      item_index = item_index + 1;
+    } while (item_index < pool_size);
+    pool_size = *(ulonglong *)(allocator_pool + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar6) && (puVar3 = *(undefined8 **)(param_1 + 8), puVar3 != (undefined8 *)0x0)) {
-    uVar6 = (ulonglong)puVar3 & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar3 - uVar6 >> 0x10) * 0x50;
-      lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar3 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+  *(undefined8 *)(allocator_pool + 0x18) = 0;
+  if ((1 < pool_size) && (pool_ptr = *(undefined8 **)(allocator_pool + 8), pool_ptr != (undefined8 *)0x0)) {
+    pool_size = (ulonglong)pool_ptr & 0xffffffffffc00000;
+    if (pool_size != 0) {
+      heap_base = pool_size + 0x80 + ((longlong)pool_ptr - pool_size >> 0x10) * 0x50;
+      heap_base = heap_base - (ulonglong)*(uint *)(heap_base + 4);
+      if ((*(void ***)(pool_size + 0x70) == &ExceptionList) && (*(char *)(heap_base + 0xe) == '\0')) {
+        *pool_ptr = *(undefined8 *)(heap_base + 0x20);
+        *(undefined8 **)(heap_base + 0x20) = pool_ptr;
+        ref_count = (int *)(heap_base + 0x18);
+        *ref_count = *ref_count + -1;
+        if (*ref_count == 0) {
           FUN_18064d630();
           return;
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar3,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(pool_size, CONCAT71(0xff000000, *(void ***)(pool_size + 0x70) == &ExceptionList),
+                            pool_ptr, pool_size, 0xfffffffffffffffe);
       }
     }
     return;

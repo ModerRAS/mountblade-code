@@ -247,7 +247,8 @@ void Process_Render_Object_Bitmap(longlong render_context,byte flag_mask)
 
 
 // 函数: void FUN_180277b50(longlong param_1,uint param_2)
-void FUN_180277b50(longlong param_1,uint param_2)
+// 渲染对象位图处理和内存管理
+void Process_Render_Object_Bitmap_Memory(longlong render_context,uint bit_mask)
 
 {
   undefined4 *puVar1;
@@ -377,7 +378,8 @@ LAB_180277c31:
 
 
 // 函数: void FUN_180277e30(longlong param_1,ulonglong *param_2,uint param_3)
-void FUN_180277e30(longlong param_1,ulonglong *param_2,uint param_3)
+// 渲染对象数组收集和存储
+void Collect_Render_Object_Array(longlong render_context,ulonglong *result_array,uint render_flag)
 
 {
   undefined8 uVar1;
@@ -439,7 +441,8 @@ LAB_180277eb2:
 
 
 // 函数: void FUN_180277e52(void)
-void FUN_180277e52(void)
+// 渲染对象数组收集处理（无参数版本）
+void Collect_Render_Object_Array_Empty(void)
 
 {
   undefined8 uVar1;
@@ -514,7 +517,8 @@ void FUN_180277f3a(void)
 
 
 // 函数: void FUN_180277f50(longlong param_1,ulonglong *param_2,ulonglong *param_3,float *param_4)
-void FUN_180277f50(longlong param_1,ulonglong *param_2,ulonglong *param_3,float *param_4)
+// 渲染对象矩阵变换和浮点计算
+void Transform_Render_Object_Matrix(longlong render_context,ulonglong *result_array,ulonglong *transform_array,float *matrix_data)
 
 {
   float fVar1;
@@ -712,7 +716,8 @@ LAB_1802781a7:
 
 
 // 函数: void FUN_180277f79(void)
-void FUN_180277f79(void)
+// 渲染对象矩阵变换处理（无参数版本）
+void Transform_Render_Object_Matrix_Empty(void)
 
 {
   float fVar1;
@@ -955,7 +960,8 @@ LAB_1802781a7:
 
 
 // 函数: void FUN_180278261(void)
-void FUN_180278261(void)
+// 渲染系统占位符函数
+void Render_System_Placeholder_End(void)
 
 {
   return;
