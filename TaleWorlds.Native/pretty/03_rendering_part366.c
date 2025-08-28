@@ -439,7 +439,7 @@ LAB_180469096:
     *(int8_t *)render_system_config_memory = 0;
     uVar4 = FUN_18064e990(render_system_config_memory);
     puVar13 = render_system_config_memory;
-    render_system_config_memory = CONCAT44(DAT_180d49d28_4,uVar4);
+    render_system_config_memory = CONCAT44(RENDER_CONFIG_BASE,uVar4);
     *render_system_config_memory = 0x6e61745f6f747561;
     *(int32_t *)(puVar13 + 1) = 0x746e6567;
     *(int8_t *)((longlong)puVar13 + 0xc) = 0;
@@ -452,7 +452,7 @@ LAB_180469096:
     *(int8_t *)render_system_config_memory = 0;
     uVar4 = FUN_18064e990(render_system_config_memory);
     puVar3 = render_system_config_memory;
-    render_system_config_memory = CONCAT44(DAT_180d49d48_4,uVar4);
+    render_system_config_memory = CONCAT44(RENDER_CONFIG_OFFSET,uVar4);
     *render_system_config_memory = 0x70616e73;
     puVar3[1] = 0x5f6f745f;
     puVar3[2] = 0x72726574;

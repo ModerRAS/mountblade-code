@@ -187,7 +187,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
   // ========================= 函数主要逻辑开始 =========================
   
   // 初始化栈安全检查
-  stackSecurity = DAT_STACK_SECURITY ^ (uint64_t)stackBuffer1;
+  stackSecurity = STACK_SECURITY_KEY ^ (uint64_t)stackBuffer1;
   
   // 获取变换参数指针
   transformParamPtr = *(uint64_t *)(transformParams + 0x208);
