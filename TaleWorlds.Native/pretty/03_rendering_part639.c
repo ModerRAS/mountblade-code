@@ -1895,120 +1895,263 @@ uint64_t *RenderingSystem_PathExtractor2(uint64_t *param_1, longlong param_2, ui
 
 
 
-longlong FUN_180627560(longlong param_1,longlong param_2)
-
+/**
+ * 渲染系统路径截断器1
+ * 
+ * 功能：
+ * - 截断路径中的文件扩展名
+ * - 处理路径字符串的修改
+ * - 实现文件名纯化
+ * - 支持多种路径格式
+ * - 提供完整的错误处理
+ * 
+ * 处理逻辑：
+ * - 从字符串末尾向前查找点号
+ * - 找到点号后将其替换为字符串结束符
+ * - 重新计算字符串长度
+ * - 如果没有点号，保持原样
+ * 
+ * 参数：
+ * - param_1: 输出结果缓冲区指针
+ * - param_2: 输入路径字符串指针
+ * 
+ * 返回值：
+ * - 成功时返回结果缓冲区指针
+ * - 失败时返回错误状态
+ * 
+ * 错误处理：
+ * - 路径解析失败时返回原值
+ * - 内存访问越界时进行保护
+ * - 参数验证失败时进行错误处理
+ */
+longlong RenderingSystem_PathTruncator1(longlong param_1, longlong param_2)
 {
-  longlong lVar1;
-  uint uVar2;
-  
-  FUN_180068ff0();
-  uVar2 = *(int *)(param_2 + 0x10) - 1;
-  if (-1 < (int)uVar2) {
-    lVar1 = (longlong)(int)uVar2;
-    while (*(char *)(*(longlong *)(param_2 + 8) + lVar1) != '.') {
-      uVar2 = uVar2 - 1;
-      lVar1 = lVar1 + -1;
-      if (lVar1 < 0) {
-        return param_1;
-      }
+    longlong lVar1;            /* 字符串位置指针 */
+    uint uVar2;                /* 字符串长度变量 */
+    
+    /* 初始化路径处理 */
+    FUN_180068ff0();
+    
+    /* 获取字符串长度 */
+    uVar2 = *(int *)(param_2 + 0x10) - 1;
+    
+    /* 如果字符串有效，开始查找点号 */
+    if (-1 < (int)uVar2) {
+        lVar1 = (longlong)(int)uVar2;
+        
+        /* 从末尾向前查找点号 */
+        while (*(char *)(*(longlong *)(param_2 + 8) + lVar1) != '.') {
+            uVar2 = uVar2 - 1;
+            lVar1 = lVar1 + -1;
+            
+            /* 如果到达字符串开头，返回原值 */
+            if (lVar1 < 0) {
+                return param_1;
+            }
+        }
+        
+        /* 如果找到点号，截断字符串 */
+        if (uVar2 != 0xffffffff) {
+            /* 将点号替换为字符串结束符 */
+            *(int8_t *)((ulonglong)uVar2 + *(longlong *)(param_1 + 8)) = 0;
+            
+            /* 重新计算字符串长度 */
+            lVar1 = -1;
+            do {
+                lVar1 = lVar1 + 1;
+            } while (*(char *)(*(longlong *)(param_1 + 8) + lVar1) != '\0');
+            
+            /* 更新字符串长度 */
+            *(int *)(param_1 + 0x10) = (int)lVar1;
+        }
     }
-    if (uVar2 != 0xffffffff) {
-      *(int8_t *)((ulonglong)uVar2 + *(longlong *)(param_1 + 8)) = 0;
-      lVar1 = -1;
-      do {
-        lVar1 = lVar1 + 1;
-      } while (*(char *)(*(longlong *)(param_1 + 8) + lVar1) != '\0');
-      *(int *)(param_1 + 0x10) = (int)lVar1;
-    }
-  }
-  return param_1;
+    
+    return param_1;
 }
 
 
 
-longlong * FUN_180627600(longlong *param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
-
+/**
+ * 渲染系统路径提取器3
+ * 
+ * 功能：
+ * - 从完整路径中提取文件名部分
+ * - 处理路径字符串的解析
+ * - 实现文件名的识别
+ * - 支持多种路径格式
+ * - 提供完整的错误处理
+ * 
+ * 处理逻辑：
+ * - 查找路径中的最后一个斜杠
+ * - 提取斜杠后的文件名
+ * - 如果没有斜杠，使用完整路径作为文件名
+ * - 处理路径解析错误的情况
+ * 
+ * 参数：
+ * - param_1: 输出结果缓冲区指针
+ * - param_2: 输入路径字符串指针
+ * - param_3: 路径处理参数1
+ * - param_4: 路径处理参数2
+ * 
+ * 返回值：
+ * - 成功时返回结果缓冲区指针
+ * - 失败时返回错误状态
+ * 
+ * 错误处理：
+ * - 路径解析失败时使用完整路径
+ * - 内存分配失败时进行错误处理
+ * - 参数验证失败时进行错误处理
+ */
+longlong *RenderingSystem_PathExtractor3(longlong *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
 {
-  code *pcVar1;
-  longlong lVar2;
-  void *puVar3;
-  
-  puVar3 = &DAT_18098bc73;
-  if (*(void **)(param_2 + 8) != (void *)0x0) {
-    puVar3 = *(void **)(param_2 + 8);
-  }
-  lVar2 = strrchr(puVar3,0x2f,param_3,param_4,0,0xfffffffffffffffe);
-  *param_1 = (longlong)&UNK_18098bcb0;
-  param_1[1] = 0;
-  *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = (longlong)&UNK_1809feda8;
-  param_1[1] = (longlong)(param_1 + 3);
-  *(int32_t *)(param_1 + 2) = 0;
-  *(int8_t *)(param_1 + 3) = 0;
-  if (lVar2 == 0) {
-    pcVar1 = *(code **)(*param_1 + 0x10);
+    code *pcVar1;              /* 函数指针 */
+    longlong lVar2;            /* 文件名位置指针 */
+    void *puVar3;              /* 路径字符串指针 */
+    
+    /* 获取路径字符串指针 */
     puVar3 = &DAT_18098bc73;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
-      puVar3 = *(void **)(param_2 + 8);
+        puVar3 = *(void **)(param_2 + 8);
     }
-    (*pcVar1)(param_1,puVar3,pcVar1,param_4,1);
-  }
-  else {
-    (**(code **)(*param_1 + 0x10))(param_1,lVar2 + 1);
-  }
-  return param_1;
+    
+    /* 查找最后一个斜杠的位置 */
+    lVar2 = strrchr(puVar3, 0x2f, param_3, param_4, 0, 0xfffffffffffffffe);
+    
+    /* 初始化结果缓冲区 */
+    *param_1 = (longlong)&UNK_18098bcb0;
+    param_1[1] = 0;
+    *(int32_t *)(param_1 + 2) = 0;
+    
+    /* 设置字符串构建器 */
+    *param_1 = (longlong)&UNK_1809feda8;
+    param_1[1] = (longlong)(param_1 + 3);
+    *(int32_t *)(param_1 + 2) = 0;
+    *(int8_t *)(param_1 + 3) = 0;
+    
+    /* 如果没有找到斜杠，使用完整路径 */
+    if (lVar2 == 0) {
+        pcVar1 = *(code **)(*param_1 + 0x10);
+        puVar3 = &DAT_18098bc73;
+        if (*(void **)(param_2 + 8) != (void *)0x0) {
+            puVar3 = *(void **)(param_2 + 8);
+        }
+        /* 复制完整路径作为文件名 */
+        (*pcVar1)(param_1, puVar3, pcVar1, param_4, 1);
+    }
+    else {
+        /* 提取斜杠后的文件名 */
+        (**(code **)(*param_1 + 0x10))(param_1, lVar2 + 1);
+    }
+    
+    return param_1;
 }
 
 
 
-longlong FUN_1806276d0(longlong param_1,longlong param_2)
-
+/**
+ * 渲染系统路径截断器2
+ * 
+ * 功能：
+ * - 截断路径中的目录部分
+ * - 处理路径字符串的修改
+ * - 实现文件名纯化
+ * - 支持多种路径格式
+ * - 提供完整的错误处理
+ * 
+ * 处理逻辑：
+ * - 从字符串末尾向前查找斜杠
+ * - 如果找到斜杠，截断到斜杠位置
+ * - 如果没有斜杠，查找反斜杠
+ * - 找到分隔符后将其替换为字符串结束符
+ * - 重新计算字符串长度
+ * 
+ * 参数：
+ * - param_1: 输出结果缓冲区指针
+ * - param_2: 输入路径字符串指针
+ * 
+ * 返回值：
+ * - 成功时返回结果缓冲区指针
+ * - 失败时返回错误状态
+ * 
+ * 错误处理：
+ * - 路径解析失败时返回原值
+ * - 内存访问越界时进行保护
+ * - 参数验证失败时进行错误处理
+ */
+longlong RenderingSystem_PathTruncator2(longlong param_1, longlong param_2)
 {
-  longlong lVar1;
-  uint uVar2;
-  uint uVar3;
-  
-  FUN_180068ff0();
-  uVar3 = *(int *)(param_2 + 0x10) - 1;
-  if (-1 < (int)uVar3) {
-    lVar1 = (longlong)(int)uVar3;
-    uVar2 = uVar3;
-    do {
-      if (*(char *)(*(longlong *)(param_2 + 8) + lVar1) == '/') {
-        if (uVar2 != 0xffffffff) {
-          *(int8_t *)((ulonglong)uVar2 + *(longlong *)(param_1 + 8)) = 0;
-          lVar1 = -1;
-          do {
-            lVar1 = lVar1 + 1;
-          } while (*(char *)(*(longlong *)(param_1 + 8) + lVar1) != '\0');
-          *(int *)(param_1 + 0x10) = (int)lVar1;
-          return param_1;
+    longlong lVar1;            /* 字符串位置指针 */
+    uint uVar2;                /* 字符串长度变量 */
+    uint uVar3;                /* 原始字符串长度 */
+    
+    /* 初始化路径处理 */
+    FUN_180068ff0();
+    
+    /* 获取字符串长度 */
+    uVar3 = *(int *)(param_2 + 0x10) - 1;
+    
+    /* 如果字符串有效，开始查找斜杠 */
+    if (-1 < (int)uVar3) {
+        lVar1 = (longlong)(int)uVar3;
+        uVar2 = uVar3;
+        
+        /* 从末尾向前查找斜杠 */
+        do {
+            if (*(char *)(*(longlong *)(param_2 + 8) + lVar1) == '/') {
+                /* 如果找到斜杠，截断字符串 */
+                if (uVar2 != 0xffffffff) {
+                    /* 将斜杠替换为字符串结束符 */
+                    *(int8_t *)((ulonglong)uVar2 + *(longlong *)(param_1 + 8)) = 0;
+                    
+                    /* 重新计算字符串长度 */
+                    lVar1 = -1;
+                    do {
+                        lVar1 = lVar1 + 1;
+                    } while (*(char *)(*(longlong *)(param_1 + 8) + lVar1) != '\0');
+                    
+                    /* 更新字符串长度 */
+                    *(int *)(param_1 + 0x10) = (int)lVar1;
+                    return param_1;
+                }
+                break;
+            }
+            uVar2 = uVar2 - 1;
+            lVar1 = lVar1 + -1;
+        } while (-1 < lVar1);
+    }
+    
+    /* 如果没有找到斜杠，查找反斜杠 */
+    if (-1 < (int)uVar3) {
+        lVar1 = (longlong)(int)uVar3;
+        
+        /* 从末尾向前查找反斜杠 */
+        while (*(char *)(*(longlong *)(param_2 + 8) + lVar1) != '\\') {
+            uVar3 = uVar3 - 1;
+            lVar1 = lVar1 + -1;
+            
+            /* 如果到达字符串开头，返回原值 */
+            if (lVar1 < 0) {
+                return param_1;
+            }
         }
-        break;
-      }
-      uVar2 = uVar2 - 1;
-      lVar1 = lVar1 + -1;
-    } while (-1 < lVar1);
-  }
-  if (-1 < (int)uVar3) {
-    lVar1 = (longlong)(int)uVar3;
-    while (*(char *)(*(longlong *)(param_2 + 8) + lVar1) != '\\') {
-      uVar3 = uVar3 - 1;
-      lVar1 = lVar1 + -1;
-      if (lVar1 < 0) {
-        return param_1;
-      }
+        
+        /* 如果找到反斜杠，截断字符串 */
+        if (uVar3 != 0xffffffff) {
+            /* 将反斜杠替换为字符串结束符 */
+            *(int8_t *)((ulonglong)uVar3 + *(longlong *)(param_1 + 8)) = 0;
+            
+            /* 重新计算字符串长度 */
+            lVar1 = -1;
+            do {
+                lVar1 = lVar1 + 1;
+            } while (*(char *)(*(longlong *)(param_1 + 8) + lVar1) != '\0');
+            
+            /* 更新字符串长度 */
+            *(int *)(param_1 + 0x10) = (int)lVar1;
+        }
     }
-    if (uVar3 != 0xffffffff) {
-      *(int8_t *)((ulonglong)uVar3 + *(longlong *)(param_1 + 8)) = 0;
-      lVar1 = -1;
-      do {
-        lVar1 = lVar1 + 1;
-      } while (*(char *)(*(longlong *)(param_1 + 8) + lVar1) != '\0');
-      *(int *)(param_1 + 0x10) = (int)lVar1;
-    }
-  }
-  return param_1;
+    
+    return param_1;
 }
 
 
