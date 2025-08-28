@@ -708,53 +708,53 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
     }
   }
   else {
-    fVar30 = 1.0;
-    uVar25 = 0;
-    uStackX_10 = param_2 & 0xffffffff00000000;
-    uVar24 = uVar25;
-    if (lVar11 != 0) {
-      fVar29 = 1.0 - *(float *)((longlong)param_1 + 0x2c);
-      FUN_180208f20(fVar29,lVar11,&uStackX_10,(longlong)param_1 + 0x44,fVar29);
-      uVar24 = uStackX_10 & 0xffffffff;
+    normalization_factor = 1.0;
+    ullong_counter4 = 0;
+    stack_data = data_flags & 0xffffffff00000000;
+    ullong_counter3 = ullong_counter4;
+    if (resource_base != 0) {
+      max_float = 1.0 - *(float *)((longlong)resource_manager + 0x2c);
+      process_resource_float_data(max_float, resource_base, &stack_data, (longlong)resource_manager + 0x44, max_float);
+      ullong_counter3 = stack_data & 0xffffffff;
     }
-    if (param_1[4] != 0) {
-      FUN_180208f20(param_1,param_1[4],&uStackX_10,(longlong)param_1 + 0x44,
-                    *(undefined4 *)((longlong)param_1 + 0x2c));
-      uVar24 = uStackX_10 & 0xffffffff;
+    if (resource_manager[4] != 0) {
+      process_resource_float_data(resource_manager, resource_manager[4], &stack_data, (longlong)resource_manager + 0x44,
+                    *(undefined4 *)((longlong)resource_manager + 0x2c));
+      ullong_counter3 = stack_data & 0xffffffff;
     }
-    uVar22 = uVar25;
-    if (0 < (longlong)param_4) {
+    ullong_counter1 = ullong_counter4;
+    if (0 < (longlong)data_count) {
       do {
-        iVar14 = (int)uVar24;
-        if (0xff < iVar14) break;
-        bVar28 = false;
-        pfVar9 = (float *)(param_1 + 9);
-        uVar12 = uVar25;
+        temp_int = (int)ullong_counter3;
+        if (0xff < temp_int) break;
+        bool_flag = false;
+        ptr_float = (float *)(resource_manager + 9);
+        data_offset = ullong_counter4;
         do {
-          if (iVar14 <= (int)uVar12) {
-            if (!bVar28) {
-              uVar24 = (ulonglong)(iVar14 + 1);
-              *(float *)((longlong)param_1 + (longlong)iVar14 * 8 + 0x44) = *param_3;
-              *(float *)(param_1 + (longlong)iVar14 + 9) = param_3[1];
+          if (temp_int <= (int)data_offset) {
+            if (!bool_flag) {
+              ullong_counter3 = (ulonglong)(temp_int + 1);
+              *(float *)((longlong)resource_manager + (longlong)temp_int * 8 + 0x44) = *float_data;
+              *(float *)(resource_manager + (longlong)temp_int + 9) = float_data[1];
             }
             break;
           }
-          if (pfVar9[-1] == *param_3) {
-            fVar29 = param_3[1];
-            fVar1 = *pfVar9;
-            *pfVar9 = fVar29 + fVar1;
-            if (fVar30 < fVar29 + fVar1) {
-              *pfVar9 = 1.0;
+          if (ptr_float[-1] == *float_data) {
+            max_float = float_data[1];
+            temp_float = *ptr_float;
+            *ptr_float = max_float + temp_float;
+            if (normalization_factor < max_float + temp_float) {
+              *ptr_float = 1.0;
             }
-            bVar28 = true;
+            bool_flag = true;
           }
-          uVar12 = (ulonglong)((int)uVar12 + 1);
-          pfVar9 = pfVar9 + 2;
-        } while (!bVar28);
-        uVar22 = uVar22 + 1;
-        param_3 = param_3 + 2;
-      } while ((longlong)uVar22 < (longlong)param_4);
-      uStackX_10 = CONCAT44(uStackX_10._4_4_,(int)uVar24);
+          data_offset = (ulonglong)((int)data_offset + 1);
+          ptr_float = ptr_float + 2;
+        } while (!bool_flag);
+        ullong_counter1 = ullong_counter1 + 1;
+        float_data = float_data + 2;
+      } while ((longlong)ullong_counter1 < (longlong)data_count);
+      stack_data = CONCAT44(stack_data._4_4_,(int)ullong_counter3);
     }
     iVar14 = (int)uVar24;
     if (0 < iVar14) {
