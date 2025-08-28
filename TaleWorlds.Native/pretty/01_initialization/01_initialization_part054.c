@@ -1,9 +1,18 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part054.c - 4 个函数
+// 01_initialization_part054.c - 渲染系统初始化相关函数
 
-// 函数: void FUN_1800792ea(void)
-void FUN_1800792ea(void)
+// 全局变量重命名
+#define render_global_data _DAT_180c86890
+#define render_config_data _DAT_180c86870
+#define render_tls_value _DAT_180d49158
+#define default_render_context UNK_1809fcc28
+
+/**
+ * 处理渲染数据
+ * 从渲染数据结构中提取矩阵数据并进行变换计算
+ */
+void process_render_data(void)
 
 {
   longlong *plVar1;
@@ -61,99 +70,115 @@ void FUN_1800792ea(void)
   undefined8 uStack0000000000000050;
   undefined8 in_stack_00000058;
   
-  uVar35 = (int)*(char *)(unaff_RDI + 0xd) + *(int *)(unaff_RDI + 0x18);
-  pfVar15 = (float *)**(longlong **)(unaff_RBX + 600);
-  lVar43 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-  uVar33 = uVar35 >> 0xd;
-  lVar16 = *(longlong *)(lVar43 + 8 + (ulonglong)uVar33 * 8);
-  lVar31 = (ulonglong)(uVar35 + uVar33 * -0x2000) * 0x40;
-  uVar29 = ((undefined8 *)(lVar16 + lVar31))[1];
-  *(undefined8 *)pfVar15 = *(undefined8 *)(lVar16 + lVar31);
-  *(undefined8 *)(pfVar15 + 2) = uVar29;
-  puVar4 = (undefined8 *)(lVar16 + 0x10 + lVar31);
-  uVar29 = puVar4[1];
-  *(undefined8 *)(pfVar15 + 4) = *puVar4;
-  *(undefined8 *)(pfVar15 + 6) = uVar29;
-  puVar4 = (undefined8 *)(lVar16 + 0x20 + lVar31);
-  uVar29 = puVar4[1];
-  *(undefined8 *)(pfVar15 + 8) = *puVar4;
-  *(undefined8 *)(pfVar15 + 10) = uVar29;
-  puVar4 = (undefined8 *)(lVar16 + 0x30 + lVar31);
-  uVar29 = puVar4[1];
-  *(undefined8 *)(pfVar15 + 0xc) = *puVar4;
-  *(undefined8 *)(pfVar15 + 0xe) = uVar29;
-  lVar16 = *(longlong *)(unaff_RDI + 0x10);
-  fVar17 = pfVar15[8];
-  fVar18 = pfVar15[9];
-  fVar19 = pfVar15[10];
-  fVar20 = pfVar15[0xb];
-  fVar21 = *pfVar15;
-  fVar22 = pfVar15[1];
-  fVar23 = pfVar15[2];
-  fVar24 = pfVar15[3];
-  fVar25 = pfVar15[4];
-  fVar26 = pfVar15[5];
-  fVar27 = pfVar15[6];
-  fVar28 = pfVar15[7];
-  fVar5 = *(float *)(lVar16 + 0x374);
-  fVar6 = *(float *)(lVar16 + 0x370);
-  fVar7 = *(float *)(lVar16 + 0x378);
-  fVar8 = *(float *)(lVar16 + 900);
-  fVar9 = *(float *)(lVar16 + 0x394);
-  fVar10 = *(float *)(lVar16 + 0x380);
-  fVar11 = *(float *)(lVar16 + 0x388);
-  fVar12 = *(float *)(lVar16 + 0x390);
-  fVar13 = *(float *)(lVar16 + 0x398);
-  *pfVar15 = fVar5 * fVar25 + fVar6 * fVar21 + fVar7 * fVar17;
-  pfVar15[1] = fVar5 * fVar26 + fVar6 * fVar22 + fVar7 * fVar18;
-  pfVar15[2] = fVar5 * fVar27 + fVar6 * fVar23 + fVar7 * fVar19;
-  pfVar15[3] = fVar5 * fVar28 + fVar6 * fVar24 + fVar7 * fVar20;
-  pfVar15[4] = fVar8 * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
-  pfVar15[5] = fVar8 * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
-  pfVar15[6] = fVar8 * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
-  pfVar15[7] = fVar8 * fVar28 + fVar10 * fVar24 + fVar11 * fVar20;
-  pfVar15[8] = fVar9 * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
-  pfVar15[9] = fVar9 * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
-  pfVar15[10] = fVar9 * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
-  pfVar15[0xb] = fVar9 * fVar28 + fVar12 * fVar24 + fVar13 * fVar20;
-  lVar16 = *(longlong *)(unaff_RBX + 600);
-  if (*(int *)(lVar16 + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
-    iVar40 = *(int *)(lVar16 + 0x1c) + *(int *)(lVar16 + 0x18);
-    *(int *)(lVar16 + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
-    if (0 < iVar40) {
+  // 获取渲染相关的指针和数据
+  uint render_index = (int)*(char *)(unaff_RDI + 0xd) + *(int *)(unaff_RDI + 0x18);
+  float *render_matrix = (float *)**(longlong **)(unaff_RBX + 600);
+  longlong render_data_base = (longlong)*(int *)(render_global_data + 0xe78) * 0x128 + render_global_data + 0xc28;
+  
+  // 计算渲染数据偏移
+  uint chunk_index = render_index >> 0xd;
+  longlong render_chunk_ptr = *(longlong *)(render_data_base + 8 + (ulonglong)chunk_index * 8);
+  longlong matrix_offset = (ulonglong)(render_index + chunk_index * -0x2000) * 0x40;
+  
+  // 提取4x4矩阵数据
+  undefined8 matrix_row1 = ((undefined8 *)(render_chunk_ptr + matrix_offset))[1];
+  *(undefined8 *)render_matrix = *(undefined8 *)(render_chunk_ptr + matrix_offset);
+  *(undefined8 *)(render_matrix + 2) = matrix_row1;
+  
+  undefined8 *matrix_data = (undefined8 *)(render_chunk_ptr + 0x10 + matrix_offset);
+  matrix_row1 = matrix_data[1];
+  *(undefined8 *)(render_matrix + 4) = *matrix_data;
+  *(undefined8 *)(render_matrix + 6) = matrix_row1;
+  
+  matrix_data = (undefined8 *)(render_chunk_ptr + 0x20 + matrix_offset);
+  matrix_row1 = matrix_data[1];
+  *(undefined8 *)(render_matrix + 8) = *matrix_data;
+  *(undefined8 *)(render_matrix + 10) = matrix_row1;
+  
+  matrix_data = (undefined8 *)(render_chunk_ptr + 0x30 + matrix_offset);
+  matrix_row1 = matrix_data[1];
+  *(undefined8 *)(render_matrix + 0xc) = *matrix_data;
+  *(undefined8 *)(render_matrix + 0xe) = matrix_row1;
+  // 获取变换矩阵的各个元素
+  longlong transform_ptr = *(longlong *)(unaff_RDI + 0x10);
+  float m31 = render_matrix[8];
+  float m32 = render_matrix[9];
+  float m33 = render_matrix[10];
+  float m34 = render_matrix[0xb];
+  float m11 = *render_matrix;
+  float m12 = render_matrix[1];
+  float m13 = render_matrix[2];
+  float m14 = render_matrix[3];
+  float m21 = render_matrix[4];
+  float m22 = render_matrix[5];
+  float m23 = render_matrix[6];
+  float m24 = render_matrix[7];
+  // 获取变换参数
+  float t11 = *(float *)(transform_ptr + 0x374);
+  float t12 = *(float *)(transform_ptr + 0x370);
+  float t13 = *(float *)(transform_ptr + 0x378);
+  float t21 = *(float *)(transform_ptr + 900);
+  float t31 = *(float *)(transform_ptr + 0x394);
+  float t22 = *(float *)(transform_ptr + 0x380);
+  float t23 = *(float *)(transform_ptr + 0x388);
+  float t32 = *(float *)(transform_ptr + 0x390);
+  float t33 = *(float *)(transform_ptr + 0x398);
+  
+  // 计算变换后的矩阵
+  *render_matrix = t11 * m21 + t12 * m11 + t13 * m31;
+  render_matrix[1] = t11 * m22 + t12 * m12 + t13 * m32;
+  render_matrix[2] = t11 * m23 + t12 * m13 + t13 * m33;
+  render_matrix[3] = t11 * m24 + t12 * m14 + t13 * m34;
+  render_matrix[4] = t21 * m21 + t22 * m11 + t23 * m31;
+  render_matrix[5] = t21 * m22 + t22 * m12 + t23 * m32;
+  render_matrix[6] = t21 * m23 + t22 * m13 + t23 * m33;
+  render_matrix[7] = t21 * m24 + t22 * m14 + t23 * m34;
+  render_matrix[8] = t31 * m21 + t32 * m11 + t33 * m31;
+  render_matrix[9] = t31 * m22 + t32 * m12 + t33 * m32;
+  render_matrix[10] = t31 * m23 + t32 * m13 + t33 * m33;
+  render_matrix[0xb] = t31 * m24 + t32 * m14 + t33 * m34;
+  // 检查渲染配置是否需要更新
+  longlong render_context = *(longlong *)(unaff_RBX + 600);
+  if (*(int *)(render_context + 0x28) != *(int *)(render_config_data + 0x224)) {
+    int total_items = *(int *)(render_context + 0x1c) + *(int *)(render_context + 0x18);
+    *(int *)(render_context + 0x28) = *(int *)(render_config_data + 0x224);
+    
+    if (0 < total_items) {
+      // 准备渲染缓冲区
       uStack0000000000000050 = in_stack_00000058;
-      lVar31 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-      uVar30 = FUN_180080380(lVar31,iVar40,lVar43,pfVar15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
-      *(undefined4 *)(lVar16 + 0x30) = uVar30;
-      FUN_1800802e0(lVar31,uVar30);
-      if (*(longlong *)(lVar16 + 0x10) == 0) {
-        if (*(int *)(lVar16 + 0x18) != 0) {
-          *(undefined4 *)(lVar16 + 0x2c) = *(undefined4 *)(lVar16 + 0x30);
+      longlong buffer_base = (longlong)*(int *)(render_global_data + 0xe78) * 0x128 + render_global_data + 0xc28;
+      undefined4 render_result = FUN_180080380(buffer_base, total_items, render_data_base, render_matrix, CONCAT44(unaff_XMM7_Db, unaff_XMM7_Da));
+      *(undefined4 *)(render_context + 0x30) = render_result;
+      FUN_1800802e0(buffer_base, render_result);
+      // 处理渲染上下文
+      if (*(longlong *)(render_context + 0x10) == 0) {
+        if (*(int *)(render_context + 0x18) != 0) {
+          *(undefined4 *)(render_context + 0x2c) = *(undefined4 *)(render_context + 0x30);
           return;
         }
-      }
-      else {
-        cVar14 = *(char *)(lVar16 + 0x44);
-        uVar37 = (ulonglong)cVar14;
-        plVar1 = (longlong *)(lVar16 + 0x38);
-        iVar40 = (int)cVar14;
-        if (*(int *)(lVar16 + 0x40) == (int)cVar14) {
-          plVar32 = (longlong *)*plVar1;
-        }
-        else {
-          *(int *)(lVar16 + 0x40) = iVar40;
-          if (*plVar1 != 0) {
-                    // WARNING: Subroutine does not return
+      } else {
+        // 初始化渲染线程数据
+        char thread_count = *(char *)(render_context + 0x44);
+        ulonglong thread_count_ulong = (ulonglong)thread_count;
+        longlong *thread_ptr = (longlong *)(render_context + 0x38);
+        int thread_count_int = (int)thread_count;
+        // 检查线程数据是否需要重新分配
+        if (*(int *)(render_context + 0x40) == (int)thread_count) {
+          longlong *thread_data = (longlong *)*thread_ptr;
+        } else {
+          *(int *)(render_context + 0x40) = thread_count_int;
+          if (*thread_ptr != 0) {
+            // WARNING: Subroutine does not return
             FUN_18064e900();
           }
-          *plVar1 = 0;
-          if (cVar14 == '\0') {
-            plVar32 = (longlong *)0x0;
-            *plVar1 = 0;
-          }
-          else {
-            plVar32 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(longlong)cVar14 * 4);
-            *plVar1 = (longlong)plVar32;
+          *thread_ptr = 0;
+          
+          if (thread_count == '\0') {
+            longlong *thread_data = (longlong *)0x0;
+            *thread_ptr = 0;
+          } else {
+            longlong *thread_data = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)thread_count * 4);
+            *thread_ptr = (longlong)thread_data;
           }
         }
         if (plVar32 != (longlong *)0x0) {

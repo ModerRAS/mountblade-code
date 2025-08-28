@@ -875,7 +875,16 @@ void FreeMemoryBlockDescriptor(longlong *descriptor)
 
 
 
-ulonglong FUN_18006da90(longlong param_1,undefined8 param_2)
+/**
+ * 执行快速内存分配
+ * 在内存池中执行快速路径的内存分配操作
+ * 原函数名：FUN_18006da90
+ * 
+ * @param pool_info 内存池信息指针
+ * @param alloc_params 分配参数
+ * @return 成功返回分配的内存地址，失败返回0
+ */
+ulonglong FastMemoryAllocation(longlong pool_info, undefined8 alloc_params)
 
 {
   longlong *plVar1;
@@ -891,35 +900,49 @@ ulonglong FUN_18006da90(longlong param_1,undefined8 param_2)
   ulonglong uVar11;
   bool bVar12;
   
-  uVar8 = (*(longlong *)(param_1 + 0x30) - *(longlong *)(param_1 + 0x38)) -
-          *(longlong *)(param_1 + 0x20);
+  // 计算可用内存空间
+  uVar8 = (*(longlong *)(pool_info + 0x30) - *(longlong *)(pool_info + 0x38)) -
+          *(longlong *)(pool_info + 0x20);
+  
   if (0x8000000000000000 < uVar8) {
+    // 增加使用计数
     LOCK();
-    plVar1 = (longlong *)(param_1 + 0x30);
+    plVar1 = (longlong *)(pool_info + 0x30);
     lVar5 = *plVar1;
     *plVar1 = *plVar1 + 1;
     UNLOCK();
-    uVar8 = *(ulonglong *)(param_1 + 0x20);
-    if (0x8000000000000000 < (lVar5 - uVar8) - *(longlong *)(param_1 + 0x38)) {
+    
+    uVar8 = *(ulonglong *)(pool_info + 0x20);
+    if (0x8000000000000000 < (lVar5 - uVar8) - *(longlong *)(pool_info + 0x38)) {
+      
+      // 执行内存分配
       LOCK();
-      puVar2 = (ulonglong *)(param_1 + 0x28);
+      puVar2 = (ulonglong *)(pool_info + 0x28);
       uVar8 = *puVar2;
       *puVar2 = *puVar2 + 1;
       UNLOCK();
-      plVar1 = *(longlong **)(param_1 + 0x60);
+      
+      // 计算内存块位置
+      plVar1 = *(longlong **)(pool_info + 0x60);
       uVar11 = (uVar8 & 0xffffffffffffffe0) - **(longlong **)(plVar1[3] + plVar1[1] * 8) >> 5;
       lVar5 = *(longlong *)(plVar1[3] + (plVar1[1] + uVar11 & *plVar1 - 1U) * 8);
       uVar6 = *(ulonglong *)(lVar5 + 8);
       lVar10 = (ulonglong)((uint)uVar8 & 0x1f) * 0x1a8 + uVar6;
-      lVar7 = *(longlong *)(param_1 + 0x50);
-      FUN_18006dcb0(param_2,lVar10,uVar11,plVar1,0xfffffffffffffffe,uVar6,uVar8,lVar5);
+      lVar7 = *(longlong *)(pool_info + 0x50);
+      
+      // 初始化内存块
+      FUN_18006dcb0(alloc_params, lVar10, uVar11, plVar1, 0xfffffffffffffffe, uVar6, uVar8, lVar5);
       FUN_180069530(lVar10);
+      
+      // 更新内存块计数
       LOCK();
       puVar2 = (ulonglong *)(uVar6 + 0x3508);
       uVar8 = *puVar2;
       *puVar2 = *puVar2 + 1;
       UNLOCK();
+      
       if (uVar8 == 0x1f) {
+        // 内存块已满，执行清理操作
         *(undefined8 *)(lVar5 + 8) = 0;
         LOCK();
         puVar3 = (uint *)(uVar6 + 0x3530);
@@ -927,7 +950,9 @@ ulonglong FUN_18006da90(longlong param_1,undefined8 param_2)
         *puVar3 = *puVar3 + 0x80000000;
         UNLOCK();
         uVar8 = (ulonglong)uVar4;
+        
         if (uVar4 == 0) {
+          // 将内存块返回到空闲链表
           uVar11 = *(ulonglong *)(lVar7 + 0x28);
           do {
             *(ulonglong *)(uVar6 + 0x3538) = uVar11;
@@ -953,10 +978,12 @@ ulonglong FUN_18006da90(longlong param_1,undefined8 param_2)
           } while (uVar4 == 1);
         }
       }
-      return CONCAT71((int7)(uVar8 >> 8),1);
+      return CONCAT71((int7)(uVar8 >> 8), 1);
     }
+    
+    // 增加分配计数
     LOCK();
-    *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x38) + 1;
+    *(longlong *)(pool_info + 0x38) = *(longlong *)(pool_info + 0x38) + 1;
     UNLOCK();
   }
   return uVar8 & 0xffffffffffffff00;
@@ -967,7 +994,14 @@ ulonglong FUN_18006da90(longlong param_1,undefined8 param_2)
 
 
 // 函数: void FUN_18006dc10(longlong *param_1)
-void FUN_18006dc10(longlong *param_1)
+/**
+ * 释放内存块并更新计数器
+ * 释放指定的内存块并更新相关的计数器和链表状态
+ * 原函数名：FUN_18006dc10
+ * 
+ * @param block_info 内存块信息指针
+ */
+void ReleaseMemoryBlockAndUpdateCounters(longlong *block_info)
 
 {
   longlong *plVar1;
@@ -979,22 +1013,31 @@ void FUN_18006dc10(longlong *param_1)
   longlong lVar7;
   bool bVar8;
   
-  FUN_180069530((ulonglong)(*(uint *)(param_1 + 1) & 0x1f) * 0x1a8 + *param_1);
+  // 释放内存块
+  FUN_180069530((ulonglong)(*(uint *)(block_info + 1) & 0x1f) * 0x1a8 + *block_info);
+  
+  // 更新使用计数
   LOCK();
-  plVar1 = (longlong *)(*param_1 + 0x3508);
+  plVar1 = (longlong *)(*block_info + 0x3508);
   lVar4 = *plVar1;
   *plVar1 = *plVar1 + 1;
   UNLOCK();
+  
   if (lVar4 == 0x1f) {
-    *(undefined8 *)(param_1[2] + 8) = 0;
-    lVar4 = *param_1;
-    lVar5 = param_1[3];
+    // 内存块已满，执行清理操作
+    *(undefined8 *)(block_info[2] + 8) = 0;
+    lVar4 = *block_info;
+    lVar5 = block_info[3];
+    
+    // 更新状态标志
     LOCK();
     piVar2 = (int *)(lVar4 + 0x3530);
     iVar3 = *piVar2;
     *piVar2 = *piVar2 + -0x80000000;
     UNLOCK();
+    
     if (iVar3 == 0) {
+      // 将内存块返回到空闲链表
       lVar7 = *(longlong *)(lVar5 + 0x28);
       do {
         *(longlong *)(lVar4 + 0x3538) = lVar7;
