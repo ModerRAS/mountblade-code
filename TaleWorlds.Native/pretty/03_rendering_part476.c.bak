@@ -475,7 +475,7 @@ LAB_1805224d2:
         puVar11 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
         *(int8_t *)puVar11 = 0;
         puStack_78 = puVar11;
-        uVar8 = CoreMemoryPoolCleaner(puVar11);
+        uVar8 = FUN_18064e990(puVar11);
         uStack_68 = CONCAT44(uStack_68._4_4_,uVar8);
         *puVar11 = 0x6c61526573726f48;
         *(int16_t *)(puVar11 + 1) = 0x796c;

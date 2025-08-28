@@ -547,7 +547,7 @@ void FUN_1805f6150(int64_t param_1)
       if (plVar9 != (int64_t *)0x0) {
         (**(code **)(*plVar9 + 200))(plVar9,1);
       }
-      uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xf0,8,3);
+      uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0xf0,8,3);
       uVar11 = *(int8_t *)(param_1 + 0x110);
       plStackX_8 = (int64_t *)CONCAT71(plStackX_8._1_7_,*(int8_t *)(param_1 + 0x111));
       pplStack_a0 = &plStackX_10;

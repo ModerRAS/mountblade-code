@@ -244,7 +244,7 @@ void FUN_1801c2d00(uint64_t param_1,uint64_t param_2)
       uStack_d0 = uStack_d0 & 0xffffffff00000000;
       puStack_e8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-      SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_168);
+      FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_168);
     }
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();

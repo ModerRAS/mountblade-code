@@ -127,7 +127,7 @@ FUN_180601520(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   void *puStack_30;
   int64_t lStack_28;
   
-  uVar2 = CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_18055b2f0(&system_data_6150,uVar2);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -564,7 +564,7 @@ void FUN_180601e80(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
   void *puStack_48;
   int iStack_40;
   
-  CoreMemoryPoolValidator(&puStack_50,param_3,param_3,param_4,0xfffffffffffffffe);
+  FUN_180627910(&puStack_50,param_3,param_3,param_4,0xfffffffffffffffe);
   puVar3 = (int8_t *)0x0;
   if (iStack_40 != 0) {
     iVar2 = iStack_40 + 1;
@@ -914,7 +914,7 @@ FUN_180602680(uint64_t *param_1,int64_t param_2,uint64_t param_3,int8_t param_4)
     param_1[1] = CONCAT44(uStack_34,0xffffffff);
   }
   else {
-    CoreMemoryPoolValidator(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
+    FUN_180627910(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
     lVar1 = *(int64_t *)(param_2 + 0x6d8);
     uVar2 = *(uint64_t *)(*(int64_t *)(lVar1 + 0x8a8) + 0x260);
     uVar4 = FUN_18020bef0(render_system_data_config,&puStack_30);

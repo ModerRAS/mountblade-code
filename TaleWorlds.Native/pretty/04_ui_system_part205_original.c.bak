@@ -169,7 +169,7 @@ typedef void*     memory_ptr_t;           /**< 内存指针类型 */
 
 /** 外部函数别名 */
 #define SystemState_Validator         FUN_1807881c0    /**< 系统状态验证器 */
-#define UI_InternalInit               SystemStateManager    /**< UI内部初始化函数 */
+#define UI_InternalInit               FUN_180768360    /**< UI内部初始化函数 */
 #define UI_InternalCleanup            SystemConfigManager    /**< UI内部清理函数 */
 #define UI_MemoryAllocator            UI_MemoryAllocator    /**< UI内存分配器 */
 #define UI_ProcessorInit              FUN_1807682e0    /**< UI处理器初始化函数 */

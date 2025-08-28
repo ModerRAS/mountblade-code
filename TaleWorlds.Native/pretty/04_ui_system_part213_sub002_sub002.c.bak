@@ -1168,7 +1168,7 @@ LAB_180790207:
       SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar32,&unknown_var_2144_ptr,0xb8,1);
     }
                     // WARNING: Subroutine does not return
-    SystemSecurityChecker(unaff_RBP[0x854] ^ (uint64_t)&stack0x00000000);
+    FUN_1808fc050(unaff_RBP[0x854] ^ (uint64_t)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar34,&unknown_var_2144_ptr,0xb8,1);
