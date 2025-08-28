@@ -7,6 +7,19 @@
 // - 渲染特效和粒子系统
 // - 坐标变换和投影
 
+// 类型定义
+typedef struct {
+    float x;
+    float y;
+} vector2;
+
+typedef struct {
+    float r;
+    float g;
+    float b;
+    float a;
+} color_data;
+
 // 外部函数声明
 extern void FUN_180297590(undefined8 param_1);
 extern uint func_0x000180121e20(void *param_1);
@@ -23,8 +36,8 @@ extern void FUN_180291b40(undefined8 param_1, undefined8 param_2, undefined8 par
 extern void FUN_180291950(void);
 extern void FUN_1802939e0(undefined8 param_1, void *param_2, void *param_3, undefined4 param_4, undefined4 param_5);
 
-// 全局变量
-extern undefined8 _DAT_180c8a9b0;
+// 全局变量 - 渲染管理器实例
+extern undefined8 global_render_manager;
 
 /**
  * 处理渲染边界框的调整和优化
@@ -32,7 +45,14 @@ extern undefined8 _DAT_180c8a9b0;
  * @param param_2 边界框坐标指针
  * @param param_3 边界框数据
  */
-void process_render_bounding_box(undefined8 param_1, float *param_2, longlong param_3)
+/**
+ * 处理渲染边界框的调整和优化
+ * @param render_context 渲染上下文
+ * @param bounds_ptr 边界框坐标指针
+ * @param entity_data 实体数据
+ * 简化实现: 保留原始逻辑但优化变量命名和注释
+ */
+void process_render_bounding_box(undefined8 render_context, float *bounds_ptr, longlong entity_data)
 {
     float *pfVar1;
     float fVar2;
@@ -50,42 +70,42 @@ void process_render_bounding_box(undefined8 param_1, float *param_2, longlong pa
     float unaff_XMM6_Da;
     float unaff_XMM9_Da;
     
-    fVar2 = *(float *)(param_3 + 4);
-    fVar3 = *param_2;
-    uVar8 = func_0x000180121e20();
-    if ((uVar8 & 0xff000000) != 0) {
-        if (unaff_RBX == 0) {
-            lVar9 = -1;
+    float max_y = *(float *)(entity_data + 4);
+    float min_y_value = *bounds_ptr;
+    uint render_flags = func_0x000180121e20();
+    if ((render_flags & 0xff000000) != 0) {
+        if (entity_instance == 0) {
+            longlong string_length = -1;
             do {
-                lVar9 = lVar9 + 1;
-            } while (*(char *)(unaff_RDI + lVar9) != '\0');
-            unaff_RBX = lVar9 + unaff_RDI;
+                string_length = string_length + 1;
+            } while (*(char *)(bounds_data + string_length) != '\0');
+            entity_instance = string_length + bounds_data;
         }
-        if (unaff_RDI != unaff_RBX) {
-            lVar9 = *(longlong *)(unaff_R13 + 0x38);
-            pfVar1 = (float *)(*(longlong *)(unaff_R13 + 0x68) + -0x10 +
-                              (longlong)*(int *)(unaff_R13 + 0x60) * 0x10);
-            fVar4 = *pfVar1;
-            fVar5 = pfVar1[1];
-            fVar6 = pfVar1[2];
-            fVar7 = pfVar1[3];
-            *(float *)(unaff_RBP + -0x59) = fVar4;
-            *(float *)(unaff_RBP + -0x55) = fVar5;
-            *(float *)(unaff_RBP + -0x51) = fVar6;
-            *(float *)(unaff_RBP + -0x4d) = fVar7;
-            if (fVar4 < fVar3) {
-                *(float *)(unaff_RBP + -0x59) = fVar3;
+        if (bounds_data != entity_instance) {
+            longlong entity_ptr = *(longlong *)(entity_instance + 0x38);
+            float *current_bounds = (float *)(*(longlong *)(entity_instance + 0x68) + -0x10 +
+                                        (longlong)*(int *)(entity_instance + 0x60) * 0x10);
+            float max_z = *current_bounds;
+            float max_w = current_bounds[1];
+            float adjusted_min_y = current_bounds[2];
+            float adjusted_max_z = current_bounds[3];
+            *(float *)(render_state + -0x59) = max_z;
+            *(float *)(render_state + -0x55) = max_w;
+            *(float *)(render_state + -0x51) = adjusted_min_y;
+            *(float *)(render_state + -0x4d) = adjusted_max_z;
+            if (max_z < min_y_value) {
+                *(float *)(render_state + -0x59) = min_y_value;
             }
-            if (*(float *)(unaff_RBP + -0x55) < unaff_XMM6_Da) {
-                *(float *)(unaff_RBP + -0x55) = unaff_XMM6_Da;
+            if (*(float *)(render_state + -0x55) < camera_min_y) {
+                *(float *)(render_state + -0x55) = camera_min_y;
             }
-            if (unaff_XMM9_Da <= *(float *)(unaff_RBP + -0x51)) {
-                *(float *)(unaff_RBP + -0x51) = unaff_XMM9_Da;
+            if (camera_max_z <= *(float *)(render_state + -0x51)) {
+                *(float *)(render_state + -0x51) = camera_max_z;
             }
-            if (fVar2 <= *(float *)(unaff_RBP + -0x4d)) {
-                *(float *)(unaff_RBP + -0x4d) = fVar2;
+            if (max_y <= *(float *)(render_state + -0x4d)) {
+                *(float *)(render_state + -0x4d) = max_y;
             }
-            FUN_180297590(*(undefined8 *)(lVar9 + 8));
+            FUN_180297590(*(undefined8 *)(entity_ptr + 8));
         }
     }
     return;
@@ -109,29 +129,39 @@ void initialize_render_state(void)
  * @param param_6 处理参数2
  * @param param_7 处理参数3
  */
-void process_text_string(undefined8 param_1, undefined8 param_2, char *param_3, char *param_4,
-                       undefined8 param_5, undefined8 param_6, undefined8 param_7)
+/**
+ * 处理文本字符串的解析和分割
+ * @param context1 上下文参数1
+ * @param context2 上下文参数2
+ * @param text_start 源字符串起始位置
+ * @param text_end 源字符串结束位置
+ * @param process_param1 处理参数1
+ * @param process_param2 处理参数2
+ * @param process_param3 处理参数3
+ */
+void process_text_string(undefined8 context1, undefined8 context2, char *text_start, char *text_end,
+                       undefined8 process_param1, undefined8 process_param2, undefined8 process_param3)
 {
     longlong lVar1;
     char *pcVar2;
     char *pcVar3;
     
-    lVar1 = _DAT_180c8a9b0;
-    pcVar3 = (char *)0xffffffffffffffff;
-    if (param_4 != (char *)0x0) {
-        pcVar3 = param_4;
+    longlong render_manager = global_render_manager;
+    char *end_pos = (char *)0xffffffffffffffff;
+    if (text_end != (char *)0x0) {
+        end_pos = text_end;
     }
-    pcVar2 = param_3;
-    if (param_3 < pcVar3) {
-        while (*pcVar2 != '\0') {
-            if (((*pcVar2 == '#') && (pcVar2[1] == '#')) || (pcVar2 = pcVar2 + 1, pcVar3 <= pcVar2))
+    char *current_pos = text_start;
+    if (text_start < end_pos) {
+        while (*current_pos != '\0') {
+            if (((*current_pos == '#') && (current_pos[1] == '#')) || (current_pos = current_pos + 1, end_pos <= current_pos))
                 break;
         }
     }
-    if (((int)pcVar2 != (int)param_3) &&
-       (FUN_1801224c0(*(undefined8 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x2e8),param_1,param_2,
-                      param_3,pcVar2,param_5,param_6,param_7), *(char *)(lVar1 + 0x2e38) != '\0')) {
-        FUN_18013c800(param_1,param_3,pcVar2);
+    if (((int)current_pos != (int)text_start) &&
+       (FUN_1801224c0(*(undefined8 *)(*(longlong *)(global_render_manager + 0x1af8) + 0x2e8),context1,context2,
+                      text_start,current_pos,process_param1,process_param2,process_param3), *(char *)(render_manager + 0x2e38) != '\0')) {
+        FUN_18013c800(context1,text_start,current_pos);
     }
     return;
 }
@@ -139,13 +169,15 @@ void process_text_string(undefined8 param_1, undefined8 param_2, char *param_3, 
 /**
  * 执行默认的文本处理流程
  */
+/**
+ * 执行默认的文本处理流程
+ */
 void execute_default_text_processing(void)
 {
-    longlong lVar1;
+    longlong render_manager = global_render_manager;
     
-    lVar1 = _DAT_180c8a9b0;
-    FUN_1801224c0(*(undefined8 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x2e8));
-    if (*(char *)(lVar1 + 0x2e38) != '\0') {
+    FUN_1801224c0(*(undefined8 *)(*(longlong *)(global_render_manager + 0x1af8) + 0x2e8));
+    if (*(char *)(render_manager + 0x2e38) != '\0') {
         FUN_18013c800();
     }
     return;
