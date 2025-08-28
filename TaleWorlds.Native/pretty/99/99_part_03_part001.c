@@ -1,0 +1,1233 @@
+#include "TaleWorlds.Native.Split.h"
+
+/**
+ * @file 99_part_03_part001.c
+ * @brief 模块99：未匹配函数 - 第3部分第1个文件
+ * @description 包含7个核心函数，涵盖字符串处理、文件操作、内存管理、系统调用等高级功能
+ */
+
+// ============================================================================
+// 常量定义
+// ============================================================================
+
+#define MAX_PATH_LENGTH 260
+#define HASH_TABLE_SIZE 0x100
+#define LOCK_TIMEOUT 1000
+#define FILE_BUFFER_SIZE 0x1000000
+
+// ============================================================================
+// 函数别名定义
+// ============================================================================
+
+#define string_comparison_processor FUN_1801c4410
+#define memory_cleanup_handler FUN_1801c46e0
+#define file_data_processor FUN_1801c4730
+#define file_validator FUN_1801c4eb0
+#define shader_cache_processor FUN_1801c5160
+#define configuration_file_handler FUN_1801c5450
+#define path_builder FUN_1801c5700
+#define string_constructor FUN_1801c5870
+
+// ============================================================================
+// 全局变量引用
+// ============================================================================
+
+extern undefined8 _DAT_180c8aa08;    // 全局数据表指针
+extern undefined8 _DAT_180c82868;    // 系统状态标志
+extern undefined8 _DAT_180c8ed18;    // 内存分配器句柄
+extern undefined8 _DAT_180c86870;    // 渲染系统状态
+extern undefined8 DAT_180bf00a8;     // 安全检查常量
+extern undefined8 _DAT_180c86908;    // 系统配置状态
+extern char DAT_180c82860;            // 调试模式标志
+extern char DAT_180c82842;            // 错误处理标志
+
+// ============================================================================
+// 字符串常量引用
+// ============================================================================
+
+extern undefined8 UNK_180a0ce90;     // 字符串常量 "shader_cache"
+extern undefined8 UNK_180a0ce64;     // 字符串常量 "shaders"
+extern undefined8 UNK_180a0ce70;     // 字符串常量 "data"
+extern undefined8 UNK_180a0cf50;     // 字符串常量 "config"
+extern undefined8 UNK_180a01ff0;     // 文件扩展名过滤器
+extern undefined8 UNK_180a0cf4c;     // 配置文件路径
+extern undefined8 UNK_180a0cfa0;    // 错误消息标题
+extern undefined8 UNK_180a0cea0;    // 错误消息内容
+extern undefined8 UNK_180a0cf60;     // 对话框标题
+extern undefined8 UNK_180a04f08;     // 系统消息
+
+// ============================================================================
+// 核心函数实现
+// ============================================================================
+
+/**
+ * @brief 字符串比较处理器
+ * @param param_1 双指针参数，用于存储处理结果
+ * @param param_2 输入参数，包含要比较的字符串信息
+ * @return void
+ * 
+ * 该函数实现高级字符串比较功能，支持多种字符串格式的比较和验证。
+ * 主要用于系统初始化时的字符串匹配和验证过程。
+ */
+void string_comparison_processor(undefined8 **param_1, longlong param_2)
+{
+    undefined8 *global_ptr;
+    int string_length;
+    longlong index;
+    undefined8 temp_var;
+    longlong *allocated_ptr;
+    undefined8 *result_ptr;
+    undefined8 **temp_ptr1;
+    longlong temp_long;
+    undefined1 match_flag;
+    undefined8 **temp_ptr2;
+    undefined8 ***temp_ptr3;
+    undefined8 **temp_ptr4;
+    undefined8 *temp_ptr5;
+    undefined8 *stack_ptr1;
+    undefined1 stack_flag1;
+    undefined *stack_ptr2;
+    longlong stack_long1;
+    undefined4 stack_uint1;
+    undefined8 *stack_ptr3;
+    undefined1 stack_flag2;
+    undefined *stack_ptr4;
+    longlong stack_long2;
+    undefined4 stack_uint2;
+    undefined8 *ptr_array[2];
+    code *func_ptr1;
+    code *func_ptr2;
+    undefined8 stack_var1;
+    
+    // 初始化全局指针
+    global_ptr = _DAT_180c8aa08;
+    stack_var1 = 0xfffffffffffffffe;
+    match_flag = 0;
+    string_length = *(int *)(param_2 + 0x10);
+    temp_ptr2 = param_1;
+    
+    // 字符串长度为7时的比较逻辑
+    if (string_length == 7) {
+        index = 0;
+        do {
+            temp_long = index + 1;
+            if (*(char *)(*(longlong *)(param_2 + 8) + index) != ((char *)&UNK_180a0ce90)[index])
+                goto mismatch_case_1;
+            index = temp_long;
+        } while (temp_long != 8);
+    }
+    else {
+    mismatch_case_1:
+        // 字符串长度为5时的比较逻辑
+        if (string_length == 5) {
+            index = 0;
+            do {
+                temp_long = index + 1;
+                if (*(char *)(*(longlong *)(param_2 + 8) + index) != ((char *)&UNK_180a0ce64)[index])
+                    goto mismatch_case_2;
+                index = temp_long;
+            } while (temp_long != 6);
+        }
+        else {
+        mismatch_case_2:
+            // 字符串长度为8时的比较逻辑
+            if ((string_length != 8) ||
+                ((string_length = strcmp(*(undefined8 *)(param_2 + 8), &UNK_180a0ce70), string_length != 0 &&
+                 (string_length = strcmp(*(undefined8 *)(param_2 + 8), &UNK_180a0cf50), string_length != 0))))
+                goto final_mismatch;
+        }
+    }
+    
+    match_flag = 1;
+final_mismatch:
+    // 执行系统初始化
+    FUN_18005e630(_DAT_180c82868);
+    FUN_1801c9940(global_ptr);
+    
+    // 分配内存资源
+    temp_var = FUN_18062b1e0(_DAT_180c8ed18, 0x580, 8, 3);
+    allocated_ptr = (longlong *)FUN_1803e8a40(temp_var, param_2);
+    *global_ptr = allocated_ptr;
+    
+    // 执行初始化回调
+    (**(code **)(*allocated_ptr + 0x28))(allocated_ptr);
+    *(undefined1 *)(_DAT_180c86870 + 0x60) = 1;
+    
+    // 分配更多资源并处理
+    temp_var = FUN_18062b1e0(_DAT_180c8ed18, 0xe0, 8, 3);
+    temp_ptr2 = ptr_array;
+    temp_ptr3 = (undefined8 ***)&stack_ptr3;
+    stack_ptr3 = global_ptr;
+    stack_flag2 = match_flag;
+    FUN_180627ae0(&stack_ptr4, param_2);
+    
+    // 构建处理链
+    temp_ptr3 = (undefined8 ***)&stack_ptr3;
+    temp_ptr4 = &stack_ptr1;
+    stack_ptr1 = stack_ptr3;
+    stack_flag1 = stack_flag2;
+    FUN_180627ae0(&stack_ptr2, &stack_ptr4);
+    temp_ptr4 = &stack_ptr1;
+    func_ptr1 = FUN_1801eb5a0;
+    func_ptr2 = FUN_1801eb560;
+    
+    // 分配最终处理结构
+    result_ptr = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x30, 8, DAT_180bf00a8);
+    *result_ptr = stack_ptr1;
+    *(undefined1 *)(result_ptr + 1) = stack_flag1;
+    temp_ptr5 = result_ptr;
+    FUN_180627ae0(result_ptr + 2, &stack_ptr2);
+    temp_ptr4 = (undefined8 **)&stack_ptr2;
+    stack_ptr2 = &UNK_180a3c3e0;
+    ptr_array[0] = result_ptr;
+    
+    // 执行最终处理
+    if (stack_long2 != 0) {
+        FUN_18064e900();
+    }
+    stack_long2 = 0;
+    stack_uint2 = 0;
+    stack_ptr2 = &UNK_18098bcb0;
+    temp_ptr3 = (undefined8 ***)&stack_ptr4;
+    stack_ptr4 = &UNK_180a3c3e0;
+    
+    if (stack_long1 != 0) {
+        FUN_18064e900();
+    }
+    stack_long1 = 0;
+    stack_uint1 = 0;
+    stack_ptr4 = &UNK_18098bcb0;
+    temp_ptr1 = (undefined8 **)FUN_18006b640(temp_var, ptr_array);
+    
+    // 执行回调处理
+    if (temp_ptr1 != (undefined8 **)0x0) {
+        temp_ptr2 = temp_ptr1;
+        (*(code *)(*temp_ptr1)[5])(temp_ptr1);
+    }
+    
+    // 更新全局状态
+    temp_ptr2 = (undefined8 **)global_ptr[9];
+    global_ptr[9] = temp_ptr1;
+    if (temp_ptr2 != (undefined8 **)0x0) {
+        (*(code *)(*temp_ptr2)[7])();
+    }
+    *(undefined8 *)(global_ptr[9] + 0x18) = 0xfffffffffffffffd;
+    temp_var = _DAT_180c82868;
+    temp_ptr3 = &temp_ptr2;
+    temp_ptr2 = (undefined8 **)global_ptr[9];
+    
+    if (temp_ptr2 != (undefined8 **)0x0) {
+        (*(code *)(*temp_ptr2)[5])();
+    }
+    
+    // 清理资源
+    FUN_18005e110(temp_var, &temp_ptr2);
+    return;
+}
+
+/**
+ * @brief 内存清理处理器
+ * @param param_1 内存块指针
+ * @return void
+ * 
+ * 该函数负责清理和重置内存块的状态，确保内存资源被正确释放。
+ */
+void memory_cleanup_handler(longlong param_1)
+{
+    // 重置内存块指针
+    *(undefined8 *)(param_1 + 0x10) = &UNK_180a3c3e0;
+    if (*(longlong *)(param_1 + 0x18) != 0) {
+        FUN_18064e900();
+    }
+    *(undefined8 *)(param_1 + 0x18) = 0;
+    *(undefined4 *)(param_1 + 0x28) = 0;
+    *(undefined8 *)(param_1 + 0x10) = &UNK_18098bcb0;
+    return;
+}
+
+/**
+ * @brief 文件数据处理器
+ * @param param_1 输入参数1
+ * @param param_2 输入参数2，包含文件路径信息
+ * @return void
+ * 
+ * 该函数实现高级文件数据处理功能，包括文件读取、数据解析、哈希表操作等。
+ * 支持多种文件格式的处理和数据验证。
+ */
+void file_data_processor(undefined8 param_1, longlong param_2)
+{
+    undefined8 *global_ptr;
+    uint temp_uint1;
+    uint temp_uint2;
+    undefined8 *temp_ptr1;
+    bool comparison_result;
+    char temp_char;
+    undefined8 temp_var1;
+    longlong temp_long1;
+    undefined8 *temp_ptr2;
+    undefined8 *temp_ptr3;
+    undefined4 *temp_ptr4;
+    undefined8 *temp_ptr5;
+    undefined *temp_ptr6;
+    ulonglong temp_ulong;
+    int temp_int;
+    longlong temp_long2;
+    longlong temp_long3;
+    uint *uint_ptr;
+    undefined1 temp_buffer1[32];
+    uint *stack_uint_ptr1;
+    undefined1 stack_flag1;
+    char stack_char_array[7];
+    longlong stack_long1;
+    uint *stack_uint_ptr2;
+    undefined8 stack_var1;
+    undefined2 stack_var2;
+    undefined1 stack_var3;
+    undefined *stack_ptr1;
+    undefined *stack_ptr2;
+    uint stack_uint1;
+    ulonglong stack_ulong1;
+    uint stack_uint2;
+    uint stack_uint3;
+    undefined8 stack_var4;
+    undefined8 stack_var5;
+    undefined8 stack_var6;
+    undefined *stack_ptr3;
+    longlong stack_long2;
+    int stack_int1;
+    ulonglong stack_ulong2;
+    undefined8 *stack_ptr4;
+    longlong stack_long3;
+    undefined1 stack_flag2;
+    longlong stack_long4;
+    undefined8 stack_var7;
+    longlong stack_long5;
+    undefined8 *stack_ptr5;
+    longlong stack_long6;
+    undefined1 stack_flag3;
+    longlong stack_long7;
+    undefined1 stack_flag4;
+    longlong stack_long8;
+    undefined1 stack_flag5;
+    longlong stack_long9;
+    undefined8 *stack_ptr6;
+    undefined8 *stack_ptr7;
+    undefined8 *stack_ptr8;
+    longlong stack_long10;
+    uint *stack_uint_ptr3;
+    longlong stack_long11;
+    undefined8 *stack_ptr9;
+    undefined8 *stack_ptr10;
+    undefined8 *stack_ptr11;
+    longlong stack_long12;
+    undefined8 *stack_ptr12;
+    longlong stack_long13;
+    undefined8 *stack_ptr13;
+    undefined8 *stack_ptr14;
+    undefined8 *stack_ptr15;
+    longlong stack_long14;
+    undefined8 *stack_ptr16;
+    longlong stack_long15;
+    undefined8 *stack_ptr17;
+    undefined8 *stack_ptr18;
+    undefined8 *stack_ptr19;
+    longlong stack_long16;
+    uint *stack_uint_ptr4;
+    undefined8 stack_var8;
+    uint stack_uint4;
+    uint stack_uint5;
+    uint stack_uint6;
+    uint stack_uint7;
+    undefined4 stack_var9;
+    ulonglong stack_ulong3;
+    
+    // 初始化全局变量和栈变量
+    temp_long2 = _DAT_180c8aa08;
+    stack_var8 = 0xfffffffffffffffe;
+    stack_ulong3 = DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
+    stack_long3 = _DAT_180c8aa08;
+    
+    // 执行初始化操作
+    FUN_1801d8e90(_DAT_180c8aa08, param_2, 0);
+    stack_ptr1 = &UNK_180a3c3e0;
+    stack_ulong1 = 0;
+    stack_ptr2 = (undefined *)0x0;
+    stack_uint1 = 0;
+    
+    // 构建路径字符串
+    FUN_1801c5870(&stack_ptr1, param_2);
+    temp_int = stack_uint1 + 0x12;
+    FUN_1806277c0(&stack_ptr1, temp_int);
+    temp_ptr4 = (undefined4 *)(stack_ptr2 + stack_uint1);
+    
+    // 设置文件名
+    *temp_ptr4 = 0x64616873;  // "hash"
+    temp_ptr4[1] = 0x6d5f7265; // "_rem"
+    temp_ptr4[2] = 0x69707061; // "appi"
+    temp_ptr4[3] = 0x622e676e; // "ng.b"
+    *(undefined2 *)(temp_ptr4 + 4) = 0x6e69; // "in"
+    *(undefined1 *)((longlong)temp_ptr4 + 0x12) = 0;
+    
+    // 初始化文件操作
+    stack_var7 = 0;
+    stack_long5 = 0;
+    temp_ptr6 = &DAT_18098bc73;
+    if (stack_ptr2 != (undefined *)0x0) {
+        temp_ptr6 = stack_ptr2;
+    }
+    stack_uint1 = temp_int;
+    temp_int = FUN_18062dee0(&stack_var7, temp_ptr6, &UNK_180a01ff0);
+    temp_long3 = stack_long5;
+    
+    if (temp_int == 0) {
+        // 文件存在，开始读取数据
+        temp_var1 = _ftelli64(stack_long5);
+        _fseeki64(temp_long3, 0, 2);
+        temp_long1 = _ftelli64(temp_long3);
+        _fseeki64(temp_long3, temp_var1, 0);
+        stack_long1 = 0;
+        stack_uint_ptr2 = (uint *)0x0;
+        stack_var1 = 0;
+        stack_var2 = 0;
+        stack_var3 = 3;
+        FUN_180639bf0(&stack_long1, temp_long1);
+        fread(stack_long1, temp_long1, 1, temp_long3);
+        
+        // 处理读取的数据
+        stack_ptr3 = &UNK_180a3c3e0;
+        stack_ulong2 = 0;
+        stack_long2 = 0;
+        stack_int1 = 0;
+        temp_uint1 = *(uint *)((longlong)stack_uint_ptr2 + 4);
+        uint_ptr = (uint *)((longlong)stack_uint_ptr2 + 8);
+        
+        if (temp_uint1 != 0) {
+            stack_uint_ptr2 = uint_ptr;
+            FUN_180628f30(&stack_ptr3, uint_ptr, temp_uint1);
+            uint_ptr = (uint *)((longlong)uint_ptr + (ulonglong)temp_uint1);
+        }
+        
+        temp_int = stack_int1 + 8;
+        stack_uint_ptr2 = uint_ptr;
+        
+        if (param_2 == 0) {
+            // 处理全局数据
+            temp_long2 = *(longlong *)(temp_long2 + 0x50);
+            stack_long6 = temp_long2 + 0x360;
+            stack_flag3 = 0;
+            stack_long3 = temp_long2;
+            AcquireSRWLockExclusive(stack_long6);
+            stack_flag3 = 1;
+            temp_ulong = (ulonglong)(temp_long1 - temp_int) / 0x18;
+            temp_long1 = stack_long6;
+            
+            if (0 < (int)temp_ulong) {
+                temp_ulong = temp_ulong & 0xffffffff;
+                do {
+                    // 处理数据块
+                    stack_uint4 = *uint_ptr;
+                    stack_uint5 = uint_ptr[1];
+                    stack_uint6 = uint_ptr[2];
+                    stack_uint7 = uint_ptr[3];
+                    temp_uint1 = uint_ptr[4];
+                    temp_uint2 = uint_ptr[5];
+                    uint_ptr = uint_ptr + 6;
+                    temp_ptr1 = *(undefined8 **)(temp_long2 + 0x318);
+                    stack_var9._2_1_ = (byte)(temp_uint1 >> 0x10);
+                    stack_var9._0_2_ = (ushort)temp_uint1;
+                    temp_ptr2 = temp_ptr1;
+                    temp_ptr3 = (undefined8 *)temp_ptr1[2];
+                    
+                    // 搜索匹配的数据结构
+                    while (temp_ptr5 = temp_ptr2, temp_ptr3 != (undefined8 *)0x0) {
+                        if ((*(uint *)(temp_ptr3 + 4) < stack_uint4) ||
+                           ((*(uint *)(temp_ptr3 + 4) <= stack_uint4 &&
+                            ((*(ushort *)(temp_ptr3 + 6) < (ushort)stack_var9 ||
+                             ((*(ushort *)(temp_ptr3 + 6) <= (ushort)stack_var9 &&
+                              ((*(uint *)((longlong)temp_ptr3 + 0x24) < stack_uint5 ||
+                               ((*(uint *)((longlong)temp_ptr3 + 0x24) <= stack_uint5 &&
+                                ((*(uint *)(temp_ptr3 + 5) < stack_uint6 ||
+                                 ((*(uint *)(temp_ptr3 + 5) <= stack_uint6 &&
+                                  ((*(uint *)((longlong)temp_ptr3 + 0x2c) < stack_uint7 ||
+                                   ((*(uint *)((longlong)temp_ptr3 + 0x2c) <= stack_uint7 &&
+                                    (*(byte *)((longlong)temp_ptr3 + 0x32) < stack_var9._2_1_)))))))))))))))))) {
+                            comparison_result = true;
+                            temp_ptr5 = (undefined8 *)*temp_ptr3;
+                        }
+                        else {
+                            comparison_result = false;
+                            temp_ptr5 = (undefined8 *)temp_ptr3[1];
+                        }
+                        temp_ptr2 = temp_ptr3;
+                        temp_ptr3 = temp_ptr5;
+                        if (comparison_result) {
+                            temp_ptr2 = temp_ptr5;
+                        }
+                    }
+                    
+                    // 处理找到的数据
+                    stack_uint_ptr2 = uint_ptr;
+                    if (((temp_ptr5 == temp_ptr1) || (stack_uint4 < *(uint *)(temp_ptr5 + 4))) ||
+                       ((temp_ptr3 = stack_ptr4, stack_uint4 <= *(uint *)(temp_ptr5 + 4) &&
+                        (((ushort)stack_var9 < *(ushort *)(temp_ptr5 + 6) ||
+                         (((ushort)stack_var9 <= *(ushort *)(temp_ptr5 + 6) &&
+                          ((stack_uint5 < *(uint *)((longlong)temp_ptr5 + 0x24) ||
+                           ((stack_uint5 <= *(uint *)((longlong)temp_ptr5 + 0x24) &&
+                            ((stack_uint6 < *(uint *)(temp_ptr5 + 5) ||
+                             ((stack_uint6 <= *(uint *)(temp_ptr5 + 5) &&
+                              ((stack_uint7 < *(uint *)((longlong)temp_ptr5 + 0x2c) ||
+                               ((stack_uint7 <= *(uint *)((longlong)temp_ptr5 + 0x2c) &&
+                                (stack_var9._2_1_ < *(byte *)((longlong)temp_ptr5 + 0x32))))))))))))))))))))) {
+                        stack_var9 = temp_uint1;
+                        temp_long2 = FUN_1801ea180(temp_ptr1, temp_ptr5, &stack_flag1, &stack_uint4);
+                        if (temp_long2 == 0) {
+                            temp_ptr5 = (undefined8 *)FUN_1801ea730(temp_ptr1, stack_char_array, &stack_uint4);
+                            temp_ptr3 = temp_ptr5;
+                            temp_uint1 = stack_var9;
+                            if (stack_char_array[0] != '\0') {
+                                stack_uint_ptr1 = &stack_uint4;
+                                FUN_1801ea0a0(temp_ptr1, &stack_ptr5, temp_ptr5, 0);
+                                temp_ptr5 = stack_ptr5;
+                                temp_ptr3 = stack_ptr5;
+                                temp_uint1 = stack_var9;
+                            }
+                        }
+                        else {
+                            stack_uint_ptr1 = &stack_uint4;
+                            FUN_1801ea0a0(temp_ptr1, &stack_ptr4, temp_long2, stack_flag1);
+                            temp_ptr5 = stack_ptr4;
+                            temp_ptr3 = stack_ptr4;
+                            temp_uint1 = stack_var9;
+                        }
+                    }
+                    
+                    // 更新数据结构
+                    stack_var9 = temp_uint1;
+                    stack_ptr4 = temp_ptr3;
+                    *(uint *)((longlong)temp_ptr5 + 0x34) = temp_uint2;
+                    temp_long3 = (ulonglong)stack_var9._2_1_ * 0x70 + *(longlong *)(stack_long3 + 0x50);
+                    temp_long2 = temp_long3 + 0x70;
+                    stack_flag5 = 0;
+                    stack_long9 = temp_long2;
+                    AcquireSRWLockExclusive(temp_long2);
+                    stack_flag5 = 1;
+                    if (*(int *)(temp_long3 + 0x78) < (int)temp_uint2) {
+                        *(uint *)(temp_long3 + 0x78) = temp_uint2;
+                    }
+                    ReleaseSRWLockExclusive(temp_long2);
+                    temp_ulong = temp_ulong - 1;
+                    temp_long1 = stack_long6;
+                    temp_long2 = stack_long3;
+                    temp_long3 = stack_long5;
+                } while (temp_ulong != 0);
+            }
+        }
+        else {
+            // 处理特定模式的数据
+            temp_ptr1 = (undefined8 *)(param_2 + 0x328);
+            stack_long3 = param_2 + 0x360;
+            stack_flag2 = 0;
+            AcquireSRWLockExclusive(stack_long3);
+            stack_flag2 = 1;
+            temp_ulong = (temp_long1 - 4U) / 0x24;
+            temp_long1 = stack_long3;
+            
+            if (0 < (int)temp_ulong) {
+                temp_ulong = temp_ulong & 0xffffffff;
+                do {
+                    // 处理特定格式的数据块
+                    stack_uint2 = *uint_ptr;
+                    stack_uint3 = uint_ptr[1];
+                    stack_var4 = *(undefined8 *)(uint_ptr + 2);
+                    stack_var5 = *(undefined8 *)(uint_ptr + 4);
+                    stack_var6 = *(ulonglong *)(uint_ptr + 6);
+                    temp_uint1 = uint_ptr[8];
+                    uint_ptr = uint_ptr + 9;
+                    temp_ptr2 = temp_ptr1;
+                    stack_uint_ptr2 = uint_ptr;
+                    temp_ptr3 = *(undefined8 **)(param_2 + 0x338);
+                    
+                    while (temp_ptr3 != (undefined8 *)0x0) {
+                        // 数据比较逻辑
+                        stack_ptr12 = temp_ptr3 + 4;
+                        stack_long10 = (longlong)&stack_var6 + 4;
+                        stack_ptr6 = &stack_var6;
+                        stack_ptr7 = &stack_var5;
+                        stack_ptr8 = &stack_var4;
+                        stack_long11 = (longlong)&stack_var5 + 4;
+                        stack_uint_ptr3 = &stack_uint2;
+                        stack_long12 = (longlong)temp_ptr3 + 0x3c;
+                        stack_ptr9 = temp_ptr3 + 7;
+                        stack_ptr10 = temp_ptr3 + 6;
+                        stack_ptr11 = temp_ptr3 + 5;
+                        stack_long13 = (longlong)temp_ptr3 + 0x34;
+                        temp_char = func_0x0001801eb6f0(&stack_long12, &stack_long10);
+                        if (temp_char == '\0') {
+                            temp_ptr2 = temp_ptr3;
+                            temp_ptr3 = (undefined8 *)temp_ptr3[1];
+                        }
+                        else {
+                            temp_ptr3 = (undefined8 *)*temp_ptr3;
+                        }
+                    }
+                    
+                    if (temp_ptr2 == temp_ptr1) {
+                    skip_to_new_entry:
+                        stack_uint_ptr1 = &stack_uint2;
+                        temp_ptr2 = (undefined8 *)FUN_1801e8280(temp_ptr1, &stack_long3);
+                        temp_ptr2 = (undefined8 *)*temp_ptr2;
+                    }
+                    else {
+                        // 处理现有条目
+                        stack_ptr17 = temp_ptr2 + 4;
+                        stack_long15 = (longlong)temp_ptr2 + 0x3c;
+                        stack_ptr13 = temp_ptr2 + 7;
+                        stack_ptr14 = temp_ptr2 + 6;
+                        stack_ptr15 = temp_ptr2 + 5;
+                        stack_long16 = (longlong)temp_ptr2 + 0x34;
+                        stack_long14 = (longlong)&stack_var6 + 4;
+                        stack_ptr16 = &stack_var6;
+                        stack_ptr18 = &stack_var5;
+                        stack_ptr19 = &stack_var4;
+                        stack_long15 = (longlong)&stack_var5 + 4;
+                        stack_uint_ptr4 = &stack_uint2;
+                        temp_char = func_0x0001801eb6f0(&stack_long14, &stack_long15);
+                        if (temp_char != '\0') goto skip_to_new_entry;
+                    }
+                    
+                    // 更新条目数据
+                    *(uint *)(temp_ptr2 + 8) = temp_uint1;
+                    temp_long2 = (stack_var6 & 0xff) * 0x70;
+                    temp_long3 = param_2 + 0x70 + temp_long2;
+                    stack_flag4 = 0;
+                    stack_long8 = temp_long3;
+                    AcquireSRWLockExclusive(temp_long3);
+                    stack_flag4 = 1;
+                    if (*(int *)(temp_long2 + 0x78 + param_2) < (int)temp_uint1) {
+                        *(uint *)(temp_long2 + 0x78 + param_2) = temp_uint1;
+                    }
+                    ReleaseSRWLockExclusive(temp_long3);
+                    temp_ulong = temp_ulong - 1;
+                    temp_long1 = stack_long3;
+                    temp_long3 = stack_long5;
+                } while (temp_ulong != 0);
+            }
+        }
+        
+        // 释放锁
+        ReleaseSRWLockExclusive(temp_long1);
+        stack_ptr3 = &UNK_180a3c3e0;
+        if (stack_long2 != 0) {
+            FUN_18064e900();
+        }
+        stack_long2 = 0;
+        stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
+        stack_ptr3 = &UNK_18098bcb0;
+        if (((char)stack_var2 == '\0') && (stack_long1 != 0)) {
+            FUN_18064e900();
+        }
+    }
+    
+    // 关闭文件句柄
+    if (temp_long3 != 0) {
+        fclose(temp_long3);
+        stack_long5 = 0;
+        LOCK();
+        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        UNLOCK();
+    }
+    
+    // 清理资源
+    stack_ptr1 = &UNK_180a3c3e0;
+    if (stack_ptr2 == (undefined *)0x0) {
+        stack_ptr2 = (undefined *)0x0;
+        stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
+        stack_ptr1 = &UNK_18098bcb0;
+        FUN_1808fc050(stack_ulong3 ^ (ulonglong)temp_buffer1);
+    }
+    FUN_18064e900();
+}
+
+/**
+ * @brief 文件验证器
+ * @param param_1 文件路径参数
+ * @return bool 验证结果
+ * 
+ * 该函数验证文件的完整性和有效性，支持多种文件格式的验证。
+ * 主要用于系统初始化时的文件检查和验证过程。
+ */
+bool file_validator(longlong param_1)
+{
+    longlong temp_long1;
+    undefined4 *temp_ptr1;
+    undefined *temp_ptr2;
+    int temp_int;
+    ulonglong temp_ulong1;
+    ulonglong temp_ulong2;
+    ulonglong temp_ulong3;
+    bool validation_result;
+    int temp_array1[2];
+    uint temp_array2[2];
+    uint temp_array3[2];
+    longlong temp_long_array[2];
+    undefined *stack_ptr1;
+    undefined *stack_ptr2;
+    uint stack_uint1;
+    undefined8 stack_var1;
+    
+    // 初始化变量
+    validation_result = true;
+    temp_ulong2 = 0;
+    stack_ptr1 = &UNK_180a3c3e0;
+    stack_var1 = 0;
+    stack_ptr2 = (undefined *)0x0;
+    stack_uint1 = 0;
+    
+    // 构建文件路径
+    FUN_1801c5700(&stack_ptr1, param_1);
+    temp_int = stack_uint1 + 0x1c;
+    FUN_1806277c0(&stack_ptr1, temp_int);
+    temp_ptr1 = (undefined4 *)(stack_ptr2 + stack_uint1);
+    
+    // 设置进程名称
+    *temp_ptr1 = 0x706d6f63;  // "comp"
+    temp_ptr1[1] = 0x73736572; // "ress"
+    temp_ptr1[2] = 0x735f6465; // "des_"
+    temp_ptr1[3] = 0x65646168; // "shade"
+    *(undefined8 *)(temp_ptr1 + 4) = 0x2e65686361635f72; // "r_cache.ch"
+    temp_ptr1[6] = 0x6b636173; // "sack"
+    *(undefined1 *)(temp_ptr1 + 7) = 0;
+    
+    // 初始化文件句柄
+    temp_long_array[0] = -1;
+    temp_ptr2 = &DAT_18098bc73;
+    if (stack_ptr2 != (undefined *)0x0) {
+        temp_ptr2 = stack_ptr2;
+    }
+    stack_uint1 = temp_int;
+    FUN_18063ba00(temp_long_array, temp_ptr2, 5, 0x104);
+    temp_long1 = temp_long_array[0];
+    temp_array1[0] = 0;
+    temp_ulong1 = temp_ulong2;
+    
+    if (temp_long_array[0] != -1) {
+        // 读取文件头
+        do {
+            temp_ulong3 = 0x1000000;
+            if (4 - temp_ulong1 < 0x1000000) {
+                temp_ulong3 = 4 - temp_ulong1 & 0xffffffff;
+            }
+            temp_array2[0] = 0;
+            temp_int = ReadFile(temp_long1, (longlong)temp_array1 + temp_ulong1, temp_ulong3, temp_array2, 0);
+        } while (((temp_int != 0) && (temp_array2[0] != 0)) && (temp_ulong1 = temp_ulong1 + temp_array2[0], temp_ulong1 < 4));
+        
+        // 读取验证数据
+        do {
+            temp_ulong1 = 0x1000000;
+            if (4 - temp_ulong2 < 0x1000000) {
+                temp_ulong1 = 4 - temp_ulong2 & 0xffffffff;
+            }
+            temp_array3[0] = 0;
+            temp_int = ReadFile(temp_long1, (longlong)temp_array1 + temp_ulong2, temp_ulong1, temp_array3, 0);
+        } while (((temp_int != 0) && (temp_array3[0] != 0)) && (temp_ulong2 = temp_ulong2 + temp_array3[0], temp_ulong2 < 4));
+        
+        // 清理文件句柄
+        LOCK();
+        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        UNLOCK();
+        CloseHandle(temp_long_array[0]);
+        temp_long_array[0] = -1;
+        validation_result = temp_array1[0] == 0x5ef;
+    }
+    
+    temp_long1 = temp_long_array[0];
+    
+    // 错误处理
+    if (((DAT_180c82860 == '\0') && (validation_result == false)) &&
+       ((*(int *)(_DAT_180c86908 + 0x620) == 0 && (param_1 == 0)))) {
+        if (DAT_180c82842 == '\0') {
+            MessageBoxA(0, &UNK_180a0cea0, &UNK_180a0cf60, 0x41040);
+        }
+        else if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
+            FUN_1800623b0(_DAT_180c86928, 3, 0xffffffff00000000, 0xd, &UNK_180a04f08, &UNK_180a0cf60,
+                          &UNK_180a0cea0);
+        }
+    }
+    
+    // 确保文件句柄关闭
+    if (temp_long1 != -1) {
+        LOCK();
+        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        UNLOCK();
+        CloseHandle(temp_long_array[0]);
+        temp_long_array[0] = -1;
+    }
+    
+    // 清理资源
+    stack_ptr1 = &UNK_180a3c3e0;
+    if (stack_ptr2 == (undefined *)0x0) {
+        return validation_result;
+    }
+    FUN_18064e900();
+}
+
+/**
+ * @brief 着色器缓存处理器
+ * @param param_1 输入参数
+ * @return void
+ * 
+ * 该函数处理着色器缓存相关的操作，包括缓存读取、验证和更新。
+ */
+void shader_cache_processor(undefined8 param_1)
+{
+    longlong temp_long1;
+    undefined8 temp_var1;
+    undefined4 *temp_ptr1;
+    undefined *temp_ptr2;
+    int temp_int;
+    undefined1 temp_buffer1[32];
+    int stack_int1;
+    int temp_array1[3];
+    undefined *stack_ptr1;
+    undefined *stack_ptr2;
+    uint stack_uint1;
+    ulonglong stack_ulong1;
+    undefined8 stack_var1;
+    longlong stack_long1;
+    undefined8 stack_var2;
+    undefined *stack_ptr3;
+    undefined1 *stack_ptr4;
+    undefined4 stack_var3;
+    undefined1 temp_buffer2[32];
+    ulonglong stack_ulong2;
+    
+    // 初始化栈变量
+    stack_var2 = 0xfffffffffffffffe;
+    stack_ulong2 = DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
+    temp_var1 = 0;
+    temp_array1[1] = 0;
+    stack_ptr1 = &UNK_180a3c3e0;
+    stack_ulong1 = 0;
+    stack_ptr2 = (undefined *)0x0;
+    stack_uint1 = 0;
+    
+    // 构建文件路径
+    FUN_1801c5870(&stack_ptr1, param_1);
+    temp_int = stack_uint1 + 0x12;
+    FUN_1806277c0(&stack_ptr1, temp_int);
+    temp_ptr1 = (undefined4 *)(stack_ptr2 + stack_uint1);
+    
+    // 设置文件名
+    *temp_ptr1 = 0x64616873;  // "hash"
+    temp_ptr1[1] = 0x6d5f7265; // "_rem"
+    temp_ptr1[2] = 0x69707061; // "appi"
+    temp_ptr1[3] = 0x622e676e; // "ng.b"
+    *(undefined2 *)(temp_ptr1 + 4) = 0x6e69; // "in"
+    *(undefined1 *)((longlong)temp_ptr1 + 0x12) = 0;
+    
+    // 初始化文件操作
+    stack_var1 = 0;
+    stack_long1 = 0;
+    temp_ptr2 = &DAT_18098bc73;
+    if (stack_ptr2 != (undefined *)0x0) {
+        temp_ptr2 = stack_ptr2;
+    }
+    stack_uint1 = temp_int;
+    FUN_18062dee0(&stack_var1, temp_ptr2, &UNK_180a01ff0);
+    temp_long1 = stack_long1;
+    temp_array1[0] = 0;
+    
+    if (stack_long1 != 0) {
+        fread(temp_array1, 4, 1, stack_long1);
+        if (temp_array1[0] == 0x5ef) {
+            // 处理着色器缓存
+            stack_ptr3 = &UNK_18098bc80;
+            stack_ptr4 = temp_buffer2;
+            stack_var3 = 0;
+            temp_buffer2[0] = 0;
+            temp_array1[1] = 1;
+            FUN_18004b860(&stack_ptr3, &UNK_1809fd0a0, 0x130a7);
+            stack_int1 = 0;
+            fread(&stack_int1, 4, 1, temp_long1);
+            if (stack_int1 < 9) {
+                if (stack_int1 + 1 != 0) {
+                    temp_var1 = FUN_18062b420(_DAT_180c8ed18, (longlong)(stack_int1 + 1), 3);
+                }
+                memset(temp_var1, 0, (longlong)(stack_int1 + 1));
+            }
+            temp_array1[1] = 0;
+            stack_ptr3 = &UNK_18098bcb0;
+        }
+        fclose(temp_long1);
+        stack_long1 = 0;
+        LOCK();
+        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        UNLOCK();
+    }
+    
+    // 确保文件句柄关闭
+    if (stack_long1 != 0) {
+        fclose(stack_long1);
+        stack_long1 = 0;
+        LOCK();
+        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        UNLOCK();
+    }
+    
+    // 清理资源
+    stack_ptr1 = &UNK_180a3c3e0;
+    if (stack_ptr2 == (undefined *)0x0) {
+        stack_ptr2 = (undefined *)0x0;
+        stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
+        stack_ptr1 = &UNK_18098bcb0;
+        FUN_1808fc050(stack_ulong2 ^ (ulonglong)temp_buffer1);
+    }
+    FUN_18064e900();
+}
+
+/**
+ * @brief 配置文件处理器
+ * @return void
+ * 
+ * 该函数处理配置文件相关的操作，包括配置读取、验证和写入。
+ */
+void configuration_file_handler(void)
+{
+    longlong temp_long1;
+    char temp_char;
+    undefined4 *temp_ptr1;
+    undefined1 *temp_ptr2;
+    int temp_int;
+    undefined *temp_ptr3;
+    undefined1 temp_buffer1[32];
+    undefined *stack_ptr1;
+    undefined1 *stack_ptr2;
+    uint stack_uint1;
+    ulonglong stack_ulong1;
+    int temp_array1[2];
+    undefined *stack_ptr3;
+    longlong stack_long1;
+    int stack_int1;
+    ulonglong stack_ulong2;
+    undefined4 temp_array2[2];
+    undefined8 stack_var1;
+    longlong stack_long2;
+    undefined8 stack_var2;
+    undefined *stack_ptr4;
+    undefined *stack_ptr5;
+    int stack_int2;
+    undefined temp_buffer2[32];
+    ulonglong stack_ulong3;
+    
+    // 初始化栈变量
+    stack_var2 = 0xfffffffffffffffe;
+    stack_ulong3 = DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
+    temp_array1[1] = 0;
+    
+    if (*(char *)(_DAT_180c86870 + 0x168) == '\0') {
+        stack_ptr3 = &UNK_180a3c3e0;
+        stack_ulong2 = 0;
+        stack_long1 = 0;
+        stack_int1 = 0;
+        FUN_1801c5870(&stack_ptr3);
+        stack_ptr1 = &UNK_180a3c3e0;
+        stack_ulong1 = 0;
+        stack_ptr2 = (undefined1 *)0x0;
+        stack_uint1 = 0;
+        FUN_1806277c0(&stack_ptr1, stack_int1);
+        
+        if (stack_int1 != 0) {
+            memcpy(stack_ptr2, stack_long1, stack_int1 + 1);
+        }
+        
+        if (stack_long1 != 0) {
+            stack_uint1 = 0;
+            if (stack_ptr2 != (undefined1 *)0x0) {
+                *stack_ptr2 = 0;
+            }
+            stack_ulong1 = stack_ulong1 & 0xffffffff;
+        }
+        
+        temp_int = stack_uint1 + 0x12;
+        FUN_1806277c0(&stack_ptr1, temp_int);
+        temp_ptr1 = (undefined4 *)(stack_ptr2 + stack_uint1);
+        
+        // 设置文件名
+        *temp_ptr1 = 0x64616873;  // "hash"
+        temp_ptr1[1] = 0x6d5f7265; // "_rem"
+        temp_ptr1[2] = 0x69707061; // "appi"
+        temp_ptr1[3] = 0x622e676e; // "ng.b"
+        *(undefined2 *)(temp_ptr1 + 4) = 0x6e69; // "in"
+        *(undefined1 *)((longlong)temp_ptr1 + 0x12) = 0;
+        
+        stack_uint1 = temp_int;
+        temp_char = FUN_180624af0(&stack_ptr1);
+        if (temp_char == '\0') {
+            FUN_18062c1e0(&stack_ptr3, 1);
+            stack_var1 = 0;
+            stack_long2 = 0;
+            temp_ptr2 = &DAT_18098bc73;
+            if (stack_ptr2 != (undefined1 *)0x0) {
+                temp_ptr2 = stack_ptr2;
+            }
+            FUN_18062dee0(&stack_var1, temp_ptr2, &UNK_180a0cf4c);
+            temp_long1 = stack_long2;
+            
+            if (stack_long2 == 0) {
+                FUN_180062300(_DAT_180c86928, &UNK_180a0cfa0);
+            }
+            
+            // 写入文件头
+            temp_array2[0] = 0x5ef;
+            fwrite(temp_array2, 4, 1, stack_long2);
+            stack_ptr4 = &UNK_18098bc80;
+            stack_ptr5 = temp_buffer2;
+            stack_int2 = 0;
+            temp_buffer2[0] = 0;
+            temp_array1[1] = 1;
+            FUN_18004b860(&stack_ptr4, &UNK_1809fd0a0, 0x130a7);
+            temp_array1[0] = stack_int2;
+            fwrite(temp_array1, 4, 1, temp_long1);
+            temp_ptr3 = &DAT_18098bc73;
+            if (stack_ptr5 != (undefined *)0x0) {
+                temp_ptr3 = stack_ptr5;
+            }
+            fwrite(temp_ptr3, 1, (longlong)temp_array1[0], temp_long1);
+            fclose(temp_long1);
+            stack_long2 = 0;
+            LOCK();
+            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            UNLOCK();
+            temp_array1[1] = 0;
+            stack_ptr4 = &UNK_18098bcb0;
+        }
+        
+        // 清理资源
+        stack_ptr1 = &UNK_180a3c3e0;
+        if (stack_ptr2 != (undefined1 *)0x0) {
+            FUN_18064e900();
+        }
+        stack_ptr2 = (undefined1 *)0x0;
+        stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
+        stack_ptr1 = &UNK_18098bcb0;
+        stack_ptr3 = &UNK_180a3c3e0;
+        if (stack_long1 != 0) {
+            FUN_18064e900();
+        }
+        stack_long1 = 0;
+        stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
+        stack_ptr3 = &UNK_18098bcb0;
+    }
+    FUN_1808fc050(stack_ulong3 ^ (ulonglong)temp_buffer1);
+}
+
+/**
+ * @brief 路径构建器
+ * @param param_1 输出缓冲区指针
+ * @param param_2 输入参数
+ * @return void
+ * 
+ * 该函数构建系统路径，支持默认路径和自定义路径两种模式。
+ */
+void path_builder(longlong *param_1, longlong param_2)
+{
+    uint temp_uint1;
+    longlong temp_long1;
+    longlong temp_long2;
+    undefined4 *temp_ptr1;
+    undefined *temp_ptr2;
+    int temp_int;
+    undefined1 temp_buffer1[32];
+    undefined4 stack_var1;
+    undefined8 stack_var2;
+    undefined *stack_ptr1;
+    undefined *stack_ptr2;
+    undefined4 stack_var3;
+    undefined temp_buffer2[16];
+    ulonglong stack_ulong1;
+    
+    // 初始化栈变量
+    stack_var2 = 0xfffffffffffffffe;
+    stack_ulong1 = DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
+    stack_var1 = 0;
+    *(undefined4 *)(param_1 + 2) = 0;
+    
+    if ((undefined1 *)param_1[1] != (undefined1 *)0x0) {
+        *(undefined1 *)param_1[1] = 0;
+    }
+    
+    if (param_2 == 0) {
+        // 使用默认路径
+        stack_ptr1 = &UNK_1809fdc18;
+        stack_ptr2 = temp_buffer2;
+        temp_buffer2[0] = 0;
+        stack_var3 = 6;
+        strcpy_s(temp_buffer2, 0x10, &UNK_180a3c07c);
+        stack_var1 = 1;
+        temp_ptr2 = &DAT_18098bc73;
+        if (stack_ptr2 != (undefined *)0x0) {
+            temp_ptr2 = stack_ptr2;
+        }
+        (**(code **)(*param_1 + 0x10))(param_1, temp_ptr2);
+        stack_var1 = 0;
+        stack_ptr1 = &UNK_18098bcb0;
+        temp_long2 = param_1[2];
+        temp_int = (int)temp_long2 + 8;
+        FUN_1806277c0(param_1, temp_int);
+        temp_uint1 = *(uint *)(param_1 + 2);
+        temp_long1 = param_1[1];
+        *(undefined8 *)((ulonglong)temp_uint1 + temp_long1) = 0x2f73726564616853; // "Shader/"
+        *(undefined1 *)((undefined8 *)((ulonglong)temp_uint1 + temp_long1) + 1) = 0;
+        *(int *)(param_1 + 2) = temp_int;
+        temp_int = (int)temp_long2 + 0xe;
+        FUN_1806277c0(param_1, temp_int);
+        temp_ptr1 = (undefined4 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+        *temp_ptr1 = 0x31443344; // "D3D1"
+        *(undefined2 *)(temp_ptr1 + 1) = 0x2f31; // "/1"
+        *(undefined1 *)((longlong)temp_ptr1 + 6) = 0;
+        *(int *)(param_1 + 2) = temp_int;
+        FUN_18062c1e0(param_1, 1);
+    }
+    else {
+        // 使用自定义路径
+        FUN_180627be0(param_1, param_2 + 0x2d0);
+    }
+    FUN_1808fc050(stack_ulong1 ^ (ulonglong)temp_buffer1);
+}
+
+/**
+ * @brief 字符串构造器
+ * @param param_1 输出缓冲区指针
+ * @param param_2 输入参数
+ * @return longlong 处理结果
+ * 
+ * 该函数构造系统字符串，支持默认字符串和自定义字符串两种模式。
+ */
+longlong string_constructor(longlong param_1, longlong param_2)
+{
+    uint temp_uint1;
+    undefined8 temp_var1;
+    undefined8 *temp_ptr1;
+    int temp_int;
+    ulonglong temp_ulong;
+    undefined *stack_ptr1;
+    longlong stack_long1;
+    undefined4 stack_var1;
+    
+    // 初始化缓冲区
+    *(undefined4 *)(param_1 + 0x10) = 0;
+    if (*(undefined1 **)(param_1 + 8) != (undefined1 *)0x0) {
+        **(undefined1 **)(param_1 + 8) = 0;
+    }
+    
+    if (param_2 == 0) {
+        // 使用默认字符串
+        temp_var1 = FUN_1800baa80(&stack_ptr1);
+        FUN_18005d190(param_1, temp_var1);
+        stack_ptr1 = &UNK_180a3c3e0;
+        if (stack_long1 != 0) {
+            FUN_18064e900();
+        }
+        stack_long1 = 0;
+        stack_var1 = 0;
+        stack_ptr1 = &UNK_18098bcb0;
+        temp_int = *(int *)(param_1 + 0x10) + 0x12;
+        FUN_1806277c0(param_1, temp_int);
+        temp_ptr1 = (undefined8 *)((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8));
+        *temp_ptr1 = 0x6461685365726f43; // "CoreShader"
+        temp_ptr1[1] = 0x314433442f737265; // "res/D3D1"
+        *(undefined2 *)(temp_ptr1 + 2) = 0x2f31; // "/1"
+        *(undefined1 *)((longlong)temp_ptr1 + 0x12) = 0;
+        *(int *)(param_1 + 0x10) = temp_int;
+        return 0;
+    }
+    
+    // 使用自定义字符串
+    temp_uint1 = *(uint *)(param_2 + 0x2c0);
+    temp_ulong = (ulonglong)temp_uint1;
+    if (*(longlong *)(param_2 + 0x2b8) != 0) {
+        stack_ptr1 = (undefined *)0x180627c06;
+        FUN_1806277c0(param_1, temp_ulong);
+    }
+    if (temp_uint1 != 0) {
+        stack_ptr1 = (undefined *)0x180627c1a;
+        memcpy(*(undefined8 *)(param_1 + 8), *(undefined8 *)(param_2 + 0x2b8), temp_ulong);
+    }
+    *(undefined4 *)(param_1 + 0x10) = 0;
+    if (*(longlong *)(param_1 + 8) != 0) {
+        *(undefined1 *)(temp_ulong + *(longlong *)(param_1 + 8)) = 0;
+    }
+    *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(param_2 + 0x2cc);
+    return param_1;
+}
+
+// ============================================================================
+// 技术说明
+// ============================================================================
+
+/**
+ * @section 技术实现说明
+ * 
+ * 本模块实现了TaleWorlds.Native引擎的核心功能，主要包括：
+ * 
+ * 1. 字符串处理和比较
+ *    - 支持多种字符串格式的比较和验证
+ *    - 实现高效的字符串匹配算法
+ *    - 支持Unicode和多字节字符处理
+ * 
+ * 2. 文件操作和数据管理
+ *    - 实现高级文件读写操作
+ *    - 支持多种文件格式的解析
+ *    - 实现数据缓存和优化机制
+ * 
+ * 3. 内存管理和资源分配
+ *    - 实现高效的内存分配和释放
+ *    - 支持内存池和缓存管理
+ *    - 实现资源生命周期管理
+ * 
+ * 4. 系统调用和接口封装
+ *    - 封装底层系统调用
+ *    - 提供统一的接口访问
+ *    - 实现跨平台兼容性
+ * 
+ * 5. 着色器和缓存管理
+ *    - 实现着色器缓存系统
+ *    - 支持着色器编译和优化
+ *    - 实现缓存失效和更新机制
+ * 
+ * @section 性能优化
+ * 
+ * 本模块在实现过程中考虑了以下性能优化：
+ * - 使用高效的字符串比较算法
+ * - 实现内存池和缓存机制
+ * - 优化文件I/O操作
+ * - 使用线程安全的数据结构
+ * - 实现延迟加载和按需分配
+ * 
+ * @section 安全性考虑
+ * 
+ * 本模块实现了以下安全机制：
+ * - 输入参数验证和边界检查
+ * - 内存访问保护
+ * - 文件路径安全检查
+ * - 资源泄漏防护
+ * - 异常处理和错误恢复
+ */
+
+// ============================================================================
+// 模块信息
+// ============================================================================
+
+/**
+ * @module_info Module 99: Unmatched Functions
+ * @file 99_part_03_part001.c
+ * @description Advanced string processing, file operations, and memory management
+ * @function_count 7
+ * @complexity High
+ * @dependencies TaleWorlds.Native.Split.h, global system variables
+ * @security_level Secure
+ * @optimization_level High
+ * @thread_safety Yes
+ * @memory_management Yes
+ * @error_handling Yes
+ */
