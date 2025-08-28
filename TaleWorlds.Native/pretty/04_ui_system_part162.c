@@ -873,7 +873,7 @@ static uint32_t ui_system_set_control_alpha(uint32_t control_id, float alpha_val
     }
     else {
         // 创建透明度更新事件
-        result = FUN_180743700(*(uint64_t*)(g_ui_system_context->controls[control_id].control_data + 0xa8), &event_data, 0x10, 1);
+        result = UISystem_EventHandler(*(uint64_t*)(g_ui_system_context->controls[control_id].control_data + 0xa8), &event_data, 0x10, 1);
         if ((int32_t)result != 0) {
             return result;
         }
@@ -955,7 +955,7 @@ callback_found:
     }
     else {
         // 创建回调设置事件
-        result = FUN_180743700(control_ptr[0x15], &event_data, 0x20, 1);
+        result = UISystem_EventHandler(control_ptr[0x15], &event_data, 0x20, 1);
         if ((int32_t)result != 0) {
             return result;
         }
@@ -1041,7 +1041,7 @@ callback_found:
  */
 static void ui_system_initialize(void)
 {
-    FUN_1807636f0();
+    UISystem_EventDispatcher();
     return;
 }
 
