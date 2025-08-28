@@ -289,25 +289,120 @@ undefined UNK_180a3d3f0;                           // UI系统堆栈跟踪器 - 
 undefined UNK_180a3d3f8;                           // UI系统内存检查器 - 检查内存
 
 
-// 函数: undefined FUN_180655f50;
-undefined FUN_180655f50;
+//------------------------------------------------------------------------------
+// UI系统核心功能函数组
+//------------------------------------------------------------------------------
 
+// UI系统初始化函数
+undefined FUN_180655f50;                           // UI系统初始化函数 - 负责UI系统的初始化和配置
 
-// 函数: undefined FUN_180656020;
-undefined FUN_180656020;
-undefined DAT_180bf3ff4;
+// UI系统渲染函数
+undefined FUN_180656020;                           // UI系统渲染函数 - 负责UI元素的渲染和绘制
+undefined DAT_180bf3ff4;                          // UI系统渲染配置 - 存储渲染配置数据
 
+// UI系统事件处理函数
+undefined FUN_180656110;                           // UI系统事件处理函数 - 处理用户输入和系统事件
+undefined DAT_180c8ecfc;                          // UI系统事件配置 - 存储事件配置数据
 
-// 函数: undefined FUN_180656110;
-undefined FUN_180656110;
-undefined DAT_180c8ecfc;
+// UI系统更新函数
+undefined FUN_180656160;                           // UI系统更新函数 - 负责UI系统的状态更新
 
+// UI系统清理函数
+undefined FUN_1806561d0;                           // UI系统清理函数 - 负责UI系统的资源清理
 
-// 函数: undefined FUN_180656160;
-undefined FUN_180656160;
+//------------------------------------------------------------------------------
+// UI系统常量定义
+//------------------------------------------------------------------------------
 
+// UI系统状态常量
+#define UI_SYSTEM_STATE_UNINITIALIZED              0x00           // UI系统未初始化状态
+#define UI_SYSTEM_STATE_INITIALIZING               0x01           // UI系统初始化中状态
+#define UI_SYSTEM_STATE_INITIALIZED                0x02           // UI系统已初始化状态
+#define UI_SYSTEM_STATE_RUNNING                    0x03           // UI系统运行中状态
+#define UI_SYSTEM_STATE_PAUSED                     0x04           // UI系统暂停状态
+#define UI_SYSTEM_STATE_SHUTTING_DOWN              0x05           // UI系统关闭中状态
+#define UI_SYSTEM_STATE_SHUTDOWN                   0x06           // UI系统已关闭状态
 
-// 函数: undefined FUN_1806561d0;
+// UI系统错误码常量
+#define UI_ERROR_SUCCESS                           0x00000000    // UI操作成功
+#define UI_ERROR_INVALID_PARAMETER                 0x00000001    // UI无效参数错误
+#define UI_ERROR_MEMORY_FAILURE                    0x00000002    // UI内存失败错误
+#define UI_ERROR_TIMEOUT                           0x00000003    // UI超时错误
+#define UI_ERROR_NOT_FOUND                         0x00000004    // UI未找到错误
+#define UI_ERROR_ALREADY_INITIALIZED               0x00000005    // UI已初始化错误
+#define UI_ERROR_NOT_INITIALIZED                   0x00000006    // UI未初始化错误
+#define UI_ERROR_COMPONENT_FAILURE                 0x00000007    // UI组件失败错误
+#define UI_ERROR_RENDER_FAILURE                    0x00000008    // UI渲染失败错误
+
+// UI系统事件类型常量
+#define UI_EVENT_TYPE_MOUSE_CLICK                  0x00000001    // 鼠标点击事件
+#define UI_EVENT_TYPE_MOUSE_MOVE                   0x00000002    // 鼠标移动事件
+#define UI_EVENT_TYPE_KEY_PRESS                    0x00000003    // 键盘按键事件
+#define UI_EVENT_TYPE_KEY_RELEASE                  0x00000004    // 键盘释放事件
+#define UI_EVENT_TYPE_TOUCH_START                  0x00000005    // 触摸开始事件
+#define UI_EVENT_TYPE_TOUCH_MOVE                   0x00000006    // 触摸移动事件
+#define UI_EVENT_TYPE_TOUCH_END                    0x00000007    // 触摸结束事件
+#define UI_EVENT_TYPE_FOCUS_CHANGE                0x00000008    // 焦点变化事件
+#define UI_EVENT_TYPE_STATE_CHANGE                0x00000009    // 状态变化事件
+
+// UI系统渲染模式常量
+#define UI_RENDER_MODE_SOFTWARE                    0x00000001    // 软件渲染模式
+#define UI_RENDER_MODE_HARDWARE                    0x00000002    // 硬件渲染模式
+#define UI_RENDER_MODE_MIXED                       0x00000003    // 混合渲染模式
+#define UI_RENDER_MODE_OPTIMIZED                   0x00000004    // 优化渲染模式
+
+// UI系统组件类型常量
+#define UI_COMPONENT_TYPE_WINDOW                   0x00000001    // 窗口组件类型
+#define UI_COMPONENT_TYPE_BUTTON                   0x00000002    // 按钮组件类型
+#define UI_COMPONENT_TYPE_TEXT                     0x00000003    // 文本组件类型
+#define UI_COMPONENT_TYPE_IMAGE                    0x00000004    // 图像组件类型
+#define UI_COMPONENT_TYPE_PANEL                    0x00000005    // 面板组件类型
+#define UI_COMPONENT_TYPE_LIST                     0x00000006    // 列表组件类型
+#define UI_COMPONENT_TYPE_INPUT                    0x00000007    // 输入组件类型
+#define UI_COMPONENT_TYPE_MENU                     0x00000008    // 菜单组件类型
+
+//------------------------------------------------------------------------------
+// UI系统类型别名定义
+//------------------------------------------------------------------------------
+
+// UI系统核心类型别名
+typedef undefined8 UISystemHandle;                 // UI系统句柄 - 用于标识UI系统实例
+typedef undefined8 UIComponentHandle;             // UI组件句柄 - 用于标识UI组件
+typedef undefined8 UIEventHandle;                 // UI事件句柄 - 用于标识UI事件
+typedef undefined8 UIRenderHandle;               // UI渲染句柄 - 用于标识UI渲染上下文
+typedef undefined8 UIResourceHandle;              // UI资源句柄 - 用于标识UI资源
+
+// UI系统管理器类型别名
+typedef undefined8 UIComponentManager;           // UI组件管理器 - 管理UI组件
+typedef undefined8 UIEventManager;                // UI事件管理器 - 管理UI事件
+typedef undefined8 UIRenderManager;               // UI渲染管理器 - 管理UI渲染
+typedef undefined8 UIResourceManager;            // UI资源管理器 - 管理UI资源
+typedef undefined8 UILayoutManager;               // UI布局管理器 - 管理UI布局
+typedef undefined8 UIStyleManager;                // UI样式管理器 - 管理UI样式
+
+// UI系统配置类型别名
+typedef undefined8 UIConfigHandle;                // UI配置句柄 - 用于标识UI配置
+typedef undefined8 UIThemeHandle;                 // UI主题句柄 - 用于标识UI主题
+typedef undefined8 UILanguageHandle;              // UI语言句柄 - 用于标识UI语言
+typedef undefined8 UIRegionHandle;                // UI区域句柄 - 用于标识UI区域
+
+// UI系统数据类型别名
+typedef undefined8 UIDataTableHandle;             // UI数据表句柄 - 用于标识UI数据表
+typedef undefined8 UIStateHandle;                 // UI状态句柄 - 用于标识UI状态
+typedef undefined8 UIAnimationHandle;              // UI动画句柄 - 用于标识UI动画
+typedef undefined8 UITransitionHandle;             // UI过渡句柄 - 用于标识UI过渡效果
+
+//------------------------------------------------------------------------------
+// UI系统函数别名定义
+//------------------------------------------------------------------------------
+
+// UI系统核心函数别名
+#define UISystemInitializer                        FUN_180651d20  // UI系统初始化器
+#define UIEventHandler                             FUN_180662260  // UI事件处理器
+#define UIComponentManager                         FUN_1806500b0  // UI组件管理器
+#define UISystemRenderer                           FUN_180656020  // UI系统渲染器
+#define UISystemUpdater                            FUN_180656160  // UI系统更新器
+#define UISystemCleanup                             FUN_1806561d0  // UI系统清理器
 undefined FUN_1806561d0;
 undefined UNK_180046680;
 undefined UNK_180084650;
