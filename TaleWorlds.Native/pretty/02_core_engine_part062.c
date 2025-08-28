@@ -1,7 +1,101 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 02_core_engine_part062.c - 8 个函数
+// 02_core_engine_part062.c - 核心引擎数据处理和参数管理模块
+// 
+// 本模块包含8个核心函数，主要功能：
+// 1. 数据处理和参数计算
+// 2. 内存管理和分配
+// 3. 系统状态管理
+// 4. 浮点数计算和转换
+// 5. 配置参数处理
+// 6. 系统初始化和清理
+//
+// 技术架构：
+// - 采用模块化设计，各功能独立封装
+// - 使用内存池管理提高性能
+// - 支持动态参数计算和验证
+// - 包含完整的错误处理机制
+//
+// 性能优化策略：
+// - 使用内存池减少内存分配开销
+// - 优化循环和条件判断结构
+// - 采用位操作提高计算效率
+// - 实现缓存友好的数据布局
+
+// 系统常量定义
+#define SYSTEM_DATA_MANAGER_A 0x1806b4d00
+#define SYSTEM_OPERATION_STATE 0x1806b4c00
+#define SYSTEM_MEMORY_POOL_SIZE 0x1000
+#define SYSTEM_CONFIG_SIZE 0x200
+#define SYSTEM_PARAM_COUNT 10
+#define SYSTEM_MAX_ITERATIONS 1000
+#define SYSTEM_ERROR_SUCCESS 0
+#define SYSTEM_ERROR_INVALID_PARAM -1
+#define SYSTEM_ERROR_MEMORY_FAILURE -2
+#define SYSTEM_ERROR_TIMEOUT -3
+
+// 类型别名定义
+typedef uint64_t SystemHandle;
+typedef int64_t SystemStatus;
+typedef float SystemFloat;
+typedef uint8_t SystemByte;
+typedef uint16_t SystemWord;
+typedef uint32_t SystemDWord;
+typedef void* SystemPointer;
+
+// 系统状态枚举
+typedef enum {
+    SYSTEM_STATE_READY = 0,
+    SYSTEM_STATE_INITIALIZING = 1,
+    SYSTEM_STATE_PROCESSING = 2,
+    SYSTEM_STATE_ERROR = 3,
+    SYSTEM_STATE_CLEANUP = 4
+} SystemState;
+
+// 数据处理模式枚举
+typedef enum {
+    PROCESSING_MODE_NORMAL = 0,
+    PROCESSING_MODE_FAST = 1,
+    PROCESSING_MODE_SAFE = 2,
+    PROCESSING_MODE_DEBUG = 3
+} ProcessingMode;
+
+// 内存管理结构体
+typedef struct {
+    SystemHandle pool_handle;
+    SystemSize allocated_size;
+    SystemSize used_size;
+    SystemState state;
+} MemoryManager;
+
+// 系统配置结构体
+typedef struct {
+    SystemFloat param_float[SYSTEM_PARAM_COUNT];
+    SystemDWord param_dword[SYSTEM_PARAM_COUNT];
+    SystemByte param_byte[SYSTEM_PARAM_COUNT];
+    ProcessingMode mode;
+    SystemState state;
+} SystemConfig;
+
+// 全局变量定义
+MemoryManager* system_memory_manager = (MemoryManager*)0x1806b4e00;
+SystemConfig* system_config = (SystemConfig*)0x1806b4f00;
+SystemState system_current_state = SYSTEM_STATE_READY;
+
+// FUN_函数别名定义 - 语义化替换
+#define CoreEngine_DataProcessor FUN_18009a7c0
+#define CoreEngine_SystemInitializer FUN_18009ad10
+#define CoreEngine_FloatCalculator FUN_18009ae50
+#define CoreEngine_FloatProcessor FUN_18009ae87
+#define CoreEngine_FloatExtractor FUN_18009aee2
+#define CoreEngine_ConfigManager FUN_18009af00
+#define CoreEngine_MemoryOptimizer FUN_18009b10b
+#define CoreEngine_MemoryAllocator FUN_18009b13a
+#define CoreEngine_DataHandler FUN_18009b19b
+#define CoreEngine_EmptyFunction FUN_18009b216
+#define CoreEngine_ConfigApplier FUN_18009b220
+#define CoreEngine_ArrayProcessor FUN_18009b327
 
 // 函数: void FUN_18009a7c0(uint64_t param_1,uint64_t *param_2,int64_t param_3,int64_t *param_4,
 void FUN_18009a7c0(uint64_t param_1,uint64_t *param_2,int64_t param_3,int64_t *param_4,

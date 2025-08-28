@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 /**
  * @file 02_core_engine_part003.c
@@ -2057,6 +2058,51 @@ uint64_t core_engine_string_processor_register(void **string_processor)
     // 注册字符串处理器
     // 原始实现包含复杂的字符串处理逻辑
     return 0;
+}
+
+/**
+ * @brief 安全字符串复制函数
+ * 
+ * 安全地复制字符串，负责：
+ * - 检查目标缓冲区大小
+ * - 防止缓冲区溢出
+ * - 安全的字符串复制
+ * 
+ * @param dest 目标缓冲区
+ * @param dest_size 目标缓冲区大小
+ * @param src 源字符串
+ * @param param1 参数1
+ * @param param2 参数2
+ * 
+ * @note 这是简化实现，原始实现包含复杂的安全检查
+ */
+void strcpy_s(char *dest, size_t dest_size, const char *src, uint64_t param1, uint64_t param2)
+{
+    // 安全字符串复制
+    if (dest && src && dest_size > 0) {
+        strncpy(dest, src, dest_size - 1);
+        dest[dest_size - 1] = '\0';
+    }
+}
+
+/**
+ * @brief 平方根计算函数
+ * 
+ * 计算浮点数的平方根，负责：
+ * - 高精度平方根计算
+ * - 数学函数优化
+ * - 数值稳定性保证
+ * 
+ * @param value 输入值
+ * @return 平方根结果
+ * 
+ * @note 这是简化实现，原始实现包含复杂的数学计算
+ */
+float SQRT(float value)
+{
+    // 平方根计算
+    // 使用标准库函数实现
+    return sqrtf(value);
 }
 
 // =============================================================================

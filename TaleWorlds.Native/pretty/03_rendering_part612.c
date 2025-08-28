@@ -22,7 +22,7 @@
 // 03_rendering_part612.c - 9 个函数
 
 // 函数: void FUN_180602b09(void)
-void FUN_180602b09(void)
+void RenderingSystem_EmptyFunction1(void)
 
 {
   return;
