@@ -2,9 +2,10 @@
 
 // 02_core_engine_part115.c - 9 个函数
 
-// 函数: void FUN_180127d80(void)
+// 函数: void find_and_process_entity_collisions(void)
 // 功能: 执行游戏对象选择和碰撞检测逻辑
-void FUN_180127d80(void)
+// 原始实现: FUN_180127d80 - 简化实现: 为函数提供语义化名称
+void find_and_process_entity_collisions(void)
 
 {
   float fVar1;
@@ -160,9 +161,10 @@ LAB_180127fd0:
 
 
 
-// 函数: void FUN_180127d8a(void)
+// 函数: void find_entity_collisions_with_flags(void)
 // 功能: 执行带标记参数的游戏对象选择和碰撞检测逻辑
-void FUN_180127d8a(void)
+// 原始实现: FUN_180127d8a - 简化实现: 为函数提供语义化名称
+void find_entity_collisions_with_flags(void)
 
 {
   float fVar1;
@@ -315,9 +317,10 @@ LAB_180127fd0:
 
 
 
-// 函数: void FUN_180127e4e(void)
+// 函数: void search_entity_collisions_in_range(void)
 // 功能: 执行索引范围的游戏对象搜索和碰撞检测
-void FUN_180127e4e(void)
+// 原始实现: FUN_180127e4e - 简化实现: 为函数提供语义化名称
+void search_entity_collisions_in_range(void)
 
 {
   longlong lVar1;
@@ -411,9 +414,10 @@ LAB_180127fd0:
 
 
 
-// 函数: void FUN_180127fe8(void)
+// 函数: void set_entity_selection_result(void)
 // 功能: 设置游戏对象选择结果
-void FUN_180127fe8(void)
+// 原始实现: FUN_180127fe8 - 简化实现: 为函数提供语义化名称
+void set_entity_selection_result(void)
 
 {
   undefined8 unaff_RBP;
