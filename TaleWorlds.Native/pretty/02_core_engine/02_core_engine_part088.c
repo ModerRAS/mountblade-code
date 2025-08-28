@@ -566,16 +566,17 @@ void process_default_render(void)
   float color_g;
   undefined4 extra_param;
   float color_b;
-  undefined8 stack_param_1;
+  undefined8 in_stack_00000020;
   undefined8 param_data_2;
   undefined4 render_mode;
-  float depth_value;
-  float depth_offset;
-  float color_offset;
-  float stencil_value;
-  float matrix_value;
+  float in_stack_00000068;
+  float stack_float_6c;
+  float in_stack_00000070;
+  float stack_float_74;
+  float in_stack_00000078;
+  float stack_float_7c;
   
-  blend_mode = (undefined4)((ulonglong)stack_param_1 >> 0x20);
+  blend_mode = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
   render_mode = (undefined4)((ulonglong)texture_handle >> 0x20);
   render_id = get_render_object_id();
   if (*(int *)(context_offset + 0x1b2c) == render_id) {
@@ -608,39 +609,39 @@ void process_default_render(void)
     color_b = *(float *)(context_base + -0x74);
     color_g = (float)(int)(color_g + 0.95);
   }
-  depth_value = *(float *)(context_data + 0x100);
-  depth_offset = *(float *)(context_data + 0x104);
+  in_stack_00000068 = *(float *)(context_data + 0x100);
+  stack_float_6c = *(float *)(context_data + 0x104);
   time_value = *(float *)(context_offset + 0x1660);
-  *(float *)(context_base + -0x80) = color_r + depth_value;
-  matrix_value = time_value + time_value + color_b + depth_offset;
-  *(float *)(context_base + -0x7c) = matrix_value;
+  *(float *)(context_base + -0x80) = color_r + in_stack_00000068;
+  stack_float_74 = time_value + time_value + color_b + stack_float_6c;
+  *(float *)(context_base + -0x7c) = stack_float_74;
   if (color_g <= 0.0) {
-    color_offset = 0.0;
+    in_stack_00000070 = 0.0;
   }
   else {
-    color_offset = color_g + *(float *)(context_offset + 0x1674);
+    in_stack_00000070 = color_g + *(float *)(context_offset + 0x1674);
   }
-  color_offset = color_offset + color_r + depth_value;
-  stencil_value = depth_value;
-  matrix_value = depth_offset;
-  status_flag = validate_render_parameters(&stack0x00000068, render_id, &stack0x00000078);
+  in_stack_00000070 = in_stack_00000070 + color_r + in_stack_00000068;
+  in_stack_00000078 = in_stack_00000068;
+  stack_float_7c = stack_float_6c;
+  status_flag = validate_render_parameters(&in_stack_00000068, render_id, &in_stack_00000078);
   if (status_flag == '\0') {
-    *(float *)(context_base + -0x74) = matrix_value - depth_offset;
+    *(float *)(context_base + -0x74) = stack_float_74 - stack_float_6c;
     render_mode = *(undefined4 *)(context_offset + 0x1660);
-    *(float *)(context_base + -0x78) = color_offset - depth_value;
+    *(float *)(context_base + -0x78) = in_stack_00000070 - in_stack_00000068;
     apply_render_transform(context_base + -0x78, render_mode);
     goto cleanup_render_params;
   }
   status_flag = check_render_queue(extra_param, render_id, 1);
-  validation_result = validate_texture_coordinates(&stack0x00000078, render_id);
+  validation_result = validate_texture_coordinates(&in_stack_00000078, render_id);
   if ((((status_flag == '\0') && ((validation_result == '\0' || (*(char *)(context_offset + 0x410) == '\0')))) &&
       (*(int *)(context_offset + 0x1ca4) != render_id)) &&
      ((*(int *)(context_offset + 0x1cb0) != render_id || (*(int *)(context_offset + 0x2da0) == render_id)))) {
 process_render_batch:
     if ((*(int *)(context_offset + 0x1b2c) != render_id) || (*(int *)(context_offset + 0x2da0) != render_id)) {
-      *(float *)(context_base + -0x74) = matrix_value - depth_offset;
+      *(float *)(context_base + -0x74) = stack_float_74 - stack_float_6c;
       render_param = *(undefined4 *)(context_offset + 0x1660);
-      *(float *)(context_base + -0x78) = color_offset - depth_value;
+      *(float *)(context_base + -0x78) = in_stack_00000070 - in_stack_00000068;
       apply_render_transform(context_base + -0x78, render_param);
       if (*(int *)(context_offset + 0x1b2c) == render_id) {
         buffer_offset = 9;
@@ -649,22 +650,22 @@ process_render_batch:
         buffer_offset = (ulonglong)(*(int *)(context_offset + 0x1b18) == render_id) + 7;
       }
       param_buffer = (undefined4 *)(context_offset + 0x1628 + (buffer_offset + 10) * 0x10);
-      depth_value = (float)*param_buffer;
-      depth_offset = (float)param_buffer[1];
-      color_offset = (float)param_buffer[2];
-      matrix_value = (float)param_buffer[3] * *(float *)(context_offset + 0x1628);
-      render_param = calculate_render_matrix(&stack0x00000068);
+      in_stack_00000068 = (float)*param_buffer;
+      stack_float_6c = (float)param_buffer[1];
+      in_stack_00000070 = (float)param_buffer[2];
+      stack_float_74 = (float)param_buffer[3] * *(float *)(context_offset + 0x1628);
+      render_param = calculate_render_matrix(&in_stack_00000068);
       if (render_id == *(int *)(context_offset + 0x1ca0)) {
-        update_render_context(&stack0x00000078, 1);
+        update_render_context(&in_stack_00000078, 1);
       }
-      submit_render_batch(CONCAT44(matrix_value, stack0x00000078),
+      submit_render_batch(CONCAT44(stack_float_7c, in_stack_00000078),
                     *(undefined8 *)(context_base + -0x80), render_param, 1,
                     CONCAT44(blend_mode, *(undefined4 *)(context_offset + 0x1664)));
-      depth_value = 3.4028235e+38;
-      depth_offset = 3.4028235e+38;
-      color_offset = -3.4028235e+38;
-      matrix_value = -3.4028235e+38;
-      status_flag = process_render_command(&stack0x00000078, render_id, 4);
+      in_stack_00000068 = 3.4028235e+38;
+      stack_float_6c = 3.4028235e+38;
+      in_stack_00000070 = -3.4028235e+38;
+      stack_float_74 = -3.4028235e+38;
+      status_flag = process_render_command(&in_stack_00000078, render_id, 4);
       buffer_offset = g_engine_context;
       if (status_flag != '\0') {
         engine_context = (longlong *)(g_engine_context + 0x1af8);
@@ -686,7 +687,7 @@ process_render_batch:
       *(float *)(context_base + -0x6c) = color_r;
       *(float *)(context_base + -0x6c) = color_r * *(float *)(buffer_offset + 0x1628);
       blend_mode = calculate_render_matrix(context_base + -0x78);
-      process_vertex_buffer(*(undefined8 *)(context_data + 0x2e8), &stack0x00000068, &stack0x00000070, blend_mode,
+      process_vertex_buffer(*(undefined8 *)(context_data + 0x2e8), &in_stack_00000068, &in_stack_00000070, blend_mode,
                     CONCAT44(render_mode, *(undefined4 *)(context_offset + 0x1698)));
       render_id = format_text_output(context_base + -0x60, 0x40, &g_empty_string, (double)*vertex_buffer);
       text_ptr = (char *)(context_base + -0x60 + (longlong)render_id);
@@ -703,12 +704,12 @@ process_render_batch:
              (temp_ptr = temp_ptr + 1, text_ptr <= temp_ptr)) break;
         }
       }
-      color_r = matrix_value;
+      color_r = stack_float_7c;
       if (((int)temp_ptr != (int)context_base + -0x60) &&
          (text_ptr = temp_ptr,
          render_text_overlay(*(undefined8 *)(*(longlong *)(g_engine_context + 0x1af8) + 0x2e8),
-                       &stack0x00000078, context_base + -0x80, context_base + -0x60, temp_ptr),
-         color_r = matrix_value, matrix_offset = g_engine_context,
+                       &in_stack_00000078, context_base + -0x80, context_base + -0x60, temp_ptr),
+         color_r = stack_float_7c, matrix_offset = g_engine_context,
          *(char *)(buffer_offset + 0x2e38) != '\0')) {
         buffer_offset = *(longlong *)(g_engine_context + 0x1af8);
         if ((temp_ptr == (char *)0x0) && (temp_ptr = (char *)(context_base + -0x60), context_base != 0x5f))
@@ -721,9 +722,9 @@ process_render_batch:
         color_b = *(float *)(buffer_offset + 0x138);
         string_ptr = (char *)(context_base + -0x60);
         render_id = *(int *)(buffer_offset + 0x13c);
-        *(float *)(buffer_offset + 0x138) = matrix_value;
+        *(float *)(buffer_offset + 0x138) = stack_float_7c;
         texture_id = *(int *)(matrix_offset + 0x2e58);
-        is_valid = color_b + 1.0 < matrix_value;
+        is_valid = color_b + 1.0 < stack_float_7c;
         shader_id = render_id;
         if (render_id < texture_id) {
           *(int *)(matrix_offset + 0x2e58) = render_id;
@@ -769,7 +770,7 @@ process_render_batch:
   }
   *(int *)(context_data + 0x3f0) = *(int *)(context_data + 0x3f0) + -1;
   *(int *)(context_data + 0x3f4) = *(int *)(context_data + 0x3f4) + -1;
-  finalize_render_state(&stack0x00000078, render_id);
+  finalize_render_state(&in_stack_00000078, render_id);
 cleanup_render_params:
   cleanup_render_resources(*(ulonglong *)(context_base + -0x20) ^ (ulonglong)&stack0x00000000);
 }
@@ -783,15 +784,14 @@ void quick_render_cleanup(void)
   undefined4 render_param;
   longlong context_base;
   longlong context_offset;
-  float depth_value;
-  float depth_offset;
-  float color_offset;
-  float stencil_value;
-  float matrix_value;
+  float stack_float_68;
+  float stack_float_6c;
+  float stack_float_70;
+  float stack_float_74;
   
-  *(float *)(context_base + -0x74) = matrix_value - depth_offset;
+  *(float *)(context_base + -0x74) = stack_float_74 - stack_float_6c;
   render_param = *(undefined4 *)(context_offset + 0x1660);
-  *(float *)(context_base + -0x78) = color_offset - depth_value;
+  *(float *)(context_base + -0x78) = stack_float_70 - stack_float_68;
   apply_render_transform(context_base + -0x78, render_param);
   cleanup_render_resources(*(ulonglong *)(context_base + -0x20) ^ (ulonglong)&stack0x00000000);
 }
