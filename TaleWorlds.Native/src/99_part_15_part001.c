@@ -38,6 +38,42 @@
 #define SYSTEM_INIT_TIMEOUT 5000
 #define SYSTEM_CLEANUP_TIMEOUT 3000
 
+/** @brief 哈希表常量 */
+#define HASH_TABLE_DEFAULT_SIZE 1024       /**< 哈希表默认大小 */
+#define HASH_TABLE_MAX_LOAD_FACTOR 0.75f    /**< 哈希表最大负载因子 */
+#define HASH_TABLE_RESIZE_FACTOR 2.0f      /**< 哈希表扩容因子 */
+#define HASH_TABLE_PRIME_1 73856093        /**< 哈希函数质数1 */
+#define HASH_TABLE_PRIME_2 19349663        /**< 哈希函数质数2 */
+
+/** @brief 红黑树常量 */
+#define RBT_COLOR_RED 0                   /**< 红色节点 */
+#define RBT_COLOR_BLACK 1                 /**< 黑色节点 */
+#define RBT_NIL_SENTINEL 0xFFFFFFFF        /**< NIL节点标记 */
+
+/** @brief 图算法常量 */
+#define GRAPH_MAX_VERTICES 65536           /**< 图最大顶点数 */
+#define GRAPH_MAX_EDGES 1048576           /**< 图最大边数 */
+#define GRAPH_BFS_QUEUE_SIZE 32768         /**< BFS队列大小 */
+#define GRAPH_DFS_STACK_SIZE 32768         /**< DFS栈大小 */
+
+/** @brief 堆算法常量 */
+#define HEAP_DEFAULT_CAPACITY 256          /**< 堆默认容量 */
+#define HEAP_MAX_CAPACITY 1048576         /**< 堆最大容量 */
+#define HEAP_RESIZE_FACTOR 2.0f           /**< 堆扩容因子 */
+
+/** @brief 排序算法常量 */
+#define SORT_INSERTION_THRESHOLD 16       /**< 插入排序阈值 */
+#define SORT_QUICK_THRESHOLD 64           /**< 快速排序阈值 */
+#define SORT_MERGE_THRESHOLD 128          /**< 归并排序阈值 */
+#define SORT_HEAP_THRESHOLD 256           /**< 堆排序阈值 */
+#define SORT_RADIX_BUCKET_SIZE 256        /**< 基数排序桶大小 */
+
+/** @brief 内存管理常量 */
+#define MEMORY_POOL_BLOCK_SIZE 64         /**< 内存池块大小 */
+#define MEMORY_POOL_ALIGNMENT 16          /**< 内存池对齐 */
+#define MEMORY_CACHE_LINE_SIZE 64         /**< 缓存行大小 */
+#define MEMORY_PAGE_SIZE 4096             /**< 内存页大小 */
+
 // 资源状态枚举
 typedef enum {
     RESOURCE_STATE_UNINITIALIZED = 0,
