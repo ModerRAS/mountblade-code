@@ -802,7 +802,7 @@ void core_engine_system_initializer_type13(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_11;
     parent_node[7] = SYSTEM_REGISTRY_ID_12;
-    parent_node[8] = &global_var_7584_ptr;
+    parent_node[8] = (uint64_t)&global_var_7584_ptr;
     parent_node[9] = 1;
     parent_node[10] = callback_function;
     
@@ -1264,7 +1264,7 @@ void core_engine_system_initializer_type20(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_11;
     parent_node[7] = SYSTEM_REGISTRY_ID_12;
-    parent_node[8] = &global_var_7584_ptr;
+    parent_node[8] = (uint64_t)&global_var_7584_ptr;
     parent_node[9] = 1;
     parent_node[10] = callback_function;
     
