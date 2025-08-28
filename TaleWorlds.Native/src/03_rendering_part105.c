@@ -1,9 +1,52 @@
+/**
+ * @file 03_rendering_part105.c
+ * @brief 渲染系统高级数据处理和文件操作模块
+ * 
+ * 本模块包含4个核心函数，涵盖渲染系统高级数据处理、文件写入、
+ * 资源管理、路径处理、字符串操作等高级渲染功能。
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part105.c - 2 个函数
+/**
+ * @defgroup rendering_constants 渲染系统常量定义
+ * @{
+ */
+#define RENDERING_MAX_PATH_LENGTH 0x200
+#define RENDERING_MAX_BUFFER_SIZE 0x100000
+#define RENDERING_STRING_TERMINATOR 0x5c
+#define RENDERING_FILE_EXTENSION_SIZE 4
+#define RENDERING_ALIGNMENT_SIZE 32
+#define RENDERING_POOL_ALLOCATOR_TYPE 3
+#define RENDERING_MEMORY_BLOCK_SIZE 0x20000
+#define RENDERING_DIRECTORY_SEPARATOR '\\'
+#define RENDERING_PATH_SEPARATOR '/'
+#define RENDERING_DEFAULT_BUFFER_SIZE 0x20
+#define RENDERING_MAX_FILENAME_LENGTH 0x100
+/** @} */
 
-// 函数: void FUN_18032db60(longlong param_1,longlong param_2,longlong param_3)
-void FUN_18032db60(longlong param_1,longlong param_2,longlong param_3)
+/**
+ * @defgroup rendering_function_aliases 渲染系统函数别名
+ * @{
+ */
+#define RenderingSystem_ProcessResourceData FUN_18032db60
+#define RenderingSystem_ExportResourceData FUN_18032e340
+#define RenderingSystem_ProcessTexturePath FUN_18032ea30
+#define RenderingSystem_OptimizeRenderData FUN_18032f030
+/** @} */
+
+/**
+ * @brief 渲染系统资源数据处理器
+ * 
+ * 该函数负责处理渲染系统资源数据，包括数据写入、路径处理、
+ * 字符串操作和文件管理等高级渲染功能。
+ * 
+ * @param param_1 渲染上下文指针
+ * @param param_2 输出文件句柄
+ * @param param_3 资源数据指针
+ * @return void
+ */
+void RenderingSystem_ProcessResourceData(longlong render_context, longlong output_handle, longlong resource_data)
 
 {
   undefined4 uVar1;
@@ -153,9 +196,18 @@ void FUN_18032db60(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined4 FUN_18032e340(longlong param_1,longlong param_2,undefined8 param_3)
+/**
+ * @brief 渲染系统资源数据导出器
+ * 
+ * 该函数负责导出渲染系统资源数据到文件，包括数据序列化、
+ * 文件写入、内存管理和路径处理等高级渲染功能。
+ * 
+ * @param param_1 渲染上下文指针
+ * @param param_2 输出文件句柄
+ * @param param_3 资源数据指针
+ * @return undefined4 操作状态码
+ */
+undefined4 RenderingSystem_ExportResourceData(longlong render_context, longlong output_handle, undefined8 resource_data)
 
 {
   undefined8 uVar1;
@@ -540,8 +592,18 @@ LAB_18032e74e:
 
 
 
-// 函数: void FUN_18032ea30(longlong param_1,longlong param_2,undefined8 param_3)
-void FUN_18032ea30(longlong param_1,longlong param_2,undefined8 param_3)
+/**
+ * @brief 渲染系统纹理路径处理器
+ * 
+ * 该函数负责处理渲染系统纹理路径，包括路径解析、字符串操作、
+ * 数据验证和文件管理等高级渲染功能。
+ * 
+ * @param param_1 渲染上下文指针
+ * @param param_2 输出文件句柄
+ * @param param_3 纹理路径数据
+ * @return void
+ */
+void RenderingSystem_ProcessTexturePath(longlong render_context, longlong output_handle, undefined8 texture_path_data)
 
 {
   longlong *plVar1;
@@ -679,9 +741,18 @@ void FUN_18032ea30(longlong param_1,longlong param_2,undefined8 param_3)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined4 FUN_18032f030(longlong param_1,longlong param_2,undefined8 param_3)
+/**
+ * @brief 渲染系统数据优化器
+ * 
+ * 该函数负责优化渲染系统数据，包括数据压缩、内存管理、
+ * 文件操作和线程同步等高级渲染功能。
+ * 
+ * @param param_1 渲染上下文指针
+ * @param param_2 输出文件句柄
+ * @param param_3 待优化的数据
+ * @return undefined4 操作状态码
+ */
+undefined4 RenderingSystem_OptimizeRenderData(longlong render_context, longlong output_handle, undefined8 data_to_optimize)
 
 {
   uint uVar1;

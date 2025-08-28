@@ -1,9 +1,57 @@
+/**
+ * @file 03_rendering_part106.c
+ * @brief 渲染系统高级文件处理和资源管理模块
+ * 
+ * 本模块包含4个核心函数，涵盖渲染系统高级文件处理、资源管理、
+ * 数据读取、优化处理和文件操作等高级渲染功能。
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part106.c - 4 个函数
+/**
+ * @defgroup rendering_constants 渲染系统常量定义
+ * @{
+ */
+#define RENDERING_MAX_PATH_LENGTH 0x200
+#define RENDERING_MAX_BUFFER_SIZE 0x100000
+#define RENDERING_STRING_TERMINATOR 0x5c
+#define RENDERING_FILE_EXTENSION_SIZE 4
+#define RENDERING_ALIGNMENT_SIZE 32
+#define RENDERING_POOL_ALLOCATOR_TYPE 3
+#define RENDERING_MEMORY_BLOCK_SIZE 0x20000
+#define RENDERING_DIRECTORY_SEPARATOR '\\'
+#define RENDERING_PATH_SEPARATOR '/'
+#define RENDERING_DEFAULT_BUFFER_SIZE 0x20
+#define RENDERING_MAX_FILENAME_LENGTH 0x100
+#define RENDERING_HASH_TABLE_SIZE 0x100
+#define RENDERING_RESOURCE_HEADER_SIZE 0x10
+#define RENDERING_DATA_BLOCK_SIZE 0x908
+#define RENDERING_PATH_BUFFER_SIZE 0xf0
+#define RENDERING_OPTIMIZATION_BLOCK_SIZE 0x78
+/** @} */
 
-// 函数: void FUN_18032f540(longlong param_1,longlong param_2,longlong param_3)
-void FUN_18032f540(longlong param_1,longlong param_2,longlong param_3)
+/**
+ * @defgroup rendering_function_aliases 渲染系统函数别名
+ * @{
+ */
+#define RenderingSystem_ProcessResourceFile FUN_18032f540
+#define RenderingSystem_ExportResourceData FUN_18032f990
+#define RenderingSystem_OptimizeResourceData FUN_18032ffc0
+#define RenderingSystem_CompressRenderData FUN_1803304e0
+/** @} */
+
+/**
+ * @brief 渲染系统资源文件处理器
+ * 
+ * 该函数负责处理渲染系统资源文件，包括文件读取、数据序列化、
+ * 路径处理、字符串操作和资源管理等高级渲染功能。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param output_handle 输出文件句柄
+ * @param resource_data 资源数据指针
+ * @return void
+ */
+void RenderingSystem_ProcessResourceFile(longlong render_context, longlong output_handle, longlong resource_data)
 
 {
   longlong lVar1;
@@ -178,8 +226,18 @@ void FUN_18032f540(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-// 函数: void FUN_18032f990(undefined8 param_1,longlong param_2,longlong param_3)
-void FUN_18032f990(undefined8 param_1,longlong param_2,longlong param_3)
+/**
+ * @brief 渲染系统资源数据导出器
+ * 
+ * 该函数负责导出渲染系统资源数据，包括数据读取、路径处理、
+ * 字符串操作、文件管理和资源序列化等高级渲染功能。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param output_handle 输出文件句柄
+ * @param resource_data 资源数据指针
+ * @return void
+ */
+void RenderingSystem_ExportResourceData(undefined8 render_context, longlong output_handle, longlong resource_data)
 
 {
   undefined4 *puVar1;
@@ -335,8 +393,18 @@ void FUN_18032f990(undefined8 param_1,longlong param_2,longlong param_3)
 
 
 
-// 函数: void FUN_18032ffc0(longlong param_1,longlong param_2,undefined8 param_3)
-void FUN_18032ffc0(longlong param_1,longlong param_2,undefined8 param_3)
+/**
+ * @brief 渲染系统资源数据优化器
+ * 
+ * 该函数负责优化渲染系统资源数据，包括数据压缩、内存管理、
+ * 文件操作、线程同步和资源处理等高级渲染功能。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param output_handle 输出文件句柄
+ * @param data_to_optimize 待优化的数据
+ * @return void
+ */
+void RenderingSystem_OptimizeResourceData(longlong render_context, longlong output_handle, undefined8 data_to_optimize)
 
 {
   int iVar1;
@@ -582,8 +650,18 @@ LAB_180330378:
 
 
 
-// 函数: void FUN_1803304e0(longlong param_1,longlong param_2,undefined8 param_3)
-void FUN_1803304e0(longlong param_1,longlong param_2,undefined8 param_3)
+/**
+ * @brief 渲染系统数据压缩器
+ * 
+ * 该函数负责压缩渲染系统数据，包括数据压缩、内存管理、
+ * 线程同步、文件操作和资源优化等高级渲染功能。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param output_handle 输出文件句柄
+ * @param data_to_compress 待压缩的数据
+ * @return void
+ */
+void RenderingSystem_CompressRenderData(longlong render_context, longlong output_handle, undefined8 data_to_compress)
 
 {
   undefined4 *puVar1;
