@@ -1904,7 +1904,7 @@ code *core_engine_callback_handler_type1(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
-    return (code *)0x1802633c0;
+    return (func_ptr *)0x1802633c0;
 }
 
 /**
@@ -1923,7 +1923,7 @@ code *core_engine_callback_handler_type2(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
-    return (code *)0x180262b00;
+    return (func_ptr *)0x180262b00;
 }
 
 /**
