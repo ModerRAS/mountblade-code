@@ -443,9 +443,10 @@ void set_entity_selection_result(void)
 
 
 
-// 函数: void FUN_18012800a(void)
+// 函数: void update_entity_property_references(void)
 // 功能: 更新游戏对象属性引用
-void FUN_18012800a(void)
+// 原始实现: FUN_18012800a - 简化实现: 为函数提供语义化名称
+void update_entity_property_references(void)
 
 {
   undefined8 unaff_RDI;
@@ -466,9 +467,10 @@ void FUN_18012800a(void)
 
 
 
-// 函数: void FUN_180128031(void)
+// 函数: void reset_entity_linked_list_pointer(void)
 // 功能: 重置游戏对象链表指针
-void FUN_180128031(void)
+// 原始实现: FUN_180128031 - 简化实现: 为函数提供语义化名称
+void reset_entity_linked_list_pointer(void)
 
 {
   longlong in_R11;
@@ -480,9 +482,10 @@ void FUN_180128031(void)
 
 
 
-// 函数: ulonglong FUN_180128040(undefined8 *param_1,undefined8 *param_2,char param_3)
+// 函数: ulonglong detect_entity_collision_relation(undefined8 *entity1, undefined8 *entity2, char use_bounds_check)
 // 功能: 检测两个游戏对象之间的碰撞关系
-ulonglong FUN_180128040(undefined8 *param_1,undefined8 *param_2,char param_3)
+// 原始实现: FUN_180128040 - 简化实现: 为函数和参数提供语义化名称
+ulonglong detect_entity_collision_relation(undefined8 *entity1, undefined8 *entity2, char use_bounds_check)
 
 {
   longlong lVar1;
@@ -536,9 +539,10 @@ ulonglong FUN_180128040(undefined8 *param_1,undefined8 *param_2,char param_3)
 
 
 
-// 函数: undefined8 FUN_180128280(int param_1,char param_2)
+// 函数: undefined8 check_entity_animation_state(int entity_index, char check_animation)
 // 功能: 检查游戏对象属性和动画状态
-undefined8 FUN_180128280(int param_1,char param_2)
+// 原始实现: FUN_180128280 - 简化实现: 为函数和参数提供语义化名称
+undefined8 check_entity_animation_state(int entity_index, char check_animation)
 
 {
   float fVar1;
@@ -564,9 +568,10 @@ undefined8 FUN_180128280(int param_1,char param_2)
 
 
 
-// 函数: undefined1 FUN_1801282c7(undefined8 param_1,undefined8 param_2,longlong param_3)
+// 函数: undefined1 compare_entity_rotation_angles(undefined8 angle1, undefined8 angle2, longlong rotation_data)
 // 功能: 比较游戏对象的旋转角度关系
-undefined1 FUN_1801282c7(undefined8 param_1,undefined8 param_2,longlong param_3)
+// 原始实现: FUN_1801282c7 - 简化实现: 为函数和参数提供语义化名称
+undefined1 compare_entity_rotation_angles(undefined8 angle1, undefined8 angle2, longlong rotation_data)
 
 {
   float fVar1;
@@ -585,9 +590,10 @@ undefined1 FUN_1801282c7(undefined8 param_1,undefined8 param_2,longlong param_3)
 
 
 
-// 函数: undefined1 FUN_180128336(void)
+// 函数: undefined1 return_empty_status_check(void)
 // 功能: 返回空状态检查结果
-undefined1 FUN_180128336(void)
+// 原始实现: FUN_180128336 - 简化实现: 为函数提供语义化名称
+undefined1 return_empty_status_check(void)
 
 {
   return 0;
