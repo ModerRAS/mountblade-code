@@ -1819,21 +1819,37 @@ undefined8 SystemStateSynchronizer(void)
 
 
 
-undefined8 FUN_1807ce440(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4)
+/**
+ * 系统配置处理器 - 负责处理和更新系统配置信息
+ * 这个函数根据当前系统状态来更新各种配置参数
+ * 
+ * @param param_1 系统上下文指针
+ * @param param_2 配置数据指针
+ * @param param_3 状态对象指针
+ * @param param_4 处理器句柄
+ * @return 处理状态码，0表示成功
+ * 
+ * 功能说明：
+ * - 检查和更新系统配置状态
+ * - 处理音量、频率、音调等音频参数
+ * - 根据不同的状态标志执行相应的处理
+ * - 调用相应的系统回调函数
+ */
+undefined8 SystemConfigurationProcessor(longlong system_context, longlong config_data, longlong state_object, undefined8 processor_handle)
 
 {
-  longlong *plVar1;
-  undefined4 uVar2;
-  int iVar3;
-  byte bVar4;
+  longlong *processor_ptr;
+  undefined4 calculation_result;
+  int parameter_value;
+  byte status_flags;
   undefined8 extraout_XMM0_Qa;
   undefined8 extraout_XMM0_Qb;
-  undefined1 auVar6 [16];
-  undefined1 auVar7 [16];
-  char acStackX_18 [16];
-  undefined1 auVar5 [16];
-  undefined1 auVar8 [16];
-  undefined4 uVar9;
+  undefined1 temp_buffer1 [16];
+  undefined1 temp_buffer2 [16];
+  char operation_status [16];
+  undefined1 temp_buffer3 [16];
+  undefined1 temp_buffer4 [16];
+  undefined4 temp_result;
   
   acStackX_18[0] = '\0';
   bVar4 = *(byte *)(param_3 + 0x3c);
