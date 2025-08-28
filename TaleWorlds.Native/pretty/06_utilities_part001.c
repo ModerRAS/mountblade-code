@@ -7,30 +7,30 @@
 // 06_utilities.c - 473 个函数
 
 
-// 函数: undefined FUN_1809414f0;
-undefined FUN_1809414f0;
-undefined DAT_180bf5290;
-undefined DAT_180bf52a0;
-undefined DAT_180bf52c0;
-undefined DAT_180bf52c8;
-undefined DAT_180bf52d0;
-undefined DAT_180bf52d8;
+// 函数: void* FUN_1809414f0;
+void* FUN_1809414f0;
+void* DAT_180bf5290;
+void* DAT_180bf52a0;
+void* DAT_180bf52c0;
+void* DAT_180bf52c8;
+void* DAT_180bf52d0;
+void* DAT_180bf52d8;
 int8_t DAT_180bf5240;
-undefined DAT_180bf52a8;
-undefined DAT_180bf52b0;
+void* DAT_180bf52a8;
+void* DAT_180bf52b0;
 int8_t DAT_180bf52e0;
-undefined UNK_180a3c3e0;
+void* UNK_180a3c3e0;
 uint64_t UNK_180bf5278;
 uint64_t UNK_180bf5298;
-undefined DAT_180bf5320;
-undefined DAT_180bf5328;
-undefined DAT_180bf5330;
-undefined DAT_180bf5338;
-undefined UNK_18098bb30;
+void* DAT_180bf5320;
+void* DAT_180bf5328;
+void* DAT_180bf5330;
+void* DAT_180bf5338;
+void* UNK_18098bb30;
 
 
-// 函数: undefined FUN_180941590;
-undefined FUN_180941590;
+// 函数: void* FUN_180941590;
+void* FUN_180941590;
 undefined DAT_180bf5770;
 undefined DAT_180bf5778;
 undefined DAT_180bf5780;

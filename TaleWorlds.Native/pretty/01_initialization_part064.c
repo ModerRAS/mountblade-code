@@ -1215,7 +1215,7 @@ int32_t InitializationSystem_ValidateState(void)
  * 
  * @return undefined 处理结果状态
  */
-undefined InitializationSystem_HandleError(void)
+int32_t InitializationSystem_HandleError(void)
 {
     // 错误处理逻辑实现
     
