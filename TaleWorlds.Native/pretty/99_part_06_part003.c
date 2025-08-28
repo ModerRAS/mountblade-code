@@ -112,7 +112,7 @@ typedef struct {
 
 // 内存管理函数
 #define SystemMemoryPoolAllocator FUN_18062b420
-#define SystemMemoryPoolInitializer FUN_18064e900
+#define SystemMemoryPoolInitializer SystemMemoryPoolInitializer
 #define SystemMemoryPoolReallocator FUN_18066bdc0
 
 // 数据处理函数
@@ -316,11 +316,11 @@ void ResourceCleanupHandler(int64_t param_1)
                         do {
                             plVar7 = (int64_t *)(uVar8 + lVar1);
                             if (*plVar7 != 0) {
-                                FUN_18064e900();
+                                SystemMemoryPoolInitializer();
                             }
                             *plVar7 = 0;
                             if (plVar7[4] != 0) {
-                                FUN_18064e900();
+                                SystemMemoryPoolInitializer();
                             }
                             plVar7[4] = 0;
                             puVar2 = (uint64_t *)plVar7[0xc];
@@ -328,7 +328,7 @@ void ResourceCleanupHandler(int64_t param_1)
                                 lVar5 = __RTCastToVoid(puVar2);
                                 (**(code **)*puVar2)(puVar2, 0);
                                 if (lVar5 != 0) {
-                                    FUN_18064e900(lVar5);
+                                    SystemMemoryPoolInitializer(lVar5);
                                 }
                             }
                             plVar7[0xc] = 0;
@@ -344,13 +344,13 @@ void ResourceCleanupHandler(int64_t param_1)
                                 (**(code **)(*(int64_t *)plVar7[0xb] + 0x38))();
                             }
                             if (plVar7[7] != 0) {
-                                FUN_18064e900();
+                                SystemMemoryPoolInitializer();
                             }
                             uVar8 = (uint64_t)(uint)((int)uVar8 + (int)uVar6);
                             uVar4 = uVar4 - 1;
                         } while (uVar4 != 0);
                     }
-                    FUN_18064e900((uint64_t *)(lVar1 + -0x10));
+                    SystemMemoryPoolInitializer((uint64_t *)(lVar1 + -0x10));
                 }
                 *(uint64_t *)(uVar6 + *(int64_t *)(param_1 + 0x40)) = 0;
                 uVar9 = (int)uVar4 + 1;
@@ -359,7 +359,7 @@ void ResourceCleanupHandler(int64_t param_1)
             } while ((int)uVar9 < *(int *)(param_1 + 0xc));
         }
         if (*(int64_t *)(param_1 + 0x40) != 0) {
-            FUN_18064e900();
+            SystemMemoryPoolInitializer();
         }
         *(uint64_t *)(param_1 + 0x40) = 0;
     }
@@ -531,7 +531,7 @@ LAB_1803a62d7:
                 plVar15 = *(int64_t **)(param_1 + 0x88);
             }
             if (plVar15 != (int64_t *)0x0) {
-                FUN_18064e900(plVar15);
+                SystemMemoryPoolInitializer(plVar15);
             }
             *(int64_t **)(param_1 + 0x88) = plVar16;
             *(int64_t **)(param_1 + 0x90) = plVar8 + 1;
@@ -750,7 +750,7 @@ int64_t SystemInitializer(int64_t param_1, uint64_t *param_2, uint64_t param_3, 
     *(uint64_t *)(param_1 + 0x80) = param_2[6];
     *param_2 = &system_data_buffer_ptr;
     if (param_2[1] != 0) {
-        FUN_18064e900();
+        SystemMemoryPoolInitializer();
     }
     param_2[1] = 0;
     *(int32_t *)(param_2 + 3) = 0;
@@ -1044,7 +1044,7 @@ LAB_1806311d1:
             FUN_180627340(&unknown_var_5416_ptr, &unknown_var_8824_ptr, lVar9, &unknown_var_5512_ptr, uVar14);
             puStack_30 = &system_data_buffer_ptr;
             if (pcStack_28 != (char *)0x0) {
-                FUN_18064e900();
+                SystemMemoryPoolInitializer();
             }
             return 0;
         }
@@ -1069,7 +1069,7 @@ LAB_1806311d1:
 LAB_18063123e:
     puStack_30 = &system_data_buffer_ptr;
     if (pcStack_28 != (char *)0x0) {
-        FUN_18064e900();
+        SystemMemoryPoolInitializer();
     }
     return lVar9;
 }
