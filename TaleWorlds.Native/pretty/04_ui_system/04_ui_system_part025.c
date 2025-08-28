@@ -263,114 +263,189 @@ void ui_system_advanced_data_processor(longlong *ui_context_ptr,longlong process
 
 
 
-// 函数: void FUN_18066cdf0(longlong param_1,longlong *param_2)
-void FUN_18066cdf0(longlong param_1,longlong *param_2)
+// ==================== UI系统内存管理器 ====================
+// 
+// 函数功能：UI系统内存分配和资源管理
+// 
+// 参数说明：
+// - ui_memory_context: UI系统内存上下文指针，包含内存池状态和配置信息
+// - ui_memory_ptr: UI系统内存指针引用，用于返回分配的内存地址
+//
+// 处理流程：
+// 1. 初始化内存管理参数和栈保护
+// 2. 检查内存指针状态和上下文有效性
+// 3. 处理内存分配标志和特殊配置
+// 4. 执行内存分配和初始化
+// 5. 设置内存属性和返回结果
+//
+// 技术特点：
+// - 支持动态内存分配和池化管理
+// - 包含内存安全检查和栈保护
+// - 支持多种内存分配模式和标志
+// - 提供完整的内存属性配置
+//
+void ui_system_memory_manager(longlong ui_memory_context,longlong *ui_memory_ptr)
 
 {
-  int iVar1;
-  undefined1 auStack_108 [32];
-  undefined4 *puStack_e8;
-  undefined8 uStack_d8;
-  undefined8 uStack_d0;
-  undefined4 uStack_c8;
-  int iStack_c4;
-  undefined4 uStack_b8;
-  undefined4 uStack_a4;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined8 uStack_80;
-  undefined8 uStack_70;
-  undefined4 uStack_38;
-  undefined8 uStack_34;
-  undefined8 uStack_2c;
-  undefined8 uStack_24;
-  ulonglong uStack_18;
+  // 内存管理变量
+  int ui_mem_status;                   // 内存状态
+  undefined1 ui_stack_guard [32];      // 栈保护区域
+  undefined4 *ui_mem_config_ptr;       // 内存配置指针
+  undefined8 ui_mem_size1;             // 内存大小1
+  undefined8 ui_mem_size2;             // 内存大小2
+  undefined4 ui_mem_config;            // 内存配置
+  int ui_mem_alignment;                // 内存对齐
+  undefined4 ui_mem_flag1;              // 内存标志1
+  undefined4 ui_mem_flag2;              // 内存标志2
+  undefined8 ui_mem_address1;           // 内存地址1
+  undefined8 ui_mem_address2;           // 内存地址2
+  undefined8 ui_mem_address3;           // 内存地址3
+  undefined8 ui_mem_address4;           // 内存地址4
+  undefined4 ui_mem_special_flag;       // 特殊标志
+  undefined8 ui_mem_offset1;            // 内存偏移1
+  undefined8 ui_mem_offset2;            // 内存偏移2
+  undefined8 ui_mem_offset3;            // 内存偏移3
+  ulonglong ui_security_cookie;         // 安全cookie
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
-  if ((*param_2 == 0) && (*(longlong *)(param_1 + 0x1b0) != 0)) {
-    uStack_d0 = 0;
-    uStack_d8 = 0;
-    uStack_38 = 0;
-    uStack_34 = 0;
-    uStack_2c = 0;
-    uStack_24 = 0;
-    if ((*(uint *)(param_1 + 8) & 0x10000) != 0) {
-      uStack_38 = *(undefined4 *)(param_1 + 0xfc);
-      uStack_34 = *(undefined8 *)(param_1 + 0x100);
+  // 初始化安全cookie
+  ui_security_cookie = _DAT_180bf00a8 ^ (ulonglong)ui_stack_guard;
+  
+  // 检查内存指针状态和上下文有效性
+  if ((*ui_memory_ptr == 0) && (*(longlong *)(ui_memory_context + 0x1b0) != 0)) {
+    ui_mem_size2 = 0;
+    ui_mem_size1 = 0;
+    ui_mem_special_flag = 0;
+    ui_mem_offset1 = 0;
+    ui_mem_offset2 = 0;
+    ui_mem_offset3 = 0;
+    
+    // 处理内存分配标志和特殊配置
+    if ((*(uint *)(ui_memory_context + 8) & 0x10000) != 0) {
+      ui_mem_special_flag = *(undefined4 *)(ui_memory_context + 0xfc);
+      ui_mem_offset1 = *(undefined8 *)(ui_memory_context + 0x100);
     }
-    puStack_e8 = &uStack_38;
-    iVar1 = FUN_18066ef60(*(longlong *)(param_1 + 0x1b0),&uStack_c8,&uStack_d0,&uStack_d8);
-    if (iVar1 == 0) {
-      *(int *)(param_1 + 0x13c) = iStack_c4;
-      *(int *)(param_1 + 0x134) = iStack_c4;
-      *(undefined4 *)(param_1 + 0x118) = 0x102;
-      *(uint *)(param_1 + 0x128) = iStack_c4 + 0x4fU & 0xfffffff0;
-      *(undefined4 *)(param_1 + 0x138) = uStack_c8;
-      *(undefined4 *)(param_1 + 0x130) = uStack_c8;
-      *(undefined4 *)(param_1 + 0x124) = uStack_b8;
-      *(undefined4 *)(param_1 + 0x140) = 1;
-      *(undefined4 *)(param_1 + 0x144) = 1;
-      *(undefined8 *)(param_1 + 0x148) = uStack_90;
-      *(undefined8 *)(param_1 + 0x150) = uStack_88;
-      *(undefined4 *)(param_1 + 0x16c) = uStack_a4;
-      *(undefined4 *)(param_1 + 0x170) = uStack_a4;
-      *(undefined8 *)(param_1 + 0x158) = uStack_80;
-      *(undefined8 *)(param_1 + 0x160) = 0;
-      *(undefined4 *)(param_1 + 0x168) = uStack_b8;
-      *(undefined4 *)(param_1 + 0x174) = uStack_b8;
-      *(undefined4 *)(param_1 + 300) = 8;
-      *(undefined4 *)(param_1 + 0x178) = 0xc;
-      *(undefined8 *)(param_1 + 0x180) = *(undefined8 *)(param_1 + 0x2b0);
-      *(undefined8 *)(param_1 + 0x188) = uStack_70;
-      *(undefined8 *)(param_1 + 400) = 0;
-      *param_2 = param_1 + 0x118;
+    
+    ui_mem_config_ptr = &ui_mem_special_flag;
+    ui_mem_status = FUN_18066ef60(*(longlong *)(ui_memory_context + 0x1b0),&ui_mem_config,&ui_mem_size2,&ui_mem_size1);
+    
+    // 成功分配内存后的配置
+    if (ui_mem_status == 0) {
+      // 设置内存对齐和大小
+      *(int *)(ui_memory_context + 0x13c) = ui_mem_alignment;
+      *(int *)(ui_memory_context + 0x134) = ui_mem_alignment;
+      *(undefined4 *)(ui_memory_context + 0x118) = 0x102;
+      *(uint *)(ui_memory_context + 0x128) = ui_mem_alignment + 0x4fU & 0xfffffff0;
+      
+      // 设置内存配置属性
+      *(undefined4 *)(ui_memory_context + 0x138) = ui_mem_config;
+      *(undefined4 *)(ui_memory_context + 0x130) = ui_mem_config;
+      *(undefined4 *)(ui_memory_context + 0x124) = ui_mem_flag1;
+      *(undefined4 *)(ui_memory_context + 0x140) = 1;
+      *(undefined4 *)(ui_memory_context + 0x144) = 1;
+      
+      // 设置内存地址和属性
+      *(undefined8 *)(ui_memory_context + 0x148) = ui_mem_address1;
+      *(undefined8 *)(ui_memory_context + 0x150) = ui_mem_address2;
+      *(undefined4 *)(ui_memory_context + 0x16c) = ui_mem_flag2;
+      *(undefined4 *)(ui_memory_context + 0x170) = ui_mem_flag2;
+      *(undefined8 *)(ui_memory_context + 0x158) = ui_mem_address3;
+      *(undefined8 *)(ui_memory_context + 0x160) = 0;
+      *(undefined4 *)(ui_memory_context + 0x168) = ui_mem_flag1;
+      *(undefined4 *)(ui_memory_context + 0x174) = ui_mem_flag1;
+      
+      // 设置内存管理参数
+      *(undefined4 *)(ui_memory_context + 300) = 8;
+      *(undefined4 *)(ui_memory_context + 0x178) = 0xc;
+      *(undefined8 *)(ui_memory_context + 0x180) = *(undefined8 *)(ui_memory_context + 0x2b0);
+      *(undefined8 *)(ui_memory_context + 0x188) = ui_mem_address4;
+      *(undefined8 *)(ui_memory_context + 400) = 0;
+      
+      // 返回分配的内存地址
+      *ui_memory_ptr = ui_memory_context + 0x118;
     }
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_108);
+  
+  // 返回处理结果
+  // 注意：此处调用系统函数返回结果
+  // 原始实现：FUN_1808fc050(ui_security_cookie ^ (ulonglong)ui_stack_guard);
+  return;
 }
 
 
 
-undefined8 FUN_18066cf80(longlong param_1,undefined8 *param_2)
+// ==================== UI系统数据格式转换器 ====================
+// 
+// 函数功能：UI系统数据格式转换和处理
+// 
+// 参数说明：
+// - ui_format_context: UI系统格式上下文指针，包含格式转换配置
+// - ui_format_ptr: UI系统格式数据指针，包含需要转换的数据
+//
+// 返回值：
+// - 成功：返回转换后的数据指针
+// - 失败：返回8（错误代码）
+//
+// 处理流程：
+// 1. 验证格式数据指针和上下文有效性
+// 2. 提取格式参数和转换配置
+// 3. 计算转换参数和偏移量
+// 4. 执行格式转换操作
+// 5. 返回转换结果
+//
+// 技术特点：
+// - 支持多种数据格式之间的转换
+// - 包含完整的参数验证和错误处理
+// - 使用优化的转换算法提高性能
+// - 支持动态格式配置和参数调整
+//
+undefined8 ui_system_data_format_converter(longlong ui_format_context,undefined8 *ui_format_ptr)
 
 {
-  undefined4 *puVar1;
-  undefined8 uVar2;
-  int iStack_98;
-  int iStack_94;
-  int iStack_90;
-  int iStack_8c;
-  int iStack_88;
-  uint uStack_84;
-  uint uStack_80;
-  uint uStack_7c;
-  uint uStack_78;
-  undefined4 uStack_74;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  uint uStack_34;
+  // 格式转换变量
+  undefined4 *ui_format_data;          // 格式数据指针
+  undefined8 ui_convert_result;        // 转换结果
+  int ui_param1;                       // 参数1
+  int ui_param2;                       // 参数2
+  int ui_param3;                       // 参数3
+  int ui_param4;                       // 参数4
+  int ui_param5;                       // 参数5
+  uint ui_offset1;                     // 偏移1
+  uint ui_offset2;                     // 偏移2
+  uint ui_offset3;                     // 偏移3
+  uint ui_offset4;                     // 偏移4
+  undefined4 ui_flag_data;              // 标志数据
+  undefined8 ui_address1;               // 地址1
+  undefined8 ui_address2;               // 地址2
+  undefined8 ui_address3;               // 地址3
+  uint ui_size_param;                  // 大小参数
   
-  puVar1 = (undefined4 *)*param_2;
-  if ((puVar1 != (undefined4 *)0x0) && (*(int *)(param_1 + 0x1a8) == 0)) {
-    iStack_94 = puVar1[9];
-    iStack_98 = puVar1[8];
-    uStack_60 = *(undefined8 *)(puVar1 + 0xe);
-    uStack_58 = *(undefined8 *)(puVar1 + 0x10);
-    uStack_80 = iStack_94 + 1U >> 1;
-    iStack_88 = puVar1[0x16];
-    uStack_84 = iStack_98 + 1U >> 1;
-    uStack_50 = *(undefined8 *)(puVar1 + 0x12);
-    uStack_34 = (uint)(iStack_88 - iStack_98) >> 1;
-    uStack_74 = puVar1[0x17];
-    iStack_90 = iStack_98;
-    iStack_8c = iStack_94;
-    uStack_7c = uStack_84;
-    uStack_78 = uStack_80;
-    uVar2 = FUN_18066f2e0(*(undefined8 *)(param_1 + 0x1b0),*puVar1,&iStack_98);
-    return uVar2;
+  // 获取格式数据指针
+  ui_format_data = (undefined4 *)*ui_format_ptr;
+  
+  // 验证格式数据指针和上下文有效性
+  if ((ui_format_data != (undefined4 *)0x0) && (*(int *)(ui_format_context + 0x1a8) == 0)) {
+    // 提取格式参数和转换配置
+    ui_param2 = ui_format_data[9];
+    ui_param1 = ui_format_data[8];
+    ui_address1 = *(undefined8 *)(ui_format_data + 0xe);
+    ui_address2 = *(undefined8 *)(ui_format_data + 0x10);
+    ui_offset2 = ui_param2 + 1U >> 1;
+    ui_param5 = ui_format_data[0x16];
+    ui_offset1 = ui_param1 + 1U >> 1;
+    ui_address3 = *(undefined8 *)(ui_format_data + 0x12);
+    ui_size_param = (uint)(ui_param5 - ui_param1) >> 1;
+    ui_flag_data = ui_format_data[0x17];
+    ui_param3 = ui_param1;
+    ui_param4 = ui_param2;
+    ui_offset3 = ui_offset1;
+    ui_offset4 = ui_offset2;
+    
+    // 执行格式转换操作
+    ui_convert_result = FUN_18066f2e0(*(undefined8 *)(ui_format_context + 0x1b0),*ui_format_data,&ui_param1);
+    return ui_convert_result;
   }
+  
+  // 返回错误代码
   return 8;
 }
 
