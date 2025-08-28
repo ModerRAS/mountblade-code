@@ -993,7 +993,7 @@ void RenderSystem_ConfigureParameters(longlong system_handle, uint64_t *output_d
   }
   
   // 清理配置数据
-  FUN_1808fc050(*(ulonglong *)(configuration_ptr + 0x14) ^ (ulonglong)&stack0x00000000);
+  SystemSecurityChecker(*(ulonglong *)(configuration_ptr + 0x14) ^ (ulonglong)&stack0x00000000);
 }
 
 /**
@@ -1138,7 +1138,7 @@ void RenderSystem_AdvancedConfigure(longlong system_handle, uint64_t *output_dat
         *(int32_t *)(resource_manager + 0xc) = 0x3f800000;
       }
       
-      FUN_180294f50();
+      SystemStateManager();
     }
     
     // 处理纹理数据
@@ -1173,7 +1173,7 @@ void RenderSystem_AdvancedConfigure(longlong system_handle, uint64_t *output_dat
   }
   
   // 清理高级配置数据
-  FUN_1808fc050(*(ulonglong *)(configuration_ptr + 0x14) ^ (ulonglong)&stack0x00000000);
+  SystemSecurityChecker(*(ulonglong *)(configuration_ptr + 0x14) ^ (ulonglong)&stack0x00000000);
 }
 
 /* ============================================================================

@@ -477,7 +477,7 @@ void InitializationSystem_RegistrySearchAndInsert3(void)
     }
     
     // 插入新节点
-    if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c9b8, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
+    if ((parent_node == root_node) || (compare_result = memcmp(&InitializationSystemMemoryKey3, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
         memory_size = InitializationSystemMemoryAllocator(registry_root);
         InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
@@ -522,7 +522,7 @@ void InitializationSystem_RegistrySearchAndInsert4(void)
     
     // 搜索目标节点
     while (node_flag == 0) {
-        compare_result = memcmp(current_node + 4, &system_memory_c940, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        compare_result = memcmp(current_node + 4, &InitializationSystemMemoryKey4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         if (compare_result < 0) {
             child_node = (void*)current_node[2];
             current_node = parent_node;
@@ -535,7 +535,7 @@ void InitializationSystem_RegistrySearchAndInsert4(void)
     }
     
     // 插入新节点
-    if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c940, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
+    if ((parent_node == root_node) || (compare_result = memcmp(&InitializationSystemMemoryKey4, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
         memory_size = InitializationSystemMemoryAllocator(registry_root);
         InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;

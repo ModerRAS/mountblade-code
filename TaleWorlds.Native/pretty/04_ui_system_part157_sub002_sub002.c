@@ -120,8 +120,8 @@ typedef uint64_t UIRenderHandle;               // UI渲染句柄
 //   简化实现：保持原有功能逻辑，添加详细的参数说明和技术注释
 //   优化点：明确参数用途，添加状态管理说明，提高代码可读性
 //------------------------------------------------------------------------------
-void FUN_18075f1e0(longlong param_1, int param_2, int32_t *param_3, longlong param_4,
-                  int32_t param_5)
+void UISystemAdvancedSubmoduleProcessor(longlong param_1, int param_2, int32_t *param_3, longlong param_4,
+                                  int32_t param_5)
 {
     // 局部变量定义
     longlong lVar1;                              // 组件管理器指针
@@ -170,7 +170,7 @@ void FUN_18075f1e0(longlong param_1, int param_2, int32_t *param_3, longlong par
     }
     
     // 安全退出：栈保护检查
-    FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_68);
+    UISystem_SecurityValidate(uStack_20 ^ (ulonglong)auStack_68);
 }
 
 //------------------------------------------------------------------------------
@@ -208,7 +208,7 @@ void FUN_18075f1e0(longlong param_1, int param_2, int32_t *param_3, longlong par
 //   简化实现：保持原有功能，添加详细的系统调用说明
 //   优化点：明确系统调用用途，添加安全性说明
 //------------------------------------------------------------------------------
-uint64_t FUN_18075f4a0(void)
+uint64_t UISystemSystemCaller(void)
 {
     // 执行系统调用
     (**(code **)(ui_system_ui + 8))();
@@ -259,8 +259,8 @@ uint64_t FUN_18075f4a0(void)
 //   简化实现：保持原有功能逻辑，添加详细的参数说明和技术注释
 //   优化点：明确数据流处理步骤，添加内存管理说明
 //------------------------------------------------------------------------------
-ulonglong FUN_18075f4c0(longlong *param_1, ulonglong param_2, ulonglong param_3, int param_4,
-                       longlong *param_5)
+ulonglong UISystemDataFlowProcessor(longlong *param_1, ulonglong param_2, ulonglong param_3, int param_4,
+                      longlong *param_5)
 {
     // 局部变量定义
     longlong lVar1;                              // 上下文管理器指针
