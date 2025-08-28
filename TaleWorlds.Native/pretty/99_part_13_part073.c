@@ -1092,7 +1092,7 @@ uint64_t ResourceStatusCheck(void)
 
 
 
-int32_t FUN_1808dab90(longlong param_1,longlong param_2)
+int32_t ResourceHandleAcquire(longlong resource_ptr, longlong access_params)
 
 {
   longlong lVar1;
@@ -1134,7 +1134,7 @@ LAB_1808dac65:
 
 
 
-int32_t FUN_1808dac90(longlong param_1,longlong param_2)
+int32_t ResourceHandleRelease(longlong resource_ptr, longlong release_params)
 
 {
   int iVar1;
@@ -1514,8 +1514,8 @@ int FUN_1808dae64(longlong param_1)
 
 
 
-// 函数: void FUN_1808daf2a(void)
-void FUN_1808daf2a(void)
+// 函数: void ResourceSystemShutdown(void)
+void ResourceSystemShutdown(void)
 
 {
                     // WARNING: Subroutine does not return
