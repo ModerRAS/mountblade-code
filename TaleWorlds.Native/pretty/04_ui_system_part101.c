@@ -741,7 +741,7 @@ void UISystemLoopProcessor(uint64_t param_1, uint64_t param_2, ulonglong param_3
     } while (uVar2 != 0);
     
     // 执行最终数据处理
-    FUN_18072f4d0(unaff_RSI + 0x20, &stack0x00000050, param_3, *(int32_t *)(unaff_RBX + 0x1060));
+    UISystemDataValidator(unaff_RSI + 0x20, &stack0x00000050, param_3, *(int32_t *)(unaff_RBX + 0x1060));
     
     // 执行内存复制操作
     memcpy(unaff_RBX + 0x928, &stack0x00000030, (longlong)*(int *)(unaff_RBX + 0x924) * 2);
@@ -796,7 +796,7 @@ void UISystemSimplifiedProcessor(uint64_t param_1, uint64_t param_2, uint64_t pa
     longlong unaff_RSI;                         // 未使用寄存器变量
     
     // 执行简化的数据处理
-    FUN_18072f4d0(unaff_RSI + 0x20, &stack0x00000050, param_3, *(int32_t *)(unaff_RBX + 0x1060));
+    UISystemDataValidator(unaff_RSI + 0x20, &stack0x00000050, param_3, *(int32_t *)(unaff_RBX + 0x1060));
     
     // 执行内存复制操作
     memcpy(unaff_RBX + 0x928, &stack0x00000030, (longlong)*(int *)(unaff_RBX + 0x924) * 2);
