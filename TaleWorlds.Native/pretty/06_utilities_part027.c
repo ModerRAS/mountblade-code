@@ -1206,15 +1206,15 @@ void FUN_180941b20(void)
   *system_resource_state_ptr = SYSTEM_INIT_VALUE;
   
   // 检查资源状态
-  if (_DAT_180d49640 != 0) {
+  if (*system_resource_status_ptr != 0) {
     // 资源状态异常，终止程序
     FUN_18064e900();
   }
   
   // 重置资源状态
-  _DAT_180d49640 = 0;
-  _DAT_180d49650 = 0;
-  _DAT_180d49638 = &UNK_18098bcb0;
+  *system_resource_status_ptr = 0;
+  *system_resource_cleanup_ptr = 0;
+  *system_resource_state_ptr = SYSTEM_DEFAULT_VALUE;
   return;
 }
 

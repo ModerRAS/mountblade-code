@@ -392,45 +392,55 @@ uint64_t * RenderMemoryManager_Destroy(uint64_t *renderMemoryManager, ulonglong 
 
 
 
-// 函数: void FUN_1803f8330(longlong *param_1,longlong param_2)
-void FUN_1803f8330(longlong *param_1,longlong param_2)
-
+/**
+ * @brief 用户界面事件处理器
+ * 
+ * 负责处理用户界面相关的事件，包括按钮点击、菜单选择、文本输入等
+ * 实现事件分发和相应的回调函数调用
+ * 
+ * @param uiContext 用户界面上下文指针
+ * @param eventData 事件数据指针
+ * 
+ * @return void
+ */
+void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  uint64_t uVar3;
-  int iVar4;
-  ulonglong uVar5;
-  uint uVar6;
-  void *puVar7;
-  int8_t auVar8 [16];
-  int8_t auVar9 [16];
-  int8_t auVar10 [16];
-  int8_t auVar11 [16];
-  int8_t auStack_158 [32];
-  int32_t uStack_138;
-  longlong *plStack_128;
-  int iStack_120;
-  int iStack_11c;
-  int32_t uStack_118;
-  int32_t uStack_114;
-  int32_t uStack_110;
-  uint64_t uStack_10c;
-  uint64_t uStack_104;
-  int16_t uStack_fc;
-  char cStack_fa;
-  int16_t uStack_f9;
-  int8_t uStack_f7;
-  int8_t uStack_f6;
-  int16_t uStack_f5;
-  uint uStack_f0;
-  int8_t uStack_ec;
-  uint64_t uStack_e8;
-  void *puStack_d8;
-  int8_t *puStack_d0;
-  uint uStack_c8;
-  int8_t auStack_c0 [136];
-  ulonglong uStack_38;
+  /* 事件处理变量 */
+  longlong *eventHandler;
+  longlong eventLength;
+  uint64_t eventResult;
+  int eventType;
+  ulonglong eventNameLength;
+  uint eventNameHash;
+  void *eventName;
+  int8_t eventTypeData [16];
+  int8_t eventData1 [16];
+  int8_t eventData2 [16];
+  int8_t eventData3 [16];
+  int8_t securityBuffer [32];
+  int32_t renderTargetId;
+  longlong *resourceManager;
+  int eventX;
+  int eventY;
+  int32_t eventFlags;
+  int32_t eventModifiers;
+  int32_t eventButton;
+  uint64_t eventTimestamp;
+  uint64_t eventSequence;
+  int16_t eventKeyCode;
+  char eventChar;
+  int16_t eventScanCode;
+  int8_t eventRepeat;
+  int8_t eventExtended;
+  int16_t eventPrevious;
+  uint eventDeviceId;
+  int8_t eventReserved;
+  uint64_t memoryFlags;
+  void *uiResource;
+  int8_t *eventBuffer;
+  uint bufferSize;
+  int8_t eventDataBuffer [136];
+  ulonglong securityChecksum;
   
   uStack_e8 = 0xfffffffffffffffe;
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
