@@ -137,7 +137,7 @@ void FUN_180408850(uint64_t param_1,int64_t param_2)
   }
 LAB_18040a0c2:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_458);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_458);
 LAB_180408950:
   do {
     puVar20 = puStack_420;
@@ -183,7 +183,7 @@ LAB_1804089e4:
     uStack_3a0 = 0;
     puStack_3b0 = (int8_t *)0x0;
     uStack_3a8 = 0;
-    FUN_1806277c0(&puStack_3b8,iStack_2e8);
+    CoreMemoryPoolProcessor(&puStack_3b8,iStack_2e8);
     puVar16 = puStack_3b0;
     if (0 < iStack_2e8) {
       puVar15 = &system_buffer_ptr;
@@ -423,7 +423,7 @@ LAB_180408d90:
               uVar3 = *(uint *)(lVar22 + 8 + (int64_t)plVar17);
               uVar7 = (uint64_t)uVar3;
               if (*(int64_t *)(lVar22 + (int64_t)plVar17) != 0) {
-                fVar28 = (float)FUN_1806277c0(plVar17 + -1,uVar7);
+                fVar28 = (float)CoreMemoryPoolProcessor(plVar17 + -1,uVar7);
               }
               if (uVar3 != 0) {
                     // WARNING: Subroutine does not return
@@ -716,7 +716,7 @@ LAB_1804095b4:
                          (puVar15 = &unknown_var_5412_ptr, (pcVar25[1] + 0xa8U & 0xdf) != 0)) {
                         puVar15 = &unknown_var_2208_ptr;
                       }
-                      FUN_18010cbc0(pcVar25,puVar15,&iStack_438);
+                      AdvancedSystemOptimizer(pcVar25,puVar15,&iStack_438);
                       piVar21[2] = iStack_438;
                       break;
                     }
@@ -759,7 +759,7 @@ LAB_180409694:
                          (puVar15 = &unknown_var_5412_ptr, (pcVar25[1] + 0xa8U & 0xdf) != 0)) {
                         puVar15 = &unknown_var_2208_ptr;
                       }
-                      FUN_18010cbc0(pcVar25,puVar15,&iStack_434);
+                      AdvancedSystemOptimizer(pcVar25,puVar15,&iStack_434);
                       piVar21[3] = iStack_434;
                       break;
                     }
@@ -1153,7 +1153,7 @@ LAB_180409cce:
       if (*(int64_t *)(lVar22 + 8) != 0) {
         lVar6 = *(int64_t *)(lVar22 + 8);
       }
-      FUN_18010cbc0(lVar6,&system_data_6430,afStack_374);
+      AdvancedSystemOptimizer(lVar6,&system_data_6430,afStack_374);
       if (afStack_374[0] <= 0.0) {
         fVar28 = (float)FUN_180626f80(&unknown_var_7600_ptr);
       }

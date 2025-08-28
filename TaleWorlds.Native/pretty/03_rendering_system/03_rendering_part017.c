@@ -316,7 +316,7 @@ void filter_and_reorganize_render_objects(int64_t render_context_ptr, uint bit_p
             list_size = 1;
 LAB_180277c31:
             object_ptr = (int64_t *)
-                     FUN_18062b420(system_memory_pool_ptr, list_size << 4,
+                     CoreMemoryPoolAllocator(system_memory_pool_ptr, list_size << 4,
                                    CONCAT71((uint7)(uint3)(bit_position >> 8), 0x16));
           }
           else {
@@ -427,7 +427,7 @@ void collect_render_objects_by_mask(int64_t render_context_ptr, uint64_t *output
           if (array_size == 0) {
             array_size = 1;
 LAB_180277eb2:
-            new_array_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, array_size * 8, (char)output_array[3]);
+            new_array_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, array_size * 8, (char)output_array[3]);
             array_ptr = (uint64_t *)*output_array;
             temp_ptr = (uint64_t *)output_array[1];
           }
@@ -493,7 +493,7 @@ void collect_render_objects_inline(void)
         if (array_size == 0) {
           array_size = 1;
 LAB_180277eb2:
-          new_array_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, array_size * 8, (char)output_array[3]);
+          new_array_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, array_size * 8, (char)output_array[3]);
           array_ptr = (uint64_t *)*output_array;
           array_end = (uint64_t *)output_array[1];
         }
@@ -583,7 +583,7 @@ void collect_and_transform_render_matrices(int64_t render_context_ptr, uint64_t 
           if (list_size == 0) {
             list_size = 1;
 LAB_180277fef:
-            array_ptr = (int64_t *)FUN_18062b420(system_memory_pool_ptr, list_size * 8, (char)object_array[3]);
+            array_ptr = (int64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, list_size * 8, (char)object_array[3]);
             temp_ptr = (int64_t *)*object_array;
             array_ptr = (int64_t *)object_array[1];
           }
@@ -681,7 +681,7 @@ LAB_180277fef:
           if (object_ptr == 0) {
             object_ptr = 1;
 LAB_1802781a7:
-            result_ptr = (float *)FUN_18062b420(system_memory_pool_ptr, object_ptr << 6, (char)matrix_array[3]);
+            result_ptr = (float *)CoreMemoryPoolAllocator(system_memory_pool_ptr, object_ptr << 6, (char)matrix_array[3]);
             matrix_ptr = (float *)*matrix_array;
             result_ptr = (float *)matrix_array[1];
           }
@@ -811,7 +811,7 @@ void process_advanced_matrix_transform(void)
         if (list_size == 0) {
           list_size = 1;
 LAB_180277fef:
-          array_ptr = (int64_t *)FUN_18062b420(system_memory_pool_ptr, list_size * 8, (char)object_array[3]);
+          array_ptr = (int64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, list_size * 8, (char)object_array[3]);
           temp_ptr = (int64_t *)*object_array;
           array_ptr = (int64_t *)object_array[1];
         }
@@ -910,7 +910,7 @@ LAB_180277fef:
         if (obj_ptr == 0) {
           obj_ptr = 1;
 LAB_1802781a7:
-          result_ptr = (float *)FUN_18062b420(system_memory_pool_ptr, obj_ptr << 6, (char)matrix_array[3]);
+          result_ptr = (float *)CoreMemoryPoolAllocator(system_memory_pool_ptr, obj_ptr << 6, (char)matrix_array[3]);
           matrix_ptr = (float *)*matrix_array;
           result_ptr = (float *)matrix_array[1];
         }

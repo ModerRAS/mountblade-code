@@ -180,7 +180,7 @@ LAB_18074e34e:
   if (iVar5 != 0) {
 FUN_18074f89e:
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_e78);
+    SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_e78);
   }
   afStack_e30[0] = afStack_e30[0] * *(float *)((int64_t)param_1 + 0xf4);
   if ((*(byte *)(param_1 + 9) & 4) == 0) {
@@ -547,7 +547,7 @@ LAB_18074e34e:
   if (iVar5 != 0) {
 FUN_18074f865:
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xca0) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xca0) ^ (uint64_t)&stack0x00000000);
   }
   in_stack_00000048 = in_stack_00000048 * *(float *)((int64_t)unaff_RBX + 0xf4);
   if ((*(byte *)(unaff_RBX + 9) & 4) == 0) {

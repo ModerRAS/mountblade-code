@@ -197,7 +197,7 @@ void InitializeRenderingSystem(uint64_t *renderContext)
             bufferSize = 1;
 LAB_18028834f:
             renderInterface = (uint64_t *)
-                     FUN_18062b420(system_memory_pool_ptr,bufferSize * 8,*(int8_t *)(renderContext + 0x22));
+                     CoreMemoryPoolAllocator(system_memory_pool_ptr,bufferSize * 8,*(int8_t *)(renderContext + 0x22));
             renderInterface = (uint64_t *)renderContext[0x20];
             memoryInterface = (uint64_t *)*bufferManager;
             deviceInterface = renderInterface;
@@ -383,7 +383,7 @@ LAB_18028843a:
     if (textureCache != (int64_t *)0x0) {
       (**(code **)(*textureCache + 0x38))();
     }
-    FUN_1808fc050(stackCookie ^ (uint64_t)tempBuffer);
+    SystemSecurityChecker(stackCookie ^ (uint64_t)tempBuffer);
   }
   CoreEngine_MemoryPoolManager();
 }
@@ -860,7 +860,7 @@ uint64_t * CreateRenderDevice(uint64_t deviceType, uint64_t *deviceInterface, ui
   *(int32_t *)(deviceInterface + 2) = 0;
   
   // 创建设备
-  FUN_1806277c0(deviceInterface,0x16,createFlags,adapterFlags,0,g_RenderContextManager);
+  CoreMemoryPoolProcessor(deviceInterface,0x16,createFlags,adapterFlags,0,g_RenderContextManager);
   
   // 设置设备名称
   interfacePtr = (uint64_t *)deviceInterface[1];

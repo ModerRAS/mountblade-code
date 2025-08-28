@@ -323,7 +323,7 @@ LAB_180597a79:
   uVar3 = *(uint *)(unaff_RBX + 0x34);
   *(uint64_t *)(unaff_RBP + -0x49) = *(uint64_t *)(unaff_RBX + 0xf0);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(uVar3 ^ 0x80000000);
+  AdvancedSystemController(uVar3 ^ 0x80000000);
 }
 
 
@@ -652,7 +652,7 @@ LAB_180597a79:
   uVar3 = *(uint *)(unaff_RBX + 0x34);
   *(uint64_t *)(unaff_RBP + -0x49) = *(uint64_t *)(unaff_RBX + 0xf0);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(uVar3 ^ 0x80000000);
+  AdvancedSystemController(uVar3 ^ 0x80000000);
 }
 
 
@@ -697,7 +697,7 @@ void FUN_180597c7a(float param_1,uint64_t param_2,uint64_t param_3,char param_4)
   uVar2 = *(uint *)(unaff_RBX + 0x34);
   *(uint64_t *)(unaff_RBP + -0x49) = *(uint64_t *)(unaff_RBX + 0xf0);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(uVar2 ^ unaff_XMM11_Da);
+  AdvancedSystemController(uVar2 ^ unaff_XMM11_Da);
 }
 
 
@@ -734,7 +734,7 @@ void FUN_180597cc9(void)
   uVar1 = *(uint *)(unaff_RBX + 0x34);
   *(uint64_t *)(unaff_RBP + -0x49) = *(uint64_t *)(unaff_RBX + 0xf0);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(uVar1 ^ unaff_XMM11_Da);
+  AdvancedSystemController(uVar1 ^ unaff_XMM11_Da);
 }
 
 
@@ -755,7 +755,7 @@ void FUN_180597d0e(void)
     uVar1 = *(uint *)(unaff_RBX + 0x34);
     *(uint64_t *)(unaff_RBP + -0x49) = *(uint64_t *)(unaff_RBX + 0xf0);
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(uVar1 ^ unaff_XMM11_Da);
+    AdvancedSystemController(uVar1 ^ unaff_XMM11_Da);
   }
   *(float *)(unaff_RBX + 0x1c) = *(float *)(unaff_RBX + 0x48) + *(float *)(unaff_RBX + 0x1c);
   *(float *)(unaff_RBX + 0x20) = *(float *)(unaff_RBX + 0x4c) + *(float *)(unaff_RBX + 0x20);
@@ -868,7 +868,7 @@ void FUN_180598160(void)
   float in_stack_00000028;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(in_XMM3_Da - in_stack_00000028);
+  AdvancedSystemController(in_XMM3_Da - in_stack_00000028);
 }
 
 

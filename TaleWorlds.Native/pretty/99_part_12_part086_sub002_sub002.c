@@ -18,7 +18,7 @@ void FUN_1808a3cd0(int64_t param_1,uint64_t param_2,int32_t param_3)
         iVar1 = FUN_18089bd70(param_1,param_2);
         if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,auStack_28);
+          AdvancedSystemManager(param_2,auStack_28);
         }
       }
     }

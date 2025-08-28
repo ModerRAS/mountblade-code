@@ -141,7 +141,7 @@ typedef enum {
 #define RenderSystem_ExecuteRenderQueue FUN_180076c50
 #define RenderSystem_TriggerErrorHandler CoreEngine_MemoryPoolManager
 #define RenderSystem_ReleaseStringBuffer FUN_180244780
-#define RenderSystem_AllocateTextureBuffer FUN_1806277c0
+#define RenderSystem_AllocateTextureBuffer CoreMemoryPoolProcessor
 #define RenderSystem_GetDeviceHandle FUN_1800daa50
 #define RenderSystem_RegisterDevice FUN_180094b30
 #define RenderSystem_InitializeRenderPipeline FUN_18024b8d0
@@ -718,7 +718,7 @@ void CleanupRenderBuffers(int64_t *bufferManager)
               maxLength = (uint64_t)sourceLength;
               
               if (*(int64_t *)(bufferStart + -0x18) != 0) {
-                FUN_1806277c0(bufferEnd, maxLength);
+                CoreMemoryPoolProcessor(bufferEnd, maxLength);
               }
               
               if (sourceLength != 0) {
@@ -912,7 +912,7 @@ void OptimizeRenderBuffersInline(int64_t bufferStart, int64_t bufferEnd)
             maxLength = (uint64_t)sourceLength;
             
             if (*(int64_t *)(bufferIndex + -0x18) != 0) {
-              FUN_1806277c0(bufferSize, maxLength);
+              CoreMemoryPoolProcessor(bufferSize, maxLength);
             }
             
             if (sourceLength != 0) {
@@ -1430,7 +1430,7 @@ void FUN_18022cd30(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t p
 int64_t FUN_180076c50(uint64_t param1, uint64_t *param2);
 void CoreEngine_MemoryPoolManager(void);
 void FUN_180244780(uint64_t *param1);
-void FUN_1806277c0(uint64_t *param1, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t param5, uint64_t param6);
+void CoreMemoryPoolProcessor(uint64_t *param1, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t param5, uint64_t param6);
 uint64_t FUN_1800daa50(void);
 void FUN_180094b30(uint64_t param1, uint64_t *param2);
 void FUN_18024b8d0(uint64_t param1);

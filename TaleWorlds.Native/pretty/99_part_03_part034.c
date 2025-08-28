@@ -227,7 +227,7 @@ LAB_1801ed8fb:
     if (lVar11 == 0) {
       lVar11 = 1;
 LAB_1801ed969:
-      lVar8 = FUN_18062b420(system_memory_pool_ptr,lVar11 * 4,unaff_RBX[0x2048]);
+      lVar8 = CoreMemoryPoolAllocator(system_memory_pool_ptr,lVar11 * 4,unaff_RBX[0x2048]);
       puVar9 = *(int32_t **)(unaff_RBX + 0x2038);
       lVar18 = *(int64_t *)(unaff_RBX + 0x2030);
     }
@@ -470,7 +470,7 @@ LAB_1801ed8fb:
       if (lVar7 == 0) {
         lVar7 = 1;
 LAB_1801ed969:
-        lVar8 = FUN_18062b420(system_memory_pool_ptr,lVar7 * 4,*(int8_t *)(unaff_RBX + 0x2048));
+        lVar8 = CoreMemoryPoolAllocator(system_memory_pool_ptr,lVar7 * 4,*(int8_t *)(unaff_RBX + 0x2048));
         puVar9 = *(int32_t **)(unaff_RBX + 0x2038);
         lVar17 = *(int64_t *)(unaff_RBX + 0x2030);
       }

@@ -748,7 +748,7 @@ void FUN_180191df0(int64_t param_1,int param_2)
   uint uVar4;
   uint64_t uVar5;
   
-  lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3,0xfffffffffffffffe);
+  lVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,3,0xfffffffffffffffe);
   uVar3 = 0;
   *(int32_t *)(lVar1 + 0x19) = 0;
   *(int16_t *)(lVar1 + 0x1d) = 0;

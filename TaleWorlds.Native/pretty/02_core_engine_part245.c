@@ -353,7 +353,7 @@ void FUN_18020e840(int64_t param_1)
   int64_t *plVar3;
   
   *(int8_t *)(param_1 + 0x58) = 1;
-  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x10,8,3,0xfffffffffffffffe);
+  uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x10,8,3,0xfffffffffffffffe);
   plVar3 = (int64_t *)FUN_1808fc418(0x10);
   *plVar3 = param_1;
   plVar3[1] = (int64_t)&unknown_var_1688_ptr;
@@ -874,7 +874,7 @@ void FUN_18020f150(uint64_t *param_1)
   plStack_d8 = alStack_70;
   _Mtx_init_in_situ(alStack_70,2);
   uStack_20 = 0;
-  plVar2 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,200,8,3);
+  plVar2 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,200,8,3);
   plStack_d8 = plVar2;
   FUN_180049830(plVar2);
   *plVar2 = (int64_t)&unknown_var_2248_ptr;
@@ -893,7 +893,7 @@ void FUN_18020f150(uint64_t *param_1)
   pplStack_d0 = (int64_t **)alStack_b8;
   _Cnd_destroy_in_situ(alStack_b8);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_f8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_f8);
 }
 
 

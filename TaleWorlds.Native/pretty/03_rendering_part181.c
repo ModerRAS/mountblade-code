@@ -24,7 +24,7 @@ void FUN_1803769d0(int64_t param_1)
   ppuStackX_18 = apuStack_28;
   pcStack_18 = FUN_180380430;
   pcStack_10 = FUN_1803802e0;
-  apuStack_28[0] = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,system_allocation_flags);
+  apuStack_28[0] = (int32_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,system_allocation_flags);
   uStack_40 = (int32_t)param_1;
   uStack_3c = (int32_t)((uint64_t)param_1 >> 0x20);
   *apuStack_28[0] = uStack_40;

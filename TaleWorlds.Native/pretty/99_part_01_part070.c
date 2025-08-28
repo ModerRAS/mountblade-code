@@ -692,7 +692,7 @@ uint64_t * FUN_1800e9ae0(uint64_t param_1)
   if (param_1 == 0) {
     return (uint64_t *)0x0;
   }
-  puVar1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,param_1 * 8 + 0x10,3);
+  puVar1 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,param_1 * 8 + 0x10,3);
   *puVar1 = param_1 << 0x20 | 8;
   iVar3 = 0;
   puVar2 = puVar1 + 2;

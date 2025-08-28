@@ -578,7 +578,7 @@ LAB_18020a4d0:
 LAB_18020a528:
                   *(int *)(plVar5 + 3) = (int)pcVar14;
                   if (lStack_100 != 0) {
-                    FUN_1806277c0(plVar5 + 4,uStack_f8);
+                    CoreMemoryPoolProcessor(plVar5 + 4,uStack_f8);
                   }
                   if (uVar1 != 0) {
                     // WARNING: Subroutine does not return

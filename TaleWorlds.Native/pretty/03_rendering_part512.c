@@ -61,7 +61,7 @@ FUN_18053f310(int64_t param_1,uint64_t *param_2,uint64_t param_3,int32_t *param_
   uint64_t uVar10;
   int64_t lVar11;
   
-  puVar8 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x40,*(int8_t *)(param_1 + 0x2c));
+  puVar8 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(param_1 + 0x2c));
   plVar4 = (int64_t *)param_5;
   uVar5 = param_4[1];
   uVar6 = param_4[2];
@@ -77,7 +77,7 @@ FUN_18053f310(int64_t param_1,uint64_t *param_2,uint64_t param_3,int32_t *param_
   *(uint *)(puVar8 + 6) = uVar2;
   uVar9 = 0;
   if (lVar11 != 0) {
-    uVar9 = FUN_18062b420(system_memory_pool_ptr,lVar11 * 8,uVar2 & 0xff);
+    uVar9 = CoreMemoryPoolAllocator(system_memory_pool_ptr,lVar11 * 8,uVar2 & 0xff);
   }
   *puVar1 = uVar9;
   puVar8[4] = uVar9;
@@ -100,7 +100,7 @@ LAB_18053f452:
                     *(int32_t *)(param_1 + 0x18),1);
       if ((char)param_5 != '\0') {
         lVar11 = ((uint64_t)param_5 >> 0x20) * 8;
-        uVar10 = FUN_18062b1e0(system_memory_pool_ptr,lVar11 + 8,8,*(int8_t *)(param_1 + 0x2c));
+        uVar10 = CoreMemoryPoolReallocator(system_memory_pool_ptr,lVar11 + 8,8,*(int8_t *)(param_1 + 0x2c));
                     // WARNING: Subroutine does not return
         memset(uVar10,0,lVar11);
       }
@@ -372,7 +372,7 @@ void FUN_18053fae0(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
           lVar3 = 1;
 LAB_18053fba9:
           plVar2 = (int64_t *)
-                   FUN_18062b420(system_memory_pool_ptr,lVar3 * 8,(char)param_2[3],param_4,uVar8);
+                   CoreMemoryPoolAllocator(system_memory_pool_ptr,lVar3 * 8,(char)param_2[3],param_4,uVar8);
           plVar5 = (int64_t *)param_2[1];
           plVar4 = (int64_t *)*param_2;
           plVar6 = plVar2;
@@ -569,7 +569,7 @@ LAB_18053ffa1:
   goto LAB_18053ffa1;
   lVar5 = *(int64_t *)(param_1 + 0x930);
   puVar9 = (uint64_t *)(lVar5 + 0x2bb8);
-  lVar6 = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(lVar5 + 0x2be0));
+  lVar6 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x28,*(int8_t *)(lVar5 + 0x2be0));
   plVar2 = *(int64_t **)(param_1 + 0x8a8);
   *(int64_t **)(lVar6 + 0x20) = plVar2;
   if (plVar2 != (int64_t *)0x0) {

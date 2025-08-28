@@ -117,7 +117,7 @@ LAB_180856fce:
             if (*piVar22 == 0) {
               uStack_b8 = CONCAT71(uStack_b8._1_7_,1);
                     // WARNING: Subroutine does not return
-              FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar7,&unknown_var_2208_ptr,0x76);
+              SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar7,&unknown_var_2208_ptr,0x76);
             }
           }
           if (((plVar21 == plVar18) ||
@@ -378,7 +378,7 @@ LAB_180857610:
   } while (iVar6 == 0);
 LAB_180857786:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_d8);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_d8);
 LAB_180857632:
   if ((plVar18 < *(int64_t **)(lVar11 + 0x28)) ||
      (*(int64_t **)(lVar11 + 0x28) + (int64_t)*(int *)(lVar11 + 0x30) * 2 <= plVar18))

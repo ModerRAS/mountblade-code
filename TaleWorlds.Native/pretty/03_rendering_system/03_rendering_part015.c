@@ -255,7 +255,7 @@ void perform_render_matrix_transform_and_collision(int64_t render_context)
   }
   
   // 继续处理后续渲染操作
-  FUN_1808fc050(transform_matrix[0x10] ^ (uint64_t)&stack_matrix[0]);
+  SystemSecurityChecker(transform_matrix[0x10] ^ (uint64_t)&stack_matrix[0]);
 }
 
 /**
@@ -350,7 +350,7 @@ void update_render_object_bounding_box(uint64_t param1, int64_t param2, uint64_t
   }
   
   // 继续处理后续渲染操作
-  FUN_1808fc050(transform_matrix[0x10] ^ (uint64_t)&stack_matrix[0]);
+  SystemSecurityChecker(transform_matrix[0x10] ^ (uint64_t)&stack_matrix[0]);
 }
 
 /**
@@ -361,7 +361,7 @@ void process_render_object_depth_buffer(void)
   uint64_t *transform_matrix;
   
   // 继续处理深度缓冲区操作
-  FUN_1808fc050(*(uint64_t *)(transform_matrix + 0x80) ^ (uint64_t)&stack_matrix[0]);
+  SystemSecurityChecker(*(uint64_t *)(transform_matrix + 0x80) ^ (uint64_t)&stack_matrix[0]);
 }
 
 /**
@@ -594,7 +594,7 @@ void perform_render_matrix_transform_simplified(int64_t object_ptr)
   }
   
   // 继续处理后续渲染操作
-  FUN_1808fc050(transform_matrix[0x10] ^ (uint64_t)&stack_matrix[0]);
+  SystemSecurityChecker(transform_matrix[0x10] ^ (uint64_t)&stack_matrix[0]);
 }
 
 /**

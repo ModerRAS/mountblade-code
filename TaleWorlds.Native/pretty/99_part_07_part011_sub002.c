@@ -107,7 +107,7 @@ void FUN_1804a5260(void)
                    (uint64_t)(system_system_memory - (int64_t)system_system_memory >> 3));
         }
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_178);
+        SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_178);
       }
       puVar1 = puRam0000000180c92bb8 + 8;
       puRam0000000180c92bb8[1] = *puVar1;

@@ -216,7 +216,7 @@ joined_r0x0001808bf17d:
   }
 LAB_1808bf30c:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_88);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_88);
 }
 
 
@@ -381,7 +381,7 @@ joined_r0x0001808bf17d:
   }
 LAB_1808bf30c:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -535,7 +535,7 @@ joined_r0x0001808bf17d:
   }
 LAB_1808bf30c:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -623,7 +623,7 @@ void FUN_1808bf1ae(void)
   }
 LAB_1808bf30c:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -707,7 +707,7 @@ void FUN_1808bf1d0(uint64_t param_1,float param_2,float param_3,float param_4)
   }
 LAB_1808bf30c:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 

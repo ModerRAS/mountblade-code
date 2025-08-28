@@ -445,7 +445,7 @@ void FUN_180760970(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t para
       puStack_178 = (int32_t *)auStack_148;
       auStack_148[0] = 0;
                     // WARNING: Subroutine does not return
-      FUN_180749ef0(iVar2,7,param_1,&unknown_var_1152_ptr);
+      DataTransformer(iVar2,7,param_1,&unknown_var_1152_ptr);
     }
   }
   uVar1 = param_6;
@@ -522,7 +522,7 @@ LAB_180760c04:
   }
 FUN_180760c64:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_198);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_198);
 }
 
 
@@ -571,7 +571,7 @@ void FUN_1807609d5(void)
                       (*(int64_t *)(unaff_RBX + 0x60) + 0xb0,1,0,0,puVar6);
     if ((iVar4 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180749ef0(iVar4,7);
+      DataTransformer(iVar4,7);
     }
   }
   uVar3 = _uStack00000000000001c8;
@@ -639,7 +639,7 @@ void FUN_1807609d5(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -721,7 +721,7 @@ LAB_180760c0c:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -751,7 +751,7 @@ void FUN_180760c21(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -765,7 +765,7 @@ void FUN_180760c64(void)
   uint64_t in_stack_00000150;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
 }
 
 

@@ -501,7 +501,7 @@ LAB_1804101ac:
   free(lVar10);
 FUN_18040ff57:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_68 ^ (uint64_t)auStack_138);
+  SystemSecurityChecker(uStack_68 ^ (uint64_t)auStack_138);
 }
 
 
@@ -689,7 +689,7 @@ LAB_1804101ac:
 LAB_18040ff37:
   free(unaff_RSI);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000d0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000d0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -864,7 +864,7 @@ LAB_1804101ac:
 LAB_18040ff37:
   free(in_stack_00000060);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000d0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000d0 ^ (uint64_t)&stack0x00000000);
 }
 
 

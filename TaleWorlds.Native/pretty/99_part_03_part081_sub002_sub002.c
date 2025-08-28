@@ -810,7 +810,7 @@ void FUN_180246810(int32_t *param_1)
       *(uint64_t *)(param_1 + 0xd6e) = 0;
       *(int8_t *)((int64_t)param_1 + 0x9a0d) = 0;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_658);
+      SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_658);
     }
     if (*plVar9 != 0) break;
     plVar9 = plVar9 + 4;
