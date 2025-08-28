@@ -1,375 +1,419 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part014.c - 3 个函数
+// 04_ui_system_part014.c - UI系统高级动画处理和向量归一化模块
+// 包含3个核心函数：UI系统参数化动画处理器、UI系统向量归一化处理器、UI系统简单数据设置器
+// 主要功能：参数化动画处理、向量归一化、矩阵变换、数据设置、高级数学计算
 
-// 函数: void FUN_18065a472(undefined8 param_1,float param_2,undefined8 param_3,float param_4,
-void FUN_18065a472(undefined8 param_1,float param_2,undefined8 param_3,float param_4,
+// 常量定义
+#define UI_ZERO_FLOAT 0.0f
+#define UI_ONE_FLOAT 1.0f
+#define UI_HALF_FLOAT 0.5f
+#define UI_TWO_FLOAT 2.0f
+#define UI_THREE_FLOAT 3.0f
+#define UI_FOUR_FLOAT 4.0f
+#define UI_FIVE_FLOAT 5.0f
+#define UI_SIX_FLOAT 6.0f
+#define UI_EIGHT_FLOAT 8.0f
+#define UI_TEN_FLOAT 10.0f
+#define UI_FIFTEEN_FLOAT 15.0f
+#define UI_POINT_ZERO_FIVE_FLOAT 0.05f
+#define UI_POINT_ONE_FLOAT 0.1f
+#define UI_POINT_FIVE_FLOAT 0.5f
+#define UI_ZERO_ZERO_ONE_FLOAT 0.001f
+#define UI_NINE_NINE_NINE_FLOAT 0.999f
+#define UI_MIN_NORMALIZED_FLOAT 1.1754944e-38f
+#define UI_ABS_MASK 0x7fffffff
+#define UI_NORMALIZATION_VALUE 0x3f800000
+
+// 函数别名定义
+#define ui_system_parametric_animation_processor FUN_18065a472
+#define ui_system_vector_normalization_processor FUN_18065a7dc
+#define ui_system_simple_data_setter FUN_18065a91c
+
+// UI系统参数化动画处理器 - 处理基于参数的UI动画和变换
+// 该函数实现了参数化的UI动画处理，包括动画插值、权重计算、向量变换和归一化处理
+void ui_system_parametric_animation_processor(undefined8 param_1,float param_2,undefined8 param_3,float param_4,
                   undefined8 param_5,undefined8 param_6,float param_7,float param_8,float param_9,
                   undefined8 param_10,undefined8 param_11,float param_12)
-
 {
-  undefined3 uVar1;
-  float *pfVar2;
-  int iVar3;
-  int iVar4;
-  longlong unaff_RBP;
-  char cVar5;
-  undefined4 unaff_EDI;
-  longlong unaff_R14;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  undefined1 auVar11 [16];
-  uint in_XMM5_Da;
-  float fVar12;
-  float unaff_XMM6_Da;
-  float unaff_XMM8_Da;
-  float unaff_XMM9_Da;
-  float unaff_XMM14_Da;
-  float fStack000000000000003c;
-  float afStack_60e8 [6200];
-  undefined8 uStack_8;
+  undefined3 conversion_flag;
+  float *animation_data_ptr;
+  int loop_counter_1;
+  int loop_counter_2;
+  longlong context_ptr;
+  char control_flag;
+  undefined4 render_flag;
+  longlong resource_ptr;
+  float weight_value;
+  float temp_value_1;
+  float temp_value_2;
+  float temp_value_3;
+  float temp_value_4;
+  float temp_value_5;
+  undefined1 conversion_buffer [16];
+  uint abs_mask;
+  float base_parameter_1;
+  float base_parameter_2;
+  float base_parameter_3;
+  float base_parameter_4;
+  float temp_storage;
+  float animation_buffer [6200];
+  undefined8 return_address;
   
+  // 参数化权重计算
   param_4 = param_2 * param_4;
-  if (unaff_XMM6_Da < *(float *)(unaff_R14 + 0x48)) {
-    fVar6 = (*(float *)(unaff_R14 + 0x48) - param_2) * 4.0;
-    if (fVar6 <= unaff_XMM6_Da) {
-      fVar6 = unaff_XMM6_Da;
+  if (base_parameter_1 < *(float *)(resource_ptr + 0x48)) {
+    weight_value = (*(float *)(resource_ptr + 0x48) - param_2) * UI_FOUR_FLOAT;
+    if (weight_value <= base_parameter_1) {
+      weight_value = base_parameter_1;
     }
-    param_4 = param_4 * fVar6;
+    param_4 = param_4 * weight_value;
   }
-  pfVar2 = (float *)(unaff_R14 + 0x6154);
-  iVar4 = 1;
+  
+  // 动画数据处理初始化
+  animation_data_ptr = (float *)(resource_ptr + 0x6154);
+  loop_counter_2 = 1;
+  abs_mask = UI_ABS_MASK;
+  
+  // 参数化动画处理主循环
   do {
-    fVar6 = *(float *)(((longlong)afStack_60e8 - unaff_R14) + (longlong)pfVar2);
-    fVar7 = fVar6 - pfVar2[-10];
-    fVar8 = (float)((uint)fVar7 & in_XMM5_Da);
-    if (0.001 <= fVar8) {
-      fVar9 = unaff_XMM14_Da;
-      if (unaff_XMM6_Da <= fVar7) {
-        fVar9 = unaff_XMM8_Da;
+    // 第一组动画数据处理
+    temp_value_1 = *(float *)(((longlong)animation_buffer - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_2 = temp_value_1 - animation_data_ptr[-10];
+    temp_value_3 = (float)((uint)temp_value_2 & abs_mask);
+    if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_3) {
+      temp_value_4 = base_parameter_4;
+      if (base_parameter_1 <= temp_value_2) {
+        temp_value_4 = base_parameter_3;
       }
-      if (0.05 <= fVar8) {
-        if (0.5 <= fVar8) {
-          fVar8 = 0.5;
+      if (UI_POINT_ZERO_FIVE_FLOAT <= temp_value_3) {
+        if (UI_POINT_FIVE_FLOAT <= temp_value_3) {
+          temp_value_3 = UI_POINT_FIVE_FLOAT;
         }
       }
       else {
-        fVar8 = 0.05;
+        temp_value_3 = UI_POINT_ZERO_FIVE_FLOAT;
       }
-      fVar8 = fVar8 * fVar9 * param_6._4_4_ * 6.0;
-      in_XMM5_Da = 0x7fffffff;
-      if (fVar8 * fVar9 <= fVar9 * fVar7) {
-        fVar6 = pfVar2[-10] + fVar8;
+      temp_value_3 = temp_value_3 * temp_value_4 * param_6._4_4_ * UI_SIX_FLOAT;
+      abs_mask = UI_ABS_MASK;
+      if (temp_value_3 * temp_value_4 <= temp_value_4 * temp_value_2) {
+        temp_value_1 = animation_data_ptr[-10] + temp_value_3;
       }
     }
-    pfVar2[-10] = fVar6;
-    *pfVar2 = fVar6;
-    cVar5 = (char)unaff_EDI;
-    if (2 < iVar4) {
-      if (iVar4 < 7) {
-        fVar7 = unaff_XMM8_Da - param_4;
+    animation_data_ptr[-10] = temp_value_1;
+    *animation_data_ptr = temp_value_1;
+    control_flag = (char)render_flag;
+    
+    // 权重应用逻辑
+    if (UI_TWO_FLOAT < loop_counter_2) {
+      if (loop_counter_2 < 7) {
+        temp_value_2 = base_parameter_3 - param_4;
       }
       else {
-        fVar7 = unaff_XMM6_Da;
-        if (iVar4 == 7) {
-          if (*(char *)(unaff_R14 + 0x5d) == cVar5) {
+        temp_value_2 = base_parameter_1;
+        if (loop_counter_2 == 7) {
+          if (*(char *)(resource_ptr + 0x5d) == control_flag) {
 LAB_18065a5b3:
-            fVar7 = param_4;
+            temp_value_2 = param_4;
           }
         }
         else {
-          if (iVar4 != 8) goto LAB_18065a5d3;
-          if (*(char *)(unaff_R14 + 0x5d) != cVar5) goto LAB_18065a5b3;
+          if (loop_counter_2 != 8) goto LAB_18065a5d3;
+          if (*(char *)(resource_ptr + 0x5d) != control_flag) goto LAB_18065a5b3;
         }
       }
-      fVar6 = fVar7 * fVar6;
-      *pfVar2 = fVar6;
+      temp_value_1 = temp_value_2 * temp_value_1;
+      *animation_data_ptr = temp_value_1;
     }
+    
 LAB_18065a5d3:
-    fVar7 = *(float *)((longlong)afStack_60e8 + (4 - unaff_R14) + (longlong)pfVar2);
-    fVar8 = fVar7 - pfVar2[-9];
-    fVar9 = (float)((uint)fVar8 & in_XMM5_Da);
-    if (0.001 <= fVar9) {
-      fVar10 = unaff_XMM14_Da;
-      if (unaff_XMM6_Da <= fVar8) {
-        fVar10 = unaff_XMM8_Da;
+    // 第二组动画数据处理
+    temp_value_2 = *(float *)(((longlong)animation_buffer + (4 - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_3 = temp_value_2 - animation_data_ptr[-9];
+    temp_value_4 = (float)((uint)temp_value_3 & abs_mask);
+    if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_4) {
+      temp_value_5 = base_parameter_4;
+      if (base_parameter_1 <= temp_value_3) {
+        temp_value_5 = base_parameter_3;
       }
-      if (0.05 <= fVar9) {
-        if (0.5 <= fVar9) {
-          fVar9 = 0.5;
+      if (UI_POINT_ZERO_FIVE_FLOAT <= temp_value_4) {
+        if (UI_POINT_FIVE_FLOAT <= temp_value_4) {
+          temp_value_4 = UI_POINT_FIVE_FLOAT;
         }
       }
       else {
-        fVar9 = 0.05;
+        temp_value_4 = UI_POINT_ZERO_FIVE_FLOAT;
       }
-      fVar9 = fVar9 * fVar10 * param_6._4_4_ * 6.0;
-      in_XMM5_Da = 0x7fffffff;
-      if (fVar9 * fVar10 <= fVar10 * fVar8) {
-        fVar7 = pfVar2[-9] + fVar9;
+      temp_value_4 = temp_value_4 * temp_value_5 * param_6._4_4_ * UI_SIX_FLOAT;
+      abs_mask = UI_ABS_MASK;
+      if (temp_value_4 * temp_value_5 <= temp_value_5 * temp_value_3) {
+        temp_value_2 = animation_data_ptr[-9] + temp_value_4;
       }
     }
-    iVar3 = iVar4 + 1;
-    pfVar2[-9] = fVar7;
-    pfVar2[1] = fVar7;
-    if (2 < iVar3) {
-      if (iVar3 < 7) {
-        fVar8 = unaff_XMM8_Da - param_4;
+    loop_counter_1 = loop_counter_2 + 1;
+    animation_data_ptr[-9] = temp_value_2;
+    animation_data_ptr[1] = temp_value_2;
+    
+    // 权重应用逻辑（第二组）
+    if (UI_TWO_FLOAT < loop_counter_1) {
+      if (loop_counter_1 < 7) {
+        temp_value_3 = base_parameter_3 - param_4;
       }
       else {
-        fVar8 = unaff_XMM6_Da;
-        if (iVar3 == 7) {
-          if (*(char *)(unaff_R14 + 0x5d) == cVar5) {
+        temp_value_3 = base_parameter_1;
+        if (loop_counter_1 == 7) {
+          if (*(char *)(resource_ptr + 0x5d) == control_flag) {
 LAB_18065a67b:
-            fVar8 = param_4;
+            temp_value_3 = param_4;
           }
         }
         else {
-          if (iVar3 != 8) goto LAB_18065a69c;
-          if (*(char *)(unaff_R14 + 0x5d) != cVar5) goto LAB_18065a67b;
+          if (loop_counter_1 != 8) goto LAB_18065a69c;
+          if (*(char *)(resource_ptr + 0x5d) != control_flag) goto LAB_18065a67b;
         }
       }
-      fVar7 = fVar8 * fVar7;
-      pfVar2[1] = fVar7;
+      temp_value_2 = temp_value_3 * temp_value_2;
+      animation_data_ptr[1] = temp_value_2;
     }
+    
 LAB_18065a69c:
-    fVar8 = *(float *)((longlong)afStack_60e8 + (8 - unaff_R14) + (longlong)pfVar2);
-    fVar9 = fVar8 - pfVar2[-8];
-    fVar10 = (float)((uint)fVar9 & in_XMM5_Da);
-    if (0.001 <= fVar10) {
-      fVar12 = unaff_XMM14_Da;
-      if (unaff_XMM6_Da <= fVar9) {
-        fVar12 = unaff_XMM8_Da;
+    // 第三组动画数据处理
+    temp_value_3 = *(float *)(((longlong)animation_buffer + (8 - resource_ptr) + (longlong)animation_data_ptr);
+    temp_value_4 = temp_value_3 - animation_data_ptr[-8];
+    temp_value_5 = (float)((uint)temp_value_4 & abs_mask);
+    if (UI_ZERO_ZERO_ONE_FLOAT <= temp_value_5) {
+      weight_value = base_parameter_4;
+      if (base_parameter_1 <= temp_value_4) {
+        weight_value = base_parameter_3;
       }
-      if (0.05 <= fVar10) {
-        if (0.5 <= fVar10) {
-          fVar10 = 0.5;
+      if (UI_POINT_ZERO_FIVE_FLOAT <= temp_value_5) {
+        if (UI_POINT_FIVE_FLOAT <= temp_value_5) {
+          temp_value_5 = UI_POINT_FIVE_FLOAT;
         }
       }
       else {
-        fVar10 = 0.05;
+        temp_value_5 = UI_POINT_ZERO_FIVE_FLOAT;
       }
-      fVar10 = fVar10 * fVar12 * param_6._4_4_ * 6.0;
-      in_XMM5_Da = 0x7fffffff;
-      if (fVar10 * fVar12 <= fVar12 * fVar9) {
-        fVar8 = pfVar2[-8] + fVar10;
+      temp_value_5 = temp_value_5 * weight_value * param_6._4_4_ * UI_SIX_FLOAT;
+      abs_mask = UI_ABS_MASK;
+      if (temp_value_5 * weight_value <= weight_value * temp_value_4) {
+        temp_value_3 = animation_data_ptr[-8] + temp_value_5;
       }
     }
-    iVar3 = iVar4 + 2;
-    pfVar2[-8] = fVar8;
-    pfVar2[2] = fVar8;
-    if (2 < iVar3) {
-      if (iVar3 < 7) {
-        fVar9 = unaff_XMM8_Da - param_4;
+    loop_counter_1 = loop_counter_2 + 2;
+    animation_data_ptr[-8] = temp_value_3;
+    animation_data_ptr[2] = temp_value_3;
+    
+    // 权重应用逻辑（第三组）
+    if (UI_TWO_FLOAT < loop_counter_1) {
+      if (loop_counter_1 < 7) {
+        temp_value_4 = base_parameter_3 - param_4;
       }
       else {
-        fVar9 = unaff_XMM6_Da;
-        if (iVar3 == 7) {
-          if (*(char *)(unaff_R14 + 0x5d) == cVar5) {
+        temp_value_4 = base_parameter_1;
+        if (loop_counter_1 == 7) {
+          if (*(char *)(resource_ptr + 0x5d) == control_flag) {
 LAB_18065a744:
-            fVar9 = param_4;
+            temp_value_4 = param_4;
           }
         }
         else {
-          if (iVar3 != 8) goto LAB_18065a765;
-          if (*(char *)(unaff_R14 + 0x5d) != cVar5) goto LAB_18065a744;
+          if (loop_counter_1 != 8) goto LAB_18065a765;
+          if (*(char *)(resource_ptr + 0x5d) != control_flag) goto LAB_18065a744;
         }
       }
-      fVar8 = fVar9 * fVar8;
-      pfVar2[2] = fVar8;
+      temp_value_3 = temp_value_4 * temp_value_3;
+      animation_data_ptr[2] = temp_value_3;
     }
+    
 LAB_18065a765:
-    iVar4 = iVar4 + 3;
-    unaff_XMM9_Da = unaff_XMM9_Da + fVar6 + fVar7 + fVar8;
-    pfVar2 = pfVar2 + 3;
-    if (9 < iVar4) {
-      fVar6 = *(float *)(unaff_R14 + 0x6150);
-      fVar6 = unaff_XMM8_Da - ((fVar6 * 6.0 - 15.0) * fVar6 + 10.0) * fVar6 * fVar6 * fVar6;
-      if (unaff_XMM9_Da != fVar6) {
-        if (unaff_XMM9_Da <= unaff_XMM6_Da) {
-          *(undefined4 *)(unaff_R14 + 0x6150) = 0x3f800000;
+    // 累加和指针更新
+    loop_counter_2 = loop_counter_2 + 3;
+    base_parameter_2 = base_parameter_2 + temp_value_1 + temp_value_2 + temp_value_3;
+    animation_data_ptr = animation_data_ptr + 3;
+    
+    // 高级动画处理和归一化
+    if (9 < loop_counter_2) {
+      temp_value_1 = *(float *)(resource_ptr + 0x6150);
+      temp_value_1 = base_parameter_3 - ((temp_value_1 * UI_SIX_FLOAT - UI_FIFTEEN_FLOAT) * temp_value_1 + UI_TEN_FLOAT) * temp_value_1 * temp_value_1 * temp_value_1;
+      if (base_parameter_2 != temp_value_1) {
+        if (base_parameter_2 <= base_parameter_1) {
+          *(undefined4 *)(resource_ptr + 0x6150) = UI_NORMALIZATION_VALUE;
         }
         else {
-          fVar6 = fVar6 / unaff_XMM9_Da;
-          *(float *)(unaff_R14 + 0x6154) = *(float *)(unaff_R14 + 0x6154) * fVar6;
-          *(float *)(unaff_R14 + 0x6158) = *(float *)(unaff_R14 + 0x6158) * fVar6;
-          *(float *)(unaff_R14 + 0x615c) = *(float *)(unaff_R14 + 0x615c) * fVar6;
-          *(float *)(unaff_R14 + 0x6160) = *(float *)(unaff_R14 + 0x6160) * fVar6;
-          *(float *)(unaff_R14 + 0x6164) = *(float *)(unaff_R14 + 0x6164) * fVar6;
-          *(float *)(unaff_R14 + 0x6168) = *(float *)(unaff_R14 + 0x6168) * fVar6;
-          *(float *)(unaff_R14 + 0x616c) = *(float *)(unaff_R14 + 0x616c) * fVar6;
-          *(float *)(unaff_R14 + 0x6170) = *(float *)(unaff_R14 + 0x6170) * fVar6;
-          *(float *)(unaff_R14 + 0x6174) = fVar6 * *(float *)(unaff_R14 + 0x6174);
+          temp_value_1 = temp_value_1 / base_parameter_2;
+          *(float *)(resource_ptr + 0x6154) = *(float *)(resource_ptr + 0x6154) * temp_value_1;
+          *(float *)(resource_ptr + 0x6158) = *(float *)(resource_ptr + 0x6158) * temp_value_1;
+          *(float *)(resource_ptr + 0x615c) = *(float *)(resource_ptr + 0x615c) * temp_value_1;
+          *(float *)(resource_ptr + 0x6160) = *(float *)(resource_ptr + 0x6160) * temp_value_1;
+          *(float *)(resource_ptr + 0x6164) = *(float *)(resource_ptr + 0x6164) * temp_value_1;
+          *(float *)(resource_ptr + 0x6168) = *(float *)(resource_ptr + 0x6168) * temp_value_1;
+          *(float *)(resource_ptr + 0x616c) = *(float *)(resource_ptr + 0x616c) * temp_value_1;
+          *(float *)(resource_ptr + 0x6170) = *(float *)(resource_ptr + 0x6170) * temp_value_1;
+          *(float *)(resource_ptr + 0x6174) = temp_value_1 * *(float *)(resource_ptr + 0x6174);
         }
       }
+      
+      // 参数化变换计算
       param_9 = param_9 - param_7;
       param_10._4_4_ =
            (((((float)param_10 + (float)param_11) * param_8 + param_10._4_4_) - param_11._4_4_) -
            param_12) - param_10._4_4_;
-      fVar6 = param_9 * param_9 + param_10._4_4_ * param_10._4_4_;
-      uVar1 = (undefined3)((uint)unaff_EDI >> 8);
-      fVar6 = (float)CONCAT31(uVar1,fVar6 <= 1.1754944e-38) * 1.1754944e-38 + fVar6;
-      auVar11 = rsqrtss(ZEXT416((uint)fVar6),ZEXT416((uint)fVar6));
-      fVar7 = auVar11._0_4_;
-      fVar6 = fVar7 * 0.5 * (3.0 - fVar6 * fVar7 * fVar7);
-      fStack000000000000003c = fVar6 * param_9;
-      fVar6 = fVar6 * param_10._4_4_;
-      if ((float)((uint)(fVar6 * *(float *)(unaff_R14 + 0x6178) +
-                        fStack000000000000003c * *(float *)(unaff_R14 + 0x617c)) & in_XMM5_Da) <=
-          0.999) {
-        fVar8 = *(float *)(unaff_R14 + 0x6154) - *(float *)(unaff_R14 + 0x6158);
-        fVar9 = (((*(float *)(unaff_R14 + 0x6160) + *(float *)(unaff_R14 + 0x615c) +
-                  *(float *)(unaff_R14 + 0x616c)) - *(float *)(unaff_R14 + 0x6164)) -
-                *(float *)(unaff_R14 + 0x6168)) - *(float *)(unaff_R14 + 0x6170);
-        fVar6 = fVar8 * fVar8 + fVar9 * fVar9;
-        fVar6 = (float)CONCAT31(uVar1,fVar6 <= 1.1754944e-38) * 1.1754944e-38 + fVar6;
-        auVar11 = rsqrtss(ZEXT416((uint)fVar6),ZEXT416((uint)fVar6));
-        fVar7 = auVar11._0_4_;
-        param_6._4_4_ = param_6._4_4_ * 8.0;
-        fVar6 = fVar7 * 0.5 * (3.0 - fVar6 * fVar7 * fVar7);
-        fStack000000000000003c =
-             fVar6 * fVar8 * param_6._4_4_ +
-             (unaff_XMM8_Da - param_6._4_4_) * *(float *)(unaff_R14 + 0x617c);
-        *(ulonglong *)(unaff_R14 + 0x6178) =
-             CONCAT44(fStack000000000000003c,
-                      fVar6 * fVar9 * param_6._4_4_ +
-                      (unaff_XMM8_Da - param_6._4_4_) * *(float *)(unaff_R14 + 0x6178));
-        fVar6 = *(float *)(unaff_R14 + 0x617c);
-        fVar7 = *(float *)(unaff_R14 + 0x6178);
-        fVar8 = fVar7 * fVar7 + fVar6 * fVar6;
-        auVar11 = rsqrtss(ZEXT416((uint)fVar8),ZEXT416((uint)fVar8));
-        fVar9 = auVar11._0_4_;
-        fVar8 = fVar9 * 0.5 * (3.0 - fVar8 * fVar9 * fVar9);
-        *(float *)(unaff_R14 + 0x617c) = fVar8 * fVar6;
-        *(float *)(unaff_R14 + 0x6178) = fVar8 * fVar7;
+      temp_value_1 = param_9 * param_9 + param_10._4_4_ * param_10._4_4_;
+      conversion_flag = (undefined3)((uint)render_flag >> 8);
+      temp_value_1 = (float)CONCAT31(conversion_flag,temp_value_1 <= UI_MIN_NORMALIZED_FLOAT) * UI_MIN_NORMALIZED_FLOAT + temp_value_1;
+      conversion_buffer = rsqrtss(ZEXT416((uint)temp_value_1),ZEXT416((uint)temp_value_1));
+      temp_value_2 = conversion_buffer._0_4_;
+      temp_value_1 = temp_value_2 * UI_HALF_FLOAT * (UI_THREE_FLOAT - temp_value_1 * temp_value_2 * temp_value_2);
+      temp_storage = temp_value_1 * param_9;
+      temp_value_1 = temp_value_1 * param_10._4_4_;
+      
+      // 边界检查和归一化处理
+      if ((float)((uint)(temp_value_1 * *(float *)(resource_ptr + 0x6178) +
+                        temp_storage * *(float *)(resource_ptr + 0x617c)) & abs_mask) <=
+          UI_NINE_NINE_NINE_FLOAT) {
+        temp_value_2 = *(float *)(resource_ptr + 0x6154) - *(float *)(resource_ptr + 0x6158);
+        temp_value_3 = (((*(float *)(resource_ptr + 0x6160) + *(float *)(resource_ptr + 0x615c) +
+                  *(float *)(resource_ptr + 0x616c)) - *(float *)(resource_ptr + 0x6164)) -
+                *(float *)(resource_ptr + 0x6168)) - *(float *)(resource_ptr + 0x6170);
+        temp_value_1 = temp_value_2 * temp_value_2 + temp_value_3 * temp_value_3;
+        temp_value_1 = (float)CONCAT31(conversion_flag,temp_value_1 <= UI_MIN_NORMALIZED_FLOAT) * UI_MIN_NORMALIZED_FLOAT + temp_value_1;
+        conversion_buffer = rsqrtss(ZEXT416((uint)temp_value_1),ZEXT416((uint)temp_value_1));
+        temp_value_2 = conversion_buffer._0_4_;
+        param_6._4_4_ = param_6._4_4_ * UI_EIGHT_FLOAT;
+        temp_value_1 = temp_value_2 * UI_HALF_FLOAT * (UI_THREE_FLOAT - temp_value_1 * temp_value_2 * temp_value_2);
+        temp_storage =
+             temp_value_1 * temp_value_2 * param_6._4_4_ +
+             (base_parameter_3 - param_6._4_4_) * *(float *)(resource_ptr + 0x617c);
+        *(ulonglong *)(resource_ptr + 0x6178) =
+             CONCAT44(temp_storage,
+                      temp_value_1 * temp_value_3 * param_6._4_4_ +
+                      (base_parameter_3 - param_6._4_4_) * *(float *)(resource_ptr + 0x6178));
+        temp_value_1 = *(float *)(resource_ptr + 0x617c);
+        temp_value_2 = *(float *)(resource_ptr + 0x6178);
+        temp_value_3 = temp_value_2 * temp_value_2 + temp_value_1 * temp_value_1;
+        conversion_buffer = rsqrtss(ZEXT416((uint)temp_value_3),ZEXT416((uint)temp_value_3));
+        temp_value_4 = conversion_buffer._0_4_;
+        temp_value_3 = temp_value_4 * UI_HALF_FLOAT * (UI_THREE_FLOAT - temp_value_3 * temp_value_4 * temp_value_4);
+        *(float *)(resource_ptr + 0x617c) = temp_value_3 * temp_value_1;
+        *(float *)(resource_ptr + 0x6178) = temp_value_3 * temp_value_2;
       }
       else {
-        *(ulonglong *)(unaff_R14 + 0x6178) = CONCAT44(fStack000000000000003c,fVar6);
+        *(ulonglong *)(resource_ptr + 0x6178) = CONCAT44(temp_storage,temp_value_1);
       }
-                    // WARNING: Subroutine does not return
-      uStack_8 = 0x18065aa9f;
-      FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x70) ^ (ulonglong)&stack0x00000000);
+      
+      // 调用渲染处理函数
+      return_address = 0x18065aa9f;
+      FUN_1808fc050(*(ulonglong *)(context_ptr + -0x70) ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
 
-
-
-
-
-// 函数: void FUN_18065a7dc(void)
-void FUN_18065a7dc(void)
-
+// UI系统向量归一化处理器 - 处理UI系统中的向量归一化和变换
+// 该函数实现了高级向量归一化算法，包括矩阵变换、向量运算、归一化处理和边界检查
+void ui_system_vector_normalization_processor(void)
 {
-  undefined3 uVar1;
-  longlong unaff_RBP;
-  undefined4 unaff_EDI;
-  longlong unaff_R14;
-  float fVar2;
-  float fVar3;
-  undefined1 auVar4 [16];
-  float in_XMM3_Da;
-  uint in_XMM5_Da;
-  float unaff_XMM6_Da;
-  float fVar5;
-  float unaff_XMM8_Da;
-  float unaff_XMM9_Da;
-  float unaff_XMM12_Da;
-  float fVar6;
-  float unaff_XMM15_Da;
-  undefined8 in_stack_00000030;
-  float in_stack_00000038;
-  float fStack000000000000003c;
-  float in_stack_00000040;
-  float in_stack_00000048;
-  float fStack0000000000000058;
-  float fStack000000000000005c;
-  float in_stack_00000060;
+  undefined3 conversion_flag;
+  longlong context_ptr;
+  undefined4 render_flag;
+  longlong resource_ptr;
+  float vector_component_1;
+  float vector_component_2;
+  undefined1 conversion_buffer [16];
+  float normalization_factor;
+  uint abs_mask;
+  float base_parameter_1;
+  float temp_value_1;
+  float base_parameter_2;
+  float base_parameter_3;
+  float base_parameter_4;
+  float base_parameter_5;
+  float temp_storage_1;
+  float temp_storage_2;
+  float input_parameter_1;
+  float input_parameter_2;
+  float temp_storage_3;
+  undefined8 input_param_1;
   
-  if (unaff_XMM9_Da <= unaff_XMM6_Da) {
-    *(undefined4 *)(unaff_R14 + 0x6150) = 0x3f800000;
+  // 归一化因子检查和处理
+  if (base_parameter_3 <= base_parameter_1) {
+    *(undefined4 *)(resource_ptr + 0x6150) = UI_NORMALIZATION_VALUE;
   }
   else {
-    in_XMM3_Da = in_XMM3_Da / unaff_XMM9_Da;
-    *(float *)(unaff_R14 + 0x6154) = *(float *)(unaff_R14 + 0x6154) * in_XMM3_Da;
-    *(float *)(unaff_R14 + 0x6158) = *(float *)(unaff_R14 + 0x6158) * in_XMM3_Da;
-    *(float *)(unaff_R14 + 0x615c) = *(float *)(unaff_R14 + 0x615c) * in_XMM3_Da;
-    *(float *)(unaff_R14 + 0x6160) = *(float *)(unaff_R14 + 0x6160) * in_XMM3_Da;
-    *(float *)(unaff_R14 + 0x6164) = *(float *)(unaff_R14 + 0x6164) * in_XMM3_Da;
-    *(float *)(unaff_R14 + 0x6168) = *(float *)(unaff_R14 + 0x6168) * in_XMM3_Da;
-    *(float *)(unaff_R14 + 0x616c) = *(float *)(unaff_R14 + 0x616c) * in_XMM3_Da;
-    *(float *)(unaff_R14 + 0x6170) = *(float *)(unaff_R14 + 0x6170) * in_XMM3_Da;
-    *(float *)(unaff_R14 + 0x6174) = in_XMM3_Da * *(float *)(unaff_R14 + 0x6174);
+    normalization_factor = normalization_factor / base_parameter_3;
+    *(float *)(resource_ptr + 0x6154) = *(float *)(resource_ptr + 0x6154) * normalization_factor;
+    *(float *)(resource_ptr + 0x6158) = *(float *)(resource_ptr + 0x6158) * normalization_factor;
+    *(float *)(resource_ptr + 0x615c) = *(float *)(resource_ptr + 0x615c) * normalization_factor;
+    *(float *)(resource_ptr + 0x6160) = *(float *)(resource_ptr + 0x6160) * normalization_factor;
+    *(float *)(resource_ptr + 0x6164) = *(float *)(resource_ptr + 0x6164) * normalization_factor;
+    *(float *)(resource_ptr + 0x6168) = *(float *)(resource_ptr + 0x6168) * normalization_factor;
+    *(float *)(resource_ptr + 0x616c) = *(float *)(resource_ptr + 0x616c) * normalization_factor;
+    *(float *)(resource_ptr + 0x6170) = *(float *)(resource_ptr + 0x6170) * normalization_factor;
+    *(float *)(resource_ptr + 0x6174) = normalization_factor * *(float *)(resource_ptr + 0x6174);
   }
-  in_stack_00000048 = in_stack_00000048 - in_stack_00000038;
-  fVar6 = ((((unaff_XMM12_Da + fStack0000000000000058) * in_stack_00000040 + unaff_XMM15_Da) -
-           fStack000000000000005c) - in_stack_00000060) - unaff_XMM15_Da;
-  fVar2 = in_stack_00000048 * in_stack_00000048 + fVar6 * fVar6;
-  uVar1 = (undefined3)((uint)unaff_EDI >> 8);
-  fVar2 = (float)CONCAT31(uVar1,fVar2 <= 1.1754944e-38) * 1.1754944e-38 + fVar2;
-  auVar4 = rsqrtss(ZEXT416((uint)fVar2),ZEXT416((uint)fVar2));
-  fVar3 = auVar4._0_4_;
-  fVar2 = fVar3 * 0.5 * (3.0 - fVar2 * fVar3 * fVar3);
-  fStack000000000000003c = fVar2 * in_stack_00000048;
-  fVar2 = fVar2 * fVar6;
-  if ((float)((uint)(fVar2 * *(float *)(unaff_R14 + 0x6178) +
-                    fStack000000000000003c * *(float *)(unaff_R14 + 0x617c)) & in_XMM5_Da) <= 0.999)
+  
+  // 向量变换计算
+  input_parameter_2 = input_parameter_2 - input_parameter_1;
+  vector_component_2 = ((((base_parameter_4 + temp_storage_1) * input_parameter_1 + base_parameter_5) -
+           temp_storage_2) - input_parameter_2) - base_parameter_5;
+  vector_component_1 = input_parameter_2 * input_parameter_2 + vector_component_2 * vector_component_2;
+  conversion_flag = (undefined3)((uint)render_flag >> 8);
+  vector_component_1 = (float)CONCAT31(conversion_flag,vector_component_1 <= UI_MIN_NORMALIZED_FLOAT) * UI_MIN_NORMALIZED_FLOAT + vector_component_1;
+  conversion_buffer = rsqrtss(ZEXT416((uint)vector_component_1),ZEXT416((uint)vector_component_1));
+  temp_value_1 = conversion_buffer._0_4_;
+  vector_component_1 = temp_value_1 * UI_HALF_FLOAT * (UI_THREE_FLOAT - vector_component_1 * temp_value_1 * temp_value_1);
+  temp_storage_3 = vector_component_1 * input_parameter_2;
+  vector_component_1 = vector_component_1 * vector_component_2;
+  
+  // 边界检查和归一化处理
+  if ((float)((uint)(vector_component_1 * *(float *)(resource_ptr + 0x6178) +
+                    temp_storage_3 * *(float *)(resource_ptr + 0x617c)) & abs_mask) <= UI_NINE_NINE_NINE_FLOAT)
   {
-    fVar6 = *(float *)(unaff_R14 + 0x6154) - *(float *)(unaff_R14 + 0x6158);
-    fVar5 = (((*(float *)(unaff_R14 + 0x6160) + *(float *)(unaff_R14 + 0x615c) +
-              *(float *)(unaff_R14 + 0x616c)) - *(float *)(unaff_R14 + 0x6164)) -
-            *(float *)(unaff_R14 + 0x6168)) - *(float *)(unaff_R14 + 0x6170);
-    fVar2 = fVar6 * fVar6 + fVar5 * fVar5;
-    fVar2 = (float)CONCAT31(uVar1,fVar2 <= 1.1754944e-38) * 1.1754944e-38 + fVar2;
-    auVar4 = rsqrtss(ZEXT416((uint)fVar2),ZEXT416((uint)fVar2));
-    fVar3 = auVar4._0_4_;
-    in_stack_00000030._4_4_ = in_stack_00000030._4_4_ * 8.0;
-    fVar2 = fVar3 * 0.5 * (3.0 - fVar2 * fVar3 * fVar3);
-    fStack000000000000003c =
-         fVar2 * fVar6 * in_stack_00000030._4_4_ +
-         (unaff_XMM8_Da - in_stack_00000030._4_4_) * *(float *)(unaff_R14 + 0x617c);
-    *(ulonglong *)(unaff_R14 + 0x6178) =
-         CONCAT44(fStack000000000000003c,
-                  fVar2 * fVar5 * in_stack_00000030._4_4_ +
-                  (unaff_XMM8_Da - in_stack_00000030._4_4_) * *(float *)(unaff_R14 + 0x6178));
-    fVar2 = *(float *)(unaff_R14 + 0x617c);
-    fVar3 = *(float *)(unaff_R14 + 0x6178);
-    fVar6 = fVar3 * fVar3 + fVar2 * fVar2;
-    auVar4 = rsqrtss(ZEXT416((uint)fVar6),ZEXT416((uint)fVar6));
-    fVar5 = auVar4._0_4_;
-    fVar6 = fVar5 * 0.5 * (3.0 - fVar6 * fVar5 * fVar5);
-    *(float *)(unaff_R14 + 0x617c) = fVar6 * fVar2;
-    *(float *)(unaff_R14 + 0x6178) = fVar6 * fVar3;
+    vector_component_2 = *(float *)(resource_ptr + 0x6154) - *(float *)(resource_ptr + 0x6158);
+    temp_value_1 = (((*(float *)(resource_ptr + 0x6160) + *(float *)(resource_ptr + 0x615c) +
+              *(float *)(resource_ptr + 0x616c)) - *(float *)(resource_ptr + 0x6164)) -
+            *(float *)(resource_ptr + 0x6168)) - *(float *)(resource_ptr + 0x6170);
+    vector_component_1 = vector_component_2 * vector_component_2 + temp_value_1 * temp_value_1;
+    vector_component_1 = (float)CONCAT31(conversion_flag,vector_component_1 <= UI_MIN_NORMALIZED_FLOAT) * UI_MIN_NORMALIZED_FLOAT + vector_component_1;
+    conversion_buffer = rsqrtss(ZEXT416((uint)vector_component_1),ZEXT416((uint)vector_component_1));
+    temp_value_1 = conversion_buffer._0_4_;
+    input_param_1._4_4_ = input_param_1._4_4_ * UI_EIGHT_FLOAT;
+    vector_component_1 = temp_value_1 * UI_HALF_FLOAT * (UI_THREE_FLOAT - vector_component_1 * temp_value_1 * temp_value_1);
+    temp_storage_3 =
+         vector_component_1 * vector_component_2 * input_param_1._4_4_ +
+         (base_parameter_2 - input_param_1._4_4_) * *(float *)(resource_ptr + 0x617c);
+    *(ulonglong *)(resource_ptr + 0x6178) =
+         CONCAT44(temp_storage_3,
+                  vector_component_1 * temp_value_1 * input_param_1._4_4_ +
+                  (base_parameter_2 - input_param_1._4_4_) * *(float *)(resource_ptr + 0x6178));
+    vector_component_1 = *(float *)(resource_ptr + 0x617c);
+    temp_value_1 = *(float *)(resource_ptr + 0x6178);
+    vector_component_2 = temp_value_1 * temp_value_1 + vector_component_1 * vector_component_1;
+    conversion_buffer = rsqrtss(ZEXT416((uint)vector_component_2),ZEXT416((uint)vector_component_2));
+    temp_value_1 = conversion_buffer._0_4_;
+    vector_component_2 = temp_value_1 * UI_HALF_FLOAT * (UI_THREE_FLOAT - vector_component_2 * temp_value_1 * temp_value_1);
+    *(float *)(resource_ptr + 0x617c) = vector_component_2 * vector_component_1;
+    *(float *)(resource_ptr + 0x6178) = vector_component_2 * temp_value_1;
   }
   else {
-    *(ulonglong *)(unaff_R14 + 0x6178) = CONCAT44(fStack000000000000003c,fVar2);
+    *(ulonglong *)(resource_ptr + 0x6178) = CONCAT44(temp_storage_3,vector_component_1);
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x70) ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-
-
-// 函数: void FUN_18065a91c(void)
-void FUN_18065a91c(void)
-
-{
-  longlong unaff_RBP;
-  longlong unaff_R14;
-  undefined8 in_stack_00000038;
   
-  *(undefined8 *)(unaff_R14 + 0x6178) = in_stack_00000038;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x70) ^ (ulonglong)&stack0x00000000);
+  // 调用渲染处理函数
+  FUN_1808fc050(*(ulonglong *)(context_ptr + -0x70) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+// UI系统简单数据设置器 - 处理UI系统中的简单数据设置操作
+// 该函数实现了简单的数据设置功能，主要用于UI系统中的基础数据操作
+void ui_system_simple_data_setter(void)
+{
+  longlong context_ptr;
+  longlong resource_ptr;
+  undefined8 input_data;
+  
+  // 简单数据设置操作
+  *(undefined8 *)(resource_ptr + 0x6178) = input_data;
+  
+  // 调用渲染处理函数
+  FUN_1808fc050(*(ulonglong *)(context_ptr + -0x70) ^ (ulonglong)&stack0x00000000);
+}
