@@ -24,6 +24,27 @@
 #include "TaleWorlds.Native.Split.h"
 
 //==============================================================================
+// 函数别名定义 - 用于代码可读性和维护性
+//==============================================================================
+
+// 系统核心函数
+#define SystemCore_Initialize FUN_00000000        // 系统核心初始化
+
+// 系统状态管理函数
+#define SystemState_Set FUN_00000001              // 设置系统状态
+#define SystemState_Get FUN_00000006              // 获取系统状态
+#define SystemState_Cleanup FUN_00000005           // 清理系统状态
+
+// 系统标志管理函数
+#define SystemFlag_Enable FUN_00000002             // 启用系统标志
+
+// 系统服务管理函数
+#define SystemService_Stop FUN_00000003            // 停止系统服务
+
+// 系统资源管理函数
+#define SystemResource_Free FUN_00000004           // 释放系统资源
+
+//==============================================================================
 // 系统常量和类型定义
 //==============================================================================
 
@@ -46,9 +67,9 @@
 #define SYSTEM_ERROR_STATE      -3             // 状态错误
 
 // 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
+typedef uint64_t SystemHandle;               // 系统句柄 - 64位无符号整数
+typedef uint64_t MemoryHandle;               // 内存句柄 - 64位无符号整数
+typedef uint64_t StateHandle;                // 状态句柄 - 64位无符号整数
 
 //==============================================================================
 // 核心功能实现
@@ -66,7 +87,7 @@ typedef undefined8 StateHandle;               // 状态句柄
  * @param param2 系统参数2
  * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
  */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
+SystemHandle SystemInitializer(uint64_t param1, uint64_t param2)
 {
     SystemHandle handle;
     int local_10;
@@ -78,19 +99,19 @@ SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
     }
     
     // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
+    handle = (SystemHandle)SystemCore_Initialize(param1, param2);
     if (handle == (SystemHandle)0) {
         return (SystemHandle)SYSTEM_ERROR_MEMORY;
     }
     
     // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
+    local_10 = SystemState_Set(handle, SYSTEM_STATE_INIT);
     if (local_10 != SYSTEM_SUCCESS) {
         return (SystemHandle)SYSTEM_ERROR_STATE;
     }
     
     // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
+    local_c = SystemFlag_Enable(handle, SYSTEM_FLAG_ENABLED);
     if (local_c != SYSTEM_SUCCESS) {
         return (SystemHandle)SYSTEM_ERROR_STATE;
     }
@@ -119,19 +140,19 @@ int SystemShutdown(SystemHandle handle)
     }
     
     // 停止系统服务
-    status = FUN_00000003(handle);
+    status = SystemService_Stop(handle);
     if (status != SYSTEM_SUCCESS) {
         return status;
     }
     
     // 释放资源
-    status = FUN_00000004(handle);
+    status = SystemResource_Free(handle);
     if (status != SYSTEM_SUCCESS) {
         return status;
     }
     
     // 清理状态
-    status = FUN_00000005(handle);
+    status = SystemState_Cleanup(handle);
     return status;
 }
 
@@ -150,7 +171,7 @@ int SystemGetState(SystemHandle handle)
         return SYSTEM_ERROR_INVALID;
     }
     
-    return FUN_00000006(handle);
+    return SystemState_Get(handle);
 }
 
 //==============================================================================
