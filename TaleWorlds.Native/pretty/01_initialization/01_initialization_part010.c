@@ -469,188 +469,245 @@ void register_file_system_component(void)
 
 
 
-// 函数: void FUN_18003ed10(void)
-void FUN_18003ed10(void)
-
+/**
+ * 初始化基础系统字符串
+ * 设置基础系统的字符串常量和标识符，用于系统识别和初始化
+ */
+void initialize_base_system_strings(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
-  
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x1b;
-  strcpy_s(auStack_88,0x80,&UNK_180a2ac10,in_R9,0xfffffffffffffffe);
-  _DAT_180c9246c = FUN_180623800(&puStack_a0);
-  return;
+    uint64_t reserved_param;
+    void *string_table_ptr;
+    uint8_t *string_buffer;
+    uint32_t string_length;
+    uint8_t local_buffer[136];
+    
+    string_table_ptr = &string_table_fcc28;
+    string_buffer = local_buffer;
+    local_buffer[0] = 0;
+    string_length = 0x1b;  // 27字节
+    
+    // 复制基础系统字符串到本地缓冲区
+    secure_string_copy(local_buffer, 0x80, &base_system_string_2ac10, reserved_param, 0xfffffffffffffffe);
+    
+    // 注册字符串到系统表中
+    system_string_table_9246c = register_system_string(&string_table_ptr);
+    return;
 }
 
 
 
-int FUN_18003eda0(void)
-
+/**
+ * 初始化系统核心模块
+ * 初始化系统的核心功能模块，包括基础服务和管理器
+ * @return 初始化成功返回0，失败返回-1
+ */
+int initialize_system_core_module(void)
 {
-  longlong lVar1;
-  
-  FUN_1804777d0();
-  lVar1 = FUN_1808fc7d0(FUN_180942890);
-  return (lVar1 != 0) - 1;
+    int64_t initialization_result;
+    
+    // 初始化系统核心服务
+    initialize_core_services();
+    
+    // 验证核心模块初始化状态
+    initialization_result = verify_module_initialization(core_module_function_942890);
+    return (initialization_result != 0) - 1;
 }
 
 
 
-int FUN_18003edc0(void)
-
+/**
+ * 初始化系统配置模块
+ * 初始化系统的配置管理模块，处理系统参数和设置
+ * @return 初始化成功返回0，失败返回-1
+ */
+int initialize_system_config_module(void)
 {
-  longlong lVar1;
-  undefined1 auStackX_8 [32];
-  
-  auStackX_8[0] = 1;
-  FUN_180477890(&DAT_180c92490,auStackX_8);
-  lVar1 = FUN_1808fc7d0(FUN_1809428e0);
-  return (lVar1 != 0) - 1;
+    int64_t initialization_result;
+    uint8_t config_params[32];
+    
+    // 设置配置参数
+    config_params[0] = 1;  // 启用配置模块
+    
+    // 注册配置参数
+    register_config_parameters(&system_config_table_92490, config_params);
+    
+    // 验证配置模块初始化状态
+    initialization_result = verify_module_initialization(config_module_function_9428e0);
+    return (initialization_result != 0) - 1;
 }
 
 
 
-int FUN_18003edf0(void)
-
+/**
+ * 初始化系统资源模块
+ * 初始化系统的资源管理模块，处理内存、文件等资源
+ * @return 初始化成功返回0，失败返回-1
+ */
+int initialize_system_resource_module(void)
 {
-  longlong lVar1;
-  undefined1 auStackX_8 [32];
-  
-  auStackX_8[0] = 0;
-  FUN_180477890(&DAT_180c92480,auStackX_8);
-  lVar1 = FUN_1808fc7d0(FUN_180942930);
-  return (lVar1 != 0) - 1;
+    int64_t initialization_result;
+    uint8_t resource_params[32];
+    
+    // 设置资源参数
+    resource_params[0] = 0;  // 初始状态
+    
+    // 注册资源参数
+    register_resource_parameters(&system_resource_table_92480, resource_params);
+    
+    // 验证资源模块初始化状态
+    initialization_result = verify_module_initialization(resource_module_function_942930);
+    return (initialization_result != 0) - 1;
 }
 
 
 
-int FUN_18003ee20(void)
-
+/**
+ * 初始化系统调试模块
+ * 初始化系统的调试和日志记录模块
+ * @return 初始化成功返回0，失败返回-1
+ */
+int initialize_system_debug_module(void)
 {
-  longlong lVar1;
-  
-  lVar1 = FUN_1808fc7d0(FUN_180942a20);
-  return (lVar1 != 0) - 1;
+    int64_t initialization_result;
+    
+    // 验证调试模块初始化状态
+    initialization_result = verify_module_initialization(debug_module_function_942a20);
+    return (initialization_result != 0) - 1;
 }
 
 
 
-int FUN_18003ee40(void)
-
+/**
+ * 初始化系统性能模块
+ * 初始化系统的性能监控和优化模块
+ * @return 初始化成功返回0，失败返回-1
+ */
+int initialize_system_performance_module(void)
 {
-  longlong lVar1;
-  
-  FUN_1803f2eb0(0x180d49d50);
-  lVar1 = FUN_1808fc7d0(FUN_1809429f0);
-  return (lVar1 != 0) - 1;
+    int64_t initialization_result;
+    
+    // 设置性能监控参数
+    setup_performance_monitoring(0x180d49d50);
+    
+    // 验证性能模块初始化状态
+    initialization_result = verify_module_initialization(performance_module_function_9429f0);
+    return (initialization_result != 0) - 1;
 }
 
 
 
 
 
-// 函数: void FUN_18003ee90(void)
-void FUN_18003ee90(void)
-
+/**
+ * 注册引擎核心组件
+ * 在系统注册表中注册引擎核心组件，包含主要的引擎处理函数
+ */
+void register_engine_core_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18007fcd0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc740,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void *engine_handler;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    engine_handler = engine_core_handler_07fcd0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &engine_core_identifier_fc740, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&engine_core_identifier_fc740, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc740,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
-  return;
+    
+    // 设置引擎核心组件参数
+    previous_node[6] = 0x4fc124d23d41985f;  // 引擎核心标识符
+    previous_node[7] = 0xe2f4a30d6e6ae482;  // 校验值
+    previous_node[8] = &engine_constant_c790;  // 引擎常量指针
+    previous_node[9] = 0;                    // 优先级
+    previous_node[10] = engine_handler;      // 引擎处理函数指针
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003ef90(void)
-void FUN_18003ef90(void)
-
+/**
+ * 注册场景管理组件
+ * 在系统注册表中注册场景管理组件，处理游戏场景的加载和管理
+ */
+void register_scene_management_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &scene_management_identifier_fc768, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&scene_management_identifier_fc768, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4770584fbb1df897;
-  puVar7[7] = 0x47f249e43f66f2ab;
-  puVar7[8] = &UNK_18098c7a0;
-  puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置场景管理组件参数
+    previous_node[6] = 0x4770584fbb1df897;  // 场景管理标识符
+    previous_node[7] = 0x47f249e43f66f2ab;  // 校验值
+    previous_node[8] = &scene_constant_c7a0;  // 场景常量指针
+    previous_node[9] = 1;                    // 场景类型标识
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
