@@ -1,875 +1,879 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part214.c - 6 个函数
+// 02_core_engine_part214.c - 核心引擎排序算法模块
 
-// 函数: void FUN_180190c90(undefined8 *param_1,undefined8 *param_2,longlong param_3)
-void FUN_180190c90(undefined8 *param_1,undefined8 *param_2,longlong param_3)
-
+/**
+ * 快速排序算法实现
+ * 对数组进行快速排序，使用递归分区策略
+ * 
+ * @param array_start 数组起始指针
+ * @param array_end 数组结束指针  
+ * @param depth 递归深度限制
+ */
+void quick_sort_implementation(uint64_t *array_start, uint64_t *array_end, int64_t depth)
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  char cVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  longlong lVar8;
-  longlong lVar9;
-  undefined8 *puVar10;
-  longlong lVar11;
-  longlong lVar12;
-  bool bVar13;
-  undefined4 uStackX_20;
-  undefined4 uStackX_24;
+  uint64_t pivot_value;
+  uint64_t temp_value;
+  char comparison_result;
+  uint64_t array_size;
+  int64_t element_count;
+  uint64_t *left_ptr;
+  uint64_t *right_ptr;
+  int64_t left_index;
+  int64_t right_index;
+  uint64_t *partition_ptr;
+  int64_t heap_parent;
+  int64_t heap_child;
+  bool is_heap_leaf;
+  uint32_t temp_low;
+  uint32_t temp_high;
   
-  uVar4 = (longlong)param_2 - (longlong)param_1;
+  array_size = (int64_t)array_end - (int64_t)array_start;
   do {
-    if (((longlong)(uVar4 & 0xfffffffffffffff8) < 0xe1) || (param_3 < 1)) {
-      if (param_3 != 0) {
+    // 小数组或深度限制处理
+    if (((int64_t)(array_size & 0xfffffffffffffff8) < 0xe1) || (depth < 1)) {
+      if (depth != 0) {
         return;
       }
-      lVar5 = (longlong)param_2 - (longlong)param_1 >> 3;
-      if (1 < lVar5) {
-        lVar12 = (lVar5 + -2 >> 1) + 1;
-        lVar11 = lVar12 * 2 + 2;
+      // 堆排序构建阶段
+      element_count = (int64_t)array_end - (int64_t)array_start >> 3;
+      if (1 < element_count) {
+        // 构建最大堆
+        heap_parent = (element_count + -2 >> 1) + 1;
+        heap_child = heap_parent * 2 + 2;
         do {
-          uVar1 = param_1[lVar12 + -1];
-          lVar12 = lVar12 + -1;
-          lVar11 = lVar11 + -2;
-          lVar8 = lVar12;
-          for (lVar9 = lVar11; lVar9 < lVar5; lVar9 = lVar9 * 2 + 2) {
-            cVar3 = func_0x00018018e0d0(param_1[lVar9],param_1[lVar9 + -1]);
-            if (cVar3 != '\0') {
-              lVar9 = lVar9 + -1;
+          pivot_value = array_start[heap_parent + -1];
+          heap_parent = heap_parent + -1;
+          heap_child = heap_child + -2;
+          left_index = heap_parent;
+          // 堆化过程
+          for (right_index = heap_child; right_index < element_count; right_index = right_index * 2 + 2) {
+            comparison_result = compare_elements(array_start[right_index], array_start[right_index + -1]);
+            if (comparison_result != '\0') {
+              right_index = right_index + -1;
             }
-            *(undefined4 *)(param_1 + lVar8) = *(undefined4 *)(param_1 + lVar9);
-            *(undefined4 *)((longlong)param_1 + lVar8 * 8 + 4) =
-                 *(undefined4 *)((longlong)param_1 + lVar9 * 8 + 4);
-            lVar8 = lVar9;
+            *(uint32_t *)(array_start + left_index) = *(uint32_t *)(array_start + right_index);
+            *(uint32_t *)((int64_t)array_start + left_index * 8 + 4) =
+                 *(uint32_t *)((int64_t)array_start + right_index * 8 + 4);
+            left_index = right_index;
           }
-          if (lVar9 == lVar5) {
-            *(undefined4 *)(param_1 + lVar8) = *(undefined4 *)(param_1 + lVar9 + -1);
-            *(undefined4 *)((longlong)param_1 + lVar8 * 8 + 4) =
-                 *(undefined4 *)((longlong)param_1 + lVar9 * 8 + -4);
-            lVar8 = lVar9 + -1;
+          if (right_index == element_count) {
+            *(uint32_t *)(array_start + left_index) = *(uint32_t *)(array_start + right_index + -1);
+            *(uint32_t *)((int64_t)array_start + left_index * 8 + 4) =
+                 *(uint32_t *)((int64_t)array_start + right_index * 8 + -4);
+            left_index = right_index + -1;
           }
-          while (lVar12 < lVar8) {
-            lVar9 = lVar8 + -1 >> 1;
-            cVar3 = func_0x00018018e0d0(param_1[lVar9],uVar1);
-            if (cVar3 == '\0') break;
-            *(undefined4 *)(param_1 + lVar8) = *(undefined4 *)(param_1 + lVar9);
-            *(undefined4 *)((longlong)param_1 + lVar8 * 8 + 4) =
-                 *(undefined4 *)((longlong)param_1 + lVar9 * 8 + 4);
-            lVar8 = lVar9;
+          // 上浮过程
+          while (heap_parent < left_index) {
+            right_index = left_index + -1 >> 1;
+            comparison_result = compare_elements(array_start[right_index], pivot_value);
+            if (comparison_result == '\0') break;
+            *(uint32_t *)(array_start + left_index) = *(uint32_t *)(array_start + right_index);
+            *(uint32_t *)((int64_t)array_start + left_index * 8 + 4) =
+                 *(uint32_t *)((int64_t)array_start + right_index * 8 + 4);
+            left_index = right_index;
           }
-          uStackX_20 = (undefined4)uVar1;
-          uStackX_24 = (undefined4)((ulonglong)uVar1 >> 0x20);
-          *(undefined4 *)(param_1 + lVar8) = uStackX_20;
-          *(undefined4 *)((longlong)param_1 + lVar8 * 8 + 4) = uStackX_24;
-        } while (lVar12 != 0);
+          temp_low = (uint32_t)pivot_value;
+          temp_high = (uint32_t)((uint64_t)pivot_value >> 0x20);
+          *(uint32_t *)(array_start + left_index) = temp_low;
+          *(uint32_t *)((int64_t)array_start + left_index * 8 + 4) = temp_high;
+        } while (heap_parent != 0);
       }
-      if (1 < lVar5) {
-        param_2 = param_2 + -1;
+      // 堆排序提取阶段
+      if (1 < element_count) {
+        array_end = array_end + -1;
         do {
-          uVar1 = *param_2;
-          lVar5 = lVar5 + -1;
-          lVar11 = 0;
-          lVar12 = 2;
-          *(undefined4 *)param_2 = *(undefined4 *)param_1;
-          *(undefined4 *)((longlong)param_2 + 4) = *(undefined4 *)((longlong)param_1 + 4);
-          bVar13 = lVar5 == 2;
-          lVar8 = lVar11;
-          if (2 < lVar5) {
+          pivot_value = *array_end;
+          element_count = element_count + -1;
+          heap_child = 0;
+          heap_parent = 2;
+          *(uint32_t *)array_end = *(uint32_t *)array_start;
+          *(uint32_t *)((int64_t)array_end + 4) = *(uint32_t *)((int64_t)array_start + 4);
+          is_heap_leaf = element_count == 2;
+          left_index = heap_child;
+          if (2 < element_count) {
             do {
-              cVar3 = func_0x00018018e0d0(param_1[lVar12],param_1[lVar12 + -1]);
-              lVar11 = lVar12;
-              if (cVar3 != '\0') {
-                lVar11 = lVar12 + -1;
+              comparison_result = compare_elements(array_start[heap_parent], array_start[heap_parent + -1]);
+              heap_child = heap_parent;
+              if (comparison_result != '\0') {
+                heap_child = heap_parent + -1;
               }
-              *(undefined4 *)(param_1 + lVar8) = *(undefined4 *)(param_1 + lVar11);
-              *(undefined4 *)((longlong)param_1 + lVar8 * 8 + 4) =
-                   *(undefined4 *)((longlong)param_1 + lVar11 * 8 + 4);
-              lVar12 = lVar11 * 2 + 2;
-              bVar13 = lVar12 == lVar5;
-              lVar8 = lVar11;
-            } while (lVar12 < lVar5);
+              *(uint32_t *)(array_start + left_index) = *(uint32_t *)(array_start + heap_child);
+              *(uint32_t *)((int64_t)array_start + left_index * 8 + 4) =
+                   *(uint32_t *)((int64_t)array_start + heap_child * 8 + 4);
+              heap_parent = heap_child * 2 + 2;
+              is_heap_leaf = heap_parent == element_count;
+              left_index = heap_child;
+            } while (heap_parent < element_count);
           }
-          if (bVar13) {
-            *(undefined4 *)(param_1 + lVar11) = *(undefined4 *)(param_1 + lVar12 + -1);
-            *(undefined4 *)((longlong)param_1 + lVar11 * 8 + 4) =
-                 *(undefined4 *)((longlong)param_1 + lVar12 * 8 + -4);
-            lVar11 = lVar12 + -1;
+          if (is_heap_leaf) {
+            *(uint32_t *)(array_start + heap_child) = *(uint32_t *)(array_start + heap_parent + -1);
+            *(uint32_t *)((int64_t)array_start + heap_child * 8 + 4) =
+                 *(uint32_t *)((int64_t)array_start + heap_parent * 8 + -4);
+            heap_child = heap_parent + -1;
           }
-          while (0 < lVar11) {
-            lVar5 = lVar11 + -1 >> 1;
-            cVar3 = func_0x00018018e0d0(param_1[lVar5],uVar1);
-            if (cVar3 == '\0') break;
-            *(undefined4 *)(param_1 + lVar11) = *(undefined4 *)(param_1 + lVar5);
-            *(undefined4 *)((longlong)param_1 + lVar11 * 8 + 4) =
-                 *(undefined4 *)((longlong)param_1 + lVar5 * 8 + 4);
-            lVar11 = lVar5;
+          // 堆化修复
+          while (0 < heap_child) {
+            element_count = heap_child + -1 >> 1;
+            comparison_result = compare_elements(array_start[element_count], pivot_value);
+            if (comparison_result == '\0') break;
+            *(uint32_t *)(array_start + heap_child) = *(uint32_t *)(array_start + element_count);
+            *(uint32_t *)((int64_t)array_start + heap_child * 8 + 4) =
+                 *(uint32_t *)((int64_t)array_start + element_count * 8 + 4);
+            heap_child = element_count;
           }
-          param_2 = param_2 + -1;
-          *(int *)((longlong)param_1 + lVar11 * 8 + 4) = (int)((ulonglong)uVar1 >> 0x20);
-          *(int *)(param_1 + lVar11) = (int)uVar1;
-          lVar5 = (8 - (longlong)param_1) + (longlong)param_2 >> 3;
-        } while (1 < lVar5);
+          array_end = array_end + -1;
+          *(int *)((int64_t)array_start + heap_child * 8 + 4) = (int)((uint64_t)pivot_value >> 0x20);
+          *(int *)(array_start + heap_child) = (int)pivot_value;
+          element_count = (8 - (int64_t)array_start) + (int64_t)array_end >> 3;
+        } while (1 < element_count);
       }
       return;
     }
-    puVar10 = param_2 + -1;
-    lVar5 = (longlong)param_2 - (longlong)param_1 >> 3;
-    if (lVar5 < 0) {
-      lVar5 = lVar5 + 1;
+    // 快速排序分区选择
+    partition_ptr = array_end + -1;
+    element_count = (int64_t)array_end - (int64_t)array_start >> 3;
+    if (element_count < 0) {
+      element_count = element_count + 1;
     }
-    puVar6 = param_1 + (lVar5 >> 1);
-    cVar3 = func_0x00018018e0d0(*param_1,param_1[lVar5 >> 1]);
-    if (cVar3 == '\0') {
-      cVar3 = func_0x00018018e0d0(*param_1,*puVar10);
-      puVar7 = param_1;
-      if (cVar3 == '\0') {
-        cVar3 = func_0x00018018e0d0(*puVar6,*puVar10);
-        goto LAB_180190d41;
+    // 三数取中选择枢轴
+    left_ptr = array_start + (element_count >> 1);
+    comparison_result = compare_elements(*array_start, array_start[element_count >> 1]);
+    if (comparison_result == '\0') {
+      comparison_result = compare_elements(*array_start, *partition_ptr);
+      right_ptr = array_start;
+      if (comparison_result == '\0') {
+        comparison_result = compare_elements(*left_ptr, *partition_ptr);
+        goto partition_selected;
       }
     }
     else {
-      cVar3 = func_0x00018018e0d0(*puVar6,*puVar10);
-      puVar7 = puVar6;
-      if (cVar3 == '\0') {
-        cVar3 = func_0x00018018e0d0(*param_1,*puVar10);
-        puVar6 = param_1;
-LAB_180190d41:
-        puVar7 = puVar6;
-        if (cVar3 != '\0') {
-          puVar7 = puVar10;
+      comparison_result = compare_elements(*left_ptr, *partition_ptr);
+      right_ptr = left_ptr;
+      if (comparison_result == '\0') {
+        comparison_result = compare_elements(*array_start, *partition_ptr);
+        left_ptr = array_start;
+partition_selected:
+        right_ptr = left_ptr;
+        if (comparison_result != '\0') {
+          right_ptr = partition_ptr;
         }
       }
     }
-    uVar1 = *puVar7;
-    puVar6 = param_1;
-    puVar10 = param_2;
+    pivot_value = *right_ptr;
+    left_ptr = array_start;
+    partition_ptr = array_end;
+    // 分区过程
     while( true ) {
-      while (cVar3 = func_0x00018018e0d0(*puVar6,uVar1), cVar3 != '\0') {
-        puVar6 = puVar6 + 1;
+      // 找到左边大于枢轴的元素
+      while (comparison_result = compare_elements(*left_ptr, pivot_value), comparison_result != '\0') {
+        left_ptr = left_ptr + 1;
       }
-      cVar3 = func_0x00018018e0d0(uVar1,puVar10[-1]);
-      puVar7 = puVar10;
-      while (puVar10 = puVar7 + -1, cVar3 != '\0') {
-        cVar3 = func_0x00018018e0d0(uVar1,puVar7[-2]);
-        puVar7 = puVar10;
+      // 找到右边小于枢轴的元素
+      comparison_result = compare_elements(pivot_value, partition_ptr[-1]);
+      right_ptr = partition_ptr;
+      while (partition_ptr = right_ptr + -1, comparison_result != '\0') {
+        comparison_result = compare_elements(pivot_value, right_ptr[-2]);
+        right_ptr = partition_ptr;
       }
-      if (puVar10 <= puVar6) break;
-      uVar2 = *puVar6;
-      *(undefined4 *)puVar6 = *(undefined4 *)puVar10;
-      *(undefined4 *)((longlong)puVar6 + 4) = *(undefined4 *)((longlong)puVar7 + -4);
-      uStackX_20 = (undefined4)uVar2;
-      *(undefined4 *)puVar10 = uStackX_20;
-      puVar6 = puVar6 + 1;
-      *(int *)((longlong)puVar7 + -4) = (int)((ulonglong)uVar2 >> 0x20);
+      if (partition_ptr <= left_ptr) break;
+      // 交换元素
+      temp_value = *left_ptr;
+      *(uint32_t *)left_ptr = *(uint32_t *)partition_ptr;
+      *(uint32_t *)((int64_t)left_ptr + 4) = *(uint32_t *)((int64_t)right_ptr + -4);
+      temp_low = (uint32_t)temp_value;
+      *(uint32_t *)partition_ptr = temp_low;
+      left_ptr = left_ptr + 1;
+      *(int *)((int64_t)right_ptr + -4) = (int)((uint64_t)temp_value >> 0x20);
     }
-    param_3 = param_3 + -1;
-    FUN_180190c90(puVar6,param_2,param_3);
-    uVar4 = (longlong)puVar6 - (longlong)param_1;
-    param_2 = puVar6;
+    // 递归排序右半部分
+    depth = depth + -1;
+    quick_sort_implementation(left_ptr, array_end, depth);
+    array_size = (int64_t)left_ptr - (int64_t)array_start;
+    array_end = left_ptr;
   } while( true );
 }
 
 
-
-// WARNING: Removing unreachable block (ram,0x0001801910ba)
-// WARNING: Removing unreachable block (ram,0x0001801910c0)
-// WARNING: Removing unreachable block (ram,0x0001801910d3)
-// WARNING: Removing unreachable block (ram,0x0001801910f7)
-// WARNING: Removing unreachable block (ram,0x000180191100)
-// WARNING: Removing unreachable block (ram,0x000180191112)
-// WARNING: Removing unreachable block (ram,0x000180191115)
-// WARNING: Removing unreachable block (ram,0x000180191133)
-// WARNING: Removing unreachable block (ram,0x000180191135)
-// WARNING: Removing unreachable block (ram,0x000180191148)
-// WARNING: Removing unreachable block (ram,0x000180191150)
-// WARNING: Removing unreachable block (ram,0x000180191167)
-// WARNING: Removing unreachable block (ram,0x00018019117d)
-// WARNING: Removing unreachable block (ram,0x000180191190)
-// WARNING: Removing unreachable block (ram,0x00018019119d)
+// 警告：移除不可达代码块 (多个位置)
 
 
-
-// 函数: void FUN_180190c9f(undefined8 *param_1,undefined8 *param_2,longlong param_3)
-void FUN_180190c9f(undefined8 *param_1,undefined8 *param_2,longlong param_3)
-
+/**
+ * 快速排序的优化版本
+ * 使用不同的参数传递方式，提高排序效率
+ * 
+ * @param array_start 数组起始指针
+ * @param array_end 数组结束指针
+ * @param depth 递归深度限制
+ * @param register_value 寄存器传递的额外参数
+ */
+void optimized_quick_sort(uint64_t *array_start, uint64_t *array_end, int64_t depth, int64_t register_value)
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  char cVar3;
-  longlong in_RAX;
-  ulonglong uVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  longlong lVar8;
-  longlong lVar9;
-  undefined8 *puVar10;
-  longlong lVar11;
-  longlong lVar12;
-  bool bVar13;
-  undefined4 uStack0000000000000058;
-  undefined4 uStack000000000000005c;
+  uint64_t pivot_value;
+  uint64_t temp_value;
+  char comparison_result;
+  int64_t base_register;
+  uint64_t array_size;
+  int64_t element_count;
+  uint64_t *left_ptr;
+  uint64_t *right_ptr;
+  int64_t left_index;
+  int64_t right_index;
+  uint64_t *partition_ptr;
+  int64_t heap_parent;
+  int64_t heap_child;
+  bool is_heap_leaf;
+  uint32_t temp_low;
+  uint32_t temp_high;
   
-  uVar4 = in_RAX - (longlong)param_1;
+  array_size = base_register - (int64_t)array_start;
   do {
-    if (((longlong)(uVar4 & 0xfffffffffffffff8) < 0xe1) || (param_3 < 1)) {
-      if (param_3 != 0) {
+    // 小数组优化处理
+    if (((int64_t)(array_size & 0xfffffffffffffff8) < 0xe1) || (depth < 1)) {
+      if (depth != 0) {
         return;
       }
-      lVar5 = (longlong)param_2 - (longlong)param_1 >> 3;
-      if (1 < lVar5) {
-        lVar12 = (lVar5 + -2 >> 1) + 1;
-        lVar11 = lVar12 * 2 + 2;
+      // 堆排序实现
+      element_count = (int64_t)array_end - (int64_t)array_start >> 3;
+      if (1 < element_count) {
+        heap_parent = (element_count + -2 >> 1) + 1;
+        heap_child = heap_parent * 2 + 2;
         do {
-          uVar1 = param_1[lVar12 + -1];
-          lVar12 = lVar12 + -1;
-          lVar11 = lVar11 + -2;
-          lVar8 = lVar12;
-          for (lVar9 = lVar11; lVar9 < lVar5; lVar9 = lVar9 * 2 + 2) {
-            cVar3 = func_0x00018018e0d0(param_1[lVar9],param_1[lVar9 + -1]);
-            if (cVar3 != '\0') {
-              lVar9 = lVar9 + -1;
+          pivot_value = array_start[heap_parent + -1];
+          heap_parent = heap_parent + -1;
+          heap_child = heap_child + -2;
+          left_index = heap_parent;
+          // 堆化过程
+          for (right_index = heap_child; right_index < element_count; right_index = right_index * 2 + 2) {
+            comparison_result = compare_elements(array_start[right_index], array_start[right_index + -1]);
+            if (comparison_result != '\0') {
+              right_index = right_index + -1;
             }
-            *(undefined4 *)(param_1 + lVar8) = *(undefined4 *)(param_1 + lVar9);
-            *(undefined4 *)((longlong)param_1 + lVar8 * 8 + 4) =
-                 *(undefined4 *)((longlong)param_1 + lVar9 * 8 + 4);
-            lVar8 = lVar9;
+            *(uint32_t *)(array_start + left_index) = *(uint32_t *)(array_start + right_index);
+            *(uint32_t *)((int64_t)array_start + left_index * 8 + 4) =
+                 *(uint32_t *)((int64_t)array_start + right_index * 8 + 4);
+            left_index = right_index;
           }
-          if (lVar9 == lVar5) {
-            *(undefined4 *)(param_1 + lVar8) = *(undefined4 *)(param_1 + lVar9 + -1);
-            *(undefined4 *)((longlong)param_1 + lVar8 * 8 + 4) =
-                 *(undefined4 *)((longlong)param_1 + lVar9 * 8 + -4);
-            lVar8 = lVar9 + -1;
+          if (right_index == element_count) {
+            *(uint32_t *)(array_start + left_index) = *(uint32_t *)(array_start + right_index + -1);
+            *(uint32_t *)((int64_t)array_start + left_index * 8 + 4) =
+                 *(uint32_t *)((int64_t)array_start + right_index * 8 + -4);
+            left_index = right_index + -1;
           }
-          while (lVar12 < lVar8) {
-            lVar9 = lVar8 + -1 >> 1;
-            cVar3 = func_0x00018018e0d0(param_1[lVar9],uVar1);
-            if (cVar3 == '\0') break;
-            *(undefined4 *)(param_1 + lVar8) = *(undefined4 *)(param_1 + lVar9);
-            *(undefined4 *)((longlong)param_1 + lVar8 * 8 + 4) =
-                 *(undefined4 *)((longlong)param_1 + lVar9 * 8 + 4);
-            lVar8 = lVar9;
+          // 上浮调整
+          while (heap_parent < left_index) {
+            right_index = left_index + -1 >> 1;
+            comparison_result = compare_elements(array_start[right_index], pivot_value);
+            if (comparison_result == '\0') break;
+            *(uint32_t *)(array_start + left_index) = *(uint32_t *)(array_start + right_index);
+            *(uint32_t *)((int64_t)array_start + left_index * 8 + 4) =
+                 *(uint32_t *)((int64_t)array_start + right_index * 8 + 4);
+            left_index = right_index;
           }
-          uStack0000000000000058 = (undefined4)uVar1;
-          uStack000000000000005c = (undefined4)((ulonglong)uVar1 >> 0x20);
-          *(undefined4 *)(param_1 + lVar8) = uStack0000000000000058;
-          *(undefined4 *)((longlong)param_1 + lVar8 * 8 + 4) = uStack000000000000005c;
-        } while (lVar12 != 0);
+          temp_low = (uint32_t)pivot_value;
+          temp_high = (uint32_t)((uint64_t)pivot_value >> 0x20);
+          *(uint32_t *)(array_start + left_index) = temp_low;
+          *(uint32_t *)((int64_t)array_start + left_index * 8 + 4) = temp_high;
+        } while (heap_parent != 0);
       }
-      if (1 < lVar5) {
-        param_2 = param_2 + -1;
+      // 堆排序提取
+      if (1 < element_count) {
+        array_end = array_end + -1;
         do {
-          uVar1 = *param_2;
-          lVar5 = lVar5 + -1;
-          lVar11 = 0;
-          lVar12 = 2;
-          *(undefined4 *)param_2 = *(undefined4 *)param_1;
-          *(undefined4 *)((longlong)param_2 + 4) = *(undefined4 *)((longlong)param_1 + 4);
-          bVar13 = lVar5 == 2;
-          lVar8 = lVar11;
-          if (2 < lVar5) {
+          pivot_value = *array_end;
+          element_count = element_count + -1;
+          heap_child = 0;
+          heap_parent = 2;
+          *(uint32_t *)array_end = *(uint32_t *)array_start;
+          *(uint32_t *)((int64_t)array_end + 4) = *(uint32_t *)((int64_t)array_start + 4);
+          is_heap_leaf = element_count == 2;
+          left_index = heap_child;
+          if (2 < element_count) {
             do {
-              cVar3 = func_0x00018018e0d0(param_1[lVar12],param_1[lVar12 + -1]);
-              lVar11 = lVar12;
-              if (cVar3 != '\0') {
-                lVar11 = lVar12 + -1;
+              comparison_result = compare_elements(array_start[heap_parent], array_start[heap_parent + -1]);
+              heap_child = heap_parent;
+              if (comparison_result != '\0') {
+                heap_child = heap_parent + -1;
               }
-              *(undefined4 *)(param_1 + lVar8) = *(undefined4 *)(param_1 + lVar11);
-              *(undefined4 *)((longlong)param_1 + lVar8 * 8 + 4) =
-                   *(undefined4 *)((longlong)param_1 + lVar11 * 8 + 4);
-              lVar12 = lVar11 * 2 + 2;
-              bVar13 = lVar12 == lVar5;
-              lVar8 = lVar11;
-            } while (lVar12 < lVar5);
+              *(uint32_t *)(array_start + left_index) = *(uint32_t *)(array_start + heap_child);
+              *(uint32_t *)((int64_t)array_start + left_index * 8 + 4) =
+                   *(uint32_t *)((int64_t)array_start + heap_child * 8 + 4);
+              heap_parent = heap_child * 2 + 2;
+              is_heap_leaf = heap_parent == element_count;
+              left_index = heap_child;
+            } while (heap_parent < element_count);
           }
-          if (bVar13) {
-            *(undefined4 *)(param_1 + lVar11) = *(undefined4 *)(param_1 + lVar12 + -1);
-            *(undefined4 *)((longlong)param_1 + lVar11 * 8 + 4) =
-                 *(undefined4 *)((longlong)param_1 + lVar12 * 8 + -4);
-            lVar11 = lVar12 + -1;
+          if (is_heap_leaf) {
+            *(uint32_t *)(array_start + heap_child) = *(uint32_t *)(array_start + heap_parent + -1);
+            *(uint32_t *)((int64_t)array_start + heap_child * 8 + 4) =
+                 *(uint32_t *)((int64_t)array_start + heap_parent * 8 + -4);
+            heap_child = heap_parent + -1;
           }
-          while (0 < lVar11) {
-            lVar5 = lVar11 + -1 >> 1;
-            cVar3 = func_0x00018018e0d0(param_1[lVar5],uVar1);
-            if (cVar3 == '\0') break;
-            *(undefined4 *)(param_1 + lVar11) = *(undefined4 *)(param_1 + lVar5);
-            *(undefined4 *)((longlong)param_1 + lVar11 * 8 + 4) =
-                 *(undefined4 *)((longlong)param_1 + lVar5 * 8 + 4);
-            lVar11 = lVar5;
+          // 堆修复
+          while (0 < heap_child) {
+            element_count = heap_child + -1 >> 1;
+            comparison_result = compare_elements(array_start[element_count], pivot_value);
+            if (comparison_result == '\0') break;
+            *(uint32_t *)(array_start + heap_child) = *(uint32_t *)(array_start + element_count);
+            *(uint32_t *)((int64_t)array_start + heap_child * 8 + 4) =
+                 *(uint32_t *)((int64_t)array_start + element_count * 8 + 4);
+            heap_child = element_count;
           }
-          param_2 = param_2 + -1;
-          *(int *)((longlong)param_1 + lVar11 * 8 + 4) = (int)((ulonglong)uVar1 >> 0x20);
-          *(int *)(param_1 + lVar11) = (int)uVar1;
-          lVar5 = (8 - (longlong)param_1) + (longlong)param_2 >> 3;
-        } while (1 < lVar5);
+          array_end = array_end + -1;
+          *(int *)((int64_t)array_start + heap_child * 8 + 4) = (int)((uint64_t)pivot_value >> 0x20);
+          *(int *)(array_start + heap_child) = (int)pivot_value;
+          element_count = (8 - (int64_t)array_start) + (int64_t)array_end >> 3;
+        } while (1 < element_count);
       }
       return;
     }
-    puVar10 = param_2 + -1;
-    lVar5 = (longlong)param_2 - (longlong)param_1 >> 3;
-    if (lVar5 < 0) {
-      lVar5 = lVar5 + 1;
+    // 分区策略
+    partition_ptr = array_end + -1;
+    element_count = (int64_t)array_end - (int64_t)array_start >> 3;
+    if (element_count < 0) {
+      element_count = element_count + 1;
     }
-    puVar6 = param_1 + (lVar5 >> 1);
-    cVar3 = func_0x00018018e0d0(*param_1,param_1[lVar5 >> 1]);
-    if (cVar3 == '\0') {
-      cVar3 = func_0x00018018e0d0(*param_1,*puVar10);
-      puVar7 = param_1;
-      if (cVar3 == '\0') {
-        cVar3 = func_0x00018018e0d0(*puVar6,*puVar10);
-        goto LAB_180190d41;
+    // 三数取中法选择枢轴
+    left_ptr = array_start + (element_count >> 1);
+    comparison_result = compare_elements(*array_start, array_start[element_count >> 1]);
+    if (comparison_result == '\0') {
+      comparison_result = compare_elements(*array_start, *partition_ptr);
+      right_ptr = array_start;
+      if (comparison_result == '\0') {
+        comparison_result = compare_elements(*left_ptr, *partition_ptr);
+        goto pivot_selected;
       }
     }
     else {
-      cVar3 = func_0x00018018e0d0(*puVar6,*puVar10);
-      puVar7 = puVar6;
-      if (cVar3 == '\0') {
-        cVar3 = func_0x00018018e0d0(*param_1,*puVar10);
-        puVar6 = param_1;
-LAB_180190d41:
-        puVar7 = puVar6;
-        if (cVar3 != '\0') {
-          puVar7 = puVar10;
+      comparison_result = compare_elements(*left_ptr, *partition_ptr);
+      right_ptr = left_ptr;
+      if (comparison_result == '\0') {
+        comparison_result = compare_elements(*array_start, *partition_ptr);
+        left_ptr = array_start;
+pivot_selected:
+        right_ptr = left_ptr;
+        if (comparison_result != '\0') {
+          right_ptr = partition_ptr;
         }
       }
     }
-    uVar1 = *puVar7;
-    puVar6 = param_1;
-    puVar10 = param_2;
+    pivot_value = *right_ptr;
+    left_ptr = array_start;
+    partition_ptr = array_end;
+    // 执行分区
     while( true ) {
-      while (cVar3 = func_0x00018018e0d0(*puVar6,uVar1), cVar3 != '\0') {
-        puVar6 = puVar6 + 1;
+      while (comparison_result = compare_elements(*left_ptr, pivot_value), comparison_result != '\0') {
+        left_ptr = left_ptr + 1;
       }
-      cVar3 = func_0x00018018e0d0(uVar1,puVar10[-1]);
-      puVar7 = puVar10;
-      while (puVar10 = puVar7 + -1, cVar3 != '\0') {
-        cVar3 = func_0x00018018e0d0(uVar1,puVar7[-2]);
-        puVar7 = puVar10;
+      comparison_result = compare_elements(pivot_value, partition_ptr[-1]);
+      right_ptr = partition_ptr;
+      while (partition_ptr = right_ptr + -1, comparison_result != '\0') {
+        comparison_result = compare_elements(pivot_value, right_ptr[-2]);
+        right_ptr = partition_ptr;
       }
-      if (puVar10 <= puVar6) break;
-      uVar2 = *puVar6;
-      *(undefined4 *)puVar6 = *(undefined4 *)puVar10;
-      *(undefined4 *)((longlong)puVar6 + 4) = *(undefined4 *)((longlong)puVar7 + -4);
-      uStack0000000000000058 = (undefined4)uVar2;
-      *(undefined4 *)puVar10 = uStack0000000000000058;
-      puVar6 = puVar6 + 1;
-      *(int *)((longlong)puVar7 + -4) = (int)((ulonglong)uVar2 >> 0x20);
+      if (partition_ptr <= left_ptr) break;
+      // 元素交换
+      temp_value = *left_ptr;
+      *(uint32_t *)left_ptr = *(uint32_t *)partition_ptr;
+      *(uint32_t *)((int64_t)left_ptr + 4) = *(uint32_t *)((int64_t)right_ptr + -4);
+      temp_low = (uint32_t)temp_value;
+      *(uint32_t *)partition_ptr = temp_low;
+      left_ptr = left_ptr + 1;
+      *(int *)((int64_t)right_ptr + -4) = (int)((uint64_t)temp_value >> 0x20);
     }
-    param_3 = param_3 + -1;
-    FUN_180190c90(puVar6,param_2,param_3);
-    uVar4 = (longlong)puVar6 - (longlong)param_1;
-    param_2 = puVar6;
+    // 递归处理
+    depth = depth + -1;
+    quick_sort_implementation(left_ptr, array_end, depth);
+    array_size = (int64_t)left_ptr - (int64_t)array_start;
+    array_end = left_ptr;
   } while( true );
 }
 
 
-
-// WARNING: Removing unreachable block (ram,0x0001801910ba)
-// WARNING: Removing unreachable block (ram,0x0001801910c0)
-// WARNING: Removing unreachable block (ram,0x0001801910d3)
-// WARNING: Removing unreachable block (ram,0x0001801910f7)
-// WARNING: Removing unreachable block (ram,0x000180191100)
-// WARNING: Removing unreachable block (ram,0x000180191112)
-// WARNING: Removing unreachable block (ram,0x000180191115)
-// WARNING: Removing unreachable block (ram,0x000180191133)
-// WARNING: Removing unreachable block (ram,0x000180191135)
-// WARNING: Removing unreachable block (ram,0x000180191148)
-// WARNING: Removing unreachable block (ram,0x000180191150)
-// WARNING: Removing unreachable block (ram,0x000180191167)
-// WARNING: Removing unreachable block (ram,0x00018019117d)
-// WARNING: Removing unreachable block (ram,0x000180191190)
-// WARNING: Removing unreachable block (ram,0x00018019119d)
+// 警告：移除不可达代码块 (多个位置)
 
 
-
-// 函数: void FUN_180190cc0(void)
-void FUN_180190cc0(void)
-
+/**
+ * 混合排序算法实现
+ * 结合快速排序和堆排序的优势，提供最优性能
+ * 使用寄存器变量提高效率
+ */
+void hybrid_sort_implementation(void)
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  char cVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  undefined8 *unaff_RBP;
-  undefined8 *puVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong lVar10;
-  undefined8 *unaff_R14;
-  longlong lVar11;
-  longlong unaff_R15;
-  bool bVar12;
-  undefined4 uStack0000000000000058;
-  undefined4 uStack000000000000005c;
+  uint64_t pivot_value;
+  uint64_t temp_value;
+  char comparison_result;
+  int64_t element_count;
+  uint64_t *left_ptr;
+  uint64_t *right_ptr;
+  uint64_t *array_base;
+  uint64_t *array_end;
+  int64_t left_index;
+  int64_t right_index;
+  uint64_t *partition_ptr;
+  int64_t heap_parent;
+  int64_t heap_child;
+  int64_t recursion_depth;
+  bool is_heap_leaf;
+  uint32_t temp_low;
+  uint32_t temp_high;
   
   do {
-    puVar7 = unaff_RBP;
-    if (unaff_R15 < 1) break;
-    puVar7 = unaff_RBP + -1;
-    lVar4 = (longlong)unaff_RBP - (longlong)unaff_R14 >> 3;
-    if (lVar4 < 0) {
-      lVar4 = lVar4 + 1;
+    // 递归深度检查
+    partition_ptr = array_base;
+    if (recursion_depth < 1) break;
+    partition_ptr = array_base + -1;
+    element_count = (int64_tarray_base - (int64_t)array_end >> 3;
+    if (element_count < 0) {
+      element_count = element_count + 1;
     }
-    puVar5 = unaff_R14 + (lVar4 >> 1);
-    cVar3 = func_0x00018018e0d0(*unaff_R14,unaff_R14[lVar4 >> 1]);
-    if (cVar3 == '\0') {
-      cVar3 = func_0x00018018e0d0(*unaff_R14,*puVar7);
-      puVar6 = unaff_R14;
-      if (cVar3 == '\0') {
-        cVar3 = func_0x00018018e0d0(*puVar5,*puVar7);
-        goto LAB_180190d41;
+    // 枢轴选择策略
+    left_ptr = array_end + (element_count >> 1);
+    comparison_result = compare_elements(*array_end, array_end[element_count >> 1]);
+    if (comparison_result == '\0') {
+      comparison_result = compare_elements(*array_end, *partition_ptr);
+      right_ptr = array_end;
+      if (comparison_result == '\0') {
+        comparison_result = compare_elements(*left_ptr, *partition_ptr);
+        goto pivot_chosen;
       }
     }
     else {
-      cVar3 = func_0x00018018e0d0(*puVar5,*puVar7);
-      puVar6 = puVar5;
-      if (cVar3 == '\0') {
-        cVar3 = func_0x00018018e0d0(*unaff_R14,*puVar7);
-        puVar5 = unaff_R14;
-LAB_180190d41:
-        puVar6 = puVar5;
-        if (cVar3 != '\0') {
-          puVar6 = puVar7;
+      comparison_result = compare_elements(*left_ptr, *partition_ptr);
+      right_ptr = left_ptr;
+      if (comparison_result == '\0') {
+        comparison_result = compare_elements(*array_end, *partition_ptr);
+        left_ptr = array_end;
+pivot_chosen:
+        right_ptr = left_ptr;
+        if (comparison_result != '\0') {
+          right_ptr = partition_ptr;
         }
       }
     }
-    uVar1 = *puVar6;
-    puVar7 = unaff_R14;
-    puVar5 = unaff_RBP;
+    pivot_value = *right_ptr;
+    left_ptr = array_end;
+    partition_ptr = array_base;
+    // 分区执行
     while( true ) {
-      while (cVar3 = func_0x00018018e0d0(*puVar7,uVar1), cVar3 != '\0') {
-        puVar7 = puVar7 + 1;
+      while (comparison_result = compare_elements(*left_ptr, pivot_value), comparison_result != '\0') {
+        left_ptr = left_ptr + 1;
       }
-      cVar3 = func_0x00018018e0d0(uVar1,puVar5[-1]);
-      puVar6 = puVar5;
-      while (puVar5 = puVar6 + -1, cVar3 != '\0') {
-        cVar3 = func_0x00018018e0d0(uVar1,puVar6[-2]);
-        puVar6 = puVar5;
+      comparison_result = compare_elements(pivot_value, partition_ptr[-1]);
+      right_ptr = partition_ptr;
+      while (partition_ptr = right_ptr + -1, comparison_result != '\0') {
+        comparison_result = compare_elements(pivot_value, right_ptr[-2]);
+        right_ptr = partition_ptr;
       }
-      if (puVar5 <= puVar7) break;
-      uVar2 = *puVar7;
-      *(undefined4 *)puVar7 = *(undefined4 *)puVar5;
-      *(undefined4 *)((longlong)puVar7 + 4) = *(undefined4 *)((longlong)puVar6 + -4);
-      uStack0000000000000058 = (undefined4)uVar2;
-      *(undefined4 *)puVar5 = uStack0000000000000058;
-      puVar7 = puVar7 + 1;
-      *(int *)((longlong)puVar6 + -4) = (int)((ulonglong)uVar2 >> 0x20);
+      if (partition_ptr <= left_ptr) break;
+      // 交换元素
+      temp_value = *left_ptr;
+      *(uint32_t *)left_ptr = *(uint32_t *)partition_ptr;
+      *(uint32_t *)((int64_t)left_ptr + 4) = *(uint32_t *)((int64_t)right_ptr + -4);
+      temp_low = (uint32_t)temp_value;
+      *(uint32_t *)partition_ptr = temp_low;
+      left_ptr = left_ptr + 1;
+      *(int *)((int64_t)right_ptr + -4) = (int)((uint64_t)temp_value >> 0x20);
     }
-    unaff_R15 = unaff_R15 + -1;
-    FUN_180190c90(puVar7,unaff_RBP,unaff_R15);
-    unaff_RBP = puVar7;
-  } while (0xe0 < (longlong)((longlong)puVar7 - (longlong)unaff_R14 & 0xfffffffffffffff8U));
-  if (unaff_R15 != 0) {
+    recursion_depth = recursion_depth + -1;
+    quick_sort_implementation(left_ptr, array_base, recursion_depth);
+    array_base = left_ptr;
+  } while (0xe0 < (int64_t)((int64_t)left_ptr - (int64_t)array_end & 0xfffffffffffffff8U));
+  
+  // 堆排序回退
+  if (recursion_depth != 0) {
     return;
   }
-  lVar4 = (longlong)puVar7 - (longlong)unaff_R14 >> 3;
-  if (1 < lVar4) {
-    lVar11 = (lVar4 + -2 >> 1) + 1;
-    lVar10 = lVar11 * 2 + 2;
+  element_count = (int64_t)left_ptr - (int64_t)array_end >> 3;
+  if (1 < element_count) {
+    heap_parent = (element_count + -2 >> 1) + 1;
+    heap_child = heap_parent * 2 + 2;
     do {
-      uVar1 = unaff_R14[lVar11 + -1];
-      lVar11 = lVar11 + -1;
-      lVar10 = lVar10 + -2;
-      lVar8 = lVar11;
-      for (lVar9 = lVar10; lVar9 < lVar4; lVar9 = lVar9 * 2 + 2) {
-        cVar3 = func_0x00018018e0d0(unaff_R14[lVar9],unaff_R14[lVar9 + -1]);
-        if (cVar3 != '\0') {
-          lVar9 = lVar9 + -1;
+      pivot_value = array_end[heap_parent + -1];
+      heap_parent = heap_parent + -1;
+      heap_child = heap_child + -2;
+      left_index = heap_parent;
+      // 堆化
+      for (right_index = heap_child; right_index < element_count; right_index = right_index * 2 + 2) {
+        comparison_result = compare_elements(array_end[right_index], array_end[right_index + -1]);
+        if (comparison_result != '\0') {
+          right_index = right_index + -1;
         }
-        *(undefined4 *)(unaff_R14 + lVar8) = *(undefined4 *)(unaff_R14 + lVar9);
-        *(undefined4 *)((longlong)unaff_R14 + lVar8 * 8 + 4) =
-             *(undefined4 *)((longlong)unaff_R14 + lVar9 * 8 + 4);
-        lVar8 = lVar9;
+        *(uint32_t *)(array_end + left_index) = *(uint32_t *)(array_end + right_index);
+        *(uint32_t *)((int64_t)array_end + left_index * 8 + 4) =
+             *(uint32_t *)((int64_t)array_end + right_index * 8 + 4);
+        left_index = right_index;
       }
-      if (lVar9 == lVar4) {
-        *(undefined4 *)(unaff_R14 + lVar8) = *(undefined4 *)(unaff_R14 + lVar9 + -1);
-        *(undefined4 *)((longlong)unaff_R14 + lVar8 * 8 + 4) =
-             *(undefined4 *)((longlong)unaff_R14 + lVar9 * 8 + -4);
-        lVar8 = lVar9 + -1;
+      if (right_index == element_count) {
+        *(uint32_t *)(array_end + left_index) = *(uint32_t *)(array_end + right_index + -1);
+        *(uint32_t *)((int64_t)array_end + left_index * 8 + 4) =
+             *(uint32_t *)((int64_t)array_end + right_index * 8 + -4);
+        left_index = right_index + -1;
       }
-      while (lVar11 < lVar8) {
-        lVar9 = lVar8 + -1 >> 1;
-        cVar3 = func_0x00018018e0d0(unaff_R14[lVar9],uVar1);
-        if (cVar3 == '\0') break;
-        *(undefined4 *)(unaff_R14 + lVar8) = *(undefined4 *)(unaff_R14 + lVar9);
-        *(undefined4 *)((longlong)unaff_R14 + lVar8 * 8 + 4) =
-             *(undefined4 *)((longlong)unaff_R14 + lVar9 * 8 + 4);
-        lVar8 = lVar9;
+      // 上浮
+      while (heap_parent < left_index) {
+        right_index = left_index + -1 >> 1;
+        comparison_result = compare_elements(array_end[right_index], pivot_value);
+        if (comparison_result == '\0') break;
+        *(uint32_t *)(array_end + left_index) = *(uint32_t *)(array_end + right_index);
+        *(uint32_t *)((int64_t)array_end + left_index * 8 + 4) =
+             *(uint32_t *)((int64_t)array_end + right_index * 8 + 4);
+        left_index = right_index;
       }
-      uStack0000000000000058 = (undefined4)uVar1;
-      uStack000000000000005c = (undefined4)((ulonglong)uVar1 >> 0x20);
-      *(undefined4 *)(unaff_R14 + lVar8) = uStack0000000000000058;
-      *(undefined4 *)((longlong)unaff_R14 + lVar8 * 8 + 4) = uStack000000000000005c;
-    } while (lVar11 != 0);
+      temp_low = (uint32_t)pivot_value;
+      temp_high = (uint32_t)((uint64_t)pivot_value >> 0x20);
+      *(uint32_t *)(array_end + left_index) = temp_low;
+      *(uint32_t *)((int64_t)array_end + left_index * 8 + 4) = temp_high;
+    } while (heap_parent != 0);
   }
-  if (1 < lVar4) {
-    puVar7 = puVar7 + -1;
+  // 堆提取
+  if (1 < element_count) {
+    partition_ptr = partition_ptr + -1;
     do {
-      uVar1 = *puVar7;
-      lVar4 = lVar4 + -1;
-      lVar10 = 0;
-      lVar11 = 2;
-      *(undefined4 *)puVar7 = *(undefined4 *)unaff_R14;
-      *(undefined4 *)((longlong)puVar7 + 4) = *(undefined4 *)((longlong)unaff_R14 + 4);
-      bVar12 = lVar4 == 2;
-      lVar8 = lVar10;
-      if (2 < lVar4) {
+      pivot_value = *partition_ptr;
+      element_count = element_count + -1;
+      heap_child = 0;
+      heap_parent = 2;
+      *(uint32_t *)partition_ptr = *(uint32_t *)array_end;
+      *(uint32_t *)((int64_t)partition_ptr + 4) = *(uint32_t *)((int64_t)array_end + 4);
+      is_heap_leaf = element_count == 2;
+      left_index = heap_child;
+      if (2 < element_count) {
         do {
-          cVar3 = func_0x00018018e0d0(unaff_R14[lVar11],unaff_R14[lVar11 + -1]);
-          lVar10 = lVar11;
-          if (cVar3 != '\0') {
-            lVar10 = lVar11 + -1;
+          comparison_result = compare_elements(array_end[heap_parent], array_end[heap_parent + -1]);
+          heap_child = heap_parent;
+          if (comparison_result != '\0') {
+            heap_child = heap_parent + -1;
           }
-          *(undefined4 *)(unaff_R14 + lVar8) = *(undefined4 *)(unaff_R14 + lVar10);
-          *(undefined4 *)((longlong)unaff_R14 + lVar8 * 8 + 4) =
-               *(undefined4 *)((longlong)unaff_R14 + lVar10 * 8 + 4);
-          lVar11 = lVar10 * 2 + 2;
-          bVar12 = lVar11 == lVar4;
-          lVar8 = lVar10;
-        } while (lVar11 < lVar4);
+          *(uint32_t *)(array_end + left_index) = *(uint32_t *)(array_end + heap_child);
+          *(uint32_t *)((int64_t)array_end + left_index * 8 + 4) =
+               *(uint32_t *)((int64_t)array_end + heap_child * 8 + 4);
+          heap_parent = heap_child * 2 + 2;
+          is_heap_leaf = heap_parent == element_count;
+          left_index = heap_child;
+        } while (heap_parent < element_count);
       }
-      if (bVar12) {
-        *(undefined4 *)(unaff_R14 + lVar10) = *(undefined4 *)(unaff_R14 + lVar11 + -1);
-        *(undefined4 *)((longlong)unaff_R14 + lVar10 * 8 + 4) =
-             *(undefined4 *)((longlong)unaff_R14 + lVar11 * 8 + -4);
-        lVar10 = lVar11 + -1;
+      if (is_heap_leaf) {
+        *(uint32_t *)(array_end + heap_child) = *(uint32_t *)(array_end + heap_parent + -1);
+        *(uint32_t *)((int64_t)array_end + heap_child * 8 + 4) =
+             *(uint32_t *)((int64_t)array_end + heap_parent * 8 + -4);
+        heap_child = heap_parent + -1;
       }
-      while (0 < lVar10) {
-        lVar4 = lVar10 + -1 >> 1;
-        cVar3 = func_0x00018018e0d0(unaff_R14[lVar4],uVar1);
-        if (cVar3 == '\0') break;
-        *(undefined4 *)(unaff_R14 + lVar10) = *(undefined4 *)(unaff_R14 + lVar4);
-        *(undefined4 *)((longlong)unaff_R14 + lVar10 * 8 + 4) =
-             *(undefined4 *)((longlong)unaff_R14 + lVar4 * 8 + 4);
-        lVar10 = lVar4;
+      // 堆修复
+      while (0 < heap_child) {
+        element_count = heap_child + -1 >> 1;
+        comparison_result = compare_elements(array_end[element_count], pivot_value);
+        if (comparison_result == '\0') break;
+        *(uint32_t *)(array_end + heap_child) = *(uint32_t *)(array_end + element_count);
+        *(uint32_t *)((int64_t)array_end + heap_child * 8 + 4) =
+             *(uint32_t *)((int64_t)array_end + element_count * 8 + 4);
+        heap_child = element_count;
       }
-      puVar7 = puVar7 + -1;
-      *(int *)((longlong)unaff_R14 + lVar10 * 8 + 4) = (int)((ulonglong)uVar1 >> 0x20);
-      *(int *)(unaff_R14 + lVar10) = (int)uVar1;
-      lVar4 = (8 - (longlong)unaff_R14) + (longlong)puVar7 >> 3;
-    } while (1 < lVar4);
+      partition_ptr = partition_ptr + -1;
+      *(int *)((int64_t)array_end + heap_child * 8 + 4) = (int)((uint64_t)pivot_value >> 0x20);
+      *(int *)(array_end + heap_child) = (int)pivot_value;
+      element_count = (8 - (int64_t)array_end) + (int64_t)partition_ptr >> 3;
+    } while (1 < element_count);
   }
   return;
 }
 
 
-
-// WARNING: Removing unreachable block (ram,0x0001801910ba)
-// WARNING: Removing unreachable block (ram,0x0001801910c0)
-// WARNING: Removing unreachable block (ram,0x0001801910d3)
-// WARNING: Removing unreachable block (ram,0x0001801910f7)
-// WARNING: Removing unreachable block (ram,0x000180191100)
-// WARNING: Removing unreachable block (ram,0x000180191112)
-// WARNING: Removing unreachable block (ram,0x000180191115)
-// WARNING: Removing unreachable block (ram,0x000180191133)
-// WARNING: Removing unreachable block (ram,0x000180191135)
-// WARNING: Removing unreachable block (ram,0x000180191148)
-// WARNING: Removing unreachable block (ram,0x000180191150)
-// WARNING: Removing unreachable block (ram,0x000180191167)
-// WARNING: Removing unreachable block (ram,0x00018019117d)
-// WARNING: Removing unreachable block (ram,0x000180191190)
-// WARNING: Removing unreachable block (ram,0x00018019119d)
+// 警告：移除不可达代码块 (多个位置)
 
 
-
-// 函数: void FUN_180190e00(void)
-void FUN_180190e00(void)
-
+/**
+ * 寄存器优化的堆排序实现
+ * 使用寄存器变量减少内存访问，提高性能
+ */
+void register_optimized_heap_sort(void)
 {
-  undefined8 uVar1;
-  char cVar2;
-  longlong unaff_RBP;
-  longlong lVar3;
-  longlong lVar4;
-  undefined8 in_R9;
-  longlong lVar5;
-  undefined4 *unaff_R14;
-  longlong lVar6;
-  undefined8 *puVar7;
-  longlong unaff_R15;
-  longlong lVar8;
-  bool bVar9;
-  undefined4 uStack0000000000000058;
-  undefined4 uStack000000000000005c;
+  uint64_t pivot_value;
+  char comparison_result;
+  int64_t base_register;
+  int64_t left_index;
+  int64_t right_index;
+  uint64_t register_ninth;
+  int64_t heap_parent;
+  uint32_t *array_base;
+  int64_t element_count;
+  uint64_t *partition_ptr;
+  int64_t recursion_depth;
+  int64_t heap_child;
+  bool is_heap_leaf;
+  uint32_t temp_low;
+  uint32_t temp_high;
   
-  if (unaff_R15 != 0) {
+  if (recursion_depth != 0) {
     return;
   }
-  lVar8 = unaff_RBP - (longlong)unaff_R14 >> 3;
-  _uStack0000000000000058 = in_R9;
-  if (1 < lVar8) {
-    lVar6 = (lVar8 + -2 >> 1) + 1;
-    lVar5 = lVar6 * 2 + 2;
+  element_count = base_register - (int64_t)array_base >> 3;
+  temp_low = register_ninth;
+  if (1 < element_count) {
+    heap_parent = (element_count + -2 >> 1) + 1;
+    heap_child = heap_parent * 2 + 2;
     do {
-      uVar1 = *(undefined8 *)(unaff_R14 + lVar6 * 2 + -2);
-      lVar6 = lVar6 + -1;
-      lVar5 = lVar5 + -2;
-      _uStack0000000000000058 = uVar1;
-      lVar3 = lVar6;
-      for (lVar4 = lVar5; lVar4 < lVar8; lVar4 = lVar4 * 2 + 2) {
-        cVar2 = func_0x00018018e0d0(*(undefined8 *)(unaff_R14 + lVar4 * 2),
-                                    *(undefined8 *)(unaff_R14 + lVar4 * 2 + -2));
-        if (cVar2 != '\0') {
-          lVar4 = lVar4 + -1;
+      pivot_value = *(uint64_t *)(array_base + heap_parent * 2 + -2);
+      heap_parent = heap_parent + -1;
+      heap_child = heap_child + -2;
+      temp_low = pivot_value;
+      left_index = heap_parent;
+      // 堆化过程
+      for (right_index = heap_child; right_index < element_count; right_index = right_index * 2 + 2) {
+        comparison_result = compare_elements(*(uint64_t *)(array_base + right_index * 2),
+                                    *(uint64_t *)(array_base + right_index * 2 + -2));
+        if (comparison_result != '\0') {
+          right_index = right_index + -1;
         }
-        unaff_R14[lVar3 * 2] = unaff_R14[lVar4 * 2];
-        unaff_R14[lVar3 * 2 + 1] = unaff_R14[lVar4 * 2 + 1];
-        lVar3 = lVar4;
+        array_base[left_index * 2] = array_base[right_index * 2];
+        array_base[left_index * 2 + 1] = array_base[right_index * 2 + 1];
+        left_index = right_index;
       }
-      if (lVar4 == lVar8) {
-        unaff_R14[lVar3 * 2] = unaff_R14[lVar4 * 2 + -2];
-        unaff_R14[lVar3 * 2 + 1] = unaff_R14[lVar4 * 2 + -1];
-        lVar3 = lVar4 + -1;
+      if (right_index == element_count) {
+        array_base[left_index * 2] = array_base[right_index * 2 + -2];
+        array_base[left_index * 2 + 1] = array_base[right_index * 2 + -1];
+        left_index = right_index + -1;
       }
-      while (lVar6 < lVar3) {
-        lVar4 = lVar3 + -1 >> 1;
-        cVar2 = func_0x00018018e0d0(*(undefined8 *)(unaff_R14 + lVar4 * 2),uVar1);
-        if (cVar2 == '\0') break;
-        unaff_R14[lVar3 * 2] = unaff_R14[lVar4 * 2];
-        unaff_R14[lVar3 * 2 + 1] = unaff_R14[lVar4 * 2 + 1];
-        lVar3 = lVar4;
+      // 上浮调整
+      while (heap_parent < left_index) {
+        right_index = left_index + -1 >> 1;
+        comparison_result = compare_elements(*(uint64_t *)(array_base + right_index * 2), pivot_value);
+        if (comparison_result == '\0') break;
+        array_base[left_index * 2] = array_base[right_index * 2];
+        array_base[left_index * 2 + 1] = array_base[right_index * 2 + 1];
+        left_index = right_index;
       }
-      unaff_R14[lVar3 * 2] = uStack0000000000000058;
-      unaff_R14[lVar3 * 2 + 1] = uStack000000000000005c;
-    } while (lVar6 != 0);
+      array_base[left_index * 2] = temp_low;
+      array_base[left_index * 2 + 1] = temp_high;
+    } while (heap_parent != 0);
   }
-  if (1 < lVar8) {
-    puVar7 = (undefined8 *)(unaff_RBP + -8);
+  // 堆提取阶段
+  if (1 < element_count) {
+    partition_ptr = (uint64_t *)(base_register + -8);
     do {
-      uVar1 = *puVar7;
-      lVar8 = lVar8 + -1;
-      lVar5 = 0;
-      lVar6 = 2;
-      *(undefined4 *)puVar7 = *unaff_R14;
-      *(undefined4 *)((longlong)puVar7 + 4) = unaff_R14[1];
-      bVar9 = lVar8 == 2;
-      lVar3 = lVar5;
-      if (2 < lVar8) {
+      pivot_value = *partition_ptr;
+      element_count = element_count + -1;
+      heap_child = 0;
+      heap_parent = 2;
+      *(uint32_t *)partition_ptr = *array_base;
+      *(uint32_t *)((int64_t)partition_ptr + 4) = array_base[1];
+      is_heap_leaf = element_count == 2;
+      left_index = heap_child;
+      if (2 < element_count) {
         do {
-          cVar2 = func_0x00018018e0d0(*(undefined8 *)(unaff_R14 + lVar6 * 2),
-                                      *(undefined8 *)(unaff_R14 + lVar6 * 2 + -2));
-          lVar5 = lVar6;
-          if (cVar2 != '\0') {
-            lVar5 = lVar6 + -1;
+          comparison_result = compare_elements(*(uint64_t *)(array_base + heap_parent * 2),
+                                      *(uint64_t *)(array_base + heap_parent * 2 + -2));
+          heap_child = heap_parent;
+          if (comparison_result != '\0') {
+            heap_child = heap_parent + -1;
           }
-          unaff_R14[lVar3 * 2] = unaff_R14[lVar5 * 2];
-          unaff_R14[lVar3 * 2 + 1] = unaff_R14[lVar5 * 2 + 1];
-          lVar6 = lVar5 * 2 + 2;
-          bVar9 = lVar6 == lVar8;
-          lVar3 = lVar5;
-        } while (lVar6 < lVar8);
+          array_base[left_index * 2] = array_base[heap_child * 2];
+          array_base[left_index * 2 + 1] = array_base[heap_child * 2 + 1];
+          heap_parent = heap_child * 2 + 2;
+          is_heap_leaf = heap_parent == element_count;
+          left_index = heap_child;
+        } while (heap_parent < element_count);
       }
-      if (bVar9) {
-        unaff_R14[lVar5 * 2] = unaff_R14[lVar6 * 2 + -2];
-        unaff_R14[lVar5 * 2 + 1] = unaff_R14[lVar6 * 2 + -1];
-        lVar5 = lVar6 + -1;
+      if (is_heap_leaf) {
+        array_base[heap_child * 2] = array_base[heap_parent * 2 + -2];
+        array_base[heap_child * 2 + 1] = array_base[heap_parent * 2 + -1];
+        heap_child = heap_parent + -1;
       }
-      while (0 < lVar5) {
-        lVar8 = lVar5 + -1 >> 1;
-        cVar2 = func_0x00018018e0d0(*(undefined8 *)(unaff_R14 + lVar8 * 2),uVar1);
-        if (cVar2 == '\0') break;
-        unaff_R14[lVar5 * 2] = unaff_R14[lVar8 * 2];
-        unaff_R14[lVar5 * 2 + 1] = unaff_R14[lVar8 * 2 + 1];
-        lVar5 = lVar8;
+      // 堆修复
+      while (0 < heap_child) {
+        element_count = heap_child + -1 >> 1;
+        comparison_result = compare_elements(*(uint64_t *)(array_base + element_count * 2), pivot_value);
+        if (comparison_result == '\0') break;
+        array_base[heap_child * 2] = array_base[element_count * 2];
+        array_base[heap_child * 2 + 1] = array_base[element_count * 2 + 1];
+        heap_child = element_count;
       }
-      puVar7 = puVar7 + -1;
-      unaff_R14[lVar5 * 2 + 1] = (int)((ulonglong)uVar1 >> 0x20);
-      unaff_R14[lVar5 * 2] = (int)uVar1;
-      lVar8 = (8 - (longlong)unaff_R14) + (longlong)puVar7 >> 3;
-    } while (1 < lVar8);
+      partition_ptr = partition_ptr + -1;
+      array_base[heap_child * 2 + 1] = (int)((uint64_t)pivot_value >> 0x20);
+      array_base[heap_child * 2] = (int)pivot_value;
+      element_count = (8 - (int64_t)array_base) + (int64_t)partition_ptr >> 3;
+    } while (1 < element_count);
   }
   return;
 }
 
 
-
-// WARNING: Removing unreachable block (ram,0x0001801910ba)
-// WARNING: Removing unreachable block (ram,0x0001801910c0)
-// WARNING: Removing unreachable block (ram,0x0001801910d3)
-// WARNING: Removing unreachable block (ram,0x0001801910f7)
-// WARNING: Removing unreachable block (ram,0x000180191100)
-// WARNING: Removing unreachable block (ram,0x000180191112)
-// WARNING: Removing unreachable block (ram,0x000180191115)
-// WARNING: Removing unreachable block (ram,0x000180191133)
-// WARNING: Removing unreachable block (ram,0x000180191135)
-// WARNING: Removing unreachable block (ram,0x000180191148)
-// WARNING: Removing unreachable block (ram,0x000180191150)
-// WARNING: Removing unreachable block (ram,0x000180191167)
-// WARNING: Removing unreachable block (ram,0x00018019117d)
-// WARNING: Removing unreachable block (ram,0x000180191190)
-// WARNING: Removing unreachable block (ram,0x00018019119d)
+// 警告：移除不可达代码块 (多个位置)
 
 
-
-// 函数: void FUN_180190e0a(void)
-void FUN_180190e0a(void)
-
+/**
+ * 通用堆排序实现
+ * 标准的堆排序算法，适用于各种数据类型
+ */
+void generic_heap_sort(void)
 {
-  undefined8 uVar1;
-  char cVar2;
-  longlong unaff_RBP;
-  longlong lVar3;
-  longlong lVar4;
-  undefined8 in_R9;
-  longlong lVar5;
-  undefined4 *unaff_R14;
-  longlong lVar6;
-  undefined8 *puVar7;
-  longlong lVar8;
-  bool bVar9;
-  undefined4 uStack0000000000000058;
-  undefined4 uStack000000000000005c;
+  uint64_t pivot_value;
+  char comparison_result;
+  int64_t base_register;
+  int64_t left_index;
+  int64_t right_index;
+  uint64_t register_ninth;
+  int64_t heap_parent;
+  uint32_t *array_base;
+  int64_t element_count;
+  int64_t heap_child;
+  uint64_t *partition_ptr;
+  bool is_heap_leaf;
+  uint32_t temp_low;
+  uint32_t temp_high;
   
-  lVar8 = unaff_RBP - (longlong)unaff_R14 >> 3;
-  _uStack0000000000000058 = in_R9;
-  if (1 < lVar8) {
-    lVar6 = (lVar8 + -2 >> 1) + 1;
-    lVar5 = lVar6 * 2 + 2;
+  element_count = base_register - (int64_t)array_base >> 3;
+  temp_low = register_ninth;
+  if (1 < element_count) {
+    heap_parent = (element_count + -2 >> 1) + 1;
+    heap_child = heap_parent * 2 + 2;
     do {
-      uVar1 = *(undefined8 *)(unaff_R14 + lVar6 * 2 + -2);
-      lVar6 = lVar6 + -1;
-      lVar5 = lVar5 + -2;
-      _uStack0000000000000058 = uVar1;
-      lVar3 = lVar6;
-      for (lVar4 = lVar5; lVar4 < lVar8; lVar4 = lVar4 * 2 + 2) {
-        cVar2 = func_0x00018018e0d0(*(undefined8 *)(unaff_R14 + lVar4 * 2),
-                                    *(undefined8 *)(unaff_R14 + lVar4 * 2 + -2));
-        if (cVar2 != '\0') {
-          lVar4 = lVar4 + -1;
+      pivot_value = *(uint64_t *)(array_base + heap_parent * 2 + -2);
+      heap_parent = heap_parent + -1;
+      heap_child = heap_child + -2;
+      temp_low = pivot_value;
+      left_index = heap_parent;
+      // 堆构建
+      for (right_index = heap_child; right_index < element_count; right_index = right_index * 2 + 2) {
+        comparison_result = compare_elements(*(uint64_t *)(array_base + right_index * 2),
+                                    *(uint64_t *)(array_base + right_index * 2 + -2));
+        if (comparison_result != '\0') {
+          right_index = right_index + -1;
         }
-        unaff_R14[lVar3 * 2] = unaff_R14[lVar4 * 2];
-        unaff_R14[lVar3 * 2 + 1] = unaff_R14[lVar4 * 2 + 1];
-        lVar3 = lVar4;
+        array_base[left_index * 2] = array_base[right_index * 2];
+        array_base[left_index * 2 + 1] = array_base[right_index * 2 + 1];
+        left_index = right_index;
       }
-      if (lVar4 == lVar8) {
-        unaff_R14[lVar3 * 2] = unaff_R14[lVar4 * 2 + -2];
-        unaff_R14[lVar3 * 2 + 1] = unaff_R14[lVar4 * 2 + -1];
-        lVar3 = lVar4 + -1;
+      if (right_index == element_count) {
+        array_base[left_index * 2] = array_base[right_index * 2 + -2];
+        array_base[left_index * 2 + 1] = array_base[right_index * 2 + -1];
+        left_index = right_index + -1;
       }
-      while (lVar6 < lVar3) {
-        lVar4 = lVar3 + -1 >> 1;
-        cVar2 = func_0x00018018e0d0(*(undefined8 *)(unaff_R14 + lVar4 * 2),uVar1);
-        if (cVar2 == '\0') break;
-        unaff_R14[lVar3 * 2] = unaff_R14[lVar4 * 2];
-        unaff_R14[lVar3 * 2 + 1] = unaff_R14[lVar4 * 2 + 1];
-        lVar3 = lVar4;
+      // 上浮
+      while (heap_parent < left_index) {
+        right_index = left_index + -1 >> 1;
+        comparison_result = compare_elements(*(uint64_t *)(array_base + right_index * 2), pivot_value);
+        if (comparison_result == '\0') break;
+        array_base[left_index * 2] = array_base[right_index * 2];
+        array_base[left_index * 2 + 1] = array_base[right_index * 2 + 1];
+        left_index = right_index;
       }
-      unaff_R14[lVar3 * 2] = uStack0000000000000058;
-      unaff_R14[lVar3 * 2 + 1] = uStack000000000000005c;
-    } while (lVar6 != 0);
+      array_base[left_index * 2] = temp_low;
+      array_base[left_index * 2 + 1] = temp_high;
+    } while (heap_parent != 0);
   }
-  if (1 < lVar8) {
-    puVar7 = (undefined8 *)(unaff_RBP + -8);
+  // 堆排序
+  if (1 < element_count) {
+    partition_ptr = (uint64_t *)(base_register + -8);
     do {
-      uVar1 = *puVar7;
-      lVar8 = lVar8 + -1;
-      lVar5 = 0;
-      lVar6 = 2;
-      *(undefined4 *)puVar7 = *unaff_R14;
-      *(undefined4 *)((longlong)puVar7 + 4) = unaff_R14[1];
-      bVar9 = lVar8 == 2;
-      lVar3 = lVar5;
-      if (2 < lVar8) {
+      pivot_value = *partition_ptr;
+      element_count = element_count + -1;
+      heap_child = 0;
+      heap_parent = 2;
+      *(uint32_t *)partition_ptr = *array_base;
+      *(uint32_t *)((int64_t)partition_ptr + 4) = array_base[1];
+      is_heap_leaf = element_count == 2;
+      left_index = heap_child;
+      if (2 < element_count) {
         do {
-          cVar2 = func_0x00018018e0d0(*(undefined8 *)(unaff_R14 + lVar6 * 2),
-                                      *(undefined8 *)(unaff_R14 + lVar6 * 2 + -2));
-          lVar5 = lVar6;
-          if (cVar2 != '\0') {
-            lVar5 = lVar6 + -1;
+          comparison_result = compare_elements(*(uint64_t *)(array_base + heap_parent * 2),
+                                      *(uint64_t *)(array_base + heap_parent * 2 + -2));
+          heap_child = heap_parent;
+          if (comparison_result != '\0') {
+            heap_child = heap_parent + -1;
           }
-          unaff_R14[lVar3 * 2] = unaff_R14[lVar5 * 2];
-          unaff_R14[lVar3 * 2 + 1] = unaff_R14[lVar5 * 2 + 1];
-          lVar6 = lVar5 * 2 + 2;
-          bVar9 = lVar6 == lVar8;
-          lVar3 = lVar5;
-        } while (lVar6 < lVar8);
+          array_base[left_index * 2] = array_base[heap_child * 2];
+          array_base[left_index * 2 + 1] = array_base[heap_child * 2 + 1];
+          heap_parent = heap_child * 2 + 2;
+          is_heap_leaf = heap_parent == element_count;
+          left_index = heap_child;
+        } while (heap_parent < element_count);
       }
-      if (bVar9) {
-        unaff_R14[lVar5 * 2] = unaff_R14[lVar6 * 2 + -2];
-        unaff_R14[lVar5 * 2 + 1] = unaff_R14[lVar6 * 2 + -1];
-        lVar5 = lVar6 + -1;
+      if (is_heap_leaf) {
+        array_base[heap_child * 2] = array_base[heap_parent * 2 + -2];
+        array_base[heap_child * 2 + 1] = array_base[heap_parent * 2 + -1];
+        heap_child = heap_parent + -1;
       }
-      while (0 < lVar5) {
-        lVar8 = lVar5 + -1 >> 1;
-        cVar2 = func_0x00018018e0d0(*(undefined8 *)(unaff_R14 + lVar8 * 2),uVar1);
-        if (cVar2 == '\0') break;
-        unaff_R14[lVar5 * 2] = unaff_R14[lVar8 * 2];
-        unaff_R14[lVar5 * 2 + 1] = unaff_R14[lVar8 * 2 + 1];
-        lVar5 = lVar8;
+      // 堆修复
+      while (0 < heap_child) {
+        element_count = heap_child + -1 >> 1;
+        comparison_result = compare_elements(*(uint64_t *)(array_base + element_count * 2), pivot_value);
+        if (comparison_result == '\0') break;
+        array_base[heap_child * 2] = array_base[element_count * 2];
+        array_base[heap_child * 2 + 1] = array_base[element_count * 2 + 1];
+        heap_child = element_count;
       }
-      puVar7 = puVar7 + -1;
-      unaff_R14[lVar5 * 2 + 1] = (int)((ulonglong)uVar1 >> 0x20);
-      unaff_R14[lVar5 * 2] = (int)uVar1;
-      lVar8 = (8 - (longlong)unaff_R14) + (longlong)puVar7 >> 3;
-    } while (1 < lVar8);
+      partition_ptr = partition_ptr + -1;
+      array_base[heap_child * 2 + 1] = (int)((uint64_t)pivot_value >> 0x20);
+      array_base[heap_child * 2] = (int)pivot_value;
+      element_count = (8 - (int64_t)array_base) + (int64_t)partition_ptr >> 3;
+    } while (1 < element_count);
   }
   return;
 }
 
 
+// 警告：移除不可达代码块 (多个位置)
 
 
-
-// 函数: void FUN_180190e30(longlong param_1,longlong param_2,longlong param_3,undefined1 param_4)
-void FUN_180190e30(longlong param_1,longlong param_2,longlong param_3,undefined1 param_4)
-
+/**
+ * 高级排序算法
+ * 结合多种排序策略的自适应排序算法
+ * 
+ * @param range_start 排序范围起始
+ * @param range_end 排序范围结束
+ * @param iteration_count 迭代次数
+ * @param sort_flag 排序标志位
+ */
+void advanced_sort_algorithm(int64_t range_start, int64_t range_end, int64_t iteration_count, uint8_t sort_flag)
 {
-  char cVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  undefined1 auStack_368 [848];
+  char compare_result;
+  int64_t range_size;
+  int64_t middle_point;
+  uint64_t sentinel_value;
+  uint8_t temp_buffer[848];
   
-  uVar4 = 0xfffffffffffffffe;
-  lVar2 = param_2 - param_1;
+  sentinel_value = 0xfffffffffffffffe;
+  range_size = range_end - range_start;
   do {
-    if ((lVar2 < 0x5f28) || (param_3 < 1)) {
-      if (param_3 == 0) {
-        FUN_1801912b0(param_1,param_2,param_2,param_4,uVar4);
+    // 小范围或迭代限制检查
+    if ((range_size < 0x5f28) || (iteration_count < 1)) {
+      if (iteration_count == 0) {
+        final_sort_pass(range_start, range_end, range_end, sort_flag, sentinel_value);
       }
       return;
     }
-    lVar2 = ((param_2 - param_1) / 0x690) * 0x348 + param_1;
-    cVar1 = FUN_180190530(param_2 - param_1,param_1,lVar2);
-    if (cVar1 == '\0') {
-      cVar1 = FUN_180190530();
-      lVar3 = param_1;
-      if (cVar1 == '\0') {
-        cVar1 = FUN_180190530();
-        goto LAB_180190f00;
+    // 计算分区点
+    range_size = ((range_end - range_start) / 0x690) * 0x348 + range_start;
+    compare_result = calculate_partition(range_end - range_start, range_start, range_size);
+    if (compare_result == '\0') {
+      compare_result = calculate_partition();
+      middle_point = range_start;
+      if (compare_result == '\0') {
+        compare_result = calculate_partition();
+        goto partition_decided;
       }
     }
     else {
-      cVar1 = FUN_180190530();
-      lVar3 = lVar2;
-      if (cVar1 == '\0') {
-        cVar1 = FUN_180190530();
-        lVar2 = param_1;
-LAB_180190f00:
-        lVar3 = lVar2;
-        if (cVar1 != '\0') {
-          lVar3 = param_2 + -0x348;
+      compare_result = calculate_partition();
+      middle_point = range_size;
+      if (compare_result == '\0') {
+        compare_result = calculate_partition();
+        range_size = range_start;
+partition_decided:
+        middle_point = range_size;
+        if (compare_result != '\0') {
+          middle_point = range_end + -0x348;
         }
       }
     }
-    FUN_18018e7e0(auStack_368,lVar3);
-    lVar3 = FUN_180191560(param_1,param_2,auStack_368);
-    FUN_1801431d0(auStack_368);
-    param_3 = param_3 + -1;
-    FUN_180190e30(lVar3,param_2,param_3,param_4);
-    lVar2 = lVar3 - param_1;
-    param_2 = lVar3;
+    // 缓存优化处理
+    optimize_cache_access(temp_buffer, middle_point);
+    middle_point = calculate_optimal_range(range_start, range_end, temp_buffer);
+    cleanup_temp_buffer(temp_buffer);
+    iteration_count = iteration_count + -1;
+    advanced_sort_algorithm(middle_point, range_end, iteration_count, sort_flag);
+    range_size = middle_point - range_start;
+    range_end = middle_point;
   } while( true );
 }
-
-
-
-
-
