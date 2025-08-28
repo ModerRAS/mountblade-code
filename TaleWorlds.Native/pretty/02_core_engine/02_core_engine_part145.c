@@ -1,9 +1,22 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part145.c - 11 个函数
+// 02_core_engine_part145.c - 核心引擎模块第145部分
+// 本文件包含11个函数，主要处理游戏对象管理、状态更新和内存操作
 
-// 函数: void FUN_180136231(longlong param_1,longlong param_2,int param_3)
-void FUN_180136231(longlong param_1,longlong param_2,int param_3)
+/* 全局变量引用 */
+extern undefined8 _DAT_180c8a9b0;  // 全局数据基地址
+extern undefined8 _DAT_180c8a9a8;  // 全局配置基地址
+extern undefined8 UNK_180a06578;    // 未知数据结构
+extern undefined8 UNK_18098d290;    // 哈希表数据
+
+/**
+ * 处理游戏对象批量更新
+ * @param context 上下文指针
+ * @param data_ptr 数据指针
+ * @param count 处理数量
+ * @param stack_param 栈参数
+ */
+void process_game_object_batch(longlong context, longlong data_ptr, int count, ulonglong stack_param)
 
 {
   byte bVar1;
