@@ -1,22 +1,73 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * 渲染系统高级参数处理和时间管理模块
- * 
- * 本模块包含5个核心函数，主要功能：
- * - 渲染系统时间参数处理和状态管理
- * - 渲染系统高级时间计算和插值处理
- * - 渲染系统时间更新和同步管理
- * - 渲染系统空操作处理器
- * - 渲染系统时间清理和重置处理器
- * 
- * 主要函数：
- * - rendering_system_time_parameter_processor：渲染系统时间参数处理器
- * - rendering_system_advanced_time_calculator：渲染系统高级时间计算器
- * - rendering_system_time_updater：渲染系统时间更新器
- * - rendering_system_empty_operation_processor：渲染系统空操作处理器
- * - rendering_system_time_cleanup_handler：渲染系统时间清理处理器
- */
+// =============================================================================
+// 03_rendering_part483.c - 渲染系统高级参数处理和状态管理模块
+// =============================================================================
+// 本模块包含5个核心函数，涵盖渲染系统高级参数处理、状态管理、
+// 时间控制、数学计算、条件检查、数据验证、资源管理等高级渲染功能。
+// 主要函数包括：
+// - RenderingSystem_ParameterProcessor (渲染系统参数处理器)
+// - RenderingSystem_StateManager (渲染系统状态管理器)
+// - RenderingSystem_TimeController (渲染系统时间控制器)
+// - RenderingSystem_EmptyOperationProcessor1 (渲染系统空操作处理器1)
+// - RenderingSystem_EmptyOperationProcessor2 (渲染系统空操作处理器2)
+// =============================================================================
+
+// 渲染系统常量定义
+#define RENDERING_PARAMETER_SCALE_FACTOR 1e-05f
+#define RENDERING_TIME_OFFSET 0x9184e70000
+#define RENDERING_MIN_ALPHA_THRESHOLD 0.05f
+#define RENDERING_MAX_ALPHA_THRESHOLD 0.95f
+#define RENDERING_DEFAULT_ALPHA_VALUE 0x3f800000
+#define RENDERING_STATUS_MASK_800 0x800
+#define RENDERING_STATUS_MASK_4000 0x4000
+#define RENDERING_RESOURCE_FLAG_20 0x20
+#define RENDERING_DEFAULT_COLOR_R 0xbe4ccccd
+#define RENDERING_DEFAULT_COLOR_G 0x3ecccccd
+#define RENDERING_DEFAULT_COLOR_B 0x3f800000
+#define RENDERING_DEFAULT_ALPHA 0x1000000
+#define RENDERING_DEFAULT_TEXTURE_ID 0x2002
+#define RENDERING_DEFAULT_RENDER_STATE 0xf149f2ca
+#define RENDERING_DEFAULT_BLEND_FACTOR 0xffffffffbf800000
+#define RENDERING_DEFAULT_DEPTH_FACTOR 0xffff
+#define RENDERING_SYSTEM_INVALID_INDEX -1
+#define RENDERING_SYSTEM_ZERO_TIME -0xe8d4a50000
+
+// 渲染系统数据结构定义
+typedef struct {
+    float parameter_value;
+    float time_scale;
+    float alpha_threshold;
+    float color_r;
+    float color_g;
+    float color_b;
+    float alpha_value;
+    uint32_t texture_id;
+    uint32_t render_state;
+    uint32_t blend_factor;
+    uint32_t depth_factor;
+    int32_t resource_index;
+    int32_t status_flags;
+    void* resource_pointer;
+} RenderingSystemParameterContext;
+
+typedef struct {
+    float current_time;
+    float target_time;
+    float delta_time;
+    float min_time;
+    float max_time;
+    float interpolation_factor;
+    int32_t time_status;
+    int32_t control_flags;
+} RenderingSystemTimeContext;
+
+// 函数别名定义
+#define RenderingSystem_ParameterProcessor FUN_180526aff
+#define RenderingSystem_StateManager FUN_180526b0e
+#define RenderingSystem_TimeController FUN_180526ffa
+#define RenderingSystem_EmptyOperationProcessor1 FUN_1805270fc
+#define RenderingSystem_EmptyOperationProcessor2 FUN_180527112
 
 // ============================================================================
 // 常量定义
