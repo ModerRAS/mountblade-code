@@ -94,7 +94,7 @@ void SystemResourceProcessor(int64_t param_1, int64_t param_2)
     lStackX_8 = param_1;
     
     // 添加资源到处理队列
-    FUN_18005ea90(&lStack_40, &lStackX_8);
+    SystemInitializer(&lStack_40, &lStackX_8);
     lVar1 = lStack_40;
     uVar2 = uVar4;
     uVar6 = uVar4;
@@ -140,7 +140,7 @@ void SystemResourceProcessor(int64_t param_1, int64_t param_2)
         return;
     }
     // 释放资源池内存
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -191,14 +191,14 @@ BADSPACEBASE *SystemResourceValidator(int64_t param_1, int64_t param_2, uint64_t
         uStack_28 = 3;
         
         // 分配验证内存
-        lVar4 = FUN_18062b420(system_memory_pool_ptr, 0x400, 3, param_4, 0xfffffffffffffffe);
+        lVar4 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x400, 3, param_4, 0xfffffffffffffffe);
         if (lStack_40 != lStack_38) {
             // 复制验证数据
             memmove(lVar4, lStack_40, lStack_38 - lStack_40);
         }
         if (lStack_40 != 0) {
             // 释放临时内存
-            FUN_18064e900(lStack_40);
+            CoreEngineMemoryPoolCleaner(lStack_40);
         }
         
         // 设置验证缓冲区
@@ -299,7 +299,7 @@ LAB_1802f26b3:
             bVar11 = 1;
         }
         if (lStack_40 != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         register0x00000020 = (BADSPACEBASE *)(uint64_t)bVar11;
     }
@@ -547,7 +547,7 @@ void SystemDataManager(int64_t *param_1, int64_t param_2)
     if (lVar9 == 0) {
         lVar9 = 1;
 LAB_1802f2a4b:
-        puVar10 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, lVar9 * 8, *(int8_t *)(param_2 + 0x88));
+        puVar10 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, lVar9 * 8, *(int8_t *)(param_2 + 0x88));
         puVar13 = *(uint64_t **)(param_2 + 0x78);
         puVar11 = *(uint64_t **)(param_2 + 0x70);
     }
@@ -561,7 +561,7 @@ LAB_1802f2a4b:
     }
     *puVar10 = plVar5;
     if (*(int64_t *)(param_2 + 0x70) != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     *(uint64_t **)(param_2 + 0x70) = puVar10;
     *(uint64_t **)(param_2 + 0x78) = puVar10 + 1;
@@ -598,7 +598,7 @@ LAB_1802f2aba:
             if (iVar7 != 0) {
                 __Throw_C_error_std__YAXH_Z(iVar7);
             }
-            FUN_18005ea90(param_2 + 0x8118, &plStackX_18);
+            SystemInitializer(param_2 + 0x8118, &plStackX_18);
             iVar7 = _Mtx_unlock(lVar9);
             if (iVar7 != 0) {
                 __Throw_C_error_std__YAXH_Z(iVar7);
@@ -760,7 +760,7 @@ LAB_1802f2dc5:
                 (**(code **)(*param_3 + 0xe0))(param_3);
                 puStack_490 = &system_data_buffer_ptr;
                 if (lStack_488 != 0) {
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                 }
                 lStack_488 = 0;
                 uStack_478 = uStack_478 & 0xffffffff00000000;
@@ -769,7 +769,7 @@ LAB_1802f2dc5:
                 uStack_398 = uStack_398 & 0xffffffff00000000;
                 puStack_3b0 = &system_state_ptr;
 LAB_1802f3a4a:
-                FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_4e8);
+                SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_4e8);
             }
             lVar4 = (int64_t)&unknown_var_400_ptr - (int64_t)pcVar6;
             while (*pcVar6 == pcVar6[lVar4]) {
@@ -1062,7 +1062,7 @@ void SystemDataRemover(int64_t param_1, int64_t param_2)
                         uVar9 = uVar8;
                     }
                     if (uVar9 != 0) {
-                        uVar2 = FUN_18062b420(system_memory_pool_ptr, uVar9 * 8, *(int8_t *)(param_1 + 0x238));
+                        uVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, uVar9 * 8, *(int8_t *)(param_1 + 0x238));
                         lVar6 = *(int64_t *)(param_1 + 0x220);
                         lVar5 = *(int64_t *)(param_1 + 0x228);
                     }
@@ -1127,7 +1127,7 @@ void SystemDataRemover(int64_t param_1, int64_t param_2)
                 lVar1 = 0;
             }
             else {
-                lVar1 = FUN_18062b420(system_memory_pool_ptr, uVar8 * 8, *(int8_t *)(lVar5 + 0x5cb0));
+                lVar1 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, uVar8 * 8, *(int8_t *)(lVar5 + 0x5cb0));
                 lVar6 = *plVar3;
                 lVar10 = *(int64_t *)(lVar5 + 0x5ca0);
             }
@@ -1141,7 +1141,7 @@ void SystemDataRemover(int64_t param_1, int64_t param_2)
                     *(int64_t *)(lVar5 + 0x5ca0) = lVar1;
                     return;
                 }
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
             memmove(lVar1, lVar6, lVar10 - lVar6);
         }

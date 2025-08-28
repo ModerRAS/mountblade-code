@@ -588,7 +588,7 @@ void rendering_system_execute_final_control(int64_t render_context, int64_t para
     // FUN_180516e40(param_data, 0x382a);
     
     // 执行最终的渲染控制
-    // FUN_1808fc050(...);
+    // SystemSecurityChecker(...);
 }
 
 // 辅助函数声明（这些函数在原始代码中被调用）

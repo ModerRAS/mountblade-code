@@ -178,9 +178,9 @@ typedef uint64_t UIAlgorithmHandle;               // UI算法句柄
 #define UISystemMessageDispatcher                 FUN_1807342b0
 
 // UI系统安全检查器
-#define UISystemSecurityChecker                   FUN_1808fc050
-#define UISystemAccessController                  FUN_1808fc050
-#define UISystemPermissionManager                 FUN_1808fc050
+#define UISystemSecurityChecker                   SystemSecurityChecker
+#define UISystemAccessController                  SystemSecurityChecker
+#define UISystemPermissionManager                 SystemSecurityChecker
 
 // UI系统内存对齐器
 #define UISystemMemoryAligner                     FUN_1808fd200

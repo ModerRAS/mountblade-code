@@ -178,7 +178,7 @@
 #define UISystem_MemoryAllocator FUN_1808fd200
 
 // UI系统安全检查器 - 执行安全检查
-#define UISystem_SecurityChecker FUN_1808fc050
+#define UISystem_SecurityChecker SystemSecurityChecker
 
 // UI系统错误处理器 - 处理错误情况
 #define UISystem_ErrorHandler FUN_18084b240
@@ -199,7 +199,7 @@
 #define UISystem_ConfigLoader FUN_180855780
 
 // UI系统验证器 - 验证系统状态
-#define UISystem_Verifier FUN_180744cc0
+#define UISystem_Verifier SystemStatusChecker
 
 // UI系统数据管理器 - 管理数据操作
 #define UISystem_DataManager FUN_1808554a0
@@ -265,7 +265,7 @@
 #define UISystem_DataStreamManager FUN_180854ce0
 
 // UI系统内存清理器 - 清理内存
-#define UISystem_MemoryCleaner FUN_180742250
+#define UISystem_MemoryCleaner SystemDataValidator
 
 // UI系统组件验证器 - 验证组件
 #define UISystem_ComponentVerifier FUN_1808b0820

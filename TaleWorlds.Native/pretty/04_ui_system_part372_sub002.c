@@ -39,7 +39,7 @@
  * ============================================================================ */
 
 // UI系统安全检查器
-#define UISystem_SecurityChecker FUN_1808fc050
+#define UISystem_SecurityChecker SystemSecurityChecker
 
 // UI系统初始化器
 #define UISystem_Initializer FUN_18086b47c

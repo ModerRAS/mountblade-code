@@ -146,7 +146,7 @@
 #define NetworkingSystem_ConfigCleaner FUN_18084f2d0
 
 // 网络安全清理器
-#define NetworkingSystem_SecurityCleaner FUN_1808fc050
+#define NetworkingSystem_SecurityCleaner SystemSecurityChecker
 
 // 连接状态获取器
 #define NetworkingSystem_GetConnectionStatus FUN_18084c3d0

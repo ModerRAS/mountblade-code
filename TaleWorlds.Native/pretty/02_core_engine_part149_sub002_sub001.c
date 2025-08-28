@@ -69,7 +69,7 @@ typedef uint64_t StateHandle;                   // 状态句柄
 #define CoreEngineResourceInitializer              FUN_1800599e0
 
 // 系统安全检查函数 - 执行栈保护和安全验证
-#define SystemSecurityChecker                       FUN_1808fc050
+#define SystemSecurityChecker                       SystemSecurityChecker
 
 //------------------------------------------------------------------------------
 // 核心引擎子模块配置管理函数

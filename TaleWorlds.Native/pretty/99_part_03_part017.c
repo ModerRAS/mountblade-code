@@ -69,16 +69,16 @@
 #define SystemStateCleaner FUN_1800b7eb0
 
 // 高级数据结构处理器
-#define AdvancedDataStructureProcessor FUN_1806277c0
+#define AdvancedDataStructureProcessor CoreEngineDataBufferProcessor
 
 // 字符串处理函数
-#define StringProcessor FUN_180627ae0
+#define StringProcessor CoreEngineDataTransformer
 
 // 树搜索处理器
 #define TreeSearchProcessor FUN_1801eac40
 
 // 内存分配器
-#define MemoryAllocator FUN_18064e900
+#define MemoryAllocator CoreEngineMemoryPoolCleaner
 
 // 数据验证器
 #define DataValidator FUN_1800b7c40

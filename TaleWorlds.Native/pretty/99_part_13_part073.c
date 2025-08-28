@@ -4,15 +4,15 @@
 
 // 资源管理函数
 #define ResourceManager FUN_1808db3f0    // 资源管理器
-#define ResourceCleanupHandler FUN_180768400  // 资源清理处理器
-#define ResourceAllocator FUN_180768360   // 资源分配器
-#define ResourcePoolManager FUN_180742250  // 资源池管理器
-#define ResourceSystemController FUN_180741e10  // 资源系统控制器
+#define ResourceCleanupHandler SystemMemoryManager  // 资源清理处理器
+#define ResourceAllocator SystemMemoryAllocator   // 资源分配器
+#define ResourcePoolManager SystemDataValidator  // 资源池管理器
+#define ResourceSystemController SystemResourceManager  // 资源系统控制器
 #define ResourceReferenceManager FUN_18084c220  // 资源引用管理器
 #define ResourceReleaseHandler FUN_1808b02a0  // 资源释放处理器
 
 // 系统控制函数
-#define SystemController FUN_1808fc050   // 系统控制器
+#define SystemController SystemSecurityChecker   // 系统控制器
 #define SystemCleanupInvoker FUN_1808fd200  // 系统清理调用器
 #define SystemDataManager FUN_1808dcd20  // 系统数据管理器
 #define SystemResourceHandler FUN_1808dbcd0  // 系统资源处理器

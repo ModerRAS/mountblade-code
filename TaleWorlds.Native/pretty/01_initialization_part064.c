@@ -229,7 +229,7 @@ typedef struct {
 
 // 系统核心功能函数别名
 #define InitializationSystem_PrepareInit FUN_1800591c0          // 系统初始化准备器
-#define InitializationSystem_HandleInitError FUN_18064e900       // 系统初始化错误处理器
+#define InitializationSystem_HandleInitError CoreEngineMemoryPoolCleaner       // 系统初始化错误处理器
 #define InitializationSystem_InitConfig FUN_180057010            // 系统配置初始化器
 #define InitializationSystem_ManageResource FUN_1800582b0        // 系统资源管理器
 #define InitializationSystem_ManageState FUN_180058370          // 系统状态管理器

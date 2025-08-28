@@ -61,10 +61,10 @@
  */
 #define SystemResourceInitializer FUN_1800b8300
 #define SystemContextProcessor FUN_180180730
-#define SystemSecurityChecker FUN_1808fc050
+#define SystemSecurityChecker SystemSecurityChecker
 #define SystemBaseInitializer FUN_1803456e0
-#define SystemMemoryAllocator FUN_18062b420
-#define SystemStringHashCalculator FUN_18064e990
+#define SystemMemoryAllocator CoreEngineMemoryPoolAllocator
+#define SystemStringHashCalculator CoreEngineSystemCleanup
 #define SystemContextManager SystemContextManager
 #define SystemMemoryReleaser SystemMemoryReleaser
 #define SystemMemoryDeallocator SystemMemoryDeallocator

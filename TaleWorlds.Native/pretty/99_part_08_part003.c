@@ -131,7 +131,7 @@ void UInt16InsertionSortProcessor(void);
  * @brief 内存分配函数
  * @details 系统内存分配器的函数别名
  */
-#define MemoryAllocator_Alloc            FUN_18062b420
+#define MemoryAllocator_Alloc            CoreEngineMemoryPoolAllocator
 
 /**
  * @brief 数据处理回调函数
@@ -145,7 +145,7 @@ void UInt16InsertionSortProcessor(void);
  * @brief 内存清理函数
  * @details 内存资源清理函数别名
  */
-#define MemoryCleanup_Function           FUN_18064e900
+#define MemoryCleanup_Function           CoreEngineMemoryPoolCleaner
 
 /**
  * @brief 排序操作函数

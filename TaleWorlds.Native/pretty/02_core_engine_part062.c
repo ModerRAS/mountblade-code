@@ -96,14 +96,14 @@ SystemState system_current_state = SYSTEM_STATE_READY;
 #define CoreEngine_EmptyFunction FUN_18009b216
 #define CoreEngine_ConfigApplier FUN_18009b220
 #define CoreEngine_ArrayProcessor FUN_18009b327
-#define CoreEngine_MemoryPoolAllocator FUN_180627ae0
-#define CoreEngine_MemoryPoolInitializer FUN_1806277c0
+#define CoreEngine_MemoryPoolAllocator CoreEngineDataTransformer
+#define CoreEngine_MemoryPoolInitializer CoreEngineDataBufferProcessor
 #define CoreEngine_DataBufferProcessor FUN_180058080
-#define CoreEngine_MemoryPoolCleaner FUN_18064e900
+#define CoreEngine_MemoryPoolCleaner CoreEngineMemoryPoolCleaner
 #define CoreEngine_DataTransformer FUN_1806298d0
-#define CoreEngine_MemoryTransfer FUN_18062b1e0
-#define CoreEngine_MemoryPoolReallocator FUN_18062b420
-#define CoreEngine_DataProcessor2 FUN_18005ea90
+#define CoreEngine_MemoryTransfer CoreEngineMemoryPoolReallocator
+#define CoreEngine_MemoryPoolReallocator CoreEngineMemoryPoolAllocator
+#define CoreEngine_DataProcessor2 SystemInitializer
 #define CoreEngine_DataValidator FUN_180057bf0
 #define CoreEngine_ArrayInitializer FUN_18011dd10
 

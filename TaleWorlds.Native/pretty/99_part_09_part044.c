@@ -744,7 +744,7 @@ LAB_1805d1bc2:
       if (lVar17 == unaff_RSI[0x2b8]) {
         if (unaff_RSI[0x2b7] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(unaff_RSI[0x2b7],lVar16);
+          CoreEngineMemoryPoolCleaner(unaff_RSI[0x2b7],lVar16);
         }
         lVar16 = unaff_RSI[0x2b9];
         unaff_RSI[0x2b9] = lVar16 + 8;

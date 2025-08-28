@@ -63,7 +63,7 @@
 //==============================================================================
 
 // 安全检查函数
-#define UISystem_SecurityChecker FUN_1808fc050  // UI系统安全检查器
+#define UISystem_SecurityChecker SystemSecurityChecker  // UI系统安全检查器
 
 // 控件管理函数
 #define UISystem_ControlStateGetter FUN_18075e410  // UI控件状态获取器
@@ -71,7 +71,7 @@
 
 // 上下文管理函数
 #define UISystem_ContextAllocator FUN_180742050  // UI系统上下文分配器
-#define UISystem_ContextManager FUN_180741e10  // UI系统上下文管理器
+#define UISystem_ContextManager SystemResourceManager  // UI系统上下文管理器
 #define UISystem_ContextCleaner FUN_180743d60  // UI系统上下文清理器
 
 // 事件处理函数

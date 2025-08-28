@@ -473,7 +473,7 @@ void FUN_180443b00(void)
     
     // 设置渲染配置
     stack_ptr_c8 = &system_state_ptr;
-    FUN_1808fc050(stack_data_28 ^ (uint64_t)stack_buffer_278);
+    SystemSecurityChecker(stack_data_28 ^ (uint64_t)stack_buffer_278);
 }
 
 /**
@@ -535,7 +535,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
     if (*(int64_t *)(render_system_data_config + 8) == 0) {
         *parameter_ptr = &system_data_buffer_ptr;
         if (parameter_ptr[1] != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         parameter_ptr[1] = 0;
         *(int32_t *)(parameter_ptr + 3) = 0;
@@ -569,14 +569,14 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
         *parameter_ptr = &system_data_buffer_ptr;
         
         if (parameter_ptr[1] != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         parameter_ptr[1] = 0;
         *(int32_t *)(parameter_ptr + 3) = 0;
     }
     
     *parameter_ptr = &system_state_ptr;
-    FUN_1808fc050(parameter_data_18 ^ (uint64_t)parameter_buffer_d8);
+    SystemSecurityChecker(parameter_data_18 ^ (uint64_t)parameter_buffer_d8);
 }
 
 /**
@@ -667,7 +667,7 @@ void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
             if (data_processor_2 == (int64_t *)0x0) {
                 return;
             }
-            FUN_18064e900(data_processor_2);
+            CoreEngineMemoryPoolCleaner(data_processor_2);
         }
         
         if (data_processor_6 < data_processor_5) {
@@ -682,7 +682,7 @@ void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
             }
             data_processor_3 = data_processor_4;
             if (data_capacity != 0) {
-                data_processor_3 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, data_capacity * 8, CONCAT71((int7)((uint64_t)data_processor_6 >> 8), 3));
+                data_processor_3 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, data_capacity * 8, CONCAT71((int7)((uint64_t)data_processor_6 >> 8), 3));
             }
             
             if (data_processor_2 != data_processor_6) {
@@ -691,7 +691,7 @@ void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
             
             *data_processor_3 = data_chunk;
             if (data_processor_2 != (int64_t *)0x0) {
-                FUN_18064e900(data_processor_2);
+                CoreEngineMemoryPoolCleaner(data_processor_2);
             }
             
             data_processor_5 = data_processor_3 + data_capacity;
@@ -1048,7 +1048,7 @@ void FUN_180444600(uint64_t param_1, uint64_t param_2, float param_3, float para
     float_array_58[0] = param_4;
     float_array_50[0] = param_3;
     FUN_180114450(param_1, 4, param_2, float_param_1);
-    FUN_1808fc050(parameter_data_38 ^ (uint64_t)parameter_buffer_98);
+    SystemSecurityChecker(parameter_data_38 ^ (uint64_t)parameter_buffer_98);
 }
 
 /**
@@ -1090,7 +1090,7 @@ void FUN_180444700(uint64_t param_1, int32_t *param_2, int32_t *param_3, int par
     FUN_180114890(param_1);
     *param_2 = shader_data_38;
     *param_3 = shader_data_34;
-    FUN_1808fc050(shader_data_20 ^ (uint64_t)shader_buffer_78);
+    SystemSecurityChecker(shader_data_20 ^ (uint64_t)shader_buffer_78);
 }
 
 /**
@@ -1136,7 +1136,7 @@ void FUN_1804447c0(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t
     *param_2 = effect_data_58;
     *param_3 = effect_data_54;
     *param_4 = effect_data_50;
-    FUN_1808fc050(effect_data_38 ^ (uint64_t)effect_buffer_98);
+    SystemSecurityChecker(effect_data_38 ^ (uint64_t)effect_buffer_98);
 }
 
 /**
@@ -1186,7 +1186,7 @@ void FUN_1804448a0(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t
     *param_3 = buffer_data_54;
     *param_4 = buffer_data_50;
     *param_5 = buffer_data_4c;
-    FUN_1808fc050(buffer_data_38 ^ (uint64_t)buffer_data_98);
+    SystemSecurityChecker(buffer_data_38 ^ (uint64_t)buffer_data_98);
 }
 
 /**
@@ -1431,7 +1431,7 @@ int32_t FUN_180445180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint
     validation_ptr_30 = &system_data_buffer_ptr;
     
     if (validation_data_28 != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     return validation_result;
 }
@@ -1454,7 +1454,7 @@ int32_t * FUN_180445390(int32_t *param_1, float param_2)
     int32_t parameter_data_2c;
     int32_t parameter_data_24;
     
-    parameter_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x468, 8, 3, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+    parameter_handle = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x468, 8, 3, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     parameter_manager = (int64_t *)FUN_1803dd0f0(parameter_handle);
     
     if (parameter_manager != (int64_t *)0x0) {

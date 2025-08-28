@@ -129,7 +129,7 @@ typedef struct {
 #define UISystem_StateSynchronizer         FUN_18074a885    // UI系统状态同步器
 #define UISystem_DataValidator             FUN_18074a895    // UI系统数据验证器
 #define UISystem_AngleProcessor            FUN_180768b70    // UI系统角度处理器
-#define UISystem_SystemCallHandler         FUN_1808fc050    // UI系统调用处理器
+#define UISystem_SystemCallHandler         SystemSecurityChecker    // UI系统调用处理器
 #define UISystem_InternalFunction1         FUN_180743c40    // UI系统内部函数1
 #define UISystem_InternalFunction2         FUN_1807d4800    // UI系统内部函数2
 #define UISystem_InternalFunction3         FUN_1807d4ac0    // UI系统内部函数3

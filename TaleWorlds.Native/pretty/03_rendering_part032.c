@@ -62,10 +62,10 @@ typedef enum {
 // ============================================================================
 
 // 高级内存分配器 - 用于渲染系统内存分配
-#define AdvancedMemoryAllocator FUN_18062b420
+#define AdvancedMemoryAllocator CoreEngineMemoryPoolAllocator
 
 // 资源释放器 - 用于释放渲染系统资源
-#define ResourceReleaser FUN_18064e900
+#define ResourceReleaser CoreEngineMemoryPoolCleaner
 
 // 状态查询处理器 - 用于查询渲染系统状态
 #define StateQueryProcessor FUN_18007b240

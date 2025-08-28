@@ -159,7 +159,7 @@ void SystemResourceManager(int32_t param_1, uint64_t param_2, int64_t param_3);
 // ============================================================================
 
 // 系统错误处理相关函数
-#define FUN_180768400 SystemErrorTerminator
+#define SystemMemoryManager SystemErrorTerminator
 #define FUN_18084b240 SystemAllocationFailureHandler
 #define FUN_1808b2950 SystemDataValidator
 #define FUN_1808b2f30 SystemDataProcessor
@@ -168,8 +168,8 @@ void SystemResourceManager(int32_t param_1, uint64_t param_2, int64_t param_3);
 #define FUN_1808bc240 SystemDataChecker
 #define FUN_1808c4160 SystemDataValidator2
 #define FUN_1808c4570 SystemDataProcessor2
-#define FUN_180742250 SystemResourceHandler
-#define FUN_1808fc050 SystemSecurityChecker
+#define SystemDataValidator SystemResourceHandler
+#define SystemSecurityChecker SystemSecurityChecker
 
 // ============================================================================
 // 原始函数映射

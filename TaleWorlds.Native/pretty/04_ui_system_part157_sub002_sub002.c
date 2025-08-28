@@ -81,7 +81,7 @@ typedef uint64_t UIRenderHandle;               // UI渲染句柄
 #define UISystemMemoryManager                     FUN_18075f4c0
 
 // UI系统安全验证器
-#define UISystem_SecurityValidate                  FUN_1808fc050
+#define UISystem_SecurityValidate                  SystemSecurityChecker
 
 //------------------------------------------------------------------------------
 // UI系统高级子模块处理函数

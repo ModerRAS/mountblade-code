@@ -50,7 +50,7 @@
 #define RenderingSystem_ExecuteRenderCommand                FUN_18043bfb0  /* 渲染系统命令执行器 */
 
 /* 系统函数别名定义 */
-#define SystemDataProcessor                                FUN_180626f80  /* 系统数据处理器 */
+#define SystemDataProcessor                                SystemDataInitializer  /* 系统数据处理器 */
 #define SystemTransformExecutor                            FUN_18010cdf0  /* 系统变换执行器 */
 #define SystemRenderObjectHandler                           FUN_180171f10  /* 系统渲染对象处理器 */
 #define SystemValueGetter                                   FUN_180438350  /* 系统值获取器 */
@@ -64,11 +64,11 @@
 #define SystemParameterProcessor5                          FUN_18010cd70  /* 系统参数处理器5 */
 #define SystemInitializer                                  FUN_180103970  /* 系统初始化器 */
 #define SystemCleanupHandler                               FUN_1800b3a40  /* 系统清理处理器 */
-#define SystemMemoryAllocator                              FUN_18062b1e0  /* 系统内存分配器 */
+#define SystemMemoryAllocator                              CoreEngineMemoryPoolReallocator  /* 系统内存分配器 */
 #define SystemPointerManager                               FUN_18005ce30  /* 系统指针管理器 */
 #define SystemDataManager                                  FUN_18005e370  /* 系统数据管理器 */
 #define SystemExitHandler                                  FUN_18004b1f0  /* 系统退出处理器 */
-#define SystemSecurityChecker                              FUN_1808fc050  /* 系统安全检查器 */
+#define SystemSecurityChecker                              SystemSecurityChecker  /* 系统安全检查器 */
 #define SystemStringFormatter                              FUN_180060680  /* 系统字符串格式化器 */
 #define SystemCommandProcessor                             FUN_1800623b0  /* 系统命令处理器 */
 
@@ -112,7 +112,7 @@ void RenderingSystem_ProcessParameterSet1(void)
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_470) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_470);
       }
-      FUN_180626f80(&global_var_544_ptr, data_pointer);
+      SystemDataInitializer(&global_var_544_ptr, data_pointer);
     }
     
     /* 更新渲染参数 */
@@ -156,7 +156,7 @@ void RenderingSystem_ProcessParameterSet2(void)
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150);
       }
-      FUN_180626f80(&global_var_544_ptr, data_pointer);
+      SystemDataInitializer(&global_var_544_ptr, data_pointer);
     }
     
     /* 更新高级渲染参数 */
@@ -1247,7 +1247,7 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   buffer_value = 0x1b;
   
   /* 执行批处理操作 */
-  temp_data = FUN_18062b1e0(system_memory_pool_ptr, 0x100, 8, 3);
+  temp_data = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x100, 8, 3);
   pointer_ptr = (void **)FUN_18005ce30(temp_data, &buffer_pointer);
   temp_pointer = pointer_ptr;
   
@@ -1273,7 +1273,7 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   buffer_pointer = &global_var_720_ptr;
   FUN_18004b1f0(0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_guard ^ (uint64_t)temp_buffer);
+  SystemSecurityChecker(stack_guard ^ (uint64_t)temp_buffer);
 }
 
 /*=============================================================================
@@ -1344,7 +1344,7 @@ void RenderingSystem_ProcessRenderString(int param_1)
   (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer, &stack_pointer);
   stack_pointer = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_guard ^ (uint64_t)temp_buffer);
+  SystemSecurityChecker(stack_guard ^ (uint64_t)temp_buffer);
 }
 
 /*=============================================================================
@@ -1379,7 +1379,7 @@ void RenderingSystem_ExecuteRenderCopy(int64_t param_1, int32_t param_2)
            format_buffer, (int64_t)((int)temp_offset + 2));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_guard ^ (uint64_t)temp_buffer);
+  SystemSecurityChecker(stack_guard ^ (uint64_t)temp_buffer);
 }
 
 /*=============================================================================
@@ -1401,7 +1401,7 @@ void RenderingSystem_ExecuteRenderCopyEx(uint64_t param_1, uint param_2)
            source_buffer, (int64_t)(copy_length + 1));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_data ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(stack_data ^ (uint64_t)&stack0x00000000);
 }
 
 /*=============================================================================
@@ -1414,7 +1414,7 @@ void RenderingSystem_EmptyFunction3(void)
   uint64_t stack_data;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_data ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(stack_data ^ (uint64_t)&stack0x00000000);
 }
 
 /*=============================================================================
@@ -1442,7 +1442,7 @@ void RenderingSystem_ProcessParameterSet3(uint64_t param_1, int32_t param_2)
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0);
       }
-      FUN_180626f80(&global_var_544_ptr, data_pointer);
+      SystemDataInitializer(&global_var_544_ptr, data_pointer);
     }
     
     *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) = 
@@ -1479,7 +1479,7 @@ void RenderingSystem_ProcessParameterSet4(uint64_t param_1, int32_t param_2)
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120) != (void *)0x0) {
         data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120);
       }
-      FUN_180626f80(&global_var_544_ptr, data_pointer);
+      SystemDataInitializer(&global_var_544_ptr, data_pointer);
     }
     
     *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1110) = 

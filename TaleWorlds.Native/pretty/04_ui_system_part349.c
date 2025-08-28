@@ -59,7 +59,7 @@
 #define UISystem_EventDispatcher func_0x0001808c6c50
 
 // UI系统清理管理器
-#define UISystem_CleanupManager FUN_1808fc050
+#define UISystem_CleanupManager SystemSecurityChecker
 
 // UI系统初始化器
 #define UISystem_Initializer FUN_1808c6cd0

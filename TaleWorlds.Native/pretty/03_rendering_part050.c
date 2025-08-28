@@ -217,7 +217,7 @@ typedef struct {
  * @brief 系统内存分配器
  * 负责系统内存的分配和释放
  */
-#define SystemMemoryAllocator FUN_180059ba0
+#define SystemMemoryAllocator SystemResourceCleaner
 
 /**
  * @brief 系统资源处理器
@@ -241,7 +241,7 @@ typedef struct {
  * @brief 系统安全检查器
  * 执行系统安全检查和验证
  */
-#define SystemSecurityChecker FUN_1808fc050
+#define SystemSecurityChecker SystemSecurityChecker
 
 /**
  * @brief 系统内存分配器

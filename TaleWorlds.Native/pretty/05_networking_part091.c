@@ -113,20 +113,20 @@ int Network_DataProcessor(int64_t param_1, int64_t param_2, int param_3)
   
   // 第一阶段：数据预处理
   iVar1 = func_0x00018074b800(param_2, param_3, *(int32_t *)(param_1 + 0x10));
-  iVar2 = FUN_18074b880(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 第二阶段：数据处理
   iVar2 = func_0x00018074b7d0(iVar1 + param_2, param_3 - iVar1, *(int32_t *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 第三阶段：数据后处理
   iVar2 = FUN_18074b970(iVar1 + param_2, param_3 - iVar1, param_1 + 0x20,
                         *(int32_t *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 第四阶段：数据验证
@@ -153,27 +153,27 @@ int Network_AdvancedDataProcessor(int64_t param_1, int64_t param_2, int param_3)
   
   // 数据预处理阶段
   iVar1 = func_0x00018074b800(param_2, param_3, *(int32_t *)(param_1 + 0x10));
-  iVar2 = FUN_18074b880(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 数据处理阶段
   iVar2 = func_0x00018074b7d0(iVar1 + param_2, param_3 - iVar1, *(int32_t *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 高级数据处理
   iVar2 = FUN_18088ed70(iVar1 + param_2, param_3 - iVar1, param_1 + 0x20,
                         *(int32_t *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 数据验证和完成
   iVar2 = FUN_18074bb00(iVar1 + param_2, param_3 - iVar1,
                         param_1 + 0x20 + (int64_t)*(int *)(param_1 + 0x18) * 8);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074be90(iVar1 + param_2, param_3 - iVar1, *(int8_t *)(param_1 + 0x1c));
   return iVar2 + iVar1;
@@ -199,21 +199,21 @@ int Network_StreamManager(int64_t param_1, int64_t param_2, int param_3)
   
   // 流初始化
   iVar1 = func_0x00018074b7d0(param_2, param_3, *(int32_t *)(param_1 + 0x10));
-  iVar2 = FUN_18074b880(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 流处理
   iVar2 = FUN_18088ed70(iVar1 + param_2, param_3 - iVar1, param_1 + 0x18,
                         *(int32_t *)(param_1 + 0x10));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 流完成
   iVar2 = FUN_18074bb00(iVar1 + param_2, param_3 - iVar1,
                         param_1 + 0x18 + (int64_t)*(int *)(param_1 + 0x10) * 8);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074be90(iVar1 + param_2, param_3 - iVar1, *(int8_t *)(param_1 + 0x14));
   return iVar2 + iVar1;
@@ -238,14 +238,14 @@ int Network_ConnectionPoolManager(int64_t *param_1, int64_t param_2, int param_3
   int iVar2;
   
   // 连接池初始化
-  iVar1 = FUN_18074b880(param_2, param_3, &unknown_var_7656_ptr);
-  iVar2 = FUN_18074b880(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
+  iVar1 = SystemDataProcessor(param_2, param_3, &unknown_var_7656_ptr);
+  iVar2 = SystemDataProcessor(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 连接池处理
   iVar2 = func_0x00018074b7d0(iVar1 + param_2, param_3 - iVar1, (int)param_1[3] * 8 + 0x20);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 连接池完成
@@ -270,14 +270,14 @@ int Network_ExtendedConnectionPoolManager(int64_t *param_1, int64_t param_2, int
   int iVar2;
   
   // 扩展连接池初始化
-  iVar1 = FUN_18074b880(param_2, param_3, &unknown_var_8816_ptr);
-  iVar2 = FUN_18074b880(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
+  iVar1 = SystemDataProcessor(param_2, param_3, &unknown_var_8816_ptr);
+  iVar2 = SystemDataProcessor(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 扩展连接池处理
   iVar2 = func_0x00018074b7d0(iVar1 + param_2, param_3 - iVar1, (int)param_1[3] * 0xc + 0x20);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 扩展连接池完成
@@ -302,14 +302,14 @@ int Network_EnhancedConnectionPoolManager(int64_t *param_1, int64_t param_2, int
   int iVar2;
   
   // 增强连接池初始化
-  iVar1 = FUN_18074b880(param_2, param_3, &unknown_var_1184_ptr);
-  iVar2 = FUN_18074b880(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
+  iVar1 = SystemDataProcessor(param_2, param_3, &unknown_var_1184_ptr);
+  iVar2 = SystemDataProcessor(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 增强连接池处理
   iVar2 = func_0x00018074b7d0(iVar1 + param_2, param_3 - iVar1, ((int)param_1[2] + 2) * 0xc);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
+  iVar2 = SystemDataProcessor(iVar1 + param_2, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
   // 增强连接池完成
@@ -391,7 +391,7 @@ void Network_ResourceManager(int64_t param_1, int32_t *param_2, int64_t *param_3
   }
   
   // 安全清理
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_c8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_c8);
 }
 
 /* ===== 清理函数 ===== */
@@ -416,7 +416,7 @@ void Network_ResourceCleaner(void)
 void Network_StackCleaner(void)
 {
   uint64_t in_stack_000000b0;
-  FUN_1808fc050(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
 }
 
 /* ===== 高级资源管理函数 ===== */
@@ -491,7 +491,7 @@ void Network_AdvancedResourceManager(int64_t param_1, int32_t *param_2, int64_t 
   }
   
   // 安全清理
-  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_b8);
+  SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_b8);
 }
 
 /* ===== 网络监控函数 ===== */
@@ -531,7 +531,7 @@ void Network_Monitor(uint64_t param_1)
   }
   *unaff_RSI = lVar2;
 LAB_180894aca:
-  FUN_1808fc050(in_stack_000000a8 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000a8 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -543,7 +543,7 @@ LAB_180894aca:
 void Network_MonitorCleaner(void)
 {
   uint64_t in_stack_000000a8;
-  FUN_1808fc050(in_stack_000000a8 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000a8 ^ (uint64_t)&stack0x00000000);
 }
 
 /* ===== 诊断函数 ===== */
@@ -619,7 +619,7 @@ void Network_Diagnostic(int64_t param_1, int32_t *param_2, int64_t *param_3)
   }
   
   // 安全清理
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_c8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_c8);
 }
 
 /**
@@ -651,7 +651,7 @@ void Network_DiagnosticHandler(void)
   if ((lStack0000000000000080 != 0) || (iVar1 = FUN_18088ca20(), iVar1 == 0)) {
     *unaff_RDI = lStack0000000000000080;
   }
-  FUN_1808fc050(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
 }
 
 /* ===== 数据包处理函数 ===== */
@@ -895,7 +895,7 @@ uint Network_ResourceReleaser(int64_t *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
       // 资源释放
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                     *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     *param_1 = 0;
@@ -920,7 +920,7 @@ uint Network_ResourceReleaser(int64_t *param_1)
   }
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
     // 最终资源释放
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                   *param_1, &unknown_var_8432_ptr, 0x100, 1);
   }
   *param_1 = 0;
@@ -947,7 +947,7 @@ uint64_t Network_SystemCleaner(int64_t param_1)
   // 系统初始化清理
   FUN_18088c620();
   FUN_180840270(param_1 + 0xd8);
-  iVar2 = FUN_180744cc0(param_1 + 0x70);
+  iVar2 = SystemStatusChecker(param_1 + 0x70);
   
   if ((iVar2 == 0) && (iVar2 = FUN_180895130(param_1 + 0x80), iVar2 == 0)) {
     *(int32_t *)(param_1 + 0x90) = 0xffffffff;
@@ -956,8 +956,8 @@ uint64_t Network_SystemCleaner(int64_t param_1)
   
   // 系统组件清理
   FUN_180895130(param_1 + 0x80);
-  FUN_180744cc0(param_1 + 0x70);
-  iVar2 = FUN_180744cc0(param_1 + 0x28);
+  SystemStatusChecker(param_1 + 0x70);
+  iVar2 = SystemStatusChecker(param_1 + 0x28);
   
   if ((iVar2 == 0) && (iVar2 = FUN_180895070(param_1 + 0x38), iVar2 == 0)) {
     *(int32_t *)(param_1 + 0x48) = 0xffffffff;
@@ -966,7 +966,7 @@ uint64_t Network_SystemCleaner(int64_t param_1)
   
   // 系统资源清理
   FUN_180895070(param_1 + 0x38);
-  FUN_180744cc0(param_1 + 0x28);
+  SystemStatusChecker(param_1 + 0x28);
   FUN_180894ef0(param_1 + 0x18);
   
   // 系统最终清理
@@ -977,7 +977,7 @@ uint64_t Network_SystemCleaner(int64_t param_1)
       return 0x1c;
     }
     if ((0 < (int)uVar4) && (*plVar1 != 0)) {
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                     *plVar1, &unknown_var_8432_ptr, 0x100, 1);
     }
     *plVar1 = 0;
@@ -1021,7 +1021,7 @@ uint64_t Network_ComponentCleaner(int64_t *param_1)
     }
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
       // 组件释放
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                     *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     *param_1 = 0;
@@ -1067,7 +1067,7 @@ uint64_t Network_CacheCleaner(int64_t *param_1)
     }
     if ((0 < (int)uVar5) && (*param_1 != 0)) {
       // 缓存释放
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                     *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     *param_1 = 0;

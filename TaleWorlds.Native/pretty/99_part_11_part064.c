@@ -92,7 +92,7 @@
 #define stack_cleanup FUN_1807c4ae8
 
 /* 系统函数别名定义 */
-#define SystemSecurityChecker FUN_1808fc050
+#define SystemSecurityChecker SystemSecurityChecker
 #define SystemInitializer FUN_180819040
 #define DataProcessorFunction data_processor_function
 #define StringArrayFunction get_string_array_function

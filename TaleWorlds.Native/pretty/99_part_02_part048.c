@@ -172,8 +172,8 @@ static uint32_t g_system_flags = 0;
 #define pointer_offset_calculator     FUN_1801ba6f6
 #define system_empty_function_4       FUN_1801ba708
 #define resource_release_handler      FUN_180080060
-#define memory_pool_allocator         FUN_18062b420
-#define system_error_handler          FUN_18064e900
+#define memory_pool_allocator         CoreEngineMemoryPoolAllocator
+#define system_error_handler          CoreEngineMemoryPoolCleaner
 #define data_block_processor          FUN_1801bb0b0
 #define data_binder                   FUN_1801bd320
 #define data_stream_processor         FUN_18014c570
@@ -1713,7 +1713,7 @@ void resource_release_handler(void)
  * 技术说明：
  * 该函数负责从内存池中分配内存，支持多种大小的内存块分配。
  * 
- * 原始实现：FUN_18062b420
+ * 原始实现：CoreEngineMemoryPoolAllocator
  * 简化实现：简化了内存分配逻辑
  */
 void* memory_pool_allocator(void* pool_ptr, size_t size, uint32_t allocator_id, ...)
@@ -1743,7 +1743,7 @@ void* memory_pool_allocator(void* pool_ptr, size_t size, uint32_t allocator_id, 
  * 技术说明：
  * 该函数负责处理系统中的各种错误，包括内存分配失败、无效参数等。
  * 
- * 原始实现：FUN_18064e900
+ * 原始实现：CoreEngineMemoryPoolCleaner
  * 简化实现：简化了错误处理逻辑
  */
 void system_error_handler(...)

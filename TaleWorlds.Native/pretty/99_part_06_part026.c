@@ -346,7 +346,7 @@ LAB_1803bdb74:
                   puStack_70 = &system_data_buffer_ptr;
                   if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                   }
                   lStack_68 = 0;
                   uStack_58 = uStack_58 & 0xffffffff00000000;
@@ -500,7 +500,7 @@ LAB_1803bdd14:
             puStack_68 = &system_data_buffer_ptr;
             if (puStack_60 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-              FUN_18064e900();
+              CoreEngineMemoryPoolCleaner();
             }
             puStack_60 = (void *)0x0;
             uStack_50 = uStack_50 & 0xffffffff00000000;
@@ -522,7 +522,7 @@ LAB_1803bdd14:
     puStack_68 = &system_data_buffer_ptr;
     if (puStack_60 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     puStack_60 = (void *)0x0;
     uStack_50 = uStack_50 & 0xffffffff00000000;
@@ -840,9 +840,9 @@ LAB_1803be3f4:
                     uStack_140 = 0;
                     puStack_150 = (int32_t *)0x0;
                     uStack_148 = 0;
-                    puStack_150 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+                    puStack_150 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
                     *(int8_t *)puStack_150 = 0;
-                    uVar4 = FUN_18064e990(puStack_150);
+                    uVar4 = CoreEngineSystemCleanup(puStack_150);
                     *puStack_150 = 0x6576656c;
                     *(int16_t *)(puStack_150 + 1) = 0x5f6c;
                     *(int8_t *)((int64_t)puStack_150 + 6) = 0;
@@ -853,7 +853,7 @@ LAB_1803be3f4:
                     puStack_158 = &system_data_buffer_ptr;
                     if (puStack_150 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-                      FUN_18064e900();
+                      CoreEngineMemoryPoolCleaner();
                     }
                     puStack_150 = (int32_t *)0x0;
                     uStack_140 = (uint64_t)uStack_140._4_4_ << 0x20;
@@ -891,7 +891,7 @@ LAB_1803be5e2:
             puStack_180 = &system_data_buffer_ptr;
             if (puStack_178 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-              FUN_18064e900();
+              CoreEngineMemoryPoolCleaner();
             }
             puStack_178 = (void *)0x0;
             uStack_168 = uStack_168 & 0xffffffff00000000;
@@ -899,14 +899,14 @@ LAB_1803be5e2:
             puStack_138 = &system_data_buffer_ptr;
             if (puStack_130 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-              FUN_18064e900();
+              CoreEngineMemoryPoolCleaner();
             }
             puStack_130 = (void *)0x0;
             uStack_120 = uStack_120 & 0xffffffff00000000;
             puStack_138 = &system_state_ptr;
 LAB_1803be64e:
                     // WARNING: Subroutine does not return
-            FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_1c8);
+            SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_1c8);
           }
           pcVar11 = (char *)*puVar14;
           if (pcVar11 == (char *)0x0) {

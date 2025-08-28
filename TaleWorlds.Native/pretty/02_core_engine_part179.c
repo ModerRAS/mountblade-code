@@ -91,15 +91,15 @@ typedef struct {
 #define CoreEngineConfigurationProcessor FUN_180165950
 
 // 内存管理函数别名
-#define CoreEngineMemoryPoolAllocator FUN_18062b420
-#define CoreEngineMemoryPoolReallocator FUN_18062b1e0
-#define CoreEngineMemoryPoolInitializer FUN_18064e990
-#define CoreEngineMemoryPoolCleaner FUN_18064e900
+#define CoreEngineMemoryPoolAllocator CoreEngineMemoryPoolAllocator
+#define CoreEngineMemoryPoolReallocator CoreEngineMemoryPoolReallocator
+#define CoreEngineMemoryPoolInitializer CoreEngineSystemCleanup
+#define CoreEngineMemoryPoolCleaner CoreEngineMemoryPoolCleaner
 
 // 数据处理函数别名
-#define CoreEngineDataBufferProcessor FUN_1806277c0
+#define CoreEngineDataBufferProcessor CoreEngineDataBufferProcessor
 #define CoreEngineDataStringProcessor FUN_180627ce0
-#define CoreEngineDataSystemCaller FUN_180627ae0
+#define CoreEngineDataSystemCaller CoreEngineDataTransformer
 #define CoreEngineDataInitializer FUN_180628320
 
 // 系统调用函数别名

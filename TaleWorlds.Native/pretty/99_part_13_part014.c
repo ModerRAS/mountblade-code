@@ -241,7 +241,7 @@ StatusCode SystemDataProcessorAndObjectCreator(int64_t param_1, int64_t *param_2
         if (((int64_t *)object_ptr)[2] == 0) {
             /* 处理简单对象创建 */
             flags = 0;
-            status_code = FUN_180769ed0(*object_ptr, &flags, 1, 4, 0);
+            status_code = SystemDataAnalyzer(*object_ptr, &flags, 1, 4, 0);
         } else {
             /* 处理复杂对象创建 */
             flags = flags & 0xffffffff00000000;
@@ -250,7 +250,7 @@ StatusCode SystemDataProcessorAndObjectCreator(int64_t param_1, int64_t *param_2
             if ((int)status_code == 0) {
                 if ((flags & 0xffffffff) + 4 <= (uint64_t)((int64_t *)object_ptr)[2]) {
                     /* 继续处理 */
-                    status_code = FUN_180769ed0(*object_ptr, &flags, 1, 4, 0);
+                    status_code = SystemDataAnalyzer(*object_ptr, &flags, 1, 4, 0);
                 } else {
                     status_code = SYSTEM_ERROR_MEMORY_FAILED;
                 }
@@ -285,7 +285,7 @@ StatusCode SystemDataProcessorAndObjectCreator(int64_t param_1, int64_t *param_2
     if (index == 0) {
         /* 创建基础对象 */
         object_ptr = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+                 SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x112, 
                               (uint64_t)flags << 0x20, 0, 1);
         
@@ -306,7 +306,7 @@ StatusCode SystemDataProcessorAndObjectCreator(int64_t param_1, int64_t *param_2
         }
         
         /* 调用处理函数 */
-        flags = FUN_1808995c0(*param_2, (char *)object_ptr + 3);
+        flags = SystemConfigManager(*param_2, (char *)object_ptr + 3);
         status_code = (StatusCode)flags;
         
     } else if (index == 1) {
@@ -322,13 +322,13 @@ StatusCode SystemDataProcessorAndObjectCreator(int64_t param_1, int64_t *param_2
             return SYSTEM_ERROR_STATE_CHECK;
         }
         
-        status_code = FUN_1808aed00(*param_2, flags + SYSTEM_OFFSET_0X18, 4);
+        status_code = SystemErrorHandler(*param_2, flags + SYSTEM_OFFSET_0X18, 4);
         flags = (FlagType)status_code;
         
     } else if (index == 2) {
         /* 处理特殊对象 */
         object_ptr = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+                 SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x120, 
                               (uint64_t)flags << 0x20, 0, 1);
         
@@ -357,7 +357,7 @@ StatusCode SystemDataProcessorAndObjectCreator(int64_t param_1, int64_t *param_2
         }
         
         object_ptr = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+                 SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x127, 
                               flags & 0xffffffff00000000, 0, 1);
         
@@ -394,7 +394,7 @@ StatusCode SystemDataProcessorAndObjectCreator(int64_t param_1, int64_t *param_2
         flags = func_0x0001808d9e70(object_ptr);
         
         if (*(int *)(param_2[1] + SYSTEM_OFFSET_0X18) == 0) {
-            status_code = FUN_1808aed00(*param_2, flags, size);
+            status_code = SystemErrorHandler(*param_2, flags, size);
             
             if ((int)status_code != 0) {
                 return status_code;
@@ -459,7 +459,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, int64_t *param_2
         if (((int64_t *)param_2)[2] == *((uint64_t *)&stack_param + 1)) {
             /* 处理数据验证 */
             validation_result = *((uint64_t *)&stack_param + 1);
-            status_code = FUN_180769ed0(*param_2, &validation_result, type_index, 4);
+            status_code = SystemDataAnalyzer(*param_2, &validation_result, type_index, 4);
             validation_flags = (int32_t)(validation_result >> 0x20);
         } else {
             /* 处理复杂数据验证 */
@@ -469,7 +469,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, int64_t *param_2
             if ((int)status_code == 0) {
                 if ((stack_param & 0xffffffff) + 4 <= (uint64_t)((int64_t *)param_2)[2]) {
                     validation_result = *((uint64_t *)&stack_param + 1);
-                    status_code = FUN_180769ed0(*param_2, &validation_result, type_index, 4);
+                    status_code = SystemDataAnalyzer(*param_2, &validation_result, type_index, 4);
                     validation_flags = (int32_t)(validation_result >> 0x20);
                 } else {
                     status_code = SYSTEM_ERROR_MEMORY_FAILED;
@@ -509,7 +509,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, int64_t *param_2
     if (type_index == 0) {
         /* 基础类型验证 */
         created_object = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+                 SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x112, 
                               CONCAT44(validation_flags, index));
         
@@ -528,7 +528,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, int64_t *param_2
             return status_code;
         }
         
-        validation_result = FUN_1808995c0(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
+        validation_result = SystemConfigManager(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
         status_code = (StatusCode)validation_result;
         
     } else if (type_index == 1) {
@@ -544,13 +544,13 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, int64_t *param_2
             return status_code;
         }
         
-        status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], stack_param + SYSTEM_OFFSET_0X18, 4);
+        status_code = SystemErrorHandler(*((int64_t **)&stack_param + 1)[0], stack_param + SYSTEM_OFFSET_0X18, 4);
         validation_result = (uint)status_code;
         
     } else if (type_index == 2) {
         /* 特殊类型验证 */
         created_object = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+                 SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x120, 
                               CONCAT44(validation_flags, index));
         
@@ -579,7 +579,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, int64_t *param_2
         }
         
         created_object = (ObjectPtr)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+                 SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x127, 
                               CONCAT44(validation_flags, index));
         
@@ -616,7 +616,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, int64_t *param_2
         temp_value = func_0x0001808d9e70(object_ptr);
         
         if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
-            status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], temp_value, offset);
+            status_code = SystemErrorHandler(*((int64_t **)&stack_param + 1)[0], temp_value, offset);
             
             if ((int)status_code != 0) {
                 return status_code;
@@ -710,13 +710,13 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
                 goto LAB_1808acf0b;
             }
             
-            status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], stack_param[0] + SYSTEM_OFFSET_0X18, 4);
+            status_code = SystemErrorHandler(*((int64_t **)&stack_param + 1)[0], stack_param[0] + SYSTEM_OFFSET_0X18, 4);
             index = (int)status_code;
             
         } else if (type_index == 2) {
             /* 特殊类型分配 */
             created_object = (ObjectPtr)
-                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+                     SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x120);
             
             if (created_object == (ObjectPtr)0x0) {
@@ -744,7 +744,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
             }
             
             created_object = (ObjectPtr)
-                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+                     SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x127);
             
             if (created_object == (ObjectPtr)0x0) {
@@ -780,7 +780,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
             temp_value = func_0x0001808d9e70(object_ptr);
             
             if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
-                status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], temp_value, size);
+                status_code = SystemErrorHandler(*((int64_t **)&stack_param + 1)[0], temp_value, size);
                 
                 if ((int)status_code != 0) {
                     return status_code;
@@ -807,7 +807,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
     
     /* 基础类型分配 */
     created_object = (ObjectPtr)
-             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                           SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x112);
     
     if (created_object == (ObjectPtr)0x0) {
@@ -822,7 +822,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
     *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = created_object;
     
     if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
-        allocation_result = FUN_1808995c0(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
+        allocation_result = SystemConfigManager(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
         *((uint64_t *)&stack_param + 4) = (uint64_t)allocation_result;
         
         if (allocation_result == 0) {
@@ -878,13 +878,13 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
                 goto LAB_1808acf0b;
             }
             
-            status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], stack_param[0] + SYSTEM_OFFSET_0X18, 4);
+            status_code = SystemErrorHandler(*((int64_t **)&stack_param + 1)[0], stack_param[0] + SYSTEM_OFFSET_0X18, 4);
             index = (int)status_code;
             
         } else if (*((int *)&stack_param + 1) == 2) {
             /* 处理类型2错误 */
             error_object = (ObjectPtr)
-                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+                     SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x120);
             
             if (error_object == (ObjectPtr)0x0) {
@@ -912,7 +912,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
             }
             
             error_object = (ObjectPtr)
-                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+                     SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x127);
             
             if (error_object == (ObjectPtr)0x0) {
@@ -948,7 +948,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
             temp_value = func_0x0001808d9e70(object_ptr);
             
             if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
-                status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], temp_value, error_code);
+                status_code = SystemErrorHandler(*((int64_t **)&stack_param + 1)[0], temp_value, error_code);
                 
                 if ((int)status_code != 0) {
                     return status_code;
@@ -975,7 +975,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
     
     /* 处理通用错误 */
     error_object = (ObjectPtr)
-             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
+             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                           SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x112);
     
     if (error_object == (ObjectPtr)0x0) {
@@ -990,7 +990,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
     *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = error_object;
     
     if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
-        error_result = FUN_1808995c0(*((int64_t **)&stack_param + 1)[0], (char *)error_object + 3);
+        error_result = SystemConfigManager(*((int64_t **)&stack_param + 1)[0], (char *)error_object + 3);
         *((uint64_t *)&stack_param + 4) = (uint64_t)error_result;
         
         if (error_result == 0) {

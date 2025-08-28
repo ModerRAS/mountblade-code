@@ -194,11 +194,11 @@ typedef void (*code)(void);
  * 函数别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
 
-/* FUN_180627ae0 - 字符串处理和初始化函数 */
-#define StringInitializer FUN_180627ae0
+/* CoreEngineDataTransformer - 字符串处理和初始化函数 */
+#define StringInitializer CoreEngineDataTransformer
 
-/* FUN_18062b420 - 内存分配函数 */
-#define MemoryAllocator FUN_18062b420
+/* CoreEngineMemoryPoolAllocator - 内存分配函数 */
+#define MemoryAllocator CoreEngineMemoryPoolAllocator
 
 /* FUN_180049b30 - 数据块复制函数 */
 #define DataBlockCopier FUN_180049b30
@@ -218,8 +218,8 @@ typedef void (*code)(void);
 /* FUN_180169350 - 资源计数函数 */
 #define ResourceCounter FUN_180169350
 
-/* FUN_18064e900 - 错误处理函数 */
-#define ErrorHandler FUN_18064e900
+/* CoreEngineMemoryPoolCleaner - 错误处理函数 */
+#define ErrorHandler CoreEngineMemoryPoolCleaner
 
 /* FUN_1806272a0 - 资源注册函数 */
 #define ResourceRegistrar FUN_1806272a0
@@ -236,20 +236,20 @@ typedef void (*code)(void);
 /* FUN_180629a40 - 字符串解析函数 */
 #define StringParser FUN_180629a40
 
-/* FUN_18064e990 - 格式化处理函数 */
-#define FormatProcessor FUN_18064e990
+/* CoreEngineSystemCleanup - 格式化处理函数 */
+#define FormatProcessor CoreEngineSystemCleanup
 
 /* FUN_18062b8b0 - 内存重分配函数 */
 #define MemoryReallocator FUN_18062b8b0
 
-/* FUN_1806277c0 - 配置块初始化函数 */
-#define ConfigBlockInitializer FUN_1806277c0
+/* CoreEngineDataBufferProcessor - 配置块初始化函数 */
+#define ConfigBlockInitializer CoreEngineDataBufferProcessor
 
 /* FUN_180059820 - 配置处理函数 */
 #define ConfigProcessor FUN_180059820
 
-/* FUN_180626f80 - 系统清理函数 */
-#define SystemCleaner FUN_180626f80
+/* SystemDataInitializer - 系统清理函数 */
+#define SystemCleaner SystemDataInitializer
 
 /* FUN_180057110 - 配置验证函数 */
 #define ConfigValidator FUN_180057110
@@ -310,7 +310,7 @@ typedef void (*code)(void);
  * ============================================================================ */
 
 /* 数据处理函数 */
-#define CoreEngineDataInitializer FUN_180627ae0
+#define CoreEngineDataInitializer CoreEngineDataTransformer
 #define CoreEngineDataProcessor FUN_180627ae1
 #define CoreEngineDataValidator FUN_180044a30
 #define CoreEngineDataTransformer FUN_180627ae2
@@ -323,7 +323,7 @@ typedef void (*code)(void);
 #define CoreEngineDataDecryptor FUN_180627ae8
 
 /* 内存管理函数 */
-#define CoreEngineMemoryPool FUN_18062b420
+#define CoreEngineMemoryPool CoreEngineMemoryPoolAllocator
 #define CoreEngineMemoryManager FUN_18062b421
 #define CoreEngineMemoryCleaner FUN_18062b422
 #define CoreEngineMemoryDefragmenter FUN_18062b423
@@ -375,7 +375,7 @@ typedef void (*code)(void);
 #define CoreEngineDiagnosticReporter FUN_18062d460
 
 /* 错误处理函数 */
-#define CoreEngineErrorHandler FUN_18064e900
+#define CoreEngineErrorHandler CoreEngineMemoryPoolCleaner
 #define CoreEngineExceptionManager FUN_18062cdd0
 #define CoreEngineLogger FUN_18062ce20
 #define CoreEngineDebugger FUN_18062ce70

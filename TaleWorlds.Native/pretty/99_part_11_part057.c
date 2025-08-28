@@ -80,9 +80,9 @@
 #define GameStateUpdater                     func_0x0001807b9040    // 游戏状态更新器
 
 // 安全检查函数别名
-#define security_checker                      FUN_1808fc050    // 安全检查器
-#define SecurityChecker                       FUN_1808fc050    // 安全检查器（标准命名）
-#define StackSecurityValidator               FUN_1808fc050    // 栈安全验证器
+#define security_checker                      SystemSecurityChecker    // 安全检查器
+#define SecurityChecker                       SystemSecurityChecker    // 安全检查器（标准命名）
+#define StackSecurityValidator               SystemSecurityChecker    // 栈安全验证器
 
 // ============================================================================
 // 全局变量引用
@@ -548,7 +548,7 @@ uint64_t memory_boundary_checker(int64_t param_1, int64_t param_2, int param_3)
  * - 参数：状态上下文对象
  * - 作用：实现状态的同步更新和一致性维护
  * 
- * security_checker (FUN_1808fc050):
+ * security_checker (SystemSecurityChecker):
  * - 功能：执行安全检查和验证
  * - 用途：验证栈完整性和安全性
  * - 参数：安全检查值

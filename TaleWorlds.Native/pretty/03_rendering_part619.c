@@ -50,8 +50,8 @@
 
 /* 渲染系统内存和数据处理函数别名定义 */
 #define RenderingSystem_DataBufferProcessor              FUN_1804c0610  /* 渲染系统数据缓冲区处理器 */
-#define RenderingSystem_MemoryPoolAllocator             FUN_18062b420  /* 渲染系统内存池分配器 */
-#define RenderingSystem_FormatProcessor                  FUN_18064e990  /* 渲染系统格式化处理器 */
+#define RenderingSystem_MemoryPoolAllocator             CoreEngineMemoryPoolAllocator  /* 渲染系统内存池分配器 */
+#define RenderingSystem_FormatProcessor                  CoreEngineSystemCleanup  /* 渲染系统格式化处理器 */
 #define RenderingSystem_DataContextInitializer           FUN_180628380  /* 渲染系统数据上下文初始化器 */
 #define RenderingSystem_MemoryPoolReallocator            FUN_18062b8b0  /* 渲染系统内存池重分配器 */
 
@@ -216,7 +216,7 @@ LAB_18060e425:
         if ((int)uVar9 < 0x10) {
           uVar9 = 0x10;
         }
-        puStack_60 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)(int)uVar9,0x13);
+        puStack_60 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)(int)uVar9,0x13);
         *(int8_t *)puStack_60 = 0;
       }
       else {
@@ -234,7 +234,7 @@ LAB_18060e4bb:
   puStack_48 = &system_data_buffer_ptr;
   if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   lStack_40 = 0;
   uStack_30 = 0;
@@ -246,7 +246,7 @@ LAB_18060e4bb:
       if ((int)uVar9 < 0x10) {
         uVar9 = 0x10;
       }
-      puStack_60 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)(int)uVar9,0x13);
+      puStack_60 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)(int)uVar9,0x13);
       *(int8_t *)puStack_60 = 0;
     }
     else {
@@ -273,13 +273,13 @@ LAB_18060e558:
     puVar8 = puStack_60;
   }
   uStack_58 = iVar12;
-  FUN_180626f80(puVar8);
+  SystemDataInitializer(puVar8);
   puStack_68 = &system_data_buffer_ptr;
   if (puStack_60 == (int32_t *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -307,7 +307,7 @@ int RenderingSystem_ValidateResourceData(uint64_t param_1, uint64_t param_2, uin
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return (int)sVar1;
 }
@@ -814,7 +814,7 @@ void RenderingSystem_CreateResourceContext(uint64_t *param_1, uint64_t param_2, 
   }
   FUN_180506660(&plStack_2b8);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_3c8);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_3c8);
 }
 
 
@@ -1154,7 +1154,7 @@ RenderingSystem_GetResourceProperty(uint64_t param_1,uint64_t param_2,uint64_t p
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return uVar1;
 }
@@ -1185,7 +1185,7 @@ byte RenderingSystem_CheckResourceCapability(uint64_t param_1,uint64_t param_2,u
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return *(byte *)((int64_t)iVar1 * RENDERING_SYSTEM_STRING_BUFFER_SIZE + 0x140 + render_system_memory) >> 4 & 1;
 }
@@ -1217,7 +1217,7 @@ RenderingSystem_GetResourceExtendedProperty(uint64_t param_1,uint64_t param_2,ui
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return uVar1;
 }
@@ -1290,7 +1290,7 @@ uint64_t RenderingSystem_GetResourceIdentifier(uint64_t param_1,uint64_t param_2
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   lVar3 = (int64_t)iVar1 * RENDERING_SYSTEM_STRING_BUFFER_SIZE + render_system_memory;
   if (lVar3 != 0) {
@@ -1401,7 +1401,7 @@ void RenderingSystem_ProcessResourceCommand(uint64_t param_1,uint64_t param_2,ui
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return;
 }

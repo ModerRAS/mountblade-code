@@ -270,6 +270,10 @@ typedef struct SystemState {
 #define SystemDataSearch FUN_1802f6100
 #define SystemDataMerge FUN_1802f6cc0
 
+/** 系统内部函数别名 */
+#define SystemInternalValidator FUN_180631000
+#define SystemInternalProcessor FUN_180631b90
+
 // ===========================================
 // 核心函数实现
 // ===========================================
@@ -436,7 +440,7 @@ LAB_1803be7b2:
         }
         
         if (((iStack_40 == 0x24) && (iVar1 = SystemStringCompare(lStack_48, &unknown_var_2872_ptr), iVar1 == 0))
-            && (FUN_180631000(pcVar10, &unknown_var_3692_ptr, auStackX_18),
+            && (SystemInternalValidator(pcVar10, &unknown_var_3692_ptr, auStackX_18),
                  (*(byte *)(*(int64_t *)(param_1 + 0x28) + 0x2e8) & SYSTEM_FLAG_LOCKED) != 0)) {
             pcVar3 = SYSTEM_STRING_FACTOR;
             do {
@@ -470,7 +474,7 @@ LAB_1803be7b2:
             }
             
 LAB_1803be904:
-            FUN_180631b90(pcVar6, &unknown_var_3692_ptr, &uStack_60);
+            SystemInternalProcessor(pcVar6, &unknown_var_3692_ptr, &uStack_60);
             lVar7 = *(int64_t *)(param_1 + 0x28);
             *(int32_t *)(lVar7 + SYSTEM_OFFSET_CONFIG_DATA) = uStack_60;
             *(int32_t *)(lVar7 + 0x184) = uStack_5c;
