@@ -175,57 +175,82 @@ void FUN_1802719da(undefined4 *param_1,longlong *param_2)
   int iVar8;                           // 整数变量8
   longlong lVar9;                      // 长整型变量9
   
+  /* 缓冲区边界检查和管理 */
   puVar4 = (undefined4 *)param_2[1];
   if ((ulonglong)((*param_2 - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    FUN_180639bf0();                     // 缓冲区扩展处理
+    puVar4 = (undefined4 *)unaff_RBX[1];   // 更新缓冲区指针
   }
-  *puVar4 = 1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  FUN_180272d60(&UNK_18098de80,*param_1);
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  lVar6 = (*(longlong *)(param_1 + 0x4c) - *(longlong *)(param_1 + 0x4a)) / 6 +
-          (*(longlong *)(param_1 + 0x4c) - *(longlong *)(param_1 + 0x4a) >> 0x3f);
+  
+  /* 写入渲染状态标志 */
+  *puVar4 = 1;                           // 设置状态标志为1
+  unaff_RBX[1] = unaff_RBX[1] + 4;       // 移动缓冲区指针
+  
+  /* 调用数据处理函数 */
+  FUN_180272d60(&UNK_18098de80,*param_1); // 处理渲染数据
+  
+  /* 执行同步操作 - 循环展开优化 */
+  FUN_180639ec0();  // 同步1
+  FUN_180639ec0();  // 同步2
+  FUN_180639ec0();  // 同步3
+  FUN_180639ec0();  // 同步4
+  FUN_180639ec0();  // 同步5
+  FUN_180639ec0();  // 同步6
+  FUN_180639ec0();  // 同步7
+  FUN_180639ec0();  // 同步8
+  FUN_180639ec0();  // 同步9
+  
+  /* 计算数据块数量 - 使用位运算优化除法 */
+  lVar6 = (*(longlong *)(param_1 + RENDERING_OFFSET_4C) - 
+          *(longlong *)(param_1 + RENDERING_OFFSET_4A)) / 6 +
+          (*(longlong *)(param_1 + RENDERING_OFFSET_4C) - 
+          *(longlong *)(param_1 + RENDERING_OFFSET_4A) >> SIGN_BIT_SHIFT);
+  
+  /* 缓冲区边界检查 */
   piVar5 = (int *)unaff_RBX[1];
-  iVar8 = (int)(lVar6 >> 4) - (int)(lVar6 >> 0x3f);
+  iVar8 = (int)(lVar6 >> DIVISION_SHIFT) - (int)(lVar6 >> SIGN_BIT_SHIFT);
   if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    piVar5 = (int *)unaff_RBX[1];
+    FUN_180639bf0();                     // 缓冲区扩展处理
+    piVar5 = (int *)unaff_RBX[1];         // 更新缓冲区指针
   }
-  *piVar5 = iVar8;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = (longlong)iVar8;
+  
+  /* 写入数据块数量 */
+  *piVar5 = iVar8;                        // 写入计算结果
+  unaff_RBX[1] = unaff_RBX[1] + 4;       // 移动缓冲区指针
+  lVar6 = (longlong)iVar8;                // 设置循环计数器
+  
+  /* 数据块处理循环 */
   if (0 < iVar8) {
-    lVar9 = 0;
+    lVar9 = 0;                            // 初始化偏移量
     do {
-      FUN_180639ec0();
+      FUN_180639ec0();                   // 执行同步操作
+      
+      /* 处理第一个数据块 */
       puVar4 = (undefined4 *)unaff_RBX[1];
-      uVar2 = *(undefined4 *)(lVar9 + 0x58 + *(longlong *)(param_1 + 0x4a));
+      uVar2 = *(undefined4 *)(lVar9 + RENDERING_OFFSET_58 + 
+             *(longlong *)(param_1 + RENDERING_OFFSET_4A));
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        FUN_180639bf0();                 // 缓冲区扩展处理
+        puVar4 = (undefined4 *)unaff_RBX[1]; // 更新缓冲区指针
       }
-      *puVar4 = uVar2;
-      unaff_RBX[1] = unaff_RBX[1] + 4;
+      *puVar4 = uVar2;                    // 写入数据块1
+      unaff_RBX[1] = unaff_RBX[1] + 4;   // 移动缓冲区指针
+      
+      /* 处理第二个数据块 */
       puVar4 = (undefined4 *)unaff_RBX[1];
-      uVar2 = *(undefined4 *)(lVar9 + 0x5c + *(longlong *)(param_1 + 0x4a));
+      uVar2 = *(undefined4 *)(lVar9 + RENDERING_OFFSET_5C + 
+             *(longlong *)(param_1 + RENDERING_OFFSET_4A));
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        FUN_180639bf0();                 // 缓冲区扩展处理
+        puVar4 = (undefined4 *)unaff_RBX[1]; // 更新缓冲区指针
       }
-      *puVar4 = uVar2;
-      unaff_RBX[1] = unaff_RBX[1] + 4;
-      lVar9 = lVar9 + 0x60;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      *puVar4 = uVar2;                    // 写入数据块2
+      unaff_RBX[1] = unaff_RBX[1] + 4;   // 移动缓冲区指针
+      
+      /* 更新循环变量 */
+      lVar9 = lVar9 + RENDERING_DATA_BLOCK_SIZE; // 移动到下一个数据块
+      lVar6 = lVar6 + -1;                // 减少循环计数器
+    } while (lVar6 != 0);                 // 循环直到处理完所有数据块
   }
   FUN_180639ec0();
   FUN_180639ec0();
