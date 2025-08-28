@@ -24,6 +24,71 @@
 
 #define CORE_ENGINE_SUCCESS 0                    // 操作成功
 #define CORE_ENGINE_ERROR 0x1c                   // 操作失败
+/* ============================================================================
+ * 核心引擎状态码定义
+ * ============================================================================ */
+
+#define CORE_ENGINE_STATE_UNINITIALIZED 0x00     // 未初始化状态
+#define CORE_ENGINE_STATE_INITIALIZING 0x01      // 正在初始化
+#define CORE_ENGINE_STATE_INITIALIZED 0x02       // 已初始化
+#define CORE_ENGINE_STATE_RUNNING 0x03            // 运行中
+#define CORE_ENGINE_STATE_PAUSED 0x04             // 暂停状态
+#define CORE_ENGINE_STATE_ERROR 0x05              // 错误状态
+#define CORE_ENGINE_STATE_SHUTDOWN 0x06           // 关闭状态
+
+/* ============================================================================
+ * 核心引擎错误码定义
+ * ============================================================================ */
+
+#define CORE_ENGINE_ERROR_NONE 0x00000000        // 无错误
+#define CORE_ENGINE_ERROR_INVALID_PARAM 0x00000001 // 无效参数
+#define CORE_ENGINE_ERROR_MEMORY_ALLOC 0x00000002  // 内存分配失败
+#define CORE_ENGINE_ERROR_NULL_POINTER 0x00000003  // 空指针错误
+#define CORE_ENGINE_ERROR_BUFFER_OVERFLOW 0x00000004 // 缓冲区溢出
+#define CORE_ENGINE_ERROR_INVALID_STATE 0x00000005 // 无效状态
+#define CORE_ENGINE_ERROR_TIMEOUT 0x00000006      // 超时错误
+#define CORE_ENGINE_ERROR_RESOURCE_BUSY 0x00000007 // 资源忙
+#define CORE_ENGINE_ERROR_NOT_FOUND 0x00000008    // 未找到
+#define CORE_ENGINE_ERROR_ACCESS_DENIED 0x00000009 // 访问被拒绝
+#define CORE_ENGINE_ERROR_CORRUPTED_DATA 0x0000000A // 数据损坏
+#define CORE_ENGINE_ERROR_NOT_SUPPORTED 0x0000000B // 不支持的操作
+#define CORE_ENGINE_ERROR_SYSTEM_FAILURE 0x0000000C // 系统失败
+
+/* ============================================================================
+ * 核心引擎标志位定义
+ * ============================================================================ */
+
+#define CORE_ENGINE_FLAG_NONE 0x00000000           // 无标志
+#define CORE_ENGINE_FLAG_DEBUG_MODE 0x00000001    // 调试模式
+#define CORE_ENGINE_FLAG_TRACE_MODE 0x00000002    // 跟踪模式
+#define CORE_ENGINE_FLAG_VERBOSE_MODE 0x00000004  // 详细模式
+#define CORE_ENGINE_FLAG_SILENT_MODE 0x00000008   // 静默模式
+#define CORE_ENGINE_FLAG_TEST_MODE 0x00000010     // 测试模式
+#define CORE_ENGINE_FLAG_SAFE_MODE 0x00000020     // 安全模式
+#define CORE_ENGINE_FLAG_PERFORMANCE_MODE 0x00000040 // 性能模式
+#define CORE_ENGINE_FLAG_COMPATIBILITY_MODE 0x00000080 // 兼容模式
+#define CORE_ENGINE_FLAG_MAINTENANCE_MODE 0x00000100 // 维护模式
+#define CORE_ENGINE_FLAG_RECOVERY_MODE 0x00000200  // 恢复模式
+
+/* ============================================================================
+ * 核心引擎配置参数定义
+ * ============================================================================ */
+
+#define CORE_ENGINE_CONFIG_MAX_THREADS 0x10       // 最大线程数
+#define CORE_ENGINE_CONFIG_MAX_CONNECTIONS 0x20    // 最大连接数
+#define CORE_ENGINE_CONFIG_MAX_MEMORY 0x10000000  // 最大内存 (256MB)
+#define CORE_ENGINE_CONFIG_TIMEOUT_MS 0x7530      // 超时时间 (30秒)
+#define CORE_ENGINE_CONFIG_RETRY_COUNT 0x03        // 重试次数
+#define CORE_ENGINE_CONFIG_CACHE_SIZE 0x1000       // 缓存大小
+#define CORE_ENGINE_CONFIG_BUFFER_SIZE 0x4000      // 缓冲区大小
+#define CORE_ENGINE_CONFIG_QUEUE_SIZE 0x100         // 队列大小
+#define CORE_ENGINE_CONFIG_STACK_SIZE 0x100000      // 栈大小
+#define CORE_ENGINE_CONFIG_HEAP_SIZE 0x2000000     // 堆大小
+
+/* ============================================================================
+ * 核心引擎缓冲区大小定义
+ * ============================================================================ */
+
 #define CORE_ENGINE_BUFFER_SIZE_0x26 0x26       // 缓冲区大小0x26
 #define CORE_ENGINE_BLOCK_SIZE_0x98 0x98         // 块大小0x98
 #define CORE_ENGINE_BLOCK_SIZE_0x58 0x58         // 块大小0x58
