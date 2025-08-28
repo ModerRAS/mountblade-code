@@ -1950,7 +1950,7 @@ int64_t FUN_180831260(uint64_t param_1,int64_t param_2,int param_3)
   uVar4 = param_3 + 7U & 0xfffffff8;
   if (*(int *)(param_2 + 100) < (int)(iVar3 + uVar4)) {
     if (*(int64_t *)(param_2 + 0x58) != 0) {
-      puVar1 = (uint64_t *)FUN_1807c4200(param_1,0x10);
+      puVar1 = (uint64_t *)UISystem_MemoryAllocator(param_1,0x10);
       if (puVar1 == (uint64_t *)0x0) {
         return 0;
       }
@@ -1960,7 +1960,7 @@ int64_t FUN_180831260(uint64_t param_1,int64_t param_2,int param_3)
       *(uint64_t **)(param_2 + 0x70) = puVar1;
     }
     *(uint *)(param_2 + 100) = uVar4;
-    lVar2 = FUN_1807c4200(param_1);
+    lVar2 = UISystem_MemoryAllocator(param_1);
     *(int64_t *)(param_2 + 0x58) = lVar2;
     if (lVar2 == 0) {
       return 0;
