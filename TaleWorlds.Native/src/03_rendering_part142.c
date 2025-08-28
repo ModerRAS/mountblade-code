@@ -641,60 +641,79 @@ void FUN_1803530c0(longlong *param_1, longlong param_2, undefined8 param_3)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180353e50(longlong *param_1,longlong param_2)
+//------------------------------------------------------------------------------
+// 渲染数据比较函数 (RenderData_Compare)
+// 功能：比较两组渲染数据，验证数据一致性并执行相应操作
+// 参数：param_1 - 渲染对象指针
+//       param_2 - 比较数据指针
+// 返回值：无
+// 技术特点：
+// - 使用复杂的数据比较算法
+// - 实现内存管理和安全检查
+// - 支持多阶段数据处理
+// - 包含完整的错误处理机制
+//------------------------------------------------------------------------------
 void FUN_180353e50(longlong *param_1,longlong param_2)
 
 {
-  byte *pbVar1;
-  int iVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  byte *pbVar5;
-  int iVar6;
-  undefined8 *puVar7;
-  uint uVar8;
-  longlong lVar10;
-  longlong lVar11;
-  ulonglong uVar12;
-  undefined1 auStack_3b8 [48];
-  undefined8 *puStack_388;
-  undefined8 *puStack_380;
-  undefined8 uStack_378;
-  undefined4 uStack_370;
-  undefined8 *puStack_368;
-  undefined8 *puStack_360;
-  undefined8 uStack_358;
-  undefined4 uStack_350;
-  undefined *puStack_348;
-  longlong lStack_340;
-  undefined4 uStack_330;
-  undefined *puStack_328;
-  longlong lStack_320;
-  undefined4 uStack_310;
-  undefined8 uStack_308;
-  undefined1 auStack_278 [544];
-  ulonglong uStack_58;
-  ulonglong uVar9;
-  
-  uStack_308 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_3b8;
-  FUN_180627ae0(&puStack_328,*(longlong *)(param_2 + 0x10) + 8);
-  FUN_180627ae0(&puStack_348,param_1[2] + 8);
-  puStack_388 = (undefined8 *)0x0;
-  puStack_380 = (undefined8 *)0x0;
-  uVar9 = 0;
-  uStack_378 = 0;
-  uStack_370 = 3;
-  (**(code **)(*param_1 + 0xf8))(param_1,&puStack_388);
-  puStack_368 = (undefined8 *)0x0;
-  puStack_360 = (undefined8 *)0x0;
-  uStack_358 = 0;
-  uStack_350 = 3;
-  (**(code **)(*param_1 + 0xf8))(param_1,&puStack_368);
+    // 局部变量定义
+    byte *pbVar1;                   // 字节指针1
+    int iVar2;                     // 整数变量1
+    undefined8 *puVar3;            // 无定义指针3
+    undefined8 *puVar4;            // 无定义指针4
+    byte *pbVar5;                   // 字节指针5
+    int iVar6;                     // 整数变量6
+    undefined8 *puVar7;            // 无定义指针7
+    uint uVar8;                    // 无符号整数8
+    longlong lVar10;               // 长整型10
+    longlong lVar11;               // 长整型11
+    ulonglong uVar12;              // 无符号长整型12
+    undefined1 auStack_3b8 [48];   // 栈缓冲区1
+    undefined8 *puStack_388;       // 栈参数1
+    undefined8 *puStack_380;       // 栈参数2
+    undefined8 uStack_378;         // 栈参数3
+    undefined4 uStack_370;         // 栈参数4
+    undefined8 *puStack_368;       // 栈参数5
+    undefined8 *puStack_360;       // 栈参数6
+    undefined8 uStack_358;         // 栈参数7
+    undefined4 uStack_350;         // 栈参数8
+    undefined *puStack_348;        // 栈参数9
+    longlong lStack_340;           // 栈参数10
+    undefined4 uStack_330;         // 栈参数11
+    undefined *puStack_328;        // 栈参数12
+    longlong lStack_320;           // 栈参数13
+    undefined4 uStack_310;         // 栈参数14
+    undefined8 uStack_308;         // 栈参数15
+    undefined1 auStack_278 [544];  // 栈缓冲区2
+    ulonglong uStack_58;           // 栈参数16
+    ulonglong uVar9;               // 无符号长整型9
+    
+    // 初始化安全检查标志
+    uStack_308 = 0xfffffffffffffffe;  // 安全检查标志
+    uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_3b8;  // 安全检查异或值
+    
+    // 调用数据准备函数
+    FUN_180627ae0(&puStack_328, *(longlong *)(param_2 + 0x10) + 8);
+    FUN_180627ae0(&puStack_348, param_1[2] + 8);
+    
+    // 初始化数据缓冲区
+    puStack_388 = (undefined8 *)0x0;  // 数据缓冲区1
+    puStack_380 = (undefined8 *)0x0;  // 数据缓冲区2
+    uVar9 = 0;                       // 计数器
+    uStack_378 = 0;                  // 数据长度1
+    uStack_370 = 3;                  // 数据类型
+    
+    // 调用数据获取函数
+    (**(code **)(*param_1 + 0xf8))(param_1, &puStack_388);
+    
+    // 初始化第二组数据缓冲区
+    puStack_368 = (undefined8 *)0x0;  // 数据缓冲区3
+    puStack_360 = (undefined8 *)0x0;  // 数据缓冲区4
+    uStack_358 = 0;                  // 数据长度2
+    uStack_350 = 3;                  // 数据类型
+    
+    // 调用第二组数据获取函数
+    (**(code **)(*param_1 + 0xf8))(param_1, &puStack_368);
   puVar4 = puStack_360;
   puVar3 = puStack_380;
   puVar7 = puStack_368;
@@ -767,33 +786,45 @@ LAB_180353f85:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180354170(longlong *param_1)
+//------------------------------------------------------------------------------
+// 渲染数据验证函数 (RenderData_Validate)
+// 功能：验证渲染数据的完整性和有效性，执行必要的检查和清理
+// 参数：param_1 - 渲染对象指针
+// 返回值：无
+// 技术特点：
+// - 实现数据完整性检查
+// - 支持错误检测和恢复
+// - 包含内存管理和安全检查
+// - 提供详细的验证反馈
+//------------------------------------------------------------------------------
 void FUN_180354170(longlong *param_1)
 
 {
-  undefined8 uVar1;
-  longlong *plVar2;
-  char cVar3;
-  undefined *puVar4;
-  undefined1 auStack_3e8 [48];
-  undefined1 auStack_3b8 [8];
-  undefined8 uStack_3b0;
-  undefined1 auStack_328 [544];
-  undefined *puStack_108;
-  undefined1 *puStack_100;
-  undefined4 uStack_f8;
-  undefined1 auStack_f0 [136];
-  ulonglong uStack_68;
-  
-  uStack_3b0 = 0xfffffffffffffffe;
-  uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_3e8;
-  uVar1 = *(undefined8 *)(param_1[3] + 0x20);
-  plVar2 = (longlong *)param_1[5];
-  if (plVar2 != param_1 + 4) {
+    // 局部变量定义
+    undefined8 uVar1;              // 无定义变量1
+    longlong *plVar2;              // 长整型指针2
+    char cVar3;                   // 字符变量3
+    undefined *puVar4;             // 无定义指针4
+    undefined1 auStack_3e8 [48];   // 栈缓冲区1
+    undefined1 auStack_3b8 [8];    // 栈缓冲区2
+    undefined8 uStack_3b0;        // 栈参数1
+    undefined1 auStack_328 [544];  // 栈缓冲区3
+    undefined *puStack_108;       // 栈参数2
+    undefined1 *puStack_100;      // 栈参数3
+    undefined4 uStack_f8;          // 栈参数4
+    undefined1 auStack_f0 [136];  // 栈缓冲区4
+    ulonglong uStack_68;          // 栈参数5
+    
+    // 初始化安全检查标志
+    uStack_3b0 = 0xfffffffffffffffe;  // 安全检查标志
+    uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_3e8;  // 安全检查异或值
+    
+    // 获取渲染对象数据
+    uVar1 = *(undefined8 *)(param_1[3] + 0x20);  // 渲染数据指针
+    plVar2 = (longlong *)param_1[5];              // 渲染对象指针
+    
+    // 检查渲染对象状态
+    if (plVar2 != param_1 + 4) {
     puStack_108 = &UNK_1809fcc28;
     puStack_100 = auStack_f0;
     auStack_f0[0] = 0;

@@ -299,5 +299,145 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
                     }
                 }
                 break;
+                
+            case 5:  // 状态参数处理 - 搜索和匹配状态名称
+                lVar13 = param_1[7];
+                lVar7 = param_1[8] - lVar13 >> 4;
+                if (cStack_458 == '\0') {
+                    param_2 = plStack_468;
+                    uVar18 = uVar17;
+                    if (lVar7 != 0) {
+                        do {
+                            puVar16 = &UNK_1809fcc58;
+                            lVar13 = *(longlong *)(uVar17 + lVar13);
+                            if (*(longlong *)(lVar13 + 0x1b0) == 0) {
+                                lVar7 = lVar13 + 0x10;
+                            }
+                            else {
+                                lVar7 = func_0x000180079240();
+                            }
+                            pbStack_3b0 = abStack_3a0;
+                            abStack_3a0[0] = 0;
+                            iStack_3a8 = *(int *)(lVar7 + 0x10);
+                            puVar15 = &DAT_18098bc73;
+                            if (*(undefined **)(lVar7 + 8) != (undefined *)0x0) {
+                                puVar15 = *(undefined **)(lVar7 + 8);
+                            }
+                            puStack_3b8 = puVar16;
+                            strcpy_s(abStack_3a0,0x40,puVar15);
+                            lVar7 = -1;
+                            do {
+                                lVar8 = lVar7 + 1;
+                                lVar6 = lVar7 + 9;
+                                lVar7 = lVar8;
+                            } while (*(char *)((longlong)puVar12 + lVar6) != '\0');
+                            iVar11 = (int)lVar8;
+                            if (iStack_3a8 == iVar11) {
+                                if (iStack_3a8 != 0) {
+                                    pbVar9 = pbStack_3b0;
+                                    do {
+                                        pbVar1 = pbVar9 + (longlong)puVar12 + (8 - (longlong)pbStack_3b0);
+                                        iVar11 = (uint)*pbVar9 - (uint)*pbVar1;
+                                        if (iVar11 != 0) break;
+                                        pbVar9 = pbVar9 + 1;
+                                    } while (*pbVar1 != 0);
+                                }
+                                if (iVar11 == 0) {
+                                    plVar10 = *(longlong **)(puVar12 + 0x42);
+                                    plStack_430 = plVar10;
+                                    if (plVar10 != (longlong *)0x0) {
+                                        (**(code **)(*plVar10 + 0x28))(plVar10);
+                                    }
+                                    FUN_180076910(lVar13,&plStack_430);
+                                    if (plVar10 != (longlong *)0x0) {
+                                        (**(code **)(*plVar10 + 0x38))(plVar10);
+                                    }
+                                    puStack_3b8 = &UNK_18098bcb0;
+                                    param_2 = plStack_468;
+                                    param_1 = plStack_460;
+                                    break;
+                                }
+                            }
+                            puStack_3b8 = &UNK_18098bcb0;
+                            uVar19 = (int)uVar18 + 1;
+                            uVar18 = (ulonglong)uVar19;
+                            uVar17 = uVar17 + 0x10;
+                            lVar13 = plStack_460[7];
+                            param_2 = plStack_468;
+                            param_1 = plStack_460;
+                        } while ((ulonglong)(longlong)(int)uVar19 < (ulonglong)(plStack_460[8] - lVar13 >> 4));
+                    }
+                }
+                else {
+                    // 状态参数复制逻辑
+                    param_2 = plStack_468;
+                    uVar18 = uVar17;
+                    uVar20 = uVar17;
+                    if (lVar7 != 0) {
+                        do {
+                            puVar16 = &UNK_1809fcc58;
+                            lVar13 = *(longlong *)(uVar18 + lVar13);
+                            if (*(longlong *)(lVar13 + 0x1b0) == 0) {
+                                lVar7 = lVar13 + 0x10;
+                            }
+                            else {
+                                lVar7 = func_0x000180079240();
+                            }
+                            pbStack_410 = abStack_400;
+                            abStack_400[0] = 0;
+                            iStack_408 = *(int *)(lVar7 + 0x10);
+                            puVar15 = &DAT_18098bc73;
+                            if (*(undefined **)(lVar7 + 8) != (undefined *)0x0) {
+                                puVar15 = *(undefined **)(lVar7 + 8);
+                            }
+                            puStack_418 = puVar16;
+                            strcpy_s(abStack_400,0x40,puVar15);
+                            lVar7 = -1;
+                            do {
+                                lVar8 = lVar7 + 1;
+                                lVar6 = lVar7 + 9;
+                                lVar7 = lVar8;
+                            } while (*(char *)((longlong)puVar12 + lVar6) != '\0');
+                            iVar11 = (int)lVar8;
+                            if (iStack_408 == iVar11) {
+                                if (iStack_408 != 0) {
+                                    pbVar9 = pbStack_410;
+                                    do {
+                                        pbVar1 = pbVar9 + (longlong)puVar12 + (8 - (longlong)pbStack_410);
+                                        iVar11 = (uint)*pbVar9 - (uint)*pbVar1;
+                                        if (iVar11 != 0) break;
+                                        pbVar9 = pbVar9 + 1;
+                                    } while (*pbVar1 != 0);
+                                }
+                                if (iVar11 == 0) {
+                                    FUN_180076910(lVar13,*(longlong *)
+                                        (*(longlong *)(*plStack_468 + 0x38) + uVar17 * 0x10) + 0x1b8);
+                                    puStack_418 = &UNK_18098bcb0;
+                                    param_2 = plStack_468;
+                                    param_1 = plStack_460;
+                                    break;
+                                }
+                            }
+                            puStack_418 = &UNK_18098bcb0;
+                            uVar19 = (int)uVar20 + 1;
+                            uVar17 = uVar17 + 1;
+                            lVar13 = plStack_460[7];
+                            param_2 = plStack_468;
+                            param_1 = plStack_460;
+                            uVar18 = uVar18 + 0x10;
+                            uVar20 = (ulonglong)uVar19;
+                        } while ((ulonglong)(longlong)(int)uVar19 < (ulonglong)(plStack_460[8] - lVar13 >> 4));
+                    }
+                }
+                break;
+            }
+            plVar14 = (longlong *)*plVar14;
+        } while (plVar14 != param_2 + 1);
+    }
+    
+    // 栈校验和清理 - 确保栈完整性并执行清理操作
+    // WARNING: Subroutine does not return
+    FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_488);
+}
 
 

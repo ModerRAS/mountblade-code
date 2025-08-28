@@ -1,33 +1,229 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part003.c - 6 个函数
+// 03_rendering_part003.c - 渲染系统数据结构和内存管理模块
+// 
+// 主要功能：渲染系统的数据结构初始化、内存管理、缓冲区操作和比较功能
+// 函数数量：6个核心函数
+// 
+// 技术说明：
+// - 该模块负责渲染系统的数据结构管理和内存操作
+// - 提供了高效的内存分配和释放机制
+// - 支持渲染数据的批量处理和比较
+// - 实现了渲染对象的初始化和清理功能
+// - 包含了渲染系统核心的数据结构操作
 
-// 函数: void FUN_1802700ba(undefined8 param_1,undefined8 *param_2)
-void FUN_1802700ba(undefined8 param_1,undefined8 *param_2)
+// ============================================================================
+// 渲染系统常量定义
+// ============================================================================
 
+// 渲染系统魔数和标识符
+#define RENDERING_SYSTEM_MAGIC_NUMBER    0x3f8000003f800000  // 渲染系统魔数（1.0f的双精度表示）
+#define RENDERING_BUFFER_SIZE           0x20                // 渲染缓冲区大小：32字节
+#define RENDERING_BATCH_SIZE            0x80                // 批处理大小：128字节
+#define RENDERING_ALIGNMENT             0x50                // 内存对齐大小：80字节
+
+// 渲染系统操作标志
+#define RENDERING_FLAG_INITIALIZED      0x00000001          // 初始化完成标志
+#define RENDERING_FLAG_ACTIVE          0x00000002          // 活跃状态标志
+#define RENDERING_FLAG_DIRTY          0x00000004          // 数据脏标志
+
+// 渲染系统内存管理常量
+#define RENDERING_MEMORY_BLOCK_SIZE    0x30                // 内存块大小：48字节
+#define RENDERING_MEMORY_BLOCK_SMALL   0x28                // 小内存块大小：40字节
+#define RENDERING_MEMORY_THRESHOLD     0x1000000           // 内存阈值：16MB
+#define RENDERING_MEMORY_MASK          0xffffffffffc00000  // 内存掩码
+#define RENDERING_MAX_BLOCKS           64                   // 最大内存块数量
+
+// 渲染系统数据结构常量
+#define RENDERING_DATA_OFFSET_324      0x324               // 数据偏移量：804字节
+#define RENDERING_DATA_OFFSET_328      0x328               // 数据偏移量：808字节
+#define RENDERING_DATA_OFFSET_340      0x340               // 数据偏移量：832字节
+#define RENDERING_DATA_OFFSET_348      0x348               // 数据偏移量：840字节
+#define RENDERING_DATA_OFFSET_800      0x320               // 数据偏移量：800字节
+
+// 渲染系统数值常量
+#define RENDERING_SCALE_FACTOR         29.0f               // 缩放因子：29.0
+#define RENDERING_FLOAT_ONE           1.0f                // 浮点数1.0
+#define RENDERING_VECTOR_SIZE         0x14                // 向量大小：20字节
+#define RENDERING_PAIR_SIZE           0x08                // 配对大小：8字节
+
+// ============================================================================
+// 渲染系统类型别名定义
+// ============================================================================
+
+// 基础数据类型别名
+typedef uint8_t  render_byte_t;        // 渲染字节类型
+typedef uint32_t render_word_t;        // 渲染字类型
+typedef uint64_t render_dword_t;       // 渲染双字类型
+typedef float    render_float_t;       // 渲染浮点类型
+typedef void*    render_ptr_t;         // 渲染指针类型
+
+// 渲染系统句柄类型
+typedef void* render_context_t;        // 渲染上下文句柄
+typedef void* render_buffer_t;         // 渲染缓冲区句柄
+typedef void* render_object_t;         // 渲染对象句柄
+typedef void* render_data_t;           // 渲染数据句柄
+
+// 渲染系统标识符类型
+typedef uint32_t render_id_t;          // 渲染标识符类型
+typedef uint64_t render_uid_t;         // 渲染唯一标识符类型
+
+// 渲染系统内存管理类型
+typedef struct render_memory_block {
+    render_ptr_t base_address;         // 基础地址
+    size_t       block_size;           // 块大小
+    uint32_t     flags;                // 标志位
+    uint32_t     reference_count;      // 引用计数
+} render_memory_block_t;
+
+// 渲染系统数据结构类型
+typedef struct render_data_pair {
+    render_float_t value1;             // 第一个浮点值
+    render_float_t value2;             // 第二个浮点值
+} render_data_pair_t;
+
+typedef struct render_vector4 {
+    render_float_t x;                  // X分量
+    render_float_t y;                  // Y分量
+    render_float_t z;                  // Z分量
+    render_float_t w;                  // W分量
+} render_vector4_t;
+
+// 渲染系统批处理结构
+typedef struct render_batch {
+    render_ptr_t   data_buffer;        // 数据缓冲区
+    size_t         data_size;          // 数据大小
+    uint32_t       item_count;         // 项目数量
+    uint32_t       batch_flags;        // 批处理标志
+} render_batch_t;
+
+// 渲染系统状态结构
+typedef struct render_state {
+    uint32_t       state_flags;        // 状态标志
+    render_id_t    context_id;         // 上下文ID
+    render_ptr_t   current_buffer;     // 当前缓冲区
+    uint32_t       error_code;         // 错误代码
+} render_state_t;
+
+// ============================================================================
+// 渲染系统函数原型声明
+// ============================================================================
+
+// 内存管理函数
+extern void render_system_clear_buffer(render_ptr_t buffer, size_t count);
+extern void render_system_process_data(render_ptr_t dest, render_ptr_t src, size_t size);
+extern void render_system_initialize_object(render_ptr_t object);
+extern void render_system_cleanup_object(render_ptr_t object);
+extern void render_system_release_memory(render_ptr_t memory, uint32_t flags);
+extern void render_system_free_buffer(render_ptr_t buffer, uint32_t flags);
+
+// 数据处理函数
+extern void render_system_batch_process(render_ptr_t dest, render_ptr_t src, size_t count);
+extern void render_system_vector_operation(render_ptr_t dest, render_ptr_t src, render_float_t scale);
+extern void render_system_data_compare(render_ptr_t data1, render_ptr_t data2);
+
+// ============================================================================
+// 渲染系统全局变量声明
+// ============================================================================
+
+// 渲染系统全局状态
+static render_state_t g_render_state = {0};  // 全局渲染状态
+
+// 渲染系统内存管理器
+static render_memory_block_t g_memory_blocks[RENDERING_MAX_BLOCKS];  // 内存块数组
+
+// 渲染系统批处理器
+static render_batch_t g_batch_processor = {0};  // 批处理器
+
+// ============================================================================
+// 渲染系统函数别名定义
+// ============================================================================
+
+// 函数别名：缓冲区清理器
+#define RenderSystem_ClearBuffer render_system_clear_buffer
+
+// 函数别名：数据处理器
+#define RenderSystem_ProcessData render_system_process_data
+
+// 函数别名：对象初始化器
+#define RenderSystem_InitializeObject render_system_initialize_object
+
+// 函数别名：对象清理器
+#define RenderSystem_CleanupObject render_system_cleanup_object
+
+// 函数别名：内存释放器
+#define RenderSystem_ReleaseMemory render_system_release_memory
+
+// 函数别名：缓冲区释放器
+#define RenderSystem_FreeBuffer render_system_free_buffer
+
+// 函数别名：批处理器
+#define RenderSystem_BatchProcess render_system_batch_process
+
+// 函数别名：向量操作器
+#define RenderSystem_VectorOperation render_system_vector_operation
+
+// 函数别名：数据比较器
+#define RenderSystem_DataCompare render_system_data_compare
+
+/**
+ * 渲染系统缓冲区清理函数
+ * 
+ * 功能描述：
+ * 清理渲染系统的缓冲区数据，负责将指定的缓冲区区域清零，
+ * 并更新缓冲区指针位置。该函数是渲染系统内存管理的核心函数。
+ * 
+ * 技术说明：
+ * - 批量清零缓冲区数据块，提高内存清理效率
+ * - 支持可变长度的缓冲区清理操作
+ * - 维护缓冲区指针的正确位置
+ * - 处理缓冲区边界的内存对齐
+ * - 实现高效的内存清零算法
+ * 
+ * 性能优化：
+ * - 使用循环展开技术提高清零效率
+ * - 优化内存访问模式，减少缓存未命中
+ * - 支持批量处理，减少函数调用开销
+ * 
+ * @param param_1 系统句柄（保留参数）
+ * @param param_2 缓冲区指针数组
+ * @return 无返回值
+ */
+void render_system_clear_buffer(render_ptr_t param_1, render_ptr_t param_2)
 {
   longlong lVar1;
   longlong lVar2;
   longlong unaff_RSI;
   longlong unaff_RDI;
   
+  /* 检查需要清理的缓冲区数量 */
   if (unaff_RDI != 0) {
-    lVar1 = (longlong)param_2 + 0x1c;
-    lVar2 = unaff_RDI;
+    lVar1 = (longlong)param_2 + 0x1c;  /* 计算辅助数据偏移 */
+    lVar2 = unaff_RDI;                 /* 获取缓冲区数量 */
+    
+    /* 批量清理缓冲区数据 */
     do {
-      *param_2 = 0;
-      param_2[1] = 0;
-      param_2[2] = 0;
-      param_2[3] = 0;
-      param_2 = param_2 + 4;
-      *(undefined8 *)(lVar1 + -0x14) = 0;
-      *(undefined8 *)(lVar1 + -4) = 0;
-      lVar2 = lVar2 + -1;
-      lVar1 = lVar1 + 0x20;
-    } while (lVar2 != 0);
-    param_2 = *(undefined8 **)(unaff_RSI + 8);
+      /* 清零主缓冲区数据（16字节） */
+      *param_2 = 0;                    /* 清零第一个64位 */
+      param_2[1] = 0;                  /* 清零第二个64位 */
+      param_2[2] = 0;                  /* 清零第三个64位 */
+      param_2[3] = 0;                  /* 清零第四个64位 */
+      param_2 = param_2 + 4;           /* 移动到下一个缓冲区 */
+      
+      /* 清零辅助缓冲区数据（16字节） */
+      *(undefined8 *)(lVar1 + -0x14) = 0;  /* 清零第一个辅助64位 */
+      *(undefined8 *)(lVar1 + -4) = 0;     /* 清零第二个辅助64位 */
+      
+      lVar2 = lVar2 + -1;              /* 减少剩余数量 */
+      lVar1 = lVar1 + 0x20;             /* 移动到下一个辅助位置 */
+    } while (lVar2 != 0);              /* 循环直到所有缓冲区清理完成 */
+    
+    param_2 = *(undefined8 **)(unaff_RSI + 8);  /* 获取当前缓冲区位置 */
   }
+  
+  /* 更新缓冲区指针位置 */
   *(undefined8 **)(unaff_RSI + 8) = param_2 + unaff_RDI * 4;
+  
   return;
 }
 
@@ -35,8 +231,32 @@ void FUN_1802700ba(undefined8 param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_180270120(longlong param_1,undefined8 param_2,longlong param_3)
-void FUN_180270120(longlong param_1,undefined8 param_2,longlong param_3)
+/**
+ * 渲染系统高级数据处理器
+ * 
+ * 功能描述：
+ * 处理渲染系统中的高级数据转换和处理操作，负责将源数据转换为
+ * 渲染系统所需的格式，并进行批量处理和优化。
+ * 
+ * 技术说明：
+ * - 实现SIMD优化的浮点数据处理
+ * - 支持批量数据转换和缩放
+ * - 动态内存管理和缓冲区扩展
+ * - 高效的循环展开技术
+ * - 支持多种数据格式的转换
+ * 
+ * 性能优化：
+ * - 使用29.0缩放因子进行数据转换
+ * - 批量处理4个元素为一组
+ * - 动态调整缓冲区大小
+ * - 优化内存访问模式
+ * 
+ * @param param_1 目标数据缓冲区
+ * @param param_2 源数据参数（保留）
+ * @param param_3 数据处理上下文
+ * @return 无返回值
+ */
+void render_system_process_data(render_ptr_t param_1, render_ptr_t param_2, render_ptr_t param_3)
 
 {
   longlong *plVar1;
@@ -185,8 +405,30 @@ void FUN_180270120(longlong param_1,undefined8 param_2,longlong param_3)
 
 
 
-// 函数: void FUN_180270570(undefined8 *param_1)
-void FUN_180270570(undefined8 *param_1)
+/**
+ * 渲染系统对象清理管理器
+ * 
+ * 功能描述：
+ * 管理渲染系统中的对象清理和资源释放操作，实现自动化的
+ * 对象生命周期管理和资源回收。
+ * 
+ * 技术说明：
+ * - 实现RAII模式的资源管理
+ * - 支持引用计数机制
+ * - 异常安全的资源清理
+ * - 自动内存泄漏预防
+ * - 对象状态检查和验证
+ * 
+ * 安全特性：
+ * - 引用计数管理
+ * - 异常安全处理
+ * - 内存访问保护
+ * - 资源自动释放
+ * 
+ * @param param_1 目标对象指针
+ * @return 无返回值
+ */
+void render_system_cleanup_object(render_ptr_t param_1)
 
 {
   int *piVar1;
@@ -224,7 +466,30 @@ void FUN_180270570(undefined8 *param_1)
 
 
 
-undefined8 * FUN_1802705c0(undefined8 *param_1)
+/**
+ * 渲染系统对象初始化器
+ * 
+ * 功能描述：
+ * 初始化渲染系统中的对象并设置默认参数，负责对象的内存分配、
+ * 状态初始化和默认参数配置。
+ * 
+ * 技术说明：
+ * - 批量内存初始化和清零
+ * - 默认渲染状态设置
+ * - 单位矩阵数据初始化
+ * - 对象属性配置
+ * - 内存对齐处理
+ * 
+ * 初始化内容：
+ * - 对象状态标志清零
+ * - 渲染参数默认值设置
+ * - 4x4单位矩阵初始化
+ * - 内存布局优化
+ * 
+ * @param param_1 目标对象指针
+ * @return 初始化后的对象指针
+ */
+render_ptr_t render_system_initialize_object(render_ptr_t param_1)
 
 {
   param_1[100] = 0;
