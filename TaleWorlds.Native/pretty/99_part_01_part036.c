@@ -108,7 +108,7 @@ typedef enum {
 #define SystemInitializer                     FUN_1808fd200
 
 // 数据处理和验证函数
-#define SystemDataValidator                   FUN_180626f80
+#define SystemDataValidator                   SystemDataInitializer
 
 // 系统参数处理函数
 #define SystemParameterHandler                FUN_18009ec20
@@ -135,7 +135,7 @@ typedef enum {
 #define SystemOptimizer                       FUN_180245a60
 
 // 系统错误处理函数
-#define SystemErrorHandler                    FUN_18064e900
+#define SystemErrorHandler                    CoreEngineMemoryPoolCleaner
 
 // 系统调试和信息输出函数
 #define SystemDebugOutput                     FUN_1800ed380

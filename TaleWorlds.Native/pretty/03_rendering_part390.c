@@ -149,7 +149,7 @@ LAB_180482706:
     uStack_e8 = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_118);
+  SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_118);
 }
 
 
@@ -331,7 +331,7 @@ void FUN_180482840(int64_t *param_1,char *param_2,uint64_t param_3,uint64_t para
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_108);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_108);
 }
 
 

@@ -98,7 +98,7 @@ void FUN_180288f30(int64_t param_1,uint64_t param_2)
   lStack_128 = param_1;
   uStack_100 = param_2;
   uStack_f0 = param_2;
-  if (*(void **)*render_system_data_memory == &unknown_var_424_ptr) {
+  if (*(void **)*render_system_data_memory == &rendering_rock_ptr) {
     cVar32 = *(int *)(render_system_data_memory + 0xe0) != 0;
   }
   else {

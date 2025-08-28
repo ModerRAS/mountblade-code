@@ -1136,7 +1136,7 @@ void FUN_18015c450(int64_t param_1)
   func_0x00018015c3f0(auStack_d60,&uStack_40,&uStack_30,1);
   FUN_1801601c0(param_1,0xba,auStack_d60);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_e18);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_e18);
 }
 
 

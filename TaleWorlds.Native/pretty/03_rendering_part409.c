@@ -486,7 +486,7 @@ void FUN_180492418(void)
   } while (uVar38 < 0xc);
 FUN_180492a07:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)unaff_RBP[0x12] ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)unaff_RBP[0x12] ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -500,7 +500,7 @@ void FUN_180492a07(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x120) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x120) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -514,7 +514,7 @@ void FUN_180492a34(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x120) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x120) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -528,7 +528,7 @@ void FUN_180492a44(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x120) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x120) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -539,7 +539,7 @@ void thunk_FUN_180492a07(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x120) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x120) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -638,7 +638,7 @@ void FUN_180492a90(void *param_1)
   uStack_120 = 0;
   uStack_11c = 0;
   uStack_118 = 0;
-  FUN_1806277c0(&puStack_128,0x1b);
+  CoreEngineDataBufferProcessor(&puStack_128,0x1b);
   puVar2 = (int32_t *)CONCAT44(uStack_11c,uStack_120);
   *puVar2 = 0x74666f53;
   puVar2[1] = 0x65726177;
@@ -655,7 +655,7 @@ void FUN_180492a90(void *param_1)
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_158);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_158);
 }
 
 

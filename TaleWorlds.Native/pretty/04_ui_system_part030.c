@@ -397,7 +397,7 @@ LAB_18066fdc2:
         ReleaseSemaphore(*(uint64_t *)(unaff_RDI + 0x4400),1);
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -418,7 +418,7 @@ void FUN_1806704b6(void)
     ReleaseSemaphore(*(uint64_t *)(unaff_RDI + 0x4400),1);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -434,7 +434,7 @@ void FUN_1806704db(void)
   
   ReleaseSemaphore(*(uint64_t *)(unaff_RDI + 0x4400),1);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 

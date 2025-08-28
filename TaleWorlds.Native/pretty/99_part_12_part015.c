@@ -184,7 +184,7 @@ LAB_1807d4d8d:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_88 ^ (uint64_t)auStack_358);
+  SystemSecurityChecker(uStack_88 ^ (uint64_t)auStack_358);
 }
 
 
@@ -286,7 +286,7 @@ LAB_1807d4d8d:
     FUN_1807d5970(param_1,&stack0x00000050,unaff_ESI);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000002d0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000002d0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -380,7 +380,7 @@ LAB_1807d4d8d:
         FUN_1807d5970(param_1,&stack0x00000050,iStack0000000000000038);
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_000002d0 ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(in_stack_000002d0 ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -412,7 +412,7 @@ void FUN_1807d4ddf(int32_t param_1)
     FUN_1807d5970(param_1,&stack0x00000050,unaff_ESI);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000002d0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000002d0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -428,7 +428,7 @@ void FUN_1807d4deb(void)
   
   FUN_1807d5970();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000002d0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000002d0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -601,7 +601,7 @@ void FUN_1807d4f50(uint64_t *param_1,int32_t *param_2,uint param_3,char param_4)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_98 ^ (uint64_t)auStack_348);
+  SystemSecurityChecker(uStack_98 ^ (uint64_t)auStack_348);
 }
 
 
@@ -688,7 +688,7 @@ void FUN_1807d51c3(int32_t param_1)
     FUN_1807d5970(param_1,&stack0x00000030,unaff_EBP);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000002b0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000002b0 ^ (uint64_t)&stack0x00000000);
 }
 
 

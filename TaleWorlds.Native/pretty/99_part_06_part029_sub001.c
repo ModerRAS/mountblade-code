@@ -621,7 +621,7 @@ LAB_1803c13fe:
       puStack_50 = &system_data_buffer_ptr;
       if (lStack_48 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       lStack_48 = 0;
       uStack_38 = 0;

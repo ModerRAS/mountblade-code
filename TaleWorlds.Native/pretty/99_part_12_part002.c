@@ -337,7 +337,7 @@ void FUN_1807c5c8d(void)
     } while (true);
     
     // 安全退出：栈保护检查
-    FUN_1808fc050(stackGuard ^ (uint64_t)&tempBuffer);
+    SystemSecurityChecker(stackGuard ^ (uint64_t)&tempBuffer);
 }
 
 //------------------------------------------------------------------------------
@@ -364,7 +364,7 @@ void FUN_1807c5ea9(void)
     uint64_t stackGuard;                          // 栈保护值
     
     // 安全退出：调用栈保护检查
-    FUN_1808fc050(stackGuard ^ (uint64_t)&tempBuffer);
+    SystemSecurityChecker(stackGuard ^ (uint64_t)&tempBuffer);
 }
 
 //------------------------------------------------------------------------------
@@ -563,7 +563,7 @@ void FUN_1807c5ed0(int64_t param_1)
     
 ParseErrorHandler:
     // 错误处理：安全退出
-    FUN_1808fc050(stackGuard ^ (uint64_t)securityBuffer);
+    SystemSecurityChecker(stackGuard ^ (uint64_t)securityBuffer);
 }
 
 //------------------------------------------------------------------------------
@@ -607,7 +607,7 @@ void FUN_1807c5f17(void)
         
     StreamErrorHandler:
         // 错误处理：安全退出
-        FUN_1808fc050(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
+        SystemSecurityChecker(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
     }
     
     // 查找配置节
@@ -787,7 +787,7 @@ void FUN_1807c5fb3(void)
         if (parseStatus != PARSER_SUCCESS) {
         EnhancedErrorHandler:
             // 错误处理：安全退出
-            FUN_1808fc050(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
+            SystemSecurityChecker(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
         }
         
         // 解析XML标记
@@ -903,7 +903,7 @@ void FUN_1807c6289(void)
     int64_t framePointer;                          // 帧指针
     
     // 错误处理：安全退出
-    FUN_1808fc050(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
+    SystemSecurityChecker(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
 }
 
 void FUN_1807c6291(void)
@@ -911,7 +911,7 @@ void FUN_1807c6291(void)
     int64_t framePointer;                          // 帧指针
     
     // 错误处理：安全退出
-    FUN_1808fc050(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
+    SystemSecurityChecker(*(uint64_t *)(framePointer + 0x550) ^ (uint64_t)&tempBuffer);
 }
 
 void FUN_1807c62aa(void)

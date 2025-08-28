@@ -95,7 +95,7 @@ FUN_18028a1a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_40_ptr;
+  *param_1 = &rendering_resource_ptr;
   if ((int64_t *)param_1[0x1e] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x1e] + 0x38))();
   }

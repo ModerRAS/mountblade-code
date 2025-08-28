@@ -31,10 +31,10 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_70 = 0;
   puStack_80 = (uint64_t *)0x0;
   uStack_78 = 0;
-  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0);
+  puVar2 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,param_4,0);
   *(int8_t *)puVar2 = 0;
   puStack_80 = puVar2;
-  uStack_98._0_4_ = FUN_18064e990(puVar2);
+  uStack_98._0_4_ = CoreEngineSystemCleanup(puVar2);
   *puVar2 = 0x6d614e2068746150;
   *(int16_t *)(puVar2 + 1) = 0x65;
   puStack_b0 = &system_data_buffer_ptr;
@@ -49,7 +49,7 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_b0 = &system_data_buffer_ptr;
   if (puStack_a8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_a8 = (uint64_t *)0x0;
   uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
@@ -61,10 +61,10 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_50 = 0;
   puStack_60 = (uint64_t *)0x0;
   uStack_58 = 0;
-  puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0);
+  puVar3 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,param_4,0);
   *(int8_t *)puVar3 = 0;
   puStack_60 = (uint64_t *)puVar3;
-  uStack_98._0_4_ = FUN_18064e990(puVar3);
+  uStack_98._0_4_ = CoreEngineSystemCleanup(puVar3);
   *puVar3 = 0x6873654d;
   *(int8_t *)(puVar3 + 1) = 0;
   puStack_b0 = &system_data_buffer_ptr;
@@ -79,7 +79,7 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_b0 = &system_data_buffer_ptr;
   if (puStack_a8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_a8 = (uint64_t *)0x0;
   uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
@@ -91,10 +91,10 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_70 = 0;
   puStack_80 = (uint64_t *)0x0;
   uStack_78 = 0;
-  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0);
+  puVar2 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,param_4,0);
   *(int8_t *)puVar2 = 0;
   puStack_80 = puVar2;
-  uStack_98._0_4_ = FUN_18064e990(puVar2);
+  uStack_98._0_4_ = CoreEngineSystemCleanup(puVar2);
   *puVar2 = 0x656c616353205a;
   puStack_b0 = &system_data_buffer_ptr;
   uStack_a0 = 7;
@@ -108,7 +108,7 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_b0 = &system_data_buffer_ptr;
   if (puStack_a8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_a8 = (uint64_t *)0x0;
   uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
@@ -120,10 +120,10 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_50 = 0;
   puStack_60 = (uint64_t *)0x0;
   uStack_58 = 0;
-  puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0);
+  puVar3 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,param_4,0);
   *(int8_t *)puVar3 = 0;
   puStack_60 = (uint64_t *)puVar3;
-  uStack_98._0_4_ = FUN_18064e990(puVar3);
+  uStack_98._0_4_ = CoreEngineSystemCleanup(puVar3);
   *puVar3 = 0x70696c46;
   *(int8_t *)(puVar3 + 1) = 0;
   puStack_b0 = &system_data_buffer_ptr;
@@ -138,7 +138,7 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_b0 = &system_data_buffer_ptr;
   if (puStack_a8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_a8 = (uint64_t *)0x0;
   uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
@@ -150,10 +150,10 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_70 = 0;
   puStack_80 = (uint64_t *)0x0;
   uStack_78 = 0;
-  puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0);
+  puVar3 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,param_4,0);
   *(int8_t *)puVar3 = 0;
   puStack_80 = (uint64_t *)puVar3;
-  uStack_98._0_4_ = FUN_18064e990(puVar3);
+  uStack_98._0_4_ = CoreEngineSystemCleanup(puVar3);
   *puVar3 = 0x6b73614d;
   *(int8_t *)(puVar3 + 1) = 0;
   puStack_b0 = &system_data_buffer_ptr;
@@ -168,7 +168,7 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_b0 = &system_data_buffer_ptr;
   if (puStack_a8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_a8 = (uint64_t *)0x0;
   uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
@@ -180,10 +180,10 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_50 = 0;
   puStack_60 = (uint64_t *)0x0;
   uStack_58 = 0;
-  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0);
+  puVar2 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,param_4,0);
   *(int8_t *)puVar2 = 0;
   puStack_60 = puVar2;
-  uStack_98._0_4_ = FUN_18064e990(puVar2);
+  uStack_98._0_4_ = CoreEngineSystemCleanup(puVar2);
   *puVar2 = 0x72656972726142;
   puStack_b0 = &system_data_buffer_ptr;
   uStack_a0 = 7;
@@ -197,7 +197,7 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_b0 = &system_data_buffer_ptr;
   if (puStack_a8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_a8 = (uint64_t *)0x0;
   uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
@@ -209,10 +209,10 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_70 = 0;
   puStack_80 = (uint64_t *)0x0;
   uStack_78 = 0;
-  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0);
+  puVar2 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,param_4,0);
   *(int8_t *)puVar2 = 0;
   puStack_80 = puVar2;
-  uStack_98._0_4_ = FUN_18064e990(puVar2);
+  uStack_98._0_4_ = CoreEngineSystemCleanup(puVar2);
   *puVar2 = 0x74696d694c206941;
   *(int16_t *)(puVar2 + 1) = 0x7265;
   *(int8_t *)((int64_t)puVar2 + 10) = 0;
@@ -228,7 +228,7 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_b0 = &system_data_buffer_ptr;
   if (puStack_a8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_a8 = (uint64_t *)0x0;
   uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
@@ -240,10 +240,10 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_50 = 0;
   puStack_60 = (uint64_t *)0x0;
   uStack_58 = 0;
-  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0);
+  puVar2 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,param_4,0);
   *(int8_t *)puVar2 = 0;
   puStack_60 = puVar2;
-  uStack_98._0_4_ = FUN_18064e990(puVar2);
+  uStack_98._0_4_ = CoreEngineSystemCleanup(puVar2);
   *puVar2 = 0x6e4f20746e656741;
   *(int16_t *)(puVar2 + 1) = 0x796c;
   *(int8_t *)((int64_t)puVar2 + 10) = 0;
@@ -259,7 +259,7 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_b0 = &system_data_buffer_ptr;
   if (puStack_a8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   puStack_a8 = (uint64_t *)0x0;
   uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
@@ -271,10 +271,10 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStack_70 = 0;
   puStack_80 = (uint64_t *)0x0;
   uStack_78 = 0;
-  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0);
+  puVar2 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,param_4,0);
   *(int8_t *)puVar2 = 0;
   puStack_80 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
+  uVar1 = CoreEngineSystemCleanup(puVar2);
   *puVar2 = 0x20656c697373694d;
   *(int32_t *)(puVar2 + 1) = 0x796c6e4f;
   *(int8_t *)((int64_t)puVar2 + 0xc) = 0;
@@ -290,7 +290,7 @@ void FUN_18036c820(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_b0 = &system_data_buffer_ptr;
   if (puStack_a8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return;
 }
@@ -313,7 +313,7 @@ int64_t * FUN_18036d170(int64_t param_1,int64_t *param_2,int64_t param_3,uint64_
   uint64_t *puStackX_8;
   int64_t lStackX_10;
   
-  lVar4 = FUN_18062b420(system_memory_pool_ptr,0xc0,*(int8_t *)(param_1 + 0x28),param_4,
+  lVar4 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0xc0,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
   puVar1 = (uint64_t *)(lVar4 + 0x20);
   puStackX_8 = puVar1;
@@ -326,7 +326,7 @@ int64_t * FUN_18036d170(int64_t param_1,int64_t *param_2,int64_t param_3,uint64_
     if (lVar4 != 0) {
       puStackX_8 = puVar1;
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar4);
+      CoreEngineMemoryPoolCleaner(lVar4);
     }
     *param_2 = lVar5;
     *(int8_t *)(param_2 + 1) = 0;
@@ -365,7 +365,7 @@ uint64_t * FUN_18036d290(uint64_t *param_1,uint64_t param_2)
   param_1[0xe] = &system_data_buffer_ptr;
   if (param_1[0xf] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   param_1[0xf] = 0;
   *(int32_t *)(param_1 + 0x11) = 0;
@@ -396,7 +396,7 @@ void FUN_18036d330(uint64_t param_1,uint64_t param_2)
   int32_t uStack_40;
   uint64_t uStack_38;
   
-  puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x98,8,3,0xfffffffffffffffe);
+  puVar3 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x98,8,3,0xfffffffffffffffe);
   puVar4 = puVar3;
   FUN_1803456e0(puVar3,param_2,param_1);
   *puVar4 = &unknown_var_2088_ptr;
@@ -414,10 +414,10 @@ void FUN_18036d330(uint64_t param_1,uint64_t param_2)
   uStack_38 = 0;
   puStack_48 = (uint64_t *)0x0;
   uStack_40 = 0;
-  puVar4 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  puVar4 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar4 = 0;
   puStack_48 = puVar4;
-  uVar2 = FUN_18064e990(puVar4);
+  uVar2 = CoreEngineSystemCleanup(puVar4);
   uStack_38 = CONCAT44(uStack_38._4_4_,uVar2);
   *puVar4 = 0x7250207265746157;
   *(int32_t *)(puVar4 + 1) = 0x62616665;
@@ -426,7 +426,7 @@ void FUN_18036d330(uint64_t param_1,uint64_t param_2)
   FUN_1803460a0(puVar3,&puStack_50,plVar1,9);
   puStack_50 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar4);
+  CoreEngineMemoryPoolCleaner(puVar4);
 }
 
 
@@ -457,7 +457,7 @@ void FUN_18036d4a0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         puStack_40 = &system_data_buffer_ptr;
         if (lStack_38 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         lStack_38 = 0;
         uStack_28 = 0;
@@ -549,7 +549,7 @@ void FUN_18036d5a0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     }
     if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   return;
@@ -734,7 +734,7 @@ LAB_18036d8be:
         }
         if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
       }
       return;
@@ -812,7 +812,7 @@ void FUN_18036d920(uint64_t *param_1)
         uVar10 = 4;
       }
       if (uVar10 != 0) {
-        lVar4 = FUN_18062b420(system_memory_pool_ptr,uVar10 * 8,*(int8_t *)(puVar7 + 0x1c));
+        lVar4 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,uVar10 * 8,*(int8_t *)(puVar7 + 0x1c));
         lVar5 = puVar7[0x1a];
       }
       lVar2 = *plVar1;
@@ -826,7 +826,7 @@ void FUN_18036d920(uint64_t *param_1)
       }
       if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *plVar1 = lVar4;
       puVar7[0x1a] = lVar4;
@@ -858,10 +858,10 @@ LAB_18036dafe:
   uStack_220 = 0;
   puStack_230 = (int32_t *)0x0;
   uStack_228 = 0;
-  puVar6 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  puVar6 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar6 = 0;
   puStack_230 = puVar6;
-  uVar3 = FUN_18064e990(puVar6);
+  uVar3 = CoreEngineSystemCleanup(puVar6);
   uStack_220 = CONCAT44(uStack_220._4_4_,uVar3);
   *puVar6 = 0x64656553;
   *(int8_t *)(puVar6 + 1) = 0;
@@ -869,7 +869,7 @@ LAB_18036dafe:
   FUN_1803460a0(param_1,&puStack_238,param_1 + 0x18,2);
   puStack_238 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar6);
+  CoreEngineMemoryPoolCleaner(puVar6);
 }
 
 
@@ -880,22 +880,22 @@ int64_t FUN_18036e600(int64_t param_1,uint64_t param_2)
   *(uint64_t *)(param_1 + 0xe8) = &system_data_buffer_ptr;
   if (*(int64_t *)(param_1 + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(uint64_t *)(param_1 + 0xf0) = 0;
   *(int32_t *)(param_1 + 0x100) = 0;
   *(uint64_t *)(param_1 + 0xe8) = &system_state_ptr;
   if (*(int64_t *)(param_1 + 200) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   if (*(int64_t *)(param_1 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   if (*(int64_t *)(param_1 + 0x80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   FUN_1803457d0(param_1);
   if ((param_2 & 1) != 0) {
@@ -933,7 +933,7 @@ void FUN_18036e6e0(uint64_t param_1,uint64_t param_2)
   uint64_t *puStack_50;
   uint64_t uStack_48;
   
-  puVar7 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x130,8,3);
+  puVar7 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x130,8,3);
   uStack_48 = 0xfffffffffffffffe;
   puVar8 = puVar7;
   FUN_1803456e0(puVar7,param_2,param_1);
@@ -975,7 +975,7 @@ void FUN_18036e6e0(uint64_t param_1,uint64_t param_2)
         uVar11 = 4;
       }
       if (uVar11 != 0) {
-        lVar4 = FUN_18062b420(system_memory_pool_ptr,uVar11 * 8,*(int8_t *)(puVar8 + 0x1c));
+        lVar4 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,uVar11 * 8,*(int8_t *)(puVar8 + 0x1c));
         lVar5 = puVar8[0x1a];
       }
       lVar2 = *plVar1;
@@ -989,7 +989,7 @@ void FUN_18036e6e0(uint64_t param_1,uint64_t param_2)
       }
       if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *plVar1 = lVar4;
       puVar8[0x1a] = lVar4;
@@ -1021,10 +1021,10 @@ LAB_18036dafe:
   uStack_220 = 0;
   puStack_230 = (int32_t *)0x0;
   uStack_228 = 0;
-  puVar6 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  puVar6 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar6 = 0;
   puStack_230 = puVar6;
-  uVar3 = FUN_18064e990(puVar6);
+  uVar3 = CoreEngineSystemCleanup(puVar6);
   uStack_220 = CONCAT44(uStack_220._4_4_,uVar3);
   *puVar6 = 0x64656553;
   *(int8_t *)(puVar6 + 1) = 0;
@@ -1032,7 +1032,7 @@ LAB_18036dafe:
   FUN_1803460a0(puVar7,&puStack_238,puVar7 + 0x18,2);
   puStack_238 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar6);
+  CoreEngineMemoryPoolCleaner(puVar6);
 }
 
 

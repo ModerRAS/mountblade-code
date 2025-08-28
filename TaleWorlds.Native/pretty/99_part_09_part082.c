@@ -101,7 +101,7 @@ void FUN_1805f35f3(int64_t param_1)
         if (lVar12 == 0) {
           lVar12 = 1;
 LAB_1805f3837:
-          piVar10 = (int *)FUN_18062b420(system_memory_pool_ptr,lVar12 * 0x1c,
+          piVar10 = (int *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar12 * 0x1c,
                                          *(int8_t *)(puVar20 + lVar18 * 4 + 0x1c));
           puVar19 = (uint64_t *)puVar20[lVar18 * 4 + 0x19];
           puVar16 = (uint64_t *)puVar20[lVar18 * 4 + 0x1a];
@@ -126,7 +126,7 @@ LAB_1805f3837:
         piVar10[6] = piVar15[6];
         if (puVar20[lVar18 * 4 + 0x19] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         puVar20[lVar18 * 4 + 0x19] = piVar10;
         puVar20[lVar18 * 4 + 0x1b] = piVar10 + lVar12 * 7;
@@ -143,7 +143,7 @@ LAB_1805f3837:
         if (lVar18 == *(int64_t *)(unaff_RBX + 0x28)) {
           if (*(int64_t *)(unaff_RBX + 0x20) != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
           }
           plVar11 = (int64_t *)(*(int64_t *)(unaff_RBX + 0x30) + 8);
           *(int64_t **)(unaff_RBX + 0x30) = plVar11;
@@ -290,7 +290,7 @@ void FUN_1805f36f9(void)
       if (lVar10 == 0) {
         lVar10 = 1;
 LAB_1805f3837:
-        piVar8 = (int *)FUN_18062b420(system_memory_pool_ptr,lVar10 * 0x1c,
+        piVar8 = (int *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar10 * 0x1c,
                                       *(int8_t *)(puVar17 + lVar11 * 4 + 0x1c));
         puVar16 = (uint64_t *)puVar17[lVar11 * 4 + 0x19];
         puVar14 = (uint64_t *)puVar17[lVar11 * 4 + 0x1a];
@@ -315,7 +315,7 @@ LAB_1805f3837:
       piVar8[6] = piVar13[6];
       if (puVar17[lVar11 * 4 + 0x19] != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       puVar17[lVar11 * 4 + 0x19] = piVar8;
       puVar17[lVar11 * 4 + 0x1b] = piVar8 + lVar10 * 7;
@@ -332,7 +332,7 @@ LAB_1805f3837:
       if (lVar11 == *(int64_t *)(unaff_RBX + 0x28)) {
         if (*(int64_t *)(unaff_RBX + 0x20) != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         plVar9 = (int64_t *)(*(int64_t *)(unaff_RBX + 0x30) + 8);
         *(int64_t **)(unaff_RBX + 0x30) = plVar9;
