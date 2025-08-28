@@ -107,82 +107,123 @@ ulonglong setup_render_parameters(float *position_params, int render_flags, floa
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1801242c0(uint param_1)
-
+// 函数: ulonglong validate_render_flags(uint render_flags)
+// 验证渲染标志，检查渲染状态和上下文信息以确定是否可以执行渲染操作
+ulonglong validate_render_flags(uint render_flags)
 {
-  uint uVar1;
-  ulonglong in_RAX;
-  longlong lVar2;
-  ulonglong uVar3;
-  bool bVar4;
+  uint current_flags;
+  ulonglong result;
+  longlong render_context;
+  bool context_match;
   
-  uVar3 = (ulonglong)param_1;
-  lVar2 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-  if ((*(char *)(_DAT_180c8a9b0 + 0x1d07) == '\0') || (*(char *)(_DAT_180c8a9b0 + 0x1d06) != '\0'))
-  {
-    if (((*(byte *)(lVar2 + 0x148) & 1) == 0) ||
-       ((in_RAX = *(ulonglong *)(lVar2 + 0x3a0), *(ulonglong *)(_DAT_180c8a9b0 + 0x1b08) != in_RAX
-        && ((param_1 & 0x40) == 0)))) goto LAB_180124390;
-    if ((param_1 & 0x20) == 0) {
-      uVar1 = *(uint *)(_DAT_180c8a9b0 + 0x1b2c);
-      in_RAX = (ulonglong)uVar1;
-      if ((((uVar1 != 0) && (uVar1 != *(uint *)(lVar2 + 0x144))) &&
-          (*(char *)(_DAT_180c8a9b0 + 0x1b3d) == '\0')) && (uVar1 != *(uint *)(lVar2 + 0x84)))
-      goto LAB_180124390;
+  result = (ulonglong)render_flags;
+  render_context = *(longlong *)(global_render_context + 0x1af8);
+  
+  // 检查渲染状态是否允许执行渲染操作
+  if ((*(char *)(global_render_context + 0x1d07) == '\0') || 
+      (*(char *)(global_render_context + 0x1d06) != '\0')) {
+    
+    // 检查渲染上下文状态
+    if (((*(byte *)(render_context + 0x148) & 1) == 0) ||
+        ((result = *(ulonglong *)(render_context + 0x3a0), 
+          *(ulonglong *)(global_render_context + 0x1b08) != result && 
+          ((render_flags & 0x40) == 0)))) {
+      goto validation_failed;
     }
-    in_RAX = func_0x000180124000(lVar2,uVar3);
-    if (((char)in_RAX == '\0') || (((*(byte *)(lVar2 + 0x1a8) & 4) != 0 && (-1 < (char)uVar3))))
-    goto LAB_180124390;
-    uVar1 = *(uint *)(lVar2 + 0x144);
-    in_RAX = (ulonglong)uVar1;
-    if (uVar1 != *(uint *)(lVar2 + 8)) {
-      bVar4 = uVar1 == *(uint *)(lVar2 + 0x84);
-      goto LAB_18012437e;
+    
+    // 检查渲染标志匹配
+    if ((render_flags & 0x20) == 0) {
+      current_flags = *(uint *)(global_render_context + 0x1b2c);
+      result = (ulonglong)current_flags;
+      if ((((current_flags != 0) && (current_flags != *(uint *)(render_context + 0x144))) &&
+          (*(char *)(global_render_context + 0x1b3d) == '\0')) && 
+          (current_flags != *(uint *)(render_context + 0x84))) {
+        goto validation_failed;
+      }
+    }
+    
+    // 执行渲染验证函数
+    result = func_0x000180124000(render_context, (ulonglong)render_flags);
+    if (((char)result == '\0') || 
+        (((*(byte *)(render_context + 0x1a8) & 4) != 0 && (-1 < (char)render_flags)))) {
+      goto validation_failed;
+    }
+    
+    // 检查上下文标志匹配
+    current_flags = *(uint *)(render_context + 0x144);
+    result = (ulonglong)current_flags;
+    if (current_flags != *(uint *)(render_context + 8)) {
+      context_match = current_flags == *(uint *)(render_context + 0x84);
+      goto check_context;
     }
   }
   else {
-    if (*(uint *)(_DAT_180c8a9b0 + 0x1ca0) == 0) goto LAB_180124390;
-    uVar1 = *(uint *)(lVar2 + 0x144);
-    in_RAX = (ulonglong)uVar1;
-    if (*(uint *)(_DAT_180c8a9b0 + 0x1ca0) != uVar1) goto LAB_180124390;
-    bVar4 = uVar1 == *(uint *)(lVar2 + 8);
-LAB_18012437e:
-    if (!bVar4) goto LAB_180124389;
+    // 检查全局渲染上下文
+    if (*(uint *)(global_render_context + 0x1ca0) == 0) {
+      goto validation_failed;
+    }
+    current_flags = *(uint *)(render_context + 0x144);
+    result = (ulonglong)current_flags;
+    if (*(uint *)(global_render_context + 0x1ca0) != current_flags) {
+      goto validation_failed;
+    }
+    context_match = current_flags == *(uint *)(render_context + 8);
+  check_context:
+    if (!context_match) {
+      goto validation_failed;
+    }
   }
-  if (*(char *)(lVar2 + 0xb1) != '\0') {
-LAB_180124390:
-    return in_RAX & 0xffffffffffffff00;
+  
+  // 检查渲染上下文状态
+  if (*(char *)(render_context + 0xb1) != '\0') {
+validation_failed:
+    return result & 0xffffffffffffff00;
   }
-LAB_180124389:
-  return CONCAT71((int7)(in_RAX >> 8),1);
+  
+  return CONCAT71((int7)(result >> 8), 1);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1801243a0(longlong param_1,int param_2)
-
+// 函数: int setup_render_context(longlong context_data, int context_id)
+// 设置渲染上下文，验证上下文数据并配置渲染参数
+int setup_render_context(longlong context_data, int context_id)
 {
-  longlong lVar1;
-  char cVar2;
-  longlong lVar3;
+  longlong render_context;
+  char setup_result;
+  longlong global_context;
   
-  if ((((*(int *)(_DAT_180c8a9b0 + 0x1b18) == 0) || (*(int *)(_DAT_180c8a9b0 + 0x1b18) == param_2))
-      || (*(char *)(_DAT_180c8a9b0 + 0x1b1c) != '\0')) &&
-     (lVar1 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8),
-     *(longlong *)(_DAT_180c8a9b0 + 0x1b00) == lVar1)) {
-    if (((*(int *)(_DAT_180c8a9b0 + 0x1b2c) == 0) || (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == param_2))
-       || (*(char *)(_DAT_180c8a9b0 + 0x1b3d) != '\0')) {
-      lVar3 = _DAT_180c8a9b0;
-      cVar2 = FUN_180128040(param_1,param_1 + 8,1);
-      if ((cVar2 != '\0') && (*(char *)(lVar3 + 0x1d07) == '\0')) {
-        cVar2 = func_0x000180124000(lVar1,0);
-        if ((cVar2 != '\0') && ((*(byte *)(lVar1 + 0x1a8) & 4) == 0)) {
-          *(int *)(lVar3 + 0x1b18) = param_2;
-          *(undefined1 *)(lVar3 + 0x1b1c) = 0;
-          if ((param_2 != 0) && (*(int *)(lVar3 + 0x1b20) != param_2)) {
-            *(undefined8 *)(lVar3 + 0x1b24) = 0;
+  // 检查上下文ID匹配和渲染状态
+  if ((((*(int *)(global_render_context + 0x1b18) == 0) || 
+       (*(int *)(global_render_context + 0x1b18) == context_id)) ||
+      (*(char *)(global_render_context + 0x1b1c) != '\0')) &&
+     (render_context = *(longlong *)(global_render_context + 0x1af8),
+     *(longlong *)(global_render_context + 0x1b00) == render_context)) {
+    
+    // 检查渲染标志匹配
+    if (((*(int *)(global_render_context + 0x1b2c) == 0) || 
+         (*(int *)(global_render_context + 0x1b2c) == context_id)) ||
+        (*(char *)(global_render_context + 0x1b3d) != '\0')) {
+      
+      global_context = global_render_context;
+      setup_result = FUN_180128040(context_data, context_data + 8, 1);
+      if ((setup_result != '\0') && 
+          (*(char *)(global_context + 0x1d07) == '\0')) {
+        
+        setup_result = func_0x000180124000(render_context, 0);
+        if ((setup_result != '\0') && 
+            ((*(byte *)(render_context + 0x1a8) & 4) == 0)) {
+          
+          // 设置上下文参数
+          *(int *)(global_context + 0x1b18) = context_id;
+          *(undefined1 *)(global_context + 0x1b1c) = 0;
+          
+          // 更新上下文相关数据
+          if ((context_id != 0) && 
+              (*(int *)(global_context + 0x1b20) != context_id)) {
+            *(undefined8 *)(global_context + 0x1b24) = 0;
           }
           return 1;
         }
@@ -196,42 +237,53 @@ undefined8 FUN_1801243a0(longlong param_1,int param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180124460(longlong param_1,int param_2,char param_3)
-
+// 函数: int update_render_counter(longlong render_context, int counter_id, char update_flag)
+// 更新渲染计数器，管理渲染状态和计数器信息
+int update_render_counter(longlong render_context, int counter_id, char update_flag)
 {
-  char cVar1;
-  int iVar2;
-  int iVar3;
-  longlong lVar4;
-  uint uVar5;
+  char validation_result;
+  int counter_value;
+  int max_counter;
+  longlong global_context;
+  uint render_flags;
   
-  lVar4 = _DAT_180c8a9b0;
-  iVar3 = *(int *)(param_1 + 0x3f0) + 1;
-  *(int *)(param_1 + 0x3f0) = iVar3;
-  uVar5 = *(uint *)(param_1 + 0x1a8) & 5;
-  if (uVar5 == 0) {
-    *(int *)(param_1 + 0x3f4) = *(int *)(param_1 + 0x3f4) + 1;
+  global_context = global_render_context;
+  counter_value = *(int *)(render_context + 0x3f0) + 1;
+  *(int *)(render_context + 0x3f0) = counter_value;
+  render_flags = *(uint *)(render_context + 0x1a8) & 5;
+  
+  // 根据渲染标志更新计数器
+  if (render_flags == 0) {
+    *(int *)(render_context + 0x3f4) = *(int *)(render_context + 0x3f4) + 1;
   }
-  if (((((param_3 != '\0') && (*(int *)(lVar4 + 0x1b2c) == param_2)) &&
-       (*(int *)(param_1 + 0x400) == 0x7fffffff)) &&
-      ((*(int *)(param_1 + 0x404) == 0x7fffffff && (*(char *)(lVar4 + 0x134) == '\0')))) &&
-     (-1 < *(int *)(lVar4 + 0x3c))) {
-    cVar1 = func_0x0001801281d0(*(int *)(lVar4 + 0x3c),1);
-    if (cVar1 != '\0') {
-      if (*(char *)(lVar4 + 0x135) == '\0') {
-        iVar2 = 1;
+  
+  // 检查是否需要更新特殊渲染参数
+  if (((((update_flag != '\0') && 
+       (*(int *)(global_context + 0x1b2c) == counter_id)) &&
+      (*(int *)(render_context + 0x400) == 0x7fffffff)) &&
+     ((*(int *)(render_context + 0x404) == 0x7fffffff && 
+       (*(char *)(global_context + 0x134) == '\0')))) &&
+    (-1 < *(int *)(global_context + 0x3c))) {
+    
+    validation_result = func_0x0001801281d0(*(int *)(global_context + 0x3c), 1);
+    if (validation_result != '\0') {
+      if (*(char *)(global_context + 0x135) == '\0') {
+        max_counter = 1;
       }
       else {
-        iVar2 = (uVar5 != 0) - 1;
+        max_counter = (render_flags != 0) - 1;
       }
-      *(int *)(param_1 + 0x404) = iVar2 + *(int *)(param_1 + 0x3f4);
+      *(int *)(render_context + 0x404) = max_counter + *(int *)(render_context + 0x3f4);
     }
   }
-  if (iVar3 != *(int *)(param_1 + 0x3f8)) {
-    if ((uVar5 != 0) || (*(int *)(param_1 + 0x3f4) != *(int *)(param_1 + 0x3fc))) {
+  
+  // 检查计数器状态
+  if (counter_value != *(int *)(render_context + 0x3f8)) {
+    if ((render_flags != 0) || 
+        (*(int *)(render_context + 0x3f4) != *(int *)(render_context + 0x3fc))) {
       return 0;
     }
-    *(int *)(lVar4 + 0x1cb4) = param_2;
+    *(int *)(global_context + 0x1cb4) = counter_id;
   }
   return 1;
 }
@@ -240,71 +292,82 @@ undefined8 FUN_180124460(longlong param_1,int param_2,char param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_180124550(undefined8 *param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4)
-
+// 函数: undefined8 *calculate_render_offset(undefined8 *position_ptr, undefined8 size_data, undefined4 x_param, undefined4 y_param)
+// 计算渲染偏移量，根据位置和尺寸参数调整渲染坐标
+undefined8 *calculate_render_offset(undefined8 *position_ptr, undefined8 size_data, undefined4 x_param, undefined4 y_param)
 {
-  int iVar1;
-  longlong lVar2;
-  longlong lVar3;
-  float fVar4;
-  undefined8 uVar5;
-  int iVar6;
-  float fVar7;
-  float fVar8;
+  int index;
+  longlong render_context;
+  longlong layout_data;
+  float y_offset;
+  undefined8 result;
+  int layout_index;
+  float x_offset;
+  float height;
   undefined8 uStackX_8;
   
-  fVar8 = 0.0;
-  uStackX_8._4_4_ = (float)((ulonglong)param_2 >> 0x20);
-  fVar4 = uStackX_8._4_4_;
-  fVar7 = 0.0;
-  uStackX_8._0_4_ = (float)param_2;
+  height = 0.0;
+  uStackX_8._4_4_ = (float)((ulonglong)size_data >> 0x20);
+  y_offset = uStackX_8._4_4_;
+  x_offset = 0.0;
+  uStackX_8._0_4_ = (float)size_data;
+  
+  // 检查是否需要调整负坐标
   if (((float)uStackX_8 < 0.0) || (uStackX_8._4_4_ < 0.0)) {
-    lVar2 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-    lVar3 = *(longlong *)(lVar2 + 0x210);
-    fVar7 = *(float *)(lVar2 + 0x278) - *(float *)(lVar2 + 0x40);
-    if (lVar3 != 0) {
-      iVar1 = *(int *)(lVar3 + 0xc) + 1;
-      iVar6 = *(int *)(lVar3 + 0xc);
-      if (-1 < iVar1) {
-        iVar6 = iVar1;
+    render_context = *(longlong *)(global_render_context + 0x1af8);
+    layout_data = *(longlong *)(render_context + 0x210);
+    x_offset = *(float *)(render_context + 0x278) - *(float *)(render_context + 0x40);
+    
+    // 计算布局偏移
+    if (layout_data != 0) {
+      index = *(int *)(layout_data + 0xc) + 1;
+      layout_index = *(int *)(layout_data + 0xc);
+      if (-1 < index) {
+        layout_index = index;
       }
-      fVar7 = ((*(float *)(lVar3 + 0x18) - *(float *)(lVar3 + 0x14)) *
-               *(float *)((longlong)iVar6 * 0x1c + *(longlong *)(lVar3 + 0x38)) +
-              *(float *)(lVar3 + 0x14)) - *(float *)(lVar2 + 0x70);
+      x_offset = ((*(float *)(layout_data + 0x18) - *(float *)(layout_data + 0x14)) *
+               *(float *)((longlong)layout_index * 0x1c + *(longlong *)(layout_data + 0x38)) +
+              *(float *)(layout_data + 0x14)) - *(float *)(render_context + 0x70);
     }
-    fVar7 = fVar7 + *(float *)(lVar2 + 0x40);
-    fVar8 = (*(float *)(lVar2 + 0x27c) - *(float *)(lVar2 + 0x44)) + *(float *)(lVar2 + 0x44);
+    x_offset = x_offset + *(float *)(render_context + 0x40);
+    height = (*(float *)(render_context + 0x27c) - *(float *)(render_context + 0x44)) + *(float *)(render_context + 0x44);
   }
-  uVar5 = param_2;
+  
+  result = size_data;
+  
+  // 调整X坐标
   if ((float)uStackX_8 <= 0.0) {
     if ((float)uStackX_8 == 0.0) {
-      uStackX_8 = CONCAT44(uStackX_8._4_4_,param_3);
-      uVar5 = uStackX_8;
+      uStackX_8 = CONCAT44(uStackX_8._4_4_, x_param);
+      result = uStackX_8;
     }
     else {
-      fVar7 = fVar7 - *(float *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x100);
-      if (fVar7 <= 4.0) {
-        fVar7 = 4.0;
+      x_offset = x_offset - *(float *)(*(longlong *)(global_render_context + 0x1af8) + 0x100);
+      if (x_offset <= 4.0) {
+        x_offset = 4.0;
       }
-      uStackX_8 = CONCAT44(uStackX_8._4_4_,(float)uStackX_8 + fVar7);
-      uVar5 = uStackX_8;
+      uStackX_8 = CONCAT44(uStackX_8._4_4_, (float)uStackX_8 + x_offset);
+      result = uStackX_8;
     }
   }
-  uStackX_8 = uVar5;
-  if (fVar4 <= 0.0) {
-    if (fVar4 != 0.0) {
-      fVar8 = fVar8 - *(float *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x104);
-      if (fVar8 <= 4.0) {
-        fVar8 = 4.0;
+  
+  uStackX_8 = result;
+  
+  // 调整Y坐标
+  if (y_offset <= 0.0) {
+    if (y_offset != 0.0) {
+      height = height - *(float *)(*(longlong *)(global_render_context + 0x1af8) + 0x104);
+      if (height <= 4.0) {
+        height = 4.0;
       }
-      *param_1 = CONCAT44(fVar4 + fVar8,(int)uStackX_8);
-      return param_1;
+      *position_ptr = CONCAT44(y_offset + height, (int)uStackX_8);
+      return position_ptr;
     }
-    uStackX_8 = CONCAT44(param_4,(int)uStackX_8);
+    uStackX_8 = CONCAT44(y_param, (int)uStackX_8);
   }
-  *param_1 = uStackX_8;
-  return param_1;
+  
+  *position_ptr = uStackX_8;
+  return position_ptr;
 }
 
 
