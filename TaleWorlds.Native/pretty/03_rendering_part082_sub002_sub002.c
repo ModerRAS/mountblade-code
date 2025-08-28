@@ -82,6 +82,20 @@
 #define RenderingSystemTransformHandler FUN_180437ca0    // 渲染系统变换处理器
 #define RenderingSystemViewportManager FUN_180437d40     // 渲染系统视口管理器
 #define RenderingSystemUIRenderer FUN_18043b930          // 渲染系统UI渲染器
+#define RenderingSystemFontRenderer FUN_18043b290         // 渲染系统字体渲染器
+#define RenderingSystemTextProcessor FUN_180438560        // 渲染系统文本处理器
+#define RenderingSystemInputHandler FUN_180438210         // 渲染系统输入处理器
+#define RenderingSystemEventDispatcher FUN_18043bbe0      // 渲染系统事件分发器
+#define RenderingSystemUIManager FUN_180438940            // 渲染系统UI管理器
+#define RenderingSystemAudioProcessor FUN_1804386b0       // 渲染系统音频处理器
+#define RenderingSystemVideoPlayer FUN_180438350          // 渲染系统视频播放器
+#define RenderingSystemParticleEngine FUN_18043ab40       // 渲染系统粒子引擎
+#define RenderingSystemPhysicsSimulator FUN_18043a140    // 渲染系统物理模拟器
+#define RenderingSystemCollisionDetector FUN_1804382b0    // 渲染系统碰撞检测器
+#define RenderingSystemNetworkManager FUN_180438c50       // 渲染系统网络管理器
+#define RenderingSystemResourceManager2 FUN_1804389f0     // 渲染系统资源管理器2
+#define RenderingSystemShaderCompiler FUN_180438680       // 渲染系统着色器编译器
+#define RenderingSystemTextureCompressor FUN_180438c70    // 渲染系统纹理压缩器
 
 // 函数: void FUN_180310b50(int64_t param_1)
 void FUN_180310b50(int64_t param_1)
