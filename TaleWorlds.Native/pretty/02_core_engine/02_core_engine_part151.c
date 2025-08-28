@@ -2,34 +2,37 @@
 
 // 02_core_engine_part151.c - 8 个函数
 
-// 函数: void FUN_18013a860(longlong param_1,int param_2,int param_3,undefined8 param_4)
-void FUN_18013a860(longlong param_1,int param_2,int param_3,undefined8 param_4)
+// 函数: void traverse_resource_nodes(longlong resource_node,int filter_id,int traversal_mode,undefined8 callback_data)
+// 功能: 遍历资源节点树，根据过滤条件和遍历模式执行回调
+// 原始实现: FUN_18013a860
+// 简化实现: 保留原始的递归遍历和过滤逻辑
+void traverse_resource_nodes(longlong resource_node,int filter_id,int traversal_mode,undefined8 callback_data)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lStackX_8;
+  longlong next_node;
+  longlong sibling_node;
+  longlong current_node;
   
-  lVar1 = *(longlong *)(param_1 + 0x10);
+  next_node = *(longlong *)(resource_node + 0x10);
   while( true ) {
-    lStackX_8 = param_1;
-    if (lVar1 == 0) {
-      FUN_18013d860(param_4,&lStackX_8);
+    current_node = resource_node;
+    if (next_node == 0) {
+      FUN_18013d860(callback_data,&current_node);
       return;
     }
-    if (((*(byte *)(lVar1 + 0xa0) & 4) != 0) &&
-       (((*(int *)(param_1 + 0x50) != param_2 || (param_3 == 0)) ||
-        ((*(byte *)(*(longlong *)(param_1 + 0x18) + 0xa0) & 4) == 0)))) {
-      FUN_18013a860(lVar1,param_2,param_3,param_4);
+    if (((*(byte *)(next_node + 0xa0) & 4) != 0) &&
+       (((*(int *)(resource_node + 0x50) != filter_id || (traversal_mode == 0)) ||
+        ((*(byte *)(*(longlong *)(resource_node + 0x18) + 0xa0) & 4) == 0)))) {
+      traverse_resource_nodes(next_node,filter_id,traversal_mode,callback_data);
     }
-    lVar2 = *(longlong *)(param_1 + 0x18);
-    if ((*(byte *)(lVar2 + 0xa0) & 4) == 0) break;
-    if (((*(int *)(param_1 + 0x50) == param_2) && (param_3 != 1)) &&
-       ((*(byte *)(*(longlong *)(param_1 + 0x10) + 0xa0) & 4) != 0)) {
+    sibling_node = *(longlong *)(resource_node + 0x18);
+    if ((*(byte *)(sibling_node + 0xa0) & 4) == 0) break;
+    if (((*(int *)(resource_node + 0x50) == filter_id) && (traversal_mode != 1)) &&
+       ((*(byte *)(*(longlong *)(resource_node + 0x10) + 0xa0) & 4) != 0)) {
       return;
     }
-    lVar1 = *(longlong *)(lVar2 + 0x10);
-    param_1 = lVar2;
+    next_node = *(longlong *)(sibling_node + 0x10);
+    resource_node = sibling_node;
   }
   return;
 }
