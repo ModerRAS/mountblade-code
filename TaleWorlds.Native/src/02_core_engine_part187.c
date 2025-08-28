@@ -134,37 +134,32 @@ undefined8 setup_engine_environment(undefined8 env_ptr,undefined8 param2,undefin
 
 
 
+/**
+ * 创建引擎实例并初始化基本配置
+ * @param param_1 配置指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 配置指针
+ */
 undefined8 *
-FUN_18016de20(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+create_engine_instance_with_config(undefined8 *param_1,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
-  undefined4 *puVar1;
-  longlong *plVar2;
-  undefined *puVar3;
-  undefined4 uVar4;
-  undefined8 uVar5;
+  undefined4 *instance_data;
   
-  uVar5 = 0xfffffffffffffffe;
-  uVar4 = 0;
-  plVar2 = (longlong *)FUN_18064e2a0();
-  puVar3 = (undefined *)(*plVar2 + 0x3d8);
-  if (puVar3 != &DAT_180c8ed80) {
-    FUN_1806470a0();
-                    // WARNING: Subroutine does not return
-    memset(puVar3,0,0x240,param_4,uVar4,uVar5);
-  }
-  FUN_1806478d0();
-  *param_1 = &UNK_18098bcb0;
+  *(undefined4 *)(engine_global_config + 0x2f8) = *(undefined4 *)(engine_context + 0x224);
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x656e6f44;
-  *(undefined1 *)(puVar1 + 1) = 0;
+  create_engine_instance(param_1,4,param3,param4,0,0xfffffffffffffffe);
+  instance_data = (undefined4 *)param_1[1];
+  *instance_data = 0x656e6f44;
+  *(undefined1 *)(instance_data + 1) = 0;
   *(undefined4 *)(param_1 + 2) = 4;
   return param_1;
 }
@@ -175,119 +170,131 @@ FUN_18016de20(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 
 
-// 函数: void FUN_18016df40(undefined8 *param_1)
-void FUN_18016df40(undefined8 *param_1)
+/**
+ * 初始化引擎系统组件并设置默认值
+ * @param param_1 系统指针
+ * @return 初始化状态
+ */
+void initialize_engine_system_components(undefined8 *param_1)
 
 {
-  longlong *plVar1;
-  undefined4 *puVar2;
-  longlong lVar3;
-  longlong lVar4;
-  uint uVar5;
-  ulonglong uVar7;
-  ulonglong uVar8;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  undefined8 uStack_b0;
-  undefined8 *puStack_a8;
-  ulonglong uStack_48;
-  ulonglong uVar6;
+  longlong *system_ptr;
+  undefined4 *status_ptr;
+  longlong config_offset;
+  longlong max_entries;
+  uint entry_count;
+  ulonglong valid_entries;
+  ulonglong current_index;
+  undefined1 temp_buffer_1 [32];
+  undefined4 init_status;
+  undefined8 stack_guard;
+  undefined8 *system_config;
+  ulonglong stack_guard_2;
   
-  lVar3 = _DAT_180c86950;
-  uStack_b0 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uVar6 = 0;
-  uStack_b8 = 0;
-  lVar4 = *(longlong *)(_DAT_180c86950 + 0x1868);
-  uVar7 = uVar6;
-  uVar8 = uVar6;
-  puStack_a8 = param_1;
-  if (*(longlong *)(_DAT_180c86950 + 0x1870) - lVar4 >> 3 != 0) {
+  config_offset = engine_system_config;
+  stack_guard = 0xfffffffffffffffe;
+  stack_guard_2 = engine_stack_guard ^ (ulonglong)temp_buffer_1;
+  valid_entries = 0;
+  init_status = 0;
+  max_entries = *(longlong *)(engine_system_config + 0x1868);
+  current_index = valid_entries;
+  system_config = param_1;
+  if (*(longlong *)(engine_system_config + 0x1870) - max_entries >> 3 != 0) {
     do {
-      plVar1 = *(longlong **)(uVar8 + lVar4);
-      if ((((*(char *)((longlong)plVar1 + 0xde) == '\0') &&
-           (*(char *)((longlong)plVar1 + 0xdd) != '\0')) &&
-          (*(float *)((longlong)plVar1 + 0x24) == 1920.0)) &&
-         (lVar4 = (**(code **)(*plVar1 + 0xb8))(plVar1), lVar4 != 0)) {
-        uVar7 = (ulonglong)((int)uVar7 + 1);
+      system_ptr = *(longlong **)(current_index + max_entries);
+      if ((((*(char *)((longlong)system_ptr + 0xde) == '\0') &&
+           (*(char *)((longlong)system_ptr + 0xdd) != '\0')) &&
+          (*(float *)((longlong)system_ptr + 0x24) == 1920.0)) &&
+         (max_entries = (**(code **)(*system_ptr + 0xb8))(system_ptr), max_entries != 0)) {
+        valid_entries = (ulonglong)((int)valid_entries + 1);
       }
-      uVar5 = (int)uVar6 + 1;
-      uVar6 = (ulonglong)uVar5;
-      lVar4 = *(longlong *)(lVar3 + 0x1868);
-      uVar8 = uVar8 + 8;
-    } while ((ulonglong)(longlong)(int)uVar5 <
-             (ulonglong)(*(longlong *)(lVar3 + 0x1870) - lVar4 >> 3));
-    if (1 < (int)uVar7) {
+      entry_count = (int)valid_entries + 1;
+      valid_entries = (ulonglong)entry_count;
+      max_entries = *(longlong *)(config_offset + 0x1868);
+      current_index = current_index + 8;
+    } while ((ulonglong)(longlong)(int)entry_count <
+             (ulonglong)(*(longlong *)(config_offset + 0x1870) - max_entries >> 3));
+    if (1 < (int)valid_entries) {
                     // WARNING: Subroutine does not return
-      FUN_180062300(_DAT_180c86928,&UNK_180a013c0);
+      report_engine_error(engine_error_handler,&engine_error_message);
     }
   }
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4);
-  puVar2 = (undefined4 *)param_1[1];
-  *puVar2 = 0x656e6f44;
-  *(undefined1 *)(puVar2 + 1) = 0;
+  create_engine_instance(param_1,4);
+  status_ptr = (undefined4 *)param_1[1];
+  *status_ptr = 0x656e6f44;
+  *(undefined1 *)(status_ptr + 1) = 0;
   *(undefined4 *)(param_1 + 2) = 4;
-  uStack_b8 = 1;
+  init_status = 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_d8);
+  finalize_engine_initialization(stack_guard_2 ^ (ulonglong)temp_buffer_1);
 }
 
 
 
-undefined8 FUN_18016e120(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 执行引擎组件初始化序列
+ * @param engine_handle 引擎句柄
+ * @param param2 参数2
+ * @param init_params 初始化参数
+ * @return 引擎句柄
+ */
+undefined8 execute_engine_component_initialization(undefined8 engine_handle,undefined8 param2,undefined8 init_params)
 
 {
-  FUN_180168430(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  initialize_engine_components(engine_handle,engine_handle,init_params,init_params,0,0xfffffffffffffffe);
+  return engine_handle;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 * FUN_18016e1a0(undefined8 *param_1)
+/**
+ * 初始化引擎配置并创建实例
+ * @param param_1 配置指针
+ * @return 配置指针
+ */
+undefined8 * initialize_engine_configuration(undefined8 *param_1)
 
 {
-  longlong lVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  int iVar4;
+  longlong config_base;
+  undefined8 *instance_ptr;
+  longlong mutex_addr;
+  int lock_status;
   
-  FUN_180176060(_DAT_180c8a9d0);
-  lVar3 = _DAT_180c8a9d0;
-  lVar1 = _DAT_180c8a9d0 + 0x100;
-  iVar4 = _Mtx_lock(lVar1);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  initialize_engine_manager(engine_manager_config);
+  mutex_addr = engine_manager_config;
+  config_base = engine_manager_config + 0x100;
+  lock_status = acquire_mutex(mutex_addr);
+  if (lock_status != 0) {
+    throw_mutex_error(lock_status);
   }
-  (**(code **)(**(longlong **)(lVar3 + 0xe8) + 0xe0))();
-  if (*(char *)(lVar3 + 0x1f0) != '\0') {
-    (**(code **)(**(longlong **)(lVar3 + 0xe8) + 0xc0))();
+  (**(code **)(**(longlong **)(mutex_addr + 0xe8) + 0xe0))();
+  if (*(char *)(mutex_addr + 0x1f0) != '\0') {
+    (**(code **)(**(longlong **)(mutex_addr + 0xe8) + 0xc0))();
   }
-  iVar4 = _Mtx_unlock(lVar1);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  lock_status = release_mutex(mutex_addr);
+  if (lock_status != 0) {
+    throw_mutex_error(lock_status);
   }
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,0xe);
-  puVar2 = (undefined8 *)param_1[1];
-  *puVar2 = 0x6c63206568636143;
-  *(undefined4 *)(puVar2 + 1) = 0x65726165;
-  *(undefined2 *)((longlong)puVar2 + 0xc) = 0x2e64;
-  *(undefined1 *)((longlong)puVar2 + 0xe) = 0;
+  create_engine_instance(param_1,0xe);
+  instance_ptr = (undefined8 *)param_1[1];
+  *instance_ptr = 0x6c63206568636143;
+  *(undefined4 *)(instance_ptr + 1) = 0x65726165;
+  *(undefined2 *)((longlong)instance_ptr + 0xc) = 0x2e64;
+  *(undefined1 *)((longlong)instance_ptr + 0xe) = 0;
   *(undefined4 *)(param_1 + 2) = 0xe;
   return param_1;
 }
