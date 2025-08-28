@@ -1,6 +1,503 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part014.c - 7 个函数
+// ============================================================================
+// 02_core_engine_part014.c - 核心引擎字符串处理和对象管理模块
+// ============================================================================
+
+// 模块概述：
+// 本模块包含7个核心引擎函数，主要负责字符串处理、进程ID管理、游戏对象创建
+// 和初始化、文件扫描处理、核心引擎初始化、对象清理以及回调处理等关键功能。
+// 这些函数构成了游戏引擎的核心基础设施。
+
+// 主要功能：
+// - 进程ID字符串构建和格式化
+// - 字符串匹配和回调处理
+// - 游戏对象的创建和初始化
+// - 游戏文件扫描和资源处理
+// - 核心引擎组件初始化
+// - 游戏对象数组的清理和资源释放
+// - 游戏对象回调处理
+
+// 技术特点：
+// - 内存管理和资源分配
+// - 字符串处理和哈希计算
+// - 回调函数机制
+// - 线程同步和临界区管理
+// - 错误处理和安全检查
+// - 文件系统操作
+
+// ============================================================================
+// 常量定义
+// ============================================================================
+
+/** 进程ID字符串前缀长度 */
+#define PID_PREFIX_LENGTH 6
+
+/** 进程ID缓冲区大小 */
+#define PID_BUFFER_SIZE 16
+
+/** 默认内存分配大小 */
+#define DEFAULT_ALLOCATION_SIZE 0x10
+
+/** 内存分配标志 */
+#define MEMORY_ALLOC_FLAG 0x13
+
+/** 回调函数标志 */
+#define CALLBACK_FLAG_DEFAULT 3
+
+/** 游戏对象大小 */
+#define GAME_OBJECT_SIZE 0x48
+
+/** 字符串处理标志 */
+#define STRING_PROCESS_FLAG 0xfffffffffffffffe
+
+// ============================================================================
+// 类型别名定义
+// ============================================================================
+
+/** 基础类型别名 */
+typedef longlong ProcessId;               // 进程ID类型
+typedef uint StringLength;                // 字符串长度类型
+typedef uint StringHash;                  // 字符串哈希类型
+typedef ulonglong EntryCount;             // 条目计数类型
+typedef ulonglong CharIndex;              // 字符索引类型
+typedef longlong BufferOffset;            // 缓冲区偏移类型
+
+/** 字符串处理类型别名 */
+typedef char* StringPtr;                  // 字符串指针类型
+typedef undefined1* BufferPtr;            // 缓冲区指针类型
+typedef undefined8* StringArrayPtr;       // 字符串数组指针类型
+typedef void* FormatStringPtr;            // 格式字符串指针类型
+
+/** 游戏对象类型别名 */
+typedef longlong* GameObjectArrayPtr;     // 游戏对象数组指针类型
+typedef void* GameObjectPtr;              // 游戏对象指针类型
+typedef longlong GameObjectHandle;        // 游戏对象句柄类型
+
+/** 内存管理类型别名 */
+typedef void* MemoryAllocator;            // 内存分配器类型
+typedef void* MemoryHandle;               // 内存句柄类型
+typedef uint AllocationFlags;             // 分配标志类型
+typedef ulonglong AllocationSize;         // 分配大小类型
+
+/** 回调函数类型别名 */
+typedef void (*CallbackFunc)(void*, void*);  // 回调函数类型
+typedef undefined8* CallbackArrayPtr;     // 回调数组指针类型
+typedef void* CallbackContext;           // 回调上下文类型
+
+/** 引擎组件类型别名 */
+typedef void* SystemComponent;           // 系统组件类型
+typedef void* ResourceManager;            // 资源管理器类型
+typedef void* MemoryManager;             // 内存管理器类型
+typedef void* SyncObject;                 // 同步对象类型
+typedef void* CriticalSection;            // 临界区类型
+
+// ============================================================================
+// 枚举定义
+// ============================================================================
+
+/**
+ * @brief 字符串处理状态枚举
+ */
+typedef enum {
+    STRING_PROCESS_SUCCESS = 0,           // 字符串处理成功
+    STRING_PROCESS_ERROR = 1,             // 字符串处理错误
+    STRING_PROCESS_MATCH_FOUND = 2,       // 找到匹配项
+    STRING_PROCESS_NO_MATCH = 3,          // 未找到匹配项
+    STRING_PROCESS_MEMORY_ERROR = 4,      // 内存分配错误
+    STRING_PROCESS_INVALID_PARAM = 5      // 无效参数
+} StringProcessStatus;
+
+/**
+ * @brief 游戏对象状态枚举
+ */
+typedef enum {
+    GAME_OBJECT_UNINITIALIZED = 0,        // 未初始化状态
+    GAME_OBJECT_INITIALIZING = 1,         // 初始化中状态
+    GAME_OBJECT_INITIALIZED = 2,          // 已初始化状态
+    GAME_OBJECT_ACTIVE = 3,               // 活跃状态
+    GAME_OBJECT_DESTROYING = 4,           // 销毁中状态
+    GAME_OBJECT_DESTROYED = 5             // 已销毁状态
+} GameObjectState;
+
+/**
+ * @brief 内存分配状态枚举
+ */
+typedef enum {
+    MEMORY_ALLOC_SUCCESS = 0,             // 内存分配成功
+    MEMORY_ALLOC_FAILED = 1,              // 内存分配失败
+    MEMORY_ALLOC_INVALID_SIZE = 2,        // 无效的分配大小
+    MEMORY_ALLOC_OUT_OF_MEMORY = 3        // 内存不足
+} MemoryAllocationStatus;
+
+/**
+ * @brief 引擎初始化状态枚举
+ */
+typedef enum {
+    ENGINE_INIT_UNINITIALIZED = 0,        // 引擎未初始化
+    ENGINE_INIT_INITIALIZING = 1,         // 引擎初始化中
+    ENGINE_INIT_INITIALIZED = 2,          // 引擎已初始化
+    ENGINE_INIT_ERROR = 3,                // 引擎初始化错误
+    ENGINE_INIT_SHUTDOWN = 4              // 引擎关闭中
+} EngineInitStatus;
+
+// ============================================================================
+// 结构体定义
+// ============================================================================
+
+/**
+ * @brief 字符串信息结构体
+ */
+typedef struct {
+    StringPtr string_data;                // 字符串数据指针
+    StringLength length;                   // 字符串长度
+    StringHash hash_value;                 // 字符串哈希值
+    uint flags;                            // 字符串标志
+    void* context;                         // 上下文指针
+} StringInfo;
+
+/**
+ * @brief 进程ID字符串构建上下文结构体
+ */
+typedef struct {
+    ProcessId process_id;                  // 进程ID
+    StringPtr output_buffer;               // 输出缓冲区
+    StringLength buffer_size;              // 缓冲区大小
+    StringLength total_length;             // 总长度
+    uint format_flags;                     // 格式化标志
+    void* format_context;                  // 格式化上下文
+} ProcessIdBuildContext;
+
+/**
+ * @brief 游戏对象结构体
+ */
+typedef struct {
+    GameObjectHandle handle;              // 对象句柄
+    GameObjectState state;                 // 对象状态
+    void* callback_table;                 // 回调表指针
+    void* function_table;                 // 函数表指针
+    uint flags;                            // 对象标志
+    void* texture_data;                   // 纹理数据指针
+    void* resource_data;                  // 资源数据指针
+    char name[64];                         // 对象名称
+} GameObject;
+
+/**
+ * @brief 回调信息结构体
+ */
+typedef struct {
+    CallbackFunc callback_func;           // 回调函数指针
+    CallbackContext context;              // 回调上下文
+    uint flags;                           // 回调标志
+    void* user_data;                      // 用户数据指针
+} CallbackInfo;
+
+/**
+ * @brief 引擎初始化配置结构体
+ */
+typedef struct {
+    SystemComponent system_component;      // 系统组件
+    ResourceManager resource_manager;       // 资源管理器
+    MemoryManager memory_manager;          // 内存管理器
+    SyncObject sync_object;               // 同步对象
+    CriticalSection critical_section;      // 临界区
+    void* texture_manager;                 // 纹理管理器
+    uint init_flags;                       // 初始化标志
+    EngineInitStatus status;               // 初始化状态
+} EngineInitConfig;
+
+// ============================================================================
+// 全局变量声明
+// ============================================================================
+
+/** 全局字符串流对象 */
+extern undefined8 GLOBAL_STRING_STREAM;
+
+/** 全局内存分配器 */
+extern undefined8 GLOBAL_MEMORY_ALLOCATOR;
+
+/** 全局堆栈安全cookie */
+extern undefined8 GLOBAL_STACK_COOKIE;
+
+/** 全局对象指针 */
+extern undefined8 GLOBAL_OBJECT_PTR;
+
+/** 全局系统组件1 */
+extern undefined8 GLOBAL_SYSTEM_COMPONENT_1;
+
+/** 全局资源管理器 */
+extern undefined8 GLOBAL_RESOURCE_MANAGER;
+
+/** 全局内存管理器 */
+extern undefined8 GLOBAL_MEMORY_MANAGER;
+
+/** 全局同步对象 */
+extern undefined8 GLOBAL_SYNC_OBJECT;
+
+/** 全局纹理管理器 */
+extern undefined8 GLOBAL_TEXTURE_MANAGER;
+
+/** 全局临界区 */
+extern undefined8 GLOBAL_CRITICAL_SECTION;
+
+/** 全局回调表 */
+extern undefined8 GLOBAL_CALLBACK_TABLE;
+
+/** 全局函数表 */
+extern undefined8 GLOBAL_FUNCTION_TABLE;
+
+/** 全局上下文指针 */
+extern undefined8 GLOBAL_CONTEXT_PTR;
+
+/** 关键字表开始地址 */
+extern undefined8 KEYWORD_TABLE_START;
+
+/** 关键字表结束地址 */
+extern undefined8 KEYWORD_TABLE_END;
+
+/** 整数格式字符串 */
+extern undefined8 INTEGER_FORMAT_STRING;
+
+/** 默认格式字符串 */
+extern undefined8 DEFAULT_FORMAT_STRING;
+
+/** 调试格式字符串 */
+extern undefined8 DEBUG_FORMAT_STRING;
+
+/** 调试模式标志 */
+extern char DEBUG_MODE_ENABLED;
+
+// ============================================================================
+// 函数声明
+// ============================================================================
+
+/**
+ * 构建包含进程ID的字符串
+ * @param param_1 上下文指针
+ * @param param_2 未知参数
+ * @param param_3 字符串信息结构体指针
+ */
+void BuildProcessIdString(undefined8 param_1, undefined8 param_2, longlong param_3);
+
+/**
+ * 处理字符串匹配并执行相应的回调函数
+ * @param param_1 上下文指针
+ * @param param_2 未知参数
+ * @param param_3 字符串数组
+ * @param param_4 回调参数
+ * @return 处理结果状态码
+ */
+undefined8 ProcessStringMatchesWithCallbacks(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
+
+/**
+ * 创建并初始化游戏对象
+ * @param param_1 游戏上下文指针数组
+ * @param param_2 对象配置参数
+ */
+void CreateAndInitializeGameObject(longlong *param_1, longlong param_2);
+
+/**
+ * 扫描游戏文件并处理找到的资源文件
+ */
+void ScanAndProcessGameFiles(void);
+
+/**
+ * 初始化核心引擎组件
+ */
+void InitializeCoreEngine(void);
+
+/**
+ * 清理游戏对象数组，释放相关资源
+ * @param param_1 游戏对象数组指针
+ */
+void CleanupGameObjectArray(longlong *param_1);
+
+/**
+ * 处理游戏对象的回调函数
+ * @param param_1 游戏对象指针
+ * @param param_2 回调参数1
+ * @param param_3 回调参数2
+ * @param param_4 回调参数3
+ */
+void ProcessGameObjectCallbacks(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
+
+// ============================================================================
+// 内部函数声明
+// ============================================================================
+
+/**
+ * 分配字符串缓冲区
+ * @param stream_ptr 字符串流指针
+ * @param size 分配大小
+ */
+void AllocateStringBuffer(undefined8 **stream_ptr, int size);
+
+/**
+ * 格式化整数为字符串
+ * @param buffer 输出缓冲区
+ * @param format 格式字符串
+ * @param value 整数值
+ */
+void FormatIntegerToString(char *buffer, undefined8 *format, undefined4 value);
+
+/**
+ * 格式化字符串参数
+ * @param buffer 缓冲区
+ * @param format 格式字符串
+ */
+void FormatStringWithArguments(undefined1 *buffer, undefined *format);
+
+/**
+ * 计算字符串哈希值
+ * @param string 字符串指针
+ * @return 哈希值
+ */
+uint CalculateStringHash(void *string);
+
+/**
+ * 分配内存
+ * @param allocator 内存分配器
+ * @param size 分配大小
+ * @param flags 分配标志
+ * @return 分配的内存指针
+ */
+void* AllocateMemory(undefined8 allocator, longlong size, uint flags);
+
+/**
+ * 重新分配内存
+ * @param allocator 内存分配器
+ * @param ptr 原内存指针
+ * @param size 新大小
+ * @param flags 分配标志
+ * @return 重新分配的内存指针
+ */
+void* ReallocateMemory(undefined8 allocator, void *ptr, longlong size, uint flags);
+
+/**
+ * 释放内存
+ * @param ptr 要释放的内存指针
+ */
+void FreeMemory(void *ptr);
+
+/**
+ * 初始化对象回调
+ * @param object_ptr 对象指针
+ */
+void InitializeObjectCallbacks(undefined8 *object_ptr);
+
+/**
+ * 初始化系统组件
+ * @param component 组件指针
+ * @return 初始化后的组件指针
+ */
+undefined8 InitializeSystemComponent(undefined8 component);
+
+/**
+ * 初始化资源管理器
+ * @param manager 管理器指针
+ * @return 初始化后的管理器指针
+ */
+undefined8 InitializeResourceManager(undefined8 manager);
+
+/**
+ * 初始化内存管理器
+ * @param manager 管理器指针
+ */
+void InitializeMemoryManager(undefined8 manager);
+
+/**
+ * 初始化线程同步对象
+ * @param sync_obj 同步对象指针
+ */
+void InitializeThreadSync(undefined8 sync_obj);
+
+/**
+ * 初始化纹理管理器
+ * @param manager 管理器指针
+ * @return 初始化后的管理器指针
+ */
+undefined8 InitializeTextureManager(undefined8 manager);
+
+/**
+ * 初始化互斥量
+ * @param mutex 互斥量指针
+ * @param type 互斥量类型
+ */
+void InitializeMutex(longlong mutex, int type);
+
+/**
+ * 初始化临界区
+ * @param critical_section 临界区指针
+ */
+void InitializeCriticalSection(longlong critical_section);
+
+/**
+ * 销毁游戏对象
+ * @param object_ptr 对象指针
+ */
+void DestroyGameObject(longlong object_ptr);
+
+/**
+ * 处理对象回调
+ * @param object_ptr 对象指针
+ * @param callback_table 回调表指针
+ * @param param_3 回调参数3
+ * @param param_4 回调参数4
+ * @param flags 处理标志
+ */
+void ProcessObjectCallbacks(longlong object_ptr, undefined8 callback_table, undefined8 param_3, undefined8 param_4, undefined8 flags);
+
+/**
+ * 初始化字符串处理器
+ * @param context 上下文指针
+ * @param callback_array 回调数组指针
+ * @param string_array 字符串数组
+ * @param param_4 参数4
+ * @param flags 处理标志
+ */
+void InitializeStringProcessor(undefined8 context, undefined8 **callback_array, undefined8 string_array, undefined8 param_4, undefined8 flags);
+
+// ============================================================================
+// 安全宏定义
+// ============================================================================
+
+/**
+ * 安全堆栈cookie检查宏
+ */
+#define CHECK_STACK_COOKIE(cookie, guard) \
+    do { \
+        if ((cookie) != (GLOBAL_STACK_COOKIE ^ (ulonglong)(guard))) { \
+            /* 堆栈损坏检测 */ \
+            __builtin_trap(); \
+        } \
+    } while(0)
+
+/**
+ * 安全内存分配宏
+ */
+#define SAFE_ALLOC(allocator, size, flags) \
+    AllocateMemory(allocator, size, flags)
+
+/**
+ * 安全内存释放宏
+ */
+#define SAFE_FREE(ptr) \
+    do { \
+        if ((ptr) != NULL) { \
+            FreeMemory(ptr); \
+            (ptr) = NULL; \
+        } \
+    } while(0)
+
+/**
+ * 安全字符串长度检查宏
+ */
+#define SAFE_STRING_LENGTH(str, max_len) \
+    ((str) != NULL ? strlen(str) : 0)
+
+// ============================================================================
+// 函数实现
+// ============================================================================
 
 // 函数: void BuildProcessIdString(undefined8 param_1,undefined8 param_2,longlong param_3)
 // 功能: 构建包含进程ID的字符串，格式为"PID : [进程ID]"

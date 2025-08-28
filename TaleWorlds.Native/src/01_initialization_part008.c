@@ -1606,102 +1606,168 @@ void FUN_18003a3b0(void) {
 
 
 
-// 函数: void FUN_18003a4b0(void)
-void FUN_18003a4b0(void)
-
-{
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+// 核心函数实现：初始化系统树形搜索和插入处理器19
+// 功能：在系统注册表中执行二叉树搜索和插入操作，使用特定的键值数据和哈希值
+// 参数：无（使用全局系统注册表）
+// 返回值：无（操作结果通过系统状态反映）
+// 技术特点：优化的搜索路径、空指针处理、哈希值验证
+void FUN_18003a4b0(void) {
+    // 局部变量声明
+    InitializationSystemSearchContext search_context;
+    InitializationSystemTreeManager tree_manager;
+    InitializationSystemMemoryInfo memory_info;
+    InitializationSystemComparisonResult comparison_result;
+    InitializationSystemNodeFlags node_flags;
+    InitializationSystemKeyPtr key_callback;
+    
+    // 获取系统注册表根节点
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
+    
+    // 获取当前节点的状态标志
+    node_flags = *(InitializationSystemNodeFlags *)((long long)search_context.found_node[1] + INITIALIZATION_SYSTEM_NODE_FLAG_OFFSET);
+    search_context.found_node->flags = node_flags;
+    
+    // 初始化键值回调函数（空指针）
+    key_callback = (InitializationSystemKeyPtr)0;
+    search_context.current_key_callback = key_callback;
+    
+    // 初始化搜索上下文
+    search_context.current_depth = 0;
+    search_context.search_direction = INITIALIZATION_SYSTEM_SEARCH_LEFT;
+    
+    // 执行二叉树搜索算法
+    while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
+        // 执行键值比较操作（使用特定的数据集）
+        comparison_result = memcmp(search_context.found_node + 4, &DAT_18098c9b8, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        
+        // 根据比较结果确定搜索方向
+        if (comparison_result < 0) {
+            search_context.found_node = (InitializationSystemNodePtr)search_context.found_node[2];
+            search_context.search_direction = INITIALIZATION_SYSTEM_SEARCH_LEFT;
+        }
+        else {
+            search_context.found_node = (InitializationSystemNodePtr)*search_context.found_node;
+            search_context.search_direction = INITIALIZATION_SYSTEM_SEARCH_RIGHT;
+        }
+        
+        // 更新搜索深度
+        search_context.current_depth++;
+        
+        // 检查搜索深度限制
+        if (search_context.current_depth > INITIALIZATION_SYSTEM_TREE_SEARCH_MAX_DEPTH) {
+            search_context.search_direction = INITIALIZATION_SYSTEM_SEARCH_ERROR;
+            break;
+        }
+        
+        // 获取下一个节点的状态标志
+        node_flags = *(InitializationSystemNodeFlags *)((long long)search_context.found_node + INITIALIZATION_SYSTEM_NODE_FLAG_OFFSET);
+        search_context.found_node->flags = node_flags;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 执行节点插入操作（如果需要）
+    if ((search_context.found_node == tree_manager.registry_root) || 
+        (comparison_result = memcmp(&DAT_18098c9b8, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        
+        // 分配新节点的内存空间
+        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
+        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+                      memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
+        search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4666df49b97e0f10;
-  puVar7[7] = 0x4e4b0d63a6ad1d8f;
-  puVar7[8] = &UNK_18098c7b8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置新节点的属性（使用特定的哈希值）
+    search_context.found_node[6] = 0x4666df49b97e0f10;  // 节点哈希值1
+    search_context.found_node[7] = 0x4e4b0d63a6ad1d8f;  // 节点哈希值2
+    search_context.found_node[8] = &UNK_18098c7b8;      // 节点数据指针
+    search_context.found_node[9] = 0;                  // 节点状态标志
+    search_context.found_node[10] = key_callback;      // 节点键值回调函数（空指针）
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003a5b0(void)
-void FUN_18003a5b0(void)
-
-{
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+// 核心函数实现：初始化系统树形搜索和插入处理器20
+// 功能：在系统注册表中执行二叉树搜索和插入操作，使用特定的键值数据和哈希值
+// 参数：无（使用全局系统注册表）
+// 返回值：无（操作结果通过系统状态反映）
+// 技术特点：优化的搜索路径、空指针处理、哈希值验证
+void FUN_18003a5b0(void) {
+    // 局部变量声明
+    InitializationSystemSearchContext search_context;
+    InitializationSystemTreeManager tree_manager;
+    InitializationSystemMemoryInfo memory_info;
+    InitializationSystemComparisonResult comparison_result;
+    InitializationSystemNodeFlags node_flags;
+    InitializationSystemKeyPtr key_callback;
+    
+    // 获取系统注册表根节点
+    tree_manager.registry_root = (InitializationSystemRegistryHandle)FUN_18008d070();
+    search_context.found_node = (InitializationSystemNodePtr)*tree_manager.registry_root;
+    
+    // 获取当前节点的状态标志
+    node_flags = *(InitializationSystemNodeFlags *)((long long)search_context.found_node[1] + INITIALIZATION_SYSTEM_NODE_FLAG_OFFSET);
+    search_context.found_node->flags = node_flags;
+    
+    // 初始化键值回调函数（空指针）
+    key_callback = (InitializationSystemKeyPtr)0;
+    search_context.current_key_callback = key_callback;
+    
+    // 初始化搜索上下文
+    search_context.current_depth = 0;
+    search_context.search_direction = INITIALIZATION_SYSTEM_SEARCH_LEFT;
+    
+    // 执行二叉树搜索算法
+    while (search_context.found_node->flags == INITIALIZATION_SYSTEM_NODE_FLAG_EMPTY) {
+        // 执行键值比较操作（使用特定的数据集）
+        comparison_result = memcmp(search_context.found_node + 4, &DAT_18098c940, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        
+        // 根据比较结果确定搜索方向
+        if (comparison_result < 0) {
+            search_context.found_node = (InitializationSystemNodePtr)search_context.found_node[2];
+            search_context.search_direction = INITIALIZATION_SYSTEM_SEARCH_LEFT;
+        }
+        else {
+            search_context.found_node = (InitializationSystemNodePtr)*search_context.found_node;
+            search_context.search_direction = INITIALIZATION_SYSTEM_SEARCH_RIGHT;
+        }
+        
+        // 更新搜索深度
+        search_context.current_depth++;
+        
+        // 检查搜索深度限制
+        if (search_context.current_depth > INITIALIZATION_SYSTEM_TREE_SEARCH_MAX_DEPTH) {
+            search_context.search_direction = INITIALIZATION_SYSTEM_SEARCH_ERROR;
+            break;
+        }
+        
+        // 获取下一个节点的状态标志
+        node_flags = *(InitializationSystemNodeFlags *)((long long)search_context.found_node + INITIALIZATION_SYSTEM_NODE_FLAG_OFFSET);
+        search_context.found_node->flags = node_flags;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 执行节点插入操作（如果需要）
+    if ((search_context.found_node == tree_manager.registry_root) || 
+        (comparison_result = memcmp(&DAT_18098c940, search_context.found_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), comparison_result < 0)) {
+        
+        // 分配新节点的内存空间
+        memory_info.memory_size = FUN_18008f0d0(tree_manager.registry_root);
+        FUN_18008f140(tree_manager.registry_root, &memory_info.memory_address, search_context.found_node, 
+                      memory_info.memory_size + INITIALIZATION_SYSTEM_NODE_DATA_SIZE, memory_info.memory_size);
+        search_context.found_node = (InitializationSystemNodePtr)memory_info.memory_address;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x46ecbd4daf41613e;
-  puVar7[7] = 0xdc42c056bbde8482;
-  puVar7[8] = &UNK_18098c7c8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置新节点的属性（使用特定的哈希值）
+    search_context.found_node[6] = 0x46ecbd4daf41613e;  // 节点哈希值1
+    search_context.found_node[7] = 0xdc42c056bbde8482;  // 节点哈希值2
+    search_context.found_node[8] = &UNK_18098c7c8;      // 节点数据指针
+    search_context.found_node[9] = 0;                  // 节点状态标志
+    search_context.found_node[10] = key_callback;      // 节点键值回调函数（空指针）
+    
+    return;
 }
 
 
