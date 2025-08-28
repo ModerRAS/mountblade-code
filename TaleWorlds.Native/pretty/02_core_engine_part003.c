@@ -252,7 +252,7 @@ void core_engine_system_initializer_type1(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_1;
     parent_node[7] = SYSTEM_REGISTRY_ID_2;
-    parent_node[8] = &global_var_7680_ptr;
+    parent_node[8] = (uint64_t)&global_var_7680_ptr;
     parent_node[9] = 0;
     parent_node[10] = stack_value;
     
@@ -1066,7 +1066,7 @@ void core_engine_system_initializer_type17(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_1;
     parent_node[7] = SYSTEM_REGISTRY_ID_2;
-    parent_node[8] = &global_var_7680_ptr;
+    parent_node[8] = (uint64_t)&global_var_7680_ptr;
     parent_node[9] = 0;
     parent_node[10] = stack_value;
     
@@ -1528,7 +1528,7 @@ void core_engine_system_initializer_type24(void)
     // 设置系统注册信息
     parent_node[6] = SYSTEM_REGISTRY_ID_1;
     parent_node[7] = SYSTEM_REGISTRY_ID_2;
-    parent_node[8] = &global_var_7680_ptr;
+    parent_node[8] = (uint64_t)&global_var_7680_ptr;
     parent_node[9] = 0;
     parent_node[10] = stack_value;
     
