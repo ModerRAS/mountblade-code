@@ -1358,7 +1358,7 @@ set_matrix_size:
             *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
           }
           // WARNING: Subroutine does not return
-          FUN_180059ba0(stack_param_1, SYSTEM_DATA_MANAGER_B);
+          memory_deallocator(stack_param_1, SYSTEM_DATA_MANAGER_B);
         }
         goto set_matrix_size;
       }
