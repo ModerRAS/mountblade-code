@@ -863,86 +863,113 @@ float * rendering_system_scale_vector_coordinates(float *source_vector, float *r
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-longlong * FUN_180535720(longlong *param_1,longlong *param_2)
+/**
+ * 渲染队列管理函数
+ * 管理渲染队列中的对象，包括添加、删除和重新分配
+ * 
+ * @param queue_ptr 队列指针
+ * @param item_ptr 项目指针
+ * @return 处理后的项目指针
+ */
+longlong * rendering_system_manage_render_queue(longlong *queue_ptr, longlong *item_ptr)
 
 {
-  undefined8 uVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  longlong *plVar5;
-  longlong lVar6;
-  longlong *plVar7;
+  undefined8 allocation_result;
+  longlong *new_item;
+  longlong *result_ptr;
+  longlong current_size;
+  longlong *old_queue_ptr;
+  longlong new_size;
+  longlong *new_queue_ptr;
   
-  plVar3 = (longlong *)0x0;
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x98d9e0,0x10,8,0,0xfffffffffffffffe);
-  plVar2 = (longlong *)FUN_1804f2420(uVar1);
-  *param_2 = (longlong)plVar2;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))(plVar2);
+  result_ptr = (longlong *)0x0;
+  
+  // 分配新项目内存
+  allocation_result = FUN_18062b1e0(_DAT_180c8ed18, 0x98d9e0, 0x10, 8, 0, 0xfffffffffffffffe);
+  new_item = (longlong *)FUN_1804f2420(allocation_result);
+  *item_ptr = (longlong)new_item;
+  
+  // 初始化新项目
+  if (new_item != (longlong *)0x0) {
+    (**(code **)(*new_item + 0x28))(new_item);
   }
-  lVar6 = 1;
-  if (*param_1 == 0) {
-    plVar2 = (longlong *)*param_2;
-    if (plVar2 != (longlong *)0x0) {
-      (**(code **)(*plVar2 + 0x28))(plVar2);
+  
+  new_size = 1;
+  
+  // 如果队列为空，直接添加项目
+  if (*queue_ptr == 0) {
+    new_item = (longlong *)*item_ptr;
+    if (new_item != (longlong *)0x0) {
+      (**(code **)(*new_item + 0x28))(new_item);
     }
-    plVar5 = (longlong *)*param_1;
-    *param_1 = (longlong)plVar2;
-    if (plVar5 != (longlong *)0x0) {
-      (**(code **)(*plVar5 + 0x38))();
+    old_queue_ptr = (longlong *)*queue_ptr;
+    *queue_ptr = (longlong)new_item;
+    if (old_queue_ptr != (longlong *)0x0) {
+      (**(code **)(*old_queue_ptr + 0x38))();
     }
   }
-  plVar2 = (longlong *)param_1[2];
-  if (plVar2 < (longlong *)param_1[3]) {
-    param_1[2] = (longlong)(plVar2 + 1);
-    plVar3 = (longlong *)*param_2;
-    *plVar2 = (longlong)plVar3;
-    if (plVar3 != (longlong *)0x0) {
-      (**(code **)(*plVar3 + 0x28))();
+  
+  // 检查队列是否有空间
+  new_item = (longlong *)queue_ptr[2];
+  if (new_item < (longlong *)queue_ptr[3]) {
+    // 有空间，直接添加
+    queue_ptr[2] = (longlong)(new_item + 1);
+    result_ptr = (longlong *)*item_ptr;
+    *new_item = (longlong)result_ptr;
+    if (result_ptr != (longlong *)0x0) {
+      (**(code **)(*result_ptr + 0x28))(result_ptr);
     }
   }
   else {
-    plVar5 = (longlong *)param_1[1];
-    lVar4 = (longlong)plVar2 - (longlong)plVar5 >> 3;
-    if ((lVar4 == 0) || (lVar6 = lVar4 * 2, plVar7 = plVar3, lVar6 != 0)) {
-      plVar3 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar6 * 8,(char)param_1[4]);
-      plVar2 = (longlong *)param_1[2];
-      plVar5 = (longlong *)param_1[1];
-      plVar7 = plVar3;
+    // 队列已满，需要扩容
+    old_queue_ptr = (longlong *)queue_ptr[1];
+    current_size = (longlong)new_item - (longlong)old_queue_ptr >> 3;
+    if ((current_size == 0) || (new_size = current_size * 2, new_queue_ptr = result_ptr, new_size != 0)) {
+      result_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18, new_size * 8, (char)queue_ptr[4]);
+      new_item = (longlong *)queue_ptr[2];
+      old_queue_ptr = (longlong *)queue_ptr[1];
+      new_queue_ptr = result_ptr;
     }
-    for (; plVar5 != plVar2; plVar5 = plVar5 + 1) {
-      *plVar3 = *plVar5;
-      *plVar5 = 0;
-      plVar3 = plVar3 + 1;
+    
+    // 复制现有项目到新队列
+    for (; old_queue_ptr != new_item; old_queue_ptr = old_queue_ptr + 1) {
+      *result_ptr = *old_queue_ptr;
+      *old_queue_ptr = 0;
+      result_ptr = result_ptr + 1;
     }
-    plVar2 = (longlong *)*param_2;
-    *plVar3 = (longlong)plVar2;
-    if (plVar2 != (longlong *)0x0) {
-      (**(code **)(*plVar2 + 0x28))();
+    
+    // 添加新项目
+    new_item = (longlong *)*item_ptr;
+    *result_ptr = (longlong)new_item;
+    if (new_item != (longlong *)0x0) {
+      (**(code **)(*new_item + 0x28))(new_item);
     }
-    plVar2 = (longlong *)param_1[2];
-    plVar5 = (longlong *)param_1[1];
-    if (plVar5 != plVar2) {
+    
+    // 清理旧队列
+    new_item = (longlong *)queue_ptr[2];
+    old_queue_ptr = (longlong *)queue_ptr[1];
+    if (old_queue_ptr != new_item) {
       do {
-        if ((longlong *)*plVar5 != (longlong *)0x0) {
-          (**(code **)(*(longlong *)*plVar5 + 0x38))();
+        if ((longlong *)*old_queue_ptr != (longlong *)0x0) {
+          (**(code **)(*(longlong *)*old_queue_ptr + 0x38))();
         }
-        plVar5 = plVar5 + 1;
-      } while (plVar5 != plVar2);
-      plVar5 = (longlong *)param_1[1];
+        old_queue_ptr = old_queue_ptr + 1;
+      } while (old_queue_ptr != new_item);
+      old_queue_ptr = (longlong *)queue_ptr[1];
     }
-    if (plVar5 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(plVar5);
+    
+    // 释放旧队列内存
+    if (old_queue_ptr != (longlong *)0x0) {
+      // WARNING: Subroutine does not return
+      FUN_18064e900(old_queue_ptr);
     }
-    param_1[1] = (longlong)plVar7;
-    param_1[2] = (longlong)(plVar3 + 1);
-    param_1[3] = (longlong)(plVar7 + lVar6);
+    
+    // 更新队列指针
+    queue_ptr[1] = (longlong)new_queue_ptr;
+    queue_ptr[2] = (longlong)(result_ptr + 1);
+    queue_ptr[3] = (longlong)(new_queue_ptr + new_size);
   }
-  return param_2;
+  return item_ptr;
 }
 
 
