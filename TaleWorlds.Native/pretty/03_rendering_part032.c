@@ -1214,5 +1214,13 @@ uint64_t RenderingSystemCalculateProjectionDistance(int64_t param_1, uint64_t pa
 #define RENDERING_MATRIX_MODULE_DESCRIPTION "渲染系统高级矩阵变换和投影计算模块"
 
 // ============================================================================
+// FUN_函数语义化别名定义
+// ============================================================================
+
+// 原始FUN_函数语义化别名定义
+#define RenderingSystemStateQueryHandler FUN_18007b240
+#define RenderingSystemMathCalculator FUN_180285b40
+
+// ============================================================================
 // 文件结束
 // ============================================================================
