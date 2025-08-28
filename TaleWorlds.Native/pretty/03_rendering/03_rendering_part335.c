@@ -286,20 +286,9 @@ void RenderingSystem_ConvertColorToARGB(longlong param_1,undefined4 param_2,unde
 
 
 
-/**
- * 渲染系统颜色转换器（RGBA格式）
- * 
- * 将浮点颜色值转换为RGBA格式，支持颜色分量标准化和格式转换。
- * 
- * @param param_1   渲染对象指针
- * @param param_2   颜色格式参数
- * @param param_3   颜色目标参数
- * @param param_4   保留参数
- * @param param_5   浮点颜色数组(R,G,B,A)
- * @param param_6   转换标志
- */
-void RenderingSystem_ConvertColorToRGBA(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4,
-                                       float *param_5,undefined8 param_6)
+// 函数: void FUN_180445870(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4,
+void FUN_180445870(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4,
+                  float *param_5,undefined8 param_6)
 
 {
   uint uVar1;
@@ -1460,82 +1449,12 @@ void FUN_180446fd0(longlong param_1,undefined4 param_2,undefined4 param_3,undefi
                   undefined4 param_5)
 
 {
-  *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_0X288) = param_2;
-  *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_0X28C) = param_3;
-  *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_0X290) = param_4;
-  *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_0X294) = param_5;
+  *(undefined4 *)(param_1 + 0x288) = param_2;
+  *(undefined4 *)(param_1 + 0x28c) = param_3;
+  *(undefined4 *)(param_1 + 0x290) = param_4;
+  *(undefined4 *)(param_1 + 0x294) = param_5;
   return;
 }
-
-/*===================================================================================
-    函数别名定义
-===================================================================================*/
-
-#define RenderingSystem_ProcessColorTransform          FUN_180445570  // 渲染系统颜色变换处理器
-#define RenderingSystem_AllocateResourceMemory          FUN_180445610  // 渲染系统资源内存分配器
-#define RenderingSystem_CreateColorBuffer               FUN_180445680  // 渲染系统颜色缓冲区创建器
-#define RenderingSystem_ConvertColorToARGB              FUN_1804457b0  // 渲染系统颜色转换器(ARGB)
-#define RenderingSystem_ConvertColorToRGBA              FUN_180445870  // 渲染系统颜色转换器(RGBA)
-#define RenderingSystem_SetRenderParameter               FUN_180445fd0  // 渲染系统参数设置器
-#define RenderingSystem_ClearRenderState                 FUN_180446010  // 渲染系统状态清理器
-#define RenderingSystem_SetPixelColor                   FUN_180446480  // 渲染系统像素颜色设置器
-#define RenderingSystem_GetPixelColor                   FUN_180446760  // 渲染系统像素颜色获取器
-#define RenderingSystem_AdjustColorBrightness            FUN_180446810  // 渲染系统颜色亮度调整器
-#define RenderingSystem_AdjustColorSaturation           FUN_18044682c  // 渲染系统颜色饱和度调整器
-#define RenderingSystem_SetResourceParameters            FUN_180446fd0  // 渲染系统资源参数设置器
-
-/*===================================================================================
-    技术说明
-===================================================================================*/
-
-/*
-    渲染系统高级颜色处理和数据转换模块技术说明：
-
-    1. 模块概述：
-       - 本模块是渲染系统的核心颜色处理组件
-       - 包含35个高级函数，涵盖颜色处理、数据转换、资源管理等
-       - 提供完整的颜色空间转换和格式处理功能
-
-    2. 核心功能：
-       - 颜色空间转换：浮点颜色与整数颜色相互转换
-       - 颜色格式处理：ARGB、RGBA等格式的转换和处理
-       - 资源管理：内存分配、缓冲区创建、资源释放
-       - 颜色调整：亮度、饱和度、对比度等调整
-       - 混合模式：标准混合、加法混合、减法混合等
-       - 像素操作：像素颜色设置、获取、批量处理
-
-    3. 技术特点：
-       - 高精度颜色处理：支持浮点颜色值转换
-       - 多格式支持：支持多种颜色格式转换
-       - 高性能：优化的颜色处理算法
-       - 内存安全：完善的内存管理机制
-       - 灵活性：支持多种颜色调整模式
-
-    4. 使用场景：
-       - 3D游戏引擎的渲染管线
-       - 图形用户界面的颜色处理
-       - 图像处理和滤镜效果
-       - 多媒体应用的颜色管理
-       - 实时渲染系统
-
-    5. 性能优化：
-       - 批量颜色处理减少函数调用开销
-       - 颜色值缓存提高处理效率
-       - 优化的转换算法提高性能
-       - 内存池技术减少内存分配开销
-
-    6. 注意事项：
-       - 颜色值范围：浮点颜色值应在0.0-1.0范围内
-       - 内存管理：正确分配和释放颜色缓冲区
-       - 格式兼容：确保颜色格式转换的正确性
-       - 性能考虑：避免在渲染循环中进行大量颜色转换
-
-    7. 依赖关系：
-       - 依赖于底层图形API（如DirectX/OpenGL）
-       - 依赖于系统内存管理函数
-       - 依赖于数学运算库
-       - 依赖于渲染系统核心模块
-*/
 
 
 
