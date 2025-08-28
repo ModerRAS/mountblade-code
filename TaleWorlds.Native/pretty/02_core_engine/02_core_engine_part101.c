@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 02_core_engine_part101.c - 核心引擎模块第101部分
@@ -141,7 +145,7 @@ void add_render_element_to_queue(int64_t render_context, float *position_data, u
     if (current_count + 1 < queue_capacity) {
       new_capacity = queue_capacity;
     }
-    FUN_18011dc70(queue_count, new_capacity);
+    DataProcessingEngine0(queue_count, new_capacity);
     current_count = *queue_count;
   }
   
@@ -173,7 +177,7 @@ void add_render_element_to_queue(int64_t render_context, float *position_data, u
     if (current_count + 1 < element_size) {
       queue_capacity = element_size;
     }
-    FUN_18011dc70(queue_count, queue_capacity);
+    DataProcessingEngine0(queue_count, queue_capacity);
     current_count = *queue_count;
   }
   
@@ -669,7 +673,7 @@ void add_element_to_uint64_array(int *array_ptr, uint64_t *element)
     if (current_size + 1 < capacity) {
       new_size = capacity;
     }
-    FUN_18011dc70(array_ptr, new_size);
+    DataProcessingEngine0(array_ptr, new_size);
     current_size = *array_ptr;
   }
   

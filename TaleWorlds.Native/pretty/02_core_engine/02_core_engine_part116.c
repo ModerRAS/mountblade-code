@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -353,7 +357,7 @@ uint64_t create_render_element_instance(uint64_t param_1,uint64_t param_2,uint64
     if (iVar6 + 1 < iVar5) {
       iVar2 = iVar5;
     }
-    FUN_18011dc70(piVar13,iVar2);
+    DataProcessingEngine0(piVar13,iVar2);
     iVar6 = *piVar13;
   }
   *(uint64_t *)(*(int64_t *)(lVar3 + 0x1ab8) + (int64_t)iVar6 * 8) = uVar8;
@@ -371,7 +375,7 @@ uint64_t create_render_element_instance(uint64_t param_1,uint64_t param_2,uint64
       if (iVar6 + 1 < iVar12) {
         iVar11 = iVar12;
       }
-      FUN_18011dc70(piVar13,iVar11);
+      DataProcessingEngine0(piVar13,iVar11);
       iVar11 = *piVar13;
     }
   }
@@ -386,7 +390,7 @@ uint64_t create_render_element_instance(uint64_t param_1,uint64_t param_2,uint64
         if (iVar6 + 1 < iVar12) {
           iVar11 = iVar12;
         }
-        FUN_18011dc70(piVar13,iVar11);
+        DataProcessingEngine0(piVar13,iVar11);
         iVar6 = *piVar13;
       }
       if (0 < iVar6) {
@@ -398,7 +402,7 @@ uint64_t create_render_element_instance(uint64_t param_1,uint64_t param_2,uint64
       goto LAB_180128faf;
     }
     if (*(int *)(lVar3 + 0x1aa4) == 0) {
-      FUN_18011dc70(piVar13,8);
+      DataProcessingEngine0(piVar13,8);
       iVar11 = *piVar13;
     }
   }

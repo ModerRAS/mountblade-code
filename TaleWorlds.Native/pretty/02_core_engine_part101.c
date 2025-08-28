@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -136,7 +140,7 @@ void FUN_18011cf80(int64_t param_1,float *param_2,uint param_3,int32_t param_4)
     if (iVar5 + 1 < iVar4) {
       iVar2 = iVar4;
     }
-    FUN_18011dc70(piVar1,iVar2);
+    DataProcessingEngine0(piVar1,iVar2);
     iVar5 = *piVar1;
   }
   fVar10 = fVar10 + 1.0 + fVar8;
@@ -162,7 +166,7 @@ void FUN_18011cf80(int64_t param_1,float *param_2,uint param_3,int32_t param_4)
     if (iVar5 + 1 < iVar7) {
       iVar4 = iVar7;
     }
-    FUN_18011dc70(piVar1,iVar4);
+    DataProcessingEngine0(piVar1,iVar4);
     iVar5 = *piVar1;
   }
   *(uint64_t *)(*(int64_t *)(param_1 + 0x88) + (int64_t)iVar5 * 8) =
@@ -697,7 +701,7 @@ void FUN_18011d9a0(int *param_1,uint64_t *param_2)
     if (iVar3 + 1 < iVar2) {
       iVar1 = iVar2;
     }
-    FUN_18011dc70(param_1,iVar1);
+    DataProcessingEngine0(param_1,iVar1);
     iVar3 = *param_1;
   }
   *(uint64_t *)(*(int64_t *)(param_1 + 2) + (int64_t)iVar3 * 8) = *param_2;
@@ -967,8 +971,8 @@ void FUN_18011dc5d(void)
 
 
 
-// 函数: void FUN_18011dc70(int *param_1,int param_2)
-void FUN_18011dc70(int *param_1,int param_2)
+// 函数: void DataProcessingEngine0(int *param_1,int param_2)
+void DataProcessingEngine0(int *param_1,int param_2)
 
 {
   uint64_t uVar1;

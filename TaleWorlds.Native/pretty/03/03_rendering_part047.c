@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -375,7 +379,7 @@ void reset_rendering_context(int32_t *context)
     if (0 < resource_count) {
       cleanup_size = resource_count;
     }
-    FUN_18011dc70(context + 0x1c, cleanup_size);
+    DataProcessingEngine0(context + 0x1c, cleanup_size);
   }
   
   // 重置纹理上下文标志
@@ -388,7 +392,7 @@ void reset_rendering_context(int32_t *context)
     if (0 < resource_count) {
       allocation_size = resource_count;
     }
-    FUN_18011dc70(context + 0x20, allocation_size);
+    DataProcessingEngine0(context + 0x20, allocation_size);
   }
   
   // 重置材质上下文标志

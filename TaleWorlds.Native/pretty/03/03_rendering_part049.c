@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -118,7 +122,7 @@ void process_rendering_coordinate_transform(int64_t render_context, float *coord
   }
   else {
     piVar1 = (int *)(render_context + 0x80);
-    FUN_18011dc70(piVar1, end_index + 1 + (*piVar1 - start_index));
+    DataProcessingEngine0(piVar1, end_index + 1 + (*piVar1 - start_index));
     iVar8 = *piVar1;
     do {
       iVar6 = *(int *)(render_context + 0x84);
@@ -137,7 +141,7 @@ void process_rendering_coordinate_transform(int64_t render_context, float *coord
         if (iVar8 + 1 < iVar6) {
           iVar7 = iVar6;
         }
-        FUN_18011dc70(piVar1, iVar7);
+        DataProcessingEngine0(piVar1, iVar7);
         iVar8 = *piVar1;
       }
       start_index = start_index + 1;
@@ -176,7 +180,7 @@ void process_rendering_advanced_transform(int64_t param_1, int param_2, uint64_t
   float unaff_XMM6_Da;
   
   piVar1 = (int *)(param_1 + 0x80);
-  FUN_18011dc70(piVar1, param_2 + (*piVar1 - param_4));
+  DataProcessingEngine0(piVar1, param_2 + (*piVar1 - param_4));
   iVar8 = *piVar1;
   do {
     iVar6 = *(int *)(param_1 + 0x84);
@@ -195,7 +199,7 @@ void process_rendering_advanced_transform(int64_t param_1, int param_2, uint64_t
       if (iVar8 + 1 < iVar6) {
         iVar7 = iVar6;
       }
-      FUN_18011dc70(piVar1, iVar7);
+      DataProcessingEngine0(piVar1, iVar7);
       iVar8 = *piVar1;
     }
     unaff_EDI = unaff_EDI + 1;
@@ -236,7 +240,7 @@ void initialize_rendering_data_buffer(int64_t render_context, uint64_t param_2, 
     FUN_18011d9a0();
   }
   else {
-    FUN_18011dc70((int *)(render_context + 0x80), param_6 + 1 + *(int *)(render_context + 0x80));
+    DataProcessingEngine0((int *)(render_context + 0x80), param_6 + 1 + *(int *)(render_context + 0x80));
     if (-1 < param_6) {
                     // WARNING: Subroutine does not return
       AdvancedSystemController();
@@ -254,7 +258,7 @@ void process_rendering_data_buffer(void)
 {
   int in_stack_000000a8;
   
-  FUN_18011dc70();
+  DataProcessingEngine0();
   if (-1 < in_stack_000000a8) {
                     // WARNING: Subroutine does not return
     AdvancedSystemController();
@@ -356,7 +360,7 @@ void process_rendering_coordinate_interpolation(int64_t render_context, float *c
       if (iVar3 + 1 < iVar2) {
         iVar4 = iVar2;
       }
-      FUN_18011dc70(piVar5, iVar4);
+      DataProcessingEngine0(piVar5, iVar4);
       iVar3 = *piVar5;
     }
     *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)iVar3 * 8) =
@@ -375,7 +379,7 @@ void process_rendering_coordinate_interpolation(int64_t render_context, float *c
       if (iVar3 + 1 < iVar6) {
         iVar2 = iVar6;
       }
-      FUN_18011dc70(piVar5, iVar2);
+      DataProcessingEngine0(piVar5, iVar2);
       iVar3 = *piVar5;
     }
     *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)iVar3 * 8) =
@@ -499,7 +503,7 @@ void process_rendering_batch_data(void)
     if (iVar3 + 1 < iVar2) {
       iVar4 = iVar2;
     }
-    FUN_18011dc70(piVar5, iVar4);
+    DataProcessingEngine0(piVar5, iVar4);
     iVar3 = *piVar5;
   }
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x88) + (int64_t)iVar3 * 8) =
@@ -518,7 +522,7 @@ void process_rendering_batch_data(void)
     if (iVar3 + 1 < iVar6) {
       iVar2 = iVar6;
     }
-    FUN_18011dc70(piVar5, iVar2);
+    DataProcessingEngine0(piVar5, iVar2);
     iVar3 = *piVar5;
   }
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x88) + (int64_t)iVar3 * 8) =
@@ -561,7 +565,7 @@ void process_rendering_data_stream(void)
     if (iVar3 + 1 < iVar2) {
       iVar4 = iVar2;
     }
-    FUN_18011dc70(uVar1, iVar4);
+    DataProcessingEngine0(uVar1, iVar4);
     iVar3 = *unaff_RBX;
   }
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar3 * 8) =
@@ -580,7 +584,7 @@ void process_rendering_data_stream(void)
     if (iVar3 + 1 < iVar5) {
       iVar2 = iVar5;
     }
-    FUN_18011dc70(uVar1, iVar2);
+    DataProcessingEngine0(uVar1, iVar2);
     iVar3 = *unaff_RBX;
   }
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar3 * 8) =
@@ -637,7 +641,7 @@ void process_rendering_coordinate_offset(int64_t render_context, float *coord_st
       if (iVar6 + 1 < iVar5) {
         iVar4 = iVar5;
       }
-      FUN_18011dc70(piVar1, iVar4);
+      DataProcessingEngine0(piVar1, iVar4);
       iVar6 = *piVar1;
     }
     *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)iVar6 * 8) =
@@ -655,7 +659,7 @@ void process_rendering_coordinate_offset(int64_t render_context, float *coord_st
       if (iVar5 + 1 < iVar7) {
         iVar6 = iVar7;
       }
-      FUN_18011dc70(piVar1, iVar6);
+      DataProcessingEngine0(piVar1, iVar6);
       iVar5 = *piVar1;
     }
     *(uint64_t *)(*(int64_t *)(render_context + 0x88) + (int64_t)iVar5 * 8) =
@@ -720,7 +724,7 @@ void process_rendering_float_calculation(float param_1, int64_t param_2, float *
     if (iVar6 + 1 < iVar5) {
       iVar4 = iVar5;
     }
-    FUN_18011dc70(piVar1, iVar4);
+    DataProcessingEngine0(piVar1, iVar4);
     iVar6 = *piVar1;
   }
   *(uint64_t *)(*(int64_t *)(in_RCX + 0x88) + (int64_t)iVar6 * 8) = param_6;
@@ -737,7 +741,7 @@ void process_rendering_float_calculation(float param_1, int64_t param_2, float *
     if (iVar5 + 1 < iVar7) {
       iVar6 = iVar7;
     }
-    FUN_18011dc70(piVar1, iVar6);
+    DataProcessingEngine0(piVar1, iVar6);
     iVar5 = *piVar1;
   }
   *(uint64_t *)(*(int64_t *)(in_RCX + 0x88) + (int64_t)iVar5 * 8) =
@@ -795,7 +799,7 @@ void process_rendering_transform_calculation(float param_1, int64_t param_2)
     if (iVar2 + 1 < in_ECX) {
       iVar3 = in_ECX;
     }
-    FUN_18011dc70(fVar5, iVar3);
+    DataProcessingEngine0(fVar5, iVar3);
     iVar2 = *unaff_RBX;
   }
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar2 * 8) = in_stack_00000030;
@@ -812,7 +816,7 @@ void process_rendering_transform_calculation(float param_1, int64_t param_2)
     if (iVar2 + 1 < iVar4) {
       iVar3 = iVar4;
     }
-    FUN_18011dc70(fVar5 + 0.5, iVar3);
+    DataProcessingEngine0(fVar5 + 0.5, iVar3);
     iVar2 = *unaff_RBX;
   }
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar2 * 8) =
@@ -851,7 +855,7 @@ void process_rendering_array_operations(int32_t param_1, uint64_t param_2, int p
   if (in_EAX + 1 < unaff_EDI) {
     iVar1 = unaff_EDI;
   }
-  FUN_18011dc70(param_1, iVar1);
+  DataProcessingEngine0(param_1, iVar1);
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)*unaff_RBX * 8) = param_6;
   *unaff_RBX = *unaff_RBX + 1;
   FUN_1802923e0(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);

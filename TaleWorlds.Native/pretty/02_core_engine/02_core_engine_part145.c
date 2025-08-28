@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -645,7 +649,7 @@ void add_game_object_to_container(int32_t *container, int64_t obj_ptr, char flag
     if (iVar3 + 1 < iVar2) {
       iVar1 = iVar2;
     }
-    FUN_18011dc70(param_1 + 8,iVar1);
+    DataProcessingEngine0(param_1 + 8,iVar1);
     iVar3 = param_1[8];
   }
   *(int64_t *)(*(int64_t *)(param_1 + 10) + (int64_t)iVar3 * 8) = param_2;

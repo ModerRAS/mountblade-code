@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part049.c - 渲染系统高级图形处理模块 - 29 个函数
@@ -166,7 +170,7 @@ void RenderingSystem_AdvancedCoordinateTransform(int64_t render_context, int coo
   
   buffer_count_ptr = (int *)(render_context + 0x80);
   // 重新分配缓冲区以容纳新的坐标点
-  FUN_18011dc70(buffer_count_ptr, coordinate_count + (*buffer_count_ptr - start_index));
+  DataProcessingEngine0(buffer_count_ptr, coordinate_count + (*buffer_count_ptr - start_index));
   current_count = *buffer_count_ptr;
   
   // 使用寄存器变量进行坐标变换
@@ -190,7 +194,7 @@ void RenderingSystem_AdvancedCoordinateTransform(int64_t render_context, int coo
       if (current_count + 1 < buffer_capacity) {
         new_capacity = buffer_capacity;
       }
-      FUN_18011dc70(buffer_count_ptr, new_capacity);
+      DataProcessingEngine0(buffer_count_ptr, new_capacity);
       current_count = *buffer_count_ptr;
     }
     
@@ -231,7 +235,7 @@ void RenderingSystem_ScaleAndInitialize(int64_t render_context, uint64_t data_pt
   }
   else {
     // 重新分配缓冲区并初始化
-    FUN_18011dc70((int *)(render_context + 0x80), index_count + 1 + *(int *)(render_context + 0x80));
+    DataProcessingEngine0((int *)(render_context + 0x80), index_count + 1 + *(int *)(render_context + 0x80));
     if (-1 < index_count) {
       // 初始化渲染数据（此函数不返回）
       FUN_1808fd400();
@@ -250,7 +254,7 @@ void RenderingSystem_Initialize(void)
   int stack_index;
   
   // 分配渲染缓冲区
-  FUN_18011dc70();
+  DataProcessingEngine0();
   if (-1 < stack_index) {
     // 初始化渲染系统（此函数不返回）
     FUN_1808fd400();
@@ -363,7 +367,7 @@ void RenderingSystem_ProcessRectangleArea(int64_t render_context, float *start_c
       if (current_count + 1 < buffer_capacity) {
         new_capacity = buffer_capacity;
       }
-      FUN_18011dc70(buffer_count_ptr, new_capacity);
+      DataProcessingEngine0(buffer_count_ptr, new_capacity);
       current_count = *buffer_count_ptr;
     }
     
@@ -387,7 +391,7 @@ void RenderingSystem_ProcessRectangleArea(int64_t render_context, float *start_c
       if (current_count + 1 < default_capacity) {
         buffer_capacity = default_capacity;
       }
-      FUN_18011dc70(buffer_count_ptr, buffer_capacity);
+      DataProcessingEngine0(buffer_count_ptr, buffer_capacity);
       current_count = *buffer_count_ptr;
     }
     
@@ -527,7 +531,7 @@ void RenderingSystem_ProcessDualCoordinates(void)
     if (current_count + 1 < buffer_capacity) {
       new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(buffer_count_ptr, new_capacity);
+    DataProcessingEngine0(buffer_count_ptr, new_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -551,7 +555,7 @@ void RenderingSystem_ProcessDualCoordinates(void)
     if (current_count + 1 < default_capacity) {
       buffer_capacity = default_capacity;
     }
-    FUN_18011dc70(buffer_count_ptr, buffer_capacity);
+    DataProcessingEngine0(buffer_count_ptr, buffer_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -598,7 +602,7 @@ void RenderingSystem_ProcessDualCoordinates2(void)
     if (current_count + 1 < buffer_capacity) {
       new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(coord_x, new_capacity);
+    DataProcessingEngine0(coord_x, new_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -622,7 +626,7 @@ void RenderingSystem_ProcessDualCoordinates2(void)
     if (current_count + 1 < default_capacity) {
       buffer_capacity = default_capacity;
     }
-    FUN_18011dc70(coord_x, buffer_capacity);
+    DataProcessingEngine0(coord_x, buffer_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -681,7 +685,7 @@ void RenderingSystem_AlignTextureCoordinates(int64_t render_context, float *star
       if (current_count + 1 < buffer_capacity) {
         new_capacity = buffer_capacity;
       }
-      FUN_18011dc70(buffer_count_ptr, new_capacity);
+      DataProcessingEngine0(buffer_count_ptr, new_capacity);
       current_count = *buffer_count_ptr;
     }
     
@@ -704,7 +708,7 @@ void RenderingSystem_AlignTextureCoordinates(int64_t render_context, float *star
       if (buffer_capacity + 1 < default_capacity) {
         current_count = default_capacity;
       }
-      FUN_18011dc70(buffer_count_ptr, current_count);
+      DataProcessingEngine0(buffer_count_ptr, current_count);
       buffer_capacity = *buffer_count_ptr;
     }
     
@@ -775,7 +779,7 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, int64_t render_c
     if (current_count + 1 < buffer_capacity) {
       new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(buffer_count_ptr, new_capacity);
+    DataProcessingEngine0(buffer_count_ptr, new_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -797,7 +801,7 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, int64_t render_c
     if (buffer_capacity + 1 < default_capacity) {
       current_count = default_capacity;
     }
-    FUN_18011dc70(buffer_count_ptr, current_count);
+    DataProcessingEngine0(buffer_count_ptr, current_count);
     buffer_capacity = *buffer_count_ptr;
   }
   
@@ -863,7 +867,7 @@ void RenderingSystem_AlignCoordinates(float coord_x, int64_t render_context)
     if (current_count + 1 < buffer_capacity) {
       new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(aligned_coord, new_capacity);
+    DataProcessingEngine0(aligned_coord, new_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -885,7 +889,7 @@ void RenderingSystem_AlignCoordinates(float coord_x, int64_t render_context)
     if (current_count + 1 < default_capacity) {
       buffer_capacity = default_capacity;
     }
-    FUN_18011dc70(aligned_coord + 0.5, buffer_capacity);
+    DataProcessingEngine0(aligned_coord + 0.5, buffer_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -926,7 +930,7 @@ void RenderingSystem_ExpandBufferAndProcessData(int32_t buffer_ptr, uint64_t dat
   }
   
   // 扩展缓冲区
-  FUN_18011dc70(buffer_ptr, new_size);
+  DataProcessingEngine0(buffer_ptr, new_size);
   
   // 存储数据
   *(uint64_t *)(*(int64_t *)(buffer_count_ptr + 2) + (int64_t)*buffer_count_ptr * 8) = data_ptr4;

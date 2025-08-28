@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -121,7 +125,7 @@ void render_advanced_arc_calculation(uint64_t render_context, float param_2, flo
       if (iVar6 + 1 < iVar5) {
         iVar4 = iVar5;
       }
-      FUN_18011dc70(piVar1,iVar4);
+      DataProcessingEngine0(piVar1,iVar4);
       iVar6 = *piVar1;
     }
     lVar2 = *(int64_t *)(unaff_RDI + 0x88);
@@ -143,7 +147,7 @@ void render_advanced_arc_calculation(uint64_t render_context, float param_2, flo
       if (iVar6 + 1 < iVar5) {
         iVar4 = iVar5;
       }
-      FUN_18011dc70(piVar1,iVar4);
+      DataProcessingEngine0(piVar1,iVar4);
       iVar6 = *piVar1;
     }
     *(uint64_t *)(*(int64_t *)(unaff_RDI + 0x88) + (int64_t)iVar6 * 8) =
@@ -219,7 +223,7 @@ void render_advanced_arc_calculation(uint64_t render_context, float param_2, flo
         if (iVar6 + 1 < iVar5) {
           iVar4 = iVar5;
         }
-        fVar11 = (float)FUN_18011dc70(piVar1,iVar4);
+        fVar11 = (float)DataProcessingEngine0(piVar1,iVar4);
         iVar6 = *piVar1;
       }
       lVar2 = *(int64_t *)(unaff_RDI + 0x88);
@@ -238,7 +242,7 @@ void render_advanced_arc_calculation(uint64_t render_context, float param_2, flo
         if (iVar6 + 1 < iVar7) {
           iVar5 = iVar7;
         }
-        fVar11 = (float)FUN_18011dc70(piVar1,iVar5);
+        fVar11 = (float)DataProcessingEngine0(piVar1,iVar5);
         iVar6 = *piVar1;
       }
       *(uint64_t *)(*(int64_t *)(unaff_RDI + 0x88) + (int64_t)iVar6 * 8) =

@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -311,7 +315,7 @@ void process_render_params(render_context_t* context, uint64_t param2) {
     
     iVar8 = context->param_count;
     if (iVar8 == context->max_params) {
-        FUN_18011dc70(context + 0x1c);
+        DataProcessingEngine0(context + 0x1c);
         iVar8 = context->param_count;
     }
     *(uint64_t *)(*(int64_t *)(context + 0x1e) + (int64_t)iVar8 * 8) = param2;

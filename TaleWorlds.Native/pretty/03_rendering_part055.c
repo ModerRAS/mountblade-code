@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -730,7 +734,7 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
         if (iVar7 + 1 < iVar6) {
           iVar5 = iVar6;
         }
-        FUN_18011dc70(piVar1,iVar5);
+        DataProcessingEngine0(piVar1,iVar5);
         iVar7 = *piVar1;
       }
       *(uint64_t *)(*(int64_t *)(param_1 + 0x88) + (int64_t)iVar7 * 8) =
@@ -751,7 +755,7 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
         if (iVar7 + 1 < iVar6) {
           iVar5 = iVar6;
         }
-        FUN_18011dc70(piVar1,iVar5);
+        DataProcessingEngine0(piVar1,iVar5);
         iVar7 = *piVar1;
       }
       *(uint64_t *)(*(int64_t *)(param_1 + 0x88) + (int64_t)iVar7 * 8) =
@@ -820,7 +824,7 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
           if (iVar7 + 1 < iVar6) {
             iVar5 = iVar6;
           }
-          FUN_18011dc70(piVar1,iVar5);
+          DataProcessingEngine0(piVar1,iVar5);
           iVar7 = *piVar1;
         }
         *(uint64_t *)(*(int64_t *)(param_1 + 0x88) + (int64_t)iVar7 * 8) =
@@ -838,7 +842,7 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
           if (iVar7 + 1 < iVar8) {
             iVar6 = iVar8;
           }
-          FUN_18011dc70(piVar1,iVar6);
+          DataProcessingEngine0(piVar1,iVar6);
           iVar7 = *piVar1;
         }
         *(uint64_t *)(*(int64_t *)(param_1 + 0x88) + (int64_t)iVar7 * 8) =
