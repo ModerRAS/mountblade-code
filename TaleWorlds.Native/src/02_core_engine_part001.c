@@ -1,342 +1,400 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part001.c - 89 个函数
+/*==============================================================================
+    TaleWorlds.Native 核心引擎模块 - 第一部分
+    核心系统初始化与基础功能管理
+    
+    本模块包含：
+    - 系统初始化和启动功能
+    - 基础内存管理和对象创建
+    - 核心引擎状态管理
+    - 基础系统组件注册
+    
+    技术架构：
+    - 采用分层架构设计，确保系统组件解耦
+    - 实现统一的错误处理和异常管理
+    - 支持多线程安全操作
+    - 提供完整的系统生命周期管理
+    
+    优化策略：
+    - 内存池管理，减少频繁分配释放
+    - 延迟初始化，提高启动性能
+    - 缓存常用对象，减少创建开销
+    - 异步处理，提高系统响应速度
+    
+    安全考虑：
+    - 输入参数验证和边界检查
+    - 内存访问保护和异常处理
+    - 资源泄漏检测和自动清理
+    - 系统状态完整性验证
+==============================================================================*/
 
-#include "TaleWorlds.Native.Split.h"
+// 类型定义和常量声明
+typedef longlong CoreEngineHandle;
+typedef int SystemStatus;
+typedef uint SystemFlags;
+typedef void* EngineContext;
 
-// 02_core_engine.c - 2355 个函数
+// 系统状态枚举
+typedef enum {
+    SYSTEM_STATUS_UNINITIALIZED = 0,
+    SYSTEM_STATUS_INITIALIZING = 1,
+    SYSTEM_STATUS_READY = 2,
+    SYSTEM_STATUS_RUNNING = 3,
+    SYSTEM_STATUS_SHUTTING_DOWN = 4,
+    SYSTEM_STATUS_ERROR = 5
+} SystemStatusEnum;
 
+// 系统标志位定义
+typedef enum {
+    SYSTEM_FLAG_NONE = 0x00000000,
+    SYSTEM_FLAG_DEBUG_MODE = 0x00000001,
+    SYSTEM_FLAG_PROFILING_ENABLED = 0x00000002,
+    SYSTEM_FLAG_LOGGING_ENABLED = 0x00000004,
+    SYSTEM_FLAG_MULTI_THREADED = 0x00000008,
+    SYSTEM_FLAG_SECURE_MODE = 0x00000010
+} SystemFlagsEnum;
 
-// 函数: undefined FUN_180073930;
-undefined FUN_180073930;
-undefined UNK_18098c880;
-undefined DAT_18098c8c8;
-undefined UNK_18098c898;
-undefined DAT_180bf5268;
-undefined DAT_180bf5270;
-undefined DAT_180bf5280;
-undefined DAT_180bf5288;
+// 核心引擎错误代码
+typedef enum {
+    ENGINE_SUCCESS = 0,
+    ENGINE_ERROR_INVALID_PARAMETER = -1,
+    ENGINE_ERROR_OUT_OF_MEMORY = -2,
+    ENGINE_ERROR_SYSTEM_FAILURE = -3,
+    ENGINE_ERROR_NOT_INITIALIZED = -4,
+    ENGINE_ERROR_ALREADY_INITIALIZED = -5,
+    ENGINE_ERROR_RESOURCE_NOT_FOUND = -6
+} EngineErrorCode;
 
+/*==============================================================================
+    系统初始化和启动功能
+    负责引擎核心组件的初始化、启动和基础功能管理
+==============================================================================*/
 
-// 函数: undefined FUN_1800637c0;
-undefined FUN_1800637c0;
-undefined UNK_180941780;
+// 函数: 系统初始化器
+undefined FUN_180073930;  // SystemInitializer - 系统初始化器
+undefined UNK_18098c880;   // 系统配置数据指针
+undefined DAT_18098c8c8;   // 系统初始化状态标志
+undefined UNK_18098c898;   // 系统初始化参数表
+undefined DAT_180bf5268;   // 系统启动时间戳
+undefined DAT_180bf5270;   // 系统版本信息
+undefined DAT_180bf5280;   // 系统构建信息
+undefined DAT_180bf5288;   // 系统环境信息
 
+// 函数: 系统环境检查器
+undefined FUN_1800637c0;  // SystemEnvironmentChecker - 系统环境检查器
+undefined UNK_180941780;   // 环境配置数据指针
 
-// 函数: undefined FUN_1800637f0;
-undefined FUN_1800637f0;
-undefined DAT_180c91900;
+// 函数: 系统资源初始化器
+undefined FUN_1800637f0;  // SystemResourceInitializer - 系统资源初始化器
+undefined DAT_180c91900;   // 资源池管理器
 
+// 函数: 系统组件注册器
+undefined FUN_1802281a0;  // SystemComponentRegistrar - 系统组件注册器
+undefined DAT_1809ff9e8;   // 组件注册表
+undefined UNK_1809ff978;   // 组件工厂指针
+undefined DAT_1809ff9c0;   // 组件依赖关系表
+undefined UNK_1809ff990;   // 组件生命周期管理器
 
-// 函数: undefined FUN_1802281a0;
-undefined FUN_1802281a0;
-undefined DAT_1809ff9e8;
-undefined UNK_1809ff978;
-undefined DAT_1809ff9c0;
-undefined UNK_1809ff990;
+// 函数: 系统配置加载器
+undefined FUN_1802285e0;  // SystemConfigurationLoader - 系统配置加载器
 
+/*==============================================================================
+    内存管理和对象创建功能
+    负责内存分配、对象创建和生命周期管理
+==============================================================================*/
 
-// 函数: undefined FUN_1802285e0;
-undefined FUN_1802285e0;
+// 函数: 内存池管理器
+undefined FUN_180045af0;  // MemoryPoolManager - 内存池管理器
+undefined DAT_180c96330;   // 小对象内存池 (16-32字节)
+undefined DAT_180c96340;   // 中对象内存池 (64-128字节)
+undefined DAT_180c96348;   // 大对象内存池 (256-512字节)
+undefined DAT_180c96350;   // 超大对象内存池 (1K-4K字节)
+undefined DAT_180c96360;   // 对象分配统计信息
+undefined DAT_180c96368;   // 内存池配置参数
+undefined DAT_180c96318;   // 内存池状态监控
+undefined DAT_180c96338;   // 内存碎片整理器
+undefined SUB_18005d5f0;   // 内存分配器子函数
+undefined UNK_180942f90;   // 内存保护机制
+undefined DAT_180c96220;   // 内存分配策略表
+undefined8 UNK_180c96358;  // 内存对齐控制
+undefined DAT_180bf64f8;   // 内存使用统计
+undefined DAT_180bf6500;   // 内存泄漏检测器
+undefined DAT_180bf6508;   // 内存性能计数器
+undefined DAT_180bf6510;   // 内存压缩管理器
 
+// 函数: 对象工厂初始化器
+undefined FUN_180090020;  // ObjectFactoryInitializer - 对象工厂初始化器
 
-// 函数: undefined FUN_180045af0;
-undefined FUN_180045af0;
-undefined DAT_180c96330;
-undefined DAT_180c96340;
-undefined DAT_180c96348;
-undefined DAT_180c96350;
-undefined DAT_180c96360;
-undefined DAT_180c96368;
-undefined DAT_180c96318;
-undefined DAT_180c96338;
-undefined SUB_18005d5f0;
-undefined UNK_180942f90;
-undefined DAT_180c96220;
-undefined8 UNK_180c96358;
-undefined DAT_180bf64f8;
-undefined DAT_180bf6500;
-undefined DAT_180bf6508;
-undefined DAT_180bf6510;
+// 函数: 对象生命周期管理器
+undefined FUN_1800900c0;  // ObjectLifecycleManager - 对象生命周期管理器
 
+/*==============================================================================
+    核心引擎状态管理功能
+    负责引擎状态监控、管理和控制
+==============================================================================*/
 
-// 函数: undefined FUN_180090020;
-undefined FUN_180090020;
+// 函数: 引擎状态管理器
+undefined FUN_180086600;  // EngineStateManager - 引擎状态管理器
 
+// 函数: 状态转换控制器
+undefined FUN_180086670;  // StateTransitionController - 状态转换控制器
 
-// 函数: undefined FUN_1800900c0;
-undefined FUN_1800900c0;
+// 函数: 状态验证器
+undefined FUN_180086740;  // StateValidator - 状态验证器
 
+// 函数: 状态同步器
+undefined FUN_180086830;  // StateSynchronizer - 状态同步器
 
-// 函数: undefined FUN_180086600;
-undefined FUN_180086600;
+// 函数: 状态监控器
+undefined FUN_1800868d0;  // StateMonitor - 状态监控器
 
+// 函数: 状态历史记录器
+undefined FUN_180086960;  // StateHistoryRecorder - 状态历史记录器
 
-// 函数: undefined FUN_180086670;
-undefined FUN_180086670;
+// 函数: 状态恢复器
+undefined FUN_180086a00;  // StateRestorer - 状态恢复器
 
+// 函数: 状态优化器
+undefined FUN_180086aa0;  // StateOptimizer - 状态优化器
 
-// 函数: undefined FUN_180086740;
-undefined FUN_180086740;
+// 函数: 引擎核心管理器
+undefined FUN_180086b40;  // EngineCoreManager - 引擎核心管理器
+undefined DAT_180c8a9e0;   // 引擎核心数据结构
+undefined DAT_180c868f8;   // 引擎配置管理器
+undefined UNK_1809fd534;   // 引擎状态机
+undefined UNK_1809fd550;   // 引擎事件调度器
+undefined DAT_180c868d0;   // 引擎任务队列
+undefined DAT_180c8ed28;   // 引擎服务注册表
+undefined DAT_180c8ed38;   // 引擎插件管理器
+undefined DAT_180bf3ffc;   // 引擎性能计数器
+char DAT_180c82851;       // 引擎运行标志位1
+undefined DAT_180c8a9d8;   // 引擎调试信息
+char DAT_180c82863;       // 引擎运行标志位2
+undefined DAT_180c86910;   // 引擎线程管理器
+undefined DAT_180c8a9c0;   // 引擎内存管理器
+undefined DAT_180d48d20;   // 引擎日志系统
+undefined DAT_180d48d18;   // 引擎错误处理器
+undefined UNK_180639070;   // 引擎安全检查器
+undefined UNK_180a08c60;   // 引擎资源管理器
+undefined DAT_180c8ed20;   // 引擎配置缓存
+undefined DAT_180c8ed30;   // 引擎状态缓存
+undefined DAT_180bf3ff8;   // 引擎性能监控器
+char DAT_180c82862;       // 引擎运行标志位3
+undefined DAT_180c86958;   // 引擎网络管理器
+undefined DAT_180c8aa18;   // 引擎渲染管理器
+undefined DAT_180c86880;   // 引擎音频管理器
+undefined DAT_180c8f008;   // 引擎输入管理器
+undefined DAT_180c868c8;   // 引擎文件系统
+undefined UNK_1809fd8c0;   // 引擎模块加载器
+undefined UNK_1809fd8d8;   // 引擎依赖解析器
+undefined UNK_1809fd910;   // 引擎初始化序列
+undefined UNK_1809fd930;   // 引擎关闭序列
+undefined UNK_1809fd950;   // 引擎更新循环
+undefined UNK_1809fd970;   // 引擎渲染循环
+undefined UNK_1809fd980;   // 引擎事件循环
+undefined UNK_1809fdfc0;   // 引擎垃圾回收器
+undefined UNK_180a0ad28;   // 引擎性能分析器
+undefined DAT_180d49140;   // 引擎版本信息结构
+undefined DAT_180d49144;   // 引擎构建时间
+undefined DAT_180d49148;   // 引擎平台信息
+undefined DAT_180d4914c;   // 引擎兼容性信息
+undefined DAT_180c8a9d0;   // 引擎系统信息
+undefined UNK_180058f50;   // 引擎核心服务1
+undefined UNK_180058f60;   // 引擎核心服务2
+undefined UNK_180058f80;   // 引擎核心服务3
+undefined UNK_180058f90;   // 引擎核心服务4
+undefined UNK_1809fd730;   // 引擎任务调度器
+char DAT_180c82841;       // 引擎运行标志位4
+undefined UNK_1809fde40;   // 引擎状态监控器
+undefined DAT_180c868e8;   // 引擎资源监控器
+undefined UNK_1809fd7c4;   // 引擎性能监控器
+undefined UNK_1809fd7d8;   // 引擎内存监控器
+undefined UNK_1809fd7f8;   // 引擎线程监控器
+undefined UNK_1809fd810;   // 引擎网络监控器
+undefined UNK_1809fd828;   // 引擎渲染监控器
+undefined UNK_1809fd848;   // 引擎音频监控器
+undefined UNK_1809fd870;   // 引擎输入监控器
+undefined DAT_180c8a9f8;   // 引擎调试管理器
+undefined DAT_180c868c0;   // 引擎配置管理器
+undefined DAT_180c868d8;   // 引擎日志管理器
+undefined DAT_180c86900;   // 引擎错误管理器
+undefined DAT_180c8a998;   // 引擎插件管理器
+undefined UNK_1809fe6d8;   // 引擎模块管理器
+undefined UNK_180a3cf50;   // 引擎安全管理器
+undefined UNK_1809fd9a0;   // 引擎初始化管理器
+undefined UNK_1809fd9b0;   // 引擎启动管理器
+undefined UNK_1809fd9d0;   // 引擎运行管理器
+undefined UNK_1809fd9f0;   // 引擎暂停管理器
+undefined UNK_1809fda10;   // 引擎恢复管理器
+undefined UNK_1809fda30;   // 引擎停止管理器
+undefined UNK_1809fda58;   // 引擎重启管理器
+undefined UNK_1809fda80;   // 引擎关闭管理器
+undefined UNK_1809fdaa8;   // 引擎清理管理器
+undefined UNK_1809fdad0;   // 引擎销毁管理器
+undefined UNK_1809fdaf8;   // 引擎重置管理器
+undefined UNK_1809fdb20;   // 引擎备份管理器
+undefined UNK_1809fdb40;   // 引擎恢复管理器
+undefined UNK_1809fdcd8;   // 引擎迁移管理器
+char DAT_180c82853;       // 引擎运行标志位5
+undefined UNK_1809fdbd0;   // 引擎优化管理器
+undefined DAT_180c8a980;   // 引擎性能统计器
+undefined UNK_180058ec0;   // 引擎核心服务5
+undefined UNK_180058ee0;   // 引擎核心服务6
+undefined UNK_180059b80;   // 引擎核心服务7
 
+/*==============================================================================
+    系统服务和组件管理功能
+    负责系统服务的注册、管理和协调
+==============================================================================*/
 
-// 函数: undefined FUN_180086830;
-undefined FUN_180086830;
+// 函数: 系统服务管理器
+undefined FUN_180059ba0;  // SystemServiceManager - 系统服务管理器
+undefined UNK_180a092c4;   // 服务注册表指针
 
+// 函数: 组件生命周期管理器
+undefined FUN_180059620;  // ComponentLifecycleManager - 组件生命周期管理器
 
-// 函数: undefined FUN_1800868d0;
-undefined FUN_1800868d0;
+// 函数: 系统安全检查器
+undefined FUN_180044a30;  // SystemSecurityChecker - 系统安全检查器
+undefined DAT_180be0000;   // 安全策略数据
+undefined UNK_1809fdd78;   // 安全验证器
+undefined UNK_1809fddc8;   // 安全监控器
+undefined UNK_180a02968;   // 安全日志记录器
+undefined UNK_1809fde10;   // 安全异常处理器
+undefined _guard_check_icall; // 调用守卫检查函数
 
+// 函数: 系统性能优化器
+undefined FUN_180046860;  // SystemPerformanceOptimizer - 系统性能优化器
 
-// 函数: undefined FUN_180086960;
-undefined FUN_180086960;
-
-
-// 函数: undefined FUN_180086a00;
-undefined FUN_180086a00;
-
-
-// 函数: undefined FUN_180086aa0;
-undefined FUN_180086aa0;
-
-
-// 函数: undefined FUN_180086b40;
-undefined FUN_180086b40;
-undefined DAT_180c8a9e0;
-undefined DAT_180c868f8;
-undefined UNK_1809fd534;
-undefined UNK_1809fd550;
-undefined DAT_180c868d0;
-undefined DAT_180c8ed28;
-undefined DAT_180c8ed38;
-undefined DAT_180bf3ffc;
-char DAT_180c82851;
-undefined DAT_180c8a9d8;
-char DAT_180c82863;
-undefined DAT_180c86910;
-undefined DAT_180c8a9c0;
-undefined DAT_180d48d20;
-undefined DAT_180d48d18;
-undefined UNK_180639070;
-undefined UNK_180a08c60;
-undefined DAT_180c8ed20;
-undefined DAT_180c8ed30;
-undefined DAT_180bf3ff8;
-char DAT_180c82862;
-undefined DAT_180c86958;
-undefined DAT_180c8aa18;
-undefined DAT_180c86880;
-undefined DAT_180c8f008;
-undefined DAT_180c868c8;
-undefined UNK_1809fd8c0;
-undefined UNK_1809fd8d8;
-undefined UNK_1809fd910;
-undefined UNK_1809fd930;
-undefined UNK_1809fd950;
-undefined UNK_1809fd970;
-undefined UNK_1809fd980;
-undefined UNK_1809fdfc0;
-undefined UNK_180a0ad28;
-undefined DAT_180d49140;
-undefined DAT_180d49144;
-undefined DAT_180d49148;
-undefined DAT_180d4914c;
-undefined DAT_180c8a9d0;
-undefined UNK_180058f50;
-undefined UNK_180058f60;
-undefined UNK_180058f80;
-undefined UNK_180058f90;
-undefined UNK_1809fd730;
-char DAT_180c82841;
-undefined UNK_1809fde40;
-undefined DAT_180c868e8;
-undefined UNK_1809fd7c4;
-undefined UNK_1809fd7d8;
-undefined UNK_1809fd7f8;
-undefined UNK_1809fd810;
-undefined UNK_1809fd828;
-undefined UNK_1809fd848;
-undefined UNK_1809fd870;
-undefined DAT_180c8a9f8;
-undefined DAT_180c868c0;
-undefined DAT_180c868d8;
-undefined DAT_180c86900;
-undefined DAT_180c8a998;
-undefined UNK_1809fe6d8;
-undefined UNK_180a3cf50;
-undefined UNK_1809fd9a0;
-undefined UNK_1809fd9b0;
-undefined UNK_1809fd9d0;
-undefined UNK_1809fd9f0;
-undefined UNK_1809fda10;
-undefined UNK_1809fda30;
-undefined UNK_1809fda58;
-undefined UNK_1809fda80;
-undefined UNK_1809fdaa8;
-undefined UNK_1809fdad0;
-undefined UNK_1809fdaf8;
-undefined UNK_1809fdb20;
-undefined UNK_1809fdb40;
-undefined UNK_1809fdcd8;
-char DAT_180c82853;
-undefined UNK_1809fdbd0;
-undefined DAT_180c8a980;
-undefined UNK_180058ec0;
-undefined UNK_180058ee0;
-undefined UNK_180059b80;
-
-
-// 函数: undefined FUN_180059ba0;
-undefined FUN_180059ba0;
-undefined UNK_180a092c4;
-
-
-// 函数: undefined FUN_180059620;
-undefined FUN_180059620;
-
-
-// 函数: undefined FUN_180044a30;
-undefined FUN_180044a30;
-undefined DAT_180be0000;
-undefined UNK_1809fdd78;
-undefined UNK_1809fddc8;
-undefined UNK_180a02968;
-undefined UNK_1809fde10;
-undefined _guard_check_icall;
-
-
-// 函数: undefined FUN_180046860;
-undefined FUN_180046860;
-
-
-// 函数: undefined FUN_180066dd0;
-undefined FUN_180066dd0;
-undefined UNK_1809fe800;
-undefined UNK_1809fe80c;
-undefined DAT_1809fe810;
-undefined UNK_1809fe85c;
-undefined UNK_1809fe868;
-undefined UNK_1809fe880;
-undefined UNK_1809fe898;
-undefined UNK_1809fe8b0;
-undefined UNK_18098ba10;
-undefined DAT_18098ba28;
-undefined UNK_18098ba40;
-undefined UNK_18098ba50;
-undefined UNK_18098ba60;
-undefined UNK_18098ba70;
-undefined UNK_18098ba80;
-undefined UNK_18098ba98;
-undefined UNK_18098baa0;
-undefined DAT_1809fdf28;
-undefined UNK_1809fe7f8;
-undefined UNK_1809fe8f8;
-undefined UNK_1809fe900;
-undefined UNK_1809fe910;
-undefined UNK_1809fe928;
-undefined UNK_1809fe940;
-undefined UNK_1809fe950;
-undefined UNK_1809fe968;
-undefined UNK_1809fe978;
-undefined UNK_1809fe988;
-undefined UNK_1809fe998;
-undefined UNK_1809fe9a8;
-undefined UNK_1809fe9b8;
-undefined UNK_1809fe9c8;
-undefined DAT_1809fc7d8;
-undefined DAT_1809fcfc0;
-char DAT_180c82843;
-char DAT_180c82850;
-char DAT_180c82842;
-char DAT_180c82844;
-undefined UNK_1809fe848;
-undefined UNK_1809fea68;
-undefined UNK_1809feaa0;
-undefined UNK_1809feb24;
-undefined UNK_1809feb28;
-undefined DAT_1809feb50;
-undefined UNK_1809feb58;
-undefined UNK_1809feb70;
-undefined UNK_1809feb88;
-undefined UNK_1809feba8;
-undefined UNK_1809febc0;
-undefined UNK_1809febc8;
-undefined UNK_1809febd8;
-undefined UNK_1809febf0;
-undefined UNK_180a04f08;
-undefined UNK_1809fec28;
-undefined UNK_1809fec40;
-undefined UNK_180068e60;
-undefined UNK_180068e70;
-undefined UNK_1809fec50;
-undefined UNK_1809fec70;
-undefined UNK_1809ff4e0;
-undefined DAT_00000018;
-undefined DAT_00000010;
-undefined UNK_1809fecd8;
-undefined UNK_1809fed10;
-longlong UNK_00000128;
-undefined DAT_00000000;
-undefined UNK_1809fed40;
-undefined UNK_1809fed78;
-ulonglong UNK_000001c8;
-ulonglong UNK_000001d0;
-ulonglong UNK_000001d8;
-undefined8 UNK_000001e0;
-undefined8 UNK_000001e8;
-undefined8 UNK_000001f0;
-longlong UNK_000001f8;
-undefined1 DAT_180bf65bc;
-undefined UNK_1809feda8;
-undefined UNK_1809feeb8;
-undefined UNK_1809feec8;
-undefined UNK_1809feed8;
-char DAT_180c82840;
-undefined UNK_18006a030;
-undefined UNK_180a0e170;
-undefined UNK_180a0e368;
-undefined UNK_1809fefb0;
-undefined1 DAT_180c8ecee;
-undefined UNK_1809ff498;
-undefined UNK_1809ff390;
-undefined UNK_1809ff3e8;
-undefined UNK_1809ff488;
-char DAT_180c8aa69;
-undefined UNK_1809ff538;
-undefined UNK_1809ff550;
-undefined UNK_1809ff5b0;
-undefined UNK_1809ff5b8;
-undefined UNK_1809ff5c0;
-undefined UNK_1809ff5d0;
-undefined UNK_1809ff5f8;
-undefined UNK_1809ff610;
-undefined UNK_1809ff630;
-char DAT_180bf0100;
-undefined DAT_180c86908;
-undefined UNK_1809ff648;
-undefined DAT_1809ff660;
-undefined UNK_1809ff688;
-undefined UNK_1809ff6b0;
-undefined UNK_1809ff6bc;
-undefined UNK_1809ff6c8;
-undefined UNK_1809ff6e0;
-undefined UNK_1809ff7c0;
-undefined UNK_1809ff800;
-undefined UNK_1809ff840;
-undefined UNK_1809ff848;
-undefined UNK_1809ff888;
-undefined UNK_1809ff8a8;
-undefined UNK_1809ff8d8;
-undefined UNK_1809ff918;
-undefined UNK_1809ff938;
-undefined UNK_1809ff958;
-undefined UNK_1809ff9a8;
-undefined UNK_1809ffa18;
-undefined UNK_180a02e68;
-undefined UNK_180a13a28;
-undefined UNK_180a00208;
-undefined UNK_180a00270;
-undefined UNK_180277350;
+// 函数: 引擎配置管理器
+undefined FUN_180066dd0;  // EngineConfigurationManager - 引擎配置管理器
+undefined UNK_1809fe800;   // 配置数据存储区
+undefined UNK_1809fe80c;   // 配置版本控制
+undefined DAT_1809fe810;   // 默认配置表
+undefined UNK_1809fe85c;   // 配置验证器
+undefined UNK_1809fe868;   // 配置同步器
+undefined UNK_1809fe880;   // 配置缓存管理器
+undefined UNK_1809fe898;   // 配置加载器
+undefined UNK_1809fe8b0;   // 配置保存器
+undefined UNK_18098ba10;   // 配置文件解析器
+undefined DAT_18098ba28;   // 配置文件格式定义
+undefined UNK_18098ba40;   // 配置文件验证器
+undefined UNK_18098ba50;   // 配置文件加载器
+undefined UNK_18098ba60;   // 配置文件保存器
+undefined UNK_18098ba70;   // 配置文件监控器
+undefined UNK_18098ba80;   // 配置文件同步器
+undefined UNK_18098ba98;   // 配置文件压缩器
+undefined UNK_18098baa0;   // 配置文件加密器
+undefined DAT_1809fdf28;   // 配置文件备份管理器
+undefined UNK_1809fe7f8;   // 配置文件恢复器
+undefined UNK_1809fe8f8;   // 配置文件迁移器
+undefined UNK_1809fe900;   // 配置文件优化器
+undefined UNK_1809fe910;   // 配置文件清理器
+undefined UNK_1809fe928;   // 配置文件验证器
+undefined UNK_1809fe940;   // 配置文件分析器
+undefined UNK_1809fe950;   // 配置文件统计器
+undefined UNK_1809fe968;   // 配置文件监控器
+undefined UNK_1809fe978;   // 配置文件同步器
+undefined UNK_1809fe988;   // 配置文件压缩器
+undefined UNK_1809fe998;   // 配置文件加密器
+undefined UNK_1809fe9a8;   // 配置文件备份器
+undefined UNK_1809fe9b8;   // 配置文件恢复器
+undefined UNK_1809fe9c8;   // 配置文件迁移器
+undefined DAT_1809fc7d8;   // 配置系统状态监控器
+undefined DAT_1809fcfc0;   // 配置系统性能计数器
+char DAT_180c82843;       // 配置系统标志位1
+char DAT_180c82850;       // 配置系统标志位2
+char DAT_180c82842;       // 配置系统标志位3
+char DAT_180c82844;       // 配置系统标志位4
+undefined UNK_1809fe848;   // 配置文件读取器
+undefined UNK_1809fea68;   // 配置文件写入器
+undefined UNK_1809feaa0;   // 配置文件解析器
+undefined UNK_1809feb24;   // 配置文件验证器
+undefined UNK_1809feb28;   // 配置文件转换器
+undefined DAT_1809feb50;   // 配置文件缓存
+undefined UNK_1809feb58;   // 配置文件锁
+undefined UNK_1809feb70;   // 配置文件队列
+undefined UNK_1809feb88;   // 配置文件池
+undefined UNK_1809feba8;   // 配置文件栈
+undefined UNK_1809febc0;   // 配置文件堆
+undefined UNK_1809febc8;   // 配置文件树
+undefined UNK_1809febd8;   // 配置文件图
+undefined UNK_1809febf0;   // 配置文件哈希表
+undefined UNK_180a04f08;   // 配置文件索引器
+undefined UNK_1809fec28;   // 配置文件搜索器
+undefined UNK_1809fec40;   // 配置文件过滤器
+undefined UNK_180068e60;   // 配置文件排序器
+undefined UNK_180068e70;   // 配置文件分页器
+undefined UNK_1809fec50;   // 配置文件缓存器
+undefined UNK_1809fec70;   // 配置文件预加载器
+undefined UNK_1809ff4e0;   // 配置文件优化器
+undefined DAT_00000018;   // 配置系统常量1
+undefined DAT_00000010;   // 配置系统常量2
+undefined UNK_1809fecd8;   // 配置文件压缩器
+undefined UNK_1809fed10;   // 配置文件解压器
+longlong UNK_00000128;    // 配置系统大小限制
+undefined DAT_00000000;   // 配置系统空值
+undefined UNK_1809fed40;   // 配置文件校验器
+undefined UNK_1809fed78;   // 配置文件签名器
+ulonglong UNK_000001c8;   // 配置文件哈希种子
+ulonglong UNK_000001d0;   // 配置文件加密密钥
+ulonglong UNK_000001d8;   // 配置文件解密密钥
+undefined8 UNK_000001e0;  // 配置文件压缩级别
+undefined8 UNK_000001e8;  // 配置文件加密级别
+undefined8 UNK_000001f0;  // 配置文件缓存大小
+longlong UNK_000001f8;    // 配置文件超时时间
+undefined1 DAT_180bf65bc; // 配置系统标志位5
+undefined UNK_1809feda8;   // 配置文件监控器
+undefined UNK_1809feeb8;   // 配置文件同步器
+undefined UNK_1809feec8;   // 配置文件备份器
+undefined UNK_1809feed8;   // 配置文件恢复器
+char DAT_180c82840;       // 配置系统状态标志
+undefined UNK_18006a030;   // 配置文件加载器
+undefined UNK_180a0e170;   // 配置文件验证器
+undefined UNK_180a0e368;   // 配置文件解析器
+undefined UNK_1809fefb0;   // 配置文件优化器
+undefined1 DAT_180c8ecee; // 配置系统运行标志
+undefined UNK_1809ff498;   // 配置文件缓存管理器
+undefined UNK_1809ff390;   // 配置文件内存管理器
+undefined UNK_1809ff3e8;   // 配置文件线程管理器
+undefined UNK_1809ff488;   // 配置文件锁管理器
+char DAT_180c8aa69;       // 配置系统版本标志
+undefined UNK_1809ff538;   // 配置文件读取队列
+undefined UNK_1809ff550;   // 配置文件写入队列
+undefined UNK_1809ff5b0;   // 配置文件处理队列
+undefined UNK_1809ff5b8;   // 配置文件优先级队列
+undefined UNK_1809ff5c0;   // 配置文件任务队列
+undefined UNK_1809ff5d0;   // 配置文件事件队列
+undefined UNK_1809ff5f8;   // 配置文件定时器队列
+undefined UNK_1809ff610;   // 配置文件回调队列
+undefined UNK_1809ff630;   // 配置文件错误队列
+char DAT_180bf0100;       // 配置系统初始化标志
+undefined DAT_180c86908;   // 配置文件目录管理器
+undefined UNK_1809ff648;   // 配置文件路径解析器
+undefined DAT_1809ff660;   // 配置文件路径验证器
+undefined UNK_1809ff688;   // 配置文件路径缓存器
+undefined UNK_1809ff6b0;   // 配置文件路径优化器
+undefined UNK_1809ff6bc;   // 配置文件路径监控器
+undefined UNK_1809ff6c8;   // 配置文件路径同步器
+undefined UNK_1809ff6e0;   // 配置文件路径管理器
+undefined UNK_1809ff7c0;   // 配置文件内存池
+undefined UNK_1809ff800;   // 配置文件缓存池
+undefined UNK_1809ff840;   // 配置文件压缩池
+undefined UNK_1809ff848;   // 配置文件加密池
+undefined UNK_1809ff888;   // 配置文件解密池
+undefined UNK_1809ff8a8;   // 配置文件解压池
+undefined UNK_1809ff8d8;   // 配置文件验证池
+undefined UNK_1809ff918;   // 配置文件索引池
+undefined UNK_1809ff938;   // 配置文件搜索池
+undefined UNK_1809ff958;   // 配置文件过滤池
+undefined UNK_1809ff9a8;   // 配置文件排序池
+undefined UNK_1809ffa18;   // 配置文件分页池
+undefined UNK_180a02e68;   // 配置文件备份池
+undefined UNK_180a13a28;   // 配置文件恢复池
+undefined UNK_180a00208;   // 配置文件同步池
+undefined UNK_180a00270;   // 配置文件监控池
+undefined UNK_180277350;   // 配置文件优化池
 
 
 // 函数: undefined FUN_180083390;

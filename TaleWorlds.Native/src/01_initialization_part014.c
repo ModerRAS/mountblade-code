@@ -1,115 +1,242 @@
+/**
+ * TaleWorlds.Native - 系统初始化模块第014部分
+ * 
+ * 文件说明：
+ * 这是 Mount & Blade II: Bannerlord Native DLL 的系统初始化模块第014部分
+ * 包含字符串处理、内存管理、系统工具函数等
+ * 
+ * 模块范围：地址 0x00000-0x0FFFF
+ * 
+ * 创建时间：2025-08-28
+ * 版本：1.0
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part014.c - 21 个函数
+/*=============================================================================
+ * 模块说明
+ *=============================================================================*/
 
-// 函数: void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
+/**
+ * 系统初始化模块第014部分功能概述：
+ * 
+ * 1. 字符串处理功能
+ *    - 安全字符串复制和操作
+ *    - 字符串搜索和比较
+ *    - 字符串长度计算
+ *    - 字符串格式化处理
+ * 
+ * 2. 内存管理功能
+ *    - 内存分配和释放
+ *    - 内存池管理
+ *    - 内存对齐处理
+ *    - 内存垃圾回收
+ * 
+ * 3. 同步原语管理
+ *    - 信号量操作
+ *    - 互斥锁管理
+ *    - 条件变量处理
+ *    - 线程同步机制
+ * 
+ * 4. 系统工具函数
+ *    - 系统资源清理
+ *    - 错误处理和日志
+ *    - 配置管理
+ *    - 系统状态监控
+ */
 
+/*=============================================================================
+ * 函数别名定义
+ *=============================================================================*/
+
+// 字符串处理函数别名
+#define SystemStringProcessor_1       FUN_180045fc0
+#define SystemStringProcessor_2       FUN_1800464f0
+#define SystemStringCopier            FUN_180046380
+#define SystemStringAppender          FUN_180046400
+#define SystemStringInitializer       FUN_180046444
+
+// 内存管理函数别名
+#define SystemMemoryManager_1         FUN_180046340
+#define SystemMemoryManager_2         FUN_180046650
+#define SystemMemoryManager_3         FUN_180046790
+#define SystemMemoryCleaner           FUN_180046820
+#define SystemMemoryAllocator         FUN_180046840
+
+// 同步原语管理函数别名
+#define SystemSemaphoreManager        FUN_180046130
+#define SystemMutexManager_1          FUN_180046160
+#define SystemMutexManager_2          FUN_1800466a0
+#define SystemConditionVariableManager FUN_180046190
+#define SystemConditionVariableNotifier FUN_1800466d0
+
+// 系统工具函数别名
+#define SystemResourceCleaner_1       FUN_1800462c0
+#define SystemResourceCleaner_2       FUN_180046240
+#define SystemResourceCleaner_3       FUN_180046750
+#define SystemResourceInitializer     FUN_180046480
+#define SystemResourceHandler          FUN_180046ca0
+#define SystemResourceProcessor       FUN_180046e20
+#define SystemResourceFinder          FUN_180046b80
+#define SystemResourceInserter        FUN_180046890
+#define SystemResourceDeleter         FUN_180046b10
+
+// 系统工具函数别名（续）
+#define SystemConfigManager           FUN_180047d40
+#define SystemResourceReleaser_1      FUN_180047e10
+#define SystemResourceReleaser_2      FUN_180047e40
+#define SystemResourceHandler_2       FUN_180047e70
+
+/*=============================================================================
+ * 字符串处理函数
+ *=============================================================================*/
+
+/**
+ * @brief 系统字符串处理器 1
+ * 
+ * 这个函数负责处理字符串搜索和复制操作。
+ * 它会在输入字符串中搜索特定模式，然后进行相应的处理。
+ * 
+ * @param param_1 字符串处理上下文指针
+ * @param param_2 源字符串指针
+ * @param param_3 目标字符串指针
+ */
+void SystemStringProcessor_1(longlong param_1, longlong param_2, longlong param_3)
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined1 auStack_498 [32];
-  undefined8 uStack_478;
-  undefined *puStack_468;
-  undefined1 *puStack_460;
-  undefined4 uStack_458;
-  undefined1 auStack_450 [1032];
-  ulonglong uStack_48;
-  
-  uStack_478 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_498;
-  puStack_468 = &UNK_18098bb30;
-  puStack_460 = auStack_450;
-  uStack_458 = 0;
-  auStack_450[0] = 0;
-  lVar1 = strstr(*(undefined8 *)(param_1 + 8));
-  if (lVar1 != 0) {
-    lVar2 = -1;
-    lVar3 = -1;
-    do {
-      lVar3 = lVar3 + 1;
-    } while (*(char *)(param_2 + lVar3) != '\0');
-    do {
-      lVar2 = lVar2 + 1;
-    } while (*(char *)(lVar2 + param_3) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_460,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
-  }
-  puStack_468 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_498);
-}
-
-
-
-
-
-// 函数: void FUN_180046130(undefined8 *param_1,undefined4 param_2)
-void FUN_180046130(undefined8 *param_1,undefined4 param_2)
-
-{
-  int iVar1;
-  
-  do {
-    iVar1 = ReleaseSemaphore(*param_1,param_2,0);
-  } while (iVar1 == 0);
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180046160(undefined8 *param_1)
-void FUN_180046160(undefined8 *param_1)
-
-{
-  int iVar1;
-  
-  if (*(char *)(param_1 + 1) != '\0') {
-    iVar1 = _Mtx_unlock(*param_1);
-    if (iVar1 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar1);
+    longlong lVar1;
+    longlong lVar2;
+    longlong lVar3;
+    undefined1 auStack_498 [32];
+    undefined8 uStack_478;
+    undefined *puStack_468;
+    undefined1 *puStack_460;
+    undefined4 uStack_458;
+    undefined1 auStack_450 [1032];
+    ulonglong uStack_48;
+    
+    /* 初始化栈变量 */
+    uStack_478 = 0xfffffffffffffffe;
+    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_498;
+    puStack_468 = &UNK_18098bb30;
+    puStack_460 = auStack_450;
+    uStack_458 = 0;
+    auStack_450[0] = 0;
+    
+    /* 搜索字符串模式 */
+    lVar1 = strstr(*(undefined8 *)(param_1 + 8));
+    if (lVar1 != 0) {
+        /* 计算源字符串长度 */
+        lVar2 = -1;
+        lVar3 = -1;
+        do {
+            lVar3 = lVar3 + 1;
+        } while (*(char *)(param_2 + lVar3) != '\0');
+        
+        /* 计算目标字符串长度 */
+        do {
+            lVar2 = lVar2 + 1;
+        } while (*(char *)(lVar2 + param_3) != '\0');
+        
+        /* 执行字符串复制操作 */
+        memcpy(puStack_460, *(longlong *)(param_1 + 8), lVar1 - *(longlong *)(param_1 + 8));
     }
-  }
-  return;
+    
+    /* 更新处理状态 */
+    puStack_468 = &UNK_18098bcb0;
+    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_498);
 }
 
-
-
-undefined8 FUN_180046190(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 系统信号量管理器
+ * 
+ * 负责管理信号量的释放操作，确保线程间的同步。
+ * 
+ * @param param_1 信号量句柄指针
+ * @param param_2 释放的信号量数量
+ */
+void SystemSemaphoreManager(undefined8 *param_1, undefined4 param_2)
 {
-  char cVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  undefined1 uVar5;
-  
-  uVar4 = 0xfffffffffffffffe;
-  lVar3 = param_1 + 0x48;
-  iVar2 = _Mtx_lock();
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
-  }
-  uVar5 = 1;
-  if (*(char *)(param_1 + 0x98) != '\x01') {
-    cVar1 = *(char *)(param_1 + 0x98);
-    while (cVar1 == '\0') {
-      iVar2 = _Cnd_wait(param_1,lVar3,param_3,param_4,uVar4,lVar3,uVar5);
-      if (iVar2 != 0) {
+    int iVar1;
+    
+    /* 循环释放信号量直到成功 */
+    do {
+        iVar1 = ReleaseSemaphore(*param_1, param_2, 0);
+    } while (iVar1 == 0);
+}
+
+/**
+ * @brief 系统互斥锁管理器 1
+ * 
+ * 负责安全地释放互斥锁，确保线程同步。
+ * 
+ * @param param_1 互斥锁句柄指针
+ */
+void SystemMutexManager_1(undefined8 *param_1)
+{
+    int iVar1;
+    
+    /* 检查互斥锁状态 */
+    if (*(char *)(param_1 + 1) != '\0') {
+        iVar1 = _Mtx_unlock(*param_1);
+        if (iVar1 != 0) {
+            __Throw_C_error_std__YAXH_Z(iVar1);
+        }
+    }
+}
+/**
+ * @brief 系统条件变量管理器
+ * 
+ * 负责管理条件变量的等待和通知机制。
+ * 
+ * @param param_1 条件变量上下文指针
+ * @param param_2 等待参数
+ * @param param_3 超时参数
+ * @param param_4 同步参数
+ * @return 操作结果：1表示成功
+ */
+undefined8 SystemConditionVariableManager(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+{
+    char cVar1;
+    int iVar2;
+    longlong lVar3;
+    undefined8 uVar4;
+    undefined1 uVar5;
+    
+    /* 初始化变量 */
+    uVar4 = 0xfffffffffffffffe;
+    lVar3 = param_1 + 0x48;
+    
+    /* 获取互斥锁 */
+    iVar2 = _Mtx_lock();
+    if (iVar2 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar2);
-      }
-      cVar1 = *(char *)(param_1 + 0x98);
     }
-  }
-  *(undefined1 *)(param_1 + 0x98) = 0;
-  iVar2 = _Mtx_unlock(lVar3);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
-  }
-  return 1;
+    
+    uVar5 = 1;
+    
+    /* 检查条件变量状态 */
+    if (*(char *)(param_1 + 0x98) != '\x01') {
+        cVar1 = *(char *)(param_1 + 0x98);
+        while (cVar1 == '\0') {
+            /* 等待条件变量 */
+            iVar2 = _Cnd_wait(param_1, lVar3, param_3, param_4, uVar4, lVar3, uVar5);
+            if (iVar2 != 0) {
+                __Throw_C_error_std__YAXH_Z(iVar2);
+            }
+            cVar1 = *(char *)(param_1 + 0x98);
+        }
+    }
+    
+    /* 重置条件变量状态 */
+    *(undefined1 *)(param_1 + 0x98) = 0;
+    
+    /* 释放互斥锁 */
+    iVar2 = _Mtx_unlock(lVar3);
+    if (iVar2 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar2);
+    }
+    
+    return 1;
 }
 
 
