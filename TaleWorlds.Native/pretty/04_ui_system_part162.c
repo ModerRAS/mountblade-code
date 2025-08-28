@@ -825,7 +825,7 @@ static void ui_system_process_event_internal(uint64_t event_data, uint64_t event
     (**(code**)(handler_ptr + 0x88))(stack_flags, temp_data1, &stack_data1);
     
     // 调用事件处理完成函数
-    FUN_1808fc050(*(uint64_t*)(context_ptr + 400) ^ (uint64_t)&stack_data1);
+    UISystem_SecurityChecker(*(uint64_t*)(context_ptr + 400) ^ (uint64_t)&stack_data1);
 }
 
 /**
