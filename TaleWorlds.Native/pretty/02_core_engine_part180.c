@@ -548,8 +548,19 @@ LAB_180166438:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 数据缓冲区处理函数变体2
+ * 处理系统数据缓冲区，进行字符串搜索和数据处理（变体2）
+ * 
+ * @param param_1 系统参数1
+ * @param param_2 数据缓冲区指针
+ * @param param_3 系统参数3
+ * @param param_4 数据结构指针
+ * @return 处理后的数据缓冲区指针
+ */
+// 函数: uint64_t* CoreEngineDataBufferProcessorVariant2(uint64_t, uint64_t*, uint64_t, int64_t*)
 uint64_t *
-FUN_180166580(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_4)
+CoreEngineDataBufferProcessorVariant2(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_4)
 
 {
   int64_t lVar1;

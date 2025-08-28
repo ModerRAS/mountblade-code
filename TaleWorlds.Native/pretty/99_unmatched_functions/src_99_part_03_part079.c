@@ -227,9 +227,9 @@ typedef struct {
 #define SystemValidateState                func_0x0001800ba3b0
 #define SystemCreateResource               FUN_1800b1230
 #define SystemCreateConfig                 FUN_1800b1d80
-#define SystemCleanupMemory                FUN_1808fc050
+#define SystemCleanupMemory                SystemSecurityChecker
 #define SystemInitializeConfig             FUN_180049470
-#define SystemHandleError                  FUN_18064e900
+#define SystemHandleError                  CoreEngineMemoryPoolCleaner
 
 /*==============================================================================
  * 核心函数实现区域
@@ -340,7 +340,7 @@ uint64_t * SystemResourceAllocate(uint64_t *param_1, uint64_t param_2)
         // 资源验证检查
         if (param_1[0x19] != 0) {
             // 资源验证失败处理
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         // 资源配置设置
@@ -362,7 +362,7 @@ uint64_t * SystemResourceAllocate(uint64_t *param_1, uint64_t param_2)
     if (*(char *)((int64_t)plVar1 + 0x11) == '\0') {
         if (((char)plVar1[2] == '\0') && (*plVar1 != 0)) {
             // 资源状态异常处理
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         // 资源数据重置
@@ -372,7 +372,7 @@ uint64_t * SystemResourceAllocate(uint64_t *param_1, uint64_t param_2)
     }
     
     // 资源清理调用
-    FUN_18064e900(plVar1);
+    CoreEngineMemoryPoolCleaner(plVar1);
 }
 
 /**
@@ -506,7 +506,7 @@ uint8_t SystemStateProcessor(int64_t param_1)
     }
     
     // 系统清理调用
-    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_158);
+    SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_158);
 }
 
 /**
@@ -598,7 +598,7 @@ uint8_t SystemConfigProcessor(int64_t param_1)
     }
     
     // 配置清理调用
-    FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_118);
+    SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_118);
 }
 
 /**

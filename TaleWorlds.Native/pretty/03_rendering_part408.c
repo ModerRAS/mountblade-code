@@ -540,7 +540,7 @@ void FUN_180492355(void)
   }
 FUN_180492a34:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)unaff_RBP[0x12] ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)unaff_RBP[0x12] ^ (uint64_t)&stack0x00000000);
 }
 
 

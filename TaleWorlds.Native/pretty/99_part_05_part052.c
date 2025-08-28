@@ -308,9 +308,9 @@ void FUN_1802285e0(void);
 void FUN_18008f0d0(void* param_1);
 void FUN_1801985e0(uint64_t param_1, void* param_2, int param_3, void* param_4, int param_5);
 void FUN_180300d00(void* param_1);
-void FUN_18062b420(void* param_1, int64_t param_2, int param_3);
-void FUN_18064e900(void);
-void FUN_1808fc050(uint64_t param_1);
+void CoreEngineMemoryPoolAllocator(void* param_1, int64_t param_2, int param_3);
+void CoreEngineMemoryPoolCleaner(void);
+void SystemSecurityChecker(uint64_t param_1);
 void FUN_1808fd200(void);
 
 // =============================================================================
@@ -369,13 +369,13 @@ void FUN_1808fd200(void);
 #define SystemConfigurationLoader FUN_180300d00
 
 /** 系统内存分配器别名 */
-#define SystemMemoryAllocator FUN_18062b420
+#define SystemMemoryAllocator CoreEngineMemoryPoolAllocator
 
 /** 系统内存释放器别名 */
-#define SystemMemoryDeallocator FUN_18064e900
+#define SystemMemoryDeallocator CoreEngineMemoryPoolCleaner
 
 /** 系统调用处理器别名 */
-#define SystemCallProcessor FUN_1808fc050
+#define SystemCallProcessor SystemSecurityChecker
 
 /** 系统调试器别名 */
 #define SystemDebugger FUN_1808fd200
@@ -511,7 +511,7 @@ void FUN_1802fa68a(void)
     }
     
     // 清理系统资源
-    FUN_1808fc050(*(uint64_t *)(system_context + 0x80) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(system_context + 0x80) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -528,7 +528,7 @@ void FUN_1802fa68a(void)
 void FUN_1802fa7fb(void)
 {
     // 系统状态管理实现
-    FUN_1808fc050(*(uint64_t *)(system_context + 0x80) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(system_context + 0x80) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -816,7 +816,7 @@ void FUN_1802fad4b(void)
     *(ushort*)(system_context + 0xa8) = *(ushort*)(system_context + 0xa8) | 1;
     
     // 清理系统资源
-    FUN_1808fc050(*(uint64_t *)(system_context + 0xf80) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(system_context + 0xf80) ^ (uint64_t)&stack0x00000000);
 }
 
 // =============================================================================

@@ -381,7 +381,7 @@ void FUN_1807ec43e(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
   } while ((uint)param_6 < in_stack_00000180);
                     // WARNING: Subroutine does not return
   uStack_8 = 0x1807ed0ad;
-  FUN_1808fc050(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -396,7 +396,7 @@ void FUN_1807ed0a0(void)
   uint64_t in_stack_00000070;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -499,9 +499,9 @@ uint64_t FUN_1807ed550(int64_t *param_1,int param_2)
     *(int *)(param_1 + 2) = param_2;
     if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_3008_ptr,0xda,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_3008_ptr,0xda,1);
     }
-    lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4 + 0x10,&unknown_var_3008_ptr,
+    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4 + 0x10,&unknown_var_3008_ptr,
                           0xdd,0,0,1);
     *param_1 = lVar1;
     if (lVar1 == 0) {
@@ -525,11 +525,11 @@ void FUN_1807ed610(int64_t *param_1)
 {
   if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_3008_ptr,100,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_3008_ptr,100,1);
   }
   if (param_1[0xa5] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0xa5],&unknown_var_3008_ptr,0xbb,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0xa5],&unknown_var_3008_ptr,0xbb,1);
   }
   param_1[0xa5] = 0;
   param_1[0x8b] = 0;

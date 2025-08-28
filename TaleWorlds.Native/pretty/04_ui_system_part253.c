@@ -144,7 +144,7 @@ typedef enum {
 
 // 函数别名定义
 #define UISystem_AdvancedDataRenderer FUN_18080f83a
-#define UISystem_InitializeRendererContext FUN_1808fc050
+#define UISystem_InitializeRendererContext SystemSecurityChecker
 #define UISystem_ProcessDataBatch func_0x000180815aa0
 
 // 核心函数实现

@@ -8,7 +8,7 @@ void FUN_1808dcda0(uint64_t param_1)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_8016_ptr,0x1dc,1);
+  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_8016_ptr,0x1dc,1);
 }
 
 
@@ -23,7 +23,7 @@ FUN_1808dcde0(uint64_t param_1,uint64_t param_2,uint64_t *param_3,int64_t *param
   uint64_t *puVar2;
   
   puVar2 = (uint64_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,&unknown_var_8016_ptr,0x1d1,0,0,1);
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,&unknown_var_8016_ptr,0x1d1,0,0,1);
   if (puVar2 == (uint64_t *)0x0) {
     uVar1 = 0x26;
   }
@@ -52,7 +52,7 @@ uint64_t FUN_1808dce80(uint64_t *param_1,uint64_t param_2,int32_t param_3,int *p
     }
     *(int32_t *)(param_1 + 1) = *(int32_t *)((int64_t)param_1 + 0xc);
   }
-  uVar1 = FUN_180769ed0(*param_1,param_2,1,param_3,param_4);
+  uVar1 = SystemDataAnalyzer(*param_1,param_2,1,param_3,param_4);
   if ((uVar1 & 0xffffffef) == 0) {
     *(int *)(param_1 + 1) = *(int *)(param_1 + 1) + *param_4;
     *(int *)((int64_t)param_1 + 0xc) = *(int *)((int64_t)param_1 + 0xc) + *param_4;
@@ -79,7 +79,7 @@ int64_t FUN_1808dcf10(int64_t *param_1,int32_t *param_2,char param_3)
     bVar1 = false;
   }
   else {
-    FUN_180768360(lVar2);
+    SystemMemoryAllocator(lVar2);
     bVar1 = true;
   }
   uStack_18 = *param_2;
@@ -117,7 +117,7 @@ int64_t FUN_1808dcf10(int64_t *param_1,int32_t *param_2,char param_3)
   }
   if (bVar1) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+    SystemMemoryManager(lVar2);
   }
   return lVar3;
 }
@@ -140,7 +140,7 @@ int64_t FUN_1808dd040(int64_t *param_1,int32_t *param_2,char param_3)
     bVar1 = false;
   }
   else {
-    FUN_180768360(lVar2);
+    SystemMemoryAllocator(lVar2);
     bVar1 = true;
   }
   uStack_18 = *param_2;
@@ -160,7 +160,7 @@ int64_t FUN_1808dd040(int64_t *param_1,int32_t *param_2,char param_3)
   }
   if (bVar1) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+    SystemMemoryManager(lVar2);
   }
   return lVar3;
 }
@@ -183,7 +183,7 @@ int64_t FUN_1808dd110(int64_t *param_1,int32_t *param_2,char param_3)
     bVar1 = false;
   }
   else {
-    FUN_180768360(lVar2);
+    SystemMemoryAllocator(lVar2);
     bVar1 = true;
   }
   uStack_18 = *param_2;
@@ -214,7 +214,7 @@ int64_t FUN_1808dd110(int64_t *param_1,int32_t *param_2,char param_3)
   }
   if (bVar1) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+    SystemMemoryManager(lVar2);
   }
   return lVar3;
 }
@@ -237,7 +237,7 @@ int64_t FUN_1808dd210(int64_t *param_1,int32_t *param_2,char param_3)
     bVar1 = false;
   }
   else {
-    FUN_180768360(lVar2);
+    SystemMemoryAllocator(lVar2);
     bVar1 = true;
   }
   uStack_18 = *param_2;
@@ -296,7 +296,7 @@ int64_t FUN_1808dd210(int64_t *param_1,int32_t *param_2,char param_3)
   }
   if (bVar1) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+    SystemMemoryManager(lVar2);
   }
   return lVar3;
 }
@@ -319,7 +319,7 @@ int64_t FUN_1808dd3b0(int64_t *param_1,int32_t *param_2,char param_3)
     bVar1 = false;
   }
   else {
-    FUN_180768360(lVar2);
+    SystemMemoryAllocator(lVar2);
     bVar1 = true;
   }
   uStack_18 = *param_2;
@@ -364,7 +364,7 @@ int64_t FUN_1808dd3b0(int64_t *param_1,int32_t *param_2,char param_3)
   }
   if (bVar1) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+    SystemMemoryManager(lVar2);
   }
   return lVar3;
 }
@@ -388,7 +388,7 @@ int64_t FUN_1808dd500(int64_t *param_1,int32_t *param_2,char param_3)
   }
   else {
     bVar1 = true;
-    FUN_180768360(lVar2);
+    SystemMemoryAllocator(lVar2);
   }
   uStack_18 = *param_2;
   uStack_14 = param_2[1];
@@ -404,7 +404,7 @@ int64_t FUN_1808dd500(int64_t *param_1,int32_t *param_2,char param_3)
   }
   if (bVar1) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+    SystemMemoryManager(lVar2);
   }
   return lVar3;
 }
@@ -428,7 +428,7 @@ int64_t FUN_1808dd5c0(int64_t *param_1,int32_t *param_2,char param_3)
   }
   else {
     bVar1 = true;
-    FUN_180768360(lVar2);
+    SystemMemoryAllocator(lVar2);
   }
   uStack_18 = *param_2;
   uStack_14 = param_2[1];
@@ -444,7 +444,7 @@ int64_t FUN_1808dd5c0(int64_t *param_1,int32_t *param_2,char param_3)
   }
   if (bVar1) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+    SystemMemoryManager(lVar2);
   }
   return lVar3;
 }
@@ -467,7 +467,7 @@ int64_t FUN_1808dd680(int64_t *param_1,int32_t *param_2,char param_3)
     bVar1 = false;
   }
   else {
-    FUN_180768360(lVar2);
+    SystemMemoryAllocator(lVar2);
     bVar1 = true;
   }
   uStack_18 = *param_2;
@@ -526,7 +526,7 @@ int64_t FUN_1808dd680(int64_t *param_1,int32_t *param_2,char param_3)
   }
   if (bVar1) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+    SystemMemoryManager(lVar2);
   }
   return lVar3;
 }
@@ -549,7 +549,7 @@ int64_t FUN_1808dd820(int64_t *param_1,int32_t *param_2,char param_3)
     bVar1 = false;
   }
   else {
-    FUN_180768360(lVar2);
+    SystemMemoryAllocator(lVar2);
     bVar1 = true;
   }
   uStack_18 = *param_2;
@@ -597,7 +597,7 @@ int64_t FUN_1808dd820(int64_t *param_1,int32_t *param_2,char param_3)
   }
   if (bVar1) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+    SystemMemoryManager(lVar2);
   }
   return lVar3;
 }
@@ -621,7 +621,7 @@ int64_t FUN_1808dd9a0(int64_t *param_1,int32_t *param_2,char param_3)
   }
   else {
     bVar1 = true;
-    FUN_180768360(lVar2);
+    SystemMemoryAllocator(lVar2);
   }
   uStack_18 = *param_2;
   uStack_14 = param_2[1];
@@ -637,7 +637,7 @@ int64_t FUN_1808dd9a0(int64_t *param_1,int32_t *param_2,char param_3)
   }
   if (bVar1) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+    SystemMemoryManager(lVar2);
   }
   return lVar3;
 }
@@ -691,7 +691,7 @@ LAB_1808ddb33:
           else {
             if (plVar1[2] == 0) {
 LAB_1808ddb17:
-              uVar3 = FUN_180769ed0(*plVar1,auStackX_20,1,2,0);
+              uVar3 = SystemDataAnalyzer(*plVar1,auStackX_20,1,2,0);
               goto LAB_1808ddb33;
             }
             auStack_28[0] = 0;
@@ -792,7 +792,7 @@ LAB_1808ddb33:
         else {
           if (plVar1[2] == unaff_R15) {
 LAB_1808ddb17:
-            uVar4 = FUN_180769ed0(*plVar1,&stack0x00000078,1);
+            uVar4 = SystemDataAnalyzer(*plVar1,&stack0x00000078,1);
             goto LAB_1808ddb33;
           }
           in_stack_00000030 = uVar10;
