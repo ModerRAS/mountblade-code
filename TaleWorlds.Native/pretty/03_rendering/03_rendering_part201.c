@@ -175,16 +175,16 @@ void rendering_parameter_calculator_type1(void)
         // 主要参数计算循环
         do {
             render_data_ptr1 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
-            undefined_ptr2 = base_ptr;
+            render_data_ptr2 = base_ptr;
             
             // 链表遍历算法
-            if (undefined_ptr1 != (uint64_t *)0x0) {
+            if (render_data_ptr1 != (uint64_t *)0x0) {
                 do {
-                    if ((ulonglong)undefined_ptr1[RENDERING_INDEX_4] < *ulong_ptr) {
-                        undefined_ptr1 = (uint64_t *)*undefined_ptr1;
+                    if ((ulonglong)render_data_ptr1[RENDERING_INDEX_4] < *ulong_ptr) {
+                        render_data_ptr1 = (uint64_t *)*render_data_ptr1;
                     }
                     else {
-                        undefined_ptr2 = undefined_ptr1;
+                        render_data_ptr2 = render_data_ptr1;
                         undefined_ptr1 = (uint64_t *)undefined_ptr1[1];
                     }
                 } while (undefined_ptr1 != (uint64_t *)0x0);
@@ -291,7 +291,7 @@ void rendering_parameter_calculator_type1(void)
             
             // 第四次链表遍历
             undefined_ptr3 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
-            undefined_ptr2 = base_ptr;
+            render_data_ptr2 = base_ptr;
             
             if (undefined_ptr3 != (uint64_t *)0x0) {
                 do {
@@ -336,7 +336,7 @@ void rendering_parameter_calculator_type1(void)
             
             undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr1 + loop_counter1 + RENDERING_SIZE_0X140);
             temp_var = undefined_ptr2[1];
-            undefined_ptr1[RENDERING_INDEX_4] = *undefined_ptr2;
+            render_data_ptr1[RENDERING_INDEX_4] = *undefined_ptr2;
             undefined_ptr1[RENDERING_INDEX_5] = temp_var;
             
             undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr1 + loop_counter1 + RENDERING_SIZE_0X150);
@@ -459,9 +459,9 @@ void rendering_parameter_calculator_type2(void)
         }
         
         // 处理链表节点
-        if ((undefined_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)undefined_ptr1[RENDERING_INDEX_4])) {
+        if ((undefined_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
             undefined_ptr1 = (uint64_t *)rendering_matrix_calculator();
-            undefined_ptr1 = (uint64_t *)*undefined_ptr1;
+            render_data_ptr1 = (uint64_t *)*render_data_ptr1;
         }
         
         // 提取第一组参数
@@ -485,9 +485,9 @@ void rendering_parameter_calculator_type2(void)
         }
         
         // 处理第二个节点
-        if ((undefined_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)undefined_ptr1[RENDERING_INDEX_4])) {
+        if ((undefined_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
             undefined_ptr1 = (uint64_t *)rendering_matrix_calculator();
-            undefined_ptr1 = (uint64_t *)*undefined_ptr1;
+            render_data_ptr1 = (uint64_t *)*render_data_ptr1;
         }
         
         // 提取第二组参数
@@ -511,9 +511,9 @@ void rendering_parameter_calculator_type2(void)
         }
         
         // 处理第三个节点
-        if ((undefined_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)undefined_ptr1[RENDERING_INDEX_4])) {
+        if ((undefined_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
             undefined_ptr1 = (uint64_t *)rendering_matrix_calculator();
-            undefined_ptr1 = (uint64_t *)*undefined_ptr1;
+            render_data_ptr1 = (uint64_t *)*render_data_ptr1;
         }
         
         // 提取第三组参数
@@ -522,15 +522,15 @@ void rendering_parameter_calculator_type2(void)
         
         // 第四次链表遍历
         render_data_ptr1 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
-        undefined_ptr2 = base_ptr;
+        render_data_ptr2 = base_ptr;
         
-        if (undefined_ptr1 != (uint64_t *)0x0) {
+        if (render_data_ptr1 != (uint64_t *)0x0) {
             do {
-                if ((ulonglong)undefined_ptr1[RENDERING_INDEX_4] < *ulong_ptr) {
-                    undefined_ptr1 = (uint64_t *)*undefined_ptr1;
+                if ((ulonglong)render_data_ptr1[RENDERING_INDEX_4] < *ulong_ptr) {
+                    render_data_ptr1 = (uint64_t *)*render_data_ptr1;
                 }
                 else {
-                    undefined_ptr2 = undefined_ptr1;
+                    render_data_ptr2 = render_data_ptr1;
                     undefined_ptr1 = (uint64_t *)undefined_ptr1[1];
                 }
             } while (undefined_ptr1 != (uint64_t *)0x0);
@@ -723,7 +723,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     stack_uint = RENDERING_INDEX_8;
     
     long_param3 = long_param2;
-    undefined_ptr2 = undefined_ptr1;
+    render_data_ptr2 = render_data_ptr1;
     
     // 计算数据块大小
     if (long_param2 != long_param1) {

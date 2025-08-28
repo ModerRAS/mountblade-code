@@ -87,19 +87,19 @@ typedef float real32_t;                   // 32位实数类型
 typedef double real64_t;                  // 64位实数类型
 typedef void* pointer_t;                  // 指针类型
 typedef char boolean_t;                   // 布尔类型
-typedef int8_t undefined_byte_t;     // 未定义字节类型
-typedef int32_t undefined_dword_t;     // 未定义双字类型
-typedef uint64_t undefined_qword_t;     // 未定义四字类型
+typedef int8_t data_byte_t;               // 数据字节类型
+typedef int32_t data_dword_t;             // 数据双字类型
+typedef uint64_t data_qword_t;            // 数据四字类型
 
 // 数据结构类型定义
 typedef struct {
-    undefined_qword_t data1;              // 数据字段1
-    undefined_qword_t data2;              // 数据字段2
+    data_qword_t data1;                   // 数据字段1
+    data_qword_t data2;                   // 数据字段2
 } DataBlock_t;                            // 数据块结构
 
 typedef struct {
     pointer_t data_ptr;                   // 数据指针
-    undefined_qword_t metadata;           // 元数据
+    data_qword_t metadata;                // 元数据
 } DataNode_t;                            // 数据节点结构
 
 typedef struct {
