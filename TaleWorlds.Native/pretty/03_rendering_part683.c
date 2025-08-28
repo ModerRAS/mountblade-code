@@ -370,7 +370,7 @@ LAB_180659b1a:
   }
   unaff_R14[1] = unaff_R14[1] + fVar12;
   uStack_8 = 0x180659d72;
-  fVar12 = (float)FUN_18065c070(ABS(fVar13),fVar12,param_12);
+  fVar12 = (float)RenderingSystem_MathProcessor(ABS(fVar13),fVar12,param_12);  // 调用数学处理器
   if (fVar12 <= 0.75) {
     fVar12 = 0.75;
   }
@@ -406,7 +406,7 @@ LAB_180659b1a:
     pfVar5 = unaff_R14 + 0x1b;
     do {
       uStack_8 = 0x180659e3d;
-      fVar12 = (float)FUN_18065bf60(fVar12,iVar9);
+      fVar12 = (float)RenderingSystem_InterpolationCalculator(fVar12,iVar9);  // 调用插值计算器
       fVar12 = fVar12 * *pfVar5;
       iVar9 = iVar9 + 1;
       pfVar5 = pfVar5 + 0x4d6;
