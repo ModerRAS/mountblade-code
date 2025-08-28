@@ -32,7 +32,7 @@ void FUN_1802548c9(uint64_t param_1,uint64_t *param_2)
     lVar3 = lVar3 * 2;
     if (lVar3 == 0) goto LAB_180254953;
   }
-  puVar1 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lVar3 << 4,*(int8_t *)(unaff_RBX + 0x198))
+  puVar1 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lVar3 << 4,*(int8_t *)(unaff_RBX + 0x198))
   ;
   param_2 = *(uint64_t **)(unaff_RBX + 0x180);
   puVar2 = *(uint64_t **)(unaff_RBX + 0x188);

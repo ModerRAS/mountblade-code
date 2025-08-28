@@ -1014,7 +1014,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   bVar292 = (bVar240 < bVar231) * bVar231 | (bVar240 >= bVar231) * bVar240;
   bVar231 = auVar216[0xf];
   bVar295 = (bVar241 < bVar231) * bVar231 | (bVar241 >= bVar231) * bVar241;
-  auVar215 = (auVar298 | auVar215) & _DAT_180948160;
+  auVar215 = (auVar298 | auVar215) & render_system_memory;
   auVar355._0_2_ = auVar215._0_2_ >> 1;
   auVar355._2_2_ = auVar215._2_2_ >> 1;
   auVar355._4_2_ = auVar215._4_2_ >> 1;
@@ -1257,7 +1257,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar363[0xe] = (bVar295 < bVar260) * bVar260 | (bVar295 >= bVar260) * bVar295;
   auVar363[0xf] = (bVar321 < bVar261) * bVar261 | (bVar321 >= bVar261) * bVar321;
   auVar298 = psubusb(auVar351,auVar235);
-  auVar216 = psubusb(auVar363,_DAT_180948100);
+  auVar216 = psubusb(auVar363,render_system_memory);
   auVar298 = auVar298 | auVar215;
   auVar364[0] = -(auVar216[0] == '\0');
   auVar364[1] = -(auVar216[1] == '\0');
@@ -1560,7 +1560,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar324[0xd] = (bVar288 < bVar289) * bVar289 | (bVar288 >= bVar289) * bVar288;
   auVar324[0xe] = (bVar291 < bVar292) * bVar292 | (bVar291 >= bVar292) * bVar291;
   auVar324[0xf] = (bVar295 < bVar231) * bVar231 | (bVar295 >= bVar231) * bVar295;
-  auVar215 = psubusb(auVar324,_DAT_180948100);
+  auVar215 = psubusb(auVar324,render_system_memory);
   auVar217[0] = -(auVar215[0] == '\0');
   auVar217[1] = -(auVar215[1] == '\0');
   auVar217[2] = -(auVar215[2] == '\0');
@@ -1578,10 +1578,10 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar217[0xe] = -(auVar215[0xe] == '\0');
   auVar217[0xf] = -(auVar215[0xf] == '\0');
   auVar217 = auVar217 & auVar364;
-  auVar216 = _DAT_180a40580 ^ auVar221;
-  auVar324 = _DAT_180a40580 ^ auVar272;
-  auVar299 = _DAT_180a40580 ^ auVar235;
-  auVar355 = _DAT_180a40580 ^ auVar300;
+  auVar216 = render_system_memory ^ auVar221;
+  auVar324 = render_system_memory ^ auVar272;
+  auVar299 = render_system_memory ^ auVar235;
+  auVar355 = render_system_memory ^ auVar300;
   auVar218[8] = 0xff;
   auVar218._0_8_ = 0xffffffffffffffff;
   auVar218[9] = 0xff;
@@ -1652,8 +1652,8 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   bVar256 = auVar239[0xd];
   bVar257 = auVar239[0xe];
   bVar259 = auVar239[0xf];
-  auVar215 = paddsb(auVar298 & auVar326,_DAT_180948120);
-  auVar462 = paddsb(_DAT_180948110,auVar298 & auVar326);
+  auVar215 = paddsb(auVar298 & auVar326,render_system_memory);
+  auVar462 = paddsb(render_system_memory,auVar298 & auVar326);
   auVar233[0] = -(auVar215[0] < '\0');
   auVar233[1] = -(auVar215[1] < '\0');
   auVar233[2] = -(auVar215[2] < '\0');
@@ -1678,7 +1678,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar219._10_2_ = auVar215._10_2_ >> 3;
   auVar219._12_2_ = auVar215._12_2_ >> 3;
   auVar219._14_2_ = auVar215._14_2_ >> 3;
-  auVar215 = auVar233 & _DAT_180948150 | auVar219 & _DAT_180948130;
+  auVar215 = auVar233 & render_system_memory | auVar219 & render_system_memory;
   uVar262 = (ushort)auVar238[8];
   bVar231 = auVar238[9];
   bVar240 = auVar238[10];
@@ -1687,7 +1687,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   bVar244 = auVar238[0xd];
   bVar247 = auVar238[0xe];
   bVar248 = auVar238[0xf];
-  auVar298 = paddsb(auVar215,_DAT_180948100);
+  auVar298 = paddsb(auVar215,render_system_memory);
   auVar220[0] = -(auVar298[0] < '\0');
   auVar220[1] = -(auVar298[1] < '\0');
   auVar220[2] = -(auVar298[2] < '\0');
@@ -1713,7 +1713,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar234._12_2_ = auVar298._12_2_ >> 1;
   auVar234._14_2_ = auVar298._14_2_ >> 1;
   uVar352 = (ushort)auVar272[8];
-  auVar298 = ~(auVar464 ^ auVar218) & (auVar220 & _DAT_180a40580 | auVar234 & _DAT_180948140);
+  auVar298 = ~(auVar464 ^ auVar218) & (auVar220 & render_system_memory | auVar234 & render_system_memory);
   auVar3[0xd] = 0;
   auVar3._0_13_ = auVar238._0_13_;
   auVar3[0xe] = auVar238[7];
@@ -3095,7 +3095,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   uVar488 = ((uVar488 + uStack_1bc) - (uStack_31c + uStack_39c)) + uStack_3ac;
   uVar491 = ((uVar491 + uStack_1ba) - (uStack_31a + uStack_39a)) + uStack_3aa;
   auVar222 = paddsb(auVar298,auVar216);
-  auVar222 = auVar222 ^ _DAT_180a40580;
+  auVar222 = auVar222 ^ render_system_memory;
   uStack_146 = (ushort)bStack_29f;
   uStack_144 = (ushort)bStack_29e;
   uStack_142 = (ushort)bStack_29d;
@@ -3254,8 +3254,8 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   auVar236._10_2_ = auVar462._10_2_ >> 3;
   auVar236._12_2_ = auVar462._12_2_ >> 3;
   auVar236._14_2_ = auVar462._14_2_ >> 3;
-  auVar236 = paddsb(auVar237 & _DAT_180948150 | auVar236 & _DAT_180948130,auVar299);
-  auVar236 = auVar236 ^ _DAT_180a40580;
+  auVar236 = paddsb(auVar237 & render_system_memory | auVar236 & render_system_memory,auVar299);
+  auVar236 = auVar236 ^ render_system_memory;
   *pauVar202 = ~auVar217 & (~auVar364 & auVar222 | auVar272 & auVar364) | auVar235 & auVar217;
   uVar408 = ((uVar466 + (byte)Var150) - (uVar354 + auVar300._0_2_)) + uVar458;
   uVar387 = ((uVar470 + sStack_1b6) - (sStack_356 + sVar293)) + sVar465;
@@ -3320,7 +3320,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   uVar416 = ((uVar431 + sStack_23c) - (sVar485 + sVar317)) + sVar258;
   uVar357 = ((uVar459 + uVar423) - ((uVar357 >> 8) + uVar227)) + uVar223;
   auVar237 = psubsb(auVar324,auVar215);
-  auVar237 = auVar237 ^ _DAT_180a40580;
+  auVar237 = auVar237 ^ render_system_memory;
   uVar390 = ((uVar469 + uVar278) - (uVar229 + auVar350._0_2_)) + uVar352;
   uVar428 = ((uVar473 + uStack_366) - (uStack_336 + uStack_3a6)) + uStack_396;
   uVar431 = ((uVar478 + uStack_364) - (uStack_334 + uStack_3a4)) + uStack_394;
@@ -3461,7 +3461,7 @@ void FUN_1806922f0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],
   uVar384 = ((uVar478 + uStack_35c) - (uStack_37c + uVar412)) + uStack_1fc;
   uVar383 = ((uVar482 + uStack_35a) - (uStack_37a + uVar424)) + uStack_1fa;
   *(int8_t (*) [16])(*param_1 + param_2) =
-       ~auVar217 & (auVar221 & auVar364 | ~auVar364 & (auVar222 ^ _DAT_180a40580)) |
+       ~auVar217 & (auVar221 & auVar364 | ~auVar364 & (auVar222 ^ render_system_memory)) |
        auVar239 & auVar217;
   uVar469 = (ushort)(((uVar404 + uVar246) - (uVar433 + uVar354)) + uVar393) >> 3;
   uVar473 = (ushort)(((uVar409 + sStack_276) - (sVar435 + sStack_356)) + sVar395) >> 3;

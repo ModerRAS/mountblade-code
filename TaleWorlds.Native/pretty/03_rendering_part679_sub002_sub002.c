@@ -54,7 +54,7 @@ void FUN_1806587d0(longlong *param_1,longlong *param_2,longlong *param_3)
   lStackX_8 = (longlong)iVar4;
   if (iVar4 != 0) {
     puStack_58 = (uint64_t *)
-                 FUN_18062b420(_DAT_180c8ed18,lStackX_8 * 8,
+                 FUN_18062b420(system_memory_pool_ptr,lStackX_8 * 8,
                                CONCAT71((int7)(int3)((ulonglong)lVar5 >> 8),3),param_3,
                                0xfffffffffffffffe);
     puStack_50 = puStack_58 + lStackX_8;
@@ -78,7 +78,7 @@ void FUN_1806587d0(longlong *param_1,longlong *param_2,longlong *param_3)
           lVar6 = 1;
 LAB_1806588f2:
           puVar7 = (uint64_t *)
-                   FUN_18062b420(_DAT_180c8ed18,lVar6 * 8,
+                   FUN_18062b420(system_memory_pool_ptr,lVar6 * 8,
                                  CONCAT71((int7)((ulonglong)lStackX_8 >> 8),3),param_3,uVar13);
         }
         else {

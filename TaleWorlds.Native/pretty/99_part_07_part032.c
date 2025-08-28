@@ -220,7 +220,7 @@ LAB_1804b985d:
       uVar2 = 0;
     }
     else {
-      uVar2 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar12 << 4,
+      uVar2 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar12 << 4,
                             CONCAT71((int7)((ulonglong)pcVar11 >> 8),0x12));
     }
     *(uint64_t *)(param_1 + 0x5c8) = uVar2;
@@ -684,7 +684,7 @@ LAB_1804b985d:
       uVar2 = 0;
     }
     else {
-      uVar2 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar12 << 4,
+      uVar2 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar12 << 4,
                             CONCAT71((int7)((ulonglong)pcVar11 >> 8),0x12));
     }
     *(uint64_t *)(param_1 + 0x5c8) = uVar2;

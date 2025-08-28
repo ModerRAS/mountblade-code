@@ -306,7 +306,7 @@ void RenderingSystem_DebugStringGenerator1(void)
     int32_t *puVar3;
     
     /* 分配初始内存缓冲区 */
-    puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)puVar2 = 0;
     
     /* 验证缓冲区长度 */
@@ -318,7 +318,7 @@ void RenderingSystem_DebugStringGenerator1(void)
     
     /* 如果长度不足，扩展缓冲区 */
     if (uVar1 < 6) {
-        puVar2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar2, 6, 0x10, 0x13);
+        puVar2 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar2, 6, 0x10, 0x13);
         uVar1 = FUN_18064e990(puVar2);
     }
     
@@ -327,13 +327,13 @@ void RenderingSystem_DebugStringGenerator1(void)
     
     /* 验证指针有效性 */
     if (puVar2 == (int32_t *)0x0) {
-        puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar2 = 0;
     }
     else {
         /* 根据长度决定是否扩展缓冲区 */
         if (7 < uVar1) goto LAB_18062605e;
-        puVar2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar2, 8, 0x10, 0x13);
+        puVar2 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar2, 8, 0x10, 0x13);
     }
     
     /* 验证最终缓冲区 */
@@ -498,7 +498,7 @@ void RenderingSystem_DebugStringGenerator3(void)
     int32_t *puVar3;           /* 输出字符串指针 */
     
     /* 分配初始内存缓冲区 */
-    puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)puVar2 = 0;
     
     /* 验证缓冲区长度 */
@@ -510,7 +510,7 @@ void RenderingSystem_DebugStringGenerator3(void)
     
     /* 如果长度不足，扩展缓冲区 */
     if (uVar1 < 6) {
-        puVar2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar2, 6, 0x10, 0x13);
+        puVar2 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar2, 6, 0x10, 0x13);
         uVar1 = FUN_18064e990(puVar2);
     }
     
@@ -520,13 +520,13 @@ void RenderingSystem_DebugStringGenerator3(void)
     /* 验证指针有效性 */
     if (puVar2 == (int32_t *)0x0) {
         /* 重新分配缓冲区 */
-        puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar2 = 0;
     }
     else {
         /* 根据长度决定是否扩展缓冲区 */
         if (7 < uVar1) goto LAB_18062636e;
-        puVar2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar2, 8, 0x10, 0x13);
+        puVar2 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar2, 8, 0x10, 0x13);
     }
     
     /* 验证最终缓冲区 */
@@ -609,7 +609,7 @@ void RenderingSystem_PathParameterProcessor1(uint64_t param_1, char param_2)
     FUN_180627910(&puStack_40, puVar5);
     
     /* 分配初始内存缓冲区 */
-    puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)puVar3 = 0;
     
     /* 验证缓冲区长度 */
@@ -621,7 +621,7 @@ void RenderingSystem_PathParameterProcessor1(uint64_t param_1, char param_2)
     
     /* 如果长度不足，扩展缓冲区 */
     if (uVar1 < 6) {
-        puVar3 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar3, 6, 0x10, 0x13);
+        puVar3 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar3, 6, 0x10, 0x13);
         uVar1 = FUN_18064e990(puVar3);
     }
     
@@ -631,14 +631,14 @@ void RenderingSystem_PathParameterProcessor1(uint64_t param_1, char param_2)
     /* 验证指针有效性 */
     if (puVar3 == (int32_t *)0x0) {
         /* 重新分配缓冲区 */
-        puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar3 = 0;
 LAB_18062653a:
         uVar1 = FUN_18064e990(puVar3);
     }
     else if (uVar1 < 8) {
         /* 扩展缓冲区以容纳更多内容 */
-        puVar3 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar3, 8, 0x10, 0x13);
+        puVar3 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar3, 8, 0x10, 0x13);
         goto LAB_18062653a;
     }
     
@@ -678,13 +678,13 @@ LAB_18062653a:
             if (iVar2 < 0x10) {
                 iVar2 = 0x10;  /* 最小缓冲区大小 */
             }
-            puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)iVar2, 0x13);
+            puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)iVar2, 0x13);
             *(int8_t *)puVar3 = 0;
         }
         else {
             /* 检查是否需要扩展缓冲区 */
             if (iStack_30 + 8U <= uVar1) goto LAB_1806265d4;
-            puVar3 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar3, iStack_30 + 8U, 0x10, 0x13);
+            puVar3 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar3, iStack_30 + 8U, 0x10, 0x13);
         }
         FUN_18064e990(puVar3);
     }
@@ -748,7 +748,7 @@ void RenderingSystem_PathParameterProcessor2(uint64_t param_1, char param_2)
     FUN_180627910(&puStack_40, puVar5);
     
     /* 分配初始内存缓冲区 */
-    puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)puVar3 = 0;
     
     /* 验证缓冲区长度 */
@@ -760,7 +760,7 @@ void RenderingSystem_PathParameterProcessor2(uint64_t param_1, char param_2)
     
     /* 如果长度不足，扩展缓冲区 */
     if (uVar1 < 6) {
-        puVar3 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar3, 6, 0x10, 0x13);
+        puVar3 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar3, 6, 0x10, 0x13);
         uVar1 = FUN_18064e990(puVar3);
     }
     
@@ -770,14 +770,14 @@ void RenderingSystem_PathParameterProcessor2(uint64_t param_1, char param_2)
     /* 验证指针有效性 */
     if (puVar3 == (int32_t *)0x0) {
         /* 重新分配缓冲区 */
-        puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar3 = 0;
 LAB_1806267aa:
         uVar1 = FUN_18064e990(puVar3);
     }
     else if (uVar1 < 8) {
         /* 扩展缓冲区以容纳更多内容 */
-        puVar3 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar3, 8, 0x10, 0x13);
+        puVar3 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar3, 8, 0x10, 0x13);
         goto LAB_1806267aa;
     }
     
@@ -817,13 +817,13 @@ LAB_1806267aa:
             if (iVar2 < 0x10) {
                 iVar2 = 0x10;  /* 最小缓冲区大小 */
             }
-            puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)iVar2, 0x13);
+            puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)iVar2, 0x13);
             *(int8_t *)puVar3 = 0;
         }
         else {
             /* 检查是否需要扩展缓冲区 */
             if (iStack_30 + 8U <= uVar1) goto LAB_180626844;
-            puVar3 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar3, iStack_30 + 8U, 0x10, 0x13);
+            puVar3 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar3, iStack_30 + 8U, 0x10, 0x13);
         }
         FUN_18064e990(puVar3);
     }
@@ -1404,7 +1404,7 @@ void RenderingSystem_DebugStringFormatter3(uint64_t param_1, uint64_t param_2, u
     __stdio_common_vsprintf(*puVar1 | 1, auStack_228, 0x200, param_1);
     
     /* 调用调试输出函数 */
-    (*(code *)**(uint64_t **)*_DAT_180c8ed08)((uint64_t *)*_DAT_180c8ed08, auStack_228, 0);
+    (*(code *)**(uint64_t **)*render_system_data_memory)((uint64_t *)*render_system_data_memory, auStack_228, 0);
     
     /* 执行安全退出 */
     FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_258);
@@ -1516,7 +1516,7 @@ void RenderingSystem_DebugStringFormatter4(uint64_t param_1, uint64_t param_2, u
     __stdio_common_vsprintf(*puVar1 | 1, auStack_228, 0x200, param_1);
     
     /* 调用不同的调试输出函数 */
-    (**(code **)(*(longlong *)*_DAT_180c8ed08 + 0x10))((longlong *)*_DAT_180c8ed08, auStack_228, 0);
+    (**(code **)(*(longlong *)*render_system_data_memory + 0x10))((longlong *)*render_system_data_memory, auStack_228, 0);
     
     /* 执行安全退出 */
     FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_258);
@@ -1594,7 +1594,7 @@ void RenderingSystem_DebugStringFormatter5(uint64_t param_1, uint64_t param_2, u
     __stdio_common_vsprintf(*puVar1 | 1, auStack_228, 0x200, param_1);
     
     /* 调用不同的调试输出函数 */
-    (**(code **)(*(longlong *)*_DAT_180c8ed08 + 0x18))((longlong *)*_DAT_180c8ed08, auStack_228);
+    (**(code **)(*(longlong *)*render_system_data_memory + 0x18))((longlong *)*render_system_data_memory, auStack_228);
     
     /* 执行安全退出 */
     FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_258);
@@ -1706,8 +1706,8 @@ void RenderingSystem_DebugStringFormatter6(uint64_t param_1, uint64_t param_2, u
     __stdio_common_vsprintf(*puVar1 | 1, auStack_228, 0x200, param_1);
     
     /* 调用不同的调试输出函数 */
-    (**(code **)**(uint64_t **)(_DAT_180c8ed08 + 8))
-            (*(uint64_t **)(_DAT_180c8ed08 + 8), auStack_228);
+    (**(code **)**(uint64_t **)(render_system_data_memory + 8))
+            (*(uint64_t **)(render_system_data_memory + 8), auStack_228);
     
     /* 执行安全退出 */
     FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_258);

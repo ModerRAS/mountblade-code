@@ -44,7 +44,7 @@ void FUN_1805c8252(void)
       (lVar2 = func_0x0001805b6e80(unaff_RBX + 1),
       (*(byte *)((longlong)
                  *(int *)((longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + 100 +
-                         *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) == 0
+                         *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + system_system_ui) & 0x10) == 0
       )))) {
     if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
       bVar1 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
@@ -192,7 +192,7 @@ void FUN_1805c8278(void)
      (lVar2 = func_0x0001805b6e80(unaff_RBX + 1),
      (*(byte *)((longlong)
                 *(int *)((longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + 100 + *(longlong *)(lVar2 + 0xd0)
-                        ) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) == 0)) {
+                        ) * 0x170 + 0x140 + system_system_ui) & 0x10) == 0)) {
     if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
       bVar1 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
       *(byte *)((longlong)unaff_RBX + 0x11c) = bVar1;

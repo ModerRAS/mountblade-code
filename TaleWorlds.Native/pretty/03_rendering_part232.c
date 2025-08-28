@@ -186,7 +186,7 @@ LAB_18039a6a1:
   }
   lVar9 = *(longlong *)(param_1 + 0x250);
   if (lVar9 == 0) {
-    uVar7 = FUN_18062b1e0(_DAT_180c8ed18,0x6c00,4,3);
+    uVar7 = FUN_18062b1e0(system_memory_pool_ptr,0x6c00,4,3);
                     // WARNING: Subroutine does not return
     memset(uVar7,0,0x6c00);
   }

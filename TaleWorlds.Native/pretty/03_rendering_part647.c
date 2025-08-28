@@ -503,7 +503,7 @@ void FUN_180632d00(longlong param_1,int32_t *param_2,longlong param_3,int32_t pa
       puVar4 = *(void **)(param_3 + 8);
     }
     FUN_180627c50(&puStack_60,puVar4);
-    fStack_34 = (float)_DAT_180c8ed30 * 1e-05;
+    fStack_34 = (float)system_error_code * 1e-05;
     uStack_30 = param_6;
     if (param_5 != (uint64_t *)0x0) {
       uVar3 = *param_5;
@@ -608,7 +608,7 @@ void FUN_180633110(longlong param_1,uint64_t *param_2,uint64_t *param_3,int32_t 
       uStack_30 = *param_3;
       uStack_28 = param_3[1];
       uStack_14 = param_6;
-      fStack_18 = (float)_DAT_180c8ed30 * 1e-05;
+      fStack_18 = (float)system_error_code * 1e-05;
       uStack_20 = param_4;
       uStack_1c = param_4;
       FUN_180636f00(lVar2 + 0x98 + param_1,&uStack_40);
@@ -961,7 +961,7 @@ void FUN_1806336a0(longlong param_1,float *param_2,float *param_3,float param_4,
           uStack_194 = param_5;
           uStack_190 = param_5;
           uStack_188 = param_7;
-          fStack_18c = (float)_DAT_180c8ed30 * 1e-05;
+          fStack_18c = (float)system_error_code * 1e-05;
           fStack_1b4 = fVar18;
           fStack_1b0 = fVar16;
           fStack_1ac = fVar14;
@@ -991,7 +991,7 @@ void FUN_1806336a0(longlong param_1,float *param_2,float *param_3,float param_4,
           uStack_194 = param_5;
           uStack_190 = param_5;
           uStack_188 = param_7;
-          fStack_18c = (float)_DAT_180c8ed30 * 1e-05;
+          fStack_18c = (float)system_error_code * 1e-05;
           fStack_1b4 = fVar12;
           fStack_1b0 = fVar17;
           fStack_1ac = fVar15;

@@ -794,7 +794,7 @@ void FUN_180272e40(longlong *param_1,ulonglong param_2)
     puVar2 = (uint64_t *)0x0;
     if (uVar3 != 0) {
       puVar2 = (uint64_t *)
-               FUN_18062b420(_DAT_180c8ed18,uVar3 * 0x98,(char)param_1[3],0x6bca1af286bca1b,
+               FUN_18062b420(system_memory_pool_ptr,uVar3 * 0x98,(char)param_1[3],0x6bca1af286bca1b,
                              0xfffffffffffffffe);
       puVar4 = (uint64_t *)param_1[1];
       puVar7 = (uint64_t *)*param_1;

@@ -292,7 +292,7 @@ void process_memory_batch(longlong memory_ptr, uint block_index)
   uVar2 = (ulonglong)block_index;
   if ((int)block_index < (int)(block_index + MEMORY_SMALL_CHUNK_SIZE)) {
     do {
-      FUN_180245b90((longlong)((int)uVar2 + (int)(uVar2 >> 4) * -MEMORY_SMALL_CHUNK_SIZE) * MEMORY_LARGE_ENTRY_SIZE +
+      process_memory_data((longlong)((int)uVar2 + (int)(uVar2 >> 4) * -MEMORY_SMALL_CHUNK_SIZE) * MEMORY_LARGE_ENTRY_SIZE +
                     *(longlong *)(memory_ptr + 8 + (uVar2 >> 4) * 8));
       uVar1 = (int)uVar2 + 1;
       uVar2 = (ulonglong)uVar1;
@@ -404,7 +404,7 @@ void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
     uStack_84 = *(int32_t *)((longlong)data_ptr + 4);
     uStack_80 = (int32_t)data_ptr[1];
     uStack_7c = *(int32_t *)((longlong)data_ptr + 0xc);
-    FUN_1800ea950(&uStack_88,&uStack_98,(longlong)(iVar19 + -1) * 2);
+    copy_memory_data(&uStack_88,&uStack_98,(longlong)(iVar19 + -1) * 2);
     uStack_68 = (int32_t)*data_ptr;
     uStack_64 = *(int32_t *)((longlong)data_ptr + 4);
     uStack_60 = (int32_t)data_ptr[1];
@@ -416,7 +416,7 @@ void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
       uStack_44 = uStack_64;
       uStack_40 = uStack_60;
       uStack_3c = uStack_5c;
-      FUN_1800eac80(&uStack_48,&uStack_58);
+      move_memory_data(&uStack_48,&uStack_58);
     }
     else {
       lVar13 = *data_ptr;

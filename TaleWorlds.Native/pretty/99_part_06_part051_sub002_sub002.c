@@ -348,7 +348,7 @@ LAB_1803db1f2:
               if (lVar44 == 0) {
                 lVar44 = 1;
 LAB_1803db289:
-                plVar42 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar44 * 8,3);
+                plVar42 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar44 * 8,3);
               }
               else {
                 lVar44 = lVar44 * 2;
@@ -384,7 +384,7 @@ LAB_1803db289:
             if (lVar22 == 0) {
               lVar22 = 1;
 LAB_1803db33e:
-              plVar23 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar22 * 8);
+              plVar23 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar22 * 8);
             }
             else {
               lVar22 = lVar22 * 2;
@@ -412,7 +412,7 @@ LAB_1803db452:
               if (lVar22 == 0) {
                 lVar22 = 1;
 LAB_1803db3f1:
-                plVar23 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar22 * 8);
+                plVar23 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar22 * 8);
               }
               else {
                 lVar22 = lVar22 * 2;
@@ -449,7 +449,7 @@ LAB_1803db465:
                 lVar22 = 1;
 LAB_1803db4c0:
                 plVar25 = (longlong *)
-                          FUN_18062b420(_DAT_180c8ed18,lVar22 * 8,*(int8_t *)(lVar44 + 0x110));
+                          FUN_18062b420(system_memory_pool_ptr,lVar22 * 8,*(int8_t *)(lVar44 + 0x110));
                 puVar30 = *(uint64_t **)(lVar44 + 0x100);
                 puVar36 = *(uint64_t **)(lVar44 + 0xf8);
               }
@@ -482,7 +482,7 @@ LAB_1803db4c0:
               if (lVar22 == 0) {
                 lVar22 = 1;
 LAB_1803db58f:
-                plVar24 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar22 * 8,(char)plVar42[0x22]);
+                plVar24 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar22 * 8,(char)plVar42[0x22]);
                 plVar25 = (longlong *)plVar42[0x20];
                 plVar23 = (longlong *)plVar42[0x1f];
               }
@@ -517,7 +517,7 @@ LAB_1803db58f:
               if (lVar44 == 0) {
                 lVar44 = 1;
 LAB_1803db702:
-                plVar25 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar44 * 8,(char)plVar38[6]);
+                plVar25 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar44 * 8,(char)plVar38[6]);
                 puVar30 = (uint64_t *)plVar38[4];
                 puVar36 = (uint64_t *)plVar38[3];
               }
@@ -601,7 +601,7 @@ LAB_1803db820:
                 lVar22 = 1;
 LAB_1803db89e:
                 plVar42 = (longlong *)
-                          FUN_18062b420(_DAT_180c8ed18,lVar22 * 8,*(int8_t *)(lVar44 + 0x110));
+                          FUN_18062b420(system_memory_pool_ptr,lVar22 * 8,*(int8_t *)(lVar44 + 0x110));
                 puVar30 = *(uint64_t **)(lVar44 + 0x100);
                 puVar36 = *(uint64_t **)(lVar44 + 0xf8);
               }
@@ -634,7 +634,7 @@ LAB_1803db89e:
               if (lVar22 == 0) {
                 lVar22 = 1;
 LAB_1803db969:
-                plVar24 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar22 * 8,(char)plVar23[0x22]);
+                plVar24 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar22 * 8,(char)plVar23[0x22]);
                 plVar42 = (longlong *)plVar23[0x20];
                 plVar25 = (longlong *)plVar23[0x1f];
               }
@@ -667,7 +667,7 @@ LAB_1803db969:
               if (lVar22 == 0) {
                 lVar22 = 1;
 LAB_1803dba28:
-                plVar42 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar22 * 8,(char)plVar38[6]);
+                plVar42 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar22 * 8,(char)plVar38[6]);
                 puVar30 = (uint64_t *)plVar38[4];
                 puVar36 = (uint64_t *)plVar38[3];
               }
@@ -880,7 +880,7 @@ LAB_1803dbd52:
         uVar9 = *puVar1;
         if ((ulonglong)((longlong)(param_1[0xf] - uVar9) >> 3) < uVar41) {
           if (uVar41 != 0) {
-            plVar26 = (longlong *)FUN_18062b420(_DAT_180c8ed18,uVar41 * 8,(char)param_1[0x10]);
+            plVar26 = (longlong *)FUN_18062b420(system_memory_pool_ptr,uVar41 * 8,(char)param_1[0x10]);
           }
           if (auVar37 != (int8_t  [8])plStackX_18) {
                     // WARNING: Subroutine does not return

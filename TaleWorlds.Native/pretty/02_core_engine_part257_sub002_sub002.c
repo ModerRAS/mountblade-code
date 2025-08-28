@@ -91,7 +91,7 @@ void FUN_1802230e0(uint64_t param_1,uint64_t *param_2,longlong param_3,longlong 
   else {
     FUN_180226020(param_2,&puStack_148);
   }
-  iVar1 = *(int *)(_DAT_180c86938 + 0x1d44);
+  iVar1 = *(int *)(system_message_buffer + 0x1d44);
   if (iVar1 == 0) {
     puVar6 = &unknown_var_6472_ptr;
   }

@@ -305,14 +305,14 @@ longlong FUN_18013d540(void)
   uint uVar10;
   
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d49270) && (FUN_1808fcb90(&system_ptr_9270), _DAT_180d49270 == -1)) {
-    _DAT_180d49278 = 0;
-    _DAT_180d49280 = 0;
+               0x48) < core_system_config_config) && (FUN_1808fcb90(&system_ptr_9270), core_system_config_config == -1)) {
+    core_system_config_config = 0;
+    core_system_config_config = 0;
     FUN_1808fc820(&unknown_var_7056_ptr);
     FUN_1808fcb30(&system_ptr_9270);
   }
-  lVar6 = _DAT_180d49280;
-  if (_DAT_180d49280 == 0) {
+  lVar6 = core_system_config_config;
+  if (core_system_config_config == 0) {
     iVar3 = OpenClipboard(0);
     if (iVar3 != 0) {
       lVar6 = GetClipboardData(0xd);
@@ -340,42 +340,42 @@ longlong FUN_18013d540(void)
             uVar2 = *puVar1;
           }
           uVar9 = iVar3 + 1;
-          if (_DAT_180d4927c < (int)uVar9) {
-            if (_DAT_180d4927c == 0) {
+          if (core_system_config_config < (int)uVar9) {
+            if (core_system_config_config == 0) {
               uVar5 = 8;
             }
             else {
-              uVar5 = _DAT_180d4927c / 2 + _DAT_180d4927c;
+              uVar5 = core_system_config_config / 2 + core_system_config_config;
             }
             uVar10 = uVar9;
             if ((int)uVar9 < (int)uVar5) {
               uVar10 = uVar5;
             }
-            if (_DAT_180d4927c < (int)uVar10) {
+            if (core_system_config_config < (int)uVar10) {
               if (SYSTEM_DATA_MANAGER_A != 0) {
                 *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
               }
               lVar8 = func_0x000180120ce0((longlong)(int)uVar10,SYSTEM_DATA_MANAGER_B);
-              if (_DAT_180d49280 != 0) {
+              if (core_system_config_config != 0) {
                     // WARNING: Subroutine does not return
-                memcpy(lVar8,_DAT_180d49280,(longlong)_DAT_180d49278);
+                memcpy(lVar8,core_system_config_config,(longlong)core_system_config_config);
               }
-              _DAT_180d49278 = (ulonglong)uVar10 << 0x20;
-              _DAT_180d49280 = lVar8;
+              core_system_config_config = (ulonglong)uVar10 << 0x20;
+              core_system_config_config = lVar8;
             }
           }
-          _DAT_180d49278 = CONCAT44(_DAT_180d4927c,uVar9);
-          FUN_180121c40(_DAT_180d49280,uVar9,puVar7,0);
+          core_system_config_config = CONCAT44(core_system_config_config,uVar9);
+          FUN_180121c40(core_system_config_config,uVar9,puVar7,0);
         }
         GlobalUnlock(lVar6);
         CloseClipboard();
-        return _DAT_180d49280;
+        return core_system_config_config;
       }
       CloseClipboard();
     }
     return 0;
   }
-  _DAT_180d49278 = 0;
+  core_system_config_config = 0;
   if (SYSTEM_DATA_MANAGER_A != 0) {
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }

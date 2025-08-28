@@ -17,90 +17,90 @@ void FUN_18081d22f(void)
 uint64_t FUN_18081d250(short param_1)
 
 {
-  if (_DAT_180c4ea50 == 0) {
-    _DAT_180d4ab10 = 0;
-    _DAT_180d4ab68 = &unknown_var_1816_ptr;
-    _DAT_180d4ab38 = &unknown_var_1840_ptr;
-    _DAT_180d4ab08 = 0;
-    _DAT_180d4ab00 = 0;
-    _DAT_180d4aaf8 = 0;
-    _DAT_180d4aaf0 = 0;
-    _DAT_180d4aae8 = 0;
-    _DAT_180d4aae0 = 0;
-    _DAT_180d4aad8 = 0;
-    _DAT_180d4aad0 = 0;
-    _DAT_180d4aac8 = 0;
-    _DAT_180d4aac0 = 0;
-    _DAT_180d4aab8 = 0;
-    _DAT_180d4aab0 = 0;
-    _DAT_180d4aaa8 = 0;
-    _DAT_180d4aaa0 = 0;
-    _DAT_180d4aa98 = 0;
-    _DAT_180d4aa90 = 0;
-    _DAT_180d4aa88 = 0;
-    _DAT_180d4aa80 = 0;
-    _DAT_180d4aa78 = 0;
-    _DAT_180d4aa70 = 0;
-    _DAT_180d4aa68 = 0;
-    _DAT_180d4aa60 = 0;
-    _DAT_180d4aa58 = 0;
-    _DAT_180d4aa50 = 0;
-    _DAT_180d4aa48 = 0;
-    _DAT_180d4aa40 = 0;
-    _DAT_180d4aa38 = 0;
-    _DAT_180d4aa30 = 0;
-    _DAT_180d4aa28 = 0;
-    _DAT_180d4aa20 = 0;
-    _DAT_180d4aa18 = 0;
-    _DAT_180d4aa10 = 0;
-    _DAT_180d4aa08 = 0;
-    _DAT_180d4aa00 = 0;
-    _DAT_180d4a9f8 = 0;
-    _DAT_180d4a9f0 = 0;
-    _DAT_180d4a9e8 = 0;
-    _DAT_180d4a9e0 = 0;
-    _DAT_180d4a9d8 = 0;
-    _DAT_180d4a9d0 = 0;
-    _DAT_180c4ea50 = 1;
+  if (ui_system_config == 0) {
+    ui_system_config_config = 0;
+    ui_system_config_config = &unknown_var_1816_ptr;
+    ui_system_config_config = &unknown_var_1840_ptr;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_main_data = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config_config = 0;
+    ui_system_config = 1;
   }
   if (param_1 == 0) {
-    _DAT_180d4ab18 = &unknown_var_1800_ptr;
-    _DAT_180d4ab20 = &unknown_var_1784_ptr;
-    _DAT_180d4ab28 = &unknown_var_1768_ptr;
-    _DAT_180d4ab30 = &unknown_var_1752_ptr;
-    _DAT_180d4ab40 = &unknown_var_1736_ptr;
-    _DAT_180d4ab48 = &unknown_var_1720_ptr;
-    _DAT_180d4ab50 = &unknown_var_1704_ptr;
-    _DAT_180d4ab58 = &unknown_var_1688_ptr;
-    _DAT_180d4ab60 = &unknown_var_1672_ptr;
-    _DAT_180d4ab70 = &unknown_var_1656_ptr;
+    ui_system_config_config = &unknown_var_1800_ptr;
+    ui_system_config_config = &unknown_var_1784_ptr;
+    ui_system_config_config = &unknown_var_1768_ptr;
+    ui_system_config_config = &unknown_var_1752_ptr;
+    ui_system_config_config = &unknown_var_1736_ptr;
+    ui_system_config_config = &unknown_var_1720_ptr;
+    ui_system_config_config = &unknown_var_1704_ptr;
+    ui_system_config_config = &unknown_var_1688_ptr;
+    ui_system_config_config = &unknown_var_1672_ptr;
+    ui_system_config_config = &unknown_var_1656_ptr;
   }
   else if (param_1 == 1) {
-    _DAT_180d4ab18 = &unknown_var_1640_ptr;
-    _DAT_180d4ab20 = &unknown_var_1624_ptr;
-    _DAT_180d4ab28 = &unknown_var_1608_ptr;
-    _DAT_180d4ab30 = &unknown_var_1592_ptr;
-    _DAT_180d4ab40 = &unknown_var_1576_ptr;
-    _DAT_180d4ab48 = &unknown_var_1560_ptr;
-    _DAT_180d4ab50 = &unknown_var_1544_ptr;
-    _DAT_180d4ab58 = &unknown_var_1528_ptr;
-    _DAT_180d4ab60 = &unknown_var_1512_ptr;
-    _DAT_180d4ab70 = &unknown_var_1496_ptr;
+    ui_system_config_config = &unknown_var_1640_ptr;
+    ui_system_config_config = &unknown_var_1624_ptr;
+    ui_system_config_config = &unknown_var_1608_ptr;
+    ui_system_config_config = &unknown_var_1592_ptr;
+    ui_system_config_config = &unknown_var_1576_ptr;
+    ui_system_config_config = &unknown_var_1560_ptr;
+    ui_system_config_config = &unknown_var_1544_ptr;
+    ui_system_config_config = &unknown_var_1528_ptr;
+    ui_system_config_config = &unknown_var_1512_ptr;
+    ui_system_config_config = &unknown_var_1496_ptr;
   }
   else {
     if (param_1 != 2) {
       return 2;
     }
-    _DAT_180d4ab18 = &unknown_var_1480_ptr;
-    _DAT_180d4ab20 = &unknown_var_1464_ptr;
-    _DAT_180d4ab28 = &unknown_var_1448_ptr;
-    _DAT_180d4ab30 = &unknown_var_1432_ptr;
-    _DAT_180d4ab40 = &unknown_var_1416_ptr;
-    _DAT_180d4ab48 = &unknown_var_1400_ptr;
-    _DAT_180d4ab50 = &unknown_var_1384_ptr;
-    _DAT_180d4ab58 = &unknown_var_1368_ptr;
-    _DAT_180d4ab60 = &unknown_var_1352_ptr;
-    _DAT_180d4ab70 = &unknown_var_1336_ptr;
+    ui_system_config_config = &unknown_var_1480_ptr;
+    ui_system_config_config = &unknown_var_1464_ptr;
+    ui_system_config_config = &unknown_var_1448_ptr;
+    ui_system_config_config = &unknown_var_1432_ptr;
+    ui_system_config_config = &unknown_var_1416_ptr;
+    ui_system_config_config = &unknown_var_1400_ptr;
+    ui_system_config_config = &unknown_var_1384_ptr;
+    ui_system_config_config = &unknown_var_1368_ptr;
+    ui_system_config_config = &unknown_var_1352_ptr;
+    ui_system_config_config = &unknown_var_1336_ptr;
   }
   return 0;
 }
@@ -113,43 +113,43 @@ uint64_t FUN_18081d44a(short param_1)
 
 {
   if (param_1 == 0) {
-    _DAT_180d4ab18 = &unknown_var_1800_ptr;
-    _DAT_180d4ab20 = &unknown_var_1784_ptr;
-    _DAT_180d4ab28 = &unknown_var_1768_ptr;
-    _DAT_180d4ab30 = &unknown_var_1752_ptr;
-    _DAT_180d4ab40 = &unknown_var_1736_ptr;
-    _DAT_180d4ab48 = &unknown_var_1720_ptr;
-    _DAT_180d4ab50 = &unknown_var_1704_ptr;
-    _DAT_180d4ab58 = &unknown_var_1688_ptr;
-    _DAT_180d4ab60 = &unknown_var_1672_ptr;
-    _DAT_180d4ab70 = &unknown_var_1656_ptr;
+    ui_system_config_config = &unknown_var_1800_ptr;
+    ui_system_config_config = &unknown_var_1784_ptr;
+    ui_system_config_config = &unknown_var_1768_ptr;
+    ui_system_config_config = &unknown_var_1752_ptr;
+    ui_system_config_config = &unknown_var_1736_ptr;
+    ui_system_config_config = &unknown_var_1720_ptr;
+    ui_system_config_config = &unknown_var_1704_ptr;
+    ui_system_config_config = &unknown_var_1688_ptr;
+    ui_system_config_config = &unknown_var_1672_ptr;
+    ui_system_config_config = &unknown_var_1656_ptr;
   }
   else if (param_1 == 1) {
-    _DAT_180d4ab18 = &unknown_var_1640_ptr;
-    _DAT_180d4ab20 = &unknown_var_1624_ptr;
-    _DAT_180d4ab28 = &unknown_var_1608_ptr;
-    _DAT_180d4ab30 = &unknown_var_1592_ptr;
-    _DAT_180d4ab40 = &unknown_var_1576_ptr;
-    _DAT_180d4ab48 = &unknown_var_1560_ptr;
-    _DAT_180d4ab50 = &unknown_var_1544_ptr;
-    _DAT_180d4ab58 = &unknown_var_1528_ptr;
-    _DAT_180d4ab60 = &unknown_var_1512_ptr;
-    _DAT_180d4ab70 = &unknown_var_1496_ptr;
+    ui_system_config_config = &unknown_var_1640_ptr;
+    ui_system_config_config = &unknown_var_1624_ptr;
+    ui_system_config_config = &unknown_var_1608_ptr;
+    ui_system_config_config = &unknown_var_1592_ptr;
+    ui_system_config_config = &unknown_var_1576_ptr;
+    ui_system_config_config = &unknown_var_1560_ptr;
+    ui_system_config_config = &unknown_var_1544_ptr;
+    ui_system_config_config = &unknown_var_1528_ptr;
+    ui_system_config_config = &unknown_var_1512_ptr;
+    ui_system_config_config = &unknown_var_1496_ptr;
   }
   else {
     if (param_1 != 2) {
       return 2;
     }
-    _DAT_180d4ab18 = &unknown_var_1480_ptr;
-    _DAT_180d4ab20 = &unknown_var_1464_ptr;
-    _DAT_180d4ab28 = &unknown_var_1448_ptr;
-    _DAT_180d4ab30 = &unknown_var_1432_ptr;
-    _DAT_180d4ab40 = &unknown_var_1416_ptr;
-    _DAT_180d4ab48 = &unknown_var_1400_ptr;
-    _DAT_180d4ab50 = &unknown_var_1384_ptr;
-    _DAT_180d4ab58 = &unknown_var_1368_ptr;
-    _DAT_180d4ab60 = &unknown_var_1352_ptr;
-    _DAT_180d4ab70 = &unknown_var_1336_ptr;
+    ui_system_config_config = &unknown_var_1480_ptr;
+    ui_system_config_config = &unknown_var_1464_ptr;
+    ui_system_config_config = &unknown_var_1448_ptr;
+    ui_system_config_config = &unknown_var_1432_ptr;
+    ui_system_config_config = &unknown_var_1416_ptr;
+    ui_system_config_config = &unknown_var_1400_ptr;
+    ui_system_config_config = &unknown_var_1384_ptr;
+    ui_system_config_config = &unknown_var_1368_ptr;
+    ui_system_config_config = &unknown_var_1352_ptr;
+    ui_system_config_config = &unknown_var_1336_ptr;
   }
   return 0;
 }
@@ -401,13 +401,13 @@ void FUN_18081da90(float *param_1,ulonglong param_2,longlong param_3,int param_4
     if (param_7 == 1) {
                     // WARNING: Could not recover jumptable at 0x00018081e22a. Too many branches
                     // WARNING: Treating indirect jump as call
-      (*(code *)*_DAT_180c4ea58)(param_1,param_2,param_3,param_5);
+      (*(code *)*ui_system_config)(param_1,param_2,param_3,param_5);
       return;
     }
     if (param_7 == 2) {
                     // WARNING: Could not recover jumptable at 0x00018081e25b. Too many branches
                     // WARNING: Treating indirect jump as call
-      (*(code *)_DAT_180c4ea58[1])(param_1,param_2,param_3,param_5);
+      (*(code *)ui_system_config[1])(param_1,param_2,param_3,param_5);
       return;
     }
     if (uVar19 != 0) {
@@ -808,13 +808,13 @@ void FUN_18081e1f7(void)
   if (in_stack_00000070 == 1) {
                     // WARNING: Could not recover jumptable at 0x00018081e22a. Too many branches
                     // WARNING: Treating indirect jump as call
-    (*(code *)*_DAT_180c4ea58)();
+    (*(code *)*ui_system_config)();
     return;
   }
   if (in_stack_00000070 == 2) {
                     // WARNING: Could not recover jumptable at 0x00018081e25b. Too many branches
                     // WARNING: Treating indirect jump as call
-    (*(code *)_DAT_180c4ea58[1])();
+    (*(code *)ui_system_config[1])();
     return;
   }
   if (unaff_EBX != 0) {

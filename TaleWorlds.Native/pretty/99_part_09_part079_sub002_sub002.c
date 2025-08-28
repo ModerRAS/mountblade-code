@@ -726,7 +726,7 @@ void FUN_1805f0b13(void)
       unaff_RBP[0xa7] = fVar46;
       FUN_180084ae0(unaff_RBP + 0x98);
       iVar13 = *(int *)(unaff_R13 + 0x44);
-      lVar22 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+      lVar22 = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
       iVar8 = (int)((*(longlong *)(*(longlong *)(unaff_RSI + 0x100) + 0x20) -
                     *(longlong *)(*(longlong *)(unaff_RSI + 0x100) + 0x18)) / 0x128);
       if (0 < iVar8) {
@@ -1148,7 +1148,7 @@ void FUN_1805f0b13(void)
     (*pcVar24)(plVar25,*puVar18,unaff_RBP + -0x18);
     (**(code **)(**(longlong **)(unaff_RSI + 0xd8) + 0x60))
               (*(longlong **)(unaff_RSI + 0xd8),*(int32_t *)(unaff_RSI + 0x1e0));
-    lVar22 = _DAT_180c86870;
+    lVar22 = system_main_module_state;
     cVar11 = '\0';
     *(int32_t *)(unaff_RSI + 0x1e0) = 0;
     *(int32_t *)(unaff_RSI + 0x1e4) = *(int32_t *)(lVar22 + 0x224);

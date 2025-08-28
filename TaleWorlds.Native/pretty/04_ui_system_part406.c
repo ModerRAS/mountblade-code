@@ -996,7 +996,7 @@ uint64_t FUN_1808909d0(longlong param_1)
     piVar2 = (int *)(param_1 + 0x20);
     if (0 < *(int *)(param_1 + 0x18)) {
       do {
-        if ((*piVar2 != _DAT_180c4eaa0) || (piVar2[1] != _DAT_180c4eaa4)) {
+        if ((*piVar2 != ui_system_memory) || (piVar2[1] != ui_system_memory)) {
           lStackX_8 = 0;
           uVar1 = FUN_1808681d0(uVar6,(int *)(param_1 + 0x20) + (longlong)(int)uVar5 * 2,&lStackX_8)
           ;
@@ -1049,7 +1049,7 @@ uint64_t FUN_1808909f3(void)
   piVar2 = (int *)(unaff_RBP + 0x20);
   if (0 < *(int *)(unaff_RBP + 0x18)) {
     do {
-      if ((*piVar2 != _DAT_180c4eaa0) || (piVar2[1] != _DAT_180c4eaa4)) {
+      if ((*piVar2 != ui_system_memory) || (piVar2[1] != ui_system_memory)) {
         lStack0000000000000050 = 0;
         uVar1 = FUN_1808681d0(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)uVar5 * 2,
                               &stack0x00000050);

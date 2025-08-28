@@ -188,7 +188,7 @@ extern uint64_t global_state_128_ptr;               /**< UI系统特殊事件数
 extern uint64_t global_state_160_ptr;               /**< UI系统内存数据结构 */
 extern uint64_t global_state_4608_ptr;               /**< UI系统处理器数据结构 */
 extern uint64_t global_state_7632;               /**< UI系统配置基地址 */
-extern uint64_t _DAT_180c108d0;              /**< UI系统处理函数表 */
+extern uint64_t ui_system_ui;              /**< UI系统处理函数表 */
 
 /*==============================================================================
  * 核心函数实现
@@ -443,7 +443,7 @@ void UI_ShutdownSystem(longlong system_ptr)
     }
     
     // 执行系统清理（此函数不返回）
-    UI_InternalCleanup(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), system_ptr, &global_state_9968_ptr, 0x56, 1);
+    UI_InternalCleanup(*(uint64_t *)(system_data_buffer + 0x1a0), system_ptr, &global_state_9968_ptr, 0x56, 1);
 }
 
 
@@ -465,7 +465,7 @@ uint64_t UI_SecurityCheck(longlong *system_ptr_ptr)
     // 检查系统指针是否有效
     if (*system_ptr_ptr != 0) {
         // 执行安全清理（此函数不返回）
-        UI_InternalCleanup(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *system_ptr_ptr, &global_state_9968_ptr, 0x76f, 1);
+        UI_InternalCleanup(*(uint64_t *)(system_data_buffer + 0x1a0), *system_ptr_ptr, &global_state_9968_ptr, 0x76f, 1);
     }
     
     return UI_SYSTEM_SUCCESS;
@@ -1156,7 +1156,7 @@ uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
     return uVar3;
   }
   iVar6 = param_2 * 8 + 0x10;
-  lVar4 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar6,&global_state_160_ptr,0x4f,0,0,1);
+  lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),iVar6,&global_state_160_ptr,0x4f,0,0,1);
   *(longlong *)(param_1 + 0x40) = lVar4;
   if (lVar4 != 0) {
     uVar5 = lVar4 + 0xfU & 0xfffffffffffffff0;
@@ -1167,7 +1167,7 @@ uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
       *(uint64_t *)(param_1 + 0x48) = 0;
     }
     else {
-      lVar4 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar6,&global_state_160_ptr,0x58,0,0,1)
+      lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),iVar6,&global_state_160_ptr,0x58,0,0,1)
       ;
       *(longlong *)(param_1 + 0x48) = lVar4;
       if (lVar4 == 0) {
@@ -1180,7 +1180,7 @@ uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
       }
     }
     uVar1 = param_2 >> 1;
-    lVar4 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+    lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),
                           ((param_2 >> 2) + uVar1) * 8 + 0x10,&global_state_160_ptr,0x6b,0,0,1);
     *(longlong *)(param_1 + 0x50) = lVar4;
     if (lVar4 != 0) {
@@ -1192,7 +1192,7 @@ uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
       }
       while( true ) {
         if (uVar2 == 0) {
-          uVar3 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),uVar1 * 4,&global_state_160_ptr,
+          uVar3 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),uVar1 * 4,&global_state_160_ptr,
                                 0x8a,0,0,1);
           *(uint64_t *)(param_1 + 0x58) = uVar3;
           *(uint64_t *)(param_1 + 0x38) = uVar3;
@@ -1246,7 +1246,7 @@ uint64_t UI_AllocateMemory2(longlong system_ptr)
   }
   iVar1 = (int)unaff_R15;
   iVar7 = iVar1 * 8 + 0x10;
-  lVar4 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar7,&global_state_160_ptr,
+  lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),iVar7,&global_state_160_ptr,
                         (int)unaff_R12 + 0x4f);
   *(longlong *)(unaff_RSI + 0x40) = lVar4;
   if (lVar4 != 0) {
@@ -1258,7 +1258,7 @@ uint64_t UI_AllocateMemory2(longlong system_ptr)
       *(uint64_t *)(unaff_RSI + 0x48) = unaff_R12;
     }
     else {
-      lVar4 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar7,&global_state_160_ptr,
+      lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),iVar7,&global_state_160_ptr,
                             (int)unaff_R12 + 0x58);
       *(longlong *)(unaff_RSI + 0x48) = lVar4;
       if (lVar4 == 0) {
@@ -1272,7 +1272,7 @@ uint64_t UI_AllocateMemory2(longlong system_ptr)
     }
     uVar5 = unaff_R15 >> 1 & 0x7fffffff;
     uVar8 = (uint)uVar5;
-    lVar4 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+    lVar4 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),
                           (((uint)(unaff_R15 >> 2) & 0x3fffffff) + uVar8) * 8 + 0x10,&global_state_160_ptr,
                           0x6b);
     *(longlong *)(unaff_RSI + 0x50) = lVar4;
@@ -1286,7 +1286,7 @@ uint64_t UI_AllocateMemory2(longlong system_ptr)
       }
       while( true ) {
         if (uVar6 == 0) {
-          uVar3 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),uVar8 * 4,&global_state_160_ptr,
+          uVar3 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),uVar8 * 4,&global_state_160_ptr,
                                 0x8a);
           *(uint64_t *)(unaff_RSI + 0x58) = uVar3;
           *(uint64_t *)(unaff_RSI + 0x38) = uVar3;
@@ -1356,7 +1356,7 @@ uint64_t UI_AllocateMemory3(longlong system_ptr)
     else {
       uStack0000000000000030 = 1;
       uStack0000000000000028 = uVar8;
-      lVar3 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar7,&global_state_160_ptr,
+      lVar3 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),iVar7,&global_state_160_ptr,
                             (int)unaff_R12 + 0x58);
       *(longlong *)(unaff_RSI + 0x48) = lVar3;
       if (lVar3 == 0) {
@@ -1372,7 +1372,7 @@ uint64_t UI_AllocateMemory3(longlong system_ptr)
     uVar4 = unaff_R15 >> 1 & 0x7fffffff;
     uVar9 = (uint)uVar4;
     uStack0000000000000028 = uVar8;
-    lVar3 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+    lVar3 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),
                           (((uint)(unaff_R15 >> 2) & 0x3fffffff) + uVar9) * 8 + 0x10,&global_state_160_ptr,
                           0x6b);
     *(longlong *)(unaff_RSI + 0x50) = lVar3;
@@ -1388,7 +1388,7 @@ uint64_t UI_AllocateMemory3(longlong system_ptr)
         if (uVar6 == 0) {
           uStack0000000000000030 = 1;
           uStack0000000000000028 = uVar8;
-          uVar5 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),uVar9 * 4,&global_state_160_ptr,
+          uVar5 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),uVar9 * 4,&global_state_160_ptr,
                                 0x8a);
           *(uint64_t *)(unaff_RSI + 0x58) = uVar5;
           *(uint64_t *)(unaff_RSI + 0x38) = uVar5;
@@ -1460,7 +1460,7 @@ uint64_t UI_SetupMemory(void)
   uVar6 = unaff_R15 >> 1 & 0x7fffffff;
   uVar5 = (uint)uVar6;
   uStack0000000000000028 = (char)unaff_R12;
-  lVar2 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
+  lVar2 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),
                         (((uint)(unaff_R15 >> 2) & 0x3fffffff) + uVar5) * 8 + 0x10,&global_state_160_ptr,
                         0x6b);
   *(longlong *)(unaff_RSI + 0x50) = lVar2;
@@ -1485,7 +1485,7 @@ uint64_t UI_SetupMemory(void)
     }
     uStack0000000000000030 = 1;
     uStack0000000000000028 = (char)unaff_R12;
-    uVar3 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),uVar5 * 4,&global_state_160_ptr,0x8a);
+    uVar3 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),uVar5 * 4,&global_state_160_ptr,0x8a);
     *(uint64_t *)(unaff_RSI + 0x58) = uVar3;
     *(uint64_t *)(unaff_RSI + 0x38) = uVar3;
     UI_RecursiveProcess(uVar3,0,1,uVar6,uVar5 - 1);
@@ -1536,7 +1536,7 @@ uint64_t UI_InitializeRenderer(uint64_t param1)
       iVar2 = iVar2 >> 1;
     } while (iVar2 != 0);
   }
-  uVar1 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),unaff_R13D * 4,&global_state_160_ptr,0x8a);
+  uVar1 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),unaff_R13D * 4,&global_state_160_ptr,0x8a);
   *(uint64_t *)(unaff_RSI + 0x58) = uVar1;
   *(uint64_t *)(unaff_RSI + 0x38) = uVar1;
   UI_RecursiveProcess(uVar1,0,1,unaff_R13D,unaff_R13D + -1);
@@ -1577,7 +1577,7 @@ uint64_t UI_InitializeRenderer2(uint64_t param1)
     }
     unaff_EBP = unaff_EBP >> 1;
   } while (unaff_EBP != 0);
-  uVar1 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),unaff_R13D * 4,&global_state_160_ptr,0x8a);
+  uVar1 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),unaff_R13D * 4,&global_state_160_ptr,0x8a);
   *(uint64_t *)(unaff_RSI + 0x58) = uVar1;
   *(uint64_t *)(unaff_RSI + 0x38) = uVar1;
   UI_RecursiveProcess(uVar1,0,1,unaff_R13D,unaff_R13D + -1);
@@ -1608,7 +1608,7 @@ uint64_t UI_InitializeRenderer3(void)
   int8_t uStack0000000000000030;
   
   uStack0000000000000030 = 1;
-  uVar1 = UI_MemoryAllocator(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),unaff_R13D * 4,&global_state_160_ptr,0x8a);
+  uVar1 = UI_MemoryAllocator(*(uint64_t *)(system_data_buffer + 0x1a0),unaff_R13D * 4,&global_state_160_ptr,0x8a);
   *(uint64_t *)(unaff_RSI + 0x58) = uVar1;
   *(uint64_t *)(unaff_RSI + 0x38) = uVar1;
   UI_RecursiveProcess(uVar1,0,1,unaff_R13D,unaff_R13D + -1);
@@ -1775,8 +1775,8 @@ int32_t UI_ProcessData(longlong data_ptr, longlong source_ptr, uint64_t param3, 
 
 PROCESS_COMPLETE:
     // 调用处理完成回调
-    (*(code *)*_DAT_180c108d0)(float_buffer, *(longlong *)(data_ptr + 0x30) + (longlong)total_count * 4, total_count / 2);
-    (*(code *)_DAT_180c108d0[2])(float_buffer, param3, *(uint64_t *)(data_ptr + 0x30), *(int32_t *)(data_ptr + 0x18));
+    (*(code *)*ui_system_ui)(float_buffer, *(longlong *)(data_ptr + 0x30) + (longlong)total_count * 4, total_count / 2);
+    (*(code *)ui_system_ui[2])(float_buffer, param3, *(uint64_t *)(data_ptr + 0x30), *(int32_t *)(data_ptr + 0x18));
     
     // 清理资源（此函数不返回）
     UI_InternalCleanup(resource_id);

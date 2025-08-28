@@ -225,8 +225,8 @@ void FUN_1804c7bd0(longlong *param_1,longlong *param_2,float param_3)
     (**(code **)(*param_1 + 0x28))(param_1,0);
     *(int8_t *)((longlong)param_1 + 0x19) = 0;
   }
-  cVar4 = *(char *)((longlong)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 + 0xcc +
-                   *(longlong *)(_DAT_180c86938 + 0x1d20));
+  cVar4 = *(char *)((longlong)*(int *)(system_message_buffer + 0x1d40) * 0xd0 + 0xcc +
+                   *(longlong *)(system_message_buffer + 0x1d20));
   uStack_5f8 = (void **)0x0;
   uStack_5f0 = 0;
   uStack_5ec = 4;
@@ -286,8 +286,8 @@ void FUN_1804c7bd0(longlong *param_1,longlong *param_2,float param_3)
   if (plStack_598 != (longlong *)0x0) {
     (**(code **)(*plStack_598 + 0x38))();
   }
-  fStack_5e0 = *(float *)(_DAT_180c86950 + 0x17ec);
-  fVar13 = *(float *)(_DAT_180c86950 + 0x17f0);
+  fStack_5e0 = *(float *)(system_operation_state + 0x17ec);
+  fVar13 = *(float *)(system_operation_state + 0x17f0);
   if (cVar4 == '\0') {
     fStack_5e8 = 14.0;
     ppuStack_5d8 = (void **)CONCAT44(ppuStack_5d8._4_4_,0x40800000);
@@ -345,7 +345,7 @@ void FUN_1804c7bd0(longlong *param_1,longlong *param_2,float param_3)
   *(int32_t *)(param_2 + 0x1d) = 0x3f800000;
   *(int32_t *)((longlong)param_2 + 0xec) = 0x3f800000;
   if ((void *)*param_2 == &unknown_var_2024_ptr) {
-    FUN_18029fc10(param_2,*(uint64_t *)(_DAT_180c86938 + 0x1ca8),plVar1,0x80);
+    FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
   }
   else {
     (**(code **)((void *)*param_2 + 0x250))(param_2);
@@ -498,7 +498,7 @@ void FUN_1804c7bd0(longlong *param_1,longlong *param_2,float param_3)
     *(int32_t *)((longlong)param_2 + 0xec) = 0x3f000000;
     fStack_3c4 = fVar15;
     if ((void *)*param_2 == &unknown_var_2024_ptr) {
-      FUN_18029fc10(param_2,*(uint64_t *)(_DAT_180c86938 + 0x1ca8),plVar1,0x80);
+      FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
     }
     else {
       (**(code **)((void *)*param_2 + 0x250))(param_2);
@@ -671,7 +671,7 @@ void FUN_1804c7bd0(longlong *param_1,longlong *param_2,float param_3)
       *(int32_t *)((longlong)param_2 + 0xec) = 0x3f800000;
       fStack_384 = fVar15;
       if ((void *)*param_2 == &unknown_var_2024_ptr) {
-        FUN_18029fc10(param_2,*(uint64_t *)(_DAT_180c86938 + 0x1ca8),plVar1,0x80);
+        FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
       }
       else {
         (**(code **)((void *)*param_2 + 0x250))(param_2);
@@ -840,7 +840,7 @@ void FUN_1804c7bd0(longlong *param_1,longlong *param_2,float param_3)
         *(int32_t *)(param_2 + 0x1d) = 0x3e40c0c1;
         *(float *)((longlong)param_2 + 0xec) = (fVar13 + 1.0) * 0.5;
         if ((void *)*param_2 == &unknown_var_2024_ptr) {
-          FUN_18029fc10(param_2,*(uint64_t *)(_DAT_180c86938 + 0x1ca8),plVar1,0x80);
+          FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
         }
         else {
           (**(code **)((void *)*param_2 + 0x250))(param_2);
@@ -908,11 +908,11 @@ uint64_t FUN_1804c9480(longlong param_1,uint64_t param_2)
   
   uVar19 = 0xfffffffffffffffe;
   uVar18 = 0;
-  if (*(void **)*_DAT_180c8ed08 == &unknown_var_424_ptr) {
-    cVar15 = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
+  if (*(void **)*system_system_data_memory == &unknown_var_424_ptr) {
+    cVar15 = *(int *)(system_system_data_memory + 0xe0) != 0;
   }
   else {
-    cVar15 = (**(code **)(*(void **)*_DAT_180c8ed08 + 0x48))();
+    cVar15 = (**(code **)(*(void **)*system_system_data_memory + 0x48))();
   }
   if (cVar15 == '\0') {
     uVar10 = timeGetTime();
@@ -1004,7 +1004,7 @@ uint64_t * FUN_1804c9650(uint64_t *param_1,uint64_t *param_2)
   param_2[5] = 0;
   param_1[2] = FUN_1804c98d0;
   param_1[3] = FUN_1804c97c0;
-  puVar7 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags,0xfffffffffffffffe);
+  puVar7 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x30,8,system_allocation_flags,0xfffffffffffffffe);
   *puVar7 = uVar5;
   *(int32_t *)(puVar7 + 1) = uVar1;
   puVar7[2] = &unknown_var_720_ptr;

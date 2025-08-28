@@ -1135,16 +1135,16 @@ longlong FUN_180646f40(void)
 {
   longlong lVar1;
   
-  lVar1 = _DAT_180c8ed78;
-  if (_DAT_180c8ed78 == 0) {
-    if (_DAT_180bfbf1c == 0) {
+  lVar1 = render_system_data_config;
+  if (render_system_data_config == 0) {
+    if (render_system_control_config == 0) {
       FUN_180650490(&system_data_bf18);
     }
-    lVar1 = (longlong)_DAT_180bfbf18;
-    if (_DAT_180bfbf18 < 1) {
+    lVar1 = (longlong)render_system_control_config;
+    if (render_system_control_config < 1) {
       lVar1 = 1;
     }
-    _DAT_180c8ed78 = lVar1;
+    render_system_data_config = lVar1;
     FUN_1806502e0(&unknown_var_8368_ptr,lVar1);
   }
   return lVar1;
@@ -1159,16 +1159,16 @@ longlong FUN_180646f50(void)
 {
   longlong lVar1;
   
-  lVar1 = _DAT_180c8ed78;
-  if (_DAT_180c8ed78 == 0) {
-    if (_DAT_180bfbf1c == 0) {
+  lVar1 = render_system_data_config;
+  if (render_system_data_config == 0) {
+    if (render_system_control_config == 0) {
       FUN_180650490(&system_data_bf18);
     }
-    lVar1 = (longlong)_DAT_180bfbf18;
-    if (_DAT_180bfbf18 < 1) {
+    lVar1 = (longlong)render_system_control_config;
+    if (render_system_control_config < 1) {
       lVar1 = 1;
     }
-    _DAT_180c8ed78 = lVar1;
+    render_system_data_config = lVar1;
     FUN_1806502e0(&unknown_var_8368_ptr,lVar1);
   }
   return lVar1;

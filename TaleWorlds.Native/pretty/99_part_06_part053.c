@@ -271,12 +271,12 @@ LAB_1803dcabf:
         FUN_1803dc4c0(param_1);
         iVar3 = *(int *)(param_1 + 0x50);
         if ((-1 < iVar3) &&
-           (lVar6 = *(longlong *)(_DAT_180c86978 + 0xd0) - *(longlong *)(_DAT_180c86978 + 200) >> 3,
+           (lVar6 = *(longlong *)(system_system_data_config + 0xd0) - *(longlong *)(system_system_data_config + 200) >> 3,
            iVar10 = iVar3, iVar3 == lVar6)) {
           iVar10 = (int)lVar6 + -1;
         }
         lVar6 = *(longlong *)
-                 (*(longlong *)(*(longlong *)(_DAT_180c86978 + 200) + (longlong)iVar10 * 8) + 0x68 +
+                 (*(longlong *)(*(longlong *)(system_system_data_config + 200) + (longlong)iVar10 * 8) + 0x68 +
                  (longlong)param_3 * 8);
         lVar4 = *(longlong *)(lVar6 + 8);
         uVar9 = *(longlong *)(lVar6 + 0x10) - lVar4 >> 3;
@@ -376,13 +376,13 @@ uint64_t FUN_1803dccd0(longlong param_1,int param_2)
     iVar23 = 0;
   }
   else {
-    lVar21 = *(longlong *)(_DAT_180c86978 + 0xd0) - *(longlong *)(_DAT_180c86978 + 200) >> 3;
+    lVar21 = *(longlong *)(system_system_data_config + 0xd0) - *(longlong *)(system_system_data_config + 200) >> 3;
     if (iVar23 == lVar21) {
       iVar23 = (int)lVar21 + -1;
     }
   }
   lVar21 = *(longlong *)
-            (*(longlong *)(*(longlong *)(_DAT_180c86978 + 200) + (longlong)iVar23 * 8) + 0x68 +
+            (*(longlong *)(*(longlong *)(system_system_data_config + 200) + (longlong)iVar23 * 8) + 0x68 +
             (longlong)param_2 * 8);
   lVar10 = *(longlong *)(lVar21 + 8);
   uVar22 = *(longlong *)(lVar21 + 0x10) - lVar10 >> 3;
@@ -673,19 +673,19 @@ longlong FUN_1803dcdd0(longlong param_1,longlong param_2,longlong *param_3,int p
   uVar6 = FUN_1800c4620((longlong)(fVar3 * 256.0),param_3);
   *(uint *)(param_1 + 0x50) = uVar6;
   if ((uVar6 == 0xffffffff) ||
-     (lVar13 = *(longlong *)(_DAT_180c86978 + 200),
-     (uint)(*(longlong *)(_DAT_180c86978 + 0xd0) - lVar13 >> 3) <= uVar6)) {
+     (lVar13 = *(longlong *)(system_system_data_config + 200),
+     (uint)(*(longlong *)(system_system_data_config + 0xd0) - lVar13 >> 3) <= uVar6)) {
     puVar12 = &system_buffer_ptr;
     if ((void *)param_3[1] != (void *)0x0) {
       puVar12 = (void *)param_3[1];
     }
     FUN_180627020(&unknown_var_4048_ptr,puVar12);
-    lVar9 = _DAT_180c86978;
+    lVar9 = system_system_data_config;
     uVar6 = 0;
     *(int32_t *)(param_1 + 0x50) = 0;
   }
   else {
-    lVar9 = _DAT_180c86978;
+    lVar9 = system_system_data_config;
     if ((int)uVar6 < 0) goto LAB_1803dcfd4;
   }
   lVar13 = *(longlong *)(lVar9 + 200);

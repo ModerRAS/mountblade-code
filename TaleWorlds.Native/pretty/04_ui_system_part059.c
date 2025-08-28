@@ -34,7 +34,7 @@ void FUN_1806970f0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   uint *puStackX_18;
   longlong lStack_48;
   
-  iVar1 = _DAT_180bf00b0;
+  iVar1 = ui_system_control_config;
   lStack_48 = 8;
   puStackX_18 = param_3;
   do {

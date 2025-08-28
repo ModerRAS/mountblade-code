@@ -193,7 +193,7 @@ void FUN_1801ba850(longlong *param_1,uint param_2,int param_3)
                     do {
                       iVar10 = (int)uVar11;
                       if (*(longlong *)puVar16 == 0) {
-                        lVar4 = FUN_18062b420(_DAT_180c8ed18,0x8000,0x25);
+                        lVar4 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
                         LOCK();
                         bVar17 = *(longlong *)(puVar12 + (longlong)iVar10 * 2 + 2) == 0;
                         if (bVar17) {
@@ -415,7 +415,7 @@ void FUN_1801ba86c(longlong *param_1,uint param_2)
                     do {
                       iVar10 = (int)uVar11;
                       if (*(longlong *)puVar16 == 0) {
-                        lVar4 = FUN_18062b420(_DAT_180c8ed18,0x8000,0x25);
+                        lVar4 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
                         LOCK();
                         bVar18 = *(longlong *)(puVar12 + (longlong)iVar10 * 2 + 2) == 0;
                         if (bVar18) {
@@ -622,7 +622,7 @@ void FUN_1801bac80(longlong *param_1,uint param_2,int param_3)
                     do {
                       iVar10 = (int)uVar11;
                       if (*(longlong *)puVar16 == 0) {
-                        lVar4 = FUN_18062b420(_DAT_180c8ed18,0x8000,0x25);
+                        lVar4 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
                         LOCK();
                         bVar17 = *(longlong *)(puVar12 + (longlong)iVar10 * 2 + 2) == 0;
                         if (bVar17) {

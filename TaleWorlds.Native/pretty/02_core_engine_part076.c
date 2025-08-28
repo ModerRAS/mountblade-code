@@ -52,7 +52,7 @@ void FUN_180109920(longlong param_1)
   auStack_c0[0] = 0;
   uStack_c8 = 0xb;
   strcpy_s(auStack_c0,0x20,&unknown_var_8504_ptr);
-  cVar1 = FUN_180051f00(_DAT_180c86870,&puStack_d8);
+  cVar1 = FUN_180051f00(system_main_module_state,&puStack_d8);
   puStack_d8 = &unknown_var_720_ptr;
   if (cVar1 != '\0') {
     auStack_f0[0] = 1;
@@ -91,7 +91,7 @@ void FUN_180109920(longlong param_1)
   strcpy_s(auStack_50,0x20,&unknown_var_4752_ptr);
   uVar4 = 1;
   uStack_e8 = 1;
-  cVar1 = FUN_180051f00(_DAT_180c86870,&puStack_68);
+  cVar1 = FUN_180051f00(system_main_module_state,&puStack_68);
   if (cVar1 == '\0') {
     puStack_a0 = &unknown_var_672_ptr;
     puStack_98 = auStack_88;
@@ -100,7 +100,7 @@ void FUN_180109920(longlong param_1)
     strcpy_s(auStack_88,0x20,&unknown_var_4960_ptr);
     uVar4 = 3;
     uStack_e8 = 3;
-    cVar1 = FUN_180051f00(_DAT_180c86870,&puStack_a0);
+    cVar1 = FUN_180051f00(system_main_module_state,&puStack_a0);
     if (cVar1 == '\0') goto LAB_180109ba3;
   }
   cVar1 = '\x01';

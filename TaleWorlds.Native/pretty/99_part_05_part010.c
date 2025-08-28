@@ -875,7 +875,7 @@ void FUN_1802db2d0(longlong param_1,uint64_t *param_2,int32_t *param_3,int32_t p
     }
   }
   puVar11 = (uint64_t *)
-            FUN_18062b420(_DAT_180c8ed18,lVar12 * 0x28,*(int8_t *)(param_1 + 0x20));
+            FUN_18062b420(system_memory_pool_ptr,lVar12 * 0x28,*(int8_t *)(param_1 + 0x20));
   puVar14 = *(int32_t **)(param_1 + 8);
   puVar13 = *(int32_t **)(param_1 + 0x10);
 LAB_1802db3a9:
@@ -931,7 +931,7 @@ void FUN_1802db337(longlong param_1,uint64_t param_2,uint64_t param_3,longlong p
     }
   }
   puVar1 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar2 * 0x28,*(int8_t *)(unaff_RBX + 0x20));
+           FUN_18062b420(system_memory_pool_ptr,lVar2 * 0x28,*(int8_t *)(unaff_RBX + 0x20));
   param_4 = *(longlong *)(unaff_RBX + 8);
   unaff_RDI = *(longlong *)(unaff_RBX + 0x10);
 LAB_1802db3a9:

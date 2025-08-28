@@ -942,7 +942,7 @@ void FUN_1803f3880(ulonglong *param_1,uint64_t param_2,uint64_t param_3,uint64_t
     if (lVar10 == 0) goto LAB_1803f392d;
   }
   puVar3 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar10 * 0x118,(char)param_1[3],param_4,0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr,lVar10 * 0x118,(char)param_1[3],param_4,0xfffffffffffffffe);
   uVar6 = param_1[1];
   uVar8 = *param_1;
 LAB_1803f392d:

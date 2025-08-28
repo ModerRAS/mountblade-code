@@ -315,53 +315,53 @@ ulonglong FUN_18081c5b0(uint64_t *param_1,int param_2)
   uVar13 = uVar9 & 0xffffffff;
   if ((int)uVar9 < 1) {
     if (param_2 == 0) {
-      FUN_18081d600(pfVar11,sVar15,pfVar17,sVar5,_DAT_180d4ab70,&system_data_ab10,sVar3);
-      FUN_18081d8a0(pfVar17,sVar5,pfVar17,sVar5,_DAT_180d4ab68,&system_data_aaf0,sVar3);
+      FUN_18081d600(pfVar11,sVar15,pfVar17,sVar5,ui_system_config_memory,&system_data_ab10,sVar3);
+      FUN_18081d8a0(pfVar17,sVar5,pfVar17,sVar5,ui_system_config_memory,&system_data_aaf0,sVar3);
       pfVar11 = pfVar17;
       sVar15 = sVar5;
     }
-    FUN_18081d760(pfVar11,sVar15,pfVar17,sVar5,_DAT_180d4ab60,&system_data_aac8,sVar3);
-    FUN_18081d760(pfVar17,sVar5,pfVar17,sVar5,_DAT_180d4ab58,&system_data_aab0,sVar3);
-    FUN_18081d760(pfVar17,sVar5,pfVar17,sVar5,_DAT_180d4ab50,&system_data_aa98,sVar3);
-    FUN_18081d760(pfVar17,sVar5,pfVar17,sVar5,_DAT_180d4ab48,&system_data_aa80,sVar3);
+    FUN_18081d760(pfVar11,sVar15,pfVar17,sVar5,ui_system_config_memory,&system_data_aac8,sVar3);
+    FUN_18081d760(pfVar17,sVar5,pfVar17,sVar5,ui_system_config_memory,&system_data_aab0,sVar3);
+    FUN_18081d760(pfVar17,sVar5,pfVar17,sVar5,ui_system_config_memory,&system_data_aa98,sVar3);
+    FUN_18081d760(pfVar17,sVar5,pfVar17,sVar5,ui_system_config_memory,&system_data_aa80,sVar3);
     if (param_2 == 0) {
-      FUN_18081d600(pfVar12,sVar16,pfVar18,sVar6,_DAT_180d4ab70,&system_data_ab00,sVar3);
-      FUN_18081d8a0(pfVar18,sVar6,pfVar18,sVar6,_DAT_180d4ab68,&system_data_aad0,sVar3);
+      FUN_18081d600(pfVar12,sVar16,pfVar18,sVar6,ui_system_config_memory,&system_data_ab00,sVar3);
+      FUN_18081d8a0(pfVar18,sVar6,pfVar18,sVar6,ui_system_config_memory,&system_data_aad0,sVar3);
       pfVar12 = pfVar18;
       sVar16 = sVar6;
     }
-    FUN_18081d760(pfVar12,sVar16,pfVar18,sVar6,_DAT_180d4ab60,&system_data_aab8,sVar3);
-    FUN_18081d760(pfVar18,sVar6,pfVar18,sVar6,_DAT_180d4ab58,&system_data_aaa0,sVar3);
-    FUN_18081d760(pfVar18,sVar6,pfVar18,sVar6,_DAT_180d4ab50,&system_data_aa88,sVar3);
-    FUN_18081d760(pfVar18,sVar6,pfVar18,sVar6,_DAT_180d4ab48,&system_data_aa70,sVar3);
+    FUN_18081d760(pfVar12,sVar16,pfVar18,sVar6,ui_system_config_memory,&system_data_aab8,sVar3);
+    FUN_18081d760(pfVar18,sVar6,pfVar18,sVar6,ui_system_config_memory,&system_data_aaa0,sVar3);
+    FUN_18081d760(pfVar18,sVar6,pfVar18,sVar6,ui_system_config_memory,&system_data_aa88,sVar3);
+    FUN_18081d760(pfVar18,sVar6,pfVar18,sVar6,ui_system_config_memory,&system_data_aa70,sVar3);
     if (param_2 == 0) {
-      FUN_18081d600(pfVar22,sVar1,pfVar22,sVar1,_DAT_180d4ab70,&system_data_ab08,sVar3);
-      FUN_18081d8a0(pfVar22,sVar1,pfVar22,sVar1,_DAT_180d4ab68,&system_data_aae0,sVar3);
+      FUN_18081d600(pfVar22,sVar1,pfVar22,sVar1,ui_system_config_memory,&system_data_ab08,sVar3);
+      FUN_18081d8a0(pfVar22,sVar1,pfVar22,sVar1,ui_system_config_memory,&system_data_aae0,sVar3);
     }
-    FUN_18081d760(pfVar22,sVar1,pfVar22,sVar1,_DAT_180d4ab60,&system_data_aac0,sVar3);
-    FUN_18081d760(pfVar22,sVar1,pfVar22,sVar1,_DAT_180d4ab58,&system_data_aaa8,sVar3);
-    FUN_18081d760(pfVar22,sVar1,pfVar22,sVar1,_DAT_180d4ab50,&system_data_aa90,sVar3);
-    FUN_18081d760(pfVar22,sVar1,pfVar22,sVar1,_DAT_180d4ab48,&system_data_aa78,sVar3);
+    FUN_18081d760(pfVar22,sVar1,pfVar22,sVar1,ui_system_config_memory,&system_data_aac0,sVar3);
+    FUN_18081d760(pfVar22,sVar1,pfVar22,sVar1,ui_system_config_memory,&system_data_aaa8,sVar3);
+    FUN_18081d760(pfVar22,sVar1,pfVar22,sVar1,ui_system_config_memory,&system_data_aa90,sVar3);
+    FUN_18081d760(pfVar22,sVar1,pfVar22,sVar1,ui_system_config_memory,&system_data_aa78,sVar3);
     if (param_2 == 0) {
-      FUN_18081d600(pfVar21,sVar2,pfVar21,sVar2,_DAT_180d4ab40,&system_data_aa68,sVar3);
-      FUN_18081d600(pfVar21,sVar2,pfVar21,sVar2,_DAT_180d4ab40,&system_data_aa58,sVar3);
-      FUN_18081d8a0(pfVar21,sVar2,pfVar21,sVar2,_DAT_180d4ab38,&system_data_aa40,sVar3);
-      FUN_18081d8a0(pfVar21,sVar2,pfVar21,sVar2,_DAT_180d4ab38,&system_data_aa20,sVar3);
+      FUN_18081d600(pfVar21,sVar2,pfVar21,sVar2,ui_system_config_memory,&system_data_aa68,sVar3);
+      FUN_18081d600(pfVar21,sVar2,pfVar21,sVar2,ui_system_config_memory,&system_data_aa58,sVar3);
+      FUN_18081d8a0(pfVar21,sVar2,pfVar21,sVar2,ui_system_config_memory,&system_data_aa40,sVar3);
+      FUN_18081d8a0(pfVar21,sVar2,pfVar21,sVar2,ui_system_config_memory,&system_data_aa20,sVar3);
     }
-    FUN_18081d760(pfVar21,sVar2,pfVar21,sVar2,_DAT_180d4ab30,&system_data_aa08,sVar3);
-    FUN_18081d760(pfVar21,sVar2,pfVar21,sVar2,_DAT_180d4ab28,&system_data_a9f8,sVar3);
-    FUN_18081d760(pfVar21,sVar2,pfVar21,sVar2,_DAT_180d4ab20,&system_data_a9e8,sVar3);
-    FUN_18081d760(pfVar21,sVar2,pfVar21,sVar2,_DAT_180d4ab18,&system_data_a9d8,sVar3);
+    FUN_18081d760(pfVar21,sVar2,pfVar21,sVar2,ui_system_config_memory,&system_data_aa08,sVar3);
+    FUN_18081d760(pfVar21,sVar2,pfVar21,sVar2,ui_system_config_memory,&system_data_a9f8,sVar3);
+    FUN_18081d760(pfVar21,sVar2,pfVar21,sVar2,ui_system_config_memory,&system_data_a9e8,sVar3);
+    FUN_18081d760(pfVar21,sVar2,pfVar21,sVar2,ui_system_config_memory,&system_data_a9d8,sVar3);
     if (param_2 == 0) {
-      FUN_18081d600(pfVar20,sVar4,pfVar20,sVar4,_DAT_180d4ab40,&system_data_aa60,sVar3);
-      FUN_18081d600(pfVar20,sVar4,pfVar20,sVar4,_DAT_180d4ab40,&system_data_aa50,sVar3);
-      FUN_18081d8a0(pfVar20,sVar4,pfVar20,sVar4,_DAT_180d4ab38,&system_data_aa30,sVar3);
-      FUN_18081d8a0(pfVar20,sVar4,pfVar20,sVar4,_DAT_180d4ab38,&system_data_aa10,sVar3);
+      FUN_18081d600(pfVar20,sVar4,pfVar20,sVar4,ui_system_config_memory,&system_data_aa60,sVar3);
+      FUN_18081d600(pfVar20,sVar4,pfVar20,sVar4,ui_system_config_memory,&system_data_aa50,sVar3);
+      FUN_18081d8a0(pfVar20,sVar4,pfVar20,sVar4,ui_system_config_memory,&system_data_aa30,sVar3);
+      FUN_18081d8a0(pfVar20,sVar4,pfVar20,sVar4,ui_system_config_memory,&system_data_aa10,sVar3);
     }
-    FUN_18081d760(pfVar20,sVar4,pfVar20,sVar4,_DAT_180d4ab30,&system_data_aa00,sVar3);
-    FUN_18081d760(pfVar20,sVar4,pfVar20,sVar4,_DAT_180d4ab28,&system_data_a9f0,sVar3);
-    FUN_18081d760(pfVar20,sVar4,pfVar20,sVar4,_DAT_180d4ab20,&system_data_a9e0,sVar3);
-    FUN_18081d760(pfVar20,sVar4,pfVar20,sVar4,_DAT_180d4ab18,&system_data_a9d0,sVar3);
+    FUN_18081d760(pfVar20,sVar4,pfVar20,sVar4,ui_system_config_memory,&system_data_aa00,sVar3);
+    FUN_18081d760(pfVar20,sVar4,pfVar20,sVar4,ui_system_config_memory,&system_data_a9f0,sVar3);
+    FUN_18081d760(pfVar20,sVar4,pfVar20,sVar4,ui_system_config_memory,&system_data_a9e0,sVar3);
+    FUN_18081d760(pfVar20,sVar4,pfVar20,sVar4,ui_system_config_memory,&system_data_a9d0,sVar3);
     uVar7 = 0;
     if (uVar19 < 4) {
       if (sVar3 == 0) {
@@ -647,7 +647,7 @@ int FUN_18081c668(int32_t param_1,ulonglong param_2,uint64_t param_3,uint64_t pa
   if (unaff_R13D == 0) {
     puStack0000000000000028 = &system_data_ab10;
     uStack0000000000000030 = uVar7;
-    uVar16 = FUN_18081d600(in_RCX,param_2,param_3,param_4,_DAT_180d4ab70);
+    uVar16 = FUN_18081d600(in_RCX,param_2,param_3,param_4,ui_system_config_memory);
     puStack0000000000000028 = &system_data_aaf0;
     uStack0000000000000030 = uVar7;
     param_1 = FUN_18081d8a0(uVar16,in_stack_00000108);

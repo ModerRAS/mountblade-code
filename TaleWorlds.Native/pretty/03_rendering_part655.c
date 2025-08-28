@@ -91,7 +91,7 @@ longlong * FUN_18063e690(longlong *param_1,longlong *param_2,uint64_t param_3,ui
   uVar1 = *(uint *)(param_2 + 3);
   uStack_38 = uVar1;
   if (lVar4 != 0) {
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar4 * 8,uVar1 & 0xff,param_4,0xfffffffffffffffe);
+    lVar3 = FUN_18062b420(system_memory_pool_ptr,lVar4 * 8,uVar1 & 0xff,param_4,0xfffffffffffffffe);
   }
   lVar4 = lVar3 + lVar4 * 8;
   lVar2 = *param_2;

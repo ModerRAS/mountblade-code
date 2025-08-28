@@ -128,12 +128,12 @@ extern void* ThreadLocalStoragePointer;
 extern unsigned int __tls_index;
 
 /** NVSDK NGX全局函数指针 */
-extern void* _DAT_180c69e80;
-extern void* _DAT_180c69ea8;
-extern void* _DAT_180c69eb0;
-extern void* _DAT_180c69ec0;
-extern void* _DAT_180c69ec8;
-extern void* _DAT_180c69ed0;
+extern void* system_system_config;
+extern void* system_system_config;
+extern void* system_system_config;
+extern void* system_system_config;
+extern void* system_system_config;
+extern void* system_system_config;
 
 // ============================================================================
 // 核心函数声明
@@ -1242,10 +1242,10 @@ void* NGX_D3D11_AllocateParameters(void* d3d11_device)
     void* result;
     
     // 获取分配函数指针
-    alloc_function = _DAT_180c69ec0;
+    alloc_function = system_system_config;
     
     // 检查系统初始化状态
-    if (_DAT_180c69e80 == NULL) {
+    if (system_system_config == NULL) {
         return (void*)ERROR_INVALID_POINTER;
     }
     
@@ -1279,7 +1279,7 @@ void* NGX_D3D11_CreateFeature(void* device, int feature_id, void* params, void* 
     void* result;
     
     // 获取创建函数指针
-    create_function = _DAT_180c69ea8;
+    create_function = system_system_config;
     
     // 检查函数指针有效性
     if (create_function == NULL) {
@@ -1308,10 +1308,10 @@ void* NGX_D3D11_DestroyParameters(void* params)
     void* result;
     
     // 获取销毁函数指针
-    destroy_function = _DAT_180c69ed0;
+    destroy_function = system_system_config;
     
     // 检查系统初始化状态
-    if (_DAT_180c69e80 == NULL) {
+    if (system_system_config == NULL) {
         return (void*)ERROR_INVALID_POINTER;
     }
     
@@ -1345,7 +1345,7 @@ void* NGX_D3D11_EvaluateFeature(void* device, void* feature, void* params, void*
     void* eval_result;
     
     // 获取评估函数指针
-    evaluate_function = _DAT_180c69eb0;
+    evaluate_function = system_system_config;
     
     // 检查函数指针有效性
     if (evaluate_function == NULL) {
@@ -1374,10 +1374,10 @@ void* NGX_D3D11_GetCapabilityParameters(void* device)
     void* result;
     
     // 获取参数函数指针
-    get_params_function = _DAT_180c69ec8;
+    get_params_function = system_system_config;
     
     // 检查系统初始化状态
-    if (_DAT_180c69e80 == NULL) {
+    if (system_system_config == NULL) {
         return (void*)ERROR_INVALID_POINTER;
     }
     
@@ -1410,12 +1410,12 @@ void* NGX_D3D11_EvaluateFeature_C(void* device, void* feature, void* params, voi
     void* eval_result;
     
     // 检查系统初始化状态
-    if (_DAT_180c69eb0 == NULL) {
+    if (system_system_config == NULL) {
         return (void*)ERROR_INVALID_POINTER;
     }
     
     // 使用线程局部存储管理器调用评估函数
-    eval_result = ThreadLocalStorageManager(_DAT_180c69eb0, device, feature, params, result);
+    eval_result = ThreadLocalStorageManager(system_system_config, device, feature, params, result);
     return eval_result;
 }
 
@@ -1488,7 +1488,7 @@ void* SystemMemoryAllocator(void)
     void* result;
     
     // 获取内存分配函数指针
-    alloc_function = _DAT_180c69ec0;
+    alloc_function = system_system_config;
     
     // 检查函数指针有效性
     if (alloc_function == NULL) {
@@ -1517,7 +1517,7 @@ void* SystemMemoryReleaser(void* memory_ptr)
     void* result;
     
     // 获取内存释放函数指针
-    release_function = _DAT_180c69ed0;
+    release_function = system_system_config;
     
     // 检查函数指针有效性
     if (release_function == NULL) {

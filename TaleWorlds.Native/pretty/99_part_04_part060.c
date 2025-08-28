@@ -169,7 +169,7 @@ void FUN_1802bba20(longlong *param_1,float param_2)
                           fVar30 * *(float *)(param_1 + 0x1b));
   }
   pfVar17 = *(float **)(lVar13 + 0x81f0);
-  fVar27 = ((float)_DAT_180c8ed30 * 1e-05 +
+  fVar27 = ((float)system_error_code * 1e-05 +
            ABS(*(float *)((longlong)param_1 + 0xe4) + *(float *)(param_1 + 0x1c))) * 8.0;
   uVar9 = (uint)fVar27;
   uVar10 = uVar9 & 0x800000ff;
