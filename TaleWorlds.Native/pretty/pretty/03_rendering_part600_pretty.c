@@ -37,49 +37,22 @@
 #define RenderingStateQuerier       FUN_00000006    // 渲染状态查询器
 
 //==============================================================================
-// 系统常量和类型定义
-//==============================================================================
-
-// 系统状态常量
-#define SYSTEM_STATE_READY      0x00000001    // 系统就绪
-#define SYSTEM_STATE_BUSY       0x00000002    // 系统繁忙
-#define SYSTEM_STATE_ERROR      0x00000004    // 系统错误
-#define SYSTEM_STATE_INIT       0x00000008    // 系统初始化中
-
-// 系统标志常量
-#define SYSTEM_FLAG_ENABLED     0x00000001    // 系统已启用
-#define SYSTEM_FLAG_ACTIVE      0x00000002    // 系统活跃
-#define SYSTEM_FLAG_INITIALIZED 0x00000004    // 系统已初始化
-#define SYSTEM_FLAG_SECURE      0x00000008    // 安全模式
-
-// 系统错误码
-#define SYSTEM_SUCCESS          0              // 操作成功
-#define SYSTEM_ERROR_INVALID    -1             // 无效参数
-#define SYSTEM_ERROR_MEMORY     -2             // 内存错误
-#define SYSTEM_ERROR_STATE      -3             // 状态错误
-
-// 类型别名定义
-typedef uint64_t SystemHandle;              // 系统句柄
-typedef uint64_t MemoryHandle;              // 内存句柄
-typedef uint64_t StateHandle;               // 状态句柄
-
-//==============================================================================
-// 核心功能实现
+// 渲染系统函数实现
 //==============================================================================
 
 /**
- * 系统初始化函数
+ * 渲染系统初始化函数
  * 
  * 本函数负责初始化渲染系统核心组件，包括：
  * - 渲染内存管理器初始化
  * - 渲染状态管理系统初始化
  * - 渲染核心服务启动
  * 
- * @param param1 系统参数1
- * @param param2 系统参数2
- * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
+ * @param param1 渲染系统参数1
+ * @param param2 渲染系统参数2
+ * @return 渲染系统句柄，失败返回INVALID_HANDLE_VALUE
  */
-SystemHandle SystemInitializer(uint64_t param1, uint64_t param2)
+SystemHandle RenderingSystemInitializer(uint64_t param1, uint64_t param2)
 {
     SystemHandle handle;
     int local_10;
@@ -112,17 +85,17 @@ SystemHandle SystemInitializer(uint64_t param1, uint64_t param2)
 }
 
 /**
- * 系统关闭函数
+ * 渲染系统关闭函数
  * 
  * 负责安全关闭渲染系统，释放资源：
  * - 停止所有渲染服务
  * - 释放渲染内存资源
  * - 清理渲染状态信息
  * 
- * @param handle 系统句柄
+ * @param handle 渲染系统句柄
  * @return 操作状态码
  */
-int SystemShutdown(SystemHandle handle)
+int RenderingSystemShutdown(SystemHandle handle)
 {
     int status;
     
@@ -149,14 +122,14 @@ int SystemShutdown(SystemHandle handle)
 }
 
 /**
- * 系统状态查询函数
+ * 渲染系统状态查询函数
  * 
  * 查询渲染系统当前状态信息
  * 
- * @param handle 系统句柄
+ * @param handle 渲染系统句柄
  * @return 渲染系统状态码
  */
-int SystemGetState(SystemHandle handle)
+int RenderingSystemGetState(SystemHandle handle)
 {
     // 参数验证
     if (handle == (SystemHandle)0) {
