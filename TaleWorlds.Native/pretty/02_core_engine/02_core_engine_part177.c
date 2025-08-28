@@ -2,8 +2,10 @@
 
 // 02_core_engine_part177.c - 15 个函数
 
-// 函数: void FUN_18016060f(float param_1,longlong param_2)
-void FUN_18016060f(float param_1,longlong param_2)
+// 函数: void validate_float_range_with_type_checking(float value, longlong config_ptr)
+// 功能: 根据配置验证浮点数范围，支持多种类型检查
+// 参数: value - 要验证的浮点数值, config_ptr - 配置数据指针
+void validate_float_range_with_type_checking(float value, longlong config_ptr)
 
 {
   float *pfVar1;
@@ -104,8 +106,9 @@ LAB_1801606a8:
 
 
 
-// 函数: void FUN_1801606b9(void)
-void FUN_1801606b9(void)
+// 函数: void empty_function_placeholder(void)
+// 功能: 空函数占位符，可能用于调试或未来扩展
+void empty_function_placeholder(void)
 
 {
   return;
@@ -115,8 +118,10 @@ void FUN_1801606b9(void)
 
 
 
-// 函数: void FUN_1801606bb(float param_1,longlong param_2,ulonglong param_3)
-void FUN_1801606bb(float param_1,longlong param_2,ulonglong param_3)
+// 函数: void validate_single_float_range(float value, longlong config_ptr, ulonglong index)
+// 功能: 验证单个浮点数的范围，支持条件检查
+// 参数: value - 要验证的浮点数值, config_ptr - 配置数据指针, index - 索引值
+void validate_single_float_range(float value, longlong config_ptr, ulonglong index)
 
 {
   float *pfVar1;
@@ -212,7 +217,11 @@ LAB_180160797:
 
 
 
-longlong FUN_1801607a0(longlong param_1,undefined4 *param_2)
+// 函数: longlong initialize_data_structure_type_a(longlong struct_ptr, undefined4 *param_2)
+// 功能: 初始化类型A的数据结构，设置默认值和指针
+// 参数: struct_ptr - 结构体指针, param_2 - 初始化参数
+// 返回: 初始化后的结构体指针
+longlong initialize_data_structure_type_a(longlong struct_ptr, undefined4 *param_2)
 
 {
   *(undefined8 *)(param_1 + 0x10) = 0;
@@ -229,7 +238,11 @@ longlong FUN_1801607a0(longlong param_1,undefined4 *param_2)
 
 
 
-longlong FUN_180160800(longlong param_1,undefined4 *param_2)
+// 函数: longlong initialize_data_structure_type_b(longlong struct_ptr, undefined4 *param_2)
+// 功能: 初始化类型B的数据结构，设置默认值和指针
+// 参数: struct_ptr - 结构体指针, param_2 - 初始化参数
+// 返回: 初始化后的结构体指针
+longlong initialize_data_structure_type_b(longlong struct_ptr, undefined4 *param_2)
 
 {
   *(undefined8 *)(param_1 + 0x10) = 0;
@@ -248,9 +261,11 @@ longlong FUN_180160800(longlong param_1,undefined4 *param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_180160860(longlong param_1,undefined8 *param_2,undefined8 param_3,int *param_4,ulonglong param_5
-             )
+// 函数: undefined8 *hash_table_insert_or_find(longlong table_ptr, undefined8 *result_ptr, undefined8 param_3, int *key_ptr, ulonglong hash_value)
+// 功能: 在哈希表中插入或查找键值对，处理冲突
+// 参数: table_ptr - 哈希表指针, result_ptr - 结果存储指针, key_ptr - 键指针, hash_value - 哈希值
+// 返回: 结果指针
+undefined8 *hash_table_insert_or_find(longlong table_ptr, undefined8 *result_ptr, undefined8 param_3, int *key_ptr, ulonglong hash_value)
 
 {
   longlong lVar1;
@@ -301,8 +316,10 @@ FUN_180160860(longlong param_1,undefined8 *param_2,undefined8 param_3,int *param
 
 
 
-// 函数: void FUN_1801608ba(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1801608ba(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void hash_table_insert_with_data(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 向哈希表插入数据，支持动态内存分配
+// 参数: param_1 - 哈希表参数, param_2 - 数据参数, param_3 - 哈希参数, param_4 - 配置参数
+void hash_table_insert_with_data(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   longlong lVar1;
@@ -340,8 +357,10 @@ void FUN_1801608ba(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_1801609be(undefined8 param_1,undefined8 param_2)
-void FUN_1801609be(undefined8 param_1,undefined8 param_2)
+// 函数: void set_hash_table_result(undefined8 result_value, undefined8 param_2)
+// 功能: 设置哈希表查询结果，标记为已存在
+// 参数: result_value - 结果值, param_2 - 目标位置
+void set_hash_table_result(undefined8 result_value, undefined8 param_2)
 
 {
   undefined8 in_RAX;
@@ -357,8 +376,10 @@ void FUN_1801609be(undefined8 param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_1801609da(ulonglong param_1)
-void FUN_1801609da(ulonglong param_1)
+// 函数: void hash_table_rehash_and_insert(ulonglong param_1)
+// 功能: 哈希表重新哈希并插入新元素
+// 参数: param_1 - 重新哈希参数
+void hash_table_rehash_and_insert(ulonglong param_1)
 
 {
   longlong lVar1;
@@ -389,8 +410,9 @@ void FUN_1801609da(ulonglong param_1)
 
 
 
-// 函数: void FUN_180160a00(void)
-void FUN_180160a00(void)
+// 函数: void hash_table_direct_insert(void)
+// 功能: 直接向哈希表插入元素，不进行重新哈希
+void hash_table_direct_insert(void)
 
 {
   longlong lVar1;
@@ -413,8 +435,10 @@ void FUN_180160a00(void)
 
 
 
-// 函数: void FUN_180160a50(longlong param_1)
-void FUN_180160a50(longlong param_1)
+// 函数: void hash_table_cleanup_and_free(longlong table_ptr)
+// 功能: 清理哈希表并释放内存资源
+// 参数: table_ptr - 哈希表指针
+void hash_table_cleanup_and_free(longlong table_ptr)
 
 {
   int *piVar1;
@@ -469,8 +493,10 @@ void FUN_180160a50(longlong param_1)
 
 
 
-// 函数: void FUN_180160a56(longlong param_1)
-void FUN_180160a56(longlong param_1)
+// 函数: void hash_table_release_memory(longlong table_ptr)
+// 功能: 释放哈希表内存，处理引用计数
+// 参数: table_ptr - 哈希表指针
+void hash_table_release_memory(longlong table_ptr)
 
 {
   int *piVar1;
@@ -525,8 +551,9 @@ void FUN_180160a56(longlong param_1)
 
 
 
-// 函数: void FUN_180160a80(void)
-void FUN_180160a80(void)
+// 函数: void hash_table_clear_all_entries(void)
+// 功能: 清除哈希表所有条目，释放关联内存
+void hash_table_clear_all_entries(void)
 
 {
   int *piVar1;
@@ -579,8 +606,9 @@ void FUN_180160a80(void)
 
 
 
-// 函数: void FUN_180160ab6(void)
-void FUN_180160ab6(void)
+// 函数: void hash_table_free_resources(void)
+// 功能: 释放哈希表资源，处理内存池管理
+void hash_table_free_resources(void)
 
 {
   int *piVar1;
@@ -621,8 +649,9 @@ void FUN_180160ab6(void)
 
 
 
-// 函数: void FUN_180160ad4(void)
-void FUN_180160ad4(void)
+// 函数: void hash_table_deallocate(void)
+// 功能: 释放哈希表分配的内存，处理异常情况
+void hash_table_deallocate(void)
 
 {
   int *piVar1;
@@ -661,9 +690,11 @@ void FUN_180160ad4(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_180160af0(longlong param_1,undefined8 *param_2,undefined8 param_3,int *param_4,ulonglong param_5
-             )
+// 函数: undefined8 *extended_hash_table_insert(longlong table_ptr, undefined8 *result_ptr, undefined8 param_3, int *key_ptr, ulonglong hash_value)
+// 功能: 扩展哈希表插入操作，支持更大的数据结构
+// 参数: table_ptr - 哈希表指针, result_ptr - 结果存储指针, key_ptr - 键指针, hash_value - 哈希值
+// 返回: 结果指针
+undefined8 *extended_hash_table_insert(longlong table_ptr, undefined8 *result_ptr, undefined8 param_3, int *key_ptr, ulonglong hash_value)
 
 {
   longlong lVar1;
@@ -727,8 +758,10 @@ FUN_180160af0(longlong param_1,undefined8 *param_2,undefined8 param_3,int *param
 
 
 
-// 函数: void FUN_180160b4a(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180160b4a(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void extended_hash_table_insert_data(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 向扩展哈希表插入数据，支持复杂数据结构
+// 参数: param_1 - 哈希表参数, param_2 - 数据参数, param_3 - 哈希参数, param_4 - 配置参数
+void extended_hash_table_insert_data(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   longlong lVar1;
@@ -773,8 +806,10 @@ void FUN_180160b4a(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_180160c6e(undefined8 param_1,undefined8 param_2)
-void FUN_180160c6e(undefined8 param_1,undefined8 param_2)
+// 函数: void extended_hash_table_set_result(undefined8 result_value, undefined8 param_2)
+// 功能: 设置扩展哈希表查询结果
+// 参数: result_value - 结果值, param_2 - 目标位置
+void extended_hash_table_set_result(undefined8 result_value, undefined8 param_2)
 
 {
   undefined8 in_RAX;
@@ -790,8 +825,10 @@ void FUN_180160c6e(undefined8 param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180160c8a(ulonglong param_1)
-void FUN_180160c8a(ulonglong param_1)
+// 函数: void extended_hash_table_rehash(ulonglong param_1)
+// 功能: 扩展哈希表重新哈希操作
+// 参数: param_1 - 重新哈希参数
+void extended_hash_table_rehash(ulonglong param_1)
 
 {
   longlong lVar1;

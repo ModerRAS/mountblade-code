@@ -1,0 +1,1011 @@
+#include "TaleWorlds.Native.Split.h"
+
+// 02_core_engine_part178.c - 核心引擎字符串处理和错误消息生成模块
+
+// 函数：更新链表节点指针
+// 功能：在双向链表中插入一个新节点，更新前后节点的指针关系
+void update_linked_list_node_pointers(void)
+
+{
+  longlong next_node_ptr;          // 下一个节点的指针
+  longlong list_context_ptr;       // 链表上下文指针
+  longlong node_index;             // 节点索引
+  longlong value_offset;            // 值偏移量
+  longlong *node_ptr;               // 当前节点指针
+  
+  // 将下一个节点的数据复制到当前节点的0x40偏移位置
+  *(undefined8 *)(node_index + 0x40) = *(undefined8 *)(*(longlong *)(list_context_ptr + 8) + value_offset * 8);
+  
+  // 将当前节点插入到链表中，更新前后节点的指针
+  *(longlong *)(*(longlong *)(list_context_ptr + 8) + value_offset * 8) = node_index;
+  next_node_ptr = *(longlong *)(list_context_ptr + 8);
+  
+  // 更新链表节点计数
+  *(longlong *)(list_context_ptr + 0x18) = *(longlong *)(list_context_ptr + 0x18) + 1;
+  
+  // 设置新节点的指针
+  *node_ptr = node_index;
+  node_ptr[1] = next_node_ptr + value_offset * 8;
+  *(undefined1 *)(node_ptr + 2) = 1;  // 标记节点为活跃状态
+  
+  return;
+}
+
+
+
+// 警告：以'_'开头的全局变量与同一地址的较小符号重叠
+
+// 函数：生成"Value too large"错误消息
+// 功能：当检测到数值过大时，生成相应的错误消息
+undefined8 *
+generate_value_too_large_error_message(undefined8 *output_buffer,undefined8 input_value,longlong *error_context,undefined8 error_code)
+
+{
+  uint buffer_size;
+  longlong string_ptr;
+  longlong temp_ptr1;
+  longlong temp_ptr2;
+  longlong temp_ptr3;
+  longlong temp_ptr4;
+  undefined8 format_result;
+  undefined *stack_ptr1;
+  undefined4 *stack_ptr2;
+  int current_length;
+  int temp_length;
+  undefined4 xmm0_reg;
+  undefined4 xmm0_reg_00;
+  undefined4 flag_value;
+  undefined *stack_var1;
+  undefined *stack_var2;
+  int stack_var3;
+  undefined *stack_var4;
+  longlong stack_var5;
+  undefined4 stack_var6;
+  
+  // 初始化输出缓冲区
+  *output_buffer = &STRING_CONSTANT_EMPTY;
+  output_buffer[1] = 0;
+  *(undefined4 *)(output_buffer + 2) = 0;
+  *output_buffer = &STRING_CONSTANT_EMPTY;
+  output_buffer[3] = 0;
+  output_buffer[1] = 0;
+  *(undefined4 *)(output_buffer + 2) = 0;
+  
+  // 初始化错误处理上下文
+  FUN_1806277c0(output_buffer,0,error_context,error_code,0,0xfffffffffffffffe);
+  *(undefined4 *)(output_buffer + 2) = 0;
+  
+  // 清空缓冲区内容
+  if ((undefined1 *)output_buffer[1] != (undefined1 *)0x0) {
+    *(undefined1 *)output_buffer[1] = 0;
+  }
+  
+  flag_value = 1;
+  FUN_180627ae0(&stack_var1,input_value);
+  
+  // 检查错误上下文大小
+  if (error_context[1] - *error_context >> 5 == 0) {
+    stack_ptr1 = &DAT_18098bc73;
+    if (stack_var2 != (undefined *)0x0) {
+      stack_ptr1 = stack_var2;
+    }
+    
+    // 搜索特定字符串模式
+    string_ptr = strstr(stack_ptr1,&STRING_PATTERN_TOO_LARGE);
+    current_length = *(int *)(output_buffer + 2);
+    
+    if (string_ptr == 0) {
+      temp_length = current_length + 9;
+      FUN_1806277c0(output_buffer,temp_length);
+      buffer_size = *(uint *)(output_buffer + 2);
+      string_ptr = output_buffer[1];
+      
+      // 写入"Value too "字符串
+      *(undefined8 *)((ulonglong)buffer_size + string_ptr) = 0x666f2065756c6156;  // "Value "
+      *(undefined2 *)((undefined8 *)((ulonglong)buffer_size + string_ptr) + 1) = 0x20;
+      *(int *)(output_buffer + 2) = temp_length;
+      
+      // 如果有额外数据，追加到缓冲区
+      if (0 < stack_var3) {
+        FUN_1806277c0(output_buffer,temp_length + stack_var3);
+        // 警告：子函数不返回
+        memcpy((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1],stack_var2,(longlong)(stack_var3 + 1));
+      }
+      
+      // 写入"is "字符串
+      FUN_1806277c0(output_buffer,current_length + 0xd);
+      buffer_size = *(uint *)(output_buffer + 2);
+      string_ptr = output_buffer[1];
+      *(undefined4 *)((ulonglong)buffer_size + string_ptr) = 0x20736920;  // " is"
+      *(undefined1 *)((undefined4 *)((ulonglong)buffer_size + string_ptr) + 1) = 0;
+      *(int *)(output_buffer + 2) = current_length + 0xd;
+      
+      // 格式化错误消息
+      format_result = FUN_1800af9f0(_DAT_180c86920,&stack_var4,&stack_var1,error_code,flag_value);
+      FUN_180628320(output_buffer,format_result);
+      
+      stack_var4 = &STRING_CONSTANT_EMPTY;
+      if (stack_var5 != 0) {
+        // 警告：子函数不返回
+        FUN_18064e900();
+      }
+      stack_var5 = 0;
+      stack_var6 = 0;
+      stack_var4 = &STRING_CONSTANT_EMPTY;
+      
+      current_length = *(int *)(output_buffer + 2) + 1;
+      FUN_1806277c0(output_buffer,current_length);
+      *(undefined2 *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]) = 10;  // 换行符
+    }
+    else {
+      // 生成"Possible stack level overflow"错误消息
+      FUN_1806277c0(output_buffer,current_length + 0x26);
+      stack_ptr2 = (undefined4 *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+      
+      // 写入"Possible stack level overflow "字符串
+      *stack_ptr2 = 0x73736f50;                    // "Poss"
+      stack_ptr2[1] = 0x656c6269;                   // "ible"
+      stack_ptr2[2] = 0x6c617620;                   // " stac"
+      stack_ptr2[3] = 0x20736575;                   // "k over"
+      stack_ptr2[4] = 0x6120666f;                   // "flow "
+      stack_ptr2[5] = 0x206f7475;                   // "out "
+      stack_ptr2[6] = 0x20786667;                   // "xfig "
+      stack_ptr2[7] = 0x6c617571;                   // "laqu"
+      stack_ptr2[8] = 0x20797469;                   // "ity"
+      *(undefined2 *)(stack_ptr2 + 9) = 0xa3a;      // ":\n"
+      *(undefined1 *)((longlong)stack_ptr2 + 0x26) = 0;
+      *(int *)(output_buffer + 2) = current_length + 0x26;
+      
+      // 写入版本信息
+      FUN_1806277c0(output_buffer,current_length + 0x2e);
+      buffer_size = *(uint *)(output_buffer + 2);
+      string_ptr = output_buffer[1];
+      *(undefined8 *)((ulonglong)buffer_size + string_ptr) = 0xa776f4c203a2030;  // " L4v:\n"
+      *(undefined1 *)((undefined8 *)((ulonglong)buffer_size + string_ptr) + 1) = 0;
+      *(int *)(output_buffer + 2) = current_length + 0x2e;
+      
+      // 写入"Media version"信息
+      FUN_1806277c0(output_buffer,current_length + 0x39);
+      buffer_size = *(uint *)(output_buffer + 2);
+      string_ptr = output_buffer[1];
+      *(undefined8 *)((ulonglong)buffer_size + string_ptr) = 0x6964654d203a2031;  // " Media v"
+      *(undefined4 *)((undefined8 *)((ulonglong)buffer_size + string_ptr) + 1) = 0xa6d75;  // "u:\n"
+      *(int *)(output_buffer + 2) = current_length + 0x39;
+      
+      // 写入"High version"信息
+      FUN_1806277c0(output_buffer,current_length + 0x42);
+      buffer_size = *(uint *)(output_buffer + 2);
+      string_ptr = output_buffer[1];
+      *(undefined8 *)((ulonglong)buffer_size + string_ptr) = 0x68676948203a2032;  // " High v"
+      *(undefined2 *)((undefined8 *)((ulonglong)buffer_size + string_ptr) + 1) = 10;  // "2\n"
+      *(int *)(output_buffer + 2) = current_length + 0x42;
+      
+      current_length = current_length + 0x51;
+      FUN_1806277c0(output_buffer,current_length);
+      stack_ptr2 = (undefined4 *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+      
+      // 写入版本号3信息
+      *stack_ptr2 = 0x203a2033;                    // " :3"
+      stack_ptr2[1] = 0x79726556;                   // "Very"
+      stack_ptr2[2] = 0x67694820;                   // " Hig"
+      stack_ptr2[3] = 0xa0a68;                     // "h\n"
+    }
+    *(int *)(output_buffer + 2) = current_length;
+  }
+  else {
+    // 处理其他错误情况
+    FUN_180627ae0(&stack_var4);
+    stack_ptr1 = &DAT_18098bc73;
+    if (stack_var2 != (undefined *)0x0) {
+      stack_ptr1 = stack_var2;
+    }
+    
+    // 搜索不同的错误模式
+    string_ptr = strstr(stack_ptr1,&STRING_PATTERN_TOO_LARGE);
+    if (string_ptr == 0) {
+      FUN_1800af2c0(_DAT_180c86920,&stack_var1,&stack_var4);
+    }
+    else {
+      flag_value = atoi(stack_var5);
+      FUN_180100ff0(xmm0_reg,flag_value);
+    }
+    
+    // 搜索更多错误模式
+    stack_ptr1 = &DAT_18098bc73;
+    if (stack_var2 != (undefined *)0x0) {
+      stack_ptr1 = stack_var2;
+    }
+    string_ptr = strstr(stack_ptr1,&STRING_PATTERN_TYPE1);
+    
+    stack_ptr1 = &DAT_18098bc73;
+    if (stack_var2 != (undefined *)0x0) {
+      stack_ptr1 = stack_var2;
+    }
+    temp_ptr1 = strstr(stack_ptr1,&STRING_PATTERN_TYPE2);
+    
+    stack_ptr1 = &DAT_18098bc73;
+    if (stack_var2 != (undefined *)0x0) {
+      stack_ptr1 = stack_var2;
+    }
+    temp_ptr2 = strstr(stack_ptr1,&STRING_PATTERN_TYPE3);
+    
+    stack_ptr1 = &DAT_18098bc73;
+    if (stack_var2 != (undefined *)0x0) {
+      stack_ptr1 = stack_var2;
+    }
+    temp_ptr3 = strstr(stack_ptr1,&STRING_PATTERN_TYPE4);
+    
+    // 检查是否找到任何错误模式
+    if ((((string_ptr == 0) && (temp_ptr1 == 0)) && (temp_ptr2 == 0)) && (temp_ptr3 == 0)) {
+      format_result = 0;
+    }
+    else {
+      format_result = 1;
+    }
+    FUN_180103970(xmm0_reg_00,format_result);
+    
+    current_length = *(int *)(output_buffer + 2);
+    FUN_1806277c0(output_buffer,current_length + 0x23);
+    stack_ptr2 = (undefined4 *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+    
+    // 写入"Engine config"错误消息
+    *stack_ptr2 = 0x69676e45;                    // "Engin"
+    stack_ptr2[1] = 0x6320656e;                   // "e con"
+    stack_ptr2[2] = 0x69666e6f;                   // "fig c"
+    stack_ptr2[3] = 0x68632067;                   // "hang "
+    stack_ptr2[4] = 0x65676e61;                   // "ange"
+    stack_ptr2[5] = 0x75732064;                   // "d us"
+    stack_ptr2[6] = 0x73656363;                   // "cess"
+    stack_ptr2[7] = 0x6c756673;                   // "ful."
+    stack_ptr2[8] = 0x2e796c;                     // "yl."
+    *(int *)(output_buffer + 2) = current_length + 0x23;
+    
+    stack_var4 = &STRING_CONSTANT_EMPTY;
+    if (stack_var5 != 0) {
+      // 警告：子函数不返回
+      FUN_18064e900();
+    }
+    stack_var5 = 0;
+    stack_var6 = 0;
+    stack_var4 = &STRING_CONSTANT_EMPTY;
+  }
+  
+  stack_var1 = &STRING_CONSTANT_EMPTY;
+  if (stack_var2 != (undefined *)0x0) {
+    // 警告：子函数不返回
+    FUN_18064e900();
+  }
+  
+  return output_buffer;
+}
+
+
+
+// 警告：以'_'开头的全局变量与同一地址的较小符号重叠
+
+// 函数：生成"Possible stack overflow"错误消息
+// 功能：当检测到可能的堆栈溢出时，生成相应的错误消息
+undefined8 *
+generate_possible_stack_overflow_error(undefined8 *output_buffer,undefined8 input_value,longlong *error_context,undefined8 error_code)
+
+{
+  uint buffer_size;
+  longlong string_ptr;
+  undefined4 *buffer_ptr;
+  undefined *stack_ptr1;
+  undefined8 *wide_buffer_ptr;
+  int current_length;
+  int temp_length;
+  undefined4 flag_value;
+  undefined *stack_var1;
+  undefined *stack_var2;
+  int stack_var3;
+  undefined *stack_var4;
+  longlong stack_var5;
+  undefined4 stack_var6;
+  
+  // 初始化输出缓冲区
+  *output_buffer = &STRING_CONSTANT_EMPTY;
+  output_buffer[1] = 0;
+  *(undefined4 *)(output_buffer + 2) = 0;
+  *output_buffer = &STRING_CONSTANT_EMPTY;
+  output_buffer[3] = 0;
+  output_buffer[1] = 0;
+  *(undefined4 *)(output_buffer + 2) = 0;
+  
+  // 初始化错误处理上下文
+  FUN_1806277c0(output_buffer,0,error_context,error_code,0,0xfffffffffffffffe);
+  *(undefined4 *)(output_buffer + 2) = 0;
+  
+  // 清空缓冲区内容
+  if ((undefined1 *)output_buffer[1] != (undefined1 *)0x0) {
+    *(undefined1 *)output_buffer[1] = 0;
+  }
+  
+  flag_value = 1;
+  FUN_180627ae0(&stack_var1,input_value);
+  
+  // 检查错误上下文大小
+  if (error_context[1] - *error_context >> 5 == 0) {
+    stack_ptr1 = &DAT_18098bc73;
+    if (stack_var2 != (undefined *)0x0) {
+      stack_ptr1 = stack_var2;
+    }
+    
+    // 搜索堆栈溢出模式
+    string_ptr = strstr(stack_ptr1,&STRING_PATTERN_STACK_OVERFLOW);
+    current_length = *(int *)(output_buffer + 2);
+    
+    if (string_ptr != 0) {
+      // 生成详细的堆栈溢出错误消息
+      FUN_1806277c0(output_buffer,current_length + 0x2b);
+      wide_buffer_ptr = (undefined8 *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+      
+      // 写入"Possible stack overflow "字符串
+      *wide_buffer_ptr = 0x656c626973736f50;        // "Possible"
+      wide_buffer_ptr[1] = 0x207365756c617620;       // " stack "
+      *(undefined4 *)(wide_buffer_ptr + 2) = 0x7320666f;  // "over"
+      *(undefined4 *)((longlong)wide_buffer_ptr + 0x14) = 0x65657263;  // "rec"
+      *(undefined4 *)(wide_buffer_ptr + 3) = 0x6f68736e;  // "nsio"
+      *(undefined4 *)((longlong)wide_buffer_ptr + 0x1c) = 0x6f662074;  // "n fo"
+      wide_buffer_ptr[4] = 0x2073692074616d72;       // "r missi"
+      *(undefined4 *)(wide_buffer_ptr + 5) = 0xa203a;       // "ng:\n"
+      *(int *)(output_buffer + 2) = current_length + 0x2b;
+      
+      // 写入版本信息
+      FUN_1806277c0(output_buffer,current_length + 0x34);
+      buffer_size = *(uint *)(output_buffer + 2);
+      string_ptr = output_buffer[1];
+      *(undefined8 *)((ulonglong)buffer_size + string_ptr) = 0x6765704a203a2030;  // " Jpeg:\n"
+      *(undefined2 *)((undefined8 *)((ulonglong)buffer_size + string_ptr) + 1) = 10;
+      *(int *)(output_buffer + 2) = current_length + 0x34;
+      
+      // 写入引擎版本信息
+      FUN_1806277c0(output_buffer,current_length + 0x3c);
+      buffer_size = *(uint *)(output_buffer + 2);
+      string_ptr = output_buffer[1];
+      *(undefined8 *)((ulonglong)buffer_size + string_ptr) = 0xa676e50203a2031;  // " Eng:\n"
+      *(undefined1 *)((undefined8 *)((ulonglong)buffer_size + string_ptr) + 1) = 0;
+      *(int *)(output_buffer + 2) = current_length + 0x3c;
+      
+      current_length = current_length + 0x45;
+      FUN_1806277c0(output_buffer,current_length);
+      buffer_size = *(uint *)(output_buffer + 2);
+      string_ptr = output_buffer[1];
+      *(undefined8 *)((ulonglong)buffer_size + string_ptr) = 0xa736444203a2032;  // " Dds:\n"
+      *(undefined2 *)((undefined8 *)((ulonglong)buffer_size + string_ptr) + 1) = 10;
+      *(int *)(output_buffer + 2) = current_length;
+    }
+    
+    temp_length = current_length + 9;
+    FUN_1806277c0(output_buffer,temp_length);
+    buffer_size = *(uint *)(output_buffer + 2);
+    string_ptr = output_buffer[1];
+    
+    // 写入"Value too "字符串
+    *(undefined8 *)((ulonglong)buffer_size + string_ptr) = 0x666f2065756c6156;  // "Value "
+    *(undefined2 *)((undefined8 *)((ulonglong)buffer_size + string_ptr) + 1) = 0x20;
+    *(int *)(output_buffer + 2) = temp_length;
+    
+    // 如果有额外数据，追加到缓冲区
+    if (0 < stack_var3) {
+      FUN_1806277c0(output_buffer,temp_length + stack_var3);
+      // 警告：子函数不返回
+      memcpy((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1],stack_var2,(longlong)(stack_var3 + 1));
+    }
+    
+    // 写入"is "字符串
+    FUN_1806277c0(output_buffer,current_length + 0xd);
+    buffer_size = *(uint *)(output_buffer + 2);
+    string_ptr = output_buffer[1];
+    *(undefined4 *)((ulonglong)buffer_size + string_ptr) = 0x20736920;  // " is"
+    *(undefined1 *)((undefined4 *)((ulonglong)buffer_size + string_ptr) + 1) = 0;
+    *(int *)(output_buffer + 2) = current_length + 0xd;
+    
+    // 格式化错误消息
+    string_ptr = FUN_1800af9f0(_DAT_180c8a9c8,&stack_var4,&stack_var1);
+    
+    // 如果格式化结果有内容，追加到缓冲区
+    if (0 < *(int *)(string_ptr + 0x10)) {
+      FUN_1806277c0(output_buffer,*(int *)(output_buffer + 2) + *(int *)(string_ptr + 0x10));
+      // 警告：子函数不返回
+      memcpy((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1],*(undefined8 *)(string_ptr + 8),
+             (longlong)(*(int *)(string_ptr + 0x10) + 1));
+    }
+    
+    stack_var4 = &STRING_CONSTANT_EMPTY;
+    if (stack_var5 != 0) {
+      // 警告：子函数不返回
+      FUN_18064e900();
+    }
+    stack_var5 = 0;
+    stack_var6 = 0;
+    stack_var4 = &STRING_CONSTANT_EMPTY;
+    
+    current_length = *(int *)(output_buffer + 2);
+    FUN_1806277c0(output_buffer,current_length + 1);
+    *(undefined2 *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]) = 10;  // 换行符
+    *(int *)(output_buffer + 2) = current_length + 1;
+  }
+  else {
+    // 处理其他错误情况
+    FUN_180627ae0(&stack_var4);
+    FUN_1800af2c0(_DAT_180c8a9c8,&stack_var1,&stack_var4,error_code,flag_value);
+    current_length = *(int *)(output_buffer + 2);
+    FUN_1806277c0(output_buffer,current_length + 0x23);
+    buffer_ptr = (undefined4 *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+    
+    // 写入"Module config"错误消息
+    *buffer_ptr = 0x75646f4d;                    // "Modul"
+    buffer_ptr[1] = 0x6f20656c;                   // "e con"
+    buffer_ptr[2] = 0x6f697470;                   // "fig c"
+    buffer_ptr[3] = 0x6863206e;                   // "hang"
+    buffer_ptr[4] = 0x65676e61;                   // "ange"
+    buffer_ptr[5] = 0x75732064;                   // "d us"
+    buffer_ptr[6] = 0x73656363;                   // "cess"
+    buffer_ptr[7] = 0x6c756673;                   // "ful."
+    buffer_ptr[8] = 0x2e796c;                     // "yl."
+    *(int *)(output_buffer + 2) = current_length + 0x23;
+    
+    stack_var4 = &STRING_CONSTANT_EMPTY;
+    if (stack_var5 != 0) {
+      // 警告：子函数不返回
+      FUN_18064e900();
+    }
+    stack_var5 = 0;
+    stack_var6 = 0;
+    stack_var4 = &STRING_CONSTANT_EMPTY;
+  }
+  
+  stack_var1 = &STRING_CONSTANT_EMPTY;
+  if (stack_var2 != (undefined *)0x0) {
+    // 警告：子函数不返回
+    FUN_18064e900();
+  }
+  
+  return output_buffer;
+}
+
+
+
+// 函数：初始化错误处理回调
+// 功能：设置错误处理回调函数的初始状态
+undefined8 *
+initialize_error_handler_callback(undefined8 *callback_struct,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  undefined8 callback_flag;
+  
+  callback_flag = 0xfffffffffffffffe;
+  *callback_struct = &STRING_CONSTANT_EMPTY;
+  callback_struct[1] = 0;
+  *(undefined4 *)(callback_struct + 2) = 0;
+  *callback_struct = &STRING_CONSTANT_EMPTY;
+  callback_struct[3] = 0;
+  callback_struct[1] = 0;
+  *(undefined4 *)(callback_struct + 2) = 0;
+  callback_struct[5] = 0;
+  callback_struct[6] = 0;
+  callback_struct[7] = 0;
+  *(undefined4 *)(callback_struct + 8) = 3;
+  callback_struct[0xc] = 0;
+  callback_struct[0xd] = _guard_check_icall;
+  callback_struct[0xe] = 0;
+  callback_struct[0xf] = 0;
+  callback_struct[0x10] = 0;
+  
+  // 初始化回调环境
+  FUN_180627be0();
+  *(undefined4 *)(callback_struct + 4) = 0;
+  
+  // 如果有回调函数，执行它
+  if ((code *)callback_struct[0xc] != (code *)0x0) {
+    (*(code *)callback_struct[0xc])(callback_struct + 10,0,0,param_4,callback_flag);
+  }
+  
+  // 清理回调函数指针
+  callback_struct[0xc] = 0;
+  callback_struct[0xd] = _guard_check_icall;
+  callback_struct[9] = 0;
+  
+  return callback_struct;
+}
+
+
+
+// 函数：设置错误处理回调
+// 功能：配置错误处理回调函数和相关参数
+undefined8 *
+setup_error_handler_callback(undefined8 *callback_struct,undefined8 param_2,undefined8 *callback_target,undefined8 param_4)
+
+{
+  undefined8 *callback_data;
+  code *callback_func;
+  undefined8 callback_flag;
+  
+  callback_flag = 0xfffffffffffffffe;
+  *callback_struct = &STRING_CONSTANT_EMPTY;
+  callback_struct[1] = 0;
+  *(undefined4 *)(callback_struct + 2) = 0;
+  *callback_struct = &STRING_CONSTANT_EMPTY;
+  callback_struct[3] = 0;
+  callback_struct[1] = 0;
+  *(undefined4 *)(callback_struct + 2) = 0;
+  callback_struct[5] = 0;
+  callback_struct[6] = 0;
+  callback_struct[7] = 0;
+  *(undefined4 *)(callback_struct + 8) = 3;
+  callback_data = callback_struct + 10;
+  callback_struct[0xc] = 0;
+  callback_struct[0xd] = _guard_check_icall;
+  callback_struct[0xe] = 0;
+  callback_struct[0xf] = 0;
+  callback_struct[0x10] = 0;
+  
+  // 初始化回调环境
+  FUN_180627be0();
+  *(undefined4 *)(callback_struct + 4) = 1;
+  
+  // 如果回调目标不同，执行回调切换
+  if (callback_data != callback_target) {
+    if ((code *)callback_struct[0xc] != (code *)0x0) {
+      (*(code *)callback_struct[0xc])(callback_data,0,0,param_4,callback_flag);
+    }
+    callback_func = (code *)callback_target[2];
+    if (callback_func != (code *)0x0) {
+      (*callback_func)(callback_data,callback_target,1);
+      callback_func = (code *)callback_target[2];
+    }
+    callback_struct[0xc] = callback_func;
+    callback_struct[0xd] = callback_target[3];
+  }
+  
+  callback_struct[9] = 0;
+  
+  // 执行目标回调函数
+  if ((code *)callback_target[2] != (code *)0x0) {
+    (*(code *)callback_target[2])(callback_target,0,0);
+  }
+  
+  return callback_struct;
+}
+
+
+
+// 警告：以'_'开头的全局变量与同一地址的较小符号重叠
+
+// 函数：处理配置命令
+// 功能：根据命令类型处理不同的配置操作，生成相应的响应消息
+undefined8 * process_config_command(longlong command_context,undefined8 *output_buffer,undefined8 input_param)
+
+{
+  int command_type;
+  double double_value;
+  uint buffer_size;
+  undefined4 temp_value;
+  undefined1 *string_buffer;
+  undefined8 *buffer_ptr;
+  undefined *stack_ptr1;
+  ulonglong temp_ulong;
+  undefined1 *temp_ptr1;
+  ulonglong temp_ulong2;
+  undefined7 temp_undefined7;
+  longlong temp_long;
+  int temp_int1;
+  uint temp_uint;
+  undefined8 *temp_ptr2;
+  undefined1 *temp_ptr3;
+  uint stack_var8;
+  undefined8 *stack_ptr_c0;
+  undefined8 *stack_ptr_b8;
+  uint stack_b0;
+  uint stack_a8;
+  undefined4 stack_a4;
+  undefined *stack_a0;
+  undefined *stack_98;
+  undefined4 stack_88;
+  undefined8 *stack_80;
+  undefined8 *stack_78;
+  undefined4 stack_68;
+  undefined8 *stack_60;
+  undefined8 *stack_58;
+  undefined8 stack_40;
+  
+  stack_40 = 0xfffffffffffffffe;
+  temp_ptr1 = (undefined1 *)0x0;
+  command_type = *(int *)(command_context + 0x20);
+  
+  // 根据命令类型处理不同的配置操作
+  if (command_type == 0) {
+    // 未知命令类型
+    *output_buffer = &STRING_CONSTANT_EMPTY;
+    output_buffer[1] = 0;
+    *(undefined4 *)(output_buffer + 2) = 0;
+    *output_buffer = &STRING_CONSTANT_EMPTY;
+    output_buffer[3] = 0;
+    output_buffer[1] = 0;
+    *(undefined4 *)(output_buffer + 2) = 0;
+    FUN_1806277c0(output_buffer,0xf);
+    buffer_ptr = (undefined8 *)output_buffer[1];
+    *buffer_ptr = 0x206e776f6e6b6e55;  // "Unknown"
+    buffer_ptr[1] = 0x646e616d6d6f63;  // " command"
+    *(undefined4 *)(output_buffer + 2) = 0xf;
+  }
+  else {
+    if (command_type == 1) {
+      // 处理版本查询命令
+      FUN_1806279c0(&stack_a0,input_param);
+      FUN_180169c30(&stack_80,&stack_a0);
+      stack_a0 = &STRING_CONSTANT_EMPTY;
+      
+      if (stack_98 != (undefined *)0x0) {
+        // 警告：子函数不返回
+        FUN_18064e900();
+      }
+      stack_98 = (undefined *)0x0;
+      stack_88 = 0;
+      stack_a0 = &STRING_CONSTANT_EMPTY;
+      
+      // 执行版本查询
+      temp_long = (**(code **)(command_context + 0x68))(&stack_a0,command_context,&stack_80);
+      
+      *output_buffer = &STRING_CONSTANT_EMPTY;
+      output_buffer[1] = 0;
+      *(undefined4 *)(output_buffer + 2) = 0;
+      *output_buffer = &STRING_CONSTANT_EMPTY;
+      output_buffer[3] = 0;
+      output_buffer[1] = 0;
+      *(undefined4 *)(output_buffer + 2) = 0;
+      
+      // 复制版本信息到输出缓冲区
+      *(undefined4 *)(output_buffer + 2) = *(undefined4 *)(temp_long + 0x10);
+      output_buffer[1] = *(undefined8 *)(temp_long + 8);
+      *(undefined4 *)((longlong)output_buffer + 0x1c) = *(undefined4 *)(temp_long + 0x1c);
+      *(undefined4 *)(output_buffer + 3) = *(undefined4 *)(temp_long + 0x18);
+      
+      // 清理版本信息缓冲区
+      *(undefined4 *)(temp_long + 0x10) = 0;
+      *(undefined8 *)(temp_long + 8) = 0;
+      *(undefined8 *)(temp_long + 0x18) = 0;
+      
+      stack_a0 = &STRING_CONSTANT_EMPTY;
+      if (stack_98 != (undefined *)0x0) {
+        // 警告：子函数不返回
+        FUN_18064e900();
+      }
+      stack_98 = (undefined *)0x0;
+      stack_88 = 0;
+      stack_a0 = &STRING_CONSTANT_EMPTY;
+      
+      stack_ptr_c0 = stack_80;
+      
+      // 执行清理回调
+      for (buffer_ptr = stack_80; buffer_ptr != stack_78; buffer_ptr = buffer_ptr + 4) {
+        stack_80 = stack_ptr_c0;
+        (**(code **)*buffer_ptr)(buffer_ptr,0);
+        stack_ptr_c0 = stack_80;
+      }
+    }
+    else {
+      if (command_type != 2) {
+        if (command_type != 3) {
+          // 无效命令类型
+          *output_buffer = &STRING_CONSTANT_EMPTY;
+          output_buffer[1] = 0;
+          *(undefined4 *)(output_buffer + 2) = 0;
+          *output_buffer = &STRING_CONSTANT_EMPTY;
+          output_buffer[3] = 0;
+          output_buffer[1] = 0;
+          *(undefined4 *)(output_buffer + 2) = 0;
+          FUN_1806277c0(output_buffer,0x1a);
+          buffer_ptr = (undefined8 *)output_buffer[1];
+          *buffer_ptr = 0x206e776f6e6b6e75;  // "Unknown "
+          buffer_ptr[1] = 0x20646e616d6d6f63;  // " command "
+          buffer_ptr[2] = 0x70797420656e696c;  // "type #"
+          *(undefined2 *)(buffer_ptr + 3) = 0x2165;  // "e!"
+          *(undefined1 *)((longlong)buffer_ptr + 0x1a) = 0;
+          *(undefined4 *)(output_buffer + 2) = 0x1a;
+          return output_buffer;
+        }
+        
+        // 处理复杂配置命令
+        FUN_1801624e0(command_context,&stack_a0);
+        FUN_1806279c0(&stack_80,input_param);
+        FUN_180169c30(&stack_60);
+        stack_80 = (undefined8 *)&STRING_CONSTANT_EMPTY;
+        
+        if (stack_78 != (undefined8 *)0x0) {
+          // 警告：子函数不返回
+          FUN_18064e900();
+        }
+        stack_78 = (undefined8 *)0x0;
+        stack_68 = 0;
+        stack_80 = (undefined8 *)&STRING_CONSTANT_EMPTY;
+        stack_ptr_c0 = (undefined8 *)&STRING_CONSTANT_EMPTY;
+        stack_a8 = 0;
+        stack_ptr_b8 = (undefined8 *)0x0;
+        stack_b0 = 0;
+        stack_a4 = 0;
+        temp_ulong2 = 0;
+        stack_var8 = 0;
+        temp_ptr3 = temp_ptr1;
+        
+        // 处理配置参数
+        if ((longlong)stack_58 - (longlong)stack_60 >> 5 != 0) {
+          temp_ulong = 0;
+          temp_long = 0;
+          buffer_ptr = stack_58;
+          temp_ptr2 = stack_60;
+          temp_ptr3 = temp_ptr1;
+          
+          do {
+            command_type = *(int *)((longlong)temp_ptr2 + temp_long + 0x10);
+            temp_undefined7 = (undefined7)(temp_ulong2 >> 8);
+            temp_int1 = (int)temp_ptr3;
+            
+            if (0 < command_type) {
+              temp_int1 = temp_int1 + command_type;
+              if (temp_int1 != 0) {
+                temp_uint = temp_int1 + 1;
+                
+                if (temp_ptr1 == (undefined1 *)0x0) {
+                  if ((int)temp_uint < 0x10) {
+                    temp_uint = 0x10;
+                  }
+                  temp_ptr1 = (undefined1 *)
+                           FUN_18062b420(_DAT_180c8ed18,(longlong)(int)temp_uint,CONCAT71(temp_undefined7,0x13))
+                  ;
+                  *temp_ptr1 = 0;
+                  stack_ptr_b8 = (undefined8 *)temp_ptr1;
+                  stack_a8 = FUN_18064e990(temp_ptr1);
+                }
+                else if ((uint)temp_ptr1 < temp_uint) {
+                  temp_ptr1 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,temp_ptr1,temp_uint,0x10,0x13);
+                  stack_ptr_b8 = (undefined8 *)temp_ptr1;
+                  stack_a8 = FUN_18064e990(temp_ptr1);
+                }
+              }
+              // 警告：子函数不返回
+              memcpy(temp_ptr3 + (longlong)temp_ptr1,*(undefined8 *)((longlong)temp_ptr2 + temp_long + 8),
+                     (longlong)(*(int *)((longlong)temp_ptr2 + temp_long + 0x10) + 1));
+            }
+            
+            temp_uint = (uint)temp_ulong2;
+            if (temp_ulong != ((longlong)buffer_ptr - (longlong)temp_ptr2 >> 5) - 1U) {
+              temp_uint = temp_int1 + 1;
+              if (temp_uint != 0) {
+                buffer_size = temp_int1 + 2;
+                
+                if (temp_ptr1 == (undefined1 *)0x0) {
+                  if ((int)buffer_size < 0x10) {
+                    buffer_size = 0x10;
+                  }
+                  temp_ptr1 = (undefined1 *)
+                           FUN_18062b420(_DAT_180c8ed18,(longlong)(int)buffer_size,CONCAT71(temp_undefined7,0x13))
+                  ;
+                  *temp_ptr1 = 0;
+                }
+                else {
+                  if (buffer_size <= (uint)temp_ptr1) goto LAB_18016195a;
+                  temp_ptr1 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,temp_ptr1,buffer_size,0x10,0x13);
+                }
+                stack_ptr_b8 = (undefined8 *)temp_ptr1;
+                stack_a8 = FUN_18064e990(temp_ptr1);
+                temp_ptr1 = (undefined1 *)(ulonglong)stack_a8;
+              }
+LAB_18016195a:
+              temp_ptr3[(longlong)temp_ptr1] = 0x20;
+              temp_ptr1[temp_uint] = 0;
+              temp_ptr3 = (undefined1 *)(ulonglong)temp_uint;
+              buffer_ptr = stack_58;
+              temp_ptr2 = stack_60;
+              stack_b0 = temp_uint;
+              temp_uint = stack_var8;
+            }
+            
+            stack_var8 = temp_uint + 1;
+            temp_ulong2 = (ulonglong)stack_var8;
+            temp_long = temp_long + 0x20;
+            temp_ulong = (ulonglong)(int)stack_var8;
+          } while (temp_ulong < (ulonglong)((longlong)buffer_ptr - (longlong)temp_ptr2 >> 5));
+        }
+        
+        // 处理配置字符串
+        temp_ptr3 = &DAT_18098bc73;
+        if (temp_ptr1 != (undefined1 *)0x0) {
+          temp_ptr3 = temp_ptr1;
+        }
+        
+        stack_ptr1 = &DAT_18098bc73;
+        if (stack_98 != (undefined *)0x0) {
+          stack_ptr1 = stack_98;
+        }
+        
+        // 执行配置处理
+        temp_long = (**(code **)(_DAT_180c8f008 + 0x48))(stack_ptr1,temp_ptr3);
+        
+        stack_ptr1 = &DAT_18098bc73;
+        if (*(undefined **)(temp_long + 8) != (undefined *)0x0) {
+          stack_ptr1 = *(undefined **)(temp_long + 8);
+        }
+        
+        FUN_180627910(output_buffer,stack_ptr1);
+        stack_ptr_c0 = (undefined8 *)&STRING_CONSTANT_EMPTY;
+        
+        if (temp_ptr1 == (undefined1 *)0x0) {
+          stack_ptr_b8 = (undefined8 *)0x0;
+          stack_a8 = 0;
+          stack_ptr_c0 = (undefined8 *)&STRING_CONSTANT_EMPTY;
+          
+          // 执行清理回调
+          for (buffer_ptr = stack_60; buffer_ptr != stack_58; buffer_ptr = buffer_ptr + 4) {
+            (**(code **)*buffer_ptr)(buffer_ptr,0);
+          }
+          
+          if (stack_60 == (undefined8 *)0x0) {
+            stack_a0 = &STRING_CONSTANT_EMPTY;
+            if (stack_98 == (undefined *)0x0) {
+              return output_buffer;
+            }
+            // 警告：子函数不返回
+            FUN_18064e900();
+          }
+          // 警告：子函数不返回
+          FUN_18064e900();
+        }
+        // 警告：子函数不返回
+        FUN_18064e900(temp_ptr1);
+      }
+      
+      // 处理简单配置命令
+      FUN_1806279c0(&stack_a0,input_param);
+      FUN_180169c30(&stack_ptr_c0,&stack_a0);
+      stack_a0 = &STRING_CONSTANT_EMPTY;
+      
+      if (stack_98 != (undefined *)0x0) {
+        // 警告：子函数不返回
+        FUN_18064e900();
+      }
+      stack_98 = (undefined *)0x0;
+      stack_88 = 0;
+      stack_a0 = &STRING_CONSTANT_EMPTY;
+      
+      temp_long = (longlong)stack_ptr_b8 - (longlong)stack_ptr_c0 >> 5;
+      
+      if (temp_long == 0) {
+        // 无参数处理
+        FUN_18016a740(command_context + 0x70,output_buffer);
+        
+        // 执行清理回调
+        for (buffer_ptr = stack_ptr_c0; buffer_ptr != stack_ptr_b8; buffer_ptr = buffer_ptr + 4) {
+          (**(code **)*buffer_ptr)(buffer_ptr,0);
+        }
+      }
+      else if (temp_long == 1) {
+        // 单参数处理
+        if (*(longlong *)(command_context + 0x70) == 0) {
+          if (*(longlong *)(command_context + 0x78) == 0) {
+            if (*(longlong *)(command_context + 0x80) != 0) {
+              FUN_180627be0();
+            }
+          }
+          else {
+            // 处理浮点数值
+            double_value = (double)atof(stack_ptr_c0[1]);
+            **(float **)(command_context + 0x78) = (float)double_value;
+          }
+        }
+        else {
+          // 处理整数值
+          temp_value = atoi(stack_ptr_c0[1]);
+          **(undefined4 **)(command_context + 0x70) = temp_value;
+        }
+        
+        // 生成成功消息
+        *output_buffer = &STRING_CONSTANT_EMPTY;
+        output_buffer[1] = 0;
+        *(undefined4 *)(output_buffer + 2) = 0;
+        *output_buffer = &STRING_CONSTANT_EMPTY;
+        output_buffer[3] = 0;
+        output_buffer[1] = 0;
+        *(undefined4 *)(output_buffer + 2) = 0;
+        FUN_1806277c0(output_buffer,10);
+        buffer_ptr = (undefined8 *)output_buffer[1];
+        *buffer_ptr = 0x65732065756c6156;  // "Value s"
+        *(undefined2 *)(buffer_ptr + 1) = 0x2e74;  // "et."
+        *(undefined1 *)((longlong)buffer_ptr + 10) = 0;
+        *(undefined4 *)(output_buffer + 2) = 10;
+        
+        // 执行清理回调
+        for (buffer_ptr = stack_ptr_c0; buffer_ptr != stack_ptr_b8; buffer_ptr = buffer_ptr + 4) {
+          (**(code **)*buffer_ptr)(buffer_ptr,0);
+        }
+      }
+      else {
+        // 多参数错误处理
+        *output_buffer = &STRING_CONSTANT_EMPTY;
+        output_buffer[1] = 0;
+        *(undefined4 *)(output_buffer + 2) = 0;
+        *output_buffer = &STRING_CONSTANT_EMPTY;
+        output_buffer[3] = 0;
+        output_buffer[1] = 0;
+        *(undefined4 *)(output_buffer + 2) = 0;
+        FUN_1806277c0(output_buffer,0x2d);
+        buffer_ptr = (undefined8 *)output_buffer[1];
+        *buffer_ptr = 0x2064696c61766e49;  // "Invalid "
+        buffer_ptr[1] = 0x6f207265626d756e;  // "number o"
+        buffer_ptr[2] = 0x656d756772612066;  // "f argume"
+        buffer_ptr[3] = 0x707845202e73746e;  // "nts. Ex"
+        buffer_ptr[4] = 0x3020676e69746365;  // "pected 0"
+        *(undefined4 *)(buffer_ptr + 5) = 0x20726f20;  // " or 1"
+        *(undefined2 *)((longlong)buffer_ptr + 0x2c) = 0x31;  // "1"
+        *(undefined4 *)(output_buffer + 2) = 0x2d;
+        
+        // 执行清理回调
+        for (buffer_ptr = stack_ptr_c0; buffer_ptr != stack_ptr_b8; buffer_ptr = buffer_ptr + 4) {
+          (**(code **)*buffer_ptr)(buffer_ptr,0);
+        }
+      }
+    }
+    
+    if (stack_ptr_c0 != (undefined8 *)0x0) {
+      // 警告：子函数不返回
+      FUN_18064e900();
+    }
+  }
+  
+  return output_buffer;
+}
+
+
+
+// 函数：在哈希表中查找节点
+// 功能：在给定的哈希表中查找匹配指定键的节点
+longlong find_node_in_hash_table(longlong hash_table_ptr,longlong search_key_ptr)
+
+{
+  int key_length1;
+  int key_length2;
+  int comparison_result;
+  longlong node_ptr;
+  longlong start_ptr;
+  
+  start_ptr = *(longlong *)(hash_table_ptr + 0x28);
+  comparison_result = 0;
+  
+  // 遍历哈希表中的节点
+  if (*(longlong *)(hash_table_ptr + 0x30) - start_ptr >> 3 != 0) {
+    node_ptr = 0;
+    do {
+      start_ptr = *(longlong *)(node_ptr + start_ptr);
+      key_length2 = *(int *)(search_key_ptr + 0x10);
+      key_length1 = *(int *)(start_ptr + 0x10);
+      
+      // 比较键长度
+      if (key_length1 == key_length2) {
+        if (key_length1 != 0) {
+          // 比较键内容（不区分大小写）
+          key_length2 = _stricmp(*(undefined8 *)(start_ptr + 8),*(undefined8 *)(search_key_ptr + 8));
+        }
+LAB_180161e6a:
+        // 如果匹配，返回节点指针
+        if (key_length2 == 0) {
+          return start_ptr;
+        }
+      }
+      else if (key_length1 == 0) goto LAB_180161e6a;
+      
+      start_ptr = *(longlong *)(hash_table_ptr + 0x28);
+      comparison_result = comparison_result + 1;
+      node_ptr = node_ptr + 8;
+    } while ((ulonglong)(longlong)comparison_result < (ulonglong)(*(longlong *)(hash_table_ptr + 0x30) - start_ptr >> 3));
+  }
+  
+  return 0;
+}
+
+
+
+// 警告：以'_'开头的全局变量与同一地址的较小符号重叠
+
+

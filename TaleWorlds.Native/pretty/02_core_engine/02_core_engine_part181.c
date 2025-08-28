@@ -1,7 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 02_core_engine_part181.c - 核心引擎模块第181部分
-// 本文件包含3个函数，主要处理字符串操作和内存管理
+// 本文件包含3个函数：
+// 1. process_engine_string_formatting - 处理字符串格式化操作
+// 2. process_engine_version_info - 处理版本信息
+// 3. process_engine_file_operations - 处理文件系统操作
 
 // 函数: 处理核心引擎字符串格式化操作
 // 参数:
@@ -80,37 +83,46 @@ void process_engine_string_formatting(undefined8 param_1, undefined8 *param_2, u
   format_flag = 0;
   buffer_ptr2 = param_2;
   if ((param_4[1] - *param_4 & 0xffffffffffffffe0U) == 0x80) {
-    FUN_180627ae0(&temp_ptr4);
-    FUN_180627ae0(&temp_ptr5, *param_4 + 0x20);
-    FUN_180627ae0(&temp_ptr6, *param_4 + 0x40);
-    FUN_180627ae0(&temp_ptr7, *param_4 + 0x60);
-    temp_ptr8 = &UNK_1809fcc58;
-    char_buffer1 = local_buffer2;
-    buffer_size1 = 0;
-    local_buffer2[0] = 0;
-    temp_ptr9 = &UNK_1809fcc58;
-    char_buffer2 = local_buffer3;
-    buffer_size2 = 0;
-    local_buffer3[0] = 0;
-    output_ptr = &temp_ptr10;
-    temp_ptr10 = &UNK_1809fcc58;
-    char_buffer3 = local_buffer4;
-    buffer_size3 = 0;
-    local_buffer4[0] = 0;
-    string_ptr = &DAT_18098bc73;
-    if (temp_ptr3 != (undefined *)0x0) {
+    // 分配内存块用于处理不同类型的数据
+    allocate_memory_block(&temp_ptr4);          // 基础内存块
+    allocate_memory_block(&temp_ptr5, *param_4 + 0x20);  // 偏移0x20的内存块
+    allocate_memory_block(&temp_ptr6, *param_4 + 0x40);  // 偏移0x40的内存块
+    allocate_memory_block(&temp_ptr7, *param_4 + 0x60);  // 偏移0x60的内存块
+    // 初始化三个字符串缓冲区用于存储处理结果
+    temp_ptr8 = &GLOBAL_STRING_EMPTY;     // 第一个字符串缓冲区指针
+    char_buffer1 = local_buffer2;          // 第一个缓冲区数据
+    buffer_size1 = 0;                     // 第一个缓冲区大小
+    local_buffer2[0] = 0;                  // 清空缓冲区
+    
+    temp_ptr9 = &GLOBAL_STRING_EMPTY;     // 第二个字符串缓冲区指针
+    char_buffer2 = local_buffer3;          // 第二个缓冲区数据
+    buffer_size2 = 0;                     // 第二个缓冲区大小
+    local_buffer3[0] = 0;                  // 清空缓冲区
+    
+    output_ptr = &temp_ptr10;              // 输出指针数组
+    temp_ptr10 = &GLOBAL_STRING_EMPTY;    // 第三个字符串缓冲区指针
+    char_buffer3 = local_buffer4;          // 第三个缓冲区数据
+    buffer_size3 = 0;                     // 第三个缓冲区大小
+    local_buffer4[0] = 0;                  // 清空缓冲区
+    // 获取源字符串并进行处理
+    string_ptr = &GLOBAL_DATA_SOURCE_STRING;  // 默认数据源字符串
+    if (temp_ptr3 != (undefined *)0x0) {      // 如果有自定义数据源，使用自定义数据源
       string_ptr = temp_ptr3;
     }
-    FUN_180049bf0(&temp_ptr8, string_ptr);
-    string_ptr = &DAT_18098bc73;
-    if (temp_ptr7 != (undefined *)0x0) {
+    process_string_data(&temp_ptr8, string_ptr);  // 处理第一个字符串缓冲区
+    
+    string_ptr = &GLOBAL_DATA_SOURCE_STRING;  // 重置为默认数据源
+    if (temp_ptr7 != (undefined *)0x0) {      // 检查是否有自定义数据源
       string_ptr = temp_ptr7;
     }
+    // 调用第二个缓冲区的处理函数指针
     (**(code **)(temp_ptr9 + 0x10))(&temp_ptr9, string_ptr);
-    string_ptr = &DAT_18098bc73;
-    if (temp_ptr3 != (undefined *)0x0) {
+    
+    string_ptr = &GLOBAL_DATA_SOURCE_STRING;  // 重置为默认数据源
+    if (temp_ptr3 != (undefined *)0x0) {      // 再次检查自定义数据源
       string_ptr = temp_ptr3;
     }
+    // 调用第三个缓冲区的处理函数指针
     (**(code **)(temp_ptr10 + 0x10))(&temp_ptr10, string_ptr);
     if (status_flag == 1) {
       char_count = *byte_ptr - 0x31;
@@ -122,18 +134,25 @@ void process_engine_string_formatting(undefined8 param_1, undefined8 *param_2, u
     else {
       local_flag1 = false;
     }
-    FUN_1802c2c40(local_buffer6);
-    FUN_1802c4c30(local_buffer6);
-    temp_ptr11 = &UNK_1809fcc58;
-    char_buffer4 = local_buffer5;
-    local_buffer5[0] = 0;
-    buffer_size4 = temp_flag3;
-    string_ptr = &DAT_18098bc73;
-    if (temp_ptr5 != (undefined *)0x0) {
+    // 初始化数据结构用于文件操作
+    initialize_file_operation_structure(local_buffer6);  // 初始化文件操作结构
+    process_file_operation_structure(local_buffer6);      // 处理文件操作结构
+    
+    // 准备文件路径字符串
+    temp_ptr11 = &GLOBAL_STRING_EMPTY;     // 文件路径字符串指针
+    char_buffer4 = local_buffer5;          // 文件路径缓冲区
+    local_buffer5[0] = 0;                  // 清空路径缓冲区
+    buffer_size4 = temp_flag3;              // 路径缓冲区大小
+    
+    string_ptr = &GLOBAL_DATA_SOURCE_STRING;  // 获取路径源字符串
+    if (temp_ptr5 != (undefined *)0x0) {      // 检查是否有自定义路径
       string_ptr = temp_ptr5;
     }
-    strcpy_s(local_buffer5, 0x40, string_ptr);
-    FUN_1802c5470(local_buffer6, &temp_ptr11, &temp_ptr8);
+    // 安全复制路径字符串到缓冲区
+    copy_string_safely(local_buffer5, 0x40, string_ptr);
+    
+    // 执行文件操作
+    execute_file_operation(local_buffer6, &temp_ptr11, &temp_ptr8);
     temp_ptr11 = &UNK_18098bcb0;
     *param_2 = &UNK_18098bcb0;
     param_2[1] = 0;
@@ -148,30 +167,17 @@ void process_engine_string_formatting(undefined8 param_1, undefined8 *param_2, u
     *(undefined2 *)(format_ptr + 1) = 0x2e;
     *(undefined4 *)(param_2 + 2) = 5;
     format_flag = 1;
-    local_var10 = 0;
-    local_var9 = 0;
-    local_var8 = 0;
-    local_var7 = 0;
-    local_var6 = 0;
-    local_var5 = 0;
-    local_var4 = 0;
-    local_var3 = 0;
-    local_var1 = 0;
-    local_var2 = 0;
-    local_var20 = 0;
-    local_var18 = 0;
-    local_var17 = 0;
-    local_var16 = 0;
-    local_var15 = 0;
-    local_var14 = 0;
-    local_var13 = 0;
-    local_var12 = 0;
-    local_var11 = 0;
-    FUN_1802479e0(local_buffer6, &local_var1);
-    FUN_180246690(&local_var1);
-    output_ptr = (undefined **)local_buffer7;
-    FUN_1802c6e70(local_buffer7);
-    FUN_180246690(local_buffer6);
+    // 清零长整型数组用于存储操作结果
+    clear_long_integer_array(&local_var1, 16);  // 清零16个长整型变量
+    
+    // 处理数据结构并存储结果
+    process_data_structure_and_store_results(local_buffer6, &local_var1);
+    cleanup_processed_data_structure(&local_var1);
+    
+    // 清理临时缓冲区
+    output_ptr = (undefined **)local_buffer7;    // 设置输出指针
+    cleanup_temporary_buffer(local_buffer7);      // 清理临时缓冲区
+    cleanup_file_operation_structure(local_buffer6);  // 清理文件操作结构
     temp_ptr10 = &UNK_18098bcb0;
     temp_ptr9 = &UNK_18098bcb0;
     output_ptr = &temp_ptr8;
@@ -274,24 +280,30 @@ process_engine_version_info(undefined8 param_1, undefined8 *param_2, undefined8 
   undefined8 local_var3;
   undefined4 buffer_size3;
   
+  // 检查参数范围是否有效
   if (param_4[1] - *param_4 >> 5 != 0) {
-    temp_ptr5 = (undefined8 *)0x0;
-    temp_ptr6 = (undefined8 *)0x0;
-    local_var3 = 0;
-    buffer_size3 = 3;
-    temp_ptr1 = &UNK_180a3c3e0;
-    local_var1 = 0;
-    temp_ptr2 = (undefined8 *)0x0;
-    buffer_size1 = 0;
-    buffer_ptr = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13, param_4, 0, 0xfffffffffffffffe);
-    *(undefined1 *)buffer_ptr = 0;
-    temp_ptr2 = (undefined8 *)buffer_ptr;
-    temp_flag = FUN_18064e990(buffer_ptr);
-    *buffer_ptr = 0x65736162;  // "base"
-    *(undefined1 *)(buffer_ptr + 1) = 0;
-    buffer_size1 = 4;
-    local_var1._0_4_ = temp_flag;
-    FUN_180066df0(&temp_ptr5, &temp_ptr1);
+    // 初始化指针数组用于存储版本信息字符串
+    temp_ptr5 = (undefined8 *)0x0;    // 版本字符串数组指针
+    temp_ptr6 = (undefined8 *)0x0;    // 版本字符串数组结束指针
+    local_var3 = 0;                   // 版本字符串计数器
+    buffer_size3 = 3;                 // 预期版本字符串数量
+    
+    // 准备创建第一个版本字符串
+    temp_ptr1 = &GLOBAL_STRING_TERMINATOR;  // 字符串终止符
+    local_var1 = 0;                   // 字符串长度
+    temp_ptr2 = (undefined8 *)0x0;    // 字符串数据指针
+    buffer_size1 = 0;                  // 缓冲区大小
+    // 分配内存并创建"base"字符串
+    buffer_ptr = (undefined4 *)allocate_memory_with_parameters(
+      GLOBAL_MEMORY_ALLOCATOR, 0x10, 0x13, param_4, 0, 0xfffffffffffffffe);
+    *(undefined1 *)buffer_ptr = 0;               // 初始化内存
+    temp_ptr2 = (undefined8 *)buffer_ptr;        // 设置字符串指针
+    temp_flag = get_allocated_memory_size(buffer_ptr);  // 获取内存大小
+    *buffer_ptr = 0x65736162;  // "base"       // 设置字符串内容
+    *(undefined1 *)(buffer_ptr + 1) = 0;         // 字符串终止符
+    buffer_size1 = 4;                           // 字符串长度
+    local_var1._0_4_ = temp_flag;               // 存储内存大小信息
+    add_string_to_array(&temp_ptr5, &temp_ptr1);  // 添加到字符串数组
     temp_ptr1 = &UNK_180a3c3e0;
     if (temp_ptr2 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
@@ -304,14 +316,16 @@ process_engine_version_info(undefined8 param_1, undefined8 *param_2, undefined8 
     local_var2 = 0;
     temp_ptr4 = (undefined8 *)0x0;
     buffer_size2 = 0;
-    data_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-    *(undefined1 *)data_ptr = 0;
-    temp_ptr4 = data_ptr;
-    temp_flag = FUN_18064e990(data_ptr);
-    *data_ptr = 0x315f6c6576656c;  // "level1"
-    buffer_size2 = 7;
-    local_var2._0_4_ = temp_flag;
-    FUN_180066df0(&temp_ptr5, &temp_ptr3);
+    // 分配内存并创建"level1"字符串
+    data_ptr = (undefined8 *)allocate_memory_with_parameters(
+      GLOBAL_MEMORY_ALLOCATOR, 0x10, 0x13);
+    *(undefined1 *)data_ptr = 0;                 // 初始化内存
+    temp_ptr4 = data_ptr;                        // 设置字符串指针
+    temp_flag = get_allocated_memory_size(data_ptr);  // 获取内存大小
+    *data_ptr = 0x315f6c6576656c;  // "level1"  // 设置字符串内容
+    buffer_size2 = 7;                           // 字符串长度
+    local_var2._0_4_ = temp_flag;               // 存储内存大小信息
+    add_string_to_array(&temp_ptr5, &temp_ptr3);  // 添加到字符串数组
     temp_ptr3 = &UNK_180a3c3e0;
     if (temp_ptr4 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
@@ -381,14 +395,19 @@ process_engine_version_info(undefined8 param_1, undefined8 *param_2, undefined8 
     temp_ptr2 = (undefined8 *)0x0;
     local_var1 = (ulonglong)local_var1._4_4_ << 0x20;
     temp_ptr1 = &UNK_18098bcb0;
-    FUN_18020ccb0(0, *param_4, *param_4 + 0x20, &temp_ptr5);
-    result_ptr = temp_ptr6;
+    // 处理版本信息回调函数
+    process_version_callbacks(0, *param_4, *param_4 + 0x20, &temp_ptr5);
+    result_ptr = temp_ptr6;                      // 获取数组结束指针
+    
+    // 遍历并执行所有回调函数
     for (data_ptr = temp_ptr5; data_ptr != result_ptr; data_ptr = data_ptr + 4) {
-      (**(code **)*data_ptr)(data_ptr, 0);
+      (**(code **)*data_ptr)(data_ptr, 0);      // 调用回调函数
     }
+    
+    // 清理字符串数组内存
     if (temp_ptr5 != (undefined8 *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(temp_ptr5);
+      // 警告：子程序不返回
+      free_string_array(temp_ptr5);
     }
   }
   *param_2 = &UNK_18098bcb0;
@@ -400,12 +419,12 @@ process_engine_version_info(undefined8 param_1, undefined8 *param_2, undefined8 
   *(undefined4 *)(param_2 + 2) = 0;
   FUN_1806277c0(param_2, 0x27);
   data_ptr = (undefined8 *)param_2[1];
-  *data_ptr = 0x6f66207475706e49;  // "Input of "
-  data_ptr[1] = 0x6d3c203a74616d72;  // "m< :marmat"
-  data_ptr[2] = 0x616e5f656c75646f;  // "an_unname"
-  data_ptr[3] = 0x6c69663c203e656d;  // "lif< >em"
-  data_ptr[4] = 0x3e656d616e5f65;  // ">emaname"
-  *(undefined4 *)(param_2 + 2) = 0x27;
+  *data_ptr = 0x6f66207475706e49;  // "Input format of "
+  data_ptr[1] = 0x6d3c203a74616d72;  // "m< :marmat" -> "format <marmat"
+  data_ptr[2] = 0x616e5f656c75646f;  // "an_unname" -> "an_unnamed"
+  data_ptr[3] = 0x6c69663c203e656d;  // "lif< >em" -> "lif< >em"
+  data_ptr[4] = 0x3e656d616e5f65;  // ">emaname" -> ">emaname"
+  *(undefined4 *)(param_2 + 2) = 0x27;          // 字符串总长度
   return param_2;
 }
 
@@ -464,21 +483,30 @@ void process_engine_file_operations(undefined8 param_1, undefined8 param_2, long
   local_var6 = 0xfffffffffffffffe;
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)local_buffer1;
   temp_flag1 = 0;
+  // 检查参数范围并处理文件路径
   if (param_3[1] - *param_3 >> 5 != 0) {
-    temp_long = FUN_1800baa80(&temp_ptr6);
-    temp_ptr3 = &UNK_180a3c3e0;
-    local_var1 = 0;
-    temp_ptr4 = (undefined *)0x0;
-    buffer_size1 = 0;
-    temp_flag1 = 1;
-    temp_uint = *(uint *)(temp_long + 0x10);
-    temp_ulong = (ulonglong)temp_uint;
+    // 获取路径信息
+    temp_long = get_file_path_info(&temp_ptr6);
+    
+    // 准备路径字符串缓冲区
+    temp_ptr3 = &GLOBAL_STRING_TERMINATOR;  // 字符串终止符
+    local_var1 = 0;                         // 字符串长度
+    temp_ptr4 = (undefined *)0x0;           // 字符串数据指针
+    buffer_size1 = 0;                        // 缓冲区大小
+    temp_flag1 = 1;                         // 操作标志
+    
+    temp_uint = *(uint *)(temp_long + 0x10); // 获取路径长度
+    temp_ulong = (ulonglong)temp_uint;      // 转换为无符号长整型
+    
+    // 分配内存存储路径
     if (*(longlong *)(temp_long + 8) != 0) {
-      FUN_1806277c0(&temp_ptr3, temp_ulong);
+      allocate_string_memory(&temp_ptr3, temp_ulong);
     }
+    
+    // 复制路径数据
     if (temp_uint != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(temp_ptr4, *(undefined8 *)(temp_long + 8), temp_ulong);
+      // 警告：子程序不返回
+      copy_path_data(temp_ptr4, *(undefined8 *)(temp_long + 8), temp_ulong);
     }
     if (temp_ptr4 != (undefined *)0x0) {
       *(undefined1 *)(temp_ulong + (longlong)temp_ptr4) = 0;
