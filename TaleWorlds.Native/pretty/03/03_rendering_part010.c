@@ -2,25 +2,60 @@
 
 // 03_rendering_part010.c - 6 个函数
 
-// 函数: void resize_render_object_array(longlong *render_context, ulonglong new_size)
+// 类型定义
+typedef struct {
+    void *vtable_ptr;           // 虚函数表指针
+    void *object_data;          // 对象数据指针
+    uint32_t flags;             // 对象标志
+    char name[128];              // 对象名称
+    void *texture_ptr;          // 纹理指针
+    void *material_ptr;         // 材质指针
+    void *shader_ptr;           // 着色器指针
+    void *render_state;         // 渲染状态
+    // ... 其他渲染对象属性
+} render_object_t;
+
+typedef struct {
+    render_object_t *object_array;      // 对象数组指针
+    render_object_t *array_end;         // 数组结束指针
+    render_object_t *capacity_end;      // 容量结束指针
+    void *render_manager;                // 渲染管理器
+    void *texture_cache;                 // 纹理缓存
+    void *material_cache;               // 材质缓存
+    uint32_t render_flags;               // 渲染标志
+    char context_name[128];              // 上下文名称
+    // ... 其他渲染上下文属性
+} render_context_t;
+
+// 函数: void resize_render_object_array(render_context_t *render_context, size_t new_size)
 // 功能: 调整渲染对象数组大小，处理内存重新分配和对象复制
-void resize_render_object_array(longlong *render_context, ulonglong new_size)
+// 参数:
+//   render_context - 渲染上下文指针
+//   new_size - 新的数组大小
+// 返回值: 无
+void resize_render_object_array(render_context_t *render_context, size_t new_size)
 
 {
-  undefined *object_ptr;
-  undefined8 *new_array_start;
-  ulonglong growth_factor;
-  undefined8 *old_array_start;
-  undefined8 *old_array_end;
-  undefined8 *new_array_ptr;
-  undefined8 *temp_ptr;
-  undefined *string_data;
+  render_object_t *object_ptr;
+  render_object_t *new_array_start;
+  size_t growth_factor;
+  render_object_t *old_array_start;
+  render_object_t *old_array_end;
+  render_object_t *new_array_ptr;
+  render_object_t *temp_ptr;
+  char *string_data;
   longlong size_diff;
   
-  old_array_end = (undefined8 *)render_context[1];
-  if ((ulonglong)((render_context[2] - (longlong)old_array_end) / 0x98) < new_size) {
-    new_array_ptr = (undefined8 *)*render_context;
-    size_diff = ((longlong)old_array_end - (longlong)new_array_ptr) / 0x98;
+  // 获取当前数组结束指针
+  old_array_end = render_context->array_end;
+  
+  // 检查是否需要重新分配内存
+  size_t current_capacity = (render_context->capacity_end - render_context->array_end) / sizeof(render_object_t);
+  if (current_capacity < new_size) {
+    new_array_ptr = render_context->object_array;
+    size_diff = (old_array_end - new_array_ptr) / sizeof(render_object_t);
+    
+    // 计算新的容量增长因子
     growth_factor = size_diff * 2;
     if (size_diff == 0) {
       growth_factor = 1;
@@ -28,125 +63,184 @@ void resize_render_object_array(longlong *render_context, ulonglong new_size)
     if (growth_factor < size_diff + new_size) {
       growth_factor = size_diff + new_size;
     }
-    new_array_start = (undefined8 *)0x0;
+    
+    new_array_start = NULL;
     if (growth_factor != 0) {
-      new_array_start = (undefined8 *)
-               allocate_render_memory(_DAT_180c8ed18,growth_factor * 0x98,(char)render_context[3],0x6bca1af286bca1b,
-                             0xfffffffffffffffe);
-      old_array_end = (undefined8 *)render_context[1];
-      new_array_ptr = (undefined8 *)*render_context;
+      // 分配新的内存空间
+      new_array_start = (render_object_t *)
+               allocate_render_memory(&_DAT_180c8ed18, growth_factor * sizeof(render_object_t), 
+                                    render_context->render_flags, 0x6bca1af286bca1b, 0xfffffffffffffffe);
+      old_array_end = render_context->array_end;
+      new_array_ptr = render_context->object_array;
     }
     temp_ptr = new_array_start;
     if (new_array_ptr != old_array_end) {
       size_diff = (longlong)new_array_ptr - (longlong)temp_ptr;
+      
+      // 复制现有对象到新数组
       do {
-        *temp_ptr = &UNK_18098bcb0;
-        temp_ptr[1] = 0;
-        *(undefined4 *)(temp_ptr + 2) = 0;
-        *temp_ptr = &UNK_1809fcc28;
-        temp_ptr[1] = temp_ptr + 3;
-        *(undefined4 *)(temp_ptr + 2) = 0;
-        *(undefined1 *)(temp_ptr + 3) = 0;
-        *(undefined4 *)(temp_ptr + 2) = *(undefined4 *)((longlong)temp_ptr + size_diff + 0x10);
-        object_ptr = *(undefined **)((longlong)temp_ptr + size_diff + 8);
-        string_data = &DAT_18098bc73;
-        if (object_ptr != (undefined *)0x0) {
-          string_data = object_ptr;
+        // 初始化新对象的虚函数表
+        temp_ptr->vtable_ptr = &UNK_18098bcb0;
+        temp_ptr->object_data = NULL;
+        temp_ptr->flags = 0;
+        
+        // 设置对象名称相关属性
+        temp_ptr->vtable_ptr = &UNK_1809fcc28;
+        temp_ptr->object_data = temp_ptr + 3;  // 名称数据指针
+        temp_ptr->flags = 0;
+        temp_ptr->name[0] = '\0';
+        
+        // 复制对象的属性数据
+        temp_ptr->flags = *(uint32_t *)((longlong)temp_ptr + size_diff + 0x10);
+        object_ptr = *(render_object_t **)((longlong)temp_ptr + size_diff + 8);
+        string_data = &DAT_18098bc73;  // 默认名称字符串
+        if (object_ptr != NULL) {
+          string_data = (char *)object_ptr;
         }
-        strcpy_s(temp_ptr[1],0x80,string_data);
-        temp_ptr = temp_ptr + 0x13;
-      } while ((undefined8 *)((longlong)temp_ptr + size_diff) != old_array_end);
+        
+        // 复制对象名称
+        strncpy_s(temp_ptr->name, sizeof(temp_ptr->name), string_data, _TRUNCATE);
+        temp_ptr = temp_ptr + 1;  // 移动到下一个对象
+      } while ((render_object_t *)((longlong)temp_ptr + size_diff) != old_array_end);
     }
+    // 初始化新增的对象
     if (new_size != 0) {
-      old_array_end = temp_ptr + 1;
-      old_array_start = new_size;
+      render_object_t *new_object_ptr = temp_ptr;
+      size_t objects_to_create = new_size;
+      
       do {
-        old_array_end[-1] = &UNK_18098bcb0;
-        *old_array_end = 0;
-        *(undefined4 *)(old_array_end + 1) = 0;
-        old_array_end[-1] = &UNK_1809fcc28;
-        *old_array_end = old_array_end + 2;
-        *(undefined4 *)(old_array_end + 1) = 0;
-        *(undefined1 *)(old_array_end + 2) = 0;
-        old_array_end = old_array_end + 0x13;
-        old_array_start = old_array_start - 1;
-      } while (old_array_start != 0);
+        // 初始化新对象的虚函数表
+        new_object_ptr->vtable_ptr = &UNK_18098bcb0;
+        new_object_ptr->object_data = NULL;
+        new_object_ptr->flags = 0;
+        
+        // 设置对象名称相关属性
+        new_object_ptr->vtable_ptr = &UNK_1809fcc28;
+        new_object_ptr->object_data = new_object_ptr + 2;  // 名称数据指针
+        new_object_ptr->flags = 0;
+        new_object_ptr->name[0] = '\0';
+        
+        new_object_ptr = new_object_ptr + 1;
+        objects_to_create = objects_to_create - 1;
+      } while (objects_to_create != 0);
     }
-    old_array_end = (undefined8 *)render_context[1];
-    new_array_ptr = (undefined8 *)*render_context;
+    // 清理旧的渲染对象
+    old_array_end = render_context->array_end;
+    new_array_ptr = render_context->object_array;
     if (new_array_ptr != old_array_end) {
       do {
-        (**(code **)*new_array_ptr)(new_array_ptr,0);
-        new_array_ptr = new_array_ptr + 0x13;
+        // 调用对象的析构函数
+        ((void (*)(render_object_t *, int))new_array_ptr->vtable_ptr)(new_array_ptr, 0);
+        new_array_ptr = new_array_ptr + 1;
       } while (new_array_ptr != old_array_end);
-      new_array_ptr = (undefined8 *)*render_context;
+      new_array_ptr = render_context->object_array;
     }
-    if (new_array_ptr != (undefined8 *)0x0) {
-      // 释放旧的渲染对象数组
+    
+    // 释放旧的渲染对象数组
+    if (new_array_ptr != NULL) {
       free_render_objects(new_array_ptr);
     }
-    *render_context = (longlong)new_array_start;
-    render_context[1] = (longlong)(temp_ptr + new_size * 0x13);
-    render_context[2] = (longlong)(new_array_start + growth_factor * 0x13);
+    
+    // 更新渲染上下文的指针
+    render_context->object_array = new_array_start;
+    render_context->array_end = temp_ptr + new_size;
+    render_context->capacity_end = new_array_start + growth_factor;
   }
   else {
+    // 不需要重新分配内存，直接扩展现有数组
     growth_factor = new_size;
     if (new_size != 0) {
+      render_object_t *array_ptr = old_array_end;
       do {
-        *old_array_end = &UNK_18098bcb0;
-        old_array_end[1] = 0;
-        *(undefined4 *)(old_array_end + 2) = 0;
-        *old_array_end = &UNK_1809fcc28;
-        old_array_end[1] = old_array_end + 3;
-        *(undefined4 *)(old_array_end + 2) = 0;
-        *(undefined1 *)(old_array_end + 3) = 0;
-        old_array_end = old_array_end + 0x13;
+        // 初始化新对象的虚函数表
+        array_ptr->vtable_ptr = &UNK_18098bcb0;
+        array_ptr->object_data = NULL;
+        array_ptr->flags = 0;
+        
+        // 设置对象名称相关属性
+        array_ptr->vtable_ptr = &UNK_1809fcc28;
+        array_ptr->object_data = array_ptr + 3;  // 名称数据指针
+        array_ptr->flags = 0;
+        array_ptr->name[0] = '\0';
+        
+        array_ptr = array_ptr + 1;
         growth_factor = growth_factor - 1;
       } while (growth_factor != 0);
-      old_array_end = (undefined8 *)render_context[1];
+      old_array_end = render_context->array_end;
     }
-    render_context[1] = (longlong)(old_array_end + new_size * 0x13);
+    render_context->array_end = old_array_end + new_size;
   }
   return;
 }
 
 
 
-// 函数: void cleanup_render_object_list(longlong render_context, undefined8 param2, undefined8 param3, undefined8 param4)
+// 函数: void cleanup_render_object_list(render_context_t *render_context, void *param2, void *param3, void *param4)
 // 功能: 清理渲染对象列表，释放相关资源
-void cleanup_render_object_list(longlong render_context, undefined8 param2, undefined8 param3, undefined8 param4)
+// 参数:
+//   render_context - 渲染上下文指针
+//   param2 - 清理参数2
+//   param3 - 清理参数3
+//   param4 - 清理参数4
+// 返回值: 无
+void cleanup_render_object_list(render_context_t *render_context, void *param2, void *param3, void *param4)
 
 {
-  undefined8 *current_object;
-  undefined8 *list_end;
-  undefined8 cleanup_flag;
+  render_object_t *current_object;
+  render_object_t *list_end;
+  uint64_t cleanup_flag;
   
-  cleanup_flag = 0xfffffffffffffffe;
-  current_object = *(undefined8 **)(render_context + 0x128);
-  for (list_end = *(undefined8 **)(render_context + 0x120); list_end != current_object; list_end = list_end + 0xb) {
-    (**(code **)*list_end)(list_end,0,param3,param4,cleanup_flag);
+  cleanup_flag = 0xfffffffffffffffe;  // 清理标志
+  
+  // 获取对象列表的起始和结束位置
+  current_object = *(render_object_t **)((uint8_t *)render_context + 0x128);
+  list_end = *(render_object_t **)((uint8_t *)render_context + 0x120);
+  
+  // 遍历对象列表并清理每个对象
+  for (; list_end != current_object; list_end = (render_object_t *)((uint8_t *)list_end + 0xb)) {
+    // 调用对象的清理函数
+    ((void (*)(render_object_t *, int, void *, void *, uint64_t))list_end->vtable_ptr)(
+        list_end, 0, param3, param4, cleanup_flag);
   }
-  if (*(longlong *)(render_context + 0x120) == 0) {
+  
+  // 检查是否还有对象需要清理
+  if (*(longlong *)((uint8_t *)render_context + 0x120) == 0) {
     return;
   }
+  
   // 释放渲染对象列表内存
   free_render_object_list();
 }
 
 
 
-undefined8 *
-initialize_render_context(undefined8 *render_context, ulonglong init_flags, undefined8 param3, undefined8 param4)
+// 函数: render_context_t *initialize_render_context(render_context_t *render_context, uint64_t init_flags, void *param3, void *param4)
+// 功能: 初始化渲染上下文，设置基本属性和虚函数表
+// 参数:
+//   render_context - 渲染上下文指针
+//   init_flags - 初始化标志
+//   param3 - 初始化参数3
+//   param4 - 初始化参数4
+// 返回值: 初始化后的渲染上下文指针
+render_context_t *
+initialize_render_context(render_context_t *render_context, uint64_t init_flags, void *param3, void *param4)
 
 {
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
-  cleanup_flag = 0xfffffffffffffffe;
+  cleanup_flag = 0xfffffffffffffffe;  // 清理标志
+  
+  // 初始化渲染系统
   initialize_render_system();
-  *render_context = &UNK_1809ffa18;
+  
+  // 设置渲染上下文的虚函数表
+  render_context->vtable_ptr = &UNK_1809ffa18;
+  
+  // 如果需要重新初始化，先释放现有资源
   if ((init_flags & 1) != 0) {
-    free(render_context,0x1c8,param3,param4,cleanup_flag);
+    free(render_context, 0x1c8, param3, param4, cleanup_flag);
   }
+  
   return render_context;
 }
 

@@ -1,6 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part008.c - 4 个函数
+// 渲染系统核心功能模块 - 负责渲染数据的序列化和处理
 
 // 函数: void FUN_180271c54(void)
 // 渲染系统数据序列化函数 - 处理渲染相关的数据序列化操作
@@ -25,17 +26,237 @@ void serialize_rendering_data(void)
     unaff_RBP = unaff_RBP + -1;
   } while (unaff_RBP != 0);
   
-  // 处理渲染数据缓冲区
+  // 处理渲染数据缓冲区初始化
   FUN_18025a940(&UNK_18098dfd0,*(undefined4 *)(unaff_RDI + 0x7c8));
   byte_writer = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(unaff_RDI + 0x7cc);
+  byte_value = *(undefined1 *)(unaff_RDI + 0x7cc);
   
   // 检查缓冲区空间并写入字节数据
   if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
     byte_writer = (undefined1 *)unaff_RBX[1];
   }
-  *byte_writer = uVar1;
+  *byte_writer = byte_value;
+  unaff_RBX[1] = unaff_RBX[1] + 1;
+  
+  // 检查渲染状态标志，如果为空则返回
+  if (*(char *)(unaff_RDI + 0x7cc) == '\0') {
+    return;
+  }
+  
+  // 处理双字数据写入初始化
+  dword_writer = (undefined4 *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    dword_writer = (undefined4 *)unaff_RBX[1];
+  }
+  iteration_index = 0;
+  *dword_writer = 0;
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 计算渲染数据范围并写入缓冲区
+  data_range = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  int_writer = (int *)unaff_RBX[1];
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_writer = (int *)unaff_RBX[1];
+  }
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 处理渲染数据块的序列化循环
+  range_value = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
+    do {
+      FUN_180639ec0();
+      iVar8 = iVar8 + 1;
+    } while ((ulonglong)(longlong)iVar8 <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / 0x98));
+  }
+  
+  // 处理渲染状态数据
+  FUN_180639ec0();
+  byte_writer = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x8a8);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
+    FUN_180639bf0();
+    byte_writer = (undefined1 *)unaff_RBX[1];
+  }
+  *byte_writer = byte_value;
+  unaff_RBX[1] = unaff_RBX[1] + 1;
+  
+  // 写入渲染配置数据
+  dword_writer = (undefined4 *)unaff_RBX[1];
+  dword_value = *(undefined4 *)(unaff_RDI + 0x8ac);
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    dword_writer = (undefined4 *)unaff_RBX[1];
+  }
+  *dword_writer = dword_value;
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 继续处理渲染数据的其他部分
+  FUN_180639ec0();
+  data_range = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  int_writer = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_writer = (int *)unaff_RBX[1];
+  }
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 处理渲染数据块的第二次序列化
+  range_value = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
+    do {
+      FUN_180639ec0();
+      iVar8 = iVar8 + 1;
+    } while ((ulonglong)(longlong)iVar8 <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948)) / 0x98));
+  }
+  
+  // 执行5次渲染数据清理操作
+  calculated_value = 5;
+  do {
+    FUN_180639ec0();
+    calculated_value = calculated_value + -1;
+  } while (calculated_value != 0);
+  
+  // 处理第三组渲染数据
+  data_range = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  int_writer = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_writer = (int *)unaff_RBX[1];
+  }
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 处理第三组渲染数据块的序列化
+  range_value = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
+    do {
+      FUN_180639ec0();
+      iVar8 = iVar8 + 1;
+    } while ((ulonglong)(longlong)iVar8 <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60)) / 0x98));
+  }
+  
+  // 执行9次渲染数据清理操作
+  calculated_value = 9;
+  do {
+    FUN_180639ec0();
+    calculated_value = calculated_value + -1;
+  } while (calculated_value != 0);
+  
+  // 执行两次额外的渲染数据清理
+  FUN_180639ec0();
+  FUN_180639ec0();
+  
+  // 处理第四组渲染数据
+  data_range = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  int_writer = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_writer = (int *)unaff_RBX[1];
+  }
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 处理第四组渲染数据块的序列化
+  range_value = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
+    do {
+      FUN_180639ec0();
+      iVar8 = iVar8 + 1;
+    } while ((ulonglong)(longlong)iVar8 <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / 0x98));
+  }
+  
+  // 处理渲染状态标志
+  FUN_180639ec0();
+  byte_writer = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x18c9);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
+    FUN_180639bf0();
+    byte_writer = (undefined1 *)unaff_RBX[1];
+  }
+  *byte_writer = byte_value;
+  unaff_RBX[1] = unaff_RBX[1] + 1;
+  
+  // 处理渲染配置数据块
+  dword_writer = (undefined4 *)unaff_RBX[1];
+  if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    dword_writer = (undefined4 *)unaff_RBX[1];
+  }
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    dword_writer = (undefined4 *)unaff_RBX[1];
+  }
+  *dword_writer = 0x10;
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 写入16个渲染数据块
+  do {
+    int_writer = (int *)unaff_RBX[1];
+    if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
+      FUN_180639bf0();
+      int_writer = (int *)unaff_RBX[1];
+    }
+    *int_writer = iteration_index;
+    unaff_RBX[1] = unaff_RBX[1] + 4;
+    FUN_180639ec0();
+    iteration_index = iteration_index + 1;
+  } while (iteration_index < 0x10);
+  return;
+}
+
+
+
+// 函数: void FUN_180271ca1(void)
+// 渲染系统备用序列化函数 - 处理渲染数据的备用序列化路径
+void serialize_rendering_data_alternate(void)
+
+{
+  undefined1 byte_value;
+  undefined4 dword_value;
+  longlong calculated_value;
+  longlong range_value;
+  undefined1 *byte_writer;
+  undefined4 *dword_writer;
+  int *int_writer;
+  longlong *buffer_manager;
+  int iteration_index;
+  undefined1 status_flag;
+  int data_index;
+  longlong render_context;
+  
+  // 备用序列化路径初始化
+  FUN_180639bf0();
+  *(undefined1 *)unaff_RBX[1] = unaff_SIL;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   
   // 检查渲染状态标志
@@ -52,204 +273,23 @@ void serialize_rendering_data(void)
   iteration_index = 0;
   *dword_writer = 0;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar3 = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
-  piVar7 = (int *)unaff_RBX[1];
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
-  }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
-    do {
-      FUN_180639ec0();
-      iVar8 = iVar8 + 1;
-    } while ((ulonglong)(longlong)iVar8 <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / 0x98));
-  }
-  FUN_180639ec0();
-  puVar5 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(unaff_RDI + 0x8a8);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 2) {
-    FUN_180639bf0();
-    puVar5 = (undefined1 *)unaff_RBX[1];
-  }
-  *puVar5 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 1;
-  puVar6 = (undefined4 *)unaff_RBX[1];
-  uVar2 = *(undefined4 *)(unaff_RDI + 0x8ac);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar6) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
-  }
-  *puVar6 = uVar2;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  FUN_180639ec0();
-  lVar3 = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  piVar7 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
-  }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
-    do {
-      FUN_180639ec0();
-      iVar8 = iVar8 + 1;
-    } while ((ulonglong)(longlong)iVar8 <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948)) / 0x98));
-  }
-  lVar3 = 5;
-  do {
-    FUN_180639ec0();
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  lVar3 = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  piVar7 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
-  }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
-    do {
-      FUN_180639ec0();
-      iVar8 = iVar8 + 1;
-    } while ((ulonglong)(longlong)iVar8 <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60)) / 0x98));
-  }
-  lVar3 = 9;
-  do {
-    FUN_180639ec0();
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  FUN_180639ec0();
-  FUN_180639ec0();
-  lVar3 = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  piVar7 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
-  }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
-    do {
-      FUN_180639ec0();
-      iVar8 = iVar8 + 1;
-    } while ((ulonglong)(longlong)iVar8 <
-             (ulonglong)
-             ((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / 0x98));
-  }
-  FUN_180639ec0();
-  puVar5 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(unaff_RDI + 0x18c9);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 2) {
-    FUN_180639bf0();
-    puVar5 = (undefined1 *)unaff_RBX[1];
-  }
-  *puVar5 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 1;
-  puVar6 = (undefined4 *)unaff_RBX[1];
-  if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
-  }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar6) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
-  }
-  *puVar6 = 0x10;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  do {
-    piVar7 = (int *)unaff_RBX[1];
-    if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
-      FUN_180639bf0();
-      piVar7 = (int *)unaff_RBX[1];
-    }
-    *piVar7 = iVar9;
-    unaff_RBX[1] = unaff_RBX[1] + 4;
-    FUN_180639ec0();
-    iVar9 = iVar9 + 1;
-  } while (iVar9 < 0x10);
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180271ca1(void)
-// 渲染系统备用序列化函数 - 处理渲染数据的备用序列化路径
-void serialize_rendering_data_alternate(void)
-
-{
-  undefined1 byte_value;
-  undefined4 dword_value;
-  longlong calculated_value;
-  longlong range_value;
-  undefined1 *byte_pointer;
-  undefined4 *dword_pointer;
-  int *int_pointer;
-  longlong *buffer_context;
-  int loop_counter;
-  undefined1 status_flag;
-  int data_index;
-  longlong render_context;
   
-  FUN_180639bf0();
-  *(undefined1 *)unaff_RBX[1] = unaff_SIL;
-  unaff_RBX[1] = unaff_RBX[1] + 1;
-  if (*(char *)(unaff_RDI + 0x7cc) == '\0') {
-    return;
-  }
-  puVar6 = (undefined4 *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar6) + unaff_RBX[2]) < 5) {
+  // 计算渲染数据范围
+  data_range = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  int_writer = (int *)unaff_RBX[1];
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
+    int_writer = (int *)unaff_RBX[1];
   }
-  iVar9 = 0;
-  *puVar6 = 0;
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar3 = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
-  piVar7 = (int *)unaff_RBX[1];
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
-  }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
+  
+  // 处理渲染数据块的序列化
+  range_value = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
     do {
       FUN_180639ec0();
       iVar8 = iVar8 + 1;
@@ -257,37 +297,45 @@ void serialize_rendering_data_alternate(void)
              (ulonglong)
              ((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / 0x98));
   }
+  
+  // 处理渲染状态数据
   FUN_180639ec0();
-  puVar5 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(unaff_RDI + 0x8a8);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 2) {
+  byte_writer = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x8a8);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    puVar5 = (undefined1 *)unaff_RBX[1];
+    byte_writer = (undefined1 *)unaff_RBX[1];
   }
-  *puVar5 = uVar1;
+  *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  puVar6 = (undefined4 *)unaff_RBX[1];
-  uVar2 = *(undefined4 *)(unaff_RDI + 0x8ac);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar6) + unaff_RBX[2]) < 5) {
+  
+  // 写入渲染配置数据
+  dword_writer = (undefined4 *)unaff_RBX[1];
+  dword_value = *(undefined4 *)(unaff_RDI + 0x8ac);
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
+    dword_writer = (undefined4 *)unaff_RBX[1];
   }
-  *puVar6 = uVar2;
+  *dword_writer = dword_value;
   unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 继续处理渲染数据的其他部分（与主函数类似）
   FUN_180639ec0();
-  lVar3 = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  piVar7 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
+  data_range = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  int_writer = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
+    int_writer = (int *)unaff_RBX[1];
   }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
+  
+  // 处理渲染数据块的序列化
+  range_value = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
     do {
       FUN_180639ec0();
       iVar8 = iVar8 + 1;
@@ -295,24 +343,30 @@ void serialize_rendering_data_alternate(void)
              (ulonglong)
              ((*(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948)) / 0x98));
   }
-  lVar3 = 5;
+  
+  // 执行5次渲染数据清理操作
+  calculated_value = 5;
   do {
     FUN_180639ec0();
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  lVar3 = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  piVar7 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
+    calculated_value = calculated_value + -1;
+  } while (calculated_value != 0);
+  
+  // 处理第三组渲染数据
+  data_range = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  int_writer = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
+    int_writer = (int *)unaff_RBX[1];
   }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
+  
+  // 处理第三组渲染数据块的序列化
+  range_value = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
     do {
       FUN_180639ec0();
       iVar8 = iVar8 + 1;
@@ -320,26 +374,34 @@ void serialize_rendering_data_alternate(void)
              (ulonglong)
              ((*(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60)) / 0x98));
   }
-  lVar3 = 9;
+  
+  // 执行9次渲染数据清理操作
+  calculated_value = 9;
   do {
     FUN_180639ec0();
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
+    calculated_value = calculated_value + -1;
+  } while (calculated_value != 0);
+  
+  // 执行两次额外的渲染数据清理
   FUN_180639ec0();
   FUN_180639ec0();
-  lVar3 = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  piVar7 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
+  
+  // 处理第四组渲染数据
+  data_range = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  int_writer = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
+    int_writer = (int *)unaff_RBX[1];
   }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
+  
+  // 处理第四组渲染数据块的序列化
+  range_value = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
     do {
       FUN_180639ec0();
       iVar8 = iVar8 + 1;
@@ -347,16 +409,20 @@ void serialize_rendering_data_alternate(void)
              (ulonglong)
              ((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / 0x98));
   }
+  
+  // 处理渲染状态标志
   FUN_180639ec0();
-  puVar5 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(unaff_RDI + 0x18c9);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 2) {
+  byte_writer = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x18c9);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    puVar5 = (undefined1 *)unaff_RBX[1];
+    byte_writer = (undefined1 *)unaff_RBX[1];
   }
-  *puVar5 = uVar1;
+  *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  puVar6 = (undefined4 *)unaff_RBX[1];
+  
+  // 处理渲染配置数据块
+  dword_writer = (undefined4 *)unaff_RBX[1];
   if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
     FUN_180639ec0();
     FUN_180639ec0();
@@ -364,29 +430,29 @@ void serialize_rendering_data_alternate(void)
     FUN_180639ec0();
     FUN_180639ec0();
     FUN_180639ec0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
+    dword_writer = (undefined4 *)unaff_RBX[1];
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar6) + unaff_RBX[2]) < 5) {
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
+    dword_writer = (undefined4 *)unaff_RBX[1];
   }
-  *puVar6 = 0x10;
+  *dword_writer = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 写入16个渲染数据块
   do {
-    piVar7 = (int *)unaff_RBX[1];
-    if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
+    int_writer = (int *)unaff_RBX[1];
+    if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
       FUN_180639bf0();
-      piVar7 = (int *)unaff_RBX[1];
+      int_writer = (int *)unaff_RBX[1];
     }
-    *piVar7 = iVar9;
+    *int_writer = iteration_index;
     unaff_RBX[1] = unaff_RBX[1] + 4;
     FUN_180639ec0();
-    iVar9 = iVar9 + 1;
-  } while (iVar9 < 0x10);
+    iteration_index = iteration_index + 1;
+  } while (iteration_index < 0x10);
   return;
 }
-
-
 
 
 
@@ -399,38 +465,43 @@ void serialize_rendering_data_parameterized(void)
   undefined4 dword_value;
   longlong calculated_value;
   longlong range_value;
-  undefined1 *byte_pointer;
-  undefined4 *dword_pointer;
-  int *int_pointer;
-  longlong *buffer_context;
-  int loop_counter;
+  undefined1 *byte_writer;
+  undefined4 *dword_writer;
+  int *int_writer;
+  longlong *buffer_manager;
+  int iteration_index;
   int data_index;
   longlong render_context;
   undefined8 stack_parameter;
   undefined8 stack_temp;
   
+  // 参数化序列化初始化
   uStack0000000000000040 = in_stack_00000030;
-  puVar6 = (undefined4 *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar6) + unaff_RBX[2]) < 5) {
+  dword_writer = (undefined4 *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
+    dword_writer = (undefined4 *)unaff_RBX[1];
   }
-  iVar9 = 0;
-  *puVar6 = 0;
+  iteration_index = 0;
+  *dword_writer = 0;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar3 = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
-  piVar7 = (int *)unaff_RBX[1];
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
+  
+  // 计算渲染数据范围
+  data_range = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  int_writer = (int *)unaff_RBX[1];
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
+    int_writer = (int *)unaff_RBX[1];
   }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
+  
+  // 处理渲染数据块的序列化
+  range_value = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
     do {
       FUN_180639ec0();
       iVar8 = iVar8 + 1;
@@ -438,37 +509,45 @@ void serialize_rendering_data_parameterized(void)
              (ulonglong)
              ((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / 0x98));
   }
+  
+  // 处理渲染状态数据
   FUN_180639ec0();
-  puVar5 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(unaff_RDI + 0x8a8);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 2) {
+  byte_writer = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x8a8);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    puVar5 = (undefined1 *)unaff_RBX[1];
+    byte_writer = (undefined1 *)unaff_RBX[1];
   }
-  *puVar5 = uVar1;
+  *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  puVar6 = (undefined4 *)unaff_RBX[1];
-  uVar2 = *(undefined4 *)(unaff_RDI + 0x8ac);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar6) + unaff_RBX[2]) < 5) {
+  
+  // 写入渲染配置数据
+  dword_writer = (undefined4 *)unaff_RBX[1];
+  dword_value = *(undefined4 *)(unaff_RDI + 0x8ac);
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
+    dword_writer = (undefined4 *)unaff_RBX[1];
   }
-  *puVar6 = uVar2;
+  *dword_writer = dword_value;
   unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 继续处理渲染数据的其他部分
   FUN_180639ec0();
-  lVar3 = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  piVar7 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
+  data_range = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  int_writer = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
+    int_writer = (int *)unaff_RBX[1];
   }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
+  
+  // 处理渲染数据块的序列化
+  range_value = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
     do {
       FUN_180639ec0();
       iVar8 = iVar8 + 1;
@@ -476,24 +555,30 @@ void serialize_rendering_data_parameterized(void)
              (ulonglong)
              ((*(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948)) / 0x98));
   }
-  lVar3 = 5;
+  
+  // 执行5次渲染数据清理操作
+  calculated_value = 5;
   do {
     FUN_180639ec0();
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  lVar3 = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  piVar7 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
+    calculated_value = calculated_value + -1;
+  } while (calculated_value != 0);
+  
+  // 处理第三组渲染数据
+  data_range = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  int_writer = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
+    int_writer = (int *)unaff_RBX[1];
   }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
+  
+  // 处理第三组渲染数据块的序列化
+  range_value = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
     do {
       FUN_180639ec0();
       iVar8 = iVar8 + 1;
@@ -501,26 +586,34 @@ void serialize_rendering_data_parameterized(void)
              (ulonglong)
              ((*(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60)) / 0x98));
   }
-  lVar3 = 9;
+  
+  // 执行9次渲染数据清理操作
+  calculated_value = 9;
   do {
     FUN_180639ec0();
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
+    calculated_value = calculated_value + -1;
+  } while (calculated_value != 0);
+  
+  // 执行两次额外的渲染数据清理
   FUN_180639ec0();
   FUN_180639ec0();
-  lVar3 = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
-  lVar3 = lVar3 / 0x26 + (lVar3 >> 0x3f);
-  piVar7 = (int *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
+  
+  // 处理第四组渲染数据
+  data_range = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  data_range = data_range / 0x26 + (data_range >> 0x3f);
+  int_writer = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    piVar7 = (int *)unaff_RBX[1];
+    int_writer = (int *)unaff_RBX[1];
   }
-  *piVar7 = (int)(lVar3 >> 2) - (int)(lVar3 >> 0x3f);
+  *int_writer = (int)(data_range >> 2) - (int)(data_range >> 0x3f);
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar4 = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
-  lVar3 = lVar4 >> 0x3f;
-  iVar8 = iVar9;
-  if (lVar4 / 0x98 + lVar3 != lVar3) {
+  
+  // 处理第四组渲染数据块的序列化
+  range_value = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  calculated_value = range_value >> 0x3f;
+  iVar8 = iteration_index;
+  if (range_value / 0x98 + calculated_value != calculated_value) {
     do {
       FUN_180639ec0();
       iVar8 = iVar8 + 1;
@@ -528,16 +621,20 @@ void serialize_rendering_data_parameterized(void)
              (ulonglong)
              ((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / 0x98));
   }
+  
+  // 处理渲染状态标志
   FUN_180639ec0();
-  puVar5 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(unaff_RDI + 0x18c9);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 2) {
+  byte_writer = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x18c9);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    puVar5 = (undefined1 *)unaff_RBX[1];
+    byte_writer = (undefined1 *)unaff_RBX[1];
   }
-  *puVar5 = uVar1;
+  *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  puVar6 = (undefined4 *)unaff_RBX[1];
+  
+  // 处理渲染配置数据块
+  dword_writer = (undefined4 *)unaff_RBX[1];
   if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
     FUN_180639ec0();
     FUN_180639ec0();
@@ -545,32 +642,32 @@ void serialize_rendering_data_parameterized(void)
     FUN_180639ec0();
     FUN_180639ec0();
     FUN_180639ec0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
+    dword_writer = (undefined4 *)unaff_RBX[1];
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar6) + unaff_RBX[2]) < 5) {
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar6 = (undefined4 *)unaff_RBX[1];
+    dword_writer = (undefined4 *)unaff_RBX[1];
   }
-  *puVar6 = 0x10;
+  *dword_writer = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 写入16个渲染数据块
   do {
-    piVar7 = (int *)unaff_RBX[1];
-    if ((ulonglong)((*unaff_RBX - (longlong)piVar7) + unaff_RBX[2]) < 5) {
+    int_writer = (int *)unaff_RBX[1];
+    if ((ulonglong)((*unaff_RBX - (longlong)int_writer) + unaff_RBX[2]) < 5) {
       FUN_180639bf0();
-      piVar7 = (int *)unaff_RBX[1];
+      int_writer = (int *)unaff_RBX[1];
     }
-    *piVar7 = iVar9;
+    *int_writer = iteration_index;
     unaff_RBX[1] = unaff_RBX[1] + 4;
     FUN_180639ec0();
-    iVar9 = iVar9 + 1;
-  } while (iVar9 < 0x10);
+    iteration_index = iteration_index + 1;
+  } while (iteration_index < 0x10);
   return;
 }
 
 
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 
 
 // 函数: void FUN_180271cf0(longlong param_1,longlong param_2)
@@ -599,277 +696,315 @@ void process_rendering_system(longlong render_manager,longlong data_buffer)
   undefined stack_d0 [136];
   ulonglong stack_checksum;
   
+  // 初始化栈保护和校验
   stack_guard = 0xfffffffffffffffe;
   stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  
+  // 处理数据缓冲区
   temp_value = *(longlong *)(data_buffer + 8);
   int_pointer = (int *)(temp_value + 4);
   *(int **)(data_buffer + 8) = int_pointer;
   temp_int = *int_pointer;
   *(longlong *)(data_buffer + 8) = temp_value + 8;
   FUN_180272e40(render_manager + 0x20,(longlong)temp_int);
+  
+  // 初始化渲染处理循环
   offset_2 = 0;
   temp_value = *(longlong *)(render_manager + 0x20);
   range_size = *(longlong *)(render_manager + 0x28) - temp_value;
   temp_long = range_size >> 0x3f;
   offset_1 = offset_2;
   loop_count = offset_2;
+  
+  // 处理渲染数据块的主循环
   if (lVar5 / 0x98 + lVar2 == lVar2) {
-    puVar7 = *(uint **)(param_2 + 8);
+    uint_pointer = *(uint **)(data_buffer + 8);
   }
   else {
     do {
-      uVar11 = **(uint **)(param_2 + 8);
-      puVar7 = *(uint **)(param_2 + 8) + 1;
-      *(uint **)(param_2 + 8) = puVar7;
-      if (uVar11 != 0) {
+      uint_value = **(uint **)(data_buffer + 8);
+      uint_pointer = *(uint **)(data_buffer + 8) + 1;
+      *(uint **)(data_buffer + 8) = uint_pointer;
+      if (uint_value != 0) {
         (**(code **)(*(longlong *)(uVar9 + lVar13) + 0x18))
-                  ((longlong *)(uVar9 + lVar13),puVar7,uVar11);
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-        puVar7 = *(uint **)(param_2 + 8);
+                  ((longlong *)(uVar9 + lVar13),uint_pointer,uint_value);
+        *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+        uint_pointer = *(uint **)(data_buffer + 8);
       }
-      uVar11 = (int)uVar12 + 1;
-      lVar13 = *(longlong *)(param_1 + 0x20);
+      uint_value = (int)uVar12 + 1;
+      lVar13 = *(longlong *)(render_manager + 0x20);
       uVar9 = uVar9 + 0x98;
-      uVar12 = (ulonglong)uVar11;
-    } while ((ulonglong)(longlong)(int)uVar11 <
-             (ulonglong)((*(longlong *)(param_1 + 0x28) - lVar13) / 0x98));
+      uVar12 = (ulonglong)uint_value;
+    } while ((ulonglong)(longlong)(int)uint_value <
+             (ulonglong)((*(longlong *)(render_manager + 0x28) - lVar13) / 0x98));
   }
-  uVar11 = *puVar7;
-  puVar7 = puVar7 + 1;
-  *(uint **)(param_2 + 8) = puVar7;
-  if (uVar11 != 0) {
-    (**(code **)(*(longlong *)(param_1 + 0x40) + 0x18))((longlong *)(param_1 + 0x40),puVar7,uVar11);
-    *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-    puVar7 = *(uint **)(param_2 + 8);
+  
+  // 处理渲染数据块
+  uint_value = *uint_pointer;
+  uint_pointer = uint_pointer + 1;
+  *(uint **)(data_buffer + 8) = uint_pointer;
+  if (uint_value != 0) {
+    (**(code **)(*(longlong *)(render_manager + 0x40) + 0x18))((longlong *)(render_manager + 0x40),uint_pointer,uint_value);
+    *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+    uint_pointer = *(uint **)(data_buffer + 8);
   }
-  *(char *)(param_1 + 0xd8) = (char)*puVar7;
-  puVar4 = (undefined4 *)(*(longlong *)(param_2 + 8) + 1);
-  *(undefined4 **)(param_2 + 8) = puVar4;
-  *(undefined4 *)(param_1 + 0xdc) = *puVar4;
-  lVar13 = *(longlong *)(param_2 + 8);
-  puVar7 = (uint *)(lVar13 + 4);
-  *(uint **)(param_2 + 8) = puVar7;
-  uVar11 = *puVar7;
-  piVar3 = (int *)(lVar13 + 8);
-  *(int **)(param_2 + 8) = piVar3;
-  if (uVar11 != 0) {
-    (**(code **)(*(longlong *)(param_1 + 0xe0) + 0x18))((longlong *)(param_1 + 0xe0),piVar3,uVar11);
-    *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-    piVar3 = *(int **)(param_2 + 8);
+  
+  // 处理渲染状态和配置数据
+  *(char *)(render_manager + 0xd8) = (char)*uint_pointer;
+  dword_pointer = (undefined4 *)(*(longlong *)(data_buffer + 8) + 1);
+  *(undefined4 **)(data_buffer + 8) = dword_pointer;
+  *(undefined4 *)(render_manager + 0xdc) = *dword_pointer;
+  lVar13 = *(longlong *)(data_buffer + 8);
+  uint_pointer = (uint *)(lVar13 + 4);
+  *(uint **)(data_buffer + 8) = uint_pointer;
+  uint_value = *uint_pointer;
+  int_pointer = (int *)(lVar13 + 8);
+  *(int **)(data_buffer + 8) = int_pointer;
+  
+  // 处理渲染配置数据块
+  if (uint_value != 0) {
+    (**(code **)(*(longlong *)(render_manager + 0xe0) + 0x18))((longlong *)(render_manager + 0xe0),int_pointer,uint_value);
+    *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+    int_pointer = *(int **)(data_buffer + 8);
   }
-  iVar1 = *piVar3;
-  *(int **)(param_2 + 8) = piVar3 + 1;
-  FUN_180272e40(param_1 + 0x178,(longlong)iVar1);
-  lVar13 = *(longlong *)(param_1 + 0x178);
-  lVar5 = *(longlong *)(param_1 + 0x180) - lVar13;
+  temp_int = *int_pointer;
+  *(int **)(data_buffer + 8) = int_pointer + 1;
+  FUN_180272e40(render_manager + 0x178,(longlong)temp_int);
+  
+  // 处理渲染数据块的第二次循环
+  lVar13 = *(longlong *)(render_manager + 0x178);
+  lVar5 = *(longlong *)(render_manager + 0x180) - lVar13;
   lVar2 = lVar5 >> 0x3f;
   uVar9 = uVar10;
   uVar12 = uVar10;
   if (lVar5 / 0x98 + lVar2 != lVar2) {
     do {
-      uVar11 = **(uint **)(param_2 + 8);
-      puVar7 = *(uint **)(param_2 + 8) + 1;
-      *(uint **)(param_2 + 8) = puVar7;
-      if (uVar11 != 0) {
+      uint_value = **(uint **)(data_buffer + 8);
+      uint_pointer = *(uint **)(data_buffer + 8) + 1;
+      *(uint **)(data_buffer + 8) = uint_pointer;
+      if (uint_value != 0) {
         (**(code **)(*(longlong *)(uVar9 + lVar13) + 0x18))
-                  ((longlong *)(uVar9 + lVar13),puVar7,uVar11);
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
+                  ((longlong *)(uVar9 + lVar13),uint_pointer,uint_value);
+        *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
       }
-      uVar11 = (int)uVar12 + 1;
-      lVar13 = *(longlong *)(param_1 + 0x178);
+      uint_value = (int)uVar12 + 1;
+      lVar13 = *(longlong *)(render_manager + 0x178);
       uVar9 = uVar9 + 0x98;
-      uVar12 = (ulonglong)uVar11;
-    } while ((ulonglong)(longlong)(int)uVar11 <
-             (ulonglong)((*(longlong *)(param_1 + 0x180) - lVar13) / 0x98));
+      uVar12 = (ulonglong)uint_value;
+    } while ((ulonglong)(longlong)(int)uint_value <
+             (ulonglong)((*(longlong *)(render_manager + 0x180) - lVar13) / 0x98));
   }
-  plVar6 = (longlong *)(param_1 + 0x198);
+  
+  // 处理渲染配置数据块的5次循环
+  context_pointer = (longlong *)(render_manager + 0x198);
   lVar13 = 5;
   do {
-    uVar11 = **(uint **)(param_2 + 8);
-    puVar7 = *(uint **)(param_2 + 8) + 1;
-    *(uint **)(param_2 + 8) = puVar7;
-    if (uVar11 != 0) {
-      (**(code **)(*plVar6 + 0x18))(plVar6,puVar7,uVar11);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-      puVar7 = *(uint **)(param_2 + 8);
+    uint_value = **(uint **)(data_buffer + 8);
+    uint_pointer = *(uint **)(data_buffer + 8) + 1;
+    *(uint **)(data_buffer + 8) = uint_pointer;
+    if (uint_value != 0) {
+      (**(code **)(*context_pointer + 0x18))(context_pointer,uint_pointer,uint_value);
+      *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+      uint_pointer = *(uint **)(data_buffer + 8);
     }
-    plVar6 = plVar6 + 0x13;
+    context_pointer = context_pointer + 0x13;
     lVar13 = lVar13 + -1;
   } while (lVar13 != 0);
-  lVar13 = (longlong)(int)*puVar7;
-  *(uint **)(param_2 + 8) = puVar7 + 1;
-  FUN_180272e40(param_1 + 0x490,lVar13);
+  
+  // 处理渲染数据块的第三次循环
+  lVar13 = (longlong)(int)*uint_pointer;
+  *(uint **)(data_buffer + 8) = uint_pointer + 1;
+  FUN_180272e40(render_manager + 0x490,lVar13);
   uVar9 = uVar10;
   if (0 < lVar13) {
     do {
-      plVar6 = (longlong *)(*(longlong *)(param_1 + 0x490) + uVar9);
-      uVar11 = **(uint **)(param_2 + 8);
-      puVar7 = *(uint **)(param_2 + 8) + 1;
-      *(uint **)(param_2 + 8) = puVar7;
-      if (uVar11 != 0) {
-        (**(code **)(*plVar6 + 0x18))(plVar6,puVar7,uVar11);
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
+      context_pointer = (longlong *)(*(longlong *)(render_manager + 0x490) + uVar9);
+      uint_value = **(uint **)(data_buffer + 8);
+      uint_pointer = *(uint **)(data_buffer + 8) + 1;
+      *(uint **)(data_buffer + 8) = uint_pointer;
+      if (uint_value != 0) {
+        (**(code **)(*context_pointer + 0x18))(context_pointer,uint_pointer,uint_value);
+        *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
       }
       lVar13 = lVar13 + -1;
       uVar9 = uVar9 + 0x98;
     } while (lVar13 != 0);
   }
-  plVar6 = (longlong *)(param_1 + 0xa30);
+  
+  // 处理渲染配置数据块的9次循环
+  context_pointer = (longlong *)(render_manager + 0xa30);
   lVar13 = 9;
   do {
-    uVar11 = **(uint **)(param_2 + 8);
-    puVar7 = *(uint **)(param_2 + 8) + 1;
-    *(uint **)(param_2 + 8) = puVar7;
-    if (uVar11 != 0) {
-      (**(code **)(*plVar6 + 0x18))(plVar6,puVar7,uVar11);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-      puVar7 = *(uint **)(param_2 + 8);
+    uint_value = **(uint **)(data_buffer + 8);
+    uint_pointer = *(uint **)(data_buffer + 8) + 1;
+    *(uint **)(data_buffer + 8) = uint_pointer;
+    if (uint_value != 0) {
+      (**(code **)(*context_pointer + 0x18))(context_pointer,uint_pointer,uint_value);
+      *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+      uint_pointer = *(uint **)(data_buffer + 8);
     }
-    plVar6 = plVar6 + 0x13;
+    context_pointer = context_pointer + 0x13;
     lVar13 = lVar13 + -1;
   } while (lVar13 != 0);
-  uVar11 = *puVar7;
-  puVar7 = puVar7 + 1;
-  *(uint **)(param_2 + 8) = puVar7;
-  if (uVar11 != 0) {
-    (**(code **)(*(longlong *)(param_1 + 0xf88) + 0x18))(param_1 + 0xf88,puVar7,uVar11);
-    *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-    puVar7 = *(uint **)(param_2 + 8);
+  
+  // 处理渲染状态数据块
+  uint_value = *uint_pointer;
+  uint_pointer = uint_pointer + 1;
+  *(uint **)(data_buffer + 8) = uint_pointer;
+  if (uint_value != 0) {
+    (**(code **)(*(longlong *)(render_manager + 0xf88) + 0x18))(render_manager + 0xf88,uint_pointer,uint_value);
+    *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+    uint_pointer = *(uint **)(data_buffer + 8);
   }
-  uVar11 = *puVar7;
-  puVar7 = puVar7 + 1;
-  *(uint **)(param_2 + 8) = puVar7;
-  if (uVar11 != 0) {
-    (**(code **)(*(longlong *)(param_1 + 0x1020) + 0x18))(param_1 + 0x1020,puVar7,uVar11);
-    *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-    puVar7 = *(uint **)(param_2 + 8);
+  
+  // 处理渲染配置数据块
+  uint_value = *uint_pointer;
+  uint_pointer = uint_pointer + 1;
+  *(uint **)(data_buffer + 8) = uint_pointer;
+  if (uint_value != 0) {
+    (**(code **)(*(longlong *)(render_manager + 0x1020) + 0x18))(render_manager + 0x1020,uint_pointer,uint_value);
+    *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+    uint_pointer = *(uint **)(data_buffer + 8);
   }
-  lVar13 = (longlong)(int)*puVar7;
-  *(uint **)(param_2 + 8) = puVar7 + 1;
-  FUN_180272e40(param_1 + 0x10b8,lVar13);
+  
+  // 处理渲染数据块的第四次循环
+  lVar13 = (longlong)(int)*uint_pointer;
+  *(uint **)(data_buffer + 8) = uint_pointer + 1;
+  FUN_180272e40(render_manager + 0x10b8,lVar13);
   if (lVar13 < 1) {
-    puVar7 = *(uint **)(param_2 + 8);
+    uint_pointer = *(uint **)(data_buffer + 8);
   }
   else {
     do {
-      plVar6 = (longlong *)(*(longlong *)(param_1 + 0x10b8) + uVar10);
-      uVar11 = **(uint **)(param_2 + 8);
-      puVar7 = *(uint **)(param_2 + 8) + 1;
-      *(uint **)(param_2 + 8) = puVar7;
-      if (uVar11 != 0) {
-        (**(code **)(*plVar6 + 0x18))(plVar6,puVar7,uVar11);
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-        puVar7 = *(uint **)(param_2 + 8);
+      context_pointer = (longlong *)(*(longlong *)(render_manager + 0x10b8) + uVar10);
+      uint_value = **(uint **)(data_buffer + 8);
+      uint_pointer = *(uint **)(data_buffer + 8) + 1;
+      *(uint **)(data_buffer + 8) = uint_pointer;
+      if (uint_value != 0) {
+        (**(code **)(*context_pointer + 0x18))(context_pointer,uint_pointer,uint_value);
+        *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+        uint_pointer = *(uint **)(data_buffer + 8);
       }
       uVar10 = uVar10 + 0x98;
       lVar13 = lVar13 + -1;
     } while (lVar13 != 0);
   }
-  uVar11 = *puVar7;
-  puVar7 = puVar7 + 1;
-  *(uint **)(param_2 + 8) = puVar7;
-  if (uVar11 != 0) {
-    (**(code **)(*(longlong *)(param_1 + 0x10d8) + 0x18))
-              ((longlong *)(param_1 + 0x10d8),puVar7,uVar11);
-    *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-    puVar7 = *(uint **)(param_2 + 8);
+  
+  // 处理渲染状态数据块
+  uint_value = *uint_pointer;
+  uint_pointer = uint_pointer + 1;
+  *(uint **)(data_buffer + 8) = uint_pointer;
+  if (uint_value != 0) {
+    (**(code **)(*(longlong *)(render_manager + 0x10d8) + 0x18))
+              ((longlong *)(render_manager + 0x10d8),uint_pointer,uint_value);
+    *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+    uint_pointer = *(uint **)(data_buffer + 8);
   }
-  *(char *)(param_1 + 0x10f9) = (char)*puVar7;
-  lVar13 = *(longlong *)(param_2 + 8);
-  puVar7 = (uint *)(lVar13 + 1);
-  *(uint **)(param_2 + 8) = puVar7;
-  if (*(char *)(param_1 + 0x10f9) != '\0') {
-    uVar11 = *puVar7;
-    puVar7 = (uint *)(lVar13 + 5);
-    *(uint **)(param_2 + 8) = puVar7;
-    if (uVar11 != 0) {
-      (**(code **)(*(longlong *)(param_1 + 0x1100) + 0x18))
-                ((longlong *)(param_1 + 0x1100),puVar7,uVar11);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-      puVar7 = *(uint **)(param_2 + 8);
+  
+  // 处理渲染配置标志
+  *(char *)(render_manager + 0x10f9) = (char)*uint_pointer;
+  lVar13 = *(longlong *)(data_buffer + 8);
+  uint_pointer = (uint *)(lVar13 + 1);
+  *(uint **)(data_buffer + 8) = uint_pointer;
+  
+  // 处理渲染配置数据（如果标志不为空）
+  if (*(char *)(render_manager + 0x10f9) != '\0') {
+    uint_value = *uint_pointer;
+    uint_pointer = (uint *)(lVar13 + 5);
+    *(uint **)(data_buffer + 8) = uint_pointer;
+    if (uint_value != 0) {
+      (**(code **)(*(longlong *)(render_manager + 0x1100) + 0x18))
+                ((longlong *)(render_manager + 0x1100),uint_pointer,uint_value);
+      *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+      uint_pointer = *(uint **)(data_buffer + 8);
     }
-    uVar11 = *puVar7;
-    puVar7 = puVar7 + 1;
-    *(uint **)(param_2 + 8) = puVar7;
-    if (uVar11 != 0) {
-      (**(code **)(*(longlong *)(param_1 + 0x1198) + 0x18))
-                ((longlong *)(param_1 + 0x1198),puVar7,uVar11);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-      puVar7 = *(uint **)(param_2 + 8);
+    
+    // 处理多个渲染配置数据块
+    uint_value = *uint_pointer;
+    uint_pointer = uint_pointer + 1;
+    *(uint **)(data_buffer + 8) = uint_pointer;
+    if (uint_value != 0) {
+      (**(code **)(*(longlong *)(render_manager + 0x1198) + 0x18))
+                ((longlong *)(render_manager + 0x1198),uint_pointer,uint_value);
+      *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+      uint_pointer = *(uint **)(data_buffer + 8);
     }
-    uVar11 = *puVar7;
-    puVar7 = puVar7 + 1;
-    *(uint **)(param_2 + 8) = puVar7;
-    if (uVar11 != 0) {
-      (**(code **)(*(longlong *)(param_1 + 0x1230) + 0x18))
-                ((longlong *)(param_1 + 0x1230),puVar7,uVar11);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-      puVar7 = *(uint **)(param_2 + 8);
+    
+    uint_value = *uint_pointer;
+    uint_pointer = uint_pointer + 1;
+    *(uint **)(data_buffer + 8) = uint_pointer;
+    if (uint_value != 0) {
+      (**(code **)(*(longlong *)(render_manager + 0x1230) + 0x18))
+                ((longlong *)(render_manager + 0x1230),uint_pointer,uint_value);
+      *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+      uint_pointer = *(uint **)(data_buffer + 8);
     }
-    uVar11 = *puVar7;
-    puVar7 = puVar7 + 1;
-    *(uint **)(param_2 + 8) = puVar7;
-    if (uVar11 != 0) {
-      (**(code **)(*(longlong *)(param_1 + 0x12c8) + 0x18))
-                ((longlong *)(param_1 + 0x12c8),puVar7,uVar11);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-      puVar7 = *(uint **)(param_2 + 8);
+    
+    uint_value = *uint_pointer;
+    uint_pointer = uint_pointer + 1;
+    *(uint **)(data_buffer + 8) = uint_pointer;
+    if (uint_value != 0) {
+      (**(code **)(*(longlong *)(render_manager + 0x12c8) + 0x18))
+                ((longlong *)(render_manager + 0x12c8),uint_pointer,uint_value);
+      *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+      uint_pointer = *(uint **)(data_buffer + 8);
     }
-    uVar11 = *puVar7;
-    puVar7 = puVar7 + 1;
-    *(uint **)(param_2 + 8) = puVar7;
-    if (uVar11 != 0) {
-      (**(code **)(*(longlong *)(param_1 + 0x1360) + 0x18))
-                ((longlong *)(param_1 + 0x1360),puVar7,uVar11);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-      puVar7 = *(uint **)(param_2 + 8);
+    
+    uint_value = *uint_pointer;
+    uint_pointer = uint_pointer + 1;
+    *(uint **)(data_buffer + 8) = uint_pointer;
+    if (uint_value != 0) {
+      (**(code **)(*(longlong *)(render_manager + 0x1360) + 0x18))
+                ((longlong *)(render_manager + 0x1360),uint_pointer,uint_value);
+      *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+      uint_pointer = *(uint **)(data_buffer + 8);
     }
-    uVar11 = *puVar7;
-    puVar7 = puVar7 + 1;
-    *(uint **)(param_2 + 8) = puVar7;
-    if (uVar11 != 0) {
-      (**(code **)(*(longlong *)(param_1 + 0x13f8) + 0x18))
-                ((longlong *)(param_1 + 0x13f8),puVar7,uVar11);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
-      puVar7 = *(uint **)(param_2 + 8);
+    
+    uint_value = *uint_pointer;
+    uint_pointer = uint_pointer + 1;
+    *(uint **)(data_buffer + 8) = uint_pointer;
+    if (uint_value != 0) {
+      (**(code **)(*(longlong *)(render_manager + 0x13f8) + 0x18))
+                ((longlong *)(render_manager + 0x13f8),uint_pointer,uint_value);
+      *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
+      uint_pointer = *(uint **)(data_buffer + 8);
     }
   }
-  uVar11 = *puVar7;
-  lVar13 = (longlong)(int)uVar11;
-  *(uint **)(param_2 + 8) = puVar7 + 1;
-  if (0 < (int)uVar11) {
-    plVar6 = (longlong *)(param_1 + 0x4b0);
+  
+  // 处理最终渲染数据块
+  uint_value = *uint_pointer;
+  lVar13 = (longlong)(int)uint_value;
+  *(uint **)(data_buffer + 8) = uint_pointer + 1;
+  if (0 < (int)uint_value) {
+    context_pointer = (longlong *)(render_manager + 0x4b0);
     do {
-      iVar1 = **(int **)(param_2 + 8);
-      *(int **)(param_2 + 8) = *(int **)(param_2 + 8) + 1;
+      temp_int = **(int **)(data_buffer + 8);
+      *(int **)(data_buffer + 8) = *(int **)(data_buffer + 8) + 1;
       puStack_e8 = &UNK_1809fcc28;
       puStack_e0 = auStack_d0;
       uStack_d8 = 0;
       auStack_d0[0] = 0;
-      uVar11 = **(uint **)(param_2 + 8);
-      puVar7 = *(uint **)(param_2 + 8) + 1;
-      *(uint **)(param_2 + 8) = puVar7;
-      if (uVar11 != 0) {
-        FUN_180049910(&puStack_e8,puVar7,uVar11);
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar11;
+      uint_value = **(uint **)(data_buffer + 8);
+      uint_pointer = *(uint **)(data_buffer + 8) + 1;
+      *(uint **)(data_buffer + 8) = uint_pointer;
+      if (uint_value != 0) {
+        FUN_180049910(&puStack_e8,uint_pointer,uint_value);
+        *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)uint_value;
       }
-      if (iVar1 < 0x10) {
+      if (temp_int < 0x10) {
         puVar8 = &DAT_18098bc73;
         if (puStack_e0 != (undefined *)0x0) {
           puVar8 = puStack_e0;
         }
-        (**(code **)(*plVar6 + 0x10))(plVar6,puVar8);
+        (**(code **)(*context_pointer + 0x10))(context_pointer,puVar8);
       }
       puStack_e8 = &UNK_18098bcb0;
-      plVar6 = plVar6 + 0xb;
+      context_pointer = context_pointer + 0xb;
       lVar13 = lVar13 + -1;
     } while (lVar13 != 0);
   }
-                    // WARNING: Subroutine does not return
+  
+  // 执行最终的栈保护检查
+  // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_118);
 }
-
-
-
-
-
