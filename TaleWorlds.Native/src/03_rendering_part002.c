@@ -1528,28 +1528,40 @@ undefined UNK_180a1b038;      // 配置管理数据结构
 undefined UNK_180a1b090;      // 统计管理数据结构
 
 
-// 函数: undefined FUN_1803216f0;
+/** 
+ * @brief 渲染设备管理函数
+ * @details 管理渲染设备的创建、配置、状态等
+ */
 undefined FUN_1803216f0;
-undefined UNK_18033d3d0;
-undefined UNK_18033d410;
+undefined UNK_18033d3d0;      // 设备配置数据结构
+undefined UNK_18033d410;      // 设备状态数据结构
 
 
-// 函数: undefined FUN_18033d370;
+/** 
+ * @brief 渲染设备初始化函数
+ * @details 初始化渲染设备和相关资源
+ */
 undefined FUN_18033d370;
-undefined UNK_18098bc01;
+undefined UNK_18098bc01;      // 设备初始化标志
 
 
-// 函数: undefined FUN_180321570;
+/** 
+ * @brief 渲染设备配置函数
+ * @details 配置渲染设备的各项参数
+ */
 undefined FUN_180321570;
-undefined UNK_180a1b070;
+undefined UNK_180a1b070;      // 设备配置参数数据结构
 
 
-// 函数: undefined FUN_18033d250;
+/** 
+ * @brief 渲染设备状态管理函数
+ * @details 管理渲染设备的状态和属性
+ */
 undefined FUN_18033d250;
-undefined UNK_18033d2b0;
-undefined UNK_180a09a40;
-undefined UNK_180a1b100;
-undefined UNK_180a1b368;
+undefined UNK_18033d2b0;      // 设备状态数据结构
+undefined UNK_180a09a40;      // 设备属性数据结构
+undefined UNK_180a1b100;      // 设备能力数据结构
+undefined UNK_180a1b368;      // 设备限制数据结构
 
 
 // 函数: undefined FUN_18033d080;
