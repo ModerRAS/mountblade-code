@@ -722,7 +722,7 @@ LAB_1802ad540:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_1b8);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_1b8);
 LAB_1802ad499:
   puVar2 = (uint64_t *)puVar2[6];
   goto LAB_1802ad3b0;

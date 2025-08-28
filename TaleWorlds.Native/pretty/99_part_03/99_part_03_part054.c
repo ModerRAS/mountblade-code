@@ -245,7 +245,7 @@ void SceneDataProcessor(int64_t param_1)
         iStack0000000000000078 = iVar6;
         FUN_1802354f0(fStack0000000000000070, &fStack0000000000000048, &fStack0000000000000070, unaff_RBP + -0x80, &fStack0000000000000058);
     }
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**

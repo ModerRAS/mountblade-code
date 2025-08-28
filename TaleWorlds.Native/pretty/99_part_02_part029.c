@@ -430,7 +430,7 @@ void FUN_1801a0854(uint64_t param_1,code *param_2)
                   if ((uint64_t)((*(int64_t **)(unaff_RBP + 0x2c))[1] - lVar22 >> 3) <=
                       (uint64_t)(int64_t)in_stack_00000058) {
                     // WARNING: Subroutine does not return
-                    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xa8) ^ (uint64_t)&stack0x00000000);
+                    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xa8) ^ (uint64_t)&stack0x00000000);
                   }
                   unaff_R14 = *(int64_t *)(lVar22 + lVar25);
                   lVar24 = *(int64_t *)(unaff_R14 + 0x20);

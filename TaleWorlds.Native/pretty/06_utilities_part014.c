@@ -2,8 +2,8 @@
 
 // 06_utilities_part014.c - 16 个函数
 
-// 函数: void FUN_1808995c0(int64_t *param_1,int32_t *param_2)
-void FUN_1808995c0(int64_t *param_1,int32_t *param_2)
+// 函数: void SystemConfigManager(int64_t *param_1,int32_t *param_2)
+void SystemConfigManager(int64_t *param_1,int32_t *param_2)
 
 {
   int iVar1;
@@ -25,7 +25,7 @@ void FUN_1808995c0(int64_t *param_1,int32_t *param_2)
         goto LAB_18089962f;
       }
     }
-    iVar1 = FUN_180769ed0(*param_1,auStackX_18,1,4,0);
+    iVar1 = SystemDataAnalyzer(*param_1,auStackX_18,1,4,0);
   }
 LAB_18089962f:
   if (iVar1 == 0) {
@@ -61,7 +61,7 @@ uint64_t FUN_180899650(int64_t *param_1,int64_t *param_2)
         goto LAB_1808996c5;
       }
     }
-    uVar1 = FUN_180769ed0(*param_1,aiStackX_8,1,4,0);
+    uVar1 = SystemDataAnalyzer(*param_1,aiStackX_8,1,4,0);
   }
 LAB_1808996c5:
   if ((int)uVar1 == 0) {
@@ -92,8 +92,8 @@ uint64_t FUN_180899740(uint64_t param_1,int32_t *param_2)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_1808aed00(param_1,param_2,4);
-  if (((int)uVar1 == 0) && (uVar1 = FUN_1808aed00(param_1,param_2 + 1,4), (int)uVar1 == 0x11)) {
+  uVar1 = SystemErrorHandler(param_1,param_2,4);
+  if (((int)uVar1 == 0) && (uVar1 = SystemErrorHandler(param_1,param_2 + 1,4), (int)uVar1 == 0x11)) {
     param_2[1] = *param_2;
     return 0;
   }
@@ -108,7 +108,7 @@ uint64_t FUN_180899763(void)
   uint64_t uVar1;
   int32_t *unaff_RBX;
   
-  uVar1 = FUN_1808aed00();
+  uVar1 = SystemErrorHandler();
   if ((int)uVar1 != 0x11) {
     return uVar1;
   }
@@ -148,9 +148,9 @@ void FUN_1808997b0(uint64_t param_1,int64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_1808aed00(param_1,param_2,4);
+  iVar1 = SystemErrorHandler(param_1,param_2,4);
   if (iVar1 == 0) {
-    FUN_1808aed00(param_1,param_2 + 4,4);
+    SystemErrorHandler(param_1,param_2 + 4,4);
   }
   return;
 }
@@ -189,7 +189,7 @@ uint64_t FUN_1808997f0(uint64_t param_1,int64_t *param_2)
       memset((int64_t)iVar1 + *param_2,0,(int64_t)(iVar5 - iVar1));
     }
     *(int *)(param_2 + 1) = iVar5;
-    uVar2 = FUN_1808aed00(param_1,*param_2,lVar4);
+    uVar2 = SystemErrorHandler(param_1,*param_2,lVar4);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -226,7 +226,7 @@ uint64_t FUN_180899816(void)
       memset((int64_t)iVar1 + *unaff_RBX,0,(int64_t)(iVar4 - iVar1));
     }
     *(int *)(unaff_RBX + 1) = iVar4;
-    uVar2 = FUN_1808aed00();
+    uVar2 = SystemErrorHandler();
     if ((int)uVar2 != 0) {
       return uVar2;
     }

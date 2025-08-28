@@ -272,7 +272,7 @@ static void unmatched_advanced_resource_processor(int64_t param_1)
     }
     
     // 恢复栈保护
-    FUN_1808fc050(stack_guard ^ (uint64_t)local_buffer);
+    SystemSecurityChecker(stack_guard ^ (uint64_t)local_buffer);
 }
 
 static void unmatched_system_resource_manager(int64_t param_1)
@@ -325,7 +325,7 @@ static void unmatched_system_resource_manager(int64_t param_1)
     }
     
     // 恢复栈保护
-    FUN_1808fc050(stack_guard ^ (uint64_t)local_buffer);
+    SystemSecurityChecker(stack_guard ^ (uint64_t)local_buffer);
 }
 
 static void unmatched_lifecycle_cleanup(int64_t param_1)

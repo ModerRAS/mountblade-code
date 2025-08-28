@@ -937,7 +937,7 @@ FUN_18075a100(uint64_t *param_1,uint64_t param_2,int param_3,int32_t param_4,cha
     return uVar2;
   }
   if (*(int *)(param_1[1] + 0x107b0) < param_3) {
-    lVar3 = FUN_180741e10(param_1[1] + 0x10bd0,iVar5 * 4 + 0x40,&system_buffer_ptr,0,0,0,1);
+    lVar3 = SystemResourceManager(param_1[1] + 0x10bd0,iVar5 * 4 + 0x40,&system_buffer_ptr,0,0,0,1);
     if (lVar3 == 0) {
       return 0x26;
     }

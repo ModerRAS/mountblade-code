@@ -72,9 +72,9 @@ void FUN_180198e30(int64_t param_1,uint64_t param_2,uint64_t param_3,int8_t para
   if (plStack_c0 != (int64_t *)0x0) {
     (**(code **)(*plStack_c0 + 0x38))();
   }
-  FUN_180627ae0(&puStack_100,param_3);
+  CoreEngineDataTransformer(&puStack_100,param_3);
   uVar9 = uStack_f0 + 3;
-  FUN_1806277c0(&puStack_100,uVar9);
+  CoreEngineDataBufferProcessor(&puStack_100,uVar9);
   pbVar5 = pbStack_f8 + uStack_f0;
   pbVar5[0] = 0x5f;
   pbVar5[1] = 0x30;
@@ -101,13 +101,13 @@ LAB_180198f21:
   if ((int)uVar9 < (int)uStack_f0) {
     uVar6 = uVar9;
   }
-  FUN_1806277c0(&puStack_e0,uVar6 + 1);
+  CoreEngineDataBufferProcessor(&puStack_e0,uVar6 + 1);
   uVar14 = uVar12;
   if (0 < (int)uVar9) {
     do {
       if (uStack_f0 <= (uint)uVar14) break;
       bVar2 = pbStack_f8[uVar12];
-      FUN_1806277c0(&puStack_e0,uStack_d0 + 1);
+      CoreEngineDataBufferProcessor(&puStack_e0,uStack_d0 + 1);
       pbStack_d8[uStack_d0] = bVar2;
       pbStack_d8[uStack_d0 + 1] = 0;
       uStack_d0 = uStack_d0 + 1;
@@ -119,7 +119,7 @@ LAB_180198f21:
   uVar9 = uStack_d0;
   if (pbStack_f8 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pbStack_f8);
+    CoreEngineMemoryPoolCleaner(pbStack_f8);
   }
   uVar12 = 0;
   pbStack_f8 = pbStack_d8;
@@ -140,7 +140,7 @@ LAB_180198f21:
     } while (acStack_70[lVar3 + 1] != '\0');
     iVar13 = (int)(lVar3 + 1);
     if (0 < iVar13) {
-      FUN_1806277c0(&puStack_100,uStack_f0 + iVar13);
+      CoreEngineDataBufferProcessor(&puStack_100,uStack_f0 + iVar13);
                     // WARNING: Subroutine does not return
       memcpy(pbStack_f8 + uStack_f0,acStack_70,(int64_t)((int)lVar3 + 2));
     }
@@ -167,7 +167,7 @@ LAB_1801991d4:
         puStack_100 = &system_data_buffer_ptr;
         if (pbStack_f8 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         pbStack_f8 = (byte *)0x0;
         uStack_e8 = uStack_e8 & 0xffffffff00000000;
@@ -179,10 +179,10 @@ LAB_1801991d4:
         }
         if (plVar20 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(plVar20);
+          CoreEngineMemoryPoolCleaner(plVar20);
         }
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_128);
+        SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_128);
       }
       do {
         lVar3 = *(int64_t *)(lVar16 + uVar14 * 8);
@@ -207,7 +207,7 @@ LAB_1801991c0:
         if (uVar18 <= (uint64_t)(int64_t)(int)uVar7) goto LAB_1801991d4;
       } while( true );
     }
-    FUN_1806277c0(&puStack_100,uStack_f0 + (int)lVar15);
+    CoreEngineDataBufferProcessor(&puStack_100,uStack_f0 + (int)lVar15);
     pcVar8 = acStack_60;
   }
   else {
@@ -219,7 +219,7 @@ LAB_1801991c0:
       lVar16 = lVar15;
     } while (acStack_50[lVar3] != '\0');
     if ((int)lVar15 < 1) goto LAB_18019914b;
-    FUN_1806277c0(&puStack_100,uStack_f0 + (int)lVar15);
+    CoreEngineDataBufferProcessor(&puStack_100,uStack_f0 + (int)lVar15);
     pcVar8 = acStack_50;
   }
                     // WARNING: Subroutine does not return
@@ -244,7 +244,7 @@ LAB_180199282:
   if (lVar3 == 0) {
     lVar3 = 1;
 LAB_1801992e1:
-    plVar4 = (int64_t *)FUN_18062b420(system_memory_pool_ptr);
+    plVar4 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr);
     plVar17 = plVar4;
   }
   else {
@@ -271,7 +271,7 @@ LAB_1801992e1:
   }
   if (plVar10 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(plVar10);
+    CoreEngineMemoryPoolCleaner(plVar10);
   }
   plVar20 = plVar17 + lVar3;
   iVar11 = (int)plStack_c0;
@@ -313,7 +313,7 @@ int64_t * FUN_1801993a0(uint64_t param_1,int64_t *param_2,uint64_t param_3,char 
   }
   else {
     FUN_1801a0860(param_1,&plStack_28);
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,3);
+    uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,3);
     plVar3 = (int64_t *)FUN_180275090(uVar2);
     if (plVar3 != (int64_t *)0x0) {
       plStack_30 = plVar3;

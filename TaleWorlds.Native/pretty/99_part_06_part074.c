@@ -223,10 +223,10 @@ void FUN_1803ef940(int64_t *param_1,int64_t param_2,int64_t *param_3,int64_t par
     uStack_308 = uStack_308 & 0xffffffff00000000;
     puStack_320 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_348);
+    SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_348);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 

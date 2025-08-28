@@ -565,7 +565,7 @@ void FUN_18019fc79(int64_t param_1,int64_t param_2)
   } while ((uint64_t)(int64_t)in_stack_00000058 <
            (uint64_t)((*(int64_t **)(unaff_RBP + 0x2c))[1] - param_2 >> 3));
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xa8) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xa8) ^ (uint64_t)&stack0x00000000);
 }
 
 

@@ -66,19 +66,19 @@ int64_t * RenderingSystem_ResourceAllocator(int64_t param_1)
   switch(uVar1) {
   case 0:
   case 7:
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_1,RENDERING_SYSTEM_LONG_SIZE,3);
+    uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_1,RENDERING_SYSTEM_LONG_SIZE,3);
     plVar3 = (int64_t *)FUN_180339110(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((int64_t)plVar3 + 0x8c) = uVar1;
     return plVar3;
   case 1:
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_2,RENDERING_SYSTEM_LONG_SIZE,3);
+    uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_2,RENDERING_SYSTEM_LONG_SIZE,3);
     plVar3 = (int64_t *)FUN_180339920(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((int64_t)plVar3 + 0x8c) = 1;
     return plVar3;
   case 2:
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_3,RENDERING_SYSTEM_LONG_SIZE,3);
+    uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_3,RENDERING_SYSTEM_LONG_SIZE,3);
     plVar3 = (int64_t *)FUN_18033a200(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((int64_t)plVar3 + 0x8c) = 2;
@@ -86,7 +86,7 @@ int64_t * RenderingSystem_ResourceAllocator(int64_t param_1)
   default:
     return (int64_t *)0x0;
   case 4:
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_4,RENDERING_SYSTEM_LONG_SIZE,3);
+    uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_4,RENDERING_SYSTEM_LONG_SIZE,3);
     plVar3 = (int64_t *)FUN_180339d70(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((int64_t)plVar3 + 0x8c) = 4;
@@ -143,7 +143,7 @@ void RenderingSystem_DataProcessor(int64_t param_1,uint64_t param_2,uint64_t *pa
         if (lVar1 == 0) {
           lVar1 = 1;
 LAB_180337de9:
-          plVar2 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,lVar1 * 8,(char)param_3[3]);
+          plVar2 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar1 * 8,(char)param_3[3]);
           plVar4 = (int64_t *)*param_3;
           plVar5 = (int64_t *)param_3[1];
         }
@@ -157,7 +157,7 @@ LAB_180337de9:
         }
         *plVar2 = lVar7;
         if (*param_3 != 0) {
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         *param_3 = (uint64_t)plVar2;
         param_3[2] = (uint64_t)(plVar2 + lVar1);
@@ -211,7 +211,7 @@ void RenderingSystem_BufferHandler(uint64_t param_1,uint64_t param_2,int64_t par
       if (lVar3 == 0) {
         lVar3 = 1;
 LAB_180337de9:
-        plVar1 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,lVar3 * 8,(char)unaff_RBX[3]);
+        plVar1 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar3 * 8,(char)unaff_RBX[3]);
         plVar2 = (int64_t *)*unaff_RBX;
         plVar4 = (int64_t *)unaff_RBX[1];
       }
@@ -225,7 +225,7 @@ LAB_180337de9:
       }
       *plVar1 = param_3;
       if (*unaff_RBX != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       *unaff_RBX = (uint64_t)plVar1;
       unaff_RBX[2] = (uint64_t)(plVar1 + lVar3);
@@ -337,7 +337,7 @@ int64_t RenderingSystem_DataCopier(int64_t param_1,int64_t param_2)
         if (lVar7 == 0) {
           lVar7 = 1;
 LAB_180337feb:
-          lVar6 = FUN_18062b420(system_memory_pool_ptr,lVar7 * RENDERING_SYSTEM_RESOURCE_SIZE_1,*(int8_t *)(param_1 + 0xa8));
+          lVar6 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar7 * RENDERING_SYSTEM_RESOURCE_SIZE_1,*(int8_t *)(param_1 + 0xa8));
           uVar10 = *(uint64_t *)(param_1 + 0x98);
           lVar9 = *(int64_t *)(param_1 + 0x90);
         }
@@ -359,7 +359,7 @@ LAB_180337feb:
           lVar9 = *(int64_t *)(param_1 + 0x90);
         }
         if (lVar9 != 0) {
-          FUN_18064e900(lVar9);
+          CoreEngineMemoryPoolCleaner(lVar9);
         }
         *(int64_t *)(param_1 + 0x90) = lVar6;
         *(int64_t *)(param_1 + 0x98) = lVar5 + RENDERING_SYSTEM_RESOURCE_SIZE_1;
@@ -415,7 +415,7 @@ void RenderingSystem_BufferManager(void)
       if (lVar3 == 0) {
         lVar3 = 1;
 LAB_180337feb:
-        lVar2 = FUN_18062b420(system_memory_pool_ptr,lVar3 * RENDERING_SYSTEM_RESOURCE_SIZE_1,*(int8_t *)(unaff_RDI + 0xa8));
+        lVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar3 * RENDERING_SYSTEM_RESOURCE_SIZE_1,*(int8_t *)(unaff_RDI + 0xa8));
         uVar5 = *(uint64_t *)(unaff_RDI + 0x98);
         lVar7 = *(int64_t *)(unaff_RDI + 0x90);
       }
@@ -437,7 +437,7 @@ LAB_180337feb:
         lVar4 = *(int64_t *)(unaff_RDI + 0x90);
       }
       if (lVar4 != 0) {
-        FUN_18064e900(lVar4);
+        CoreEngineMemoryPoolCleaner(lVar4);
       }
       *(int64_t *)(unaff_RDI + 0x90) = lVar2;
       *(int64_t *)(unaff_RDI + 0x98) = lVar1 + RENDERING_SYSTEM_RESOURCE_SIZE_1;

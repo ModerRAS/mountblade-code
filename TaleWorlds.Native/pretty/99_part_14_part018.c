@@ -102,7 +102,7 @@ LAB_1808f9d74:
 LAB_1808f9d95:
   LocalFree(pcVar5);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_c8);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_c8);
 }
 
 
@@ -749,7 +749,7 @@ void FUN_1808fa290(uint64_t param_1)
   }
 LAB_1808fa47f:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_258);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_258);
 }
 
 
@@ -903,7 +903,7 @@ LAB_1808fa9f5:
     if (param_2 <= (uint)uVar4) {
 LAB_1808fab6f:
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_58);
+      SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_58);
     }
     uVar8 = 2;
     pbVar12 = param_1 + uVar4;

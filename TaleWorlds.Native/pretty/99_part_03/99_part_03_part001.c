@@ -95,41 +95,41 @@ validation_failed2:
 final_validation:
     FUN_18005e630(system_context_ptr);
     FUN_1801c9940(global_data);
-    allocated_buffer = FUN_18062b1e0(system_memory_pool_ptr, SERIALIZATION_BUFFER_SIZE, 8, 3);
+    allocated_buffer = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, SERIALIZATION_BUFFER_SIZE, 8, 3);
     processed_data = (int64_t *)FUN_1803e8a40(allocated_buffer, context_ptr);
     *global_data = processed_data;
     (**(code **)(*processed_data + 0x28))(processed_data);
     *(int8_t *)(system_main_module_state + 0x60) = 1;
     
     // 分配数据缓冲区
-    allocated_buffer = FUN_18062b1e0(system_memory_pool_ptr, DATA_BUFFER_SIZE, 8, 3);
+    allocated_buffer = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, DATA_BUFFER_SIZE, 8, 3);
     temp_ptr1 = stack_array1;
     temp_ptr2 = (uint64_t ***)&stack_data6;
     stack_data6 = global_data;
     stack_data7 = stack_data2;
-    FUN_180627ae0(&stack_data8, context_ptr);
+    CoreEngineDataTransformer(&stack_data8, context_ptr);
     temp_ptr2 = (uint64_t ***)&stack_data6;
     temp_ptr3 = &stack_data1;
     stack_data1 = stack_data6;
     stack_data2 = stack_data7;
-    FUN_180627ae0(&stack_data3, &stack_data8);
+    CoreEngineDataTransformer(&stack_data3, &stack_data8);
     temp_ptr3 = &stack_data1;
     function_ptr1 = FUN_1801eb5a0;
     function_ptr2 = FUN_1801eb560;
     
     // 创建处理结构
-    temp_ptr4 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, SMALL_BUFFER_SIZE, 8, system_allocation_flags);
+    temp_ptr4 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, SMALL_BUFFER_SIZE, 8, system_allocation_flags);
     *temp_ptr4 = stack_data1;
     *(int8_t *)(temp_ptr4 + 1) = stack_data2;
     stack_data1 = temp_ptr4;
-    FUN_180627ae0(temp_ptr4 + 2, &stack_data3);
+    CoreEngineDataTransformer(temp_ptr4 + 2, &stack_data3);
     temp_ptr3 = (uint64_t **)&stack_data3;
     stack_data3 = &system_data_buffer_ptr;
     stack_array1[0] = temp_ptr4;
     
     // 执行数据处理
     if (stack_data4 != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     stack_data4 = 0;
     stack_data5 = 0;
@@ -138,7 +138,7 @@ final_validation:
     stack_data8 = &system_data_buffer_ptr;
     
     if (stack_data9 != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     stack_data9 = 0;
     stack_data10 = 0;
@@ -176,7 +176,7 @@ void initialize_save_context(int64_t context_ptr)
 {
     *(uint64_t *)(context_ptr + 0x10) = &system_data_buffer_ptr;
     if (*(int64_t *)(context_ptr + 0x18) != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     *(uint64_t *)(context_ptr + 0x18) = 0;
     *(int32_t *)(context_ptr + 0x28) = 0;
@@ -281,7 +281,7 @@ void load_game_data(uint64_t param1, int64_t context_ptr)
     stack_data10 = 0;
     FUN_1801c5870(&stack_data8, context_ptr);
     file_descriptor = stack_data10 + 0x12;
-    FUN_1806277c0(&stack_data8, file_descriptor);
+    CoreEngineDataBufferProcessor(&stack_data8, file_descriptor);
     temp_ptr4 = (int32_t *)(stack_data9 + stack_data10);
     *temp_ptr4 = 0x64616873;  // "hash"
     temp_ptr4[1] = 0x6d5f7265;  // "re_m"
@@ -510,13 +510,13 @@ data_not_found:
         ReleaseSRWLockExclusive(file_position);
         stack_data17 = &system_data_buffer_ptr;
         if (stack_data18 != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         stack_data18 = 0;
         stack_data20 = stack_data20 & 0xffffffff00000000;
         stack_data17 = &system_state_ptr;
         if (((char)stack_data6 == '\0') && (stack_data4 != 0)) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
     }
     if (temp_long2 != 0) {
@@ -531,9 +531,9 @@ data_not_found:
         stack_data9 = (void *)0x0;
         stack_data11 = stack_data11 & 0xffffffff00000000;
         stack_data8 = &system_state_ptr;
-        FUN_1808fc050(stack_data57 ^ (uint64_t)stack_data1);
+        SystemSecurityChecker(stack_data57 ^ (uint64_t)stack_data1);
     }
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -568,7 +568,7 @@ bool validate_save_file(int64_t file_handle)
     stack_data3 = 0;
     FUN_1801c5700(&stack_data1, file_handle);
     temp_int1 = stack_data3 + 0x1c;
-    FUN_1806277c0(&stack_data1, temp_int1);
+    CoreEngineDataBufferProcessor(&stack_data1, temp_int1);
     temp_ptr1 = (int32_t *)(stack_data2 + stack_data3);
     *temp_ptr1 = 0x706d6f63;  // "comp"
     temp_ptr1[1] = 0x73736572;  // "ress"
@@ -635,7 +635,7 @@ bool validate_save_file(int64_t file_handle)
     if (stack_data2 == (void *)0x0) {
         return validation_result;
     }
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -675,7 +675,7 @@ void process_save_chunk(uint64_t param1)
     stack_data5 = 0;
     FUN_1801c5870(&stack_data3, param1);
     temp_int1 = stack_data5 + 0x12;
-    FUN_1806277c0(&stack_data3, temp_int1);
+    CoreEngineDataBufferProcessor(&stack_data3, temp_int1);
     temp_ptr1 = (int32_t *)(stack_data4 + stack_data5);
     *temp_ptr1 = 0x64616873;  // "hash"
     temp_ptr1[1] = 0x6d5f7265;  // "re_m"
@@ -706,7 +706,7 @@ void process_save_chunk(uint64_t param1)
             fread(&stack_data2, 4, 1, temp_long1);
             if (stack_data2 < 9) {
                 if (stack_data2 + 1 != 0) {
-                    temp_data1 = FUN_18062b420(system_memory_pool_ptr, (int64_t)(stack_data2 + 1), 3);
+                    temp_data1 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)(stack_data2 + 1), 3);
                 }
                 memset(temp_data1, 0, (int64_t)(stack_data2 + 1));
             }
@@ -731,9 +731,9 @@ void process_save_chunk(uint64_t param1)
         stack_data4 = (void *)0x0;
         stack_data6 = stack_data6 & 0xffffffff00000000;
         stack_data3 = &system_state_ptr;
-        FUN_1808fc050(stack_data14 ^ (uint64_t)stack_data1);
+        SystemSecurityChecker(stack_data14 ^ (uint64_t)stack_data1);
     }
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -780,7 +780,7 @@ void create_save_file(void)
         stack_data5 = 0;
         stack_data3 = (int8_t *)0x0;
         stack_data4 = 0;
-        FUN_1806277c0(&stack_data2, stack_data8);
+        CoreEngineDataBufferProcessor(&stack_data2, stack_data8);
         if (stack_data8 != 0) {
             memcpy(stack_data3, stack_data7, stack_data8 + 1);
         }
@@ -792,7 +792,7 @@ void create_save_file(void)
             stack_data5 = stack_data5 & 0xffffffff;
         }
         temp_int1 = stack_data4 + 0x12;
-        FUN_1806277c0(&stack_data2, temp_int1);
+        CoreEngineDataBufferProcessor(&stack_data2, temp_int1);
         temp_ptr1 = (int32_t *)(stack_data3 + stack_data4);
         *temp_ptr1 = 0x64616873;  // "hash"
         temp_ptr1[1] = 0x6d5f7265;  // "re_m"
@@ -840,20 +840,20 @@ void create_save_file(void)
         }
         stack_data2 = &system_data_buffer_ptr;
         if (stack_data3 != (int8_t *)0x0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         stack_data3 = (int8_t *)0x0;
         stack_data5 = stack_data5 & 0xffffffff00000000;
         stack_data2 = &system_state_ptr;
         stack_data6 = &system_data_buffer_ptr;
         if (stack_data7 != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         stack_data7 = 0;
         stack_data9 = stack_data9 & 0xffffffff00000000;
         stack_data6 = &system_state_ptr;
     }
-    FUN_1808fc050(stack_data17 ^ (uint64_t)stack_data1);
+    SystemSecurityChecker(stack_data17 ^ (uint64_t)stack_data1);
 }
 
 /**
@@ -901,14 +901,14 @@ void build_save_path(int64_t *path_ptr, int64_t context_ptr)
         stack_data4 = &system_state_ptr;
         temp_long2 = path_ptr[2];
         temp_int1 = (int)temp_long2 + 8;
-        FUN_1806277c0(path_ptr, temp_int1);
+        CoreEngineDataBufferProcessor(path_ptr, temp_int1);
         temp_uint1 = *(uint *)(path_ptr + 2);
         temp_long1 = path_ptr[1];
         *(uint64_t *)((uint64_t)temp_uint1 + temp_long1) = 0x2f73726564616853;  // "Shared/"
         *(int8_t *)((uint64_t *)((uint64_t)temp_uint1 + temp_long1) + 1) = 0;
         *(int *)(path_ptr + 2) = temp_int1;
         temp_int1 = (int)temp_long2 + 0xe;
-        FUN_1806277c0(path_ptr, temp_int1);
+        CoreEngineDataBufferProcessor(path_ptr, temp_int1);
         temp_ptr1 = (int32_t *)((uint64_t)*(uint *)(path_ptr + 2) + path_ptr[1]);
         *temp_ptr1 = 0x31443344;  // "D3D1"
         *(int16_t *)(temp_ptr1 + 1) = 0x2f31;  // "/1"
@@ -919,7 +919,7 @@ void build_save_path(int64_t *path_ptr, int64_t context_ptr)
     else {
         FUN_180627be0(path_ptr, context_ptr + 0x2d0);
     }
-    FUN_1808fc050(stack_data8 ^ (uint64_t)stack_data1);
+    SystemSecurityChecker(stack_data8 ^ (uint64_t)stack_data1);
 }
 
 /**
@@ -948,13 +948,13 @@ int64_t resolve_save_path(int64_t path_ptr, int64_t context_ptr)
         FUN_18005d190(path_ptr, temp_data1);
         stack_data1 = &system_data_buffer_ptr;
         if (stack_data2 != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         stack_data2 = 0;
         stack_data3 = 0;
         stack_data1 = &system_state_ptr;
         temp_int1 = *(int *)(path_ptr + 0x10) + 0x12;
-        FUN_1806277c0(path_ptr, temp_int1);
+        CoreEngineDataBufferProcessor(path_ptr, temp_int1);
         temp_ptr1 = (uint64_t *)((uint64_t)*(uint *)(path_ptr + 0x10) + *(int64_t *)(path_ptr + 8));
         *temp_ptr1 = 0x6461685365726f43;  // "CoreShared"
         temp_ptr1[1] = 0x314433442f737265;  // "res/D3D1"
@@ -967,7 +967,7 @@ int64_t resolve_save_path(int64_t path_ptr, int64_t context_ptr)
     buffer_size = (uint64_t)temp_uint1;
     if (*(int64_t *)(context_ptr + 0x2b8) != 0) {
         stack_data1 = (void *)0x180627c06;
-        FUN_1806277c0(path_ptr, buffer_size);
+        CoreEngineDataBufferProcessor(path_ptr, buffer_size);
     }
     if (temp_uint1 != 0) {
         stack_data1 = (void *)0x180627c1a;

@@ -183,7 +183,7 @@ LAB_1807d7801:
   }
 LAB_1807d805e:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*unaff_RBP ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*unaff_RBP ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -574,7 +574,7 @@ LAB_1807d7ae2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*unaff_RBP ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*unaff_RBP ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -764,7 +764,7 @@ void FUN_1807d7bd5(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*unaff_RBP ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*unaff_RBP ^ (uint64_t)&stack0x00000000);
 }
 
 

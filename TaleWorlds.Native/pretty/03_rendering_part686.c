@@ -729,7 +729,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
     lStack_158 = lVar16;
   } while (lVar16 != 0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_1c8);
+  SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_1c8);
 }
 
 

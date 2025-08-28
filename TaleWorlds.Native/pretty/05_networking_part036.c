@@ -997,7 +997,7 @@ void FUN_180860480(int64_t param_1,uint64_t param_2,uint64_t *param_3,char param
     uStack_70 = 0;
     uStack_78 = 0;
     plVar2 = (int64_t *)
-             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_2624_ptr,0x705);
+             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_2624_ptr,0x705);
     if (plVar2 == (int64_t *)0x0) goto LAB_1808605b0;
     *plVar2 = (int64_t)plVar2;
     plVar2[1] = (int64_t)plVar2;
@@ -1029,7 +1029,7 @@ LAB_1808605ab:
   *param_3 = plVar2;
 LAB_1808605b0:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_98);
+  SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_98);
 }
 
 

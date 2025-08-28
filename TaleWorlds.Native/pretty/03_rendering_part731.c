@@ -1280,7 +1280,7 @@ void FUN_1806988d0(int *param_1, int param_2, int param_3)
       param_1[1] = param_3;
       
       // 调用随机数处理函数（警告：该函数不会返回）
-      FUN_1808fc050(uStack_88 ^ (uint64_t)auStack_1d8);
+      SystemSecurityChecker(uStack_88 ^ (uint64_t)auStack_1d8);
     }
     
     if (299 < uVar3) break;
@@ -1440,7 +1440,7 @@ void FUN_1806988f5(int *param_1, int param_2, int param_3)
       param_1[1] = param_3;
       
       // 调用随机数处理函数（警告：该函数不会返回）
-      FUN_1808fc050(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
     }
     
     if (299 < uVar3) break;
@@ -1525,7 +1525,7 @@ void FUN_180698a50(void)
   unaff_R14[1] = unaff_EBP;
   
   // 调用随机数处理函数（警告：该函数不会返回）
-  FUN_1808fc050(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数别名：RenderingSystemOptimizedRandomGenerator

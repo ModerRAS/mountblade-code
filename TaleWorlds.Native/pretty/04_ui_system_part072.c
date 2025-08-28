@@ -335,7 +335,7 @@ void UISystem_MemoryAllocator(uint64_t context_ptr, uint64_t param2, uint64_t pa
   // 错误检查：宽度不能为0
   if (width == 0) {
     // WARNING: Subroutine does not return
-    FUN_1808fc050(0);
+    SystemSecurityChecker(0);
   }
   
   // 根据分辨率模式调整尺寸

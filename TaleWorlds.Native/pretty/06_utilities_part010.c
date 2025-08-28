@@ -475,7 +475,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
   
 PROCESS_ERROR:
   // 清理安全cookie并退出
-  FUN_1808fc050(security_cookie ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -711,7 +711,7 @@ void UtilitiesSystem_StateManager(void)
   
 STATE_ERROR:
   // 清理安全cookie并退出
-  FUN_1808fc050(*(uint64_t *)(unaff_context + 0x1d0) ^ (uint64_t)&stack_handler);
+  SystemSecurityChecker(*(uint64_t *)(unaff_context + 0x1d0) ^ (uint64_t)&stack_handler);
 }
 
 /**
@@ -733,7 +733,7 @@ void UtilitiesSystem_ResourceCleaner(void)
   int64_t context_data;
   
   // 清理安全cookie并退出
-  FUN_1808fc050(*(uint64_t *)(context_data + 0x1d0) ^ (uint64_t)&stack_handler);
+  SystemSecurityChecker(*(uint64_t *)(context_data + 0x1d0) ^ (uint64_t)&stack_handler);
 }
 
 /**
@@ -777,7 +777,7 @@ void UtilitiesSystem_ParameterValidator(int64_t *param_handler, int64_t *validat
   }
   
   // 清理安全cookie并退出
-  FUN_1808fc050(security_cookie ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -815,7 +815,7 @@ void UtilitiesSystem_EventHandler(void)
   }
   
   // 清理安全cookie并退出
-  FUN_1808fc050(security_cookie ^ (uint64_t)&event_buffer);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)&event_buffer);
 }
 
 /**
@@ -845,7 +845,7 @@ void UtilitiesSystem_StateChecker(void)
   }
   
   // 清理安全cookie并退出
-  FUN_1808fc050(security_cookie ^ (uint64_t)&system_flag);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)&system_flag);
 }
 
 /* ============================================================================

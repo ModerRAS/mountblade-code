@@ -46,9 +46,9 @@
 
 // 辅助函数别名
 #define initialize_memory_pool              FUN_1800b7eb0
-#define cleanup_memory_resources            FUN_18064e900
-#define process_resource_data               FUN_1806277c0
-#define release_resource_handles            FUN_180627ae0
+#define cleanup_memory_resources            CoreEngineMemoryPoolCleaner
+#define process_resource_data               CoreEngineDataBufferProcessor
+#define release_resource_handles            CoreEngineDataTransformer
 #define validate_structure_data             FUN_1801eac40
 
 // =============================================================================

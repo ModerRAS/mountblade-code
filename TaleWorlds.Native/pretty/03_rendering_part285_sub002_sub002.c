@@ -307,7 +307,7 @@ LAB_18042227f:
   func_0x00018041ee90(*param_1,iVar18);
 LAB_1804226bb:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_a8);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_a8);
 }
 
 
@@ -480,15 +480,15 @@ int32_t FUN_180422a20(int64_t param_1,uint param_2,int32_t param_3)
     do {
       if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       if (plVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       if (plVar1[2] != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       plVar1 = plVar1 + 0xc;
       uVar2 = uVar2 - 1;
@@ -511,15 +511,15 @@ int32_t FUN_180422a2d(int64_t param_1,uint param_2)
   do {
     if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     if (plVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     if (plVar1[2] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     plVar1 = plVar1 + 0xc;
     uVar2 = uVar2 - 1;
@@ -766,7 +766,7 @@ LAB_180422fcf:
                       return uVar11;
                     }
                     iVar6 = uVar17 * uVar16 + 0xf;
-                    lVar10 = FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar6,
+                    lVar10 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar6,
                                            CONCAT71((uint7)(uint3)((uint)iVar6 >> 8),0x22));
                     *(int64_t *)(puVar14 + 7) = lVar10;
                     if (lVar10 == 0) goto LAB_180422fcf;
@@ -786,7 +786,7 @@ LAB_180422fbb:
                         uVar11 = FUN_180422a20(param_1,iVar7 + 1,0);
                         return uVar11;
                       }
-                      lVar10 = FUN_18062b420(system_memory_pool_ptr,(int64_t)(iVar6 * 2 + 0xf),
+                      lVar10 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)(iVar6 * 2 + 0xf),
                                              CONCAT71((uint7)(uint3)(uVar16 >> 8),0x22));
                       *(int64_t *)(puVar14 + 9) = lVar10;
                       if (lVar10 == 0) goto LAB_180422fbb;

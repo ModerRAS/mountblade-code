@@ -657,7 +657,7 @@ LAB_18065a765:
                     // WARNING: Subroutine does not return
       uStack_8 = 0x18065aa9f;
       fStack000000000000007c = param_11._4_4_;
-      FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }

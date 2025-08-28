@@ -289,7 +289,7 @@ void FUN_180699620(int64_t param_1)
   FUN_18069beb0(lVar17);
   FUN_18069bc50(lVar17);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_178);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_178);
 }
 
 

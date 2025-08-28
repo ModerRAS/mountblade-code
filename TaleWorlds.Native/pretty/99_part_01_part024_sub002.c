@@ -26,7 +26,7 @@ void FUN_1800b8911(int64_t param_1,uint64_t param_2,int64_t *param_3)
     plVar5 = plVar2;
     if (lVar3 == 0) goto joined_r0x0001800b8970;
   }
-  plVar2 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,lVar3 * 8,(char)unaff_RDI[3]);
+  plVar2 = (int64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar3 * 8,(char)unaff_RDI[3]);
   param_3 = (int64_t *)unaff_RDI[1];
   in_RAX = (int64_t *)*unaff_RDI;
   plVar5 = plVar2;
@@ -54,7 +54,7 @@ joined_r0x0001800b8970:
   }
   if (plVar4 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(plVar4);
+    CoreEngineMemoryPoolCleaner(plVar4);
   }
   *unaff_RDI = (int64_t)plVar5;
   unaff_RDI[1] = (int64_t)(plVar2 + 1);
