@@ -1,22 +1,75 @@
-#include "TaleWorlds.Native.Split.h"
+/**
+ * TaleWorlds.Native 渲染系统 - 场景管理和边界计算模块
+ * 
+ * 本文件包含渲染系统的场景对象边界计算、内存管理、对象状态更新等功能。
+ * 这些函数负责处理复杂的场景管理、边界框计算、对象生命周期管理、着色器参数设置等关键任务。
+ * 
+ * 主要功能模块：
+ * - 场景对象边界计算和碰撞检测
+ * - 渲染系统内存管理和资源清理
+ * - 对象状态更新和生命周期管理
+ * - 着色器参数设置和纹理坐标处理
+ * - 场景节点遍历和层次结构管理
+ * 
+ * 技术特点：
+ * - 支持复杂的边界框计算和优化
+ * - 提供高效的内存管理和资源清理
+ * - 实现动态对象状态更新
+ * - 包含错误检查和安全验证
+ * - 优化性能和渲染质量
+ * 
+ * @file 03_rendering_part134.c
+ * @version 1.0
+ * @date 2024
+ */
 
-// =============================================================================
-// 03_rendering_part134.c - 渲染系统场景管理和边界计算模块
-// =============================================================================
-// 本模块包含16个核心函数，主要负责：
-// - 场景对象边界计算和碰撞检测
-// - 渲染系统内存管理和资源清理
-// - 对象状态更新和生命周期管理
-// - 着色器参数设置和纹理坐标处理
-// - 场景节点遍历和层次结构管理
-// =============================================================================
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
 
-// 常量定义
+// 渲染系统常量定义
 #define RENDERING_MAX_BOUNDING_BOX   0x7f7fffff  // 最大边界框值
 #define RENDERING_MIN_BOUNDING_BOX   0xff7fffff  // 最小边界框值
 #define RENDERING_DEFAULT_SHADER_ID  0x3f800000  // 默认着色器ID
 #define RENDERING_MAX_TEXTURE_COORD  0x41a00000  // 最大纹理坐标
 #define RENDERING_MESH_TYPE_MASK     0x14        // 网格类型掩码
+
+// 渲染系统状态码枚举
+typedef enum {
+    RENDERING_SYSTEM_SUCCESS = 0,
+    RENDERING_SYSTEM_ERROR_INVALID_PARAM = -1,
+    RENDERING_SYSTEM_ERROR_MEMORY = -2,
+    RENDERING_SYSTEM_ERROR_BOUNDARY = -3,
+    RENDERING_SYSTEM_ERROR_SCENE = -4
+} RenderingSystemStatusCode;
+
+// 渲染系统边界框结构体
+typedef struct {
+    float max_x, max_y, max_z, max_w;     // 最大边界值
+    float min_x, min_y, min_z, min_w;     // 最小边界值
+    uint32_t flags;                       // 边界标志
+    uint64_t object_id;                   // 对象ID
+} RenderingSystemBoundingBox;
+
+// 渲染系统场景对象结构体
+typedef struct {
+    void* scene_context;                  // 场景上下文指针
+    RenderingSystemBoundingBox* bbox;     // 边界框指针
+    uint32_t object_flags;                // 对象标志
+    uint64_t render_state;                // 渲染状态
+    void* material_data;                  // 材质数据指针
+    float texture_coords[4];             // 纹理坐标
+} RenderingSystemSceneObject;
+
+// 渲染系统内存管理结构体
+typedef struct {
+    void* memory_pool;                    // 内存池指针
+    size_t pool_size;                     // 内存池大小
+    uint32_t allocation_flags;            // 分配标志
+    uint64_t memory_usage;                // 内存使用量
+    void* active_objects;                 // 活动对象列表
+} RenderingSystemMemoryManager;
 
 // =============================================================================
 // 渲染系统场景对象边界计算器 (RenderingSystemSceneObjectBoundaryCalculator)
