@@ -111,6 +111,7 @@ typedef void* UIContext;                     // UI上下文
 uint64_t UISystem_GetSystemStatus(void);
 void UISystem_ExecuteSystemOperation(longlong param_1, int32_t param_2, int param_3, int param_4, longlong param_5, int param_6, int param_7, int param_8);
 void UISystem_ExecuteSystemCleanup(longlong param_1, int param_2);
+void UISystem_ContextManager(longlong param_1, int param_2);
 
 // ============================================================================
 // 函数别名定义
@@ -1012,7 +1013,7 @@ uint64_t UISystem_DataUpdater(longlong param_1,int param_2,uint64_t param_3,uint
 
 {
   if (param_1 != 0) {
-    func_0x000180743c20(param_1,0x15);
+    UISystem_ContextManager(param_1,0x15);
   }
   *(uint64_t *)(param_1 + 0x115e0 + (longlong)param_2 * 8) = param_3;
   *(uint64_t *)(param_1 + 0x115e8 + (longlong)param_2 * 8) = param_4;
