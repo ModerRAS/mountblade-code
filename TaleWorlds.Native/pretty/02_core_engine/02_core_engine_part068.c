@@ -59,18 +59,20 @@ void append_char_to_buffer(undefined8 *buffer_ptr, undefined1 char_value)
 
 
 
-// 函数: void FUN_18009f069(void)
-void FUN_18009f069(void)
+/**
+ * 处理缓冲区扩容（版本1）
+ */
+void expand_buffer_version1(void)
 
 {
-  ulonglong uVar1;
-  code *pcVar2;
-  undefined8 uVar3;
-  ulonglong uVar4;
-  undefined8 *unaff_RBX;
-  ulonglong unaff_RBP;
-  longlong unaff_RSI;
-  ulonglong uVar5;
+  ulonglong capacity_calc;
+  code *error_handler;
+  undefined8 new_buffer;
+  ulonglong size_check;
+  undefined8 *buffer_ptr;
+  ulonglong buffer_capacity;
+  longlong current_pos;
+  ulonglong new_capacity;
   
   if (unaff_RSI == 0x7fffffffffffffff) {
     FUN_1800670f0();

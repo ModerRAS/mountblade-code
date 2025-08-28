@@ -167,7 +167,7 @@ swap_elements:
     left_ptr = left_ptr + 1;
   } while( true );
   depth = depth + -1;
-  quicksort_recursive(left_ptr, end, depth, sort_flag);
+  FUN_18008edcf(left_ptr, end, depth, sort_flag);
   distance = (longlong)left_ptr - (longlong)array;
   end = left_ptr;
   goto sort_loop;
@@ -322,7 +322,7 @@ LAB_18008efb7:
   goto LAB_18008eff7;
 LAB_18008efcb:
   unaff_R12 = unaff_R12 + -1;
-  FUN_18008edc0(plVar7,unaff_R14,unaff_R12,unaff_BL);
+  quicksort_string_array_optimized(plVar7,unaff_R14,unaff_R12,unaff_BL);
   unaff_R14 = plVar7;
   if ((longlong)((longlong)plVar7 - (longlong)unaff_R15 & 0xfffffffffffffff8U) < 0xe1) {
 LAB_18008eff7:
@@ -332,14 +332,14 @@ LAB_18008eff7:
         lVar2 = (lVar6 + -2 >> 1) + 1;
         do {
           lVar2 = lVar2 + -1;
-          FUN_18008fa70();
+          heap_sort_adjust_optimized(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
         } while (lVar2 != 0);
       }
       if (1 < lVar6) {
         plVar7 = plVar7 + -1;
         do {
           *plVar7 = *unaff_R15;
-          FUN_18008fa70();
+          heap_sort_adjust_optimized(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
           plVar7 = plVar7 + -1;
         } while (1 < (8 - (longlong)unaff_R15) + (longlong)plVar7 >> 3);
       }
@@ -376,7 +376,7 @@ void heap_build_conditional(void)
       do {
         uStack0000000000000060 = unaff_R15[lVar2 + -1];
         lVar2 = lVar2 + -1;
-        FUN_18008fa70();
+        heap_sort_adjust_optimized(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
       } while (lVar2 != 0);
     }
     if (1 < lVar1) {
@@ -384,7 +384,7 @@ void heap_build_conditional(void)
       do {
         uStack0000000000000060 = *puVar3;
         *puVar3 = *unaff_R15;
-        FUN_18008fa70();
+        heap_sort_adjust_optimized(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
         puVar3 = puVar3 + -1;
       } while (1 < (8 - (longlong)unaff_R15) + (longlong)puVar3 >> 3);
     }
@@ -447,7 +447,7 @@ void data_structure_initialize(undefined8 param_1,undefined8 param_2,longlong *p
   undefined8 uVar1;
   longlong lVar2;
   
-  lVar2 = FUN_18008f430();
+  lVar2 = (longlong)memory_allocate_0x58_bytes();
   *(undefined2 *)(lVar2 + 0x18) = 0;
   uVar1 = ((undefined8 *)*param_3)[1];
   *(undefined8 *)(lVar2 + 0x20) = *(undefined8 *)*param_3;
@@ -483,14 +483,14 @@ binary_tree_insert_node(longlong *param_1,undefined8 *param_2,longlong *param_3,
   undefined1 auStack_30 [24];
   
   if (param_1[1] == 0) {
-    FUN_18008f470(param_1,param_2,1,*param_1);
+    tree_node_insert(param_1,param_2,1,*param_1);
     return param_2;
   }
   plVar1 = (longlong *)*param_1;
   if (param_3 == (longlong *)*plVar1) {
     iVar3 = memcmp(param_4,param_3 + 4,0x10);
     if (iVar3 < 0) {
-      FUN_18008f470(param_1,param_2,1,param_3);
+      tree_node_insert(param_1,param_2,1,param_3);
       return param_2;
     }
   }
@@ -498,7 +498,7 @@ binary_tree_insert_node(longlong *param_1,undefined8 *param_2,longlong *param_3,
     lVar2 = plVar1[2];
     iVar3 = memcmp(lVar2 + 0x20,param_4,0x10);
     if (iVar3 < 0) {
-      FUN_18008f470(param_1,param_2,0,lVar2);
+      tree_node_insert(param_1,param_2,0,lVar2);
       return param_2;
     }
   }
@@ -531,10 +531,10 @@ binary_tree_insert_node(longlong *param_1,undefined8 *param_2,longlong *param_3,
       iVar3 = memcmp(plVar5 + 4,param_4,0x10);
       if (iVar3 < 0) {
         if (*(char *)(plVar5[2] + 0x19) != '\0') {
-          FUN_18008f470(param_1,param_2,0,plVar5);
+          tree_node_insert(param_1,param_2,0,plVar5);
           return param_2;
         }
-        FUN_18008f470(param_1,param_2,1,param_3);
+        tree_node_insert(param_1,param_2,1,param_3);
         return param_2;
       }
     }
@@ -559,15 +559,15 @@ binary_tree_insert_node(longlong *param_1,undefined8 *param_2,longlong *param_3,
       if ((plVar5 == (longlong *)*param_1) || (iVar3 = memcmp(param_4,plVar5 + 4,0x10), iVar3 < 0))
       {
         if (*(char *)(param_3[2] + 0x19) != '\0') {
-          FUN_18008f470(param_1,param_2,0,param_3);
+          tree_node_insert(param_1,param_2,0,param_3);
           return param_2;
         }
-        FUN_18008f470(param_1,param_2,1,plVar5);
+        tree_node_insert(param_1,param_2,1,plVar5);
         return param_2;
       }
     }
   }
-  puVar4 = (undefined8 *)FUN_18008f6a0(param_1,auStack_30,0,param_4,param_5);
+  puVar4 = (undefined8 *)tree_find_insert_position(param_1,auStack_30,0,param_4,param_5);
   *param_2 = *puVar4;
   return param_2;
 }
@@ -586,7 +586,7 @@ void *memory_allocate_and_copy(undefined8 *param_1)
 {
   undefined8 *puVar1;
   
-  puVar1 = (undefined8 *)FUN_180067110(0x58);
+  puVar1 = (undefined8 *)memory_allocate_0x58_bytes();
   *puVar1 = *param_1;
   puVar1[1] = *param_1;
   puVar1[2] = *param_1;
@@ -616,7 +616,7 @@ binary_tree_node_insert(longlong *param_1,undefined8 *param_2,char param_3,undef
   longlong *plVar8;
   
   if (0x2e8ba2e8ba2e8b8 < (ulonglong)param_1[1]) {
-    func_0x00018008d310(0x2e8ba2e8ba2e8b9,param_6);
+    throw_length_error();
     __Xlength_error_std__YAXPEBD_Z(&UNK_180a009a8);
     pcVar3 = (code *)swi(3);
     puVar4 = (undefined8 *)(*pcVar3)();
@@ -664,7 +664,7 @@ LAB_18008f4f4:
       }
       else {
         if (param_6 == (longlong *)plVar6[2]) {
-          func_0x00018008d2b0(param_1);
+          handle_tree_rotation_case1(param_1);
           param_6 = plVar6;
         }
         *(undefined1 *)(param_6[1] + 0x18) = 1;
@@ -698,7 +698,7 @@ LAB_18008f669:
     else {
       if ((char)plVar7[3] != '\0') {
         if (param_6 == (longlong *)*plVar6) {
-          func_0x00018008d250(param_1);
+          handle_tree_rotation_case2(param_1);
           param_6 = plVar6;
         }
         *(undefined1 *)(param_6[1] + 0x18) = 1;
@@ -778,7 +778,7 @@ binary_tree_find_insert_position(longlong *param_1,undefined8 *param_2,char para
   puVar4 = puVar5;
   if (bVar6 != false) {
     if (puVar5 == *(undefined8 **)*param_1) {
-      puVar4 = (undefined8 *)FUN_18008f470(param_1,auStackX_8,1,puVar5);
+      puVar4 = (undefined8 *)tree_node_insert(param_1,auStackX_8,1,puVar5);
       *param_2 = *puVar4;
       *(undefined1 *)(param_2 + 1) = 1;
       return param_2;
@@ -809,7 +809,7 @@ binary_tree_find_insert_position(longlong *param_1,undefined8 *param_2,char para
   }
   iVar3 = memcmp(puVar4 + 4,param_4,0x10);
   if (iVar3 < 0) {
-    puVar4 = (undefined8 *)FUN_18008f470(param_1,auStackX_8,bVar6,puVar5);
+    puVar4 = (undefined8 *)tree_node_insert(param_1,auStackX_8,bVar6,puVar5);
     *param_2 = *puVar4;
     *(undefined1 *)(param_2 + 1) = 1;
   }
