@@ -71,355 +71,355 @@ void add_render_parameter(uint32_t param_1)
 // WARNING: Restarted to delay deadcode elimination for space: stack
 
 // 函数: uint64_t process_text_rendering(char *text, ...)
-// 处理文本渲染相关操作
+// 处理文本渲染相关操作，包括文本测量、布局计算和实际渲染
 uint64_t process_text_rendering(char *text, ...)
 
 {
-  float fVar1;
-  float *pfVar2;
-  bool bVar3;
-  longlong lVar4;
-  float fVar5;
-  char cVar6;
-  undefined1 uVar7;
-  int iVar8;
-  undefined4 uVar9;
-  uint uVar10;
-  longlong lVar11;
-  int iVar12;
-  uint uVar13;
-  undefined8 uVar14;
-  char *pcVar15;
-  char cVar16;
-  ulonglong uVar17;
-  char *pcVar18;
-  ulonglong uVar19;
-  longlong lVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  uint uVar29;
+  float render_offset_x;
+  float *font_scale_ptr;
+  bool should_render;
+  longlong global_context;
+  float font_size;
+  char render_mode;
+  undefined1 status_flag;
+  int text_width;
+  undefined4 render_flags;
+  uint font_id;
+  longlong layout_context;
+  int alignment_offset;
+  uint current_font_id;
+  undefined8 position_vector;
+  char *text_end;
+  char text_separator;
+  ulonglong render_result;
+  char *text_start;
+  ulonglong render_context;
+  longlong render_data;
+  float text_height;
+  float baseline_offset;
+  float line_spacing;
+  float char_width;
+  float char_height;
+  float total_width;
+  float total_height;
+  float max_height;
+  float final_width;
+  uint render_options;
   undefined8 in_stack_fffffffffffffec8;
-  undefined4 uVar30;
+  undefined4 stack_param1;
   undefined8 in_stack_fffffffffffffed0;
-  float fStack_118;
-  float fStack_114;
-  char cStack_110;
-  char acStack_10f [7];
-  undefined8 uStack_108;
-  undefined4 uStack_100;
-  undefined4 uStack_fc;
-  float fStack_f8;
-  float fStack_f4;
-  float fStack_f0;
-  float fStack_ec;
-  float fStack_e8;
-  float fStack_e4;
-  undefined8 uStack_e0;
-  float fStack_d8;
-  float fStack_d4;
-  float fStack_d0;
-  float fStack_cc;
+  float measured_width;
+  float measured_height;
+  char format_char;
+  char format_buffer [7];
+  undefined8 text_position;
+  undefined4 is_complex_text;
+  undefined4 render_state;
+  float render_x;
+  float render_y;
+  float render_width;
+  float render_height;
+  float render_scale;
+  undefined8 context_data;
+  float text_x;
+  float text_y;
+  float text_width_val;
+  float text_height_val;
   
-  lVar4 = _DAT_180c8a9b0;
-  uVar30 = (undefined4)((ulonglong)in_stack_fffffffffffffed0 >> 0x20);
-  uVar9 = (undefined4)((ulonglong)in_stack_fffffffffffffec8 >> 0x20);
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-  uVar19 = *(ulonglong *)(lVar4 + 0x1af8);
-  if (*(char *)(uVar19 + 0xb4) != '\0') {
-    return uVar19 & 0xffffffffffffff00;
+  global_context = global_render_context;
+  stack_param1 = (undefined4)((ulonglong)in_stack_fffffffffffffed0 >> 0x20);
+  render_flags = (undefined4)((ulonglong)in_stack_fffffffffffffec8 >> 0x20);
+  *(undefined1 *)(*(longlong *)(global_render_context + 0x1af8) + 0xb1) = 1;
+  render_context = *(ulonglong *)(global_context + 0x1af8);
+  if (*(char *)(render_context + 0xb4) != '\0') {
+    return render_context & 0xffffffffffffff00;
   }
-  uVar10 = FUN_180121250(param_1,0,
+  font_id = get_font_resource_id(text,0,
                          *(undefined4 *)
-                          (*(longlong *)(uVar19 + 0x220) + -4 +
-                          (longlong)*(int *)(uVar19 + 0x218) * 4));
-  if (*(uint *)(lVar4 + 0x1b2c) == uVar10) {
-    *(uint *)(lVar4 + 0x1b34) = uVar10;
+                          (*(longlong *)(render_context + 0x220) + -4 +
+                          (longlong)*(int *)(render_context + 0x218) * 4));
+  if (*(uint *)(global_context + 0x1b2c) == font_id) {
+    *(uint *)(global_context + 0x1b34) = font_id;
   }
-  if (*(uint *)(lVar4 + 0x1b30) == uVar10) {
-    *(undefined1 *)(lVar4 + 0x1b3f) = 1;
+  if (*(uint *)(global_context + 0x1b30) == font_id) {
+    *(undefined1 *)(global_context + 0x1b3f) = 1;
   }
-  lVar4 = _DAT_180c8a9b0;
-  uVar19 = *(ulonglong *)(_DAT_180c8a9b0 + 0x1af8);
-  *(undefined1 *)(uVar19 + 0xb1) = 1;
-  uStack_e0 = *(longlong *)(lVar4 + 0x1af8);
-  if (*(char *)(uStack_e0 + 0xb4) != '\0') {
-    return uVar19 & 0xffffffffffffff00;
+  global_context = global_render_context;
+  render_context = *(ulonglong *)(global_render_context + 0x1af8);
+  *(undefined1 *)(render_context + 0xb1) = 1;
+  context_data = *(longlong *)(global_context + 0x1af8);
+  if (*(char *)(context_data + 0xb4) != '\0') {
+    return render_context & 0xffffffffffffff00;
   }
-  cVar6 = '\x01';
-  uStack_100 = 1;
-  uVar14 = *(undefined8 *)(lVar4 + 0x165c);
-  uStack_108._0_4_ = (float)uVar14;
-  fVar5 = (float)uStack_108;
-  uStack_108._4_4_ = (float)((ulonglong)uVar14 >> 0x20);
-  fVar25 = uStack_108._4_4_;
-  pcVar15 = param_1;
-  if (param_1 != (char *)0xffffffffffffffff) {
-    while (*pcVar15 != '\0') {
-      if (((*pcVar15 == '#') && (pcVar15[1] == '#')) ||
-         (pcVar15 = pcVar15 + 1, pcVar15 == (char *)0xffffffffffffffff)) break;
+  render_mode = '\x01';
+  is_complex_text = 1;
+  position_vector = *(undefined8 *)(global_context + 0x165c);
+  text_position._0_4_ = (float)position_vector;
+  font_size = (float)text_position;
+  text_position._4_4_ = (float)((ulonglong)position_vector >> 0x20);
+  char_height = text_position._4_4_;
+  text_end = text;
+  if (text != (char *)0xffffffffffffffff) {
+    while (*text_end != '\0') {
+      if (((*text_end == '#') && (text_end[1] == '#')) ||
+         (text_end = text_end + 1, text_end == (char *)0xffffffffffffffff)) break;
     }
   }
-  pfVar2 = *(float **)(lVar4 + 0x19f0);
-  fVar24 = *(float *)(lVar4 + 0x19f8);
-  uStack_108 = uVar14;
-  if (param_1 == pcVar15) {
-    fStack_e8 = 0.0;
-    fStack_114 = fVar24;
+  font_scale_ptr = *(float **)(global_context + 0x19f0);
+  line_spacing = *(float *)(global_context + 0x19f8);
+  text_position = position_vector;
+  if (text == text_end) {
+    render_scale = 0.0;
+    measured_height = line_spacing;
   }
   else {
-    uVar14 = CONCAT44(uVar9,0xbf800000);
-    pcVar18 = param_1;
-    FUN_180297340(pfVar2,&fStack_118,fVar24,uStack_e0,uVar14,param_1,pcVar15,0);
-    uVar30 = (undefined4)((ulonglong)pcVar18 >> 0x20);
-    uVar9 = (undefined4)((ulonglong)uVar14 >> 0x20);
-    if (0.0 < fStack_118) {
-      fStack_118 = fStack_118 - fVar24 / *pfVar2;
+    position_vector = CONCAT44(render_flags,0xbf800000);
+    text_start = text;
+    measure_text_dimensions(font_scale_ptr,&measured_width,line_spacing,context_data,position_vector,text,text_end,0);
+    stack_param1 = (undefined4)((ulonglong)text_start >> 0x20);
+    render_flags = (undefined4)((ulonglong)position_vector >> 0x20);
+    if (0.0 < measured_width) {
+      measured_width = measured_width - line_spacing / *font_scale_ptr;
     }
-    fVar24 = *(float *)(lVar4 + 0x19f8);
-    cVar6 = (char)uStack_100;
-    fStack_e8 = (float)(int)(fStack_118 + 0.95);
+    line_spacing = *(float *)(global_context + 0x19f8);
+    render_mode = (char)is_complex_text;
+    render_scale = (float)(int)(measured_width + 0.95);
   }
-  uVar19 = (ulonglong)uVar10;
-  lVar20 = *(longlong *)(lVar4 + 0x1af8);
-  fVar28 = *(float *)(uStack_e0 + 0x128);
-  if (*(float *)(uStack_e0 + 0x128) <= fVar25) {
-    fVar28 = fVar25;
+  render_context = (ulonglong)font_id;
+  render_data = *(longlong *)(global_context + 0x1af8);
+  max_height = *(float *)(context_data + 0x128);
+  if (*(float *)(context_data + 0x128) <= char_height) {
+    max_height = char_height;
   }
-  lVar11 = *(longlong *)(lVar20 + 0x210);
-  fVar23 = *(float *)(lVar4 + 0x1660) + *(float *)(lVar4 + 0x1660) + fVar24;
-  fVar27 = *(float *)(lVar20 + 0x278) - *(float *)(lVar20 + 0x40);
-  fVar25 = fVar25 + fVar25 + fStack_114;
-  if (*(float *)(uStack_e0 + 0x124) <= fVar23) {
-    fVar23 = *(float *)(uStack_e0 + 0x124);
+  layout_context = *(longlong *)(render_data + 0x210);
+  total_height = *(float *)(global_context + 0x1660) + *(float *)(global_context + 0x1660) + line_spacing;
+  char_width = *(float *)(render_data + 0x278) - *(float *)(render_data + 0x40);
+  char_height = char_height + char_height + measured_height;
+  if (*(float *)(context_data + 0x124) <= total_height) {
+    total_height = *(float *)(context_data + 0x124);
   }
-  if (fVar23 <= fVar25) {
-    fVar23 = fVar25;
+  if (total_height <= char_height) {
+    total_height = char_height;
   }
-  fVar25 = fVar23 + *(float *)(uStack_e0 + 0x104);
-  if (lVar11 != 0) {
-    iVar8 = *(int *)(lVar11 + 0xc) + 1;
-    iVar12 = *(int *)(lVar11 + 0xc);
-    if (-1 < iVar8) {
-      iVar12 = iVar8;
+  char_height = total_height + *(float *)(context_data + 0x104);
+  if (layout_context != 0) {
+    text_width = *(int *)(layout_context + 0xc) + 1;
+    alignment_offset = *(int *)(layout_context + 0xc);
+    if (-1 < text_width) {
+      alignment_offset = text_width;
     }
-    fVar27 = ((*(float *)(lVar11 + 0x18) - *(float *)(lVar11 + 0x14)) *
-              *(float *)((longlong)iVar12 * 0x1c + *(longlong *)(lVar11 + 0x38)) +
-             *(float *)(lVar11 + 0x14)) - *(float *)(lVar20 + 0x70);
+    char_width = ((*(float *)(layout_context + 0x18) - *(float *)(layout_context + 0x14)) *
+              *(float *)((longlong)alignment_offset * 0x1c + *(longlong *)(layout_context + 0x38)) +
+             *(float *)(layout_context + 0x14)) - *(float *)(render_data + 0x70);
   }
-  fVar26 = *(float *)(uStack_e0 + 0x100);
-  fVar1 = *(float *)(uStack_e0 + 0x104);
-  fVar27 = fVar27 + *(float *)(uStack_e0 + 0x40);
-  fVar21 = fVar5 + fVar5;
-  if (cVar6 != '\0') {
-    fVar21 = (float)(int)(*(float *)(uStack_e0 + 0x70) * 0.5) - 1.0;
-    fVar26 = fVar26 - fVar21;
-    fVar27 = fVar21 + fVar27;
-    fVar21 = fVar5 * 3.0;
+  total_width = *(float *)(context_data + 0x100);
+  baseline_offset = *(float *)(context_data + 0x104);
+  char_width = char_width + *(float *)(context_data + 0x40);
+  text_height = font_size + font_size;
+  if (render_mode != '\0') {
+    text_height = (float)(int)(*(float *)(context_data + 0x70) * 0.5) - 1.0;
+    total_width = total_width - text_height;
+    char_width = text_height + char_width;
+    text_height = font_size * 3.0;
   }
-  if (fStack_e8 <= 0.0) {
-    fVar22 = 0.0;
+  if (render_scale <= 0.0) {
+    final_width = 0.0;
   }
   else {
-    fVar22 = fVar5 + fVar5 + fStack_e8;
+    final_width = font_size + font_size + render_scale;
   }
-  fVar22 = fVar24 + fVar22;
-  fStack_118 = fVar22;
-  fStack_e4 = fStack_114;
-  fStack_114 = fVar23;
-  fStack_d8 = fVar26;
-  fStack_d4 = fVar1;
-  fStack_d0 = fVar27;
-  fStack_cc = fVar25;
-  func_0x000180124080(&fStack_118);
-  fStack_f0 = fVar27;
-  if (cVar6 == '\0') {
-    fStack_f0 = *(float *)(lVar4 + 0x166c) + *(float *)(lVar4 + 0x166c) + fVar26 + fVar22;
+  final_width = line_spacing + final_width;
+  measured_width = final_width;
+  render_scale = measured_height;
+  measured_height = total_height;
+  text_x = total_width;
+  text_y = baseline_offset;
+  text_width_val = char_width;
+  text_height_val = char_height;
+  apply_text_transform(&measured_width);
+  render_width = char_width;
+  if (render_mode == '\0') {
+    render_width = *(float *)(global_context + 0x166c) + *(float *)(global_context + 0x166c) + total_width + final_width;
   }
-  uStack_108 = *(longlong *)(lVar4 + 0x1af8);
-  uVar14 = *(undefined8 *)(uStack_108 + 0x198);
-  lVar20 = lVar4;
-  fStack_f8 = fVar26;
-  fStack_f4 = fVar1;
-  fStack_ec = fVar25;
-  if (*(uint *)(lVar4 + 0x1c64) == 0) {
-    iVar8 = FUN_180121f20(uVar14,uVar19 & 0xffffffff,0);
-    uVar17 = (ulonglong)(iVar8 != 0);
+  text_position = *(longlong *)(global_context + 0x1af8);
+  position_vector = *(undefined8 *)(text_position + 0x198);
+  render_data = global_context;
+  render_x = total_width;
+  render_y = baseline_offset;
+  render_height = char_height;
+  if (*(uint *)(global_context + 0x1c64) == 0) {
+    text_width = check_font_cache(position_vector,render_context & 0xffffffff,0);
+    render_result = (ulonglong)(text_width != 0);
   }
-  else if ((*(uint *)(lVar4 + 0x1c64) & 1) == 0) {
-    iVar12 = -1;
-    iVar8 = FUN_180121f20(uVar14,uVar19 & 0xffffffff);
-    if (iVar8 == iVar12) {
-      uVar17 = (ulonglong)*(byte *)(lVar4 + 0x1c60);
-      FUN_1801220b0(uVar14,uVar10,*(byte *)(lVar4 + 0x1c60));
-      lVar20 = _DAT_180c8a9b0;
-      *(undefined4 *)(lVar4 + 0x1c64) = 0;
+  else if ((*(uint *)(global_context + 0x1c64) & 1) == 0) {
+    alignment_offset = -1;
+    text_width = check_font_cache(position_vector,render_context & 0xffffffff);
+    if (text_width == alignment_offset) {
+      render_result = (ulonglong)*(byte *)(global_context + 0x1c60);
+      update_font_cache(position_vector,font_id,*(byte *)(global_context + 0x1c60));
+      render_data = global_render_context;
+      *(undefined4 *)(global_context + 0x1c64) = 0;
     }
     else {
-      *(undefined4 *)(lVar4 + 0x1c64) = 0;
-      uVar17 = (ulonglong)(iVar8 != 0);
+      *(undefined4 *)(global_context + 0x1c64) = 0;
+      render_result = (ulonglong)(text_width != 0);
     }
   }
   else {
-    uVar17 = (ulonglong)*(byte *)(lVar4 + 0x1c60);
-    FUN_1801220b0(uVar14,uVar19 & 0xffffffff,*(byte *)(lVar4 + 0x1c60));
-    lVar20 = _DAT_180c8a9b0;
-    *(undefined4 *)(lVar4 + 0x1c64) = 0;
+    render_result = (ulonglong)*(byte *)(global_context + 0x1c60);
+    update_font_cache(position_vector,render_context & 0xffffffff,*(byte *)(global_context + 0x1c60));
+    render_data = global_render_context;
+    *(undefined4 *)(global_context + 0x1c64) = 0;
   }
-  uStack_fc = 0;
-  cVar16 = (char)uVar17;
-  cVar6 = FUN_180124190(&fStack_f8,uVar10,0);
-  *(uint *)(uStack_e0 + 0x148) = *(uint *)(uStack_e0 + 0x148) | 2;
-  *(float *)(uStack_e0 + 0x15c) = fStack_d8;
-  *(float *)(uStack_e0 + 0x160) = fStack_d4;
-  *(float *)(uStack_e0 + 0x164) = fStack_d0;
-  *(float *)(uStack_e0 + 0x168) = fStack_cc;
-  if (cVar6 == '\0') {
-    return uVar17;
+  render_state = 0;
+  text_separator = (char)render_result;
+  render_mode = prepare_text_rendering(&render_x,font_id,0);
+  *(uint *)(context_data + 0x148) = *(uint *)(context_data + 0x148) | 2;
+  *(float *)(context_data + 0x15c) = text_x;
+  *(float *)(context_data + 0x160) = text_y;
+  *(float *)(context_data + 0x164) = text_width_val;
+  *(float *)(context_data + 0x168) = text_height_val;
+  if (render_mode == '\0') {
+    return render_result;
   }
-  fStack_118 = 0.0;
-  uVar14 = CONCAT44(uVar9,0x1400);
-  cVar6 = FUN_18010f170(&fStack_f8,uVar10,&cStack_110,acStack_10f,uVar14);
-  uVar29 = (uint)((ulonglong)uVar14 >> 0x20);
-  if ((char)uStack_fc == '\0') {
-    bVar3 = false;
-    if (((cVar6 != '\0') && (bVar3 = true, *(char *)(lVar4 + 0x1dd0) != '\0')) && (cVar16 != '\0'))
+  measured_width = 0.0;
+  position_vector = CONCAT44(render_flags,0x1400);
+  render_mode = format_text_string(&render_x,font_id,&format_char,format_buffer,position_vector);
+  render_options = (uint)((ulonglong)position_vector >> 0x20);
+  if ((char)render_state == '\0') {
+    should_render = false;
+    if (((render_mode != '\0') && (should_render = true, *(char *)(global_context + 0x1dd0) != '\0')) && (text_separator != '\0'))
     {
-      bVar3 = false;
+      should_render = false;
     }
-    uVar13 = *(uint *)(lVar4 + 0x1ca0);
-    if (((uVar13 == uVar10) && (*(char *)(lVar4 + 0x1d21) != '\0')) &&
-       ((*(int *)(lVar4 + 0x1d2c) == 0 && (cVar16 != '\0')))) {
-      *(undefined1 *)(lVar20 + 0x1d21) = 0;
-      bVar3 = true;
-      if ((*(char *)(lVar20 + 0x1d21) == '\0') && (*(char *)(lVar20 + 0x1d09) == '\0')) {
-        uVar7 = 0;
+    current_font_id = *(uint *)(global_context + 0x1ca0);
+    if (((current_font_id == font_id) && (*(char *)(global_context + 0x1d21) != '\0')) &&
+       ((*(int *)(global_context + 0x1d2c) == 0 && (text_separator != '\0')))) {
+      *(undefined1 *)(render_data + 0x1d21) = 0;
+      should_render = true;
+      if ((*(char *)(render_data + 0x1d21) == '\0') && (*(char *)(render_data + 0x1d09) == '\0')) {
+        status_flag = 0;
       }
       else {
-        uVar7 = 1;
+        status_flag = 1;
       }
-      *(undefined1 *)(lVar20 + 0x1d08) = uVar7;
-      uVar13 = *(uint *)(lVar4 + 0x1ca0);
+      *(undefined1 *)(render_data + 0x1d08) = status_flag;
+      current_font_id = *(uint *)(global_context + 0x1ca0);
     }
-    if ((((uVar13 == uVar10) && (*(char *)(lVar4 + 0x1d21) != '\0')) &&
-        (*(int *)(lVar4 + 0x1d2c) == 1)) && (cVar16 == '\0')) {
-      *(undefined1 *)(lVar20 + 0x1d21) = 0;
-      if (*(char *)(lVar20 + 0x1d09) == '\0') {
-        *(undefined1 *)(lVar20 + 0x1d08) = 0;
+    if ((((current_font_id == font_id) && (*(char *)(global_context + 0x1d21) != '\0')) &&
+        (*(int *)(global_context + 0x1d2c) == 1)) && (text_separator == '\0')) {
+      *(undefined1 *)(render_data + 0x1d21) = 0;
+      if (*(char *)(render_data + 0x1d09) == '\0') {
+        *(undefined1 *)(render_data + 0x1d08) = 0;
       }
       else {
-        *(undefined1 *)(lVar20 + 0x1d08) = 1;
+        *(undefined1 *)(render_data + 0x1d08) = 1;
       }
     }
-    else if (!bVar3) goto LAB_180119279;
-    uVar17 = (ulonglong)(cVar16 == '\0');
-    FUN_1801220b0(*(undefined8 *)(uStack_e0 + 0x198),uVar10,cVar16 == '\0');
-    lVar20 = _DAT_180c8a9b0;
+    else if (!should_render) goto LAB_180119279;
+    render_result = (ulonglong)(text_separator == '\0');
+    update_font_cache(*(undefined8 *)(context_data + 0x198),font_id,text_separator == '\0');
+    render_data = global_render_context;
   }
 LAB_180119279:
-  if (fStack_118 != 0.0) {
-    func_0x0001801283b0();
+  if (measured_width != 0.0) {
+    cleanup_render_resources();
   }
-  if ((acStack_10f[0] == '\0') || (cStack_110 == '\0')) {
-    lVar11 = (ulonglong)(cStack_110 != '\0') + 0x18;
-  }
-  else {
-    lVar11 = 0x1a;
-  }
-  pfVar2 = (float *)(lVar20 + 0x1628 + (lVar11 + 10) * 0x10);
-  fStack_f8 = *pfVar2;
-  fStack_f4 = pfVar2[1];
-  fStack_f0 = pfVar2[2];
-  fStack_ec = pfVar2[3] * *(float *)(lVar20 + 0x1628);
-  uVar9 = func_0x000180121e20(&fStack_f8);
-  fStack_118 = fVar24 + fVar21 + fVar26;
-  fVar24 = fVar1 + fVar28;
-  fStack_114 = fVar24;
-  if ((char)uStack_100 == '\0') {
-    if (cStack_110 != '\0') {
-      uStack_108 = CONCAT44(fVar25,fVar27);
-      uStack_e0 = CONCAT44(fVar1,fVar26);
-      FUN_180293f50(*(undefined8 *)(*(longlong *)(lVar20 + 0x1af8) + 0x2e8),&uStack_e0,&uStack_108,
-                    uVar9,(ulonglong)uVar29 << 0x20,CONCAT44(uVar30,0xf));
-      if (uVar10 == *(uint *)(_DAT_180c8a9b0 + 0x1ca0)) {
-        FUN_1801230e0(&fStack_d8,2);
-      }
-    }
-    if ((char)uStack_fc == '\0') {
-      uVar14 = 1;
-      if ((char)uVar17 != '\0') {
-        uVar14 = 3;
-      }
-      FUN_180122c80(CONCAT44(*(float *)(lVar4 + 0x19f8) * 0.15 + fVar28 + fVar1,fVar5 + fVar26),
-                    uVar14,0x3f333333);
-    }
-    if (*(char *)(lVar4 + 0x2e38) != '\0') {
-      FUN_18013c800(&fStack_118,&UNK_180a063cc,0);
-    }
-    FUN_180122320(CONCAT44(fStack_114,fStack_118),param_1,pcVar15,0);
+  if ((format_buffer[0] == '\0') || (format_char == '\0')) {
+    layout_context = (ulonglong)(format_char != '\0') + 0x18;
   }
   else {
-    FUN_180122960(CONCAT44(fStack_d4,fStack_d8),CONCAT44(fStack_cc,fStack_d0),uVar9,1,
-                  CONCAT44(uVar29,*(undefined4 *)(lVar4 + 0x1664)));
-    if (uVar10 == *(uint *)(_DAT_180c8a9b0 + 0x1ca0)) {
-      FUN_1801230e0(&fStack_d8,2);
-    }
-    uVar14 = 1;
-    if ((char)uVar17 != '\0') {
-      uVar14 = 3;
-    }
-    FUN_180122c80(CONCAT44(fVar24,fVar5 + fVar26),uVar14,0x3f800000);
-    lVar20 = _DAT_180c8a9b0;
-    if (*(char *)(lVar4 + 0x2e38) == '\0') {
-      uStack_108 = 0;
-      if (pcVar15 == (char *)0x0) {
-        pcVar15 = (char *)0xffffffffffffffff;
+    layout_context = 0x1a;
+  }
+  font_scale_ptr = (float *)(render_data + 0x1628 + (layout_context + 10) * 0x10);
+  render_x = *font_scale_ptr;
+  render_y = font_scale_ptr[1];
+  render_width = font_scale_ptr[2];
+  render_height = font_scale_ptr[3] * *(float *)(render_data + 0x1628);
+  render_flags = get_render_color(&render_x);
+  measured_width = line_spacing + text_height + total_width;
+  line_spacing = baseline_offset + max_height;
+  measured_height = line_spacing;
+  if ((char)is_complex_text == '\0') {
+    if (format_char != '\0') {
+      text_position = CONCAT44(char_height,char_width);
+      context_data = CONCAT44(baseline_offset,total_width);
+      render_text_quad(*(undefined8 *)(*(longlong *)(render_data + 0x1af8) + 0x2e8),&context_data,&text_position,
+                    render_flags,(ulonglong)render_options << 0x20,CONCAT44(stack_param1,0xf));
+      if (font_id == *(uint *)(global_render_context + 0x1ca0)) {
+        update_render_state(&text_x,2);
       }
-      pcVar18 = param_1;
-      if (param_1 < pcVar15) {
+    }
+    if ((char)render_state == '\0') {
+      position_vector = 1;
+      if ((char)render_result != '\0') {
+        position_vector = 3;
+      }
+      render_text_shadow(CONCAT44(*(float *)(global_context + 0x19f8) * 0.15 + max_height + baseline_offset,font_size + total_width),
+                    position_vector,0x3f333333);
+    }
+    if (*(char *)(global_context + 0x2e38) != '\0') {
+      render_formatted_text(&measured_width,&DEFAULT_TEXT_FORMAT,0);
+    }
+    render_text_line(CONCAT44(measured_height,measured_width),text,text_end,0);
+  }
+  else {
+    render_text_box(CONCAT44(text_y,text_x),CONCAT44(text_height_val,text_width_val),render_flags,1,
+                  CONCAT44(render_options,*(undefined4 *)(global_context + 0x1664)));
+    if (font_id == *(uint *)(global_render_context + 0x1ca0)) {
+      update_render_state(&text_x,2);
+    }
+    position_vector = 1;
+    if ((char)render_result != '\0') {
+      position_vector = 3;
+    }
+    render_text_shadow(CONCAT44(line_spacing,font_size + total_width),position_vector,0x3f800000);
+    render_data = global_render_context;
+    if (*(char *)(global_context + 0x2e38) == '\0') {
+      text_position = 0;
+      if (text_end == (char *)0x0) {
+        text_end = (char *)0xffffffffffffffff;
+      }
+      text_start = text;
+      if (text < text_end) {
         do {
-          if ((*pcVar18 == '\0') || ((*pcVar18 == '#' && (pcVar18[1] == '#')))) break;
-          pcVar18 = pcVar18 + 1;
-        } while (pcVar18 < pcVar15);
+          if ((*text_start == '\0') || ((*text_start == '#' && (text_start[1] == '#')))) break;
+          text_start = text_start + 1;
+        } while (text_start < text_end);
       }
-      if (((int)pcVar18 != (int)param_1) &&
-         (FUN_1801224c0(*(undefined8 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x2e8),&fStack_118,
-                        &fStack_d0,param_1,pcVar18,&fStack_e8,&uStack_108,0),
-         *(char *)(lVar20 + 0x2e38) != '\0')) {
-        FUN_18013c800(&fStack_118,param_1,pcVar18);
+      if (((int)text_start != (int)text) &&
+         (render_text_segment(*(undefined8 *)(*(longlong *)(global_render_context + 0x1af8) + 0x2e8),&measured_width,
+                        &text_width_val,text,text_start,&render_scale,&text_position,0),
+         *(char *)(render_data + 0x2e38) != '\0')) {
+        render_formatted_text(&measured_width,text,text_start);
       }
     }
     else {
-      uStack_100 = CONCAT13(uStack_100._3_1_,0x2323);
-      uStack_fc = 0x23230a;
-      FUN_18013c800(&fStack_118,&uStack_fc,(longlong)&uStack_fc + 3);
-      lVar4 = _DAT_180c8a9b0;
-      uStack_108 = 0;
-      if (pcVar15 == (char *)0x0) {
-        pcVar15 = (char *)0xffffffffffffffff;
+      is_complex_text = CONCAT13(is_complex_text._3_1_,0x2323);
+      render_state = 0x23230a;
+      render_formatted_text(&measured_width,&render_state,(longlong)&render_state + 3);
+      global_context = global_render_context;
+      text_position = 0;
+      if (text_end == (char *)0x0) {
+        text_end = (char *)0xffffffffffffffff;
       }
-      pcVar18 = param_1;
-      if (param_1 < pcVar15) {
-        while (*pcVar18 != '\0') {
-          if (((*pcVar18 == '#') && (pcVar18[1] == '#')) ||
-             (pcVar18 = pcVar18 + 1, pcVar15 <= pcVar18)) break;
+      text_start = text;
+      if (text < text_end) {
+        while (*text_start != '\0') {
+          if (((*text_start == '#') && (text_start[1] == '#')) ||
+             (text_start = text_start + 1, text_end <= text_start)) break;
         }
       }
-      if (((int)pcVar18 != (int)param_1) &&
-         (FUN_1801224c0(*(undefined8 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x2e8),&fStack_118,
-                        &fStack_d0,param_1,pcVar18,&fStack_e8,&uStack_108,0),
-         *(char *)(lVar4 + 0x2e38) != '\0')) {
-        FUN_18013c800(&fStack_118,param_1,pcVar18);
+      if (((int)text_start != (int)text) &&
+         (render_text_segment(*(undefined8 *)(*(longlong *)(global_render_context + 0x1af8) + 0x2e8),&measured_width,
+                        &text_width_val,text,text_start,&render_scale,&text_position,0),
+         *(char *)(global_context + 0x2e38) != '\0')) {
+        render_formatted_text(&measured_width,text,text_start);
       }
-      FUN_18013c800(&fStack_118,(longlong)&uStack_100 + 1,(longlong)&uStack_100 + 3);
+      render_formatted_text(&measured_width,(longlong)&is_complex_text + 1,(longlong)&is_complex_text + 3);
     }
   }
-  return uVar17;
+  return render_result;
 }
 
 
