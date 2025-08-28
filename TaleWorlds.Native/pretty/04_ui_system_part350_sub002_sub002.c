@@ -1438,7 +1438,7 @@ uint64_t UISystem_Initializer(longlong system_context)
   uStack_20 = *puVar6;
   uStack_1c = 0;
   lStack_18 = 0;
-  FUN_1808c6d60(param_1 + 0x28,&uStack_28);
+  UISystem_BufferInitializer(param_1 + 0x28,&uStack_28);
   if (lStack_18 != 0) {
     piVar1 = (int *)(lStack_18 + 0x10);
     *piVar1 = *piVar1 + -1;
@@ -1448,13 +1448,13 @@ uint64_t UISystem_Initializer(longlong system_context)
     }
   }
   iVar4 = UISystem_Verifier(param_1 + 0xb8);
-  if ((iVar4 == 0) && (iVar4 = FUN_1808555a0(param_1 + 200), iVar4 == 0)) {
+  if ((iVar4 == 0) && (iVar4 = UISystem_Controller(param_1 + 200), iVar4 == 0)) {
     *(int32_t *)(param_1 + 0xd8) = 0xffffffff;
     *(int32_t *)(param_1 + 0xdc) = 0;
   }
   *(int8_t *)(param_1 + 0x13f) = 0;
   iVar4 = UISystem_Verifier(param_1 + 0xe0);
-  if ((iVar4 == 0) && (iVar4 = FUN_1808553b0(param_1 + 0xf0), iVar4 == 0)) {
+  if ((iVar4 == 0) && (iVar4 = UISystem_Processor(param_1 + 0xf0), iVar4 == 0)) {
     *(int32_t *)(param_1 + 0x100) = 0xffffffff;
     *(int32_t *)(param_1 + 0x104) = 0;
   }
@@ -1824,7 +1824,7 @@ LAB_1808580a0:
       uVar21 = (int)puStack_148[0x14] - (int)puStack_148[0x15];
       uVar7 = *(uint *)((longlong)puStack_148 + 0xa4);
       if ((uVar7 <= *(uint *)(param_1 + 0x148)) && ((*(byte *)(param_1 + 0x128) & 2) == 0)) {
-        uVar6 = FUN_18085c620(param_1,uVar26);
+        uVar6 = UISystem_EventProcessor(param_1,uVar26);
         uVar19 = (ulonglong)uVar6;
         puVar11 = puStack_130;
         if (uVar6 != 0) goto LAB_180859163;
@@ -1840,9 +1840,9 @@ LAB_1808580a0:
       uStack_80 = 0;
       if ((*(uint *)(param_1 + 0x128) & 2) == 0) {
         if ((*(uint *)(param_1 + 0x128) & 1) == 0) {
-          FUN_1808639c0(*(uint64_t *)(param_1 + 0x160),uVar26);
+          UISystem_StateSynchronizer(*(uint64_t *)(param_1 + 0x160),uVar26);
           lStack_f8 = *(longlong *)(param_1 + 0x140) + 0x10;
-          FUN_180855fc0(param_1 + 0x90,&uStack_120,lStack_f8);
+          UISystem_QueueManager(param_1 + 0x90,&uStack_120,lStack_f8);
           if ((int)puStack_110 == -1) {
             uStack_158 = (uint)uStack_128;
             if (*(char *)(param_1 + 0x13f) != '\0') {
@@ -1850,7 +1850,7 @@ LAB_1808580a0:
             }
             FUN_1808577c0(param_1 + 0x90,lStack_f8,&uStack_158);
             puVar11 = (ulonglong *)
-                      FUN_180855fc0(param_1 + 0x90,auStack_50,*(longlong *)(param_1 + 0x140) + 0x10)
+                      UISystem_QueueManager(param_1 + 0x90,auStack_50,*(longlong *)(param_1 + 0x140) + 0x10)
             ;
             uStack_120 = *puVar11;
             uStack_118 = (uint)puVar11[1];
@@ -1975,7 +1975,7 @@ LAB_1808580a0:
       *(int32_t *)(param_1 + 0xc) = 2;
       if ((uint)puStack_148[0x14] <= *(uint *)(param_1 + 0x148)) {
         if ((*(byte *)(param_1 + 0x128) & 2) == 0) {
-          uVar8 = FUN_18085c620(param_1,uVar26,puVar11 + 1);
+          uVar8 = UISystem_EventProcessor(param_1,uVar26,puVar11 + 1);
           uVar19 = (ulonglong)uVar8;
           if (uVar8 != 0) goto LAB_180859163;
         }

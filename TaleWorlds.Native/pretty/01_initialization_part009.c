@@ -454,7 +454,7 @@ void InitializationSystem_RegistrySearchAndInsert3(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -477,15 +477,15 @@ void InitializationSystem_RegistrySearchAndInsert3(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c9b8, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
     // 设置节点数据
     parent_node[6] = 0x4666df49b97e0f10;
     parent_node[7] = 0x4e4b0d63a6ad1d8f;
-    parent_node[8] = &unknown_var_3544_ptr;
+    parent_node[8] = &InitializationSystemNodeData3;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -512,7 +512,7 @@ void InitializationSystem_RegistrySearchAndInsert4(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -535,8 +535,8 @@ void InitializationSystem_RegistrySearchAndInsert4(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c940, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -570,7 +570,7 @@ void InitializationSystem_RegistrySearchAndInsert5(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -593,8 +593,8 @@ void InitializationSystem_RegistrySearchAndInsert5(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c918, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -628,7 +628,7 @@ void InitializationSystem_RegistrySearchAndInsert6(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -651,8 +651,8 @@ void InitializationSystem_RegistrySearchAndInsert6(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c968, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -686,7 +686,7 @@ void InitializationSystem_RegistrySearchAndInsert7(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -709,8 +709,8 @@ void InitializationSystem_RegistrySearchAndInsert7(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c990, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -744,7 +744,7 @@ void InitializationSystem_RegistrySearchAndInsert8(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -767,8 +767,8 @@ void InitializationSystem_RegistrySearchAndInsert8(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c9e0, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -802,7 +802,7 @@ void InitializationSystem_RegistrySearchAndInsert9(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_handler = FUN_180073930;
@@ -825,8 +825,8 @@ void InitializationSystem_RegistrySearchAndInsert9(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c8f0, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -860,7 +860,7 @@ void InitializationSystem_RegistrySearchAndInsert10(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -883,8 +883,8 @@ void InitializationSystem_RegistrySearchAndInsert10(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c8c8, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -980,7 +980,7 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_handler = FUN_18025cc00;
@@ -1003,8 +1003,8 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_10a0, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1038,7 +1038,7 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_handler = FUN_18025c000;
@@ -1061,8 +1061,8 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1078, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1096,7 +1096,7 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -1119,8 +1119,8 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1050, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1154,7 +1154,7 @@ void InitializationSystem_RegistrySearchAndInsert16(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_handler = FUN_18025d270;
@@ -1177,8 +1177,8 @@ void InitializationSystem_RegistrySearchAndInsert16(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1028, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1212,7 +1212,7 @@ void InitializationSystem_RegistrySearchAndInsert17(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -1235,8 +1235,8 @@ void InitializationSystem_RegistrySearchAndInsert17(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1000, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1270,7 +1270,7 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_handler = &unknown_var_2048_ptr;
@@ -1293,8 +1293,8 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_0fd8, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1328,7 +1328,7 @@ void InitializationSystem_RegistrySearchAndInsert19(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -1351,8 +1351,8 @@ void InitializationSystem_RegistrySearchAndInsert19(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_0fb0, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1405,7 +1405,7 @@ void InitializationSystem_RegistrySearchAndInsert20(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_handler = FUN_18025e330;
@@ -1428,8 +1428,8 @@ void InitializationSystem_RegistrySearchAndInsert20(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_0d48, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1463,7 +1463,7 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_handler = FUN_18025cc00;
@@ -1486,8 +1486,8 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_10a0, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1521,7 +1521,7 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_handler = FUN_18025c000;
@@ -1544,8 +1544,8 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1078, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1579,7 +1579,7 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -1602,8 +1602,8 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1050, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1637,7 +1637,7 @@ void InitializationSystem_RegistrySearchAndInsert24(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_handler = FUN_18025d270;
@@ -1660,8 +1660,8 @@ void InitializationSystem_RegistrySearchAndInsert24(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1028, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1695,7 +1695,7 @@ void InitializationSystem_RegistrySearchAndInsert25(void)
     uint64_t node_value;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_value = 0;
@@ -1718,8 +1718,8 @@ void InitializationSystem_RegistrySearchAndInsert25(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_1000, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
@@ -1753,7 +1753,7 @@ void InitializationSystem_RegistrySearchAndInsert26(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
     node_handler = &unknown_var_2048_ptr;
@@ -1776,8 +1776,8 @@ void InitializationSystem_RegistrySearchAndInsert26(void)
     
     // 插入新节点
     if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_0fd8, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
