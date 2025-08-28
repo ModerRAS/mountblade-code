@@ -196,6 +196,54 @@ typedef ulonglong ResourceCleanupFlags;          // 资源清理标志
 #define DataFormatter DataFormatter
 
 /**
+ * @brief 系统状态报告器
+ * 生成系统状态报告
+ */
+#define SystemStatusReporter SystemStatusReporter
+
+/**
+ * @brief 高级数据处理器
+ * 处理高级数据操作和转换
+ */
+#define AdvancedDataProcessor FUN_1806c6c7b
+
+/**
+ * @brief 系统状态查询器
+ * 查询系统状态和信息
+ */
+#define SystemStatusQuerier FUN_1806c6e38
+
+/**
+ * @brief 系统重置器
+ * 重置系统状态和参数
+ */
+#define SystemResetter FUN_1806c6ed2
+
+/**
+ * @brief 数据同步处理器
+ * 处理数据同步和一致性
+ */
+#define DataSyncProcessor FUN_1806c6f10
+
+/**
+ * @brief 配置验证器
+ * 验证配置的有效性和完整性
+ */
+#define ConfigValidator FUN_1806c6f2c
+
+/**
+ * @brief 资源管理器
+ * 管理资源的分配和释放
+ */
+#define ResourceHandler FUN_1806c70ff
+
+/**
+ * @brief 系统监控器
+ * 监控系统运行状态
+ */
+#define SystemMonitor FUN_1806c71d2
+
+/**
  * @brief 系统处理器
  * 处理系统操作和任务
  */
@@ -5465,7 +5513,7 @@ int FUN_1806c6f10(uint64_t *param_1,longlong *param_2,int param_3)
     uStack_48 = 0;
     uStack_40 = 0;
     uStack_58 = 1;
-    FUN_1806c95f0(&uStack_e0,&lStack_a0,0);
+    SystemStatusReporter(&uStack_e0,&lStack_a0,0);
     if ((char)auStackX_18[0] != '\0') {
       *(int8_t *)param_2[10] = 1;
     }
@@ -5625,7 +5673,7 @@ int FUN_1806c6f2c(int32_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
     unaff_RBP[-1] = lVar16;
     *(int8_t *)(unaff_RBP + 4) = 1;
     unaff_RBP[5] = (longlong)(unaff_RBP + 0x12);
-    FUN_1806c95f0(unaff_RBP + -0xd,unaff_RBP + -5,0);
+    SystemStatusReporter(unaff_RBP + -0xd,unaff_RBP + -5,0);
     if ((char)unaff_RBP[0x12] != '\0') {
       *(int8_t *)unaff_RBX[10] = 1;
     }

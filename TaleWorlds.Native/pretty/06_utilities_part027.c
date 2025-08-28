@@ -132,7 +132,7 @@ void utilities_system_state_checker(uint64_t param_1, longlong param_2)
   
   // 获取状态标志
   status_flag = *(char *)(param_2 + 0x40);
-  system_check_result = func_0x0001808fd8d4();
+  system_check_result = utilities_system_parameter_validator();
   
   // 检查系统状态并执行相应操作
   if ((system_check_result != 0) && (status_flag == '\0')) {
@@ -168,7 +168,7 @@ void utilities_system_state_resetter(uint64_t param_1, longlong param_2)
   
   // 获取重置标志
   reset_flag = *(char *)(param_2 + 0x38);
-  system_check_result = func_0x0001808fd8d4();
+  system_check_result = utilities_system_parameter_validator();
   
   // 检查系统状态并执行相应操作
   if ((system_check_result != 0) && (reset_flag == '\0')) {
@@ -195,10 +195,10 @@ void utilities_system_function_invoker(uint64_t *param_1, longlong param_2)
 
 {
   // 调用系统函数并传递相关参数
-  FUN_1808fc51c(*(uint64_t *)(param_2 + 0x60),    // 资源指针1
+  utilities_system_function_invoker(*(uint64_t *)(param_2 + 0x60),    // 资源指针1
                 *(int32_t *)(param_2 + 0x68),    // 状态标志
                 *(uint64_t *)(param_2 + 0x70),    // 资源指针2
-                FUN_1808fc074,                      // 回调函数
+                utilities_system_callback_handler,                      // 回调函数
                 *(int32_t *)*param_1,            // 函数参数
                 param_1);                           // 参数数组指针
   return;
