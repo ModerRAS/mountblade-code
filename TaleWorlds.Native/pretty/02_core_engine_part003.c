@@ -154,6 +154,24 @@ void core_engine_data_processor_type4(void);
 /** 数学计算函数 */
 void core_engine_math_calculator(void);
 
+/** 系统注册表管理函数 */
+longlong *core_engine_registry_manager_get(void);
+longlong core_engine_memory_allocator_calculate(longlong *registry_manager);
+void core_engine_memory_allocator_allocate(longlong *registry_manager, uint64_t **allocated_node, uint64_t *parent_node, longlong total_size, longlong data_size);
+
+/** 系统回调函数 */
+code *core_engine_callback_handler_type1(void);
+code *core_engine_callback_handler_type2(void);
+code *core_engine_callback_handler_type3(void);
+code *core_engine_callback_handler_type4(void);
+code *core_engine_callback_handler_type5(void);
+code *core_engine_callback_handler_type6(void);
+code *core_engine_callback_handler_type7(void);
+code *core_engine_callback_handler_type8(void);
+
+/** 字符串处理函数 */
+uint64_t core_engine_string_processor_register(void **string_processor);
+
 // =============================================================================
 // 函数实现区域
 // =============================================================================
