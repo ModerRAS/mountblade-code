@@ -1171,35 +1171,77 @@ void FUN_180535b60(void)
 
 
 
-// 函数: void FUN_180535ba0(longlong *param_1,undefined8 param_2,undefined8 param_3)
+//------------------------------------------------------------------------------
+// 渲染系统高级处理函数10
+// 功能：执行渲染系统的状态验证和条件执行
+//       专门处理渲染状态的多重验证和条件执行逻辑
+//
+// 参数：
+//   param_1 - 渲染上下文指针（包含渲染状态和配置信息）
+//   param_2 - 渲染参数（控制渲染行为和模式）
+//   param_3 - 渲染状态标识符（用于状态验证和控制）
+//
+// 返回值：
+//   无
+//
+// 处理流程：
+//   1. 验证渲染上下文有效性
+//   2. 执行第一轮状态验证
+//   3. 根据结果执行第二轮状态验证
+//   4. 综合验证结果执行条件处理
+//   5. 根据最终状态执行渲染操作
+//
+// 技术要点：
+//   - 实现了多重状态验证机制
+//   - 支持复杂的条件执行逻辑
+//   - 包含状态标志的综合处理
+//   - 使用高效的条件分支处理
+//------------------------------------------------------------------------------
 void FUN_180535ba0(longlong *param_1,undefined8 param_2,undefined8 param_3)
 
 {
-  longlong lVar1;
-  char cVar2;
-  uint auStackX_8 [2];
-  int aiStackX_20 [2];
+  // 语义化变量定义
+  longlong render_context;                          // 渲染上下文
+  char validation_status;                           // 验证状态标志
+  uint condition_array[2];                          // 条件数组
+  int render_index_array[2];                         // 渲染索引数组
   
-  lVar1 = *param_1;
-  if (lVar1 == 0) {
-    return;
+  // 步骤1：验证渲染上下文有效性
+  render_context = *param_1;
+  if (render_context == 0) {
+    return;  // 渲染上下文无效，直接返回
   }
-  cVar2 = FUN_18055f260(param_3,aiStackX_20,&UNK_1809fa510);
-  if (cVar2 != '\0') {
-    auStackX_8[0] = (uint)((char)auStackX_8[0] != '\0');
-    cVar2 = FUN_18055f260(param_3,auStackX_8,&UNK_1809fa560);
-    auStackX_8[0] = CONCAT31(auStackX_8[0]._1_3_,auStackX_8[0] != 0);
-    if (cVar2 != '\0') {
-      cVar2 = '\x01';
+  
+  // 步骤2：执行第一轮状态验证
+  validation_status = FUN_18055f260(param_3, render_index_array, &UNK_1809fa510);
+  if (validation_status != '\0') {
+    // 步骤2.1：设置第一轮条件验证结果
+    condition_array[0] = (uint)((char)condition_array[0] != '\0');
+    
+    // 步骤2.2：执行第二轮状态验证
+    validation_status = FUN_18055f260(param_3, condition_array, &UNK_1809fa560);
+    condition_array[0] = CONCAT31(condition_array[0]._1_3_, condition_array[0] != 0);
+    
+    // 步骤2.3：检查第二轮验证结果
+    if (validation_status != '\0') {
+      validation_status = '\x01';
       goto LAB_180535c06;
     }
   }
-  cVar2 = '\0';
+  
+  // 步骤3：设置最终验证状态
+  validation_status = '\0';
 LAB_180535c06:
-  FUN_1804fe790(&UNK_180a303f8,cVar2,&UNK_180a30378,aiStackX_20,auStackX_8);
-  if (cVar2 != '\0') {
-    FUN_18051ac20((longlong)aiStackX_20[0] * 0xa60 + 0x30a0 + lVar1,(char)auStackX_8[0]);
+  
+  // 步骤4：执行状态验证和结果处理
+  FUN_1804fe790(&UNK_180a303f8, validation_status, &UNK_180a30378, render_index_array, condition_array);
+  
+  // 步骤5：根据最终状态执行渲染操作
+  if (validation_status != '\0') {
+    FUN_18051ac20((longlong)render_index_array[0] * 0xa60 + 0x30a0 + render_context, (char)condition_array[0]);
   }
+  
+  // 步骤6：完成处理并返回
   return;
 }
 
