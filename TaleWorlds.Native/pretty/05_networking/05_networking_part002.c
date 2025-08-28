@@ -183,120 +183,148 @@ int validate_packet_signature(longlong signature_info, longlong data_ptr, int da
   validated_bytes = FUN_18074be90(signature_size + data_ptr, data_size - signature_size, signature_key);
   return validated_bytes + signature_size;
 }
-
-
-
-int FUN_180840ff0(longlong param_1,longlong param_2,int param_3)
+// 函数: int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size)
+// 编码网络数据
+int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 encoding_type;
+  int encoded_size;
+  int processed_bytes;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x18);
-  iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b830(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取编码类型
+  encoding_type = *(undefined4 *)(encoding_info + 0x18);
+  
+  // 初始化编码
+  encoded_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(encoding_info + 0x10));
+  processed_bytes = FUN_18074b880(data_ptr + encoded_size, data_size - encoded_size, &DAT_180a06434);
+  encoded_size = encoded_size + processed_bytes;
+  
+  // 执行编码
+  processed_bytes = func_0x00018074b830(encoded_size + data_ptr, data_size - encoded_size, encoding_type);
+  return processed_bytes + encoded_size;
 }
-
-
-
-int FUN_180841060(longlong param_1,longlong param_2,int param_3)
+// 函数: int verify_data_integrity(longlong integrity_info, longlong data_ptr, int data_size)
+// 验证数据完整性
+int verify_data_integrity(longlong integrity_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 integrity_key;
+  int verified_size;
+  int processed_bytes;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x18);
-  iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取完整性密钥
+  integrity_key = *(undefined4 *)(integrity_info + 0x18);
+  
+  // 初始化验证
+  verified_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(integrity_info + 0x10));
+  processed_bytes = FUN_18074b880(data_ptr + verified_size, data_size - verified_size, &DAT_180a06434);
+  verified_size = verified_size + processed_bytes;
+  
+  // 执行完整性验证
+  processed_bytes = func_0x00018074b800(verified_size + data_ptr, data_size - verified_size, integrity_key);
+  return processed_bytes + verified_size;
 }
-
-
-
-int FUN_1808410d0(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_secure_connection(longlong security_info, longlong data_ptr, int data_size)
+// 处理安全连接数据
+int process_secure_connection(longlong security_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 secondary_key;
+  undefined4 primary_key;
+  int secure_size;
+  int processed_bytes;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x1c);
-  uVar2 = *(undefined4 *)(param_1 + 0x18);
-  iVar3 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 获取安全密钥
+  secondary_key = *(undefined4 *)(security_info + 0x1c);
+  primary_key = *(undefined4 *)(security_info + 0x18);
+  
+  // 初始化安全处理
+  secure_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(security_info + 0x10));
+  processed_bytes = FUN_18074b880(secure_size + data_ptr, data_size - secure_size, &DAT_180a06434);
+  secure_size = secure_size + processed_bytes;
+  
+  // 应用主要安全层
+  processed_bytes = func_0x00018074b7d0(secure_size + data_ptr, data_size - secure_size, primary_key);
+  secure_size = secure_size + processed_bytes;
+  
+  // 处理中间数据
+  processed_bytes = FUN_18074b880(secure_size + data_ptr, data_size - secure_size, &DAT_180a06434);
+  secure_size = secure_size + processed_bytes;
+  
+  // 应用次要安全层
+  processed_bytes = func_0x00018074b7d0(secure_size + data_ptr, data_size - secure_size, secondary_key);
+  return processed_bytes + secure_size;
 }
-
-
-
-int FUN_180841180(longlong param_1,longlong param_2,int param_3)
+// 函数: int handle_network_handshake(longlong handshake_info, longlong data_ptr, int data_size)
+// 处理网络握手协议
+int handle_network_handshake(longlong handshake_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 client_key;
+  undefined4 server_key;
+  int handshake_size;
+  int processed_bytes;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x1c);
-  uVar2 = *(undefined4 *)(param_1 + 0x18);
-  iVar3 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 获取握手密钥
+  client_key = *(undefined4 *)(handshake_info + 0x1c);
+  server_key = *(undefined4 *)(handshake_info + 0x18);
+  
+  // 初始化握手过程
+  handshake_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(handshake_info + 0x10));
+  processed_bytes = FUN_18074b880(handshake_size + data_ptr, data_size - handshake_size, &DAT_180a06434);
+  handshake_size = handshake_size + processed_bytes;
+  
+  // 服务器验证
+  processed_bytes = func_0x00018074b7d0(handshake_size + data_ptr, data_size - handshake_size, server_key);
+  handshake_size = handshake_size + processed_bytes;
+  
+  // 处理中间数据
+  processed_bytes = FUN_18074b880(handshake_size + data_ptr, data_size - handshake_size, &DAT_180a06434);
+  handshake_size = handshake_size + processed_bytes;
+  
+  // 客户端验证
+  processed_bytes = func_0x00018074b800(handshake_size + data_ptr, data_size - handshake_size, client_key);
+  return processed_bytes + handshake_size;
 }
-
-
-
-int FUN_180841230(longlong param_1,longlong param_2,int param_3)
+// 函数: int initialize_network_protocol(longlong protocol_info, longlong data_ptr, int data_size)
+// 初始化网络协议
+int initialize_network_protocol(longlong protocol_info, longlong data_ptr, int data_size)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  int protocol_size;
+  int processed_bytes;
+  undefined8 protocol_version;
+  undefined8 protocol_flags;
+  undefined4 header_format;
+  undefined4 data_format;
+  undefined4 compression_level;
+  undefined4 encryption_level;
+  undefined4 timeout_value;
+  undefined4 retry_count;
+  undefined4 buffer_size;
+  undefined4 checksum_type;
   
-  uStack_38 = *(undefined8 *)(param_1 + 0x18);
-  uStack_30 = *(undefined8 *)(param_1 + 0x20);
-  uStack_28 = *(undefined4 *)(param_1 + 0x28);
-  uStack_24 = *(undefined4 *)(param_1 + 0x2c);
-  uStack_20 = *(undefined4 *)(param_1 + 0x30);
-  uStack_1c = *(undefined4 *)(param_1 + 0x34);
-  uStack_18 = *(undefined4 *)(param_1 + 0x38);
-  uStack_14 = *(undefined4 *)(param_1 + 0x3c);
-  uStack_10 = *(undefined4 *)(param_1 + 0x40);
-  uStack_c = *(undefined4 *)(param_1 + 0x44);
-  iVar1 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18088ebb0(iVar1 + param_2,param_3 - iVar1,&uStack_38);
-  return iVar2 + iVar1;
+  // 获取协议参数
+  protocol_version = *(undefined8 *)(protocol_info + 0x18);
+  protocol_flags = *(undefined8 *)(protocol_info + 0x20);
+  header_format = *(undefined4 *)(protocol_info + 0x28);
+  data_format = *(undefined4 *)(protocol_info + 0x2c);
+  compression_level = *(undefined4 *)(protocol_info + 0x30);
+  encryption_level = *(undefined4 *)(protocol_info + 0x34);
+  timeout_value = *(undefined4 *)(protocol_info + 0x38);
+  retry_count = *(undefined4 *)(protocol_info + 0x3c);
+  buffer_size = *(undefined4 *)(protocol_info + 0x40);
+  checksum_type = *(undefined4 *)(protocol_info + 0x44);
+  
+  // 初始化协议头
+  protocol_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(protocol_info + 0x10));
+  processed_bytes = FUN_18074b880(data_ptr + protocol_size, data_size - protocol_size, &DAT_180a06434);
+  protocol_size = protocol_size + processed_bytes;
+  
+  // 设置协议参数
+  processed_bytes = FUN_18088ebb0(protocol_size + data_ptr, data_size - protocol_size, &protocol_version);
+  return processed_bytes + protocol_size;
 }
 
 
