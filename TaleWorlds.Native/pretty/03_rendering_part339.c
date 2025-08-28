@@ -874,7 +874,7 @@ void FUN_18044b3d0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     uStack_54 = param_5;
     uStack_4c = param_4;
     uStack_44 = param_3;
-    FUN_180627910(&puStack_28);
+    CoreMemoryPoolValidator(&puStack_28);
     uVar1 = render_system_data_config;
     FUN_1802777f0(param_1);
     FUN_180182280(uVar1,auStack_30,&puStack_28,&uStack_44,&uStack_4c,&uStack_54,param_1,&uStack_58);
@@ -972,7 +972,7 @@ FUN_18044b610(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   int32_t uStack_18;
   
   uVar4 = 0xfffffffffffffffe;
-  uVar2 = FUN_180627910(&puStack_30);
+  uVar2 = CoreMemoryPoolValidator(&puStack_30);
   plVar3 = (int64_t *)FUN_1800b6de0(system_resource_state,uVar2,0,param_4,uVar4);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 == 0) {

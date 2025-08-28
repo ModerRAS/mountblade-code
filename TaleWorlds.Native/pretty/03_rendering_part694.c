@@ -10,7 +10,7 @@ void FUN_1806673f0(void)
   uint in_stack_00000070;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(in_stack_00000070 ^ 0x80000000);
+  AdvancedSystemController(in_stack_00000070 ^ 0x80000000);
 }
 
 
@@ -33,7 +33,7 @@ void FUN_1806677e7(void)
     unaff_RSI = unaff_RSI + -1;
   } while (unaff_RSI != 0);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400();
+  AdvancedSystemController();
 }
 
 
@@ -481,7 +481,7 @@ void FUN_180669a20(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
   *(float *)(param_2 + 0x102c) = fStack_1bc;
 LAB_18066a567:
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(cVar5,*(float *)(param_1 + 8) * -0.5);
+  AdvancedSystemController(cVar5,*(float *)(param_1 + 8) * -0.5);
 }
 
 

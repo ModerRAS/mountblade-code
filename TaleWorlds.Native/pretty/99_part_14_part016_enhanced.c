@@ -1192,7 +1192,7 @@ void SystemCleanupHandler(void* cleanup_context)
     // 简化实现：调用清理函数
     // 原本实现包含复杂的栈操作，这里简化为直接调用清理函数
     stack_hash = *(unsigned long long*)cleanup_context;
-    FUN_1808fc050(stack_hash ^ (unsigned long long)&stack0x00000000);
+    SystemSecurityChecker(stack_hash ^ (unsigned long long)&stack0x00000000);
 }
 
 /**

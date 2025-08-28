@@ -358,7 +358,7 @@ void AdvancedDataAlgorithmProcessor(int64_t param_1, uint64_t param_2, int *para
     if (tempUint1 * tempInt1 == 0) {
         stackUlong7 = 0;
     } else {
-        stackUlong7 = FUN_18062b420(system_memory_pool_ptr, (uint64_t)(tempUint1 * tempInt1) << 4);
+        stackUlong7 = CoreMemoryPoolAllocator(system_memory_pool_ptr, (uint64_t)(tempUint1 * tempInt1) << 4);
         tempLongPtr5 = stackLongPtr3;
         param_2 = stackUlong6;
     }
@@ -421,7 +421,7 @@ void AdvancedDataAlgorithmProcessor(int64_t param_1, uint64_t param_2, int *para
                         // 执行复杂算法
                         tempInt1 = func_0x0001802a0ec0(tempInt1, tempInt1, *(ushort *)(param_2 + 0x32e), tempUlong2);
                         stackUlong4 = (uint64_t)(tempInt1 * tempUint1 + 7 >> 3);
-                        stackLong2 = FUN_18062b420(system_memory_pool_ptr, tempUlong2 * stackUlong4, 3);
+                        stackLong2 = CoreMemoryPoolAllocator(system_memory_pool_ptr, tempUlong2 * stackUlong4, 3);
                         *(int64_t *)(tempUintPtr1 + -3) = stackLong2;
                         
                         if (tempLongPtr5 < tempLongPtr4) {
@@ -433,11 +433,11 @@ void AdvancedDataAlgorithmProcessor(int64_t param_1, uint64_t param_2, int *para
                             tempLong1 = (int64_t)tempLongPtr5 - (int64_t)tempLongPtr2 >> 3;
                             if (tempLong1 == 0) {
                                 tempLong1 = 1;
-                                tempLongPtr1 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, tempLong1 * 8, 3);
+                                tempLongPtr1 = (int64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, tempLong1 * 8, 3);
                             } else {
                                 tempLong1 = tempLong1 * 2;
                                 if (tempLong1 != 0) {
-                                    tempLongPtr1 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, tempLong1 * 8, 3);
+                                    tempLongPtr1 = (int64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, tempLong1 * 8, 3);
                                 } else {
                                     tempLongPtr1 = (int64_t *)0x0;
                                 }
@@ -449,7 +449,7 @@ void AdvancedDataAlgorithmProcessor(int64_t param_1, uint64_t param_2, int *para
                             
                             *tempLongPtr1 = stackLong2;
                             if (tempLongPtr2 != (int64_t *)0x0) {
-                                FUN_18064e900(tempLongPtr2);
+                                CoreMemoryPoolInitializer(tempLongPtr2);
                             }
                             
                             tempLongPtr4 = tempLongPtr1 + tempLong1;
@@ -529,7 +529,7 @@ void AdvancedDataAlgorithmProcessor(int64_t param_1, uint64_t param_2, int *para
             tempLongPtr5 = stackLongPtr6;
             
             if (tempLong1 != 0) {
-                FUN_18064e900(tempLong1);
+                CoreMemoryPoolInitializer(tempLong1);
             }
         }
     }
@@ -550,7 +550,7 @@ void AdvancedDataAlgorithmProcessor(int64_t param_1, uint64_t param_2, int *para
     stackUlong4 = CONCAT44(stackUlong4._4_4_, tempInt1);
     
     if (tempUlong2 != 0) {
-        FUN_18064e900(tempUlong2);
+        CoreMemoryPoolInitializer(tempUlong2);
     }
     
     if (tempInt1 < 0) {
@@ -562,7 +562,7 @@ void AdvancedDataAlgorithmProcessor(int64_t param_1, uint64_t param_2, int *para
     if (tempUlong2 != 0) {
         do {
             if (*tempLongPtr2 != 0) {
-                FUN_18064e900();
+                CoreMemoryPoolInitializer();
             }
             *tempLongPtr2 = 0;
             tempUint1 = (int)tempUlong2 + 1;
@@ -757,13 +757,13 @@ void AdvancedDataAlgorithmProcessor(int64_t param_1, uint64_t param_2, int *para
                 ))) {
                 if (*(char *)((int64_t)tempLongPtr5 + 0x11) == '\0') {
                     if (((char)tempLongPtr5[2] == '\0') && (*tempLongPtr5 != 0)) {
-                        FUN_18064e900();
+                        CoreMemoryPoolInitializer();
                     }
                     *tempLongPtr5 = 0;
                     tempLongPtr5[1] = 0;
                     *(int8_t *)(tempLongPtr5 + 2) = 0;
                 }
-                FUN_18064e900(tempLongPtr5);
+                CoreMemoryPoolInitializer(tempLongPtr5);
             }
             tempIntPtr2 = tempIntPtr2 + 8;
         } while (tempIntPtr2 != *(int **)(tempIntPtr1 + 4));
@@ -771,10 +771,10 @@ void AdvancedDataAlgorithmProcessor(int64_t param_1, uint64_t param_2, int *para
     
     stackLongPtr4 = stackLongPtr4;
     if (*stackLongPtr4 == 0) {
-        FUN_18064e900(tempIntPtr1);
+        CoreMemoryPoolInitializer(tempIntPtr1);
     }
     
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
 }
 
 /**
@@ -903,7 +903,7 @@ void SystemStateManager(int64_t param_1)
                   (*(int64_t **)(param_1 + 0x1d78), stackLongPtrArray[0], 0, &stackUlong1);
         
         // 分配资源
-        tempUlong = FUN_18062b1e0(system_memory_pool_ptr, 0x3b0, 0x10, 3);
+        tempUlong = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x3b0, 0x10, 3);
         tempLongPtr1 = (int64_t *)FUN_18023a2e0(tempUlong, 4);
         
         if (tempLongPtr1 != (int64_t *)0x0) {
@@ -936,7 +936,7 @@ void SystemStateManager(int64_t param_1)
         *(int64_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x168) = *(int64_t *)(param_1 + 0x121e0);
         
         // 分配和初始化资源块
-        tempUlongPtr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 3);
+        tempUlongPtr1 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 3);
         tempUlongPtr2 = tempUlongPtr1;
         
         // 清零资源块
@@ -1010,7 +1010,7 @@ void SystemStateManager(int64_t param_1)
     }
     
     // 清理栈并返回
-    FUN_1808fc050(stackUlong3 ^ (uint64_t)stackBuffer1);
+    SystemSecurityChecker(stackUlong3 ^ (uint64_t)stackBuffer1);
 }
 
 /**
@@ -1223,7 +1223,7 @@ void AlgorithmExecutionController(int64_t param_1, int8_t *param_2)
     }
     
     // 清理栈并返回
-    FUN_1808fc050(stackUlong3 ^ (uint64_t)stackBuffer1);
+    SystemSecurityChecker(stackUlong3 ^ (uint64_t)stackBuffer1);
 }
 
 //==============================================================================

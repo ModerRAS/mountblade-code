@@ -50,7 +50,7 @@ void FUN_1805c4fc0(int64_t *param_1,int64_t *param_2,int8_t *param_3)
         uVar5 = *(uint *)(*(int64_t *)(lVar3 + 0x20) + 0x34);
         FUN_1805b6c30(param_1 + 1,uVar5);
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(uVar5 ^ 0x80000000);
+        AdvancedSystemController(uVar5 ^ 0x80000000);
       }
       goto LAB_1805c54bd;
     }
@@ -97,7 +97,7 @@ void FUN_1805c50cd(int64_t param_1,uint param_2)
   uVar1 = *(uint *)(*(int64_t *)(param_1 + 0x20) + 0x34);
   FUN_1805b6c30(unaff_RDI + 1,uVar1);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(uVar1 ^ 0x80000000);
+  AdvancedSystemController(uVar1 ^ 0x80000000);
 }
 
 
@@ -124,7 +124,7 @@ void FUN_1805c50e5(int64_t param_1,uint param_2)
   uVar1 = *(uint *)(*(int64_t *)(param_1 + 0x20) + 0x34);
   FUN_1805b6c30(unaff_RDI + 1,uVar1);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(uVar1 ^ 0x80000000);
+  AdvancedSystemController(uVar1 ^ 0x80000000);
 }
 
 
@@ -438,7 +438,7 @@ void FUN_1805c5520(int64_t *param_1,int64_t *param_2,int8_t *param_3)
                 if (((*(int *)(lVar12 + 0x504) == iVar8) && (*(int *)(lVar12 + 0x510) == 3)) &&
                    (*(int *)(lVar12 + 0x508) == 0)) {
                     // WARNING: Subroutine does not return
-                  FUN_1808fd400(*(int32_t *)(*(int64_t *)(lVar12 + 0x20) + 0x34));
+                  AdvancedSystemController(*(int32_t *)(*(int64_t *)(lVar12 + 0x20) + 0x34));
                 }
                 FUN_1804ff550(param_1[0x291] + 0x98d230,aplStack_b8);
               } while (aplStack_b8[0] != (int64_t *)0x0);
@@ -568,7 +568,7 @@ LAB_1805c5c98:
             }
             lVar12 = FUN_1805b74c0(param_1 + 1);
                     // WARNING: Subroutine does not return
-            FUN_1808fd400(*(int32_t *)(*(int64_t *)(lVar12 + 0x20) + 0x34));
+            AdvancedSystemController(*(int32_t *)(*(int64_t *)(lVar12 + 0x20) + 0x34));
           }
           pfVar11 = &fStackX_20;
           fStackX_20 = fStackX_8 * fVar19;

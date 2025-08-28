@@ -805,7 +805,7 @@ void FUN_180305d40(int64_t param_1)
       iVar3 = (int)lVar7;
       if ((iVar3 != -10) && (uVar9 < iVar3 + 0xbU)) {
         uStack_1b8 = CONCAT71(uStack_1b8._1_7_,0x13);
-        puVar4 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar4,iVar3 + 0xbU,0x10);
+        puVar4 = (uint64_t *)DataValidator(system_memory_pool_ptr,puVar4,iVar3 + 0xbU,0x10);
         puStack_1a0 = puVar4;
         uStack_190._0_4_ = CoreEngineSystemCleanup(puVar4);
       }

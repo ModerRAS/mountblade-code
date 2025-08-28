@@ -123,7 +123,7 @@ void NetworkClient_GetConnectionInfo(uint64_t client_id, uint64_t *connection_in
         data_buffer = temp_buffer;
         
         // 发送错误报告
-        FUN_180749ef0(0x1f, 0xd, client_id, &unknown_var_8256_ptr);
+        DataTransformer(0x1f, 0xd, client_id, &unknown_var_8256_ptr);
     }
     
     // 初始化输出参数
@@ -169,13 +169,13 @@ void NetworkClient_GetConnectionInfo(uint64_t client_id, uint64_t *connection_in
             *connection_info = (uint64_t)*(uint *)(message_buffers[0] + 3);
             
             // 清理临时资源
-            FUN_18088c790(connection_data + 1);
+            AdvancedSystemProcessor(connection_data + 1);
         }
     }
     
 cleanup_and_exit:
     // 清理连接数据
-    FUN_18088c790(connection_data + 1);
+    AdvancedSystemProcessor(connection_data + 1);
 }
 
 
@@ -230,7 +230,7 @@ void NetworkClient_SendMessage(uint64_t client_id, uint64_t message_data, uint64
         message_buffer = temp_buffer;
         
         // 发送消息
-        FUN_180749ef0(message_type, 0xb, client_id, &unknown_var_416_ptr);
+        DataTransformer(message_type, 0xb, client_id, &unknown_var_416_ptr);
     }
     
     // 清理资源
@@ -269,7 +269,7 @@ void NetworkClient_BroadcastMessage(void)
                         0x100 - (header_size + separator_size));
     
     // 执行广播
-    FUN_180749ef0(message_type, 0xb);
+    DataTransformer(message_type, 0xb);
 }
 
 
@@ -350,7 +350,7 @@ void NetworkClient_GetPropertyList(uint64_t client_id, int32_t *property_array, 
         data_buffer = temp_buffer;
         
         // 发送错误报告
-        FUN_180749ef0(0x1f, 0xb, client_id, &unknown_var_9904_ptr);
+        DataTransformer(0x1f, 0xb, client_id, &unknown_var_9904_ptr);
     }
     
     // 初始化连接数据
@@ -402,13 +402,13 @@ void NetworkClient_GetPropertyList(uint64_t client_id, int32_t *property_array, 
             *property_count = (uint64_t)*(uint *)(message_buffers[0] + 4);
             
             // 清理临时资源
-            FUN_18088c790(connection_data + 1);
+            AdvancedSystemProcessor(connection_data + 1);
         }
     }
     
 cleanup_and_exit:
     // 清理连接数据
-    FUN_18088c790(connection_data + 1);
+    AdvancedSystemProcessor(connection_data + 1);
 }
 
 
@@ -459,7 +459,7 @@ void NetworkClient_GetConnectionCount(uint64_t server_id, uint *connection_count
         data_buffer = temp_buffer;
         
         // 发送错误报告
-        FUN_180749ef0(0x1f, 0xc, server_id, &unknown_var_736_ptr);
+        DataTransformer(0x1f, 0xc, server_id, &unknown_var_736_ptr);
     }
     
     // 初始化输出参数
@@ -478,7 +478,7 @@ void NetworkClient_GetConnectionCount(uint64_t server_id, uint *connection_count
         connection_info = *(int64_t *)(lookup_result + 8);
     } else if (result != 0) {
         // 查询失败，清理资源
-        FUN_18088c790(&connection_handle);
+        AdvancedSystemProcessor(&connection_handle);
     }
     
     // 查找连接计数器
@@ -492,11 +492,11 @@ void NetworkClient_GetConnectionCount(uint64_t server_id, uint *connection_count
         *connection_count = *count_pointer / 0x30;
         
         // 清理资源
-        FUN_18088c790(&connection_handle);
+        AdvancedSystemProcessor(&connection_handle);
     }
     
     // 清理连接资源
-    FUN_18088c790(&connection_handle);
+    AdvancedSystemProcessor(&connection_handle);
 }
 
 
@@ -572,7 +572,7 @@ void NetworkClient_GetClientInfo(int32_t client_id, int32_t *client_version, int
     
 cleanup_and_exit:
     // 清理连接资源
-    FUN_18088c790(&connection_handle);
+    AdvancedSystemProcessor(&connection_handle);
 }
 
 
@@ -627,7 +627,7 @@ void NetworkClient_SetClientProperty(uint64_t client_id, int64_t property_id, in
       FUN_18074bac0(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
       puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
-      FUN_180749ef0(0x1f,0xb,param_1,&unknown_var_480_ptr);
+      DataTransformer(0x1f,0xb,param_1,&unknown_var_480_ptr);
     }
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_198);
@@ -637,7 +637,7 @@ void NetworkClient_SetClientProperty(uint64_t client_id, int64_t property_id, in
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_158[0] + 0x24) >> 1 & 1) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088c790(&uStack_160);
+      AdvancedSystemProcessor(&uStack_160);
     }
     iVar2 = FUN_18088c740(&uStack_160);
     if (iVar2 != 0) goto LAB_1808462b2;
@@ -646,17 +646,17 @@ void NetworkClient_SetClientProperty(uint64_t client_id, int64_t property_id, in
 LAB_1808462b2:
   if (iVar2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_160);
+    AdvancedSystemProcessor(&uStack_160);
   }
   auStack_168[0] = 0;
   iVar1 = FUN_180840af0(alStack_158[0],param_2,auStack_168);
   if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_160);
+    AdvancedSystemProcessor(&uStack_160);
   }
   func_0x0001808676a0(alStack_158[0] + 0x60,auStack_168[0],param_3,param_4);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_160);
+  AdvancedSystemProcessor(&uStack_160);
 }
 
 
@@ -698,7 +698,7 @@ void NetworkClient_QueryClientStatus(uint64_t client_id, int32_t status_code, ui
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xc,param_1,&unknown_var_640_ptr);
+    DataTransformer(iVar1,0xc,param_1,&unknown_var_640_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_168);
@@ -729,7 +729,7 @@ void NetworkClient_PingClient(void)
   iVar2 = SystemDataProcessor(&stack0x00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xc);
+  DataTransformer(unaff_ESI,0xc);
 }
 
 
@@ -794,7 +794,7 @@ void NetworkClient_GetClientAddress(uint64_t client_id, int32_t *client_address)
     FUN_18074b930(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_592_ptr);
+    DataTransformer(0x1f,0xc,param_1,&unknown_var_592_ptr);
   }
   *param_2 = 0;
   uStack_138 = 0;
@@ -807,11 +807,11 @@ void NetworkClient_GetClientAddress(uint64_t client_id, int32_t *client_address)
   }
   else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
+    AdvancedSystemProcessor(&uStack_138);
   }
   *param_2 = *(int32_t *)(lStack_128 + 0x88);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
+  AdvancedSystemProcessor(&uStack_138);
 }
 
 
@@ -870,7 +870,7 @@ void NetworkClient_GetClientData(uint64_t client_id, int8_t *data_buffer, int da
     }
     else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088c790(&uStack_178);
+      AdvancedSystemProcessor(&uStack_178);
     }
     uStack_158 = *(int32_t *)(lStack_168 + 0x10);
     uStack_154 = *(int32_t *)(lStack_168 + 0x14);
@@ -879,7 +879,7 @@ void NetworkClient_GetClientData(uint64_t client_id, int8_t *data_buffer, int da
     puStack_188 = param_4;
     FUN_180882160(uStack_170,&uStack_158,param_2,param_3);
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_178);
+    AdvancedSystemProcessor(&uStack_178);
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
@@ -894,7 +894,7 @@ void NetworkClient_GetClientData(uint64_t client_id, int8_t *data_buffer, int da
   FUN_18074b930(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
   puStack_188 = (int32_t *)auStack_148;
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_560_ptr);
+  DataTransformer(0x1f,0xc,param_1,&unknown_var_560_ptr);
 }
 
 
@@ -927,7 +927,7 @@ void NetworkClient_InitializeClientData(void)
   iVar2 = SystemDataProcessor(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074b930(&stack0x00000060 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xc);
+  DataTransformer(unaff_ESI,0xc);
 }
 
 
@@ -993,7 +993,7 @@ void NetworkClient_GetClientState(uint64_t client_id, int8_t *client_state)
     FUN_18074be30(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&unknown_var_1176_ptr);
+    DataTransformer(0x1f,0xd,param_1,&unknown_var_1176_ptr);
   }
   *param_2 = 0;
   uStack_148 = 0;
@@ -1009,11 +1009,11 @@ void NetworkClient_GetClientState(uint64_t client_id, int8_t *client_state)
   }
   else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_148);
+    AdvancedSystemProcessor(&uStack_148);
   }
   *param_2 = *(int8_t *)(lStack_138 + 0xbc);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_148);
+  AdvancedSystemProcessor(&uStack_148);
 }
 
 
@@ -1068,7 +1068,7 @@ void NetworkClient_GetClientVersion(int32_t client_id, int32_t *major_version, i
   FUN_180868270(lStack_148,param_2,param_3);
 LAB_1808469dd:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_158);
+  AdvancedSystemProcessor(&uStack_158);
 }
 
 
@@ -1112,7 +1112,7 @@ void NetworkClient_GetClientPing(uint64_t client_id, int32_t *ping_time)
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&unknown_var_1248_ptr);
+    DataTransformer(0x1f,0xd,param_1,&unknown_var_1248_ptr);
   }
   *param_2 = 2;
   uStack_148 = 0;
@@ -1128,12 +1128,12 @@ void NetworkClient_GetClientPing(uint64_t client_id, int32_t *ping_time)
   }
   else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_148);
+    AdvancedSystemProcessor(&uStack_148);
   }
   uVar2 = func_0x0001808682c0(lStack_138);
   *param_2 = uVar2;
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_148);
+  AdvancedSystemProcessor(&uStack_148);
 }
 
 
@@ -1186,11 +1186,11 @@ void NetworkClient_GetClientProperty(uint64_t client_id, uint property_index, in
       }
       else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088c790(&uStack_158);
+        AdvancedSystemProcessor(&uStack_158);
       }
       *param_3 = *(int32_t *)(lStack_148 + 0xa4 + (int64_t)(int)param_2 * 4);
                     // WARNING: Subroutine does not return
-      FUN_18088c790(&uStack_158);
+      AdvancedSystemProcessor(&uStack_158);
     }
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
@@ -1202,7 +1202,7 @@ void NetworkClient_GetClientProperty(uint64_t client_id, uint property_index, in
   FUN_18074bac0(auStack_138 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(0x1f,0xd,param_1,&unknown_var_1144_ptr);
+  DataTransformer(0x1f,0xd,param_1,&unknown_var_1144_ptr);
 }
 
 
@@ -1245,7 +1245,7 @@ void NetworkClient_IsClientConnected(uint64_t client_id, int32_t *connection_sta
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_6368_ptr);
+    DataTransformer(0x1f,0xc,param_1,&unknown_var_6368_ptr);
   }
   *param_2 = 1;
   alStack_148[1] = 0;
@@ -1269,12 +1269,12 @@ LAB_180846df9:
     if (iVar1 == 0) {
       *param_2 = *(int32_t *)(apuStack_138[0] + 3);
                     // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_148 + 1);
+      AdvancedSystemProcessor(alStack_148 + 1);
     }
   }
 LAB_180846d91:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_148 + 1);
+  AdvancedSystemProcessor(alStack_148 + 1);
 }
 
 
@@ -1318,7 +1318,7 @@ void NetworkClient_GetActiveConnections(uint64_t server_id, uint *active_count)
     FUN_18074b930(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&unknown_var_1208_ptr);
+    DataTransformer(0x1f,0xd,param_1,&unknown_var_1208_ptr);
   }
   uVar2 = 0;
   *param_2 = 0;
@@ -1337,7 +1337,7 @@ void NetworkClient_GetActiveConnections(uint64_t server_id, uint *active_count)
   }
   else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_148);
+    AdvancedSystemProcessor(&uStack_148);
   }
   if (*(int64_t *)(lStack_138 + 0x10) != 0) {
     uVar2 = func_0x000180855b70(*(int64_t *)(lStack_138 + 0x10) + 200);
@@ -1345,7 +1345,7 @@ void NetworkClient_GetActiveConnections(uint64_t server_id, uint *active_count)
   }
   *param_2 = uVar2;
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_148);
+  AdvancedSystemProcessor(&uStack_148);
 }
 
 
@@ -1388,7 +1388,7 @@ void NetworkClient_GetConnectionHandle(uint64_t client_id, uint64_t *connection_
     func_0x00018074bda0(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_896_ptr);
+    DataTransformer(0x1f,0xc,param_1,&unknown_var_896_ptr);
   }
   *param_2 = 0;
   uStack_138 = 0;
@@ -1401,11 +1401,11 @@ void NetworkClient_GetConnectionHandle(uint64_t client_id, uint64_t *connection_
   }
   else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
+    AdvancedSystemProcessor(&uStack_138);
   }
   *param_2 = *(uint64_t *)(*(int64_t *)(lStack_128 + 0xd0) + 0x38);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
+  AdvancedSystemProcessor(&uStack_138);
 }
 
 

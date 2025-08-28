@@ -370,7 +370,7 @@ void FUN_18058d930(int64_t *param_1,int64_t param_2)
   }
   else {
     if (param_1[8] == 0) {
-      lVar25 = FUN_18062b1e0(system_memory_pool_ptr,0xa8,8,3);
+      lVar25 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xa8,8,3);
                     // WARNING: Subroutine does not return
       memset(lVar25 + 0x18,0,0x90);
     }
@@ -411,7 +411,7 @@ void FUN_18058d930(int64_t *param_1,int64_t param_2)
   }
   FUN_18058f420(lVar25);
                     // WARNING: Subroutine does not return
-  FUN_18064e900(lVar25);
+  CoreMemoryPoolInitializer(lVar25);
 }
 
 

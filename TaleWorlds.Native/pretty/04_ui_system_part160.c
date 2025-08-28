@@ -402,7 +402,7 @@ LAB_180760f3a:
           else if ((iVar5 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
             *(int8_t *)(unaff_RBP + 0x60) = 0;
                     // WARNING: Subroutine does not return
-            FUN_180749ef0(iVar5,7);
+            DataTransformer(iVar5,7);
           }
           if ((((*(int64_t *)(unaff_RBX + 0xe8) != 0) &&
                (*(int64_t *)(*(int64_t *)(unaff_RBX + 0xe8) + 0x48) != 0)) &&

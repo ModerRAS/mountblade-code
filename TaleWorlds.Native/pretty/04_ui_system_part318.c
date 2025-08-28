@@ -7,7 +7,7 @@ void FUN_18083e14f(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400();
+  AdvancedSystemController();
 }
 
 
@@ -32,7 +32,7 @@ uint64_t FUN_18083e22a(void)
   iVar2 = (int)(unaff_ESI + (unaff_ESI >> 0x1f & 7U)) >> 3;
   if (0 < iVar2) {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400((unaff_XMM6_Da / unaff_XMM11_Da) * 2.0);
+    AdvancedSystemController((unaff_XMM6_Da / unaff_XMM11_Da) * 2.0);
   }
   uVar6 = 0;
   bVar1 = unaff_R13B - 2U & 0x1f;

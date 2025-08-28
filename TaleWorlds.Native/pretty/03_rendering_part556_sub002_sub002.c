@@ -111,7 +111,7 @@ void FUN_180573874(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
       fVar61 = 1.5707964;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(fVar76 * fVar61);
+    AdvancedSystemController(fVar76 * fVar61);
   }
   fVar76 = *(float *)(unaff_R13 + 0x94);
   fVar61 = *(float *)(unaff_R13 + 0x90);
@@ -1002,7 +1002,7 @@ LAB_180574cc4:
     puVar45 = puVar45 + 0x1f0;
   } while (lVar46 < 0x20);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x158) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x158) ^ (uint64_t)&stack0x00000000);
 }
 
 

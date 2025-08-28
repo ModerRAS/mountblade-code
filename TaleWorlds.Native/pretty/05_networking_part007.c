@@ -349,14 +349,14 @@ void FUN_180848dc0(int64_t *param_1,uint param_2,uint64_t param_3)
 FUN_18088f050:
     iVar1 = FUN_18088f710(param_3,auStackX_20);
     if ((iVar1 == 0) && (iVar1 = FUN_18088f710(auStackX_20,&uStackX_18), iVar1 == 0)) {
-      iVar1 = FUN_18010cbc0(uStackX_18,&unknown_var_7592_ptr,(int64_t)param_1 + 0x14,param_1 + 3,
+      iVar1 = AdvancedSystemOptimizer(uStackX_18,&unknown_var_7592_ptr,(int64_t)param_1 + 0x14,param_1 + 3,
                             (int64_t)param_1 + 0x1c);
       if (((iVar1 == 3) ||
           (((iVar1 = FUN_18088eea0(&uStackX_18,(int64_t)param_1 + 0x14), iVar1 == 0 &&
             (iVar1 = FUN_18088eea0(&uStackX_18,param_1 + 3), iVar1 == 0)) &&
            (iVar1 = FUN_18088eea0(&uStackX_18,(int64_t)param_1 + 0x1c), iVar1 == 0)))) &&
          (iVar1 = FUN_18088f710(auStackX_20,&uStackX_18), iVar1 == 0)) {
-        iVar1 = FUN_18010cbc0(uStackX_18,&unknown_var_7592_ptr,param_1 + 4,(int64_t)param_1 + 0x24,
+        iVar1 = AdvancedSystemOptimizer(uStackX_18,&unknown_var_7592_ptr,param_1 + 4,(int64_t)param_1 + 0x24,
                               param_1 + 5);
         if (((iVar1 == 3) ||
             (((iVar1 = FUN_18088eea0(&uStackX_18,param_1 + 4), iVar1 == 0 &&
@@ -907,7 +907,7 @@ LAB_180849294:
   }
 LAB_1808492e6:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_138 + 1);
+  AdvancedSystemProcessor(alStack_138 + 1);
 }
 
 
@@ -942,7 +942,7 @@ void FUN_180849360(uint64_t param_1)
         FUN_18088da50(*(uint64_t *)(alStack_138[0] + 0x98));
       }
                     // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_138 + 1);
+      AdvancedSystemProcessor(alStack_138 + 1);
     }
     iVar1 = FUN_180883a30();
     if (iVar1 == 0) goto LAB_180849462;
@@ -951,7 +951,7 @@ void FUN_180849360(uint64_t param_1)
     puStack_148 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&unknown_var_4712_ptr);
+    DataTransformer(iVar1,0xb,param_1,&unknown_var_4712_ptr);
   }
 LAB_180849462:
                     // WARNING: Subroutine does not return
@@ -991,7 +991,7 @@ void FUN_180849490(uint64_t param_1,uint64_t *param_2)
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&unknown_var_6920_ptr);
+    DataTransformer(0x1f,0xd,param_1,&unknown_var_6920_ptr);
   }
   uStack_148 = 0;
   iVar5 = func_0x00018088c590(param_1,&lStack_140);
@@ -1028,11 +1028,11 @@ LAB_180849553:
     *(int32_t *)((int64_t)apuStack_138[0] + 0x44) = uVar3;
     func_0x00018088e0d0(*(uint64_t *)(lStack_140 + 0x98));
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_148);
+    AdvancedSystemProcessor(&uStack_148);
   }
 LAB_1808494eb:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_148);
+  AdvancedSystemProcessor(&uStack_148);
 }
 
 
@@ -1059,7 +1059,7 @@ void FUN_180849600(uint64_t param_1,uint64_t param_2)
     func_0x00018074bda0(auStack_118,0x100,param_2);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&unknown_var_5000_ptr);
+    DataTransformer(iVar1,0xb,param_1,&unknown_var_5000_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_158);
@@ -1104,7 +1104,7 @@ void FUN_1808496c0(int32_t param_1,int64_t param_2,int32_t param_3)
   *(int64_t *)(lVar1 + 0x40) = param_2;
 LAB_180849763:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_158);
+  AdvancedSystemProcessor(&uStack_158);
 }
 
 
@@ -1124,7 +1124,7 @@ void FUN_180849782(void)
   iVar2 = SystemDataProcessor(&stack0x00000050 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_R14D);
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xc);
+  DataTransformer(unaff_ESI,0xc);
 }
 
 

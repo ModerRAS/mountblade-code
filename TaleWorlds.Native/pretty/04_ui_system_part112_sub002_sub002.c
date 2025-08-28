@@ -753,7 +753,7 @@ LAB_180735ce2:
         dVar60 = dVar60 * unaff_XMM14_Qa;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fc050((float)dVar60);
+      SystemSecurityChecker((float)dVar60);
     }
   }
   if (iStack0000000000000038 < (int)unaff_R14D) {

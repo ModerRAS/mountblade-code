@@ -103,7 +103,7 @@ LAB_1800f5d60:
         lVar3 = 0;
 LAB_1800f5d7b:
         if (((int64_t)param_1 + 0x2c != 0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&system_data_6430,(int64_t)param_1 + 0x2c);
+          AdvancedSystemOptimizer(lVar3,&system_data_6430,(int64_t)param_1 + 0x2c);
         }
         pcVar6 = "anchor_stiffness";
         do {
@@ -140,7 +140,7 @@ LAB_1800f5e00:
         lVar3 = 0;
 LAB_1800f5e1b:
         if ((param_1 + 6 != (int64_t *)0x0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&system_data_6430,param_1 + 6);
+          AdvancedSystemOptimizer(lVar3,&system_data_6430,param_1 + 6);
         }
         pcVar6 = "bending_stiffness";
         do {
@@ -177,7 +177,7 @@ LAB_1800f5ea0:
         lVar3 = 0;
 LAB_1800f5ebb:
         if (((int64_t)param_1 + 0x24 != 0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&system_data_6430,(int64_t)param_1 + 0x24);
+          AdvancedSystemOptimizer(lVar3,&system_data_6430,(int64_t)param_1 + 0x24);
         }
         pcVar6 = "shearing_stiffness_";
         do {
@@ -214,7 +214,7 @@ LAB_1800f5f40:
         lVar3 = 0;
 LAB_1800f5f5b:
         if ((param_1 + 5 != (int64_t *)0x0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&system_data_6430,param_1 + 5);
+          AdvancedSystemOptimizer(lVar3,&system_data_6430,param_1 + 5);
         }
         pcVar6 = "damping";
         do {
@@ -251,7 +251,7 @@ LAB_1800f5fe0:
         lVar3 = 0;
 LAB_1800f5ffb:
         if (((int64_t)param_1 + 0x34 != 0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&system_data_6430,(int64_t)param_1 + 0x34);
+          AdvancedSystemOptimizer(lVar3,&system_data_6430,(int64_t)param_1 + 0x34);
         }
         pcVar6 = "gravity";
         do {
@@ -288,7 +288,7 @@ LAB_1800f6080:
         lVar3 = 0;
 LAB_1800f609b:
         if ((param_1 + 7 != (int64_t *)0x0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&system_data_6430,param_1 + 7);
+          AdvancedSystemOptimizer(lVar3,&system_data_6430,param_1 + 7);
         }
         pcVar6 = "linear_inertia";
         do {
@@ -325,7 +325,7 @@ LAB_1800f6120:
         lVar3 = 0;
 LAB_1800f613b:
         if (((int64_t)param_1 + 0x3c != 0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&system_data_6430,(int64_t)param_1 + 0x3c);
+          AdvancedSystemOptimizer(lVar3,&system_data_6430,(int64_t)param_1 + 0x3c);
         }
         pcVar6 = "max_linear_velocity";
         do {
@@ -362,7 +362,7 @@ LAB_1800f61c0:
         lVar3 = 0;
 LAB_1800f61db:
         if ((param_1 + 8 != (int64_t *)0x0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&system_data_6430,param_1 + 8);
+          AdvancedSystemOptimizer(lVar3,&system_data_6430,param_1 + 8);
         }
         pcVar6 = "linear_velocity_multiplier";
         do {
@@ -399,7 +399,7 @@ LAB_1800f6260:
         lVar3 = 0;
 LAB_1800f627b:
         if (((int64_t)param_1 + 0x44 != 0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&system_data_6430,(int64_t)param_1 + 0x44);
+          AdvancedSystemOptimizer(lVar3,&system_data_6430,(int64_t)param_1 + 0x44);
         }
         pcVar6 = "wind";
         do {
@@ -436,7 +436,7 @@ LAB_1800f6300:
         lVar3 = 0;
 LAB_1800f631b:
         if (((int64_t)param_1 + 0x4c != 0) && (lVar3 != 0)) {
-          FUN_18010cbc0(lVar3,&system_data_6430,(int64_t)param_1 + 0x4c);
+          AdvancedSystemOptimizer(lVar3,&system_data_6430,(int64_t)param_1 + 0x4c);
         }
         pcVar6 = "air_drag_multiplier";
         do {
@@ -454,7 +454,7 @@ LAB_1800f63b8:
             if (lVar3 == 0) {
               return;
             }
-            FUN_18010cbc0(lVar3,&system_data_6430,param_1 + 9);
+            AdvancedSystemOptimizer(lVar3,&system_data_6430,param_1 + 9);
             return;
           }
           pcVar6 = (char *)*puVar4;
@@ -550,7 +550,7 @@ LAB_1800f5d60:
   pcVar4 = (char *)0x0;
 LAB_1800f5d7b:
   if ((unaff_RSI != -0x2c) && (pcVar4 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar4 = "anchor_stiffness";
   do {
@@ -587,7 +587,7 @@ LAB_1800f5e00:
   pcVar4 = (char *)0x0;
 LAB_1800f5e1b:
   if ((unaff_RSI != -0x30) && (pcVar4 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar4 = "bending_stiffness";
   do {
@@ -624,7 +624,7 @@ LAB_1800f5ea0:
   pcVar4 = (char *)0x0;
 LAB_1800f5ebb:
   if ((unaff_RSI != -0x24) && (pcVar4 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar4 = "shearing_stiffness_";
   do {
@@ -661,7 +661,7 @@ LAB_1800f5f40:
   pcVar4 = (char *)0x0;
 LAB_1800f5f5b:
   if ((unaff_RSI != -0x28) && (pcVar4 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar4 = "damping";
   do {
@@ -698,7 +698,7 @@ LAB_1800f5fe0:
   pcVar4 = (char *)0x0;
 LAB_1800f5ffb:
   if ((unaff_RSI != -0x34) && (pcVar4 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar4 = "gravity";
   do {
@@ -735,7 +735,7 @@ LAB_1800f6080:
   pcVar4 = (char *)0x0;
 LAB_1800f609b:
   if ((unaff_RSI != -0x38) && (pcVar4 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar4 = "linear_inertia";
   do {
@@ -772,7 +772,7 @@ LAB_1800f6120:
   pcVar4 = (char *)0x0;
 LAB_1800f613b:
   if ((unaff_RSI != -0x3c) && (pcVar4 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar4 = "max_linear_velocity";
   do {
@@ -809,7 +809,7 @@ LAB_1800f61c0:
   pcVar4 = (char *)0x0;
 LAB_1800f61db:
   if ((unaff_RSI != -0x40) && (pcVar4 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar4 = "linear_velocity_multiplier";
   do {
@@ -846,7 +846,7 @@ LAB_1800f6260:
   pcVar4 = (char *)0x0;
 LAB_1800f627b:
   if ((unaff_RSI != -0x44) && (pcVar4 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar4 = "wind";
   do {
@@ -883,7 +883,7 @@ LAB_1800f6300:
   pcVar4 = (char *)0x0;
 LAB_1800f631b:
   if ((unaff_RSI != -0x4c) && (pcVar4 != (char *)0x0)) {
-    FUN_18010cbc0();
+    AdvancedSystemOptimizer();
   }
   pcVar4 = "air_drag_multiplier";
   do {
@@ -896,7 +896,7 @@ LAB_1800f631b:
       unaff_RDI = (char *)0x0;
 LAB_1800f63b8:
       if ((unaff_RSI + 0x48 != 0) && (unaff_RDI != (char *)0x0)) {
-        FUN_18010cbc0(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
+        AdvancedSystemOptimizer(unaff_RDI,&system_data_6430,unaff_RSI + 0x48);
       }
       return;
     }

@@ -341,7 +341,7 @@ FUN_1808ed250(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
     func_0x00018074b7d0(auStack_118,0x100,param_6);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,2,uVar2,&unknown_var_7336_ptr);
+    DataTransformer(iVar1,2,uVar2,&unknown_var_7336_ptr);
   }
 LAB_18073fff8:
   if (lStack_128 != 0) {
@@ -391,7 +391,7 @@ void FUN_1808ed27b(void)
     func_0x00018074b7d0(auStack_e0,0x100,in_stack_00000068);
     puStack_100 = auStack_e0;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar2,2,uVar1,&unknown_var_7336_ptr);
+    DataTransformer(iVar2,2,uVar1,&unknown_var_7336_ptr);
   }
 LAB_18073fff8:
   if (lStack_f0 != 0) {

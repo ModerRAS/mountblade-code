@@ -540,7 +540,7 @@ uint64_t FUN_18079e030(int64_t *param_1)
 {
   if (*(int64_t *)(*param_1 + 0xc228) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(*param_1 + 0xc228),
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(*param_1 + 0xc228),
                   &unknown_var_5760_ptr,0x322,1);
   }
   return 0;
