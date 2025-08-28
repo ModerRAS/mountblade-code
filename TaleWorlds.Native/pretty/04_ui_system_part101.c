@@ -629,11 +629,11 @@ void UISystemAlgorithmProcessor(longlong param_1, uint64_t param_2, int param_3)
     lVar4 = 0;
     
     // 执行算法处理操作
-    FUN_1807249d0(unaff_RSI + 0x10, param_1 + 0xac8, param_1 + 0x908, param_3 == 2,
-                  *(int32_t *)(param_1 + 0x914));
-    FUN_180734390(&stack0x00000030, param_1 + 0xad0, *(uint64_t *)(param_1 + 0xac0));
-    FUN_18072f4d0(unaff_RSI + 0x40, &stack0x00000030, *(int32_t *)(param_1 + 0x924),
-                  *(int32_t *)(param_1 + 0x1060));
+    UISystemComponentInitializer(unaff_RSI + 0x10, param_1 + 0xac8, param_1 + 0x908, param_3 == 2,
+                               *(int32_t *)(param_1 + 0x914));
+    UISystemStateManager(&stack0x00000030, param_1 + 0xad0, *(uint64_t *)(param_1 + 0xac0));
+    UISystemDataValidator(unaff_RSI + 0x40, &stack0x00000030, *(int32_t *)(param_1 + 0x924),
+                         *(int32_t *)(param_1 + 0x1060));
     
     // 检查系统配置
     if (*(int *)(param_1 + 0x948) == 1) {
@@ -667,8 +667,8 @@ void UISystemAlgorithmProcessor(longlong param_1, uint64_t param_2, int param_3)
     }
     
     // 执行最终数据处理
-    FUN_18072f4d0(unaff_RSI + 0x20, &stack0x00000050, (longlong)(int)uVar2,
-                  *(int32_t *)(param_1 + 0x1060));
+    UISystemDataValidator(unaff_RSI + 0x20, &stack0x00000050, (longlong)(int)uVar2,
+                         *(int32_t *)(param_1 + 0x1060));
     
     // 执行内存复制操作
     memcpy(param_1 + 0x928, &stack0x00000030, (longlong)*(int *)(param_1 + 0x924) * 2);
