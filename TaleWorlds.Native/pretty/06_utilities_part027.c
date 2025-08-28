@@ -1073,7 +1073,7 @@ void utilities_system_module_state_manager(void)
 
 {
   // 初始化系统模块状态
-  _DAT_180d49218 = &UNK_180a3c3e0;
+  *system_module_state_ptr = SYSTEM_INIT_VALUE;
   
   // 检查模块状态
   if (_DAT_180d49220 != 0) {
