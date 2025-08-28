@@ -160,7 +160,7 @@ void utilities_system_status_checker(uint64_t param_1, longlong param_2)
     // 根据检查结果和状态标志执行相应操作
     if ((system_check_result != 0) && (status_flag == '\0')) {
         LOCK();
-        _DAT_180c821d0 = 0;
+        g_system_status_flag = 0;
         UNLOCK();
     }
     return;
@@ -190,7 +190,7 @@ void utilities_system_status_validator(uint64_t param_1, longlong param_2)
     // 根据验证结果执行相应操作
     if ((validation_result != 0) && (validation_flag == '\0')) {
         LOCK();
-        _DAT_180c821d0 = 0;
+        g_system_status_flag = 0;
         UNLOCK();
     }
     return;
@@ -328,25 +328,25 @@ void utilities_system_initializer(void)
     longlong iterator_var2;
     
     // 设置全局指针
-    _DAT_180bf52c0 = &unknown_var_3456_ptr;
-    if (_DAT_180bf52c8 != 0) {
+    g_system_global_ptr1 = &system_initialization_ptr;
+    if (g_system_initialized_flag != 0) {
         // 系统已经初始化，执行错误处理
         FUN_18064e900();
     }
     
     // 重置系统状态
-    _DAT_180bf52c8 = 0;
-    _DAT_180bf52d8 = 0;
-    _DAT_180bf52c0 = &unknown_var_720_ptr;
+    g_system_initialized_flag = 0;
+    g_system_state_flag = 0;
+    g_system_global_ptr1 = &system_data_ptr;
     
     // 检查并初始化系统组件
-    if (_DAT_180bf5288 == 0) {
+    if (system_control_pointer_data_5288 == 0) {
         FUN_180048980();
-        iterator_var1 = _DAT_180bf5250;
-        for (iterator_var2 = _DAT_180bf5248; iterator_var2 != iterator_var1; iterator_var2 = iterator_var2 + 0x100) {
+        iterator_var1 = system_control_pointer_data_5250;
+        for (iterator_var2 = system_control_pointer_data_5248; iterator_var2 != iterator_var1; iterator_var2 = iterator_var2 + 0x100) {
             FUN_180046b10(iterator_var2);
         }
-        if (_DAT_180bf5248 == 0) {
+        if (system_control_pointer_data_5248 == 0) {
             return;
         }
         // 初始化失败，执行错误处理
@@ -364,7 +364,7 @@ void utilities_system_initializer(void)
  */
 void utilities_global_pointer_setter_1(void)
 {
-    _DAT_180bf5320 = &unknown_var_720_ptr;
+    system_control_pointer_data_5320 = &system_data_ptr;
     return;
 }
 
@@ -376,7 +376,7 @@ void utilities_global_pointer_setter_1(void)
  */
 void utilities_global_pointer_setter_2(void)
 {
-    _DAT_180bf5770 = &unknown_var_720_ptr;
+    system_control_pointer_data_5770 = &system_data_ptr;
     return;
 }
 
@@ -388,7 +388,7 @@ void utilities_global_pointer_setter_2(void)
  */
 void utilities_global_pointer_setter_3(void)
 {
-    _DAT_180bf5208 = &unknown_var_720_ptr;
+    system_control_pointer_data_5208 = &system_data_ptr;
     return;
 }
 
@@ -400,7 +400,7 @@ void utilities_global_pointer_setter_3(void)
  */
 void utilities_global_pointer_setter_4(void)
 {
-    _DAT_180bf5bc0 = &unknown_var_720_ptr;
+    system_control_pointer_data_5bc0 = &system_data_ptr;
     return;
 }
 
@@ -412,7 +412,7 @@ void utilities_global_pointer_setter_4(void)
  */
 void utilities_global_pointer_setter_5(void)
 {
-    _DAT_180bf5c30 = &unknown_var_720_ptr;
+    system_control_pointer_data_5c30 = &system_data_ptr;
     return;
 }
 
@@ -424,7 +424,7 @@ void utilities_global_pointer_setter_5(void)
  */
 void utilities_global_pointer_setter_6(void)
 {
-    _DAT_180bf6080 = &unknown_var_720_ptr;
+    system_control_pointer_data_6080 = &system_data_ptr;
     return;
 }
 
@@ -497,7 +497,7 @@ void utilities_mutex_destroyer_4(void)
 void utilities_handle_closer(void)
 {
     // 警告：无法恢复跳转表，将间接跳转作为调用处理
-    CloseHandle(_DAT_180c91900);
+    CloseHandle(system_pointer_data_1900);
     return;
 }
 
@@ -522,7 +522,7 @@ void utilities_mutex_destroyer_5(void)
  */
 void utilities_global_pointer_setter_7(void)
 {
-    _DAT_180d49160 = &unknown_var_720_ptr;
+    system_config_pointer_data_9160 = &system_data_ptr;
     return;
 }
 
@@ -534,7 +534,7 @@ void utilities_global_pointer_setter_7(void)
  */
 void utilities_global_pointer_setter_8(void)
 {
-    _DAT_180bf64d0 = &unknown_var_720_ptr;
+    system_control_pointer_data_64d0 = &system_data_ptr;
     return;
 }
 
@@ -546,7 +546,7 @@ void utilities_global_pointer_setter_8(void)
  */
 void utilities_global_pointer_setter_9(void)
 {
-    _DAT_180bf6530 = &unknown_var_720_ptr;
+    system_control_pointer_data_6530 = &system_data_ptr;
     return;
 }
 
@@ -558,7 +558,7 @@ void utilities_global_pointer_setter_9(void)
  */
 void utilities_global_pointer_setter_10(void)
 {
-    _DAT_180bf6590 = &unknown_var_720_ptr;
+    system_control_pointer_data_6590 = &system_data_ptr;
     return;
 }
 
@@ -570,7 +570,7 @@ void utilities_global_pointer_setter_10(void)
  */
 void utilities_global_pointer_setter_11(void)
 {
-    _DAT_180bf65c0 = &unknown_var_720_ptr;
+    system_control_pointer_data_65c0 = &system_data_ptr;
     return;
 }
 
@@ -582,7 +582,7 @@ void utilities_global_pointer_setter_11(void)
  */
 void utilities_global_pointer_setter_12(void)
 {
-    _DAT_180bf65f0 = &unknown_var_720_ptr;
+    system_control_pointer_data_65f0 = &system_data_ptr;
     return;
 }
 
@@ -594,7 +594,7 @@ void utilities_global_pointer_setter_12(void)
  */
 void utilities_global_pointer_setter_13(void)
 {
-    _DAT_180bf6620 = &unknown_var_720_ptr;
+    system_control_pointer_data_6620 = &system_data_ptr;
     return;
 }
 
@@ -606,7 +606,7 @@ void utilities_global_pointer_setter_13(void)
  */
 void utilities_global_pointer_setter_14(void)
 {
-    _DAT_180bf6650 = &unknown_var_720_ptr;
+    system_control_pointer_data_6650 = &system_data_ptr;
     return;
 }
 
@@ -618,7 +618,7 @@ void utilities_global_pointer_setter_14(void)
  */
 void utilities_global_pointer_setter_15(void)
 {
-    _DAT_180bf6680 = &unknown_var_720_ptr;
+    system_control_pointer_data_6680 = &system_data_ptr;
     return;
 }
 
@@ -630,7 +630,7 @@ void utilities_global_pointer_setter_15(void)
  */
 void utilities_global_pointer_setter_16(void)
 {
-    _DAT_180bf66b0 = &unknown_var_720_ptr;
+    system_control_pointer_data_66b0 = &system_data_ptr;
     return;
 }
 
@@ -648,14 +648,14 @@ void utilities_memory_manager(uint64_t param_1, uint64_t param_2, uint64_t param
 {
     longlong *memory_ptr;
     
-    memory_ptr = _DAT_180d49200;
-    FUN_18008d1f0(param_1, _DAT_180d49200[1], param_3, param_4, 0xfffffffffffffffe);
-    _DAT_180d49200[1] = (longlong)memory_ptr;
-    *_DAT_180d49200 = (longlong)memory_ptr;
-    _DAT_180d49200[2] = (longlong)memory_ptr;
-    _DAT_180d49208 = 0;
+    memory_ptr = system_config_pointer_data_9200;
+    FUN_18008d1f0(param_1, system_config_pointer_data_9200[1], param_3, param_4, 0xfffffffffffffffe);
+    system_config_pointer_data_9200[1] = (longlong)memory_ptr;
+    *system_config_pointer_data_9200 = (longlong)memory_ptr;
+    system_config_pointer_data_9200[2] = (longlong)memory_ptr;
+    system_config_pointer_data_9208 = 0;
     // 警告：无法恢复跳转表，将间接跳转作为调用处理
-    free(_DAT_180d49200, 0x58);
+    free(system_config_pointer_data_9200, 0x58);
     return;
 }
 
@@ -667,7 +667,7 @@ void utilities_memory_manager(uint64_t param_1, uint64_t param_2, uint64_t param
  */
 void utilities_global_pointer_setter_17(void)
 {
-    _DAT_180bf52e8 = &unknown_var_720_ptr;
+    system_control_pointer_data_52e8 = &system_data_ptr;
     return;
 }
 
@@ -679,7 +679,7 @@ void utilities_global_pointer_setter_17(void)
  */
 void utilities_global_pointer_setter_18(void)
 {
-    _DAT_180bf5738 = &unknown_var_720_ptr;
+    system_control_pointer_data_5738 = &system_data_ptr;
     return;
 }
 
@@ -704,14 +704,14 @@ void utilities_mutex_destroyer_6(void)
  */
 void utilities_system_state_resetter_1(void)
 {
-    _DAT_180d49218 = &unknown_var_3456_ptr;
-    if (_DAT_180d49220 != 0) {
+    system_config_pointer_data_9218 = &system_initialization_ptr;
+    if (system_config_pointer_data_9220 != 0) {
         // 系统状态异常，执行错误处理
         FUN_18064e900();
     }
-    _DAT_180d49220 = 0;
-    _DAT_180d49230 = 0;
-    _DAT_180d49218 = &unknown_var_720_ptr;
+    system_config_pointer_data_9220 = 0;
+    system_config_pointer_data_9230 = 0;
+    system_config_pointer_data_9218 = &system_data_ptr;
     return;
 }
 
@@ -723,14 +723,14 @@ void utilities_system_state_resetter_1(void)
  */
 void utilities_system_state_resetter_2(void)
 {
-    _DAT_180d49240 = &unknown_var_3456_ptr;
-    if (_DAT_180d49248 != 0) {
+    system_config_pointer_data_9240 = &system_initialization_ptr;
+    if (system_config_pointer_data_9248 != 0) {
         // 系统状态异常，执行错误处理
         FUN_18064e900();
     }
-    _DAT_180d49248 = 0;
-    _DAT_180d49258 = 0;
-    _DAT_180d49240 = &unknown_var_720_ptr;
+    system_config_pointer_data_9248 = 0;
+    system_config_pointer_data_9258 = 0;
+    system_config_pointer_data_9240 = &system_data_ptr;
     return;
 }
 
@@ -747,17 +747,17 @@ void utilities_exception_handler(void)
     longlong exception_address;
     ulonglong exception_mask;
     
-    exception_ptr = _DAT_180d493f8;
-    if (_DAT_180d493f8 == (uint64_t *)0x0) {
+    exception_ptr = system_config_pointer_data_93f8;
+    if (system_config_pointer_data_93f8 == (uint64_t *)0x0) {
         return;
     }
     
-    exception_mask = (ulonglong)_DAT_180d493f8 & 0xffffffffffc00000;
+    exception_mask = (ulonglong)system_config_pointer_data_93f8 & 0xffffffffffc00000;
     if (exception_mask != 0) {
-        exception_address = exception_mask + 0x80 + ((longlong)_DAT_180d493f8 - exception_mask >> 0x10) * 0x50;
+        exception_address = exception_mask + 0x80 + ((longlong)system_config_pointer_data_93f8 - exception_mask >> 0x10) * 0x50;
         exception_address = exception_address - (ulonglong)*(uint *)(exception_address + 4);
         if ((*(void ***)(exception_mask + 0x70) == &ExceptionList) && (*(char *)(exception_address + 0xe) == '\0')) {
-            *_DAT_180d493f8 = *(uint64_t *)(exception_address + 0x20);
+            *system_config_pointer_data_93f8 = *(uint64_t *)(exception_address + 0x20);
             *(uint64_t **)(exception_address + 0x20) = exception_ptr;
             exception_counter = (int *)(exception_address + 0x18);
             *exception_counter = *exception_counter + -1;
@@ -768,7 +768,7 @@ void utilities_exception_handler(void)
         }
         else {
             func_0x00018064e870(exception_mask, CONCAT71(0xff000000, *(void ***)(exception_mask + 0x70) == &ExceptionList),
-                                  _DAT_180d493f8, exception_mask, 0xfffffffffffffffe);
+                                  system_config_pointer_data_93f8, exception_mask, 0xfffffffffffffffe);
         }
     }
     return;
@@ -782,14 +782,14 @@ void utilities_exception_handler(void)
  */
 void utilities_system_state_resetter_3(void)
 {
-    _DAT_180d49638 = &unknown_var_3456_ptr;
-    if (_DAT_180d49640 != 0) {
+    system_config_pointer_data_9638 = &system_initialization_ptr;
+    if (system_config_pointer_data_9640 != 0) {
         // 系统状态异常，执行错误处理
         FUN_18064e900();
     }
-    _DAT_180d49640 = 0;
-    _DAT_180d49650 = 0;
-    _DAT_180d49638 = &unknown_var_720_ptr;
+    system_config_pointer_data_9640 = 0;
+    system_config_pointer_data_9650 = 0;
+    system_config_pointer_data_9638 = &system_data_ptr;
     return;
 }
 
@@ -801,7 +801,7 @@ void utilities_system_state_resetter_3(void)
  */
 void utilities_global_pointer_setter_19(void)
 {
-    _DAT_180bf7250 = &unknown_var_720_ptr;
+    system_control_pointer_data_7250 = &system_data_ptr;
     return;
 }
 
@@ -813,7 +813,7 @@ void utilities_global_pointer_setter_19(void)
  */
 void utilities_global_pointer_setter_20(void)
 {
-    _DAT_180bf72b0 = &unknown_var_720_ptr;
+    system_control_pointer_data_72b0 = &system_data_ptr;
     return;
 }
 
@@ -825,7 +825,7 @@ void utilities_global_pointer_setter_20(void)
  */
 void utilities_global_pointer_setter_21(void)
 {
-    _DAT_180bf7310 = &unknown_var_720_ptr;
+    system_control_pointer_data_7310 = &system_data_ptr;
     return;
 }
 
@@ -839,14 +839,14 @@ void utilities_system_cleaner(void)
 {
     if (system_memory_1d50 != '\0') {
         FUN_18005a050();
-        if ((1 < _DAT_180c91d30) && (_DAT_180c91d28 != 0)) {
+        if ((1 < system_pointer_data_1d30) && (system_pointer_data_1d28 != 0)) {
             // 系统资源未正确释放，执行错误处理
             FUN_18064e900();
         }
-        if (_DAT_180c91d18 != (longlong *)0x0) {
-            (**(code **)(*_DAT_180c91d18 + 0x38))();
+        if (system_pointer_data_1d18 != (longlong *)0x0) {
+            (**(code **)(*system_pointer_data_1d18 + 0x38))();
         }
-        if (_DAT_180c91cf0 != 0) {
+        if (system_pointer_data_1cf0 != 0) {
             // 系统资源未正确释放，执行错误处理
             FUN_18064e900();
         }
@@ -865,7 +865,7 @@ void utilities_system_cleaner(void)
  */
 void utilities_global_pointer_setter_22(void)
 {
-    _DAT_180bf90b0 = &unknown_var_720_ptr;
+    system_control_pointer_data_90b0 = &system_data_ptr;
     return;
 }
 
@@ -877,7 +877,7 @@ void utilities_global_pointer_setter_22(void)
  */
 void utilities_global_pointer_setter_23(void)
 {
-    _DAT_180bf5b88 = &unknown_var_720_ptr;
+    system_control_pointer_data_5b88 = &system_data_ptr;
     return;
 }
 
@@ -889,14 +889,14 @@ void utilities_global_pointer_setter_23(void)
  */
 void utilities_system_state_resetter_4(void)
 {
-    _DAT_180d48db8 = &unknown_var_3456_ptr;
-    if (_DAT_180d48dc0 != 0) {
+    system_config_pointer_data_8db8 = &system_initialization_ptr;
+    if (system_config_pointer_data_8dc0 != 0) {
         // 系统状态异常，执行错误处理
         FUN_18064e900();
     }
-    _DAT_180d48dc0 = 0;
-    _DAT_180d48dd0 = 0;
-    _DAT_180d48db8 = &unknown_var_720_ptr;
+    system_config_pointer_data_8dc0 = 0;
+    system_config_pointer_data_8dd0 = 0;
+    system_config_pointer_data_8db8 = &system_data_ptr;
     return;
 }
 
@@ -921,7 +921,7 @@ void utilities_mutex_destroyer_7(void)
  */
 void utilities_global_pointer_setter_24(void)
 {
-    _DAT_180d49730 = &unknown_var_720_ptr;
+    system_config_pointer_data_9730 = &system_data_ptr;
     return;
 }
 
@@ -934,16 +934,16 @@ void utilities_global_pointer_setter_24(void)
 void utilities_system_initializer_2(void)
 {
     FUN_180320e20(0x180d497e0);
-    if (_DAT_180d49970 != 0) {
+    if (system_module_config != 0) {
         // 系统已经初始化，执行错误处理
         FUN_18064e900();
     }
-    if (_DAT_180d49950 != 0) {
+    if (system_resource_config != 0) {
         // 系统组件已存在，执行错误处理
         FUN_18064e900();
     }
     FUN_180320b20(0x180d498a0);
-    _DAT_180d49830 = &unknown_var_720_ptr;
+    system_config_data = &system_data_ptr;
     return;
 }
 
@@ -958,20 +958,20 @@ void utilities_memory_releaser(void)
     longlong memory_ptr1;
     ulonglong memory_size;
     
-    if (_DAT_180c91f18 != 0) {
-        memory_size = _DAT_180c91f28 - _DAT_180c91f18 & 0xfffffffffffffff8;
-        memory_ptr1 = _DAT_180c91f18;
+    if (system_pointer_data_1f18 != 0) {
+        memory_size = system_pointer_data_1f28 - system_pointer_data_1f18 & 0xfffffffffffffff8;
+        memory_ptr1 = system_pointer_data_1f18;
         if (0xfff < memory_size) {
-            memory_ptr1 = *(longlong *)(_DAT_180c91f18 + -8);
+            memory_ptr1 = *(longlong *)(system_pointer_data_1f18 + -8);
             memory_size = memory_size + 0x27;
-            if (0x1f < (_DAT_180c91f18 - memory_ptr1) - 8U) {
+            if (0x1f < (system_pointer_data_1f18 - memory_ptr1) - 8U) {
                 // 内存验证失败，执行错误处理
                 _invalid_parameter_noinfo_noreturn();
             }
         }
         free(memory_ptr1, memory_size);
-        _DAT_180c91f28 = 0;
-        _DAT_180c91f18 = 0;
+        system_pointer_data_1f28 = 0;
+        system_pointer_data_1f18 = 0;
         uRam0000000180c91f20 = 0;
     }
     return;
@@ -985,7 +985,7 @@ void utilities_memory_releaser(void)
  */
 void utilities_global_pointer_setter_25(void)
 {
-    _DAT_180bf91b0 = &unknown_var_720_ptr;
+    system_control_pointer_data_91b0 = &system_data_ptr;
     return;
 }
 
@@ -997,7 +997,7 @@ void utilities_global_pointer_setter_25(void)
  */
 void utilities_global_pointer_setter_26(void)
 {
-    _DAT_180bf9210 = &unknown_var_720_ptr;
+    system_control_pointer_data_9210 = &system_data_ptr;
     return;
 }
 
@@ -1009,7 +1009,7 @@ void utilities_global_pointer_setter_26(void)
  */
 void utilities_global_pointer_setter_27(void)
 {
-    _DAT_180bf9270 = &unknown_var_720_ptr;
+    system_control_pointer_data_9270 = &system_data_ptr;
     return;
 }
 
@@ -1021,7 +1021,7 @@ void utilities_global_pointer_setter_27(void)
  */
 void utilities_global_pointer_setter_28(void)
 {
-    _DAT_180bf92d0 = &unknown_var_720_ptr;
+    system_control_pointer_data_92d0 = &system_data_ptr;
     return;
 }
 
@@ -1033,7 +1033,7 @@ void utilities_global_pointer_setter_28(void)
  */
 void utilities_global_pointer_setter_29(void)
 {
-    _DAT_180bf9330 = &unknown_var_720_ptr;
+    system_control_pointer_data_9330 = &system_data_ptr;
     return;
 }
 
@@ -1045,7 +1045,7 @@ void utilities_global_pointer_setter_29(void)
  */
 void utilities_global_pointer_setter_30(void)
 {
-    _DAT_180bf9390 = &unknown_var_720_ptr;
+    system_control_pointer_data_9390 = &system_data_ptr;
     return;
 }
 
@@ -1057,7 +1057,7 @@ void utilities_global_pointer_setter_30(void)
  */
 void utilities_global_pointer_setter_31(void)
 {
-    _DAT_180bf93f0 = &unknown_var_720_ptr;
+    system_control_pointer_data_93f0 = &system_data_ptr;
     return;
 }
 
@@ -1069,7 +1069,7 @@ void utilities_global_pointer_setter_31(void)
  */
 void utilities_global_pointer_setter_32(void)
 {
-    _DAT_180bf9450 = &unknown_var_720_ptr;
+    system_control_pointer_data_9450 = &system_data_ptr;
     return;
 }
 
@@ -1081,7 +1081,7 @@ void utilities_global_pointer_setter_32(void)
  */
 void utilities_global_pointer_setter_33(void)
 {
-    _DAT_180bf94b0 = &unknown_var_720_ptr;
+    system_control_pointer_data_94b0 = &system_data_ptr;
     return;
 }
 
@@ -1093,7 +1093,7 @@ void utilities_global_pointer_setter_33(void)
  */
 void utilities_global_pointer_setter_34(void)
 {
-    _DAT_180bf9510 = &unknown_var_720_ptr;
+    system_control_pointer_data_9510 = &system_data_ptr;
     return;
 }
 
@@ -1105,7 +1105,7 @@ void utilities_global_pointer_setter_34(void)
  */
 void utilities_global_pointer_setter_35(void)
 {
-    _DAT_180bf9570 = &unknown_var_720_ptr;
+    system_control_pointer_data_9570 = &system_data_ptr;
     return;
 }
 
@@ -1117,7 +1117,7 @@ void utilities_global_pointer_setter_35(void)
  */
 void utilities_global_pointer_setter_36(void)
 {
-    _DAT_180bf95d0 = &unknown_var_720_ptr;
+    system_control_pointer_data_95d0 = &system_data_ptr;
     return;
 }
 
@@ -1129,7 +1129,7 @@ void utilities_global_pointer_setter_36(void)
  */
 void utilities_global_pointer_setter_37(void)
 {
-    _DAT_180bf9630 = &unknown_var_720_ptr;
+    system_control_pointer_data_9630 = &system_data_ptr;
     return;
 }
 
@@ -1141,7 +1141,7 @@ void utilities_global_pointer_setter_37(void)
  */
 void utilities_global_pointer_setter_38(void)
 {
-    _DAT_180bf9690 = &unknown_var_720_ptr;
+    system_control_pointer_data_9690 = &system_data_ptr;
     return;
 }
 
@@ -1153,7 +1153,7 @@ void utilities_global_pointer_setter_38(void)
  */
 void utilities_global_pointer_setter_39(void)
 {
-    _DAT_180bf96f0 = &unknown_var_720_ptr;
+    system_control_pointer_data_96f0 = &system_data_ptr;
     return;
 }
 
@@ -1165,7 +1165,7 @@ void utilities_global_pointer_setter_39(void)
  */
 void utilities_global_pointer_setter_40(void)
 {
-    _DAT_180bf9750 = &unknown_var_720_ptr;
+    system_control_pointer_data_9750 = &system_data_ptr;
     return;
 }
 
@@ -1177,7 +1177,7 @@ void utilities_global_pointer_setter_40(void)
  */
 void utilities_global_pointer_setter_41(void)
 {
-    _DAT_180bf97b0 = &unknown_var_720_ptr;
+    system_control_pointer_data_97b0 = &system_data_ptr;
     return;
 }
 
@@ -1189,7 +1189,7 @@ void utilities_global_pointer_setter_41(void)
  */
 void utilities_global_pointer_setter_42(void)
 {
-    _DAT_180bf9810 = &unknown_var_720_ptr;
+    system_control_pointer_data_9810 = &system_data_ptr;
     return;
 }
 
@@ -1201,7 +1201,7 @@ void utilities_global_pointer_setter_42(void)
  */
 void utilities_global_pointer_setter_43(void)
 {
-    _DAT_180bf9870 = &unknown_var_720_ptr;
+    system_control_pointer_data_9870 = &system_data_ptr;
     return;
 }
 
@@ -1213,7 +1213,7 @@ void utilities_global_pointer_setter_43(void)
  */
 void utilities_global_pointer_setter_44(void)
 {
-    _DAT_180bf98d0 = &unknown_var_720_ptr;
+    system_control_pointer_data_98d0 = &system_data_ptr;
     return;
 }
 
@@ -1225,7 +1225,7 @@ void utilities_global_pointer_setter_44(void)
  */
 void utilities_global_pointer_setter_45(void)
 {
-    _DAT_180bf9930 = &unknown_var_720_ptr;
+    system_control_pointer_data_9930 = &system_data_ptr;
     return;
 }
 
@@ -1237,7 +1237,7 @@ void utilities_global_pointer_setter_45(void)
  */
 void utilities_global_pointer_setter_46(void)
 {
-    _DAT_180bf9990 = &unknown_var_720_ptr;
+    system_control_pointer_data_9990 = &system_data_ptr;
     return;
 }
 
@@ -1249,7 +1249,7 @@ void utilities_global_pointer_setter_46(void)
  */
 void utilities_global_pointer_setter_47(void)
 {
-    _DAT_180bf99f0 = &unknown_var_720_ptr;
+    system_control_pointer_data_99f0 = &system_data_ptr;
     return;
 }
 
@@ -1261,7 +1261,7 @@ void utilities_global_pointer_setter_47(void)
  */
 void utilities_global_pointer_setter_48(void)
 {
-    _DAT_180bf9a50 = &unknown_var_720_ptr;
+    system_control_pointer_data_9a50 = &system_data_ptr;
     return;
 }
 
@@ -1273,7 +1273,7 @@ void utilities_global_pointer_setter_48(void)
  */
 void utilities_global_pointer_setter_49(void)
 {
-    _DAT_180bf9ab0 = &unknown_var_720_ptr;
+    system_control_pointer_data_9ab0 = &system_data_ptr;
     return;
 }
 
@@ -1285,7 +1285,7 @@ void utilities_global_pointer_setter_49(void)
  */
 void utilities_global_pointer_setter_50(void)
 {
-    _DAT_180bf9b10 = &unknown_var_720_ptr;
+    system_control_pointer_data_9b10 = &system_data_ptr;
     return;
 }
 
@@ -1297,7 +1297,7 @@ void utilities_global_pointer_setter_50(void)
  */
 void utilities_global_pointer_setter_51(void)
 {
-    _DAT_180bf9b70 = &unknown_var_720_ptr;
+    system_control_pointer_data_9b70 = &system_data_ptr;
     return;
 }
 
@@ -1309,7 +1309,7 @@ void utilities_global_pointer_setter_51(void)
  */
 void utilities_global_pointer_setter_52(void)
 {
-    _DAT_180bf9bd0 = &unknown_var_720_ptr;
+    system_control_pointer_data_9bd0 = &system_data_ptr;
     return;
 }
 
@@ -1321,7 +1321,7 @@ void utilities_global_pointer_setter_52(void)
  */
 void utilities_global_pointer_setter_53(void)
 {
-    _DAT_180bf9c30 = &unknown_var_720_ptr;
+    system_control_pointer_data_9c30 = &system_data_ptr;
     return;
 }
 
@@ -1333,7 +1333,7 @@ void utilities_global_pointer_setter_53(void)
  */
 void utilities_global_pointer_setter_54(void)
 {
-    _DAT_180bf9c90 = &unknown_var_720_ptr;
+    system_control_pointer_data_9c90 = &system_data_ptr;
     return;
 }
 
@@ -1345,7 +1345,7 @@ void utilities_global_pointer_setter_54(void)
  */
 void utilities_global_pointer_setter_55(void)
 {
-    _DAT_180bf9cf0 = &unknown_var_720_ptr;
+    system_control_pointer_data_9cf0 = &system_data_ptr;
     return;
 }
 
@@ -1357,7 +1357,7 @@ void utilities_global_pointer_setter_55(void)
  */
 void utilities_global_pointer_setter_56(void)
 {
-    _DAT_180bf9d50 = &unknown_var_720_ptr;
+    system_control_pointer_data_9d50 = &system_data_ptr;
     return;
 }
 
@@ -1369,7 +1369,7 @@ void utilities_global_pointer_setter_56(void)
  */
 void utilities_global_pointer_setter_57(void)
 {
-    _DAT_180bf9db0 = &unknown_var_720_ptr;
+    system_control_pointer_data_9db0 = &system_data_ptr;
     return;
 }
 
@@ -1381,7 +1381,7 @@ void utilities_global_pointer_setter_57(void)
  */
 void utilities_global_pointer_setter_58(void)
 {
-    _DAT_180bf9e10 = &unknown_var_720_ptr;
+    system_control_pointer_data_9e10 = &system_data_ptr;
     return;
 }
 
@@ -1393,7 +1393,7 @@ void utilities_global_pointer_setter_58(void)
  */
 void utilities_global_pointer_setter_59(void)
 {
-    _DAT_180bf9e70 = &unknown_var_720_ptr;
+    system_control_pointer_data_9e70 = &system_data_ptr;
     return;
 }
 
@@ -1405,7 +1405,7 @@ void utilities_global_pointer_setter_59(void)
  */
 void utilities_global_pointer_setter_60(void)
 {
-    _DAT_180bf9ed0 = &unknown_var_720_ptr;
+    system_control_pointer_data_9ed0 = &system_data_ptr;
     return;
 }
 
@@ -1417,7 +1417,7 @@ void utilities_global_pointer_setter_60(void)
  */
 void utilities_global_pointer_setter_61(void)
 {
-    _DAT_180bf9f30 = &unknown_var_720_ptr;
+    system_control_pointer_data_9f30 = &system_data_ptr;
     return;
 }
 
@@ -1429,7 +1429,7 @@ void utilities_global_pointer_setter_61(void)
  */
 void utilities_global_pointer_setter_62(void)
 {
-    _DAT_180bf9f90 = &unknown_var_720_ptr;
+    system_control_pointer_data_9f90 = &system_data_ptr;
     return;
 }
 
@@ -1441,7 +1441,7 @@ void utilities_global_pointer_setter_62(void)
  */
 void utilities_global_pointer_setter_63(void)
 {
-    _DAT_180bf9ff0 = &unknown_var_720_ptr;
+    system_control_pointer_data_9ff0 = &system_data_ptr;
     return;
 }
 
@@ -1453,7 +1453,7 @@ void utilities_global_pointer_setter_63(void)
  */
 void utilities_global_pointer_setter_64(void)
 {
-    _DAT_180bfa050 = &unknown_var_720_ptr;
+    system_control_pointer_data_a050 = &system_data_ptr;
     return;
 }
 
@@ -1465,7 +1465,7 @@ void utilities_global_pointer_setter_64(void)
  */
 void utilities_global_pointer_setter_65(void)
 {
-    _DAT_180bfa0b0 = &unknown_var_720_ptr;
+    system_control_pointer_data_a0b0 = &system_data_ptr;
     return;
 }
 
@@ -1477,7 +1477,7 @@ void utilities_global_pointer_setter_65(void)
  */
 void utilities_global_pointer_setter_66(void)
 {
-    _DAT_180bfa110 = &unknown_var_720_ptr;
+    system_control_pointer_data_a110 = &system_data_ptr;
     return;
 }
 
@@ -1489,7 +1489,7 @@ void utilities_global_pointer_setter_66(void)
  */
 void utilities_global_pointer_setter_67(void)
 {
-    _DAT_180bfa170 = &unknown_var_720_ptr;
+    system_control_pointer_data_a170 = &system_data_ptr;
     return;
 }
 
@@ -1501,7 +1501,7 @@ void utilities_global_pointer_setter_67(void)
  */
 void utilities_global_pointer_setter_68(void)
 {
-    _DAT_180bfa1d0 = &unknown_var_720_ptr;
+    system_control_pointer_data_a1d0 = &system_data_ptr;
     return;
 }
 
@@ -1513,7 +1513,7 @@ void utilities_global_pointer_setter_68(void)
  */
 void utilities_global_pointer_setter_69(void)
 {
-    _DAT_180bfa230 = &unknown_var_720_ptr;
+    system_control_pointer_data_a230 = &system_data_ptr;
     return;
 }
 
@@ -1525,7 +1525,7 @@ void utilities_global_pointer_setter_69(void)
  */
 void utilities_global_pointer_setter_70(void)
 {
-    _DAT_180bfa290 = &unknown_var_720_ptr;
+    system_control_pointer_data_a290 = &system_data_ptr;
     return;
 }
 
@@ -1545,16 +1545,16 @@ void utilities_callback_executor_1(uint64_t param_1, uint64_t param_2, uint64_t 
     uint64_t *callback_ptr2;
     uint64_t callback_param;
     
-    callback_ptr1 = _DAT_180bfa2f0;
+    callback_ptr1 = system_control_pointer_data_a2f0;
     callback_param = 0xfffffffffffffffe;
-    callback_ptr2 = _DAT_180bfa2e8;
-    if (_DAT_180bfa2e8 != _DAT_180bfa2f0) {
+    callback_ptr2 = system_control_pointer_data_a2e8;
+    if (system_control_pointer_data_a2e8 != system_control_pointer_data_a2f0) {
         do {
             (**(code **)*callback_ptr2)(callback_ptr2, 0, param_3, param_4, callback_param);
             callback_ptr2 = callback_ptr2 + 0xb;
         } while (callback_ptr2 != callback_ptr1);
     }
-    if (_DAT_180bfa2e8 == (uint64_t *)0x0) {
+    if (system_control_pointer_data_a2e8 == (uint64_t *)0x0) {
         return;
     }
     // 回调执行失败，执行错误处理
@@ -1577,16 +1577,16 @@ void utilities_callback_executor_2(uint64_t param_1, uint64_t param_2, uint64_t 
     uint64_t *callback_ptr2;
     uint64_t callback_param;
     
-    callback_ptr1 = _DAT_180bfa310;
+    callback_ptr1 = system_control_pointer_data_a310;
     callback_param = 0xfffffffffffffffe;
-    callback_ptr2 = _DAT_180bfa308;
-    if (_DAT_180bfa308 != _DAT_180bfa310) {
+    callback_ptr2 = system_control_pointer_data_a308;
+    if (system_control_pointer_data_a308 != system_control_pointer_data_a310) {
         do {
             (**(code **)*callback_ptr2)(callback_ptr2, 0, param_3, param_4, callback_param);
             callback_ptr2 = callback_ptr2 + 0xb;
         } while (callback_ptr2 != callback_ptr1);
     }
-    if (_DAT_180bfa308 == (uint64_t *)0x0) {
+    if (system_control_pointer_data_a308 == (uint64_t *)0x0) {
         return;
     }
     // 回调执行失败，执行错误处理
@@ -1609,16 +1609,16 @@ void utilities_callback_executor_3(uint64_t param_1, uint64_t param_2, uint64_t 
     uint64_t *callback_ptr2;
     uint64_t callback_param;
     
-    callback_ptr1 = _DAT_180bfa330;
+    callback_ptr1 = system_control_pointer_data_a330;
     callback_param = 0xfffffffffffffffe;
-    callback_ptr2 = _DAT_180bfa328;
-    if (_DAT_180bfa328 != _DAT_180bfa330) {
+    callback_ptr2 = system_control_pointer_data_a328;
+    if (system_control_pointer_data_a328 != system_control_pointer_data_a330) {
         do {
             (**(code **)*callback_ptr2)(callback_ptr2, 0, param_3, param_4, callback_param);
             callback_ptr2 = callback_ptr2 + 0xb;
         } while (callback_ptr2 != callback_ptr1);
     }
-    if (_DAT_180bfa328 == (uint64_t *)0x0) {
+    if (system_control_pointer_data_a328 == (uint64_t *)0x0) {
         return;
     }
     // 回调执行失败，执行错误处理
@@ -1679,20 +1679,20 @@ void utilities_memory_cleaner_2(void)
     longlong memory_ptr1;
     longlong memory_ptr2;
     
-    if (0xf < _DAT_180bfc118) {
+    if (0xf < system_control_pointer_data_c118) {
         memory_ptr1 = CONCAT71(uRam0000000180bfc101, system_memory_c100);
         memory_ptr2 = memory_ptr1;
-        if (0xfff < _DAT_180bfc118 + 1) {
+        if (0xfff < system_control_pointer_data_c118 + 1) {
             memory_ptr2 = *(longlong *)(memory_ptr1 + -8);
             if (0x1f < (memory_ptr1 - memory_ptr2) - 8U) {
                 // 内存验证失败，执行错误处理
-                _invalid_parameter_noinfo_noreturn(memory_ptr1 - memory_ptr2, _DAT_180bfc118 + 0x28);
+                _invalid_parameter_noinfo_noreturn(memory_ptr1 - memory_ptr2, system_control_pointer_data_c118 + 0x28);
             }
         }
         free(memory_ptr2);
     }
-    _DAT_180bfc110 = 0;
-    _DAT_180bfc118 = 0xf;
+    system_control_pointer_data_c110 = 0;
+    system_control_pointer_data_c118 = 0xf;
     return;
 }
 
