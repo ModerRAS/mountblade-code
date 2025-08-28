@@ -1,10 +1,47 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 06_utilities_part001.c - 101 个函数
+// 06_utilities_part001.c - 工具系统核心函数声明
+// 本文件包含工具系统的核心函数声明，包括字符串处理、数学计算、内存管理、数据转换等工具函数
+//
+// 主要功能模块：
+// 1. 基础工具函数：FUN_1809414f0 - FUN_180941710 - 基础系统工具函数
+// 2. 数据处理工具：FUN_1809417a0 - FUN_1809418e0 - 数据处理和转换工具
+// 3. 内存管理工具：FUN_180941900 - FUN_1809419c0 - 内存分配和管理工具
+// 4. 字符串处理工具：FUN_1809419d0 - FUN_180941bd0 - 字符串操作和处理工具
+// 5. 数学计算工具：FUN_180941b90 - FUN_180941fc0 - 数学计算和统计工具
+// 6. 系统工具函数：FUN_180941d00 - FUN_1809431a0 - 系统级工具函数
 
-#include "TaleWorlds.Native.Split.h"
+// 全局常量定义
+// 基础系统数据区
+#define SYSTEM_DATA_AREA_1      DAT_180bf5290
+#define SYSTEM_DATA_AREA_2      DAT_180bf52a0
+#define SYSTEM_DATA_AREA_3      DAT_180bf52c0
+#define SYSTEM_DATA_AREA_4      DAT_180bf52c8
+#define SYSTEM_DATA_AREA_5      DAT_180bf52d0
+#define SYSTEM_DATA_AREA_6      DAT_180bf52d8
 
-// 06_utilities.c - 473 个函数
+// 系统状态标志
+#define SYSTEM_STATUS_FLAG      DAT_180bf5240
+#define SYSTEM_CONFIG_DATA      DAT_180bf52a8
+#define SYSTEM_CONFIG_EXTRA    DAT_180bf52b0
+#define SYSTEM_ERROR_FLAG       DAT_180bf52e0
+
+// 系统指针和引用
+#define SYSTEM_REFERENCE_PTR   UNK_180a3c3e0
+#define SYSTEM_HANDLE_PTR      UNK_180bf5278
+#define SYSTEM_CONTEXT_PTR     UNK_180bf5298
+
+// 函数别名定义
+#define initialize_system_tools   FUN_1809414f0
+#define process_system_data      FUN_180941590
+#define handle_system_request    FUN_1809415b0
+#define manage_system_resources  FUN_1809415d0
+#define execute_system_command  FUN_1809415f0
+#define validate_system_state    FUN_180941610
+#define get_system_status        FUN_180941630
+#define set_system_config        FUN_180941650
+#define reset_system_counters    FUN_180941690
+#define update_system_parameters FUN_1809416d0
 
 
 // 函数: undefined FUN_1809414f0;

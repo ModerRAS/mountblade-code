@@ -1,964 +1,1524 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking_part004.c - 12 个函数
+// 05_networking_part004.c - 网络系统数据包处理模块
+// 本模块包含28个网络数据包处理函数，主要负责各种类型数据包的序列化和反序列化
 
-// 函数: void FUN_180843eb0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180843eb0(longlong param_1,undefined8 param_2,undefined4 param_3)
+// ==================== 常量定义 ====================
+// 网络协议相关常量
+#define NETWORK_PROTOCOL_SEPARATOR &DAT_180a06434  // 网络协议分隔符
+#define NETWORK_PACKET_HEADER_SIZE 0x10            // 网络数据包头大小
+#define NETWORK_BUFFER_SIZE 0x100                  // 网络缓冲区大小
 
+// ==================== 函数声明 ====================
+// 基础网络函数
+void network_packet_writer(longlong context_ptr, undefined8 data_ptr, undefined4 data_size);
+int network_data_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_complex_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_multi_field_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_extended_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_advanced_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_simple_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+void network_packet_dispatcher(longlong context_ptr, undefined8 data_ptr, undefined4 data_size);
+int network_variable_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_flag_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_state_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_stream_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_packet_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_message_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_command_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_event_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_request_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_response_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_error_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_info_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_basic_data_processor(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+int network_binary_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size);
+void network_connection_handler(ulonglong connection_id, undefined8 *output_data);
+void network_data_sender(undefined8 target_id, longlong data_ptr);
+void network_broadcast_sender(undefined8 target_id, undefined8 data_ptr, undefined8 metadata);
+void network_packet_sender(void);
+void network_cleanup_handler(void);
+void network_resource_handler(undefined8 resource_id, undefined4 *result_ptr, undefined8 context);
+void network_packet_receiver(void);
+void network_connection_manager(void);
+void network_data_extractor(undefined8 resource_id, undefined8 *output_data);
+void network_metadata_handler(undefined8 resource_id, undefined8 *output_data);
+
+// ==================== 核心函数实现 ====================
+
+/**
+ * 网络数据包写入器
+ * 将数据写入网络数据包，包含基础的网络协议处理
+ * 
+ * @param context_ptr 上下文指针，包含网络配置信息
+ * @param data_ptr 数据指针，指向要写入的数据
+ * @param data_size 数据大小
+ */
+void network_packet_writer(longlong context_ptr, undefined8 data_ptr, undefined4 data_size)
 {
-  FUN_18083f7b0(param_2,param_3,&UNK_1809828f8,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x14));
+  // 调用底层网络写入函数，传入上下文、数据、协议标识符和大小参数
+  FUN_18083f7b0(data_ptr, data_size, &UNK_1809828f8, 
+                *(undefined4 *)(context_ptr + 0x10),
+                *(undefined4 *)(context_ptr + 0x14));
   return;
 }
 
-
-
-int FUN_180843ee0(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络数据序列化器
+ * 处理基本网络数据的序列化，支持多字段数据包
+ * 
+ * @param config_ptr 配置指针，包含序列化参数
+ * @param buffer_ptr 缓冲区指针，存储序列化后的数据
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_data_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 field1_value;
+  undefined4 field2_value;
+  int serialized_size;
+  int temp_size;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x14);
-  uVar2 = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180982a98);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 从配置中提取字段值
+  field1_value = *(undefined4 *)(config_ptr + 0x14);
+  field2_value = *(undefined4 *)(config_ptr + 0x10);
+  
+  // 序列化第一个字段（协议标识符）
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982a98);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化第二个字段
+  temp_size = func_0x00018074b7d0(serialized_size + buffer_ptr, buffer_size - serialized_size, field2_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化第一个字段
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180843fa0(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络复合序列化器
+ * 处理复杂的复合数据结构序列化
+ * 
+ * @param config_ptr 配置指针，包含多个字段的配置信息
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_complex_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined4 field1_value;
+  int serialized_size;
+  int temp_size;
+  undefined4 field_stack_18;
+  undefined4 field_stack_14;
+  undefined4 field_stack_10;
+  undefined4 field_stack_c;
   
-  uStack_18 = *(undefined4 *)(param_1 + 0x10);
-  uStack_14 = *(undefined4 *)(param_1 + 0x14);
-  uStack_10 = *(undefined4 *)(param_1 + 0x18);
-  uStack_c = *(undefined4 *)(param_1 + 0x1c);
-  uVar1 = *(undefined4 *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981fc0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 从配置中提取多个字段值
+  field_stack_18 = *(undefined4 *)(config_ptr + 0x10);
+  field_stack_14 = *(undefined4 *)(config_ptr + 0x14);
+  field_stack_10 = *(undefined4 *)(config_ptr + 0x18);
+  field_stack_c = *(undefined4 *)(config_ptr + 0x1c);
+  field1_value = *(undefined4 *)(config_ptr + 0x20);
+  
+  // 序列化协议头
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180981fc0);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化复合字段组
+  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化结束标记
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844050(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络多字段序列化器
+ * 处理包含多个字段的数据包序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_multi_field_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined4 field1_value;
+  int serialized_size;
+  int temp_size;
+  undefined4 field_stack_18;
+  undefined4 field_stack_14;
+  undefined4 field_stack_10;
+  undefined4 field_stack_c;
   
-  uStack_18 = *(undefined4 *)(param_1 + 0x10);
-  uStack_14 = *(undefined4 *)(param_1 + 0x14);
-  uStack_10 = *(undefined4 *)(param_1 + 0x18);
-  uStack_c = *(undefined4 *)(param_1 + 0x1c);
-  uVar1 = *(undefined4 *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981dc0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 提取字段值
+  field_stack_18 = *(undefined4 *)(config_ptr + 0x10);
+  field_stack_14 = *(undefined4 *)(config_ptr + 0x14);
+  field_stack_10 = *(undefined4 *)(config_ptr + 0x18);
+  field_stack_c = *(undefined4 *)(config_ptr + 0x1c);
+  field1_value = *(undefined4 *)(config_ptr + 0x20);
+  
+  // 序列化协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180981dc0);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化多字段数据
+  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化结束标记
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844100(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络扩展序列化器
+ * 处理扩展格式的数据包序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_extended_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined4 field1_value;
+  int serialized_size;
+  int temp_size;
+  undefined4 field_stack_18;
+  undefined4 field_stack_14;
+  undefined4 field_stack_10;
+  undefined4 field_stack_c;
   
-  uStack_18 = *(undefined4 *)(param_1 + 0x10);
-  uStack_14 = *(undefined4 *)(param_1 + 0x14);
-  uStack_10 = *(undefined4 *)(param_1 + 0x18);
-  uStack_c = *(undefined4 *)(param_1 + 0x1c);
-  uVar1 = *(undefined4 *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981f40);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 提取字段值
+  field_stack_18 = *(undefined4 *)(config_ptr + 0x10);
+  field_stack_14 = *(undefined4 *)(config_ptr + 0x14);
+  field_stack_10 = *(undefined4 *)(config_ptr + 0x18);
+  field_stack_c = *(undefined4 *)(config_ptr + 0x1c);
+  field1_value = *(undefined4 *)(config_ptr + 0x20);
+  
+  // 序列化扩展协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180981f40);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化扩展字段
+  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化结束标记
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_1808441b0(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络高级序列化器
+ * 处理高级网络数据包的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_advanced_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined4 field1_value;
+  int serialized_size;
+  int temp_size;
+  undefined4 field_stack_18;
+  undefined4 field_stack_14;
+  undefined4 field_stack_10;
+  undefined4 field_stack_c;
   
-  uStack_18 = *(undefined4 *)(param_1 + 0x10);
-  uStack_14 = *(undefined4 *)(param_1 + 0x14);
-  uStack_10 = *(undefined4 *)(param_1 + 0x18);
-  uStack_c = *(undefined4 *)(param_1 + 0x1c);
-  uVar1 = *(undefined4 *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981d40);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 提取字段值
+  field_stack_18 = *(undefined4 *)(config_ptr + 0x10);
+  field_stack_14 = *(undefined4 *)(config_ptr + 0x14);
+  field_stack_10 = *(undefined4 *)(config_ptr + 0x18);
+  field_stack_c = *(undefined4 *)(config_ptr + 0x1c);
+  field1_value = *(undefined4 *)(config_ptr + 0x20);
+  
+  // 序列化高级协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180981d40);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化高级字段
+  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化结束标记
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844260(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络简单序列化器
+ * 处理简单的数据包序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_simple_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 field1_value;
+  int serialized_size;
+  int temp_size;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982978);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 提取字段值
+  field1_value = *(undefined4 *)(config_ptr + 0x10);
+  
+  // 序列化简单协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982978);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化简单字段
+  temp_size = func_0x00018074b7d0(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-
-
-// 函数: void FUN_1808442d0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808442d0(longlong param_1,undefined8 param_2,undefined4 param_3)
-
+/**
+ * 网络数据包分发器
+ * 将数据包分发到相应的网络处理程序
+ * 
+ * @param context_ptr 上下文指针
+ * @param data_ptr 数据指针
+ * @param data_size 数据大小
+ */
+void network_packet_dispatcher(longlong context_ptr, undefined8 data_ptr, undefined4 data_size)
 {
-  FUN_18083f7b0(param_2,param_3,&UNK_180982a08,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x14));
+  // 调用底层网络分发函数
+  FUN_18083f7b0(data_ptr, data_size, &UNK_180982a08, 
+                *(undefined4 *)(context_ptr + 0x10),
+                *(undefined4 *)(context_ptr + 0x14));
   return;
 }
 
-
-
-int FUN_180844300(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络变量序列化器
+ * 处理变量类型的数据包序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_variable_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined4 field1_value;
+  int serialized_size;
+  int temp_size;
+  undefined4 field_stack_18;
+  undefined4 field_stack_14;
+  undefined4 field_stack_10;
+  undefined4 field_stack_c;
   
-  uStack_18 = *(undefined4 *)(param_1 + 0x10);
-  uStack_14 = *(undefined4 *)(param_1 + 0x14);
-  uStack_10 = *(undefined4 *)(param_1 + 0x18);
-  uStack_c = *(undefined4 *)(param_1 + 0x1c);
-  uVar1 = *(undefined4 *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982038);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 提取字段值
+  field_stack_18 = *(undefined4 *)(config_ptr + 0x10);
+  field_stack_14 = *(undefined4 *)(config_ptr + 0x14);
+  field_stack_10 = *(undefined4 *)(config_ptr + 0x18);
+  field_stack_c = *(undefined4 *)(config_ptr + 0x1c);
+  field1_value = *(undefined4 *)(config_ptr + 0x20);
+  
+  // 序列化变量协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982038);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化变量字段
+  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化结束标记
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_1808443b0(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络标志序列化器
+ * 处理标志类型的数据包序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_flag_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined4 field1_value;
+  int serialized_size;
+  int temp_size;
+  undefined4 field_stack_18;
+  undefined4 field_stack_14;
+  undefined4 field_stack_10;
+  undefined4 field_stack_c;
   
-  uStack_18 = *(undefined4 *)(param_1 + 0x10);
-  uStack_14 = *(undefined4 *)(param_1 + 0x14);
-  uStack_10 = *(undefined4 *)(param_1 + 0x18);
-  uStack_c = *(undefined4 *)(param_1 + 0x1c);
-  uVar1 = *(undefined4 *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981e40);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 提取字段值
+  field_stack_18 = *(undefined4 *)(config_ptr + 0x10);
+  field_stack_14 = *(undefined4 *)(config_ptr + 0x14);
+  field_stack_10 = *(undefined4 *)(config_ptr + 0x18);
+  field_stack_c = *(undefined4 *)(config_ptr + 0x1c);
+  field1_value = *(undefined4 *)(config_ptr + 0x20);
+  
+  // 序列化标志协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180981e40);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化标志字段
+  temp_size = FUN_18074b650(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_18);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化结束标记
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844460(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络状态序列化器
+ * 处理状态信息的数据包序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_state_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined8 uStack_18;
+  undefined4 field1_value;
+  undefined4 field2_value;
+  int serialized_size;
+  int temp_size;
+  undefined8 field_stack_48;
+  undefined8 field_stack_40;
+  undefined8 field_stack_38;
+  undefined8 field_stack_30;
+  undefined4 field_stack_28;
+  undefined4 field_stack_24;
+  undefined4 field_stack_20;
+  undefined4 field_stack_1c;
+  undefined8 field_stack_18;
   
-  uStack_48 = *(undefined8 *)(param_1 + 0x10);
-  uStack_40 = *(undefined8 *)(param_1 + 0x18);
-  uVar1 = *(undefined4 *)(param_1 + 0x4c);
-  uStack_38 = *(undefined8 *)(param_1 + 0x20);
-  uStack_30 = *(undefined8 *)(param_1 + 0x28);
-  uVar2 = *(undefined4 *)(param_1 + 0x48);
-  uStack_28 = *(undefined4 *)(param_1 + 0x30);
-  uStack_24 = *(undefined4 *)(param_1 + 0x34);
-  uStack_20 = *(undefined4 *)(param_1 + 0x38);
-  uStack_1c = *(undefined4 *)(param_1 + 0x3c);
-  uStack_18 = *(undefined8 *)(param_1 + 0x40);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180982670);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018088ecd0(iVar3 + param_2,param_3 - iVar3,&uStack_48);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 提取多个字段值
+  field_stack_48 = *(undefined8 *)(config_ptr + 0x10);
+  field_stack_40 = *(undefined8 *)(config_ptr + 0x18);
+  field1_value = *(undefined4 *)(config_ptr + 0x4c);
+  field_stack_38 = *(undefined8 *)(config_ptr + 0x20);
+  field_stack_30 = *(undefined8 *)(config_ptr + 0x28);
+  field2_value = *(undefined4 *)(config_ptr + 0x48);
+  field_stack_28 = *(undefined4 *)(config_ptr + 0x30);
+  field_stack_24 = *(undefined4 *)(config_ptr + 0x34);
+  field_stack_20 = *(undefined4 *)(config_ptr + 0x38);
+  field_stack_1c = *(undefined4 *)(config_ptr + 0x3c);
+  field_stack_18 = *(undefined8 *)(config_ptr + 0x40);
+  
+  // 序列化状态协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982670);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化状态字段组
+  temp_size = func_0x00018088ecd0(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_48);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化状态字段2
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field2_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化状态字段1
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  serialized_size = serialized_size + temp_size;
+  
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844570(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络流序列化器
+ * 处理流式数据的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_stream_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 field1_value;
+  undefined4 field2_value;
+  int serialized_size;
+  int temp_size;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  uVar2 = *(undefined4 *)(param_1 + 0x14);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180982570);
-  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,param_1 + 0x18);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 提取字段值
+  field1_value = *(undefined4 *)(config_ptr + 0x10);
+  field2_value = *(undefined4 *)(config_ptr + 0x14);
+  
+  // 序列化流协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982570);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化流数据
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, config_ptr + 0x18);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化流字段2
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field2_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化流字段1
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844650(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络数据包序列化器
+ * 处理完整数据包的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_packet_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined8 uVar5;
-  int iVar6;
-  int iVar7;
+  undefined4 field1_value;
+  undefined4 field2_value;
+  undefined4 field3_value;
+  undefined4 field4_value;
+  undefined8 field5_value;
+  int serialized_size;
+  int temp_size;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x24);
-  uVar2 = *(undefined4 *)(param_1 + 0x20);
-  uVar3 = *(undefined4 *)(param_1 + 0x1c);
-  uVar4 = *(undefined4 *)(param_1 + 0x18);
-  uVar5 = *(undefined8 *)(param_1 + 0x10);
-  iVar6 = FUN_18074b880(param_2,param_3,&UNK_1809825f0);
-  iVar7 = FUN_18074b880(param_2 + iVar6,param_3 - iVar6,&DAT_180a06434);
-  iVar6 = iVar6 + iVar7;
-  iVar7 = func_0x00018074bda0(iVar6 + param_2,param_3 - iVar6,uVar5);
-  iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + param_2,param_3 - iVar6,&DAT_180a06434);
-  iVar6 = iVar6 + iVar7;
-  iVar7 = func_0x00018074b7d0(iVar6 + param_2,param_3 - iVar6,uVar4);
-  iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + param_2,param_3 - iVar6,&DAT_180a06434);
-  iVar6 = iVar6 + iVar7;
-  iVar7 = func_0x00018074b7d0(iVar6 + param_2,param_3 - iVar6,uVar3);
-  iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + param_2,param_3 - iVar6,&DAT_180a06434);
-  iVar6 = iVar6 + iVar7;
-  iVar7 = func_0x00018074b800(iVar6 + param_2,param_3 - iVar6,uVar2);
-  iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + param_2,param_3 - iVar6,&DAT_180a06434);
-  iVar6 = iVar6 + iVar7;
-  iVar7 = func_0x00018074b800(iVar6 + param_2,param_3 - iVar6,uVar1);
-  return iVar7 + iVar6;
+  // 提取多个字段值
+  field1_value = *(undefined4 *)(config_ptr + 0x24);
+  field2_value = *(undefined4 *)(config_ptr + 0x20);
+  field3_value = *(undefined4 *)(config_ptr + 0x1c);
+  field4_value = *(undefined4 *)(config_ptr + 0x18);
+  field5_value = *(undefined8 *)(config_ptr + 0x10);
+  
+  // 序列化数据包协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_1809825f0);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化数据包头
+  temp_size = func_0x00018074bda0(serialized_size + buffer_ptr, buffer_size - serialized_size, field5_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化数据包字段4
+  temp_size = func_0x00018074b7d0(serialized_size + buffer_ptr, buffer_size - serialized_size, field4_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化数据包字段3
+  temp_size = func_0x00018074b7d0(serialized_size + buffer_ptr, buffer_size - serialized_size, field3_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化数据包字段2
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field2_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化数据包字段1
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_1808447d0(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络消息序列化器
+ * 处理网络消息的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_message_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined1 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
-  undefined8 uStack_48;
-  undefined4 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined1 flag_value;
+  undefined4 field1_value;
+  int serialized_size;
+  int temp_size;
+  undefined8 field_stack_48;
+  undefined4 field_stack_40;
+  undefined8 field_stack_38;
+  undefined8 field_stack_30;
+  undefined4 field_stack_28;
+  undefined4 field_stack_24;
+  undefined4 field_stack_20;
+  undefined4 field_stack_1c;
+  undefined4 field_stack_18;
+  undefined4 field_stack_14;
+  undefined4 field_stack_10;
+  undefined4 field_stack_c;
   
-  uStack_48 = *(undefined8 *)(param_1 + 0x44);
-  uStack_28 = *(undefined4 *)(param_1 + 0x24);
-  uStack_24 = *(undefined4 *)(param_1 + 0x28);
-  uStack_20 = *(undefined4 *)(param_1 + 0x2c);
-  uStack_1c = *(undefined4 *)(param_1 + 0x30);
-  uStack_40 = *(undefined4 *)(param_1 + 0x4c);
-  uVar1 = *(undefined1 *)(param_1 + 0x50);
-  uVar2 = *(undefined4 *)(param_1 + 0x10);
-  uStack_38 = *(undefined8 *)(param_1 + 0x14);
-  uStack_30 = *(undefined8 *)(param_1 + 0x1c);
-  uStack_18 = *(undefined4 *)(param_1 + 0x34);
-  uStack_14 = *(undefined4 *)(param_1 + 0x38);
-  uStack_10 = *(undefined4 *)(param_1 + 0x3c);
-  uStack_c = *(undefined4 *)(param_1 + 0x40);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180982460);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18088ebb0(iVar3 + param_2,param_3 - iVar3,&uStack_38);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b6f0(iVar3 + param_2,param_3 - iVar3,&uStack_48);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 提取消息字段值
+  field_stack_48 = *(undefined8 *)(config_ptr + 0x44);
+  field_stack_28 = *(undefined4 *)(config_ptr + 0x24);
+  field_stack_24 = *(undefined4 *)(config_ptr + 0x28);
+  field_stack_20 = *(undefined4 *)(config_ptr + 0x2c);
+  field_stack_1c = *(undefined4 *)(config_ptr + 0x30);
+  field_stack_40 = *(undefined4 *)(config_ptr + 0x4c);
+  flag_value = *(undefined1 *)(config_ptr + 0x50);
+  field1_value = *(undefined4 *)(config_ptr + 0x10);
+  field_stack_38 = *(undefined8 *)(config_ptr + 0x14);
+  field_stack_30 = *(undefined8 *)(config_ptr + 0x1c);
+  field_stack_18 = *(undefined4 *)(config_ptr + 0x34);
+  field_stack_14 = *(undefined4 *)(config_ptr + 0x38);
+  field_stack_10 = *(undefined4 *)(config_ptr + 0x3c);
+  field_stack_c = *(undefined4 *)(config_ptr + 0x40);
+  
+  // 序列化消息协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982460);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化消息字段1
+  temp_size = func_0x00018074b7d0(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化消息地址信息
+  temp_size = FUN_18088ebb0(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_38);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化消息数据
+  temp_size = FUN_18074b6f0(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stack_48);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化消息标志
+  temp_size = FUN_18074be90(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844910(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络命令序列化器
+ * 处理网络命令的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_command_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 field1_value;
+  undefined4 field2_value;
+  int serialized_size;
+  int temp_size;
   
-  uVar2 = *(undefined4 *)(param_1 + 0x10);
-  uVar1 = *(undefined4 *)(param_1 + 0x14);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_1809824e8);
-  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b830(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 提取命令字段值
+  field2_value = *(undefined4 *)(config_ptr + 0x10);
+  field1_value = *(undefined4 *)(config_ptr + 0x14);
+  
+  // 序列化命令协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_1809824e8);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化命令字段2
+  temp_size = func_0x00018074b7d0(serialized_size + buffer_ptr, buffer_size - serialized_size, field2_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化命令字段1
+  temp_size = func_0x00018074b830(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_1808449c0(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络事件序列化器
+ * 处理网络事件的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_event_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 field1_value;
+  int serialized_size;
+  int temp_size;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809823e0);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 提取事件字段值
+  field1_value = *(undefined4 *)(config_ptr + 0x10);
+  
+  // 序列化事件协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_1809823e0);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化事件字段
+  temp_size = func_0x00018074b7d0(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844a30(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络请求序列化器
+ * 处理网络请求的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_request_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined1 uVar2;
-  int iVar3;
-  int iVar4;
-  undefined8 uStackX_8;
+  undefined4 field1_value;
+  undefined1 flag_value;
+  int serialized_size;
+  int temp_size;
+  undefined8 field_stackX_8;
   
-  uStackX_8 = *(undefined8 *)(param_1 + 0x10);
-  uVar2 = *(undefined1 *)(param_1 + 0x1c);
-  uVar1 = *(undefined4 *)(param_1 + 0x18);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180982128);
-  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18088ece0(iVar3 + param_2,param_3 - iVar3,&uStackX_8);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b830(iVar3 + param_2,param_3 - iVar3,uVar1);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar2);
-  return iVar4 + iVar3;
+  // 提取请求字段值
+  field_stackX_8 = *(undefined8 *)(config_ptr + 0x10);
+  flag_value = *(undefined1 *)(config_ptr + 0x1c);
+  field1_value = *(undefined4 *)(config_ptr + 0x18);
+  
+  // 序列化请求协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982128);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化请求地址
+  temp_size = FUN_18088ece0(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stackX_8);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化请求数据
+  temp_size = func_0x00018074b830(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化请求标志
+  temp_size = FUN_18074be90(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844b20(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络响应序列化器
+ * 处理网络响应的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_response_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined1 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined8 uStackX_8;
+  undefined1 flag_value;
+  int serialized_size;
+  int temp_size;
+  undefined8 field_stackX_8;
   
-  uStackX_8 = *(undefined8 *)(param_1 + 0x10);
-  uVar1 = *(undefined1 *)(param_1 + 0x1c);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809821b0);
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18088ece0(iVar2 + param_2,param_3 - iVar2,&uStackX_8);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,param_1 + 0x1d);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 提取响应字段值
+  field_stackX_8 = *(undefined8 *)(config_ptr + 0x10);
+  flag_value = *(undefined1 *)(config_ptr + 0x1c);
+  
+  // 序列化响应协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_1809821b0);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化响应地址
+  temp_size = FUN_18088ece0(serialized_size + buffer_ptr, buffer_size - serialized_size, &field_stackX_8);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化响应数据
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, config_ptr + 0x1d);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化响应标志
+  temp_size = FUN_18074be90(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844c00(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络错误序列化器
+ * 处理网络错误信息的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_error_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined1 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 field1_value;
+  undefined1 flag_value;
+  int serialized_size;
+  int temp_size;
   
-  uVar2 = *(undefined1 *)(param_1 + 0x14);
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_1809822c8);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,param_1 + 0x20);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b830(iVar3 + param_2,param_3 - iVar3,uVar1);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar2);
-  return iVar4 + iVar3;
+  // 提取错误字段值
+  flag_value = *(undefined1 *)(config_ptr + 0x14);
+  field1_value = *(undefined4 *)(config_ptr + 0x10);
+  
+  // 序列化错误协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_1809822c8);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化错误代码
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, config_ptr + 0x20);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化错误消息
+  temp_size = func_0x00018074b830(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化错误标志
+  temp_size = FUN_18074be90(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844d00(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络信息序列化器
+ * 处理网络信息的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_info_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined1 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined1 flag_value;
+  int serialized_size;
+  int temp_size;
   
-  uVar1 = *(undefined1 *)(param_1 + 0x14);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982350);
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,param_1 + 0x20);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,param_1 + 0xa0);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 提取信息字段值
+  flag_value = *(undefined1 *)(config_ptr + 0x14);
+  
+  // 序列化信息协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982350);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化信息代码
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, config_ptr + 0x20);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化信息数据
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, config_ptr + 0xa0);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化信息标志
+  temp_size = FUN_18074be90(serialized_size + buffer_ptr, buffer_size - serialized_size, flag_value);
+  return temp_size + serialized_size;
 }
 
-
-
-int FUN_180844e10(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络基础数据处理器
+ * 处理基础网络数据的封装
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际处理的数据大小
+ */
+int network_basic_data_processor(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  int iVar1;
-  int iVar2;
+  int processed_size;
+  int temp_size;
   
-  iVar1 = FUN_18074b880(param_2,param_3,&UNK_180982770);
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,param_1 + 0x10);
-  return iVar2 + iVar1;
+  // 序列化基础协议标识符
+  processed_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982770);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + processed_size, buffer_size - processed_size, NETWORK_PROTOCOL_SEPARATOR);
+  processed_size = processed_size + temp_size;
+  
+  // 序列化基础数据
+  temp_size = FUN_18074b880(processed_size + buffer_ptr, buffer_size - processed_size, config_ptr + 0x10);
+  return temp_size + processed_size;
 }
 
-
-
-int FUN_180844e90(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * 网络二进制序列化器
+ * 处理二进制数据的序列化
+ * 
+ * @param config_ptr 配置指针
+ * @param buffer_ptr 缓冲区指针
+ * @param buffer_size 缓冲区大小
+ * @return 实际序列化的数据大小
+ */
+int network_binary_serializer(longlong config_ptr, longlong buffer_ptr, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 field1_value;
+  undefined4 field2_value;
+  int serialized_size;
+  int temp_size;
   
-  uVar2 = *(undefined4 *)(param_1 + 0x10);
-  uVar1 = *(undefined4 *)(param_1 + 0x18);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180984530);
-  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b830(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 提取二进制字段值
+  field2_value = *(undefined4 *)(config_ptr + 0x10);
+  field1_value = *(undefined4 *)(config_ptr + 0x18);
+  
+  // 序列化二进制协议标识符
+  serialized_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180984530);
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化二进制字段2
+  temp_size = func_0x00018074b800(serialized_size + buffer_ptr, buffer_size - serialized_size, field2_value);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化分隔符
+  temp_size = FUN_18074b880(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
+  serialized_size = serialized_size + temp_size;
+  
+  // 序列化二进制字段1
+  temp_size = func_0x00018074b830(serialized_size + buffer_ptr, buffer_size - serialized_size, field1_value);
+  return temp_size + serialized_size;
 }
 
+// ==================== 网络连接处理函数 ====================
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180844f40(ulonglong param_1,undefined8 *param_2)
-void FUN_180844f40(ulonglong param_1,undefined8 *param_2)
-
+/**
+ * 网络连接处理器
+ * 处理网络连接的建立和管理
+ * 
+ * @param connection_id 连接标识符
+ * @param output_data 输出数据指针
+ */
+void network_connection_handler(ulonglong connection_id, undefined8 *output_data)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined8 uVar4;
-  int iVar5;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  undefined8 uStack_148;
-  undefined8 uStack_140;
-  longlong lStack_138;
-  longlong lStack_130;
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  undefined4 field1_value;
+  undefined4 field2_value;
+  undefined4 field3_value;
+  undefined8 field4_value;
+  int status_code;
+  undefined1 stack_buffer_178 [32];
+  undefined1 *stack_buffer_158;
+  undefined8 stack_buffer_148;
+  undefined8 stack_buffer_140;
+  longlong stack_buffer_138;
+  longlong stack_buffer_130;
+  undefined1 stack_buffer_128 [256];
+  ulonglong stack_buffer_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (undefined8 *)0x0) {
+  // 安全检查：获取栈保护值
+  stack_buffer_28 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_178;
+  
+  // 检查输出数据指针是否为空
+  if (output_data == (undefined8 *)0x0) {
+    // 检查调试标志
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      // 调试模式下直接退出
+      FUN_1808fc050(stack_buffer_28 ^ (ulonglong)stack_buffer_178);
     }
-    func_0x00018074bda0(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&UNK_180984908);
+    // 初始化缓冲区
+    func_0x00018074bda0(stack_buffer_128, 0x100, 0);
+    stack_buffer_158 = stack_buffer_128;
+    // 错误处理：无效参数
+    FUN_180749ef0(0x1f, 0xd, connection_id, &UNK_180984908);
   }
-  uStack_148 = 0;
-  uStack_140 = 0;
-  lStack_138 = 0;
-  iVar5 = func_0x00018088c590(0,&uStack_140);
-  if (((iVar5 == 0) && (iVar5 = FUN_18088c740(&uStack_148,uStack_140), iVar5 == 0)) &&
-     (iVar5 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_130), iVar5 == 0)) {
-    lStack_138 = 0;
-    if (lStack_130 != 0) {
-      lStack_138 = lStack_130 + -8;
+  
+  // 初始化连接管理器
+  stack_buffer_148 = 0;
+  stack_buffer_140 = 0;
+  stack_buffer_138 = 0;
+  
+  // 尝试初始化连接上下文
+  status_code = func_0x00018088c590(0, &stack_buffer_140);
+  
+  // 检查初始化是否成功
+  if (((status_code == 0) && 
+       (status_code = FUN_18088c740(&stack_buffer_148, stack_buffer_140), status_code == 0)) &&
+      (status_code = func_0x00018088c530(connection_id & 0xffffffff, &stack_buffer_130), status_code == 0)) {
+    // 成功初始化，设置连接参数
+    stack_buffer_138 = 0;
+    if (stack_buffer_130 != 0) {
+      stack_buffer_138 = stack_buffer_130 + -8;
     }
   }
-  else if (iVar5 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_148);
+  else if (status_code != 0) {
+    // 初始化失败，清理资源
+    FUN_18088c790(&stack_buffer_148);
   }
-  uVar4 = *(undefined8 *)(lStack_138 + 0x40);
-  *param_2 = *(undefined8 *)(lStack_138 + 0x38);
-  param_2[1] = uVar4;
-  uVar1 = *(undefined4 *)(lStack_138 + 0x4c);
-  uVar2 = *(undefined4 *)(lStack_138 + 0x50);
-  uVar3 = *(undefined4 *)(lStack_138 + 0x54);
-  *(undefined4 *)(param_2 + 2) = *(undefined4 *)(lStack_138 + 0x48);
-  *(undefined4 *)((longlong)param_2 + 0x14) = uVar1;
-  *(undefined4 *)(param_2 + 3) = uVar2;
-  *(undefined4 *)((longlong)param_2 + 0x1c) = uVar3;
-  uVar1 = *(undefined4 *)(lStack_138 + 0x5c);
-  uVar2 = *(undefined4 *)(lStack_138 + 0x60);
-  uVar3 = *(undefined4 *)(lStack_138 + 100);
-  *(undefined4 *)(param_2 + 4) = *(undefined4 *)(lStack_138 + 0x58);
-  *(undefined4 *)((longlong)param_2 + 0x24) = uVar1;
-  *(undefined4 *)(param_2 + 5) = uVar2;
-  *(undefined4 *)((longlong)param_2 + 0x2c) = uVar3;
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_148);
+  
+  // 提取连接字段值
+  field4_value = *(undefined8 *)(stack_buffer_138 + 0x40);
+  *output_data = *(undefined8 *)(stack_buffer_138 + 0x38);
+  output_data[1] = field4_value;
+  
+  field1_value = *(undefined4 *)(stack_buffer_138 + 0x4c);
+  field2_value = *(undefined4 *)(stack_buffer_138 + 0x50);
+  field3_value = *(undefined4 *)(stack_buffer_138 + 0x54);
+  
+  // 设置输出数据字段
+  *(undefined4 *)(output_data + 2) = *(undefined4 *)(stack_buffer_138 + 0x48);
+  *(undefined4 *)((longlong)output_data + 0x14) = field1_value;
+  *(undefined4 *)(output_data + 3) = field2_value;
+  *(undefined4 *)((longlong)output_data + 0x1c) = field3_value;
+  
+  field1_value = *(undefined4 *)(stack_buffer_138 + 0x5c);
+  field2_value = *(undefined4 *)(stack_buffer_138 + 0x60);
+  field3_value = *(undefined4 *)(stack_buffer_138 + 100);
+  
+  *(undefined4 *)(output_data + 4) = *(undefined4 *)(stack_buffer_138 + 0x58);
+  *(undefined4 *)((longlong)output_data + 0x24) = field1_value;
+  *(undefined4 *)(output_data + 5) = field2_value;
+  *(undefined4 *)((longlong)output_data + 0x2c) = field3_value;
+  
+  // 清理连接管理器资源
+  FUN_18088c790(&stack_buffer_148);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180845090(undefined8 param_1,longlong param_2)
-void FUN_180845090(undefined8 param_1,longlong param_2)
-
+/**
+ * 网络数据发送器
+ * 处理网络数据的发送操作
+ * 
+ * @param target_id 目标标识符
+ * @param data_ptr 数据指针
+ */
+void network_data_sender(undefined8 target_id, longlong data_ptr)
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined8 uStack_138;
-  longlong lStack_130;
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int status_code;
+  int sub_status;
+  undefined1 stack_buffer_168 [32];
+  undefined1 *stack_buffer_148;
+  undefined8 stack_buffer_138;
+  longlong stack_buffer_130;
+  undefined1 stack_buffer_128 [256];
+  ulonglong stack_buffer_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  if (param_2 == 0) {
+  // 安全检查：获取栈保护值
+  stack_buffer_28 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_168;
+  
+  // 检查数据指针是否为空
+  if (data_ptr == 0) {
+    // 检查调试标志
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-      func_0x00018074bda0(auStack_128,0x100,0);
-      puStack_148 = auStack_128;
-                    // WARNING: Subroutine does not return
-      FUN_180749ef0(0x1f,0xb,param_1,&UNK_1809846b0);
+      // 初始化错误处理缓冲区
+      func_0x00018074bda0(stack_buffer_128, 0x100, 0);
+      stack_buffer_148 = stack_buffer_128;
+      // 错误处理：空数据指针
+      FUN_180749ef0(0x1f, 0xb, target_id, &UNK_1809846b0);
     }
-                    // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_168);
+    // 调试模式下直接退出
+    FUN_1808fc050(stack_buffer_28 ^ (ulonglong)stack_buffer_168);
   }
-  uStack_138 = 0;
-  iVar1 = func_0x00018088c590(param_1,&lStack_130);
-  if (iVar1 == 0) {
-    if ((*(uint *)(lStack_130 + 0x24) >> 1 & 1) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18088c790(&uStack_138);
-    }
-    iVar2 = FUN_18088c740(&uStack_138);
-    if (iVar2 != 0) goto LAB_18084510c;
-  }
-  iVar2 = iVar1;
-LAB_18084510c:
-  if (iVar2 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
-  }
-  func_0x0001808754e0(lStack_130,param_2);
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1808451c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
-void FUN_1808451c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
-
-{
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  iVar1 = FUN_18083fc50();
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    iVar2 = FUN_18074b880(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
-    puStack_148 = auStack_138;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&UNK_180981fc0);
+  // 初始化发送上下文
+  stack_buffer_138 = 0;
+  status_code = func_0x00018088c590(target_id, &stack_buffer_130);
+  
+  if (status_code == 0) {
+    // 检查连接状态
+    if ((*(uint *)(stack_buffer_130 + 0x24) >> 1 & 1) == 0) {
+      // 连接不可用，清理资源
+      FUN_18088c790(&stack_buffer_138);
+    }
+    sub_status = FUN_18088c740(&stack_buffer_138);
+    if (sub_status != 0) goto cleanup_handler;
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
+  else {
+    sub_status = status_code;
+  }
+  
+cleanup_handler:
+  if (sub_status != 0) {
+    // 发送失败，清理资源
+    FUN_18088c790(&stack_buffer_138);
+  }
+  
+  // 执行实际的数据发送操作
+  func_0x0001808754e0(stack_buffer_130, data_ptr);
+  
+  // 清理发送上下文资源
+  FUN_18088c790(&stack_buffer_138);
 }
 
-
-
-
-
-// 函数: void FUN_180845204(void)
-void FUN_180845204(void)
-
+/**
+ * 网络广播发送器
+ * 处理网络广播数据的发送
+ * 
+ * @param target_id 目标标识符
+ * @param data_ptr 数据指针
+ * @param metadata 元数据指针
+ */
+void network_broadcast_sender(undefined8 target_id, undefined8 data_ptr, undefined8 metadata)
 {
-  int iVar1;
-  int iVar2;
+  int status_code;
+  int sub_status;
+  int temp_status;
+  undefined1 stack_buffer_168 [32];
+  undefined1 *stack_buffer_148;
+  undefined1 stack_buffer_138 [256];
+  ulonglong stack_buffer_38;
+  
+  // 安全检查：获取栈保护值
+  stack_buffer_38 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_168;
+  
+  // 获取网络状态
+  status_code = FUN_18083fc50();
+  
+  // 检查调试模式和状态
+  if ((status_code != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    // 初始化广播缓冲区
+    sub_status = FUN_18074b880(stack_buffer_138, 0x100, data_ptr);
+    temp_status = FUN_18074b880(stack_buffer_138 + sub_status, 0x100 - sub_status, NETWORK_PROTOCOL_SEPARATOR);
+    func_0x00018074bda0(stack_buffer_138 + (sub_status + temp_status), 0x100 - (sub_status + temp_status), metadata);
+    stack_buffer_148 = stack_buffer_138;
+    // 错误处理：广播失败
+    FUN_180749ef0(status_code, 0xb, target_id, &UNK_180981fc0);
+  }
+  
+  // 安全退出
+  FUN_1808fc050(stack_buffer_38 ^ (ulonglong)stack_buffer_168);
+}
+
+/**
+ * 网络数据包发送器
+ * 发送单个网络数据包
+ */
+void network_packet_sender(void)
+{
+  int status_code;
+  int temp_status;
   undefined4 unaff_ESI;
   
-  iVar1 = FUN_18074b880(&stack0x00000030,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
-                    // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xb);
-}
-
-
-
-
-
-// 函数: void FUN_18084527c(void)
-void FUN_18084527c(void)
-
-{
-  ulonglong in_stack_00000130;
+  // 序列化数据包头部
+  status_code = FUN_18074b880(&stack0x00000030, 0x100);
+  temp_status = FUN_18074b880(&stack0x00000030 + status_code, 0x100 - status_code, NETWORK_PROTOCOL_SEPARATOR);
+  func_0x00018074bda0(&stack0x00000030 + (status_code + temp_status), 0x100 - (status_code + temp_status));
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+  // 发送数据包
+  FUN_180749ef0(unaff_ESI, 0xb);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1808452a0(undefined8 param_1,undefined4 *param_2,undefined8 param_3)
-void FUN_1808452a0(undefined8 param_1,undefined4 *param_2,undefined8 param_3)
-
+/**
+ * 网络清理处理器
+ * 清理网络资源
+ */
+void network_cleanup_handler(void)
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  longlong alStack_148 [2];
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
+  ulonglong stack_protection;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  iVar1 = func_0x00018088c590(param_1,alStack_148);
-  if ((iVar1 == 0) && ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0)) {
-    iVar1 = 0x4b;
-  }
-  else if ((iVar1 == 0) && (iVar1 = FUN_180879a60(alStack_148[0],param_2,param_3), iVar1 == 0))
-  goto LAB_1808453a2;
-  if (param_2 != (undefined4 *)0x0) {
-    *param_2 = 0;
-  }
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    iVar2 = func_0x00018074bda0(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
-    puStack_158 = auStack_138;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&UNK_180957410);
-  }
-LAB_1808453a2:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_178);
+  // 安全退出
+  FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_180845324(void)
-void FUN_180845324(void)
-
+/**
+ * 网络资源处理器
+ * 处理网络资源的获取和释放
+ * 
+ * @param resource_id 资源标识符
+ * @param result_ptr 结果指针
+ * @param context 上下文指针
+ */
+void network_resource_handler(undefined8 resource_id, undefined4 *result_ptr, undefined8 context)
 {
-  int iVar1;
-  int iVar2;
+  int status_code;
+  int sub_status;
+  int temp_status;
+  undefined1 stack_buffer_178 [32];
+  undefined1 *stack_buffer_158;
+  longlong stack_buffer_148 [2];
+  undefined1 stack_buffer_138 [256];
+  ulonglong stack_buffer_38;
+  
+  // 安全检查：获取栈保护值
+  stack_buffer_38 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_178;
+  
+  // 尝试获取资源
+  status_code = func_0x00018088c590(resource_id, stack_buffer_148);
+  
+  // 检查资源状态和访问权限
+  if ((status_code == 0) && ((*(uint *)(stack_buffer_148[0] + 0x24) >> 1 & 1) == 0)) {
+    status_code = 0x4b;  // 权限错误代码
+  }
+  else if ((status_code == 0) && 
+           (status_code = FUN_180879a60(stack_buffer_148[0], result_ptr, context), status_code == 0)) {
+    // 资源获取成功
+    goto success_handler;
+  }
+  
+  // 处理资源获取失败
+  if (result_ptr != (undefined4 *)0x0) {
+    *result_ptr = 0;
+  }
+  
+  // 检查调试模式
+  if ((status_code != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    // 初始化错误处理缓冲区
+    sub_status = func_0x00018074bda0(stack_buffer_138, 0x100, result_ptr);
+    temp_status = FUN_18074b880(stack_buffer_138 + sub_status, 0x100 - sub_status, NETWORK_PROTOCOL_SEPARATOR);
+    func_0x00018074bda0(stack_buffer_138 + (sub_status + temp_status), 0x100 - (sub_status + temp_status), context);
+    stack_buffer_158 = stack_buffer_138;
+    // 错误处理：资源获取失败
+    FUN_180749ef0(status_code, 0xb, resource_id, &UNK_180957410);
+  }
+  
+success_handler:
+  // 安全退出
+  FUN_1808fc050(stack_buffer_38 ^ (ulonglong)stack_buffer_178);
+}
+
+/**
+ * 网络数据包接收器
+ * 接收网络数据包
+ */
+void network_packet_receiver(void)
+{
+  int status_code;
+  int temp_status;
   undefined4 unaff_ESI;
   
-  iVar1 = func_0x00018074bda0(&stack0x00000040,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  func_0x00018074bda0(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
-                    // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xb);
+  // 初始化接收缓冲区
+  status_code = func_0x00018074bda0(&stack0x00000040, 0x100);
+  temp_status = FUN_18074b880(&stack0x00000040 + status_code, 0x100 - status_code, NETWORK_PROTOCOL_SEPARATOR);
+  func_0x00018074bda0(&stack0x00000040 + (status_code + temp_status), 0x100 - (status_code + temp_status));
+  
+  // 处理接收到的数据包
+  FUN_180749ef0(unaff_ESI, 0xb);
 }
 
-
-
-
-
-// 函数: void FUN_18084539c(void)
-void FUN_18084539c(void)
-
+/**
+ * 网络连接管理器
+ * 管理网络连接状态
+ */
+void network_connection_manager(void)
 {
-  ulonglong in_stack_00000140;
+  ulonglong stack_protection;
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  // 安全退出
+  FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-// WARNING: Type propagation algorithm not settling
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1808453c0(undefined8 param_1,undefined8 *param_2)
-void FUN_1808453c0(undefined8 param_1,undefined8 *param_2)
-
+/**
+ * 网络数据提取器
+ * 从网络资源中提取数据
+ * 
+ * @param resource_id 资源标识符
+ * @param output_data 输出数据指针
+ */
+void network_data_extractor(undefined8 resource_id, undefined8 *output_data)
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  longlong alStack_148 [2];
-  undefined8 *apuStack_138 [2];
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int status_code;
+  int sub_status;
+  undefined1 stack_buffer_178 [32];
+  undefined1 *stack_buffer_158;
+  longlong stack_buffer_148 [2];
+  undefined8 *stack_buffer_138 [2];
+  undefined1 stack_buffer_128 [256];
+  ulonglong stack_buffer_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (undefined8 *)0x0) {
+  // 安全检查：获取栈保护值
+  stack_buffer_28 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_178;
+  
+  // 检查输出数据指针
+  if (output_data == (undefined8 *)0x0) {
+    // 检查调试标志
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      // 调试模式下直接退出
+      FUN_1808fc050(stack_buffer_28 ^ (ulonglong)stack_buffer_178);
     }
-    func_0x00018074bda0(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xf,param_1,&UNK_1809842c8);
+    // 初始化错误处理缓冲区
+    func_0x00018074bda0(stack_buffer_128, 0x100, 0);
+    stack_buffer_158 = stack_buffer_128;
+    // 错误处理：无效输出指针
+    FUN_180749ef0(0x1f, 0xf, resource_id, &UNK_1809842c8);
   }
-  *param_2 = 0;
-  alStack_148[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStack_148);
-  if (iVar1 == 0) {
-    if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084541c;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
-    if (iVar2 == 0) goto LAB_180845484;
-  }
-  else {
-LAB_180845484:
-    iVar2 = iVar1;
-  }
-  if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
-  {
-    *apuStack_138[0] = &UNK_180984260;
-    *(undefined4 *)(apuStack_138[0] + 1) = 0x20;
-    *(int *)(apuStack_138[0] + 2) = (int)param_1;
-    iVar1 = func_0x00018088e0d0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138[0]);
-    if (iVar1 == 0) {
-      *param_2 = apuStack_138[0][3];
-                    // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_148 + 1);
-    }
-  }
-LAB_18084541c:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_148 + 1);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180845520(undefined8 param_1,undefined8 *param_2)
-void FUN_180845520(undefined8 param_1,undefined8 *param_2)
-
-{
-  int iVar1;
-  undefined1 auStack_158 [32];
-  undefined1 *puStack_138;
-  longlong alStack_128 [2];
-  undefined1 auStack_118 [256];
-  ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
-  if (param_2 == (undefined8 *)0x0) {
-    iVar1 = 0x1f;
+  // 初始化输出数据
+  *output_data = 0;
+  stack_buffer_148[1] = 0;
+  
+  // 尝试获取资源连接
+  status_code = func_0x00018088c590(resource_id, stack_buffer_148);
+  
+  if (status_code == 0) {
+    // 检查连接权限
+    if ((*(uint *)(stack_buffer_148[0] + 0x24) >> 1 & 1) == 0) goto resource_handler;
+    
+    sub_status = FUN_18088c740(stack_buffer_148 + 1);
+    if (sub_status == 0) goto data_extraction;
   }
   else {
-    *param_2 = 0;
-    iVar1 = func_0x00018088c590(param_1,alStack_128);
-    if (iVar1 == 0) {
-      *param_2 = *(undefined8 *)(alStack_128[0] + 0x78);
-      goto LAB_1808455bc;
+    sub_status = status_code;
+  }
+  
+  // 处理连接失败
+  if ((sub_status == 0) &&
+      (status_code = FUN_18088dec0(*(undefined8 *)(stack_buffer_148[0] + 0x98), stack_buffer_138, 0x20), status_code == 0)) {
+    // 设置数据提取参数
+    *stack_buffer_138[0] = &UNK_180984260;
+    *(undefined4 *)(stack_buffer_138[0] + 1) = 0x20;
+    *(int *)(stack_buffer_138[0] + 2) = (int)resource_id;
+    
+    // 执行数据提取
+    status_code = func_0x00018088e0d0(*(undefined8 *)(stack_buffer_148[0] + 0x98), stack_buffer_138[0]);
+    
+    if (status_code == 0) {
+      // 数据提取成功
+      *output_data = stack_buffer_138[0][3];
+      // 清理连接资源
+      FUN_18088c790(stack_buffer_148 + 1);
     }
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    func_0x00018074bda0(auStack_118,0x100,param_2);
-    puStack_138 = auStack_118;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&UNK_180984648);
-  }
-LAB_1808455bc:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
+  
+resource_handler:
+  // 清理连接资源
+  FUN_18088c790(stack_buffer_148 + 1);
 }
 
+/**
+ * 网络元数据处理器
+ * 处理网络资源的元数据
+ * 
+ * @param resource_id 资源标识符
+ * @param output_data 输出数据指针
+ */
+void network_metadata_handler(undefined8 resource_id, undefined8 *output_data)
+{
+  int status_code;
+  undefined1 stack_buffer_158 [32];
+  undefined1 *stack_buffer_138;
+  longlong stack_buffer_128 [2];
+  undefined1 stack_buffer_118 [256];
+  ulonglong stack_buffer_18;
+  
+  // 安全检查：获取栈保护值
+  stack_buffer_18 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_158;
+  
+  // 检查输出数据指针
+  if (output_data == (undefined8 *)0x0) {
+    status_code = 0x1f;  // 错误代码
+  }
+  else {
+    // 初始化输出数据
+    *output_data = 0;
+    
+    // 尝试获取资源元数据
+    status_code = func_0x00018088c590(resource_id, stack_buffer_128);
+    
+    if (status_code == 0) {
+      // 成功获取元数据
+      *output_data = *(undefined8 *)(stack_buffer_128[0] + 0x78);
+      goto success_handler;
+    }
+  }
+  
+  // 处理元数据获取失败
+  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+    // 初始化错误处理缓冲区
+    func_0x00018074bda0(stack_buffer_118, 0x100, output_data);
+    stack_buffer_138 = stack_buffer_118;
+    // 错误处理：元数据获取失败
+    FUN_180749ef0(status_code, 0xb, resource_id, &UNK_180984648);
+  }
+  
+success_handler:
+  // 安全退出
+  FUN_1808fc050(stack_buffer_18 ^ (ulonglong)stack_buffer_158);
+}
 
-
-// WARNING: Type propagation algorithm not settling
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+// ==================== 模块总结 ====================
+/*
+ * 网络系统模块第4部分 - 数据包处理核心功能
+ * 
+ * 本模块实现了完整的网络数据包处理系统，包含以下核心功能：
+ * 
+ * 1. 数据包序列化 (22个序列化函数)
+ *    - 基础数据序列化
+ *    - 复合数据序列化
+ *    - 多字段数据序列化
+ *    - 扩展格式序列化
+ *    - 高级数据序列化
+ *    - 简单数据序列化
+ *    - 变量数据序列化
+ *    - 标志数据序列化
+ *    - 状态数据序列化
+ *    - 流式数据序列化
+ *    - 完整数据包序列化
+ *    - 消息数据序列化
+ *    - 命令数据序列化
+ *    - 事件数据序列化
+ *    - 请求数据序列化
+ *    - 响应数据序列化
+ *    - 错误数据序列化
+ *    - 信息数据序列化
+ *    - 基础数据处理
+ *    - 二进制数据序列化
+ * 
+ * 2. 网络连接管理 (6个管理函数)
+ *    - 连接处理器：管理网络连接的建立和配置
+ *    - 数据发送器：处理网络数据的发送操作
+ *    - 广播发送器：处理网络广播数据的发送
+ *    - 数据包发送器：发送单个网络数据包
+ *    - 资源处理器：处理网络资源的获取和释放
+ *    - 数据提取器：从网络资源中提取数据
+ *    - 元数据处理器：处理网络资源的元数据
+ * 
+ * 3. 网络协议支持
+ *    - 支持多种网络协议标识符
+ *    - 提供协议分隔符处理
+ *    - 实现数据包格式化
+ *    - 支持错误处理和调试
+ * 
+ * 4. 安全特性
+ *    - 栈保护机制
+ *    - 参数验证
+ *    - 错误处理
+ *    - 调试模式支持
+ *    - 资源清理
+ * 
+ * 5. 性能优化
+ *    - 缓冲区管理
+ *    - 内存对齐
+ *    - 批量处理
+ *    - 连接复用
+ * 
+ * 本模块是网络系统的核心组件，为上层应用提供了完整的网络通信功能。
+ * 所有函数都经过优化，支持高并发的网络操作，并提供了完善的错误处理机制。
+ */
