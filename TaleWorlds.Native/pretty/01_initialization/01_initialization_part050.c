@@ -60,6 +60,8 @@ void initialize_render_state_and_transform_matrix(void)
   undefined8 render_param_7;
   undefined8 render_param_8;
   undefined8 render_param_9;
+  undefined8 *render_param_3_ptr;
+  // 渲染参数和矩阵计算相关变量
   float stack_matrix_1;
   float stack_matrix_2;
   float stack_matrix_3;
@@ -226,7 +228,10 @@ void initialize_render_state_and_transform_matrix(void)
     matrix_ptr = &stack_matrix_1;
   }
   // 应用渲染变换
+  // 应用渲染变换
   apply_render_transform(&stack_param_3, render_context + 0x30, *(undefined1 *)(engine_base + 0xf7), matrix_ptr);
+  
+  // 保存渲染参数用于后续恢复
   transform_matrix_8 = render_param_9;
   transform_matrix_7 = render_param_8;
   transform_matrix_6 = render_param_7;
@@ -235,6 +240,8 @@ void initialize_render_state_and_transform_matrix(void)
   transform_matrix_3 = render_param_4;
   transform_matrix_2 = render_param_3;
   transform_matrix_1 = render_param_2;
+  
+  // 获取渲染模式和状态标志
   mode_byte = *(byte *)(render_context + 0x1bd8);
   state_flag = *(int *)(GLOBAL_RENDER_STATE + 0x224);
   if (((*(byte *)(engine_base + 0xfd) & 1) == 0) &&
