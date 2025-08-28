@@ -64,13 +64,13 @@ SystemHandle RenderingSystemInitializer(uint64_t param1, uint64_t param2)
     }
     
     // 渲染系统初始化逻辑
-    handle = (SystemHandle)RenderingSystemInitializer(param1, param2);
+    handle = (SystemHandle)FUN_00000000(param1, param2);
     if (handle == (SystemHandle)0) {
         return (SystemHandle)SYSTEM_ERROR_MEMORY;
     }
     
     // 状态设置
-    local_10 = RenderingStateSetter(handle, SYSTEM_STATE_INIT);
+    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
     if (local_10 != SYSTEM_SUCCESS) {
         return (SystemHandle)SYSTEM_ERROR_STATE;
     }
