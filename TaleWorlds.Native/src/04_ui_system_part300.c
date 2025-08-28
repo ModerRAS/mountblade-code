@@ -636,8 +636,8 @@ void FUN_180833200(float *outputBuffer, uint animationCount, longlong animationB
  * - 数据转换：将原始数据转换为适合渲染的格式
  * - 缓存优化：利用CPU缓存提高数据访问效率
  * 
- * @param param_1 数据处理上下文指针，包含处理所需的配置信息
- * @param param_2 要处理的数据块数量
+ * @param context 数据处理上下文指针，包含处理所需的配置信息
+ * @param blockCount 要处理的数据块数量
  * 
  * @note 该函数使用了SIMD指令优化的数据处理
  * @note 通过寄存器变量实现了高性能的数据访问
@@ -662,135 +662,120 @@ void FUN_180833200(float *outputBuffer, uint animationCount, longlong animationB
  * - 动画数据处理：批量更新动画数据
  * - 着色器数据处理：准备着色器所需的uniform数据
  */
-void FUN_180833250(undefined8 param_1,int param_2)
-
+void FUN_180833250(undefined8 context, int blockCount)
 {
-  char cVar1;
-  char cVar2;
-  char cVar3;
-  char cVar4;
-  char cVar5;
-  char cVar6;
-  char cVar7;
-  char cVar8;
-  char cVar9;
-  char cVar10;
-  char cVar11;
-  char cVar12;
-  char cVar13;
-  char cVar14;
-  char cVar15;
-  char cVar16;
-  int iVar17;
-  uint uVar18;
-  longlong in_RAX;
-  ulonglong *unaff_RBX;
-  undefined8 unaff_RBP;
-  longlong *unaff_RSI;
-  uint unaff_EDI;
-  uint uVar19;
-  ulonglong uVar20;
-  ulonglong uVar21;
-  float *in_R10;
-  longlong in_R11;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  undefined8 unaff_XMM6_Qa;
-  undefined8 unaff_XMM6_Qb;
-  undefined8 unaff_XMM7_Qa;
-  undefined8 unaff_XMM7_Qb;
-  undefined8 unaff_XMM8_Qa;
-  undefined8 unaff_XMM8_Qb;
-  undefined8 unaff_XMM9_Qa;
-  undefined8 unaff_XMM9_Qb;
-  undefined8 unaff_XMM10_Qa;
-  undefined8 unaff_XMM10_Qb;
-  float unaff_XMM11_Da;
-  float unaff_XMM12_Da;
-  float unaff_XMM13_Da;
+  // 简化实现：该函数使用SIMD指令进行批量数据处理
+  // 原始反编译代码包含复杂的寄存器操作和内存访问
+  // 保持了原有的算法逻辑和性能特征
   
-  *(undefined8 *)(in_RAX + 8) = unaff_RBP;
-  param_2 = param_2 >> 2;
-  if (param_2 != 0) {
-    *(undefined8 *)(in_RAX + -0x18) = unaff_XMM6_Qa;
-    *(undefined8 *)(in_RAX + -0x10) = unaff_XMM6_Qb;
-    *(undefined8 *)(in_RAX + -0x28) = unaff_XMM7_Qa;
-    *(undefined8 *)(in_RAX + -0x20) = unaff_XMM7_Qb;
-    *(undefined8 *)(in_RAX + -0x38) = unaff_XMM8_Qa;
-    *(undefined8 *)(in_RAX + -0x30) = unaff_XMM8_Qb;
-    *(undefined8 *)(in_RAX + -0x48) = unaff_XMM9_Qa;
-    *(undefined8 *)(in_RAX + -0x40) = unaff_XMM9_Qb;
-    *(undefined8 *)(in_RAX + -0x58) = unaff_XMM10_Qa;
-    *(undefined8 *)(in_RAX + -0x50) = unaff_XMM10_Qb;
+  char data1, data2, data3, data4;
+  char data5, data6, data7, data8;
+  char data9, data10, data11, data12;
+  char data13, data14, data15, data16;
+  int index;
+  uint offset;
+  longlong basePtr;
+  ulonglong *dataPtr;
+  undefined8 contextData;
+  longlong *stepPtr;
+  uint remainder;
+  uint dataOffset;
+  ulonglong coord1, coord2;
+  float *outputBuffer;
+  longlong dataBase;
+  float factor1, factor2, factor3, factor4;
+  undefined8 simdReg1, simdReg2;
+  undefined8 simdReg3, simdReg4;
+  undefined8 simdReg5, simdReg6;
+  undefined8 simdReg7, simdReg8;
+  undefined8 simdReg9, simdReg10;
+  float scale1, scale2, scale3;
+  
+  // 初始化SIMD寄存器和上下文
+  *(undefined8 *)(basePtr + 8) = contextData;
+  blockCount = blockCount >> 2;
+  
+  // 主处理循环：使用SIMD指令批量处理数据
+  if (blockCount != 0) {
+    // 设置SIMD寄存器状态
+    *(undefined8 *)(basePtr + -0x18) = simdReg1;
+    *(undefined8 *)(basePtr + -0x10) = simdReg2;
+    *(undefined8 *)(basePtr + -0x28) = simdReg3;
+    *(undefined8 *)(basePtr + -0x20) = simdReg4;
+    *(undefined8 *)(basePtr + -0x38) = simdReg5;
+    *(undefined8 *)(basePtr + -0x30) = simdReg6;
+    *(undefined8 *)(basePtr + -0x48) = simdReg7;
+    *(undefined8 *)(basePtr + -0x40) = simdReg8;
+    *(undefined8 *)(basePtr + -0x58) = simdReg9;
+    *(undefined8 *)(basePtr + -0x50) = simdReg10;
+    
     do {
-      uVar20 = *unaff_RBX + *unaff_RSI;
-      uVar19 = *(uint *)((longlong)unaff_RBX + 4) * 2;
-      cVar1 = *(char *)((ulonglong)uVar19 + in_R11);
-      cVar2 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
-      fVar23 = (float)(uint)*unaff_RBX * unaff_XMM12_Da;
-      cVar3 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
-      cVar4 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
-      *unaff_RBX = uVar20;
-      uVar21 = *unaff_RSI + uVar20;
-      uVar19 = (int)(uVar20 >> 0x20) * 2;
-      cVar5 = *(char *)((ulonglong)uVar19 + in_R11);
-      cVar6 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
-      fVar22 = (float)(uVar20 & 0xffffffff) * unaff_XMM12_Da;
-      cVar7 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
-      cVar8 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
-      *unaff_RBX = uVar21;
-      iVar17 = (int)(uVar21 >> 0x20);
-      uVar19 = iVar17 * 2;
-      fVar24 = (float)(uVar21 & 0xffffffff) * unaff_XMM12_Da;
-      cVar9 = *(char *)((ulonglong)uVar19 + in_R11);
-      cVar10 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
-      uVar21 = *unaff_RSI + uVar21;
-      iVar17 = iVar17 * 2;
-      cVar11 = *(char *)((ulonglong)(iVar17 + 1) + in_R11);
-      cVar12 = *(char *)((ulonglong)(iVar17 + 3) + in_R11);
-      *unaff_RBX = uVar21;
-      uVar19 = (int)(uVar21 >> 0x20) * 2;
-      cVar13 = *(char *)((ulonglong)uVar19 + in_R11);
-      cVar14 = *(char *)((ulonglong)(uVar19 + 2) + in_R11);
-      fVar25 = (float)(uVar21 & 0xffffffff) * unaff_XMM12_Da;
-      cVar15 = *(char *)((ulonglong)(uVar19 + 1) + in_R11);
-      cVar16 = *(char *)((ulonglong)(uVar19 + 3) + in_R11);
-      *unaff_RBX = *unaff_RSI + uVar21;
-      *in_R10 = (float)(int)cVar2 * unaff_XMM11_Da * fVar23 +
-                (float)(int)cVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar23);
-      in_R10[1] = (float)(int)cVar3 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar23) +
-                  (float)(int)cVar4 * unaff_XMM11_Da * fVar23;
-      in_R10[2] = (float)(int)cVar6 * unaff_XMM11_Da * fVar22 +
-                  (float)(int)cVar5 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar22);
-      in_R10[3] = (float)(int)cVar7 * unaff_XMM11_Da * fVar22 +
-                  (float)(int)cVar8 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar22);
-      in_R10[4] = (float)(int)cVar10 * unaff_XMM11_Da * fVar24 +
-                  (float)(int)cVar9 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar24);
-      in_R10[5] = (float)(int)cVar11 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar24) +
-                  (float)(int)cVar12 * unaff_XMM11_Da * fVar24;
-      in_R10[6] = (float)(int)cVar14 * unaff_XMM11_Da * fVar25 +
-                  (float)(int)cVar13 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar25);
-      in_R10[7] = (float)(int)cVar15 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar25) +
-                  (float)(int)cVar16 * unaff_XMM11_Da * fVar25;
-      in_R10 = in_R10 + 8;
-      param_2 = param_2 + -1;
-    } while (param_2 != 0);
+      // 批量数据采样和处理
+      coord1 = *dataPtr + *stepPtr;
+      dataOffset = *(uint *)((longlong)dataPtr + 4) * 2;
+      data1 = *(char *)((ulonglong)dataOffset + dataBase);
+      data2 = *(char *)((ulonglong)(dataOffset + 2) + dataBase);
+      factor1 = (float)(uint)*dataPtr * scale2;
+      data3 = *(char *)((ulonglong)(dataOffset + 1) + dataBase);
+      data4 = *(char *)((ulonglong)(dataOffset + 3) + dataBase);
+      *dataPtr = coord1;
+      
+      coord2 = *stepPtr + coord1;
+      dataOffset = (int)(coord1 >> 0x20) * 2;
+      data5 = *(char *)((ulonglong)dataOffset + dataBase);
+      data6 = *(char *)((ulonglong)(dataOffset + 2) + dataBase);
+      factor2 = (float)(coord1 & 0xffffffff) * scale2;
+      data7 = *(char *)((ulonglong)(dataOffset + 3) + dataBase);
+      data8 = *(char *)((ulonglong)(dataOffset + 1) + dataBase);
+      *dataPtr = coord2;
+      
+      index = (int)(coord2 >> 0x20);
+      dataOffset = index * 2;
+      factor3 = (float)(coord2 & 0xffffffff) * scale2;
+      data9 = *(char *)((ulonglong)dataOffset + dataBase);
+      data10 = *(char *)((ulonglong)(dataOffset + 2) + dataBase);
+      coord2 = *stepPtr + coord2;
+      index = index * 2;
+      data11 = *(char *)((ulonglong)(index + 1) + dataBase);
+      data12 = *(char *)((ulonglong)(index + 3) + dataBase);
+      *dataPtr = coord2;
+      
+      dataOffset = (int)(coord2 >> 0x20) * 2;
+      data13 = *(char *)((ulonglong)dataOffset + dataBase);
+      data14 = *(char *)((ulonglong)(dataOffset + 2) + dataBase);
+      factor4 = (float)(coord2 & 0xffffffff) * scale2;
+      data15 = *(char *)((ulonglong)(dataOffset + 1) + dataBase);
+      data16 = *(char *)((ulonglong)(dataOffset + 3) + dataBase);
+      *dataPtr = *stepPtr + coord2;
+      
+      // 执行插值计算并输出结果
+      *outputBuffer = (float)(int)data2 * scale1 * factor1 + (float)(int)data1 * scale1 * (scale3 - factor1);
+      outputBuffer[1] = (float)(int)data3 * scale1 * (scale3 - factor1) + (float)(int)data4 * scale1 * factor1;
+      outputBuffer[2] = (float)(int)data6 * scale1 * factor2 + (float)(int)data5 * scale1 * (scale3 - factor2);
+      outputBuffer[3] = (float)(int)data7 * scale1 * factor2 + (float)(int)data8 * scale1 * (scale3 - factor2);
+      outputBuffer[4] = (float)(int)data10 * scale1 * factor3 + (float)(int)data9 * scale1 * (scale3 - factor3);
+      outputBuffer[5] = (float)(int)data11 * scale1 * (scale3 - factor3) + (float)(int)data12 * scale1 * factor3;
+      outputBuffer[6] = (float)(int)data14 * scale1 * factor4 + (float)(int)data13 * scale1 * (scale3 - factor4);
+      outputBuffer[7] = (float)(int)data15 * scale1 * (scale3 - factor4) + (float)(int)data16 * scale1 * factor4;
+      
+      outputBuffer = outputBuffer + 8;
+      blockCount = blockCount + -1;
+    } while (blockCount != 0);
   }
-  for (uVar19 = unaff_EDI & 3; uVar19 != 0; uVar19 = uVar19 - 1) {
-    uVar18 = *(uint *)((longlong)unaff_RBX + 4) * 2;
-    cVar1 = *(char *)((ulonglong)(uVar18 + 1) + in_R11);
-    fVar22 = (float)(uint)*unaff_RBX * unaff_XMM12_Da;
-    cVar2 = *(char *)((ulonglong)(uVar18 + 3) + in_R11);
-    *in_R10 = (float)(int)*(char *)((ulonglong)(uVar18 + 2) + in_R11) * unaff_XMM11_Da * fVar22 +
-              (float)(int)*(char *)((ulonglong)uVar18 + in_R11) * unaff_XMM11_Da *
-              (unaff_XMM13_Da - fVar22);
-    in_R10[1] = (float)(int)cVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar22) +
-                (float)(int)cVar2 * unaff_XMM11_Da * fVar22;
-    in_R10 = in_R10 + 2;
-    *unaff_RBX = *unaff_RBX + *unaff_RSI;
+  
+  // 边界处理：处理剩余的不足4个的数据块
+  for (dataOffset = remainder & 3; dataOffset != 0; dataOffset = dataOffset - 1) {
+    offset = *(uint *)((longlong)dataPtr + 4) * 2;
+    data1 = *(char *)((ulonglong)(offset + 1) + dataBase);
+    factor2 = (float)(uint)*dataPtr * scale2;
+    data2 = *(char *)((ulonglong)(offset + 3) + dataBase);
+    *outputBuffer = (float)(int)*(char *)((ulonglong)(offset + 2) + dataBase) * scale1 * factor2 +
+                  (float)(int)*(char *)((ulonglong)offset + dataBase) * scale1 * (scale3 - factor2);
+    outputBuffer[1] = (float)(int)data1 * scale1 * (scale3 - factor2) + (float)(int)data2 * scale1 * factor2;
+    outputBuffer = outputBuffer + 2;
+    *dataPtr = *dataPtr + *stepPtr;
   }
+  
   return;
 }
 

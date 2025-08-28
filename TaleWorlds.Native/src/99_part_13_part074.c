@@ -670,53 +670,80 @@ status_t System_ReturnError(void)
 
 
 
-undefined8 FUN_1808db100(longlong param_1,longlong param_2)
-
+/**
+ * @brief 数据结构复制函数
+ * @details 将源数据结构的内容复制到目标数据结构
+ * 
+ * @param param_1 目标数据结构指针
+ * @param param_2 源数据结构指针
+ * @return status_t 操作状态码
+ * 
+ * @note 目标指针为空时跳过操作
+ * @note 包含资源转移和清理操作
+ * 
+ * @算法分析:
+ * 1. 参数验证
+ * 2. 数据字段复制
+ * 3. 资源转移处理
+ * 4. 源资源清理
+ * 5. 返回操作结果
+ */
+status_t DataStructure_Copy(void* param_1, void* param_2)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined8 uVar4;
+  uint32_t field1;
+  uint32_t field2;
+  uint32_t field3;
+  uint64_t result;
   
   if (param_1 != 0) {
-    uVar1 = *(undefined4 *)(param_2 + 0x74);
-    uVar2 = *(undefined4 *)(param_2 + 0x78);
-    uVar3 = *(undefined4 *)(param_2 + 0x7c);
-    *(undefined4 *)(param_1 + 0x70) = *(undefined4 *)(param_2 + 0x70);
-    *(undefined4 *)(param_1 + 0x74) = uVar1;
-    *(undefined4 *)(param_1 + 0x78) = uVar2;
-    *(undefined4 *)(param_1 + 0x7c) = uVar3;
-    if (*(longlong *)(param_2 + 0x68) != 0) {
-      *(longlong *)(param_1 + 0x68) = *(longlong *)(param_2 + 0x68);
-      *(undefined8 *)(param_2 + 0x68) = 0;
-      uVar4 = func_0x0001808676e0(*(undefined8 *)(param_1 + 0x68),param_1);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+    field1 = *(uint32_t *)((uint64_t)param_2 + 0x74);
+    field2 = *(uint32_t *)((uint64_t)param_2 + 0x78);
+    field3 = *(uint32_t *)((uint64_t)param_2 + 0x7c);
+    *(uint32_t *)((uint64_t)param_1 + 0x70) = *(uint32_t *)((uint64_t)param_2 + 0x70);
+    *(uint32_t *)((uint64_t)param_1 + 0x74) = field1;
+    *(uint32_t *)((uint64_t)param_1 + 0x78) = field2;
+    *(uint32_t *)((uint64_t)param_1 + 0x7c) = field3;
+    if (*(uint64_t *)((uint64_t)param_2 + 0x68) != 0) {
+      *(uint64_t *)((uint64_t)param_1 + 0x68) = *(uint64_t *)((uint64_t)param_2 + 0x68);
+      *(uint64_t *)((uint64_t)param_2 + 0x68) = 0;
+      result = func_0x0001808676e0(*(uint64_t *)((uint64_t)param_1 + 0x68), param_1);
+      if ((int)result != 0) {
+        return result;
       }
     }
   }
-  return 0;
+  return SYSTEM_SUCCESS;
 }
 
 
 
-undefined8 FUN_1808db140(longlong param_1,longlong param_2)
-
+/**
+ * @brief 简化数据结构复制函数
+ * @details 执行简化的数据结构复制操作
+ * 
+ * @param param_1 目标数据结构指针
+ * @param param_2 源数据结构指针
+ * @return status_t 操作状态码
+ * 
+ * @note 只复制关键字段和资源
+ * @note 成功时返回0
+ */
+status_t DataStructure_CopySimple(void* param_1, void* param_2)
 {
-  undefined8 uVar1;
+  uint64_t result;
   
   if (param_1 != 0) {
-    *(undefined4 *)(param_1 + 0x50) = *(undefined4 *)(param_2 + 0x50);
-    if (*(longlong *)(param_2 + 0x48) != 0) {
-      *(longlong *)(param_1 + 0x48) = *(longlong *)(param_2 + 0x48);
-      *(undefined8 *)(param_2 + 0x48) = 0;
-      uVar1 = func_0x0001808676e0(*(undefined8 *)(param_1 + 0x48),param_1);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+    *(uint32_t *)((uint64_t)param_1 + 0x50) = *(uint32_t *)((uint64_t)param_2 + 0x50);
+    if (*(uint64_t *)((uint64_t)param_2 + 0x48) != 0) {
+      *(uint64_t *)((uint64_t)param_1 + 0x48) = *(uint64_t *)((uint64_t)param_2 + 0x48);
+      *(uint64_t *)((uint64_t)param_2 + 0x48) = 0;
+      result = func_0x0001808676e0(*(uint64_t *)((uint64_t)param_1 + 0x48), param_1);
+      if ((int)result != 0) {
+        return result;
       }
     }
   }
-  return 0;
+  return SYSTEM_SUCCESS;
 }
 
 
