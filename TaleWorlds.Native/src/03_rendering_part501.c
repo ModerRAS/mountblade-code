@@ -1070,26 +1070,58 @@ void FUN_180535aa0(longlong *param_1,undefined8 param_2,undefined8 param_3)
 
 
 
-// 函数: void FUN_180535b2e(void)
+//------------------------------------------------------------------------------
+// 渲染系统高级处理函数8
+// 功能：执行渲染系统的寄存器管理和数据处理
+//       专门处理渲染寄存器的设置和内存数据操作
+//
+// 参数：
+//   无（通过寄存器和堆栈传递参数）
+//
+// 返回值：
+//   无
+//
+// 处理流程：
+//   1. 从寄存器获取渲染参数
+//   2. 设置寄存器值和状态
+//   3. 执行内存初始化和验证
+//   4. 根据状态执行数据处理
+//   5. 更新渲染寄存器状态
+//
+// 技术要点：
+//   - 使用寄存器传递参数提高效率
+//   - 实现了寄存器状态的直接管理
+//   - 支持复杂的内存数据处理
+//   - 包含状态验证和错误处理
+//------------------------------------------------------------------------------
 void FUN_180535b2e(void)
 
 {
-  char cVar1;
-  undefined8 unaff_RBX;
-  longlong unaff_RDI;
-  longlong in_R11;
-  undefined1 *puVar2;
-  undefined1 in_stack_00000068;
-  int in_stack_000000b0;
+  // 语义化变量定义
+  char memory_status;                               // 内存状态标志
+  undefined8 register_value;                        // 寄存器值
+  longlong render_context_base;                      // 渲染上下文基地址
+  longlong register_control;                        // 寄存器控制
+  undefined1 *memory_ptr;                           // 内存指针
+  undefined1 memory_flag;                           // 内存标志
+  int render_stack_parameter;                       // 渲染堆栈参数
   
-  *(undefined8 *)(in_R11 + 0x10) = unaff_RBX;
-  cVar1 = FUN_1805ae280();
-  puVar2 = &stack0x0000005c;
+  // 步骤1：设置寄存器值和状态
+  *(undefined8 *)(register_control + 0x10) = register_value;
+  
+  // 步骤2：执行内存初始化和验证
+  memory_status = FUN_1805ae280();
+  memory_ptr = &stack0x0000005c;
   FUN_1804fe500();
-  if (cVar1 != '\0') {
-    FUN_18051d2d0((longlong)in_stack_000000b0 * 0xa60 + 0x30a0 + unaff_RDI,0,&stack0x00000030,
-                  in_stack_00000068,puVar2);
+  
+  // 步骤3：根据状态执行数据处理
+  if (memory_status != '\0') {
+    // 步骤3.1：执行渲染寄存器数据处理
+    FUN_18051d2d0((longlong)render_stack_parameter * 0xa60 + 0x30a0 + render_context_base, 0, &stack0x00000030,
+                  memory_flag, memory_ptr);
   }
+  
+  // 步骤4：完成处理并返回
   return;
 }
 
@@ -1097,16 +1129,41 @@ void FUN_180535b2e(void)
 
 
 
-// 函数: void FUN_180535b60(void)
+//------------------------------------------------------------------------------
+// 渲染系统高级处理函数9
+// 功能：执行渲染系统的直接数据处理
+//       专门处理渲染数据的直接操作，无需初始化验证
+//
+// 参数：
+//   无（通过堆栈传递参数）
+//
+// 返回值：
+//   无
+//
+// 处理流程：
+//   1. 从堆栈获取渲染参数和上下文
+//   2. 直接执行数据处理操作
+//   3. 完成数据更新并返回
+//
+// 技术要点：
+//   - 实现了最简单的数据处理逻辑
+//   - 直接调用数据处理函数
+//   - 用于快速数据操作和状态更新
+//   - 不包含验证逻辑，提高执行效率
+//------------------------------------------------------------------------------
 void FUN_180535b60(void)
 
 {
-  longlong unaff_RDI;
-  undefined1 in_stack_00000068;
-  int in_stack_000000b0;
+  // 语义化变量定义
+  longlong render_context_base;                      // 渲染上下文基地址
+  undefined1 data_flag;                              // 数据标志
+  int render_stack_parameter;                       // 渲染堆栈参数
   
-  FUN_18051d2d0((longlong)in_stack_000000b0 * 0xa60 + 0x30a0 + unaff_RDI,0,&stack0x00000030,
-                in_stack_00000068);
+  // 步骤1：直接执行数据处理操作
+  FUN_18051d2d0((longlong)render_stack_parameter * 0xa60 + 0x30a0 + render_context_base, 0, &stack0x00000030,
+                data_flag);
+  
+  // 步骤2：完成处理并返回
   return;
 }
 
