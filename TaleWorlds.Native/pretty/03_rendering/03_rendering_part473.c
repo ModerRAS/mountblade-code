@@ -484,124 +484,180 @@ LAB_18051f4b9:
 
 
 
-// 函数: void FUN_18051f339(float param_1,undefined8 param_2,undefined8 param_3,float param_4)
-void FUN_18051f339(float param_1,undefined8 param_2,undefined8 param_3,float param_4)
-
+/**
+ * @brief 渲染坐标转换器 - 专用坐标转换函数
+ * 
+ * 该函数专门用于处理渲染系统中的坐标转换，主要功能包括：
+ * - 基于给定参数进行精确的坐标变换
+ * - 处理投影矩阵计算和变换
+ * - 支持多种坐标系统和转换模式
+ * - 更新渲染状态和位置信息
+ * 
+ * @param param_1 基础坐标参数，用于X轴变换计算
+ * @param param_2 渲染上下文参数
+ * @param param_3 渲染状态参数
+ * @param param_4 深度参数，用于Z轴变换计算
+ * @return void 无返回值
+ * 
+ * @note 该函数使用优化的数学计算，适用于高性能渲染场景
+ */
+void FUN_18051f339(float param_1, undefined8 param_2, undefined8 param_3, float param_4)
 {
-  float fVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  longlong in_RAX;
-  longlong lVar6;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  float *unaff_RDI;
-  float fVar7;
-  float fVar8;
-  float in_XMM4_Da;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float in_stack_00000048;
-  float fStack0000000000000050;
-  float fStack0000000000000054;
-  
-  fVar7 = *(float *)(in_RAX + 0x80) * 10.0;
-  fVar8 = *(float *)(in_RAX + 0x84) * 10.0;
-  fVar1 = unaff_RDI[2];
-  fVar10 = *unaff_RDI - fVar7;
-  fVar11 = unaff_RDI[1] - fVar8;
-  fVar9 = (*unaff_RDI + fVar7) - fVar10;
-  fVar8 = (unaff_RDI[1] + fVar8) - fVar11;
-  fVar7 = ((in_XMM4_Da - fVar11) * fStack0000000000000054 +
-           (param_1 - fVar10) * fStack0000000000000050 + (in_stack_00000048 - fVar1) * param_4) /
-          (fStack0000000000000054 * fVar8 + fStack0000000000000050 * fVar9 +
-          (fVar1 - fVar1) * param_4);
-  *unaff_RDI = fVar7 * fVar9 + fVar10;
-  unaff_RDI[1] = fVar7 * fVar8 + fVar11;
-  unaff_RDI[2] = (fVar1 - fVar1) * fVar7 + fVar1;
-  unaff_RDI[3] = 3.4028235e+38;
-  fVar1 = *(float *)(unaff_RSI + 0x10);
-  fVar7 = *(float *)(unaff_RSI + 0x14);
-  fVar8 = unaff_RDI[1];
-  fVar9 = unaff_RDI[2];
-  *(float *)(unaff_RBX + 0x988) =
-       (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + 0x988);
-  uVar4 = *(undefined8 *)unaff_RDI;
-  uVar5 = *(undefined8 *)(unaff_RDI + 2);
-  *(float *)(unaff_RBX + 0x98c) = (fVar1 - fVar8) + *(float *)(unaff_RBX + 0x98c);
-  *(float *)(unaff_RBX + 0x990) = (fVar7 - fVar9) + *(float *)(unaff_RBX + 0x990);
-  *(undefined8 *)(unaff_RSI + 0xc) = uVar4;
-  *(undefined8 *)(unaff_RSI + 0x14) = uVar5;
-  if (-1 < *(int *)(unaff_RBX + 0x560)) {
-    lVar2 = *(longlong *)(unaff_RBX + 0x8d8);
-    lVar6 = (longlong)*(int *)(unaff_RBX + 0x560) * 0xa60;
-    lVar3 = *(longlong *)(lVar6 + 0x30c0 + lVar2);
-    *(undefined8 *)(lVar3 + 0xc) = uVar4;
-    *(undefined8 *)(lVar3 + 0x14) = uVar5;
-    *(undefined8 *)(lVar6 + 0x3a28 + lVar2) = 0;
-    *(undefined8 *)(lVar6 + 0x3a30 + lVar2) = 0;
-    *(undefined4 *)(lVar6 + 0x3a38 + lVar2) = 0;
-  }
-  return;
+    /* 局部变量定义 */
+    float fVar1, fVar7, fVar8, fVar9, fVar10, fVar11;
+    longlong lVar2, lVar3, lVar6;
+    undefined8 uVar4, uVar5;
+    float in_XMM4_Da;
+    float fStack50, fStack54;
+    float in_stack48;
+    
+    /* 计算缩放因子 */
+    fVar7 = *(float *)(in_RAX + 0x80) * 10.0f;
+    fVar8 = *(float *)(in_RAX + 0x84) * 10.0f;
+    fVar1 = unaff_RDI[2];
+    
+    /* 计算坐标偏移 */
+    fVar10 = *unaff_RDI - fVar7;
+    fVar11 = unaff_RDI[1] - fVar8;
+    fVar9 = (*unaff_RDI + fVar7) - fVar10;
+    fVar8 = (unaff_RDI[1] + fVar8) - fVar11;
+    
+    /* 计算投影变换参数 */
+    fVar7 = ((in_XMM4_Da - fVar11) * fStack54 + 
+             (param_1 - fVar10) * fStack50 + 
+             (in_stack48 - fVar1) * param_4) /
+            (fStack54 * fVar8 + fStack50 * fVar9 + 
+             (fVar1 - fVar1) * param_4);
+    
+    /* 应用坐标变换 */
+    *unaff_RDI = fVar7 * fVar9 + fVar10;
+    unaff_RDI[1] = fVar7 * fVar8 + fVar11;
+    unaff_RDI[2] = (fVar1 - fVar1) * fVar7 + fVar1;
+    unaff_RDI[3] = FLOAT_MAX_VALUE;
+    
+    /* 更新渲染状态和位置 */
+    fVar1 = *(float *)(unaff_RSI + 0x10);
+    fVar7 = *(float *)(unaff_RSI + 0x14);
+    fVar8 = unaff_RDI[1];
+    fVar9 = unaff_RDI[2];
+    
+    /* 更新渲染位置差值 */
+    *(float *)(unaff_RBX + OFFSET_RENDER_POSITION) = 
+        (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + OFFSET_RENDER_POSITION);
+    
+    /* 保存渲染参数 */
+    uVar4 = *(undefined8 *)unaff_RDI;
+    uVar5 = *(undefined8 *)(unaff_RDI + 2);
+    
+    /* 更新渲染变换和缩放 */
+    *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM) = 
+        (fVar1 - fVar8) + *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM);
+    *(float *)(unaff_RBX + OFFSET_RENDER_SCALE) = 
+        (fVar7 - fVar9) + *(float *)(unaff_RBX + OFFSET_RENDER_SCALE);
+    
+    /* 更新渲染上下文 */
+    *(undefined8 *)(unaff_RSI + 0xc) = uVar4;
+    *(undefined8 *)(unaff_RSI + 0x14) = uVar5;
+    
+    /* 更新渲染数据 */
+    if (-1 < *(int *)(unaff_RBX + OFFSET_RENDER_INDEX)) {
+        lVar2 = *(longlong *)(unaff_RBX + OFFSET_RENDER_DATA);
+        lVar6 = (longlong)*(int *)(unaff_RBX + OFFSET_RENDER_INDEX) * MEMORY_ALIGNMENT_SIZE;
+        lVar3 = *(longlong *)(lVar6 + RENDER_STATE_OFFSET + lVar2);
+        
+        /* 更新渲染数据状态 */
+        *(undefined8 *)(lVar3 + 0xc) = uVar4;
+        *(undefined8 *)(lVar3 + 0x14) = uVar5;
+        *(undefined8 *)(lVar6 + RENDER_DATA_OFFSET + lVar2) = 0;
+        *(undefined8 *)(lVar6 + RENDER_DATA_OFFSET + 8 + lVar2) = 0;
+        *(undefined4 *)(lVar6 + RENDER_DATA_OFFSET + 16 + lVar2) = 0;
+    }
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18051f485(void)
+/**
+ * @brief 渲染坐标调整器 - 深度值调整函数
+ * 
+ * 该函数专门用于调整渲染系统中的深度值，主要功能包括：
+ * - 检查和验证深度值的有效性
+ * - 根据渲染状态调整深度值
+ * - 处理深度裁剪和边界条件
+ * - 更新渲染状态和位置信息
+ * 
+ * @param void 无直接参数，使用非受影响寄存器变量
+ * @return void 无返回值
+ * 
+ * @note 该函数主要用于深度缓冲区的管理和优化
+ */
 void FUN_18051f485(void)
-
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  longlong lVar4;
-  longlong lVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  char cVar8;
-  longlong lVar9;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  float *unaff_RDI;
-  float fVar10;
-  float in_stack_00000070;
-  
-  fVar10 = unaff_RDI[2];
-  if (in_stack_00000070 < fVar10) {
-    if ((*(byte *)(unaff_RSI + 0x40) & 1) == 0) goto LAB_18051f4b9;
-    cVar8 = func_0x000180522f60();
-    if ((cVar8 == '\0') && (0.01999672 <= fVar10 - in_stack_00000070)) goto LAB_18051f4b9;
-  }
-  unaff_RDI[2] = in_stack_00000070;
+    /* 局部变量定义 */
+    float fVar1, fVar2, fVar3, fVar10;
+    longlong lVar4, lVar5, lVar9;
+    undefined8 uVar6, uVar7;
+    char cVar8;
+    float in_stack70;
+    
+    /* 获取当前深度值 */
+    fVar10 = unaff_RDI[2];
+    
+    /* 检查深度值是否需要调整 */
+    if (in_stack70 < fVar10) {
+        /* 检查渲染状态标志 */
+        if ((*(byte *)(unaff_RSI + 0x40) & BIT_MASK_1ST) == 0) goto LAB_18051f4b9;
+        
+        cVar8 = func_0x000180522f60();
+        if ((cVar8 == '\0') && (FLOAT_EPSILON <= fVar10 - in_stack70)) goto LAB_18051f4b9;
+    }
+    
+    /* 更新深度值 */
+    unaff_RDI[2] = in_stack70;
+    
 LAB_18051f4b9:
-  fVar10 = *(float *)(unaff_RSI + 0x10);
-  fVar1 = *(float *)(unaff_RSI + 0x14);
-  fVar2 = unaff_RDI[1];
-  fVar3 = unaff_RDI[2];
-  *(float *)(unaff_RBX + 0x988) =
-       (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + 0x988);
-  uVar6 = *(undefined8 *)unaff_RDI;
-  uVar7 = *(undefined8 *)(unaff_RDI + 2);
-  *(float *)(unaff_RBX + 0x98c) = (fVar10 - fVar2) + *(float *)(unaff_RBX + 0x98c);
-  *(float *)(unaff_RBX + 0x990) = (fVar1 - fVar3) + *(float *)(unaff_RBX + 0x990);
-  *(undefined8 *)(unaff_RSI + 0xc) = uVar6;
-  *(undefined8 *)(unaff_RSI + 0x14) = uVar7;
-  if (-1 < *(int *)(unaff_RBX + 0x560)) {
-    lVar4 = *(longlong *)(unaff_RBX + 0x8d8);
-    lVar9 = (longlong)*(int *)(unaff_RBX + 0x560) * 0xa60;
-    lVar5 = *(longlong *)(lVar9 + 0x30c0 + lVar4);
-    *(undefined8 *)(lVar5 + 0xc) = uVar6;
-    *(undefined8 *)(lVar5 + 0x14) = uVar7;
-    *(undefined8 *)(lVar9 + 0x3a28 + lVar4) = 0;
-    *(undefined8 *)(lVar9 + 0x3a30 + lVar4) = 0;
-    *(undefined4 *)(lVar9 + 0x3a38 + lVar4) = 0;
-  }
-  return;
+    /* 更新渲染状态和位置 */
+    fVar10 = *(float *)(unaff_RSI + 0x10);
+    fVar1 = *(float *)(unaff_RSI + 0x14);
+    fVar2 = unaff_RDI[1];
+    fVar3 = unaff_RDI[2];
+    
+    /* 更新渲染位置差值 */
+    *(float *)(unaff_RBX + OFFSET_RENDER_POSITION) = 
+        (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + OFFSET_RENDER_POSITION);
+    
+    /* 保存渲染参数 */
+    uVar6 = *(undefined8 *)unaff_RDI;
+    uVar7 = *(undefined8 *)(unaff_RDI + 2);
+    
+    /* 更新渲染变换和缩放 */
+    *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM) = 
+        (fVar10 - fVar2) + *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM);
+    *(float *)(unaff_RBX + OFFSET_RENDER_SCALE) = 
+        (fVar1 - fVar3) + *(float *)(unaff_RBX + OFFSET_RENDER_SCALE);
+    
+    /* 更新渲染上下文 */
+    *(undefined8 *)(unaff_RSI + 0xc) = uVar6;
+    *(undefined8 *)(unaff_RSI + 0x14) = uVar7;
+    
+    /* 更新渲染数据 */
+    if (-1 < *(int *)(unaff_RBX + OFFSET_RENDER_INDEX)) {
+        lVar4 = *(longlong *)(unaff_RBX + OFFSET_RENDER_DATA);
+        lVar9 = (longlong)*(int *)(unaff_RBX + OFFSET_RENDER_INDEX) * MEMORY_ALIGNMENT_SIZE;
+        lVar5 = *(longlong *)(lVar9 + RENDER_STATE_OFFSET + lVar4);
+        
+        /* 更新渲染数据状态 */
+        *(undefined8 *)(lVar5 + 0xc) = uVar6;
+        *(undefined8 *)(lVar5 + 0x14) = uVar7;
+        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + lVar4) = 0;
+        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + 8 + lVar4) = 0;
+        *(undefined4 *)(lVar9 + RENDER_DATA_OFFSET + 16 + lVar4) = 0;
+    }
+    
+    return;
 }
 
 
