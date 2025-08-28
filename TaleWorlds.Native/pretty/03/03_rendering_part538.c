@@ -649,87 +649,106 @@ RenderObject* ReleaseRenderObject(RenderObject* render_object, uint32_t flags)
 
 
 
-// 函数: void FUN_1805608b0(undefined8 *param_1)
-void FUN_1805608b0(undefined8 *param_1)
-
+/*==============================================================================
+函数别名: CleanupRenderObject - 清理渲染对象
+原始函数: FUN_1805608b0
+参数:
+  render_object - 渲染对象指针
+返回:
+  void
+描述:
+  清理渲染对象占用的所有资源，释放纹理、缓冲区和状态对象。
+===============================================================================*/
+void CleanupRenderObject(RenderObject* render_object)
 {
-  param_1[0x32] = &UNK_180a3c3e0;
-  if (param_1[0x33] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  // 清理深度模板状态
+  render_object[0x32] = &UNK_180a3c3e0;
+  if (render_object[0x33] != 0) {
+    FUN_18064e900(); // 释放资源
   }
-  param_1[0x33] = 0;
-  *(undefined4 *)(param_1 + 0x35) = 0;
-  param_1[0x32] = &UNK_18098bcb0;
-  param_1[0x2e] = &UNK_180a3c3e0;
-  if (param_1[0x2f] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  render_object[0x33] = 0;
+  *(undefined4 *)(render_object + 0x35) = 0;
+  render_object[0x32] = &UNK_18098bcb0;
+  
+  // 清理混合状态
+  render_object[0x2e] = &UNK_180a3c3e0;
+  if (render_object[0x2f] != 0) {
+    FUN_18064e900(); // 释放资源
   }
-  param_1[0x2f] = 0;
-  *(undefined4 *)(param_1 + 0x31) = 0;
-  param_1[0x2e] = &UNK_18098bcb0;
-  if (param_1[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  render_object[0x2f] = 0;
+  *(undefined4 *)(render_object + 0x31) = 0;
+  render_object[0x2e] = &UNK_18098bcb0;
+  
+  // 清理渲染状态
+  if (render_object[0x2a] != 0) {
+    FUN_18064e900(); // 释放资源
   }
-  param_1[0x23] = &UNK_180a3c3e0;
-  if (param_1[0x24] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 清理采样器状态
+  render_object[0x23] = &UNK_180a3c3e0;
+  if (render_object[0x24] != 0) {
+    FUN_18064e900(); // 释放资源
   }
-  param_1[0x24] = 0;
-  *(undefined4 *)(param_1 + 0x26) = 0;
-  param_1[0x23] = &UNK_18098bcb0;
-  param_1[0x1f] = &UNK_180a3c3e0;
-  if (param_1[0x20] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  render_object[0x24] = 0;
+  *(undefined4 *)(render_object + 0x26) = 0;
+  render_object[0x23] = &UNK_18098bcb0;
+  
+  // 清理常量缓冲区
+  render_object[0x1f] = &UNK_180a3c3e0;
+  if (render_object[0x20] != 0) {
+    FUN_18064e900(); // 释放资源
   }
-  param_1[0x20] = 0;
-  *(undefined4 *)(param_1 + 0x22) = 0;
-  param_1[0x1f] = &UNK_18098bcb0;
-  param_1[0x1b] = &UNK_180a3c3e0;
-  if (param_1[0x1c] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  render_object[0x20] = 0;
+  *(undefined4 *)(render_object + 0x22) = 0;
+  render_object[0x1f] = &UNK_18098bcb0;
+  
+  // 清理索引缓冲区
+  render_object[0x1b] = &UNK_180a3c3e0;
+  if (render_object[0x1c] != 0) {
+    FUN_18064e900(); // 释放资源
   }
-  param_1[0x1c] = 0;
-  *(undefined4 *)(param_1 + 0x1e) = 0;
-  param_1[0x1b] = &UNK_18098bcb0;
-  param_1[0x17] = &UNK_180a3c3e0;
-  if (param_1[0x18] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  render_object[0x1c] = 0;
+  *(undefined4 *)(render_object + 0x1e) = 0;
+  render_object[0x1b] = &UNK_18098bcb0;
+  
+  // 清理顶点缓冲区
+  render_object[0x17] = &UNK_180a3c3e0;
+  if (render_object[0x18] != 0) {
+    FUN_18064e900(); // 释放资源
   }
-  param_1[0x18] = 0;
-  *(undefined4 *)(param_1 + 0x1a) = 0;
-  param_1[0x17] = &UNK_18098bcb0;
-  param_1[0x13] = &UNK_180a3c3e0;
-  if (param_1[0x14] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  render_object[0x18] = 0;
+  *(undefined4 *)(render_object + 0x1a) = 0;
+  render_object[0x17] = &UNK_18098bcb0;
+  
+  // 清理着色器参数
+  render_object[0x13] = &UNK_180a3c3e0;
+  if (render_object[0x14] != 0) {
+    FUN_18064e900(); // 释放资源
   }
-  param_1[0x14] = 0;
-  *(undefined4 *)(param_1 + 0x16) = 0;
-  param_1[0x13] = &UNK_18098bcb0;
-  param_1[0xf] = &UNK_180a3c3e0;
-  if (param_1[0x10] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  render_object[0x14] = 0;
+  *(undefined4 *)(render_object + 0x16) = 0;
+  render_object[0x13] = &UNK_18098bcb0;
+  
+  // 清理材质参数
+  render_object[0xf] = &UNK_180a3c3e0;
+  if (render_object[0x10] != 0) {
+    FUN_18064e900(); // 释放资源
   }
-  param_1[0x10] = 0;
-  *(undefined4 *)(param_1 + 0x12) = 0;
-  param_1[0xf] = &UNK_18098bcb0;
-  param_1[0xb] = &UNK_180a3c3e0;
-  if (param_1[0xc] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  render_object[0x10] = 0;
+  *(undefined4 *)(render_object + 0x12) = 0;
+  render_object[0xf] = &UNK_18098bcb0;
+  
+  // 清理纹理
+  render_object[0xb] = &UNK_180a3c3e0;
+  if (render_object[0xc] != 0) {
+    FUN_18064e900(); // 释放资源
   }
-  param_1[0xc] = 0;
-  *(undefined4 *)(param_1 + 0xe) = 0;
-  param_1[0xb] = &UNK_18098bcb0;
-  *param_1 = &UNK_1809ffa18;
+  render_object[0xc] = 0;
+  *(undefined4 *)(render_object + 0xe) = 0;
+  render_object[0xb] = &UNK_18098bcb0;
+  
+  // 重置虚函数表
+  *render_object = &UNK_1809ffa18;
   return;
 }
 
