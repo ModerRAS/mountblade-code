@@ -1201,58 +1201,78 @@ code_r0x0001807ce2c1:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1807cd854(undefined8 param_1,undefined8 param_2,ulonglong param_3)
+/**
+ * 高级数据处理协调器 - 负责协调和管理复杂的数据处理操作
+ * 这是一个核心函数，用于处理多种数据类型和操作模式
+ * 
+ * @param param_1 系统上下文指针
+ * @param param_2 数据块指针
+ * @param param_3 处理参数和选项
+ * @return 处理状态码，0表示成功
+ * 
+ * 功能说明：
+ * - 根据不同的操作类型执行相应的数据处理
+ * - 管理系统状态和资源分配
+ * - 处理各种数据格式和转换
+ * - 维护系统同步和错误处理
+ */
+undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefined8 data_block, ulonglong processing_params)
 
 {
-  longlong *plVar1;
-  byte *pbVar2;
-  int *piVar3;
-  undefined1 uVar4;
-  int iVar5;
-  longlong lVar6;
-  int iVar7;
-  int iVar8;
-  int iVar9;
-  undefined *puVar10;
-  longlong lVar11;
-  uint uVar12;
-  undefined *puVar13;
-  ulonglong uVar14;
-  byte bVar15;
-  uint uVar16;
-  longlong *plVar17;
-  byte bVar18;
-  undefined8 unaff_RBX;
+  /* 系统状态和资源管理变量 */
+  longlong *data_processor_ptr;
+  byte *status_flags;
+  int *operation_counters;
+  undefined1 operation_type;
+  int temp_result;
+  longlong system_state;
+  int resource_index;
+  int control_flags;
+  int processing_mode;
+  undefined *configuration_data;
+  longlong timing_info;
+  uint iteration_count;
+  undefined *resource_handle;
+  ulonglong memory_address;
+  byte data_byte;
+  uint data_word;
+  longlong *context_ptr;
+  byte control_byte;
+  undefined8 saved_registers[6];
   longlong unaff_RBP;
-  undefined8 unaff_RSI;
   longlong unaff_RDI;
-  longlong lVar19;
-  int iVar20;
-  ulonglong uVar21;
+  longlong stack_data;
+  int process_id;
+  ulonglong temp_ulong;
   longlong in_R11;
   undefined8 unaff_R12;
-  byte bVar22;
+  byte status_mask;
   undefined8 unaff_R13;
   longlong unaff_R14;
   undefined8 unaff_R15;
-  longlong lVar23;
+  longlong calculation_result;
   
-  *(undefined8 *)(in_R11 + -0x20) = unaff_RBX;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_R12;
-  uVar14 = param_3 & 0xffffffff;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R13;
-  *(undefined8 *)(in_R11 + -0x40) = unaff_R15;
-  *(ulonglong *)(unaff_RBP + 7) = uVar14;
+  /* 保存寄存器状态并初始化处理参数 */
+  *(undefined8 *)(in_R11 + -0x20) = saved_registers[0];
+  *(undefined8 *)(in_R11 + -0x28) = saved_registers[1];
+  *(undefined8 *)(in_R11 + -0x30) = saved_registers[2];
+  memory_address = processing_params & 0xffffffff;
+  *(undefined8 *)(in_R11 + -0x38) = saved_registers[3];
+  *(undefined8 *)(in_R11 + -0x40) = saved_registers[4];
+  *(ulonglong *)(unaff_RBP + 7) = memory_address;
+  /* 主要处理循环 */
   do {
-    lVar6 = *(longlong *)(unaff_R14 + 0x3d0 + uVar14 * 8);
-    plVar1 = (longlong *)(lVar6 + 8);
-    *(ulonglong *)(unaff_RBP + 0x7f) = param_3;
-    plVar17 = (longlong *)*plVar1;
-    if ((plVar17 == plVar1) && (*(longlong **)(lVar6 + 0x10) == plVar1)) {
-      plVar17 = (longlong *)0x180be7ac0;
+    /* 获取当前处理单元 */
+    system_state = *(longlong *)(unaff_R14 + 0x3d0 + memory_address * 8);
+    data_processor_ptr = (longlong *)(system_state + 8);
+    *(ulonglong *)(unaff_RBP + 0x7f) = processing_params;
+    context_ptr = (longlong *)*data_processor_ptr;
+    
+    /* 检查是否使用默认处理器 */
+    if ((context_ptr == data_processor_ptr) && (*(longlong **)(system_state + 0x10) == data_processor_ptr)) {
+      context_ptr = (longlong *)0x180be7ac0; /* 默认系统处理器 */
     }
-    *(longlong **)(unaff_RBP + 0x7f) = plVar17;
+    *(longlong **)(unaff_RBP + 0x7f) = context_ptr;
     if ((int)(uint)*(byte *)(lVar6 + 0xd0) < *(int *)(unaff_R14 + 0x8f8)) {
       lVar23 = (ulonglong)*(byte *)(lVar6 + 0xd0) * 0x618 + *(longlong *)(unaff_R14 + 0x900);
       bVar18 = *(byte *)((ulonglong)*(byte *)(lVar6 + 0xd1) + 0x3a0 + lVar23);
