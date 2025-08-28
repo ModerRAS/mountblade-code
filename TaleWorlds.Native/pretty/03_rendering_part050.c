@@ -583,7 +583,7 @@ void RenderResource_BatchCleanup(void)
   do {
     resource_data = *(longlong *)(context_data + *(longlong *)(resource_base + RENDER_REFERENCE_OFFSET));
     if (resource_data != 0) {
-      FUN_180296ad0(resource_data);
+      SystemDataTransformer(resource_data);
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
       }
@@ -673,7 +673,7 @@ void RenderObject_Destroy(uint64_t object_handle, uint64_t context_data)
     *resource_counter = *resource_counter - 1;
   }
   // 完全销毁对象
-  FUN_180059ba0(object_handle, SYSTEM_DATA_MANAGER_B);
+  SystemMemoryAllocator(object_handle, SYSTEM_DATA_MANAGER_B);
 }
 
 /**
@@ -778,7 +778,7 @@ void RenderSystem_Initialize(longlong system_handle, uint64_t *output_data, int3
         texture_width = 0x676f7250;
         texture_height = 0x4150000000000000;
         resource_pointer = &system_state_ptr;
-        texture_manager = FUN_180294c20(system_handle, &unknown_var_704_ptr, param3, &texture_handle);
+        texture_manager = SystemResourceProcessor(system_handle, &unknown_var_704_ptr, param3, &texture_handle);
         *(int32_t *)(texture_manager + 0xc) = 0x3f800000;
       }
       FUN_180294f50(system_handle);

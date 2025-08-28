@@ -2452,7 +2452,7 @@ LAB_180858e04:
           }
         } while (plVar22 != plVar17);
       }
-      uVar16 = FUN_18085f960(*(uint64_t *)(param_1 + 0x160),uVar19);
+      uVar16 = UISystem_StateGetter(*(uint64_t *)(param_1 + 0x160),uVar19);
       if ((int)uVar16 != 0) {
         return uVar16;
       }
