@@ -89,6 +89,10 @@
 // 搜索优化器
 #define SearchOptimizer FUN_1800b7fc0
 
+// 系统函数调用宏定义
+#define SystemFunctionCall(func_ptr, arg) (**(code**)(func_ptr))(arg)
+#define SystemFunctionCall2(func_ptr, arg1, arg2) (**(code**)(func_ptr))(arg1, arg2)
+
 /* 系统常量定义 */
 #define DATA_PROCESSING_MAX_ITERATIONS 1000
 #define DATA_PROCESSING_BUFFER_SIZE 4096
@@ -239,6 +243,11 @@ typedef struct {
 static SearchContext g_search_context = {0};
 static DataStructure g_data_structures[4] = {0};
 static uint8_t g_system_initialized = 0;
+
+/* 系统变量定义 */
+static void* system_null_ptr = NULL;
+static void* system_buffer_ptr = NULL;
+static void* system_alt_null_ptr = NULL;
 
 /**
  * @brief 高级数据搜索处理器
@@ -576,7 +585,7 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                         buffer_size = 0;
                         
                         /* 调用处理函数 */
-                        AdvancedDataStructureProcessor(&stack_pointer, *(uint32_t*)(structure_offset + 0x20));
+                        SystemFunctionCall2(AdvancedDataStructureProcessor, &stack_pointer, *(uint32_t*)(structure_offset + 0x20));
                         
                         /* 处理字符串数据 */
                         if (0 < *(int32_t*)(structure_offset + 0x20)) {
@@ -658,15 +667,15 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                         }
                         
                         /* 调用后续处理函数 */
-                        StringProcessor(&stack_data, &stack_pointer);
+                        SystemFunctionCall2(StringProcessor, &stack_data, &stack_pointer);
                         stack_param_16 = 0;
-                        TreeSearchProcessor(data_structure, stack_buffer);
+                        SystemFunctionCall2(TreeSearchProcessor, data_structure, stack_buffer);
                         stack_pptr = &stack_data;
                         stack_data = &system_null_ptr;
                         
                         if (stack_value != 0) {
                             /* 错误处理 */
-                            MemoryAllocator();
+                            SystemFunctionCall(MemoryAllocator, NULL);
                         }
                         
                         stack_value = 0;
@@ -742,15 +751,15 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                             *(uint8_t*)((uint64_t)array_pointer + 0x41) = 1;
                         } else {
                             /* 调用处理函数 */
-                            (**(code**)(*data_pointer + 0x28))(data_pointer);
-                            (**(code**)(*data_pointer + 0x38))(data_pointer);
+                            SystemFunctionCall((*data_pointer + 0x28), data_pointer);
+                            SystemFunctionCall((*data_pointer + 0x38), data_pointer);
                             *(uint8_t*)(array_pointer + 8) = 1;
                         }
                         
                         /* 清理资源 */
                         stack_pointer = &system_null_ptr;
                         if (string_buffer != (uint8_t*)0x0) {
-                            MemoryAllocator();
+                            SystemFunctionCall(MemoryAllocator, NULL);
                         }
                         string_buffer = (uint8_t*)0x0;
                         stack_offset = stack_offset & 0xffffffff00000000;
@@ -774,7 +783,7 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
     
     /* 清理栈资源 */
     if (stack_array != (uint64_t*)0x0) {
-        MemoryAllocator(stack_array);
+        SystemFunctionCall(MemoryAllocator, stack_array);
     }
     
     return 0;

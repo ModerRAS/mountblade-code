@@ -165,185 +165,262 @@ void UISystem_ComponentManager(longlong context)
 
 
 
-uint FUN_1807485c0(longlong param_1,uint param_2,float *param_3,float *param_4,float *param_5,
-                  float *param_6)
-
+/**
+ * @brief UI系统参数处理器
+ * 
+ * 处理UI系统参数验证和设置，包括浮点数验证、向量长度检查和参数更新
+ * 
+ * @param context UI系统上下文指针
+ * @param componentIndex 组件索引
+ * @param vector1 第一个向量参数
+ * @param vector2 第二个向量参数
+ * @param vector3 第三个向量参数
+ * @param vector4 第四个向量参数
+ * @return UIErrorCode 处理结果，0表示成功
+ * 
+ * 处理流程：
+ * 1. 验证组件索引有效性
+ * 2. 验证每个向量的浮点数有效性
+ * 3. 检查向量长度是否在有效范围内
+ * 4. 更新组件参数数据
+ * 5. 执行向量正交化计算
+ * 
+ * 验证内容：
+ * - 浮点数非NaN和非无穷大
+ * - 向量长度在0.9-1.1范围内
+ * - 组件索引不超过7
+ * - 向量正交性检查
+ * 
+ * 错误处理：
+ * - 无效浮点数返回错误码0x1d
+ * - 无效向量长度返回错误码0x24
+ * - 无效组件索引返回错误码0x1f
+ */
+uint UISystem_ParameterProcessor(longlong context, uint componentIndex, UIFloatVector vector1, UIFloatVector vector2, UIFloatVector vector3, UIFloatVector vector4)
 {
-  uint64_t uVar1;
-  uint64_t uVar2;
-  uint uVar3;
-  longlong lVar4;
-  uint uVar5;
-  longlong lVar6;
-  uint uVar7;
-  uint uVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fStack_50;
-  float fStack_4c;
-  float fStack_40;
-  float fStack_3c;
-  
-  lVar6 = (longlong)(int)param_2;
-  if (7 < param_2) {
-    return 0x1f;
-  }
-  uVar5 = 0x1d;
-  if (param_5 != (float *)0x0) {
-    fVar11 = param_5[2];
-    fVar12 = param_5[1];
-    uVar3 = 0;
-    fVar9 = *param_5;
-    uVar8 = 0;
-    uVar7 = 0;
-    if (((uint)fVar11 & 0x7f800000) == 0x7f800000) {
-      uVar7 = uVar5;
+    uint64_t vectorData1, vectorData2;
+    uint errorCode;
+    longlong componentOffset;
+    uint floatError1, floatError2, floatError3;
+    float x1, y1, z1;
+    float x2, y2, z2;
+    float x3, y3, z3;
+    float x4, y4, z4;
+    float lengthSquared;
+    float crossX, crossY, crossZ;
+    float dotProduct;
+    float tempFloat1, tempFloat2, tempFloat3, tempFloat4;
+    
+    componentOffset = (longlong)(int)componentIndex;
+    
+    // 验证组件索引有效性
+    if (7 < componentIndex) {
+        return UI_ERROR_INVALID_PARAM;
     }
-    if (((uint)fVar12 & 0x7f800000) == 0x7f800000) {
-      uVar3 = 0x1d;
+    
+    errorCode = UI_ERROR_INVALID_FLOAT;
+    
+    // 处理第三个向量参数
+    if (vector3 != (UIFloatVector)0x0) {
+        z1 = vector3[2];
+        y1 = vector3[1];
+        floatError3 = 0;
+        x1 = *vector3;
+        floatError1 = 0;
+        floatError2 = 0;
+        
+        // 检查浮点数有效性（非NaN和非无穷大）
+        if (((uint)z1 & 0x7f800000) == 0x7f800000) {
+            floatError2 = errorCode;
+        }
+        if (((uint)y1 & 0x7f800000) == 0x7f800000) {
+            floatError3 = UI_ERROR_INVALID_FLOAT;
+        }
+        if (((uint)x1 & 0x7f800000) == 0x7f800000) {
+            floatError1 = UI_ERROR_INVALID_FLOAT;
+        }
+        
+        errorCode = floatError2 | floatError3 | floatError1;
+        if (errorCode != 0) {
+            return errorCode;
+        }
+        
+        // 检查向量长度
+        lengthSquared = y1 * y1 + x1 * x1 + z1 * z1;
+        if (lengthSquared < 0.9) {
+            return UI_ERROR_INVALID_VECTOR;
+        }
+        if (1.1 < lengthSquared) {
+            return UI_ERROR_INVALID_VECTOR;
+        }
+        
+        // 更新组件数据
+        componentOffset = componentOffset * UI_CONST_0X70;
+        if (((x1 != *(float *)(componentOffset + UI_OFFSET_110d4 + context)) ||
+            (y1 != *(float *)(componentOffset + UI_OFFSET_110d8 + context))) ||
+           (z1 != *(float *)(componentOffset + UI_OFFSET_110dc + context))) {
+            *(int8_t *)(componentOffset + UI_OFFSET_110ed + context) = 1;
+        }
+        
+        // 保存旧数据并更新新数据
+        *(uint64_t *)(componentOffset + UI_OFFSET_110d4 + context) = *(uint64_t *)(componentOffset + UI_OFFSET_110c8 + context);
+        *(int32_t *)(componentOffset + UI_OFFSET_110dc + context) = *(int32_t *)(componentOffset + UI_OFFSET_110d0 + context);
+        *(uint64_t *)(componentOffset + UI_OFFSET_110c8 + context) = *(uint64_t *)vector3;
+        *(float *)(componentOffset + UI_OFFSET_110d0 + context) = vector3[2];
     }
-    if (((uint)fVar9 & 0x7f800000) == 0x7f800000) {
-      uVar8 = 0x1d;
+    
+    // 处理第四个向量参数
+    if (vector4 != (UIFloatVector)0x0) {
+        z2 = vector4[2];
+        y2 = vector4[1];
+        floatError3 = 0;
+        x2 = *vector4;
+        floatError1 = 0;
+        floatError2 = 0;
+        
+        // 检查浮点数有效性
+        if (((uint)z2 & 0x7f800000) == 0x7f800000) {
+            floatError2 = errorCode;
+        }
+        if (((uint)y2 & 0x7f800000) == 0x7f800000) {
+            floatError3 = UI_ERROR_INVALID_FLOAT;
+        }
+        if (((uint)x2 & 0x7f800000) == 0x7f800000) {
+            floatError1 = UI_ERROR_INVALID_FLOAT;
+        }
+        
+        errorCode = floatError2 | floatError3 | floatError1;
+        if (errorCode != 0) {
+            return errorCode;
+        }
+        
+        // 检查向量长度
+        lengthSquared = y2 * y2 + x2 * x2 + z2 * z2;
+        if (lengthSquared < 0.9) {
+            return UI_ERROR_INVALID_VECTOR;
+        }
+        if (1.1 < lengthSquared) {
+            return UI_ERROR_INVALID_VECTOR;
+        }
+        
+        // 更新组件数据
+        componentOffset = componentOffset * UI_CONST_0X70;
+        if (((x2 != *(float *)(componentOffset + UI_OFFSET_110bc + context)) ||
+            (y2 != *(float *)(componentOffset + UI_OFFSET_110c0 + context))) ||
+           (z2 != *(float *)(componentOffset + UI_OFFSET_110c4 + context))) {
+            *(int8_t *)(componentOffset + UI_OFFSET_110ed + context) = 1;
+        }
+        
+        // 保存旧数据并更新新数据
+        *(uint64_t *)(componentOffset + UI_OFFSET_110bc + context) = *(uint64_t *)(componentOffset + UI_OFFSET_110b0 + context);
+        *(int32_t *)(componentOffset + UI_OFFSET_110c4 + context) = *(int32_t *)(componentOffset + UI_OFFSET_110b8 + context);
+        *(uint64_t *)(componentOffset + UI_OFFSET_110b0 + context) = *(uint64_t *)vector4;
+        *(float *)(componentOffset + UI_OFFSET_110b8 + context) = vector4[2];
     }
-    uVar8 = uVar7 | uVar3 | uVar8;
-    if (uVar8 != 0) {
-      return uVar8;
+    
+    // 处理第一个向量参数
+    if (vector1 != (UIFloatVector)0x0) {
+        floatError3 = 0;
+        floatError1 = 0;
+        floatError2 = 0;
+        
+        // 检查浮点数有效性
+        if (((uint)vector1[2] & 0x7f800000) == 0x7f800000) {
+            floatError2 = errorCode;
+        }
+        if (((uint)vector1[1] & 0x7f800000) == 0x7f800000) {
+            floatError3 = UI_ERROR_INVALID_FLOAT;
+        }
+        if (((uint)*vector1 & 0x7f800000) == 0x7f800000) {
+            floatError1 = UI_ERROR_INVALID_FLOAT;
+        }
+        
+        errorCode = floatError2 | floatError3 | floatError1;
+        if (errorCode != 0) {
+            return errorCode;
+        }
+        
+        // 更新组件数据
+        componentOffset = componentOffset * UI_CONST_0X70;
+        if (((*vector1 != *(float *)(componentOffset + UI_OFFSET_1108c + context)) ||
+            (vector1[1] != *(float *)((componentOffset + UI_CONST_0X26F) * UI_CONST_0X70 + context))) ||
+           (vector1[2] != *(float *)(componentOffset + UI_OFFSET_11094 + context))) {
+            *(int8_t *)(componentOffset + UI_OFFSET_110ec + context) = 1;
+        }
+        
+        // 更新向量数据
+        *(uint64_t *)(componentOffset + UI_OFFSET_11080 + context) = *(uint64_t *)vector1;
+        *(float *)(componentOffset + UI_OFFSET_11088 + context) = vector1[2];
+        *(uint64_t )(componentOffset + UI_OFFSET_1108c + context) = *(uint64_t *)vector1;
+        *(float *)(componentOffset + UI_OFFSET_11094 + context) = vector1[2];
     }
-    fVar10 = fVar12 * fVar12 + fVar9 * fVar9 + fVar11 * fVar11;
-    if (fVar10 < 0.9) {
-      return 0x24;
+    
+    // 处理第二个向量参数
+    if (vector2 != (UIFloatVector)0x0) {
+        floatError3 = 0;
+        floatError2 = 0;
+        
+        // 检查浮点数有效性
+        if (((uint)vector2[2] & 0x7f800000) == 0x7f800000) {
+            floatError2 = errorCode;
+        }
+        if (((uint)vector2[1] & 0x7f800000) == 0x7f800000) {
+            floatError3 = UI_ERROR_INVALID_FLOAT;
+        }
+        floatError1 = 0;
+        if (((uint)*vector2 & 0x7f800000) == 0x7f800000) {
+            floatError1 = errorCode;
+        }
+        
+        errorCode = floatError2 | floatError3 | floatError1;
+        if (errorCode != 0) {
+            return errorCode;
+        }
+        
+        // 更新组件数据
+        componentOffset = componentOffset * UI_CONST_0X70;
+        if (((*vector2 != *(float *)(componentOffset + UI_OFFSET_110a4 + context)) ||
+            (vector2[1] != *(float *)(componentOffset + UI_OFFSET_110a8 + context))) ||
+           (vector2[2] != *(float *)(componentOffset + UI_OFFSET_110ac + context))) {
+            *(int8_t *)(componentOffset + UI_OFFSET_110ec + context) = 1;
+        }
+        
+        // 保存旧数据并更新新数据
+        *(uint64_t *)(componentOffset + UI_OFFSET_110a4 + context) = *(uint64_t *)(componentOffset + UI_OFFSET_11098 + context);
+        *(int32_t *)(componentOffset + UI_OFFSET_110ac + context) = *(int32_t *)(componentOffset + UI_OFFSET_110a0 + context);
+        *(uint64_t *)(componentOffset + UI_OFFSET_11098 + context) = *(uint64_t *)vector2;
+        *(float *)(componentOffset + UI_OFFSET_110a0 + context) = vector2[2];
     }
-    if (1.1 < fVar10) {
-      return 0x24;
+    
+    // 计算向量正交化
+    componentOffset = componentOffset * UI_CONST_0X70;
+    vectorData1 = *(uint64_t *)(componentOffset + UI_OFFSET_110b0 + context);
+    z2 = *(float *)(componentOffset + UI_OFFSET_110b8 + context);
+    y1 = *(float *)(componentOffset + UI_OFFSET_110d0 + context);
+    vectorData2 = *(uint64_t *)(componentOffset + UI_OFFSET_110c8 + context);
+    
+    // 处理符号翻转
+    if ((*(byte *)(context + 0x78) & 4) != 0) {
+        z2 = -z2;
+        y1 = -y1;
     }
-    lVar4 = lVar6 * 0x70;
-    if (((fVar9 != *(float *)(lVar4 + 0x110d4 + param_1)) ||
-        (fVar12 != *(float *)(lVar4 + 0x110d8 + param_1))) ||
-       (fVar11 != *(float *)(lVar4 + 0x110dc + param_1))) {
-      *(int8_t *)(lVar4 + 0x110ed + param_1) = 1;
+    
+    // 计算叉积和点积
+    tempFloat4 = (float)((ulonglong)vectorData2 >> 0x20);
+    tempFloat3 = (float)vectorData2;
+    tempFloat2 = (float)((ulonglong)vectorData1 >> 0x20);
+    tempFloat1 = (float)vectorData1;
+    dotProduct = tempFloat4 * tempFloat2 + tempFloat3 * tempFloat1 + y1 * z2;
+    
+    // 检查正交性
+    if ((-0.01 <= dotProduct) && (dotProduct <= 0.01)) {
+        *(float *)(componentOffset + UI_OFFSET_110e0 + context) = tempFloat2 * y1 - tempFloat4 * z2;
+        *(float *)(componentOffset + UI_OFFSET_110e8 + context) = tempFloat4 * tempFloat1 - tempFloat2 * tempFloat3;
+        *(float *)(componentOffset + UI_OFFSET_110e4 + context) = tempFloat3 * z2 - tempFloat1 * y1;
+        return UI_SYSTEM_SUCCESS;
     }
-    *(uint64_t *)(lVar4 + 0x110d4 + param_1) = *(uint64_t *)(lVar4 + 0x110c8 + param_1);
-    *(int32_t *)(lVar4 + 0x110dc + param_1) = *(int32_t *)(lVar4 + 0x110d0 + param_1);
-    *(uint64_t *)(lVar4 + 0x110c8 + param_1) = *(uint64_t *)param_5;
-    *(float *)(lVar4 + 0x110d0 + param_1) = param_5[2];
-  }
-  if (param_6 != (float *)0x0) {
-    fVar11 = param_6[2];
-    fVar12 = param_6[1];
-    uVar3 = 0;
-    fVar9 = *param_6;
-    uVar8 = 0;
-    uVar7 = 0;
-    if (((uint)fVar11 & 0x7f800000) == 0x7f800000) {
-      uVar7 = uVar5;
-    }
-    if (((uint)fVar12 & 0x7f800000) == 0x7f800000) {
-      uVar3 = 0x1d;
-    }
-    if (((uint)fVar9 & 0x7f800000) == 0x7f800000) {
-      uVar8 = 0x1d;
-    }
-    uVar8 = uVar7 | uVar3 | uVar8;
-    if (uVar8 != 0) {
-      return uVar8;
-    }
-    fVar10 = fVar12 * fVar12 + fVar9 * fVar9 + fVar11 * fVar11;
-    if (fVar10 < 0.9) {
-      return 0x24;
-    }
-    if (1.1 < fVar10) {
-      return 0x24;
-    }
-    lVar4 = lVar6 * 0x70;
-    if (((fVar9 != *(float *)(lVar4 + 0x110bc + param_1)) ||
-        (fVar12 != *(float *)(lVar4 + 0x110c0 + param_1))) ||
-       (fVar11 != *(float *)(lVar4 + 0x110c4 + param_1))) {
-      *(int8_t *)(lVar4 + 0x110ed + param_1) = 1;
-    }
-    *(uint64_t *)(lVar4 + 0x110bc + param_1) = *(uint64_t *)(lVar4 + 0x110b0 + param_1);
-    *(int32_t *)(lVar4 + 0x110c4 + param_1) = *(int32_t *)(lVar4 + 0x110b8 + param_1);
-    *(uint64_t *)(lVar4 + 0x110b0 + param_1) = *(uint64_t *)param_6;
-    *(float *)(lVar4 + 0x110b8 + param_1) = param_6[2];
-  }
-  if (param_3 != (float *)0x0) {
-    uVar3 = 0;
-    uVar8 = 0;
-    uVar7 = 0;
-    if (((uint)param_3[2] & 0x7f800000) == 0x7f800000) {
-      uVar7 = uVar5;
-    }
-    if (((uint)param_3[1] & 0x7f800000) == 0x7f800000) {
-      uVar3 = 0x1d;
-    }
-    if (((uint)*param_3 & 0x7f800000) == 0x7f800000) {
-      uVar8 = 0x1d;
-    }
-    uVar8 = uVar7 | uVar3 | uVar8;
-    if (uVar8 != 0) {
-      return uVar8;
-    }
-    lVar4 = lVar6 * 0x70;
-    if (((*param_3 != *(float *)(lVar4 + 0x1108c + param_1)) ||
-        (param_3[1] != *(float *)((lVar6 + 0x26f) * 0x70 + param_1))) ||
-       (param_3[2] != *(float *)(lVar4 + 0x11094 + param_1))) {
-      *(int8_t *)(lVar4 + 0x110ec + param_1) = 1;
-    }
-    *(uint64_t *)(lVar4 + 0x11080 + param_1) = *(uint64_t *)param_3;
-    *(float *)(lVar4 + 0x11088 + param_1) = param_3[2];
-    *(uint64_t *)(lVar4 + 0x1108c + param_1) = *(uint64_t *)param_3;
-    *(float *)(lVar4 + 0x11094 + param_1) = param_3[2];
-  }
-  if (param_4 != (float *)0x0) {
-    uVar3 = 0;
-    uVar7 = 0;
-    if (((uint)param_4[2] & 0x7f800000) == 0x7f800000) {
-      uVar7 = uVar5;
-    }
-    if (((uint)param_4[1] & 0x7f800000) == 0x7f800000) {
-      uVar3 = 0x1d;
-    }
-    uVar8 = 0;
-    if (((uint)*param_4 & 0x7f800000) == 0x7f800000) {
-      uVar8 = uVar5;
-    }
-    uVar8 = uVar7 | uVar3 | uVar8;
-    if (uVar8 != 0) {
-      return uVar8;
-    }
-    lVar4 = lVar6 * 0x70;
-    if (((*param_4 != *(float *)(lVar4 + 0x110a4 + param_1)) ||
-        (param_4[1] != *(float *)(lVar4 + 0x110a8 + param_1))) ||
-       (param_4[2] != *(float *)(lVar4 + 0x110ac + param_1))) {
-      *(int8_t *)(lVar4 + 0x110ec + param_1) = 1;
-    }
-    *(uint64_t *)(lVar4 + 0x110a4 + param_1) = *(uint64_t *)(lVar4 + 0x11098 + param_1);
-    *(int32_t *)(lVar4 + 0x110ac + param_1) = *(int32_t *)(lVar4 + 0x110a0 + param_1);
-    *(uint64_t *)(lVar4 + 0x11098 + param_1) = *(uint64_t *)param_4;
-    *(float *)(lVar4 + 0x110a0 + param_1) = param_4[2];
-  }
-  lVar6 = lVar6 * 0x70;
-  uVar1 = *(uint64_t *)(lVar6 + 0x110b0 + param_1);
-  fVar11 = *(float *)(lVar6 + 0x110b8 + param_1);
-  fVar12 = *(float *)(lVar6 + 0x110d0 + param_1);
-  uVar2 = *(uint64_t *)(lVar6 + 0x110c8 + param_1);
-  if ((*(byte *)(param_1 + 0x78) & 4) != 0) {
-    fVar11 = -fVar11;
-    fVar12 = -fVar12;
-  }
-  fStack_3c = (float)((ulonglong)uVar2 >> 0x20);
-  fStack_40 = (float)uVar2;
-  fStack_4c = (float)((ulonglong)uVar1 >> 0x20);
-  fStack_50 = (float)uVar1;
-  fVar9 = fStack_3c * fStack_4c + fStack_40 * fStack_50 + fVar12 * fVar11;
-  if ((-0.01 <= fVar9) && (fVar9 <= 0.01)) {
-    *(float *)(lVar6 + 0x110e0 + param_1) = fStack_4c * fVar12 - fStack_3c * fVar11;
-    *(float *)(lVar6 + 0x110e8 + param_1) = fStack_3c * fStack_50 - fStack_4c * fStack_40;
-    *(float *)(lVar6 + 0x110e4 + param_1) = fStack_40 * fVar11 - fStack_50 * fVar12;
-    return 0;
-  }
-  return 0x24;
+    
+    return UI_ERROR_INVALID_VECTOR;
 }
 
 

@@ -1,37 +1,296 @@
+/**
+ * @file 99_part_01_part043.c
+ * @brief 系统数据处理和状态管理模块
+ * 
+ * 本模块是系统核心功能的一部分，主要负责：
+ * - 系统数据的处理和转换
+ * - 状态管理和控制
+ * - 系统配置的初始化和验证
+ * - 资源分配和清理
+ * - 系统级别的错误处理
+ * 
+ * 该文件作为系统核心模块的一个子模块，提供了数据处理和状态管理的核心支持。
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author Claude Code
+ */
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 99_part_01_part043.c - 2 个函数
+/* ============================================================================
+ * 系统数据处理和状态管理常量定义
+ * ============================================================================ */
 
-// 函数: void FUN_1800cd350(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1800cd350(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
+/**
+ * @brief 系统数据处理和状态管理接口
+ * @details 定义系统数据处理和状态管理的参数和接口函数
+ * 
+ * 功能：
+ * - 处理系统数据转换和验证
+ * - 管理系统状态和生命周期
+ * - 初始化系统配置和参数
+ * - 分配和释放系统资源
+ * - 处理系统级别的错误和异常
+ * 
+ * @note 该文件作为系统核心模块的子模块，提供数据处理和状态管理支持
+ */
+
+/* ============================================================================
+ * 函数别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 系统数据处理器
+#define SystemDataProcessor FUN_1800cd350
+
+// 系统配置管理器
+#define SystemConfigManager FUN_1800cd410
+
+// 系统状态验证器
+#define SystemStateValidator FUN_1802c22a0
+
+// 系统初始化检查器
+#define SystemInitChecker FUN_180178540
+
+// 系统初始化完成器
+#define SystemInitCompleter FUN_180178650
+
+// 系统预处理器
+#define SystemPreprocessor FUN_1802cb930
+
+// 系统参数设置器
+#define SystemParameterSetter FUN_1802cc890
+
+// 系统清理器
+#define SystemCleaner FUN_1808fc050
+
+// 系统配置初始化器
+#define SystemConfigInitializer FUN_1800ca380
+
+// 系统数据管理器
+#define SystemDataManager FUN_18029de40
+
+// 系统状态处理器
+#define SystemStateProcessor FUN_1802c8fe0
+
+// 系统转换器
+#define SystemTransformer FUN_1800c8190
+
+// 系统验证器
+#define SystemValidator FUN_1800c7cb0
+
+// 系统分析器
+#define SystemAnalyzer FUN_1800c89a0
+
+// 系统优化器
+#define SystemOptimizer FUN_1800c7b10
+
+// 系统控制器
+#define SystemController FUN_1800c78b0
+
+// 系统执行器
+#define SystemExecutor FUN_1800cbf90
+
+// 系统复制器
+#define SystemCopier FUN_18029fc10
+
+// 系统锁管理器
+#define SystemLockManager _Mtx_lock
+
+// 系统锁释放器
+#define SystemLockReleaser _Mtx_unlock
+
+// 系统错误处理器
+#define SystemErrorHandler __Throw_C_error_std__YAXH_Z
+
+// 系统状态获取器
+#define SystemStateGetter FUN_180244ff0
+
+// 系统处理器
+#define SystemProcessor FUN_180245280
+
+// 系统消息处理器
+#define SystemMessageProcessor FUN_18029c8a0
+
+// 系统队列管理器
+#define SystemQueueManager FUN_18029d760
+
+// 系统缓冲区管理器
+#define SystemBufferManager FUN_18029d930
+
+// 系统安全Cookie变量 - 用于栈保护和安全检查
+#define SystemSecurityCookie GET_SECURITY_COOKIE()
+
+// 数据拼接宏 - 用于将不同位宽的数据拼接成完整数据
+#define System_Concat32Low CONCAT44     // 32位数据拼接（低32位）
+#define System_Concat31Bits CONCAT31     // 31位数据拼接
+#define System_Concat71Bits CONCAT71     // 71位数据拼接
+
+// 函数指针调用模式 - 用于动态函数调用
+#define System_FunctionPointerCall(code) (**(code **))
+#define System_MethodCall(obj, method) (**(code **)(obj + method))
+
+/* ============================================================================
+ * 类型别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 基础类型别名
+typedef uint64_t SystemHandle;           // 系统句柄
+typedef uint64_t DataHandle;            // 数据句柄
+typedef uint64_t ConfigHandle;          // 配置句柄
+typedef uint64_t StateHandle;           // 状态句柄
+typedef uint64_t ResourceHandle;        // 资源句柄
+
+// 状态类型别名
+typedef int32_t SystemStatus;           // 系统状态
+typedef int32_t DataStatus;             // 数据状态
+typedef int32_t ConfigStatus;           // 配置状态
+typedef int32_t ResourceStatus;         // 资源状态
+
+// 标志类型别名
+typedef int32_t SystemFlags;            // 系统标志
+typedef int32_t DataFlags;              // 数据标志
+typedef int32_t ConfigFlags;            // 配置标志
+
+// 数据类型别名
+typedef int8_t SystemByte;              // 系统字节
+typedef int16_t SystemWord;              // 系统字
+typedef int32_t SystemDword;             // 系统双字
+
+// 指针类型别名
+typedef void* SystemContext;            // 系统上下文
+typedef void* DataContext;               // 数据上下文
+typedef void* ConfigContext;            // 配置上下文
+typedef void* ResourceContext;          // 资源上下文
+
+// 函数指针类型别名
+typedef int (*SystemCallback)(void*);   // 系统回调函数
+typedef int (*DataCallback)(void*);     // 数据回调函数
+typedef int (*ConfigCallback)(void*);   // 配置回调函数
+
+// 枚举类型别名
+typedef enum {
+    SYSTEM_STATE_INITIALIZING = 0,
+    SYSTEM_STATE_READY = 1,
+    SYSTEM_STATE_PROCESSING = 2,
+    SYSTEM_STATE_COMPLETING = 3,
+    SYSTEM_STATE_ERROR = 4
+} SystemState;
+
+typedef enum {
+    DATA_TYPE_RAW = 0,
+    DATA_TYPE_PROCESSED = 1,
+    DATA_TYPE_OPTIMIZED = 2,
+    DATA_TYPE_VALIDATED = 3
+} DataType;
+
+typedef enum {
+    CONFIG_TYPE_DEFAULT = 0,
+    CONFIG_TYPE_CUSTOM = 1,
+    CONFIG_TYPE_SYSTEM = 2,
+    CONFIG_TYPE_USER = 3
+} ConfigType;
+
+// 结构体类型别名
+typedef struct {
+    SystemHandle handle;
+    DataHandle data;
+    ConfigHandle config;
+    SystemStatus status;
+    SystemFlags flags;
+    void* user_data;
+} SystemInfo;
+
+typedef struct {
+    DataHandle handle;
+    SystemHandle system;
+    DataStatus status;
+    DataFlags flags;
+    void* user_data;
+} DataInfo;
+
+typedef struct {
+    ConfigHandle handle;
+    SystemHandle system;
+    ConfigStatus status;
+    void* user_data;
+} ConfigInfo;
+
+/* ============================================================================
+ * 常量定义
+ * ============================================================================ */
+#define SYSTEM_BUFFER_SIZE 0x20
+#define SYSTEM_STACK_SIZE 0x18
+#define SYSTEM_FLAG_INITIALIZED 1
+#define SYSTEM_FLAG_ACTIVE 2
+#define SYSTEM_FLAG_SECURE 4
+#define SYSTEM_FLAG_VALIDATED 8
+#define SYSTEM_ERROR_INVALID_CONFIG 0x1c
+#define SYSTEM_ERROR_RESOURCE_BUSY 0x76
+#define SYSTEM_SUCCESS 0
+#define SYSTEM_MAX_HANDLES 0x65
+#define SYSTEM_MAX_QUEUE_SIZE 0x1f
+#define SYSTEM_DEFAULT_TIMEOUT 0xffffffff
+#define SYSTEM_CONFIG_OFFSET 0x129c1
+#define SYSTEM_STATE_OFFSET 0x1bd8
+#define SYSTEM_DATA_OFFSET 0x126e0
+
+/* ============================================================================
+ * 函数实现
+ * ============================================================================ */
+
+// 系统数据处理器 - 处理系统数据的转换和验证
+void SystemDataProcessor(SystemHandle system_interface, longlong config_data, SystemHandle param_3, SystemHandle param_4)
 
 {
-  longlong lVar1;
-  uint64_t uStackX_8;
+  longlong validation_result;
+  SystemHandle temp_handle;
+  SystemContext system_context;
+  ConfigContext config_context;
+  SystemStatus operation_result;
+  SystemByte config_flag;
+  SystemStatus init_result;
+  SystemByte system_buffer [SYSTEM_BUFFER_SIZE];
   
-  uStackX_8 = param_1;
-  FUN_1802c22a0(&uStackX_8,&unknown_var_2560_ptr,param_3,param_4,0xfffffffffffffffe);
-  if (*(char *)(param_2 + 0x129c1) != '\0') {
-    if (((*(uint *)(param_2 + 4) & 0x10000000) == 0) && ((*(byte *)(param_2 + 0x1bd8) & 0x20) != 0))
-    {
-      lVar1 = FUN_180178540();
-      if (lVar1 != 0) {
-        FUN_180178540();
-        FUN_180178650();
+  // 初始化系统上下文
+  temp_handle = system_interface;
+  system_context = system_interface;
+  
+  // 调用系统状态验证器处理数据
+  operation_result = SystemStateValidator(&temp_handle, &unknown_var_2560_ptr, param_3, param_4, 0xfffffffffffffffe);
+  
+  // 检查配置有效性
+  if (*(char *)(config_data + SYSTEM_CONFIG_OFFSET) != '\0') {
+    // 验证系统标志
+    if (((*(uint *)(config_data + 4) & 0x10000000) == 0) && 
+        ((*(byte *)(config_data + SYSTEM_STATE_OFFSET) & 0x20) != 0)) {
+      // 执行系统初始化检查
+      validation_result = SystemInitChecker();
+      if (validation_result != 0) {
+        SystemInitChecker();
+        SystemInitCompleter();
       }
     }
-    if (*(char *)(param_2 + 0x129c9) != '\0') {
-      if (*(char *)(param_2 + 0x129c8) != '\0') {
-        FUN_1802cb930();
+    
+    // 检查配置状态
+    if (*(char *)(config_data + SYSTEM_CONFIG_OFFSET + 8) != '\0') {
+      if (*(char *)(config_data + SYSTEM_CONFIG_OFFSET + 7) != '\0') {
+        SystemPreprocessor();
       }
-      FUN_1802cc890(param_2,param_2 + 0x126e0,~(*(byte *)(param_2 + 0x1bd8) >> 5) & 1);
+      SystemParameterSetter(config_data, config_data + SYSTEM_DATA_OFFSET, 
+                          ~(*(byte *)(config_data + SYSTEM_STATE_OFFSET) >> 5) & 1);
     }
   }
-  system_system_data_ui = system_system_data_ui + -1;
-                    // WARNING: Could not recover jumptable at 0x0001800cd40a. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (**(code **)(*system_system_data_ui + 0x20))();
+  
+  // 更新系统数据状态
+  system_system_data_ui = system_system_data_ui - 1;
+  
+  // 执行系统调用（简化实现）
+  // WARNING: Could not recover jumptable at 0x0001800cd40a. Too many branches
+  // WARNING: Treating indirect jump as call
+  System_FunctionPointerCall(*system_system_data_ui + 0x20)();
+  
   return;
 }
 

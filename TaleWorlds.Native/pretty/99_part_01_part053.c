@@ -44,6 +44,7 @@
 #define SYSTEM_PARAM_OFFSET_0x3d38 0x3d38
 #define SYSTEM_PARAM_OFFSET_0x6a80 0x6a80
 #define SYSTEM_PARAM_OFFSET_0x74e8 0x74e8
+#define SYSTEM_PARAM_OFFSET_0x30 0x30
 
 // 内存管理常量
 #define MEMORY_BLOCK_SIZE_0x66000 0x66000
@@ -368,11 +369,22 @@ LAB_1800da8e0:
 
 
 
-// 函数: void FUN_1800da98f(void)
-void FUN_1800da98f(void)
+/**
+ * @brief 系统清理执行器
+ * 
+ * 本函数负责执行系统级别的清理操作，包括状态管理、资源释放和系统重置。
+ * 作为系统维护的重要组成部分，确保系统在特定条件下能够正确清理和重置。
+ * 
+ * 功能特点：
+ * * - 调用系统状态管理器进行状态清理
+ * * - 执行系统级别的资源释放
+ * * - 确保系统状态的一致性
+ * * - 为系统重启或重置做准备
+ */
+void SystemCleanupExecutor(void)
 
 {
-  FUN_18005ea90();
+  SystemStateManager();
   return;
 }
 
@@ -383,8 +395,20 @@ void FUN_1800da98f(void)
 
 
 
-// 函数: void FUN_1800da9b0(void)
-void FUN_1800da9b0(void)
+/**
+ * @brief 系统参数处理器
+ * 
+ * 本函数负责处理系统级别的参数配置和状态管理，包括参数初始化、状态转换和系统调用。
+ * 根据系统当前状态执行相应的参数处理逻辑，确保系统配置的正确性和一致性。
+ * 
+ * 功能特点：
+ * * - 根据系统状态执行不同的参数处理逻辑
+ * * - 处理系统上下文初始化
+ * * - 管理系统参数的状态转换
+ * * - 执行系统级别的内存管理操作
+ * * - 调用系统功能处理程序
+ */
+void SystemParameterHandler(void)
 
 {
   longlong lVar1;
@@ -392,23 +416,23 @@ void FUN_1800da9b0(void)
   void *puStack_20;
   code *pcStack_18;
   
-  lVar1 = system_parameter_buffer;
-  if (*(int *)(system_parameter_buffer + 8) == 0) {
-    FUN_18005e630(system_context_ptr);
+  lVar1 = SystemParameterBuffer;
+  if (*(int *)(SystemParameterBuffer + 8) == SYSTEM_STATE_INACTIVE) {
+    SystemContextInitializer(SystemContextPtr);
     puStack_20 = &unknown_var_1632_ptr;
-    pcStack_18 = FUN_1800ea780;
+    pcStack_18 = SystemBufferInitializer;
     alStack_30[0] = lVar1;
-    FUN_18005c650(alStack_30);
+    SystemParameterProcessor(alStack_30);
   }
-  else if (*(int *)(system_parameter_buffer + 8) == 2) {
-    *(int32_t *)(system_parameter_buffer + 8) = 1;
+  else if (*(int *)(SystemParameterBuffer + 8) == SYSTEM_STATE_INITIALIZING) {
+    *(int32_t *)(SystemParameterBuffer + 8) = SYSTEM_STATE_ACTIVE;
   }
-  if (system_system_memory != (longlong *)0x0) {
-    (**(code **)(*system_system_memory + 0x18))();
+  if (SystemSystemMemory != (longlong *)0x0) {
+    (**(code **)(*SystemSystemMemory + 0x18))();
   }
                     // WARNING: Could not recover jumptable at 0x0001800daa3e. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(system_system_memory + 0x30))(0);
+  (**(code **)(SystemSystemMemory + SYSTEM_PARAM_OFFSET_0x30))(0);
   return;
 }
 
@@ -416,7 +440,22 @@ void FUN_1800da9b0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_1800daa50(void)
+/**
+ * @brief 内存池管理器
+ * 
+ * 本函数负责管理系统内存池的分配、初始化和状态管理。实现高效的内存池管理机制，
+ * 包括内存块的分配、状态标记和资源清理，确保系统内存资源的高效利用。
+ * 
+ * 功能特点：
+ * * - 管理内存池的分配和释放
+ * * - 实现线程安全的内存操作
+ * * - 处理内存池的初始化和状态管理
+ * * - 支持内存块的动态分配和回收
+ * * - 管理系统状态和资源配置
+ * 
+ * @return 返回分配的内存池地址
+ */
+longlong MemoryPoolManager(void)
 
 {
   uint uVar1;
@@ -431,9 +470,9 @@ longlong FUN_1800daa50(void)
   uint *puVar10;
   bool bVar11;
   
-  lVar2 = system_parameter_buffer;
-  lVar5 = system_parameter_buffer + 0x3d38;
-  puVar7 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x4648) * 0x488 + lVar5);
+  lVar2 = SystemParameterBuffer;
+  lVar5 = SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x3d38;
+  puVar7 = (uint *)((longlong)*(int *)(SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x4648) * 0x488 + lVar5);
   LOCK();
   uVar1 = *puVar7;
   *puVar7 = *puVar7 + 1;
@@ -445,7 +484,7 @@ longlong FUN_1800daa50(void)
   do {
     iVar8 = (int)uVar9;
     if (*(longlong *)puVar10 == 0) {
-      lVar4 = FUN_18062b420(system_memory_pool_ptr,0x12c300,0x25);
+      lVar4 = MemoryAllocator(SystemMemoryPoolPtr, SYSTEM_MEMORY_POOL_SIZE, 0x25);
       LOCK();
       bVar11 = *(longlong *)(puVar7 + (longlong)iVar8 * 2 + 2) == 0;
       if (bVar11) {
@@ -453,15 +492,15 @@ longlong FUN_1800daa50(void)
       }
       UNLOCK();
       if (bVar11) {
-        FUN_1800e9790(puVar7,iVar8 << 4);
+        SystemInitializer(puVar7, iVar8 << 4);
         LOCK();
-        *(int8_t *)((longlong)iVar8 + 0x408 + (longlong)puVar7) = 0;
+        *(int8_t *)((longlong)iVar8 + 0x408 + (longlong)puVar7) = SYSTEM_STATE_INACTIVE;
         UNLOCK();
       }
       else {
         if (lVar4 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          SystemErrorHandler();
         }
         do {
         } while (*pcVar6 != '\0');
@@ -476,11 +515,11 @@ longlong FUN_1800daa50(void)
     puVar10 = puVar10 + 2;
   } while ((longlong)(pcVar6 + (-0x408 - (longlong)puVar7)) <= (longlong)(ulonglong)uVar3);
   lVar5 = *(longlong *)
-           ((longlong)*(int *)(lVar2 + 0x4648) * 0x488 + lVar5 + 8 + (ulonglong)uVar3 * 8) +
-          (ulonglong)(uVar1 - (uVar1 & 0xfffffff0)) * 0x12c30;
-  FUN_180246810(lVar5);
-  lVar2 = SYSTEM_STATE_MANAGER;
-  *(bool *)(lVar5 + 0x9a38) = *(int *)(SYSTEM_STATE_MANAGER + 0x620) != -1;
+           ((longlong)*(int *)(lVar2 + SYSTEM_PARAM_OFFSET_0x4648) * 0x488 + lVar5 + 8 + (ulonglong)uVar3 * 8) +
+          (ulonglong)(uVar1 - (uVar1 & SYSTEM_SHIFT_MASK_16)) * MEMORY_BLOCK_SIZE_0x12c30;
+  ResourceStateHandler(lVar5);
+  lVar2 = SystemStateManager;
+  *(bool *)(lVar5 + 0x9a38) = *(int *)(SystemStateManager + 0x620) != SYSTEM_STATE_ERROR;
   *(float *)(lVar5 + 0x9a40) = (float)*(int *)(lVar2 + 0xe0) * 20.0 + 70.0;
   *(int32_t *)(lVar5 + 0x9a34) = *(int32_t *)(lVar2 + 0x700);
   *(int32_t *)(lVar5 + 0x9a3c) = *(int32_t *)(lVar2 + 0xa80);
@@ -494,8 +533,20 @@ longlong FUN_1800daa50(void)
 
 
 
-// 函数: void FUN_1800dabf0(void)
-void FUN_1800dabf0(void)
+/**
+ * @brief 资源清理管理器
+ * 
+ * 本函数负责执行系统资源的清理和释放操作，包括内存资源、句柄和系统对象的清理。
+ * 实现深度的资源清理机制，确保系统资源能够被正确释放和回收。
+ * 
+ * 功能特点：
+ * * - 执行系统资源的深度清理
+ * * - 处理内存句柄和系统对象的释放
+ * * - 管理资源状态的转换和重置
+ * * - 实现循环清理机制确保完整性
+ * * - 处理资源清理过程中的错误情况
+ */
+void ResourceCleanupManager(void)
 
 {
   longlong lVar1;
@@ -508,10 +559,10 @@ void FUN_1800dabf0(void)
   ulonglong uVar9;
   ulonglong uVar8;
   
-  lVar3 = system_parameter_buffer;
-  FUN_18005e630(system_context_ptr);
+  lVar3 = SystemParameterBuffer;
+  SystemContextInitializer(SystemContextPtr);
   uVar9 = 0;
-  plVar6 = (longlong *)((longlong)*(int *)(lVar3 + 0x5860) * 0x908 + lVar3 + 0x4658);
+  plVar6 = (longlong *)((longlong)*(int *)(lVar3 + SYSTEM_PARAM_OFFSET_0x5860) * 0x908 + lVar3 + 0x4658);
   uVar5 = uVar9;
   do {
     if (*plVar6 == 0) break;
@@ -522,10 +573,10 @@ void FUN_1800dabf0(void)
       puVar4[-1] = 0;
       *puVar4 = 0;
       puVar4[1] = 0;
-      *(int32_t *)(puVar4 + 2) = 0xc;
+      *(int32_t *)(puVar4 + 2) = SYSTEM_STATE_CLEANUP;
       if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        SystemErrorHandler();
       }
       plVar2 = (longlong *)puVar4[-5];
       puVar4[-5] = 0;
@@ -535,11 +586,11 @@ void FUN_1800dabf0(void)
       uVar7 = (int)uVar8 + 1;
       uVar8 = (ulonglong)uVar7;
       puVar4 = puVar4 + 0x66;
-    } while (uVar7 < 0x200);
+    } while (uVar7 < SYSTEM_ARRAY_SIZE_512);
     uVar5 = uVar5 + 1;
     plVar6 = plVar6 + 1;
-  } while ((longlong)uVar5 < 0x100);
-  uVar7 = *(int *)(lVar3 + 0x5860) + 1U & 0x80000001;
+  } while ((longlong)uVar5 < SYSTEM_ARRAY_SIZE_512);
+  uVar7 = *(int *)(lVar3 + SYSTEM_PARAM_OFFSET_0x5860) + 1U & 0x80000001;
   if ((int)uVar7 < 0) {
     uVar7 = (uVar7 - 1 | 0xfffffffe) + 1;
   }
@@ -556,10 +607,10 @@ void FUN_1800dabf0(void)
       puVar4[-1] = 0;
       *puVar4 = 0;
       puVar4[1] = 0;
-      *(int32_t *)(puVar4 + 2) = 0xc;
+      *(int32_t *)(puVar4 + 2) = SYSTEM_STATE_CLEANUP;
       if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        SystemErrorHandler();
       }
       plVar2 = (longlong *)puVar4[-5];
       puVar4[-5] = 0;
@@ -569,10 +620,10 @@ void FUN_1800dabf0(void)
       uVar7 = (int)uVar8 + 1;
       uVar8 = (ulonglong)uVar7;
       puVar4 = puVar4 + 0x66;
-    } while (uVar7 < 0x200);
+    } while (uVar7 < SYSTEM_ARRAY_SIZE_512);
     uVar5 = uVar5 + 1;
     plVar6 = plVar6 + 1;
-  } while ((longlong)uVar5 < 0x100);
+  } while ((longlong)uVar5 < SYSTEM_ARRAY_SIZE_512);
   return;
 }
 
@@ -580,7 +631,22 @@ void FUN_1800dabf0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_1800dae20(void)
+/**
+ * @brief 内存管理器-中池
+ * 
+ * 本函数负责管理中等大小的内存池分配和初始化。实现高效的内存管理机制，
+ * 专门处理中等规模内存块的分配、状态管理和资源回收。
+ * 
+ * 功能特点：
+ * * - 管理中等大小内存池的分配
+ * * - 实现线程安全的内存操作
+ * * - 处理内存池的初始化和状态管理
+ * * - 支持动态内存分配和回收
+ * * - 管理内存池的状态和配置
+ * 
+ * @return 返回分配的内存池地址
+ */
+longlong MemoryManager_AllocateMediumPool(void)
 
 {
   uint uVar1;
@@ -595,9 +661,9 @@ longlong FUN_1800dae20(void)
   uint *puVar10;
   bool bVar11;
   
-  lVar2 = system_parameter_buffer;
-  lVar5 = system_parameter_buffer + 18000;
-  puVar7 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x5860) * 0x908 + lVar5);
+  lVar2 = SystemParameterBuffer;
+  lVar5 = SystemParameterBuffer + 18000;
+  puVar7 = (uint *)((longlong)*(int *)(SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x5860) * 0x908 + lVar5);
   LOCK();
   uVar1 = *puVar7;
   *puVar7 = *puVar7 + 1;
@@ -609,7 +675,7 @@ longlong FUN_1800dae20(void)
   do {
     iVar8 = (int)uVar9;
     if (*(longlong *)puVar10 == 0) {
-      lVar4 = FUN_18062b420(system_memory_pool_ptr,0x66000,0x25);
+      lVar4 = MemoryAllocator(SystemMemoryPoolPtr, MEMORY_BLOCK_SIZE_0x66000, 0x25);
       LOCK();
       bVar11 = *(longlong *)(puVar7 + (longlong)iVar8 * 2 + 2) == 0;
       if (bVar11) {
@@ -617,15 +683,15 @@ longlong FUN_1800dae20(void)
       }
       UNLOCK();
       if (bVar11) {
-        FUN_1800e9540(puVar7,iVar8 << 9);
+        MemoryManager(puVar7, iVar8 << 9);
         LOCK();
-        *(int8_t *)((longlong)iVar8 + 0x808 + (longlong)puVar7) = 0;
+        *(int8_t *)((longlong)iVar8 + 0x808 + (longlong)puVar7) = SYSTEM_STATE_INACTIVE;
         UNLOCK();
       }
       else {
         if (lVar4 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          SystemErrorHandler();
         }
         do {
         } while (*pcVar6 != '\0');
@@ -640,15 +706,30 @@ longlong FUN_1800dae20(void)
     puVar10 = puVar10 + 2;
   } while ((longlong)(pcVar6 + (-0x808 - (longlong)puVar7)) <= (longlong)(ulonglong)uVar3);
   return *(longlong *)
-          ((longlong)*(int *)(lVar2 + 0x5860) * 0x908 + lVar5 + 8 + (ulonglong)uVar3 * 8) +
-         (ulonglong)(uVar1 - (uVar1 & 0xfffffe00)) * 0x330;
+          ((longlong)*(int *)(lVar2 + SYSTEM_PARAM_OFFSET_0x5860) * 0x908 + lVar5 + 8 + (ulonglong)uVar3 * 8) +
+         (ulonglong)(uVar1 - (uVar1 & SYSTEM_SHIFT_MASK_9)) * MEMORY_BLOCK_SIZE_0x330;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_1800daf60(void)
+/**
+ * @brief 内存管理器-小池
+ * 
+ * 本函数负责管理小规模的内存池分配和初始化。实现高效的内存管理机制，
+ * 专门处理小规模内存块的分配、状态管理和资源回收，优化小内存分配性能。
+ * 
+ * 功能特点：
+ * * - 管理小规模内存池的分配
+ * * - 实现线程安全的内存操作
+ * * - 处理内存池的初始化和状态管理
+ * * - 支持动态内存分配和回收
+ * * - 优化小内存块的分配效率
+ * 
+ * @return 返回分配的内存池地址
+ */
+longlong MemoryManager_AllocateSmallPool(void)
 
 {
   uint uVar1;
@@ -663,9 +744,9 @@ longlong FUN_1800daf60(void)
   uint *puVar10;
   bool bVar11;
   
-  lVar2 = system_parameter_buffer;
-  lVar5 = system_parameter_buffer + 0x6a80;
-  puVar7 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x6b20) * 0x50 + lVar5);
+  lVar2 = SystemParameterBuffer;
+  lVar5 = SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x6a80;
+  puVar7 = (uint *)((longlong)*(int *)(SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x6b20) * 0x50 + lVar5);
   LOCK();
   uVar1 = *puVar7;
   *puVar7 = *puVar7 + 1;
@@ -677,7 +758,7 @@ longlong FUN_1800daf60(void)
   do {
     iVar8 = (int)uVar9;
     if (*(longlong *)puVar10 == 0) {
-      lVar4 = FUN_18062b420(system_memory_pool_ptr,0x5e000,0x25);
+      lVar4 = MemoryAllocator(SystemMemoryPoolPtr, MEMORY_BLOCK_SIZE_0x5e000, 0x25);
       LOCK();
       bVar11 = *(longlong *)(puVar7 + (longlong)iVar8 * 2 + 2) == 0;
       if (bVar11) {
@@ -685,15 +766,15 @@ longlong FUN_1800daf60(void)
       }
       UNLOCK();
       if (bVar11) {
-        FUN_1800e9360(puVar7,iVar8 << 9);
+        MemoryPoolInitializer(puVar7, iVar8 << 9);
         LOCK();
-        *(int8_t *)((longlong)iVar8 + 0x48 + (longlong)puVar7) = 0;
+        *(int8_t *)((longlong)iVar8 + 0x48 + (longlong)puVar7) = SYSTEM_STATE_INACTIVE;
         UNLOCK();
       }
       else {
         if (lVar4 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          SystemErrorHandler();
         }
         do {
         } while (*pcVar6 != '\0');
@@ -707,8 +788,8 @@ longlong FUN_1800daf60(void)
     uVar9 = (ulonglong)(iVar8 + 1);
     puVar10 = puVar10 + 2;
   } while ((longlong)(pcVar6 + (-0x48 - (longlong)puVar7)) <= (longlong)(ulonglong)uVar3);
-  return *(longlong *)((longlong)*(int *)(lVar2 + 0x6b20) * 0x50 + lVar5 + 8 + (ulonglong)uVar3 * 8)
-         + (ulonglong)(uVar1 - (uVar1 & 0xfffffe00)) * 0x2f0;
+  return *(longlong *)((longlong)*(int *)(lVar2 + SYSTEM_PARAM_OFFSET_0x6b20) * 0x50 + lVar5 + 8 + (ulonglong)uVar3 * 8)
+         + (ulonglong)(uVar1 - (uVar1 & SYSTEM_SHIFT_MASK_9)) * MEMORY_BLOCK_SIZE_0x2f0;
 }
 
 
