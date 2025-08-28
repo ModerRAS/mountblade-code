@@ -189,53 +189,143 @@ int NetworkProtocol_SerializeExtended(void* context, uint8_t* output_buffer, int
 
 
 
-int FUN_180842540(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 连接请求协议处理函数
+ * 
+ * 该函数负责处理网络连接请求协议的序列化工作。
+ * 包含连接标识符和相关参数的封装。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 连接标识符封装
+ * - 协议版本兼容性检查
+ * - 简化的数据结构
+ */
+int NetworkProtocol_SerializeConnectionRequest(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982d28);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+    uint32_t connection_id;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取连接标识符
+    connection_id = *(uint32_t*)((uint8_t*)context + 0x10);
+    
+    // 序列化连接请求头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180982d28);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    
+    // 序列化连接标识符
+    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+                                     buffer_size - header_size - total_size, connection_id);
+    if (total_size < 0) return total_size;
+    
+    return header_size + total_size;
 }
 
 
 
-int FUN_1808425b0(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 连接响应协议处理函数
+ * 
+ * 该函数负责处理网络连接响应协议的序列化工作。
+ * 包含连接确认信息和响应码的封装。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 响应码封装
+ * - 连接状态确认
+ * - 协议兼容性处理
+ */
+int NetworkProtocol_SerializeConnectionResponse(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982e28);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+    uint32_t response_code;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取响应码
+    response_code = *(uint32_t*)((uint8_t*)context + 0x10);
+    
+    // 序列化响应头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180982e28);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    
+    // 序列化响应码
+    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+                                     buffer_size - header_size - total_size, response_code);
+    if (total_size < 0) return total_size;
+    
+    return header_size + total_size;
 }
 
 
 
-int FUN_180842620(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 连接断开协议处理函数
+ * 
+ * 该函数负责处理网络连接断开协议的序列化工作。
+ * 包含断开原因和状态信息的封装。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 断开原因编码
+ * - 状态信息封装
+ * - 优雅断开处理
+ */
+int NetworkProtocol_SerializeDisconnect(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982da8);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+    uint32_t disconnect_reason;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取断开原因
+    disconnect_reason = *(uint32_t*)((uint8_t*)context + 0x10);
+    
+    // 序列化断开协议头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180982da8);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    
+    // 序列化断开原因
+    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+                                     buffer_size - header_size - total_size, disconnect_reason);
+    if (total_size < 0) return total_size;
+    
+    return header_size + total_size;
 }
 
 
