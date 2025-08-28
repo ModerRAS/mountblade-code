@@ -76,11 +76,11 @@ typedef enum {
 // 全局数据引用
 #define RenderingSystemGlobalData _DAT_180c8ed18
 #define RenderingSystemDefaultData &system_buffer_ptr
-#define RenderingSystemVTableData1 RenderingSystemVTableData1
-#define RenderingSystemVTableData2 &UNK_1809fcc58
-#define RenderingSystemVTableData3 &UNK_180a3c3e0
-#define RenderingSystemVTableData4 &UNK_180a21720
-#define RenderingSystemVTableData5 &UNK_180a21690
+#define RenderingSystemVTableData1 &UNK_18098bcb0
+#define RenderingSystemVTableData2 RenderingSystemVTableData2
+#define RenderingSystemVTableData3 RenderingSystemVTableData3
+#define RenderingSystemVTableData4 RenderingSystemVTableData4
+#define RenderingSystemVTableData5 RenderingSystemVTableData5
 
 // ============================================================================
 // 函数声明
@@ -512,7 +512,7 @@ void RenderingSystemCleanupProjectionParameters(longlong param_1)
                 if (puVar2[4] != 0) {
                     ResourceReleaser();
                 }
-                *puVar2 = &UNK_180a3c3e0;
+                *puVar2 = RenderingSystemVTableData3;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
@@ -558,7 +558,7 @@ void RenderingSystemCleanupViewParameters(longlong param_1)
                 if (puVar2[4] != 0) {
                     ResourceReleaser();
                 }
-                *puVar2 = &UNK_180a3c3e0;
+                *puVar2 = RenderingSystemVTableData3;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
@@ -604,7 +604,7 @@ void RenderingSystemCleanupTextureParameters(longlong param_1)
                 if (puVar2[4] != 0) {
                     ResourceReleaser();
                 }
-                *puVar2 = &UNK_180a3c3e0;
+                *puVar2 = RenderingSystemVTableData3;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
@@ -645,14 +645,14 @@ void RenderingSystemBatchInitialize(longlong param_1, longlong param_2)
             *(void **)(puVar1 + -0x5a) = RenderingSystemVTableData1;
             *(uint64_t *)(puVar1 + -0x58) = 0;
             puVar1[-0x56] = 0;
-            *(void **)(puVar1 + -0x5a) = &UNK_1809fcc58;
+            *(void **)(puVar1 + -0x5a) = RenderingSystemVTableData2;
             *(int32_t **)(puVar1 + -0x58) = puVar1 + -0x54;
             puVar1[-0x56] = 0;
             *(int8_t *)(puVar1 + -0x54) = 0;
             *(void **)(puVar1 + -0x16) = RenderingSystemVTableData1;
             *(uint64_t *)(puVar1 + -0x14) = 0;
             puVar1[-0x12] = 0;
-            *(void **)(puVar1 + -0x16) = &UNK_180a3c3e0;
+            *(void **)(puVar1 + -0x16) = RenderingSystemVTableData3;
             *(uint64_t *)(puVar1 + -0x10) = 0;
             *(uint64_t *)(puVar1 + -0x14) = 0;
             puVar1[-0x12] = 0;
@@ -732,7 +732,7 @@ void RenderingSystemCleanupDepthBuffer(longlong param_1)
                 if (puVar2[4] != 0) {
                     ResourceReleaser();
                 }
-                *puVar2 = &UNK_180a3c3e0;
+                *puVar2 = RenderingSystemVTableData3;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
@@ -784,7 +784,7 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
             *param_4 = RenderingSystemVTableData1;
             param_4[1] = 0;
             *(int32_t *)(param_4 + 2) = 0;
-            *param_4 = &UNK_1809fcc58;
+            *param_4 = RenderingSystemVTableData2;
             param_4[1] = param_4 + 3;
             *(int32_t *)(param_4 + 2) = 0;
             *(int8_t *)(param_4 + 3) = 0;
@@ -842,7 +842,7 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
             param_4[0x22] = RenderingSystemVTableData1;
             param_4[0x23] = 0;
             *(int32_t *)(param_4 + 0x24) = 0;
-            param_4[0x22] = &UNK_180a3c3e0;
+            param_4[0x22] = RenderingSystemVTableData3;
             param_4[0x25] = 0;
             param_4[0x23] = 0;
             *(int32_t *)(param_4 + 0x24) = 0;
@@ -1116,8 +1116,8 @@ uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, ulonglong param_2, u
     if ((longlong *)param_1[3] != (longlong *)0x0) {
         (**(code **)(*(longlong *)param_1[3] + 0x38))();
     }
-    *param_1 = &UNK_180a21720;
-    *param_1 = &UNK_180a21690;
+    *param_1 = RenderingSystemVTableData4;
+    *param_1 = RenderingSystemVTableData5;
     if ((param_2 & 1) != 0) {
         free(param_1, 0x30, param_3, param_4, uVar1);
     }
