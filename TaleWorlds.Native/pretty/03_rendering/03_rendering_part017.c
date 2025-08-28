@@ -3,59 +3,70 @@
 // 03_rendering_part017.c - 渲染系统组件 - 11个函数
 
 // 函数: void FUN_1802776ad(void)
-// 渲染对象清理处理
-void Process_Render_Object_Cleanup(void)
+// 渲染对象清理和资源释放
+void Cleanup_Render_Objects_And_Resources(void)
 {
-  int *render_count_ptr;
-  byte *flag_byte_ptr;
-  longlong render_obj;
-  longlong slot_data;
-  longlong global_context;
-  longlong slot_offset;
-  longlong frame_context;
-  longlong *obj_array_ptr;
-  uint render_flags;
+  int *render_count_ptr;          // 渲染计数器指针
+  byte *flag_byte_ptr;            // 标志字节指针
+  longlong render_obj;             // 渲染对象指针
+  longlong slot_data;              // 插槽数据指针
+  longlong global_context;         // 全局上下文
+  longlong slot_offset;            // 插槽偏移量
+  longlong frame_context;          // 帧上下文
+  longlong *obj_array_ptr;         // 对象数组指针
+  uint render_flags;               // 渲染标志位
   
+  // 遍历渲染对象数组，清理不再使用的对象
   do {
+    // 检查渲染标志是否匹配
     if ((*(uint *)(obj_array_ptr + 1) & render_flags) != 0) {
       render_obj = *obj_array_ptr;
+      // 检查对象是否有插槽数据
       if (*(longlong *)(render_obj + 0x1b8) != 0) {
         slot_offset = 0xb8;
         global_context = _DAT_180c86870;
+        // 遍历所有插槽（0xb8 到 0x138，步长 8）
         do {
           slot_data = *(longlong *)(slot_offset + *(longlong *)(render_obj + 0x1b8));
+          // 检查插槽数据是否有效且需要清理
           if ((((slot_data != 0) && (*(longlong *)(slot_offset + 0x328 + *(longlong *)(render_obj + 0x1b8)) == 0))
               && ((*(uint *)(slot_data + 0x328) & 0x20000000) == 0)) &&
              (*(longlong *)(slot_data + 0x370) == 0)) {
+            // 如果插槽没有引用计数，则进行清理
             if (*(longlong *)(slot_data + 0x1d8) == 0) {
-              FUN_18023b050(slot_data,0);
+              FUN_18023b050(slot_data,0);  // 清理插槽数据
               global_context = _DAT_180c86870;
               render_count_ptr = (int *)(*(longlong *)(slot_offset + *(longlong *)(render_obj + 0x1b8)) + 0x3a8);
-              *render_count_ptr = *render_count_ptr + 1;
+              *render_count_ptr = *render_count_ptr + 1;  // 增加渲染计数
             }
             else if (global_context != 0) {
+              // 设置插槽的全局上下文引用
               *(longlong *)(slot_data + 0x340) = (longlong)*(int *)(global_context + 0x224);
             }
           }
           slot_offset = slot_offset + 8;
         } while (slot_offset < 0x138);
       }
+      // 检查对象是否有活动标志
       if (*(char *)(render_obj + 0xf9) != '\0') {
         if (*(longlong *)(render_obj + 0x1d8) != 0) {
-                    // WARNING: Subroutine does not return
+          // 如果对象仍有引用，这是一个错误情况
           FUN_18064e900();
         }
+        // 清理对象的引用
         *(undefined8 *)(render_obj + 0x1d8) = 0;
-        LOCK();
-        *(undefined1 *)(render_obj + 0xf9) = 0;
-        UNLOCK();
+        LOCK();  // 获取线程锁
+        *(undefined1 *)(render_obj + 0xf9) = 0;  // 清除活动标志
+        UNLOCK();  // 释放线程锁
       }
+      // 检查对象是否有额外的渲染数据
       if (*(longlong *)(render_obj + 0x1e8) != 0) {
-        FUN_180080060();
+        FUN_180080060();  // 清理渲染数据
         *(undefined8 *)(render_obj + 0x1e8) = 0;
+        // 清理相关标志位
         if (*(longlong *)(render_obj + 0x1f0) != 0) {
           flag_byte_ptr = (byte *)(*(longlong *)(render_obj + 0x1f0) + 0xfe);
-          *flag_byte_ptr = *flag_byte_ptr & 0xfb;
+          *flag_byte_ptr = *flag_byte_ptr & 0xfb;  // 清除第 2 位标志
         }
       }
     }
@@ -66,11 +77,9 @@ void Process_Render_Object_Cleanup(void)
 
 
 
-
-
 // 函数: void FUN_1802777dd(void)
-// 空函数 - 渲染系统占位符
-void Render_System_Placeholder(void)
+// 渲染系统空操作函数 - 用于同步或占位
+void Render_System_NoOperation(void)
 {
   return;
 }
@@ -83,86 +92,92 @@ void Render_System_Placeholder(void)
 
 
 // 函数: void FUN_1802777f0(longlong param_1)
-// 处理渲染对象数组
-void Process_Render_Object_Array(longlong render_context)
+// 处理渲染对象数组并进行状态管理
+void Process_Render_Object_Array_With_State(longlong render_context)
 {
-  longlong *render_obj;
-  longlong *temp_obj;
-  longlong *obj_iterator;
-  longlong *stack_obj_70;
-  undefined1 context_buffer[8];
-  longlong *stack_obj_60;
-  undefined4 process_flag;
-  longlong *stack_obj_50;
-  undefined2 status_flag;
-  char cleanup_flag;
+  longlong *render_obj;             // 渲染对象指针
+  longlong *temp_obj;               // 临时对象指针
+  longlong *obj_iterator;           // 对象迭代器
+  longlong *stack_obj_70;            // 栈对象70（用于状态管理）
+  undefined1 context_buffer[8];     // 上下文缓冲区
+  longlong *stack_obj_60;            // 栈对象60（用于上下文管理）
+  undefined4 process_flag;         // 处理标志
+  longlong *stack_obj_50;            // 栈对象50（用于临时存储）
+  undefined2 status_flag;           // 状态标志
+  char cleanup_flag;                 // 清理标志
   
+  // 获取渲染对象数组迭代器
   obj_iterator = *(longlong **)(render_context + 0x38);
   if (obj_iterator < *(longlong **)(render_context + 0x40)) {
     do {
       render_obj = (longlong *)*obj_iterator;
+      // 检查对象是否处于空闲状态
       if (render_obj[0x42] == 0) {
+        // 重置对象状态
         render_obj[0x3f] = 0;
         render_obj[0x40] = 0;
         *(undefined4 *)(render_obj + 0x41) = 0;
-        FUN_180079520(render_obj);
+        FUN_180079520(render_obj);  // 执行对象清理
       }
       else {
-        (**(code **)(*render_obj + 0x28))();
+        // 处理活动对象
+        (**(code **)(*render_obj + 0x28))();  // 调用对象的初始化函数
         stack_obj_50 = (longlong *)0x0;
         stack_obj_60 = (longlong *)0x0;
         context_buffer[0] = 0;
-        (**(code **)(*render_obj + 0x28))(render_obj);
+        (**(code **)(*render_obj + 0x28))(render_obj);  // 再次调用初始化
         process_flag = 0;
         stack_obj_60 = render_obj;
-        FUN_18007f4c0(context_buffer);
+        FUN_18007f4c0(context_buffer);  // 初始化上下文缓冲区
         temp_obj = stack_obj_50;
         if (stack_obj_50 != (longlong *)0x0) {
-          (**(code **)(*stack_obj_50 + 0x28))(stack_obj_50);
+          (**(code **)(*stack_obj_50 + 0x28))(stack_obj_50);  // 处理临时对象
         }
         stack_obj_70 = temp_obj;
         status_flag = 0;
         cleanup_flag = '\0';
-        (**(code **)(*render_obj + 0x38))(render_obj);
+        (**(code **)(*render_obj + 0x38))(render_obj);  // 调用对象的处理函数
+        // 重置临时对象的状态
         *(undefined4 *)(temp_obj + 2) = 0;
         *(undefined4 *)(temp_obj + 7) = 0;
         *(undefined4 *)(temp_obj + 0x11) = 0;
         *(undefined4 *)(temp_obj + 0xc) = 0;
         *(undefined2 *)(temp_obj + 0x18) = 0;
+        // 检查临时对象是否有错误
         if (temp_obj[0x17] != 0) {
-                    // WARNING: Subroutine does not return
-          FUN_18064e900();
+          FUN_18064e900();  // 错误处理
         }
         temp_obj[0x17] = 0;
-        FUN_180085530(temp_obj[0x16]);
+        FUN_180085530(temp_obj[0x16]);  // 清理资源
         temp_obj[0x16] = 0;
         *(undefined4 *)(temp_obj + 0x19) = 0;
         status_flag = 0x101;
+        // 执行对象的状态更新和清理
         if ((render_obj != (longlong *)0x0) && (temp_obj != (longlong *)0x0)) {
           if (cleanup_flag != '\0') {
-            FUN_180075b70();
+            FUN_180075b70();  // 执行额外的清理
           }
-          FUN_18007f6a0(context_buffer);
+          FUN_18007f6a0(context_buffer);  // 清理上下文缓冲区
           if ((char)status_flag != '\0') {
-            FUN_180079520(render_obj);
+            FUN_180079520(render_obj);  // 更新对象状态
           }
           if (status_flag._1_1_ != '\0') {
-            FUN_180079520(render_obj);
+            FUN_180079520(render_obj);  // 再次更新状态
           }
           stack_obj_70 = (longlong *)0x0;
           if (temp_obj != (longlong *)0x0) {
-            (**(code **)(*temp_obj + 0x38))();
+            (**(code **)(*temp_obj + 0x38))();  // 调用临时对象的清理函数
           }
         }
-        FUN_18007f6a0(context_buffer);
+        FUN_18007f6a0(context_buffer);  // 再次清理上下文
         if (stack_obj_50 != (longlong *)0x0) {
-          (**(code **)(*stack_obj_50 + 0x38))();
+          (**(code **)(*stack_obj_50 + 0x38))();  // 清理栈对象
         }
         if (stack_obj_70 != (longlong *)0x0) {
-          (**(code **)(*stack_obj_70 + 0x38))();
+          (**(code **)(*stack_obj_70 + 0x38))();  // 清理另一个栈对象
         }
         if (render_obj != (longlong *)0x0) {
-          (**(code **)(*render_obj + 0x38))();
+          (**(code **)(*render_obj + 0x38))();  // 最后清理主对象
         }
       }
       obj_iterator = obj_iterator + 2;
@@ -173,67 +188,67 @@ void Process_Render_Object_Array(longlong render_context)
 
 
 
-
-
 // 函数: void FUN_180277a20(longlong param_1,byte param_2)
 // 渲染对象位图处理和清理
 void Process_Render_Object_Bitmap(longlong render_context,byte flag_mask)
 
 {
-  uint uVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  longlong lVar8;
-  uint uVar9;
+  uint bitmap_flag;                 // 位图标志
+  undefined8 temp_data;            // 临时数据
+  longlong *object_ptr;             // 对象指针
+  undefined8 *array_start;         // 数组起始指针
+  undefined8 *array_current;       // 数组当前指针
+  undefined8 *array_end;           // 数组结束指针
+  undefined8 *array_next;          // 数组下一个指针
+  longlong array_size;             // 数组大小
+  uint bit_mask;                   // 位掩码
   
-  uVar9 = 1 << (param_2 & 0x1f);
-  puVar6 = *(undefined8 **)(param_1 + 0x38);
-  puVar4 = *(undefined8 **)(param_1 + 0x40);
-  if (puVar6 != puVar4) {
-    puVar7 = puVar6 + 2;
+  bit_mask = 1 << (flag_mask & 0x1f);  // 计算位掩码
+  array_current = *(undefined8 **)(render_context + 0x38);
+  array_end = *(undefined8 **)(render_context + 0x40);
+  if (array_current != array_end) {
+    array_next = array_current + 2;
     do {
-      uVar1 = *(uint *)(puVar6 + 1);
-      if (uVar1 == uVar9) {
-        if ((puVar7 < puVar4) &&
-           (lVar8 = (longlong)puVar4 - (longlong)puVar7 >> 4, puVar5 = puVar7, 0 < lVar8)) {
+      bitmap_flag = *(uint *)(array_current + 1);
+      if (bitmap_flag == bit_mask) {
+        // 处理完全匹配的位图标志
+        if ((array_next < array_end) &&
+           (array_size = (longlong)array_end - (longlong)array_next >> 4, array_start = array_next, 0 < array_size)) {
           do {
-            uVar2 = *puVar5;
-            *puVar5 = 0;
-            plVar3 = (longlong *)puVar5[-2];
-            puVar5[-2] = uVar2;
-            if (plVar3 != (longlong *)0x0) {
-              (**(code **)(*plVar3 + 0x38))();
+            temp_data = *array_start;
+            *array_start = 0;
+            object_ptr = (longlong *)array_start[-2];
+            array_start[-2] = temp_data;
+            if (object_ptr != (longlong *)0x0) {
+              (**(code **)(*object_ptr + 0x38))();
             }
-            *(undefined4 *)(puVar5 + -1) = *(undefined4 *)(puVar5 + 1);
-            lVar8 = lVar8 + -1;
-            puVar5 = puVar5 + 2;
-          } while (0 < lVar8);
-          puVar4 = *(undefined8 **)(param_1 + 0x40);
+            *(undefined4 *)(array_start + -1) = *(undefined4 *)(array_start + 1);
+            array_size = array_size + -1;
+            array_start = array_start + 2;
+          } while (0 < array_size);
+          array_end = *(undefined8 **)(render_context + 0x40);
         }
-        *(undefined8 **)(param_1 + 0x40) = puVar4 + -2;
-        plVar3 = (longlong *)puVar4[-2];
-        if (plVar3 != (longlong *)0x0) {
-          (**(code **)(*plVar3 + 0x38))();
+        *(undefined8 **)(render_context + 0x40) = array_end + -2;
+        object_ptr = (longlong *)array_end[-2];
+        if (object_ptr != (longlong *)0x0) {
+          (**(code **)(*object_ptr + 0x38))();
         }
       }
       else {
-        if ((uVar9 & uVar1) != 0) {
-          *(uint *)(puVar6 + 1) = ~uVar9 & uVar1;
+        // 处理部分匹配的位图标志
+        if ((bit_mask & bitmap_flag) != 0) {
+          *(uint *)(array_current + 1) = ~bit_mask & bitmap_flag;
         }
-        puVar6 = puVar6 + 2;
-        puVar7 = puVar7 + 2;
+        array_current = array_current + 2;
+        array_next = array_next + 2;
       }
-      puVar4 = *(undefined8 **)(param_1 + 0x40);
-    } while (puVar6 != puVar4);
+      array_end = *(undefined8 **)(render_context + 0x40);
+    } while (array_current != array_end);
   }
-  FUN_180278270(param_1);
-  lVar8 = *(longlong *)(param_1 + 0x28);
-  if ((lVar8 != 0) &&
-     (*(short *)(lVar8 + 0x2b0) = *(short *)(lVar8 + 0x2b0) + 1, *(longlong *)(lVar8 + 0x168) != 0))
+  FUN_180278270(render_context);
+  array_size = *(longlong *)(render_context + 0x28);
+  if ((array_size != 0) &&
+     (*(short *)(array_size + 0x2b0) = *(short *)(array_size + 0x2b0) + 1, *(longlong *)(array_size + 0x168) != 0))
   {
     func_0x0001802eeba0();
   }
@@ -251,122 +266,122 @@ void Process_Render_Object_Bitmap(longlong render_context,byte flag_mask)
 void Process_Render_Object_Bitmap_Memory(longlong render_context,uint bit_mask)
 
 {
-  undefined4 *puVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  longlong *plVar4;
-  uint uVar5;
-  longlong *plVar8;
-  longlong *plVar9;
-  longlong *plVar10;
-  longlong *plVar11;
-  longlong *plVar12;
-  uint uVar6;
-  longlong *plVar7;
+  undefined4 *flag_ptr;            // 标志指针
+  longlong array_offset;           // 数组偏移量
+  longlong *object_ptr;            // 对象指针
+  longlong *new_array_ptr;         // 新数组指针
+  uint current_flag;               // 当前标志
+  longlong *src_array_ptr;         // 源数组指针
+  longlong *dest_array_ptr;        // 目标数组指针
+  longlong *temp_array_ptr;        // 临时数组指针
+  longlong *array_ptr1;            // 数组指针1
+  longlong *array_ptr2;            // 数组指针2
+  longlong *array_ptr3;            // 数组指针3
+  longlong *array_ptr4;            // 数组指针4
+  uint loop_counter;               // 循环计数器
+  longlong *array_ptr5;            // 数组指针5
   
-  plVar7 = (longlong *)0x0;
-  uVar5 = 0;
-  plVar10 = *(longlong **)(param_1 + 0x38);
-  plVar8 = (longlong *)0x0;
-  plVar3 = (longlong *)0x0;
-  plVar9 = plVar3;
-  plVar11 = plVar8;
-  plVar12 = plVar7;
-  plVar4 = plVar7;
-  if (*(longlong *)(param_1 + 0x40) - (longlong)plVar10 >> 4 != 0) {
+  array_ptr5 = (longlong *)0x0;
+  current_flag = 0;
+  temp_array_ptr = *(longlong **)(render_context + 0x38);
+  dest_array_ptr = (longlong *)0x0;
+  object_ptr = (longlong *)0x0;
+  new_array_ptr = object_ptr;
+  array_ptr2 = dest_array_ptr;
+  array_ptr3 = array_ptr5;
+  new_array_ptr = array_ptr5;
+  if (*(longlong *)(render_context + 0x40) - (longlong)temp_array_ptr >> 4 != 0) {
     do {
-      plVar3 = plVar9;
-      plVar8 = plVar11;
-      uVar6 = (uint)plVar7;
-      if ((*(uint *)((longlong)(plVar10 + 1) + (longlong)plVar12) >> (param_2 & 0x1f) & 1) != 0) {
-        if (plVar11 < plVar4) {
-          plVar8 = plVar11 + 2;
-          plVar9 = *(longlong **)((longlong)plVar10 + (longlong)plVar12);
-          *plVar11 = (longlong)plVar9;
-          if (plVar9 != (longlong *)0x0) {
-            (**(code **)(*plVar9 + 0x28))();
-            uVar6 = uVar5;
+      object_ptr = new_array_ptr;
+      dest_array_ptr = array_ptr2;
+      current_flag = (uint)array_ptr5;
+      if ((*(uint *)((longlong)(temp_array_ptr + 1) + (longlong)array_ptr3) >> (bit_mask & 0x1f) & 1) != 0) {
+        if (array_ptr2 < new_array_ptr) {
+          dest_array_ptr = array_ptr2 + 2;
+          new_array_ptr = *(longlong **)((longlong)temp_array_ptr + (longlong)array_ptr3);
+          *array_ptr2 = (longlong)new_array_ptr;
+          if (new_array_ptr != (longlong *)0x0) {
+            (**(code **)(*new_array_ptr + 0x28))();
+            current_flag = current_flag;
           }
-          *(undefined4 *)(plVar11 + 1) =
-               *(undefined4 *)((longlong)(plVar10 + 1) + (longlong)plVar12);
+          *(undefined4 *)(array_ptr2 + 1) =
+               *(undefined4 *)((longlong)(temp_array_ptr + 1) + (longlong)array_ptr3);
         }
         else {
-          lVar2 = (longlong)plVar11 - (longlong)plVar9 >> 4;
-          if (lVar2 == 0) {
-            lVar2 = 1;
+          array_offset = (longlong)array_ptr2 - (longlong)new_array_ptr >> 4;
+          if (array_offset == 0) {
+            array_offset = 1;
 LAB_180277c31:
-            plVar3 = (longlong *)
-                     FUN_18062b420(_DAT_180c8ed18,lVar2 << 4,
-                                   CONCAT71((uint7)(uint3)(param_2 >> 8),0x16));
+            object_ptr = (longlong *)
+                     FUN_18062b420(_DAT_180c8ed18,array_offset << 4,
+                                   CONCAT71((uint7)(uint3)(bit_mask >> 8),0x16));
           }
           else {
-            lVar2 = lVar2 * 2;
-            plVar3 = (longlong *)0x0;
-            if (lVar2 != 0) goto LAB_180277c31;
+            array_offset = array_offset * 2;
+            object_ptr = (longlong *)0x0;
+            if (array_offset != 0) goto LAB_180277c31;
           }
-          plVar8 = plVar3;
-          if (plVar9 != plVar11) {
-            plVar4 = plVar9;
+          dest_array_ptr = object_ptr;
+          if (new_array_ptr != array_ptr2) {
+            new_array_ptr = new_array_ptr;
             do {
-              *plVar8 = *plVar4;
-              *plVar4 = 0;
-              puVar1 = (undefined4 *)((longlong)plVar3 + (8 - (longlong)plVar9) + (longlong)plVar4);
-              *puVar1 = *(undefined4 *)((longlong)puVar1 + ((longlong)plVar9 - (longlong)plVar3));
-              plVar4 = plVar4 + 2;
-              plVar8 = plVar8 + 2;
-            } while (plVar4 != plVar11);
+              *dest_array_ptr = *new_array_ptr;
+              *new_array_ptr = 0;
+              flag_ptr = (undefined4 *)((longlong)object_ptr + (8 - (longlong)new_array_ptr) + (longlong)new_array_ptr);
+              *flag_ptr = *(undefined4 *)((longlong)flag_ptr + ((longlong)new_array_ptr - (longlong)object_ptr));
+              new_array_ptr = new_array_ptr + 2;
+              dest_array_ptr = dest_array_ptr + 2;
+            } while (new_array_ptr != array_ptr2);
           }
-          plVar4 = *(longlong **)((longlong)plVar10 + (longlong)plVar12);
-          *plVar8 = (longlong)plVar4;
-          if (plVar4 != (longlong *)0x0) {
-            (**(code **)(*plVar4 + 0x28))();
+          new_array_ptr = *(longlong **)((longlong)temp_array_ptr + (longlong)array_ptr3);
+          *dest_array_ptr = (longlong)new_array_ptr;
+          if (new_array_ptr != (longlong *)0x0) {
+            (**(code **)(*new_array_ptr + 0x28))();
           }
-          *(undefined4 *)(plVar8 + 1) = *(undefined4 *)((longlong)(plVar10 + 1) + (longlong)plVar12)
+          *(undefined4 *)(dest_array_ptr + 1) = *(undefined4 *)((longlong)(temp_array_ptr + 1) + (longlong)array_ptr3)
           ;
-          plVar8 = plVar8 + 2;
-          for (plVar10 = plVar9; plVar10 != plVar11; plVar10 = plVar10 + 2) {
-            if ((longlong *)*plVar10 != (longlong *)0x0) {
-              (**(code **)(*(longlong *)*plVar10 + 0x38))();
+          dest_array_ptr = dest_array_ptr + 2;
+          for (temp_array_ptr = new_array_ptr; temp_array_ptr != array_ptr2; temp_array_ptr = temp_array_ptr + 2) {
+            if ((longlong *)*temp_array_ptr != (longlong *)0x0) {
+              (**(code **)(*(longlong *)*temp_array_ptr + 0x38))();
             }
           }
-          if (plVar9 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900(plVar9);
+          if (new_array_ptr != (longlong *)0x0) {
+            FUN_18064e900(new_array_ptr);
           }
-          plVar4 = plVar3 + lVar2 * 2;
-          uVar6 = uVar5;
+          new_array_ptr = object_ptr + array_offset * 2;
+          current_flag = current_flag;
         }
       }
-      uVar5 = uVar6 + 1;
-      plVar7 = (longlong *)(ulonglong)uVar5;
-      plVar10 = *(longlong **)(param_1 + 0x38);
-      plVar9 = plVar3;
-      plVar11 = plVar8;
-      plVar12 = plVar12 + 2;
-    } while ((ulonglong)(longlong)(int)uVar5 <
-             (ulonglong)(*(longlong *)(param_1 + 0x40) - (longlong)plVar10 >> 4));
+      current_flag = current_flag + 1;
+      array_ptr5 = (longlong *)(ulonglong)current_flag;
+      temp_array_ptr = *(longlong **)(render_context + 0x38);
+      new_array_ptr = object_ptr;
+      array_ptr2 = dest_array_ptr;
+      array_ptr3 = array_ptr3 + 2;
+    } while ((ulonglong)(longlong)(int)current_flag <
+             (ulonglong)(*(longlong *)(render_context + 0x40) - (longlong)temp_array_ptr >> 4));
   }
-  *(longlong **)(param_1 + 0x38) = plVar3;
-  plVar3 = *(longlong **)(param_1 + 0x40);
-  *(longlong **)(param_1 + 0x40) = plVar8;
-  *(longlong **)(param_1 + 0x48) = plVar4;
-  *(undefined4 *)(param_1 + 0x50) = 0x16;
-  FUN_180278270(param_1);
-  lVar2 = *(longlong *)(param_1 + 0x28);
-  plVar8 = plVar10;
-  if ((lVar2 != 0) &&
-     (*(short *)(lVar2 + 0x2b0) = *(short *)(lVar2 + 0x2b0) + 1, *(longlong *)(lVar2 + 0x168) != 0))
+  *(longlong **)(render_context + 0x38) = object_ptr;
+  object_ptr = *(longlong **)(render_context + 0x40);
+  *(longlong **)(render_context + 0x40) = dest_array_ptr;
+  *(longlong **)(render_context + 0x48) = new_array_ptr;
+  *(undefined4 *)(render_context + 0x50) = 0x16;
+  FUN_180278270(render_context);
+  array_offset = *(longlong *)(render_context + 0x28);
+  dest_array_ptr = temp_array_ptr;
+  if ((array_offset != 0) &&
+     (*(short *)(array_offset + 0x2b0) = *(short *)(array_offset + 0x2b0) + 1, *(longlong *)(array_offset + 0x168) != 0))
   {
     func_0x0001802eeba0();
   }
-  for (; plVar8 != plVar3; plVar8 = plVar8 + 2) {
-    if ((longlong *)*plVar8 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar8 + 0x38))();
+  for (; dest_array_ptr != object_ptr; dest_array_ptr = dest_array_ptr + 2) {
+    if ((longlong *)*dest_array_ptr != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*dest_array_ptr + 0x38))();
     }
   }
-  if (plVar10 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(plVar10);
+  if (temp_array_ptr != (longlong *)0x0) {
+    FUN_18064e900(temp_array_ptr);
   }
   return;
 }
@@ -382,54 +397,52 @@ LAB_180277c31:
 void Collect_Render_Object_Array(longlong render_context,ulonglong *result_array,uint render_flag)
 
 {
-  undefined8 uVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
+  undefined8 object_data;           // 对象数据
+  longlong array_size;              // 数组大小
+  undefined8 *new_array_ptr;        // 新数组指针
+  undefined8 *old_array_ptr;        // 旧数组指针
+  undefined8 *temp_array_ptr;       // 临时数组指针
+  undefined8 *array_current;        // 数组当前指针
   
-  puVar5 = *(undefined8 **)(param_1 + 0x38);
-  if (puVar5 < *(undefined8 **)(param_1 + 0x40)) {
+  temp_array_ptr = *(undefined8 **)(render_context + 0x38);
+  if (temp_array_ptr < *(undefined8 **)(render_context + 0x40)) {
     do {
-      if ((*(uint *)(puVar5 + 1) & param_3) != 0) {
-        puVar6 = (undefined8 *)param_2[1];
-        uVar1 = *puVar5;
-        if (puVar6 < (undefined8 *)param_2[2]) {
-          param_2[1] = (ulonglong)(puVar6 + 1);
-          *puVar6 = uVar1;
+      if ((*(uint *)(temp_array_ptr + 1) & render_flag) != 0) {
+        array_current = (undefined8 *)result_array[1];
+        object_data = *temp_array_ptr;
+        if (array_current < (undefined8 *)result_array[2]) {
+          result_array[1] = (ulonglong)(array_current + 1);
+          *array_current = object_data;
         }
         else {
-          puVar4 = (undefined8 *)*param_2;
-          lVar2 = (longlong)puVar6 - (longlong)puVar4 >> 3;
-          if (lVar2 == 0) {
-            lVar2 = 1;
+          old_array_ptr = (undefined8 *)*result_array;
+          array_size = (longlong)array_current - (longlong)old_array_ptr >> 3;
+          if (array_size == 0) {
+            array_size = 1;
 LAB_180277eb2:
-            puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar2 * 8,(char)param_2[3]);
-            puVar4 = (undefined8 *)*param_2;
-            puVar6 = (undefined8 *)param_2[1];
+            new_array_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
+            old_array_ptr = (undefined8 *)*result_array;
+            array_current = (undefined8 *)result_array[1];
           }
           else {
-            lVar2 = lVar2 * 2;
-            if (lVar2 != 0) goto LAB_180277eb2;
-            puVar3 = (undefined8 *)0x0;
+            array_size = array_size * 2;
+            if (array_size != 0) goto LAB_180277eb2;
+            new_array_ptr = (undefined8 *)0x0;
           }
-          if (puVar4 != puVar6) {
-                    // WARNING: Subroutine does not return
-            memmove(puVar3,puVar4,(longlong)puVar6 - (longlong)puVar4);
+          if (old_array_ptr != array_current) {
+            memmove(new_array_ptr,old_array_ptr,(longlong)array_current - (longlong)old_array_ptr);
           }
-          *puVar3 = uVar1;
-          if (*param_2 != 0) {
-                    // WARNING: Subroutine does not return
+          *new_array_ptr = object_data;
+          if (*result_array != 0) {
             FUN_18064e900();
           }
-          *param_2 = (ulonglong)puVar3;
-          param_2[2] = (ulonglong)(puVar3 + lVar2);
-          param_2[1] = (ulonglong)(puVar3 + 1);
+          *result_array = (ulonglong)new_array_ptr;
+          result_array[2] = (ulonglong)(new_array_ptr + array_size);
+          result_array[1] = (ulonglong)(new_array_ptr + 1);
         }
       }
-      puVar5 = puVar5 + 2;
-    } while (puVar5 < *(undefined8 **)(param_1 + 0x40));
+      temp_array_ptr = temp_array_ptr + 2;
+    } while (temp_array_ptr < *(undefined8 **)(render_context + 0x40));
   }
   return;
 }
@@ -445,61 +458,57 @@ LAB_180277eb2:
 void Collect_Render_Object_Array_Empty(void)
 
 {
-  undefined8 uVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  ulonglong *unaff_RBX;
-  undefined8 *unaff_RSI;
-  undefined8 *puVar5;
-  uint unaff_R12D;
-  longlong unaff_R13;
+  undefined8 object_data;           // 对象数据
+  longlong array_size;              // 数组大小
+  undefined8 *new_array_ptr;        // 新数组指针
+  undefined8 *old_array_ptr;        // 旧数组指针
+  undefined8 *temp_array_ptr;       // 临时数组指针
+  ulonglong *result_array;          // 结果数组指针
+  undefined8 *array_current;        // 数组当前指针
+  uint render_flag;                 // 渲染标志
+  longlong render_context;          // 渲染上下文
   
   do {
-    if ((*(uint *)(unaff_RSI + 1) & unaff_R12D) != 0) {
-      puVar5 = (undefined8 *)unaff_RBX[1];
-      uVar1 = *unaff_RSI;
-      if (puVar5 < (undefined8 *)unaff_RBX[2]) {
-        unaff_RBX[1] = (ulonglong)(puVar5 + 1);
-        *puVar5 = uVar1;
+    if ((*(uint *)(array_current + 1) & render_flag) != 0) {
+      temp_array_ptr = (undefined8 *)result_array[1];
+      object_data = *array_current;
+      if (temp_array_ptr < (undefined8 *)result_array[2]) {
+        result_array[1] = (ulonglong)(temp_array_ptr + 1);
+        *temp_array_ptr = object_data;
       }
       else {
-        puVar4 = (undefined8 *)*unaff_RBX;
-        lVar2 = (longlong)puVar5 - (longlong)puVar4 >> 3;
-        if (lVar2 == 0) {
-          lVar2 = 1;
+        old_array_ptr = (undefined8 *)*result_array;
+        array_size = (longlong)temp_array_ptr - (longlong)old_array_ptr >> 3;
+        if (array_size == 0) {
+          array_size = 1;
 LAB_180277eb2:
-          puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar2 * 8,(char)unaff_RBX[3]);
-          puVar4 = (undefined8 *)*unaff_RBX;
-          puVar5 = (undefined8 *)unaff_RBX[1];
+          new_array_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
+          old_array_ptr = (undefined8 *)*result_array;
+          temp_array_ptr = (undefined8 *)result_array[1];
         }
         else {
-          lVar2 = lVar2 * 2;
-          if (lVar2 != 0) goto LAB_180277eb2;
-          puVar3 = (undefined8 *)0x0;
+          array_size = array_size * 2;
+          if (array_size != 0) goto LAB_180277eb2;
+          new_array_ptr = (undefined8 *)0x0;
         }
-        if (puVar4 != puVar5) {
-                    // WARNING: Subroutine does not return
-          memmove(puVar3,puVar4,(longlong)puVar5 - (longlong)puVar4);
+        if (old_array_ptr != temp_array_ptr) {
+          memmove(new_array_ptr,old_array_ptr,(longlong)temp_array_ptr - (longlong)old_array_ptr);
         }
-        *puVar3 = uVar1;
-        if (*unaff_RBX != 0) {
-                    // WARNING: Subroutine does not return
+        *new_array_ptr = object_data;
+        if (*result_array != 0) {
           FUN_18064e900();
         }
-        *unaff_RBX = (ulonglong)puVar3;
-        unaff_RBX[2] = (ulonglong)(puVar3 + lVar2);
-        unaff_RBX[1] = (ulonglong)(puVar3 + 1);
+        *result_array = (ulonglong)new_array_ptr;
+        result_array[2] = (ulonglong)(new_array_ptr + array_size);
+        result_array[1] = (ulonglong)(new_array_ptr + 1);
       }
     }
-    unaff_RSI = unaff_RSI + 2;
-    if (*(undefined8 **)(unaff_R13 + 0x40) <= unaff_RSI) {
+    array_current = array_current + 2;
+    if (*(undefined8 **)(render_context + 0x40) <= array_current) {
       return;
     }
   } while( true );
 }
-
-
 
 
 
@@ -524,190 +533,169 @@ void Complete_Render_Object_Collection(void)
 void Transform_Render_Object_Matrix(longlong render_context,ulonglong *result_array,ulonglong *transform_array,float *matrix_data)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  longlong lVar15;
-  longlong *plVar16;
-  float *pfVar17;
-  longlong *plVar18;
-  float *pfVar19;
-  longlong *plVar20;
-  float *pfVar21;
-  longlong lVar22;
-  longlong *plVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
-  float fVar35;
-  float fVar36;
-  float fVar37;
-  float fVar38;
-  float fVar39;
+  float matrix_row1[4];            // 矩阵第1行
+  float matrix_row2[4];            // 矩阵第2行
+  float matrix_row3[4];            // 矩阵第3行
+  float matrix_row4[4];            // 矩阵第4行
+  float obj_x, obj_y, obj_z;        // 对象坐标
+  float transform_x, transform_y;   // 变换坐标
+  longlong render_obj;              // 渲染对象
+  longlong *array_ptr;              // 数组指针
+  float *transform_ptr;             // 变换指针
+  longlong *old_array_ptr;          // 旧数组指针
+  float *old_transform_ptr;         // 旧变换指针
+  longlong *new_array_ptr;          // 新数组指针
+  float *new_transform_ptr;         // 新变换指针
+  longlong array_size;              // 数组大小
+  longlong *obj_iterator;           // 对象迭代器
+  float temp_matrix[16];            // 临时矩阵
+  float *matrix_elements;           // 矩阵元素
   
-  plVar23 = *(longlong **)(param_1 + 0x38);
-  if (plVar23 < *(longlong **)(param_1 + 0x40)) {
+  obj_iterator = *(longlong **)(render_context + 0x38);
+  if (obj_iterator < *(longlong **)(render_context + 0x40)) {
     do {
-      if (((uint)param_4[0x10] & *(uint *)(plVar23 + 1)) != 0) {
-        plVar20 = (longlong *)param_2[1];
-        lVar22 = *plVar23;
-        if (plVar20 < (longlong *)param_2[2]) {
-          param_2[1] = (ulonglong)(plVar20 + 1);
-          *plVar20 = lVar22;
+      if (((uint)matrix_data[0x10] & *(uint *)(obj_iterator + 1)) != 0) {
+        array_ptr = (longlong *)result_array[1];
+        render_obj = *obj_iterator;
+        if (array_ptr < (longlong *)result_array[2]) {
+          result_array[1] = (ulonglong)(array_ptr + 1);
+          *array_ptr = render_obj;
         }
         else {
-          plVar18 = (longlong *)*param_2;
-          lVar15 = (longlong)plVar20 - (longlong)plVar18 >> 3;
-          if (lVar15 == 0) {
-            lVar15 = 1;
+          old_array_ptr = (longlong *)*result_array;
+          array_size = (longlong)array_ptr - (longlong)old_array_ptr >> 3;
+          if (array_size == 0) {
+            array_size = 1;
 LAB_180277fef:
-            plVar16 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar15 * 8,(char)param_2[3]);
-            plVar18 = (longlong *)*param_2;
-            plVar20 = (longlong *)param_2[1];
+            new_array_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
+            old_array_ptr = (longlong *)*result_array;
+            array_ptr = (longlong *)result_array[1];
           }
           else {
-            lVar15 = lVar15 * 2;
-            if (lVar15 != 0) goto LAB_180277fef;
-            plVar16 = (longlong *)0x0;
+            array_size = array_size * 2;
+            if (array_size != 0) goto LAB_180277fef;
+            new_array_ptr = (longlong *)0x0;
           }
-          if (plVar18 != plVar20) {
-                    // WARNING: Subroutine does not return
-            memmove(plVar16,plVar18,(longlong)plVar20 - (longlong)plVar18);
+          if (old_array_ptr != array_ptr) {
+            memmove(new_array_ptr,old_array_ptr,(longlong)array_ptr - (longlong)old_array_ptr);
           }
-          *plVar16 = lVar22;
-          if (*param_2 != 0) {
-                    // WARNING: Subroutine does not return
+          *new_array_ptr = render_obj;
+          if (*result_array != 0) {
             FUN_18064e900();
           }
-          param_2[2] = (ulonglong)(plVar16 + lVar15);
-          *param_2 = (ulonglong)plVar16;
-          param_2[1] = (ulonglong)(plVar16 + 1);
+          result_array[2] = (ulonglong)(new_array_ptr + array_size);
+          *result_array = (ulonglong)new_array_ptr;
+          result_array[1] = (ulonglong)(new_array_ptr + 1);
         }
-        fVar3 = *param_4;
-        fVar4 = param_4[1];
-        fVar5 = param_4[2];
-        fVar6 = param_4[3];
-        pfVar21 = (float *)param_3[1];
-        fVar7 = param_4[4];
-        fVar8 = param_4[5];
-        fVar9 = param_4[6];
-        fVar10 = param_4[7];
-        fVar11 = param_4[8];
-        fVar12 = param_4[9];
-        fVar13 = param_4[10];
-        fVar14 = param_4[0xb];
-        fVar27 = *(float *)(lVar22 + 0x124);
-        fVar24 = *(float *)(lVar22 + 0x120);
-        fVar1 = *(float *)(lVar22 + 0x128);
-        fVar25 = *(float *)(lVar22 + 0x130);
-        fVar26 = *(float *)(lVar22 + 0x140);
-        fVar2 = *(float *)(lVar22 + 0x150);
-        fVar35 = *(float *)(lVar22 + 0x134);
-        fVar28 = fVar27 * fVar7 + fVar24 * fVar3 + fVar1 * fVar11;
-        fVar29 = fVar27 * fVar8 + fVar24 * fVar4 + fVar1 * fVar12;
-        fVar30 = fVar27 * fVar9 + fVar24 * fVar5 + fVar1 * fVar13;
-        fVar31 = fVar27 * fVar10 + fVar24 * fVar6 + fVar1 * fVar14;
-        fVar27 = *(float *)(lVar22 + 0x138);
-        fVar24 = *(float *)(lVar22 + 0x144);
-        fVar32 = fVar25 * fVar3 + fVar35 * fVar7 + fVar27 * fVar11;
-        fVar33 = fVar25 * fVar4 + fVar35 * fVar8 + fVar27 * fVar12;
-        fVar34 = fVar25 * fVar5 + fVar35 * fVar9 + fVar27 * fVar13;
-        fVar35 = fVar25 * fVar6 + fVar35 * fVar10 + fVar27 * fVar14;
-        fVar27 = *(float *)(lVar22 + 0x148);
-        fVar1 = *(float *)(lVar22 + 0x154);
-        fVar36 = fVar26 * fVar3 + fVar24 * fVar7 + fVar27 * fVar11;
-        fVar37 = fVar26 * fVar4 + fVar24 * fVar8 + fVar27 * fVar12;
-        fVar38 = fVar26 * fVar5 + fVar24 * fVar9 + fVar27 * fVar13;
-        fVar39 = fVar26 * fVar6 + fVar24 * fVar10 + fVar27 * fVar14;
-        fVar27 = *(float *)(lVar22 + 0x158);
-        fVar24 = fVar2 * fVar3 + fVar1 * fVar7 + fVar27 * fVar11 + param_4[0xc];
-        fVar25 = fVar2 * fVar4 + fVar1 * fVar8 + fVar27 * fVar12 + param_4[0xd];
-        fVar26 = fVar2 * fVar5 + fVar1 * fVar9 + fVar27 * fVar13 + param_4[0xe];
-        fVar27 = fVar2 * fVar6 + fVar1 * fVar10 + fVar27 * fVar14 + param_4[0xf];
-        if (pfVar21 < (float *)param_3[2]) {
-          param_3[1] = (ulonglong)(pfVar21 + 0x10);
-          *pfVar21 = fVar28;
-          pfVar21[1] = fVar29;
-          pfVar21[2] = fVar30;
-          pfVar21[3] = fVar31;
-          pfVar21[4] = fVar32;
-          pfVar21[5] = fVar33;
-          pfVar21[6] = fVar34;
-          pfVar21[7] = fVar35;
-          pfVar21[8] = fVar36;
-          pfVar21[9] = fVar37;
-          pfVar21[10] = fVar38;
-          pfVar21[0xb] = fVar39;
-          pfVar21[0xc] = fVar24;
-          pfVar21[0xd] = fVar25;
-          pfVar21[0xe] = fVar26;
-          pfVar21[0xf] = fVar27;
+        // 读取变换矩阵
+        matrix_row1[0] = *matrix_data;
+        matrix_row1[1] = matrix_data[1];
+        matrix_row1[2] = matrix_data[2];
+        matrix_row1[3] = matrix_data[3];
+        transform_ptr = (float *)transform_array[1];
+        matrix_row2[0] = matrix_data[4];
+        matrix_row2[1] = matrix_data[5];
+        matrix_row2[2] = matrix_data[6];
+        matrix_row2[3] = matrix_data[7];
+        matrix_row3[0] = matrix_data[8];
+        matrix_row3[1] = matrix_data[9];
+        matrix_row3[2] = matrix_data[10];
+        matrix_row3[3] = matrix_data[11];
+        // 读取对象坐标
+        obj_z = *(float *)(render_obj + 0x124);
+        obj_x = *(float *)(render_obj + 0x120);
+        transform_y = *(float *)(render_obj + 0x128);
+        transform_x = *(float *)(render_obj + 0x130);
+        obj_y = *(float *)(render_obj + 0x140);
+        matrix_row4[0] = *(float *)(render_obj + 0x150);
+        matrix_row4[1] = *(float *)(render_obj + 0x134);
+        // 计算变换后的坐标（第1行）
+        temp_matrix[0] = obj_z * matrix_row2[0] + obj_x * matrix_row1[0] + transform_y * matrix_row3[0];
+        temp_matrix[1] = obj_z * matrix_row2[1] + obj_x * matrix_row1[1] + transform_y * matrix_row3[1];
+        temp_matrix[2] = obj_z * matrix_row2[2] + obj_x * matrix_row1[2] + transform_y * matrix_row3[2];
+        temp_matrix[3] = obj_z * matrix_row2[3] + obj_x * matrix_row1[3] + transform_y * matrix_row3[3];
+        obj_z = *(float *)(render_obj + 0x138);
+        obj_x = *(float *)(render_obj + 0x144);
+        // 计算变换后的坐标（第2行）
+        temp_matrix[4] = transform_x * matrix_row1[0] + matrix_row4[1] * matrix_row2[0] + obj_z * matrix_row3[0];
+        temp_matrix[5] = transform_x * matrix_row1[1] + matrix_row4[1] * matrix_row2[1] + obj_z * matrix_row3[1];
+        temp_matrix[6] = transform_x * matrix_row1[2] + matrix_row4[1] * matrix_row2[2] + obj_z * matrix_row3[2];
+        temp_matrix[7] = transform_x * matrix_row1[3] + matrix_row4[1] * matrix_row2[3] + obj_z * matrix_row3[3];
+        obj_z = *(float *)(render_obj + 0x148);
+        transform_y = *(float *)(render_obj + 0x154);
+        // 计算变换后的坐标（第3行）
+        temp_matrix[8] = obj_y * matrix_row1[0] + obj_x * matrix_row2[0] + obj_z * matrix_row3[0];
+        temp_matrix[9] = obj_y * matrix_row1[1] + obj_x * matrix_row2[1] + obj_z * matrix_row3[1];
+        temp_matrix[10] = obj_y * matrix_row1[2] + obj_x * matrix_row2[2] + obj_z * matrix_row3[2];
+        temp_matrix[11] = obj_y * matrix_row1[3] + obj_x * matrix_row2[3] + obj_z * matrix_row3[3];
+        obj_z = *(float *)(render_obj + 0x158);
+        obj_x = matrix_row4[0] * matrix_row1[0] + transform_y * matrix_row2[0] + obj_z * matrix_row3[0] + matrix_data[12];
+        obj_y = matrix_row4[0] * matrix_row1[1] + transform_y * matrix_row2[1] + obj_z * matrix_row3[1] + matrix_data[13];
+        obj_y = matrix_row4[0] * matrix_row1[2] + transform_y * matrix_row2[2] + obj_z * matrix_row3[2] + matrix_data[14];
+        obj_z = matrix_row4[0] * matrix_row1[3] + transform_y * matrix_row2[3] + obj_z * matrix_row3[3] + matrix_data[15];
+        if (transform_ptr < (float *)transform_array[2]) {
+          transform_array[1] = (ulonglong)(transform_ptr + 0x10);
+          *transform_ptr = temp_matrix[0];
+          transform_ptr[1] = temp_matrix[1];
+          transform_ptr[2] = temp_matrix[2];
+          transform_ptr[3] = temp_matrix[3];
+          transform_ptr[4] = temp_matrix[4];
+          transform_ptr[5] = temp_matrix[5];
+          transform_ptr[6] = temp_matrix[6];
+          transform_ptr[7] = temp_matrix[7];
+          transform_ptr[8] = temp_matrix[8];
+          transform_ptr[9] = temp_matrix[9];
+          transform_ptr[10] = temp_matrix[10];
+          transform_ptr[11] = temp_matrix[11];
+          transform_ptr[12] = obj_x;
+          transform_ptr[13] = obj_y;
+          transform_ptr[14] = obj_y;
+          transform_ptr[15] = obj_z;
         }
         else {
-          pfVar19 = (float *)*param_3;
-          lVar22 = (longlong)pfVar21 - (longlong)pfVar19 >> 6;
-          if (lVar22 == 0) {
-            lVar22 = 1;
+          old_transform_ptr = (float *)*transform_array;
+          array_size = (longlong)transform_ptr - (longlong)old_transform_ptr >> 6;
+          if (array_size == 0) {
+            array_size = 1;
 LAB_1802781a7:
-            pfVar17 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar22 << 6,(char)param_3[3]);
-            pfVar19 = (float *)*param_3;
-            pfVar21 = (float *)param_3[1];
+            matrix_elements = (float *)FUN_18062b420(_DAT_180c8ed18,array_size << 6,(char)transform_array[3]);
+            old_transform_ptr = (float *)*transform_array;
+            transform_ptr = (float *)transform_array[1];
           }
           else {
-            lVar22 = lVar22 * 2;
-            if (lVar22 != 0) goto LAB_1802781a7;
-            pfVar17 = (float *)0x0;
+            array_size = array_size * 2;
+            if (array_size != 0) goto LAB_1802781a7;
+            matrix_elements = (float *)0x0;
           }
-          if (pfVar19 != pfVar21) {
-                    // WARNING: Subroutine does not return
-            memmove(pfVar17,pfVar19,(longlong)pfVar21 - (longlong)pfVar19);
+          if (old_transform_ptr != transform_ptr) {
+            memmove(matrix_elements,old_transform_ptr,(longlong)transform_ptr - (longlong)old_transform_ptr);
           }
-          *pfVar17 = fVar28;
-          pfVar17[1] = fVar29;
-          pfVar17[2] = fVar30;
-          pfVar17[3] = fVar31;
-          pfVar17[4] = fVar32;
-          pfVar17[5] = fVar33;
-          pfVar17[6] = fVar34;
-          pfVar17[7] = fVar35;
-          pfVar17[8] = fVar36;
-          pfVar17[9] = fVar37;
-          pfVar17[10] = fVar38;
-          pfVar17[0xb] = fVar39;
-          pfVar17[0xc] = fVar24;
-          pfVar17[0xd] = fVar25;
-          pfVar17[0xe] = fVar26;
-          pfVar17[0xf] = fVar27;
-          if (*param_3 != 0) {
-                    // WARNING: Subroutine does not return
+          *matrix_elements = temp_matrix[0];
+          matrix_elements[1] = temp_matrix[1];
+          matrix_elements[2] = temp_matrix[2];
+          matrix_elements[3] = temp_matrix[3];
+          matrix_elements[4] = temp_matrix[4];
+          matrix_elements[5] = temp_matrix[5];
+          matrix_elements[6] = temp_matrix[6];
+          matrix_elements[7] = temp_matrix[7];
+          matrix_elements[8] = temp_matrix[8];
+          matrix_elements[9] = temp_matrix[9];
+          matrix_elements[10] = temp_matrix[10];
+          matrix_elements[11] = temp_matrix[11];
+          matrix_elements[12] = obj_x;
+          matrix_elements[13] = obj_y;
+          matrix_elements[14] = obj_y;
+          matrix_elements[15] = obj_z;
+          if (*transform_array != 0) {
             FUN_18064e900();
           }
-          *param_3 = (ulonglong)pfVar17;
-          param_3[2] = (ulonglong)(pfVar17 + lVar22 * 0x10);
-          param_3[1] = (ulonglong)(pfVar17 + 0x10);
+          *transform_array = (ulonglong)matrix_elements;
+          transform_array[2] = (ulonglong)(matrix_elements + array_size * 0x10);
+          transform_array[1] = (ulonglong)(matrix_elements + 0x10);
         }
       }
-      plVar23 = plVar23 + 2;
-    } while (plVar23 < *(longlong **)(param_1 + 0x40));
+      obj_iterator = obj_iterator + 2;
+    } while (obj_iterator < *(longlong **)(render_context + 0x40));
   }
   return;
 }
@@ -723,242 +711,199 @@ LAB_1802781a7:
 void Transform_Render_Object_Matrix_Empty(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  longlong in_RAX;
-  longlong lVar15;
-  longlong *plVar16;
-  float *pfVar17;
-  longlong *plVar18;
-  float *pfVar19;
-  undefined8 unaff_RBX;
-  longlong *plVar20;
-  float *pfVar21;
-  undefined8 unaff_RBP;
-  undefined8 unaff_RSI;
-  longlong lVar22;
-  ulonglong *unaff_RDI;
-  float *in_R9;
-  undefined8 unaff_R12;
-  longlong unaff_R13;
-  ulonglong *unaff_R14;
-  longlong *unaff_R15;
-  undefined4 unaff_XMM6_Da;
-  float fVar23;
-  undefined4 unaff_XMM6_Db;
-  float fVar24;
-  undefined4 unaff_XMM6_Dc;
-  float fVar25;
-  undefined4 unaff_XMM6_Dd;
-  float fVar26;
-  undefined4 unaff_XMM7_Da;
-  float fVar27;
-  undefined4 unaff_XMM7_Db;
-  float fVar28;
-  undefined4 unaff_XMM7_Dc;
-  float fVar29;
-  undefined4 unaff_XMM7_Dd;
-  float fVar30;
-  undefined4 unaff_XMM8_Da;
-  float fVar31;
-  undefined4 unaff_XMM8_Db;
-  float fVar32;
-  undefined4 unaff_XMM8_Dc;
-  float fVar33;
-  undefined4 unaff_XMM8_Dd;
-  float fVar34;
-  undefined4 unaff_XMM9_Da;
-  float fVar35;
-  undefined4 unaff_XMM9_Db;
-  float fVar36;
-  undefined4 unaff_XMM9_Dc;
-  float fVar37;
-  undefined4 unaff_XMM9_Dd;
-  float fVar38;
-  float *in_stack_000000a8;
+  float matrix_row1[4];            // 矩阵第1行
+  float matrix_row2[4];            // 矩阵第2行
+  float matrix_row3[4];            // 矩阵第3行
+  float matrix_row4[4];            // 矩阵第4行
+  float obj_x, obj_y, obj_z;        // 对象坐标
+  float transform_x, transform_y;   // 变换坐标
+  longlong stack_ptr;               // 栈指针
+  longlong array_size;              // 数组大小
+  longlong *array_ptr;              // 数组指针
+  float *transform_ptr;             // 变换指针
+  longlong *old_array_ptr;          // 旧数组指针
+  float *old_transform_ptr;         // 旧变换指针
+  longlong *new_array_ptr;          // 新数组指针
+  float *new_transform_ptr;         // 新变换指针
+  longlong render_obj;              // 渲染对象
+  ulonglong *result_array;          // 结果数组
+  float *matrix_data;               // 矩阵数据
+  ulonglong *transform_array;       // 变换数组
+  longlong *obj_iterator;           // 对象迭代器
+  float temp_matrix[16];            // 临时矩阵
+  float *matrix_elements;           // 矩阵元素
+  float *stack_matrix_ptr;          // 栈矩阵指针
   
-  *(undefined8 *)(in_RAX + 8) = unaff_RBX;
-  *(undefined8 *)(in_RAX + 0x10) = unaff_RBP;
-  *(undefined8 *)(in_RAX + 0x18) = unaff_RSI;
-  *(undefined8 *)(in_RAX + -0x28) = unaff_R12;
-  *(undefined4 *)(in_RAX + -0x38) = unaff_XMM6_Da;
-  *(undefined4 *)(in_RAX + -0x34) = unaff_XMM6_Db;
-  *(undefined4 *)(in_RAX + -0x30) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM6_Dd;
-  *(undefined4 *)(in_RAX + -0x48) = unaff_XMM7_Da;
-  *(undefined4 *)(in_RAX + -0x44) = unaff_XMM7_Db;
-  *(undefined4 *)(in_RAX + -0x40) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_RAX + -0x58) = unaff_XMM8_Da;
-  *(undefined4 *)(in_RAX + -0x54) = unaff_XMM8_Db;
-  *(undefined4 *)(in_RAX + -0x50) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_RAX + -0x4c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_RAX + -0x68) = unaff_XMM9_Da;
-  *(undefined4 *)(in_RAX + -100) = unaff_XMM9_Db;
-  *(undefined4 *)(in_RAX + -0x60) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_RAX + -0x5c) = unaff_XMM9_Dd;
+  // 保存寄存器状态到栈
+  *(undefined8 *)(stack_ptr + 8) = stack_ptr;
+  *(undefined8 *)(stack_ptr + 0x10) = stack_ptr;
+  *(undefined8 *)(stack_ptr + 0x18) = stack_ptr;
+  *(undefined8 *)(stack_ptr + -0x28) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x38) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x34) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x30) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x2c) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x48) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x44) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x40) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x3c) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x58) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x54) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x50) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x4c) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x68) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -100) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x60) = stack_ptr;
+  *(undefined4 *)(stack_ptr + -0x5c) = stack_ptr;
   do {
-    if (((uint)in_R9[0x10] & *(uint *)(unaff_R15 + 1)) != 0) {
-      plVar20 = (longlong *)unaff_RDI[1];
-      lVar22 = *unaff_R15;
-      if (plVar20 < (longlong *)unaff_RDI[2]) {
-        unaff_RDI[1] = (ulonglong)(plVar20 + 1);
-        *plVar20 = lVar22;
+    if (((uint)matrix_data[0x10] & *(uint *)(obj_iterator + 1)) != 0) {
+      array_ptr = (longlong *)result_array[1];
+      render_obj = *obj_iterator;
+      if (array_ptr < (longlong *)result_array[2]) {
+        result_array[1] = (ulonglong)(array_ptr + 1);
+        *array_ptr = render_obj;
       }
       else {
-        plVar18 = (longlong *)*unaff_RDI;
-        lVar15 = (longlong)plVar20 - (longlong)plVar18 >> 3;
-        if (lVar15 == 0) {
-          lVar15 = 1;
+        old_array_ptr = (longlong *)*result_array;
+        array_size = (longlong)array_ptr - (longlong)old_array_ptr >> 3;
+        if (array_size == 0) {
+          array_size = 1;
 LAB_180277fef:
-          plVar16 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar15 * 8,(char)unaff_RDI[3]);
-          plVar18 = (longlong *)*unaff_RDI;
-          plVar20 = (longlong *)unaff_RDI[1];
+          new_array_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
+          old_array_ptr = (longlong *)*result_array;
+          array_ptr = (longlong *)result_array[1];
         }
         else {
-          lVar15 = lVar15 * 2;
-          if (lVar15 != 0) goto LAB_180277fef;
-          plVar16 = (longlong *)0x0;
+          array_size = array_size * 2;
+          if (array_size != 0) goto LAB_180277fef;
+          new_array_ptr = (longlong *)0x0;
         }
-        if (plVar18 != plVar20) {
-                    // WARNING: Subroutine does not return
-          memmove(plVar16,plVar18,(longlong)plVar20 - (longlong)plVar18);
+        if (old_array_ptr != array_ptr) {
+          memmove(new_array_ptr,old_array_ptr,(longlong)array_ptr - (longlong)old_array_ptr);
         }
-        *plVar16 = lVar22;
-        if (*unaff_RDI != 0) {
-                    // WARNING: Subroutine does not return
+        *new_array_ptr = render_obj;
+        if (*result_array != 0) {
           FUN_18064e900();
         }
-        unaff_RDI[2] = (ulonglong)(plVar16 + lVar15);
-        *unaff_RDI = (ulonglong)plVar16;
-        unaff_RDI[1] = (ulonglong)(plVar16 + 1);
-        in_R9 = in_stack_000000a8;
+        result_array[2] = (ulonglong)(new_array_ptr + array_size);
+        *result_array = (ulonglong)new_array_ptr;
+        result_array[1] = (ulonglong)(new_array_ptr + 1);
+        matrix_data = stack_matrix_ptr;
       }
-      fVar3 = *in_R9;
-      fVar4 = in_R9[1];
-      fVar5 = in_R9[2];
-      fVar6 = in_R9[3];
-      pfVar21 = (float *)unaff_R14[1];
-      fVar7 = in_R9[4];
-      fVar8 = in_R9[5];
-      fVar9 = in_R9[6];
-      fVar10 = in_R9[7];
-      fVar11 = in_R9[8];
-      fVar12 = in_R9[9];
-      fVar13 = in_R9[10];
-      fVar14 = in_R9[0xb];
-      fVar26 = *(float *)(lVar22 + 0x124);
-      fVar23 = *(float *)(lVar22 + 0x120);
-      fVar1 = *(float *)(lVar22 + 0x128);
-      fVar24 = *(float *)(lVar22 + 0x130);
-      fVar25 = *(float *)(lVar22 + 0x140);
-      fVar2 = *(float *)(lVar22 + 0x150);
-      fVar34 = *(float *)(lVar22 + 0x134);
-      fVar27 = fVar26 * fVar7 + fVar23 * fVar3 + fVar1 * fVar11;
-      fVar28 = fVar26 * fVar8 + fVar23 * fVar4 + fVar1 * fVar12;
-      fVar29 = fVar26 * fVar9 + fVar23 * fVar5 + fVar1 * fVar13;
-      fVar30 = fVar26 * fVar10 + fVar23 * fVar6 + fVar1 * fVar14;
-      fVar26 = *(float *)(lVar22 + 0x138);
-      fVar23 = *(float *)(lVar22 + 0x144);
-      fVar31 = fVar24 * fVar3 + fVar34 * fVar7 + fVar26 * fVar11;
-      fVar32 = fVar24 * fVar4 + fVar34 * fVar8 + fVar26 * fVar12;
-      fVar33 = fVar24 * fVar5 + fVar34 * fVar9 + fVar26 * fVar13;
-      fVar34 = fVar24 * fVar6 + fVar34 * fVar10 + fVar26 * fVar14;
-      fVar26 = *(float *)(lVar22 + 0x148);
-      fVar1 = *(float *)(lVar22 + 0x154);
-      fVar35 = fVar25 * fVar3 + fVar23 * fVar7 + fVar26 * fVar11;
-      fVar36 = fVar25 * fVar4 + fVar23 * fVar8 + fVar26 * fVar12;
-      fVar37 = fVar25 * fVar5 + fVar23 * fVar9 + fVar26 * fVar13;
-      fVar38 = fVar25 * fVar6 + fVar23 * fVar10 + fVar26 * fVar14;
-      fVar26 = *(float *)(lVar22 + 0x158);
-      fVar23 = fVar2 * fVar3 + fVar1 * fVar7 + fVar26 * fVar11 + in_R9[0xc];
-      fVar24 = fVar2 * fVar4 + fVar1 * fVar8 + fVar26 * fVar12 + in_R9[0xd];
-      fVar25 = fVar2 * fVar5 + fVar1 * fVar9 + fVar26 * fVar13 + in_R9[0xe];
-      fVar26 = fVar2 * fVar6 + fVar1 * fVar10 + fVar26 * fVar14 + in_R9[0xf];
-      if (pfVar21 < (float *)unaff_R14[2]) {
-        unaff_R14[1] = (ulonglong)(pfVar21 + 0x10);
-        *pfVar21 = fVar27;
-        pfVar21[1] = fVar28;
-        pfVar21[2] = fVar29;
-        pfVar21[3] = fVar30;
-        pfVar21[4] = fVar31;
-        pfVar21[5] = fVar32;
-        pfVar21[6] = fVar33;
-        pfVar21[7] = fVar34;
-        pfVar21[8] = fVar35;
-        pfVar21[9] = fVar36;
-        pfVar21[10] = fVar37;
-        pfVar21[0xb] = fVar38;
-        pfVar21[0xc] = fVar23;
-        pfVar21[0xd] = fVar24;
-        pfVar21[0xe] = fVar25;
-        pfVar21[0xf] = fVar26;
+      // 读取变换矩阵
+      matrix_row1[0] = *matrix_data;
+      matrix_row1[1] = matrix_data[1];
+      matrix_row1[2] = matrix_data[2];
+      matrix_row1[3] = matrix_data[3];
+      transform_ptr = (float *)transform_array[1];
+      matrix_row2[0] = matrix_data[4];
+      matrix_row2[1] = matrix_data[5];
+      matrix_row2[2] = matrix_data[6];
+      matrix_row2[3] = matrix_data[7];
+      matrix_row3[0] = matrix_data[8];
+      matrix_row3[1] = matrix_data[9];
+      matrix_row3[2] = matrix_data[10];
+      matrix_row3[3] = matrix_data[11];
+      // 读取对象坐标
+      obj_z = *(float *)(render_obj + 0x124);
+      obj_x = *(float *)(render_obj + 0x120);
+      transform_y = *(float *)(render_obj + 0x128);
+      transform_x = *(float *)(render_obj + 0x130);
+      obj_y = *(float *)(render_obj + 0x140);
+      matrix_row4[0] = *(float *)(render_obj + 0x150);
+      matrix_row4[1] = *(float *)(render_obj + 0x134);
+      // 计算变换后的坐标（第1行）
+      temp_matrix[0] = obj_z * matrix_row2[0] + obj_x * matrix_row1[0] + transform_y * matrix_row3[0];
+      temp_matrix[1] = obj_z * matrix_row2[1] + obj_x * matrix_row1[1] + transform_y * matrix_row3[1];
+      temp_matrix[2] = obj_z * matrix_row2[2] + obj_x * matrix_row1[2] + transform_y * matrix_row3[2];
+      temp_matrix[3] = obj_z * matrix_row2[3] + obj_x * matrix_row1[3] + transform_y * matrix_row3[3];
+      obj_z = *(float *)(render_obj + 0x138);
+      obj_x = *(float *)(render_obj + 0x144);
+      // 计算变换后的坐标（第2行）
+      temp_matrix[4] = transform_x * matrix_row1[0] + matrix_row4[1] * matrix_row2[0] + obj_z * matrix_row3[0];
+      temp_matrix[5] = transform_x * matrix_row1[1] + matrix_row4[1] * matrix_row2[1] + obj_z * matrix_row3[1];
+      temp_matrix[6] = transform_x * matrix_row1[2] + matrix_row4[1] * matrix_row2[2] + obj_z * matrix_row3[2];
+      temp_matrix[7] = transform_x * matrix_row1[3] + matrix_row4[1] * matrix_row2[3] + obj_z * matrix_row3[3];
+      obj_z = *(float *)(render_obj + 0x148);
+      transform_y = *(float *)(render_obj + 0x154);
+      // 计算变换后的坐标（第3行）
+      temp_matrix[8] = obj_y * matrix_row1[0] + obj_x * matrix_row2[0] + obj_z * matrix_row3[0];
+      temp_matrix[9] = obj_y * matrix_row1[1] + obj_x * matrix_row2[1] + obj_z * matrix_row3[1];
+      temp_matrix[10] = obj_y * matrix_row1[2] + obj_x * matrix_row2[2] + obj_z * matrix_row3[2];
+      temp_matrix[11] = obj_y * matrix_row1[3] + obj_x * matrix_row2[3] + obj_z * matrix_row3[3];
+      obj_z = *(float *)(render_obj + 0x158);
+      obj_x = matrix_row4[0] * matrix_row1[0] + transform_y * matrix_row2[0] + obj_z * matrix_row3[0] + matrix_data[12];
+      obj_y = matrix_row4[0] * matrix_row1[1] + transform_y * matrix_row2[1] + obj_z * matrix_row3[1] + matrix_data[13];
+      obj_y = matrix_row4[0] * matrix_row1[2] + transform_y * matrix_row2[2] + obj_z * matrix_row3[2] + matrix_data[14];
+      obj_z = matrix_row4[0] * matrix_row1[3] + transform_y * matrix_row2[3] + obj_z * matrix_row3[3] + matrix_data[15];
+      if (transform_ptr < (float *)transform_array[2]) {
+        transform_array[1] = (ulonglong)(transform_ptr + 0x10);
+        *transform_ptr = temp_matrix[0];
+        transform_ptr[1] = temp_matrix[1];
+        transform_ptr[2] = temp_matrix[2];
+        transform_ptr[3] = temp_matrix[3];
+        transform_ptr[4] = temp_matrix[4];
+        transform_ptr[5] = temp_matrix[5];
+        transform_ptr[6] = temp_matrix[6];
+        transform_ptr[7] = temp_matrix[7];
+        transform_ptr[8] = temp_matrix[8];
+        transform_ptr[9] = temp_matrix[9];
+        transform_ptr[10] = temp_matrix[10];
+        transform_ptr[11] = temp_matrix[11];
+        transform_ptr[12] = obj_x;
+        transform_ptr[13] = obj_y;
+        transform_ptr[14] = obj_y;
+        transform_ptr[15] = obj_z;
       }
       else {
-        pfVar19 = (float *)*unaff_R14;
-        lVar22 = (longlong)pfVar21 - (longlong)pfVar19 >> 6;
-        if (lVar22 == 0) {
-          lVar22 = 1;
+        old_transform_ptr = (float *)*transform_array;
+        array_size = (longlong)transform_ptr - (longlong)old_transform_ptr >> 6;
+        if (array_size == 0) {
+          array_size = 1;
 LAB_1802781a7:
-          pfVar17 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar22 << 6,(char)unaff_R14[3]);
-          pfVar19 = (float *)*unaff_R14;
-          pfVar21 = (float *)unaff_R14[1];
+          matrix_elements = (float *)FUN_18062b420(_DAT_180c8ed18,array_size << 6,(char)transform_array[3]);
+          old_transform_ptr = (float *)*transform_array;
+          transform_ptr = (float *)transform_array[1];
         }
         else {
-          lVar22 = lVar22 * 2;
-          if (lVar22 != 0) goto LAB_1802781a7;
-          pfVar17 = (float *)0x0;
+          array_size = array_size * 2;
+          if (array_size != 0) goto LAB_1802781a7;
+          matrix_elements = (float *)0x0;
         }
-        if (pfVar19 != pfVar21) {
-                    // WARNING: Subroutine does not return
-          memmove(pfVar17,pfVar19,(longlong)pfVar21 - (longlong)pfVar19);
+        if (old_transform_ptr != transform_ptr) {
+          memmove(matrix_elements,old_transform_ptr,(longlong)transform_ptr - (longlong)old_transform_ptr);
         }
-        *pfVar17 = fVar27;
-        pfVar17[1] = fVar28;
-        pfVar17[2] = fVar29;
-        pfVar17[3] = fVar30;
-        pfVar17[4] = fVar31;
-        pfVar17[5] = fVar32;
-        pfVar17[6] = fVar33;
-        pfVar17[7] = fVar34;
-        pfVar17[8] = fVar35;
-        pfVar17[9] = fVar36;
-        pfVar17[10] = fVar37;
-        pfVar17[0xb] = fVar38;
-        pfVar17[0xc] = fVar23;
-        pfVar17[0xd] = fVar24;
-        pfVar17[0xe] = fVar25;
-        pfVar17[0xf] = fVar26;
-        if (*unaff_R14 != 0) {
-                    // WARNING: Subroutine does not return
+        *matrix_elements = temp_matrix[0];
+        matrix_elements[1] = temp_matrix[1];
+        matrix_elements[2] = temp_matrix[2];
+        matrix_elements[3] = temp_matrix[3];
+        matrix_elements[4] = temp_matrix[4];
+        matrix_elements[5] = temp_matrix[5];
+        matrix_elements[6] = temp_matrix[6];
+        matrix_elements[7] = temp_matrix[7];
+        matrix_elements[8] = temp_matrix[8];
+        matrix_elements[9] = temp_matrix[9];
+        matrix_elements[10] = temp_matrix[10];
+        matrix_elements[11] = temp_matrix[11];
+        matrix_elements[12] = obj_x;
+        matrix_elements[13] = obj_y;
+        matrix_elements[14] = obj_y;
+        matrix_elements[15] = obj_z;
+        if (*transform_array != 0) {
           FUN_18064e900();
         }
-        *unaff_R14 = (ulonglong)pfVar17;
-        unaff_R14[2] = (ulonglong)(pfVar17 + lVar22 * 0x10);
-        unaff_R14[1] = (ulonglong)(pfVar17 + 0x10);
-        in_R9 = in_stack_000000a8;
+        *transform_array = (ulonglong)matrix_elements;
+        transform_array[2] = (ulonglong)(matrix_elements + array_size * 0x10);
+        transform_array[1] = (ulonglong)(matrix_elements + 0x10);
+        matrix_data = stack_matrix_ptr;
       }
     }
-    unaff_R15 = unaff_R15 + 2;
-    if (*(longlong **)(unaff_R13 + 0x40) <= unaff_R15) {
+    obj_iterator = obj_iterator + 2;
+    if (*(longlong **)(render_context + 0x40) <= obj_iterator) {
       return;
     }
   } while( true );
 }
-
-
 
 
 
@@ -969,8 +914,5 @@ void Render_System_Placeholder_End(void)
 {
   return;
 }
-
-
-
 
 

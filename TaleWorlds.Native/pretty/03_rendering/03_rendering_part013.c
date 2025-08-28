@@ -741,211 +741,259 @@ ulonglong Calculate_Render_Parameters(undefined8 transform_param_1, undefined8 t
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18027613a(void)
+/**
+ * 渲染距离检查函数
+ * 执行渲染距离检查和元素处理，判断渲染对象是否在可见范围内
+ * @param render_context 渲染上下文指针（通过寄存器传递）
+ * @param render_state 渲染状态指针（通过寄存器传递）
+ * @param element_array 元素数组指针（通过寄存器传递）
+ * @param element_bitmask 元素位掩码（通过寄存器传递）
+ * @param success_flag 成功标志（通过寄存器传递）
+ * @return 处理结果标志
+ */
+ulonglong Check_Render_Distance(undefined8 *render_context, longlong render_state, longlong element_array, uint element_bitmask, byte success_flag)
 
 {
-  longlong lVar1;
-  byte bVar2;
-  int iVar3;
-  ulonglong in_RAX;
-  ulonglong uVar4;
-  undefined8 *unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  uint unaff_R13D;
-  byte unaff_R14B;
-  longlong lVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  longlong element_ptr;
+  byte render_result;
+  int element_count;
+  ulonglong context_data;
+  ulonglong result_flag;
+  longlong distance_context;
+  float max_distance;
+  float camera_y;
+  float camera_x;
+  float camera_z;
+  float transform_y;
+  float transform_x;
+  float transform_z;
   
-  fVar9 = *(float *)(unaff_RBX + 0xd);
-  if (fVar9 != 3.4028235e+38) {
-    if ((undefined *)*unaff_RBX == &UNK_180a169b8) {
-      lVar5 = (longlong)unaff_RBX + 0x214;
+  // 获取最大渲染距离
+  max_distance = *(float *)(render_context + 0xd);
+  if (max_distance != 3.4028235e+38) {
+    // 获取距离检查上下文
+    if ((undefined *)*render_context == &STANDARD_RENDER_CONTEXT) {
+      distance_context = (longlong)render_context + 0x214;
     }
     else {
-      lVar5 = (**(code **)((undefined *)*unaff_RBX + 0x198))();
-      fVar9 = *(float *)(unaff_RBX + 0xd);
-      in_RAX = *(ulonglong *)(unaff_RSI + 0x28);
+      distance_context = (**(code **)((undefined *)*render_context + 0x198))();
+      max_distance = *(float *)(render_context + 0xd);
+      context_data = *(ulonglong *)(render_state + 0x28);
     }
-    fVar8 = *(float *)(in_RAX + 0x124) - *(float *)(unaff_RBP + 0x13);
-    fVar7 = *(float *)(in_RAX + 0x120) - *(float *)(unaff_RBP + 0xf);
-    fVar6 = *(float *)(in_RAX + 0x128) - *(float *)(unaff_RBP + 0x17);
-    if (fVar9 * fVar9 <
-        (fVar8 * fVar8 + fVar7 * fVar7 + fVar6 * fVar6) -
-        *(float *)(lVar5 + 0x30) * *(float *)(lVar5 + 0x30)) {
-      return in_RAX & 0xffffffffffffff00;
+    // 计算相机到变换点的距离
+    camera_z = *(float *)(context_data + 0x124) - *(float *)(render_state + 0x13);
+    camera_y = *(float *)(context_data + 0x120) - *(float *)(render_state + 0xf);
+    camera_x = *(float *)(context_data + 0x128) - *(float *)(render_state + 0x17);
+    // 检查距离是否在范围内
+    if (max_distance * max_distance <
+        (camera_z * camera_z + camera_y * camera_y + camera_x * camera_x) -
+        *(float *)(distance_context + 0x30) * *(float *)(distance_context + 0x30)) {
+      return context_data & 0xffffffffffffff00;
     }
   }
-  iVar3 = (int)((longlong)(unaff_RBX[8] - unaff_RBX[7]) >> 4);
-  lVar5 = (longlong)iVar3;
-  if (iVar3 < 1) {
-    uVar4 = (ulonglong)unaff_R14B;
+  // 处理渲染元素
+  element_count = (int)((longlong)(render_context[8] - render_context[7]) >> 4);
+  distance_context = (longlong)element_count;
+  if (element_count < 1) {
+    result_flag = (ulonglong)success_flag;
   }
   else {
     do {
-      lVar1 = *(longlong *)(unaff_RDI + unaff_RBX[7]);
-      if ((lVar1 != 0) && ((*(uint *)(unaff_RDI + 8 + unaff_RBX[7]) & unaff_R13D) != 0)) {
-        if (((*(byte *)(unaff_RSI + 0x1bd8) & 0x20) != 0) &&
-           ((*(uint *)(lVar1 + 0x100) & 0x400000) != 0)) {
-          *(undefined4 *)(unaff_RBX + 0x65) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      element_ptr = *(longlong *)(element_array + render_context[7]);
+      if ((element_ptr != 0) && ((*(uint *)(element_array + 8 + render_context[7]) & element_bitmask) != 0)) {
+        // 检查渲染状态标志
+        if (((*(byte *)(render_state + 0x1bd8) & 0x20) != 0) &&
+           ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
+          *(undefined4 *)(render_context + 0x65) = *(undefined4 *)(GLOBAL_RENDER_DATA + 0x224);
         }
-        bVar2 = FUN_180077750();
-        unaff_R14B = unaff_R14B & bVar2;
+        // 处理渲染元素
+        render_result = process_render_element();
+        success_flag = success_flag & render_result;
       }
-      unaff_RDI = unaff_RDI + 0x10;
-      lVar5 = lVar5 + -1;
-    } while (lVar5 != 0);
-    uVar4 = (ulonglong)unaff_R14B;
+      element_array = element_array + 0x10;
+      distance_context = distance_context + -1;
+    } while (distance_context != 0);
+    result_flag = (ulonglong)success_flag;
   }
-  return uVar4;
+  return result_flag;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-byte FUN_1802762d8(void)
+/**
+ * 渲染元素处理函数
+ * 处理渲染元素的遍历和渲染操作，根据元素类型选择不同的处理方式
+ * @param element_count 元素数量
+ * @param render_context 渲染上下文指针（通过寄存器传递）
+ * @param render_state 渲染状态指针（通过寄存器传递）
+ * @param element_ptr 元素指针（通过寄存器传递）
+ * @param element_bitmask 元素位掩码（通过寄存器传递）
+ * @param success_flag 成功标志（通过寄存器传递）
+ * @return 处理结果标志
+ */
+byte Process_Render_Elements(int element_count, undefined8 *render_context, longlong render_state, longlong element_ptr, uint element_bitmask, byte success_flag)
 
 {
-  longlong lVar1;
-  byte bVar2;
-  int in_EAX;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  longlong lVar3;
-  uint unaff_R13D;
-  byte unaff_R14B;
+  longlong render_element;
+  byte render_result;
+  longlong loop_counter;
   
-  lVar3 = (longlong)in_EAX;
-  if (0 < in_EAX) {
+  loop_counter = (longlong)element_count;
+  if (0 < element_count) {
     do {
-      lVar1 = *(longlong *)(unaff_RDI + *(longlong *)(unaff_RBX + 0x38));
-      if ((lVar1 != 0) &&
-         ((*(uint *)(unaff_RDI + 8 + *(longlong *)(unaff_RBX + 0x38)) & unaff_R13D) != 0)) {
-        if (((*(byte *)(unaff_RSI + 0x1bd8) & 0x20) != 0) &&
-           ((*(uint *)(lVar1 + 0x100) & 0x400000) != 0)) {
-          *(undefined4 *)(unaff_RBX + 0x328) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      render_element = *(longlong *)(element_ptr + *(longlong *)(render_context + 0x38));
+      if ((render_element != 0) &&
+         ((*(uint *)(element_ptr + 8 + *(longlong *)(render_context + 0x38)) & element_bitmask) != 0)) {
+        // 检查渲染状态标志
+        if (((*(byte *)(render_state + 0x1bd8) & 0x20) != 0) &&
+           ((*(uint *)(render_element + 0x100) & 0x400000) != 0)) {
+          *(undefined4 *)(render_context + 0x328) = *(undefined4 *)(GLOBAL_RENDER_DATA + 0x224);
         }
-        if ((*(byte *)(lVar1 + 0x100) & 0x20) == 0) {
-          bVar2 = FUN_180077750();
-          unaff_R14B = unaff_R14B & bVar2;
+        // 根据元素类型选择处理方式
+        if ((*(byte *)(render_element + 0x100) & 0x20) == 0) {
+          // 标准渲染处理
+          render_result = process_render_element();
+          success_flag = success_flag & render_result;
         }
         else {
-          FUN_180075630();
+          // 直接渲染处理
+          direct_render_processing();
         }
       }
-      unaff_RDI = unaff_RDI + 0x10;
-      lVar3 = lVar3 + -1;
-    } while (lVar3 != 0);
+      element_ptr = element_ptr + 0x10;
+      loop_counter = loop_counter + -1;
+    } while (loop_counter != 0);
   }
-  return unaff_R14B;
+  return success_flag;
 }
 
 
 
-undefined1 FUN_180276370(void)
+/**
+ * 简单返回函数
+ * 返回传入的参数值，用于寄存器值传递
+ * @param return_value 返回值（通过寄存器传递）
+ * @return 传入的参数值
+ */
+undefined1 Return_Parameter_Value(undefined1 return_value)
 
 {
-  undefined1 unaff_R14B;
-  
-  return unaff_R14B;
+  return return_value;
 }
 
 
 
-ulonglong FUN_1802763d0(longlong param_1,longlong param_2,int param_3,undefined8 *param_4)
+/**
+ * 渲染上下文更新函数
+ * 更新渲染上下文的距离参数和处理渲染元素
+ * @param render_context 渲染上下文指针
+ * @param render_data 渲染数据指针
+ * @param element_index 元素索引
+ * @param transform_params 变换参数数组
+ * @return 处理结果标志
+ */
+ulonglong Update_Render_Context(longlong render_context, longlong render_data, int element_index, undefined8 *transform_params)
 
 {
-  float fVar1;
-  float fVar2;
-  ulonglong in_RAX;
-  ulonglong uVar3;
-  longlong lVar4;
-  int iVar5;
-  longlong lVar6;
-  float fVar7;
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined8 uStack_28;
-  undefined8 uStack_20;
-  undefined8 uStack_18;
-  undefined8 uStack_10;
+  float max_distance;
+  float current_distance;
+  ulonglong result_flag;
+  longlong element_data;
+  int loop_counter;
+  longlong array_offset;
+  float new_distance;
+  undefined8 stack_params[8];
   
-  if (*(int *)(param_1 + 0x58) != 0) {
-    if (*(char *)(param_1 + 800) == '\0') {
-      FUN_180285cf0(&uStack_48,param_4,param_1 + 0x330);
+  // 检查渲染上下文是否有效
+  if (*(int *)(render_context + 0x58) != 0) {
+    // 处理变换参数
+    if (*(char *)(render_context + 800) == '\0') {
+      matrix_transform_setup(&stack_params[0], transform_params, render_context + 0x330);
     }
     else {
-      uStack_48 = *param_4;
-      uStack_40 = param_4[1];
-      uStack_38 = param_4[2];
-      uStack_30 = param_4[3];
-      uStack_28 = param_4[4];
-      uStack_20 = param_4[5];
-      uStack_18 = param_4[6];
-      uStack_10 = param_4[7];
+      // 直接复制变换参数
+      stack_params[0] = *transform_params;
+      stack_params[1] = transform_params[1];
+      stack_params[2] = transform_params[2];
+      stack_params[3] = transform_params[3];
+      stack_params[4] = transform_params[4];
+      stack_params[5] = transform_params[5];
+      stack_params[6] = transform_params[6];
+      stack_params[7] = transform_params[7];
     }
-    fVar1 = *(float *)(param_1 + 0x68);
-    lVar4 = (longlong)param_3 * 0xbc + *(longlong *)(param_2 + 0x98);
-    fVar7 = 3.4028235e+38;
-    if (fVar1 != 3.4028235e+38) {
-      fVar2 = *(float *)(lVar4 + 0xb8);
-      fVar7 = fVar1 * fVar1;
-      if (fVar1 * fVar1 <= fVar2) {
-        fVar7 = fVar2;
+    
+    // 获取最大渲染距离
+    max_distance = *(float *)(render_context + 0x68);
+    element_data = (longlong)element_index * 0xbc + *(longlong *)(render_data + 0x98);
+    new_distance = 3.4028235e+38;
+    
+    // 计算新的距离值
+    if (max_distance != 3.4028235e+38) {
+      current_distance = *(float *)(element_data + 0xb8);
+      new_distance = max_distance * max_distance;
+      if (max_distance * max_distance <= current_distance) {
+        new_distance = current_distance;
       }
     }
-    *(float *)(lVar4 + 0xb8) = fVar7;
-    iVar5 = 0;
-    lVar4 = *(longlong *)(param_1 + 0x38);
-    uVar3 = *(longlong *)(param_1 + 0x40) - lVar4 >> 4;
-    if (uVar3 != 0) {
-      lVar6 = 0;
+    *(float *)(element_data + 0xb8) = new_distance;
+    
+    // 处理渲染元素
+    loop_counter = 0;
+    element_data = *(longlong *)(render_context + 0x38);
+    result_flag = *(longlong *)(render_context + 0x40) - element_data >> 4;
+    if (result_flag != 0) {
+      array_offset = 0;
       do {
-        if (*(longlong *)(lVar6 + lVar4) != 0) {
-          FUN_180077f20(*(longlong *)(lVar6 + lVar4),param_2,param_3,&uStack_48,
-                        *(undefined4 *)(lVar6 + 8 + lVar4),*(undefined4 *)(param_1 + 0x58));
+        if (*(longlong *)(array_offset + element_data) != 0) {
+          // 处理单个渲染元素
+          process_single_element(*(longlong *)(array_offset + element_data), render_data, element_index, &stack_params[0],
+                        *(undefined4 *)(array_offset + 8 + element_data), *(undefined4 *)(render_context + 0x58));
         }
-        lVar4 = *(longlong *)(param_1 + 0x38);
-        iVar5 = iVar5 + 1;
-        lVar6 = lVar6 + 0x10;
-        uVar3 = (ulonglong)iVar5;
-      } while (uVar3 < (ulonglong)(*(longlong *)(param_1 + 0x40) - lVar4 >> 4));
+        element_data = *(longlong *)(render_context + 0x38);
+        loop_counter = loop_counter + 1;
+        array_offset = array_offset + 0x10;
+        result_flag = (ulonglong)loop_counter;
+      } while (result_flag < (ulonglong)(*(longlong *)(render_context + 0x40) - element_data >> 4));
     }
-    return CONCAT71((int7)(uVar3 >> 8),1);
+    return CONCAT71((int7)(result_flag >> 8), 1);
   }
-  return in_RAX & 0xffffffffffffff00;
+  return result_flag & 0xffffffffffffff00;
 }
 
 
 
-undefined8 FUN_18027649f(undefined8 param_1,longlong param_2)
+/**
+ * 渲染循环处理函数
+ * 遍历渲染元素数组并处理每个元素
+ * @param render_context 渲染上下文指针
+ * @param element_offset 元素偏移量
+ * @param element_index 元素索引（通过寄存器传递）
+ * @return 处理结果标志
+ */
+undefined8 Process_Render_Loop(undefined8 render_context, longlong element_offset, uint element_index)
 
 {
-  longlong unaff_RBX;
-  uint unaff_ESI;
-  ulonglong uVar1;
-  undefined4 uStack0000000000000028;
+  undefined8 *context_ptr;
+  ulonglong array_index;
+  undefined4 render_flag;
   
-  uVar1 = (ulonglong)unaff_ESI;
+  context_ptr = (undefined8 *)render_context;
+  array_index = (ulonglong)element_index;
+  
   do {
-    if (*(longlong *)(uVar1 + param_2) != 0) {
-      uStack0000000000000028 = *(undefined4 *)(unaff_RBX + 0x58);
-      FUN_180077f20();
+    if (*(longlong *)(array_index + element_offset) != 0) {
+      render_flag = *(undefined4 *)(context_ptr + 0x58);
+      process_single_element();
     }
-    param_2 = *(longlong *)(unaff_RBX + 0x38);
-    unaff_ESI = unaff_ESI + 1;
-    uVar1 = uVar1 + 0x10;
-  } while ((ulonglong)(longlong)(int)unaff_ESI <
-           (ulonglong)(*(longlong *)(unaff_RBX + 0x40) - param_2 >> 4));
-  return CONCAT71((int7)(int3)(unaff_ESI >> 8),1);
+    element_offset = *(longlong *)(context_ptr + 0x38);
+    element_index = element_index + 1;
+    array_index = array_index + 0x10;
+  } while ((ulonglong)(longlong)(int)element_index <
+           (ulonglong)(*(longlong *)(context_ptr + 0x40) - element_offset >> 4));
+  
+  return CONCAT71((int7)(int3)(element_index >> 8), 1);
 }
 
 
