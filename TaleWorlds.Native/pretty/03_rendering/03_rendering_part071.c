@@ -292,172 +292,191 @@ void rendering_system_execute_render_pipeline(longlong *param_1, longlong *param
     longlong temp_data_5;
     longlong temp_data_6;
   
-  uStack_68 = 0xfffffffffffffffe;
-  pplVar3 = (longlong **)*param_1;
-  iVar2 = (int)param_1[1];
-  uStack_6c = *(undefined4 *)((longlong)param_1 + 0xc);
-  lVar8 = (longlong)(int)param_2[1] - (longlong)iVar2;
-  plStackX_10 = param_2;
-  plStackX_20 = param_4;
-  pplStack_78 = pplVar3;
-  iStack_70 = iVar2;
-  if (1 < lVar8) {
-    lVar7 = (lVar8 + -2 >> 1) + 1;
-    do {
-      lVar7 = lVar7 + -1;
-      uVar6 = (int)lVar7 + iVar2;
-      uVar5 = uVar6 >> 0xb;
-      lStack_b8 = pplVar3[(ulonglong)uVar5 + 1][uVar6 + uVar5 * -0x800];
-      lStack_98 = *param_1;
-      lStack_90 = param_1[1];
-      FUN_180309290(&lStack_98,lVar7,lVar8,lVar7,&lStack_b8);
-    } while (lVar7 != 0);
-  }
-  lVar8 = *param_2;
-  lStack_90 = param_2[1];
-  iVar2 = *(int *)(param_3 + 8);
-  uVar5 = (uint)lStack_90;
-  lStack_98 = lVar8;
-  if ((int)uVar5 < iVar2) {
-    lVar9 = *param_1;
-    uVar6 = *(uint *)(param_1 + 1);
-    lStackX_18 = (ulonglong)(uVar6 >> 0xb) * 8;
-    lVar7 = (ulonglong)(uVar6 - (uVar6 & 0xfffff800)) * 8;
-    do {
-      pplStack_60 = &plStackX_20;
-      plStackX_20 = *(longlong **)(*(longlong *)(lStackX_18 + 8 + lVar9) + lVar7);
-      if (plStackX_20 != (longlong *)0x0) {
-        (**(code **)(*plStackX_20 + 0x28))();
-      }
-      pplStack_78 = &plStackX_8;
-      uVar6 = uVar5 >> 0xb;
-      plStackX_8 = *(longlong **)
-                    (*(longlong *)(lVar8 + 8 + (ulonglong)uVar6 * 8) +
-                    (ulonglong)(uVar5 + uVar6 * -0x800) * 8);
-      if (plStackX_8 != (longlong *)0x0) {
-        (**(code **)(*plStackX_8 + 0x28))();
-      }
-      cVar4 = FUN_180306d20(&plStackX_8,&plStackX_20);
-      if (cVar4 != '\0') {
-        uStack_b0 = *(undefined8 *)
-                     (*(longlong *)(lVar8 + 8 + (ulonglong)uVar6 * 8) +
-                     (ulonglong)(uVar5 + uVar6 * -0x800) * 8);
-        *(undefined8 *)
-         (*(longlong *)(lVar8 + 8 + (ulonglong)uVar6 * 8) + (ulonglong)(uVar5 + uVar6 * -0x800) * 8)
-             = *(undefined8 *)(*(longlong *)(lStackX_18 + 8 + *param_1) + lVar7);
-        lStack_88 = *param_1;
-        lStack_80 = param_1[1];
-        FUN_180309290(&lStack_88,0,(longlong)(int)plStackX_10[1] - (longlong)(int)param_1[1],0,
-                      &uStack_b0);
-      }
-      uVar5 = uVar5 + 1;
-      lVar9 = *param_1;
-      param_2 = plStackX_10;
-    } while ((int)uVar5 < iVar2);
-  }
-  lVar8 = *param_2;
-  uVar5 = *(uint *)(param_2 + 1);
-  lStack_80 = param_2[1];
-  lVar7 = param_1[1];
-  if (1 < (longlong)(int)uVar5 - (longlong)(int)lVar7) {
-    lVar9 = *param_1;
-    uVar6 = (uint)param_1[1];
-    lStack_88 = lVar8;
-    do {
-      uVar1 = uVar5 - 1;
-      auStack_a8[0] =
-           *(undefined8 *)
-            (*(longlong *)(lVar8 + 8 + (ulonglong)(uVar1 >> 0xb) * 8) +
-            (ulonglong)(uVar1 & 0x7ff) * 8);
-      *(undefined8 *)
-       (*(longlong *)(lVar8 + 8 + (ulonglong)(uVar1 >> 0xb) * 8) + (ulonglong)(uVar1 & 0x7ff) * 8) =
-           *(undefined8 *)
-            (*(longlong *)(lVar9 + (ulonglong)(uVar6 >> 0xb) * 8 + 8) +
-            (ulonglong)(uVar6 + (uVar6 >> 0xb) * -0x800) * 8);
-      lStack_58 = *param_1;
-      lStack_50 = param_1[1];
-      FUN_180309290(&lStack_58,0,((longlong)(int)uVar5 - (longlong)(int)uVar6) + -1,0,auStack_a8);
-      uVar5 = uVar1;
-    } while (1 < (longlong)(int)uVar1 - (longlong)(int)lVar7);
-  }
-  return;
+    // 初始化堆栈保护变量
+    stack_guard = 0xfffffffffffffffe;
+    data_table_ptr = (longlong **)*param_1;
+    data_range = (int)param_1[1];
+    stack_flags = *(undefined4 *)((longlong)param_1 + 0xc);
+    data_range_size = (longlong)(int)param_2[1] - (longlong)data_range;
+    temp_data_ptr_2 = param_2;
+    temp_data_ptr_3 = param_4;
+    temp_table_ptr = data_table_ptr;
+    stack_index = data_range;
+    
+    // 第一阶段处理：数据表优化
+    if (1 < data_range_size) {
+        loop_counter = (data_range_size + -2 >> 1) + 1;
+        do {
+            loop_counter = loop_counter + -1;
+            data_index_3 = (int)loop_counter + data_range;
+            data_index_2 = data_index_3 >> RENDERING_DATA_HASH_SHIFT;
+            temp_data_value = data_table_ptr[(ulonglong)data_index_2 + 1][data_index_3 + data_index_2 * -RENDERING_DATA_HASH_BLOCK_SIZE];
+            temp_data_1 = *param_1;
+            temp_data_2 = param_1[1];
+            rendering_system_optimize_render_data(&temp_data_1, loop_counter, data_range_size, loop_counter, &temp_data_value);
+        } while (loop_counter != 0);
+    }
+    
+    // 第二阶段处理：渲染数据执行
+    data_range_size = *param_2;
+    temp_data_2 = param_2[1];
+    data_range = *(int *)(param_3 + 8);
+    data_index_2 = (uint)temp_data_2;
+    temp_data_1 = data_range_size;
+    if ((int)data_index_2 < data_range) {
+        base_data_ptr = *param_1;
+        data_index_3 = *(uint *)(param_1 + 1);
+        stack_offset_1 = (ulonglong)(data_index_3 >> RENDERING_DATA_HASH_SHIFT) * 8;
+        loop_counter = (ulonglong)(data_index_3 - (data_index_3 & 0xfffff800)) * 8;
+        do {
+            temp_data_ptr_4 = &temp_data_ptr_3;
+            temp_data_ptr_3 = *(longlong **)(*(longlong *)(stack_offset_1 + 8 + base_data_ptr) + loop_counter);
+            if (temp_data_ptr_3 != (longlong *)0x0) {
+                (**(code **)(*temp_data_ptr_3 + 0x28))();
+            }
+            temp_table_ptr = &temp_data_ptr_1;
+            data_index_3 = data_index_2 >> RENDERING_DATA_HASH_SHIFT;
+            temp_data_ptr_1 = *(longlong **)
+                              (*(longlong *)(data_range_size + 8 + (ulonglong)data_index_3 * 8) +
+                              (ulonglong)(data_index_2 + data_index_3 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8);
+            if (temp_data_ptr_1 != (longlong *)0x0) {
+                (**(code **)(*temp_data_ptr_1 + 0x28))();
+            }
+            comparison_result = FUN_180306d20(&temp_data_ptr_1, &temp_data_ptr_3);
+            if (comparison_result != '\0') {
+                temp_data_value = *(undefined8 *)
+                                  (*(longlong *)(data_range_size + 8 + (ulonglong)data_index_3 * 8) +
+                                  (ulonglong)(data_index_2 + data_index_3 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8);
+                *(undefined8 *)
+                 (*(longlong *)(data_range_size + 8 + (ulonglong)data_index_3 * 8) + (ulonglong)(data_index_2 + data_index_3 * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8)
+                     = *(undefined8 *)(*(longlong *)(stack_offset_1 + 8 + *param_1) + loop_counter);
+                temp_data_3 = *param_1;
+                temp_data_4 = param_1[1];
+                rendering_system_optimize_render_data(&temp_data_3, 0, (longlong)(int)temp_data_ptr_2[1] - (longlong)(int)param_1[1], 0,
+                                                      &temp_data_value);
+            }
+            data_index_2 = data_index_2 + 1;
+            base_data_ptr = *param_1;
+            param_2 = temp_data_ptr_2;
+        } while ((int)data_index_2 < data_range);
+    }
+    
+    // 第三阶段处理：数据清理和优化
+    data_range_size = *param_2;
+    data_index_2 = *(uint *)(param_2 + 1);
+    temp_data_4 = param_2[1];
+    loop_counter = param_1[1];
+    if (1 < (longlong)(int)data_index_2 - (longlong)(int)loop_counter) {
+        base_data_ptr = *param_1;
+        data_index_3 = (uint)param_1[1];
+        temp_data_3 = data_range_size;
+        do {
+            data_index_1 = data_index_2 - 1;
+            temp_array[0] =
+                 *(undefined8 *)
+                  (*(longlong *)(data_range_size + 8 + (ulonglong)(data_index_1 >> RENDERING_DATA_HASH_SHIFT) * 8) +
+                  (ulonglong)(data_index_1 & RENDERING_DATA_HASH_MASK) * 8);
+            *(undefined8 *)
+             (*(longlong *)(data_range_size + 8 + (ulonglong)(data_index_1 >> RENDERING_DATA_HASH_SHIFT) * 8) + (ulonglong)(data_index_1 & RENDERING_DATA_HASH_MASK) * 8) =
+                 *(undefined8 *)
+                  (*(longlong *)(base_data_ptr + (ulonglong)(data_index_3 >> RENDERING_DATA_HASH_SHIFT) * 8 + 8) +
+                  (ulonglong)(data_index_3 + (data_index_3 >> RENDERING_DATA_HASH_SHIFT) * -RENDERING_DATA_HASH_BLOCK_SIZE) * 8);
+            temp_data_5 = *param_1;
+            temp_data_6 = param_1[1];
+            rendering_system_optimize_render_data(&temp_data_5, 0, ((longlong)(int)data_index_2 - (longlong)(int)data_index_3) + -1, 0, temp_array);
+            data_index_2 = data_index_1;
+        } while (1 < (longlong)(int)data_index_1 - (longlong)(int)loop_counter);
+    }
+    return;
 }
 
 
 
-longlong * FUN_180308f10(longlong *param_1,longlong *param_2,longlong *param_3)
-
+// 渲染数据比较函数
+longlong *rendering_system_compare_render_data(longlong *param_1, longlong *param_2, longlong *param_3)
 {
-  char cVar1;
-  longlong *plStackX_8;
-  longlong **pplStackX_10;
-  longlong *plStackX_20;
-  
-  pplStackX_10 = &plStackX_20;
-  plStackX_20 = (longlong *)*param_2;
-  if (plStackX_20 != (longlong *)0x0) {
-    (**(code **)(*plStackX_20 + 0x28))();
-  }
-  plStackX_8 = (longlong *)*param_1;
-  if (plStackX_8 != (longlong *)0x0) {
-    (**(code **)(*plStackX_8 + 0x28))();
-  }
-  cVar1 = FUN_180306d20(&plStackX_8,&plStackX_20);
-  plStackX_20 = (longlong *)*param_3;
-  pplStackX_10 = &plStackX_20;
-  if (cVar1 == '\0') {
-    if (plStackX_20 != (longlong *)0x0) {
-      (**(code **)(*plStackX_20 + 0x28))();
+    char comparison_result;
+    longlong *temp_data_ptr_1;
+    longlong **temp_data_ptr_2;
+    longlong *temp_data_ptr_3;
+    
+    // 初始化临时数据指针
+    temp_data_ptr_2 = &temp_data_ptr_3;
+    temp_data_ptr_3 = (longlong *)*param_2;
+    
+    // 执行第二个数据块的析构函数（如果存在）
+    if (temp_data_ptr_3 != (longlong *)0x0) {
+        (**(code **)(*temp_data_ptr_3 + 0x28))();
     }
-    plStackX_8 = (longlong *)*param_1;
-    if (plStackX_8 != (longlong *)0x0) {
-      (**(code **)(*plStackX_8 + 0x28))();
+    
+    // 执行第一个数据块的析构函数（如果存在）
+    temp_data_ptr_1 = (longlong *)*param_1;
+    if (temp_data_ptr_1 != (longlong *)0x0) {
+        (**(code **)(*temp_data_ptr_1 + 0x28))();
     }
-    cVar1 = FUN_180306d20(&plStackX_8,&plStackX_20);
-    if (cVar1 == '\0') {
-      pplStackX_10 = &plStackX_20;
-      plStackX_20 = (longlong *)*param_3;
-      if (plStackX_20 != (longlong *)0x0) {
-        (**(code **)(*plStackX_20 + 0x28))();
-      }
-      plStackX_8 = (longlong *)*param_2;
-      if (plStackX_8 != (longlong *)0x0) {
-        (**(code **)(*plStackX_8 + 0x28))();
-      }
-      cVar1 = FUN_180306d20(&plStackX_8,&plStackX_20);
-      if (cVar1 == '\0') {
-        return param_2;
-      }
-      return param_3;
+    
+    // 比较两个数据块
+    comparison_result = FUN_180306d20(&temp_data_ptr_1, &temp_data_ptr_3);
+    temp_data_ptr_3 = (longlong *)*param_3;
+    temp_data_ptr_2 = &temp_data_ptr_3;
+    
+    // 根据比较结果进行不同的处理路径
+    if (comparison_result == '\0') {
+        // 第一条路径：数据块相等
+        if (temp_data_ptr_3 != (longlong *)0x0) {
+            (**(code **)(*temp_data_ptr_3 + 0x28))();
+        }
+        temp_data_ptr_1 = (longlong *)*param_1;
+        if (temp_data_ptr_1 != (longlong *)0x0) {
+            (**(code **)(*temp_data_ptr_1 + 0x28))();
+        }
+        comparison_result = FUN_180306d20(&temp_data_ptr_1, &temp_data_ptr_3);
+        if (comparison_result == '\0') {
+            // 第二条路径：进一步比较
+            temp_data_ptr_2 = &temp_data_ptr_3;
+            temp_data_ptr_3 = (longlong *)*param_3;
+            if (temp_data_ptr_3 != (longlong *)0x0) {
+                (**(code **)(*temp_data_ptr_3 + 0x28))();
+            }
+            temp_data_ptr_1 = (longlong *)*param_2;
+            if (temp_data_ptr_1 != (longlong *)0x0) {
+                (**(code **)(*temp_data_ptr_1 + 0x28))();
+            }
+            comparison_result = FUN_180306d20(&temp_data_ptr_1, &temp_data_ptr_3);
+            if (comparison_result == '\0') {
+                return param_2;
+            }
+            return param_3;
+        }
     }
-  }
-  else {
-    if (plStackX_20 != (longlong *)0x0) {
-      (**(code **)(*plStackX_20 + 0x28))();
+    else {
+        // 第二条路径：数据块不相等
+        if (temp_data_ptr_3 != (longlong *)0x0) {
+            (**(code **)(*temp_data_ptr_3 + 0x28))();
+        }
+        temp_data_ptr_1 = (longlong *)*param_2;
+        if (temp_data_ptr_1 != (longlong *)0x0) {
+            (**(code **)(*temp_data_ptr_1 + 0x28))();
+        }
+        comparison_result = FUN_180306d20(&temp_data_ptr_1, &temp_data_ptr_3);
+        if (comparison_result != '\0') {
+            return param_2;
+        }
+        temp_data_ptr_2 = &temp_data_ptr_3;
+        temp_data_ptr_3 = (longlong *)*param_3;
+        if (temp_data_ptr_3 != (longlong *)0x0) {
+            (**(code **)(*temp_data_ptr_3 + 0x28))();
+        }
+        temp_data_ptr_1 = (longlong *)*param_1;
+        if (temp_data_ptr_1 != (longlong *)0x0) {
+            (**(code **)(*temp_data_ptr_1 + 0x28))();
+        }
+        comparison_result = FUN_180306d20(&temp_data_ptr_1, &temp_data_ptr_3);
+        if (comparison_result != '\0') {
+            param_1 = param_3;
+        }
     }
-    plStackX_8 = (longlong *)*param_2;
-    if (plStackX_8 != (longlong *)0x0) {
-      (**(code **)(*plStackX_8 + 0x28))();
-    }
-    cVar1 = FUN_180306d20(&plStackX_8,&plStackX_20);
-    if (cVar1 != '\0') {
-      return param_2;
-    }
-    pplStackX_10 = &plStackX_20;
-    plStackX_20 = (longlong *)*param_3;
-    if (plStackX_20 != (longlong *)0x0) {
-      (**(code **)(*plStackX_20 + 0x28))();
-    }
-    plStackX_8 = (longlong *)*param_1;
-    if (plStackX_8 != (longlong *)0x0) {
-      (**(code **)(*plStackX_8 + 0x28))();
-    }
-    cVar1 = FUN_180306d20(&plStackX_8,&plStackX_20);
-    if (cVar1 != '\0') {
-      param_1 = param_3;
-    }
-  }
-  return param_1;
+    return param_1;
 }
 
 

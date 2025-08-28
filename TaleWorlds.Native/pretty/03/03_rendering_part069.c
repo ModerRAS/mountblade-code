@@ -334,84 +334,136 @@ void rendering_system_advanced_cleanup(undefined8 *render_context, undefined8 pa
  * 该函数配置渲染系统的数据和参数
  * 处理渲染参数、数据转换、状态更新等操作
  */
-void render_system_data_configurator(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined1 param_4) {
-    if (!param_1) {
-        return;
-    }
-    
-    // 获取渲染数据
-    void* render_data = get_render_data_from_context(param_1);
-    
-    // 计算配置数据数量
-    longlong config_count = ((longlong)render_config_table_end - (longlong)render_config_table_start) / 0x38;
-    uint32_t config_flags = render_config_flags;
-    
-    // 分配配置内存
-    void* config_data = NULL;
-    if (config_count == 0) {
-        config_data = 0;
-    } else {
-        config_data = allocate_render_config_data(config_count * 0x38, config_flags & 0xff, param_4, 0, 0xfffffffffffffffe);
-    }
-    
-    // 处理配置数据
-    void* config_source = render_config_table_start;
-    longlong config_end = config_count * 0x38 + config_data;
-    longlong config_start = config_data;
-    
-    if (render_config_table_start != render_config_table_end) {
-        void* config_ptr = render_config_table_start + 9;
-        longlong current_config = config_data;
+// 函数：渲染系统高级数据处理
+// 功能：处理渲染系统的高级数据操作，包括数据转换、内存管理、队列处理
+void rendering_system_advanced_data_processor(longlong render_context, undefined8 param_2, undefined8 param_3, undefined1 param_4)
+
+{
+  undefined4 *local_ptr_1;
+  undefined4 *local_ptr_2;
+  longlong local_long_1;
+  undefined8 local_var_1;
+  undefined8 *local_ptr_3;
+  undefined8 *local_ptr_4;
+  longlong local_long_2;
+  undefined8 *local_ptr_5;
+  undefined4 *local_ptr_6;
+  int local_int_1;
+  longlong local_stack_var_1;
+  undefined4 local_var_2;
+  longlong local_stack_var_2;
+  longlong local_stack_var_3;
+  longlong local_stack_var_4;
+  uint local_stack_var_5;
+  undefined1 local_stack_array_1 [32];
+  undefined4 local_stack_var_6;
+  undefined4 local_stack_var_7;
+  undefined4 local_stack_var_8;
+  undefined1 local_stack_var_9;
+  undefined1 local_stack_var_10;
+  undefined8 local_stack_var_11;
+  
+  // 计算数据块大小
+  local_long_2 = ((longlong)_DAT_180bfaea8 - (longlong)_DAT_180bfaea0) / 0x38;
+  local_stack_var_5 = _DAT_180bfaeb8;
+  if (local_long_2 == 0) {
+    local_long_1 = 0;
+  }
+  else {
+    // 分配内存用于数据处理
+    local_long_1 = FUN_18062b420(_DAT_180c8ed18, local_long_2 * 0x38, _DAT_180bfaeb8 & 0xff, param_4, 0, 0xfffffffffffffffe);
+  }
+  
+  // 处理数据块
+  local_ptr_2 = _DAT_180bfaea8;
+  local_stack_var_4 = local_long_2 * 0x38 + local_long_1;
+  local_stack_var_2 = local_long_1;
+  if (_DAT_180bfaea0 != _DAT_180bfaea8) {
+    local_ptr_6 = _DAT_180bfaea0 + 9;
+    local_stack_var_3 = local_long_1;
+    do {
+      // 复制数据块
+      FUN_180627ae0(local_long_1, local_ptr_6 + -9);
+      *(undefined4 *)(local_long_1 + 0x20) = local_ptr_6[-1];
+      *(undefined4 *)(local_long_1 + 0x24) = *local_ptr_6;
+      *(undefined4 *)(local_long_1 + 0x28) = local_ptr_6[1];
+      *(undefined1 *)(local_long_1 + 0x2c) = *(undefined1 *)(local_ptr_6 + 2);
+      *(undefined1 *)(local_long_1 + 0x2d) = *(undefined1 *)((longlong)local_ptr_6 + 9);
+      *(undefined8 *)(local_long_1 + 0x30) = *(undefined8 *)(local_ptr_6 + 3);
+      local_long_1 = local_long_1 + 0x38;
+      local_ptr_1 = local_ptr_6 + 5;
+      local_ptr_6 = local_ptr_6 + 0xe;
+    } while (local_ptr_1 != local_ptr_2);
+  }
+  
+  // 处理数据队列
+  local_var_2 = 1;
+  local_int_1 = 0;
+  local_stack_var_3 = local_long_1;
+  if ((local_long_1 - local_stack_var_2) / 0x38 != 0) {
+    local_stack_var_1 = 0;
+    do {
+      // 分配队列内存
+      local_var_1 = FUN_18062b1e0(_DAT_180c8ed18, 0x560, 8, 3, local_var_2);
+      local_long_2 = local_stack_var_1 + local_stack_var_2;
+      
+      // 处理队列数据
+      FUN_180627ae0(local_stack_array_1, local_long_2);
+      local_stack_var_6 = *(undefined4 *)(local_long_2 + 0x20);
+      local_stack_var_7 = *(undefined4 *)(local_long_2 + 0x24);
+      local_stack_var_8 = *(undefined4 *)(local_long_2 + 0x28);
+      local_stack_var_9 = *(undefined1 *)(local_long_2 + 0x2c);
+      local_stack_var_10 = *(undefined1 *)(local_long_2 + 0x2d);
+      local_stack_var_11 = *(undefined8 *)(local_long_2 + 0x30);
+      
+      // 处理数据项
+      local_var_1 = FUN_1803a6710(local_var_1, local_stack_array_1);
+      local_ptr_5 = *(undefined8 **)(render_context + 0x1b98);
+      
+      // 管理队列空间
+      if (local_ptr_5 < *(undefined8 **)(render_context + 0x1ba0)) {
+        *(undefined8 **)(render_context + 0x1b98) = local_ptr_5 + 1;
+        *local_ptr_5 = local_var_1;
+      }
+      else {
+        // 扩展队列空间
+        local_ptr_4 = *(undefined8 **)(render_context + 0x1b90);
+        local_long_2 = (longlong)local_ptr_5 - (longlong)local_ptr_4 >> 3;
+        if (local_long_2 == 0) {
+          local_long_2 = 1;
+        LAB_1803075e0:
+          local_ptr_3 = (undefined8 *)
+                   FUN_18062b420(_DAT_180c8ed18, local_long_2 * 8, *(undefined1 *)(render_context + 0x1ba8));
+          local_ptr_5 = *(undefined8 **)(render_context + 0x1b98);
+          local_ptr_4 = *(undefined8 **)(render_context + 0x1b90);
+        }
+        else {
+          local_long_2 = local_long_2 * 2;
+          if (local_long_2 != 0) goto LAB_1803075e0;
+          local_ptr_3 = (undefined8 *)0x0;
+        }
         
-        do {
-            process_render_config_data(config_data, config_ptr - 9);
-            *(undefined4 *)(config_data + 0x20) = config_ptr[-1];
-            *(undefined4 *)(config_data + 0x24) = *config_ptr;
-            *(undefined4 *)(config_data + 0x28) = config_ptr[1];
-            *(undefined1 *)(config_data + 0x2c) = *(undefined1 *)(config_ptr + 2);
-            *(undefined1 *)(config_data + 0x2d) = *(undefined1 *)((longlong)config_ptr + 9);
-            *(undefined8 *)(config_data + 0x30) = *(undefined8 *)(config_ptr + 3);
-            
-            config_data = config_data + 0x38;
-            config_ptr = config_ptr + 0xe;
-        } while (config_ptr + 5 != config_source);
-    }
-    
-    // 处理配置项
-    uint32_t process_flag = 1;
-    int process_index = 0;
-    
-    if ((config_data - config_start) / 0x38 != 0) {
-        longlong item_index = 0;
-        do {
-            // 分配配置项内存
-            void* config_item = allocate_render_config_item(0x560, 8, 3, process_flag);
-            
-            // 处理配置项数据
-            longlong item_offset = item_index + config_start;
-            process_render_config_item_data(config_data, item_offset);
-            
-            // 提取配置参数
-            uint32_t config_param1 = *(undefined4 *)(item_offset + 0x20);
-            uint32_t config_param2 = *(undefined4 *)(item_offset + 0x24);
-            uint32_t config_param3 = *(undefined4 *)(item_offset + 0x28);
-            uint8_t config_flag1 = *(undefined1 *)(item_offset + 0x2c);
-            uint8_t config_flag2 = *(undefined1 *)(item_offset + 0x2d);
-            uint64_t config_value = *(undefined8 *)(item_offset + 0x30);
-            
-            // 处理配置项
-            void* processed_item = process_render_config_item(config_item, config_data);
-            
-            // 插入配置项到渲染上下文
-            insert_config_item_to_context(param_1, processed_item);
-            
-            process_index++;
-            item_index = item_index + 0x38;
-        } while ((ulonglong)(longlong)process_index < (ulonglong)((config_data - config_start) / 0x38));
-    }
-    
-    // 清理配置数据
-    cleanup_render_config_data(&config_start);
+        // 移动队列数据
+        if (local_ptr_4 != local_ptr_5) {
+          memmove(local_ptr_3, local_ptr_4, (longlong)local_ptr_5 - (longlong)local_ptr_4);
+        }
+        *local_ptr_3 = local_var_1;
+        if (*(longlong *)(render_context + 0x1b90) != 0) {
+          FUN_18064e900();
+        }
+        *(undefined8 **)(render_context + 0x1b90) = local_ptr_3;
+        *(undefined8 **)(render_context + 0x1b98) = local_ptr_3 + 1;
+        *(undefined8 **)(render_context + 0x1ba0) = local_ptr_3 + local_long_2;
+      }
+      
+      local_int_1 = local_int_1 + 1;
+      local_stack_var_1 = local_stack_var_1 + 0x38;
+    } while ((ulonglong)(longlong)local_int_1 < (ulonglong)((local_stack_var_3 - local_stack_var_2) / 0x38));
+  }
+  
+  // 完成数据处理
+  FUN_180309520(&local_stack_var_2);
+  return;
 }
 
 /**
