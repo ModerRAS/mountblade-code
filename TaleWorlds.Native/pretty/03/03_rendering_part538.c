@@ -889,18 +889,30 @@ PROCESS_EXTENDED_DATA:
 
 
 
-// 函数: void FUN_180560c27(void)
-void FUN_180560c27(void)
-
+/*==============================================================================
+函数别名: ProcessRenderBatch - 处理渲染批次
+原始函数: FUN_180560c27
+参数:
+  (无直接参数，使用寄存器传递)
+返回:
+  void
+描述:
+  处理渲染批次数据，执行批量渲染操作。
+===============================================================================*/
+void ProcessRenderBatch(void)
 {
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  undefined8 in_R9;
+  longlong batch_data;
+  longlong context_ptr;
+  undefined8 render_target;
   
-  FUN_180086e40(in_R9,&DAT_180a2d688,unaff_RBP + 0x170);
-  FUN_180086e40(_DAT_180c868a8,&DAT_180a2d688,unaff_RBP + 400);
-  FUN_1804aa470(&DAT_180c961e0,*(undefined8 *)(unaff_RSI + 0xb0),unaff_RBP + 0x170,unaff_RBP + 400,
-                *(undefined1 *)(unaff_RBP + 0x1b0));
+  // 处理批次数据第一部分
+  FUN_180086e40(render_target, &DAT_180a2d688, batch_data + 0x170);
+  // 处理批次数据第二部分
+  FUN_180086e40(_DAT_180c868a8, &DAT_180a2d688, batch_data + 400);
+  // 执行渲染操作
+  FUN_1804aa470(&DAT_180c961e0, *(undefined8 *)(context_ptr + 0xb0), 
+                batch_data + 0x170, batch_data + 400,
+                *(undefined1 *)(batch_data + 0x1b0));
   return;
 }
 
