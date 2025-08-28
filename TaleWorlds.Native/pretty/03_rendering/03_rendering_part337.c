@@ -1,877 +1,698 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part337.c - 渲染系统高级参数处理和渲染控制模块
-// 包含11个核心函数，涵盖渲染参数处理、状态管理、数据转换、内存分配等高级渲染功能
+// 03_rendering_part337.c - 渲染系统高级渲染控制和数据处理模块
+// 包含11个核心函数，涵盖渲染对象处理、参数设置、状态管理、资源分配等高级渲染功能
 
-/**
- * 渲染系统高级参数处理函数（8参数版本）
- * 
- * 该函数处理复杂的渲染参数，包括顶点数据、纹理坐标、法线向量等。
- * 主要功能包括：
- * 1. 初始化渲染上下文和参数
- * 2. 处理多个顶点数据集
- * 3. 管理渲染对象的内存分配
- * 4. 执行高级渲染操作
- * 
- * @param render_context 渲染上下文指针
- * @param vertex_data1 顶点数据数组1
- * @param vertex_data2 顶点数据数组2
- * @param texture_coords 纹理坐标数据
- * @param param5 渲染参数5
- * @param param6 渲染参数6
- * @param param7 渲染参数7
- * @param render_flags 渲染标志位
- */
-void rendering_system_advanced_param_processing_8args(longlong *render_context, undefined4 *vertex_data1, undefined4 *vertex_data2, undefined8 *texture_coords,
-                  undefined8 param5, undefined8 param6, undefined8 param7, undefined4 render_flags)
+// 渲染系统工作变量
+// 渲染对象指针数组
+longlong *render_object_pointers[16];
+// 渲染参数缓存
+float render_parameter_cache[32];
+// 渲染状态标志
+int render_state_flags[8];
+// 渲染内存池
+longlong *render_memory_pool[4];
+// 渲染数据缓冲区
+undefined4 render_data_buffer[64];
+// 渲染控制参数
+int render_control_params[12];
+// 渲染处理队列
+int render_processing_queue[10];
+// 渲染资源索引
+int render_resource_indices[8];
+// 渲染临时数据
+undefined4 render_temp_data[20];
+// 渲染系统配置
+int render_system_config[6];
+// 渲染调试信息
+int render_debug_info[4];
+
+// 函数：渲染系统高级对象处理器
+// 功能：处理渲染对象的创建、配置和管理，支持多种渲染参数和状态设置
+void render_system_advanced_object_processor(longlong *render_context, undefined4 *param_set_1, undefined4 *param_set_2, undefined8 *param_set_3,
+                                            undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined4 param_7)
 
 {
-  longlong *render_object_ptr;
-  undefined4 *texture_ptr;
-  undefined8 *vertex_ptr;
-  int vertex_count;
-  int data_index;
-  undefined8 texture_data;
-  longlong *object_data_ptr;
-  undefined4 color_value;
-  undefined4 normal_value;
-  undefined4 position_value;
-  int buffer_index;
+  longlong *render_obj_ptr;
+  undefined4 *render_param_ptr;
+  undefined8 *render_data_ptr;
+  int render_index;
   int buffer_size;
-  longlong *stack_render_object;
-  longlong *stack_buffer_ptr;
-  longlong *stack_context_ptr;
-  longlong stack_array [3];
-  longlong *stack_allocator;
-  char cleanup_flag1;
-  char cleanup_flag2;
-  char cleanup_flag3;
-  longlong *stack_data_ptr;
-  undefined8 stack_param1;
-  undefined8 stack_param2;
-  undefined8 stack_param3;
-  undefined4 stack_color_r;
-  undefined4 stack_color_g;
-  undefined4 stack_color_b;
-  undefined4 stack_color_a;
-  undefined8 stack_texture_data;
-  longlong *stack_vertex_ptr;
+  undefined8 render_value;
+  longlong *memory_block;
+  undefined4 param_value_1;
+  undefined4 param_value_2;
+  undefined4 param_value_3;
+  int array_index;
+  int temp_index;
+  longlong *stack_pointer_1;
+  longlong *stack_pointer_2;
+  longlong *stack_pointer_3;
+  longlong stack_array[3];
+  longlong *stack_pointer_4;
+  char cleanup_flag_1;
+  char cleanup_flag_2;
+  char cleanup_flag_3;
+  longlong *stack_pointer_5;
+  undefined8 stack_value_1;
+  undefined8 stack_value_2;
+  undefined8 stack_value_3;
+  undefined4 stack_value_4;
+  undefined4 stack_value_5;
+  undefined4 stack_value_6;
+  undefined4 stack_value_7;
+  undefined8 stack_value_8;
+  longlong *stack_pointer_6;
   
-  // 初始化栈参数和渲染对象
-  stack_texture_data = 0xfffffffffffffffe;
-  stack_vertex_ptr = render_context;
+  stack_value_8 = 0xfffffffffffffffe;
+  stack_pointer_6 = render_context;
   if (render_context != (longlong *)0x0) {
-    // 调用渲染上下文的初始化函数
+    // 初始化渲染上下文
     (**(code **)(*render_context + 0x28))();
-    stack_render_object = (longlong *)CONCAT44(stack_render_object._4_4_,render_flags);
-    stack_param3 = param7;
-    stack_param2 = param6;
-    stack_param1 = param5;
-    stack_data_ptr = render_context;
+    stack_pointer_1 = (longlong *)CONCAT44(stack_pointer_1._4_4_,param_7);
+    stack_value_3 = param_6;
+    stack_value_2 = param_5;
+    stack_value_1 = param_4;
+    stack_pointer_5 = render_context;
     (**(code **)(*render_context + 0x28))();
-    
-    // 初始化缓冲区指针和数组
-    stack_buffer_ptr = (longlong *)0x0;
-    stack_context_ptr = (longlong *)0x0;
-    stack_data_ptr = stack_array;
-    stack_allocator = (longlong *)0x0;
+    stack_pointer_2 = (longlong *)0x0;
+    stack_pointer_3 = (longlong *)0x0;
+    stack_pointer_5 = stack_array;
+    stack_pointer_4 = (longlong *)0x0;
     stack_array[1] = 0;
     stack_array[0]._0_1_ = 0;
-    
-    // 创建渲染对象
-    create_rendering_object(&stack_buffer_ptr, render_context, 0);
+    // 初始化渲染对象
+    initialize_render_object(&stack_pointer_2, render_context, 0);
     (**(code **)(*render_context + 0x38))(render_context);
-    
-    render_object_ptr = stack_context_ptr;
-    vertex_count = (int)stack_context_ptr[2];
-    stack_data_ptr = (longlong *)CONCAT44(stack_data_ptr._4_4_,vertex_count);
-    buffer_size = vertex_count + 1;
-    data_index = *(int *)((longlong)stack_context_ptr + 0x14);
-    
-    // 检查并扩展缓冲区大小
-    if (data_index < buffer_size) {
-      if (data_index < 2) {
-        *(undefined4 *)((longlong)stack_context_ptr + 0x14) = 8;
-      }
-      else {
-        *(int *)((longlong)stack_context_ptr + 0x14) = (data_index >> 1) + data_index;
-      }
-      resize_render_buffer(stack_context_ptr + 2);
-    }
-    *(int *)(render_object_ptr + 2) = buffer_size;
-    
-    // 处理第一个顶点数据集
-    color_value = vertex_data1[1];
-    normal_value = vertex_data1[2];
-    position_value = vertex_data1[3];
-    texture_ptr = (undefined4 *)(stack_context_ptr[3] + (longlong)vertex_count * 0x10);
-    *texture_ptr = *vertex_data1;
-    texture_ptr[1] = color_value;
-    texture_ptr[2] = normal_value;
-    texture_ptr[3] = position_value;
-    
-    // 处理附加数据（如果启用）
-    render_object_ptr = stack_context_ptr + 7;
-    if ((int)*render_object_ptr != 0) {
-      data_index = *(int *)((longlong)stack_context_ptr + 0x3c);
-      if (data_index < buffer_size) {
-        if (data_index < 2) {
-          *(undefined4 *)((longlong)stack_context_ptr + 0x3c) = 8;
-        }
-        else {
-          *(int *)((longlong)stack_context_ptr + 0x3c) = (data_index >> 1) + data_index;
-        }
-        resize_render_buffer(render_object_ptr);
-      }
-      *(int *)render_object_ptr = buffer_size;
-      color_value = vertex_data1[1];
-      normal_value = vertex_data1[2];
-      position_value = vertex_data1[3];
-      texture_ptr = (undefined4 *)(stack_context_ptr[8] + (longlong)vertex_count * 0x10);
-      *texture_ptr = *vertex_data1;
-      texture_ptr[1] = color_value;
-      texture_ptr[2] = normal_value;
-      texture_ptr[3] = position_value;
-    }
-    
-    // 设置清理标志
-    cleanup_flag1 = 1;
-    cleanup_flag3 = 1;
-    render_object_ptr = stack_context_ptr + 2;
-    vertex_count = (int)*render_object_ptr;
-    buffer_size = vertex_count + 1;
-    data_index = *(int *)((longlong)stack_context_ptr + 0x14);
-    
-    // 再次检查并扩展缓冲区
-    if (data_index < buffer_size) {
-      if (data_index < 2) {
-        *(undefined4 *)((longlong)stack_context_ptr + 0x14) = 8;
-      }
-      else {
-        *(int *)((longlong)stack_context_ptr + 0x14) = (data_index >> 1) + data_index;
-      }
-      resize_render_buffer(render_object_ptr);
-    }
-    *(int *)render_object_ptr = buffer_size;
-    
-    // 处理第二个顶点数据集
-    color_value = vertex_data2[1];
-    normal_value = vertex_data2[2];
-    position_value = vertex_data2[3];
-    texture_ptr = (undefined4 *)(stack_context_ptr[3] + (longlong)vertex_count * 0x10);
-    *texture_ptr = *vertex_data2;
-    texture_ptr[1] = color_value;
-    texture_ptr[2] = normal_value;
-    texture_ptr[3] = position_value;
-    
-    // 处理附加数据（如果启用）
-    render_object_ptr = stack_context_ptr + 7;
-    if ((int)*render_object_ptr != 0) {
-      data_index = *(int *)((longlong)stack_context_ptr + 0x3c);
-      if (data_index < buffer_size) {
-        if (data_index < 2) {
-          *(undefined4 *)((longlong)stack_context_ptr + 0x3c) = 8;
-        }
-        else {
-          *(int *)((longlong)stack_context_ptr + 0x3c) = (data_index >> 1) + data_index;
-        }
-        resize_render_buffer(render_object_ptr);
-      }
-      *(int *)render_object_ptr = buffer_size;
-      color_value = vertex_data2[1];
-      normal_value = vertex_data2[2];
-      position_value = vertex_data2[3];
-      texture_ptr = (undefined4 *)(stack_context_ptr[8] + (longlong)vertex_count * 0x10);
-      *texture_ptr = *vertex_data2;
-      texture_ptr[1] = color_value;
-      texture_ptr[2] = normal_value;
-      texture_ptr[3] = position_value;
-    }
-    
-    // 设置清理标志
-    cleanup_flag1 = 1;
-    cleanup_flag3 = 1;
-    render_object_ptr = stack_context_ptr + 2;
-    data_index = (int)*render_object_ptr;
-    buffer_index = data_index + 1;
-    buffer_size = *(int *)((longlong)stack_context_ptr + 0x14);
-    
-    // 检查并扩展缓冲区
-    if (buffer_size < buffer_index) {
+    render_obj_ptr = stack_pointer_3;
+    render_index = (int)stack_pointer_3[2];
+    stack_pointer_5 = (longlong *)CONCAT44(stack_pointer_5._4_4_,render_index);
+    temp_index = render_index + 1;
+    buffer_size = *(int *)((longlong)stack_pointer_3 + 0x14);
+    if (buffer_size < temp_index) {
       if (buffer_size < 2) {
-        *(undefined4 *)((longlong)stack_context_ptr + 0x14) = 8;
+        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
       }
       else {
-        *(int *)((longlong)stack_context_ptr + 0x14) = (buffer_size >> 1) + buffer_size;
+        *(int *)((longlong)stack_pointer_3 + 0x14) = (buffer_size >> 1) + buffer_size;
       }
-      resize_render_buffer(render_object_ptr);
+      resize_render_buffer(stack_pointer_3 + 2);
     }
-    object_data_ptr = stack_context_ptr;
-    *(int *)render_object_ptr = buffer_index;
-    
-    // 处理纹理坐标数据
-    color_value = *(undefined4 *)((longlong)texture_coords + 4);
-    normal_value = *(undefined4 *)(texture_coords + 1);
-    position_value = *(undefined4 *)((longlong)texture_coords + 0xc);
-    texture_ptr = (undefined4 *)(stack_context_ptr[3] + (longlong)data_index * 0x10);
-    *texture_ptr = *(undefined4 *)texture_coords;
-    texture_ptr[1] = color_value;
-    texture_ptr[2] = normal_value;
-    texture_ptr[3] = position_value;
-    
-    // 处理附加纹理数据（如果启用）
-    if ((int)stack_context_ptr[7] != 0) {
-      buffer_size = *(int *)((longlong)stack_context_ptr + 0x3c);
-      if (buffer_size < buffer_index) {
+    *(int *)(render_obj_ptr + 2) = temp_index;
+    param_value_1 = param_set_1[1];
+    param_value_2 = param_set_1[2];
+    param_value_3 = param_set_1[3];
+    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
+    *render_param_ptr = *param_set_1;
+    render_param_ptr[1] = param_value_1;
+    render_param_ptr[2] = param_value_2;
+    render_param_ptr[3] = param_value_3;
+    render_obj_ptr = stack_pointer_3 + 7;
+    if ((int)*render_obj_ptr != 0) {
+      buffer_size = *(int *)((longlong)stack_pointer_3 + 0x3c);
+      if (buffer_size < temp_index) {
         if (buffer_size < 2) {
-          *(undefined4 *)((longlong)stack_context_ptr + 0x3c) = 8;
+          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
         }
         else {
-          *(int *)((longlong)stack_context_ptr + 0x3c) = (buffer_size >> 1) + buffer_size;
+          *(int *)((longlong)stack_pointer_3 + 0x3c) = (buffer_size >> 1) + buffer_size;
         }
-        resize_render_buffer(stack_context_ptr + 7);
+        resize_render_buffer(render_obj_ptr);
       }
-      *(int *)(object_data_ptr + 7) = buffer_index;
-      texture_data = texture_coords[1];
-      vertex_ptr = (undefined8 *)(stack_context_ptr[8] + (longlong)data_index * 0x10);
-      *vertex_ptr = *texture_coords;
-      vertex_ptr[1] = texture_data;
+      *(int *)render_obj_ptr = temp_index;
+      param_value_1 = param_set_1[1];
+      param_value_2 = param_set_1[2];
+      param_value_3 = param_set_1[3];
+      render_param_ptr = (undefined4 *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
+      *render_param_ptr = *param_set_1;
+      render_param_ptr[1] = param_value_1;
+      render_param_ptr[2] = param_value_2;
+      render_param_ptr[3] = param_value_3;
     }
-    
-    // 设置最终的清理标志
-    cleanup_flag1 = '\x01';
-    cleanup_flag3 = '\x01';
-    stack_color_r = 0;
-    stack_color_g = 0;
-    stack_color_b = 0x3f800000;  // 1.0f
-    stack_color_a = 0x7f7fffff; // 最大浮点值
-    
-    // 执行高级渲染操作
-    color_value = execute_rendering_operation(&stack_buffer_ptr, (ulonglong)stack_data_ptr & 0xffffffff, &stack_param1, &stack_render_object, &stack_color_r);
-    normal_value = execute_rendering_operation(&stack_buffer_ptr, vertex_count, &stack_param2, &stack_render_object, &stack_color_r);
-    position_value = execute_rendering_operation(&stack_buffer_ptr, data_index, &stack_param3, &stack_render_object, &stack_color_r);
-    finalize_rendering_operation(&stack_buffer_ptr, color_value, normal_value, position_value);
-    
-    // 清理资源
-    if ((stack_buffer_ptr != (longlong *)0x0) && (stack_context_ptr != (longlong *)0x0)) {
-      if (cleanup_flag3 != '\0') {
-        cleanup_rendering_resources();
+    cleanup_flag_1 = 1;
+    cleanup_flag_3 = 1;
+    render_obj_ptr = stack_pointer_3 + 2;
+    render_index = (int)*render_obj_ptr;
+    temp_index = render_index + 1;
+    buffer_size = *(int *)((longlong)stack_pointer_3 + 0x14);
+    if (buffer_size < temp_index) {
+      if (buffer_size < 2) {
+        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
       }
-      cleanup_rendering_array(stack_array);
-      if (cleanup_flag1 != '\0') {
-        release_rendering_object(stack_buffer_ptr);
+      else {
+        *(int *)((longlong)stack_pointer_3 + 0x14) = (buffer_size >> 1) + buffer_size;
       }
-      if (cleanup_flag2 != '\0') {
-        release_rendering_object(stack_buffer_ptr);
+      resize_render_buffer(render_obj_ptr);
+    }
+    *(int *)render_obj_ptr = temp_index;
+    param_value_1 = param_set_2[1];
+    param_value_2 = param_set_2[2];
+    param_value_3 = param_set_2[3];
+    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
+    *render_param_ptr = *param_set_2;
+    render_param_ptr[1] = param_value_1;
+    render_param_ptr[2] = param_value_2;
+    render_param_ptr[3] = param_value_3;
+    render_obj_ptr = stack_pointer_3 + 7;
+    if ((int)*render_obj_ptr != 0) {
+      buffer_size = *(int *)((longlong)stack_pointer_3 + 0x3c);
+      if (buffer_size < temp_index) {
+        if (buffer_size < 2) {
+          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
+        }
+        else {
+          *(int *)((longlong)stack_pointer_3 + 0x3c) = (buffer_size >> 1) + buffer_size;
+        }
+        resize_render_buffer(render_obj_ptr);
       }
-      render_object_ptr = stack_context_ptr;
-      stack_render_object = stack_context_ptr;
-      stack_context_ptr = (longlong *)0x0;
-      if (render_object_ptr != (longlong *)0x0) {
-        (**(code **)(*render_object_ptr + 0x38))();
+      *(int *)render_obj_ptr = temp_index;
+      param_value_1 = param_set_2[1];
+      param_value_2 = param_set_2[2];
+      param_value_3 = param_set_2[3];
+      render_param_ptr = (undefined4 *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
+      *render_param_ptr = *param_set_2;
+      render_param_ptr[1] = param_value_1;
+      render_param_ptr[2] = param_value_2;
+      render_param_ptr[3] = param_value_3;
+    }
+    cleanup_flag_1 = 1;
+    cleanup_flag_3 = 1;
+    render_obj_ptr = stack_pointer_3 + 2;
+    buffer_size = (int)*render_obj_ptr;
+    array_index = buffer_size + 1;
+    temp_index = *(int *)((longlong)stack_pointer_3 + 0x14);
+    if (temp_index < array_index) {
+      if (temp_index < 2) {
+        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
+      }
+      else {
+        *(int *)((longlong)stack_pointer_3 + 0x14) = (temp_index >> 1) + temp_index;
+      }
+      resize_render_buffer(render_obj_ptr);
+    }
+    memory_block = stack_pointer_3;
+    *(int *)render_obj_ptr = array_index;
+    param_value_1 = *(undefined4 *)((longlong)param_set_3 + 4);
+    param_value_2 = *(undefined4 *)(param_set_3 + 1);
+    param_value_3 = *(undefined4 *)((longlong)param_set_3 + 0xc);
+    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)buffer_size * 0x10);
+    *render_param_ptr = *(undefined4 *)param_set_3;
+    render_param_ptr[1] = param_value_1;
+    render_param_ptr[2] = param_value_2;
+    render_param_ptr[3] = param_value_3;
+    if ((int)stack_pointer_3[7] != 0) {
+      temp_index = *(int *)((longlong)stack_pointer_3 + 0x3c);
+      if (temp_index < array_index) {
+        if (temp_index < 2) {
+          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
+        }
+        else {
+          *(int *)((longlong)stack_pointer_3 + 0x3c) = (temp_index >> 1) + temp_index;
+        }
+        resize_render_buffer(stack_pointer_3 + 7);
+      }
+      *(int *)(memory_block + 7) = array_index;
+      render_value = param_set_3[1];
+      render_data_ptr = (undefined8 *)(stack_pointer_3[8] + (longlong)buffer_size * 0x10);
+      *render_data_ptr = *param_set_3;
+      render_data_ptr[1] = render_value;
+    }
+    cleanup_flag_1 = '\x01';
+    cleanup_flag_3 = '\x01';
+    stack_value_7 = 0;
+    stack_value_6 = 0;
+    stack_value_5 = 0x3f800000;
+    stack_value_4 = 0x7f7fffff;
+    param_value_1 = process_render_data_batch(&stack_pointer_2,(ulonglong)stack_pointer_5 & 0xffffffff,&stack_value_1,&stack_pointer_1,
+                          &stack_value_7);
+    param_value_2 = process_render_data_batch(&stack_pointer_2,render_index,&stack_value_2,&stack_pointer_1,&stack_value_7);
+    param_value_3 = process_render_data_batch(&stack_pointer_2,buffer_size,&stack_value_3,&stack_pointer_1,&stack_value_7);
+    execute_render_batch_operation(&stack_pointer_2,param_value_1,param_value_2,param_value_3);
+    if ((stack_pointer_2 != (longlong *)0x0) && (stack_pointer_3 != (longlong *)0x0)) {
+      if (cleanup_flag_3 != '\0') {
+        perform_render_cleanup();
+      }
+      cleanup_render_stack_array(stack_array);
+      if (cleanup_flag_1 != '\0') {
+        release_render_object_memory(stack_pointer_2);
+      }
+      if (cleanup_flag_2 != '\0') {
+        release_render_object_memory(stack_pointer_2);
+      }
+      render_obj_ptr = stack_pointer_3;
+      stack_pointer_1 = stack_pointer_3;
+      stack_pointer_3 = (longlong *)0x0;
+      if (render_obj_ptr != (longlong *)0x0) {
+        (**(code **)(*render_obj_ptr + 0x38))();
       }
     }
-    
-    // 最终清理
-    stack_render_object = stack_array;
-    cleanup_rendering_array(stack_array);
-    if (stack_allocator != (longlong *)0x0) {
-      (**(code **)(*stack_allocator + 0x38))();
+    stack_pointer_1 = stack_array;
+    cleanup_render_stack_array(stack_array);
+    if (stack_pointer_4 != (longlong *)0x0) {
+      (**(code **)(*stack_pointer_4 + 0x38))();
     }
-    if (stack_context_ptr != (longlong *)0x0) {
-      (**(code **)(*stack_context_ptr + 0x38))();
+    if (stack_pointer_3 != (longlong *)0x0) {
+      (**(code **)(*stack_pointer_3 + 0x38))();
     }
-    if (stack_buffer_ptr != (longlong *)0x0) {
-      (**(code **)(*stack_buffer_ptr + 0x38))();
+    if (stack_pointer_2 != (longlong *)0x0) {
+      (**(code **)(*stack_pointer_2 + 0x38))();
     }
   }
-  
-  // 清理渲染上下文
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x38))(render_context);
   }
   return;
 }
 
-/**
- * 渲染系统高级参数处理函数（7参数版本）
- * 
- * 该函数处理复杂的渲染参数，包括顶点数据、纹理坐标、法线向量等。
- * 主要功能包括：
- * 1. 初始化渲染上下文和参数
- * 2. 处理多个顶点数据集
- * 3. 管理渲染对象的内存分配
- * 4. 执行高级渲染操作
- * 
- * @param render_context 渲染上下文指针
- * @param vertex_data1 顶点数据数组1
- * @param vertex_data2 顶点数据数组2
- * @param texture_coords 纹理坐标数据
- * @param param5 渲染参数5
- * @param param6 渲染参数6
- * @param render_flags 渲染标志位
- */
-void rendering_system_advanced_param_processing_7args(longlong *render_context, undefined4 *vertex_data1, undefined4 *vertex_data2, undefined8 *texture_coords,
-                  undefined8 param5, undefined8 param6, undefined4 render_flags)
+// 函数：渲染系统扩展对象处理器
+// 功能：扩展的渲染对象处理功能，支持更多参数和更复杂的渲染操作
+void render_system_extended_object_processor(longlong *render_context, undefined4 *param_set_1, undefined4 *param_set_2, undefined8 *param_set_3,
+                                          undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined4 param_7,
+                                          undefined4 param_8, undefined4 param_9)
 
 {
-  longlong *render_object_ptr;
-  undefined4 *texture_ptr;
-  undefined8 *vertex_ptr;
-  int vertex_count;
-  int data_index;
-  undefined8 texture_data;
-  longlong *object_data_ptr;
-  undefined4 color_value;
-  undefined4 normal_value;
-  undefined4 position_value;
-  int buffer_index;
+  longlong *render_obj_ptr;
+  undefined4 *render_param_ptr;
+  undefined8 *render_data_ptr;
+  int render_index;
   int buffer_size;
-  longlong *stack_render_object;
-  longlong *stack_buffer_ptr;
-  longlong *stack_context_ptr;
-  longlong stack_array [3];
-  longlong *stack_allocator;
-  char cleanup_flag1;
-  char cleanup_flag2;
-  char cleanup_flag3;
-  longlong *stack_data_ptr;
-  undefined8 stack_param1;
-  undefined8 stack_param2;
-  undefined8 stack_param3;
-  undefined4 stack_color_r;
-  undefined4 stack_color_g;
-  undefined4 stack_color_b;
-  undefined4 stack_color_a;
-  undefined8 stack_texture_data;
-  longlong *stack_vertex_ptr;
+  undefined8 render_value;
+  longlong *memory_block;
+  undefined4 param_value_1;
+  undefined4 param_value_2;
+  undefined4 param_value_3;
+  int array_index;
+  int temp_index;
+  longlong *stack_pointer_1;
+  longlong *stack_pointer_2;
+  longlong *stack_pointer_3;
+  longlong stack_array[3];
+  longlong *stack_pointer_4;
+  char cleanup_flag_1;
+  char cleanup_flag_2;
+  char cleanup_flag_3;
+  longlong *stack_pointer_5;
+  undefined4 stack_value_1;
+  undefined4 stack_value_2;
+  undefined8 stack_value_3;
+  undefined8 stack_value_4;
+  undefined8 stack_value_5;
+  undefined4 stack_value_6;
+  undefined4 stack_value_7;
+  undefined4 stack_value_8;
+  undefined4 stack_value_9;
+  undefined8 stack_value_10;
+  longlong *stack_pointer_6;
   
-  // 初始化栈参数和渲染对象
-  stack_texture_data = 0xfffffffffffffffe;
-  stack_vertex_ptr = render_context;
+  stack_value_10 = 0xfffffffffffffffe;
+  stack_pointer_6 = render_context;
   if (render_context != (longlong *)0x0) {
-    // 调用渲染上下文的初始化函数
     (**(code **)(*render_context + 0x28))();
-    stack_render_object = (longlong *)CONCAT44(stack_render_object._4_4_,render_flags);
-    stack_param3 = 0;
-    stack_param2 = param6;
-    stack_param1 = param5;
-    stack_data_ptr = render_context;
+    stack_value_2 = param_9;
+    stack_value_1 = param_8;
+    stack_pointer_1 = (longlong *)CONCAT44(stack_pointer_1._4_4_,param_7);
+    stack_value_5 = param_6;
+    stack_value_4 = param_5;
+    stack_value_3 = param_4;
+    stack_pointer_5 = render_context;
     (**(code **)(*render_context + 0x28))();
-    
-    // 初始化缓冲区指针和数组
-    stack_buffer_ptr = (longlong *)0x0;
-    stack_context_ptr = (longlong *)0x0;
-    stack_data_ptr = stack_array;
-    stack_allocator = (longlong *)0x0;
+    stack_pointer_2 = (longlong *)0x0;
+    stack_pointer_3 = (longlong *)0x0;
+    stack_pointer_5 = stack_array;
+    stack_pointer_4 = (longlong *)0x0;
     stack_array[1] = 0;
     stack_array[0]._0_1_ = 0;
-    
-    // 创建渲染对象
-    create_rendering_object(&stack_buffer_ptr, render_context, 0);
+    initialize_render_object(&stack_pointer_2,render_context,0);
     (**(code **)(*render_context + 0x38))(render_context);
-    
-    render_object_ptr = stack_context_ptr;
-    vertex_count = (int)stack_context_ptr[2];
-    stack_data_ptr = (longlong *)CONCAT44(stack_data_ptr._4_4_,vertex_count);
-    buffer_size = vertex_count + 1;
-    data_index = *(int *)((longlong)stack_context_ptr + 0x14);
-    
-    // 检查并扩展缓冲区大小
-    if (data_index < buffer_size) {
-      if (data_index < 2) {
-        *(undefined4 *)((longlong)stack_context_ptr + 0x14) = 8;
-      }
-      else {
-        *(int *)((longlong)stack_context_ptr + 0x14) = (data_index >> 1) + data_index;
-      }
-      resize_render_buffer(stack_context_ptr + 2);
-    }
-    *(int *)(render_object_ptr + 2) = buffer_size;
-    
-    // 处理第一个顶点数据集
-    color_value = vertex_data1[1];
-    normal_value = vertex_data1[2];
-    position_value = vertex_data1[3];
-    texture_ptr = (undefined4 *)(stack_context_ptr[3] + (longlong)vertex_count * 0x10);
-    *texture_ptr = *vertex_data1;
-    texture_ptr[1] = color_value;
-    texture_ptr[2] = normal_value;
-    texture_ptr[3] = position_value;
-    
-    // 处理附加数据（如果启用）
-    render_object_ptr = stack_context_ptr + 7;
-    if ((int)*render_object_ptr != 0) {
-      data_index = *(int *)((longlong)stack_context_ptr + 0x3c);
-      if (data_index < buffer_size) {
-        if (data_index < 2) {
-          *(undefined4 *)((longlong)stack_context_ptr + 0x3c) = 8;
-        }
-        else {
-          *(int *)((longlong)stack_context_ptr + 0x3c) = (data_index >> 1) + data_index;
-        }
-        resize_render_buffer(render_object_ptr);
-      }
-      *(int *)render_object_ptr = buffer_size;
-      color_value = vertex_data1[1];
-      normal_value = vertex_data1[2];
-      position_value = vertex_data1[3];
-      texture_ptr = (undefined4 *)(stack_context_ptr[8] + (longlong)vertex_count * 0x10);
-      *texture_ptr = *vertex_data1;
-      texture_ptr[1] = color_value;
-      texture_ptr[2] = normal_value;
-      texture_ptr[3] = position_value;
-    }
-    
-    // 设置清理标志
-    cleanup_flag1 = 1;
-    cleanup_flag3 = 1;
-    render_object_ptr = stack_context_ptr + 2;
-    vertex_count = (int)*render_object_ptr;
-    buffer_size = vertex_count + 1;
-    data_index = *(int *)((longlong)stack_context_ptr + 0x14);
-    
-    // 再次检查并扩展缓冲区
-    if (data_index < buffer_size) {
-      if (data_index < 2) {
-        *(undefined4 *)((longlong)stack_context_ptr + 0x14) = 8;
-      }
-      else {
-        *(int *)((longlong)stack_context_ptr + 0x14) = (data_index >> 1) + data_index;
-      }
-      resize_render_buffer(render_object_ptr);
-    }
-    *(int *)render_object_ptr = buffer_size;
-    
-    // 处理第二个顶点数据集
-    color_value = vertex_data2[1];
-    normal_value = vertex_data2[2];
-    position_value = vertex_data2[3];
-    texture_ptr = (undefined4 *)(stack_context_ptr[3] + (longlong)vertex_count * 0x10);
-    *texture_ptr = *vertex_data2;
-    texture_ptr[1] = color_value;
-    texture_ptr[2] = normal_value;
-    texture_ptr[3] = position_value;
-    
-    // 处理附加数据（如果启用）
-    render_object_ptr = stack_context_ptr + 7;
-    if ((int)*render_object_ptr != 0) {
-      data_index = *(int *)((longlong)stack_context_ptr + 0x3c);
-      if (data_index < buffer_size) {
-        if (data_index < 2) {
-          *(undefined4 *)((longlong)stack_context_ptr + 0x3c) = 8;
-        }
-        else {
-          *(int *)((longlong)stack_context_ptr + 0x3c) = (data_index >> 1) + data_index;
-        }
-        resize_render_buffer(render_object_ptr);
-      }
-      *(int *)render_object_ptr = buffer_size;
-      color_value = vertex_data2[1];
-      normal_value = vertex_data2[2];
-      position_value = vertex_data2[3];
-      texture_ptr = (undefined4 *)(stack_context_ptr[8] + (longlong)vertex_count * 0x10);
-      *texture_ptr = *vertex_data2;
-      texture_ptr[1] = color_value;
-      texture_ptr[2] = normal_value;
-      texture_ptr[3] = position_value;
-    }
-    
-    // 设置清理标志
-    cleanup_flag1 = 1;
-    cleanup_flag3 = 1;
-    render_object_ptr = stack_context_ptr + 2;
-    data_index = (int)*render_object_ptr;
-    buffer_index = data_index + 1;
-    buffer_size = *(int *)((longlong)stack_context_ptr + 0x14);
-    
-    // 检查并扩展缓冲区
-    if (buffer_size < buffer_index) {
+    render_obj_ptr = stack_pointer_3;
+    render_index = (int)stack_pointer_3[2];
+    stack_pointer_5 = (longlong *)CONCAT44(stack_pointer_5._4_4_,render_index);
+    temp_index = render_index + 1;
+    buffer_size = *(int *)((longlong)stack_pointer_3 + 0x14);
+    if (buffer_size < temp_index) {
       if (buffer_size < 2) {
-        *(undefined4 *)((longlong)stack_context_ptr + 0x14) = 8;
+        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
       }
       else {
-        *(int *)((longlong)stack_context_ptr + 0x14) = (buffer_size >> 1) + buffer_size;
+        *(int *)((longlong)stack_pointer_3 + 0x14) = (buffer_size >> 1) + buffer_size;
       }
-      resize_render_buffer(render_object_ptr);
+      resize_render_buffer(stack_pointer_3 + 2);
     }
-    object_data_ptr = stack_context_ptr;
-    *(int *)render_object_ptr = buffer_index;
-    
-    // 处理纹理坐标数据
-    color_value = *(undefined4 *)((longlong)texture_coords + 4);
-    normal_value = *(undefined4 *)(texture_coords + 1);
-    position_value = *(undefined4 *)((longlong)texture_coords + 0xc);
-    texture_ptr = (undefined4 *)(stack_context_ptr[3] + (longlong)data_index * 0x10);
-    *texture_ptr = *(undefined4 *)texture_coords;
-    texture_ptr[1] = color_value;
-    texture_ptr[2] = normal_value;
-    texture_ptr[3] = position_value;
-    
-    // 处理附加纹理数据（如果启用）
-    if ((int)stack_context_ptr[7] != 0) {
-      buffer_size = *(int *)((longlong)stack_context_ptr + 0x3c);
-      if (buffer_size < buffer_index) {
+    *(int *)(render_obj_ptr + 2) = temp_index;
+    param_value_1 = param_set_1[1];
+    param_value_2 = param_set_1[2];
+    param_value_3 = param_set_1[3];
+    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
+    *render_param_ptr = *param_set_1;
+    render_param_ptr[1] = param_value_1;
+    render_param_ptr[2] = param_value_2;
+    render_param_ptr[3] = param_value_3;
+    render_obj_ptr = stack_pointer_3 + 7;
+    if ((int)*render_obj_ptr != 0) {
+      buffer_size = *(int *)((longlong)stack_pointer_3 + 0x3c);
+      if (buffer_size < temp_index) {
         if (buffer_size < 2) {
-          *(undefined4 *)((longlong)stack_context_ptr + 0x3c) = 8;
+          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
         }
         else {
-          *(int *)((longlong)stack_context_ptr + 0x3c) = (buffer_size >> 1) + buffer_size;
+          *(int *)((longlong)stack_pointer_3 + 0x3c) = (buffer_size >> 1) + buffer_size;
         }
-        resize_render_buffer(stack_context_ptr + 7);
+        resize_render_buffer(render_obj_ptr);
       }
-      *(int *)(object_data_ptr + 7) = buffer_index;
-      texture_data = texture_coords[1];
-      vertex_ptr = (undefined8 *)(stack_context_ptr[8] + (longlong)data_index * 0x10);
-      *vertex_ptr = *texture_coords;
-      vertex_ptr[1] = texture_data;
+      *(int *)render_obj_ptr = temp_index;
+      param_value_1 = param_set_1[1];
+      param_value_2 = param_set_1[2];
+      param_value_3 = param_set_1[3];
+      render_param_ptr = (undefined4 *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
+      *render_param_ptr = *param_set_1;
+      render_param_ptr[1] = param_value_1;
+      render_param_ptr[2] = param_value_2;
+      render_param_ptr[3] = param_value_3;
     }
-    
-    // 设置最终的清理标志
-    cleanup_flag1 = '\x01';
-    cleanup_flag3 = '\x01';
-    stack_color_r = 0;
-    stack_color_g = 0;
-    stack_color_b = 0x3f800000;  // 1.0f
-    stack_color_a = 0x7f7fffff; // 最大浮点值
-    
-    // 执行高级渲染操作
-    color_value = execute_rendering_operation(&stack_buffer_ptr, (ulonglong)stack_data_ptr & 0xffffffff, &stack_param1, &stack_render_object, &stack_color_r);
-    normal_value = execute_rendering_operation(&stack_buffer_ptr, vertex_count, &stack_param2, &stack_render_object, &stack_color_r);
-    position_value = execute_rendering_operation(&stack_buffer_ptr, data_index, &stack_param3, &stack_render_object, &stack_color_r);
-    finalize_rendering_operation(&stack_buffer_ptr, color_value, normal_value, position_value);
-    
-    // 清理资源
-    if ((stack_buffer_ptr != (longlong *)0x0) && (stack_context_ptr != (longlong *)0x0)) {
-      if (cleanup_flag3 != '\0') {
-        cleanup_rendering_resources();
+    cleanup_flag_1 = 1;
+    cleanup_flag_3 = 1;
+    render_obj_ptr = stack_pointer_3 + 2;
+    render_index = (int)*render_obj_ptr;
+    temp_index = render_index + 1;
+    buffer_size = *(int *)((longlong)stack_pointer_3 + 0x14);
+    if (buffer_size < temp_index) {
+      if (buffer_size < 2) {
+        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
       }
-      cleanup_rendering_array(stack_array);
-      if (cleanup_flag1 != '\0') {
-        release_rendering_object(stack_buffer_ptr);
+      else {
+        *(int *)((longlong)stack_pointer_3 + 0x14) = (buffer_size >> 1) + buffer_size;
       }
-      if (cleanup_flag2 != '\0') {
-        release_rendering_object(stack_buffer_ptr);
+      resize_render_buffer(render_obj_ptr);
+    }
+    *(int *)render_obj_ptr = temp_index;
+    param_value_1 = param_set_2[1];
+    param_value_2 = param_set_2[2];
+    param_value_3 = param_set_2[3];
+    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
+    *render_param_ptr = *param_set_2;
+    render_param_ptr[1] = param_value_1;
+    render_param_ptr[2] = param_value_2;
+    render_param_ptr[3] = param_value_3;
+    render_obj_ptr = stack_pointer_3 + 7;
+    if ((int)*render_obj_ptr != 0) {
+      buffer_size = *(int *)((longlong)stack_pointer_3 + 0x3c);
+      if (buffer_size < temp_index) {
+        if (buffer_size < 2) {
+          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
+        }
+        else {
+          *(int *)((longlong)stack_pointer_3 + 0x3c) = (buffer_size >> 1) + buffer_size;
+        }
+        resize_render_buffer(render_obj_ptr);
       }
-      render_object_ptr = stack_context_ptr;
-      stack_render_object = stack_context_ptr;
-      stack_context_ptr = (longlong *)0x0;
-      if (render_object_ptr != (longlong *)0x0) {
-        (**(code **)(*render_object_ptr + 0x38))();
+      *(int *)render_obj_ptr = temp_index;
+      param_value_1 = param_set_2[1];
+      param_value_2 = param_set_2[2];
+      param_value_3 = param_set_2[3];
+      render_param_ptr = (undefined4 *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
+      *render_param_ptr = *param_set_2;
+      render_param_ptr[1] = param_value_1;
+      render_param_ptr[2] = param_value_2;
+      render_param_ptr[3] = param_value_3;
+    }
+    cleanup_flag_1 = 1;
+    cleanup_flag_3 = 1;
+    render_obj_ptr = stack_pointer_3 + 2;
+    buffer_size = (int)*render_obj_ptr;
+    array_index = buffer_size + 1;
+    temp_index = *(int *)((longlong)stack_pointer_3 + 0x14);
+    if (temp_index < array_index) {
+      if (temp_index < 2) {
+        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
+      }
+      else {
+        *(int *)((longlong)stack_pointer_3 + 0x14) = (temp_index >> 1) + temp_index;
+      }
+      resize_render_buffer(render_obj_ptr);
+    }
+    memory_block = stack_pointer_3;
+    *(int *)render_obj_ptr = array_index;
+    param_value_1 = *(undefined4 *)((longlong)param_set_3 + 4);
+    param_value_2 = *(undefined4 *)(param_set_3 + 1);
+    param_value_3 = *(undefined4 *)((longlong)param_set_3 + 0xc);
+    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)buffer_size * 0x10);
+    *render_param_ptr = *(undefined4 *)param_set_3;
+    render_param_ptr[1] = param_value_1;
+    render_param_ptr[2] = param_value_2;
+    render_param_ptr[3] = param_value_3;
+    if ((int)stack_pointer_3[7] != 0) {
+      temp_index = *(int *)((longlong)stack_pointer_3 + 0x3c);
+      if (temp_index < array_index) {
+        if (temp_index < 2) {
+          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
+        }
+        else {
+          *(int *)((longlong)stack_pointer_3 + 0x3c) = (temp_index >> 1) + temp_index;
+        }
+        resize_render_buffer(stack_pointer_3 + 7);
+      }
+      *(int *)(memory_block + 7) = array_index;
+      render_value = param_set_3[1];
+      render_data_ptr = (undefined8 *)(stack_pointer_3[8] + (longlong)buffer_size * 0x10);
+      *render_data_ptr = *param_set_3;
+      render_data_ptr[1] = render_value;
+    }
+    cleanup_flag_1 = '\x01';
+    cleanup_flag_3 = '\x01';
+    stack_value_9 = 0;
+    stack_value_8 = 0;
+    stack_value_7 = 0x3f800000;
+    stack_value_6 = 0x7f7fffff;
+    param_value_1 = process_render_data_batch(&stack_pointer_2,(ulonglong)stack_pointer_5 & 0xffffffff,&stack_value_3,&stack_pointer_1,
+                          &stack_value_9);
+    param_value_2 = process_render_data_batch(&stack_pointer_2,render_index,&stack_value_4,&stack_value_1,&stack_value_9);
+    param_value_3 = process_render_data_batch(&stack_pointer_2,buffer_size,&stack_value_5,&stack_value_2,&stack_value_9);
+    execute_render_batch_operation(&stack_pointer_2,param_value_1,param_value_2,param_value_3);
+    if ((stack_pointer_2 != (longlong *)0x0) && (stack_pointer_3 != (longlong *)0x0)) {
+      if (cleanup_flag_3 != '\0') {
+        perform_render_cleanup();
+      }
+      cleanup_render_stack_array(stack_array);
+      if (cleanup_flag_1 != '\0') {
+        release_render_object_memory(stack_pointer_2);
+      }
+      if (cleanup_flag_2 != '\0') {
+        release_render_object_memory(stack_pointer_2);
+      }
+      render_obj_ptr = stack_pointer_3;
+      stack_pointer_1 = stack_pointer_3;
+      stack_pointer_3 = (longlong *)0x0;
+      if (render_obj_ptr != (longlong *)0x0) {
+        (**(code **)(*render_obj_ptr + 0x38))();
       }
     }
-    
-    // 最终清理
-    stack_render_object = stack_array;
-    cleanup_rendering_array(stack_array);
-    if (stack_allocator != (longlong *)0x0) {
-      (**(code **)(*stack_allocator + 0x38))();
+    stack_pointer_1 = stack_array;
+    cleanup_render_stack_array(stack_array);
+    if (stack_pointer_4 != (longlong *)0x0) {
+      (**(code **)(*stack_pointer_4 + 0x38))();
     }
-    if (stack_context_ptr != (longlong *)0x0) {
-      (**(code **)(*stack_context_ptr + 0x38))();
+    if (stack_pointer_3 != (longlong *)0x0) {
+      (**(code **)(*stack_pointer_3 + 0x38))();
     }
-    if (stack_buffer_ptr != (longlong *)0x0) {
-      (**(code **)(*stack_buffer_ptr + 0x38))();
+    if (stack_pointer_2 != (longlong *)0x0) {
+      (**(code **)(*stack_pointer_2 + 0x38))();
     }
   }
-  
-  // 清理渲染上下文
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x38))(render_context);
   }
   return;
 }
 
-/**
- * 渲染系统状态标志设置函数（偏移0xfb）
- * 
- * 该函数设置渲染上下文中特定偏移位置的状态标志。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 设置状态标志位
- * 4. 释放渲染对象资源
- * 
- * @param render_context 渲染上下文指针
- */
-void rendering_system_set_status_flag_offset_fb(longlong *render_context)
+// 函数：渲染系统状态控制器
+// 功能：控制渲染系统的状态变化和管理渲染对象的激活状态
+void render_system_state_controller(longlong *render_context)
 
 {
   if ((render_context != (longlong *)0x0) &&
      ((**(code **)(*render_context + 0x28))(), *(char *)((longlong)render_context + 0xfb) != '\x01')) {
     *(undefined1 *)((longlong)render_context + 0xfb) = 1;
-    release_rendering_object(render_context);
+    release_render_object_memory(render_context);
   }
   if (render_context == (longlong *)0x0) {
     return;
   }
-  // WARNING: Could not recover jumptable at 0x000180448de1. Too many branches
-  // WARNING: Treating indirect jump as call
+  // 执行渲染状态控制操作
   (**(code **)(*render_context + 0x38))(render_context);
   return;
 }
 
-/**
- * 渲染系统状态标志设置函数（偏移0xfa）
- * 
- * 该函数设置渲染上下文中特定偏移位置的状态标志。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 设置状态标志位
- * 4. 释放渲染对象资源
- * 
- * @param render_context 渲染上下文指针
- */
-void rendering_system_set_status_flag_offset_fa(longlong *render_context)
+// 函数：渲染系统标志位控制器
+// 功能：控制渲染系统的标志位设置和管理渲染对象的标志状态
+void render_system_flag_controller(longlong *render_context)
 
 {
   if ((render_context != (longlong *)0x0) &&
      ((**(code **)(*render_context + 0x28))(), *(char *)((longlong)render_context + 0xfa) != '\x01')) {
     *(undefined1 *)((longlong)render_context + 0xfa) = 1;
-    release_rendering_object(render_context);
+    release_render_object_memory(render_context);
   }
   if (render_context == (longlong *)0x0) {
     return;
   }
-  // WARNING: Could not recover jumptable at 0x000180448e41. Too many branches
-  // WARNING: Treating indirect jump as call
+  // 执行渲染标志位控制操作
   (**(code **)(*render_context + 0x38))(render_context);
   return;
 }
 
-/**
- * 渲染系统资源清理函数
- * 
- * 该函数清理渲染系统资源并执行相关操作。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 清理渲染资源
- * 4. 释放渲染对象
- * 
- * @param render_context 渲染上下文指针
- */
-void rendering_system_cleanup_resources(longlong *render_context)
+// 函数：渲染系统清理器
+// 功能：清理渲染系统的资源和状态，确保渲染环境的整洁
+void render_system_cleaner(longlong *render_context)
 
 {
   if (render_context == (longlong *)0x0) {
     return;
   }
   (**(code **)(*render_context + 0x28))();
-  cleanup_rendering_resources(render_context);
-  // WARNING: Could not recover jumptable at 0x000180448e91. Too many branches
-  // WARNING: Treating indirect jump as call
+  perform_render_cleanup(render_context);
+  // 执行渲染清理操作
   (**(code **)(*render_context + 0x38))(render_context);
   return;
 }
 
-/**
- * 渲染系统状态标志获取函数（偏移0xf7）
- * 
- * 该函数获取渲染上下文中特定偏移位置的状态标志。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 读取状态标志位
- * 4. 释放渲染对象
- * 
- * @param render_context 渲染上下文指针
- * @return 状态标志值
- */
-undefined1 rendering_system_get_status_flag_offset_f7(longlong *render_context)
+// 函数：渲染系统状态获取器
+// 功能：获取渲染系统的当前状态信息
+undefined1 render_system_state_getter(longlong *render_context)
 
 {
-  undefined1 status_flag;
+  undefined1 render_state;
   
   if (render_context == (longlong *)0x0) {
-    status_flag = 0;
+    render_state = 0;
   }
   else {
     (**(code **)(*render_context + 0x28))();
-    status_flag = *(undefined1 *)((longlong)render_context + 0xf7);
+    render_state = *(undefined1 *)((longlong)render_context + 0xf7);
     (**(code **)(*render_context + 0x38))(render_context);
   }
-  return status_flag;
+  return render_state;
 }
 
-/**
- * 渲染系统状态标志设置函数（偏移0xf7）
- * 
- * 该函数设置渲染上下文中特定偏移位置的状态标志。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 设置状态标志位
- * 4. 释放渲染对象
- * 
- * @param render_context 渲染上下文指针
- * @param flag_value 要设置的标志值
- */
-void rendering_system_set_status_flag_offset_f7(longlong *render_context, undefined1 flag_value)
+// 函数：渲染系统状态设置器
+// 功能：设置渲染系统的状态信息
+void render_system_state_setter(longlong *render_context, undefined1 render_state)
 
 {
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
-    *(undefined1 *)((longlong)render_context + 0xf7) = flag_value;
+    *(undefined1 *)((longlong)render_context + 0xf7) = render_state;
     (**(code **)(*render_context + 0x38))(render_context);
   }
   return;
 }
 
-/**
- * 渲染系统参数获取函数（偏移0x4e）
- * 
- * 该函数获取渲染上下文中特定偏移位置的参数值。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 读取参数值
- * 4. 释放渲染对象
- * 
- * @param render_context 渲染上下文指针
- * @return 参数值
- */
-undefined4 rendering_system_get_parameter_offset_4e(longlong *render_context)
+// 函数：渲染系统参数获取器
+// 功能：获取渲染系统的参数信息
+undefined4 render_system_parameter_getter(longlong *render_context)
 
 {
-  undefined4 parameter_value;
+  undefined4 render_param;
   
   if (render_context == (longlong *)0x0) {
-    parameter_value = 0;
+    render_param = 0;
   }
   else {
     (**(code **)(*render_context + 0x28))();
-    parameter_value = (undefined4)render_context[0x4e];
+    render_param = (undefined4)render_context[0x4e];
     (**(code **)(*render_context + 0x38))(render_context);
   }
-  return parameter_value;
+  return render_param;
 }
 
-/**
- * 渲染系统参数设置函数（偏移0x4e）
- * 
- * 该函数设置渲染上下文中特定偏移位置的参数值。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 设置参数值
- * 4. 释放渲染对象
- * 
- * @param render_context 渲染上下文指针
- * @param parameter_value 要设置的参数值
- */
-void rendering_system_set_parameter_offset_4e(longlong *render_context, undefined4 parameter_value)
+// 函数：渲染系统参数设置器
+// 功能：设置渲染系统的参数信息
+void render_system_parameter_setter(longlong *render_context, undefined4 render_param)
 
 {
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
-    *(undefined4 *)(render_context + 0x4e) = parameter_value;
+    *(undefined4 *)(render_context + 0x4e) = render_param;
     (**(code **)(*render_context + 0x38))(render_context);
   }
   return;
 }
 
-/**
- * 渲染系统高级参数获取函数（偏移0x40）
- * 
- * 该函数获取渲染上下文中特定偏移位置的参数值，可能需要经过函数转换。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 根据条件获取参数值
- * 4. 释放渲染对象
- * 
- * @param render_context 渲染上下文指针
- * @return 参数值
- */
-undefined4 rendering_system_get_advanced_parameter_offset_40(longlong *render_context)
+// 函数：渲染系统高级参数获取器
+// 功能：获取渲染系统的高级参数信息
+undefined4 render_system_advanced_parameter_getter(longlong *render_context)
 
 {
-  longlong *parameter_source;
-  undefined4 parameter_value;
+  longlong *render_obj_ptr;
+  undefined4 advanced_param;
   
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
   }
-  parameter_value = 0;
+  advanced_param = 0;
   if (render_context != (longlong *)0x0) {
-    parameter_source = render_context;
+    render_obj_ptr = render_context;
     if ((*(byte *)((longlong)render_context + 0xfd) & 0x20) == 0) {
-      parameter_source = (longlong *)func_0x000180085de0(render_context[0x36]);
+      render_obj_ptr = (longlong *)get_render_object_function(render_context[0x36]);
     }
-    parameter_value = (undefined4)parameter_source[0x40];
+    advanced_param = (undefined4)render_obj_ptr[0x40];
   }
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x38))(render_context);
   }
-  return parameter_value;
+  return advanced_param;
 }
 
-/**
- * 渲染系统高级参数设置函数
- * 
- * 该函数设置渲染系统中的高级参数值。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 创建渲染对象
- * 4. 设置参数值
- * 5. 清理资源
- * 
- * @param render_context 渲染上下文指针
- * @param param_index 参数索引
- * @param parameter_value 要设置的参数值
- */
-void rendering_system_set_advanced_parameter(longlong *render_context, int param_index, undefined4 parameter_value)
+// 函数：渲染系统索引参数设置器
+// 功能：设置渲染系统的索引参数信息
+void render_system_index_parameter_setter(longlong *render_context, int param_index, undefined4 param_value)
 
 {
-  longlong *render_object_ptr;
-  longlong *stack_buffer_ptr;
-  longlong *stack_context_ptr;
-  undefined1 stack_array [8];
-  undefined8 stack_param;
-  longlong *stack_allocator;
-  char cleanup_flag1;
-  char cleanup_flag2;
-  char cleanup_flag3;
+  longlong *render_obj_ptr;
+  longlong *stack_pointer_1;
+  longlong *stack_pointer_2;
+  undefined1 stack_array[8];
+  undefined8 stack_value;
+  longlong *stack_pointer_3;
+  char cleanup_flag_1;
+  char cleanup_flag_2;
+  char cleanup_flag_3;
   
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
-    stack_buffer_ptr = (longlong *)0x0;
-    stack_context_ptr = (longlong *)0x0;
-    stack_allocator = (longlong *)0x0;
-    stack_param = 0;
+    stack_pointer_1 = (longlong *)0x0;
+    stack_pointer_2 = (longlong *)0x0;
+    stack_pointer_3 = (longlong *)0x0;
+    stack_value = 0;
     stack_array[0] = 0;
-    create_rendering_object(&stack_buffer_ptr, render_context, 0);
-    *(undefined4 *)((longlong)param_index * 0x5c + 0x54 + stack_context_ptr[0xd]) = parameter_value;
-    cleanup_flag1 = '\x01';
-    if ((stack_buffer_ptr != (longlong *)0x0) && (stack_context_ptr != (longlong *)0x0)) {
-      if (cleanup_flag3 != '\0') {
-        cleanup_rendering_resources();
+    initialize_render_object(&stack_pointer_1,render_context,0);
+    *(undefined4 *)((longlong)param_index * 0x5c + 0x54 + stack_pointer_2[0xd]) = param_value;
+    cleanup_flag_1 = '\x01';
+    if ((stack_pointer_1 != (longlong *)0x0) && (stack_pointer_2 != (longlong *)0x0)) {
+      if (cleanup_flag_3 != '\0') {
+        perform_render_cleanup();
       }
-      cleanup_rendering_array(stack_array);
-      if (cleanup_flag1 != '\0') {
-        release_rendering_object(stack_buffer_ptr);
+      cleanup_render_stack_array(stack_array);
+      if (cleanup_flag_1 != '\0') {
+        release_render_object_memory(stack_pointer_1);
       }
-      if (cleanup_flag2 != '\0') {
-        release_rendering_object(stack_buffer_ptr);
+      if (cleanup_flag_2 != '\0') {
+        release_render_object_memory(stack_pointer_1);
       }
-      render_object_ptr = stack_context_ptr;
-      stack_context_ptr = (longlong *)0x0;
-      if (render_object_ptr != (longlong *)0x0) {
-        (**(code **)(*render_object_ptr + 0x38))();
+      render_obj_ptr = stack_pointer_2;
+      stack_pointer_2 = (longlong *)0x0;
+      if (render_obj_ptr != (longlong *)0x0) {
+        (**(code **)(*render_obj_ptr + 0x38))();
       }
     }
-    cleanup_rendering_array(stack_array);
-    if (stack_allocator != (longlong *)0x0) {
-      (**(code **)(*stack_allocator + 0x38))();
+    cleanup_render_stack_array(stack_array);
+    if (stack_pointer_3 != (longlong *)0x0) {
+      (**(code **)(*stack_pointer_3 + 0x38))();
     }
-    if (stack_context_ptr != (longlong *)0x0) {
-      (**(code **)(*stack_context_ptr + 0x38))();
+    if (stack_pointer_2 != (longlong *)0x0) {
+      (**(code **)(*stack_pointer_2 + 0x38))();
     }
-    if (stack_buffer_ptr != (longlong *)0x0) {
-      (**(code **)(*stack_buffer_ptr + 0x38))();
+    if (stack_pointer_1 != (longlong *)0x0) {
+      (**(code **)(*stack_pointer_1 + 0x38))();
     }
   }
   if (render_context != (longlong *)0x0) {
@@ -880,82 +701,60 @@ void rendering_system_set_advanced_parameter(longlong *render_context, int param
   return;
 }
 
-/**
- * 渲染系统参数获取函数（索引访问）
- * 
- * 该函数根据索引获取渲染系统中的参数值。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 根据索引获取参数值
- * 4. 释放渲染对象
- * 
- * @param render_context 渲染上下文指针
- * @param param_index 参数索引
- * @return 参数值
- */
-undefined4 rendering_system_get_parameter_by_index(longlong *render_context, int param_index)
+// 函数：渲染系统索引参数获取器
+// 功能：获取渲染系统的索引参数信息
+undefined4 render_system_index_parameter_getter(longlong *render_context, int param_index)
 
 {
-  undefined4 parameter_value;
+  undefined4 param_value;
   
-  parameter_value = 0xffffffff;
+  param_value = 0xffffffff;
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
-    parameter_value = *(undefined4 *)((longlong)param_index * 0x5c + 0x54 + *(longlong *)(render_context[0x42] + 0x68));
+    param_value = *(undefined4 *)((longlong)param_index * 0x5c + 0x54 + *(longlong *)(render_context[0x42] + 0x68));
     (**(code **)(*render_context + 0x38))(render_context);
   }
-  return parameter_value;
+  return param_value;
 }
 
-/**
- * 渲染系统高级操作执行函数
- * 
- * 该函数执行渲染系统的高级操作，可能涉及错误处理。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 执行高级操作
- * 4. 处理可能的错误情况
- * 
- * @param render_context 渲染上下文指针
- */
-void rendering_system_execute_advanced_operation(longlong *render_context)
+// 函数：渲染系统重置器
+// 功能：重置渲染系统的状态和参数
+void render_system_resetter(longlong *render_context)
 
 {
-  undefined8 stack_param1;
-  undefined4 stack_param2;
-  undefined4 stack_param3;
-  undefined2 stack_param4;
-  undefined1 stack_param5;
-  undefined4 stack_param6;
-  undefined1 stack_param7;
-  undefined8 stack_param8;
-  longlong stack_param9;
-  undefined8 stack_param10;
-  undefined8 stack_param11;
-  undefined4 stack_param12;
-  undefined8 stack_param13;
+  undefined8 stack_value_1;
+  undefined4 stack_value_2;
+  undefined4 stack_value_3;
+  undefined2 stack_value_4;
+  undefined1 stack_value_5;
+  undefined4 stack_value_6;
+  undefined1 stack_value_7;
+  undefined8 stack_value_8;
+  longlong stack_value_9;
+  undefined8 stack_value_10;
+  undefined8 stack_value_11;
+  undefined4 stack_value_12;
+  undefined8 stack_value_13;
   
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
-    stack_param1 = 0;
-    stack_param2 = 0;
-    stack_param3 = 0xffffffff;
-    stack_param4 = 1;
-    stack_param5 = 0;
-    stack_param6 = 0xffffffff;
-    stack_param7 = 1;
-    stack_param8 = 0;
-    stack_param9 = 0;
-    stack_param10 = 0;
-    stack_param11 = 0;
-    stack_param12 = 3;
-    stack_param13 = 0;
-    execute_advanced_rendering_operation(render_context, &stack_param1);
-    if (stack_param9 != 0) {
-      // WARNING: Subroutine does not return
-      handle_rendering_error();
+    stack_value_1 = 0;
+    stack_value_2 = 0;
+    stack_value_3 = 0xffffffff;
+    stack_value_4 = 1;
+    stack_value_5 = 0;
+    stack_value_6 = 0xffffffff;
+    stack_value_7 = 1;
+    stack_value_8 = 0;
+    stack_value_9 = 0;
+    stack_value_10 = 0;
+    stack_value_11 = 0;
+    stack_value_12 = 3;
+    stack_value_13 = 0;
+    execute_render_operation(render_context,&stack_value_1);
+    if (stack_value_9 != 0) {
+      // 执行渲染重置操作
+      execute_render_system_reset();
     }
   }
   if (render_context != (longlong *)0x0) {
@@ -964,280 +763,249 @@ void rendering_system_execute_advanced_operation(longlong *render_context)
   return;
 }
 
-/**
- * 渲染系统高级数据处理函数
- * 
- * 该函数处理渲染系统中的高级数据，包括顶点数据、纹理数据等。
- * 主要功能包括：
- * 1. 内存分配和初始化
- * 2. 顶点数据处理
- * 3. 纹理数据处理
- * 4. 参数数据处理
- * 5. 资源清理
- * 
- * @param output_param 输出参数指针
- * @param param2 参数2
- * @param vertex_data 顶点数据指针
- * @param param4 参数4
- * @param texture_data 纹理数据指针
- * @param param6 参数6
- * @param param7 参数7
- * @return 处理后的数据指针
- */
+// 函数：渲染系统高级资源分配器
+// 功能：分配渲染系统的高级资源和内存
 undefined4 *
-rendering_system_process_advanced_data(undefined4 *output_param, int param2, undefined4 *vertex_data, uint param4, undefined4 *texture_data,
-             int param6, longlong param7)
+render_system_advanced_resource_allocator(undefined4 *resource_ptr, int resource_count, undefined4 *param_ptr, uint param_count, undefined4 *data_ptr,
+             int data_count, longlong resource_handle)
 
 {
-  int buffer_size1;
-  int buffer_size2;
-  undefined4 vertex_value1;
-  undefined4 vertex_value2;
-  longlong *render_object_ptr1;
-  longlong *render_object_ptr2;
-  undefined4 processed_value;
-  undefined8 allocated_memory;
-  longlong *render_context_ptr;
-  longlong data_counter;
-  undefined4 *vertex_ptr;
-  ulonglong texture_counter;
-  int vertex_index;
-  undefined4 stack_temp_array [2];
-  undefined4 output_value1;
-  undefined4 output_value2;
-  undefined4 output_value3;
-  longlong *stack_buffer_ptr;
-  longlong *stack_context_ptr;
-  undefined1 stack_array [8];
-  undefined8 stack_param;
-  longlong *stack_allocator;
-  char cleanup_flag1;
-  char cleanup_flag2;
-  char cleanup_flag3;
+  int index;
+  int buffer_size;
+  undefined4 param_value_1;
+  undefined4 param_value_2;
+  longlong *resource_obj_ptr;
+  longlong *resource_data_ptr;
+  undefined4 param_value_3;
+  undefined8 resource_value;
+  longlong *memory_block;
+  undefined4 *data_pointer;
+  ulonglong loop_counter;
+  int array_index;
+  undefined4 stack_array[2];
+  undefined4 stack_value_1;
+  undefined4 stack_value_2;
+  undefined4 stack_value_3;
+  longlong *stack_pointer_1;
+  longlong *stack_pointer_2;
+  longlong *stack_pointer_3;
+  undefined1 stack_array_2[8];
+  undefined8 stack_value_4;
+  longlong *stack_pointer_4;
+  char cleanup_flag_1;
+  char cleanup_flag_2;
+  char cleanup_flag_3;
   
-  texture_counter = (ulonglong)param4;
-  data_counter = (longlong)param2;
-  allocated_memory = allocate_rendering_memory(_DAT_180c8ed18, 0x300, 0x10, 3);
-  render_context_ptr = (longlong *)initialize_rendering_context(allocated_memory, 1);
-  if (render_context_ptr != (longlong *)0x0) {
-    (**(code **)(*render_context_ptr + 0x28))(render_context_ptr);
+  loop_counter = (ulonglong)param_count;
+  memory_block = (longlong)resource_count;
+  resource_value = allocate_render_memory(render_system_memory_pool,0x300,0x10,3);
+  resource_obj_ptr = (longlong *)initialize_render_resource(resource_value,1);
+  if (resource_obj_ptr != (longlong *)0x0) {
+    (**(code **)(*resource_obj_ptr + 0x28))(resource_obj_ptr);
   }
-  (**(code **)(render_context_ptr[2] + 0x10))(render_context_ptr + 2, &UNK_180a2a4d0);
-  stack_buffer_ptr = (longlong *)0x0;
-  stack_context_ptr = (longlong *)0x0;
-  stack_allocator = (longlong *)0x0;
-  stack_param = 0;
-  stack_array[0] = 0;
-  create_rendering_object(&stack_buffer_ptr, render_context_ptr, 0);
-  if (*(int *)((longlong)stack_context_ptr + 0x14) < param2) {
-    buffer_size1 = *(int *)((longlong)stack_context_ptr + 0x14);
-    if (buffer_size1 < param2) {
-      if (param2 == 0) {
-        if (buffer_size1 < 2) {
-          *(undefined4 *)((longlong)stack_context_ptr + 0x14) = 8;
+  (**(code **)(resource_obj_ptr[2] + 0x10))(resource_obj_ptr + 2,&render_system_data_buffer);
+  stack_pointer_1 = (longlong *)0x0;
+  stack_pointer_2 = (longlong *)0x0;
+  stack_pointer_4 = (longlong *)0x0;
+  stack_value_4 = 0;
+  stack_array_2[0] = 0;
+  initialize_render_object(&stack_pointer_1,resource_obj_ptr,0);
+  if (*(int *)((longlong)stack_pointer_2 + 0x14) < resource_count) {
+    index = *(int *)((longlong)stack_pointer_2 + 0x14);
+    if (index < resource_count) {
+      if (resource_count == 0) {
+        if (index < 2) {
+          *(undefined4 *)((longlong)stack_pointer_2 + 0x14) = 8;
         }
         else {
-          *(int *)((longlong)stack_context_ptr + 0x14) = (buffer_size1 >> 1) + buffer_size1;
+          *(int *)((longlong)stack_pointer_2 + 0x14) = (index >> 1) + index;
         }
       }
       else {
-        *(int *)((longlong)stack_context_ptr + 0x14) = param2;
+        *(int *)((longlong)stack_pointer_2 + 0x14) = resource_count;
       }
       resize_render_buffer();
     }
-    if (((int)stack_context_ptr[7] != 0) &&
-       (buffer_size1 = *(int *)((longlong)stack_context_ptr + 0x3c), buffer_size1 < param2)) {
-      if (param2 == 0) {
-        if (buffer_size1 < 2) {
-          *(undefined4 *)((longlong)stack_context_ptr + 0x3c) = 8;
+    if (((int)stack_pointer_2[7] != 0) &&
+       (index = *(int *)((longlong)stack_pointer_2 + 0x3c), index < resource_count)) {
+      if (resource_count == 0) {
+        if (index < 2) {
+          *(undefined4 *)((longlong)stack_pointer_2 + 0x3c) = 8;
         }
         else {
-          *(int *)((longlong)stack_context_ptr + 0x3c) = (buffer_size1 >> 1) + buffer_size1;
+          *(int *)((longlong)stack_pointer_2 + 0x3c) = (index >> 1) + index;
         }
       }
       else {
-        *(int *)((longlong)stack_context_ptr + 0x3c) = param2;
+        *(int *)((longlong)stack_pointer_2 + 0x3c) = resource_count;
       }
       resize_render_buffer();
     }
   }
-  if (0 < param2) {
+  if (0 < resource_count) {
     do {
-      render_object_ptr1 = stack_context_ptr;
-      processed_value = *vertex_data;
-      vertex_value1 = vertex_data[1];
-      vertex_value2 = vertex_data[2];
-      output_value3 = vertex_data[3];
-      buffer_size1 = (int)stack_context_ptr[2];
-      vertex_index = buffer_size1 + 1;
-      buffer_size2 = *(int *)((longlong)stack_context_ptr + 0x14);
-      if (buffer_size2 < vertex_index) {
-        if (buffer_size2 < 2) {
-          *(undefined4 *)((longlong)stack_context_ptr + 0x14) = 8;
+      resource_data_ptr = stack_pointer_2;
+      param_value_3 = *param_ptr;
+      param_value_1 = param_ptr[1];
+      param_value_2 = param_ptr[2];
+      stack_value_3 = param_ptr[3];
+      index = (int)stack_pointer_2[2];
+      array_index = index + 1;
+      buffer_size = *(int *)((longlong)stack_pointer_2 + 0x14);
+      if (buffer_size < array_index) {
+        if (buffer_size < 2) {
+          *(undefined4 *)((longlong)stack_pointer_2 + 0x14) = 8;
         }
         else {
-          *(int *)((longlong)stack_context_ptr + 0x14) = (buffer_size2 >> 1) + buffer_size2;
+          *(int *)((longlong)stack_pointer_2 + 0x14) = (buffer_size >> 1) + buffer_size;
         }
-        resize_render_buffer(stack_context_ptr + 2);
+        resize_render_buffer(stack_pointer_2 + 2);
       }
-      render_object_ptr2 = stack_context_ptr;
-      *(int *)(render_object_ptr1 + 2) = vertex_index;
-      vertex_ptr = (undefined4 *)(stack_context_ptr[3] + (longlong)buffer_size1 * 0x10);
-      *vertex_ptr = processed_value;
-      vertex_ptr[1] = vertex_value1;
-      vertex_ptr[2] = vertex_value2;
-      vertex_ptr[3] = output_value3;
-      if ((int)stack_context_ptr[7] != 0) {
-        buffer_size2 = *(int *)((longlong)stack_context_ptr + 0x3c);
-        if (buffer_size2 < vertex_index) {
-          if (buffer_size2 < 2) {
-            *(undefined4 *)((longlong)stack_context_ptr + 0x3c) = 8;
+      resource_data_ptr = stack_pointer_2;
+      *(int *)(resource_data_ptr + 2) = array_index;
+      data_pointer = (undefined4 *)(stack_pointer_2[3] + (longlong)index * 0x10);
+      *data_pointer = param_value_3;
+      data_pointer[1] = param_value_1;
+      data_pointer[2] = param_value_2;
+      data_pointer[3] = stack_value_3;
+      if ((int)stack_pointer_2[7] != 0) {
+        buffer_size = *(int *)((longlong)stack_pointer_2 + 0x3c);
+        if (buffer_size < array_index) {
+          if (buffer_size < 2) {
+            *(undefined4 *)((longlong)stack_pointer_2 + 0x3c) = 8;
           }
           else {
-            *(int *)((longlong)stack_context_ptr + 0x3c) = (buffer_size2 >> 1) + buffer_size2;
+            *(int *)((longlong)stack_pointer_2 + 0x3c) = (buffer_size >> 1) + buffer_size;
           }
-          resize_render_buffer(stack_context_ptr + 7);
+          resize_render_buffer(stack_pointer_2 + 7);
         }
-        *(int *)(render_object_ptr2 + 7) = vertex_index;
-        vertex_ptr = (undefined4 *)(stack_context_ptr[8] + (longlong)buffer_size1 * 0x10);
-        *vertex_ptr = processed_value;
-        vertex_ptr[1] = vertex_value1;
-        vertex_ptr[2] = vertex_value2;
-        vertex_ptr[3] = output_value3;
+        *(int *)(resource_data_ptr + 7) = array_index;
+        data_pointer = (undefined4 *)(stack_pointer_2[8] + (longlong)index * 0x10);
+        *data_pointer = param_value_3;
+        data_pointer[1] = param_value_1;
+        data_pointer[2] = param_value_2;
+        data_pointer[3] = stack_value_3;
       }
-      cleanup_flag1 = '\x01';
-      cleanup_flag3 = '\x01';
-      vertex_data = vertex_data + 4;
-      data_counter = data_counter + -1;
-    } while (data_counter != 0);
+      cleanup_flag_1 = '\x01';
+      cleanup_flag_3 = '\x01';
+      param_ptr = param_ptr + 4;
+      memory_block = memory_block + -1;
+    } while (memory_block != 0);
   }
-  if ((*(int *)((longlong)stack_context_ptr + 100) < (int)param4) &&
-     (buffer_size1 = *(int *)((longlong)stack_context_ptr + 100), buffer_size1 < (int)param4)) {
-    if (param4 == 0) {
-      if (buffer_size1 < 2) {
-        *(undefined4 *)((longlong)stack_context_ptr + 100) = 8;
-        execute_texture_operation();
+  if ((*(int *)((longlong)stack_pointer_2 + 100) < (int)param_count) &&
+     (index = *(int *)((longlong)stack_pointer_2 + 100), index < (int)param_count)) {
+    if (param_count == 0) {
+      if (index < 2) {
+        *(undefined4 *)((longlong)stack_pointer_2 + 100) = 8;
+        execute_render_system_function();
       }
       else {
-        *(int *)((longlong)stack_context_ptr + 100) = (buffer_size1 >> 1) + buffer_size1;
-        execute_texture_operation();
+        *(int *)((longlong)stack_pointer_2 + 100) = (index >> 1) + index;
+        execute_render_system_function();
       }
-      goto LAB_texture_processing_complete;
+      goto LAB_18044958b;
     }
-    *(uint *)((longlong)stack_context_ptr + 100) = param4;
-    execute_texture_operation();
+    *(uint *)((longlong)stack_pointer_2 + 100) = param_count;
+    execute_render_system_function();
   }
-  if (0 < (int)param4) {
-    vertex_ptr = texture_data + 1;
+  if (0 < (int)param_count) {
+    data_pointer = data_ptr + 1;
     do {
-      stack_temp_array[0] = texture_data[7];
-      process_texture_data(&stack_buffer_ptr, *texture_data, vertex_ptr, &DAT_1809ff0c8, stack_temp_array, vertex_ptr + 2);
-      vertex_ptr = vertex_ptr + 8;
-      texture_data = texture_data + 8;
-      texture_counter = texture_counter - 1;
-    } while (texture_counter != 0);
+      stack_array[0] = data_ptr[7];
+      execute_render_data_operation(&stack_pointer_1,*data_ptr,data_pointer,&render_system_temp_data,stack_array,data_pointer + 2);
+      data_pointer = data_pointer + 8;
+      data_ptr = data_ptr + 8;
+      loop_counter = loop_counter - 1;
+    } while (loop_counter != 0);
   }
-LAB_texture_processing_complete:
-  data_counter = (longlong)param6;
-  if ((*(int *)((longlong)stack_context_ptr + 0x8c) < param6) &&
-     (buffer_size1 = *(int *)((longlong)stack_context_ptr + 0x8c), buffer_size1 < param6)) {
-    if (param6 == 0) {
-      if (buffer_size1 < 2) {
-        *(undefined4 *)((longlong)stack_context_ptr + 0x8c) = 8;
+LAB_18044958b:
+  memory_block = (longlong)data_count;
+  if ((*(int *)((longlong)stack_pointer_2 + 0x8c) < data_count) &&
+     (index = *(int *)((longlong)stack_pointer_2 + 0x8c), index < data_count)) {
+    if (data_count == 0) {
+      if (index < 2) {
+        *(undefined4 *)((longlong)stack_pointer_2 + 0x8c) = 8;
       }
       else {
-        *(int *)((longlong)stack_context_ptr + 0x8c) = (buffer_size1 >> 1) + buffer_size1;
+        *(int *)((longlong)stack_pointer_2 + 0x8c) = (index >> 1) + index;
       }
     }
     else {
-      *(int *)((longlong)stack_context_ptr + 0x8c) = param6;
+      *(int *)((longlong)stack_pointer_2 + 0x8c) = data_count;
     }
-    execute_parameter_operation();
+    execute_render_memory_function();
   }
-  if (0 < param6) {
-    vertex_ptr = (undefined4 *)(param7 + 4);
+  if (0 < data_count) {
+    data_pointer = (undefined4 *)(resource_handle + 4);
     do {
-      execute_rendering_operation(&stack_buffer_ptr, vertex_ptr[-1], *vertex_ptr, vertex_ptr[1]);
-      vertex_ptr = vertex_ptr + 3;
-      data_counter = data_counter + -1;
-    } while (data_counter != 0);
+      execute_render_batch_operation(&stack_pointer_1,data_pointer[-1],*data_pointer,data_pointer[1]);
+      data_pointer = data_pointer + 3;
+      memory_block = memory_block + -1;
+    } while (memory_block != 0);
   }
-  processed_value = (**(code **)(*render_context_ptr + 8))(render_context_ptr);
-  (**(code **)(*render_context_ptr + 0x28))(render_context_ptr);
-  output_value1 = SUB84(render_context_ptr, 0);
-  output_value2 = (undefined4)((ulonglong)render_context_ptr >> 0x20);
-  *output_param = output_value1;
-  output_param[1] = output_value2;
-  output_param[2] = processed_value;
-  output_param[3] = output_value3;
-  if ((stack_buffer_ptr != (longlong *)0x0) && (stack_context_ptr != (longlong *)0x0)) {
-    if (cleanup_flag3 != '\0') {
-      cleanup_rendering_resources();
+  param_value_3 = (**(code **)(*resource_obj_ptr + 8))(resource_obj_ptr);
+  (**(code **)(*resource_obj_ptr + 0x28))(resource_obj_ptr);
+  stack_value_1 = convert_to_resource_id(resource_obj_ptr,0);
+  stack_value_2 = (undefined4)((ulonglong)resource_obj_ptr >> 0x20);
+  *resource_ptr = stack_value_1;
+  resource_ptr[1] = stack_value_2;
+  resource_ptr[2] = param_value_3;
+  resource_ptr[3] = stack_value_3;
+  if ((stack_pointer_1 != (longlong *)0x0) && (stack_pointer_2 != (longlong *)0x0)) {
+    if (cleanup_flag_3 != '\0') {
+      perform_render_cleanup();
     }
-    cleanup_rendering_array(stack_array);
-    if (cleanup_flag1 != '\0') {
-      release_rendering_object(stack_buffer_ptr);
+    cleanup_render_stack_array(stack_array_2);
+    if (cleanup_flag_1 != '\0') {
+      release_render_object_memory(stack_pointer_1);
     }
-    if (cleanup_flag2 != '\0') {
-      release_rendering_object(stack_buffer_ptr);
+    if (cleanup_flag_2 != '\0') {
+      release_render_object_memory(stack_pointer_1);
     }
-    render_object_ptr1 = stack_context_ptr;
-    stack_context_ptr = (longlong *)0x0;
-    if (render_object_ptr1 != (longlong *)0x0) {
-      (**(code **)(*render_object_ptr1 + 0x38))();
+    resource_data_ptr = stack_pointer_2;
+    stack_pointer_2 = (longlong *)0x0;
+    if (resource_data_ptr != (longlong *)0x0) {
+      (**(code **)(*resource_data_ptr + 0x38))();
     }
   }
-  cleanup_rendering_array(stack_array);
-  if (stack_allocator != (longlong *)0x0) {
-    (**(code **)(*stack_allocator + 0x38))();
+  cleanup_render_stack_array(stack_array_2);
+  if (stack_pointer_4 != (longlong *)0x0) {
+    (**(code **)(*stack_pointer_4 + 0x38))();
   }
-  if (stack_context_ptr != (longlong *)0x0) {
-    (**(code **)(*stack_context_ptr + 0x38))();
+  if (stack_pointer_2 != (longlong *)0x0) {
+    (**(code **)(*stack_pointer_2 + 0x38))();
   }
-  if (stack_buffer_ptr != (longlong *)0x0) {
-    (**(code **)(*stack_buffer_ptr + 0x38))();
+  if (stack_pointer_1 != (longlong *)0x0) {
+    (**(code **)(*stack_pointer_1 + 0x38))();
   }
-  (**(code **)(*render_context_ptr + 0x38))(render_context_ptr);
-  return output_param;
+  (**(code **)(*resource_obj_ptr + 0x38))(resource_obj_ptr);
+  return resource_ptr;
 }
 
-/**
- * 渲染系统数据设置函数
- * 
- * 该函数设置渲染系统中的数据值。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 设置数据值
- * 4. 根据条件设置状态标志
- * 
- * @param render_context 渲染上下文指针
- * @param data_ptr 数据指针
- * @param param3 参数3
- * @param param4 参数4
- */
-void rendering_system_set_data(longlong *render_context, undefined4 *data_ptr, byte param3, char param4)
+// 函数：渲染系统参数配置器
+// 功能：配置渲染系统的参数和设置
+void render_system_parameter_configurator(longlong *render_context, undefined4 *param_ptr, byte param_flag, char config_flag)
 
 {
-  undefined4 data_value1;
-  undefined4 data_value2;
-  undefined4 data_value3;
-  char status_flag;
+  undefined4 param_value_1;
+  undefined4 param_value_2;
+  undefined4 param_value_3;
+  char config_value;
   
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
-    data_value1 = data_ptr[1];
-    data_value2 = data_ptr[2];
-    data_value3 = data_ptr[3];
-    *(undefined4 *)(render_context + 0x34) = *data_ptr;
-    *(undefined4 *)((longlong)render_context + 0x1a4) = data_value1;
-    *(undefined4 *)(render_context + 0x35) = data_value2;
-    *(undefined4 *)((longlong)render_context + 0x1ac) = data_value3;
-    status_flag = (param3 ^ 1) + 1;
-    if (param4 != '\0') {
-      status_flag = '\x03';
+    param_value_1 = param_ptr[1];
+    param_value_2 = param_ptr[2];
+    param_value_3 = param_ptr[3];
+    *(undefined4 *)(render_context + 0x34) = *param_ptr;
+    *(undefined4 *)((longlong)render_context + 0x1a4) = param_value_1;
+    *(undefined4 *)(render_context + 0x35) = param_value_2;
+    *(undefined4 *)((longlong)render_context + 0x1ac) = param_value_3;
+    config_value = (param_flag ^ 1) + 1;
+    if (config_flag != '\0') {
+      config_value = '\x03';
     }
-    *(char *)(render_context + 0x1f) = status_flag;
+    *(char *)(render_context + 0x1f) = config_value;
   }
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x38))(render_context);
@@ -1245,19 +1013,9 @@ void rendering_system_set_data(longlong *render_context, undefined4 *data_ptr, b
   return;
 }
 
-/**
- * 渲染系统数据重置函数
- * 
- * 该函数重置渲染系统中的数据值。
- * 主要功能包括：
- * 1. 检查渲染上下文有效性
- * 2. 初始化渲染上下文
- * 3. 重置数据值
- * 4. 释放渲染对象
- * 
- * @param render_context 渲染上下文指针
- */
-void rendering_system_reset_data(longlong *render_context)
+// 函数：渲染系统清理器
+// 功能：清理渲染系统的资源和状态
+void render_system_cleaner_extended(longlong *render_context)
 
 {
   if (render_context == (longlong *)0x0) {
@@ -1269,42 +1027,148 @@ void rendering_system_reset_data(longlong *render_context)
   *(undefined4 *)((longlong)render_context + 0x1a4) = 0;
   *(undefined4 *)(render_context + 0x35) = 0;
   *(undefined4 *)((longlong)render_context + 0x1ac) = 0x7f7fffff;
-  // WARNING: Could not recover jumptable at 0x0001804497cd. Too many branches
-  // WARNING: Treating indirect jump as call
+  // 执行渲染清理操作
   (**(code **)(*render_context + 0x38))(render_context);
   return;
 }
 
-/**
- * 渲染系统内存分配函数
- * 
- * 该函数为渲染系统分配内存。
- * 主要功能包括：
- * 1. 分配内存
- * 2. 初始化内存数据
- * 3. 创建渲染对象
- * 4. 释放渲染上下文
- * 
- * @param render_context 渲染上下文指针
- * @return 分配的内存指针
- */
-undefined8 * rendering_system_allocate_memory(longlong *render_context)
+// 函数：渲染系统内存分配器
+// 功能：分配渲染系统的内存和资源
+undefined8 * render_system_memory_allocator(longlong *render_context)
 
 {
-  undefined8 *allocated_memory;
+  undefined8 *memory_ptr;
   
-  allocated_memory = (undefined8 *)allocate_rendering_memory(_DAT_180c8ed18, 0x38, 8, 3, 0xfffffffffffffffe);
+  memory_ptr = (undefined8 *)allocate_render_memory(render_system_memory_pool,0x38,8,3,0xfffffffffffffffe);
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
   }
-  *allocated_memory = 0;
-  allocated_memory[1] = 0;
-  allocated_memory[5] = 0;
-  allocated_memory[3] = 0;
-  *(undefined1 *)(allocated_memory + 2) = 0;
-  create_rendering_object(allocated_memory, render_context, 0);
+  *memory_ptr = 0;
+  memory_ptr[1] = 0;
+  memory_ptr[5] = 0;
+  memory_ptr[3] = 0;
+  *(undefined1 *)(memory_ptr + 2) = 0;
+  initialize_render_object(memory_ptr,render_context,0);
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x38))(render_context);
   }
-  return allocated_memory;
+  return memory_ptr;
 }
+
+// 渲染系统常量定义
+// 渲染对象类型
+const int RENDER_OBJECT_TYPE_BASIC = 1;
+const int RENDER_OBJECT_TYPE_EXTENDED = 2;
+const int RENDER_OBJECT_TYPE_ADVANCED = 4;
+const int RENDER_OBJECT_TYPE_COMPLEX = 8;
+
+// 渲染状态标志
+const int RENDER_STATE_ACTIVE = 1;
+const int RENDER_STATE_PAUSED = 2;
+const int RENDER_STATE_DISABLED = 4;
+const int RENDER_STATE_ERROR = 8;
+
+// 渲染参数类型
+const int RENDER_PARAM_TYPE_BASIC = 1;
+const int RENDER_PARAM_TYPE_EXTENDED = 2;
+const int RENDER_PARAM_TYPE_ADVANCED = 4;
+const int RENDER_PARAM_TYPE_SYSTEM = 8;
+
+// 渲染内存池大小
+const int RENDER_MEMORY_POOL_SIZE = 1024;
+const int RENDER_BUFFER_SIZE = 2048;
+const int RENDER_MAX_OBJECTS = 256;
+
+// 渲染系统配置参数
+const int RENDER_CONFIG_DEFAULT = 0;
+const int RENDER_CONFIG_EXTENDED = 1;
+const int RENDER_CONFIG_ADVANCED = 2;
+const int RENDER_CONFIG_DEBUG = 4;
+
+// 渲染系统函数别名定义
+// 渲染系统高级对象处理器别名
+void render_advanced_processor(void *context, void *params1, void *params2, void *params3, 
+                               unsigned long param4, unsigned long param5, unsigned long param6, unsigned int param7) { 
+    render_system_advanced_object_processor(context, params1, params2, params3, param4, param5, param6, param7); 
+}
+
+// 渲染系统扩展对象处理器别名
+void render_extended_processor(void *context, void *params1, void *params2, void *params3,
+                               unsigned long param4, unsigned long param5, unsigned long param6, unsigned int param7,
+                               unsigned int param8, unsigned int param9) { 
+    render_system_extended_object_processor(context, params1, params2, params3, param4, param5, param6, param7, param8, param9); 
+}
+
+// 渲染系统状态控制器别名
+void render_state_controller(void *context) { render_system_state_controller(context); }
+
+// 渲染系统标志位控制器别名
+void render_flag_controller(void *context) { render_system_flag_controller(context); }
+
+// 渲染系统清理器别名
+void render_cleaner(void *context) { render_system_cleaner(context); }
+
+// 渲染系统状态获取器别名
+unsigned char render_state_getter(void *context) { return render_system_state_getter(context); }
+
+// 渲染系统状态设置器别名
+void render_state_setter(void *context, unsigned char state) { render_system_state_setter(context, state); }
+
+// 渲染系统参数获取器别名
+unsigned int render_param_getter(void *context) { return render_system_parameter_getter(context); }
+
+// 渲染系统参数设置器别名
+void render_param_setter(void *context, unsigned int param) { render_system_parameter_setter(context, param); }
+
+// 渲染系统高级参数获取器别名
+unsigned int render_advanced_param_getter(void *context) { return render_system_advanced_parameter_getter(context); }
+
+// 渲染系统索引参数设置器别名
+void render_index_param_setter(void *context, int index, unsigned int value) { render_system_index_parameter_setter(context, index, value); }
+
+// 渲染系统索引参数获取器别名
+unsigned int render_index_param_getter(void *context, int index) { return render_system_index_parameter_getter(context, index); }
+
+// 渲染系统重置器别名
+void render_resetter(void *context) { render_system_resetter(context); }
+
+// 渲染系统高级资源分配器别名
+unsigned int *render_advanced_allocator(unsigned int *resource, int count, unsigned int *params, unsigned int param_count,
+                                       unsigned int *data, int data_count, long long handle) { 
+    return render_system_advanced_resource_allocator(resource, count, params, param_count, data, data_count, handle); 
+}
+
+// 渲染系统参数配置器别名
+void render_param_configurator(void *context, unsigned int *params, unsigned char flag, char config) { 
+    render_system_parameter_configurator(context, params, flag, config); 
+}
+
+// 渲染系统清理器扩展别名
+void render_cleaner_extended(void *context) { render_system_cleaner_extended(context); }
+
+// 渲染系统内存分配器别名
+unsigned long long *render_memory_allocator(void *context) { return render_system_memory_allocator(context); }
+
+// 简化实现的辅助函数
+// 注意：这些是简化实现，实际实现可能需要更复杂的渲染处理逻辑
+void render_system_helper_init(void)
+{
+    // 初始化渲染系统的辅助数据结构
+    // 设置默认渲染参数
+    // 初始化渲染对象池
+    // 配置渲染内存管理
+}
+
+void render_system_helper_cleanup(void)
+{
+    // 清理渲染系统的辅助数据结构
+    // 释放渲染对象资源
+    // 清空渲染队列
+    // 重置渲染系统状态
+}
+
+// 渲染系统的简化实现
+// 这些函数提供了基础的渲染处理功能
+// 在实际应用中，可能需要根据具体需求进行优化和扩展
+// 主要支持的渲染功能包括：对象处理、参数设置、状态管理、资源分配等
+// 支持的渲染操作包括：创建、配置、清理、重置、内存分配等高级渲染功能
