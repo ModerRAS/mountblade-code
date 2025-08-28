@@ -284,67 +284,93 @@ void FUN_1800a73e0(longlong param_1, undefined8 param_2, longlong param_3, undef
   cStack_93f = '\0';                         // 重置状态标志2
   cStack_93b = '\0';                         // 重置状态标志6
   cStack_93a = '\0';                         // 重置状态标志7
+  // ==================== 文件类型检测和状态设置 ====================
+  
+  // 根据系统配置检测文件类型并设置相应的状态标志
   if (_DAT_180bf5218 == 10) {
-    iVar2 = strcmp(_DAT_180bf5210,&UNK_180a01db8);
-    if (iVar2 != 0) goto LAB_1800a7646;
-    (**(code **)(puStack_858 + 0x10))(&puStack_858,&UNK_180a01df0);
-    cStack_968 = '\x01';
+    // 处理类型10的文件
+    iVar2 = strcmp(_DAT_180bf5210, &UNK_180a01db8);  // 比较文件类型字符串
+    if (iVar2 != 0) goto LAB_1800a7646;                // 如果不匹配，跳转到默认处理
+    (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01df0);  // 调用类型特定的处理函数
+    cStack_968 = '\x01';                             // 设置字符栈变量1标志
 LAB_1800a765c:
-    cStack_940 = '\x01';
+    cStack_940 = '\x01';                             // 设置状态标志1
   }
   else {
+    // 处理其他类型的文件
     if (_DAT_180bf5218 != 0xc) {
+      // 处理类型0xd的文件
       if (_DAT_180bf5218 == 0xd) {
-        iVar2 = strcmp(_DAT_180bf5210,&UNK_180a01e30);
+        iVar2 = strcmp(_DAT_180bf5210, &UNK_180a01e30);  // 比较文件类型字符串
         if (iVar2 == 0) {
-          (**(code **)(puStack_858 + 0x10))(&puStack_858,&UNK_180a01e90);
-          cStack_968 = '\x01';
-          cStack_93f = '\x01';
-          goto LAB_1800a7660;
+          (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01e90);  // 调用处理函数
+          cStack_968 = '\x01';                         // 设置字符栈变量1标志
+          cStack_93f = '\x01';                         // 设置状态标志2
+          goto LAB_1800a7660;                          // 跳转到统一处理点
         }
       }
+      // 处理类型9的文件
       else if (_DAT_180bf5218 == 9) {
-        iVar2 = strcmp(_DAT_180bf5210,&UNK_180a01e80);
+        iVar2 = strcmp(_DAT_180bf5210, &UNK_180a01e80);  // 比较文件类型字符串
         if (iVar2 == 0) {
-          (**(code **)(puStack_858 + 0x10))(&puStack_858,&UNK_180a01ee0);
-          cStack_93d = '\x01';
-          cStack_93b = '\x01';
-          goto LAB_1800a7660;
+          (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01ee0);  // 调用处理函数
+          cStack_93d = '\x01';                         // 设置状态标志4
+          cStack_93b = '\x01';                         // 设置状态标志6
+          goto LAB_1800a7660;                          // 跳转到统一处理点
         }
       }
+      // 处理类型0xc的文件
       else if (_DAT_180bf5218 == 0xc) goto LAB_1800a7617;
+      
+      // 默认处理路径
 LAB_1800a7646:
-      (**(code **)(puStack_858 + 0x10))(&puStack_858,&UNK_180a01f30);
-      cStack_93c = '\x01';
-      goto LAB_1800a765c;
+      (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01f30);  // 调用默认处理函数
+      cStack_93c = '\x01';                             // 设置状态标志5
+      goto LAB_1800a765c;                              // 跳转到状态设置点
     }
-    iVar2 = strcmp(_DAT_180bf5210,&UNK_180a01de0);
+    
+    // 处理类型0xc的文件
+    iVar2 = strcmp(_DAT_180bf5210, &UNK_180a01de0);   // 比较文件类型字符串
     if (iVar2 == 0) {
-      (**(code **)(puStack_858 + 0x10))(&puStack_858,&UNK_180a01e40);
-      cStack_968 = '\x01';
-      cStack_93e = '\x01';
+      (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01e40);  // 调用处理函数
+      cStack_968 = '\x01';                             // 设置字符栈变量1标志
+      cStack_93e = '\x01';                             // 设置状态标志3
     }
     else {
+      // 处理其他类型
 LAB_1800a7617:
-      iVar2 = strcmp(uVar5,&UNK_180a01ed0);
-      if (iVar2 != 0) goto LAB_1800a7646;
-      (**(code **)(puStack_858 + 0x10))(&puStack_858,&UNK_180a01f70);
-      cStack_93d = '\x01';
-      cStack_93a = '\x01';
+      iVar2 = strcmp(uVar5, &UNK_180a01ed0);          // 比较路径字符串
+      if (iVar2 != 0) goto LAB_1800a7646;              // 如果不匹配，跳转到默认处理
+      (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01f70);  // 调用处理函数
+      cStack_93d = '\x01';                             // 设置状态标志4
+      cStack_93a = '\x01';                             // 设置状态标志7
     }
   }
+  
+  // ==================== 统一处理点 ====================
 LAB_1800a7660:
-  CoInitializeEx(0,6);
-  uVar5 = FUN_1800ade00(param_9);
-  FUN_180627910(auStack_730,uVar5);
-  puStack_988 = &UNK_180a3c3e0;
-  uStack_970 = 0;
-  puStack_980 = (undefined1 *)0x0;
-  uStack_978 = 0;
-  puStack_918 = &UNK_180a3c3e0;
-  uStack_900 = 0;
-  puStack_910 = (undefined1 *)0x0;
-  uStack_908 = 0;
+  // ==================== COM组件初始化 ====================
+  
+  // 初始化COM组件，用于文件系统操作
+  CoInitializeEx(0, 6);                          // 初始化COM库
+  
+  // 处理文件参数
+  uVar5 = FUN_1800ade00(param_9);                // 处理文件处理选项
+  FUN_180627910(auStack_730, uVar5);             // 初始化参数缓冲区
+  
+  // ==================== 路径处理初始化 ====================
+  
+  // 初始化路径处理相关变量
+  puStack_988 = &UNK_180a3c3e0;                  // 初始化路径指针1
+  uStack_970 = 0;                                // 重置8字节栈变量2
+  puStack_980 = (undefined1 *)0x0;               // 初始化1字节栈指针1为NULL
+  uStack_978 = 0;                                // 重置无符号整型栈变量1
+  
+  // 初始化第二个路径处理实例
+  puStack_918 = &UNK_180a3c3e0;                  // 初始化路径指针2
+  uStack_900 = 0;                                // 重置路径控制变量2
+  puStack_910 = (undefined1 *)0x0;               // 初始化路径指针3为NULL
+  uStack_908 = 0;                                // 重置路径长度2
   if (iStack_7a0 != 0) {
     iVar2 = iStack_7a0 + 1;
     if (iStack_7a0 + 1 < 0x10) {
