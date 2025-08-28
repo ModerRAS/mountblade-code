@@ -115,8 +115,8 @@ void FUN_1801601a0(int64_t param_1)
 
 
 
-// 函数: void FUN_1801601c0(int64_t param_1,int param_2,int *param_3)
-void FUN_1801601c0(int64_t param_1,int param_2,int *param_3)
+// 函数: void CoreSystem_DataTransformer0(int64_t param_1,int param_2,int *param_3)
+void CoreSystem_DataTransformer0(int64_t param_1,int param_2,int *param_3)
 
 {
   uint64_t uVar1;
