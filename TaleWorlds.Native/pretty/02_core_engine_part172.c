@@ -879,7 +879,19 @@ int64_t * EventQueueManager(int64_t *queue_system, int64_t *queue_result, uint64
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t * FUN_1801582f0(uint64_t param_1,int64_t *param_2,int64_t param_3)
+// 函数: int64_t* EventCleanup(uint64_t cleanup_context, int64_t *cleanup_result, int64_t cleanup_data)
+// 事件清理器：清理事件系统中的资源
+// 参数：
+//   - cleanup_context: 清理上下文
+//   - cleanup_result: 清理结果指针
+//   - cleanup_data: 清理数据
+// 返回值：
+//   - 清理结果指针
+// 功能：
+//   - 释放事件相关的内存资源
+//   - 清理事件处理器和队列
+//   - 执行垃圾回收操作
+int64_t * EventCleanup(uint64_t cleanup_context, int64_t *cleanup_result, int64_t cleanup_data)
 
 {
   int64_t *plVar1;
@@ -945,8 +957,16 @@ LAB_180158404:
 
 
 
-// 函数: void FUN_1801584c0(uint64_t param_1,int param_2)
-void FUN_1801584c0(uint64_t param_1,int param_2)
+// 函数: void EventHandlerCleanup(uint64_t event_system, int handler_id)
+// 事件处理器清理器：清理特定的事件处理器
+// 参数：
+//   - event_system: 事件系统指针
+//   - handler_id: 处理器ID
+// 功能：
+//   - 根据ID查找并清理事件处理器
+//   - 释放处理器占用的资源
+//   - 维护系统的一致性
+void EventHandlerCleanup(uint64_t event_system, int handler_id)
 
 {
   int64_t lVar1;
