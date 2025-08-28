@@ -121,7 +121,7 @@
 
 // 系统缓冲区常量
 #define system_buffer_start system_buffer_start_addr           // 系统缓冲区起始地址
-#define system_buffer_end UNK_18098bc73            // 系统缓冲区结束地址
+#define system_buffer_end system_buffer_end_addr            // 系统缓冲区结束地址
 
 // 系统全局变量
 #define system_file_counter _DAT_180c8ed60         // 系统文件计数器

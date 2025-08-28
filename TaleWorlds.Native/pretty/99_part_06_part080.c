@@ -989,22 +989,34 @@ longlong ResourceManager_Clone(longlong sourceManager)
 
 
 
-// 函数: void FUN_1803f8d50(longlong *param_1,uint64_t param_2,uint64_t param_3,int32_t param_4,
-void FUN_1803f8d50(longlong *param_1,uint64_t param_2,uint64_t param_3,int32_t param_4,
-                  int32_t param_5)
-
+/**
+ * @brief 系统状态重置管理器
+ * 
+ * 负责重置系统状态并清理相关资源
+ * 确保系统在状态重置过程中保持一致性
+ * 
+ * @param systemContext 系统上下文指针
+ * @param resetFlags 重置标志位
+ * @param contextData 上下文数据
+ * @param priorityLevel 优先级级别
+ * @param timeoutMs 超时时间（毫秒）
+ * 
+ * @return void
+ */
+void SystemStateManager_ResetState(longlong *systemContext, uint64_t resetFlags, 
+                                  uint64_t contextData, int32_t priorityLevel, 
+                                  int32_t timeoutMs)
 {
-  longlong *plVar1;
-  bool bVar2;
-  bool bVar3;
-  longlong lVar4;
-  longlong *plVar5;
-  longlong **pplVar6;
-  longlong *plStackX_8;
-  longlong *plStack_50;
-  longlong *plStack_48;
-  uint64_t uStack_40;
-  longlong *plStack_38;
+  longlong *stateManager;
+  bool isStateCreated;
+  bool isStateExisting;
+  longlong systemData;
+  longlong *newStateManager;
+  longlong **stateManagerRef;
+  longlong *tempStateManager;
+  longlong *previousStateManager;
+  uint64_t memoryFlags;
+  longlong *currentStateManager;
   
   uStack_40 = 0xfffffffffffffffe;
   plVar1 = (longlong *)param_1[0x8d];

@@ -139,13 +139,13 @@ typedef ulonglong ResourceCleanupFlags;          // 资源清理标志
  * @brief 数据转换器
  * 转换数据格式和类型
  */
-#define DataConverter FUN_1806d2e60
+#define DataConverter DataConverter
 
 /**
  * @brief 系统同步器
  * 同步系统状态和数据
  */
-#define SystemSynchronizer FUN_1806c19d0
+#define SystemSynchronizer SystemSynchronizer
 
 /**
  * @brief 组件注册器
@@ -440,7 +440,7 @@ int FUN_1806c50f0(longlong param_1,longlong *param_2)
     puVar9 = *(void **)
               (*(longlong *)(lVar1 + 8) + (ulonglong)(*(int *)(lVar1 + 0x10) - 1) * 0x10);
   }
-  FUN_1806d2e60(plVar2,lVar3,lVar5,puVar9,&uStack_70);
+  DataConverter(plVar2,lVar3,lVar5,puVar9,&uStack_70);
   iVar8 = *(int *)(lVar1 + 0x10);
   if (iVar8 != 0) {
     if (*(char *)(*(longlong *)(lVar1 + 8) + 8 + (ulonglong)(iVar8 - 1) * 0x10) != '\0') {
@@ -450,7 +450,7 @@ int FUN_1806c50f0(longlong param_1,longlong *param_2)
     *(int *)(lVar1 + 0x10) = iVar8 + -1;
   }
   ResourceManager(&lStack_a8,&UNK_18094c9b0);
-  FUN_1806c19d0(&lStack_a8,param_1 + 0xf0);
+  SystemSynchronizer(&lStack_a8,param_1 + 0xf0);
   iVar8 = *(int *)(lVar1 + 0x10);
   if (iVar8 != 0) {
     if (*(char *)(*(longlong *)(lVar1 + 8) + 8 + (ulonglong)(iVar8 - 1) * 0x10) != '\0') {
