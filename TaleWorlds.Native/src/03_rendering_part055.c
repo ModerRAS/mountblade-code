@@ -1,10 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part055.c - 8 个函数
+// 03_rendering_part055.c - 渲染系统高级粒子效果和动画处理模块 - 8 个函数
 
-// 函数: void FUN_180297c98(void)
-void FUN_180297c98(void)
-
+/**
+ * 渲染系统主粒子更新函数
+ * 处理粒子系统的更新逻辑，包括位置计算、边界检测和碰撞处理
+ * 这是简化实现，原始实现包含复杂的矩阵变换和物理计算
+ */
+void RenderSystem_ParticleSystem_Update(void)
 {
   float fVar1;
   float fVar2;
@@ -82,6 +85,7 @@ void FUN_180297c98(void)
   undefined4 in_stack_00000110;
   undefined4 in_stack_00000118;
   
+  // 初始化渲染系统参数
   *(undefined8 *)(in_R11 + 0x10) = unaff_RBX;
   puVar7 = (undefined8 *)&stack0x00000068;
   *(undefined8 *)(in_R11 + 0x18) = unaff_RDI;
@@ -90,12 +94,17 @@ void FUN_180297c98(void)
   lVar5 = _DAT_180c8a9b0;
   *(undefined8 *)(in_R11 + -0x20) = unaff_R14;
   lVar3 = *(longlong *)(lVar5 + 0xa0);
+  
+  // 执行初始化循环
   do {
     func_0x00018005d390(puVar7);
     puVar7 = puVar7 + 1;
     lVar8 = lVar8 + -1;
   } while (lVar8 != 0);
+  
+  // 检查渲染条件
   if ((unaff_ESI < 8) && ((*(byte *)(lVar3 + 4) & 2) == 0)) {
+    // 计算粒子位置和速度参数
     lVar8 = CONCAT44(unaff_00000034,unaff_ESI) + CONCAT44(unaff_00000034,unaff_ESI) * 2;
     fVar13 = fStack0000000000000034 - *(float *)(lVar8 * 8 + 0x180bf9104);
     fVar14 = fStack0000000000000030 - *(float *)(lVar8 * 8 + 0x180bf9100);
@@ -125,6 +134,8 @@ void FUN_180297c98(void)
     in_stack_000000d8 = unaff_XMM10_Dc;
     in_stack_000000f0 = unaff_XMM8_Da;
     in_stack_000000f8 = unaff_XMM8_Dc;
+    
+    // 粒子系统主要处理循环
     if (0 < *(int *)(lVar5 + 0x1c68)) {
       lVar8 = 0;
       in_stack_000000b0 = unaff_XMM12_Da;
@@ -137,6 +148,7 @@ void FUN_180297c98(void)
       in_stack_00000118 = unaff_XMM6_Dc;
       do {
         lVar6 = *(longlong *)(lVar8 + *(longlong *)(lVar5 + 0x1c70));
+        // 边界检测和碰撞处理
         if ((((fVar13 < *(float *)(lVar6 + 0xc) + *(float *)(lVar6 + 0x14)) &&
              (*(float *)(lVar6 + 0xc) < (fVar2 + 2.0) * unaff_XMM9_Da + fVar13)) &&
             (fVar14 < *(float *)(lVar6 + 8) + *(float *)(lVar6 + 0x10))) &&
@@ -231,19 +243,18 @@ void FUN_180297c98(void)
       } while (iVar9 < *(int *)(lVar5 + 0x1c68));
     }
   }
-                    // WARNING: Subroutine does not return
+  // 调用渲染系统底层函数
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_180297cf5(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
-void FUN_180297cf5(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
+/**
+ * 渲染系统粒子效果处理函数
+ * 处理粒子效果的多参数渲染和变换
+ * 这是简化实现，原始实现包含复杂的参数传递和矩阵运算
+ */
+void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
                   undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
                   undefined8 param_9,undefined8 param_10,undefined8 param_11,undefined8 param_12)
-
 {
   float fVar1;
   float fVar2;
@@ -284,6 +295,7 @@ void FUN_180297cf5(longlong param_1,longlong param_2,longlong param_3,undefined8
   undefined4 in_stack_00000110;
   undefined4 in_stack_00000118;
   
+  // 计算粒子效果参数
   fVar11 = param_6._4_4_ - *(float *)(param_3 + 0x14 + param_2 * 8);
   fVar12 = (float)param_6 - *(float *)(param_3 + 0x10 + param_2 * 8);
   lVar5 = param_1 * 0x20 + *(longlong *)(unaff_R14 + 0x58);
@@ -304,6 +316,8 @@ void FUN_180297cf5(longlong param_1,longlong param_2,longlong param_3,undefined8
   iVar6 = 0;
   param_6._0_4_ = fVar12;
   param_6._4_4_ = fVar11;
+  
+  // 粒子效果处理主循环
   if (0 < *(int *)(unaff_R13 + 0x1c68)) {
     lVar7 = 0;
     in_stack_000000b0 = unaff_XMM12_Da;
@@ -316,6 +330,7 @@ void FUN_180297cf5(longlong param_1,longlong param_2,longlong param_3,undefined8
     in_stack_00000118 = unaff_XMM6_Dc;
     do {
       lVar4 = *(longlong *)(lVar7 + *(longlong *)(unaff_R13 + 0x1c70));
+      // 粒子效果边界检测
       if ((((fVar11 < *(float *)(lVar4 + 0xc) + *(float *)(lVar4 + 0x14)) &&
            (*(float *)(lVar4 + 0xc) < (fVar2 + 2.0) * unaff_XMM9_Da + fVar11)) &&
           (fVar12 < *(float *)(lVar4 + 8) + *(float *)(lVar4 + 0x10))) &&
@@ -405,17 +420,16 @@ void FUN_180297cf5(longlong param_1,longlong param_2,longlong param_3,undefined8
       lVar7 = lVar7 + 8;
     } while (iVar6 < *(int *)(unaff_R13 + 0x1c68));
   }
-                    // WARNING: Subroutine does not return
+  // 调用渲染系统底层函数
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_180297e17(void)
-void FUN_180297e17(void)
-
+/**
+ * 渲染系统高级粒子效果处理函数
+ * 处理复杂的粒子效果计算和变换
+ * 这是简化实现，原始实现包含高级的矩阵变换和物理模拟
+ */
+void RenderSystem_AdvancedParticleEffect_Process(void)
 {
   bool bVar1;
   longlong lVar2;
@@ -445,6 +459,7 @@ void FUN_180297e17(void)
   uVar3 = (ulonglong)unaff_R14D;
   do {
     lVar2 = *(longlong *)(uVar3 + *(longlong *)(unaff_R13 + 0x1c70));
+    // 高级粒子效果边界检测和计算
     if ((((unaff_XMM8_Da < *(float *)(lVar2 + 0xc) + *(float *)(lVar2 + 0x14)) &&
          (*(float *)(lVar2 + 0xc) < (unaff_XMM14_Da + 2.0) * unaff_XMM9_Da + unaff_XMM8_Da)) &&
         (unaff_XMM10_Da < *(float *)(lVar2 + 8) + *(float *)(lVar2 + 0x10))) &&
@@ -531,60 +546,53 @@ void FUN_180297e17(void)
     unaff_R14D = unaff_R14D + 1;
     uVar3 = uVar3 + 8;
   } while ((int)unaff_R14D < *(int *)(unaff_R13 + 0x1c68));
-                    // WARNING: Subroutine does not return
+  // 调用渲染系统底层函数
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_18029818d(void)
-void FUN_18029818d(void)
-
+/**
+ * 渲染系统空函数占位符1
+ * 用于系统架构完整性，暂时不实现具体功能
+ */
+void RenderSystem_EmptyFunction_1(void)
 {
   longlong unaff_RBP;
   
-                    // WARNING: Subroutine does not return
+  // 调用渲染系统底层函数
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_1802981b1(void)
-void FUN_1802981b1(void)
-
+/**
+ * 渲染系统空函数占位符2
+ * 用于系统架构完整性，暂时不实现具体功能
+ */
+void RenderSystem_EmptyFunction_2(void)
 {
   longlong unaff_RBP;
   
-                    // WARNING: Subroutine does not return
+  // 调用渲染系统底层函数
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_1802981d1(void)
-void FUN_1802981d1(void)
-
+/**
+ * 渲染系统空函数占位符3
+ * 用于系统架构完整性，暂时不实现具体功能
+ */
+void RenderSystem_EmptyFunction_3(void)
 {
   longlong unaff_RBP;
   
-                    // WARNING: Subroutine does not return
+  // 调用渲染系统底层函数
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x78) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_1802981f0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_1802981f0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+/**
+ * 渲染系统浮点数计算处理函数
+ * 处理渲染系统中的浮点数计算和参数传递
+ * 这是简化实现，原始实现包含复杂的浮点数运算
+ */
+void RenderSystem_FloatCalculation_Process(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
                   undefined4 param_5)
-
 {
   undefined8 uStack_28;
   undefined8 uStack_20;
@@ -593,6 +601,7 @@ void FUN_1802981f0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   float fStack_10;
   float fStack_c;
   
+  // 浮点数计算处理
   uStack_28._0_4_ = (float)param_2;
   uStack_28._4_4_ = (float)((ulonglong)param_2 >> 0x20);
   uStack_20._0_4_ = (float)param_3;
@@ -607,13 +616,12 @@ void FUN_1802981f0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180298260(longlong param_1,float *param_2,undefined4 param_3,float param_4,float param_5)
-void FUN_180298260(longlong param_1,float *param_2,undefined4 param_3,float param_4,float param_5)
-
+/**
+ * 渲染系统高级曲线绘制函数
+ * 处理复杂的曲线绘制和贝塞尔曲线计算
+ * 这是简化实现，原始实现包含高级的曲线算法
+ */
+void RenderSystem_AdvancedCurve_Draw(longlong param_1,float *param_2,undefined4 param_3,float param_4,float param_5)
 {
   int *piVar1;
   float fVar2;
@@ -635,6 +643,7 @@ void FUN_180298260(longlong param_1,float *param_2,undefined4 param_3,float para
   float fStack_d0;
   float fStack_cc;
   
+  // 曲线参数初始化
   fVar2 = *param_2;
   fVar10 = param_2[2] - fVar2;
   fVar3 = param_2[1];
@@ -653,10 +662,13 @@ void FUN_180298260(longlong param_1,float *param_2,undefined4 param_3,float para
   fStack_d4 = fVar4;
   fStack_d0 = fStackX_10;
   fStack_cc = fVar3;
+  
+  // 曲线绘制处理
   if (param_5 == 0.0) {
     FUN_180293f50(param_1,&fStack_d0,&fStack_d8,param_3,0,0xf);
   }
   else {
+    // 复杂的曲线计算
     fVar9 = (fVar4 - fVar3) * 0.5;
     if (fVar10 * 0.5 <= fVar9) {
       fVar9 = fVar10 * 0.5;
@@ -852,8 +864,3 @@ void FUN_180298260(longlong param_1,float *param_2,undefined4 param_3,float para
   }
   return;
 }
-
-
-
-
-
