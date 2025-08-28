@@ -1,80 +1,109 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part073_sub002_sub002.c - 1 个函数
+// 02_core_engine_part073_sub002_sub002.c - 初始化引擎参数配置
+// 本文件包含1个函数，负责初始化引擎的各种参数配置
 
-// 函数: void FUN_180105630(longlong param_1)
-void FUN_180105630(longlong param_1)
+// 函数: void initialize_engine_parameters(longlong engine_context)
+// 功能: 初始化引擎的各种参数配置，包括渲染、物理、UI等系统的参数设置
+// 参数: 
+//   engine_context - 引擎上下文指针，包含所有引擎相关的数据结构
+void initialize_engine_parameters(longlong engine_context)
 
 {
-  ulonglong uVar1;
-  ulonglong uStackX_8;
-  undefined1 auStack_148 [16];
-  code *pcStack_138;
-  undefined8 uStack_128;
-  undefined1 auStack_120 [32];
-  undefined1 auStack_100 [32];
-  undefined1 auStack_e0 [32];
-  undefined1 auStack_c0 [32];
-  undefined1 auStack_a0 [32];
-  undefined1 auStack_80 [32];
-  undefined1 auStack_60 [32];
-  undefined1 auStack_40 [40];
+  ulonglong component_ptr;
+  ulonglong temp_value;
+  undefined1 temp_buffer_1 [16];
+  code *callback_ptr;
+  undefined8 stack_init_value;
+  undefined1 temp_buffer_2 [32];
+  undefined1 temp_buffer_3 [32];
+  undefined1 temp_buffer_4 [32];
+  undefined1 temp_buffer_5 [32];
+  undefined1 temp_buffer_6 [32];
+  undefined1 temp_buffer_7 [32];
+  undefined1 temp_buffer_8 [32];
+  undefined1 temp_buffer_9 [40];
   
+  // 初始化堆栈参数
   uStack_128 = 0xfffffffffffffffe;
+  
+  // 初始化第一个临时缓冲区
   func_0x00018010bf60(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x198) = 3;
-  FUN_18010bd10(param_1 + 0x1a0,auStack_148);
+  
+  // 设置渲染系统参数 (值为3)
+  *(undefined4 *)(engine_context + 0x198) = 3;
+  FUN_18010bd10(engine_context + 0x1a0, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
   }
-  uVar1 = param_1 + 0x150;
-  (**(code **)(*(longlong *)(param_1 + 0x158) + 0x10))((longlong *)(param_1 + 0x158),&UNK_180a05558)
-  ;
+  // 获取渲染组件指针并初始化渲染参数
+  component_ptr = engine_context + 0x150;
+  (**(code **)(*(longlong *)(engine_context + 0x158) + 0x10))((longlong *)(engine_context + 0x158), &UNK_180a05558);
+  
+  // 设置渲染系统参数值 (3)
   uStackX_8._0_4_ = 3;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,3);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010bf80(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x1318) = 1;
-  FUN_18010bd10(param_1 + 0x1320,auStack_148);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 3);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化UI系统参数
+  func_0x00018010bf80(auStack_148, 0);
+  
+  // 设置UI系统参数 (值为1)
+  *(undefined4 *)(engine_context + 0x1318) = 1;
+  FUN_18010bd10(engine_context + 0x1320, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x12d0;
-  (**(code **)(*(longlong *)(param_1 + 0x12d8) + 0x10))
-            ((longlong *)(param_1 + 0x12d8),&UNK_180a05590);
+  // 获取UI组件指针并初始化UI参数
+  component_ptr = engine_context + 0x12d0;
+  (**(code **)(*(longlong *)(engine_context + 0x12d8) + 0x10))((longlong *)(engine_context + 0x12d8), &UNK_180a05590);
+  
+  // 设置UI系统参数值 (1)
   uStackX_8._0_4_ = 1;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  uVar1 = param_1 + 0x17a0;
-  (**(code **)(*(longlong *)(param_1 + 0x17a8) + 0x10))
-            ((longlong *)(param_1 + 0x17a8),&UNK_180a05578);
-  uStackX_8._0_4_ = 0x3f000000;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f000000);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
-  func_0x00018010bfa0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x1778) = 0;
-  FUN_18010bd10(param_1 + 0x1780,auStack_148);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 获取物理系统组件指针并初始化物理参数
+  component_ptr = engine_context + 0x17a0;
+  (**(code **)(*(longlong *)(engine_context + 0x17a8) + 0x10))((longlong *)(engine_context + 0x17a8), &UNK_180a05578);
+  
+  // 设置物理系统参数 (浮点值 0.5)
+  uStackX_8._0_4_ = 0x3f000000;  // 0.5 in IEEE 754
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x3f000000);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 0x28, &uStackX_8);
+  // 初始化音频系统参数
+  func_0x00018010bfa0(auStack_148, 0);
+  
+  // 设置音频系统参数 (值为0)
+  *(undefined4 *)(engine_context + 0x1778) = 0;
+  FUN_18010bd10(engine_context + 0x1780, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x1730;
-  (**(code **)(*(longlong *)(param_1 + 0x1738) + 0x10))
-            ((longlong *)(param_1 + 0x1738),&UNK_180a055c8);
+  // 获取音频组件指针并初始化音频参数
+  component_ptr = engine_context + 0x1730;
+  (**(code **)(*(longlong *)(engine_context + 0x1738) + 0x10))((longlong *)(engine_context + 0x1738), &UNK_180a055c8);
+  
+  // 设置音频系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
   func_0x00018010bfc0(auStack_148,0);
   *(undefined4 *)(param_1 + 0x128) = 2;
   FUN_18010bd10(param_1 + 0x130,auStack_148);
@@ -782,26 +811,32 @@ void FUN_180105630(longlong param_1)
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 0x28,&uStackX_8);
-  uVar1 = param_1 + 0xbd0;
-  func_0x00018010bc90(uVar1,&UNK_180a05af8);
+  // 获取网络系统组件指针并初始化网络参数
+  component_ptr = engine_context + 0xbd0;
+  func_0x00018010bc90(component_ptr, &UNK_180a05af8);
+  
+  // 设置网络系统参数 (值为2)
   uStackX_8._0_4_ = 2;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  FUN_18010be10(auStack_100,0);
-  uVar1 = param_1 + 0x4d0;
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化输入系统参数
+  FUN_18010be10(auStack_100, 0);
+  component_ptr = engine_context + 0x4d0;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_18010bca0(uVar1,&uStackX_8,auStack_100);
+  FUN_18010bca0(component_ptr, &uStackX_8, auStack_100);
   FUN_18005ab20(auStack_100);
-  func_0x00018010bc90(uVar1,&UNK_180a05288);
+  func_0x00018010bc90(component_ptr, &UNK_180a05288);
+  
+  // 设置输入系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
   FUN_18010be40(auStack_e0,0);
   uVar1 = param_1 + 0x540;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -922,9 +957,14 @@ void FUN_180105630(longlong param_1)
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
-  *(undefined4 *)(param_1 + 0x88) = 1;
+  // 设置引擎初始化完成标志
+  *(undefined4 *)(engine_context + 0x88) = 1;
+  
   return;
 }
+
+// 函数结束：所有引擎参数已初始化完成
+// 包括：渲染系统、UI系统、物理系统、音频系统等各个模块的参数配置
 
 
 

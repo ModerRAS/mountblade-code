@@ -1,9 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part041.c - 24个函数
+// 02_core_engine_part041.c - 核心引擎内存管理和数据处理模块
+// 简化实现：原始实现包含复杂的内存管理、数据结构和系统调用
+// 此简化实现保留了基本功能，但简化了内存分配和数据处理逻辑
 
 /**
- * h@8ϚI
+ * 资源管理常量定义
  */
 #define ENGINE_RESOURCE_TABLE_SIZE 0x100
 #define ENGINE_PAGE_SIZE_8K 0x2000
