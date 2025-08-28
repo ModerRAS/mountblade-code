@@ -478,9 +478,13 @@ void cleanup_component_instance(longlong param_1)
 
 
 
-// 函数: void FUN_18005c3d0(longlong *param_1)
-void FUN_18005c3d0(longlong *param_1)
-
+/**
+ * 清理组件链
+ * 清理组件链中的所有组件实例
+ * 
+ * @param param_1 组件链指针
+ */
+void cleanup_component_chain(longlong *param_1)
 {
   longlong lVar1;
   longlong lVar2;
@@ -492,14 +496,14 @@ void FUN_18005c3d0(longlong *param_1)
   }
   else {
     do {
-      *(undefined8 *)(lVar2 + 0x18) = &UNK_180a3c3e0;
+      *(undefined8 *)(lVar2 + 0x18) = &COMPONENT_ALLOCATOR_VTABLE;
       if (*(longlong *)(lVar2 + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
+        // 警告：子程序不返回
+        handle_critical_error();
       }
       *(undefined8 *)(lVar2 + 0x20) = 0;
       *(undefined4 *)(lVar2 + 0x30) = 0;
-      *(undefined8 *)(lVar2 + 0x18) = &UNK_18098bcb0;
+      *(undefined8 *)(lVar2 + 0x18) = &COMPONENT_DESTROYER_VTABLE;
       lVar2 = lVar2 + 0x50;
     } while (lVar2 != lVar1);
     param_1[1] = *param_1;
@@ -509,15 +513,24 @@ void FUN_18005c3d0(longlong *param_1)
 
 
 
-longlong FUN_18005c4f0(longlong param_1,uint param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 释放组件并设置标志
+ * 释放组件资源并根据标志决定是否释放内存
+ * 
+ * @param param_1 组件指针
+ * @param param_2 释放标志
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 返回组件指针
+ */
+longlong release_component_with_flags(longlong param_1, uint param_2, undefined8 param_3, undefined8 param_4)
 {
   if (*(code **)(param_1 + 0xd0) != (code *)0x0) {
-    (**(code **)(param_1 + 0xd0))(param_1 + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_1 + 0xd0))(param_1 + 0xc0, 0, 0, param_4, 0xfffffffffffffffe);
   }
-  FUN_180049470(param_1);
+  cleanup_component_resources(param_1);
   if ((param_2 & 1) != 0) {
-    free(param_1,0xe8);
+    free(param_1, 0xe8);
   }
   return param_1;
 }
@@ -526,9 +539,13 @@ longlong FUN_18005c4f0(longlong param_1,uint param_2,undefined8 param_3,undefine
 
 
 
-// 函数: void FUN_18005c560(longlong param_1)
-void FUN_18005c560(longlong param_1)
-
+/**
+ * 通知组件销毁
+ * 通知相关组件该组件即将被销毁，处理同步逻辑
+ * 
+ * @param param_1 组件指针
+ */
+void notify_component_destruction(longlong param_1)
 {
   longlong lVar1;
   int iVar2;
@@ -553,27 +570,35 @@ void FUN_18005c560(longlong param_1)
 
 
 
-undefined8 *
-FUN_18005c590(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 设置组件回调
+ * 为组件设置回调函数和相关参数
+ * 
+ * @param param_1 目标组件指针
+ * @param param_2 回调源组件指针
+ * @param param_3 回调参数
+ * @param param_4 回调标志
+ * @return 返回目标组件指针
+ */
+undefined8 * setup_component_callback(undefined8 *param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
 {
   undefined8 *puVar1;
   code *pcVar2;
   undefined8 uVar3;
   
   uVar3 = 0xfffffffffffffffe;
-  FUN_180049830();
-  *param_1 = &UNK_1809fdf38;
+  initialize_callback_system();
+  *param_1 = &COMPONENT_CALLBACK_VTABLE;
   puVar1 = param_1 + 0x18;
   param_1[0x1a] = 0;
   param_1[0x1b] = _guard_check_icall;
   if (puVar1 != param_2) {
     if ((code *)param_1[0x1a] != (code *)0x0) {
-      (*(code *)param_1[0x1a])(puVar1,0,0,param_4,uVar3);
+      (*(code *)param_1[0x1a])(puVar1, 0, 0, param_4, uVar3);
     }
     pcVar2 = (code *)param_2[2];
     if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(puVar1,param_2,1);
+      (*pcVar2)(puVar1, param_2, 1);
       pcVar2 = (code *)param_2[2];
     }
     param_1[0x1a] = pcVar2;
@@ -581,7 +606,7 @@ FUN_18005c590(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
   }
   param_1[0x1c] = param_3;
   if ((code *)param_2[2] != (code *)0x0) {
-    (*(code *)param_2[2])(param_2,0,0);
+    (*(code *)param_2[2])(param_2, 0, 0);
   }
   return param_1;
 }

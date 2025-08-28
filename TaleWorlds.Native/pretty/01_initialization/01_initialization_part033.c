@@ -194,20 +194,20 @@ void process_initialization_command(longlong command_data)
   undefined4 uStack_60;
   undefined8 uStack_58;
   
-  uVar1 = *(uint *)(param_1 + 0x28);
-  if (uVar1 < 9) {
-    switch(uVar1) {
-    case 1:
-      auStackX_8[0] = auStackX_8[0] & 0xffffff00;
-      puVar9 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x38) != (undefined *)0x0) {
-        puVar9 = *(undefined **)(param_1 + 0x38);
+  command_type = *(uint *)(command_data + 0x28);
+  if (command_type < 9) {
+    switch(command_type) {
+    case 1:  // 初始化日志系统
+      log_config[0] = log_config[0] & 0xffffff00;
+      log_message = &DEFAULT_LOG_MESSAGE;
+      if (*(undefined **)(command_data + 0x38) != (undefined *)0x0) {
+        log_message = *(undefined **)(command_data + 0x38);
       }
-      FUN_1806391a0(*(longlong *)(param_1 + 0x20) + 0x20,puVar9,auStackX_8);
-      plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0x20);
-      (**(code **)(*plVar7 + 0x108))(plVar7,1);
-      plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0x20);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&UNK_1809fe5c0);
+      initialize_logging_system(*(longlong *)(command_data + 0x20) + 0x20,log_message,log_config);
+      log_system = (longlong *)(*(longlong *)(command_data + 0x20) + 0x20);
+      (**(code **)(*log_system + 0x108))(log_system,1);
+      log_system = (longlong *)(*(longlong *)(command_data + 0x20) + 0x20);
+      (**(code **)(*log_system + 0x70))(log_system,&LOG_SYSTEM_CONFIG);
       puStack_70 = &UNK_180a3c3e0;
       uStack_58 = 0;
       puStack_68 = (undefined8 *)0x0;

@@ -317,7 +317,12 @@ LAB_18005f92b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18005fb30(longlong param_1,longlong *param_2,longlong param_3)
+/**
+ * 优化批量对象注册处理
+ * 这是一个改进版本的批量对象注册函数，提供更高效的内存管理
+ * 原函数名: FUN_18005fb30
+ */
+ulonglong OptimizedBatchObjectRegistration(longlong objectManager, longlong *objectArray, longlong objectCount)
 
 {
   ulonglong *puVar1;
@@ -521,7 +526,12 @@ joined_r0x00018005fdcd:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18005ff50(longlong param_1)
+/**
+ * 从对象池分配内存块
+ * 从内存池中分配一个新的内存块，处理引用计数和内存管理
+ * 原函数名: FUN_18005ff50
+ */
+longlong AllocateMemoryFromPool(longlong memoryPool)
 
 {
   ulonglong *puVar1;

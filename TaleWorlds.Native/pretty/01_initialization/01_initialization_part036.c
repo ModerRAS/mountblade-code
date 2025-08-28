@@ -1,103 +1,134 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part036.c - 12 个函数
+// 01_initialization_part036.c - 初始化模块第36部分
+// 本文件包含文件系统、I/O完成端口和内存管理相关的初始化函数
 
-// 函数: void FUN_180067f60(longlong param_1,longlong param_2)
-void FUN_180067f60(longlong param_1,longlong param_2)
+// 函数: 创建文件句柄并关联到I/O完成端口
+void create_file_handle_with_completion_port(longlong engine_context, longlong file_params)
 
 {
-  int iVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined *puVar4;
-  undefined8 *puVar5;
-  ulonglong uVar6;
-  uint uVar7;
-  undefined1 auStack_2e8 [32];
-  ulonglong uStack_2c8;
-  undefined4 uStack_2c0;
-  undefined8 uStack_2b8;
-  longlong lStack_2a8;
-  undefined8 uStack_2a0;
-  longlong alStack_288 [4];
-  undefined *puStack_268;
-  undefined *puStack_260;
-  ulonglong uStack_48;
-  ulonglong uVar8;
+  int lock_result;
+  longlong file_handle;
+  longlong completion_port;
+  char *file_path;
+  undefined8 *file_entry;
+  ulonglong hash_value;
+  uint char_index;
+  undefined1 stack_buffer [32];
+  ulonglong access_flags;
+  undefined4 share_mode;
+  undefined8 creation_disposition;
+  longlong mutex_address;
+  undefined8 stack_guard;
+  longlong hash_params [4];
+  undefined *temp_ptr1;
+  undefined *temp_ptr2;
+  ulonglong security_cookie;
+  ulonglong file_count;
   
-  uStack_2a0 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_2e8;
-  FUN_180624440(&puStack_268);
-  puVar4 = &DAT_18098bc73;
-  if (puStack_260 != (undefined *)0x0) {
-    puVar4 = puStack_260;
+  // 初始化栈保护和安全cookie
+  stack_guard = 0xfffffffffffffffe;
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  initialize_string_helper(&temp_ptr1);
+  
+  // 获取文件路径
+  file_path = &DAT_18098bc73;  // 默认路径
+  if (temp_ptr2 != (undefined *)0x0) {
+    file_path = temp_ptr2;  // 使用自定义路径
   }
-  uVar6 = 0;
-  uStack_2b8 = 0;
-  uStack_2c0 = 0x60000001;
-  uStack_2c8 = CONCAT44(uStack_2c8._4_4_,3);
-  lVar2 = CreateFileA(puVar4,0x80000000,1,0);
-  if (lVar2 == -1) {
-    puVar4 = &DAT_18098bc73;
-    if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-      puVar4 = *(undefined **)(param_2 + 8);
+  
+  // 计算文件路径哈希值
+  hash_value = 0;
+  creation_disposition = 0;
+  share_mode = 0x60000001;
+  access_flags = CONCAT44(access_flags._4_4_,3);
+  
+  // 创建文件句柄
+  file_handle = CreateFileA(file_path, 0x80000000, 1, 0);  // GENERIC_READ, FILE_SHARE_READ
+  if (file_handle == -1) {
+    // 文件创建失败，抛出错误
+    file_path = &DAT_18098bc73;
+    if (*(undefined **)(file_params + 8) != (undefined *)0x0) {
+      file_path = *(undefined **)(file_params + 8);
     }
-                    // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&UNK_1809fecd8,puVar4);
+    // 错误处理：文件创建失败
+    throw_file_error(_DAT_180c86928, &ERROR_FILE_CREATE_FAILED, file_path);
   }
-  lVar3 = CreateIoCompletionPort(lVar2,*(undefined8 *)(param_1 + 0x213430),0,0);
-  if (lVar3 != *(longlong *)(param_1 + 0x213430)) {
-    puVar4 = &DAT_18098bc73;
-    if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-      puVar4 = *(undefined **)(param_2 + 8);
+  
+  // 创建I/O完成端口
+  completion_port = CreateIoCompletionPort(file_handle, *(undefined8 *)(engine_context + 0x213430), 0, 0);
+  if (completion_port != *(longlong *)(engine_context + 0x213430)) {
+    // I/O完成端口创建失败
+    file_path = &DAT_18098bc73;
+    if (*(undefined **)(file_params + 8) != (undefined *)0x0) {
+      file_path = *(undefined **)(file_params + 8);
     }
-                    // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&UNK_1809fed10,puVar4);
+    // 错误处理：I/O完成端口创建失败
+    throw_file_error(_DAT_180c86928, &ERROR_COMPLETION_PORT_FAILED, file_path);
   }
-  lVar3 = param_1 + 0x2133e0;
-  lStack_2a8 = lVar3;
-  iVar1 = _Mtx_lock(lVar3);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  
+  // 获取文件表互斥锁
+  mutex_address = engine_context + 0x2133e0;
+  lock_result = _Mtx_lock(mutex_address);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  puVar5 = *(undefined8 **)(param_1 + 0x2133d8);
-  if (puVar5 == (undefined8 *)0x0) {
-    uVar8 = *(ulonglong *)(param_1 + 0x2133d0);
-    if (0xff < uVar8) {
-      iVar1 = _Mtx_unlock(lVar3);
-      if (iVar1 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar1);
+  
+  // 查找或创建文件表项
+  file_entry = *(undefined8 **)(engine_context + 0x2133d8);
+  if (file_entry == (undefined8 *)0x0) {
+    file_count = *(ulonglong *)(engine_context + 0x2133d0);
+    if (0xff < file_count) {
+      // 文件表已满，需要扩展
+      lock_result = _Mtx_unlock(mutex_address);
+      if (lock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_result);
       }
-      _DAT_00000018 = *(undefined4 *)(param_2 + 0x10);
-      puVar4 = &DAT_18098bc73;
-      if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-        puVar4 = *(undefined **)(param_2 + 8);
+      
+      // 准备错误信息
+      _DAT_00000018 = *(undefined4 *)(file_params + 0x10);
+      file_path = &DAT_18098bc73;
+      if (*(undefined **)(file_params + 8) != (undefined *)0x0) {
+        file_path = *(undefined **)(file_params + 8);
       }
-      strcpy_s(_DAT_00000010,0x100,puVar4);
-      uVar8 = uVar6;
-      if (0 < *(int *)(param_2 + 0x10)) {
+      
+      // 复制文件路径到错误缓冲区
+      strcpy_s(_DAT_00000010, 0x100, file_path);
+      
+      // 计算文件路径哈希值用于错误处理
+      file_count = hash_value;
+      if (0 < *(int *)(file_params + 0x10)) {
         do {
-          uVar6 = uVar6 * 0x1f + (longlong)*(char *)(uVar8 + *(longlong *)(param_2 + 8));
-          uVar7 = (int)uVar8 + 1;
-          uVar8 = (ulonglong)uVar7;
-        } while ((int)uVar7 < *(int *)(param_2 + 0x10));
+          hash_value = hash_value * 0x1f + (longlong)*(char *)(file_count + *(longlong *)(file_params + 8));
+          char_index = (int)file_count + 1;
+          file_count = (ulonglong)char_index;
+        } while ((int)char_index < *(int *)(file_params + 0x10));
       }
-      lRam0000000000000128 = lVar2;
-      uStack_2c8 = uVar6;
-      FUN_180068860(param_1 + 0x330,alStack_288,uVar8,param_2);
-      *(undefined8 *)(alStack_288[0] + 0x118) = 0;
-      puStack_268 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_2e8);
+      
+      // 保存文件句柄和哈希值
+      global_file_handle = file_handle;
+      access_flags = hash_value;
+      
+      // 创建新的文件表项
+      create_file_table_entry(engine_context + 0x330, hash_params, file_count, file_params);
+      *(undefined8 *)(hash_params[0] + 0x118) = 0;
+      temp_ptr1 = &UNK_18098bcb0;
+      
+      // 触发安全检查
+      security_check_failed(security_cookie ^ (ulonglong)stack_buffer);
     }
-    puVar5 = (undefined8 *)(uVar8 * 0x130 + param_1 + 0x2003d0);
-    *(ulonglong *)(param_1 + 0x2133d0) = uVar8 + 1;
+    
+    // 分配新的文件表项
+    file_entry = (undefined8 *)(file_count * 0x130 + engine_context + 0x2003d0);
+    *(ulonglong *)(engine_context + 0x2133d0) = file_count + 1;
   }
   else {
-    *(undefined8 *)(param_1 + 0x2133d8) = *puVar5;
+    // 重用现有的文件表项
+    *(undefined8 *)(engine_context + 0x2133d8) = *file_entry;
   }
-                    // WARNING: Subroutine does not return
-  memset(puVar5 + 1,0,0x128);
+  
+  // 初始化文件表项
+  memset(file_entry + 1, 0, 0x128);
 }
 
 
