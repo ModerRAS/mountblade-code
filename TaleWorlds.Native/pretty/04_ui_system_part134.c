@@ -1537,7 +1537,8 @@ uint64_t UISystem_MatchComponentType(longlong param_1,longlong param_2,int32_t *
 
 
 
-uint64_t FUN_180748401(void)
+// 函数: uint64_t FUN_180748401(void) - UI组件类型匹配简化函数
+uint64_t UISystem_MatchComponentTypeSimple(void)
 
 {
   int iVar1;
@@ -1600,8 +1601,8 @@ uint64_t FUN_180748401(void)
 
 
 
-// 函数: void FUN_1807484eb(void)
-void FUN_1807484eb(void)
+// 函数: void FUN_1807484eb(void) - UI空操作函数3
+void UISystem_NoOperation3(void)
 
 {
   return;
@@ -1609,7 +1610,8 @@ void FUN_1807484eb(void)
 
 
 
-uint64_t FUN_1807484f6(void)
+// 函数: uint64_t FUN_1807484f6(void) - UI组件类型匹配失败函数
+uint64_t UISystem_ComponentTypeMatchFailed(void)
 
 {
   return 8;
