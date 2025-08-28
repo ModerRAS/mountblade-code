@@ -46,6 +46,40 @@
 #define ERROR_CERT_CHAIN             0x80092009
 
 /*==============================================================================
+ * 全局变量声明
+ *==============================================================================*/
+
+/** 系统安全保护值 */
+extern uint64_t g_system_security_guard;
+/** 目标证书名称 */
+extern char* g_target_certificate_name;
+/** 链式证书名称 */
+extern char* g_chain_certificate_name;
+/** 系统验证接口 */
+extern void* g_system_validation_interface;
+/** 系统验证接口 */
+extern void* g_system_verification_interface;
+/** 系统清理接口 */
+extern void* g_system_cleanup_interface;
+/** 证书错误日志句柄 */
+extern int32_t* g_certificate_error_log;
+/** 证书错误上下文 */
+extern int32_t* g_certificate_error_context;
+/** 证书错误详细信息 */
+extern int32_t* g_certificate_error_details;
+/** 证书链错误信息 */
+extern int32_t* g_certificate_chain_error;
+/** 系统库路径 */
+extern short* g_system_library_path;
+/** 系统库标志 */
+extern uint32_t g_system_library_flags;
+
+/** 优化的栈缓冲区 */
+static int8_t optimized_stack_buffer[16];
+/** 优化的时间缓冲区 */
+static int8_t optimized_time_buffer[16];
+
+/*==============================================================================
  * 类型定义
  *==============================================================================*/
 
