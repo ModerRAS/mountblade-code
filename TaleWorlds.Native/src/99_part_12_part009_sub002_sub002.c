@@ -428,18 +428,29 @@ undefined8 SimpleDataProcessor(undefined8 system_context)
 
 
 
-undefined8 FUN_1807cd453(void)
+/**
+ * 循环数据处理器 - 处理循环数据操作和状态管理
+ * 
+ * 功能：
+ * - 处理循环数据转换操作
+ * - 管理状态检查和验证
+ * - 执行循环内存操作
+ * - 处理缓冲区管理
+ * 
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+undefined8 LoopDataProcessor(void)
 
 {
-  char cVar1;
-  undefined1 uVar2;
-  undefined1 uVar3;
-  uint uVar4;
-  ulonglong uVar5;
-  int iVar6;
-  longlong unaff_RBX;
-  char unaff_SIL;
-  uint unaff_EDI;
+  char state_flag;
+  undefined1 validation_flag;
+  undefined1 processing_flag;
+  uint current_index;
+  ulonglong data_offset;
+  int iteration_count;
+  longlong system_context;
+  char context_flag;
+  uint target_index;
   
   do {
     if (*(int *)(unaff_RBX + 0xbec) == 0) {
