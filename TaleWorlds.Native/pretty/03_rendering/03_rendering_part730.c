@@ -552,182 +552,349 @@ uint32_t rendering_system_avx2_abs_difference_32byte(uint8_t (*block1)[32], int 
 
 
 
-undefined8
-FUN_180697600(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4,
-             undefined1 (*param_5) [32])
+// =============================================================================
+// 8. AVX2平均绝对差值计算函数（32字节块，不同寻址）
+// =============================================================================
 
+/**
+ * 渲染系统AVX2平均绝对差值计算器 - 32字节块版本（不同寻址模式）
+ * 
+ * 该函数使用AVX2指令集计算两个图像块之间的平均绝对差值，
+ * 专门针对32字节数据块进行优化，使用不同的内存寻址模式。
+ * 
+ * @param block1        第一个图像块数据（32字节数组）
+ * @param stride1       第一个块的行跨度
+ * @param block2        第二个图像块数据（32字节数组）
+ * @param stride2       第二个块的行跨度
+ * @param avg_block     平均值块数据（32字节数组）
+ * @return              平均绝对差值的总和
+ * 
+ * 算法特点：
+ * - 使用vpavgb_avx2计算平均值
+ * - 使用vpsadbw_avx2计算绝对差值和
+ * - 处理32行数据
+ * - 使用不同的内存寻址模式
+ * - AVX2指令集优化
+ */
+uint64_t rendering_system_avx2_mean_abs_difference_32byte_alt_addr(uint8_t (*block1)[32], int stride1, uint8_t (*block2)[32], int stride2, uint8_t (*avg_block)[32])
 {
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
+  __m128i low_result;
+  __m256i sum_vec, avg_vec, sad_vec;
+  longlong row_count;
+  __m256i temp_vec, result_vec;
   
-  lVar3 = 0x20;
-  auVar5 = ZEXT832(0) << 0x40;
+  row_count = 32;
+  result_vec = _mm256_setzero_si256();
+  
+  // 处理32行数据
   do {
-    auVar4 = vpavgb_avx2(*param_5,*param_3);
-    auVar2 = vpsadbw_avx2(auVar4,*param_1);
-    auVar4 = vpavgb_avx2(param_5[1],param_3[1]);
-    auVar4 = vpsadbw_avx2(auVar4,param_1[1]);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    param_5 = param_5 + 2;
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4);
-    auVar4 = vpaddd_avx2(auVar4,auVar2);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return CONCAT44((int)((ulonglong)param_5 >> 0x20),auVar1._0_4_);
+    // 计算平均值并求绝对差值和
+    avg_vec = _mm256_avg_epu8(_mm256_loadu_si256((__m256i*)avg_block), 
+                             _mm256_loadu_si256((__m256i*)block2));
+    sad_vec = _mm256_sad_epu8(avg_vec, _mm256_loadu_si256((__m256i*)block1));
+    
+    // 处理下一行（使用不同的寻址模式）
+    avg_vec = _mm256_avg_epu8(_mm256_loadu_si256((__m256i*)(avg_block + 1)), 
+                             _mm256_loadu_si256((__m256i*)(block2 + 1)));
+    temp_vec = _mm256_sad_epu8(avg_vec, _mm256_loadu_si256((__m256i*)(block1 + 1)));
+    
+    // 更新指针（使用不同的寻址模式）
+    block1 = (uint8_t (*)[32])((uint8_t*)block1 + stride1);
+    avg_block += 2;
+    block2 = (uint8_t (*)[32])((uint8_t*)block2 + stride2);
+    
+    // 累加结果
+    temp_vec = _mm256_add_epi32(temp_vec, sad_vec);
+    result_vec = _mm256_add_epi32(temp_vec, result_vec);
+    row_count--;
+  } while (row_count != 0);
+  
+  // 最终结果汇总
+  temp_vec = _mm256_srli_si256(result_vec, 8);
+  result_vec = _mm256_add_epi32(temp_vec, result_vec);
+  low_result = _mm_add_epi32(_mm256_extracti128_si256(result_vec, 1), 
+                             _mm256_extracti128_si256(result_vec, 0));
+  
+  return ((uint64_t)(uint32_t)avg_block << 32) | (uint32_t)_mm_extract_epi32(low_result, 0);
 }
 
 
 
-undefined4
-FUN_180697680(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4)
+// =============================================================================
+// 9. AVX2绝对差值计算函数（32字节块，不同寻址）
+// =============================================================================
 
+/**
+ * 渲染系统AVX2绝对差值计算器 - 32字节块版本（不同寻址模式）
+ * 
+ * 该函数使用AVX2指令集计算两个图像块之间的绝对差值总和，
+ * 专门针对32字节数据块进行优化，使用不同的内存寻址模式。
+ * 
+ * @param block1        第一个图像块数据（32字节数组）
+ * @param stride1       第一个块的行跨度
+ * @param block2        第二个图像块数据（32字节数组）
+ * @param stride2       第二个块的行跨度
+ * @return              绝对差值的总和
+ * 
+ * 算法特点：
+ * - 使用vpsadbw_avx2计算绝对差值和
+ * - 处理32行数据
+ * - 使用不同的内存寻址模式
+ * - AVX2指令集优化
+ * - 高效的内存访问模式
+ */
+uint32_t rendering_system_avx2_abs_difference_32byte_alt_addr(uint8_t (*block1)[32], int stride1, uint8_t (*block2)[32], int stride2)
 {
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
+  __m128i low_result;
+  __m256i sum_vec, sad_vec;
+  longlong row_count;
+  __m256i temp_vec, result_vec;
   
-  lVar3 = 0x20;
-  auVar5 = ZEXT832(0) << 0x40;
+  row_count = 32;
+  result_vec = _mm256_setzero_si256();
+  
+  // 处理32行数据
   do {
-    auVar4 = vpsadbw_avx2(*param_3,*param_1);
-    auVar2 = vpsadbw_avx2(param_3[1],param_1[1]);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4);
-    auVar4 = vpaddd_avx2(auVar2,auVar4);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return auVar1._0_4_;
+    // 计算绝对差值和
+    sad_vec = _mm256_sad_epu8(_mm256_loadu_si256((__m256i*)block2), 
+                             _mm256_loadu_si256((__m256i*)block1));
+    temp_vec = _mm256_sad_epu8(_mm256_loadu_si256((__m256i*)(block2 + 1)),
+                              _mm256_loadu_si256((__m256i*)(block1 + 1)));
+    
+    // 更新指针（使用不同的寻址模式）
+    block1 = (uint8_t (*)[32])((uint8_t*)block1 + stride1);
+    block2 = (uint8_t (*)[32])((uint8_t*)block2 + stride2);
+    
+    // 累加结果
+    temp_vec = _mm256_add_epi32(temp_vec, sad_vec);
+    result_vec = _mm256_add_epi32(temp_vec, result_vec);
+    row_count--;
+  } while (row_count != 0);
+  
+  // 最终结果汇总
+  temp_vec = _mm256_srli_si256(result_vec, 8);
+  result_vec = _mm256_add_epi32(temp_vec, result_vec);
+  low_result = _mm_add_epi32(_mm256_extracti128_si256(result_vec, 1), 
+                             _mm256_extracti128_si256(result_vec, 0));
+  
+  return _mm_extract_epi32(low_result, 0);
 }
 
 
 
-undefined8
-FUN_1806976f0(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4,
-             undefined1 (*param_5) [32])
+// =============================================================================
+// 10. AVX2平均绝对差值计算函数（64字节块）
+// =============================================================================
 
+/**
+ * 渲染系统AVX2平均绝对差值计算器 - 64字节块版本
+ * 
+ * 该函数使用AVX2指令集计算两个图像块之间的平均绝对差值，
+ * 专门针对64字节数据块进行优化。
+ * 
+ * @param block1        第一个图像块数据（32字节数组）
+ * @param stride1       第一个块的行跨度
+ * @param block2        第二个图像块数据（32字节数组）
+ * @param stride2       第二个块的行跨度
+ * @param avg_block     平均值块数据（32字节数组）
+ * @return              平均绝对差值的总和
+ * 
+ * 算法特点：
+ * - 使用vpavgb_avx2计算平均值
+ * - 使用vpsadbw_avx2计算绝对差值和
+ * - 处理64行数据
+ * - AVX2指令集优化
+ */
+uint64_t rendering_system_avx2_mean_abs_difference_64byte(uint8_t (*block1)[32], int stride1, uint8_t (*block2)[32], int stride2, uint8_t (*avg_block)[32])
 {
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
+  __m128i low_result;
+  __m256i sum_vec, avg_vec, sad_vec;
+  longlong row_count;
+  __m256i temp_vec, result_vec;
   
-  lVar3 = 0x40;
-  auVar5 = ZEXT832(0) << 0x40;
+  row_count = 64;
+  result_vec = _mm256_setzero_si256();
+  
+  // 处理64行数据
   do {
-    auVar4 = vpavgb_avx2(*param_5,*param_3);
-    auVar2 = vpsadbw_avx2(auVar4,*param_1);
-    auVar4 = vpavgb_avx2(param_5[1],param_3[1]);
-    auVar4 = vpsadbw_avx2(auVar4,param_1[1]);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    param_5 = param_5 + 2;
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4);
-    auVar4 = vpaddd_avx2(auVar4,auVar2);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return CONCAT44((int)((ulonglong)param_5 >> 0x20),auVar1._0_4_);
+    // 计算平均值并求绝对差值和
+    avg_vec = _mm256_avg_epu8(_mm256_loadu_si256((__m256i*)avg_block), 
+                             _mm256_loadu_si256((__m256i*)block2));
+    sad_vec = _mm256_sad_epu8(avg_vec, _mm256_loadu_si256((__m256i*)block1));
+    
+    // 处理下一行
+    avg_vec = _mm256_avg_epu8(_mm256_loadu_si256((__m256i*)(avg_block + 1)), 
+                             _mm256_loadu_si256((__m256i*)(block2 + 1)));
+    temp_vec = _mm256_sad_epu8(avg_vec, _mm256_loadu_si256((__m256i*)(block1 + 1)));
+    
+    // 更新指针
+    block1 = (uint8_t (*)[32])((uint8_t*)block1 + stride1);
+    avg_block += 2;
+    block2 = (uint8_t (*)[32])((uint8_t*)block2 + stride2);
+    
+    // 累加结果
+    temp_vec = _mm256_add_epi32(temp_vec, sad_vec);
+    result_vec = _mm256_add_epi32(temp_vec, result_vec);
+    row_count--;
+  } while (row_count != 0);
+  
+  // 最终结果汇总
+  temp_vec = _mm256_srli_si256(result_vec, 8);
+  result_vec = _mm256_add_epi32(temp_vec, result_vec);
+  low_result = _mm_add_epi32(_mm256_extracti128_si256(result_vec, 1), 
+                             _mm256_extracti128_si256(result_vec, 0));
+  
+  return ((uint64_t)(uint32_t)avg_block << 32) | (uint32_t)_mm_extract_epi32(low_result, 0);
 }
 
 
 
-undefined4
-FUN_180697770(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4)
+// =============================================================================
+// 11. AVX2绝对差值计算函数（64字节块）
+// =============================================================================
 
+/**
+ * 渲染系统AVX2绝对差值计算器 - 64字节块版本
+ * 
+ * 该函数使用AVX2指令集计算两个图像块之间的绝对差值总和，
+ * 专门针对64字节数据块进行优化。
+ * 
+ * @param block1        第一个图像块数据（32字节数组）
+ * @param stride1       第一个块的行跨度
+ * @param block2        第二个图像块数据（32字节数组）
+ * @param stride2       第二个块的行跨度
+ * @return              绝对差值的总和
+ * 
+ * 算法特点：
+ * - 使用vpsadbw_avx2计算绝对差值和
+ * - 处理64行数据
+ * - AVX2指令集优化
+ * - 高效的内存访问模式
+ */
+uint32_t rendering_system_avx2_abs_difference_64byte(uint8_t (*block1)[32], int stride1, uint8_t (*block2)[32], int stride2)
 {
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [32];
-  longlong lVar3;
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
+  __m128i low_result;
+  __m256i sum_vec, sad_vec;
+  longlong row_count;
+  __m256i temp_vec, result_vec;
   
-  lVar3 = 0x40;
-  auVar5 = ZEXT832(0) << 0x40;
+  row_count = 64;
+  result_vec = _mm256_setzero_si256();
+  
+  // 处理64行数据
   do {
-    auVar4 = vpsadbw_avx2(*param_3,*param_1);
-    auVar2 = vpsadbw_avx2(param_3[1],param_1[1]);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4);
-    auVar4 = vpaddd_avx2(auVar2,auVar4);
-    auVar5 = vpaddd_avx2(auVar4,auVar5);
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  auVar4 = vpsrldq_avx2(auVar5,8);
-  auVar5 = vpaddd_avx2(auVar4,auVar5);
-  auVar1 = vpaddd_avx(auVar5._16_16_,auVar5._0_16_);
-  return auVar1._0_4_;
+    // 计算绝对差值和
+    sad_vec = _mm256_sad_epu8(_mm256_loadu_si256((__m256i*)block2), 
+                             _mm256_loadu_si256((__m256i*)block1));
+    temp_vec = _mm256_sad_epu8(_mm256_loadu_si256((__m256i*)(block2 + 1)),
+                              _mm256_loadu_si256((__m256i*)(block1 + 1)));
+    
+    // 更新指针
+    block1 = (uint8_t (*)[32])((uint8_t*)block1 + stride1);
+    block2 = (uint8_t (*)[32])((uint8_t*)block2 + stride2);
+    
+    // 累加结果
+    temp_vec = _mm256_add_epi32(temp_vec, sad_vec);
+    result_vec = _mm256_add_epi32(temp_vec, result_vec);
+    row_count--;
+  } while (row_count != 0);
+  
+  // 最终结果汇总
+  temp_vec = _mm256_srli_si256(result_vec, 8);
+  result_vec = _mm256_add_epi32(temp_vec, result_vec);
+  low_result = _mm_add_epi32(_mm256_extracti128_si256(result_vec, 1), 
+                             _mm256_extracti128_si256(result_vec, 0));
+  
+  return _mm_extract_epi32(low_result, 0);
 }
 
 
 
 
 
-// 函数: void FUN_1806977e0(undefined1 (*param_1) [32],int param_2,longlong *param_3,int param_4,
-void FUN_1806977e0(undefined1 (*param_1) [32],int param_2,longlong *param_3,int param_4,
-                  undefined1 (*param_5) [16])
+// =============================================================================
+// 12. AVX2多参考帧绝对差值计算函数
+// =============================================================================
 
+/**
+ * 渲染系统AVX2多参考帧绝对差值计算器
+ * 
+ * 该函数使用AVX2指令集计算源图像块与多个参考帧之间的绝对差值，
+ * 专门用于视频编码中的多参考帧运动估计。
+ * 
+ * @param src_block     源图像块数据（32字节数组）
+ * @param src_stride    源图像块行跨度
+ * @param ref_frames    参考帧数组指针（包含4个参考帧的地址）
+ * @param ref_stride    参考帧行跨度
+ * @param result        计算结果数组（16字节）
+ * 
+ * 算法特点：
+ * - 使用vpsadbw_avx2计算绝对差值和
+ * - 同时处理4个参考帧
+ * - 使用AVX2指令集进行并行计算
+ * - 高效的内存访问模式
+ * - 适用于视频编码中的多参考帧运动估计
+ */
+void rendering_system_avx2_multi_reference_frame_calculator(uint8_t (*src_block)[32], int src_stride, long long *ref_frames, int ref_stride, uint8_t (*result)[16])
 {
-  undefined1 auVar1 [32];
-  undefined1 auVar2 [16];
-  undefined1 auVar3 [32];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  undefined1 (*pauVar6) [32];
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong lVar10;
-  undefined1 auVar11 [32];
-  undefined1 auVar12 [32];
+  __m256i src_vec;
+  __m128i final_result;
+  __m256i sum_vec1, sum_vec2, sum_vec3, sum_vec4;
+  __m256i temp_vec1, temp_vec2, result_vec1, result_vec2;
+  uint8_t (*current_ref)[32];
+  longlong ref_offset1, ref_offset2, ref_offset3;
+  longlong row_count;
+  __m256i sad_vec;
   
-  pauVar6 = (undefined1 (*) [32])param_3[2];
-  lVar10 = param_3[1] - (longlong)pauVar6;
-  lVar9 = param_3[3] - (longlong)pauVar6;
-  auVar12 = ZEXT832(0) << 0x40;
-  lVar8 = *param_3 - (longlong)pauVar6;
-  lVar7 = 0x20;
-  auVar11 = auVar12;
-  auVar3 = auVar12;
-  auVar4 = auVar12;
+  // 获取参考帧地址和偏移量
+  current_ref = (uint8_t (*)[32])ref_frames[2];
+  ref_offset1 = ref_frames[1] - (longlong)current_ref;
+  ref_offset2 = ref_frames[3] - (longlong)current_ref;
+  sum_vec2 = _mm256_setzero_si256();
+  ref_offset3 = *ref_frames - (longlong)current_ref;
+  row_count = 32;
+  sum_vec1 = sum_vec2;
+  sum_vec3 = sum_vec2;
+  sum_vec4 = sum_vec2;
+  
+  // 处理32行数据
   do {
-    auVar1 = *param_1;
-    auVar5 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar8 + (longlong)pauVar6));
-    auVar12 = vpaddd_avx2(auVar5,auVar12);
-    auVar5 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar10 + (longlong)pauVar6));
-    auVar11 = vpaddd_avx2(auVar5,auVar11);
-    auVar5 = vpsadbw_avx2(auVar1,*pauVar6);
-    auVar3 = vpaddd_avx2(auVar5,auVar3);
-    auVar1 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar9 + (longlong)pauVar6));
-    pauVar6 = (undefined1 (*) [32])(*pauVar6 + param_4);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    auVar4 = vpaddd_avx2(auVar1,auVar4);
-    lVar7 = lVar7 + -1;
-  } while (lVar7 != 0);
-  auVar11 = vpslldq_avx2(auVar11,4);
-  auVar12 = vpor_avx2(auVar11,auVar12);
-  auVar11 = vpslldq_avx2(auVar4,4);
-  auVar11 = vpor_avx2(auVar11,auVar3);
-  auVar3 = vpunpcklqdq_avx2(auVar12,auVar11);
-  auVar12 = vpunpckhqdq_avx2(auVar12,auVar11);
-  auVar12 = vpaddd_avx2(auVar12,auVar3);
-  auVar2 = vpaddd_avx(auVar12._16_16_,auVar12._0_16_);
-  *param_5 = auVar2;
+    // 加载源图像块
+    src_vec = _mm256_loadu_si256((__m256i*)src_block);
+    
+    // 计算与第一个参考帧的绝对差值和
+    sad_vec = _mm256_sad_epu8(src_vec, _mm256_loadu_si256((__m256i*)(ref_offset3 + (longlong)current_ref)));
+    sum_vec2 = _mm256_add_epi32(sad_vec, sum_vec2);
+    
+    // 计算与第二个参考帧的绝对差值和
+    sad_vec = _mm256_sad_epu8(src_vec, _mm256_loadu_si256((__m256i*)(ref_offset1 + (longlong)current_ref)));
+    sum_vec1 = _mm256_add_epi32(sad_vec, sum_vec1);
+    
+    // 计算与第三个参考帧的绝对差值和
+    sad_vec = _mm256_sad_epu8(src_vec, _mm256_loadu_si256((__m256i*)current_ref));
+    sum_vec3 = _mm256_add_epi32(sad_vec, sum_vec3);
+    
+    // 计算与第四个参考帧的绝对差值和
+    sad_vec = _mm256_sad_epu8(src_vec, _mm256_loadu_si256((__m256i*)(ref_offset2 + (longlong)current_ref)));
+    current_ref = (uint8_t (*)[32])((uint8_t*)current_ref + ref_stride);
+    src_block = (uint8_t (*)[32])((uint8_t*)src_block + src_stride);
+    sum_vec4 = _mm256_add_epi32(sad_vec, sum_vec4);
+    
+    row_count--;
+  } while (row_count != 0);
+  
+  // 结果处理：使用AVX2指令进行数据重组和累加
+  temp_vec1 = _mm256_slli_si256(sum_vec1, 4);
+  sum_vec2 = _mm256_or_si256(temp_vec1, sum_vec2);
+  temp_vec1 = _mm256_slli_si256(sum_vec4, 4);
+  temp_vec1 = _mm256_or_si256(temp_vec1, sum_vec3);
+  result_vec1 = _mm256_unpacklo_epi64(sum_vec2, temp_vec1);
+  sum_vec2 = _mm256_unpackhi_epi64(sum_vec2, temp_vec1);
+  sum_vec2 = _mm256_add_epi32(sum_vec2, result_vec1);
+  final_result = _mm_add_epi32(_mm256_extracti128_si256(sum_vec2, 1), 
+                               _mm256_extracti128_si256(sum_vec2, 0));
+  
+  *result = (__m128i)final_result;
   return;
 }
 
