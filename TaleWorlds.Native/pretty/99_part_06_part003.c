@@ -1137,10 +1137,10 @@ LAB_1803a6c0f:
     }
     if (plVar6 != param_1) {
         if ((int)plVar6[4] <= *param_2) {
-            if ((int)plVar6[4] < *param_2) goto FUN_1803a6d94;
+            if ((int)plVar6[4] < *param_2) goto SystemResourceInitializer;
             if ((*(int *)((int64_t)plVar6 + 0x24) <= param_2[1]) &&
                ((*(int *)((int64_t)plVar6 + 0x24) < param_2[1] || ((int)plVar6[5] <= param_2[2]))))
-            goto FUN_1803a6d94;
+            goto SystemResourceInitializer;
         }
     }
     plVar2 = (int64_t *)*param_1;
@@ -1203,9 +1203,9 @@ LAB_1803a6d2f:
             goto LAB_1803a6c90;
         }
     }
-    puVar4 = (uint64_t *)FUN_1803a6db0(param_1, auStack_18);
+    puVar4 = (uint64_t *)SystemResourceAllocator(param_1, auStack_18);
     plVar6 = (int64_t *)*puVar4;
-FUN_1803a6d94:
+SystemResourceInitializer:
     return (int64_t)plVar6 + 0x2c;
 }
 

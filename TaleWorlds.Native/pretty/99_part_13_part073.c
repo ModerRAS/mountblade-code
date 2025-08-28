@@ -785,7 +785,7 @@ void ResourceConfigurationApply(int64_t config_ptr, uint64_t resource_ptr)
   }
   iVar1 = SystemValidator(param_2,puVar2,param_1 + 0x80);
   if (((iVar1 != 0x36) && (iVar1 == 0)) &&
-     (iVar1 = FUN_180739b90(param_2,*(int32_t *)(param_1 + 0x80),&uStack_18), iVar1 == 0)) {
+     (iVar1 = ResourceChecker(param_2,*(int32_t *)(param_1 + 0x80),&uStack_18), iVar1 == 0)) {
                     // WARNING: Subroutine does not return
     SystemCleanupInvoker();
   }
@@ -977,7 +977,7 @@ void ResourceConfigurationSet(uint64_t *config_ptr, int64_t *resource_ptr)
         uRam0000000180c4f504 = CONCAT22(uStack_1a,uStack_1c);
         system_system_config = uStack_28;
         uRam0000000180c4f500 = uStack_20;
-        FUN_1808fcb30(&system_state_f508);
+        SystemStateCleaner(&system_state_f508);
       }
     }
     uVar4 = uRam0000000180c4f504;
@@ -1172,7 +1172,7 @@ int32_t ResourceHandleAcquire(int64_t resource_ptr, int64_t access_params)
   if ((((*(ushort *)(param_2 + 0xe) & 0x3fff) < 2) && (*(int64_t *)(param_2 + 0xd0) != 0)) &&
      ((*(uint *)(param_2 + 0xf8) >> 7 & 1) == 0)) {
     iVar2 = EventHandler(&uStackX_10,*(uint64_t *)(param_1 + 0x38));
-    if ((iVar2 != 0) || (iVar2 = FUN_18088c620(*(uint64_t *)(param_2 + 0xd0)), iVar2 != 0))
+    if ((iVar2 != 0) || (iVar2 = EventDispatcher(*(uint64_t *)(param_2 + 0xd0)), iVar2 != 0))
     goto LAB_1808dac65;
     lVar1 = *(int64_t *)(param_2 + 0xd0);
     iVar2 = 0;
