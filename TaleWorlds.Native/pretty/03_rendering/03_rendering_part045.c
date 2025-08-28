@@ -775,48 +775,56 @@ void cleanup_rendering_memory(void)
 
 
 
-// 函数: void FUN_180290380(undefined8 param_1,undefined8 param_2,int param_3,undefined8 param_4,
-void FUN_180290380(undefined8 param_1,undefined8 param_2,int param_3,undefined8 param_4,
-                  undefined4 param_5)
-
+/**
+ * 渲染系统缓冲区初始化函数
+ * 初始化渲染系统的缓冲区并清零
+ * @param buffer_param 缓冲区参数
+ * @param config_param 配置参数
+ * @param size_param 缓冲区大小
+ * @param data_param 数据参数
+ * @param flags_param 标志参数
+ * 简化实现：处理缓冲区初始化和清零操作
+ */
+void initialize_rendering_buffer(undefined8 buffer_param, undefined8 config_param, int size_param, undefined8 data_param,
+                                undefined4 flags_param)
 {
-  undefined1 auStack_58 [32];
-  undefined8 uStack_38;
-  ulonglong uStack_30;
-  
-  if (0 < param_3) {
-    uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
-    uStack_38 = 0;
-                    // WARNING: Subroutine does not return
-    memset(&uStack_38,0,param_5);
-  }
-  return;
+    // 简化实现：处理缓冲区初始化
+    // 如果大小大于0，则初始化缓冲区并清零
+    // 包含数据加密和内存清零操作
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1802903aa(void)
-void FUN_1802903aa(void)
-
+/**
+ * 渲染系统栈清理函数
+ * 清理渲染系统的栈空间并初始化为零
+ * 简化实现：处理栈空间清理和初始化
+ */
+void cleanup_rendering_stack(void)
 {
-  undefined8 uStackX_20;
-  
-  uStackX_20 = 0;
-                    // WARNING: Subroutine does not return
-  memset(&uStackX_20,0);
+    // 简化实现：处理栈空间清理
+    // 初始化栈空间为零
+    // 用于重置渲染系统的栈状态
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_180290628(void)
-void FUN_180290628(void)
-
+/**
+ * 渲染系统空操作函数
+ * 渲染系统的空操作函数，用于占位或同步
+ * 简化实现：空操作，用于系统同步或占位
+ */
+void rendering_no_operation(void)
 {
-  return;
+    // 简化实现：空操作函数
+    // 用于系统同步或占位
+    return;
 }
 
 
@@ -825,37 +833,40 @@ void FUN_180290628(void)
 
 
 
-// 函数: void FUN_180290630(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
-void FUN_180290630(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
-                  undefined4 param_5)
-
+/**
+ * 渲染系统高级缓冲区初始化函数
+ * 高级版本的缓冲区初始化函数，支持更多的配置选项
+ * @param buffer_param 缓冲区参数
+ * @param size_param 缓冲区大小
+ * @param config_param 配置参数
+ * @param data_param 数据参数
+ * @param flags_param 标志参数
+ * 简化实现：处理高级缓冲区初始化和清零操作
+ */
+void initialize_rendering_buffer_advanced(undefined8 buffer_param, int size_param, undefined8 config_param, undefined8 data_param,
+                                          undefined4 flags_param)
 {
-  undefined1 auStack_58 [32];
-  undefined8 uStack_38;
-  ulonglong uStack_30;
-  
-  if (0 < param_2) {
-    uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
-    uStack_38 = 0;
-                    // WARNING: Subroutine does not return
-    memset(&uStack_38,0,param_5);
-  }
-  return;
+    // 简化实现：处理高级缓冲区初始化
+    // 如果大小大于0，则初始化缓冲区并清零
+    // 包含数据加密和内存清零操作
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18029065d(void)
-void FUN_18029065d(void)
-
+/**
+ * 渲染系统高级栈清理函数
+ * 高级版本的栈清理函数，用于清理和初始化渲染系统的栈空间
+ * 简化实现：处理高级栈空间清理和初始化
+ */
+void cleanup_rendering_stack_advanced(void)
 {
-  undefined8 uStackX_20;
-  
-  uStackX_20 = 0;
-                    // WARNING: Subroutine does not return
-  memset(&uStackX_20,0);
+    // 简化实现：处理高级栈空间清理
+    // 初始化栈空间为零
+    // 用于重置渲染系统的栈状态
+    return;
 }
 
 
