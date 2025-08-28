@@ -576,16 +576,16 @@ ulonglong UISystem_FindComponent_SearchAlgorithm(uint64_t param_1,longlong param
   if (param_5 != (uint64_t *)0x0) {
     *param_5 = 0;
   }
-  uVar2 = FUN_18078cde0(param_1,0xffffffff,param_2,&lStackX_10);
+  uVar2 = UISystem_ComponentFinder(param_1,0xffffffff,param_2,&lStackX_10);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_180743ab0(param_1,param_2);
+    uVar2 = UISystem_ComponentMatcher(param_1,param_2);
     if ((int)uVar2 == 0) {
-      uVar1 = FUN_1807568a0(lStackX_10,param_2,param_3,param_4,1,(char)uVar2);
+      uVar1 = UISystem_ComponentProcessor(lStackX_10,param_2,param_3,param_4,1,(char)uVar2);
       uVar2 = (ulonglong)uVar1;
       if (uVar1 == 0) {
-        uVar2 = FUN_180758960(lStackX_10);
+        uVar2 = UISystem_ComponentValidator(lStackX_10);
         if ((int)uVar2 == 0) {
-          uVar2 = func_0x000180756db0(lStackX_10,1);
+          uVar2 = UISystem_ComponentVerifier(lStackX_10,1);
           if ((int)uVar2 == 0) {
             if (param_5 != (uint64_t *)0x0) {
               *param_5 = *(uint64_t *)(lStackX_10 + 0x50);
@@ -595,7 +595,7 @@ ulonglong UISystem_FindComponent_SearchAlgorithm(uint64_t param_1,longlong param
         }
       }
       else {
-        FUN_180758220(lStackX_10,0x52);
+        UISystem_ComponentStateSetter(lStackX_10,0x52);
       }
     }
   }

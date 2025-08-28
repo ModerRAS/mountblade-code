@@ -253,8 +253,8 @@
 // UI系统状态设置器 - 设置状态
 #define UISystem_StateSetter FUN_18085c6f0
 
-// UI系统状态获取器 - 获取状态
-#define UISystem_StateGetter FUN_18085f960
+// UI系统状态获取器 - 获取系统状态
+#define UISystem_StateGetter FUN_18085ab70
 
 // UI系统数据计算器 - 计算数据
 #define UISystem_DataCalculator FUN_180854610
@@ -297,6 +297,9 @@
 
 // UI系统状态检查器 - 检查系统状态
 #define UISystem_StatusChecker FUN_1808c7d90
+
+// UI系统外部资源管理器 - 管理外部资源
+#define UISystem_ExternalResourceManager FUN_18084cde0
 
 // UI系统组件处理器 - 处理组件操作
 #define UISystem_ComponentProcessor FUN_1808c6bf0
@@ -767,7 +770,7 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
   }
   else {
     if (cVar4 != '\0') {
-      iVar5 = FUN_18085ab70(param_1);
+      iVar5 = UISystem_StateGetter(param_1);
       iVar5 = UISystem_StateUpdater(*(uint64_t *)(param_1 + 0x160),param_2,
                             (longlong)iVar5 + *(longlong *)(param_1 + 0x10),1,
                             in_stack_ffffffffffffff08 & 0xffffffffffffff00,0);
@@ -1013,7 +1016,7 @@ LAB_18085a6ac:
   }
   if (bVar3) {
     if (!bVar4) {
-      iVar5 = FUN_18085ab70(param_1);
+      iVar5 = UISystem_StateGetter(param_1);
       in_stack_ffffffffffffff08 = in_stack_ffffffffffffff08 & 0xffffffffffffff00;
       iVar5 = UISystem_StateUpdater(*(uint64_t *)(param_1 + 0x160),param_2,
                             (longlong)iVar5 + *(longlong *)(param_1 + 0x10),0,
@@ -1214,7 +1217,7 @@ LAB_18085a6ac:
   if (bVar4) {
     lVar17 = *(longlong *)(unaff_RBP + 0x57);
     if (bVar5) goto LAB_18085a8c1;
-    iVar6 = FUN_18085ab70(lVar17);
+    iVar6 = UISystem_StateGetter(lVar17);
     in_stack_00000020 = in_stack_00000020 & 0xffffffffffffff00;
     iVar6 = UISystem_StateUpdater(*(uint64_t *)(lVar17 + 0x160),*(uint64_t *)(unaff_RBP + 0x5f),
                           (longlong)iVar6 + *(longlong *)(lVar17 + 0x10),0,in_stack_00000020);
