@@ -1,7 +1,61 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 04_ui_system_part006.c - UI系统字符串处理和资源管理模块
-// 本文件包含6个函数，主要处理UI系统的字符串操作、内存分配、资源管理和路径处理
+// 本文件包含11个函数，主要处理UI系统的字符串操作、内存分配、资源管理和路径处理
+// 
+// 主要功能：
+// 1. 字符串数据处理：ui_process_string_data - 处理UI字符串数据的内存复制和初始化
+// 2. 字符串缓冲区分配：ui_allocate_string_buffer - 为UI系统分配字符串缓冲区
+// 3. 错误消息格式化：ui_format_error_message - 格式化UI系统的错误消息
+// 4. 警告消息格式化：ui_format_warning_message - 格式化UI系统的警告消息
+// 5. 资源数据处理：ui_process_resource_data - 处理UI系统的资源数据
+// 6. 资源管理器执行：ui_execute_resource_manager - 执行UI系统的资源管理器
+// 7. 资源加载器初始化：ui_initialize_resource_loader - 初始化UI系统的资源加载器
+// 8. 路径字符串处理：ui_process_path_string - 处理UI系统的路径字符串
+// 9. 资源缓存清理：ui_cleanup_resource_cache - 清理UI系统的资源缓存
+// 10. 资源查找：ui_find_resource_by_name - 根据名称查找UI资源
+// 11. 资源内存释放：ui_free_resource_memory - 释放UI系统的资源内存
+// 12. 资源节点插入：ui_insert_resource_node - 插入UI系统的资源节点
+
+// 全局常量定义
+#define MEMORY_POOL_HANDLE      _DAT_180c8ed18
+#define RESOURCE_MANAGER_HANDLE _DAT_180c967f0
+#define EMPTY_STRING_PTR       UNK_180a3c3e0
+#define NULL_STRING_PTR        UNK_18098bcb0
+#define ERROR_FORMAT_PTR       UNK_1809fcc28
+#define WARNING_FORMAT_PTR     UNK_1809fcc28
+#define ERROR_TEMPLATE_STRING  UNK_180a3e3d8
+#define WARNING_TEMPLATE_STRING UNK_180a3e3f0
+
+// 函数别名定义
+#define allocate_string_memory  FUN_180627910
+#define allocate_memory_buffer  FUN_1806277c0
+#define copy_string_data        memcpy
+#define release_memory_buffer   FUN_18064e900
+#define allocate_ui_memory      FUN_18062b1e0
+#define copy_string_content     memcpy
+#define copy_error_message      strcpy_s
+#define copy_warning_message    strcpy_s
+#define process_ui_resource     FUN_180657620
+#define initialize_resource_stack FUN_180657040
+#define process_resource_string FUN_180624af0
+#define find_resource_by_id     FUN_180657fa0
+#define reallocate_resource_array FUN_18062b420
+#define move_resource_data      memmove
+#define free_resource_memory    FUN_18064e900
+#define process_resource_path   FUN_180627ae0
+#define compare_resource_names  FUN_180657530
+#define process_resource_config FUN_1806279c0
+#define load_resource_list      FUN_18062c5f0
+#define validate_security_cookie FUN_1808fc050
+#define insert_resource_node    FUN_18066bdc0
+
+// 全局变量定义
+#define GLOBAL_MANAGER_CONTEXT _DAT_180c91038
+#define STACK_POINTER_78        plStack_78
+#define STACK_POINTER_70        plStack_70
+#define STACK_POINTER_68        plStack_68
+#define STACK_POINTER_X_8       plStackX_8
 
 // 函数: ui_process_string_data - 处理UI字符串数据
 // 参数: data_context - 数据上下文指针, option_flags - 选项标志, callback_func - 回调函数, security_param - 安全参数
@@ -127,12 +181,12 @@ ui_format_warning_message(undefined8 warning_code, undefined8 *output_buffer, un
 
 
 // 函数: ui_process_resource_data - 处理UI资源数据
-// 参数: param_1 - 资源ID, param_2 - 资源数据, param_3/4 - 处理参数
+// 参数: resource_id - 资源ID, resource_data - 资源数据, process_options - 处理选项, security_param - 安全参数
 // 功能: 处理UI系统的资源数据，调用资源处理函数进行数据转换
-void ui_process_resource_data(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void ui_process_resource_data(undefined8 resource_id, undefined8 resource_data, undefined8 process_options, undefined8 security_param)
 
 {
-  FUN_180657620(param_1, _DAT_180c967f0, param_3, param_4, 0xfffffffffffffffe);
+  process_ui_resource(resource_id, RESOURCE_MANAGER_HANDLE, process_options, security_param, 0xfffffffffffffffe);
   return;
 }
 
@@ -143,62 +197,62 @@ void ui_process_resource_data(undefined8 param_1, undefined8 param_2, undefined8
 
 
 // 函数: ui_execute_resource_manager - 执行UI资源管理器
-// 参数: param_1 - 管理器指针
+// 参数: manager_context - 管理器上下文指针
 // 功能: 执行UI系统的资源管理器，处理资源加载、卸载和管理操作
-void ui_execute_resource_manager(longlong *param_1)
+void ui_execute_resource_manager(longlong *manager_context)
 
 {
-  byte status_flag;
+  byte processing_status;
   bool comparison_result;
-  undefined8 *resource_ptr;
+  undefined8 *current_resource;
   undefined8 *next_resource;
-  char char_val;
-  longlong resource_id;
+  char character_value;
+  longlong resource_identifier;
   longlong *manager_ptr;
-  byte *string_ptr;
-  byte *temp_string;
-  undefined8 *temp_ptr;
-  byte *buffer_ptr;
-  int int_val;
-  ulonglong index;
-  int loop_counter;
-  longlong *array_ptr;
-  longlong temp_long;
-  ulonglong array_size;
-  byte *char_buffer;
-  byte *temp_buffer;
-  ulonglong buffer_size;
-  longlong *resource_array;
-  uint resource_count;
-  longlong resource_data;
-  longlong *plStackX_8;
-  undefined *string_handler;
   byte *string_data;
+  byte *temp_string;
+  undefined8 *temp_pointer;
+  byte *buffer_pointer;
+  int comparison_value;
+  ulonglong resource_index;
+  int iteration_count;
+  longlong *array_pointer;
+  longlong temp_value;
+  ulonglong array_capacity;
+  byte *character_buffer;
+  byte *temp_buffer;
+  ulonglong buffer_capacity;
+  longlong *resource_collection;
+  uint resource_total;
+  longlong resource_info;
+  longlong *stack_pointer_8;
+  undefined *string_handler;
+  byte *string_content;
   uint string_length;
   ulonglong data_size;
-  undefined *format_ptr;
-  undefined1 *output_ptr;
-  uint output_size;
+  undefined *format_handler;
+  undefined1 *output_buffer;
+  uint output_length;
   ulonglong temp_size;
-  undefined4 allocation_flag;
+  undefined4 allocation_mode;
   undefined8 *resource_list;
-  undefined8 *resource_end;
-  undefined8 resource_count_var;
+  undefined8 *list_end;
+  undefined8 resource_counter;
   undefined4 temp_flag;
-  undefined8 stack_var;
+  undefined8 security_cookie;
   
-  stack_var = 0xfffffffffffffffe;
-  _DAT_180c91038 = param_1;
-  if (param_1 != (longlong *)0x0) {
-    (**(code **)(*param_1 + 8))();
+  security_cookie = 0xfffffffffffffffe;
+  GLOBAL_MANAGER_CONTEXT = manager_context;
+  if (manager_context != (longlong *)0x0) {
+    (**(code **)(*manager_context + 8))();
   }
-  plStack_78 = (longlong *)0x0;
-  plStack_70 = (longlong *)0x0;
-  buffer_size = 0;
-  plStack_68 = (longlong *)0x0;
-  allocation_flag = 3;
-  FUN_180657040(&plStack_78);
-  resource_array = plStack_70;
+  STACK_POINTER_78 = (longlong *)0x0;
+  STACK_POINTER_70 = (longlong *)0x0;
+  buffer_capacity = 0;
+  STACK_POINTER_68 = (longlong *)0x0;
+  allocation_mode = 3;
+  initialize_resource_stack(&STACK_POINTER_78);
+  resource_collection = STACK_POINTER_70;
   if (_DAT_180c91038 != (longlong *)0x0) {
     resource_list = (undefined8 *)0x0;
     resource_end = (undefined8 *)0x0;

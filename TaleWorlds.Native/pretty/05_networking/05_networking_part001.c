@@ -35,7 +35,6 @@ undefined *network_protocol_negotiator;
 undefined *network_error_recovery_manager;
 undefined *network_connection_pool;
 
-
 // 网络连接初始化函数
 undefined *initialize_network_connection;
 undefined *network_connection_initializer;
@@ -69,97 +68,6 @@ undefined *network_protocol_negotiator;
 undefined *network_error_recovery_handler;
 undefined *network_connection_pool_manager;
 
-
-// 函数: undefined FUN_18088ea60;
-undefined FUN_18088ea60;
-undefined UNK_180986218;
-undefined UNK_180986240;
-undefined UNK_180986244;
-undefined UNK_180986248;
-undefined UNK_18098624c;
-undefined UNK_180986250;
-undefined UNK_180986268;
-undefined DAT_180c4eaa0;
-undefined DAT_180c4eaa4;
-undefined UNK_1809862d0;
-undefined UNK_180986298;
-undefined UNK_180984010;
-undefined UNK_180982240;
-undefined UNK_180983588;
-undefined UNK_1809841e0;
-undefined UNK_180984358;
-undefined UNK_1809843d0;
-undefined UNK_180986350;
-undefined UNK_180986370;
-undefined UNK_1809868b0;
-undefined UNK_1809863f8;
-undefined UNK_180986470;
-undefined UNK_180982588;
-undefined UNK_180982608;
-undefined UNK_1809830b8;
-undefined UNK_180983238;
-undefined UNK_1809839d8;
-undefined UNK_1809850f8;
-undefined UNK_180982f38;
-undefined UNK_1809834f8;
-undefined UNK_180986408;
-undefined UNK_1809864dc;
-undefined UNK_1809864e0;
-undefined UNK_180986508;
-undefined UNK_180986550;
-undefined UNK_180986590;
-undefined UNK_1809865f0;
-undefined UNK_1809866c0;
-undefined UNK_180986730;
-undefined UNK_1809867b0;
-undefined UNK_180986850;
-undefined UNK_180982378;
-undefined UNK_180986390;
-undefined UNK_180986488;
-undefined UNK_1809864b0;
-undefined UNK_180986940;
-undefined UNK_1809869a0;
-undefined UNK_180986e70;
-undefined UNK_180986d98;
-undefined UNK_180986dc0;
-undefined UNK_180986de8;
-undefined UNK_180986e10;
-undefined UNK_180986e38;
-undefined UNK_180986ef0;
-undefined UNK_180986af0;
-undefined UNK_180986bb8;
-undefined UNK_180986d78;
-undefined UNK_180986a10;
-undefined UNK_180986ce0;
-undefined UNK_180986ab0;
-undefined UNK_180986930;
-undefined UNK_180986ca8;
-undefined UNK_180986b00;
-undefined UNK_180986d58;
-undefined UNK_180986e60;
-undefined UNK_180986bf0;
-undefined UNK_180986d50;
-undefined UNK_180986a60;
-undefined UNK_180986c70;
-undefined UNK_180986c30;
-undefined UNK_180986d18;
-undefined UNK_180986948;
-undefined UNK_180986ab8;
-undefined UNK_180986938;
-undefined UNK_180986b40;
-undefined UNK_180987010;
-undefined UNK_1808b168c;
-undefined UNK_1808b16c0;
-undefined UNK_1808b16f4;
-undefined UNK_180984c08;
-undefined UNK_180987090;
-undefined UNK_180987110;
-undefined UNK_180987190;
-undefined UNK_1809871b0;
-undefined UNK_180987170;
-undefined UNK_180987150;
-
-
 // 网络连接管理函数
 void network_connection_cleanup(void)
 {
@@ -186,10 +94,6 @@ void network_connection_cleanup(void)
   memcpy(connection_ptr);
 }
 
-
-
-
-
 // 网络连接断开函数
 void network_connection_disconnect(void)
 {
@@ -200,17 +104,6 @@ void network_connection_disconnect(void)
   // 断开网络连接
   disconnect_network_connection(&connection_handle);
 }
-
-
-
-// WARNING: Removing unreachable block (ram,0x00018084914f)
-// WARNING: Removing unreachable block (ram,0x000180849163)
-// WARNING: Removing unreachable block (ram,0x00018084919d)
-// WARNING: Removing unreachable block (ram,0x0001808491a5)
-// WARNING: Removing unreachable block (ram,0x0001808491ad)
-// WARNING: Removing unreachable block (ram,0x0001808491b3)
-// WARNING: Removing unreachable block (ram,0x000180849219)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 网络缓冲区清理函数
 uint cleanup_network_buffer(longlong *buffer_handle)
@@ -257,757 +150,463 @@ uint cleanup_network_buffer(longlong *buffer_handle)
   return 0;
 }
 
-
-
-// WARNING: Type propagation algorithm not settling
-
-
-
-// 函数: void FUN_1808401c0(undefined8 param_1)
-void FUN_1808401c0(undefined8 param_1)
-
+// 网络连接初始化函数
+void initialize_network_system(undefined8 connection_id)
 {
-  int iVar1;
-  int iVar2;
-  longlong alStackX_10 [2];
-  undefined8 *puStackX_20;
+  int init_status;
+  int protocol_status;
+  longlong connection_data[2];
+  undefined8 *protocol_handler;
   
-  alStackX_10[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStackX_10);
-  if ((((iVar1 != 0) ||
-       (((*(uint *)(alStackX_10[0] + 0x24) >> 1 & 1) != 0 &&
-        (iVar2 = FUN_18088c740(alStackX_10 + 1), iVar2 == 0)))) && (iVar1 == 0)) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStackX_10[0] + 0x98),&puStackX_20,0x18), iVar1 == 0))
+  connection_data[1] = 0;
+  init_status = establish_network_connection(connection_id,connection_data);
+  if ((((init_status != 0) ||
+       (((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) != 0 &&
+        (protocol_status = validate_network_protocol(connection_data + 1), protocol_status == 0)))) && (init_status == 0)) &&
+     (init_status = create_protocol_handler(*(undefined8 *)(connection_data[0] + 0x98),&protocol_handler,0x18), init_status == 0))
   {
-    *puStackX_20 = &UNK_180982dc0;
-    *(undefined4 *)(puStackX_20 + 1) = 0x18;
-    *(int *)(puStackX_20 + 2) = (int)param_1;
-    func_0x00018088e0d0(*(undefined8 *)(alStackX_10[0] + 0x98));
+    *protocol_handler = &network_protocol_table;
+    *(undefined4 *)(protocol_handler + 1) = 0x18;
+    *(int *)(protocol_handler + 2) = (int)connection_id;
+    validate_network_connection(*(undefined8 *)(connection_data[0] + 0x98));
   }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(alStackX_10 + 1);
+  // 清理网络连接资源
+  cleanup_network_resources(connection_data + 1);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_180840270(longlong *param_1)
-
+// 网络连接状态检查函数
+undefined8 check_network_connection_status(longlong *connection_handle)
 {
-  int iVar1;
-  undefined8 uVar2;
-  uint uVar3;
+  int handle_status;
+  undefined8 connection_result;
+  uint buffer_size;
   
-  uVar3 = *(uint *)((longlong)param_1 + 0xc);
-  if ((int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
+  buffer_size = *(uint *)((longlong)connection_handle + 0xc);
+  if ((int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f)) < 0) {
+    if (0 < (int)connection_handle[1]) {
       return 0x1c;
     }
-    if ((0 < (int)uVar3) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    if ((0 < (int)buffer_size) && (*connection_handle != 0)) {
+      // 释放网络缓冲区内存
+      free_network_buffer(*(undefined8 *)(network_memory_pool + 0x1a0),*connection_handle,network_free_list,0x100,1);
     }
-    *param_1 = 0;
-    uVar3 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    *connection_handle = 0;
+    buffer_size = 0;
+    *(undefined4 *)((longlong)connection_handle + 0xc) = 0;
   }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-                    // WARNING: Subroutine does not return
-    memset((longlong)iVar1 + *param_1,0,(longlong)-iVar1);
+  handle_status = (int)connection_handle[1];
+  if (handle_status < 0) {
+    // 清理连接句柄
+    memset((longlong)handle_status + *connection_handle,0,(longlong)-handle_status);
   }
-  *(undefined4 *)(param_1 + 1) = 0;
-  if ((0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) &&
-     (uVar2 = FUN_180849030(param_1,0), (int)uVar2 != 0)) {
-    return uVar2;
+  *(undefined4 *)(connection_handle + 1) = 0;
+  if ((0 < (int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f))) &&
+     (connection_result = validate_network_handle(connection_handle,0), (int)connection_result != 0)) {
+    return connection_result;
   }
   return 0;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180840330(ulonglong *param_1,int param_2)
-void FUN_180840330(ulonglong *param_1,int param_2)
-
+// 网络地址解析函数
+void resolve_network_address(ulonglong *address_buffer,int address_type)
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  int aiStack_148 [2];
-  longlong lStack_140;
-  uint auStack_138 [4];
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int resolve_status;
+  int protocol_status;
+  int auth_status;
+  undefined1 auth_data[32];
+  undefined1 *auth_ptr;
+  int protocol_info[2];
+  longlong resolver_context;
+  uint resolved_address[4];
+  undefined1 temp_buffer[256];
+  ulonglong security_key;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  func_0x000180741c10(&DAT_180be12f0);
-  if (param_1 == (ulonglong *)0x0) {
-    iVar3 = 0x1f;
+  security_key = network_security_key ^ (ulonglong)auth_data;
+  initialize_network_resolver(&network_base_address);
+  if (address_buffer == (ulonglong *)0x0) {
+    auth_status = 0x1f;
   }
   else {
-    *param_1 = 0;
-    if (param_2 - 0x20200U < 0x100) {
-      lStack_140 = 0;
-      iVar3 = FUN_180875520(&lStack_140);
-      if (iVar3 == 0) {
-        aiStack_148[0] = 0;
-        iVar3 = FUN_18073aab0(*(undefined8 *)(lStack_140 + 0x78),aiStack_148);
-        if (iVar3 == 0) {
-          if (aiStack_148[0] != 0x20214) {
-            FUN_180883a30();
-            goto LAB_1808403d0;
+    *address_buffer = 0;
+    if (address_type - 0x20200U < 0x100) {
+      resolver_context = 0;
+      auth_status = create_network_resolver(&resolver_context);
+      if (auth_status == 0) {
+        protocol_info[0] = 0;
+        auth_status = get_protocol_info(*(undefined8 *)(resolver_context + 0x78),protocol_info);
+        if (auth_status == 0) {
+          if (protocol_info[0] != 0x20214) {
+            trigger_network_error();
+            goto resolve_failure;
           }
-          iVar3 = func_0x00018088c570(lStack_140,auStack_138);
-          if (iVar3 == 0) {
-            *param_1 = (ulonglong)auStack_138[0];
-            goto LAB_180840449;
+          auth_status = resolve_address_protocol(resolver_context,resolved_address);
+          if (auth_status == 0) {
+            *address_buffer = (ulonglong)resolved_address[0];
+            goto resolve_success;
           }
         }
       }
-      if (iVar3 == 0) goto LAB_180840449;
+      if (auth_status == 0) goto resolve_success;
     }
     else {
-LAB_1808403d0:
-      iVar3 = 0x14;
+    resolve_failure:
+      auth_status = 0x14;
     }
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    iVar1 = func_0x00018074bda0(auStack_128,0x100,param_1);
-    iVar2 = FUN_18074b880(auStack_128 + iVar1,0x100 - iVar1,&DAT_180a06434);
-    func_0x00018074b800(auStack_128 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_2);
-    puStack_158 = auStack_128;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar3,0,0,&UNK_180984660);
+  if ((*(byte *)(network_base_address + 0x10) & 0x80) != 0) {
+    resolve_status = format_network_address(temp_buffer,0x100,address_buffer);
+    protocol_status = encode_network_data(temp_buffer + resolve_status,0x100 - resolve_status,&network_address_format);
+    format_network_protocol(temp_buffer + (resolve_status + protocol_status),0x100 - (resolve_status + protocol_status),address_type);
+    auth_ptr = temp_buffer;
+    // 记录网络错误
+    log_network_error(auth_status,0,0,&network_error_log);
   }
-LAB_180840449:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+resolve_success:
+  // 清理安全密钥
+  cleanup_security_key(security_key ^ (ulonglong)auth_data);
 }
 
-
-
-// WARNING: Type propagation algorithm not settling
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180840490(undefined8 param_1,ulonglong *param_2)
-void FUN_180840490(undefined8 param_1,ulonglong *param_2)
-
+// 网络数据发送函数
+void send_network_data(undefined4 socket_handle,int data_size,longlong data_buffer)
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  longlong alStack_148 [2];
-  undefined8 *apuStack_138 [2];
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  longlong *connection_ptr;
+  int send_status;
+  longlong socket_context;
+  longlong network_stream;
+  undefined1 packet_data[32];
+  undefined8 security_key;
+  longlong send_context;
+  longlong recv_context;
+  longlong protocol_context;
+  undefined1 compression_buffer[40];
+  ulonglong encryption_key;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (ulonglong *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+  encryption_key = network_security_key ^ (ulonglong)packet_data;
+  if (data_buffer == 0) {
+    // 清理加密密钥
+    cleanup_encryption_key(encryption_key ^ (ulonglong)packet_data);
+  }
+  recv_context = 0;
+  security_key = 0;
+  send_context = 0;
+  send_status = establish_network_connection(0,&send_context);
+  if ((((send_status == 0) && (send_status = validate_network_socket(&security_key,send_context), send_status == 0)) &&
+      (send_status = bind_network_socket(socket_handle,&protocol_context), send_status == 0)) &&
+     ((recv_context = *(longlong *)(protocol_context + 8), -1 < data_size &&
+      (data_size < *(int *)(recv_context + 0x88))))) {
+    socket_context = (longlong)data_size * 0x10 + *(longlong *)(recv_context + 0x80);
+    connection_ptr = *(longlong **)(send_context + 800);
+    network_stream = (**(code **)(*connection_ptr + 0x270))(connection_ptr,socket_context,1);
+    if (network_stream == 0) {
+      // 创建网络数据包
+      create_network_packet(socket_context,compression_buffer);
     }
-    func_0x00018074bda0(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180983320);
-  }
-  *param_2 = 0;
-  alStack_148[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStack_148);
-  if (iVar1 == 0) {
-    if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808404f2;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
-    if (iVar2 == 0) goto LAB_18084055a;
-  }
-  else {
-LAB_18084055a:
-    iVar2 = iVar1;
-  }
-  if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
-  {
-    *apuStack_138[0] = &UNK_1809832b8;
-    *(undefined4 *)(apuStack_138[0] + 3) = 0;
-    *(undefined4 *)(apuStack_138[0] + 1) = 0x20;
-    *(int *)(apuStack_138[0] + 2) = (int)param_1;
-    iVar1 = func_0x00018088e0d0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138[0]);
-    if (iVar1 == 0) {
-      *param_2 = (ulonglong)*(uint *)(apuStack_138[0] + 3);
-                    // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_148 + 1);
+    if ((((*(int *)(network_stream + 0x38) != 0) || (*(int *)(network_stream + 0x3c) != 0)) ||
+        ((*(int *)(network_stream + 0x40) != 0 || (*(int *)(network_stream + 0x44) != 0)))) &&
+       (network_stream = authenticate_network_connection(connection_ptr), network_stream != 0)) {
+      send_data_packet(network_stream,data_buffer,1);
     }
   }
-LAB_1808404f2:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_148 + 1);
+  // 清理网络连接资源
+  cleanup_network_resources(&security_key);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180840600(undefined4 param_1,int param_2,longlong param_3)
-void FUN_180840600(undefined4 param_1,int param_2,longlong param_3)
-
+// 网络连接池清理函数
+void cleanup_network_connection_pool(void)
 {
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong lVar4;
-  undefined1 auStack_88 [32];
-  undefined8 uStack_68;
-  longlong lStack_60;
-  longlong lStack_58;
-  longlong lStack_50;
-  undefined1 auStack_48 [40];
-  ulonglong uStack_20;
+  undefined8 *connection_pool;
+  ulonglong security_key;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
-  if (param_3 == 0) {
-                    // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_88);
-  }
-  lStack_58 = 0;
-  uStack_68 = 0;
-  lStack_60 = 0;
-  iVar2 = func_0x00018088c590(0,&lStack_60);
-  if ((((iVar2 == 0) && (iVar2 = FUN_18088c740(&uStack_68,lStack_60), iVar2 == 0)) &&
-      (iVar2 = func_0x00018088c530(param_1,&lStack_50), iVar2 == 0)) &&
-     ((lStack_58 = *(longlong *)(lStack_50 + 8), -1 < param_2 &&
-      (param_2 < *(int *)(lStack_58 + 0x88))))) {
-    lVar4 = (longlong)param_2 * 0x10 + *(longlong *)(lStack_58 + 0x80);
-    plVar1 = *(longlong **)(lStack_60 + 800);
-    lVar3 = (**(code **)(*plVar1 + 0x270))(plVar1,lVar4,1);
-    if (lVar3 == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18084b240(lVar4,auStack_48);
-    }
-    if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
-        ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
-       (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-      FUN_180847550(lVar3,param_3,1);
-    }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_68);
+  *connection_pool = 0;
+  connection_pool[1] = 0;
+  connection_pool[2] = 0;
+  connection_pool[3] = 0;
+  connection_pool[4] = 0;
+  connection_pool[5] = 0;
+  connection_pool[6] = 0;
+  // 清理安全密钥
+  cleanup_security_key(security_key ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_18084062e(undefined8 param_1,undefined8 param_2,undefined1 param_3,undefined8 param_4,
-void FUN_18084062e(undefined8 param_1,undefined8 param_2,undefined1 param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,longlong param_7)
-
+// 网络资源释放函数
+void release_network_resources(void)
 {
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined4 unaff_EBP;
-  longlong unaff_RSI;
-  longlong lVar4;
+  ulonglong security_key;
   
-  param_6 = 0;
-  param_5 = 0;
-  iVar2 = func_0x00018088c590(0,&param_5,param_3,param_4,0);
-  if (((iVar2 == 0) && (iVar2 = FUN_18088c740(&stack0x00000020,param_5), iVar2 == 0)) &&
-     (iVar2 = func_0x00018088c530(unaff_EBP,&param_7), iVar2 == 0)) {
-    param_6 = *(longlong *)(param_7 + 8);
-    if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(param_6 + 0x88))) {
-      lVar4 = unaff_RSI * 0x10 + *(longlong *)(param_6 + 0x80);
-      plVar1 = *(longlong **)(param_5 + 800);
-      lVar3 = (**(code **)(*plVar1 + 0x270))(plVar1,lVar4,1);
-      if (lVar3 == 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18084b240(lVar4,&stack0x00000040);
-      }
-      if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
-          ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
-         (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-        FUN_180847550(lVar3);
-      }
-    }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000020);
+  // 清理安全密钥
+  cleanup_security_key(security_key ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_18084063e(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_18084063e(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,longlong param_7)
-
+// 网络地址查询函数
+undefined4 query_network_address(undefined4 address_id,longlong query_params,undefined8 *result_buffer)
 {
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined4 unaff_EBP;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong in_XMM0_Qb;
+  undefined8 *address_ptr;
+  undefined8 *next_address;
+  int query_status;
+  undefined *address_data;
+  undefined *address_ptr2;
+  longlong query_context[2];
+  undefined8 query_key;
+  undefined8 context_key;
+  longlong context_data;
   
-  param_6 = 0;
-  param_5 = in_XMM0_Qb;
-  iVar2 = func_0x00018088c590();
-  if (((iVar2 == 0) && (iVar2 = FUN_18088c740(&stack0x00000020,param_5), iVar2 == 0)) &&
-     (iVar2 = func_0x00018088c530(unaff_EBP,&param_7), iVar2 == 0)) {
-    param_6 = *(longlong *)(param_7 + 8);
-    if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(param_6 + 0x88))) {
-      lVar4 = unaff_RSI * 0x10 + *(longlong *)(param_6 + 0x80);
-      plVar1 = *(longlong **)(param_5 + 800);
-      lVar3 = (**(code **)(*plVar1 + 0x270))(plVar1,lVar4,1,param_4,param_1);
-      if (lVar3 == 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18084b240(lVar4,&stack0x00000040);
-      }
-      if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
-          ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
-         (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-        FUN_180847550(lVar3);
-      }
-    }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000020);
-}
-
-
-
-
-
-// 函数: void FUN_180840746(void)
-void FUN_180840746(void)
-
-{
-  undefined8 *unaff_RBX;
-  ulonglong in_stack_00000068;
-  
-  *unaff_RBX = 0;
-  unaff_RBX[1] = 0;
-  unaff_RBX[2] = 0;
-  unaff_RBX[3] = 0;
-  unaff_RBX[4] = 0;
-  unaff_RBX[5] = 0;
-  unaff_RBX[6] = 0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000068 ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-
-
-// 函数: void FUN_18084076d(void)
-void FUN_18084076d(void)
-
-{
-  ulonglong in_stack_00000068;
-  
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000068 ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-undefined4 FUN_180840790(undefined4 param_1,longlong param_2,undefined8 *param_3)
-
-{
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  undefined *puVar4;
-  undefined *puVar5;
-  longlong alStackX_18 [2];
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  longlong lStack_28;
-  
-  if (param_3 == (undefined8 *)0x0) {
+  if (result_buffer == (undefined8 *)0x0) {
     return 0x1f;
   }
-  if (param_2 == 0) {
-    if (param_3 != (undefined8 *)0x0) {
-      *param_3 = 0;
-      param_3[1] = 0;
-      param_3[2] = 0;
+  if (query_params == 0) {
+    if (result_buffer != (undefined8 *)0x0) {
+      *result_buffer = 0;
+      result_buffer[1] = 0;
+      result_buffer[2] = 0;
     }
     return 0x1f;
   }
-  lStack_28 = 0;
-  uStack_38 = 0;
-  uStack_30 = 0;
-  iVar3 = func_0x00018088c590(0,&uStack_30);
-  if (((iVar3 == 0) && (iVar3 = FUN_18088c740(&uStack_38,uStack_30), iVar3 == 0)) &&
-     (iVar3 = func_0x00018088c530(param_1,alStackX_18), iVar3 == 0)) {
-    lStack_28 = *(longlong *)(alStackX_18[0] + 8);
+  context_data = 0;
+  query_key = 0;
+  context_key = 0;
+  query_status = establish_network_connection(0,&context_key);
+  if (((query_status == 0) && (query_status = validate_network_socket(&query_key,context_key), query_status == 0)) &&
+     (query_status = bind_network_socket(address_id,query_context), query_status == 0)) {
+    context_data = *(longlong *)(query_context[0] + 8);
   }
-  else if (iVar3 != 0) goto LAB_1808408dd;
-  puVar1 = (undefined8 *)(lStack_28 + 0xb0);
-  puVar5 = &DAT_18098bc73;
-  for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
-    if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+  else if (query_status != 0) goto query_failure;
+  address_ptr = (undefined8 *)(context_data + 0xb0);
+  address_ptr2 = &network_address_table;
+  for (next_address = (undefined8 *)*address_ptr; next_address != address_ptr; next_address = (undefined8 *)*next_address) {
+    if (*(int *)(next_address + 3) < 1) {
+      address_data = &network_address_table;
     }
     else {
-      puVar4 = (undefined *)puVar2[2];
+      address_data = (undefined *)next_address[2];
     }
-    iVar3 = func_0x00018076b420(puVar4,param_2);
-    if (iVar3 == 0) {
-      if (0 < *(int *)(puVar2 + 3)) {
-        puVar5 = (undefined *)puVar2[2];
+    query_status = compare_network_address(address_data,query_params);
+    if (query_status == 0) {
+      if (0 < *(int *)(next_address + 3)) {
+        address_ptr2 = (undefined *)next_address[2];
       }
-      *param_3 = puVar5;
-      *(undefined4 *)(param_3 + 1) = 2;
-      *(undefined4 *)(param_3 + 2) = *(undefined4 *)(puVar2 + 4);
-      goto LAB_1808408dd;
+      *result_buffer = address_ptr2;
+      *(undefined4 *)(result_buffer + 1) = 2;
+      *(undefined4 *)(result_buffer + 2) = *(undefined4 *)(next_address + 4);
+      goto query_failure;
     }
-    if (puVar2 == puVar1) goto LAB_1808408dd;
+    if (next_address == address_ptr) goto query_failure;
   }
-  puVar1 = (undefined8 *)(lStack_28 + 0xc0);
-  for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
-    if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+  address_ptr = (undefined8 *)(context_data + 0xc0);
+  for (next_address = (undefined8 *)*address_ptr; next_address != address_ptr; next_address = (undefined8 *)*next_address) {
+    if (*(int *)(next_address + 3) < 1) {
+      address_data = &network_address_table;
     }
     else {
-      puVar4 = (undefined *)puVar2[2];
+      address_data = (undefined *)next_address[2];
     }
-    iVar3 = func_0x00018076b420(puVar4,param_2);
-    if (iVar3 == 0) {
-      if (*(int *)(puVar2 + 3) < 1) {
-        puVar4 = &DAT_18098bc73;
+    query_status = compare_network_address(address_data,query_params);
+    if (query_status == 0) {
+      if (*(int *)(next_address + 3) < 1) {
+        address_data = &network_address_table;
       }
       else {
-        puVar4 = (undefined *)puVar2[2];
+        address_data = (undefined *)next_address[2];
       }
-      *param_3 = puVar4;
-      *(undefined4 *)(param_3 + 1) = 3;
-      if (0 < *(int *)(puVar2 + 5)) {
-        puVar5 = (undefined *)puVar2[4];
+      *result_buffer = address_data;
+      *(undefined4 *)(result_buffer + 1) = 3;
+      if (0 < *(int *)(next_address + 5)) {
+        address_ptr2 = (undefined *)next_address[4];
       }
-      param_3[2] = puVar5;
+      result_buffer[2] = address_ptr2;
       break;
     }
-    if (puVar2 == puVar1) break;
+    if (next_address == address_ptr) break;
   }
-LAB_1808408dd:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_38);
+query_failure:
+  // 清理网络连接资源
+  cleanup_network_resources(&query_key);
 }
 
-
-
-
-
-// 函数: void FUN_1808407ce(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1808407ce(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 网络查询结果清理函数
+undefined4 cleanup_network_query(void)
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  undefined *puVar4;
-  undefined8 in_RCX;
-  undefined8 *unaff_RBX;
-  undefined *puVar5;
-  undefined4 unaff_ESI;
-  undefined8 in_XMM0_Qb;
-  undefined8 uStack0000000000000028;
-  longlong lStack0000000000000030;
-  longlong in_stack_00000070;
+  undefined8 *query_buffer;
+  undefined4 query_result;
   
-  lStack0000000000000030 = 0;
-  uStack0000000000000028 = in_XMM0_Qb;
-  iVar3 = func_0x00018088c590(in_RCX,&stack0x00000028,param_3,param_4,param_1);
-  if (((iVar3 == 0) && (iVar3 = FUN_18088c740(&stack0x00000020,uStack0000000000000028), iVar3 == 0))
-     && (iVar3 = func_0x00018088c530(unaff_ESI,&stack0x00000070), iVar3 == 0)) {
-    lStack0000000000000030 = *(longlong *)(in_stack_00000070 + 8);
+  if (query_buffer != (undefined8 *)0x0) {
+    *query_buffer = 0;
+    query_buffer[1] = 0;
+    query_buffer[2] = 0;
   }
-  else if (iVar3 != 0) goto LAB_1808408dd;
-  puVar1 = (undefined8 *)(lStack0000000000000030 + 0xb0);
-  puVar5 = &DAT_18098bc73;
-  for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
-    if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
-    }
-    else {
-      puVar4 = (undefined *)puVar2[2];
-    }
-    iVar3 = func_0x00018076b420(puVar4);
-    if (iVar3 == 0) {
-      if (0 < *(int *)(puVar2 + 3)) {
-        puVar5 = (undefined *)puVar2[2];
-      }
-      *unaff_RBX = puVar5;
-      *(undefined4 *)(unaff_RBX + 1) = 2;
-      *(undefined4 *)(unaff_RBX + 2) = *(undefined4 *)(puVar2 + 4);
-      goto LAB_1808408dd;
-    }
-    if (puVar2 == puVar1) goto LAB_1808408dd;
-  }
-  puVar1 = (undefined8 *)(lStack0000000000000030 + 0xc0);
-  for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
-    if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
-    }
-    else {
-      puVar4 = (undefined *)puVar2[2];
-    }
-    iVar3 = func_0x00018076b420(puVar4);
-    if (iVar3 == 0) {
-      if (*(int *)(puVar2 + 3) < 1) {
-        puVar4 = &DAT_18098bc73;
-      }
-      else {
-        puVar4 = (undefined *)puVar2[2];
-      }
-      *unaff_RBX = puVar4;
-      *(undefined4 *)(unaff_RBX + 1) = 3;
-      if (0 < *(int *)(puVar2 + 5)) {
-        puVar5 = (undefined *)puVar2[4];
-      }
-      unaff_RBX[2] = puVar5;
-      break;
-    }
-    if (puVar2 == puVar1) break;
-  }
-LAB_1808408dd:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000020);
+  return query_result;
 }
 
-
-
-undefined4 FUN_1808408ec(void)
-
+// 网络连接释放函数
+void release_network_connection(void)
 {
-  undefined8 *unaff_RBX;
-  undefined4 unaff_EDI;
+  undefined1 cleanup_buffer[8];
   
-  if (unaff_RBX != (undefined8 *)0x0) {
-    *unaff_RBX = 0;
-    unaff_RBX[1] = 0;
-    unaff_RBX[2] = 0;
-  }
-  return unaff_EDI;
+  // 清理网络连接资源
+  cleanup_network_resources(cleanup_buffer);
 }
 
-
-
-
-
-// 函数: void FUN_18084090e(void)
-void FUN_18084090e(void)
-
+// 网络端口扫描函数
+void scan_network_ports(undefined8 target_address,longlong port_range_start,longlong port_range_end,int *scan_results)
 {
-  undefined1 auStackX_20 [8];
+  longlong range_data;
+  int scan_status;
+  int port_index;
+  undefined8 port_info;
+  int *result_ptr;
+  undefined *port_data;
+  ulonglong current_port;
+  ulonglong max_port;
+  longlong port_context;
+  undefined1 security_data[32];
+  undefined8 security_key;
+  undefined1 scan_buffer[16];
+  ulonglong scan_key;
   
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(auStackX_20);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180840950(undefined8 param_1,longlong param_2,longlong param_3,int *param_4)
-void FUN_180840950(undefined8 param_1,longlong param_2,longlong param_3,int *param_4)
-
-{
-  longlong lVar1;
-  int iVar2;
-  int iVar3;
-  undefined8 uVar4;
-  int *piVar5;
-  undefined *puVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
-  longlong lVar9;
-  undefined1 auStack_68 [32];
-  undefined8 uStack_48;
-  undefined1 auStack_40 [16];
-  ulonglong uStack_30;
-  
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  if (param_3 != 0) {
-    iVar2 = FUN_18076b6f0(param_3,&UNK_180984620,10);
-    if (iVar2 == 0) {
-      iVar2 = FUN_180881fa0(param_1,param_3,auStack_40);
-      if (iVar2 == 0) {
-        lVar9 = *(longlong *)(param_2 + 0x18);
-        uVar4 = FUN_18084dc20(auStack_40);
-        iVar2 = *(int *)(lVar9 + 0x98);
-        uVar7 = 0;
-        if (0 < iVar2) {
-          uStack_48._4_4_ = (int)((ulonglong)uVar4 >> 0x20);
-          piVar5 = *(int **)(lVar9 + 0x90);
-          uVar8 = uVar7;
+  scan_key = network_security_key ^ (ulonglong)security_data;
+  if (port_range_end != 0) {
+    scan_status = validate_port_range(port_range_end,&network_port_validator,10);
+    if (scan_status == 0) {
+      scan_status = scan_network_address(target_address,port_range_end,scan_buffer);
+      if (scan_status == 0) {
+        range_data = *(longlong *)(port_range_start + 0x18);
+        port_info = get_port_info(scan_buffer);
+        scan_status = *(int *)(range_data + 0x98);
+        current_port = 0;
+        if (0 < scan_status) {
+          security_key._4_4_ = (int)((ulonglong)port_info >> 0x20);
+          result_ptr = *(int **)(range_data + 0x90);
+          max_port = current_port;
           do {
-            iVar3 = (int)uVar8;
-            if ((*piVar5 == (int)uVar4) && (piVar5[1] == uStack_48._4_4_)) goto LAB_180840a03;
-            uVar8 = (ulonglong)(iVar3 + 1);
-            uVar7 = uVar7 + 1;
-            piVar5 = piVar5 + 2;
-          } while ((longlong)uVar7 < (longlong)iVar2);
+            port_index = (int)max_port;
+            if ((*result_ptr == (int)port_info) && (result_ptr[1] == security_key._4_4_)) goto port_found;
+            max_port = (ulonglong)(port_index + 1);
+            current_port = current_port + 1;
+            result_ptr = result_ptr + 2;
+          } while ((longlong)current_port < (longlong)scan_status);
         }
-        iVar3 = -1;
-LAB_180840a03:
-        *param_4 = iVar3;
-        uStack_48 = uVar4;
+        port_index = -1;
+      port_found:
+        *scan_results = port_index;
+        security_key = port_info;
       }
     }
     else {
-      iVar2 = 0;
-      if (0 < *(int *)(param_2 + 0x28)) {
-        lVar9 = 0;
+      scan_status = 0;
+      if (0 < *(int *)(port_range_start + 0x28)) {
+        range_data = 0;
         do {
-          lVar1 = *(longlong *)(lVar9 + 0x10 + *(longlong *)(param_2 + 0x20));
-          if (lVar1 == 0) break;
-          if (*(int *)(lVar1 + 0x58) < 1) {
-            puVar6 = &DAT_18098bc73;
+          port_context = *(longlong *)(range_data + 0x10 + *(longlong *)(port_range_start + 0x20));
+          if (port_context == 0) break;
+          if (*(int *)(port_context + 0x58) < 1) {
+            port_data = &network_address_table;
           }
           else {
-            puVar6 = *(undefined **)(lVar1 + 0x50);
+            port_data = *(undefined **)(port_context + 0x50);
           }
-          iVar3 = func_0x00018076b630(puVar6,param_3);
-          if (iVar3 == 0) {
-            *param_4 = iVar2;
+          port_index = compare_port_data(port_data,port_range_end);
+          if (port_index == 0) {
+            *scan_results = scan_status;
             break;
           }
-          iVar2 = iVar2 + 1;
-          lVar9 = lVar9 + 0x18;
-        } while (iVar2 < *(int *)(param_2 + 0x28));
+          scan_status = scan_status + 1;
+          range_data = range_data + 0x18;
+        } while (scan_status < *(int *)(port_range_start + 0x28));
       }
     }
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_68);
+  // 清理扫描密钥
+  cleanup_scan_key(scan_key ^ (ulonglong)security_data);
 }
 
-
-
-undefined8 FUN_180840a90(undefined8 *param_1,int *param_2,int *param_3)
-
+// 网络地址索引查找函数
+undefined8 find_network_address_index(undefined8 *address_table,int *search_key,int *result_index)
 {
-  undefined8 uVar1;
-  int *piVar2;
-  int iVar3;
-  longlong lVar4;
+  undefined8 search_result;
+  int *table_ptr;
+  int table_index;
+  longlong table_size;
   
-  iVar3 = 0;
-  if (0 < *(int *)(param_1 + 1)) {
-    piVar2 = (int *)*param_1;
-    lVar4 = 0;
+  table_index = 0;
+  if (0 < *(int *)(address_table + 1)) {
+    table_ptr = (int *)*address_table;
+    table_size = 0;
     do {
-      if ((*piVar2 == *param_2) && (piVar2[1] == param_2[1])) goto LAB_180840ad5;
-      iVar3 = iVar3 + 1;
-      lVar4 = lVar4 + 1;
-      piVar2 = piVar2 + 2;
-    } while (lVar4 < *(int *)(param_1 + 1));
+      if ((*table_ptr == *search_key) && (table_ptr[1] == search_key[1])) goto address_found;
+      table_index = table_index + 1;
+      table_size = table_size + 1;
+      table_ptr = table_ptr + 2;
+    } while (table_size < *(int *)(address_table + 1));
   }
-  iVar3 = -1;
-LAB_180840ad5:
-  *param_3 = iVar3;
-  uVar1 = 0x4a;
-  if (-1 < iVar3) {
-    uVar1 = 0;
+  table_index = -1;
+address_found:
+  *result_index = table_index;
+  search_result = 0x4a;
+  if (-1 < table_index) {
+    search_result = 0;
   }
-  return uVar1;
+  return search_result;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180840af0(longlong param_1,longlong param_2,int *param_3)
-void FUN_180840af0(longlong param_1,longlong param_2,int *param_3)
-
+// 网络连接查找函数
+void find_network_connection(longlong connection_pool,longlong search_pattern,int *connection_index)
 {
-  bool bVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined *puVar4;
-  int iVar5;
-  undefined1 auStack_58 [32];
-  longlong lStack_38;
-  longlong lStack_30;
-  ulonglong uStack_28;
+  bool exact_match;
+  int search_status;
+  longlong connection_data;
+  undefined *connection_info;
+  int conn_index;
+  undefined1 security_data[32];
+  longlong search_key;
+  longlong pattern_key;
+  ulonglong security_key;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
-  if (param_2 != 0) {
-    bVar1 = false;
-    iVar2 = FUN_18076b6f0(param_2,&UNK_180984620,10);
-    if (iVar2 == 0) {
-      iVar2 = FUN_180881fa0(param_1,param_2,&lStack_38);
-      if (iVar2 != 0) goto LAB_180840b99;
-      bVar1 = true;
+  security_key = network_security_key ^ (ulonglong)security_data;
+  if (search_pattern != 0) {
+    exact_match = false;
+    search_status = validate_connection_pattern(search_pattern,&network_connection_validator,10);
+    if (search_status == 0) {
+      search_status = search_connection_pool(connection_pool,search_pattern,&search_key);
+      if (search_status != 0) goto search_failure;
+      exact_match = true;
     }
-    param_1 = param_1 + 0x60;
-    if (bVar1) {
-      iVar5 = 0;
-      iVar2 = func_0x0001808675f0(param_1);
-      if (0 < iVar2) {
+    connection_pool = connection_pool + 0x60;
+    if (exact_match) {
+      conn_index = 0;
+      search_status = get_connection_count(connection_pool);
+      if (0 < search_status) {
         do {
-          lVar3 = func_0x000180867680(param_1,iVar5);
-          if ((*(longlong *)(lVar3 + 0x10) == lStack_38) &&
-             (*(longlong *)(lVar3 + 0x18) == lStack_30)) goto LAB_180840bf9;
-          iVar5 = iVar5 + 1;
-          iVar2 = func_0x0001808675f0(param_1);
-        } while (iVar5 < iVar2);
+          connection_data = get_connection_data(connection_pool,conn_index);
+          if ((*(longlong *)(connection_data + 0x10) == search_key) &&
+             (*(longlong *)(connection_data + 0x18) == pattern_key)) goto connection_found;
+          conn_index = conn_index + 1;
+          search_status = get_connection_count(connection_pool);
+        } while (conn_index < search_status);
       }
     }
     else {
-      iVar5 = 0;
-      iVar2 = func_0x0001808675f0(param_1);
-      if (0 < iVar2) {
+      conn_index = 0;
+      search_status = get_connection_count(connection_pool);
+      if (0 < search_status) {
         do {
-          lVar3 = func_0x000180867680(param_1,iVar5);
-          if (*(int *)(lVar3 + 0x58) < 1) {
-            puVar4 = &DAT_18098bc73;
+          connection_data = get_connection_data(connection_pool,conn_index);
+          if (*(int *)(connection_data + 0x58) < 1) {
+            connection_info = &network_address_table;
           }
           else {
-            puVar4 = *(undefined **)(lVar3 + 0x50);
+            connection_info = *(undefined **)(connection_data + 0x50);
           }
-          iVar2 = func_0x00018076b630(puVar4,param_2);
-          if (iVar2 == 0) goto LAB_180840bf9;
-          iVar5 = iVar5 + 1;
-          iVar2 = func_0x0001808675f0(param_1);
-        } while (iVar5 < iVar2);
+          search_status = compare_connection_info(connection_info,search_pattern);
+          if (search_status == 0) goto connection_found;
+          conn_index = conn_index + 1;
+          search_status = get_connection_count(connection_pool);
+        } while (conn_index < search_status);
       }
     }
   }
-  goto LAB_180840b99;
-LAB_180840bf9:
-  *param_3 = iVar5;
-LAB_180840b99:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_58);
+  goto search_failure;
+connection_found:
+  *connection_index = conn_index;
+search_failure:
+  // 清理安全密钥
+  cleanup_security_key(security_key ^ (ulonglong)security_data);
 }
-
-
-
-// WARNING: Type propagation algorithm not settling
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

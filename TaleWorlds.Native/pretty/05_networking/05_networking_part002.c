@@ -94,74 +94,94 @@ void send_network_packet(longlong connection_ptr, undefined8 packet_data, undefi
                 *(undefined4 *)(connection_ptr + 0x1c));
   return;
 }
-
-
-
-int FUN_180840e00(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_encrypted_data(longlong encryption_info, longlong data_ptr, int data_size)
+// 处理加密数据的传输
+int process_encrypted_data(longlong encryption_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined4 encryption_key;
+  undefined4 encryption_method;
+  int processed_bytes;
+  int remaining_bytes;
+  undefined4 padding_value;
+  undefined4 iv_vector;
+  undefined4 salt_value;
+  undefined4 hmac_key;
   
-  uStack_18 = *(undefined4 *)(param_1 + 0x1c);
-  uStack_14 = *(undefined4 *)(param_1 + 0x20);
-  uStack_10 = *(undefined4 *)(param_1 + 0x24);
-  uStack_c = *(undefined4 *)(param_1 + 0x28);
-  uVar1 = *(undefined4 *)(param_1 + 0x2c);
-  uVar2 = *(undefined4 *)(param_1 + 0x18);
-  iVar3 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b650(iVar3 + param_2,param_3 - iVar3,&uStack_18);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 获取加密参数
+  padding_value = *(undefined4 *)(encryption_info + 0x1c);
+  iv_vector = *(undefined4 *)(encryption_info + 0x20);
+  salt_value = *(undefined4 *)(encryption_info + 0x24);
+  hmac_key = *(undefined4 *)(encryption_info + 0x28);
+  encryption_key = *(undefined4 *)(encryption_info + 0x2c);
+  encryption_method = *(undefined4 *)(encryption_info + 0x18);
+  
+  // 处理数据头部
+  processed_bytes = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(encryption_info + 0x10));
+  remaining_bytes = FUN_18074b880(processed_bytes + data_ptr, data_size - processed_bytes, &DAT_180a06434);
+  processed_bytes = processed_bytes + remaining_bytes;
+  
+  // 应用加密方法
+  remaining_bytes = func_0x00018074b7d0(processed_bytes + data_ptr, data_size - processed_bytes, encryption_method);
+  processed_bytes = processed_bytes + remaining_bytes;
+  
+  // 处理加密数据
+  remaining_bytes = FUN_18074b880(processed_bytes + data_ptr, data_size - processed_bytes, &DAT_180a06434);
+  processed_bytes = processed_bytes + remaining_bytes;
+  
+  // 应用填充值
+  remaining_bytes = FUN_18074b650(processed_bytes + data_ptr, data_size - processed_bytes, &padding_value);
+  processed_bytes = processed_bytes + remaining_bytes;
+  
+  // 处理填充后的数据
+  remaining_bytes = FUN_18074b880(processed_bytes + data_ptr, data_size - processed_bytes, &DAT_180a06434);
+  processed_bytes = processed_bytes + remaining_bytes;
+  
+  // 应用最终加密密钥
+  remaining_bytes = func_0x00018074b800(processed_bytes + data_ptr, data_size - processed_bytes, encryption_key);
+  return remaining_bytes + processed_bytes;
 }
-
-
-
-int FUN_180840f10(longlong param_1,longlong param_2,int param_3)
+// 函数: int compress_network_data(longlong compression_info, longlong data_ptr, int data_size)
+// 压缩网络数据
+int compress_network_data(longlong compression_info, longlong data_ptr, int data_size)
 
 {
-  undefined8 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined8 compression_algorithm;
+  int compressed_size;
+  int processed_bytes;
   
-  uVar1 = *(undefined8 *)(param_1 + 0x18);
-  iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074bda0(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取压缩算法信息
+  compression_algorithm = *(undefined8 *)(compression_info + 0x18);
+  
+  // 初始化压缩
+  compressed_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(compression_info + 0x10));
+  processed_bytes = FUN_18074b880(data_ptr + compressed_size, data_size - compressed_size, &DAT_180a06434);
+  compressed_size = compressed_size + processed_bytes;
+  
+  // 执行压缩
+  processed_bytes = func_0x00018074bda0(compressed_size + data_ptr, data_size - compressed_size, compression_algorithm);
+  return processed_bytes + compressed_size;
 }
-
-
-
-int FUN_180840f80(longlong param_1,longlong param_2,int param_3)
+// 函数: int validate_packet_signature(longlong signature_info, longlong data_ptr, int data_size)
+// 验证数据包签名
+int validate_packet_signature(longlong signature_info, longlong data_ptr, int data_size)
 
 {
-  undefined1 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined1 signature_key;
+  int signature_size;
+  int validated_bytes;
   
-  uVar1 = *(undefined1 *)(param_1 + 0x18);
-  iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取签名密钥
+  signature_key = *(undefined1 *)(signature_info + 0x18);
+  
+  // 读取签名数据
+  signature_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(signature_info + 0x10));
+  validated_bytes = FUN_18074b880(data_ptr + signature_size, data_size - signature_size, &DAT_180a06434);
+  signature_size = signature_size + validated_bytes;
+  
+  // 验证签名
+  validated_bytes = FUN_18074be90(signature_size + data_ptr, data_size - signature_size, signature_key);
+  return validated_bytes + signature_size;
 }
 
 
