@@ -1334,71 +1334,78 @@ undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefine
       *(byte *)(timing_info + 0x3c) = *(byte *)(timing_info + 0x3c) | 2; /* 设置状态标志 */
       timing_info = *(longlong *)(unaff_RBP + 0x7f);
     }
-    lVar19 = *(longlong *)(unaff_RBP + -1);
-    bVar18 = *(byte *)(lVar19 + 2);
-    if ((bVar18 >> 4) - 6 < 10) {
-      uVar16 = (uint)bVar18;
-      switch(bVar18 >> 4) {
-      case 6:
-        *(int *)(lVar11 + 0x44) = *(int *)(lVar11 + 0x44) - (uVar16 & 0xf);
-        lVar11 = *(longlong *)(unaff_RBP + 0x7f);
-        if (*(int *)(lVar11 + 0x44) < 0) {
-          *(undefined4 *)(lVar11 + 0x44) = 0;
-          lVar11 = *(longlong *)(unaff_RBP + 0x7f);
+    /* 数据处理模式选择 */
+    stack_data = *(longlong *)(unaff_RBP + -1);
+    control_byte = *(byte *)(stack_data + 2);
+    if ((control_byte >> 4) - 6 < 10) {
+      data_word = (uint)control_byte;
+      switch(control_byte >> 4) {
+      case 6: /* 减少处理模式 */
+        *(int *)(timing_info + 0x44) = *(int *)(timing_info + 0x44) - (data_word & 0xf);
+        timing_info = *(longlong *)(unaff_RBP + 0x7f);
+        if (*(int *)(timing_info + 0x44) < 0) {
+          *(undefined4 *)(timing_info + 0x44) = 0; /* 确保不为负数 */
+          timing_info = *(longlong *)(unaff_RBP + 0x7f);
         }
-        *(byte *)(lVar11 + 0x3c) = *(byte *)(lVar11 + 0x3c) | 2;
+        *(byte *)(timing_info + 0x3c) = *(byte *)(timing_info + 0x3c) | 2; /* 设置状态标志 */
         break;
-      case 7:
-        *(int *)(lVar11 + 0x44) = *(int *)(lVar11 + 0x44) + (uVar16 & 0xf);
-        lVar11 = *(longlong *)(unaff_RBP + 0x7f);
-        if (0x40 < *(int *)(lVar11 + 0x44)) {
-          *(undefined4 *)(lVar11 + 0x44) = 0x40;
-          lVar11 = *(longlong *)(unaff_RBP + 0x7f);
+        
+      case 7: /* 增加处理模式 */
+        *(int *)(timing_info + 0x44) = *(int *)(timing_info + 0x44) + (data_word & 0xf);
+        timing_info = *(longlong *)(unaff_RBP + 0x7f);
+        if (0x40 < *(int *)(timing_info + 0x44)) {
+          *(undefined4 *)(timing_info + 0x44) = 0x40; /* 限制最大值 */
+          timing_info = *(longlong *)(unaff_RBP + 0x7f);
         }
-        *(byte *)(lVar11 + 0x3c) = *(byte *)(lVar11 + 0x3c) | 2;
+        *(byte *)(timing_info + 0x3c) = *(byte *)(timing_info + 0x3c) | 2; /* 设置状态标志 */
         break;
+        
       default:
-        goto LAB_1807cdb80;
-      case 0xb:
-        *(byte *)(lVar6 + 0x108) = bVar18 & 0xf;
-        func_0x0001807cf230(lVar6);
-        *(char *)(lVar6 + 0x106) = *(char *)(lVar6 + 0x106) + *(char *)(lVar6 + 0x107);
-        lVar19 = *(longlong *)(unaff_RBP + -1);
-        if ('\x1f' < *(char *)(lVar6 + 0x106)) {
-          *(char *)(lVar6 + 0x106) = *(char *)(lVar6 + 0x106) + -0x40;
+        goto LAB_1807cdb80; /* 跳转到默认处理 */
+        
+      case 0xb: /* 特殊处理模式B */
+        *(byte *)(system_state + 0x108) = control_byte & 0xf;
+        func_0x0001807cf230(system_state); /* 执行特殊处理函数 */
+        *(char *)(system_state + 0x106) = *(char *)(system_state + 0x106) + *(char *)(system_state + 0x107);
+        stack_data = *(longlong *)(unaff_RBP + -1);
+        if ('\x1f' < *(char *)(system_state + 0x106)) {
+          *(char *)(system_state + 0x106) = *(char *)(system_state + 0x106) + -0x40; /* 循环处理 */
         }
         break;
-      case 0xd:
-        *(int *)(lVar11 + 0x48) = *(int *)(lVar11 + 0x48) - (uVar16 & 0xf);
-        pbVar2 = (byte *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c);
-        *pbVar2 = *pbVar2 | 4;
+        
+      case 0xd: /* 减少音量模式 */
+        *(int *)(timing_info + 0x48) = *(int *)(timing_info + 0x48) - (data_word & 0xf);
+        status_flags = (byte *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c);
+        *status_flags = *status_flags | 4; /* 设置音量状态标志 */
         break;
-      case 0xe:
-        *(int *)(lVar11 + 0x48) = *(int *)(lVar11 + 0x48) + (bVar18 & 0xf);
-        pbVar2 = (byte *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c);
-        *pbVar2 = *pbVar2 | 4;
+        
+      case 0xe: /* 增加音量模式 */
+        *(int *)(timing_info + 0x48) = *(int *)(timing_info + 0x48) + (control_byte & 0xf);
+        status_flags = (byte *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c);
+        *status_flags = *status_flags | 4; /* 设置音量状态标志 */
         break;
-      case 0xf:
-        lVar11 = *plVar1;
-        iVar9 = *(int *)(lVar11 + 0x40);
-        if (iVar9 < *(int *)(lVar6 + 0x100)) {
-          iVar9 = iVar9 + (uint)*(byte *)(lVar6 + 0x104) * 4;
-          *(int *)(lVar11 + 0x40) = iVar9;
-          if (*(int *)(lVar6 + 0x100) < iVar9) {
-            *(int *)(lVar11 + 0x40) = *(int *)(lVar6 + 0x100);
+        
+      case 0xf: /* 频率处理模式 */
+        timing_info = *data_processor_ptr;
+        processing_mode = *(int *)(timing_info + 0x40);
+        if (processing_mode < *(int *)(system_state + 0x100)) {
+          processing_mode = processing_mode + (uint)*(byte *)(system_state + 0x104) * 4;
+          *(int *)(timing_info + 0x40) = processing_mode;
+          if (*(int *)(system_state + 0x100) < processing_mode) {
+            *(int *)(timing_info + 0x40) = *(int *)(system_state + 0x100);
           }
         }
-        else if (*(int *)(lVar6 + 0x100) < iVar9) {
-          iVar9 = iVar9 + (uint)*(byte *)(lVar6 + 0x104) * -4;
-          *(int *)(lVar11 + 0x40) = iVar9;
-          if (iVar9 < *(int *)(lVar6 + 0x100)) {
-            iVar9 = *(int *)(lVar6 + 0x100);
+        else if (*(int )(system_state + 0x100) < processing_mode) {
+          processing_mode = processing_mode + (uint)*(byte *)(system_state + 0x104) * -4;
+          *(int *)(timing_info + 0x40) = processing_mode;
+          if (processing_mode < *(int )(system_state + 0x100)) {
+            processing_mode = *(int )(system_state + 0x100);
           }
-          *(int *)(lVar11 + 0x40) = iVar9;
+          *(int )(timing_info + 0x40) = processing_mode;
         }
-        *(byte *)(lVar11 + 0x3c) = *(byte *)(lVar11 + 0x3c) | 1;
+        *(byte *)(timing_info + 0x3c) = *(byte )(timing_info + 0x3c) | 1; /* 设置频率状态标志 */
       }
-      lVar11 = *(longlong *)(unaff_RBP + 0x7f);
+      timing_info = *(longlong *)(unaff_RBP + 0x7f);
     }
 LAB_1807cdb80:
     switch(*(undefined1 *)(unaff_RBP + 0x6f)) {
@@ -1789,9 +1796,24 @@ code_r0x0001807ce2c1:
 
 
 
-undefined8 FUN_1807ce34b(void)
+/**
+ * 系统状态同步器 - 负责同步系统各个组件的状态
+ * 这是一个简化版本的同步器，当前只返回成功状态
+ * 
+ * @return 返回0表示同步成功
+ * 
+ * 功能说明：
+ * - 在未来的实现中，这个函数将负责：
+ * - 检查各个系统组件的状态一致性
+ * - 同步不同模块之间的状态信息
+ * - 处理状态冲突和不一致问题
+ * - 确保系统整体的稳定性
+ */
+undefined8 SystemStateSynchronizer(void)
 
 {
+  /* 当前实现：返回成功状态 */
+  /* TODO: 实现完整的状态同步逻辑 */
   return 0;
 }
 
