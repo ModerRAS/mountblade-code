@@ -414,7 +414,7 @@ LAB_1808c3bc4:
     }
 FUN_1808c3dad:
     // WARNING: 栈清理，不返回
-    FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_c8);
+    SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_c8);
 }
 
 // 函数: void SystemResourceManager(int32_t param_1, uint64_t param_2, int64_t param_3)
