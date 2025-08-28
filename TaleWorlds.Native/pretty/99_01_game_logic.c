@@ -296,7 +296,7 @@ typedef uint64_t GameLogic_ResourceManager_type;
  * @param init_flag 初始化标志
  * @param config_param 配置参数
  * @param resource_param 资源参数
- * @return undefined 初始化状态
+ * @return uint64_t 初始化状态
  * 
  * @note 此函数在游戏启动时被调用
  * @warning 错误的初始化可能导致系统不稳定
@@ -316,7 +316,7 @@ uint64_t GameLogic_Initializer(uint64_t system_context, uint64_t init_flag, uint
  * @param event_type 事件类型
  * @param event_data 事件数据指针
  * @param event_param 事件参数
- * @return undefined 事件处理状态
+ * @return uint64_t 事件处理状态
  * 
  * @note 此函数在游戏运行时被频繁调用
  * @warning 错误的事件处理可能导致逻辑错误
@@ -422,7 +422,7 @@ static uint32_t g_game_system_flags = 0;
  * @param init_flag 初始化标志
  * @param config_param 配置参数
  * @param resource_param 资源参数
- * @return undefined 初始化状态
+ * @return uint64_t 初始化状态
  */
 uint64_t GameLogic_Initializer(uint64_t system_context, uint64_t init_flag, uint64_t config_param, uint64_t resource_param)
 
@@ -454,9 +454,9 @@ uint64_t GameLogic_Initializer(uint64_t system_context, uint64_t init_flag, uint
  * @param event_type 事件类型
  * @param event_data 事件数据指针
  * @param event_param 事件参数
- * @return undefined 事件处理状态
+ * @return uint64_t 事件处理状态
  */
-undefined GameLogic_EventHandler(uint64_t event_context, uint64_t event_type, uint64_t event_data, uint64_t event_param)
+uint64_t GameLogic_EventHandler(uint64_t event_context, uint64_t event_type, uint64_t event_data, uint64_t event_param)
 
 {
   uint64_t event_handling_result;
@@ -487,7 +487,7 @@ undefined GameLogic_EventHandler(uint64_t event_context, uint64_t event_type, ui
  * @param update_param 更新参数
  * @return undefined 状态更新结果
  */
-undefined GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, uint64_t delta_time, uint64_t update_param)
+uint64_t GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, uint64_t delta_time, uint64_t update_param)
 
 {
   uint64_t state_update_result;
@@ -517,7 +517,7 @@ undefined GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, u
  * @param cleanup_param 清理参数
  * @return undefined 清理状态
  */
-undefined GameLogic_ResourceCleaner(uint64_t resource_context, uint64_t cleanup_flag, uint64_t cleanup_param)
+uint64_t GameLogic_ResourceCleaner(uint64_t resource_context, uint64_t cleanup_flag, uint64_t cleanup_param)
 
 {
   uint64_t cleanup_result;

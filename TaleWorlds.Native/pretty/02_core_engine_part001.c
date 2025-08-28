@@ -105,22 +105,22 @@ void* FUN_1802285e0;  // SystemConfigurationLoader - 系统配置加载器
 ==============================================================================*/
 
 // 函数: 内存池管理器
-undefined FUN_180045af0;  // MemoryPoolManager - 内存池管理器
-undefined DAT_180c96330;   // 小对象内存池 (16-32字节)
-undefined DAT_180c96340;   // 中对象内存池 (64-128字节)
-undefined DAT_180c96348;   // 大对象内存池 (256-512字节)
-undefined DAT_180c96350;   // 超大对象内存池 (1K-4K字节)
-undefined DAT_180c96360;   // 对象分配统计信息
-undefined DAT_180c96368;   // 内存池配置参数
-undefined DAT_180c96318;   // 内存池状态监控
-undefined DAT_180c96338;   // 内存碎片整理器
-undefined SUB_18005d5f0;   // 内存分配器子函数
-undefined UNK_180942f90;   // 内存保护机制
-undefined DAT_180c96220;   // 内存分配策略表
+void* FUN_180045af0;  // MemoryPoolManager - 内存池管理器
+void* DAT_180c96330;   // 小对象内存池 (16-32字节)
+void* DAT_180c96340;   // 中对象内存池 (64-128字节)
+void* DAT_180c96348;   // 大对象内存池 (256-512字节)
+void* DAT_180c96350;   // 超大对象内存池 (1K-4K字节)
+void* DAT_180c96360;   // 对象分配统计信息
+void* DAT_180c96368;   // 内存池配置参数
+void* DAT_180c96318;   // 内存池状态监控
+void* DAT_180c96338;   // 内存碎片整理器
+void* SUB_18005d5f0;   // 内存分配器子函数
+void* UNK_180942f90;   // 内存保护机制
+void* DAT_180c96220;   // 内存分配策略表
 uint64_t UNK_180c96358;  // 内存对齐控制
-undefined DAT_180bf64f8;   // 内存使用统计
-undefined DAT_180bf6500;   // 内存泄漏检测器
-undefined DAT_180bf6508;   // 内存性能计数器
+void* DAT_180bf64f8;   // 内存使用统计
+void* DAT_180bf6500;   // 内存泄漏检测器
+void* DAT_180bf6508;   // 内存性能计数器
 undefined DAT_180bf6510;   // 内存压缩管理器
 
 // 函数: 对象工厂初始化器

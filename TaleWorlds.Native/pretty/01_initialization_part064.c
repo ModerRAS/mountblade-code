@@ -647,9 +647,9 @@ int32_t InitializationSystem_ComponentInitializer(void)
  * - 支持配置环境覆盖
  * - 实现配置验证规则
  * 
- * @return undefined 配置处理结果状态
+ * @return int32_t 配置处理结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_ConfigProcessor(void)
+int32_t InitializationSystem_ConfigProcessor(void)
 {
     // 系统配置处理逻辑实现
     
@@ -783,9 +783,9 @@ undefined InitializationSystem_ConfigProcessor(void)
  * - 资源冲突解决
  * - 资源统计和报告
  * 
- * @return undefined 资源管理结果状态
+ * @return int32_t 资源管理结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_ResourceManager(void)
+int32_t InitializationSystem_ResourceManager(void)
 {
     // 系统资源管理逻辑实现
     
@@ -827,7 +827,7 @@ undefined InitializationSystem_ResourceManager(void)
  * 
  * @return undefined 验证结果状态
  */
-undefined InitializationSystem_ValidateConfig(void)
+int32_t InitializationSystem_ValidateConfig(void)
 {
     // 配置验证逻辑实现
     
