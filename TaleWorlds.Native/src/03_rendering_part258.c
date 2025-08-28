@@ -282,8 +282,26 @@ void RenderingState_Initialize(void)
 
 
 
-// 函数: void FUN_180411040(longlong param_1,longlong *param_2,uint param_3)
-void FUN_180411040(longlong param_1,longlong *param_2,uint param_3)
+/**
+ * 渲染数据批量优化处理函数
+ * 
+ * 本函数实现了渲染数据的批量优化处理，通过高效的算法减少重复渲染操作。
+ * 支持大规模渲染数据的处理，适用于复杂的渲染场景。
+ * 
+ * @param param_1 渲染数据缓冲区指针
+ * @param param_2 渲染数据处理器接口指针
+ * @param param_3 渲染数据数量
+ * 
+ * @return 无返回值
+ * 
+ * 技术实现细节：
+ * - 使用双重循环算法进行数据比较和优化
+ * - 支持多种渲染数据类型的处理
+ * - 实现了高效的内存访问模式
+ * - 采用条件判断优化处理流程
+ * - 支持批量数据操作以提高性能
+ */
+void RenderingData_OptimizeBatch(longlong param_1,longlong *param_2,uint param_3)
 
 {
   bool bVar1;
