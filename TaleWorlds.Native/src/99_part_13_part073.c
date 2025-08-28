@@ -279,29 +279,39 @@ longlong ResourceObjectRelease(longlong resource_ptr, uint flags)
  */
 longlong ExtendedResourceCleanup(longlong resource_ptr, ulonglong cleanup_flags)
 
-
-
-longlong FUN_1808d9d50(longlong param_1,ulonglong param_2)
-
 {
   longlong *plVar1;
   
-  FUN_18084c220(param_1 + 0x58);
-  FUN_18084c220(param_1 + 0x48);
-  plVar1 = (longlong *)(param_1 + 0x30);
-  **(longlong **)(param_1 + 0x38) = *plVar1;
-  *(undefined8 *)(*plVar1 + 8) = *(undefined8 *)(param_1 + 0x38);
-  *(longlong **)(param_1 + 0x38) = plVar1;
+  // 清理额外的内存区域（0x58 偏移）
+  FUN_18084c220(resource_ptr + 0x58);
+  
+  // 清理额外的内存区域（0x48 偏移）
+  FUN_18084c220(resource_ptr + 0x48);
+  
+  // 获取资源链表头指针
+  plVar1 = (longlong *)(resource_ptr + 0x30);
+  
+  // 从活动链表中移除资源节点
+  **(longlong **)(resource_ptr + 0x38) = *plVar1;
+  *(undefined8 *)(*plVar1 + 8) = *(undefined8 *)(resource_ptr + 0x38);
+  *(longlong **)(resource_ptr + 0x38) = plVar1;
   *plVar1 = (longlong)plVar1;
-  **(longlong **)(param_1 + 0x38) = (longlong)plVar1;
-  *(undefined8 *)(*plVar1 + 8) = *(undefined8 *)(param_1 + 0x38);
-  *(longlong **)(param_1 + 0x38) = plVar1;
+  
+  // 确保链表操作的完整性（重复操作）
+  **(longlong **)(resource_ptr + 0x38) = (longlong)plVar1;
+  *(undefined8 *)(*plVar1 + 8) = *(undefined8 *)(resource_ptr + 0x38);
+  *(longlong **)(resource_ptr + 0x38) = plVar1;
   *plVar1 = (longlong)plVar1;
-  FUN_1808b02a0(param_1);
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x70);
+  
+  // 调用资源释放后处理函数（带参数）
+  FUN_1808b02a0(resource_ptr);
+  
+  // 根据标志位决定是否释放内存
+  if ((cleanup_flags & 1) != 0) {
+    free(resource_ptr, 0x70);
   }
-  return param_1;
+  
+  return resource_ptr;
 }
 
 

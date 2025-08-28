@@ -693,94 +693,100 @@ undefined FUN_180674040;                           // UI系统物理模拟器 - 
 undefined FUN_180674120;                           // UI系统粒子系统器 - 管理粒子效果
 
 
-// 函数: undefined FUN_1806742a0;
-undefined FUN_1806742a0;
+//------------------------------------------------------------------------------
+// UI系统高级功能函数组（续）
+//------------------------------------------------------------------------------
 
+// UI系统流体模拟函数
+undefined FUN_1806742a0;                           // UI系统流体模拟器 - 模拟流体效果
 
-// 函数: undefined FUN_1806743e0;
-undefined FUN_1806743e0;
+// UI系统光影效果函数
+undefined FUN_1806743e0;                           // UI系统光影效果器 - 处理光影效果
 
+// UI系统材质系统函数
+undefined FUN_1806744d0;                           // UI系统材质系统器 - 管理材质和着色器
 
-// 函数: undefined FUN_1806744d0;
-undefined FUN_1806744d0;
+// UI系统高级渲染函数
+undefined FUN_180674610;                           // UI系统高级渲染器 - 执行高级渲染操作
 
+//------------------------------------------------------------------------------
+// UI系统渲染数据变量组
+//------------------------------------------------------------------------------
 
-// 函数: undefined FUN_180674610;
-undefined FUN_180674610;
-undefined DAT_180c0c1dc;
-undefined DAT_180c0c1d8;
-undefined DAT_180c0c1d0;
-undefined DAT_180d4a758;
-undefined DAT_180d4a710;
-undefined DAT_180d4a6d0;
-undefined DAT_180d4a6a8;
-undefined DAT_180d4a950;
-undefined DAT_180d4a918;
-undefined DAT_180d4a890;
-undefined DAT_180d4a880;
-undefined DAT_180d4a868;
-undefined DAT_180d4a850;
-undefined DAT_180d4a838;
-undefined DAT_180d4a810;
-undefined DAT_180d4a7f8;
-undefined DAT_180d4a7d0;
-undefined DAT_180d4a7b8;
-undefined DAT_180d4a7a8;
-undefined DAT_180d4a798;
-undefined DAT_180d4a780;
-undefined DAT_180d4a748;
-undefined DAT_180d4a730;
-undefined DAT_180d4a718;
-undefined DAT_180d4a6f8;
-undefined DAT_180d4a8f8;
-undefined DAT_180d4a8e0;
-undefined DAT_180d4a8c8;
-undefined DAT_180d4a888;
-undefined DAT_180d4a848;
-undefined DAT_180d4a828;
-undefined DAT_180d4a808;
-undefined DAT_180d4a7f0;
-undefined DAT_180d4a790;
-undefined DAT_180d4a760;
-undefined DAT_180d4a728;
-undefined DAT_180d4a938;
-undefined DAT_180d4a8b8;
-undefined DAT_180d4a860;
-undefined DAT_180d4a800;
-undefined DAT_180d4a7c8;
-undefined DAT_180d4a768;
-undefined DAT_180d4a738;
-undefined DAT_180d4a720;
-undefined DAT_180d4a6e8;
-undefined DAT_180d4a6c8;
-undefined DAT_180d4a6c0;
-undefined DAT_180d4a6a0;
-undefined DAT_180d4a960;
-undefined DAT_180d4a940;
-undefined DAT_180d4a908;
-undefined DAT_180d4a8e8;
-undefined DAT_180d4a8a0;
-undefined DAT_180d4a878;
-undefined DAT_180d4a840;
-undefined DAT_180d4a818;
-undefined DAT_180d4a7d8;
-undefined DAT_180d4a7a0;
-undefined DAT_180d4a770;
-undefined DAT_180d4a6f0;
-undefined DAT_180d4a6d8;
-undefined DAT_180d4a6b0;
-undefined DAT_180d4a930;
-undefined DAT_180d4a900;
-undefined DAT_180d4a8d8;
-undefined DAT_180d4a8b0;
-undefined DAT_180d4a870;
-undefined DAT_180d4a830;
-undefined DAT_180d4a7e8;
-undefined DAT_180d4a7c0;
-undefined DAT_180d4a788;
-undefined DAT_180d4a740;
-undefined DAT_180d4a700;
-undefined DAT_180d4a6e0;
+undefined DAT_180c0c1dc;                          // UI系统渲染数据表 - 存储渲染数据
+undefined DAT_180c0c1d8;                          // UI系统渲染配置表 - 存储渲染配置
+undefined DAT_180c0c1d0;                          // UI系统渲染状态表 - 存储渲染状态
+undefined DAT_180d4a758;                          // UI系统顶点数据表 - 存储顶点数据
+undefined DAT_180d4a710;                          // UI系统索引数据表 - 存储索引数据
+undefined DAT_180d4a6d0;                          // UI系统纹理数据表 - 存储纹理数据
+undefined DAT_180d4a6a8;                          // UI系统着色器数据表 - 存储着色器数据
+undefined DAT_180d4a950;                          // UI系统缓冲区数据表 - 存储缓冲区数据
+undefined DAT_180d4a918;                          // UI系统管线数据表 - 存储渲染管线数据
+undefined DAT_180d4a890;                          // UI系统帧缓冲数据表 - 存储帧缓冲数据
+undefined DAT_180d4a880;                          // UI系统深度缓冲数据表 - 存储深度缓冲数据
+undefined DAT_180d4a868;                          // UI系统模板缓冲数据表 - 存储模板缓冲数据
+undefined DAT_180d4a850;                          // UI系统颜色缓冲数据表 - 存储颜色缓冲数据
+undefined DAT_180d4a838;                          // UI系统法线数据表 - 存储法线数据
+undefined DAT_180d4a810;                          // UI系统切线数据表 - 存储切线数据
+undefined DAT_180d4a7f8;                          // UI系统UV坐标数据表 - 存储UV坐标数据
+undefined DAT_180d4a7d0;                          // UI系统骨骼数据表 - 存储骨骼数据
+undefined DAT_180d4a7b8;                          // UI系统动画数据表 - 存储动画数据
+undefined DAT_180d4a7a8;                          // UI系统材质数据表 - 存储材质数据
+undefined DAT_180d4a798;                          // UI系统光照数据表 - 存储光照数据
+undefined DAT_180d4a780;                          // UI系统阴影数据表 - 存储阴影数据
+undefined DAT_180d4a748;                          // UI系统反射数据表 - 存储反射数据
+undefined DAT_180d4a730;                          // UI系统折射数据表 - 存储折射数据
+undefined DAT_180d4a718;                          // UI系统环境光数据表 - 存储环境光数据
+undefined DAT_180d4a6f8;                          // UI系统后处理数据表 - 存储后处理数据
+undefined DAT_180d4a8f8;                          // UI系统抗锯齿数据表 - 存储抗锯齿数据
+undefined DAT_180d4a8e0;                          // UI系统景深数据表 - 存储景深数据
+undefined DAT_180d4a8c8;                          // UI系统动态模糊数据表 - 存储动态模糊数据
+undefined DAT_180d4a888;                          // UI系统运动模糊数据表 - 存储运动模糊数据
+undefined DAT_180d4a848;                          // UI系统体积光数据表 - 存储体积光数据
+undefined DAT_180d4a828;                          // UI系统屏幕空间反射数据表 - 存储SSR数据
+undefined DAT_180d4a808;                          // UI系统屏幕空间环境光遮蔽数据表 - 存储SSAO数据
+undefined DAT_180d4a7f0;                          // UI系统全局光照数据表 - 存储全局光照数据
+undefined DAT_180d4a790;                          // UI系统光线追踪数据表 - 存储光线追踪数据
+undefined DAT_180d4a760;                          // UI系统路径追踪数据表 - 存储路径追踪数据
+undefined DAT_180d4a728;                          // UI系统辐射度数据表 - 存储辐射度数据
+undefined DAT_180d4a938;                          // UI系统光子映射数据表 - 存储光子映射数据
+undefined DAT_180d4a8b8;                          // UI系统体素数据表 - 存储体素数据
+undefined DAT_180d4a860;                          // UI系统八叉树数据表 - 存储八叉树数据
+undefined DAT_180d4a800;                          // UI系统BVH数据表 - 存储BVH数据
+undefined DAT_180d4a7c8;                          // UI系统KD树数据表 - 存储KD树数据
+undefined DAT_180d4a768;                          // UI系统四叉树数据表 - 存储四叉树数据
+undefined DAT_180d4a738;                          // UI系统网格数据表 - 存储网格数据
+undefined DAT_180d4a720;                          // UI系统细分曲面数据表 - 存储细分曲面数据
+undefined DAT_180d4a6e8;                          // UI系统位移映射数据表 - 存储位移映射数据
+undefined DAT_180d4a6c8;                          // UI系统法线映射数据表 - 存储法线映射数据
+undefined DAT_180d4a6c0;                          // UI系统高度映射数据表 - 存储高度映射数据
+undefined DAT_180d4a6a0;                          // UI系统环境映射数据表 - 存储环境映射数据
+undefined DAT_180d4a960;                          // UI系统立方体贴图数据表 - 存储立方体贴图数据
+undefined DAT_180d4a940;                          // UI系统球面贴图数据表 - 存储球面贴图数据
+undefined DAT_180d4a908;                          // UI系统柱面贴图数据表 - 存储柱面贴图数据
+undefined DAT_180d4a8e8;                          // UI系统平面贴图数据表 - 存储平面贴图数据
+undefined DAT_180d4a8a0;                          // UI系统纹理数组数据表 - 存储纹理数组数据
+undefined DAT_180d4a878;                          // UI系统纹理图集数据表 - 存储纹理图集数据
+undefined DAT_180d4a840;                          // UI系统纹理链数据表 - 存储纹理链数据
+undefined DAT_180d4a818;                          // UI系统纹理流数据表 - 存储纹理流数据
+undefined DAT_180d4a7d8;                          // UI系统纹理压缩数据表 - 存储纹理压缩数据
+undefined DAT_180d4a7a0;                          // UI系统纹理过滤数据表 - 存储纹理过滤数据
+undefined DAT_180d4a770;                          // UI系统纹理混合数据表 - 存储纹理混合数据
+undefined DAT_180d4a6f0;                          // UI系统纹理生成数据表 - 存储纹理生成数据
+undefined DAT_180d4a6d8;                          // UI系统纹理缓存数据表 - 存储纹理缓存数据
+undefined DAT_180d4a6b0;                          // UI系统纹理管理数据表 - 存储纹理管理数据
+undefined DAT_180d4a930;                          // UI系统着色器编译数据表 - 存储着色器编译数据
+undefined DAT_180d4a900;                          // UI系统着色器链接数据表 - 存储着色器链接数据
+undefined DAT_180d4a8d8;                          // UI系统着色器优化数据表 - 存储着色器优化数据
+undefined DAT_180d4a8b0;                          // UI系统着色器缓存数据表 - 存储着色器缓存数据
+undefined DAT_180d4a870;                          // UI系统着色器管理数据表 - 存储着色器管理数据
+undefined DAT_180d4a830;                          // UI系统管线状态数据表 - 存储管线状态数据
+undefined DAT_180d4a7e8;                          // UI系统管线配置数据表 - 存储管线配置数据
+undefined DAT_180d4a7c0;                          // UI系统管线缓存数据表 - 存储管线缓存数据
+undefined DAT_180d4a788;                          // UI系统管线管理数据表 - 存储管线管理数据
+undefined DAT_180d4a740;                          // UI系统缓冲区管理数据表 - 存储缓冲区管理数据
+undefined DAT_180d4a700;                          // UI系统内存管理数据表 - 存储内存管理数据
+undefined DAT_180d4a6e0;                          // UI系统资源管理数据表 - 存储资源管理数据
 undefined DAT_180d4a6b8;
 undefined DAT_180d4a968;
 undefined DAT_180d4a948;
