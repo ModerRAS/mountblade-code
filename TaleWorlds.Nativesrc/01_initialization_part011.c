@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "function_aliases_initialization.h"
 
 /**
  * @file 01_initialization_part011.c
@@ -242,7 +243,7 @@ static uint32_t g_system_config_count = 0;
  * 
  * @note 这是初始化系统的核心配置管理函数之一
  */
-void FUN_1800400b0(void)
+void SystemConfig_RegisterManager1(void)
 {
     InitSystemHandle system_handle;
     InitSystemNode* current_node;
@@ -253,7 +254,7 @@ void FUN_1800400b0(void)
     int compare_result;
     
     // 获取系统句柄
-    system_handle = (InitSystemHandle)FUN_18008d070();
+    system_handle = (InitSystemHandle)InitSystem_GetHandle();
     
     // 初始化系统状态
     g_init_status.system_status = INIT_STATE_INITIALIZING;
@@ -286,8 +287,8 @@ void FUN_1800400b0(void)
                                 INIT_COMPARE_SIZE), compare_result < 0))) {
         
         // 分配新的内存块
-        MemorySize new_size = FUN_18008f0d0((int64_t*)system_handle);
-        FUN_18008f140((int64_t*)system_handle, &target_node, current_node, 
+        MemorySize new_size = InitSystem_CalculateMemorySize((int64_t*)system_handle);
+        InitSystem_AllocateMemoryBlock((int64_t*)system_handle, &target_node, current_node, 
                       new_size + INIT_CONFIG_SIZE, new_size);
         current_node = target_node;
     }
@@ -326,7 +327,7 @@ void FUN_1800400b0(void)
  * 
  * @note 这是初始化系统的核心配置管理函数之一
  */
-void FUN_1800401b0(void)
+void SystemConfig_RegisterManager2(void)
 {
     InitSystemHandle system_handle;
     InitSystemNode* current_node;
@@ -337,7 +338,7 @@ void FUN_1800401b0(void)
     int compare_result;
     
     // 获取系统句柄
-    system_handle = (InitSystemHandle)FUN_18008d070();
+    system_handle = (InitSystemHandle)InitSystem_GetHandle();
     
     // 初始化系统状态
     g_init_status.system_status = INIT_STATE_INITIALIZING;
@@ -370,8 +371,8 @@ void FUN_1800401b0(void)
                                 INIT_COMPARE_SIZE), compare_result < 0))) {
         
         // 分配新的内存块
-        MemorySize new_size = FUN_18008f0d0((int64_t*)system_handle);
-        FUN_18008f140((int64_t*)system_handle, &target_node, current_node, 
+        MemorySize new_size = InitSystem_CalculateMemorySize((int64_t*)system_handle);
+        InitSystem_AllocateMemoryBlock((int64_t*)system_handle, &target_node, current_node, 
                       new_size + INIT_CONFIG_SIZE, new_size);
         current_node = target_node;
     }
@@ -410,7 +411,7 @@ void FUN_1800401b0(void)
  * 
  * @note 这是初始化系统的核心配置管理函数之一
  */
-void FUN_1800402b0(void)
+void SystemConfig_RegisterManager3(void)
 {
     InitSystemHandle system_handle;
     InitSystemNode* current_node;
@@ -421,7 +422,7 @@ void FUN_1800402b0(void)
     int compare_result;
     
     // 获取系统句柄
-    system_handle = (InitSystemHandle)FUN_18008d070();
+    system_handle = (InitSystemHandle)InitSystem_GetHandle();
     
     // 初始化系统状态
     g_init_status.system_status = INIT_STATE_INITIALIZING;
@@ -454,8 +455,8 @@ void FUN_1800402b0(void)
                                 INIT_COMPARE_SIZE), compare_result < 0))) {
         
         // 分配新的内存块
-        MemorySize new_size = FUN_18008f0d0((int64_t*)system_handle);
-        FUN_18008f140((int64_t*)system_handle, &target_node, current_node, 
+        MemorySize new_size = InitSystem_CalculateMemorySize((int64_t*)system_handle);
+        InitSystem_AllocateMemoryBlock((int64_t*)system_handle, &target_node, current_node, 
                       new_size + INIT_CONFIG_SIZE, new_size);
         current_node = target_node;
     }
@@ -494,7 +495,7 @@ void FUN_1800402b0(void)
  * 
  * @note 这是初始化系统的核心配置管理函数之一
  */
-void FUN_1800403b0(void)
+void SystemConfig_RegisterManager4(void)
 {
     InitSystemHandle system_handle;
     InitSystemNode* current_node;
@@ -505,7 +506,7 @@ void FUN_1800403b0(void)
     int compare_result;
     
     // 获取系统句柄
-    system_handle = (InitSystemHandle)FUN_18008d070();
+    system_handle = (InitSystemHandle)InitSystem_GetHandle();
     
     // 初始化系统状态
     g_init_status.system_status = INIT_STATE_INITIALIZING;
@@ -538,8 +539,8 @@ void FUN_1800403b0(void)
                                 INIT_COMPARE_SIZE), compare_result < 0))) {
         
         // 分配新的内存块
-        MemorySize new_size = FUN_18008f0d0((int64_t*)system_handle);
-        FUN_18008f140((int64_t*)system_handle, &target_node, current_node, 
+        MemorySize new_size = InitSystem_CalculateMemorySize((int64_t*)system_handle);
+        InitSystem_AllocateMemoryBlock((int64_t*)system_handle, &target_node, current_node, 
                       new_size + INIT_CONFIG_SIZE, new_size);
         current_node = target_node;
     }
@@ -578,7 +579,7 @@ void FUN_1800403b0(void)
  * 
  * @note 这是初始化系统的核心配置管理函数之一
  */
-void FUN_1800404b0(void)
+void SystemConfig_RegisterManager5(void)
 {
     InitSystemHandle system_handle;
     InitSystemNode* current_node;
@@ -589,7 +590,7 @@ void FUN_1800404b0(void)
     int compare_result;
     
     // 获取系统句柄
-    system_handle = (InitSystemHandle)FUN_18008d070();
+    system_handle = (InitSystemHandle)InitSystem_GetHandle();
     
     // 初始化系统状态
     g_init_status.system_status = INIT_STATE_INITIALIZING;
@@ -622,8 +623,8 @@ void FUN_1800404b0(void)
                                 INIT_COMPARE_SIZE), compare_result < 0))) {
         
         // 分配新的内存块
-        MemorySize new_size = FUN_18008f0d0((int64_t*)system_handle);
-        FUN_18008f140((int64_t*)system_handle, &target_node, current_node, 
+        MemorySize new_size = InitSystem_CalculateMemorySize((int64_t*)system_handle);
+        InitSystem_AllocateMemoryBlock((int64_t*)system_handle, &target_node, current_node, 
                       new_size + INIT_CONFIG_SIZE, new_size);
         current_node = target_node;
     }
@@ -662,7 +663,7 @@ void FUN_1800404b0(void)
  * 
  * @note 这是初始化系统的核心配置管理函数之一
  */
-void FUN_1800405b0(void)
+void SystemConfig_RegisterManager6(void)
 {
     InitSystemHandle system_handle;
     InitSystemNode* current_node;
@@ -673,7 +674,7 @@ void FUN_1800405b0(void)
     int compare_result;
     
     // 获取系统句柄
-    system_handle = (InitSystemHandle)FUN_18008d070();
+    system_handle = (InitSystemHandle)InitSystem_GetHandle();
     
     // 初始化系统状态
     g_init_status.system_status = INIT_STATE_INITIALIZING;
@@ -706,8 +707,8 @@ void FUN_1800405b0(void)
                                 INIT_COMPARE_SIZE), compare_result < 0))) {
         
         // 分配新的内存块
-        MemorySize new_size = FUN_18008f0d0((int64_t*)system_handle);
-        FUN_18008f140((int64_t*)system_handle, &target_node, current_node, 
+        MemorySize new_size = InitSystem_CalculateMemorySize((int64_t*)system_handle);
+        InitSystem_AllocateMemoryBlock((int64_t*)system_handle, &target_node, current_node, 
                       new_size + INIT_CONFIG_SIZE, new_size);
         current_node = target_node;
     }
@@ -720,7 +721,7 @@ void FUN_1800405b0(void)
     current_node->options = 0;
     current_node->version = INIT_VERSION_MAJOR;
     current_node->progress = 100;
-    current_node->callback = (InitCallback)FUN_180073930;
+    current_node->callback = (InitCallback)SystemConfig_GetCompletionCallback;
     
     // 更新系统状态
     g_init_status.initialized_count++;
@@ -747,7 +748,7 @@ void FUN_1800405b0(void)
  * 
  * @note 这是初始化系统的核心配置管理函数之一
  */
-void FUN_1800406b0(void)
+void SystemConfig_RegisterManager7(void)
 {
     InitSystemHandle system_handle;
     InitSystemNode* current_node;
@@ -758,7 +759,7 @@ void FUN_1800406b0(void)
     int compare_result;
     
     // 获取系统句柄
-    system_handle = (InitSystemHandle)FUN_18008d070();
+    system_handle = (InitSystemHandle)InitSystem_GetHandle();
     
     // 初始化系统状态
     g_init_status.system_status = INIT_STATE_INITIALIZING;
@@ -791,8 +792,8 @@ void FUN_1800406b0(void)
                                 INIT_COMPARE_SIZE), compare_result < 0))) {
         
         // 分配新的内存块
-        MemorySize new_size = FUN_18008f0d0((int64_t*)system_handle);
-        FUN_18008f140((int64_t*)system_handle, &target_node, current_node, 
+        MemorySize new_size = InitSystem_CalculateMemorySize((int64_t*)system_handle);
+        InitSystem_AllocateMemoryBlock((int64_t*)system_handle, &target_node, current_node, 
                       new_size + INIT_CONFIG_SIZE, new_size);
         current_node = target_node;
     }
