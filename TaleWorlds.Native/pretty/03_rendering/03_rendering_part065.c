@@ -183,26 +183,36 @@ void RenderingSystem_AdvancedParameterControl(longlong render_context, undefined
   return;
 }
 
-// 函数：渲染系统状态检查器
-// 功能：检查渲染系统的状态和配置，确保系统正常运行
-undefined8 render_system_state_checker(longlong *render_context)
+/**
+ * 渲染系统命令执行函数
+ * 执行渲染系统命令，处理渲染状态和参数更新
+ * 
+ * @param render_params 渲染参数指针
+ * @return 执行结果
+ */
+undefined8 RenderingSystem_ExecuteRenderCommand(longlong *render_params)
 
 {
-  longlong resource_manager;
+  longlong context_data;
   
-  if (*(code **)(*render_context + 0x90) == (code *)&render_system_state_check_function) {
-    resource_manager = render_context[0xda];
-    if ((((*(longlong **)(resource_manager + 0x318) != (longlong *)0x0) && 
-         (*(char *)(resource_manager + 0x2a61) != '\0')) && 
-        (*(char *)(resource_manager + 0x2a62) != '\0')) && 
-       (*(int *)(render_system_global_data + 0xaf0) != 0)) {
-      // 执行状态检查函数
-      (**(code **)(**(longlong **)(resource_manager + 0x318) + 0x38))();
+  // 检查渲染命令类型
+  if (*(code **)(*render_params + 0x90) == (code *)&UNK_180302310) {
+    context_data = render_params[0xda];
+    
+    // 验证渲染上下文状态
+    if ((((*(longlong **)(context_data + 0x318) != (longlong *)0x0) && 
+         (*(char *)(context_data + 0x2a61) != '\0')) &&
+        (*(char *)(context_data + 0x2a62) != '\0')) && 
+        (*(int *)(_DAT_180c8a9c8 + 0xaf0) != 0)) {
+      
+      // 执行渲染命令
+      (**(code **)(**(longlong **)(context_data + 0x318) + 0x38))();
       return 0;
     }
   }
   else {
-    (**(code **)(*render_context + 0x90))();
+    // 执行默认渲染命令
+    (**(code **)(*render_params + 0x90))();
   }
   return 0;
 }

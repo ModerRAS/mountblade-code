@@ -1172,162 +1172,210 @@ undefined8 *render_system_create_string_buffer(longlong param1, undefined8 *stri
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_180301910(longlong *param_1,undefined8 param_2)
-
+/**
+ * 处理渲染数据
+ * @param render_obj 渲染对象指针
+ * @param param2 参数2
+ * @return 处理结果
+ */
+longlong render_system_process_render_data(longlong *render_obj, undefined8 param2)
 {
-  longlong *plVar1;
-  uint uVar2;
-  int iVar3;
-  longlong lVar4;
-  undefined4 *puVar5;
-  longlong lVar6;
-  undefined8 uStack_d8;
-  undefined4 uStack_d0;
-  undefined4 uStack_cc;
-  undefined2 uStack_c8;
-  undefined1 uStack_c6;
-  undefined4 uStack_c4;
-  undefined1 uStack_c0;
-  undefined8 uStack_b8;
-  longlong lStack_b0;
-  undefined8 uStack_a8;
-  undefined8 uStack_a0;
-  undefined4 uStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined4 uStack_80;
-  undefined4 uStack_7c;
-  undefined2 uStack_78;
-  undefined1 uStack_76;
-  undefined4 uStack_74;
-  undefined1 uStack_70;
-  undefined8 uStack_68;
-  longlong lStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined4 uStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  
-  uStack_38 = 0xfffffffffffffffe;
-  if ((char)param_1[0x10f] == '\0') {
-    lVar4 = FUN_180302c30();
-    param_1[0xa3] = lVar4;
-  }
-  *(undefined1 *)(param_1 + 0x10f) = 0;
-  lVar4 = param_1[0xa3];
-  lVar6 = 0;
-  if ((lVar4 != 0) && (*(longlong *)(lVar4 + 0x99b8) != 0)) {
-    plVar1 = *(longlong **)(lVar4 + 0x96a0);
-    *(undefined8 *)(lVar4 + 0x96a0) = 0;
-    if (plVar1 != (longlong *)0x0) {
-      (**(code **)(*plVar1 + 0x38))();
+    longlong *resource_ptr;
+    uint buffer_size;
+    int string_length;
+    longlong extended_data;
+    undefined4 *string_buffer;
+    longlong process_result;
+    undefined8 temp_param1;
+    undefined4 temp_param2;
+    undefined4 temp_param3;
+    undefined2 temp_param4;
+    undefined1 temp_param5;
+    undefined4 temp_param6;
+    undefined1 temp_param7;
+    undefined8 temp_param8;
+    longlong temp_result1;
+    undefined8 temp_param9;
+    undefined8 temp_param10;
+    undefined4 temp_param11;
+    undefined8 temp_param12;
+    undefined8 temp_param13;
+    undefined4 temp_param14;
+    undefined4 temp_param15;
+    undefined2 temp_param16;
+    undefined1 temp_param17;
+    undefined4 temp_param18;
+    undefined1 temp_param19;
+    undefined8 temp_param20;
+    longlong temp_result2;
+    undefined8 temp_param21;
+    undefined8 temp_param22;
+    undefined4 temp_param23;
+    undefined8 temp_param24;
+    undefined8 temp_param25;
+    
+    temp_param25 = 0xfffffffffffffffe;
+    
+    // 检查是否需要初始化扩展数据
+    if ((char)render_obj[0x10f] == '\0') {
+        extended_data = FUN_180302c30();
+        render_obj[0xa3] = extended_data;
     }
-  }
-  if (param_1[0xda] == 0) goto LAB_180301ce4;
-  puVar5 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x18,0x13);
-  *(undefined1 *)puVar5 = 0;
-  uVar2 = FUN_18064e990(puVar5);
-  *puVar5 = 0x536c6772;
-  puVar5[1] = 0x656e6563;
-  puVar5[2] = 0x6569765f;
-  puVar5[3] = 0x723a3a77;
-  *(undefined8 *)(puVar5 + 4) = 0x3a3a7265646e65;
-  lVar4 = param_1[0xda];
-  iVar3 = *(int *)(lVar4 + 0x4e8);
-  if (0 < iVar3) {
-    if ((iVar3 != -0x17) && (uVar2 < iVar3 + 0x18U)) {
-      puVar5 = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18,puVar5,iVar3 + 0x18U,0x10,0x13);
-      FUN_18064e990(puVar5);
-      iVar3 = *(int *)(lVar4 + 0x4e8);
-    }
-                    // WARNING: Subroutine does not return
-    memcpy((undefined1 *)((longlong)puVar5 + 0x17),*(undefined8 *)(lVar4 + 0x4e0),
-           (longlong)(iVar3 + 1));
-  }
-  lVar6 = FUN_180302370(param_1,param_2);
-  if ((*(char *)((longlong)param_1 + 0x827) == '\0') ||
-     (((char)param_1[0x104] != '\0' && ((int)param_1[0x1f] < 0)))) {
-    if (*(char *)((longlong)param_1 + 0x829) == '\0') {
-      *(undefined2 *)(param_1 + 0x104) = 0x101;
-      *(undefined1 *)(param_1[0xda] + 0x60b90) = 1;
-      *(undefined1 *)(param_1[0xda] + 0x60b91) = 1;
-    }
-    else {
-      *(undefined1 *)((longlong)param_1 + 0xdd) = 0;
-      (**(code **)(*param_1 + 0xc0))(param_1);
-      FUN_180304100(param_1,1,1);
-    }
-  }
-  else {
-    uStack_d8 = 0;
-    uStack_d0 = 0;
-    uStack_cc = 0xffffffff;
-    uStack_c6 = 0;
-    uStack_c4 = 0xffffffff;
-    uStack_c0 = 1;
-    uStack_b8 = 0;
-    lStack_b0 = 0;
-    uStack_a8 = 0;
-    uStack_a0 = 0;
-    uStack_98 = 3;
-    uStack_90 = 0;
-    uStack_c8 = 0;
-    if ((*(int *)(param_1[0xda] + 0x27c0) == 1) &&
-       (iVar3 = FUN_1801a3620(param_1[0xda],&uStack_d8), iVar3 != 0)) {
-      *(int *)(param_1 + 0x10a) = (int)param_1[0x10a] + 1;
-      if (100 < (int)param_1[0x10a]) {
-        uStack_88 = 0;
-        uStack_80 = 0;
-        uStack_7c = 0xffffffff;
-        uStack_78 = 1;
-        uStack_76 = 0;
-        uStack_74 = 0xffffffff;
-        uStack_70 = 1;
-        uStack_68 = 0;
-        lStack_60 = 0;
-        uStack_58 = 0;
-        uStack_50 = 0;
-        uStack_48 = 3;
-        uStack_40 = 0;
-        FUN_1801a3620(param_1[0xda],&uStack_88);
-        *(undefined4 *)(param_1 + 0x10a) = 0;
-        if (lStack_60 != 0) {
-                    // WARNING: Subroutine does not return
-          FUN_18064e900();
+    
+    *(undefined1 *)(render_obj + 0x10f) = 0;
+    extended_data = render_obj[0xa3];
+    process_result = 0;
+    
+    // 清理扩展数据资源
+    if ((extended_data != 0) && (*(longlong *)(extended_data + 0x99b8) != 0)) {
+        resource_ptr = *(longlong **)(extended_data + 0x96a0);
+        *(undefined8 *)(extended_data + 0x96a0) = 0;
+        if (resource_ptr != (longlong *)0x0) {
+            (**(code **)(*resource_ptr + 0x38))();
         }
-      }
-LAB_180301bf4:
-      if (*(int *)((longlong)param_1 + 0xfc) != (int)param_1[0x1f]) goto LAB_180301c02;
+    }
+    
+    // 检查是否需要处理渲染数据
+    if (render_obj[0xda] == 0) goto LAB_180301ce4;
+    
+    // 创建字符串缓冲区
+    string_buffer = (undefined4 *)FUN_18062b420(global_render_context, 0x18, 0x13);
+    *(undefined1 *)string_buffer = 0;
+    buffer_size = FUN_18064e990(string_buffer);
+    
+    // 设置字符串缓冲区数据
+    *string_buffer = RENDER_MAGIC_NUMBER_1;  // "Slgr"
+    string_buffer[1] = RENDER_MAGIC_NUMBER_2;  // "ence"
+    string_buffer[2] = RENDER_MAGIC_NUMBER_3;  // "eiv_"
+    string_buffer[3] = RENDER_MAGIC_NUMBER_4;  // "r::w"
+    *(undefined8 *)(string_buffer + 4) = RENDER_MAGIC_NUMBER_5;  // "::render"
+    
+    extended_data = render_obj[0xda];
+    string_length = *(int *)(extended_data + 0x4e8);
+    
+    // 复制字符串数据
+    if (0 < string_length) {
+        // 检查缓冲区大小是否足够
+        if ((string_length != -0x17) && (buffer_size < string_length + 0x18U)) {
+            string_buffer = (undefined4 *)FUN_18062b8b0(global_render_context, string_buffer, string_length + 0x18U, 0x10, 0x13);
+            FUN_18064e990(string_buffer);
+            string_length = *(int *)(extended_data + 0x4e8);
+        }
+        // WARNING: Subroutine does not return
+        memcpy((undefined1 *)((longlong)string_buffer + 0x17), *(undefined8 *)(extended_data + 0x4e0),
+               (longlong)(string_length + 1));
+    }
+    
+    // 处理渲染数据
+    process_result = FUN_180302370(render_obj, param2);
+    
+    // 检查渲染状态
+    if ((*(char *)((longlong)render_obj + 0x827) == '\0') ||
+       (((char)render_obj[0x104] != '\0' && ((int)render_obj[0x1f] < 0)))) {
+        if (*(char *)((longlong)render_obj + 0x829) == '\0') {
+            // 设置渲染状态为激活
+            *(undefined2 *)(render_obj + 0x104) = RENDERER_FLAG_ACTIVE;
+            *(undefined1 *)(render_obj[0xda] + 0x60b90) = 1;
+            *(undefined1 *)(render_obj[0xda] + 0x60b91) = 1;
+        }
+        else {
+            // 重置渲染状态
+            *(undefined1 *)((longlong)render_obj + 0xdd) = 0;
+            (**(code **)(*render_obj + 0xc0))(render_obj);
+            FUN_180304100(render_obj, 1, 1);
+        }
     }
     else {
-      *(undefined1 *)((longlong)param_1 + 0x821) = 1;
-      *(undefined1 *)(param_1[0xda] + 0x60b91) = 1;
-      if ((*(int *)(param_1[0xda] + 0x27c0) < 7) ||
-         ((*(int *)(lVar6 + 0x124e8) != 0 || (*(int *)(lVar6 + 0x124ec) != 0)))) goto LAB_180301bf4;
+        // 设置渲染参数
+        temp_param1 = 0;
+        temp_param2 = 0;
+        temp_param3 = 0xffffffff;
+        temp_param5 = 0;
+        temp_param6 = 0xffffffff;
+        temp_param7 = 1;
+        temp_param8 = 0;
+        temp_result1 = 0;
+        temp_param9 = 0;
+        temp_param10 = 0;
+        temp_param11 = 3;
+        temp_param12 = 0;
+        temp_param4 = 0;
+        
+        // 检查渲染器状态
+        if ((*(int *)(render_obj[0xda] + 0x27c0) == 1) &&
+           (string_length = FUN_1801a3620(render_obj[0xda], &temp_param1), string_length != 0)) {
+            // 增加计数器
+            *(int *)(render_obj + 0x10a) = (int)render_obj[0x10a] + 1;
+            
+            // 检查计数器是否超过最大值
+            if (RENDER_MAX_COUNTER < (int)render_obj[0x10a]) {
+                // 重置计数器
+                temp_param13 = 0;
+                temp_param14 = 0;
+                temp_param15 = 0xffffffff;
+                temp_param16 = 1;
+                temp_param17 = 0;
+                temp_param18 = 0xffffffff;
+                temp_param19 = 1;
+                temp_param20 = 0;
+                temp_result2 = 0;
+                temp_param21 = 0;
+                temp_param22 = 0;
+                temp_param23 = 3;
+                temp_param24 = 0;
+                FUN_1801a3620(render_obj[0xda], &temp_param13);
+                *(undefined4 *)(render_obj + 0x10a) = 0;
+                
+                // 检查处理结果
+                if (temp_result2 != 0) {
+                    // WARNING: Subroutine does not return
+                    FUN_18064e900();
+                }
+            }
+LAB_180301bf4:
+            // 检查渲染参数是否匹配
+            if (*(int *)((longlong)render_obj + 0xfc) != (int)render_obj[0x1f]) goto LAB_180301c02;
+        }
+        else {
+            // 设置渲染状态标志
+            *(undefined1 *)((longlong)render_obj + 0x821) = 1;
+            *(undefined1 *)(render_obj[0xda] + 0x60b91) = 1;
+            
+            // 检查渲染器配置
+            if ((*(int *)(render_obj[0xda] + 0x27c0) < 7) ||
+               ((*(int *)(process_result + 0x124e8) != 0 || (*(int *)(process_result + 0x124ec) != 0)))) goto LAB_180301bf4;
 LAB_180301c02:
-      if ((int)param_1[0x1f] == 0) {
-        *(undefined1 *)(_DAT_180c86950 + 0x15f8) = 0;
-      }
-      else {
-        *(undefined2 *)(param_1 + 0x104) = 0x101;
-        *(undefined1 *)(param_1[0xda] + 0x60b90) = 1;
-        *(undefined1 *)(param_1[0xda] + 0x60b91) = 1;
-      }
-      *(int *)(param_1 + 0x1f) = (int)param_1[0x1f] + -1;
+            // 检查渲染帧数
+            if ((int)render_obj[0x1f] == 0) {
+                *(undefined1 *)(global_render_state + 0x15f8) = 0;
+            }
+            else {
+                // 设置渲染状态为激活
+                *(undefined2 *)(render_obj + 0x104) = RENDERER_FLAG_ACTIVE;
+                *(undefined1 *)(render_obj[0xda] + 0x60b90) = 1;
+                *(undefined1 *)(render_obj[0xda] + 0x60b91) = 1;
+            }
+            
+            // 减少渲染帧数
+            *(int *)(render_obj + 0x1f) = (int)render_obj[0x1f] + -1;
+        }
+        
+        // 检查处理结果
+        if (temp_result1 != 0) {
+            // WARNING: Subroutine does not return
+            FUN_18064e900();
+        }
     }
-    if (lStack_b0 != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    
+    // 释放字符串缓冲区
+    if (string_buffer != (undefined4 *)0x0) {
+        // WARNING: Subroutine does not return
+        FUN_18064e900(string_buffer);
     }
-  }
-  if (puVar5 != (undefined4 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(puVar5);
-  }
 LAB_180301ce4:
-  param_1[0xa3] = 0;
-  return lVar6;
+    // 重置扩展数据指针
+    render_obj[0xa3] = 0;
+    return process_result;
 }
 
 
