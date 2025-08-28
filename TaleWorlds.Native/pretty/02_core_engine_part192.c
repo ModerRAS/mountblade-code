@@ -547,7 +547,7 @@ void SystemEventDispatcher(void)
                      *(int16_t *)(*(int64_t *)(unaff_R14 + 0x28) + 0x32e),in_stack_00000058);
   if (iVar3 != 0) {
     in_stack_00000050 = &system_event_data_ptr;
-    in_stack_00000060 = &unknown_var_3520_ptr;
+    in_stack_00000060 = &system_event_callback_ptr;
     in_stack_00000058 = 0x191;
     (**(code **)**(uint64_t **)(unaff_RSI + 0x48))
               (*(uint64_t **)(unaff_RSI + 0x48),5,&system_event_config_ptr,&stack0x00000050);
