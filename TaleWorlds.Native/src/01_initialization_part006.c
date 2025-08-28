@@ -102,6 +102,13 @@ typedef struct {
 #define RegisterTimeSystem FUN_1800375f0
 #define RegisterProfilerSystem FUN_180037680
 
+// 系统常量定义
+#define COMPONENT_SIGNATURE_SIZE 0x10
+#define CORE_COMPONENT_ID_1 0x402feffe4481676eULL
+#define CORE_COMPONENT_ID_2 0xd4c2151109de93a0ULL
+#define RENDERER_COMPONENT_ID_1 0x4384dcc4b6d3f417ULL
+#define RENDERER_COMPONENT_ID_2 0x92a15d52fe2679bdULL
+
 /*
  * 函数: RegisterComponent
  * 功能: 注册核心系统组件
