@@ -907,7 +907,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   (**(code **)(*(int64_t *)(param_1 + 0x708) + 0x10))((int64_t *)(param_1 + 0x708),&unknown_var_944_ptr)
   ;
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_180046240(uVar2,&uStackX_8);
+  DataEncryptionHandler(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   DataValidationEngine(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)uVar2;
@@ -916,7 +916,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   (**(code **)(*(int64_t *)(param_1 + 0x778) + 0x10))((int64_t *)(param_1 + 0x778),&unknown_var_920_ptr)
   ;
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_180046240(uVar2,&uStackX_8);
+  DataEncryptionHandler(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   DataValidationEngine(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)uVar2;
@@ -925,7 +925,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   (**(code **)(*(int64_t *)(param_1 + 0x7e8) + 0x10))((int64_t *)(param_1 + 0x7e8),&unknown_var_1000_ptr)
   ;
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_180046240(uVar2,&uStackX_8);
+  DataEncryptionHandler(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   DataValidationEngine(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)uVar2;
@@ -934,7 +934,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   (**(code **)(*(int64_t *)(param_1 + 0x858) + 0x10))((int64_t *)(param_1 + 0x858),&unknown_var_968_ptr)
   ;
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_180046240(uVar2,&uStackX_8);
+  DataEncryptionHandler(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   DataValidationEngine(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)uVar2;
@@ -943,7 +943,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   (**(code **)(*(int64_t *)(param_1 + 0x8c8) + 0x10))((int64_t *)(param_1 + 0x8c8),&unknown_var_1040_ptr)
   ;
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_180046240(uVar2,&uStackX_8);
+  DataEncryptionHandler(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   DataValidationEngine(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)uVar2;
@@ -952,7 +952,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   (**(code **)(*(int64_t *)(param_1 + 0x938) + 0x10))((int64_t *)(param_1 + 0x938),&unknown_var_1024_ptr)
   ;
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_180046240(lVar3,&uStackX_8);
+  DataEncryptionHandler(lVar3,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   DataValidationEngine(lVar3,&uStackX_8);
   uStackX_8 = (uint64_t *)lVar3;

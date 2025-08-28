@@ -72,7 +72,7 @@
 
 // 系统工具函数别名
 #define SystemResourceCleaner_1       FUN_1800462c0
-#define SystemResourceCleaner_2       FUN_180046240
+#define SystemResourceCleaner_2       DataEncryptionHandler
 #define SystemResourceCleaner_3       SystemResourceCleaner_3
 #define SystemResourceInitializer     FUN_180046480
 #define SystemResourceHandler          SystemResourceHandler
