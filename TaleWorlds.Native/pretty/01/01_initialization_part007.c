@@ -715,22 +715,23 @@ void register_system_string_type5(void)
 
 
 
-// 函数: void FUN_180038450(void)
-void FUN_180038450(void)
+// 函数: 注册系统字符串 - 类型6 (FUN_180038450)
+// 功能: 注册系统字符串到全局字符串表，长度为21字节
+void register_system_string_type6(void)
 
 {
   undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined *string_table_ptr;
+  undefined1 *string_buffer;
+  undefined4 string_length;
+  undefined1 local_buffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x15;
-  strcpy_s(auStack_88,0x80,&UNK_180a1a6c8,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f0c = FUN_180623800(&puStack_a0);
+  string_table_ptr = &system_string_table_cc28;
+  string_buffer = local_buffer;
+  local_buffer[0] = 0;
+  string_length = 0x15;
+  strcpy_s(local_buffer,0x80,&system_string_data_1a6c8,in_R9,0xfffffffffffffffe);
+  global_string_ptr_f0c = register_string_to_table(&string_table_ptr);
   return;
 }
 
@@ -740,22 +741,23 @@ void FUN_180038450(void)
 
 
 
-// 函数: void FUN_1800384e0(void)
-void FUN_1800384e0(void)
+// 函数: 注册系统字符串 - 类型7 (FUN_1800384e0)
+// 功能: 注册系统字符串到全局字符串表，长度为14字节
+void register_system_string_type7(void)
 
 {
   undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined *string_table_ptr;
+  undefined1 *string_buffer;
+  undefined4 string_length;
+  undefined1 local_buffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0xe;
-  strcpy_s(auStack_88,0x80,&UNK_180a1afd8,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f10 = FUN_180623800(&puStack_a0);
+  string_table_ptr = &system_string_table_cc28;
+  string_buffer = local_buffer;
+  local_buffer[0] = 0;
+  string_length = 0xe;
+  strcpy_s(local_buffer,0x80,&system_string_data_1afd8,in_R9,0xfffffffffffffffe);
+  global_string_ptr_f10 = register_string_to_table(&string_table_ptr);
   return;
 }
 
@@ -765,22 +767,23 @@ void FUN_1800384e0(void)
 
 
 
-// 函数: void FUN_180038570(void)
-void FUN_180038570(void)
+// 函数: 注册系统字符串 - 类型8 (FUN_180038570)
+// 功能: 注册系统字符串到全局字符串表，长度为26字节
+void register_system_string_type8(void)
 
 {
   undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined *string_table_ptr;
+  undefined1 *string_buffer;
+  undefined4 string_length;
+  undefined1 local_buffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x1a;
-  strcpy_s(auStack_88,0x80,&UNK_180a1cc28,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f14 = FUN_180623800(&puStack_a0);
+  string_table_ptr = &system_string_table_cc28;
+  string_buffer = local_buffer;
+  local_buffer[0] = 0;
+  string_length = 0x1a;
+  strcpy_s(local_buffer,0x80,&system_string_data_1cc28,in_R9,0xfffffffffffffffe);
+  global_string_ptr_f14 = register_string_to_table(&string_table_ptr);
   return;
 }
 
@@ -790,22 +793,23 @@ void FUN_180038570(void)
 
 
 
-// 函数: void FUN_180038610(void)
-void FUN_180038610(void)
+// 函数: 注册系统字符串 - 类型9 (FUN_180038610)
+// 功能: 注册系统字符串到全局字符串表，长度为19字节
+void register_system_string_type9(void)
 
 {
   undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined *string_table_ptr;
+  undefined1 *string_buffer;
+  undefined4 string_length;
+  undefined1 local_buffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x13;
-  strcpy_s(auStack_88,0x80,&UNK_180a1eb30,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f30 = FUN_180623800(&puStack_a0);
+  string_table_ptr = &system_string_table_cc28;
+  string_buffer = local_buffer;
+  local_buffer[0] = 0;
+  string_length = 0x13;
+  strcpy_s(local_buffer,0x80,&system_string_data_1eb30,in_R9,0xfffffffffffffffe);
+  global_string_ptr_f30 = register_string_to_table(&string_table_ptr);
   return;
 }
 

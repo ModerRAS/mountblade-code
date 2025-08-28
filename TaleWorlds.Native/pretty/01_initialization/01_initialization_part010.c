@@ -946,254 +946,232 @@ void register_script_system_component(void)
 
 
 
-// 函数: void FUN_18003f490(void)
-void FUN_18003f490(void)
-
+/**
+ * 注册网络同步组件
+ * 在系统注册表中注册网络同步组件，处理多人游戏的网络同步
+ */
+void register_network_sync_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &network_sync_identifier_c990, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&network_sync_identifier_c990, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x45b8d074df27d12f;
-  puVar7[7] = 0x8d98f4c06880eda4;
-  puVar7[8] = &UNK_18098c810;
-  puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置网络同步组件参数
+    previous_node[6] = 0x45b8d074df27d12f;  // 网络同步标识符
+    previous_node[7] = 0x8d98f4c06880eda4;  // 校验值
+    previous_node[8] = &network_sync_constant_c810;  // 网络同步常量指针
+    previous_node[9] = 3;                    // 同步类型标识
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003f590(void)
-void FUN_18003f590(void)
-
+/**
+ * 注册资源管理组件
+ * 在系统注册表中注册资源管理组件，处理游戏资源的加载和管理
+ */
+void register_resource_management_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &resource_management_identifier_c9e0, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&resource_management_identifier_c9e0, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x42d293584c8cf3e5;
-  puVar7[7] = 0x355ffeb2d29e668a;
-  puVar7[8] = &UNK_18098c870;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置资源管理组件参数
+    previous_node[6] = 0x42d293584c8cf3e5;  // 资源管理标识符
+    previous_node[7] = 0x355ffeb2d29e668a;  // 校验值
+    previous_node[8] = &resource_constant_c870;  // 资源常量指针
+    previous_node[9] = 0;                    // 优先级
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003f690(void)
-void FUN_18003f690(void)
-
+/**
+ * 注册事件系统组件
+ * 在系统注册表中注册事件系统组件，处理游戏事件的分发和处理
+ */
+void register_event_system_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_180073930;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void *event_handler;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    event_handler = event_handler_073930;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &event_system_identifier_c8f0, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&event_system_identifier_c8f0, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x421c3cedd07d816d;
-  puVar7[7] = 0xbec25de793b7afa6;
-  puVar7[8] = &UNK_18098c880;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
-  return;
+    
+    // 设置事件系统组件参数
+    previous_node[6] = 0x421c3cedd07d816d;  // 事件系统标识符
+    previous_node[7] = 0xbec25de793b7afa6;  // 校验值
+    previous_node[8] = &event_constant_c880;  // 事件常量指针
+    previous_node[9] = 0;                    // 优先级
+    previous_node[10] = event_handler;       // 事件处理函数指针
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003f790(void)
-void FUN_18003f790(void)
-
+/**
+ * 注册任务系统组件
+ * 在系统注册表中注册任务系统组件，处理异步任务和作业管理
+ */
+void register_task_system_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &task_system_identifier_c8c8, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&task_system_identifier_c8c8, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4c22bb0c326587ce;
-  puVar7[7] = 0x5e3cf00ce2978287;
-  puVar7[8] = &UNK_18098c898;
-  puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
-  return;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18003f890(void)
-void FUN_18003f890(void)
-
-{
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
-  
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x10;
-  strcpy_s(auStack_88,0x80,&UNK_180a2bf10,in_R9,0xfffffffffffffffe);
-  _DAT_180c924ac = FUN_180623800(&puStack_a0);
-  return;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18003f920(void)
-void FUN_18003f920(void)
-
-{
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
-  
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0xf;
-  strcpy_s(auStack_88,0x80,&DAT_180a2c1d0,in_R9,0xfffffffffffffffe);
-  _DAT_180c924b0 = FUN_180623800(&puStack_a0);
-  return;
+    
+    // 设置任务系统组件参数
+    previous_node[6] = 0x4c22bb0c326587ce;  // 任务系统标识符
+    previous_node[7] = 0x5e3cf00ce2978287;  // 校验值
+    previous_node[8] = &task_constant_c898;  // 任务常量指针
+    previous_node[9] = 1;                    // 任务类型标识
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
@@ -1202,23 +1180,29 @@ void FUN_18003f920(void)
 
 
 
-// 函数: void FUN_18003f9b0(void)
-void FUN_18003f9b0(void)
-
+/**
+ * 初始化输入系统字符串
+ * 设置输入系统的字符串常量和标识符，用于输入设备识别
+ */
+void initialize_input_system_strings(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
-  
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x19;
-  strcpy_s(auStack_88,0x80,&DAT_180a2c338,in_R9,0xfffffffffffffffe);
-  _DAT_180c924b4 = FUN_180623800(&puStack_a0);
-  return;
+    uint64_t reserved_param;
+    void *string_table_ptr;
+    uint8_t *string_buffer;
+    uint32_t string_length;
+    uint8_t local_buffer[136];
+    
+    string_table_ptr = &string_table_fcc28;
+    string_buffer = local_buffer;
+    local_buffer[0] = 0;
+    string_length = 0x10;  // 16字节
+    
+    // 复制输入系统字符串到本地缓冲区
+    secure_string_copy(local_buffer, 0x80, &input_system_string_2bf10, reserved_param, 0xfffffffffffffffe);
+    
+    // 注册字符串到系统表中
+    input_string_table_924ac = register_system_string(&string_table_ptr);
+    return;
 }
 
 
@@ -1227,23 +1211,91 @@ void FUN_18003f9b0(void)
 
 
 
-// 函数: void FUN_18003fa40(void)
-void FUN_18003fa40(void)
-
+/**
+ * 初始化渲染系统字符串
+ * 设置渲染系统的字符串常量和标识符，用于渲染器识别
+ */
+void initialize_render_system_strings(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
-  
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x14;
-  strcpy_s(auStack_88,0x80,&DAT_180a2c510,in_R9,0xfffffffffffffffe);
-  _DAT_180c924b8 = FUN_180623800(&puStack_a0);
-  return;
+    uint64_t reserved_param;
+    void *string_table_ptr;
+    uint8_t *string_buffer;
+    uint32_t string_length;
+    uint8_t local_buffer[136];
+    
+    string_table_ptr = &string_table_fcc28;
+    string_buffer = local_buffer;
+    local_buffer[0] = 0;
+    string_length = 0xf;  // 15字节
+    
+    // 复制渲染系统字符串到本地缓冲区
+    secure_string_copy(local_buffer, 0x80, &render_system_string_2c1d0, reserved_param, 0xfffffffffffffffe);
+    
+    // 注册字符串到系统表中
+    render_string_table_924b0 = register_system_string(&string_table_ptr);
+    return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+/**
+ * 初始化音频系统字符串
+ * 设置音频系统的字符串常量和标识符，用于音频设备识别
+ */
+void initialize_audio_system_strings(void)
+{
+    uint64_t reserved_param;
+    void *string_table_ptr;
+    uint8_t *string_buffer;
+    uint32_t string_length;
+    uint8_t local_buffer[136];
+    
+    string_table_ptr = &string_table_fcc28;
+    string_buffer = local_buffer;
+    local_buffer[0] = 0;
+    string_length = 0x19;  // 25字节
+    
+    // 复制音频系统字符串到本地缓冲区
+    secure_string_copy(local_buffer, 0x80, &audio_system_string_2c338, reserved_param, 0xfffffffffffffffe);
+    
+    // 注册字符串到系统表中
+    audio_string_table_924b4 = register_system_string(&string_table_ptr);
+    return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+/**
+ * 初始化网络系统字符串
+ * 设置网络系统的字符串常量和标识符，用于网络协议识别
+ */
+void initialize_network_system_strings(void)
+{
+    uint64_t reserved_param;
+    void *string_table_ptr;
+    uint8_t *string_buffer;
+    uint32_t string_length;
+    uint8_t local_buffer[136];
+    
+    string_table_ptr = &string_table_fcc28;
+    string_buffer = local_buffer;
+    local_buffer[0] = 0;
+    string_length = 0x14;  // 20字节
+    
+    // 复制网络系统字符串到本地缓冲区
+    secure_string_copy(local_buffer, 0x80, &network_system_string_2c510, reserved_param, 0xfffffffffffffffe);
+    
+    // 注册字符串到系统表中
+    network_string_table_924b8 = register_system_string(&string_table_ptr);
+    return;
 }
 
 
