@@ -736,7 +736,7 @@ uint64_t FUN_1807e6b00(int64_t param_1,char param_2,char param_3,char param_4)
     *(int32_t *)(param_1 + 0x22c) = 0;
     if ((bVar2) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60(lVar1,3);
+      SystemCoreHandler(lVar1,3);
     }
   }
   return 0;
@@ -770,7 +770,7 @@ uint64_t FUN_1807e6b1f(int64_t param_1,uint64_t param_2,char param_3,char param_
     *(int32_t *)(unaff_RBX + 0x22c) = 0;
     if ((bVar2) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60(lVar1,3);
+      SystemCoreHandler(lVar1,3);
     }
   }
   return 0;

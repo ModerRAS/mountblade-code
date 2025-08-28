@@ -72,7 +72,7 @@ int FUN_1808bc920(int64_t param_1)
     }
     if ((bVar2) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60(lVar1,2);
+      SystemCoreHandler(lVar1,2);
     }
     iVar3 = 0;
   }
@@ -80,7 +80,7 @@ int FUN_1808bc920(int64_t param_1)
 LAB_1808bcab0:
     if ((bVar2) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60(lVar1,2);
+      SystemCoreHandler(lVar1,2);
     }
   }
   return iVar3;

@@ -68,10 +68,10 @@ typedef enum {
 #define ResourceReleaser CoreEngineMemoryPoolCleaner
 
 // 状态查询处理器 - 用于查询渲染系统状态
-#define StateQueryProcessor FUN_18007b240
+#define StateQueryProcessor RenderingSystemStateQueryHandler
 
 // 数学计算器 - 用于渲染系统数学计算
-#define MathCalculator FUN_180285b40
+#define MathCalculator RenderingSystemMathCalculator
 
 // 全局数据引用
 #define RenderingSystemGlobalData rendering_system_global_data

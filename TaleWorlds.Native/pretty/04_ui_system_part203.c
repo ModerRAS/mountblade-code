@@ -12,7 +12,7 @@ void FUN_180787908(void)
   
   if (unaff_RDI != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemCoreHandler();
   }
                     // WARNING: Subroutine does not return
   CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
@@ -650,7 +650,7 @@ LAB_180787ee9:
     if ((unaff_RSI != 0) && (unaff_R15B != '\0')) {
                     // WARNING: Subroutine does not return
       *(uint64_t *)((int64_t)register0x00000020 + -8) = 0x180787ff4;
-      FUN_180743d60(unaff_RSI,2);
+      SystemCoreHandler(unaff_RSI,2);
     }
     if (iVar9 == 0) {
       uVar2 = *(uint64_t *)(lVar16 + 0x48);
@@ -677,7 +677,7 @@ LAB_180788061:
   if ((unaff_R15B != '\0') && (unaff_RSI != 0)) {
                     // WARNING: Subroutine does not return
     *(uint64_t *)((int64_t)register0x00000020 + -8) = 0x180788091;
-    FUN_180743d60(unaff_RSI,2);
+    SystemCoreHandler(unaff_RSI,2);
   }
   return iVar9;
 }
@@ -732,7 +732,7 @@ int FUN_180787e70(int64_t param_1,int32_t param_2,int64_t *param_3,int64_t *para
     }
     if ((lVar1 != 0) && (bVar5)) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60(lVar1,2);
+      SystemCoreHandler(lVar1,2);
     }
     if (iVar4 == 0) {
       iVar4 = FUN_180749940(*(uint64_t *)(param_1 + 0x48));
@@ -751,7 +751,7 @@ int FUN_180787e70(int64_t param_1,int32_t param_2,int64_t *param_3,int64_t *para
 LAB_180788061:
   if ((bVar5) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar1,2);
+    SystemCoreHandler(lVar1,2);
   }
   return iVar4;
 }
@@ -807,7 +807,7 @@ int FUN_180787e7e(int64_t param_1,int32_t param_2,uint64_t param_3,int64_t *para
     }
     if ((unaff_RSI != 0) && (bVar4)) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60();
+      SystemCoreHandler();
     }
     if (iVar3 == 0) {
       iVar3 = FUN_180749940(*(uint64_t *)(param_1 + 0x48));
@@ -826,7 +826,7 @@ int FUN_180787e7e(int64_t param_1,int32_t param_2,uint64_t param_3,int64_t *para
 LAB_180788061:
   if ((bVar4) && (unaff_RSI != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemCoreHandler();
   }
   return iVar3;
 }
@@ -841,7 +841,7 @@ int32_t FUN_18078807f(void)
   
   if (unaff_RSI != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemCoreHandler();
   }
   return unaff_EBX;
 }

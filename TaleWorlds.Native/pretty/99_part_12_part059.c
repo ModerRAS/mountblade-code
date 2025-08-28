@@ -853,7 +853,7 @@ void FUN_1807f3100(int64_t param_1)
   func_0x000180743c20(*(uint64_t *)(param_1 + 8),8);
   *(uint *)(param_1 + 0x3c) = *(uint *)(param_1 + 0x3c) & 0xffffff7f;
                     // WARNING: Subroutine does not return
-  FUN_180743d60(*(uint64_t *)(param_1 + 8),8);
+  SystemCoreHandler(*(uint64_t *)(param_1 + 8),8);
 }
 
 
@@ -1031,7 +1031,7 @@ int FUN_1807f3610(int64_t param_1,int8_t param_2)
 LAB_1807f3681:
   if ((lVar1 != 0) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar1,8);
+    SystemCoreHandler(lVar1,8);
   }
   return iVar2;
 }

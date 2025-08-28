@@ -170,7 +170,7 @@ LAB_18078c477:
     }
     if (unaff_RBX != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60(uVar12,7);
+      SystemCoreHandler(uVar12,7);
     }
   }
   iVar5 = FUN_180743660();
@@ -190,7 +190,7 @@ LAB_18078c477:
     }
     if (unaff_RBX != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60(uVar12,6);
+      SystemCoreHandler(uVar12,6);
     }
     puVar4 = puRam0000000000012780;
     if ((lRam0000000000012770 == 0) ||
@@ -447,11 +447,11 @@ void FUN_18078c950(int64_t param_1)
   if (plVar1 != (int64_t *)(param_1 + 0x121e0)) {
     *(int64_t *)(param_1 + 0x12200) = *plVar1;
                     // WARNING: Subroutine does not return
-    FUN_180743d60(param_1,10);
+    SystemCoreHandler(param_1,10);
   }
   *(uint64_t *)(param_1 + 0x12200) = 0;
                     // WARNING: Subroutine does not return
-  FUN_180743d60(param_1,10);
+  SystemCoreHandler(param_1,10);
 }
 
 
@@ -472,11 +472,11 @@ void FUN_18078c95d(int64_t param_1)
   if (plVar1 != (int64_t *)(unaff_RBX + 0x121e0)) {
     *(int64_t *)(unaff_RBX + 0x12200) = *plVar1;
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemCoreHandler();
   }
   *(uint64_t *)(unaff_RBX + 0x12200) = 0;
                     // WARNING: Subroutine does not return
-  FUN_180743d60();
+  SystemCoreHandler();
 }
 
 
@@ -492,7 +492,7 @@ void FUN_18078c991(void)
   
   *(uint64_t *)(unaff_RBX + 0x12200) = *in_RAX;
                     // WARNING: Subroutine does not return
-  FUN_180743d60();
+  SystemCoreHandler();
 }
 
 
@@ -507,7 +507,7 @@ void FUN_18078ca0e(void)
   
   *(uint64_t *)(unaff_RBX + 0x12200) = 0;
                     // WARNING: Subroutine does not return
-  FUN_180743d60();
+  SystemCoreHandler();
 }
 
 
@@ -549,7 +549,7 @@ void FUN_18078ca50(uint64_t param_1,int64_t *param_2,uint64_t param_3,int64_t pa
     param_2 = (int64_t *)*param_2;
   } while (param_2 != (int64_t *)param_4);
                     // WARNING: Subroutine does not return
-  FUN_180743d60();
+  SystemCoreHandler();
 }
 
 

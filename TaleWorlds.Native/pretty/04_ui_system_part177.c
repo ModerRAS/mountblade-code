@@ -77,7 +77,7 @@ LAB_18076f469:
       }
       if ((lVar1 != 0) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar1,5);
+        SystemCoreHandler(lVar1,5);
       }
       return iVar4;
     }
@@ -294,7 +294,7 @@ int FUN_18076f660(int64_t param_1)
 LAB_18076f928:
   if ((lVar2 != 0) && (lVar2 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar2,5);
+    SystemCoreHandler(lVar2,5);
   }
   return iVar8;
 }
@@ -460,7 +460,7 @@ int FUN_18076f670(int64_t param_1)
 LAB_18076f928:
   if ((unaff_R12 != 0) && (unaff_R12 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(unaff_R12,5);
+    SystemCoreHandler(unaff_R12,5);
   }
   return iVar7;
 }
@@ -627,7 +627,7 @@ int FUN_18076f67e(float param_1)
 LAB_18076f928:
   if ((unaff_R13B != '\0') && (unaff_R12 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(unaff_R12,5);
+    SystemCoreHandler(unaff_R12,5);
   }
   return iVar7;
 }
@@ -764,7 +764,7 @@ int FUN_18076f6db(float param_1,uint64_t param_2,int64_t *param_3,int64_t *param
 LAB_18076f928:
   if ((unaff_R13B != '\0') && (in_stack_00000078 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(in_stack_00000078,5);
+    SystemCoreHandler(in_stack_00000078,5);
   }
   return iVar5;
 }
@@ -858,7 +858,7 @@ uint64_t FUN_18076f7ef(float param_1,uint64_t param_2,float param_3,int64_t *par
 LAB_18076f928:
   if ((unaff_R13B != '\0') && (unaff_R12 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(param_1,5);
+    SystemCoreHandler(param_1,5);
   }
   return uVar8;
 }
@@ -888,7 +888,7 @@ int FUN_18076f8bb(uint64_t param_1,uint64_t param_2,float param_3)
 LAB_18076f928:
   if ((unaff_R13B != '\0') && (unaff_R12 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemCoreHandler();
   }
   return in_R10D;
 }
@@ -903,7 +903,7 @@ int32_t FUN_18076f949(void)
   
   if (unaff_R12 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemCoreHandler();
   }
   return unaff_EDI;
 }
