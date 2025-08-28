@@ -766,7 +766,7 @@ static void ui_system_set_control_property(uint32_t control_id, int32_t property
             stack_data[0x40] = 1;
             stack_data[0x38] = 0;
             stack_data[0x30] = 0;
-            property_ptr = (uint64_t*)FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x18, &unknown_var_1040_ptr, 0x1288);
+            property_ptr = (uint64_t*)UISystem_ContextManager(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x18, &unknown_var_1040_ptr, 0x1288);
             
             if (property_ptr != (uint64_t*)0x0) {
                 *(uint32_t*)(property_ptr + 1) = (uint32_t)temp_data;
@@ -781,7 +781,7 @@ static void ui_system_set_control_property(uint32_t control_id, int32_t property
     
 property_set_complete:
     // 完成属性设置
-    FUN_1808fc050(stack_key ^ (uint64_t)stack_data);
+    UISystem_SecurityChecker(stack_key ^ (uint64_t)stack_data);
 }
 
 /**
