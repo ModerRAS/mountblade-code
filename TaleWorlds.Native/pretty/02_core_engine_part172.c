@@ -506,8 +506,21 @@ LAB_180157b3b:
 // WARNING: Removing unreachable block (ram,0x000180157e88)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t *
-FUN_180157b70(int64_t *param_1,int64_t *param_2,int param_3,uint64_t param_4,char param_5)
+// 函数: int64_t* EventHandler(int64_t *event_system, int64_t *handler_result, int event_id, uint64_t handler_flags, char enable_logging)
+// 事件处理器：处理特定类型的事件
+// 参数：
+//   - event_system: 事件系统指针
+//   - handler_result: 处理结果指针
+//   - event_id: 事件ID
+//   - handler_flags: 处理器标志
+//   - enable_logging: 是否启用日志记录
+// 返回值：
+//   - 处理结果指针
+// 功能：
+//   - 根据事件ID查找对应的处理器
+//   - 执行事件处理逻辑
+//   - 记录处理日志（如果启用）
+int64_t * EventHandler(int64_t *event_system, int64_t *handler_result, int event_id, uint64_t handler_flags, char enable_logging)
 
 {
   int64_t *plVar1;
