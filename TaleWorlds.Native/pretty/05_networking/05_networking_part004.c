@@ -1,338 +1,993 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking_part004.c - 网络数据包处理和消息传递模块
-// 本文件包含12个主要函数，用于处理网络数据包的构造、解析、传递和错误处理
+// 05_networking_part004.c - 网络系统数据包序列化和连接管理模块
+// 本文件包含32个主要函数，涵盖网络数据包序列化、连接管理、错误处理、消息传递等功能
 
-// 网络消息传递函数
-void send_network_message(longlong connection_context, undefined8 message_data, undefined4 message_flags)
+// =============================================================================
+// 常量定义和全局变量
+// =============================================================================
+
+// 网络缓冲区大小
+#define NETWORK_BUFFER_SIZE 0x100
+#define NETWORK_HEADER_SIZE 0x20
+#define NETWORK_PACKET_MAX_SIZE 0x200
+
+// 网络消息类型
+#define NETWORK_MSG_CONNECTION 0x1f
+#define NETWORK_MSG_DATA 0xd
+#define NETWORK_MSG_CONTROL 0xb
+#define NETWORK_MSG_ERROR 0xf
+
+// 网络数据包类型
+#define PACKET_TYPE_BASIC 0x0
+#define PACKET_TYPE_EXTENDED 0x1
+#define PACKET_TYPE_SECURE 0x2
+#define PACKET_TYPE_COMPRESSED 0x3
+
+// 全局变量引用
+extern undefined8 NETWORK_PROTOCOL_HANDLER;
+extern undefined8 NETWORK_CONNECTION_POOL;
+extern undefined8 NETWORK_BUFFER_MANAGER;
+extern undefined8 NETWORK_SECURITY_CONTEXT;
+
+// =============================================================================
+// 网络连接初始化和配置函数
+// =============================================================================
+
+// 网络连接初始化函数
+void initialize_network_connection(longlong connection_context, undefined8 protocol_data, undefined4 connection_flags)
 {
-  // 发送网络消息到指定连接
-  send_message_to_connection(message_data, message_flags, &network_message_format, 
-                           *(undefined4 *)(connection_context + 0x10),
-                           *(undefined4 *)(connection_context + 0x14));
+  // 调用底层网络初始化函数
+  // 参数：连接上下文、协议数据、协议处理器、连接ID、会话ID
+  FUN_18083f7b0(protocol_data, connection_flags, &NETWORK_PROTOCOL_HANDLER, 
+                *(undefined4 *)(connection_context + 0x10),
+                *(undefined4 *)(connection_context + 0x14));
   return;
 }
 
-// 网络数据包分段处理函数
-int process_network_packet_segments(longlong packet_context, longlong data_buffer, int data_size)
+// 网络连接配置函数
+void configure_network_settings(longlong connection_context, undefined8 config_data, undefined4 config_flags)
 {
-  undefined4 segment_header;
-  undefined4 segment_trailer;
-  int processed_size;
-  int total_processed;
-  
-  segment_header = *(undefined4 *)(packet_context + 0x14);
-  segment_trailer = *(undefined4 *)(packet_context + 0x10);
-  
-  // 处理第一个数据段
-  processed_size = process_data_segment(data_buffer, data_size, &network_segment_header);
-  total_processed = processed_size;
-  
-  // 处理第二个数据段
-  processed_size = process_data_segment(data_buffer + processed_size, data_size - processed_size, &network_data_separator);
-  total_processed = total_processed + processed_size;
-  
-  // 处理第三个数据段
-  processed_size = process_data_segment(data_buffer + total_processed, data_size - total_processed, segment_trailer);
-  total_processed = total_processed + processed_size;
-  
-  // 处理第四个数据段
-  processed_size = process_data_segment(data_buffer + total_processed, data_size - total_processed, &network_data_separator);
-  total_processed = total_processed + processed_size;
-  
-  // 处理最后一个数据段
-  processed_size = process_final_segment(data_buffer + total_processed, data_size - total_processed, segment_header);
-  return processed_size + total_processed;
-}
-
-// 网络数据包构造函数
-int build_network_packet(longlong packet_context, longlong data_buffer, int data_size)
-{
-  undefined4 packet_header;
-  int build_status;
-  int total_built;
-  undefined4 segment_data[4];
-  
-  packet_header = *(undefined4 *)(packet_context + 0x10);
-  segment_data[0] = *(undefined4 *)(packet_context + 0x14);
-  segment_data[1] = *(undefined4 *)(packet_context + 0x18);
-  segment_data[2] = *(undefined4 *)(packet_context + 0x1c);
-  segment_data[3] = *(undefined4 *)(packet_context + 0x20);
-  
-  total_built = 0;
-  
-  // 构建数据包头部
-  build_status = build_packet_header(data_buffer, data_size, &network_packet_header);
-  if (build_status != 0) {
-    return build_status;
-  }
-  total_built = build_status;
-  
-  // 构建数据包载荷
-  build_status = build_packet_payload(data_buffer + total_built, data_size - total_built, segment_data[0]);
-  if (build_status != 0) {
-    return build_status;
-  }
-  total_built = total_built + build_status;
-  
-  // 构建数据包尾部
-  build_status = build_packet_trailer(data_buffer + total_built, data_size - total_built, segment_data[1]);
-  if (build_status != 0) {
-    return build_status;
-  }
-  total_built = total_built + build_status;
-  
-  // 添加扩展数据
-  build_status = add_packet_extensions(data_buffer + total_built, data_size - total_built, segment_data[2]);
-  if (build_status != 0) {
-    return build_status;
-  }
-  total_built = total_built + build_status;
-  
-  // 添加校验数据
-  build_status = add_packet_checksum(data_buffer + total_built, data_size - total_built, segment_data[3]);
-  if (build_status != 0) {
-    return build_status;
-  }
-  
-  return total_built + build_status;
-}
-
-// 网络连接状态检查函数
-int check_network_connection_state(longlong connection_handle, longlong check_params, int check_timeout)
-{
-  undefined4 connection_flags;
-  int check_result;
-  undefined4 timeout_data[4];
-  
-  connection_flags = *(undefined4 *)(connection_handle + 0x10);
-  timeout_data[0] = *(undefined4 *)(connection_handle + 0x14);
-  timeout_data[1] = *(undefined4 *)(connection_handle + 0x18);
-  timeout_data[2] = *(undefined4 *)(connection_handle + 0x1c);
-  timeout_data[3] = *(undefined4 *)(connection_handle + 0x20);
-  
-  // 执行连接状态检查
-  check_result = perform_connection_check(check_params, check_timeout, &network_check_format);
-  if (check_result != 0) {
-    return check_result;
-  }
-  
-  // 验证连接标志
-  check_result = validate_connection_flags(connection_flags, &network_flag_validator);
-  if (check_result != 0) {
-    return check_result;
-  }
-  
-  // 检查超时数据
-  check_result = validate_timeout_data(timeout_data, check_timeout);
-  if (check_result != 0) {
-    return check_result;
-  }
-  
-  return 0;
-}
-
-// 网络数据包验证函数
-int validate_network_packet(longlong packet_data, longlong validation_rules, int validation_flags)
-{
-  undefined4 packet_signature;
-  int validation_result;
-  undefined4 rule_data[4];
-  
-  packet_signature = *(undefined4 *)(packet_data + 0x10);
-  rule_data[0] = *(undefined4 *)(packet_data + 0x14);
-  rule_data[1] = *(undefined4 *)(packet_data + 0x18);
-  rule_data[2] = *(undefined4 *)(packet_data + 0x1c);
-  rule_data[3] = *(undefined4 *)(packet_data + 0x20);
-  
-  // 验证数据包签名
-  validation_result = validate_packet_signature(packet_signature, &network_signature_validator);
-  if (validation_result != 0) {
-    return validation_result;
-  }
-  
-  // 应用验证规则
-  validation_result = apply_validation_rules(validation_rules, validation_flags, rule_data);
-  if (validation_result != 0) {
-    return validation_result;
-  }
-  
-  return 0;
-}
-
-// 网络错误处理函数
-void handle_network_error(longlong error_context, undefined8 error_code, undefined4 error_severity)
-{
-  longlong error_data;
-  int error_type;
-  undefined4 error_params[4];
-  
-  error_data = *(longlong *)(error_context + 0x10);
-  error_type = *(int *)(error_context + 0x18);
-  error_params[0] = *(undefined4 *)(error_context + 0x1c);
-  error_params[1] = *(undefined4 *)(error_context + 0x20);
-  error_params[2] = *(undefined4 *)(error_context + 0x24);
-  error_params[3] = *(undefined4 *)(error_context + 0x28);
-  
-  // 记录错误信息
-  log_network_error(error_code, error_type, error_severity, error_params);
-  
-  // 执行错误恢复
-  perform_error_recovery(error_data, error_code, error_severity);
-  
+  // 配置网络连接参数
+  // 参数：连接上下文、配置数据、配置处理器、连接ID、会话ID
+  FUN_18083f7b0(config_data, config_flags, &NETWORK_PROTOCOL_HANDLER, 
+                *(undefined4 *)(connection_context + 0x10),
+                *(undefined4 *)(connection_context + 0x14));
   return;
 }
 
-// 网络连接建立函数
-int establish_network_connection(longlong connection_params, undefined8 target_address, undefined4 connection_flags)
+// =============================================================================
+// 基础网络数据包处理函数
+// =============================================================================
+
+// 基础网络数据包序列化函数
+int serialize_basic_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
 {
-  undefined4 param_data[4];
-  int connect_result;
+  undefined4 connection_id;
+  undefined4 session_id;
+  int processed_bytes;
+  int total_bytes;
   
-  param_data[0] = *(undefined4 *)(connection_params + 0x10);
-  param_data[1] = *(undefined4 *)(connection_params + 0x14);
-  param_data[2] = *(undefined4 *)(connection_params + 0x18);
-  param_data[3] = *(undefined4 *)(connection_params + 0x1c);
+  // 提取连接信息
+  connection_id = *(undefined4 *)(packet_context + 0x14);
+  session_id = *(undefined4 *)(packet_context + 0x10);
   
-  // 初始化连接参数
-  connect_result = initialize_connection_params(param_data, connection_flags);
-  if (connect_result != 0) {
-    return connect_result;
-  }
+  // 序列化数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
   
-  // 建立网络连接
-  connect_result = create_network_connection(target_address, connection_flags);
-  if (connect_result != 0) {
-    return connect_result;
-  }
+  // 序列化连接信息
+  total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   
-  // 配置连接属性
-  connect_result = configure_connection_attributes(param_data, connection_flags);
-  if (connect_result != 0) {
-    return connect_result;
-  }
-  
-  return 0;
+  return total_bytes + processed_bytes;
 }
 
-// 网络数据传输函数
-void transfer_network_data(longlong transfer_context, undefined8 data_source, undefined4 transfer_size)
+// 扩展网络数据包序列化函数
+int serialize_extended_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
 {
-  undefined4 transfer_params[4];
-  int transfer_status;
+  undefined4 connection_id;
+  undefined4 session_id;
+  undefined4 encryption_key;
+  undefined4 compression_flag;
+  int processed_bytes;
+  int total_bytes;
+  undefined4 packet_fields[4];
   
-  transfer_params[0] = *(undefined4 *)(transfer_context + 0x10);
-  transfer_params[1] = *(undefined4 *)(transfer_context + 0x14);
-  transfer_params[2] = *(undefined4 *)(transfer_context + 0x18);
-  transfer_params[3] = *(undefined4 *)(transfer_context + 0x1c);
+  // 提取扩展数据包字段
+  packet_fields[0] = *(undefined4 *)(packet_context + 0x10);
+  packet_fields[1] = *(undefined4 *)(packet_context + 0x14);
+  packet_fields[2] = *(undefined4 *)(packet_context + 0x18);
+  packet_fields[3] = *(undefined4 *)(packet_context + 0x1c);
+  connection_id = *(undefined4 *)(packet_context + 0x20);
   
-  // 验证传输参数
-  transfer_status = validate_transfer_params(transfer_params, transfer_size);
-  if (transfer_status != 0) {
-    handle_transfer_error(transfer_status);
-    return;
-  }
-  
-  // 执行数据传输
-  perform_data_transfer(data_source, transfer_size, transfer_params);
-  
-  return;
+  // 序列化扩展数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &packet_fields[0]);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
 }
 
-// 网络连接断开函数
-void disconnect_network_connection(longlong connection_handle, undefined8 disconnect_reason)
+// 安全网络数据包序列化函数
+int serialize_secure_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
 {
-  undefined4 disconnect_params[4];
+  undefined4 connection_id;
+  undefined4 session_id;
+  undefined4 encryption_key;
+  undefined4 compression_flag;
+  int processed_bytes;
+  int total_bytes;
+  undefined4 security_fields[4];
   
-  disconnect_params[0] = *(undefined4 *)(connection_handle + 0x10);
-  disconnect_params[1] = *(undefined4 *)(connection_handle + 0x14);
-  disconnect_params[2] = *(undefined4 *)(connection_handle + 0x18);
-  disconnect_params[3] = *(undefined4 *)(connection_handle + 0x1c);
+  // 提取安全数据包字段
+  security_fields[0] = *(undefined4 *)(packet_context + 0x10);
+  security_fields[1] = *(undefined4 *)(packet_context + 0x14);
+  security_fields[2] = *(undefined4 *)(packet_context + 0x18);
+  security_fields[3] = *(undefined4 *)(packet_context + 0x1c);
+  connection_id = *(undefined4 *)(packet_context + 0x20);
   
-  // 发送断开连接通知
-  send_disconnect_notification(connection_handle, disconnect_reason, disconnect_params);
-  
-  // 清理连接资源
-  cleanup_connection_resources(connection_handle);
-  
-  return;
+  // 序列化安全数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &security_fields[0]);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
 }
 
-// 网络数据包路由函数
-int route_network_packet(longlong packet_data, undefined8 routing_table, undefined4 routing_flags)
+// 压缩网络数据包序列化函数
+int serialize_compressed_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
 {
-  undefined4 packet_info[4];
-  int routing_result;
+  undefined4 connection_id;
+  undefined4 session_id;
+  undefined4 encryption_key;
+  undefined4 compression_flag;
+  int processed_bytes;
+  int total_bytes;
+  undefined4 compression_fields[4];
   
-  packet_info[0] = *(undefined4 *)(packet_data + 0x10);
-  packet_info[1] = *(undefined4 *)(packet_data + 0x14);
-  packet_info[2] = *(undefined4 *)(packet_data + 0x18);
-  packet_info[3] = *(undefined4 *)(packet_data + 0x1c);
+  // 提取压缩数据包字段
+  compression_fields[0] = *(undefined4 *)(packet_context + 0x10);
+  compression_fields[1] = *(undefined4 *)(packet_context + 0x14);
+  compression_fields[2] = *(undefined4 *)(packet_context + 0x18);
+  compression_fields[3] = *(undefined4 *)(packet_context + 0x1c);
+  connection_id = *(undefined4 *)(packet_context + 0x20);
   
-  // 查找路由信息
-  routing_result = find_routing_info(packet_info, routing_table, routing_flags);
-  if (routing_result != 0) {
-    return routing_result;
-  }
-  
-  // 执行数据包路由
-  routing_result = execute_packet_routing(packet_data, routing_table, routing_flags);
-  if (routing_result != 0) {
-    return routing_result;
-  }
-  
-  return 0;
+  // 序列化压缩数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &compression_fields[0]);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
 }
 
-// 网络连接监控函数
-void monitor_network_connection(longlong connection_handle, undefined8 monitoring_params)
+// 优先级网络数据包序列化函数
+int serialize_priority_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
 {
-  undefined4 monitor_data[4];
-  int monitor_status;
+  undefined4 connection_id;
+  undefined4 session_id;
+  undefined4 encryption_key;
+  undefined4 compression_flag;
+  int processed_bytes;
+  int total_bytes;
+  undefined4 priority_fields[4];
   
-  monitor_data[0] = *(undefined4 *)(connection_handle + 0x10);
-  monitor_data[1] = *(undefined4 *)(connection_handle + 0x14);
-  monitor_data[2] = *(undefined4 *)(connection_handle + 0x18);
-  monitor_data[3] = *(undefined4 *)(connection_handle + 0x1c);
+  // 提取优先级数据包字段
+  priority_fields[0] = *(undefined4 *)(packet_context + 0x10);
+  priority_fields[1] = *(undefined4 *)(packet_context + 0x14);
+  priority_fields[2] = *(undefined4 *)(packet_context + 0x18);
+  priority_fields[3] = *(undefined4 *)(packet_context + 0x1c);
+  connection_id = *(undefined4 *)(packet_context + 0x20);
   
-  // 执行连接监控
-  monitor_status = perform_connection_monitoring(connection_handle, monitoring_params, monitor_data);
-  if (monitor_status != 0) {
-    handle_monitoring_error(monitor_status);
-    return;
-  }
-  
-  // 更新监控统计
-  update_monitoring_statistics(connection_handle, monitor_data);
-  
-  return;
+  // 序列化优先级数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &priority_fields[0]);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
 }
 
-// 网络配置更新函数
-int update_network_configuration(longlong config_context, undefined8 new_config, undefined4 update_flags)
+// 简单网络数据包序列化函数
+int serialize_simple_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
 {
-  undefined4 config_data[4];
-  int update_result;
+  undefined4 connection_id;
+  int processed_bytes;
+  int total_bytes;
   
-  config_data[0] = *(undefined4 *)(config_context + 0x10);
-  config_data[1] = *(undefined4 *)(config_context + 0x14);
-  config_data[2] = *(undefined4 *)(config_context + 0x18);
-  config_data[3] = *(undefined4 *)(config_context + 0x1c);
+  // 提取简单数据包字段
+  connection_id = *(undefined4 *)(packet_context + 0x10);
   
-  // 验证新配置
-  update_result = validate_new_configuration(new_config, update_flags);
-  if (update_result != 0) {
-    return update_result;
-  }
-  
-  // 应用新配置
-  update_result = apply_new_configuration(config_data, new_config, update_flags);
-  if (update_result != 0) {
-    return update_result;
-  }
-  
-  return 0;
+  // 序列化简单数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
 }
 
-// 警告：类型传播算法未收敛
+// =============================================================================
+// 多媒体和实时网络数据包处理函数
+// =============================================================================
+
+// 多媒体网络数据包序列化函数
+int serialize_multimedia_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined4 connection_id;
+  undefined4 session_id;
+  undefined4 encryption_key;
+  undefined4 compression_flag;
+  int processed_bytes;
+  int total_bytes;
+  undefined4 multimedia_fields[4];
+  
+  // 提取多媒体数据包字段
+  multimedia_fields[0] = *(undefined4 *)(packet_context + 0x10);
+  multimedia_fields[1] = *(undefined4 *)(packet_context + 0x14);
+  multimedia_fields[2] = *(undefined4 *)(packet_context + 0x18);
+  multimedia_fields[3] = *(undefined4 *)(packet_context + 0x1c);
+  connection_id = *(undefined4 *)(packet_context + 0x20);
+  
+  // 序列化多媒体数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &multimedia_fields[0]);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
+}
+
+// 实时网络数据包序列化函数
+int serialize_realtime_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined4 connection_id;
+  undefined4 session_id;
+  undefined4 encryption_key;
+  undefined4 compression_flag;
+  int processed_bytes;
+  int total_bytes;
+  undefined4 realtime_fields[4];
+  
+  // 提取实时数据包字段
+  realtime_fields[0] = *(undefined4 *)(packet_context + 0x10);
+  realtime_fields[1] = *(undefined4 *)(packet_context + 0x14);
+  realtime_fields[2] = *(undefined4 *)(packet_context + 0x18);
+  realtime_fields[3] = *(undefined4 *)(packet_context + 0x1c);
+  connection_id = *(undefined4 *)(packet_context + 0x20);
+  
+  // 序列化实时数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &realtime_fields[0]);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
+}
+
+// =============================================================================
+// 复杂网络数据包处理函数
+// =============================================================================
+
+// 复杂网络数据包序列化函数
+int serialize_complex_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined4 connection_id;
+  undefined4 session_id;
+  undefined8 packet_header;
+  undefined8 packet_footer;
+  int processed_bytes;
+  int total_bytes;
+  undefined8 complex_fields[5];
+  undefined4 field_data[4];
+  
+  // 提取复杂数据包字段
+  complex_fields[0] = *(undefined8 *)(packet_context + 0x10);
+  complex_fields[1] = *(undefined8 *)(packet_context + 0x18);
+  connection_id = *(undefined4 *)(packet_context + 0x4c);
+  complex_fields[2] = *(undefined8 *)(packet_context + 0x20);
+  complex_fields[3] = *(undefined8 *)(packet_context + 0x28);
+  session_id = *(undefined4 *)(packet_context + 0x48);
+  field_data[0] = *(undefined4 *)(packet_context + 0x30);
+  field_data[1] = *(undefined4 *)(packet_context + 0x34);
+  field_data[2] = *(undefined4 *)(packet_context + 0x38);
+  field_data[3] = *(undefined4 *)(packet_context + 0x3c);
+  complex_fields[4] = *(undefined8 *)(packet_context + 0x40);
+  
+  // 序列化复杂数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018088ecd0(processed_bytes + data_buffer, buffer_size - processed_bytes, &complex_fields[0]);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
+}
+
+// 双协议网络数据包序列化函数
+int serialize_dual_protocol_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined4 connection_id;
+  undefined4 session_id;
+  int processed_bytes;
+  int total_bytes;
+  
+  // 提取双协议数据包字段
+  connection_id = *(undefined4 *)(packet_context + 0x10);
+  session_id = *(undefined4 *)(packet_context + 0x14);
+  
+  // 序列化双协议数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x18);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
+}
+
+// 多层网络数据包序列化函数
+int serialize_multi_layer_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined4 connection_id;
+  undefined4 session_id;
+  undefined4 encryption_key;
+  undefined4 compression_flag;
+  undefined8 packet_header;
+  int processed_bytes;
+  int total_bytes;
+  
+  // 提取多层网络数据包字段
+  connection_id = *(undefined4 *)(packet_context + 0x24);
+  session_id = *(undefined4 *)(packet_context + 0x20);
+  encryption_key = *(undefined4 *)(packet_context + 0x1c);
+  compression_flag = *(undefined4 *)(packet_context + 0x18);
+  packet_header = *(undefined8 *)(packet_context + 0x10);
+  
+  // 序列化多层网络数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074bda0(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_header);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, compression_flag);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, encryption_key);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
+}
+
+// =============================================================================
+// 增强和快速网络数据包处理函数
+// =============================================================================
+
+// 增强网络数据包序列化函数
+int serialize_enhanced_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined1 checksum_flag;
+  undefined4 connection_id;
+  int processed_bytes;
+  int total_bytes;
+  undefined8 enhanced_fields[2];
+  undefined4 field_data[8];
+  
+  // 提取增强数据包字段
+  enhanced_fields[0] = *(undefined8 *)(packet_context + 0x44);
+  field_data[0] = *(undefined4 *)(packet_context + 0x24);
+  field_data[1] = *(undefined4 *)(packet_context + 0x28);
+  field_data[2] = *(undefined4 *)(packet_context + 0x2c);
+  field_data[3] = *(undefined4 *)(packet_context + 0x30);
+  connection_id = *(undefined4 *)(packet_context + 0x4c);
+  checksum_flag = *(undefined1 *)(packet_context + 0x50);
+  enhanced_fields[1] = *(undefined8 *)(packet_context + 0x10);
+  field_data[4] = *(undefined4 *)(packet_context + 0x14);
+  field_data[5] = *(undefined4 *)(packet_context + 0x18);
+  field_data[6] = *(undefined4 *)(packet_context + 0x1c);
+  field_data[7] = *(undefined4 *)(packet_context + 0x20);
+  
+  // 序列化增强数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18088ebb0(processed_bytes + data_buffer, buffer_size - processed_bytes, &enhanced_fields[1]);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b6f0(processed_bytes + data_buffer, buffer_size - processed_bytes, &enhanced_fields[0]);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074be90(processed_bytes + data_buffer, buffer_size - processed_bytes, checksum_flag);
+  return total_bytes + processed_bytes;
+}
+
+// 快速网络数据包序列化函数
+int serialize_fast_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined4 connection_id;
+  undefined4 session_id;
+  int processed_bytes;
+  int total_bytes;
+  
+  // 提取快速数据包字段
+  session_id = *(undefined4 *)(packet_context + 0x10);
+  connection_id = *(undefined4 *)(packet_context + 0x14);
+  
+  // 序列化快速数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b830(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
+}
+
+// 最小化网络数据包序列化函数
+int serialize_minimal_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined4 connection_id;
+  int processed_bytes;
+  int total_bytes;
+  
+  // 提取最小化数据包字段
+  connection_id = *(undefined4 *)(packet_context + 0x10);
+  
+  // 序列化最小化数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
+}
+
+// =============================================================================
+// 流式和块状网络数据包处理函数
+// =============================================================================
+
+// 流式网络数据包序列化函数
+int serialize_stream_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined4 connection_id;
+  undefined1 stream_flag;
+  int processed_bytes;
+  int total_bytes;
+  undefined8 stream_header;
+  
+  // 提取流式数据包字段
+  stream_header = *(undefined8 *)(packet_context + 0x10);
+  stream_flag = *(undefined1 *)(packet_context + 0x1c);
+  connection_id = *(undefined4 *)(packet_context + 0x18);
+  
+  // 序列化流式数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18088ece0(processed_bytes + data_buffer, buffer_size - processed_bytes, &stream_header);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b830(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074be90(processed_bytes + data_buffer, buffer_size - processed_bytes, stream_flag);
+  return total_bytes + processed_bytes;
+}
+
+// 块状网络数据包序列化函数
+int serialize_block_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined1 block_flag;
+  int processed_bytes;
+  int total_bytes;
+  undefined8 block_header;
+  
+  // 提取块状数据包字段
+  block_header = *(undefined8 *)(packet_context + 0x10);
+  block_flag = *(undefined1 *)(packet_context + 0x1c);
+  
+  // 序列化块状数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18088ece0(processed_bytes + data_buffer, buffer_size - processed_bytes, &block_header);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x1d);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074be90(processed_bytes + data_buffer, buffer_size - processed_bytes, block_flag);
+  return total_bytes + processed_bytes;
+}
+
+// 缓冲网络数据包序列化函数
+int serialize_buffered_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined4 connection_id;
+  undefined1 buffer_flag;
+  int processed_bytes;
+  int total_bytes;
+  
+  // 提取缓冲数据包字段
+  buffer_flag = *(undefined1 *)(packet_context + 0x14);
+  connection_id = *(undefined4 *)(packet_context + 0x10);
+  
+  // 序列化缓冲数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x20);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b830(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074be90(processed_bytes + data_buffer, buffer_size - processed_bytes, buffer_flag);
+  return total_bytes + processed_bytes;
+}
+
+// 分段网络数据包序列化函数
+int serialize_segmented_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined1 segment_flag;
+  int processed_bytes;
+  int total_bytes;
+  
+  // 提取分段数据包字段
+  segment_flag = *(undefined1 *)(packet_context + 0x14);
+  
+  // 序列化分段数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x20);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0xa0);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074be90(processed_bytes + data_buffer, buffer_size - processed_bytes, segment_flag);
+  return total_bytes + processed_bytes;
+}
+
+// =============================================================================
+// 简单消息和标准网络数据包处理函数
+// =============================================================================
+
+// 简单消息网络数据包序列化函数
+int serialize_simple_message_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  int processed_bytes;
+  int total_bytes;
+  
+  // 序列化简单消息数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x10);
+  return total_bytes + processed_bytes;
+}
+
+// 标准网络数据包序列化函数
+int serialize_standard_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+{
+  undefined4 connection_id;
+  undefined4 session_id;
+  int processed_bytes;
+  int total_bytes;
+  
+  // 提取标准数据包字段
+  session_id = *(undefined4 *)(packet_context + 0x10);
+  connection_id = *(undefined4 *)(packet_context + 0x18);
+  
+  // 序列化标准数据包头部
+  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = processed_bytes + total_bytes;
+  total_bytes = func_0x00018074b830(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
+  return total_bytes + processed_bytes;
+}
+
+// =============================================================================
+// 网络连接管理函数
+// =============================================================================
+
+// 网络连接信息获取函数
+void get_network_connection_info(ulonglong connection_handle, undefined8 *connection_info)
+{
+  undefined4 info_field1;
+  undefined4 info_field2;
+  undefined4 info_field3;
+  undefined8 info_field4;
+  int status_code;
+  undefined1 temp_buffer[32];
+  undefined1 *buffer_ptr;
+  undefined8 stack_buffer1;
+  undefined8 stack_buffer2;
+  longlong stack_buffer3;
+  longlong stack_buffer4;
+  undefined1 local_buffer[256];
+  ulonglong security_token;
+  
+  // 安全检查
+  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  if (connection_info == (undefined8 *)0x0) {
+    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+      // 安全验证失败
+      FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+    }
+    func_0x00018074bda0(local_buffer, 0x100, 0);
+    buffer_ptr = local_buffer;
+    // 记录错误日志
+    FUN_180749ef0(0x1f, 0xd, connection_handle, &NETWORK_PROTOCOL_HANDLER);
+  }
+  
+  // 初始化连接信息缓冲区
+  stack_buffer1 = 0;
+  stack_buffer2 = 0;
+  stack_buffer3 = 0;
+  status_code = func_0x00018088c590(0, &stack_buffer2);
+  
+  // 获取连接状态
+  if (((status_code == 0) && (status_code = FUN_18088c740(&stack_buffer1, stack_buffer2), status_code == 0)) &&
+     (status_code = func_0x00018088c530(connection_handle & 0xffffffff, &stack_buffer4), status_code == 0)) {
+    stack_buffer3 = 0;
+    if (stack_buffer4 != 0) {
+      stack_buffer3 = stack_buffer4 + -8;
+    }
+  }
+  else if (status_code != 0) {
+    // 清理资源
+    FUN_18088c790(&stack_buffer1);
+  }
+  
+  // 提取连接信息
+  info_field4 = *(undefined8 *)(stack_buffer3 + 0x40);
+  *connection_info = *(undefined8 *)(stack_buffer3 + 0x38);
+  connection_info[1] = info_field4;
+  info_field1 = *(undefined4 *)(stack_buffer3 + 0x4c);
+  info_field2 = *(undefined4 *)(stack_buffer3 + 0x50);
+  info_field3 = *(undefined4 *)(stack_buffer3 + 0x54);
+  *(undefined4 *)(connection_info + 2) = *(undefined4 *)(stack_buffer3 + 0x48);
+  *(undefined4 *)((longlong)connection_info + 0x14) = info_field1;
+  *(undefined4 *)(connection_info + 3) = info_field2;
+  *(undefined4 *)((longlong)connection_info + 0x1c) = info_field3;
+  info_field1 = *(undefined4 *)(stack_buffer3 + 0x5c);
+  info_field2 = *(undefined4 *)(stack_buffer3 + 0x60);
+  info_field3 = *(undefined4 *)(stack_buffer3 + 100);
+  *(undefined4 *)(connection_info + 4) = *(undefined4 *)(stack_buffer3 + 0x58);
+  *(undefined4 *)((longlong)connection_info + 0x24) = info_field1;
+  *(undefined4 *)(connection_info + 5) = info_field2;
+  *(undefined4 *)((longlong)connection_info + 0x2c) = info_field3;
+  
+  // 清理资源
+  FUN_18088c790(&stack_buffer1);
+}
+
+// 网络连接设置函数
+void set_network_connection_settings(undefined8 connection_handle, longlong settings_data)
+{
+  int status_code;
+  int error_code;
+  undefined1 temp_buffer[32];
+  undefined1 *buffer_ptr;
+  undefined8 stack_buffer;
+  longlong connection_ptr;
+  undefined1 local_buffer[256];
+  ulonglong security_token;
+  
+  // 安全检查
+  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  if (settings_data == 0) {
+    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+      func_0x00018074bda0(local_buffer, 0x100, 0);
+      buffer_ptr = local_buffer;
+      // 记录错误日志
+      FUN_180749ef0(0x1f, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
+    }
+    // 安全验证失败
+    FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+  }
+  
+  // 初始化连接设置
+  stack_buffer = 0;
+  status_code = func_0x00018088c590(connection_handle, &connection_ptr);
+  if (status_code == 0) {
+    if ((*(uint *)(connection_ptr + 0x24) >> 1 & 1) == 0) {
+      // 清理资源
+      FUN_18088c790(&stack_buffer);
+    }
+    error_code = FUN_18088c740(&stack_buffer);
+    if (error_code != 0) goto error_handler;
+  }
+  error_code = status_code;
+error_handler:
+  if (error_code != 0) {
+    // 清理资源
+    FUN_18088c790(&stack_buffer);
+  }
+  
+  // 应用连接设置
+  func_0x0001808754e0(connection_ptr, settings_data);
+  
+  // 清理资源
+  FUN_18088c790(&stack_buffer);
+}
+
+// 网络连接广播函数
+void broadcast_network_connection(undefined8 connection_handle, undefined8 message_data, undefined8 message_size)
+{
+  int status_code;
+  int error_code;
+  int message_length;
+  undefined1 temp_buffer[32];
+  undefined1 *buffer_ptr;
+  undefined1 local_buffer[256];
+  ulonglong security_token;
+  
+  // 安全检查
+  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  status_code = FUN_18083fc50();
+  if ((status_code != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    error_code = FUN_18074b880(local_buffer, 0x100, message_data);
+    message_length = FUN_18074b880(local_buffer + error_code, 0x100 - error_code, &NETWORK_BUFFER_MANAGER);
+    func_0x00018074bda0(local_buffer + (error_code + message_length), 0x100 - (error_code + message_length), message_size);
+    buffer_ptr = local_buffer;
+    // 发送广播消息
+    FUN_180749ef0(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
+  }
+  // 安全验证失败
+  FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+}
+
+// 网络连接错误处理函数
+void handle_network_connection_error(undefined8 connection_handle)
+{
+  int status_code;
+  int error_code;
+  undefined4 unaff_ESI;
+  
+  status_code = FUN_18074b880(&stack0x00000030, 0x100);
+  error_code = FUN_18074b880(&stack0x00000030 + status_code, 0x100 - status_code, &NETWORK_BUFFER_MANAGER);
+  func_0x00018074bda0(&stack0x00000030 + (status_code + error_code), 0x100 - (status_code + error_code));
+  // 记录错误日志
+  FUN_180749ef0(unaff_ESI, 0xb);
+}
+
+// 网络连接清理函数
+void cleanup_network_connection(undefined8 connection_handle)
+{
+  ulonglong cleanup_token;
+  
+  // 执行清理操作
+  FUN_1808fc050(cleanup_token ^ (ulonglong)&stack0x00000000);
+}
+
+// 网络连接验证函数
+void validate_network_connection(undefined8 connection_handle, undefined4 *validation_result, undefined8 validation_data)
+{
+  int status_code;
+  int error_code;
+  int validation_length;
+  undefined1 temp_buffer[32];
+  undefined1 *buffer_ptr;
+  longlong connection_buffers[2];
+  undefined1 local_buffer[256];
+  ulonglong security_token;
+  
+  // 安全检查
+  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  status_code = func_0x00018088c590(connection_handle, connection_buffers);
+  if ((status_code == 0) && ((*(uint *)(connection_buffers[0] + 0x24) >> 1 & 1) == 0)) {
+    status_code = 0x4b;
+  }
+  else if ((status_code == 0) && (status_code = FUN_180879a60(connection_buffers[0], validation_result, validation_data), status_code == 0))
+  goto validation_success;
+  if (validation_result != (undefined4 *)0x0) {
+    *validation_result = 0;
+  }
+  if ((status_code != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    error_code = func_0x00018074bda0(local_buffer, 0x100, validation_result);
+    validation_length = FUN_18074b880(local_buffer + error_code, 0x100 - error_code, &NETWORK_BUFFER_MANAGER);
+    func_0x00018074bda0(local_buffer + (error_code + validation_length), 0x100 - (error_code + validation_length), validation_data);
+    buffer_ptr = local_buffer;
+    // 记录验证日志
+    FUN_180749ef0(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
+  }
+validation_success:
+  // 安全验证失败
+  FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+}
+
+// 网络连接重置函数
+void reset_network_connection(undefined8 connection_handle)
+{
+  int status_code;
+  int error_code;
+  undefined4 unaff_ESI;
+  
+  status_code = func_0x00018074bda0(&stack0x00000040, 0x100);
+  error_code = FUN_18074b880(&stack0x00000040 + status_code, 0x100 - status_code, &NETWORK_BUFFER_MANAGER);
+  func_0x00018074bda0(&stack0x00000040 + (status_code + error_code), 0x100 - (status_code + error_code));
+  // 记录重置日志
+  FUN_180749ef0(unaff_ESI, 0xb);
+}
+
+// 网络连接终止函数
+void terminate_network_connection(undefined8 connection_handle)
+{
+  ulonglong termination_token;
+  
+  // 执行终止操作
+  FUN_1808fc050(termination_token ^ (ulonglong)&stack0x00000000);
+}
+
+// 网络连接状态查询函数
+void query_network_connection_status(undefined8 connection_handle, undefined8 *status_info)
+{
+  int status_code;
+  int error_code;
+  undefined1 temp_buffer[32];
+  undefined1 *buffer_ptr;
+  longlong connection_buffers[2];
+  undefined8 *status_buffers[2];
+  undefined1 local_buffer[256];
+  ulonglong security_token;
+  
+  // 安全检查
+  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  if (status_info == (undefined8 *)0x0) {
+    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+      // 安全验证失败
+      FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+    }
+    func_0x00018074bda0(local_buffer, 0x100, 0);
+    buffer_ptr = local_buffer;
+    // 记录查询日志
+    FUN_180749ef0(0x1f, 0xf, connection_handle, &NETWORK_PROTOCOL_HANDLER);
+  }
+  
+  // 初始化状态查询
+  *status_info = 0;
+  connection_buffers[1] = 0;
+  status_code = func_0x00018088c590(connection_handle, connection_buffers);
+  if (status_code == 0) {
+    if ((*(uint *)(connection_buffers[0] + 0x24) >> 1 & 1) == 0) goto status_success;
+    error_code = FUN_18088c740(connection_buffers + 1);
+    if (error_code == 0) goto cleanup_handler;
+  }
+  else {
+cleanup_handler:
+    error_code = status_code;
+  }
+  if ((error_code == 0) &&
+     (status_code = FUN_18088dec0(*(undefined8 *)(connection_buffers[0] + 0x98), status_buffers, 0x20), status_code == 0))
+  {
+    *status_buffers[0] = &NETWORK_CONNECTION_POOL;
+    *(undefined4 *)(status_buffers[0] + 1) = 0x20;
+    *(int *)(status_buffers[0] + 2) = (int)connection_handle;
+    status_code = func_0x00018088e0d0(*(undefined8 *)(connection_buffers[0] + 0x98), status_buffers[0]);
+    if (status_code == 0) {
+      *status_info = status_buffers[0][3];
+      // 清理资源
+      FUN_18088c790(connection_buffers + 1);
+    }
+  }
+status_success:
+  // 清理资源
+  FUN_18088c790(connection_buffers + 1);
+}
+
+// 网络连接ID获取函数
+void get_network_connection_id(undefined8 connection_handle, undefined8 *connection_id)
+{
+  int status_code;
+  undefined1 temp_buffer[32];
+  undefined1 *buffer_ptr;
+  longlong connection_buffers[2];
+  undefined1 local_buffer[256];
+  ulonglong security_token;
+  
+  // 安全检查
+  security_token = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  if (connection_id == (undefined8 *)0x0) {
+    status_code = 0x1f;
+  }
+  else {
+    *connection_id = 0;
+    status_code = func_0x00018088c590(connection_handle, connection_buffers);
+    if (status_code == 0) {
+      *connection_id = *(undefined8 *)(connection_buffers[0] + 0x78);
+      goto success_handler;
+    }
+  }
+  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+    func_0x00018074bda0(local_buffer, 0x100, connection_id);
+    buffer_ptr = local_buffer;
+    // 记录错误日志
+    FUN_180749ef0(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
+  }
+success_handler:
+  // 安全验证失败
+  FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+}
+
+// =============================================================================
+// 模块说明：
+// 本模块实现了网络系统中的数据包序列化和连接管理功能
+// 主要包含32个函数，涵盖以下功能：
+// 1. 网络连接的初始化、配置、查询和清理
+// 2. 各种类型网络数据包的序列化（基础、扩展、安全、压缩等）
+// 3. 网络消息的广播和错误处理
+// 4. 连接状态的验证和重置
+// 5. 连接信息的获取和管理
+// 
+// 所有函数都包含完整的中文注释说明，便于理解和维护。
+// =============================================================================
+
 // 警告：全局变量与其他符号在相同地址重叠
+// 警告：类型传播算法未收敛
