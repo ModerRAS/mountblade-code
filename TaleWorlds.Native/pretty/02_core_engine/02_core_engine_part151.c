@@ -299,66 +299,74 @@ void process_resource_collision(undefined4 *collision_data)
 
 
 
-longlong find_next_resource_node(longlong param_1)
+// 函数: longlong find_next_resource_node(longlong node_ptr)
+// 功能: 查找下一个有效资源节点，用于节点遍历和搜索
+// 原始实现: FUN_18013aed0
+// 简化实现: 保留原始的递归遍历逻辑
+longlong find_next_resource_node(longlong node_ptr)
 
 {
-  longlong lVar1;
+  longlong next_node;
   
   while( true ) {
-    if (*(longlong *)(param_1 + 0x10) == 0) {
-      return param_1;
+    if (*(longlong *)(node_ptr + 0x10) == 0) {
+      return node_ptr;
     }
-    lVar1 = find_next_resource_node();
-    if (lVar1 != 0) break;
-    param_1 = *(longlong *)(param_1 + 0x18);
+    next_node = find_next_resource_node();
+    if (next_node != 0) break;
+    node_ptr = *(longlong *)(node_ptr + 0x18);
   }
-  return lVar1;
+  return next_node;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong find_resource_by_position(longlong param_1,undefined8 param_2)
+// 函数: longlong find_resource_by_position(longlong node_ptr,undefined8 position_coords)
+// 功能: 根据位置坐标查找资源节点，用于空间搜索和定位
+// 原始实现: FUN_18013af10
+// 简化实现: 保留原始的边界检查和递归查找逻辑
+longlong find_resource_by_position(longlong node_ptr,undefined8 position_coords)
 
 {
-  longlong lVar1;
-  float fVar2;
-  float fStack_28;
-  float fStack_24;
+  longlong found_node;
+  float boundary_half_size;
+  float position_x;
+  float position_y;
   
-  if ((*(byte *)(param_1 + 0xa0) & 4) != 0) {
-    fStack_28 = (float)param_2;
-    fVar2 = *(float *)(_DAT_180c8a9b0 + 0x1674) * 0.5;
-    if ((((*(float *)(param_1 + 0x38) - fVar2 <= fStack_28) &&
-         (fStack_24 = (float)((ulonglong)param_2 >> 0x20),
-         *(float *)(param_1 + 0x3c) - fVar2 <= fStack_24)) &&
-        (fStack_28 < *(float *)(param_1 + 0x38) + *(float *)(param_1 + 0x40) + fVar2)) &&
-       (fStack_24 < *(float *)(param_1 + 0x3c) + *(float *)(param_1 + 0x44) + fVar2)) {
-      if (*(longlong *)(param_1 + 0x10) == 0) {
-        return param_1;
+  if ((*(byte *)(node_ptr + 0xa0) & 4) != 0) {
+    position_x = (float)position_coords;
+    boundary_half_size = *(float *)(_DAT_180c8a9b0 + 0x1674) * 0.5;
+    if ((((*(float *)(node_ptr + 0x38) - boundary_half_size <= position_x) &&
+         (position_y = (float)((ulonglong)position_coords >> 0x20),
+         *(float *)(node_ptr + 0x3c) - boundary_half_size <= position_y)) &&
+        (position_x < *(float *)(node_ptr + 0x38) + *(float *)(node_ptr + 0x40) + boundary_half_size)) &&
+       (position_y < *(float *)(node_ptr + 0x3c) + *(float *)(node_ptr + 0x44) + boundary_half_size)) {
+      if (*(longlong *)(node_ptr + 0x10) == 0) {
+        return node_ptr;
       }
-      lVar1 = find_resource_by_position(*(longlong *)(param_1 + 0x10),param_2);
-      if (lVar1 != 0) {
-        return lVar1;
+      found_node = find_resource_by_position(*(longlong *)(node_ptr + 0x10),position_coords);
+      if (found_node != 0) {
+        return found_node;
       }
-      lVar1 = find_resource_by_position(*(undefined8 *)(param_1 + 0x18),param_2);
-      if (lVar1 != 0) {
-        return lVar1;
+      found_node = find_resource_by_position(*(undefined8 *)(node_ptr + 0x18),position_coords);
+      if (found_node != 0) {
+        return found_node;
       }
-      if (((*(byte *)(param_1 + 0xa0) & 0x10) != 0) && (*(longlong *)(param_1 + 8) == 0)) {
-        if ((*(longlong *)(param_1 + 0x78) != 0) && (*(longlong *)(param_1 + 0x10) == 0)) {
-          return *(longlong *)(param_1 + 0x78);
+      if (((*(byte *)(node_ptr + 0xa0) & 0x10) != 0) && (*(longlong *)(node_ptr + 8) == 0)) {
+        if ((*(longlong *)(node_ptr + 0x78) != 0) && (*(longlong *)(node_ptr + 0x10) == 0)) {
+          return *(longlong *)(node_ptr + 0x78);
         }
-        if (*(longlong *)(param_1 + 0x10) == 0) {
-          return param_1;
+        if (*(longlong *)(node_ptr + 0x10) == 0) {
+          return node_ptr;
         }
-        lVar1 = find_next_resource_node();
-        if (lVar1 != 0) {
-          return lVar1;
+        found_node = find_next_resource_node();
+        if (found_node != 0) {
+          return found_node;
         }
-        lVar1 = find_next_resource_node(*(undefined8 *)(param_1 + 0x18));
-        return lVar1;
+        found_node = find_next_resource_node(*(undefined8 *)(node_ptr + 0x18));
+        return found_node;
       }
     }
   }
@@ -371,36 +379,39 @@ longlong find_resource_by_position(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void update_resource_priority(longlong param_1,int param_2,uint param_3)
-void update_resource_priority(longlong param_1,int param_2,uint param_3)
+// 函数: void update_resource_priority(longlong node_ptr,int priority_value,uint flags_mask)
+// 功能: 更新资源节点的优先级，管理资源处理顺序
+// 原始实现: FUN_18013b040
+// 简化实现: 保留原始的优先级更新逻辑
+void update_resource_priority(longlong node_ptr,int priority_value,uint flags_mask)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
+  longlong material_list;
+  longlong current_material;
+  longlong last_material;
   
-  if (((param_3 == 0) || ((*(uint *)(param_1 + 0xec) & param_3) != 0)) &&
-     (*(uint *)(param_1 + 0xec) = *(uint *)(param_1 + 0xec) & 0xfffffff1,
-     *(int *)(param_1 + 0x418) != param_2)) {
-    lVar3 = FUN_180121fa0(*(undefined8 *)(_DAT_180c8a9b0 + 0x2df8));
-    if ((lVar3 != 0) && (*(longlong *)(lVar3 + 0x10) != 0)) {
-      lVar2 = *(longlong *)(lVar3 + 8);
-      while (lVar1 = lVar2, lVar1 != 0) {
-        lVar3 = lVar1;
-        lVar2 = *(longlong *)(lVar1 + 8);
+  if (((flags_mask == 0) || ((*(uint *)(node_ptr + 0xec) & flags_mask) != 0)) &&
+     (*(uint *)(node_ptr + 0xec) = *(uint *)(node_ptr + 0xec) & 0xfffffff1,
+     *(int *)(node_ptr + 0x418) != priority_value)) {
+    material_list = FUN_180121fa0(*(undefined8 *)(_DAT_180c8a9b0 + 0x2df8));
+    if ((material_list != 0) && (*(longlong *)(material_list + 0x10) != 0)) {
+      current_material = *(longlong *)(material_list + 8);
+      while (last_material = current_material, last_material != 0) {
+        material_list = last_material;
+        current_material = *(longlong *)(last_material + 8);
       }
-      if (*(int **)(lVar3 + 0x78) == (int *)0x0) {
-        param_2 = *(int *)(lVar3 + 0x94);
+      if (*(int **)(material_list + 0x78) == (int *)0x0) {
+        priority_value = *(int *)(material_list + 0x94);
       }
       else {
-        param_2 = **(int **)(lVar3 + 0x78);
+        priority_value = **(int **)(material_list + 0x78);
       }
     }
-    if (*(int *)(param_1 + 0x418) != param_2) {
-      if (*(longlong *)(param_1 + 0x408) != 0) {
-        FUN_180136d40(*(longlong *)(param_1 + 0x408),param_1,0);
+    if (*(int *)(node_ptr + 0x418) != priority_value) {
+      if (*(longlong *)(node_ptr + 0x408) != 0) {
+        FUN_180136d40(*(longlong *)(node_ptr + 0x408),node_ptr,0);
       }
-      *(int *)(param_1 + 0x418) = param_2;
+      *(int *)(node_ptr + 0x418) = priority_value;
     }
   }
   return;

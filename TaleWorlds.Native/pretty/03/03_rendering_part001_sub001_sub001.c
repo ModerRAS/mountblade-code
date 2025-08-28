@@ -2159,74 +2159,84 @@ undefined cpu_optimization_data;  // CPU优化数据
 
 
 
-// 函数: undefined FUN_180446480;
-undefined FUN_180446480;
-undefined UNK_180450a00;
+// 函数: 绘制GPU优化
+// 负责绘制GPU优化建议
+undefined draw_gpu_optimization;
+undefined gpu_optimization_data;  // GPU优化数据
 
 
 
 
-// 函数: undefined FUN_180446610;
-undefined FUN_180446610;
-undefined UNK_180450b90;
+// 函数: 绘制网络优化
+// 负责绘制网络优化建议
+undefined draw_network_optimization;
+undefined network_optimization_data; // 网络优化数据
 
 
 
 
-// 函数: undefined FUN_180446650;
-undefined FUN_180446650;
-undefined UNK_1804512e0;
+// 函数: 绘制磁盘优化
+// 负责绘制磁盘优化建议
+undefined draw_disk_optimization;
+undefined disk_optimization_data; // 磁盘优化数据
 
 
 
 
-// 函数: undefined FUN_180446690;
-undefined FUN_180446690;
-undefined UNK_1804517b0;
+// 函数: 绘制温度优化
+// 负责绘制温度优化建议
+undefined draw_temperature_optimization;
+undefined temperature_optimization_data; // 温度优化数据
 
 
 
 
-// 函数: undefined FUN_180446760;
-undefined FUN_180446760;
-undefined UNK_1804518e0;
+// 函数: 绘制电源优化
+// 负责绘制电源优化建议
+undefined draw_power_optimization;
+undefined power_optimization_data; // 电源优化数据
 
 
 
 
-// 函数: undefined FUN_180446810;
-undefined FUN_180446810;
-undefined UNK_1804518f0;
-undefined UNK_180451900;
-undefined UNK_180451920;
+// 函数: 绘制系统优化
+// 负责绘制系统优化建议
+undefined draw_system_optimization;
+undefined system_optimization_data; // 系统优化数据
+undefined optimization_config;    // 优化配置
+undefined optimization_params;    // 优化参数
 
 
 
 
-// 函数: undefined FUN_180446960;
-undefined FUN_180446960;
-undefined UNK_180451930;
+// 函数: 绘制应用优化
+// 负责绘制应用程序优化建议
+undefined draw_app_optimization;
+undefined app_optimization_data;  // 应用优化数据
 
 
 
 
-// 函数: undefined FUN_180446a60;
-undefined FUN_180446a60;
-undefined UNK_180451940;
+// 函数: 绘制用户优化
+// 负责绘制用户优化建议
+undefined draw_user_optimization;
+undefined user_optimization_data; // 用户优化数据
 
 
 
 
-// 函数: undefined FUN_180446b20;
-undefined FUN_180446b20;
-undefined UNK_180451970;
+// 函数: 绘制安全优化
+// 负责绘制安全优化建议
+undefined draw_security_optimization;
+undefined security_optimization_data; // 安全优化数据
 
 
 
 
-// 函数: undefined FUN_180446ba0;
-undefined FUN_180446ba0;
-undefined UNK_180451990;
+// 函数: 绘制访问优化
+// 负责绘制访问优化建议
+undefined draw_access_optimization;
+undefined access_optimization_data; // 访问优化数据
 
 
 
