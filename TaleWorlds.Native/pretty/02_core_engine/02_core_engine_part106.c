@@ -200,8 +200,16 @@ void simple_text_processing(void)
  * @param param_4 渲染标志
  * @param param_5 颜色参数
  */
-void render_2d_rectangle(undefined8 param_1, undefined8 param_2, undefined4 param_3, char param_4,
-                        undefined4 param_5)
+/**
+ * 渲染2D矩形元素
+ * @param render_context 渲染上下文
+ * @param position 矩形位置
+ * @param size 矩形尺寸
+ * @param enable_alpha 是否启用透明度
+ * @param color 颜色参数
+ */
+void render_2d_rectangle(undefined8 render_context, undefined8 position, undefined4 size, char enable_alpha,
+                        undefined4 color)
 {
     float fVar1;
     longlong lVar2;
@@ -216,34 +224,35 @@ void render_2d_rectangle(undefined8 param_1, undefined8 param_2, undefined4 para
     undefined4 uStack_38;
     float fStack_34;
     
-    lVar4 = _DAT_180c8a9b0;
-    lVar2 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-    uStack_58 = param_2;
-    uStack_50 = param_1;
-    FUN_180293f50(*(undefined8 *)(lVar2 + 0x2e8),&uStack_50,&uStack_58,param_3,param_5,0xf);
-    fVar1 = *(float *)(lVar4 + 0x1668);
-    if ((param_4 != '\0') && (0.0 < fVar1)) {
-        fStack_40 = *(float *)(_DAT_180c8a9b0 + 0x1728);
-        fStack_3c = *(float *)(_DAT_180c8a9b0 + 0x172c);
-        uStack_38 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1730);
-        fStack_34 = *(float *)(_DAT_180c8a9b0 + 0x1734) * *(float *)(_DAT_180c8a9b0 + 0x1628);
-        lVar4 = _DAT_180c8a9b0;
-        uVar3 = func_0x000180121e20(&fStack_40);
-        fStack_48 = (float)uStack_58 + 1.0;
-        fStack_40 = (float)uStack_50 + 1.0;
-        fStack_44 = uStack_58._4_4_ + 1.0;
-        fStack_3c = uStack_50._4_4_ + 1.0;
-        if ((uVar3 & 0xff000000) != 0) {
-            FUN_180293e80(*(undefined8 *)(lVar2 + 0x2e8),&fStack_40,&fStack_48,uVar3,param_5,0xf,fVar1);
-            lVar4 = _DAT_180c8a9b0;
+    longlong manager_ptr = global_render_manager;
+    longlong render_data = *(longlong *)(global_render_manager + 0x1af8);
+    undefined8 stack_size = position;
+    undefined8 stack_pos = render_context;
+    FUN_180293f50(*(undefined8 *)(render_data + 0x2e8),&stack_pos,&stack_size,size,color,0xf);
+    float alpha_value = *(float *)(manager_ptr + 0x1668);
+    if ((enable_alpha != '\0') && (0.0 < alpha_value)) {
+        color_data stack_color;
+        stack_color.r = *(float *)(global_render_manager + 0x1728);
+        stack_color.g = *(float *)(global_render_manager + 0x172c);
+        stack_color.b = *(undefined4 *)(global_render_manager + 0x1730);
+        float alpha_multiplier = *(float *)(global_render_manager + 0x1734) * *(float *)(global_render_manager + 0x1628);
+        manager_ptr = global_render_manager;
+        uint render_flags = func_0x000180121e20(&stack_color);
+        stack_size.y = (float)stack_size.x + 1.0;
+        stack_color.r = (float)stack_pos.x + 1.0;
+        stack_size.x = stack_size.x._4_4_ + 1.0;
+        stack_color.g = stack_pos.x._4_4_ + 1.0;
+        if ((render_flags & 0xff000000) != 0) {
+            FUN_180293e80(*(undefined8 *)(render_data + 0x2e8),&stack_color,&stack_size,render_flags,color,0xf,alpha_value);
+            manager_ptr = global_render_manager;
         }
-        fStack_40 = *(float *)(lVar4 + 0x1718);
-        fStack_3c = *(float *)(lVar4 + 0x171c);
-        uStack_38 = *(undefined4 *)(lVar4 + 0x1720);
-        fStack_34 = *(float *)(lVar4 + 0x1724) * *(float *)(lVar4 + 0x1628);
-        uVar3 = func_0x000180121e20(&fStack_40);
-        if ((uVar3 & 0xff000000) != 0) {
-            FUN_180293e80(*(undefined8 *)(lVar2 + 0x2e8),&uStack_50,&uStack_58,uVar3,param_5,0xf,fVar1);
+        stack_color.r = *(float *)(manager_ptr + 0x1718);
+        stack_color.g = *(float *)(manager_ptr + 0x171c);
+        stack_color.b = *(undefined4 *)(manager_ptr + 0x1720);
+        alpha_multiplier = *(float *)(manager_ptr + 0x1724) * *(float *)(manager_ptr + 0x1628);
+        render_flags = func_0x000180121e20(&stack_color);
+        if ((render_flags & 0xff000000) != 0) {
+            FUN_180293e80(*(undefined8 *)(render_data + 0x2e8),&stack_pos,&stack_size,render_flags,color,0xf,alpha_value);
         }
     }
     return;
@@ -255,7 +264,13 @@ void render_2d_rectangle(undefined8 param_1, undefined8 param_2, undefined4 para
  * @param param_2 矩形位置
  * @param param_3 颜色参数
  */
-void render_2d_rectangle_simple(undefined8 param_1, undefined8 param_2, undefined4 param_3)
+/**
+ * 渲染2D矩形元素（简化版本）
+ * @param render_context 渲染上下文
+ * @param position 矩形位置
+ * @param color 颜色参数
+ */
+void render_2d_rectangle_simple(undefined8 render_context, undefined8 position, undefined4 color)
 {
     float fVar1;
     longlong lVar2;
@@ -307,7 +322,13 @@ void render_2d_rectangle_simple(undefined8 param_1, undefined8 param_2, undefine
  * @param param_2 粒子类型
  * @param param_3 粒子大小
  */
-void render_particle_effect(undefined8 param_1, int param_2, float param_3)
+/**
+ * 渲染粒子效果
+ * @param particle_position 粒子位置
+ * @param particle_type 粒子类型 (0-3)
+ * @param particle_size 粒子大小
+ */
+void render_particle_effect(undefined8 particle_position, int particle_type, float particle_size)
 {
     float fVar1;
     undefined4 uVar2;
@@ -331,50 +352,59 @@ void render_particle_effect(undefined8 param_1, int param_2, float param_3)
     fVar7 = 0.0;
     fStack_74 = 0.0;
     fVar6 = 0.0;
-    fVar1 = *(float *)(_DAT_180c8a9b0 + 0x19f8);
-    fVar5 = 0.0;
-    fVar4 = fVar1 * 0.4 * param_3;
-    fStackX_24 = (float)((ulonglong)param_1 >> 0x20);
-    fStack_6c = fVar1 * 0.5 * param_3 + fStackX_24;
-    fStackX_20 = (float)param_1;
-    fStack_70 = fVar1 * 0.5 + fStackX_20;
-    fStack_78 = 0.0;
-    fVar8 = 0.0;
-    if (-1 < param_2) {
-        if (param_2 < 2) {
-            if (param_2 == 0) {
-                fVar4 = fVar1 * -0.4 * param_3;
+    float base_size = *(float *)(global_render_manager + 0x19f8);
+    float offset_y = 0.0;
+    float size_factor = base_size * 0.4 * particle_size;
+    float particle_z = (float)((ulonglong)particle_position >> 0x20);
+    float transformed_z = base_size * 0.5 * particle_size + particle_z;
+    float particle_x = (float)particle_position;
+    float transformed_x = base_size * 0.5 + particle_x;
+    float temp_offset = 0.0;
+    float offset_w = 0.0;
+    
+    // 根据粒子类型设置不同的偏移量
+    if (-1 < particle_type) {
+        if (particle_type < 2) {
+            // 类型0和1
+            if (particle_type == 0) {
+                size_factor = base_size * -0.4 * particle_size;
             }
-            fVar5 = fVar4 * -0.75;
-            fVar7 = fVar4 * 0.75;
-            fStack_74 = fVar4 * 0.866;
-            fVar8 = fVar4 * -0.866;
-            fStack_78 = fVar5;
+            offset_y = size_factor * -0.75;
+            float offset_x = size_factor * 0.75;
+            float offset_y2 = size_factor * 0.866; // sin(60°)
+            offset_w = size_factor * -0.866;      // -sin(60°)
+            temp_offset = offset_y;
         }
-        else if (param_2 < 4) {
-            if (param_2 == 2) {
-                fVar4 = fVar1 * -0.4 * param_3;
+        else if (particle_type < 4) {
+            // 类型2和3
+            if (particle_type == 2) {
+                size_factor = base_size * -0.4 * particle_size;
             }
-            fStack_74 = fVar4 * -0.75;
-            fVar6 = fVar4 * 0.75;
-            fVar5 = fVar4 * 0.866;
-            fStack_78 = fVar4 * -0.866;
-            fVar8 = fStack_74;
+            float offset_y2 = size_factor * -0.75;
+            float offset_x = size_factor * 0.75;
+            offset_y = size_factor * 0.866;      // sin(60°)
+            temp_offset = size_factor * -0.866; // -sin(60°)
+            offset_w = offset_y2;
         }
     }
-    uStack_68 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
-    uStack_64 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
-    uStack_60 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
-    fStack_5c = *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
-    _fStackX_20 = CONCAT44(fStack_6c + fVar8,fStack_70 + fVar5);
-    fStack_78 = fStack_70 + fStack_78;
-    fStack_70 = fStack_70 + fVar7;
-    fStack_74 = fStack_6c + fStack_74;
-    fStack_6c = fStack_6c + fVar6;
-    lVar3 = _DAT_180c8a9b0;
-    uVar2 = func_0x000180121e20(&uStack_68);
-    FUN_1802940f0(*(undefined8 *)(*(longlong *)(lVar3 + 0x1af8) + 0x2e8),&fStack_70,&fStack_78,
-                  &fStackX_20,uVar2);
+    // 设置粒子颜色和透明度
+    color_data particle_color;
+    particle_color.r = *(undefined4 *)(global_render_manager + 0x16c8);
+    particle_color.g = *(undefined4 *)(global_render_manager + 0x16cc);
+    particle_color.b = *(undefined4 *)(global_render_manager + 0x16d0);
+    float alpha = *(float *)(global_render_manager + 0x16d4) * *(float *)(global_render_manager + 0x1628);
+    
+    // 计算最终粒子位置
+    undefined8 final_position = CONCAT44(transformed_z + offset_w, transformed_x + offset_y);
+    float final_y = transformed_x + temp_offset;
+    float final_x = transformed_x + offset_x;
+    float final_y2 = transformed_z + offset_y2;
+    float final_z = transformed_z + offset_x;
+    
+    longlong render_manager = global_render_manager;
+    uint render_flags = func_0x000180121e20(&particle_color);
+    FUN_1802940f0(*(undefined8 *)(*(longlong *)(render_manager + 0x1af8) + 0x2e8),&final_x,&final_y,
+                  &final_position,render_flags);
     return;
 }
 
@@ -382,7 +412,11 @@ void render_particle_effect(undefined8 param_1, int param_2, float param_3)
  * 渲染光晕效果
  * @param param_1 光晕位置
  */
-void render_glow_effect(undefined8 param_1)
+/**
+ * 渲染光晕效果
+ * @param glow_position 光晕位置
+ */
+void render_glow_effect(undefined8 glow_position)
 {
     longlong lVar1;
     uint uVar2;
@@ -393,18 +427,23 @@ void render_glow_effect(undefined8 param_1)
     undefined4 uStack_18;
     float fStack_14;
     
-    uStack_20 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
-    uStack_1c = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
-    uStack_18 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
-    lVar1 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x2e8);
-    fStack_14 = *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
-    lVar3 = _DAT_180c8a9b0;
-    uStack_28 = param_1;
-    uVar2 = func_0x000180121e20(&uStack_20);
-    if ((uVar2 & 0xff000000) != 0) {
-        FUN_180293860(lVar1,&uStack_28,*(float *)(lVar3 + 0x19f8) * 0.2,0,0x40afede0,7);
-        FUN_180293190(lVar1,*(undefined8 *)(lVar1 + 0x88),*(undefined4 *)(lVar1 + 0x80),uVar2);
-        *(undefined4 *)(lVar1 + 0x80) = 0;
+    // 设置光晕颜色
+    color_data glow_color;
+    glow_color.r = *(undefined4 *)(global_render_manager + 0x16c8);
+    glow_color.g = *(undefined4 *)(global_render_manager + 0x16cc);
+    glow_color.b = *(undefined4 *)(global_render_manager + 0x16d0);
+    
+    longlong render_data = *(longlong *)(*(longlong *)(global_render_manager + 0x1af8) + 0x2e8);
+    float alpha = *(float *)(global_render_manager + 0x16d4) * *(float *)(global_render_manager + 0x1628);
+    longlong render_manager = global_render_manager;
+    undefined8 position = glow_position;
+    uint render_flags = func_0x000180121e20(&glow_color);
+    
+    if ((render_flags & 0xff000000) != 0) {
+        // 渲染光晕效果，强度为基础大小的20%
+        FUN_180293860(render_data,&position,*(float *)(render_manager + 0x19f8) * 0.2,0,0x40afede0,7);
+        FUN_180293190(render_data,*(undefined8 *)(render_data + 0x88),*(undefined4 *)(render_data + 0x80),render_flags);
+        *(undefined4 *)(render_data + 0x80) = 0;
     }
     return;
 }
@@ -415,7 +454,13 @@ void render_glow_effect(undefined8 param_1)
  * @param param_2 闪烁类型
  * @param param_3 闪烁强度
  */
-void render_blink_effect(undefined8 param_1, undefined4 param_2, float param_3)
+/**
+ * 渲染闪烁效果
+ * @param blink_position 闪烁位置
+ * @param blink_type 闪烁类型
+ * @param blink_intensity 闪烁强度
+ */
+void render_blink_effect(undefined8 blink_position, undefined4 blink_type, float blink_intensity)
 {
     longlong lVar1;
     float fVar2;
@@ -425,26 +470,36 @@ void render_blink_effect(undefined8 param_1, undefined4 param_2, float param_3)
     float fStackX_20;
     float fStackX_24;
     
-    lVar1 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-    fVar5 = param_3 * 0.2;
-    if (fVar5 <= 1.0) {
-        fVar5 = 1.0;
+    longlong render_manager = *(longlong *)(global_render_manager + 0x1af8);
+    
+    // 计算闪烁参数
+    float glow_size = blink_intensity * 0.2;
+    if (glow_size <= 1.0) {
+        glow_size = 1.0;
     }
-    param_3 = param_3 + fVar5 * -0.5;
-    fStackX_24 = (float)((ulonglong)param_1 >> 0x20);
-    fStackX_20 = (float)param_1;
-    fVar3 = param_3 * 0.33333334;
-    fVar2 = fVar5 * 0.25 + fStackX_20 + fVar3;
-    fVar4 = (fVar5 * 0.25 + fStackX_24 + param_3) - fVar3 * 0.5;
-    _fStackX_20 = CONCAT44(fVar4 - fVar3,fVar2 - fVar3);
-    FUN_18011d9a0(*(longlong *)(lVar1 + 0x2e8) + 0x80,&fStackX_20);
-    _fStackX_20 = CONCAT44(fVar4,fVar2);
-    FUN_18011d9a0(*(longlong *)(lVar1 + 0x2e8) + 0x80,&fStackX_20);
-    _fStackX_20 = CONCAT44(fVar4 - (fVar3 + fVar3),fVar3 + fVar3 + fVar2);
-    FUN_18011d9a0(*(longlong *)(lVar1 + 0x2e8) + 0x80,&fStackX_20);
-    lVar1 = *(longlong *)(lVar1 + 0x2e8);
-    FUN_1802923e0(lVar1,*(undefined8 *)(lVar1 + 0x88),*(undefined4 *)(lVar1 + 0x80),param_2,0,fVar5);
-    *(undefined4 *)(lVar1 + 0x80) = 0;
+    
+    float adjusted_intensity = blink_intensity + glow_size * -0.5;
+    float position_z = (float)((ulonglong)blink_position >> 0x20);
+    float position_x = (float)blink_position;
+    float offset = adjusted_intensity * 0.33333334; // 1/3
+    
+    // 计算闪烁位置
+    float final_x = glow_size * 0.25 + position_x + offset;
+    float final_z = (glow_size * 0.25 + position_z + adjusted_intensity) - offset * 0.5;
+    
+    // 创建三重闪烁效果
+    undefined8 blink_pos1 = CONCAT44(final_z - offset, final_x - offset);
+    FUN_18011d9a0(*(longlong *)(render_manager + 0x2e8) + 0x80, &blink_pos1);
+    
+    undefined8 blink_pos2 = CONCAT44(final_z, final_x);
+    FUN_18011d9a0(*(longlong *)(render_manager + 0x2e8) + 0x80, &blink_pos2);
+    
+    undefined8 blink_pos3 = CONCAT44(final_z - (offset + offset), offset + offset + final_x);
+    FUN_18011d9a0(*(longlong *)(render_manager + 0x2e8) + 0x80, &blink_pos3);
+    
+    longlong render_data = *(longlong *)(render_manager + 0x2e8);
+    FUN_1802923e0(render_data, *(undefined8 *)(render_data + 0x88), *(undefined4 *)(render_data + 0x80), blink_type, 0, glow_size);
+    *(undefined4 *)(render_data + 0x80) = 0;
     return;
 }
 
