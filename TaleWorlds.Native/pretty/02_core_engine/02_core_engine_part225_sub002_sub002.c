@@ -129,6 +129,262 @@ typedef ulonglong ResourceCleanupFlags;         // 资源清理标志
 #define EntityPointerSwap swap_entity_pointers
 
 /* ============================================================================
+ * 系统函数别名定义
+ * ============================================================================ */
+
+/**
+ * @brief 栈数组初始化器
+ * 初始化栈数组用于数据复制和临时存储
+ */
+#define StackArrayInitializer FUN_180094c20
+
+/**
+ * @brief 组件资源释放器
+ * 释放组件占用的系统资源
+ */
+#define ComponentResourceReleaser FUN_180049550
+
+/**
+ * @brief 内存管理器
+ * 管理内存资源的分配和释放
+ */
+#define MemoryManager FUN_18005e110
+
+/**
+ * @brief 场景数据处理器
+ * 处理场景相关的数据操作
+ */
+#define SceneDataProcessor FUN_1801b65d0
+
+/**
+ * @brief 动态内存分配器
+ * 动态分配内存资源
+ */
+#define DynamicMemoryAllocator FUN_18062b420
+
+/**
+ * @brief 全局清理函数
+ * 执行全局清理操作
+ */
+#define GlobalCleanup FUN_18064e900
+
+/**
+ * @brief 场景管理器
+ * 管理场景相关的操作
+ */
+#define SceneManager FUN_180304010
+
+/**
+ * @brief 对象创建器
+ * 创建系统对象和资源
+ */
+#define ObjectCreator FUN_18062b1e0
+
+/**
+ * @brief 对象初始化器
+ * 初始化创建的对象
+ */
+#define ObjectInitializer FUN_180049830
+
+/**
+ * @brief 数据传输处理器
+ * 处理数据的传输和同步
+ */
+#define DataTransferProcessor FUN_1800b88d0
+
+/**
+ * @brief 渲染数据处理器
+ * 处理渲染相关的数据操作
+ */
+#define RenderDataProcessor FUN_18019c6e0
+
+/**
+ * @brief 实体数据同步器
+ * 同步实体数据到目标位置
+ */
+#define EntityDataSynchronizer FUN_1802e5be0
+
+/**
+ * @brief 资源管理器
+ * 管理系统资源的生命周期
+ */
+#define ResourceManager FUN_18005e250
+
+/**
+ * @brief 数据收集器
+ * 收集和整理数据
+ */
+#define DataCollector FUN_1802e4530
+
+/**
+ * @brief 实体状态管理器
+ * 管理实体的状态信息
+ */
+#define EntityStateManager FUN_1801acb30
+
+/**
+ * @brief 渲染初始化器
+ * 初始化渲染相关的组件
+ */
+#define RenderInitializer FUN_180316460
+
+/**
+ * @brief 渲染配置器
+ * 配置渲染相关的参数
+ */
+#define RenderConfigurator FUN_18031a470
+
+/**
+ * @brief 资源获取器
+ * 获取系统资源
+ */
+#define ResourceAcquirer FUN_1800be440
+
+/**
+ * @brief 场景同步器
+ * 同步场景状态
+ */
+#define SceneSynchronizer FUN_180460970
+
+/**
+ * @brief 场景清理器
+ * 清理场景资源
+ */
+#define SceneCleaner FUN_18045ff20
+
+/**
+ * @brief 配置管理器
+ * 管理系统配置
+ */
+#define ConfigurationManager FUN_180244ff0
+
+/**
+ * @brief 场景处理器
+ * 处理场景操作
+ */
+#define SceneProcessor FUN_180303b70
+
+/**
+ * @brief 场景构建器
+ * 构建场景结构
+ */
+#define SceneBuilder FUN_1801c1c40
+
+/**
+ * @brief 实体管理器
+ * 管理实体操作
+ */
+#define EntityManager FUN_18031e320
+
+/**
+ * @brief 向量处理器
+ * 处理向量运算
+ */
+#define VectorProcessor FUN_180084ae0
+
+/**
+ * @brief 向量清理器
+ * 清理向量资源
+ */
+#define VectorCleaner FUN_1802ea790
+
+/**
+ * @brief 系统初始化器
+ * 初始化系统组件
+ */
+#define SystemInitializer FUN_1802ee720
+
+/**
+ * @brief 系统管理器
+ * 管理系统操作
+ */
+#define SystemManager FUN_18037c8d0
+
+/**
+ * @brief 内存释放器
+ * 释放内存资源
+ */
+#define MemoryReleaser FUN_18005e6a0
+
+/**
+ * @brief 组件管理器
+ * 管理组件操作
+ */
+#define ComponentManager FUN_180389b20
+
+/**
+ * @brief 对象处理器
+ * 处理对象操作
+ */
+#define ObjectProcessor FUN_1801c1af0
+
+/**
+ * @brief 回调处理器
+ * 处理回调函数
+ */
+#define CallbackProcessor FUN_1801bc8d0
+
+/**
+ * @brief 对象创建器2
+ * 另一个对象创建函数
+ */
+#define ObjectCreator2 FUN_18006b640
+
+/**
+ * @brief 资源释放器
+ * 释放资源
+ */
+#define ResourceReleaser FUN_1800466d0
+
+/**
+ * @brief 实体连接器
+ * 连接实体
+ */
+#define EntityConnector FUN_180374f40
+
+/**
+ * @brief 临时对象管理器
+ * 管理临时对象
+ */
+#define TempObjectManager FUN_18005e890
+
+/**
+ * @brief 组件清理器
+ * 清理组件
+ */
+#define ComponentCleaner FUN_1800496b0
+
+/**
+ * @brief 缓冲区管理器
+ * 管理缓冲区
+ */
+#define BufferManager FUN_1800b8500
+
+/**
+ * @brief 系统安全检查器
+ * 执行系统安全检查
+ */
+#define SystemSecurityChecker FUN_1808fc050
+
+/**
+ * @brief 数据处理器
+ * 处理数据操作
+ */
+#define DataProcessor FUN_1802c6190
+
+/**
+ * @brief 数据传输器
+ * 传输数据
+ */
+#define DataTransmitter FUN_18019c5b0
+
+/**
+ * @brief 清理准备器
+ * 准备清理操作
+ */
+#define CleanupPreparer FUN_180049470
+
+/* ============================================================================
  * 结构体定义
  * ============================================================================ */
 
