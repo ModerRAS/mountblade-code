@@ -817,50 +817,57 @@ void register_system_string_type9(void)
 
 
 
-// 函数: void FUN_1800386a0(void)
-void FUN_1800386a0(void)
+// 函数: 注册组件节点 - 带回调类型3 (FUN_1800386a0)
+// 功能: 在组件树中搜索特定位置并插入新节点，设置相关属性和回调函数
+void register_component_node_with_callback3(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char node_flag;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *tree_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  code *callback_function;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025cc00;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  tree_manager = (longlong *)get_tree_manager();
+  root_node = (undefined8 *)*tree_manager;
+  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  callback_function = component_callback_25cc00;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  
+  // 在树中搜索合适的插入位置
+  while (node_flag == '\0') {
+    compare_result = memcmp(current_node + 4,&component_guid_10a0,0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    node_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要，创建新节点
+  if ((previous_node == root_node) || (compare_result = memcmp(&component_guid_10a0,previous_node + 4,0x10), compare_result < 0)) {
+    allocation_size = allocate_node_memory(tree_manager);
+    insert_tree_node(tree_manager,&new_node,previous_node,allocation_size + 0x20,allocation_size);
+    previous_node = new_node;
   }
-  puVar7[6] = 0x43330a43fcdb3653;
-  puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
-  puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置节点属性
+  previous_node[6] = 0x43330a43fcdb3653;  // 组件类型标识符
+  previous_node[7] = 0xdcfdc333a769ec93;  // 组件版本信息
+  previous_node[8] = &component_interface_370;  // 接口指针
+  previous_node[9] = 1;  // 启用标志
+  previous_node[10] = callback_function;  // 回调函数
   return;
 }
 
@@ -868,50 +875,57 @@ void FUN_1800386a0(void)
 
 
 
-// 函数: void FUN_1800387a0(void)
-void FUN_1800387a0(void)
+// 函数: 注册组件节点 - 带回调类型4 (FUN_1800387a0)
+// 功能: 在组件树中搜索特定位置并插入新节点，设置相关属性和回调函数
+void register_component_node_with_callback4(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char node_flag;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *tree_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  code *callback_function;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  tree_manager = (longlong *)get_tree_manager();
+  root_node = (undefined8 *)*tree_manager;
+  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  callback_function = component_callback_25c000;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  
+  // 在树中搜索合适的插入位置
+  while (node_flag == '\0') {
+    compare_result = memcmp(current_node + 4,&component_guid_1078,0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    node_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要，创建新节点
+  if ((previous_node == root_node) || (compare_result = memcmp(&component_guid_1078,previous_node + 4,0x10), compare_result < 0)) {
+    allocation_size = allocate_node_memory(tree_manager);
+    insert_tree_node(tree_manager,&new_node,previous_node,allocation_size + 0x20,allocation_size);
+    previous_node = new_node;
   }
-  puVar7[6] = 0x431d7c8d7c475be2;
-  puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
-  puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置节点属性
+  previous_node[6] = 0x431d7c8d7c475be2;  // 组件类型标识符
+  previous_node[7] = 0xb97f048d2153e1b0;  // 组件版本信息
+  previous_node[8] = &component_interface_388;  // 接口指针
+  previous_node[9] = 4;  // 高优先级标志
+  previous_node[10] = callback_function;  // 回调函数
   return;
 }
 
@@ -919,50 +933,57 @@ void FUN_1800387a0(void)
 
 
 
-// 函数: void FUN_1800388a0(void)
-void FUN_1800388a0(void)
+// 函数: 注册组件节点 - 类型9 (FUN_1800388a0)
+// 功能: 在组件树中搜索特定位置并插入新节点，设置相关属性
+void register_component_node_type9(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char node_flag;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *tree_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  undefined8 callback_function;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  tree_manager = (longlong *)get_tree_manager();
+  root_node = (undefined8 *)*tree_manager;
+  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  callback_function = 0;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  
+  // 在树中搜索合适的插入位置
+  while (node_flag == '\0') {
+    compare_result = memcmp(current_node + 4,&component_guid_1050,0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    node_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要，创建新节点
+  if ((previous_node == root_node) || (compare_result = memcmp(&component_guid_1050,previous_node + 4,0x10), compare_result < 0)) {
+    allocation_size = allocate_node_memory(tree_manager);
+    insert_tree_node(tree_manager,&new_node,previous_node,allocation_size + 0x20,allocation_size);
+    previous_node = new_node;
   }
-  puVar7[6] = 0x4b2d79e470ee4e2c;
-  puVar7[7] = 0x9c552acd3ed5548d;
-  puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  
+  // 设置节点属性
+  previous_node[6] = 0x4b2d79e470ee4e2c;  // 组件类型标识符
+  previous_node[7] = 0x9c552acd3ed5548d;  // 组件版本信息
+  previous_node[8] = &component_interface_3a0;  // 接口指针
+  previous_node[9] = 0;  // 禁用标志
+  previous_node[10] = callback_function;  // 回调函数
   return;
 }
 
@@ -970,50 +991,57 @@ void FUN_1800388a0(void)
 
 
 
-// 函数: void FUN_1800389a0(void)
-void FUN_1800389a0(void)
+// 函数: 注册组件节点 - 带回调类型5 (FUN_1800389a0)
+// 功能: 在组件树中搜索特定位置并插入新节点，设置相关属性和回调函数
+void register_component_node_with_callback5(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char node_flag;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *tree_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  code *callback_function;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  tree_manager = (longlong *)get_tree_manager();
+  root_node = (undefined8 *)*tree_manager;
+  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  callback_function = component_callback_25d270;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  
+  // 在树中搜索合适的插入位置
+  while (node_flag == '\0') {
+    compare_result = memcmp(current_node + 4,&component_guid_1028,0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    node_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要，创建新节点
+  if ((previous_node == root_node) || (compare_result = memcmp(&component_guid_1028,previous_node + 4,0x10), compare_result < 0)) {
+    allocation_size = allocate_node_memory(tree_manager);
+    insert_tree_node(tree_manager,&new_node,previous_node,allocation_size + 0x20,allocation_size);
+    previous_node = new_node;
   }
-  puVar7[6] = 0x49086ba08ab981a7;
-  puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置节点属性
+  previous_node[6] = 0x49086ba08ab981a7;  // 组件类型标识符
+  previous_node[7] = 0xa9191d34ad910696;  // 组件版本信息
+  previous_node[8] = &component_interface_3b8;  // 接口指针
+  previous_node[9] = 0;  // 禁用标志
+  previous_node[10] = callback_function;  // 回调函数
   return;
 }
 

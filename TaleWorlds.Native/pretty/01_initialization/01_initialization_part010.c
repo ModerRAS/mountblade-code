@@ -1302,265 +1302,309 @@ void initialize_network_system_strings(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18003fad0(void)
-
+/**
+ * 初始化游戏核心模块
+ * 初始化游戏的核心功能模块，设置基本的数据结构和指针
+ * @return 初始化成功返回0，失败返回-1
+ */
+int initialize_game_core_module(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  
-  _DAT_180bf6048 = &UNK_18098bc80;
-  _DAT_180bf6050 = &DAT_180bf6060;
+    int64_t initialization_result;
+    uint64_t reserved_param;
+    
+    // 设置游戏核心数据结构指针
+    game_core_data_structure_6048 = &game_core_base_address_bc80;
+    game_core_config_pointer_6050 = &game_core_config_data_6060;
+    
+    // 验证游戏核心模块初始化状态
+    initialization_result = verify_module_initialization(game_core_module_function);
+    return (initialization_result != 0) - 1;
+}
 
-
-// 函数: void FUN_18003fbb0(void)
-void FUN_18003fbb0(void)
-
+/**
+ * 注册游戏状态组件
+ * 在系统注册表中注册游戏状态组件，处理游戏状态的管理和转换
+ */
+void register_game_state_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &game_state_identifier_2d660, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&game_state_identifier_2d660, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x46c54bc98fc3fc2a;
-  puVar7[7] = 0x727b256e3af32585;
-  puVar7[8] = &UNK_180a2ca90;
-  puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置游戏状态组件参数
+    previous_node[6] = 0x46c54bc98fc3fc2a;  // 游戏状态标识符
+    previous_node[7] = 0x727b256e3af32585;  // 校验值
+    previous_node[8] = &game_state_constant_2ca90;  // 游戏状态常量指针
+    previous_node[9] = 2;                    // 状态类型标识
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003fcb0(void)
-void FUN_18003fcb0(void)
-
+/**
+ * 注册游戏逻辑组件
+ * 在系统注册表中注册游戏逻辑组件，处理游戏规则的执行和管理
+ */
+void register_game_logic_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &game_logic_identifier_2d590, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&game_logic_identifier_2d590, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x41ffd0b76c1e136f;
-  puVar7[7] = 0x25db30365f277abb;
-  puVar7[8] = &UNK_180a2cab0;
-  puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置游戏逻辑组件参数
+    previous_node[6] = 0x41ffd0b76c1e136f;  // 游戏逻辑标识符
+    previous_node[7] = 0x25db30365f277abb;  // 校验值
+    previous_node[8] = &game_logic_constant_2cab0;  // 游戏逻辑常量指针
+    previous_node[9] = 2;                    // 逻辑类型标识
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003fdb0(void)
-void FUN_18003fdb0(void)
-
+/**
+ * 注册游戏引擎核心组件（副本）
+ * 在系统注册表中注册游戏引擎核心组件的副本，用于冗余备份
+ */
+void register_game_engine_core_backup(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18007fcd0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc740,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void *engine_handler;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    engine_handler = engine_core_handler_07fcd0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &engine_core_identifier_fc740, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&engine_core_identifier_fc740, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc740,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
-  return;
+    
+    // 设置引擎核心组件参数（备份）
+    previous_node[6] = 0x4fc124d23d41985f;  // 引擎核心标识符
+    previous_node[7] = 0xe2f4a30d6e6ae482;  // 校验值
+    previous_node[8] = &engine_constant_c790;  // 引擎常量指针
+    previous_node[9] = 0;                    // 优先级
+    previous_node[10] = engine_handler;      // 引擎处理函数指针
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003feb0(void)
-void FUN_18003feb0(void)
-
+/**
+ * 注册游戏场景管理组件（副本）
+ * 在系统注册表中注册游戏场景管理组件的副本，用于冗余备份
+ */
+void register_game_scene_management_backup(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &scene_management_identifier_fc768, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&scene_management_identifier_fc768, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4770584fbb1df897;
-  puVar7[7] = 0x47f249e43f66f2ab;
-  puVar7[8] = &UNK_18098c7a0;
-  puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置场景管理组件参数（备份）
+    previous_node[6] = 0x4770584fbb1df897;  // 场景管理标识符
+    previous_node[7] = 0x47f249e43f66f2ab;  // 校验值
+    previous_node[8] = &scene_constant_c7a0;  // 场景常量指针
+    previous_node[9] = 1;                    // 场景类型标识
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003ffb0(void)
-void FUN_18003ffb0(void)
-
+/**
+ * 注册游戏实体管理组件（副本）
+ * 在系统注册表中注册游戏实体管理组件的副本，用于冗余备份
+ */
+void register_game_entity_management_backup(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &entity_management_identifier_c9b8, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&entity_management_identifier_c9b8, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4666df49b97e0f10;
-  puVar7[7] = 0x4e4b0d63a6ad1d8f;
-  puVar7[8] = &UNK_18098c7b8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置实体管理组件参数（备份）
+    previous_node[6] = 0x4666df49b97e0f10;  // 实体管理标识符
+    previous_node[7] = 0x4e4b0d63a6ad1d8f;  // 校验值
+    previous_node[8] = &entity_constant_c7b8;  // 实体常量指针
+    previous_node[9] = 0;                    // 优先级
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
