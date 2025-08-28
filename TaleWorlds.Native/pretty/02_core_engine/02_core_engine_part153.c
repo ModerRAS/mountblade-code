@@ -268,172 +268,172 @@ void update_entity_collision_flags(int entity_type, undefined4 collision_flag)
 
 
 
-// 函数: void FUN_18013c020(longlong param_1,undefined8 param_2,undefined8 param_3,char *param_4)
-void FUN_18013c020(longlong param_1,undefined8 param_2,undefined8 param_3,char *param_4)
+// 函数: void parse_collision_command(longlong command_context, undefined8 param2, undefined8 param3, char *command_string)
+// 解析碰撞相关的命令字符串
+void parse_collision_command(longlong command_context, undefined8 param2, undefined8 param3, char *command_string)
 
 {
-  undefined8 *puVar1;
-  longlong lVar2;
-  int iVar3;
-  longlong lVar4;
-  int *piVar5;
-  ulonglong uVar6;
-  int iVar7;
-  ulonglong uVar8;
-  int iVar9;
-  char acStackX_20 [8];
-  int iStack_48;
-  int iStack_44;
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  undefined4 uStack_38;
-  int iStack_34;
-  undefined4 uStack_30;
-  undefined1 uStack_2c;
-  char cStack_2b;
-  undefined1 uStack_2a;
-  undefined1 uStack_29;
-  undefined1 uStack_28;
-  undefined1 uStack_27;
-  undefined4 uStack_26;
-  undefined2 uStack_22;
-  undefined2 uStack_20;
-  undefined4 uStack_1e;
-  undefined2 uStack_1a;
+  undefined8 *data_ptr;
+  longlong entity_table;
+  int parse_result;
+  longlong table_data;
+  int *entity_id_ptr;
+  ulonglong entity_index;
+  int entity_count;
+  ulonglong table_index;
+  int table_capacity;
+  char axis_buffer [8];
+  int command_id;
+  int entity_id;
+  undefined4 position_x;
+  undefined4 position_y;
+  undefined4 position_z;
+  int collision_type;
+  undefined4 collision_data;
+  undefined1 axis_index;
+  char collision_flag;
+  undefined1 is_relative;
+  undefined1 has_rotation;
+  undefined1 has_scale;
+  undefined1 is_dynamic;
+  undefined4 velocity_x;
+  undefined2 velocity_y;
+  undefined2 velocity_z;
+  undefined4 rotation;
+  undefined2 rotation_y;
   
-  uVar6 = 0;
-  acStackX_20[0] = '\0';
-  iStack_44 = 0;
-  uStack_40 = 0;
-  iStack_48 = 0;
-  uStack_26 = 0;
-  uStack_22 = 0;
-  uStack_20 = 0;
-  uStack_1e = 0;
-  iStack_34 = 0;
-  uStack_30 = 0;
-  uStack_38 = 0;
-  uStack_29 = 0;
-  uStack_28 = 0;
-  uStack_2a = 0;
-  uStack_2c = 0xff;
-  cStack_2b = '\0';
-  for (; (*param_4 == ' ' || (*param_4 == '\t')); param_4 = param_4 + 1) {
+  entity_index = 0;
+  axis_buffer[0] = '\0';
+  entity_id = 0;
+  position_x = 0;
+  command_id = 0;
+  velocity_x = 0;
+  velocity_y = 0;
+  velocity_z = 0;
+  rotation = 0;
+  collision_type = 0;
+  collision_data = 0;
+  has_rotation = 0;
+  has_scale = 0;
+  is_relative = 0;
+  axis_index = 0xff;
+  collision_flag = '\0';
+  for (; (*command_string == ' ' || (*command_string == '\t')); command_string = command_string + 1) {
   }
-  iVar7 = 8;
-  iVar3 = strncmp(param_4,&UNK_180a065c8,8);
-  if (iVar3 == 0) {
-    for (param_4 = param_4 + 8; (*param_4 == ' ' || (*param_4 == '\t')); param_4 = param_4 + 1) {
+  entity_count = 8;
+  parse_result = strncmp(command_string,&COLLISION_CREATE_CMD,8);
+  if (parse_result == 0) {
+    for (command_string = command_string + 8; (*command_string == ' ' || (*command_string == '\t')); command_string = command_string + 1) {
     }
   }
   else {
-    iVar3 = strncmp(param_4,&UNK_180a065f0,9);
-    if (iVar3 != 0) {
+    parse_result = strncmp(command_string,&COLLISION_UPDATE_CMD,9);
+    if (parse_result != 0) {
       return;
     }
-    for (param_4 = param_4 + 9; (*param_4 == ' ' || (*param_4 == '\t')); param_4 = param_4 + 1) {
+    for (command_string = command_string + 9; (*command_string == ' ' || (*command_string == '\t')); command_string = command_string + 1) {
     }
-    uStack_2a = 1;
+    is_relative = 1;
   }
-  iVar3 = FUN_18010cbc0(param_4,&UNK_180a065e0,&uStack_38,&iStack_48);
-  if (iVar3 != 1) {
+  parse_result = parse_command_token(command_string,&ENTITY_TYPE_TOKEN,&collision_data,&command_id);
+  if (parse_result != 1) {
     return;
   }
-  param_4 = param_4 + iStack_48;
-  iVar3 = FUN_18010cbc0(param_4,&UNK_180a06610,&iStack_34,&iStack_48);
-  if (iVar3 == 1) {
-    param_4 = param_4 + iStack_48;
-    if (iStack_34 == 0) {
+  command_string = command_string + command_id;
+  parse_result = parse_command_token(command_string,&ENTITY_ID_TOKEN,&collision_type,&command_id);
+  if (parse_result == 1) {
+    command_string = command_string + command_id;
+    if (collision_type == 0) {
       return;
     }
   }
-  else if (iStack_34 == 0) {
-    iVar3 = FUN_18010cbc0(param_4,&UNK_180a06600,&iStack_44,&uStack_40,&iStack_48);
-    if (iVar3 != 2) {
+  else if (collision_type == 0) {
+    parse_result = parse_command_token(command_string,&POSITION_TOKEN,&entity_id,&position_x,&command_id);
+    if (parse_result != 2) {
       return;
     }
-    lVar4 = (longlong)iStack_48;
-    uStack_3c = CONCAT22((undefined2)uStack_40,(short)iStack_44);
-    piVar5 = &iStack_48;
-    uStack_26 = uStack_3c;
-    iVar3 = FUN_18010cbc0(param_4 + lVar4,&UNK_180a06640,&iStack_44,&uStack_40,piVar5);
-    if (iVar3 != 2) {
+    table_data = (longlong)command_id;
+    position_y = CONCAT22((undefined2)position_x,(short)entity_id);
+    entity_id_ptr = &command_id;
+    velocity_x = position_y;
+    parse_result = parse_command_token(command_string + table_data,&POSITION_Z_TOKEN,&entity_id,&position_x,entity_id_ptr);
+    if (parse_result != 2) {
       return;
     }
-    param_4 = param_4 + lVar4 + iStack_48;
-    uStack_22 = (undefined2)iStack_44;
-    uStack_3c = CONCAT22((undefined2)uStack_40,uStack_22);
-    uStack_20 = (undefined2)uStack_40;
-    goto LAB_18013c174;
+    command_string = command_string + table_data + command_id;
+    velocity_y = (undefined2)entity_id;
+    position_y = CONCAT22((undefined2)position_x,velocity_y);
+    velocity_z = (undefined2)position_x;
+    goto store_collision_data;
   }
-  piVar5 = &iStack_48;
-  iVar3 = FUN_18010cbc0(param_4,&UNK_180a06628,&iStack_44,&uStack_40,piVar5);
-  if (iVar3 == 2) {
-    param_4 = param_4 + iStack_48;
-    uStack_3c = CONCAT22((undefined2)uStack_40,(short)iStack_44);
-    uStack_1e = uStack_3c;
+  entity_id_ptr = &command_id;
+  parse_result = parse_command_token(command_string,&ROTATION_TOKEN,&entity_id,&position_x,entity_id_ptr);
+  if (parse_result == 2) {
+    command_string = command_string + command_id;
+    position_y = CONCAT22((undefined2)position_x,(short)entity_id);
+    rotation = position_y;
   }
-LAB_18013c174:
-  iVar3 = FUN_18010cbc0(param_4,&UNK_180a06668,acStackX_20,&iStack_48,piVar5);
-  if (iVar3 == 1) {
-    param_4 = param_4 + iStack_48;
-    if (acStackX_20[0] == 'X') {
-      uStack_2c = 0;
+store_collision_data:
+  parse_result = parse_command_token(command_string,&AXIS_TOKEN,axis_buffer,&command_id,entity_id_ptr);
+  if (parse_result == 1) {
+    command_string = command_string + command_id;
+    if (axis_buffer[0] == 'X') {
+      axis_index = 0;
     }
-    else if (acStackX_20[0] == 'Y') {
-      uStack_2c = 1;
+    else if (axis_buffer[0] == 'Y') {
+      axis_index = 1;
     }
   }
-  iVar3 = FUN_18010cbc0(param_4,&UNK_180a06650,&iStack_44,&iStack_48,piVar5);
-  if (iVar3 == 1) {
-    param_4 = param_4 + iStack_48;
-    uStack_29 = iStack_44 != 0;
+  parse_result = parse_command_token(command_string,&DYNAMIC_FLAG,&entity_id,&command_id,entity_id_ptr);
+  if (parse_result == 1) {
+    command_string = command_string + command_id;
+    has_rotation = entity_id != 0;
   }
-  iVar3 = FUN_18010cbc0(param_4,&UNK_180a06690,&iStack_44,&iStack_48,piVar5);
-  if (iVar3 == 1) {
-    param_4 = param_4 + iStack_48;
-    uStack_28 = iStack_44 != 0;
+  parse_result = parse_command_token(command_string,&SCALE_FLAG,&entity_id,&command_id,entity_id_ptr);
+  if (parse_result == 1) {
+    command_string = command_string + command_id;
+    has_scale = entity_id != 0;
   }
-  FUN_18010cbc0(param_4,&UNK_180a06678,&uStack_30,&iStack_48);
-  lVar4 = *(longlong *)(param_1 + 0x2df8);
-  if ((iStack_34 != 0) && (0 < *(int *)(lVar4 + 0x20))) {
-    piVar5 = *(int **)(lVar4 + 0x28);
-    uVar8 = uVar6;
+  parse_command_token(command_string,&VELOCITY_TOKEN,&collision_data,&command_id);
+  table_data = *(longlong *)(command_context + 0x2df8);
+  if ((collision_type != 0) && (0 < *(int *)(table_data + 0x20))) {
+    entity_id_ptr = *(int **)(table_data + 0x28);
+    table_index = entity_index;
     do {
-      if (*piVar5 == iStack_34) {
-        piVar5 = *(int **)(lVar4 + 0x28) + (longlong)(int)uVar8 * 8;
-        if (piVar5 != (int *)0x0) {
-          cStack_2b = *(char *)((longlong)piVar5 + 0xd) + '\x01';
+      if (*entity_id_ptr == collision_type) {
+        entity_id_ptr = *(int **)(table_data + 0x28) + (longlong)(int)table_index * 8;
+        if (entity_id_ptr != (int *)0x0) {
+          collision_flag = *(char *)((longlong)entity_id_ptr + 0xd) + '\x01';
         }
         break;
       }
-      uVar8 = (ulonglong)((int)uVar8 + 1);
-      uVar6 = uVar6 + 1;
-      piVar5 = piVar5 + 8;
-    } while ((longlong)uVar6 < (longlong)*(int *)(lVar4 + 0x20));
+      table_index = (ulonglong)((int)table_index + 1);
+      entity_index = entity_index + 1;
+      entity_id_ptr = entity_id_ptr + 8;
+    } while ((longlong)entity_index < (longlong)*(int *)(table_data + 0x20));
   }
-  iVar3 = *(int *)(lVar4 + 0x20);
-  iVar9 = *(int *)(lVar4 + 0x24);
-  if (iVar3 == iVar9) {
-    if (iVar9 != 0) {
-      iVar7 = iVar9 + iVar9 / 2;
+  parse_result = *(int *)(table_data + 0x20);
+  table_capacity = *(int *)(table_data + 0x24);
+  if (parse_result == table_capacity) {
+    if (table_capacity != 0) {
+      entity_count = table_capacity + table_capacity / 2;
     }
-    iVar9 = iVar3 + 1;
-    if (iVar3 + 1 < iVar7) {
-      iVar9 = iVar7;
+    table_capacity = parse_result + 1;
+    if (parse_result + 1 < entity_count) {
+      table_capacity = entity_count;
     }
-    FUN_18013da40(lVar4 + 0x20,iVar9);
-    iVar3 = *(int *)(lVar4 + 0x20);
+    resize_entity_table(table_data + 0x20,table_capacity);
+    parse_result = *(int *)(table_data + 0x20);
   }
-  lVar2 = *(longlong *)(lVar4 + 0x28);
-  puVar1 = (undefined8 *)((longlong)iVar3 * 0x20 + lVar2);
-  *puVar1 = CONCAT44(iStack_34,uStack_38);
-  puVar1[1] = CONCAT17(uStack_29,
-                       CONCAT16(uStack_2a,CONCAT15(cStack_2b,CONCAT14(uStack_2c,uStack_30))));
-  puVar1 = (undefined8 *)((longlong)iVar3 * 0x20 + 0x10 + lVar2);
-  *puVar1 = CONCAT26(uStack_22,CONCAT42(uStack_26,CONCAT11(uStack_27,uStack_28)));
-  puVar1[1] = CONCAT26(uStack_1a,CONCAT42(uStack_1e,uStack_20));
-  *(int *)(lVar4 + 0x20) = *(int *)(lVar4 + 0x20) + 1;
+  entity_table = *(longlong *)(table_data + 0x28);
+  data_ptr = (undefined8 *)((longlong)parse_result * 0x20 + entity_table);
+  *data_ptr = CONCAT44(collision_type,collision_data);
+  data_ptr[1] = CONCAT17(has_rotation,
+                       CONCAT16(is_relative,CONCAT15(collision_flag,CONCAT14(axis_index,collision_data))));
+  data_ptr = (undefined8 *)((longlong)parse_result * 0x20 + 0x10 + entity_table);
+  *data_ptr = CONCAT26(velocity_y,CONCAT42(velocity_x,CONCAT11(is_dynamic,has_scale)));
+  data_ptr[1] = CONCAT26(rotation_y,CONCAT42(rotation,velocity_z));
+  *(int *)(table_data + 0x20) = *(int *)(table_data + 0x20) + 1;
   return;
 }
 
@@ -441,30 +441,31 @@ LAB_18013c174:
 
 
 
-// 函数: void FUN_18013c380(longlong param_1,undefined4 *param_2,int param_3)
-void FUN_18013c380(longlong param_1,undefined4 *param_2,int param_3)
+// 函数: void process_collision_entities(longlong collision_system, undefined4 *entity_data, int entity_index)
+// 处理碰撞实体数据
+void process_collision_entities(longlong collision_system, undefined4 *entity_data, int entity_index)
 
 {
-  undefined4 *puVar1;
-  uint *puVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  undefined1 uVar9;
-  byte bVar10;
-  undefined4 uVar11;
-  undefined4 uVar12;
-  longlong lVar13;
-  int iVar14;
-  int iVar15;
-  int iVar16;
-  undefined4 uStack_44;
-  undefined4 uStack_3c;
-  undefined1 uStack_37;
-  undefined2 uStack_2a;
+  undefined4 *data_ptr1;
+  uint *data_ptr2;
+  float position_x;
+  float position_y;
+  float position_z;
+  float velocity_x;
+  float velocity_y;
+  float velocity_z;
+  undefined1 collision_type;
+  byte entity_flags;
+  undefined4 entity_id;
+  undefined4 entity_type;
+  longlong array_offset;
+  int current_count;
+  int max_count;
+  int new_capacity;
+  undefined4 collision_flags;
+  undefined4 entity_properties;
+  undefined1 reserved_byte;
+  undefined2 velocity_flags;
   
   while( true ) {
     uVar11 = *param_2;
