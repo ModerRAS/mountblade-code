@@ -896,7 +896,10 @@ void cleanup_resource1(void)
 
 
 // 函数: void FUN_180204f57(void)
-void FUN_180204f57(void)
+/**
+ * 资源清理函数2 - 清理指定资源（带栈参数）
+ */
+void cleanup_resource2(void)
 
 {
   undefined8 *unaff_RSI;
@@ -922,7 +925,13 @@ void FUN_180204f57(void)
 
 
 // 函数: void FUN_180204f70(undefined8 param_1,longlong *param_2,undefined8 param_3)
-void FUN_180204f70(undefined8 param_1,longlong *param_2,undefined8 param_3)
+/**
+ * 复杂初始化函数 - 初始化复杂的资源结构
+ * @param param_1 初始化参数
+ * @param param_2 资源指针
+ * @param param_3 附加参数
+ */
+void complex_initialization(undefined8 param_1, longlong *param_2, undefined8 param_3)
 
 {
   longlong lVar1;
@@ -964,7 +973,12 @@ void FUN_180204f70(undefined8 param_1,longlong *param_2,undefined8 param_3)
 
 
 // 函数: void FUN_180205470(undefined8 param_1,ulonglong param_2)
-void FUN_180205470(undefined8 param_1,ulonglong param_2)
+/**
+ * 资源释放函数 - 释放指定资源
+ * @param param_1 释放参数
+ * @param param_2 资源标识
+ */
+void release_resource(undefined8 param_1, ulonglong param_2)
 
 {
   longlong *plVar1;
