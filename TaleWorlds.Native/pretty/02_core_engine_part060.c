@@ -1090,173 +1090,231 @@ void SystemConfigurationManager(int64_t *param_1, int param_2, int param_3, uint
 
 
 
-// 函数: void FUN_180099100(int64_t param_1)
-void FUN_180099100(int64_t param_1)
-
+/**
+ * @brief 系统初始化器扩展 - 高级系统初始化和资源配置管理
+ * 
+ * 此函数是系统初始化的核心扩展组件，负责高级系统资源的初始化、配置和管理。
+ * 它处理复杂的数据结构初始化、处理器配置、队列管理和内存分配等关键任务。
+ * 
+ * 主要功能：
+ * - 处理器数据结构初始化和配置
+ * - 系统缓冲区和队列管理
+ * - 内存分配和资源管理
+ * - 多线程环境下的同步处理
+ * - 系统状态监控和错误处理
+ * 
+ * @param system_context 系统上下文指针，包含系统配置和状态信息
+ * 
+ * @return void
+ * 
+ * @note 此函数涉及复杂的内存管理和多线程同步操作
+ * @warning 错误处理路径会导致系统终止，调用者需要确保参数有效性
+ */
+void SystemInitializerEx(int64_t system_context)
 {
-  int64_t lVar1;
-  uint8_t uVar2;
-  int32_t uVar3;
-  uint64_t uVar4;
-  uint64_t uVar5;
-  void **ppuStackX_8;
-  int64_t *plStackX_10;
-  int64_t *plStackX_18;
-  int64_t **pplStackX_20;
-  int32_t uStack_170;
-  int32_t uStack_16c;
-  int32_t uStack_164;
-  void *puStack_150;
-  int64_t lStack_148;
-  int32_t uStack_140;
-  uint64_t uStack_138;
-  uint64_t uStack_130;
-  uint64_t uStack_128;
-  int64_t *plStack_120;
-  int64_t *plStack_118;
-  uint64_t uStack_110;
-  uint64_t uStack_108;
-  int32_t uStack_100;
-  int64_t *plStack_f8;
-  void *puStack_f0;
-  int64_t lStack_e8;
-  int32_t uStack_e0;
-  uint64_t uStack_d8;
-  int32_t uStack_d0;
-  int32_t uStack_cc;
-  int32_t uStack_c8;
-  int32_t uStack_c4;
-  int64_t *plStack_c0;
-  uint64_t uStack_b8;
-  int32_t uStack_b0;
-  int16_t uStack_ac;
-  int16_t uStack_aa;
-  int64_t *plStack_a8;
-  int32_t uStack_a0;
-  int32_t uStack_9c;
-  int32_t uStack_98;
-  int32_t uStack_94;
-  int32_t uStack_90;
-  int64_t *plStack_88;
-  int8_t auStack_80 [32];
-  int32_t uStack_60;
-  int32_t uStack_5c;
-  int32_t uStack_58;
-  int32_t uStack_54;
-  int64_t *plStack_50;
-  uint64_t uStack_48;
-  
-  uStack_48 = 0xfffffffffffffffe;
-  ppuStackX_8 = (void **)((uint64_t)ppuStackX_8 & 0xffffffffffffff00);
-  uStack_b8 = 0;
-  uStack_b0 = 0;
-  uStack_ac = 0;
-  FUN_18009e9e0(param_1,&plStackX_10,system_processing_data_ptr);
-  plStack_f8 = (int64_t *)0x0;
-  pplStackX_20 = (int64_t **)&puStack_f0;
-  puStack_f0 = &system_data_buffer_ptr;
-  uStack_d8 = 0;
-  lStack_e8 = 0;
-  uStack_e0 = 0;
-  plStack_c0 = (int64_t *)0x0;
-  plStack_118 = plStackX_10;
-  uStack_108 = CONCAT26(uStack_aa,CONCAT24(uStack_ac,uStack_b0));
-  uStack_110 = uStack_b8;
-  uStack_100 = 2;
-  uStack_d0 = 0;
-  uStack_cc = 0;
-  uStack_c8 = 0;
-  uStack_c4 = 0;
-  FUN_18009e9e0(pplStackX_20,&plStackX_18,system_context_data_ptr);
-  uVar3 = uStack_b0;
-  uVar5 = uStack_b8;
-  puStack_150 = &system_data_buffer_ptr;
-  uStack_138 = 0;
-  lStack_148 = 0;
-  uStack_140 = 0;
-  plStack_120 = (int64_t *)0x0;
-  uVar2 = CONCAT24(uStack_ac,uStack_b0);
-  uStack_130 = 0;
-  uStack_128 = 0;
-  lVar1 = plStackX_10[0x2b7];
-  pplStackX_20 = &plStack_a8;
-  plStack_a8 = plStack_118;
-  uStack_a0 = (int32_t)uStack_110;
-  uStack_9c = uStack_110._4_4_;
-  uStack_98 = (int32_t)uStack_108;
-  uStack_94 = uStack_108._4_4_;
-  uStack_90 = uStack_100;
-  plStack_88 = plStack_f8;
-  if (plStack_f8 != (int64_t *)0x0) {
-    (**(code **)(*plStack_f8 + 0x28))();
-  }
-  FUN_180627ae0(auStack_80,&puStack_f0);
-  uStack_60 = uStack_d0;
-  uStack_5c = uStack_cc;
-  uStack_58 = uStack_c8;
-  uStack_54 = uStack_c4;
-  plStack_50 = plStack_c0;
-  if (plStack_c0 != (int64_t *)0x0) {
-    (**(code **)(*plStack_c0 + 0x28))();
-  }
-  uVar4 = FUN_180299eb0(lVar1,0,&plStack_a8,&ppuStackX_8);
-  *(uint64_t *)(param_1 + 0x68) = uVar4;
-  lVar1 = plStackX_18[0x2b7];
-  pplStackX_20 = &plStack_a8;
-  uStack_170 = (int32_t)uVar5;
-  uStack_16c = (int32_t)((uint64_t)uVar5 >> 0x20);
-  uStack_164 = (int32_t)(CONCAT26(uStack_aa,uVar2) >> 0x20);
-  plStack_88 = (int64_t *)0x0;
-  uStack_90 = 2;
-  uStack_94 = uStack_164;
-  uStack_98 = uVar3;
-  uStack_9c = uStack_16c;
-  uStack_a0 = uStack_170;
-  FUN_180627ae0(auStack_80,&puStack_150);
-  uStack_60 = (int32_t)uStack_130;
-  uStack_5c = uStack_130._4_4_;
-  uStack_58 = (int32_t)uStack_128;
-  uStack_54 = uStack_128._4_4_;
-  plStack_50 = plStack_120;
-  if (plStack_120 != (int64_t *)0x0) {
-    (**(code **)(*plStack_120 + 0x28))();
-  }
-  uVar5 = FUN_180299eb0(lVar1,0,&plStack_a8,&ppuStackX_8);
-  *(uint64_t *)(param_1 + 0xa8) = uVar5;
-  if (plStack_120 != (int64_t *)0x0) {
-    (**(code **)(*plStack_120 + 0x38))();
-  }
-  ppuStackX_8 = &puStack_150;
-  puStack_150 = &system_data_buffer_ptr;
-  if (lStack_148 == 0) {
-    uStack_138 = uStack_138 & 0xffffffff00000000;
-    lStack_148 = 0;
-    puStack_150 = &system_state_ptr;
-    if (plStackX_18 != (int64_t *)0x0) {
-      (**(code **)(*plStackX_18 + 0x38))();
+    // 栈变量声明和初始化
+    int64_t system_data_offset;
+    uint8_t system_state_flag;
+    int32_t config_param;
+    uint64_t resource_handle1;
+    uint64_t resource_handle2;
+    void **handler_ptr_ptr;
+    int64_t *processor_data1;
+    int64_t *processor_data2;
+    int64_t **processor_ptr_ptr;
+    int32_t init_param1;
+    int32_t init_param2;
+    int32_t init_param3;
+    void *system_buffer1;
+    int64_t system_buffer2;
+    int32_t system_buffer3;
+    uint64_t system_buffer4;
+    uint64_t system_buffer5;
+    uint64_t system_buffer6;
+    int64_t *processor_ptr1;
+    int64_t *processor_ptr2;
+    uint64_t system_config1;
+    uint64_t system_config2;
+    int32_t system_config3;
+    int64_t *processor_main;
+    void *system_buffer_main;
+    int64_t system_buffer_main2;
+    int32_t system_buffer_main3;
+    uint64_t system_buffer_main4;
+    int32_t system_flag1;
+    int32_t system_flag2;
+    int32_t system_flag3;
+    int32_t system_flag4;
+    int64_t *processor_handler;
+    uint64_t system_resource1;
+    int32_t system_resource2;
+    int16_t system_resource3;
+    int16_t system_resource4;
+    int64_t *system_resource_ptr;
+    int32_t system_status1;
+    int32_t system_status2;
+    int32_t system_status3;
+    int32_t system_status4;
+    int32_t system_status5;
+    int64_t *system_processor;
+    int8_t system_temp_buffer[32];
+    int32_t queue_param1;
+    int32_t queue_param2;
+    int32_t queue_param3;
+    int32_t queue_param4;
+    int64_t *queue_handler;
+    uint64_t stack_guard;
+    
+    // 栈保护初始化
+    stack_guard = 0xfffffffffffffffe;
+    handler_ptr_ptr = (void **)((uint64_t)handler_ptr_ptr & 0xffffffffffffff00);
+    
+    // 系统配置参数初始化
+    system_resource1 = 0;
+    system_resource2 = 0;
+    system_resource3 = 0;
+    
+    // 初始化系统处理器数据
+    SystemDataProcessor(system_context, &processor_data1, system_processing_data_ptr);
+    processor_main = (int64_t *)0x0;
+    processor_ptr_ptr = (int64_t **)&system_buffer_main;
+    system_buffer_main = &system_data_buffer_ptr;
+    system_buffer_main4 = 0;
+    system_buffer_main2 = 0;
+    system_buffer_main3 = 0;
+    processor_handler = (int64_t *)0x0;
+    processor_ptr2 = processor_data1;
+    system_config2 = CONCAT26(system_resource4, CONCAT24(system_resource3, system_resource2));
+    system_config1 = system_resource1;
+    system_config3 = 2;
+    system_flag1 = 0;
+    system_flag2 = 0;
+    system_flag3 = 0;
+    system_flag4 = 0;
+    
+    // 初始化系统上下文数据
+    SystemDataProcessor(processor_ptr_ptr, &processor_data2, system_context_data_ptr);
+    config_param = system_resource2;
+    resource_handle2 = system_resource1;
+    system_buffer1 = &system_data_buffer_ptr;
+    system_buffer4 = 0;
+    system_buffer2 = 0;
+    system_buffer3 = 0;
+    processor_ptr1 = (int64_t *)0x0;
+    system_state_flag = CONCAT24(system_resource3, system_resource2);
+    system_buffer5 = 0;
+    system_buffer6 = 0;
+    system_data_offset = processor_data1[0x2b7];
+    processor_ptr_ptr = &system_resource_ptr;
+    system_resource_ptr = processor_ptr2;
+    system_status1 = (int32_t)system_config1;
+    system_status2 = system_config1._4_4_;
+    system_status3 = (int32_t)system_config2;
+    system_status4 = system_config2._4_4_;
+    system_status5 = system_config3;
+    system_processor = processor_main;
+    
+    // 处理器初始化
+    if (processor_main != (int64_t *)0x0) {
+        (**(code **)(*processor_main + 0x28))();
     }
-    if (plStack_c0 != (int64_t *)0x0) {
-      (**(code **)(*plStack_c0 + 0x38))();
+    
+    // 系统队列初始化
+    SystemQueueManager(system_temp_buffer, &system_buffer_main);
+    queue_param1 = system_flag1;
+    queue_param2 = system_flag2;
+    queue_param3 = system_flag3;
+    queue_param4 = system_flag4;
+    queue_handler = processor_handler;
+    
+    if (processor_handler != (int64_t *)0x0) {
+        (**(code **)(*processor_handler + 0x28))();
     }
-    ppuStackX_8 = &puStack_f0;
-    puStack_f0 = &system_data_buffer_ptr;
-    if (lStack_e8 == 0) {
-      lStack_e8 = 0;
-      uStack_d8 = uStack_d8 & 0xffffffff00000000;
-      puStack_f0 = &system_state_ptr;
-      if (plStack_f8 != (int64_t *)0x0) {
-        (**(code **)(*plStack_f8 + 0x38))();
-      }
-      if (plStackX_10 != (int64_t *)0x0) {
-        (**(code **)(*plStackX_10 + 0x38))();
-      }
-      return;
+    
+    // 资源分配和处理
+    resource_handle1 = SystemResourceAllocator(system_data_offset, 0, &system_resource_ptr, &handler_ptr_ptr);
+    *(uint64_t *)(system_context + 0x68) = resource_handle1;
+    
+    // 系统上下文处理
+    system_data_offset = processor_data2[0x2b7];
+    processor_ptr_ptr = &system_resource_ptr;
+    init_param1 = (int32_t)resource_handle2;
+    init_param2 = (int32_t)((uint64_t)resource_handle2 >> 0x20);
+    init_param3 = (int32_t)(CONCAT26(system_resource4, system_state_flag) >> 0x20);
+    system_processor = (int64_t *)0x0;
+    system_status5 = 2;
+    system_status4 = init_param3;
+    system_status3 = config_param;
+    system_status2 = init_param2;
+    system_status1 = init_param1;
+    
+    // 系统缓冲区配置
+    SystemQueueManager(system_temp_buffer, &system_buffer1);
+    queue_param1 = (int32_t)system_buffer5;
+    queue_param2 = system_buffer5._4_4_;
+    queue_param3 = (int32_t)system_buffer6;
+    queue_param4 = system_buffer6._4_4_;
+    queue_handler = processor_ptr1;
+    
+    if (processor_ptr1 != (int64_t *)0x0) {
+        (**(code **)(*processor_ptr1 + 0x28))();
     }
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+    
+    // 第二阶段资源分配
+    resource_handle2 = SystemResourceAllocator(system_data_offset, 0, &system_resource_ptr, &handler_ptr_ptr);
+    *(uint64_t *)(system_context + 0xa8) = resource_handle2;
+    
+    // 处理器清理
+    if (processor_ptr1 != (int64_t *)0x0) {
+        (**(code **)(*processor_ptr1 + 0x38))();
+    }
+    
+    // 系统缓冲区重置
+    handler_ptr_ptr = &system_buffer1;
+    system_buffer1 = &system_data_buffer_ptr;
+    
+    // 系统状态检查和处理
+    if (system_buffer2 == 0) {
+        system_buffer4 = system_buffer4 & 0xffffffff00000000;
+        system_buffer2 = 0;
+        system_buffer1 = &system_state_ptr;
+        
+        // 处理器数据清理
+        if (processor_data2 != (int64_t *)0x0) {
+            (**(code **)(*processor_data2 + 0x38))();
+        }
+        
+        if (processor_handler != (int64_t *)0x0) {
+            (**(code **)(*processor_handler + 0x38))();
+        }
+        
+        // 系统缓冲区最终清理
+        handler_ptr_ptr = &system_buffer_main;
+        system_buffer_main = &system_data_buffer_ptr;
+        
+        if (system_buffer_main2 == 0) {
+            system_buffer_main2 = 0;
+            system_buffer_main4 = system_buffer_main4 & 0xffffffff00000000;
+            system_buffer_main = &system_state_ptr;
+            
+            // 主处理器清理
+            if (processor_main != (int64_t *)0x0) {
+                (**(code **)(*processor_main + 0x38))();
+            }
+            
+            if (processor_data1 != (int64_t *)0x0) {
+                (**(code **)(*processor_data1 + 0x38))();
+            }
+            
+            return; // 成功完成初始化
+        }
+        
+        // 错误处理路径 - 系统终止
+        SystemErrorHandler();
+    }
+    
+    // 错误处理路径 - 系统终止
+    SystemErrorHandler();
 }
 
 
