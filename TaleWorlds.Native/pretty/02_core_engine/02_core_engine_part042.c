@@ -1,61 +1,84 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part042.c - 14 个函数
+// 02_core_engine_part042.c - 核心引擎内存管理函数
+// 本文件包含14个函数，主要用于内存分配、数据结构管理和容器操作
 
-// 函数: void FUN_1800810b0(longlong *param_1)
-void FUN_1800810b0(longlong *param_1)
-
+/**
+ * 验证指针数组的有效性
+ * 检查数组中的每个指针是否为非空，如果发现空指针则触发错误处理
+ * 
+ * @param array_info 包含数组起始和结束地址的结构体指针
+ */
+void validate_pointer_array(longlong *array_info)
 {
-  longlong *plVar1;
+  longlong *current_ptr;
   
-  for (plVar1 = (longlong *)*param_1; plVar1 != (longlong *)param_1[1]; plVar1 = plVar1 + 4) {
-    if (*plVar1 != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+  // 遍历指针数组，检查每个指针的有效性
+  for (current_ptr = (longlong *)*array_info; current_ptr != (longlong *)array_info[1]; current_ptr = current_ptr + 4) {
+    if (*current_ptr != 0) {
+      // 发现无效指针，触发错误处理（该函数不会返回）
+      trigger_memory_error();
     }
   }
-  if (*param_1 == 0) {
+  
+  // 检查数组起始指针是否为空
+  if (*array_info == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+  
+  // 起始指针无效，触发错误处理（该函数不会返回）
+  trigger_memory_error();
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001800811eb)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 * FUN_180081120(undefined8 *param_1,undefined8 *param_2)
-
+/**
+ * 创建并初始化数据容器
+ * 分配内存并设置容器的相关函数指针和数据
+ * 
+ * @param container_ptr 指向容器指针的指针
+ * @param source_data 源数据指针
+ * @return 初始化后的容器指针
+ */
+undefined8 *create_data_container(undefined8 *container_ptr, undefined8 *source_data)
 {
-  undefined1 uVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined1 byte_data;
+  undefined8 data_field1;
+  undefined8 data_field2;
+  undefined8 data_field3;
+  undefined8 *new_container;
   
-  uVar2 = *param_2;
-  uVar1 = *(undefined1 *)(param_2 + 1);
-  uVar3 = param_2[2];
-  param_2[2] = 0;
-  uVar4 = param_2[3];
-  param_2[3] = 0;
-  param_1[2] = FUN_180083260;
-  param_1[3] = FUN_1800831c0;
-  puVar5 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc,0xfffffffffffffffe);
-  *puVar5 = uVar2;
-  *(undefined1 *)(puVar5 + 1) = uVar1;
-  puVar5[2] = uVar3;
-  puVar5[3] = uVar4;
-  *param_1 = puVar5;
-  if ((longlong *)param_2[3] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_2[3] + 0x38))();
+  // 从源数据提取字段信息
+  data_field1 = *source_data;
+  byte_data = *(undefined1 *)(source_data + 1);
+  data_field2 = source_data[2];
+  source_data[2] = 0;  // 清空源数据字段
+  data_field3 = source_data[3];
+  source_data[3] = 0;  // 清空源数据字段
+  
+  // 设置容器的函数指针
+  container_ptr[2] = get_container_data_field1;
+  container_ptr[3] = get_container_data_field2;
+  
+  // 分配新容器的内存
+  new_container = (undefined8 *)allocate_container_memory(memory_allocator_ptr, 0x20, 8, default_memory_flags, 0xfffffffffffffffe);
+  
+  // 初始化新容器
+  *new_container = data_field1;
+  *(undefined1 *)(new_container + 1) = byte_data;
+  new_container[2] = data_field2;
+  new_container[3] = data_field3;
+  *container_ptr = new_container;
+  
+  // 调用源数据的析构函数（如果存在）
+  if ((longlong *)source_data[3] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)source_data[3] + 0x38))();
   }
-  if ((longlong *)param_2[2] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_2[2] + 0x38))();
+  if ((longlong *)source_data[2] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)source_data[2] + 0x38))();
   }
-  return param_1;
+  
+  return container_ptr;
 }
 
 
