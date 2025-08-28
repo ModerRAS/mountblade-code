@@ -1,191 +1,184 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part022.c - 渲染系统网格组件处理文件
+// 03_rendering_part022.c - 2 个函数
 
-/**
- * 渲染系统网格组件处理函数
- * 处理网格组件的创建、配置和材质应用
- * 
- * @param mesh_component_ptr 网格组件指针
- * @param render_context_ptr 渲染上下文指针
- * @param scene_object_ptr 场景对象指针
- * @param parent_mesh_ptr 父网格指针
- * @param render_flags 渲染标志
- */
-void process_mesh_component(undefined8 *mesh_component_ptr, longlong render_context_ptr, longlong scene_object_ptr, undefined8 *parent_mesh_ptr, int render_flags)
+// 函数: void FUN_18027c650(undefined8 *param_1,longlong param_2,longlong param_3,undefined8 *param_4,
+void FUN_18027c650(undefined8 *param_1,longlong param_2,longlong param_3,undefined8 *param_4,
+                  int param_5)
+
 {
-  byte *byte_ptr;
-  char char_val;
-  bool bool_flag;
-  char char_val2;
-  int int_val;
-  undefined4 uint_val;
-  uint uint_val2;
-  undefined8 *component_data_ptr;
-  char *string_ptr;
-  char *string_ptr2;
-  longlong long_val;
-  longlong long_val2;
-  undefined8 *mesh_data_ptr;
-  undefined1 *data_ptr;
-  byte *byte_ptr2;
-  longlong long_val3;
-  undefined8 *texture_ptr;
-  uint uint_val3;
-  uint uint_val4;
-  undefined *render_obj_ptr;
-  longlong mesh_index;
-  uint uint_val5;
-  uint *uint_ptr;
-  uint uint_val6;
-  undefined *material_ptr;
-  int int_val2;
-  ulonglong ulong_val;
-  ulonglong ulong_val2;
-  undefined1 *buffer_ptr;
-  bool is_equal;
-  int stack_index;
-  undefined8 *stack_mesh_ptr;
-  undefined *stack_render_ptr;
-  byte *stack_buffer_ptr;
-  uint buffer_size;
-  ulonglong buffer_capacity;
-  undefined *stack_data_ptr;
-  undefined1 *stack_char_ptr;
-  uint stack_uint;
-  ulonglong stack_ulong;
-  undefined *stack_ptr;
-  undefined1 *stack_char_ptr2;
-  uint stack_uint2;
-  ulonglong stack_ulong2;
-  int stack_int;
-  float float_val;
-  float float_val2;
-  float float_val3;
-  undefined4 float_pack;
-  float float_val4;
-  float float_val5;
-  float float_val6;
-  undefined4 float_pack2;
-  longlong stack_long;
-  longlong stack_array [2];
-  undefined8 stack_guard;
+  byte *pbVar1;
+  char cVar2;
+  bool bVar3;
+  char cVar4;
+  int iVar5;
+  undefined4 uVar6;
+  uint uVar7;
+  undefined8 *puVar8;
+  char *pcVar9;
+  char *pcVar10;
+  longlong lVar11;
+  longlong lVar12;
+  undefined8 *puVar13;
+  undefined1 *puVar14;
+  byte *pbVar15;
+  longlong lVar16;
+  undefined8 *puVar17;
+  uint uVar18;
+  uint uVar19;
+  undefined *puVar20;
+  longlong lVar21;
+  uint uVar22;
+  uint *puVar23;
+  uint uVar24;
+  undefined *puVar25;
+  int iVar26;
+  ulonglong uVar27;
+  ulonglong uVar28;
+  undefined1 *puVar29;
+  bool bVar30;
+  int iStackX_10;
+  undefined8 *puStackX_20;
+  undefined *puStack_108;
+  byte *pbStack_100;
+  uint uStack_f8;
+  ulonglong uStack_f0;
+  undefined *puStack_e8;
+  undefined1 *puStack_e0;
+  uint uStack_d8;
+  ulonglong uStack_d0;
+  undefined *puStack_c8;
+  undefined1 *puStack_c0;
+  uint uStack_b8;
+  ulonglong uStack_b0;
+  int iStack_a8;
+  float fStack_a0;
+  float fStack_9c;
+  float fStack_98;
+  undefined4 uStack_94;
+  float fStack_90;
+  float fStack_8c;
+  float fStack_88;
+  undefined4 uStack_84;
+  longlong lStack_80;
+  longlong alStack_78 [2];
+  undefined8 uStack_68;
   
-  stack_guard = 0xfffffffffffffffe;
-  component_data_ptr = (undefined8 *)allocate_render_memory(render_context_ptr + 0x60, 0x60);
-  *component_data_ptr = 0;
-  component_data_ptr[1] = 0;
-  component_data_ptr[4] = 0;
-  *(undefined4 *)(component_data_ptr + 5) = 1;
-  component_data_ptr[6] = 0;
-  component_data_ptr[8] = 0;
-  string_ptr = "meta_mesh_component";
+  uStack_68 = 0xfffffffffffffffe;
+  puVar8 = (undefined8 *)FUN_1804c1300(param_2 + 0x60,0x60);
+  *puVar8 = 0;
+  puVar8[1] = 0;
+  puVar8[4] = 0;
+  *(undefined4 *)(puVar8 + 5) = 1;
+  puVar8[6] = 0;
+  puVar8[8] = 0;
+  pcVar9 = "meta_mesh_component";
   do {
-    string_ptr2 = string_ptr;
-    string_ptr = string_ptr2 + 1;
-  } while (*string_ptr != '\0');
-  *component_data_ptr = &META_MESH_COMPONENT_TYPE;
-  component_data_ptr[2] = string_ptr2 + -0x180a09d7f;
-  if (parent_mesh_ptr == (undefined8 *)0x0) {
-    long_val = get_render_manager();
-    int_val = *(int *)(mesh_component_ptr + 0x40);
-    if (int_val == *(int *)(long_val + 0x10)) {
-      if (int_val == 0) {
+    pcVar10 = pcVar9;
+    pcVar9 = pcVar10 + 1;
+  } while (*pcVar9 != '\0');
+  *puVar8 = &DAT_180a09d80;
+  puVar8[2] = pcVar10 + -0x180a09d7f;
+  if (param_4 == (undefined8 *)0x0) {
+    lVar11 = FUN_180628ca0();
+    iVar5 = *(int *)(param_1 + 0x40);
+    if (iVar5 == *(int *)(lVar11 + 0x10)) {
+      if (iVar5 == 0) {
 LAB_18027c7b0:
-        if (*(int *)(long_val + 0x10) != 0) goto LAB_18027c7b4;
+        if (*(int *)(lVar11 + 0x10) != 0) goto LAB_18027c7b4;
       }
       else {
-        string_ptr = (char *)mesh_component_ptr[0x3f];
-        string_ptr2 = string_ptr;
+        pcVar9 = (char *)param_1[0x3f];
+        pcVar10 = pcVar9;
         do {
-          char_val2 = *string_ptr2;
-          char_val = string_ptr2[*(longlong *)(long_val + 8) - (longlong)string_ptr];
-          if (char_val2 != char_val) break;
-          string_ptr2 = string_ptr2 + 1;
-        } while (char_val != '\0');
-        if (char_val2 != char_val) goto LAB_18027c7bb;
+          cVar4 = *pcVar10;
+          cVar2 = pcVar10[*(longlong *)(lVar11 + 8) - (longlong)pcVar9];
+          if (cVar4 != cVar2) break;
+          pcVar10 = pcVar10 + 1;
+        } while (cVar2 != '\0');
+        if (cVar4 != cVar2) goto LAB_18027c7bb;
       }
     }
     else {
-      if (int_val == 0) goto LAB_18027c7b0;
+      if (iVar5 == 0) goto LAB_18027c7b0;
 LAB_18027c7b4:
-      string_ptr = (char *)mesh_component_ptr[0x3f];
+      pcVar9 = (char *)param_1[0x3f];
 LAB_18027c7bb:
-      string_ptr2 = "";
-      if (string_ptr != (char *)0x0) {
-        string_ptr2 = string_ptr;
+      pcVar10 = "";
+      if (pcVar9 != (char *)0x0) {
+        pcVar10 = pcVar9;
       }
-      add_render_parameter(render_context_ptr, component_data_ptr, &DEFAULT_SHADER_PARAM, string_ptr2);
+      FUN_180630b20(param_2,puVar8,&DAT_180a03a84,pcVar10);
     }
-    stack_mesh_ptr = (undefined8 *)create_mesh_object(_MESH_FACTORY_HANDLE, mesh_component_ptr + 0x3e, 1);
-    if (stack_mesh_ptr == (undefined8 *)0x0) {
+    puStackX_20 = (undefined8 *)FUN_1800b6de0(_DAT_180c86930,param_1 + 0x3e,1);
+    if (puStackX_20 == (undefined8 *)0x0) {
       return;
     }
     goto LAB_18027c801;
   }
-  int_val = *(int *)(mesh_component_ptr + 0x40);
-  stack_mesh_ptr = parent_mesh_ptr;
-  if (int_val == *(int *)(parent_mesh_ptr + 0x40)) {
-    if (int_val == 0) {
+  iVar5 = *(int *)(param_1 + 0x40);
+  puStackX_20 = param_4;
+  if (iVar5 == *(int *)(param_4 + 0x40)) {
+    if (iVar5 == 0) {
 LAB_18027c733:
-      if (*(int *)(parent_mesh_ptr + 0x40) == 0) goto LAB_18027c801;
+      if (*(int *)(param_4 + 0x40) == 0) goto LAB_18027c801;
       goto LAB_18027c73b;
     }
-    string_ptr = (char *)mesh_component_ptr[0x3f];
-    string_ptr2 = string_ptr;
+    pcVar9 = (char *)param_1[0x3f];
+    pcVar10 = pcVar9;
     do {
-      char_val2 = *string_ptr2;
-      char_val = string_ptr2[parent_mesh_ptr[0x3f] - (longlong)string_ptr];
-      if (char_val2 != char_val) break;
-      string_ptr2 = string_ptr2 + 1;
-    } while (char_val != '\0');
-    if (char_val2 == char_val) goto LAB_18027c801;
+      cVar4 = *pcVar10;
+      cVar2 = pcVar10[param_4[0x3f] - (longlong)pcVar9];
+      if (cVar4 != cVar2) break;
+      pcVar10 = pcVar10 + 1;
+    } while (cVar2 != '\0');
+    if (cVar4 == cVar2) goto LAB_18027c801;
   }
   else {
-    if (int_val == 0) goto LAB_18027c733;
+    if (iVar5 == 0) goto LAB_18027c733;
 LAB_18027c73b:
-    string_ptr = (char *)mesh_component_ptr[0x3f];
+    pcVar9 = (char *)param_1[0x3f];
   }
-  string_ptr2 = "";
-  if (string_ptr != (char *)0x0) {
-    string_ptr2 = string_ptr;
+  pcVar10 = "";
+  if (pcVar9 != (char *)0x0) {
+    pcVar10 = pcVar9;
   }
-  add_render_parameter(render_context_ptr, component_data_ptr, &DEFAULT_SHADER_PARAM, string_ptr2);
+  FUN_180630b20(param_2,puVar8,&DAT_180a03a84,pcVar10);
 LAB_18027c801:
-  if (*(int *)((longlong)mesh_component_ptr + 0x324) != *(int *)((longlong)stack_mesh_ptr + 0x324)) {
-    add_render_parameter(render_context_ptr, component_data_ptr, &RENDER_FLAG_DIFFERENT, 0);
+  if (*(int *)((longlong)param_1 + 0x324) != *(int *)((longlong)puStackX_20 + 0x324)) {
+    FUN_180630c80(param_2,puVar8,&UNK_180a16828);
   }
-  if ((undefined *)*stack_mesh_ptr == &DEFAULT_MESH_TYPE) {
-    mesh_data_ptr = stack_mesh_ptr + 0x66;
-  }
-  else {
-    mesh_data_ptr = (undefined8 *)(**(code **)((undefined *)*stack_mesh_ptr + 0x158))(stack_mesh_ptr);
-  }
-  if ((undefined *)*mesh_component_ptr == &DEFAULT_MESH_TYPE) {
-    texture_ptr = mesh_component_ptr + 0x66;
+  if ((undefined *)*puStackX_20 == &UNK_180a169b8) {
+    puVar13 = puStackX_20 + 0x66;
   }
   else {
-    texture_ptr = (undefined8 *)(**(code **)((undefined *)*mesh_component_ptr + 0x158))(mesh_component_ptr);
+    puVar13 = (undefined8 *)(**(code **)((undefined *)*puStackX_20 + 0x158))(puStackX_20);
   }
-  char_val2 = compare_mesh_data(mesh_data_ptr, texture_ptr, 0x3c23d70a);
-  if (char_val2 == '\0') {
-    float_val4 = *(float *)(mesh_component_ptr + 0x6c);
-    float_val5 = *(float *)((longlong)mesh_component_ptr + 0x364);
-    float_val6 = *(float *)(mesh_component_ptr + 0x6d);
-    float_pack2 = *(undefined4 *)((longlong)mesh_component_ptr + 0x36c);
-    get_mesh_transform(mesh_component_ptr + 0x66, &float_val);
-    get_mesh_rotation(mesh_component_ptr + 0x66, stack_array);
-    add_render_parameter(render_context_ptr, component_data_ptr, &MESH_POSITION_PARAM, &float_val4);
-    add_render_parameter(render_context_ptr, component_data_ptr, &MESH_TRANSFORM_PARAM, &float_val);
-    add_render_parameter(render_context_ptr, component_data_ptr, &MESH_ROTATION_PARAM, stack_array);
+  if ((undefined *)*param_1 == &UNK_180a169b8) {
+    puVar17 = param_1 + 0x66;
   }
-  if (mesh_component_ptr[0x77] != 0) {
-    render_obj_ptr = *(undefined **)(mesh_component_ptr[0x77] + 0x18);
-    material_ptr = &DEFAULT_MATERIAL;
-    if (render_obj_ptr != (undefined *)0x0) {
-      material_ptr = render_obj_ptr;
+  else {
+    puVar17 = (undefined8 *)(**(code **)((undefined *)*param_1 + 0x158))(param_1);
+  }
+  cVar4 = func_0x000180285f10(puVar13,puVar17,0x3c23d70a);
+  if (cVar4 == '\0') {
+    fStack_90 = *(float *)(param_1 + 0x6c);
+    fStack_8c = *(float *)((longlong)param_1 + 0x364);
+    fStack_88 = *(float *)(param_1 + 0x6d);
+    uStack_84 = *(undefined4 *)((longlong)param_1 + 0x36c);
+    FUN_1801c1720(param_1 + 0x66,&fStack_a0);
+    FUN_180085020(param_1 + 0x66,alStack_78);
+    FUN_18062fb40(param_2,puVar8,&UNK_180a16808,&fStack_90);
+    FUN_18062fb40(param_2,puVar8,&UNK_180a16818,&fStack_a0);
+    FUN_18062fb40(param_2,puVar8,&UNK_180a0f108,alStack_78);
+  }
+  if (param_1[0x77] != 0) {
+    puVar20 = *(undefined **)(param_1[0x77] + 0x18);
+    puVar25 = &DAT_18098bc73;
+    if (puVar20 != (undefined *)0x0) {
+      puVar25 = puVar20;
     }
-    add_render_parameter(render_context_ptr, component_data_ptr, &MATERIAL_PARAM, material_ptr);
+    FUN_180630b20(param_2,puVar8,&UNK_180a16840,puVar25);
   }
   iStack_a8 = 0;
   lVar11 = param_1[7];

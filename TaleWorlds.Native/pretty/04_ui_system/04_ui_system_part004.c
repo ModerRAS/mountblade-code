@@ -1,15 +1,16 @@
+// 04_ui_system_part004.c - UI系统模块第4部分 - 包含19个函数
+// 主要功能：UI组件管理、内存分配、字符串处理、环境变量设置等
+
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part004.c - 19 个函数
-
-// 函数: void FUN_180651970(longlong param_1,undefined8 param_2)
-void FUN_180651970(longlong param_1,undefined8 param_2)
-
+// 函数: ui_set_component_data - 设置UI组件数据
+// 参数: param_1 - UI组件对象指针, param_2 - 要设置的数据
+void ui_set_component_data(longlong param_1, undefined8 param_2)
 {
   undefined8 auStackX_10 [3];
   
   auStackX_10[0] = param_2;
-  FUN_18005ea90(param_1 + 0x168,auStackX_10);
+  FUN_18005ea90(param_1 + 0x168, auStackX_10);
   return;
 }
 
@@ -19,9 +20,10 @@ void FUN_180651970(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180651990(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180651990(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: ui_process_component_stack - 处理UI组件堆栈
+// 参数: param_1 - UI系统指针, param_2 - 组件堆栈指针, param_3/4 - 处理参数
+// 功能: 处理UI组件堆栈，执行组件的初始化和清理操作
+void ui_process_component_stack(longlong param_1, longlong *param_2, undefined8 param_3, undefined8 param_4)
 {
   undefined *puVar1;
   undefined *puVar2;
@@ -33,9 +35,9 @@ void FUN_180651990(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   undefined *puStack_28;
   
   plStackX_10 = param_2;
-  FUN_18005ea90(param_1 + 0x168,&plStackX_10,param_3,param_4,0xfffffffffffffffe);
-  (**(code **)(*param_2 + 8))(param_2,&puStack_30);
-  (**(code **)(*param_2 + 0x10))(param_2,&puStack_50);
+  FUN_18005ea90(param_1 + 0x168, &plStackX_10, param_3, param_4, 0xfffffffffffffffe);
+  (**(code **)(*param_2 + 8))(param_2, &puStack_30);
+  (**(code **)(*param_2 + 0x10))(param_2, &puStack_50);
   puVar2 = &DAT_18098bc73;
   if (puStack_48 != (undefined *)0x0) {
     puVar2 = puStack_48;
@@ -44,11 +46,11 @@ void FUN_180651990(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   if (puStack_28 != (undefined *)0x0) {
     puVar1 = puStack_28;
   }
-  (**(code **)(_DAT_180c8f008 + 0xe8))(puVar1,puVar2);
+  (**(code **)(_DAT_180c8f008 + 0xe8))(puVar1, puVar2);
   (**(code **)*param_2)(param_2);
   puStack_50 = &UNK_180a3c3e0;
   if (puStack_48 != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
+    // 警告：子函数不返回
     FUN_18064e900();
   }
   puStack_48 = (undefined *)0x0;
@@ -56,7 +58,7 @@ void FUN_180651990(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   puStack_50 = &UNK_18098bcb0;
   puStack_30 = &UNK_180a3c3e0;
   if (puStack_28 != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
+    // 警告：子函数不返回
     FUN_18064e900();
   }
   return;
@@ -68,9 +70,10 @@ void FUN_180651990(longlong param_1,longlong *param_2,undefined8 param_3,undefin
 
 
 
-// 函数: void FUN_180651a80(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180651a80(longlong param_1,longlong param_2,longlong param_3)
-
+// 函数: ui_initialize_component_handlers - 初始化UI组件处理器
+// 参数: param_1 - UI系统指针, param_2/3 - 组件参数
+// 功能: 初始化UI组件的事件处理器和回调函数
+void ui_initialize_component_handlers(longlong param_1, longlong param_2, longlong param_3)
 {
   code *pcVar1;
   undefined *puVar2;
@@ -90,7 +93,7 @@ void FUN_180651a80(longlong param_1,longlong param_2,longlong param_3)
     if (*(undefined **)(param_3 + 8) != (undefined *)0x0) {
       puVar3 = *(undefined **)(param_3 + 8);
     }
-    (*pcVar1)(puVar2,puVar3,_DAT_180c8ecfc,_DAT_180bf3ff4);
+    (*pcVar1)(puVar2, puVar3, _DAT_180c8ecfc, _DAT_180bf3ff4);
   }
   if (_DAT_180c8f010 == (code *)0x0) {
     FUN_180626f80(&UNK_180a3dc58);
@@ -102,42 +105,43 @@ void FUN_180651a80(longlong param_1,longlong param_2,longlong param_3)
   (*_DAT_180c8f010)();
 LAB_180651b0f:
   *(longlong *)(param_1 + 0x10) = param_1;
-  (**(code **)(param_1 + 0x78))(0,FUN_1806555f0);
-  (**(code **)(param_1 + 0x78))(1,FUN_1806552e0);
-  (**(code **)(param_1 + 0x78))(2,&UNK_1803f60a0);
-  (**(code **)(param_1 + 0x78))(3,FUN_180655e60);
-  (**(code **)(param_1 + 0x78))(4,&UNK_180655e50);
-  (**(code **)(param_1 + 0x78))(5,&UNK_180084650);
-  (**(code **)(param_1 + 0x78))(6,&UNK_180655f30);
-  (**(code **)(param_1 + 0x78))(7,&UNK_1806561b0);
-  (**(code **)(param_1 + 0x78))(8,FUN_180656160);
-  (**(code **)(param_1 + 0x78))(9,FUN_180656110);
-  (**(code **)(param_1 + 0x78))(10,&UNK_1806561c0);
-  (**(code **)(param_1 + 0x78))(0xb,FUN_180656020);
-  (**(code **)(param_1 + 0x78))(0xc,&UNK_180150380);
-  (**(code **)(param_1 + 0x78))(0xd,FUN_180655f50);
-  (**(code **)(param_1 + 0x78))(0xe,&UNK_180656100);
-  (**(code **)(param_1 + 0x78))(0xf,&UNK_180656330);
-  (**(code **)(param_1 + 0x78))(0x10,FUN_1806563a0);
-  (**(code **)(param_1 + 0x78))(0x11,FUN_1806561d0);
-  (**(code **)(param_1 + 0x78))(0x12,&UNK_180656320);
-  (**(code **)(param_1 + 0x78))(0x13,FUN_180656340);
-  (**(code **)(param_1 + 0x78))(0x14,FUN_180656410);
-  (**(code **)(param_1 + 0x78))(0x15,FUN_1806565a0);
-  (**(code **)(param_1 + 0x78))(0x16,FUN_180656610);
-  (**(code **)(param_1 + 0x78))(0x17,FUN_1806566c0);
-  (**(code **)(param_1 + 0x78))(0x18,FUN_18006f4c0);
-  (**(code **)(param_1 + 0x78))(0x19,&UNK_180656700);
-  (**(code **)(param_1 + 0x78))(0x1a,&UNK_180046680);
-  (**(code **)(param_1 + 0x78))(0x1b,_guard_check_icall);
-  (**(code **)(param_1 + 0x78))(0x1c,_guard_check_icall);
-  (**(code **)(param_1 + 0x78))(0x1d,0x180069ee0);
-  (**(code **)(param_1 + 0x78))(0x1e,&UNK_180046230);
-  (**(code **)(param_1 + 0x78))(0x1f,_guard_check_icall);
-  (**(code **)(param_1 + 0x78))(0x20,_guard_check_icall);
+  // 注册UI组件事件处理器
+  (**(code **)(param_1 + 0x78))(0, FUN_1806555f0);
+  (**(code **)(param_1 + 0x78))(1, FUN_1806552e0);
+  (**(code **)(param_1 + 0x78))(2, &UNK_1803f60a0);
+  (**(code **)(param_1 + 0x78))(3, FUN_180655e60);
+  (**(code **)(param_1 + 0x78))(4, &UNK_180655e50);
+  (**(code **)(param_1 + 0x78))(5, &UNK_180084650);
+  (**(code **)(param_1 + 0x78))(6, &UNK_180655f30);
+  (**(code **)(param_1 + 0x78))(7, &UNK_1806561b0);
+  (**(code **)(param_1 + 0x78))(8, FUN_180656160);
+  (**(code **)(param_1 + 0x78))(9, FUN_180656110);
+  (**(code **)(param_1 + 0x78))(10, &UNK_1806561c0);
+  (**(code **)(param_1 + 0x78))(0xb, FUN_180656020);
+  (**(code **)(param_1 + 0x78))(0xc, &UNK_180150380);
+  (**(code **)(param_1 + 0x78))(0xd, FUN_180655f50);
+  (**(code **)(param_1 + 0x78))(0xe, &UNK_180656100);
+  (**(code **)(param_1 + 0x78))(0xf, &UNK_180656330);
+  (**(code **)(param_1 + 0x78))(0x10, FUN_1806563a0);
+  (**(code **)(param_1 + 0x78))(0x11, FUN_1806561d0);
+  (**(code **)(param_1 + 0x78))(0x12, &UNK_180656320);
+  (**(code **)(param_1 + 0x78))(0x13, FUN_180656340);
+  (**(code **)(param_1 + 0x78))(0x14, FUN_180656410);
+  (**(code **)(param_1 + 0x78))(0x15, FUN_1806565a0);
+  (**(code **)(param_1 + 0x78))(0x16, FUN_180656610);
+  (**(code **)(param_1 + 0x78))(0x17, FUN_1806566c0);
+  (**(code **)(param_1 + 0x78))(0x18, FUN_18006f4c0);
+  (**(code **)(param_1 + 0x78))(0x19, &UNK_180656700);
+  (**(code **)(param_1 + 0x78))(0x1a, &UNK_180046680);
+  (**(code **)(param_1 + 0x78))(0x1b, _guard_check_icall);
+  (**(code **)(param_1 + 0x78))(0x1c, _guard_check_icall);
+  (**(code **)(param_1 + 0x78))(0x1d, 0x180069ee0);
+  (**(code **)(param_1 + 0x78))(0x1e, &UNK_180046230);
+  (**(code **)(param_1 + 0x78))(0x1f, _guard_check_icall);
+  (**(code **)(param_1 + 0x78))(0x20, _guard_check_icall);
   (**(code **)(param_1 + 0x80))();
-                    // WARNING: Could not recover jumptable at 0x000180651d0e. Too many branches
-                    // WARNING: Treating indirect jump as call
+  // 警告：无法恢复跳转表，分支过多
+  // 警告：将间接跳转作为调用处理
   (**(code **)(param_1 + 0x58))();
   return;
 }
@@ -146,9 +150,10 @@ LAB_180651b0f:
 
 
 
-// 函数: void FUN_180651d20(longlong param_1)
-void FUN_180651d20(longlong param_1)
-
+// 函数: ui_execute_callback_queue - 执行UI回调队列
+// 参数: param_1 - UI系统指针
+// 功能: 执行UI系统中的回调函数队列
+void ui_execute_callback_queue(longlong param_1)
 {
   ulonglong uVar1;
   uint uVar2;
@@ -175,9 +180,9 @@ void FUN_180651d20(longlong param_1)
 
 
 
-// 函数: void FUN_180651d46(void)
-void FUN_180651d46(void)
-
+// 函数: ui_execute_callback_queue_alt - 执行UI回调队列的替代版本
+// 功能: 使用不同的寄存器变量执行UI回调队列
+void ui_execute_callback_queue_alt(void)
 {
   longlong unaff_RBX;
   ulonglong uVar1;
@@ -198,9 +203,10 @@ void FUN_180651d46(void)
 
 
 
-// 函数: void FUN_180651d97(longlong param_1)
-void FUN_180651d97(longlong param_1)
-
+// 函数: ui_mark_callback_complete - 标记UI回调完成
+// 参数: param_1 - UI系统指针
+// 功能: 标记UI系统的回调执行完成状态
+void ui_mark_callback_complete(longlong param_1)
 {
   *(undefined1 *)(param_1 + 0x188) = 1;
   return;
@@ -208,8 +214,10 @@ void FUN_180651d97(longlong param_1)
 
 
 
-undefined8 FUN_180652100(longlong param_1,undefined8 param_2,undefined4 param_3)
-
+// 函数: ui_add_event_listener - 添加UI事件监听器
+// 参数: param_1 - UI系统指针, param_2 - 事件类型, param_3 - 事件参数
+// 功能: 为UI系统添加事件监听器
+undefined8 ui_add_event_listener(longlong param_1, undefined8 param_2, undefined4 param_3)
 {
   longlong lVar1;
   undefined *puVar2;
@@ -219,14 +227,16 @@ undefined8 FUN_180652100(longlong param_1,undefined8 param_2,undefined4 param_3)
   if (*(undefined **)(lVar1 + 8) != (undefined *)0x0) {
     puVar2 = *(undefined **)(lVar1 + 8);
   }
-  FUN_180627910(param_2,puVar2);
+  FUN_180627910(param_2, puVar2);
   return param_2;
 }
 
 
 
-ulonglong FUN_180652190(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4)
-
+// 函数: ui_process_event_data - 处理UI事件数据
+// 参数: param_1 - UI系统指针, param_2 - 事件数据, param_3 - 事件参数, param_4 - 标志位
+// 功能: 处理UI系统的事件数据，包括字符串比较和内存操作
+ulonglong ui_process_event_data(longlong param_1, longlong param_2, longlong param_3, undefined8 param_4)
 {
   ulonglong in_RAX;
   longlong lVar1;
@@ -252,7 +262,7 @@ ulonglong FUN_180652190(longlong param_1,longlong param_2,longlong param_3,undef
   if (*(undefined **)(lVar1 + 8) != (undefined *)0x0) {
     puVar3 = *(undefined **)(lVar1 + 8);
   }
-  FUN_180627910(&puStack_30,puVar3);
+  FUN_180627910(&puStack_30, puVar3);
   if (uStack_20 == 7) {
     lVar1 = 0;
     do {
@@ -265,11 +275,11 @@ ulonglong FUN_180652190(longlong param_1,longlong param_2,longlong param_3,undef
   else {
 LAB_180652228:
     if (lStack_28 != 0) {
-      FUN_1806277c0(param_2,uStack_20);
+      FUN_1806277c0(param_2, uStack_20);
     }
     if (uStack_20 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(*(undefined8 *)(param_2 + 8),lStack_28,(ulonglong)uStack_20,param_4,uVar5);
+      // 警告：子函数不返回
+      memcpy(*(undefined8 *)(param_2 + 8), lStack_28, (ulonglong)uStack_20, param_4, uVar5);
     }
     *(undefined4 *)(param_2 + 0x10) = 0;
     if (*(longlong *)(param_2 + 8) != 0) {
@@ -280,7 +290,7 @@ LAB_180652228:
   }
   puStack_30 = &UNK_180a3c3e0;
   if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
+    // 警告：子函数不返回
     FUN_18064e900();
   }
   return uVar4;
@@ -288,8 +298,10 @@ LAB_180652228:
 
 
 
-undefined8 FUN_1806522b0(longlong param_1,longlong param_2)
-
+// 函数: ui_enable_component - 启用UI组件
+// 参数: param_1 - UI系统指针, param_2 - 组件参数
+// 功能: 启用指定的UI组件
+undefined8 ui_enable_component(longlong param_1, longlong param_2)
 {
   undefined *puVar1;
   
@@ -303,8 +315,10 @@ undefined8 FUN_1806522b0(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_1806522e0(longlong param_1,longlong param_2)
-
+// 函数: ui_disable_component - 禁用UI组件
+// 参数: param_1 - UI系统指针, param_2 - 组件参数
+// 功能: 禁用指定的UI组件
+undefined8 ui_disable_component(longlong param_1, longlong param_2)
 {
   undefined *puVar1;
   
@@ -320,8 +334,10 @@ undefined8 FUN_1806522e0(longlong param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int * FUN_180652310(longlong param_1,int *param_2,longlong *param_3,undefined8 param_4)
-
+// 函数: ui_process_component_list - 处理UI组件列表
+// 参数: param_1 - UI系统指针, param_2 - 结果指针, param_3 - 组件列表, param_4 - 标志位
+// 功能: 处理UI组件列表，初始化每个组件
+int * ui_process_component_list(longlong param_1, int *param_2, longlong *param_3, undefined8 param_4)
 {
   undefined *puVar1;
   int iVar2;
@@ -350,7 +366,7 @@ int * FUN_180652310(longlong param_1,int *param_2,longlong *param_3,undefined8 p
       if (puVar1 != (undefined *)0x0) {
         puVar7 = puVar1;
       }
-      (**(code **)(param_1 + 0x128))(*param_2,uVar5,puVar7,param_4,uVar8,uVar9);
+      (**(code **)(param_1 + 0x128))(*param_2, uVar5, puVar7, param_4, uVar8, uVar9);
       uVar4 = (int)uVar5 + 1;
       uVar5 = (ulonglong)uVar4;
       lVar3 = *param_3;
@@ -364,10 +380,11 @@ int * FUN_180652310(longlong param_1,int *param_2,longlong *param_3,undefined8 p
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 函数: get_ftdn_managed_interface - 获取FTDN托管接口
+// 功能: 返回FTDN托管接口的指针
 undefined8 get_ftdn_managed_interface(void)
-
 {
-                    // 0x6523f0  33  get_ftdn_managed_interface
+  // 地址: 0x6523f0  33  get_ftdn_managed_interface
   return _DAT_180c8f008;
 }
 
@@ -377,9 +394,10 @@ undefined8 get_ftdn_managed_interface(void)
 
 
 
-// 函数: void FUN_180652400(longlong *param_1,longlong param_2)
-void FUN_180652400(longlong *param_1,longlong param_2)
-
+// 函数: ui_parse_dimension_data - 解析UI尺寸数据
+// 参数: param_1 - 尺寸数据数组指针, param_2 - 输入数据
+// 功能: 解析UI组件的尺寸数据，包括宽度和高度
+void ui_parse_dimension_data(longlong *param_1, longlong param_2)
 {
   undefined4 *puVar1;
   undefined4 uVar2;
@@ -418,7 +436,7 @@ void FUN_180652400(longlong *param_1,longlong param_2)
     uStack_80 = 3;
     auStackX_10[0] = 10;
     if (*(longlong *)(param_2 + 8) != 0) {
-      FUN_180057980(param_2,&puStack_98,auStackX_10);
+      FUN_180057980(param_2, &puStack_98, auStackX_10);
     }
     uVar9 = (longlong)puStack_90 - (longlong)puStack_98 >> 5;
     puVar15 = puStack_98;
@@ -434,13 +452,13 @@ void FUN_180652400(longlong *param_1,longlong param_2)
         auStackX_10[0] = 0x40;
         uStackX_18 = uVar9;
         if (puVar15[1] != 0) {
-          FUN_180057980(puVar15,&puStack_58,auStackX_10);
+          FUN_180057980(puVar15, &puStack_58, auStackX_10);
         }
         puVar6 = puStack_50;
         puVar5 = puStack_58;
         puVar13 = puStack_58;
         if (((longlong)puStack_50 - (longlong)puStack_58 & 0xffffffffffffffe0U) == 0x60) {
-          FUN_180627ae0(&puStack_78,puStack_58);
+          FUN_180627ae0(&puStack_78, puStack_58);
           iVar7 = atoi(puVar5[5]);
           iVar8 = atoi(puVar5[9]);
           uStackX_20 = FUN_180650c20(&puStack_78);
@@ -457,7 +475,7 @@ void FUN_180652400(longlong *param_1,longlong param_2)
             if (lVar12 == 0) {
               lVar12 = 1;
 LAB_18065258b:
-              puVar10 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar12 * 0x18,(char)param_1[3]);
+              puVar10 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, lVar12 * 0x18, (char)param_1[3]);
               puVar13 = (undefined8 *)param_1[1];
               lVar14 = *param_1;
             }
@@ -488,7 +506,7 @@ LAB_18065258b:
             puVar13[1] = (longlong)iVar7;
             puVar13[2] = (longlong)iVar8;
             if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
+              // 警告：子函数不返回
               FUN_18064e900();
             }
             *param_1 = (longlong)puVar10;
@@ -498,23 +516,23 @@ LAB_18065258b:
           }
           puStack_78 = &UNK_180a3c3e0;
           if (lStack_70 != 0) {
-                    // WARNING: Subroutine does not return
+            // 警告：子函数不返回
             FUN_18064e900();
           }
           lStack_70 = 0;
           uStack_60 = 0;
           puStack_78 = &UNK_18098bcb0;
           for (puVar13 = puVar5; puVar13 != puVar6; puVar13 = puVar13 + 4) {
-            (**(code **)*puVar13)(puVar13,0);
+            (**(code **)*puVar13)(puVar13, 0);
           }
         }
         else {
           for (; puVar13 != puVar6; puVar13 = puVar13 + 4) {
-            (**(code **)*puVar13)(puVar13,0);
+            (**(code **)*puVar13)(puVar13, 0);
           }
         }
         if (puVar5 != (undefined8 *)0x0) {
-                    // WARNING: Subroutine does not return
+          // 警告：子函数不返回
           FUN_18064e900(puVar5);
         }
         puVar15 = puVar15 + 4;
@@ -529,7 +547,7 @@ LAB_18065258b:
     {
       puStack_98 = puVar13;
       puStack_90 = puVar5;
-      (**(code **)*puVar15)(puVar15,0);
+      (**(code **)*puVar15)(puVar15, 0);
       puVar13 = puStack_98;
       puVar5 = puStack_90;
       puStack_90 = puVar10;
@@ -538,7 +556,7 @@ LAB_18065258b:
     if (puStack_98 != (undefined8 *)0x0) {
       puStack_98 = puVar13;
       puStack_90 = puVar5;
-                    // WARNING: Subroutine does not return
+      // 警告：子函数不返回
       FUN_18064e900(puVar6);
     }
   }
