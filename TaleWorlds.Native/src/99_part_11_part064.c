@@ -71,23 +71,40 @@
 #define resource_initializer FUN_1807c48c6
 #define stack_cleanup FUN_1807c4ae8
 
-// 函数: void FUN_1807c3dae(void)
-void FUN_1807c3dae(void)
-
+/**
+ * 高级数据处理器 - 初始化和处理高级数据
+ * 
+ * 功能：
+ * - 初始化系统数据结构
+ * - 处理数据参数
+ * - 设置数据标志
+ * - 管理系统资源
+ * 
+ * @param system_context 系统上下文（通过寄存器传递）
+ * @param stack_pointer 栈指针（通过寄存器传递）
+ * @param parameter_data 参数数据（通过寄存器传递）
+ */
+void advanced_data_processor(void)
 {
-  undefined4 uVar1;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  undefined4 unaff_R15D;
+  undefined4 system_result;
+  longlong stack_pointer;
+  longlong system_context;
+  undefined4 parameter_data;
   
-  *(undefined4 *)(*(longlong *)(unaff_RDI + 8) + 0x18) = 0xffffffff;
-  if (*(int *)(unaff_RDI + 0x110) == 0) {
-    uVar1 = func_0x000180819040();
-    *(undefined4 *)(unaff_RDI + 0x110) = uVar1;
+  /* 系统数据初始化 */
+  *(undefined4 *)(*(longlong *)(system_context + 8) + 0x18) = MAX_STRING_LENGTH;
+  
+  /* 系统资源初始化检查 */
+  if (*(int *)(system_context + 0x110) == 0) {
+    system_result = func_0x000180819040();
+    *(undefined4 *)(system_context + 0x110) = system_result;
   }
-  *(undefined4 *)(unaff_RDI + 0x18) = unaff_R15D;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x218) ^ (ulonglong)&stack0x00000000);
+  
+  /* 系统参数设置 */
+  *(undefined4 *)(system_context + 0x18) = parameter_data;
+  
+  /* 系统栈处理 */
+  FUN_1808fc050(*(ulonglong *)(stack_pointer + 0x218) ^ (ulonglong)&stack0x00000000);
 }
 
 
