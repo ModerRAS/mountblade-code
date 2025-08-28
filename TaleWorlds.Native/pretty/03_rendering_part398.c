@@ -693,7 +693,7 @@ LAB_18048c9dd:
   }
   *(uint64_t *)(lVar4 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,plVar1,param_1,uVar5);
+  SystemStateController(lVar4,plVar1,param_1,uVar5);
 }
 
 

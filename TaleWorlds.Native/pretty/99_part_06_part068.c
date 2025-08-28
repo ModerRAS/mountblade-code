@@ -29,7 +29,7 @@ LAB_1803e81a9:
   *(int *)(lVar1 + 0x28) = param_5[2];
   *(uint64_t *)(lVar1 + 0x2c) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1,param_3,param_1,uVar2);
+  SystemStateController(lVar1,param_3,param_1,uVar2);
 }
 
 

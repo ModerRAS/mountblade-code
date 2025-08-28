@@ -969,7 +969,7 @@ LAB_1800c2f80:
   SystemCore_NetworkHandler0(lVar7 + 0x20,param_5);
   *(uint64_t *)(lVar7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar7,plVar8,param_1,uVar10);
+  SystemStateController(lVar7,plVar8,param_1,uVar10);
 }
 
 

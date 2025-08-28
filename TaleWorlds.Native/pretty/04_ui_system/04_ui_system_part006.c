@@ -49,7 +49,7 @@
 #define process_resource_config SystemCore_EncryptionEngine0
 #define load_resource_list      FUN_18062c5f0
 #define validate_security_cookie SystemSecurityChecker
-#define insert_resource_node    FUN_18066bdc0
+#define insert_resource_node    SystemStateController
 
 // 全局变量定义
 #define GLOBAL_MANAGER_CONTEXT ui_system_buffer
@@ -1089,7 +1089,7 @@ LAB_1806578f0:
   CoreEngineDataTransformer(name_offset + 0x20, param_5);
   *(uint64_t *)(name_offset + 0x40) = 0;
   // 警告：子函数不返回
-  FUN_18066bdc0(name_offset, new_node, &system_memory_67e0, insert_flag);
+  SystemStateController(name_offset, new_node, &system_memory_67e0, insert_flag);
 }
 
 

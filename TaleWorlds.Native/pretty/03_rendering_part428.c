@@ -133,7 +133,7 @@ LAB_18049e477:
   }
 LAB_18049e482:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar8,lVar5,lVar1,uVar10);
+  SystemStateController(lVar8,lVar5,lVar1,uVar10);
 }
 
 

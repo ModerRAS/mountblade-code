@@ -301,7 +301,7 @@ void FUN_18045db70(uint64_t param_1)
                   *(uint64_t *)(lVar14 + 0x48) = 0;
                   *(int32_t *)(lVar14 + 0x50) = 0;
                     // WARNING: Subroutine does not return
-                  FUN_18066bdc0(lVar14,pppppppuVar12,&ppppppuStack_360,uVar8);
+                  SystemStateController(lVar14,pppppppuVar12,&ppppppuStack_360,uVar8);
                 }
                 pppppppuVar12 = (uint64_t *******)func_0x00018066b9a0(pppppppuVar12);
                 lVar15 = lStack_2c8;
@@ -532,7 +532,7 @@ LAB_18045dc08:
 LAB_18045dc13:
                     // WARNING: Subroutine does not return
   uStack_30 = 0x18045dc21;
-  FUN_18066bdc0(lVar14,lVar15,lVar21,uVar28);
+  SystemStateController(lVar14,lVar15,lVar21,uVar28);
 }
 
 

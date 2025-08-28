@@ -78,7 +78,7 @@ LAB_1806579f0:
   CoreEngineDataTransformer(lVar5 + 0x20,param_5);
   *(uint64_t *)(lVar5 + 0x40) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,param_3,&SYSTEM_CONFIG_AREA,uVar4);
+  SystemStateController(lVar5,param_3,&SYSTEM_CONFIG_AREA,uVar4);
 }
 
 

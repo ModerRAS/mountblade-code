@@ -173,7 +173,7 @@ LAB_1803cb1b9:
         *(uint64_t *)(lVar5 + 0x20) = *puVar10;
         *(int32_t *)(lVar5 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-        FUN_18066bdc0(lVar5,pppplVar4,&ppplStack_110,uVar13);
+        SystemStateController(lVar5,pppplVar4,&ppplStack_110,uVar13);
       }
 LAB_1803cb1f9:
       *(int *)(pppplVar7 + 5) = iVar14;

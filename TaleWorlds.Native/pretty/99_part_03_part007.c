@@ -422,7 +422,7 @@ LAB_1801cc043:
     uVar14 = 1;
 LAB_1801cc020:
                     // WARNING: Subroutine does not return
-    FUN_18066bdc0(lVar13,pppppppuVar5,&pppppppuStack_318,uVar14);
+    SystemStateController(lVar13,pppppppuVar5,&pppppppuStack_318,uVar14);
   }
   lVar13 = *(int64_t *)(*plStack_340 + 0x1b8);
   lVar24 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,(int8_t)uStack_2f0);
@@ -509,7 +509,7 @@ LAB_1801cbe95:
   uVar14 = 1;
 LAB_1801cbe80:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar24,pppppppuVar5,&pppppppuStack_318,uVar14);
+  SystemStateController(lVar24,pppppppuVar5,&pppppppuStack_318,uVar14);
 joined_r0x0001801cb832:
   if (pppppppuVar15 != (uint64_t *******)0x0) {
     pppppppuVar5 = pppppppuVar15;
@@ -594,7 +594,7 @@ LAB_1801cb8e7:
   uVar14 = 0;
 LAB_1801cb932:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar13,pppppppuVar5,&pppppppuStack_2e8,uVar14);
+  SystemStateController(lVar13,pppppppuVar5,&pppppppuStack_2e8,uVar14);
 joined_r0x0001801cb9fe:
   if (pppppppuVar15 != (uint64_t *******)0x0) {
     pppppppuVar5 = pppppppuVar15;
@@ -679,7 +679,7 @@ LAB_1801cbaa7:
   uVar14 = 0;
 LAB_1801cbaf2:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar24,pppppppuVar5,&pppppppuStack_2e8,uVar14);
+  SystemStateController(lVar24,pppppppuVar5,&pppppppuStack_2e8,uVar14);
 }
 
 

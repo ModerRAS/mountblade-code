@@ -812,7 +812,7 @@ LAB_1801c9f0f:
   *(int8_t *)(lVar20 + 0x58) = 0;
   *(uint64_t *)(lVar20 + 0x60) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar20,ppppplVar13,&pppplStack_1f0,uVar26);
+  SystemStateController(lVar20,ppppplVar13,&pppplStack_1f0,uVar26);
 }
 
 

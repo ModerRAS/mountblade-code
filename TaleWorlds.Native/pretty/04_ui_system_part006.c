@@ -1578,7 +1578,7 @@ LAB_1806578f0:
   string_length = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x48,system_memory_6808);
   SystemCore_NetworkHandler0(string_length + 0x20,param_5);
   *(uint64_t *)(string_length + 0x40) = 0;
-  FUN_18066bdc0(string_length,conversion_result,&system_memory_67e0,conversion_flag);
+  SystemStateController(string_length,conversion_result,&system_memory_67e0,conversion_flag);
 }
 
 /* ========================================

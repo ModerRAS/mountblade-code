@@ -66,7 +66,7 @@ extern void CoreEngine_MemoryPoolManager(void);
 extern uint64_t FUN_180302c30(int64_t param1);
 extern int64_t CoreEngine_MemoryAllocator(int64_t param1, int64_t param2, int8_t param3);
 extern int64_t func_0x00018066b9a0(void *param1);
-extern void FUN_18066bdc0(int64_t param1, void *param2, void *param3, uint64_t param4, uint64_t param5);
+extern void SystemStateController(int64_t param1, void *param2, void *param3, uint64_t param4, uint64_t param5);
 extern void FUN_1800571e0(uint64_t param1, int64_t param2);
 extern int64_t FUN_18019ad80(int64_t param1, int64_t param2);
 extern char FUN_1802aa800(int64_t param1, int64_t **param2);
@@ -274,7 +274,7 @@ void RenderingSystem_UpdateRenderContext(uint64_t context_id, int64_t *render_co
   if (insertion_flag) {
     if (resource_pointer == *(uint64_t **)(current_context + 0x60ba0)) {
       // 执行插入操作
-      FUN_18066bdc0(current_context, resource_pointer, (void *)0x0, 0, 0);
+      SystemStateController(current_context, resource_pointer, (void *)0x0, 0, 0);
     }
     next_resource = (uint64_t *)FUN_18066b9a0(resource_pointer, 0x10, *(int8_t *)(current_context + 0x60bc0));
   }

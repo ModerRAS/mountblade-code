@@ -510,7 +510,7 @@ LAB_1802a0010:
   *(uint64_t *)(key_offset + 0x150) = 0;
   
   // 调用资源分配函数
-  FUN_18066bdc0(key_offset, comparison_node_ptr, resource_manager_ptr, allocation_result);
+  SystemStateController(key_offset, comparison_node_ptr, resource_manager_ptr, allocation_result);
 }
 
 // 函数: void rendering_system_memory_cleaner(int64_t param_1)

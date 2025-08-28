@@ -101,7 +101,7 @@ LAB_1800c31aa:
   *(int32_t *)(lVar7 + 0x2c) = uVar3;
   *(uint64_t *)(lVar7 + 0x30) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar7,plVar4,param_1,uVar8);
+  SystemStateController(lVar7,plVar4,param_1,uVar8);
 }
 
 
@@ -147,7 +147,7 @@ LAB_1800c32b5:
   CoreEngineDataTransformer(lVar4 + 0x20,param_5);
   *(uint64_t *)(lVar4 + 0x40) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,param_3,param_1,uVar5);
+  SystemStateController(lVar4,param_3,param_1,uVar5);
 }
 
 
@@ -188,7 +188,7 @@ LAB_1800c3379:
   *(int32_t *)(lVar5 + 0x2c) = uVar3;
   *(uint64_t *)(lVar5 + 0x30) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,param_3,param_1,uVar6);
+  SystemStateController(lVar5,param_3,param_1,uVar6);
 }
 
 

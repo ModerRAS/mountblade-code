@@ -39,7 +39,7 @@ LAB_1800f7b94:
   FUN_180049b30(lVar5 + 0x20,param_5);
   *(uint64_t *)(lVar5 + 0xb8) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,param_3,param_1,uVar4);
+  SystemStateController(lVar5,param_3,param_1,uVar4);
 }
 
 
@@ -85,7 +85,7 @@ LAB_1800f7c75:
   FUN_180049b30(lVar4 + 0x20,param_5);
   *(uint64_t *)(lVar4 + 0xb8) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,param_3,param_1,uVar5);
+  SystemStateController(lVar4,param_3,param_1,uVar5);
 }
 
 

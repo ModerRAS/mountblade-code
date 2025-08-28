@@ -1108,7 +1108,7 @@ ENTITY_UPDATE_COMPLETE:
     }
     
     // 将实体插入世界
-    FUN_18066bdc0(entity_id, entity_data, entity_manager, update_result);
+    SystemStateController(entity_id, entity_data, entity_manager, update_result);
     
     return update_result;
 }

@@ -84,7 +84,7 @@ int64_t * FUN_18039dbd0(int64_t param_1,int64_t *param_2,int64_t param_3,uint64_
   uVar7 = 1;
 LAB_18039dccd:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar3,lVar4,param_1,uVar7);
+  SystemStateController(lVar3,lVar4,param_1,uVar7);
 }
 
 

@@ -533,7 +533,7 @@ LAB_1802e0f33:
           uVar28 = 1;
         }
                     // WARNING: Subroutine does not return
-        FUN_18066bdc0(lVar23,aplStack_1b0[0],plVar7,uVar28);
+        SystemStateController(lVar23,aplStack_1b0[0],plVar7,uVar28);
       }
     }
     FUN_1801c92a0(&puStack_f8);
@@ -791,7 +791,7 @@ LAB_1802e1479:
   uVar7 = 0;
 LAB_1802e14fb:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,puVar6,param_1,uVar7);
+  SystemStateController(lVar4,puVar6,param_1,uVar7);
 }
 
 

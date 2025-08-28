@@ -869,7 +869,7 @@ LAB_1802186de:
   *(uint64_t *)(lVar2 + 0x20) = *param_2;
   *(int32_t *)(lVar2 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar2,plVar1,param_1,uVar5);
+  SystemStateController(lVar2,plVar1,param_1,uVar5);
 }
 
 
@@ -929,7 +929,7 @@ LAB_1802186de:
   *(uint64_t *)(lVar2 + 0x20) = *unaff_R14;
   *(int32_t *)(lVar2 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar2,unaff_RBX);
+  SystemStateController(lVar2,unaff_RBX);
 }
 
 
@@ -984,7 +984,7 @@ LAB_18021878d:
   *(uint64_t *)(lVar1 + 0x20) = *unaff_R14;
   *(int32_t *)(lVar1 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1,puVar3);
+  SystemStateController(lVar1,puVar3);
 }
 
 

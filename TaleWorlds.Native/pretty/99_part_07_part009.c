@@ -106,7 +106,7 @@ void FUN_1804a2fc0(void)
     uVar7 = 0;
 LAB_1804a3129:
                     // WARNING: Subroutine does not return
-    FUN_18066bdc0(lVar3,lVar4,lVar6,uVar7);
+    SystemStateController(lVar3,lVar4,lVar6,uVar7);
   }
   if (lVar4 != lVar6) {
     if (*(int *)(lVar4 + 0x30) == 0) {
@@ -129,7 +129,7 @@ LAB_1804a3067:
   uVar9 = 0;
 LAB_1804a306f:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar3,lVar4,lVar6,uVar9);
+  SystemStateController(lVar3,lVar4,lVar6,uVar9);
 }
 
 

@@ -1195,7 +1195,7 @@ void FUN_180321570(int64_t param_1,int32_t *param_2,int64_t param_3)
     uVar8 = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar10,puVar5,puVar1,uVar8);
+  SystemStateController(lVar10,puVar5,puVar1,uVar8);
 }
 
 

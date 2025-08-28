@@ -194,7 +194,7 @@ LAB_18037d26b:
               uVar23 = uVar18;
             }
                     // WARNING: Subroutine does not return
-            FUN_18066bdc0(lVar13,pppppppuVar7,&pppppppuStack_280,uVar23);
+            SystemStateController(lVar13,pppppppuVar7,&pppppppuStack_280,uVar23);
           }
           ppppppuVar22 = ppppppuVar22 + 1;
           lVar13 = lVar13 + -1;

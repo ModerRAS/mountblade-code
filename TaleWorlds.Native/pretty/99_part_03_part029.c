@@ -638,7 +638,7 @@ LAB_1801e854a:
   *(uint64_t *)(lVar5 + 0x38) = 0;
   *(int32_t *)(lVar5 + 0x40) = 3;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,plVar3,param_1,uVar6);
+  SystemStateController(lVar5,plVar3,param_1,uVar6);
 }
 
 

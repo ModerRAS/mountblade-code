@@ -29,7 +29,7 @@
 #define find_resource_in_hash FUN_180057110
 #define add_resource_to_hash FUN_180059820
 #define initialize_string_resource FUN_18005caa0
-#define finalize_resource_processing FUN_18066bdc0
+#define finalize_resource_processing SystemStateController
 #define traverse_resource_list FUN_18028a660
 
 /**

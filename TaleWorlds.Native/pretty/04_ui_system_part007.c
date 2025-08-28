@@ -433,7 +433,7 @@ LAB_1806579f0:
   SystemCore_NetworkHandler0(memory_allocation_result + 0x20,processing_context);
   *(uint64_t *)(memory_allocation_result + 0x40) = 0;
   // 调用系统处理函数
-  FUN_18066bdc0(memory_allocation_result,data_buffer,&system_memory_67e0,validation_result);
+  SystemStateController(memory_allocation_result,data_buffer,&system_memory_67e0,validation_result);
 }
 
 /**

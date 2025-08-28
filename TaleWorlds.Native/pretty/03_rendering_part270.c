@@ -619,7 +619,7 @@ void FUN_1804182d0(int64_t param_1)
   uVar9 = 1;
 LAB_180418472:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,lVar6,lVar1,uVar9);
+  SystemStateController(lVar5,lVar6,lVar1,uVar9);
 }
 
 

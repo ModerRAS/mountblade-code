@@ -897,7 +897,7 @@ LAB_1802093e9:
     uVar9 = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar7,puVar5,param_1,uVar9);
+  SystemStateController(lVar7,puVar5,param_1,uVar9);
 }
 
 

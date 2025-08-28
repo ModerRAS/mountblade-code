@@ -787,7 +787,7 @@ LAB_180322608:
   if ((puVar3 == puVar8) || (uVar9 = 1, iVar4 < *(int *)(puVar3 + 4))) {
     uVar9 = 0;
   }
-  FUN_18066bdc0(lVar7, puVar3, puVar8, uVar9);
+  SystemStateController(lVar7, puVar3, puVar8, uVar9);
 }
 
 /**

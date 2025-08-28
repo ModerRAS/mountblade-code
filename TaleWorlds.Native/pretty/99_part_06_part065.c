@@ -372,7 +372,7 @@ LAB_1803e5adb:
                       *(uint64_t *)(lVar10 + 0x40) = 0;
                       *(int32_t *)(lVar10 + 0x48) = 3;
                     // WARNING: Subroutine does not return
-                      FUN_18066bdc0(lVar10,puVar14,param_1,uVar27);
+                      SystemStateController(lVar10,puVar14,param_1,uVar27);
                     }
                   }
                   else {

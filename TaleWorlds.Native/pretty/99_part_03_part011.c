@@ -247,7 +247,7 @@ LAB_1801d1b1c:
                   *(int8_t *)(lVar17 + 0x40) = 0;
                   *(uint64_t *)(lVar17 + 0x48) = 0;
                     // WARNING: Subroutine does not return
-                  FUN_18066bdc0(lVar17,pppppplVar21,&ppppplStack_158,uVar30);
+                  SystemStateController(lVar17,pppppplVar21,&ppppplStack_158,uVar30);
                 }
               }
             }
@@ -287,12 +287,12 @@ LAB_1801d1b1c:
                   }
                 }
                     // WARNING: Subroutine does not return
-                FUN_18066bdc0(lVar17,pppppplVar19,pppppplVar16,1);
+                SystemStateController(lVar17,pppppplVar19,pppppplVar16,1);
               }
             }
 LAB_1801d1c87:
                     // WARNING: Subroutine does not return
-            FUN_18066bdc0(lVar17,pppppplVar19,pppppplVar16,0);
+            SystemStateController(lVar17,pppppplVar19,pppppplVar16,0);
           }
           ppppplVar31 = ppppplStackX_18;
           if (lVar17 != 0) {
@@ -388,7 +388,7 @@ LAB_1801d1e6c:
               uVar33 = 1;
             }
                     // WARNING: Subroutine does not return
-            FUN_18066bdc0(lVar17,ppppppuVar25,&pppppuStack_128,uVar33);
+            SystemStateController(lVar17,ppppppuVar25,&pppppuStack_128,uVar33);
           }
         }
       }

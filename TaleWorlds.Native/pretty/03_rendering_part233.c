@@ -240,7 +240,7 @@ LAB_18039b640:
                     SystemCore_NetworkHandler0(ppuStack_f8,&puStack_138);
                     *(int32_t *)(lVar13 + 0x40) = 0;
                     // WARNING: Subroutine does not return
-                    FUN_18066bdc0(lVar13,ppppuVar7,&pppuStack_1a8,pcVar15);
+                    SystemStateController(lVar13,ppppuVar7,&pppuStack_1a8,pcVar15);
                   }
                   ppppuVar7 = (uint64_t ****)func_0x00018066b9a0(ppppuVar7);
                 }

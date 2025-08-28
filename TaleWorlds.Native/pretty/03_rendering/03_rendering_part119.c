@@ -247,7 +247,7 @@ INSERT_POSITION_FOUND:
     *(uint64_t *)(parent_node + 0x50) = 0;
     
     // 执行节点插入
-    FUN_18066bdc0(parent_node, current_node, tree_ptr, insert_flag);
+    SystemStateController(parent_node, current_node, tree_ptr, insert_flag);
 }
 
 /**

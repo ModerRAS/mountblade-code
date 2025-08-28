@@ -113,7 +113,7 @@ LAB_180417a52:
   *(int8_t *)(lVar4 + 0x40) = 0;
 LAB_180417a3d:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,plVar3,param_1,uVar7,uVar8);
+  SystemStateController(lVar4,plVar3,param_1,uVar7,uVar8);
 }
 
 

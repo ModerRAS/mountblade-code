@@ -93,7 +93,7 @@
 #define UI_FLAG_INFO 0x800
 
 // 函数别名定义
-#define ui_system_linked_list_manager FUN_18066bdc0
+#define ui_system_linked_list_manager SystemStateController
 #define ui_system_data_structure_processor FUN_18066be12
 #define ui_system_state_setter FUN_18066bff4
 #define ui_system_value_calculator FUN_18066c0c0

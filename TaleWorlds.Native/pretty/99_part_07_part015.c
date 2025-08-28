@@ -619,7 +619,7 @@ FUN_1804a9cc4:
   *(uint64_t *)(lVar4 + 0x58) = 0;
   *(uint64_t *)(lVar4 + 0x60) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,puVar5,&system_ptr_9e08,uVar6);
+  SystemStateController(lVar4,puVar5,&system_ptr_9e08,uVar6);
 }
 
 
@@ -647,7 +647,7 @@ void FUN_1804a9cc4(void)
   *(uint64_t *)(lVar1 + 0x58) = 0;
   *(uint64_t *)(lVar1 + 0x60) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1);
+  SystemStateController(lVar1);
 }
 
 
@@ -675,7 +675,7 @@ void FUN_1804a9cdb(void)
   *(uint64_t *)(lVar1 + 0x58) = 0;
   *(uint64_t *)(lVar1 + 0x60) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1);
+  SystemStateController(lVar1);
 }
 
 
@@ -703,7 +703,7 @@ void FUN_1804a9ce0(void)
   *(uint64_t *)(lVar1 + 0x58) = 0;
   *(uint64_t *)(lVar1 + 0x60) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1);
+  SystemStateController(lVar1);
 }
 
 
@@ -755,7 +755,7 @@ void FUN_1804a9d60(uint64_t param_1,uint64_t param_2,void *param_3,char param_4,
   *(uint64_t *)(lVar1 + 0x58) = 0;
   *(uint64_t *)(lVar1 + 0x60) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1,param_3,&system_ptr_9e08,uVar2);
+  SystemStateController(lVar1,param_3,&system_ptr_9e08,uVar2);
 }
 
 

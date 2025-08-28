@@ -172,7 +172,7 @@ LAB_1803e3271:
                           *(int *)(lVar6 + 0x28) = iStackX_10;
                           *(uint64_t *)(lVar6 + 0x2c) = 0;
                     // WARNING: Subroutine does not return
-                          FUN_18066bdc0(lVar6,plVar10,plVar1,uVar15);
+                          SystemStateController(lVar6,plVar10,plVar1,uVar15);
                         }
                       }
                     }
@@ -463,7 +463,7 @@ LAB_1803e3271:
                         *(int *)(lVar7 + 0x28) = iVar3;
                         *(uint64_t *)(lVar7 + 0x2c) = 0;
                     // WARNING: Subroutine does not return
-                        FUN_18066bdc0(lVar7,plVar11,plVar1,uVar16);
+                        SystemStateController(lVar7,plVar11,plVar1,uVar16);
                       }
                     }
                   }
