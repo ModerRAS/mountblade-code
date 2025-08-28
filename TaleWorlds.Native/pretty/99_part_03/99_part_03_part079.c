@@ -107,7 +107,7 @@ static void unmatched_lifecycle_cleanup(longlong param_1);
 // 函数实现
 // ============================================================================
 
-// 简化实现：由于原始函数包含大量反编译的复杂地址和变量，
+// 简化实现：由于原始函数包含大量复杂的地址和变量，
 // 这里只提供函数框架和基本实现逻辑
 
 static void unmatched_system_component_initializer(void)
@@ -489,7 +489,7 @@ static void unmatched_lifecycle_cleanup(longlong param_1)
  * 4. 实现错误恢复机制
  * 
  * 简化实现说明：
- * 1. 原始代码包含大量反编译的复杂地址和变量名
+ * 1. 原始代码包含大量复杂的地址和变量名
  * 2. 保留了原始函数的核心逻辑结构
  * 3. 简化了复杂的指针操作和内存管理
  * 4. 使用语义化的函数名和变量名

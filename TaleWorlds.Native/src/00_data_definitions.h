@@ -71,10 +71,10 @@ int FUN_18002cfc0(void)
   lVar1 = FUN_1808fc7d0(FUN_180941630);
   return (lVar1 != 0) - 1;
 }
-int FUN_18002d010(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int FUN_18002d010(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c910a8,2,param_3,param_4,uVar2);
@@ -82,10 +82,10 @@ int FUN_18002d010(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   lVar1 = FUN_1808fc7d0(FUN_180941650);
   return (lVar1 != 0) - 1;
 }
-int FUN_18002d060(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int FUN_18002d060(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91148,2,param_3,param_4,uVar2);
@@ -93,10 +93,10 @@ int FUN_18002d060(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   lVar1 = FUN_1808fc7d0(FUN_180941690);
   return (lVar1 != 0) - 1;
 }
-int FUN_18002d0b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int FUN_18002d0b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c911e8,2,param_3,param_4,uVar2);
@@ -104,10 +104,10 @@ int FUN_18002d0b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   lVar1 = FUN_1808fc7d0(FUN_1809416d0);
   return (lVar1 != 0) - 1;
 }
-int FUN_18002d100(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int FUN_18002d100(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91288,2,param_3,param_4,uVar2);
@@ -124,7 +124,7 @@ int FUN_18002d100(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 int FUN_18002e450(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf6530 = &UNK_1809fdc18;
   _DAT_180bf6538 = &DAT_180bf6548;
   DAT_180bf6548 = 0;
@@ -136,7 +136,7 @@ int FUN_18002e450(void)
 int FUN_18002e4c0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf6590 = &UNK_1809fdc18;
   _DAT_180bf6598 = &DAT_180bf65a8;
   DAT_180bf65a8 = 0;
@@ -148,7 +148,7 @@ int FUN_18002e4c0(void)
 int FUN_18002e530(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf65c0 = &UNK_1809fdc18;
   _DAT_180bf65c8 = &DAT_180bf65d8;
   DAT_180bf65d8 = 0;
@@ -160,7 +160,7 @@ int FUN_18002e530(void)
 int FUN_18002e5a0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf65f0 = &UNK_1809fdc18;
   _DAT_180bf65f8 = &DAT_180bf6608;
   DAT_180bf6608 = 0;
@@ -172,7 +172,7 @@ int FUN_18002e5a0(void)
 int FUN_18002e610(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf6620 = &UNK_1809fdc18;
   _DAT_180bf6628 = &DAT_180bf6638;
   DAT_180bf6638 = 0;
@@ -184,7 +184,7 @@ int FUN_18002e610(void)
 int FUN_18002e680(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf6650 = &UNK_1809fdc18;
   _DAT_180bf6658 = &DAT_180bf6668;
   DAT_180bf6668 = 0;
@@ -196,7 +196,7 @@ int FUN_18002e680(void)
 int FUN_18002e6f0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf6680 = &UNK_1809fdc18;
   _DAT_180bf6688 = &DAT_180bf6698;
   DAT_180bf6698 = 0;
@@ -208,7 +208,7 @@ int FUN_18002e6f0(void)
 int FUN_18002e760(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf66b0 = &UNK_1809fdc18;
   _DAT_180bf66b8 = &DAT_180bf66c8;
   DAT_180bf66c8 = 0;
@@ -220,7 +220,7 @@ int FUN_18002e760(void)
 int FUN_18002e7d0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf52e8 = &UNK_18098bc80;
   _DAT_180bf52f0 = &DAT_180bf5300;
   DAT_180bf5300 = 0;
@@ -232,7 +232,7 @@ int FUN_18002e7d0(void)
 int FUN_18002e840(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf5738 = &UNK_18098bc80;
   _DAT_180bf5740 = &DAT_180bf5750;
   DAT_180bf5750 = 0;
@@ -412,7 +412,7 @@ int FUN_18002e8b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 int FUN_180031350(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf7250 = &UNK_1809fcc58;
   _DAT_180bf7258 = &DAT_180bf7268;
   DAT_180bf7268 = 0;
@@ -424,7 +424,7 @@ int FUN_180031350(void)
 int FUN_1800313c0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf72b0 = &UNK_1809fcc58;
   _DAT_180bf72b8 = &DAT_180bf72c8;
   DAT_180bf72c8 = 0;
@@ -436,7 +436,7 @@ int FUN_1800313c0(void)
 int FUN_180031430(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf7310 = &UNK_1809fcc58;
   _DAT_180bf7318 = &DAT_180bf7328;
   DAT_180bf7328 = 0;
@@ -448,7 +448,7 @@ int FUN_180031430(void)
 int FUN_1800314b0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf7370 = &UNK_1809fcc28;
   _DAT_180bf7378 = &DAT_180bf7388;
   DAT_180bf7388 = 0;
@@ -702,7 +702,7 @@ int FUN_1800314b0(void)
 int FUN_180036c50(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf5b88 = &UNK_18098bc80;
   _DAT_180bf5b90 = &DAT_180bf5ba0;
   DAT_180bf5ba0 = 0;
@@ -720,7 +720,7 @@ int FUN_180036c50(void)
 int FUN_18003adb0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9210 = &UNK_1809fcc58;
   _DAT_180bf9218 = &DAT_180bf9228;
   DAT_180bf9228 = 0;
@@ -732,7 +732,7 @@ int FUN_18003adb0(void)
 int FUN_18003ae20(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9270 = &UNK_1809fcc58;
   _DAT_180bf9278 = &DAT_180bf9288;
   DAT_180bf9288 = 0;
@@ -744,7 +744,7 @@ int FUN_18003ae20(void)
 int FUN_18003ae90(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf92d0 = &UNK_1809fcc58;
   _DAT_180bf92d8 = &DAT_180bf92e8;
   DAT_180bf92e8 = 0;
@@ -756,7 +756,7 @@ int FUN_18003ae90(void)
 int FUN_18003af00(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9330 = &UNK_1809fcc58;
   _DAT_180bf9338 = &DAT_180bf9348;
   DAT_180bf9348 = 0;
@@ -768,7 +768,7 @@ int FUN_18003af00(void)
 int FUN_18003af70(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9390 = &UNK_1809fcc58;
   _DAT_180bf9398 = &DAT_180bf93a8;
   DAT_180bf93a8 = 0;
@@ -780,7 +780,7 @@ int FUN_18003af70(void)
 int FUN_18003afe0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf93f0 = &UNK_1809fcc58;
   _DAT_180bf93f8 = &DAT_180bf9408;
   DAT_180bf9408 = 0;
@@ -792,7 +792,7 @@ int FUN_18003afe0(void)
 int FUN_18003b050(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9450 = &UNK_1809fcc58;
   _DAT_180bf9458 = &DAT_180bf9468;
   DAT_180bf9468 = 0;
@@ -804,7 +804,7 @@ int FUN_18003b050(void)
 int FUN_18003b0c0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf94b0 = &UNK_1809fcc58;
   _DAT_180bf94b8 = &DAT_180bf94c8;
   DAT_180bf94c8 = 0;
@@ -816,7 +816,7 @@ int FUN_18003b0c0(void)
 int FUN_18003b130(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9510 = &UNK_1809fcc58;
   _DAT_180bf9518 = &DAT_180bf9528;
   DAT_180bf9528 = 0;
@@ -828,7 +828,7 @@ int FUN_18003b130(void)
 int FUN_18003b1a0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9570 = &UNK_1809fcc58;
   _DAT_180bf9578 = &DAT_180bf9588;
   DAT_180bf9588 = 0;
@@ -840,7 +840,7 @@ int FUN_18003b1a0(void)
 int FUN_18003b210(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf95d0 = &UNK_1809fcc58;
   _DAT_180bf95d8 = &DAT_180bf95e8;
   DAT_180bf95e8 = 0;
@@ -852,7 +852,7 @@ int FUN_18003b210(void)
 int FUN_18003b280(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9630 = &UNK_1809fcc58;
   _DAT_180bf9638 = &DAT_180bf9648;
   DAT_180bf9648 = 0;
@@ -864,7 +864,7 @@ int FUN_18003b280(void)
 int FUN_18003b2f0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9690 = &UNK_1809fcc58;
   _DAT_180bf9698 = &DAT_180bf96a8;
   DAT_180bf96a8 = 0;
@@ -876,7 +876,7 @@ int FUN_18003b2f0(void)
 int FUN_18003b360(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf96f0 = &UNK_1809fcc58;
   _DAT_180bf96f8 = &DAT_180bf9708;
   DAT_180bf9708 = 0;
@@ -888,7 +888,7 @@ int FUN_18003b360(void)
 int FUN_18003b3d0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9750 = &UNK_1809fcc58;
   _DAT_180bf9758 = &DAT_180bf9768;
   DAT_180bf9768 = 0;
@@ -900,7 +900,7 @@ int FUN_18003b3d0(void)
 int FUN_18003b440(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf97b0 = &UNK_1809fcc58;
   _DAT_180bf97b8 = &DAT_180bf97c8;
   DAT_180bf97c8 = 0;
@@ -912,7 +912,7 @@ int FUN_18003b440(void)
 int FUN_18003b4b0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9810 = &UNK_1809fcc58;
   _DAT_180bf9818 = &DAT_180bf9828;
   DAT_180bf9828 = 0;
@@ -924,7 +924,7 @@ int FUN_18003b4b0(void)
 int FUN_18003b520(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9870 = &UNK_1809fcc58;
   _DAT_180bf9878 = &DAT_180bf9888;
   DAT_180bf9888 = 0;
@@ -936,7 +936,7 @@ int FUN_18003b520(void)
 int FUN_18003b590(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf98d0 = &UNK_1809fcc58;
   _DAT_180bf98d8 = &DAT_180bf98e8;
   DAT_180bf98e8 = 0;
@@ -948,7 +948,7 @@ int FUN_18003b590(void)
 int FUN_18003b600(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9930 = &UNK_1809fcc58;
   _DAT_180bf9938 = &DAT_180bf9948;
   DAT_180bf9948 = 0;
@@ -960,7 +960,7 @@ int FUN_18003b600(void)
 int FUN_18003b670(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9990 = &UNK_1809fcc58;
   _DAT_180bf9998 = &DAT_180bf99a8;
   DAT_180bf99a8 = 0;
@@ -972,7 +972,7 @@ int FUN_18003b670(void)
 int FUN_18003b6e0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf99f0 = &UNK_1809fcc58;
   _DAT_180bf99f8 = &DAT_180bf9a08;
   DAT_180bf9a08 = 0;
@@ -984,7 +984,7 @@ int FUN_18003b6e0(void)
 int FUN_18003b750(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9a50 = &UNK_1809fcc58;
   _DAT_180bf9a58 = &DAT_180bf9a68;
   DAT_180bf9a68 = 0;
@@ -996,7 +996,7 @@ int FUN_18003b750(void)
 int FUN_18003b7c0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9ab0 = &UNK_1809fcc58;
   _DAT_180bf9ab8 = &DAT_180bf9ac8;
   DAT_180bf9ac8 = 0;
@@ -1008,7 +1008,7 @@ int FUN_18003b7c0(void)
 int FUN_18003b830(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9b10 = &UNK_1809fcc58;
   _DAT_180bf9b18 = &DAT_180bf9b28;
   DAT_180bf9b28 = 0;
@@ -1020,7 +1020,7 @@ int FUN_18003b830(void)
 int FUN_18003b8a0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9b70 = &UNK_1809fcc58;
   _DAT_180bf9b78 = &DAT_180bf9b88;
   DAT_180bf9b88 = 0;
@@ -1032,7 +1032,7 @@ int FUN_18003b8a0(void)
 int FUN_18003b910(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9bd0 = &UNK_1809fcc58;
   _DAT_180bf9bd8 = &DAT_180bf9be8;
   DAT_180bf9be8 = 0;
@@ -1044,7 +1044,7 @@ int FUN_18003b910(void)
 int FUN_18003b980(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9c30 = &UNK_1809fcc58;
   _DAT_180bf9c38 = &DAT_180bf9c48;
   DAT_180bf9c48 = 0;
@@ -1056,7 +1056,7 @@ int FUN_18003b980(void)
 int FUN_18003b9f0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9c90 = &UNK_1809fcc58;
   _DAT_180bf9c98 = &DAT_180bf9ca8;
   DAT_180bf9ca8 = 0;
@@ -1068,7 +1068,7 @@ int FUN_18003b9f0(void)
 int FUN_18003ba60(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9cf0 = &UNK_1809fcc58;
   _DAT_180bf9cf8 = &DAT_180bf9d08;
   DAT_180bf9d08 = 0;
@@ -1080,7 +1080,7 @@ int FUN_18003ba60(void)
 int FUN_18003bad0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9d50 = &UNK_1809fcc58;
   _DAT_180bf9d58 = &DAT_180bf9d68;
   DAT_180bf9d68 = 0;
@@ -1092,7 +1092,7 @@ int FUN_18003bad0(void)
 int FUN_18003bb40(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9db0 = &UNK_1809fcc58;
   _DAT_180bf9db8 = &DAT_180bf9dc8;
   DAT_180bf9dc8 = 0;
@@ -1104,7 +1104,7 @@ int FUN_18003bb40(void)
 int FUN_18003bbb0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9e10 = &UNK_1809fcc58;
   _DAT_180bf9e18 = &DAT_180bf9e28;
   DAT_180bf9e28 = 0;
@@ -1116,7 +1116,7 @@ int FUN_18003bbb0(void)
 int FUN_18003bc20(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9e70 = &UNK_1809fcc58;
   _DAT_180bf9e78 = &DAT_180bf9e88;
   DAT_180bf9e88 = 0;
@@ -1128,7 +1128,7 @@ int FUN_18003bc20(void)
 int FUN_18003bc90(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9ed0 = &UNK_1809fcc58;
   _DAT_180bf9ed8 = &DAT_180bf9ee8;
   DAT_180bf9ee8 = 0;
@@ -1140,7 +1140,7 @@ int FUN_18003bc90(void)
 int FUN_18003bd00(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9f30 = &UNK_1809fcc58;
   _DAT_180bf9f38 = &DAT_180bf9f48;
   DAT_180bf9f48 = 0;
@@ -1152,7 +1152,7 @@ int FUN_18003bd00(void)
 int FUN_18003bd70(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9f90 = &UNK_1809fcc58;
   _DAT_180bf9f98 = &DAT_180bf9fa8;
   DAT_180bf9fa8 = 0;
@@ -1164,7 +1164,7 @@ int FUN_18003bd70(void)
 int FUN_18003bde0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9ff0 = &UNK_1809fcc58;
   _DAT_180bf9ff8 = &DAT_180bfa008;
   DAT_180bfa008 = 0;
@@ -1176,7 +1176,7 @@ int FUN_18003bde0(void)
 int FUN_18003be50(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa050 = &UNK_1809fcc58;
   _DAT_180bfa058 = &DAT_180bfa068;
   DAT_180bfa068 = 0;
@@ -1188,7 +1188,7 @@ int FUN_18003be50(void)
 int FUN_18003bec0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa0b0 = &UNK_1809fcc58;
   _DAT_180bfa0b8 = &DAT_180bfa0c8;
   DAT_180bfa0c8 = 0;
@@ -1200,7 +1200,7 @@ int FUN_18003bec0(void)
 int FUN_18003bf30(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa110 = &UNK_1809fcc58;
   _DAT_180bfa118 = &DAT_180bfa128;
   DAT_180bfa128 = 0;
@@ -1212,7 +1212,7 @@ int FUN_18003bf30(void)
 int FUN_18003bfa0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa170 = &UNK_1809fcc58;
   _DAT_180bfa178 = &DAT_180bfa188;
   DAT_180bfa188 = 0;
@@ -1224,7 +1224,7 @@ int FUN_18003bfa0(void)
 int FUN_18003c010(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa1d0 = &UNK_1809fcc58;
   _DAT_180bfa1d8 = &DAT_180bfa1e8;
   DAT_180bfa1e8 = 0;
@@ -1236,7 +1236,7 @@ int FUN_18003c010(void)
 int FUN_18003c080(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa230 = &UNK_1809fcc58;
   _DAT_180bfa238 = &DAT_180bfa248;
   DAT_180bfa248 = 0;
@@ -1248,7 +1248,7 @@ int FUN_18003c080(void)
 int FUN_18003c0f0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa290 = &UNK_1809fcc58;
   _DAT_180bfa298 = &DAT_180bfa2a8;
   DAT_180bfa2a8 = 0;
@@ -1321,7 +1321,7 @@ int FUN_18003c1c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 int FUN_18003d690(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa780 = &UNK_1809fcc28;
   _DAT_180bfa788 = &DAT_180bfa798;
   DAT_180bfa798 = 0;
@@ -1358,7 +1358,7 @@ int FUN_18003d690(void)
 int FUN_18003d8c0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfab10 = &UNK_1809fcc28;
   _DAT_180bfab18 = &DAT_180bfab28;
   DAT_180bfab28 = 0;
@@ -1429,7 +1429,7 @@ int FUN_18003dc30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 int FUN_18003dcc0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfaef0 = &UNK_18098bb30;
   _DAT_180bfaef8 = &DAT_180bfaf08;
   DAT_180bfaf08 = 0;
@@ -1441,7 +1441,7 @@ int FUN_18003dcc0(void)
 int FUN_18003dd30(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfb310 = &UNK_18098bb30;
   _DAT_180bfb318 = &DAT_180bfb328;
   DAT_180bfb328 = 0;
@@ -1453,7 +1453,7 @@ int FUN_18003dd30(void)
 int FUN_18003dda0(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfb730 = &UNK_18098bb30;
   _DAT_180bfb738 = &DAT_180bfb748;
   DAT_180bfb748 = 0;
@@ -1471,7 +1471,7 @@ int FUN_18003dda0(void)
 int FUN_18003fb40(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf6498 = &UNK_18098bc80;
   _DAT_180bf64a0 = &DAT_180bf64b0;
   DAT_180bf64b0 = 0;
@@ -1489,7 +1489,7 @@ int FUN_18003fb40(void)
 int FUN_180041a80(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf6558 = &UNK_18098bc80;
   _DAT_180bf6560 = &DAT_180bf6570;
   DAT_180bf6570 = 0;
@@ -4643,7 +4643,7 @@ LAB_1802a912b:
 bool FUN_1802a9200(undefined8 *param_1)
 {
   int iVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   undefined8 uVar3;
   iVar1 = *(int *)((longlong)param_1 + 0x54);
   if (iVar1 == 0x27) {
@@ -10127,7 +10127,7 @@ undefined8 FUN_180653580(undefined8 param_1)
 undefined8 FUN_1806535c0(undefined8 param_1,undefined8 param_2)
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   lVar1 = FUN_18064e990();
   uVar2 = FUN_18062b680(_DAT_180c8ed18,param_1,param_2,0x19);
   LOCK();
