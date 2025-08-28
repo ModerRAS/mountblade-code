@@ -1611,141 +1611,149 @@ undefined DAT_180d49740;      // 内存优化配置数据
 undefined DAT_180d49748;      // 内存压缩配置数据
 
 
-// 函数: undefined FUN_18033cd80;
+/** 
+ * @brief 渲染资源管理器函数
+ * @details 渲染资源管理器的核心功能
+ */
 undefined FUN_18033cd80;
-undefined UNK_18033cc80;
+undefined UNK_18033cc80;      // 资源管理器数据结构
 
 
-// 函数: undefined FUN_18033cc90;
+/** 
+ * @brief 渲染资源高级管理系统函数
+ * @details 高级渲染资源管理系统，包含资源池、缓存、序列化等复杂功能
+ */
 undefined FUN_18033cc90;
-undefined UNK_180a1b2d8;
-undefined UNK_180a1b248;
-undefined UNK_180a1b238;
-undefined UNK_180a1c060;
-undefined UNK_180a1c078;
-undefined UNK_180a1c090;
-undefined UNK_180a1c0b0;
-undefined UNK_180a1c0c8;
-undefined UNK_180a1c0e0;
-undefined UNK_180a1c0f8;
-undefined UNK_180a1bfb0;
-undefined UNK_180a1bfc8;
-undefined UNK_180a1bfe0;
-undefined UNK_180a1bff8;
-undefined UNK_180a1c010;
-undefined UNK_180a1c040;
-undefined UNK_180a1bab8;
-undefined UNK_180a1bad8;
-undefined UNK_180a1bd10;
-undefined UNK_1809935e0;
-undefined UNK_180993650;
-undefined UNK_180993690;
-undefined UNK_180993980;
-undefined UNK_1809939e0;
-undefined UNK_180a1cc50;
-undefined UNK_180a1cdc0;
-undefined DAT_180345f30;
-undefined UNK_180a1cf60;
-undefined DAT_180a1cf38;
-undefined DAT_180a1cf50;
-undefined UNK_180a1cf28;
-undefined UNK_180a1d010;
-undefined UNK_180a1d060;
-undefined UNK_180a13bd8;
-undefined DAT_180a1d218;
-undefined DAT_180a1d220;
-undefined DAT_180a1d558;
-undefined DAT_180a1d570;
-undefined DAT_180a1d578;
-undefined UNK_180a1d900;
-undefined UNK_180a1d958;
-undefined DAT_180a1d880;
-undefined DAT_180a1d890;
-undefined DAT_180a1d8a0;
-undefined DAT_180a1d988;
-undefined UNK_180a1d8b0;
-undefined DAT_180a1db08;
-undefined DAT_180a1db20;
-undefined DAT_180a1db38;
-undefined DAT_180a1db48;
-undefined DAT_180a1db68;
-undefined DAT_180a1db80;
-undefined DAT_180a1db98;
-undefined UNK_18034dc90;
-undefined UNK_18034dca0;
-undefined UNK_180a1db58;
-undefined UNK_180a1dba8;
-undefined DAT_180a1dd30;
-undefined DAT_180a1deb0;
-undefined DAT_180a1dec0;
-undefined DAT_180a1e1c8;
-undefined DAT_180a1e1d8;
-undefined DAT_180a1e1f0;
-undefined DAT_180a1e208;
-undefined DAT_180c8ecb8;
-undefined DAT_180a1e3a0;
-undefined DAT_180a1e388;
-undefined DAT_180a1e3b0;
-undefined DAT_180a1e3c0;
-undefined DAT_180a1e3e8;
-undefined DAT_180a1e3f8;
-undefined DAT_180a1e708;
-undefined DAT_180a1e718;
-undefined DAT_180a1e730;
-undefined DAT_180a1e748;
-undefined DAT_180a1e760;
-undefined DAT_180a1e770;
-undefined DAT_180a1e780;
-undefined DAT_180a1e798;
-undefined DAT_180bf6618;
-undefined DAT_180a1e938;
-undefined DAT_180c8ecc0;
-undefined UNK_180a2ac38;
-undefined UNK_180a1ede0;
-undefined DAT_180a1eb48;
-undefined DAT_180a1eb60;
-undefined DAT_180a1eb88;
-undefined DAT_180a1eba8;
-undefined DAT_180a1ec18;
-undefined DAT_180a1ec30;
-undefined DAT_180a1ec58;
-undefined DAT_180a1ec70;
-undefined DAT_180a1ec88;
-undefined DAT_180a1eca0;
-undefined DAT_180a1ecb8;
-undefined DAT_180a1ecf8;
-undefined DAT_180a1ed18;
-undefined DAT_180a1ed30;
-undefined UNK_180a1ed58;
-undefined UNK_180a1ed70;
-undefined UNK_180a1ed88;
-undefined DAT_180a1eb78;
-undefined DAT_180a1eb98;
-undefined DAT_180a1ebd0;
-undefined DAT_180a1ebe8;
-undefined DAT_180a1ec00;
-undefined DAT_180a1ecd0;
-undefined UNK_180a1ed48;
-undefined UNK_180a1edc0;
-undefined UNK_180a1eda0;
-undefined UNK_180a1edb0;
-undefined DAT_180a1ef48;
-undefined UNK_180276a30;
-undefined UNK_180a1f0f8;
-undefined DAT_180a1f0c8;
-undefined DAT_180a1f0d0;
-undefined DAT_180a1f0e0;
-undefined DAT_180a1f0e4;
-undefined UNK_180a1f013;
-undefined UNK_180a1f268;
-undefined DAT_1809fd7b0;
-undefined DAT_180a064d8;
-undefined UNK_180a1f3e8;
-undefined DAT_180a1f3d0;
-undefined UNK_180a1f578;
-undefined DAT_180a1f550;
-undefined DAT_180a1f560;
-undefined UNK_180a1f788;
+
+/* 渲染资源高级管理数据结构 */
+undefined UNK_180a1b2d8;      // 资源池管理器数据结构
+undefined UNK_180a1b248;      // 资源缓存管理器数据结构
+undefined UNK_180a1b238;      // 资源生命周期管理器数据结构
+undefined UNK_180a1c060;      // 资源序列化器数据结构
+undefined UNK_180a1c078;      // 资源压缩器数据结构
+undefined UNK_180a1c090;      // 资源加密器数据结构
+undefined UNK_180a1c0b0;      // 资源验证器数据结构
+undefined UNK_180a1c0c8;      // 资源优化器数据结构
+undefined UNK_180a1c0e0;      // 资源分析器数据结构
+undefined UNK_180a1c0f8;      // 资源监控器数据结构
+undefined UNK_180a1bfb0;      // 资源统计器数据结构
+undefined UNK_180a1bfc8;      // 资源报告器数据结构
+undefined UNK_180a1bfe0;      // 资源调试器数据结构
+undefined UNK_180a1bff8;      // 资源日志器数据结构
+undefined UNK_180a1c010;      // 资源配置器数据结构
+undefined UNK_180a1c040;      // 资源调度器数据结构
+undefined UNK_180a1bab8;      // 资源优先级管理器数据结构
+undefined UNK_180a1bad8;      // 资源依赖管理器数据结构
+undefined UNK_180a1bd10;      // 资源版本管理器数据结构
+undefined UNK_1809935e0;      // 资源热重载管理器数据结构
+undefined UNK_180993650;      // 资源预加载管理器数据结构
+undefined UNK_180993690;      // 资源异步加载管理器数据结构
+undefined UNK_180993980;      // 资源流式加载管理器数据结构
+undefined UNK_1809939e0;      // 资源批量处理管理器数据结构
+undefined UNK_180a1cc50;      // 资源内存管理器数据结构
+undefined UNK_180a1cdc0;      // 资源磁盘管理器数据结构
+undefined DAT_180345f30;      // 资源网络管理器配置
+undefined UNK_180a1cf60;      // 资源数据库管理器数据结构
+undefined DAT_180a1cf38;      // 资源索引表数据
+undefined DAT_180a1cf50;      // 资源元数据数据
+undefined UNK_180a1cf28;      // 资源搜索器数据结构
+undefined UNK_180a1d010;      // 资源分类器数据结构
+undefined UNK_180a1d060;      // 资源标签管理器数据结构
+undefined UNK_180a13bd8;      // 资源权限管理器数据结构
+undefined DAT_180a1d218;      // 资源配额数据
+undefined DAT_180a1d220;      // 资源限制数据
+undefined DAT_180a1d558;      // 资源使用统计数据
+undefined DAT_180a1d570;      // 资源性能统计数据
+undefined DAT_180a1d578;      // 资源错误统计数据
+undefined UNK_180a1d900;      // 资源优化器配置数据结构
+undefined UNK_180a1d958;      // 资源压缩器配置数据结构
+undefined DAT_180a1d880;      // 资源序列化配置数据
+undefined DAT_180a1d890;      // 资源加密配置数据
+undefined DAT_180a1d8a0;      // 资源验证配置数据
+undefined DAT_180a1d988;      // 资源监控配置数据
+undefined UNK_180a1d8b0;      // 资源分析配置数据结构
+undefined DAT_180a1db08;      // 资源调试配置数据
+undefined DAT_180a1db20;      // 资源日志配置数据
+undefined DAT_180a1db38;      // 资源报告配置数据
+undefined DAT_180a1db48;      // 资源统计配置数据
+undefined DAT_180a1db68;      // 资源性能配置数据
+undefined DAT_180a1db80;      // 资源错误配置数据
+undefined DAT_180a1db98;      // 资源警告配置数据
+undefined UNK_18034dc90;      // 资源内存池数据结构
+undefined UNK_18034dca0;      // 资源缓存池数据结构
+undefined UNK_180a1db58;      // 资源任务池数据结构
+undefined UNK_180a1dba8;      // 资源线程池数据结构
+undefined DAT_180a1dd30;      // 资源配置文件数据
+undefined DAT_180a1deb0;      // 资源数据库连接数据
+undefined DAT_180a1dec0;      // 资源网络连接数据
+undefined DAT_180a1e1c8;      // 资源权限配置数据
+undefined DAT_180a1e1d8;      // 资源配额配置数据
+undefined DAT_180a1e1f0;      // 资源限制配置数据
+undefined DAT_180a1e208;      // 资源优化配置数据
+undefined DAT_180c8ecb8;      // 资源序列化格式数据
+undefined DAT_180a1e3a0;      // 资源压缩算法数据
+undefined DAT_180a1e388;      // 资源加密算法数据
+undefined DAT_180a1e3b0;      // 资源验证算法数据
+undefined DAT_180a1e3c0;      // 资源搜索算法数据
+undefined DAT_180a1e3e8;      // 资源分类算法数据
+undefined DAT_180a1e3f8;      // 资源标签算法数据
+undefined DAT_180a1e708;      // 资源内存策略数据
+undefined DAT_180a1e718;      // 资源缓存策略数据
+undefined DAT_180a1e730;      // 资源磁盘策略数据
+undefined DAT_180a1e748;      // 资源网络策略数据
+undefined DAT_180a1e760;      // 资源加载策略数据
+undefined DAT_180a1e770;      // 资源卸载策略数据
+undefined DAT_180a1e780;      // 资源优化策略数据
+undefined DAT_180a1e798;      // 资源压缩策略数据
+undefined DAT_180bf6618;      // 资源错误处理策略数据
+undefined DAT_180a1e938;      // 资源日志策略数据
+undefined DAT_180c8ecc0;      // 资源监控策略数据
+undefined UNK_180a2ac38;      // 资源热重载策略数据结构
+undefined UNK_180a1ede0;      // 资源预加载策略数据结构
+undefined DAT_180a1eb48;      // 资源异步加载策略数据
+undefined DAT_180a1eb60;      // 资源流式加载策略数据
+undefined DAT_180a1eb88;      // 资源批量处理策略数据
+undefined DAT_180a1eba8;      // 资源优先级策略数据
+undefined DAT_180a1ec18;      // 资源依赖策略数据
+undefined DAT_180a1ec30;      // 资源版本策略数据
+undefined DAT_180a1ec58;      // 资源内存管理策略数据
+undefined DAT_180a1ec70;      // 资源缓存管理策略数据
+undefined DAT_180a1ec88;      // 资源磁盘管理策略数据
+undefined DAT_180a1eca0;      // 资源网络管理策略数据
+undefined DAT_180a1ecb8;      // 资源任务管理策略数据
+undefined DAT_180a1ecf8;      // 资源线程管理策略数据
+undefined DAT_180a1ed18;      // 资源同步管理策略数据
+undefined DAT_180a1ed30;      // 资源错误管理策略数据
+undefined UNK_180a1ed58;      // 资源调试管理策略数据结构
+undefined UNK_180a1ed70;      // 资源日志管理策略数据结构
+undefined UNK_180a1ed88;      // 资源报告管理策略数据结构
+undefined DAT_180a1eb78;      // 资源统计管理策略数据
+undefined DAT_180a1eb98;      // 资源性能管理策略数据
+undefined DAT_180a1ebd0;      // 资源分析管理策略数据
+undefined DAT_180a1ebe8;      // 资源监控管理策略数据
+undefined DAT_180a1ec00;      // 资源优化管理策略数据
+undefined DAT_180a1ecd0;      // 资源验证管理策略数据
+undefined UNK_180a1ed48;      // 资源搜索管理策略数据结构
+undefined UNK_180a1edc0;      // 资源分类管理策略数据结构
+undefined UNK_180a1eda0;      // 资源标签管理策略数据结构
+undefined UNK_180a1edb0;      // 资源权限管理策略数据结构
+undefined DAT_180a1ef48;      // 资源配额管理策略数据
+undefined UNK_180276a30;      // 资源限制管理策略数据结构
+undefined UNK_180a1f0f8;      // 资源热重载管理器数据结构
+undefined DAT_180a1f0c8;      // 资源预加载管理器配置
+undefined DAT_180a1f0d0;      // 资源异步加载管理器配置
+undefined DAT_180a1f0e0;      // 资源流式加载管理器配置
+undefined DAT_180a1f0e4;      // 资源批量处理管理器配置
+undefined UNK_180a1f013;      // 资源优先级管理器数据结构
+undefined UNK_180a1f268;      // 资源依赖管理器数据结构
+undefined DAT_1809fd7b0;      // 资源版本管理器配置
+undefined DAT_180a064d8;      // 资源生命周期管理器配置
+undefined UNK_180a1f3e8;      // 资源内存管理器数据结构
+undefined DAT_180a1f3d0;      // 资源缓存管理器配置
+undefined UNK_180a1f578;      // 资源磁盘管理器数据结构
+undefined DAT_180a1f550;      // 资源网络管理器配置
+undefined DAT_180a1f560;      // 资源任务管理器配置
+undefined UNK_180a1f788;      // 资源线程管理器数据结构
 
 
 // 函数: undefined FUN_180360210;
