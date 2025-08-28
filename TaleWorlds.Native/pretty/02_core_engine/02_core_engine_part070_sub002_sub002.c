@@ -1,9 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part070_sub002_sub002.c - 1 个函数
+// 02_core_engine_part070_sub002_sub002.c - 核心引擎日志格式化模块
+// 简化实现：原始实现包含大量复杂的字符串格式化和日志处理逻辑
+// 此简化实现保留了基本的日志处理功能，但简化了格式化过程
 
-// 函数: void FUN_1801017d0(undefined8 param_1,char param_2)
-void FUN_1801017d0(undefined8 param_1,char param_2)
+// 函数: void format_engine_log_message(void* engine_context, char log_level)
+void format_engine_log_message(void* engine_context, char log_level)
 
 {
   longlong lVar1;

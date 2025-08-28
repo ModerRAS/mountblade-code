@@ -167,7 +167,7 @@ swap_elements:
     left_ptr = left_ptr + 1;
   } while( true );
   depth = depth + -1;
-  FUN_18008edcf(left_ptr, end, depth, sort_flag);
+  quicksort_string_array(left_ptr, end, depth, sort_flag);
   distance = (longlong)left_ptr - (longlong)array;
   end = left_ptr;
   goto sort_loop;
