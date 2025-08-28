@@ -635,33 +635,33 @@ uint render_checksum_validation(byte *param_1, byte *param_2)
 void render_array_resize_16bit(int *param_1, int param_2)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined8 uVar3;
-  int iVar4;
+  int current_capacity;
+  int new_capacity;
+  undefined8 new_memory_ptr;
+  int final_capacity;
   
-  iVar1 = param_1[1];
-  if (iVar1 == 0) {
-    iVar2 = 8;
+  current_capacity = param_1[1];
+  if (current_capacity == 0) {
+    new_capacity = 8;
   }
   else {
-    iVar2 = iVar1 / 2 + iVar1;
+    new_capacity = current_capacity / 2 + current_capacity;
   }
-  iVar4 = param_2;
-  if (param_2 < iVar2) {
-    iVar4 = iVar2;
+  final_capacity = param_2;
+  if (param_2 < new_capacity) {
+    final_capacity = new_capacity;
   }
-  if (iVar1 < iVar4) {
+  if (current_capacity < final_capacity) {
     if (_DAT_180c8a9b0 != 0) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
-    uVar3 = func_0x000180120ce0((longlong)iVar4 << 4,_DAT_180c8a9a8);
+    new_memory_ptr = func_0x000180120ce0((longlong)final_capacity << 4,_DAT_180c8a9a8);
     if (*(longlong *)(param_1 + 2) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(uVar3,*(longlong *)(param_1 + 2),(longlong)*param_1 << 4);
+      // WARNING: Subroutine does not return
+      memcpy(new_memory_ptr,*(longlong *)(param_1 + 2),(longlong)*param_1 << 4);
     }
-    *(undefined8 *)(param_1 + 2) = uVar3;
-    param_1[1] = iVar4;
+    *(undefined8 *)(param_1 + 2) = new_memory_ptr;
+    param_1[1] = final_capacity;
   }
   *param_1 = param_2;
   return;
@@ -681,23 +681,23 @@ void render_array_resize_16bit(int *param_1, int param_2)
 void render_array_resize_inline(void)
 
 {
-  longlong in_RAX;
-  undefined8 uVar1;
-  int *unaff_RBX;
-  int unaff_ESI;
-  int unaff_EDI;
+  longlong context_ptr;
+  undefined8 new_memory_ptr;
+  int *array_ptr;
+  int array_size;
+  int new_capacity;
   
-  if (in_RAX != 0) {
-    *(int *)(in_RAX + 0x3a8) = *(int *)(in_RAX + 0x3a8) + 1;
+  if (context_ptr != 0) {
+    *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + 1;
   }
-  uVar1 = func_0x000180120ce0((longlong)unaff_EDI << 4,_DAT_180c8a9a8);
-  if (*(longlong *)(unaff_RBX + 2) != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(uVar1,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX << 4);
+  new_memory_ptr = func_0x000180120ce0((longlong)new_capacity << 4,_DAT_180c8a9a8);
+  if (*(longlong *)(array_ptr + 2) != 0) {
+    // WARNING: Subroutine does not return
+    memcpy(new_memory_ptr,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 4);
   }
-  *(undefined8 *)(unaff_RBX + 2) = uVar1;
-  unaff_RBX[1] = unaff_EDI;
-  *unaff_RBX = unaff_ESI;
+  *(undefined8 *)(array_ptr + 2) = new_memory_ptr;
+  array_ptr[1] = new_capacity;
+  *array_ptr = array_size;
   return;
 }
 
@@ -713,10 +713,10 @@ void render_array_resize_inline(void)
 void render_simple_assignment(void)
 
 {
-  undefined4 *unaff_RBX;
-  undefined4 unaff_ESI;
+  undefined4 *target_ptr;
+  undefined4 value;
   
-  *unaff_RBX = unaff_ESI;
+  *target_ptr = value;
   return;
 }
 
