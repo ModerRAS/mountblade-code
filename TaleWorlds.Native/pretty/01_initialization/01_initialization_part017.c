@@ -707,61 +707,63 @@ void Cleanup_Allocator_Pool(longlong allocator_pool)
 
 
 
-// 函数: void FUN_18004c0d0(longlong param_1)
-void FUN_18004c0d0(longlong param_1)
+// 函数: void Initialize_System_Context(longlong system_context)
+// 初始化系统上下文
+void Initialize_System_Context(longlong system_context)
 
 {
-  undefined *puVar1;
-  undefined1 auStack_a8 [8];
-  undefined *puStack_a0;
-  uint uStack_98;
-  undefined8 uStack_88;
-  undefined8 uStack_80;
-  undefined8 uStack_78;
-  undefined4 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined4 uStack_50;
-  undefined *puStack_48;
-  longlong lStack_40;
-  undefined4 uStack_30;
-  undefined8 uStack_28;
+  undefined *temp_ptr;
+  undefined1 stack_buffer1 [8];
+  undefined *stack_buffer2;
+  uint temp_uint;
+  undefined8 stack_var1;
+  undefined8 stack_var2;
+  undefined8 stack_var3;
+  undefined4 stack_var4;
+  undefined8 stack_var5;
+  undefined8 stack_var6;
+  undefined8 stack_var7;
+  undefined4 stack_var8;
+  undefined *stack_var9;
+  longlong stack_var10;
+  undefined4 stack_var11;
+  undefined8 cleanup_flag;
   
-  uStack_28 = 0xfffffffffffffffe;
-  if (param_1 == 0) {
+  cleanup_flag = 0xfffffffffffffffe;
+  if (system_context == 0) {
 
 
-// 函数: void FUN_18004c260(ulonglong *param_1)
-void FUN_18004c260(ulonglong *param_1)
+// 函数: void Release_Memory_Block(ulonglong *memory_block)
+// 释放内存块
+void Release_Memory_Block(ulonglong *memory_block)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *ref_count;
+  undefined8 *block_ptr;
+  longlong heap_info;
+  ulonglong heap_base;
   
-  puVar2 = (undefined8 *)*param_1;
-  if (puVar2 == (undefined8 *)0x0) {
+  block_ptr = (undefined8 *)*memory_block;
+  if (block_ptr == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  heap_base = (ulonglong)block_ptr & 0xffffffffffc00000;
+  if (heap_base != 0) {
+    heap_info = heap_base + 0x80 + ((longlong)block_ptr - heap_base >> 0x10) * 0x50;
+    heap_info = heap_info - (ulonglong)*(uint *)(heap_info + 4);
+    if ((*(void ***)(heap_base + 0x70) == &ExceptionList) && (*(char *)(heap_info + 0xe) == '\0')) {
+      *block_ptr = *(undefined8 *)(heap_info + 0x20);
+      *(undefined8 **)(heap_info + 0x20) = block_ptr;
+      ref_count = (int *)(heap_info + 0x18);
+      *ref_count = *ref_count + -1;
+      if (*ref_count == 0) {
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(heap_base, CONCAT71(0xff000000, *(void ***)(heap_base + 0x70) == &ExceptionList),
+                          block_ptr, heap_base, 0xfffffffffffffffe);
     }
   }
   return;
@@ -771,20 +773,21 @@ void FUN_18004c260(ulonglong *param_1)
 
 
 
-// 函数: void FUN_18004c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void Iterate_Callback_Container(longlong *callback_container, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 遍历回调容器
+void Iterate_Callback_Container(longlong *callback_container, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
+  undefined8 *end_ptr;
+  undefined8 *current_ptr;
+  undefined8 cleanup_flag;
   
-  uVar3 = 0xfffffffffffffffe;
-  puVar1 = (undefined8 *)param_1[1];
-  for (puVar2 = (undefined8 *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 4) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  cleanup_flag = 0xfffffffffffffffe;
+  end_ptr = (undefined8 *)callback_container[1];
+  for (current_ptr = (undefined8 *)*callback_container; current_ptr != end_ptr; current_ptr = current_ptr + 4) {
+    (**(code **)*current_ptr)(current_ptr, 0, param_3, param_4, cleanup_flag);
   }
-  if (*param_1 == 0) {
+  if (*callback_container == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -795,48 +798,51 @@ void FUN_18004c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_18004c2b0(longlong param_1)
-void FUN_18004c2b0(longlong param_1)
+// 函数: void Validate_System_Pointer(longlong system_ptr)
+// 验证系统指针
+void Validate_System_Pointer(longlong system_ptr)
 
 {
-  uint uVar1;
-  longlong lVar2;
+  uint temp_value;
+  longlong check_result;
   
-  if (param_1 == 0) {
+  if (system_ptr == 0) {
 
 
-// 函数: void FUN_18004c2c4(longlong param_1)
-void FUN_18004c2c4(longlong param_1)
+// 函数: void Copy_String_To_Global_Buffer(longlong string_ptr)
+// 复制字符串到全局缓冲区
+void Copy_String_To_Global_Buffer(longlong string_ptr)
 
 {
-  uint uVar1;
-  longlong lVar2;
+  uint string_length;
+  longlong char_index;
   
-  lVar2 = -1;
+  char_index = -1;
   do {
-    lVar2 = lVar2 + 1;
-  } while (*(char *)(param_1 + lVar2) != '\0');
-  uVar1 = (uint)lVar2;
-  if (0x1fff < uVar1) {
-    uVar1 = 0x1fff;
+    char_index = char_index + 1;
+  } while (*(char *)(string_ptr + char_index) != '\0');
+  string_length = (uint)char_index;
+  if (0x1fff < string_length) {
+    string_length = 0x1fff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&DAT_180c84870,param_1,(longlong)(int)uVar1);
+  memcpy(&DAT_180c84870, string_ptr, (longlong)(int)string_length);
 }
 
 
 
 
 
-// 函数: void FUN_18004c31f(void)
-void FUN_18004c31f(void)
+// 函数: void System_Call_Handler(void)
+// 系统调用处理器
+void System_Call_Handler(void)
 
 {
-  code *pcVar1;
+  code *system_call;
   
   FUN_1808fcdc8();
-  pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  system_call = (code *)swi(3);
+  (*system_call)();
   return;
 }
 
