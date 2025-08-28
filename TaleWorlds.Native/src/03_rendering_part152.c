@@ -207,120 +207,119 @@ typedef struct {
  */
 void FUN_18035ec60(longlong param_1)
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  longlong lVar7;
-  undefined1 auVar8 [8];
-  undefined8 *puVar9;
-  undefined8 uVar10;
-  longlong *plVar11;
-  longlong *plVar12;
-  float *pfVar13;
-  int iVar14;
-  undefined8 *puVar15;
-  int iVar16;
-  longlong **pplVar17;
-  int iVar18;
-  undefined8 *puVar19;
-  undefined8 *puVar20;
-  float *pfVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  undefined1 auStack_458 [32];
-  float *pfStack_438;
-  longlong ***ppplStack_430;
-  undefined *puStack_428;
-  undefined4 uStack_420;
-  float afStack_418 [2];
-  undefined8 uStack_410;
-  undefined8 uStack_408;
-  longlong **pplStack_400;
-  longlong *plStack_3f8;
-  undefined8 uStack_3f0;
-  undefined8 uStack_3e8;
-  undefined8 uStack_3e0;
-  undefined1 auStack_3d8 [8];
-  undefined8 *puStack_3d0;
-  code *pcStack_3c8;
-  code *pcStack_3c0;
-  longlong *plStack_3b8;
-  longlong *plStack_3b0;
-  float *pfStack_3a8;
-  undefined8 uStack_3a0;
-  undefined8 uStack_398;
-  longlong *plStack_390;
-  longlong **pplStack_388;
-  longlong *plStack_380;
-  undefined8 uStack_378;
-  longlong *plStack_368;
-  char cStack_360;
-  char cStack_35f;
-  char cStack_35e;
-  float fStack_358;
-  float fStack_354;
-  undefined4 uStack_350;
-  float fStack_34c;
-  float fStack_348;
-  int iStack_340;
-  int iStack_33c;
-  float fStack_338;
-  float fStack_334;
-  int iStack_330;
-  int iStack_32c;
-  float fStack_328;
-  float fStack_324;
-  float fStack_320;
-  float fStack_31c;
-  float fStack_318;
-  float fStack_314;
-  float fStack_310;
-  float fStack_30c;
-  float fStack_308;
-  float fStack_304;
-  float fStack_300;
-  float fStack_2fc;
-  float fStack_2f8;
-  float fStack_2f4;
-  float fStack_2f0;
-  float fStack_2ec;
-  float fStack_2e8;
-  undefined4 uStack_2e4;
-  float fStack_2e0;
-  float fStack_2dc;
-  float fStack_2d8;
-  float fStack_2d4;
-  int iStack_2d0;
-  int iStack_2cc;
-  float fStack_2c8;
-  float fStack_2c4;
-  float fStack_2c0;
-  undefined4 uStack_2bc;
-  float fStack_2b8;
-  float fStack_2b4;
-  float fStack_2b0;
-  undefined4 uStack_2ac;
-  float fStack_2a8;
-  float fStack_2a4;
-  float fStack_2a0;
-  undefined4 uStack_29c;
-  float fStack_298;
-  float fStack_294;
-  float fStack_290;
-  undefined4 uStack_28c;
-  longlong *plStack_288;
-  undefined8 uStack_280;
-  longlong *plStack_278;
-  float *pfStack_270;
-  float *pfStack_268;
+  // 渲染数据处理核心变量
+  float sample_weight_x;          // 采样权重X坐标
+  float sample_weight_y;          // 采样权重Y坐标  
+  float interpolation_result;    // 插值计算结果
+  undefined4 color_mask;          // 颜色掩码
+  undefined4 temp_mask1;          // 临时掩码1
+  undefined4 temp_mask2;          // 临时掩码2
+  longlong memory_handle;         // 内存句柄
+  undefined1 buffer_data [8];     // 缓冲区数据
+  undefined8 *data_pointer;       // 数据指针
+  undefined8 temp_data;           // 临时数据
+  longlong *render_context1;      // 渲染上下文1
+  longlong *render_context2;      // 渲染上下文2
+  float *texture_coords;          // 纹理坐标指针
+  int loop_counter1;              // 循环计数器1
+  undefined8 *array_pointer1;     // 数组指针1
+  int loop_counter2;              // 循环计数器2
+  longlong **context_pointer;     // 上下文指针
+  int sample_index;               // 采样索引
+  undefined8 *array_pointer2;     // 数组指针2
+  undefined8 *array_pointer3;     // 数组指针3
+  float *vertex_data;             // 顶点数据指针
+  float texture_coord_u;          // 纹理U坐标
+  float texture_coord_v;          // 纹理V坐标
+  float vertex_x;                 // 顶点X坐标
+  float vertex_y;                 // 顶点Y坐标
+  float vertex_z;                 // 顶点Z坐标
+  float normal_x;                 // 法线X分量
+  float normal_y;                 // 法线Y分量
+  float normal_z;                 // 法线Z分量
+  float scale_factor;             // 缩放因子
+  float threshold_value;          // 阈值数值
+  // 栈变量区域 - 渲染系统工作内存
+  undefined1 stack_protection_buffer [32];        // 栈保护缓冲区
+  float *sampling_buffer_ptr;                     // 采样缓冲区指针
+  longlong ***triple_context_ptr;                // 三重上下文指针
+  undefined *general_ptr1;                       // 通用指针1
+  undefined4 temp_flags;                          // 临时标志位
+  float sampling_weights [2];                     // 采样权重数组
+  undefined8 context_data1;                       // 上下文数据1
+  undefined8 context_data2;                       // 上下文数据2
+  longlong **double_context_ptr;                 // 双重上下文指针
+  longlong *memory_manager_ptr;                   // 内存管理器指针
+  undefined8 transform_data1;                    // 变换数据1
+  undefined8 transform_data2;                    // 变换数据2
+  undefined8 transform_data3;                    // 变换数据3
+  undefined1 temp_buffer1 [8];                    // 临时缓冲区1
+  undefined8 *buffer_manager_ptr;                // 缓冲区管理器指针
+  code *callback_function1;                      // 回调函数1
+  code *callback_function2;                      // 回调函数2
+  longlong *pipeline_state_ptr;                  // 管线状态指针
+  longlong *render_target_ptr;                   // 渲染目标指针
+  float *vertex_buffer_ptr;                      // 顶点缓冲区指针
+  undefined8 texture_data1;                      // 纹理数据1
+  undefined8 texture_data2;                      // 纹理数据2
+  longlong *shader_program_ptr;                  // 着色器程序指针
+  longlong **texture_manager_ptr;                // 纹理管理器指针
+  longlong *frame_buffer_ptr;                     // 帧缓冲区指针
+  undefined8 frame_buffer_data;                   // 帧缓冲区数据
+  longlong *depth_buffer_ptr;                     // 深度缓冲区指针
+  char status_flag1;                              // 状态标志1
+  char status_flag2;                              // 状态标志2
+  char status_flag3;                              // 状态标志3
+  float render_scale_factor;                      // 渲染缩放因子
+  float depth_threshold;                          // 深度阈值
+  undefined4 depth_mask;                          // 深度掩码
+  float texture_coord_u1;                         // 纹理U坐标1
+  float texture_coord_v1;                         // 纹理V坐标1
+  int vertex_index1;                              // 顶点索引1
+  int vertex_index2;                              // 顶点索引2
+  float normal_x1;                                // 法线X分量1
+  float normal_y1;                                // 法线Y分量1
+  int vertex_index3;                              // 顶点索引3
+  int vertex_index4;                              // 顶点索引4
+  float vertex_x1;                                // 顶点X坐标1
+  float vertex_y1;                                // 顶点Y坐标1
+  float vertex_z1;                                // 顶点Z坐标1
+  float vertex_x2;                                // 顶点X坐标2
+  float vertex_y2;                                // 顶点Y坐标2
+  float vertex_z2;                                // 顶点Z坐标2
+  float texture_coord_u2;                         // 纹理U坐标2
+  float texture_coord_v2;                         // 纹理V坐标2
+  float texture_coord_u3;                         // 纹理U坐标3
+  float texture_coord_v3;                         // 纹理V坐标3
+  float texture_coord_u4;                         // 纹理U坐标4
+  float texture_coord_v4;                         // 纹理V坐标4
+  float normal_x2;                                // 法线X分量2
+  float normal_y2;                                // 法线Y分量2
+  float normal_z2;                                // 法线Z分量2
+  undefined4 normal_mask;                         // 法线掩码
+  float color_r;                                  // 颜色红色分量
+  float color_g;                                  // 颜色绿色分量
+  float color_b;                                  // 颜色蓝色分量
+  float color_a;                                  // 颜色透明度分量
+  int depth_x;                                    // 深度X坐标
+  int depth_y;                                    // 深度Y坐标
+  float shadow_intensity;                         // 阴影强度
+  float shadow_softness;                          // 阴影柔和度
+  float shadow_distance;                          // 阴影距离
+  undefined4 shadow_mask;                         // 阴影掩码
+  float light_x;                                  // 光源X坐标
+  float light_y;                                  // 光源Y坐标
+  float light_z;                                  // 光源Z坐标
+  undefined4 light_mask;                          // 光源掩码
+  float material_x;                               // 材质X坐标
+  float material_y;                               // 材质Y坐标
+  float material_z;                               // 材质Z坐标
+  undefined4 material_mask;                      // 材质掩码
+  longlong *vertex_buffer_manager_ptr;            // 顶点缓冲区管理器指针
+  undefined8 vertex_buffer_data;                  // 顶点缓冲区数据
+  longlong *index_buffer_ptr;                     // 索引缓冲区指针
+  float *texture_buffer_ptr;                     // 纹理缓冲区指针
+  float *normal_buffer_ptr;                      // 法线缓冲区指针
   undefined1 auStack_250 [16];
   undefined1 auStack_240 [16];
   undefined1 auStack_230 [16];
