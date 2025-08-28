@@ -309,240 +309,275 @@ void Add_Rendering_Element_By_Bitmask(longlong *render_context, uint bitmask, lo
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180275f30(undefined8 *param_1,uint *param_2,undefined8 param_3,float *param_4,
-                       undefined8 *param_5)
+/**
+ * 渲染数据处理函数
+ * 处理渲染系统的核心数据计算，包括矩阵变换、距离检查和元素处理
+ * @param render_context 渲染上下文指针
+ * @param render_flags 渲染标志指针
+ * @param render_mode 渲染模式
+ * @param position_data 位置数据数组
+ * @param render_params 渲染参数数组
+ * @return 处理结果标志
+ */
+ulonglong Process_Rendering_Data(undefined8 *render_context, uint *render_flags, undefined8 render_mode, float *position_data,
+                       undefined8 *render_params)
 
 {
-  float fVar1;
-  longlong lVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  undefined8 uVar15;
-  byte bVar16;
-  ulonglong uVar17;
-  int iVar18;
-  longlong lVar19;
-  uint uVar20;
-  byte bVar21;
-  longlong lVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  undefined8 uStack_e8;
-  undefined5 uStack_e0;
-  undefined1 uStack_db;
-  undefined2 uStack_da;
-  undefined8 *puStack_d8;
-  undefined8 uStack_d0;
-  undefined4 uStack_c8;
-  undefined4 uStack_c4;
-  undefined4 uStack_c0;
-  int iStack_bc;
-  undefined8 uStack_b8;
-  undefined8 uStack_b0;
-  undefined8 uStack_a8;
-  undefined8 uStack_a0;
-  undefined4 uStack_98;
-  undefined4 uStack_94;
-  undefined4 uStack_90;
-  undefined4 uStack_8c;
-  undefined4 uStack_88;
-  undefined4 uStack_84;
-  undefined4 uStack_80;
-  undefined4 uStack_7c;
-  float fStack_78;
-  float fStack_74;
-  float fStack_70;
-  float fStack_6c;
-  float fStack_68;
-  float fStack_64;
-  float fStack_60;
-  float fStack_5c;
-  float fStack_58;
-  float fStack_54;
-  float fStack_50;
-  float fStack_4c;
-  float fStack_48;
-  float fStack_44;
-  float fStack_40;
-  float fStack_3c;
+  float distance_x;
+  longlong element_ptr;
+  float pos_y;
+  float pos_z;
+  float pos_w;
+  float transform_x;
+  float transform_y;
+  float transform_z;
+  float transform_w;
+  float matrix_11;
+  float matrix_12;
+  float matrix_13;
+  float matrix_14;
+  float matrix_21;
+  float matrix_22;
+  float matrix_23;
+  float matrix_24;
+  undefined8 param_data;
+  byte render_result;
+  ulonglong result_flag;
+  int element_index;
+  longlong loop_counter;
+  uint element_bitmask;
+  byte success_flag;
+  longlong context_ptr;
+  float render_distance;
+  float camera_x;
+  float camera_y;
+  float camera_z;
+  float max_distance;
+  undefined8 stack_param_1;
+  undefined5 stack_param_2;
+  undefined1 stack_param_3;
+  undefined2 stack_param_4;
+  undefined8 *stack_param_ptr;
+  undefined8 stack_param_5;
+  undefined4 stack_param_6;
+  undefined4 stack_param_7;
+  undefined4 stack_param_8;
+  int stack_param_9;
+  undefined8 stack_param_10;
+  undefined8 stack_param_11;
+  undefined8 stack_param_12;
+  undefined8 stack_param_13;
+  undefined4 stack_param_14;
+  undefined4 stack_param_15;
+  undefined4 stack_param_16;
+  undefined4 stack_param_17;
+  undefined4 stack_param_18;
+  undefined4 stack_param_19;
+  undefined4 stack_param_20;
+  undefined4 stack_param_21;
+  float transformed_x;
+  float transformed_y;
+  float transformed_z;
+  float transformed_w;
+  float transformed_2x;
+  float transformed_2y;
+  float transformed_2z;
+  float transformed_2w;
+  float transformed_3x;
+  float transformed_3y;
+  float transformed_3z;
+  float transformed_3w;
+  float transformed_4x;
+  float transformed_4y;
+  float transformed_4z;
+  float transformed_4w;
   
-  uVar17 = (ulonglong)*(uint *)(param_1 + 0x42);
-  if (((*param_2 & *(uint *)(param_1 + 0x42)) == 0) || (*(int *)(param_1 + 0xb) == 0)) {
-LAB_180276376:
-    uVar17 = uVar17 & 0xffffffffffffff00;
+  result_flag = (ulonglong)*(uint *)(render_context + 0x42);
+  if (((*render_flags & *(uint *)(render_context + 0x42)) == 0) || (*(int *)(render_context + 0xb) == 0)) {
+PROCESSING_FAILED:
+    result_flag = result_flag & 0xffffffffffffff00;
   }
   else {
-    uStack_e8 = *param_5;
-    uVar15 = param_5[1];
-    uStack_d0 = param_5[3];
-    uStack_c8 = *(undefined4 *)(param_5 + 4);
-    uStack_c4 = *(undefined4 *)((longlong)param_5 + 0x24);
-    uStack_c0 = *(undefined4 *)(param_5 + 5);
-    iStack_bc = *(int *)((longlong)param_5 + 0x2c);
-    uStack_b8 = param_5[6];
-    uStack_b0 = param_5[7];
-    uStack_a8 = param_5[8];
-    uStack_a0 = param_5[9];
-    uStack_98 = *(undefined4 *)(param_5 + 10);
-    uStack_94 = *(undefined4 *)((longlong)param_5 + 0x54);
-    uStack_90 = *(undefined4 *)(param_5 + 0xb);
-    uStack_8c = *(undefined4 *)((longlong)param_5 + 0x5c);
-    uStack_88 = *(undefined4 *)(param_5 + 0xc);
-    uStack_84 = *(undefined4 *)((longlong)param_5 + 100);
-    uStack_80 = *(undefined4 *)(param_5 + 0xd);
-    uStack_7c = *(undefined4 *)((longlong)param_5 + 0x6c);
-    uStack_e0._0_4_ = (int)uVar15;
-    iVar18 = (int)uStack_e0 + *(int *)((longlong)param_1 + 0x5c);
-    uStack_da = (undefined2)((ulonglong)uVar15 >> 0x30);
-    _uStack_e0 = CONCAT15(*(undefined1 *)(param_1 + 0x76),(int5)uVar15);
-    _uStack_e0 = CONCAT44(stack0xffffffffffffff24,iVar18);
-    if (iStack_bc == 0) {
-      iStack_bc = *(int *)(param_1 + 0x62);
-      uStack_c0 = *(undefined4 *)(param_1 + 99);
+    // 复制渲染参数到栈空间
+    stack_param_1 = *render_params;
+    param_data = render_params[1];
+    stack_param_5 = render_params[3];
+    stack_param_6 = *(undefined4 *)(render_params + 4);
+    stack_param_7 = *(undefined4 *)((longlong)render_params + 0x24);
+    stack_param_8 = *(undefined4 *)(render_params + 5);
+    stack_param_9 = *(int *)((longlong)render_params + 0x2c);
+    stack_param_10 = render_params[6];
+    stack_param_11 = render_params[7];
+    stack_param_12 = render_params[8];
+    stack_param_13 = render_params[9];
+    stack_param_14 = *(undefined4 *)(render_params + 10);
+    stack_param_15 = *(undefined4 *)((longlong)render_params + 0x54);
+    stack_param_16 = *(undefined4 *)(render_params + 0xb);
+    stack_param_17 = *(undefined4 *)((longlong)render_params + 0x5c);
+    stack_param_18 = *(undefined4 *)(render_params + 0xc);
+    stack_param_19 = *(undefined4 *)((longlong)render_params + 100);
+    stack_param_20 = *(undefined4 *)(render_params + 0xd);
+    stack_param_21 = *(undefined4 *)((longlong)render_params + 0x6c);
+    stack_param_2._0_4_ = (int)param_data;
+    element_index = (int)stack_param_2 + *(int *)((longlong)render_context + 0x5c);
+    stack_param_4 = (undefined2)((ulonglong)param_data >> 0x30);
+    _stack_param_2 = CONCAT15(*(undefined1 *)(render_context + 0x76),(int5)param_data);
+    _stack_param_2 = CONCAT44(stack0xffffffffffffff24,element_index);
+    if (stack_param_9 == 0) {
+      stack_param_9 = *(int *)(render_context + 0x62);
+      stack_param_8 = *(undefined4 *)(render_context + 99);
     }
-    lVar19 = 0;
-    if (*(char *)(param_1 + 0xc) == '\0') {
-      if (iVar18 < 0) {
-        iVar18 = 0;
+    loop_counter = 0;
+    if (*(char *)(render_context + 0xc) == '\0') {
+      if (element_index < 0) {
+        element_index = 0;
       }
-      else if (*(int *)(param_1 + 0xb) + -1 < iVar18) {
-        iVar18 = *(int *)(param_1 + 0xb) + -1;
+      else if (*(int *)(render_context + 0xb) + -1 < element_index) {
+        element_index = *(int *)(render_context + 0xb) + -1;
       }
     }
-    bVar21 = 1;
-    uVar20 = 1 << ((byte)iVar18 & 0x1f);
-    puStack_d8 = param_1;
-    if ((*(char *)(param_1 + 100) == '\0') && (*(char *)(param_1 + 0x76) == -1)) {
-      fVar3 = *param_4;
-      fVar4 = param_4[1];
-      fVar5 = param_4[2];
-      fVar6 = param_4[3];
-      uVar17 = *(ulonglong *)(param_2 + 10);
-      fVar26 = *(float *)((longlong)param_1 + 0x334);
-      fVar23 = *(float *)(param_1 + 0x66);
-      fVar24 = *(float *)(param_1 + 0x67);
-      fVar25 = *(float *)((longlong)param_1 + 0x344);
-      fVar7 = param_4[8];
-      fVar8 = param_4[9];
-      fVar9 = param_4[10];
-      fVar10 = param_4[0xb];
-      fVar11 = param_4[4];
-      fVar12 = param_4[5];
-      fVar13 = param_4[6];
-      fVar14 = param_4[7];
-      fVar1 = *(float *)(param_1 + 0x68);
-      fStack_78 = fVar26 * fVar11 + fVar23 * fVar3 + fVar24 * fVar7;
-      fStack_74 = fVar26 * fVar12 + fVar23 * fVar4 + fVar24 * fVar8;
-      fStack_70 = fVar26 * fVar13 + fVar23 * fVar5 + fVar24 * fVar9;
-      fStack_6c = fVar26 * fVar14 + fVar23 * fVar6 + fVar24 * fVar10;
-      fVar26 = *(float *)(param_1 + 0x69);
-      fVar23 = *(float *)(param_1 + 0x6a);
-      fVar24 = *(float *)((longlong)param_1 + 0x354);
-      fStack_68 = fVar25 * fVar11 + fVar1 * fVar3 + fVar26 * fVar7;
-      fStack_64 = fVar25 * fVar12 + fVar1 * fVar4 + fVar26 * fVar8;
-      fStack_60 = fVar25 * fVar13 + fVar1 * fVar5 + fVar26 * fVar9;
-      fStack_5c = fVar25 * fVar14 + fVar1 * fVar6 + fVar26 * fVar10;
-      fVar26 = *(float *)(param_1 + 0x6b);
-      fVar25 = *(float *)((longlong)param_1 + 0x364);
-      fVar1 = *(float *)(param_1 + 0x6c);
-      fStack_58 = fVar24 * fVar11 + fVar23 * fVar3 + fVar26 * fVar7;
-      fStack_54 = fVar24 * fVar12 + fVar23 * fVar4 + fVar26 * fVar8;
-      fStack_50 = fVar24 * fVar13 + fVar23 * fVar5 + fVar26 * fVar9;
-      fStack_4c = fVar24 * fVar14 + fVar23 * fVar6 + fVar26 * fVar10;
-      fVar26 = *(float *)(param_1 + 0x6d);
-      fStack_48 = fVar25 * fVar11 + fVar1 * fVar3 + fVar26 * fVar7 + param_4[0xc];
-      fStack_44 = fVar25 * fVar12 + fVar1 * fVar4 + fVar26 * fVar8 + param_4[0xd];
-      fStack_40 = fVar25 * fVar13 + fVar1 * fVar5 + fVar26 * fVar9 + param_4[0xe];
-      fStack_3c = fVar25 * fVar14 + fVar1 * fVar6 + fVar26 * fVar10 + param_4[0xf];
-      if ((uVar17 != 0) && (fVar26 = *(float *)(param_1 + 0xd), fVar26 != 3.4028235e+38)) {
-        if ((undefined *)*param_1 == &UNK_180a169b8) {
-          lVar22 = (longlong)param_1 + 0x214;
+    success_flag = 1;
+    element_bitmask = 1 << ((byte)element_index & 0x1f);
+    stack_param_ptr = render_context;
+    
+    // 处理矩阵变换
+    if ((*(char *)(render_context + 100) == '\0') && (*(char *)(render_context + 0x76) == -1)) {
+      pos_y = *position_data;
+      pos_z = position_data[1];
+      transform_x = position_data[2];
+      transform_y = position_data[3];
+      result_flag = *(ulonglong *)(render_flags + 10);
+      max_distance = *(float *)((longlong)render_context + 0x334);
+      camera_x = *(float *)(render_context + 0x66);
+      camera_y = *(float *)(render_context + 0x67);
+      camera_z = *(float *)((longlong)render_context + 0x344);
+      matrix_11 = position_data[8];
+      matrix_12 = position_data[9];
+      matrix_13 = position_data[10];
+      matrix_14 = position_data[0xb];
+      matrix_21 = position_data[4];
+      matrix_22 = position_data[5];
+      matrix_23 = position_data[6];
+      matrix_24 = position_data[7];
+      transform_z = *(float *)(render_context + 0x68);
+      
+      // 第一行变换计算
+      transformed_x = max_distance * matrix_21 + camera_x * pos_y + camera_y * matrix_11;
+      transformed_y = max_distance * matrix_22 + camera_x * pos_z + camera_y * matrix_12;
+      transformed_z = max_distance * matrix_23 + camera_x * transform_x + camera_y * matrix_13;
+      transformed_w = max_distance * matrix_24 + camera_x * transform_y + camera_y * matrix_14;
+      
+      max_distance = *(float *)(render_context + 0x69);
+      camera_x = *(float *)(render_context + 0x6a);
+      camera_y = *(float *)((longlong)render_context + 0x354);
+      
+      // 第二行变换计算
+      transformed_2x = camera_z * matrix_21 + transform_z * pos_y + max_distance * matrix_11;
+      transformed_2y = camera_z * matrix_22 + transform_z * pos_z + max_distance * matrix_12;
+      transformed_2z = camera_z * matrix_23 + transform_z * transform_x + max_distance * matrix_13;
+      transformed_2w = camera_z * matrix_24 + transform_z * transform_y + max_distance * matrix_14;
+      
+      max_distance = *(float *)(render_context + 0x6b);
+      camera_z = *(float *)((longlong)render_context + 0x364);
+      transform_z = *(float *)(render_context + 0x6c);
+      
+      // 第三行变换计算
+      transformed_3x = camera_y * matrix_21 + camera_x * pos_y + max_distance * matrix_11;
+      transformed_3y = camera_y * matrix_22 + camera_x * pos_z + max_distance * matrix_12;
+      transformed_3z = camera_y * matrix_23 + camera_x * transform_x + max_distance * matrix_13;
+      transformed_3w = camera_y * matrix_24 + camera_x * transform_y + max_distance * matrix_14;
+      
+      max_distance = *(float *)(render_context + 0x6d);
+      
+      // 第四行变换计算（带平移）
+      transformed_4x = camera_z * matrix_21 + transform_z * pos_y + max_distance * matrix_11 + position_data[0xc];
+      transformed_4y = camera_z * matrix_22 + transform_z * pos_z + max_distance * matrix_12 + position_data[0xd];
+      transformed_4z = camera_z * matrix_23 + transform_z * transform_x + max_distance * matrix_13 + position_data[0xe];
+      transformed_4w = camera_z * matrix_24 + transform_z * transform_y + max_distance * matrix_14 + position_data[0xf];
+      
+      // 距离检查
+      if ((result_flag != 0) && (max_distance = *(float *)(render_context + 0xd), max_distance != 3.4028235e+38)) {
+        if ((undefined *)*render_context == &STANDARD_RENDER_CONTEXT) {
+          context_ptr = (longlong)render_context + 0x214;
         }
         else {
-          lVar22 = (**(code **)((undefined *)*param_1 + 0x198))(param_1);
-          fVar26 = *(float *)(param_1 + 0xd);
-          uVar17 = *(ulonglong *)(param_2 + 10);
+          context_ptr = (**(code **)((undefined *)*render_context + 0x198))(render_context);
+          max_distance = *(float *)(render_context + 0xd);
+          result_flag = *(ulonglong *)(render_flags + 10);
         }
-        fVar25 = *(float *)(uVar17 + 0x124) - fStack_44;
-        fVar24 = *(float *)(uVar17 + 0x120) - fStack_48;
-        fVar23 = *(float *)(uVar17 + 0x128) - fStack_40;
-        if (fVar26 * fVar26 <
-            (fVar25 * fVar25 + fVar24 * fVar24 + fVar23 * fVar23) -
-            *(float *)(lVar22 + 0x30) * *(float *)(lVar22 + 0x30)) goto LAB_180276376;
+        camera_z = *(float *)(result_flag + 0x124) - transformed_4y;
+        camera_y = *(float *)(result_flag + 0x120) - transformed_4x;
+        camera_x = *(float *)(result_flag + 0x128) - transformed_4z;
+        if (max_distance * max_distance <
+            (camera_z * camera_z + camera_y * camera_y + camera_x * camera_x) -
+            *(float *)(context_ptr + 0x30) * *(float *)(context_ptr + 0x30)) goto PROCESSING_FAILED;
       }
-      iVar18 = (int)((longlong)(param_1[8] - param_1[7]) >> 4);
-      lVar22 = (longlong)iVar18;
-      if (0 < iVar18) {
+      
+      // 处理渲染元素
+      element_index = (int)((longlong)(render_context[8] - render_context[7]) >> 4);
+      context_ptr = (longlong)element_index;
+      if (0 < element_index) {
         do {
-          lVar2 = *(longlong *)(lVar19 + param_1[7]);
-          if ((lVar2 != 0) && ((*(uint *)(lVar19 + 8 + param_1[7]) & uVar20) != 0)) {
-            if (((param_2[0x6f6] & 0x20) != 0) && ((*(uint *)(lVar2 + 0x100) & 0x400000) != 0)) {
-              *(undefined4 *)(param_1 + 0x65) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+          element_ptr = *(longlong *)(loop_counter + render_context[7]);
+          if ((element_ptr != 0) && ((*(uint *)(loop_counter + 8 + render_context[7]) & element_bitmask) != 0)) {
+            if (((render_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
+              *(undefined4 *)(render_context + 0x65) = *(undefined4 *)(GLOBAL_RENDER_DATA + 0x224);
             }
-            bVar16 = FUN_180077750(lVar2,param_2,&fStack_78,param_3,&uStack_e8);
-            bVar21 = bVar21 & bVar16;
+            render_result = process_render_element(element_ptr,render_flags,&transformed_x,render_mode,&stack_param_1);
+            success_flag = success_flag & render_result;
           }
-          lVar19 = lVar19 + 0x10;
-          lVar22 = lVar22 + -1;
-        } while (lVar22 != 0);
-        return (ulonglong)bVar21;
+          loop_counter = loop_counter + 0x10;
+          context_ptr = context_ptr + -1;
+        } while (context_ptr != 0);
+        return (ulonglong)success_flag;
       }
     }
     else {
-      uVar17 = *(ulonglong *)(param_2 + 10);
-      if ((uVar17 != 0) && (fVar26 = *(float *)(param_1 + 0xd), fVar26 != 3.4028235e+38)) {
-        if ((undefined *)*param_1 == &UNK_180a169b8) {
-          lVar22 = (longlong)param_1 + 0x214;
+      // 简化距离检查
+      result_flag = *(ulonglong *)(render_flags + 10);
+      if ((result_flag != 0) && (max_distance = *(float *)(render_context + 0xd), max_distance != 3.4028235e+38)) {
+        if ((undefined *)*render_context == &STANDARD_RENDER_CONTEXT) {
+          context_ptr = (longlong)render_context + 0x214;
         }
         else {
-          lVar22 = (**(code **)((undefined *)*param_1 + 0x198))(param_1);
-          fVar26 = *(float *)(param_1 + 0xd);
-          uVar17 = *(ulonglong *)(param_2 + 10);
+          context_ptr = (**(code **)((undefined *)*render_context + 0x198))(render_context);
+          max_distance = *(float *)(render_context + 0xd);
+          result_flag = *(ulonglong *)(render_flags + 10);
         }
-        fVar25 = *(float *)(uVar17 + 0x124) - param_4[0xd];
-        fVar24 = *(float *)(uVar17 + 0x120) - param_4[0xc];
-        fVar23 = *(float *)(uVar17 + 0x128) - param_4[0xe];
-        if (fVar26 * fVar26 <
-            (fVar25 * fVar25 + fVar24 * fVar24 + fVar23 * fVar23) -
-            *(float *)(lVar22 + 0x30) * *(float *)(lVar22 + 0x30)) goto LAB_180276376;
+        camera_z = *(float *)(result_flag + 0x124) - position_data[0xd];
+        camera_y = *(float *)(result_flag + 0x120) - position_data[0xc];
+        camera_x = *(float *)(result_flag + 0x128) - position_data[0xe];
+        if (max_distance * max_distance <
+            (camera_z * camera_z + camera_y * camera_y + camera_x * camera_x) -
+            *(float *)(context_ptr + 0x30) * *(float *)(context_ptr + 0x30)) goto PROCESSING_FAILED;
       }
-      iVar18 = (int)((longlong)(param_1[8] - param_1[7]) >> 4);
-      lVar22 = (longlong)iVar18;
-      if (0 < iVar18) {
+      
+      // 处理渲染元素（简化版本）
+      element_index = (int)((longlong)(render_context[8] - render_context[7]) >> 4);
+      context_ptr = (longlong)element_index;
+      if (0 < element_index) {
         do {
-          lVar2 = *(longlong *)(lVar19 + param_1[7]);
-          if ((lVar2 != 0) && ((*(uint *)(lVar19 + 8 + param_1[7]) & uVar20) != 0)) {
-            if (((param_2[0x6f6] & 0x20) != 0) && ((*(uint *)(lVar2 + 0x100) & 0x400000) != 0)) {
-              *(undefined4 *)(param_1 + 0x65) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+          element_ptr = *(longlong *)(loop_counter + render_context[7]);
+          if ((element_ptr != 0) && ((*(uint *)(loop_counter + 8 + render_context[7]) & element_bitmask) != 0)) {
+            if (((render_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
+              *(undefined4 *)(render_context + 0x65) = *(undefined4 *)(GLOBAL_RENDER_DATA + 0x224);
             }
-            if ((*(byte *)(lVar2 + 0x100) & 0x20) == 0) {
-              bVar16 = FUN_180077750(lVar2,param_2,param_4,param_3,&uStack_e8);
-              bVar21 = bVar21 & bVar16;
+            if ((*(byte *)(element_ptr + 0x100) & 0x20) == 0) {
+              render_result = process_render_element(element_ptr,render_flags,position_data,render_mode,&stack_param_1);
+              success_flag = success_flag & render_result;
             }
             else {
-              FUN_180075630(lVar2,param_4);
+              direct_render_processing(element_ptr,position_data);
             }
           }
-          lVar19 = lVar19 + 0x10;
-          lVar22 = lVar22 + -1;
-        } while (lVar22 != 0);
+          loop_counter = loop_counter + 0x10;
+          context_ptr = context_ptr + -1;
+        } while (context_ptr != 0);
       }
     }
-    uVar17 = (ulonglong)bVar21;
+    result_flag = (ulonglong)success_flag;
   }
-  return uVar17;
+  return result_flag;
 }
 
 

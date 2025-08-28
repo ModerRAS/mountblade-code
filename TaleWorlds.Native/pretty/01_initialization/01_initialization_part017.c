@@ -393,20 +393,20 @@ undefined8 * Initialize_Memory_Manager(undefined8 *manager)
 
 
 
-// 函数: void FUN_18004be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void Iterate_Resource_Container_A(longlong *container, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 遍历资源容器A
+void Iterate_Resource_Container_A(longlong *container, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
+  undefined8 *end_ptr;
+  undefined8 *current_ptr;
+  undefined8 cleanup_flag;
   
-  uVar3 = 0xfffffffffffffffe;
-  puVar1 = (undefined8 *)param_1[1];
-  for (puVar2 = (undefined8 *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 0x69) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  cleanup_flag = 0xfffffffffffffffe;
+  end_ptr = (undefined8 *)container[1];
+  for (current_ptr = (undefined8 *)*container; current_ptr != end_ptr; current_ptr = current_ptr + 0x69) {
+    (**(code **)*current_ptr)(current_ptr, 0, param_3, param_4, cleanup_flag);
   }
-  if (*param_1 == 0) {
+  if (*container == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -417,20 +417,20 @@ void FUN_18004be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_18004be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void Iterate_Resource_Container_B(longlong *container, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 遍历资源容器B
+void Iterate_Resource_Container_B(longlong *container, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
+  undefined8 *end_ptr;
+  undefined8 *current_ptr;
+  undefined8 cleanup_flag;
   
-  uVar3 = 0xfffffffffffffffe;
-  puVar1 = (undefined8 *)param_1[1];
-  for (puVar2 = (undefined8 *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 0xb) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  cleanup_flag = 0xfffffffffffffffe;
+  end_ptr = (undefined8 *)container[1];
+  for (current_ptr = (undefined8 *)*container; current_ptr != end_ptr; current_ptr = current_ptr + 0xb) {
+    (**(code **)*current_ptr)(current_ptr, 0, param_3, param_4, cleanup_flag);
   }
-  if (*param_1 == 0) {
+  if (*container == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -441,41 +441,41 @@ void FUN_18004be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_18004be90(longlong param_1)
-void FUN_18004be90(longlong param_1)
-
+// 函数: void Cleanup_Thread_Local_Storage(longlong tls_context)
+// 清理线程本地存储
+void Cleanup_Thread_Local_Storage(longlong tls_context)
 {
-  int iVar1;
-  longlong lVar2;
-  uint uVar3;
-  ulonglong uVar5;
-  ulonglong uVar4;
+  int lock_result;
+  longlong data_start;
+  uint item_index;
+  ulonglong current_offset;
+  ulonglong max_offset;
   
-  iVar1 = _Mtx_lock(param_1 + 0x28);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  lock_result = _Mtx_lock(tls_context + 0x28);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  uVar4 = 0;
-  lVar2 = *(longlong *)(param_1 + 8);
-  uVar5 = uVar4;
-  if (*(longlong *)(param_1 + 0x10) - lVar2 >> 3 != 0) {
+  max_offset = 0;
+  data_start = *(longlong *)(tls_context + 8);
+  current_offset = max_offset;
+  if (*(longlong *)(tls_context + 0x10) - data_start >> 3 != 0) {
     do {
-      if (*(longlong *)(uVar5 + lVar2) != 0) {
+      if (*(longlong *)(current_offset + data_start) != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *(undefined8 *)(uVar5 + *(longlong *)(param_1 + 8)) = 0;
-      uVar3 = (int)uVar4 + 1;
-      uVar4 = (ulonglong)uVar3;
-      lVar2 = *(longlong *)(param_1 + 8);
-      uVar5 = uVar5 + 8;
-    } while ((ulonglong)(longlong)(int)uVar3 <
-             (ulonglong)(*(longlong *)(param_1 + 0x10) - lVar2 >> 3));
+      *(undefined8 *)(current_offset + *(longlong *)(tls_context + 8)) = 0;
+      item_index = (int)max_offset + 1;
+      max_offset = (ulonglong)item_index;
+      data_start = *(longlong *)(tls_context + 8);
+      current_offset = current_offset + 8;
+    } while ((ulonglong)(longlong)(int)item_index <
+             (ulonglong)(*(longlong *)(tls_context + 0x10) - data_start >> 3));
   }
-  *(longlong *)(param_1 + 0x10) = lVar2;
-  iVar1 = _Mtx_unlock(param_1 + 0x28);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  *(longlong *)(tls_context + 0x10) = data_start;
+  lock_result = _Mtx_unlock(tls_context + 0x28);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
   return;
 }

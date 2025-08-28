@@ -1,66 +1,66 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part017.c - 11 个函数
+// 03_rendering_part017.c - 渲染系统组件 - 11个函数
 
 // 函数: void FUN_1802776ad(void)
-void FUN_1802776ad(void)
-
+// 渲染对象清理处理
+void Process_Render_Object_Cleanup(void)
 {
-  int *piVar1;
-  byte *pbVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong lVar6;
-  longlong unaff_RBP;
-  longlong *unaff_RSI;
-  uint unaff_R14D;
+  int *render_count_ptr;
+  byte *flag_byte_ptr;
+  longlong render_obj;
+  longlong slot_data;
+  longlong global_context;
+  longlong slot_offset;
+  longlong frame_context;
+  longlong *obj_array_ptr;
+  uint render_flags;
   
   do {
-    if ((*(uint *)(unaff_RSI + 1) & unaff_R14D) != 0) {
-      lVar3 = *unaff_RSI;
-      if (*(longlong *)(lVar3 + 0x1b8) != 0) {
-        lVar6 = 0xb8;
-        lVar5 = _DAT_180c86870;
+    if ((*(uint *)(obj_array_ptr + 1) & render_flags) != 0) {
+      render_obj = *obj_array_ptr;
+      if (*(longlong *)(render_obj + 0x1b8) != 0) {
+        slot_offset = 0xb8;
+        global_context = _DAT_180c86870;
         do {
-          lVar4 = *(longlong *)(lVar6 + *(longlong *)(lVar3 + 0x1b8));
-          if ((((lVar4 != 0) && (*(longlong *)(lVar6 + 0x328 + *(longlong *)(lVar3 + 0x1b8)) == 0))
-              && ((*(uint *)(lVar4 + 0x328) & 0x20000000) == 0)) &&
-             (*(longlong *)(lVar4 + 0x370) == 0)) {
-            if (*(longlong *)(lVar4 + 0x1d8) == 0) {
-              FUN_18023b050(lVar4,0);
-              lVar5 = _DAT_180c86870;
-              piVar1 = (int *)(*(longlong *)(lVar6 + *(longlong *)(lVar3 + 0x1b8)) + 0x3a8);
-              *piVar1 = *piVar1 + 1;
+          slot_data = *(longlong *)(slot_offset + *(longlong *)(render_obj + 0x1b8));
+          if ((((slot_data != 0) && (*(longlong *)(slot_offset + 0x328 + *(longlong *)(render_obj + 0x1b8)) == 0))
+              && ((*(uint *)(slot_data + 0x328) & 0x20000000) == 0)) &&
+             (*(longlong *)(slot_data + 0x370) == 0)) {
+            if (*(longlong *)(slot_data + 0x1d8) == 0) {
+              FUN_18023b050(slot_data,0);
+              global_context = _DAT_180c86870;
+              render_count_ptr = (int *)(*(longlong *)(slot_offset + *(longlong *)(render_obj + 0x1b8)) + 0x3a8);
+              *render_count_ptr = *render_count_ptr + 1;
             }
-            else if (lVar5 != 0) {
-              *(longlong *)(lVar4 + 0x340) = (longlong)*(int *)(lVar5 + 0x224);
+            else if (global_context != 0) {
+              *(longlong *)(slot_data + 0x340) = (longlong)*(int *)(global_context + 0x224);
             }
           }
-          lVar6 = lVar6 + 8;
-        } while (lVar6 < 0x138);
+          slot_offset = slot_offset + 8;
+        } while (slot_offset < 0x138);
       }
-      if (*(char *)(lVar3 + 0xf9) != '\0') {
-        if (*(longlong *)(lVar3 + 0x1d8) != 0) {
+      if (*(char *)(render_obj + 0xf9) != '\0') {
+        if (*(longlong *)(render_obj + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)(lVar3 + 0x1d8) = 0;
+        *(undefined8 *)(render_obj + 0x1d8) = 0;
         LOCK();
-        *(undefined1 *)(lVar3 + 0xf9) = 0;
+        *(undefined1 *)(render_obj + 0xf9) = 0;
         UNLOCK();
       }
-      if (*(longlong *)(lVar3 + 0x1e8) != 0) {
+      if (*(longlong *)(render_obj + 0x1e8) != 0) {
         FUN_180080060();
-        *(undefined8 *)(lVar3 + 0x1e8) = 0;
-        if (*(longlong *)(lVar3 + 0x1f0) != 0) {
-          pbVar2 = (byte *)(*(longlong *)(lVar3 + 0x1f0) + 0xfe);
-          *pbVar2 = *pbVar2 & 0xfb;
+        *(undefined8 *)(render_obj + 0x1e8) = 0;
+        if (*(longlong *)(render_obj + 0x1f0) != 0) {
+          flag_byte_ptr = (byte *)(*(longlong *)(render_obj + 0x1f0) + 0xfe);
+          *flag_byte_ptr = *flag_byte_ptr & 0xfb;
         }
       }
     }
-    unaff_RSI = unaff_RSI + 2;
-  } while (unaff_RSI < *(longlong **)(unaff_RBP + 0x40));
+    obj_array_ptr = obj_array_ptr + 2;
+  } while (obj_array_ptr < *(longlong **)(frame_context + 0x40));
   return;
 }
 
@@ -69,8 +69,8 @@ void FUN_1802776ad(void)
 
 
 // 函数: void FUN_1802777dd(void)
-void FUN_1802777dd(void)
-
+// 空函数 - 渲染系统占位符
+void Render_System_Placeholder(void)
 {
   return;
 }
