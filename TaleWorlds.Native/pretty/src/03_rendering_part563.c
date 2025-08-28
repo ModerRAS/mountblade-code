@@ -218,7 +218,7 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
                 *(unsigned int*)(rbx_reg + 0xabd8) = RENDERING_FLOAT_THREE;
                 
                 // 调用渲染系统初始化函数
-                FUN_180662190(&stack_var1, *(unsigned char*)(rbx_reg + 0x2603),
+                RenderingSystem_Initialize(&stack_var1, *(unsigned char*)(rbx_reg + 0x2603),
                               *(unsigned char*)(rbx_reg + 0x2605), *(unsigned char*)(rbx_reg + 0x2607), 1);
                 
                 // 数据处理和内存操作
@@ -300,7 +300,7 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
                 *(unsigned int*)(rbx_reg + 0xa9c8) = uint_var5;
                 
                 // 第二次渲染系统调用
-                FUN_180662190(&stack_var1, *(unsigned char*)(rbx_reg + 0x2604),
+                RenderingSystem_Initialize(&stack_var1, *(unsigned char*)(rbx_reg + 0x2604),
                               *(unsigned char*)(rbx_reg + 0x2606), *(unsigned char*)(rbx_reg + 0x2607), 1);
                 
                 // 最终数据处理
@@ -382,7 +382,7 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
                 (*(int*)(rbx_reg + 0xa8b0) != 1)) {
             
             // 替代处理分支
-            FUN_180662190(&stack_var1, *(unsigned char*)(rbx_reg + 0x2603),
+            RenderingSystem_Initialize(&stack_var1, *(unsigned char*)(rbx_reg + 0x2603),
                           *(unsigned char*)(rbx_reg + 0x2605), *(unsigned char*)(rbx_reg + 0x2607), 1);
             
             // 重复的数据处理模式
@@ -458,7 +458,7 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
             *(int*)(rbx_reg + 0xa8b0) = 1;
             *(unsigned char*)(rbx_reg + 0xa9f0) = 1;
             
-            FUN_180662190(&stack_var1, *(unsigned char*)(rbx_reg + 0x2604),
+            RenderingSystem_Initialize(&stack_var1, *(unsigned char*)(rbx_reg + 0x2604),
                           *(unsigned char*)(rbx_reg + 0x2606), *(unsigned char*)(rbx_reg + 0x2607), 1);
             
             *(unsigned int*)(rbx_reg + 0xaaa0) = 1;
@@ -472,7 +472,7 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
         if ((xmm8_float != *(float*)(rbx_reg + 0xa9e4)) || (*(int*)(rbx_reg + 0xa8b0) != 2)) {
             
             // 高级参数处理
-            FUN_180662190(&stack_var1, *(unsigned char*)(rbx_reg + 0x2603),
+            RenderingSystem_Initialize(&stack_var1, *(unsigned char*)(rbx_reg + 0x2603),
                           *(unsigned char*)(rbx_reg + 0x2605), *(unsigned char*)(rbx_reg + 0x2607), 1);
             
             ull_var1 = *(unsigned long long*)(rbp_reg + 0xf0);
@@ -547,7 +547,7 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
             
             stack_var2 = uint_var ^ 0x80000000;
             
-            FUN_180662190(&stack_var1, *(unsigned char*)(rbx_reg + 0x2604),
+            RenderingSystem_Initialize(&stack_var1, *(unsigned char*)(rbx_reg + 0x2604),
                           *(unsigned char*)(rbx_reg + 0x2606), *(unsigned char*)(rbx_reg + 0x2607), 1);
             
             *(unsigned int*)(rbx_reg + 0xaaa0) = 2;
@@ -683,7 +683,7 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
         }
         
         if ((*(float*)(rbx_reg + 0xa600) <= 0.0) && (*(float*)(rbx_reg + 0xa604) == 0.0)) {
-            param_1 = (float)FUN_180516e40(param_1, 0xc7d5);
+            param_1 = (float)RenderingSystem_CalculateParameter(param_1, 0xc7d5);
         }
         
         float_var = *(float*)(rbx_reg + 0xa7f0);
@@ -698,21 +698,21 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
         if ((ushort_var & 0x2c0) == 0) {
             if ((ushort_var & 0x100) == 0) {
                 if ((*(unsigned short*)(*(long long*)(rdi_reg + 0x728) + 0x5ac) & 0x3c0) != 0) {
-                    param_1 = (float)FUN_1805162e0();
+                    param_1 = (float)RenderingSystem_GetStatus();
                 }
             }
             else {
-                param_1 = (float)FUN_180515880();
+                param_1 = (float)RenderingSystem_GetConfiguration();
             }
         }
         else {
-            param_1 = (float)FUN_180514a60();
+            param_1 = (float)RenderingSystem_GetData();
         }
         
         long_var = *(long long*)(rdi_reg + 0x728);
         if ((*(unsigned short*)(long_var + 0x5aa) & 0x800) != 0) {
             stack_var1 = ((unsigned int)stack_var1 & 0xffffff00) | *(unsigned char*)(rbx_reg + 0x25fb);
-            FUN_180662190(&stack_var1, *(unsigned char*)(rbx_reg + 0x25fa),
+            RenderingSystem_Initialize(&stack_var1, *(unsigned char*)(rbx_reg + 0x25fa),
                           *(unsigned char*)(rbx_reg + 0x25fc), *(unsigned char*)(rbx_reg + 0x2600));
             
             ull_var1 = *(unsigned long long*)(rbp_reg + 0xf0);
@@ -797,7 +797,7 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
             }
             if (*(float*)(rbx_reg + 0xa600) <= 0.0) {
                 ALTERNATE_PROCESSING:
-                param_1 = (float)FUN_180516e40(param_1, 0xc7d5);
+                param_1 = (float)RenderingSystem_CalculateParameter(param_1, 0xc7d5);
             }
         }
         else {
@@ -828,7 +828,7 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
     }
     
     // 最终函数调用
-    FUN_180516e40(param_1, 0x382a);
+    RenderingSystem_CalculateParameter(param_1, 0x382a);
     
     FINAL_PROCESSING:
     // 警告：子函数不返回
@@ -899,8 +899,74 @@ void RenderingSystemProcessMemoryData(RenderingMemoryManager* memory, void* data
 // 函数别名映射
 // ============================================================================
 
+// 渲染系统初始化函数
+void RenderingSystem_Initialize(void* param1, unsigned char param2, unsigned char param3, unsigned char param4, int param5)
+{
+    RenderingSystem_Initialize(param1, param2, param3, param4, param5);
+}
+
+// 渲染系统参数计算函数
+float RenderingSystem_CalculateParameter(float param1, int param2)
+{
+    return RenderingSystem_CalculateParameter(param1, param2);
+}
+
+// 渲染系统状态获取函数
+float RenderingSystem_GetStatus(void)
+{
+    return RenderingSystem_GetStatus();
+}
+
+// 渲染系统配置获取函数
+float RenderingSystem_GetConfiguration(void)
+{
+    return RenderingSystem_GetConfiguration();
+}
+
+// 渲染系统数据获取函数
+float RenderingSystem_GetData(void)
+{
+    return RenderingSystem_GetData();
+}
+
+// 渲染系统错误处理函数
+void RenderingSystem_ErrorHandler(unsigned long long param1)
+{
+    FUN_1808fc050(param1);
+}
+
 // 原始函数别名映射
 void FUN_1805791e0(float param_1, unsigned long long param_2)
 {
     RenderingSystemAdvancedParameterProcessor(param_1, param_2);
+}
+
+void RenderingSystem_Initialize(void* param1, unsigned char param2, unsigned char param3, unsigned char param4, int param5)
+{
+    RenderingSystem_Initialize(param1, param2, param3, param4, param5);
+}
+
+float RenderingSystem_CalculateParameter(float param1, int param2)
+{
+    return RenderingSystem_CalculateParameter(param1, param2);
+}
+
+float RenderingSystem_GetStatus(void)
+{
+    return RenderingSystem_GetStatus();
+}
+
+float RenderingSystem_GetConfiguration(void)
+{
+    return RenderingSystem_GetConfiguration();
+}
+
+float RenderingSystem_GetData(void)
+{
+    return RenderingSystem_GetData();
+}
+
+void FUN_1808fc050(unsigned long long param1)
+{
+    RenderingSystem_ErrorHandler(param1);
 }

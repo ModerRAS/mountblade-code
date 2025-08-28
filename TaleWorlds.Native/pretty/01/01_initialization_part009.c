@@ -274,7 +274,7 @@ void InitializationSystem_RegistrySearchAndInsert2(void)
  * - 设置优先级为0
  * 
  * 注意事项：
- * - 配置数据指向DAT_18098c9b8
+ * - 配置数据指向系统注册表地址
  * - 适用于系统基础组件注册
  */
 void InitializationSystem_RegistrySearchAndInsert3(void)
@@ -338,7 +338,7 @@ void InitializationSystem_RegistrySearchAndInsert3(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 配置数据指向DAT_18098c940
+ * - 配置数据指向系统配置地址1
  * 
  * 注意事项：
  * - 用于系统核心组件注册
@@ -405,7 +405,7 @@ void InitializationSystem_RegistrySearchAndInsert4(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 配置数据指向DAT_18098c918
+ * - 配置数据指向系统配置地址2
  * 
  * 注意事项：
  * - 用于系统扩展组件注册
@@ -475,7 +475,7 @@ void InitializationSystem_RegistrySearchAndInsert5(void)
  * - 设置优先级为3
  * 
  * 注意事项：
- * - 配置数据指向DAT_18098c968
+ * - 配置数据指向系统配置地址3
  * - 优先级3表示较高的启动优先级
  */
 void InitializationSystem_RegistrySearchAndInsert6(void)
@@ -542,7 +542,7 @@ void InitializationSystem_RegistrySearchAndInsert6(void)
  * - 设置优先级为3
  * 
  * 注意事项：
- * - 配置数据指向DAT_18098c990
+ * - 配置数据指向系统配置地址4
  * - 与RegistrySearchAndInsert6优先级相同
  */
 void InitializationSystem_RegistrySearchAndInsert7(void)
@@ -609,7 +609,7 @@ void InitializationSystem_RegistrySearchAndInsert7(void)
  * - 设置函数指针为FUN_180073930
  * 
  * 注意事项：
- * - 配置数据指向DAT_18098c8f0
+ * - 配置数据指向系统配置地址5
  * - 用于系统关键组件注册
  */
 void InitializationSystem_RegistrySearchAndInsert8(void)
@@ -676,7 +676,7 @@ void InitializationSystem_RegistrySearchAndInsert8(void)
  * - 设置优先级为1
  * 
  * 注意事项：
- * - 配置数据指向DAT_18098c8c8
+ * - 配置数据指向系统配置地址6
  * - 优先级1表示中等启动优先级
  */
 void InitializationSystem_RegistrySearchAndInsert9(void)
@@ -781,7 +781,7 @@ void InitializationSystem_ConfigRegistrationManager2(void)
  * 
  * 注意事项：
  * - 配置标志较小，表示较低优先级
- * - 配置数据指向UNK_180a24828
+ * - 配置数据指向系统未知地址1
  */
 void InitializationSystem_ConfigRegistrationManager3(void)
 {
@@ -819,7 +819,7 @@ void InitializationSystem_ConfigRegistrationManager3(void)
  * - 设置函数指针为FUN_18025cc00
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a010a0
+ * - 配置数据指向系统数据地址1
  * - 用于系统渲染相关组件注册
  */
 void InitializationSystem_RegistrySearchAndInsert10(void)
@@ -886,7 +886,7 @@ void InitializationSystem_RegistrySearchAndInsert10(void)
  * - 设置函数指针为FUN_18025c000
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a01078
+ * - 配置数据指向系统数据地址2
  * - 设置优先级为4
  */
 void InitializationSystem_RegistrySearchAndInsert11(void)
@@ -950,7 +950,7 @@ void InitializationSystem_RegistrySearchAndInsert11(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 配置数据指向DAT_180a01050
+ * - 配置数据指向系统数据地址3
  * 
  * 注意事项：
  * - 用于系统音频相关组件注册
@@ -1020,7 +1020,7 @@ void InitializationSystem_RegistrySearchAndInsert12(void)
  * - 设置函数指针为FUN_18025d270
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a01028
+ * - 配置数据指向系统数据地址4
  * - 用于系统网络相关组件注册
  */
 void InitializationSystem_RegistrySearchAndInsert13(void)
@@ -1084,7 +1084,7 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 配置数据指向DAT_180a01000
+ * - 配置数据指向系统数据地址5
  * 
  * 注意事项：
  * - 用于系统核心基础组件注册
@@ -1154,7 +1154,7 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
  * - 设置特殊指针为UNK_1800868c0
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a00fd8
+ * - 配置数据指向系统数据地址6
  * - 使用特殊指针处理
  */
 void InitializationSystem_RegistrySearchAndInsert15(void)
@@ -1387,7 +1387,7 @@ void InitializationSystem_RegistrySearchAndInsert17(void)
  * - 设置函数指针为FUN_18025cc00
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a010a0
+ * - 配置数据指向系统数据地址1
  * - 与RegistrySearchAndInsert10功能相同
  */
 void InitializationSystem_RegistrySearchAndInsert18(void)
@@ -1454,7 +1454,7 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
  * - 设置函数指针为FUN_18025c000
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a01078
+ * - 配置数据指向系统数据地址2
  * - 与RegistrySearchAndInsert11功能相同
  */
 void InitializationSystem_RegistrySearchAndInsert19(void)
@@ -1518,10 +1518,10 @@ void InitializationSystem_RegistrySearchAndInsert19(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 配置数据指向DAT_180a01050
+ * - 配置数据指向系统数据地址3
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a01050
+ * - 配置数据指向系统数据地址3
  * - 与RegistrySearchAndInsert12功能相同
  */
 void InitializationSystem_RegistrySearchAndInsert20(void)
@@ -1588,7 +1588,7 @@ void InitializationSystem_RegistrySearchAndInsert20(void)
  * - 设置函数指针为FUN_18025d270
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a01028
+ * - 配置数据指向系统数据地址4
  * - 与RegistrySearchAndInsert13功能相同
  */
 void InitializationSystem_RegistrySearchAndInsert21(void)
@@ -1652,10 +1652,10 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 配置数据指向DAT_180a01000
+ * - 配置数据指向系统数据地址5
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a01000
+ * - 配置数据指向系统数据地址5
  * - 与RegistrySearchAndInsert14功能相同
  */
 void InitializationSystem_RegistrySearchAndInsert22(void)
@@ -1722,7 +1722,7 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
  * - 设置特殊指针为UNK_1800868c0
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a00fd8
+ * - 配置数据指向系统数据地址6
  * - 与RegistrySearchAndInsert15功能相同
  */
 void InitializationSystem_RegistrySearchAndInsert23(void)
