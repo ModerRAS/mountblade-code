@@ -1232,8 +1232,13 @@ int64_t release_file_table_entry(int64_t file_entry, uint64_t release_flags, uin
 
 
 
-// 函数: void FUN_180069530(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180069530(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: 系统清理和回调处理函数
+// 功能: 清理系统回调函数，释放相关资源
+// 参数: param_1 - 系统管理器指针
+//       param_2 - 保留参数
+//       param_3 - 保留参数
+//       param_4 - 清理标志
+void InitializationSystem_CallbackCleaner(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   if ((code *)param_1[0x2f] != (code *)0x0) {
