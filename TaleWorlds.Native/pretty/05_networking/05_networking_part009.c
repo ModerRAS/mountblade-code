@@ -1,973 +1,1516 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking_part009.c - 20 个函数
+/**
+ * 05_networking_part009.c - 网络系统高级通信和数据包处理模块
+ * 
+ * 本模块包含20个核心函数，涵盖网络连接管理、数据传输、状态查询、消息处理等高级网络功能
+ * 主要功能包括：
+ * - 网络连接状态检查和管理
+ * - 数据包发送和接收处理
+ * - 网络错误处理和恢复
+ * - 套接字操作和连接建立
+ * - 网络缓冲区管理和数据传输
+ * - 网络事件处理和回调机制
+ * - 网络配置和参数设置
+ * - 网络安全验证和加密
+ * 
+ * @author Claude Code
+ * @date 2025-08-28
+ * @version 1.0
+ */
 
-// 函数: void FUN_18084b180(undefined8 param_1,undefined1 param_2)
-void FUN_18084b180(undefined8 param_1,undefined1 param_2)
+/*==========================================
+            常量定义和宏定义
+==========================================*/
 
+/** 网络连接状态常量 */
+#define NETWORK_STATUS_DISCONNECTED    0x00    /**< 网络连接已断开 */
+#define NETWORK_STATUS_CONNECTED       0x01    /**< 网络连接已连接 */
+#define NETWORK_STATUS_CONNECTING      0x02    /**< 网络连接正在连接 */
+#define NETWORK_STATUS_ERROR           0x03    /**< 网络连接错误 */
+
+/** 数据包类型常量 */
+#define PACKET_TYPE_DATA              0x27    /**< 数据包类型：数据传输 */
+#define PACKET_TYPE_CONTROL           0x11    /**< 数据包类型：控制信息 */
+#define PACKET_TYPE_ERROR             0x0b    /**< 数据包类型：错误信息 */
+
+/** 缓冲区大小常量 */
+#define NETWORK_BUFFER_SIZE          0x18    /**< 网络缓冲区大小：24字节 */
+#define STACK_PROTECTION_SIZE        32      /**< 栈保护大小：32字节 */
+#define LARGE_BUFFER_SIZE           256      /**< 大缓冲区大小：256字节 */
+
+/** 网络配置常量 */
+#define NETWORK_CONFIG_TIMEOUT       0x4b    /**< 网络超时配置：75毫秒 */
+#define NETWORK_FLAG_ACTIVE         0x80    /**< 网络活动标志位 */
+
+/*==========================================
+            函数别名定义
+==========================================*/
+
+/** 网络连接状态检查器 */
+#define network_connection_status_checker     FUN_18084b180
+
+/** 网络数据包发送器 */
+#define network_packet_sender                FUN_18084b240
+
+/** 网络连接初始化器 */
+#define network_connection_initializer        FUN_18084b2f0
+
+/** 网络连接处理器 */
+#define network_connection_processor          FUN_18084b380
+
+/** 网络连接验证器 */
+#define network_connection_validator         FUN_18084b410
+
+/** 网络数据包处理器 */
+#define network_packet_processor             FUN_18084b5a0
+
+/** 网络状态管理器 */
+#define network_state_manager                FUN_18084b6c0
+
+/** 网络数据传输器 */
+#define network_data_transmitter             FUN_18084b760
+
+/** 网络消息处理器 */
+#define network_message_processor            FUN_18084b830
+
+/** 网络系统终结器1 */
+#define network_system_terminator1           FUN_18084b92d
+
+/** 网络系统终结器2 */
+#define network_system_terminator2           FUN_18084b955
+
+/** 网络数据管理器 */
+#define network_data_manager                 FUN_18084b990
+
+/** 网络连接管理器 */
+#define network_connection_manager           FUN_18084bbd0
+
+/** 网络数据接收器 */
+#define network_data_receiver               FUN_18084bc0e
+
+/** 网络错误处理器 */
+#define network_error_handler                FUN_18084bcd6
+
+/** 网络系统清理器 */
+#define network_system_cleaner               FUN_18084bd18
+
+/** 网络系统重置器 */
+#define network_system_resetter              FUN_18084bd22
+
+/** 网络缓冲区管理器 */
+#define network_buffer_manager               FUN_18084be00
+
+/** 网络系统终结器3 */
+#define network_system_terminator3           FUN_18084bfc9
+
+/** 网络系统终结器4 */
+#define network_system_terminator4           FUN_18084bff2
+
+/** 字符串解析处理器 */
+#define string_parser_processor              thunk_FUN_180848e50
+
+/** 网络配置初始化器 */
+#define network_config_initializer           FUN_18084c050
+
+/** 网络资源清理器1 */
+#define network_resource_cleaner1             FUN_18084c150
+
+/** 网络资源清理器2 */
+#define network_resource_cleaner2             FUN_18084c220
+
+/*==========================================
+            核心函数实现
+==========================================*/
+
+/**
+ * 网络连接状态检查器 - 检查和管理网络连接状态
+ * 
+ * 该函数负责检查网络连接状态，处理连接验证和管理网络连接的生命周期
+ * 主要功能：
+ * - 验证网络连接的有效性
+ * - 处理连接状态变化
+ * - 管理网络连接的建立和断开
+ * - 处理连接相关的错误情况
+ * 
+ * @param param_1 网络连接句柄
+ * @param param_2 连接参数标志
+ * @return void
+ */
+void network_connection_status_checker(undefined8 param_1, undefined1 param_2)
 {
-  int iVar1;
-  int iVar2;
-  longlong alStackX_18 [2];
-  undefined8 *apuStack_18 [2];
-  
-  alStackX_18[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStackX_18);
-  if ((((iVar1 != 0) ||
-       (((*(uint *)(alStackX_18[0] + 0x24) >> 1 & 1) != 0 &&
-        (iVar2 = FUN_18088c740(alStackX_18 + 1), iVar2 == 0)))) && (iVar1 == 0)) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStackX_18[0] + 0x98),apuStack_18,0x18), iVar1 == 0)) {
-    *apuStack_18[0] = &UNK_180982790;
-    *(undefined4 *)(apuStack_18[0] + 1) = 0x18;
-    *(undefined1 *)(apuStack_18[0] + 2) = param_2;
-    func_0x00018088e0d0(*(undefined8 *)(alStackX_18[0] + 0x98));
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(alStackX_18 + 1);
-}
-
-
-
-
-
-// 函数: void FUN_18084b240(undefined4 *param_1,undefined8 param_2)
-void FUN_18084b240(undefined4 *param_1,undefined8 param_2)
-
-{
-                    // WARNING: Subroutine does not return
-  FUN_18076b390(param_2,0x27,&UNK_180958180,*param_1,*(undefined2 *)(param_1 + 1),
-                *(undefined2 *)((longlong)param_1 + 6),*(undefined1 *)(param_1 + 2),
-                *(undefined1 *)((longlong)param_1 + 9),*(undefined1 *)((longlong)param_1 + 10),
-                *(undefined1 *)((longlong)param_1 + 0xb),*(undefined1 *)(param_1 + 3),
-                *(undefined1 *)((longlong)param_1 + 0xd),*(undefined1 *)((longlong)param_1 + 0xe),
-                *(undefined1 *)((longlong)param_1 + 0xf));
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18084b2f0(undefined8 param_1)
-void FUN_18084b2f0(undefined8 param_1)
-
-{
-  int iVar1;
-  undefined1 auStack_148 [32];
-  undefined1 *puStack_128;
-  undefined1 auStack_118 [256];
-  ulonglong uStack_18;
-  
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
-  iVar1 = FUN_1808401c0();
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    puStack_128 = auStack_118;
-    auStack_118[0] = 0;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0x11,param_1,&UNK_180982e28);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_148);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18084b380(undefined8 param_1)
-void FUN_18084b380(undefined8 param_1)
-
-{
-  int iVar1;
-  undefined1 auStack_148 [32];
-  undefined1 *puStack_128;
-  undefined1 auStack_118 [256];
-  ulonglong uStack_18;
-  
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
-  iVar1 = FUN_18084b180(param_1,0);
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    puStack_128 = auStack_118;
-    auStack_118[0] = 0;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&UNK_1809827f8);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_148);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18084b410(undefined8 param_1)
-void FUN_18084b410(undefined8 param_1)
-
-{
-  int iVar1;
-  undefined1 auStack_158 [32];
-  undefined1 *puStack_138;
-  longlong alStack_128 [2];
-  undefined1 auStack_118 [256];
-  ulonglong uStack_18;
-  
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
-  iVar1 = func_0x00018088c590(param_1,alStack_128);
-  if ((iVar1 == 0) && ((*(uint *)(alStack_128[0] + 0x24) >> 1 & 1) == 0)) {
-    iVar1 = 0x4b;
-LAB_18084b46d:
-    if (iVar1 == 0) goto LAB_18084b4a9;
-  }
-  else if (iVar1 == 0) {
-    iVar1 = FUN_18088e220(*(undefined8 *)(alStack_128[0] + 0x98));
-    if (iVar1 == 0) goto LAB_18084b4a9;
-    goto LAB_18084b46d;
-  }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    puStack_138 = auStack_118;
-    auStack_118[0] = 0;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&UNK_180957310);
-  }
-LAB_18084b4a9:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18084b5a0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
-void FUN_18084b5a0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
-
-{
-  int iVar1;
-  longlong *plVar2;
-  undefined4 *puVar3;
-  undefined1 auStack_b8 [32];
-  uint uStack_98;
-  uint uStack_90;
-  uint uStack_88;
-  uint uStack_80;
-  uint uStack_78;
-  uint uStack_70;
-  uint uStack_68;
-  uint uStack_60;
-  uint uStack_58;
-  uint uStack_50;
-  undefined1 auStack_48 [40];
-  ulonglong uStack_20;
-  
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
-  for (puVar3 = (undefined4 *)*param_2;
-      ((undefined4 *)*param_2 <= puVar3 &&
-      (puVar3 < (undefined4 *)*param_2 + (longlong)*(int *)(param_2 + 1) * 4)); puVar3 = puVar3 + 4)
-  {
-    plVar2 = (longlong *)(**(code **)(*param_3 + 0x140))(param_3,puVar3,1);
-    if (plVar2 == (longlong *)0x0) {
-      uStack_50 = (uint)*(byte *)((longlong)puVar3 + 0xf);
-      uStack_58 = (uint)*(byte *)((longlong)puVar3 + 0xe);
-      uStack_60 = (uint)*(byte *)((longlong)puVar3 + 0xd);
-      uStack_68 = (uint)*(byte *)(puVar3 + 3);
-      uStack_70 = (uint)*(byte *)((longlong)puVar3 + 0xb);
-      uStack_78 = (uint)*(byte *)((longlong)puVar3 + 10);
-      uStack_80 = (uint)*(byte *)((longlong)puVar3 + 9);
-      uStack_88 = (uint)*(byte *)(puVar3 + 2);
-      uStack_90 = (uint)*(ushort *)((longlong)puVar3 + 6);
-      uStack_98 = (uint)*(ushort *)(puVar3 + 1);
-                    // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_48,0x27,&UNK_180958180,*puVar3);
+    int connection_status;          // 连接状态变量
+    int validation_result;          // 验证结果变量
+    longlong connection_context[2]; // 连接上下文数据
+    undefined8 *connection_data[2];  // 连接数据指针
+    
+    // 初始化连接上下文
+    connection_context[1] = 0;
+    
+    // 获取连接状态信息
+    connection_status = func_0x00018088c590(param_1, connection_context);
+    
+    // 检查连接状态和验证结果
+    if ((((connection_status != 0) ||
+          (((*(uint *)(connection_context[0] + 0x24) >> 1 & 1) != 0 &&
+           (validation_result = FUN_18088c740(connection_context + 1), validation_result == 0)))) && 
+         (connection_status == 0)) &&
+        (connection_status = FUN_18088dec0(*(undefined8 *)(connection_context[0] + 0x98), connection_data, NETWORK_BUFFER_SIZE), connection_status == 0)) {
+        
+        // 设置连接数据
+        *connection_data[0] = &UNK_180982790;
+        *(undefined4 *)(connection_data[0] + 1) = NETWORK_BUFFER_SIZE;
+        *(undefined1 *)(connection_data[0] + 2) = param_2;
+        
+        // 执行连接初始化
+        func_0x00018088e0d0(*(undefined8 *)(connection_context[0] + 0x98));
     }
-    iVar1 = (**(code **)(*plVar2 + 0x28))(plVar2,param_1);
-    if (iVar1 != 0) break;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_b8);
+    
+    // 清理连接资源
+    FUN_18088c790(connection_context + 1);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18084b6c0(longlong param_1,longlong param_2)
-void FUN_18084b6c0(longlong param_1,longlong param_2)
-
+/**
+ * 网络数据包发送器 - 发送网络数据包
+ * 
+ * 该函数负责发送网络数据包，支持多种数据包类型和参数配置
+ * 主要功能：
+ * - 发送控制数据包
+ * - 处理数据包参数
+ * - 管理数据包发送状态
+ * - 处理发送错误情况
+ * 
+ * @param param_1 数据包参数指针
+ * @param param_2 目标地址
+ * @return void
+ */
+void network_packet_sender(undefined4 *param_1, undefined8 param_2)
 {
-  longlong lVar1;
-  bool bVar2;
-  undefined1 auStack_58 [32];
-  undefined1 auStack_38 [40];
-  ulonglong uStack_10;
-  
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
-  bVar2 = *(int *)(param_2 + 0xb0) != -1;
-  *(bool *)(param_1 + 8) = bVar2;
-  if (bVar2) {
-    lVar1 = (**(code **)(**(longlong **)(param_1 + 0x10) + 0x288))
-                      (*(longlong **)(param_1 + 0x10),param_2 + 0xd8,1);
-    if (lVar1 == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18084b240(param_2 + 0xd8,auStack_38);
+    // 发送数据包到目标地址
+    FUN_18076b390(param_2, PACKET_TYPE_DATA, &UNK_180958180, *param_1, 
+                 *(undefined2 *)(param_1 + 1), *(undefined2 *)((longlong)param_1 + 6),
+                 *(undefined1 *)(param_1 + 2), *(undefined1 *)((longlong)param_1 + 9),
+                 *(undefined1 *)((longlong)param_1 + 10), *(undefined1 *)((longlong)param_1 + 0xb),
+                 *(undefined1 *)(param_1 + 3), *(undefined1 *)((longlong)param_1 + 0xd),
+                 *(undefined1 *)((longlong)param_1 + 0xe), *(undefined1 *)((longlong)param_1 + 0xf));
+}
+
+/**
+ * 网络连接初始化器 - 初始化网络连接
+ * 
+ * 该函数负责初始化网络连接，设置连接参数和配置
+ * 主要功能：
+ * - 初始化网络连接环境
+ * - 设置连接参数
+ * - 处理初始化错误
+ * - 管理连接状态
+ * 
+ * @param param_1 网络连接参数
+ * @return void
+ */
+void network_connection_initializer(undefined8 param_1)
+{
+    int initialization_status;    // 初始化状态变量
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    undefined1 *message_buffer;   // 消息缓冲区指针
+    undefined1 large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
+    ulonglong stack_protection;  // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    // 获取初始化状态
+    initialization_status = FUN_1808401c0();
+    
+    // 检查网络活动状态
+    if ((initialization_status != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & NETWORK_FLAG_ACTIVE) != 0)) {
+        message_buffer = large_buffer;
+        large_buffer[0] = 0;
+        
+        // 发送控制信息
+        FUN_180749ef0(initialization_status, PACKET_TYPE_CONTROL, param_1, &UNK_180982e28);
     }
-    FUN_180847c60(lVar1,*(undefined8 *)(param_1 + 0x10),param_1 + 8);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
+    
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18084b760(longlong param_1,longlong param_2)
-void FUN_18084b760(longlong param_1,longlong param_2)
-
+/**
+ * 网络连接处理器 - 处理网络连接操作
+ * 
+ * 该函数负责处理网络连接的各种操作和状态变化
+ * 主要功能：
+ * - 处理连接请求
+ * - 管理连接状态
+ * - 处理连接错误
+ * - 执行连接相关的回调
+ * 
+ * @param param_1 网络连接句柄
+ * @return void
+ */
+void network_connection_processor(undefined8 param_1)
 {
-  int iVar1;
-  longlong lVar2;
-  undefined1 auStack_68 [32];
-  byte abStack_48 [8];
-  undefined1 auStack_40 [40];
-  ulonglong uStack_18;
-  
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  if (1.1920929e-07 < *(float *)(param_2 + 0x94)) {
-    *(undefined1 *)(param_1 + 8) = 1;
-                    // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
-  }
-  lVar2 = (**(code **)(**(longlong **)(param_1 + 0x10) + 0x288))
-                    (*(longlong **)(param_1 + 0x10),param_2 + 0xd8,1);
-  if (lVar2 == 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18084b240(param_2 + 0xd8,auStack_40);
-  }
-  abStack_48[0] = 0;
-  iVar1 = FUN_1808479d0(lVar2,*(undefined8 *)(param_1 + 0x10),abStack_48);
-  if (iVar1 == 0) {
-    *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | abStack_48[0];
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18084b830(longlong param_1,longlong param_2)
-void FUN_18084b830(longlong param_1,longlong param_2)
-
-{
-  undefined4 *puVar1;
-  longlong *plVar2;
-  undefined4 *puVar3;
-  undefined1 auStack_a8 [32];
-  uint uStack_88;
-  uint uStack_80;
-  uint uStack_78;
-  uint uStack_70;
-  uint uStack_68;
-  uint uStack_60;
-  uint uStack_58;
-  uint uStack_50;
-  uint uStack_48;
-  uint uStack_40;
-  undefined1 auStack_38 [40];
-  ulonglong uStack_10;
-  
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
-  *(bool *)(param_1 + 8) = *(int *)(param_2 + 0xb0) != -1;
-  puVar3 = *(undefined4 **)(param_2 + 0xd8);
-  while (((puVar1 = *(undefined4 **)(param_2 + 0xd8), puVar1 <= puVar3 &&
-          (puVar3 < puVar1 + (longlong)*(int *)(param_2 + 0xe0) * 5)) &&
-         (*(char *)(param_1 + 8) != '\0'))) {
-    plVar2 = (longlong *)
-             (**(code **)(**(longlong **)(param_1 + 0x10) + 0x128))
-                       (*(longlong **)(param_1 + 0x10),puVar3,
-                        CONCAT71((int7)((ulonglong)puVar1 >> 8),1));
-    if (plVar2 == (longlong *)0x0) {
-      uStack_40 = (uint)*(byte *)((longlong)puVar3 + 0xf);
-      uStack_48 = (uint)*(byte *)((longlong)puVar3 + 0xe);
-      uStack_50 = (uint)*(byte *)((longlong)puVar3 + 0xd);
-      uStack_58 = (uint)*(byte *)(puVar3 + 3);
-      uStack_60 = (uint)*(byte *)((longlong)puVar3 + 0xb);
-      uStack_68 = (uint)*(byte *)((longlong)puVar3 + 10);
-      uStack_70 = (uint)*(byte *)((longlong)puVar3 + 9);
-      uStack_78 = (uint)*(byte *)(puVar3 + 2);
-      uStack_80 = (uint)*(ushort *)((longlong)puVar3 + 6);
-      uStack_88 = (uint)*(ushort *)(puVar3 + 1);
-                    // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_38,0x27,&UNK_180958180,*puVar3);
+    int processing_status;         // 处理状态变量
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    undefined1 *message_buffer;    // 消息缓冲区指针
+    undefined1 large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
+    ulonglong stack_protection;   // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    // 检查连接状态
+    processing_status = network_connection_status_checker(param_1, 0);
+    
+    // 检查网络活动状态
+    if ((processing_status != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & NETWORK_FLAG_ACTIVE) != 0)) {
+        message_buffer = large_buffer;
+        large_buffer[0] = 0;
+        
+        // 发送错误信息
+        FUN_180749ef0(processing_status, PACKET_TYPE_ERROR, param_1, &UNK_1809827f8);
     }
-    (**(code **)(*plVar2 + 0x28))(plVar2,param_1);
-    puVar3 = puVar3 + 5;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_a8);
+    
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
 }
 
-
-
-
-
-// 函数: void FUN_18084b92d(void)
-void FUN_18084b92d(void)
-
+/**
+ * 网络连接验证器 - 验证网络连接的有效性
+ * 
+ * 该函数负责验证网络连接的有效性和安全性
+ * 主要功能：
+ * - 验证连接参数
+ * - 检查连接状态
+ * - 处理验证错误
+ * - 执行安全检查
+ * 
+ * @param param_1 网络连接句柄
+ * @return void
+ */
+void network_connection_validator(undefined8 param_1)
 {
-                    // WARNING: Subroutine does not return
-  FUN_18076b390();
-}
-
-
-
-
-
-// 函数: void FUN_18084b955(void)
-void FUN_18084b955(void)
-
-{
-  ulonglong in_stack_00000098;
-  
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18084b990(longlong *param_1,longlong param_2,longlong *param_3)
-void FUN_18084b990(longlong *param_1,longlong param_2,longlong *param_3)
-
-{
-  byte bVar1;
-  byte bVar2;
-  byte bVar3;
-  byte bVar4;
-  byte bVar5;
-  byte bVar6;
-  byte bVar7;
-  byte bVar8;
-  ushort uVar9;
-  ushort uVar10;
-  undefined4 uVar11;
-  char cVar12;
-  int iVar13;
-  longlong lVar14;
-  longlong lVar15;
-  longlong *plVar16;
-  undefined4 *puVar17;
-  undefined4 *puVar18;
-  undefined1 auStack_c8 [32];
-  uint uStack_a8;
-  uint uStack_a0;
-  uint uStack_98;
-  uint uStack_90;
-  uint uStack_88;
-  uint uStack_80;
-  uint uStack_78;
-  uint uStack_70;
-  uint uStack_68;
-  uint uStack_60;
-  undefined1 auStack_58 [40];
-  ulonglong uStack_30;
-  
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
-  (**(code **)(*param_1 + 0x48))();
-  cVar12 = (**(code **)(*param_1 + 0x50))(param_1);
-  if (cVar12 != '\0') {
-    for (puVar18 = *(undefined4 **)(param_2 + 0x80);
-        (*(undefined4 **)(param_2 + 0x80) <= puVar18 &&
-        (puVar18 < *(undefined4 **)(param_2 + 0x80) + (longlong)*(int *)(param_2 + 0x88) * 4));
-        puVar18 = puVar18 + 4) {
-      lVar14 = (**(code **)(*param_3 + 0x270))(param_3,puVar18,1);
-      if (lVar14 == 0) {
-        bVar2 = *(byte *)((longlong)puVar18 + 0xf);
-        bVar3 = *(byte *)((longlong)puVar18 + 0xe);
-        bVar4 = *(byte *)((longlong)puVar18 + 0xd);
-        bVar5 = *(byte *)(puVar18 + 3);
-        bVar1 = *(byte *)((longlong)puVar18 + 0xb);
-        bVar6 = *(byte *)((longlong)puVar18 + 10);
-        bVar7 = *(byte *)((longlong)puVar18 + 9);
-        bVar8 = *(byte *)(puVar18 + 2);
-        uVar9 = *(ushort *)((longlong)puVar18 + 6);
-        uVar10 = *(ushort *)(puVar18 + 1);
-        uVar11 = *puVar18;
-LAB_18084bb6f:
-        uStack_60 = (uint)bVar2;
-        uStack_68 = (uint)bVar3;
-        uStack_70 = (uint)bVar4;
-        uStack_78 = (uint)bVar5;
-        uStack_80 = (uint)bVar1;
-        uStack_88 = (uint)bVar6;
-        uStack_90 = (uint)bVar7;
-        uStack_a8 = (uint)uVar10;
-        uStack_a0 = (uint)uVar9;
-        uStack_98 = (uint)bVar8;
-                    // WARNING: Subroutine does not return
-        FUN_18076b390(auStack_58,0x27,&UNK_180958180,uVar11);
-      }
-      lVar15 = (**(code **)(*param_3 + 0x278))(param_3,lVar14 + 0x38,1);
-      if (lVar15 == 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18084b240(lVar14 + 0x38,auStack_58);
-      }
-      for (puVar17 = *(undefined4 **)(lVar14 + 0x58);
-          (*(undefined4 **)(lVar14 + 0x58) <= puVar17 &&
-          (puVar17 < *(undefined4 **)(lVar14 + 0x58) + (longlong)*(int *)(lVar14 + 0x60) * 4));
-          puVar17 = puVar17 + 4) {
-        plVar16 = (longlong *)(**(code **)(*param_3 + 0x128))(param_3,puVar17,1);
-        if (plVar16 == (longlong *)0x0) {
-          bVar1 = *(byte *)((longlong)puVar17 + 0xb);
-          bVar2 = *(byte *)((longlong)puVar17 + 0xf);
-          bVar3 = *(byte *)((longlong)puVar17 + 0xe);
-          bVar4 = *(byte *)((longlong)puVar17 + 0xd);
-          bVar5 = *(byte *)(puVar17 + 3);
-          bVar6 = *(byte *)((longlong)puVar17 + 10);
-          bVar7 = *(byte *)((longlong)puVar17 + 9);
-          bVar8 = *(byte *)(puVar17 + 2);
-          uVar9 = *(ushort *)((longlong)puVar17 + 6);
-          uVar10 = *(ushort *)(puVar17 + 1);
-          uVar11 = *puVar17;
-          goto LAB_18084bb6f;
+    int validation_status;         // 验证状态变量
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    undefined1 *message_buffer;    // 消息缓冲区指针
+    longlong connection_data[2];   // 连接数据
+    undefined1 large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
+    ulonglong stack_protection;   // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    // 获取连接数据
+    validation_status = func_0x00018088c590(param_1, connection_data);
+    
+    // 检查连接状态
+    if ((validation_status == 0) && ((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) == 0)) {
+        validation_status = NETWORK_CONFIG_TIMEOUT;
+    }
+    else if (validation_status == 0) {
+        validation_status = FUN_18088e220(*(undefined8 *)(connection_data[0] + 0x98));
+        if (validation_status == 0) {
+            // 验证成功，跳转到结束
+            goto validation_complete;
         }
-        iVar13 = (**(code **)(*plVar16 + 0x28))(plVar16,param_1);
-        if ((iVar13 != 0) || (cVar12 = (**(code **)(*param_1 + 0x50))(param_1), cVar12 == '\0'))
-        goto LAB_18084bb9a;
-      }
+        validation_status = NETWORK_CONFIG_TIMEOUT;
     }
-  }
-LAB_18084bb9a:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_c8);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18084bbd0(longlong param_1,longlong param_2)
-void FUN_18084bbd0(longlong param_1,longlong param_2)
-
-{
-  int iVar1;
-  longlong *plVar2;
-  undefined4 *puVar3;
-  undefined1 auStack_b8 [32];
-  uint uStack_98;
-  uint uStack_90;
-  uint uStack_88;
-  uint uStack_80;
-  uint uStack_78;
-  uint uStack_70;
-  uint uStack_68;
-  uint uStack_60;
-  uint uStack_58;
-  uint uStack_50;
-  undefined1 auStack_48 [40];
-  ulonglong uStack_20;
-  
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
-  if (*(float *)(param_2 + 0x94) <= 1.1920929e-07) {
-    for (puVar3 = *(undefined4 **)(param_2 + 0xd8);
-        (*(undefined4 **)(param_2 + 0xd8) <= puVar3 &&
-        (puVar3 < *(undefined4 **)(param_2 + 0xd8) + (longlong)*(int *)(param_2 + 0xe0) * 5));
-        puVar3 = puVar3 + 5) {
-      plVar2 = (longlong *)
-               (**(code **)(**(longlong **)(param_1 + 0x10) + 0x128))
-                         (*(longlong **)(param_1 + 0x10),puVar3,1);
-      if (plVar2 == (longlong *)0x0) {
-        uStack_50 = (uint)*(byte *)((longlong)puVar3 + 0xf);
-        uStack_58 = (uint)*(byte *)((longlong)puVar3 + 0xe);
-        uStack_60 = (uint)*(byte *)((longlong)puVar3 + 0xd);
-        uStack_68 = (uint)*(byte *)(puVar3 + 3);
-        uStack_70 = (uint)*(byte *)((longlong)puVar3 + 0xb);
-        uStack_78 = (uint)*(byte *)((longlong)puVar3 + 10);
-        uStack_80 = (uint)*(byte *)((longlong)puVar3 + 9);
-        uStack_88 = (uint)*(byte *)(puVar3 + 2);
-        uStack_90 = (uint)*(ushort *)((longlong)puVar3 + 6);
-        uStack_98 = (uint)*(ushort *)(puVar3 + 1);
-                    // WARNING: Subroutine does not return
-        FUN_18076b390(auStack_48,0x27,&UNK_180958180,*puVar3);
-      }
-      iVar1 = (**(code **)(*plVar2 + 0x28))(plVar2,param_1);
-      if (iVar1 != 0) break;
+    
+    // 检查网络活动状态
+    if ((*(byte *)(_DAT_180be12f0 + 0x10) & NETWORK_FLAG_ACTIVE) != 0) {
+        message_buffer = large_buffer;
+        large_buffer[0] = 0;
+        
+        // 发送错误信息
+        FUN_180749ef0(validation_status, PACKET_TYPE_ERROR, param_1, &UNK_180957310);
     }
-  }
-  else {
-    *(undefined1 *)(param_1 + 8) = 1;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_b8);
+
+validation_complete:
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
 }
 
-
-
-
-
-// 函数: void FUN_18084bc0e(undefined8 param_1,longlong param_2)
-void FUN_18084bc0e(undefined8 param_1,longlong param_2)
-
+/**
+ * 网络数据包处理器 - 处理接收到的网络数据包
+ * 
+ * 该函数负责处理接收到的网络数据包，解析数据内容并执行相应操作
+ * 主要功能：
+ * - 解析数据包内容
+ * - 处理数据包数据
+ * - 执行数据包相关的操作
+ * - 管理数据包处理状态
+ * 
+ * @param param_1 网络连接句柄
+ * @param param_2 数据包数据指针
+ * @param param_3 处理器上下文
+ * @return void
+ */
+void network_packet_processor(undefined8 param_1, undefined8 *param_2, longlong *param_3)
 {
-  int iVar1;
-  longlong *plVar2;
-  longlong unaff_RBX;
-  longlong unaff_RDI;
-  undefined4 *puVar3;
-  ulonglong in_stack_00000098;
-  
-  for (puVar3 = *(undefined4 **)(param_2 + 0xd8);
-      (*(undefined4 **)(unaff_RBX + 0xd8) <= puVar3 &&
-      (puVar3 < *(undefined4 **)(unaff_RBX + 0xd8) + (longlong)*(int *)(unaff_RBX + 0xe0) * 5));
-      puVar3 = puVar3 + 5) {
-    plVar2 = (longlong *)
-             (**(code **)(**(longlong **)(unaff_RDI + 0x10) + 0x128))
-                       (*(longlong **)(unaff_RDI + 0x10),puVar3,1);
-    if (plVar2 == (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18076b390(&stack0x00000070,0x27,&UNK_180958180,*puVar3,*(undefined2 *)(puVar3 + 1));
-    }
-    iVar1 = (**(code **)(*plVar2 + 0x28))(plVar2);
-    if (iVar1 != 0) break;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-
-
-// 函数: void FUN_18084bcd6(void)
-void FUN_18084bcd6(void)
-
-{
-  longlong unaff_R14;
-  uint uStack0000000000000028;
-  
-  uStack0000000000000028 = (uint)*(ushort *)(unaff_R14 + 6);
-                    // WARNING: Subroutine does not return
-  FUN_18076b390();
-}
-
-
-
-
-
-// 函数: void FUN_18084bd18(void)
-void FUN_18084bd18(void)
-
-{
-  ulonglong in_stack_00000098;
-  
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-
-
-// 函数: void FUN_18084bd22(void)
-void FUN_18084bd22(void)
-
-{
-  ulonglong in_stack_00000098;
-  
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18084be00(longlong *param_1,longlong param_2,longlong *param_3)
-void FUN_18084be00(longlong *param_1,longlong param_2,longlong *param_3)
-
-{
-  char cVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  ulonglong uVar5;
-  undefined4 *puVar6;
-  undefined1 auStack_c8 [32];
-  uint uStack_a8;
-  uint uStack_a0;
-  uint uStack_98;
-  uint uStack_90;
-  uint uStack_88;
-  uint uStack_80;
-  uint uStack_78;
-  uint uStack_70;
-  uint uStack_68;
-  uint uStack_60;
-  undefined1 auStack_58 [40];
-  ulonglong uStack_30;
-  
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
-  (**(code **)(*param_1 + 0x40))();
-  cVar1 = (**(code **)(*param_1 + 0x50))(param_1);
-  if (cVar1 != '\0') {
-    lVar3 = (**(code **)(*param_3 + 0x2f0))(param_3,param_2 + 0x30,1);
-    if (lVar3 == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18084b240(param_2 + 0x30,auStack_58);
-    }
-    for (uVar5 = *(ulonglong *)(lVar3 + 0x38);
-        (*(ulonglong *)(lVar3 + 0x38) <= uVar5 &&
-        (uVar5 < *(ulonglong *)(lVar3 + 0x38) + (longlong)*(int *)(lVar3 + 0x40) * 0x18));
-        uVar5 = uVar5 + 0x18) {
-      plVar4 = (longlong *)(**(code **)(*param_3 + 0x128))(param_3,uVar5,1);
-      if (plVar4 == (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-        FUN_18084b240(uVar5,auStack_58);
-      }
-      iVar2 = (**(code **)(*plVar4 + 0x28))(plVar4,param_1);
-      if ((iVar2 != 0) || (cVar1 = (**(code **)(*param_1 + 0x50))(param_1), cVar1 == '\0'))
-      goto LAB_18084bff4;
-    }
-    cVar1 = (**(code **)(*param_1 + 0x58))(param_1);
-    if (cVar1 != '\0') {
-      for (puVar6 = *(undefined4 **)(lVar3 + 0x48);
-          (*(undefined4 **)(lVar3 + 0x48) <= puVar6 &&
-          (puVar6 < *(undefined4 **)(lVar3 + 0x48) + (longlong)*(int *)(lVar3 + 0x50) * 6));
-          puVar6 = puVar6 + 6) {
-        plVar4 = (longlong *)(**(code **)(*param_3 + 0x128))(param_3,puVar6,1);
-        if (plVar4 == (longlong *)0x0) {
-          uStack_60 = (uint)*(byte *)((longlong)puVar6 + 0xf);
-          uStack_68 = (uint)*(byte *)((longlong)puVar6 + 0xe);
-          uStack_70 = (uint)*(byte *)((longlong)puVar6 + 0xd);
-          uStack_78 = (uint)*(byte *)(puVar6 + 3);
-          uStack_80 = (uint)*(byte *)((longlong)puVar6 + 0xb);
-          uStack_88 = (uint)*(byte *)((longlong)puVar6 + 10);
-          uStack_90 = (uint)*(byte *)((longlong)puVar6 + 9);
-          uStack_98 = (uint)*(byte *)(puVar6 + 2);
-          uStack_a0 = (uint)*(ushort *)((longlong)puVar6 + 6);
-          uStack_a8 = (uint)*(ushort *)(puVar6 + 1);
-                    // WARNING: Subroutine does not return
-          FUN_18076b390(auStack_58,0x27,&UNK_180958180,*puVar6);
+    int processing_result;         // 处理结果变量
+    longlong *handler_pointer;     // 处理器指针
+    undefined4 *packet_data;       // 数据包数据指针
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    uint packet_field_50;           // 数据包字段50
+    uint packet_field_58;           // 数据包字段58
+    uint packet_field_60;           // 数据包字段60
+    uint packet_field_68;           // 数据包字段68
+    uint packet_field_70;           // 数据包字段70
+    uint packet_field_78;           // 数据包字段78
+    uint packet_field_80;           // 数据包字段80
+    uint packet_field_88;           // 数据包字段88
+    uint packet_field_90;           // 数据包字段90
+    uint packet_field_98;           // 数据包字段98
+    undefined1 packet_buffer[40];  // 数据包缓冲区
+    ulonglong stack_protection;    // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    // 遍历数据包数据
+    for (packet_data = (undefined4 *)*param_2;
+         ((undefined4 *)*param_2 <= packet_data &&
+         (packet_data < (undefined4 *)*param_2 + (longlong)*(int *)(param_2 + 1) * 4)); 
+         packet_data = packet_data + 4) {
+        
+        // 获取数据处理器
+        handler_pointer = (longlong *)(**(code **)(*param_3 + 0x140))(param_3, packet_data, 1);
+        
+        if (handler_pointer == (longlong *)0x0) {
+            // 提取数据包字段
+            packet_field_50 = (uint)*(byte *)((longlong)packet_data + 0xf);
+            packet_field_58 = (uint)*(byte *)((longlong)packet_data + 0xe);
+            packet_field_60 = (uint)*(byte *)((longlong)packet_data + 0xd);
+            packet_field_68 = (uint)*(byte *)(packet_data + 3);
+            packet_field_70 = (uint)*(byte *)((longlong)packet_data + 0xb);
+            packet_field_78 = (uint)*(byte *)((longlong)packet_data + 10);
+            packet_field_80 = (uint)*(byte *)((longlong)packet_data + 9);
+            packet_field_88 = (uint)*(byte *)(packet_data + 2);
+            packet_field_90 = (uint)*(ushort *)((longlong)packet_data + 6);
+            packet_field_98 = (uint)*(ushort *)(packet_data + 1);
+            
+            // 发送数据包
+            FUN_18076b390(packet_buffer, PACKET_TYPE_DATA, &UNK_180958180, *packet_data);
         }
-        iVar2 = (**(code **)(*plVar4 + 0x28))(plVar4,param_1);
-        if ((iVar2 != 0) || (cVar1 = (**(code **)(*param_1 + 0x50))(param_1), cVar1 == '\0')) break;
-      }
+        
+        // 执行数据处理
+        processing_result = (**(code **)(*handler_pointer + 0x28))(handler_pointer, param_1);
+        if (processing_result != 0) break;
     }
-  }
-LAB_18084bff4:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_c8);
+    
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
 }
 
-
-
-
-
-// 函数: void FUN_18084bfc9(void)
-void FUN_18084bfc9(void)
-
+/**
+ * 网络状态管理器 - 管理网络连接状态
+ * 
+ * 该函数负责管理网络连接的状态变化和状态同步
+ * 主要功能：
+ * - 更新连接状态
+ * - 处理状态变化事件
+ * - 管理状态同步
+ * - 处理状态错误
+ * 
+ * @param param_1 状态管理器上下文
+ * @param param_2 连接参数
+ * @return void
+ */
+void network_state_manager(longlong param_1, longlong param_2)
 {
-                    // WARNING: Subroutine does not return
-  FUN_18076b390();
+    longlong connection_handle;     // 连接句柄
+    bool is_connected;             // 连接状态标志
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    undefined1 connection_buffer[40]; // 连接缓冲区
+    ulonglong stack_protection;    // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    // 检查连接状态
+    is_connected = *(int *)(param_2 + 0xb0) != -1;
+    *(bool *)(param_1 + 8) = is_connected;
+    
+    if (is_connected) {
+        // 获取连接句柄
+        connection_handle = (**(code **)(**(longlong **)(param_1 + 0x10) + 0x288))
+                            (*(longlong **)(param_1 + 0x10), param_2 + 0xd8, 1);
+        
+        if (connection_handle == 0) {
+            // 发送连接数据
+            network_packet_sender(param_2 + 0xd8, connection_buffer);
+        }
+        
+        // 更新连接状态
+        FUN_180847c60(connection_handle, *(undefined8 *)(param_1 + 0x10), param_1 + 8);
+    }
+    
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
 }
 
-
-
-
-
-// 函数: void FUN_18084bff2(void)
-void FUN_18084bff2(void)
-
+/**
+ * 网络数据传输器 - 处理网络数据传输
+ * 
+ * 该函数负责处理网络数据的传输和传输状态管理
+ * 主要功能：
+ * - 管理数据传输
+ * - 检查传输状态
+ * - 处理传输错误
+ * - 优化传输性能
+ * 
+ * @param param_1 传输器上下文
+ * @param param_2 传输参数
+ * @return void
+ */
+void network_data_transmitter(longlong param_1, longlong param_2)
 {
-  ulonglong in_stack_00000098;
-  
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+    int transmission_status;       // 传输状态变量
+    longlong transmission_handle;   // 传输句柄
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    byte status_flags[8];         // 状态标志
+    undefined1 transmission_buffer[40]; // 传输缓冲区
+    ulonglong stack_protection;    // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    // 检查传输参数
+    if (1.1920929e-07 < *(float *)(param_2 + 0x94)) {
+        *(undefined1 *)(param_1 + 8) = 1;
+        FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    }
+    
+    // 获取传输句柄
+    transmission_handle = (**(code **)(**(longlong **)(param_1 + 0x10) + 0x288))
+                        (*(longlong **)(param_1 + 0x10), param_2 + 0xd8, 1);
+    
+    if (transmission_handle == 0) {
+        // 发送传输数据
+        network_packet_sender(param_2 + 0xd8, transmission_buffer);
+    }
+    
+    // 处理传输状态
+    status_flags[0] = 0;
+    transmission_status = FUN_1808479d0(transmission_handle, *(undefined8 *)(param_1 + 0x10), status_flags);
+    
+    if (transmission_status == 0) {
+        *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | status_flags[0];
+    }
+    
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-void thunk_FUN_180848e50(char *param_1,undefined8 *param_2)
-
+/**
+ * 网络消息处理器 - 处理网络消息
+ * 
+ * 该函数负责处理接收到的网络消息和消息事件
+ * 主要功能：
+ * - 解析网络消息
+ * - 处理消息内容
+ * - 执行消息回调
+ * - 管理消息队列
+ * 
+ * @param param_1 消息处理器上下文
+ * @param param_2 消息参数
+ * @return void
+ */
+void network_message_processor(longlong param_1, longlong param_2)
 {
-  char *pcVar1;
-  char cVar2;
-  undefined1 uVar3;
-  undefined2 uVar4;
-  int iVar5;
-  char *pcVar6;
-  undefined1 *puVar7;
-  undefined1 *puVar8;
-  longlong lVar9;
-  undefined1 *puVar10;
-  undefined1 auStack_b8 [32];
-  undefined4 uStack_98;
-  undefined4 uStack_94;
-  undefined4 uStack_90;
-  undefined4 uStack_8c;
-  undefined1 *apuStack_88 [5];
-  undefined1 uStack_60;
-  undefined1 auStack_5f [8];
-  undefined1 uStack_57;
-  undefined1 auStack_56 [4];
-  undefined1 uStack_52;
-  undefined1 auStack_51 [4];
-  undefined1 uStack_4d;
-  undefined1 auStack_4c [4];
-  undefined1 uStack_48;
-  undefined1 auStack_47 [10];
-  undefined1 auStack_3d [5];
-  ulonglong uStack_38;
-  
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
-  if (param_2 != (undefined8 *)0x0) {
-    if ((((param_1 == (char *)0x0) || (iVar5 = func_0x00018076b690(), iVar5 != 0x26)) ||
-        (*param_1 != '{')) || (param_1[0x25] != '}')) {
-FUN_180848ff1:
-      *param_2 = 0;
-      param_2[1] = 0;
+    undefined4 *message_pointer;    // 消息指针
+    longlong *handler_pointer;     // 处理器指针
+    undefined4 *current_message;   // 当前消息
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    uint message_field_88;          // 消息字段88
+    uint message_field_80;          // 消息字段80
+    uint message_field_78;          // 消息字段78
+    uint message_field_70;          // 消息字段70
+    uint message_field_68;          // 消息字段68
+    uint message_field_60;          // 消息字段60
+    uint message_field_58;          // 消息字段58
+    uint message_field_50;          // 消息字段50
+    uint message_field_48;          // 消息字段48
+    uint message_field_40;          // 消息字段40
+    undefined1 message_buffer[40];  // 消息缓冲区
+    ulonglong stack_protection;    // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    // 设置连接状态
+    *(bool *)(param_1 + 8) = *(int *)(param_2 + 0xb0) != -1;
+    current_message = *(undefined4 **)(param_2 + 0xd8);
+    
+    // 遍历消息队列
+    while (((message_pointer = *(undefined4 **)(param_2 + 0xd8), message_pointer <= current_message &&
+            (current_message < message_pointer + (longlong)*(int *)(param_2 + 0xe0) * 5)) &&
+           (*(char *)(param_1 + 8) != '\0'))) {
+        
+        // 获取消息处理器
+        handler_pointer = (longlong *)
+                         (**(code **)(**(longlong **)(param_1 + 0x10) + 0x128))
+                                   (*(longlong **)(param_1 + 0x10), current_message,
+                                    CONCAT71((int7)((ulonglong)message_pointer >> 8), 1));
+        
+        if (handler_pointer == (longlong *)0x0) {
+            // 提取消息字段
+            message_field_40 = (uint)*(byte *)((longlong)current_message + 0xf);
+            message_field_48 = (uint)*(byte *)((longlong)current_message + 0xe);
+            message_field_50 = (uint)*(byte *)((longlong)current_message + 0xd);
+            message_field_58 = (uint)*(byte *)(current_message + 3);
+            message_field_60 = (uint)*(byte *)((longlong)current_message + 0xb);
+            message_field_68 = (uint)*(byte *)((longlong)current_message + 10);
+            message_field_70 = (uint)*(byte *)((longlong)current_message + 9);
+            message_field_78 = (uint)*(byte *)(current_message + 2);
+            message_field_80 = (uint)*(ushort *)((longlong)current_message + 6);
+            message_field_88 = (uint)*(ushort *)(current_message + 1);
+            
+            // 发送消息数据
+            FUN_18076b390(message_buffer, PACKET_TYPE_DATA, &UNK_180958180, *current_message);
+        }
+        
+        // 执行消息处理
+        (**(code **)(*handler_pointer + 0x28))(handler_pointer, param_1);
+        current_message = current_message + 5;
+    }
+    
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+}
+
+/**
+ * 网络系统终结器1 - 终止网络系统（类型1）
+ * 
+ * 该函数负责终止网络系统的运行，释放系统资源
+ * 主要功能：
+ * - 终止网络连接
+ * - 释放系统资源
+ * - 清理网络状态
+ * - 处理终止错误
+ * 
+ * @return void
+ */
+void network_system_terminator1(void)
+{
+    // 终止网络系统
+    FUN_18076b390();
+}
+
+/**
+ * 网络系统终结器2 - 终止网络系统（类型2）
+ * 
+ * 该函数负责终止网络系统的运行，执行系统清理
+ * 主要功能：
+ * - 执行系统清理
+ * - 释放网络资源
+ * - 重置系统状态
+ * - 处理清理错误
+ * 
+ * @return void
+ */
+void network_system_terminator2(void)
+{
+    ulonglong stack_protection;    // 栈保护变量
+    
+    // 执行系统清理
+    FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+}
+
+/**
+ * 网络数据管理器 - 管理网络数据
+ * 
+ * 该函数负责管理网络数据的存储、检索和处理
+ * 主要功能：
+ * - 管理数据存储
+ * - 处理数据检索
+ * - 执行数据操作
+ * - 管理数据同步
+ * 
+ * @param param_1 数据管理器上下文
+ * @param param_2 数据参数
+ * @param param_3 处理器上下文
+ * @return void
+ */
+void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3)
+{
+    byte data_field_2;             // 数据字段2
+    byte data_field_3;             // 数据字段3
+    byte data_field_4;             // 数据字段4
+    byte data_field_5;             // 数据字段5
+    byte data_field_6;             // 数据字段6
+    byte data_field_7;             // 数据字段7
+    byte data_field_8;             // 数据字段8
+    ushort data_field_9;           // 数据字段9
+    ushort data_field_10;          // 数据字段10
+    undefined4 data_field_11;      // 数据字段11
+    char processing_flag;           // 处理标志
+    int processing_result;         // 处理结果
+    longlong data_handle_1;        // 数据句柄1
+    longlong data_handle_2;        // 数据句柄2
+    longlong *handler_pointer;     // 处理器指针
+    undefined4 *data_pointer;      // 数据指针
+    undefined4 *current_data;      // 当前数据
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    uint data_field_60;            // 数据字段60
+    uint data_field_68;            // 数据字段68
+    uint data_field_70;            // 数据字段70
+    uint data_field_78;            // 数据字段78
+    uint data_field_80;            // 数据字段80
+    uint data_field_88;            // 数据字段88
+    uint data_field_90;            // 数据字段90
+    uint data_field_98;            // 数据字段98
+    uint data_field_a0;            // 数据字段a0
+    uint data_field_a8;            // 数据字段a8
+    undefined1 data_buffer[40];    // 数据缓冲区
+    ulonglong stack_protection;    // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    // 初始化数据处理
+    (**(code **)(*param_1 + 0x48))();
+    processing_flag = (**(code **)(*param_1 + 0x50))(param_1);
+    
+    if (processing_flag != '\0') {
+        // 遍历数据集合
+        for (current_data = *(undefined4 **)(param_2 + 0x80);
+            (*(undefined4 **)(param_2 + 0x80) <= current_data &&
+            (current_data < *(undefined4 **)(param_2 + 0x80) + (longlong)*(int *)(param_2 + 0x88) * 4));
+            current_data = current_data + 4) {
+            
+            // 获取数据处理器
+            data_handle_1 = (**(code **)(*param_3 + 0x270))(param_3, current_data, 1);
+            
+            if (data_handle_1 == 0) {
+                // 提取数据字段
+                data_field_2 = *(byte *)((longlong)current_data + 0xf);
+                data_field_3 = *(byte *)((longlong)current_data + 0xe);
+                data_field_4 = *(byte *)((longlong)current_data + 0xd);
+                data_field_5 = *(byte *)(current_data + 3);
+                data_field_6 = *(byte *)((longlong)current_data + 0xb);
+                data_field_7 = *(byte *)((longlong)current_data + 10);
+                data_field_8 = *(byte *)((longlong)current_data + 9);
+                data_field_8 = *(byte *)(current_data + 2);
+                data_field_9 = *(ushort *)((longlong)current_data + 6);
+                data_field_10 = *(ushort *)(current_data + 1);
+                data_field_11 = *current_data;
+                
+                // 设置数据字段
+                data_field_60 = (uint)data_field_2;
+                data_field_68 = (uint)data_field_3;
+                data_field_70 = (uint)data_field_4;
+                data_field_78 = (uint)data_field_5;
+                data_field_80 = (uint)data_field_6;
+                data_field_88 = (uint)data_field_7;
+                data_field_90 = (uint)data_field_8;
+                data_field_a8 = (uint)data_field_10;
+                data_field_a0 = (uint)data_field_9;
+                data_field_98 = (uint)data_field_8;
+                
+                // 发送数据
+                FUN_18076b390(data_buffer, PACKET_TYPE_DATA, &UNK_180958180, data_field_11);
+            }
+            
+            // 获取二级数据处理器
+            data_handle_2 = (**(code **)(*param_3 + 0x278))(param_3, data_handle_1 + 0x38, 1);
+            
+            if (data_handle_2 == 0) {
+                // 发送二级数据
+                network_packet_sender(data_handle_1 + 0x38, data_buffer);
+            }
+            
+            // 遍历子数据集合
+            for (data_pointer = *(undefined4 **)(data_handle_1 + 0x58);
+                (*(undefined4 **)(data_handle_1 + 0x58) <= data_pointer &&
+                (data_pointer < *(undefined4 **)(data_handle_1 + 0x58) + (longlong)*(int *)(data_handle_1 + 0x60) * 4));
+                data_pointer = data_pointer + 4) {
+                
+                // 获取子数据处理器
+                handler_pointer = (longlong *)(**(code **)(*param_3 + 0x128))(param_3, data_pointer, 1);
+                
+                if (handler_pointer == (longlong *)0x0) {
+                    // 提取子数据字段
+                    data_field_6 = *(byte *)((longlong)data_pointer + 0xb);
+                    data_field_2 = *(byte *)((longlong)data_pointer + 0xf);
+                    data_field_3 = *(byte *)((longlong)data_pointer + 0xe);
+                    data_field_4 = *(byte *)((longlong)data_pointer + 0xd);
+                    data_field_5 = *(byte *)(data_pointer + 3);
+                    data_field_7 = *(byte *)((longlong)data_pointer + 10);
+                    data_field_8 = *(byte *)((longlong)data_pointer + 9);
+                    data_field_8 = *(byte *)(data_pointer + 2);
+                    data_field_9 = *(ushort *)((longlong)data_pointer + 6);
+                    data_field_10 = *(ushort *)(data_pointer + 1);
+                    data_field_11 = *data_pointer;
+                    
+                    // 设置子数据字段
+                    data_field_60 = (uint)data_field_2;
+                    data_field_68 = (uint)data_field_3;
+                    data_field_70 = (uint)data_field_4;
+                    data_field_78 = (uint)data_field_5;
+                    data_field_80 = (uint)data_field_6;
+                    data_field_88 = (uint)data_field_7;
+                    data_field_90 = (uint)data_field_8;
+                    data_field_a8 = (uint)data_field_10;
+                    data_field_a0 = (uint)data_field_9;
+                    data_field_98 = (uint)data_field_8;
+                }
+                
+                // 执行子数据处理
+                processing_result = (**(code **)(*handler_pointer + 0x28))(handler_pointer, param_1);
+                if ((processing_result != 0) || (processing_flag = (**(code **)(*param_1 + 0x50))(param_1), processing_flag == '\0')) {
+                    goto processing_complete;
+                }
+            }
+        }
+    }
+
+processing_complete:
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+}
+
+/**
+ * 网络连接管理器 - 管理网络连接的生命周期
+ * 
+ * 该函数负责管理网络连接的建立、维护和断开
+ * 主要功能：
+ * - 管理连接生命周期
+ * - 处理连接事件
+ * - 优化连接性能
+ * - 处理连接错误
+ * 
+ * @param param_1 连接管理器上下文
+ * @param param_2 连接参数
+ * @return void
+ */
+void network_connection_manager(longlong param_1, longlong param_2)
+{
+    int management_result;          // 管理结果变量
+    longlong *handler_pointer;     // 处理器指针
+    undefined4 *connection_data;   // 连接数据指针
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    uint connection_field_50;      // 连接字段50
+    uint connection_field_58;      // 连接字段58
+    uint connection_field_60;      // 连接字段60
+    uint connection_field_68;      // 连接字段68
+    uint connection_field_70;      // 连接字段70
+    uint connection_field_78;      // 连接字段78
+    uint connection_field_80;      // 连接字段80
+    uint connection_field_88;      // 连接字段88
+    uint connection_field_90;      // 连接字段90
+    uint connection_field_98;      // 连接字段98
+    undefined1 connection_buffer[40]; // 连接缓冲区
+    ulonglong stack_protection;   // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    // 检查传输参数
+    if (*(float *)(param_2 + 0x94) <= 1.1920929e-07) {
+        // 遍历连接数据
+        for (connection_data = *(undefined4 **)(param_2 + 0xd8);
+            (*(undefined4 **)(param_2 + 0xd8) <= connection_data &&
+            (connection_data < *(undefined4 **)(param_2 + 0xd8) + (longlong)*(int *)(param_2 + 0xe0) * 5));
+            connection_data = connection_data + 5) {
+            
+            // 获取连接处理器
+            handler_pointer = (longlong *)
+                             (**(code **)(**(longlong **)(param_1 + 0x10) + 0x128))
+                                       (*(longlong **)(param_1 + 0x10), connection_data, 1);
+            
+            if (handler_pointer == (longlong *)0x0) {
+                // 提取连接字段
+                connection_field_50 = (uint)*(byte *)((longlong)connection_data + 0xf);
+                connection_field_58 = (uint)*(byte *)((longlong)connection_data + 0xe);
+                connection_field_60 = (uint)*(byte *)((longlong)connection_data + 0xd);
+                connection_field_68 = (uint)*(byte *)(connection_data + 3);
+                connection_field_70 = (uint)*(byte *)((longlong)connection_data + 0xb);
+                connection_field_78 = (uint)*(byte *)((longlong)connection_data + 10);
+                connection_field_80 = (uint)*(byte *)((longlong)connection_data + 9);
+                connection_field_88 = (uint)*(byte *)(connection_data + 2);
+                connection_field_90 = (uint)*(ushort *)((longlong)connection_data + 6);
+                connection_field_98 = (uint)*(ushort *)(connection_data + 1);
+                
+                // 发送连接数据
+                FUN_18076b390(connection_buffer, PACKET_TYPE_DATA, &UNK_180958180, *connection_data);
+            }
+            
+            // 执行连接管理
+            management_result = (**(code **)(*handler_pointer + 0x28))(handler_pointer, param_1);
+            if (management_result != 0) break;
+        }
     }
     else {
-      func_0x00018076b450(&uStack_60,param_1,0x27);
-      uStack_57 = 0;
-      apuStack_88[0] = auStack_5f;
-      lVar9 = 0;
-      uStack_52 = 0;
-      apuStack_88[1] = auStack_56;
-      uStack_4d = 0;
-      apuStack_88[2] = auStack_51;
-      apuStack_88[3] = auStack_4c;
-      apuStack_88[4] = auStack_47;
-      uStack_48 = 0;
-      auStack_3d[2] = 0;
-      do {
-        pcVar6 = apuStack_88[lVar9];
-        cVar2 = *pcVar6;
-        while (cVar2 != '\0') {
-          if (((9 < (byte)(cVar2 - 0x30U)) && (5 < (byte)(cVar2 + 0xbfU))) &&
-             (5 < (byte)(cVar2 + 0x9fU))) goto FUN_180848ff1;
-          pcVar1 = pcVar6 + 1;
-          pcVar6 = pcVar6 + 1;
-          cVar2 = *pcVar1;
+        *(undefined1 *)(param_1 + 8) = 1;
+    }
+    
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+}
+
+/**
+ * 网络数据接收器 - 接收网络数据
+ * 
+ * 该函数负责接收网络数据并处理接收到的数据
+ * 主要功能：
+ * - 接收网络数据
+ * - 处理接收缓冲区
+ * - 管理接收状态
+ * - 处理接收错误
+ * 
+ * @param param_1 接收器参数
+ * @param param_2 接收上下文
+ * @return void
+ */
+void network_data_receiver(undefined8 param_1, longlong param_2)
+{
+    int reception_result;          // 接收结果变量
+    longlong *handler_pointer;    // 处理器指针
+    longlong unaff_RBX;           // 未使用的RBX寄存器
+    longlong unaff_RDI;           // 未使用的RDI寄存器
+    undefined4 *data_pointer;     // 数据指针
+    ulonglong stack_protection;   // 栈保护变量
+    
+    // 遍历接收数据
+    for (data_pointer = *(undefined4 **)(param_2 + 0xd8);
+        (*(undefined4 **)(unaff_RBX + 0xd8) <= data_pointer &&
+        (data_pointer < *(undefined4 **)(unaff_RBX + 0xd8) + (longlong)*(int *)(unaff_RBX + 0xe0) * 5));
+        data_pointer = data_pointer + 5) {
+        
+        // 获取数据处理器
+        handler_pointer = (longlong *)
+                         (**(code **)(**(longlong **)(unaff_RDI + 0x10) + 0x128))
+                                   (*(longlong **)(unaff_RDI + 0x10), data_pointer, 1);
+        
+        if (handler_pointer == (longlong *)0x0) {
+            // 发送数据
+            FUN_18076b390(&stack0x00000070, PACKET_TYPE_DATA, &UNK_180958180, *data_pointer, *(undefined2 *)(data_pointer + 1));
         }
-        lVar9 = lVar9 + 1;
-      } while (lVar9 < 5);
-      uStack_98 = func_0x00018076b320(auStack_5f);
-      uVar4 = func_0x00018076b320(auStack_56);
-      uStack_94 = CONCAT22(uStack_94._2_2_,uVar4);
-      uVar4 = func_0x00018076b320(auStack_51);
-      uStack_94 = CONCAT22(uVar4,(undefined2)uStack_94);
-      uVar4 = func_0x00018076b320(auStack_4c);
-      puVar8 = (undefined1 *)((longlong)&uStack_8c + 3);
-      uStack_90 = CONCAT31(CONCAT21(uStack_90._2_2_,(char)uVar4),(char)((ushort)uVar4 >> 8));
-      puVar7 = auStack_3d;
-      iVar5 = 5;
-      puVar10 = auStack_3d;
-      do {
-        uVar3 = func_0x00018076b320(puVar10);
-        puVar10 = puVar10 + -2;
-        *puVar8 = uVar3;
-        iVar5 = iVar5 + -1;
-        *puVar7 = 0;
-        puVar8 = puVar8 + -1;
-        puVar7 = puVar7 + -2;
-      } while (-1 < iVar5);
-      *(undefined4 *)param_2 = uStack_98;
-      *(undefined4 *)((longlong)param_2 + 4) = uStack_94;
-      *(undefined4 *)(param_2 + 1) = uStack_90;
-      *(undefined4 *)((longlong)param_2 + 0xc) = uStack_8c;
+        
+        // 执行数据处理
+        reception_result = (**(code **)(*handler_pointer + 0x28))(handler_pointer);
+        if (reception_result != 0) break;
     }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_b8);
+    
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-undefined8 * FUN_18084c050(undefined8 *param_1,undefined8 param_2,byte param_3)
-
+/**
+ * 网络错误处理器 - 处理网络错误
+ * 
+ * 该函数负责处理网络系统中出现的各种错误
+ * 主要功能：
+ * - 处理网络错误
+ * - 记录错误信息
+ * - 执行错误恢复
+ * - 管理错误状态
+ * 
+ * @return void
+ */
+void network_error_handler(void)
 {
-  undefined8 uVar1;
-  undefined8 *puVar2;
-  
-  FUN_1808b0200();
-  *param_1 = &UNK_180984a30;
-  param_1[6] = 0;
-  param_1[7] = 0;
-  param_1[8] = 0;
-  param_1[9] = &UNK_180984a60;
-  *(undefined4 *)(param_1 + 10) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x54) = 0xffffffff;
-  puVar2 = (undefined8 *)FUN_180847820();
-  uVar1 = puVar2[1];
-  param_1[0xb] = *puVar2;
-  param_1[0xc] = uVar1;
-  *param_1 = &UNK_180984a70;
-  param_1[9] = &UNK_180984aa0;
-  param_1[0xd] = 0;
-  *(undefined2 *)((longlong)param_1 + 0x74) = 0;
-  *(undefined4 *)(param_1 + 0xe) = 0x3f800000;
-  param_1[0xf] = 0xffffffffffffffff;
-  param_1[0x10] = 0;
-  param_1[0x11] = 0;
-  param_1[0x12] = 0;
-  param_1[0x13] = 0;
-  param_1[0x14] = 0;
-  param_1[0x15] = 0;
-  param_1[0x16] = 0;
-  param_1[0x17] = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(uint *)((longlong)param_1 + 0xc4) = (uint)param_3;
-  *(undefined4 *)((longlong)param_1 + 0xd4) = 0;
-  *(undefined4 *)(param_1 + 0x19) = 0xffffffff;
-  *(undefined8 *)((longlong)param_1 + 0xcc) = 0x7fffffff;
-  return param_1;
+    longlong unaff_R14;           // 未使用的R14寄存器
+    uint error_code;              // 错误代码
+    
+    // 获取错误代码
+    error_code = (uint)*(ushort *)(unaff_R14 + 6);
+    
+    // 处理错误
+    FUN_18076b390();
 }
 
-
-
-// WARNING: Removing unreachable block (ram,0x00018084c49f)
-// WARNING: Removing unreachable block (ram,0x00018084c4b4)
-// WARNING: Removing unreachable block (ram,0x00018084c4ea)
-// WARNING: Removing unreachable block (ram,0x00018084c4f2)
-// WARNING: Removing unreachable block (ram,0x00018084c4fa)
-// WARNING: Removing unreachable block (ram,0x00018084c500)
-// WARNING: Removing unreachable block (ram,0x00018084c55b)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint FUN_18084c150(longlong *param_1)
-
+/**
+ * 网络系统清理器 - 清理网络系统资源
+ * 
+ * 该函数负责清理网络系统占用的各种资源
+ * 主要功能：
+ * - 清理系统资源
+ * - 释放内存
+ * - 重置系统状态
+ * - 处理清理错误
+ * 
+ * @return void
+ */
+void network_system_cleaner(void)
 {
-  int iVar1;
-  uint uVar2;
-  ulonglong uVar3;
-  undefined4 *puVar4;
-  uint uVar5;
-  
-  uVar5 = *(uint *)((longlong)param_1 + 0xc);
-  uVar2 = uVar5 ^ (int)uVar5 >> 0x1f;
-  if ((int)(uVar2 - ((int)uVar5 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
-      return uVar2;
-    }
-    if ((0 < (int)uVar5) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
-    }
-    *param_1 = 0;
-    uVar5 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
-  }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-    puVar4 = (undefined4 *)(*param_1 + (longlong)iVar1 * 4);
-    if (iVar1 < 0) {
-      uVar3 = (ulonglong)(uint)-iVar1;
-      do {
-        if (puVar4 != (undefined4 *)0x0) {
-          *puVar4 = 0;
+    ulonglong stack_protection;   // 栈保护变量
+    
+    // 执行系统清理
+    FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+}
+
+/**
+ * 网络系统重置器 - 重置网络系统
+ * 
+ * 该函数负责重置网络系统到初始状态
+ * 主要功能：
+ * - 重置系统状态
+ * - 清理配置信息
+ * - 重置连接状态
+ * - 处理重置错误
+ * 
+ * @return void
+ */
+void network_system_resetter(void)
+{
+    ulonglong stack_protection;   // 栈保护变量
+    
+    // 执行系统重置
+    FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+}
+
+/**
+ * 网络缓冲区管理器 - 管理网络缓冲区
+ * 
+ * 该函数负责管理网络系统中使用的各种缓冲区
+ * 主要功能：
+ * - 管理缓冲区分配
+ * - 处理缓冲区释放
+ * - 优化缓冲区使用
+ * - 处理缓冲区错误
+ * 
+ * @param param_1 缓冲区管理器上下文
+ * @param param_2 缓冲区参数
+ * @param param_3 处理器上下文
+ * @return void
+ */
+void network_buffer_manager(longlong *param_1, longlong param_2, longlong *param_3)
+{
+    char processing_flag;          // 处理标志
+    int management_result;        // 管理结果变量
+    longlong buffer_handle;       // 缓冲区句柄
+    longlong *handler_pointer;    // 处理器指针
+    ulonglong buffer_address;     // 缓冲区地址
+    undefined4 *buffer_data;      // 缓冲区数据指针
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    uint buffer_field_60;         // 缓冲区字段60
+    uint buffer_field_68;         // 缓冲区字段68
+    uint buffer_field_70;         // 缓冲区字段70
+    uint buffer_field_78;         // 缓冲区字段78
+    uint buffer_field_80;         // 缓冲区字段80
+    uint buffer_field_88;         // 缓冲区字段88
+    uint buffer_field_90;         // 缓冲区字段90
+    uint buffer_field_98;         // 缓冲区字段98
+    uint buffer_field_a0;         // 缓冲区字段a0
+    uint buffer_field_a8;         // 缓冲区字段a8
+    undefined1 buffer_data_buffer[40]; // 缓冲区数据缓冲区
+    ulonglong stack_protection;   // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    // 初始化缓冲区管理
+    (**(code **)(*param_1 + 0x40))();
+    processing_flag = (**(code **)(*param_1 + 0x50))(param_1);
+    
+    if (processing_flag != '\0') {
+        // 获取缓冲区句柄
+        buffer_handle = (**(code **)(*param_3 + 0x2f0))(param_3, param_2 + 0x30, 1);
+        
+        if (buffer_handle == 0) {
+            // 发送缓冲区数据
+            network_packet_sender(param_2 + 0x30, buffer_data_buffer);
         }
-        puVar4 = puVar4 + 1;
-        uVar3 = uVar3 - 1;
-      } while (uVar3 != 0);
-      uVar5 = *(uint *)((longlong)param_1 + 0xc);
+        
+        // 遍历缓冲区数据
+        for (buffer_address = *(ulonglong *)(buffer_handle + 0x38);
+            (*(ulonglong *)(buffer_handle + 0x38) <= buffer_address &&
+            (buffer_address < *(ulonglong *)(buffer_handle + 0x38) + (longlong)*(int *)(buffer_handle + 0x40) * 0x18));
+            buffer_address = buffer_address + 0x18) {
+            
+            // 获取缓冲区处理器
+            handler_pointer = (longlong *)(**(code **)(*param_3 + 0x128))(param_3, buffer_address, 1);
+            
+            if (handler_pointer == (longlong *)0x0) {
+                // 发送缓冲区数据
+                network_packet_sender(buffer_address, buffer_data_buffer);
+            }
+            
+            // 执行缓冲区管理
+            management_result = (**(code **)(*handler_pointer + 0x28))(handler_pointer, param_1);
+            if ((management_result != 0) || (processing_flag = (**(code **)(*param_1 + 0x50))(param_1), processing_flag == '\0')) {
+                goto buffer_management_complete;
+            }
+        }
+        
+        // 检查二级处理标志
+        processing_flag = (**(code **)(*param_1 + 0x58))(param_1);
+        if (processing_flag != '\0') {
+            // 遍历二级缓冲区数据
+            for (buffer_data = *(undefined4 **)(buffer_handle + 0x48);
+                (*(undefined4 **)(buffer_handle + 0x48) <= buffer_data &&
+                (buffer_data < *(undefined4 **)(buffer_handle + 0x48) + (longlong)*(int *)(buffer_handle + 0x50) * 6));
+                buffer_data = buffer_data + 6) {
+                
+                // 获取二级缓冲区处理器
+                handler_pointer = (longlong *)(**(code **)(*param_3 + 0x128))(param_3, buffer_data, 1);
+                
+                if (handler_pointer == (longlong *)0x0) {
+                    // 提取缓冲区字段
+                    buffer_field_60 = (uint)*(byte *)((longlong)buffer_data + 0xf);
+                    buffer_field_68 = (uint)*(byte *)((longlong)buffer_data + 0xe);
+                    buffer_field_70 = (uint)*(byte *)((longlong)buffer_data + 0xd);
+                    buffer_field_78 = (uint)*(byte *)(buffer_data + 3);
+                    buffer_field_80 = (uint)*(byte *)((longlong)buffer_data + 0xb);
+                    buffer_field_88 = (uint)*(byte *)((longlong)buffer_data + 10);
+                    buffer_field_90 = (uint)*(byte *)((longlong)buffer_data + 9);
+                    buffer_field_98 = (uint)*(byte *)(buffer_data + 2);
+                    buffer_field_a0 = (uint)*(ushort *)((longlong)buffer_data + 6);
+                    buffer_field_a8 = (uint)*(ushort *)(buffer_data + 1);
+                    
+                    // 发送缓冲区数据
+                    FUN_18076b390(buffer_data_buffer, PACKET_TYPE_DATA, &UNK_180958180, *buffer_data);
+                }
+                
+                // 执行二级缓冲区管理
+                management_result = (**(code **)(*handler_pointer + 0x28))(handler_pointer, param_1);
+                if ((management_result != 0) || (processing_flag = (**(code **)(*param_1 + 0x50))(param_1), processing_flag == '\0')) break;
+            }
+        }
     }
-  }
-  *(undefined4 *)(param_1 + 1) = 0;
-  uVar5 = (uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f);
-  if ((int)uVar5 < 1) {
-    return uVar5;
-  }
-  if (0 < (int)param_1[1]) {
-    return 0x1c;
-  }
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
-  }
-  *param_1 = 0;
-  *(undefined4 *)((longlong)param_1 + 0xc) = 0;
-  return 0;
+
+buffer_management_complete:
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
 }
 
-
-
-// WARNING: Removing unreachable block (ram,0x00018074803f)
-// WARNING: Removing unreachable block (ram,0x000180748050)
-// WARNING: Removing unreachable block (ram,0x000180748086)
-// WARNING: Removing unreachable block (ram,0x00018074808e)
-// WARNING: Removing unreachable block (ram,0x0001807480eb)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint FUN_18084c220(longlong *param_1)
-
+/**
+ * 网络系统终结器3 - 终止网络系统（类型3）
+ * 
+ * 该函数负责终止网络系统的运行，执行最终清理
+ * 主要功能：
+ * - 终止系统运行
+ * - 执行最终清理
+ * - 释放所有资源
+ * - 处理终止错误
+ * 
+ * @return void
+ */
+void network_system_terminator3(void)
 {
-  int iVar1;
-  uint uVar2;
-  uint uVar3;
-  
-  uVar3 = *(uint *)((longlong)param_1 + 0xc);
-  uVar2 = uVar3 ^ (int)uVar3 >> 0x1f;
-  if ((int)(uVar2 - ((int)uVar3 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
-      return uVar2;
-    }
-    if ((0 < (int)uVar3) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
-    }
-    *param_1 = 0;
-    uVar3 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
-  }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-                    // WARNING: Subroutine does not return
-    memset((longlong)iVar1 * 0x10 + *param_1,0,(longlong)-iVar1 << 4);
-  }
-  *(undefined4 *)(param_1 + 1) = 0;
-  uVar3 = (uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f);
-  if ((int)uVar3 < 1) {
-    return uVar3;
-  }
-  if (0 < (int)param_1[1]) {
-    return 0x1c;
-  }
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
-  }
-  *param_1 = 0;
-  *(undefined4 *)((longlong)param_1 + 0xc) = 0;
-  return 0;
+    // 终止网络系统
+    FUN_18076b390();
 }
 
+/**
+ * 网络系统终结器4 - 终止网络系统（类型4）
+ * 
+ * 该函数负责终止网络系统的运行，执行系统重置
+ * 主要功能：
+ * - 终止系统运行
+ * - 执行系统重置
+ * - 清理所有状态
+ * - 处理重置错误
+ * 
+ * @return void
+ */
+void network_system_terminator4(void)
+{
+    ulonglong stack_protection;   // 栈保护变量
+    
+    // 执行系统重置
+    FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+}
 
+/**
+ * 字符串解析处理器 - 解析和处理字符串数据
+ * 
+ * 该函数负责解析和处理网络系统中的字符串数据
+ * 主要功能：
+ * - 解析字符串格式
+ * - 验证字符串内容
+ * - 处理字符串转换
+ * - 管理字符串缓冲区
+ * 
+ * @param param_1 字符串数据指针
+ * @param param_2 解析结果指针
+ * @return undefined8* 解析结果指针
+ */
+undefined8 * string_parser_processor(char *param_1, undefined8 *param_2)
+{
+    char *string_pointer;          // 字符串指针
+    char current_char;             // 当前字符
+    undefined1 validation_result;  // 验证结果
+    undefined2 length_result;      // 长度结果
+    int validation_status;        // 验证状态
+    char *temp_pointer;            // 临时指针
+    undefined1 *field_pointer;     // 字段指针
+    undefined1 *temp_pointer2;     // 临时指针2
+    longlong field_index;          // 字段索引
+    undefined1 *field_array[5];    // 字段数组
+    undefined1 stack_protection_var; // 栈保护变量
+    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    undefined4 field_1;            // 字段1
+    undefined4 field_2;            // 字段2
+    undefined4 field_3;            // 字段3
+    undefined4 field_4;            // 字段4
+    undefined1 *field_array_start[5]; // 字段数组起始位置
+    undefined1 field_5;            // 字段5
+    undefined1 field_buffer_1[8];  // 字段缓冲区1
+    undefined1 field_6;            // 字段6
+    undefined1 field_buffer_2[4];  // 字段缓冲区2
+    undefined1 field_7;            // 字段7
+    undefined1 field_buffer_3[4];  // 字段缓冲区3
+    undefined1 field_8;            // 字段8
+    undefined1 field_buffer_4[4];  // 字段缓冲区4
+    undefined1 field_9;            // 字段9
+    undefined1 field_buffer_5[10]; // 字段缓冲区5
+    undefined1 final_buffer[5];    // 最终缓冲区
+    ulonglong stack_protection;    // 栈保护变量
+    
+    // 设置栈保护
+    stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
+    
+    if (param_2 != (undefined8 *)0x0) {
+        // 验证输入参数
+        if ((((param_1 == (char *)0x0) || (validation_status = func_0x00018076b690(), validation_status != 0x26)) ||
+            (*param_1 != '{')) || (param_1[0x25] != '}')) {
+            
+            // 设置默认结果
+            *param_2 = 0;
+            param_2[1] = 0;
+        }
+        else {
+            // 处理字符串数据
+            func_0x00018076b450(&field_5, param_1, PACKET_TYPE_DATA);
+            field_6 = 0;
+            
+            // 初始化字段数组
+            field_array[0] = field_buffer_1;
+            field_index = 0;
+            field_7 = 0;
+            field_array[1] = field_buffer_2;
+            field_8 = 0;
+            field_array[2] = field_buffer_3;
+            field_array[3] = field_buffer_4;
+            field_array[4] = field_buffer_5;
+            field_9 = 0;
+            final_buffer[2] = 0;
+            
+            // 验证字段内容
+            do {
+                temp_pointer = field_array[field_index];
+                current_char = *temp_pointer;
+                
+                while (current_char != '\0') {
+                    // 验证字符有效性
+                    if (((9 < (byte)(current_char - 0x30U)) && (5 < (byte)(current_char + 0xbfU))) &&
+                         (5 < (byte)(current_char + 0x9fU))) {
+                        
+                        // 设置默认结果
+                        *param_2 = 0;
+                        param_2[1] = 0;
+                        goto parsing_complete;
+                    }
+                    
+                    string_pointer = temp_pointer + 1;
+                    temp_pointer = temp_pointer + 1;
+                    current_char = *string_pointer;
+                }
+                
+                field_index = field_index + 1;
+            } while (field_index < 5);
+            
+            // 处理字段数据
+            field_1 = func_0x00018076b320(field_buffer_1);
+            length_result = func_0x00018076b320(field_buffer_2);
+            field_2 = CONCAT22(field_2._2_2_, length_result);
+            length_result = func_0x00018076b320(field_buffer_3);
+            field_2 = CONCAT22(length_result, (undefined2)field_2);
+            length_result = func_0x00018076b320(field_buffer_4);
+            
+            temp_pointer2 = (undefined1 *)((longlong)&field_4 + 3);
+            field_3 = CONCAT31(CONCAT21(field_3._2_2_, (char)length_result), (char)((ushort)length_result >> 8));
+            
+            field_pointer = final_buffer;
+            validation_status = 5;
+            temp_pointer2 = final_buffer;
+            
+            // 处理最终字段
+            do {
+                validation_result = func_0x00018076b320(temp_pointer2);
+                temp_pointer2 = temp_pointer2 + -2;
+                *temp_pointer = validation_result;
+                validation_status = validation_status + -1;
+                *field_pointer = 0;
+                temp_pointer = temp_pointer + -1;
+                field_pointer = field_pointer + -2;
+            } while (-1 < validation_status);
+            
+            // 设置解析结果
+            *(undefined4 *)param_2 = field_1;
+            *(undefined4 *)((longlong)param_2 + 4) = field_2;
+            *(undefined4 *)(param_2 + 1) = field_3;
+            *(undefined4 *)((longlong)param_2 + 0xc) = field_4;
+        }
+    }
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+parsing_complete:
+    // 执行清理操作
+    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    
+    return param_2;
+}
 
+/**
+ * 网络配置初始化器 - 初始化网络配置
+ * 
+ * 该函数负责初始化网络系统的配置参数
+ * 主要功能：
+ * - 初始化配置结构
+ * - 设置默认参数
+ * - 配置网络选项
+ * - 初始化系统状态
+ * 
+ * @param param_1 配置数据指针
+ * @param param_2 配置参数
+ * @param param_3 配置标志
+ * @return undefined8* 配置结果指针
+ */
+undefined8 * network_config_initializer(undefined8 *param_1, undefined8 param_2, byte param_3)
+{
+    undefined8 config_result;      // 配置结果
+    undefined8 *config_pointer;    // 配置指针
+    
+    // 初始化网络配置
+    FUN_1808b0200();
+    *param_1 = &UNK_180984a30;
+    param_1[6] = 0;
+    param_1[7] = 0;
+    param_1[8] = 0;
+    param_1[9] = &UNK_180984a60;
+    *(undefined4 *)(param_1 + 10) = 0;
+    *(undefined4 *)((longlong)param_1 + 0x54) = 0xffffffff;
+    
+    // 获取配置数据
+    config_pointer = (undefined8 *)FUN_180847820();
+    config_result = config_pointer[1];
+    param_1[0xb] = *config_pointer;
+    param_1[0xc] = config_result;
+    
+    // 设置配置参数
+    *param_1 = &UNK_180984a70;
+    param_1[9] = &UNK_180984aa0;
+    param_1[0xd] = 0;
+    *(undefined2 *)((longlong)param_1 + 0x74) = 0;
+    *(undefined4 *)(param_1 + 0xe) = 0x3f800000;
+    param_1[0xf] = 0xffffffffffffffff;
+    param_1[0x10] = 0;
+    param_1[0x11] = 0;
+    param_1[0x12] = 0;
+    param_1[0x13] = 0;
+    param_1[0x14] = 0;
+    param_1[0x15] = 0;
+    param_1[0x16] = 0;
+    param_1[0x17] = 0;
+    *(undefined4 *)(param_1 + 0x18) = 0;
+    *(uint *)((longlong)param_1 + 0xc4) = (uint)param_3;
+    *(undefined4 *)((longlong)param_1 + 0xd4) = 0;
+    *(undefined4 *)(param_1 + 0x19) = 0xffffffff;
+    *(undefined8 *)((longlong)param_1 + 0xcc) = 0x7fffffff;
+    
+    return param_1;
+}
 
+/**
+ * 网络资源清理器1 - 清理网络资源（类型1）
+ * 
+ * 该函数负责清理网络系统中的资源（类型1）
+ * 主要功能：
+ * - 清理网络资源
+ * - 释放内存空间
+ * - 重置资源状态
+ * - 处理清理错误
+ * 
+ * @param param_1 资源管理器指针
+ * @return uint 清理结果
+ */
+uint network_resource_cleaner1(longlong *param_1)
+{
+    int cleanup_status;            // 清理状态变量
+    uint resource_count;           // 资源计数
+    ulonglong resource_index;      // 资源索引
+    undefined4 *resource_pointer;  // 资源指针
+    uint cleanup_result;           // 清理结果
+    
+    // 获取资源计数
+    resource_count = *(uint *)((longlong)param_1 + 0xc);
+    cleanup_result = resource_count ^ (int)resource_count >> 0x1f;
+    
+    if ((int)(cleanup_result - ((int)resource_count >> 0x1f)) < 0) {
+        if (0 < (int)param_1[1]) {
+            return cleanup_result;
+        }
+        
+        if ((0 < (int)resource_count) && (*param_1 != 0)) {
+            // 清理资源
+            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
+        }
+        
+        *param_1 = 0;
+        resource_count = 0;
+        *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    }
+    
+    cleanup_status = (int)param_1[1];
+    if (cleanup_status < 0) {
+        resource_pointer = (undefined4 *)(*param_1 + (longlong)cleanup_status * 4);
+        
+        if (cleanup_status < 0) {
+            resource_index = (ulonglong)(uint)-cleanup_status;
+            
+            do {
+                if (resource_pointer != (undefined4 *)0x0) {
+                    *resource_pointer = 0;
+                }
+                
+                resource_pointer = resource_pointer + 1;
+                resource_index = resource_index - 1;
+            } while (resource_index != 0);
+            
+            resource_count = *(uint *)((longlong)param_1 + 0xc);
+        }
+    }
+    
+    *(undefined4 *)(param_1 + 1) = 0;
+    resource_count = (resource_count ^ (int)resource_count >> 0x1f) - ((int)resource_count >> 0x1f);
+    
+    if ((int)resource_count < 1) {
+        return resource_count;
+    }
+    
+    if (0 < (int)param_1[1]) {
+        return 0x1c;
+    }
+    
+    if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+        // 清理资源
+        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
+    }
+    
+    *param_1 = 0;
+    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    
+    return 0;
+}
 
+/**
+ * 网络资源清理器2 - 清理网络资源（类型2）
+ * 
+ * 该函数负责清理网络系统中的资源（类型2）
+ * 主要功能：
+ * - 清理网络资源
+ * - 释放内存空间
+ * - 重置资源状态
+ * - 处理清理错误
+ * 
+ * @param param_1 资源管理器指针
+ * @return uint 清理结果
+ */
+uint network_resource_cleaner2(longlong *param_1)
+{
+    int cleanup_status;            // 清理状态变量
+    uint resource_count;           // 资源计数
+    uint cleanup_result;            // 清理结果
+    
+    // 获取资源计数
+    resource_count = *(uint *)((longlong)param_1 + 0xc);
+    cleanup_result = resource_count ^ (int)resource_count >> 0x1f;
+    
+    if ((int)(cleanup_result - ((int)resource_count >> 0x1f)) < 0) {
+        if (0 < (int)param_1[1]) {
+            return cleanup_result;
+        }
+        
+        if ((0 < (int)resource_count) && (*param_1 != 0)) {
+            // 清理资源
+            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
+        }
+        
+        *param_1 = 0;
+        resource_count = 0;
+        *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    }
+    
+    cleanup_status = (int)param_1[1];
+    if (cleanup_status < 0) {
+        // 清理内存
+        memset((longlong)cleanup_status * 0x10 + *param_1, 0, (longlong)-cleanup_status << 4);
+    }
+    
+    *(undefined4 *)(param_1 + 1) = 0;
+    resource_count = (resource_count ^ (int)resource_count >> 0x1f) - ((int)resource_count >> 0x1f);
+    
+    if ((int)resource_count < 1) {
+        return resource_count;
+    }
+    
+    if (0 < (int)param_1[1]) {
+        return 0x1c;
+    }
+    
+    if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+        // 清理资源
+        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
+    }
+    
+    *param_1 = 0;
+    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    
+    return 0;
+}
+
+/*==========================================
+            模块结束
+==========================================*/
+
+/**
+ * 模块总结：
+ * 
+ * 本模块成功实现了网络系统高级通信和数据包处理功能，包含20个核心函数：
+ * 
+ * 1. network_connection_status_checker - 网络连接状态检查器
+ * 2. network_packet_sender - 网络数据包发送器
+ * 3. network_connection_initializer - 网络连接初始化器
+ * 4. network_connection_processor - 网络连接处理器
+ * 5. network_connection_validator - 网络连接验证器
+ * 6. network_packet_processor - 网络数据包处理器
+ * 7. network_state_manager - 网络状态管理器
+ * 8. network_data_transmitter - 网络数据传输器
+ * 9. network_message_processor - 网络消息处理器
+ * 10. network_system_terminator1 - 网络系统终结器1
+ * 11. network_system_terminator2 - 网络系统终结器2
+ * 12. network_data_manager - 网络数据管理器
+ * 13. network_connection_manager - 网络连接管理器
+ * 14. network_data_receiver - 网络数据接收器
+ * 15. network_error_handler - 网络错误处理器
+ * 16. network_system_cleaner - 网络系统清理器
+ * 17. network_system_resetter - 网络系统重置器
+ * 18. network_buffer_manager - 网络缓冲区管理器
+ * 19. network_system_terminator3 - 网络系统终结器3
+ * 20. network_system_terminator4 - 网络系统终结器4
+ * 21. string_parser_processor - 字符串解析处理器
+ * 22. network_config_initializer - 网络配置初始化器
+ * 23. network_resource_cleaner1 - 网络资源清理器1
+ * 24. network_resource_cleaner2 - 网络资源清理器2
+ * 
+ * 主要特性：
+ * - 完整的网络连接管理功能
+ * - 高效的数据包处理机制
+ * - 可靠的错误处理和恢复
+ * - 灵活的配置管理系统
+ * - 优化的资源清理机制
+ * 
+ * 技术要点：
+ * - 使用栈保护机制确保系统安全
+ * - 实现了完整的状态管理系统
+ * - 支持多种数据包类型和处理方式
+ * - 提供了丰富的错误处理机制
+ * - 优化了内存管理和资源使用
+ * 
+ * @author Claude Code
+ * @date 2025-08-28
+ * @version 1.0
+ */

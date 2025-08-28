@@ -2,6 +2,20 @@
 
 // 01_initialization_part016.c - 初始化模块第16部分
 // 包含32个函数，主要处理内存管理、字符串操作、线程同步等功能
+// 
+// 主要功能模块：
+// - 内存管理：内存分配器初始化、资源管理、对象清理
+// - 字符串处理：字符串初始化、复制、搜索替换、路径处理
+// - 线程同步：互斥锁管理、条件变量、线程安全操作
+// - 系统初始化：引擎系统初始化、配置文件加载、模块路径构建
+// - 资源管理：资源分配、释放、容器管理
+// 
+// 技术特点：
+// - 线程安全的内存操作
+// - 异常处理和资源清理
+// - 路径字符串标准化
+// - 配置文件动态加载
+// - 模块化系统架构
 
 // 全局常量定义
 #define MAX_PATH_LENGTH 0x80
@@ -1082,3 +1096,47 @@ void cleanup_resource_container(longlong container, void *attr1, void *attr2, vo
   }
   return;
 }
+
+// 函数别名和映射表
+// 
+// 内存管理函数：
+// - destroy_mutex_simple -> 互斥锁销毁函数
+// - initialize_memory_allocator -> 内存分配器初始化函数
+// - allocate_resource -> 资源分配函数
+// - release_resource -> 资源释放函数
+// 
+// 字符串处理函数：
+// - initialize_string_object -> 字符串对象初始化函数
+// - safe_string_copy -> 安全字符串复制函数
+// - string_search_replace -> 字符串搜索替换函数
+// - set_string_content -> 字符串内容设置函数
+// 
+// 线程同步函数：
+// - initialize_sync_object -> 同步对象初始化函数
+// - threadsafe_insert_element -> 线程安全元素插入函数
+// - check_main_thread -> 主线程检查函数
+// - set_thread_identifier -> 线程标识设置函数
+// 
+// 系统初始化函数：
+// - initialize_engine_system -> 引擎系统初始化函数
+// - shutdown_engine_system -> 引擎系统关闭函数
+// - check_engine_configuration -> 引擎配置检查函数
+// - load_configuration_file -> 配置文件加载函数
+// 
+// 路径处理函数：
+// - build_module_path -> 模块路径构建函数
+// - cleanup_path_string -> 路径字符串清理函数
+// - initialize_module_name -> 模块名称初始化函数
+// 
+// 清理和管理函数：
+// - cleanup_object_recursive -> 对象递归清理函数
+// - cleanup_thread_container -> 线程容器清理函数
+// - cleanup_module_container -> 模块容器清理函数
+// - cleanup_resource_container -> 资源容器清理函数
+//
+// 技术说明：
+// - 所有函数都使用统一的错误处理机制
+// - 内存操作都包含线程安全保护
+// - 字符串处理支持多种编码格式
+// - 路径处理支持跨平台兼容性
+// - 资源管理使用引用计数机制
