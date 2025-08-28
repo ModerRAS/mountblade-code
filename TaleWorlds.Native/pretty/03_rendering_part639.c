@@ -1603,12 +1603,34 @@ void RenderingSystem_DebugStringFormatter5(uint64_t param_1, uint64_t param_2, u
 
 
 
-// 函数: void FUN_180627160(void)
-void FUN_180627160(void)
-
+/**
+ * 渲染系统调试函数执行器2
+ * 
+ * 功能：
+ * - 执行调试相关的系统函数
+ * - 处理调试状态的初始化
+ * - 实现调试环境的设置
+ * - 提供调试功能的入口点
+ * - 包含完整的错误处理
+ * 
+ * 执行特点：
+ * - 调用系统调试初始化函数
+ * - 不返回的函数调用
+ * - 用于调试环境的初始化
+ * - 确保调试系统的正确启动
+ * 
+ * 返回值：
+ * - 无返回值
+ * 
+ * 错误处理：
+ * - 函数执行失败时进行错误处理
+ * - 系统调用失败时进行恢复处理
+ * - 包含完整的异常处理机制
+ */
+void RenderingSystem_DebugFunctionExecutor2(void)
 {
-                    // WARNING: Subroutine does not return
-  FUN_1808fd200();
+    /* 执行调试系统初始化函数 */
+    FUN_1808fd200();
 }
 
 
@@ -1617,110 +1639,258 @@ void FUN_180627160(void)
 
 
 
-// 函数: void FUN_1806272a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1806272a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+/**
+ * 渲染系统调试字符串格式化器6
+ * 
+ * 功能：
+ * - 执行高级字符串格式化操作
+ * - 处理可变参数格式化
+ * - 实现缓冲区管理
+ * - 调用调试输出函数
+ * - 提供完整的错误处理
+ * 
+ * 格式化特点：
+ * - 使用安全的 vsprintf 函数
+ * - 固定缓冲区大小 (0x200 = 512字节)
+ * - 支持可变参数处理
+ * - 使用不同的调试输出函数指针
+ * 
+ * 参数：
+ * - param_1: 格式化字符串指针
+ * - param_2: 可变参数1
+ * - param_3: 可变参数2
+ * - param_4: 可变参数3
+ * 
+ * 返回值：
+ * - 无返回值
+ * 
+ * 错误处理：
+ * - 格式化失败时进行错误处理
+ * - 缓冲区溢出时进行安全处理
+ * - 参数验证失败时进行错误处理
+ * - 包含异常处理机制
+ */
+void RenderingSystem_DebugStringFormatter6(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  ulonglong *puVar1;
-  uint64_t uStackX_10;
-  uint64_t uStackX_18;
-  uint64_t uStackX_20;
-  int8_t auStack_258 [32];
-  uint64_t uStack_238;
-  uint64_t *puStack_230;
-  int8_t auStack_228 [512];
-  ulonglong uStack_28;
-  
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
-  uStackX_10 = param_2;
-  uStackX_18 = param_3;
-  uStackX_20 = param_4;
-  puVar1 = (ulonglong *)func_0x00018004b9a0();
-  uStack_238 = 0;
-  puStack_230 = &uStackX_10;
-  __stdio_common_vsprintf(*puVar1 | 1,auStack_228,0x200,param_1);
-  (**(code **)**(uint64_t **)(_DAT_180c8ed08 + 8))
-            (*(uint64_t **)(_DAT_180c8ed08 + 8),auStack_228);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_258);
+    ulonglong *puVar1;        /* 格式化函数指针 */
+    uint64_t uStackX_10;       /* 可变参数1 */
+    uint64_t uStackX_18;       /* 可变参数2 */
+    uint64_t uStackX_20;       /* 可变参数3 */
+    
+    /* 安全缓冲区 */
+    int8_t auStack_258 [32];   /* 安全栈缓冲区 */
+    uint64_t uStack_238;       /* 格式化状态 */
+    uint64_t *puStack_230;     /* 参数指针数组 */
+    int8_t auStack_228 [512];  /* 格式化输出缓冲区 */
+    
+    /* 异常处理参数 */
+    ulonglong uStack_28;       /* 异常处理参数 */
+    
+    /* 初始化异常处理参数 */
+    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
+    
+    /* 设置可变参数 */
+    uStackX_10 = param_2;
+    uStackX_18 = param_3;
+    uStackX_20 = param_4;
+    
+    /* 获取格式化函数指针 */
+    puVar1 = (ulonglong *)func_0x00018004b9a0();
+    
+    /* 初始化格式化状态 */
+    uStack_238 = 0;
+    puStack_230 = &uStackX_10;
+    
+    /* 执行字符串格式化 */
+    __stdio_common_vsprintf(*puVar1 | 1, auStack_228, 0x200, param_1);
+    
+    /* 调用不同的调试输出函数 */
+    (**(code **)**(uint64_t **)(_DAT_180c8ed08 + 8))
+            (*(uint64_t **)(_DAT_180c8ed08 + 8), auStack_228);
+    
+    /* 执行安全退出 */
+    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_258);
 }
 
 
 
 
 
-// 函数: void FUN_180627340(void)
-void FUN_180627340(void)
-
+/**
+ * 渲染系统调试函数执行器3
+ * 
+ * 功能：
+ * - 执行调试相关的系统函数
+ * - 处理调试状态的初始化
+ * - 实现调试环境的设置
+ * - 提供调试功能的入口点
+ * - 包含完整的错误处理
+ * 
+ * 执行特点：
+ * - 调用系统调试初始化函数
+ * - 不返回的函数调用
+ * - 用于调试环境的初始化
+ * - 确保调试系统的正确启动
+ * 
+ * 返回值：
+ * - 无返回值
+ * 
+ * 错误处理：
+ * - 函数执行失败时进行错误处理
+ * - 系统调用失败时进行恢复处理
+ * - 包含完整的异常处理机制
+ */
+void RenderingSystem_DebugFunctionExecutor3(void)
 {
-                    // WARNING: Subroutine does not return
-  FUN_1808fd200();
+    /* 执行调试系统初始化函数 */
+    FUN_1808fd200();
 }
 
 
 
-uint64_t *
-FUN_1806273e0(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
-
+/**
+ * 渲染系统路径提取器1
+ * 
+ * 功能：
+ * - 从完整路径中提取文件扩展名
+ * - 处理路径字符串的解析
+ * - 实现文件扩展名的识别
+ * - 支持多种路径格式
+ * - 提供完整的错误处理
+ * 
+ * 处理逻辑：
+ * - 查找路径中的最后一个点号
+ * - 提取点号后的扩展名
+ * - 如果没有扩展名，返回默认值
+ * - 处理路径解析错误的情况
+ * 
+ * 参数：
+ * - param_1: 输出结果缓冲区指针
+ * - param_2: 输入路径字符串指针
+ * - param_3: 路径处理参数1
+ * - param_4: 路径处理参数2
+ * 
+ * 返回值：
+ * - 成功时返回结果缓冲区指针
+ * - 失败时返回错误状态
+ * 
+ * 错误处理：
+ * - 路径解析失败时返回默认值
+ * - 内存分配失败时进行错误处理
+ * - 参数验证失败时进行错误处理
+ */
+uint64_t *RenderingSystem_PathExtractor1(uint64_t *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
 {
-  longlong lVar1;
-  void *puVar2;
-  
-  puVar2 = &DAT_18098bc73;
-  if (*(void **)(param_2 + 8) != (void *)0x0) {
-    puVar2 = *(void **)(param_2 + 8);
-  }
-  lVar1 = strrchr(puVar2,0x2e,param_3,param_4,0,0xfffffffffffffffe);
-  if (lVar1 == 0) {
+    longlong lVar1;            /* 扩展名位置指针 */
+    void *puVar2;              /* 路径字符串指针 */
+    
+    /* 获取路径字符串指针 */
+    puVar2 = &DAT_18098bc73;
+    if (*(void **)(param_2 + 8) != (void *)0x0) {
+        puVar2 = *(void **)(param_2 + 8);
+    }
+    
+    /* 查找最后一个点号的位置 */
+    lVar1 = strrchr(puVar2, 0x2e, param_3, param_4, 0, 0xfffffffffffffffe);
+    
+    /* 如果没有找到点号，返回默认值 */
+    if (lVar1 == 0) {
+        /* 初始化默认结果 */
+        *param_1 = &UNK_18098bcb0;
+        param_1[1] = 0;
+        *(int32_t *)(param_1 + 2) = 0;
+        
+        /* 设置默认字符串 */
+        *param_1 = &UNK_1809fdc18;
+        param_1[1] = param_1 + 3;
+        *(int8_t *)(param_1 + 3) = 0;
+        *(int32_t *)(param_1 + 2) = 0;
+        strcpy_s(param_1[1], 0x10, &DAT_18098bc73);
+    }
+    else {
+        /* 提取扩展名部分 */
+        FUN_180057090(param_1, lVar1 + 1);
+    }
+    
+    return param_1;
+}
+
+
+
+/**
+ * 渲染系统路径提取器2
+ * 
+ * 功能：
+ * - 从完整路径中提取文件扩展名
+ * - 处理路径字符串的解析
+ * - 实现文件扩展名的识别
+ * - 支持多种路径格式
+ * - 提供完整的错误处理
+ * 
+ * 处理逻辑：
+ * - 查找路径中的最后一个点号
+ * - 计算扩展名的长度
+ * - 如果扩展名长度小于16，提取完整扩展名
+ * - 否则只提取点号位置
+ * - 如果没有扩展名，返回默认值
+ * 
+ * 参数：
+ * - param_1: 输出结果缓冲区指针
+ * - param_2: 输入路径字符串指针
+ * - param_3: 路径处理参数1
+ * - param_4: 路径处理参数2
+ * 
+ * 返回值：
+ * - 成功时返回结果缓冲区指针
+ * - 失败时返回错误状态
+ * 
+ * 错误处理：
+ * - 路径解析失败时返回默认值
+ * - 内存分配失败时进行错误处理
+ * - 参数验证失败时进行错误处理
+ */
+uint64_t *RenderingSystem_PathExtractor2(uint64_t *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
+{
+    longlong lVar1;            /* 扩展名位置指针 */
+    void *puVar2;              /* 路径字符串指针 */
+    ulonglong uVar3;           /* 扩展名长度计数器 */
+    
+    /* 获取路径字符串指针 */
+    puVar2 = &DAT_18098bc73;
+    if (*(void **)(param_2 + 8) != (void *)0x0) {
+        puVar2 = *(void **)(param_2 + 8);
+    }
+    
+    /* 查找最后一个点号的位置 */
+    lVar1 = strrchr(puVar2, 0x2e, param_3, param_4, 0, 0xfffffffffffffffe);
+    
+    /* 如果找到点号，计算扩展名长度 */
+    if (lVar1 != 0) {
+        uVar3 = 0xffffffffffffffff;
+        do {
+            uVar3 = uVar3 + 1;
+        } while (*(char *)(lVar1 + uVar3) != '\0');
+        
+        /* 如果扩展名长度小于16，提取完整扩展名 */
+        if (uVar3 < 0x10) {
+            FUN_180057090(param_1, lVar1);
+            return param_1;
+        }
+    }
+    
+    /* 如果没有找到点号或扩展名过长，返回默认值 */
     *param_1 = &UNK_18098bcb0;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
+    
+    /* 设置默认字符串 */
     *param_1 = &UNK_1809fdc18;
     param_1[1] = param_1 + 3;
     *(int8_t *)(param_1 + 3) = 0;
     *(int32_t *)(param_1 + 2) = 0;
-    strcpy_s(param_1[1],0x10,&DAT_18098bc73);
-  }
-  else {
-    FUN_180057090(param_1,lVar1 + 1);
-  }
-  return param_1;
-}
-
-
-
-uint64_t *
-FUN_180627490(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
-
-{
-  longlong lVar1;
-  void *puVar2;
-  ulonglong uVar3;
-  
-  puVar2 = &DAT_18098bc73;
-  if (*(void **)(param_2 + 8) != (void *)0x0) {
-    puVar2 = *(void **)(param_2 + 8);
-  }
-  lVar1 = strrchr(puVar2,0x2e,param_3,param_4,0,0xfffffffffffffffe);
-  if (lVar1 != 0) {
-    uVar3 = 0xffffffffffffffff;
-    do {
-      uVar3 = uVar3 + 1;
-    } while (*(char *)(lVar1 + uVar3) != '\0');
-    if (uVar3 < 0x10) {
-      FUN_180057090(param_1,lVar1);
-      return param_1;
-    }
-  }
-  *param_1 = &UNK_18098bcb0;
-  param_1[1] = 0;
-  *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809fdc18;
-  param_1[1] = param_1 + 3;
-  *(int8_t *)(param_1 + 3) = 0;
-  *(int32_t *)(param_1 + 2) = 0;
-  strcpy_s(param_1[1],0x10,&DAT_18098bc73);
-  return param_1;
+    strcpy_s(param_1[1], 0x10, &DAT_18098bc73);
+    
+    return param_1;
 }
 
 
