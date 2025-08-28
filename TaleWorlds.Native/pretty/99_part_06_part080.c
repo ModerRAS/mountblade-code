@@ -82,116 +82,182 @@ typedef struct {
 void SystemResourceStateManager_SyncResourceLifecycle(longlong systemContext, uint64_t syncFlags, 
                                                       longlong resourceManager, int32_t stateFlags, 
                                                       int32_t priorityFlags)
+{
+  /* 变量声明和初始化 */
+  longlong *currentResourceManager;
+  longlong *previousResourceManager;
+  bool isNewResourceCreated;
+  bool isExistingResourceUsed;
+  longlong systemDataPointer;
+  int currentState;
+  longlong *newResourceManager;
+  longlong **resourceManagerRef;
+  longlong *tempResourceBuffer;
+  uint64_t storedSyncFlags;
+  longlong *existingResourceBuffer;
   
-  plVar1 = *(longlong **)(param_1 + 0x460);
-  uStackX_10 = param_2;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
+  /* 获取当前资源管理器引用 */
+  currentResourceManager = *(longlong **)(systemContext + 0x460);
+  storedSyncFlags = syncFlags;
+  
+  /* 释放当前资源管理器（如果存在） */
+  if (currentResourceManager != (longlong *)0x0) {
+    (**(code **)(*currentResourceManager + 0x28))(currentResourceManager);
   }
-  plVar7 = *(longlong **)(param_1 + 0x1a0);
-  if (plVar7 == (longlong *)0x0) {
-    plVar7 = (longlong *)FUN_1800bdc80();
-    plStackX_8 = plVar7;
-    if (plVar7 != (longlong *)0x0) {
-      (**(code **)(*plVar7 + 0x28))(plVar7);
+  
+  /* 获取或创建新的资源管理器 */
+  newResourceManager = *(longlong **)(systemContext + 0x1a0);
+  if (newResourceManager == (longlong *)0x0) {
+    /* 创建新的资源管理器 */
+    newResourceManager = (longlong *)MemoryManager_CreateResourceBuffer();
+    tempResourceBuffer = newResourceManager;
+    if (newResourceManager != (longlong *)0x0) {
+      (**(code **)(*newResourceManager + 0x28))(newResourceManager);
     }
-    pplVar8 = &plStackX_8;
-    bVar4 = false;
-    bVar3 = true;
+    resourceManagerRef = &tempResourceBuffer;
+    isExistingResourceUsed = false;
+    isNewResourceCreated = true;
   }
   else {
-    plStackX_18 = plVar7;
-    (**(code **)(*plVar7 + 0x28))(plVar7);
-    pplVar8 = &plStackX_18;
-    bVar4 = true;
-    bVar3 = false;
+    /* 使用现有资源管理器 */
+    existingResourceBuffer = newResourceManager;
+    (**(code **)(*newResourceManager + 0x28))(newResourceManager);
+    resourceManagerRef = &existingResourceBuffer;
+    isExistingResourceUsed = true;
+    isNewResourceCreated = false;
   }
-  *pplVar8 = (longlong *)0x0;
-  plVar2 = *(longlong **)(param_1 + 0x460);
-  *(longlong **)(param_1 + 0x460) = plVar7;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  
+  /* 清理资源管理器引用 */
+  *resourceManagerRef = (longlong *)0x0;
+  previousResourceManager = *(longlong **)(systemContext + 0x460);
+  *(longlong **)(systemContext + 0x460) = newResourceManager;
+  
+  /* 释放前一个资源管理器 */
+  if (previousResourceManager != (longlong *)0x0) {
+    (**(code **)(*previousResourceManager + 0x38))();
   }
-  if ((bVar3) && (plStackX_8 != (longlong *)0x0)) {
-    (**(code **)(*plStackX_8 + 0x38))();
+  
+  /* 清理临时资源缓冲区 */
+  if (isNewResourceCreated && (tempResourceBuffer != (longlong *)0x0)) {
+    (**(code **)(*tempResourceBuffer + 0x38))();
   }
-  if ((bVar4) && (plStackX_18 != (longlong *)0x0)) {
-    (**(code **)(*plStackX_18 + 0x38))();
+  if (isExistingResourceUsed && (existingResourceBuffer != (longlong *)0x0)) {
+    (**(code **)(*existingResourceBuffer + 0x38))();
   }
-  bVar4 = false;
-  bVar3 = false;
-  if (plVar1 == (longlong *)0x0) {
-    plVar7 = (longlong *)FUN_1800bd5c0();
-    plStackX_8 = plVar7;
-    if (plVar7 != (longlong *)0x0) {
-      (**(code **)(*plVar7 + 0x28))(plVar7);
+  
+  /* 重置状态标志 */
+  isExistingResourceUsed = false;
+  isNewResourceCreated = false;
+  
+  /* 处理备用资源管理器 */
+  if (currentResourceManager == (longlong *)0x0) {
+    newResourceManager = (longlong *)MemoryManager_CreateSecondaryBuffer();
+    tempResourceBuffer = newResourceManager;
+    if (newResourceManager != (longlong *)0x0) {
+      (**(code **)(*newResourceManager + 0x28))(newResourceManager);
     }
-    pplVar8 = &plStackX_8;
-    bVar3 = true;
+    resourceManagerRef = &tempResourceBuffer;
+    isNewResourceCreated = true;
   }
   else {
-    plStackX_18 = plVar1;
-    (**(code **)(*plVar1 + 0x28))(plVar1);
-    pplVar8 = &plStackX_18;
-    bVar4 = true;
-    plVar7 = plVar1;
+    existingResourceBuffer = currentResourceManager;
+    (**(code **)(*currentResourceManager + 0x28))(currentResourceManager);
+    resourceManagerRef = &existingResourceBuffer;
+    isExistingResourceUsed = true;
+    newResourceManager = currentResourceManager;
   }
-  *pplVar8 = (longlong *)0x0;
-  plVar2 = *(longlong **)(param_1 + 0x1a8);
-  *(longlong **)(param_1 + 0x1a8) = plVar7;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  
+  /* 清理备用资源管理器引用 */
+  *resourceManagerRef = (longlong *)0x0;
+  previousResourceManager = *(longlong **)(systemContext + 0x1a8);
+  *(longlong **)(systemContext + 0x1a8) = newResourceManager;
+  
+  /* 释放前一个备用资源管理器 */
+  if (previousResourceManager != (longlong *)0x0) {
+    (**(code **)(*previousResourceManager + 0x38))();
   }
-  if ((bVar3) && (plStackX_8 != (longlong *)0x0)) {
-    (**(code **)(*plStackX_8 + 0x38))();
+  
+  /* 清理临时缓冲区 */
+  if (isNewResourceCreated && (tempResourceBuffer != (longlong *)0x0)) {
+    (**(code **)(*tempResourceBuffer + 0x38))();
   }
-  if ((bVar4) && (plStackX_18 != (longlong *)0x0)) {
-    (**(code **)(*plStackX_18 + 0x38))();
+  if (isExistingResourceUsed && (existingResourceBuffer != (longlong *)0x0)) {
+    (**(code **)(*existingResourceBuffer + 0x38))();
   }
-  iVar6 = *(int *)(param_1 + 0x474);
-  if (iVar6 == 1) {
-    *(int32_t *)(param_1 + 0x474) = 2;
-    iVar6 = 2;
+  
+  /* 更新系统状态 */
+  currentState = *(int *)(systemContext + 0x474);
+  if (currentState == 1) {
+    *(int32_t *)(systemContext + 0x474) = 2;
+    currentState = 2;
   }
-  lVar5 = _DAT_180c868d0;
+  
+  /* 检查系统状态转换条件 */
+  systemDataPointer = _DAT_180c868d0;
   if ((*(char *)(_DAT_180c868d0 + 0x480) == '\0') &&
      (((0.7 < *(float *)(_DAT_180c868d0 + 0x46c) || *(float *)(_DAT_180c868d0 + 0x46c) == 0.7 ||
-       ((*(byte *)(_DAT_180c868d0 + 0x47c) & 1) != 0)) && (iVar6 == 0)))) {
-    *(int32_t *)(param_1 + 0x474) = 1;
-    iVar6 = 1;
+       ((*(byte *)(_DAT_180c868d0 + 0x47c) & 1) != 0)) && (currentState == 0)))) {
+    *(int32_t *)(systemContext + 0x474) = 1;
+    currentState = 1;
   }
-  if ((*(char *)(lVar5 + 0x498) == '\0') &&
-     ((0.7 < *(float *)(lVar5 + 0x484) || *(float *)(lVar5 + 0x484) == 0.7 ||
-      ((*(byte *)(lVar5 + 0x494) & 1) != 0)))) {
-    *(int32_t *)(param_1 + 0x474) = 0;
-    iVar6 = 0;
+  
+  /* 检查系统停止条件 */
+  if ((*(char *)(systemDataPointer + 0x498) == '\0') &&
+     ((0.7 < *(float *)(systemDataPointer + 0x484) || *(float *)(systemDataPointer + 0x484) == 0.7 ||
+      ((*(byte *)(systemDataPointer + 0x494) & 1) != 0)))) {
+    *(int32_t *)(systemContext + 0x474) = 0;
+    currentState = 0;
   }
-  lVar5 = _DAT_180c86938;
-  *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1c90) = (float)iVar6 + 0.2;
-  *(int32_t *)(*(longlong *)(lVar5 + 0x1cd8) + 0x1c80) = *(int32_t *)(param_3 + 0x12c00);
-  *(int32_t *)(*(longlong *)(lVar5 + 0x1cd8) + 0x1c84) = *(int32_t *)(param_3 + 0x12c04);
-  FUN_1801f6650(param_1,uStackX_10,param_3,param_4,param_5);
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))(plVar1);
+  
+  /* 更新渲染系统参数 */
+  systemDataPointer = _DAT_180c86938;
+  *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1c90) = (float)currentState + 0.2;
+  *(int32_t *)(*(longlong *)(systemDataPointer + 0x1cd8) + 0x1c80) = *(int32_t *)(resourceManager + 0x12c00);
+  *(int32_t *)(*(longlong *)(systemDataPointer + 0x1cd8) + 0x1c84) = *(int32_t *)(resourceManager + 0x12c04);
+  
+  /* 调用后续处理函数 */
+  SystemRenderer_UpdateRenderParameters(systemContext, storedSyncFlags, resourceManager, stateFlags, priorityFlags);
+  
+  /* 清理当前资源管理器 */
+  if (currentResourceManager != (longlong *)0x0) {
+    (**(code **)(*currentResourceManager + 0x38))(currentResourceManager);
   }
+  
   return;
 }
 
 
 
-uint64_t *
-FUN_1803f8100(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
-
+/**
+ * @brief 内存管理器析构函数
+ * 
+ * 负责释放和管理内存资源，确保系统在关闭时正确清理所有分配的内存
+ * 实现安全的内存释放机制，防止内存泄漏和野指针访问
+ * 
+ * @param memoryManager 内存管理器指针
+ * @param freeFlags 释放标志位
+ * @param context 上下文参数
+ * @param userData 用户数据指针
+ * 
+ * @return 内存管理器指针
+ */
+uint64_t * MemoryManager_Destroy(uint64_t *memoryManager, ulonglong freeFlags, uint64_t context, uint64_t userData)
 {
-  uint64_t uVar1;
+  uint64_t memoryFlags;
   
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a26480;
-  FUN_1801f9920();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x460,param_3,param_4,uVar1);
+  /* 设置内存管理器标志 */
+  memoryFlags = 0xfffffffffffffffe;
+  *memoryManager = &MemoryManager_VTable_Destroy;
+  
+  /* 执行清理操作 */
+  SystemMemoryManager_PerformCleanup();
+  
+  /* 根据标志位决定是否释放内存 */
+  if ((freeFlags & 1) != 0) {
+    MemoryManager_FreeMemoryBlock(memoryManager, 0x460, context, userData, memoryFlags);
   }
-  return param_1;
+  
+  return memoryManager;
 }
 
 

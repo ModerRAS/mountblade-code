@@ -1076,7 +1076,7 @@ void utilities_system_module_state_manager(void)
   *system_module_state_ptr = SYSTEM_INIT_VALUE;
   
   // 检查模块状态
-  if (_DAT_180d49220 != 0) {
+  if (*system_module_status_ptr != 0) {
     // 模块状态异常，终止程序
     FUN_18064e900();
   }

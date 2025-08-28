@@ -178,6 +178,10 @@
 // 网络配置指针
 #define NetworkingSystem_ConfigPtr UNK_18095af38
 
+// 数据拼接宏 - 用于将不同位宽的数据拼接成完整数据
+#define NetworkingSystem_Concat32Low CONCAT44     // 32位数据拼接（低32位）
+#define NetworkingSystem_Concat31Bits CONCAT31     // 31位数据拼接
+
 /* ============================================================================
  * 类型别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
@@ -575,7 +579,7 @@ SESSION_INITIALIZATION_COMPLETE:
             session_manager = resource_allocator[2];
             connection_type = (**(code **)(*auth_ptr + 0x20))(auth_ptr);
             authenticator = &config_context;
-            config_context = CONCAT44(config_context._4_4_, *(NetworkDword *)(connection_context + resource_limit * 4));
+            config_context = NetworkingSystem_Concat32Low(config_context._4_4_, *(NetworkDword *)(connection_context + resource_limit * 4));
             cleanup_result = NetworkingSystem_MessageHandler(session_manager + 0x388, (ConnectionContext)(int)buffer_size * 0x10 + resource_manager,
                                   config_context, connection_type);
             state_manager = state_context;
@@ -615,7 +619,7 @@ SESSION_INITIALIZATION_COMPLETE:
               session_manager = resource_allocator[2];
               connection_type = (**(code **)(*auth_ptr + 0x20))(auth_ptr);
               authenticator = &config_context;
-              config_context = CONCAT44(config_context._4_4_, *(NetworkDword *)(connection_context + resource_limit * 4));
+              config_context = NetworkingSystem_Concat32Low(config_context._4_4_, *(NetworkDword *)(connection_context + resource_limit * 4));
               operation_result = NetworkingSystem_MessageHandler(session_manager + 0x388, (ConnectionContext)(int)buffer_size * 0x10 + resource_manager,
                                     config_context, connection_type);
               state_manager = state_context;
@@ -650,7 +654,7 @@ DATA_TRANSFER_COMPLETE:
     operation_result = NetworkingSystem_ConnectionCompleter(auth_ptr);
     if ((((operation_result != 0) ||
          (timeout_value = *(unsigned int *)(connection_pool + 0x18),
-         operation_result = NetworkingSystem_DataTransmitter(connection_pool, CONCAT31((uint3)(timeout_value >> 9), (NetworkByte)(timeout_value >> 1)) &
+         operation_result = NetworkingSystem_DataTransmitter(connection_pool, NetworkingSystem_Concat31Bits((uint3)(timeout_value >> 9), (NetworkByte)(timeout_value >> 1)) &
                                        0xffffff01), operation_result != 0)) &&
         (state_manager = state_context, resource_manager = cleanup_context, config_manager = backup_context, auth_manager = monitor_context,
         connection_pool = authenticator, operation_result != 0)) ||
@@ -996,7 +1000,7 @@ CLEANUP_COMPLETE:
     operation_result = NetworkingSystem_ConnectionCompleter(connection_pool);
     if ((((operation_result != 0) ||
          (operation_result = NetworkingSystem_DataTransmitter(connection_pool,
-                                CONCAT31((uint3)(*(unsigned int *)(connection_pool + 0x18) >> 9),
+                                NetworkingSystem_Concat31Bits((uint3)(*(unsigned int *)(connection_pool + 0x18) >> 9),
                                          (NetworkByte)(*(unsigned int *)(connection_pool + 0x18) >> 1)) &
                                 0xffffff01), operation_result != 0)) && (operation_result != 0)) ||
        (((operation_result = NetworkingSystem_ConnectionManager(connection_pool, 1), operation_result != 0 ||

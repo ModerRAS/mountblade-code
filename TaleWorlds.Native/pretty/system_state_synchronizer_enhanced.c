@@ -1,5 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include <time.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 /*==============================================================================
     系统状态同步器增强模块 - 高级状态管理和同步机制
