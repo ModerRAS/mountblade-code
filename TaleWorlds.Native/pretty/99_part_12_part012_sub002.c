@@ -38,7 +38,7 @@ uint64_t FUN_1807d2660(int64_t param_1,int64_t param_2)
       SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x30),
                     &unknown_var_208_ptr,0x289,1);
     }
-    lVar3 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar6,&unknown_var_208_ptr,0x28c,0,0,1);
+    lVar3 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar6,&unknown_var_208_ptr,0x28c,0,0,1);
     *(int64_t *)(param_1 + 0x30) = lVar3;
     if (lVar3 == 0) {
       return 0x26;

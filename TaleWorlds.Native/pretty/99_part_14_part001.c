@@ -381,7 +381,7 @@ uint64_t QueueSizeManager(int64_t param_1, uint param_2)
     uVar1 = FUN_1807682e0(param_1, 0);
     if ((int)uVar1 == 0) {
         // 分配队列节点内存
-        lVar2 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, 
+        lVar2 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, 
                             &unknown_var_9296_ptr, MEMORY_BLOCK_SIZE_36, 0, (char)uVar1, 1);
         *(int64_t *)(param_1 + 8) = lVar2;
         

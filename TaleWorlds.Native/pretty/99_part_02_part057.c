@@ -290,7 +290,7 @@ void FUN_1801c3340(void)
   puVar3[3] = 0x6c616d72;
   puVar3[4] = 0x70616d;
   uStack_d8 = 0x13;
-  FUN_180240430(uVar1,&puStack_e8,1);
+  SystemCore_LoggingSystem0(uVar1,&puStack_e8,1);
   puStack_e8 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreMemoryPoolInitializer(puVar3);

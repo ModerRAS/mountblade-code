@@ -465,7 +465,7 @@ void FUN_1801ae990(int64_t param_1,int64_t *param_2)
     *(int16_t *)((int64_t)puVar5 + 0xc) = 0x6469;
     *(int8_t *)((int64_t)puVar5 + 0xe) = 0;
     uStack_a8 = 0xe;
-    FUN_180240430(uVar3,&puStack_b8,0);
+    SystemCore_LoggingSystem0(uVar3,&puStack_b8,0);
     puStack_b8 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar5);

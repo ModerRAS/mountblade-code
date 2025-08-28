@@ -1758,7 +1758,7 @@ void UtilitiesSystem_ArrayProcessor1(int64_t param_1, int64_t param_2)
         // 分配新内存
         if (new_size != 0) {
             if ((0x3ffffffe < new_size * 8 - 1U) ||
-                (data_pointer = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+                (data_pointer = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                              new_size * 8, 
                                              &unknown_var_8432_ptr, 
                                              UTIL_MEMORY_BLOCK_SIZE, 
@@ -1882,7 +1882,7 @@ void UtilitiesSystem_ArrayProcessor2(uint64_t param_1, uint64_t param_2,
         // 分配新内存
         if (new_size != 0) {
             if ((0x3ffffffe < new_size * 8 - 1U) ||
-                (data_pointer = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+                (data_pointer = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                              new_size * 8, 
                                              &unknown_var_8432_ptr, 
                                              UTIL_MEMORY_BLOCK_SIZE, 
@@ -1995,7 +1995,7 @@ void UtilitiesSystem_ArrayProcessor3(int64_t in_RAX, uint64_t in_stack_00000060,
                 goto LAB_180891fc0;
             }
             
-            data_pointer = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+            data_pointer = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                         new_size * 8, 
                                         &unknown_var_8432_ptr, 
                                         UTIL_MEMORY_BLOCK_SIZE, 
@@ -2095,7 +2095,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
                 goto LAB_180891fc0;
             }
             
-            unaff_RSI = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+            unaff_RSI = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                      new_size * 8, 
                                      &unknown_var_8432_ptr, 
                                      UTIL_MEMORY_BLOCK_SIZE);

@@ -566,7 +566,7 @@ void FUN_1803d24f0(int64_t param_1,uint64_t param_2)
   puVar4[6] = 0x72726574;
   puVar4[7] = 0x6e6961;
   uStack_288 = 0x1f;
-  FUN_180240430(uVar3,&puStack_298,1);
+  SystemCore_LoggingSystem0(uVar3,&puStack_298,1);
   puStack_298 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar4);
@@ -636,7 +636,7 @@ void FUN_1803d3f10(int64_t param_1)
   *(int16_t *)(puVar4 + 4) = 0x726f;
   *(int8_t *)((int64_t)puVar4 + 0x12) = 0;
   uStack_120 = 0x12;
-  FUN_180240430(uVar3,&puStack_130,1);
+  SystemCore_LoggingSystem0(uVar3,&puStack_130,1);
   puStack_130 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar4);

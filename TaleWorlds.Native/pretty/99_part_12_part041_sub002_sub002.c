@@ -976,7 +976,7 @@ uint64_t FUN_1807e6ed0(int64_t param_1)
     do {
       uVar8 = uVar8 & 0xffffff00;
       uVar7 = uVar7 & 0xffffffff00000000;
-      lVar3 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xab,uVar7,
+      lVar3 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xab,uVar7,
                             uVar8,1);
       *plVar2 = lVar3;
       if (lVar3 == 0) {
@@ -989,7 +989,7 @@ uint64_t FUN_1807e6ed0(int64_t param_1)
     do {
       uVar8 = uVar8 & 0xffffff00;
       uVar7 = uVar7 & 0xffffffff00000000;
-      lVar3 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xb4,uVar7,
+      lVar3 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xb4,uVar7,
                             uVar8,1);
       *plVar2 = lVar3;
       if (lVar3 == 0) {
@@ -1028,7 +1028,7 @@ uint64_t FUN_1807e6f74(void)
     plVar3 = (int64_t *)&system_data_0f40;
     iVar2 = unaff_EBP;
     do {
-      lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xab,
+      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xab,
                             unaff_EBP);
       *plVar3 = lVar1;
       if (lVar1 == 0) {
@@ -1040,7 +1040,7 @@ uint64_t FUN_1807e6f74(void)
     plVar3 = (int64_t *)&system_data_1040;
     iVar2 = unaff_EBP;
     do {
-      lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xb4,
+      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xb4,
                             unaff_EBP);
       *plVar3 = lVar1;
       if (lVar1 == 0) {
@@ -1077,7 +1077,7 @@ uint64_t FUN_1807e7033(void)
     uStack0000000000000030 = 1;
     uVar3 = (int8_t)unaff_EBP;
     uStack0000000000000028 = uVar3;
-    lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xab);
+    lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xab);
     *plVar4 = lVar1;
     if (lVar1 == 0) {
       return 0x26;
@@ -1089,7 +1089,7 @@ uint64_t FUN_1807e7033(void)
   do {
     uStack0000000000000030 = 1;
     uStack0000000000000028 = uVar3;
-    lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xb4);
+    lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x400,&unknown_var_2528_ptr,0xb4);
     *plVar4 = lVar1;
     if (lVar1 == 0) {
       return 0x26;

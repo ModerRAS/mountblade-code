@@ -66,7 +66,7 @@ uint64_t FUN_1808b9a90(int64_t param_1,int64_t param_2)
       return uVar5;
     }
     puVar6 = (uint64_t *)
-             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x238,&unknown_var_2288_ptr,0x27a,0,
+             SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x238,&unknown_var_2288_ptr,0x27a,0,
                            in_stack_ffffffffffffff70 & 0xffffffffffffff00,1);
     if (puVar6 == (uint64_t *)0x0) {
       return 0x26;
@@ -172,7 +172,7 @@ uint64_t FUN_1808b9d30(int64_t param_1,uint64_t param_2)
   uint64_t in_stack_ffffffffffffffe0;
   
   uVar2 = 0;
-  lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x128,&unknown_var_2288_ptr,0x30f,
+  lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x128,&unknown_var_2288_ptr,0x30f,
                         in_stack_ffffffffffffffd8 & 0xffffffff00000000,
                         in_stack_ffffffffffffffe0 & 0xffffffffffffff00,1);
   if (lVar1 == 0) {
@@ -234,7 +234,7 @@ void FUN_1808b9df0(int64_t param_1,int64_t param_2)
       uStack_78 = CONCAT71(uStack_78._1_7_,1);
       uStack_80 = uStack_80 & 0xffffffffffffff00;
       uStack_88 = uStack_88 & 0xffffffff00000000;
-      lVar3 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x180,&unknown_var_2288_ptr,0x22c);
+      lVar3 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x180,&unknown_var_2288_ptr,0x22c);
       if (lVar3 != 0) {
         if (*(uint64_t **)(param_1 + 0x28) != (uint64_t *)0x0) {
           uVar4 = (**(code **)**(uint64_t **)(param_1 + 0x28))();

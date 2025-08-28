@@ -68,7 +68,7 @@ uint64_t FUN_1808c4160(int64_t param_1,int64_t *param_2)
   int64_t *plVar1;
   
   plVar1 = (int64_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_1696_ptr,0xbf,0,0,1);
+           SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_1696_ptr,0xbf,0,0,1);
   if (plVar1 != (int64_t *)0x0) {
     plVar1[1] = (int64_t)plVar1;
     *plVar1 = (int64_t)plVar1;

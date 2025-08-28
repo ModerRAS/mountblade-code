@@ -504,7 +504,7 @@ LAB_1808e19f4:
   *(int *)(param_1 + 0x1c8) = *(int *)(param_1 + 0x1c8) + 1;
   UNLOCK();
   plVar6 = (int64_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_8336_ptr,0xae,0,0,1);
+           SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_8336_ptr,0xae,0,0,1);
   if (plVar6 == (int64_t *)0x0) {
     uVar11 = 0x26;
     goto LAB_1808e1ae4;
@@ -617,7 +617,7 @@ LAB_1808e19f4:
   *(int *)(param_1 + 0x1c8) = *(int *)(param_1 + 0x1c8) + 1;
   UNLOCK();
   plVar5 = (int64_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_8336_ptr,0xae,0);
+           SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_8336_ptr,0xae,0);
   if (plVar5 == (int64_t *)0x0) {
     uVar10 = 0x26;
     goto LAB_1808e1ae4;

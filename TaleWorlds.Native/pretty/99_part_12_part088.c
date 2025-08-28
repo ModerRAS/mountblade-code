@@ -434,7 +434,7 @@ int32_t * FUN_1808a4c80(uint64_t *param_1,int64_t *param_2,uint64_t param_3)
     if (auStackX_20[0] >> 1 != 0) {
       if ((0x3ffffffe < uVar13 * 0x14 - 1) ||
          (puVar7 = (int32_t *)
-                   FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar13 * 0x14,
+                   SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar13 * 0x14,
                                  &unknown_var_8432_ptr,0xf4,0,0,1), puVar7 == (int32_t *)0x0)) {
         puVar7 = (int32_t *)0x26;
         goto LAB_1808a4de5;
@@ -543,7 +543,7 @@ uint64_t FUN_1808a4cb4(int32_t param_1)
     if (in_stack_00000088 >> 1 != 0) {
       if ((0x3ffffffe < uVar12 * 0x14 - 1) ||
          (puVar7 = (int32_t *)
-                   FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar12 * 0x14,
+                   SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar12 * 0x14,
                                  &unknown_var_8432_ptr,0xf4), param_1 = extraout_XMM0_Da,
          puVar7 == (int32_t *)0x0)) {
         uVar9 = 0x26;

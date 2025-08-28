@@ -452,7 +452,7 @@ void FUN_1808b7c00(uint64_t *param_1,int64_t param_2,int64_t *param_3,int64_t pa
   uStack_118 = CONCAT31(uStack_118._1_3_,1);
   uStack_120 = uStack_120 & 0xffffff00;
   ppuStack_128 = (uint64_t **)((uint64_t)ppuStack_128 & 0xffffffff00000000);
-  lVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_2288_ptr,0x139);
+  lVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_2288_ptr,0x139);
   if (lVar7 == 0) goto LAB_1808b7f0f;
   lVar7 = FUN_1808b62e0(lVar7,param_2,param_3,auStack_d8[0]);
   iVar4 = func_0x0001808b1cd0(lVar7,lVar5);

@@ -207,7 +207,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       auStack_360[0] = 0;
       uStack_368 = 7;
       strcpy_s(auStack_360,0x40,&unknown_var_1872_ptr);
-      plVar4 = (int64_t *)FUN_180240430(lVar3,&puStack_378,0);
+      plVar4 = (int64_t *)SystemCore_LoggingSystem0(lVar3,&puStack_378,0);
       puStack_378 = &system_state_ptr;
       lVar3 = param_1[6];
     }
@@ -217,7 +217,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       auStack_300[0] = 0;
       uStack_308 = 7;
       strcpy_s(auStack_300,0x40,&unknown_var_1808_ptr);
-      uVar5 = FUN_180240430(lVar3,&puStack_318,0);
+      uVar5 = SystemCore_LoggingSystem0(lVar3,&puStack_318,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_318 = &system_state_ptr;
       lVar3 = param_1[6];
@@ -228,7 +228,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       auStack_2a0[0] = 0;
       uStack_2a8 = 0xe;
       strcpy_s(auStack_2a0,0x40,&unknown_var_1792_ptr);
-      uVar5 = FUN_180240430(lVar3,&puStack_2b8,0);
+      uVar5 = SystemCore_LoggingSystem0(lVar3,&puStack_2b8,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_2b8 = &system_state_ptr;
       lVar3 = param_1[6];
@@ -239,7 +239,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       auStack_240[0] = 0;
       uStack_248 = 0xd;
       strcpy_s(auStack_240,0x40,&unknown_var_1760_ptr);
-      uVar5 = FUN_180240430(lVar3,&puStack_258,0);
+      uVar5 = SystemCore_LoggingSystem0(lVar3,&puStack_258,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_258 = &system_state_ptr;
     }
@@ -250,7 +250,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       auStack_1e0[0] = 0;
       uStack_1e8 = 0xb;
       strcpy_s(auStack_1e0,0x40,&unknown_var_1704_ptr);
-      uVar5 = FUN_180240430(uVar6,&puStack_1f8,0);
+      uVar5 = SystemCore_LoggingSystem0(uVar6,&puStack_1f8,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_1f8 = &system_state_ptr;
     }
@@ -263,7 +263,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       auStack_180[0] = 0;
       uStack_188 = 0x10;
       strcpy_s(auStack_180,0x40,&unknown_var_1736_ptr);
-      uVar5 = FUN_180240430(uVar6,&puStack_198,0);
+      uVar5 = SystemCore_LoggingSystem0(uVar6,&puStack_198,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_198 = &system_state_ptr;
     }
@@ -274,7 +274,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       auStack_120[0] = 0;
       uStack_128 = 0xd;
       strcpy_s(auStack_120,0x40,&unknown_var_1688_ptr);
-      uVar5 = FUN_180240430(uVar6,&puStack_138,0);
+      uVar5 = SystemCore_LoggingSystem0(uVar6,&puStack_138,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_138 = &system_state_ptr;
     }
@@ -285,7 +285,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       auStack_c0[0] = 0;
       uStack_c8 = 0x11;
       strcpy_s(auStack_c0,0x40,&unknown_var_1880_ptr);
-      uVar5 = FUN_180240430(uVar6,&puStack_d8,0);
+      uVar5 = SystemCore_LoggingSystem0(uVar6,&puStack_d8,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_d8 = &system_state_ptr;
     }

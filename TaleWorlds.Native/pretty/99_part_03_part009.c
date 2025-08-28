@@ -383,7 +383,7 @@ void FUN_1801cfab0(int64_t param_1)
   auStack_60[0] = 0;
   uStack_68 = 0x11;
   strcpy_s(auStack_60,0x40,&unknown_var_1280_ptr);
-  FUN_180240430(*(uint64_t *)(param_1 + 0x1e0),&puStack_78,0);
+  SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + 0x1e0),&puStack_78,0);
   puStack_78 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_a8);
@@ -417,7 +417,7 @@ void FUN_1801cfb90(int64_t param_1)
   auStack_60[0] = 0;
   uStack_68 = 0x11;
   strcpy_s(auStack_60,0x40,&unknown_var_1280_ptr);
-  FUN_180240430(*(uint64_t *)(param_1 + 0x1e0),&puStack_78,0);
+  SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + 0x1e0),&puStack_78,0);
   puStack_78 = &system_state_ptr;
   puVar1 = *(void **)(*(int64_t *)(param_1 + 0x1e0) + 0x18);
   puVar2 = &system_buffer_ptr;

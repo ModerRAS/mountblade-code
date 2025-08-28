@@ -260,7 +260,7 @@ void FUN_1802c64d0(int64_t *param_1,uint64_t param_2)
   auStack_150[0] = 0;
   uStack_158 = 0xe;
   strcpy_s(auStack_150,0x20,&unknown_var_3032_ptr);
-  ppuStack_2a8 = (void **)FUN_180240430(lVar6,&puStack_168,1);
+  ppuStack_2a8 = (void **)SystemCore_LoggingSystem0(lVar6,&puStack_168,1);
   puStack_168 = &system_state_ptr;
   uStack_2a0 = 0;
   uStack_29c = 0;
@@ -306,7 +306,7 @@ void FUN_1802c64d0(int64_t *param_1,uint64_t param_2)
   auStack_150[0] = 0;
   uStack_158 = 0xc;
   strcpy_s(auStack_150,0x20,&unknown_var_3152_ptr);
-  ppuStack_2a8 = (void **)FUN_180240430(lVar6,&puStack_168,1);
+  ppuStack_2a8 = (void **)SystemCore_LoggingSystem0(lVar6,&puStack_168,1);
   puStack_168 = &system_state_ptr;
   uStack_2a0 = 0;
   uStack_29c = 0;

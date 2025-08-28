@@ -818,7 +818,7 @@ material_processing_complete:
                 render_buffer[0] = 0;
                 batch_size = 0x10;
                 strcpy_s(render_buffer, 0x40, &system_buffer_d580);
-                texture_hash = FUN_180240430(render_cache[0x3c], &render_state, 0);
+                texture_hash = SystemCore_LoggingSystem0(render_cache[0x3c], &render_state, 0);
                 render_cache[0x28] = render_cache[0x28] | texture_hash;
                 FUN_18022dd60(render_cache);
                 *(int16_t*)(render_cache + 0x78) = 0xffff;

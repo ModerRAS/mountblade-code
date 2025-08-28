@@ -211,7 +211,7 @@ void FUN_1804013a0(int64_t param_1,uint64_t param_2,int64_t param_3,int32_t para
     auStack_108[0] = auStack_108[0] & 0xffffffffffffff00;
     uStack_110 = CONCAT44((int)(uStack_110 >> 0x20),0x10);
     strcpy_s(auStack_108,0x20,&unknown_var_2856_ptr);
-    plVar10 = (int64_t *)FUN_180240430(plVar10,&plStack_120,1);
+    plVar10 = (int64_t *)SystemCore_LoggingSystem0(plVar10,&plStack_120,1);
     uStack_150._0_4_ = SUB84(plVar10,0);
     uStack_150._4_4_ = (int32_t)((uint64_t)plVar10 >> 0x20);
     uVar7 = CONCAT22(uStack_144._2_2_,(int16_t)uStack_144);

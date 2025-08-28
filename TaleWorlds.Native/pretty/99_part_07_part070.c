@@ -470,7 +470,7 @@ void FUN_1804d9b70(uint64_t *param_1)
   auStack_b0[0] = 0;
   uStack_b8 = 0x25;
   strcpy_s(auStack_b0,0x80,&system_data_d5d0);
-  uVar4 = FUN_180240430(*(uint64_t *)(lVar2 + 0x1e0),&puStack_c8,1);
+  uVar4 = SystemCore_LoggingSystem0(*(uint64_t *)(lVar2 + 0x1e0),&puStack_c8,1);
   *(uint64_t *)(lVar2 + 0x140) = *(uint64_t *)(lVar2 + 0x140) | uVar4;
   FUN_18022dd60(lVar2);
   *(int16_t *)(lVar2 + 0x3c0) = 0xffff;

@@ -81,7 +81,7 @@ uint64_t FUN_1808a75c0(uint64_t *param_1,int64_t param_2)
             return uVar1;
           }
           plVar4 = (int64_t *)
-                   FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_1696_ptr,0xbf,0,
+                   SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_1696_ptr,0xbf,0,
                                  0,1);
           if (plVar4 == (int64_t *)0x0) {
             uVar1 = 0x26;
@@ -194,7 +194,7 @@ uint64_t FUN_1808a75ed(int32_t param_1)
           return uVar2;
         }
         plVar4 = (int64_t *)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_1696_ptr,0xbf);
+                 SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_1696_ptr,0xbf);
         if (plVar4 == (int64_t *)0x0) {
           uVar2 = 0x26;
           uVar6 = extraout_XMM0_Da;

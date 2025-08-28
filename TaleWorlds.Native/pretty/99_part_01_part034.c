@@ -105,7 +105,7 @@ void FUN_1800c1a80(void)
   auStack_390[0] = 0;
   uStack_398 = 0x10;
   strcpy_s(auStack_390,0x40,&system_data_3870);
-  uVar9 = FUN_180240430(uVar9,&puStack_3a8,1);
+  uVar9 = SystemCore_LoggingSystem0(uVar9,&puStack_3a8,1);
   *(uint64_t *)(lVar17 + 0xd8) = uVar9;
   puStack_3a8 = &system_state_ptr;
   uVar9 = *(uint64_t *)(lVar17 + 0x160);
@@ -114,7 +114,7 @@ void FUN_1800c1a80(void)
   auStack_330[0] = 0;
   uStack_338 = 0xd;
   strcpy_s(auStack_330,0x40,&unknown_var_1176_ptr);
-  uVar9 = FUN_180240430(uVar9,&puStack_348,1);
+  uVar9 = SystemCore_LoggingSystem0(uVar9,&puStack_348,1);
   *(uint64_t *)(lVar17 + 0xe0) = uVar9;
   puStack_348 = &system_state_ptr;
   uVar9 = *(uint64_t *)(lVar17 + 0x160);
@@ -123,7 +123,7 @@ void FUN_1800c1a80(void)
   auStack_2d0[0] = 0;
   uStack_2d8 = 0xf;
   strcpy_s(auStack_2d0,0x40,&unknown_var_1240_ptr);
-  uVar9 = FUN_180240430(uVar9,&puStack_2e8,1);
+  uVar9 = SystemCore_LoggingSystem0(uVar9,&puStack_2e8,1);
   *(uint64_t *)(lVar17 + 0xe8) = uVar9;
   puStack_2e8 = &system_state_ptr;
   uVar9 = *(uint64_t *)(lVar17 + 0x160);
@@ -132,7 +132,7 @@ void FUN_1800c1a80(void)
   auStack_270[0] = 0;
   uStack_278 = 0x13;
   strcpy_s(auStack_270,0x40,&unknown_var_1216_ptr);
-  uVar9 = FUN_180240430(uVar9,&puStack_288,1);
+  uVar9 = SystemCore_LoggingSystem0(uVar9,&puStack_288,1);
   *(uint64_t *)(lVar17 + 0xf0) = uVar9;
   puStack_288 = &system_state_ptr;
   uVar9 = *(uint64_t *)(lVar17 + 0x160);
@@ -141,7 +141,7 @@ void FUN_1800c1a80(void)
   auStack_210[0] = 0;
   uStack_218 = 8;
   strcpy_s(auStack_210,0x40,&unknown_var_1272_ptr);
-  uVar9 = FUN_180240430(uVar9,&puStack_228,1);
+  uVar9 = SystemCore_LoggingSystem0(uVar9,&puStack_228,1);
   *(uint64_t *)(lVar17 + 0x108) = uVar9;
   puStack_228 = &system_state_ptr;
   uVar9 = *(uint64_t *)(lVar17 + 0x160);
@@ -150,7 +150,7 @@ void FUN_1800c1a80(void)
   auStack_1b0[0] = 0;
   uStack_1b8 = 0xc;
   strcpy_s(auStack_1b0,0x40,&system_data_38d8);
-  uVar9 = FUN_180240430(uVar9,&puStack_1c8,1);
+  uVar9 = SystemCore_LoggingSystem0(uVar9,&puStack_1c8,1);
   *(uint64_t *)(lVar17 + 0x110) = uVar9;
   puStack_1c8 = &system_state_ptr;
   uVar9 = *(uint64_t *)(lVar17 + 0x160);
@@ -159,7 +159,7 @@ void FUN_1800c1a80(void)
   auStack_150[0] = 0;
   uStack_158 = 0xc;
   strcpy_s(auStack_150,0x40,&unknown_var_1304_ptr);
-  uVar9 = FUN_180240430(uVar9,&puStack_168,1);
+  uVar9 = SystemCore_LoggingSystem0(uVar9,&puStack_168,1);
   *(uint64_t *)(lVar17 + 0x118) = uVar9;
   puStack_168 = &system_state_ptr;
   uVar9 = *(uint64_t *)(lVar17 + 0x160);
@@ -168,7 +168,7 @@ void FUN_1800c1a80(void)
   auStack_f0[0] = 0;
   uStack_f8 = 0xd;
   strcpy_s(auStack_f0,0x40,&unknown_var_1288_ptr);
-  uVar9 = FUN_180240430(uVar9,&puStack_108,1);
+  uVar9 = SystemCore_LoggingSystem0(uVar9,&puStack_108,1);
   *(uint64_t *)(lVar17 + 0x120) = uVar9;
   puStack_108 = &system_state_ptr;
   uVar9 = *(uint64_t *)(lVar17 + 0x160);
@@ -177,7 +177,7 @@ void FUN_1800c1a80(void)
   auStack_90[0] = 0;
   uStack_98 = 0x11;
   strcpy_s(auStack_90,0x40,&unknown_var_1344_ptr);
-  uVar10 = FUN_180240430(uVar9,&puStack_a8,1);
+  uVar10 = SystemCore_LoggingSystem0(uVar9,&puStack_a8,1);
   puStack_a8 = &system_state_ptr;
   *(uint64_t *)(lVar17 + 0xf8) =
        *(uint64_t *)(lVar17 + 0x120) | *(uint64_t *)(lVar17 + 0x110) | uVar10 |
@@ -222,7 +222,7 @@ void FUN_1800c1a80(void)
                     // WARNING: Subroutine does not return
       memcpy((int8_t *)((int64_t)puVar12 + 0x12),acStack_48,(int64_t)(iVar4 + 2));
     }
-    uVar9 = FUN_180240430(plVar11,&plStack_418,1);
+    uVar9 = SystemCore_LoggingSystem0(plVar11,&plStack_418,1);
     lVar5 = lStack_428;
     *puVar8 = uVar9;
     plStack_418 = (int64_t *)&system_data_buffer_ptr;
@@ -243,7 +243,7 @@ void FUN_1800c1a80(void)
   auStack_3c8[0] = 0;
   uStack_3d0 = 0x12;
   strcpy_s(auStack_3c8,0x20,&unknown_var_1432_ptr);
-  uVar9 = FUN_180240430(plVar11,&puStack_3e0,1);
+  uVar9 = SystemCore_LoggingSystem0(plVar11,&puStack_3e0,1);
   *(uint64_t *)(lVar5 + 0x158) = uVar9;
   puStack_3e0 = &system_state_ptr;
   plStack_418 = (int64_t *)0x0;

@@ -728,7 +728,7 @@ void InitializationSystem_ConfigManager(int64_t *param_1)
     strcpy_s(config_info, 0x20, &unknown_var_5320_ptr);
     
     // 验证配置信息
-    config_flag = FUN_180240430(config_handle, &data_pointer, 0);
+    config_flag = SystemCore_LoggingSystem0(config_handle, &data_pointer, 0);
     data_pointer = &system_state_ptr;
     if (config_flag != 0) {
         resource_handle = param_1[0x37];

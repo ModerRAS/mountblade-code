@@ -1114,7 +1114,7 @@ LAB_1807474ff:
           }
         }
         else {
-          lVar5 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x420,&unknown_var_8576_ptr,0xb60);
+          lVar5 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x420,&unknown_var_8576_ptr,0xb60);
           plVar6 = unaff_RSI;
           if (lVar5 != 0) {
             plVar6 = (int64_t *)FUN_1807ab010(lVar5);

@@ -393,7 +393,7 @@ LAB_1807f6ef1:
   } while (iVar2 != 0);
   if ((int)unaff_R15[0x40] != 0) {
     *(int *)((int64_t)unaff_R15 + 0x204) = (int)unaff_R15[0x40];
-    lVar5 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xff1,&unknown_var_4304_ptr,0x298,0);
+    lVar5 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xff1,&unknown_var_4304_ptr,0x298,0);
     unaff_R15[0x41] = lVar5;
     if (lVar5 == 0) {
       (**(code **)(*unaff_R15 + 0x28))();

@@ -478,7 +478,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
                 auStack_90[0] = 0;
                 uStack_98 = 0x14;
                 strcpy_s(auStack_90,0x40,&system_memory_d5b8);
-                uVar18 = FUN_180240430(plVar16[0x3c],&puStack_a8,1);
+                uVar18 = SystemCore_LoggingSystem0(plVar16[0x3c],&puStack_a8,1);
                 plVar16[0x28] = plVar16[0x28] | uVar18;
                 FUN_18022dd60(plVar16);
                 *(int16_t *)(plVar16 + 0x78) = 0xffff;

@@ -150,7 +150,7 @@ LAB_1808784e0:
                   lVar10 = 0;
                   if (iVar11 != 0) {
                     if ((0x3ffffffe < iVar11 * 0x10 - 1U) ||
-                       (lVar10 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar11 * 0x10
+                       (lVar10 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar11 * 0x10
                                                ,&unknown_var_8432_ptr,0xf4,0), lVar10 == 0))
                     goto LAB_180878734;
                     if (*(int *)(lVar7 + 0x60) != 0) {
@@ -342,7 +342,7 @@ LAB_1808784e0:
               lVar7 = 0;
               if (iVar10 != 0) {
                 if ((0x3ffffffe < iVar10 * 0x10 - 1U) ||
-                   (lVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar10 * 0x10,
+                   (lVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar10 * 0x10,
                                           &unknown_var_8432_ptr,0xf4,0), lVar7 == 0)) goto LAB_180878734;
                 if (*(int *)(lVar9 + 0x60) != 0) {
                     // WARNING: Subroutine does not return

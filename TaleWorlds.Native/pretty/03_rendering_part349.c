@@ -269,7 +269,7 @@ FUN_180456b70(uint64_t param_1,uint64_t param_2,int8_t param_3,uint64_t param_4)
   
   uVar1 = 0xfffffffffffffffe;
   CoreMemoryPoolValidator(&puStack_30);
-  uVar1 = FUN_180240430(param_1,&puStack_30,param_3,param_4,uVar1);
+  uVar1 = SystemCore_LoggingSystem0(param_1,&puStack_30,param_3,param_4,uVar1);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return

@@ -693,7 +693,7 @@ void RenderingSystem_ProcessRenderData(uint64_t param_1, uint64_t param_2, uint6
     
     do {
         if (data_chunk == 0) {
-            FUN_180186ca0(data_status, data_processor_2, (int64_t)data_processor_6 - (int64_t)data_processor_2 >> 3, param_4, processing_flag, data_processor_7, data_processor_8, data_processor_9);
+            DataProcessingManager(data_status, data_processor_2, (int64_t)data_processor_6 - (int64_t)data_processor_2 >> 3, param_4, processing_flag, data_processor_7, data_processor_8, data_processor_9);
             if (data_processor_2 == (int64_t *)0x0) {
                 return;
             }
@@ -745,7 +745,7 @@ void RenderingSystem_ProcessRenderData(uint64_t param_1, uint64_t param_2, uint6
  * 
  * @param param_1 对象指针
  */
-void FUN_180443f80(uint64_t param_1)
+void RenderingSystem_DestroyRenderObject(uint64_t param_1)
 {
     int8_t object_buffer_50 [32];
     int8_t object_buffer_30 [40];
@@ -755,7 +755,7 @@ void FUN_180443f80(uint64_t param_1)
     CoreMemoryPoolValidator(object_buffer_30, param_1);
     
     // 执行对象销毁
-    FUN_180186eb0();
+    ObjectDestroyer();
     return;
 }
 
@@ -768,7 +768,7 @@ void FUN_180443f80(uint64_t param_1)
  * @param param_3 处理参数2
  * @param param_4 处理标志
  */
-void FUN_180443ff0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void RenderingSystem_FinalizeRenderProcess(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int8_t process_buffer_30 [48];
     
@@ -776,7 +776,7 @@ void FUN_180443ff0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     CoreMemoryPoolValidator(process_buffer_30, param_1, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     
     // 执行最终处理
-    FUN_1801871f0();
+    ProcessFinalizer();
     return;
 }
 
@@ -784,7 +784,7 @@ void FUN_180443ff0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
  * 渲染系统互斥锁函数
  * 锁定渲染系统互斥量，确保线程安全
  */
-void FUN_180444030(void)
+void RenderingSystem_LockMutex(void)
 {
     int lock_result;
     
@@ -803,7 +803,7 @@ void FUN_180444030(void)
  * @param param_1 配置类型
  * @param param_2 配置数据指针
  */
-void FUN_180444070(uint64_t param_1, uint64_t *param_2)
+void RenderingSystem_SetConfiguration(uint64_t param_1, uint64_t *param_2)
 {
     uint64_t config_data_1;
     uint64_t config_data_2;
@@ -823,7 +823,7 @@ void FUN_180444070(uint64_t param_1, uint64_t *param_2)
     config_buffer_18 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_16D0);
     config_buffer_16 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_16D4);
     
-    FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80, &config_buffer_28);
+    ConfigProcessor(SYSTEM_DATA_MANAGER_A + 0x1b80, &config_buffer_28);
     *(uint64_t *)(config_context + RENDERING_SYSTEM_OFFSET_16C8) = config_data_1;
     *(uint64_t *)(config_context + RENDERING_SYSTEM_OFFSET_16D0) = config_data_2;
     return;
@@ -833,7 +833,7 @@ void FUN_180444070(uint64_t param_1, uint64_t *param_2)
  * 渲染系统互斥锁解锁函数
  * 解锁渲染系统互斥量
  */
-void FUN_180444100(void)
+void RenderingSystem_UnlockMutex(void)
 {
     int unlock_result;
     
@@ -860,9 +860,9 @@ void FUN_180444100(void)
  * @param param_9 操作参数8
  * @param param_10 操作参数9
  */
-void FUN_180444200(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t param_4,
-                  uint64_t param_5, int32_t param_6, int32_t param_7, int32_t param_8,
-                  int32_t param_9, int32_t param_10)
+void RenderingSystem_ExecuteOperation(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t param_4,
+                               uint64_t param_5, int32_t param_6, int32_t param_7, int32_t param_8,
+                               int32_t param_9, int32_t param_10)
 {
     uint64_t operation_data_18;
     int32_t operation_data_10;
@@ -870,7 +870,7 @@ void FUN_180444200(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t 
     operation_data_10 = param_10;
     operation_data_18 = param_2;
     
-    FUN_18011a0a0(param_6, param_1, param_3, &operation_data_18, param_3, param_4, param_5, param_6, param_7, CONCAT44(param_9, param_8));
+    OperationExecutor(param_6, param_1, param_3, &operation_data_18, param_3, param_4, param_5, param_6, param_7, CONCAT44(param_9, param_8));
     return;
 }
 
@@ -880,14 +880,14 @@ void FUN_180444200(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t 
  * 
  * @param param_1 对象指针
  */
-void FUN_180444280(uint64_t param_1)
+void RenderingSystem_ProcessTransform(uint64_t param_1)
 {
     int32_t transform_data_10;
     int32_t transform_data_14;
     
     transform_data_10 = 0xbf800000;
     transform_data_14 = 0;
-    FUN_180111c30(param_1, &transform_data_10);
+    TransformProcessor(param_1, &transform_data_10);
     return;
 }
 
@@ -897,12 +897,12 @@ void FUN_180444280(uint64_t param_1)
  * 
  * @param param_1 对象指针
  */
-void FUN_1804442c0(uint64_t param_1)
+void RenderingSystem_UpdateGeometry(uint64_t param_1)
 {
     uint64_t geometry_data_10 [3];
     
     geometry_data_10[0] = 0;
-    FUN_18010f6f0(param_1, geometry_data_10, 0);
+    GeometryUpdater(param_1, geometry_data_10, 0);
     return;
 }
 
@@ -910,7 +910,7 @@ void FUN_1804442c0(uint64_t param_1)
  * 渲染系统状态切换函数
  * 切换渲染系统的状态
  */
-void FUN_1804442e0(void)
+void RenderingSystem_SwitchState(void)
 {
     int64_t render_context;
     int64_t object_data;
@@ -946,7 +946,7 @@ void FUN_1804442e0(void)
  * @param param_2 处理参数
  * @param param_3 字符串指针
  */
-void FUN_180444370(uint64_t param_1, uint64_t param_2, char *param_3)
+void RenderingSystem_ProcessString(uint64_t param_1, uint64_t param_2, char *param_3)
 {
     char current_char;
     int64_t string_length;
@@ -962,7 +962,7 @@ void FUN_180444370(uint64_t param_1, uint64_t param_2, char *param_3)
         param_3 = param_3 + next_position + 2;
         current_char = *param_3;
     }
-    FUN_180113380();
+    StringFinalizer();
     return;
 }
 
@@ -973,14 +973,14 @@ void FUN_180444370(uint64_t param_1, uint64_t param_2, char *param_3)
  * @param param_1 批处理类型
  * @param param_2 批处理参数
  */
-void FUN_1804443c0(uint64_t param_1, uint64_t param_2)
+void RenderingSystem_ExecuteBatch(uint64_t param_1, uint64_t param_2)
 {
     int32_t batch_data_18 [2];
     int32_t batch_data_20 [2];
     
     batch_data_18[0] = 100;
     batch_data_20[0] = 1;
-    FUN_180114450(param_1, 0, param_2, batch_data_20, batch_data_18, &unknown_var_4576_ptr, 0);
+    BatchExecutor(param_1, 0, param_2, batch_data_20, batch_data_18, &unknown_var_4576_ptr, 0);
     return;
 }
 
@@ -993,14 +993,14 @@ void FUN_1804443c0(uint64_t param_1, uint64_t param_2)
  * @param param_3 材质参数2
  * @param param_4 材质参数3
  */
-void FUN_180444410(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t param_4)
+void RenderingSystem_UpdateMaterial(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t param_4)
 {
     int32_t material_data_18 [2];
     int32_t material_data_20 [2];
     
     material_data_18[0] = param_4;
     material_data_20[0] = param_3;
-    FUN_180113940(param_1, param_2, param_2, material_data_20, material_data_18);
+    MaterialUpdater(param_1, param_2, param_2, material_data_20, material_data_18);
     return;
 }
 
@@ -1010,7 +1010,7 @@ void FUN_180444410(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t 
  * 
  * @param param_1 纹理指针
  */
-void FUN_1804445b0(uint64_t param_1)
+void RenderingSystem_ReleaseTexture(uint64_t param_1)
 {
     int32_t original_state;
     int64_t render_context;
@@ -1020,7 +1020,7 @@ void FUN_1804445b0(uint64_t param_1)
     texture_data_10[0] = 0;
     original_state = *(int32_t *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_1660);
     *(int32_t *)(SYSTEM_DATA_MANAGER_A + RENDERING_SYSTEM_OFFSET_1660) = 0;
-    FUN_18010f6f0(param_1, texture_data_10, 0x200);
+    TextureReleaser(param_1, texture_data_10, 0x200);
     *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1660) = original_state;
     return;
 }
@@ -1035,7 +1035,7 @@ void FUN_1804445b0(uint64_t param_1)
  * @param param_4 浮点参数2
  * @param param_5 更新标志
  */
-void FUN_180444600(uint64_t param_1, uint64_t param_2, float param_3, float param_4, int param_5)
+void RenderingSystem_UpdateParameters(uint64_t param_1, uint64_t param_2, float param_3, float param_4, int param_5)
 {
     float *float_param_1;
     int8_t parameter_buffer_98 [32];
@@ -1059,7 +1059,7 @@ void FUN_180444600(uint64_t param_1, uint64_t param_2, float param_3, float para
     parameter_flag_39 = 0;
     
     if (-1 < param_5) {
-        FUN_180121200(&parameter_flag_48, 0x10, &unknown_var_2232_ptr);
+        ParameterProcessor(&parameter_flag_48, 0x10, &unknown_var_2232_ptr);
     }
     
     parameter_data_68 = 0x20000;

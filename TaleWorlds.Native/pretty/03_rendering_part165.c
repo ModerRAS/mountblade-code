@@ -123,7 +123,7 @@ void FUN_18036e890(int64_t param_1)
   auStack_38[0] = 0;
   uStack_40 = 0x11;
   strcpy_s(auStack_38,0x20,&unknown_var_2856_ptr);
-  uVar5 = FUN_180240430(*(uint64_t *)(lVar3 + 0x1e0),&puStack_50,0);
+  uVar5 = SystemCore_LoggingSystem0(*(uint64_t *)(lVar3 + 0x1e0),&puStack_50,0);
   *(uint64_t *)(lVar3 + 0x140) = *(uint64_t *)(lVar3 + 0x140) | uVar5;
   FUN_18022dd60(lVar3);
   *(int16_t *)(lVar3 + 0x3c0) = 0xffff;

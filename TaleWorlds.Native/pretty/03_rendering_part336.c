@@ -15,7 +15,7 @@ void FUN_180447030(int64_t param_1,uint64_t param_2,int8_t param_3,uint64_t para
   
   uVar3 = 0xfffffffffffffffe;
   uVar1 = CoreMemoryPoolValidator(&puStack_30);
-  uVar2 = FUN_180240430(*(uint64_t *)(param_1 + 0x1e0),uVar1,param_3,param_4,uVar3);
+  uVar2 = SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + 0x1e0),uVar1,param_3,param_4,uVar3);
   *(uint64_t *)(param_1 + 0x140) = *(uint64_t *)(param_1 + 0x140) | uVar2;
   FUN_18022dd60(param_1);
   *(int16_t *)(param_1 + 0x3c0) = 0xffff;

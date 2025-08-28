@@ -510,7 +510,7 @@ FUN_18074fc70(int64_t param_1,uint param_2,int param_3,int64_t param_4,int64_t *
   if ((param_5 == (int64_t *)0x0) || (plVar3 = (int64_t *)*param_5, plVar3 == (int64_t *)0x0)) {
     if (param_4 == 0) {
       plVar3 = (int64_t *)
-               FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x3c,&system_string1_ptr,0x8de,0,0,1
+               SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x3c,&system_string1_ptr,0x8de,0,0,1
                             );
       if (plVar3 == (int64_t *)0x0) {
         return 0x26;
@@ -523,7 +523,7 @@ FUN_18074fc70(int64_t param_1,uint param_2,int param_3,int64_t param_4,int64_t *
     }
     else {
       plVar3 = (int64_t *)
-               FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x13c,&system_string1_ptr,0x8d5,0,0,
+               SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x13c,&system_string1_ptr,0x8d5,0,0,
                              1);
       if (plVar3 == (int64_t *)0x0) {
         return 0x26;

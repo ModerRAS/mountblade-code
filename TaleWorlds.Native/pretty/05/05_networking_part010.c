@@ -193,7 +193,7 @@ extern void FUN_18084c150(void* buffer);              /**< 缓冲区初始化函
 extern void FUN_18084c220(void* buffer);              /**< 缓冲区清理函数 */
 extern void func_0x00018085dda0(void* data);          /**< 数据处理函数 */
 extern void SystemInitializer(void* context, void* data, void* info, int size, int flags); /**< 内存分配函数 */
-extern void FUN_180741e10(void* context, int size, void* info, int flags, int param1, int param2, int param3); /**< 扩展内存分配函数 */
+extern void SystemCore_DatabaseManager0(void* context, int size, void* info, int flags, int param1, int param2, int param3); /**< 扩展内存分配函数 */
 extern void FUN_1808b02a0(void* connection);          /**< 连接处理函数 */
 extern void FUN_1808b0fb0(void* connection, int flags);/**< 连接标志设置函数 */
 extern void SystemCoreProcessor(void);                     /**< 数据生成函数 */
@@ -371,7 +371,7 @@ uint64_t NetworkBufferManager_AllocateBuffer(int64_t* manager, int size) {
         // 检查大小限制
         if (size * 4 - 1U < 0x3fffffff) {
             // 分配新缓冲区
-            new_buffer = (int32_t*)FUN_180741e10(
+            new_buffer = (int32_t*)SystemCore_DatabaseManager0(
                 *(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                 size * 4, 
                 &global_state_8432_ptr, 
@@ -446,7 +446,7 @@ uint64_t NetworkBufferManager_ReallocateBuffer(uint64_t param1, int param2) {
     // 检查大小限制
     if (param2 * 4 - 1U < 0x3fffffff) {
         // 分配新缓冲区
-        new_buffer = (int32_t*)FUN_180741e10(
+        new_buffer = (int32_t*)SystemCore_DatabaseManager0(
             *(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
             param2 * 4, 
             &global_state_8432_ptr, 

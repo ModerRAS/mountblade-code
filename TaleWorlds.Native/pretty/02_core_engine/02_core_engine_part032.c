@@ -397,7 +397,7 @@ void process_resource_event_callbacks(int64_t *param_1)
     auStack_40[0] = auStack_40[0] & 0xffffffffffffff00;
     uStack_48._0_4_ = 0x12;
     strcpy_s(auStack_40,0x20,&unknown_var_5320_ptr);
-    uVar3 = FUN_180240430(uVar1,&puStack_58,0);
+    uVar3 = SystemCore_LoggingSystem0(uVar1,&puStack_58,0);
     puStack_58 = &system_state_ptr;
     if (uVar3 != 0) {
         lVar5 = param_1[0x37];

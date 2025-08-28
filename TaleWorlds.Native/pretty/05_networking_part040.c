@@ -36,7 +36,7 @@ uint64_t FUN_180861ce0(int64_t *param_1,int param_2)
   lVar7 = 0;
   if (param_2 != 0) {
     if ((0x3ffffffe < param_2 * 0x38 - 1U) ||
-       (lVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x38,&unknown_var_8432_ptr,
+       (lVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x38,&unknown_var_8432_ptr,
                               0xf4,0,0,1), lVar7 == 0)) {
       return 0x26;
     }
@@ -113,7 +113,7 @@ uint64_t FUN_180861d0b(void)
   lVar7 = 0;
   if (unaff_ESI != 0) {
     if ((0x3ffffffe < unaff_ESI * 0x38 - 1U) ||
-       (lVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_ESI * 0x38,
+       (lVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_ESI * 0x38,
                               &unknown_var_8432_ptr,0xf4,0), lVar7 == 0)) {
       return 0x26;
     }
@@ -367,7 +367,7 @@ uint64_t FUN_180861ef0(int64_t *param_1,int param_2)
   if (param_2 != 0) {
     if (param_2 * 4 - 1U < 0x3fffffff) {
       puVar3 = (int32_t *)
-               FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_8432_ptr,0xf4
+               SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_8432_ptr,0xf4
                              ,0,0,1);
       if (puVar3 != (int32_t *)0x0) {
         iVar1 = (int)param_1[1];
@@ -423,7 +423,7 @@ LAB_180861f94:
   }
   if (param_2 * 4 - 1U < 0x3fffffff) {
     puVar3 = (int32_t *)
-             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_8432_ptr,0xf4,0
+             SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_8432_ptr,0xf4,0
                           );
     if (puVar3 != (int32_t *)0x0) {
       iVar1 = (int)unaff_RBX[1];
@@ -582,7 +582,7 @@ void FUN_180862080(int64_t param_1,int64_t *param_2,uint64_t param_3)
   uStack_148 = 0;
   plVar10 = (int64_t *)0x0;
   plVar7 = (int64_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_2624_ptr,0x705);
+           SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_2624_ptr,0x705);
   if (plVar7 == (int64_t *)0x0) goto FUN_18086247a;
   *plVar7 = (int64_t)plVar7;
   plVar7[1] = (int64_t)plVar7;

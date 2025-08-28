@@ -651,7 +651,7 @@ FUN_18085c4b0(int64_t param_1,int64_t param_2,int32_t param_3,uint param_4,int64
     lVar2 = func_0x00018084d0b0(*(uint64_t *)(param_1 + 0x110),param_2 + 0x20);
     if (lVar2 != 0) {
       plVar3 = (int64_t *)
-               FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_2336_ptr,0x3ce,0,0,1
+               SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_2336_ptr,0x3ce,0,0,1
                             );
       if (plVar3 == (int64_t *)0x0) {
         return 0x26;

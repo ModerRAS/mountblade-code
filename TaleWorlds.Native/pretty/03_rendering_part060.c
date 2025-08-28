@@ -288,7 +288,7 @@ void FUN_18029b540(int64_t *param_1,uint64_t param_2)
                 auStack_2e0[0] = 0;
                 uStack_2e8 = 0xc;
                 strcpy_s(auStack_2e0,0x40,&unknown_var_2520_ptr);
-                puVar20 = (uint *)FUN_180240430(puVar11,&puStack_2f8,1);
+                puVar20 = (uint *)SystemCore_LoggingSystem0(puVar11,&puStack_2f8,1);
                 puStack_2f8 = &system_state_ptr;
               }
               else if (uVar14 == 1) {
@@ -297,7 +297,7 @@ void FUN_18029b540(int64_t *param_1,uint64_t param_2)
                 auStack_3e0[0] = auStack_3e0[0] & 0xffffff00;
                 uStack_3e8 = 0x12;
                 strcpy_s(auStack_3e0,0x40,&unknown_var_2664_ptr);
-                puVar20 = (uint *)FUN_180240430(puVar11,&puStack_3f8,1);
+                puVar20 = (uint *)SystemCore_LoggingSystem0(puVar11,&puStack_3f8,1);
                 puStack_3f8 = &system_state_ptr;
               }
               else if (uVar14 == 2) {
@@ -306,7 +306,7 @@ void FUN_18029b540(int64_t *param_1,uint64_t param_2)
                 auStack_a0[0] = 0;
                 uStack_a8 = 0x12;
                 strcpy_s(auStack_a0,0x40,&unknown_var_2688_ptr);
-                puVar20 = (uint *)FUN_180240430(puVar11,&puStack_b8,1);
+                puVar20 = (uint *)SystemCore_LoggingSystem0(puVar11,&puStack_b8,1);
                 puStack_b8 = &system_state_ptr;
               }
               else if (uVar14 == 3) {
@@ -315,7 +315,7 @@ void FUN_18029b540(int64_t *param_1,uint64_t param_2)
                 auStack_280[0] = 0;
                 uStack_288 = 0x13;
                 strcpy_s(auStack_280,0x40,&unknown_var_2624_ptr);
-                puVar20 = (uint *)FUN_180240430(puVar11,&puStack_298,1);
+                puVar20 = (uint *)SystemCore_LoggingSystem0(puVar11,&puStack_298,1);
                 puStack_298 = &system_state_ptr;
               }
               if (1 < *(ushort *)(param_2 + 0x332)) {
@@ -324,7 +324,7 @@ void FUN_18029b540(int64_t *param_1,uint64_t param_2)
                 auStack_1e0[0] = 0;
                 uStack_1e8 = 0xd;
                 strcpy_s(auStack_1e0,0x40,&unknown_var_2760_ptr);
-                uVar12 = FUN_180240430(puVar11,&puStack_1f8,1);
+                uVar12 = SystemCore_LoggingSystem0(puVar11,&puStack_1f8,1);
                 puVar20 = (uint *)((uint64_t)puVar20 | uVar12);
                 puStack_1f8 = &system_state_ptr;
               }

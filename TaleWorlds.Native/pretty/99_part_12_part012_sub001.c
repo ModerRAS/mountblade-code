@@ -234,7 +234,7 @@ uint64_t FUN_1807d1980(int64_t *param_1)
   
   uVar5 = 0;
   plVar3 = (int64_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xb0,&unknown_var_208_ptr,0x7b,0,0,1);
+           SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xb0,&unknown_var_208_ptr,0x7b,0,0,1);
   if (plVar3 == (int64_t *)0x0) {
     uVar5 = 0x26;
   }
@@ -257,7 +257,7 @@ uint64_t FUN_1807d1980(int64_t *param_1)
     plVar3[0x12] = 0;
     *(int32_t *)(plVar3 + 0x13) = 0xffffffff;
     *(int32_t *)((int64_t)plVar3 + 0x9c) = 0;
-    lVar4 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10020,&unknown_var_208_ptr,0x83,0,0,1)
+    lVar4 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10020,&unknown_var_208_ptr,0x83,0,0,1)
     ;
     plVar3[5] = lVar4;
     if (lVar4 == 0) {
@@ -293,7 +293,7 @@ uint64_t FUN_1807d1a59(int64_t param_1)
   int64_t *unaff_RDI;
   int64_t *unaff_R14;
   
-  lVar2 = FUN_180741e10(*(uint64_t *)(param_1 + 0x1a0));
+  lVar2 = SystemCore_DatabaseManager0(*(uint64_t *)(param_1 + 0x1a0));
   unaff_RDI[5] = lVar2;
   if (lVar2 == 0) {
     (**(code **)(*unaff_RDI + 0x60))();
@@ -817,7 +817,7 @@ void FUN_1807d2050(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   uStack_1b8 = 0;
   *(int *)(param_1 + 0x48) = iVar2 + 1;
   aiStack_198[0] = iVar2;
-  plVar3 = (int64_t *)FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x138,&unknown_var_208_ptr);
+  plVar3 = (int64_t *)SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x138,&unknown_var_208_ptr);
   if (plVar3 != (int64_t *)0x0) {
     *plVar3 = 0;
     plVar3[1] = 0;
@@ -928,7 +928,7 @@ LAB_1807d23bb:
   uStack_88 = 1;
   uStack_90 = 0;
   uStack_98 = 0;
-  plVar5 = (int64_t *)FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x120,&unknown_var_208_ptr);
+  plVar5 = (int64_t *)SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x120,&unknown_var_208_ptr);
   if (plVar5 != (int64_t *)0x0) {
     *plVar5 = 0;
     *(int32_t *)(plVar5 + 1) = 0;

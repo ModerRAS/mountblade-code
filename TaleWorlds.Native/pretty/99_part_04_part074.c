@@ -271,7 +271,7 @@ uint64_t FUN_1802cb7a0(int64_t param_1,int64_t param_2,int16_t param_3)
   auStackX_18[0] = 0;
   uStack_98 = 0;
   if (*(int *)(param_2 + 0x10) != 0) {
-    uStack_98 = FUN_180240430(param_1,param_2,1);
+    uStack_98 = SystemCore_LoggingSystem0(param_1,param_2,1);
   }
   uStack_90 = 0;
   puStack_d0 = &system_data_buffer_ptr;

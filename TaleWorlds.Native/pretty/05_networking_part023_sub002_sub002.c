@@ -527,7 +527,7 @@ FUN_180854610(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t param_4,
       if (param_2 < (uint64_t)puVar4[2]) {
         uVar7 = 0;
         puVar6 = (uint64_t *)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_1696_ptr,0xbf,0,0,
+                 SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_1696_ptr,0xbf,0,0,
                                1);
         if (puVar6 == (uint64_t *)0x0) goto LAB_1808547b7;
         *puVar6 = puVar6;
@@ -547,7 +547,7 @@ FUN_180854610(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t param_4,
     }
     uVar7 = 0;
     puVar4 = (uint64_t *)
-             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_1696_ptr,0xbf,0,0,1);
+             SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_1696_ptr,0xbf,0,0,1);
     if (puVar4 == (uint64_t *)0x0) {
 LAB_1808547b7:
       uVar7 = 0x26;
@@ -620,7 +620,7 @@ int32_t FUN_18085461a(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t p
       if (param_2 < (uint64_t)puVar3[2]) {
         uVar6 = 0;
         puVar5 = (uint64_t *)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_1696_ptr,0xbf,0);
+                 SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_1696_ptr,0xbf,0);
         if (puVar5 == (uint64_t *)0x0) goto LAB_1808547b7;
         *puVar5 = puVar5;
         *(int32_t *)(puVar5 + 2) = uStack0000000000000040;
@@ -639,7 +639,7 @@ int32_t FUN_18085461a(int64_t param_1,uint64_t param_2,int32_t param_3,int32_t p
     }
     uVar6 = 0;
     puVar3 = (uint64_t *)
-             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_1696_ptr,0xbf,0);
+             SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_1696_ptr,0xbf,0);
     if (puVar3 == (uint64_t *)0x0) {
 LAB_1808547b7:
       uVar6 = 0x26;

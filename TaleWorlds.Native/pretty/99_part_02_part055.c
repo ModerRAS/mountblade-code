@@ -553,7 +553,7 @@ void FUN_1801c1880(void *param_1,int64_t param_2,uint64_t param_3,int8_t *param_
     uStack_80 = (int32_t)lVar2;
     strcpy_s(auStack_78,0x20,param_2);
   }
-  uStack_100 = FUN_180240430(param_1,&puStack_90,1);
+  uStack_100 = SystemCore_LoggingSystem0(param_1,&puStack_90,1);
   uStack_a0 = 0;
   uStack_9c = 0;
   plStack_e8 = (int64_t *)0x0;

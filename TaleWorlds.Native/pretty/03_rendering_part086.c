@@ -407,7 +407,7 @@ void FUN_180318670(int64_t param_1,int64_t param_2,int64_t *param_3,int64_t *par
       auStack_250[0] = 0;
       uStack_258 = 0x19;
       strcpy_s(auStack_250,0x20,&system_data_d598);
-      uVar12 = FUN_180240430(lVar14,&puStack_268,0);
+      uVar12 = SystemCore_LoggingSystem0(lVar14,&puStack_268,0);
       plVar10 = plStack_480;
       puStack_268 = &system_state_ptr;
       plStack_480[0x28] = plStack_480[0x28] | uVar12;

@@ -624,7 +624,7 @@ uint64_t FUN_18074bf10(int64_t *param_1,int param_2,uint64_t param_3)
       return uVar9;
     }
   }
-  lVar10 = FUN_180741e10(param_1[1] + 0x10848,(int)param_1[3] * 8 + 8,&system_buffer_ptr,0,0,0,1);
+  lVar10 = SystemCore_DatabaseManager0(param_1[1] + 0x10848,(int)param_1[3] * 8 + 8,&system_buffer_ptr,0,0,0,1);
   if (lVar10 == 0) {
     uVar6 = 0x26;
   }
@@ -774,7 +774,7 @@ uint64_t FUN_18074c014(void)
       return uVar6;
     }
   }
-  lVar8 = FUN_180741e10(unaff_RBX[1] + 0x10848,(int)unaff_RBX[3] * 8 + 8,&system_buffer_ptr,0);
+  lVar8 = SystemCore_DatabaseManager0(unaff_RBX[1] + 0x10848,(int)unaff_RBX[3] * 8 + 8,&system_buffer_ptr,0);
   if (lVar8 == 0) {
     uVar6 = 0x26;
   }
@@ -906,7 +906,7 @@ uint64_t FUN_18074c039(void)
       return uVar7;
     }
   }
-  lVar8 = FUN_180741e10(unaff_RBX[1] + 0x10848,(int)unaff_RBX[3] * 8 + 8,&system_buffer_ptr,0);
+  lVar8 = SystemCore_DatabaseManager0(unaff_RBX[1] + 0x10848,(int)unaff_RBX[3] * 8 + 8,&system_buffer_ptr,0);
   if (lVar8 == 0) {
     uVar7 = 0x26;
   }

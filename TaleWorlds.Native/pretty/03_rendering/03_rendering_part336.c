@@ -143,7 +143,7 @@ void RenderingSystem_StateUpdater(int64_t param_1, uint64_t param_2, int8_t para
     // 初始化状态更新器
     uVar3 = 0xfffffffffffffffe;
     uVar1 = FUN_180627910(&puStack_30);
-    uVar2 = FUN_180240430(*(uint64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1E0), uVar1, param_3, param_4, uVar3);
+    uVar2 = SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1E0), uVar1, param_3, param_4, uVar3);
     
     // 更新系统状态
     *(uint64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_140) = *(uint64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_140) | uVar2;

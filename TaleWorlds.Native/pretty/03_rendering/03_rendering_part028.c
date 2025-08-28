@@ -837,7 +837,7 @@ context_setup_complete:
         temp_storage[0] = 0;
         context_id = 0x10;
         strcpy_s(temp_storage, 0x40, &system_buffer_d580);
-        hash_key = FUN_180240430(resource_manager[0x3c], &temp_ptr, 0);
+        hash_key = SystemCore_LoggingSystem0(resource_manager[0x3c], &temp_ptr, 0);
         resource_manager[0x28] = resource_manager[0x28] | hash_key;
         FUN_18022dd60(resource_manager);
         *(int16_t *)(resource_manager + 0x78) = 0xffff;

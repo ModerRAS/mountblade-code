@@ -221,7 +221,7 @@ void FUN_1802dccd0(int64_t param_1,int64_t param_2)
     uVar18 = uVar13;
     if (lVar10 / 0x58 + lVar3 != lVar3) {
       do {
-        uVar7 = FUN_180240430(uVar9,uVar7 * 0x58 + lVar14,0);
+        uVar7 = SystemCore_LoggingSystem0(uVar9,uVar7 * 0x58 + lVar14,0);
         lVar14 = *(int64_t *)(lVar8 + 0x368);
         uVar18 = uVar18 | uVar7;
         uVar12 = (int)uVar13 + 1;
@@ -500,7 +500,7 @@ void FUN_1802dccdc(int64_t param_1,int64_t param_2)
     uVar22 = uVar17;
     if (lVar14 / 0x58 + lVar3 != lVar3) {
       do {
-        uVar11 = FUN_180240430(uVar13,uVar11 * 0x58 + lVar18,0);
+        uVar11 = SystemCore_LoggingSystem0(uVar13,uVar11 * 0x58 + lVar18,0);
         lVar18 = *(int64_t *)(lVar12 + 0x368);
         uVar22 = uVar22 | uVar11;
         uVar16 = (int)uVar17 + 1;
@@ -556,7 +556,7 @@ void FUN_1802dd188(uint64_t param_1,int64_t param_2)
   uVar8 = unaff_R14;
   if (lVar3 / 0x58 + lVar1 != lVar1) {
     do {
-      uVar2 = FUN_180240430(uVar4,unaff_R14 * 0x58 + lVar7,0);
+      uVar2 = SystemCore_LoggingSystem0(uVar4,unaff_R14 * 0x58 + lVar7,0);
       lVar7 = *(int64_t *)(unaff_R15 + 0x368);
       uVar8 = uVar8 | uVar2;
       uVar5 = (int)uVar6 + 1;

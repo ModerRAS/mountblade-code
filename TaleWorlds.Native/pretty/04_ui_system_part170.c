@@ -724,7 +724,7 @@ int64_t FUN_18076b520(char *param_1)
     cVar1 = *pcVar4;
   }
   iVar3 = (int)pcVar4 - (int)param_1;
-  lVar2 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar3 + 1,&unknown_var_1936_ptr,0x16a,0,0,1
+  lVar2 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar3 + 1,&unknown_var_1936_ptr,0x16a,0,0,1
                        );
   if (lVar2 != 0) {
     func_0x00018076b450(lVar2,param_1,iVar3 + 1);

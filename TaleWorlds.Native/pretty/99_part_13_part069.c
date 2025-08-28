@@ -173,7 +173,7 @@ typedef uint64_t ResourceCleanupFlags;          // 资源清理标志
  * @brief 内存分配器2
  * 另一个内存分配函数
  */
-#define MemoryAllocator2 FUN_180741e10
+#define MemoryAllocator2 SystemCore_DatabaseManager0
 
 /**
  * @brief 数据清理器

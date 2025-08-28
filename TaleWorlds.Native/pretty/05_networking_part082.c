@@ -606,7 +606,7 @@ uint64_t FUN_18088c290(int64_t param_1)
       return 0x1c;
     }
     iVar5 = 0;
-    lVar3 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10000,&unknown_var_6880_ptr,0xbb,0,0,1)
+    lVar3 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10000,&unknown_var_6880_ptr,0xbb,0,0,1)
     ;
     *(int64_t *)(lVar1 + 0x180c4ec50) = lVar3;
     if (lVar3 != 0) {

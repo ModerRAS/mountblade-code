@@ -429,7 +429,7 @@ uint64_t FUN_18084d3f0(int64_t *param_1,int param_2)
   lVar7 = 0;
   if (param_2 != 0) {
     if (param_2 * 0x18 - 1U < 0x3fffffff) {
-      lVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x18,&unknown_var_8432_ptr,
+      lVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x18,&unknown_var_8432_ptr,
                             0xf4,0,0,1);
       if (lVar7 != 0) {
         iVar3 = (int)param_1[1];
@@ -500,7 +500,7 @@ LAB_18084d4b4:
     return 0;
   }
   if (param_2 * 0x18 - 1U < 0x3fffffff) {
-    lVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x18,&unknown_var_8432_ptr,0xf4
+    lVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x18,&unknown_var_8432_ptr,0xf4
                           ,0);
     if (lVar7 != 0) {
       iVar3 = (int)unaff_RBX[1];
@@ -553,7 +553,7 @@ uint64_t FUN_18084d520(int64_t *param_1,int param_2)
   lVar1 = 0;
   if (param_2 != 0) {
     if (param_2 * 0x28 - 1U < 0x3fffffff) {
-      lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x28,&unknown_var_8432_ptr,
+      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x28,&unknown_var_8432_ptr,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
@@ -598,7 +598,7 @@ LAB_18084d5b4:
     return 0;
   }
   if (param_2 * 0x28 - 1U < 0x3fffffff) {
-    lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x28,&unknown_var_8432_ptr,0xf4
+    lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x28,&unknown_var_8432_ptr,0xf4
                           ,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -658,7 +658,7 @@ LAB_18084d7db:
   }
   else {
     if (param_2 * 0x20 - 1U < 0x3fffffff) {
-      lVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x20,&unknown_var_8432_ptr,
+      lVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x20,&unknown_var_8432_ptr,
                             0xf4,0,0,1);
       if (lVar7 != 0) {
         lVar8 = (int64_t)(int)param_1[1];
@@ -780,7 +780,7 @@ LAB_18084d7db:
   }
   else {
     if (param_2 * 0x20 - 1U < 0x3fffffff) {
-      lVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x20,&unknown_var_8432_ptr,
+      lVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x20,&unknown_var_8432_ptr,
                             0xf4,0);
       if (lVar7 != 0) {
         lVar8 = (int64_t)(int)unaff_RBX[1];

@@ -366,9 +366,9 @@ void FUN_1803490e0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   uStack_70 = 0x10;
   
   // 检查对象状态
-  lVar5 = FUN_180240430(plVar1[0x3c],&puStack_80,0);
+  lVar5 = SystemCore_LoggingSystem0(plVar1[0x3c],&puStack_80,0);
   if (lVar5 != 0) {
-    uVar6 = FUN_180240430(plVar1[0x3c],&puStack_80,0);
+    uVar6 = SystemCore_LoggingSystem0(plVar1[0x3c],&puStack_80,0);
     if ((plVar1[0x28] & uVar6) == 0) {
       // 获取对象的管理器引用
       puVar7 = (uint64_t *)FUN_18022cb40(plVar1,&plStackX_20);
@@ -386,7 +386,7 @@ void FUN_1803490e0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       }
       
       // 检查对象是否可以安全释放
-      uVar6 = FUN_180240430(plVar2[0x3c],&puStack_80,1);
+      uVar6 = SystemCore_LoggingSystem0(plVar2[0x3c],&puStack_80,1);
       if (uVar6 == 0) {
         // 记录释放事件
         puVar10 = &system_buffer_ptr;
@@ -520,7 +520,7 @@ void FUN_180349330(int64_t param_1)
         auStack_e0[0] = 0;
         uStack_e8 = 0x10;
         strcpy_s(auStack_e0,0x40,&system_memory_d580);
-        lVar3 = FUN_180240430(lVar3,&puStack_f8,0);
+        lVar3 = SystemCore_LoggingSystem0(lVar3,&puStack_f8,0);
         puStack_f8 = &system_state_ptr;
         plVar8 = plVar6;
         if (lVar3 != 0) {
@@ -543,7 +543,7 @@ void FUN_180349330(int64_t param_1)
           auStack_80[0] = 0;
           uStack_88 = 0x10;
           strcpy_s(auStack_80,0x40,&system_memory_d580);
-          uVar5 = FUN_180240430(plVar8[0x3c],&puStack_98,1);
+          uVar5 = SystemCore_LoggingSystem0(plVar8[0x3c],&puStack_98,1);
           plVar8[0x28] = plVar8[0x28] & ~uVar5;
           FUN_18022dd60(plVar8);
           puStack_98 = &system_state_ptr;

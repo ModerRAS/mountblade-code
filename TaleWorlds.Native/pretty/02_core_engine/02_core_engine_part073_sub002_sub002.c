@@ -44,7 +44,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置渲染系统参数值 (3)
   uStackX_8._0_4_ = 3;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 3);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -66,7 +66,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置UI系统参数值 (1)
   uStackX_8._0_4_ = 1;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -77,7 +77,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置物理系统参数 (浮点值 0.5)
   uStackX_8._0_4_ = 0x3f000000;  // 0.5 in IEEE 754
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x3f000000);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -99,7 +99,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置音频系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -122,7 +122,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置动画系统参数 (值为2)
   uStackX_8._0_4_ = 2;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -145,7 +145,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置场景系统参数 (值为2)
   uStackX_8._0_4_ = 2;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -168,7 +168,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置特效系统参数 (值为1)
   uStackX_8._0_4_ = 1;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -180,7 +180,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置光照系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -204,7 +204,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置阴影系统参数 (值为1)
   uStackX_8._0_4_ = 1;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -216,7 +216,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置后处理系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -227,7 +227,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置材质系统参数 (值为2)
   uStackX_8._0_4_ = 2;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -238,7 +238,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置纹理系统参数 (值为1)
   uStackX_8._0_4_ = 1;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -262,7 +262,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置粒子系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -274,7 +274,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置天气系统参数 (值为200)
   uStackX_8._0_4_ = 200;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 200);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -298,7 +298,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置水面系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -322,7 +322,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置地形系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -345,7 +345,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置植被系统参数 (值为1)
   uStackX_8._0_4_ = 1;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -357,7 +357,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置天空系统参数 (值为0x500 = 1280)
   uStackX_8._0_4_ = 0x500;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x500);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -369,7 +369,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置云层系统参数 (值为0x2d0 = 720)
   uStackX_8._0_4_ = 0x2d0;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x2d0);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -381,7 +381,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置雾效系统参数 (浮点值 60.0)
   uStackX_8._0_4_ = 0x42700000;  // 60.0 in IEEE 754
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x42700000);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -393,7 +393,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置时间系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -405,7 +405,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置风系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -429,7 +429,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置反射系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -453,7 +453,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置碰撞系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -477,7 +477,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置传感器系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -501,7 +501,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置触发器系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -525,7 +525,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置关节系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -549,7 +549,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置约束系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -564,7 +564,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0x7e8) + 0x10))((int64_t *)(param_1 + 0x7e8),&unknown_var_9096_ptr)
   ;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -579,7 +579,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0x8c8) + 0x10))((int64_t *)(param_1 + 0x8c8),&unknown_var_9152_ptr)
   ;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -594,7 +594,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0x938) + 0x10))((int64_t *)(param_1 + 0x938),&unknown_var_9128_ptr)
   ;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -609,7 +609,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0xf58) + 0x10))((int64_t *)(param_1 + 0xf58),&unknown_var_9192_ptr)
   ;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -624,7 +624,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0x1038) + 0x10))
             ((int64_t *)(param_1 + 0x1038),&unknown_var_9168_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -639,7 +639,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0x10a8) + 0x10))
             ((int64_t *)(param_1 + 0x10a8),&unknown_var_9224_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -654,7 +654,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0x9a8) + 0x10))((int64_t *)(param_1 + 0x9a8),&unknown_var_9208_ptr)
   ;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -669,7 +669,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0xee8) + 0x10))((int64_t *)(param_1 + 0xee8),&unknown_var_9272_ptr)
   ;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -684,7 +684,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0xfc8) + 0x10))((int64_t *)(param_1 + 0xfc8),&unknown_var_9240_ptr)
   ;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -699,7 +699,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0xa18) + 0x10))((int64_t *)(param_1 + 0xa18),&unknown_var_9312_ptr)
   ;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -714,7 +714,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0xa88) + 0x10))((int64_t *)(param_1 + 0xa88),&unknown_var_9296_ptr)
   ;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -729,7 +729,7 @@ void initialize_engine_parameters(int64_t engine_context)
   (**(code **)(*(int64_t *)(param_1 + 0xb68) + 0x10))((int64_t *)(param_1 + 0xb68),&unknown_var_9352_ptr)
   ;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -741,7 +741,7 @@ void initialize_engine_parameters(int64_t engine_context)
   FUN_18005ab20(auStack_148);
   func_0x00018010bc90(uVar1,&unknown_var_9336_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -753,7 +753,7 @@ void initialize_engine_parameters(int64_t engine_context)
   FUN_18005ab20(auStack_148);
   func_0x00018010bc90(uVar1,&unknown_var_9392_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -761,7 +761,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0xc40;
   func_0x00018010bc90(uVar1,&render_data_ptr);
   uStackX_8._0_4_ = 2;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -769,7 +769,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0xd20;
   func_0x00018010bc90(uVar1,&unknown_var_9432_ptr);
   uStackX_8._0_4_ = 1;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -777,7 +777,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0xcb0;
   func_0x00018010bc90(uVar1,&unknown_var_9408_ptr);
   uStackX_8._0_4_ = 1;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -789,7 +789,7 @@ void initialize_engine_parameters(int64_t engine_context)
   FUN_18005ab20(auStack_120);
   func_0x00018010bc90(uVar1,&unknown_var_9472_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -797,7 +797,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x1340;
   func_0x00018010bc90(uVar1,&unknown_var_9456_ptr);
   uStackX_8._0_4_ = 0x3f800000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -805,7 +805,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x13b0;
   func_0x00018010bc90(uVar1,&unknown_var_9512_ptr);
   uStackX_8._0_4_ = 0x3f266666;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f266666);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -813,7 +813,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x1420;
   func_0x00018010bc90(uVar1,&unknown_var_9488_ptr);
   uStackX_8._0_4_ = 0x3f800000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -821,7 +821,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x1500;
   func_0x00018010bc90(uVar1,&system_string1_ptr);
   uStackX_8._0_4_ = 0x3f800000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -829,7 +829,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x1490;
   func_0x00018010bc90(uVar1,&unknown_var_9528_ptr);
   uStackX_8._0_4_ = 0x3f800000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -837,7 +837,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x1570;
   func_0x00018010bc90(uVar1,&system_pattern2_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -845,7 +845,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x15e0;
   func_0x00018010bc90(uVar1,&unknown_var_9568_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -853,7 +853,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x16c0;
   func_0x00018010bc90(uVar1,&unknown_var_9608_ptr);
   uStackX_8._0_4_ = 0x3f000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f000000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -861,7 +861,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x1880;
   func_0x00018010bc90(uVar1,&unknown_var_9600_ptr);
   uStackX_8._0_4_ = 0x400ccccd;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x400ccccd);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -869,7 +869,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x2060;
   func_0x00018010bc90(uVar1,&unknown_var_9672_ptr);
   uStackX_8._0_4_ = 0x42200000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42200000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -877,7 +877,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x18f0;
   func_0x00018010bc90(uVar1,&unknown_var_9640_ptr);
   uStackX_8._0_4_ = 0x3fc00000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3fc00000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -885,7 +885,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x1960;
   func_0x00018010bc90(uVar1,&unknown_var_9736_ptr);
   uStackX_8._0_4_ = 0x42200000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42200000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -893,7 +893,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x19d0;
   func_0x00018010bc90(uVar1,&unknown_var_9688_ptr);
   uStackX_8._0_4_ = 0x42c80000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42c80000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -901,7 +901,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x1110;
   func_0x00018010bc90(uVar1,&unknown_var_9792_ptr);
   uStackX_8._0_4_ = 0x42480000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42480000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -909,7 +909,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x1180;
   func_0x00018010bc90(uVar1,&system_string2_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -917,7 +917,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x11f0;
   func_0x00018010bc90(uVar1,&unknown_var_9832_ptr);
   uStackX_8._0_4_ = 0x3f800000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -925,7 +925,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x1260;
   func_0x00018010bc90(uVar1,&unknown_var_9808_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -933,7 +933,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x20d0;
   func_0x00018010bc90(uVar1,&unknown_var_9880_ptr);
   uStackX_8._0_4_ = 0x42c80000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42c80000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -941,7 +941,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x2140;
   func_0x00018010bc90(uVar1,&unknown_var_9848_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -949,7 +949,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x21b0;
   func_0x00018010bc90(uVar1,&unknown_var_9936_ptr);
   uStackX_8._0_4_ = 0x3c;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3c);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -957,7 +957,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uVar1 = param_1 + 0x2220;
   func_0x00018010bc90(uVar1,&unknown_var_9904_ptr);
   uStackX_8._0_4_ = 0x42480000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42480000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -968,7 +968,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置网络系统参数 (值为2)
   uStackX_8._0_4_ = 2;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -983,7 +983,7 @@ void initialize_engine_parameters(int64_t engine_context)
   
   // 设置输入系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -995,7 +995,7 @@ void initialize_engine_parameters(int64_t engine_context)
   FUN_18005ab20(auStack_e0);
   func_0x00018010bc90(uVar1,&unknown_var_7880_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
@@ -1003,7 +1003,7 @@ void initialize_engine_parameters(int64_t engine_context)
   component_ptr = engine_context + 0xd90;
   func_0x00018010bc90(component_ptr, &unknown_var_9968_ptr);
   uStackX_8._0_4_ = 4;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 4);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -1011,7 +1011,7 @@ void initialize_engine_parameters(int64_t engine_context)
   component_ptr = engine_context + 0xe00;
   func_0x00018010bc90(component_ptr, &unknown_var_48_ptr);
   uStackX_8._0_4_ = 4;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 4);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -1023,7 +1023,7 @@ void initialize_engine_parameters(int64_t engine_context)
   FUN_18005ab20(auStack_c0);
   func_0x00018010bc90(component_ptr, &unknown_var_16_ptr);
   uStackX_8._0_4_ = 1;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -1031,7 +1031,7 @@ void initialize_engine_parameters(int64_t engine_context)
   component_ptr = engine_context + 0x230;
   func_0x00018010bc90(component_ptr, &unknown_var_88_ptr);
   uStackX_8._0_4_ = 2;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -1043,7 +1043,7 @@ void initialize_engine_parameters(int64_t engine_context)
   FUN_18005ab20(auStack_a0);
   func_0x00018010bc90(component_ptr, &unknown_var_72_ptr);
   uStackX_8._0_4_ = 1;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -1055,7 +1055,7 @@ void initialize_engine_parameters(int64_t engine_context)
   FUN_18005ab20(auStack_80);
   func_0x00018010bc90(component_ptr, &unknown_var_128_ptr);
   uStackX_8._0_4_ = 1;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -1063,7 +1063,7 @@ void initialize_engine_parameters(int64_t engine_context)
   component_ptr = engine_context + 0x24c0;
   func_0x00018010bc90(component_ptr, &unknown_var_104_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -1075,7 +1075,7 @@ void initialize_engine_parameters(int64_t engine_context)
   FUN_18005ab20(auStack_60);
   func_0x00018010bc90(component_ptr, &unknown_var_184_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -1087,7 +1087,7 @@ void initialize_engine_parameters(int64_t engine_context)
   FUN_18005ab20(auStack_40);
   func_0x00018010bc90(component_ptr, &unknown_var_160_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -1095,7 +1095,7 @@ void initialize_engine_parameters(int64_t engine_context)
   component_ptr = engine_context + 0x2370;
   func_0x00018010bc90(component_ptr, &unknown_var_224_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
@@ -1103,7 +1103,7 @@ void initialize_engine_parameters(int64_t engine_context)
   component_ptr = engine_context + 0x23e0;
   func_0x00018010bc90(component_ptr, &unknown_var_208_ptr);
   uStackX_8._0_4_ = 1;
-  FUN_180046240(component_ptr, &uStackX_8);
+  SystemAudioManager(component_ptr, &uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;

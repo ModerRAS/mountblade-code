@@ -343,7 +343,7 @@ void FUN_1805e8630(int64_t *******param_1,int64_t *******param_2,uint64_t param_
             puVar14[4] = 0x676e6964;
             *(int8_t *)(puVar14 + 5) = 0;
             uStack_188 = 0x14;
-            FUN_180240430(uVar10,&puStack_198,1);
+            SystemCore_LoggingSystem0(uVar10,&puStack_198,1);
             puStack_198 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
             CoreEngineMemoryPoolCleaner(puVar14);

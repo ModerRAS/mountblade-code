@@ -458,7 +458,7 @@ void ProcessDeviceOperations(int64_t *device_params)
   stack_buffer2[0] = stack_buffer2[0] & 0xffffffffffffff00;
   stack_var2._0_4_ = 0x12;
   strcpy_s(stack_buffer2, 0x20, &unknown_var_5320_ptr);
-  config_mask = FUN_180240430(device_config, &stack_ptr2, 0);
+  config_mask = SystemCore_LoggingSystem0(device_config, &stack_ptr2, 0);
   stack_ptr2 = &system_state_ptr;
   
   if (config_mask != 0) {

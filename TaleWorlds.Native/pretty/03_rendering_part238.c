@@ -744,7 +744,7 @@ LAB_1804009a0:
   puVar5[1] = 0x72616c7563657073;
   *(int8_t *)(puVar5 + 2) = 0;
   uStack_198 = 0x10;
-  FUN_180240430(uVar3,&puStack_1a8,1);
+  SystemCore_LoggingSystem0(uVar3,&puStack_1a8,1);
   puStack_1a8 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar5);

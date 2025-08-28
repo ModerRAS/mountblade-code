@@ -1480,7 +1480,7 @@ void resource_chain_traverse(int64_t *resource_chain)
 void resource_processor_delegate_type1(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数
-    FUN_1800f7260(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    NetworkSystemController(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
     return;
 }
 
@@ -1627,7 +1627,7 @@ void resource_processor_delegate_type3(int64_t param_1, uint64_t param_2, uint64
 void resource_processor_delegate_type4(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数7260
-    FUN_1800f7260(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    NetworkSystemController(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
     return;
 }
 

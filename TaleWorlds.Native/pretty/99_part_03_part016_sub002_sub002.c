@@ -439,7 +439,7 @@ LAB_1801da300:
             auStack_80[0] = 0;
             uStack_88 = 0x15;
             strcpy_s(auStack_80,0x40,&system_data_e020);
-            FUN_180240430(plStack_2d0,&puStack_98,0);
+            SystemCore_LoggingSystem0(plStack_2d0,&puStack_98,0);
             puStack_98 = &system_state_ptr;
             puStack_360 = (int32_t *)0x0;
             puStack_358 = (int32_t *)0x0;

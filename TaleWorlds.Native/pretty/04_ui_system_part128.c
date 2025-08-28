@@ -391,7 +391,7 @@ int32_t FUN_180742e60(int64_t param_1)
   
   iVar3 = (*(int *)(param_1 + 0x107b0) * *(int *)(param_1 + 0x6d8) + 8) *
           *(int *)(param_1 + 0x11658);
-  lVar1 = FUN_180741e10(param_1 + 0x10bd0,iVar3 * 4 + 0x200,&system_buffer_ptr,0,0,0,1);
+  lVar1 = SystemCore_DatabaseManager0(param_1 + 0x10bd0,iVar3 * 4 + 0x200,&system_buffer_ptr,0,0,0,1);
   if (lVar1 == 0) {
     return 0x26;
   }

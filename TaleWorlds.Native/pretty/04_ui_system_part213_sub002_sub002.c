@@ -123,7 +123,7 @@ LAB_18078e395:
     }
     else {
       plVar34 = (int64_t *)
-                FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x1f8,&unknown_var_1936_ptr,0x355,
+                SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x1f8,&unknown_var_1936_ptr,0x355,
                               (uint64_t)uVar10 << 0x20);
       if (plVar34 == (int64_t *)0x0) {
         in_stack_00000068 = (int64_t *)0x0;
@@ -158,7 +158,7 @@ LAB_18078e395:
 LAB_18078e2fd:
     if ((uVar9 & 0x10000800) == 0) goto LAB_18078e395;
     plVar11 = (int64_t *)
-              FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x200,&unknown_var_1936_ptr,0x1e1,
+              SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x200,&unknown_var_1936_ptr,0x1e1,
                             (uint64_t)uVar10 << 0x20);
     unaff_RBP[-0xf] = plVar11;
     plVar34 = plVar17;

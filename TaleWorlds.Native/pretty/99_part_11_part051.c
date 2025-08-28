@@ -140,7 +140,7 @@ LAB_1807affe3:
           uStack_e8 = 1;
           uStack_f0 = 0;
           uStack_f8 = uStack_f8 & 0xffffffff00000000;
-          lVar10 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iStack_88,&unknown_var_9968_ptr,
+          lVar10 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iStack_88,&unknown_var_9968_ptr,
                                  0x233);
           if (lVar10 == 0) {
 LAB_1807b009b:
@@ -246,7 +246,7 @@ LAB_1807b009b:
       uStack_e8 = 1;
       uStack_f0 = 0;
       uStack_f8 = uStack_f8 & 0xffffffff00000000;
-      lVar11 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar5 * 4,&unknown_var_9968_ptr,0x2c7)
+      lVar11 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar5 * 4,&unknown_var_9968_ptr,0x2c7)
       ;
       *(int64_t *)(param_1 + 0x180) = lVar11;
       if (lVar11 != 0) {
@@ -324,7 +324,7 @@ FUN_1807b04d0(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
   uint64_t uVar17;
   
   iVar13 = 0;
-  puVar7 = (uint *)FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+  puVar7 = (uint *)SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                  *(int32_t *)(param_2 + 0xc),&unknown_var_9968_ptr,0x16a,
                                  in_stack_ffffffffffffff48 & 0xffffffff00000000,0,1);
   if (puVar7 != (uint *)0x0) {
@@ -333,7 +333,7 @@ FUN_1807b04d0(uint64_t param_1,int64_t param_2,uint64_t *param_3,uint64_t *param
     if ((int)uVar8 != 0) {
       return uVar8;
     }
-    piVar9 = (int *)FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int *)(param_2 + 8) << 2
+    piVar9 = (int *)SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int *)(param_2 + 8) << 2
                                   ,&unknown_var_9968_ptr,0x173,uVar17 & 0xffffffff00000000,0,1);
     if (piVar9 != (int *)0x0) {
       piVar12 = piVar9;

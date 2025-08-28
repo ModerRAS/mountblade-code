@@ -79,7 +79,7 @@ LAB_18089e70b:
         if ((int)uStack_80 != 0) {
           for (; (puStack_88 <= puVar5 && (puVar5 < puStack_88 + (int)uStack_80));
               puVar5 = puVar5 + 1) {
-            lVar6 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_688_ptr,0xc1c,
+            lVar6 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_688_ptr,0xc1c,
                                   0,0,1);
             if (lVar6 == 0) {
               uVar4 = 0x26;
@@ -192,7 +192,7 @@ LAB_18089e70b:
         puVar7 = *(int32_t **)(unaff_RBP + -0x29);
         for (puVar10 = puVar7; (puVar7 <= puVar10 && (puVar10 < puVar7 + iVar6));
             puVar10 = puVar10 + 1) {
-          lVar9 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_688_ptr,0xc1c,0)
+          lVar9 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_688_ptr,0xc1c,0)
           ;
           if (lVar9 == 0) {
             uVar8 = 0x26;
@@ -263,7 +263,7 @@ LAB_18089e70b:
     if (iVar3 != 0) {
       puVar6 = *(int32_t **)(unaff_RBP + -0x29);
       for (puVar7 = puVar6; (puVar6 <= puVar7 && (puVar7 < puVar6 + iVar3)); puVar7 = puVar7 + 1) {
-        lVar5 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_688_ptr,0xc1c);
+        lVar5 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_688_ptr,0xc1c);
         if (lVar5 == 0) {
           uVar4 = 0x26;
           goto LAB_18089e70b;

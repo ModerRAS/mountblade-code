@@ -646,7 +646,7 @@ uint64_t FUN_1807906f0(int64_t param_1)
   lVar4 = FUN_180791040();
   uVar8 = 0;
   puVar5 = (uint64_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_2784_ptr,0x24c,0,0,1);
+           SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_2784_ptr,0x24c,0,0,1);
   if (puVar5 == (uint64_t *)0x0) {
     uVar6 = 0x26;
   }

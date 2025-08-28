@@ -178,7 +178,7 @@ void FUN_180877970(int64_t param_1,int64_t *param_2)
             uStack_130 = uStack_130 & 0xffffff00;
             uStack_138 = 0;
             plVar6 = (int64_t *)
-                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,&unknown_var_5856_ptr,0xa0d
+                     SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,&unknown_var_5856_ptr,0xa0d
                                   );
             if (plVar6 == (int64_t *)0x0) goto LAB_180877e87;
             *plVar6 = 0;
@@ -600,7 +600,7 @@ LAB_1808784e0:
                     uStack_e8 = CONCAT31(uStack_e8._1_3_,1);
                     uStack_f0 = uStack_f0 & 0xffffff00;
                     uStack_f8 = 0;
-                    lVar10 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar11 * 0x10,
+                    lVar10 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar11 * 0x10,
                                            &unknown_var_8432_ptr,0xf4);
                     if (lVar10 == 0) goto LAB_180878734;
                     if (*(int *)(lVar7 + 0x60) != 0) {

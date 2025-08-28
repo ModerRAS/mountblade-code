@@ -449,7 +449,7 @@ uint64_t FUN_1807455f0(int64_t param_1)
   plVar2 = (int64_t *)*plVar2;
   uVar4 = 0;
   plVar5 = (int64_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xb0,&unknown_var_208_ptr,0x7b,0,0,1);
+           SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xb0,&unknown_var_208_ptr,0x7b,0,0,1);
   if (plVar5 == (int64_t *)0x0) {
     uVar4 = 0x26;
   }
@@ -472,7 +472,7 @@ uint64_t FUN_1807455f0(int64_t param_1)
     plVar5[0x12] = 0;
     *(int32_t *)(plVar5 + 0x13) = 0xffffffff;
     *(int32_t *)((int64_t)plVar5 + 0x9c) = 0;
-    lVar6 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10020,&unknown_var_208_ptr,0x83,0,0,1)
+    lVar6 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10020,&unknown_var_208_ptr,0x83,0,0,1)
     ;
     plVar5[5] = lVar6;
     if (lVar6 == 0) {
@@ -687,7 +687,7 @@ uint64_t FUN_180745870(int64_t param_1,int64_t param_2,uint param_3,uint *param_
   if ((param_3 & 0x10000800) == 0) {
     if (param_2 != 0) {
       iVar2 = func_0x00018076b690(param_2);
-      uVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar2 + 1,&unknown_var_8576_ptr,0xf97,0
+      uVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar2 + 1,&unknown_var_8576_ptr,0xf97,0
                             ,in_stack_fffffffffffffdf0 & 0xffffffffffffff00,1);
       *(uint64_t *)plVar5[0x21] = uVar7;
                     // WARNING: Subroutine does not return
@@ -843,7 +843,7 @@ uint64_t FUN_1807458a3(int32_t param_1,int32_t param_2,uint64_t param_3,uint *pa
   if ((unaff_R15D & 0x10000800) == 0) {
     if (unaff_R12 != 0) {
       iVar2 = func_0x00018076b690();
-      uVar7 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar2 + 1,&unknown_var_8576_ptr,0xf97,0
+      uVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar2 + 1,&unknown_var_8576_ptr,0xf97,0
                            );
       *(uint64_t *)plVar5[0x21] = uVar7;
                     // WARNING: Subroutine does not return
@@ -992,7 +992,7 @@ uint64_t FUN_180745946(int32_t param_1,int32_t param_2)
     if ((unaff_R15D & 0x10000800) == 0) {
       if (unaff_R12 != 0) {
         iVar4 = func_0x00018076b690();
-        uVar9 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4 + 1,&unknown_var_8576_ptr,0xf97
+        uVar9 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4 + 1,&unknown_var_8576_ptr,0xf97
                               ,0);
         *(uint64_t *)plVar7[0x21] = uVar9;
                     // WARNING: Subroutine does not return

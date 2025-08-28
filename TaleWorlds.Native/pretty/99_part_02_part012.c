@@ -603,7 +603,7 @@ void FUN_1800f08a0(void)
   auStack_150[0] = 0;
   uStack_158 = 0xc;
   strcpy_s(auStack_150,0x20,&unknown_var_5624_ptr);
-  uVar3 = FUN_180240430(uVar3,&puStack_168,1);
+  uVar3 = SystemCore_LoggingSystem0(uVar3,&puStack_168,1);
   *(uint64_t *)(lVar1 + 0x40b8) = uVar3;
   puStack_168 = &system_state_ptr;
   uVar3 = *(uint64_t *)(lVar1 + 0x40b0);
@@ -612,7 +612,7 @@ void FUN_1800f08a0(void)
   auStack_b0[0] = 0;
   uStack_b8 = 0xd;
   strcpy_s(auStack_b0,0x20,&unknown_var_5608_ptr);
-  uVar3 = FUN_180240430(uVar3,&puStack_c8,1);
+  uVar3 = SystemCore_LoggingSystem0(uVar3,&puStack_c8,1);
   *(uint64_t *)(lVar1 + 0x40c8) = uVar3;
   puStack_c8 = &system_state_ptr;
   uVar3 = *(uint64_t *)(lVar1 + 0x40b0);
@@ -621,7 +621,7 @@ void FUN_1800f08a0(void)
   auStack_78[0] = 0;
   uStack_80 = 0x11;
   strcpy_s(auStack_78,0x20,&unknown_var_5664_ptr);
-  uVar3 = FUN_180240430(uVar3,&puStack_90,1);
+  uVar3 = SystemCore_LoggingSystem0(uVar3,&puStack_90,1);
   *(uint64_t *)(lVar1 + 0x40d0) = uVar3;
   puStack_90 = &system_state_ptr;
   uVar3 = *(uint64_t *)(lVar1 + 0x40b0);
@@ -630,7 +630,7 @@ void FUN_1800f08a0(void)
   auStack_110[0] = 0;
   uStack_118 = 0x12;
   strcpy_s(auStack_110,0x20,&unknown_var_5640_ptr);
-  uVar3 = FUN_180240430(uVar3,&puStack_128,1);
+  uVar3 = SystemCore_LoggingSystem0(uVar3,&puStack_128,1);
   *(uint64_t *)(lVar1 + 0x40d8) = uVar3;
   puStack_128 = &system_state_ptr;
   uVar3 = *(uint64_t *)(lVar1 + 0x40b0);
@@ -639,7 +639,7 @@ void FUN_1800f08a0(void)
   auStack_40[0] = 0;
   uStack_48 = 0x19;
   strcpy_s(auStack_40,0x20,&unknown_var_5704_ptr);
-  uVar3 = FUN_180240430(uVar3,&puStack_58,1);
+  uVar3 = SystemCore_LoggingSystem0(uVar3,&puStack_58,1);
   *(uint64_t *)(lVar1 + 0x40c0) = uVar3;
   puStack_58 = &system_state_ptr;
   puVar2 = (uint64_t *)FUN_18009e9e0();
@@ -649,7 +649,7 @@ void FUN_1800f08a0(void)
   auStack_110[0] = 0;
   uStack_118 = 0x1b;
   strcpy_s(auStack_110,0x40,&system_data_4a78);
-  uVar3 = FUN_180240430(uVar3,&puStack_128,1);
+  uVar3 = SystemCore_LoggingSystem0(uVar3,&puStack_128,1);
   *(uint64_t *)(lVar1 + 0x300) = uVar3;
   puStack_128 = &system_state_ptr;
   if (plStack_180 != (int64_t *)0x0) {

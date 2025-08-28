@@ -48,7 +48,7 @@ void FUN_1802f8750(int64_t param_1,int64_t *param_2)
   auStack_30[0] = 0;
   uStack_38 = 0x1a;
   strcpy_s(auStack_30,0x20,&unknown_var_736_ptr);
-  uVar5 = FUN_180240430(*(uint64_t *)(lVar1 + 0x1e0),&puStack_48,0);
+  uVar5 = SystemCore_LoggingSystem0(*(uint64_t *)(lVar1 + 0x1e0),&puStack_48,0);
   *(bool *)(param_1 + 0x178) = (*(uint64_t *)(lVar1 + 0x140) & uVar5) != 0;
   puStack_48 = &system_state_ptr;
   uVar5 = *(uint64_t *)(param_1 + 0x158);

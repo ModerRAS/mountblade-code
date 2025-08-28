@@ -1068,7 +1068,7 @@ int32_t FUN_1808ae8e0(int64_t param_1,int param_2,uint64_t *param_3)
   uint64_t *puVar1;
   
   puVar1 = (uint64_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_9456_ptr,0x119,0,0,1);
+           SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_9456_ptr,0x119,0,0,1);
   if (puVar1 == (uint64_t *)0x0) {
     return 0x26;
   }

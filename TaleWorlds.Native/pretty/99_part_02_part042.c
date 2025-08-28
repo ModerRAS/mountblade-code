@@ -765,7 +765,7 @@ void FUN_1801b32d0(int64_t param_1)
         auStack_e0[0] = 0;
         uStack_e8 = 0x10;
         strcpy_s(auStack_e0,0x40,&system_data_be60);
-        uVar9 = FUN_180240430(lVar5,&puStack_f8,1);
+        uVar9 = SystemCore_LoggingSystem0(lVar5,&puStack_f8,1);
         plVar6 = plStack_158;
         puStack_f8 = &system_state_ptr;
         plStack_158[0x28] = plStack_158[0x28] | uVar9;
@@ -780,7 +780,7 @@ void FUN_1801b32d0(int64_t param_1)
         auStack_e0[0] = 0;
         uStack_e8 = 0xb;
         strcpy_s(auStack_e0,0x40,&system_data_be88);
-        uVar9 = FUN_180240430(lVar5,&puStack_f8,1);
+        uVar9 = SystemCore_LoggingSystem0(lVar5,&puStack_f8,1);
         plVar6 = plStack_158;
         puStack_f8 = &system_state_ptr;
         plStack_158[0x28] = plStack_158[0x28] | uVar9;

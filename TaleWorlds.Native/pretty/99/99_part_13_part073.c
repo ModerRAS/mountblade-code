@@ -495,7 +495,7 @@ uint32_t system_data_processor_configure(int64_t processor_handle, int64_t confi
             
             if (allocation_result == 0) {
                 // 分配基础类型资源
-                resource_ptr = FUN_180741e10(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x20, 
+                resource_ptr = SystemCore_DatabaseManager0(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x20, 
                                            &unknown_var_9456_ptr, 0x112, 0, 0, 1);
                 if (resource_ptr == (void*)0x0) {
                     return ERROR_INSUFFICIENT_MEMORY;
@@ -510,7 +510,7 @@ uint32_t system_data_processor_configure(int64_t processor_handle, int64_t confi
                 *(int*)(resource_ptr + 3) = config_ptr[0xe];
             } else if (allocation_result == 1) {
                 // 分配扩展类型资源
-                resource_ptr = FUN_180741e10(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x20, 
+                resource_ptr = SystemCore_DatabaseManager0(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x20, 
                                            &unknown_var_9456_ptr, 0x119, 0, 0, 1);
                 if (resource_ptr == (void*)0x0) {
                     return ERROR_INSUFFICIENT_MEMORY;
@@ -525,7 +525,7 @@ uint32_t system_data_processor_configure(int64_t processor_handle, int64_t confi
                 *(int*)(resource_ptr + 3) = config_ptr[0xe];
             } else if (allocation_result == 2) {
                 // 分配复杂类型资源
-                resource_ptr = FUN_180741e10(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x20, 
+                resource_ptr = SystemCore_DatabaseManager0(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x20, 
                                            &unknown_var_9456_ptr, 0x120, 0, 0, 1);
                 if (resource_ptr == (void*)0x0) {
                     return ERROR_INSUFFICIENT_MEMORY;
@@ -538,7 +538,7 @@ uint32_t system_data_processor_configure(int64_t processor_handle, int64_t confi
                 *(bool*)(resource_ptr + 3) = config_ptr[0xc] != 0;
             } else if (allocation_result == 3) {
                 // 分配自定义类型资源
-                resource_ptr = FUN_180741e10(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x20, 
+                resource_ptr = SystemCore_DatabaseManager0(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x20, 
                                            &unknown_var_9456_ptr, 0x127, 0, 0, 1);
                 if (resource_ptr == (void*)0x0) {
                     return ERROR_INSUFFICIENT_MEMORY;
@@ -599,7 +599,7 @@ uint32_t system_memory_manager_allocate(void** memory_handle, uint32_t allocatio
     }
     
     // 分配内存资源
-    allocation_result = FUN_180741e10(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), MEMORY_BLOCK_LARGE, 
+    allocation_result = SystemCore_DatabaseManager0(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), MEMORY_BLOCK_LARGE, 
                                    &unknown_var_7744_ptr, 0x214, 0, 0, 1);
     
     if (allocation_result == 0) {

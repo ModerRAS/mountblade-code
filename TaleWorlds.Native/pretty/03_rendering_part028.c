@@ -780,7 +780,7 @@ LAB_18028135c:
         auStack_90[0] = 0;
         uStack_98 = 0x10;
         strcpy_s(auStack_90,0x40,&system_buffer_d580);
-        uVar6 = FUN_180240430(plVar8[0x3c],&puStack_a8,0);
+        uVar6 = SystemCore_LoggingSystem0(plVar8[0x3c],&puStack_a8,0);
         plVar8[0x28] = plVar8[0x28] | uVar6;
         FUN_18022dd60(plVar8);
         *(int16_t *)(plVar8 + 0x78) = 0xffff;

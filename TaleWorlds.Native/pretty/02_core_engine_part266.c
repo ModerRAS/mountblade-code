@@ -52,7 +52,7 @@ void FUN_18022d860(int64_t param_1)
   uVar6 = uVar8;
   if (0 < iVar3) {
     do {
-      uVar5 = FUN_180240430(*(uint64_t *)(param_1 + 0x1e0),
+      uVar5 = SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + 0x1e0),
                             (int64_t)(int)uVar8 * 0x58 + *(int64_t *)(param_1 + 0x368),0);
       if (uVar5 == 0) {
         puVar11 = &system_buffer_ptr;
@@ -85,7 +85,7 @@ void FUN_18022d860(int64_t param_1)
     auStack_200[0] = 0;
     uStack_208 = 0x10;
     strcpy_s(auStack_200,0x20,&system_data_3c30);
-    uVar6 = FUN_180240430(uVar7,&puStack_218,0);
+    uVar6 = SystemCore_LoggingSystem0(uVar7,&puStack_218,0);
     *(uint64_t *)(param_1 + 0x140) = *(uint64_t *)(param_1 + 0x140) | uVar6;
   }
   uVar7 = *(uint64_t *)(param_1 + 0x1e0);
@@ -94,7 +94,7 @@ void FUN_18022d860(int64_t param_1)
   auStack_200[0] = 0;
   uStack_208 = 10;
   strcpy_s(auStack_200,0x20,&system_data_d648);
-  uVar6 = FUN_180240430(uVar7,&puStack_218,0);
+  uVar6 = SystemCore_LoggingSystem0(uVar7,&puStack_218,0);
   if ((((uVar6 & *(uint64_t *)(param_1 + 0x140)) != 0) && (-0.001 < *(float *)(param_1 + 600))) &&
      (*(float *)(param_1 + 600) < 0.001)) {
     *(uint64_t *)(param_1 + 0x140) = ~uVar6 & *(uint64_t *)(param_1 + 0x140);
@@ -105,7 +105,7 @@ void FUN_18022d860(int64_t param_1)
   auStack_200[0] = 0;
   uStack_208 = 0xf;
   strcpy_s(auStack_200,0x40,&system_data_ba58);
-  uVar7 = FUN_180240430(uVar7,&puStack_218,0);
+  uVar7 = SystemCore_LoggingSystem0(uVar7,&puStack_218,0);
   *(uint64_t *)(param_1 + 0x390) = uVar7;
   puStack_218 = &system_state_ptr;
   uVar7 = *(uint64_t *)(param_1 + 0x1e0);
@@ -120,8 +120,8 @@ void FUN_18022d860(int64_t param_1)
   auStack_200[0] = 0;
   uStack_208 = 0x17;
   strcpy_s(auStack_200,0x40,&unknown_var_7272_ptr);
-  uVar6 = FUN_180240430(uVar2,&puStack_218,0);
-  uVar8 = FUN_180240430(uVar7,&puStack_1b8,0);
+  uVar6 = SystemCore_LoggingSystem0(uVar2,&puStack_218,0);
+  uVar8 = SystemCore_LoggingSystem0(uVar7,&puStack_1b8,0);
   *(uint64_t *)(param_1 + 0x3a8) = uVar6 | uVar8;
   puStack_218 = &system_state_ptr;
   puStack_1b8 = &system_state_ptr;
@@ -131,7 +131,7 @@ void FUN_18022d860(int64_t param_1)
   auStack_140[0] = 0;
   uStack_148 = 0x10;
   strcpy_s(auStack_140,0x40,&system_data_d580);
-  uVar7 = FUN_180240430(uVar7,&puStack_158,0);
+  uVar7 = SystemCore_LoggingSystem0(uVar7,&puStack_158,0);
   *(uint64_t *)(param_1 + 0x3b0) = uVar7;
   puStack_158 = &system_state_ptr;
   uVar7 = *(uint64_t *)(param_1 + 0x1e0);
@@ -140,7 +140,7 @@ void FUN_18022d860(int64_t param_1)
   auStack_e0[0] = 0;
   uStack_e8 = 0x14;
   strcpy_s(auStack_e0,0x40,&system_data_d5b8);
-  uVar7 = FUN_180240430(uVar7,&puStack_f8,0);
+  uVar7 = SystemCore_LoggingSystem0(uVar7,&puStack_f8,0);
   *(uint64_t *)(param_1 + 0x3b8) = uVar7;
   puStack_f8 = &system_state_ptr;
   uVar7 = *(uint64_t *)(param_1 + 0x1e0);
@@ -149,7 +149,7 @@ void FUN_18022d860(int64_t param_1)
   auStack_80[0] = 0;
   uStack_88 = 0x1d;
   strcpy_s(auStack_80,0x40,&unknown_var_7528_ptr);
-  uVar7 = FUN_180240430(uVar7,&puStack_98,0);
+  uVar7 = SystemCore_LoggingSystem0(uVar7,&puStack_98,0);
   *(uint64_t *)(param_1 + 0x398) = uVar7;
   puStack_98 = &system_state_ptr;
   uVar4 = FUN_18022d6c0(param_1);

@@ -172,7 +172,7 @@ LAB_18022cf5f:
     uStack_88 = 0x15;
     bVar6 = true;
     uStack_78 = 1;
-    lVar14 = FUN_180240430(uVar3,&puStack_98,0);
+    lVar14 = SystemCore_LoggingSystem0(uVar3,&puStack_98,0);
     if (lVar14 == 0) goto LAB_18022cf5f;
     bVar7 = true;
   }
@@ -213,7 +213,7 @@ LAB_18022cf5f:
       auStack_50[0] = 0;
       uStack_58 = 0x15;
       strcpy_s(auStack_50,0x20,&system_data_e020);
-      uVar11 = FUN_180240430(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
+      uVar11 = SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
       *(uint64_t *)(param_1 + 0x140) = *(uint64_t *)(param_1 + 0x140) | uVar11;
       FUN_18022dd60(param_1);
       *(int16_t *)(param_1 + 0x3c0) = 0xffff;
@@ -240,7 +240,7 @@ LAB_18022cf5f:
       puVar10[8] = 0x72757478;
       *(int16_t *)(puVar10 + 9) = 0x65;
       uStack_88 = 0x25;
-      FUN_180240430(uVar3,&puStack_98,0);
+      SystemCore_LoggingSystem0(uVar3,&puStack_98,0);
       puStack_98 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner(puVar10);
@@ -250,7 +250,7 @@ LAB_18022cf5f:
     auStack_50[0] = 0;
     uStack_58 = 0x15;
     strcpy_s(auStack_50,0x20,&system_data_e020);
-    uVar11 = FUN_180240430(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
+    uVar11 = SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
     *(uint64_t *)(param_1 + 0x140) = *(uint64_t *)(param_1 + 0x140) & ~uVar11;
     FUN_18022dd60(param_1);
     puStack_68 = &system_state_ptr;
@@ -452,7 +452,7 @@ LAB_18022cf5f:
     uStack_88 = 0x15;
     bVar3 = true;
     uStack_78 = 1;
-    lVar7 = FUN_180240430(uVar2,&puStack_98,0);
+    lVar7 = SystemCore_LoggingSystem0(uVar2,&puStack_98,0);
     if (lVar7 == 0) goto LAB_18022cf5f;
     bVar4 = true;
   }
@@ -493,7 +493,7 @@ LAB_18022cf5f:
       auStack_50[0] = 0;
       uStack_58 = 0x15;
       strcpy_s(auStack_50,0x20,&system_data_e020);
-      uVar9 = FUN_180240430(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
+      uVar9 = SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
       *(uint64_t *)(param_1 + 0x140) = *(uint64_t *)(param_1 + 0x140) | uVar9;
       FUN_18022dd60(param_1);
       *(int16_t *)(param_1 + 0x3c0) = 0xffff;
@@ -520,7 +520,7 @@ LAB_18022cf5f:
       puVar8[8] = 0x72757478;
       *(int16_t *)(puVar8 + 9) = 0x65;
       uStack_88 = 0x25;
-      FUN_180240430(uVar2,&puStack_98,0);
+      SystemCore_LoggingSystem0(uVar2,&puStack_98,0);
       puStack_98 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner(puVar8);
@@ -530,7 +530,7 @@ LAB_18022cf5f:
     auStack_50[0] = 0;
     uStack_58 = 0x15;
     strcpy_s(auStack_50,0x20,&system_data_e020);
-    uVar9 = FUN_180240430(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
+    uVar9 = SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
     *(uint64_t *)(param_1 + 0x140) = *(uint64_t *)(param_1 + 0x140) & ~uVar9;
     FUN_18022dd60(param_1);
     puStack_68 = &system_state_ptr;
@@ -603,7 +603,7 @@ LAB_18022cf5f:
     uStack_88 = 0x15;
     bVar2 = true;
     uStack_78 = 1;
-    lVar6 = FUN_180240430(uVar1,&puStack_98,0);
+    lVar6 = SystemCore_LoggingSystem0(uVar1,&puStack_98,0);
     if (lVar6 == 0) goto LAB_18022cf5f;
     bVar3 = true;
   }
@@ -644,7 +644,7 @@ LAB_18022cf5f:
       auStack_50[0] = 0;
       uStack_58 = 0x15;
       strcpy_s(auStack_50,0x20,&system_data_e020);
-      uVar8 = FUN_180240430(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
+      uVar8 = SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
       *(uint64_t *)(param_1 + 0x140) = *(uint64_t *)(param_1 + 0x140) | uVar8;
       FUN_18022dd60(param_1);
       *(int16_t *)(param_1 + 0x3c0) = 0xffff;
@@ -671,7 +671,7 @@ LAB_18022cf5f:
       puVar7[8] = 0x72757478;
       *(int16_t *)(puVar7 + 9) = 0x65;
       uStack_88 = 0x25;
-      FUN_180240430(uVar1,&puStack_98,0);
+      SystemCore_LoggingSystem0(uVar1,&puStack_98,0);
       puStack_98 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner(puVar7);
@@ -681,7 +681,7 @@ LAB_18022cf5f:
     auStack_50[0] = 0;
     uStack_58 = 0x15;
     strcpy_s(auStack_50,0x20,&system_data_e020);
-    uVar8 = FUN_180240430(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
+    uVar8 = SystemCore_LoggingSystem0(*(uint64_t *)(param_1 + 0x1e0),&puStack_68,1);
     *(uint64_t *)(param_1 + 0x140) = *(uint64_t *)(param_1 + 0x140) & ~uVar8;
     FUN_18022dd60(param_1);
     puStack_68 = &system_state_ptr;
@@ -847,7 +847,7 @@ void FUN_18022d6c0(int64_t param_1)
   auStack_38[0] = 0;
   uStack_40 = 0x11;
   strcpy_s(auStack_38,0x20,&unknown_var_1280_ptr);
-  FUN_180240430(uVar1,&puStack_50,0);
+  SystemCore_LoggingSystem0(uVar1,&puStack_50,0);
   puStack_50 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_78);

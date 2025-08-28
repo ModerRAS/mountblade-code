@@ -54,7 +54,7 @@ uint64_t FUN_1808aa190(uint64_t param_1,int64_t param_2,int32_t param_3)
           if (0 < aiStack_58[0]) {
             do {
               puVar7 = (uint64_t *)
-                       FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x48,&unknown_var_816_ptr,
+                       SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x48,&unknown_var_816_ptr,
                                      0x30a,0,0,1);
               if (puVar7 == (uint64_t *)0x0) {
                 return 0x26;
@@ -151,7 +151,7 @@ uint64_t FUN_1808aa1bc(int32_t param_1)
         if (0 < iStack0000000000000040) {
           do {
             puVar6 = (uint64_t *)
-                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x48,&unknown_var_816_ptr,0x30a
+                     SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x48,&unknown_var_816_ptr,0x30a
                                    ,0);
             if (puVar6 == (uint64_t *)0x0) {
               return 0x26;
@@ -233,7 +233,7 @@ int FUN_1808aa213(int32_t param_1)
     if (0 < in_ECX) {
       do {
         puVar5 = (uint64_t *)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x48,&unknown_var_816_ptr,0x30a);
+                 SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x48,&unknown_var_816_ptr,0x30a);
         if (puVar5 == (uint64_t *)0x0) {
           return 0x26;
         }
@@ -365,7 +365,7 @@ uint64_t FUN_1808aa3a0(uint64_t *param_1,int64_t param_2,int32_t param_3)
         if (0 < aiStack_78[0]) {
           do {
             puVar7 = (uint64_t *)
-                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_816_ptr,0x30a
+                     SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_816_ptr,0x30a
                                    ,0,0,1);
             if (puVar7 == (uint64_t *)0x0) {
               return 0x26;
@@ -473,7 +473,7 @@ uint64_t FUN_1808aa3d1(void)
     if (0 < iStack0000000000000040) {
       do {
         puVar7 = (uint64_t *)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_816_ptr,0x30a,0);
+                 SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_816_ptr,0x30a,0);
         if (puVar7 == (uint64_t *)0x0) {
           return 0x26;
         }
@@ -578,7 +578,7 @@ uint64_t FUN_1808aa407(int param_1)
     if (0 < param_1) {
       do {
         puVar6 = (uint64_t *)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_816_ptr,0x30a,0);
+                 SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_816_ptr,0x30a,0);
         if (puVar6 == (uint64_t *)0x0) {
           return 0x26;
         }
@@ -673,7 +673,7 @@ int FUN_1808aa42a(int32_t param_1)
     if (0 < in_ECX) {
       do {
         puVar5 = (uint64_t *)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_816_ptr,0x30a,0);
+                 SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_816_ptr,0x30a,0);
         if (puVar5 == (uint64_t *)0x0) {
           return 0x26;
         }

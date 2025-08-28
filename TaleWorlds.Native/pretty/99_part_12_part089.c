@@ -50,7 +50,7 @@ uint64_t * FUN_1808a52a0(uint64_t *param_1,int64_t *param_2)
     if (auStackX_20[0] >> 1 != 0) {
       if ((0x3ffffffe < uVar9 * 8 - 1) ||
          (puVar4 = (uint64_t *)
-                   FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar9 * 8,&unknown_var_8432_ptr,
+                   SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar9 * 8,&unknown_var_8432_ptr,
                                  0xf4,0,0,1), puVar4 == (uint64_t *)0x0)) {
         puVar4 = (uint64_t *)0x26;
         goto LAB_1808a53f9;
@@ -155,7 +155,7 @@ uint64_t FUN_1808a52ce(void)
     if (in_stack_00000088 >> 1 != 0) {
       if ((0x3ffffffe < uVar9 * 8 - 1) ||
          (puVar4 = (uint64_t *)
-                   FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar9 * 8,&unknown_var_8432_ptr,
+                   SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar9 * 8,&unknown_var_8432_ptr,
                                  0xf4), puVar4 == (uint64_t *)0x0)) {
         uVar6 = 0x26;
         goto LAB_1808a53f9;

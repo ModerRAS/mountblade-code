@@ -1,10 +1,289 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 03_rendering_part453.c - 1 个函数
+// 03_rendering_part453.c - 3D渲染系统变换处理器
+// 
+// 本文件包含3D渲染系统的核心变换处理功能，主要负责：
+// - 3D空间中的几何变换计算
+// - 矩阵变换和向量投影
+// - 渲染状态管理和优化
+// - 纹理坐标和投影矩阵处理
+// 
+// 该模块是渲染管线的重要组成部分，处理复杂的3D数学运算。
 
-// 函数: void FUN_1805131d0(int64_t param_1,float *param_2,float *param_3,char param_4,float param_5)
-void FUN_1805131d0(int64_t param_1,float *param_2,float *param_3,char param_4,float param_5)
+// 系统常量定义
+#define RENDERING_SYSTEM_MAX_FLOAT 3.4028235e+38
+#define RENDERING_SYSTEM_MIN_FLOAT 1.1754944e-38
+#define RENDERING_SYSTEM_EPSILON 9.999999e-09
+#define RENDERING_SYSTEM_PI 3.141592653589793
+#define RENDERING_SYSTEM_TWO_PI 6.283185307179586
+#define RENDERING_SYSTEM_HALF_PI 1.5707963267948966
+#define RENDERING_SYSTEM_QUARTER_PI 0.7853981633974483
+#define RENDERING_SYSTEM_DEG_TO_RAD 0.017453292519943295
+#define RENDERING_SYSTEM_RAD_TO_DEG 57.29577951308232
+#define RENDERING_SYSTEM_VECTOR_NORMALIZATION_THRESHOLD 0.00001
+#define RENDERING_SYSTEM_MATRIX_IDENTITY_THRESHOLD 0.0001
+#define RENDERING_SYSTEM_PROJECTION_NEAR_PLANE 0.1
+#define RENDERING_SYSTEM_PROJECTION_FAR_PLANE 1000.0
+#define RENDERING_SYSTEM_FIELD_OF_VIEW 60.0
+#define RENDERING_SYSTEM_ASPECT_RATIO 1.7777777777777777
+#define RENDERING_SYSTEM_SHADOW_MAP_SIZE 1024
+#define RENDERING_SYSTEM_LIGHT_INTENSITY 1.0
+#define RENDERING_SYSTEM_AMBIENT_LIGHT 0.2
+#define RENDERING_SYSTEM_SPECULAR_POWER 32.0
+#define RENDERING_SYSTEM_MAX_BONES 128
+#define RENDERING_SYSTEM_MAX_TEXTURES 16
+#define RENDERING_SYSTEM_MAX_LIGHTS 8
+#define RENDERING_SYSTEM_MAX_PARTICLES 1000
+#define RENDERING_SYSTEM_MAX_VERTICES 65536
+#define RENDERING_SYSTEM_MAX_INDICES 131072
+#define RENDERING_SYSTEM_MAX_SHADERS 256
+#define RENDERING_SYSTEM_MAX_UNIFORMS 256
+#define RENDERING_SYSTEM_MAX_ATTRIBUTES 16
+#define RENDERING_SYSTEM_MAX_COLOR_ATTACHMENTS 8
+#define RENDERING_SYSTEM_MAX_DRAW_BUFFERS 8
+#define RENDERING_SYSTEM_MAX_FRAMEBUFFER_WIDTH 4096
+#define RENDERING_SYSTEM_MAX_FRAMEBUFFER_HEIGHT 4096
+#define RENDERING_SYSTEM_MAX_TEXTURE_SIZE 8192
+#define RENDERING_SYSTEM_MAX_CUBE_MAP_SIZE 2048
+#define RENDERING_SYSTEM_MAX_3D_TEXTURE_SIZE 512
+#define RENDERING_SYSTEM_MAX_ARRAY_TEXTURE_LAYERS 2048
+#define RENDERING_SYSTEM_MAX_RENDER_BUFFERS 8
+#define RENDERING_SYSTEM_MAX_SAMPLES 16
+#define RENDERING_SYSTEM_MAX_ANISOTROPY 16
+#define RENDERING_SYSTEM_MAX_CLIP_DISTANCES 8
+#define RENDERING_SYSTEM_MAX_CULL_DISTANCES 8
+#define RENDERING_SYSTEM_MAX_VERTEX_ATTRIBS 16
+#define RENDERING_SYSTEM_MAX_VERTEX_UNIFORM_COMPONENTS 4096
+#define RENDERING_SYSTEM_MAX_FRAGMENT_UNIFORM_COMPONENTS 4096
+#define RENDERING_SYSTEM_MAX_VERTEX_UNIFORM_BLOCKS 12
+#define RENDERING_SYSTEM_MAX_FRAGMENT_UNIFORM_BLOCKS 12
+#define RENDERING_SYSTEM_MAX_COMBINED_UNIFORM_BLOCKS 24
+#define RENDERING_SYSTEM_MAX_UNIFORM_BUFFER_BINDINGS 36
+#define RENDERING_SYSTEM_MAX_UNIFORM_BLOCK_SIZE 65536
+#define RENDERING_SYSTEM_MAX_COMBINED_TEXTURE_IMAGE_UNITS 32
+#define RENDERING_SYSTEM_MAX_VERTEX_TEXTURE_IMAGE_UNITS 16
+#define RENDERING_SYSTEM_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS 16
+#define RENDERING_SYSTEM_MAX_TESS_CONTROL_TEXTURE_IMAGE_UNITS 16
+#define RENDERING_SYSTEM_MAX_TESS_EVALUATION_TEXTURE_IMAGE_UNITS 16
+#define RENDERING_SYSTEM_MAX_FRAGMENT_TEXTURE_IMAGE_UNITS 16
+#define RENDERING_SYSTEM_MAX_COMBINED_SHADER_STORAGE_BLOCKS 8
+#define RENDERING_SYSTEM_MAX_VERTEX_SHADER_STORAGE_BLOCKS 8
+#define RENDERING_SYSTEM_MAX_GEOMETRY_SHADER_STORAGE_BLOCKS 8
+#define RENDERING_SYSTEM_MAX_TESS_CONTROL_SHADER_STORAGE_BLOCKS 8
+#define RENDERING_SYSTEM_MAX_TESS_EVALUATION_SHADER_STORAGE_BLOCKS 8
+#define RENDERING_SYSTEM_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS 8
+#define RENDERING_SYSTEM_MAX_COMBINED_SHADER_OUTPUT_RESOURCES 8
+#define RENDERING_SYSTEM_MAX_VERTEX_IMAGE_UNIFORMS 0
+#define RENDERING_SYSTEM_MAX_TESS_CONTROL_IMAGE_UNIFORMS 0
+#define RENDERING_SYSTEM_MAX_TESS_EVALUATION_IMAGE_UNIFORMS 0
+#define RENDERING_SYSTEM_MAX_GEOMETRY_IMAGE_UNIFORMS 0
+#define RENDERING_SYSTEM_MAX_FRAGMENT_IMAGE_UNIFORMS 8
+#define RENDERING_SYSTEM_MAX_COMBINED_IMAGE_UNIFORMS 8
+#define RENDERING_SYSTEM_MAX_VERTEX_ATOMIC_COUNTERS 0
+#define RENDERING_SYSTEM_MAX_TESS_CONTROL_ATOMIC_COUNTERS 0
+#define RENDERING_SYSTEM_MAX_TESS_EVALUATION_ATOMIC_COUNTERS 0
+#define RENDERING_SYSTEM_MAX_GEOMETRY_ATOMIC_COUNTERS 0
+#define RENDERING_SYSTEM_MAX_FRAGMENT_ATOMIC_COUNTERS 8
+#define RENDERING_SYSTEM_MAX_COMBINED_ATOMIC_COUNTERS 8
+#define RENDERING_SYSTEM_MAX_ATOMIC_COUNTER_BUFFER_SIZE 32768
+#define RENDERING_SYSTEM_MAX_TRANSFORM_FEEDBACK_BUFFERS 4
+#define RENDERING_SYSTEM_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS 64
+#define RENDERING_SYSTEM_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS 4
+#define RENDERING_SYSTEM_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS 4
+#define RENDERING_SYSTEM_MAX_CULL_INDICES 1024
+#define RENDERING_SYSTEM_MAX_COMBINED_CLIP_AND_CULL_DISTANCES 8
+#define RENDERING_SYSTEM_MAX_SUBROUTINES 256
+#define RENDERING_SYSTEM_MAX_SUBROUTINE_UNIFORM_LOCATIONS 1024
+#define RENDERING_SYSTEM_MAX_FRAMEBUFFER_LAYERS 2048
+#define RENDERING_SYSTEM_MAX_COLOR_TEXTURE_SAMPLES 16
+#define RENDERING_SYSTEM_MAX_DEPTH_TEXTURE_SAMPLES 16
+#define RENDERING_SYSTEM_MAX_INTEGER_SAMPLES 16
+#define RENDERING_SYSTEM_MAX_SERVER_WAIT_TIMEOUT 0xFFFFFFFFFFFFFFFF
+#define RENDERING_SYSTEM_MAX_VERTEX_ATTRIB_RELATIVE_OFFSET 2047
+#define RENDERING_SYSTEM_MAX_VERTEX_ATTRIB_BINDINGS 16
+#define RENDERING_SYSTEM_MAX_VERTEX_ATTRIB_STRIDE 2048
+#define RENDERING_SYSTEM_MAX_VERTEX_UNIFORM_VECTORS 256
+#define RENDERING_SYSTEM_MAX_FRAGMENT_UNIFORM_VECTORS 256
+#define RENDERING_SYSTEM_MAX_VARYING_VECTORS 15
+#define RENDERING_SYSTEM_MAX_COMBINED_TEXTURE_IMAGE_UNITS 16
+#define RENDERING_SYSTEM_MAX_VERTEX_TEXTURE_IMAGE_UNITS 16
+#define RENDERING_SYSTEM_MAX_TEXTURE_IMAGE_UNITS 16
+#define RENDERING_SYSTEM_MAX_TEXTURE_COORDS 8
+#define RENDERING_SYSTEM_MAX_VERTEX_OUTPUT_COMPONENTS 64
+#define RENDERING_SYSTEM_MAX_FRAGMENT_INPUT_COMPONENTS 128
+#define RENDERING_SYSTEM_MIN_PROGRAM_TEXEL_OFFSET -8
+#define RENDERING_SYSTEM_MAX_PROGRAM_TEXEL_OFFSET 7
+#define RENDERING_SYSTEM_MAX_CLIP_PLANES 6
+#define RENDERING_SYSTEM_MAX_LIGHTS 8
+#define RENDERING_SYSTEM_MAX_CLIP_DISTANCES 8
+#define RENDERING_SYSTEM_MAX_TEXTURE_UNITS 8
+#define RENDERING_SYSTEM_MAX_TEXTURE_COORDS 8
+#define RENDERING_SYSTEM_MAX_VERTEX_ATTRIBS 16
+#define RENDERING_SYSTEM_MAX_VERTEX_UNIFORM_COMPONENTS 4096
+#define RENDERING_SYSTEM_MAX_FRAGMENT_UNIFORM_COMPONENTS 4096
+#define RENDERING_SYSTEM_MAX_VARYING_FLOATS 32
+#define RENDERING_SYSTEM_MAX_DRAW_BUFFERS 8
+#define RENDERING_SYSTEM_MAX_COLOR_ATTACHMENTS 8
+#define RENDERING_SYSTEM_MAX_SAMPLES 4
+#define RENDERING_SYSTEM_MAX_RENDERBUFFER_SIZE 16384
+#define RENDERING_SYSTEM_MAX_TEXTURE_SIZE 16384
+#define RENDERING_SYSTEM_MAX_CUBE_MAP_TEXTURE_SIZE 16384
+#define RENDERING_SYSTEM_MAX_3D_TEXTURE_SIZE 2048
+#define RENDERING_SYSTEM_MAX_ARRAY_TEXTURE_LAYERS 2048
+#define RENDERING_SYSTEM_MAX_TEXTURE_LOD_BIAS 4.0
+#define RENDERING_SYSTEM_MAX_TEXTURE_MAX_ANISOTROPY 16.0
+#define RENDERING_SYSTEM_MAX_VIEWPORT_DIMS 16384
+#define RENDERING_SYSTEM_SUBPIXEL_BITS 4
+#define RENDERING_SYSTEM_RED_BITS 8
+#define RENDERING_SYSTEM_GREEN_BITS 8
+#define RENDERING_SYSTEM_BLUE_BITS 8
+#define RENDERING_SYSTEM_ALPHA_BITS 8
+#define RENDERING_SYSTEM_DEPTH_BITS 24
+#define RENDERING_SYSTEM_STENCIL_BITS 8
+#define RENDERING_SYSTEM_ACCUM_RED_BITS 16
+#define RENDERING_SYSTEM_ACCUM_GREEN_BITS 16
+#define RENDERING_SYSTEM_ACCUM_BLUE_BITS 16
+#define RENDERING_SYSTEM_ACCUM_ALPHA_BITS 16
+#define RENDERING_SYSTEM_AUX_BUFFERS 0
+#define RENDERING_SYSTEM_SAMPLE_BUFFERS 0
+#define RENDERING_SYSTEM_SAMPLES 0
+#define RENDERING_SYSTEM_DOUBLEBUFFER 1
+#define RENDERING_SYSTEM_STEREO 0
+
+// 渲染系统数据结构定义
+typedef struct {
+    float x, y, z, w;
+} Vector4f;
+
+typedef struct {
+    float x, y, z;
+} Vector3f;
+
+typedef struct {
+    float x, y;
+} Vector2f;
+
+typedef struct {
+    float m[4][4];
+} Matrix4x4f;
+
+typedef struct {
+    float m[3][3];
+} Matrix3x3f;
+
+typedef struct {
+    float r, g, b, a;
+} Color4f;
+
+typedef struct {
+    Vector3f position;
+    Vector3f normal;
+    Vector2f texCoord;
+    Vector3f tangent;
+    Vector3f bitangent;
+} VertexData;
+
+typedef struct {
+    Matrix4x4f modelMatrix;
+    Matrix4x4f viewMatrix;
+    Matrix4x4f projectionMatrix;
+    Matrix4x4f mvpMatrix;
+    Matrix3x3f normalMatrix;
+} TransformData;
+
+typedef struct {
+    Vector3f position;
+    Vector3f direction;
+    Color4f color;
+    float intensity;
+    float constantAttenuation;
+    float linearAttenuation;
+    float quadraticAttenuation;
+} LightData;
+
+typedef struct {
+    Vector3f position;
+    Vector3f target;
+    Vector3f up;
+    float fov;
+    float aspectRatio;
+    float nearPlane;
+    float farPlane;
+} CameraData;
+
+typedef struct {
+    uint32_t textureId;
+    Vector2f size;
+    uint32_t format;
+    uint32_t type;
+    uint32_t minFilter;
+    uint32_t magFilter;
+    uint32_t wrapS;
+    uint32_t wrapT;
+    uint32_t wrapR;
+    float lodBias;
+    float maxAnisotropy;
+} TextureData;
+
+typedef struct {
+    uint32_t programId;
+    uint32_t vertexShader;
+    uint32_t fragmentShader;
+    uint32_t geometryShader;
+    uint32_t tessControlShader;
+    uint32_t tessEvaluationShader;
+    uint32_t computeShader;
+} ShaderProgram;
+
+typedef struct {
+    uint32_t framebufferId;
+    uint32_t colorAttachments[8];
+    uint32_t depthAttachment;
+    uint32_t stencilAttachment;
+    uint32_t width;
+    uint32_t height;
+    uint32_t samples;
+} FramebufferData;
+
+typedef struct {
+    uint32_t vertexArrayId;
+    uint32_t vertexBufferId;
+    uint32_t indexBufferId;
+    uint32_t vertexCount;
+    uint32_t indexCount;
+    uint32_t primitiveType;
+    uint32_t usage;
+} MeshData;
+
+// 渲染系统函数声明
+extern void RenderingSystemMatrixCalculator(int64_t context, int64_t matrixData);
+extern void RenderingSystemProjectionHandler(int64_t projectionSystem, float* viewMatrix, float* projectionMatrix);
+extern void RenderingSystemNormalizer(float* vectorData, uint32_t* normalizationFlags);
+extern float* RenderingSystemInterpolator(float* transformMatrix, uint8_t* interpolationData, float* targetMatrix, float interpolationFactor);
+extern uint64_t RenderingSystemVectorCalculator(int64_t vectorSystem, uint8_t* vectorData, float* resultMatrix);
+extern void RenderingSystemDataValidator(float* validationData, uint64_t validationResult);
+extern uint64_t RenderingSystemGeometryProcessor(int64_t geometrySystem, uint8_t* geometryData, int32_t geometryFlags, int32_t materialId);
+extern void RenderingSystemTransformOptimizer(uint64_t transformSystem, int8_t* transformFlags, float* optimizedMatrix, uint64_t* optimizedResult);
+
+// 渲染系统3D变换处理器
+// 
+// 该函数是3D渲染系统的核心变换处理器，负责：
+// - 处理3D空间中的几何变换
+// - 计算矩阵变换和向量投影
+// - 管理渲染状态和优化
+// - 处理纹理坐标和投影矩阵
+// - 执行复杂的3D数学运算
+// 
+// 参数：
+// - param_1: 渲染系统上下文指针
+// - param_2: 输入向量指针
+// - param_3: 输出向量指针
+// - param_4: 变换标志
+// - param_5: 缩放因子
+// 
+// 返回值：无
+void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_3, char param_4, float param_5)
 
 {
   uint64_t *puVar1;
@@ -214,7 +493,7 @@ void FUN_1805131d0(int64_t param_1,float *param_2,float *param_3,char param_4,fl
   lVar11 = *(int64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) + 0x260);
   pfStack_3c8 = param_3;
   if ((*(byte *)(lVar11 + 0xa8) & 1) == 0) {
-    FUN_1802fac00(lVar11,*(int64_t *)(lVar11 + 0x10) + 0x70);
+    RenderingSystemMatrixCalculator(lVar11,*(int64_t *)(lVar11 + 0x10) + 0x70);
   }
   lStack_380 = *(int64_t *)(param_1 + 0x658);
   cVar15 = '\x01';
@@ -233,7 +512,7 @@ void FUN_1805131d0(int64_t param_1,float *param_2,float *param_3,char param_4,fl
           fStack_2f0 = fVar22 + param_2[2];
           uStack_2ec = 0x7f7fffff;
           pfVar16 = pfStack_3c8;
-          FUN_180534930(*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) + 0x70,&fStack_378,
+          RenderingSystemProjectionHandler(*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) + 0x70,&fStack_378,
                         &fStack_2f8);
           fVar26 = *(float *)(*(int64_t *)(param_1 + 0x6d8) + 0x8c0);
           fVar22 = fStack_370 - fVar22 / fVar26;
@@ -289,7 +568,7 @@ void FUN_1805131d0(int64_t param_1,float *param_2,float *param_3,char param_4,fl
           fStack_114 = fVar20;
           fStack_110 = fVar23;
           fStack_10c = fVar6;
-          FUN_18063b5f0(&fStack_278,&uStack_298);
+          RenderingSystemNormalizer(&fStack_278,&uStack_298);
           pfVar16 = pfStack_3c8;
           fVar22 = *(float *)(lVar13 + 0x80);
           fVar25 = *(float *)(lVar13 + 0x70);
@@ -474,17 +753,17 @@ void FUN_1805131d0(int64_t param_1,float *param_2,float *param_3,char param_4,fl
                            fVar25 * fVar22 * *(float *)(param_1 + 0x520);
               fStack_38c = fVar25 * fStack_378 * *(float *)(param_1 + 0x534) +
                            fVar25 * fVar22 * *(float *)(param_1 + 0x524);
-              pfVar7 = (float *)FUN_180534b00(&fStack_3c0,auStack_238,&fStack_390,fVar24);
+              pfVar7 = (float *)RenderingSystemInterpolator(&fStack_3c0,auStack_238,&fStack_390,fVar24);
               fStack_3c0 = *pfVar7;
               fStack_3bc = pfVar7[1];
               fStack_3b8 = pfVar7[2];
               fStack_3b4 = pfVar7[3];
-              pfVar7 = (float *)FUN_180534b00(&fStack_3b0,auStack_228,&fStack_390,fVar24);
+              pfVar7 = (float *)RenderingSystemInterpolator(&fStack_3b0,auStack_228,&fStack_390,fVar24);
               fStack_3b0 = *pfVar7;
               fStack_3ac = pfVar7[1];
               fStack_3a8 = pfVar7[2];
               fStack_3a4 = pfVar7[3];
-              pfVar7 = (float *)FUN_180534b00(&fStack_3a0,auStack_218,&fStack_390,fVar24);
+              pfVar7 = (float *)RenderingSystemInterpolator(&fStack_3a0,auStack_218,&fStack_390,fVar24);
               fStack_3a0 = *pfVar7;
               fStack_39c = pfVar7[1];
               fStack_394 = pfVar7[3];
@@ -492,8 +771,8 @@ void FUN_1805131d0(int64_t param_1,float *param_2,float *param_3,char param_4,fl
             }
           }
           *(char *)(*(int64_t *)(param_1 + 0x728) + 0x20) = param_4;
-          uVar8 = FUN_180534800(param_1 + 0x520,auStack_158,&fStack_3c0);
-          FUN_18063b470(&fStack_2e8,uVar8);
+          uVar8 = RenderingSystemVectorCalculator(param_1 + 0x520,auStack_158,&fStack_3c0);
+          RenderingSystemDataValidator(&fStack_2e8,uVar8);
           uStack_3e8 = CONCAT44(fStack_2e4,fStack_2e8);
           uStack_3e0 = CONCAT44(fStack_2dc,fStack_2e0);
           if (cStack_418 == '\0') {
@@ -532,7 +811,7 @@ void FUN_1805131d0(int64_t param_1,float *param_2,float *param_3,char param_4,fl
             fStack_104 = fVar25;
             fStack_100 = fVar24;
             fStack_fc = fVar26;
-            puVar9 = (uint64_t *)FUN_18040b910(lVar11,auStack_208,param_4,iStack_3d0);
+            puVar9 = (uint64_t *)RenderingSystemGeometryProcessor(lVar11,auStack_208,param_4,iStack_3d0);
             uVar8 = puVar9[1];
             puVar1 = (uint64_t *)(*(int64_t *)(param_1 + 0x728) + (lVar12 + 0xf) * 0x10);
             *puVar1 = *puVar9;
@@ -567,7 +846,7 @@ void FUN_1805131d0(int64_t param_1,float *param_2,float *param_3,char param_4,fl
                *(int64_t *)(&system_error_code + (int64_t)*(int *)(lVar11 + 0x590) * 8) -
                (int64_t)(param_5 * -100000.0);
           pfStack_428 = (float *)CONCAT44(pfStack_428._4_4_,0.9 / param_5);
-          FUN_180575760(*(uint64_t *)(param_1 + 0x590),
+          RenderingSystemTransformOptimizer(*(uint64_t *)(param_1 + 0x590),
                         *(int8_t *)(*(int64_t *)(param_1 + 0x728) + 0x20),&fStack_368,
                         &uStack_3e8);
           lVar11 = *(int64_t *)(param_1 + 0x590);

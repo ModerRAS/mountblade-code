@@ -14,7 +14,7 @@ void FUN_18081be80(int64_t param_1)
   uint64_t uStack_48;
   uint64_t uStack_40;
   
-  uVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10000,&unknown_var_1152_ptr,0x2ee,0,0,1);
+  uVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10000,&unknown_var_1152_ptr,0x2ee,0,0,1);
   uStack_48 = 0;
   uStack_40 = 0;
   lStack_58 = 0;

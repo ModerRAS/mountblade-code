@@ -344,7 +344,7 @@ void FUN_1800d7810(void)
   auStack_198[0] = 0;
   uStack_1a0 = 0x11;
   strcpy_s(auStack_198,0x20,&unknown_var_3056_ptr);
-  uVar4 = FUN_180240430(uVar3,&puStack_1b0,1);
+  uVar4 = SystemCore_LoggingSystem0(uVar3,&puStack_1b0,1);
   *(uint64_t *)(lVar1 + 0x2340) = uVar4;
   puStack_1b0 = &system_state_ptr;
   puStack_178 = &unknown_var_672_ptr;
@@ -352,7 +352,7 @@ void FUN_1800d7810(void)
   auStack_160[0] = 0;
   uStack_168 = 0x10;
   strcpy_s(auStack_160,0x20,&unknown_var_3120_ptr);
-  uVar4 = FUN_180240430(uVar3,&puStack_178,1);
+  uVar4 = SystemCore_LoggingSystem0(uVar3,&puStack_178,1);
   *(uint64_t *)(lVar1 + 0x2348) = uVar4;
   puStack_178 = &system_state_ptr;
   puStack_140 = &unknown_var_672_ptr;
@@ -360,7 +360,7 @@ void FUN_1800d7810(void)
   auStack_128[0] = 0;
   uStack_130 = 0x11;
   strcpy_s(auStack_128,0x20,&unknown_var_3096_ptr);
-  uVar4 = FUN_180240430(uVar3,&puStack_140,1);
+  uVar4 = SystemCore_LoggingSystem0(uVar3,&puStack_140,1);
   *(uint64_t *)(lVar1 + 0x2350) = uVar4;
   puStack_140 = &system_state_ptr;
   puStack_108 = &unknown_var_672_ptr;
@@ -368,7 +368,7 @@ void FUN_1800d7810(void)
   auStack_f0[0] = 0;
   uStack_f8 = 0x10;
   strcpy_s(auStack_f0,0x20,&unknown_var_3176_ptr);
-  uVar4 = FUN_180240430(uVar3,&puStack_108,1);
+  uVar4 = SystemCore_LoggingSystem0(uVar3,&puStack_108,1);
   *(uint64_t *)(lVar1 + 0x2358) = uVar4;
   puStack_108 = &system_state_ptr;
   puStack_d0 = &unknown_var_672_ptr;
@@ -376,7 +376,7 @@ void FUN_1800d7810(void)
   auStack_b8[0] = 0;
   uStack_c0 = 0x19;
   strcpy_s(auStack_b8,0x20,&unknown_var_3144_ptr);
-  uVar4 = FUN_180240430(uVar3,&puStack_d0,1);
+  uVar4 = SystemCore_LoggingSystem0(uVar3,&puStack_d0,1);
   *(uint64_t *)(lVar1 + 0x2360) = uVar4;
   puStack_d0 = &system_state_ptr;
   puStack_98 = &unknown_var_672_ptr;
@@ -384,7 +384,7 @@ void FUN_1800d7810(void)
   auStack_80[0] = 0;
   uStack_88 = 0xf;
   strcpy_s(auStack_80,0x20,&unknown_var_3224_ptr);
-  uVar4 = FUN_180240430(uVar3,&puStack_98,1);
+  uVar4 = SystemCore_LoggingSystem0(uVar3,&puStack_98,1);
   *(uint64_t *)(lVar1 + 0x2368) = uVar4;
   puStack_98 = &system_state_ptr;
   puStack_60 = &unknown_var_672_ptr;
@@ -392,7 +392,7 @@ void FUN_1800d7810(void)
   auStack_48[0] = 0;
   uStack_50 = 0x10;
   strcpy_s(auStack_48,0x20,&unknown_var_3200_ptr);
-  uVar3 = FUN_180240430(uVar3,&puStack_60,1);
+  uVar3 = SystemCore_LoggingSystem0(uVar3,&puStack_60,1);
   *(uint64_t *)(lVar1 + 0x2370) = uVar3;
   puStack_60 = &system_state_ptr;
   puStack_228 = &system_data_buffer_ptr;

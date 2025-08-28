@@ -256,7 +256,7 @@ uint64_t FUN_18089ace4(void)
             SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar3,&unknown_var_9456_ptr,0x130,1);
           }
           puVar3 = (uint64_t *)
-                   FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_9456_ptr,0x119);
+                   SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_9456_ptr,0x119);
           if (puVar3 == (uint64_t *)0x0) {
             return 0x26;
           }

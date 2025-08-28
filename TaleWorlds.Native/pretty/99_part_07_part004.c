@@ -646,7 +646,7 @@ void FUN_1803fe1f0(int64_t param_1,int64_t param_2)
   auStack_134[4] = 0;
   uStack_138 = 0xd;
   strcpy_s(auStack_134 + 4,0x40,&unknown_var_3112_ptr);
-  uVar4 = FUN_180240430(uVar4,&uStack_148,1);
+  uVar4 = SystemCore_LoggingSystem0(uVar4,&uStack_148,1);
   *(uint64_t *)(param_1 + 0x4a0) = uVar4;
   uStack_148 = &system_state_ptr;
   puStack_e8 = &system_state_ptr;

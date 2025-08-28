@@ -1040,7 +1040,7 @@ void FUN_18044a810(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_
       puVar4[3] = 0x676e6970;
       *(int8_t *)(puVar4 + 4) = 0;
       uStack_68 = 0x10;
-      FUN_180240430(*(uint64_t *)(lVar3 + 0x1e0),&puStack_78,0);
+      SystemCore_LoggingSystem0(*(uint64_t *)(lVar3 + 0x1e0),&puStack_78,0);
       puStack_78 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer(puVar4);

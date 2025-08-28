@@ -666,7 +666,7 @@ LAB_1801adb86:
     strcpy_s(&puStack_90,0x40,&unknown_var_4184_ptr);
     bVar4 = true;
     uStack_d0 = 1;
-    uVar11 = FUN_180240430(*(uint64_t *)(lVar2 + 0x1e0),&uStack_a8,0);
+    uVar11 = SystemCore_LoggingSystem0(*(uint64_t *)(lVar2 + 0x1e0),&uStack_a8,0);
     if ((*(uint64_t *)(lVar2 + 0x140) & uVar11) == 0) goto LAB_1801adb86;
     bVar5 = true;
   }
@@ -848,7 +848,7 @@ LAB_1801adb86:
       puStack_90 = (void *)((uint64_t)puStack_90 & 0xffffffffffffff00);
       uStack_98 = (void *)CONCAT44((int)((uint64_t)uStack_98 >> 0x20),0x16);
       strcpy_s(&puStack_90,0x40,&unknown_var_4184_ptr);
-      uVar11 = FUN_180240430(*(uint64_t *)(lVar2 + 0x1e0),&uStack_a8,0);
+      uVar11 = SystemCore_LoggingSystem0(*(uint64_t *)(lVar2 + 0x1e0),&uStack_a8,0);
       uStack_a8 = &system_state_ptr;
       if ((uVar11 & *(uint64_t *)(lVar2 + 0x140)) != 0) {
         uVar11 = *(uint64_t *)(param_1 + 0x609f8);

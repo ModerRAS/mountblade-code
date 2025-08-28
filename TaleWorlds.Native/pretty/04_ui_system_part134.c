@@ -112,7 +112,7 @@ struct UIMemoryBlock {
 //==============================================================================
 
 // 内存管理相关函数别名
-#define UISystem_MemoryAllocator(param1, param2, param3, param4, param5, param6, param7) FUN_180741e10(param1, param2, param3, param4, param5, param6, param7)
+#define UISystem_MemoryAllocator(param1, param2, param3, param4, param5, param6, param7) SystemCore_DatabaseManager0(param1, param2, param3, param4, param5, param6, param7)
 #define UISystem_MemoryReleaser(param1, param2, param3, param4, param5) SystemInitializer(param1, param2, param3, param4, param5)
 #define UISystem_MemoryAllocatorEx(param1, param2, param3, param4, param5) FUN_180742050(param1, param2, param3, param4, param5)
 #define UISystem_ParameterUpdater(param1, param2, param3, param4, param5) FUN_180742650(param1, param2, param3, param4, param5)
@@ -417,7 +417,7 @@ uint64_t UISystem_ComponentTypeMatchFailed(void);
 void UISystem_SetComponentActivation_Simplified(int32_t component_id, uint state_flags, uint64_t param_handle)
 {
     // 简化实现：直接调用底层系统函数
-    // 原始实现：FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, param_3, 0, param_2 | 0x10, 1, 1);
+    // 原始实现：SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, param_3, 0, param_2 | 0x10, 1, 1);
     
     // 在实际应用中，这里应该：
     // 1. 验证组件ID的有效性
@@ -955,7 +955,7 @@ uint64_t UISystem_AdjustArrayCapacity(int64_t *param_1,int param_2)
   lVar1 = 0;
   if (param_2 != 0) {
     if (param_2 * 4 - 1U < 0x3fffffff) {
-      lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_8432_ptr,0xf4,
+      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_8432_ptr,0xf4,
                             0,0,1);
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
@@ -1039,7 +1039,7 @@ uint64_t UISystem_AdjustArrayCapacity64(int64_t *param_1,int param_2)
   lVar1 = 0;
   if (param_2 != 0) {
     if (param_2 * 8 - 1U < 0x3fffffff) {
-      lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 8,&unknown_var_8432_ptr,0xf4,
+      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 8,&unknown_var_8432_ptr,0xf4,
                             0,0,1);
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
@@ -1123,7 +1123,7 @@ uint64_t UISystem_AdjustArrayCapacity128(int64_t *param_1,int param_2)
   lVar1 = 0;
   if (param_2 != 0) {
     if (param_2 * 0x10 - 1U < 0x3fffffff) {
-      lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&unknown_var_8432_ptr,
+      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&unknown_var_8432_ptr,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
@@ -1816,7 +1816,7 @@ uint64_t UISystem_ComponentTypeMatchFailed(void)
  * 
  * - 系统控制块 (SYSTEM_MAIN_CONTROL_BLOCK)
  * - 全局常量定义 (global_constants.h)
- * - 内存管理函数 (FUN_180741e10, SystemInitializer)
+ * - 内存管理函数 (SystemCore_DatabaseManager0, SystemInitializer)
  * - 组件管理函数 (FUN_18078cde0, FUN_180743ab0)
  * - 事件处理函数 (FUN_1807889e0, FUN_180788d20)
  * 

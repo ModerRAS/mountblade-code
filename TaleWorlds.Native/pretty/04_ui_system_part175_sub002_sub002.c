@@ -2202,7 +2202,7 @@ int32_t FUN_18076dc00(short *param_1,int64_t param_2,short *param_3)
     if (*(int64_t *)(param_3 + 4) == 0) {
       return 0;
     }
-    lVar3 = FUN_180741e10(param_2 + 0x10bd0,(int)*param_3 * (int)param_3[1] * 4,&system_buffer_ptr,0,0,0
+    lVar3 = SystemCore_DatabaseManager0(param_2 + 0x10bd0,(int)*param_3 * (int)param_3[1] * 4,&system_buffer_ptr,0,0,0
                           ,1);
     if (lVar3 == 0) {
       return 0x26;

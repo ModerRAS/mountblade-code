@@ -136,7 +136,7 @@
 #define EventHandler FUN_1801e8b60               /** 事件处理器 */
 #define EventInitializer FUN_1801e8210           /** 事件初始化器 */
 #define MessageHandler FUN_1800623b0            /** 消息处理器 */
-#define NotificationHandler FUN_180240430        /** 通知处理器 */
+#define NotificationHandler SystemCore_LoggingSystem0        /** 通知处理器 */
 #define CallbackHandler FUN_1806299b0            /** 回调处理器 */
 #define CallbackExecutor FUN_180629a40            /** 回调执行器 */
 

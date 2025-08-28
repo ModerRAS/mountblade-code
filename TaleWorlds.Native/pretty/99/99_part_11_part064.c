@@ -420,7 +420,7 @@ void memory_manager_and_single_operation_processor(int64_t param_1, int param_2)
 {
   int64_t lVar1;
   
-  lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7376_ptr, 0x15, 0, 0, 1);
+  lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7376_ptr, 0x15, 0, 0, 1);
   if ((lVar1 != 0) && (param_1 != 0)) {
     *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_2;
   }

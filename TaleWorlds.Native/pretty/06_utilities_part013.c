@@ -711,7 +711,7 @@ uint64_t FUN_180898d60(int64_t *param_1,int param_2)
   if (param_2 != 0) {
     if (param_2 * 3 - 1U < 0x3fffffff) {
       puVar3 = (int16_t *)
-               FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 3,&unknown_var_8432_ptr,0xf4
+               SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 3,&unknown_var_8432_ptr,0xf4
                              ,0,0,1);
       if (puVar3 != (int16_t *)0x0) {
         iVar1 = (int)param_1[1];
@@ -769,7 +769,7 @@ LAB_180898e0b:
   }
   if (param_2 * 3 - 1U < 0x3fffffff) {
     puVar3 = (int16_t *)
-             FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 3,&unknown_var_8432_ptr,0xf4,0
+             SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 3,&unknown_var_8432_ptr,0xf4,0
                           );
     if (puVar3 != (int16_t *)0x0) {
       iVar1 = (int)unaff_RBX[1];

@@ -29,7 +29,7 @@ void FUN_1802403c0(int64_t param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t FUN_180240430(int64_t param_1,int64_t param_2,char param_3)
+int64_t SystemCore_LoggingSystem0(int64_t param_1,int64_t param_2,char param_3)
 
 {
   byte *pbVar1;
@@ -368,7 +368,7 @@ void FUN_180240b30(int64_t param_1)
   puVar2[2] = 0x74616c65;
   puVar2[3] = 0x6e6f69;
   uStack_178 = 0xf;
-  uVar3 = FUN_180240430(param_1,&puStack_188,0);
+  uVar3 = SystemCore_LoggingSystem0(param_1,&puStack_188,0);
   *(uint64_t *)(param_1 + 0x15c0) = uVar3;
   puStack_188 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
