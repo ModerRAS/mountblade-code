@@ -204,7 +204,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
             resource_allocator = stack_resources;
             resource_size2 = &context_size;
             cleanup_callback = FUN_1803089a0;
-            global_data = &UNK_180308990;
+            global_data = &unknown_var_1888_ptr;
             context_offset = param_1;
             resource_array[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, system_allocation_flags);
             
@@ -616,7 +616,7 @@ bool rendering_system_visibility_checker(uint64_t param_1, longlong *param_2, lo
   (**(code **)(*param_2 + 0x218))(param_2);
   
   // 获取可见性掩码
-  if ((void *)*param_2 == &UNK_180a19770) {
+  if ((void *)*param_2 == &unknown_var_1008_ptr) {
     visibility_mask = *(uint *)((longlong)param_2 + 0x174);
   }
   else {

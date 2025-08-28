@@ -896,9 +896,9 @@ void FUN_1807342b0(short param_1,char param_2,int *param_3,int param_4,uint para
   
   uVar8 = (ulonglong)param_5;
   if (param_4 == 8) {
-    puVar6 = &UNK_180956e60;
+    puVar6 = &unknown_var_4064_ptr;
     if (param_5 != 4) {
-      puVar6 = &UNK_180956f30;
+      puVar6 = &unknown_var_4272_ptr;
     }
     lVar9 = 0xb;
     if (param_5 != 4) {
@@ -906,11 +906,11 @@ void FUN_1807342b0(short param_1,char param_2,int *param_3,int param_4,uint para
     }
   }
   else if (param_5 == 4) {
-    puVar6 = &UNK_180956e90;
+    puVar6 = &unknown_var_4112_ptr;
     lVar9 = 0x22;
   }
   else {
-    puVar6 = &UNK_180956f38;
+    puVar6 = &unknown_var_4280_ptr;
     lVar9 = 0xc;
   }
   iVar3 = (int)(short)param_4;

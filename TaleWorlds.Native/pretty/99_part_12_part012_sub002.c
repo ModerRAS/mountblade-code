@@ -35,9 +35,9 @@ uint64_t FUN_1807d2660(longlong param_1,longlong param_2)
     if (*(longlong *)(param_1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x30),
-                    &UNK_18097d050,0x289,1);
+                    &unknown_var_208_ptr,0x289,1);
     }
-    lVar3 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar6,&UNK_18097d050,0x28c,0,0,1);
+    lVar3 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar6,&unknown_var_208_ptr,0x28c,0,0,1);
     *(longlong *)(param_1 + 0x30) = lVar3;
     if (lVar3 == 0) {
       return 0x26;

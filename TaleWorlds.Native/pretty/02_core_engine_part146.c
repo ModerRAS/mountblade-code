@@ -595,7 +595,7 @@ LAB_180137566:
         *(int32_t *)(lVar11 + 0x1c4c) = uVar3;
         *(int32_t *)(lVar11 + 0x1c50) = uVar4;
         *(int32_t *)(lVar11 + 0x1c54) = param_1[0x19];
-        FUN_180121200(auStack_78,0x14,&UNK_180a06578,*param_1);
+        FUN_180121200(auStack_78,0x14,&unknown_var_2680_ptr,*param_1);
         lVar11 = _DAT_180c8a9b0;
         fStack_b8 = 1.4013e-45;
         fStack_b4 = *(float *)(_DAT_180c8a9b0 + 0x162c);
@@ -607,13 +607,13 @@ LAB_180137566:
         lVar12 = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
         lVar17 = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
         lVar13 = (longlong)*(int *)(lVar17 + -0xc + lVar12 * 0xc);
-        uVar21 = (ulonglong)*(uint *)(&UNK_18098d188 + lVar13 * 0xc);
-        if (*(int *)(&UNK_18098d180 + lVar13 * 0xc) == 4) {
-          if (*(int *)(&UNK_18098d184 + lVar13 * 0xc) == 1) {
+        uVar21 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + lVar13 * 0xc);
+        if (*(int *)(&unknown_var_6048_ptr + lVar13 * 0xc) == 4) {
+          if (*(int *)(&unknown_var_6052_ptr + lVar13 * 0xc) == 1) {
             *(int32_t *)(uVar21 + 0x1628 + _DAT_180c8a9b0) =
                  *(int32_t *)(lVar17 + -8 + lVar12 * 0xc);
           }
-          else if (*(int *)(&UNK_18098d184 + lVar13 * 0xc) == 2) {
+          else if (*(int *)(&unknown_var_6052_ptr + lVar13 * 0xc) == 2) {
             *(int32_t *)(uVar21 + 0x1628 + _DAT_180c8a9b0) =
                  *(int32_t *)(lVar17 + -8 + lVar12 * 0xc);
             *(int32_t *)(uVar21 + 0x162c + lVar11) = *(int32_t *)(lVar17 + -4 + lVar12 * 0xc);
@@ -694,7 +694,7 @@ LAB_180137a81:
       puVar24 = (uint64_t *)0x0;
     }
     if (((puVar24 == (uint64_t *)0x0) || (*(int *)((longlong)puVar24 + 0x14) == -1)) ||
-       ((iVar20 = strcmp(&UNK_180a06400,puVar24 + 3), iVar20 != 0 ||
+       ((iVar20 = strcmp(&unknown_var_2304_ptr,puVar24 + 3), iVar20 != 0 ||
         (cVar8 = FUN_180138ed0(puVar18,*(uint64_t *)*puVar24), cVar8 == '\0')))) {
       fVar28 = *(float *)(lVar17 + 0x38) - -4.0;
       fVar27 = *(float *)(lVar17 + 0x3c) - -4.0;

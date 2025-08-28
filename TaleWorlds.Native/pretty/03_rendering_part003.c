@@ -436,7 +436,7 @@ void render_system_cleanup_object(render_ptr_t param_1)
   longlong lVar3;
   ulonglong uVar4;
   
-  *param_1 = &UNK_180a16270;
+  *param_1 = &global_state_7440_ptr;
   FUN_1802708b0(param_1 + 1);
   puVar2 = (uint64_t *)param_1[1];
   if (puVar2 == (uint64_t *)0x0) {
@@ -637,7 +637,7 @@ render_ptr_t render_system_release_memory(render_ptr_t param_1, ulonglong param_
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a16270;
+  *param_1 = &global_state_7440_ptr;
   FUN_1802708b0(param_1 + 1);
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -683,7 +683,7 @@ render_ptr_t render_system_free_buffer(render_ptr_t param_1, ulonglong param_2, 
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a16270;
+  *param_1 = &global_state_7440_ptr;
   FUN_1802708b0(param_1 + 1);
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -795,7 +795,7 @@ void render_system_advanced_object_processor(render_ptr_t param_1)
   longlong lVar3;
   ulonglong uVar4;
   
-  *param_1 = &UNK_180a16270;
+  *param_1 = &global_state_7440_ptr;
   FUN_1802708b0(param_1 + 1);
   puVar2 = (uint64_t *)param_1[1];
   if (puVar2 == (uint64_t *)0x0) {
@@ -859,7 +859,7 @@ void render_system_object_lifecycle_manager(render_ptr_t param_1)
   longlong lVar3;
   ulonglong uVar4;
   
-  *param_1 = &UNK_180a16270;
+  *param_1 = &global_state_7440_ptr;
   FUN_1802708b0(param_1 + 1);
   puVar2 = (uint64_t *)param_1[1];
   if (puVar2 == (uint64_t *)0x0) {

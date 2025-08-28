@@ -419,7 +419,7 @@ uint64_t FUN_18058fdf0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64
       if (*(void **)(param_1 + 0x18) != (void *)0x0) {
         puVar6 = *(void **)(param_1 + 0x18);
       }
-      FUN_180626f80(&UNK_180a371b0,puVar6);
+      FUN_180626f80(&unknown_var_2416_ptr,puVar6);
     }
     else {
       lStack_70 = 0;

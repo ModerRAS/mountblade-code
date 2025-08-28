@@ -533,12 +533,12 @@ FUN_180811820(uint64_t param_1,longlong param_2,longlong param_3,longlong param_
   lVar11 = lVar10 + 0x180be9220;
   if (param_7 == 0) {
     if (param_6 == 0) {
-      puVar20 = &UNK_18097f7c0;
-      puVar22 = &UNK_18097f840;
+      puVar20 = &unknown_var_304_ptr;
+      puVar22 = &unknown_var_432_ptr;
     }
     else {
-      puVar20 = &UNK_18097f800;
-      puVar22 = &UNK_18097f880;
+      puVar20 = &unknown_var_368_ptr;
+      puVar22 = &unknown_var_496_ptr;
     }
   }
   else {

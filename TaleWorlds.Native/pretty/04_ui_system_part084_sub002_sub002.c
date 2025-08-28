@@ -173,8 +173,8 @@ ulonglong FUN_180717fa0(int *param_1,float *param_2,uint param_3,int32_t param_4
         FUN_1807165a0(param_6,iVar25,uVar16);
       }
       uVar16 = uVar16 << 1 | (uint)((int)uVar16 < 0);
-      param_11 = (uint)(byte)(&UNK_180953358)[(longlong)(int)param_11 >> 4] << 2 |
-                 (uint)(byte)(&UNK_180953358)[param_11 & 0xf];
+      param_11 = (uint)(byte)(&unknown_var_8952_ptr)[(longlong)(int)param_11 >> 4] << 2 |
+                 (uint)(byte)(&unknown_var_8952_ptr)[param_11 & 0xf];
       iStack_4c = iStack_4c + 1;
     } while (iStack_4c < iVar5);
   }
@@ -232,7 +232,7 @@ ulonglong FUN_180717fa0(int *param_1,float *param_2,uint param_3,int32_t param_4
     uVar15 = 1;
     if (0 < iVar5) {
       do {
-        pbVar3 = &UNK_180953368 + uVar23;
+        pbVar3 = &unknown_var_8968_ptr + uVar23;
         uVar23 = (ulonglong)*pbVar3;
         uVar16 = (uint)*pbVar3;
         FUN_1807165a0(param_2,(int)uVar29 >> ((byte)iVar26 & 0x1f),uVar15);

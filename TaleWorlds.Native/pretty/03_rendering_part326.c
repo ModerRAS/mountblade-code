@@ -64,7 +64,7 @@ extern uint8_t global_var_4576_ptr;     /* 渲染系统格式化数据 */
  * 处理渲染系统参数设置，包括状态检查、条件验证、数据更新等功能。
  * 支持多种渲染模式和参数配置，确保渲染系统正常运行。
  *=============================================================================*/
-void FUN_180439fb5(void)
+void RenderingSystem_ProcessParameterSet1(void)
 {
   longlong render_context;
   char status_check;
@@ -108,7 +108,7 @@ void FUN_180439fb5(void)
  * 处理渲染系统第二组参数设置，包括高级状态检查、数据验证和
  * 参数更新功能。支持多种渲染模式和状态管理。
  *=============================================================================*/
-void FUN_180439fd4(void)
+void RenderingSystem_ProcessParameterSet2(void)
 {
   longlong render_context;
   char status_check;
@@ -152,7 +152,7 @@ void FUN_180439fd4(void)
  * 执行渲染系统的简单变换操作，包括参数传递和函数调用。
  * 支持基本的渲染变换和状态更新。
  *=============================================================================*/
-void FUN_180439ff3(void)
+void RenderingSystem_ExecuteSimpleTransform(void)
 {
   float parameter_value;
   
@@ -166,7 +166,7 @@ void FUN_180439ff3(void)
  * 
  * 空函数占位符，用于系统架构完整性和未来扩展。
  *=============================================================================*/
-void FUN_18043a012(void)
+void RenderingSystem_EmptyFunction1(void)
 {
   return;
 }
@@ -177,7 +177,7 @@ void FUN_18043a012(void)
  * 处理渲染系统的各种条件判断，包括参数验证、状态检查和
  * 动作执行。支持多种渲染条件和操作模式。
  *=============================================================================*/
-void FUN_18043a140(int32_t param_1, int param_2)
+void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
 {
   switch(param_1) {
   case 0x15:
@@ -619,7 +619,7 @@ void FUN_18043a140(int32_t param_1, int param_2)
  * 根据参数类型获取渲染系统的各种值，包括浮点数值、整数值和
  * 状态值。支持多种渲染参数和配置选项。
  *=============================================================================*/
-float FUN_18043ab40(int32_t param_1)
+float RenderingSystem_GetRenderValue(int32_t param_1)
 {
   bool system_status;
   longlong render_context;
@@ -940,7 +940,7 @@ FUN_18043b139:
  * 执行渲染系统的跳转表操作，支持动态函数调用和参数传递。
  * 用于处理复杂的渲染操作和系统调用。
  *=============================================================================*/
-void FUN_18043abac(uint64_t param_1, uint64_t param_2, longlong param_3)
+void RenderingSystem_ExecuteJumpTable(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
   longlong register_data;
   code *jump_table;
@@ -957,7 +957,7 @@ void FUN_18043abac(uint64_t param_1, uint64_t param_2, longlong param_3)
  * 
  * 空函数占位符，用于系统架构完整性和未来扩展。
  *=============================================================================*/
-void FUN_18043b139(void)
+void RenderingSystem_EmptyFunction2(void)
 {
   return;
 }
@@ -968,7 +968,7 @@ void FUN_18043b139(void)
  * 处理渲染系统的各种动作，包括条件检查、状态验证和
  * 动作执行。支持多种渲染模式和操作类型。
  *=============================================================================*/
-void FUN_18043b290(int32_t param_1)
+void RenderingSystem_ProcessRenderActions(int32_t param_1)
 {
   bool system_status;
   
@@ -1166,8 +1166,8 @@ void FUN_18043b290(int32_t param_1)
  * 执行渲染系统的批处理操作，包括多个渲染参数的处理和
  * 系统状态的更新。支持复杂的批处理流程。
  *=============================================================================*/
-void FUN_18043b930(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6,
-                  uint64_t param_7, uint64_t param_8, int param_9, int param_10)
+void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6,
+                                       uint64_t param_7, uint64_t param_8, int param_9, int param_10)
 {
   uint64_t temp_data;
   void **pointer_ptr;
@@ -1258,7 +1258,7 @@ void FUN_18043b930(int param_1, int param_2, int param_3, int param_4, int param
  * 处理渲染系统的字符串操作，包括字符串格式化、复制和
  * 缓冲区管理。支持多种字符串处理操作。
  *=============================================================================*/
-void FUN_18043bbe0(int param_1)
+void RenderingSystem_ProcessRenderString(int param_1)
 {
   void *data_pointer;
   int string_length;
@@ -1329,7 +1329,7 @@ void FUN_18043bbe0(int param_1)
  * 执行渲染系统的数据复制操作，包括字符串复制和缓冲区管理。
  * 支持安全的数据复制和内存管理。
  *=============================================================================*/
-void FUN_18043be00(longlong param_1, int32_t param_2)
+void RenderingSystem_ExecuteRenderCopy(longlong param_1, int32_t param_2)
 {
   longlong data_offset;
   int string_length;
@@ -1364,7 +1364,7 @@ void FUN_18043be00(longlong param_1, int32_t param_2)
  * 执行渲染系统的扩展数据复制操作，包括高级缓冲区管理和
  * 数据处理。支持更复杂的复制操作。
  *=============================================================================*/
-void FUN_18043be50(uint64_t param_1, uint param_2)
+void RenderingSystem_ExecuteRenderCopyEx(uint64_t param_1, uint param_2)
 {
   int copy_length;
   longlong target_address;
@@ -1385,7 +1385,7 @@ void FUN_18043be50(uint64_t param_1, uint param_2)
  * 
  * 空函数占位符，用于系统架构完整性和未来扩展。
  *=============================================================================*/
-void FUN_18043be7b(void)
+void RenderingSystem_EmptyFunction3(void)
 {
   ulonglong stack_data;
   
@@ -1399,7 +1399,7 @@ void FUN_18043be7b(void)
  * 处理渲染系统第三组参数设置，包括状态检查、条件验证和
  * 数据更新功能。支持高级渲染参数配置。
  *=============================================================================*/
-void FUN_18043be90(uint64_t param_1, int32_t param_2)
+void RenderingSystem_ProcessParameterSet3(uint64_t param_1, int32_t param_2)
 {
   longlong render_context;
   char status_check;
@@ -1436,7 +1436,7 @@ void FUN_18043be90(uint64_t param_1, int32_t param_2)
  * 处理渲染系统第四组参数设置，包括高级状态检查、数据验证和
  * 参数更新功能。支持多种渲染模式和配置选项。
  *=============================================================================*/
-void FUN_18043bf20(uint64_t param_1, int32_t param_2)
+void RenderingSystem_ProcessParameterSet4(uint64_t param_1, int32_t param_2)
 {
   longlong render_context;
   char status_check;
@@ -1473,7 +1473,7 @@ void FUN_18043bf20(uint64_t param_1, int32_t param_2)
  * 执行渲染系统的命令操作，包括参数传递、函数调用和
  * 系统控制。支持复杂的渲染命令处理。
  *=============================================================================*/
-void FUN_18043bfb0(int32_t param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
+void RenderingSystem_ExecuteRenderCommand(int32_t param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
 {
   FUN_1800623b0(_DAT_180c86928, param_1, param_4, param_3, &global_var_6496_ptr, param_2);
   return;

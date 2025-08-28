@@ -6,8 +6,8 @@
 /* 全局变量引用 */
 extern uint64_t _DAT_180c8a9b0;  // 全局数据基地址
 extern uint64_t _DAT_180c8a9a8;  // 全局配置基地址
-extern uint64_t UNK_180a06578;    // 未知数据结构
-extern uint64_t UNK_18098d290;    // 哈希表数据
+extern uint64_t global_var_2680_ptr;    // 未知数据结构
+extern uint64_t global_var_6320_ptr;    // 哈希表数据
 
 /**
  * 处理游戏对象批量更新
@@ -107,7 +107,7 @@ void process_game_object_batch(longlong context, longlong data_ptr, int count, u
       }
       
       // 计算对象哈希值
-      FUN_180121200(&stack_byte1,0x14,&UNK_180a06578,*current_obj_ptr);
+      FUN_180121200(&stack_byte1,0x14,&global_var_2680_ptr,*current_obj_ptr);
       hash_value = 0xffffffff;
       hash_data_ptr = stack_bytes;
       temp_flag = stack_byte1;
@@ -115,7 +115,7 @@ void process_game_object_batch(longlong context, longlong data_ptr, int count, u
         if (((temp_flag == 0x23) && (*hash_data_ptr == 0x23)) && (hash_data_ptr[1] == 0x23)) {
           hash_value = 0xffffffff;
         }
-        hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)temp_flag) * 4) ^
+        hash_value = *(uint *)(&global_var_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)temp_flag) * 4) ^
                  hash_value >> 8;
         temp_flag = *hash_data_ptr;
         hash_data_ptr = hash_data_ptr + 1;

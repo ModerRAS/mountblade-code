@@ -168,9 +168,9 @@ void FUN_1802bcd60(longlong *param_1,float param_2)
   if ((int)uVar11 < 0) {
     uVar11 = (uVar11 - 1 | 0xffffff00) + 1;
   }
-  fStack_230 = ((*(float *)(&UNK_180a18120 + (longlong)(int)uVar11 * 4) -
-                *(float *)(&UNK_180a18120 + (longlong)(int)uVar9 * 4)) *
-                (fVar26 - (float)(int)uVar8) + *(float *)(&UNK_180a18120 + (longlong)(int)uVar9 * 4)
+  fStack_230 = ((*(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar11 * 4) -
+                *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar9 * 4)) *
+                (fVar26 - (float)(int)uVar8) + *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar9 * 4)
                ) * *pfVar18 + 1.0;
   fStack_22c = pfVar18[3] * pfVar18[2] * fStack_230;
   fStack_230 = pfVar18[3] * pfVar18[1] * fStack_230;

@@ -307,7 +307,7 @@ longlong read_clipboard_unicode_text(void)
                0x48) < _DAT_180d49270) && (FUN_1808fcb90(&system_memory_9270), _DAT_180d49270 == -1)) {
     _DAT_180d49278 = 0;
     _DAT_180d49280 = 0;
-    FUN_1808fc820(&UNK_180941a80);
+    FUN_1808fc820(&unknown_var_7056_ptr);
     FUN_1808fcb30(&system_memory_9270);
   }
   clipboard_data = _DAT_180d49280;

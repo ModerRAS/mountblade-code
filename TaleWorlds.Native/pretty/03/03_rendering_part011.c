@@ -218,7 +218,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
     context_backup2 = material_context;
     
     // 处理材质名称
-    process_material_name(&UNK_18098e220, data_stream, material_context);
+    process_material_name(&unknown_var_304_ptr, data_stream, material_context);
     *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
     
     // 初始化材质标志位
@@ -233,7 +233,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
         buffer_size = (ulonglong)texture_count;
         do {
             // 初始化纹理信息缓冲区
-            texture_info_ptr = &UNK_18098bb30;
+            texture_info_ptr = &unknown_var_336_ptr;
             texture_data_buffer = texture_buffer;
             texture_info_count = 0;
             texture_buffer[0] = 0;
@@ -250,7 +250,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
             }
             
             // 在材质纹理表中查找匹配的纹理
-            string_table_ptr = (longlong *)&UNK_18098e1c0;
+            string_table_ptr = (longlong *)&unknown_var_208_ptr;
             texture_index = loop_counter;
             do {
                 // 计算字符串长度
@@ -275,7 +275,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
                     // 如果找到匹配的纹理，设置标志位
                     if (array_index == 0) {
                         *(uint *)(material_context + 4) = 
-                            *(uint *)(material_context + 4) | *(uint *)(&UNK_18098e1c8 + texture_index * 0x10);
+                            *(uint *)(material_context + 4) | *(uint *)(&unknown_var_216_ptr + texture_index * 0x10);
                         break;
                     }
                 }
@@ -283,7 +283,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
                     // 空字符串匹配
                     if (array_index == 0) {
                         *(uint *)(material_context + 4) = 
-                            *(uint *)(material_context + 4) | *(uint *)(&UNK_18098e1c8 + texture_index * 0x10);
+                            *(uint *)(material_context + 4) | *(uint *)(&unknown_var_216_ptr + texture_index * 0x10);
                         break;
                     }
                 }
@@ -293,14 +293,14 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
             } while ((longlong)string_table_ptr < 0x18098e220);
             
             // 重置缓冲区
-            texture_info_ptr = &UNK_18098bcb0;
+            texture_info_ptr = &unknown_var_720_ptr;
             buffer_size = buffer_size - 1;
             current_texture_id = material_id;
         } while (buffer_size != 0);
     }
     
     // 处理着色器信息
-    shader_info_ptr = &UNK_18098bb30;
+    shader_info_ptr = &unknown_var_336_ptr;
     shader_data_buffer = shader_buffer;
     shader_info_count = 0;
     shader_buffer[0] = 0;
@@ -357,7 +357,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
     } while ((longlong)string_table_ptr < 0x180bf90b0);
     
     // 重置着色器缓冲区
-    shader_info_ptr = &UNK_18098bcb0;
+    shader_info_ptr = &unknown_var_720_ptr;
     
     // 读取材质基本信息
     material_name_hash = (*(uint64_t **)(data_stream + 8))[1];
@@ -491,7 +491,7 @@ void serialize_rendering_material(material_info_t *material_info, serialization_
     serialization_context[1] = serialization_context[1] + 4;
     
     // 序列化材质名称
-    serialize_material_name(&UNK_18098e220, *material_header, serialization_context);
+    serialize_material_name(&unknown_var_304_ptr, *material_header, serialization_context);
     texture_info_ptr = (int32_t *)serialization_context[1];
     property_mask = material_header[1];
     
@@ -521,7 +521,7 @@ void serialize_rendering_material(material_info_t *material_info, serialization_
     serialization_context[1] = buffer_offset + 4;
     
     // 序列化材质标志位
-    shader_table_ptr = (uint64_t *)&UNK_18098e1c0;
+    shader_table_ptr = (uint64_t *)&unknown_var_208_ptr;
     property_index = texture_count;
     do {
         if ((*(uint *)(shader_table_ptr + 1) & property_mask) != 0) {

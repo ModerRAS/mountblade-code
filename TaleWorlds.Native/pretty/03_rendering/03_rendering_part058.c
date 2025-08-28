@@ -197,7 +197,7 @@ joined_r0x0001802999aa:
   render_index = (int)((float)render_index * render_clamped_value);
   render_state_index = render_index;
   FUN_18012e810();
-  FUN_18010f010(&UNK_180a16f48,render_index);
+  FUN_18010f010(&unknown_var_728_ptr,render_index);
   if (0 < (longlong)unaff_R14) {
     puVar10 = *(uint64_t **)(unaff_RBP + 0xc0);
     *(longlong *)(unaff_RBP + 0xa8) = *(longlong *)(unaff_RBP + 0xa8) - (longlong)puVar10;
@@ -210,7 +210,7 @@ joined_r0x0001802999aa:
       in_stack_00000048 = *(int32_t *)(puVar14 + 1);
       fStack000000000000004c = *(float *)((longlong)puVar14 + 0xc);
       uVar27 = *(uint64_t *)(lVar15 + (longlong)puVar10);
-      FUN_18010f0d0(&stack0x00000040,&UNK_180a16f58,(double)fVar24,(double)fVar18,uVar27);
+      FUN_18010f0d0(&stack0x00000040,&unknown_var_744_ptr,(double)fVar24,(double)fVar18,uVar27);
       puVar14 = puVar14 + 2;
       puVar10 = puVar10 + 1;
       unaff_R14 = unaff_R14 - 1;
@@ -483,7 +483,7 @@ LAB_180299f92:
           puVar12 = *(void **)(*param_3 + 0x18);
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(_DAT_180c86928,&UNK_180a16f78,puVar12);
+        FUN_180062300(_DAT_180c86928,&unknown_var_776_ptr,puVar12);
       }
       if ((iVar2 == 2) || (*_DAT_180c8aa08 != 0)) {
         pplVar1 = (longlong **)(lVar10 + 0x30);
@@ -617,10 +617,10 @@ uint64_t * render_mutex_initialize(uint64_t *mutex_data)
 {
   // 初始化互斥锁结构
   _Mtx_init_in_situ();
-  mutex_data[0x11] = &UNK_18098bcb0;
+  mutex_data[0x11] = &unknown_var_720_ptr;
   mutex_data[0x12] = 0;
   *(int32_t *)(mutex_data + 0x13) = 0;
-  mutex_data[0x11] = &UNK_1809fcc28;
+  mutex_data[0x11] = &unknown_var_3432_ptr;
   mutex_data[0x12] = mutex_data + 0x14;
   *(int32_t *)(mutex_data + 0x13) = 0;
   *(int8_t *)(mutex_data + 0x14) = 0;

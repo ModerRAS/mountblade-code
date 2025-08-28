@@ -421,8 +421,8 @@ LAB_180251624:
              && ((*(uint *)(lVar24 + 0x148) & 0x20000) == 0)) {
             iVar28 = iVar28 + 1;
             ppiStack_668 = apiStack_500;
-            puStack_4f0 = &UNK_180253f90;
-            puStack_4e8 = &UNK_18014f180;
+            puStack_4f0 = &unknown_var_2048_ptr;
+            puStack_4e8 = &unknown_var_3488_ptr;
             apiStack_500[0] = aiStack_6c0;
             FUN_180149bd0(*(longlong *)(lVar24 + 0x110),apiStack_500);
             puVar20 = puStack_660;
@@ -981,7 +981,7 @@ LAB_180252407:
     } while ((int **)puVar13 != ppiVar15);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a14808,(double)((float)(int)uStack_698 * 0.0009765625),
+  FUN_180062300(_DAT_180c86928,&unknown_var_680_ptr,(double)((float)(int)uStack_698 * 0.0009765625),
                 uStack_5d0 >> 10);
 }
 

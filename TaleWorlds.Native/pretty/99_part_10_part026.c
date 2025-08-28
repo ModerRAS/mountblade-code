@@ -35,7 +35,7 @@ void FUN_1806b50c0(longlong param_1,ulonglong param_2)
     *puVar3 = (char)uVar4;
     puVar3[1] = uStackX_9;
     *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
-    FUN_1806b6980(param_1 + 0x90,&UNK_18094b4f8,&uStackX_10,uVar4 >> 4 & 3);
+    FUN_1806b6980(param_1 + 0x90,&unknown_var_6600_ptr,&uStackX_10,uVar4 >> 4 & 3);
     if (*(uint *)(param_1 + 0x68) <= (uint)(*(int *)(param_1 + 0x40) - *(int *)(param_1 + 0x38))) {
       FUN_1806b5bb0(plVar1,*(uint64_t *)(param_1 + 0x38));
       *(uint64_t *)(param_1 + 0x40) = *(uint64_t *)(param_1 + 0x38);
@@ -82,7 +82,7 @@ void FUN_1806b50ce(longlong param_1,ulonglong param_2)
   *puVar3 = (char)uVar4;
   puVar3[1] = uStack0000000000000040._1_1_;
   *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
-  FUN_1806b6980(param_1 + 0x90,&UNK_18094b4f8,&stack0x00000048,uVar4 >> 4 & 3);
+  FUN_1806b6980(param_1 + 0x90,&unknown_var_6600_ptr,&stack0x00000048,uVar4 >> 4 & 3);
   if (*(uint *)(param_1 + 0x68) <= (uint)(*(int *)(param_1 + 0x40) - *(int *)(param_1 + 0x38))) {
     FUN_1806b5bb0(plVar1,*(uint64_t *)(param_1 + 0x38));
     *(uint64_t *)(param_1 + 0x40) = *(uint64_t *)(param_1 + 0x38);
@@ -884,7 +884,7 @@ void FUN_1806b5600(uint64_t *param_1,uint param_2)
     }
     else {
       uVar2 = (**(code **)(**(longlong **)*param_1 + 8))
-                        (*(longlong **)*param_1,uVar1,param_1[1],&UNK_18094b4b0,0x7e);
+                        (*(longlong **)*param_1,uVar1,param_1[1],&unknown_var_6528_ptr,0x7e);
     }
                     // WARNING: Subroutine does not return
     memset(uVar2,0xf,uVar1);
@@ -914,7 +914,7 @@ void FUN_1806b5629(uint64_t *param_1,int param_2)
   }
   else {
     uVar1 = (**(code **)(**(longlong **)*param_1 + 8))
-                      (*(longlong **)*param_1,in_EAX,*(uint64_t *)(unaff_RBX + 8),&UNK_18094b4b0,
+                      (*(longlong **)*param_1,in_EAX,*(uint64_t *)(unaff_RBX + 8),&unknown_var_6528_ptr,
                        0x7e);
   }
                     // WARNING: Subroutine does not return
@@ -956,8 +956,8 @@ void FUN_1806b56d0(uint64_t *param_1,uint param_2)
   iVar3 = (int)(longlong)((float)param_2 * *(float *)(param_1 + 6));
   iVar2 = param_2 * 4 + iVar3 * 4;
   uVar1 = (**(code **)(**(longlong **)*param_1 + 8))
-                    (*(longlong **)*param_1,iVar3 * 0x10 + iVar2 + (-iVar2 & 0xfU),&UNK_18094b480,
-                     &UNK_18094a650,0x174);
+                    (*(longlong **)*param_1,iVar3 * 0x10 + iVar2 + (-iVar2 & 0xfU),&unknown_var_6480_ptr,
+                     &unknown_var_2848_ptr,0x174);
                     // WARNING: Subroutine does not return
   memset(uVar1,0xffffffff,param_2 * 4);
 }
@@ -990,7 +990,7 @@ void FUN_1806b5870(uint64_t *param_1,uint param_2)
   }
   else {
     uVar1 = (**(code **)(**(longlong **)*param_1 + 8))
-                      (*(longlong **)*param_1,iVar2,param_1[1],&UNK_18094a650,0x174);
+                      (*(longlong **)*param_1,iVar2,param_1[1],&unknown_var_2848_ptr,0x174);
   }
                     // WARNING: Subroutine does not return
   memset(uVar1,0xffffffff,param_2 * 4);
@@ -1019,8 +1019,8 @@ void FUN_1806b5a10(uint64_t *param_1,uint param_2)
   iVar3 = (int)(longlong)((float)param_2 * *(float *)(param_1 + 6));
   iVar2 = param_2 * 4 + iVar3 * 4;
   uVar1 = (**(code **)(**(longlong **)*param_1 + 8))
-                    (*(longlong **)*param_1,iVar3 * 0x10 + iVar2 + (-iVar2 & 0xfU),&UNK_18094b480,
-                     &UNK_18094a650,0x174);
+                    (*(longlong **)*param_1,iVar3 * 0x10 + iVar2 + (-iVar2 & 0xfU),&unknown_var_6480_ptr,
+                     &unknown_var_2848_ptr,0x174);
                     // WARNING: Subroutine does not return
   memset(uVar1,0xffffffff,param_2 * 4);
 }

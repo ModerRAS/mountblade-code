@@ -335,7 +335,7 @@ void FUN_180404050(longlong param_1,uint64_t param_2,int32_t param_3,int32_t par
       uStack_70 = 0;
       uStack_80 = 0;
       uStack_78 = 0;
-      puStack_68 = &UNK_180a3c3e0;
+      puStack_68 = &unknown_var_3456_ptr;
       uStack_50 = 0;
       uStack_60 = 0;
       uStack_58 = 0;
@@ -367,7 +367,7 @@ void FUN_180404050(longlong param_1,uint64_t param_2,int32_t param_3,int32_t par
   uStack_70 = 0;
   uStack_80 = 0;
   uStack_78 = 0;
-  puStack_68 = &UNK_180a3c3e0;
+  puStack_68 = &unknown_var_3456_ptr;
   uStack_50 = 0;
   uStack_60 = 0;
   uStack_58 = 0;
@@ -431,7 +431,7 @@ void FUN_1804043b0(longlong param_1)
         (*pcVar2)();
         return;
       }
-      if ((void *)*puVar1 == &UNK_180a33f80) {
+      if ((void *)*puVar1 == &unknown_var_9568_ptr) {
                     // WARNING: Could not recover jumptable at 0x000180404403. Too many branches
                     // WARNING: Treating indirect jump as call
         (*(code *)puVar1[1])(puVar1[2]);

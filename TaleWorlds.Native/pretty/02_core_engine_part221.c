@@ -176,7 +176,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     longlong lVar2;
     
     /* 初始化对象管理器析构过程 */
-    *param_1 = &UNK_180a0c4a0;
+    *param_1 = &unknown_var_7040_ptr;
     FUN_1801a2ea0();
     
     /* 清理资源池 */
@@ -213,13 +213,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     FUN_1801ba4d0();
     FUN_1801ba4d0();
     FUN_18004b730();
-    param_1[0xc169] = &UNK_180a3c3e0;
+    param_1[0xc169] = &unknown_var_3456_ptr;
     if (param_1[0xc16a] != 0) {
         FUN_18064e900();
     }
     param_1[0xc16a] = 0;
     *(int32_t *)(param_1 + 0xc16c) = 0;
-    param_1[0xc169] = &UNK_18098bcb0;
+    param_1[0xc169] = &unknown_var_720_ptr;
     
     /* 清理回调管理器 */
     FUN_180196de0(param_1 + 0xc11e);
@@ -252,13 +252,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     }
     
     /* 清理线程局部存储 */
-    param_1[0x103a] = &UNK_180a3c3e0;
+    param_1[0x103a] = &unknown_var_3456_ptr;
     if (param_1[0x103b] != 0) {
         FUN_18064e900();
     }
     param_1[0x103b] = 0;
     *(int32_t *)(param_1 + 0x103d) = 0;
-    param_1[0x103a] = &UNK_18098bcb0;
+    param_1[0x103a] = &unknown_var_720_ptr;
     FUN_180057830();
     FUN_18005d580();
     FUN_180057830();
@@ -290,13 +290,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     FUN_1800e7d00(param_1 + 0xa3a);
     FUN_1808fc8a8(param_1 + 0x7f7, 0x908, 2, FUN_1800e7d00);
     FUN_1800e7c40(param_1 + 0x7ed);
-    param_1[0x7da] = &UNK_180a3c3e0;
+    param_1[0x7da] = &unknown_var_3456_ptr;
     if (param_1[0x7db] != 0) {
         FUN_18064e900();
     }
     param_1[0x7db] = 0;
     *(int32_t *)(param_1 + 0x7dd) = 0;
-    param_1[0x7da] = &UNK_18098bcb0;
+    param_1[0x7da] = &unknown_var_720_ptr;
     if (param_1[0x7ce] != 0) {
         FUN_18064e900();
     }
@@ -325,13 +325,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
         FUN_1801c0df0(param_1 + 0x519);
     }
     FUN_1801c0df0(param_1 + 0x519);
-    param_1[0x512] = &UNK_180a3c3e0;
+    param_1[0x512] = &unknown_var_3456_ptr;
     if (param_1[0x513] != 0) {
         FUN_18064e900();
     }
     param_1[0x513] = 0;
     *(int32_t *)(param_1 + 0x515) = 0;
-    param_1[0x512] = &UNK_18098bcb0;
+    param_1[0x512] = &unknown_var_720_ptr;
     if (param_1[0x50e] != 0) {
         FUN_18064e900();
     }
@@ -352,13 +352,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     if ((longlong *)param_1[0x4fd] != (longlong *)0x0) {
         (**(code **)(*(longlong *)param_1[0x4fd] + 0x38))();
     }
-    param_1[0x4f9] = &UNK_180a3c3e0;
+    param_1[0x4f9] = &unknown_var_3456_ptr;
     if (param_1[0x4fa] != 0) {
         FUN_18064e900();
     }
     param_1[0x4fa] = 0;
     *(int32_t *)(param_1 + 0x4fc) = 0;
-    param_1[0x4f9] = &UNK_18098bcb0;
+    param_1[0x4f9] = &unknown_var_720_ptr;
     
     /* 清理线程同步对象 */
     _Mtx_destroy_in_situ();
@@ -374,34 +374,34 @@ void ObjectManagerDestructor(uint64_t *param_1)
     if (param_1[0xa8] != 0) {
         FUN_18064e900();
     }
-    param_1[0xa4] = &UNK_180a3c3e0;
+    param_1[0xa4] = &unknown_var_3456_ptr;
     if (param_1[0xa5] != 0) {
         FUN_18064e900();
     }
     param_1[0xa5] = 0;
     *(int32_t *)(param_1 + 0xa7) = 0;
-    param_1[0xa4] = &UNK_18098bcb0;
-    param_1[0xa0] = &UNK_180a3c3e0;
+    param_1[0xa4] = &unknown_var_720_ptr;
+    param_1[0xa0] = &unknown_var_3456_ptr;
     if (param_1[0xa1] != 0) {
         FUN_18064e900();
     }
     param_1[0xa1] = 0;
     *(int32_t *)(param_1 + 0xa3) = 0;
-    param_1[0xa0] = &UNK_18098bcb0;
-    param_1[0x9b] = &UNK_180a3c3e0;
+    param_1[0xa0] = &unknown_var_720_ptr;
+    param_1[0x9b] = &unknown_var_3456_ptr;
     if (param_1[0x9c] != 0) {
         FUN_18064e900();
     }
     param_1[0x9c] = 0;
     *(int32_t *)(param_1 + 0x9e) = 0;
-    param_1[0x9b] = &UNK_18098bcb0;
-    param_1[0x91] = &UNK_180a3c3e0;
+    param_1[0x9b] = &unknown_var_720_ptr;
+    param_1[0x91] = &unknown_var_3456_ptr;
     if (param_1[0x92] != 0) {
         FUN_18064e900();
     }
     param_1[0x92] = 0;
     *(int32_t *)(param_1 + 0x94) = 0;
-    param_1[0x91] = &UNK_18098bcb0;
+    param_1[0x91] = &unknown_var_720_ptr;
     
     /* 清理系统对象 */
     if ((longlong *)param_1[0x77] != (longlong *)0x0) {
@@ -453,8 +453,8 @@ void ObjectManagerDestructor(uint64_t *param_1)
     }
     
     /* 最终清理 */
-    *param_1 = &UNK_180a21720;
-    *param_1 = &UNK_180a21690;
+    *param_1 = &unknown_var_3696_ptr;
+    *param_1 = &unknown_var_3552_ptr;
     return;
 }
 
@@ -836,22 +836,22 @@ LAB_180198827:
     /* 创建新的事件处理器 */
     if (*(float *)(param_1 + 0x3140) <= 0.1) {
         plVar9 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x10, 8, 3);
-        *plVar9 = (longlong)&UNK_180a0c178;
+        *plVar9 = (longlong)&unknown_var_6232_ptr;
         plVar9[1] = param_1;
     }
     else if (*(int *)(param_1 + 0x3054) == 2) {
         plVar9 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, 3);
-        *plVar9 = (longlong)&UNK_180a0c178;
+        *plVar9 = (longlong)&unknown_var_6232_ptr;
         plVar9[1] = param_1;
-        *plVar9 = (longlong)&UNK_180a0c118;
+        *plVar9 = (longlong)&unknown_var_6136_ptr;
         plVar9[2] = 0;
         plVar9[3] = 0;
     }
     else {
         plVar9 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x70, 8, 3);
-        *plVar9 = (longlong)&UNK_180a0c178;
+        *plVar9 = (longlong)&unknown_var_6232_ptr;
         plVar9[1] = param_1;
-        *plVar9 = (longlong)&UNK_180a0c148;
+        *plVar9 = (longlong)&unknown_var_6184_ptr;
         plVar9[2] = 0;
         plVar9[3] = 0;
         plVar9[4] = 0;
@@ -905,7 +905,7 @@ longlong * ObjectCreator(uint64_t param_1, longlong *param_2, int8_t param_3)
     
     /* 验证对象创建 */
     if (*param_2 == 0) {
-        FUN_180626ee0(&UNK_180a0b200);
+        FUN_180626ee0(&unknown_var_2272_ptr);
     }
     
     /* 设置对象属性 */
@@ -1021,7 +1021,7 @@ void ObjectDestructor(longlong param_1, longlong *param_2, uint64_t param_3, uin
         }
     }
     else {
-        FUN_180626f80(&UNK_180a0b258);
+        FUN_180626f80(&unknown_var_2360_ptr);
     }
     
     /* 最终清理 */
@@ -1073,11 +1073,11 @@ ulonglong ObjectRegistrar(longlong param_1, longlong *param_2, int8_t param_3, i
     uVar12 = 0xfffffffffffffffe;
     
     /* 检查对象类型 */
-    cVar4 = FUN_1802eee20(*param_2, &UNK_180a0c460);
+    cVar4 = FUN_1802eee20(*param_2, &unknown_var_6976_ptr);
     if (cVar4 != '\0') {
         *(int16_t *)(param_1 + 0x5c40) = 0x101;
     }
-    cVar4 = FUN_1802eee20(*param_2, &UNK_180a0c480);
+    cVar4 = FUN_1802eee20(*param_2, &unknown_var_7008_ptr);
     if (cVar4 != '\0') {
         *(int8_t *)(param_1 + 0x5bf0) = 1;
         *(int8_t *)(param_1 + 0x5c42) = 1;
@@ -1100,7 +1100,7 @@ ulonglong ObjectRegistrar(longlong param_1, longlong *param_2, int8_t param_3, i
                     if (*(void **)(lVar6 + 0x290) != (void *)0x0) {
                         puVar9 = *(void **)(lVar6 + 0x290);
                     }
-                    plVar7 = (longlong *)FUN_180626f80(&UNK_180a0b220, puVar9);
+                    plVar7 = (longlong *)FUN_180626f80(&unknown_var_2304_ptr, puVar9);
                 }
                 if ((longlong *)*param_2 != (longlong *)0x0) {
                     plVar7 = (longlong *)(**(code **)(*(longlong *)*param_2 + 0x38))();

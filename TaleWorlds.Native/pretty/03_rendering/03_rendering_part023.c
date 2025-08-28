@@ -28,7 +28,7 @@ void update_rendering_component_state(uint64_t *component_ptr, uint64_t *state_d
   if (is_active != '\0') {
     flag_value = func_0x00018023a100(data_ptr);
     *(int8_t *)(component_ptr + 100) = flag_value;
-    if ((void *)*component_ptr == &UNK_180a169b8) {
+    if ((void *)*component_ptr == &unknown_var_9304_ptr) {
       FUN_180276f30(component_ptr, (longlong)component_ptr + 0x214, 0);
     }
     else {

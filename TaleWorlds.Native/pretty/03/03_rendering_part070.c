@@ -201,11 +201,11 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         temp_param_5 = 0;
         temp_param_6 = 0;
         temp_param_7 = 0x3f800000;
-        temp_var_5 = &UNK_1809fcc58;
+        temp_var_5 = &unknown_var_3480_ptr;
         temp_var_6 = temp_buffer_4;
         temp_buffer_4[0] = 0;
         temp_param_12 = 0x1e;
-        temp_var = strcpy_s(temp_buffer_4,RENDERING_SYSTEM_STRING_LENGTH_0X40,&UNK_180a1a228);
+        temp_var = strcpy_s(temp_buffer_4,RENDERING_SYSTEM_STRING_LENGTH_0X40,&unknown_var_3752_ptr);
         temp_param_1 = 0x100;
         temp_flag = 1;
         temp_var_2 = 0;
@@ -226,12 +226,12 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         if (temp_long_pointer_4 != (longlong *)0x0) {
           (**(code **)(*temp_long_pointer_4 + 0x38))();
         }
-        temp_var_5 = &UNK_18098bcb0;
-        temp_var_7 = &UNK_1809fcc58;
+        temp_var_5 = &unknown_var_720_ptr;
+        temp_var_7 = &unknown_var_3480_ptr;
         temp_var_8 = temp_buffer_5;
         temp_buffer_5[0] = 0;
         temp_param_13 = 0x21;
-        temp_var = strcpy_s(temp_buffer_5,RENDERING_SYSTEM_STRING_LENGTH_0X40,&UNK_180a1a200);
+        temp_var = strcpy_s(temp_buffer_5,RENDERING_SYSTEM_STRING_LENGTH_0X40,&unknown_var_3712_ptr);
         temp_param_1 = 0x100;
         temp_flag = 1;
         temp_var_2 = 0;
@@ -252,7 +252,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         if (temp_long_pointer_3 != (longlong *)0x0) {
           (**(code **)(*temp_long_pointer_3 + 0x38))();
         }
-        temp_var_7 = &UNK_18098bcb0;
+        temp_var_7 = &unknown_var_720_ptr;
         temp_uint_2 = 0;
         if (0 < item_count) {
           temp_pointer_array = (longlong **)(render_context + 0x980);
@@ -362,7 +362,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
           } while ((int)temp_uint_2 < temp_int_2);
         }
         temp_pointer_array = (longlong **)&temp_var_1;
-        temp_var_1 = &UNK_1809fcc28;
+        temp_var_1 = &unknown_var_3432_ptr;
         temp_var_2 = temp_buffer_2;
         temp_param_8 = 0;
         temp_buffer_2[0] = 0;
@@ -387,9 +387,9 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
         if (resource_array != (longlong *)0x0) {
           (**(code **)(*resource_array + 0x38))(resource_array);
         }
-        temp_var_1 = &UNK_18098bcb0;
+        temp_var_1 = &unknown_var_720_ptr;
         temp_pointer_3 = (longlong **)&temp_var_3;
-        temp_var_3 = &UNK_1809fcc28;
+        temp_var_3 = &unknown_var_3432_ptr;
         temp_var_4 = temp_buffer_3;
         temp_param_10 = 0;
         temp_buffer_3[0] = 0;
@@ -415,7 +415,7 @@ void rendering_system_resource_manager(longlong render_context, longlong data_co
           (**(code **)(*resource_array + 0x38))(resource_array);
         }
         temp_var_pointer = &temp_var_3;
-        temp_var_3 = &UNK_18098bcb0;
+        temp_var_3 = &unknown_var_720_ptr;
       }
       goto LAB_1803084bf;
     }

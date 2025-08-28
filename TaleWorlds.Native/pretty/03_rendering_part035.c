@@ -300,7 +300,7 @@ uint64_t * FUN_180287d30(uint64_t *param_1)
     if (puVar4 == (uint64_t *)0x0) {
       FUN_180287f70(auStack_38);
                     // WARNING: Subroutine does not return
-      _CxxThrowException(auStack_38,&UNK_180bd8a18);
+      _CxxThrowException(auStack_38,&unknown_var_2600_ptr);
     }
     puVar4[0x10] = puVar4;
   }
@@ -327,7 +327,7 @@ uint64_t * FUN_180287d30(uint64_t *param_1)
       if (puVar3 == (uint64_t *)0x0) {
         FUN_180287f70(auStack_50);
                     // WARNING: Subroutine does not return
-        _CxxThrowException(auStack_50,&UNK_180bd8a18);
+        _CxxThrowException(auStack_50,&unknown_var_2600_ptr);
       }
       puVar4 = puVar3;
       if (puVar5 != (uint64_t *)0x0) {
@@ -368,7 +368,7 @@ void FUN_180287ed0(char *param_1,int param_2,int param_3)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a16bd0,*(int *)(param_1 + 4),*(int32_t *)(param_1 + 8),
+  FUN_180062300(_DAT_180c86928,&unknown_var_9840_ptr,*(int *)(param_1 + 4),*(int32_t *)(param_1 + 8),
                 param_2,param_3);
 }
 
@@ -377,11 +377,11 @@ void FUN_180287ed0(char *param_1,int param_2,int param_3)
 uint64_t * FUN_180287f20(uint64_t *param_1,longlong param_2)
 
 {
-  *param_1 = &UNK_18098b928;
+  *param_1 = &unknown_var_9816_ptr;
   param_1[1] = 0;
   param_1[2] = 0;
   __std_exception_copy(param_2 + 8);
-  *param_1 = &UNK_18098b940;
+  *param_1 = &unknown_var_9840_ptr;
   return param_1;
 }
 
@@ -390,10 +390,10 @@ uint64_t * FUN_180287f20(uint64_t *param_1,longlong param_2)
 uint64_t * FUN_180287f70(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_18098b928;
+  *param_1 = &unknown_var_9816_ptr;
   param_1[2] = 0;
-  param_1[1] = &UNK_180a16c18;
-  *param_1 = &UNK_18098b940;
+  param_1[1] = &unknown_var_9912_ptr;
+  *param_1 = &unknown_var_9840_ptr;
   return param_1;
 }
 
@@ -403,10 +403,10 @@ uint64_t *
 FUN_180287fc0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
+  *param_2 = &unknown_var_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x16;

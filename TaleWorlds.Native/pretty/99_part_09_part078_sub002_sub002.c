@@ -285,7 +285,7 @@ void FUN_1805f0696(void)
   puVar26 = puVar18;
   if (*(char *)(unaff_RSI + 0xd3) != '\0') {
     puVar4 = *(uint64_t **)(unaff_RSI + 0xd8);
-    if ((void *)*puVar4 == &UNK_180a3beb8) {
+    if ((void *)*puVar4 == &unknown_var_2136_ptr) {
       puVar34 = (uint64_t *)((ulonglong)puVar18 & 0xffffffff);
       puVar17 = (uint64_t *)((longlong)(puVar4[10] - puVar4[9]) >> 3);
       if (puVar17 != (uint64_t *)0x0) {

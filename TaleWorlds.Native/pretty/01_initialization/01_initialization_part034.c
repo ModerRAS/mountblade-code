@@ -32,35 +32,35 @@ extern longlong _DAT_180c86928;       // 启动参数配置
 extern longlong _DAT_180c82868;       // 默认配置数据
 
 extern char system_buffer_ptr;            // 空字符串常量
-extern char UNK_18098bcb0;            // 字符串常量
-extern char UNK_180a3c3e0;            // 空指针常量
-extern char UNK_1809fe900;            // 格式字符串常量
-extern char UNK_1809fe80c;            // 格式字符串常量
-extern char UNK_1809fe910;            // 格式字符串常量
-extern char UNK_1809fe928;            // 格式字符串常量
-extern char UNK_1809fd0a0;            // 格式字符串常量
-extern char UNK_1809fe940;            // 格式字符串常量
-extern char UNK_18098ba10;            // 路径分隔符
-extern char UNK_18098ba80;            // 格式字符串常量
-extern char UNK_18098ba98;            // 格式字符串常量
-extern char UNK_18098baa0;            // 格式字符串常量
-extern char UNK_18098ba28;            // 格式字符串常量
-extern char UNK_18098ba40;            // 格式字符串常量
-extern char UNK_18098ba70;            // 格式字符串常量
-extern char UNK_18098ba60;            // 格式字符串常量
-extern char UNK_1809fe8f8;            // 格式字符串常量
-extern char UNK_1809fe950;            // 格式字符串常量
-extern char UNK_1809fe968;            // 格式字符串常量
-extern char UNK_1809fe978;            // 格式字符串常量
-extern char UNK_1809fe998;            // 格式字符串常量
-extern char UNK_1809fe988;            // 格式字符串常量
-extern char UNK_18098ba50;            // 格式字符串常量
-extern char UNK_1809fdc18;            // 格式字符串常量
+extern char global_var_720_ptr;            // 字符串常量
+extern char global_var_3456_ptr;            // 空指针常量
+extern char global_var_816_ptr;            // 格式字符串常量
+extern char global_var_572_ptr;            // 格式字符串常量
+extern char global_var_832_ptr;            // 格式字符串常量
+extern char global_var_856_ptr;            // 格式字符串常量
+extern char global_var_4576_ptr;            // 格式字符串常量
+extern char global_var_880_ptr;            // 格式字符串常量
+extern char global_var_48_ptr;            // 路径分隔符
+extern char global_var_160_ptr;            // 格式字符串常量
+extern char global_var_184_ptr;            // 格式字符串常量
+extern char global_var_192_ptr;            // 格式字符串常量
+extern char global_var_72;            // 格式字符串常量
+extern char global_var_96_ptr;            // 格式字符串常量
+extern char global_var_144_ptr;            // 格式字符串常量
+extern char global_var_128_ptr;            // 格式字符串常量
+extern char global_var_808_ptr;            // 格式字符串常量
+extern char global_var_896_ptr;            // 格式字符串常量
+extern char global_var_920_ptr;            // 格式字符串常量
+extern char global_var_936_ptr;            // 格式字符串常量
+extern char global_var_968_ptr;            // 格式字符串常量
+extern char global_var_952_ptr;            // 格式字符串常量
+extern char global_var_112_ptr;            // 格式字符串常量
+extern char global_var_7512_ptr;            // 格式字符串常量
 extern char system_memory_df28;            // 格式字符串常量
-extern char UNK_1809fe9a8;            // 格式字符串常量
-extern char UNK_1809fe9b8;            // 格式字符串常量
-extern char UNK_1809fe9c8;            // 格式字符串常量
-extern char UNK_1809fe7f8;            // 格式字符串常量
+extern char global_var_984_ptr;            // 格式字符串常量
+extern char global_var_1000_ptr;            // 格式字符串常量
+extern char global_var_1016_ptr;            // 格式字符串常量
+extern char global_var_552_ptr;            // 格式字符串常量
 extern char system_memory_c7d8;            // 格式字符串常量
 extern char system_memory_cfc0;            // 格式字符串常量
 
@@ -283,7 +283,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
   // 如果有结果，则存储到目标容器
   if (uVar9 == 0) goto LAB_180065009;
   lVar10 = 0;
-  puStack_108 = &UNK_180a3c3e0;
+  puStack_108 = &global_var_3456_ptr;
   uStack_f0 = 0;
   puStack_100 = (int8_t *)0x0;
   uStack_f8 = 0;
@@ -312,10 +312,10 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
   if (puVar4 < (uint64_t *)param_1[2]) {
     // 容器有空间，直接存储
     param_1[1] = (longlong)(puVar4 + 4);
-    *puVar4 = &UNK_18098bcb0;
+    *puVar4 = &global_var_720_ptr;
     puVar4[1] = 0;
     *(int32_t *)(puVar4 + 2) = 0;
-    *puVar4 = &UNK_180a3c3e0;
+    *puVar4 = &global_var_3456_ptr;
     puVar4[3] = 0;
     puVar4[1] = 0;
     *(int32_t *)(puVar4 + 2) = 0;
@@ -347,10 +347,10 @@ LAB_180064eed:
     
     // 创建新的容器条目
     puStack_d0 = (uint64_t *)FUN_180059780(lVar12, puVar4, lVar10);
-    *puStack_d0 = &UNK_18098bcb0;
+    *puStack_d0 = &global_var_720_ptr;
     puStack_d0[1] = 0;
     *(int32_t *)(puStack_d0 + 2) = 0;
-    *puStack_d0 = &UNK_180a3c3e0;
+    *puStack_d0 = &global_var_3456_ptr;
     puStack_d0[3] = 0;
     puStack_d0[1] = 0;
     *(int32_t *)(puStack_d0 + 2) = 0;
@@ -386,13 +386,13 @@ LAB_180064eed:
   }
   
   // 清理临时资源
-  puStack_108 = &UNK_180a3c3e0;
+  puStack_108 = &global_var_3456_ptr;
   if (puStack_100 != (int8_t *)0x0) {
     FUN_18064e900();
   }
   puStack_100 = (int8_t *)0x0;
   uStack_f0 = uStack_f0 & 0xffffffff00000000;
-  puStack_108 = &UNK_18098bcb0;
+  puStack_108 = &global_var_720_ptr;
   
 LAB_180065009:
   // 清理字符串缓冲区
@@ -528,7 +528,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   uStack_310 = 0;
   
   // 解析初始化参数
-  FUN_180627e10(param_1, &puStack_180, &UNK_1809fe900);
+  FUN_180627e10(param_1, &puStack_180, &global_var_816_ptr);
   
   // 初始化日志文件
   uStack_280 = 0;
@@ -537,10 +537,10 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   if (puStack_178 != (void *)0x0) {
     puVar16 = puStack_178;
   }
-  uVar20 = FUN_18062dee0(&uStack_280, puVar16, &UNK_1809fe80c);
+  uVar20 = FUN_18062dee0(&uStack_280, puVar16, &global_var_572_ptr);
   
   // 初始化日志条目容器
-  puStack_330 = &UNK_180a3c3e0;
+  puStack_330 = &global_var_3456_ptr;
   uStack_318 = 0;
   lStack_328 = 0;
   iStack_320 = 0;
@@ -549,7 +549,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   // 检查日志系统状态
   if ((_DAT_180c8f008 == (longlong *)0x0) ||
      (cVar7 = (**(code **)(*_DAT_180c8f008 + 0x28))(), cVar7 == '\0')) {
-    puVar16 = &UNK_1809fe910;
+    puVar16 = &global_var_832_ptr;
   }
   else {
     // 获取当前模块名称
@@ -566,7 +566,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   // 检查日志系统状态并获取版本信息
   if ((_DAT_180c8f008 == (longlong *)0x0) ||
      (cVar7 = (**(code **)(*_DAT_180c8f008 + 0x28))(), cVar7 == '\0')) {
-    puVar16 = &UNK_1809fe928;
+    puVar16 = &global_var_856_ptr;
   }
   else {
     // 获取版本信息
@@ -579,12 +579,12 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   FUN_180627910(&puStack_1e0, puVar16);
   
   // 初始化路径缓冲区
-  puStack_c8 = &UNK_18098bc80;
+  puStack_c8 = &global_var_672_ptr;
   puStack_c0 = auStack_b0;
   uStack_b8 = 0;
   auStack_b0[0] = 0;
   uStack_310 = 4;
-  FUN_18004b860(&puStack_c8, &UNK_1809fd0a0, 0x130a7);
+  FUN_18004b860(&puStack_c8, &global_var_4576_ptr, 0x130a7);
   
   // 构建日志文件路径
   puStack_348 = &system_buffer_ptr;
@@ -593,57 +593,57 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   }
   
   // 添加系统信息到日志
-  FUN_180628040(&puStack_330, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba80);
+  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_160_ptr);
   uStack_310 = 0;
-  puStack_c8 = &UNK_18098bcb0;
-  puStack_348 = &UNK_18098ba98;
-  FUN_180628040(&puStack_330, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098baa0);
+  puStack_c8 = &global_var_720_ptr;
+  puStack_348 = &global_var_184_ptr;
+  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_192_ptr);
   puStack_348 = &system_memory_ba28;
-  FUN_180628040(&puStack_330, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba40);
+  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_96_ptr);
   puStack_348 = &system_buffer_ptr;
   if (puStack_1b8 != (void *)0x0) {
     puStack_348 = puStack_1b8;
   }
-  FUN_180628040(&puStack_330, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba70);
+  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_144_ptr);
   puStack_348 = &system_buffer_ptr;
   if (puStack_1d8 != (void *)0x0) {
     puStack_348 = puStack_1d8;
   }
-  FUN_180628040(&puStack_330, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba60);
+  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_128_ptr);
   
   // 清理临时字符串
-  puStack_1e0 = &UNK_180a3c3e0;
+  puStack_1e0 = &global_var_3456_ptr;
   if (puStack_1d8 != (void *)0x0) {
     FUN_18064e900();
   }
   puStack_1d8 = (void *)0x0;
   uStack_1c8 = 0;
-  puStack_1e0 = &UNK_18098bcb0;
-  puStack_1c0 = &UNK_180a3c3e0;
+  puStack_1e0 = &global_var_720_ptr;
+  puStack_1c0 = &global_var_3456_ptr;
   if (puStack_1b8 != (void *)0x0) {
     FUN_18064e900();
   }
   puStack_1b8 = (void *)0x0;
   uStack_1a8 = 0;
-  puStack_1c0 = &UNK_18098bcb0;
+  puStack_1c0 = &global_var_720_ptr;
   
   // 初始化性能统计变量
-  puStack_2c0 = &UNK_180a3c3e0;
+  puStack_2c0 = &global_var_3456_ptr;
   uStack_2a8 = 0;
   uStack_2b8 = 0;
   uStack_2b0 = 0;
-  puStack_2e8 = &UNK_180a3c3e0;
+  puStack_2e8 = &global_var_3456_ptr;
   uStack_2d0 = 0;
   puStack_2e0 = (void *)0x0;
   uStack_2d8 = 0;
-  puStack_308 = &UNK_180a3c3e0;
+  puStack_308 = &global_var_3456_ptr;
   uStack_2f0 = 0;
   puStack_300 = (void *)0x0;
   uStack_2f8 = 0;
   
   // 获取系统内存信息
   uVar10 = FUN_180623ce0();
-  FUN_180628040(&puStack_2e8, &UNK_1809fe8f8, uVar10 / 0x100000 & 0xffffffff);
+  FUN_180628040(&puStack_2e8, &global_var_808_ptr, uVar10 / 0x100000 & 0xffffffff);
   auStack_88[0] = 0x48;
   uVar11 = GetCurrentProcess();
   iVar8 = K32GetProcessMemoryInfo(uVar11, auStack_88, 0x48);
@@ -651,41 +651,41 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   if (iVar8 != 0) {
     uVar10 = uStack_50;
   }
-  FUN_180628040(&puStack_308, &UNK_1809fe8f8, uVar10 / 0x100000 & 0xffffffff);
+  FUN_180628040(&puStack_308, &global_var_808_ptr, uVar10 / 0x100000 & 0xffffffff);
   
   // 添加系统信息到日志
   puStack_348 = &system_buffer_ptr;
-  FUN_180628040(&puStack_330, &UNK_1809fe940, &UNK_18098ba10, &UNK_1809fe950);
+  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_896_ptr);
   puStack_348 = &system_buffer_ptr;
   if (puStack_2e0 != (void *)0x0) {
     puStack_348 = puStack_2e0;
   }
-  FUN_180628040(&puStack_330, &UNK_1809fe940, &UNK_18098ba10, &UNK_1809fe968);
+  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_920_ptr);
   puStack_348 = &system_buffer_ptr;
   if (puStack_300 != (void *)0x0) {
     puStack_348 = puStack_300;
   }
-  FUN_180628040(&puStack_330, &UNK_1809fe940, &UNK_18098ba10, &UNK_1809fe978);
+  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_936_ptr);
   
   // 获取性能计数器信息
   lVar9 = _DAT_180c86870;
-  puStack_308 = &UNK_180a3c3e0;
+  puStack_308 = &global_var_3456_ptr;
   if (puStack_300 != (void *)0x0) {
     FUN_18064e900();
   }
   puStack_300 = (void *)0x0;
   uStack_2f0 = uStack_2f0 & 0xffffffff00000000;
-  puStack_308 = &UNK_18098bcb0;
-  puStack_2e8 = &UNK_180a3c3e0;
+  puStack_308 = &global_var_720_ptr;
+  puStack_2e8 = &global_var_3456_ptr;
   if (puStack_2e0 != (void *)0x0) {
     FUN_18064e900();
   }
   puStack_2e0 = (void *)0x0;
   uStack_2d0 = uStack_2d0 & 0xffffffff00000000;
-  puStack_2e8 = &UNK_18098bcb0;
+  puStack_2e8 = &global_var_720_ptr;
   uStack_2b8 = 0;
   uStack_2a8 = uStack_2a8 & 0xffffffff00000000;
-  puStack_2c0 = &UNK_18098bcb0;
+  puStack_2c0 = &global_var_720_ptr;
   
   // 计算启动时间
   lVar14 = _DAT_180c8ed58;
@@ -695,14 +695,14 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   }
   puStack_348 = (void *)
                 ((double)(lVar14 - _DAT_180c8ed48) * _DAT_180c8ed50 - *(double *)(lVar9 + 0x210));
-  FUN_180628040(&puStack_330, &UNK_1809fe998, &UNK_18098ba10, &UNK_1809fe988);
+  FUN_180628040(&puStack_330, &global_var_968_ptr, &global_var_48_ptr, &global_var_952_ptr);
   
   // 添加配置信息到日志
   puStack_348 = &system_buffer_ptr;
   if (puStack_1f8 != (void *)0x0) {
     puStack_348 = puStack_1f8;
   }
-  FUN_180628040(&puStack_330, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba50);
+  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_112_ptr);
   
   // 初始化日志条目容器
   puStack_220 = (uint64_t *)0x0;
@@ -713,11 +713,11 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   puStack_158 = (uint64_t *)0x0;
   uStack_150 = 0;
   uStack_148 = 3;
-  puStack_f0 = &UNK_1809fdc18;
+  puStack_f0 = &global_var_7512_ptr;
   puStack_e8 = auStack_d8;
   auStack_d8[0] = 0;
   uStack_e0 = 9;
-  strcpy_s(auStack_d8, 0x10, &UNK_1809fe9a8);
+  strcpy_s(auStack_d8, 0x10, &global_var_984_ptr);
   
   // 处理日志条目
   ProcessStringAndMemoryManagement(&puStack_160, &puStack_200, &puStack_f0);
@@ -726,17 +726,17 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   
   // 处理多个日志条目
   if (1 < (ulonglong)((longlong)puStack_158 - (longlong)puStack_160 >> 5)) {
-    puStack_118 = &UNK_1809fdc18;
+    puStack_118 = &global_var_7512_ptr;
     puStack_110 = auStack_100;
     auStack_100[0] = 0;
     uStack_108 = 1;
     strcpy_s(auStack_100, 0x10, &system_memory_df28);
     ProcessStringAndMemoryManagement(&puStack_220, puVar19 + 4, &puStack_118);
-    puStack_118 = &UNK_18098bcb0;
+    puStack_118 = &global_var_720_ptr;
   }
   
   // 清理日志条目
-  puStack_f0 = &UNK_18098bcb0;
+  puStack_f0 = &global_var_720_ptr;
   puVar4 = puStack_220;
   for (puVar17 = puVar19; puStack_220 = puVar4, puVar17 != puVar18; puVar17 = puVar17 + 4) {
     (**(code **)*puVar17)(puVar17, 0);
@@ -752,7 +752,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
     // 检查日志系统状态
     if ((_DAT_180c8f008 == (longlong *)0x0) ||
        (cVar7 = (**(code **)(*_DAT_180c8f008 + 0x28))(), cVar7 == '\0')) {
-      puVar16 = &UNK_1809fe9b8;
+      puVar16 = &global_var_1000_ptr;
     }
     else {
       // 获取进程ID
@@ -846,7 +846,7 @@ LAB_180065a3e:
                   if ((void *)puVar17[1] != (void *)0x0) {
                     puVar16 = (void *)puVar17[1];
                   }
-                  FUN_180628040(&puStack_330, &UNK_1809fe940, &UNK_1809fe9c8, puVar16);
+                  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_1016_ptr, puVar16);
                   break;
                 }
               }
@@ -857,13 +857,13 @@ LAB_180065a3e:
           }
           
           // 清理临时字符串
-          puStack_2a0 = &UNK_180a3c3e0;
+          puStack_2a0 = &global_var_3456_ptr;
           if (pcStack_298 != (char *)0x0) {
             FUN_18064e900();
           }
           pcStack_298 = (char *)0x0;
           uStack_288 = 0;
-          puStack_2a0 = &UNK_18098bcb0;
+          puStack_2a0 = &global_var_720_ptr;
           for (puVar18 = puVar17; puVar18 != puVar5; puVar18 = puVar18 + 4) {
             (**(code **)*puVar18)(puVar18, 0);
           }
@@ -900,7 +900,7 @@ LAB_180065a3e:
       puStack_258 = puVar17;
       FUN_18064e900(puVar5);
     }
-    puStack_240 = &UNK_180a3c3e0;
+    puStack_240 = &global_var_3456_ptr;
     if (lStack_238 != 0) {
       puStack_260 = puVar18;
       puStack_258 = puVar17;
@@ -908,7 +908,7 @@ LAB_180065a3e:
     }
     lStack_238 = 0;
     uStack_228 = 0;
-    puStack_240 = &UNK_18098bcb0;
+    puStack_240 = &global_var_720_ptr;
     puStack_260 = puVar18;
     puStack_258 = puVar17;
   }
@@ -933,14 +933,14 @@ LAB_180065a3e:
     if (puStack_198 != (void *)0x0) {
       puVar16 = puStack_198;
     }
-    FUN_180628040(&puStack_330, &UNK_1809fe7f8, puVar16);
-    puStack_1a0 = &UNK_180a3c3e0;
+    FUN_180628040(&puStack_330, &global_var_552_ptr, puVar16);
+    puStack_1a0 = &global_var_3456_ptr;
     if (puStack_198 != (void *)0x0) {
       FUN_18064e900();
     }
     puStack_198 = (void *)0x0;
     uStack_188 = 0;
-    puStack_1a0 = &UNK_18098bcb0;
+    puStack_1a0 = &global_var_720_ptr;
   }
   
   // 写入日志文件
@@ -973,19 +973,19 @@ LAB_180065a3e:
   }
   
   // 清理日志条目容器
-  puStack_200 = &UNK_180a3c3e0;
+  puStack_200 = &global_var_3456_ptr;
   if (puStack_1f8 != (void *)0x0) {
     puStack_218 = puVar19;
     FUN_18064e900();
   }
   puStack_1f8 = (void *)0x0;
   uStack_1e8 = 0;
-  puStack_200 = &UNK_18098bcb0;
-  puStack_330 = &UNK_180a3c3e0;
+  puStack_200 = &global_var_720_ptr;
+  puStack_330 = &global_var_3456_ptr;
   if (lStack_328 == 0) {
     lStack_328 = 0;
     uStack_318 = uStack_318 & 0xffffffff00000000;
-    puStack_330 = &UNK_18098bcb0;
+    puStack_330 = &global_var_720_ptr;
     puStack_218 = puVar19;
     if (lVar9 != 0) {
       fclose(lVar9);
@@ -994,11 +994,11 @@ LAB_180065a3e:
       _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
       UNLOCK();
     }
-    puStack_180 = &UNK_180a3c3e0;
+    puStack_180 = &global_var_3456_ptr;
     if (puStack_178 == (void *)0x0) {
       puStack_178 = (void *)0x0;
       uStack_168 = 0;
-      puStack_180 = &UNK_18098bcb0;
+      puStack_180 = &global_var_720_ptr;
       FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_368);
     }
     FUN_18064e900();
@@ -1126,25 +1126,25 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, u
   (*pcVar1)(plStack_b0, uVar3);
   
   // 清理临时参数
-  ppuStack_68 = (void **)&UNK_180a3c3e0;
+  ppuStack_68 = (void **)&global_var_3456_ptr;
   if (pplStack_60 != (longlong **)0x0) {
     FUN_18064e900();
   }
   pplStack_60 = (longlong **)0x0;
   uStack_50 = 0;
-  ppuStack_68 = (void **)&UNK_18098bcb0;
+  ppuStack_68 = (void **)&global_var_720_ptr;
   
   // 执行引擎核心初始化
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
   uVar3 = FUN_180627ae0(&puStack_88, _DAT_180c86928 + 0xe0);
   (*pcVar1)(plStack_b0, uVar3);
-  puStack_88 = &UNK_180a3c3e0;
+  puStack_88 = &global_var_3456_ptr;
   if (lStack_80 != 0) {
     FUN_18064e900();
   }
   lStack_80 = 0;
   uStack_70 = 0;
-  puStack_88 = &UNK_18098bcb0;
+  puStack_88 = &global_var_720_ptr;
   
   // 处理启动参数
   if (param_2 == 0) {
@@ -1157,18 +1157,18 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, longlong param_2, u
     pcVar1 = *(code **)(*plStack_b0 + 0x10);
     uVar3 = FUN_180627910(&puStack_88, param_2);
     (*pcVar1)(plStack_b0, param_1, uVar3);
-    puStack_88 = &UNK_180a3c3e0;
+    puStack_88 = &global_var_3456_ptr;
     if (lStack_80 != 0) {
       FUN_18064e900();
     }
     lStack_80 = 0;
     uStack_70 = 0;
-    puStack_88 = &UNK_18098bcb0;
+    puStack_88 = &global_var_720_ptr;
   }
   
   // 清理参数缓冲区
   FUN_18062c470(&puStack_a8);
-  puStack_a8 = &UNK_180a3c3e0;
+  puStack_a8 = &global_var_3456_ptr;
   if (lStack_a0 != 0) {
     FUN_18064e900();
   }

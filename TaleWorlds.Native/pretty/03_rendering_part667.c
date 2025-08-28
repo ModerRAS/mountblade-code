@@ -467,7 +467,7 @@ uint64_t FUN_18064c730(longlong param_1, ulonglong param_2, ulonglong param_3, l
           
           if (*(ushort *)((longlong)resource_pool_ptr + 10) < resource_counter) {
 LAB_resource_error:
-            FUN_1806503d0(0xe, &UNK_180a3d8d0);
+            FUN_1806503d0(0xe, &unknown_var_8816_ptr);
           }
           else {
             *link_ptr1 = *(uint64_t *)(resource_pool_ptr + 8);
@@ -604,7 +604,7 @@ int8_t FUN_18064c789(void)
           
           if (*(ushort *)((longlong)resource_pool_ptr + 10) < resource_counter) {
 LAB_resource_error:
-            FUN_1806503d0(0xe, &UNK_180a3d8d0);
+            FUN_1806503d0(0xe, &unknown_var_8816_ptr);
           }
           else {
             *link_ptr1 = *(uint64_t *)(resource_pool_ptr + 8);
@@ -835,7 +835,7 @@ longlong FUN_18064c940(longlong param_1, longlong param_2, ulonglong param_3, in
           
           if (*(ushort *)((longlong)resource_pool_ptr + 10) < resource_counter) {
 LAB_allocation_error:
-            FUN_1806503d0(0xe, &UNK_180a3d8d0);
+            FUN_1806503d0(0xe, &unknown_var_8816_ptr);
           }
           else {
             *link_ptr1 = *(uint64_t *)(resource_pool_ptr + 8);
@@ -1042,7 +1042,7 @@ void FUN_18064cf20(longlong param_1, uint64_t *param_2)
   
   // 检查资源大小
   if ((ulonglong)param_2[2] < 0x401) {
-    resource_ptr = &UNK_1809fb2d0;
+    resource_ptr = &unknown_var_6944_ptr;
     if ((void *)*param_2 != (void *)0x0) {
       resource_ptr = (void *)*param_2;
     }

@@ -129,7 +129,7 @@ void FUN_1802eaec0(longlong param_1,longlong param_2,char param_3,char param_4,l
             pppplVar3[0x14] = pppplVar4[0x14];
           }
           pppplStackX_8 = pppplStack_80;
-          *pppplStack_80 = (longlong ***)&UNK_18098bcb0;
+          *pppplStack_80 = (longlong ***)&unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(pppplStack_80);
         }
@@ -384,7 +384,7 @@ LAB_1802eb78f:
         if (pcVar15 != pcVar24 + -0x180a18037) goto LAB_1802eb7fe;
         pcVar15 = pcVar15 + (longlong)pcVar25;
         if (pcVar25 < pcVar15) {
-          lVar18 = (longlong)&UNK_180a18038 - (longlong)pcVar25;
+          lVar18 = (longlong)&unknown_var_5064_ptr - (longlong)pcVar25;
           while (*pcVar25 == pcVar25[lVar18]) {
             pcVar25 = pcVar25 + 1;
             if (pcVar15 <= pcVar25) goto LAB_1802eb7d3;
@@ -410,7 +410,7 @@ LAB_1802eb7d3:
           if (pcVar15 == pcVar24 + -0x180a0b67f) {
             pcVar15 = pcVar25 + (longlong)pcVar15;
             if (pcVar15 <= pcVar25) goto LAB_1802eb83e;
-            lVar18 = (longlong)&UNK_180a0b680 - (longlong)pcVar25;
+            lVar18 = (longlong)&unknown_var_3424_ptr - (longlong)pcVar25;
             while (*pcVar25 == pcVar25[lVar18]) {
               pcVar25 = pcVar25 + 1;
               if (pcVar15 <= pcVar25) goto LAB_1802eb83e;
@@ -448,7 +448,7 @@ LAB_1802eb83e:
             if (pcVar15 == pcVar24 + -0x180a0b67f) {
               pcVar15 = pcVar15 + (longlong)pcVar25;
               if (pcVar15 <= pcVar25) goto LAB_1802eb904;
-              lVar18 = (longlong)&UNK_180a0b680 - (longlong)pcVar25;
+              lVar18 = (longlong)&unknown_var_3424_ptr - (longlong)pcVar25;
               while (*pcVar25 == pcVar25[lVar18]) {
                 pcVar25 = pcVar25 + 1;
                 if (pcVar15 <= pcVar25) goto LAB_1802eb904;

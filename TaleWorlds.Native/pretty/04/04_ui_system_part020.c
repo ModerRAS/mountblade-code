@@ -587,8 +587,8 @@ void ui_system_animation_controller(longlong context, float param2, uint64_t par
 }
 
 // 全局变量定义
-#define UI_SYSTEM_GLOBAL_DATA_1 UNK_180a19ac8
-#define UI_SYSTEM_GLOBAL_DATA_2 UNK_180a3e588
+#define UI_SYSTEM_GLOBAL_DATA_1 unknown_var_1864
+#define UI_SYSTEM_GLOBAL_DATA_2 unknown_var_2072
 #define UI_SYSTEM_GLOBAL_DATA _DAT_180bf00a8
 
 // 内部函数声明

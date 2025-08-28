@@ -505,7 +505,7 @@ LAB_180760f3a:
                 puStack_548 = (int32_t *)auStack_168;
                 auStack_168[0] = 0;
                     // WARNING: Subroutine does not return
-                FUN_180749ef0(iVar5,7,param_1,&UNK_180958a10);
+                FUN_180749ef0(iVar5,7,param_1,&unknown_var_1152_ptr);
               }
               if ((((*(longlong *)(param_1 + 0xe8) != 0) &&
                    (*(longlong *)(*(longlong *)(param_1 + 0xe8) + 0x48) != 0)) &&

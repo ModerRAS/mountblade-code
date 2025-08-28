@@ -163,8 +163,8 @@ skip_debug_logging:
   if (is_enabled == '\0') {
     if (6 < *(uint *)(trigger_data + 0x10)) {
       do {
-        if ((&UNK_180a10500 + compare_index)[*(longlong *)(trigger_data + 8) + -0x180a10500] !=
-            (&UNK_180a10500)[compare_index]) {
+        if ((&unknown_var_3520_ptr + compare_index)[*(longlong *)(trigger_data + 8) + -0x180a10500] !=
+            (&unknown_var_3520_ptr)[compare_index]) {
           return result_code;
         }
         compare_index = compare_index + 1;
@@ -174,7 +174,7 @@ skip_debug_logging:
     }
   }
   else {
-    format_result = FUN_1808496c0(result_code, &UNK_180211ec0, 0xffffffff);
+    format_result = FUN_1808496c0(result_code, &unknown_var_1504_ptr, 0xffffffff);
     string_ptr = &system_buffer_ptr;
     if (*(void **)(trigger_data + 8) != (void *)0x0) {
       string_ptr = *(void **)(trigger_data + 8);
@@ -205,7 +205,7 @@ longlong process_event_type(longlong event_context, int event_type, char is_enab
   
   if (*(int *)(_DAT_180c8a9c8 + 0x9a0) == 0) goto skip_debug_logging;
   
-  string_data = &UNK_180a3c3e0;
+  string_data = &unknown_var_3456_ptr;
   result_code = 0;
   temp_buffer = (int32_t *)0x0;
   temp_size = 0;
@@ -253,13 +253,13 @@ buffer_ready:
   
   // 输出调试消息
   FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, message_buffer);
-  string_data = &UNK_180a3c3e0;
+  string_data = &unknown_var_3456_ptr;
   if (temp_buffer != (int32_t *)0x0) {
     FUN_18064e900();
   }
   temp_buffer = (int32_t *)0x0;
   result_code = (ulonglong)result_code._4_4_ << 0x20;
-  string_data = &UNK_18098bcb0;
+  string_data = &unknown_var_720_ptr;
 
 skip_debug_logging:
   context_backup = 0;
@@ -268,7 +268,7 @@ skip_debug_logging:
   FUN_180211a30(format_result, &system_buffer_ptr);
   
   if ((context_backup != 0) && (is_enabled != '\0')) {
-    format_result = FUN_1808496c0(context_backup, &UNK_180211ec0, 0xffffffff);
+    format_result = FUN_1808496c0(context_backup, &unknown_var_1504_ptr, 0xffffffff);
     FUN_180211a30(format_result, &system_buffer_ptr);
   }
   return context_backup;
@@ -360,7 +360,7 @@ skip_debug_logging:
   FUN_180211a30(string_length, string_ptr);
   
   if (string_length != 0) {
-    FUN_1800623b0(_DAT_180c86928, 0, 0, 3, &UNK_180a10508, result_code, error_code);
+    FUN_1800623b0(_DAT_180c86928, 0, 0, 3, &unknown_var_3528_ptr, result_code, error_code);
     return 0;
   }
   return result_code;
@@ -397,7 +397,7 @@ uint64_t process_thread_safe_event_operation(longlong event_context, int32_t ope
   
   if (*(int *)(_DAT_180c8a9c8 + 0x9a0) == 0) goto skip_debug_logging;
   
-  string_data = &UNK_180a3c3e0;
+  string_data = &unknown_var_3456_ptr;
   debug_result = 0;
   temp_buffer = (int32_t *)0x0;
   temp_size = 0;
@@ -447,13 +447,13 @@ buffer_ready:
   
   // 输出调试消息
   FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, message_buffer);
-  string_data = &UNK_180a3c3e0;
+  string_data = &unknown_var_3456_ptr;
   if (temp_buffer != (int32_t *)0x0) {
     FUN_18064e900();
   }
   temp_buffer = (int32_t *)0x0;
   debug_result = (ulonglong)debug_result._4_4_ << 0x20;
-  string_data = &UNK_18098bcb0;
+  string_data = &unknown_var_720_ptr;
 
 skip_debug_logging:
   process_result = process_event_type(event_context, operation_code, 0);
@@ -462,7 +462,7 @@ skip_debug_logging:
   process_result = result_code;
   
   if (lock_result != 0) {
-    FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &UNK_180a10520, result_code);
+    FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &unknown_var_3552_ptr, result_code);
     process_result = 0;
   }
   
@@ -510,7 +510,7 @@ void add_event_to_queue(longlong event_context, uint64_t event_data)
   parsed_data = FUN_180624440(security_buffer, event_data);
   FUN_1806279c0(&temp_string, parsed_data);
   
-  security_buffer[0] = &UNK_18098bcb0;
+  security_buffer[0] = &unknown_var_720_ptr;
   debug_handle = 0;
   
   string_ptr = &system_buffer_ptr;
@@ -531,7 +531,7 @@ void add_event_to_queue(longlong event_context, uint64_t event_data)
     if (temp_string != (void *)0x0) {
       string_ptr = temp_string;
     }
-    FUN_180626f80(&UNK_180a105b8, string_ptr);
+    FUN_180626f80(&unknown_var_3704_ptr, string_ptr);
     goto cleanup_and_exit;
   }
   
@@ -540,7 +540,7 @@ void add_event_to_queue(longlong event_context, uint64_t event_data)
   if (temp_string != (void *)0x0) {
     string_ptr = temp_string;
   }
-  search_result = strstr(string_ptr, &UNK_180a105d8);
+  search_result = strstr(string_ptr, &unknown_var_3736_ptr);
   if (search_result == 0) {
     string_ptr = &system_buffer_ptr;
     if (temp_string != (void *)0x0) {
@@ -552,7 +552,7 @@ void add_event_to_queue(longlong event_context, uint64_t event_data)
     if (temp_string != (void *)0x0) {
       string_ptr = temp_string;
     }
-    search_result = strstr(string_ptr, &UNK_180a10568);
+    search_result = strstr(string_ptr, &unknown_var_3624_ptr);
     if (search_result != 0) goto process_special_event;
   }
   else {
@@ -607,13 +607,13 @@ calculate_new_size:
   *(uint64_t **)(event_context + 0x388) = new_queue + search_result;
 
 cleanup_and_exit:
-  temp_string = &UNK_180a3c3e0;
+  temp_string = &unknown_var_3456_ptr;
   if (temp_string != (void *)0x0) {
     FUN_18064e900();
   }
   temp_string = (void *)0x0;
   format_result = 0;
-  temp_string = &UNK_18098bcb0;
+  temp_string = &unknown_var_720_ptr;
   
   // 释放线程锁
   lock_result = _Mtx_unlock(lock_address);
@@ -702,7 +702,7 @@ void initialize_event_system_config(longlong event_context, uint64_t *config_dat
     // 验证配置参数
     check_result = FUN_180849990(*(uint64_t *)(event_context + 0x368), 0, &config_params_copy[0], &u_stack_54);
     if (check_result != 0) {
-      FUN_180626f80(&UNK_180a10570);
+      FUN_180626f80(&unknown_var_3632_ptr);
     }
   }
   
@@ -833,60 +833,60 @@ void update_event_rendering_params(longlong event_context)
   
   // 获取当前渲染参数
   FUN_1808452a0(*(uint64_t *)(event_context + 0x368), &render_params[3], &render_params[2]);
-  FUN_18010f010(&UNK_180a10600);
-  FUN_18010f010(&UNK_180a10618, (double)render_params[2]);
-  FUN_18010f010(&UNK_180a105e0, (double)render_params[1]);
-  FUN_18010f010(&UNK_180a105f0, (double)render_params[0]);
-  FUN_18010f010(&UNK_180a10650, (double)render_params[4]);
-  FUN_18010f010(&UNK_180a10668, (double)render_params[3]);
+  FUN_18010f010(&unknown_var_3776_ptr);
+  FUN_18010f010(&unknown_var_3800_ptr, (double)render_params[2]);
+  FUN_18010f010(&unknown_var_3744_ptr, (double)render_params[1]);
+  FUN_18010f010(&unknown_var_3760_ptr, (double)render_params[0]);
+  FUN_18010f010(&unknown_var_3856_ptr, (double)render_params[4]);
+  FUN_18010f010(&unknown_var_3880_ptr, (double)render_params[3]);
   
   // 获取纹理参数
   FUN_180845090(*(uint64_t *)(event_context + 0x368), texture_params);
-  FUN_18010f010(&UNK_180a10628, u_stack_2c);
-  FUN_18010f010(&UNK_180a10640, u_stack_24);
-  FUN_18010f010(&UNK_180a10698, texture_params[0]);
-  FUN_18010f010(&UNK_180a106c0, u_stack_38);
+  FUN_18010f010(&unknown_var_3816_ptr, u_stack_2c);
+  FUN_18010f010(&unknown_var_3840_ptr, u_stack_24);
+  FUN_18010f010(&unknown_var_3928_ptr, texture_params[0]);
+  FUN_18010f010(&unknown_var_3968_ptr, u_stack_38);
   
   // 初始化并更新渲染参数
   render_params[0] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a10678, &render_params[0], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_3896_ptr, &render_params[0], 0);
   render_params[1] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a10688, &render_params[1], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_3912_ptr, &render_params[1], 0);
   render_params[2] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a10710, &render_params[2], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4048_ptr, &render_params[2], 0);
   render_params[3] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a10720, &render_params[3], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4064_ptr, &render_params[3], 0);
   render_params[4] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a078fc, &render_params[4], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_7676_ptr, &render_params[4], 0);
   render_params[5] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a106e8, &render_params[5], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4008_ptr, &render_params[5], 0);
   render_params[6] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a10700, &render_params[6], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4032_ptr, &render_params[6], 0);
   render_params[7] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a10750, &render_params[7], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4112_ptr, &render_params[7], 0);
   render_params[8] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a10760, &render_params[8], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4128_ptr, &render_params[8], 0);
   render_params[9] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a10728, &render_params[9], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4072_ptr, &render_params[9], 0);
   render_params[10] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &UNK_180a10740, &render_params[10], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4096_ptr, &render_params[10], 0);
   
   // 应用渲染参数更新
-  FUN_18010f010(&UNK_180a10798);
-  FUN_18010f010(&UNK_180a107b0);
-  FUN_18010f010(&UNK_180a10798);
-  FUN_18010f010(&UNK_180a10778, (double)render_params[0]);
-  FUN_18010f010(&UNK_180a10788, (double)render_params[1]);
-  FUN_18010f010(&UNK_180a107f8, (double)render_params[2]);
-  FUN_18010f010(&UNK_180a10810, (double)render_params[3]);
-  FUN_18010f010(&UNK_180a107c8, (double)render_params[4]);
-  FUN_18010f010(&UNK_180a107d8, (double)render_params[5]);
-  FUN_18010f010(&UNK_180a10850, (double)render_params[6]);
-  FUN_18010f010(&UNK_180a10860, (double)render_params[7]);
-  FUN_18010f010(&UNK_180a10820, (double)render_params[8]);
-  FUN_18010f010(&UNK_180a10838, (double)render_params[9]);
-  FUN_18010f010(&UNK_180a10898, (double)render_params[10]);
-  FUN_18010f010(&UNK_180a10798);
+  FUN_18010f010(&unknown_var_4184_ptr);
+  FUN_18010f010(&unknown_var_4208_ptr);
+  FUN_18010f010(&unknown_var_4184_ptr);
+  FUN_18010f010(&unknown_var_4152_ptr, (double)render_params[0]);
+  FUN_18010f010(&unknown_var_4168_ptr, (double)render_params[1]);
+  FUN_18010f010(&unknown_var_4280_ptr, (double)render_params[2]);
+  FUN_18010f010(&unknown_var_4304_ptr, (double)render_params[3]);
+  FUN_18010f010(&unknown_var_4232_ptr, (double)render_params[4]);
+  FUN_18010f010(&unknown_var_4248_ptr, (double)render_params[5]);
+  FUN_18010f010(&unknown_var_4368_ptr, (double)render_params[6]);
+  FUN_18010f010(&unknown_var_4384_ptr, (double)render_params[7]);
+  FUN_18010f010(&unknown_var_4320_ptr, (double)render_params[8]);
+  FUN_18010f010(&unknown_var_4344_ptr, (double)render_params[9]);
+  FUN_18010f010(&unknown_var_4440_ptr, (double)render_params[10]);
+  FUN_18010f010(&unknown_var_4184_ptr);
   
   // 安全检查
   FUN_1808fc050(security_check ^ (ulonglong)security_buffer);

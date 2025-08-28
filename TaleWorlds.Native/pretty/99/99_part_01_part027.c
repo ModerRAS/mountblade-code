@@ -1226,7 +1226,7 @@ void FUN_1800ba6f0(uint64_t module_param)
     buffer_value10 = module_param;
     path_length = GetModuleFileNameW(0, module_name, PATH_MAX_LENGTH);
     if (path_length == 0) {
-        FUN_180627160(&UNK_180a02ed8);
+        FUN_180627160(&unknown_var_8696_ptr);
         debug_value = FUN_180628ca0();
         FUN_180627ae0(module_param, debug_value);
         buffer_value8 = 1;
@@ -1262,7 +1262,7 @@ LAB_1800ba7cd:
     module_name_ptr[7] = 0x73;
     module_name_ptr[8] = 0x2f;
     module_name_ptr[9] = 0;
-    buffer_ptr2 = &UNK_180a3c3e0;
+    buffer_ptr2 = &unknown_var_3456_ptr;
     buffer_value4 = 0;
     buffer_value6 = 0;
     buffer_value5 = 0;
@@ -1288,7 +1288,7 @@ LAB_1800ba7cd:
  */
 uint64_t FUN_1800ba940(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    FUN_1800ba4b0(param1, &UNK_180a02f10, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
+    FUN_1800ba4b0(param1, &unknown_var_8752_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
     return param1;
 }
 
@@ -1305,7 +1305,7 @@ uint64_t FUN_1800ba940(uint64_t param1, uint64_t param2, uint64_t param3, uint64
  */
 uint64_t FUN_1800ba980(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    FUN_1800ba4b0(param1, &UNK_180a02f58, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
+    FUN_1800ba4b0(param1, &unknown_var_8824_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
     return param1;
 }
 
@@ -1322,7 +1322,7 @@ uint64_t FUN_1800ba980(uint64_t param1, uint64_t param2, uint64_t param3, uint64
  */
 uint64_t FUN_1800ba9c0(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    FUN_1800ba4b0(param1, &UNK_180a02f38, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
+    FUN_1800ba4b0(param1, &unknown_var_8792_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
     return param1;
 }
 
@@ -1339,7 +1339,7 @@ uint64_t FUN_1800ba9c0(uint64_t param1, uint64_t param2, uint64_t param3, uint64
  */
 uint64_t FUN_1800baa00(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    FUN_1800ba4b0(param1, &UNK_180a02f88, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
+    FUN_1800ba4b0(param1, &unknown_var_8872_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
     return param1;
 }
 
@@ -1356,7 +1356,7 @@ uint64_t FUN_1800baa00(uint64_t param1, uint64_t param2, uint64_t param3, uint64
  */
 uint64_t FUN_1800baa40(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    FUN_1800ba4b0(param1, &UNK_180a02f70, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
+    FUN_1800ba4b0(param1, &unknown_var_8848_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
     return param1;
 }
 
@@ -1387,10 +1387,10 @@ void FUN_1800baa80(uint64_t* dir_param)
     buffer_ptr = large_buffer;
     buffer_ptr2 = dir_param;
     SHGetFolderPathW(0, 0x23, 0, 0);
-    *dir_param = &UNK_18098bcb0;
+    *dir_param = &unknown_var_720_ptr;
     dir_param[1] = 0;
     *(uint32_t*)(dir_param + 2) = 0;
-    *dir_param = &UNK_180a3c3e0;
+    *dir_param = &unknown_var_3456_ptr;
     dir_param[3] = 0;
     dir_param[1] = 0;
     *(uint32_t*)(dir_param + 2) = 0;

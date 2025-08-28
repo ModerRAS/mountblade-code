@@ -119,9 +119,9 @@
 
 // 全局变量引用
 extern uint64_t _DAT_180c8ed18;
-extern uint8_t UNK_180a0ba98;
+extern uint8_t global_state_4472;
 extern char system_memory_0300;
-extern uint8_t UNK_180a1ed48;
+extern uint8_t global_state_2984;
 
 /**
  * 系统空操作处理器

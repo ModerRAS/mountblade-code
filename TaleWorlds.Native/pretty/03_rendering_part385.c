@@ -429,7 +429,7 @@ uint64_t * FUN_18047ce10(longlong param_1,int32_t param_2)
   longlong lVar2;
   
   puVar1 = (uint64_t *)FUN_1808fc418(0x20);
-  *puVar1 = &UNK_180a2bd18;
+  *puVar1 = &unknown_var_6184_ptr;
   *(int32_t *)(puVar1 + 1) = param_2;
   *(int32_t *)((longlong)puVar1 + 0xc) = 0;
   puVar1[2] = 0;

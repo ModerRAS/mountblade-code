@@ -215,7 +215,7 @@ LAB_18038cff2:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a21d98);
+  FUN_180062300(_DAT_180c86928,&unknown_var_5352_ptr);
 }
 
 
@@ -299,7 +299,7 @@ LAB_18038cff2:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a21d98);
+  FUN_180062300(_DAT_180c86928,&unknown_var_5352_ptr);
 }
 
 
@@ -382,7 +382,7 @@ LAB_18038cff2:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a21d98);
+  FUN_180062300(_DAT_180c86928,&unknown_var_5352_ptr);
 }
 
 
@@ -451,7 +451,7 @@ LAB_18038cff2:
     if ((int)(uint)*(byte *)(unaff_RBX + 0xa8) <= unaff_EDI) {
       if (0 < unaff_EBP) {
                     // WARNING: Subroutine does not return
-        FUN_180062300(_DAT_180c86928,&UNK_180a21d98);
+        FUN_180062300(_DAT_180c86928,&unknown_var_5352_ptr);
       }
       if (0 < unaff_EBP) {
         FUN_180057340();
@@ -475,7 +475,7 @@ void FUN_18038d022(void)
   
   if (0 < unaff_EBP) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&UNK_180a21d98);
+    FUN_180062300(_DAT_180c86928,&unknown_var_5352_ptr);
   }
   if (0 < unaff_EBP) {
     FUN_180057340();
@@ -494,7 +494,7 @@ void FUN_18038d02e(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a21d98);
+  FUN_180062300(_DAT_180c86928,&unknown_var_5352_ptr);
 }
 
 

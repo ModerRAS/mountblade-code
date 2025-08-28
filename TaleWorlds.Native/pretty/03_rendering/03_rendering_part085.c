@@ -21,17 +21,17 @@ extern longlong _DAT_180bf00a8;
 extern longlong _DAT_180bf02a0;
 extern longlong _DAT_180c86890;
 extern longlong _DAT_180c8ed18;
-extern uint64_t UNK_180a1a8f0;
-extern uint64_t UNK_180a1a9d8;
-extern uint64_t UNK_180a1a9b0;
-extern uint64_t UNK_180a1a988;
-extern uint64_t UNK_180a1a960;
-extern uint64_t UNK_180a1aa70;
-extern uint64_t UNK_180a1aa38;
-extern uint64_t UNK_180a1aa20;
-extern uint64_t UNK_1809fcc28;
-extern uint64_t UNK_18098bcb0;
-extern uint64_t UNK_180a3c3e0;
+extern uint64_t global_state_5488_ptr;
+extern uint64_t global_state_5720_ptr;
+extern uint64_t global_state_5680_ptr;
+extern uint64_t global_state_5640_ptr;
+extern uint64_t global_state_5600_ptr;
+extern uint64_t global_state_5872_ptr;
+extern uint64_t global_state_5816_ptr;
+extern uint64_t global_state_5792_ptr;
+extern uint64_t global_state_3432_ptr;
+extern uint64_t global_state_720_ptr;
+extern uint64_t global_state_3456_ptr;
 
 // =============================================================================
 // 渲染系统对象清理函数
@@ -381,25 +381,25 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
     // 根据渲染模式设置参数
     switch(render_mode) {
     case 0:
-        FUN_180094b30(render_buffer, &UNK_180a1a8f0);
+        FUN_180094b30(render_buffer, &global_state_5488_ptr);
         break;
     case 1:
-        FUN_180094b30(render_buffer, &UNK_180a1a9d8);
+        FUN_180094b30(render_buffer, &global_state_5720_ptr);
         break;
     case 2:
-        FUN_180094b30(render_buffer, &UNK_180a1a9b0);
+        FUN_180094b30(render_buffer, &global_state_5680_ptr);
         break;
     case 3:
-        FUN_180094b30(render_buffer, &UNK_180a1a988);
+        FUN_180094b30(render_buffer, &global_state_5640_ptr);
         break;
     case 4:
-        FUN_180094b30(render_buffer, &UNK_180a1a960);
+        FUN_180094b30(render_buffer, &global_state_5600_ptr);
         break;
     case 5:
-        FUN_180094b30(render_buffer, &UNK_180a1aa70);
+        FUN_180094b30(render_buffer, &global_state_5872_ptr);
         break;
     default:
-        FUN_180626ee0(&UNK_180a1aa38);
+        FUN_180626ee0(&global_state_5816_ptr);
     }
     
     // 获取渲染上下文
@@ -444,16 +444,16 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
         stack_param_3 = 0x80;
         stack_param_5 = 0x80;
         stack_param_7 = *(int32_t *)(render_params + 0x1bd4);
-        stack_pointer_2 = &UNK_1809fcc28;
+        stack_pointer_2 = &global_state_3432_ptr;
         stack_pointer_3 = stack_data_3;
         stack_data_3[0] = 0;
         stack_param_16_copy = 0x11;
-        stack_data = strcpy_s(stack_data_3, 0x80, &UNK_180a1aa20);
+        stack_data = strcpy_s(stack_data_3, 0x80, &global_state_5792_ptr);
         FUN_1800b1d80(stack_data, &stack_buffer_1, &stack_pointer_2, &stack_param_3);
         
         // 管理渲染缓冲区
         render_context = stack_buffer_1;
-        stack_pointer_2 = &UNK_18098bcb0;
+        stack_pointer_2 = &global_state_720_ptr;
         render_buffer[1] = render_buffer[1] | 2;
         *(uint64_t *)(render_buffer + 0x2684) = 0;
         *(uint64_t *)(render_buffer + 0x2686) = 0;
@@ -702,7 +702,7 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
     }
     
     // 处理其他渲染路径
-    stack_pointer = &UNK_180a3c3e0;
+    stack_pointer = &global_state_3456_ptr;
     stack_value_1 = 0;
     stack_data_ptr = (uint64_t *)0x0;
     stack_param_1 = 0;
@@ -730,7 +730,7 @@ void rendering_system_advanced_render_control(longlong render_engine, longlong r
     }
     
     // 设置渲染路径
-    stack_pointer = &UNK_180a3c3e0;
+    stack_pointer = &global_state_3456_ptr;
     
     // 函数在此处结束（不返回）
     FUN_18064e900(texture_ptr);

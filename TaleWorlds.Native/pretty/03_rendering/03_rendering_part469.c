@@ -560,7 +560,7 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                 
                 if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < _DAT_180d49ec8) && 
                     (FUN_1808fcb90(&system_memory_9ec8), _DAT_180d49ec8 == -1)) {
-                    transform_output_1 = &UNK_180a3c3e0;
+                    transform_output_1 = &unknown_var_3456_ptr;
                     transform_param_3 = 0.0;
                     transform_param_4 = 0.0;
                     transform_output_2 = (int32_t *)0x0;
@@ -573,7 +573,7 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                     *(int8_t *)(pixel_data + 1) = 0;
                     transform_param_1 = 5.60519e-45;
                     _DAT_180d49ecc = FUN_180571e20(&system_memory_60c0, &transform_output_1);
-                    transform_output_1 = &UNK_180a3c3e0;
+                    transform_output_1 = &unknown_var_3456_ptr;
                     FUN_18064e900(pixel_data);
                 }
                 FUN_180508510(param_1, _DAT_180d49ecc, 2, 0);
@@ -680,8 +680,8 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                         transform_matrix = 0;
                     }
                     
-                    render_mode = FUN_180645c10(transform_matrix, 0, &UNK_1809fa560);
-                    if (((render_mode != '\0') && (render_mode = FUN_180645c10(transform_matrix, 5, &UNK_1809fa540), render_mode != '\0')) && ((render_mode = FUN_180645fa0(transform_matrix), render_mode != '\0' && (render_mode = FUN_180645fa0(transform_matrix), render_mode != '\0')))) {
+                    render_mode = FUN_180645c10(transform_matrix, 0, &unknown_var_3504_ptr);
+                    if (((render_mode != '\0') && (render_mode = FUN_180645c10(transform_matrix, 5, &unknown_var_3472_ptr), render_mode != '\0')) && ((render_mode = FUN_180645fa0(transform_matrix), render_mode != '\0' && (render_mode = FUN_180645fa0(transform_matrix), render_mode != '\0')))) {
                         FUN_180645fa0(transform_matrix);
                     }
                     
@@ -734,7 +734,7 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
             render_flags = 0;
             if ((*(byte *)(param_2 + 0xac) & 0x40) == 0) {
                 if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < _DAT_180d49ed0) && (FUN_1808fcb90(&system_memory_9ed0), _DAT_180d49ed0 == -1)) {
-                    transform_output_1 = &UNK_180a3c3e0;
+                    transform_output_1 = &unknown_var_3456_ptr;
                     transform_param_3 = 0.0;
                     transform_param_4 = 0.0;
                     transform_output_2 = (int32_t *)0x0;
@@ -747,7 +747,7 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                     *(int8_t *)(pixel_data + 1) = 0;
                     transform_param_1 = 5.60519e-45;
                     _DAT_180d49ed4 = FUN_180571e20(&system_memory_60c0, &transform_output_1);
-                    transform_output_1 = &UNK_180a3c3e0;
+                    transform_output_1 = &unknown_var_3456_ptr;
                     FUN_18064e900(pixel_data);
                 }
                 FUN_180508510(param_1, _DAT_180d49ed4, 2);

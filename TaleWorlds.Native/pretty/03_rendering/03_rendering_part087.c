@@ -97,7 +97,7 @@ void rendering_system_advanced_parameter_setup(uint64_t param_1, longlong param_
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_canary_check;
   
   // 初始化纹理参数
-  FUN_1802c22a0(alignment_pad, &UNK_180a1abf8);
+  FUN_1802c22a0(alignment_pad, &unknown_var_6264_ptr);
   context_base = _DAT_180c86938;
   
   // 计算分辨率值
@@ -244,20 +244,20 @@ apply_final_colors:
                 *(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1be0, 0x230);
   
   // 设置渲染管线
-  render_target_ptr = &UNK_1809fcc58;
+  render_target_ptr = &unknown_var_3480_ptr;
   shader_code_ptr = shader_buffer + 4;
   shader_buffer[4] = 0;
   shader_type = 0xd;
-  strcpy_s(shader_buffer + 4, RENDERING_SYSTEM_STRING_LENGTH, &UNK_180a0d408);
+  strcpy_s(shader_buffer + 4, RENDERING_SYSTEM_STRING_LENGTH, &unknown_var_984_ptr);
   FUN_1800b4910(_DAT_180c86930, &texture_ptr, &render_target_ptr);
-  render_target_ptr = &UNK_18098bcb0;
+  render_target_ptr = &unknown_var_720_ptr;
   
   // 初始化渲染配置
   render_config = 0;
   render_scale = 0.0;
   render_param1._0_2_ = 4;
   memory_pool = (longlong *)0x0;
-  data_stream = (longlong *)&UNK_180a3c3e0;
+  data_stream = (longlong *)&unknown_var_3456_ptr;
   hash_value = 0;
   stream_position = 0;
   stream_param = 0;
@@ -309,8 +309,8 @@ apply_final_colors:
   FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), &render_target_ptr);
   
   context_base = _DAT_180c86938;
-  stream_position = strnlen(&UNK_180a1abc8, 0x3f);
-  strncpy(context_base + 0x1ce0, &UNK_180a1abc8, stream_position);
+  stream_position = strnlen(&unknown_var_6216_ptr, 0x3f);
+  strncpy(context_base + 0x1ce0, &unknown_var_6216_ptr, stream_position);
   *(int8_t *)(stream_position + 0x1ce0 + context_base) = 0;
   FUN_18029e110(*(uint64_t *)(_DAT_180c86938 + 0x1cd8));
   
@@ -320,11 +320,11 @@ apply_final_colors:
   }
   
   texture_ptr_ptr = &data_stream;
-  data_stream = (longlong *)&UNK_180a3c3e0;
+  data_stream = (longlong *)&unknown_var_3456_ptr;
   if (stream_position == 0) {
     stream_position = 0;
     hash_value = hash_value & 0xffffffff00000000;
-    data_stream = (longlong *)&UNK_18098bcb0;
+    data_stream = (longlong *)&unknown_var_720_ptr;
     if (memory_pool != (longlong *)0x0) {
       (**(code **)(*memory_pool + 0x38))();
     }
@@ -432,7 +432,7 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, longlong param_
   *(int8_t *)(texture_data + 4) = 0;
   
   // 设置渲染目标
-  shader_code = &UNK_1809fcc28;
+  shader_code = &unknown_var_3432_ptr;
   vertex_data = vertex_buffer;
   vertex_buffer[0] = 0;
   render_target = &system_buffer_ptr;
@@ -445,7 +445,7 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, longlong param_
   FUN_1800b1230(_DAT_180c86930, param_1, &shader_code, &texture_height);
   
   render_param1 = 1;
-  shader_code = &UNK_18098bcb0;
+  shader_code = &unknown_var_720_ptr;
   texture_index = 0;
   
   // 批量处理渲染数据
@@ -461,11 +461,11 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, longlong param_
     texture_index = texture_index + 1;
   } while ((int)texture_index < RENDERING_SYSTEM_PARAMETER_COUNT);
   
-  render_context = &UNK_180a3c3e0;
+  render_context = &unknown_var_3456_ptr;
   if (texture_buffer == (void *)0x0) {
     texture_buffer = (void *)0x0;
     texture_format = 0;
-    render_context = &UNK_18098bcb0;
+    render_context = &unknown_var_720_ptr;
     // 安全检查：验证堆栈保护
     FUN_1808fc050(security_cookie ^ (ulonglong)stack_canary_check);
   }

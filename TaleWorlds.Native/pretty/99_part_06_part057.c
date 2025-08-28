@@ -808,10 +808,10 @@ FUN_1803e1170(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
 {
   uint64_t *puVar1;
   
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
+  *param_2 = &unknown_var_3456_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;

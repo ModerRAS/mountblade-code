@@ -747,7 +747,7 @@ void DestroyObjectManager(uint64_t *objectManager)
   longlong lVar11;
   bool bVar12;
   
-  *param_1 = &UNK_1809fe1f0;
+  *param_1 = &unknown_var_9008_ptr;
   if (param_1[8] != 0) {
     lVar11 = 0;
     if ((param_1[5] & 0x1f) != 0) {
@@ -786,7 +786,7 @@ LAB_1800602a0:
   }
 LAB_18006039b:
   if (param_1[0x10] == 0) {
-    *param_1 = &UNK_1809fe210;
+    *param_1 = &unknown_var_9040_ptr;
     return;
   }
                     // WARNING: Subroutine does not return
@@ -891,7 +891,7 @@ void DestroyObjectContainer(uint64_t *objectContainer)
   ulonglong uVar10;
   bool bVar11;
   
-  *param_1 = &UNK_1809fe200;
+  *param_1 = &unknown_var_9024_ptr;
   uVar3 = param_1[4];
   lVar9 = 0;
   uVar4 = param_1[5];
@@ -978,7 +978,7 @@ LAB_1800604d1:
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *param_1 = &UNK_1809fe210;
+  *param_1 = &unknown_var_9040_ptr;
   return;
 }
 
@@ -992,7 +992,7 @@ LAB_1800604d1:
 uint64_t * CleanupObjectPool(uint64_t *objectPool, ulonglong freeMemoryFlag)
 
 {
-  *param_1 = &UNK_1809fe210;
+  *param_1 = &unknown_var_9040_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x58);
   }
@@ -1016,7 +1016,7 @@ void InitializeThreadManager(uint64_t *threadManager, uint64_t param2, uint64_t 
   uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a10098;
+  *param_1 = &unknown_var_2392_ptr;
   cVar1 = FUN_18020eba0(param_1,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar1 != '\0') {
     cVar1 = FUN_18020eba0(param_1,1,param_3,param_4,uVar2);
@@ -1031,7 +1031,7 @@ void InitializeThreadManager(uint64_t *threadManager, uint64_t param2, uint64_t 
       *(uint64_t *)(param_1[0xe] + 0x10) = 0;
       *(int8_t *)(param_1[0xe] + 8) = 1;
     }
-    param_1[2] = &UNK_18098bcb0;
+    param_1[2] = &unknown_var_720_ptr;
     return;
   }
   if (*(int *)(param_1[1] + 8) == 0) {

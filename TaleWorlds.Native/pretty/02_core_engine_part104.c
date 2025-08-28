@@ -59,7 +59,7 @@ longlong FUN_180121420(uint64_t param_1,uint64_t param_2,longlong *param_3)
   if (param_3 != (longlong *)0x0) {
     *param_3 = 0;
   }
-  lVar2 = FUN_180121300(param_1,&UNK_180a01ff0);
+  lVar2 = FUN_180121300(param_1,&unknown_var_4880_ptr);
   if (lVar2 == 0) {
     return 0;
   }

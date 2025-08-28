@@ -16,7 +16,7 @@ void initialize_render_queue_manager(void)
  * 全局变量比较函数
  * 用于qsort排序的比较器
  * 
- * 原始实现：UNK_18011ae70
+ * 原始实现：global_var_9712
  */
 int compare_render_queue_entries(const void *a, const void *b)
 {

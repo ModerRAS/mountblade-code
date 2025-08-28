@@ -416,7 +416,7 @@ void cleanup_engine_shutdown(ulonglong param_1)
     *(int *)(plVar10 + 0x17) = (int)lVar11;
     *(int32_t *)((longlong)plVar10 + 0xbc) = uVar3;
     FUN_18024b8d0(lVar20);
-    FUN_180094b30(lVar20,&UNK_180a013b0);
+    FUN_180094b30(lVar20,&unknown_var_1744_ptr);
     if ((int)(_DAT_180c86950[0x30e] - _DAT_180c86950[0x30d] >> 3) == 0) {
       *(int8_t *)(lVar20 + 0x12c0a) = 1;
     }
@@ -481,12 +481,12 @@ void cleanup_engine_shutdown(ulonglong param_1)
       uStack_240 = 7;
       uStack_250 = (uint)*(ushort *)(*(longlong *)(_DAT_180c86938 + 0x121e0) + 0x32c);
       uStack_24c = (uint)*(ushort *)(*(longlong *)(_DAT_180c86938 + 0x121e0) + 0x32e);
-      puStack_138 = &UNK_1809fcc58;
+      puStack_138 = &unknown_var_3480_ptr;
       puStack_130 = auStack_120;
       auStack_120[0] = 0;
       uStack_128 = 0x12;
-      strcpy_s(auStack_120,0x40,&UNK_180a013e0);
-      puStack_d8 = &UNK_1809fcc28;
+      strcpy_s(auStack_120,0x40,&unknown_var_1792_ptr);
+      puStack_d8 = &unknown_var_3432_ptr;
       puStack_d0 = auStack_c0;
       auStack_c0[0] = 0;
       uStack_c8 = uStack_128;
@@ -509,8 +509,8 @@ void cleanup_engine_shutdown(ulonglong param_1)
       if (plStack_1c8 != (longlong *)0x0) {
         (**(code **)(*plStack_1c8 + 0x38))();
       }
-      puStack_d8 = &UNK_18098bcb0;
-      puStack_138 = &UNK_18098bcb0;
+      puStack_d8 = &unknown_var_720_ptr;
+      puStack_138 = &unknown_var_720_ptr;
     }
     lStack_218 = 0;
     lStack_210 = 0;
@@ -609,8 +609,8 @@ void cleanup_engine_shutdown(ulonglong param_1)
   }
   uVar12 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
   pplStack_298 = (longlong **)&uStack_1a0;
-  puStack_190 = &UNK_180093fd0;
-  puStack_188 = &UNK_180093fc0;
+  puStack_190 = &unknown_var_7104_ptr;
+  puStack_188 = &unknown_var_7088_ptr;
   uStack_1b0._0_4_ = (int32_t)lVar20;
   uStack_1b0._4_4_ = (int32_t)((ulonglong)lVar20 >> 0x20);
   uStack_1a0 = (int32_t)uStack_1b0;
@@ -658,7 +658,7 @@ void cleanup_engine_shutdown(ulonglong param_1)
   else {
     (**(code **)(**(longlong **)(_DAT_180c86890 + 0x60) + 0x60))();
     plVar13 = *(longlong **)(_DAT_180c86890 + 0x60);
-    if (*(code **)(*plVar13 + 0x70) == (code *)&UNK_180049530) {
+    if (*(code **)(*plVar13 + 0x70) == (code *)&unknown_var_1280_ptr) {
       LOCK();
       *(int8_t *)(plVar13 + 2) = 1;
       UNLOCK();
@@ -673,7 +673,7 @@ void cleanup_engine_shutdown(ulonglong param_1)
   uVar9 = FUN_1801b5480(_DAT_180c86890 + 0xb8);
   if (*(char *)(_DAT_180c86890 + 0x12dc) != '\0') {
     pplStack_258 = aplStack_178;
-    puStack_168 = &UNK_180093fa0;
+    puStack_168 = &unknown_var_7056_ptr;
     pcStack_160 = _guard_check_icall;
     uVar9 = FUN_18005c650(aplStack_178);
   }

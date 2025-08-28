@@ -336,7 +336,7 @@ expand_queue:
         object_list = *(code**)(*queue_data + 0x158);
         texture_data._4_4_ = unaff_render_state;
         object_count = unaff_frame_buffer;
-        if (object_list != (code*)&UNK_18027d980) goto process_transformations;
+        if (object_list != (code*)&unknown_var_2528_ptr) goto process_transformations;
         queue_data = queue_data + 0x66;
     } while (true);
 }
@@ -379,7 +379,7 @@ void apply_render_matrix_transformations(longlong* target_context, longlong* sou
     float temp_matrix[16];
     
     // 检查渲染上下文类型
-    if (*(code**)(*source_context + 0x158) == (code*)&UNK_18027d980) {
+    if (*(code**)(*source_context + 0x158) == (code*)&unknown_var_2528_ptr) {
         transform_data = (float*)(source_context + 0x66);
     }
     else {
@@ -438,7 +438,7 @@ void apply_render_matrix_transformations(longlong* target_context, longlong* sou
             scale_offset[2] = scale_offset[0] * source_matrix[2] + scale_offset[1] * source_matrix[5] + scale_offset[2] * source_matrix[8];
             
             // 获取目标变换矩阵
-            if (*(code**)(*target_context + 0x158) == (code*)&UNK_18027d980) {
+            if (*(code**)(*target_context + 0x158) == (code*)&unknown_var_2528_ptr) {
                 transform_data = (float*)(target_context + 0x66);
             }
             else {
@@ -562,7 +562,7 @@ expand_render_queue:
     }
     
     // 执行渲染上下文更新
-    if (*(code**)(*target_context + 0x160) == (code*)&UNK_180277350) {
+    if (*(code**)(*target_context + 0x160) == (code*)&unknown_var_6368_ptr) {
         FUN_180276f30(target_context, (longlong)target_context + 0x214, 0);
     }
     else {
@@ -812,7 +812,7 @@ material_processing_complete:
             if ((*(uint*)(camera_distance + 0x5c) >> 8 & 1) != 0) {
                 FUN_18022cb40(*(uint64_t*)(texture_handle + 0x1b8), &shader_cache);
                 render_cache = shader_cache;
-                render_state = &UNK_1809fcc58;
+                render_state = &unknown_var_3480_ptr;
                 material_state = render_buffer;
                 render_buffer[0] = 0;
                 batch_size = 0x10;
@@ -821,7 +821,7 @@ material_processing_complete:
                 render_cache[0x28] = render_cache[0x28] | texture_hash;
                 FUN_18022dd60(render_cache);
                 *(int16_t*)(render_cache + 0x78) = 0xffff;
-                render_state = &UNK_18098bcb0;
+                render_state = &unknown_var_720_ptr;
                 FUN_180076910(texture_handle, &shader_cache);
                 if (shader_cache != (longlong*)0x0) {
                     (**(code**)(*shader_cache + 0x38))();
@@ -858,10 +858,10 @@ static uint64_t _DAT_180c8ed18 = 0;        // 渲染队列系统指针
 static char system_buffer_d580[64] = "RenderSystem_v1.0";  // 渲染系统版本字符串
 
 // 渲染系统函数指针
-static code UNK_18027d980 = {0};              // 默认渲染函数
-static code UNK_180277350 = {0};              // 渲染上下文更新函数
-static uint64_t UNK_1809fcc58 = 0;           // 渲染状态指针
-static uint64_t UNK_18098bcb0 = 0;           // 纹理状态指针
+static code unknown_var_2528_ptr = {0};              // 默认渲染函数
+static code unknown_var_6368_ptr = {0};              // 渲染上下文更新函数
+static uint64_t unknown_var_3480_ptr = 0;           // 渲染状态指针
+static uint64_t unknown_var_720_ptr = 0;           // 纹理状态指针
 
 //============================================================================
 // 函数别名定义（为了保持与原始代码的兼容性）

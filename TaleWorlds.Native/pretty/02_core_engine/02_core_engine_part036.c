@@ -5,9 +5,9 @@
 
 // 全局变量声明
 uint64_t _DAT_180c8aa00;  // 数据表指针
-uint64_t UNK_180a3c3e0;  // 默认对象模板
-uint64_t UNK_18098bcb0;  // 基础对象模板
-uint64_t UNK_1809ffae0;  // 字符串处理模板
+uint64_t unknown_var_3456_ptr;  // 默认对象模板
+uint64_t unknown_var_720_ptr;  // 基础对象模板
+uint64_t unknown_var_5392_ptr;  // 字符串处理模板
 uint64_t system_buffer_ptr;  // 默认名称指针
 
 // 常量定义
@@ -68,7 +68,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
             if (*(void **)(transform_data + 0x18) != (void *)0x0) {
                 name_ptr = *(void **)(transform_data + 0x18);
             }
-            register_bone_name(&UNK_1809ffae0, name_ptr);
+            register_bone_name(&unknown_var_5392_ptr, name_ptr);
         }
         
         bone_index = bone_index + 1;
@@ -87,7 +87,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
     }
     
     // 设置默认模板
-    local_var2 = &UNK_180a3c3e0;
+    local_var2 = &unknown_var_3456_ptr;
     if (local_var2 != 0) {
         // 处理错误情况
         handle_memory_error();
@@ -96,7 +96,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
     // 初始化矩阵数据
     local_var2 = 0;
     local_var3 = 0;
-    local_var2 = &UNK_18098bcb0;
+    local_var2 = &unknown_var_720_ptr;
     
     // 确保矩阵指针有效
     if (matrix_ptr == 0) {
@@ -114,7 +114,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
     set_bone_animation_data(object_ptr + 8, &local_var2, stack_var, local_var1, &stack_var[0]);
     
     // 处理特殊矩阵运算
-    if ((void *)*object_ptr == &UNK_180a001e8) {
+    if ((void *)*object_ptr == &unknown_var_7192_ptr) {
         // 执行4x4矩阵运算（简化实现）
         process_4x4_matrix_operations(object_ptr);
         return;

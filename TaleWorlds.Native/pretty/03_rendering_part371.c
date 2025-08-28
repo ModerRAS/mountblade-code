@@ -82,14 +82,14 @@ void FUN_18046d350(float param_1,float *param_2,float *param_3)
     fVar15 = fVar23 * fVar23;
     fVar16 = fVar25 * fVar25;
     fVar27 = fVar23 - 1.0;
-    bVar1 = (&UNK_1809f7770)[(byte)((&UNK_1809f7770)[(longlong)iVar10 & 0xff] + cVar5)];
+    bVar1 = (&unknown_var_1744_ptr)[(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 & 0xff] + cVar5)];
     fVar28 = fVar25 - 1.0;
     param_1 = param_1 - (float)iVar11;
     fVar20 = fVar27 * fVar27;
     fVar21 = fVar28 * fVar28;
     fVar19 = param_1 * param_1;
     fVar29 = param_1 - 1.0;
-    bVar2 = (&UNK_1809f7770)[(byte)((&UNK_1809f7770)[(longlong)iVar10 + 1U & 0xff] + cVar5)];
+    bVar2 = (&unknown_var_1744_ptr)[(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 + 1U & 0xff] + cVar5)];
     fVar12 = (1.0 - fVar15 * 3.0) + (fVar15 + fVar15) * fVar23;
     fVar15 = fVar29 * fVar29;
     fVar24 = (1.0 - fVar16 * 3.0) + (fVar16 + fVar16) * fVar25;
@@ -98,26 +98,26 @@ void FUN_18046d350(float param_1,float *param_2,float *param_3)
     fVar19 = (1.0 - fVar21 * 3.0) - (fVar21 + fVar21) * fVar28;
     fVar20 = (1.0 - fVar15 * 3.0) - (fVar15 + fVar15) * fVar29;
     fVar15 = fVar24 * fVar12;
-    bVar3 = (&UNK_1809f7770)[(byte)((&UNK_1809f7770)[(longlong)iVar10 & 0xff] + cVar5 + '\x01')];
+    bVar3 = (&unknown_var_1744_ptr)[(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 & 0xff] + cVar5 + '\x01')];
     fVar22 = fVar15 * fVar20;
     iVar9 = _DAT_180c8ecd4 + iVar11;
     iVar11 = _DAT_180c8ecd4 + iVar11 + 1;
     fVar15 = fVar15 * fVar26;
-    bVar4 = (&UNK_1809f7770)
-            [(byte)((&UNK_1809f7770)[(longlong)iVar10 + 1U & 0xff] + cVar5 + '\x01')];
-    uVar7 = (ulonglong)(byte)(&UNK_1809f7770)[iVar9 + (uint)bVar1 & 0xff];
+    bVar4 = (&unknown_var_1744_ptr)
+            [(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 + 1U & 0xff] + cVar5 + '\x01')];
+    uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar9 + (uint)bVar1 & 0xff];
     fVar21 = fVar23 * *(float *)(uVar7 * 0xc + 0x180bf33f0) * fVar15;
     *param_3 = fVar21;
     fVar17 = fVar25 * *(float *)(uVar7 * 0xc + 0x180bf33f4) * fVar15;
     param_3[1] = fVar17;
     fVar15 = param_1 * *(float *)(uVar7 * 0xc + 0x180bf33f8) * fVar15;
-    uVar7 = (ulonglong)(byte)(&UNK_1809f7770)[iVar11 + (uint)bVar1 & 0xff];
+    uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar11 + (uint)bVar1 & 0xff];
     param_3[2] = fVar15;
     fVar21 = fVar23 * *(float *)(uVar7 * 0xc + 0x180bf33f0) * fVar22 + fVar21;
     *param_3 = fVar21;
     fVar17 = fVar25 * *(float *)(uVar7 * 0xc + 0x180bf33f4) * fVar22 + fVar17;
     param_3[1] = fVar17;
-    uVar8 = (ulonglong)(byte)(&UNK_1809f7770)[iVar9 + (uint)bVar3 & 0xff];
+    uVar8 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar9 + (uint)bVar3 & 0xff];
     fVar12 = fVar19 * fVar12;
     fVar15 = fVar29 * *(float *)(uVar7 * 0xc + 0x180bf33f8) * fVar22 + fVar15;
     fVar22 = fVar12 * fVar20;
@@ -127,7 +127,7 @@ void FUN_18046d350(float param_1,float *param_2,float *param_3)
     *param_3 = fVar21;
     fVar17 = fVar28 * *(float *)(uVar8 * 0xc + 0x180bf33f4) * fVar12 + fVar17;
     param_3[1] = fVar17;
-    uVar7 = (ulonglong)(byte)(&UNK_1809f7770)[iVar11 + (uint)bVar3 & 0xff];
+    uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar11 + (uint)bVar3 & 0xff];
     fVar15 = param_1 * *(float *)(uVar8 * 0xc + 0x180bf33f8) * fVar12 + fVar15;
     param_3[2] = fVar15;
     fVar21 = fVar23 * *(float *)(uVar7 * 0xc + 0x180bf33f0) * fVar22 + fVar21;
@@ -138,14 +138,14 @@ void FUN_18046d350(float param_1,float *param_2,float *param_3)
     fVar17 = fVar28 * *(float *)(uVar7 * 0xc + 0x180bf33f4) * fVar22 + fVar17;
     fVar16 = fVar16 * fVar26;
     param_3[1] = fVar17;
-    uVar8 = (ulonglong)(byte)(&UNK_1809f7770)[iVar9 + (uint)bVar2 & 0xff];
+    uVar8 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar9 + (uint)bVar2 & 0xff];
     fVar15 = fVar29 * *(float *)(uVar7 * 0xc + 0x180bf33f8) * fVar22 + fVar15;
     param_3[2] = fVar15;
     fVar21 = fVar27 * *(float *)(uVar8 * 0xc + 0x180bf33f0) * fVar16 + fVar21;
     *param_3 = fVar21;
     fVar17 = fVar25 * *(float *)(uVar8 * 0xc + 0x180bf33f4) * fVar16 + fVar17;
     param_3[1] = fVar17;
-    uVar7 = (ulonglong)(byte)(&UNK_1809f7770)[iVar11 + (uint)bVar2 & 0xff];
+    uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar11 + (uint)bVar2 & 0xff];
     fVar20 = fVar19 * fVar20;
     fVar15 = param_1 * *(float *)(uVar8 * 0xc + 0x180bf33f8) * fVar16 + fVar15;
     fVar19 = fVar19 * fVar26;
@@ -154,14 +154,14 @@ void FUN_18046d350(float param_1,float *param_2,float *param_3)
     *param_3 = fVar21;
     fVar17 = fVar25 * *(float *)(uVar7 * 0xc + 0x180bf33f4) * fVar23 + fVar17;
     param_3[1] = fVar17;
-    uVar8 = (ulonglong)(byte)(&UNK_1809f7770)[iVar9 + (uint)bVar4 & 0xff];
+    uVar8 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar9 + (uint)bVar4 & 0xff];
     fVar15 = fVar29 * *(float *)(uVar7 * 0xc + 0x180bf33f8) * fVar23 + fVar15;
     param_3[2] = fVar15;
     fVar21 = fVar27 * *(float *)(uVar8 * 0xc + 0x180bf33f0) * fVar19 + fVar21;
     *param_3 = fVar21;
     fVar17 = fVar28 * *(float *)(uVar8 * 0xc + 0x180bf33f4) * fVar19 + fVar17;
     param_3[1] = fVar17;
-    uVar7 = (ulonglong)(byte)(&UNK_1809f7770)[iVar11 + (uint)bVar4 & 0xff];
+    uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar11 + (uint)bVar4 & 0xff];
     fVar15 = param_1 * *(float *)(uVar8 * 0xc + 0x180bf33f8) * fVar19 + fVar15;
     param_3[2] = fVar15;
     *param_3 = fVar27 * *(float *)(uVar7 * 0xc + 0x180bf33f0) * fVar20 + fVar21;
@@ -304,14 +304,14 @@ void FUN_18046d374(float param_1,float *param_2)
   fVar15 = fVar23 * fVar23;
   fVar16 = fVar25 * fVar25;
   fVar27 = fVar23 - 1.0;
-  bVar1 = (&UNK_1809f7770)[(byte)((&UNK_1809f7770)[(longlong)iVar10 & 0xff] + cVar5)];
+  bVar1 = (&unknown_var_1744_ptr)[(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 & 0xff] + cVar5)];
   fVar28 = fVar25 - 1.0;
   param_1 = param_1 - (float)iVar11;
   fVar20 = fVar27 * fVar27;
   fVar21 = fVar28 * fVar28;
   fVar19 = param_1 * param_1;
   fVar29 = param_1 - 1.0;
-  bVar2 = (&UNK_1809f7770)[(byte)((&UNK_1809f7770)[(longlong)iVar10 + 1U & 0xff] + cVar5)];
+  bVar2 = (&unknown_var_1744_ptr)[(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 + 1U & 0xff] + cVar5)];
   fVar12 = (1.0 - fVar15 * 3.0) + (fVar15 + fVar15) * fVar23;
   fVar15 = fVar29 * fVar29;
   fVar24 = (1.0 - fVar16 * 3.0) + (fVar16 + fVar16) * fVar25;
@@ -320,25 +320,25 @@ void FUN_18046d374(float param_1,float *param_2)
   fVar19 = (1.0 - fVar21 * 3.0) - (fVar21 + fVar21) * fVar28;
   fVar20 = (1.0 - fVar15 * 3.0) - (fVar15 + fVar15) * fVar29;
   fVar15 = fVar24 * fVar12;
-  bVar3 = (&UNK_1809f7770)[(byte)((&UNK_1809f7770)[(longlong)iVar10 & 0xff] + cVar5 + '\x01')];
+  bVar3 = (&unknown_var_1744_ptr)[(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 & 0xff] + cVar5 + '\x01')];
   fVar22 = fVar15 * fVar20;
   iVar9 = _DAT_180c8ecd4 + iVar11;
   iVar11 = _DAT_180c8ecd4 + iVar11 + 1;
   fVar15 = fVar15 * fVar26;
-  bVar4 = (&UNK_1809f7770)[(byte)((&UNK_1809f7770)[(longlong)iVar10 + 1U & 0xff] + cVar5 + '\x01')];
-  uVar7 = (ulonglong)(byte)(&UNK_1809f7770)[iVar9 + (uint)bVar1 & 0xff];
+  bVar4 = (&unknown_var_1744_ptr)[(byte)((&unknown_var_1744_ptr)[(longlong)iVar10 + 1U & 0xff] + cVar5 + '\x01')];
+  uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar9 + (uint)bVar1 & 0xff];
   fVar21 = fVar23 * *(float *)(uVar7 * 0xc + 0x180bf33f0) * fVar15;
   *unaff_R14 = fVar21;
   fVar17 = fVar25 * *(float *)(uVar7 * 0xc + 0x180bf33f4) * fVar15;
   unaff_R14[1] = fVar17;
   fVar15 = param_1 * *(float *)(uVar7 * 0xc + 0x180bf33f8) * fVar15;
-  uVar7 = (ulonglong)(byte)(&UNK_1809f7770)[iVar11 + (uint)bVar1 & 0xff];
+  uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar11 + (uint)bVar1 & 0xff];
   unaff_R14[2] = fVar15;
   fVar21 = fVar23 * *(float *)(uVar7 * 0xc + 0x180bf33f0) * fVar22 + fVar21;
   *unaff_R14 = fVar21;
   fVar17 = fVar25 * *(float *)(uVar7 * 0xc + 0x180bf33f4) * fVar22 + fVar17;
   unaff_R14[1] = fVar17;
-  uVar8 = (ulonglong)(byte)(&UNK_1809f7770)[iVar9 + (uint)bVar3 & 0xff];
+  uVar8 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar9 + (uint)bVar3 & 0xff];
   fVar12 = fVar19 * fVar12;
   fVar15 = fVar29 * *(float *)(uVar7 * 0xc + 0x180bf33f8) * fVar22 + fVar15;
   fVar22 = fVar12 * fVar20;
@@ -348,7 +348,7 @@ void FUN_18046d374(float param_1,float *param_2)
   *unaff_R14 = fVar21;
   fVar17 = fVar28 * *(float *)(uVar8 * 0xc + 0x180bf33f4) * fVar12 + fVar17;
   unaff_R14[1] = fVar17;
-  uVar7 = (ulonglong)(byte)(&UNK_1809f7770)[iVar11 + (uint)bVar3 & 0xff];
+  uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar11 + (uint)bVar3 & 0xff];
   fVar15 = param_1 * *(float *)(uVar8 * 0xc + 0x180bf33f8) * fVar12 + fVar15;
   unaff_R14[2] = fVar15;
   fVar21 = fVar23 * *(float *)(uVar7 * 0xc + 0x180bf33f0) * fVar22 + fVar21;
@@ -359,14 +359,14 @@ void FUN_18046d374(float param_1,float *param_2)
   fVar17 = fVar28 * *(float *)(uVar7 * 0xc + 0x180bf33f4) * fVar22 + fVar17;
   fVar16 = fVar16 * fVar26;
   unaff_R14[1] = fVar17;
-  uVar8 = (ulonglong)(byte)(&UNK_1809f7770)[iVar9 + (uint)bVar2 & 0xff];
+  uVar8 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar9 + (uint)bVar2 & 0xff];
   fVar15 = fVar29 * *(float *)(uVar7 * 0xc + 0x180bf33f8) * fVar22 + fVar15;
   unaff_R14[2] = fVar15;
   fVar21 = fVar27 * *(float *)(uVar8 * 0xc + 0x180bf33f0) * fVar16 + fVar21;
   *unaff_R14 = fVar21;
   fVar17 = fVar25 * *(float *)(uVar8 * 0xc + 0x180bf33f4) * fVar16 + fVar17;
   unaff_R14[1] = fVar17;
-  uVar7 = (ulonglong)(byte)(&UNK_1809f7770)[iVar11 + (uint)bVar2 & 0xff];
+  uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar11 + (uint)bVar2 & 0xff];
   fVar20 = fVar19 * fVar20;
   fVar15 = param_1 * *(float *)(uVar8 * 0xc + 0x180bf33f8) * fVar16 + fVar15;
   fVar19 = fVar19 * fVar26;
@@ -375,14 +375,14 @@ void FUN_18046d374(float param_1,float *param_2)
   *unaff_R14 = fVar21;
   fVar17 = fVar25 * *(float *)(uVar7 * 0xc + 0x180bf33f4) * fVar23 + fVar17;
   unaff_R14[1] = fVar17;
-  uVar8 = (ulonglong)(byte)(&UNK_1809f7770)[iVar9 + (uint)bVar4 & 0xff];
+  uVar8 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar9 + (uint)bVar4 & 0xff];
   fVar15 = fVar29 * *(float *)(uVar7 * 0xc + 0x180bf33f8) * fVar23 + fVar15;
   unaff_R14[2] = fVar15;
   fVar21 = fVar27 * *(float *)(uVar8 * 0xc + 0x180bf33f0) * fVar19 + fVar21;
   *unaff_R14 = fVar21;
   fVar17 = fVar28 * *(float *)(uVar8 * 0xc + 0x180bf33f4) * fVar19 + fVar17;
   unaff_R14[1] = fVar17;
-  uVar7 = (ulonglong)(byte)(&UNK_1809f7770)[iVar11 + (uint)bVar4 & 0xff];
+  uVar7 = (ulonglong)(byte)(&unknown_var_1744_ptr)[iVar11 + (uint)bVar4 & 0xff];
   fVar15 = param_1 * *(float *)(uVar8 * 0xc + 0x180bf33f8) * fVar19 + fVar15;
   unaff_R14[2] = fVar15;
   *unaff_R14 = fVar27 * *(float *)(uVar7 * 0xc + 0x180bf33f0) * fVar20 + fVar21;
@@ -527,7 +527,7 @@ void FUN_18046dcc0(longlong *param_1,longlong param_2,uint64_t param_3,uint64_t 
   uint64_t uVar7;
   
   uVar7 = 0xfffffffffffffffe;
-  if (*(code **)(*param_1 + 0x90) == (code *)&UNK_18046df70) {
+  if (*(code **)(*param_1 + 0x90) == (code *)&unknown_var_5664_ptr) {
     uVar3 = *(int32_t *)((longlong)param_1 + 0x84);
   }
   else {
@@ -648,7 +648,7 @@ void FUN_18046de20(longlong param_1,uint64_t *param_2,uint64_t *param_3,uint par
 uint64_t * FUN_18046e150(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180a2aea0;
+  *param_1 = &unknown_var_2480_ptr;
   if (param_1[0x42] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -843,7 +843,7 @@ void FUN_18046e1e0(longlong param_1,longlong param_2,uint param_3)
   }
   plStack_a0 = &lStack_e8;
   puStack_f8 = auStack_108;
-  puStack_d8 = &UNK_18046f400;
+  puStack_d8 = &unknown_var_928_ptr;
   pcStack_d0 = FUN_18046f3b0;
   lStack_100._0_4_ = (int32_t)param_1;
   plStack_120 = &lStack_e8;

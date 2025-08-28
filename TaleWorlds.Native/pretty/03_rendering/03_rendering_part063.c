@@ -104,7 +104,7 @@ void rendering_system_parameter_initializer(longlong rendering_context_ptr, long
   
   // 处理初始化错误
   if (init_result < 0) {
-    FUN_180220810(init_result, &UNK_180a17358);
+    FUN_180220810(init_result, &unknown_var_1768_ptr);
   }
   
   // 复制源数据到临时缓冲区

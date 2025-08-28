@@ -32,7 +32,7 @@ void FUN_1806c21de(uint64_t param_1,uint64_t param_2,longlong param_3,longlong *
     if ((char)unaff_RBX[9] != '\0') {
       iVar1 = *(int *)(*unaff_RBX + 0x10);
       if (iVar1 == 0) {
-        puVar6 = &UNK_18094c9c0;
+        puVar6 = &unknown_var_1920_ptr;
       }
       else {
         puVar6 = *(void **)(*(longlong *)(*unaff_RBX + 8) + (ulonglong)(iVar1 - 1) * 0x18);
@@ -122,7 +122,7 @@ void FUN_1806c221f(void)
     if ((char)unaff_RBX[9] != cVar7) {
       iVar1 = *(int *)(*unaff_RBX + 0x10);
       if (iVar1 == 0) {
-        puVar5 = &UNK_18094c9c0;
+        puVar5 = &unknown_var_1920_ptr;
       }
       else {
         puVar5 = *(void **)(*(longlong *)(*unaff_RBX + 8) + (ulonglong)(iVar1 - 1) * 0x18);

@@ -287,15 +287,15 @@ FUN_1806eaa80(uint64_t *param_1,int16_t param_2,int16_t *param_3,uint64_t param_
   uVar1 = *param_3;
   *(int16_t *)(param_1 + 1) = param_2;
   *(int16_t *)((longlong)param_1 + 10) = uVar1;
-  *param_1 = &UNK_18094dbe8;
-  param_1[3] = &UNK_18094dd38;
+  *param_1 = &unknown_var_6568_ptr;
+  param_1[3] = &unknown_var_6904_ptr;
   param_1[4] = 0;
   param_1[0xc] = 0;
   param_1[2] = 0;
   if (param_8 != 0) {
     plVar6 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
     puVar7 = (int32_t *)
-             (**(code **)(*plVar6 + 8))(plVar6,param_8,&UNK_18094a258,&UNK_18094d010,0x1c6);
+             (**(code **)(*plVar6 + 8))(plVar6,param_8,&unknown_var_1832_ptr,&unknown_var_3536_ptr,0x1c6);
   }
   fVar11 = param_5[1];
   fVar13 = *param_5;
@@ -397,8 +397,8 @@ void FUN_1806eafb0(uint64_t *param_1)
   longlong lVar1;
   longlong *plVar2;
   
-  *param_1 = &UNK_18094dbe8;
-  param_1[3] = &UNK_18094dd38;
+  *param_1 = &unknown_var_6568_ptr;
+  param_1[3] = &unknown_var_6904_ptr;
   if ((*(byte *)((longlong)param_1 + 10) & 1) != 0) {
     lVar1 = param_1[0xd];
     if (lVar1 != 0) {
@@ -407,8 +407,8 @@ void FUN_1806eafb0(uint64_t *param_1)
     }
     param_1[0xd] = 0;
   }
-  param_1[3] = &UNK_18094a0b8;
-  *param_1 = &UNK_18094cba8;
+  param_1[3] = &unknown_var_1416_ptr;
+  *param_1 = &unknown_var_2408_ptr;
   return;
 }
 
@@ -431,8 +431,8 @@ void FUN_1806eafd4(longlong param_1)
     (**(code **)(*plVar2 + 0x10))(plVar2,lVar1);
   }
   unaff_RBX[0xd] = 0;
-  unaff_RBX[3] = &UNK_18094a0b8;
-  *unaff_RBX = &UNK_18094cba8;
+  unaff_RBX[3] = &unknown_var_1416_ptr;
+  *unaff_RBX = &unknown_var_2408_ptr;
   return;
 }
 
@@ -447,8 +447,8 @@ void FUN_1806eb002(void)
 {
   uint64_t *unaff_RBX;
   
-  unaff_RBX[3] = &UNK_18094a0b8;
-  *unaff_RBX = &UNK_18094cba8;
+  unaff_RBX[3] = &unknown_var_1416_ptr;
+  *unaff_RBX = &unknown_var_2408_ptr;
   return;
 }
 
@@ -514,12 +514,12 @@ uint64_t FUN_1806eb0f0(uint64_t param_1,longlong param_2)
     lVar3 = 0;
     lVar4 = lVar3;
     do {
-      pcVar1 = &UNK_18094cbd0 + lVar4;
+      pcVar1 = &unknown_var_2448_ptr + lVar4;
       lVar4 = lVar4 + 1;
       if (*pcVar1 != *(char *)(param_2 + -1 + lVar4)) {
         do {
           lVar4 = lVar3 + 1;
-          if (*(char *)(param_2 + lVar3) != (&UNK_18094cb9c)[lVar3]) {
+          if (*(char *)(param_2 + lVar3) != (&unknown_var_2396_ptr)[lVar3]) {
             return 0;
           }
           lVar3 = lVar4;
@@ -556,22 +556,22 @@ FUN_1806eb180(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   plVar3 = (longlong *)PxGetFoundation();
   cVar1 = (**(code **)(*plVar3 + 0x28))(plVar3);
   if (cVar1 == '\0') {
-    puVar4 = &UNK_18094a1f0;
+    puVar4 = &unknown_var_1728_ptr;
   }
   else {
     puVar4 = (void *)__std_type_info_name(0x180bfc6d0,0x180c827e0);
   }
   plVar2 = (longlong *)
-           (**(code **)(*plVar2 + 8))(plVar2,0x70,puVar4,&UNK_18094e2f0,CONCAT44(uVar6,0x2f));
+           (**(code **)(*plVar2 + 8))(plVar2,0x70,puVar4,&unknown_var_8368_ptr,CONCAT44(uVar6,0x2f));
   if (plVar2 != (longlong *)0x0) {
     (**(code **)(*param_1 + 0x20))(param_1);
     auStackX_8[0] = 3;
     uVar7 = param_4;
-    FUN_1806ecc10(plVar2,0x100,auStackX_8,param_2,param_3,param_4,param_5,0x80,&UNK_18094e2d0);
+    FUN_1806ecc10(plVar2,0x100,auStackX_8,param_2,param_3,param_4,param_5,0x80,&unknown_var_8336_ptr);
     uVar8 = (int32_t)((ulonglong)uVar7 >> 0x20);
     lVar5 = plVar2[0xd];
-    *plVar2 = (longlong)&UNK_18094e138;
-    plVar2[3] = (longlong)&UNK_18094e280;
+    *plVar2 = (longlong)&unknown_var_7928_ptr;
+    plVar2[3] = (longlong)&unknown_var_8256_ptr;
     *(int32_t *)(lVar5 + 0x6c) = 0x501502f9;
     *(int32_t *)(lVar5 + 0x50) = 0;
     *(int32_t *)(lVar5 + 0x54) = 0x3f000000;
@@ -645,8 +645,8 @@ uint * FUN_1806eb440(longlong *param_1,longlong param_2)
   }
   else {
     *(int16_t *)((longlong)puVar6 + 10) = 2;
-    *(void **)puVar6 = &UNK_18094e138;
-    *(void **)(puVar6 + 6) = &UNK_18094e280;
+    *(void **)puVar6 = &unknown_var_7928_ptr;
+    *(void **)(puVar6 + 6) = &unknown_var_8256_ptr;
     lVar2 = *param_1;
   }
   *param_1 = lVar2 + 0x70;

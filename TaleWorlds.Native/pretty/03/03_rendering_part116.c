@@ -554,29 +554,29 @@ uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
 {
   // 初始化资源管理器结构
   FUN_180320470();
-  *resource_manager = &UNK_180a1b430;
-  resource_manager[0x16] = &UNK_18098bcb0;
+  *resource_manager = &unknown_var_8368_ptr;
+  resource_manager[0x16] = &unknown_var_720_ptr;
   resource_manager[0x17] = 0;
   *(int32_t *)(resource_manager + 0x18) = 0;
-  resource_manager[0x16] = &UNK_1809fcc58;
+  resource_manager[0x16] = &unknown_var_3480_ptr;
   resource_manager[0x17] = resource_manager + 0x19;
   *(int32_t *)(resource_manager + 0x18) = 0;
   *(int8_t *)(resource_manager + 0x19) = 0;
   
   // 设置资源管理器参数
-  resource_manager[0x21] = &UNK_18098bcb0;
+  resource_manager[0x21] = &unknown_var_720_ptr;
   resource_manager[0x22] = 0;
   *(int32_t *)(resource_manager + 0x23) = 0;
-  resource_manager[0x21] = &UNK_1809fcc58;
+  resource_manager[0x21] = &unknown_var_3480_ptr;
   resource_manager[0x22] = resource_manager + 0x24;
   *(int32_t *)(resource_manager + 0x23) = 0;
   *(int8_t *)(resource_manager + 0x24) = 0;
   
   // 初始化资源管理器
-  resource_manager[0x2c] = &UNK_18098bcb0;
+  resource_manager[0x2c] = &unknown_var_720_ptr;
   resource_manager[0x2d] = 0;
   *(int32_t *)(resource_manager + 0x2e) = 0;
-  resource_manager[0x2c] = &UNK_1809fcc58;
+  resource_manager[0x2c] = &unknown_var_3480_ptr;
   resource_manager[0x2d] = resource_manager + 0x2f;
   *(int32_t *)(resource_manager + 0x2e) = 0;
   *(int8_t *)(resource_manager + 0x2f) = 0;

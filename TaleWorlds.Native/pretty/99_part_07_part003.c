@@ -433,7 +433,7 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
     
     // 释放资源
     context.buffer_manager_ptr = (pointer_t)0x0;
-    context.callback_function1 = (pointer_t)&UNK_18098bcb0;
+    context.callback_function1 = (pointer_t)&unknown_var_720_ptr;
 }
 
 /**
@@ -464,7 +464,7 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
     
     // 参数验证和初始化
     char config_buffer[8];
-    StringCopy(config_buffer, &UNK_180a266c8);
+    StringCopy(config_buffer, &unknown_var_4088_ptr);
     
     // 获取配置名称
     pointer_t config_name = &system_buffer_ptr;
@@ -474,7 +474,7 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
     
     // 初始化配置参数
     pointer_t config_ptr = &context.temp_buffer1;
-    context.callback_function1 = &UNK_1809fcc58;
+    context.callback_function1 = &unknown_var_3480_ptr;
     context.temp_buffer1 = stack_protection_buffer;
     context.temp_flags = 0;
     stack_protection_buffer[0] = 0;
@@ -841,14 +841,14 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
         else {
             if (system_mode == -3) {
                 // 特殊模式处理
-                if (((int)param_1[0x3b] == 9) && (str_len = strcmp(param_1[0x3a], &UNK_180a0e648), str_len == 0)) {
+                if (((int)param_1[0x3b] == 9) && (str_len = strcmp(param_1[0x3a], &unknown_var_5656_ptr), str_len == 0)) {
                     // 查询资源信息
                     qword_t resource_info = QueryResource(param_2);
                     UpdateResource(param_1 + 0x85, resource_info);
                 }
                 else {
                     // 控制资源管理
-                    ControlResource(&UNK_180a0ec50, system_name);
+                    ControlResource(&unknown_var_7200_ptr, system_name);
                 }
             }
             else if (system_mode == -2) {
@@ -878,7 +878,7 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
     }
     
     // 更新系统状态
-    context.callback_function1 = (pointer_t)&UNK_18098bcb0;
+    context.callback_function1 = (pointer_t)&unknown_var_720_ptr;
 }
 
 // ============================================================================

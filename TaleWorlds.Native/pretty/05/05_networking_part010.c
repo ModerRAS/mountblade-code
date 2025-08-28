@@ -155,17 +155,17 @@ struct LinkListNode {
    ============================================== */
 
 /** 系统数据引用 */
-extern void* UNK_180984a70;               /**< 网络系统数据引用 */
-extern void* UNK_180984aa0;               /**< 数据包处理引用 */
-extern void* UNK_180984ab8;               /**< 连接管理引用 */
-extern void* UNK_180984ac0;               /**< 缓冲区管理引用 */
-extern void* UNK_180984ac8;               /**< 链表操作引用 */
-extern void* UNK_180984ad0;               /**< 内存管理引用 */
-extern void* UNK_180984b50;               /**< 数据包销毁引用 */
-extern void* UNK_180986f68;               /**< 网络配置引用 */
-extern void* UNK_180986f90;               /**< 连接状态引用 */
-extern void* UNK_180957f70;               /**< 缓冲区池引用 */
-extern void* UNK_180be12f0;               /**< 系统全局数据引用 */
+extern void* global_state_1472_ptr;               /**< 网络系统数据引用 */
+extern void* global_state_1520_ptr;               /**< 数据包处理引用 */
+extern void* global_state_1544_ptr;               /**< 连接管理引用 */
+extern void* global_state_1552_ptr;               /**< 缓冲区管理引用 */
+extern void* global_state_1560_ptr;               /**< 链表操作引用 */
+extern void* global_state_1568_ptr;               /**< 内存管理引用 */
+extern void* global_state_1696_ptr;               /**< 数据包销毁引用 */
+extern void* global_state_936_ptr;               /**< 网络配置引用 */
+extern void* global_state_976_ptr;               /**< 连接状态引用 */
+extern void* global_state_8432_ptr;               /**< 缓冲区池引用 */
+extern void* global_state_7632;               /**< 系统全局数据引用 */
 
 /* ==============================================
    函数声明
@@ -227,8 +227,8 @@ void NetworkPacketManager_InitializePacket(void* packet) {
     uint64_t* packet_ptr = (uint64_t*)packet;
     
     // 设置数据包基本信息
-    *packet_ptr = &UNK_180984a70;
-    packet_ptr[9] = &UNK_180984aa0;
+    *packet_ptr = &global_state_1472_ptr;
+    packet_ptr[9] = &global_state_1520_ptr;
     
     // 检查是否需要调用网络系统初始化
     if (packet_ptr[0xd] != 0) {
@@ -243,7 +243,7 @@ void NetworkPacketManager_InitializePacket(void* packet) {
     FUN_18084c220(packet_ptr + 7);
     
     // 设置网络配置
-    *packet_ptr = &UNK_180986f68;
+    *packet_ptr = &global_state_936_ptr;
     
     // 处理连接管理
     longlong* connection_ptr = packet_ptr + 4;
@@ -252,7 +252,7 @@ void NetworkPacketManager_InitializePacket(void* packet) {
     if ((connection_data == connection_ptr) && 
         ((longlong*)packet_ptr[5] == connection_ptr)) {
         func_0x00018085dda0(connection_ptr);
-        *packet_ptr = &UNK_180984ab8;
+        *packet_ptr = &global_state_1544_ptr;
         *(int32_t*)(packet_ptr + 1) = MAGIC_DEADFOOD;
         return;
     }
@@ -276,7 +276,7 @@ void NetworkPacketManager_InitializePacket(void* packet) {
     *link_data = (longlong)link_data;
     
     // 分配内存并初始化
-    FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), link_data, &UNK_180986f90, NETWORK_TIMEOUT, 1);
+    FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), link_data, &global_state_976_ptr, NETWORK_TIMEOUT, 1);
 }
 
 /**
@@ -374,7 +374,7 @@ uint64_t NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
             new_buffer = (int32_t*)FUN_180741e10(
                 *(uint64_t*)(_DAT_180be12f0 + 0x1a0), 
                 size * 4, 
-                &UNK_180957f70, 
+                &global_state_8432_ptr, 
                 0xf4, 
                 0, 
                 0, 
@@ -400,7 +400,7 @@ uint64_t NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
     
     // 清理现有缓冲区
     if ((0 < *(int*)((longlong)manager + 0xc)) && (*manager != 0)) {
-        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *manager, &UNK_180957f70, 0x100, 1);
+        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *manager, &global_state_8432_ptr, 0x100, 1);
     }
     
     // 设置新缓冲区
@@ -436,7 +436,7 @@ uint64_t NetworkBufferManager_ReallocateBuffer(uint64_t param1, int param2) {
     if (unaff_EDI == 0) {
         // 清理现有缓冲区
         if ((0 < *(int*)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
-            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *unaff_RBX, &UNK_180957f70, 0x100, 1);
+            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *unaff_RBX, &global_state_8432_ptr, 0x100, 1);
         }
         *unaff_RBX = (longlong)new_buffer;
         *(int*)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -449,7 +449,7 @@ uint64_t NetworkBufferManager_ReallocateBuffer(uint64_t param1, int param2) {
         new_buffer = (int32_t*)FUN_180741e10(
             *(uint64_t*)(_DAT_180be12f0 + 0x1a0), 
             param2 * 4, 
-            &UNK_180957f70, 
+            &global_state_8432_ptr, 
             0xf4, 
             0
         );
@@ -469,7 +469,7 @@ uint64_t NetworkBufferManager_ReallocateBuffer(uint64_t param1, int param2) {
             
             // 清理现有缓冲区
             if ((0 < *(int*)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
-                FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *unaff_RBX, &UNK_180957f70, 0x100, 1);
+                FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *unaff_RBX, &global_state_8432_ptr, 0x100, 1);
             }
             *unaff_RBX = (longlong)new_buffer;
             *(int*)((longlong)unaff_RBX + 0xc) = param2;
@@ -523,7 +523,7 @@ void NetworkConnectionManager_CleanupConnection(longlong* connection) {
         
         // 清理缓冲区
         if ((0 < (int)buffer_size) && (*connection != 0)) {
-            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *connection, &UNK_180957f70, 0x100, 1);
+            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *connection, &global_state_8432_ptr, 0x100, 1);
         }
         
         *connection = 0;
@@ -734,7 +734,7 @@ void NetworkLinkedList_CleanupNode(longlong* node) {
             *node_ptr = (longlong)node_ptr;
             
             // 释放节点内存
-            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), node_ptr, &UNK_180984b50, 0xe1, 1);
+            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), node_ptr, &global_state_1696_ptr, 0xe1, 1);
         }
         node_ptr = (longlong*)*node;
     }
@@ -776,8 +776,8 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     longlong* cleanup_ptr;
     
     list_ptr = packet + 0xd;
-    *packet = &UNK_180984ac0;
-    packet[4] = &UNK_180984ac8;
+    *packet = &global_state_1552_ptr;
+    packet[4] = &global_state_1560_ptr;
     
     cleanup_ptr = (longlong*)0x0;
     link_ptr = (longlong*)*list_ptr;
@@ -808,7 +808,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
         *cleanup_ptr = (longlong)cleanup_ptr;
         
         // 释放链表内存
-        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), cleanup_ptr, &UNK_180984ad0, 0xe, 1);
+        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), cleanup_ptr, &global_state_1568_ptr, 0xe, 1);
     }
     
     // 继续清理其他链表
@@ -827,7 +827,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
         *(longlong*)(*cleanup_ptr + 8) = cleanup_ptr[1];
         cleanup_ptr[1] = (longlong)cleanup_ptr;
         *cleanup_ptr = (longlong)cleanup_ptr;
-        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), cleanup_ptr, &UNK_180984ad0, 0x12, 1);
+        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), cleanup_ptr, &global_state_1568_ptr, 0x12, 1);
     }
     
     // 清理数据缓冲区
@@ -838,7 +838,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     if ((int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f)) < 0) {
         if (*(int*)(packet + 0x12) < 1) {
             if ((0 < (int)buffer_size) && (*link_data != 0)) {
-                FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *link_data, &UNK_180957f70, 0x100, 1);
+                FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *link_data, &global_state_8432_ptr, 0x100, 1);
             }
             *link_data = 0;
             *(int32_t*)((longlong)packet + 0x94) = 0;
@@ -887,7 +887,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
             // 继续清理
         }
         if ((0 < (int)buffer_size) && (packet[0xf] != 0)) {
-            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), packet[0xf], &UNK_180957f70, 0x100, 1);
+            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), packet[0xf], &global_state_8432_ptr, 0x100, 1);
         }
         packet[0xf] = 0;
         *(int32_t*)((longlong)packet + 0x84) = 0;
@@ -981,7 +981,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     
     // 设置结束标志
     *(int32_t*)(packet + 1) = MAGIC_DEADFOOD;
-    *packet = &UNK_180984ab8;
+    *packet = &global_state_1544_ptr;
 }
 
 /* ==============================================

@@ -280,10 +280,10 @@ LAB_1802f137b:
           if (plVar9 != plVar11) {
             plVar9 = plVar9 + 1;
             do {
-              *plVar14 = (longlong)&UNK_18098bcb0;
+              *plVar14 = (longlong)&unknown_var_720_ptr;
               plVar14[1] = 0;
               *(int32_t *)(plVar14 + 2) = 0;
-              *plVar14 = (longlong)&UNK_1809fcc58;
+              *plVar14 = (longlong)&unknown_var_3480_ptr;
               plVar14[1] = (longlong)(plVar14 + 3);
               *(int32_t *)(plVar14 + 2) = 0;
               *(int8_t *)(plVar14 + 3) = 0;

@@ -272,7 +272,7 @@ void FUN_1804b2750(longlong param_1,longlong *param_2,uint64_t param_3,float *pa
   }
   plVar8 = (longlong *)FUN_1801efdb0(uVar23,param_2);
   if (plVar8 == (longlong *)0x0) {
-    FUN_180626f80(&UNK_180a2e460);
+    FUN_180626f80(&unknown_var_6240_ptr);
   }
   else {
     uVar3 = *(uint *)(plStack_c0 + 2);
@@ -702,7 +702,7 @@ LAB_1804b2fc9:
     do {
       lVar1 = *(longlong *)(lVar8 + 0x290);
       if ((*(int *)(lVar1 + 0x30 + lVar10) == 8) &&
-         (iVar4 = strcmp(*(uint64_t *)(lVar1 + 0x28 + lVar10),&UNK_180a2e450), iVar4 == 0)) {
+         (iVar4 = strcmp(*(uint64_t *)(lVar1 + 0x28 + lVar10),&unknown_var_6224_ptr), iVar4 == 0)) {
         lVar11 = 0;
         if (0 < *(int *)(param_1 + 0x298)) {
           piVar5 = (int *)(*(longlong *)(param_1 + 0x290) + 0x44);

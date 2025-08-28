@@ -226,7 +226,7 @@ LAB_18030be84:
                 *(int32_t *)(in_RCX + 0xdc) = uVar4;
                 break;
             }
-            lVar10 = (longlong)&UNK_180a04c44 - (longlong)pcVar21;
+            lVar10 = (longlong)&unknown_var_6228_ptr - (longlong)pcVar21;
             while (*pcVar21 == pcVar21[lVar10]) {
                 pcVar21 = pcVar21 + 1;
                 if (pcVar7 <= pcVar21) goto LAB_18030be84;
@@ -273,7 +273,7 @@ LAB_18030bf14:
     
     // 第三阶段：骨骼绑定处理
     // 将胶囊体绑定到指定的骨骼系统
-    puStack_1d0 = &UNK_180a3c3e0;
+    puStack_1d0 = &unknown_var_3456_ptr;
     uStack_1b8 = 0;
     lStack_1c8 = 0;
     iStack_1c0 = 0;
@@ -304,7 +304,7 @@ LAB_18030bfe4:
                 processing_mode = FUN_180627c50(&puStack_1d0,lVar10);
                 break;
             }
-            lVar10 = (longlong)&UNK_180a1a440 - (longlong)pcVar21;
+            lVar10 = (longlong)&unknown_var_4288_ptr - (longlong)pcVar21;
             while (*pcVar21 == pcVar21[lVar10]) {
                 pcVar21 = pcVar21 + 1;
                 if (pcVar7 <= pcVar21) goto LAB_18030bfe4;
@@ -408,14 +408,14 @@ LAB_18030c93f:
                     }
                     
                     // 资源清理和状态重置
-                    puStack_1d0 = &UNK_180a3c3e0;
+                    puStack_1d0 = &unknown_var_3456_ptr;
                     if (lStack_1c8 != 0) {
                         // WARNING: Subroutine does not return
                         FUN_18064e900();
                     }
                     lStack_1c8 = 0;
                     uStack_1b8 = uStack_1b8 & 0xffffffff00000000;
-                    puStack_1d0 = &UNK_18098bcb0;
+                    puStack_1d0 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
                     FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_218);
                 }
@@ -435,7 +435,7 @@ LAB_18030c136:
                         plStack_1e0 = plVar16;
                         goto LAB_18030c154;
                     }
-                    lVar10 = (longlong)&UNK_180a1a488 - (longlong)pcVar21;
+                    lVar10 = (longlong)&unknown_var_4360_ptr - (longlong)pcVar21;
                     while (*pcVar21 == pcVar21[lVar10]) {
                         pcVar21 = pcVar21 + 1;
                         if (pcVar7 <= pcVar21) goto LAB_18030c136;
@@ -444,7 +444,7 @@ LAB_18030c136:
                 puVar9 = (uint64_t *)puVar9[0xb];
             } while( true );
         }
-        lVar10 = (longlong)&UNK_180a1a430 - (longlong)pcVar21;
+        lVar10 = (longlong)&unknown_var_4272_ptr - (longlong)pcVar21;
         while (*pcVar21 == pcVar21[lVar10]) {
             pcVar21 = pcVar21 + 1;
             if (pcVar7 <= pcVar21) goto LAB_18030c0c0;
@@ -459,7 +459,7 @@ LAB_18030c154:
     pcStack_1f8 = FUN_1800f88f0;
     FUN_1808fc838(auStack_178,0x58,2,FUN_18030cdf0);
     ppuStack_1d8 = &puStack_70;
-    puStack_70 = &UNK_180a3c3e0;
+    puStack_70 = &unknown_var_3456_ptr;
     uStack_58 = 0;
     lStack_68 = 0;
     uStack_60 = 0;
@@ -545,7 +545,7 @@ LAB_18030c2f0:
                 FUN_18010cbc0(lVar10,&system_buffer_6430,&uStack_c8);
                 break;
             }
-            lVar10 = (longlong)&UNK_180a1a480 - (longlong)pcVar21;
+            lVar10 = (longlong)&unknown_var_4352_ptr - (longlong)pcVar21;
             while (*pcVar21 == pcVar21[lVar10]) {
                 pcVar21 = pcVar21 + 1;
                 if (pcVar7 <= pcVar21) goto LAB_18030c2f0;
@@ -554,8 +554,8 @@ LAB_18030c2f0:
     }
     
     // 解析胶囊体方向和位置数据
-    FUN_180631960(puVar9,&UNK_180a1a478,&uStack_c4);
-    FUN_180631f30(puVar9,&UNK_180a015a8,&uStack_b4);
+    FUN_180631960(puVar9,&unknown_var_4344_ptr,&uStack_c4);
+    FUN_180631f30(puVar9,&unknown_var_2248_ptr,&uStack_b4);
     
     // 第六阶段：端点数据处理
     // 解析胶囊体的两个端点数据和相关属性
@@ -583,7 +583,7 @@ LAB_18030c3ca:
     }
     pcVar7 = pcVar7 + (longlong)pcVar21;
     if (pcVar21 < pcVar7) {
-        lVar10 = (longlong)&UNK_180a1a470 - (longlong)pcVar21;
+        lVar10 = (longlong)&unknown_var_4336_ptr - (longlong)pcVar21;
         while (*pcVar21 == pcVar21[lVar10]) {
             pcVar21 = pcVar21 + 1;
             if (pcVar7 <= pcVar21) goto LAB_18030c390;
@@ -640,7 +640,7 @@ LAB_18030c490:
                             }
                             goto LAB_18030c4af;
                         }
-                        lVar11 = (longlong)&UNK_180a1a490 - (longlong)pcVar21;
+                        lVar11 = (longlong)&unknown_var_4368_ptr - (longlong)pcVar21;
                         while (*pcVar21 == pcVar21[lVar11]) {
                             pcVar21 = pcVar21 + 1;
                             if (pcVar7 <= pcVar21) goto LAB_18030c490;
@@ -676,7 +676,7 @@ LAB_18030c4f0:
                     if (pcVar7 != pcVar20 + -0x180a19c8b) goto LAB_18030c575;
                     pcVar7 = pcVar7 + (longlong)pcVar21;
                     if (pcVar21 < pcVar7) {
-                        lVar11 = (longlong)&UNK_180a19c8c - (longlong)pcVar21;
+                        lVar11 = (longlong)&unknown_var_2316_ptr - (longlong)pcVar21;
                         while (*pcVar21 == pcVar21[lVar11]) {
                             pcVar21 = pcVar21 + 1;
                             if (pcVar7 <= pcVar21) goto LAB_18030c530;
@@ -771,7 +771,7 @@ LAB_18030c6d0:
                                                 }
                                                 goto LAB_18030c6f3;
                                             }
-                                            lVar12 = (longlong)&UNK_180a1029c - (longlong)pcVar21;
+                                            lVar12 = (longlong)&unknown_var_2908_ptr - (longlong)pcVar21;
                                             while (*pcVar21 == pcVar21[lVar12]) {
                                                 pcVar21 = pcVar21 + 1;
                                                 if (pcVar7 <= pcVar21) goto LAB_18030c6d0;
@@ -807,7 +807,7 @@ LAB_18030c6f3:
                                             if (pcVar7 == pcVar20 + -0x180a19c83) {
                                                 pcVar7 = pcVar7 + (longlong)pcVar21;
                                                 if (pcVar7 <= pcVar21) goto LAB_18030c5a6;
-                                                lVar12 = (longlong)&UNK_180a19c84 - (longlong)pcVar21;
+                                                lVar12 = (longlong)&unknown_var_2308_ptr - (longlong)pcVar21;
                                                 while (*pcVar21 == pcVar21[lVar12]) {
                                                     pcVar21 = pcVar21 + 1;
                                                     if (pcVar7 <= pcVar21) goto LAB_18030c5a6;
@@ -820,7 +820,7 @@ LAB_18030c6f3:
                                 }
                                 break;
                             }
-                            lVar11 = (longlong)&UNK_180a19c84 - (longlong)pcVar21;
+                            lVar11 = (longlong)&unknown_var_2308_ptr - (longlong)pcVar21;
                             while (*pcVar21 == pcVar21[lVar11]) {
                                 pcVar21 = pcVar21 + 1;
                                 if (pcVar7 <= pcVar21) goto LAB_18030c5a4;
@@ -889,7 +889,7 @@ LAB_18030c834:
         if (pcVar7 == pcVar20 + -0x180a1a487) {
             pcVar7 = pcVar7 + (longlong)pcVar21;
             if (pcVar7 <= pcVar21) goto LAB_18030c89f;
-            lVar10 = (longlong)&UNK_180a1a488 - (longlong)pcVar21;
+            lVar10 = (longlong)&unknown_var_4360_ptr - (longlong)pcVar21;
             while (*pcVar21 == pcVar21[lVar10]) {
                 pcVar21 = pcVar21 + 1;
                 if (pcVar7 <= pcVar21) goto LAB_18030c89f;
@@ -909,14 +909,14 @@ LAB_18030c89f:
     
     // 最终资源清理
     ppuStack_1d8 = &puStack_70;
-    puStack_70 = &UNK_180a3c3e0;
+    puStack_70 = &unknown_var_3456_ptr;
     if (lStack_68 != 0) {
         // WARNING: Subroutine does not return
         FUN_18064e900();
     }
     lStack_68 = 0;
     uStack_58 = uStack_58 & 0xffffffff00000000;
-    puStack_70 = &UNK_18098bcb0;
+    puStack_70 = &unknown_var_720_ptr;
     FUN_1808fc8a8(auStack_178,RENDERING_STACK_BUFFER_SIZE,2,FUN_1800f88f0);
     if (puVar9 == (uint64_t *)0x0) goto LAB_18030c93f;
     goto LAB_18030c154;

@@ -123,7 +123,7 @@ void CoreEngineSystemStateManager(void)
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                THREAD_LOCAL_STORAGE_SIZE) < _DAT_180d49620) && (FUN_1808fcb90(&system_memory_9620), _DAT_180d49620 == -1)) {
     _DAT_180d49628 = 0;
-    FUN_1808fc820(&UNK_180941b00);
+    FUN_1808fc820(&unknown_var_7184_ptr);
     FUN_1808fcb30(&system_memory_9620);
   }
   
@@ -135,8 +135,8 @@ void CoreEngineSystemStateManager(void)
     // 系统初始化流程
     memory_block = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
     manager_stack = (code *****)&callback_array;
-    context_data = &UNK_180180900;
-    timestamp = &UNK_1801808f0;
+    context_data = &unknown_var_6112_ptr;
+    timestamp = &unknown_var_6096_ptr;
     processor_stack = (code *****)FUN_18006b640(memory_block,&callback_array);
     handler_stack = processor_stack;
     
@@ -170,7 +170,7 @@ void CoreEngineSystemStateManager(void)
       _DAT_180c91030 = FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
       FUN_180653ef0();
       system_context = _DAT_180c91030;
-      callback_array = (code ***)&UNK_180a3c3e0;
+      callback_array = (code ***)&unknown_var_3456_ptr;
       timestamp = (void *)0x0;
       flag_ptr = (int32_t *)0x0;
       context_data = (void *)((ulonglong)context_data & 0xffffffff00000000);
@@ -186,14 +186,14 @@ void CoreEngineSystemStateManager(void)
       *(uint64_t *)(resource_ptr + 4) = 0x65746167656c65;  // "etagele"
       context_data = (void *)CONCAT44(context_data._4_4_,0x17);
       GetProcAddress(*(uint64_t *)(system_context + 0x10),resource_ptr);
-      callback_array = (code ***)&UNK_180a3c3e0;
+      callback_array = (code ***)&unknown_var_3456_ptr;
       FUN_18064e900(resource_ptr);
     }
     
     if (*(int *)(system_context + 0x340) != SYSTEM_STATE_UNINITIALIZED) {
       manager_stack = (code *****)FUN_18062b1e0(_DAT_180c8ed18,MEMORY_POOL_SIZE,8,3);
-      *manager_stack = (code ****)&UNK_180a3dcb0;
-      manager_stack[1] = (code ****)&UNK_180a3dca0;
+      *manager_stack = (code ****)&unknown_var_9808_ptr;
+      manager_stack[1] = (code ****)&unknown_var_9792_ptr;
       manager_stack[2] = (code ****)0x0;
       processor_stack = manager_stack + 0x2d;
       *processor_stack = (code ****)0x0;
@@ -204,13 +204,13 @@ void CoreEngineSystemStateManager(void)
       _DAT_180c8f008 = (code ******)manager_stack;
       *(int32_t *)((longlong)manager_stack + 0x18c) = 0;
       *(code ******)(system_context + 0x40) = manager_stack;
-      FUN_180062300(_DAT_180c86928,&UNK_180a09c50);
+      FUN_180062300(_DAT_180c86928,&unknown_var_6720_ptr);
     }
     
     // 第二阶段系统初始化
     manager_stack = (code *****)FUN_18062b1e0(_DAT_180c8ed18,MEMORY_POOL_SIZE,8,3);
-    *manager_stack = (code ****)&UNK_180a3dcb0;
-    ((code ******)manager_stack)[1] = (code *****)&UNK_180a3dca0;
+    *manager_stack = (code ****)&unknown_var_9808_ptr;
+    ((code ******)manager_stack)[1] = (code *****)&unknown_var_9792_ptr;
     ((code ******)manager_stack)[2] = (code *****)0x0;
     processor_stack = (code *****)((code ******)manager_stack + 0x2d);
     *processor_stack = (code ****)0x0;
@@ -220,7 +220,7 @@ void CoreEngineSystemStateManager(void)
     *(int16_t *)((code ******)manager_stack + 0x31) = 0;
     _DAT_180c8f008 = (code ******)manager_stack;
     *(int32_t *)((longlong)manager_stack + 0x18c) = 0;
-    *manager_stack = (code ****)&UNK_180a3e030;
+    *manager_stack = (code ****)&unknown_var_704_ptr;
     *(code ******)(system_context + 0x40) = manager_stack;
     memory_block = FUN_18062b1e0(_DAT_180c8ed18,0x238,8,3);
     memory_block = FUN_1801504b0(memory_block);
@@ -279,8 +279,8 @@ void CoreEngineSystemStateManager(void)
       // 由于代码长度限制，这里只展示部分逻辑
       memory_block = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
       manager_stack = (code *****)&callback_array;
-      context_data = &UNK_1801808b0;
-      timestamp = &UNK_1801808a0;
+      context_data = &unknown_var_6032_ptr;
+      timestamp = &unknown_var_6016_ptr;
       callback_array = (code ***)FUN_18021bff0;
       handler_stack = (code *****)FUN_18006b640(memory_block,&callback_array);
       processor_stack = handler_stack;
@@ -350,19 +350,19 @@ void CoreEngineSystemStateManager(void)
           if (current_state != 7) {
             // 未知状态处理
             state_flag = 1;
-            heap_buffer = &UNK_18098bc80;
+            heap_buffer = &unknown_var_672_ptr;
             name_buffer = temp_buffer;
             temp_buffer[0] = 0;
             stack_size = 0xb;
-            strcpy_s(temp_buffer,0x20,&UNK_1809fd298);
+            strcpy_s(temp_buffer,0x20,&unknown_var_5080_ptr);
             FUN_180051f00(_DAT_180c86870,&heap_buffer);
             system_context = _DAT_180c8a9a0;
-            heap_buffer = &UNK_18098bcb0;
-            callback_array = (code ***)&UNK_180a3c3e0;
+            heap_buffer = &unknown_var_720_ptr;
+            callback_array = (code ***)&unknown_var_3456_ptr;
             timestamp = (void *)0x0;
             flag_ptr = (int32_t *)0x0;
             context_data = (void *)((ulonglong)context_data._4_4_ << 0x20);
-            memory_buffer = &UNK_180a3c3e0;
+            memory_buffer = &unknown_var_3456_ptr;
             process_id = 0;
             resource_handle = (int32_t *)0x0;
             handle_flag = 0;
@@ -382,13 +382,13 @@ void CoreEngineSystemStateManager(void)
               if ((int)context_data == 3) {
                 do {
                   security_cookie = loop_counter + 1;
-                  if (*(char *)((longlong)flag_ptr + loop_counter) != (&UNK_180a0f0b8)[loop_counter]) break;
+                  if (*(char *)((longlong)flag_ptr + loop_counter) != (&unknown_var_8328_ptr)[loop_counter]) break;
                   loop_counter = security_cookie;
                 } while (security_cookie != 4);
               }
             }
             version_info = 0;
-            memory_buffer = &UNK_180a3c3e0;
+            memory_buffer = &unknown_var_3456_ptr;
             FUN_18064e900(resource_ptr);
           }
           
@@ -428,8 +428,8 @@ void CoreEngineSystemStateManager(void)
       FUN_1800b8500(system_context + 800);
       memory_block = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
       manager_stack = (code *****)&callback_array;
-      context_data = &UNK_1801808b0;
-      timestamp = &UNK_1801808a0;
+      context_data = &unknown_var_6032_ptr;
+      timestamp = &unknown_var_6016_ptr;
       callback_array = (code ***)FUN_18021b9c0;
       handler_stack = (code *****)FUN_18006b640(memory_block,&callback_array);
       processor_stack = handler_stack;

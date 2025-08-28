@@ -22,11 +22,11 @@ void FUN_18047dc00(longlong param_1)
       if ((*(int *)(*(longlong *)(param_1 + 0x48) + 8) != 6) ||
          ((*(byte *)(*(longlong *)(param_1 + 0x48) + 0xc) & 4) != 0)) {
         puVar5 = (uint64_t *)FUN_1808fc418();
-        *puVar5 = &UNK_180a2bd18;
+        *puVar5 = &unknown_var_6184_ptr;
         puVar5[1] = 6;
         puVar5[2] = 0;
         puVar5[3] = 0;
-        *puVar5 = &UNK_180a2bd08;
+        *puVar5 = &unknown_var_6168_ptr;
         puVar5[4] = 0;
         puVar5[5] = 0;
         puVar5[3] = *(uint64_t *)(param_1 + 0x48);
@@ -84,11 +84,11 @@ void FUN_18047dc00(longlong param_1)
           ((*(uint *)(*(longlong *)(param_1 + 0x20) + (uVar8 >> 5) * 4) & 1 << ((byte)uVar4 & 0x1f))
            != 0)))) {
         puVar5 = (uint64_t *)FUN_1808fc418(0x28);
-        *puVar5 = &UNK_180a2bd18;
+        *puVar5 = &unknown_var_6184_ptr;
         puVar5[1] = 0xf;
         puVar5[2] = 0;
         puVar5[3] = 0;
-        *puVar5 = &UNK_180a2bb88;
+        *puVar5 = &unknown_var_5784_ptr;
         *(uint *)(puVar5 + 4) = uVar4;
         puVar5[3] = *(uint64_t *)(param_1 + 0x48);
         lVar6 = *(longlong *)(param_1 + 0x48);
@@ -418,11 +418,11 @@ void FUN_18047df40(longlong param_1,int8_t param_2,uint64_t param_3,uint64_t par
   if ((*(int *)(*(longlong *)(param_1 + 8) + 8) != 6) ||
      ((*(byte *)(*(longlong *)(param_1 + 8) + 0xc) & 4) != 0)) {
     puVar3 = (uint64_t *)FUN_1808fc418();
-    *puVar3 = &UNK_180a2bd18;
+    *puVar3 = &unknown_var_6184_ptr;
     puVar3[1] = 6;
     puVar3[2] = 0;
     puVar3[3] = 0;
-    *puVar3 = &UNK_180a2bd08;
+    *puVar3 = &unknown_var_6168_ptr;
     puVar3[4] = 0;
     puVar3[5] = 0;
     puVar3[3] = *(uint64_t *)(param_1 + 8);

@@ -52,7 +52,7 @@ void FUN_1804dad70(longlong *****param_1,uint64_t param_2,uint64_t param_3)
     uStackX_18 = param_3;
     uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
     ppppplStackX_20 = apppplStack_c8;
-    puStack_b8 = &UNK_1804ded60;
+    puStack_b8 = &unknown_var_7984_ptr;
     pcStack_b0 = FUN_1804ded00;
     apppplStack_c8[0] = (longlong ****)param_1;
     ppppplVar4 = (longlong *****)FUN_18006b640(uVar3,apppplStack_c8);
@@ -63,7 +63,7 @@ void FUN_1804dad70(longlong *****param_1,uint64_t param_2,uint64_t param_3)
     uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
     ppppplStackX_20 = (longlong *****)&uStack_a8;
     puStack_100 = &uStackX_18;
-    puStack_98 = &UNK_1804decc0;
+    puStack_98 = &unknown_var_7824_ptr;
     pcStack_90 = FUN_1804dec60;
     uStack_108._0_4_ = SUB84(param_1,0);
     uVar1 = (int32_t)uStack_108;
@@ -81,7 +81,7 @@ void FUN_1804dad70(longlong *****param_1,uint64_t param_2,uint64_t param_3)
     uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
     ppppplStackX_20 = (longlong *****)&uStack_88;
     puStack_100 = &uStackX_18;
-    puStack_78 = &UNK_1804dec20;
+    puStack_78 = &unknown_var_7664_ptr;
     pcStack_70 = FUN_1804deba0;
     uStack_88 = uVar1;
     uStack_84 = uVar2;
@@ -95,7 +95,7 @@ void FUN_1804dad70(longlong *****param_1,uint64_t param_2,uint64_t param_3)
     uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
     ppppplStackX_20 = (longlong *****)&uStack_68;
     puStack_110 = &uStackX_18;
-    puStack_58 = &UNK_1804deb60;
+    puStack_58 = &unknown_var_7472_ptr;
     pcStack_50 = FUN_1804dea90;
     uStack_68._0_4_ = uVar1;
     uStack_68._4_4_ = uVar2;
@@ -169,7 +169,7 @@ void FUN_1804dad70(longlong *****param_1,uint64_t param_2,uint64_t param_3)
       (*(code *)(*pppplVar6)[0xc])(pppplVar6);
       (*(code *)(*pppplVar5)[0xc])(pppplVar5);
       (*(code *)(*ppppplVar7)[0xc])(ppppplVar7);
-      if ((*ppppplVar4)[0xe] == (longlong ***)&UNK_180049530) {
+      if ((*ppppplVar4)[0xe] == (longlong ***)&unknown_var_1280_ptr) {
         LOCK();
         *(int8_t *)(ppppplVar4 + 2) = 1;
         UNLOCK();
@@ -178,7 +178,7 @@ void FUN_1804dad70(longlong *****param_1,uint64_t param_2,uint64_t param_3)
       else {
         (*(code *)(*ppppplVar4)[0xe])(ppppplVar4);
       }
-      if ((*pppplVar6)[0xe] == (longlong **)&UNK_180049530) {
+      if ((*pppplVar6)[0xe] == (longlong **)&unknown_var_1280_ptr) {
         LOCK();
         *(int8_t *)(pppplVar6 + 2) = 1;
         UNLOCK();
@@ -187,7 +187,7 @@ void FUN_1804dad70(longlong *****param_1,uint64_t param_2,uint64_t param_3)
       else {
         (*(code *)(*pppplVar6)[0xe])(pppplVar6);
       }
-      if ((*pppplVar5)[0xe] == (longlong **)&UNK_180049530) {
+      if ((*pppplVar5)[0xe] == (longlong **)&unknown_var_1280_ptr) {
         LOCK();
         *(int8_t *)(pppplVar5 + 2) = 1;
         UNLOCK();
@@ -196,7 +196,7 @@ void FUN_1804dad70(longlong *****param_1,uint64_t param_2,uint64_t param_3)
       else {
         (*(code *)(*pppplVar5)[0xe])(pppplVar5);
       }
-      if ((*ppppplVar7)[0xe] == (longlong ***)&UNK_180049530) {
+      if ((*ppppplVar7)[0xe] == (longlong ***)&unknown_var_1280_ptr) {
         LOCK();
         *(int8_t *)(ppppplVar7 + 2) = 1;
         UNLOCK();
@@ -288,7 +288,7 @@ void FUN_1804db240(longlong param_1,longlong param_2)
           if (puVar2 != (void *)0x0) {
             puVar9 = puVar2;
           }
-          puStack_80 = &UNK_180a3c3e0;
+          puStack_80 = &unknown_var_3456_ptr;
           uStack_68 = 0;
           puStack_78 = (int8_t *)0x0;
           uStack_70 = 0;
@@ -372,14 +372,14 @@ void FUN_1804db240(longlong param_1,longlong param_2)
             goto LAB_1804db550;
           }
           FUN_18005d1f0(extraout_XMM0_Da,lVar7);
-          puStack_80 = &UNK_180a3c3e0;
+          puStack_80 = &unknown_var_3456_ptr;
           if (puStack_78 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
           puStack_78 = (int8_t *)0x0;
           uStack_68 = uStack_68 & 0xffffffff00000000;
-          puStack_80 = &UNK_18098bcb0;
+          puStack_80 = &unknown_var_720_ptr;
           uVar14 = (int)uVar12 + 1;
           uVar12 = (ulonglong)uVar14;
           uVar15 = uVar15 + 8;

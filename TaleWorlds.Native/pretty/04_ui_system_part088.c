@@ -238,7 +238,7 @@ void FUN_18071ccba(void)
 void FUN_18071cd40(longlong param_1)
 
 {
-  (**(code **)(&UNK_180954ae0 + (ulonglong)(*(uint *)(param_1 + 0x13ec) & 7) * 8))
+  (**(code **)(&unknown_var_4976_ptr + (ulonglong)(*(uint *)(param_1 + 0x13ec) & 7) * 8))
             (param_1,param_1 + 0x13f2);
   if (0xc < *(int *)(param_1 + 0x11b0)) {
     *(int8_t *)(param_1 + 0x12a5) = 1;
@@ -603,19 +603,19 @@ int32_t FUN_18071dfc0(longlong param_1,int param_2,ulonglong param_3)
       *(uint *)(param_1 + 0x11e0) = (uVar4 == 10) + 1;
       *(int *)(param_1 + 0x11e4) = (short)param_3 * iVar2;
       *(int *)(param_1 + 0x11c0) = iVar2 * 0xe;
-      puVar1 = &UNK_180954814;
+      puVar1 = &unknown_var_4260_ptr;
       if (*(int *)(param_1 + 0x11dc) != 8) {
-        puVar1 = &UNK_180954828;
+        puVar1 = &unknown_var_4280_ptr;
       }
     }
     else {
       *(int32_t *)(param_1 + 0x11e0) = 4;
       *(int *)(param_1 + 0x11e4) = iVar2 * 0x14;
       *(int *)(param_1 + 0x11c0) = iVar2 * 0x18;
-      puVar1 = &UNK_180954818;
+      puVar1 = &unknown_var_4264_ptr;
       *(int *)(param_1 + 0x1678) = (int)uVar4 / 0x14;
       if (*(int *)(param_1 + 0x11dc) != 8) {
-        puVar1 = &UNK_1809547f0;
+        puVar1 = &unknown_var_4224_ptr;
       }
     }
     *(void **)(param_1 + 0x1250) = puVar1;

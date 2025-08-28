@@ -101,7 +101,7 @@ void FUN_18012ae5a(float param_1,float param_2,float param_3,float param_4)
   fStack0000000000000074 = 3.4028235e+38;
   fStack0000000000000060 = 3.4028235e+38;
   fStack0000000000000064 = 3.4028235e+38;
-  FUN_18012e1b0(&UNK_180a064a0);
+  FUN_18012e1b0(&unknown_var_2464_ptr);
   lVar20 = 0;
   do {
     uVar6 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
@@ -413,7 +413,7 @@ LAB_18012b510:
           (*(int *)(unaff_RSI + 0x1a90) - *(int *)(unaff_RSI + 0x1e44) < 2)) &&
          ((*(char *)(unaff_RSI + 0xc3) != '\0' &&
           (((*(int *)(unaff_RSI + 0x1df4) != -1 &&
-            (iVar9 = strcmp(&UNK_180a06400,unaff_RSI + 0x1df8), iVar9 == 0)) &&
+            (iVar9 = strcmp(&unknown_var_2304_ptr,unaff_RSI + 0x1df8), iVar9 == 0)) &&
            (bVar21 = false, **(longlong **)(unaff_RSI + 0x1de0) == in_stack_00000040)))))) {
         bVar21 = true;
       }
@@ -548,7 +548,7 @@ LAB_18012b510:
       fVar28 = (float)(int)(fVar28 * 0.55);
       unaff_RBP[-0x1e] = fVar30 + fVar28;
       unaff_RBP[-0x1d] = fVar29 + fVar28;
-      uVar5 = FUN_180123c00(in_stack_00000040,&UNK_180a064c0,0);
+      uVar5 = FUN_180123c00(in_stack_00000040,&unknown_var_2496_ptr,0);
       uVar22 = CONCAT44(uVar6,0x20);
       cVar4 = FUN_18010f170(unaff_RBP + -0x20,uVar5,(longlong)&stack0x00000058 + 1,&stack0x00000058,
                             uVar22);
@@ -871,7 +871,7 @@ LAB_18012b510:
     *(int32_t *)(in_stack_00000040 + 0x16c) = 1;
     *(int32_t *)(in_stack_00000040 + 0x170) = 2;
     if (((uint)unaff_R15D & 0x20) == 0) {
-      uVar6 = FUN_180123c00(in_stack_00000040,&UNK_180a064b0,0);
+      uVar6 = FUN_180123c00(in_stack_00000040,&unknown_var_2480_ptr,0);
       cVar4 = FUN_180110000(uVar6,in_stack_00000040 + 0x40,0);
       if (cVar4 != '\0') {
         *(int8_t *)(in_stack_00000040 + 0xb3) = 1;
@@ -885,7 +885,7 @@ LAB_18012b510:
                                    *(float *)(unaff_RSI + 0x165c)) - fVar32,
                                    *(float *)(in_stack_00000040 + 0x44) +
                                    *(float *)(unaff_RSI + 0x1660) + fVar32);
-      uVar6 = FUN_180123c00(in_stack_00000040,&UNK_180a064d0,0);
+      uVar6 = FUN_180123c00(in_stack_00000040,&unknown_var_2512_ptr,0);
       cVar4 = FUN_18010fd40(uVar6,uVar22);
       if (cVar4 != '\0') {
         **(int8_t **)(unaff_RBP + 10) = 0;

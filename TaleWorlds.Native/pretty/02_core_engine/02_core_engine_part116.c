@@ -142,13 +142,13 @@ int8_t update_render_queue_status(int32_t param_1,uint64_t param_2)
   lVar8 = (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b90);
   lVar4 = *(longlong *)(_DAT_180c8a9b0 + 0x1b98);
   lVar9 = (longlong)*(int *)(lVar4 + -0xc + lVar8 * 0xc);
-  uVar10 = (ulonglong)*(uint *)(&UNK_18098d188 + lVar9 * 0xc);
+  uVar10 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + lVar9 * 0xc);
   // 处理渲染队列项
-  if (*(int *)(&UNK_18098d180 + lVar9 * 0xc) == 4) {
-    if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 1) {
+  if (*(int *)(&unknown_var_6048_ptr + lVar9 * 0xc) == 4) {
+    if (*(int *)(&unknown_var_6052_ptr + lVar9 * 0xc) == 1) {
       *(int32_t *)(uVar10 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(lVar4 + -8 + lVar8 * 0xc);
     }
-    else if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 2) {
+    else if (*(int *)(&unknown_var_6052_ptr + lVar9 * 0xc) == 2) {
       *(int32_t *)(uVar10 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(lVar4 + -8 + lVar8 * 0xc);
       *(int32_t *)(uVar10 + 0x162c + lVar6) = *(int32_t *)(lVar4 + -4 + lVar8 * 0xc);
     }
@@ -159,13 +159,13 @@ int8_t update_render_queue_status(int32_t param_1,uint64_t param_2)
   lVar4 = (longlong)iVar3 + -2;
   lVar8 = *(longlong *)(lVar6 + 0x1b98);
   lVar9 = (longlong)*(int *)(lVar8 + lVar4 * 0xc);
-  uVar10 = (ulonglong)*(uint *)(&UNK_18098d188 + lVar9 * 0xc);
+  uVar10 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + lVar9 * 0xc);
   // 处理第二个队列项
-  if (*(int *)(&UNK_18098d180 + lVar9 * 0xc) == 4) {
-    if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 1) {
+  if (*(int *)(&unknown_var_6048_ptr + lVar9 * 0xc) == 4) {
+    if (*(int *)(&unknown_var_6052_ptr + lVar9 * 0xc) == 1) {
       *(int32_t *)(uVar10 + 0x1628 + lVar6) = *(int32_t *)(lVar8 + 4 + lVar4 * 0xc);
     }
-    else if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 2) {
+    else if (*(int *)(&unknown_var_6052_ptr + lVar9 * 0xc) == 2) {
       *(int32_t *)(uVar10 + 0x1628 + lVar6) = *(int32_t *)(lVar8 + 4 + lVar4 * 0xc);
       *(int32_t *)(uVar10 + 0x162c + lVar6) = *(int32_t *)(lVar8 + 8 + lVar4 * 0xc);
     }
@@ -176,13 +176,13 @@ int8_t update_render_queue_status(int32_t param_1,uint64_t param_2)
   lVar4 = (longlong)iVar3 + -2;
   lVar8 = *(longlong *)(lVar6 + 0x1b98);
   lVar9 = (longlong)*(int *)(lVar8 + lVar4 * 0xc);
-  uVar10 = (ulonglong)*(uint *)(&UNK_18098d188 + lVar9 * 0xc);
+  uVar10 = (ulonglong)*(uint *)(&unknown_var_6056_ptr + lVar9 * 0xc);
   // 处理第三个队列项
-  if (*(int *)(&UNK_18098d180 + lVar9 * 0xc) == 4) {
-    if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 1) {
+  if (*(int *)(&unknown_var_6048_ptr + lVar9 * 0xc) == 4) {
+    if (*(int *)(&unknown_var_6052_ptr + lVar9 * 0xc) == 1) {
       *(int32_t *)(uVar10 + 0x1628 + lVar6) = *(int32_t *)(lVar8 + 4 + lVar4 * 0xc);
     }
-    else if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 2) {
+    else if (*(int *)(&unknown_var_6052_ptr + lVar9 * 0xc) == 2) {
       *(int32_t *)(uVar10 + 0x1628 + lVar6) = *(int32_t *)(lVar8 + 4 + lVar4 * 0xc);
       *(int32_t *)(uVar10 + 0x162c + lVar6) = *(int32_t *)(lVar8 + 8 + lVar4 * 0xc);
     }

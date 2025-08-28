@@ -316,7 +316,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                             if (temp_ptr4 <= temp_ptr2) {
                                 // 名称处理分支
                                 do {
-                                    resource_ptr = &UNK_180a3c3e0;
+                                    resource_ptr = &unknown_var_3456_ptr;
                                     stack_data_block = SYSTEM_NULL_POINTER;
                                     stack_handle = SYSTEM_NULL_POINTER;
                                     stack_status = SYSTEM_NULL_POINTER;
@@ -372,8 +372,8 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                     
                                     // 状态验证和处理
                                     if ((stack_status == 0x24) && 
-                                        (result = strcmp(stack_handle, &UNK_180a23af8), result == SYSTEM_ERROR_NONE) &&
-                                        (SystemConfigValidator(current_ptr, &UNK_180a0696c, auStackX_18),
+                                        (result = strcmp(stack_handle, &unknown_var_2872_ptr), result == SYSTEM_ERROR_NONE) &&
+                                        (SystemConfigValidator(current_ptr, &unknown_var_3692_ptr, auStackX_18),
                                          (*(byte*)(*(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET) + SYSTEM_FEATURE_FLAG_OFFSET) & SYSTEM_FEATURE_FLAG_ENABLED) != SYSTEM_NULL_POINTER)) {
                                         
                                         // 因子处理
@@ -403,12 +403,12 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                 if (temp_ptr5 <= temp_ptr3) break;
                                                 
                                                 // 字符串比较
-                                                temp_handle = (SystemHandle)&UNK_180a1674c - (SystemHandle)temp_ptr3;
+                                                temp_handle = (SystemHandle)&unknown_var_8684_ptr - (SystemHandle)temp_ptr3;
                                                 while (*temp_ptr3 == temp_ptr3[temp_handle]) {
                                                     temp_ptr3 = temp_ptr3 + 1;
                                                     if (temp_ptr5 <= temp_ptr3) {
                                                         // 参数处理完成
-                                                        SystemParameterHandler(temp_ptr4, &UNK_180a0696c, &temp_param1);
+                                                        SystemParameterHandler(temp_ptr4, &unknown_var_3692_ptr, &temp_param1);
                                                         temp_handle = *(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET);
                                                         *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET) = temp_param1;
                                                         *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 4) = temp_param2;
@@ -447,12 +447,12 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                             if (temp_ptr5 <= temp_ptr4) break;
                                             
                                             // 字符串比较
-                                            temp_handle = (SystemHandle)&UNK_180a23b20 - (SystemHandle)temp_ptr4;
+                                            temp_handle = (SystemHandle)&unknown_var_2912_ptr - (SystemHandle)temp_ptr4;
                                             while (*temp_ptr4 == temp_ptr4[temp_handle]) {
                                                 temp_ptr4 = temp_ptr4 + 1;
                                                 if (temp_ptr5 <= temp_ptr4) {
                                                     // 特征处理完成
-                                                    resource_ptr = &UNK_180a3c3e0;
+                                                    resource_ptr = &unknown_var_3456_ptr;
                                                     if (stack_handle != SYSTEM_NULL_POINTER) {
                                                         // 警告: 子程序不返回
                                                         SystemResourceCleaner();
@@ -468,7 +468,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                     }
                                     
                                     // 继续处理
-                                    resource_ptr = &UNK_180a3c3e0;
+                                    resource_ptr = &unknown_var_3456_ptr;
                                     if (stack_handle != SYSTEM_NULL_POINTER) {
                                         // 警告: 子程序不返回
                                         SystemResourceCleaner();
@@ -481,13 +481,13 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                             }
                             
                             // 字符串比较
-                            temp_handle = (SystemHandle)&UNK_180a23b20 - (SystemHandle)temp_ptr2;
+                            temp_handle = (SystemHandle)&unknown_var_2912_ptr - (SystemHandle)temp_ptr2;
                             while (*temp_ptr2 == temp_ptr2[temp_handle]) {
                                 temp_ptr2 = temp_ptr2 + 1;
                                 if (temp_ptr4 <= temp_ptr2) {
                                     // 名称处理分支
                                     do {
-                                        resource_ptr = &UNK_180a3c3e0;
+                                        resource_ptr = &unknown_var_3456_ptr;
                                         stack_data_block = SYSTEM_NULL_POINTER;
                                         stack_handle = SYSTEM_NULL_POINTER;
                                         stack_status = SYSTEM_NULL_POINTER;
@@ -550,7 +550,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                     }
                     
                     // 字符串比较
-                    temp_handle = (SystemHandle)&UNK_180a23b28 - (SystemHandle)temp_ptr1;
+                    temp_handle = (SystemHandle)&unknown_var_2920_ptr - (SystemHandle)temp_ptr1;
                     while (*temp_ptr1 == temp_ptr1[temp_handle]) {
                         temp_ptr1 = temp_ptr1 + 1;
                         if (temp_ptr4 <= temp_ptr1) {
@@ -582,7 +582,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                     if (temp_ptr4 <= temp_ptr2) {
                                         // 名称处理分支
                                         do {
-                                            resource_ptr = &UNK_180a3c3e0;
+                                            resource_ptr = &unknown_var_3456_ptr;
                                             stack_data_block = SYSTEM_NULL_POINTER;
                                             stack_handle = SYSTEM_NULL_POINTER;
                                             stack_status = SYSTEM_NULL_POINTER;
@@ -639,8 +639,8 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                             
                                             // 状态验证和处理
                                             if ((stack_status == 0x24) && 
-                                                (result = strcmp(stack_handle, &UNK_180a23af8), result == SYSTEM_ERROR_NONE) &&
-                                                (SystemConfigValidator(current_ptr, &UNK_180a0696c, auStackX_18),
+                                                (result = strcmp(stack_handle, &unknown_var_2872_ptr), result == SYSTEM_ERROR_NONE) &&
+                                                (SystemConfigValidator(current_ptr, &unknown_var_3692_ptr, auStackX_18),
                                                  (*(byte*)(*(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET) + SYSTEM_FEATURE_FLAG_OFFSET) & SYSTEM_FEATURE_FLAG_ENABLED) != SYSTEM_NULL_POINTER)) {
                                                 
                                                 // 因子处理
@@ -670,12 +670,12 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                         if (temp_ptr5 <= temp_ptr3) break;
                                                         
                                                         // 字符串比较
-                                                        temp_handle = (SystemHandle)&UNK_180a1674c - (SystemHandle)temp_ptr3;
+                                                        temp_handle = (SystemHandle)&unknown_var_8684_ptr - (SystemHandle)temp_ptr3;
                                                         while (*temp_ptr3 == temp_ptr3[temp_handle]) {
                                                             temp_ptr3 = temp_ptr3 + 1;
                                                             if (temp_ptr5 <= temp_ptr3) {
                                                                 // 参数处理完成
-                                                                SystemParameterHandler(temp_ptr4, &UNK_180a0696c, &temp_param1);
+                                                                SystemParameterHandler(temp_ptr4, &unknown_var_3692_ptr, &temp_param1);
                                                                 temp_handle = *(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET);
                                                                 *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET) = temp_param1;
                                                                 *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 4) = temp_param2;
@@ -714,12 +714,12 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                     if (temp_ptr5 <= temp_ptr4) break;
                                                     
                                                     // 字符串比较
-                                                    temp_handle = (SystemHandle)&UNK_180a23b20 - (SystemHandle)temp_ptr4;
+                                                    temp_handle = (SystemHandle)&unknown_var_2912_ptr - (SystemHandle)temp_ptr4;
                                                     while (*temp_ptr4 == temp_ptr4[temp_handle]) {
                                                         temp_ptr4 = temp_ptr4 + 1;
                                                         if (temp_ptr5 <= temp_ptr4) {
                                                             // 特征处理完成
-                                                            resource_ptr = &UNK_180a3c3e0;
+                                                            resource_ptr = &unknown_var_3456_ptr;
                                                             if (stack_handle != SYSTEM_NULL_POINTER) {
                                                                 // 警告: 子程序不返回
                                                                 SystemResourceCleaner();
@@ -735,7 +735,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                             }
                                             
                                             // 继续处理
-                                            resource_ptr = &UNK_180a3c3e0;
+                                            resource_ptr = &unknown_var_3456_ptr;
                                             if (stack_handle != SYSTEM_NULL_POINTER) {
                                                 // 警告: 子程序不返回
                                                 SystemResourceCleaner();
@@ -753,7 +753,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                         }
                         
                         // 字符串比较
-                        temp_handle = (SystemHandle)&UNK_180a23b28 - (SystemHandle)temp_ptr1;
+                        temp_handle = (SystemHandle)&unknown_var_2920_ptr - (SystemHandle)temp_ptr1;
                         while (*temp_ptr1 == temp_ptr1[temp_handle]) {
                             temp_ptr1 = temp_ptr1 + 1;
                             if (temp_ptr4 <= temp_ptr1) {
@@ -785,7 +785,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                         if (temp_ptr4 <= temp_ptr2) {
                                             // 名称处理分支
                                             do {
-                                                resource_ptr = &UNK_180a3c3e0;
+                                                resource_ptr = &unknown_var_3456_ptr;
                                                 stack_data_block = SYSTEM_NULL_POINTER;
                                                 stack_handle = SYSTEM_NULL_POINTER;
                                                 stack_status = SYSTEM_NULL_POINTER;
@@ -842,8 +842,8 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                 
                                                 // 状态验证和处理
                                                 if ((stack_status == 0x24) && 
-                                                    (result = strcmp(stack_handle, &UNK_180a23af8), result == SYSTEM_ERROR_NONE) &&
-                                                    (SystemConfigValidator(current_ptr, &UNK_180a0696c, auStackX_18),
+                                                    (result = strcmp(stack_handle, &unknown_var_2872_ptr), result == SYSTEM_ERROR_NONE) &&
+                                                    (SystemConfigValidator(current_ptr, &unknown_var_3692_ptr, auStackX_18),
                                                      (*(byte*)(*(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET) + SYSTEM_FEATURE_FLAG_OFFSET) & SYSTEM_FEATURE_FLAG_ENABLED) != SYSTEM_NULL_POINTER)) {
                                                     
                                                     // 因子处理
@@ -873,12 +873,12 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                             if (temp_ptr5 <= temp_ptr3) break;
                                                             
                                                             // 字符串比较
-                                                            temp_handle = (SystemHandle)&UNK_180a1674c - (SystemHandle)temp_ptr3;
+                                                            temp_handle = (SystemHandle)&unknown_var_8684_ptr - (SystemHandle)temp_ptr3;
                                                             while (*temp_ptr3 == temp_ptr3[temp_handle]) {
                                                                 temp_ptr3 = temp_ptr3 + 1;
                                                                 if (temp_ptr5 <= temp_ptr3) {
                                                                     // 参数处理完成
-                                                                    SystemParameterHandler(temp_ptr4, &UNK_180a0696c, &temp_param1);
+                                                                    SystemParameterHandler(temp_ptr4, &unknown_var_3692_ptr, &temp_param1);
                                                                     temp_handle = *(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET);
                                                                     *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET) = temp_param1;
                                                                     *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 4) = temp_param2;
@@ -917,12 +917,12 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                         if (temp_ptr5 <= temp_ptr4) break;
                                                         
                                                         // 字符串比较
-                                                        temp_handle = (SystemHandle)&UNK_180a23b20 - (SystemHandle)temp_ptr4;
+                                                        temp_handle = (SystemHandle)&unknown_var_2912_ptr - (SystemHandle)temp_ptr4;
                                                         while (*temp_ptr4 == temp_ptr4[temp_handle]) {
                                                             temp_ptr4 = temp_ptr4 + 1;
                                                             if (temp_ptr5 <= temp_ptr4) {
                                                                 // 特征处理完成
-                                                                resource_ptr = &UNK_180a3c3e0;
+                                                                resource_ptr = &unknown_var_3456_ptr;
                                                                 if (stack_handle != SYSTEM_NULL_POINTER) {
                                                                     // 警告: 子程序不返回
                                                                     SystemResourceCleaner();
@@ -939,7 +939,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                             }
                                             
                                             // 继续处理
-                                            resource_ptr = &UNK_180a3c3e0;
+                                            resource_ptr = &unknown_var_3456_ptr;
                                             if (stack_handle != SYSTEM_NULL_POINTER) {
                                                 // 警告: 子程序不返回
                                                 SystemResourceCleaner();
@@ -1076,7 +1076,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
     
     // 主处理循环
     do {
-        string_ptr5 = *(SystemStringPtr*)(&UNK_180994200 + stack_handle1 * 8);
+        string_ptr5 = *(SystemStringPtr*)(&unknown_var_4848_ptr + stack_handle1 * 8);
         if (string_ptr5 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
             string_ptr4 = *(SystemStringPtr*)(param_4 + SYSTEM_FEATURE_OFFSET);
             
@@ -1086,7 +1086,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                 handle_ptr2 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
                 
                 if (temp_uint == SYSTEM_MODE_NORMAL) {
-                    stack_resource_ptr1 = &UNK_180a3c3e0;
+                    stack_resource_ptr1 = &unknown_var_3456_ptr;
                     stack_size1 = SYSTEM_NULL_POINTER;
                     stack_resource_ptr2 = (SystemResourcePtr)SYSTEM_NULL_POINTER;
                     stack_param1 = SYSTEM_NULL_POINTER;
@@ -1148,7 +1148,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     if (temp_handle3 == SYSTEM_NULL_POINTER) {
                         temp_handle3 = *(SystemHandle*)(_DAT_180c86898 + 0x2d8);
                         if (temp_handle3 == SYSTEM_NULL_POINTER) {
-                            stack_resource_ptr3 = &UNK_180a3c3e0;
+                            stack_resource_ptr3 = &unknown_var_3456_ptr;
                             stack_data_block1 = SYSTEM_NULL_POINTER;
                             stack_data_block_ptr1 = (SystemDataBlock*)SYSTEM_NULL_POINTER;
                             stack_param2 = SYSTEM_NULL_POINTER;
@@ -1165,7 +1165,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                             stack_param2 = 0xc;
                             
                             SystemDataManager(temp_data_block, &stack_resource_ptr3, 1);
-                            stack_resource_ptr3 = &UNK_180a3c3e0;
+                            stack_resource_ptr3 = &unknown_var_3456_ptr;
                             
                             // 警告: 子程序不返回
                             SystemResourceCleaner(data_block_ptr1);
@@ -1176,7 +1176,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                             resource_ptr1 = stack_resource_ptr2;
                         }
                         
-                        SystemDataProcessor(&UNK_180a23ad0, resource_ptr1);
+                        SystemDataProcessor(&unknown_var_2832_ptr, resource_ptr1);
                         
                         if (param_3 == (SystemHandlePtr)SYSTEM_NULL_POINTER) {
                             temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, SYSTEM_DATA_BLOCK_SIZE, 8, 0x16);
@@ -1387,7 +1387,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     }
                     
                     cleanup_section:
-                    stack_resource_ptr1 = &UNK_180a3c3e0;
+                    stack_resource_ptr1 = &unknown_var_3456_ptr;
                     
                     if (stack_resource_ptr2 != (SystemResourcePtr)SYSTEM_NULL_POINTER) {
                         // 警告: 子程序不返回
@@ -1396,7 +1396,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     
                     stack_resource_ptr2 = (SystemResourcePtr)SYSTEM_NULL_POINTER;
                     stack_size1 = stack_size1 & SYSTEM_ITERATION_MASK;
-                    stack_resource_ptr1 = &UNK_18098bcb0;
+                    stack_resource_ptr1 = &unknown_var_720_ptr;
                 } else if (temp_uint == SYSTEM_MODE_FAST) {
                     temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, SYSTEM_CONFIG_BLOCK_SIZE, 8, 3, 1, 0, temp_int, temp_param);
                     handle_ptr2 = (SystemHandlePtr)SystemConfigProcessor(temp_data_block, string_ptr4);
@@ -1441,26 +1441,26 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     if (temp_uint == SYSTEM_MODE_LEGACY) {
                         handle_ptr2 = (SystemHandlePtr)SystemMemoryAllocator(_DAT_180c8ed18, 0x298, 8, 0xd, 7, 0, temp_int, temp_param);
                         
-                        *handle_ptr2 = (SystemHandle)&UNK_180a21690;
-                        *handle_ptr2 = (SystemHandle)&UNK_180a21720;
+                        *handle_ptr2 = (SystemHandle)&unknown_var_3552_ptr;
+                        *handle_ptr2 = (SystemHandle)&unknown_var_3696_ptr;
                         *(SystemParameter*)(handle_ptr2 + 1) = SYSTEM_NULL_POINTER;
-                        *handle_ptr2 = (SystemHandle)&UNK_180a14860;
+                        *handle_ptr2 = (SystemHandle)&unknown_var_768_ptr;
                         *(SystemParameter*)(handle_ptr2 + 2) = 4;
                         handle_ptr2[3] = SYSTEM_NULL_POINTER;
                         handle_ptr2[4] = SYSTEM_NULL_POINTER;
                         *(SystemParameter*)(handle_ptr2 + 1) = SYSTEM_NULL_POINTER;
                         handle_ptr2[5] = SYSTEM_NULL_POINTER;
-                        *handle_ptr2 = (SystemHandle)&UNK_180a19770;
+                        *handle_ptr2 = (SystemHandle)&unknown_var_1008_ptr;
                         handle_ptr2[0x11] = SYSTEM_NULL_POINTER;
                         handle_ptr2[0x12] = SYSTEM_NULL_POINTER;
                         handle_ptr2[0x13] = SYSTEM_NULL_POINTER;
                         handle_ptr2[0x14] = SYSTEM_NULL_POINTER;
                         
                         stack_handle_ptr17 = handle_ptr2 + 0x27;
-                        *stack_handle_ptr17 = (SystemHandle)&UNK_18098bcb0;
+                        *stack_handle_ptr17 = (SystemHandle)&unknown_var_720_ptr;
                         handle_ptr2[0x28] = SYSTEM_NULL_POINTER;
                         *(SystemParameter*)(handle_ptr2 + 0x29) = SYSTEM_NULL_POINTER;
-                        *stack_handle_ptr17 = (SystemHandle)&UNK_180a3c3e0;
+                        *stack_handle_ptr17 = (SystemHandle)&unknown_var_3456_ptr;
                         handle_ptr2[0x2a] = SYSTEM_NULL_POINTER;
                         handle_ptr2[0x28] = SYSTEM_NULL_POINTER;
                         *(SystemParameter*)(handle_ptr2 + 0x29) = SYSTEM_NULL_POINTER;
@@ -1474,7 +1474,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                         stack_handle_ptr12 = handle_ptr2;
                         ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
                         
-                        if ((SystemResourcePtr)*handle_ptr2 != &UNK_180a19770) {
+                        if ((SystemResourcePtr)*handle_ptr2 != &unknown_var_1008_ptr) {
                             ((code(**)(void))((SystemResourcePtr)*handle_ptr2 + 0x160))(handle_ptr2);
                         }
                         
@@ -1610,7 +1610,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                 }
                 
                 // 字符串处理
-                string_ptr5 = *(SystemStringPtr*)(&UNK_180994200 + stack_handle1 * 8);
+                string_ptr5 = *(SystemStringPtr*)(&unknown_var_4848_ptr + stack_handle1 * 8);
                 
                 if (string_ptr5 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
                     string_ptr4 = *(SystemStringPtr*)(string_ptr4 + 0x58);

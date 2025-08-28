@@ -51,8 +51,8 @@ uint * FUN_1806e94b0(longlong *param_1,longlong param_2)
   }
   else {
     *(int16_t *)((longlong)puVar6 + 10) = 2;
-    *(void **)puVar6 = &UNK_18094dd88;
-    *(void **)(puVar6 + 6) = &UNK_18094dee0;
+    *(void **)puVar6 = &unknown_var_6984_ptr;
+    *(void **)(puVar6 + 6) = &unknown_var_7328_ptr;
     lVar2 = *param_1;
   }
   *param_1 = lVar2 + 0x70;

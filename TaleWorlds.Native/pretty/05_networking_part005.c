@@ -122,7 +122,7 @@ void NetworkClient_GetConnectionInfo(uint64_t client_id, ulonglong *connection_i
         data_buffer = temp_buffer;
         
         // 发送错误报告
-        FUN_180749ef0(0x1f, 0xd, client_id, &UNK_180983de0);
+        FUN_180749ef0(0x1f, 0xd, client_id, &unknown_var_8256_ptr);
     }
     
     // 初始化输出参数
@@ -154,7 +154,7 @@ void NetworkClient_GetConnectionInfo(uint64_t client_id, ulonglong *connection_i
                                message_buffers, 0x20), result == 0)) {
         
         // 设置消息处理回调
-        *message_buffers[0] = &UNK_180983d78;
+        *message_buffers[0] = &unknown_var_8152_ptr;
         *(int32_t *)(message_buffers[0] + 3) = 0;
         *(int32_t *)(message_buffers[0] + 1) = 0x20;
         *(int *)(message_buffers[0] + 2) = (int)client_id;
@@ -229,7 +229,7 @@ void NetworkClient_SendMessage(uint64_t client_id, uint64_t message_data, uint64
         message_buffer = temp_buffer;
         
         // 发送消息
-        FUN_180749ef0(message_type, 0xb, client_id, &UNK_180981f40);
+        FUN_180749ef0(message_type, 0xb, client_id, &unknown_var_416_ptr);
     }
     
     // 清理资源
@@ -349,7 +349,7 @@ void NetworkClient_GetPropertyList(uint64_t client_id, int32_t *property_array, 
         data_buffer = temp_buffer;
         
         // 发送错误报告
-        FUN_180749ef0(0x1f, 0xb, client_id, &UNK_180981d40);
+        FUN_180749ef0(0x1f, 0xb, client_id, &unknown_var_9904_ptr);
     }
     
     // 初始化连接数据
@@ -378,7 +378,7 @@ void NetworkClient_GetPropertyList(uint64_t client_id, int32_t *property_array, 
                                     message_buffers, 0x28), query_result == 0)) {
         
         // 设置属性查询消息
-        *message_buffers[0] = &UNK_180981cd8;
+        *message_buffers[0] = &unknown_var_9800_ptr;
         *(int32_t *)(message_buffers[0] + 4) = 0;
         *(int32_t *)(message_buffers[0] + 1) = 0x28;
         
@@ -458,7 +458,7 @@ void NetworkClient_GetConnectionCount(ulonglong server_id, uint *connection_coun
         data_buffer = temp_buffer;
         
         // 发送错误报告
-        FUN_180749ef0(0x1f, 0xc, server_id, &UNK_180984790);
+        FUN_180749ef0(0x1f, 0xc, server_id, &unknown_var_736_ptr);
     }
     
     // 初始化输出参数
@@ -626,7 +626,7 @@ void NetworkClient_SetClientProperty(uint64_t client_id, longlong property_id, i
       FUN_18074bac0(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
       puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
-      FUN_180749ef0(0x1f,0xb,param_1,&UNK_180984690);
+      FUN_180749ef0(0x1f,0xb,param_1,&unknown_var_480_ptr);
     }
                     // WARNING: Subroutine does not return
     FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
@@ -697,7 +697,7 @@ void NetworkClient_QueryClientStatus(uint64_t client_id, int32_t status_code, ui
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xc,param_1,&UNK_180984730);
+    FUN_180749ef0(iVar1,0xc,param_1,&unknown_var_640_ptr);
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
@@ -793,7 +793,7 @@ void NetworkClient_GetClientAddress(ulonglong client_id, int32_t *client_address
     FUN_18074b930(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180984700);
+    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_592_ptr);
   }
   *param_2 = 0;
   uStack_138 = 0;
@@ -893,7 +893,7 @@ void NetworkClient_GetClientData(ulonglong client_id, int8_t *data_buffer, int d
   FUN_18074b930(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
   puStack_188 = (int32_t *)auStack_148;
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(0x1f,0xc,param_1,&UNK_1809846e0);
+  FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_560_ptr);
 }
 
 
@@ -992,7 +992,7 @@ void NetworkClient_GetClientState(ulonglong client_id, int8_t *client_state)
     FUN_18074be30(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&UNK_180984948);
+    FUN_180749ef0(0x1f,0xd,param_1,&unknown_var_1176_ptr);
   }
   *param_2 = 0;
   uStack_148 = 0;
@@ -1111,7 +1111,7 @@ void NetworkClient_GetClientPing(ulonglong client_id, int32_t *ping_time)
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&UNK_180984990);
+    FUN_180749ef0(0x1f,0xd,param_1,&unknown_var_1248_ptr);
   }
   *param_2 = 2;
   uStack_148 = 0;
@@ -1201,7 +1201,7 @@ void NetworkClient_GetClientProperty(ulonglong client_id, uint property_index, i
   FUN_18074bac0(auStack_138 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(0x1f,0xd,param_1,&UNK_180984928);
+  FUN_180749ef0(0x1f,0xd,param_1,&unknown_var_1144_ptr);
 }
 
 
@@ -1244,7 +1244,7 @@ void NetworkClient_IsClientConnected(uint64_t client_id, int32_t *connection_sta
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180983680);
+    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_6368_ptr);
   }
   *param_2 = 1;
   alStack_148[1] = 0;
@@ -1261,7 +1261,7 @@ LAB_180846df9:
   if ((iVar2 == 0) &&
      (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
-    *apuStack_138[0] = &UNK_180983618;
+    *apuStack_138[0] = &unknown_var_6264_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
     *(int *)(apuStack_138[0] + 2) = (int)param_1;
     iVar1 = func_0x00018088e0d0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138[0]);
@@ -1317,7 +1317,7 @@ void NetworkClient_GetActiveConnections(ulonglong server_id, uint *active_count)
     FUN_18074b930(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&UNK_180984968);
+    FUN_180749ef0(0x1f,0xd,param_1,&unknown_var_1208_ptr);
   }
   uVar2 = 0;
   *param_2 = 0;
@@ -1387,7 +1387,7 @@ void NetworkClient_GetConnectionHandle(ulonglong client_id, uint64_t *connection
     func_0x00018074bda0(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180984830);
+    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_896_ptr);
   }
   *param_2 = 0;
   uStack_138 = 0;

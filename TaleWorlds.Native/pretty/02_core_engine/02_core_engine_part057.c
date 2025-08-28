@@ -341,15 +341,15 @@ void process_render_event(uint64_t event_context, int event_x, int event_y)
         event_queue = (longlong *)allocate_event_memory(_DAT_180c8ed18, 0x48, 8, CONCAT71((int7)((ulonglong)render_state1 >> 8), 3), 0xfffffffffffffffe);
         
         // 设置事件队列
-        *event_queue = (longlong)&UNK_180a21690;
-        *event_queue = (longlong)&UNK_180a21720;
+        *event_queue = (longlong)&unknown_var_3552_ptr;
+        *event_queue = (longlong)&unknown_var_3696_ptr;
         *(int32_t *)(event_queue + 1) = 0;
-        *event_queue = (longlong)&UNK_18098bdc8;
+        *event_queue = (longlong)&unknown_var_1000_ptr;
         LOCK();
         *(int8_t *)(event_queue + 2) = 0;
         UNLOCK();
         event_queue[3] = -1;
-        *event_queue = (longlong)&UNK_180a08c60;
+        *event_queue = (longlong)&unknown_var_2640_ptr;
         *(int32_t *)(event_queue + 5) = 5;
         event_queue[4] = render_state2;
         (**(code **)(*event_queue + 0x28))(event_queue);

@@ -689,7 +689,7 @@ bool FUN_1806a4730(longlong param_1,uint64_t *param_2)
   uVar1 = *puVar4;
   puVar4 = (int32_t *)FUN_1806a74b0(lVar5,auStackX_10,*param_2);
   uStackX_18 = *puVar4;
-  puStack_98 = &UNK_18094a6e0;
+  puStack_98 = &unknown_var_2992_ptr;
   uStack_90 = CONCAT44(uVar1,uStackX_18);
   uStackX_1c = uVar1;
   FUN_1806a39a0(lVar5,&puStack_98,2);
@@ -716,7 +716,7 @@ bool FUN_1806a47f0(longlong param_1,uint64_t *param_2,uint64_t param_3)
   uVar1 = *puVar2;
   puVar2 = (int32_t *)FUN_1806a74b0(param_1,auStackX_10,*param_2);
   uStackX_18 = *puVar2;
-  puStack_38 = &UNK_18094a740;
+  puStack_38 = &unknown_var_3088_ptr;
   uStack_30 = CONCAT44(uVar1,uStackX_18);
   uStackX_1c = uVar1;
   uStack_28 = param_3;

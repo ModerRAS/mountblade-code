@@ -356,7 +356,7 @@ LAB_180119279:
                     uVar14,0x3f333333);
     }
     if (*(char *)(lVar4 + 0x2e38) != '\0') {
-      FUN_18013c800(&fStack_118,&UNK_180a063cc,0);
+      FUN_18013c800(&fStack_118,&unknown_var_2252_ptr,0);
     }
     FUN_180122320(CONCAT44(fStack_114,fStack_118),param_1,pcVar15,0);
   }

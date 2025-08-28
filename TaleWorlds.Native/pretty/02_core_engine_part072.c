@@ -12,15 +12,15 @@ void FUN_180104cb0(longlong param_1,longlong param_2)
   uint64_t uStack_18;
   
   puStack_30 = (void *)0x180104cd3;
-  FUN_1800aec40(param_1,param_2,&UNK_180a05288,param_1 + 0x4d0);
-  puStack_30 = &UNK_180a3c3e0;
+  FUN_1800aec40(param_1,param_2,&unknown_var_7832_ptr,param_1 + 0x4d0);
+  puStack_30 = &unknown_var_3456_ptr;
   uStack_18 = 0;
   lStack_28 = 0;
   iStack_20 = 0;
-  FUN_180628040(&puStack_30,&UNK_180a02908,&UNK_180a052a0,*(int32_t *)(param_1 + 0x5b0),
+  FUN_180628040(&puStack_30,&unknown_var_7208_ptr,&unknown_var_7856_ptr,*(int32_t *)(param_1 + 0x5b0),
                 0xfffffffffffffffe);
   fwrite(lStack_28,1,(longlong)iStack_20,*(uint64_t *)(param_2 + 8));
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

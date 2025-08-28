@@ -674,7 +674,7 @@ void FUN_1806b3f50(longlong *param_1,uint64_t param_2,void **param_3,int32_t par
   int32_t uStack_1c;
   int8_t auStack_18 [16];
   
-  puStackX_8 = &UNK_18094b1f8;
+  puStackX_8 = &unknown_var_5832_ptr;
   ppuVar2 = &puStackX_8;
   if (param_3 != (void **)0x0) {
     ppuVar2 = param_3;
@@ -702,7 +702,7 @@ longlong FUN_1806b3fc0(longlong *param_1,uint64_t param_2,int32_t *param_3,int32
   int32_t uStack_c;
   
   plVar1 = (longlong *)param_1[1];
-  uVar2 = (**(code **)(*plVar1 + 8))(plVar1,0x1e0,&UNK_18094b480,&UNK_18094b3d0,0x31);
+  uVar2 = (**(code **)(*plVar1 + 8))(plVar1,0x1e0,&unknown_var_6480_ptr,&unknown_var_6304_ptr,0x31);
   uStack_18 = *param_3;
   uStack_14 = param_3[1];
   uStack_10 = param_3[2];

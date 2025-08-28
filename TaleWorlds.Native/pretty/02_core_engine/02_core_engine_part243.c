@@ -8,9 +8,9 @@ ulonglong g_string_buffer_size = _DAT_180bf00a8;  // 字符串缓冲区大小
 longlong g_memory_allocator = _DAT_180c868e8;     // 内存分配器
 longlong g_string_constants = _DAT_180c8ed18;     // 字符串常量池
 char g_empty_string[] = "";                       // 空字符串常量
-uint64_t g_string_suffix = UNK_180a3c3e0;        // 字符串后缀标记
-uint64_t g_string_prefix = UNK_180a0ffc0;        // 字符串前缀标记
-uint64_t g_null_terminator = UNK_18098bcb0;      // 空终止符标记
+uint64_t g_string_suffix = unknown_var_3456;        // 字符串后缀标记
+uint64_t g_string_prefix = unknown_var_2176;        // 字符串前缀标记
+uint64_t g_null_terminator = unknown_var_720;      // 空终止符标记
 
 // 函数: void process_string_batch(uint64_t param_1, longlong *param_2)
 // 功能: 批量处理字符串数据，进行字符串格式化、编码转换和内存管理

@@ -6,8 +6,8 @@
 // 全局变量声明
 uint64_t _DAT_180c86870;  // 引擎配置数据
 uint64_t _DAT_180c86928;  // 文件错误处理
-uint64_t UNK_1809fed78;  // 错误消息指针
-uint64_t UNK_1809fed40;  // 错误消息指针
+uint64_t unknown_var_1960;  // 错误消息指针
+uint64_t unknown_var_1904;  // 错误消息指针
 
 /**
  * 处理骨骼动画和矩阵变换

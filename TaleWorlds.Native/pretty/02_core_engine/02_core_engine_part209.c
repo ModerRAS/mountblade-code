@@ -85,7 +85,7 @@ LAB_base_found:
       current_name = current_name + (longlong)record_name;
       record_offset = search_name;
       if (current_name <= record_name) break;
-      name_offset = (longlong)&UNK_180a0ae10 - (longlong)record_name;
+      name_offset = (longlong)&unknown_var_1264_ptr - (longlong)record_name;
       while (*record_name == record_name[name_offset]) {
         record_name = record_name + 1;
         if (current_name <= record_name) goto LAB_records_found;
@@ -113,7 +113,7 @@ LAB_records_found:
       current_name = record_name + (longlong)current_name;
       record_offset = search_name;
       if (current_name <= record_name) break;
-      name_offset = (longlong)&UNK_180a0ae30 - (longlong)record_name;
+      name_offset = (longlong)&unknown_var_1296_ptr - (longlong)record_name;
       while (*record_name == record_name[name_offset]) {
         record_name = record_name + 1;
         if (current_name <= record_name) goto LAB_record_found;
@@ -126,7 +126,7 @@ LAB_record_found:
     animation_node = (uint64_t *)(node_index + 0x50);
     system_param = animation_system;
     do {
-      stack_pointer = &UNK_180a3c3e0;
+      stack_pointer = &unknown_var_3456_ptr;
       buffer_capacity = 0;
       name_buffer = (byte *)0x0;
       buffer_size = 0;
@@ -156,7 +156,7 @@ LAB_id_found:
             FUN_180627c50(&stack_pointer,name_offset);
             break;
           }
-          name_offset = (longlong)&UNK_180a0ae28 - (longlong)search_name;
+          name_offset = (longlong)&unknown_var_1288_ptr - (longlong)search_name;
           while (*search_name == search_name[name_offset]) {
             search_name = search_name + 1;
             if (current_name <= search_name) goto LAB_id_found;
@@ -169,17 +169,17 @@ LAB_id_found:
       if (current_record == (uint64_t *)0x0) {
 LAB_create_new_record:
         new_record = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x48,8,3);
-        *new_record = &UNK_18098bcb0;
+        *new_record = &unknown_var_720_ptr;
         new_record[1] = 0;
         *(int32_t *)(new_record + 2) = 0;
-        *new_record = &UNK_180a3c3e0;
+        *new_record = &unknown_var_3456_ptr;
         new_record[3] = 0;
         new_record[1] = 0;
         *(int32_t *)(new_record + 2) = 0;
-        new_record[4] = &UNK_18098bcb0;
+        new_record[4] = &unknown_var_720_ptr;
         new_record[5] = 0;
         *(int32_t *)(new_record + 6) = 0;
-        new_record[4] = &UNK_180a3c3e0;
+        new_record[4] = &unknown_var_3456_ptr;
         new_record[7] = 0;
         new_record[5] = 0;
         *(int32_t *)(new_record + 6) = 0;
@@ -404,7 +404,7 @@ LAB_skip_record:
         if (search_name == name_end + -0x180a0ae2f) {
           search_name = search_name + (longlong)current_name;
           if (search_name <= current_name) goto LAB_next_record;
-          name_offset = (longlong)&UNK_180a0ae30 - (longlong)current_name;
+          name_offset = (longlong)&unknown_var_1296_ptr - (longlong)current_name;
           while (*current_name == current_name[name_offset]) {
             current_name = current_name + 1;
             if (search_name <= current_name) goto LAB_next_record;
@@ -414,7 +414,7 @@ LAB_skip_record:
       new_record = (uint64_t *)0x0;
 LAB_next_record:
       *animation_records_ptr = (longlong)new_record;
-      stack_pointer = &UNK_180a3c3e0;
+      stack_pointer = &unknown_var_3456_ptr;
       if (name_buffer != (byte *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();

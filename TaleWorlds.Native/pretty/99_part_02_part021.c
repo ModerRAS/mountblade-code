@@ -85,7 +85,7 @@ LAB_1800fa2b9:
 LAB_1800fa3e0:
       *param_2 = puVar5;
       *(int8_t *)(param_2 + 1) = 0;
-      puStack_40 = &UNK_180a3c3e0;
+      puStack_40 = &unknown_var_3456_ptr;
       if (pbStack_38 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -170,11 +170,11 @@ void FUN_1800fa4c0(longlong param_1)
   longlong *plVar3;
   
   puVar1 = *(uint64_t **)(param_1 + 0x20);
-  if ((void *)*puVar1 == &UNK_180a24148) {
+  if ((void *)*puVar1 == &unknown_var_4488_ptr) {
     LOCK();
     *(int8_t *)(puVar1[5] + 0xd4) = 1;
     UNLOCK();
-    if ((void *)*puVar1 == &UNK_180a24148) {
+    if ((void *)*puVar1 == &unknown_var_4488_ptr) {
       (**(code **)(*(longlong *)puVar1[2] + 0x70))();
     }
     else {
@@ -185,10 +185,10 @@ void FUN_1800fa4c0(longlong param_1)
     (**(code **)((void *)*puVar1 + 8))(puVar1);
   }
   puVar2 = (void *)**(uint64_t **)(param_1 + 0x20);
-  if (puVar2 == &UNK_180a24148) {
+  if (puVar2 == &unknown_var_4488_ptr) {
     plVar3 = (longlong *)(*(uint64_t **)(param_1 + 0x20))[3];
     if (plVar3 != (longlong *)0x0) {
-      if (*(code **)(*plVar3 + 0x20) == (code *)&UNK_1803cfb60) {
+      if (*(code **)(*plVar3 + 0x20) == (code *)&unknown_var_7456_ptr) {
                     // WARNING: Could not recover jumptable at 0x0001800fa543. Too many branches
                     // WARNING: Treating indirect jump as call
         (**(code **)(*(longlong *)plVar3[2] + 0x80))();
@@ -212,9 +212,9 @@ uint64_t *
 FUN_1800fa580(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_18098bdc8;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_1000_ptr;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x28,param_3,param_4,0xfffffffffffffffe);
   }
@@ -227,8 +227,8 @@ uint64_t *
 FUN_1800fa5d0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_180a05088;
-  *param_1 = &UNK_180a05068;
+  *param_1 = &unknown_var_7320_ptr;
+  *param_1 = &unknown_var_7288_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8,param_3,param_4,0xfffffffffffffffe);
   }
@@ -329,7 +329,7 @@ bool FUN_1800fa760(longlong param_1)
   longlong *plVar3;
   
   plVar1 = *(longlong **)(param_1 + 0x28);
-  cVar2 = (**(code **)(*plVar1 + 0x20))(plVar1,&UNK_180a05010);
+  cVar2 = (**(code **)(*plVar1 + 0x20))(plVar1,&unknown_var_7200_ptr);
   plVar3 = (longlong *)0x0;
   if (cVar2 != '\0') {
     plVar3 = plVar1;

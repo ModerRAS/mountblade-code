@@ -714,7 +714,7 @@ void FUN_18049c2ac(void)
 uint64_t * FUN_18049c2d0(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180a2c980;
+  *param_1 = &unknown_var_9360_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }

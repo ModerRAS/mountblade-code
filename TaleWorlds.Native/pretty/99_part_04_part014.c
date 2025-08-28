@@ -90,7 +90,7 @@ void DataStruct_ClearAndReset(longlong *param_1)
   for (current_ptr = (uint64_t *)*param_1; current_ptr != data_end_ptr; current_ptr = current_ptr + 8) {
     
     // 设置元素的初始状态指针
-    *current_ptr = &UNK_180a3c3e0;
+    *current_ptr = &unknown_var_3456_ptr;
     
     // 检查元素是否正在使用中
     if (current_ptr[1] != 0) {
@@ -103,7 +103,7 @@ void DataStruct_ClearAndReset(longlong *param_1)
     *(int32_t *)(current_ptr + 3) = 0;
     
     // 设置元素的清理完成状态
-    *current_ptr = &UNK_18098bcb0;
+    *current_ptr = &unknown_var_720_ptr;
   }
   
   // 检查数据结构的基本状态
@@ -174,7 +174,7 @@ void DataStruct_ResizeLarge(longlong *param_1,ulonglong param_2,uint64_t param_3
       
       // 清理从目标位置到结束位置的数据
       do {
-        *target_ptr = &UNK_180a3c3e0;
+        *target_ptr = &unknown_var_3456_ptr;
         
         // 检查数据块是否正在使用
         if (target_ptr[1] != 0) {
@@ -185,7 +185,7 @@ void DataStruct_ResizeLarge(longlong *param_1,ulonglong param_2,uint64_t param_3
         // 重置数据块状态
         target_ptr[1] = 0;
         *(int32_t *)(target_ptr + 3) = 0;
-        *target_ptr = &UNK_18098bcb0;
+        *target_ptr = &unknown_var_720_ptr;
         
         target_ptr = target_ptr + 8;
       } while (target_ptr != data_end_ptr);
@@ -262,7 +262,7 @@ void DataStruct_ResizeSmall(longlong *param_1,ulonglong param_2)
       // 清理从目标位置到结束位置的数据
       do {
         // 设置数据块的初始状态
-        *(uint64_t *)(target_ptr + 8) = &UNK_180a3c3e0;
+        *(uint64_t *)(target_ptr + 8) = &unknown_var_3456_ptr;
         
         // 检查数据块是否正在使用
         if (*(longlong *)(target_ptr + 0x10) != 0) {
@@ -273,7 +273,7 @@ void DataStruct_ResizeSmall(longlong *param_1,ulonglong param_2)
         // 重置数据块状态
         *(uint64_t *)(target_ptr + 0x10) = 0;
         *(int32_t *)(target_ptr + 0x20) = 0;
-        *(uint64_t *)(target_ptr + 8) = &UNK_18098bcb0;
+        *(uint64_t *)(target_ptr + 8) = &unknown_var_720_ptr;
         
         target_ptr = target_ptr + 0x28;
       } while (target_ptr != current_end);
@@ -383,10 +383,10 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
       
       do {
         // 初始化新内存块的状态
-        *copy_dst = &UNK_18098bcb0;
+        *copy_dst = &unknown_var_720_ptr;
         *(uint64_t *)(offset + (longlong)copy_src) = 0;
         *(int32_t *)(offset + 8 + (longlong)copy_src) = 0;
-        *copy_dst = &UNK_180a3c3e0;
+        *copy_dst = &unknown_var_3456_ptr;
         
         // 迁移数据字段
         *(uint64_t *)(offset + 0x10 + (longlong)copy_src) = 0;
@@ -433,10 +433,10 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
       
       do {
         // 初始化新数据块的状态
-        current_end[-1] = &UNK_18098bcb0;
+        current_end[-1] = &unknown_var_720_ptr;
         *current_end = 0;
         *(int32_t *)(current_end + 1) = 0;
-        current_end[-1] = &UNK_180a3c3e0;
+        current_end[-1] = &unknown_var_3456_ptr;
         current_end[2] = 0;
         *current_end = 0;
         *(int32_t *)(current_end + 1) = 0;
@@ -457,13 +457,13 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
     if (data_start != current_end) {
       
       do {
-        *data_start = &UNK_180a3c3e0;
+        *data_start = &unknown_var_3456_ptr;
         if (data_start[1] != 0) {
           FUN_18064e900();
         }
         data_start[1] = 0;
         *(int32_t *)(data_start + 3) = 0;
-        *data_start = &UNK_18098bcb0;
+        *data_start = &unknown_var_720_ptr;
         data_start = data_start + 8;
       } while (data_start != current_end);
       
@@ -487,10 +487,10 @@ void MemoryManager_ReallocateLarge(uint64_t *param_1,ulonglong param_2,uint64_t 
     if (param_2 != 0) {
       
       do {
-        *current_end = &UNK_18098bcb0;
+        *current_end = &unknown_var_720_ptr;
         current_end[1] = 0;
         *(int32_t *)(current_end + 2) = 0;
-        *current_end = &UNK_180a3c3e0;
+        *current_end = &unknown_var_3456_ptr;
         current_end[3] = 0;
         current_end[1] = 0;
         *(int32_t *)(current_end + 2) = 0;
@@ -603,10 +603,10 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
       do {
         // 迁移数据
         *new_buffer_ptr = *(int8_t *)(offset + -0x10 + (longlong)data_ptr);
-        data_ptr[-1] = &UNK_18098bcb0;
+        data_ptr[-1] = &unknown_var_720_ptr;
         *data_ptr = 0;
         *(int32_t *)(data_ptr + 1) = 0;
-        data_ptr[-1] = &UNK_180a3c3e0;
+        data_ptr[-1] = &unknown_var_3456_ptr;
         data_ptr[2] = 0;
         *data_ptr = 0;
         *(int32_t *)(data_ptr + 1) = 0;
@@ -633,10 +633,10 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
       
       do {
         // 初始化新数据块的状态
-        data_ptr[-1] = &UNK_18098bcb0;
+        data_ptr[-1] = &unknown_var_720_ptr;
         *data_ptr = 0;
         *(int32_t *)(data_ptr + 1) = 0;
-        data_ptr[-1] = &UNK_180a3c3e0;
+        data_ptr[-1] = &unknown_var_3456_ptr;
         data_ptr[2] = 0;
         *data_ptr = 0;
         *(int32_t *)(data_ptr + 1) = 0;
@@ -652,13 +652,13 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
     if (base_ptr != offset) {
       
       do {
-        *(uint64_t *)(base_ptr + 8) = &UNK_180a3c3e0;
+        *(uint64_t *)(base_ptr + 8) = &unknown_var_3456_ptr;
         if (*(longlong *)(base_ptr + 0x10) != 0) {
           FUN_18064e900();
         }
         *(uint64_t *)(base_ptr + 0x10) = 0;
         *(int32_t *)(base_ptr + 0x20) = 0;
-        *(uint64_t *)(base_ptr + 8) = &UNK_18098bcb0;
+        *(uint64_t *)(base_ptr + 8) = &unknown_var_720_ptr;
         base_ptr = base_ptr + 0x28;
       } while (base_ptr != offset);
       
@@ -683,10 +683,10 @@ void MemoryManager_ReallocateSmall(longlong *param_1,ulonglong param_2)
       
       do {
         // 初始化新数据块的状态
-        data_ptr[-1] = &UNK_18098bcb0;
+        data_ptr[-1] = &unknown_var_720_ptr;
         *data_ptr = 0;
         *(int32_t *)(data_ptr + 1) = 0;
-        data_ptr[-1] = &UNK_180a3c3e0;
+        data_ptr[-1] = &unknown_var_3456_ptr;
         data_ptr[2] = 0;
         *data_ptr = 0;
         *(int32_t *)(data_ptr + 1) = 0;

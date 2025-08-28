@@ -84,10 +84,10 @@ LAB_18030cb58:
       temp_var6 = temp_ptr1[1];
       *(uint64_t *)((longlong)temp_ptr9 + -0x1c) = *temp_ptr1;
       *(uint64_t *)((longlong)temp_ptr9 + -0x14) = temp_var6;
-      temp_ptr9[-1] = &UNK_18098bcb0;
+      temp_ptr9[-1] = &unknown_var_720_ptr;
       *temp_ptr9 = 0;
       *(int32_t *)(temp_ptr9 + 1) = 0;
-      temp_ptr9[-1] = &UNK_180a3c3e0;
+      temp_ptr9[-1] = &unknown_var_3456_ptr;
       temp_ptr9[2] = 0;
       *temp_ptr9 = 0;
       *(int32_t *)(temp_ptr9 + 1) = 0;
@@ -170,7 +170,7 @@ uint64_t render_system_resource_status_checker(longlong resource_context)
   char status_flag;
   
   resource_ptr = *(longlong **)(resource_context + 0x48);
-  if (*(code **)(*resource_ptr + 0xc0) == (code *)&UNK_180277e10) {
+  if (*(code **)(*resource_ptr + 0xc0) == (code *)&unknown_var_9120_ptr) {
     status_flag = (resource_ptr[8] - resource_ptr[7] & 0xfffffffffffffff0U) == 0;
   }
   else {
@@ -226,15 +226,15 @@ uint64_t * render_system_buffer_cleaner(uint64_t *buffer_context)
 uint64_t * render_system_resource_data_initializer(uint64_t resource_id, uint64_t *resource_data_context, uint64_t resource_config, uint64_t resource_options)
 {
   // 初始化资源数据结构
-  *resource_data_context = &UNK_18098bcb0;
+  *resource_data_context = &unknown_var_720_ptr;
   resource_data_context[1] = 0;
   *(int32_t *)(resource_data_context + 2) = 0;
-  *resource_data_context = &UNK_1809fcc28;
+  *resource_data_context = &unknown_var_3432_ptr;
   resource_data_context[1] = resource_data_context + 3;
   *(int8_t *)(resource_data_context + 3) = 0;
   *(int32_t *)(resource_data_context + 2) = 0x15;
   // 复制资源数据字符串
-  strcpy_s(resource_data_context[1], 0x80, &UNK_180a1a6c8, resource_options, 0, 0xfffffffffffffffe);
+  strcpy_s(resource_data_context[1], 0x80, &unknown_var_4936_ptr, resource_options, 0, 0xfffffffffffffffe);
   return resource_data_context;
 }
 
@@ -266,12 +266,12 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context)
   
   // 初始化资源管理器
   FUN_180244190();
-  *resource_context = &UNK_180a1a710;
-  resource_context[0x1e] = &UNK_18098bcb0;
+  *resource_context = &unknown_var_5008_ptr;
+  resource_context[0x1e] = &unknown_var_720_ptr;
   temp_ptr5 = (uint64_t *)0x0;
   resource_context[0x1f] = 0;
   *(int32_t *)(resource_context + 0x20) = 0;
-  resource_context[0x1e] = &UNK_180a3c3e0;
+  resource_context[0x1e] = &unknown_var_3456_ptr;
   resource_context[0x21] = 0;
   resource_context[0x1f] = 0;
   *(int32_t *)(resource_context + 0x20) = 0;
@@ -394,7 +394,7 @@ void render_system_resource_cleaner(uint64_t *resource_context)
   ulonglong iteration_count;
   
   // 重置资源上下文
-  *resource_context = &UNK_180a1a710;
+  *resource_context = &unknown_var_5008_ptr;
   temp_counter = 0;
   if (_DAT_180c86880 != 0) {
     temp_ptr1 = *(uint64_t **)(_DAT_180c86880 + 0x20);
@@ -485,39 +485,39 @@ void render_system_resource_cleaner(uint64_t *resource_context)
   FUN_1808fc8a8(resource_context + 0x2e, 0x20, 2, FUN_18004c030);
   FUN_1808fc8a8(resource_context + 0x26, 0x20, 2, FUN_18004c030);
   // 重置资源状态
-  resource_context[0x1e] = &UNK_180a3c3e0;
+  resource_context[0x1e] = &unknown_var_3456_ptr;
   if (resource_context[0x1f] != 0) {
     // 释放资源
     FUN_18064e900();
   }
   resource_context[0x1f] = 0;
   *(int32_t *)(resource_context + 0x21) = 0;
-  resource_context[0x1e] = &UNK_18098bcb0;
-  *resource_context = &UNK_180a144f8;
-  resource_context[0x15] = &UNK_180a3c3e0;
+  resource_context[0x1e] = &unknown_var_720_ptr;
+  *resource_context = &unknown_var_9896_ptr;
+  resource_context[0x15] = &unknown_var_3456_ptr;
   if (resource_context[0x16] != 0) {
     // 释放资源
     FUN_18064e900();
   }
   resource_context[0x16] = 0;
   *(int32_t *)(resource_context + 0x18) = 0;
-  resource_context[0x15] = &UNK_18098bcb0;
-  resource_context[0x11] = &UNK_180a3c3e0;
+  resource_context[0x15] = &unknown_var_720_ptr;
+  resource_context[0x11] = &unknown_var_3456_ptr;
   if (resource_context[0x12] != 0) {
     // 释放资源
     FUN_18064e900();
   }
   resource_context[0x12] = 0;
   *(int32_t *)(resource_context + 0x14) = 0;
-  resource_context[0x11] = &UNK_18098bcb0;
+  resource_context[0x11] = &unknown_var_720_ptr;
   if ((longlong *)resource_context[7] != (longlong *)0x0) {
     (**(code **)(*(longlong *)resource_context[7] + 0x38))();
   }
   if ((longlong *)resource_context[2] != (longlong *)0x0) {
     (**(code **)(*(longlong *)resource_context[2] + 0x38))();
   }
-  *resource_context = &UNK_180a21720;
-  *resource_context = &UNK_180a21690;
+  *resource_context = &unknown_var_3696_ptr;
+  *resource_context = &unknown_var_3552_ptr;
   return;
 }
 
@@ -546,7 +546,7 @@ uint64_t render_system_render_object_creator(longlong render_context)
   // 分配渲染对象内存
   render_obj = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 200, 8, 3, 0xfffffffffffffffe);
   FUN_180049830(render_obj);
-  *render_obj = (longlong)&UNK_180a1a838;
+  *render_obj = (longlong)&unknown_var_5304_ptr;
   render_obj[0x18] = render_context;
   stack_ptr8 = render_obj;
   // 初始化渲染对象

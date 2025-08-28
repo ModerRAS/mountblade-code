@@ -791,26 +791,26 @@ void close_handle(uint64_t *handle)
  */
 void reset_queue_manager(uint64_t *manager)
 {
-  *manager = &UNK_180a3cf50;
+  *manager = &unknown_var_6384_ptr;
   if (*(char *)((longlong)manager + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *manager = &UNK_180a30778;
-  manager[7] = &UNK_180a3c3e0;
+  *manager = &unknown_var_5224_ptr;
+  manager[7] = &unknown_var_3456_ptr;
   if (manager[8] != 0) {
     FUN_18064e900();
   }
   manager[8] = 0;
   *(int32_t *)(manager + 10) = 0;
-  manager[7] = &UNK_18098bcb0;
-  manager[1] = &UNK_180a3c3e0;
+  manager[7] = &unknown_var_720_ptr;
+  manager[1] = &unknown_var_3456_ptr;
   if (manager[2] != 0) {
     FUN_18064e900();
   }
   manager[2] = 0;
   *(int32_t *)(manager + 4) = 0;
-  manager[1] = &UNK_18098bcb0;
+  manager[1] = &unknown_var_720_ptr;
   return;
 }
 
@@ -829,7 +829,7 @@ uint64_t *release_manager_resources(uint64_t *manager, ulonglong flags, uint64_t
   uint64_t release_flags;
   
   release_flags = TIMEOUT_INFINITE;
-  *manager = &UNK_180a3cf50;
+  *manager = &unknown_var_6384_ptr;
   if (*(char *)((longlong)manager + 0xb1) != '\0') {
     FUN_180639250();
   }
@@ -874,23 +874,23 @@ void initialize_engine_core(uint64_t engine_param, longlong config_data)
   buffer_flags = TIMEOUT_INFINITE;
   checksum = _DAT_180bf00a8 ^ (ulonglong)local_config;
   stack_config = _DAT_180c86928;
-  stack_pointer = &UNK_1809fdc18;
+  stack_pointer = &unknown_var_7512_ptr;
   config_pointer = local_buffer;
   local_buffer[0] = 0;
   config_type = 6;
-  strcpy_s(local_buffer, 0x10, &UNK_1809fe2c0);
+  strcpy_s(local_buffer, 0x10, &unknown_var_9216_ptr);
   
   component_handle = (uint64_t *)allocate_engine_component(_DAT_180c8ed18, 0x208, 8, 3);
   config_size = engine_base + 0x70;
   config_ptr = component_handle;
   initialize_engine_component(component_handle, &stack_pointer, 3, engine_base + 0x2e0);
-  *component_handle = &UNK_1809fe220;
+  *component_handle = &unknown_var_9056_ptr;
   config_ptr = component_handle;
   configure_engine_component(component_handle);
   register_engine_component(engine_base + 0x48, &config_ptr);
   *(uint64_t **)(system_address + 400) = component_handle;
   
-  stack_pointer = &UNK_18098bcb0;
+  stack_pointer = &unknown_var_720_ptr;
   setup_engine_config(_DAT_180c86870 + 0x170, temp_config, &system_memory_c8c8);
   
   if (0 < *(int *)(config_data + 0x10)) {

@@ -657,7 +657,7 @@ void FUN_180235f71(void)
         if (*(void **)(lVar43 + 8) != (void *)0x0) {
           puVar40 = *(void **)(lVar43 + 8);
         }
-        FUN_180627020(&UNK_180a13d90,puVar40);
+        FUN_180627020(&unknown_var_8000_ptr,puVar40);
         bStackX_20 = 0;
       }
       if ((int)*(char *)(*unaff_RSI + 0xf6) < (char)bStackX_20 + 1) {

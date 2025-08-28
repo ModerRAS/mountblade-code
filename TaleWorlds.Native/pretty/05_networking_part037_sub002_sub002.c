@@ -260,7 +260,7 @@ LAB_180860af6:
                       plVar21[1] = (longlong)plVar21;
                       *plVar21 = (longlong)plVar21;
                     // WARNING: Subroutine does not return
-                      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar21,&UNK_180984ef0,
+                      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar21,&unknown_var_2624_ptr,
                                     0xa2c);
                     }
                     goto FUN_1808616bc;
@@ -558,7 +558,7 @@ LAB_180860f7b:
                     uStack_180 = (uint)uStack_130._6_2_;
                     uStack_188 = (uint)uStack_130._4_2_;
                     // WARNING: Subroutine does not return
-                    FUN_18076b390(auStack_a0,0x27,&UNK_180958180,(ulonglong)uStack_130 & 0xffffffff)
+                    FUN_18076b390(auStack_a0,0x27,&unknown_var_8960_ptr,(ulonglong)uStack_130 & 0xffffffff)
                     ;
                   }
                   plVar9[2] = lVar13;
@@ -697,7 +697,7 @@ joined_r0x000180861496:
                         plVar21[1] = (longlong)plVar21;
                         *plVar21 = (longlong)plVar21;
                     // WARNING: Subroutine does not return
-                        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar21,&UNK_180984ef0
+                        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar21,&unknown_var_2624_ptr
                                       ,0xadc);
                       }
                       goto FUN_1808616bc;

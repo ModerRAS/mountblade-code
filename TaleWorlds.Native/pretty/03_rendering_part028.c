@@ -13,9 +13,9 @@
 
 // 全局常量定义
 // 渲染系统数据区域
-#define RENDER_HASH_TABLE_BASE   UNK_180a3e3d8
+#define RENDER_HASH_TABLE_BASE   unknown_var_1640
 #define RENDER_MATRIX_BUFFER     system_buffer_67d8
-#define RENDER_RESOURCE_POOL    UNK_180a3e3f0
+#define RENDER_RESOURCE_POOL    unknown_var_1664
 #define RENDER_SYSTEM_CONFIG    system_buffer_67e0
 #define RENDER_PARAM_DATA       system_buffer_67e8
 #define RENDER_BUFFER_SIZE      system_buffer_67f0
@@ -276,7 +276,7 @@ LAB_180280958:
     param_2 = *(code **)(*param_4 + 0x158);
     param_6._4_4_ = unaff_EDI;
     param_11 = unaff_RBP;
-    if (param_2 != (code *)&UNK_18027d980) goto code_r0x000180280ab8;
+    if (param_2 != (code *)&unknown_var_2528_ptr) goto code_r0x000180280ab8;
     param_8 = param_4 + 0x66;
   } while( true );
 }
@@ -285,9 +285,9 @@ LAB_180280958:
 
 // 全局变量和数据定义
 uint8_t RENDER_CONTROL_DATA;
-uint8_t UNK_180a3e3d8;
+uint8_t unknown_var_1640;
 uint8_t system_buffer_67d8;
-uint8_t UNK_180a3e3f0;
+uint8_t unknown_var_1664;
 uint8_t RENDER_SYSTEM_CONFIG;
 uint8_t system_buffer_67e8;
 uint8_t system_buffer_67f0;
@@ -377,7 +377,7 @@ void transform_3d_matrices(longlong *param_1,longlong *param_2)
   float fStack_a8;
   float fStack_a4;
   
-  if (*(code **)(*param_2 + 0x158) == (code *)&UNK_18027d980) {
+  if (*(code **)(*param_2 + 0x158) == (code *)&unknown_var_2528_ptr) {
     pfVar30 = (float *)(param_2 + 0x66);
   }
   else {
@@ -426,7 +426,7 @@ void transform_3d_matrices(longlong *param_1,longlong *param_2)
       fVar37 = fVar15 * fVar3 + fVar16 * fVar6 + fVar17 * fVar9;
       fVar40 = fVar15 * fVar4 + fVar16 * fVar7 + fVar17 * fVar10;
       fVar43 = fVar15 * fVar5 + fVar16 * fVar8 + fVar17 * fVar11;
-      if (*(code **)(*param_1 + 0x158) == (code *)&UNK_18027d980) {
+      if (*(code **)(*param_1 + 0x158) == (code *)&unknown_var_2528_ptr) {
         pfVar30 = (float *)(param_1 + 0x66);
       }
       else {
@@ -527,7 +527,7 @@ LAB_180280e02:
   if ((int)param_1[0xb] < (int)param_2[0xb]) {
     *(int *)(param_1 + 0xb) = (int)param_2[0xb];
   }
-  if (*(code **)(*param_1 + 0x160) == (code *)&UNK_180277350) {
+  if (*(code **)(*param_1 + 0x160) == (code *)&unknown_var_6368_ptr) {
     FUN_180276f30(param_1,(longlong)param_1 + 0x214,0);
   }
   else {
@@ -774,7 +774,7 @@ LAB_18028135c:
       if ((*(uint *)(lVar11 + 0x5c) >> 8 & 1) != 0) {
         FUN_18022cb40(*(uint64_t *)(lVar3 + 0x1b8),&plStack_f0);
         plVar8 = plStack_f0;
-        puStack_a8 = &UNK_1809fcc58;
+        puStack_a8 = &unknown_var_3480_ptr;
         puStack_a0 = auStack_90;
         auStack_90[0] = 0;
         uStack_98 = 0x10;
@@ -783,7 +783,7 @@ LAB_18028135c:
         plVar8[0x28] = plVar8[0x28] | uVar6;
         FUN_18022dd60(plVar8);
         *(int16_t *)(plVar8 + 0x78) = 0xffff;
-        puStack_a8 = &UNK_18098bcb0;
+        puStack_a8 = &unknown_var_720_ptr;
         FUN_180076910(lVar3,&plStack_f0);
         if (plStack_f0 != (longlong *)0x0) {
           (**(code **)(*plStack_f0 + 0x38))();

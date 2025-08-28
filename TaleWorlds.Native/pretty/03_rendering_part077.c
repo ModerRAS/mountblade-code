@@ -71,10 +71,10 @@ LAB_18030cb58:
       uVar6 = puVar1[1];
       *(uint64_t *)((longlong)puVar9 + -0x1c) = *puVar1;
       *(uint64_t *)((longlong)puVar9 + -0x14) = uVar6;
-      puVar9[-1] = &UNK_18098bcb0;
+      puVar9[-1] = &unknown_var_720_ptr;
       *puVar9 = 0;
       *(int32_t *)(puVar9 + 1) = 0;
-      puVar9[-1] = &UNK_180a3c3e0;
+      puVar9[-1] = &unknown_var_3456_ptr;
       puVar9[2] = 0;
       *puVar9 = 0;
       *(int32_t *)(puVar9 + 1) = 0;
@@ -131,7 +131,7 @@ uint64_t FUN_18030cd70(longlong param_1)
   char cVar2;
   
   plVar1 = *(longlong **)(param_1 + 0x48);
-  if (*(code **)(*plVar1 + 0xc0) == (code *)&UNK_180277e10) {
+  if (*(code **)(*plVar1 + 0xc0) == (code *)&unknown_var_9120_ptr) {
     cVar2 = (plVar1[8] - plVar1[7] & 0xfffffffffffffff0U) == 0;
   }
   else {
@@ -161,14 +161,14 @@ uint64_t *
 FUN_18030ce70(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
+  *param_2 = &unknown_var_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x15;
-  strcpy_s(param_2[1],0x80,&UNK_180a1a6c8,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&unknown_var_4936_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -187,12 +187,12 @@ uint64_t * FUN_18030cef0(uint64_t *param_1)
   uint64_t *puVar6;
   
   FUN_180244190();
-  *param_1 = &UNK_180a1a710;
-  param_1[0x1e] = &UNK_18098bcb0;
+  *param_1 = &unknown_var_5008_ptr;
+  param_1[0x1e] = &unknown_var_720_ptr;
   puVar5 = (uint64_t *)0x0;
   param_1[0x1f] = 0;
   *(int32_t *)(param_1 + 0x20) = 0;
-  param_1[0x1e] = &UNK_180a3c3e0;
+  param_1[0x1e] = &unknown_var_3456_ptr;
   param_1[0x21] = 0;
   param_1[0x1f] = 0;
   *(int32_t *)(param_1 + 0x20) = 0;
@@ -293,7 +293,7 @@ void FUN_18030d150(uint64_t *param_1)
   ulonglong uVar8;
   ulonglong uVar9;
   
-  *param_1 = &UNK_180a1a710;
+  *param_1 = &unknown_var_5008_ptr;
   uVar8 = 0;
   if (_DAT_180c86880 != 0) {
     puVar1 = *(uint64_t **)(_DAT_180c86880 + 0x20);
@@ -379,39 +379,39 @@ void FUN_18030d150(uint64_t *param_1)
   }
   FUN_1808fc8a8(param_1 + 0x2e,0x20,2,FUN_18004c030);
   FUN_1808fc8a8(param_1 + 0x26,0x20,2,FUN_18004c030);
-  param_1[0x1e] = &UNK_180a3c3e0;
+  param_1[0x1e] = &unknown_var_3456_ptr;
   if (param_1[0x1f] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0x1f] = 0;
   *(int32_t *)(param_1 + 0x21) = 0;
-  param_1[0x1e] = &UNK_18098bcb0;
-  *param_1 = &UNK_180a144f8;
-  param_1[0x15] = &UNK_180a3c3e0;
+  param_1[0x1e] = &unknown_var_720_ptr;
+  *param_1 = &unknown_var_9896_ptr;
+  param_1[0x15] = &unknown_var_3456_ptr;
   if (param_1[0x16] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0x16] = 0;
   *(int32_t *)(param_1 + 0x18) = 0;
-  param_1[0x15] = &UNK_18098bcb0;
-  param_1[0x11] = &UNK_180a3c3e0;
+  param_1[0x15] = &unknown_var_720_ptr;
+  param_1[0x11] = &unknown_var_3456_ptr;
   if (param_1[0x12] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0x12] = 0;
   *(int32_t *)(param_1 + 0x14) = 0;
-  param_1[0x11] = &UNK_18098bcb0;
+  param_1[0x11] = &unknown_var_720_ptr;
   if ((longlong *)param_1[7] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[7] + 0x38))();
   }
   if ((longlong *)param_1[2] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[2] + 0x38))();
   }
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   return;
 }
 
@@ -428,7 +428,7 @@ uint64_t FUN_18030d400(longlong param_1)
   
   plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,200,8,3,0xfffffffffffffffe);
   FUN_180049830(plVar2);
-  *plVar2 = (longlong)&UNK_180a1a838;
+  *plVar2 = (longlong)&unknown_var_5304_ptr;
   plVar2[0x18] = param_1;
   plStackX_8 = plVar2;
   (**(code **)(*plVar2 + 0x28))(plVar2);

@@ -1065,12 +1065,12 @@ void ThreadLocalStorageCleanup(void* param1, void* param2)
     _guard_check_icall(vtable_function);
     
     // 调用初始化函数
-    result = (*vtable_function)(param1, &UNK_180a026d0, &temp_ptr1);
+    result = (*vtable_function)(param1, &global_state_6640_ptr, &temp_ptr1);
     tls_ptr = temp_ptr1;
     
     // 错误处理
     if (result < 0) {
-        SystemErrorHandler(&UNK_18098a7d0, 0x3c, &UNK_18098a7b0, &UNK_18098a788);
+        SystemErrorHandler(&global_state_5376_ptr, 0x3c, &global_state_5344_ptr, &global_state_5304_ptr);
     }
     else {
         // 获取第二个虚函数
@@ -1084,7 +1084,7 @@ void ThreadLocalStorageCleanup(void* param1, void* param2)
             vtable_function = *(FunctionPointer*)(*temp_ptr1 + 0x10);
             _guard_check_icall(vtable_function);
             (*vtable_function)(temp_ptr1);
-            SystemErrorHandler(&UNK_18098a7d0, 0x45, &UNK_18098a7b0, &UNK_18098a828);
+            SystemErrorHandler(&global_state_5376_ptr, 0x45, &global_state_5344_ptr, &global_state_5464_ptr);
         }
         else {
             // 获取第三个虚函数
@@ -1100,7 +1100,7 @@ void ThreadLocalStorageCleanup(void* param1, void* param2)
                 vtable_function = *(FunctionPointer*)(*temp_ptr1 + 0x10);
                 _guard_check_icall(vtable_function);
                 (*vtable_function)(temp_ptr1);
-                SystemErrorHandler(&UNK_18098a7d0, 0x4f, &UNK_18098a7b0, &UNK_18098a850);
+                SystemErrorHandler(&global_state_5376_ptr, 0x4f, &global_state_5344_ptr, &global_state_5504_ptr);
             }
             else {
                 // 设置结果
@@ -1145,7 +1145,7 @@ void SystemContextManager(void* context_manager, void* result)
         vtable_function = *(FunctionPointer*)(*temp_ptr1 + 0x10);
         _guard_check_icall(vtable_function);
         (*vtable_function)(temp_ptr1);
-        SystemErrorHandler(&UNK_18098a7d0, 0x45, &UNK_18098a7b0, &UNK_18098a828);
+        SystemErrorHandler(&global_state_5376_ptr, 0x45, &global_state_5344_ptr, &global_state_5464_ptr);
     }
     else {
         // 获取第二个虚函数
@@ -1161,7 +1161,7 @@ void SystemContextManager(void* context_manager, void* result)
             vtable_function = *(FunctionPointer*)(*temp_ptr1 + 0x10);
             _guard_check_icall(vtable_function);
             (*vtable_function)(temp_ptr1);
-            SystemErrorHandler(&UNK_18098a7d0, 0x4f, &UNK_18098a7b0, &UNK_18098a850);
+            SystemErrorHandler(&global_state_5376_ptr, 0x4f, &global_state_5344_ptr, &global_state_5504_ptr);
         }
         else {
             // 设置结果

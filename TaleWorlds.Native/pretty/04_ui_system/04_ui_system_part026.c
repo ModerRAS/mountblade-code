@@ -156,83 +156,83 @@ void ui_system_cpu_feature_detector(void)
     // 设置高级渲染函数指针
     ui_system_function_table[6] = FUN_1806780c0;
     if (sse2_supported) {
-        ui_system_function_table[6] = (code *)&UNK_1800036c0;
+        ui_system_function_table[6] = (code *)&unknown_var_4960_ptr;
     }
     
     // 设置更多函数指针...
     ui_system_function_table[7] = FUN_1806782c0;
     if (sse2_supported) {
-        ui_system_function_table[7] = (code *)&UNK_180003880;
+        ui_system_function_table[7] = (code *)&unknown_var_5408_ptr;
     }
     
     ui_system_function_table[8] = FUN_180678430;
     if (sse2_supported) {
-        ui_system_function_table[8] = (code *)&UNK_180003540;
+        ui_system_function_table[8] = (code *)&unknown_var_4576_ptr;
     }
     
     ui_system_function_table[9] = FUN_180678540;
     if (sse2_supported) {
-        ui_system_function_table[9] = (code *)&UNK_1800035c0;
+        ui_system_function_table[9] = (code *)&unknown_var_4704_ptr;
     }
     
     ui_system_function_table[10] = FUN_180678810;
     if (sse2_supported) {
-        ui_system_function_table[10] = (code *)&UNK_180003e90;
+        ui_system_function_table[10] = (code *)&unknown_var_6960_ptr;
     }
     
     ui_system_function_table[11] = FUN_1806789c0;
     if (sse2_supported) {
-        ui_system_function_table[11] = (code *)&UNK_180003fa0;
+        ui_system_function_table[11] = (code *)&unknown_var_7232_ptr;
     }
     
     ui_system_function_table[12] = FUN_180678b10;
     if (sse2_supported) {
-        ui_system_function_table[12] = (code *)&UNK_180003d80;
+        ui_system_function_table[12] = (code *)&unknown_var_6688_ptr;
     }
     
     ui_system_function_table[13] = FUN_180678bc0;
     if (sse2_supported) {
-        ui_system_function_table[13] = (code *)&UNK_180003de0;
+        ui_system_function_table[13] = (code *)&unknown_var_6784_ptr;
     }
     
     ui_system_function_table[14] = FUN_180678e20;
     if (sse2_supported) {
-        ui_system_function_table[14] = (code *)&UNK_180003050;
+        ui_system_function_table[14] = (code *)&unknown_var_3312_ptr;
     }
     
     ui_system_function_table[15] = FUN_180678ef0;
     if (sse2_supported) {
-        ui_system_function_table[15] = (code *)&UNK_180003110;
+        ui_system_function_table[15] = (code *)&unknown_var_3504_ptr;
     }
     
     ui_system_function_table[16] = FUN_180678fc0;
     if (sse2_supported) {
-        ui_system_function_table[16] = (code *)&UNK_180002f70;
+        ui_system_function_table[16] = (code *)&unknown_var_3088_ptr;
     }
     
     ui_system_function_table[17] = FUN_1806790b0;
     if (sse2_supported) {
-        ui_system_function_table[17] = (code *)&UNK_180002fd0;
+        ui_system_function_table[17] = (code *)&unknown_var_3184_ptr;
     }
     
     ui_system_function_table[18] = FUN_180679310;
     if (sse2_supported) {
-        ui_system_function_table[18] = (code *)&UNK_1800033b0;
+        ui_system_function_table[18] = (code *)&unknown_var_4176_ptr;
     }
     
     ui_system_function_table[19] = FUN_180679480;
     if (sse2_supported) {
-        ui_system_function_table[19] = (code *)&UNK_180003430;
+        ui_system_function_table[19] = (code *)&unknown_var_4304_ptr;
     }
     
     ui_system_function_table[20] = FUN_1806795f0;
     if (sse2_supported) {
-        ui_system_function_table[20] = (code *)&UNK_1800032a0;
+        ui_system_function_table[20] = (code *)&unknown_var_3904_ptr;
     }
     
     ui_system_function_table[21] = FUN_1806796f0;
     if (sse2_supported) {
-        ui_system_function_table[21] = (code *)&UNK_180003300;
+        ui_system_function_table[21] = (code *)&unknown_var_4000_ptr;
     }
     
     // 设置高级纹理处理函数指针
@@ -248,7 +248,7 @@ void ui_system_cpu_feature_detector(void)
     
     ui_system_function_table[24] = FUN_180683f90;
     if (sse2_supported) {
-        ui_system_function_table[24] = (code *)&UNK_180004300;
+        ui_system_function_table[24] = (code *)&unknown_var_8096_ptr;
     }
     
     ui_system_function_table[25] = FUN_18068d2b0;
@@ -258,32 +258,32 @@ void ui_system_cpu_feature_detector(void)
     
     ui_system_function_table[26] = FUN_180679ac0;
     if (sse2_supported) {
-        ui_system_function_table[26] = (code *)&UNK_180002ee0;
+        ui_system_function_table[26] = (code *)&unknown_var_2944_ptr;
     }
     
     ui_system_function_table[27] = FUN_180679b20;
     if (sse2_supported) {
-        ui_system_function_table[27] = (code *)&UNK_180002f20;
+        ui_system_function_table[27] = (code *)&unknown_var_3008_ptr;
     }
     
-    ui_system_function_table[28] = &UNK_180679b80;
+    ui_system_function_table[28] = &unknown_var_960_ptr;
     if (sse2_supported) {
-        ui_system_function_table[28] = &UNK_180002e60;
+        ui_system_function_table[28] = &unknown_var_2816_ptr;
     }
     
-    ui_system_function_table[29] = &UNK_180679bb0;
+    ui_system_function_table[29] = &unknown_var_1008_ptr;
     if (sse2_supported) {
-        ui_system_function_table[29] = &UNK_180002ea0;
+        ui_system_function_table[29] = &unknown_var_2880_ptr;
     }
     
     ui_system_function_table[30] = FUN_1806917c0;
     if (sse2_supported) {
-        ui_system_function_table[30] = (code *)&UNK_180005080;
+        ui_system_function_table[30] = (code *)&unknown_var_1552_ptr;
     }
     
     ui_system_function_table[31] = FUN_180691db0;
     if (sse2_supported) {
-        ui_system_function_table[31] = (code *)&UNK_1800049d0;
+        ui_system_function_table[31] = (code *)&unknown_var_9840_ptr;
     }
     
     ui_system_function_table[32] = FUN_180694010;
@@ -298,135 +298,135 @@ void ui_system_cpu_feature_detector(void)
     
     ui_system_function_table[34] = FUN_180695bf0;
     if (sse2_supported) {
-        ui_system_function_table[34] = (code *)&UNK_180005440;
+        ui_system_function_table[34] = (code *)&unknown_var_2512_ptr;
     }
     if (fma_supported) {
-        ui_system_function_table[34] = (code *)&UNK_180005bc0;
+        ui_system_function_table[34] = (code *)&unknown_var_4432_ptr;
     }
     
     ui_system_function_table[35] = FUN_180695f70;
     if (sse2_supported) {
-        ui_system_function_table[35] = (code *)&UNK_1800057b0;
+        ui_system_function_table[35] = (code *)&unknown_var_3392_ptr;
     }
     if (fma_supported) {
-        ui_system_function_table[35] = (code *)&UNK_180006190;
+        ui_system_function_table[35] = (code *)&unknown_var_5920_ptr;
     }
     
     ui_system_function_table[36] = FUN_1806961a0;
     if (sse_supported) {
-        ui_system_function_table[36] = (code *)&UNK_1800065d0;
+        ui_system_function_table[36] = (code *)&unknown_var_7008_ptr;
     }
     if (sse2_supported) {
-        ui_system_function_table[36] = (code *)&UNK_180006ff0;
+        ui_system_function_table[36] = (code *)&unknown_var_9600_ptr;
     }
     
     ui_system_function_table[37] = FUN_180696370;
     if (avx_supported) {
-        ui_system_function_table[37] = (code *)&UNK_18000d630;
+        ui_system_function_table[37] = (code *)&unknown_var_5776_ptr;
     }
     
     ui_system_function_table[38] = FUN_180696540;
     if (sse_supported) {
-        ui_system_function_table[38] = (code *)&UNK_180006945;
+        ui_system_function_table[38] = (code *)&unknown_var_7893_ptr;
     }
     if (sse2_supported) {
-        ui_system_function_table[38] = (code *)&UNK_18000b3dd;
+        ui_system_function_table[38] = (code *)&unknown_var_6989_ptr;
     }
     
     ui_system_function_table[39] = FUN_180696710;
     if (avx_supported) {
-        ui_system_function_table[39] = (code *)&UNK_18000dbc6;
+        ui_system_function_table[39] = (code *)&unknown_var_7206_ptr;
     }
     
     // 设置其余函数指针...
-    ui_system_function_table[40] = (code *)&UNK_18000e750;
+    ui_system_function_table[40] = (code *)&unknown_var_160_ptr;
     if (avx2_supported) {
         ui_system_function_table[40] = FUN_180697340;
     }
     
-    ui_system_function_table[41] = (code *)&UNK_18000e8e0;
+    ui_system_function_table[41] = (code *)&unknown_var_560_ptr;
     if (avx2_supported) {
         ui_system_function_table[41] = FUN_1806972a0;
     }
     
-    ui_system_function_table[42] = (code *)&UNK_18000e6e0;
+    ui_system_function_table[42] = (code *)&unknown_var_48_ptr;
     if (avx2_supported) {
         ui_system_function_table[42] = FUN_180697460;
     }
     
-    ui_system_function_table[43] = (code *)&UNK_18000e850;
+    ui_system_function_table[43] = (code *)&unknown_var_416_ptr;
     if (avx2_supported) {
         ui_system_function_table[43] = FUN_1806973c0;
     }
     
-    ui_system_function_table[44] = (code *)&UNK_180017300;
+    ui_system_function_table[44] = (code *)&unknown_var_5920_ptr;
     if (avx2_supported) {
         ui_system_function_table[44] = FUN_1806977e0;
     }
     
-    ui_system_function_table[45] = (code *)&UNK_18000e670;
+    ui_system_function_table[45] = (code *)&unknown_var_9936_ptr;
     if (avx2_supported) {
         ui_system_function_table[45] = FUN_180697580;
     }
     
-    ui_system_function_table[46] = (code *)&UNK_18000e7c0;
+    ui_system_function_table[46] = (code *)&unknown_var_272_ptr;
     if (avx2_supported) {
         ui_system_function_table[46] = FUN_1806974e0;
     }
     
     ui_system_function_table[47] = FUN_1806968e0;
     if (sse_supported) {
-        ui_system_function_table[47] = (code *)&UNK_180006f34;
+        ui_system_function_table[47] = (code *)&unknown_var_9412_ptr;
     }
     
     ui_system_function_table[48] = FUN_180696a60;
     if (avx_supported) {
-        ui_system_function_table[48] = (code *)&UNK_18000e39c;
+        ui_system_function_table[48] = (code *)&unknown_var_9212_ptr;
     }
     
-    ui_system_function_table[49] = (code *)&UNK_18000e4e0;
+    ui_system_function_table[49] = (code *)&unknown_var_9536_ptr;
     if (avx2_supported) {
         ui_system_function_table[49] = FUN_180697680;
     }
     
-    ui_system_function_table[50] = (code *)&UNK_18000e5e0;
+    ui_system_function_table[50] = (code *)&unknown_var_9792_ptr;
     if (avx2_supported) {
         ui_system_function_table[50] = FUN_180697600;
     }
     
-    ui_system_function_table[51] = (code *)&UNK_18000e470;
+    ui_system_function_table[51] = (code *)&unknown_var_9424_ptr;
     if (avx2_supported) {
         ui_system_function_table[51] = FUN_180697770;
     }
     
-    ui_system_function_table[52] = (code *)&UNK_18000e550;
+    ui_system_function_table[52] = (code *)&unknown_var_9648_ptr;
     if (avx2_supported) {
         ui_system_function_table[52] = FUN_1806976f0;
     }
     
-    ui_system_function_table[53] = (code *)&UNK_18000f120;
+    ui_system_function_table[53] = (code *)&unknown_var_2672_ptr;
     if (avx2_supported) {
         ui_system_function_table[53] = FUN_1806978b0;
     }
     
     ui_system_function_table[54] = FUN_180696be0;
     if (sse_supported) {
-        ui_system_function_table[54] = (code *)&UNK_180006b22;
+        ui_system_function_table[54] = (code *)&unknown_var_8370_ptr;
     }
     
     ui_system_function_table[55] = FUN_180696d90;
     if (avx_supported) {
-        ui_system_function_table[55] = (code *)&UNK_18000e06e;
+        ui_system_function_table[55] = (code *)&unknown_var_8398_ptr;
     }
     
     ui_system_function_table[56] = FUN_180696f40;
     if (sse_supported) {
-        ui_system_function_table[56] = (code *)&UNK_180006dcf;
+        ui_system_function_table[56] = (code *)&unknown_var_9055_ptr;
     }
     
     ui_system_function_table[57] = FUN_1806970f0;
     if (avx_supported) {
-        ui_system_function_table[57] = (code *)&UNK_18000deb4;
+        ui_system_function_table[57] = (code *)&unknown_var_7956_ptr;
     }
     
     ui_system_function_table[58] = FUN_180697dd0;
@@ -1265,7 +1265,7 @@ int32_t ui_system_parameter_validator(longlong context, int param_type, int *par
     }
     else {
         if (param_type != 4) {
-            error_handler = &UNK_180946b38;
+            error_handler = &unknown_var_7720_ptr;
             goto validation_failed;
         }
         current_index = *(int *)(context + 0x1c9c);
@@ -1280,7 +1280,7 @@ int32_t ui_system_parameter_validator(longlong context, int param_type, int *par
         return *ui_data;
     }
     
-    error_handler = &UNK_180946b50;
+    error_handler = &unknown_var_7744_ptr;
 validation_failed:
     FUN_18066d370(ui_data, 1, error_handler);
     return *ui_data;
@@ -1404,7 +1404,7 @@ int32_t ui_system_texture_switcher_advanced(longlong context, int param_type, in
     }
     else {
         if (param_type != 4) {
-            error_handler = &UNK_180946b38;
+            error_handler = &unknown_var_7720_ptr;
             goto texture_switch_failed;
         }
         texture_slot = (int *)(context + 0x1c9c);
@@ -1428,7 +1428,7 @@ int32_t ui_system_texture_switcher_advanced(longlong context, int param_type, in
         return *ui_data;
     }
     
-    error_handler = &UNK_180946b50;
+    error_handler = &unknown_var_7744_ptr;
 texture_switch_failed:
     FUN_18066d370(ui_data, 1, error_handler);
     return *ui_data;

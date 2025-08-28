@@ -855,7 +855,7 @@ void FUN_180125eb9(uint64_t param_1,int param_2)
   *(int32_t *)(_DAT_180c8a9b0 + 0x1c04) = 0x43c80000;
   *(int32_t *)(lVar9 + 0x1c08) = 0x43c80000;
   *(int32_t *)(lVar9 + 0x1bd4) = 4;
-  FUN_1801299b0(&UNK_180a06480,0,0);
+  FUN_1801299b0(&unknown_var_2432_ptr,0,0);
   *(int8_t *)(unaff_RBX + 2) = 1;
   return;
 }
@@ -918,7 +918,7 @@ void FUN_180125ff8(void)
   *(int32_t *)(_DAT_180c8a9b0 + 0x1c04) = 0x43c80000;
   *(int32_t *)(lVar2 + 0x1c08) = 0x43c80000;
   *(int32_t *)(lVar2 + 0x1bd4) = 4;
-  FUN_1801299b0(&UNK_180a06480,0,0);
+  FUN_1801299b0(&unknown_var_2432_ptr,0,0);
   *(int8_t *)(unaff_RBX + 2) = 1;
   return;
 }

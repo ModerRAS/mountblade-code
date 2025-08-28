@@ -214,10 +214,10 @@ void FUN_18055cde0(longlong param_1,longlong param_2,int *param_3)
   uStack_858 = 0xffffffff;
   iStack_854 = -1;
   auStack_850[0] = 0xff;
-  cVar7 = FUN_18055f260(param_2,auStack_850,&UNK_1809f8dc0);
+  cVar7 = FUN_18055f260(param_2,auStack_850,&unknown_var_7456_ptr);
   if ((((cVar7 != '\0') && (cVar7 = (char)auStack_850[0], (auStack_850[0] & 0xfc) == 0)) &&
       (cVar7 != '\x02')) &&
-     (((cVar8 = FUN_18055f260(param_2,&uStack_858,&UNK_1809f8dd0), uVar6 = uStack_858, cVar8 != '\0'
+     (((cVar8 = FUN_18055f260(param_2,&uStack_858,&unknown_var_7472_ptr), uVar6 = uStack_858, cVar8 != '\0'
        && (lVar14 = (longlong)(int)uStack_858, -1 < (int)uStack_858)) &&
       ((plVar1 = *(longlong **)(param_1 + 0x790 + lVar14 * 8), plVar1 != (longlong *)0x0 &&
        (((int)plVar1[2] == 1 && (lVar2 = *plVar1, lVar2 != 0)))))))) {
@@ -232,7 +232,7 @@ void FUN_18055cde0(longlong param_1,longlong param_2,int *param_3)
         } while (lVar14 != 0);
         sVar9 = 0;
         uStack_858 = 0;
-        cVar7 = FUN_18055f260(param_2,&uStack_858,&UNK_1809fad00);
+        cVar7 = FUN_18055f260(param_2,&uStack_858,&unknown_var_5456_ptr);
         bVar17 = cVar7 != '\0';
         uVar11 = (ushort)uStack_858;
         if (0xff < (ushort)uStack_858) {
@@ -269,7 +269,7 @@ void FUN_18055cde0(longlong param_1,longlong param_2,int *param_3)
       }
     }
     else {
-      cVar8 = FUN_18055f260(param_2,&iStack_854,&UNK_1809f8de0);
+      cVar8 = FUN_18055f260(param_2,&iStack_854,&unknown_var_7488_ptr);
       if (cVar8 != '\0') {
         if (cVar7 == '\0') {
           if ((((uVar6 < 0x3ff) &&
@@ -298,7 +298,7 @@ void FUN_18055cde0(longlong param_1,longlong param_2,int *param_3)
             iVar10 = piVar3[6];
           }
           if ((iVar10 != param_3[5]) || ((short)piVar3[5] != (short)param_3[4])) {
-            FUN_180062340(_DAT_180c86928,2,&UNK_180a37428);
+            FUN_180062340(_DAT_180c86928,2,&unknown_var_3048_ptr);
             iVar10 = param_3[1];
             iVar4 = param_3[2];
             iVar5 = param_3[3];

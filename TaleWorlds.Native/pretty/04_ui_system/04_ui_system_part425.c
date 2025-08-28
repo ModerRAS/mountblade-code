@@ -395,17 +395,17 @@ uint8_t FUN_18089e2be;                    /**< UI数据简化函数 */
 uint8_t FUN_18089e2e8;                    /**< UI数据流管理函数 */
 
 /* 数据变量声明 */
-uint8_t UNK_18097c540;                    /**< UI内存池数据 */
-uint8_t UNK_18097c600;                    /**< UI管理器数据 */
-uint8_t UNK_18097c608;                    /**< UI分配器数据 */
-uint8_t UNK_18097c618;                    /**< UI清理器数据 */
-uint8_t UNK_18097c628;                    /**< UI验证器数据 */
-uint8_t UNK_18097c638;                    /**< UI同步器数据 */
-uint8_t UNK_18097c648;                    /**< UI配置数据1 */
-uint8_t UNK_18097c650;                    /**< UI配置数据2 */
-uint8_t UNK_18097c658;                    /**< UI配置数据3 */
-uint8_t UNK_18097c660;                    /**< UI配置数据4 */
-uint8_t UNK_18097c670;                    /**< UI保护数据 */
+uint8_t global_state_7376;                    /**< UI内存池数据 */
+uint8_t global_state_7568;                    /**< UI管理器数据 */
+uint8_t global_state_7576;                    /**< UI分配器数据 */
+uint8_t global_state_7592;                    /**< UI清理器数据 */
+uint8_t global_state_7608;                    /**< UI验证器数据 */
+uint8_t global_state_7624;                    /**< UI同步器数据 */
+uint8_t global_state_7640;                    /**< UI配置数据1 */
+uint8_t global_state_7648;                    /**< UI配置数据2 */
+uint8_t global_state_7656;                    /**< UI配置数据3 */
+uint8_t global_state_7664;                    /**< UI配置数据4 */
+uint8_t global_state_7680;                    /**< UI保护数据 */
 
 /* ================================ */
 /* 文件结束标识 */

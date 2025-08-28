@@ -54,15 +54,15 @@ void initialize_console_output_system(int *output_counter)
     process_resource_data(resource_handle,&temp_buffer_1,buffer_config);
   }
   uStack_190 = 0;
-  puStack_188 = &UNK_180a3c3e0;
+  puStack_188 = &unknown_var_3456_ptr;
   if (temp_buffer_2 != 0) {
                     // WARNING: Subroutine does not return
     trigger_system_error();
   }
   lStack_180 = 0;
   uStack_170 = 0;
-  puStack_188 = &UNK_18098bcb0;
-  puStack_1b0 = &UNK_180a3c3e0;
+  puStack_188 = &unknown_var_720_ptr;
+  puStack_1b0 = &unknown_var_3456_ptr;
   uStack_198 = 0;
   puStack_1a8 = (int32_t *)0x0;
   uStack_1a0 = 0;
@@ -97,7 +97,7 @@ void initialize_console_output_system(int *output_counter)
       puVar7 = puVar7 + 4;
     } while ((ulonglong)(longlong)iVar8 < uVar9);
   }
-  puStack_1b0 = &UNK_180a3c3e0;
+  puStack_1b0 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
   release_string_buffer(string_buffer);
 }
@@ -208,7 +208,7 @@ void process_initialization_command(longlong command_data)
       (**(code **)(*log_system + 0x108))(log_system,1);
       log_system = (longlong *)(*(longlong *)(command_data + 0x20) + 0x20);
       (**(code **)(*log_system + 0x70))(log_system,&LOG_SYSTEM_CONFIG);
-      puStack_70 = &UNK_180a3c3e0;
+      puStack_70 = &unknown_var_3456_ptr;
       uStack_58 = 0;
       puStack_68 = (uint64_t *)0x0;
       uStack_60 = 0;
@@ -231,15 +231,15 @@ void process_initialization_command(longlong command_data)
       iVar8 = -1;
 code_r0x0001800630e9:
       FUN_1806288c0(param_1 + 0x30,iVar8,&puStack_70);
-      puStack_70 = &UNK_180a3c3e0;
+      puStack_70 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
       FUN_18064e900(puVar5);
     case 2:
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&UNK_1809fe5f0);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&unknown_var_32_ptr);
       FUN_180639250(*(longlong *)(param_1 + 0x20) + 0xd8);
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0x20);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&UNK_1809fe5f0);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&unknown_var_32_ptr);
       FUN_180639250(*(longlong *)(param_1 + 0x20) + 0x20);
       if (((*(byte *)(*(longlong *)(param_1 + 0x20) + 8) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
@@ -257,7 +257,7 @@ code_r0x0001800630e9:
       break;
     case 3:
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&UNK_1809fe5f0);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&unknown_var_32_ptr);
       FUN_180639250(*(longlong *)(param_1 + 0x20) + 0xd8);
       FUN_18062da70(*(longlong *)(param_1 + 0x20) + 0xe0);
       break;
@@ -272,7 +272,7 @@ code_r0x0001800630e9:
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
       (**(code **)(*plVar7 + 0x108))(plVar7,1);
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&UNK_1809fe5c0);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&unknown_var_9984_ptr);
       break;
     case 5:
       iVar8 = *(int *)(param_1 + 0x58);
@@ -289,11 +289,11 @@ code_r0x0001800630e9:
                         0x180000000,*(int32_t *)(param_1 + 0x50));
           iVar4 = WriteConsoleA(_DAT_180c912f0,puVar9,uVar2,auStackX_20,0);
           if ((iVar4 == 0) || (auStackX_20[0] < uVar2)) {
-            FUN_18005d3a0(&UNK_1809fe62c,puVar9);
+            FUN_18005d3a0(&unknown_var_92_ptr,puVar9);
           }
           iVar4 = SetConsoleTextAttribute(_DAT_180c912f0,0xf);
           if (iVar4 == 0) {
-            FUN_18005d3a0(&UNK_1809fe5a0);
+            FUN_18005d3a0(&unknown_var_9952_ptr);
           }
         }
         if ((*(byte *)(puVar5 + 1) & 8) != 0) {
@@ -324,7 +324,7 @@ code_r0x0001800630e9:
     }
   }
   else {
-    FUN_180626f80(&UNK_1809fe608);
+    FUN_180626f80(&unknown_var_56_ptr);
   }
   return;
 }
@@ -441,17 +441,17 @@ int format_string_unsafe(void *buffer, void *format, void *arg_list, void *extra
 uint64_t *cleanup_string_buffer(uint64_t *buffer_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
 
 {
-  buffer_ptr[6] = &UNK_180a3c3e0;
+  buffer_ptr[6] = &unknown_var_3456_ptr;
   if (buffer_ptr[7] != 0) {
                     // WARNING: Subroutine does not return
     release_string_buffer();
   }
   buffer_ptr[7] = 0;
   *(int32_t *)(buffer_ptr + 9) = 0;
-  buffer_ptr[6] = &UNK_18098bcb0;
-  *buffer_ptr = &UNK_18098bdc8;
-  *buffer_ptr = &UNK_180a21720;
-  *buffer_ptr = &UNK_180a21690;
+  buffer_ptr[6] = &unknown_var_720_ptr;
+  *buffer_ptr = &unknown_var_1000_ptr;
+  *buffer_ptr = &unknown_var_3696_ptr;
+  *buffer_ptr = &unknown_var_3552_ptr;
   if ((flags & 1) != 0) {
     free(buffer_ptr,0x70,param3,param4,0xfffffffffffffffe);
   }
@@ -467,20 +467,20 @@ uint64_t *initialize_string_buffer_with_config(uint64_t *buffer_ptr, int32_t con
 {
   longlong *buffer_manager;
   
-  *buffer_ptr = &UNK_180a21690;
-  *buffer_ptr = &UNK_180a21720;
+  *buffer_ptr = &unknown_var_3552_ptr;
+  *buffer_ptr = &unknown_var_3696_ptr;
   *(int32_t *)(buffer_ptr + 1) = 0;
-  *buffer_ptr = &UNK_18098bdc8;
+  *buffer_ptr = &unknown_var_1000_ptr;
   LOCK();
   *(int8_t *)(buffer_ptr + 2) = 0;
   UNLOCK();
   buffer_ptr[3] = 0xffffffffffffffff;
-  *buffer_ptr = &UNK_1809fe650;
+  *buffer_ptr = &unknown_var_128_ptr;
   buffer_manager = buffer_ptr + 6;
-  *buffer_manager = (longlong)&UNK_18098bcb0;
+  *buffer_manager = (longlong)&unknown_var_720_ptr;
   buffer_ptr[7] = 0;
   *(int32_t *)(buffer_ptr + 8) = 0;
-  *buffer_manager = (longlong)&UNK_180a3c3e0;
+  *buffer_manager = (longlong)&unknown_var_3456_ptr;
   buffer_ptr[9] = 0;
   buffer_ptr[7] = 0;
   *(int32_t *)(buffer_ptr + 8) = 0;
@@ -569,12 +569,12 @@ void write_log_to_file(uint64_t file_handle, longlong message_data)
   
   log_buffer = 0;
   file_stream = 0;
-  initialize_file_stream(file_handle,&message_ptr2,&UNK_1809fe800);
+  initialize_file_stream(file_handle,&message_ptr2,&unknown_var_560_ptr);
   default_message = &system_buffer_ptr;
   if (message_ptr3 != (void *)0x0) {
     default_message = message_ptr3;
   }
-  initialize_log_buffer(&log_buffer,default_message,&UNK_1809fe80c);
+  initialize_log_buffer(&log_buffer,default_message,&unknown_var_572_ptr);
   file_stream2 = file_stream;
   temp_var2 = -1;
   message_length = temp_var2;
@@ -672,7 +672,7 @@ not_found:
         do {
           char_index2 = char_index1 + 1;
           if (*(char *)(*(longlong *)((longlong)file_array1 + scan_index + 8) + (longlong)(file_length + -4) +
-                       char_index1) != (&UNK_1809fe85c)[char_index1]) goto not_found;
+                       char_index1) != (&unknown_var_652_ptr)[char_index1]) goto not_found;
           char_index1 = char_index2;
         } while (char_index2 != 5);
         is_match = true;
@@ -719,14 +719,14 @@ not_found:
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    puStack_290 = &UNK_180a3c3e0;
+    puStack_290 = &unknown_var_3456_ptr;
     if (lStack_288 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_288 = 0;
     uStack_278 = 0;
-    puStack_290 = &UNK_18098bcb0;
+    puStack_290 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
     FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_2f8);
   }
@@ -810,22 +810,22 @@ void FUN_180064010(uint64_t param_1)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puStack_2a0 = &UNK_180a3c3e0;
+  puStack_2a0 = &unknown_var_3456_ptr;
   if (lStack_298 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_298 = 0;
   uStack_288 = 0;
-  puStack_2a0 = &UNK_18098bcb0;
+  puStack_2a0 = &unknown_var_720_ptr;
   uStack_2f8 = 0;
   lStack_2f0 = 0;
-  FUN_180627e10(param_1,&puStack_280,&UNK_1809fe868);
+  FUN_180627e10(param_1,&puStack_280,&unknown_var_664_ptr);
   puVar3 = &system_buffer_ptr;
   if (puStack_278 != (void *)0x0) {
     puVar3 = puStack_278;
   }
-  FUN_18062dee0(&uStack_2f8,puVar3,&UNK_1809fe80c);
+  FUN_18062dee0(&uStack_2f8,puVar3,&unknown_var_572_ptr);
   FUN_1800ae730(_DAT_180c86920,&uStack_2f8);
   if (lStack_2f0 != 0) {
     fclose();
@@ -834,14 +834,14 @@ void FUN_180064010(uint64_t param_1)
     _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
     UNLOCK();
   }
-  puStack_280 = &UNK_180a3c3e0;
+  puStack_280 = &unknown_var_3456_ptr;
   if (puStack_278 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_278 = (void *)0x0;
   uStack_268 = 0;
-  puStack_280 = &UNK_18098bcb0;
+  puStack_280 = &unknown_var_720_ptr;
   if (lStack_2f0 != 0) {
     fclose();
     lStack_2f0 = 0;
@@ -851,12 +851,12 @@ void FUN_180064010(uint64_t param_1)
   }
   uStack_2e0 = 0;
   lStack_2d8 = 0;
-  FUN_180627e10(param_1,&puStack_260,&UNK_1809fe880);
+  FUN_180627e10(param_1,&puStack_260,&unknown_var_688_ptr);
   puVar3 = &system_buffer_ptr;
   if (puStack_258 != (void *)0x0) {
     puVar3 = puStack_258;
   }
-  FUN_18062dee0(&uStack_2e0,puVar3,&UNK_1809fe80c);
+  FUN_18062dee0(&uStack_2e0,puVar3,&unknown_var_572_ptr);
   FUN_1800ae730(_DAT_180c868b0,&uStack_2e0);
   if (lStack_2d8 != 0) {
     fclose();
@@ -865,14 +865,14 @@ void FUN_180064010(uint64_t param_1)
     _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
     UNLOCK();
   }
-  puStack_260 = &UNK_180a3c3e0;
+  puStack_260 = &unknown_var_3456_ptr;
   if (puStack_258 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_258 = (void *)0x0;
   uStack_248 = 0;
-  puStack_260 = &UNK_18098bcb0;
+  puStack_260 = &unknown_var_720_ptr;
   if (lStack_2d8 != 0) {
     fclose();
     lStack_2d8 = 0;
@@ -937,21 +937,21 @@ ulonglong process_file_operations(uint64_t file_handle)
   file_list3 = file_array2;
   file_list2 = file_array1;
   if ((status_char == '\0') || (file_array1 == file_array2)) {
-    log_system_message(_DAT_180c86928,5,3,&UNK_1809fe8b0);
+    log_system_message(_DAT_180c86928,5,3,&unknown_var_736_ptr);
     operation_result = get_operation_result();
     file_list1 = file_list2;
   }
   else {
     log_buffer = 0;
     log_handle = 0;
-    initialize_file_stream(file_handle,&message_ptr,&UNK_1809fe898);
+    initialize_file_stream(file_handle,&message_ptr,&unknown_var_712_ptr);
     default_path = &system_buffer_ptr;
     if (custom_message != (void *)0x0) {
       default_path = custom_message;
     }
-    initialize_log_buffer(&log_buffer,default_path,&UNK_1809fe80c);
+    initialize_log_buffer(&log_buffer,default_path,&unknown_var_572_ptr);
     operation_result = (longlong)file_list3 - (longlong)file_list2 >> 5;
-    output_buffer = &UNK_180a3c3e0;
+    output_buffer = &unknown_var_3456_ptr;
     buffer_pos = 0;
     stream_handle = 0;
     buffer_size = 0;
@@ -963,7 +963,7 @@ ulonglong process_file_operations(uint64_t file_handle)
         if ((void *)*file_list1 != (void *)0x0) {
           default_path = (void *)*file_list1;
         }
-        write_error_message(&output_buffer,&UNK_1809fe62c,default_path);
+        write_error_message(&output_buffer,&unknown_var_92_ptr,default_path);
         file_list1 = file_list1 + 4;
         operation_result = operation_result - 1;
       } while (operation_result != 0);
@@ -981,22 +981,22 @@ ulonglong process_file_operations(uint64_t file_handle)
       file_list3 = file_array2;
       _DAT_180c8ed60 = _DAT_180c8ed60 - 1;
     }
-    output_buffer = &UNK_180a3c3e0;
+    output_buffer = &unknown_var_3456_ptr;
     if (stream_handle != 0) {
                     // WARNING: Subroutine does not return
       release_string_buffer();
     }
     stream_handle = 0;
     buffer_pos = buffer_pos & 0xffffffff00000000;
-    output_buffer = &UNK_18098bcb0;
-    message_ptr = &UNK_180a3c3e0;
+    output_buffer = &unknown_var_720_ptr;
+    message_ptr = &unknown_var_3456_ptr;
     if (custom_message != (void *)0x0) {
                     // WARNING: Subroutine does not return
       release_string_buffer();
     }
     custom_message = (void *)0x0;
     message_flags = 0;
-    message_ptr = &UNK_18098bcb0;
+    message_ptr = &unknown_var_720_ptr;
     file_list1 = file_list2;
     if (file_handle2 != 0) {
       operation_result = fclose(file_handle2);

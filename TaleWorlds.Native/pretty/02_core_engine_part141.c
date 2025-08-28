@@ -152,7 +152,7 @@ void FUN_180134640(void *param_1,int param_2,int32_t param_3)
   *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
   lVar5 = *(longlong *)(lVar6 + 0x1af8);
   FUN_18012e2d0(iVar11 + 0x11223347);
-  puVar15 = &UNK_180a06558;
+  puVar15 = &unknown_var_2648_ptr;
   if (param_1 != (void *)0x0) {
     puVar15 = param_1;
   }
@@ -420,7 +420,7 @@ void FUN_18013464a(void *param_1,int param_2,int32_t param_3)
   *(int8_t *)(*(longlong *)(lVar6 + 0x1af8) + 0xb1) = 1;
   lVar5 = *(longlong *)(lVar6 + 0x1af8);
   FUN_18012e2d0(iVar11 + 0x11223347);
-  puVar15 = &UNK_180a06558;
+  puVar15 = &unknown_var_2648_ptr;
   if (param_1 != (void *)0x0) {
     puVar15 = param_1;
   }

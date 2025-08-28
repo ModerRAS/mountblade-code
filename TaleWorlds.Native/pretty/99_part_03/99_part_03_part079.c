@@ -121,8 +121,8 @@ static void unmatched_system_component_initializer(void)
     void *resource_ptr;
     
     // 初始化系统组件
-    component_ptr = &UNK_1800ee4d0;
-    resource_ptr = &UNK_1800ee4c0;
+    component_ptr = &unknown_var_7024_ptr;
+    resource_ptr = &unknown_var_7008_ptr;
     
     // 设置系统回调
     // 原始代码中的复杂指针操作简化为基本的组件初始化
@@ -150,13 +150,13 @@ static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, ulonglo
     longlong *memory_block;
     
     // 初始化资源
-    *param_1 = &UNK_180a143e8;
+    *param_1 = &unknown_var_9624_ptr;
     memory_block = (longlong *)param_1[0x1c];
     
     if (memory_block == (longlong *)0x0) {
         // 分配新资源
         param_1[0x1c] = 0;
-        param_1[0x18] = &UNK_180a3c3e0;
+        param_1[0x18] = &unknown_var_3456_ptr;
         
         // 处理分配标志
         if (param_1[0x19] != 0) {
@@ -166,7 +166,7 @@ static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, ulonglo
         
         param_1[0x19] = 0;
         *(int32_t *)(param_1 + 0x1b) = 0;
-        param_1[0x18] = &UNK_18098bcb0;
+        param_1[0x18] = &unknown_var_720_ptr;
         
         // 调用初始化函数
         FUN_180049470(param_1);
@@ -221,13 +221,13 @@ static void unmatched_advanced_resource_processor(longlong param_1)
         param2 = *(int *)(param_1 + 0x3594);
         
         // 初始化缓冲区
-        string_resource = &UNK_1809fcc28;
+        string_resource = &unknown_var_3432_ptr;
         buffer_ptr = local_buffer;
         local_buffer[0] = 0;
         buffer_size = 10;
         
         // 复制字符串资源
-        strcpy_s(local_buffer, 0x80, &UNK_180a146b0);
+        strcpy_s(local_buffer, 0x80, &unknown_var_336_ptr);
         
         // 处理字符串资源
         string_resource = &system_buffer_ptr;
@@ -267,7 +267,7 @@ static void unmatched_advanced_resource_processor(longlong param_1)
         
         // 获取线程ID
         _Thrd_id();
-        string_resource = &UNK_18098bcb0;
+        string_resource = &unknown_var_720_ptr;
     }
     
     // 恢复栈保护

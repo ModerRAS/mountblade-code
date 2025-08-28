@@ -165,7 +165,7 @@ extern uint64_t _DAT_180bf00a8;
 extern int32_t system_memory_cc18;
 
 /** 渲染系统空对象指针 */
-extern uint8_t UNK_180a3c3e0;
+extern uint8_t global_state_3456_ptr;
 
 // ============================================================================
 // 函数声明
@@ -400,7 +400,7 @@ void FUN_18043c160(int32_t *param_1, uint64_t param_2, int32_t param_3, int32_t 
     uStack_34 = param_1[3];
     uStackX_8 = param_4;
     FUN_180632d00(_DAT_180c8ed68, &uStack_40, &puStack_30, param_3, &uStackX_8, param_6, uVar1);
-    puStack_30 = &UNK_180a3c3e0;
+    puStack_30 = &global_state_3456_ptr;
     if (lStack_28 != 0) {
         // WARNING: 子函数不返回
         FUN_18064e900();
@@ -425,7 +425,7 @@ void FUN_18043c230(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     longlong lStack_28;
     
     FUN_180627910(&puStack_30, param_3, param_3, param_4, INVALID_HANDLE);
-    puStack_30 = &UNK_180a3c3e0;
+    puStack_30 = &global_state_3456_ptr;
     if (lStack_28 != 0) {
         // WARNING: 子函数不返回
         FUN_18064e900();
@@ -787,7 +787,7 @@ void FUN_18043c740(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     
     FUN_180627910(&puStack_30, param_1, param_3, param_4, INVALID_HANDLE);
     FUN_18016ae30();
-    puStack_30 = &UNK_180a3c3e0;
+    puStack_30 = &global_state_3456_ptr;
     if (lStack_28 != 0) {
         // WARNING: 子函数不返回
         FUN_18064e900();

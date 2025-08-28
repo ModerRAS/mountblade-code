@@ -715,7 +715,7 @@ void generate_timestamp_hash(uint *hash_value)
   uint uVar1;
   char cVar2;
   
-  if (*(void **)*_DAT_180c8ed08 == &UNK_18098bb88) {
+  if (*(void **)*_DAT_180c8ed08 == &unknown_var_424_ptr) {
     cVar2 = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
   }
   else {
@@ -750,7 +750,7 @@ bool validate_and_process_condition(longlong context, uint64_t param_2)
         if (*(void **)(param_1 + 0x48) != (void *)0x0) {
           puVar2 = *(void **)(param_1 + 0x48);
         }
-        FUN_180626f80(&UNK_18098bc00,puVar2);
+        FUN_180626f80(&unknown_var_544_ptr,puVar2);
       }
       FUN_180627be0(param_1,param_1 + 0x80);
       return false;
@@ -837,7 +837,7 @@ void set_status_flag(longlong context, int32_t flag)
       if (*(void **)(param_1 + 0x1eb0) != (void *)0x0) {
         puVar2 = *(void **)(param_1 + 0x1eb0);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&unknown_var_544_ptr,puVar2);
     }
     *(int32_t *)(context + 0x1ea0) = *(int32_t *)(context + 0x1ee8); // 设置状态标志
     return;
@@ -855,10 +855,10 @@ void set_status_flag(longlong context, int32_t flag)
 uint64_t * copy_and_initialize_data_structure(uint64_t *dest, longlong src)
 
 {
-  *dest = &UNK_18098bcb0; // 初始化指针
+  *dest = &unknown_var_720_ptr; // 初始化指针
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &unknown_var_3456_ptr;
   param_1[3] = 0;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
@@ -869,10 +869,10 @@ uint64_t * copy_and_initialize_data_structure(uint64_t *dest, longlong src)
   *(int32_t *)(src + 0x10) = 0; // 清空源数据
   *(uint64_t *)(param_2 + 8) = 0;
   *(uint64_t *)(param_2 + 0x18) = 0;
-  memory_ptr[4] = &UNK_18098bcb0; // 设置内存标记
+  memory_ptr[4] = &unknown_var_720_ptr; // 设置内存标记
   param_1[5] = 0;
   *(int32_t *)(param_1 + 6) = 0;
-  param_1[4] = &UNK_180a3c3e0;
+  param_1[4] = &unknown_var_3456_ptr;
   param_1[7] = 0;
   param_1[5] = 0;
   *(int32_t *)(param_1 + 6) = 0;
@@ -895,22 +895,22 @@ uint64_t * copy_and_initialize_data_structure(uint64_t *dest, longlong src)
 longlong cleanup_and_reset_structure(longlong structure)
 
 {
-  *(uint64_t *)(structure + 0x40) = &UNK_180a3c3e0; // 设置安全标记
+  *(uint64_t *)(structure + 0x40) = &unknown_var_3456_ptr; // 设置安全标记
   if (*(longlong *)(param_1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(param_1 + 0x48) = 0;
   *(int32_t *)(param_1 + 0x58) = 0;
-  *(uint64_t *)(param_1 + 0x40) = &UNK_18098bcb0;
-  *(uint64_t *)(param_1 + 0x20) = &UNK_180a3c3e0;
+  *(uint64_t *)(param_1 + 0x40) = &unknown_var_720_ptr;
+  *(uint64_t *)(param_1 + 0x20) = &unknown_var_3456_ptr;
   if (*(longlong *)(param_1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(param_1 + 0x28) = 0;
   *(int32_t *)(param_1 + 0x38) = 0;
-  *(uint64_t *)(param_1 + 0x20) = &UNK_18098bcb0;
+  *(uint64_t *)(param_1 + 0x20) = &unknown_var_720_ptr;
   return param_1;
 }
 
@@ -966,13 +966,13 @@ void register_or_add_component(void **registry, uint64_t param_2, uint64_t param
       FUN_18064e900(lVar3);
     }
     ppuStackX_8 = &puStack_48;
-    puStack_48 = &UNK_180a3c3e0;
+    puStack_48 = &unknown_var_3456_ptr;
     if (lStack_40 == 0) {
       lStack_40 = 0;
       uStack_30 = 0;
-      puStack_48 = &UNK_18098bcb0;
+      puStack_48 = &unknown_var_720_ptr;
       ppuStackX_8 = &puStack_68;
-      puStack_68 = &UNK_180a3c3e0;
+      puStack_68 = &unknown_var_3456_ptr;
       if (lStack_60 == 0) {
         return;
       }
@@ -1011,10 +1011,10 @@ uint64_t *
 allocate_and_initialize_memory(uint64_t *memory_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 
 {
-  memory_ptr[4] = &UNK_18098bcb0; // 设置内存标记
-  *memory_ptr = &UNK_18098bdc8; // 设置虚函数表
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  memory_ptr[4] = &unknown_var_720_ptr; // 设置内存标记
+  *memory_ptr = &unknown_var_1000_ptr; // 设置虚函数表
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x100,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1029,20 +1029,20 @@ uint64_t * FUN_18005ce30(uint64_t *param_1,uint64_t *param_2)
   uint64_t *puVar1;
   uint64_t uVar2;
   
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
+  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &unknown_var_3696_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *memory_ptr = &UNK_18098bdc8; // 设置虚函数表
+  *memory_ptr = &unknown_var_1000_ptr; // 设置虚函数表
   LOCK();
   *(int8_t *)(param_1 + 2) = 0;
   UNLOCK();
   param_1[3] = 0xffffffffffffffff;
-  *param_1 = &UNK_1809fdfd0;
+  *param_1 = &unknown_var_8464_ptr;
   puVar1 = param_1 + 4;
-  *puVar1 = &UNK_18098bcb0;
+  *puVar1 = &unknown_var_720_ptr;
   param_1[5] = 0;
   *(int32_t *)(param_1 + 6) = 0;
-  *puVar1 = &UNK_1809fcc28;
+  *puVar1 = &unknown_var_3432_ptr;
   param_1[5] = param_1 + 7;
   *(int32_t *)(param_1 + 6) = 0;
   *(int8_t *)(param_1 + 7) = 0;
@@ -1212,7 +1212,7 @@ void format_value_to_buffer(ulonglong value, longlong buffer)
     iVar7 = iVar7 + 1;
     uVar2 = uVar2 >> 1;
   } while (uVar2 != 0);
-  cVar1 = (&UNK_1809fe050)[iVar8 / iVar7];
+  cVar1 = (&unknown_var_8592_ptr)[iVar8 / iVar7];
   uStack_30 = 0x18005d147;
   fVar9 = (float)powf(0x44800000);
   fVar10 = (float)(longlong)param_1;
@@ -1226,14 +1226,14 @@ void format_value_to_buffer(ulonglong value, longlong buffer)
   lVar5 = 0;
   uStack_458 = 0;
   pdStack_450 = &dStackX_18;
-  iVar8 = __stdio_common_vsprintf(*puVar4 | 1,0,0,&UNK_1809fe058);
+  iVar8 = __stdio_common_vsprintf(*puVar4 | 1,0,0,&unknown_var_8600_ptr);
   if (iVar8 < 0) {
     iVar8 = -1;
   }
   if (iVar8 < 0x400) {
     uStack_458 = 0;
     pdStack_450 = &dStackX_18;
-    __stdio_common_vsprintf(*puVar4 | 1,acStack_438,0x400,&UNK_1809fe058);
+    __stdio_common_vsprintf(*puVar4 | 1,acStack_438,0x400,&unknown_var_8600_ptr);
     lVar5 = -1;
     do {
       lVar6 = lVar5;
@@ -1252,7 +1252,7 @@ void format_value_to_buffer(ulonglong value, longlong buffer)
     if (iVar8 != 0) {
       lVar5 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar8,3);
     }
-    FUN_18004b9b0(lVar5,(longlong)iVar8,&UNK_1809fe058,&dStackX_18);
+    FUN_18004b9b0(lVar5,(longlong)iVar8,&unknown_var_8600_ptr,&dStackX_18);
     FUN_1806281a0(param_2,lVar5);
     if (lVar5 != 0) {
                     // WARNING: Subroutine does not return
@@ -1299,14 +1299,14 @@ longlong copy_and_initialize_simple_structure(longlong dest, longlong src)
 void cleanup_structure_safety(uint64_t param_1, longlong structure)
 
 {
-  *(uint64_t *)(structure + 0x20) = &UNK_180a3c3e0; // 设置安全标记
+  *(uint64_t *)(structure + 0x20) = &unknown_var_3456_ptr; // 设置安全标记
   if (*(longlong *)(param_2 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(structure + 0x28) = 0; // 清理指针
   *(int32_t *)(param_2 + 0x38) = 0;
-  *(uint64_t *)(param_2 + 0x20) = &UNK_18098bcb0;
+  *(uint64_t *)(param_2 + 0x20) = &unknown_var_720_ptr;
   if (param_2 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(param_2);

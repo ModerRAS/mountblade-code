@@ -1549,7 +1549,7 @@ void register_game_system_type25(void)
   }
   puVar7[6] = 0x46c54bc98fc3fc2a;
   puVar7[7] = 0x727b256e3af32585;
-  puVar7[8] = &UNK_180a2ca90;
+  puVar7[8] = &unknown_var_9632_ptr;
   puVar7[9] = 2;
   puVar7[10] = uStackX_18;
   return;

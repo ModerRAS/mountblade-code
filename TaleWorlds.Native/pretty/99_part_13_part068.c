@@ -825,7 +825,7 @@ void FUN_1808d7840(longlong *param_1,uint64_t param_2,int32_t param_3)
   plVar2[1] = (longlong)plVar2;
   *plVar2 = (longlong)plVar2;
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar2,&UNK_180988870,0xc0,1);
+  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar2,&unknown_var_7344_ptr,0xc0,1);
 }
 
 

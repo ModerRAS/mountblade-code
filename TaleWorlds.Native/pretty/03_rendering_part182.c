@@ -448,7 +448,7 @@ LAB_180377195:
                   fVar32 = *(float *)(lVar18 + 0x1c) * fStack_2f8;
                   fVar44 = fStack_298 * fVar43;
                   fVar33 = fStack_2f4 * *(float *)(lVar18 + 0x1c);
-                  if ((void *)*puVar23 == &UNK_180a22a30) {
+                  if ((void *)*puVar23 == &unknown_var_8576_ptr) {
                     fVar34 = *(float *)(puVar23[2] + 0x1c) /
                              (float)(1 << ((byte)*(int32_t *)(puVar23 + 5) & 0x1f));
                   }
@@ -514,7 +514,7 @@ LAB_180377195:
                       fStack_354 = fVar45;
                       fStack_270 = fVar33;
                       fStack_26c = fVar45;
-                      if ((void *)*puVar23 == &UNK_180a22a30) {
+                      if ((void *)*puVar23 == &unknown_var_8576_ptr) {
                         fVar42 = *(float *)(puVar23[2] + 0x1c) /
                                  (float)(1 << ((byte)*(int32_t *)(puVar23 + 5) & 0x1f));
                       }
@@ -752,14 +752,14 @@ LAB_18037777e:
           puVar29 = puVar21;
         }
         lVar18 = plStack_280[1] - *plStack_280;
-        puVar21 = &UNK_180a21780;
+        puVar21 = &unknown_var_3792_ptr;
       }
       else {
         if (puVar21 != (void *)0x0) {
           puVar29 = puVar21;
         }
         lVar18 = plStack_288[1] - *plStack_288;
-        puVar21 = &UNK_180a217a0;
+        puVar21 = &unknown_var_3824_ptr;
       }
                     // WARNING: Subroutine does not return
       FUN_180062300(_DAT_180c86928,puVar21,lVar18 / 0x28,puVar29);

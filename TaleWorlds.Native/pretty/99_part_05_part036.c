@@ -801,23 +801,23 @@ LAB_1802eefe9:
       (**(code **)*puVar6)(puVar6,1);
     }
     if (cVar5 != '\0') {
-      puStack_70 = &UNK_180a3c3e0;
+      puStack_70 = &unknown_var_3456_ptr;
       if (puStack_68 == (void *)0x0) {
-        return &UNK_180a3c301;
+        return &unknown_var_3233_ptr;
       }
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     uVar10 = uVar11 + 1;
-    puVar7 = &UNK_180a3c3e0;
-    puStack_70 = &UNK_180a3c3e0;
+    puVar7 = &unknown_var_3456_ptr;
+    puStack_70 = &unknown_var_3456_ptr;
     if (puStack_68 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_68 = (void *)0x0;
     uStack_58 = 0;
-    puStack_70 = &UNK_18098bcb0;
+    puStack_70 = &unknown_var_720_ptr;
   } while( true );
 }
 

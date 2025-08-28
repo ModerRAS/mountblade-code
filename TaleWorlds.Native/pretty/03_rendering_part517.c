@@ -78,12 +78,12 @@ typedef int (*RenderCallbackFunc)(void*, void*);      // 渲染回调函数
 
 // 外部全局变量引用
 extern void* _DAT_180c8ed18;                         // 全局数据区
-extern void* UNK_180a34440;                          // 未知数据块1
-extern void* UNK_180a21690;                          // 未知数据块2
-extern void* UNK_180a21720;                          // 未知数据块3
-extern void* UNK_180a14860;                          // 未知数据块4
-extern void* UNK_180a34228;                          // 未知数据块5
-extern void* UNK_180a169b8;                          // 未知数据块6
+extern void* global_state_784_ptr;                          // 未知数据块1
+extern void* global_state_3552_ptr;                          // 未知数据块2
+extern void* global_state_3696_ptr;                          // 未知数据块3
+extern void* global_state_768_ptr;                          // 未知数据块4
+extern void* global_state_248_ptr;                          // 未知数据块5
+extern void* global_state_9304_ptr;                          // 未知数据块6
 extern void* system_allocation_flags;                          // 数据区引用
 extern void* _DAT_180c86870;                         // 全局系统数据
 
@@ -417,7 +417,7 @@ uint64_t * RenderSystem_CreateContext(void)
     FUN_180320470();
     
     // 初始化虚函数表指针
-    *puVar1 = &UNK_180a34440;
+    *puVar1 = &global_state_784_ptr;
     
     // 初始化各种状态指针为NULL
     *(uint64_t *)((longlong)puVar1 + 0xf4) = 0;    // 状态指针1
@@ -513,16 +513,16 @@ RenderSystem_InitializeContext(uint64_t *param_1, longlong *param_2, longlong *p
     uStack_60 = 0xfffffffffffffffe;
     
     // 步骤1：初始化虚函数表指针
-    *param_1 = &UNK_180a21690;
-    *param_1 = &UNK_180a21720;
+    *param_1 = &global_state_3552_ptr;
+    *param_1 = &global_state_3696_ptr;
     *(int32_t *)(param_1 + 1) = 0;
-    *param_1 = &UNK_180a14860;
+    *param_1 = &global_state_768_ptr;
     *(int32_t *)(param_1 + 2) = 4;
     param_1[3] = 0;
     param_1[4] = 0;
     *(int32_t *)(param_1 + 1) = 0;
     param_1[5] = 0;
-    *param_1 = &UNK_180a34228;
+    *param_1 = &global_state_248_ptr;
     
     // 步骤2：初始化同步机制
     puStack_58 = param_1 + 6;
@@ -645,7 +645,7 @@ RenderSystem_InitializeContext(uint64_t *param_1, longlong *param_2, longlong *p
     param_1[0x29] = 0;
     
     // 步骤12：执行渲染队列操作
-    puStack_70 = &UNK_18054ab80;
+    puStack_70 = &global_state_9872_ptr;
     pcStack_68 = FUN_18054aab0;
     apuStack_80[0] = param_1;
     FUN_18054a4b0(param_1 + 0x1c, apuStack_80);
@@ -768,7 +768,7 @@ void RenderSystem_DestroyContext(uint64_t *param_1)
     longlong *plVar1;
     
     // 步骤1：重置虚函数表指针
-    *param_1 = &UNK_180a34228;
+    *param_1 = &global_state_248_ptr;
     
     // 步骤2：清理渲染对象1
     plVar1 = (longlong *)param_1[0x20];
@@ -842,10 +842,10 @@ void RenderSystem_DestroyContext(uint64_t *param_1)
     _Cnd_destroy_in_situ(param_1 + OFFSET_RENDER_CONDITION);
     
     // 步骤14：重置所有指针和状态
-    *param_1 = &UNK_180a14860;
+    *param_1 = &global_state_768_ptr;
     param_1[5] = 0;
-    *param_1 = &UNK_180a21720;
-    *param_1 = &UNK_180a21690;
+    *param_1 = &global_state_3696_ptr;
+    *param_1 = &global_state_3552_ptr;
     
     return;
 }
@@ -966,7 +966,7 @@ int8_t RenderSystem_SetState(longlong param_1, uint64_t param_2, uint64_t param_
     
     // 设置状态处理参数
     ppuStackX_10 = apuStack_30;
-    puStack_20 = &UNK_18054b470;
+    puStack_20 = &global_state_2160_ptr;
     pcStack_18 = FUN_18054b3e0;
     
     // 准备状态参数数组
@@ -1022,7 +1022,7 @@ void RenderSystem_SetParameter(longlong param_1, int8_t param_2, uint64_t param_
     code *pcStack_18;               // 参数处理回调
     
     // 设置参数处理回调函数
-    puStack_20 = &UNK_18054b3a0;
+    puStack_20 = &global_state_1952_ptr;
     pcStack_18 = FUN_18054b330;
     
     // 准备参数数组
@@ -1079,14 +1079,14 @@ void RenderSystem_UpdateMatrix(longlong param_1, uint64_t param_2, uint64_t para
     code *pcStack_18;               // 矩阵处理回调
     
     // 设置第一个矩阵处理回调函数
-    puStack_20 = &UNK_18054b310;
+    puStack_20 = &global_state_1808_ptr;
     pcStack_18 = FUN_18054b2b0;
     
     // 发送第一个矩阵更新命令到队列
     FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
     
     // 设置第二个矩阵处理回调函数
-    puStack_20 = &UNK_18054b290;
+    puStack_20 = &global_state_1680_ptr;
     pcStack_18 = FUN_18054b230;
     
     // 发送第二个矩阵更新命令到队列
@@ -1137,7 +1137,7 @@ void RenderSystem_SetTransform(longlong param_1, uint64_t param_2, uint64_t para
     code *pcStack_18;               // 变换处理回调
     
     // 设置变换处理回调函数
-    puStack_20 = &UNK_18054b1f0;
+    puStack_20 = &global_state_1520_ptr;
     pcStack_18 = FUN_18054b180;
     
     // 准备变换参数数组
@@ -1193,7 +1193,7 @@ void RenderSystem_SetViewport(longlong param_1, int8_t param_2, uint64_t param_3
     code *pcStack_18;               // 视口处理回调
     
     // 设置视口处理回调函数
-    puStack_20 = &UNK_18054b140;
+    puStack_20 = &global_state_1344_ptr;
     pcStack_18 = FUN_18054b0d0;
     
     // 准备视口参数数组
@@ -1251,7 +1251,7 @@ void RenderSystem_SetScissor(longlong param_1, uint64_t param_2, uint64_t param_
     code *pcStack_18;               // 裁剪处理回调
     
     // 设置裁剪处理回调函数
-    puStack_20 = &UNK_18054afa0;
+    puStack_20 = &global_state_928_ptr;
     pcStack_18 = FUN_18054af30;
     
     // 准备裁剪参数数组
@@ -1307,7 +1307,7 @@ void RenderSystem_SetBlendMode(longlong param_1, int32_t param_2, uint64_t param
     code *pcStack_18;               // 混合模式处理回调
     
     // 设置混合模式处理回调函数
-    puStack_20 = &UNK_18054aef0;
+    puStack_20 = &global_state_752_ptr;
     pcStack_18 = FUN_18054ae80;
     
     // 准备混合模式参数数组
@@ -1364,7 +1364,7 @@ void RenderSystem_SetDepthMode(longlong param_1, uint64_t param_2, uint64_t para
     code *pcStack_18;               // 深度模式处理回调
     
     // 设置深度模式处理回调函数
-    puStack_20 = &UNK_18054ae40;
+    puStack_20 = &global_state_576_ptr;
     pcStack_18 = FUN_18054add0;
     
     // 准备深度模式参数数组
@@ -1419,7 +1419,7 @@ void RenderSystem_SetStencilMode(longlong param_1, int32_t param_2, uint64_t par
     code *pcStack_18;               // 模板模式处理回调
     
     // 设置模板模式处理回调函数
-    puStack_20 = &UNK_18054ad90;
+    puStack_20 = &global_state_400_ptr;
     pcStack_18 = FUN_18054ad20;
     
     // 准备模板模式参数数组
@@ -1474,7 +1474,7 @@ void RenderSystem_SetCullMode(longlong param_1, uint64_t param_2, uint64_t param
     code *pcStack_18;               // 剔除模式处理回调
     
     // 设置剔除模式处理回调函数
-    puStack_20 = &UNK_18054ace0;
+    puStack_20 = &global_state_224_ptr;
     pcStack_18 = FUN_18054ac70;
     
     // 准备剔除模式参数数组
@@ -1525,7 +1525,7 @@ ulonglong RenderSystem_GetState(longlong param_1)
     puVar1 = (void *)**(uint64_t **)(param_1 + 0x100);
     
     // 检查是否为默认状态对象
-    if (puVar1 == &UNK_180a169b8) {
+    if (puVar1 == &global_state_9304_ptr) {
         // 默认状态对象，直接返回状态值
         return (ulonglong)*(uint *)(*(uint64_t **)(param_1 + 0x100) + 0x42);
     }
@@ -1577,7 +1577,7 @@ void RenderSystem_SetTexture(longlong param_1, uint64_t param_2, uint64_t param_
     code *pcStack_18;               // 纹理处理回调
     
     // 设置纹理处理回调函数
-    puStack_20 = &UNK_18054ac30;
+    puStack_20 = &global_state_48_ptr;
     pcStack_18 = FUN_18054abc0;
     
     // 准备纹理参数数组
@@ -1628,7 +1628,7 @@ uint64_t * RenderSystem_GetTexture(longlong param_1)
     puVar1 = (void *)**(uint64_t **)(param_1 + 0x100);
     
     // 检查是否为默认纹理对象
-    if (puVar1 == &UNK_180a169b8) {
+    if (puVar1 == &global_state_9304_ptr) {
         // 默认纹理对象，返回固定偏移量的纹理数据
         return *(uint64_t **)(param_1 + 0x100) + 0x66;
     }
@@ -1697,7 +1697,7 @@ void RenderSystem_SetBuffer(longlong param_1, uint64_t param_2, int32_t param_3,
     *(uint64_t *)(param_1 + 0x148) = 0;
     
     // 设置缓冲区处理回调函数
-    puStack_20 = &UNK_18054ab80;
+    puStack_20 = &global_state_9872_ptr;
     pcStack_18 = FUN_18054aab0;
     alStack_30[0] = param_1;
     
@@ -1855,7 +1855,7 @@ void RenderSystem_SetUniform(longlong param_1, uint64_t param_2, int32_t param_3
     
     // 设置统一变量处理回调函数
     puStack_28 = auStackX_18;
-    puStack_20 = &UNK_18054a920;
+    puStack_20 = &global_state_9264_ptr;
     pcStack_18 = FUN_18054a8b0;
     
     // 设置统一变量参数（64位参数拆分为两个32位）
@@ -1913,7 +1913,7 @@ uint64_t RenderSystem_GetData(longlong param_1)
     plVar1 = *(longlong **)(param_1 + 0x100);
     
     // 检查对象的虚函数表类型
-    if (*(code **)(*plVar1 + 0xc0) == (code *)&UNK_180277e10) {
+    if (*(code **)(*plVar1 + 0xc0) == (code *)&global_state_9120_ptr) {
         // 特定类型对象，检查数据区域是否为空
         cVar2 = (plVar1[8] - plVar1[7] & 0xfffffffffffffff0U) == 0;
     }
@@ -1977,7 +1977,7 @@ int32_t RenderSystem_ExecuteDraw(longlong param_1, uint64_t param_2, uint64_t pa
     
     // 设置绘制处理回调函数
     ppuStackX_10 = apuStack_30;
-    puStack_20 = &UNK_18054a870;
+    puStack_20 = &global_state_9088_ptr;
     pcStack_18 = FUN_18054a800;
     apuStack_30[0] = auStackX_8;
     
@@ -2181,7 +2181,7 @@ void RenderSystem_SetRenderTarget(longlong param_1, uint64_t param_2, uint64_t p
     code *pcStack_18;               // 渲染目标处理回调
     
     // 设置渲染目标处理回调函数
-    puStack_20 = &UNK_18054a7c0;
+    puStack_20 = &global_state_8912_ptr;
     pcStack_18 = FUN_18054a750;
     
     // 准备渲染目标参数数组
@@ -2237,7 +2237,7 @@ void RenderSystem_SetClearFlags(longlong param_1, int8_t param_2, uint64_t param
     code *pcStack_18;               // 清除标志处理回调
     
     // 设置清除标志处理回调函数
-    puStack_20 = &UNK_18054a710;
+    puStack_20 = &global_state_8736_ptr;
     pcStack_18 = FUN_18054a6a0;
     
     // 准备清除标志参数数组
@@ -2314,7 +2314,7 @@ int RenderSystem_ExecuteFrame(longlong param_1, longlong param_2, uint64_t param
     piStack_30 = aiStackX_8;
     
     // 设置帧处理回调函数
-    puStack_20 = &UNK_18054a660;
+    puStack_20 = &global_state_8560_ptr;
     pcStack_18 = FUN_18054a5f0;
     
     // 分解64位参数为两个32位参数

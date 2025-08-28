@@ -162,7 +162,7 @@ void SceneLevelDataProcessor(void* scene_data, void* level_config)
                                 }
                                 
                                 // 调用名称处理函数
-                                void* name_processor = &UNK_180a3c3e0;
+                                void* name_processor = &unknown_var_3456_ptr;
                                 FUN_180627c50(&name_processor, (long long)name_value);
                                 break;
                             }
@@ -262,7 +262,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
     // 检查预制体数据状态
     if (*(long long*)((char*)(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET)) + SCENE_PREFAB_OFFSET) == 0) {
         // 处理预制体属性
-        void* prefab_attr_data = &UNK_180a3c3e0;
+        void* prefab_attr_data = &unknown_var_3456_ptr;
         uint64_t attr_flags = 0;
         void* attr_value = NULL;
         
@@ -316,18 +316,18 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                             current_attr_value = attr_value;
                         }
                         
-                        FUN_180627020(&UNK_180a239a0, current_attr_value, error_handler);
+                        FUN_180627020(&unknown_var_2528_ptr, current_attr_value, error_handler);
                         ((char*)prefab_data)[0x39] = 1;
                         
                         // 清理属性数据
-                        prefab_attr_data = &UNK_180a3c3e0;
+                        prefab_attr_data = &unknown_var_3456_ptr;
                         if (attr_value != NULL) {
                             FUN_18064e900();
                         }
                         
                         attr_value = NULL;
                         attr_flags = attr_flags & 0xffffffff00000000;
-                        prefab_attr_data = &UNK_18098bcb0;
+                        prefab_attr_data = &unknown_var_720_ptr;
                         goto config_complete;
                     }
                     
@@ -341,18 +341,18 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
         }
         
         // 清理属性数据
-        prefab_attr_data = &UNK_180a3c3e0;
+        prefab_attr_data = &unknown_var_3456_ptr;
         if (attr_value != NULL) {
             FUN_18064e900();
         }
         
         attr_value = NULL;
         attr_flags = attr_flags & 0xffffffff00000000;
-        prefab_attr_data = &UNK_18098bcb0;
+        prefab_attr_data = &unknown_var_720_ptr;
     }
     
     // 处理名称属性
-    void* name_attr_data = &UNK_180a3c3e0;
+    void* name_attr_data = &unknown_var_3456_ptr;
     uint64_t name_attr_flags = 0;
     void* name_attr_value = NULL;
     int name_attr_count = 0;
@@ -467,7 +467,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
     }
     
     // 处理GUID属性
-    void* guid_attr_data = &UNK_180a3c3e0;
+    void* guid_attr_data = &unknown_var_3456_ptr;
     uint64_t guid_attr_flags = 0;
     void* guid_attr_value = NULL;
     int guid_attr_count = 0;
@@ -535,7 +535,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                     
                     // 处理验证后的GUID
                     void* guid_base = *(void**)((char*)prefab_data + SCENE_DATA_OFFSET);
-                    void* guid_processor_data = &UNK_1809fcc28;
+                    void* guid_processor_data = &unknown_var_3432_ptr;
                     char guid_buffer[128];
                     guid_buffer[0] = 0;
                     
@@ -600,9 +600,9 @@ config_complete:
                 void* mobility_processor;
                 if ((mobility_length < 3) || (*mobility_value_data != '0') ||
                     ((mobility_value_data[1] + 0xa8U & 0xdf) != 0)) {
-                    mobility_processor = &UNK_180a063a0;
+                    mobility_processor = &unknown_var_2208_ptr;
                 } else {
-                    mobility_processor = &UNK_180a3cb84;
+                    mobility_processor = &unknown_var_5412_ptr;
                 }
                 
                 FUN_18010cbc0(mobility_value_data, mobility_processor, &mobility_value);
@@ -724,9 +724,9 @@ config_complete:
                 void* upgrade_processor;
                 if ((upgrade_length < 3) || (*scene_upgrade_value_data != '0') ||
                     ((scene_upgrade_value_data[1] + 0xa8U & 0xdf) != 0)) {
-                    upgrade_processor = &UNK_180a063a0;
+                    upgrade_processor = &unknown_var_2208_ptr;
                 } else {
-                    upgrade_processor = &UNK_180a3cb84;
+                    upgrade_processor = &unknown_var_5412_ptr;
                 }
                 
                 FUN_18010cbc0(scene_upgrade_value_data, upgrade_processor, &scene_upgrade_mask);
@@ -739,7 +739,7 @@ config_complete:
                     do {
                         if ((temp_mask & mask_bit) != 0) {
                             // 处理每个掩码位
-                            void* mask_processor = &UNK_180a3c3e0;
+                            void* mask_processor = &unknown_var_3456_ptr;
                             void* mask_data = FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
                             
                             *(char*)mask_data = 0;
@@ -748,7 +748,7 @@ config_complete:
                             *(uint16_t*)((char*)mask_data + 1) = 0x5f6c;
                             *(char*)((long long)mask_data + 6) = 0;
                             
-                            FUN_180628040(&mask_processor, &UNK_1809fd0a0, guid_index);
+                            FUN_180628040(&mask_processor, &unknown_var_4576_ptr, guid_index);
                             FUN_1803c2430(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET) + LEVEL_DATA_BLOCK_SIZE, 
                                          &config_stack[0], &mask_processor);
                             
@@ -804,7 +804,7 @@ config_complete:
                     season_mask_value_data = (void*)season_mask_attr_array[1];
                 }
                 
-                FUN_18010cbc0(season_mask_value_data, &UNK_180a063a0, &season_mask);
+                FUN_18010cbc0(season_mask_value_data, &unknown_var_2208_ptr, &season_mask);
                 *(char*)((char*)(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET)) + SCENE_SEASON_MASK_OFFSET) = (char)season_mask;
                 
                 // 验证场景状态
@@ -814,23 +814,23 @@ config_complete:
                 }
                 
                 // 清理属性数据
-                guid_attr_data = &UNK_180a3c3e0;
+                guid_attr_data = &unknown_var_3456_ptr;
                 if (guid_attr_value != NULL) {
                     FUN_18064e900();
                 }
                 
                 guid_attr_value = NULL;
                 guid_attr_flags = guid_attr_flags & 0xffffffff00000000;
-                guid_attr_data = &UNK_18098bcb0;
+                guid_attr_data = &unknown_var_720_ptr;
                 
-                name_attr_data = &UNK_180a3c3e0;
+                name_attr_data = &unknown_var_3456_ptr;
                 if (name_attr_value != NULL) {
                     FUN_18064e900();
                 }
                 
                 name_attr_value = NULL;
                 name_attr_flags = name_attr_flags & 0xffffffff00000000;
-                name_attr_data = &UNK_18098bcb0;
+                name_attr_data = &unknown_var_720_ptr;
                 
                 // 返回配置处理结果
                 FUN_1808fc050(config_stack[1] ^ (uint64_t)config_data);
@@ -850,14 +850,14 @@ config_complete:
             final_value = guid_attr_value;
         }
         
-        FUN_180627020(&UNK_180a23a48, final_value, final_processor);
+        FUN_180627020(&unknown_var_2696_ptr, final_value, final_processor);
         config_data = (void*)config_offset;
     }
     
     // 处理最终配置数据
     uint32_t final_config[1];
     final_config[0] = 1;
-    long long final_result = FUN_180631000(config_data, &UNK_180a23a40, final_config);
+    long long final_result = FUN_180631000(config_data, &unknown_var_2688_ptr, final_config);
     
     if (final_result != 0) {
         FUN_1802ee720(*(void**)((char*)prefab_data + SCENE_DATA_OFFSET), final_config[0]);

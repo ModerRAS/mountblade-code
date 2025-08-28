@@ -67,71 +67,71 @@ typedef struct {
 extern int FUN_180849030(void* pool, int new_size);
 
 /** 对象初始化函数 */
-extern void UNK_180848d40(void* object, ObjectType type, void* params);
+extern void global_var_7856(void* object, ObjectType type, void* params);
 
 /* ============================================================================
  * 全局对象类型常量
  * ============================================================================ */
 
 /** 对象类型A的虚函数表 */
-extern void* UNK_180982cc0;
+extern void* global_var_3872_ptr;
 
 /** 对象类型B的虚函数表 */
-extern void* UNK_180982dc0;
+extern void* global_var_4128_ptr;
 
 /** 对象类型C的虚函数表 */
-extern void* UNK_180982d40;
+extern void* global_var_4000_ptr;
 
 /** 对象类型D的虚函数表 */
-extern void* UNK_180984260;
+extern void* global_var_9408_ptr;
 
 /** 对象类型E的虚函数表 */
-extern void* UNK_180984160;
+extern void* global_var_9152_ptr;
 
 /** 对象类型F的虚函数表 */
-extern void* UNK_1809843d0;
+extern void* global_var_9776_ptr;
 
 /** 对象类型G的虚函数表 */
-extern void* UNK_180984358;
+extern void* global_var_9656_ptr;
 
 /** 对象类型H的虚函数表 */
-extern void* UNK_1809842e0;
+extern void* global_var_9536_ptr;
 
 /** 对象类型I的虚函数表 */
-extern void* UNK_180984448;
+extern void* global_var_9896_ptr;
 
 /** 对象类型J的虚函数表 */
-extern void* UNK_1809841e0;
+extern void* global_var_9280_ptr;
 
 /** 对象类型K的虚函数表 */
-extern void* UNK_1809832b8;
+extern void* global_var_5400_ptr;
 
 /** 对象类型L的虚函数表 */
-extern void* UNK_180983348;
+extern void* global_var_5544_ptr;
 
 /** 对象类型M的虚函数表 */
-extern void* UNK_1809833d8;
+extern void* global_var_5688_ptr;
 
 /** 对象类型N的虚函数表 */
-extern void* UNK_180983468;
+extern void* global_var_5832_ptr;
 
 /** 对象类型O的虚函数表 */
-extern void* UNK_180983618;
+extern void* global_var_6264_ptr;
 
 /** 对象类型P的虚函数表 */
-extern void* UNK_1809834f8;
+extern void* global_var_5976_ptr;
 
 /** 对象类型Q的虚函数表 */
-extern void* UNK_1809836a8;
+extern void* global_var_6408_ptr;
 
 /** 对象类型R的虚函数表 */
-extern void* UNK_180983588;
+extern void* global_var_6120_ptr;
 
 /** 对象类型S的虚函数表 */
-extern void* UNK_180983e00;
+extern void* global_var_8288_ptr;
 
 /** 对象类型T的虚函数表 */
-extern void* UNK_180983d78;
+extern void* global_var_8152_ptr;
 
 /* ============================================================================
  * 核心功能实现
@@ -199,9 +199,9 @@ void CreateObjectTypeA(PoolHandle handle, ObjectParams* params, ObjectType type,
         object_ptr = (void *)((longlong)(int)base_addr + *pool);
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
-        *(void**)object_ptr = &UNK_180982cc0;
+        *(void**)object_ptr = &global_var_3872_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -254,9 +254,9 @@ void CreateObjectTypeB(PoolHandle handle, ObjectParams* params, ObjectType type,
         object_ptr = (void *)((longlong)(int)base_addr + *pool);
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
-        *(void**)object_ptr = &UNK_180982dc0;
+        *(void**)object_ptr = &global_var_4128_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -308,9 +308,9 @@ void CreateObjectTypeC(PoolHandle handle, ObjectParams* params, ObjectType type,
         object_ptr = (void *)((longlong)(int)base_addr + *pool);
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
-        *(void**)object_ptr = &UNK_180982d40;
+        *(void**)object_ptr = &global_var_4000_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -363,9 +363,9 @@ void CreateObjectTypeD(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_180984260;
+        *(void**)object_ptr = &global_var_9408_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -417,9 +417,9 @@ void CreateObjectTypeE(PoolHandle handle, ObjectParams* params, ObjectType type,
         object_ptr = (void *)((longlong)(int)base_addr + *pool);
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
-        *(void**)object_ptr = &UNK_180984160;
+        *(void**)object_ptr = &global_var_9152_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -472,9 +472,9 @@ void CreateObjectTypeF(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_1809843d0;
+        *(void**)object_ptr = &global_var_9776_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -527,9 +527,9 @@ void CreateObjectTypeG(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_180984358;
+        *(void**)object_ptr = &global_var_9656_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -582,9 +582,9 @@ void CreateObjectTypeH(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_1809842e0;
+        *(void**)object_ptr = &global_var_9536_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -637,9 +637,9 @@ void CreateObjectTypeI(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_180984448;
+        *(void**)object_ptr = &global_var_9896_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -691,9 +691,9 @@ void CreateObjectTypeJ(PoolHandle handle, ObjectParams* params, ObjectType type,
         object_ptr = (void *)((longlong)(int)base_addr + *pool);
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
-        *(void**)object_ptr = &UNK_1809841e0;
+        *(void**)object_ptr = &global_var_9280_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -746,9 +746,9 @@ void CreateObjectTypeK(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_1809832b8;
+        *(void**)object_ptr = &global_var_5400_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -801,9 +801,9 @@ void CreateObjectTypeL(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_180983348;
+        *(void**)object_ptr = &global_var_5544_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -856,9 +856,9 @@ void CreateObjectTypeM(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_1809833d8;
+        *(void**)object_ptr = &global_var_5688_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -911,7 +911,7 @@ void CreateObjectTypeN(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_180983468;
+        *(void**)object_ptr = &global_var_5832_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
         (*(void (**)(void*, ObjectType, void*))(*((void**)object_ptr) + 4))(object_ptr, type, params);
         return;
@@ -966,9 +966,9 @@ void CreateObjectTypeO(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_180983618;
+        *(void**)object_ptr = &global_var_6264_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -1020,9 +1020,9 @@ void CreateObjectTypeP(PoolHandle handle, ObjectParams* params, ObjectType type,
         object_ptr = (void *)((longlong)(int)base_addr + *pool);
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
-        *(void**)object_ptr = &UNK_1809834f8;
+        *(void**)object_ptr = &global_var_5976_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -1074,9 +1074,9 @@ void CreateObjectTypeQ(PoolHandle handle, ObjectParams* params, ObjectType type,
         object_ptr = (void *)((longlong)(int)base_addr + *pool);
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
-        *(void**)object_ptr = &UNK_1809836a8;
+        *(void**)object_ptr = &global_var_6408_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -1128,9 +1128,9 @@ void CreateObjectTypeR(PoolHandle handle, ObjectParams* params, ObjectType type,
         object_ptr = (void *)((longlong)(int)base_addr + *pool);
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x14) = 0;
-        *(void**)object_ptr = &UNK_180983588;
+        *(void**)object_ptr = &global_var_6120_ptr;
         *(uint32_t *)(object_ptr + 1) = SMALL_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -1183,9 +1183,9 @@ void CreateObjectTypeS(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_180983e00;
+        *(void**)object_ptr = &global_var_8288_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     
@@ -1238,9 +1238,9 @@ void CreateObjectTypeT(PoolHandle handle, ObjectParams* params, ObjectType type,
         *(uint64_t *)((longlong)object_ptr + 0xc) = 0;
         *(uint64_t *)((longlong)object_ptr + 0x14) = 0;
         *(uint32_t *)((longlong)object_ptr + 0x1c) = 0;
-        *(void**)object_ptr = &UNK_180983d78;
+        *(void**)object_ptr = &global_var_8152_ptr;
         *(uint32_t *)(object_ptr + 1) = LARGE_OBJECT_SIZE;
-        UNK_180848d40(object_ptr, type, params);
+        global_var_7856(object_ptr, type, params);
         return;
     }
     

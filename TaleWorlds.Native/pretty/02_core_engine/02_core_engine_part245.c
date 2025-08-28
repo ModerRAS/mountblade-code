@@ -12,10 +12,10 @@
 #define CONDITION_DESTROY_TIMEOUT 0x2a
 
 // 全局变量引用
-extern uint64_t UNK_180a10098;    // 虚函数表指针
-extern uint64_t UNK_18098bcb0;    // 线程局部存储
-extern uint64_t UNK_1809fdc18;    // 内存管理器
-extern uint64_t UNK_180a3c3e0;    // 线程调度器
+extern uint64_t global_var_2392_ptr;    // 虚函数表指针
+extern uint64_t global_var_720_ptr;    // 线程局部存储
+extern uint64_t global_var_7512_ptr;    // 内存管理器
+extern uint64_t global_var_3456_ptr;    // 线程调度器
 extern longlong _DAT_180c8ed18;     // 内存池标识符
 extern longlong _DAT_180c82868;     // 同步对象标识符
 extern longlong _DAT_180c86938;     // 锁管理器
@@ -177,13 +177,13 @@ void initialize_thread_control_block(ThreadControlBlock *thread_block, longlong 
     uint64_t *puStackX_20;
     
     // 初始化虚函数表
-    thread_block->vtable_ptr = &UNK_180a10098;
+    thread_block->vtable_ptr = &global_var_2392_ptr;
     puStackX_10 = (uint64_t *)((longlong)thread_block + 0x10);
-    *puStackX_10 = &UNK_18098bcb0;
+    *puStackX_10 = &global_var_720_ptr;
     lVar4 = 0;
     thread_block->data_ptr = 0;
     *(int32_t *)((longlong)thread_block + 0x20) = 0;
-    *puStackX_10 = &UNK_1809fdc18;
+    *puStackX_10 = &global_var_7512_ptr;
     thread_block->data_ptr = (uint64_t *)((longlong)thread_block + 0x28);
     *(int32_t *)((longlong)thread_block + 0x20) = 0;
     *(int8_t *)((longlong)thread_block + 0x28) = 0;
@@ -376,12 +376,12 @@ void create_task_control_block(uint64_t *task_block, uint64_t context_size,
     longlong lVar5;
     
     lVar3 = task_id;
-    *task_block = &UNK_180a10098;
-    task_block[2] = &UNK_18098bcb0;
+    *task_block = &global_var_2392_ptr;
+    task_block[2] = &global_var_720_ptr;
     lVar5 = 0;
     task_block[3] = 0;
     *(int32_t *)(task_block + 4) = 0;
-    task_block[2] = &UNK_1809fdc18;
+    task_block[2] = &global_var_7512_ptr;
     task_block[3] = task_block + 5;
     *(int32_t *)(task_block + 4) = 0;
     *(int8_t *)(task_block + 5) = 0;
@@ -423,7 +423,7 @@ void destroy_task_manager(uint64_t *task_manager, uint64_t param2, uint64_t para
     uint64_t uVar2;
     
     uVar2 = DEFAULT_TIMEOUT;
-    *task_manager = &UNK_180a10098;
+    *task_manager = &global_var_2392_ptr;
     cVar1 = FUN_18020eba0(task_manager, 1, param3, param4, DEFAULT_TIMEOUT);
     while (cVar1 != '\0') {
         cVar1 = FUN_18020eba0(task_manager, 1, param3, param4, uVar2);
@@ -438,7 +438,7 @@ void destroy_task_manager(uint64_t *task_manager, uint64_t param2, uint64_t para
             *(uint64_t *)(task_manager[0xe] + 0x10) = 0;
             *(int8_t *)(task_manager[0xe] + 8) = 1;
         }
-        task_manager[2] = &UNK_18098bcb0;
+        task_manager[2] = &global_var_720_ptr;
         return;
     }
     if (*(int *)(task_manager[1] + 8) == 0) {
@@ -499,7 +499,7 @@ void start_thread_execution(longlong thread_handle)
     uVar1 = FUN_18062b1e0(_DAT_180c8ed18, 0x10, 8, 3, DEFAULT_TIMEOUT);
     plVar3 = (longlong *)FUN_1808fc418(0x10);
     *plVar3 = thread_handle;
-    plVar3[1] = (longlong)&UNK_18020f868;
+    plVar3[1] = (longlong)&global_var_1688_ptr;
     FUN_18020f620(uVar1);
     if (plVar3 != (longlong *)0x0) {
         free();
@@ -579,13 +579,13 @@ void create_worker_thread(longlong *thread_block, uint64_t param2, uint64_t para
          (int)thread_block[10];
     FUN_1806279c0(&puStack_30, thread_block + 2, param3, param4, uVar3);
     FUN_180623fd0(thread_block[8], &puStack_30);
-    puStack_30 = &UNK_180a3c3e0;
+    puStack_30 = &global_var_3456_ptr;
     if (lStack_28 != 0) {
         FUN_18064e900();
     }
     lStack_28 = 0;
     uStack_18 = 0;
-    puStack_30 = &UNK_18098bcb0;
+    puStack_30 = &global_var_720_ptr;
     lVar2 = thread_block[0x29];
     if ((lVar2 == 0) || (lVar2 == 1)) {
         uVar3 = 2;
@@ -1012,7 +1012,7 @@ void create_task_execution_environment(uint64_t *context_ptr)
     plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 200, 8, 3);
     plStack_d8 = plVar2;
     FUN_180049830(plVar2);
-    *plVar2 = (longlong)&UNK_180a10008;
+    *plVar2 = (longlong)&global_var_2248_ptr;
     plVar2[0x18] = (longlong)alStack_b8;
     plStack_c0 = plVar2;
     ((void (*)(longlong *))(*(code **)(*plVar2 + 0x28)))(plVar2);
@@ -1214,7 +1214,7 @@ void start_thread_task(uint64_t thread_func, longlong *task_data, uint64_t param
     if (iVar1 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar1);
     }
-    puStack_30 = &UNK_180a0fff8;
+    puStack_30 = &global_var_2232_ptr;
     lStack_10 = *task_data;
     *task_data = 0;
     iVar2 = _Thrd_start(thread_func, FUN_18020f940, &puStack_30, param4, uVar3, 0, uVar4, 0, uVar5);

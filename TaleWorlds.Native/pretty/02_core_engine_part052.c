@@ -739,14 +739,14 @@ FUN_18008e9e0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
 void FUN_18008ea80(uint64_t param_1,longlong param_2)
 
 {
-  *(uint64_t *)(param_2 + 0x20) = &UNK_180a3c3e0;
+  *(uint64_t *)(param_2 + 0x20) = &unknown_var_3456_ptr;
   if (*(longlong *)(param_2 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(param_2 + 0x28) = 0;
   *(int32_t *)(param_2 + 0x38) = 0;
-  *(uint64_t *)(param_2 + 0x20) = &UNK_18098bcb0;
+  *(uint64_t *)(param_2 + 0x20) = &unknown_var_720_ptr;
   if (param_2 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(param_2);

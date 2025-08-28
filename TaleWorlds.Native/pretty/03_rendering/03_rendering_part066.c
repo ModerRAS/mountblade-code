@@ -544,7 +544,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
         
         // 初始化环境光遮蔽系统
         if (*(longlong *)(render_context + 0x538) == 0) {
-            stack_pointer = &UNK_180a3c3e0;
+            stack_pointer = &global_state_3456_ptr;
             stack_value_64 = 0;
             stack_buffer_32 = (int32_t *)0x0;
             stack_value_32 = 0;
@@ -561,13 +561,13 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
             stack_value_32 = 0x17;
             resource_handle = FUN_1801f20c0(0x69626d61, &stack_pointer, adjusted_flags);
             FUN_180056f10(render_context + 0x538, resource_handle);
-            stack_pointer = &UNK_180a3c3e0;
+            stack_pointer = &global_state_3456_ptr;
             FUN_18064e900(string_buffer);
         }
         
         // 初始化反射系统
         if (*(longlong *)(render_context + 0x540) == 0) {
-            stack_pointer_2 = &UNK_180a3c3e0;
+            stack_pointer_2 = &global_state_3456_ptr;
             stack_value_64_2 = 0;
             stack_buffer_64 = (uint64_t *)0x0;
             stack_value_32_2 = 0;
@@ -581,13 +581,13 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
             stack_value_32_2 = 9;
             resource_handle = FUN_1801f20c0(0x68, &stack_pointer_2, adjusted_flags);
             FUN_180056f10(render_context + 0x540, resource_handle);
-            stack_pointer_2 = &UNK_180a3c3e0;
+            stack_pointer_2 = &global_state_3456_ptr;
             FUN_18064e900(string_buffer_64);
         }
         
         // 初始化曲面细分系统
         if (*(longlong *)(render_context + 0x550) == 0) {
-            stack_pointer_3 = &UNK_180a3c3e0;
+            stack_pointer_3 = &global_state_3456_ptr;
             stack_value_64_3 = 0;
             stack_buffer_32_3 = (int32_t *)0x0;
             stack_value_32_3 = 0;
@@ -605,7 +605,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
             stack_value_32_3 = 0x19;
             resource_handle = FUN_1801f20c0(0x68, &stack_pointer_3, adjusted_flags);
             FUN_180056f10(render_context + 0x550, resource_handle);
-            stack_pointer_3 = &UNK_180a3c3e0;
+            stack_pointer_3 = &global_state_3456_ptr;
             FUN_18064e900(string_buffer);
         }
         
@@ -618,7 +618,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
     
     // 初始化体积光照系统
     if ((*(char *)(render_context + 0x82b) == '\0') && (*(longlong *)(render_context + 0x558) == 0)) {
-        stack_pointer_4 = &UNK_180a3c3e0;
+        stack_pointer_4 = &global_state_3456_ptr;
         stack_value_64_4 = 0;
         stack_buffer_32_4 = (int32_t *)0x0;
         stack_value_32_4 = 0;
@@ -635,7 +635,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
         stack_value_32_4 = 0x10;
         resource_handle = FUN_1801f20c0(0x725f7476, &stack_pointer_4, adjusted_flags);
         FUN_180056f10(render_context + 0x558, resource_handle);
-        stack_pointer_4 = &UNK_180a3c3e0;
+        stack_pointer_4 = &global_state_3456_ptr;
         FUN_18064e900(string_buffer);
     }
     
@@ -644,7 +644,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
         return;
     }
     
-    stack_pointer_5 = &UNK_180a3c3e0;
+    stack_pointer_5 = &global_state_3456_ptr;
     stack_value_64_5 = 0;
     stack_buffer_32_5 = (int32_t *)0x0;
     stack_value_32_5 = 0;
@@ -671,7 +671,7 @@ void rendering_system_initialize_render_context(longlong render_context, unsigne
         (**(code **)(*texture_manager + 0x38))();
     }
     
-    stack_pointer_5 = &UNK_180a3c3e0;
+    stack_pointer_5 = &global_state_3456_ptr;
     FUN_18064e900(string_buffer);
 }
 
@@ -888,7 +888,7 @@ void rendering_system_remove_render_object(longlong *render_object, char removal
         object_manager = render_object[0xd9];
         if (object_manager != 0) {
             cleanup_handle = FUN_18062b1e0(_DAT_180c8ed18, 0xe0, 8, 3, cleanup_handle, &stack_object);
-            stack_pointer = &UNK_1803048b0;
+            stack_pointer = &global_state_5280_ptr;
             cleanup_callback = FUN_180304860;
             cleanup_buffer[0] = object_manager;
             stack_object = (longlong *)FUN_18006b640(cleanup_handle, cleanup_buffer);
@@ -911,7 +911,7 @@ void rendering_system_remove_render_object(longlong *render_object, char removal
         alternate_pointer = resource_pointer;
     }
     
-    FUN_180062300(_DAT_180c86928, &UNK_180a19e88, alternate_pointer);
+    FUN_180062300(_DAT_180c86928, &global_state_2824_ptr, alternate_pointer);
 }
 
 /**
@@ -960,9 +960,9 @@ void rendering_system_generate_render_report(longlong render_context, longlong r
             texture_name = object_name;
         }
         
-        FUN_180628040(report_buffer, &UNK_180a19e48, texture_name);
+        FUN_180628040(report_buffer, &global_state_2760_ptr, texture_name);
         shadow_system = *(longlong *)(render_context + 0x530);
-        FUN_180628040(report_buffer, &UNK_180a18dd0);
+        FUN_180628040(report_buffer, &global_state_8544_ptr);
         
         texture_manager = *(longlong *)(shadow_system + 0x70);
         texture_count = 0;
@@ -985,7 +985,7 @@ void rendering_system_generate_render_report(longlong render_context, longlong r
                     object_cost = (float)(int)(object_index * (unsigned int)*(unsigned short *)(render_object + 0x32e) *
                                         (unsigned int)*(unsigned short *)(render_object + 0x32c)) * 9.536743e-07;
                     total_cost = total_cost + object_cost;
-                    FUN_180628040(report_buffer, &UNK_180a18dc8, object_name, (double)object_cost);
+                    FUN_180628040(report_buffer, &global_state_8536_ptr, object_name, (double)object_cost);
                 }
                 
                 texture_manager = *(longlong *)(shadow_system + 0x70);
@@ -994,7 +994,7 @@ void rendering_system_generate_render_report(longlong render_context, longlong r
             } while ((unsigned long long)(long long)object_count < (unsigned long long)(*(longlong *)(shadow_system + 0x78) - texture_manager >> 3));
         }
         
-        FUN_180628040(report_buffer, &UNK_180a02cc0, texture_count, (double)total_cost);
+        FUN_180628040(report_buffer, &global_state_8160_ptr, texture_count, (double)total_cost);
     }
     return;
 }
@@ -1045,9 +1045,9 @@ void rendering_system_process_render_data(uint64_t data_handle, longlong process
         texture_name = object_name;
     }
     
-    result_handle = FUN_180628040(0x2f2f2f2f2f2f2f2f, &UNK_180a19e48, texture_name);
+    result_handle = FUN_180628040(0x2f2f2f2f2f2f2f2f, &global_state_2760_ptr, texture_name);
     render_manager = *(longlong *)(render_manager + 0x530);
-    result_handle = FUN_180628040(result_handle, &UNK_180a18dd0);
+    result_handle = FUN_180628040(result_handle, &global_state_8544_ptr);
     
     texture_manager = *(longlong *)(render_manager + 0x70);
     texture_count = 0;
@@ -1070,7 +1070,7 @@ void rendering_system_process_render_data(uint64_t data_handle, longlong process
                 processing_cost = (float)(int)(object_index * (unsigned int)*(unsigned short *)(render_object + 0x32e) *
                                        (unsigned int)*(unsigned short *)(render_object + 0x32c)) * 9.536743e-07;
                 total_cost = total_cost + processing_cost;
-                result_handle = FUN_180628040(processing_cost, &UNK_180a18dc8, object_name, (double)processing_cost);
+                result_handle = FUN_180628040(processing_cost, &global_state_8536_ptr, object_name, (double)processing_cost);
             }
             
             texture_manager = *(longlong *)(render_manager + 0x70);
@@ -1079,7 +1079,7 @@ void rendering_system_process_render_data(uint64_t data_handle, longlong process
         } while ((unsigned long long)(long long)object_count < (unsigned long long)(*(longlong *)(render_manager + 0x78) - texture_manager >> 3));
     }
     
-    FUN_180628040(result_handle, &UNK_180a02cc0, texture_count, (double)total_cost);
+    FUN_180628040(result_handle, &global_state_8160_ptr, texture_count, (double)total_cost);
     return;
 }
 
@@ -1115,7 +1115,7 @@ void rendering_system_update_render_statistics(uint64_t statistic_handle, longlo
             
             object_cost = (float)(int)(object_index * (unsigned int)*(unsigned short *)(render_object + 0x32e) *
                                 (unsigned int)*(unsigned short *)(render_object + 0x32c)) * 9.536743e-07;
-            FUN_180628040(object_cost, &UNK_180a18dc8, object_name, (double)object_cost);
+            FUN_180628040(object_cost, &global_state_8536_ptr, object_name, (double)object_cost);
         }
         
         data_buffer = *(longlong *)(render_manager + 0x70);
@@ -1172,7 +1172,7 @@ void rendering_system_reset_render_state(longlong render_context, uint64_t reset
         FUN_18005e630(_DAT_180c82868);
         reset_callback = *(code **)(**(longlong **)(render_context + 200) + 0xb8);
         
-        if (reset_callback == (code *)&UNK_1802426a0) {
+        if (reset_callback == (code *)&global_state_128_ptr) {
             current_state = (longlong *)(*(longlong **)(render_context + 200))[0xda];
         }
         else {

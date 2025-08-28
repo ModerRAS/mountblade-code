@@ -93,7 +93,7 @@ void FUN_180480910(longlong *param_1,int param_2)
   else {
     cVar4 = *(char *)*param_1;
     *(char *)(param_1 + 0xf) = cVar4;
-    lVar9 = strchr(&UNK_180a2bbb0,(int)cVar4);
+    lVar9 = strchr(&unknown_var_5824_ptr,(int)cVar4);
     if (lVar9 == 0) {
       iVar6 = 0;
     }

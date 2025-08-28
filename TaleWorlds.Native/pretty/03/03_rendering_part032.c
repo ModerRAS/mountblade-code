@@ -7,11 +7,11 @@
 uint64_t _DAT_180c8ed18;  // 内存分配器
 uint64_t _DAT_180c8ed60;  // 渲染上下文
 uint64_t _DAT_180c8a9b0;  // 引擎状态数据
-uint64_t UNK_180a3c3e0;   // 渲染资源管理器
-uint64_t UNK_18098bcb0;   // 纹理管理器
-uint64_t UNK_1809fcc58;   // 缓冲区管理器
-uint64_t UNK_180a21720;   // 渲染状态管理器
-uint64_t UNK_180a21690;   // 渲染队列管理器
+uint64_t unknown_var_3456_ptr;   // 渲染资源管理器
+uint64_t unknown_var_720_ptr;   // 纹理管理器
+uint64_t unknown_var_3480_ptr;   // 缓冲区管理器
+uint64_t unknown_var_3696_ptr;   // 渲染状态管理器
+uint64_t unknown_var_3552_ptr;   // 渲染队列管理器
 uint64_t system_buffer_ptr;   // 默认渲染数据
 
 /**
@@ -283,11 +283,11 @@ void cleanup_rendering_resources_type1(longlong resource_ptr)
         if (current_resource[4] != 0) {
           FUN_18064e900();
         }
-        *current_resource = &UNK_180a3c3e0;
+        *current_resource = &unknown_var_3456_ptr;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
           *(int32_t *)(current_resource + 3) = 0;
-          *current_resource = &UNK_18098bcb0;
+          *current_resource = &unknown_var_720_ptr;
           FUN_18064e900(current_resource);
         }
         FUN_18064e900();
@@ -330,11 +330,11 @@ void cleanup_rendering_resources_type2(longlong resource_ptr)
         if (current_resource[4] != 0) {
           FUN_18064e900();
         }
-        *current_resource = &UNK_180a3c3e0;
+        *current_resource = &unknown_var_3456_ptr;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
           *(int32_t *)(current_resource + 3) = 0;
-          *current_resource = &UNK_18098bcb0;
+          *current_resource = &unknown_var_720_ptr;
           FUN_18064e900(current_resource);
         }
         FUN_18064e900();
@@ -377,11 +377,11 @@ void cleanup_rendering_resources_type3(longlong resource_ptr)
         if (current_resource[4] != 0) {
           FUN_18064e900();
         }
-        *current_resource = &UNK_180a3c3e0;
+        *current_resource = &unknown_var_3456_ptr;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
           *(int32_t *)(current_resource + 3) = 0;
-          *current_resource = &UNK_18098bcb0;
+          *current_resource = &unknown_var_720_ptr;
           FUN_18064e900(current_resource);
         }
         FUN_18064e900();
@@ -416,19 +416,19 @@ void initialize_rendering_data(longlong data_ptr, longlong init_count)
     data_field_ptr = (int32_t *)(data_ptr + 0x168);
     do {
       // 初始化渲染数据结构
-      *(void **)(data_field_ptr + -0x5a) = &UNK_18098bcb0;
+      *(void **)(data_field_ptr + -0x5a) = &unknown_var_720_ptr;
       *(uint64_t *)(data_field_ptr + -0x58) = 0;
       data_field_ptr[-0x56] = 0;
-      *(void **)(data_field_ptr + -0x5a) = &UNK_1809fcc58;
+      *(void **)(data_field_ptr + -0x5a) = &unknown_var_3480_ptr;
       *(int32_t **)(data_field_ptr + -0x58) = data_field_ptr + -0x54;
       data_field_ptr[-0x56] = 0;
       *(int8_t *)(data_field_ptr + -0x54) = 0;
       
       // 设置渲染状态
-      *(void **)(data_field_ptr + -0x16) = &UNK_18098bcb0;
+      *(void **)(data_field_ptr + -0x16) = &unknown_var_720_ptr;
       *(uint64_t *)(data_field_ptr + -0x14) = 0;
       data_field_ptr[-0x12] = 0;
-      *(void **)(data_field_ptr + -0x16) = &UNK_180a3c3e0;
+      *(void **)(data_field_ptr + -0x16) = &unknown_var_3456_ptr;
       *(uint64_t *)(data_field_ptr + -0x10) = 0;
       *(uint64_t *)(data_field_ptr + -0x14) = 0;
       data_field_ptr[-0x12] = 0;
@@ -511,11 +511,11 @@ void cleanup_rendering_resources_type4(longlong resource_ptr)
         if (current_resource[4] != 0) {
           FUN_18064e900();
         }
-        *current_resource = &UNK_180a3c3e0;
+        *current_resource = &unknown_var_3456_ptr;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
           *(int32_t *)(current_resource + 3) = 0;
-          *current_resource = &UNK_18098bcb0;
+          *current_resource = &unknown_var_720_ptr;
           FUN_18064e900(current_resource);
         }
         FUN_18064e900();
@@ -561,10 +561,10 @@ longlong * create_rendering_data(longlong *data_ptr, int32_t *src_data_ptr, int3
     src_field_ptr = src_data_ptr + 0x5a;
     do {
       // 初始化数据结构
-      *dest_data_ptr = &UNK_18098bcb0;
+      *dest_data_ptr = &unknown_var_720_ptr;
       dest_data_ptr[1] = 0;
       *(int32_t *)(dest_data_ptr + 2) = 0;
-      *dest_data_ptr = &UNK_1809fcc58;
+      *dest_data_ptr = &unknown_var_3480_ptr;
       dest_data_ptr[1] = dest_data_ptr + 3;
       *(int32_t *)(dest_data_ptr + 2) = 0;
       *(int8_t *)(dest_data_ptr + 3) = 0;
@@ -629,10 +629,10 @@ longlong * create_rendering_data(longlong *data_ptr, int32_t *src_data_ptr, int3
       *(int32_t *)((longlong)dest_data_ptr + 0x10c) = data_field3;
       
       // 设置渲染状态
-      dest_data_ptr[0x22] = &UNK_18098bcb0;
+      dest_data_ptr[0x22] = &unknown_var_720_ptr;
       dest_data_ptr[0x23] = 0;
       *(int32_t *)(dest_data_ptr + 0x24) = 0;
-      dest_data_ptr[0x22] = &UNK_180a3c3e0;
+      dest_data_ptr[0x22] = &unknown_var_3456_ptr;
       dest_data_ptr[0x25] = 0;
       dest_data_ptr[0x23] = 0;
       *(int32_t *)(dest_data_ptr + 0x24) = 0;
@@ -926,8 +926,8 @@ uint64_t * release_rendering_resource(uint64_t *resource_ptr, ulonglong release_
   if ((longlong *)resource_ptr[3] != (longlong *)0x0) {
     (**(code **)(*(longlong *)resource_ptr[3] + 0x38))();
   }
-  *resource_ptr = &UNK_180a21720;
-  *resource_ptr = &UNK_180a21690;
+  *resource_ptr = &unknown_var_3696_ptr;
+  *resource_ptr = &unknown_var_3552_ptr;
   if ((release_flags & 1) != 0) {
     free(resource_ptr, 0x30, param3, param4, free_flag);
   }

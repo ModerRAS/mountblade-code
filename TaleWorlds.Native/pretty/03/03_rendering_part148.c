@@ -261,7 +261,7 @@ void FUN_18035ce30(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
     // 处理渲染器状态
     if (plVar8 != (longlong *)0x0) {
       pcVar2 = *(code **)(*plVar9 + FUNCTION_OFFSET_SHADER);
-      if (*(code **)(*plVar8 + FUNCTION_OFFSET_MATERIAL) == (code *)&UNK_18027d980) {
+      if (*(code **)(*plVar8 + FUNCTION_OFFSET_MATERIAL) == (code *)&unknown_var_2528_ptr) {
         plVar12 = plVar8 + 0x66;
       }
       else {
@@ -341,7 +341,7 @@ void FUN_18035ce30(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
     }
     
     // 处理材质状态
-    if (*(code **)(*plVar9 + FUNCTION_OFFSET_TEXTURE) == (code *)&UNK_180276a30) {
+    if (*(code **)(*plVar9 + FUNCTION_OFFSET_TEXTURE) == (code *)&unknown_var_4032_ptr) {
       uVar6 = (int32_t)plVar9[0x42];
     }
     else {
@@ -351,7 +351,7 @@ void FUN_18035ce30(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
     // 更新渲染状态
     FUN_1802ed990(lVar1, 1);
     pcVar2 = *(code **)(*plVar8 + FUNCTION_OFFSET_SHADER);
-    if (*(code **)(*plVar9 + FUNCTION_OFFSET_MATERIAL) == (code *)&UNK_18027d980) {
+    if (*(code **)(*plVar9 + FUNCTION_OFFSET_MATERIAL) == (code *)&unknown_var_2528_ptr) {
       plVar12 = plVar9 + 0x66;
     }
     else {
@@ -498,7 +498,7 @@ void FUN_18035d260(uint64_t param_1)
   uStack_f0 = 0xfffffffffffffffe;
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
   uStack_f8 = 0;
-  puStack_d8 = &UNK_1809fcc58;
+  puStack_d8 = &unknown_var_3480_ptr;
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
   uStack_c8 = 0xe;
@@ -515,8 +515,8 @@ void FUN_18035d260(uint64_t param_1)
   FUN_180180730(param_1, appuStack_e8, apuStack_78);
   uStack_f8 = 0;
   appuStack_e8[0] = apuStack_78;
-  apuStack_78[0] = &UNK_18098bcb0;
-  puStack_d8 = &UNK_18098bcb0;
+  apuStack_78[0] = &unknown_var_720_ptr;
+  puStack_d8 = &unknown_var_720_ptr;
   
   // 栈保护检查和退出
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_118);
@@ -549,7 +549,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
   longlong *plStackX_10;
   
   // 检查渲染状态
-  if ((void *)*param_1 != &UNK_180a1ef60) {
+  if ((void *)*param_1 != &unknown_var_3520_ptr) {
     (**(code **)((void *)*param_1 + 0x70))();
     return;
   }
@@ -582,7 +582,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     // 处理渲染器状态
     if (plVar8 != (longlong *)0x0) {
       pcVar2 = *(code **)(*plVar9 + FUNCTION_OFFSET_SHADER);
-      if (*(code **)(*plVar8 + FUNCTION_OFFSET_MATERIAL) == (code *)&UNK_18027d980) {
+      if (*(code **)(*plVar8 + FUNCTION_OFFSET_MATERIAL) == (code *)&unknown_var_2528_ptr) {
         plVar12 = plVar8 + 0x66;
       }
       else {
@@ -662,7 +662,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     }
     
     // 处理材质状态
-    if (*(code **)(*plVar9 + FUNCTION_OFFSET_TEXTURE) == (code *)&UNK_180276a30) {
+    if (*(code **)(*plVar9 + FUNCTION_OFFSET_TEXTURE) == (code *)&unknown_var_4032_ptr) {
       uVar6 = (int32_t)plVar9[0x42];
     }
     else {
@@ -672,7 +672,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     // 更新渲染状态
     FUN_1802ed990(lVar1, 1);
     pcVar2 = *(code **)(*plVar8 + FUNCTION_OFFSET_SHADER);
-    if (*(code **)(*plVar9 + FUNCTION_OFFSET_MATERIAL) == (code *)&UNK_18027d980) {
+    if (*(code **)(*plVar9 + FUNCTION_OFFSET_MATERIAL) == (code *)&unknown_var_2528_ptr) {
       plVar12 = plVar9 + 0x66;
     }
     else {
@@ -737,7 +737,7 @@ uint64_t *FUN_18035d3a0(uint64_t *param_1, ulonglong param_2, uint64_t param_3, 
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a1ef60;
+  *param_1 = &unknown_var_3520_ptr;
   FUN_1803457d0();
   
   // 根据标志释放内存
@@ -767,21 +767,21 @@ void FUN_18035d3f0(uint64_t *param_1)
   uVar4 = 0xfffffffffffffffe;
   puVar3 = param_1;
   FUN_1803456e0();
-  *puVar3 = &UNK_180a1f0f8;
+  *puVar3 = &unknown_var_3928_ptr;
   
   // 初始化渲染组件指针
   puVar1 = puVar3 + 0xf;
-  *puVar1 = &UNK_18098bcb0;
+  *puVar1 = &unknown_var_720_ptr;
   puVar3[0x10] = 0;
   *(int32_t *)(puVar3 + 0x11) = 0;
-  *puVar1 = &UNK_180a3c3e0;
+  *puVar1 = &unknown_var_3456_ptr;
   puVar3[0x12] = 0;
   puVar3[0x10] = 0;
   *(int32_t *)(puVar3 + 0x11) = 0;
-  puVar3[0x13] = &UNK_18098bcb0;
+  puVar3[0x13] = &unknown_var_720_ptr;
   puVar3[0x14] = 0;
   *(int32_t *)(puVar3 + 0x15) = 0;
-  puVar3[0x13] = &UNK_180a3c3e0;
+  puVar3[0x13] = &unknown_var_3456_ptr;
   puVar3[0x16] = 0;
   puVar3[0x14] = 0;
   *(int32_t *)(puVar3 + 0x15) = 0;
@@ -790,7 +790,7 @@ void FUN_18035d3f0(uint64_t *param_1)
   *(int32_t *)(puVar3 + 0x18) = 0;
   
   // 初始化字符串处理
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   uStack_68 = 0;
   puStack_78 = (uint64_t *)0x0;
   uStack_70 = 0;
@@ -810,7 +810,7 @@ void FUN_18035d3f0(uint64_t *param_1)
   
   // 执行渲染初始化
   FUN_1803460a0(param_1, &puStack_80, puVar1, 0, uVar4);
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   
   // 清理字符串资源
   FUN_18064e900(puVar3);
@@ -830,7 +830,7 @@ uint64_t *FUN_18035d5e0(uint64_t *param_1, uint param_2, uint64_t param_3, uint6
 {
   longlong *plVar1;
   
-  *param_1 = &UNK_180a1f0f8;
+  *param_1 = &unknown_var_3928_ptr;
   
   // 清理渲染资源
   if (param_1[0x17] != 0) {
@@ -848,22 +848,22 @@ uint64_t *FUN_18035d5e0(uint64_t *param_1, uint param_2, uint64_t param_3, uint6
   }
   
   // 清理材质资源
-  param_1[0x13] = &UNK_180a3c3e0;
+  param_1[0x13] = &unknown_var_3456_ptr;
   if (param_1[0x14] != 0) {
     FUN_18064e900();
   }
   param_1[0x14] = 0;
   *(int32_t *)(param_1 + 0x16) = 0;
-  param_1[0x13] = &UNK_18098bcb0;
+  param_1[0x13] = &unknown_var_720_ptr;
   
   // 清理纹理资源
-  param_1[0xf] = &UNK_180a3c3e0;
+  param_1[0xf] = &unknown_var_3456_ptr;
   if (param_1[0x10] != 0) {
     FUN_18064e900();
   }
   param_1[0x10] = 0;
   *(int32_t *)(param_1 + 0x12) = 0;
-  param_1[0xf] = &UNK_18098bcb0;
+  param_1[0xf] = &unknown_var_720_ptr;
   
   // 执行最终清理
   FUN_1803457d0(param_1);
@@ -897,21 +897,21 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   uVar5 = 0xfffffffffffffffe;
   puVar3 = puVar4;
   FUN_1803456e0(puVar4, param_2, param_1);
-  *puVar3 = &UNK_180a1f0f8;
+  *puVar3 = &unknown_var_3928_ptr;
   
   // 初始化渲染组件指针
   puVar1 = puVar3 + 0xf;
-  *puVar1 = &UNK_18098bcb0;
+  *puVar1 = &unknown_var_720_ptr;
   puVar3[0x10] = 0;
   *(int32_t *)(puVar3 + 0x11) = 0;
-  *puVar1 = &UNK_180a3c3e0;
+  *puVar1 = &unknown_var_3456_ptr;
   puVar3[0x12] = 0;
   puVar3[0x10] = 0;
   *(int32_t *)(puVar3 + 0x11) = 0;
-  puVar3[0x13] = &UNK_18098bcb0;
+  puVar3[0x13] = &unknown_var_720_ptr;
   puVar3[0x14] = 0;
   *(int32_t *)(puVar3 + 0x15) = 0;
-  puVar3[0x13] = &UNK_180a3c3e0;
+  puVar3[0x13] = &unknown_var_3456_ptr;
   puVar3[0x16] = 0;
   puVar3[0x14] = 0;
   *(int32_t *)(puVar3 + 0x15) = 0;
@@ -920,7 +920,7 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   *(int32_t *)(puVar3 + 0x18) = 0;
   
   // 初始化字符串处理
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   uStack_68 = 0;
   puStack_78 = (uint64_t *)0x0;
   uStack_70 = 0;
@@ -940,7 +940,7 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   
   // 执行渲染初始化
   FUN_1803460a0(puVar4, &puStack_80, puVar1, 0, uVar5);
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   
   // 清理字符串资源
   FUN_18064e900(puVar3);
@@ -974,7 +974,7 @@ void FUN_18035d760(uint64_t param_1)
   uStack_150 = 0xfffffffffffffffe;
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
   uStack_168 = 0;
-  puStack_148 = &UNK_1809fcc58;
+  puStack_148 = &unknown_var_3480_ptr;
   puStack_140 = auStack_130;
   auStack_130[0] = 0;
   uStack_138 = 0xd;
@@ -990,11 +990,11 @@ void FUN_18035d760(uint64_t param_1)
   // 执行配置处理
   FUN_180180730(param_1, appuStack_160, apuStack_88);
   uStack_168 = 0;
-  apuStack_88[0] = &UNK_18098bcb0;
-  puStack_148 = &UNK_18098bcb0;
+  apuStack_88[0] = &unknown_var_720_ptr;
+  puStack_148 = &unknown_var_720_ptr;
   
   // 处理第二组配置
-  puStack_e8 = &UNK_1809fcc58;
+  puStack_e8 = &unknown_var_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 5;
@@ -1011,8 +1011,8 @@ void FUN_18035d760(uint64_t param_1)
   // 执行第二组配置处理
   FUN_180180730(param_1, appuStack_160, apuStack_88);
   uStack_168 = 0;
-  apuStack_88[0] = &UNK_18098bcb0;
-  puStack_e8 = &UNK_18098bcb0;
+  apuStack_88[0] = &unknown_var_720_ptr;
+  puStack_e8 = &unknown_var_720_ptr;
   appuStack_160[0] = apuStack_88;
   
   // 栈保护检查和退出
@@ -1161,14 +1161,14 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     } while (lVar3 + 1 != 6);
     
     // 初始化参数处理
-    puStack_60 = &UNK_180a3c3e0;
+    puStack_60 = &unknown_var_3456_ptr;
     uStack_48 = 0;
     puStack_58 = (int32_t *)0x0;
     uStack_50 = 0;
     
     // 分配参数资源
     puVar4 = (int32_t *)
-             FUN_18062b420(_DAT_180c8ed18, (int)lVar3 + 0xb, &UNK_180a1f013, param_4, 0xfffffffffffffffe);
+             FUN_18062b420(_DAT_180c8ed18, (int)lVar3 + 0xb, &unknown_var_3699_ptr, param_4, 0xfffffffffffffffe);
     *(int8_t *)puVar4 = 0;
     puStack_58 = puVar4;
     uVar2 = FUN_18064e990(puVar4);
@@ -1182,7 +1182,7 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     
     // 执行参数处理
     FUN_180066df0(param_3, &puStack_60);
-    puStack_60 = &UNK_180a3c3e0;
+    puStack_60 = &unknown_var_3456_ptr;
     
     // 清理参数资源
     if (puStack_58 != (int32_t *)0x0) {
@@ -1190,8 +1190,8 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     }
     puStack_58 = (int32_t *)0x0;
     uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
-    puStack_60 = &UNK_18098bcb0;
-    puStack_40 = &UNK_180a3c3e0;
+    puStack_60 = &unknown_var_720_ptr;
+    puStack_40 = &unknown_var_3456_ptr;
     uStack_28 = 0;
     puStack_38 = (int32_t *)0x0;
     uStack_30 = 0;
@@ -1209,7 +1209,7 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     
     // 执行第二组参数处理
     FUN_180066df0(param_3, &puStack_40);
-    puStack_40 = &UNK_180a3c3e0;
+    puStack_40 = &unknown_var_3456_ptr;
     
     // 清理第二组参数资源
     if (puStack_38 != (int32_t *)0x0) {

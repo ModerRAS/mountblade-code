@@ -698,9 +698,9 @@ LAB_18059cd53:
       if ((lVar21 == 0) || (cVar8 = *(char *)(lVar21 + 100), cVar8 < '\0')) {
         plVar5 = *(longlong **)(*(longlong *)(param_1 + 0x108) + 0x590);
         lVar26 = (**(code **)(*plVar5 + 0x128))(plVar5,1);
-        puVar13 = &UNK_180a37268;
+        puVar13 = &unknown_var_2600_ptr;
         if (lVar21 == 0) {
-          puVar13 = &UNK_180a37298;
+          puVar13 = &unknown_var_2648_ptr;
         }
         puVar18 = &system_buffer_ptr;
         if (*(void **)(lVar26 + 0x18) != (void *)0x0) {
@@ -1090,7 +1090,7 @@ LAB_18059d789:
         lVar21 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
         if ((*(int *)(lVar21 + 0x48) < _DAT_180d4a048) &&
            (FUN_1808fcb90(&system_ptr_a048), _DAT_180d4a048 == -1)) {
-          puStack_970 = &UNK_180a3c3e0;
+          puStack_970 = &unknown_var_3456_ptr;
           uStack_958 = 0;
           puStack_968 = (int32_t *)0x0;
           uStack_960 = 0;
@@ -1103,13 +1103,13 @@ LAB_18059d789:
           *(int8_t *)(puVar11 + 1) = 0;
           uStack_960 = 4;
           _DAT_180d4a04c = FUN_180571e20(&system_ptr_60c0,&puStack_970);
-          puStack_970 = &UNK_180a3c3e0;
+          puStack_970 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar11);
         }
         if ((*(int *)(lVar21 + 0x48) < _DAT_180d4a050) &&
            (FUN_1808fcb90(&system_ptr_a050), _DAT_180d4a050 == -1)) {
-          puStack_950 = &UNK_180a3c3e0;
+          puStack_950 = &unknown_var_3456_ptr;
           uStack_938 = 0;
           puStack_948 = (int32_t *)0x0;
           uStack_940 = 0;
@@ -1122,7 +1122,7 @@ LAB_18059d789:
           *(int16_t *)(puVar11 + 1) = 0x74;
           uStack_940 = 5;
           _DAT_180d4a054 = FUN_180571e20(&system_ptr_60c0,&puStack_950);
-          puStack_950 = &UNK_180a3c3e0;
+          puStack_950 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar11);
         }

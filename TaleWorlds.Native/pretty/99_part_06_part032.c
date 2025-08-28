@@ -598,7 +598,7 @@ LAB_1803c4a70:
   uStack_1b0 = auStack_218;
   pfStack_1a8 = &fStack_1e4;
   pcStack_190 = FUN_1803c5480;
-  puStack_188 = &UNK_1803c5470;
+  puStack_188 = &unknown_var_4720_ptr;
   aplStack_1a0[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,system_allocation_flags);
   *aplStack_1a0[0] = lStack_1d8;
   aplStack_1a0[0][1] = (longlong)pplStack_1d0;
@@ -788,9 +788,9 @@ uint64_t *
 FUN_1803c4fa0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_180a23b58;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_2968_ptr;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x28,param_3,param_4,0xfffffffffffffffe);
   }

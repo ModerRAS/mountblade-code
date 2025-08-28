@@ -247,10 +247,10 @@ typedef struct {
  *==============================================================================*/
 
 /** 外部全局变量引用 */
-extern uint64_t UNK_180a062e0;               /**< 全局配置数据结构 */
-extern uint64_t UNK_180a02968;               /**< 全局状态数据结构 */
-extern uint64_t UNK_180a3c3e0;               /**< 全局错误处理结构 */
-extern uint64_t UNK_18098bcb0;               /**< 全局系统配置结构 */
+extern uint64_t global_state_2016_ptr;               /**< 全局配置数据结构 */
+extern uint64_t global_state_7304_ptr;               /**< 全局状态数据结构 */
+extern uint64_t global_state_3456_ptr;               /**< 全局错误处理结构 */
+extern uint64_t global_state_720_ptr;               /**< 全局系统配置结构 */
 extern uint64_t _DAT_180c86920;             /**< 全局数据表基地址 */
 extern uint64_t _DAT_180c8a9c8;             /**< 全局状态表基地址 */
 
@@ -282,7 +282,7 @@ extern uint64_t _DAT_180c8a9c8;             /**< 全局状态表基地址 */
 void CoreEngine_SystemInitializer(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 设置全局配置数据结构
-    *param_1 = &UNK_180a062e0;
+    *param_1 = &global_state_2016_ptr;
     
     // 执行内部初始化序列
     CoreEngine_InternalInit();
@@ -376,8 +376,8 @@ void CoreEngine_SystemInitializer(uint64_t *param_1, uint64_t param_2, uint64_t 
     CoreEngine_ComponentInit(param_1 + 0x1c);   // 配置块85
     
     // 设置状态数据结构
-    *param_1 = &UNK_180a02968;
-    param_1[0x18] = &UNK_180a3c3e0;
+    *param_1 = &global_state_7304_ptr;
+    param_1[0x18] = &global_state_3456_ptr;
     
     // 错误状态检查和处理
     if (param_1[0x19] != 0) {
@@ -388,7 +388,7 @@ void CoreEngine_SystemInitializer(uint64_t *param_1, uint64_t param_2, uint64_t 
     
     // 初始化系统配置
     *(int32_t *)(param_1 + 0x1b) = 0;
-    param_1[0x18] = &UNK_18098bcb0;
+    param_1[0x18] = &global_state_720_ptr;
     
     // 执行系统配置设置
     CoreEngine_ConfigSetup(param_1 + 0x12, param_1[0x14], param_3, param_4, 0xfffffffffffffffe);

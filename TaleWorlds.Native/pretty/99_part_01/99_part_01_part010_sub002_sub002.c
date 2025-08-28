@@ -206,8 +206,8 @@ void FUN_1800a73e0(longlong param_1, uint64_t param_2, longlong param_3, int8_t 
     FUN_1802230e0(param_1, &lStack_810, param_10, param_11);
     uVar5 = FUN_180624440(apuStack_2d8, param_2);
     FUN_1806279c0(auStack_7b0, uVar5);
-    apuStack_2d8[0] = &UNK_18098bcb0;
-    puStack_858 = &UNK_180a3c3e0;
+    apuStack_2d8[0] = &unknown_var_720_ptr;
+    puStack_858 = &unknown_var_3456_ptr;
     uStack_840 = 0;
     uStack_850 = 0;
     uStack_848 = 0;
@@ -232,9 +232,9 @@ void FUN_1800a73e0(longlong param_1, uint64_t param_2, longlong param_3, int8_t 
     
     // 条件分支处理
     if (_DAT_180bf5218 == 10) {
-        iVar2 = strcmp(_DAT_180bf5210, &UNK_180a01db8);
+        iVar2 = strcmp(_DAT_180bf5210, &unknown_var_4312_ptr);
         if (iVar2 != 0) goto LAB_1800a7646;
-        (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01df0);
+        (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4368_ptr);
         cStack_968 = '\x01';
 LAB_1800a765c:
         cStack_940 = '\x01';
@@ -242,18 +242,18 @@ LAB_1800a765c:
     else {
         if (_DAT_180bf5218 != 0xc) {
             if (_DAT_180bf5218 == 0xd) {
-                iVar2 = strcmp(_DAT_180bf5210, &UNK_180a01e30);
+                iVar2 = strcmp(_DAT_180bf5210, &unknown_var_4432_ptr);
                 if (iVar2 == 0) {
-                    (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01e90);
+                    (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4528_ptr);
                     cStack_968 = '\x01';
                     cStack_93f = '\x01';
                     goto LAB_1800a7660;
                 }
             }
             else if (_DAT_180bf5218 == 9) {
-                iVar2 = strcmp(_DAT_180bf5210, &UNK_180a01e80);
+                iVar2 = strcmp(_DAT_180bf5210, &unknown_var_4512_ptr);
                 if (iVar2 == 0) {
-                    (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01ee0);
+                    (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4608_ptr);
                     cStack_93d = '\x01';
                     cStack_93b = '\x01';
                     goto LAB_1800a7660;
@@ -261,21 +261,21 @@ LAB_1800a765c:
             }
             else if (_DAT_180bf5218 == 0xc) goto LAB_1800a7617;
 LAB_1800a7646:
-            (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01f30);
+            (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4688_ptr);
             cStack_93c = '\x01';
             goto LAB_1800a765c;
         }
-        iVar2 = strcmp(_DAT_180bf5210, &UNK_180a01de0);
+        iVar2 = strcmp(_DAT_180bf5210, &unknown_var_4352_ptr);
         if (iVar2 == 0) {
-            (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01e40);
+            (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4448_ptr);
             cStack_968 = '\x01';
             cStack_93e = '\x01';
         }
         else {
 LAB_1800a7617:
-            iVar2 = strcmp(uVar5, &UNK_180a01ed0);
+            iVar2 = strcmp(uVar5, &unknown_var_4592_ptr);
             if (iVar2 != 0) goto LAB_1800a7646;
-            (**(code **)(puStack_858 + 0x10))(&puStack_858, &UNK_180a01f70);
+            (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4752_ptr);
             cStack_93d = '\x01';
             cStack_93a = '\x01';
         }
@@ -287,11 +287,11 @@ LAB_1800a7660:
     FUN_180627910(auStack_730, uVar5);
     
     // 初始化字符串缓冲区
-    puStack_988 = &UNK_180a3c3e0;
+    puStack_988 = &unknown_var_3456_ptr;
     uStack_970 = 0;
     puStack_980 = (int8_t *)0x0;
     uStack_978 = 0;
-    puStack_918 = &UNK_180a3c3e0;
+    puStack_918 = &unknown_var_3456_ptr;
     uStack_900 = 0;
     puStack_910 = (int8_t *)0x0;
     uStack_908 = 0;
@@ -323,8 +323,8 @@ LAB_1800a7660:
     // 数据处理逻辑
     uVar5 = FUN_180627600(apuStack_518, uStack_790);
     FUN_1806279c0(auStack_750, uVar5);
-    apuStack_518[0] = &UNK_18098bcb0;
-    puStack_638 = &UNK_1809feda8;
+    apuStack_518[0] = &unknown_var_720_ptr;
+    puStack_638 = &unknown_var_2008_ptr;
     puStack_630 = auStack_620;
     auStack_620[0] = 0;
     iStack_628 = iStack_740;

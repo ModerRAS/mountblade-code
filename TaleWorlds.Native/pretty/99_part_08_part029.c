@@ -896,7 +896,7 @@ LAB_1804fd168:
 uint64_t * FUN_1804fd1d0(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180a30900;
+  *param_1 = &unknown_var_5616_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x58);
   }
@@ -940,8 +940,8 @@ void FUN_1804fd200(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puVar4 = puVar1;
   puVar9 = puVar5;
   do {
-    *puVar4 = &UNK_180a308c0;
-    *puVar4 = &UNK_180a308a0;
+    *puVar4 = &unknown_var_5552_ptr;
+    *puVar4 = &unknown_var_5520_ptr;
     puVar4[3] = 0;
     *(int32_t *)(puVar4 + 6) = 1;
     puVar4[5] = uVar2;
@@ -961,7 +961,7 @@ void FUN_1804fd200(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     lVar13 = 1;
 LAB_1804fd2d5:
     puVar5 = (uint64_t *)
-             FUN_18062b420(_DAT_180c8ed18,lVar13 * 8,*(int8_t *)(param_1 + 0x40),&UNK_180a308c0,
+             FUN_18062b420(_DAT_180c8ed18,lVar13 * 8,*(int8_t *)(param_1 + 0x40),&unknown_var_5552_ptr,
                            uVar16);
     puVar4 = *(uint64_t **)(param_1 + 0x30);
     puVar9 = *(uint64_t **)(param_1 + 0x28);

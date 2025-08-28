@@ -198,13 +198,13 @@ void FUN_1804ec4e0(longlong param_1,longlong param_2,int param_3,longlong param_
         __Throw_C_error_std__YAXH_Z(iVar6);
       }
       uVar22 = *(int32_t *)(param_2 + 0x10);
-      cVar5 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
+      cVar5 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
       if ((((cVar5 != '\0') &&
-           (cVar5 = FUN_180645c10(0x180c95578,0xe,&UNK_1809fa540), cVar5 != '\0')) &&
-          (cVar5 = FUN_180645c10(0x180c95578,uVar22,&UNK_1809fa510), cVar5 != '\0')) &&
+           (cVar5 = FUN_180645c10(0x180c95578,0xe,&unknown_var_3472_ptr), cVar5 != '\0')) &&
+          (cVar5 = FUN_180645c10(0x180c95578,uVar22,&unknown_var_3424_ptr), cVar5 != '\0')) &&
          (cVar5 = FUN_180645c10(0x180c95578,(lVar10 >> 2) - (lVar10 >> 0x3f) & 0xffffffff,
-                                &UNK_1809fa4c0), cVar5 != '\0')) {
-        FUN_180645c10(0x180c95578,param_5,&UNK_1809fa560);
+                                &unknown_var_3344_ptr), cVar5 != '\0')) {
+        FUN_180645c10(0x180c95578,param_5,&unknown_var_3504_ptr);
       }
       lVar9 = 0;
       _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
@@ -276,7 +276,7 @@ void FUN_1804ec4e0(longlong param_1,longlong param_2,int param_3,longlong param_
         }
         puVar13 = (uint64_t *)
                   (*(longlong *)(*(longlong *)(param_1 + 0x87bd50) + uVar16 * 8) + lVar9);
-        if ((void *)*puVar13 == &UNK_180a308a0) {
+        if ((void *)*puVar13 == &unknown_var_5520_ptr) {
           puVar13[2] = 0;
           plVar3 = (longlong *)puVar13[3];
           puVar13[3] = 0;

@@ -731,8 +731,8 @@ void ui_system_calculate_vector_magnitudes(int *magnitude_ptr, int *scale_ptr, s
 
 // 全局变量定义
 #define UI_SYSTEM_GLOBAL_DATA _DAT_180bf00a8
-#define UI_SYSTEM_AUDIO_TABLE UNK_180954878
-#define UI_SYSTEM_AUDIO_PARAMS UNK_1809535e0
+#define UI_SYSTEM_AUDIO_TABLE unknown_var_4360
+#define UI_SYSTEM_AUDIO_PARAMS unknown_var_9600
 
 // 内部函数声明
 uint64_t *ui_system_allocate_memory(ulonglong size);

@@ -27,7 +27,7 @@ void serialize_rendering_data(void)
   } while (unaff_RBP != 0);
   
   // 处理渲染数据缓冲区初始化
-  FUN_18025a940(&UNK_18098dfd0,*(int32_t *)(unaff_RDI + 0x7c8));
+  FUN_18025a940(&unknown_var_9712_ptr,*(int32_t *)(unaff_RDI + 0x7c8));
   byte_writer = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
   
@@ -980,7 +980,7 @@ void process_rendering_system(longlong render_manager,longlong data_buffer)
     do {
       temp_int = **(int **)(data_buffer + 8);
       *(int **)(data_buffer + 8) = *(int **)(data_buffer + 8) + 1;
-      puStack_e8 = &UNK_1809fcc28;
+      puStack_e8 = &unknown_var_3432_ptr;
       puStack_e0 = auStack_d0;
       uStack_d8 = 0;
       auStack_d0[0] = 0;
@@ -998,7 +998,7 @@ void process_rendering_system(longlong render_manager,longlong data_buffer)
         }
         (**(code **)(*context_pointer + 0x10))(context_pointer,puVar8);
       }
-      puStack_e8 = &UNK_18098bcb0;
+      puStack_e8 = &unknown_var_720_ptr;
       context_pointer = context_pointer + 0xb;
       lVar13 = lVar13 + -1;
     } while (lVar13 != 0);

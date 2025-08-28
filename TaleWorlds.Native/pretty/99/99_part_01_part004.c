@@ -340,7 +340,7 @@ longlong *SystemStreamProcessor(longlong *stream_handle, int8_t output_char, uin
   // 释放文件锁
   buffer_handle = *(longlong **)((longlong)*(int *)(*stack_buffer + 4) + 0x48 + (longlong)stack_buffer);
   if (buffer_handle != (longlong *)0x0) {
-    if (*(code **)(*buffer_handle + 0x10) == (code *)&UNK_18009ee10) {
+    if (*(code **)(*buffer_handle + 0x10) == (code *)&unknown_var_1712_ptr) {
       if (buffer_handle[0x10] != 0) {
         _unlock_file();
       }
@@ -377,7 +377,7 @@ uint64_t *SystemOutputInitializer(uint64_t *init_buffer, longlong *stream_handle
   buffer_handle = *(longlong **)((longlong)*(int *)(*stream_handle + 4) + 0x48 + (longlong)stream_handle);
   if (buffer_handle != (longlong *)0x0) {
     // 处理文件锁定
-    if (*(code **)(*buffer_handle + 8) == (code *)&UNK_18009edf0) {
+    if (*(code **)(*buffer_handle + 8) == (code *)&unknown_var_1680_ptr) {
       if (buffer_handle[0x10] != 0) {
         _lock_file();
       }
@@ -418,7 +418,7 @@ void SystemOutputManager(longlong *resource_handle)
   
   buffer_handle = *(longlong **)((longlong)*(int *)(*(longlong *)*resource_handle + 4) + 0x48 + *resource_handle);
   if (buffer_handle != (longlong *)0x0) {
-    if (*(code **)(*buffer_handle + 0x10) != (code *)&UNK_18009ee10) {
+    if (*(code **)(*buffer_handle + 0x10) != (code *)&unknown_var_1712_ptr) {
       (**(code **)(*buffer_handle + 0x10))();
       return;
     }
@@ -453,7 +453,7 @@ void SystemOutputCleaner(longlong *cleanup_handle)
   
   buffer_handle = *(longlong **)((longlong)*(int *)(*(longlong *)*cleanup_handle + 4) + 0x48 + *cleanup_handle);
   if (buffer_handle != (longlong *)0x0) {
-    if (*(code **)(*buffer_handle + 0x10) != (code *)&UNK_18009ee10) {
+    if (*(code **)(*buffer_handle + 0x10) != (code *)&unknown_var_1712_ptr) {
       (**(code **)(*buffer_handle + 0x10))();
       return;
     }
@@ -572,7 +572,7 @@ longlong *SystemDataWriter(longlong *stream_handle, longlong data_pointer, uint6
   // 释放文件锁
   buffer_handle = *(longlong **)((longlong)*(int *)(*stack_buffer + 4) + 0x48 + (longlong)stack_buffer);
   if (buffer_handle != (longlong *)0x0) {
-    if (*(code **)(*buffer_handle + 0x10) == (code *)&UNK_18009ee10) {
+    if (*(code **)(*buffer_handle + 0x10) == (code *)&unknown_var_1712_ptr) {
       if (buffer_handle[0x10] != 0) {
         _unlock_file();
       }
@@ -835,7 +835,7 @@ longlong *SystemStreamHandler(longlong *output_buffer, uint64_t param2, uint64_t
     *(uint64_t *)(unaff_r11 + 0x18) = unaff_r14;
     // 警告：无法恢复跳转表，将间接跳转作为调用处理
     result_handle = (longlong *)
-             (*(code *)((ulonglong)*(uint *)(&UNK_1800a1660 + register_value * 4) + 0x180000000))();
+             (*(code *)((ulonglong)*(uint *)(&unknown_var_2032_ptr + register_value * 4) + 0x180000000))();
     return result_handle;
   }
   
@@ -873,7 +873,7 @@ void SystemStreamProcessorAdvanced(void)
   *(uint64_t *)(unaff_r11 + 8) = unaff_rsi;
   *(uint64_t *)(unaff_r11 + 0x18) = unaff_r14;
   // 警告：无法恢复跳转表，将间接跳转作为调用处理
-  (*(code *)((ulonglong)*(uint *)(&UNK_1800a1660 + register_value * 4) + 0x180000000))();
+  (*(code *)((ulonglong)*(uint *)(&unknown_var_2032_ptr + register_value * 4) + 0x180000000))();
   return;
 }
 
@@ -1420,7 +1420,7 @@ longlong SystemStreamDestructor(longlong stream_handle)
  */
 void SystemExceptionConstructor(uint64_t *exception_handle)
 {
-  *exception_handle = &UNK_18098b928;
+  *exception_handle = &unknown_var_9816_ptr;
   __std_exception_destroy(exception_handle + 1);
   return;
 }
@@ -1446,7 +1446,7 @@ uint64_t *SystemExceptionDestructor(uint64_t *exception_handle, ulonglong param2
   uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
-  *exception_handle = &UNK_18098b928;
+  *exception_handle = &unknown_var_9816_ptr;
   __std_exception_destroy(exception_handle + 1);
   
   if ((param2 & 1) != 0) {
@@ -1472,7 +1472,7 @@ uint64_t *SystemExceptionDestructor(uint64_t *exception_handle, ulonglong param2
  */
 uint64_t *SystemExceptionCopier(uint64_t *target_handle, longlong source_handle)
 {
-  *target_handle = &UNK_18098b928;
+  *target_handle = &unknown_var_9816_ptr;
   target_handle[1] = 0;
   target_handle[2] = 0;
   __std_exception_copy(source_handle + 8);

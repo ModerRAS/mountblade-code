@@ -636,10 +636,10 @@ ALLOCATION_COMPLETE:
     element_count = (longlong)element_ptr - (longlong)current_element;
     current_element = current_element + 1;
     do {
-      *temp_element = &UNK_18098bcb0;
+      *temp_element = &unknown_var_720_ptr;
       *(uint64_t *)(element_count + (longlong)current_element) = 0;
       *(int32_t *)(element_count + 8 + (longlong)current_element) = 0;
-      *temp_element = &UNK_180a3c3e0;
+      *temp_element = &unknown_var_3456_ptr;
       *(uint64_t *)(element_count + 0x10 + (longlong)current_element) = 0;
       *(uint64_t *)(element_count + (longlong)current_element) = 0;
       *(int32_t *)(element_count + 8 + (longlong)current_element) = 0;
@@ -651,10 +651,10 @@ ALLOCATION_COMPLETE:
       *current_element = 0;
       current_element[2] = 0;
       next_element = (uint64_t *)((longlong)current_element + element_count + 0x18);
-      *next_element = &UNK_18098bcb0;
+      *next_element = &unknown_var_720_ptr;
       *(uint64_t *)(element_count + 0x20 + (longlong)current_element) = 0;
       *(int32_t *)(element_count + 0x28 + (longlong)current_element) = 0;
-      *next_element = &UNK_18098bc80;
+      *next_element = &unknown_var_672_ptr;
       string_ptr = (int8_t *)((longlong)current_element + element_count + 0x30);
       *(int8_t **)(element_count + 0x20 + (longlong)current_element) = string_ptr;
       *(int32_t *)(element_count + 0x28 + (longlong)current_element) = 0;

@@ -991,7 +991,7 @@ void FUN_1805b30a0(longlong *param_1,int param_2)
             uVar5 = uVar6;
             do {
               FUN_1805b31e0(param_1,iVar3,iVar4,
-                            ((&UNK_1809f9308)[uVar5 & 7] &
+                            ((&unknown_var_8808_ptr)[uVar5 & 7] &
                             *(byte *)(((iVar4 >> 3) + (iVar1 >> 3) * iVar3) + lVar2)) != 0);
               iVar4 = iVar4 + 1;
               uVar5 = uVar5 + 1;

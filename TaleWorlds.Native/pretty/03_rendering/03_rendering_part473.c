@@ -146,7 +146,7 @@ extern void func_0x0001805da580(void);
 /*=============================================
             全局变量声明
 =============================================*/
-extern uint64_t UNK_1809f89f0;
+extern uint64_t global_state_6480_ptr;
 extern uint64_t system_error_code;
 
 /**
@@ -931,9 +931,9 @@ LAB_18051f7bf:
                         
                         /* 检查状态变化 */
                         if (((*(byte *)((longlong)(iVar9 * iVar2 + ((int)uVar7 >> 3)) +
-                                       *(longlong *)(lVar4 + 0x87b768)) & (&UNK_1809f89f0)[uVar7 & 7]) != 0) &&
+                                       *(longlong *)(lVar4 + 0x87b768)) & (&global_state_6480_ptr)[uVar7 & 7]) != 0) &&
                            ((*(byte *)((longlong)(iVar9 * iVar3 + ((int)uVar7 >> 3)) +
-                                      *(longlong *)(lVar4 + 0x87b768)) & (&UNK_1809f89f0)[uVar7 & 7]) == 0)) {
+                                      *(longlong *)(lVar4 + 0x87b768)) & (&global_state_6480_ptr)[uVar7 & 7]) == 0)) {
                             
                             /* 重置渲染对象状态 */
                             *(int32_t *)(lVar5 + 0x1b6c) = 0;
@@ -1014,9 +1014,9 @@ void FUN_18051f7cd(void)
              (uVar5 = *(uint *)(lVar6 + 0x980), -1 < (int)uVar5)) {
             iVar7 = *(int *)(lVar3 + 0x87b770) >> 3;
             if (((*(byte *)((longlong)(iVar7 * unaff_EBP + ((int)uVar5 >> 3)) +
-                           *(longlong *)(lVar3 + 0x87b768)) & (&UNK_1809f89f0)[uVar5 & 7]) != 0) &&
+                           *(longlong *)(lVar3 + 0x87b768)) & (&global_state_6480_ptr)[uVar5 & 7]) != 0) &&
                ((*(byte *)((longlong)(iVar7 * iVar2 + ((int)uVar5 >> 3)) +
-                          *(longlong *)(lVar3 + 0x87b768)) & (&UNK_1809f89f0)[uVar5 & 7]) == 0)) {
+                          *(longlong *)(lVar3 + 0x87b768)) & (&global_state_6480_ptr)[uVar5 & 7]) == 0)) {
               *(int32_t *)(lVar4 + 0x1b6c) = 0;
               *(int8_t *)(lVar4 + 0x17a8) = 0;
               *(uint64_t *)(lVar4 + 0x1798) =
@@ -1075,9 +1075,9 @@ void FUN_18051f839(void)
        (uVar1 = *(uint *)(lVar4 + 0x980), -1 < (int)uVar1)) {
       iVar5 = *(int *)(lVar2 + 0x87b770) >> 3;
       if (((*(byte *)((longlong)(iVar5 * unaff_EBP + ((int)uVar1 >> 3)) +
-                     *(longlong *)(lVar2 + 0x87b768)) & (&UNK_1809f89f0)[uVar1 & 7]) != 0) &&
+                     *(longlong *)(lVar2 + 0x87b768)) & (&global_state_6480_ptr)[uVar1 & 7]) != 0) &&
          ((*(byte *)((longlong)(iVar5 * unaff_ESI + ((int)uVar1 >> 3)) +
-                    *(longlong *)(lVar2 + 0x87b768)) & (&UNK_1809f89f0)[uVar1 & 7]) == 0)) {
+                    *(longlong *)(lVar2 + 0x87b768)) & (&global_state_6480_ptr)[uVar1 & 7]) == 0)) {
         *(int32_t *)(lVar3 + 0x1b6c) = 0;
         *(int8_t *)(lVar3 + 0x17a8) = 0;
         *(uint64_t *)(lVar3 + 0x1798) =

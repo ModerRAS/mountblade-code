@@ -126,7 +126,7 @@ void RenderingSystem_ProcessColorTransform(longlong *param_1,char param_2)
   int32_t auStackX_10 [6];
   
   if (param_2 != '\0') {
-    (**(code **)(*param_1 + RENDERING_SYSTEM_OFFSET_0X128))(param_1,&UNK_180995a3c);
+    (**(code **)(*param_1 + RENDERING_SYSTEM_OFFSET_0X128))(param_1,&unknown_var_1052_ptr);
     return;
   }
   auStackX_10[0] = 0;
@@ -159,10 +159,10 @@ uint64_t * RenderingSystem_AllocateResourceMemory(uint64_t *param_1,ulonglong pa
   uint64_t uVar1;
   
   uVar1 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
-  *param_1 = &UNK_180a2a448;
+  *param_1 = &unknown_var_9832_ptr;
   FUN_18022f410(param_1 + 2);
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,RENDERING_SYSTEM_DATA_SIZE_0X48,param_3,param_4,uVar1);
   }
@@ -197,10 +197,10 @@ int32_t * RenderingSystem_CreateColorBuffer(int32_t *param_1,longlong *param_2)
   int32_t uStack_34;
   
   plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_DATA_SIZE_0X48,8,3,RENDERING_SYSTEM_FLAG_FFFFFFFE);
-  *plVar2 = (longlong)&UNK_180a21690;
-  *plVar2 = (longlong)&UNK_180a21720;
+  *plVar2 = (longlong)&unknown_var_3552_ptr;
+  *plVar2 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar2 + 1) = 0;
-  *plVar2 = (longlong)&UNK_180a2a448;
+  *plVar2 = (longlong)&unknown_var_9832_ptr;
   if (param_2 != (longlong *)0x0) {
     (**(code **)(*param_2 + 0x28))(param_2);
   }
@@ -2047,7 +2047,7 @@ uint64_t * RenderingSystem_AllocateColorBuffer(uint64_t *param_1)
   if (plStackX_8 == (longlong *)0x0) {
     plStack_38 = (longlong *)0x0;
     uStack_30 = 0xffffffff;
-    puStack_28 = &UNK_180a3c3e0;
+    puStack_28 = &unknown_var_3456_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -2059,7 +2059,7 @@ uint64_t * RenderingSystem_AllocateColorBuffer(uint64_t *param_1)
     if (plStackX_8 != (longlong *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();
     }
-    puStack_28 = &UNK_180a3c3e0;
+    puStack_28 = &unknown_var_3456_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();

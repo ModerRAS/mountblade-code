@@ -434,7 +434,7 @@ LAB_18083bb2d:
         } while (uVar15 != 0);
       }
     }
-    qsort(auStack_270 + 1,(longlong)(int)uVar17,8,&UNK_18083c4f0);
+    qsort(auStack_270 + 1,(longlong)(int)uVar17,8,&unknown_var_6576_ptr);
     if (1 < (longlong)(int)uVar17) {
       do {
         if (*(int *)auStack_270[lVar13] == *(int *)auStack_270[lVar13 + 1]) goto LAB_18083bb2d;
@@ -574,7 +574,7 @@ void FUN_18083bb80(uint64_t param_1,uint64_t param_2,int *param_3)
       iVar16 = iVar16 + 1;
       alStack_258[lVar11] = (longlong)(param_3 + lVar6 + 0xd1);
     }
-    qsort(alStack_258,lVar7,8,&UNK_18083c4f0);
+    qsort(alStack_258,lVar7,8,&unknown_var_6576_ptr);
     if (0 < lVar7) {
       lVar11 = 0;
       do {
@@ -769,7 +769,7 @@ void FUN_18083bbcf(void)
     iVar15 = iVar15 + 1;
     (&lStackX_20)[lVar10] = (longlong)(unaff_RBX + lVar6 + 0xd1);
   }
-  qsort(&lStackX_20,lVar7,8,&UNK_18083c4f0);
+  qsort(&lStackX_20,lVar7,8,&unknown_var_6576_ptr);
   if (0 < lVar7) {
     lVar10 = 0;
     do {

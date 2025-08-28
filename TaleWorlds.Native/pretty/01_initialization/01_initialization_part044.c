@@ -37,7 +37,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
   longlong stack_check;            // 栈检查值
   
   // 调用系统初始化函数
-  FUN_1800623b0(_DAT_180c86928, 0, 0x100000000, 1, &UNK_1809ff938, config_param, 0xfffffffffffffffe);
+  FUN_1800623b0(_DAT_180c86928, 0, 0x100000000, 1, &unknown_var_4968_ptr, config_param, 0xfffffffffffffffe);
   
   // 检查系统状态
   if (system_debug_flag == '\0') {
@@ -51,7 +51,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
     system_ptr = *(void **)*_DAT_180c8ed08;
     
     // 检查系统指针状态
-    if (system_ptr == &UNK_18098bb88) {
+    if (system_ptr == &unknown_var_424_ptr) {
       // 使用系统配置检查初始化状态
       initialization_flag = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
     }
@@ -67,7 +67,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
     }
     
     // 设置缓冲区指针
-    stack_buffer = &UNK_180a3c3e0;
+    stack_buffer = &unknown_var_3456_ptr;
     
     // 检查栈状态
     if (stack_check != 0) {
@@ -104,7 +104,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
   longlong stack_check;            // 栈检查值
   
   // 调用系统初始化函数（使用自定义参数模式）
-  FUN_1800623b0(_DAT_180c86928, 0, 0x100000000, 0xc, &UNK_1809ff958, additional_config, 0xfffffffffffffffe);
+  FUN_1800623b0(_DAT_180c86928, 0, 0x100000000, 0xc, &unknown_var_5000_ptr, additional_config, 0xfffffffffffffffe);
   
   // 检查系统状态
   if (system_debug_flag == '\0') {
@@ -118,7 +118,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
     system_ptr = *(void **)*_DAT_180c8ed08;
     
     // 检查系统指针状态
-    if (system_ptr == &UNK_18098bb88) {
+    if (system_ptr == &unknown_var_424_ptr) {
       // 使用系统配置检查初始化状态
       initialization_flag = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
     }
@@ -134,7 +134,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
     }
     
     // 设置缓冲区指针
-    stack_buffer = &UNK_180a3c3e0;
+    stack_buffer = &unknown_var_3456_ptr;
     
     // 检查栈状态
     if (stack_check != 0) {
@@ -182,7 +182,7 @@ void initialize_complex_structure(uint64_t main_handle, uint64_t base_config, ui
   
   // 初始化基本参数
   init_flag = 0xfffffffffffffffe;  // 初始化标志
-  structure_ptr = &UNK_180a3c3e0;  // 结构体指针
+  structure_ptr = &unknown_var_3456_ptr;  // 结构体指针
   
   // 清零所有配置字段
   mesh_data_ptr = 0;              // 网格数据指针
@@ -258,7 +258,7 @@ void reset_structure_pointers(uint64_t *structure_ptr)
   FUN_180074a80();
   
   // 设置主指针
-  *structure_ptr = &UNK_180a3c3e0;
+  *structure_ptr = &unknown_var_3456_ptr;
   
   // 检查并重置索引1处的指针
   if (structure_ptr[1] != 0) {
@@ -271,7 +271,7 @@ void reset_structure_pointers(uint64_t *structure_ptr)
   *(int32_t *)(structure_ptr + 3) = 0;
   
   // 设置最终指针状态
-  *structure_ptr = &UNK_18098bcb0;
+  *structure_ptr = &unknown_var_720_ptr;
   
   return;
 }

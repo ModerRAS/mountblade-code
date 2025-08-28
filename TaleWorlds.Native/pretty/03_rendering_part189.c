@@ -358,10 +358,10 @@ LAB_18037a1d9:
                 plVar20 = (longlong *)
                           FUN_18062b1e0(_DAT_180c8ed18,0x38,8,CONCAT71((int7)(lVar31 >> 0xb),3));
                 plStack_c8 = plVar20 + 2;
-                *plStack_c8 = (longlong)&UNK_18098bcb0;
+                *plStack_c8 = (longlong)&unknown_var_720_ptr;
                 plVar20[3] = 0;
                 *(int32_t *)(plVar20 + 4) = 0;
-                *plStack_c8 = (longlong)&UNK_180a3c3e0;
+                *plStack_c8 = (longlong)&unknown_var_3456_ptr;
                 plVar20[5] = 0;
                 plVar20[3] = 0;
                 *(int32_t *)(plVar20 + 4) = 0;
@@ -417,7 +417,7 @@ LAB_18037a2de:
               if (*(void **)(lVar38 + 0x10) != (void *)0x0) {
                 puVar28 = *(void **)(lVar38 + 0x10);
               }
-              FUN_180627020(&UNK_180a217c0,puVar28);
+              FUN_180627020(&unknown_var_3856_ptr,puVar28);
             }
             else {
               do {
@@ -661,7 +661,7 @@ void FUN_18037a770(longlong param_1,longlong param_2)
   
   uStack_2f8 = 0xfffffffffffffffe;
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_3f8;
-  puStack_3b8 = &UNK_180a3c3e0;
+  puStack_3b8 = &unknown_var_3456_ptr;
   uStack_3a0 = 0;
   lStack_3b0 = 0;
   uStack_3a8 = 0;
@@ -685,14 +685,14 @@ void FUN_18037a770(longlong param_1,longlong param_2)
     puVar5 = *(void **)(lVar2 + 8);
   }
   (**(code **)(puStack_3b8 + 0x10))(&puStack_3b8,puVar5);
-  apuStack_268[0] = &UNK_18098bcb0;
+  apuStack_268[0] = &unknown_var_720_ptr;
   cVar1 = FUN_180624a00(&puStack_3b8);
   if (cVar1 == '\0') {
     FUN_180624910(&puStack_3b8);
   }
   FUN_180627ae0(&puStack_370,param_2 + 0x1f0);
   FUN_1806279c0(&puStack_390,param_1 + 0x10);
-  puStack_3d8 = &UNK_180a3c3e0;
+  puStack_3d8 = &unknown_var_3456_ptr;
   uStack_3c0 = 0;
   puStack_3d0 = (int8_t *)0x0;
   uStack_3c8 = 0;
@@ -763,12 +763,12 @@ void FUN_18037a770(longlong param_1,longlong param_2)
     if (puStack_3d0 != (int8_t *)0x0) {
       puVar7 = puStack_3d0;
     }
-    FUN_18062dee0(&uStack_350,puVar7,&UNK_180a0cf4c);
+    FUN_18062dee0(&uStack_350,puVar7,&unknown_var_9772_ptr);
     lVar2 = lStack_348;
     if (lStack_348 != 0) {
       plStack_398 = (longlong *)CONCAT44(plStack_398._4_4_,0x58);
-      fwrite(&UNK_180a17814,4,1,lStack_348);
-      fwrite(&UNK_180a17810,4,1,lVar2);
+      fwrite(&unknown_var_2980_ptr,4,1,lStack_348);
+      fwrite(&unknown_var_2976_ptr,4,1,lVar2);
       fwrite(&plStack_398,4,1,lVar2);
       fwrite(auStack_2e8,4,1,lVar2);
       fwrite(&uStack_2cc,0x58,1,lVar2);
@@ -794,38 +794,38 @@ void FUN_18037a770(longlong param_1,longlong param_2)
     lStack_2d8 = 0;
     uStack_2d0 = 0;
   }
-  puStack_3d8 = &UNK_180a3c3e0;
+  puStack_3d8 = &unknown_var_3456_ptr;
   if (puStack_3d0 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_3d0 = (int8_t *)0x0;
   uStack_3c0 = uStack_3c0 & 0xffffffff00000000;
-  puStack_3d8 = &UNK_18098bcb0;
-  puStack_390 = &UNK_180a3c3e0;
+  puStack_3d8 = &unknown_var_720_ptr;
+  puStack_390 = &unknown_var_3456_ptr;
   if (lStack_388 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_388 = 0;
   uStack_378 = 0;
-  puStack_390 = &UNK_18098bcb0;
-  puStack_370 = &UNK_180a3c3e0;
+  puStack_390 = &unknown_var_720_ptr;
+  puStack_370 = &unknown_var_3456_ptr;
   if (lStack_368 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_368 = 0;
   uStack_358 = 0;
-  puStack_370 = &UNK_18098bcb0;
-  puStack_3b8 = &UNK_180a3c3e0;
+  puStack_370 = &unknown_var_720_ptr;
+  puStack_3b8 = &unknown_var_3456_ptr;
   if (lStack_3b0 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_3b0 = 0;
   uStack_3a0 = uStack_3a0 & 0xffffffff00000000;
-  puStack_3b8 = &UNK_18098bcb0;
+  puStack_3b8 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_3f8);
 }

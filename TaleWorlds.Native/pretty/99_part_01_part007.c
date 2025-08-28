@@ -353,7 +353,7 @@ CONFIG_COMPLETE:
     
     /* 错误处理 */
     if (status_code < 0) {
-        FUN_180220810(status_code,&UNK_180a019f8);
+        FUN_180220810(status_code,&unknown_var_3352_ptr);
     }
     
     /* 设置输出缓冲区 */
@@ -479,7 +479,7 @@ CONFIG_COMPLETE:
     
     /* 设置栈保护和安全返回 */
     context_ptr2 = &stack_ptr1;
-    stack_ptr1 = &UNK_1809fcc28;
+    stack_ptr1 = &unknown_var_3432_ptr;
     stack_ptr2 = buffer1;
     buffer1[0] = 0;
     temp_storage4 = *(int32_t *)(output_buffer + 0x20);
@@ -655,14 +655,14 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     
     /* 错误处理 */
     if (config_param2 < 0) {
-        FUN_180220810(config_param2,&UNK_180a01a78);
+        FUN_180220810(config_param2,&unknown_var_3480_ptr);
     }
     
     config_param2 = func_0x000180225d90(init_params[4]);
     *(int *)(resource_handle + 0x368) = config_param2 * *init_params;
     *(uint64_t *)(resource_handle + 0x170) = temp_storage12;
     context_ptr = (void **)FUN_180049b30(buffer2,resource_handle + 0x10);
-    *context_ptr = &UNK_18098bcb0;
+    *context_ptr = &unknown_var_720_ptr;
     *(longlong *)(resource_handle + 0x168) = resource_handle;
     
     /* 处理资源数据 */
@@ -842,7 +842,7 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     
     /* 最终处理和清理 */
     context_ptr = &stack_ptr1;
-    stack_ptr1 = &UNK_1809fcc28;
+    stack_ptr1 = &unknown_var_3432_ptr;
     stack_ptr2 = buffer1;
     buffer1[0] = 0;
     temp_storage24 = *(int32_t *)(resource_handle + 0x20);

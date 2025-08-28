@@ -115,7 +115,7 @@ uint64_t FUN_1808bcb00(longlong param_1,longlong *param_2)
           if (iVar3 == -1) {
             return 0;
           }
-          FUN_1808bac50(*(uint64_t *)(lVar2 + 0x18 + (longlong)iVar3 * 0x20),&UNK_180987640,0x5b1)
+          FUN_1808bac50(*(uint64_t *)(lVar2 + 0x18 + (longlong)iVar3 * 0x20),&unknown_var_2688_ptr,0x5b1)
           ;
           (**(code **)(*param_2 + 0x38))(param_2,&uStack_18);
           if (*(int *)(param_1 + 0x264) == 0) {

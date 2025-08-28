@@ -339,12 +339,12 @@ void rendering_resource_allocator(uint64_t render_context, longlong resource_dat
     }
     stack_ptr4 = (longlong *)0x0;
     stack_ptr2 = resource_ptr;
-    stack_ptr5 = &UNK_1809fdc18;
+    stack_ptr5 = &unknown_var_7512_ptr;
     stack_ptr6 = stack_buffer2;
     stack_buffer2[0] = 0;
     stack_param17 = 9;
-    strcpy_s(stack_buffer2, 0x10, &UNK_180a17398);
-    stack_ptr7 = &UNK_1809fcc28;
+    strcpy_s(stack_buffer2, 0x10, &unknown_var_1832_ptr);
+    stack_ptr7 = &unknown_var_3432_ptr;
     stack_ptr8 = stack_buffer3;
     stack_buffer3[0] = 0;
     stack_param18 = stack_param17;
@@ -354,8 +354,8 @@ void rendering_resource_allocator(uint64_t render_context, longlong resource_dat
     }
     strcpy_s(stack_buffer3, 0x80, data_ptr);
     FUN_1800b2450();
-    stack_ptr7 = &UNK_18098bcb0;
-    stack_ptr5 = &UNK_18098bcb0;
+    stack_ptr7 = &unknown_var_720_ptr;
+    stack_ptr5 = &unknown_var_720_ptr;
     
     // 执行资源分配
     stack_param4 = (uint)*(byte *)((longlong)stack_ptr3 + 0x335);
@@ -615,12 +615,12 @@ void rendering_resource_manager(longlong render_context, longlong resource_data,
     _stack_param15 = CONCAT44(*(int32_t *)(resource_data + 0x324), 1);
     stack_param14 = 2;
     stack_param15 = 0x100;
-    stack_ptr5 = &UNK_18098bc80;
+    stack_ptr5 = &unknown_var_672_ptr;
     stack_ptr4 = stack_buffer2;
     stack_buffer2[0] = 0;
     stack_param20 = 0xf;
-    strcpy_s(stack_buffer2, 0x20, &UNK_180a173f0);
-    stack_ptr6 = &UNK_1809fcc28;
+    strcpy_s(stack_buffer2, 0x20, &unknown_var_1920_ptr);
+    stack_ptr6 = &unknown_var_3432_ptr;
     stack_ptr7 = stack_buffer3;
     stack_buffer3[0] = 0;
     stack_param21 = stack_param20;
@@ -630,8 +630,8 @@ void rendering_resource_manager(longlong render_context, longlong resource_data,
     }
     strcpy_s(stack_buffer3, 0x80, data_ptr);
     FUN_1800b2450();
-    stack_ptr6 = &UNK_18098bcb0;
-    stack_ptr5 = &UNK_18098bcb0;
+    stack_ptr6 = &unknown_var_720_ptr;
+    stack_ptr5 = &unknown_var_720_ptr;
     resource_handle = FUN_18023a940(stack_ptr2);
     stack_param6 = *(uint64_t *)(resource_handle + 8);
     param_value2 = (uint)*(byte *)(resource_data + 0x335);
@@ -655,7 +655,7 @@ void rendering_resource_manager(longlong render_context, longlong resource_data,
     param_result = (**(code **)(**(longlong **)(render_context + RENDER_CONTEXT_OFFSET) + 0x70))
                     (*(longlong **)(render_context + RENDER_CONTEXT_OFFSET), stack_param6, 0, 1);
     if (param_result < 0) {
-        FUN_180220810(param_result, &UNK_180a17400);
+        FUN_180220810(param_result, &unknown_var_1936_ptr);
     }
     else {
         param_result = func_0x000180225d90(*(int32_t *)(resource_data + 0x324));
@@ -855,7 +855,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
                                 (*(longlong **)(render_context + RENDER_CONTEXT_OFFSET), *(uint64_t *)(resource_data + 0x88),
                                  stack_buffer3, 0x58);
         }
-        stack_ptr3 = &UNK_1809feda8;
+        stack_ptr3 = &unknown_var_2008_ptr;
         stack_ptr4 = stack_buffer4;
         stack_buffer4[0] = 0;
         stack_param13 = *(int32_t *)(*(longlong *)(resource_data + 0x58) + 0x30);
@@ -867,8 +867,8 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         strcpy_s(stack_buffer4, 0x100, data_ptr1);
         resource_handle = FUN_18029fcf0(render_context + 0x8208, &stack_ptr3);
         *(longlong *)(resource_handle + 8) = *(longlong *)(resource_handle + 8) + stack_param12;
-        stack_ptr3 = &UNK_18098bcb0;
-        stack_ptr5 = &UNK_1809feda8;
+        stack_ptr3 = &unknown_var_720_ptr;
+        stack_ptr5 = &unknown_var_2008_ptr;
         stack_ptr6 = stack_buffer5;
         stack_buffer5[0] = 0;
         stack_param14 = *(int32_t *)(*(longlong *)(resource_data + 0x58) + 0x30);
@@ -880,8 +880,8 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         strcpy_s(stack_buffer5, 0x100, data_ptr1);
         resource_handle = FUN_18029fcf0(render_context + 0x8208, &stack_ptr5);
         *(longlong *)(resource_handle + 0x18) = *(longlong *)(resource_handle + 0x18) + stack_param11;
-        stack_ptr5 = &UNK_18098bcb0;
-        stack_ptr1 = &UNK_1809feda8;
+        stack_ptr5 = &unknown_var_720_ptr;
+        stack_ptr1 = &unknown_var_2008_ptr;
         stack_ptr2 = stack_buffer2;
         stack_buffer2[0] = 0;
         stack_param9 = *(int32_t *)(*(longlong *)(resource_data + 0x58) + 0x30);
@@ -893,7 +893,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         strcpy_s(stack_buffer2, 0x100, data_ptr1);
         resource_handle = FUN_18029fcf0(render_context + 0x8208, &stack_ptr1);
         *(longlong *)(resource_handle + 0x10) = *(longlong *)(resource_handle + 0x10) + stack_param10;
-        stack_ptr1 = &UNK_18098bcb0;
+        stack_ptr1 = &unknown_var_720_ptr;
     }
     
     // 处理性能数据
@@ -909,7 +909,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
                                  &stack_param2, 8);
         }
         resource_handle = CONCAT44(stack_param3, stack_param2);
-        stack_ptr1 = &UNK_1809feda8;
+        stack_ptr1 = &unknown_var_2008_ptr;
         stack_ptr2 = stack_buffer2;
         stack_buffer2[0] = 0;
         stack_param9 = *(int32_t *)(resource_data + 0x10);
@@ -920,7 +920,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         strcpy_s(stack_buffer2, 0x100, data_ptr1);
         context_ptr = (longlong *)FUN_18029fcf0(render_context + 0x8208, &stack_ptr1);
         *context_ptr = *context_ptr + resource_handle;
-        stack_ptr1 = &UNK_18098bcb0;
+        stack_ptr1 = &unknown_var_720_ptr;
     }
     
     // 性能优化计算
@@ -1107,7 +1107,7 @@ void rendering_batch_renderer(longlong render_context, uint param1, uint param2)
                      (*(longlong **)(render_context + RENDER_CONTEXT_OFFSET), *(uint64_t *)(resource_offset + 0x10), 0, 4, 0,
                       resource_array);
     if (render_result < 0) {
-        FUN_180220810(render_result, &UNK_180a17358);
+        FUN_180220810(render_result, &unknown_var_1768_ptr);
     }
     param_value = param1 >> 0xe;
     resource_offset = (longlong)*(int *)(_DAT_180c86890 + 0x1538) * 0x488 + _DAT_180c86890 + 0x1a18;
@@ -1179,7 +1179,7 @@ void rendering_texture_renderer(longlong render_context, uint64_t texture_data, 
     render_result = (**(code **)(**(longlong **)(render_context + RENDER_CONTEXT_OFFSET) + 0x70))
                     (*(longlong **)(render_context + RENDER_CONTEXT_OFFSET), *(uint64_t *)(resource_handle + 0x10), 0, 4, 0, resource_array);
     if (render_result < 0) {
-        FUN_180220810(render_result, &UNK_180a17358);
+        FUN_180220810(render_result, &unknown_var_1768_ptr);
     }
     memcpy(resource_array[0], texture_data, (longlong)param1 << 5);
 }

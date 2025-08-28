@@ -25,11 +25,11 @@
 // 全局变量引用
 extern longlong _DAT_180c8a9b0;      // 核心引擎全局数据结构指针
 extern uint64_t _DAT_180c8a9a8;     // 内存分配器相关
-extern uint UNK_18098d290[256];       // 哈希计算查找表
-extern uint64_t UNK_180a06770;      // 字符串处理相关
-extern uint64_t UNK_180a06768;      // 字符串处理相关
+extern uint global_config_6320_ptr[256];       // 哈希计算查找表
+extern uint64_t global_config_3184_ptr;      // 字符串处理相关
+extern uint64_t global_config_3176_ptr;      // 字符串处理相关
 extern char system_buffer_ptr;            // 字符常量
-extern char UNK_180a06474;            // 默认字符串常量
+extern char global_config_2420_ptr;            // 默认字符串常量
 
 // 函数声明
 void StringProcessor_FormatAndWrite(uint64_t *param_1, int param_2, ...);
@@ -115,11 +115,11 @@ void process_string_and_write_buffer(longlong context, char *input_start, char *
       // 根据格式选择写入方式
       if ((should_use_alternative_format) || (current_pos != input_start)) {
         // 使用替代格式写入
-        StringProcessor_FormatAndWrite(&UNK_180a06770, (write_index - current_count) * 4, &system_buffer_ptr, line_length, current_pos);
+        StringProcessor_FormatAndWrite(&global_config_3184_ptr, (write_index - current_count) * 4, &system_buffer_ptr, line_length, current_pos);
       }
       else {
         // 使用标准格式写入
-        StringProcessor_FormatAndWrite(&UNK_180a06768, line_length, current_pos);
+        StringProcessor_FormatAndWrite(&global_config_3176_ptr, line_length, current_pos);
       }
     }
     
@@ -236,7 +236,7 @@ uint64_t *create_string_hash_entry(byte *input_string)
     }
     
     // 使用查找表计算哈希值
-    hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+    hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
                hash_value >> 8;
     
     current_char = *char_ptr;
@@ -374,7 +374,7 @@ uint64_t *create_string_hash_entry_with_params(byte *input_string)
       hash_value = 0xffffffff;
     }
     
-    hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+    hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
                hash_value >> 8;
     
     current_char = *char_ptr;
@@ -473,7 +473,7 @@ uint64_t *create_default_string_hash_entry(void)
       hash_value = 0xffffffff;
     }
     
-    hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+    hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
                hash_value >> 8;
     
     current_char = *char_ptr;
@@ -559,7 +559,7 @@ uint64_t *create_string_hash_entry_at_index(int entry_index)
       hash_value = 0xffffffff;
     }
     
-    hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+    hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
                hash_value >> 8;
     
     current_char = *char_ptr;
@@ -598,7 +598,7 @@ void calculate_string_hash_and_store(byte first_char, uint64_t unused_param, uin
     }
     
     // 使用查找表计算哈希值
-    initial_hash = *(uint *)(&UNK_18098d290 + ((ulonglong)(initial_hash & 0xff) ^ (ulonglong)first_char) * 4) ^
+    initial_hash = *(uint *)(&global_config_6320_ptr + ((ulonglong)(initial_hash & 0xff) ^ (ulonglong)first_char) * 4) ^
                   initial_hash >> 8;
     
     // 移动到下一个字符
@@ -758,7 +758,7 @@ void parse_config_file(void)
         if ((bracket_pos == (int8_t *)0x0) ||
            (nested_bracket = memchr(bracket_pos + 1, 0x5b, (longlong)section_end - (longlong)(bracket_pos + 1)), nested_bracket == 0)) {
           // 如果格式无效，使用默认节名
-          section_name = &UNK_180a06474;
+          section_name = &global_config_2420_ptr;
         }
         else {
           // 截断第一个右方括号处的字符串
@@ -777,7 +777,7 @@ void parse_config_file(void)
           }
           
           // 使用查找表计算哈希值
-          hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+          hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
                      hash_value >> 8;
           
           section_name = char_ptr;
@@ -950,7 +950,7 @@ void parse_config_file_variant(void)
           if ((bracket_pos == (int8_t *)0x0) ||
              (nested_bracket = memchr(bracket_pos + 1, 0x5b, (longlong)section_end - (longlong)(bracket_pos + 1)), nested_bracket == 0)) {
             // 如果格式无效，使用默认节名
-            section_name = &UNK_180a06474;
+            section_name = &global_config_2420_ptr;
           }
           else {
             // 截断第一个右方括号处的字符串
@@ -969,7 +969,7 @@ void parse_config_file_variant(void)
             }
             
             // 使用查找表计算哈希值
-            hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+            hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
                        hash_value >> 8;
             
             section_name = char_ptr;
@@ -1055,7 +1055,7 @@ void write_data_to_file(longlong file_path)
     // 准备要写入的数据
     data_buffer = DataBuffer_Prepare(&data_size);
     // 打开文件
-    file_handle = FileHandler_Open(file_path, &UNK_180a06794);
+    file_handle = FileHandler_Open(file_path, &global_config_3220_ptr);
     
     if (file_handle != 0) {
       // 写入数据并关闭文件

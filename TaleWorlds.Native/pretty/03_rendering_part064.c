@@ -353,7 +353,7 @@ FUN_180300f20(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
   uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a19fd8;
+  *param_1 = &unknown_var_3160_ptr;
   plVar1 = (longlong *)param_1[0x19];
   param_1[0x19] = 0;
   if (plVar1 != (longlong *)0x0) {
@@ -375,14 +375,14 @@ uint64_t *
 FUN_180300fc0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
+  *param_2 = &unknown_var_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0xd;
-  strcpy_s(param_2[1],0x80,&UNK_180a19df0,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&unknown_var_2672_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -403,7 +403,7 @@ longlong * FUN_180301040(longlong *param_1)
   longlong lVar8;
   
   FUN_180244190();
-  *param_1 = (longlong)&UNK_180a19eb0;
+  *param_1 = (longlong)&unknown_var_2864_ptr;
   param_1[0xa4] = 0;
   param_1[0xa5] = 0;
   param_1[0xa6] = 0;
@@ -476,18 +476,18 @@ longlong * FUN_180301040(longlong *param_1)
   FUN_1808fc838(param_1 + 0xce,8,2,&SUB_18005d5f0,FUN_180045af0);
   param_1[0xda] = 0;
   FUN_180094c20(param_1 + 0xdc);
-  param_1[0x106] = (longlong)&UNK_18098bcb0;
+  param_1[0x106] = (longlong)&unknown_var_720_ptr;
   param_1[0x107] = 0;
   *(int32_t *)(param_1 + 0x108) = 0;
-  param_1[0x106] = (longlong)&UNK_180a3c3e0;
+  param_1[0x106] = (longlong)&unknown_var_3456_ptr;
   param_1[0x109] = 0;
   param_1[0x107] = 0;
   *(int32_t *)(param_1 + 0x108) = 0;
   plVar2 = param_1 + 0x10b;
-  *plVar2 = (longlong)&UNK_18098bcb0;
+  *plVar2 = (longlong)&unknown_var_720_ptr;
   param_1[0x10c] = 0;
   *(int32_t *)(param_1 + 0x10d) = 0;
-  *plVar2 = (longlong)&UNK_180a3c3e0;
+  *plVar2 = (longlong)&unknown_var_3456_ptr;
   param_1[0x10e] = 0;
   param_1[0x10c] = 0;
   *(int32_t *)(param_1 + 0x10d) = 0;
@@ -825,10 +825,10 @@ FUN_180301830(longlong param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   longlong lVar2;
   int32_t uVar3;
   
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
+  *param_2 = &unknown_var_3456_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;

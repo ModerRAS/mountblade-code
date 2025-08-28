@@ -580,13 +580,13 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
         fwrite(resource_data_ptr, item_count, 1, *(uint64_t *)(output_handle_local + RENDER_OUTPUT_OFFSET));
         
         // 清理临时数据
-        cleanup_handler = &UNK_180a3c3e0;
+        cleanup_handler = &unknown_var_3456_ptr;
         if (cleanup_flag != 0) {
             FUN_18064e900();
         }
         cleanup_flag = 0;
         status_flag = 0;
-        cleanup_handler = &UNK_18098bcb0;
+        cleanup_handler = &unknown_var_720_ptr;
         if (((char)error_handler == '\0') && (resource_data_ptr != (longlong *)0x0)) {
             FUN_18064e900(resource_data_ptr);
         }
@@ -782,7 +782,7 @@ void RenderingSystem_ExecuteBatchOperations(uint64_t *param_1, int param_2, int 
             resource_data = callback_stack[0];
             
             // 执行数据压缩处理
-            error_handler = &UNK_1809ff4e0;
+            error_handler = &unknown_var_3856_ptr;
             callback_status = 0;
             thread_counter = resource_id_2;
             processed_count = resource_id_2;
@@ -814,13 +814,13 @@ void RenderingSystem_ExecuteBatchOperations(uint64_t *param_1, int param_2, int 
             
             // 清理回调数据
             callback_stack_ptr = &error_handler;
-            error_handler = &UNK_180a3c3e0;
+            error_handler = &unknown_var_3456_ptr;
             if (error_flag != 0) {
                 FUN_18064e900();
             }
             error_flag = 0;
             completion_flag = 0;
-            error_handler = &UNK_18098bcb0;
+            error_handler = &unknown_var_720_ptr;
             
             // 清理处理后的数据
             if (((char)callback_status == '\0') && (resource_data != 0)) {

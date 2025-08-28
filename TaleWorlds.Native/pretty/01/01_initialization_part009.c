@@ -36,9 +36,9 @@
 #define INIT_FLAG_0xC 0xC             // 初始化标志0xC
 
 // 系统配置数据地址
-#define CONFIG_DATA_180a22538 (&UNK_180a22538)    // 配置数据地址1
-#define CONFIG_DATA_180a24340 (&UNK_180a24340)    // 配置数据地址2
-#define CONFIG_DATA_180a24828 (&UNK_180a24828)    // 配置数据地址3
+#define CONFIG_DATA_180a22538 (&unknown_var_7304_ptr)    // 配置数据地址1
+#define CONFIG_DATA_180a24340 (&unknown_var_4992_ptr)    // 配置数据地址2
+#define CONFIG_DATA_180a24828 (&unknown_var_6248_ptr)    // 配置数据地址3
 #define CONFIG_DATA_1809fc740 (&system_memory_c740)    // 配置数据地址4
 #define CONFIG_DATA_1809fc768 (&system_memory_c768)    // 配置数据地址5
 
@@ -79,11 +79,11 @@ void InitializationSystem_ConfigRegistrationManager1(void)
   int32_t uStack_90;
   int8_t auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &unknown_var_3432_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x16;
-  strcpy_s(auStack_88,0x80,&UNK_180a22538,in_R9,0xfffffffffffffffe);
+  strcpy_s(auStack_88,0x80,&unknown_var_7304_ptr,in_R9,0xfffffffffffffffe);
   _DAT_180c91f68 = FUN_180623800(&puStack_a0);
   return;
 }
@@ -114,7 +114,7 @@ int InitializationSystem_GlobalDataInitializer1(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _DAT_180bf91b0 = &UNK_1809fcc58;
+  _DAT_180bf91b0 = &unknown_var_3480_ptr;
   _DAT_180bf91b8 = &system_memory_91c8;
   
   return lVar1;
@@ -181,7 +181,7 @@ void InitializationSystem_RegistrySearchAndInsert1(void)
   }
   puVar7[6] = 0x4fc124d23d41985f;
   puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
+  puVar7[8] = &unknown_var_3504_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -248,7 +248,7 @@ void InitializationSystem_RegistrySearchAndInsert2(void)
   }
   puVar7[6] = 0x4770584fbb1df897;
   puVar7[7] = 0x47f249e43f66f2ab;
-  puVar7[8] = &UNK_18098c7a0;
+  puVar7[8] = &unknown_var_3520_ptr;
   puVar7[9] = 1;
   puVar7[10] = uStackX_18;
   return;
@@ -315,7 +315,7 @@ void InitializationSystem_RegistrySearchAndInsert3(void)
   }
   puVar7[6] = 0x4666df49b97e0f10;
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
-  puVar7[8] = &UNK_18098c7b8;
+  puVar7[8] = &unknown_var_3544_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -382,7 +382,7 @@ void InitializationSystem_RegistrySearchAndInsert4(void)
   }
   puVar7[6] = 0x46ecbd4daf41613e;
   puVar7[7] = 0xdc42c056bbde8482;
-  puVar7[8] = &UNK_18098c7c8;
+  puVar7[8] = &unknown_var_3560_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -449,7 +449,7 @@ void InitializationSystem_RegistrySearchAndInsert5(void)
   }
   puVar7[6] = 0x4c868a42644030f6;
   puVar7[7] = 0xc29193aa9d9b35b9;
-  puVar7[8] = &UNK_18098c7d8;
+  puVar7[8] = &unknown_var_3576_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -516,7 +516,7 @@ void InitializationSystem_RegistrySearchAndInsert6(void)
   }
   puVar7[6] = 0x40ea3a798283cbbb;
   puVar7[7] = 0x7f74eb2c5a7fadae;
-  puVar7[8] = &UNK_18098c7f0;
+  puVar7[8] = &unknown_var_3600_ptr;
   puVar7[9] = 3;
   puVar7[10] = uStackX_18;
   return;
@@ -583,7 +583,7 @@ void InitializationSystem_RegistrySearchAndInsert7(void)
   }
   puVar7[6] = 0x45b8d074df27d12f;
   puVar7[7] = 0x8d98f4c06880eda4;
-  puVar7[8] = &UNK_18098c810;
+  puVar7[8] = &unknown_var_3632_ptr;
   puVar7[9] = 3;
   puVar7[10] = uStackX_18;
   return;
@@ -650,7 +650,7 @@ void InitializationSystem_RegistrySearchAndInsert8(void)
   }
   puVar7[6] = 0x421c3cedd07d816d;
   puVar7[7] = 0xbec25de793b7afa6;
-  puVar7[8] = &UNK_18098c880;
+  puVar7[8] = &unknown_var_3744_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -717,7 +717,7 @@ void InitializationSystem_RegistrySearchAndInsert9(void)
   }
   puVar7[6] = 0x4c22bb0c326587ce;
   puVar7[7] = 0x5e3cf00ce2978287;
-  puVar7[8] = &UNK_18098c898;
+  puVar7[8] = &unknown_var_3768_ptr;
   puVar7[9] = 1;
   puVar7[10] = uStackX_18;
   return;
@@ -752,11 +752,11 @@ void InitializationSystem_ConfigRegistrationManager2(void)
   int32_t uStack_90;
   int8_t auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &unknown_var_3432_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x12;
-  strcpy_s(auStack_88,0x80,&UNK_180a24340,in_R9,0xfffffffffffffffe);
+  strcpy_s(auStack_88,0x80,&unknown_var_4992_ptr,in_R9,0xfffffffffffffffe);
   _DAT_180c91f6c = FUN_180623800(&puStack_a0);
   return;
 }
@@ -790,11 +790,11 @@ void InitializationSystem_ConfigRegistrationManager3(void)
   int32_t uStack_90;
   int8_t auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &unknown_var_3432_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 8;
-  strcpy_s(auStack_88,0x80,&UNK_180a24828,in_R9,0xfffffffffffffffe);
+  strcpy_s(auStack_88,0x80,&unknown_var_6248_ptr,in_R9,0xfffffffffffffffe);
   _DAT_180c91fcc = FUN_180623800(&puStack_a0);
   return;
 }
@@ -860,7 +860,7 @@ void InitializationSystem_RegistrySearchAndInsert10(void)
   }
   puVar7[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &unknown_var_7584_ptr;
   puVar7[9] = 1;
   puVar7[10] = pcStackX_18;
   return;
@@ -927,7 +927,7 @@ void InitializationSystem_RegistrySearchAndInsert11(void)
   }
   puVar7[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &unknown_var_7608_ptr;
   puVar7[9] = 4;
   puVar7[10] = pcStackX_18;
   return;
@@ -994,7 +994,7 @@ void InitializationSystem_RegistrySearchAndInsert12(void)
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
-  puVar7[8] = &UNK_180a003a0;
+  puVar7[8] = &unknown_var_7632_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1061,7 +1061,7 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &UNK_180a003b8;
+  puVar7[8] = &unknown_var_7656_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -1128,7 +1128,7 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &UNK_180a003d0;
+  puVar7[8] = &unknown_var_7680_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1172,7 +1172,7 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
   plVar4 = (longlong *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  puStackX_18 = &UNK_1800868c0;
+  puStackX_18 = &unknown_var_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1195,7 +1195,7 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &UNK_180a003e8;
+  puVar7[8] = &unknown_var_7704_ptr;
   puVar7[9] = 0;
   puVar7[10] = puStackX_18;
   return;
@@ -1262,7 +1262,7 @@ void InitializationSystem_RegistrySearchAndInsert16(void)
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
-  puVar7[8] = &UNK_180a00400;
+  puVar7[8] = &unknown_var_7728_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1294,7 +1294,7 @@ int InitializationSystem_GlobalDataInitializer2(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _DAT_180bfa350 = &UNK_1809fcc28;
+  _DAT_180bfa350 = &unknown_var_3432_ptr;
   _DAT_180bfa358 = &system_memory_a368;
   
   return lVar1;
@@ -1361,7 +1361,7 @@ void InitializationSystem_RegistrySearchAndInsert17(void)
   }
   puVar7[6] = 0x45425dc186a5d575;
   puVar7[7] = 0xfab48faa65382fa5;
-  puVar7[8] = &UNK_180a00460;
+  puVar7[8] = &unknown_var_7824_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -1428,7 +1428,7 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
   }
   puVar7[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &unknown_var_7584_ptr;
   puVar7[9] = 1;
   puVar7[10] = pcStackX_18;
   return;
@@ -1495,7 +1495,7 @@ void InitializationSystem_RegistrySearchAndInsert19(void)
   }
   puVar7[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &unknown_var_7608_ptr;
   puVar7[9] = 4;
   puVar7[10] = pcStackX_18;
   return;
@@ -1562,7 +1562,7 @@ void InitializationSystem_RegistrySearchAndInsert20(void)
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
-  puVar7[8] = &UNK_180a003a0;
+  puVar7[8] = &unknown_var_7632_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1629,7 +1629,7 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &UNK_180a003b8;
+  puVar7[8] = &unknown_var_7656_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -1696,7 +1696,7 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &UNK_180a003d0;
+  puVar7[8] = &unknown_var_7680_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1740,7 +1740,7 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
   plVar4 = (longlong *)FUN_18008d070();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  puStackX_18 = &UNK_1800868c0;
+  puStackX_18 = &unknown_var_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1763,7 +1763,7 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &UNK_180a003e8;
+  puVar7[8] = &unknown_var_7704_ptr;
   puVar7[9] = 0;
   puVar7[10] = puStackX_18;
   return;
@@ -1830,7 +1830,7 @@ void InitializationSystem_RegistrySearchAndInsert24(void)
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
-  puVar7[8] = &UNK_180a00400;
+  puVar7[8] = &unknown_var_7728_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;

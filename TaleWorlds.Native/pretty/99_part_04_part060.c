@@ -179,10 +179,10 @@ void FUN_1802bba20(longlong *param_1,float param_2)
   if ((int)uVar12 < 0) {
     uVar12 = (uVar12 - 1 | 0xffffff00) + 1;
   }
-  fStack_248 = ((*(float *)(&UNK_180a18120 + (longlong)(int)uVar12 * 4) -
-                *(float *)(&UNK_180a18120 + (longlong)(int)uVar10 * 4)) *
+  fStack_248 = ((*(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar12 * 4) -
+                *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar10 * 4)) *
                 (fVar27 - (float)(int)uVar9) +
-               *(float *)(&UNK_180a18120 + (longlong)(int)uVar10 * 4)) * *pfVar17 + 1.0;
+               *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar10 * 4)) * *pfVar17 + 1.0;
   fStack_244 = pfVar17[3] * pfVar17[2] * fStack_248;
   fStack_248 = pfVar17[3] * pfVar17[1] * fStack_248;
   iStack_280 = 0;

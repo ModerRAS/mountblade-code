@@ -268,7 +268,7 @@ FUN_180382fd0(longlong *param_1,uint64_t *param_2,longlong *param_3,uint64_t par
         if (*(void **)(*param_3 + 0x18) != (void *)0x0) {
           puVar4 = *(void **)(*param_3 + 0x18);
         }
-        FUN_180626f80(&UNK_180a21bd0,(double)*(float *)((longlong)param_3 + 0x3c),puVar4);
+        FUN_180626f80(&unknown_var_4896_ptr,(double)*(float *)((longlong)param_3 + 0x3c),puVar4);
       }
       puVar2 = (uint64_t *)
                (**(code **)(*param_1 + 0xc0))(param_1,&plStack_28,param_3,uVar1,param_5);

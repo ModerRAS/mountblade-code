@@ -116,7 +116,7 @@ LAB_180856fce:
             if (*piVar22 == 0) {
               uStack_b8 = CONCAT71(uStack_b8._1_7_,1);
                     // WARNING: Subroutine does not return
-              FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),lVar7,&UNK_180984d50,0x76);
+              FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),lVar7,&unknown_var_2208_ptr,0x76);
             }
           }
           if (((plVar21 == plVar18) ||

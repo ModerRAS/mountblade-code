@@ -48,7 +48,7 @@ void FUN_18007c490(longlong *param_1,byte param_2,longlong *param_3,longlong *pa
   }
   uStack_d8 = CONCAT31(uStack_d8._1_3_,param_2);
   uStack_e0 = param_1;
-  if ((void *)*param_1 == &UNK_180a00270) {
+  if ((void *)*param_1 == &unknown_var_7328_ptr) {
     LOCK();
     *(int *)(param_1 + 1) = (int)param_1[1] + 1;
     UNLOCK();
@@ -59,8 +59,8 @@ void FUN_18007c490(longlong *param_1,byte param_2,longlong *param_3,longlong *pa
   if (param_5 == '\0') {
     plVar4 = *(longlong **)(param_1[0x15] + 0x88);
     pcVar5 = *(code **)(*plVar4 + 0x70);
-    pcStack_f0 = (code *)&UNK_180083180;
-    puStack_e8 = &UNK_180083170;
+    pcStack_f0 = (code *)&unknown_var_7904_ptr;
+    puStack_e8 = &unknown_var_7888_ptr;
     uStack_100 = (int32_t)uStack_e0;
     uStack_fc = uStack_e0._4_4_;
     uStack_f8 = uStack_d8;
@@ -108,7 +108,7 @@ void FUN_18007c490(longlong *param_1,byte param_2,longlong *param_3,longlong *pa
       if ((void *)param_1[3] != (void *)0x0) {
         puVar7 = (void *)param_1[3];
       }
-      FUN_180626f80(&UNK_1809ffbb0,puVar7);
+      FUN_180626f80(&unknown_var_5600_ptr,puVar7);
       pcVar1 = (char *)(param_1[0x3c] + 0x15 + (ulonglong)param_2 * 0x18);
       LOCK();
       if (*pcVar1 == '\x01') {
@@ -148,7 +148,7 @@ void FUN_18007c790(longlong *param_1)
   if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
     puVar2 = *(void **)(*param_1 + 0x18);
   }
-  FUN_180626f80(&UNK_1809ffbb0,puVar2);
+  FUN_180626f80(&unknown_var_5600_ptr,puVar2);
   pcVar1 = (char *)(*(longlong *)(*param_1 + 0x1e0) + 0x15 +
                    (ulonglong)*(byte *)(param_1 + 1) * 0x18);
   LOCK();

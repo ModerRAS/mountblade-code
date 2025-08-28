@@ -862,7 +862,7 @@ uint64_t SystemResourceManager(uint64_t *param_1, longlong param_2)
                 
                 // 分配内存资源
                 plVar2 = (longlong *)
-                         FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x28, &UNK_180986ef0, 0x269, 0,
+                         FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x28, &unknown_var_816_ptr, 0x269, 0,
                                        (char)uVar1, 1);
                 if (plVar2 == (longlong *)0x0) {
                     return 0x26;
@@ -900,7 +900,7 @@ LAB_1808a674a:
                         plVar2[1] = (longlong)plVar2;
                         *plVar2 = (longlong)plVar2;
                         // 释放资源
-                        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar2, &UNK_18095b500, 0xc6, 1);
+                        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                     }
                 }
                 
@@ -923,7 +923,7 @@ LAB_1808a674a:
                         plVar2[1] = (longlong)plVar2;
                         *plVar2 = (longlong)plVar2;
                         // 释放资源
-                        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar2, &UNK_18095b500, 0xc6, 1);
+                        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                     }
                 }
                 
@@ -979,7 +979,7 @@ LAB_1808a68ad:
         while (uVar1 = FUN_1808dde10(), (int)uVar1 == 0) {
             // 分配动态内存
             plVar2 = (longlong *)
-                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x28, &UNK_180986ef0, 0x269,
+                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x28, &unknown_var_816_ptr, 0x269,
                                    (int)unaff_RDI);
             if (plVar2 == (longlong *)0x0) {
                 return 0x26;
@@ -1017,7 +1017,7 @@ LAB_1808a674a:
                     plVar2[1] = (longlong)plVar2;
                     *plVar2 = (longlong)plVar2;
                     // 释放内存
-                    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar2, &UNK_18095b500, 0xc6, 1);
+                    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                 }
             }
             
@@ -1040,7 +1040,7 @@ LAB_1808a674a:
                     plVar2[1] = (longlong)plVar2;
                     *plVar2 = (longlong)plVar2;
                     // 释放内存
-                    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar2, &UNK_18095b500, 0xc6, 1);
+                    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                 }
             }
             

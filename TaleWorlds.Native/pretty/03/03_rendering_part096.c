@@ -356,13 +356,13 @@ void FUN_180323b30(RenderContext* context, void** resource_array, uint64_t param
     // 执行资源清理和状态更新
     resource_iter = resource_iter2;
 LAB_180323c2a:
-    stack_data_70 = &UNK_180a3c3e0;
+    stack_data_70 = &unknown_var_3456_ptr;
     if (stack_data_68 != (uint8_t*)0x0) {
         FUN_18064e900();
     }
     stack_data_68 = (uint8_t*)0x0;
     stack_data_58 = 0;
-    stack_data_70 = &UNK_18098bcb0;
+    stack_data_70 = &unknown_var_720_ptr;
     
     // 执行最终处理和回调
     if (resource_iter == resource_iter2) {
@@ -375,13 +375,13 @@ LAB_180323c2a:
         if (stack_data_30 != (void**)0x0) {
             (**(code**)(*stack_data_30 + 0x38))();
         }
-        stack_data_50 = &UNK_180a3c3e0;
+        stack_data_50 = &unknown_var_3456_ptr;
         if (stack_data_48 != 0) {
             FUN_18064e900();
         }
         stack_data_48 = 0;
         stack_data_38 = 0;
-        stack_data_50 = &UNK_18098bcb0;
+        stack_data_50 = &unknown_var_720_ptr;
     }
     
     // 执行系统清理和资源释放
@@ -564,7 +564,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_val_f8 = stack_array10;
     stack_val_f0 = stack_array18;
     code_ptr98 = FUN_18033d170;
-    stack_ptr90 = &UNK_18033d160;
+    stack_ptr90 = &unknown_var_6880_ptr;
     stack_val100 = context;
     
     // 分配批处理缓冲区
@@ -598,7 +598,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_val130 = stack_array10;
     stack_val128 = stack_array18;
     code_ptr78 = FUN_18033d080;
-    stack_ptr70 = &UNK_18033d070;
+    stack_ptr70 = &unknown_var_6640_ptr;
     stack_val138 = context;
     
     // 分配第二轮批处理缓冲区

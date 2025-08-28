@@ -66,7 +66,7 @@ longlong FUN_180639bf0(longlong *param_1,ulonglong param_2)
     }
   }
   if ((lVar5 == 0) || (param_1[1] == 0)) {
-    FUN_180626ee0(&UNK_180a3d1a8,param_2);
+    FUN_180626ee0(&unknown_var_6984_ptr,param_2);
     lVar5 = *param_1;
   }
   param_1[2] = param_2;
@@ -125,7 +125,7 @@ longlong FUN_180639cda(longlong param_1,uint64_t param_2)
   *unaff_RBX = lVar1;
   unaff_RBX[1] = lVar1;
   if ((lVar1 == 0) || (unaff_RBX[1] == 0)) {
-    FUN_180626ee0(&UNK_180a3d1a8);
+    FUN_180626ee0(&unknown_var_6984_ptr);
     lVar1 = *unaff_RBX;
   }
   unaff_RBX[2] = unaff_RDI;

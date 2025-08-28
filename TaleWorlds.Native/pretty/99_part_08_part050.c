@@ -478,17 +478,17 @@ void FUN_1805ab940(longlong param_1,int8_t *param_2,longlong param_3,char param_
       iVar2 = *param_6;
       uVar3 = *(int32_t *)(param_3 + 0x10);
       uVar4 = *(int32_t *)(param_2 + 0x10);
-      cVar7 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
+      cVar7 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
       if (cVar7 != '\0') {
-        cVar7 = FUN_180645c10(0x180c95578,10,&UNK_1809fa540);
+        cVar7 = FUN_180645c10(0x180c95578,10,&unknown_var_3472_ptr);
         if (cVar7 != '\0') {
-          cVar7 = FUN_180645c10(0x180c95578,uVar4,&UNK_1809fa510);
+          cVar7 = FUN_180645c10(0x180c95578,uVar4,&unknown_var_3424_ptr);
           if (cVar7 != '\0') {
-            cVar7 = FUN_180645c10(0x180c95578,uVar3,&UNK_1809fa510);
+            cVar7 = FUN_180645c10(0x180c95578,uVar3,&unknown_var_3424_ptr);
             if (cVar7 != '\0') {
-              cVar7 = FUN_180645c10(0x180c95578,(int)cStack_136,&UNK_1809fa460);
+              cVar7 = FUN_180645c10(0x180c95578,(int)cStack_136,&unknown_var_3248_ptr);
               if (cVar7 != '\0') {
-                cVar7 = FUN_18056eb00(0x180c95578,uStack_130,&UNK_1809fa4d0);
+                cVar7 = FUN_18056eb00(0x180c95578,uStack_130,&unknown_var_3360_ptr);
                 if (cVar7 != '\0') {
                   cVar7 = FUN_180645c10(0x180c95578,iVar2,&system_data_bca0);
                   if (cVar7 != '\0') {
@@ -496,9 +496,9 @@ void FUN_1805ab940(longlong param_1,int8_t *param_2,longlong param_3,char param_
                     if (cVar7 != '\0') {
                       cVar7 = FUN_180645c10(0x180c95578,iVar8,&system_data_bca0);
                       if (cVar7 != '\0') {
-                        cVar7 = FUN_180645c10(0x180c95578,uStack_137,&UNK_1809fa560);
+                        cVar7 = FUN_180645c10(0x180c95578,uStack_137,&unknown_var_3504_ptr);
                         if (cVar7 != '\0') {
-                          FUN_180645c10(0x180c95578,uStack_138,&UNK_1809fa560);
+                          FUN_180645c10(0x180c95578,uStack_138,&unknown_var_3504_ptr);
                         }
                       }
                     }

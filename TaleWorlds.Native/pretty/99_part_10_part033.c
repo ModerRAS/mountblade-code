@@ -833,7 +833,7 @@ void FUN_1806badd0(longlong *param_1,float *param_2,float *param_3,int param_4,i
   if (param_4 - 2U < 2) {
     uVar2 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
     _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-              (uVar2,4,&UNK_18094b6b0,0x18d,&UNK_18094b930);
+              (uVar2,4,&unknown_var_7040_ptr,0x18d,&unknown_var_7680_ptr);
   }
   else {
     (**(code **)(*param_1 + 0x90))(param_1,&fStack_d8);

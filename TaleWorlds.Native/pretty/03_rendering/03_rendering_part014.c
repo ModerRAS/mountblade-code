@@ -91,7 +91,7 @@ void update_render_object_status(longlong render_context, longlong *object_list)
         }
         else {
           // 处理错误情况
-          FUN_180626f80(&UNK_1809ffa40);
+          FUN_180626f80(&unknown_var_5232_ptr);
         }
       }
       list_iterator = list_iterator + 2;
@@ -144,7 +144,7 @@ void perform_render_transform(uint64_t *transform_matrix, longlong transform_typ
   // 检查渲染标志
   if (*(int *)(transform_matrix + 0x42) != 0) {
     // 获取着色器参数
-    if ((void *)*transform_matrix == &UNK_180a169b8) {
+    if ((void *)*transform_matrix == &unknown_var_9304_ptr) {
       shader_params = (float *)(transform_matrix + 0x66);
     }
     else {

@@ -427,14 +427,14 @@ uint64_t * InitializeComplexTransformObject(uint64_t *object, char param2, char 
   longlong *cleanup_ptr1;
   longlong *cleanup_ptr2;
   
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
+  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &unknown_var_3696_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
+  *param_1 = &unknown_var_8584_ptr;
+  param_1[2] = &unknown_var_720_ptr;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  param_1[2] = &UNK_1809fcc28;
+  param_1[2] = &unknown_var_3432_ptr;
   param_1[3] = param_1 + 5;
   *(int32_t *)(param_1 + 4) = 0;
   *(int8_t *)(param_1 + 5) = 0;
@@ -442,7 +442,7 @@ uint64_t * InitializeComplexTransformObject(uint64_t *object, char param2, char 
   *(int32_t *)(param_1 + 1) = 0;
   *(int16_t *)(param_1 + 0x16) = 0;
   param_1[0x15] = 0;
-  *param_1 = &UNK_180a00270;
+  *param_1 = &unknown_var_7328_ptr;
   func_0x000180086550(param_1 + 0x19);
   *(int32_t *)(param_1 + 0x1e) = 0;
   LOCK();
@@ -577,14 +577,14 @@ uint64_t * InitializeComplexTransformObject(uint64_t *object, char param2, char 
   *(int32_t *)((longlong)param_1 + 0x1ac) = 0x7f7fffff;
   *(int32_t *)(param_1 + 0x3a) = 0xffffffff;
   plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,9,plVar4,plVar3);
-  *plVar3 = (longlong)&UNK_180a21690;
-  *plVar3 = (longlong)&UNK_180a21720;
+  *plVar3 = (longlong)&unknown_var_3552_ptr;
+  *plVar3 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar3 + 1) = 0;
-  *plVar3 = (longlong)&UNK_180a00208;
-  plVar3[4] = (longlong)&UNK_18098bcb0;
+  *plVar3 = (longlong)&unknown_var_7224_ptr;
+  plVar3[4] = (longlong)&unknown_var_720_ptr;
   plVar3[5] = 0;
   *(int32_t *)(plVar3 + 6) = 0;
-  plVar3[4] = (longlong)&UNK_180a3c3e0;
+  plVar3[4] = (longlong)&unknown_var_3456_ptr;
   plVar3[7] = 0;
   plVar3[5] = 0;
   *(int32_t *)(plVar3 + 6) = 0;
@@ -717,7 +717,7 @@ void ProcessTransformData(longlong transform_data, uint64_t *data_source)
   *(int32_t *)(param_1 + 0x158) = uVar5;
   *(int32_t *)(param_1 + 0x15c) = uVar6;
   if (plVar2 != (longlong *)0x0) {
-    if (*(code **)(*plVar2 + 0x160) == (code *)&UNK_180277350) {
+    if (*(code **)(*plVar2 + 0x160) == (code *)&unknown_var_6368_ptr) {
       puVar1 = (uint64_t *)((longlong)plVar2 + 0x214);
       *(int32_t *)((longlong)plVar2 + 0x244) = 0;
       if (plVar2[8] - plVar2[7] >> 4 == 0) {
@@ -850,7 +850,7 @@ void DestroyTransformObject(uint64_t *object)
   uint64_t error_code;
   
   uVar4 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a00270;
+  *param_1 = &unknown_var_7328_ptr;
   param_1[0x39] = 0;
   if (param_1[0x59] != 0) {
                     // WARNING: Subroutine does not return

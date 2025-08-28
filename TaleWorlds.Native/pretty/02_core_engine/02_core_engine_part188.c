@@ -121,7 +121,7 @@ LAB_1801701db:
       }
     }
 LAB_18017009e:
-    puStack_78 = &UNK_180a3c3e0;
+    puStack_78 = &unknown_var_3456_ptr;
     uStack_60 = 0;
     pbStack_70 = (byte *)0x0;
     iStack_68 = 0;
@@ -170,7 +170,7 @@ LAB_180170120:
     } while (0 < (int)(bVar1 - uVar9));
 LAB_18017023b:
     if (uVar14 < uVar7) {
-      puStack_58 = &UNK_180a3c3e0;
+      puStack_58 = &unknown_var_3456_ptr;
       uVar2 = *(int32_t *)(uVar14 + 0x10);
       uVar5 = *(uint64_t *)(uVar14 + 8);
       uVar3 = *(int32_t *)(uVar14 + 0x1c);
@@ -193,18 +193,18 @@ LAB_18017023b:
       uStack_48 = 0;
       uStack_50 = 0;
       uStack_40 = 0;
-      puStack_58 = &UNK_18098bcb0;
+      puStack_58 = &unknown_var_720_ptr;
       uVar14 = uVar14 + 0x20;
       goto LAB_180170120;
     }
-    puStack_78 = &UNK_180a3c3e0;
+    puStack_78 = &unknown_var_3456_ptr;
     if (pbStack_70 != (byte *)0x0) {
       // 警告：子函数不返回
       trigger_memory_error();
     }
     pbStack_70 = (byte *)0x0;
     uStack_60 = uStack_60 & 0xffffffff00000000;
-    puStack_78 = &UNK_18098bcb0;
+    puStack_78 = &unknown_var_720_ptr;
     param_3 = param_3 + -1;
     param_4 = uVar15;
     compare_and_process_strings(uVar14, param_2, param_3, uVar15);
@@ -247,7 +247,7 @@ void process_string_range(longlong param_1, ulonglong param_2, ulonglong param_3
     do {
       lVar6 = lVar6 + -1;
       plVar1 = plVar7 + -4;
-      puStack_60 = &UNK_180a3c3e0;
+      puStack_60 = &unknown_var_3456_ptr;
       uStack_50 = (int32_t)plVar7[-3];
       lStack_58 = *plVar1;
       lStack_48 = plVar7[-2];
@@ -255,7 +255,7 @@ void process_string_range(longlong param_1, ulonglong param_2, ulonglong param_3
       *plVar1 = 0;
       plVar7[-2] = 0;
       process_memory_block(param_1, lVar6, lVar9, lVar6, &puStack_60, param_4, uVar10);
-      puStack_60 = &UNK_180a3c3e0;
+      puStack_60 = &unknown_var_3456_ptr;
       if (lStack_58 != 0) {
         // 警告：子函数不返回
         trigger_memory_error();
@@ -285,7 +285,7 @@ void process_string_range(longlong param_1, ulonglong param_2, ulonglong param_3
         bVar3 = 0 < (int)(bVar2 - uVar5);
       }
       if (bVar3) {
-        puStack_60 = &UNK_180a3c3e0;
+        puStack_60 = &unknown_var_3456_ptr;
         uStack_50 = (int32_t)plVar7[1];
         lStack_58 = *plVar7;
         lStack_48 = plVar7[2];
@@ -307,7 +307,7 @@ void process_string_range(longlong param_1, ulonglong param_2, ulonglong param_3
         *(uint64_t *)(param_1 + 8) = 0;
         *(uint64_t *)(param_1 + 0x18) = 0;
         process_memory_block(param_1, 0, lVar9, 0, &puStack_60, param_4, uVar10);
-        puStack_60 = &UNK_180a3c3e0;
+        puStack_60 = &unknown_var_3456_ptr;
         if (lStack_58 != 0) {
           // 警告：子函数不返回
           trigger_memory_error();
@@ -320,7 +320,7 @@ void process_string_range(longlong param_1, ulonglong param_2, ulonglong param_3
   if (1 < lVar9) {
     plVar7 = (longlong *)(param_2 - 0x18);
     do {
-      puStack_60 = &UNK_180a3c3e0;
+      puStack_60 = &unknown_var_3456_ptr;
       uStack_50 = (int32_t)plVar7[1];
       lStack_58 = *plVar7;
       lStack_48 = plVar7[2];
@@ -329,7 +329,7 @@ void process_string_range(longlong param_1, ulonglong param_2, ulonglong param_3
       plVar7[2] = 0;
       move_memory_block(plVar7 + -1, param_1);
       process_memory_block(param_1, 0, lVar9 + -1, 0, &puStack_60, param_4);
-      puStack_60 = &UNK_180a3c3e0;
+      puStack_60 = &unknown_var_3456_ptr;
       if (lStack_58 != 0) {
         // 警告：子函数不返回
         trigger_memory_error();
@@ -466,39 +466,39 @@ longlong process_memory_block(longlong param_1, longlong param_2, longlong param
  */
 void initialize_data_structure(uint64_t *param_1)
 {
-  param_1[0x27f] = &UNK_18098bcb0;
-  param_1[0x26c] = &UNK_18098bcb0;
-  param_1[0x259] = &UNK_18098bcb0;
-  param_1[0x246] = &UNK_18098bcb0;
-  param_1[0x233] = &UNK_18098bcb0;
-  param_1[0x220] = &UNK_18098bcb0;
-  param_1[0x21b] = &UNK_180a3c3e0;
+  param_1[0x27f] = &unknown_var_720_ptr;
+  param_1[0x26c] = &unknown_var_720_ptr;
+  param_1[0x259] = &unknown_var_720_ptr;
+  param_1[0x246] = &unknown_var_720_ptr;
+  param_1[0x233] = &unknown_var_720_ptr;
+  param_1[0x220] = &unknown_var_720_ptr;
+  param_1[0x21b] = &unknown_var_3456_ptr;
   if (param_1[0x21c] != 0) {
     // 警告：子函数不返回
     trigger_memory_error();
   }
   param_1[0x21c] = 0;
   *(int32_t *)(param_1 + 0x21e) = 0;
-  param_1[0x21b] = &UNK_18098bcb0;
+  param_1[0x21b] = &unknown_var_720_ptr;
   initialize_system();
-  param_1[0x204] = &UNK_18098bcb0;
-  param_1[0x1f1] = &UNK_18098bcb0;
+  param_1[0x204] = &unknown_var_720_ptr;
+  param_1[0x1f1] = &unknown_var_720_ptr;
   allocate_memory_pool(param_1 + 0x146, 0x98, 9, allocate_standard_block);
   allocate_memory_pool(param_1 + 0x96, 0x58, 0x10, allocate_standard_block);
   initialize_system();
   allocate_memory_pool(param_1 + 0x33, 0x98, 5, allocate_standard_block);
   initialize_system();
-  param_1[0x1c] = &UNK_18098bcb0;
-  param_1[8] = &UNK_18098bcb0;
+  param_1[0x1c] = &unknown_var_720_ptr;
+  param_1[8] = &unknown_var_720_ptr;
   initialize_system();
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &unknown_var_3456_ptr;
   if (param_1[1] != 0) {
     // 警告：子函数不返回
     trigger_memory_error();
   }
   param_1[1] = 0;
   *(int32_t *)(param_1 + 3) = 0;
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &unknown_var_720_ptr;
   return;
 }
 
@@ -522,7 +522,7 @@ void execute_string_operation(longlong param_1, longlong param_2)
   
   uStack_88 = 0xfffffffffffffffe;
   uStack_18 = GLOBAL_DATA_KEY ^ (ulonglong)auStack_a8;
-  puStack_78 = &UNK_1809fcc58;
+  puStack_78 = &unknown_var_3480_ptr;
   puStack_70 = auStack_60;
   uStack_68 = 0;
   auStack_60[0] = 0;
@@ -539,7 +539,7 @@ void execute_string_operation(longlong param_1, longlong param_2)
     puVar2 = puStack_70;
   }
   (**(code **)(*(longlong *)(param_1 + 0x288) + 0x10))((longlong *)(param_1 + 0x288), puVar2);
-  puStack_78 = &UNK_18098bcb0;
+  puStack_78 = &unknown_var_720_ptr;
   // 警告：子函数不返回
   cleanup_stack_operation(uStack_18 ^ (ulonglong)auStack_a8);
 }
@@ -590,12 +590,12 @@ void process_display_configuration(uint64_t param_1, uint64_t param_2, uint64_t 
   if (iStack_54 != 8) {
     puVar1 = (ulonglong *)(param_4 + 0x18);
     uStack_108 = &puStack_e8;
-    puStack_e8 = &UNK_1809fcc58;
+    puStack_e8 = &unknown_var_3480_ptr;
     puStack_e0 = auStack_d0;
     uStack_d8 = 0;
     auStack_d0[0] = 0;
     uStack_80 = 0;
-    initialize_display_info(&puStack_e8, &UNK_180a08a00);
+    initialize_display_info(&puStack_e8, &unknown_var_2032_ptr);
     uStack_84 = uStack_68;
     uStack_90 = uStack_74;
     uStack_88 = uStack_6c;
@@ -633,7 +633,7 @@ void process_display_configuration(uint64_t param_1, uint64_t param_2, uint64_t 
       create_display_entry(puVar1, &puStack_e8);
     }
     uStack_108 = &puStack_e8;
-    puStack_e8 = &UNK_18098bcb0;
+    puStack_e8 = &unknown_var_720_ptr;
   }
   // 警告：子函数不返回
   cleanup_stack_operation(uStack_28 ^ (ulonglong)auStack_128);
@@ -676,7 +676,7 @@ void cleanup_memory_resources(longlong param_1)
   
   puVar2 = *(uint64_t **)(param_1 + 0x20);
   for (puVar4 = *(uint64_t **)(param_1 + 0x18); puVar4 != puVar2; puVar4 = puVar4 + 0xe) {
-    *puVar4 = &UNK_18098bcb0;
+    *puVar4 = &unknown_var_720_ptr;
   }
   puVar2 = *(uint64_t **)(param_1 + 0x18);
   if (puVar2 != (uint64_t *)0x0) {

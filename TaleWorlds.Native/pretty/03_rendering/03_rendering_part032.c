@@ -97,11 +97,11 @@
 
 // 系统数据区域
 extern uint64_t _DAT_180c8ed18;
-extern uint64_t UNK_180a3c3e0;
-extern uint64_t UNK_18098bcb0;
-extern uint64_t UNK_1809fcc58;
-extern uint64_t UNK_180a21720;
-extern uint64_t UNK_180a21690;
+extern uint64_t global_state_3456;
+extern uint64_t global_state_720;
+extern uint64_t global_state_3480;
+extern uint64_t global_state_3696;
+extern uint64_t global_state_3552;
 extern uint64_t system_buffer_ptr;
 
 /* ============================================================================

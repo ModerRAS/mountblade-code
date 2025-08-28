@@ -172,7 +172,7 @@ LAB_18083198e:
       }
       lVar10 = (longlong)*(int *)(*(longlong *)(lVar1 + (longlong)iVar2 * 8 + 0x20) + 0xc);
       uVar5 = (**(code **)(*(longlong *)
-                            (&UNK_180980730 + (longlong)*(int *)(lVar1 + 0x220 + lVar10 * 4) * 8) +
+                            (&unknown_var_4256_ptr + (longlong)*(int *)(lVar1 + 0x220 + lVar10 * 4) * 8) +
                           0x20))(param_1,param_2,*(uint64_t *)(lVar1 + 800 + lVar10 * 8));
     }
   }
@@ -243,7 +243,7 @@ LAB_18083198e:
         } while ((int)uVar7 < *(int *)(unaff_RBP + 4));
       }
       uVar5 = (**(code **)(*(longlong *)
-                            (&UNK_180980730 +
+                            (&unknown_var_4256_ptr +
                             (longlong)
                             *(int *)(unaff_R12 + 0x220 +
                                     (longlong)

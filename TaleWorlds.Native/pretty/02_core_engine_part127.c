@@ -70,7 +70,7 @@ void FUN_18012cfe0(void)
     lVar9 = 0;
     if (((uVar6 >> 0x18 & 1) == 0) && (pcVar1 = (char *)(_DAT_180c8a9b0 + 0x2e38), *pcVar1 != '\0'))
     {
-      FUN_18013c760(&UNK_180a0677c);
+      FUN_18013c760(&unknown_var_3196_ptr);
       if (*(longlong *)(lVar8 + 0x2e40) != 0) {
         lVar7 = __acrt_iob_func(1);
         if (*(longlong *)(lVar8 + 0x2e40) == lVar7) {
@@ -178,7 +178,7 @@ void FUN_18012d004(void)
   }
   lVar8 = 0;
   if (((uVar6 >> 0x18 & 1) == 0) && (pcVar1 = (char *)(unaff_RBX + 0x2e38), *pcVar1 != '\0')) {
-    FUN_18013c760(&UNK_180a0677c);
+    FUN_18013c760(&unknown_var_3196_ptr);
     if (*(longlong *)(unaff_RBX + 0x2e40) != 0) {
       lVar7 = __acrt_iob_func(1);
       if (*(longlong *)(unaff_RBX + 0x2e40) == lVar7) {
@@ -273,7 +273,7 @@ void FUN_18012d04f(void)
   
   pcVar1 = (char *)(unaff_RBX + 0x2e38);
   if (*pcVar1 != (char)unaff_RSI) {
-    FUN_18013c760(&UNK_180a0677c);
+    FUN_18013c760(&unknown_var_3196_ptr);
     if (*(longlong *)(unaff_RBX + 0x2e40) != unaff_RSI) {
       lVar5 = __acrt_iob_func((int)unaff_RSI + 1);
       if (*(longlong *)(unaff_RBX + 0x2e40) == lVar5) {

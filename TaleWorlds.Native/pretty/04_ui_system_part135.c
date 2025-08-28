@@ -29,7 +29,7 @@ void FUN_180748500(longlong param_1)
   }
   *(uint64_t *)(_DAT_180be12f0 + 0x160 + (ulonglong)*(uint *)(param_1 + 0x116b8) * 8) = 0;
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&UNK_180958000,0x53a,1);
+  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&unknown_var_8576_ptr,0x53a,1);
 }
 
 

@@ -504,19 +504,19 @@ void copy_error_message(uint64_t dest, uint64_t size, char *src,
 /* 全局变量声明 */
 extern uint64_t _DAT_180bf00a8;    // 栈保护cookie
 extern uint64_t _DAT_180c8ed08;    // 全局数据指针
-extern void *UNK_18098bb88;         // 虚表地址
+extern void *global_state_424;         // 虚表地址
 extern uint64_t _DAT_180c8a9c8;     // 配置数据
 extern uint64_t _DAT_180c8ed18;     // 内存池基地址
-extern void *UNK_180bd8a18;         // 异常处理虚表
-extern void *UNK_18098b928;         // 异常基地址
-extern void *UNK_18098b940;         // 异常虚表地址
-extern void *UNK_180a16bd0;         // 错误消息
-extern void *UNK_180a16c18;         // 异常消息地址
+extern void *global_state_2600;         // 异常处理虚表
+extern void *global_state_9816;         // 异常基地址
+extern void *global_state_9840;         // 异常虚表地址
+extern void *global_state_9840;         // 错误消息
+extern void *global_state_9912;         // 异常消息地址
 extern void *system_memory_6c50;         // 默认错误消息数据
 extern uint64_t _DAT_180c86928;     // 错误上下文
 extern uint64_t _DAT_180d48d28;     // 全局内存状态
-extern void *UNK_18098bcb0;         // 错误处理器基地址
-extern void *UNK_1809fcc28;         // 错误处理器虚表
+extern void *global_state_720;         // 错误处理器基地址
+extern void *global_state_3432;         // 错误处理器虚表
 extern char *error_message;          // 错误消息
 extern char *error_message_data;     // 错误消息数据
 extern void *exception_base_address; // 异常基地址

@@ -107,7 +107,7 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
     if (0 < aiStack_108[0]) {
       lStack_e0 = param_1 + 0xb48;
       do {
-        puStack_100 = &UNK_180a3c3e0;
+        puStack_100 = &unknown_var_3456_ptr;
         uStack_e8 = 0;
         puStack_f8 = (int8_t *)0x0;
         uStack_f0 = 0;
@@ -127,7 +127,7 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
         FUN_1806277c0(&puStack_100,uVar7);
         *(int16_t *)(puStack_f8 + uStack_f0) = 0x5c;
         uStack_f0 = uVar7;
-        FUN_180060680(acStack_50,&UNK_1809fd0a0,*puVar11);
+        FUN_180060680(acStack_50,&unknown_var_4576_ptr,*puVar11);
         lVar1 = -1;
         do {
           lVar9 = lVar1;
@@ -150,7 +150,7 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
         uStack_b0 = 0;
         uStack_a0 = 0;
         uStack_f0 = iVar8;
-        FUN_18062dee0(&uStack_b0,puVar6,&UNK_180a01ff0);
+        FUN_18062dee0(&uStack_b0,puVar6,&unknown_var_4880_ptr);
         lVar1 = lStack_a8;
         lStack_e0 = 0;
         fread(&lStack_e0,8,1,lStack_a8);
@@ -198,14 +198,14 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        puStack_100 = &UNK_180a3c3e0;
+        puStack_100 = &unknown_var_3456_ptr;
         if (puStack_f8 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         puStack_f8 = (int8_t *)0x0;
         uStack_e8 = uStack_e8 & 0xffffffff00000000;
-        puStack_100 = &UNK_18098bcb0;
+        puStack_100 = &unknown_var_720_ptr;
         iVar10 = iVar10 + 1;
         puVar11 = puVar11 + 1;
         puVar2 = puStack_b8;
@@ -291,7 +291,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
     fread(puStack_a0,4,(longlong)aiStack_108[0],*(uint64_t *)(param_2 + 8));
     uStack_c0 = 0;
     if (0 < aiStack_108[0]) {
-      puStack_e0 = &UNK_180a3c3e0;
+      puStack_e0 = &unknown_var_3456_ptr;
       uStack_c8 = 0;
       puStack_d8 = (int8_t *)0x0;
       uStack_d0 = 0;
@@ -315,7 +315,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
       FUN_1806277c0(&puStack_e0,uVar7);
       *(int16_t *)(puStack_d8 + uStack_d0) = 0x5c;
       uStack_d0 = uVar7;
-      FUN_180060680(acStack_50,&UNK_1809fd0a0,*puVar1);
+      FUN_180060680(acStack_50,&unknown_var_4576_ptr,*puVar1);
       lVar2 = -1;
       do {
         lVar9 = lVar2;
@@ -338,7 +338,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
       uStack_98 = 0;
       uStack_88 = 0;
       uStack_d0 = iVar8;
-      FUN_18062dee0(&uStack_98,puVar6,&UNK_180a01ff0);
+      FUN_18062dee0(&uStack_98,puVar6,&unknown_var_4880_ptr);
       alStack_b8[0] = 0;
       fread(alStack_b8,8,1,uStack_90);
       uStack_100 = 0;
@@ -352,11 +352,11 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
       fread(uStack_100,alStack_b8[0],1,uStack_90);
       puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x78,8,3);
       puStack_58 = puVar3 + 10;
-      *puStack_58 = &UNK_18098bcb0;
+      *puStack_58 = &unknown_var_720_ptr;
       uVar4 = 0;
       puVar3[0xb] = 0;
       *(int32_t *)(puVar3 + 0xc) = 0;
-      *puStack_58 = &UNK_180a3c3e0;
+      *puStack_58 = &unknown_var_3456_ptr;
       puVar3[0xd] = 0;
       puVar3[0xb] = 0;
       *(int32_t *)(puVar3 + 0xc) = 0;
@@ -512,7 +512,7 @@ void RenderingSystem_OptimizeResourceData(longlong render_context, longlong outp
     uStack_88 = 0;
     uStack_78 = 0;
     uStack_d8 = iVar10;
-    FUN_18062dee0(&uStack_88,puVar7,&UNK_180a01ff0);
+    FUN_18062dee0(&uStack_88,puVar7,&unknown_var_4880_ptr);
     iStackX_20 = 0;
     plVar16 = plVar15;
     puVar6 = puVar13;
@@ -635,7 +635,7 @@ LAB_180330378:
       _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
       UNLOCK();
     }
-    puStack_e8 = &UNK_180a3c3e0;
+    puStack_e8 = &unknown_var_3456_ptr;
     if (puStack_e0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -772,7 +772,7 @@ void RenderingSystem_CompressRenderData(longlong render_context, longlong output
     uStack_b8 = 0;
     uStack_a8 = 0;
     uStack_138 = uVar11;
-    FUN_18062dee0(&uStack_b8,puVar6,&UNK_180a01ff0);
+    FUN_18062dee0(&uStack_b8,puVar6,&unknown_var_4880_ptr);
     lVar2 = lStack_b0;
     iStackX_20 = 0;
     piVar16 = piVar13;
@@ -928,14 +928,14 @@ LAB_18033084a:
       UNLOCK();
       lVar7 = lStack_108;
     }
-    puStack_148 = &UNK_180a3c3e0;
+    puStack_148 = &unknown_var_3456_ptr;
     if (puStack_140 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_140 = (void *)0x0;
     uStack_130 = 0;
-    puStack_148 = &UNK_18098bcb0;
+    puStack_148 = &unknown_var_720_ptr;
   }
   iVar3 = _Mtx_unlock(lVar7);
   if (iVar3 != 0) {

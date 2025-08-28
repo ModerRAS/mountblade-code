@@ -648,8 +648,8 @@ void FUN_180585590(longlong param_1)
 uint64_t * FUN_180585c10(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_180a308c0;
-  *param_1 = &UNK_180a308e0;
+  *param_1 = &unknown_var_5552_ptr;
+  *param_1 = &unknown_var_5584_ptr;
   param_1[0x1a] = 0;
   param_1[0x1b] = 0;
   param_1[0x1c] = 0;
@@ -678,7 +678,7 @@ uint64_t * FUN_180585c10(uint64_t *param_1)
 void FUN_180585cf0(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_180a308e0;
+  *param_1 = &unknown_var_5584_ptr;
   *(int32_t *)((longlong)param_1 + 0xbd4) = 0;
   FUN_180506660(param_1 + 0x20);
   if ((longlong *)param_1[0x1c] != (longlong *)0x0) {
@@ -690,7 +690,7 @@ void FUN_180585cf0(uint64_t *param_1)
   if ((longlong *)param_1[0x1a] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x1a] + 0x38))();
   }
-  *param_1 = &UNK_180a308c0;
+  *param_1 = &unknown_var_5552_ptr;
   return;
 }
 

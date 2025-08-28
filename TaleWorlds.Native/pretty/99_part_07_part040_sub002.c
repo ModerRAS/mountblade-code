@@ -48,7 +48,7 @@ longlong FUN_1804c1300(longlong *param_1,ulonglong param_2)
     if ((code *)param_1[0x603] == (code *)0x0) {
       lVar3 = thunk_FUN_1808fc418(uVar2 + 0x16);
       if (lVar3 == 0) {
-        FUN_18062e140(&UNK_180a2ebc8,0);
+        FUN_18062e140(&unknown_var_8136_ptr,0);
       }
     }
     else {
@@ -81,7 +81,7 @@ longlong FUN_1804c132d(longlong param_1,ulonglong param_2)
   if (*(code **)(param_1 + 0x3018) == (code *)0x0) {
     lVar1 = thunk_FUN_1808fc418(param_2 + 0x16);
     if (lVar1 == 0) {
-      FUN_18062e140(&UNK_180a2ebc8,0);
+      FUN_18062e140(&unknown_var_8136_ptr,0);
     }
   }
   else {

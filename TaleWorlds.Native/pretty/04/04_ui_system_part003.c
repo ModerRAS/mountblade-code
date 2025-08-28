@@ -1374,44 +1374,44 @@ void ui_cleanup_resource_pointers(longlong resource_ptr)
 
 {
   // 重置资源指针为默认值
-  *(uint64_t *)(resource_ptr + 0x80) = &UNK_180a3c3e0;
+  *(uint64_t *)(resource_ptr + 0x80) = &unknown_var_3456_ptr;
   if (*(longlong *)(resource_ptr + 0x88) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x88) = 0;
   *(int32_t *)(resource_ptr + 0x98) = 0;
-  *(uint64_t *)(resource_ptr + 0x80) = &UNK_18098bcb0;
+  *(uint64_t *)(resource_ptr + 0x80) = &unknown_var_720_ptr;
   
   // 清理第二组资源指针
-  *(uint64_t *)(resource_ptr + 0x60) = &UNK_180a3c3e0;
+  *(uint64_t *)(resource_ptr + 0x60) = &unknown_var_3456_ptr;
   if (*(longlong *)(resource_ptr + 0x68) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x68) = 0;
   *(int32_t *)(resource_ptr + 0x78) = 0;
-  *(uint64_t *)(resource_ptr + 0x60) = &UNK_18098bcb0;
+  *(uint64_t *)(resource_ptr + 0x60) = &unknown_var_720_ptr;
   
   // 清理第三组资源指针
-  *(uint64_t *)(resource_ptr + 0x28) = &UNK_180a3c3e0;
+  *(uint64_t *)(resource_ptr + 0x28) = &unknown_var_3456_ptr;
   if (*(longlong *)(resource_ptr + 0x30) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x30) = 0;
   *(int32_t *)(resource_ptr + 0x40) = 0;
-  *(uint64_t *)(resource_ptr + 0x28) = &UNK_18098bcb0;
+  *(uint64_t *)(resource_ptr + 0x28) = &unknown_var_720_ptr;
   
   // 清理第四组资源指针
-  *(uint64_t *)(resource_ptr + 8) = &UNK_180a3c3e0;
+  *(uint64_t *)(resource_ptr + 8) = &unknown_var_3456_ptr;
   if (*(longlong *)(resource_ptr + 0x10) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x10) = 0;
   *(int32_t *)(resource_ptr + 0x20) = 0;
-  *(uint64_t *)(resource_ptr + 8) = &UNK_18098bcb0;
+  *(uint64_t *)(resource_ptr + 8) = &unknown_var_720_ptr;
   return;
 }
 
@@ -1427,7 +1427,7 @@ void ui_cleanup_resource_pointers(longlong resource_ptr)
 uint64_t * ui_free_managed_memory_block(uint64_t *memory_ptr, ulonglong flags)
 
 {
-  *memory_ptr = &UNK_180a3dca0;
+  *memory_ptr = &unknown_var_9792_ptr;
   if ((flags & 1) != 0) {
     // 根据标志位执行实际的内存释放
     free(memory_ptr, 0x160);
@@ -1529,14 +1529,14 @@ void ui_cleanup_global_data_structure(uint64_t *global_ptr)
 
 {
   // 重置全局数据结构为默认值
-  *global_ptr = &UNK_180a3dcb0;
+  *global_ptr = &unknown_var_9808_ptr;
   // 重置托管库函数指针表
   _DAT_180c8f008 = 0;                  // _DAT_180c8f008: 托管库函数指针表（重置）
   if (global_ptr[0x2d] != 0) {
     // 释放资源内存
     ui_cleanup_resource_memory();
   }
-  global_ptr[1] = &UNK_180a3dca0;
+  global_ptr[1] = &unknown_var_9792_ptr;
   return;
 }
 

@@ -112,7 +112,7 @@ LAB_18037309e:
       fVar33 = *pfVar27;
       fVar34 = pfVar27[1];
       fVar35 = pfVar27[2];
-      if (*(code **)(*plVar3 + 0x198) == (code *)&UNK_18027d990) {
+      if (*(code **)(*plVar3 + 0x198) == (code *)&unknown_var_2544_ptr) {
         pfVar23 = (float *)((longlong)plVar3 + 0x214);
       }
       else {
@@ -184,7 +184,7 @@ LAB_18037321d:
         }
       }
       fVar33 = pfVar27[6];
-      if (*(code **)(*plVar3 + 0x198) == (code *)&UNK_18027d990) {
+      if (*(code **)(*plVar3 + 0x198) == (code *)&unknown_var_2544_ptr) {
         lVar19 = (longlong)plVar3 + 0x214;
       }
       else {

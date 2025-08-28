@@ -253,7 +253,7 @@ LAB_18033173f:
     plStack_b8 = &lStackX_10;
     ppuStack_b0 = &puStack_118;
     pcStack_e8 = FUN_18033cd80;
-    puStack_e0 = &UNK_18033cd70;
+    puStack_e0 = &unknown_var_5872_ptr;
     lStack_c0 = param_1;
     plStack_f8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags);
     *plStack_f8 = (longlong)puStack_d8;
@@ -481,7 +481,7 @@ LAB_180331b54:
     uVar17 = uVar13 & 0xffffffff;
     FUN_180639bf0(&plStack_f8,uVar13 & 0xffffffff);
     plVar4 = plStack_f8;
-    pplStack_a8 = (longlong **)&UNK_1809ff4e0;
+    pplStack_a8 = (longlong **)&unknown_var_3856_ptr;
     uStack_a0 = 1;
     uStack_128 = uVar17;
     uStack_120 = uVar17;
@@ -490,14 +490,14 @@ LAB_180331b54:
     fwrite(&uStack_128,8,1,*(uint64_t *)(lStackX_10 + 8));
     fwrite(&uStack_120,8,1,*(uint64_t *)(lStackX_10 + 8));
     fwrite(plVar4,uStack_120,1,*(uint64_t *)(lStackX_10 + 8));
-    puStack_68 = &UNK_180a3c3e0;
+    puStack_68 = &unknown_var_3456_ptr;
     if (lStack_60 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_60 = 0;
     uStack_50 = 0;
-    puStack_68 = &UNK_18098bcb0;
+    puStack_68 = &unknown_var_720_ptr;
     if (((char)puStack_e0 == '\0') && (plVar4 != (longlong *)0x0)) {
                     // WARNING: Subroutine does not return
       FUN_18064e900(plVar4);
@@ -665,7 +665,7 @@ LAB_180332267:
             buffer_size = data_size & 0xffffffff;
             FUN_180639bf0(buffer_array, buffer_size);
             buffer_start = buffer_array[0];
-            output_ptr = &UNK_1809ff4e0;
+            output_ptr = &unknown_var_3856_ptr;
             output_flag = 0;
             pool_size = buffer_size;
             total_size = buffer_size;
@@ -689,13 +689,13 @@ LAB_180332267:
                 __Throw_C_error_std__YAXH_Z(status_code);
             }
             item_list = &cleanup_ptr;
-            cleanup_ptr = &UNK_180a3c3e0;
+            cleanup_ptr = &unknown_var_3456_ptr;
             if (cleanup_status != 0) {
                 FUN_18064e900();
             }
             cleanup_status = 0;
             final_flag = 0;
-            cleanup_ptr = &UNK_18098bcb0;
+            cleanup_ptr = &unknown_var_720_ptr;
             if (((char)cleanup_flag == '\0') && (buffer_start != 0)) {
                 FUN_18064e900(buffer_start);
             }

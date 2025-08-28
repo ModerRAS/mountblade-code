@@ -132,7 +132,7 @@ void FUN_180348d90(longlong param_1)
   }
   
   // 应用默认材质设置
-  FUN_180627020(&UNK_180a1cf60,puVar2);
+  FUN_180627020(&unknown_var_5328_ptr,puVar2);
   return;
 }
 
@@ -212,7 +212,7 @@ void FUN_180348e60(uint64_t param_1,longlong param_2,longlong *param_3,uint64_t 
       uVar9 = uVar8;
       do {
         lVar1 = *(longlong *)(uVar9 + (longlong)plVar6);
-        cVar4 = FUN_1802eee20(lVar1,&UNK_180a1cf28);
+        cVar4 = FUN_1802eee20(lVar1,&unknown_var_5272_ptr);
         if (cVar4 == '\0') {
           *param_3 = lVar1;
           FUN_1802f4040(lVar1,&fStack_b0,1);
@@ -347,7 +347,7 @@ void FUN_1803490e0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
   }
   
   uVar9 = 0;
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   uStack_68 = 0;
   puStack_78 = (int32_t *)0x0;
   uStack_70 = 0;
@@ -393,7 +393,7 @@ void FUN_1803490e0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
         if ((void *)plVar2[3] != (void *)0x0) {
           puVar10 = (void *)plVar2[3];
         }
-        FUN_1806272a0(&UNK_180a13bd8,puVar4,puVar10);
+        FUN_1806272a0(&unknown_var_7560_ptr,puVar4,puVar10);
       }
       else {
         // 更新对象状态
@@ -431,7 +431,7 @@ void FUN_1803490e0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
   }
   
   // 清理调试信息
-  puStack_80 = &UNK_180a3c3e0;
+  puStack_80 = &unknown_var_3456_ptr;
   FUN_18064e900(puVar4);
 }
 
@@ -515,13 +515,13 @@ void FUN_180349330(longlong param_1)
           (**(code **)(*plVar6 + 0x28))(plVar6);
         }
         lVar3 = plVar6[0x3c];
-        puStack_f8 = &UNK_1809fcc58;
+        puStack_f8 = &unknown_var_3480_ptr;
         puStack_f0 = auStack_e0;
         auStack_e0[0] = 0;
         uStack_e8 = 0x10;
         strcpy_s(auStack_e0,0x40,&system_memory_d580);
         lVar3 = FUN_180240430(lVar3,&puStack_f8,0);
-        puStack_f8 = &UNK_18098bcb0;
+        puStack_f8 = &unknown_var_720_ptr;
         plVar8 = plVar6;
         if (lVar3 != 0) {
           // 分离对象管理器
@@ -538,7 +538,7 @@ void FUN_180349330(longlong param_1)
           }
           
           // 清理管理器状态
-          puStack_98 = &UNK_1809fcc58;
+          puStack_98 = &unknown_var_3480_ptr;
           puStack_90 = auStack_80;
           auStack_80[0] = 0;
           uStack_88 = 0x10;
@@ -546,7 +546,7 @@ void FUN_180349330(longlong param_1)
           uVar5 = FUN_180240430(plVar8[0x3c],&puStack_98,1);
           plVar8[0x28] = plVar8[0x28] & ~uVar5;
           FUN_18022dd60(plVar8);
-          puStack_98 = &UNK_18098bcb0;
+          puStack_98 = &unknown_var_720_ptr;
           FUN_180076910(lVar2,&plStack_150);
         }
         if (plVar8 != (longlong *)0x0) {
@@ -647,7 +647,7 @@ FUN_180349730(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a1d230;
+  *param_1 = &unknown_var_6048_ptr;
   FUN_1803457d0();
   if ((param_2 & 1) != 0) {
     free(param_1,0x80,param_3,param_4,uVar1);
@@ -682,10 +682,10 @@ void FUN_180349780(uint64_t *param_1)
   uVar3 = 0xfffffffffffffffe;
   puVar2 = param_1;
   FUN_1803456e0();
-  *puVar2 = &UNK_180a1d230;
+  *puVar2 = &unknown_var_6048_ptr;
   puVar2[0xe] = 0;
   *(int32_t *)(puVar2 + 0xf) = RENDERING_DEFAULT_SHADER_ID;
-  puStack_90 = &UNK_180a3c3e0;
+  puStack_90 = &unknown_var_3456_ptr;
   uStack_78 = 0;
   puStack_88 = (uint64_t *)0x0;
   uStack_80 = 0;
@@ -702,7 +702,7 @@ void FUN_180349780(uint64_t *param_1)
   
   // 应用材质参数
   FUN_1803460a0(param_1,&puStack_90,param_1 + 0xe,10,uVar3);
-  puStack_90 = &UNK_180a3c3e0;
+  puStack_90 = &unknown_var_3456_ptr;
   FUN_18064e900(puVar2);
 }
 
@@ -886,7 +886,7 @@ void FUN_180349a50(uint64_t param_1)
   uStack_1c8 = 0;
   
   // 设置第一个着色器参数
-  puStack_148 = &UNK_1809fcc58;
+  puStack_148 = &unknown_var_3480_ptr;
   puStack_140 = auStack_130;
   auStack_130[0] = 0;
   uStack_138 = 8;
@@ -899,9 +899,9 @@ void FUN_180349a50(uint64_t param_1)
   // 设置第二个着色器参数
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
-  apuStack_1a8[0] = &UNK_18098bcb0;
-  puStack_148 = &UNK_18098bcb0;
-  puStack_e8 = &UNK_1809fcc58;
+  apuStack_1a8[0] = &unknown_var_720_ptr;
+  puStack_148 = &unknown_var_720_ptr;
+  puStack_e8 = &unknown_var_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 6;
@@ -914,9 +914,9 @@ void FUN_180349a50(uint64_t param_1)
   // 设置第三个着色器参数
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
-  apuStack_1a8[0] = &UNK_18098bcb0;
-  puStack_e8 = &UNK_18098bcb0;
-  puStack_88 = &UNK_1809fcc58;
+  apuStack_1a8[0] = &unknown_var_720_ptr;
+  puStack_e8 = &unknown_var_720_ptr;
+  puStack_88 = &unknown_var_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 7;
@@ -927,8 +927,8 @@ void FUN_180349a50(uint64_t param_1)
   FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
-  apuStack_1a8[0] = &UNK_18098bcb0;
-  puStack_88 = &UNK_18098bcb0;
+  apuStack_1a8[0] = &unknown_var_720_ptr;
+  puStack_88 = &unknown_var_720_ptr;
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_1e8);
 }
 
@@ -1019,7 +1019,7 @@ void FUN_180349ce0(uint64_t *param_1,longlong param_2)
   FUN_1803456e0();
   
   // 初始化纹理对象基本信息
-  *puVar1 = &UNK_180a1d3f0;
+  *puVar1 = &unknown_var_6496_ptr;
   *(int16_t *)(puVar1 + 0x12) = 0;
   *(int8_t *)((longlong)puVar1 + 0x92) = 0;
   *(bool *)((longlong)puVar1 + 0x93) = *(char *)(param_2 + 0x2e5) == '\0';
@@ -1031,49 +1031,49 @@ void FUN_180349ce0(uint64_t *param_1,longlong param_2)
   *(int32_t *)(puVar1 + 0x11) = RENDERING_MAX_TEXTURE_COORD;
   
   // 设置纹理名称和属性
-  puStack_138 = &UNK_1809fdc18;
+  puStack_138 = &unknown_var_7512_ptr;
   puStack_130 = auStack_120;
   auStack_120[0] = 0;
   uStack_128 = 8;
-  strcpy_s(auStack_120,0x10,&UNK_180a18cc8);
+  strcpy_s(auStack_120,0x10,&unknown_var_8280_ptr);
   FUN_1803460a0(param_1,&puStack_138,param_1 + 0x12,3);
-  puStack_138 = &UNK_18098bcb0;
+  puStack_138 = &unknown_var_720_ptr;
   
   // 设置纹理参数
-  puStack_110 = &UNK_18098bc80;
+  puStack_110 = &unknown_var_672_ptr;
   puStack_108 = auStack_f8;
   auStack_f8[0] = 0;
   uStack_100 = 0x13;
-  strcpy_s(auStack_f8,0x20,&UNK_180a1d3d0);
+  strcpy_s(auStack_f8,0x20,&unknown_var_6464_ptr);
   FUN_1803460a0(param_1,&puStack_110,(longlong)param_1 + 0x92,3);
-  puStack_110 = &UNK_18098bcb0;
+  puStack_110 = &unknown_var_720_ptr;
   
   // 设置着色器参数
-  puStack_d8 = &UNK_18098bc80;
+  puStack_d8 = &unknown_var_672_ptr;
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
   uStack_c8 = 0x11;
-  strcpy_s(auStack_c0,0x20,&UNK_180a1d3b8);
+  strcpy_s(auStack_c0,0x20,&unknown_var_6440_ptr);
   FUN_1803460a0(param_1,&puStack_d8,(longlong)param_1 + 0x8c,2);
-  puStack_d8 = &UNK_18098bcb0;
+  puStack_d8 = &unknown_var_720_ptr;
   
   // 设置纹理坐标
-  puStack_a0 = &UNK_18098bc80;
+  puStack_a0 = &unknown_var_672_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xf;
-  strcpy_s(auStack_88,0x20,&UNK_180a1d3a8);
+  strcpy_s(auStack_88,0x20,&unknown_var_6424_ptr);
   FUN_1803460a0(param_1,&puStack_a0,param_1 + 0x11,2);
-  puStack_a0 = &UNK_18098bcb0;
+  puStack_a0 = &unknown_var_720_ptr;
   
   // 设置材质属性
-  puStack_68 = &UNK_18098bc80;
+  puStack_68 = &unknown_var_672_ptr;
   puStack_60 = auStack_50;
   auStack_50[0] = 0;
   uStack_58 = 9;
-  strcpy_s(auStack_50,0x20,&UNK_180a1d398);
+  strcpy_s(auStack_50,0x20,&unknown_var_6408_ptr);
   FUN_1803460a0(param_1,&puStack_68,param_1 + 0xf,5);
-  puStack_68 = &UNK_18098bcb0;
+  puStack_68 = &unknown_var_720_ptr;
   FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_168);
 }
 
@@ -1193,7 +1193,7 @@ void FUN_18034a100(uint64_t *param_1)
   uint64_t uVar5;
   
   // 检查对象类型并调用相应的更新方法
-  if ((void *)*param_1 == &UNK_180a1d3f0) {
+  if ((void *)*param_1 == &unknown_var_6496_ptr) {
     if (*(char *)((longlong)param_1 + 0x93) == '\0') {
       // 获取纹理管理器
       uVar5 = FUN_1803191b0(*(longlong *)(param_1[3] + 0x20) + 0x60c10);

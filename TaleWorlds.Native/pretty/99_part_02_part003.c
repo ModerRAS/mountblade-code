@@ -141,7 +141,7 @@ void FUN_1800ea780(longlong *param_1)
   plVar4 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,200,8,3,0xfffffffffffffffe);
   plStackX_18 = plVar4;
   FUN_180049830(plVar4);
-  *plVar4 = (longlong)&UNK_180a04910;
+  *plVar4 = (longlong)&unknown_var_5408_ptr;
   *(int8_t *)(plVar4 + 0x18) = 1;
   lVar1 = *param_1;
   pplStackX_10 = (longlong **)plVar4;

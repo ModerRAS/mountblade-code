@@ -139,7 +139,7 @@ void FUN_1804d13d0(longlong param_1,longlong param_2,uint param_3)
                   }
                   uVar6 = *(uint *)(plVar9 + 0xd);
                   uStack_1c8 = uVar6;
-                  if (*(code **)(*plVar9 + 0x198) == (code *)&UNK_18027d990) {
+                  if (*(code **)(*plVar9 + 0x198) == (code *)&unknown_var_2544_ptr) {
                     lVar14 = (longlong)plVar9 + 0x214;
                   }
                   else {
@@ -285,7 +285,7 @@ void FUN_1804d13d0(longlong param_1,longlong param_2,uint param_3)
                     }
                     uVar6 = *(uint *)(plVar10 + 0xd);
                     uStack_198 = uVar6;
-                    if (*(code **)(*plVar10 + 0x198) == (code *)&UNK_18027d990) {
+                    if (*(code **)(*plVar10 + 0x198) == (code *)&unknown_var_2544_ptr) {
                       lVar14 = (longlong)plVar10 + 0x214;
                     }
                     else {
@@ -421,7 +421,7 @@ void FUN_1804d13d0(longlong param_1,longlong param_2,uint param_3)
                           }
                           uVar6 = *(uint *)(plVar9 + 0xd);
                           uStack_168 = uVar6;
-                          if (*(code **)(*plVar9 + 0x198) == (code *)&UNK_18027d990) {
+                          if (*(code **)(*plVar9 + 0x198) == (code *)&unknown_var_2544_ptr) {
                             lVar14 = (longlong)plVar9 + 0x214;
                           }
                           else {
@@ -520,10 +520,10 @@ void FUN_1804d13d0(longlong param_1,longlong param_2,uint param_3)
                     plVar10 = *(longlong **)(lVar14 + (longlong)plStack_220);
                     iVar3 = (**(code **)(*plVar10 + 0x98))(plVar10);
                     if (iVar3 == 0) {
-                      if ((void *)*plVar9 != &UNK_180a22558) {
+                      if ((void *)*plVar9 != &unknown_var_7336_ptr) {
                         (**(code **)((void *)*plVar9 + 0x158))(plVar9);
                       }
-                      if (*(code **)(*plVar10 + 0x158) != (code *)&UNK_18027d980) {
+                      if (*(code **)(*plVar10 + 0x158) != (code *)&unknown_var_2528_ptr) {
                         (**(code **)(*plVar10 + 0x158))(plVar10);
                       }
                       iStack_248 = 0;
@@ -558,7 +558,7 @@ void FUN_1804d13d0(longlong param_1,longlong param_2,uint param_3)
                               }
                               uVar6 = *(uint *)(plVar10 + 0xd);
                               uStack_138 = uVar6;
-                              if (*(code **)(*plVar10 + 0x198) == (code *)&UNK_18027d990) {
+                              if (*(code **)(*plVar10 + 0x198) == (code *)&unknown_var_2544_ptr) {
                                 lVar16 = (longlong)plVar10 + 0x214;
                               }
                               else {

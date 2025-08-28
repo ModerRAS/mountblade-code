@@ -20,7 +20,7 @@ void FUN_1807f93ae(uint64_t param_1,int param_2,uint64_t param_3,longlong param_
   lVar1 = lVar3 + (ulonglong)*(uint *)(*(longlong *)(unaff_RBX + 8) + 0x116b8) * 2;
   if (*(int *)(unaff_R12 + 0xc36b1c + lVar1 * 0x10) == unaff_R15D) {
     FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),
-                  *(uint64_t *)(unaff_R12 + 0xc36b10 + lVar1 * 0x10),&UNK_18097e8b0,0x102);
+                  *(uint64_t *)(unaff_R12 + 0xc36b10 + lVar1 * 0x10),&unknown_var_6448_ptr,0x102);
     *(ulonglong *)
      (unaff_R12 + 0xc36b10 +
      (lVar3 + (ulonglong)*(uint *)(*(longlong *)(unaff_RBX + 8) + 0x116b8) * 2) * 0x10) =
@@ -145,7 +145,7 @@ LAB_1807f9847:
   if (((longlong *)*plVar2 == plVar2) && (*(longlong **)(lVar6 + 0x180be6178) == plVar2)) {
     *(int *)(lVar1 * 0x158 + 0x180c356e0) = iVar5;
     *(int *)((lVar8 + *(int *)(param_1 + 0xa8)) * 0x158 + 0x180c356e4) = *(int *)(param_1 + 0xa8);
-    iVar5 = FUN_180767c00((*(int *)(param_1 + 0xa8) + lVar8) * 0x158 + 0x180c35590,&UNK_18097e898,0,
+    iVar5 = FUN_180767c00((*(int *)(param_1 + 0xa8) + lVar8) * 0x158 + 0x180c35590,&unknown_var_6424_ptr,0,
                           0,iVar4 + 0xb,1,0,*(uint64_t *)(param_1 + 8),1);
     if (iVar5 != 0) goto LAB_1807f982b;
   }
@@ -168,7 +168,7 @@ LAB_1807f9847:
       *(int32_t *)(lVar8 * 0x10 + 0x180c36b18) = *(int32_t *)(param_1 + 0x24);
       if (*(int *)(lVar8 * 0x10 + 0x180c36b1c) == 0) {
         lVar9 = FUN_180741d80(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(int *)(param_1 + 0x24) << 3,
-                              0x10,&UNK_18097e8b0,0x7e,0);
+                              0x10,&unknown_var_6448_ptr,0x7e,0);
         *(longlong *)(lVar8 * 0x10 + 0x180c36b10) = lVar9;
         if (lVar9 == 0) {
                     // WARNING: Subroutine does not return

@@ -88,7 +88,7 @@ void FUN_1806b5f8b(longlong param_1)
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
     *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
-    FUN_1806b6980(param_1 + -0x38,&UNK_18094b528,&stack0x00000020,uVar11,uVar7);
+    FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&stack0x00000020,uVar11,uVar7);
   }
   else {
     bVar10 = 3;
@@ -245,7 +245,7 @@ void FUN_1806b5f8f(longlong param_1)
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
     *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
-    FUN_1806b6980(param_1 + -0x38,&UNK_18094b528,&stack0x00000020,uVar11,uVar7);
+    FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&stack0x00000020,uVar11,uVar7);
   }
   else {
     bVar10 = 3;
@@ -372,7 +372,7 @@ void FUN_1806b6020(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   *puVar2 = unaff_R13B;
   puVar2[1] = in_stack_00000088._1_1_;
   *(longlong *)(lVar1 + 0x18) = *(longlong *)(lVar1 + 0x18) + 2;
-  FUN_1806b6980(unaff_RBP + 0x78,&UNK_18094b528,&stack0x00000020,uVar5);
+  FUN_1806b6980(unaff_RBP + 0x78,&unknown_var_6648_ptr,&stack0x00000020,uVar5);
   if (*(uint *)(unaff_RBP + 0x50) <= (uint)(*(int *)(unaff_RBP + 0x28) - *(int *)(unaff_RBP + 0x20))
      ) {
     FUN_1806b4470();
@@ -611,7 +611,7 @@ void FUN_1806b6280(longlong param_1,int16_t param_2,ulonglong param_3)
       *puVar3 = (char)param_2;
       puVar3[1] = uStackX_10._1_1_;
       *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
-      FUN_1806b6980(param_1 + -0x38,&UNK_18094b528,&uStackX_20,uVar11);
+      FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&uStackX_20,uVar11);
     }
     else {
       bVar10 = 3;
@@ -775,7 +775,7 @@ void FUN_1806b62a6(longlong param_1)
     *puVar3 = unaff_R13B;
     puVar3[1] = in_stack_00000088._1_1_;
     *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
-    FUN_1806b6980(param_1 + -0x38,&UNK_18094b528,&stack0x00000098,uVar11);
+    FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&stack0x00000098,uVar11);
   }
   else {
     bVar10 = 3;

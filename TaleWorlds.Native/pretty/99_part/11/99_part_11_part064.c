@@ -306,17 +306,17 @@ extern uint64_t _DAT_180be12f0;        /**< 系统配置基地址 */
 extern uint64_t _DAT_180bf00a8;        /**< 安全配置数据 */
 
 /** 内存管理数据 */
-extern uint8_t UNK_18097c540;          /**< 内存池指针 */
-extern uint8_t UNK_18097c600;          /**< 内存管理器 */
-extern uint8_t UNK_18097c608;          /**< 内存分配器 */
-extern uint8_t UNK_18097c618;          /**< 内存清理器 */
-extern uint8_t UNK_18097c628;          /**< 内存验证器 */
-extern uint8_t UNK_18097c638;          /**< 内存同步器 */
-extern uint8_t UNK_18097c648;          /**< 内存配置数据1 */
-extern uint8_t UNK_18097c650;          /**< 内存配置数据2 */
-extern uint8_t UNK_18097c658;          /**< 内存配置数据3 */
-extern uint8_t UNK_18097c660;          /**< 内存配置数据4 */
-extern uint8_t UNK_18097c670;          /**< 内存保护数据 */
+extern uint8_t global_state_7376;          /**< 内存池指针 */
+extern uint8_t global_state_7568;          /**< 内存管理器 */
+extern uint8_t global_state_7576;          /**< 内存分配器 */
+extern uint8_t global_state_7592;          /**< 内存清理器 */
+extern uint8_t global_state_7608;          /**< 内存验证器 */
+extern uint8_t global_state_7624;          /**< 内存同步器 */
+extern uint8_t global_state_7640;          /**< 内存配置数据1 */
+extern uint8_t global_state_7648;          /**< 内存配置数据2 */
+extern uint8_t global_state_7656;          /**< 内存配置数据3 */
+extern uint8_t global_state_7664;          /**< 内存配置数据4 */
+extern uint8_t global_state_7680;          /**< 内存保护数据 */
 
 /** 系统状态数据 */
 extern int system_operation_flags;        /**< 系统操作标志 */
@@ -405,17 +405,17 @@ uint8_t FUN_1807c48c6;                    /**< 异常处理函数 */
 uint8_t FUN_1807c4ae8;                    /**< 终止处理函数 */
 
 /* 数据变量声明 */
-uint8_t UNK_18097c540;                    /**< 内存池数据 */
-uint8_t UNK_18097c600;                    /**< 管理器数据 */
-uint8_t UNK_18097c608;                    /**< 分配器数据 */
-uint8_t UNK_18097c618;                    /**< 清理器数据 */
-uint8_t UNK_18097c628;                    /**< 验证器数据 */
-uint8_t UNK_18097c638;                    /**< 同步器数据 */
-uint8_t UNK_18097c648;                    /**< 配置数据1 */
-uint8_t UNK_18097c650;                    /**< 配置数据2 */
-uint8_t UNK_18097c658;                    /**< 配置数据3 */
-uint8_t UNK_18097c660;                    /**< 配置数据4 */
-uint8_t UNK_18097c670;                    /**< 保护数据 */
+uint8_t global_state_7376;                    /**< 内存池数据 */
+uint8_t global_state_7568;                    /**< 管理器数据 */
+uint8_t global_state_7576;                    /**< 分配器数据 */
+uint8_t global_state_7592;                    /**< 清理器数据 */
+uint8_t global_state_7608;                    /**< 验证器数据 */
+uint8_t global_state_7624;                    /**< 同步器数据 */
+uint8_t global_state_7640;                    /**< 配置数据1 */
+uint8_t global_state_7648;                    /**< 配置数据2 */
+uint8_t global_state_7656;                    /**< 配置数据3 */
+uint8_t global_state_7664;                    /**< 配置数据4 */
+uint8_t global_state_7680;                    /**< 保护数据 */
 
 /* ================================ */
 /* 文件结束标识 */

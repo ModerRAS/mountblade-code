@@ -225,7 +225,7 @@ uint64_t FUN_18034e960(longlong param_1,uint64_t param_2,uint64_t param_3,uint64
       lVar12 = *(longlong *)
                 ((longlong)(char)iVar17 * 0x1b0 +
                  *(longlong *)(*(longlong *)(lVar5 + 0x208) + 0x140) + 0x180);
-      puStack_80 = &UNK_180a3c3e0;
+      puStack_80 = &unknown_var_3456_ptr;
       uStack_68 = 0;
       puStack_78 = (int8_t *)0x0;
       uStack_70 = 0;
@@ -285,14 +285,14 @@ LAB_18034eafd:
           uVar13 = uVar13 + 1;
         } while ((ulonglong)(longlong)(int)uVar14 < uVar16);
       }
-      puStack_80 = &UNK_180a3c3e0;
+      puStack_80 = &unknown_var_3456_ptr;
       if (puStack_78 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       puStack_78 = (int8_t *)0x0;
       uStack_68 = uStack_68 & 0xffffffff00000000;
-      puStack_80 = &UNK_18098bcb0;
+      puStack_80 = &unknown_var_720_ptr;
       iVar17 = iVar17 + 1;
     } while (iVar17 < cVar3);
   }

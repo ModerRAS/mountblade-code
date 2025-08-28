@@ -795,11 +795,11 @@ void FUN_1801efe50(void)
       memcpy(plStack_d0[2] + (longlong)*(int *)(lVar6 + 0x54) * 2,*(uint64_t *)(lVar6 + 0x30),
              (longlong)(*(int *)(lVar6 + 0x4c) * *(int *)(lVar6 + 0x48) * 6));
     }
-    puStack_a0 = &UNK_18098bc80;
+    puStack_a0 = &unknown_var_672_ptr;
     puStack_98 = auStack_88;
     auStack_88[0] = 0;
     uStack_90 = 0xf;
-    strcpy_s(auStack_88,0x20,&UNK_180a0e110);
+    strcpy_s(auStack_88,0x20,&unknown_var_4320_ptr);
     uStack_e0 = 1;
     uStack_e8 = 0;
     plStack_f0 = plVar4;
@@ -820,12 +820,12 @@ void FUN_1801efe50(void)
       (**(code **)(*plStack_c0 + 0x38))();
     }
     plVar4 = plStack_d8;
-    puStack_a0 = &UNK_18098bcb0;
-    puStack_68 = &UNK_18098bc80;
+    puStack_a0 = &unknown_var_720_ptr;
+    puStack_68 = &unknown_var_672_ptr;
     puStack_60 = auStack_50;
     auStack_50[0] = 0;
     uStack_58 = 0x10;
-    strcpy_s(auStack_50,0x20,&UNK_180a0e138);
+    strcpy_s(auStack_50,0x20,&unknown_var_4360_ptr);
     uStack_e0 = 1;
     uStack_e8 = 0;
     plStack_f0 = plVar4;
@@ -845,7 +845,7 @@ void FUN_1801efe50(void)
     if (plStack_b8 != (longlong *)0x0) {
       (**(code **)(*plStack_b8 + 0x38))();
     }
-    puStack_68 = &UNK_18098bcb0;
+    puStack_68 = &unknown_var_720_ptr;
     *(int8_t *)(lVar3 + 0xe8) = 0;
     if (plStack_d8 != (longlong *)0x0) {
       (**(code **)(*plStack_d8 + 0x38))();

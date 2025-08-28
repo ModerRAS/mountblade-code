@@ -214,10 +214,10 @@ process_data:
         long_ptr2 = (void*)((MemoryAllocatorFunc)FUN_18062b1e0)(GLOBAL_DATA_PTR_180c8ed18, 0x170, 8, 3);
         
         // 初始化资源对象结构
-        *(void**)long_ptr2 = (void*)&UNK_180a21690;
-        *(void**)long_ptr2 = (void*)&UNK_180a21720;
+        *(void**)long_ptr2 = (void*)&unknown_var_3552_ptr;
+        *(void**)long_ptr2 = (void*)&unknown_var_3696_ptr;
         *(unsigned int*)(long_ptr2 + 1) = 0;
-        *(void**)long_ptr2 = (void*)&UNK_180a176f8;
+        *(void**)long_ptr2 = (void*)&unknown_var_2696_ptr;
         ((void**)long_ptr2)[6] = (void*)0;
         ((void**)long_ptr2)[2] = (void*)0;
         ((void**)long_ptr2)[3] = (void*)0;
@@ -226,10 +226,10 @@ process_data:
         ((void**)long_ptr2)[7] = (void*)0;
         *(unsigned int*)(long_ptr2 + 8) = 0;
         indirect_ptr1 = (void**)(long_ptr2 + 10);
-        *indirect_ptr1 = (void**)&UNK_18098bcb0;
+        *indirect_ptr1 = (void**)&unknown_var_720_ptr;
         ((void**)long_ptr2)[0xb] = (void*)0;
         *(unsigned int*)(long_ptr2 + 0xc) = 0;
-        *indirect_ptr1 = (void**)&UNK_1809feda8;
+        *indirect_ptr1 = (void**)&unknown_var_2008_ptr;
         ((void**)long_ptr2)[0xb] = (void*)(long_ptr2 + 0xd);
         *(unsigned int*)(long_ptr2 + 0xc) = 0;
         *(unsigned char*)(long_ptr2 + 0xd) = 0;
@@ -274,7 +274,7 @@ process_data:
         else {
             stack_indirect_ptr1 = (void***)&stack_ptr8;
             stack_uint5 = 0;
-            stack_ptr8 = &UNK_1809fcc28;
+            stack_ptr8 = &unknown_var_3432_ptr;
             stack_ptr10 = stack_buffer3;
             stack_uint3 = 0;
             stack_buffer3[0] = 0;
@@ -287,7 +287,7 @@ process_data:
             // 处理引用计数
             if (long_ptr4 != (void*)0x0) {
                 stack_uint5 = *(unsigned int*)((long long)long_ptr4 + 0x1c);
-                if (*(void**)(*long_ptr4 + 0x28) == (void*)&UNK_180084660) {
+                if (*(void**)(*long_ptr4 + 0x28) == (void*)&unknown_var_3248_ptr) {
                     LOCK();
                     *(int*)(long_ptr4 + 1) = (int)long_ptr4[1] + 1;
                     UNLOCK();
@@ -300,7 +300,7 @@ process_data:
             }
             
             // 处理资源对象引用计数
-            if (*(void**)long_ptr2 == &UNK_180a176f8) {
+            if (*(void**)long_ptr2 == &unknown_var_2696_ptr) {
                 LOCK();
                 *(int*)(long_ptr2 + 1) = (int)long_ptr2[1] + 1;
                 UNLOCK();
@@ -331,7 +331,7 @@ process_data:
                 ((void(*)(void*))(*(void**)(*long_ptr3 + 0x38)))(long_ptr3);
             }
             stack_indirect_ptr2 = &stack_ptr8;
-            stack_ptr8 = &UNK_18098bcb0;
+            stack_ptr8 = &unknown_var_720_ptr;
         }
         
         // 处理异步模式下的资源管理
@@ -496,7 +496,7 @@ expand_queue:
     }
     
     // 最终清理和结果处理
-    stack_ptr11 = &UNK_1809fcc28;
+    stack_ptr11 = &unknown_var_3432_ptr;
     stack_ptr12 = stack_buffer3;
     stack_buffer3[0] = 0;
     stack_uint2 = *(unsigned int*)((long long)data_source + 0x10);
@@ -505,7 +505,7 @@ expand_queue:
         data_ptr3 = *(void**)((long long)data_source + 8);
     }
     strcpy_s(stack_buffer3, 0x80, data_ptr3);
-    stack_ptr11 = &UNK_18098bcb0;
+    stack_ptr11 = &unknown_var_720_ptr;
     *(unsigned int*)((long long)long_ptr1 + 0x16c) = *(unsigned int*)(GLOBAL_DATA_PTR_180c86870 + 0x224);
     *stack_ptr4 = long_ptr1;
     stack_long_ptr3 = (void*)0x0;

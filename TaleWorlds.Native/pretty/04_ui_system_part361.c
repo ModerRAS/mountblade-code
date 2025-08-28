@@ -106,7 +106,7 @@ ulonglong FUN_180862e00(longlong param_1,byte param_2)
               FUN_1808559c0(param_1 + 200);
               (**(code **)(*(longlong *)(param_1 + 8) + 0x28))(param_1 + 8,0);
                     // WARNING: Subroutine does not return
-              FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&UNK_1809874b0,0x4c4,1);
+              FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&unknown_var_2288_ptr,0x4c4,1);
             }
           }
         }

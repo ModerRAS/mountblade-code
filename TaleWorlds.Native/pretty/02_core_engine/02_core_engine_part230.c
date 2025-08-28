@@ -185,7 +185,7 @@ void process_render_batch(longlong render_context, longlong scene_data)
               
               // 检查对象是否可见
               if ((object_count == 0) && ((int)object_ptr[0x42] != 0)) {
-                if (*(code **)(*object_ptr + 0x158) == (code *)&UNK_18027d980) {
+                if (*(code **)(*object_ptr + 0x158) == (code *)&unknown_var_2528_ptr) {
                   camera_position = (float *)(object_ptr + 0x66);
                 }
                 else {

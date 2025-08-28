@@ -123,7 +123,7 @@ void ProcessResourcePoolCleanup(longlong *param_1)
       lVar5 = *param_1 + uVar8;
       
       // 初始化资源清理上下文
-      puStack_48 = &UNK_180a3c3e0;
+      puStack_48 = &global_state_3456_ptr;
       uStack_30 = 0;
       puStack_40 = (int8_t *)0x0;
       uStack_38 = 0;
@@ -151,7 +151,7 @@ void ProcessResourcePoolCleanup(longlong *param_1)
       *(int *)(*plVar2 + 0x20) = (int)uVar7;
       
       // 重置资源清理上下文
-      puStack_48 = &UNK_180a3c3e0;
+      puStack_48 = &global_state_3456_ptr;
       if (puStack_40 != (int8_t *)0x0) {
         // 释放资源清理缓冲区（不返回的函数调用）
         FUN_18064e900();
@@ -341,10 +341,10 @@ void CopyResourcePoolData(longlong *param_1, uint64_t param_2, uint64_t param_3,
     
     do {
       // 初始化资源节点头部
-      *(void **)(puVar8 + -4) = &UNK_18098bcb0;
+      *(void **)(puVar8 + -4) = &global_state_720_ptr;
       *(uint64_t *)(puVar8 + -2) = 0;
       *puVar8 = 0;
-      *(void **)(puVar8 + -4) = &UNK_1809fcc58;
+      *(void **)(puVar8 + -4) = &global_state_3480_ptr;
       *(int32_t **)(puVar8 + -2) = puVar8 + 2;
       *puVar8 = 0;
       *(int8_t *)(puVar8 + 2) = 0;
@@ -379,7 +379,7 @@ void CopyResourcePoolData(longlong *param_1, uint64_t param_2, uint64_t param_3,
   
   // 清理原始资源池
   for (puVar6 = puVar3; puVar6 != puVar4; puVar6 = puVar6 + 0xd) {
-    *puVar6 = &UNK_18098bcb0;
+    *puVar6 = &global_state_720_ptr;
   }
   
   if (puVar3 != (uint64_t *)0x0) {
@@ -626,10 +626,10 @@ LAB_18055bcdc:
     
     do {
       // 初始化新资源节点
-      *puVar5 = &UNK_18098bcb0;
+      *puVar5 = &global_state_720_ptr;
       *(uint64_t *)(lVar8 + (longlong)puVar4) = 0;
       *(int32_t *)(lVar8 + 8 + (longlong)puVar4) = 0;
-      *puVar5 = &UNK_1809fcc58;
+      *puVar5 = &global_state_3480_ptr;
       puVar3 = (int8_t *)((longlong)puVar4 + lVar8 + 0x10);
       *(int8_t **)(lVar8 + (longlong)puVar4) = puVar3;
       *(int32_t *)(lVar8 + 8 + (longlong)puVar4) = 0;
@@ -665,7 +665,7 @@ LAB_18055bcdc:
   puVar4 = (uint64_t *)*param_1;
   if (puVar4 != puVar7) {
     do {
-      *puVar4 = &UNK_18098bcb0;
+      *puVar4 = &global_state_720_ptr;
       puVar4 = puVar4 + 0xd;
     } while (puVar4 != puVar7);
     puVar4 = (uint64_t *)*param_1;

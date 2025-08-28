@@ -134,7 +134,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     stack_uint64_t = resource_param;
     
     // 检查系统状态并确定时间值
-    if (*(void **)*_DAT == &UNK_18098bb88) {
+    if (*(void **)*_DAT == &unknown_var_424_ptr) {
         char_val = *(int *)(_DAT + 0xe0) != 0;
     }
     else {
@@ -169,7 +169,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
         do {
             mem_ptr = (uint64_t *)0x0;
             long_val = *(longlong *)(stack_long3 + hash_val1 * 8);
-            stack_ptr4 = &UNK_1809fcc28;
+            stack_ptr4 = &unknown_var_3432_ptr;
             stack_char_ptr2 = stack_buffer3;
             stack_buffer3[0] = '\0';
             stack_uint12 = *(uint *)(long_val + 0x20);
@@ -204,7 +204,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
             
             // 处理符合要求的资源
             if (bool_result) {
-                stack_ptr1 = &UNK_180a3c3e0;
+                stack_ptr1 = &unknown_var_3456_ptr;
                 stack_int8_t = 0;
                 stack_char_ptr = (int8_t *)0x0;
                 stack_uint1 = 0;
@@ -236,10 +236,10 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
                 // 添加到资源数组
                 if (stack_resource_ptr2 < stack_resource_ptr3) {
                     stack_resource_ptr4 = stack_resource_ptr2;
-                    *stack_resource_ptr2 = &UNK_18098bcb0;
+                    *stack_resource_ptr2 = &unknown_var_720_ptr;
                     stack_resource_ptr2[1] = 0;
                     *(int32_t *)(stack_resource_ptr2 + 2) = 0;
-                    *stack_resource_ptr2 = &UNK_180a3c3e0;
+                    *stack_resource_ptr2 = &unknown_var_3456_ptr;
                     *(int *)(stack_resource_ptr2 + 2) = (int)temp_mem_ptr;
                     stack_resource_ptr2[1] = stack_char_ptr;
                     *(int32_t *)((longlong)stack_resource_ptr2 + 0x1c) = stack_int8_t._4_4_;
@@ -264,10 +264,10 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
                     // 重新分配资源数组
                     resource_block = (uint64_t *)initialize_resource_array(stack_resource_ptr1, stack_resource_ptr2, mem_ptr);
                     temp_mem_ptr = stack_resource_ptr2;
-                    *resource_block = &UNK_18098bcb0;
+                    *resource_block = &unknown_var_720_ptr;
                     resource_block[1] = 0;
                     *(int32_t *)(resource_block + 2) = 0;
-                    *resource_block = &UNK_180a3c3e0;
+                    *resource_block = &unknown_var_3456_ptr;
                     *(int *)(resource_block + 2) = (int)temp_mem_ptr;
                     resource_block[1] = temp_char_ptr;
                     *(int32_t *)((longlong)resource_block + 0x1c) = stack_int8_t._4_4_;
@@ -290,9 +290,9 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
                 stack_resource_ptr2 = resource_block + 4;
                 stack_char_ptr = (char *)0x0;
                 stack_int8_t = stack_int8_t & 0xffffffff00000000;
-                stack_ptr1 = &UNK_18098bcb0;
+                stack_ptr1 = &unknown_var_720_ptr;
             }
-            stack_ptr4 = &UNK_18098bcb0;
+            stack_ptr4 = &unknown_var_720_ptr;
             hash_val1 = (ulonglong)((int)hash_val1 + 1);
             uint_result = stack_uint4;
         } while (hash_val1 < (ulonglong)(stack_long4 - stack_long3 >> 3));
@@ -314,7 +314,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     stack_hash_ptr3 = (uint64_t *******)0x0;
     stack_uint32_t = 0;
     stack_long1 = 0;
-    stack_ptr1 = &UNK_180a3c3e0;
+    stack_ptr1 = &unknown_var_3456_ptr;
     stack_int8_t = 0;
     stack_char_ptr = (char *)0x0;
     stack_uint1 = 0;
@@ -474,7 +474,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     *(int8_t *)(stack_long2 + 0x130) = flag_val;
     
     // 处理资源查找
-    stack_ptr2 = &UNK_180a3c3e0;
+    stack_ptr2 = &unknown_var_3456_ptr;
     stack_int16_t = 0;
     stack_byte_ptr = (int8_t *)0x0;
     stack_uint2 = 0;
@@ -673,7 +673,7 @@ LAB_resource_processing_complete:
     // 生成随机哈希值
     generate_random_hash(_DAT, stack_resource_id5, &stack_ptr2, 1);
     stack_uint9 = 1;
-    stack_ptr2 = &UNK_180a3c3e0;
+    stack_ptr2 = &unknown_var_3456_ptr;
     
     // 清理内存
     if (byte_ptr != (int8_t *)0x0) {
@@ -681,15 +681,15 @@ LAB_resource_processing_complete:
     }
     stack_byte_ptr = (int8_t *)0x0;
     stack_int16_t = (ulonglong)stack_int16_t._4_4_ << 0x20;
-    stack_ptr2 = &UNK_18098bcb0;
-    stack_ptr1 = &UNK_180a3c3e0;
+    stack_ptr2 = &unknown_var_720_ptr;
+    stack_ptr1 = &unknown_var_3456_ptr;
     
     if (char_ptr != (char *)0x0) {
         free_rendering_memory(char_ptr);
     }
     stack_char_ptr = (char *)0x0;
     stack_int8_t = stack_int8_t & 0xffffffff00000000;
-    stack_ptr1 = &UNK_18098bcb0;
+    stack_ptr1 = &unknown_var_720_ptr;
     
     // 清理所有资源数组
     FUN_180058020(&stack_hash_ptr1);
@@ -747,10 +747,10 @@ LAB_final_separator_found:
     // 添加到资源列表
     if (stack_resource_ptr6 < stack_resource_ptr7) {
         stack_ptr_array = (void **)stack_resource_ptr6;
-        *stack_resource_ptr6 = &UNK_18098bcb0;
+        *stack_resource_ptr6 = &unknown_var_720_ptr;
         stack_resource_ptr6[1] = 0;
         *(int32_t *)(stack_resource_ptr6 + 2) = 0;
-        *stack_resource_ptr6 = &UNK_180a3c3e0;
+        *stack_resource_ptr6 = &unknown_var_3456_ptr;
         stack_resource_ptr6[3] = 0;
         stack_resource_ptr6[1] = 0;
         *(int32_t *)(stack_resource_ptr6 + 2) = 0;
@@ -800,7 +800,7 @@ LAB_final_separator_found:
     // 最终资源处理和哈希表更新
     temp_var = 0;
     stack_ptr_array = &stack_ptr3;
-    stack_ptr3 = &UNK_180a3c3e0;
+    stack_ptr3 = &unknown_var_3456_ptr;
     stack_ulong1 = 0;
     stack_byte_ptr2 = (int8_t *)0x0;
     stack_uint10 = 0;

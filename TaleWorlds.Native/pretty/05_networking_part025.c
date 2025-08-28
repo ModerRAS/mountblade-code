@@ -151,7 +151,7 @@ uint64_t FUN_1808559c0(uint64_t *param_1)
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),lStack_18,&UNK_180984d50,0x76,1);
+          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),lStack_18,&unknown_var_2208_ptr,0x76,1);
         }
       }
       return 0;

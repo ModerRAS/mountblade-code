@@ -608,45 +608,45 @@ void generate_collision_report(longlong report_context, uint64_t *collision_data
         lVar8 = lVar8 + -1;
       } while (lVar8 != 0);
     }
-    FUN_180122210(param_3,&UNK_180a066b8,*param_2);
+    FUN_180122210(param_3,&global_var_3000_ptr,*param_2);
     iVar7 = 0;
     if (0 < piVar2[8]) {
       lVar8 = 0;
       do {
         lVar3 = *(longlong *)(piVar2 + 10);
-        puVar5 = &UNK_180a066a8;
+        puVar5 = &global_var_2984_ptr;
         puVar12 = &system_buffer_ptr;
         iVar9 = (int)*(char *)(lVar8 + 0xd + lVar3);
         iVar11 = (iVar4 - iVar9) * 2;
         if (*(char *)(lVar8 + 0xe + lVar3) != '\0') {
-          puVar5 = &UNK_180a065f0;
+          puVar5 = &global_var_2800_ptr;
         }
-        FUN_180122210(param_3,&UNK_180a066d8,iVar9 * 2,&system_buffer_ptr,puVar5,iVar11,&system_buffer_ptr);
+        FUN_180122210(param_3,&global_var_3032_ptr,iVar9 * 2,&system_buffer_ptr,puVar5,iVar11,&system_buffer_ptr);
         uVar10 = (int32_t)((ulonglong)puVar5 >> 0x20);
-        FUN_180122210(param_3,&UNK_180a066c8,*(int32_t *)(lVar8 + lVar3));
+        FUN_180122210(param_3,&global_var_3016_ptr,*(int32_t *)(lVar8 + lVar3));
         iVar9 = *(int *)(lVar8 + 4 + lVar3);
         if (iVar9 == 0) {
-          FUN_180122210(param_3,&UNK_180a066e8,(int)*(short *)(lVar8 + 0x12 + lVar3),
+          FUN_180122210(param_3,&global_var_3048_ptr,(int)*(short *)(lVar8 + 0x12 + lVar3),
                         (int)*(short *)(lVar8 + 0x14 + lVar3),
                         CONCAT44(uVar10,(int)*(short *)(lVar8 + 0x16 + lVar3)),
                         (int)*(short *)(lVar8 + 0x18 + lVar3),puVar12);
         }
         else {
-          FUN_180122210(param_3,&UNK_180a06700,iVar9,(int)*(short *)(lVar8 + 0x1a + lVar3),
+          FUN_180122210(param_3,&global_var_3072_ptr,iVar9,(int)*(short *)(lVar8 + 0x1a + lVar3),
                         CONCAT44(uVar10,(int)*(short *)(lVar8 + 0x1c + lVar3)),iVar11,puVar12);
         }
         cVar1 = *(char *)(lVar8 + 0xc + lVar3);
         if (cVar1 != -1) {
-          FUN_180122210(param_3,&UNK_180a06730,(cVar1 != '\0') + 'X');
+          FUN_180122210(param_3,&global_var_3120_ptr,(cVar1 != '\0') + 'X');
         }
         if (*(char *)(lVar8 + 0xf + lVar3) != '\0') {
-          FUN_180122210(param_3,&UNK_180a06720);
+          FUN_180122210(param_3,&global_var_3104_ptr);
         }
         if (*(char *)(lVar8 + 0x10 + lVar3) != '\0') {
-          FUN_180122210(param_3,&UNK_180a06758);
+          FUN_180122210(param_3,&global_var_3160_ptr);
         }
         if (*(int *)(lVar8 + 8 + lVar3) != 0) {
-          FUN_180122210(param_3,&UNK_180a06740);
+          FUN_180122210(param_3,&global_var_3136_ptr);
         }
         FUN_180122210(param_3,&system_memory_cc18);
         iVar7 = iVar7 + 1;

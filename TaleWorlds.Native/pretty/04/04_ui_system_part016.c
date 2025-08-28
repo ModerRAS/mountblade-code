@@ -79,24 +79,24 @@
 extern const void* _DAT_180c8ed00;     // UI系统配置数据
 extern const void* _DAT_180bf00a8;     // UI系统安全数据
 extern const void* system_memory_fd38;       // UI系统引用数据
-extern const void* UNK_180a3e4a0;       // UI系统资源数据1
-extern const void* UNK_180a3e4b8;       // UI系统资源数据2
-extern const void* UNK_180a3e500;       // UI系统资源数据3
-extern const void* UNK_180a3e510;       // UI系统资源数据4
-extern const void* UNK_180a3e4d8;       // UI系统资源数据5
-extern const void* UNK_180a3e4e8;       // UI系统资源数据6
-extern const void* UNK_180a3e4c8;       // UI系统资源数据7
-extern const void* UNK_180a34d04;       // UI系统指针数组1
-extern const void* UNK_180a34d10;       // UI系统指针数组2
-extern const void* UNK_180a34d60;       // UI系统指针数组3
-extern const void* UNK_180a34b7c;       // UI系统指针数组4
-extern const void* UNK_180a34d50;       // UI系统指针数组5
-extern const void* UNK_180a34bc8;       // UI系统指针数组6
-extern const void* UNK_180a34d80;       // UI系统指针数组7
-extern const void* UNK_180a34d70;       // UI系统指针数组8
-extern const void* UNK_180a34d20;       // UI系统指针数组9
-extern const void* UNK_180a34d18;       // UI系统指针数组10
-extern const void* UNK_180a3e530;       // UI系统内存数据
+extern const void* global_state_1840_ptr;       // UI系统资源数据1
+extern const void* global_state_1864_ptr;       // UI系统资源数据2
+extern const void* global_state_1936_ptr;       // UI系统资源数据3
+extern const void* global_state_1952_ptr;       // UI系统资源数据4
+extern const void* global_state_1896_ptr;       // UI系统资源数据5
+extern const void* global_state_1912_ptr;       // UI系统资源数据6
+extern const void* global_state_1880_ptr;       // UI系统资源数据7
+extern const void* global_state_3028_ptr;       // UI系统指针数组1
+extern const void* global_state_3040_ptr;       // UI系统指针数组2
+extern const void* global_state_3120_ptr;       // UI系统指针数组3
+extern const void* global_state_2636_ptr;       // UI系统指针数组4
+extern const void* global_state_3104_ptr;       // UI系统指针数组5
+extern const void* global_state_2712_ptr;       // UI系统指针数组6
+extern const void* global_state_3152_ptr;       // UI系统指针数组7
+extern const void* global_state_3136_ptr;       // UI系统指针数组8
+extern const void* global_state_3056_ptr;       // UI系统指针数组9
+extern const void* global_state_3048_ptr;       // UI系统指针数组10
+extern const void* global_state_1984_ptr;       // UI系统内存数据
 
 // ====================== 外部函数声明 ======================
 extern void func_0x000180668820(longlong param_1);
@@ -659,31 +659,31 @@ void ui_system_resource_manager(longlong param_1)
     security_hash = _DAT_180bf00a8 ^ (ulonglong)security_stack;
     
     // 资源数组初始化
-    resource_array[0] = (void*)&UNK_180a34d04;
-    resource_array[1] = (void*)&UNK_180a34d10;
-    resource_array[2] = (void*)&UNK_180a34d60;
-    resource_array[3] = (void*)&UNK_180a34b7c;
-    resource_array[4] = (void*)&UNK_180a34d50;
-    resource_array[5] = (void*)&UNK_180a34bc8;
-    resource_array[6] = (void*)&UNK_180a34d80;
-    resource_array[7] = (void*)&UNK_180a34d70;
-    resource_array[8] = (void*)&UNK_180a34d20;
-    resource_array[9] = (void*)&UNK_180a34d18;
+    resource_array[0] = (void*)&global_state_3028_ptr;
+    resource_array[1] = (void*)&global_state_3040_ptr;
+    resource_array[2] = (void*)&global_state_3120_ptr;
+    resource_array[3] = (void*)&global_state_2636_ptr;
+    resource_array[4] = (void*)&global_state_3104_ptr;
+    resource_array[5] = (void*)&global_state_2712_ptr;
+    resource_array[6] = (void*)&global_state_3152_ptr;
+    resource_array[7] = (void*)&global_state_3136_ptr;
+    resource_array[8] = (void*)&global_state_3056_ptr;
+    resource_array[9] = (void*)&global_state_3048_ptr;
     
     // 资源分配
-    resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e4a0);
+    resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &global_state_1840_ptr);
     resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x38));
     (**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_fd38);
     
-    resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e4b8);
+    resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &global_state_1864_ptr);
     resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x3c));
     (**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_fd38);
     
-    resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e500);
+    resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &global_state_1936_ptr);
     resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x40));
     (**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_fd38);
     
-    resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e510);
+    resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &global_state_1952_ptr);
     resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x44));
     (**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_fd38);
     
@@ -692,7 +692,7 @@ void ui_system_resource_manager(longlong param_1)
     temp_var = resource_index;
     if (0 < *(int *)(param_1 + 0x60)) {
         do {
-            resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e4d8);
+            resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &global_state_1896_ptr);
             resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 4));
             (**(code **)(*resource_ptr + 0x70))(resource_ptr, &system_memory_fd38);
             resource_id = (int)temp_var + 1;
@@ -703,9 +703,9 @@ void ui_system_resource_manager(longlong param_1)
     // 资源配置
     do {
         if (0.0 < *(float *)(param_1 + 0x6150 + resource_index * 4)) {
-            resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e4e8);
+            resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &global_state_1912_ptr);
             resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x70))(resource_ptr, resource_array[resource_index]);
-            resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x70))(resource_ptr, &UNK_180a3e4c8);
+            resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x70))(resource_ptr, &global_state_1880_ptr);
             
             if (resource_index == 0) {
                 resource_value = *(int32_t *)(param_1 + 0x3c);
@@ -783,7 +783,7 @@ uint64_t* ui_system_memory_manager(uint64_t* param_1, ulonglong param_2)
     // 原实现包含内存管理和资源释放逻辑
     
     param_1[399] = 0;
-    *param_1 = &UNK_180a3e530;
+    *param_1 = &global_state_1984_ptr;
     
     if ((param_2 & 1) != 0) {
         free(param_1, 0xc88);
@@ -1429,7 +1429,7 @@ uint64_t FUN_18065cec0(longlong param_1, int param_2)
 uint64_t * FUN_18065cf30(uint64_t *param_1, ulonglong param_2)
 {
     param_1[UI_SYSTEM_ARRAY_SIZE - 1] = 0;
-    *param_1 = &UNK_180a3e530;
+    *param_1 = &global_state_1984_ptr;
     
     if ((param_2 & 1) != 0) {
         free(param_1, UI_SYSTEM_MEMORY_SIZE);

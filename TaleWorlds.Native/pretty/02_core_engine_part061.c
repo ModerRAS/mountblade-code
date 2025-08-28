@@ -486,7 +486,7 @@ FUN_180099f90(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
               0x48) < _DAT_180d49210) {
     FUN_1808fcb90(&system_ptr_9210);
     if (_DAT_180d49210 == -1) {
-      _DAT_180d49218 = &UNK_180a3c3e0;
+      _DAT_180d49218 = &unknown_var_3456_ptr;
       _DAT_180d49230 = 0;
       _DAT_180d49220 = (void *)0x0;
       _DAT_180d49228 = 0;
@@ -531,7 +531,7 @@ int8_t FUN_18009a080(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t
     puVar3 = (void *)param_4[1];
   }
   uVar4 = (uint)*(ushort *)(param_2 + 0x32e);
-  FUN_18010f010(&UNK_180a015f0,puVar3,uVar2,*(int16_t *)(param_2 + 0x32c),uVar4);
+  FUN_18010f010(&unknown_var_2320_ptr,puVar3,uVar2,*(int16_t *)(param_2 + 0x32c),uVar4);
   uStack_40 = 0x3f8000003f800000;
   uStack_38 = 0x3f8000003f800000;
   uStack_30 = 0;
@@ -542,14 +542,14 @@ int8_t FUN_18009a080(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t
   uStackX_10 = 0x43800000;
   uVar1 = FUN_180110ca0(param_2,&uStackX_10,&uStackX_8,&uStackX_18,uVar4,&uStack_30,&uStack_40);
   FUN_18012e4e0();
-  *param_4 = &UNK_180a3c3e0;
+  *param_4 = &unknown_var_3456_ptr;
   if (param_4[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_4[1] = 0;
   *(int32_t *)(param_4 + 3) = 0;
-  *param_4 = &UNK_18098bcb0;
+  *param_4 = &unknown_var_720_ptr;
   return uVar1;
 }
 
@@ -691,14 +691,14 @@ void FUN_18009a4b0(uint64_t param_1,uint64_t param_2,longlong param_3,longlong p
     pcVar10 = pcVar9;
     pcVar9 = pcVar10 + 1;
   } while (*pcVar9 != '\0');
-  *puVar8 = &UNK_180a01604;
+  *puVar8 = &unknown_var_2340_ptr;
   puVar8[2] = pcVar10 + -0x180a01603;
   puVar19 = &system_buffer_ptr;
   if (*(void **)(param_5 + 8) != (void *)0x0) {
     puVar19 = *(void **)(param_5 + 8);
   }
-  FUN_180630b20(param_3,puVar8,&UNK_180a015fc,puVar19);
-  FUN_180630e10(param_3,puVar8,&UNK_180a01610,*(double *)(param_5 + 0x40) * 1000.0);
+  FUN_180630b20(param_3,puVar8,&unknown_var_2332_ptr,puVar19);
+  FUN_180630e10(param_3,puVar8,&unknown_var_2352_ptr,*(double *)(param_5 + 0x40) * 1000.0);
   uVar17 = uVar15;
   if (*(longlong *)(param_5 + 0x50) - *(longlong *)(param_5 + 0x48) >> 3 != 0) {
     do {

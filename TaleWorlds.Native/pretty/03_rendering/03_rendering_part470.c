@@ -238,10 +238,10 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
                 __Throw_C_error_std__YAXH_Z(material_index);
             }
             render_state = *(int32_t*)(*material_ptr + 0x10);
-            mode_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+            mode_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
             if ((mode_flag != '\0') && 
-                (mode_flag = FUN_180645c10(0x180c95578, 4, &UNK_1809fa540), mode_flag != '\0')) {
-                FUN_180645c10(0x180c95578, render_state, &UNK_1809fa510);
+                (mode_flag = FUN_180645c10(0x180c95578, 4, &unknown_var_3472_ptr), mode_flag != '\0')) {
+                FUN_180645c10(0x180c95578, render_state, &unknown_var_3424_ptr);
             }
             context_data = *(longlong*)(*material_ptr + 0x8e8);
             *(ulonglong*)&_DAT_180c95b3c = *(ulonglong*)&_DAT_180c95b3c & 0xffffffff00000000;
@@ -448,7 +448,7 @@ LABEL_TEXTURE_PROCESS:
         if ((*(int*)(*(longlong*)((longlong)ThreadLocalStoragePointer + 
                                (ulonglong)__tls_index * 8) + 0x48) < _DAT_180d49ed8) && 
             (FUN_1808fcb90(&system_memory_9ed8), _DAT_180d49ed8 == -1)) {
-            stack_ptr = &UNK_180a3c3e0;
+            stack_ptr = &unknown_var_3456_ptr;
             stack_param_4 = 0;
             stack_param_5 = 0;
             stack_param_ptr = (int32_t*)0x0;
@@ -461,7 +461,7 @@ LABEL_TEXTURE_PROCESS:
             *(int16_t*)(param_ptr + 1) = 0x68;
             stack_param_2 = 5;
             _DAT_180d49edc = FUN_180571e20(&system_memory_60c0, &stack_ptr);
-            stack_ptr = &UNK_180a3c3e0;
+            stack_ptr = &unknown_var_3456_ptr;
             FUN_18064e900(param_ptr);
         }
         
@@ -645,7 +645,7 @@ LABEL_TEXTURE_PROCESS:
             if ((thread_id < _DAT_180d49ee0) &&
                 (FUN_1808fcb90(&system_memory_9ee0), param_flag = _DAT_180d49ee4, 
                  _DAT_180d49ee0 == -1)) {
-                stack_ptr = &UNK_180a3c3e0;
+                stack_ptr = &unknown_var_3456_ptr;
                 stack_param_4 = 0;
                 stack_param_5 = 0;
                 stack_param_ptr = (int32_t*)0x0;
@@ -658,7 +658,7 @@ LABEL_TEXTURE_PROCESS:
                 *(int16_t*)(param_ptr + 1) = 0x68;
                 stack_param_2 = 5;
                 _DAT_180d49ee4 = FUN_180571e20(&system_memory_60c0, &stack_ptr);
-                stack_ptr = &UNK_180a3c3e0;
+                stack_ptr = &unknown_var_3456_ptr;
                 FUN_18064e900(param_ptr);
             }
         } else {
@@ -666,7 +666,7 @@ LABEL_TEXTURE_PROCESS:
             if ((thread_id < _DAT_180d49ee8) &&
                 (FUN_1808fcb90(&system_memory_9ee8), param_flag = _DAT_180d49eec, 
                  _DAT_180d49ee8 == -1)) {
-                stack_ptr = &UNK_180a3c3e0;
+                stack_ptr = &unknown_var_3456_ptr;
                 stack_param_4 = 0;
                 stack_param_5 = 0;
                 stack_param_ptr = (int32_t*)0x0;
@@ -679,7 +679,7 @@ LABEL_TEXTURE_PROCESS:
                 *(int8_t*)(param_ptr + 1) = 0;
                 stack_param_2 = 4;
                 _DAT_180d49eec = FUN_180571e20(&system_memory_60c0, &stack_ptr);
-                stack_ptr = &UNK_180a3c3e0;
+                stack_ptr = &unknown_var_3456_ptr;
                 FUN_18064e900(param_ptr);
             }
         }

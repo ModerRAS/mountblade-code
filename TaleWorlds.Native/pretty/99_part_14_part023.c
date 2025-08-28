@@ -343,22 +343,22 @@ extern ulonglong _DAT_180bf00a8;
 extern ulonglong _DAT_180bf00a0;
 
 /** 安全检查指针变量 */
-extern longlong UNK_180a908f8;
+extern longlong global_state_8824_ptr;
 
 /** 安全检查指针变量2 */
-extern longlong UNK_180a90908;
+extern longlong global_state_8840_ptr;
 
 /** 异常类型指针变量 */
-extern uint64_t UNK_18098b928;
+extern uint64_t global_state_9816_ptr;
 
 /** 异常类型指针变量2 */
-extern uint64_t UNK_18098b958;
+extern uint64_t global_state_9864_ptr;
 
 /** 异常处理类型指针变量 */
-extern uint64_t UNK_180bd8a18;
+extern uint64_t global_state_2600_ptr;
 
 /** 异常处理类型指针变量2 */
-extern uint64_t UNK_180bd88e8;
+extern uint64_t global_state_2296_ptr;
 
 /** 数学计算常量变量 */
 extern uint64_t system_memory_f5d0;
@@ -370,8 +370,8 @@ extern uint64_t system_memory_f680;
 extern uint64_t system_memory_f670;
 extern uint64_t system_memory_f6b0;
 extern uint64_t system_memory_f610;
-extern uint64_t UNK_180d9f410;
-extern uint64_t UNK_180d9f418;
+extern uint64_t global_state_4736;
+extern uint64_t global_state_4744;
 extern uint64_t system_memory_f008;
 extern uint64_t system_memory_f000;
 extern uint64_t system_memory_fd20;
@@ -383,10 +383,10 @@ extern uint64_t system_memory_fd90;
 extern uint64_t system_memory_fd30;
 extern uint64_t system_memory_fdc0;
 extern uint64_t system_memory_fc80;
-extern uint64_t UNK_180d9fb10;
-extern uint64_t UNK_180d9fb18;
-extern uint64_t UNK_180d9f708;
-extern uint64_t UNK_180d9f700;
+extern uint64_t global_state_6528_ptr;
+extern uint64_t global_state_6536_ptr;
+extern uint64_t global_state_5496_ptr;
+extern uint64_t global_state_5488_ptr;
 
 /*=========================================
  * 函数实现
@@ -611,8 +611,8 @@ void SecurityCheckerAndCallGuardian(void)
     longlong *security_pointer;
     
     /* 遍历安全检查指针数组 */
-    for (security_pointer = (longlong *)&UNK_180a908f8; 
-         security_pointer < &UNK_180a908f8; 
+    for (security_pointer = (longlong *)&global_state_8824_ptr; 
+         security_pointer < &global_state_8824_ptr; 
          security_pointer++) {
         
         /* 如果指针非空，则调用保护函数 */
@@ -643,8 +643,8 @@ void MemoryCleanerAndSecurityChecker(void)
     longlong *memory_pointer;
     
     /* 遍历内存指针数组 */
-    for (memory_pointer = (longlong *)&UNK_180a90908; 
-         memory_pointer < &UNK_180a90908; 
+    for (memory_pointer = (longlong *)&global_state_8840_ptr; 
+         memory_pointer < &global_state_8840_ptr; 
          memory_pointer++) {
         
         /* 如果指针非空，则调用保护函数 */
@@ -697,7 +697,7 @@ void MemoryManagerAndFreeHandler(void)
 uint64_t *ObjectConstructorAndExceptionCopier(uint64_t *param_1, longlong param_2)
 {
     /* 设置虚表指针 */
-    *param_1 = &UNK_18098b928;
+    *param_1 = &global_state_9816_ptr;
     
     /* 初始化对象成员 */
     param_1[1] = 0;
@@ -707,7 +707,7 @@ uint64_t *ObjectConstructorAndExceptionCopier(uint64_t *param_1, longlong param_
     __std_exception_copy(param_2 + 8);
     
     /* 更新虚表指针 */
-    *param_1 = &UNK_18098b958;
+    *param_1 = &global_state_9864_ptr;
     
     /* 返回构造完成的对象指针 */
     return param_1;
@@ -731,7 +731,7 @@ uint64_t *ObjectConstructorAndExceptionCopier(uint64_t *param_1, longlong param_
 uint64_t *ObjectDestructorAndMemoryCleaner(uint64_t *param_1, ulonglong param_2)
 {
     /* 重置虚表指针 */
-    *param_1 = &UNK_18098b928;
+    *param_1 = &global_state_9816_ptr;
     
     /* 销毁异常信息 */
     __std_exception_destroy(param_1 + 1);
@@ -767,7 +767,7 @@ void ExceptionThrowerAndSystemTerminator1(void)
     FUN_180287f70(exception_data);
     
     /* 抛出异常（不返回） */
-    _CxxThrowException(exception_data, &UNK_180bd8a18);
+    _CxxThrowException(exception_data, &global_state_2600_ptr);
 }
 
 
@@ -792,7 +792,7 @@ void ExceptionThrowerAndSystemTerminator2(void)
     func_0x0001808fd81c(exception_data);
     
     /* 抛出异常（不返回） */
-    _CxxThrowException(exception_data, &UNK_180bd88e8);
+    _CxxThrowException(exception_data, &global_state_2296_ptr);
 }
 
 
@@ -1182,21 +1182,21 @@ ulonglong FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
         }
         else {
           uVar2 = (ulonglong)(((uint)ABS(fVar16) >> 0x17) - 0x8e & 0xfff8);
-          dVar18 = (double)(*(ulonglong *)(&UNK_180d9fb10 + uVar2 * 2) & 0xffffffffff000000) *
+          dVar18 = (double)(*(ulonglong *)(&global_state_6528_ptr + uVar2 * 2) & 0xffffffffff000000) *
                    dVar17;
-          dVar21 = (double)(*(ulonglong *)(&UNK_180d9fb10 + uVar2 * 2) << 0x28) * dVar17;
+          dVar21 = (double)(*(ulonglong *)(&global_state_6528_ptr + uVar2 * 2) << 0x28) * dVar17;
           dVar19 = dVar18 + dVar21;
           iVar3 = SUB84(dVar19 + 6755399441055744.0,0);
           uVar38 = iVar3 * 2;
           uVar39 = (iVar3 << 0x19) >> 0x1f;
-          dVar17 = dVar17 * *(double *)(&UNK_180d9fb18 + uVar2 * 2) + dVar21 + (dVar18 - dVar19) +
+          dVar17 = dVar17 * *(double *)(&global_state_6536_ptr + uVar2 * 2) + dVar21 + (dVar18 - dVar19) +
                    (dVar19 - ((dVar19 + 6755399441055744.0) - 6755399441055744.0));
           uVar2 = (ulonglong)((uVar38 + uVar39 ^ uVar39) & 0xfe);
           fVar16 = (float)((double)((ulonglong)
                                     ((3320.092545592124 - dVar17 * dVar17) *
-                                    *(double *)(&UNK_180d9f708 + uVar2 * 8)) ^
+                                    *(double *)(&global_state_5496_ptr + uVar2 * 8)) ^
                                    (ulonglong)(((uVar38 & 0x180) + 0x80 & 0x100) << 0x17) << 0x20) +
-                          *(double *)(&UNK_180d9f700 + uVar2 * 8) * dVar17 *
+                          *(double *)(&global_state_5488_ptr + uVar2 * 8) * dVar17 *
                           (double)((ulonglong)(9960.277636776373 - dVar17 * dVar17) ^
                                   (ulonglong)((uVar38 & 0x100) << 0x17) << 0x20));
         }

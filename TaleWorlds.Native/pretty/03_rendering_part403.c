@@ -11,7 +11,7 @@ void FUN_180490f80(uint64_t *param_1)
   int iVar3;
   longlong lVar4;
   
-  *param_1 = &UNK_180a2c788;
+  *param_1 = &unknown_var_8856_ptr;
   if (param_1[0x12] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -133,7 +133,7 @@ void FUN_180490f80(uint64_t *param_1)
         (**(code **)(*(longlong *)param_1[0xb] + 0x38))();
       }
       _Mtx_destroy_in_situ();
-      *param_1 = &UNK_180a2c980;
+      *param_1 = &unknown_var_9360_ptr;
       return;
     }
                     // WARNING: Subroutine does not return

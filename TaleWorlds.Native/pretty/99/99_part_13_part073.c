@@ -183,14 +183,14 @@ void system_resource_manager_initialize(void)
     *resource_ptr = (longlong)resource_ptr;
     
     // 设置系统状态
-    *system_context = &UNK_180986f68;
+    *system_context = &unknown_var_936_ptr;
     resource_ptr = system_context + 4;
     next_ptr = (longlong*)*resource_ptr;
     
     // 检查系统状态
     if ((next_ptr == resource_ptr) && ((longlong*)system_context[5] == resource_ptr)) {
         func_0x00018085dda0(resource_ptr);
-        *system_context = &UNK_180984ab8;
+        *system_context = &unknown_var_1544_ptr;
         *(uint32_t*)(system_context + 1) = 0xdeadf00d;
         return;
     }
@@ -217,7 +217,7 @@ void system_resource_manager_initialize(void)
     *current_ptr = (longlong)current_ptr;
     
     // 调用系统资源分配函数
-    FUN_180742250(*(void**)(_DAT_180be12f0 + 0x1a0), current_ptr, &UNK_180986f90, 0x30);
+    FUN_180742250(*(void**)(_DAT_180be12f0 + 0x1a0), current_ptr, &unknown_var_976_ptr, 0x30);
 }
 
 /**
@@ -337,7 +337,7 @@ uint32_t system_state_manager_create(int state_id, longlong* state_handle)
     
     // 分配状态管理器资源
     state_ptr = (int*)FUN_180741d10(*(void**)(_DAT_180be12f0 + 0x1a0), state_id + 0x10, 0x10,
-                                  &UNK_180988980, 0x3e, 0, 0);
+                                  &unknown_var_7616_ptr, 0x3e, 0, 0);
     
     // 检查分配结果
     if (state_ptr == (int*)0x0) {
@@ -387,7 +387,7 @@ uint32_t system_state_manager_destroy(longlong* state_handle)
         
         // 检查是否需要释放资源
         if (*(int*)(*state_handle + 4) == 0) {
-            FUN_180741df0(*(void**)(_DAT_180be12f0 + 0x1a0), *state_handle, &UNK_180988980, 0x89);
+            FUN_180741df0(*(void**)(_DAT_180be12f0 + 0x1a0), *state_handle, &unknown_var_7616_ptr, 0x89);
             *state_handle = 0;
         }
     }
@@ -495,7 +495,7 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
             if (allocation_result == 0) {
                 // 分配基础类型资源
                 resource_ptr = FUN_180741e10(*(void**)(_DAT_180be12f0 + 0x1a0), 0x20, 
-                                           &UNK_1809869a0, 0x112, 0, 0, 1);
+                                           &unknown_var_9456_ptr, 0x112, 0, 0, 1);
                 if (resource_ptr == (void*)0x0) {
                     return ERROR_INSUFFICIENT_MEMORY;
                 }
@@ -503,14 +503,14 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
                 
                 // 初始化资源数据
                 resource_ptr[1] = 0;
-                *resource_ptr = &UNK_180986940;
+                *resource_ptr = &unknown_var_9360_ptr;
                 *(uint32_t*)(resource_ptr + 3) = 0;
                 *(void**)(*(longlong*)(processor_handle + 0x48) + index * 8) = resource_ptr;
                 *(int*)(resource_ptr + 3) = config_ptr[0xe];
             } else if (allocation_result == 1) {
                 // 分配扩展类型资源
                 resource_ptr = FUN_180741e10(*(void**)(_DAT_180be12f0 + 0x1a0), 0x20, 
-                                           &UNK_1809869a0, 0x119, 0, 0, 1);
+                                           &unknown_var_9456_ptr, 0x119, 0, 0, 1);
                 if (resource_ptr == (void*)0x0) {
                     return ERROR_INSUFFICIENT_MEMORY;
                 }
@@ -518,19 +518,19 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
                 
                 // 初始化资源数据
                 resource_ptr[1] = 0;
-                *resource_ptr = &UNK_180986940;
+                *resource_ptr = &unknown_var_9360_ptr;
                 *(uint32_t*)(resource_ptr + 3) = 0;
                 *(void**)(*(longlong*)(processor_handle + 0x48) + index * 8) = resource_ptr;
                 *(int*)(resource_ptr + 3) = config_ptr[0xe];
             } else if (allocation_result == 2) {
                 // 分配复杂类型资源
                 resource_ptr = FUN_180741e10(*(void**)(_DAT_180be12f0 + 0x1a0), 0x20, 
-                                           &UNK_1809869a0, 0x120, 0, 0, 1);
+                                           &unknown_var_9456_ptr, 0x120, 0, 0, 1);
                 if (resource_ptr == (void*)0x0) {
                     return ERROR_INSUFFICIENT_MEMORY;
                 }
                 resource_ptr[1] = 0;
-                *resource_ptr = &UNK_180986940;
+                *resource_ptr = &unknown_var_9360_ptr;
                 *(uint32_t*)(resource_ptr + 2) = 2;
                 *(uint8_t*)(resource_ptr + 3) = 0;
                 *(void**)(*(longlong*)(processor_handle + 0x48) + index * 8) = resource_ptr;
@@ -538,12 +538,12 @@ uint32_t system_data_processor_configure(longlong processor_handle, longlong con
             } else if (allocation_result == 3) {
                 // 分配自定义类型资源
                 resource_ptr = FUN_180741e10(*(void**)(_DAT_180be12f0 + 0x1a0), 0x20, 
-                                           &UNK_1809869a0, 0x127, 0, 0, 1);
+                                           &unknown_var_9456_ptr, 0x127, 0, 0, 1);
                 if (resource_ptr == (void*)0x0) {
                     return ERROR_INSUFFICIENT_MEMORY;
                 }
                 resource_ptr[1] = 0;
-                *resource_ptr = &UNK_180986948;
+                *resource_ptr = &unknown_var_9368_ptr;
                 *(uint32_t*)(resource_ptr + 2) = 3;
                 resource_ptr[3] = 0;
                 *(void**)(*(longlong*)(processor_handle + 0x48) + index * 8) = resource_ptr;
@@ -599,7 +599,7 @@ uint32_t system_memory_manager_allocate(void** memory_handle, uint32_t allocatio
     
     // 分配内存资源
     allocation_result = FUN_180741e10(*(void**)(_DAT_180be12f0 + 0x1a0), MEMORY_BLOCK_LARGE, 
-                                   &UNK_180988a00, 0x214, 0, 0, 1);
+                                   &unknown_var_7744_ptr, 0x214, 0, 0, 1);
     
     if (allocation_result == 0) {
         return ERROR_INSUFFICIENT_MEMORY;
@@ -642,7 +642,7 @@ void system_memory_manager_free(void* memory_handle)
         FUN_1808dbcd0(memory_handle);
         
         // 释放内存资源
-        FUN_180742250(*(void**)(_DAT_180be12f0 + 0x1a0), memory_handle, &UNK_180988a00, 0x252, 1);
+        FUN_180742250(*(void**)(_DAT_180be12f0 + 0x1a0), memory_handle, &unknown_var_7744_ptr, 0x252, 1);
     }
 }
 

@@ -141,8 +141,8 @@ uint64_t update_render_parameters(longlong *render_context)
         UNLOCK();
         
         // 初始化渲染管线
-        buffer_ptr = &UNK_180103b59;
-        initialize_render_pipeline(_DAT_180c86928, &UNK_1809fd878, resolution_x, resolution_y);
+        buffer_ptr = &global_state_4713_ptr;
+        initialize_render_pipeline(_DAT_180c86928, &global_state_6584_ptr, resolution_x, resolution_y);
     }
     
     // 更新渲染配置
@@ -216,7 +216,7 @@ apply_texture_settings:
     update_render_system();
     
     render_mode = 0;
-    if ((void *)*_DAT_180c86920 == &UNK_180a062e0) {
+    if ((void *)*_DAT_180c86920 == &global_state_2016_ptr) {
         if ((_DAT_180c86920[0x16] == 0) && (*(char *)(_DAT_180c86870 + 0x1f0) != '\0')) {
             status_flag = '\x01';
         } else {
@@ -267,7 +267,7 @@ apply_texture_settings:
             _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
             UNLOCK();
         }
-        buffer_ptr = &UNK_180a3c3e0;
+        buffer_ptr = &global_state_3456_ptr;
         if (buffer_ptr != (void *)0x0) {
             // 保存调试信息
             save_debug_info();
@@ -316,7 +316,7 @@ void set_engine_configuration(void)
     UNLOCK();
     
     // 初始化渲染管线
-    initialize_render_pipeline(_DAT_180c86928, &UNK_1809fd878, resolution_y, resolution_x);
+    initialize_render_pipeline(_DAT_180c86928, &global_state_6584_ptr, resolution_y, resolution_x);
 }
 
 // 函数：处理引擎属性
@@ -411,7 +411,7 @@ apply_settings:
     update_render_system();
     
     render_mode = 0;
-    if ((void *)*_DAT_180c86920 == &UNK_180a062e0) {
+    if ((void *)*_DAT_180c86920 == &global_state_2016_ptr) {
         if ((_DAT_180c86920[0x16] == 0) && (*(char *)(_DAT_180c86870 + 0x1f0) != '\0')) {
             status_flag = '\x01';
         } else {
@@ -460,7 +460,7 @@ apply_settings:
             _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
             UNLOCK();
         }
-        buffer_ptr = &UNK_180a3c3e0;
+        buffer_ptr = &global_state_3456_ptr;
         if (return_address != (void *)0x0) {
             // 保存调试信息
             save_debug_info();
@@ -611,7 +611,7 @@ apply_mode_settings:
             if (*(void **)(renderer_data + 0x1b30) != (void *)0x0) {
                 config_path = *(void **)(renderer_data + 0x1b30);
             }
-            load_config_file(&UNK_18098bc00, config_path);
+            load_config_file(&global_state_544_ptr, config_path);
         }
         render_params[1] = *(int32_t *)(renderer_data + 0x1b68);
     }
@@ -632,9 +632,9 @@ uint64_t process_renderer_command(uint64_t renderer_instance, longlong command_p
     // 获取命令ID
     command_id = *(int *)(command_param + 0x10);
     if (command_id != 0) {
-        if ((command_id != 0x16) || (result = strcmp(*(uint64_t *)(command_param + 8), &UNK_180a05288), result != 0)) {
+        if ((command_id != 0x16) || (result = strcmp(*(uint64_t *)(command_param + 8), &global_state_7832_ptr), result != 0)) {
             if ((command_id == 0xe) &&
-               (result = strcmp(*(uint64_t *)(command_param + 8), &UNK_180a052b8), result == 0)) {
+               (result = strcmp(*(uint64_t *)(command_param + 8), &global_state_7880_ptr), result == 0)) {
                 value = 1;
                 if (*(int *)(value_param + 0x10) != 0) {
                     value_string = &system_buffer_ptr;
@@ -647,7 +647,7 @@ uint64_t process_renderer_command(uint64_t renderer_instance, longlong command_p
                 return 1;
             }
             if ((command_id == 0x13) &&
-               (command_id = strcmp(*(uint64_t *)(command_param + 8), &UNK_180a052a0), command_id == 0)) {
+               (command_id = strcmp(*(uint64_t *)(command_param + 8), &global_state_7856_ptr), command_id == 0)) {
                 value = 1;
                 if (*(int *)(value_param + 0x10) != 0) {
                     value_string = &system_buffer_ptr;
@@ -726,13 +726,13 @@ void initialize_render_pipeline(longlong renderer_instance)
     set_lighting_quality(renderer_instance, *(int32_t *)(renderer_instance + 0x150));
     
     // 读取基础配置
-    buffer_ptr = &UNK_18098bc80;
+    buffer_ptr = &global_state_672_ptr;
     string_ptr = temp_buffer;
     temp_buffer[0] = 0;
     buffer_value = 0xb;
-    strcpy_s(temp_buffer, 0x20, &UNK_180a05528);
+    strcpy_s(temp_buffer, 0x20, &global_state_8504_ptr);
     config_found = read_config_value(_DAT_180c86870, &buffer_ptr);
-    buffer_ptr = &UNK_18098bcb0;
+    buffer_ptr = &global_state_720_ptr;
     
     if (config_found != '\0') {
         stack_config[0] = 0;
@@ -744,7 +744,7 @@ void initialize_render_pipeline(longlong renderer_instance)
                 if (*(void **)(renderer_instance + 0x1eb0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1eb0);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             config_value = *(int32_t *)(renderer_instance + 0x1ee8);
         }
@@ -758,7 +758,7 @@ void initialize_render_pipeline(longlong renderer_instance)
                 if (*(void **)(renderer_instance + 0x1d60) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1d60);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             config_value = *(int32_t *)(renderer_instance + 0x1d98);
         }
@@ -773,7 +773,7 @@ void initialize_render_pipeline(longlong renderer_instance)
                 if (*(void **)(renderer_instance + 0x1dd0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1dd0);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             *(int32_t *)(renderer_instance + 0x1dc0) = *(int32_t *)(renderer_instance + 0x1e08);
         }
@@ -786,7 +786,7 @@ void initialize_render_pipeline(longlong renderer_instance)
                 if (*(void **)(renderer_instance + 0x1ac0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1ac0);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             config_value = *(int32_t *)(renderer_instance + 0x1af8);
         }
@@ -794,23 +794,23 @@ void initialize_render_pipeline(longlong renderer_instance)
     }
     
     // 读取渲染配置
-    temp_ptr = &UNK_18098bc80;
+    temp_ptr = &global_state_672_ptr;
     temp_string_ptr = config_buffer;
     config_buffer[0] = 0;
     temp_value = 0x14;
-    strcpy_s(config_buffer, 0x20, &UNK_1809fd220);
+    strcpy_s(config_buffer, 0x20, &global_state_4960_ptr);
     config_found = read_config_value(_DAT_180c86870, &temp_ptr);
-    temp_ptr = &UNK_18098bcb0;
+    temp_ptr = &global_state_720_ptr;
     config_value = 100;
     
     if (config_found == '\0') {
-        buffer_ptr = &UNK_18098bc80;
+        buffer_ptr = &global_state_672_ptr;
         string_ptr = temp_buffer;
         temp_buffer[0] = 0;
         buffer_value = 8;
-        strcpy_s(temp_buffer, 0x20, &UNK_1809fd150);
+        strcpy_s(temp_buffer, 0x20, &global_state_4752_ptr);
         config_found = read_config_value(_DAT_180c86870, &buffer_ptr);
-        buffer_ptr = &UNK_18098bcb0;
+        buffer_ptr = &global_state_720_ptr;
         if (config_found != '\0') {
             stack_config[0] = 100;
             if ((*(longlong *)(renderer_instance + 0x1b10) != 0) &&
@@ -820,7 +820,7 @@ void initialize_render_pipeline(longlong renderer_instance)
                     if (*(void **)(renderer_instance + 0x1ac0) != (void *)0x0) {
                         config_path = *(void **)(renderer_instance + 0x1ac0);
                     }
-                    load_config_file(&UNK_18098bc00, config_path);
+                    load_config_file(&global_state_544_ptr, config_path);
                 }
                 goto use_default_config;
             }
@@ -836,7 +836,7 @@ void initialize_render_pipeline(longlong renderer_instance)
                 if (*(void **)(renderer_instance + 0x1eb0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1eb0);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             default_value = *(int32_t *)(renderer_instance + 0x1ee8);
         }
@@ -851,7 +851,7 @@ apply_config_value:
             if (*(void **)(renderer_instance + 0x1ac0) != (void *)0x0) {
                 config_path = *(void **)(renderer_instance + 0x1ac0);
             }
-            load_config_file(&UNK_18098bc00, config_path);
+            load_config_file(&global_state_544_ptr, config_path);
             *(int32_t *)(renderer_instance + 0x1ab0) = *(int32_t *)(renderer_instance + 0x1af8);
         } else {
 use_default_config:
@@ -860,39 +860,39 @@ use_default_config:
     }
     
     // 确定渲染特性
-    pipeline_ptr = &UNK_18098bc80;
+    pipeline_ptr = &global_state_672_ptr;
     pipeline_string_ptr = render_buffer;
     render_buffer[0] = 0;
     pipeline_buffer_value = 0xc;
-    strcpy_s(render_buffer, 0x20, &UNK_180a05518);
+    strcpy_s(render_buffer, 0x20, &global_state_8488_ptr);
     render_flags = 1;
     render_flags = 1;
     config_found = read_config_value(_DAT_180c86870, &pipeline_ptr);
     
     if (config_found == '\0') {
-        config_ptr = &UNK_18098bc80;
+        config_ptr = &global_state_672_ptr;
         config_string_ptr = config_buffer;
         config_buffer[0] = 0;
         config_buffer_value = 8;
-        strcpy_s(config_buffer, 0x20, &UNK_180a05548);
+        strcpy_s(config_buffer, 0x20, &global_state_8536_ptr);
         render_flags = 3;
         render_flags = 3;
         config_found = read_config_value(_DAT_180c86870, &config_ptr);
         if (config_found == '\0') {
-            effect_ptr = &UNK_18098bc80;
+            effect_ptr = &global_state_672_ptr;
             effect_buffer[0] = 0;
             effect_buffer_value = 10;
             effect_string_ptr = effect_buffer;
-            strcpy_s(effect_buffer, 0x20, &UNK_180a05538);
+            strcpy_s(effect_buffer, 0x20, &global_state_8520_ptr);
             render_flags = 7;
             render_flags = 7;
             config_found = read_config_value(_DAT_180c86870, &effect_ptr);
             if (config_found == '\0') {
-                buffer_ptr = &UNK_18098bc80;
+                buffer_ptr = &global_state_672_ptr;
                 string_ptr = temp_buffer;
                 temp_buffer[0] = 0;
                 buffer_value = 7;
-                strcpy_s(temp_buffer, 0x20, &UNK_180a05570);
+                strcpy_s(temp_buffer, 0x20, &global_state_8576_ptr);
                 render_flags = 0xf;
                 render_flags = 0xf;
                 config_found = read_config_value(_DAT_180c86870, &buffer_ptr);
@@ -906,22 +906,22 @@ finalize_pipeline:
     // 清理渲染标志
     if ((render_flags & 8) != 0) {
         render_flags = render_flags & 0xfffffff7;
-        buffer_ptr = &UNK_18098bcb0;
+        buffer_ptr = &global_state_720_ptr;
         render_flags = render_flags;
     }
     if ((render_flags & 4) != 0) {
         render_flags = render_flags & 0xfffffffb;
-        effect_ptr = &UNK_18098bcb0;
+        effect_ptr = &global_state_720_ptr;
         render_flags = render_flags;
     }
     if ((render_flags & 2) != 0) {
         render_flags = render_flags & 0xfffffffd;
-        config_ptr = &UNK_18098bcb0;
+        config_ptr = &global_state_720_ptr;
         render_flags = render_flags;
     }
     if ((render_flags & 1) != 0) {
         render_flags = render_flags & 0xfffffffe;
-        pipeline_ptr = &UNK_18098bcb0;
+        pipeline_ptr = &global_state_720_ptr;
     }
     
     // 应用高级配置
@@ -935,7 +935,7 @@ finalize_pipeline:
                 if (*(void **)(renderer_instance + 0x1eb0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1eb0);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             config_value = *(int32_t *)(renderer_instance + 0x1ee8);
         }
@@ -949,7 +949,7 @@ finalize_pipeline:
                 if (*(void **)(renderer_instance + 0x1d60) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1d60);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             config_value = *(int32_t *)(renderer_instance + 0x1d98);
         }
@@ -963,7 +963,7 @@ finalize_pipeline:
                 if (*(void **)(renderer_instance + 0x1dd0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1dd0);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             config_value = *(int32_t *)(renderer_instance + 0x1e08);
         }
@@ -971,13 +971,13 @@ finalize_pipeline:
     }
     
     // 最终配置读取
-    temp_ptr = &UNK_18098bc80;
+    temp_ptr = &global_state_672_ptr;
     temp_string_ptr = config_buffer;
     config_buffer[0] = 0;
     temp_value = 8;
-    strcpy_s(config_buffer, 0x20, &UNK_1809fd150);
+    strcpy_s(config_buffer, 0x20, &global_state_4752_ptr);
     config_found = read_config_value(_DAT_180c86870, &temp_ptr);
-    temp_ptr = &UNK_18098bcb0;
+    temp_ptr = &global_state_720_ptr;
     
     if (config_found != '\0') {
         stack_config[0] = 1;
@@ -990,7 +990,7 @@ finalize_pipeline:
                 if (*(void **)(renderer_instance + 0x1c10) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x1c10);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             *(int32_t *)(renderer_instance + 0x1c00) = *(int32_t *)(renderer_instance + 0x1c48);
         }
@@ -1003,7 +1003,7 @@ finalize_pipeline:
                 if (*(void **)(renderer_instance + 0x12e0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0x12e0);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             config_value = *(int32_t *)(renderer_instance + 0x1318);
         }
@@ -1018,7 +1018,7 @@ finalize_pipeline:
                 if (*(void **)(renderer_instance + 0xbe0) != (void *)0x0) {
                     config_path = *(void **)(renderer_instance + 0xbe0);
                 }
-                load_config_file(&UNK_18098bc00, config_path);
+                load_config_file(&global_state_544_ptr, config_path);
             }
             *(int32_t *)(renderer_instance + 0xbd0) = *(int32_t *)(renderer_instance + 0xc18);
         }

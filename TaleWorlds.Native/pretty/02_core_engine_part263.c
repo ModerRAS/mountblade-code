@@ -310,10 +310,10 @@ uint64_t *
 FUN_18022a810(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_8584_ptr;
+  param_1[2] = &unknown_var_720_ptr;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xc0,param_3,param_4,0xfffffffffffffffe);
   }

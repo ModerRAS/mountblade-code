@@ -6,25 +6,25 @@
 // 全局变量声明
 extern longlong _DAT_180c8a9b0;    // 主引擎上下文指针
 extern uint64_t _DAT_180c8a9a8;   // 内存分配器上下文
-extern uint UNK_18098d290[];        // 哈希查找表
-extern uint64_t UNK_180a06788;    // 配置键值对 - 位置偏移
-extern uint64_t UNK_180a067b0;    // 配置键值对 - 边界检查
-extern uint64_t UNK_180a06798;    // 配置键值对 - 材质ID
-extern uint64_t UNK_180a067d0;    // 配置键值对 - 纹理坐标
-extern uint64_t UNK_180a067c0;    // 配置键值对 - 布尔标志
-extern uint64_t UNK_180a067f8;    // 配置键值对 - 颜色值
-extern uint64_t UNK_180a067e8;    // 配置键值对 - 整数值
-extern uint64_t UNK_180a06810;    // 配置键值对 - 浮点数值
-extern char UNK_180a06808[];         // 字符串分隔符 "##"
-extern char UNK_180a06838[];         // 格式化字符串 "%s %s"
-extern char UNK_180a06820[];         // 格式化字符串 "%d %d"
-extern char UNK_180a06858[];         // 格式化字符串 "%d"
-extern char UNK_180a06848[];         // 格式化字符串 "%d %d"
-extern char UNK_180a06880[];         // 格式化字符串 "%d %d"
-extern char UNK_180a06870[];         // 格式化字符串 "%d"
-extern char UNK_180a068a8[];         // 格式化字符串 "%s"
-extern char UNK_180a06890[];         // 格式化字符串 "%d %d"
-extern char UNK_180a068b8[];         // 格式化字符串 "%s"
+extern uint global_config_6320_ptr[];        // 哈希查找表
+extern uint64_t global_config_3208_ptr;    // 配置键值对 - 位置偏移
+extern uint64_t global_config_3248_ptr;    // 配置键值对 - 边界检查
+extern uint64_t global_config_3224_ptr;    // 配置键值对 - 材质ID
+extern uint64_t global_config_3280_ptr;    // 配置键值对 - 纹理坐标
+extern uint64_t global_config_3264_ptr;    // 配置键值对 - 布尔标志
+extern uint64_t global_config_3320_ptr;    // 配置键值对 - 颜色值
+extern uint64_t global_config_3304_ptr;    // 配置键值对 - 整数值
+extern uint64_t global_config_3344_ptr;    // 配置键值对 - 浮点数值
+extern char global_config_3336_ptr[];         // 字符串分隔符 "##"
+extern char global_config_3384_ptr[];         // 格式化字符串 "%s %s"
+extern char global_config_3360_ptr[];         // 格式化字符串 "%d %d"
+extern char global_config_3416_ptr[];         // 格式化字符串 "%d"
+extern char global_config_3400_ptr[];         // 格式化字符串 "%d %d"
+extern char global_config_3456_ptr[];         // 格式化字符串 "%d %d"
+extern char global_config_3440_ptr[];         // 格式化字符串 "%d"
+extern char global_config_3496_ptr[];         // 格式化字符串 "%s"
+extern char global_config_3472_ptr[];         // 格式化字符串 "%d %d"
+extern char global_config_3512_ptr[];         // 格式化字符串 "%s"
 extern uint64_t system_buffer_cc18;     // 换行符常量
 
 // 外部函数声明
@@ -284,7 +284,7 @@ uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *st
         if (((current_char == 0x23) && (*string_ptr == 0x23)) && (string_ptr[1] == 0x23)) {
             hash_value = 0xffffffff;
         }
-        hash_value = *(uint *)(&UNK_18098d290 + (ulonglong)(byte)((byte)hash_value ^ current_char) * 4) ^ hash_value >> 8;
+        hash_value = *(uint *)(&global_config_6320_ptr + (ulonglong)(byte)((byte)hash_value ^ current_char) * 4) ^ hash_value >> 8;
         current_char = *string_ptr;
         string_ptr = string_ptr + 1;
     }
@@ -370,7 +370,7 @@ uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *st
         if (((current_char == 0x23) && (*string_ptr == 0x23)) && (string_ptr[1] == 0x23)) {
             hash_value = 0xffffffff;
         }
-        hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+        hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
                 hash_value >> 8;
         current_char = *string_ptr;
         string_ptr = string_ptr + 1;
@@ -413,7 +413,7 @@ uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint
         }
         current_char = *string_data;
         string_data = string_data + 1;
-        computed_hash = *(uint *)(&UNK_18098d290 + (ulonglong)(byte)((byte)computed_hash ^ string_start) * 4) ^ computed_hash >> 8;
+        computed_hash = *(uint *)(&global_config_6320_ptr + (ulonglong)(byte)((byte)computed_hash ^ string_start) * 4) ^ computed_hash >> 8;
         string_start = current_char;
     } while (current_char != 0);
     
@@ -498,7 +498,7 @@ uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint
         if (((current_char == 0x23) && (*string_ptr == 0x23)) && (string_ptr[1] == 0x23)) {
             final_hash = 0xffffffff;
         }
-        final_hash = *(uint *)(&UNK_18098d290 + ((ulonglong)(final_hash & 0xff) ^ (ulonglong)current_char) * 4) ^
+        final_hash = *(uint *)(&global_config_6320_ptr + ((ulonglong)(final_hash & 0xff) ^ (ulonglong)current_char) * 4) ^
                  final_hash >> 8;
         current_char = *string_ptr;
         string_ptr = string_ptr + 1;
@@ -613,7 +613,7 @@ uint64_t *create_new_hash_entry(void)
         if (((current_char == 0x23) && (*string_ptr == 0x23)) && (string_ptr[1] == 0x23)) {
             final_hash = 0xffffffff;
         }
-        final_hash = *(uint *)(&UNK_18098d290 + ((ulonglong)(final_hash & 0xff) ^ (ulonglong)current_char) * 4) ^
+        final_hash = *(uint *)(&global_config_6320_ptr + ((ulonglong)(final_hash & 0xff) ^ (ulonglong)current_char) * 4) ^
                  final_hash >> 8;
         current_char = *string_ptr;
         string_ptr = string_ptr + 1;
@@ -634,7 +634,7 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, longlo
     int temp_int_array[2];
     
     // 解析位置偏移参数
-    parse_result = FUN_18010cbc0(config_data, &UNK_180a06788, &temp_float1, &temp_float2);
+    parse_result = FUN_18010cbc0(config_data, &global_config_3208_ptr, &temp_float1, &temp_float2);
     if (parse_result == 2) {
         *(float *)(target_struct + 0xc) = temp_float1;
         *(float *)(target_struct + 0x10) = temp_float2;
@@ -642,7 +642,7 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, longlo
     }
     
     // 解析边界检查参数
-    parse_result = FUN_18010cbc0(config_data, &UNK_180a067b0, &temp_float1, &temp_float2);
+    parse_result = FUN_18010cbc0(config_data, &global_config_3248_ptr, &temp_float1, &temp_float2);
     if (parse_result == 2) {
         if (temp_float1 <= *(float *)(_DAT_180c8a9b0 + 0x163c)) {
             temp_float1 = *(float *)(_DAT_180c8a9b0 + 0x163c);
@@ -657,14 +657,14 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, longlo
     }
     
     // 解析材质ID参数
-    parse_result = FUN_18010cbc0(config_data, &UNK_180a06798, temp_array);
+    parse_result = FUN_18010cbc0(config_data, &global_config_3224_ptr, temp_array);
     if (parse_result == 1) {
         *(int32_t *)(target_struct + 0x24) = temp_array[0];
         return;
     }
     
     // 解析纹理坐标参数
-    parse_result = FUN_18010cbc0(config_data, &UNK_180a067d0, &temp_float1, &temp_float2);
+    parse_result = FUN_18010cbc0(config_data, &global_config_3280_ptr, &temp_float1, &temp_float2);
     if (parse_result == 2) {
         *(float *)(target_struct + 0x1c) = temp_float1;
         *(float *)(target_struct + 0x20) = temp_float2;
@@ -672,14 +672,14 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, longlo
     }
     
     // 解析布尔标志参数
-    parse_result = FUN_18010cbc0(config_data, &UNK_180a067c0, temp_int_array);
+    parse_result = FUN_18010cbc0(config_data, &global_config_3264_ptr, temp_int_array);
     if (parse_result == 1) {
         *(bool *)(target_struct + 0x32) = temp_int_array[0] != 0;
         return;
     }
     
     // 解析颜色值参数
-    parse_result = FUN_18010cbc0(config_data, &UNK_180a067f8, temp_array, temp_int_array);
+    parse_result = FUN_18010cbc0(config_data, &global_config_3320_ptr, temp_array, temp_int_array);
     if (parse_result == 2) {
         *(int32_t *)(target_struct + 0x28) = temp_array[0];
         *(int16_t *)(target_struct + 0x30) = (int16_t)temp_int_array[0];
@@ -687,7 +687,7 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, longlo
     }
     
     // 解析整数值参数
-    parse_result = FUN_18010cbc0(config_data, &UNK_180a067e8, temp_array);
+    parse_result = FUN_18010cbc0(config_data, &global_config_3304_ptr, temp_array);
     if (parse_result == 1) {
         *(int32_t *)(target_struct + 0x28) = temp_array[0];
         *(int16_t *)(target_struct + 0x30) = 0xffff;
@@ -695,7 +695,7 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, longlo
     }
     
     // 解析浮点数值参数
-    parse_result = FUN_18010cbc0(config_data, &UNK_180a06810, temp_array);
+    parse_result = FUN_18010cbc0(config_data, &global_config_3344_ptr, temp_array);
     if (parse_result == 1) {
         *(int32_t *)(target_struct + 0x2c) = temp_array[0];
     }
@@ -792,38 +792,38 @@ void process_engine_resources_and_format_output(longlong engine_context, uint64_
         do {
             resource_offset = *(longlong *)(engine_context + 0x2e30);
             callback_offset = *(longlong *)(max_search + resource_offset);
-            string_match = strstr(callback_offset, &UNK_180a06808);
+            string_match = strstr(callback_offset, &global_config_3336_ptr);
             if (string_match != 0) {
                 callback_offset = string_match;
             }
-            FUN_180122210(output_buffer, &UNK_180a06838, *format_params, callback_offset);
+            FUN_180122210(output_buffer, &global_config_3384_ptr, *format_params, callback_offset);
             resource_count = *(int *)(max_search + 0x24 + resource_offset);
             if ((resource_count != 0) && (resource_count != 0x11111111)) {
-                FUN_180122210(output_buffer, &UNK_180a06820, (int)*(float *)(max_search + 0x1c + resource_offset),
+                FUN_180122210(output_buffer, &global_config_3360_ptr, (int)*(float *)(max_search + 0x1c + resource_offset),
                               (int)*(float *)(max_search + 0x20 + resource_offset));
-                FUN_180122210(output_buffer, &UNK_180a06858, *(int32_t *)(max_search + 0x24 + resource_offset));
+                FUN_180122210(output_buffer, &global_config_3416_ptr, *(int32_t *)(max_search + 0x24 + resource_offset));
             }
             position_x = *(float *)(max_search + 0xc + resource_offset);
             if (((position_x != 0.0) || (*(float *)(max_search + 0x10 + resource_offset) != 0.0)) ||
                (*(int *)(max_search + 0x24 + resource_offset) == 0x11111111)) {
-                FUN_180122210(output_buffer, &UNK_180a06848, (int)position_x, (int)*(float *)(max_search + 0x10 + resource_offset));
+                FUN_180122210(output_buffer, &global_config_3400_ptr, (int)position_x, (int)*(float *)(max_search + 0x10 + resource_offset));
             }
             position_x = *(float *)(max_search + 0x14 + resource_offset);
             if ((position_x != 0.0) || (*(float *)(max_search + 0x18 + resource_offset) != 0.0)) {
-                FUN_180122210(output_buffer, &UNK_180a06880, (int)position_x, (int)*(float *)(max_search + 0x18 + resource_offset));
+                FUN_180122210(output_buffer, &global_config_3456_ptr, (int)position_x, (int)*(float *)(max_search + 0x18 + resource_offset));
             }
-            FUN_180122210(output_buffer, &UNK_180a06870, *(int8_t *)(max_search + 0x32 + resource_offset));
+            FUN_180122210(output_buffer, &global_config_3440_ptr, *(int8_t *)(max_search + 0x32 + resource_offset));
             resource_count = *(int *)(max_search + 0x28 + resource_offset);
             if (resource_count != 0) {
                 texture_index = *(short *)(max_search + 0x30 + resource_offset);
                 if (texture_index == -1) {
-                    FUN_180122210(output_buffer, &UNK_180a068a8);
+                    FUN_180122210(output_buffer, &global_config_3496_ptr);
                 }
                 else {
-                    FUN_180122210(output_buffer, &UNK_180a06890, resource_count, (int)texture_index);
+                    FUN_180122210(output_buffer, &global_config_3472_ptr, resource_count, (int)texture_index);
                 }
                 if (*(int *)(max_search + 0x2c + resource_offset) != 0) {
-                    FUN_180122210(output_buffer, &UNK_180a068b8);
+                    FUN_180122210(output_buffer, &global_config_3512_ptr);
                 }
             }
             FUN_180122210(output_buffer, &system_buffer_cc18);
@@ -919,40 +919,40 @@ void process_engine_resources_optimized(uint64_t param_1)
                 do {
                     resource_offset = *(longlong *)(engine_context + 0x2e30);
                     callback_offset = *(longlong *)(current_offset + resource_offset);
-                    string_match = strstr(callback_offset, &UNK_180a06808);
+                    string_match = strstr(callback_offset, &global_config_3336_ptr);
                     if (string_match != 0) {
                         callback_offset = string_match;
                     }
-                    temp_result = FUN_180122210(extra_output, &UNK_180a06838, *format_params, callback_offset);
+                    temp_result = FUN_180122210(extra_output, &global_config_3384_ptr, *format_params, callback_offset);
                     resource_count = *(int *)(current_offset + 0x24 + resource_offset);
                     if ((resource_count != 0) && (resource_count != 0x11111111)) {
-                        temp_result = FUN_180122210(temp_result, &UNK_180a06820, (int)*(float *)(current_offset + 0x1c + resource_offset),
+                        temp_result = FUN_180122210(temp_result, &global_config_3360_ptr, (int)*(float *)(current_offset + 0x1c + resource_offset),
                                                    (int)*(float *)(current_offset + 0x20 + resource_offset));
-                        FUN_180122210(temp_result, &UNK_180a06858, *(int32_t *)(current_offset + 0x24 + resource_offset));
+                        FUN_180122210(temp_result, &global_config_3416_ptr, *(int32_t *)(current_offset + 0x24 + resource_offset));
                     }
                     position_x = *(float *)(current_offset + 0xc + resource_offset);
                     if (((position_x != 0.0) || (*(float *)(current_offset + 0x10 + resource_offset) != 0.0)) ||
                        (*(int *)(current_offset + 0x24 + resource_offset) == 0x11111111)) {
-                        FUN_180122210(position_x, &UNK_180a06848, (int)position_x, (int)*(float *)(current_offset + 0x10 + resource_offset));
+                        FUN_180122210(position_x, &global_config_3400_ptr, (int)position_x, (int)*(float *)(current_offset + 0x10 + resource_offset));
                     }
                     position_x = *(float *)(current_offset + 0x14 + resource_offset);
                     hash_index = (ulonglong)(uint)position_x;
                     if ((position_x != 0.0) || (*(float *)(current_offset + 0x18 + resource_offset) != 0.0)) {
-                        hash_index = FUN_180122210(hash_index, &UNK_180a06880, (int)position_x,
+                        hash_index = FUN_180122210(hash_index, &global_config_3456_ptr, (int)position_x,
                                                   (int)*(float *)(current_offset + 0x18 + resource_offset));
                     }
-                    temp_result = FUN_180122210(hash_index, &UNK_180a06870, *(int8_t *)(current_offset + 0x32 + resource_offset));
+                    temp_result = FUN_180122210(hash_index, &global_config_3440_ptr, *(int8_t *)(current_offset + 0x32 + resource_offset));
                     resource_count = *(int *)(current_offset + 0x28 + resource_offset);
                     if (resource_count != 0) {
                         texture_index = *(short *)(current_offset + 0x30 + resource_offset);
                         if (texture_index == -1) {
-                            temp_result = FUN_180122210(temp_result, &UNK_180a068a8);
+                            temp_result = FUN_180122210(temp_result, &global_config_3496_ptr);
                         }
                         else {
-                            temp_result = FUN_180122210(temp_result, &UNK_180a06890, resource_count, (int)texture_index);
+                            temp_result = FUN_180122210(temp_result, &global_config_3472_ptr, resource_count, (int)texture_index);
                         }
                         if (*(int *)(current_offset + 0x2c + resource_offset) != 0) {
-                            temp_result = FUN_180122210(temp_result, &UNK_180a068b8);
+                            temp_result = FUN_180122210(temp_result, &global_config_3512_ptr);
                         }
                     }
                     FUN_180122210(temp_result, &system_buffer_cc18);
@@ -995,39 +995,39 @@ void format_resource_data_output(int32_t output_buffer)
         do {
             resource_offset = *(longlong *)(context_ptr + 0x2e30);
             string_match = *(longlong *)(current_offset + resource_offset);
-            resource_offset = strstr(string_match, &UNK_180a06808);
+            resource_offset = strstr(string_match, &global_config_3336_ptr);
             if (resource_offset != 0) {
                 string_match = resource_offset;
             }
-            temp_result = FUN_180122210(temp_output, &UNK_180a06838, *format_params, string_match);
+            temp_result = FUN_180122210(temp_output, &global_config_3384_ptr, *format_params, string_match);
             resource_count = *(int *)(current_offset + 0x24 + resource_offset);
             if ((resource_count != 0) && (resource_count != 0x11111111)) {
-                temp_result = FUN_180122210(temp_result, &UNK_180a06820, (int)*(float *)(current_offset + 0x1c + resource_offset),
+                temp_result = FUN_180122210(temp_result, &global_config_3360_ptr, (int)*(float *)(current_offset + 0x1c + resource_offset),
                                           (int)*(float *)(current_offset + 0x20 + resource_offset));
-                FUN_180122210(temp_result, &UNK_180a06858, *(int32_t *)(current_offset + 0x24 + resource_offset));
+                FUN_180122210(temp_result, &global_config_3416_ptr, *(int32_t *)(current_offset + 0x24 + resource_offset));
             }
             position_x = *(float *)(current_offset + 0xc + resource_offset);
             if (((position_x != 0.0) || (*(float *)(current_offset + 0x10 + resource_offset) != 0.0)) ||
                (*(int *)(current_offset + 0x24 + resource_offset) == 0x11111111)) {
-                FUN_180122210(position_x, &UNK_180a06848, (int)position_x, (int)*(float *)(current_offset + 0x10 + resource_offset));
+                FUN_180122210(position_x, &global_config_3400_ptr, (int)position_x, (int)*(float *)(current_offset + 0x10 + resource_offset));
             }
             position_x = *(float *)(current_offset + 0x14 + resource_offset);
             if ((position_x != 0.0) || (*(float *)(current_offset + 0x18 + resource_offset) != 0.0)) {
-                position_x = (float)FUN_180122210(position_x, &UNK_180a06880, (int)position_x,
+                position_x = (float)FUN_180122210(position_x, &global_config_3456_ptr, (int)position_x,
                                              (int)*(float *)(current_offset + 0x18 + resource_offset));
             }
-            temp_result = FUN_180122210(position_x, &UNK_180a06870, *(int8_t *)(current_offset + 0x32 + resource_offset));
+            temp_result = FUN_180122210(position_x, &global_config_3440_ptr, *(int8_t *)(current_offset + 0x32 + resource_offset));
             resource_count = *(int *)(current_offset + 0x28 + resource_offset);
             if (resource_count != 0) {
                 texture_index = *(short *)(current_offset + 0x30 + resource_offset);
                 if (texture_index == -1) {
-                    temp_result = FUN_180122210(temp_result, &UNK_180a068a8);
+                    temp_result = FUN_180122210(temp_result, &global_config_3496_ptr);
                 }
                 else {
-                    temp_result = FUN_180122210(temp_result, &UNK_180a06890, resource_count, (int)texture_index);
+                    temp_result = FUN_180122210(temp_result, &global_config_3472_ptr, resource_count, (int)texture_index);
                 }
                 if (*(int *)(current_offset + 0x30 + resource_offset) != 0) {
-                    temp_result = FUN_180122210(temp_result, &UNK_180a068b8);
+                    temp_result = FUN_180122210(temp_result, &global_config_3512_ptr);
                 }
             }
             FUN_180122210(temp_result, &system_buffer_cc18);

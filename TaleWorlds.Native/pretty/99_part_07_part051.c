@@ -656,7 +656,7 @@ FUN_1804cdee0(uint64_t *param_1,longlong *param_2,longlong *param_3,uint64_t *pa
   }
   *(char *)(param_1 + 10) = (char)param_2[0x76];
   *(int *)((longlong)param_1 + 0x54) = (int)param_2[0xd];
-  if (*(code **)(*param_2 + 0x198) == (code *)&UNK_18027d990) {
+  if (*(code **)(*param_2 + 0x198) == (code *)&unknown_var_2544_ptr) {
     lVar5 = (longlong)param_2 + 0x214;
   }
   else {

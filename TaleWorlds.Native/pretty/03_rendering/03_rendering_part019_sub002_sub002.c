@@ -421,7 +421,7 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 // 字符串比较处理逻辑
-                                stack_data = &UNK_1809fcc58;
+                                stack_data = &unknown_var_3480_ptr;
                                 temp_value1 = *(longlong *)(loop_counter + temp_value1);
                                 if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -465,7 +465,7 @@ void rendering_system_parameter_processor(
                                         if (resource_ptr != (longlong *)0x0) {
                                             (**(code **)(*resource_ptr + 0x38))(resource_ptr);
                                         }
-                                        stack_data_3b8 = &UNK_18098bcb0;
+                                        stack_data_3b8 = &unknown_var_720_ptr;
                                         param_context = stack_context_468;
                                         render_context = stack_context_460;
                                         break;
@@ -482,13 +482,13 @@ void rendering_system_parameter_processor(
                                         if (resource_ptr != (longlong *)0x0) {
                                             (**(code **)(*resource_ptr + 0x38))(resource_ptr);
                                         }
-                                        stack_data_3b8 = &UNK_18098bcb0;
+                                        stack_data_3b8 = &unknown_var_720_ptr;
                                         param_context = stack_context_468;
                                         render_context = stack_context_460;
                                         break;
                                     }
                                 }
-                                stack_data_3b8 = &UNK_18098bcb0;
+                                stack_data_3b8 = &unknown_var_720_ptr;
                                 param_value = (int)checksum_value + 1;
                                 checksum_value = (ulonglong)param_value;
                                 loop_counter = loop_counter + 0x10;
@@ -505,7 +505,7 @@ void rendering_system_parameter_processor(
                         array_index = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &UNK_1809fcc58;
+                                stack_data = &unknown_var_3480_ptr;
                                 temp_value1 = *(longlong *)(checksum_value + temp_value1);
                                 if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -543,7 +543,7 @@ void rendering_system_parameter_processor(
                                         FUN_180076910(temp_value1, *(longlong *)
                                             (*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10) + 0x1b8
                                         );
-                                        stack_data_418 = &UNK_18098bcb0;
+                                        stack_data_418 = &unknown_var_720_ptr;
                                         param_context = stack_context_468;
                                         render_context = stack_context_460;
                                         break;
@@ -554,13 +554,13 @@ void rendering_system_parameter_processor(
                                         FUN_180076910(temp_value1, *(longlong *)
                                             (*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10) + 0x1b8
                                         );
-                                        stack_data_418 = &UNK_18098bcb0;
+                                        stack_data_418 = &unknown_var_720_ptr;
                                         param_context = stack_context_468;
                                         render_context = stack_context_460;
                                         break;
                                     }
                                 }
-                                stack_data_418 = &UNK_18098bcb0;
+                                stack_data_418 = &unknown_var_720_ptr;
                                 param_value = (int)array_index + 1;
                                 loop_counter = loop_counter + 1;
                                 temp_value1 = stack_context_460[7];
@@ -582,7 +582,7 @@ void rendering_system_parameter_processor(
                         checksum_value = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &UNK_1809fcc58;
+                                stack_data = &unknown_var_3480_ptr;
                                 temp_value1 = *(longlong *)(loop_counter + temp_value1);
                                 if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -625,7 +625,7 @@ void rendering_system_parameter_processor(
                                         *(float *)(temp_value1 + 0x23c) = (float)(param_value >> 8 & 0xff) * RENDERING_COLOR_NORMALIZATION;
                                         *(float *)(temp_value1 + 0x240) = (float)(param_value & 0xff) * RENDERING_COLOR_NORMALIZATION;
                                         *(float *)(temp_value1 + 0x244) = (float)(param_value >> 0x18) * RENDERING_COLOR_NORMALIZATION;
-                                        stack_data_2f8 = &UNK_18098bcb0;
+                                        stack_data_2f8 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
@@ -636,11 +636,11 @@ void rendering_system_parameter_processor(
                                         *(float *)(temp_value1 + 0x23c) = (float)(param_value >> 8 & 0xff) * RENDERING_COLOR_NORMALIZATION;
                                         *(float *)(temp_value1 + 0x240) = (float)(param_value & 0xff) * RENDERING_COLOR_NORMALIZATION;
                                         *(float *)(temp_value1 + 0x244) = (float)(param_value >> 0x18) * RENDERING_COLOR_NORMALIZATION;
-                                        stack_data_2f8 = &UNK_18098bcb0;
+                                        stack_data_2f8 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
-                                stack_data_2f8 = &UNK_18098bcb0;
+                                stack_data_2f8 = &unknown_var_720_ptr;
                                 param_value = (int)checksum_value + 1;
                                 checksum_value = (ulonglong)param_value;
                                 loop_counter = loop_counter + 0x10;
@@ -655,7 +655,7 @@ void rendering_system_parameter_processor(
                         array_index = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &UNK_1809fcc58;
+                                stack_data = &unknown_var_3480_ptr;
                                 temp_value1 = *(longlong *)(checksum_value + temp_value1);
                                 if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -700,7 +700,7 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 0x23c) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x240) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x244) = param_values[2];
-                                        stack_data_358 = &UNK_18098bcb0;
+                                        stack_data_358 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
@@ -714,11 +714,11 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 0x23c) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x240) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x244) = param_values[2];
-                                        stack_data_358 = &UNK_18098bcb0;
+                                        stack_data_358 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
-                                stack_data_358 = &UNK_18098bcb0;
+                                stack_data_358 = &unknown_var_720_ptr;
                                 param_value = (int)array_index + 1;
                                 loop_counter = loop_counter + 1;
                                 temp_value1 = stack_context_460[7];
@@ -738,7 +738,7 @@ void rendering_system_parameter_processor(
                         checksum_value = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &UNK_1809fcc58;
+                                stack_data = &unknown_var_3480_ptr;
                                 temp_value1 = *(longlong *)(loop_counter + temp_value1);
                                 if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -781,7 +781,7 @@ void rendering_system_parameter_processor(
                                         *(float *)(temp_value1 + 0x24c) = (float)(param_value >> 8 & 0xff) * RENDERING_COLOR_NORMALIZATION;
                                         *(float *)(temp_value1 + 0x250) = (float)(param_value & 0xff) * RENDERING_COLOR_NORMALIZATION;
                                         *(float *)(temp_value1 + 0x254) = (float)(param_value >> 0x18) * RENDERING_COLOR_NORMALIZATION;
-                                        stack_data_238 = &UNK_18098bcb0;
+                                        stack_data_238 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
@@ -792,11 +792,11 @@ void rendering_system_parameter_processor(
                                         *(float *)(temp_value1 + 0x24c) = (float)(param_value >> 8 & 0xff) * RENDERING_COLOR_NORMALIZATION;
                                         *(float *)(temp_value1 + 0x250) = (float)(param_value & 0xff) * RENDERING_COLOR_NORMALIZATION;
                                         *(float *)(temp_value1 + 0x254) = (float)(param_value >> 0x18) * RENDERING_COLOR_NORMALIZATION;
-                                        stack_data_238 = &UNK_18098bcb0;
+                                        stack_data_238 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
-                                stack_data_238 = &UNK_18098bcb0;
+                                stack_data_238 = &unknown_var_720_ptr;
                                 param_value = (int)checksum_value + 1;
                                 checksum_value = (ulonglong)param_value;
                                 loop_counter = loop_counter + 0x10;
@@ -811,7 +811,7 @@ void rendering_system_parameter_processor(
                         array_index = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &UNK_1809fcc58;
+                                stack_data = &unknown_var_3480_ptr;
                                 temp_value1 = *(longlong *)(checksum_value + temp_value1);
                                 if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -856,7 +856,7 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 0x24c) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x250) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x254) = param_values[2];
-                                        stack_data_298 = &UNK_18098bcb0;
+                                        stack_data_298 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
@@ -870,11 +870,11 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 0x24c) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x250) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x254) = param_values[2];
-                                        stack_data_298 = &UNK_18098bcb0;
+                                        stack_data_298 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
-                                stack_data_298 = &UNK_18098bcb0;
+                                stack_data_298 = &unknown_var_720_ptr;
                                 param_value = (int)array_index + 1;
                                 loop_counter = loop_counter + 1;
                                 temp_value1 = stack_context_460[7];
@@ -894,7 +894,7 @@ void rendering_system_parameter_processor(
                         checksum_value = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &UNK_1809fcc58;
+                                stack_data = &unknown_var_3480_ptr;
                                 temp_value1 = *(longlong *)(loop_counter + temp_value1);
                                 if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -938,7 +938,7 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 0x2ac) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x2b0) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x2b4) = param_values[2];
-                                        stack_data_178 = &UNK_18098bcb0;
+                                        stack_data_178 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
@@ -951,11 +951,11 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 0x2ac) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x2b0) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x2b4) = param_values[2];
-                                        stack_data_178 = &UNK_18098bcb0;
+                                        stack_data_178 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
-                                stack_data_178 = &UNK_18098bcb0;
+                                stack_data_178 = &unknown_var_720_ptr;
                                 param_value = (int)checksum_value + 1;
                                 checksum_value = (ulonglong)param_value;
                                 loop_counter = loop_counter + 0x10;
@@ -970,7 +970,7 @@ void rendering_system_parameter_processor(
                         array_index = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &UNK_1809fcc58;
+                                stack_data = &unknown_var_3480_ptr;
                                 temp_value1 = *(longlong *)(checksum_value + temp_value1);
                                 if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -1015,7 +1015,7 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 0x2ac) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x2b0) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x2b4) = param_values[2];
-                                        stack_data_1d8 = &UNK_18098bcb0;
+                                        stack_data_1d8 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
@@ -1029,11 +1029,11 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 0x2ac) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x2b0) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x2b4) = param_values[2];
-                                        stack_data_1d8 = &UNK_18098bcb0;
+                                        stack_data_1d8 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
-                                stack_data_1d8 = &UNK_18098bcb0;
+                                stack_data_1d8 = &unknown_var_720_ptr;
                                 param_value = (int)array_index + 1;
                                 loop_counter = loop_counter + 1;
                                 temp_value1 = stack_context_460[7];
@@ -1053,7 +1053,7 @@ void rendering_system_parameter_processor(
                         checksum_value = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &UNK_1809fcc58;
+                                stack_data = &unknown_var_3480_ptr;
                                 temp_value1 = *(longlong *)(loop_counter + temp_value1);
                                 if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -1097,7 +1097,7 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 700) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x2c0) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x2c4) = param_values[2];
-                                        stack_data_b8 = &UNK_18098bcb0;
+                                        stack_data_b8 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
@@ -1110,11 +1110,11 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 700) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x2c0) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x2c4) = param_values[2];
-                                        stack_data_b8 = &UNK_18098bcb0;
+                                        stack_data_b8 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
-                                stack_data_b8 = &UNK_18098bcb0;
+                                stack_data_b8 = &unknown_var_720_ptr;
                                 param_value = (int)checksum_value + 1;
                                 checksum_value = (ulonglong)param_value;
                                 loop_counter = loop_counter + 0x10;
@@ -1129,7 +1129,7 @@ void rendering_system_parameter_processor(
                         array_index = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &UNK_1809fcc58;
+                                stack_data = &unknown_var_3480_ptr;
                                 temp_value1 = *(longlong *)(checksum_value + temp_value1);
                                 if (*(longlong *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -1174,7 +1174,7 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 700) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x2c0) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x2c4) = param_values[2];
-                                        stack_data_118 = &UNK_18098bcb0;
+                                        stack_data_118 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
@@ -1188,11 +1188,11 @@ void rendering_system_parameter_processor(
                                         *(int32_t *)(temp_value1 + 700) = param_values[0];
                                         *(int32_t *)(temp_value1 + 0x2c0) = param_values[1];
                                         *(int32_t *)(temp_value1 + 0x2c4) = param_values[2];
-                                        stack_data_118 = &UNK_18098bcb0;
+                                        stack_data_118 = &unknown_var_720_ptr;
                                         break;
                                     }
                                 }
-                                stack_data_118 = &UNK_18098bcb0;
+                                stack_data_118 = &unknown_var_720_ptr;
                                 param_value = (int)array_index + 1;
                                 loop_counter = loop_counter + 1;
                                 temp_value1 = stack_context_460[7];

@@ -617,10 +617,10 @@ longlong *RenderingSystemDataStructureBuilder(longlong *param_1, int32_t *param_
         tempPtr5 = param_2 + 2;
         do {
             // 设置数据结构基础配置
-            *param_4 = &UNK_180a308c0;
+            *param_4 = &unknown_var_5552_ptr;
             *(int32_t *)(param_4 + 1) = *tempPtr5;
             *(int32_t *)((longlong)param_4 + 0xc) = tempPtr5[1];
-            *param_4 = &UNK_180a308e0;
+            *param_4 = &unknown_var_5584_ptr;
             param_4[2] = *(uint64_t *)(tempPtr5 + 2);
             tempVar4 = *(uint64_t *)(tempPtr5 + 6);
             param_4[3] = *(uint64_t *)(tempPtr5 + 4);
@@ -1078,17 +1078,17 @@ void RenderingSystemAdvancedFunctionCallProcessor(longlong *param_1, longlong *p
     tempVar1 = FUN_180627ae0(&tempPtr2, *param_2 + 0x60, param_3, param_4, 0, RENDERING_OFFSET_MASK);
     FUN_180628a40(&tempPtr2);
     tempPtr1 = (longlong *)(*functionPtr)(param_1, tempVar1);
-    tempPtr1 = (longlong *)(**(code **)(*tempPtr1 + 0x70))(tempPtr1, &UNK_180a0fd3c);
+    tempPtr1 = (longlong *)(**(code **)(*tempPtr1 + 0x70))(tempPtr1, &unknown_var_1532_ptr);
     (**(code **)(*tempPtr1 + 0x50))(tempPtr1, *param_4);
     
     // 清理临时资源
-    tempPtr2 = &UNK_180a3c3e0;
+    tempPtr2 = &unknown_var_3456_ptr;
     if (tempVar2 != 0) {
         FUN_18064e900();
     }
     tempVar2 = 0;
     tempVar3 = 0;
-    tempPtr2 = &UNK_18098bcb0;
+    tempPtr2 = &unknown_var_720_ptr;
     
     // 执行条件分支处理
     if (4 < (ulonglong)(param_2[1] - *param_2 >> 5)) {
@@ -1097,17 +1097,17 @@ void RenderingSystemAdvancedFunctionCallProcessor(longlong *param_1, longlong *p
         tempVar1 = FUN_180627ae0(&tempPtr2, *param_2 + 0x80);
         FUN_180628a40(&tempPtr2);
         tempPtr1 = (longlong *)(*functionPtr)(param_1, tempVar1);
-        tempPtr1 = (longlong *)(**(code **)(*tempPtr1 + 0x70))(tempPtr1, &UNK_180a0fd3c);
+        tempPtr1 = (longlong *)(**(code **)(*tempPtr1 + 0x70))(tempPtr1, &unknown_var_1532_ptr);
         (**(code **)(*tempPtr1 + 0x28))(tempPtr1, *param_5);
         
         // 再次清理临时资源
-        tempPtr2 = &UNK_180a3c3e0;
+        tempPtr2 = &unknown_var_3456_ptr;
         if (tempVar2 != 0) {
             FUN_18064e900();
         }
         tempVar2 = 0;
         tempVar3 = 0;
-        tempPtr2 = &UNK_18098bcb0;
+        tempPtr2 = &unknown_var_720_ptr;
         
         // 执行最终的条件检查
         if (5 < (ulonglong)(param_2[1] - *param_2 >> 5)) {

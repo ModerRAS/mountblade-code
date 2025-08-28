@@ -40,15 +40,15 @@ void FUN_18072bbd0(longlong param_1,longlong param_2,int param_3,int param_4,uin
   uVar18 = (ulonglong)param_5;
   if (param_5 == 4) {
     iStack_e4 = 0x22;
-    iVar8 = (int)(char)(&UNK_180956e8c)[param_6];
-    pcVar13 = &UNK_180956f18 + (longlong)param_6 * 8;
-    puVar12 = &UNK_180956e90;
+    iVar8 = (int)(char)(&unknown_var_4108_ptr)[param_6];
+    pcVar13 = &unknown_var_4248_ptr + (longlong)param_6 * 8;
+    puVar12 = &unknown_var_4112_ptr;
   }
   else {
     iVar8 = 0xc;
-    pcVar13 = &UNK_180956f50;
+    pcVar13 = &unknown_var_4304_ptr;
     iStack_e4 = 0xc;
-    puVar12 = &UNK_180956f38;
+    puVar12 = &unknown_var_4280_ptr;
   }
   param_2 = param_2 + (longlong)(param_4 * 4) * 4;
   iStack_e8 = param_4;
@@ -473,7 +473,7 @@ LAB_18072cb78:
     fVar30 = (float)(dVar31 * 3.32192809488736);
   }
   if (unaff_R12D == 4) {
-    puVar28 = &UNK_180956e60;
+    puVar28 = &unknown_var_4064_ptr;
     if ((unaff_EBX == 8) && (CONCAT22(unaff_000000b2,unaff_R14W) < iStack0000000000000050)) {
       uVar22 = unaff_RSI & 0xffffffff;
       *(ulonglong *)(unaff_RBP + -0x70) = unaff_RSI;
@@ -485,7 +485,7 @@ LAB_18072cb78:
   }
   else {
     uVar22 = 3;
-    puVar28 = &UNK_180956f30;
+    puVar28 = &unknown_var_4272_ptr;
     *(int32_t *)(unaff_RBP + -0x48) = 3;
     *(uint64_t *)(unaff_RBP + -0x70) = 3;
   }
@@ -626,13 +626,13 @@ LAB_18072cb78:
                       iStack0000000000000054,iVar19);
         fVar30 = (float)iVar8;
         if (iVar19 == 4) {
-          puStack0000000000000070 = &UNK_180956e90;
+          puStack0000000000000070 = &unknown_var_4112_ptr;
           lVar20 = 0x22;
-          iVar19 = (int)(char)(&UNK_180956e8c)[iStack0000000000000050];
+          iVar19 = (int)(char)(&unknown_var_4108_ptr)[iStack0000000000000050];
         }
         else {
           iVar19 = 0xc;
-          puStack0000000000000070 = &UNK_180956f38;
+          puStack0000000000000070 = &unknown_var_4280_ptr;
           lVar20 = 0xc;
         }
         dVar31 = (double)FUN_18072b3a0(*(longlong *)(unaff_RBP + -0x60) +
@@ -687,7 +687,7 @@ LAB_18072cb78:
                            (float)((dVar34 + dVar34) / dVar36);
                 }
                 if ((unaff_XMM7_Da < fVar32) &&
-                   ((char)(&UNK_180956e90)[lVar21] + iVar16 <= in_stack_00000068)) {
+                   ((char)(&unknown_var_4112_ptr)[lVar21] + iVar16 <= in_stack_00000068)) {
                   unaff_XMM7_Da = fVar32;
                   iVar8 = iVar16;
                   uStack0000000000000048 = uVar23;

@@ -449,12 +449,12 @@ void FUN_1804f1e70(longlong param_1,int32_t param_2,char param_3)
     auStackX_10[0] = param_2;
     if (*(int *)(_DAT_180c8a9c8 + 0xe0) == 0) {
       puStack_38 = auStackX_10;
-      puStack_30 = &UNK_180502a60;
+      puStack_30 = &unknown_var_4672_ptr;
       pcStack_28 = FUN_1805029b0;
       uStack_50 = (int32_t)param_1;
       lStack_40 = param_1;
       uVar8 = FUN_18015b810(uStack_50,0,uVar2,1,0xffffffffffffffff,&lStack_40,0xfffffffffffffffe);
-      puStack_30 = &UNK_180502970;
+      puStack_30 = &unknown_var_4432_ptr;
       pcStack_28 = FUN_1805028c0;
       lStack_40 = param_1;
       FUN_18015b810(uVar8,0,uVar2,1,0xffffffffffffffff,&lStack_40);

@@ -219,7 +219,7 @@ int32_t * FUN_1802e1950(int *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     if ((cVar9 != '\0') && (*(longlong *)(param_1 + 4) != 0)) {
       puVar10 = (int32_t *)FUN_1800daa50();
       *(int8_t *)((longlong)puVar10 + 0x23) = 1;
-      FUN_180094b30(puVar10,&UNK_180a19380);
+      FUN_180094b30(puVar10,&unknown_var_0_ptr);
       *puVar10 = 0x10;
       *(uint64_t *)(puVar10 + 0x4706) = 0;
       puVar10[0x4708] = (float)(param_1[8] << 2);
@@ -281,8 +281,8 @@ int32_t * FUN_1802e1950(int *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
       if (*(code **)(puVar10 + 0x2588) != (code *)0x0) {
         (**(code **)(puVar10 + 0x2588))(puVar10 + 0x2584,0,0,param_4,uVar14);
       }
-      *(void **)(puVar10 + 0x2588) = &UNK_1800ee4d0;
-      *(void **)(puVar10 + 0x258a) = &UNK_1800ee4c0;
+      *(void **)(puVar10 + 0x2588) = &unknown_var_7024_ptr;
+      *(void **)(puVar10 + 0x258a) = &unknown_var_7008_ptr;
       *(code **)(puVar10 + 0x2584) = _guard_check_icall;
       plVar1 = *(longlong **)(puVar10 + 0x25a4);
       *(uint64_t *)(puVar10 + 0x25a4) = 0;

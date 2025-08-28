@@ -735,7 +735,7 @@ void RenderingSystemConditionHandler(
   }
   
   // 执行条件处理和状态更新
-  FUN_18058e430(temp_var2,param1,param2,param3,&UNK_180a30990,0,0,&param4,0,0xffffffff,0);
+  FUN_18058e430(temp_var2,param1,param2,param3,&unknown_var_5760_ptr,0,0,&param4,0,0xffffffff,0);
   FUN_18005ea90(system_handle + 0x900,stack_array);
   temp_var1 = *(uint64_t *)(system_handle + 0x6d8);
   stack_ptr2 = &param4;
@@ -1161,7 +1161,7 @@ FUN_180600cc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   
   uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_180555eb0(&system_memory_60a0,uVar2);
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -1334,7 +1334,7 @@ void FUN_180601160(longlong param_1)
   }
   if (*(longlong *)plVar2[0x1f] == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&UNK_180a36fd8);
+    FUN_180062300(_DAT_180c86928,&unknown_var_1944_ptr);
   }
   lVar3 = FUN_18040db80(*(longlong *)plVar2[0x1f]);
   fVar7 = 0.0;

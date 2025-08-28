@@ -345,7 +345,7 @@ BADSPACEBASE *SpaceBaseAddressAllocatorFunc(longlong param_1, longlong param_2, 
                 if (lVar10 != plVar1[*(longlong *)(lVar4 + 0x10)]) {
                     do {
                         plVar1 = (longlong *)**(longlong **)(lVar10 + 8);
-                        if (*(code **)(*plVar1 + 0x1d8) == (code *)&UNK_18027b560) {
+                        if (*(code **)(*plVar1 + 0x1d8) == (code *)&unknown_var_3280_ptr) {
                             iVar6 = 0;
                             plVar5 = (longlong *)plVar1[7];
                             uVar8 = plVar1[8] - (longlong)plVar5 >> 4;
@@ -814,7 +814,7 @@ LAB_1802f2c88:
                         pcVar1 = pcVar1 + (longlong)pcVar3;
                         pcVar2 = pcVar6;
                         if (pcVar1 <= pcVar3) break;
-                        lVar4 = (longlong)&UNK_180a19500 - (longlong)pcVar3;
+                        lVar4 = (longlong)&unknown_var_384_ptr - (longlong)pcVar3;
                         
                         // 比较属性名
                         while (*pcVar3 == pcVar3[lVar4]) {
@@ -826,11 +826,11 @@ LAB_1802f2c88:
                 
 LAB_1802f2d05:
                 // 处理变量输出
-                puStack_3b0 = &UNK_180a3c3e0;
+                puStack_3b0 = &unknown_var_3456_ptr;
                 uStack_398 = 0;
                 uStack_3a8 = 0;
                 uStack_3a0 = 0;
-                puStack_490 = &UNK_180a3c3e0;
+                puStack_490 = &unknown_var_3456_ptr;
                 uStack_478 = 0;
                 lStack_488 = 0;
                 uStack_480 = 0;
@@ -886,7 +886,7 @@ LAB_1802f2dc5:
                 }
                 
                 (**(code **)(*param_3 + 0xe0))(param_3);
-                puStack_490 = &UNK_180a3c3e0;
+                puStack_490 = &unknown_var_3456_ptr;
                 
                 if (lStack_488 != 0) {
                     FUN_18064e900();
@@ -894,16 +894,16 @@ LAB_1802f2dc5:
                 
                 lStack_488 = 0;
                 uStack_478 = uStack_478 & 0xffffffff00000000;
-                puStack_490 = &UNK_18098bcb0;
+                puStack_490 = &unknown_var_720_ptr;
                 uStack_3a8 = 0;
                 uStack_398 = uStack_398 & 0xffffffff00000000;
-                puStack_3b0 = &UNK_18098bcb0;
+                puStack_3b0 = &unknown_var_720_ptr;
                 
 LAB_1802f3a4a:
                 FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_4e8);
             }
             
-            lVar4 = (longlong)&UNK_180a19510 - (longlong)pcVar6;
+            lVar4 = (longlong)&unknown_var_400_ptr - (longlong)pcVar6;
             while (*pcVar6 == pcVar6[lVar4]) {
                 pcVar6 = pcVar6 + 1;
                 if (pcVar2 <= pcVar6) goto LAB_1802f2c88;

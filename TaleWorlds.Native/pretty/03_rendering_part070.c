@@ -241,11 +241,11 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
         uStack_2ec = 0x3f800000;
         
         // 创建渲染管线
-        puStack_128 = &UNK_1809fcc58;
+        puStack_128 = &unknown_var_3480_ptr;
         puStack_120 = auStack_110;
         auStack_110[0] = 0;
         uStack_118 = 0x1e;
-        uVar20 = strcpy_s(auStack_110, 0x40, &UNK_180a1a228);
+        uVar20 = strcpy_s(auStack_110, 0x40, &unknown_var_3752_ptr);
         uStack_430 = 0x100;
         uStack_438 = 1;
         uStack_440 = 0;
@@ -272,12 +272,12 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
         }
         
         // 创建第二个渲染管线
-        puStack_128 = &UNK_18098bcb0;
-        puStack_c8 = &UNK_1809fcc58;
+        puStack_128 = &unknown_var_720_ptr;
+        puStack_c8 = &unknown_var_3480_ptr;
         puStack_c0 = auStack_b0;
         auStack_b0[0] = 0;
         uStack_b8 = 0x21;
-        uVar20 = strcpy_s(auStack_b0, 0x40, &UNK_180a1a200);
+        uVar20 = strcpy_s(auStack_b0, 0x40, &unknown_var_3712_ptr);
         uStack_430 = 0x100;
         uStack_438 = 1;
         uStack_440 = 0;
@@ -304,7 +304,7 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
         }
         
         // 执行渲染批处理
-        puStack_c8 = &UNK_18098bcb0;
+        puStack_c8 = &unknown_var_720_ptr;
         uStack_418 = 0;
         
         if (0 < iVar16) {
@@ -423,7 +423,7 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
         
         // 清理渲染资源
         pplStack_428 = (longlong **)&puStack_2e8;
-        puStack_2e8 = &UNK_1809fcc28;
+        puStack_2e8 = &unknown_var_3432_ptr;
         puStack_2e0 = auStack_2d0;
         uStack_2d8 = 0;
         auStack_2d0[0] = 0;
@@ -451,9 +451,9 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
           (**(code **)(*plVar11 + 0x38))(plVar11);
         }
         
-        puStack_2e8 = &UNK_18098bcb0;
+        puStack_2e8 = &unknown_var_720_ptr;
         pplStack_408 = (longlong **)&puStack_208;
-        puStack_208 = &UNK_1809fcc28;
+        puStack_208 = &unknown_var_3432_ptr;
         puStack_200 = auStack_1f0;
         uStack_1f8 = 0;
         auStack_1f0[0] = 0;
@@ -480,7 +480,7 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
           (**(code **)(*plVar11 + 0x38))(plVar11);
         }
         ppuStack_3b8 = &puStack_208;
-        puStack_208 = &UNK_18098bcb0;
+        puStack_208 = &unknown_var_720_ptr;
       }
       goto LAB_1803084bf;
     }

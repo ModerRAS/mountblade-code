@@ -84,7 +84,7 @@ void FUN_180474260(char *param_1,longlong param_2,uint64_t param_3,int param_4)
     uStack_148 = 0;
     uStack_140 = 0xf;
     uStack_158 = 0;
-    FUN_1800671b0(&uStack_158,&UNK_180a2b1b8,0x2a);
+    FUN_1800671b0(&uStack_158,&unknown_var_3272_ptr,0x2a);
     FUN_180472d60(param_2,param_1,&uStack_158,0);
     uStack_298 = 1;
     if (0xf < uStack_140) {
@@ -111,7 +111,7 @@ void FUN_180474260(char *param_1,longlong param_2,uint64_t param_3,int param_4)
       uStack_c8 = 0;
       uStack_c0 = 0xf;
       uStack_d8 = 0;
-      FUN_1800671b0(&uStack_d8,&UNK_180a2b1e8,0xc);
+      FUN_1800671b0(&uStack_d8,&unknown_var_3320_ptr,0xc);
       FUN_180472d60(param_2,param_1,&uStack_d8,0);
       uStack_298 = 1;
       if (0xf < uStack_c0) {
@@ -138,7 +138,7 @@ void FUN_180474260(char *param_1,longlong param_2,uint64_t param_3,int param_4)
         uStack_128 = 0;
         uStack_120 = 0xf;
         uStack_138 = 0;
-        FUN_1800671b0(&uStack_138,&UNK_180a2b398,0x1a);
+        FUN_1800671b0(&uStack_138,&unknown_var_3752_ptr,0x1a);
         FUN_180472d60(param_2,param_1,&uStack_138,0);
         uStack_298 = 1;
         if (0xf < uStack_120) {
@@ -346,7 +346,7 @@ void FUN_180474260(char *param_1,longlong param_2,uint64_t param_3,int param_4)
               uStack_e8 = 0;
               uStack_e0 = 0xf;
               uStack_f8 = 0;
-              FUN_1800671b0(&uStack_f8,&UNK_180a2b3b8,0x13);
+              FUN_1800671b0(&uStack_f8,&unknown_var_3784_ptr,0x13);
               FUN_180472d60(param_2,param_1,&uStack_f8,0);
               uStack_298 = 1;
               if (0xf < uStack_e0) {
@@ -506,7 +506,7 @@ void FUN_180474260(char *param_1,longlong param_2,uint64_t param_3,int param_4)
           uStack_108 = 0;
           uStack_100 = 0xf;
           uStack_118 = 0;
-          FUN_1800671b0(&uStack_118,&UNK_180a2b3b8,0x13);
+          FUN_1800671b0(&uStack_118,&unknown_var_3784_ptr,0x13);
           FUN_180472d60(param_2,param_1,&uStack_118,0);
           uStack_298 = 1;
           if (0xf < uStack_100) {

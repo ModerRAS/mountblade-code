@@ -476,8 +476,8 @@ void FUN_18029d280(longlong param_1,longlong param_2)
       }
       
       // 写入插槽信息
-      FUN_180628040(param_2, &UNK_180a172e0, slot_index, info_string);
-      info_array[0] = &UNK_18098bcb0;
+      FUN_180628040(param_2, &global_state_1648_ptr, slot_index, info_string);
+      info_array[0] = &global_state_720_ptr;
       
       render_flags = *render_flags_array;
       
@@ -599,7 +599,7 @@ void FUN_18029d500(longlong param_1,longlong param_2)
   render_targets = (longlong *)(param_1 + 0x83b8);
   do {
     if (*render_targets != 0) {
-      target_info = &UNK_1809fcc28;
+      target_info = &global_state_3432_ptr;
       target_data = target_buffer;
       target_buffer[0] = 0;
       target_id = 0;
@@ -611,9 +611,9 @@ void FUN_18029d500(longlong param_1,longlong param_2)
       }
       
       // 写入渲染目标信息
-      FUN_180628040(param_2, &UNK_180a17308, slot_index, target_name);
+      FUN_180628040(param_2, &global_state_1688_ptr, slot_index, target_name);
       report_type = 0;
-      target_info = &UNK_18098bcb0;
+      target_info = &global_state_720_ptr;
     }
     slot_index = slot_index + 1;
     render_targets = render_targets + 1;
@@ -643,7 +643,7 @@ void FUN_18029d500(longlong param_1,longlong param_2)
   }
   else {
     // 写入深度目标信息
-    target_info = &UNK_1809fcc28;
+    target_info = &global_state_3432_ptr;
     target_data = target_buffer;
     target_buffer[0] = 0;
     target_id = 0;
@@ -653,9 +653,9 @@ void FUN_18029d500(longlong param_1,longlong param_2)
     if (target_data != (void *)0x0) {
       target_name = target_data;
     }
-    FUN_180628040(param_2, &UNK_180a0d2d4, target_name);
+    FUN_180628040(param_2, &global_state_676_ptr, target_name);
     report_type = 0;
-    target_info = &UNK_18098bcb0;
+    target_info = &global_state_720_ptr;
   }
   
   // 清理安全缓冲区（函数不返回）
@@ -1255,7 +1255,7 @@ bool FUN_18029e1a0(longlong param_1,longlong param_2,int param_3,int param_4,uin
   
   // 处理验证错误
   if (validate_result < 0) {
-    FUN_180220810(validate_result, &UNK_180a173b0);
+    FUN_180220810(validate_result, &global_state_1856_ptr);
   }
   
   // 输出验证结果
@@ -1349,7 +1349,7 @@ bool FUN_18029e2f0(longlong param_1,longlong param_2,uint param_3,longlong param
   
   // 处理检查错误
   if (check_result < 0) {
-    FUN_180220810(check_result, &UNK_180a17358);
+    FUN_180220810(check_result, &global_state_1768_ptr);
   }
   
   // 输出检查结果

@@ -7,14 +7,14 @@
 uint64_t _DAT_180c8ed18;  // 内存分配器引用
 uint64_t _DAT_180bf00a8;  // 加密密钥相关
 uint64_t _DAT_180c86930;  // 初始化地址
-uint64_t UNK_1809ffa18;  // 对象模板
-uint64_t UNK_1809ff9a8;  // 对象模板
-uint64_t UNK_180a21690;  // 上下文模板
-uint64_t UNK_180a21720;  // 上下文模板
-uint64_t UNK_180a02e68;  // 上下文模板
-uint64_t UNK_180a13a28;  // 上下文模板
-uint64_t UNK_1809fcc28;  // 未知数据结构
-uint64_t UNK_18098bcb0;  // 未知数据结构
+uint64_t unknown_var_5192_ptr;  // 对象模板
+uint64_t unknown_var_5080;  // 对象模板
+uint64_t unknown_var_3552_ptr;  // 上下文模板
+uint64_t unknown_var_3696;  // 上下文模板
+uint64_t unknown_var_8584;  // 上下文模板
+uint64_t unknown_var_7128;  // 上下文模板
+uint64_t unknown_var_3432;  // 未知数据结构
+uint64_t unknown_var_720_ptr;  // 未知数据结构
 uint64_t system_buffer_ptr;  // 默认名称指针
 
 /**
@@ -206,7 +206,7 @@ uint64_t *create_data_object(uint64_t template, longlong config)
     object_ptr = (uint64_t *)allocate_memory(_DAT_180c8ed18, 0x38, 8, 3, 0xfffffffffffffffe);
     
     // 初始化对象（简化实现）
-    *object_ptr = &UNK_1809ffa18;
+    *object_ptr = &unknown_var_5192_ptr;
     object_ptr[1] = 0;
     object_ptr[2] = 0;
     
@@ -236,8 +236,8 @@ void initialize_data_processor(longlong processor)
         handler_ptr = (longlong *)allocate_memory(_DAT_180c8ed18, 0xc0, 0x10, 4, 0xfffffffffffffffe);
         
         // 设置处理器回调
-        *handler_ptr = (longlong)&UNK_180a21690;
-        handler_ptr[2] = (longlong)&UNK_18098bcb0;
+        *handler_ptr = (longlong)&unknown_var_3552_ptr;
+        handler_ptr[2] = (longlong)&unknown_var_720_ptr;
         
         // 初始化处理器状态
         *(longlong **)(processor + 0xb0) = handler_ptr;

@@ -52,7 +52,7 @@ LAB_1808d856d:
         unaff_RBX[1] = (longlong)unaff_RBX;
         *unaff_RBX = (longlong)unaff_RBX;
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),unaff_RBX,&UNK_180984b50,0xe1,1);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),unaff_RBX,&unknown_var_1696_ptr,0xe1,1);
       }
       uVar1 = FUN_1808d8b60(*(uint64_t *)(unaff_RSI + 0x50));
     } while ((int)uVar1 == 0);
@@ -125,7 +125,7 @@ LAB_1808d87fd:
         plVar2[1] = (longlong)plVar2;
         *plVar2 = (longlong)plVar2;
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar2,&UNK_180988870,0x16d,1);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar2,&unknown_var_7344_ptr,0x16d,1);
       }
       plVar7 = plVar2;
       if (plVar2 != plVar5) {

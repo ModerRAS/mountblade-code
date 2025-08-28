@@ -308,25 +308,25 @@ void FUN_1802dd2b0(longlong param_1,longlong param_2)
       uVar33 = FUN_1806279c0(&uStack_c8,lVar27 + 0x160);
       uVar33 = FUN_180177da0(uVar33,&uStack_c8);
       *(uint64_t *)(lVar27 + 0x3c8) = uVar33;
-      uStack_c8 = &UNK_180a3c3e0;
+      uStack_c8 = &unknown_var_3456_ptr;
       if (uStack_c0 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       uStack_c0 = 0;
       uStack_b0._0_4_ = 0;
-      uStack_c8 = &UNK_18098bcb0;
+      uStack_c8 = &unknown_var_720_ptr;
       uVar33 = FUN_1806279c0(&uStack_c8,lVar27 + 0x198);
       uVar33 = FUN_180177da0(uVar33,&uStack_c8);
       *(uint64_t *)(lVar27 + 0x3d0) = uVar33;
-      uStack_c8 = &UNK_180a3c3e0;
+      uStack_c8 = &unknown_var_3456_ptr;
       if (uStack_c0 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       uStack_c0 = 0;
       uStack_b0 = (ulonglong)uStack_b0._4_4_ << 0x20;
-      uStack_c8 = &UNK_18098bcb0;
+      uStack_c8 = &unknown_var_720_ptr;
     }
     if (*(longlong *)(lVar9 + 0x3c8) != 0) {
       puVar29 = (uint64_t *)FUN_18022bbe0(lVar9,0);

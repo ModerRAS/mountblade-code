@@ -56,7 +56,7 @@ void rendering_system_execute_render_pipeline(void)
   } while (render_context != 0);
   
   // 处理渲染数据
-  FUN_18025a940(&UNK_18098dfd0, *(int32_t *)(data_context + 0x7c8));
+  FUN_18025a940(&unknown_var_9712_ptr, *(int32_t *)(data_context + 0x7c8));
   char_buffer_ptr = (int8_t *)buffer_manager[1];
   char_value = *(int8_t *)(data_context + 0x7cc);
   
@@ -1028,7 +1028,7 @@ void rendering_system_process_render_commands(longlong param1, longlong param2)
     do {
       int_value = **(int **)(param2 + 8);
       *(int **)(param2 + 8) = *(int **)(param2 + 8) + 1;
-      stack_buffer_ptr = &UNK_1809fcc28;
+      stack_buffer_ptr = &unknown_var_3432_ptr;
       stack_buffer_ptr2 = stack_data_buffer;
       stack_value = 0;
       stack_data_buffer[0] = 0;
@@ -1046,7 +1046,7 @@ void rendering_system_process_render_commands(longlong param1, longlong param2)
         }
         (**(code **)(*render_object + 0x10))(render_object, char_buffer);
       }
-      stack_buffer_ptr = &UNK_18098bcb0;
+      stack_buffer_ptr = &unknown_var_720_ptr;
       render_object = render_object + 0xb;
       iteration_count = iteration_count + -1;
     } while (iteration_count != 0);

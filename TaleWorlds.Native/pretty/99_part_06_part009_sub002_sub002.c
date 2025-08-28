@@ -270,13 +270,13 @@ extern const void* _DAT_180bf91c0;  /** 系统配置表9 */
 extern const void* _DAT_180bf91b8;  /** 系统配置表10 */
 
 /** 系统全局地址表 */
-extern const void* UNK_180a3c3e0;   /** 系统地址表1 */
-extern const void* UNK_18098bcb0;   /** 系统地址表2 */
+extern const void* global_state_3456_ptr;   /** 系统地址表1 */
+extern const void* global_state_720_ptr;   /** 系统地址表2 */
 extern const void* system_buffer_ptr;   /** 系统地址表3 */
-extern const void* UNK_1809fcc58;   /** 系统地址表4 */
-extern const void* UNK_180a037b0;   /** 系统地址表5 */
-extern const void* UNK_1809fcc28;   /** 系统地址表6 */
-extern const void* UNK_1803aebf0;   /** 系统地址表7 */
+extern const void* global_state_3480;   /** 系统地址表4 */
+extern const void* global_state_960;   /** 系统地址表5 */
+extern const void* global_state_3432;   /** 系统地址表6 */
+extern const void* global_state_2432;   /** 系统地址表7 */
 
 // =============================================================================
 // 函数声明
@@ -483,7 +483,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     uStack_578 = 0;
     uVar9 = *(uint64_t *)(param_1 + 0xe20);
     uVar15 = *(int32_t *)(param_1 + 0xe1c);
-    ppplStack_5b8 = (longlong ***)&UNK_180a3c3e0;
+    ppplStack_5b8 = (longlong ***)&global_state_3456_ptr;
     uStack_5a0 = 0;
     puStack_5b0 = (int8_t *)0x0;
     uStack_5a8 = 0;
@@ -512,7 +512,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     *(uint *)(param_2 + 0x30c) = *(uint *)(param_2 + 0x30c) & 0xfffffffe;
     
     // 清理系统资源
-    ppplStack_5b8 = (longlong ***)&UNK_180a3c3e0;
+    ppplStack_5b8 = (longlong ***)&global_state_3456_ptr;
     if (puStack_5b0 != (int8_t *)0x0) {
         FUN_18064e900();
     }
@@ -520,12 +520,12 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     // 重置系统状态
     puStack_5b0 = (int8_t *)0x0;
     uStack_5a0 = uStack_5a0 & 0xffffffff00000000;
-    ppplStack_5b8 = (longlong ***)&UNK_18098bcb0;
+    ppplStack_5b8 = (longlong ***)&global_state_720_ptr;
     
     // 处理系统配置和状态
     uVar9 = *(uint64_t *)(param_1 + 0xe20);
     uVar15 = *(int32_t *)(param_1 + 0xe1c);
-    puStack_598 = &UNK_180a3c3e0;
+    puStack_598 = &global_state_3456_ptr;
     uStack_580 = (code *)0x0;
     puStack_590 = (int8_t *)0x0;
     uStack_588 = (code *)((ulonglong)uStack_588._4_4_ << 0x20);
@@ -555,7 +555,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     *(int *)(param_2 + 0x340) = *(int *)(param_2 + 0x340) + 1;
     
     // 清理系统资源
-    puStack_598 = &UNK_180a3c3e0;
+    puStack_598 = &global_state_3456_ptr;
     if (puStack_590 != (int8_t *)0x0) {
         FUN_18064e900();
     }
@@ -563,7 +563,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     // 重置系统状态
     puStack_590 = (int8_t *)0x0;
     uStack_580 = (code *)((ulonglong)uStack_580 & 0xffffffff00000000);
-    puStack_598 = &UNK_18098bcb0;
+    puStack_598 = &global_state_720_ptr;
     
     // 继续处理系统配置和状态...
     // [由于函数过长，这里只展示部分实现]
@@ -602,9 +602,9 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     // [由于函数过长，这里只展示部分实现]
     
     // 系统资源清理和状态重置
-    apuStack_158[0] = &UNK_18098bcb0;
-    puStack_3f8 = &UNK_18098bcb0;
-    puStack_398 = &UNK_18098bcb0;
+    apuStack_158[0] = &global_state_720_ptr;
+    puStack_3f8 = &global_state_720_ptr;
+    puStack_398 = &global_state_720_ptr;
     
     // 系统终结处理
     FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_5d8);

@@ -61,7 +61,7 @@ bool FUN_1808fb170(uint64_t param_1,int8_t *param_2)
     goto LAB_1808fb690;
   }
   if (_DAT_180c69f38 == 0) {
-    lVar8 = FUN_1808f9200(&UNK_18098ab50);
+    lVar8 = FUN_1808f9200(&unknown_var_6272_ptr);
     uVar9 = uVar11;
     if (lVar8 != 0) {
       uVar9 = LoadLibraryExW(lVar8,0,0);
@@ -69,15 +69,15 @@ bool FUN_1808fb170(uint64_t param_1,int8_t *param_2)
     LocalFree(lVar8);
     _DAT_180c69f38 = uVar9;
     if (uVar9 != 0) {
-      _DAT_180c69f40 = (code *)GetProcAddress(uVar9,&UNK_18098ab68);
-      _DAT_180c69f48 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ab78);
-      _DAT_180c69f50 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ab88);
-      _DAT_180c69f58 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098aba8);
-      _DAT_180c69f60 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098abc8);
-      _DAT_180c69f68 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098abe0);
-      _DAT_180c69f70 = GetProcAddress(_DAT_180c69f38,&UNK_18098abf8);
-      _DAT_180c69f78 = GetProcAddress(_DAT_180c69f38,&UNK_18098ac10);
-      _DAT_180c69f80 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ac28);
+      _DAT_180c69f40 = (code *)GetProcAddress(uVar9,&unknown_var_6296_ptr);
+      _DAT_180c69f48 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6312_ptr);
+      _DAT_180c69f50 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6328_ptr);
+      _DAT_180c69f58 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6360_ptr);
+      _DAT_180c69f60 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6392_ptr);
+      _DAT_180c69f68 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6416_ptr);
+      _DAT_180c69f70 = GetProcAddress(_DAT_180c69f38,&unknown_var_6440_ptr);
+      _DAT_180c69f78 = GetProcAddress(_DAT_180c69f38,&unknown_var_6464_ptr);
+      _DAT_180c69f80 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6488_ptr);
     }
   }
   pcVar1 = _DAT_180c69f68;
@@ -164,8 +164,8 @@ bool FUN_1808fb170(uint64_t param_1,int8_t *param_2)
       goto LAB_1808fb690;
     }
     if ((_DAT_180c6a010 == 0) &&
-       (_DAT_180c6a010 = FUN_1808f9de0(&UNK_18098ac50,0), _DAT_180c6a010 != 0)) {
-      _DAT_180c6a018 = GetProcAddress(_DAT_180c6a010,&UNK_18098ac70);
+       (_DAT_180c6a010 = FUN_1808f9de0(&unknown_var_6528_ptr,0), _DAT_180c6a010 != 0)) {
+      _DAT_180c6a018 = GetProcAddress(_DAT_180c6a010,&unknown_var_6560_ptr);
     }
     bVar14 = false;
     uVar2 = uVar12;
@@ -276,7 +276,7 @@ bool FUN_1808fb18b(uint64_t param_1)
     goto LAB_1808fb690;
   }
   if (_DAT_180c69f38 == unaff_RBX) {
-    lVar11 = FUN_1808f9200(&UNK_18098ab50);
+    lVar11 = FUN_1808f9200(&unknown_var_6272_ptr);
     uVar12 = unaff_RBX;
     if (lVar11 != 0) {
       uVar12 = LoadLibraryExW(lVar11,0,0);
@@ -284,15 +284,15 @@ bool FUN_1808fb18b(uint64_t param_1)
     LocalFree(lVar11);
     _DAT_180c69f38 = uVar12;
     if (uVar12 != 0) {
-      _DAT_180c69f40 = (code *)GetProcAddress(uVar12,&UNK_18098ab68);
-      _DAT_180c69f48 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ab78);
-      _DAT_180c69f50 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ab88);
-      _DAT_180c69f58 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098aba8);
-      _DAT_180c69f60 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098abc8);
-      _DAT_180c69f68 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098abe0);
-      _DAT_180c69f70 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098abf8);
-      _DAT_180c69f78 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ac10);
-      _DAT_180c69f80 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ac28);
+      _DAT_180c69f40 = (code *)GetProcAddress(uVar12,&unknown_var_6296_ptr);
+      _DAT_180c69f48 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6312_ptr);
+      _DAT_180c69f50 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6328_ptr);
+      _DAT_180c69f58 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6360_ptr);
+      _DAT_180c69f60 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6392_ptr);
+      _DAT_180c69f68 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6416_ptr);
+      _DAT_180c69f70 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6440_ptr);
+      _DAT_180c69f78 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6464_ptr);
+      _DAT_180c69f80 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6488_ptr);
     }
   }
   pcVar6 = _DAT_180c69f68;
@@ -377,8 +377,8 @@ bool FUN_1808fb18b(uint64_t param_1)
       goto LAB_1808fb690;
     }
     if ((_DAT_180c6a010 == 0) &&
-       (_DAT_180c6a010 = FUN_1808f9de0(&UNK_18098ac50,0), _DAT_180c6a010 != 0)) {
-      _DAT_180c6a018 = GetProcAddress(_DAT_180c6a010,&UNK_18098ac70);
+       (_DAT_180c6a010 = FUN_1808f9de0(&unknown_var_6528_ptr,0), _DAT_180c6a010 != 0)) {
+      _DAT_180c6a018 = GetProcAddress(_DAT_180c6a010,&unknown_var_6560_ptr);
     }
     bVar17 = false;
     if (_DAT_180c6a018 != 0) {
@@ -479,7 +479,7 @@ bool FUN_1808fb18f(uint64_t param_1)
     goto LAB_1808fb690;
   }
   if (_DAT_180c69f38 == unaff_RBX) {
-    lVar11 = FUN_1808f9200(&UNK_18098ab50);
+    lVar11 = FUN_1808f9200(&unknown_var_6272_ptr);
     uVar12 = unaff_RBX;
     if (lVar11 != 0) {
       uVar12 = LoadLibraryExW(lVar11,0,0);
@@ -487,15 +487,15 @@ bool FUN_1808fb18f(uint64_t param_1)
     LocalFree(lVar11);
     _DAT_180c69f38 = uVar12;
     if (uVar12 != 0) {
-      _DAT_180c69f40 = (code *)GetProcAddress(uVar12,&UNK_18098ab68);
-      _DAT_180c69f48 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ab78);
-      _DAT_180c69f50 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ab88);
-      _DAT_180c69f58 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098aba8);
-      _DAT_180c69f60 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098abc8);
-      _DAT_180c69f68 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098abe0);
-      _DAT_180c69f70 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098abf8);
-      _DAT_180c69f78 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ac10);
-      _DAT_180c69f80 = (code *)GetProcAddress(_DAT_180c69f38,&UNK_18098ac28);
+      _DAT_180c69f40 = (code *)GetProcAddress(uVar12,&unknown_var_6296_ptr);
+      _DAT_180c69f48 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6312_ptr);
+      _DAT_180c69f50 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6328_ptr);
+      _DAT_180c69f58 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6360_ptr);
+      _DAT_180c69f60 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6392_ptr);
+      _DAT_180c69f68 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6416_ptr);
+      _DAT_180c69f70 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6440_ptr);
+      _DAT_180c69f78 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6464_ptr);
+      _DAT_180c69f80 = (code *)GetProcAddress(_DAT_180c69f38,&unknown_var_6488_ptr);
     }
   }
   pcVar6 = _DAT_180c69f68;
@@ -580,8 +580,8 @@ bool FUN_1808fb18f(uint64_t param_1)
       goto LAB_1808fb690;
     }
     if ((_DAT_180c6a010 == 0) &&
-       (_DAT_180c6a010 = FUN_1808f9de0(&UNK_18098ac50,0), _DAT_180c6a010 != 0)) {
-      _DAT_180c6a018 = GetProcAddress(_DAT_180c6a010,&UNK_18098ac70);
+       (_DAT_180c6a010 = FUN_1808f9de0(&unknown_var_6528_ptr,0), _DAT_180c6a010 != 0)) {
+      _DAT_180c6a018 = GetProcAddress(_DAT_180c6a010,&unknown_var_6560_ptr);
     }
     bVar17 = false;
     if (_DAT_180c6a018 != 0) {
@@ -768,19 +768,19 @@ void FUN_1808fb7b0(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
       puVar6 = (int8_t *)0x0;
     }
     if (puVar6 == (int8_t *)0x0) {
-      puStack_88 = &UNK_18098b6a0;
-      FUN_1808fb790(&UNK_18098b490,0x12d,&UNK_18098b6f0,&UNK_18098b6d0);
+      puStack_88 = &unknown_var_9168_ptr;
+      FUN_1808fb790(&unknown_var_8640_ptr,0x12d,&unknown_var_9248_ptr,&unknown_var_9216_ptr);
       if (system_data_21c0 != '\0') {
         pcVar2 = (code *)swi(3);
         (*pcVar2)();
         return;
       }
     }
-    strftime(0x180c7a160,0x8000,&UNK_18098b708,auStack_58);
+    strftime(0x180c7a160,0x8000,&unknown_var_9272_ptr,auStack_58);
     uStack_78 = 0x180c72160;
     uStack_80 = CONCAT44(uStack_80._4_4_,param_2);
     puStack_88 = (void *)param_3;
-    FUN_1808fba80(0x180c7a160,0x8000,&UNK_18098b720,0x180c7a160);
+    FUN_1808fba80(0x180c7a160,0x8000,&unknown_var_9296_ptr,0x180c7a160);
     if (_DAT_180c6a140 != 0) {
       fputs(0x180c7a160);
       fflush(_DAT_180c6a140);
@@ -803,7 +803,7 @@ void FUN_1808fb7b0(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
     }
     if (system_data_a14d != '\0') {
       uVar5 = __acrt_iob_func(1);
-      FUN_1808fb9d0(uVar5,&UNK_18098b730,0x180c7a160);
+      FUN_1808fb9d0(uVar5,&unknown_var_9312_ptr,0x180c7a160);
     }
   }
                     // WARNING: Subroutine does not return
@@ -843,16 +843,16 @@ void FUN_1808fb7fc(void)
     puVar6 = (int8_t *)0x0;
   }
   if (puVar6 == (int8_t *)0x0) {
-    puVar9 = &UNK_18098b6a0;
-    FUN_1808fb790(&UNK_18098b490,0x12d,&UNK_18098b6f0,&UNK_18098b6d0,&UNK_18098b6a0);
+    puVar9 = &unknown_var_9168_ptr;
+    FUN_1808fb790(&unknown_var_8640_ptr,0x12d,&unknown_var_9248_ptr,&unknown_var_9216_ptr,&unknown_var_9168_ptr);
     if (system_data_21c0 != '\0') {
       pcVar2 = (code *)swi(3);
       (*pcVar2)();
       return;
     }
   }
-  strftime(0x180c7a160,0x8000,&UNK_18098b708,&stack0x00000050,puVar9);
-  FUN_1808fba80(0x180c7a160,0x8000,&UNK_18098b720,0x180c7a160);
+  strftime(0x180c7a160,0x8000,&unknown_var_9272_ptr,&stack0x00000050,puVar9);
+  FUN_1808fba80(0x180c7a160,0x8000,&unknown_var_9296_ptr,0x180c7a160);
   if (_DAT_180c6a140 != 0) {
     fputs(0x180c7a160);
     fflush(_DAT_180c6a140);
@@ -874,7 +874,7 @@ void FUN_1808fb7fc(void)
   }
   if (system_data_a14d != '\0') {
     uVar5 = __acrt_iob_func(1);
-    FUN_1808fb9d0(uVar5,&UNK_18098b730,0x180c7a160);
+    FUN_1808fb9d0(uVar5,&unknown_var_9312_ptr,0x180c7a160);
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(in_stack_00000078 ^ (ulonglong)&stack0x00000000);
@@ -915,7 +915,7 @@ void FUN_1808fb8ed(void)
   }
   if (system_data_a14d != unaff_BPL) {
     uVar2 = __acrt_iob_func(1);
-    FUN_1808fb9d0(uVar2,&UNK_18098b730);
+    FUN_1808fb9d0(uVar2,&unknown_var_9312_ptr);
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(in_stack_00000078 ^ (ulonglong)&stack0x00000000);
@@ -1020,15 +1020,15 @@ bool FUN_1808fbae0(longlong param_1,char param_2)
     _DAT_180c6a140 = 0;
   }
   auStackX_18[0] = 0;
-  iVar3 = RegOpenKeyExW(0xffffffff80000002,&UNK_18098b320,0,0x20019,auStack_48);
+  iVar3 = RegOpenKeyExW(0xffffffff80000002,&unknown_var_8272_ptr,0,0x20019,auStack_48);
   if (iVar3 == 0) {
     aiStackX_20[0] = 4;
-    iVar3 = RegQueryValueExW(auStack_48[0],&UNK_18098b418,0,0,&system_data_a148,aiStackX_20);
+    iVar3 = RegQueryValueExW(auStack_48[0],&unknown_var_8520_ptr,0,0,&system_data_a148,aiStackX_20);
     aiStackX_20[0] = 4;
     if (iVar3 != 0) {
       _DAT_180c6a148 = 0;
     }
-    iVar3 = RegQueryValueExW(auStack_48[0],&UNK_18098b430,0,0,auStackX_18,aiStackX_20);
+    iVar3 = RegQueryValueExW(auStack_48[0],&unknown_var_8544_ptr,0,0,auStackX_18,aiStackX_20);
     if (iVar3 != 0) {
       auStackX_18[0] = 0;
     }
@@ -1044,9 +1044,9 @@ bool FUN_1808fbae0(longlong param_1,char param_2)
       lVar4 = lVar4 + 1;
     } while (*(short *)(param_1 + lVar4 * 2) != 0);
     if (lVar4 != 0) {
-      puVar8 = &UNK_18098b464;
+      puVar8 = &unknown_var_8596_ptr;
       if (param_2 != '\0') {
-        puVar8 = &UNK_18098b45c;
+        puVar8 = &unknown_var_8588_ptr;
       }
       _DAT_180c6a140 = _wfsopen(param_1,puVar8,0x20);
       if ((1 < _DAT_180c6a148) && (auStackX_18[0] != 0)) {

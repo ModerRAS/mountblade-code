@@ -11,10 +11,10 @@
 
 // 全局常量定义
 // 渲染系统数据指针
-#define RENDER_DATA_PTR_1       UNK_1809fcc28
-#define RENDER_DATA_PTR_2       UNK_180a3c3e0
-#define RENDER_DATA_PTR_3       UNK_18098bcb0
-#define RENDER_DATA_PTR_4       UNK_180a169b8
+#define RENDER_DATA_PTR_1       unknown_var_3432
+#define RENDER_DATA_PTR_2       unknown_var_3456
+#define RENDER_DATA_PTR_3       unknown_var_720
+#define RENDER_DATA_PTR_4       unknown_var_9304
 #define RENDER_STRING_PTR       system_memory_ff10
 #define RENDER_EMPTY_STRING     system_buffer_ptr
 #define RENDER_SECURITY_KEY      _DAT_180bf00a8

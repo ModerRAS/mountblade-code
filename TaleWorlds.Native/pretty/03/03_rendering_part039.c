@@ -934,5 +934,5 @@ int render_data_compare_func(const void* a, const void* b);
 int render_data_finalize_func(const void* a, const void* b);
 
 // 全局变量声明
-extern uint64_t UNK_18028ad30;    // 数据比较函数
-extern uint64_t UNK_18028ad70;    // 数据最终处理函数
+extern uint64_t global_var_6720;    // 数据比较函数
+extern uint64_t global_var_6784;    // 数据最终处理函数

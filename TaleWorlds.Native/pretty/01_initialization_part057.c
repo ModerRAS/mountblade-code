@@ -163,10 +163,10 @@ ulonglong FUN_18007b240(longlong param_1,longlong *param_2,byte param_3,char par
   }
   if (*plVar14 == 0) {
     puVar7 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,0x20);
-    *puVar7 = &UNK_180a21690;
-    *puVar7 = &UNK_180a21720;
+    *puVar7 = &unknown_var_3552_ptr;
+    *puVar7 = &unknown_var_3696_ptr;
     *(int32_t *)(puVar7 + 1) = 0;
-    *puVar7 = &UNK_180a00168;
+    *puVar7 = &unknown_var_7064_ptr;
     LOCK();
     *(int8_t *)(puVar7 + 2) = 0;
     UNLOCK();
@@ -179,10 +179,10 @@ ulonglong FUN_18007b240(longlong param_1,longlong *param_2,byte param_3,char par
   }
   if (plVar14[1] == 0) {
     puVar7 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,0x20);
-    *puVar7 = &UNK_180a21690;
-    *puVar7 = &UNK_180a21720;
+    *puVar7 = &unknown_var_3552_ptr;
+    *puVar7 = &unknown_var_3696_ptr;
     *(int32_t *)(puVar7 + 1) = 0;
-    *puVar7 = &UNK_180a00100;
+    *puVar7 = &unknown_var_6960_ptr;
     LOCK();
     *(int32_t *)(puVar7 + 2) = 0;
     UNLOCK();
@@ -228,10 +228,10 @@ LAB_18007b454:
     param_4 = '\x01';
   }
   plVar11 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,0x20);
-  *plVar11 = (longlong)&UNK_180a21690;
-  *plVar11 = (longlong)&UNK_180a21720;
+  *plVar11 = (longlong)&unknown_var_3552_ptr;
+  *plVar11 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar11 + 1) = 0;
-  *plVar11 = (longlong)&UNK_180a00030;
+  *plVar11 = (longlong)&unknown_var_6752_ptr;
   plVar11[4] = 0;
   plVar11[2] = 0;
   *(byte *)(plVar11 + 5) = *(byte *)(plVar11 + 5) | 1;
@@ -263,7 +263,7 @@ LAB_18007b454:
       (**(code **)(*plVar10 + 0x28))(plVar10);
       (**(code **)(*plVar11 + 0x28))(plVar11);
       pcStack_68 = FUN_180083390;
-      puStack_60 = &UNK_180083380;
+      puStack_60 = &unknown_var_8416_ptr;
       plStack_b8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
       *plStack_b8 = param_1;
       *(byte *)(plStack_b8 + 1) = param_3;
@@ -771,7 +771,7 @@ void FUN_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
     if (*(void **)(param_1 + 0x18) != (void *)0x0) {
       puVar12 = *(void **)(param_1 + 0x18);
     }
-    FUN_180627020(&UNK_1809ffb88,puVar12);
+    FUN_180627020(&unknown_var_5560_ptr,puVar12);
     plVar8 = (longlong *)FUN_1800be9a0(_DAT_180c86898,&plStack_30,0);
     lVar7 = *plVar8;
     *plVar8 = 0;

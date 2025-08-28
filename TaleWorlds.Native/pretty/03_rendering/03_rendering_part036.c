@@ -77,7 +77,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
     FUN_180244190();
     
     // 设置渲染管理器基本参数
-    *render_manager = &UNK_180a16dc0;
+    *render_manager = &unknown_var_336_ptr;
     buffer_ptr = render_manager + 0x1f;
     *buffer_ptr = 0;
     render_manager[0x20] = 0;
@@ -96,17 +96,17 @@ void initialize_rendering_manager(uint64_t *render_manager)
     
     // 获取渲染资源句柄
     resource_handle = _DAT_180c86930;
-    stack_render_ptr = &UNK_1809fcc58;
+    stack_render_ptr = &unknown_var_3480_ptr;
     stack_texture_ptr2 = stack_buffer_array;
     stack_buffer_array[0] = 0;
     stack_render_id = 0x23;
     stack_material_ptr = shader_list;
-    strcpy_s(stack_buffer_array, 0x40, &UNK_180a16c68);
+    strcpy_s(stack_buffer_array, 0x40, &unknown_var_9992_ptr);
     
     // 创建材质资源
     FUN_1800b30d0(resource_handle, &stack_texture_ptr, &stack_render_ptr, 1);
     stack_counter = 1;
-    stack_render_ptr = &UNK_18098bcb0;
+    stack_render_ptr = &unknown_var_720_ptr;
     material_id = FUN_18022cb40(stack_texture_ptr, &stack_shader_ptr);
     texture_count = 0;
     stack_counter = 0;
@@ -242,13 +242,13 @@ void initialize_rendering_manager(uint64_t *render_manager)
                 (**(code **)(*stack_buffer_ptr + 0x38))();
             }
             
-            stack_data_ptr = &UNK_180a3c3e0;
+            stack_data_ptr = &unknown_var_3456_ptr;
             if (stack_data_size != 0) {
                 FUN_18064e900();
             }
             stack_data_size = 0;
             stack_param2 = 0;
-            stack_data_ptr = &UNK_18098bcb0;
+            stack_data_ptr = &unknown_var_720_ptr;
             stack_index = texture_index + 1;
             texture_count = stack_counter;
         } while (stack_index < (int)shader_list);
@@ -278,14 +278,14 @@ void initialize_rendering_manager(uint64_t *render_manager)
     
     // 第二阶段渲染初始化
     resource_handle = _DAT_180c86930;
-    stack_material_ptr2 = &UNK_1809fcc58;
+    stack_material_ptr2 = &unknown_var_3480_ptr;
     stack_color_ptr = stack_array;
     stack_array[0] = 0;
     stack_color_id = 0xb;
-    strcpy_s(stack_array, 0x40, &UNK_180a16c28);
+    strcpy_s(stack_array, 0x40, &unknown_var_9928_ptr);
     FUN_1800b30d0(resource_handle, &stack_buffer_ptr, &stack_material_ptr2, 1);
     stack_counter = texture_count & 0xffffffef | 8;
-    stack_material_ptr2 = &UNK_18098bcb0;
+    stack_material_ptr2 = &unknown_var_720_ptr;
     texture_ptr = (uint64_t *)FUN_18022cb40(stack_buffer_ptr, &stack_index);
     buffer_ptr = (longlong *)*texture_ptr;
     *texture_ptr = 0;
@@ -372,7 +372,7 @@ uint64_t * cleanup_rendering_resources(uint64_t *render_manager, ulonglong free_
     longlong *resource_ptr;
     
     // 重置渲染管理器
-    *render_manager = &UNK_180a16dc0;
+    *render_manager = &unknown_var_336_ptr;
     resource_ptr = (longlong *)render_manager[0x25];
     render_manager[0x25] = 0;
     if (resource_ptr != (longlong *)0x0) {
@@ -807,10 +807,10 @@ initialize_rendering_pipeline(uint64_t pipeline_param, uint64_t *pipeline_data, 
     uint64_t *pipeline_ptr;
     
     // 初始化管线数据
-    *pipeline_data = &UNK_18098bcb0;
+    *pipeline_data = &unknown_var_720_ptr;
     pipeline_data[1] = 0;
     *(int32_t *)(pipeline_data + 2) = 0;
-    *pipeline_data = &UNK_180a3c3e0;
+    *pipeline_data = &unknown_var_3456_ptr;
     pipeline_data[3] = 0;
     pipeline_data[1] = 0;
     *(int32_t *)(pipeline_data + 2) = 0;

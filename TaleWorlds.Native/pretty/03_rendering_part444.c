@@ -355,7 +355,7 @@ LAB_18050e0d9:
   if (puVar4 != (void *)0x0) {
     puVar6 = puVar4;
   }
-  lVar5 = strstr(puVar6,&UNK_180a30d40);
+  lVar5 = strstr(puVar6,&unknown_var_6704_ptr);
   uVar9 = _DAT_180c96128;
   if (lVar5 != 0) {
     uVar9 = _DAT_180c9612c;
@@ -381,13 +381,13 @@ LAB_18050e0d9:
   fStack_c4 = fStack_174;
   fStack_c0 = fStack_170;
   uStack_bc = uStack_16c;
-  puStack_b8 = &UNK_1809fcc58;
+  puStack_b8 = &unknown_var_3480_ptr;
   puStack_b0 = auStack_a0;
   auStack_a0[0] = 0;
   uStack_a8 = 0x16;
-  uVar9 = strcpy_s(auStack_a0,0x40,&UNK_180a30d28);
+  uVar9 = strcpy_s(auStack_a0,0x40,&unknown_var_6680_ptr);
   uVar9 = FUN_1800c17c0(uVar9,&puStack_b8);
-  puStack_b8 = &UNK_18098bcb0;
+  puStack_b8 = &unknown_var_720_ptr;
   FUN_1804ebb80(*(uint64_t *)(param_1 + 0x8d8),uVar9,&uStack_f8,1);
   FUN_1805a3a20(param_1 + 0x28);
                     // WARNING: Subroutine does not return

@@ -206,37 +206,37 @@ uint64_t * RenderingSystem_ObjectCreator(uint64_t *param_1)
   FUN_180320470();
   
   // 设置虚函数表指针
-  *param_1 = &UNK_180a1b470;
+  *param_1 = &unknown_var_8432_ptr;
   
   // 初始化第一组虚函数
-  param_1[0x1f] = &UNK_18098bcb0;
+  param_1[0x1f] = &unknown_var_720_ptr;
   param_1[0x20] = 0;
   *(int32_t *)(param_1 + 0x21) = 0;
   
   // 设置第二组虚函数
-  param_1[0x1f] = &UNK_1809fcc58;
+  param_1[0x1f] = &unknown_var_3480_ptr;
   param_1[0x20] = param_1 + 0x22;
   *(int32_t *)(param_1 + 0x21) = 0;
   *(int8_t *)(param_1 + 0x22) = 0;
   
   // 初始化第三组虚函数
-  param_1[0x2a] = &UNK_18098bcb0;
+  param_1[0x2a] = &unknown_var_720_ptr;
   param_1[0x2b] = 0;
   *(int32_t *)(param_1 + 0x2c) = 0;
   
   // 设置第四组虚函数
-  param_1[0x2a] = &UNK_1809fcc58;
+  param_1[0x2a] = &unknown_var_3480_ptr;
   param_1[0x2b] = param_1 + 0x2d;
   *(int32_t *)(param_1 + 0x2c) = 0;
   *(int8_t *)(param_1 + 0x2d) = 0;
   
   // 初始化第五组虚函数
-  param_1[0x35] = &UNK_18098bcb0;
+  param_1[0x35] = &unknown_var_720_ptr;
   param_1[0x36] = 0;
   *(int32_t *)(param_1 + 0x37) = 0;
   
   // 设置第六组虚函数
-  param_1[0x35] = &UNK_1809fcc58;
+  param_1[0x35] = &unknown_var_3480_ptr;
   param_1[0x36] = param_1 + 0x38;
   *(int32_t *)(param_1 + 0x37) = 0;
   *(int8_t *)(param_1 + 0x38) = 0;
@@ -407,8 +407,8 @@ void RenderingSystem_ObjectCleaner(uint64_t *param_1)
   longlong lVar3;
   
   // 设置虚函数表
-  *param_1 = &UNK_180a1b368;
-  *param_1 = &UNK_180a1b4b0;
+  *param_1 = &unknown_var_8168_ptr;
+  *param_1 = &unknown_var_8496_ptr;
   
   // 初始化基础字段
   param_1[1] = 0;
@@ -456,8 +456,8 @@ RenderingSystem_ObjectDestructor(uint64_t *param_1, ulonglong param_2, uint64_t 
   uVar1 = 0xfffffffffffffffe;
   
   // 设置虚函数表
-  *param_1 = &UNK_180a1b368;
-  *param_1 = &UNK_180a1b4b0;
+  *param_1 = &unknown_var_8168_ptr;
+  *param_1 = &unknown_var_8496_ptr;
   
   // 初始化基础字段
   param_1[1] = 0;
@@ -529,7 +529,7 @@ uint64_t * RenderingSystem_ContextCreator(uint64_t *param_1)
   FUN_180320470();
   
   // 设置虚函数表
-  *param_1 = &UNK_180a1b368;
+  *param_1 = &unknown_var_8168_ptr;
   
   // 调用状态初始化函数
   FUN_180339cf0(param_1);
@@ -555,7 +555,7 @@ uint64_t * RenderingSystem_MemoryAllocator(void)
   FUN_180320470(puVar1);
   
   // 设置虚函数表
-  *puVar1 = &UNK_180a1b368;
+  *puVar1 = &unknown_var_8168_ptr;
   
   // 调用状态初始化函数
   FUN_180339cf0(puVar1);
@@ -826,7 +826,7 @@ uint64_t * RenderingSystem_HandleAllocator(void)
   FUN_180320470(puVar1);
   
   // 设置虚函数表
-  *puVar1 = &UNK_180a1b3b0;
+  *puVar1 = &unknown_var_8240_ptr;
   
   // 初始化句柄字段
   puVar1[0x17] = 0;
@@ -971,7 +971,7 @@ uint64_t * RenderingSystem_HandleInitializer(uint64_t *param_1)
   FUN_180320470();
   
   // 设置虚函数表
-  *param_1 = &UNK_180a1b3b0;
+  *param_1 = &unknown_var_8240_ptr;
   
   // 初始化句柄字段
   param_1[0x17] = 0;
@@ -995,7 +995,7 @@ uint64_t * RenderingSystem_HandleInitializer(uint64_t *param_1)
 uint64_t * RenderingSystem_ObjectReleaser(uint64_t *param_1, ulonglong param_2)
 {
   // 设置虚函数表
-  *param_1 = &UNK_180a1b248;
+  *param_1 = &unknown_var_7880_ptr;
   
   // 检查对象状态
   if (param_1[0x18] != 0) {
@@ -1121,7 +1121,7 @@ RenderingSystem_HandleReleaser(uint64_t *param_1, ulonglong param_2, uint64_t pa
   uVar1 = 0xfffffffffffffffe;
   
   // 设置虚函数表
-  *param_1 = &UNK_180a1b2d8;
+  *param_1 = &unknown_var_8024_ptr;
   
   // 调用释放函数
   FUN_180049470();

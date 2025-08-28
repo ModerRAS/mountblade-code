@@ -778,7 +778,7 @@ void FUN_1804f6330(longlong param_1,uint64_t param_2,uint64_t param_3)
   *(int32_t *)(param_1 + 0x98d948) = 0;
   *(int32_t *)(param_1 + 0x87b714) = 0;
   FUN_1805f3360(_DAT_180c96138);
-  if (*(void **)*_DAT_180c8ed08 == &UNK_18098bb88) {
+  if (*(void **)*_DAT_180c8ed08 == &unknown_var_424_ptr) {
     cVar1 = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
   }
   else {

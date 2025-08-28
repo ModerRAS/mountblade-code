@@ -682,11 +682,11 @@ void FUN_18042bf80(longlong param_1)
 {
   int iVar1;
   
-  iVar1 = FUN_18042bed0(param_1,&UNK_180a27cf8);
+  iVar1 = FUN_18042bed0(param_1,&unknown_var_9768_ptr);
   *(uint64_t *)(param_1 + 0xb8) = *(uint64_t *)(param_1 + 200);
   *(uint64_t *)(param_1 + 0xc0) = *(uint64_t *)(param_1 + 0xd0);
   if (iVar1 == 0) {
-    FUN_18042bed0(param_1,&UNK_180a27d08);
+    FUN_18042bed0(param_1,&unknown_var_9784_ptr);
     *(uint64_t *)(param_1 + 0xb8) = *(uint64_t *)(param_1 + 200);
     *(uint64_t *)(param_1 + 0xc0) = *(uint64_t *)(param_1 + 0xd0);
   }

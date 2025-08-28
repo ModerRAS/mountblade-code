@@ -419,11 +419,26 @@ static uint64_t* system_sync_cleanup_ptr = (uint64_t*)0x180c919f0;         // �
 static uint64_t* system_buffer_ptr = (uint64_t*)0x180bfc140;              // 系统缓冲区指针
 static uint64_t* system_buffer_size_ptr = (uint64_t*)0x180bfc118;          // 系统缓冲区大小指针
 static uint64_t* system_buffer_status_ptr = (uint64_t*)0x180bfc110;        // 系统缓冲区状态指针
+static uint64_t* system_buffer_usage_count = (uint64_t*)0x180bfc138;       // 系统缓冲区使用计数
+static uint64_t* system_buffer_ptr_1 = (uint64_t*)0x180bfc120;             // 系统缓冲区指针1
+static uint64_t* system_buffer_ptr_2 = (uint64_t*)0x180bfc130;             // 系统缓冲区指针2
+static uint64_t* system_buffer_ptr_3 = (uint64_t*)0x180bfc100;           // 系统缓冲区指针3
+static uint64_t* system_buffer_ptr_4 = (uint64_t*)0x180bfc101;           // 系统缓冲区指针4
+static uint64_t* system_buffer_ptr_5 = (uint64_t*)0x180bfc121;           // 系统缓冲区指针5
+static uint64_t* system_buffer_ptr_6 = (uint64_t*)0x180bfc0d8;             // 系统缓冲区指针6
+static uint64_t* system_buffer_ptr_7 = (uint64_t*)0x180bfc0d9;             // 系统缓冲区指针7
+static uint64_t* system_buffer_ptr_8 = (uint64_t*)0x180bfc0e8;             // 系统缓冲区指针8
+static uint64_t* system_buffer_ptr_9 = (uint64_t*)0x180bfc0f0;             // 系统缓冲区指针9
+static uint64_t* system_memory_c100 = (uint64_t*)0x180bfc100;               // 系统内存指针c100
+static uint64_t* system_memory_usage_count = (uint64_t*)0x180bfc0f0;        // 系统内存使用计数
 
 // 系统数据内存相关指针
 static uint64_t* system_data_memory_size_ptr = (uint64_t*)0x180d499c0;     // 系统数据内存大小指针
 static uint64_t* system_data_memory_status_ptr = (uint64_t*)0x180d499b8;   // 系统数据内存状态指针
 static uint64_t* system_data_memory_ptr = (uint64_t*)0x180d499a8;          // 系统数据内存指针
+static uint64_t* system_data_memory_usage_count = (uint64_t*)0x180d499c0; // 系统数据内存使用计数
+static uint64_t* system_data_memory_ptr_1 = (uint64_t*)0x180d499a8;       // 系统数据内存指针1
+static uint64_t* system_data_memory_ptr_2 = (uint64_t*)0x180d499a9;       // 系统数据内存指针2
 
 // 系统回调相关指针
 static uint64_t* system_callback_end_ptr = (uint64_t*)0x180bfa2f0;          // 系统回调结束指针
@@ -436,6 +451,10 @@ static uint64_t* system_callback_start_ptr_3 = (uint64_t*)0x180bfa328;     // �
 // 系统临时指针
 static uint64_t* system_temp_ptr_1 = (uint64_t*)0x180c91f18;               // 系统临时指针1
 static uint64_t* system_temp_ptr_2 = (uint64_t*)0x180c91f28;               // 系统临时指针2
+static uint64_t* system_temp_ptr_3 = (uint64_t*)0x180c91f20;               // 系统临时指针3
+
+// 系统内存状态变量
+static uint64_t* system_memory_state_1d50 = (uint64_t*)0x180c91d50;         // 系统内存状态指针1d50
 
 // 工具系统附加指针
 static uint64_t* utilities_system_additional_ptr_1 = (uint64_t*)0x180bf72b0; // 工具系统附加指针1
@@ -1353,7 +1372,7 @@ void utilities_system_additional_resetter_2(void)
 void utilities_system_state_cleaner_and_terminator(void)
 
 {
-  if (system_memory_1d50 != '\0') {
+  if (*system_memory_state_1d50 != '\0') {
     utilities_system_cleanup_handler();
     if ((1 < *system_sync_count_ptr) && (*system_sync_data_ptr != 0)) {
                     // WARNING: Subroutine does not return
@@ -1486,7 +1505,7 @@ void utilities_system_temp_cleaner(void)
     free(lVar1,uVar2);
     *system_temp_ptr_2 = 0;
     *system_temp_ptr_1 = 0;
-    uRam0000000180c91f20 = 0;
+    *system_temp_ptr_3 = 0;
   }
   return;
 }
@@ -2200,21 +2219,21 @@ void utilities_system_buffer_cleaner_1(void)
   longlong lVar2;
   
   utilities_system_buffer_handler(&system_cache_config);
-  if (0xf < uRam0000000180bfc138) {
-    lVar1 = CONCAT71(uRam0000000180bfc121,uRam0000000180bfc120);
+  if (0xf < *system_buffer_usage_count) {
+    lVar1 = CONCAT71(*system_buffer_ptr_5,*system_buffer_ptr_1);
     lVar2 = lVar1;
-    if (0xfff < uRam0000000180bfc138 + 1) {
+    if (0xfff < *system_buffer_usage_count + 1) {
       lVar2 = *(longlong *)(lVar1 + -8);
       if (0x1f < (lVar1 - lVar2) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(lVar1 - lVar2,uRam0000000180bfc138 + 0x28);
+        _invalid_parameter_noinfo_noreturn(lVar1 - lVar2,*system_buffer_usage_count + 0x28);
       }
     }
     free(lVar2);
   }
-  uRam0000000180bfc130 = 0;
-  uRam0000000180bfc138 = 0xf;
-  uRam0000000180bfc120 = 0;
+  *system_buffer_ptr_2 = 0;
+  *system_buffer_usage_count = 0xf;
+  *system_buffer_ptr_1 = 0;
   return;
 }
 

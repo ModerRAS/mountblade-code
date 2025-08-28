@@ -64,7 +64,7 @@ extern void func_0x00018001b1ed(longlong param1, unsigned int param2, unsigned l
 extern void FUN_1808fc050(unsigned long long param);
 
 // 全局变量声明
-extern unsigned char UNK_1809495c0[];
+extern unsigned char global_var_8608_ptr[];
 extern unsigned long long _DAT_180c0c218;
 extern unsigned long long _DAT_180c0c21c;
 extern unsigned long long _DAT_180c0c210;
@@ -284,7 +284,7 @@ bool RenderingSystem_BufferValidator(longlong param_1, int param_2)
   }
   
   // 获取移位量并更新位流状态
-  shift_amount = (&UNK_1809495c0)[calculated_bits];
+  shift_amount = (&global_var_8608_ptr)[calculated_bits];
   *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)shift_amount;
   *(uint *)(param_1 + 0x1c) = calculated_bits << (shift_amount & 0x1f);
   *(ulonglong *)(param_1 + 0x10) = remaining_bits << (shift_amount & 0x3f);

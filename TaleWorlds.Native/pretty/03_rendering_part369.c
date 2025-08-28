@@ -317,7 +317,7 @@ void FUN_18046be40(longlong param_1)
     uStack_a0 = *(int32_t *)(puVar7 + 9);
     uStack_9c = *(int32_t *)((longlong)puVar7 + 0x4c);
     puStack_e8 = puVar3;
-    if ((void *)*puVar3 == &UNK_180a169b8) {
+    if ((void *)*puVar3 == &unknown_var_9304_ptr) {
       FUN_180276f30(puVar3,(longlong)puVar3 + 0x214,0);
     }
     else {
@@ -366,7 +366,7 @@ void FUN_18046be40(longlong param_1)
     uStack_64 = *(int32_t *)((longlong)puVar4 + 0x34);
     uStack_60 = *(int32_t *)(puVar4 + 7);
     uStack_5c = *(int32_t *)((longlong)puVar4 + 0x3c);
-    if ((void *)*puVar3 == &UNK_180a169b8) {
+    if ((void *)*puVar3 == &unknown_var_9304_ptr) {
       lVar5 = (longlong)puVar3 + 0x214;
     }
     else {
@@ -476,7 +476,7 @@ void FUN_18046beb3(longlong param_1,uint64_t param_2)
     *(int32_t *)((longlong)unaff_RBP + -0x1c) = uVar9;
     *(int32_t *)(unaff_RBP + -3) = uVar10;
     *(int32_t *)((longlong)unaff_RBP + -0x14) = uVar11;
-    if (puVar3 == &UNK_180a169b8) {
+    if (puVar3 == &unknown_var_9304_ptr) {
       FUN_180276f30(puVar12,(longlong)puVar12 + 0x214,0);
     }
     else {
@@ -524,7 +524,7 @@ void FUN_18046beb3(longlong param_1,uint64_t param_2)
     *(int32_t *)((longlong)unaff_RBP + 0x24) = uVar9;
     *(int32_t *)(unaff_RBP + 5) = uVar10;
     *(int32_t *)((longlong)unaff_RBP + 0x2c) = uVar11;
-    if (puVar3 == &UNK_180a169b8) {
+    if (puVar3 == &unknown_var_9304_ptr) {
       lVar18 = (longlong)puVar12 + 0x214;
     }
     else {
@@ -627,7 +627,7 @@ void FUN_18046bee3(void)
     *(int32_t *)((longlong)unaff_RBP + -0x1c) = uVar8;
     *(int32_t *)(unaff_RBP + -3) = uVar9;
     *(int32_t *)((longlong)unaff_RBP + -0x14) = uVar10;
-    if (puVar2 == &UNK_180a169b8) {
+    if (puVar2 == &unknown_var_9304_ptr) {
       FUN_180276f30(puVar11,(longlong)puVar11 + 0x214,0);
     }
     else {
@@ -675,7 +675,7 @@ void FUN_18046bee3(void)
     *(int32_t *)((longlong)unaff_RBP + 0x24) = uVar8;
     *(int32_t *)(unaff_RBP + 5) = uVar9;
     *(int32_t *)((longlong)unaff_RBP + 0x2c) = uVar10;
-    if (puVar2 == &UNK_180a169b8) {
+    if (puVar2 == &unknown_var_9304_ptr) {
       lVar17 = (longlong)puVar11 + 0x214;
     }
     else {

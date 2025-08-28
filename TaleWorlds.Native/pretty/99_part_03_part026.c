@@ -57,7 +57,7 @@ void FUN_1801e5100(longlong *param_1,longlong param_2,longlong param_3,int param
   pplStackX_10 = (longlong **)CONCAT44(pplStackX_10._4_4_,(uint)*(ushort *)(param_2 + 0x14));
   plStackX_8 = (longlong *)CONCAT44(plStackX_8._4_4_,*(int *)(param_2 + 0xa4));
   puVar10 = (int8_t *)0x0;
-  puStack_110 = &UNK_180a3c3e0;
+  puStack_110 = &unknown_var_3456_ptr;
   uStack_f8 = 0;
   puStack_108 = (int8_t *)0x0;
   uStack_100 = 0;
@@ -157,14 +157,14 @@ LAB_1801e5234:
         lVar15 = lStackX_18;
         ppuVar16 = &puStack_110;
         FUN_1801c5940();
-        puStack_d0 = &UNK_180a3c3e0;
+        puStack_d0 = &unknown_var_3456_ptr;
         if (lStack_c8 != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         lStack_c8 = 0;
         uStack_b8 = 0;
-        puStack_d0 = &UNK_18098bcb0;
+        puStack_d0 = &unknown_var_720_ptr;
         if (*(longlong *)(param_2 + 0x20) == 0) {
           plVar4 = *(longlong **)(param_2 + 0x58);
           if (plVar4 == (longlong *)0x0) {
@@ -190,23 +190,23 @@ LAB_1801e5234:
 LAB_1801e55e5:
         ReleaseSRWLockExclusive(puStack_b0);
       }
-      puStack_110 = &UNK_180a3c3e0;
+      puStack_110 = &unknown_var_3456_ptr;
       if (puVar10 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar10);
       }
       puStack_108 = (int8_t *)0x0;
       uStack_f8 = uStack_f8 & 0xffffffff00000000;
-      puStack_110 = &UNK_18098bcb0;
-      puStack_90 = &UNK_180a3c3e0;
+      puStack_110 = &unknown_var_720_ptr;
+      puStack_90 = &unknown_var_3456_ptr;
       if (lStack_88 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       lStack_88 = 0;
       uStack_78 = 0;
-      puStack_90 = &UNK_18098bcb0;
-      puStack_70 = &UNK_180a3c3e0;
+      puStack_90 = &unknown_var_720_ptr;
+      puStack_70 = &unknown_var_3456_ptr;
       if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -335,7 +335,7 @@ void FUN_1801e5670(longlong *param_1,longlong param_2,longlong param_3,int param
   pplStackX_10 = (longlong **)CONCAT44(pplStackX_10._4_4_,(uint)*(ushort *)(param_2 + 0x14));
   plStackX_8 = (longlong *)CONCAT44(plStackX_8._4_4_,*(int *)(param_2 + 0xa4));
   puVar10 = (int8_t *)0x0;
-  puStack_110 = &UNK_180a3c3e0;
+  puStack_110 = &unknown_var_3456_ptr;
   uStack_f8 = 0;
   puStack_108 = (int8_t *)0x0;
   uStack_100 = 0;
@@ -435,14 +435,14 @@ LAB_1801e57a4:
         lVar15 = lStackX_18;
         ppuVar16 = &puStack_110;
         FUN_1801c5940();
-        puStack_d0 = &UNK_180a3c3e0;
+        puStack_d0 = &unknown_var_3456_ptr;
         if (lStack_c8 != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         lStack_c8 = 0;
         uStack_b8 = 0;
-        puStack_d0 = &UNK_18098bcb0;
+        puStack_d0 = &unknown_var_720_ptr;
         if (*(longlong *)(param_2 + 0x20) == 0) {
           plVar4 = *(longlong **)(param_2 + 0x58);
           if (plVar4 == (longlong *)0x0) {
@@ -468,23 +468,23 @@ LAB_1801e57a4:
 LAB_1801e5b55:
         ReleaseSRWLockExclusive(puStack_b0);
       }
-      puStack_110 = &UNK_180a3c3e0;
+      puStack_110 = &unknown_var_3456_ptr;
       if (puVar10 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar10);
       }
       puStack_108 = (int8_t *)0x0;
       uStack_f8 = uStack_f8 & 0xffffffff00000000;
-      puStack_110 = &UNK_18098bcb0;
-      puStack_90 = &UNK_180a3c3e0;
+      puStack_110 = &unknown_var_720_ptr;
+      puStack_90 = &unknown_var_3456_ptr;
       if (lStack_88 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       lStack_88 = 0;
       uStack_78 = 0;
-      puStack_90 = &UNK_18098bcb0;
-      puStack_70 = &UNK_180a3c3e0;
+      puStack_90 = &unknown_var_720_ptr;
+      puStack_70 = &unknown_var_3456_ptr;
       if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -613,7 +613,7 @@ void FUN_1801e5be0(longlong *param_1,longlong param_2,longlong param_3,int param
   pplStackX_10 = (longlong **)CONCAT44(pplStackX_10._4_4_,(uint)*(ushort *)(param_2 + 0x14));
   plStackX_8 = (longlong *)CONCAT44(plStackX_8._4_4_,*(int *)(param_2 + 0xa4));
   puVar10 = (int8_t *)0x0;
-  puStack_110 = &UNK_180a3c3e0;
+  puStack_110 = &unknown_var_3456_ptr;
   uStack_f8 = 0;
   puStack_108 = (int8_t *)0x0;
   uStack_100 = 0;
@@ -713,14 +713,14 @@ LAB_1801e5d14:
         lVar15 = lStackX_18;
         ppuVar16 = &puStack_110;
         FUN_1801c5940();
-        puStack_d0 = &UNK_180a3c3e0;
+        puStack_d0 = &unknown_var_3456_ptr;
         if (lStack_c8 != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         lStack_c8 = 0;
         uStack_b8 = 0;
-        puStack_d0 = &UNK_18098bcb0;
+        puStack_d0 = &unknown_var_720_ptr;
         if (*(longlong *)(param_2 + 0x20) == 0) {
           plVar4 = *(longlong **)(param_2 + 0x58);
           if (plVar4 == (longlong *)0x0) {
@@ -746,23 +746,23 @@ LAB_1801e5d14:
 LAB_1801e60c5:
         ReleaseSRWLockExclusive(puStack_b0);
       }
-      puStack_110 = &UNK_180a3c3e0;
+      puStack_110 = &unknown_var_3456_ptr;
       if (puVar10 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar10);
       }
       puStack_108 = (int8_t *)0x0;
       uStack_f8 = uStack_f8 & 0xffffffff00000000;
-      puStack_110 = &UNK_18098bcb0;
-      puStack_90 = &UNK_180a3c3e0;
+      puStack_110 = &unknown_var_720_ptr;
+      puStack_90 = &unknown_var_3456_ptr;
       if (lStack_88 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       lStack_88 = 0;
       uStack_78 = 0;
-      puStack_90 = &UNK_18098bcb0;
-      puStack_70 = &UNK_180a3c3e0;
+      puStack_90 = &unknown_var_720_ptr;
+      puStack_70 = &unknown_var_3456_ptr;
       if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();

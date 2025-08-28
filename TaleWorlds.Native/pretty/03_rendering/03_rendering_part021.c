@@ -227,12 +227,12 @@ LAB_18027c5be:
           if (ptr2 != (void *)0x0) {
             string_ptr = ptr2;
           }
-          FUN_1806272a0(&UNK_180a168b0, string_ptr);
+          FUN_1806272a0(&unknown_var_9040_ptr, string_ptr);
         }
         else {
           do {
             file_position = *(longlong *)(param_offset + file_position);
-            temp_buffer = &UNK_180a3c3e0;
+            temp_buffer = &unknown_var_3456_ptr;
             texture_size = 0;
             texture_path = (char *)0x0;
             texture_path_len = 0;
@@ -369,7 +369,7 @@ LAB_18027c306:
                 if (texture_path != (char *)0x0) {
                   path_buffer = texture_path;
                 }
-                FUN_1806272a0(&UNK_180a16850, path_buffer);
+                FUN_1806272a0(&unknown_var_8944_ptr, path_buffer);
               }
               if (texture_ptr2 != (longlong *)0x0) {
                 if (texture_separator != '\0') {
@@ -419,14 +419,14 @@ LAB_18027c306:
                 (**(code **)(*texture_ptr + 0x38))();
               }
             }
-            temp_buffer = &UNK_180a3c3e0;
+            temp_buffer = &unknown_var_3456_ptr;
             if (texture_path != (char *)0x0) {
                     // WARNING: Subroutine does not return
               FUN_18064e900();
             }
             texture_path = (char *)0x0;
             texture_size = texture_size & 0xffffffff00000000;
-            temp_buffer = &UNK_18098bcb0;
+            temp_buffer = &unknown_var_720_ptr;
             material_count = (int)path_length + 1;
             param_offset = param_offset + 0x10;
             file_position = *(longlong *)(render_context + 0x38);
@@ -443,14 +443,14 @@ LAB_18027c306:
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        ptr1 = &UNK_180a3c3e0;
+        ptr1 = &unknown_var_3456_ptr;
         if (ptr2 != (void *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         ptr2 = (void *)0x0;
         param_value = 0;
-        ptr1 = &UNK_18098bcb0;
+        ptr1 = &unknown_var_720_ptr;
         texture_indices[0] = texture_indices[0] + 1;
         file_handle = temp_handle;
       } while (texture_indices[0] < entry_data[0]);

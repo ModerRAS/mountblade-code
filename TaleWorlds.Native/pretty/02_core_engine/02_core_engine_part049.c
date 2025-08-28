@@ -13,16 +13,16 @@
 /* 全局变量引用 */
 extern uint64_t _DAT_180bf00a8;    // XOR加密密钥
 extern uint64_t system_memory_6680;     // 队列管理数据
-extern uint64_t UNK_180a3c3e0;     // 空字符串指针
-extern uint64_t UNK_1809feda8;     // 字符串操作对象
-extern uint64_t UNK_1809fdc18;     // 字符串构造器
-extern uint64_t UNK_180a3c07c;     // 路径分隔符
-extern uint64_t UNK_18098bcb0;     // 字符串清理对象
+extern uint64_t global_var_3456_ptr;     // 空字符串指针
+extern uint64_t global_var_2008_ptr;     // 字符串操作对象
+extern uint64_t global_var_7512_ptr;     // 字符串构造器
+extern uint64_t global_var_2588_ptr;     // 路径分隔符
+extern uint64_t global_var_720_ptr;     // 字符串清理对象
 extern uint64_t system_buffer_ptr;     // 默认空指针
 extern uint64_t _DAT_180c8ed18;    // 内存分配器
 extern uint64_t _DAT_180c86870;    // 资源管理器
-extern uint64_t UNK_180a00550;     // 资源标识符
-extern uint64_t UNK_180a006f0;     // 错误处理对象
+extern uint64_t global_var_8064_ptr;     // 资源标识符
+extern uint64_t global_var_8480_ptr;     // 错误处理对象
 extern uint64_t _DAT_180bf6658;    // 默认路径前缀
 extern uint64_t _DAT_180c86928;    // 系统调用接口
 
@@ -151,7 +151,7 @@ void process_path_and_resource_queue(uint64_t *context)
         initialize_queue(*context, &path_start, &system_memory_6680);
         
         // 设置字符串处理对象
-        return_ptr = &UNK_180a3c3e0;
+        return_ptr = &global_var_3456_ptr;
         total_size = 0;
         ptr2 = (int8_t *)0x0;
         size_field = 0;
@@ -178,23 +178,23 @@ void process_path_and_resource_queue(uint64_t *context)
                 
 found_separator:
                 // 处理路径字符串
-                stack_ptr16 = &UNK_1809feda8;
+                stack_ptr16 = &global_var_2008_ptr;
                 stack_ptr17 = local_buffer4;
                 stack_int1 = 0;
                 local_buffer4[0] = 0;
                 
-                stack_ptr14 = &UNK_1809feda8;
+                stack_ptr14 = &global_var_2008_ptr;
                 stack_ptr15 = local_buffer3;
                 stack_uint2 = 0;
                 local_buffer3[0] = 0;
                 
                 if (compare_result != -1) {
                     // 处理目录名部分
-                    stack_ptr11 = &UNK_1809fdc18;
+                    stack_ptr11 = &global_var_7512_ptr;
                     stack_ptr13 = local_buffer1;
                     local_buffer1[0] = 0;
                     stack_uint1 = MAX_EXTENSION_LENGTH;
-                    strcpy_s(local_buffer1, 0x10, &UNK_180a3c07c);
+                    strcpy_s(local_buffer1, 0x10, &global_var_2588_ptr);
                     
                     if (*(uint *)(path_iterator + 2) < stack_uint1) {
                     path_mismatch:
@@ -214,15 +214,15 @@ found_separator:
                     }
                     
                     queue_size = 0;
-                    stack_ptr11 = &UNK_18098bcb0;
+                    stack_ptr11 = &global_var_720_ptr;
                     temp_uint = 0;
                     if (is_valid_path) {
-                        stack_ptr12 = &UNK_1809fdc18;
+                        stack_ptr12 = &global_var_7512_ptr;
                         stack_ptr13 = local_buffer2;
                         local_buffer2[0] = 0;
                         stack_value5_1 = MAX_EXTENSION_LENGTH;
-                        strcpy_s(local_buffer2, 0x10, &UNK_180a3c07c);
-                        stack_ptr12 = &UNK_18098bcb0;
+                        strcpy_s(local_buffer2, 0x10, &global_var_2588_ptr);
+                        stack_ptr12 = &global_var_720_ptr;
                         temp_uint = stack_value5_1;
                     }
                     
@@ -234,20 +234,20 @@ found_separator:
                     }
                     (**(code **)(stack_ptr16 + 0x10))(&stack_ptr16, temp_ptr);
                     
-                    stack_ptr9 = &UNK_180a3c3e0;
+                    stack_ptr9 = &global_var_3456_ptr;
                     if (stack_long3 != 0) {
                         // 内存分配失败处理
                         handle_memory_error();
                     }
                     stack_long3 = 0;
                     stack_value4 = 0;
-                    stack_ptr9 = &UNK_18098bcb0;
+                    stack_ptr9 = &global_var_720_ptr;
                 }
                 
                 // 处理文件名部分
                 loop_counter = compare_result + 1;
                 compare_result = *(int *)(path_iterator + 2);
-                stack_ptr19 = &UNK_180a3c3e0;
+                stack_ptr19 = &global_var_3456_ptr;
                 total_size = 0;
                 stack_ptr2 = (void *)0x0;
                 stack_uint3 = 0;
@@ -274,7 +274,7 @@ found_separator:
                 }
                 
                 // 复制文件名到本地缓冲区
-                stack_ptr18 = &UNK_1809feda8;
+                stack_ptr18 = &global_var_2008_ptr;
                 stack_ptr19 = local_buffer5;
                 local_buffer5[0] = 0;
                 temp_ptr = &system_buffer_ptr;
@@ -313,16 +313,16 @@ found_separator:
                 }
                 strcpy_s(stack_ptr15, MAX_PATH_LENGTH, temp_ptr);
                 
-                stack_ptr18 = &UNK_18098bcb0;
+                stack_ptr18 = &global_var_720_ptr;
                 queue_size = 0;
-                stack_ptr19 = &UNK_180a3c3e0;
+                stack_ptr19 = &global_var_3456_ptr;
                 if (stack_ptr2 != (void *)0x0) {
                     // 内存清理
                     cleanup_memory();
                 }
                 stack_ptr2 = (void *)0x0;
                 total_size = total_size & 0xffffffff00000000;
-                stack_ptr19 = &UNK_18098bcb0;
+                stack_ptr19 = &global_var_720_ptr;
                 size_field = 0;
                 if (ptr2 != (int8_t *)0x0) {
                     *ptr2 = 0;
@@ -333,7 +333,7 @@ found_separator:
                 process_resource:
                     path_char = *(int8_t *)((longlong)context + 0x1c);
                     indirect_ptr = &stack_ptr10;
-                    stack_ptr10 = &UNK_180a3c3e0;
+                    stack_ptr10 = &global_var_3456_ptr;
                     return_value = 0;
                     ptr2 = (int8_t *)0x0;
                     size_field = 0;
@@ -353,7 +353,7 @@ found_separator:
                     }
                     
                     callback_target = &stack_ptr5;
-                    stack_ptr5 = (uint64_t *)&UNK_180a3c3e0;
+                    stack_ptr5 = (uint64_t *)&global_var_3456_ptr;
                     data_block = 0;
                     stack_ptr7 = (uint64_t *)0x0;
                     data_length = data_length & 0xffffffff00000000;
@@ -431,7 +431,7 @@ found_separator:
                 }
                 else {
                     // 使用外部资源处理器
-                    stack_ptr8 = &UNK_180a3c3e0;
+                    stack_ptr8 = &global_var_3456_ptr;
                     data_block = 0;
                     ptr2 = (int8_t *)0x0;
                     stack_value5 = 0;
@@ -452,24 +452,24 @@ found_separator:
                     if (stack_ptr8 != (void *)0x0) {
                         ptr1 = stack_ptr8;
                     }
-                    create_resource_handle(&stack_ptr8, &UNK_180a00550, ptr1, temp_ptr);
-                    stack_ptr7 = &UNK_180a3c3e0;
+                    create_resource_handle(&stack_ptr8, &global_var_8064_ptr, ptr1, temp_ptr);
+                    stack_ptr7 = &global_var_3456_ptr;
                     if (stack_ptr8 != (void *)0x0) {
                         cleanup_memory();
                     }
                     stack_ptr8 = (void *)0x0;
                     stack_value3 = 0;
-                    stack_ptr7 = &UNK_18098bcb0;
+                    stack_ptr7 = &global_var_720_ptr;
                     
                     result_flag = (*(code *)context[0xf])(&stack_ptr8);
-                    stack_ptr8 = &UNK_180a3c3e0;
+                    stack_ptr8 = &global_var_3456_ptr;
                     if (result_flag != '\0') {
                         if (ptr2 != (int8_t *)0x0) {
                             cleanup_memory();
                         }
                         ptr2 = (int8_t *)0x0;
                         data_block = (ulonglong)data_block._4_4_ << 0x20;
-                        stack_ptr8 = &UNK_18098bcb0;
+                        stack_ptr8 = &global_var_720_ptr;
                         goto process_resource;
                     }
                     if (ptr2 != (int8_t *)0x0) {
@@ -477,12 +477,12 @@ found_separator:
                     }
                     ptr2 = (int8_t *)0x0;
                     data_block = (ulonglong)data_block._4_4_ << 0x20;
-                    stack_ptr8 = &UNK_18098bcb0;
+                    stack_ptr8 = &global_var_720_ptr;
                 }
                 
                 // 清理临时资源
-                stack_ptr14 = &UNK_18098bcb0;
-                stack_ptr16 = &UNK_18098bcb0;
+                stack_ptr14 = &global_var_720_ptr;
+                stack_ptr16 = &global_var_720_ptr;
                 stack_long = stack_long + 1;
             } while (stack_long < resource_count);
         }
@@ -609,7 +609,7 @@ found_separator:
             cleanup_memory(current_path);
         }
         
-        return_ptr = &UNK_180a3c3e0;
+        return_ptr = &global_var_3456_ptr;
         if (ptr2 != (int8_t *)0x0) {
             stack_ptr5 = temp_path1;
             stack_ptr7 = temp_path2;
@@ -617,7 +617,7 @@ found_separator:
         }
         ptr2 = (int8_t *)0x0;
         total_size = total_size & 0xffffffff00000000;
-        return_ptr = &UNK_18098bcb0;
+        return_ptr = &global_var_720_ptr;
         stack_ptr5 = temp_path1;
         stack_ptr7 = temp_path2;
         
@@ -830,7 +830,7 @@ ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, uint
         if (*(void **)(stack_temp + 0x40) != (void *)0x0) {
             temp_ptr = *(void **)(stack_temp + 0x40);
         }
-        result = free_string_memory(&UNK_180a006f0, temp_ptr);
+        result = free_string_memory(&global_var_8480_ptr, temp_ptr);
         result = result & 0xffffffffffffff00;
     }
     else {
@@ -950,7 +950,7 @@ void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
         }
         
         // 执行系统清理操作
-        execute_system_cleanup(_DAT_180c86928, &UNK_180a00718);
+        execute_system_cleanup(_DAT_180c86928, &global_var_8520_ptr);
     }
     
     stack_value4 = 0;

@@ -178,7 +178,7 @@ void NetworkProtocol_SendBasic(void* context, uint8_t* data_buffer, uint32_t dat
     }
     
     // 调用底层协议发送函数
-    FUN_18083f8f0(data_buffer, data_size, &UNK_180983220, 
+    FUN_18083f8f0(data_buffer, data_size, &unknown_var_5248_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint32_t*)((uint8_t*)context + 0x18), 
                 *(uint32_t*)((uint8_t*)context + 0x1c));
@@ -229,7 +229,7 @@ int NetworkProtocol_SerializeExtended(void* context, uint8_t* output_buffer, int
     field3 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部和字段
-    current_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809832a0);
+    current_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_5376_ptr);
     if (current_size < 0) return current_size;
     total_size += current_size;
     
@@ -307,7 +307,7 @@ int NetworkProtocol_SerializeConnectionRequest(void* context, uint8_t* output_bu
     connection_id = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化连接请求头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180982d28);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_3976_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -354,7 +354,7 @@ int NetworkProtocol_SerializeConnectionResponse(void* context, uint8_t* output_b
     response_code = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化响应头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180982e28);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_4232_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -401,7 +401,7 @@ int NetworkProtocol_SerializeDisconnect(void* context, uint8_t* output_buffer, i
     disconnect_reason = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化断开协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180982da8);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_4104_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -455,7 +455,7 @@ int NetworkProtocol_SerializeHeartbeat(void* context, uint8_t* output_buffer, in
     session_id = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化心跳包头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809842c8);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_9512_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -512,7 +512,7 @@ int NetworkProtocol_SerializeHeartbeatResponse(void* context, uint8_t* output_bu
     response_code = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化心跳响应头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809841c8);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_9256_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -555,7 +555,7 @@ void NetworkProtocol_SendSecure(void* context, uint8_t* data_buffer, uint32_t da
     }
     
     // 调用安全协议发送函数
-    FUN_18083f9b0(data_buffer, data_size, &UNK_180984438, 
+    FUN_18083f9b0(data_buffer, data_size, &unknown_var_9880_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint8_t*)((uint8_t*)context + 0x18));
 }
@@ -593,7 +593,7 @@ void NetworkProtocol_SendCompressed(void* context, uint8_t* data_buffer, uint32_
     }
     
     // 调用压缩协议发送函数
-    FUN_18083f9b0(data_buffer, data_size, &UNK_1809843c0, 
+    FUN_18083f9b0(data_buffer, data_size, &unknown_var_9760_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint8_t*)((uint8_t*)context + 0x18));
 }
@@ -637,7 +637,7 @@ int NetworkProtocol_SerializeCompressed(void* context, uint8_t* output_buffer, i
     compression_level = *(uint32_t*)((uint8_t*)context + 0x18);
     
     // 序列化压缩协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180984348);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_9640_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -702,7 +702,7 @@ int NetworkProtocol_SerializeEncrypted(void* context, uint8_t* output_buffer, in
     algorithm_id = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化加密协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809844b0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_0_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -762,7 +762,7 @@ int NetworkProtocol_SerializeConnectionAck(void* context, uint8_t* output_buffer
     ack_code = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化连接确认头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180984248);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_9384_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -815,7 +815,7 @@ int NetworkProtocol_SerializeDataTransfer(void* context, uint8_t* output_buffer,
     data_size_param = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化数据传输头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983320);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_5504_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -876,7 +876,7 @@ int NetworkProtocol_SerializeStatusQuery(void* context, uint8_t* output_buffer, 
     query_param = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化状态查询头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809833b0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_5648_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -938,7 +938,7 @@ int NetworkProtocol_SerializeThreeField(void* context, uint8_t* output_buffer, i
     field3 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983440);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_5792_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1010,7 +1010,7 @@ int NetworkProtocol_SerializeVariantThreeField(void* context, uint8_t* output_bu
     field3 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809834d0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_5936_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1081,7 +1081,7 @@ int NetworkProtocol_SerializeTwoField(void* context, uint8_t* output_buffer, int
     field2 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983680);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_6368_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1141,7 +1141,7 @@ int NetworkProtocol_SerializeSingleFieldA(void* context, uint8_t* output_buffer,
     field1 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983560);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_6080_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1191,7 +1191,7 @@ int NetworkProtocol_SerializeSingleFieldB(void* context, uint8_t* output_buffer,
     field1 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983710);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_6512_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1241,7 +1241,7 @@ int NetworkProtocol_SerializeSingleFieldC(void* context, uint8_t* output_buffer,
     field1 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809835f0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_6224_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1293,7 +1293,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     field1 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983e68);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_8392_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1354,7 +1354,7 @@ int NetworkProtocol_SerializeTwoFieldB(void* context, uint8_t* output_buffer, in
     field2 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983de0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_8256_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1419,7 +1419,7 @@ int NetworkProtocol_SerializeSingleFieldD(void* context, uint8_t* output_buffer,
     field = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983ce0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_8000_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1474,7 +1474,7 @@ int NetworkProtocol_SerializeSingleFieldE(void* context, uint8_t* output_buffer,
     field = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983d60);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_8128_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1541,7 +1541,7 @@ int NetworkProtocol_SerializeComplexStructureA(void* context, uint8_t* output_bu
     field10 = *(uint32_t*)((uint8_t*)context + 0x40);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809838a8);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_6920_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1608,7 +1608,7 @@ int NetworkProtocol_SerializeTwoFieldC(void* context, uint8_t* output_buffer, in
     field2 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983930);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_7056_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1680,7 +1680,7 @@ int NetworkProtocol_SerializeComplexStructureB(void* context, uint8_t* output_bu
     field1 = *(uint32_t*)((uint8_t*)context + 0x20);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983ef0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_8528_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1773,7 +1773,7 @@ int NetworkProtocol_SerializeComplexStructureC(void* context, uint8_t* output_bu
     extra_data = (uint8_t*)context + 0x25;
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983f78);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_8664_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1865,7 +1865,7 @@ int NetworkProtocol_SerializeThreeFieldA(void* context, uint8_t* output_buffer, 
     extra_data = (uint8_t*)context + 0x28;
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809840a0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_8960_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -1957,7 +1957,7 @@ int NetworkProtocol_SerializeFourFieldA(void* context, uint8_t* output_buffer, i
     extra_data2 = (uint8_t*)context + 0xa8;
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180984130);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_9104_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -2045,7 +2045,7 @@ int NetworkProtocol_SerializeTwoFieldD(void* context, uint8_t* output_buffer, in
     field2 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983ac8);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_7464_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -2100,7 +2100,7 @@ void NetworkProtocol_SendSpecialA(void* context, uint8_t* data_buffer, uint32_t 
     }
     
     // 调用特殊协议发送函数
-    FUN_18083fa50(data_buffer, data_size, &UNK_180983828, 
+    FUN_18083fa50(data_buffer, data_size, &unknown_var_6792_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint32_t*)((uint8_t*)context + 0x18));
 }
@@ -2150,7 +2150,7 @@ int NetworkProtocol_SerializeThreeFieldB(void* context, uint8_t* output_buffer, 
     field2 = *(uint32_t*)((uint8_t*)context + 0x1c);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809839b8);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_7192_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -2228,7 +2228,7 @@ int NetworkProtocol_SerializeThreeFieldC(void* context, uint8_t* output_buffer, 
     field2 = *(uint32_t*)((uint8_t*)context + 0x1c);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983a40);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_7328_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -2305,7 +2305,7 @@ int NetworkProtocol_SerializeTwoFieldE(void* context, uint8_t* output_buffer, in
     field2 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983c50);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_7856_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -2360,7 +2360,7 @@ void NetworkProtocol_SendSpecialB(void* context, uint8_t* data_buffer, uint32_t 
     }
     
     // 调用特殊协议发送函数
-    FUN_18083fa50(data_buffer, data_size, &UNK_1809837a0, 
+    FUN_18083fa50(data_buffer, data_size, &unknown_var_6656_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint32_t*)((uint8_t*)context + 0x18));
 }
@@ -2407,7 +2407,7 @@ int NetworkProtocol_SerializeSingleFieldF(void* context, uint8_t* output_buffer,
     field = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983b50);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_7600_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -2464,7 +2464,7 @@ int NetworkProtocol_SerializeTwoFieldF(void* context, uint8_t* output_buffer, in
     field2 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180983bd0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_7728_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -2534,7 +2534,7 @@ int NetworkProtocol_SerializeArrayA(void* context, uint8_t* output_buffer, int b
     field5 = *(uint32_t*)((uint8_t*)context + 0x20);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809820b0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_784_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -2604,7 +2604,7 @@ int NetworkProtocol_SerializeArrayB(void* context, uint8_t* output_buffer, int b
     field5 = *(uint32_t*)((uint8_t*)context + 0x20);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180981ec0);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_288_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符
@@ -2670,7 +2670,7 @@ int NetworkProtocol_SerializeSingleFieldG(void* context, uint8_t* output_buffer,
     field = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180982878);
+    header_size = FUN_18074b880(output_buffer, buffer_size, &unknown_var_2776_ptr);
     if (header_size < 0) return header_size;
     
     // 序列化分隔符

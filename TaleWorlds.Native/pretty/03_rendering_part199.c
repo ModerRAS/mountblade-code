@@ -26,7 +26,7 @@ void FUN_180383870(longlong param_1,longlong param_2)
   if (*(char *)(param_1 + 0x50) != '\0') {
     uVar3 = FUN_1803d06e0(*(uint64_t *)(param_1 + 0x58));
     *(uint64_t *)(param_1 + 0x88) = uVar3;
-    puStack_e8 = &UNK_1809fcc28;
+    puStack_e8 = &unknown_var_3432_ptr;
     puStack_e0 = auStack_d0;
     auStack_d0[0] = 0;
     uStack_d8 = *(uint *)(param_2 + 0x3530);
@@ -106,7 +106,7 @@ void FUN_180383870(longlong param_1,longlong param_2)
   if (*(char *)(param_1 + 0xb9) == '\0') {
     uVar3 = FUN_1803d06e0(*(uint64_t *)(param_1 + 0x58));
     *(uint64_t *)(param_1 + 0x80) = uVar3;
-    puStack_e8 = &UNK_1809fcc28;
+    puStack_e8 = &unknown_var_3432_ptr;
     puStack_e0 = auStack_d0;
     auStack_d0[0] = 0;
     uStack_d8 = *(uint *)(param_2 + 0x3530);
@@ -504,7 +504,7 @@ void FUN_180384140(longlong param_1,longlong param_2,longlong param_3,int param_
   lVar8 = 0;
   if (*(char *)(param_1 + 0x50) != '\0') {
     lVar8 = FUN_1800daa50();
-    FUN_180094b30(lVar8,&UNK_180a21c30);
+    FUN_180094b30(lVar8,&unknown_var_4992_ptr);
     *(int8_t *)(lVar8 + 0x22) = 1;
     *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0x9a2c) = 0xfffffffe;
     *(int32_t *)(lVar8 + 0x9a2c) = 0xffffffff;

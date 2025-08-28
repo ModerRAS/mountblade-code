@@ -209,7 +209,7 @@ void InitializationSystem_ConfigRegistrationManager1(void)
     uint8_t local_buffer[INITIALIZATION_SYSTEM_STRING_BUFFER_SIZE];
     
     // 初始化配置基础指针
-    config_base = &UNK_1809fcc28;
+    config_base = &unknown_var_3432_ptr;
     string_buffer = local_buffer;
     
     // 清空字符串缓冲区
@@ -217,7 +217,7 @@ void InitializationSystem_ConfigRegistrationManager1(void)
     buffer_size = 0x16;
     
     // 安全复制配置字符串
-    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &UNK_180a22538, register_value, 0xfffffffffffffffe);
+    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &unknown_var_7304_ptr, register_value, 0xfffffffffffffffe);
     
     // 注册配置到系统
     _DAT_180c91f68 = FUN_180623800(&config_base);
@@ -243,7 +243,7 @@ int InitializationSystem_GlobalDataInitializer1(void)
     uint64_t register_value;
     
     // 初始化全局数据指针
-    _DAT_180bf91b0 = &UNK_1809fcc58;
+    _DAT_180bf91b0 = &unknown_var_3480_ptr;
     _DAT_180bf91b8 = &system_memory_91c8;
     
     // 返回初始化状态
@@ -307,7 +307,7 @@ void InitializationSystem_RegistrySearchAndInsert1(void)
     // 设置节点数据
     parent_node[6] = 0x4fc124d23d41985f;
     parent_node[7] = 0xe2f4a30d6e6ae482;
-    parent_node[8] = &UNK_18098c790;
+    parent_node[8] = &unknown_var_3504_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -365,7 +365,7 @@ void InitializationSystem_RegistrySearchAndInsert2(void)
     // 设置节点数据
     parent_node[6] = 0x4770584fbb1df897;
     parent_node[7] = 0x47f249e43f66f2ab;
-    parent_node[8] = &UNK_18098c7a0;
+    parent_node[8] = &unknown_var_3520_ptr;
     parent_node[9] = 1;
     parent_node[10] = node_value;
     
@@ -423,7 +423,7 @@ void InitializationSystem_RegistrySearchAndInsert3(void)
     // 设置节点数据
     parent_node[6] = 0x4666df49b97e0f10;
     parent_node[7] = 0x4e4b0d63a6ad1d8f;
-    parent_node[8] = &UNK_18098c7b8;
+    parent_node[8] = &unknown_var_3544_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -481,7 +481,7 @@ void InitializationSystem_RegistrySearchAndInsert4(void)
     // 设置节点数据
     parent_node[6] = 0x46ecbd4daf41613e;
     parent_node[7] = 0xdc42c056bbde8482;
-    parent_node[8] = &UNK_18098c7c8;
+    parent_node[8] = &unknown_var_3560_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -539,7 +539,7 @@ void InitializationSystem_RegistrySearchAndInsert5(void)
     // 设置节点数据
     parent_node[6] = 0x4c868a42644030f6;
     parent_node[7] = 0xc29193aa9d9b35b9;
-    parent_node[8] = &UNK_18098c7d8;
+    parent_node[8] = &unknown_var_3576_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -597,7 +597,7 @@ void InitializationSystem_RegistrySearchAndInsert6(void)
     // 设置节点数据
     parent_node[6] = 0x40ea3a798283cbbb;
     parent_node[7] = 0x7f74eb2c5a7fadae;
-    parent_node[8] = &UNK_18098c7f0;
+    parent_node[8] = &unknown_var_3600_ptr;
     parent_node[9] = 3;
     parent_node[10] = node_value;
     
@@ -655,7 +655,7 @@ void InitializationSystem_RegistrySearchAndInsert7(void)
     // 设置节点数据
     parent_node[6] = 0x45b8d074df27d12f;
     parent_node[7] = 0x8d98f4c06880eda4;
-    parent_node[8] = &UNK_18098c810;
+    parent_node[8] = &unknown_var_3632_ptr;
     parent_node[9] = 3;
     parent_node[10] = node_value;
     
@@ -713,7 +713,7 @@ void InitializationSystem_RegistrySearchAndInsert8(void)
     // 设置节点数据
     parent_node[6] = 0x42d293584c8cf3e5;
     parent_node[7] = 0x355ffeb2d29e668a;
-    parent_node[8] = &UNK_18098c870;
+    parent_node[8] = &unknown_var_3728_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -771,7 +771,7 @@ void InitializationSystem_RegistrySearchAndInsert9(void)
     // 设置节点数据
     parent_node[6] = 0x421c3cedd07d816d;
     parent_node[7] = 0xbec25de793b7afa6;
-    parent_node[8] = &UNK_18098c880;
+    parent_node[8] = &unknown_var_3744_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -829,7 +829,7 @@ void InitializationSystem_RegistrySearchAndInsert10(void)
     // 设置节点数据
     parent_node[6] = 0x4c22bb0c326587ce;
     parent_node[7] = 0x5e3cf00ce2978287;
-    parent_node[8] = &UNK_18098c898;
+    parent_node[8] = &unknown_var_3768_ptr;
     parent_node[9] = 1;
     parent_node[10] = node_value;
     
@@ -851,7 +851,7 @@ void InitializationSystem_RegistrySearchAndInsert11(void)
     uint8_t local_buffer[INITIALIZATION_SYSTEM_STRING_BUFFER_SIZE];
     
     // 初始化配置基础指针
-    config_base = &UNK_1809fcc28;
+    config_base = &unknown_var_3432_ptr;
     string_buffer = local_buffer;
     
     // 清空字符串缓冲区
@@ -859,7 +859,7 @@ void InitializationSystem_RegistrySearchAndInsert11(void)
     buffer_size = 0x12;
     
     // 安全复制配置字符串
-    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &UNK_180a24340, register_value, 0xfffffffffffffffe);
+    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &unknown_var_4992_ptr, register_value, 0xfffffffffffffffe);
     
     // 注册配置到系统
     _DAT_180c91f6c = FUN_180623800(&config_base);
@@ -882,7 +882,7 @@ void InitializationSystem_RegistrySearchAndInsert12(void)
     uint8_t local_buffer[INITIALIZATION_SYSTEM_STRING_BUFFER_SIZE];
     
     // 初始化配置基础指针
-    config_base = &UNK_1809fcc28;
+    config_base = &unknown_var_3432_ptr;
     string_buffer = local_buffer;
     
     // 清空字符串缓冲区
@@ -890,7 +890,7 @@ void InitializationSystem_RegistrySearchAndInsert12(void)
     buffer_size = 8;
     
     // 安全复制配置字符串
-    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &UNK_180a24828, register_value, 0xfffffffffffffffe);
+    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &unknown_var_6248_ptr, register_value, 0xfffffffffffffffe);
     
     // 注册配置到系统
     _DAT_180c91fcc = FUN_180623800(&config_base);
@@ -949,7 +949,7 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
     // 设置节点数据
     parent_node[6] = 0x43330a43fcdb3653;
     parent_node[7] = 0xdcfdc333a769ec93;
-    parent_node[8] = &UNK_180a00370;
+    parent_node[8] = &unknown_var_7584_ptr;
     parent_node[9] = 1;
     parent_node[10] = node_handler;
     
@@ -1007,7 +1007,7 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
     // 设置节点数据
     parent_node[6] = 0x431d7c8d7c475be2;
     parent_node[7] = 0xb97f048d2153e1b0;
-    parent_node[8] = &UNK_180a00388;
+    parent_node[8] = &unknown_var_7608_ptr;
     parent_node[9] = 4;
     parent_node[10] = node_handler;
     
@@ -1065,7 +1065,7 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
     // 设置节点数据
     parent_node[6] = 0x4b2d79e470ee4e2c;
     parent_node[7] = 0x9c552acd3ed5548d;
-    parent_node[8] = &UNK_180a003a0;
+    parent_node[8] = &unknown_var_7632_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -1123,7 +1123,7 @@ void InitializationSystem_RegistrySearchAndInsert16(void)
     // 设置节点数据
     parent_node[6] = 0x49086ba08ab981a7;
     parent_node[7] = 0xa9191d34ad910696;
-    parent_node[8] = &UNK_180a003b8;
+    parent_node[8] = &unknown_var_7656_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -1181,7 +1181,7 @@ void InitializationSystem_RegistrySearchAndInsert17(void)
     // 设置节点数据
     parent_node[6] = 0x402feffe4481676e;
     parent_node[7] = 0xd4c2151109de93a0;
-    parent_node[8] = &UNK_180a003d0;
+    parent_node[8] = &unknown_var_7680_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -1211,7 +1211,7 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
     registry_root = (void**)FUN_18008d070();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
-    node_handler = &UNK_1800868c0;
+    node_handler = &unknown_var_2048_ptr;
     parent_node = root_node;
     current_node = (void*)root_node[1];
     
@@ -1239,7 +1239,7 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
     // 设置节点数据
     parent_node[6] = 0x4384dcc4b6d3f417;
     parent_node[7] = 0x92a15d52fe2679bd;
-    parent_node[8] = &UNK_180a003e8;
+    parent_node[8] = &unknown_var_7704_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -1297,7 +1297,7 @@ void InitializationSystem_RegistrySearchAndInsert19(void)
     // 设置节点数据
     parent_node[6] = 0x4140994454d56503;
     parent_node[7] = 0x399eced9bb5517ad;
-    parent_node[8] = &UNK_180a00400;
+    parent_node[8] = &unknown_var_7728_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -1316,7 +1316,7 @@ int InitializationSystem_GlobalDataInitializer2(void)
     uint64_t register_value;
     
     // 初始化全局数据指针
-    _DAT_180bfa350 = &UNK_1809fcc28;
+    _DAT_180bfa350 = &unknown_var_3432_ptr;
     _DAT_180bfa358 = &system_memory_a368;
     
     // 返回初始化状态
@@ -1374,7 +1374,7 @@ void InitializationSystem_RegistrySearchAndInsert20(void)
     // 设置节点数据
     parent_node[6] = 0x45425dc186a5d575;
     parent_node[7] = 0xfab48faa65382fa5;
-    parent_node[8] = &UNK_180a00460;
+    parent_node[8] = &unknown_var_7824_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -1432,7 +1432,7 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
     // 设置节点数据
     parent_node[6] = 0x43330a43fcdb3653;
     parent_node[7] = 0xdcfdc333a769ec93;
-    parent_node[8] = &UNK_180a00370;
+    parent_node[8] = &unknown_var_7584_ptr;
     parent_node[9] = 1;
     parent_node[10] = node_handler;
     
@@ -1490,7 +1490,7 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
     // 设置节点数据
     parent_node[6] = 0x431d7c8d7c475be2;
     parent_node[7] = 0xb97f048d2153e1b0;
-    parent_node[8] = &UNK_180a00388;
+    parent_node[8] = &unknown_var_7608_ptr;
     parent_node[9] = 4;
     parent_node[10] = node_handler;
     
@@ -1548,7 +1548,7 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
     // 设置节点数据
     parent_node[6] = 0x4b2d79e470ee4e2c;
     parent_node[7] = 0x9c552acd3ed5548d;
-    parent_node[8] = &UNK_180a003a0;
+    parent_node[8] = &unknown_var_7632_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -1606,7 +1606,7 @@ void InitializationSystem_RegistrySearchAndInsert24(void)
     // 设置节点数据
     parent_node[6] = 0x49086ba08ab981a7;
     parent_node[7] = 0xa9191d34ad910696;
-    parent_node[8] = &UNK_180a003b8;
+    parent_node[8] = &unknown_var_7656_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -1664,7 +1664,7 @@ void InitializationSystem_RegistrySearchAndInsert25(void)
     // 设置节点数据
     parent_node[6] = 0x402feffe4481676e;
     parent_node[7] = 0xd4c2151109de93a0;
-    parent_node[8] = &UNK_180a003d0;
+    parent_node[8] = &unknown_var_7680_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -1694,7 +1694,7 @@ void InitializationSystem_RegistrySearchAndInsert26(void)
     registry_root = (void**)FUN_18008d070();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
-    node_handler = &UNK_1800868c0;
+    node_handler = &unknown_var_2048_ptr;
     parent_node = root_node;
     current_node = (void*)root_node[1];
     
@@ -1722,7 +1722,7 @@ void InitializationSystem_RegistrySearchAndInsert26(void)
     // 设置节点数据
     parent_node[6] = 0x4384dcc4b6d3f417;
     parent_node[7] = 0x92a15d52fe2679bd;
-    parent_node[8] = &UNK_180a003e8;
+    parent_node[8] = &unknown_var_7704_ptr;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     

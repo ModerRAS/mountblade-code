@@ -107,15 +107,15 @@ void ui_process_component_stack(longlong param_1, longlong *param_2, uint64_t pa
   }
   (**(code **)(_DAT_180c8f008 + 0xe8))(puVar1, puVar2);
   (**(code **)*param_2)(param_2);
-  puStack_50 = &UNK_180a3c3e0;
+  puStack_50 = &unknown_var_3456_ptr;
   if (puStack_48 != (void *)0x0) {
     // 警告：子函数不返回
     FUN_18064e900();
   }
   puStack_48 = (void *)0x0;
   uStack_38 = 0;
-  puStack_50 = &UNK_18098bcb0;
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_50 = &unknown_var_720_ptr;
+  puStack_30 = &unknown_var_3456_ptr;
   if (puStack_28 != (void *)0x0) {
     // 警告：子函数不返回
     FUN_18064e900();
@@ -141,7 +141,7 @@ void ui_initialize_component_handlers(longlong param_1, longlong param_2, longlo
   pcVar1 = _DAT_180c8f018;
   *(int8_t *)(param_1 + 0x189) = 1;
   if (pcVar1 == (code *)0x0) {
-    FUN_180626ee0(&UNK_180a3dc30);
+    FUN_180626ee0(&unknown_var_9680_ptr);
   }
   else {
     puVar2 = &DEFAULT_UI_STRING_PTR;
@@ -155,9 +155,9 @@ void ui_initialize_component_handlers(longlong param_1, longlong param_2, longlo
     (*pcVar1)(puVar2, puVar3, _DAT_180c8ecfc, _DAT_180bf3ff4);
   }
   if (_DAT_180c8f010 == (code *)0x0) {
-    FUN_180626f80(&UNK_180a3dc58);
+    FUN_180626f80(&unknown_var_9720_ptr);
     if (_DAT_180c8f010 == (code *)0x0) {
-      FUN_180626ee0(&UNK_180a3dc30);
+      FUN_180626ee0(&unknown_var_9680_ptr);
       goto LAB_180651b0f;
     }
   }
@@ -167,35 +167,35 @@ LAB_180651b0f:
   // 注册UI组件事件处理器
   (**(code **)(param_1 + 0x78))(0, FUN_1806555f0);
   (**(code **)(param_1 + 0x78))(1, FUN_1806552e0);
-  (**(code **)(param_1 + 0x78))(2, &UNK_1803f60a0);
+  (**(code **)(param_1 + 0x78))(2, &unknown_var_4448_ptr);
   (**(code **)(param_1 + 0x78))(3, FUN_180655e60);
-  (**(code **)(param_1 + 0x78))(4, &UNK_180655e50);
-  (**(code **)(param_1 + 0x78))(5, &UNK_180084650);
-  (**(code **)(param_1 + 0x78))(6, &UNK_180655f30);
-  (**(code **)(param_1 + 0x78))(7, &UNK_1806561b0);
+  (**(code **)(param_1 + 0x78))(4, &unknown_var_4224_ptr);
+  (**(code **)(param_1 + 0x78))(5, &unknown_var_3232_ptr);
+  (**(code **)(param_1 + 0x78))(6, &unknown_var_4448_ptr);
+  (**(code **)(param_1 + 0x78))(7, &unknown_var_5088_ptr);
   (**(code **)(param_1 + 0x78))(8, FUN_180656160);
   (**(code **)(param_1 + 0x78))(9, FUN_180656110);
-  (**(code **)(param_1 + 0x78))(10, &UNK_1806561c0);
+  (**(code **)(param_1 + 0x78))(10, &unknown_var_5104_ptr);
   (**(code **)(param_1 + 0x78))(0xb, FUN_180656020);
-  (**(code **)(param_1 + 0x78))(0xc, &UNK_180150380);
+  (**(code **)(param_1 + 0x78))(0xc, &unknown_var_8096_ptr);
   (**(code **)(param_1 + 0x78))(0xd, FUN_180655f50);
-  (**(code **)(param_1 + 0x78))(0xe, &UNK_180656100);
-  (**(code **)(param_1 + 0x78))(0xf, &UNK_180656330);
+  (**(code **)(param_1 + 0x78))(0xe, &unknown_var_4912_ptr);
+  (**(code **)(param_1 + 0x78))(0xf, &unknown_var_5472_ptr);
   (**(code **)(param_1 + 0x78))(0x10, FUN_1806563a0);
   (**(code **)(param_1 + 0x78))(0x11, FUN_1806561d0);
-  (**(code **)(param_1 + 0x78))(0x12, &UNK_180656320);
+  (**(code **)(param_1 + 0x78))(0x12, &unknown_var_5456_ptr);
   (**(code **)(param_1 + 0x78))(0x13, FUN_180656340);
   (**(code **)(param_1 + 0x78))(0x14, FUN_180656410);
   (**(code **)(param_1 + 0x78))(0x15, FUN_1806565a0);
   (**(code **)(param_1 + 0x78))(0x16, FUN_180656610);
   (**(code **)(param_1 + 0x78))(0x17, FUN_1806566c0);
   (**(code **)(param_1 + 0x78))(0x18, FUN_18006f4c0);
-  (**(code **)(param_1 + 0x78))(0x19, &UNK_180656700);
-  (**(code **)(param_1 + 0x78))(0x1a, &UNK_180046680);
+  (**(code **)(param_1 + 0x78))(0x19, &unknown_var_6448_ptr);
+  (**(code **)(param_1 + 0x78))(0x1a, &unknown_var_9328_ptr);
   (**(code **)(param_1 + 0x78))(0x1b, _guard_check_icall);
   (**(code **)(param_1 + 0x78))(0x1c, _guard_check_icall);
   (**(code **)(param_1 + 0x78))(0x1d, 0x180069ee0);
-  (**(code **)(param_1 + 0x78))(0x1e, &UNK_180046230);
+  (**(code **)(param_1 + 0x78))(0x1e, &unknown_var_8224_ptr);
   (**(code **)(param_1 + 0x78))(0x1f, _guard_check_icall);
   (**(code **)(param_1 + 0x78))(0x20, _guard_check_icall);
   (**(code **)(param_1 + 0x80))();
@@ -326,7 +326,7 @@ ulonglong ui_process_event_data(longlong param_1, longlong param_2, longlong par
     lVar1 = 0;
     do {
       lVar2 = lVar1 + 1;
-      if (*(char *)(lStack_28 + lVar1) != (&UNK_180a16f70)[lVar1]) goto LAB_180652228;
+      if (*(char *)(lStack_28 + lVar1) != (&unknown_var_768_ptr)[lVar1]) goto LAB_180652228;
       lVar1 = lVar2;
     } while (lVar2 != 8);
     uVar4 = 0;
@@ -347,7 +347,7 @@ LAB_180652228:
     *(int32_t *)(param_2 + 0x1c) = uStack_14;
     uVar4 = 1;
   }
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
     // 警告：子函数不返回
     FUN_18064e900();
@@ -573,14 +573,14 @@ LAB_18065258b:
             param_1[2] = (longlong)(puVar10 + lVar12 * 3);
             uVar9 = uStackX_18;
           }
-          puStack_78 = &UNK_180a3c3e0;
+          puStack_78 = &unknown_var_3456_ptr;
           if (lStack_70 != 0) {
             // 警告：子函数不返回
             FUN_18064e900();
           }
           lStack_70 = 0;
           uStack_60 = 0;
-          puStack_78 = &UNK_18098bcb0;
+          puStack_78 = &unknown_var_720_ptr;
           for (puVar13 = puVar5; puVar13 != puVar6; puVar13 = puVar13 + 4) {
             (**(code **)*puVar13)(puVar13, 0);
           }
@@ -717,8 +717,8 @@ ui_format_component_string(longlong *param_1, uint64_t *param_2, uint64_t param_
   if (lVar3 == 0) {
     uVar5 = param_1[1] - *param_1 >> 5;
     if ((int)uVar5 == 0) {
-      FUN_180627910(param_2, &UNK_180a3dd38);
-      puStack_38 = &UNK_180a3c3e0;
+      FUN_180627910(param_2, &unknown_var_9944_ptr);
+      puStack_38 = &unknown_var_3456_ptr;
       if (lStack_30 == 0) {
         return param_2;
       }
@@ -732,7 +732,7 @@ ui_format_component_string(longlong *param_1, uint64_t *param_2, uint64_t param_
       if (puVar2 != (void *)0x0) {
         puVar7 = puVar2;
       }
-      FUN_180628040(&puStack_38, &UNK_1809fe62c, puVar7);
+      FUN_180628040(&puStack_38, &unknown_var_92_ptr, puVar7);
       lVar6 = lVar6 + 0x20;
       uVar5 = uVar5 - 1;
     } while (uVar5 != 0);
@@ -740,10 +740,10 @@ ui_format_component_string(longlong *param_1, uint64_t *param_2, uint64_t param_
   else {
     (**(code **)(puStack_38 + 0x10))(&puStack_38);
   }
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
+  *param_2 = &unknown_var_3456_ptr;
   *(int32_t *)(param_2 + 2) = uStack_28;
   param_2[1] = lStack_30;
   *(int32_t *)((longlong)param_2 + 0x1c) = uStack_1c;
@@ -814,10 +814,10 @@ ui_convert_mono_string(uint64_t *param_1, longlong param_2, uint64_t param_3, ui
     uVar1 = mono_string_to_utf8(param_2);
     FUN_180627910(auStack_28, uVar1, param_3, param_4, uVar2, uVar3);
     mono_free(uVar1);
-    *param_1 = &UNK_18098bcb0;
+    *param_1 = &unknown_var_720_ptr;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
-    *param_1 = &UNK_180a3c3e0;
+    *param_1 = &unknown_var_3456_ptr;
     *(int32_t *)(param_1 + 2) = uStack_18;
     param_1[1] = uStack_20;
     *(int32_t *)((longlong)param_1 + 0x1c) = uStack_c;
@@ -840,7 +840,7 @@ void ui_output_debug_string(uint64_t param_1)
 {
   FUN_1806533a0();
   OutputDebugStringA(param_1);
-  FUN_180626ee0(&UNK_180a3dd80);
+  FUN_180626ee0(&unknown_var_16_ptr);
 }
 
 // 函数: ui_allocate_zeroed_memory - 分配并清零UI内存
@@ -930,7 +930,7 @@ void ui_load_mono_assembly(void)
   uStack_50 = 0xfffffffffffffffe;
   uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
   uStack_98 = 0;
-  puStack_b8 = &UNK_180a3c3e0;
+  puStack_b8 = &unknown_var_3456_ptr;
   uStack_a0 = 0;
   puStack_b0 = (int32_t *)0x0;
   uStack_a8 = 0;
@@ -950,25 +950,25 @@ void ui_load_mono_assembly(void)
     puVar6 = puStack_b0;
   }
   lVar4 = mono_domain_assembly_open(_DAT_180c91028, puVar6);
-  puStack_b8 = &UNK_180a3c3e0;
+  puStack_b8 = &unknown_var_3456_ptr;
   if (puVar2 != (int32_t *)0x0) {
     // 警告：子函数不返回
     FUN_18064e900(puVar2);
   }
   puStack_b0 = (int32_t *)0x0;
   uStack_a0 = uStack_a0 & 0xffffffff00000000;
-  puStack_b8 = &UNK_18098bcb0;
+  puStack_b8 = &unknown_var_720_ptr;
   *plVar1 = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&UNK_180a3ddc0, &system_memory_dda8);
+    FUN_180626ee0(&unknown_var_80_ptr, &system_memory_dda8);
     lVar4 = *plVar1;
   }
   lVar4 = mono_assembly_get_image(lVar4);
   plVar1[1] = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&UNK_180a3deb8);
+    FUN_180626ee0(&unknown_var_328_ptr);
   }
-  puStack_90 = &UNK_180a3c3e0;
+  puStack_90 = &unknown_var_3456_ptr;
   uStack_78 = 0;
   puStack_88 = (uint64_t *)0x0;
   uStack_80 = 0;
@@ -981,7 +981,7 @@ void ui_load_mono_assembly(void)
   *(int16_t *)(puVar5 + 1) = 0x7265;
   *(int8_t *)((longlong)puVar5 + 10) = 0;
   uStack_80 = 10;
-  puStack_b8 = &UNK_180a3c3e0;
+  puStack_b8 = &unknown_var_3456_ptr;
   uStack_a0 = 0;
   puStack_b0 = (int32_t *)0x0;
   uStack_a8 = 0;
@@ -997,7 +997,7 @@ void ui_load_mono_assembly(void)
   *(int16_t *)(puVar6 + 4) = 0x74;
   uStack_a8 = 0x11;
   mono_class_from_name(plVar1[1], puVar6, puVar5);
-  puStack_b8 = &UNK_180a3c3e0;
+  puStack_b8 = &unknown_var_3456_ptr;
   // 警告：子函数不返回
   FUN_18064e900(puVar6);
 }
@@ -1010,14 +1010,14 @@ void ui_load_mono_assembly(void)
 uint64_t *
 ui_create_error_message(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
+  *param_2 = &unknown_var_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x10;
-  strcpy_s(param_2[1], 0x80, &UNK_180a3def0, param_4, 0, 0xfffffffffffffffe);
+  strcpy_s(param_2[1], 0x80, &unknown_var_384_ptr, param_4, 0, 0xfffffffffffffffe);
   return param_2;
 }
 

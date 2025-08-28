@@ -785,7 +785,7 @@ void FUN_18053ee50(ulonglong *param_1)
 {
   ulonglong *puVar1;
   
-  FUN_180626f80(&UNK_180a33ce0);
+  FUN_180626f80(&unknown_var_8896_ptr);
   for (puVar1 = *(ulonglong **)
                  (*(longlong *)(_DAT_180c95f30 + 8) +
                  (*param_1 % (ulonglong)*(uint *)(_DAT_180c95f30 + 0x10)) * 8);

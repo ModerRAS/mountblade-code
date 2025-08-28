@@ -142,7 +142,7 @@ void process_render_batch(void)
       temp_float3 = (float)func_0x00018011a9b0(texture_handle,(longlong)(current_index + batch_count + 1) % (longlong)render_index &
                                                 0xffffffff);
       depth_value = (double)temp_float3;
-      FUN_18012ea30(&UNK_180a063d0,current_index,(double)temp_float4,current_index + 1,depth_value);
+      FUN_18012ea30(&unknown_var_2256_ptr,current_index,(double)temp_float4,current_index + 1,depth_value);
     }
     else {
       texture_handle = *(uint64_t *)(transform_ptr + 0xb8);

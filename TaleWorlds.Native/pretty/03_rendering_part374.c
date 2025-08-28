@@ -601,8 +601,8 @@ FUN_1804707c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,int8_t param_4
 {
   uint64_t uVar1;
   
-  *param_1 = &UNK_180a2c980;
-  *param_1 = &UNK_180a2c868;
+  *param_1 = &unknown_var_9360_ptr;
+  *param_1 = &unknown_var_9080_ptr;
   _Mtx_init_in_situ(param_1 + 1,2,param_3,param_4,0xfffffffffffffffe);
   param_1[0xb] = 0;
   param_1[0xc] = 0;
@@ -642,7 +642,7 @@ FUN_1804707c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,int8_t param_4
   param_1[0x80] = 0;
   uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0xe1000,0x20,3);
   param_1[0x69] = uVar1;
-  *param_1 = &UNK_180a2b020;
+  *param_1 = &unknown_var_2864_ptr;
   uVar1 = FUN_18062b420(_DAT_180c8ed18,0x200000,0x1d);
   param_1[0x6c] = uVar1;
   uVar1 = FUN_18062b420(_DAT_180c8ed18,0x200000,0x1d);
@@ -659,7 +659,7 @@ FUN_1804707c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,int8_t param_4
 uint64_t * FUN_1804709a0(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180a2b020;
+  *param_1 = &unknown_var_2864_ptr;
   if (param_1[0x6c] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

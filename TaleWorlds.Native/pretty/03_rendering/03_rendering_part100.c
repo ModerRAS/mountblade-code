@@ -53,7 +53,7 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
     FUN_180627910(&stack_pointer, error_handler);
     FUN_180058080(render_context + RENDERING_PARAM_OFFSET_BF8, &allocated_resource, &stack_pointer);
     
-    stack_pointer = &UNK_180a3c3e0;
+    stack_pointer = &unknown_var_3456_ptr;
     if (stack_value != 0) {
       // 严重错误：系统无法恢复
       FUN_18064e900();
@@ -61,7 +61,7 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
     
     stack_value = 0;
     status_flag = 0;
-    stack_pointer = &UNK_18098bcb0;
+    stack_pointer = &unknown_var_720_ptr;
     resource_manager = (longlong *)allocated_resource[8];
     
     if (resource_manager != (longlong *)0x0) {
@@ -300,7 +300,7 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   FUN_18032bd90(render_context, &sort_array1, &sort_array3, *(int32_t *)(render_context + RENDERING_PARAM_OFFSET_150), 2, result & 0xffffffffffffff00);
   
   callback_ptr = &sort_array1;
-  callback_func = &UNK_18033d030;
+  callback_func = &unknown_var_6576_ptr;
   sort_function = FUN_18033ced0;
   stack_value = render_context;
   
@@ -583,7 +583,7 @@ ulonglong rendering_system_data_comparator(longlong render_context, uint64_t com
   }
   else {
     // 验证模式下的回调处理
-    callback_ptr = &UNK_18033d030;
+    callback_ptr = &unknown_var_6576_ptr;
     callback_function = FUN_18033ced0;
     temp_params[0] = (int32_t)render_context;
     temp_params[1] = (int32_t)((ulonglong)render_context >> 0x20);
@@ -716,7 +716,7 @@ LAB_1803281b2:
       // 检查线程局部存储状态
       if ((*(int *)(offset_diff + 0x48) < _DAT_180d48e24) &&
          (FUN_1808fcb90(&system_flag_8e24), _DAT_180d48e24 == -1)) {
-        _DAT_180d48e60 = &UNK_1809fcc58;
+        _DAT_180d48e60 = &unknown_var_3480_ptr;
         _DAT_180d48e68 = &system_flag_8e78;
         _DAT_180d48e70 = 0;
         

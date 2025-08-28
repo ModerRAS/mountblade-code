@@ -819,7 +819,7 @@ uint64_t * FUN_1807f3070(uint64_t *param_1)
   param_1[0xf] = puVar1;
   *puVar1 = puVar1;
   param_1[0x10] = 0;
-  *param_1 = &UNK_18097dde0;
+  *param_1 = &unknown_var_3680_ptr;
   puVar1 = param_1 + 0x15;
   param_1[0x16] = puVar1;
   *puVar1 = puVar1;
@@ -834,7 +834,7 @@ uint64_t * FUN_1807f3070(uint64_t *param_1)
 uint64_t * FUN_1807f30d0(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_18095cca8;
+  *param_1 = &unknown_var_8200_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,200);
   }

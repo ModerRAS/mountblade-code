@@ -1079,9 +1079,9 @@ float* _DAT_180c86920 = NULL;              // 渲染系统数据指针
 float* _DAT_180c86870 = NULL;              // 渲染系统配置指针
 float* _DAT_180c8a980 = NULL;              // 渲染系统状态指针
 float* _DAT_180c8ed30 = NULL;              // 渲染系统参数指针
-float* UNK_180a18120 = NULL;               // 渲染系统查找表
-float* UNK_180a169b8 = NULL;               // 渲染系统引用表
-void* UNK_18027d980 = NULL;                // 渲染系统函数表
+float* global_state_5296 = NULL;               // 渲染系统查找表
+float* global_state_9304 = NULL;               // 渲染系统引用表
+void* global_state_2528 = NULL;                // 渲染系统函数表
 
 /*==============================================================================
     外部函数声明

@@ -463,12 +463,12 @@ code * FUN_18007eb80(longlong param_1,char param_2)
         }
         return pcVar3;
       }
-      FUN_1806272a0(&UNK_1809ffbe0);
-      in_RAX = (code *)FUN_180626f80(&UNK_1809ffab0);
+      FUN_1806272a0(&unknown_var_5648_ptr);
+      in_RAX = (code *)FUN_180626f80(&unknown_var_5344_ptr);
     }
     else {
       plVar4 = *(longlong **)(*(longlong *)(param_1 + 0xa8) + 0x88);
-      pcStack_20 = (code *)&UNK_180083070;
+      pcStack_20 = (code *)&unknown_var_7632_ptr;
       pcStack_18 = FUN_180082fd0;
       lStack_30 = param_1;
       (**(code **)(*plVar4 + 0x60))(plVar4,&system_data_c740,param_1 + 0xb8,0,&lStack_30);

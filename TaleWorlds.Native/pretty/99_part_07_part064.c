@@ -507,8 +507,8 @@ void FUN_1804d7130(longlong param_1,longlong param_2)
   if ((lVar2 == 0) || (*(int *)(lVar2 + 0x110) == 0)) {
     if (iVar1 == 0) {
       puStackX_8 = (int32_t *)CONCAT44(puStackX_8._4_4_,*(int32_t *)(param_2 + 0x8220));
-      puStack_20 = &UNK_1804dfa90;
-      pcStack_18 = (code *)&UNK_1804dfa80;
+      puStack_20 = &unknown_var_1360_ptr;
+      pcStack_18 = (code *)&unknown_var_1344_ptr;
       uVar3 = *(int32_t *)(param_1 + 0x614);
     }
     else {
@@ -517,16 +517,16 @@ void FUN_1804d7130(longlong param_1,longlong param_2)
         goto LAB_1804d7222;
       }
       puStackX_8 = (int32_t *)CONCAT44(puStackX_8._4_4_,*(int32_t *)(param_2 + 0x8220));
-      puStack_20 = &UNK_1804dfa40;
-      pcStack_18 = (code *)&UNK_1804dfa30;
+      puStack_20 = &unknown_var_1280_ptr;
+      pcStack_18 = (code *)&unknown_var_1264_ptr;
       uVar3 = *(int32_t *)(param_1 + 0x614);
     }
   }
   else {
 LAB_1804d7222:
     puStackX_8 = (int32_t *)CONCAT44(puStackX_8._4_4_,*(int32_t *)(param_2 + 0x8220));
-    puStack_20 = &UNK_1804df9f0;
-    pcStack_18 = (code *)&UNK_1804df9e0;
+    puStack_20 = &unknown_var_1200_ptr;
+    pcStack_18 = (code *)&unknown_var_1184_ptr;
     uVar3 = *(int32_t *)(param_1 + 0x614);
   }
   uStack_2c = uStack_3c;
@@ -537,7 +537,7 @@ LAB_1804d7222:
 LAB_1804d7287:
   puStackX_8 = &uStack_30;
   ppuStack_28 = (int32_t **)&lStackX_10;
-  puStack_20 = &UNK_1804deff0;
+  puStack_20 = &unknown_var_8640_ptr;
   pcStack_18 = FUN_1804dee90;
   uStack_30 = uStack_40;
   uStack_2c = uStack_3c;
@@ -603,7 +603,7 @@ void FUN_1804d72f0(longlong *param_1,int param_2,int param_3)
                              (longlong)(int)(*(uint *)(lVar5 + 0x6b8) & uVar2) * 0x30);
             aiStackX_10[0] = (*(int *)(_DAT_180c86920 + 0xe00) != 0) - 1;
             ppuStackX_20 = apiStack_60;
-            puStack_50 = &UNK_18054b090;
+            puStack_50 = &unknown_var_1168_ptr;
             pcStack_48 = FUN_18054afe0;
             apiStack_60[0] = aiStackX_10;
             FUN_18054a4b0(*(longlong *)(puVar11 + 2) + 0xe0,apiStack_60,(longlong)(int)uVar2,lVar6,

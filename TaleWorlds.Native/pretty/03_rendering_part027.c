@@ -67,7 +67,7 @@ void FUN_180280600(uint64_t *param_1,longlong *param_2)
       lVar23 = *(longlong *)(lVar23 + lStack_88);
       uStack_a4 = uVar24;
       lStack_80 = lVar23;
-      if (*(code **)(*param_2 + 0x158) == (code *)&UNK_18027d980) {
+      if (*(code **)(*param_2 + 0x158) == (code *)&unknown_var_2528_ptr) {
         plStack_98 = param_2 + 0x66;
       }
       else {
@@ -337,7 +337,7 @@ void FUN_180280648(uint64_t param_1,uint64_t param_2,longlong param_3,longlong *
     lVar23 = *(longlong *)(param_3 + param_10);
     uStack0000000000000034 = uVar24;
     param_11 = lVar23;
-    if (*(code **)(*param_4 + 0x158) == (code *)&UNK_18027d980) {
+    if (*(code **)(*param_4 + 0x158) == (code *)&unknown_var_2528_ptr) {
       param_8 = param_4 + 0x66;
     }
     else {

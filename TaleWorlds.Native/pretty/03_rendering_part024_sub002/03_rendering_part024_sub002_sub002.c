@@ -283,7 +283,7 @@ void FUN_18027dd70(ulonglong *******param_1,ulonglong *******param_2)
         if (param_2[0x3f] != (ulonglong ******)0x0) {
             ppppppuVar12 = param_2[0x3f];
         }
-        FUN_180626f80(&UNK_180a16900,ppppppuVar12);
+        FUN_180626f80(&unknown_var_9120_ptr,ppppppuVar12);
     }
     
 LAB_18027de2e:
@@ -322,7 +322,7 @@ LAB_18027de2e:
                     FUN_180284830(auStack_108,&ppppppuStack_200);
                     ppppppuVar12 = ppppppuStack_200;
                     lVar10 = FUN_180079430(*(uint64_t *)(uVar38 + (longlong)*ppppppuVar22));
-                    puStack_238 = &UNK_180a3c3e0;
+                    puStack_238 = &unknown_var_3456_ptr;
                     uStack_220 = 0;
                     pbStack_230 = (byte *)0x0;
                     uStack_228 = 0;

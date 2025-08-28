@@ -641,10 +641,10 @@ LAB_18008dde0:
     lVar9 = (longlong)puVar1 - (longlong)puVar4;
     puVar4 = puVar4 + 1;
     do {
-      *puVar5 = &UNK_18098bcb0;
+      *puVar5 = &unknown_var_720_ptr;
       *(uint64_t *)(lVar9 + (longlong)puVar4) = 0;
       *(int32_t *)(lVar9 + 8 + (longlong)puVar4) = 0;
-      *puVar5 = &UNK_180a3c3e0;
+      *puVar5 = &unknown_var_3456_ptr;
       *(uint64_t *)(lVar9 + 0x10 + (longlong)puVar4) = 0;
       *(uint64_t *)(lVar9 + (longlong)puVar4) = 0;
       *(int32_t *)(lVar9 + 8 + (longlong)puVar4) = 0;
@@ -656,10 +656,10 @@ LAB_18008dde0:
       *puVar4 = 0;
       puVar4[2] = 0;
       puVar2 = (uint64_t *)((longlong)puVar4 + lVar9 + 0x18);
-      *puVar2 = &UNK_18098bcb0;
+      *puVar2 = &unknown_var_720_ptr;
       *(uint64_t *)(lVar9 + 0x20 + (longlong)puVar4) = 0;
       *(int32_t *)(lVar9 + 0x28 + (longlong)puVar4) = 0;
-      *puVar2 = &UNK_18098bc80;
+      *puVar2 = &unknown_var_672_ptr;
       puVar3 = (int8_t *)((longlong)puVar4 + lVar9 + 0x30);
       *(int8_t **)(lVar9 + 0x20 + (longlong)puVar4) = puVar3;
       *(int32_t *)(lVar9 + 0x28 + (longlong)puVar4) = 0;

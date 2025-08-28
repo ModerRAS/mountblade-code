@@ -21,7 +21,7 @@
 // 函数: 初始化渲染设备
 // 负责设置和初始化渲染设备，为后续渲染操作做准备
 uint8_t initialize_render_device;
-uint8_t UNK_180a01310;  // 渲染设备配置参数
+uint8_t unknown_var_1584;  // 渲染设备配置参数
 
 
 
@@ -29,20 +29,20 @@ uint8_t UNK_180a01310;  // 渲染设备配置参数
 // 函数: 创建渲染上下文
 // 负责创建渲染上下文，管理渲染状态和资源
 uint8_t create_render_context;
-uint8_t UNK_180277e10;  // 上下文配置结构
-uint8_t UNK_180a01378;  // 渲染格式设置
-uint8_t UNK_180a01360;  // 上下文属性
-uint8_t UNK_180a16bd0;  // 渲染状态标志
+uint8_t unknown_var_9120;  // 上下文配置结构
+uint8_t unknown_var_1688;  // 渲染格式设置
+uint8_t unknown_var_1664;  // 上下文属性
+uint8_t unknown_var_9840;  // 渲染状态标志
 uint8_t system_main_data_ptr;  // 全局渲染状态
-uint8_t UNK_180a01340;  // 上下文初始化参数
-uint8_t UNK_180a013a8;  // 渲染设备引用
-uint8_t UNK_180a013b8;  // 上下文句柄
-uint8_t UNK_180049530;  // 渲染目标设置
-uint8_t UNK_180093fa0;  // 视口配置
-uint8_t UNK_180093fc0;  // 裁剪区域
-uint8_t UNK_180093fd0;  // 深度缓冲设置
-uint8_t UNK_180a013b0;  // 模板缓冲配置
-uint8_t UNK_180a013e0;  // 上下文扩展参数
+uint8_t unknown_var_1632;  // 上下文初始化参数
+uint8_t unknown_var_1736;  // 渲染设备引用
+uint8_t unknown_var_1752;  // 上下文句柄
+uint8_t unknown_var_1280;  // 渲染目标设置
+uint8_t unknown_var_7056;  // 视口配置
+uint8_t unknown_var_7088;  // 裁剪区域
+uint8_t unknown_var_7104;  // 深度缓冲设置
+uint8_t unknown_var_1744;  // 模板缓冲配置
+uint8_t unknown_var_1792;  // 上下文扩展参数
 
 
 
@@ -51,37 +51,37 @@ uint8_t UNK_180a013e0;  // 上下文扩展参数
 // 负责配置渲染管线状态，包括着色器、混合模式、光栅化等设置
 uint8_t setup_render_pipeline;
 uint8_t system_memory_a988;  // 管线配置结构
-uint8_t UNK_180a04f28;  // 顶点着色器设置
-uint8_t UNK_180a04f58;  // 片段着色器设置
+uint8_t unknown_var_6968;  // 顶点着色器设置
+uint8_t unknown_var_7016;  // 片段着色器设置
 uint8_t system_memory_2bf0;  // 着色器程序
 uint8_t system_memory_3fc0;  // 着色器参数
-uint8_t UNK_180a04f68;  // 混合模式设置
-uint8_t UNK_180a04f70;  // 深度测试设置
-uint8_t UNK_180a04f78;  // 模板测试设置
-uint8_t UNK_180a04f80;  // 裁剪模式设置
-uint8_t UNK_180a04f88;  // 多边形模式设置
-uint8_t UNK_180a04f90;  // 线宽设置
-uint8_t UNK_180a04fd4;  // 点大小设置
-uint8_t UNK_180a04f98;  // 前面剔除设置
-uint8_t UNK_1803cfb60;  // 背面剔除设置
-uint8_t UNK_180a24148;  // 光栅化状态
-uint8_t UNK_180a05068;  // 多重采样设置
-uint8_t UNK_180a05088;  // 采样器状态
-uint8_t UNK_180a05010;  // 纹理绑定设置
-uint8_t UNK_180a05038;  // 缓冲区绑定设置
-uint8_t UNK_180a05050;  // 顶点属性设置
-uint8_t UNK_180a23df0;  // 变换反馈设置
-uint8_t UNK_180a050a8;  // 几何着色器设置
-uint8_t UNK_180a04ff8;  // 细分控制着色器设置
-uint8_t UNK_180a05240;  // 细分评估着色器设置
-uint8_t UNK_180a051b0;  // 计算着色器设置
-uint8_t UNK_180a05178;  // 着色器存储缓冲区
-uint8_t UNK_180a173b0;  // 原子计数器设置
-uint8_t UNK_180a05158;  // 变换缓冲区设置
-uint8_t UNK_180a05168;  // 查询对象设置
-uint8_t UNK_180a05128;  // 同步对象设置
-uint8_t UNK_180a05148;  // 条件渲染设置
-uint8_t UNK_180a05138;  // 管线缓存设置
+uint8_t unknown_var_7032;  // 混合模式设置
+uint8_t unknown_var_7040;  // 深度测试设置
+uint8_t unknown_var_7048;  // 模板测试设置
+uint8_t unknown_var_7056;  // 裁剪模式设置
+uint8_t unknown_var_7064;  // 多边形模式设置
+uint8_t unknown_var_7072;  // 线宽设置
+uint8_t unknown_var_7140;  // 点大小设置
+uint8_t unknown_var_7080;  // 前面剔除设置
+uint8_t unknown_var_7456;  // 背面剔除设置
+uint8_t unknown_var_4488;  // 光栅化状态
+uint8_t unknown_var_7288;  // 多重采样设置
+uint8_t unknown_var_7320;  // 采样器状态
+uint8_t unknown_var_7200;  // 纹理绑定设置
+uint8_t unknown_var_7240;  // 缓冲区绑定设置
+uint8_t unknown_var_7264;  // 顶点属性设置
+uint8_t unknown_var_3632;  // 变换反馈设置
+uint8_t unknown_var_7352;  // 几何着色器设置
+uint8_t unknown_var_7176;  // 细分控制着色器设置
+uint8_t unknown_var_7760;  // 细分评估着色器设置
+uint8_t unknown_var_7616;  // 计算着色器设置
+uint8_t unknown_var_7560;  // 着色器存储缓冲区
+uint8_t unknown_var_1856;  // 原子计数器设置
+uint8_t unknown_var_7528;  // 变换缓冲区设置
+uint8_t unknown_var_7544;  // 查询对象设置
+uint8_t unknown_var_7480;  // 同步对象设置
+uint8_t unknown_var_7512;  // 条件渲染设置
+uint8_t unknown_var_7496;  // 管线缓存设置
 
 
 

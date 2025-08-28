@@ -999,7 +999,7 @@ uint64_t * FUN_180801350(uint64_t *param_1)
 
 {
   FUN_1807f7c50();
-  *param_1 = &UNK_18097ea18;
+  *param_1 = &unknown_var_6808_ptr;
   param_1[0x2c] = 0;
   param_1[0x2d] = 0;
   *(int32_t *)(param_1 + 0x30) = 0;

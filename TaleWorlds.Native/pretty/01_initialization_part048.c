@@ -579,13 +579,13 @@ void InitializationSystem_ResourceCleaner(longlong *param_1)
     // 遍历并清理所有资源
     for (current_resource = resource_start; current_resource != resource_end; current_resource = current_resource + 6) {
         // 重置资源句柄
-        *current_resource = &UNK_180a3c3e0;
+        *current_resource = &unknown_var_3456_ptr;
         if (current_resource[1] != 0) {
             FUN_18064e900();
         }
         current_resource[1] = 0;
         *(int32_t*)(current_resource + 3) = 0;
-        *current_resource = &UNK_18098bcb0;
+        *current_resource = &unknown_var_720_ptr;
     }
     
     // 验证资源清理完成
@@ -721,15 +721,15 @@ void InitializationSystem_ConfigManager(longlong *param_1)
     
     // 获取配置句柄
     config_handle = *(uint64_t*)(param_1[0x37] + 0x1e0);
-    data_pointer = &UNK_18098bc80;
+    data_pointer = &unknown_var_672_ptr;
     config_pointer = config_info;
     config_info[0] = config_info[0] & 0xffffffffffffff00;
     config_flag._0_4_ = 0x12;
-    strcpy_s(config_info, 0x20, &UNK_1809ffa98);
+    strcpy_s(config_info, 0x20, &unknown_var_5320_ptr);
     
     // 验证配置信息
     config_flag = FUN_180240430(config_handle, &data_pointer, 0);
-    data_pointer = &UNK_18098bcb0;
+    data_pointer = &unknown_var_720_ptr;
     if (config_flag != 0) {
         resource_handle = param_1[0x37];
         if ((*(ulonglong*)(resource_handle + 0x140) & config_flag) != 0) {
@@ -900,7 +900,7 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
             // 检查系统权限标志
             if ((*(SystemByte*)(param_1 + 0xfd) & 8) != 0) {
                 resource_context = 0xb8;
-                security_callback = (code*)&UNK_1802426a0;
+                security_callback = (code*)&unknown_var_128_ptr;
                 do {
                     resource_data = *(StateContext*)(resource_context + *(longlong*)(param_1 + 0x1b8));
                     if (((resource_data != 0) && (config_context = *(longlong*)(resource_data + 0x370), config_context != 0)) &&
@@ -955,7 +955,7 @@ uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong par
                         // 更新权限信息
                         *(longlong*)(*(longlong*)(config_context + 0x3f70 + permission_key * 8) + 
                                       (ulonglong)(permission_level + permission_hash * -0x400) * 8) = resource_data;
-                        security_callback = (code*)&UNK_1802426a0;
+                        security_callback = (code*)&unknown_var_128_ptr;
                     }
                     resource_context = resource_context + 8;
                 } while (resource_context < 0x138);

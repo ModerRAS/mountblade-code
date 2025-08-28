@@ -154,7 +154,7 @@ ulonglong *create_engine_data_structure(ulonglong item_count, uint64_t param2, u
       temp_ptr2[-3] = (ulonglong)temp_ptr2;
       temp_ptr2[-2] = (ulonglong)(-(int)temp_ptr2 & 7) + (longlong)temp_ptr2;
       temp_ptr2[-1] = (ulonglong)temp_ptr1;
-      *temp_ptr1 = (ulonglong)&UNK_180059b80;
+      *temp_ptr1 = (ulonglong)&unknown_var_8432_ptr;
       temp_ptr2[0x601] = (ulonglong)FUN_180059ba0;
       index = index + 1;
       temp_ptr2 = temp_ptr2 + 0x611;
@@ -755,10 +755,10 @@ LAB_REALLOC_DONE:
     
     // 复制现有数据
     do {
-      *temp_ptr = &UNK_18098bcb0;
+      *temp_ptr = &unknown_var_720_ptr;
       *(uint64_t *)(copy_offset + (longlong)array_start) = 0;
       *(int32_t *)(copy_offset + 8 + (longlong)array_start) = 0;
-      *temp_ptr = &UNK_180a3c3e0;
+      *temp_ptr = &unknown_var_3456_ptr;
       *(uint64_t *)(copy_offset + 0x10 + (longlong)array_start) = 0;
       *(uint64_t *)(copy_offset + (longlong)array_start) = 0;
       *(int32_t *)(copy_offset + 8 + (longlong)array_start) = 0;
@@ -784,13 +784,13 @@ LAB_REALLOC_DONE:
   array_start = (uint64_t *)*array_ptr;
   if (array_start != array_end) {
     do {
-      *array_start = &UNK_180a3c3e0;
+      *array_start = &unknown_var_3456_ptr;
       if (array_start[1] != 0) {
         release_memory();
       }
       array_start[1] = 0;
       *(int32_t *)(array_start + 3) = 0;
-      *array_start = &UNK_18098bcb0;
+      *array_start = &unknown_var_720_ptr;
       array_start = array_start + 5;
     } while (array_start != array_end);
     array_start = (uint64_t *)*array_ptr;
@@ -933,10 +933,10 @@ int32_t *initialize_engine_object_structure(int32_t *object_ptr, uint64_t param2
   longlong *internal_ptr;
   
   internal_ptr = (longlong *)(object_ptr + 2);
-  *internal_ptr = (longlong)&UNK_18098bcb0;
+  *internal_ptr = (longlong)&unknown_var_720_ptr;
   *(uint64_t *)(object_ptr + 4) = 0;
   object_ptr[6] = 0;
-  *internal_ptr = (longlong)&UNK_180a3c3e0;
+  *internal_ptr = (longlong)&unknown_var_3456_ptr;
   *(uint64_t *)(object_ptr + 8) = 0;
   *(uint64_t *)(object_ptr + 4) = 0;
   object_ptr[6] = 0;

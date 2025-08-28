@@ -379,7 +379,7 @@ void FUN_180734830(int *param_1,int16_t *param_2,longlong param_3,int param_4)
     aiStack_7c8[1] = iVar7;
     aiStack_7c8[2] = iVar8;
     aiStack_7c8[3] = iVar9;
-    FUN_18072a9c0(param_1 + 4,auStack_7b8,param_3,&UNK_1809542b0,iVar1);
+    FUN_18072a9c0(param_1 + 4,auStack_7b8,param_3,&unknown_var_2880_ptr,iVar1);
     if (2 < iVar1) {
       piVar5 = aiStack_7c8;
       uVar6 = (ulonglong)((iVar1 - 3U) / 3 + 1);

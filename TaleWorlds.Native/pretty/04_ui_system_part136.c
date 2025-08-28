@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "../include/global_constants.h"
 
 // ============================================================================
 // 04_ui_system_part136.c - UI系统高级组件管理和状态控制模块

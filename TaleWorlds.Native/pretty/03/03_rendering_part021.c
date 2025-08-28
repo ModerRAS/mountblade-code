@@ -632,10 +632,10 @@ LAB_18027c306:
 
 // 全局常量定义
 #define DEFAULT_MATERIAL_PATH (&system_buffer_ptr)    // 默认材质路径
-#define DEFAULT_TEXTURE_PATH (&UNK_18098bcb0)      // 默认纹理路径
+#define DEFAULT_TEXTURE_PATH (&unknown_var_720_ptr)      // 默认纹理路径
 #define INVALID_CHARS (&system_memory_ff10)             // 无效字符序列
-#define FILE_OPERATION_TABLE (&UNK_180a01ff0)      // 文件操作表
-#define MODEL_LOADING_LOGGER (&UNK_180a168b0)      // 模型加载日志器
-#define MATERIAL_LOGGER (&UNK_180a16850)           // 材质日志器
+#define FILE_OPERATION_TABLE (&unknown_var_4880_ptr)      // 文件操作表
+#define MODEL_LOADING_LOGGER (&unknown_var_9040_ptr)      // 模型加载日志器
+#define MATERIAL_LOGGER (&unknown_var_8944_ptr)           // 材质日志器
 #define GLOBAL_MEMORY_MANAGER (_DAT_180c8ed18)      // 全局内存管理器
 #define GLOBAL_FILE_COUNTER (_DAT_180c8ed60)       // 全局文件计数器

@@ -280,10 +280,10 @@ LAB_1800b0d28:
     plVar7 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x170, 8, 3);
     
     // 初始化资源对象结构
-    *plVar7 = (longlong)&UNK_180a21690;
-    *plVar7 = (longlong)&UNK_180a21720;
+    *plVar7 = (longlong)&unknown_var_3552_ptr;
+    *plVar7 = (longlong)&unknown_var_3696_ptr;
     *(int32_t *)(plVar7 + 1) = 0;
-    *plVar7 = (longlong)&UNK_180a176f8;
+    *plVar7 = (longlong)&unknown_var_2696_ptr;
     plVar7[6] = 0;
     plVar7[2] = 0;
     plVar7[3] = 0;
@@ -292,10 +292,10 @@ LAB_1800b0d28:
     plVar7[7] = 0;
     *(int32_t *)(plVar7 + 8) = 0;
     pplVar1 = (longlong **)(plVar7 + 10);
-    *pplVar1 = (longlong *)&UNK_18098bcb0;
+    *pplVar1 = (longlong *)&unknown_var_720_ptr;
     plVar7[0xb] = 0;
     *(int32_t *)(plVar7 + 0xc) = 0;
-    *pplVar1 = (longlong *)&UNK_1809feda8;
+    *pplVar1 = (longlong *)&unknown_var_2008_ptr;
     plVar7[0xb] = (longlong)(plVar7 + 0xd);
     *(int32_t *)(plVar7 + 0xc) = 0;
     *(int8_t *)(plVar7 + 0xd) = 0;
@@ -340,7 +340,7 @@ LAB_1800b0d28:
     else {
       pplStack_238 = (longlong **)&puStack_1c8;
       uStack_110 = 0;
-      puStack_1c8 = &UNK_1809fcc28;
+      puStack_1c8 = &unknown_var_3432_ptr;
       puStack_1c0 = auStack_1b0;
       uStack_1b8 = 0;
       auStack_1b0[0] = 0;
@@ -353,7 +353,7 @@ LAB_1800b0d28:
       // 处理引用计数
       if (plVar18 != (longlong *)0x0) {
         uStack_110 = *(int32_t *)((longlong)plVar18 + 0x1c);
-        if (*(code **)(*plVar18 + 0x28) == (code *)&UNK_180084660) {
+        if (*(code **)(*plVar18 + 0x28) == (code *)&unknown_var_3248_ptr) {
           LOCK();
           *(int *)(plVar18 + 1) = (int)plVar18[1] + 1;
           UNLOCK();
@@ -366,7 +366,7 @@ LAB_1800b0d28:
       }
       
       // 处理资源对象引用计数
-      if ((void *)*plVar7 == &UNK_180a176f8) {
+      if ((void *)*plVar7 == &unknown_var_2696_ptr) {
         LOCK();
         *(int *)(plVar7 + 1) = (int)plVar7[1] + 1;
         UNLOCK();
@@ -397,7 +397,7 @@ LAB_1800b0d28:
         (**(code **)(*plVar9 + 0x38))(plVar9);
       }
       ppuStack_200 = &puStack_1c8;
-      puStack_1c8 = &UNK_18098bcb0;
+      puStack_1c8 = &unknown_var_720_ptr;
     }
     
     // 处理异步模式下的资源管理
@@ -563,7 +563,7 @@ LAB_1800b1065:
   }
   
   // 最终清理和结果处理
-  puStack_e8 = &UNK_1809fcc28;
+  puStack_e8 = &unknown_var_3432_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = *(int32_t *)(lStack_250 + 0x10);
@@ -572,7 +572,7 @@ LAB_1800b1065:
     puVar13 = *(void **)(lStack_250 + 8);
   }
   strcpy_s(auStack_d0, 0x80, puVar13);
-  puStack_e8 = &UNK_18098bcb0;
+  puStack_e8 = &unknown_var_720_ptr;
   *(int32_t *)((longlong)plVar5 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
   *puStack_208 = plVar5;
   plStack_270 = (longlong *)0x0;

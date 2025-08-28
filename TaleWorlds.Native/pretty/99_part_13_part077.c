@@ -993,7 +993,7 @@ uint64_t FUN_1808de900(longlong param_1,uint64_t param_2)
   uint64_t uVar3;
   
   puVar1 = (int32_t *)
-           FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x40,&UNK_180988b90,0x30,0,0,1);
+           FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x40,&unknown_var_8144_ptr,0x30,0,0,1);
   if (puVar1 == (int32_t *)0x0) {
     uVar3 = 0x26;
   }

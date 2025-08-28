@@ -144,8 +144,8 @@ void FUN_180535c60(longlong *param_1,uint64_t param_2,uint64_t param_3)
   }
   
   // 步骤2：执行资源状态初始化和验证
-  resource_status_flag = FUN_18055f260(param_3, &stack_resource_id, &UNK_1809fa510);
-  FUN_1804fe350(&UNK_180a303c8, resource_status_flag, &UNK_180a301f8, &stack_resource_id);
+  resource_status_flag = FUN_18055f260(param_3, &stack_resource_id, &unknown_var_3424_ptr);
+  FUN_1804fe350(&unknown_var_4280_ptr, resource_status_flag, &unknown_var_3816_ptr, &stack_resource_id);
   
   // 步骤3：检查资源状态，无效则返回
   if (resource_status_flag == '\0') {
@@ -221,10 +221,10 @@ void FUN_180535c60(longlong *param_1,uint64_t param_2,uint64_t param_3)
       if (resource_id != 0) {
         __Throw_C_error_std__YAXH_Z(resource_id);
       }
-      resource_status_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+      resource_status_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
       if ((resource_status_flag != '\0') &&
-         (resource_status_flag = FUN_180645c10(0x180c95578, 0xd, &UNK_1809fa540), resource_status_flag != '\0')) {
-        FUN_180645c10(0x180c95578, resource_handle, &UNK_1809fa510);
+         (resource_status_flag = FUN_180645c10(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
+        FUN_180645c10(0x180c95578, resource_handle, &unknown_var_3424_ptr);
       }
       _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
       resource_id = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
@@ -497,7 +497,7 @@ void FUN_180535c78(int32_t param_1)
   
   // 步骤1：执行资源状态初始化和验证
   resource_status_flag = FUN_18055f260(param_1, &stack_resource_id);
-  FUN_1804fe350(&UNK_180a303c8, resource_status_flag, &UNK_180a301f8, &stack_resource_id);
+  FUN_1804fe350(&unknown_var_4280_ptr, resource_status_flag, &unknown_var_3816_ptr, &stack_resource_id);
   
   // 步骤2：检查资源状态，无效则返回
   if (resource_status_flag == '\0') {
@@ -571,10 +571,10 @@ void FUN_180535c78(int32_t param_1)
       if (resource_id != 0) {
         __Throw_C_error_std__YAXH_Z(resource_id);
       }
-      resource_status_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+      resource_status_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
       if ((resource_status_flag != '\0') && 
-          (resource_status_flag = FUN_180645c10(0x180c95578, 0xd, &UNK_1809fa540), resource_status_flag != '\0')) {
-        FUN_180645c10(0x180c95578, resource_handle, &UNK_1809fa510);
+          (resource_status_flag = FUN_180645c10(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
+        FUN_180645c10(0x180c95578, resource_handle, &unknown_var_3424_ptr);
       }
       _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
       resource_id = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);

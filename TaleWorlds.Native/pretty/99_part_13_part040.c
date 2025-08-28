@@ -330,7 +330,7 @@ LAB_1808c01ad:
                 uStack_120 = (uint)*(ushort *)(lVar6 + 0x16);
                 uStack_128 = (uint)*(ushort *)(lVar6 + 0x14);
                     // WARNING: Subroutine does not return
-                FUN_18076b390(auStack_68,0x27,&UNK_180958180,*(int32_t *)(lVar6 + 0x10));
+                FUN_18076b390(auStack_68,0x27,&unknown_var_8960_ptr,*(int32_t *)(lVar6 + 0x10));
               }
               plVar9[10] = (longlong)plStack_b8;
             }

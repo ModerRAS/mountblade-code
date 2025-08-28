@@ -192,18 +192,18 @@ uint64_t *rendering_system_set_render_parameters(uint64_t param_1, uint64_t *par
                                                    uint64_t param_3, uint64_t param_4)
 {
     // 初始化参数数据缓冲区
-    *param_2 = &UNK_18098bcb0;
+    *param_2 = &unknown_var_720_ptr;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
     
     // 设置纹理数据缓冲区
-    *param_2 = &UNK_1809fcc28;
+    *param_2 = &unknown_var_3432_ptr;
     param_2[1] = param_2 + 3;
     *(int8_t *)(param_2 + 3) = 0;
     *(int32_t *)(param_2 + 2) = 0xf;
     
     // 复制字符串数据到缓冲区
-    strcpy_s(param_2[1], RENDER_PARAMETER_BUFFER_SIZE, &UNK_180a09858, param_4, 0, 0xfffffffffffffffe);
+    strcpy_s(param_2[1], RENDER_PARAMETER_BUFFER_SIZE, &unknown_var_5704_ptr, param_4, 0, 0xfffffffffffffffe);
     
     return param_2;
 }
@@ -244,7 +244,7 @@ void rendering_system_initialize_render_context(uint64_t *render_context)
     
     // 初始化渲染系统基础组件
     FUN_1803456e0();
-    *context_pointer = &UNK_180a1a098;
+    *context_pointer = &unknown_var_3352_ptr;
     FUN_180094c20(context_pointer + 0xe);
     
     // 清理现有资源
@@ -281,7 +281,7 @@ void rendering_system_initialize_render_context(uint64_t *render_context)
     *(int8_t *)(render_context + 0x3e) = 0;               // 状态标志5
     
     // 初始化字符串缓冲区
-    stack_pointer_208 = &UNK_180a3c3e0;
+    stack_pointer_208 = &unknown_var_3456_ptr;
     stack_value_1f0 = 0;
     stack_pointer_200 = (uint64_t *)0x0;
     stack_value_1f8 = 0;
@@ -301,7 +301,7 @@ void rendering_system_initialize_render_context(uint64_t *render_context)
     
     // 初始化渲染系统
     FUN_1803460a0(render_context, &stack_pointer_208, render_context + 0x37, 1);
-    stack_pointer_208 = &UNK_180a3c3e0;
+    stack_pointer_208 = &unknown_var_3456_ptr;
     
     // 清理临时资源（该操作可能不会返回）
     FUN_18064e900(context_pointer);
@@ -331,7 +331,7 @@ uint64_t *rendering_system_destroy_render_object(uint64_t *render_object, ulongl
     longlong *resource_manager;
     
     // 重置对象指针
-    *render_object = &UNK_180a1a098;
+    *render_object = &unknown_var_3352_ptr;
     
     // 释放主资源管理器
     resource_manager = (longlong *)render_object[0x36];
@@ -469,14 +469,14 @@ void rendering_system_update_render_system(longlong render_context)
             render_mode = 1;
             
             // 设置字符串缓冲区
-            string_buffer = &UNK_1809fcc28;
+            string_buffer = &unknown_var_3432_ptr;
             parameter_buffer[0] = 0;
             string_length = 0xc;
-            strcpy_s(parameter_buffer, 0x80, &UNK_180a1a070);
+            strcpy_s(parameter_buffer, 0x80, &unknown_var_3312_ptr);
             
             // 处理渲染参数
             FUN_1800b1230(_DAT_180c86930, &render_parameter, &string_buffer, &render_width);
-            string_buffer = &UNK_18098bcb0;
+            string_buffer = &unknown_var_720_ptr;
             
             // 执行渲染操作
             (**(code **)(**(longlong **)(render_context + 0x1b0) + 0x68))
@@ -607,7 +607,7 @@ void rendering_system_process_render_parameters(longlong render_context, longlon
                 *(int32_t *)((ulonglong)buffer_position + string_buffer) = 0x676e702e;  // ".png"
                 *(int8_t *)((int32_t *)((ulonglong)buffer_position + string_buffer) + 1) = 0;
                 parameter_array[0] = &output_buffer;
-                output_buffer = &UNK_1809fcc28;
+                output_buffer = &unknown_var_3432_ptr;
                 string_pointer = output_data;
                 output_size = 0;
                 output_data[0] = 0;
@@ -617,7 +617,7 @@ void rendering_system_process_render_parameters(longlong render_context, longlon
                 parameter_value = FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, 3);
                 data_value_70 = FUN_180627ae0(parameter_value, &buffer_pointer);
                 data_pointer = (uint64_t *)(**(code **)(**(longlong **)(render_context + 0x1b0) + 0x60))();
-                if ((void *)*data_pointer == &UNK_180a14060) {
+                if ((void *)*data_pointer == &unknown_var_8720_ptr) {
                     LOCK();
                     *(int *)(data_pointer + 1) = *(int *)(data_pointer + 1) + 1;
                     UNLOCK();
@@ -643,15 +643,15 @@ void rendering_system_process_render_parameters(longlong render_context, longlon
                     (**(code **)(*parameter_pointer + 0x38))(parameter_pointer);
                 }
                 parameter_array_pointer = (void ***)&output_buffer;
-                output_buffer = &UNK_18098bcb0;
-                buffer_pointer = &UNK_180a3c3e0;
+                output_buffer = &unknown_var_720_ptr;
+                buffer_pointer = &unknown_var_3456_ptr;
                 if (string_buffer != 0) {
                     // 清理字符串缓冲区（该操作可能不会返回）
                     FUN_18064e900();
                 }
                 string_buffer = 0;
                 buffer_size = 0;
-                buffer_pointer = &UNK_18098bcb0;
+                buffer_pointer = &unknown_var_720_ptr;
             }
         }
         
@@ -1152,7 +1152,7 @@ void rendering_system_manage_render_resources(longlong render_context)
         *(int32_t *)(render_context + 0xa0) = stack_value_48;
         
         // 初始化操作缓冲区
-        buffer_pointer = &UNK_180a3c3e0;
+        buffer_pointer = &unknown_var_3456_ptr;
         stack_value_190 = 0;
         stack_pointer_1a0 = (uint64_t *)0x0;
         stack_value_198 = 0;
@@ -1224,14 +1224,14 @@ void rendering_system_manage_render_resources(longlong render_context)
         }
         
         // 清理资源
-        buffer_pointer = &UNK_180a3c3e0;
+        buffer_pointer = &unknown_var_3456_ptr;
         if (resource_pointer != (uint64_t *)0x0) {
             // 释放资源（该操作可能不会返回）
             FUN_18064e900(resource_pointer);
         }
         stack_pointer_1a0 = (uint64_t *)0x0;
         stack_value_190 = (ulonglong)stack_value_190._4_4_ << 0x20;
-        buffer_pointer = &UNK_18098bcb0;
+        buffer_pointer = &unknown_var_720_ptr;
         
         // 清理资源数组
         for (resource_array = array_pointer; resource_array != array_end; resource_array = resource_array + 1) {

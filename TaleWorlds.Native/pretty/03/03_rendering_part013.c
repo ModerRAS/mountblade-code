@@ -197,7 +197,7 @@ void add_rendering_object_by_index(longlong *render_context_ptr, int object_inde
   
   // 执行更新操作
   if (update_flag != '\0') {
-    if (*(code **)(*render_context_ptr + 0x160) == (code *)&UNK_180277350) {
+    if (*(code **)(*render_context_ptr + 0x160) == (code *)&unknown_var_6368_ptr) {
       FUN_180276f30(render_context_ptr, (longlong)render_context_ptr + 0x214, 0);
     }
     else {
@@ -269,7 +269,7 @@ void add_rendering_object_by_bitmask(longlong *render_context_ptr, uint bitmask_
   
   // 执行更新操作
   if (update_flag != '\0') {
-    if (*(code **)(*render_context_ptr + 0x160) == (code *)&UNK_180277350) {
+    if (*(code **)(*render_context_ptr + 0x160) == (code *)&unknown_var_6368_ptr) {
       FUN_180276f30(render_context_ptr, (longlong)render_context_ptr + 0x214, 0);
     }
     else {
@@ -460,7 +460,7 @@ LAB_180276376:
       
       // 距离检测
       if ((result_flag != 0) && (temp_float18 = *(float *)(object_ptr + 0xd), temp_float18 != 3.4028235e+38)) {
-        if ((void *)*object_ptr == &UNK_180a169b8) {
+        if ((void *)*object_ptr == &unknown_var_9304_ptr) {
           collision_data = (longlong)object_ptr + 0x214;
         }
         else {
@@ -499,7 +499,7 @@ LAB_180276376:
       // 复杂碰撞检测路径
       result_flag = *(ulonglong *)(render_flags + 10);
       if ((result_flag != 0) && (temp_float18 = *(float *)(object_ptr + 0xd), temp_float18 != 3.4028235e+38)) {
-        if ((void *)*object_ptr == &UNK_180a169b8) {
+        if ((void *)*object_ptr == &unknown_var_9304_ptr) {
           collision_data = (longlong)object_ptr + 0x214;
         }
         else {
@@ -634,7 +634,7 @@ ulonglong process_rendering_transform(uint64_t transform_param1, uint64_t transf
   
   // 执行碰撞检测
   if ((render_flags != 0) && (transform_result[0] = *(float *)(transform_ptr + 0xd), transform_result[0] != 3.4028235e+38)) {
-    if ((void *)*transform_ptr == &UNK_180a169b8) {
+    if ((void *)*transform_ptr == &unknown_var_9304_ptr) {
       collision_data = (longlong)transform_ptr + 0x214;
     }
     else {
@@ -708,7 +708,7 @@ ulonglong optimize_rendering_objects(void)
   // 获取渲染参数
   position_data[3] = *(float *)(render_context + 0xd);
   if (position_data[3] != 3.4028235e+38) {
-    if ((void *)*render_context == &UNK_180a169b8) {
+    if ((void *)*render_context == &unknown_var_9304_ptr) {
       collision_data = (longlong)render_context + 0x214;
     }
     else {

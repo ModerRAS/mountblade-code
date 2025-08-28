@@ -34,7 +34,7 @@ void EngineResourceManager_Destroy(uint64_t *param_1)
   longlong *plStackX_20;
   ulonglong uVar9;
   
-  *param_1 = &g_pEngineResourceTable;  // 设置资源管理表指针 (原: UNK_180a07cd0)
+  *param_1 = &g_pEngineResourceTable;  // 设置资源管理表指针 (原: unknown_var_8656)
   *(int8_t *)((longlong)param_1 + 0x162) = 1;
   plVar2 = param_1 + 0x1a;
   plStackX_20 = plVar2;

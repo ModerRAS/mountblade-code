@@ -478,14 +478,14 @@ void initialize_data_structure(uint64_t *param_1)
 
 {
   FUN_180211720(param_1 + 4);
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &unknown_var_3456_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[1] = 0;
   *(int32_t *)(param_1 + 3) = 0;
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &unknown_var_720_ptr;
   return;
 }
 
@@ -670,7 +670,7 @@ void process_configuration_file(longlong param_1)
         line_length = char_index;
       } while (line_buffer[index] != '\0');
       if (char_index != 0) {
-        FUN_18010cbc0(line_buffer, &UNK_180a104f0, temp_buffer2, processed_line + 1);
+        FUN_18010cbc0(line_buffer, &unknown_var_3504_ptr, temp_buffer2, processed_line + 1);
         string_len = 0xffffffffffffffff;
         do {
           config_name_len = string_len;
@@ -685,7 +685,7 @@ void process_configuration_file(longlong param_1)
           }
           processed_line[config_name_len + 1] = '\0';
         }
-        config_ptr = &UNK_1809fcc28;
+        config_ptr = &unknown_var_3432_ptr;
         config_name = value_buffer;
         config_name_length = 0;
         value_buffer[0] = 0;
@@ -700,16 +700,16 @@ void process_configuration_file(longlong param_1)
         if (6 < config_name_length) {
           line_length = 0;
           do {
-            if ((&UNK_180a10500 + line_length)[(longlong)(config_name + -0x180a10500)] !=
-                (&UNK_180a10500)[line_length]) goto LAB_18021a863;
+            if ((&unknown_var_3520_ptr + line_length)[(longlong)(config_name + -0x180a10500)] !=
+                (&unknown_var_3520_ptr)[line_length]) goto LAB_18021a863;
             line_length = line_length + 1;
           } while (line_length < 7);
-          if ((config_name_length != 0xc) || (compare_result = strcmp(config_name, &UNK_180a104d0), compare_result != 0)) {
+          if ((config_name_length != 0xc) || (compare_result = strcmp(config_name, &unknown_var_3472_ptr), compare_result != 0)) {
             FUN_180217f60(param_1 + 0x260, &config_ptr);
           }
         }
 LAB_18021a863:
-        config_ptr = &UNK_18098bcb0;
+        config_ptr = &unknown_var_720_ptr;
       }
       stream_state = stream_flags[*(int *)(stream_handle[0] + 4)];
     }
@@ -779,7 +779,7 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
   if (file_ptr != (void *)0x0) {
     default_ptr = file_ptr;
   }
-  alloc_result = FUN_18062dee0(&stack_cookie, default_ptr, &UNK_180a01ff0);
+  alloc_result = FUN_18062dee0(&stack_cookie, default_ptr, &unknown_var_4880_ptr);
   file_handle = temp_long2;
   if (temp_long2 == 0) {
     file_handle = FUN_1801595d0(alloc_result, &string_ptr);
@@ -796,15 +796,15 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
       default_ptr = *(void **)(file_handle + 8);
     }
     buffer_size2 = string_size;
-    FUN_180626f80(&UNK_180a10af0, default_ptr);
-    string_ptr = &UNK_180a3c3e0;
+    FUN_180626f80(&unknown_var_5040_ptr, default_ptr);
+    string_ptr = &unknown_var_3456_ptr;
     if (data_offset != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     data_offset = 0;
     stack_flag = 0;
-    string_ptr = &UNK_18098bcb0;
+    string_ptr = &unknown_var_720_ptr;
   }
   else {
     buffer_size = 0;
@@ -829,7 +829,7 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
     if ((ushort)string_size != 0) {
       entry_count = (ulonglong)(ushort)string_size;
       do {
-        temp_data_ptr = &UNK_180a3c3e0;
+        temp_data_ptr = &unknown_var_3456_ptr;
         entry_index = 0;
         temp_long = 0;
         temp_flag = 0;
@@ -853,14 +853,14 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
         else {
           FUN_1802195b0(param_1 + 0x280, &temp_data_ptr);
         }
-        temp_data_ptr = &UNK_180a3c3e0;
+        temp_data_ptr = &unknown_var_3456_ptr;
         if (temp_long != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         temp_long = 0;
         entry_index = entry_index & 0xffffffff00000000;
-        temp_data_ptr = &UNK_18098bcb0;
+        temp_data_ptr = &unknown_var_720_ptr;
         entry_count = entry_count - 1;
       } while (entry_count != 0);
     }
@@ -870,7 +870,7 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
       FUN_18064e900();
     }
   }
-  cleanup_ptr = &UNK_180a3c3e0;
+  cleanup_ptr = &unknown_var_3456_ptr;
   if (file_ptr != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -961,7 +961,7 @@ LAB_18021ae8e:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     error_handler = *(void **)(param_2 + 8);
   }
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &UNK_180a108d0, error_handler);
+  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &unknown_var_4496_ptr, error_handler);
   return -1;
 }
 
@@ -1028,7 +1028,7 @@ LAB_18021ae8e:
   if (*(void **)(unaff_RSI + 8) != (void *)0x0) {
     error_handler = *(void **)(unaff_RSI + 8);
   }
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &UNK_180a108d0);
+  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &unknown_var_4496_ptr);
   return -1;
 }
 
@@ -1104,7 +1104,7 @@ LAB_18021af9e:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     error_handler = *(void **)(param_2 + 8);
   }
-  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &UNK_180a10988, error_handler);
+  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &unknown_var_4680_ptr, error_handler);
   return -1;
 }
 
@@ -1232,7 +1232,7 @@ void initialize_message_system(void)
     if (*(longlong *)(*_DAT_180c86870 + 0x890) - queue_start >> 5 == 0) {
       queue_start = FUN_180628ca0();
     }
-    message_ptr = &UNK_180a3c3e0;
+    message_ptr = &unknown_var_3456_ptr;
     message_timeout = 0;
     message_buffer = (uint64_t *)0x0;
     message_count = 0;
@@ -1247,7 +1247,7 @@ void initialize_message_system(void)
     *(int8_t *)((longlong)message_handler + 0xe) = 0;
     message_count = 0xe;
     FUN_180627ce0(queue_start, stack_buffer2, &message_ptr);
-    message_ptr = &UNK_180a3c3e0;
+    message_ptr = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
     FUN_18064e900(message_handler);
   }

@@ -90,7 +90,7 @@ void FUN_18012f0c0(void)
     lVar14 = 0;
     if (((uVar16 >> 0x18 & 1) == 0) && (pcVar2 = (char *)(_DAT_180c8a9b0 + 0x2e38), *pcVar2 != '\0')
        ) {
-      FUN_18013c760(&UNK_180a0677c);
+      FUN_18013c760(&unknown_var_3196_ptr);
       if (*(longlong *)(lVar13 + 0x2e40) != 0) {
         lVar12 = __acrt_iob_func(1);
         if (*(longlong *)(lVar13 + 0x2e40) == lVar12) {

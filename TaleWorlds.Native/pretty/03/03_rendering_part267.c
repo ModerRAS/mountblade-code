@@ -181,7 +181,7 @@ color_curve_processing:
         if (string_ptr3 != string_ptr2 + -0x180a2481b) goto color_curve_node_validation;
         string_ptr3 = string_ptr1 + (longlong)string_ptr3;
         if (string_ptr1 < string_ptr3) {
-            temp_long2 = (longlong)&UNK_180a2481c - (longlong)string_ptr1;
+            temp_long2 = (longlong)&unknown_var_6236_ptr - (longlong)string_ptr1;
             while (*string_ptr1 == string_ptr1[temp_long2]) {
                 string_ptr1 = string_ptr1 + 1;
                 if (string_ptr3 <= string_ptr1) goto color_curve_key_processing;
@@ -274,7 +274,7 @@ time_value_processing:
                                         }
                                         
                                         // 时间字符串比较
-                                        temp_long2 = (longlong)&UNK_180a1810c - (longlong)string_ptr1;
+                                        temp_long2 = (longlong)&unknown_var_5276_ptr - (longlong)string_ptr1;
                                         while (*string_ptr1 == string_ptr1[temp_long2]) {
                                             string_ptr1 = string_ptr1 + 1;
                                             if (string_ptr3 <= string_ptr1) goto time_value_processing;
@@ -356,7 +356,7 @@ curve_buffer_expansion:
                                         if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
                                         
                                         // 关键帧字符串比较
-                                        temp_long2 = (longlong)&UNK_180a18108 - (longlong)string_ptr1;
+                                        temp_long2 = (longlong)&unknown_var_5272_ptr - (longlong)string_ptr1;
                                         while (*string_ptr1 == string_ptr1[temp_long2]) {
                                             string_ptr1 = string_ptr1 + 1;
                                             if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
@@ -396,7 +396,7 @@ alpha_value_processing:
                                             }
                                             
                                             // 时间字符串比较
-                                            temp_long2 = (longlong)&UNK_180a1810c - (longlong)string_ptr1;
+                                            temp_long2 = (longlong)&unknown_var_5276_ptr - (longlong)string_ptr1;
                                             while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                 string_ptr1 = string_ptr1 + 1;
                                                 if (string_ptr3 <= string_ptr1) goto alpha_value_processing;
@@ -433,7 +433,7 @@ value_processing:
                                             }
                                             
                                             // 数值字符串比较
-                                            temp_long2 = (longlong)&UNK_180a0696c - (longlong)string_ptr1;
+                                            temp_long2 = (longlong)&unknown_var_3692_ptr - (longlong)string_ptr1;
                                             while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                 string_ptr1 = string_ptr1 + 1;
                                                 if (string_ptr3 <= string_ptr1) goto value_processing;
@@ -506,7 +506,7 @@ alpha_buffer_expansion:
                                                 if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
                                                 
                                                 // 关键帧字符串比较
-                                                temp_long2 = (longlong)&UNK_180a18108 - (longlong)string_ptr1;
+                                                temp_long2 = (longlong)&unknown_var_5272_ptr - (longlong)string_ptr1;
                                                 while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                     string_ptr1 = string_ptr1 + 1;
                                                     if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
@@ -520,7 +520,7 @@ alpha_buffer_expansion:
                                 }
                                 
                                 // 关键帧字符串比较
-                                temp_long2 = (longlong)&UNK_180a18108 - (longlong)string_ptr1;
+                                temp_long2 = (longlong)&unknown_var_5272_ptr - (longlong)string_ptr1;
                                 while (*string_ptr1 == string_ptr1[temp_long2]) {
                                     string_ptr1 = string_ptr1 + 1;
                                     if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
@@ -532,7 +532,7 @@ alpha_buffer_expansion:
                     }
                     
                     // 关键帧字符串比较
-                    temp_long2 = (longlong)&UNK_180a180c4 - (longlong)string_ptr1;
+                    temp_long2 = (longlong)&unknown_var_5204_ptr - (longlong)string_ptr1;
                     while (*string_ptr1 == string_ptr1[temp_long2]) {
                         string_ptr1 = string_ptr1 + 1;
                         if (string_ptr3 <= string_ptr1) goto color_curve_time_processing;
@@ -651,7 +651,7 @@ alpha_time_processing:
                                                 }
                                                 
                                                 // 时间字符串比较
-                                                temp_long2 = (longlong)&UNK_180a1810c - (longlong)string_ptr1;
+                                                temp_long2 = (longlong)&unknown_var_5276_ptr - (longlong)string_ptr1;
                                                 while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                     string_ptr1 = string_ptr1 + 1;
                                                     if (string_ptr3 <= string_ptr1) goto alpha_time_processing;
@@ -688,7 +688,7 @@ alpha_value_extraction:
                                                 }
                                                 
                                                 // 数值字符串比较
-                                                temp_long2 = (longlong)&UNK_180a0696c - (longlong)string_ptr1;
+                                                temp_long2 = (longlong)&unknown_var_3692_ptr - (longlong)string_ptr1;
                                                 while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                     string_ptr1 = string_ptr1 + 1;
                                                     if (string_ptr3 <= string_ptr1) goto alpha_value_extraction;
@@ -761,7 +761,7 @@ alpha_buffer_processing:
                                                     if (string_ptr3 <= string_ptr1) goto alpha_curve_value_extraction;
                                                     
                                                     // 关键帧字符串比较
-                                                    temp_long2 = (longlong)&UNK_180a18108 - (longlong)string_ptr1;
+                                                    temp_long2 = (longlong)&unknown_var_5272_ptr - (longlong)string_ptr1;
                                                     while (*string_ptr1 == string_ptr1[temp_long2]) {
                                                         string_ptr1 = string_ptr1 + 1;
                                                         if (string_ptr3 <= string_ptr1) goto alpha_curve_value_extraction;
@@ -775,7 +775,7 @@ alpha_buffer_processing:
                                     }
                                     
                                     // 关键帧字符串比较
-                                    temp_long2 = (longlong)&UNK_180a18108 - (longlong)string_ptr1;
+                                    temp_long2 = (longlong)&unknown_var_5272_ptr - (longlong)string_ptr1;
                                     while (*string_ptr1 == string_ptr1[temp_long2]) {
                                         string_ptr1 = string_ptr1 + 1;
                                         if (string_ptr3 <= string_ptr1) goto alpha_curve_time_processing;
@@ -787,7 +787,7 @@ alpha_buffer_processing:
                         }
                         
                         // 关键帧字符串比较
-                        temp_long2 = (longlong)&UNK_180a180c4 - (longlong)string_ptr1;
+                        temp_long2 = (longlong)&unknown_var_5204_ptr - (longlong)string_ptr1;
                         while (*string_ptr1 == string_ptr1[temp_long2]) {
                             string_ptr1 = string_ptr1 + 1;
                             if (string_ptr3 <= string_ptr1) goto alpha_curve_time_processing;
@@ -1005,7 +1005,7 @@ alpha_interpolation_complete:
             }
             
             // 透明度曲线节点验证
-            temp_long2 = (longlong)&UNK_180a063c4 - (longlong)string_ptr1;
+            temp_long2 = (longlong)&unknown_var_2244_ptr - (longlong)string_ptr1;
             while (*string_ptr1 == string_ptr1[temp_long2]) {
                 string_ptr1 = string_ptr1 + 1;
                 if (string_ptr3 <= string_ptr1) goto alpha_curve_key_processing;
@@ -1125,12 +1125,12 @@ void animation_parameter_configurator(longlong param_1, uint64_t param_2, longlo
             string_ptr1 = string_ptr2 + 1;
         } while (*string_ptr1 != '\0');
         
-        *render_state_ptr1 = &UNK_180a180f4;
+        *render_state_ptr1 = &unknown_var_5252_ptr;
         render_state_ptr1[2] = string_ptr2 + -0x180a180f3;
         FUN_180630b20(param_3, render_state_ptr1, &DAT, param_2);
-        FUN_180630c80(param_3, render_state_ptr1, &UNK_180a015b0, 1);
+        FUN_180630c80(param_3, render_state_ptr1, &unknown_var_2256_ptr, 1);
         FUN_18062f990(param_3, render_state_ptr1, &DAT);
-        FUN_18062f990(param_3, render_state_ptr1, &UNK_180a180b0);
+        FUN_18062f990(param_3, render_state_ptr1, &unknown_var_5184_ptr);
         
         // 链接曲线节点
         if (*(longlong *)(param_4 + 0x30) == 0) {
@@ -1161,7 +1161,7 @@ void animation_parameter_configurator(longlong param_1, uint64_t param_2, longlo
             string_ptr1 = string_ptr2 + 1;
         } while (*string_ptr1 != '\0');
         
-        *render_state_ptr2 = &UNK_180a180c4;
+        *render_state_ptr2 = &unknown_var_5204_ptr;
         render_state_ptr2[2] = string_ptr2 + -0x180a180c3;
         
         // 链接关键帧节点
@@ -1203,12 +1203,12 @@ void animation_parameter_configurator(longlong param_1, uint64_t param_2, longlo
                     string_ptr1 = string_ptr2 + 1;
                 } while (*string_ptr1 != '\0');
                 
-                *render_state_ptr1 = &UNK_180a18108;
+                *render_state_ptr1 = &unknown_var_5272_ptr;
                 render_state_ptr1[2] = string_ptr2 + -0x180a18107;
-                FUN_18062f990(param_3, render_state_ptr1, &UNK_180a1810c, (float)temp_int1 * ANIMATION_NORMALIZATION_FACTOR);
-                FUN_18062f990(param_3, render_state_ptr1, &UNK_180a0696c);
+                FUN_18062f990(param_3, render_state_ptr1, &unknown_var_5276_ptr, (float)temp_int1 * ANIMATION_NORMALIZATION_FACTOR);
+                FUN_18062f990(param_3, render_state_ptr1, &unknown_var_3692_ptr);
                 stack_float1 = CONCAT44(temp_int2, temp_float1 * ANIMATION_NORMALIZATION_FACTOR);
-                FUN_1806307a0(param_3, render_state_ptr1, &UNK_180a18100, &stack_float1);
+                FUN_1806307a0(param_3, render_state_ptr1, &unknown_var_5264_ptr, &stack_float1);
                 
                 // 链接时间关键帧
                 if (render_state_ptr2[6] == 0) {
@@ -1238,12 +1238,12 @@ void animation_parameter_configurator(longlong param_1, uint64_t param_2, longlo
                     string_ptr1 = string_ptr2 + 1;
                 } while (*string_ptr1 != '\0');
                 
-                *render_state_ptr1 = &UNK_180a18108;
+                *render_state_ptr1 = &unknown_var_5272_ptr;
                 render_state_ptr1[2] = string_ptr2 + -0x180a18107;
-                FUN_18062f990(param_3, render_state_ptr1, &UNK_180a1810c, (float)temp_int3 * ANIMATION_NORMALIZATION_FACTOR);
-                FUN_18062f990(param_3, render_state_ptr1, &UNK_180a0696c);
+                FUN_18062f990(param_3, render_state_ptr1, &unknown_var_5276_ptr, (float)temp_int3 * ANIMATION_NORMALIZATION_FACTOR);
+                FUN_18062f990(param_3, render_state_ptr1, &unknown_var_3692_ptr);
                 stack_float1 = CONCAT44(temp_int4, temp_float2 * ANIMATION_NORMALIZATION_FACTOR);
-                FUN_1806307a0(param_3, render_state_ptr1, &UNK_180a18100, &stack_float1);
+                FUN_1806307a0(param_3, render_state_ptr1, &unknown_var_5264_ptr, &stack_float1);
                 
                 // 链接数值关键帧
                 if (render_state_ptr2[6] == 0) {

@@ -18,8 +18,8 @@ uint64_t FUN_18081d250(short param_1)
 {
   if (_DAT_180c4ea50 == 0) {
     _DAT_180d4ab10 = 0;
-    _DAT_180d4ab68 = &UNK_18097fda8;
-    _DAT_180d4ab38 = &UNK_18097fdc0;
+    _DAT_180d4ab68 = &unknown_var_1816_ptr;
+    _DAT_180d4ab38 = &unknown_var_1840_ptr;
     _DAT_180d4ab08 = 0;
     _DAT_180d4ab00 = 0;
     _DAT_180d4aaf8 = 0;
@@ -63,43 +63,43 @@ uint64_t FUN_18081d250(short param_1)
     _DAT_180c4ea50 = 1;
   }
   if (param_1 == 0) {
-    _DAT_180d4ab18 = &UNK_18097fd98;
-    _DAT_180d4ab20 = &UNK_18097fd88;
-    _DAT_180d4ab28 = &UNK_18097fd78;
-    _DAT_180d4ab30 = &UNK_18097fd68;
-    _DAT_180d4ab40 = &UNK_18097fd58;
-    _DAT_180d4ab48 = &UNK_18097fd48;
-    _DAT_180d4ab50 = &UNK_18097fd38;
-    _DAT_180d4ab58 = &UNK_18097fd28;
-    _DAT_180d4ab60 = &UNK_18097fd18;
-    _DAT_180d4ab70 = &UNK_18097fd08;
+    _DAT_180d4ab18 = &unknown_var_1800_ptr;
+    _DAT_180d4ab20 = &unknown_var_1784_ptr;
+    _DAT_180d4ab28 = &unknown_var_1768_ptr;
+    _DAT_180d4ab30 = &unknown_var_1752_ptr;
+    _DAT_180d4ab40 = &unknown_var_1736_ptr;
+    _DAT_180d4ab48 = &unknown_var_1720_ptr;
+    _DAT_180d4ab50 = &unknown_var_1704_ptr;
+    _DAT_180d4ab58 = &unknown_var_1688_ptr;
+    _DAT_180d4ab60 = &unknown_var_1672_ptr;
+    _DAT_180d4ab70 = &unknown_var_1656_ptr;
   }
   else if (param_1 == 1) {
-    _DAT_180d4ab18 = &UNK_18097fcf8;
-    _DAT_180d4ab20 = &UNK_18097fce8;
-    _DAT_180d4ab28 = &UNK_18097fcd8;
-    _DAT_180d4ab30 = &UNK_18097fcc8;
-    _DAT_180d4ab40 = &UNK_18097fcb8;
-    _DAT_180d4ab48 = &UNK_18097fca8;
-    _DAT_180d4ab50 = &UNK_18097fc98;
-    _DAT_180d4ab58 = &UNK_18097fc88;
-    _DAT_180d4ab60 = &UNK_18097fc78;
-    _DAT_180d4ab70 = &UNK_18097fc68;
+    _DAT_180d4ab18 = &unknown_var_1640_ptr;
+    _DAT_180d4ab20 = &unknown_var_1624_ptr;
+    _DAT_180d4ab28 = &unknown_var_1608_ptr;
+    _DAT_180d4ab30 = &unknown_var_1592_ptr;
+    _DAT_180d4ab40 = &unknown_var_1576_ptr;
+    _DAT_180d4ab48 = &unknown_var_1560_ptr;
+    _DAT_180d4ab50 = &unknown_var_1544_ptr;
+    _DAT_180d4ab58 = &unknown_var_1528_ptr;
+    _DAT_180d4ab60 = &unknown_var_1512_ptr;
+    _DAT_180d4ab70 = &unknown_var_1496_ptr;
   }
   else {
     if (param_1 != 2) {
       return 2;
     }
-    _DAT_180d4ab18 = &UNK_18097fc58;
-    _DAT_180d4ab20 = &UNK_18097fc48;
-    _DAT_180d4ab28 = &UNK_18097fc38;
-    _DAT_180d4ab30 = &UNK_18097fc28;
-    _DAT_180d4ab40 = &UNK_18097fc18;
-    _DAT_180d4ab48 = &UNK_18097fc08;
-    _DAT_180d4ab50 = &UNK_18097fbf8;
-    _DAT_180d4ab58 = &UNK_18097fbe8;
-    _DAT_180d4ab60 = &UNK_18097fbd8;
-    _DAT_180d4ab70 = &UNK_18097fbc8;
+    _DAT_180d4ab18 = &unknown_var_1480_ptr;
+    _DAT_180d4ab20 = &unknown_var_1464_ptr;
+    _DAT_180d4ab28 = &unknown_var_1448_ptr;
+    _DAT_180d4ab30 = &unknown_var_1432_ptr;
+    _DAT_180d4ab40 = &unknown_var_1416_ptr;
+    _DAT_180d4ab48 = &unknown_var_1400_ptr;
+    _DAT_180d4ab50 = &unknown_var_1384_ptr;
+    _DAT_180d4ab58 = &unknown_var_1368_ptr;
+    _DAT_180d4ab60 = &unknown_var_1352_ptr;
+    _DAT_180d4ab70 = &unknown_var_1336_ptr;
   }
   return 0;
 }
@@ -112,43 +112,43 @@ uint64_t FUN_18081d44a(short param_1)
 
 {
   if (param_1 == 0) {
-    _DAT_180d4ab18 = &UNK_18097fd98;
-    _DAT_180d4ab20 = &UNK_18097fd88;
-    _DAT_180d4ab28 = &UNK_18097fd78;
-    _DAT_180d4ab30 = &UNK_18097fd68;
-    _DAT_180d4ab40 = &UNK_18097fd58;
-    _DAT_180d4ab48 = &UNK_18097fd48;
-    _DAT_180d4ab50 = &UNK_18097fd38;
-    _DAT_180d4ab58 = &UNK_18097fd28;
-    _DAT_180d4ab60 = &UNK_18097fd18;
-    _DAT_180d4ab70 = &UNK_18097fd08;
+    _DAT_180d4ab18 = &unknown_var_1800_ptr;
+    _DAT_180d4ab20 = &unknown_var_1784_ptr;
+    _DAT_180d4ab28 = &unknown_var_1768_ptr;
+    _DAT_180d4ab30 = &unknown_var_1752_ptr;
+    _DAT_180d4ab40 = &unknown_var_1736_ptr;
+    _DAT_180d4ab48 = &unknown_var_1720_ptr;
+    _DAT_180d4ab50 = &unknown_var_1704_ptr;
+    _DAT_180d4ab58 = &unknown_var_1688_ptr;
+    _DAT_180d4ab60 = &unknown_var_1672_ptr;
+    _DAT_180d4ab70 = &unknown_var_1656_ptr;
   }
   else if (param_1 == 1) {
-    _DAT_180d4ab18 = &UNK_18097fcf8;
-    _DAT_180d4ab20 = &UNK_18097fce8;
-    _DAT_180d4ab28 = &UNK_18097fcd8;
-    _DAT_180d4ab30 = &UNK_18097fcc8;
-    _DAT_180d4ab40 = &UNK_18097fcb8;
-    _DAT_180d4ab48 = &UNK_18097fca8;
-    _DAT_180d4ab50 = &UNK_18097fc98;
-    _DAT_180d4ab58 = &UNK_18097fc88;
-    _DAT_180d4ab60 = &UNK_18097fc78;
-    _DAT_180d4ab70 = &UNK_18097fc68;
+    _DAT_180d4ab18 = &unknown_var_1640_ptr;
+    _DAT_180d4ab20 = &unknown_var_1624_ptr;
+    _DAT_180d4ab28 = &unknown_var_1608_ptr;
+    _DAT_180d4ab30 = &unknown_var_1592_ptr;
+    _DAT_180d4ab40 = &unknown_var_1576_ptr;
+    _DAT_180d4ab48 = &unknown_var_1560_ptr;
+    _DAT_180d4ab50 = &unknown_var_1544_ptr;
+    _DAT_180d4ab58 = &unknown_var_1528_ptr;
+    _DAT_180d4ab60 = &unknown_var_1512_ptr;
+    _DAT_180d4ab70 = &unknown_var_1496_ptr;
   }
   else {
     if (param_1 != 2) {
       return 2;
     }
-    _DAT_180d4ab18 = &UNK_18097fc58;
-    _DAT_180d4ab20 = &UNK_18097fc48;
-    _DAT_180d4ab28 = &UNK_18097fc38;
-    _DAT_180d4ab30 = &UNK_18097fc28;
-    _DAT_180d4ab40 = &UNK_18097fc18;
-    _DAT_180d4ab48 = &UNK_18097fc08;
-    _DAT_180d4ab50 = &UNK_18097fbf8;
-    _DAT_180d4ab58 = &UNK_18097fbe8;
-    _DAT_180d4ab60 = &UNK_18097fbd8;
-    _DAT_180d4ab70 = &UNK_18097fbc8;
+    _DAT_180d4ab18 = &unknown_var_1480_ptr;
+    _DAT_180d4ab20 = &unknown_var_1464_ptr;
+    _DAT_180d4ab28 = &unknown_var_1448_ptr;
+    _DAT_180d4ab30 = &unknown_var_1432_ptr;
+    _DAT_180d4ab40 = &unknown_var_1416_ptr;
+    _DAT_180d4ab48 = &unknown_var_1400_ptr;
+    _DAT_180d4ab50 = &unknown_var_1384_ptr;
+    _DAT_180d4ab58 = &unknown_var_1368_ptr;
+    _DAT_180d4ab60 = &unknown_var_1352_ptr;
+    _DAT_180d4ab70 = &unknown_var_1336_ptr;
   }
   return 0;
 }

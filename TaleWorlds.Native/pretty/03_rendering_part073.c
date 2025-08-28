@@ -68,7 +68,7 @@ void FUN_18030a720(longlong param_1,int32_t param_2,float *param_3)
     puVar14 = *(uint64_t **)(param_1 + 0x48);
     if (*(int *)(param_1 + 0x30) == *(int *)(puVar14[0x79] + 0x10)) {
       if (*(char *)(param_1 + 0x42) != '\0') {
-        if ((void *)*puVar14 == &UNK_180a169b8) {
+        if ((void *)*puVar14 == &unknown_var_9304_ptr) {
           pfVar18 = (float *)(puVar14 + 0x66);
         }
         else {
@@ -267,7 +267,7 @@ void FUN_18030aab0(longlong param_1,longlong param_2,longlong param_3,float *par
   
   if (*(char *)(param_1 + 0x42) != '\0') {
     pcVar3 = *(code **)(**(longlong **)(param_1 + 0x48) + 0x158);
-    if (pcVar3 == (code *)&UNK_18027d980) {
+    if (pcVar3 == (code *)&unknown_var_2528_ptr) {
       pfVar21 = (float *)(*(longlong **)(param_1 + 0x48) + 0x66);
     }
     else {
@@ -337,10 +337,10 @@ void FUN_18030aab0(longlong param_1,longlong param_2,longlong param_3,float *par
           if ((int)uVar24 < 0) {
             uVar24 = (uVar24 - 1 | 0xffffff00) + 1;
           }
-          fVar28 = ((*(float *)(&UNK_180a18120 + (longlong)(int)uVar24 * 4) -
-                    *(float *)(&UNK_180a18120 + (longlong)(int)uVar23 * 4)) *
+          fVar28 = ((*(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar24 * 4) -
+                    *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar23 * 4)) *
                     (fVar28 - (float)(int)uVar22) +
-                   *(float *)(&UNK_180a18120 + (longlong)(int)uVar23 * 4)) * *pfVar21 + 1.0;
+                   *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar23 * 4)) * *pfVar21 + 1.0;
           if (*(int *)(param_1 + 0x70) == 1) {
             fVar31 = pfVar21[3];
             fVar29 = fVar31 * *(float *)(param_1 + 0x7c) * fVar28;
@@ -532,7 +532,7 @@ void FUN_18030aade(longlong *param_1)
   *(int32_t *)(in_RAX + -100) = unaff_XMM9_Db;
   *(int32_t *)(in_RAX + -0x60) = unaff_XMM9_Dc;
   *(int32_t *)(in_RAX + -0x5c) = unaff_XMM9_Dd;
-  if (*(code **)(*param_1 + 0x158) == (code *)&UNK_18027d980) {
+  if (*(code **)(*param_1 + 0x158) == (code *)&unknown_var_2528_ptr) {
     pfVar25 = (float *)(param_1 + 0x66);
   }
   else {
@@ -619,10 +619,10 @@ void FUN_18030aade(longlong *param_1)
         if ((int)uVar28 < 0) {
           uVar28 = (uVar28 - 1 | 0xffffff00) + 1;
         }
-        fVar32 = ((*(float *)(&UNK_180a18120 + (longlong)(int)uVar28 * 4) -
-                  *(float *)(&UNK_180a18120 + (longlong)(int)uVar27 * 4)) *
+        fVar32 = ((*(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar28 * 4) -
+                  *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar27 * 4)) *
                   (fVar32 - (float)(int)uVar26) +
-                 *(float *)(&UNK_180a18120 + (longlong)(int)uVar27 * 4)) * *pfVar25 + 1.0;
+                 *(float *)(&unknown_var_5296_ptr + (longlong)(int)uVar27 * 4)) * *pfVar25 + 1.0;
         if (*(int *)(unaff_RDI + 0x70) == 1) {
           fVar1 = pfVar25[3];
           fVar34 = *(float *)(unaff_RDI + 0x74);

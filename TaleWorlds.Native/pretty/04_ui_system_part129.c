@@ -22,7 +22,7 @@ uint64_t FUN_180743010(longlong param_1)
   longlong lVar4;
   
   plVar1 = (longlong *)
-           FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x18,&UNK_180957e90,0xd0,0,0,1);
+           FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x18,&unknown_var_8208_ptr,0xd0,0,0,1);
   if (plVar1 == (longlong *)0x0) {
     return 0x26;
   }
@@ -30,10 +30,10 @@ uint64_t FUN_180743010(longlong param_1)
   *plVar1 = (longlong)plVar1;
   plVar1[2] = 0;
   plVar2 = (longlong *)
-           FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x2000,&UNK_180957e90,0xd6,0);
+           FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x2000,&unknown_var_8208_ptr,0xd6,0);
   if (plVar2 == (longlong *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar1,&UNK_180957e90,0xd9,1);
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar1,&unknown_var_8208_ptr,0xd9,1);
   }
   lVar4 = 0x100;
   plVar3 = plVar2;

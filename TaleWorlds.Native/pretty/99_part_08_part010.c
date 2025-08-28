@@ -206,7 +206,7 @@ LAB_1804e8dc6:
                 (*(longlong *)(*(longlong *)(param_1 + 0x87b340) + (ulonglong)(uVar2 >> 4) * 8) +
                 lVar21);
       puVar3 = (void *)*puVar13;
-      if (puVar3 == &UNK_180a308e0) {
+      if (puVar3 == &unknown_var_5584_ptr) {
         FUN_180585d80();
       }
       else {
@@ -247,7 +247,7 @@ LAB_1804e8dc6:
       if (*piVar1 <= (int)param_15) {
         *piVar1 = param_15 + 1;
       }
-      if ((void *)*puVar13 == &UNK_180a308e0) {
+      if ((void *)*puVar13 == &unknown_var_5584_ptr) {
         FUN_180585d80();
       }
       else {
@@ -305,7 +305,7 @@ LAB_1804e89e2:
       param_2 = cStack_ca8;
     }
     lVar21 = *(longlong *)(param_1 + 0x87b300) + -0xbe0;
-    apuStack_c38[0] = &UNK_180a308e0;
+    apuStack_c38[0] = &unknown_var_5584_ptr;
     uStack_64 = 0;
     FUN_180506660(auStack_b38);
     if (plStack_b58 != (longlong *)0x0) {
@@ -317,7 +317,7 @@ LAB_1804e89e2:
     if (plStack_b68 != (longlong *)0x0) {
       (**(code **)(*plStack_b68 + 0x38))();
     }
-    apuStack_c38[0] = &UNK_180a308c0;
+    apuStack_c38[0] = &unknown_var_5552_ptr;
   }
   FUN_18062b1e0(_DAT_180c8ed18,0x1f8,8,3);
   lVar9 = FUN_18058f390();
@@ -332,7 +332,7 @@ LAB_1804e89e2:
   pplStack_d00 = &plStack_ca0;
   uStack_d08 = (longlong **)((ulonglong)uStack_d08._4_4_ << 0x20);
   uStack_d10 = 0;
-  pplStack_d18 = (longlong **)&UNK_180a30990;
+  pplStack_d18 = (longlong **)&unknown_var_5760_ptr;
   FUN_18058e430(lVar9,pplStack_c78,uStack_c48,param_11);
   *(int16_t *)(lVar9 + 8) = 1;
   lVar7 = *(longlong *)(lVar9 + 0xf8);
@@ -411,7 +411,7 @@ void FUN_1804e9160(longlong param_1,uint param_2)
     }
     *(int16_t *)(lVar4 + 0x3d1) = 0;
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&UNK_180a36f00);
+    FUN_180062300(_DAT_180c86928,&unknown_var_1728_ptr);
   }
   *(int8_t *)(lVar4 + 0x3d0) = 0;
   lVar6 = *(longlong *)(*(longlong *)(param_1 + 0x87b340) + uVar7 * 8) + lVar6;
@@ -452,7 +452,7 @@ void FUN_1804e9160(longlong param_1,uint param_2)
            ((ulonglong)(param_2 & 0xf) * 0xbe0 +
            *(longlong *)(*(longlong *)(param_1 + 0x87b340) + uVar7 * 8));
   auStackX_10[0] = param_2;
-  if ((void *)*puVar5 != &UNK_180a308e0) {
+  if ((void *)*puVar5 != &unknown_var_5584_ptr) {
     (**(code **)((void *)*puVar5 + 0x10))(puVar5);
   }
   *(int32_t *)(puVar5 + 1) = 0;

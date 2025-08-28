@@ -706,7 +706,7 @@ void FUN_1804cd8e0(longlong param_1)
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
   }
-  puStack_20 = &UNK_1804ce9d0;
+  puStack_20 = &unknown_var_1536_ptr;
   pcStack_18 = FUN_1804ce920;
   alStack_30[0] = param_1;
   FUN_18015b810(alStack_30,0,*(longlong *)(param_1 + 400) - *(longlong *)(param_1 + 0x188) >> 3,0x40

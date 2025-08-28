@@ -663,8 +663,8 @@ void FUN_180723ee0(int *param_1,char *param_2)
   iVar8 = 0;
   do {
     iVar7 = 0;
-    sVar1 = *(short *)(&UNK_1809535f0 + (longlong)iVar8 * 2);
-    sVar2 = *(short *)(&UNK_1809535f2 + (longlong)iVar8 * 2);
+    sVar1 = *(short *)(&unknown_var_9616_ptr + (longlong)iVar8 * 2);
+    sVar2 = *(short *)(&unknown_var_9618_ptr + (longlong)iVar8 * 2);
     iVar4 = iVar12;
     iVar10 = iVar11;
     do {
@@ -695,8 +695,8 @@ LAB_180723f9b:
   *param_1 = iVar10;
   do {
     iVar4 = 0;
-    sVar1 = *(short *)(&UNK_1809535f0 + (longlong)iVar12 * 2);
-    sVar2 = *(short *)(&UNK_1809535f2 + (longlong)iVar12 * 2);
+    sVar1 = *(short *)(&unknown_var_9616_ptr + (longlong)iVar12 * 2);
+    sVar2 = *(short *)(&unknown_var_9618_ptr + (longlong)iVar12 * 2);
     iVar8 = iVar10;
     iVar11 = iVar9;
     do {
@@ -758,7 +758,7 @@ void FUN_180724090(uint64_t param_1,longlong param_2,int param_3,short param_4,s
           uVar1 = uVar3;
         }
         lVar4 = 0;
-        uStack_28 = (&UNK_180954740)
+        uStack_28 = (&unknown_var_4048_ptr)
                     [(ulonglong)uVar1 + (longlong)((short)(param_4 * 2 + param_5) * 7)];
         do {
           if (0 < *(short *)(param_2 + lVar4 * 2)) {
@@ -849,7 +849,7 @@ void FUN_180724170(uint64_t param_1,longlong param_2,int param_3,short param_4,s
           uVar1 = uVar2;
         }
         lVar3 = 0;
-        uStack_28 = (&UNK_180954740)
+        uStack_28 = (&unknown_var_4048_ptr)
                     [(ulonglong)uVar1 + (longlong)((short)(param_4 * 2 + param_5) * 7)];
         do {
           if (*(char *)(lVar3 + param_2) != '\0') {

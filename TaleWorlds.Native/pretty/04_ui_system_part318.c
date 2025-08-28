@@ -726,7 +726,7 @@ void FUN_18083ec20(float *param_1)
 uint64_t * FUN_18083eec0(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180981b58;
+  *param_1 = &unknown_var_9416_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x10);
   }
@@ -755,8 +755,8 @@ uint64_t * FUN_18083ef10(uint64_t param_1,uint64_t *param_2)
   param_2[5] = 0;
   param_2[6] = param_2 + 8;
   param_2[7] = param_2 + 0xe;
-  *param_2 = &UNK_180981c30;
-  param_2[8] = &UNK_180981be0;
+  *param_2 = &unknown_var_9632_ptr;
+  param_2[8] = &unknown_var_9552_ptr;
   *(int8_t *)(param_2 + 9) = 0;
   param_2[10] = 0;
   param_2[0xb] = 0;
@@ -771,7 +771,7 @@ uint64_t * FUN_18083ef10(uint64_t param_1,uint64_t *param_2)
   *(int8_t *)(param_2 + 0xf) = 0;
   param_2[0x10] = 0;
   param_2[0x11] = 0;
-  param_2[0xe] = &UNK_180981c08;
+  param_2[0xe] = &unknown_var_9592_ptr;
   param_2[0x12] = 0;
   param_2[0x13] = 0;
   iVar4 = func_0x000180242600();
@@ -795,7 +795,7 @@ uint64_t * FUN_18083ef10(uint64_t param_1,uint64_t *param_2)
 uint64_t * FUN_18083eff0(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_18094a240;
+  *param_1 = &unknown_var_1808_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -819,8 +819,8 @@ uint64_t * FUN_18083f030(uint64_t param_1,uint64_t *param_2)
   param_2[5] = 0;
   *(int32_t *)(param_2 + 4) = 0xffffffff;
   param_2[6] = param_2 + 7;
-  *param_2 = &UNK_180981c98;
-  param_2[7] = &UNK_180981c70;
+  *param_2 = &unknown_var_9736_ptr;
+  param_2[7] = &unknown_var_9696_ptr;
   *(int8_t *)(param_2 + 8) = 0;
   param_2[9] = 0;
   param_2[10] = 0;
@@ -847,7 +847,7 @@ uint64_t * FUN_18083f030(uint64_t param_1,uint64_t *param_2)
 uint64_t * FUN_18083f0e0(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180981ba8;
+  *param_1 = &unknown_var_9496_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x20);
   }
@@ -891,8 +891,8 @@ int FUN_18083f170(longlong *param_1)
   void **ppuStack_10;
   
   uStack_20 = 0;
-  puStack_28 = &UNK_180981b60;
-  puStack_18 = &UNK_180981b58;
+  puStack_28 = &unknown_var_9424_ptr;
+  puStack_18 = &unknown_var_9416_ptr;
   ppuStack_10 = &puStack_28;
   iVar1 = (**(code **)(*param_1 + 0x10))(param_1,&puStack_18);
   if (iVar1 != 0) {

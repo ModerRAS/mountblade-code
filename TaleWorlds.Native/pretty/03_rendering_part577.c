@@ -594,15 +594,15 @@ LAB_180583e24:
                   uStack_654 = uStack_6e4;
                   uStack_64c = 0x7f7fffff;
                   lVar17 = param_1[2];
-                  puStack_228 = &UNK_1809fcc58;
+                  puStack_228 = &unknown_var_3480_ptr;
                   puStack_220 = auStack_210;
                   auStack_210[0] = 0;
                   uStack_218 = 0x18;
                   fStack_650 = fVar29;
-                  uVar23 = strcpy_s(auStack_210,0x40,&UNK_180a36ed8);
+                  uVar23 = strcpy_s(auStack_210,0x40,&unknown_var_1688_ptr);
                   uVar11 = FUN_1800c17c0(uVar23,&puStack_228);
                   FUN_1804eb8d0(lVar17,uVar11,&uStack_658,&system_data_01d0);
-                  puStack_228 = &UNK_18098bcb0;
+                  puStack_228 = &unknown_var_720_ptr;
                 }
               }
             }
@@ -657,11 +657,11 @@ LAB_180583e24:
                 pfStack_778 = (float *)FUN_18004a130;
                 FUN_1808fc838(alStack_1a8,0x30,4,FUN_1801c2890);
                 iStack_e8 = 0;
-                puStack_258 = &UNK_180a36f50;
+                puStack_258 = &unknown_var_1808_ptr;
                 puStack_250 = auStack_240;
                 auStack_240[0] = 0;
                 uStack_248 = 9;
-                strcpy_s(auStack_240,0xb,&UNK_180a36ec8);
+                strcpy_s(auStack_240,0xb,&unknown_var_1672_ptr);
                 lVar17 = (longlong)iStack_e8;
                 puVar16 = &system_buffer_ptr;
                 if (puStack_250 != (void *)0x0) {
@@ -672,7 +672,7 @@ LAB_180583e24:
                 afStack_188[lVar17 * 0xc + 1] = 1.0;
                 auStack_180[lVar17 * 0x30] = 0;
                 iStack_e8 = iStack_e8 + 1;
-                puStack_258 = &UNK_18098bcb0;
+                puStack_258 = &unknown_var_720_ptr;
                 lVar17 = param_1[0x1e];
                 if (*(int *)((longlong)*(int *)(lVar17 + 0xf0) * 0xa0 + 0x5c +
                             *(longlong *)(lVar17 + 0xd0)) == 0x12) {
@@ -686,11 +686,11 @@ LAB_180583e24:
                   if (1.0 <= fVar26) {
                     fVar26 = 1.0;
                   }
-                  puStack_278 = &UNK_180a36f80;
+                  puStack_278 = &unknown_var_1856_ptr;
                   puStack_270 = auStack_260;
                   auStack_260[0] = 0;
                   uStack_268 = 5;
-                  strcpy_s(auStack_260,7,&UNK_180a36ec0);
+                  strcpy_s(auStack_260,7,&unknown_var_1664_ptr);
                   lVar17 = (longlong)iStack_e8;
                   puVar16 = &system_buffer_ptr;
                   if (puStack_270 != (void *)0x0) {
@@ -701,7 +701,7 @@ LAB_180583e24:
                   afStack_188[lVar17 * 0xc + 1] = fVar26;
                   auStack_180[lVar17 * 0x30] = 1;
                   iStack_e8 = iStack_e8 + 1;
-                  puStack_278 = &UNK_18098bcb0;
+                  puStack_278 = &unknown_var_720_ptr;
                   lVar17 = param_1[0x1e];
                 }
                 fStack_6f8 = *(float *)(param_1 + 0x10) + *(float *)(param_1 + 0xc);

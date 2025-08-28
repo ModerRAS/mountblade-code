@@ -112,7 +112,7 @@ void FUN_18002d420(void)
   /* 设置新条目的属性值 */
   puVar7[6] = 0x40afa5469b6ac06d;  /* 条目唯一标识符 */
   puVar7[7] = 0x2f4bab01d34055a5;  /* 条目版本信息 */
-  puVar7[8] = &UNK_1809ff990;      /* 条目数据指针 */
+  puVar7[8] = &unknown_var_5056_ptr;      /* 条目数据指针 */
   puVar7[9] = 3;                   /* 条目优先级 */
   puVar7[10] = pcStackX_18;        /* 条目处理函数 */
   return;
@@ -151,13 +151,13 @@ void FUN_18002d550(void)
   uint32 uStack_90;
   uint8 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &unknown_var_3432_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 7;
   
   /* 执行安全字符串复制操作 */
-  strcpy_s(auStack_88, 0x80, &UNK_1809ffa30, in_R9, 0xfffffffffffffffe);
+  strcpy_s(auStack_88, 0x80, &unknown_var_5216_ptr, in_R9, 0xfffffffffffffffe);
   
   /* 存储处理结果 */
   _DAT_180c9190c = FUN_180623800(&puStack_a0);
@@ -211,7 +211,7 @@ void FUN_18002d5e0(void)
   
   puVar7[6] = 0x43330a43fcdb3653;  /* 组件标识符 */
   puVar7[7] = 0xdcfdc333a769ec93;  /* 组件版本 */
-  puVar7[8] = &UNK_180a00370;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7584_ptr;      /* 组件数据指针 */
   puVar7[9] = 1;                   /* 组件类型 */
   puVar7[10] = pcStackX_18;        /* 组件处理函数 */
   return;
@@ -263,7 +263,7 @@ void FUN_18002d6e0(void)
   
   puVar7[6] = 0x431d7c8d7c475be2;  /* 核心组件标识 */
   puVar7[7] = 0xb97f048d2153e1b0;  /* 组件版本信息 */
-  puVar7[8] = &UNK_180a00388;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7608_ptr;      /* 组件数据指针 */
   puVar7[9] = 4;                   /* 组件优先级 */
   puVar7[10] = pcStackX_18;        /* 组件处理函数 */
   return;
@@ -315,7 +315,7 @@ void FUN_18002d7e0(void)
   
   puVar7[6] = 0x4b2d79e470ee4e2c;  /* 扩展组件标识 */
   puVar7[7] = 0x9c552acd3ed5548d;  /* 组件版本 */
-  puVar7[8] = &UNK_180a003a0;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7632_ptr;      /* 组件数据指针 */
   puVar7[9] = 0;                   /* 组件状态 */
   puVar7[10] = uStackX_18;         /* 组件回调函数 */
   return;
@@ -367,7 +367,7 @@ void FUN_18002d8e0(void)
   
   puVar7[6] = 0x49086ba08ab981a7;  /* 工具组件标识 */
   puVar7[7] = 0xa9191d34ad910696;  /* 组件版本 */
-  puVar7[8] = &UNK_180a003b8;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7656_ptr;      /* 组件数据指针 */
   puVar7[9] = 0;                   /* 组件状态 */
   puVar7[10] = pcStackX_18;         /* 组件处理函数 */
   return;
@@ -419,7 +419,7 @@ void FUN_18002d9e0(void)
   
   puVar7[6] = 0x402feffe4481676e;  /* 辅助组件标识 */
   puVar7[7] = 0xd4c2151109de93a0;  /* 组件版本 */
-  puVar7[8] = &UNK_180a003d0;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7680_ptr;      /* 组件数据指针 */
   puVar7[9] = 0;                   /* 组件状态 */
   puVar7[10] = uStackX_18;         /* 组件回调函数 */
   return;
@@ -445,7 +445,7 @@ void FUN_18002dae0(void)
   plVar4 = (longlong *)FUN_18008d070();
   puVar2 = (uint64 *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  puStackX_18 = &UNK_1800868c0;
+  puStackX_18 = &unknown_var_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64 *)puVar2[1];
   
@@ -471,7 +471,7 @@ void FUN_18002dae0(void)
   
   puVar7[6] = 0x4384dcc4b6d3f417;  /* 服务组件标识 */
   puVar7[7] = 0x92a15d52fe2679bd;  /* 组件版本 */
-  puVar7[8] = &UNK_180a003e8;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7704_ptr;      /* 组件数据指针 */
   puVar7[9] = 0;                   /* 组件状态 */
   puVar7[10] = puStackX_18;        /* 组件服务函数 */
   return;
@@ -523,7 +523,7 @@ void FUN_18002dbe0(void)
   
   puVar7[6] = 0x4140994454d56503;  /* 资源组件标识 */
   puVar7[7] = 0x399eced9bb5517ad;  /* 组件版本 */
-  puVar7[8] = &UNK_180a00400;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7728_ptr;      /* 组件数据指针 */
   puVar7[9] = 0;                   /* 组件状态 */
   puVar7[10] = uStackX_18;         /* 组件处理函数 */
   return;
@@ -575,7 +575,7 @@ void FUN_18002dce0(void)
   
   puVar7[6] = 0x449bafe9b77ddd3c;  /* 接口组件标识 */
   puVar7[7] = 0xc160408bde99e59f;  /* 组件版本 */
-  puVar7[8] = &UNK_180a00430;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7776_ptr;      /* 组件数据指针 */
   puVar7[9] = 0;                   /* 接口类型 */
   puVar7[10] = pcStackX_18;         /* 接口处理函数 */
   return;
@@ -627,7 +627,7 @@ void FUN_18002dde0(void)
   
   puVar7[6] = 0x45425dc186a5d575;  /* 模块组件标识 */
   puVar7[7] = 0xfab48faa65382fa5;  /* 组件版本 */
-  puVar7[8] = &UNK_180a00460;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7824_ptr;      /* 组件数据指针 */
   puVar7[9] = 0;                   /* 模块类型 */
   puVar7[10] = pcStackX_18;         /* 模块处理函数 */
   return;
@@ -679,7 +679,7 @@ void FUN_18002dee0(void)
   
   puVar7[6] = 0x406be72011d07d37;  /* 插件组件标识 */
   puVar7[7] = 0x71876af946c867ab;  /* 组件版本 */
-  puVar7[8] = &UNK_1809ff978;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_5032_ptr;      /* 组件数据指针 */
   puVar7[9] = 0;                   /* 插件类型 */
   puVar7[10] = pcStackX_18;         /* 插件处理函数 */
   return;
@@ -731,7 +731,7 @@ void FUN_18002dfe0(void)
   
   puVar7[6] = 0x40afa5469b6ac06d;  /* 库组件标识 */
   puVar7[7] = 0x2f4bab01d34055a5;  /* 组件版本 */
-  puVar7[8] = &UNK_1809ff990;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_5056_ptr;      /* 组件数据指针 */
   puVar7[9] = 3;                   /* 库类型 */
   puVar7[10] = pcStackX_18;         /* 库处理函数 */
   return;
@@ -783,7 +783,7 @@ void FUN_18002e0e0(void)
   
   puVar7[6] = 0x42bea5b911d9c4bf;  /* 框架组件标识 */
   puVar7[7] = 0x1aa83fc0020dc1b6;  /* 组件版本 */
-  puVar7[8] = &UNK_1809fd0d8;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_4632_ptr;      /* 组件数据指针 */
   puVar7[9] = 0;                   /* 框架类型 */
   puVar7[10] = uStackX_18;         /* 框架处理函数 */
   return;
@@ -835,7 +835,7 @@ void FUN_18002e1e0(void)
   
   puVar7[6] = 0x40db4257e97d3df8;  /* 驱动组件标识 */
   puVar7[7] = 0x81d539e33614429f;  /* 组件版本 */
-  puVar7[8] = &UNK_180a004a8;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7896_ptr;      /* 组件数据指针 */
   puVar7[9] = 4;                   /* 驱动类型 */
   puVar7[10] = pcStackX_18;         /* 驱动处理函数 */
   return;
@@ -887,7 +887,7 @@ void FUN_18002e2e0(void)
   
   puVar7[6] = 0x4e33c4803e67a08f;  /* 过滤器组件标识 */
   puVar7[7] = 0x703a29a844ce399;   /* 组件版本 */
-  puVar7[8] = &UNK_180a004c0;      /* 组件数据指针 */
+  puVar7[8] = &unknown_var_7920_ptr;      /* 组件数据指针 */
   puVar7[9] = 3;                   /* 过滤器类型 */
   puVar7[10] = pcStackX_18;         /* 过滤器处理函数 */
   return;

@@ -16,7 +16,7 @@
  * 组件属性：
  * - 组件类型ID: 0x40afa5469b6ac06d
  * - 组件版本ID: 0x2f4bab01d34055a5
- * - 组件名称: UNK_1809ff990
+ * - 组件名称: unknown_var_5056
  * - 优先级: 3
  * - 处理函数: FUN_1802285e0
  */
@@ -82,7 +82,7 @@ void 注册基础场景组件(void)
  * 组件属性：
  * - 组件类型ID: 0x43330a43fcdb3653
  * - 组件版本ID: 0xdcfdc333a769ec93
- * - 组件名称: UNK_180a00370
+ * - 组件名称: unknown_var_7584
  * - 优先级: 1
  * - 处理函数: FUN_18025cc00
  */
@@ -140,7 +140,7 @@ void 注册渲染组件(void)
  * 组件属性：
  * - 组件类型ID: 0x431d7c8d7c475be2
  * - 组件版本ID: 0xb97f048d2153e1b0
- * - 组件名称: UNK_180a00388
+ * - 组件名称: unknown_var_7608
  * - 优先级: 4
  * - 处理函数: FUN_18025c000
  */
@@ -198,7 +198,7 @@ void 注册物理组件(void)
  * 组件属性：
  * - 组件类型ID: 0x4b2d79e470ee4e2c
  * - 组件版本ID: 0x9c552acd3ed5548d
- * - 组件名称: UNK_180a003a0
+ * - 组件名称: unknown_var_7632
  * - 优先级: 0
  * - 处理函数: NULL
  */
@@ -256,7 +256,7 @@ void 注册音频组件(void)
  * 组件属性：
  * - 组件类型ID: 0x49086ba08ab981a7
  * - 组件版本ID: 0xa9191d34ad910696
- * - 组件名称: UNK_180a003b8
+ * - 组件名称: unknown_var_7656
  * - 优先级: 0
  * - 处理函数: FUN_18025d270
  */
@@ -314,7 +314,7 @@ void 注册输入组件(void)
  * 组件属性：
  * - 组件类型ID: 0x402feffe4481676e
  * - 组件版本ID: 0xd4c2151109de93a0
- * - 组件名称: UNK_180a003d0
+ * - 组件名称: unknown_var_7680
  * - 优先级: 0
  * - 处理函数: NULL
  */
@@ -372,9 +372,9 @@ void 注册网络组件(void)
  * 组件属性：
  * - 组件类型ID: 0x4384dcc4b6d3f417
  * - 组件版本ID: 0x92a15d52fe2679bd
- * - 组件名称: UNK_180a003e8
+ * - 组件名称: unknown_var_7704
  * - 优先级: 0
- * - 处理函数: UNK_1800868c0
+ * - 处理函数: unknown_var_2048
  */
 void 注册脚本组件(void)
 {
@@ -430,7 +430,7 @@ void 注册脚本组件(void)
  * 组件属性：
  * - 组件类型ID: 0x4140994454d56503
  * - 组件版本ID: 0x399eced9bb5517ad
- * - 组件名称: UNK_180a00400
+ * - 组件名称: unknown_var_7728
  * - 优先级: 0
  * - 处理函数: NULL
  */
@@ -488,7 +488,7 @@ void 注册资源管理组件(void)
  * 组件属性：
  * - 组件类型ID: 0x40db4257e97d3df8
  * - 组件版本ID: 0x81d539e33614429f
- * - 组件名称: UNK_180a004a8
+ * - 组件名称: unknown_var_7896
  * - 优先级: 4
  * - 处理函数: FUN_1802633c0
  */
@@ -546,7 +546,7 @@ void 注册AI组件(void)
  * 组件属性：
  * - 组件类型ID: 0x4e33c4803e67a08f
  * - 组件版本ID: 0x703a29a844ce399
- * - 组件名称: UNK_180a004c0
+ * - 组件名称: unknown_var_7920
  * - 优先级: 3
  * - 处理函数: FUN_180262b00
  */
@@ -604,7 +604,7 @@ void 注册动画组件(void)
  * 组件属性：
  * - 组件类型ID: 0x43330a43fcdb3653
  * - 组件版本ID: 0xdcfdc333a769ec93
- * - 组件名称: UNK_180a00370
+ * - 组件名称: unknown_var_7584
  * - 优先级: 1
  * - 处理函数: FUN_18025cc00
  */
@@ -662,7 +662,7 @@ void 注册UI组件(void)
  * 组件属性：
  * - 组件类型ID: 0x431d7c8d7c475be2
  * - 组件版本ID: 0xb97f048d2153e1b0
- * - 组件名称: UNK_180a00388
+ * - 组件名称: unknown_var_7608
  * - 优先级: 4
  * - 处理函数: FUN_18025c000
  */
@@ -720,7 +720,7 @@ void 注册粒子系统组件(void)
  * 组件属性：
  * - 组件类型ID: 0x4b2d79e470ee4e2c
  * - 组件版本ID: 0x9c552acd3ed5548d
- * - 组件名称: UNK_180a003a0
+ * - 组件名称: unknown_var_7632
  * - 优先级: 0
  * - 处理函数: NULL
  */
@@ -778,7 +778,7 @@ void 注册地形组件(void)
  * 组件属性：
  * - 组件类型ID: 0x49086ba08ab981a7
  * - 组件版本ID: 0xa9191d34ad910696
- * - 组件名称: UNK_180a003b8
+ * - 组件名称: unknown_var_7656
  * - 优先级: 0
  * - 处理函数: FUN_18025d270
  */
@@ -836,7 +836,7 @@ void 注册光照组件(void)
  * 组件属性：
  * - 组件类型ID: 0x402feffe4481676e
  * - 组件版本ID: 0xd4c2151109de93a0
- * - 组件名称: UNK_180a003d0
+ * - 组件名称: unknown_var_7680
  * - 优先级: 0
  * - 处理函数: NULL
  */
@@ -894,9 +894,9 @@ void 注册材质组件(void)
  * 组件属性：
  * - 组件类型ID: 0x4384dcc4b6d3f417
  * - 组件版本ID: 0x92a15d52fe2679bd
- * - 组件名称: UNK_180a003e8
+ * - 组件名称: unknown_var_7704
  * - 优先级: 0
- * - 处理函数: UNK_1800868c0
+ * - 处理函数: unknown_var_2048
  */
 void 注册着色器组件(void)
 {
@@ -952,7 +952,7 @@ void 注册着色器组件(void)
  * 组件属性：
  * - 组件类型ID: 0x4140994454d56503
  * - 组件版本ID: 0x399eced9bb5517ad
- * - 组件名称: UNK_180a00400
+ * - 组件名称: unknown_var_7728
  * - 优先级: 0
  * - 处理函数: NULL
  */
@@ -1010,7 +1010,7 @@ void 注册纹理组件(void)
  * 组件属性：
  * - 组件类型ID: 0x449bafe9b77ddd3c
  * - 组件版本ID: 0xc160408bde99e59f
- * - 组件名称: UNK_180a00430
+ * - 组件名称: unknown_var_7776
  * - 优先级: 0
  * - 处理函数: FUN_18025d510
  */
@@ -1068,7 +1068,7 @@ void 注册游戏逻辑组件(void)
  * 组件属性：
  * - 组件类型ID: 0x45425dc186a5d575
  * - 组件版本ID: 0xfab48faa65382fa5
- * - 组件名称: UNK_180a00460
+ * - 组件名称: unknown_var_7824
  * - 优先级: 0
  * - 处理函数: FUN_18025e330
  */
@@ -1126,7 +1126,7 @@ void 注册场景管理组件(void)
  * 组件属性：
  * - 组件类型ID: 0x40db4257e97d3df8
  * - 组件版本ID: 0x81d539e33614429f
- * - 组件名称: UNK_180a004a8
+ * - 组件名称: unknown_var_7896
  * - 优先级: 4
  * - 处理函数: FUN_1802633c0
  */
@@ -1184,7 +1184,7 @@ void 注册行为树组件(void)
  * 组件属性：
  * - 组件类型ID: 0x4e33c4803e67a08f
  * - 组件版本ID: 0x703a29a844ce399
- * - 组件名称: UNK_180a004c0
+ * - 组件名称: unknown_var_7920
  * - 优先级: 3
  * - 处理函数: FUN_180262b00
  */
@@ -1242,7 +1242,7 @@ void 注册骨骼动画组件(void)
  * 组件属性：
  * - 组件类型ID: 0x42bea5b911d9c4bf
  * - 组件版本ID: 0x1aa83fc0020dc1b6
- * - 组件名称: UNK_1809fd0d8
+ * - 组件名称: unknown_var_4632
  * - 优先级: 0
  * - 处理函数: NULL
  */
@@ -1300,7 +1300,7 @@ void 注册摄像机组件(void)
  * 组件属性：
  * - 组件类型ID: 0x43330a43fcdb3653
  * - 组件版本ID: 0xdcfdc333a769ec93
- * - 组件名称: UNK_180a00370
+ * - 组件名称: unknown_var_7584
  * - 优先级: 1
  * - 处理函数: FUN_18025cc00
  */
@@ -1358,7 +1358,7 @@ void 注册后处理组件(void)
  * 组件属性：
  * - 组件类型ID: 0x431d7c8d7c475be2
  * - 组件版本ID: 0xb97f048d2153e1b0
- * - 组件名称: UNK_180a00388
+ * - 组件名称: unknown_var_7608
  * - 优先级: 4
  * - 处理函数: FUN_18025c000
  */
@@ -1416,7 +1416,7 @@ void 注册水面组件(void)
  * 组件属性：
  * - 组件类型ID: 0x4b2d79e470ee4e2c
  * - 组件版本ID: 0x9c552acd3ed5548d
- * - 组件名称: UNK_180a003a0
+ * - 组件名称: unknown_var_7632
  * - 优先级: 0
  * - 处理函数: NULL
  */
@@ -1474,7 +1474,7 @@ void 注册天空组件(void)
  * 组件属性：
  * - 组件类型ID: 0x49086ba08ab981a7
  * - 组件版本ID: 0xa9191d34ad910696
- * - 组件名称: UNK_180a003b8
+ * - 组件名称: unknown_var_7656
  * - 优先级: 0
  * - 处理函数: FUN_18025d270
  */
@@ -1610,32 +1610,32 @@ void 注册天气组件(void)
 #define COMPONENT_VERSION_WEATHER       0xa9191d34ad910696
 
 // 组件名称常量定义
-#define COMPONENT_NAME_BASE_SCENE       UNK_1809ff990
-#define COMPONENT_NAME_RENDER          UNK_180a00370
-#define COMPONENT_NAME_PHYSICS         UNK_180a00388
-#define COMPONENT_NAME_AUDIO           UNK_180a003a0
-#define COMPONENT_NAME_INPUT           UNK_180a003b8
-#define COMPONENT_NAME_NETWORK         UNK_180a003d0
-#define COMPONENT_NAME_SCRIPT          UNK_180a003e8
-#define COMPONENT_NAME_RESOURCE         UNK_180a00400
-#define COMPONENT_NAME_AI              UNK_180a004a8
-#define COMPONENT_NAME_ANIMATION       UNK_180a004c0
-#define COMPONENT_NAME_UI              UNK_180a00370
-#define COMPONENT_NAME_PARTICLE        UNK_180a00388
-#define COMPONENT_NAME_TERRAIN         UNK_180a003a0
-#define COMPONENT_NAME_LIGHTING        UNK_180a003b8
-#define COMPONENT_NAME_MATERIAL        UNK_180a003d0
-#define COMPONENT_NAME_SHADER          UNK_180a003e8
-#define COMPONENT_NAME_TEXTURE         UNK_180a00400
-#define COMPONENT_NAME_GAME_LOGIC      UNK_180a00430
-#define COMPONENT_NAME_SCENE_MANAGER   UNK_180a00460
-#define COMPONENT_NAME_BEHAVIOR_TREE   UNK_180a004a8
-#define COMPONENT_NAME_SKELETAL_ANIMATION UNK_180a004c0
-#define COMPONENT_NAME_CAMERA          UNK_1809fd0d8
-#define COMPONENT_NAME_POST_PROCESS    UNK_180a00370
-#define COMPONENT_NAME_WATER           UNK_180a00388
-#define COMPONENT_NAME_SKY             UNK_180a003a0
-#define COMPONENT_NAME_WEATHER         UNK_180a003b8
+#define COMPONENT_NAME_BASE_SCENE       unknown_var_5056
+#define COMPONENT_NAME_RENDER          unknown_var_7584
+#define COMPONENT_NAME_PHYSICS         unknown_var_7608
+#define COMPONENT_NAME_AUDIO           unknown_var_7632
+#define COMPONENT_NAME_INPUT           unknown_var_7656
+#define COMPONENT_NAME_NETWORK         unknown_var_7680
+#define COMPONENT_NAME_SCRIPT          unknown_var_7704
+#define COMPONENT_NAME_RESOURCE         unknown_var_7728
+#define COMPONENT_NAME_AI              unknown_var_7896
+#define COMPONENT_NAME_ANIMATION       unknown_var_7920
+#define COMPONENT_NAME_UI              unknown_var_7584
+#define COMPONENT_NAME_PARTICLE        unknown_var_7608
+#define COMPONENT_NAME_TERRAIN         unknown_var_7632
+#define COMPONENT_NAME_LIGHTING        unknown_var_7656
+#define COMPONENT_NAME_MATERIAL        unknown_var_7680
+#define COMPONENT_NAME_SHADER          unknown_var_7704
+#define COMPONENT_NAME_TEXTURE         unknown_var_7728
+#define COMPONENT_NAME_GAME_LOGIC      unknown_var_7776
+#define COMPONENT_NAME_SCENE_MANAGER   unknown_var_7824
+#define COMPONENT_NAME_BEHAVIOR_TREE   unknown_var_7896
+#define COMPONENT_NAME_SKELETAL_ANIMATION unknown_var_7920
+#define COMPONENT_NAME_CAMERA          unknown_var_4632
+#define COMPONENT_NAME_POST_PROCESS    unknown_var_7584
+#define COMPONENT_NAME_WATER           unknown_var_7608
+#define COMPONENT_NAME_SKY             unknown_var_7632
+#define COMPONENT_NAME_WEATHER         unknown_var_7656
 
 // 组件优先级常量定义
 #define COMPONENT_PRIORITY_BASE_SCENE   3
@@ -1666,5 +1666,5 @@ void 注册天气组件(void)
 #define COMPONENT_PRIORITY_WEATHER       0
 
 // 组件处理函数常量定义
-#define SCRIPT_ENGINE_HANDLER           UNK_1800868c0
-#define SHADER_ENGINE_HANDLER           UNK_1800868c0
+#define SCRIPT_ENGINE_HANDLER           unknown_var_2048
+#define SHADER_ENGINE_HANDLER           unknown_var_2048

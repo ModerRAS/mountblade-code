@@ -184,7 +184,7 @@ void FUN_1802e94a0(longlong param_1,longlong *param_2,ulonglong *param_3,float *
             plVar12 = (longlong *)plVar13[7];
             if (plVar12 < (longlong *)plVar13[8]) {
               do {
-                if (*(code **)(*plVar13 + 0x158) == (code *)&UNK_18027d980) {
+                if (*(code **)(*plVar13 + 0x158) == (code *)&unknown_var_2528_ptr) {
                   pfVar9 = (float *)(plVar13 + 0x66);
                 }
                 else {

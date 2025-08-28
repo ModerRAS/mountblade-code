@@ -479,7 +479,7 @@ FUN_18074fc70(longlong param_1,uint param_2,int param_3,longlong param_4,longlon
   uint uVar6;
   
   if (*(longlong *)(param_1 + 0xf0) == 0) {
-    lVar2 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x78,&UNK_1809583d0,0x8b0,0);
+    lVar2 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x78,&unknown_var_9552_ptr,0x8b0,0);
     *(longlong *)(param_1 + 0xf0) = lVar2;
     if (lVar2 == 0) {
       return 0x26;
@@ -509,7 +509,7 @@ FUN_18074fc70(longlong param_1,uint param_2,int param_3,longlong param_4,longlon
   if ((param_5 == (longlong *)0x0) || (plVar3 = (longlong *)*param_5, plVar3 == (longlong *)0x0)) {
     if (param_4 == 0) {
       plVar3 = (longlong *)
-               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x3c,&UNK_1809583d0,0x8de,0,0,1
+               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x3c,&unknown_var_9552_ptr,0x8de,0,0,1
                             );
       if (plVar3 == (longlong *)0x0) {
         return 0x26;
@@ -522,7 +522,7 @@ FUN_18074fc70(longlong param_1,uint param_2,int param_3,longlong param_4,longlon
     }
     else {
       plVar3 = (longlong *)
-               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x13c,&UNK_1809583d0,0x8d5,0,0,
+               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x13c,&unknown_var_9552_ptr,0x8d5,0,0,
                              1);
       if (plVar3 == (longlong *)0x0) {
         return 0x26;
@@ -621,7 +621,7 @@ uint64_t FUN_18074ffa0(longlong param_1)
   
   lVar1 = *(longlong *)(param_1 + 0x38);
   if (lVar1 == 0) {
-    lVar1 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x100,&UNK_1809583d0,0x5a0,0);
+    lVar1 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x100,&unknown_var_9552_ptr,0x5a0,0);
     *(longlong *)(param_1 + 0x38) = lVar1;
     if (lVar1 == 0) {
       return 0x26;
@@ -708,7 +708,7 @@ int32_t FUN_180750190(longlong param_1,longlong *param_2,char param_3)
   param_2[2] = 0;
   if ((int)param_2[7] == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2,&UNK_1809583d0,0x93a,1);
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2,&unknown_var_9552_ptr,0x93a,1);
   }
   *(int *)(param_1 + 0xe4) = *(int *)(param_1 + 0xe4) + -1;
   if (param_3 == '\0') {

@@ -228,7 +228,7 @@ void FUN_1801a0860(uint64_t param_1,uint64_t *param_2,longlong *param_3)
     (**(code **)(*plVar10 + 0x28))(plVar10);
   }
   *(int8_t *)((longlong)plVar10 + 0xff) = 0;
-  (**(code **)(plVar10[2] + 0x10))(plVar10 + 2,&UNK_180a0b290);
+  (**(code **)(plVar10[2] + 0x10))(plVar10 + 2,&unknown_var_2416_ptr);
   lVar19 = *param_3;
   lVar11 = param_3[1] - lVar19 >> 3;
   if (lVar11 == 0) {

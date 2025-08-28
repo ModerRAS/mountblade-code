@@ -32,16 +32,16 @@ extern longlong _DAT_180c86878;
 extern longlong _DAT_180c86928;
 extern longlong _DAT_180bf00a8;
 extern uint8_t system_buffer_ptr;
-extern uint8_t UNK_180a3c3e0;
-extern uint8_t UNK_18098bc01;
-extern uint8_t UNK_18033d410;
-extern uint8_t UNK_1801eb090;
-extern uint8_t UNK_18033d3d0;
-extern uint8_t UNK_18033d2b0;
-extern uint8_t UNK_180a09a40;
-extern uint8_t UNK_18098bcb0;
-extern uint8_t UNK_18098bc80;
-extern uint8_t UNK_180a1b070;
+extern uint8_t global_state_3456_ptr;
+extern uint8_t global_state_545_ptr;
+extern uint8_t global_state_7568_ptr;
+extern uint8_t global_state_2224_ptr;
+extern uint8_t global_state_7504_ptr;
+extern uint8_t global_state_7216_ptr;
+extern uint8_t global_state_6192_ptr;
+extern uint8_t global_state_720_ptr;
+extern uint8_t global_state_672_ptr;
+extern uint8_t global_state_7408_ptr;
 extern uint8_t system_error_code;
 
 // 函数声明
@@ -541,8 +541,8 @@ void *rendering_system_memory_allocator(longlong param_1, longlong param_2)
   if (*(code **)(_DAT_180c86878 + 0x18) != (code *)0x0) {
     (**(code **)(_DAT_180c86878 + 0x18))(_DAT_180c86878 + 8, 0, 0);
   }
-  *(void **)(lVar1 + 0x18) = &UNK_18033d410;
-  *(void **)(lVar1 + 0x20) = &UNK_1801eb090;
+  *(void **)(lVar1 + 0x18) = &global_state_7568_ptr;
+  *(void **)(lVar1 + 0x20) = &global_state_2224_ptr;
   *(code **)(lVar1 + 8) = FUN_180321570;
   
   // 设置渲染管线回调
@@ -550,16 +550,16 @@ void *rendering_system_memory_allocator(longlong param_1, longlong param_2)
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
     (**(code **)(lVar1 + 0xb50))(lVar1 + 0xb40, 0, 0);
   }
-  *(void **)(lVar1 + 0xb50) = &UNK_18033d3d0;
+  *(void **)(lVar1 + 0xb50) = &global_state_7504_ptr;
   *(code **)(lVar1 + 0xb58) = FUN_18033d370;
   *(code **)(lVar1 + 0xb40) = FUN_1803216f0;
   
   // 返回渲染内存分配结果
-  puStack_58 = &UNK_180a3c3e0;
+  puStack_58 = &global_state_3456_ptr;
   if (lStack_50 != 0) {
     FUN_18064e900();
   }
-  return &UNK_18098bc01;
+  return &global_state_545_ptr;
 }
 
 /**
@@ -590,7 +590,7 @@ ulonglong rendering_system_state_controller(longlong param_1, float param_2)
   }
   
   // 处理渲染状态更新
-  FUN_180062300(_DAT_180c86928, &UNK_180a1b070, (double)param_2);
+  FUN_180062300(_DAT_180c86928, &global_state_7408_ptr, (double)param_2);
 }
 
 /**
@@ -705,7 +705,7 @@ void rendering_system_pipeline_initializer(longlong param_1)
   // 处理渲染管线状态
   if (iVar4 <= *(int *)(puVar6 + 4)) {
     plStack_58 = (longlong *)(*(longlong *)(param_1 + 0x2d8) + 0x60858);
-    puStack_48 = &UNK_18033d2b0;
+    puStack_48 = &global_state_7216_ptr;
     pcStack_40 = FUN_18033d250;
     uStack_80 = SUB84(plStack_58, 0);
     uStack_78 = (int32_t)param_1;
@@ -920,11 +920,11 @@ void rendering_system_advanced_processor(longlong param_1, longlong param_2, int
     if (*(longlong *)(param_2 + 0x208) - lVar21 >> 3 != 0) {
       do {
         lVar21 = *(longlong *)(*(longlong *)(lVar21 + uVar18) + 0x10);
-        puStack_80 = &UNK_18098bc80;
+        puStack_80 = &global_state_672_ptr;
         puStack_78 = auStack_68;
         auStack_68[0] = 0;
         iStack_70 = 0xb;
-        strcpy_s(auStack_68, 0x20, &UNK_180a09a40);
+        strcpy_s(auStack_68, 0x20, &global_state_6192_ptr);
         iVar5 = *(int *)(lVar21 + 0x18);
         if (iVar5 == iStack_70) {
           if (iVar5 == 0) {
@@ -949,7 +949,7 @@ LAB_180322b1e:
 LAB_180322b26:
           bVar23 = false;
         }
-        puStack_80 = &UNK_18098bcb0;
+        puStack_80 = &global_state_720_ptr;
         if (bVar23) {
           lVar21 = *(longlong *)(*(longlong *)(param_2 + 0x200) + (longlong)(int)uVar19 * 8);
           puVar7[0x2e] = (float)*(double *)(lVar21 + 0x78);

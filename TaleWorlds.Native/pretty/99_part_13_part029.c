@@ -64,7 +64,7 @@ LAB_1808b877e:
     if (plVar4 != (longlong *)0x0) {
       iVar6 = 0;
       plVar2 = (longlong *)
-               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x40,&UNK_1809874b0,0x1f5,0,0,1
+               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x40,&unknown_var_2288_ptr,0x1f5,0,0,1
                             );
       if (plVar2 == (longlong *)0x0) {
         return 0x26;
@@ -160,7 +160,7 @@ LAB_1808b877e:
     if (plVar4 != (longlong *)0x0) {
       iVar6 = 0;
       plVar2 = (longlong *)
-               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x40,&UNK_1809874b0,0x1f5,0,0,1
+               FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x40,&unknown_var_2288_ptr,0x1f5,0,0,1
                             );
       if (plVar2 == (longlong *)0x0) {
         return 0x26;

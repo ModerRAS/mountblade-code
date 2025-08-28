@@ -511,20 +511,20 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
   stack_value = init_params;
   
   // 查找资源标识
-  resource_id = find_rendering_data_identifier(data_address, init_params, &UNK_180a16ee0);
-  offset_1 = find_rendering_data_identifier(data_address, init_params, &UNK_180a16ef8);
+  resource_id = find_rendering_data_identifier(data_address, init_params, &unknown_var_624_ptr);
+  offset_1 = find_rendering_data_identifier(data_address, init_params, &unknown_var_648_ptr);
   *(int *)(resource_manager + 0x18) = offset_1;
-  offset_2 = find_rendering_data_identifier(data_address, init_params, &UNK_180a13928);
+  offset_2 = find_rendering_data_identifier(data_address, init_params, &unknown_var_6872_ptr);
   *(int *)(resource_manager + 0x1c) = offset_2;
-  temp_array_1[2] = find_rendering_data_identifier(data_address, init_params, &UNK_180a16f00);
+  temp_array_1[2] = find_rendering_data_identifier(data_address, init_params, &unknown_var_656_ptr);
   *(int *)(resource_manager + 0x20) = temp_array_1[2];
   
   // 继续查找其他资源标识
-  temp_array_1[0] = find_rendering_data_identifier(data_address, stack_value, &UNK_180a16ef0);
+  temp_array_1[0] = find_rendering_data_identifier(data_address, stack_value, &unknown_var_640_ptr);
   *(int *)(resource_manager + 0x28) = temp_array_1[0];
-  temp_param = find_rendering_data_identifier(data_address, stack_value, &UNK_180a16f18);
+  temp_param = find_rendering_data_identifier(data_address, stack_value, &unknown_var_680_ptr);
   *(int32_t *)(resource_manager + 0x2c) = temp_param;
-  temp_param = find_rendering_data_identifier(data_address, stack_value, &UNK_180a16f20);
+  temp_param = find_rendering_data_identifier(data_address, stack_value, &unknown_var_688_ptr);
   *(int32_t *)(resource_manager + 0x30) = temp_param;
   
   // 验证必要资源
@@ -550,7 +550,7 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
   temp_array_1[0] = 2;
   temp_array_2[0] = 0;
   temp_array_3[0] = 0;
-  temp_value = find_rendering_data_identifier(data_address, stack_value, &UNK_180a16f08);
+  temp_value = find_rendering_data_identifier(data_address, stack_value, &unknown_var_664_ptr);
   
   if (temp_value == 0) {
     return 0;
@@ -726,7 +726,7 @@ uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlo
   *(uint64_t *)(resource_manager + 0x58) = init_result;
   
 process_resource_data:
-  temp_value = find_rendering_data_identifier(data_address, stack_value, &UNK_180a16f10);
+  temp_value = find_rendering_data_identifier(data_address, stack_value, &unknown_var_672_ptr);
   if (temp_value == 0) {
     offset_1 = 0xffff;
   }

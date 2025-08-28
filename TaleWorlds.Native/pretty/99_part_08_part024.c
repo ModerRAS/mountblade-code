@@ -233,9 +233,9 @@ uint64_t FUN_1804f7af0(longlong param_1,int param_2,char param_3)
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
-    cVar5 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
-    if ((cVar5 != '\0') && (cVar5 = FUN_180645c10(0x180c95578,0xf,&UNK_1809fa540), cVar5 != '\0')) {
-      FUN_180645c10(0x180c95578,param_2,&UNK_1809fa4c0);
+    cVar5 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+    if ((cVar5 != '\0') && (cVar5 = FUN_180645c10(0x180c95578,0xf,&unknown_var_3472_ptr), cVar5 != '\0')) {
+      FUN_180645c10(0x180c95578,param_2,&unknown_var_3344_ptr);
     }
     _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
     iVar6 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);

@@ -423,7 +423,7 @@ void rendering_system_process_render_pipeline(
                 if ((*(int *)(*(longlong *)
                                ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
                      _DAT_180d49ec8) && (FUN_1808fcb90(&system_memory_9ec8), _DAT_180d49ec8 == -1)) {
-                    render_settings = &UNK_180a3c3e0;
+                    render_settings = &unknown_var_3456_ptr;
                     gpu_time = 0.0;
                     cpu_time = 0.0;
                     pipeline_config = (int32_t *)0x0;
@@ -436,7 +436,7 @@ void rendering_system_process_render_pipeline(
                     *(int8_t *)(index_buffer + 1) = 0;
                     frame_time = 5.60519e-45;
                     _DAT_180d49ecc = FUN_180571e20(&system_memory_60c0, &render_settings);
-                    render_settings = &UNK_180a3c3e0;
+                    render_settings = &unknown_var_3456_ptr;
                     FUN_18064e900(index_buffer);
                 }
                 FUN_180508510(render_context, _DAT_180d49ecc, 2, 0);
@@ -549,8 +549,8 @@ void rendering_system_process_render_pipeline(
                     } else {
                         material_data = 0;
                     }
-                    texture_format = FUN_180645c10(material_data, 0, &UNK_1809fa560);
-                    if (((texture_format != '\0') && (texture_format = FUN_180645c10(material_data, 5, &UNK_1809fa540), texture_format != '\0')) &&
+                    texture_format = FUN_180645c10(material_data, 0, &unknown_var_3504_ptr);
+                    if (((texture_format != '\0') && (texture_format = FUN_180645c10(material_data, 5, &unknown_var_3472_ptr), texture_format != '\0')) &&
                        ((texture_format = FUN_180645fa0(material_data), texture_format != '\0' &&
                         (texture_format = FUN_180645fa0(material_data), texture_format != '\0')))) {
                         FUN_180645fa0(material_data);
@@ -608,7 +608,7 @@ void rendering_system_process_render_pipeline(
                 if ((*(int *)(*(longlong *)
                                ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
                      _DAT_180d49ed0) && (FUN_1808fcb90(&system_memory_9ed0), _DAT_180d49ed0 == -1)) {
-                    render_settings = &UNK_180a3c3e0;
+                    render_settings = &unknown_var_3456_ptr;
                     gpu_time = 0.0;
                     cpu_time = 0.0;
                     pipeline_config = (int32_t *)0x0;
@@ -621,7 +621,7 @@ void rendering_system_process_render_pipeline(
                     *(int8_t *)(index_buffer + 1) = 0;
                     frame_time = 5.60519e-45;
                     _DAT_180d49ed4 = FUN_180571e20(&system_memory_60c0, &render_settings);
-                    render_settings = &UNK_180a3c3e0;
+                    render_settings = &unknown_var_3456_ptr;
                     FUN_18064e900(index_buffer);
                 }
                 FUN_180508510(render_context, _DAT_180d49ed4, 2);

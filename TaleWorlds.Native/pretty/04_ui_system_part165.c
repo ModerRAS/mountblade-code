@@ -908,7 +908,7 @@ uint64_t FUN_1807675e0(longlong *param_1,char param_2)
   }
   if (param_2 != '\0') {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&UNK_180958a50,0x13a,1);
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&unknown_var_1216_ptr,0x13a,1);
   }
   return 0;
 }

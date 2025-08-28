@@ -45,16 +45,16 @@ extern char system_debug_flag2;            // 错误处理标志
 // 字符串常量引用
 // ============================================================================
 
-extern uint64_t UNK_180a0ce90;     // 字符串常量 "shader_cache"
-extern uint64_t UNK_180a0ce64;     // 字符串常量 "shaders"
-extern uint64_t UNK_180a0ce70;     // 字符串常量 "data"
-extern uint64_t UNK_180a0cf50;     // 字符串常量 "config"
-extern uint64_t UNK_180a01ff0;     // 文件扩展名过滤器
-extern uint64_t UNK_180a0cf4c;     // 配置文件路径
-extern uint64_t UNK_180a0cfa0;    // 错误消息标题
-extern uint64_t UNK_180a0cea0;    // 错误消息内容
-extern uint64_t UNK_180a0cf60;     // 对话框标题
-extern uint64_t UNK_180a04f08;     // 系统消息
+extern uint64_t global_config_9584_ptr;     // 字符串常量 "shader_cache"
+extern uint64_t global_config_9540_ptr;     // 字符串常量 "shaders"
+extern uint64_t global_config_9552_ptr;     // 字符串常量 "data"
+extern uint64_t global_config_9776_ptr;     // 字符串常量 "config"
+extern uint64_t global_config_4880_ptr;     // 文件扩展名过滤器
+extern uint64_t global_config_9772_ptr;     // 配置文件路径
+extern uint64_t global_config_9856_ptr;    // 错误消息标题
+extern uint64_t global_config_9600_ptr;    // 错误消息内容
+extern uint64_t global_config_9792_ptr;     // 对话框标题
+extern uint64_t global_config_6936_ptr;     // 系统消息
 
 // ============================================================================
 // 核心函数实现
@@ -111,7 +111,7 @@ void string_comparison_processor(uint64_t **param_1, longlong param_2)
         index = 0;
         do {
             temp_long = index + 1;
-            if (*(char *)(*(longlong *)(param_2 + 8) + index) != ((char *)&UNK_180a0ce90)[index])
+            if (*(char *)(*(longlong *)(param_2 + 8) + index) != ((char *)&global_config_9584_ptr)[index])
                 goto mismatch_case_1;
             index = temp_long;
         } while (temp_long != 8);
@@ -123,7 +123,7 @@ void string_comparison_processor(uint64_t **param_1, longlong param_2)
             index = 0;
             do {
                 temp_long = index + 1;
-                if (*(char *)(*(longlong *)(param_2 + 8) + index) != ((char *)&UNK_180a0ce64)[index])
+                if (*(char *)(*(longlong *)(param_2 + 8) + index) != ((char *)&global_config_9540_ptr)[index])
                     goto mismatch_case_2;
                 index = temp_long;
             } while (temp_long != 6);
@@ -132,8 +132,8 @@ void string_comparison_processor(uint64_t **param_1, longlong param_2)
         mismatch_case_2:
             // 字符串长度为8时的比较逻辑
             if ((string_length != 8) ||
-                ((string_length = strcmp(*(uint64_t *)(param_2 + 8), &UNK_180a0ce70), string_length != 0 &&
-                 (string_length = strcmp(*(uint64_t *)(param_2 + 8), &UNK_180a0cf50), string_length != 0))))
+                ((string_length = strcmp(*(uint64_t *)(param_2 + 8), &global_config_9552_ptr), string_length != 0 &&
+                 (string_length = strcmp(*(uint64_t *)(param_2 + 8), &global_config_9776_ptr), string_length != 0))))
                 goto final_mismatch;
         }
     }
@@ -178,7 +178,7 @@ final_mismatch:
     temp_ptr5 = result_ptr;
     FUN_180627ae0(result_ptr + 2, &stack_ptr2);
     temp_ptr4 = (uint64_t **)&stack_ptr2;
-    stack_ptr2 = &UNK_180a3c3e0;
+    stack_ptr2 = &global_config_3456_ptr;
     ptr_array[0] = result_ptr;
     
     // 执行最终处理
@@ -187,16 +187,16 @@ final_mismatch:
     }
     stack_long2 = 0;
     stack_uint2 = 0;
-    stack_ptr2 = &UNK_18098bcb0;
+    stack_ptr2 = &global_config_720_ptr;
     temp_ptr3 = (uint64_t ***)&stack_ptr4;
-    stack_ptr4 = &UNK_180a3c3e0;
+    stack_ptr4 = &global_config_3456_ptr;
     
     if (stack_long1 != 0) {
         FUN_18064e900();
     }
     stack_long1 = 0;
     stack_uint1 = 0;
-    stack_ptr4 = &UNK_18098bcb0;
+    stack_ptr4 = &global_config_720_ptr;
     temp_ptr1 = (uint64_t **)FUN_18006b640(temp_var, ptr_array);
     
     // 执行回调处理
@@ -235,13 +235,13 @@ final_mismatch:
 void memory_cleanup_handler(longlong param_1)
 {
     // 重置内存块指针
-    *(uint64_t *)(param_1 + 0x10) = &UNK_180a3c3e0;
+    *(uint64_t *)(param_1 + 0x10) = &global_config_3456_ptr;
     if (*(longlong *)(param_1 + 0x18) != 0) {
         FUN_18064e900();
     }
     *(uint64_t *)(param_1 + 0x18) = 0;
     *(int32_t *)(param_1 + 0x28) = 0;
-    *(uint64_t *)(param_1 + 0x10) = &UNK_18098bcb0;
+    *(uint64_t *)(param_1 + 0x10) = &global_config_720_ptr;
     return;
 }
 
@@ -349,7 +349,7 @@ void file_data_processor(uint64_t param_1, longlong param_2)
     
     // 执行初始化操作
     FUN_1801d8e90(_DAT_180c8aa08, param_2, 0);
-    stack_ptr1 = &UNK_180a3c3e0;
+    stack_ptr1 = &global_config_3456_ptr;
     stack_ulong1 = 0;
     stack_ptr2 = (void *)0x0;
     stack_uint1 = 0;
@@ -376,7 +376,7 @@ void file_data_processor(uint64_t param_1, longlong param_2)
         temp_ptr6 = stack_ptr2;
     }
     stack_uint1 = temp_int;
-    temp_int = FUN_18062dee0(&stack_var7, temp_ptr6, &UNK_180a01ff0);
+    temp_int = FUN_18062dee0(&stack_var7, temp_ptr6, &global_config_4880_ptr);
     temp_long3 = stack_long5;
     
     if (temp_int == 0) {
@@ -394,7 +394,7 @@ void file_data_processor(uint64_t param_1, longlong param_2)
         fread(stack_long1, temp_long1, 1, temp_long3);
         
         // 处理读取的数据
-        stack_ptr3 = &UNK_180a3c3e0;
+        stack_ptr3 = &global_config_3456_ptr;
         stack_ulong2 = 0;
         stack_long2 = 0;
         stack_int1 = 0;
@@ -616,13 +616,13 @@ void file_data_processor(uint64_t param_1, longlong param_2)
         
         // 释放锁
         ReleaseSRWLockExclusive(temp_long1);
-        stack_ptr3 = &UNK_180a3c3e0;
+        stack_ptr3 = &global_config_3456_ptr;
         if (stack_long2 != 0) {
             FUN_18064e900();
         }
         stack_long2 = 0;
         stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-        stack_ptr3 = &UNK_18098bcb0;
+        stack_ptr3 = &global_config_720_ptr;
         if (((char)stack_var2 == '\0') && (stack_long1 != 0)) {
             FUN_18064e900();
         }
@@ -638,11 +638,11 @@ void file_data_processor(uint64_t param_1, longlong param_2)
     }
     
     // 清理资源
-    stack_ptr1 = &UNK_180a3c3e0;
+    stack_ptr1 = &global_config_3456_ptr;
     if (stack_ptr2 == (void *)0x0) {
         stack_ptr2 = (void *)0x0;
         stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
-        stack_ptr1 = &UNK_18098bcb0;
+        stack_ptr1 = &global_config_720_ptr;
         FUN_1808fc050(stack_ulong3 ^ (ulonglong)temp_buffer1);
     }
     FUN_18064e900();
@@ -678,7 +678,7 @@ bool file_validator(longlong param_1)
     // 初始化变量
     validation_result = true;
     temp_ulong2 = 0;
-    stack_ptr1 = &UNK_180a3c3e0;
+    stack_ptr1 = &global_config_3456_ptr;
     stack_var1 = 0;
     stack_ptr2 = (void *)0x0;
     stack_uint1 = 0;
@@ -746,11 +746,11 @@ bool file_validator(longlong param_1)
     if (((system_debug_flag == '\0') && (validation_result == false)) &&
        ((*(int *)(_DAT_180c86908 + 0x620) == 0 && (param_1 == 0)))) {
         if (system_debug_flag2 == '\0') {
-            MessageBoxA(0, &UNK_180a0cea0, &UNK_180a0cf60, 0x41040);
+            MessageBoxA(0, &global_config_9600_ptr, &global_config_9792_ptr, 0x41040);
         }
         else if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
-            FUN_1800623b0(_DAT_180c86928, 3, 0xffffffff00000000, 0xd, &UNK_180a04f08, &UNK_180a0cf60,
-                          &UNK_180a0cea0);
+            FUN_1800623b0(_DAT_180c86928, 3, 0xffffffff00000000, 0xd, &global_config_6936_ptr, &global_config_9792_ptr,
+                          &global_config_9600_ptr);
         }
     }
     
@@ -764,7 +764,7 @@ bool file_validator(longlong param_1)
     }
     
     // 清理资源
-    stack_ptr1 = &UNK_180a3c3e0;
+    stack_ptr1 = &global_config_3456_ptr;
     if (stack_ptr2 == (void *)0x0) {
         return validation_result;
     }
@@ -806,7 +806,7 @@ void shader_cache_processor(uint64_t param_1)
     stack_ulong2 = system_stack_cookie ^ (ulonglong)temp_buffer1;
     temp_var1 = 0;
     temp_array1[1] = 0;
-    stack_ptr1 = &UNK_180a3c3e0;
+    stack_ptr1 = &global_config_3456_ptr;
     stack_ulong1 = 0;
     stack_ptr2 = (void *)0x0;
     stack_uint1 = 0;
@@ -833,7 +833,7 @@ void shader_cache_processor(uint64_t param_1)
         temp_ptr2 = stack_ptr2;
     }
     stack_uint1 = temp_int;
-    FUN_18062dee0(&stack_var1, temp_ptr2, &UNK_180a01ff0);
+    FUN_18062dee0(&stack_var1, temp_ptr2, &global_config_4880_ptr);
     temp_long1 = stack_long1;
     temp_array1[0] = 0;
     
@@ -841,12 +841,12 @@ void shader_cache_processor(uint64_t param_1)
         fread(temp_array1, 4, 1, stack_long1);
         if (temp_array1[0] == 0x5ef) {
             // 处理着色器缓存
-            stack_ptr3 = &UNK_18098bc80;
+            stack_ptr3 = &global_config_672_ptr;
             stack_ptr4 = temp_buffer2;
             stack_var3 = 0;
             temp_buffer2[0] = 0;
             temp_array1[1] = 1;
-            FUN_18004b860(&stack_ptr3, &UNK_1809fd0a0, 0x130a7);
+            FUN_18004b860(&stack_ptr3, &global_config_4576_ptr, 0x130a7);
             stack_int1 = 0;
             fread(&stack_int1, 4, 1, temp_long1);
             if (stack_int1 < 9) {
@@ -856,7 +856,7 @@ void shader_cache_processor(uint64_t param_1)
                 memset(temp_var1, 0, (longlong)(stack_int1 + 1));
             }
             temp_array1[1] = 0;
-            stack_ptr3 = &UNK_18098bcb0;
+            stack_ptr3 = &global_config_720_ptr;
         }
         fclose(temp_long1);
         stack_long1 = 0;
@@ -875,11 +875,11 @@ void shader_cache_processor(uint64_t param_1)
     }
     
     // 清理资源
-    stack_ptr1 = &UNK_180a3c3e0;
+    stack_ptr1 = &global_config_3456_ptr;
     if (stack_ptr2 == (void *)0x0) {
         stack_ptr2 = (void *)0x0;
         stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
-        stack_ptr1 = &UNK_18098bcb0;
+        stack_ptr1 = &global_config_720_ptr;
         FUN_1808fc050(stack_ulong2 ^ (ulonglong)temp_buffer1);
     }
     FUN_18064e900();
@@ -925,12 +925,12 @@ void configuration_file_handler(void)
     temp_array1[1] = 0;
     
     if (*(char *)(_DAT_180c86870 + 0x168) == '\0') {
-        stack_ptr3 = &UNK_180a3c3e0;
+        stack_ptr3 = &global_config_3456_ptr;
         stack_ulong2 = 0;
         stack_long1 = 0;
         stack_int1 = 0;
         FUN_1801c5870(&stack_ptr3);
-        stack_ptr1 = &UNK_180a3c3e0;
+        stack_ptr1 = &global_config_3456_ptr;
         stack_ulong1 = 0;
         stack_ptr2 = (int8_t *)0x0;
         stack_uint1 = 0;
@@ -970,22 +970,22 @@ void configuration_file_handler(void)
             if (stack_ptr2 != (int8_t *)0x0) {
                 temp_ptr2 = stack_ptr2;
             }
-            FUN_18062dee0(&stack_var1, temp_ptr2, &UNK_180a0cf4c);
+            FUN_18062dee0(&stack_var1, temp_ptr2, &global_config_9772_ptr);
             temp_long1 = stack_long2;
             
             if (stack_long2 == 0) {
-                FUN_180062300(_DAT_180c86928, &UNK_180a0cfa0);
+                FUN_180062300(_DAT_180c86928, &global_config_9856_ptr);
             }
             
             // 写入文件头
             temp_array2[0] = 0x5ef;
             fwrite(temp_array2, 4, 1, stack_long2);
-            stack_ptr4 = &UNK_18098bc80;
+            stack_ptr4 = &global_config_672_ptr;
             stack_ptr5 = temp_buffer2;
             stack_int2 = 0;
             temp_buffer2[0] = 0;
             temp_array1[1] = 1;
-            FUN_18004b860(&stack_ptr4, &UNK_1809fd0a0, 0x130a7);
+            FUN_18004b860(&stack_ptr4, &global_config_4576_ptr, 0x130a7);
             temp_array1[0] = stack_int2;
             fwrite(temp_array1, 4, 1, temp_long1);
             temp_ptr3 = &system_buffer_ptr;
@@ -999,24 +999,24 @@ void configuration_file_handler(void)
             _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
             UNLOCK();
             temp_array1[1] = 0;
-            stack_ptr4 = &UNK_18098bcb0;
+            stack_ptr4 = &global_config_720_ptr;
         }
         
         // 清理资源
-        stack_ptr1 = &UNK_180a3c3e0;
+        stack_ptr1 = &global_config_3456_ptr;
         if (stack_ptr2 != (int8_t *)0x0) {
             FUN_18064e900();
         }
         stack_ptr2 = (int8_t *)0x0;
         stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
-        stack_ptr1 = &UNK_18098bcb0;
-        stack_ptr3 = &UNK_180a3c3e0;
+        stack_ptr1 = &global_config_720_ptr;
+        stack_ptr3 = &global_config_3456_ptr;
         if (stack_long1 != 0) {
             FUN_18064e900();
         }
         stack_long1 = 0;
         stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-        stack_ptr3 = &UNK_18098bcb0;
+        stack_ptr3 = &global_config_720_ptr;
     }
     FUN_1808fc050(stack_ulong3 ^ (ulonglong)temp_buffer1);
 }
@@ -1058,11 +1058,11 @@ void path_builder(longlong *param_1, longlong param_2)
     
     if (param_2 == 0) {
         // 使用默认路径
-        stack_ptr1 = &UNK_1809fdc18;
+        stack_ptr1 = &global_config_7512_ptr;
         stack_ptr2 = temp_buffer2;
         temp_buffer2[0] = 0;
         stack_var3 = 6;
-        strcpy_s(temp_buffer2, 0x10, &UNK_180a3c07c);
+        strcpy_s(temp_buffer2, 0x10, &global_config_2588_ptr);
         stack_var1 = 1;
         temp_ptr2 = &system_buffer_ptr;
         if (stack_ptr2 != (void *)0x0) {
@@ -1070,7 +1070,7 @@ void path_builder(longlong *param_1, longlong param_2)
         }
         (**(code **)(*param_1 + 0x10))(param_1, temp_ptr2);
         stack_var1 = 0;
-        stack_ptr1 = &UNK_18098bcb0;
+        stack_ptr1 = &global_config_720_ptr;
         temp_long2 = param_1[2];
         temp_int = (int)temp_long2 + 8;
         FUN_1806277c0(param_1, temp_int);
@@ -1124,13 +1124,13 @@ longlong string_constructor(longlong param_1, longlong param_2)
         // 使用默认字符串
         temp_var1 = FUN_1800baa80(&stack_ptr1);
         FUN_18005d190(param_1, temp_var1);
-        stack_ptr1 = &UNK_180a3c3e0;
+        stack_ptr1 = &global_config_3456_ptr;
         if (stack_long1 != 0) {
             FUN_18064e900();
         }
         stack_long1 = 0;
         stack_var1 = 0;
-        stack_ptr1 = &UNK_18098bcb0;
+        stack_ptr1 = &global_config_720_ptr;
         temp_int = *(int *)(param_1 + 0x10) + 0x12;
         FUN_1806277c0(param_1, temp_int);
         temp_ptr1 = (uint64_t *)((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8));

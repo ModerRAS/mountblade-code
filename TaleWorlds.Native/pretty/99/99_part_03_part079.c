@@ -433,8 +433,8 @@ void FUN_180244e4d(void)
     }
     
     /* 设置系统回调函数 */
-    *(void **)(unaff_RSI + MEMORY_BLOCK_SIZE) = &UNK_1800ee4d0;
-    *(void **)(unaff_RSI + MEMORY_CACHE_SIZE) = &UNK_1800ee4c0;
+    *(void **)(unaff_RSI + MEMORY_BLOCK_SIZE) = &unknown_var_7024_ptr;
+    *(void **)(unaff_RSI + MEMORY_CACHE_SIZE) = &unknown_var_7008_ptr;
     *(code **)(unaff_RSI + MEMORY_POOL_SIZE) = FUN_1802436f0;
     
     /* 设置系统配置 */
@@ -493,14 +493,14 @@ uint64_t * FUN_180244f00(uint64_t *param_1, ulonglong param_2)
     longlong *plVar1;                  /**< 资源列表指针 */
     
     /* 初始化资源管理器 */
-    *param_1 = &UNK_180a143e8;
+    *param_1 = &unknown_var_9624_ptr;
     plVar1 = (longlong *)param_1[SYSTEM_CONFIG_MAX_SLOTS];
     
     /* 检查资源状态 */
     if (plVar1 == (longlong *)0x0) {
         /* 初始化新资源 */
         param_1[SYSTEM_CONFIG_MAX_SLOTS] = 0;
-        param_1[0x18] = &UNK_180a3c3e0;
+        param_1[0x18] = &unknown_var_3456_ptr;
         
         /* 验证资源状态 */
         if (param_1[0x19] != 0) {
@@ -511,7 +511,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, ulonglong param_2)
         /* 重置资源参数 */
         param_1[0x19] = 0;
         *(int32_t *)(param_1 + 0x1b) = 0;
-        param_1[0x18] = &UNK_18098bcb0;
+        param_1[0x18] = &unknown_var_720_ptr;
         
         /* 执行资源初始化 */
         FUN_180049470(param_1);
@@ -596,13 +596,13 @@ void FUN_180244ff0(longlong param_1)
         iVar2 = *(int *)(param_1 + 0x3594);
         
         /* 设置处理参数 */
-        puStack_d8 = &UNK_1809fcc28;
+        puStack_d8 = &unknown_var_3432_ptr;
         puStack_d0 = auStack_c0;
         auStack_c0[0] = 0;
         uStack_c8 = 10;
         
         /* 复制系统字符串 */
-        strcpy_s(auStack_c0, RESOURCE_STRING_SIZE, &UNK_180a146b0);
+        strcpy_s(auStack_c0, RESOURCE_STRING_SIZE, &unknown_var_336_ptr);
         
         /* 获取系统名称 */
         puVar9 = &system_buffer_ptr;
@@ -673,7 +673,7 @@ void FUN_180244ff0(longlong param_1)
         
         /* 执行线程ID操作 */
         _Thrd_id();
-        puStack_d8 = &UNK_18098bcb0;
+        puStack_d8 = &unknown_var_720_ptr;
     }
     
     /* 执行系统操作 */
@@ -739,14 +739,14 @@ void FUN_180245280(longlong param_1)
         uStack_e0 = *(int32_t *)(param_1 + 0x1bd4);
         
         /* 设置资源管理参数 */
-        puStack_b8 = &UNK_1809fcc28;
+        puStack_b8 = &unknown_var_3432_ptr;
         puStack_b0 = auStack_a0;
         auStack_a0[0] = 0;
         uStack_a8 = 7;
         uStack_f0 = uVar4;
         
         /* 复制资源字符串 */
-        uVar5 = strcpy_s(auStack_a0, RESOURCE_STRING_SIZE, &UNK_180a146f0);
+        uVar5 = strcpy_s(auStack_a0, RESOURCE_STRING_SIZE, &unknown_var_400_ptr);
         
         /* 分配资源 */
         puVar3 = (uint64_t *)FUN_1800b1d80(uVar5, &plStack_d0, &puStack_b8, &uStack_f8);
@@ -767,7 +767,7 @@ void FUN_180245280(longlong param_1)
             (**(code **)(*plStack_d0 + 0x38))();
         }
         
-        puStack_b8 = &UNK_18098bcb0;
+        puStack_b8 = &unknown_var_720_ptr;
     }
     
     /* 执行系统操作 */

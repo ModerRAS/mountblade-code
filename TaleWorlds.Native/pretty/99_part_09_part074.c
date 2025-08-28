@@ -97,21 +97,21 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
   }
   
   /* 系统数据处理流程 */
-  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &UNK_180a373b8, param_2);
-  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &UNK_180a37388, param_3);
-  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &UNK_180a373f0, param_4);
+  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &unknown_var_2936_ptr, param_2);
+  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &unknown_var_2888_ptr, param_3);
+  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &unknown_var_2992_ptr, param_4);
   
   /* 系统状态验证 */
-  system_status_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+  system_status_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
   if (((((system_status_flag != '\0') && 
-         (system_status_flag = FUN_180645c10(0x180c95578, 0x12, &UNK_1809fa540), system_status_flag != '\0')) &&
-        (system_status_flag = FUN_180645c10(0x180c95578, param_2, &UNK_1809fa560), system_status_flag != '\0')) &&
-       ((system_status_flag = FUN_180645c10(0x180c95578, param_3, &UNK_1809fa510), system_status_flag != '\0' &&
-        (system_status_flag = FUN_180645c10(0x180c95578, param_4, &UNK_1809fa510), system_status_flag != '\0')))) &&
+         (system_status_flag = FUN_180645c10(0x180c95578, 0x12, &unknown_var_3472_ptr), system_status_flag != '\0')) &&
+        (system_status_flag = FUN_180645c10(0x180c95578, param_2, &unknown_var_3504_ptr), system_status_flag != '\0')) &&
+       ((system_status_flag = FUN_180645c10(0x180c95578, param_3, &unknown_var_3424_ptr), system_status_flag != '\0' &&
+        (system_status_flag = FUN_180645c10(0x180c95578, param_4, &unknown_var_3424_ptr), system_status_flag != '\0')))) &&
       (system_status_flag = FUN_180645c10(0x180c95578, param_5, &system_memory_bc90), system_status_flag != '\0')) {
     
     /* 系统哈希值计算 */
-    system_hash_value = FUN_18055f6f0(&UNK_1809fa450, param_6);
+    system_hash_value = FUN_18055f6f0(&unknown_var_3232_ptr, param_6);
     system_bit_offset = _DAT_180c95b3c >> 0x1f & 0x1f;
     system_result_code = _DAT_180c95b3c + system_bit_offset;
     system_data_pointer = (ulonglong *)(_DAT_180c95b10 + (longlong)(system_result_code >> 5) * 4);
@@ -197,13 +197,13 @@ void system_data_validator(longlong *param_1)
   
   /* 系统参数获取 */
   system_parameter = *(int32_t *)(*param_1 + 0x10);
-  system_validation_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+  system_validation_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
   
   /* 系统数据验证流程 */
   if (system_validation_flag != '\0') {
-    system_validation_flag = FUN_180645c10(0x180c95578, 3, &UNK_1809fa540);
+    system_validation_flag = FUN_180645c10(0x180c95578, 3, &unknown_var_3472_ptr);
     if (system_validation_flag != '\0') {
-      FUN_180645c10(0x180c95578, system_parameter, &UNK_1809fa510);
+      FUN_180645c10(0x180c95578, system_parameter, &unknown_var_3424_ptr);
     }
   }
   
@@ -285,13 +285,13 @@ void system_resource_manager(longlong *param_1, uint64_t param_2, longlong param
   
   /* 系统参数获取 */
   system_parameter = *(int32_t *)(*param_1 + 0x10);
-  system_validation_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+  system_validation_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
   
   /* 系统资源验证流程 */
   if (system_validation_flag != '\0') {
-    system_validation_flag = FUN_180645c10(0x180c95578, 3, &UNK_1809fa540);
+    system_validation_flag = FUN_180645c10(0x180c95578, 3, &unknown_var_3472_ptr);
     if (system_validation_flag != '\0') {
-      FUN_180645c10(0x180c95578, system_parameter, &UNK_1809fa510);
+      FUN_180645c10(0x180c95578, system_parameter, &unknown_var_3424_ptr);
     }
   }
   
@@ -422,11 +422,11 @@ void system_parameter_handler(longlong *param_1, longlong param_2, int32_t param
     }
     
     /* 系统参数验证 */
-    system_validation_flag = FUN_180645c10(system_context, 0, &UNK_1809fa560);
+    system_validation_flag = FUN_180645c10(system_context, 0, &unknown_var_3504_ptr);
     if ((system_validation_flag != '\0') && 
-        (system_validation_flag = FUN_180645c10(system_context, 0x16, &UNK_1809fa540), 
+        (system_validation_flag = FUN_180645c10(system_context, 0x16, &unknown_var_3472_ptr), 
          system_validation_flag != '\0')) {
-      FUN_180645c10(system_context, system_hash_value, &UNK_1809fa550);
+      FUN_180645c10(system_context, system_hash_value, &unknown_var_3488_ptr);
     }
     
     /* 系统互斥锁释放 */
@@ -483,11 +483,11 @@ void system_thread_synchronizer(void)
   }
   
   /* 系统数据验证 */
-  system_validation_flag = FUN_180645c10(system_handle, 0, &UNK_1809fa560);
+  system_validation_flag = FUN_180645c10(system_handle, 0, &unknown_var_3504_ptr);
   if ((system_validation_flag != '\0') && 
-      (system_validation_flag = FUN_180645c10(system_handle, 0x16, &UNK_1809fa540), 
+      (system_validation_flag = FUN_180645c10(system_handle, 0x16, &unknown_var_3472_ptr), 
        system_validation_flag != '\0')) {
-    FUN_180645c10(system_handle, system_parameter, &UNK_1809fa550);
+    FUN_180645c10(system_handle, system_parameter, &unknown_var_3488_ptr);
   }
   
   /* 系统互斥锁释放 */
@@ -568,9 +568,9 @@ void system_empty_function(void)
 uint64_t *system_allocator(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
   /* 系统内存池初始化 */
-  *param_1 = &UNK_180a378a0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_4192_ptr;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   
   /* 系统内存释放 */
   if ((param_2 & 1) != 0) {
@@ -597,9 +597,9 @@ uint64_t *system_allocator(uint64_t *param_1, ulonglong param_2, uint64_t param_
 void system_resource_initializer(uint64_t *param_1)
 {
   /* 系统资源初始化 */
-  *param_1 = &UNK_180a378a0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_4192_ptr;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   
   return;
 }
@@ -637,8 +637,8 @@ uint64_t *system_memory_controller(uint64_t *param_1, uint64_t param_2, int32_t 
   int32_t system_parameter;
   
   /* 系统内存控制器初始化 */
-  *param_1 = &UNK_180a19ac8;
-  *param_1 = &UNK_180a37930;
+  *param_1 = &unknown_var_1864_ptr;
+  *param_1 = &unknown_var_4336_ptr;
   system_iterator = 0;
   param_1[1] = 0;
   param_1[2] = 0;
@@ -760,7 +760,7 @@ void system_deinitializer(uint64_t *param_1)
   ulonglong system_counter;
   
   /* 系统资源指针初始化 */
-  *param_1 = &UNK_180a37930;
+  *param_1 = &unknown_var_4336_ptr;
   system_resource_handle = param_1[0x21f];
   system_iterator = 0;
   
@@ -826,7 +826,7 @@ void system_deinitializer(uint64_t *param_1)
   
   /* 系统最终处理 */
   if (param_1[1] == 0) {
-    *param_1 = &UNK_180a19ac8;
+    *param_1 = &unknown_var_1864_ptr;
     return;
   }
   

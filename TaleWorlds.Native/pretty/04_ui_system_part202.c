@@ -128,7 +128,7 @@ void FUN_1807872c0(longlong param_1,uint64_t param_2,int32_t param_3,int param_4
         param_4 = iStack_dc;
       } while (lVar10 < lVar6);
     }
-    qsort(lVar11,lVar6,8,&UNK_1807880a0);
+    qsort(lVar11,lVar6,8,&unknown_var_8192_ptr);
     iVar4 = (int)uStack_f0;
   }
   lStack_88 = *(longlong *)(param_1 + 0x48) + 0x10bd0;
@@ -300,7 +300,7 @@ void FUN_1807872e6(longlong param_1,uint64_t param_2,int32_t param_3,int param_4
         param_4 = iStack000000000000006c;
       } while (lVar13 < lVar8);
     }
-    qsort(lVar9,lVar8,8,&UNK_1807880a0);
+    qsort(lVar9,lVar8,8,&unknown_var_8192_ptr);
     iVar6 = iStack0000000000000058;
   }
   lVar9 = *(longlong *)(unaff_RBX + 0x48) + 0x10bd0;
@@ -424,7 +424,7 @@ void FUN_1807873a8(int param_1,longlong param_2)
         unaff_ESI = in_stack_00000068._4_4_;
       } while (lVar11 < lVar8);
     }
-    qsort(lVar9,lVar8,8,&UNK_1807880a0);
+    qsort(lVar9,lVar8,8,&unknown_var_8192_ptr);
     unaff_R12 = 0;
   }
   lVar9 = *(longlong *)(unaff_RBX + 0x48) + 0x10bd0;

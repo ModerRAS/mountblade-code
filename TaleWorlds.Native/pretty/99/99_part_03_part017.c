@@ -373,7 +373,7 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                 do {
                     if ((*(uint *)(*(longlong *)(allocation_size + data_offset) + 0x100) & 0x400000) != 0) {
                         data_offset = *(longlong *)(*(longlong *)(allocation_size + data_offset) + 0x1b8);
-                        stack_ptr_d0 = &UNK_180a3c3e0;
+                        stack_ptr_d0 = &unknown_var_3456_ptr;
                         stack_value_b8 = 0;
                         stack_ptr_c8 = (byte *)0x0;
                         stack_value_c0 = 0;
@@ -451,13 +451,13 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                             stack_value_88 = 0;
                             FUN_1801eac40(resource_manager_ptr, stack_buffer_48);
                             stack_ptr_58 = &stack_ptr_a8;
-                            stack_ptr_a8 = &UNK_180a3c3e0;
+                            stack_ptr_a8 = &unknown_var_3456_ptr;
                             if (stack_value_a0 != 0) {
                                 FUN_18064e900();
                             }
                             stack_value_a0 = 0;
                             stack_value_90 = 0;
-                            stack_ptr_a8 = &UNK_18098bcb0;
+                            stack_ptr_a8 = &unknown_var_720_ptr;
                             node_ptr_1 = (uint64_t *)resource_manager_ptr[2];
                             node_ptr_3 = resource_manager_ptr;
                             if (node_ptr_1 == (uint64_t *)0x0) {
@@ -526,13 +526,13 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                                 (**(code **)(*resource_array + 0x38))(resource_array);
                                 *(int8_t *)(node_ptr_2 + 8) = 1;
                             }
-                            stack_ptr_d0 = &UNK_180a3c3e0;
+                            stack_ptr_d0 = &unknown_var_3456_ptr;
                             if (stack_ptr_c8 != (byte *)0x0) {
                                 FUN_18064e900();
                             }
                             stack_ptr_c8 = (byte *)0x0;
                             stack_value_b8 = stack_value_b8 & 0xffffffff00000000;
-                            stack_ptr_d0 = &UNK_18098bcb0;
+                            stack_ptr_d0 = &unknown_var_720_ptr;
                         }
                     }
                     resource_id = (int)temp_size + 1;

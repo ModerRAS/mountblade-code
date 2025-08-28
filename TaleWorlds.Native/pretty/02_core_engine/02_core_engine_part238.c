@@ -7,7 +7,7 @@ extern uint64_t _DAT_180c86920;    // 引擎全局数据结构指针
 extern uint64_t _DAT_180c8ed18;    // 内存池标识符
 extern uint64_t _DAT_180c86890;    // 资源管理器数据指针
 extern uint64_t _DAT_180c86870;    // 渲染配置数据指针
-extern int8_t UNK_180a0fec0;      // 格式化字符串常量
+extern int8_t global_state_1920_ptr;      // 格式化字符串常量
 
 /**
  * 处理引擎资源管理器初始化和配置
@@ -892,7 +892,7 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
                   else {
                     temp_char = validate_resource_data(temp_long3, temp_long2, temp_long1);
                     if (temp_char == '\0') {
-                      log_resource_error(&UNK_180a0fec0);
+                      log_resource_error(&global_state_1920_ptr);
                       temp_int = *(int *)(temp_long4 + stack_long3);
                       temp_uint4 = stack_uint1;
                       goto resource_skip_label;

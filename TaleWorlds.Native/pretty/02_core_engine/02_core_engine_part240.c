@@ -177,7 +177,7 @@ void process_config_string_data(longlong *config_ptr)
   }
   
   // 清理资源
-  temp_stack_ptr1 = &UNK_180a3c3e0;
+  temp_stack_ptr1 = &unknown_var_3456_ptr;
   if (temp_stack_long1 != 0) {
     free_memory_block((void *)temp_stack_long1);
   }
@@ -631,7 +631,7 @@ longlong *batch_copy_data_elements(longlong *dest_ptr, longlong *src_start_ptr,
 static const longlong system_memory_ff10 = 0;  // 字符串匹配模式
 static const longlong _DAT_180c86930 = 0; // 配置数据基址
 static const longlong _DAT_180c8ed18 = 0; // 内存分配器基址
-static const longlong UNK_180a3c3e0 = 0;  // 未知常量
+static const longlong unknown_var_3456_ptr = 0;  // 未知常量
 
 // 简化实现 - 这些函数在实际代码中应该有完整的实现
 longlong *allocate_data_block(longlong size, char flags) {

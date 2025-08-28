@@ -86,7 +86,7 @@ void Initialization_MainLoop(longlong context)
     }
     
     // 初始化任务管理器指针
-    cleanup_ptr = &UNK_1809feda8;
+    cleanup_ptr = &unknown_var_2008_ptr;
     name_buffer = name_storage;
     name_length = 0;
     name_storage[0] = 0;
@@ -205,7 +205,7 @@ void Initialization_MainLoop(longlong context)
     }
     // 处理内存管理器任务
     manager_ptr = *(uint64_t **)(context + 0xc0);
-    if ((void *)*manager_ptr == &UNK_1809fee70) {
+    if ((void *)*manager_ptr == &unknown_var_2208_ptr) {
       status_flag = FUN_180068a90(manager_ptr + 2,&lock_ptr);
       while (status_flag != '\0') {
         data_ptr = (longlong *)manager_ptr[99];
@@ -332,7 +332,7 @@ LAB_18006c852:
             string_buffer = name_buffer;
           }
                     // WARNING: Subroutine does not return
-          FUN_180062300(_DAT_180c86928,&UNK_1809ff390,total_processed,string_buffer);
+          FUN_180062300(_DAT_180c86928,&unknown_var_3520_ptr,total_processed,string_buffer);
         }
         
         // 执行资源分配
@@ -401,7 +401,7 @@ LAB_18006ca44:
                 }
                 ptr_array[0x24] = ptr_array2[0x24];
               }
-              *manager_ptr = &UNK_18098bcb0;
+              *manager_ptr = &unknown_var_720_ptr;
               callback_ptr = (void **)manager_ptr;
                     // WARNING: Subroutine does not return
               FUN_18064e900(manager_ptr);
@@ -495,7 +495,7 @@ LAB_18006ca95:
     
     // 重置清理指针
     callback_ptr = &cleanup_ptr;
-    cleanup_ptr = &UNK_18098bcb0;
+    cleanup_ptr = &unknown_var_720_ptr;
     status_flag = *(char *)(*(longlong *)(context + 1000) + 0x58);
   } while( true );
 }
@@ -524,7 +524,7 @@ void ResourcePool_Cleanup(longlong pool_handle)
     do {
       resource_ptr = *(uint64_t **)(pool_base + index * 8);
       if (resource_ptr != (uint64_t *)0x0) {
-        *resource_ptr = &UNK_18098bcb0;
+        *resource_ptr = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900(resource_ptr);
       }

@@ -949,10 +949,10 @@ LAB_1803f392d:
   if (uVar8 != uVar6) {
     lVar9 = uVar8 - (longlong)puVar3;
     do {
-      *puVar4 = &UNK_18098bcb0;
+      *puVar4 = &unknown_var_720_ptr;
       puVar4[1] = 0;
       *(int32_t *)(puVar4 + 2) = 0;
-      *puVar4 = &UNK_1809feda8;
+      *puVar4 = &unknown_var_2008_ptr;
       puVar4[1] = puVar4 + 3;
       *(int32_t *)(puVar4 + 2) = 0;
       *(int8_t *)(puVar4 + 3) = 0;
@@ -1200,7 +1200,7 @@ void FUN_1803f3bc0(uint64_t param_1,ulonglong *param_2,uint64_t *param_3,uint64_
   uStack_b8 = 0;
   uStack_b0 = 0xf;
   auStack_c8[0] = 0;
-  FUN_1800671b0(auStack_c8,&UNK_180a25900,0x19);
+  FUN_1800671b0(auStack_c8,&unknown_var_560_ptr,0x19);
   FUN_1804726c0(param_1,auStack_c8,uVar10);
   FUN_180067070(&uStack_f8);
   plVar4 = plStack_110;

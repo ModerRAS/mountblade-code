@@ -70,7 +70,7 @@ LAB_1800c46c3:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar5 = *(void **)(param_2 + 8);
   }
-  FUN_180626f80(&UNK_180a03aa0,puVar5);
+  FUN_180626f80(&unknown_var_1712_ptr,puVar5);
   return -1;
 }
 
@@ -82,12 +82,12 @@ longlong * FUN_1800c4720(longlong *param_1,uint64_t param_2,uint64_t param_3,uin
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = (longlong)&UNK_180a03ac8;
-  param_1[2] = (longlong)&UNK_180a01620;
+  *param_1 = (longlong)&unknown_var_1752_ptr;
+  param_1[2] = (longlong)&unknown_var_2368_ptr;
   __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ(param_1 + 0x17);
   __0__basic_iostream_DU__char_traits_D_std___std__QEAA_PEAV__basic_streambuf_DU__char_traits_D_std___1__Z
             (param_1,param_1 + 3,0,param_4,1,uVar1);
-  *(void **)((longlong)*(int *)(*param_1 + 4) + (longlong)param_1) = &UNK_180a03ad8;
+  *(void **)((longlong)*(int *)(*param_1 + 4) + (longlong)param_1) = &unknown_var_1768_ptr;
   *(int *)((longlong)*(int *)(*param_1 + 4) + -4 + (longlong)param_1) =
        *(int *)(*param_1 + 4) + -0xb8;
   FUN_18009ec20(param_1 + 3);

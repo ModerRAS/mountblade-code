@@ -155,7 +155,7 @@ void rendering_system_parameter_handler1(void)
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_470) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_470);
             }
-            FUN_180626f80(&UNK_18098bc00, data_pointer);
+            FUN_180626f80(&global_config_544_ptr, data_pointer);
         }
         
         // 更新渲染参数
@@ -215,7 +215,7 @@ void rendering_system_parameter_handler2(void)
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150);
             }
-            FUN_180626f80(&UNK_18098bc00, data_pointer);
+            FUN_180626f80(&global_config_544_ptr, data_pointer);
         }
         
         // 更新高级渲染参数
@@ -1420,7 +1420,7 @@ void rendering_system_batch_executor(int param_1, int param_2, int param_3, int 
     
     // 设置渲染缓冲区
     pointer_stack = &buffer_pointer;
-    buffer_pointer = &UNK_1809fcc28;
+    buffer_pointer = &global_config_3432_ptr;
     buffer_data = temp_buffer;
     temp_value = 0;
     temp_buffer[0] = 0;
@@ -1450,7 +1450,7 @@ void rendering_system_batch_executor(int param_1, int param_2, int param_3, int 
     }
     
     triple_pointer = (void ***)&buffer_pointer;
-    buffer_pointer = &UNK_18098bcb0;
+    buffer_pointer = &global_config_720_ptr;
     FUN_18004b1f0(0);
     // WARNING: Subroutine does not return
     FUN_1808fc050(stack_guard ^ (ulonglong)temp_buffer);
@@ -1496,7 +1496,7 @@ void rendering_system_string_processor(int param_1)
     stack_guard = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
     
     base_address = (longlong)param_1 * 0x70 + *(longlong *)(*(longlong *)(_DAT_180c86870 + 8) + 0x18);
-    stack_pointer = &UNK_1809fcc58;
+    stack_pointer = &global_config_3480_ptr;
     string_buffer = work_buffer;
     work_buffer[0] = 0;
     buffer_size = *(uint *)(base_address + 0x10);
@@ -1515,7 +1515,7 @@ void rendering_system_string_processor(int param_1)
         buffer_size = buffer_size + 2;
     }
     
-    FUN_180060680(format_buffer, &UNK_1809fd0a0, param_1);
+    FUN_180060680(format_buffer, &global_config_4576_ptr, param_1);
     data_offset = -1;
     
     do {
@@ -1536,7 +1536,7 @@ void rendering_system_string_processor(int param_1)
     }
     
     (**(code **)(*_DAT_180c8f008 + 0x70))(_DAT_180c8f008, &stack_pointer);
-    stack_pointer = &UNK_18098bcb0;
+    stack_pointer = &global_config_720_ptr;
     // WARNING: Subroutine does not return
     FUN_1808fc050(stack_guard ^ (ulonglong)temp_buffer);
 }
@@ -1572,7 +1572,7 @@ void rendering_system_copy_executor(longlong param_1, int32_t param_2)
     ulonglong stack_guard;
     
     stack_guard = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
-    FUN_180060680(format_buffer, &UNK_1809fd0a0, param_2);
+    FUN_180060680(format_buffer, &global_config_4576_ptr, param_2);
     
     data_offset = -1;
     do {
@@ -1693,7 +1693,7 @@ void rendering_system_parameter_handler3(uint64_t param_1, int32_t param_2)
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0);
             }
-            FUN_180626f80(&UNK_18098bc00, data_pointer);
+            FUN_180626f80(&global_config_544_ptr, data_pointer);
         }
         
         *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) = 
@@ -1745,7 +1745,7 @@ void rendering_system_parameter_handler4(uint64_t param_1, int32_t param_2)
             if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120) != (void *)0x0) {
                 data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120);
             }
-            FUN_180626f80(&UNK_18098bc00, data_pointer);
+            FUN_180626f80(&global_config_544_ptr, data_pointer);
         }
         
         *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1110) = 
@@ -1782,7 +1782,7 @@ void rendering_system_parameter_handler4(uint64_t param_1, int32_t param_2)
  */
 void rendering_system_command_executor(int32_t param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
 {
-    FUN_1800623b0(_DAT_180c86928, param_1, param_4, param_3, &UNK_180a29740, param_2);
+    FUN_1800623b0(_DAT_180c86928, param_1, param_4, param_3, &global_config_6496_ptr, param_2);
     return;
 }
 

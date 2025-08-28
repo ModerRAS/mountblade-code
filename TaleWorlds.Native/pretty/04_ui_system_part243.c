@@ -107,7 +107,7 @@ uint64_t FUN_180807640(uint64_t param_1,uint64_t *param_2)
   uVar1 = *(uint *)*param_2;
   if (uVar1 < 8) {
     do {
-      switch((ulonglong)*(uint *)(&UNK_180807714 + (longlong)(int)uVar1 * 4) + 0x180000000) {
+      switch((ulonglong)*(uint *)(&unknown_var_36_ptr + (longlong)(int)uVar1 * 4) + 0x180000000) {
       case 0x18080767f:
         iVar2 = FUN_180807950(param_1,param_2);
         if (iVar2 == 0) {
@@ -362,7 +362,7 @@ uint64_t FUN_180807950(uint64_t param_1,uint64_t *param_2)
             auStackX_18[0] = (uint)*(byte *)(lVar1 + 0xfc6);
             *(int32_t *)(lVar1 + 0xf88) = 0;
           }
-          if (auStackX_18[0] != (byte)(&UNK_180980020)[uVar4]) break;
+          if (auStackX_18[0] != (byte)(&unknown_var_2448_ptr)[uVar4]) break;
           uVar3 = (int)uVar4 + 1;
           uVar4 = (ulonglong)uVar3;
           uVar8 = uVar7;

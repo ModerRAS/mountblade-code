@@ -260,13 +260,13 @@ LAB_18052bb8d:
           fVar27 = fVar27 + 0.01;
           fStack_150 = fVar27;
           if (*(longlong *)(param_1 + 0x650) == 0) {
-            puStack_148 = &UNK_1809fcc28;
+            puStack_148 = &unknown_var_3432_ptr;
             puStack_140 = auStack_130;
             auStack_130[0] = 0;
             uStack_138 = 0x1d;
-            strcpy_s(auStack_130,0x80,&UNK_180a30e60);
+            strcpy_s(auStack_130,0x80,&unknown_var_6992_ptr);
             FUN_1800c1520(_DAT_180c86970,&fStack_1a0,&puStack_148);
-            puStack_148 = &UNK_18098bcb0;
+            puStack_148 = &unknown_var_720_ptr;
             uVar16 = FUN_18062b1e0(_DAT_180c8ed18,0x168,8,3);
             plVar17 = (longlong *)FUN_1802ac390(uVar16);
             if (plVar17 != (longlong *)0x0) {
@@ -503,11 +503,11 @@ LAB_18052c185:
   iStack_78 = 0;
   if (*(char *)(param_2 + 0x15) == '\0') {
     cVar1 = *(char *)(param_1 + 0x744);
-    puStack_160 = &UNK_180a2fd10;
+    puStack_160 = &unknown_var_2560_ptr;
     puStack_158 = auStack_148;
     auStack_148[0] = 0;
     uStack_150 = 10;
-    strcpy_s(auStack_148,0xc,&UNK_180a2fca0);
+    strcpy_s(auStack_148,0xc,&unknown_var_2448_ptr);
     lVar4 = (longlong)iStack_78;
     puVar5 = &system_buffer_ptr;
     if (puStack_158 != (void *)0x0) {
@@ -518,7 +518,7 @@ LAB_18052c185:
     afStack_118[lVar4 * 0xc + 1] = (float)(int)cVar1 * 0.1;
     auStack_110[lVar4 * 0x30] = 1;
     iStack_78 = iStack_78 + 1;
-    puStack_160 = &UNK_18098bcb0;
+    puStack_160 = &unknown_var_720_ptr;
     pplVar6 = aplStack_138;
   }
   if (0.0 < *(float *)(param_2 + 0x18)) {
@@ -535,11 +535,11 @@ LAB_18052c185:
     else {
       fVar8 = 0.0;
     }
-    puStack_160 = &UNK_180a2fd40;
+    puStack_160 = &unknown_var_2608_ptr;
     puStack_158 = auStack_148;
     auStack_148[0] = 0;
     uStack_150 = 4;
-    strcpy_s(auStack_148,8,&UNK_180a2fcd8);
+    strcpy_s(auStack_148,8,&unknown_var_2504_ptr);
     lVar4 = (longlong)iStack_78;
     puVar5 = &system_buffer_ptr;
     if (puStack_158 != (void *)0x0) {
@@ -550,7 +550,7 @@ LAB_18052c185:
     afStack_118[lVar4 * 0xc + 1] = fVar8;
     auStack_110[lVar4 * 0x30] = 1;
     iStack_78 = iStack_78 + 1;
-    puStack_160 = &UNK_18098bcb0;
+    puStack_160 = &unknown_var_720_ptr;
     pplVar6 = aplStack_138;
   }
   uStack_180 = 0;

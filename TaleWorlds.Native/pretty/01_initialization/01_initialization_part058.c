@@ -52,7 +52,7 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
   context_data = param_1;
   
   // 根据资源类型进行不同的初始化
-  if ((void *)*param_1 == &UNK_180a00270) {
+  if ((void *)*param_1 == &unknown_var_7328_ptr) {
     LOCK();
     *(int *)(param_1 + 1) = (int)param_1[1] + 1;
     UNLOCK();
@@ -65,8 +65,8 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
   if (param_5 == '\0') {
     resource_3 = *(longlong **)(param_1[0x15] + 0x88);
     callback_func = *(code **)(*resource_3 + 0x70);
-    cleanup_callback_1 = (code *)&UNK_180083180;
-    cleanup_data_1 = &UNK_180083170;
+    cleanup_callback_1 = (code *)&unknown_var_7904_ptr;
+    cleanup_data_1 = &unknown_var_7888_ptr;
     stack_param_1 = (int32_t)context_data;
     stack_param_2 = context_data._4_4_;
     stack_param_3 = flag_1;
@@ -116,7 +116,7 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
       if ((void *)param_1[3] != (void *)0x0) {
         error_handler = (void *)param_1[3];
       }
-      FUN_180626f80(&UNK_1809ffbb0, error_handler);
+      FUN_180626f80(&unknown_var_5600_ptr, error_handler);
       status_flag = (char *)(param_1[0x3c] + 0x15 + (ulonglong)param_2 * 0x18);
       LOCK();
       if (*status_flag == '\x01') {
@@ -157,7 +157,7 @@ void FUN_18007c790(longlong *param_1)
   if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
     error_handler = *(void **)(*param_1 + 0x18);
   }
-  FUN_180626f80(&UNK_1809ffbb0, error_handler);
+  FUN_180626f80(&unknown_var_5600_ptr, error_handler);
   status_flag = (char *)(*(longlong *)(*param_1 + 0x1e0) + 0x15 +
                    (ulonglong)*(byte *)(param_1 + 1) * 0x18);
   LOCK();

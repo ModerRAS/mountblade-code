@@ -451,7 +451,7 @@ LAB_1806579f0:
 uint64_t * UISystem_MemoryManager(uint64_t *memory_ptr, ulonglong allocation_flag)
 
 {
-  *memory_ptr = &UNK_180a3e470;
+  *memory_ptr = &unknown_var_1792_ptr;
   if ((allocation_flag & 1) != 0) {
     free(memory_ptr,8);
   }
@@ -479,7 +479,7 @@ void UISystem_SteamInterfaceManager_User(uint64_t *interface_ptr)
   // 获取Steam用户句柄
   steam_user_handle = SteamAPI_GetHSteamUser();
   // 查找或创建用户接口
-  steam_interface_result = SteamInternal_FindOrCreateUserInterface(steam_user_handle,&UNK_180a3e408);
+  steam_interface_result = SteamInternal_FindOrCreateUserInterface(steam_user_handle,&unknown_var_1688_ptr);
   *interface_ptr = steam_interface_result;
   return;
 }
@@ -505,7 +505,7 @@ void UISystem_SteamInterfaceManager_Feature(uint64_t *interface_ptr)
   // 获取Steam用户句柄
   steam_user_handle = SteamAPI_GetHSteamUser();
   // 查找或创建功能接口
-  steam_interface_result = SteamInternal_FindOrCreateUserInterface(steam_user_handle,&UNK_180a3e418);
+  steam_interface_result = SteamInternal_FindOrCreateUserInterface(steam_user_handle,&unknown_var_1704_ptr);
   *interface_ptr = steam_interface_result;
   return;
 }
@@ -532,9 +532,9 @@ UISystem_DataStructureOperator(uint64_t *structure_ptr, ulonglong operation_flag
   uint64_t memory_management_flag;
   
   memory_management_flag = 0xfffffffffffffffe;
-  *structure_ptr = &UNK_180a3e440;
+  *structure_ptr = &unknown_var_1744_ptr;
   FUN_18005d580();
-  *structure_ptr = &UNK_180a3e470;
+  *structure_ptr = &unknown_var_1792_ptr;
   if ((operation_flag & 1) != 0) {
     free(structure_ptr,MEMORY_BLOCK_SIZE,data_param1,data_param2,memory_management_flag);
   }
@@ -594,7 +594,7 @@ void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t
   item_count = current_offset;
   if (*(longlong *)(data_source + 0x10) - source_data_ptr >> 5 != 0) {
     do {
-      stack_data_buffer = &UNK_180a3c3e0;
+      stack_data_buffer = &unknown_var_3456_ptr;
       buffer_size = 0;
       string_buffer_ptr = (int8_t *)0x0;
       string_length = 0;
@@ -613,10 +613,10 @@ void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t
       data_structure_ptr = *(uint64_t **)(data_target + 8);
       if (data_structure_ptr < *(uint64_t **)(data_target + 0x10)) {
         *(uint64_t **)(data_target + 8) = data_structure_ptr + 4;
-        *data_structure_ptr = &UNK_18098bcb0;
+        *data_structure_ptr = &unknown_var_720_ptr;
         data_structure_ptr[1] = 0;
         *(int32_t *)(data_structure_ptr + 2) = 0;
-        *data_structure_ptr = &UNK_180a3c3e0;
+        *data_structure_ptr = &unknown_var_3456_ptr;
         data_structure_ptr[3] = 0;
         data_structure_ptr[1] = 0;
         *(int32_t *)(data_structure_ptr + 2) = 0;
@@ -635,7 +635,7 @@ void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t
       else {
         FUN_180059820(data_target,&stack_data_buffer);
       }
-      stack_data_buffer = &UNK_180a3c3e0;
+      stack_data_buffer = &unknown_var_3456_ptr;
       if (string_buffer_ptr != (int8_t *)0x0) {
         FUN_18064e900();
       }

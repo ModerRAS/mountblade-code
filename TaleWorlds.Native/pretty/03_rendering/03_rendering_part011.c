@@ -134,7 +134,7 @@ SHADER_FOUND:
       material_index = saved_material_type;
     } while (loop_limit != 0);
   }
-  puStack_888 = &UNK_18098bb30;
+  puStack_888 = &unknown_var_336_ptr;
   pbStack_880 = abStack_870;
   iStack_878 = 0;
   abStack_870[0] = 0;
@@ -173,7 +173,7 @@ LAB_180273bfe:
     uVar16 = (ulonglong)((int)uVar16 + 1);
     plVar24 = plVar24 + 2;
   } while ((longlong)plVar24 < 0x180bf90b0);
-  puStack_888 = &UNK_18098bcb0;
+  puStack_888 = &unknown_var_720_ptr;
   uVar9 = (*(uint64_t **)(param_2 + 8))[1];
   *(uint64_t *)(param_1 + 8) = **(uint64_t **)(param_2 + 8);
   *(uint64_t *)(param_1 + 0x10) = uVar9;
@@ -248,7 +248,7 @@ LAB_180273bfe:
   if (0 < (int)uVar2) {
     do {
       uStack_910 = uVar16;
-      puStack_8e8 = &UNK_1809fcc58;
+      puStack_8e8 = &unknown_var_3480_ptr;
       puStack_8e0 = auStack_8d0;
       uStack_8d8 = 0;
       auStack_8d0[0] = 0;
@@ -262,10 +262,10 @@ LAB_180273bfe:
       puVar22 = *(uint64_t **)(param_1 + 0x128);
       if (puVar22 < *(uint64_t **)(param_1 + 0x130)) {
         *(uint64_t **)(param_1 + 0x128) = puVar22 + 0xb;
-        *puVar22 = &UNK_18098bcb0;
+        *puVar22 = &unknown_var_720_ptr;
         puVar22[1] = 0;
         *(int32_t *)(puVar22 + 2) = 0;
-        *puVar22 = &UNK_1809fcc58;
+        *puVar22 = &unknown_var_3480_ptr;
         puVar22[1] = puVar22 + 3;
         *(int32_t *)(puVar22 + 2) = 0;
         *(int8_t *)(puVar22 + 3) = 0;
@@ -291,10 +291,10 @@ LAB_180273eb0:
         if (puVar18 != puVar22) {
           lVar20 = (longlong)puVar18 - (longlong)puVar14;
           do {
-            *puVar17 = &UNK_18098bcb0;
+            *puVar17 = &unknown_var_720_ptr;
             puVar17[1] = 0;
             *(int32_t *)(puVar17 + 2) = 0;
-            *puVar17 = &UNK_1809fcc58;
+            *puVar17 = &unknown_var_3480_ptr;
             puVar17[1] = puVar17 + 3;
             *(int32_t *)(puVar17 + 2) = 0;
             *(int8_t *)(puVar17 + 3) = 0;
@@ -311,10 +311,10 @@ LAB_180273eb0:
             param_1 = lStack_8f8;
           } while ((uint64_t *)(lVar20 + (longlong)puVar17) != puVar22);
         }
-        *puVar17 = &UNK_18098bcb0;
+        *puVar17 = &unknown_var_720_ptr;
         puVar17[1] = 0;
         *(int32_t *)(puVar17 + 2) = 0;
-        *puVar17 = &UNK_1809fcc58;
+        *puVar17 = &unknown_var_3480_ptr;
         puVar17[1] = puVar17 + 3;
         *(int32_t *)(puVar17 + 2) = 0;
         *(int8_t *)(puVar17 + 3) = 0;
@@ -338,7 +338,7 @@ LAB_180273eb0:
         *(uint64_t **)(param_1 + 0x128) = puVar17 + 0xb;
         *(uint64_t **)(param_1 + 0x130) = puVar14 + lVar10 * 0xb;
       }
-      puStack_8e8 = &UNK_18098bcb0;
+      puStack_8e8 = &unknown_var_720_ptr;
       uVar16 = uStack_910 - 1;
     } while (uStack_910 - 1 != 0);
     puVar13 = *(int32_t **)(param_2 + 8);
@@ -442,7 +442,7 @@ void serialize_material_data(int32_t *material_header, longlong *data_stream)
   }
   *puVar15 = 2;
   param_2[1] = param_2[1] + 4;
-  FUN_180272d60(&UNK_18098e220,*param_1,param_2);
+  FUN_180272d60(&unknown_var_304_ptr,*param_1,param_2);
   puVar15 = (int32_t *)param_2[1];
   uVar11 = param_1[1];
   if ((ulonglong)((*param_2 - (longlong)puVar15) + param_2[2]) < 5) {
@@ -463,7 +463,7 @@ void serialize_material_data(int32_t *material_header, longlong *data_stream)
     lVar7 = param_2[1];
   }
   param_2[1] = lVar7 + 4;
-  puVar13 = (uint64_t *)&UNK_18098e1c0;
+  puVar13 = (uint64_t *)&unknown_var_208_ptr;
   uVar12 = uVar16;
   do {
     if ((*(uint *)(puVar13 + 1) & uVar11) != 0) {

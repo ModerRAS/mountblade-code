@@ -205,14 +205,14 @@ void FUN_1807048a0(int param_1,int param_2,int param_3,longlong param_4,int para
   uVar5 = 0;
   if ((uVar1 != 0) &&
      (lVar6 = (longlong)(int)(uVar4 + param_3 * 4) + (longlong)param_5 * 8, uVar5 = 0,
-     (&UNK_180953110)[lVar6] != (&UNK_180953112)[lVar6])) {
+     (&unknown_var_8368_ptr)[lVar6] != (&unknown_var_8370_ptr)[lVar6])) {
     func_0x000180705150(param_7,param_6,1);
     uVar5 = param_6;
   }
   if (lVar10 < lVar9) {
     do {
       *(int *)(param_4 + lVar10 * 4) =
-           (int)(char)(&UNK_180953110)
+           (int)(char)(&unknown_var_8368_ptr)
                       [(longlong)(int)(*(int *)(param_4 + lVar10 * 4) + (uVar5 + param_3 * 2) * 2) +
                        (longlong)param_5 * 8];
       lVar10 = lVar10 + 1;

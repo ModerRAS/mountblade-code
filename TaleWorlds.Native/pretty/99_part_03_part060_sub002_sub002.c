@@ -783,7 +783,7 @@ void FUN_180235cc4(longlong *param_1,double param_2,int8_t (*param_3) [16],byte 
         if (*(void **)(lVar45 + 8) != (void *)0x0) {
           puVar43 = *(void **)(lVar45 + 8);
         }
-        FUN_180627020(&UNK_180a13d90,puVar43);
+        FUN_180627020(&unknown_var_8000_ptr,puVar43);
         bStackX_20 = 0;
       }
       if ((int)*(char *)(*param_1 + 0xf6) < (char)bStackX_20 + 1) {

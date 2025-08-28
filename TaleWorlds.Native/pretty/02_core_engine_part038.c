@@ -809,7 +809,7 @@ void * FUN_180079430(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t
               0x48) < _DAT_180d49158) {
     FUN_1808fcb90(&system_ptr_9158);
     if (_DAT_180d49158 == -1) {
-      _DAT_180d49160 = &UNK_1809fcc28;
+      _DAT_180d49160 = &unknown_var_3432_ptr;
       _DAT_180d49168 = &system_ptr_9178;
 
 

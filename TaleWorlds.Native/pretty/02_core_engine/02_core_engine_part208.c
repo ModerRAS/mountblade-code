@@ -67,7 +67,7 @@ void release_texture_resources(longlong texture_context)
   *(uint64_t *)(texture_manager + 0xb0) = new_buffer;
   resource_pool = *(longlong **)(*(longlong *)(texture_manager + 0xa8) + 0x88);
   buffer_ptr = dimensions;
-  cleanup_callback = (code *)&UNK_18018c0a0;
+  cleanup_callback = (code *)&unknown_var_3120_ptr;
   texture_callback = cleanup_texture_resources;
   cleanup_context = texture_manager;
   
@@ -263,7 +263,7 @@ void parse_texture_data_and_create(longlong texture_params,longlong data_stream)
   checksum = _DAT_180bf00a8 ^ (ulonglong)name_buffer;
   *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
   texture_quality = 0;
-  texture_data_ptr = &UNK_18098bb30;
+  texture_data_ptr = &unknown_var_336_ptr;
   texture_name_buffer = texture_full_name;
   name_length_int = 0;
   texture_full_name[0] = 0;
@@ -309,7 +309,7 @@ LAB_18018baee:
     texture_table = texture_table + 2;
     if (0x180bf674f < (longlong)texture_table) {
 LAB_18018baff:
-      texture_data_ptr = &UNK_18098bcb0;
+      texture_data_ptr = &unknown_var_720_ptr;
       
       // 读取纹理属性
       *(int32_t *)(texture_params + 0x24) = **(int32_t **)(data_stream + 8);

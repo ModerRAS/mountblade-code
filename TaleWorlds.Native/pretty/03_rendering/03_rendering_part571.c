@@ -491,7 +491,7 @@ uint64_t* rendering_system_hash_calculator(
 ) {
     uint64_t result = 0xfffffffffffffffe;
     
-    *param1 = &UNK_180a36d78;
+    *param1 = &unknown_var_1336_ptr;
     FUN_180049470();
     
     if ((param2 & 1) != 0) {

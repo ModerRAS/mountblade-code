@@ -26,16 +26,16 @@ extern longlong func_0x000180120ce0(longlong param_1, longlong param_2);
 extern void FUN_180059ba0(longlong param_1, longlong param_2);
 
 // 外部常量声明
-extern char UNK_180a16ee0[4];
-extern char UNK_180a16ef8[4];
-extern char UNK_180a13928[4];
-extern char UNK_180a16f00[4];
-extern char UNK_180a16ee8[4];
-extern char UNK_180a16ef0[4];
-extern char UNK_180a16f18[4];
-extern char UNK_180a16f20[4];
-extern char UNK_180a16f08[4];
-extern char UNK_180a16f10[4];
+extern char global_config_624_ptr[4];
+extern char global_config_648_ptr[4];
+extern char global_config_6872_ptr[4];
+extern char global_config_656_ptr[4];
+extern char global_config_632_ptr[4];
+extern char global_config_640_ptr[4];
+extern char global_config_680_ptr[4];
+extern char global_config_688_ptr[4];
+extern char global_config_664_ptr[4];
+extern char global_config_672_ptr[4];
 extern longlong _DAT_180c8a9a8;
 extern longlong _DAT_180c8a9b0;
 
@@ -533,20 +533,20 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
   batch_size = texture_format;
   
   // 查找纹理偏移
-  texture_offset = find_texture_offset(texture_data, texture_format, &UNK_180a16ee0);
-  batch_index = find_texture_offset(texture_data, texture_format, &UNK_180a16ef8);
+  texture_offset = find_texture_offset(texture_data, texture_format, &global_config_624_ptr);
+  batch_index = find_texture_offset(texture_data, texture_format, &global_config_648_ptr);
   *(int *)(pipeline_data + 0x18) = batch_index;
-  texture_index = find_texture_offset(texture_data, texture_format, &UNK_180a13928);
+  texture_index = find_texture_offset(texture_data, texture_format, &global_config_6872_ptr);
   *(int *)(pipeline_data + 0x1c) = texture_index;
-  batch_info[2] = find_texture_offset(texture_data, texture_format, &UNK_180a16f00);
+  batch_info[2] = find_texture_offset(texture_data, texture_format, &global_config_656_ptr);
   *(int *)(pipeline_data + 0x20) = batch_info[2];
-  render_index = find_texture_offset(texture_data, texture_format, &UNK_180a16ee8);
+  render_index = find_texture_offset(texture_data, texture_format, &global_config_632_ptr);
   *(int *)(pipeline_data + 0x24) = render_index;
-  batch_info[0] = find_texture_offset(texture_data, batch_size, &UNK_180a16ef0);
+  batch_info[0] = find_texture_offset(texture_data, batch_size, &global_config_640_ptr);
   *(int *)(pipeline_data + 0x28) = batch_info[0];
-  render_config = find_texture_offset(texture_data, batch_size, &UNK_180a16f18);
+  render_config = find_texture_offset(texture_data, batch_size, &global_config_680_ptr);
   *(int32_t *)(pipeline_data + 0x2c) = render_config;
-  render_config = find_texture_offset(texture_data, batch_size, &UNK_180a16f20);
+  render_config = find_texture_offset(texture_data, batch_size, &global_config_688_ptr);
   *(int32_t *)(pipeline_data + 0x30) = render_config;
   
   // 验证必要参数
@@ -573,7 +573,7 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
   batch_info[0] = 2;
   texture_sizes[0] = 0;
   render_sizes[0] = 0;
-  texture_width = find_texture_offset(texture_data, batch_size, &UNK_180a16f08);
+  texture_width = find_texture_offset(texture_data, batch_size, &global_config_664_ptr);
   if (texture_width == 0) {
     return 0;
   }
@@ -728,7 +728,7 @@ uint64_t setup_render_pipeline(longlong pipeline_data, longlong texture_data, in
   *(uint64_t *)(pipeline_data + 0x58) = pipeline_config;
   
 process_texture_data:
-  texture_width = find_texture_offset(texture_data, batch_size, &UNK_180a16f10);
+  texture_width = find_texture_offset(texture_data, batch_size, &global_config_672_ptr);
   if (texture_width == 0) {
     batch_index = 0xffff;
   }

@@ -1038,14 +1038,14 @@ longlong FUN_1800b94f0(longlong param_1)
   if (*(longlong **)(param_1 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_1 + 0x40) + 0x38))();
   }
-  *(uint64_t *)(param_1 + 0x20) = &UNK_180a3c3e0;
+  *(uint64_t *)(param_1 + 0x20) = &unknown_var_3456_ptr;
   if (*(longlong *)(param_1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(param_1 + 0x28) = 0;
   *(int32_t *)(param_1 + 0x38) = 0;
-  *(uint64_t *)(param_1 + 0x20) = &UNK_18098bcb0;
+  *(uint64_t *)(param_1 + 0x20) = &unknown_var_720_ptr;
   return param_1;
 }
 

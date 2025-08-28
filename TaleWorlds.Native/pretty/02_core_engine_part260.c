@@ -292,7 +292,7 @@ void FUN_1802285e0(uint64_t param_1,int32_t param_2,uint64_t param_3)
   
   uStack_f0 = 0xfffffffffffffffe;
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
-  puStack_c0 = &UNK_1809fcc58;
+  puStack_c0 = &unknown_var_3480_ptr;
   puStack_b8 = auStack_a8;
   uStack_b0 = 0;
   auStack_a8[0] = 0;
@@ -322,7 +322,7 @@ void FUN_1802285e0(uint64_t param_1,int32_t param_2,uint64_t param_3)
   ppuStack_f8 = (void **)&uStack_58;
   FUN_180229ab0(&uStack_58);
   ppuStack_f8 = &puStack_c0;
-  puStack_c0 = &UNK_18098bcb0;
+  puStack_c0 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_118);
 }

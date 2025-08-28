@@ -1118,17 +1118,17 @@ void move_data_block(longlong param_1, longlong *param_2)
 }
 
 // 全局变量和常量定义
-#define GLOBAL_POINTER_TABLE_001     UNK_180a09578
-#define GLOBAL_MEMORY_TABLE_001      UNK_180a095b0
-#define GLOBAL_MEMORY_TABLE_002      UNK_180a095d0
-#define GLOBAL_MEMORY_TABLE_003      UNK_180a095f0
-#define GLOBAL_MEMORY_TABLE_004      UNK_180a09640
+#define GLOBAL_POINTER_TABLE_001     unknown_var_4968
+#define GLOBAL_MEMORY_TABLE_001      unknown_var_5024
+#define GLOBAL_MEMORY_TABLE_002      unknown_var_5056
+#define GLOBAL_MEMORY_TABLE_003      unknown_var_5088
+#define GLOBAL_MEMORY_TABLE_004      unknown_var_5168
 #define GLOBAL_MEMORY_MANAGER        _DAT_180c8ed18
 #define GLOBAL_EVENT_QUEUE           _DAT_180c82868
 #define GLOBAL_DATA_TABLE_001        system_memory_c740
-#define GLOBAL_CLEANUP_ROUTINE_001   UNK_1800830c0
-#define GLOBAL_CLEANUP_ROUTINE_002   UNK_1800830b0
-#define GLOBAL_CLEANUP_ROUTINE_003   UNK_180083130
+#define GLOBAL_CLEANUP_ROUTINE_001   unknown_var_7712
+#define GLOBAL_CLEANUP_ROUTINE_002   unknown_var_7696
+#define GLOBAL_CLEANUP_ROUTINE_003   unknown_var_7824
 
 // 函数指针声明
 #define trigger_error_handler         FUN_18064e900

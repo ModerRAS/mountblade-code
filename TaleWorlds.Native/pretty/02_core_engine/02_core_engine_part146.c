@@ -759,7 +759,7 @@ INIT_FINALIZE:
 }
 
 // 渲染相关常量
-uint *g_render_constant = &UNK_180a06578;        // 渲染常量
-int *g_render_base = &UNK_18098d180;             // 渲染基础地址
-int *g_render_offset = &UNK_18098d188;           // 渲染偏移量
-char *g_window_title = &UNK_180a06400;           // 窗口标题
+uint *g_render_constant = &unknown_var_2680_ptr;        // 渲染常量
+int *g_render_base = &unknown_var_6048_ptr;             // 渲染基础地址
+int *g_render_offset = &unknown_var_6056_ptr;           // 渲染偏移量
+char *g_window_title = &unknown_var_2304_ptr;           // 窗口标题

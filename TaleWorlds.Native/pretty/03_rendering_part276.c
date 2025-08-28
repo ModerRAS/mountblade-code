@@ -937,7 +937,7 @@ FUN_18041be10(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a16270;
+  *param_1 = &unknown_var_7440_ptr;
   FUN_1802708b0(param_1 + 1);
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return

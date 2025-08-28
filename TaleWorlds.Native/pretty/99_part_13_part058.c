@@ -872,7 +872,7 @@ void FUN_1808cf440(longlong *param_1)
       uStack_c0 = (uint)uStack_6e;
       uStack_c8 = (uint)uStack_70;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_60,0x27,&UNK_180958180,uStack_74);
+      FUN_18076b390(auStack_60,0x27,&unknown_var_8960_ptr,uStack_74);
     }
     if (acStack_78[0] != '\0') {
       plVar5 = param_1 + 0x1f;

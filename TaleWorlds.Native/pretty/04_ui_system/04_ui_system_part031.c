@@ -405,21 +405,21 @@ void ui_system_initialize_thread_pool(longlong system_context)
         allocated_memory = FUN_18066e8f0(8, thread_count + -1);
         *(longlong *)(system_context + 0x43f0) = allocated_memory;
         if (allocated_memory == 0) {
-            FUN_18066d370(system_context + 0x12c0, 2, &UNK_180946b70);
+            FUN_18066d370(system_context + 0x12c0, 2, &unknown_var_7776_ptr);
         }
         
         // 分配信号量句柄池
         allocated_memory = FUN_18066e8f0(8, *(int32_t *)(system_context + 0x438c));
         *(longlong *)(system_context + 0x43f8) = allocated_memory;
         if (allocated_memory == 0) {
-            FUN_18066d370(system_context + 0x12c0, 2, &UNK_180946ba0);
+            FUN_18066d370(system_context + 0x12c0, 2, &unknown_var_7824_ptr);
         }
         
         // 分配数据缓冲区
         allocated_memory = FUN_18066e960(0x20, (ulonglong)*(uint *)(system_context + 0x438c) * 0x12a0);
         *(longlong *)(system_context + 0x43e0) = allocated_memory;
         if (allocated_memory == 0) {
-            FUN_18066d370(system_context + 0x12c0, 2, &UNK_180946bd8);
+            FUN_18066d370(system_context + 0x12c0, 2, &unknown_var_7880_ptr);
         }
         
         // 初始化数据缓冲区
@@ -455,21 +455,21 @@ void ui_system_setup_thread_resources(void)
     allocated_memory = FUN_18066e8f0(element_size, thread_count);
     *(longlong *)(system_context + 0x43f0) = allocated_memory;
     if (allocated_memory == 0) {
-        FUN_18066d370(system_context + 0x12c0, element_size + -6, &UNK_180946b70);
+        FUN_18066d370(system_context + 0x12c0, element_size + -6, &unknown_var_7776_ptr);
     }
     
     // 分配信号量句柄池
     allocated_memory = FUN_18066e8f0(8);
     *(longlong *)(system_context + 0x43f8) = allocated_memory;
     if (allocated_memory == 0) {
-        FUN_18066d370(system_context + 0x12c0, 2, &UNK_180946ba0);
+        FUN_18066d370(system_context + 0x12c0, 2, &unknown_var_7824_ptr);
     }
     
     // 分配数据缓冲区
     allocated_memory = FUN_18066e960(0x20, (ulonglong)*(uint *)(system_context + 0x438c) * 0x12a0);
     *(longlong *)(system_context + 0x43e0) = allocated_memory;
     if (allocated_memory == 0) {
-        FUN_18066d370(system_context + 0x12c0, 2, &UNK_180946bd8);
+        FUN_18066d370(system_context + 0x12c0, 2, &unknown_var_7880_ptr);
     }
     
     // 初始化数据缓冲区
@@ -864,14 +864,14 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
         allocated_memory = FUN_18066e8f0(4, (longlong)*(int *)(system_context + 0x1e74));
         *(longlong *)(system_context + 0x43a8) = allocated_memory;
         if (allocated_memory == 0) {
-            FUN_18066d370(context_base, 2, &UNK_180946c30);
+            FUN_18066d370(context_base, 2, &unknown_var_7968_ptr);
         }
         
         // 分配次级数据缓冲区
         allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
         *(longlong *)(system_context + 0x43b0) = allocated_memory;
         if (allocated_memory == 0) {
-            FUN_18066d370(context_base, 2, &UNK_180946c60);
+            FUN_18066d370(context_base, 2, &unknown_var_8016_ptr);
         }
         
         // 分配扩展数据缓冲区（主缓冲区）
@@ -883,7 +883,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
                 temp_pointer = FUN_18066e960(0x10, (longlong)(int)(buffer_size + 0x40));
                 *(uint64_t *)(data_index + *(longlong *)(system_context + 0x43b0)) = temp_pointer;
                 if (*(longlong *)(data_index + *(longlong *)(system_context + 0x43b0)) == 0) {
-                    FUN_18066d370(context_base, 2, &UNK_180946c88);
+                    FUN_18066d370(context_base, 2, &unknown_var_8056_ptr);
                 }
                 item_count = (int)loop_counter + 1;
                 loop_counter = (ulonglong)item_count;
@@ -895,7 +895,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
         allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
         *(longlong *)(system_context + 0x43b8) = allocated_memory;
         if (allocated_memory == 0) {
-            FUN_18066d370(context_base, 2, &UNK_180946cb8);
+            FUN_18066d370(context_base, 2, &unknown_var_8104_ptr);
         }
         
         // 分配扩展数据缓冲区（三级缓冲区）
@@ -906,7 +906,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
                 temp_pointer = FUN_18066e960(0x10, (longlong)(((int)buffer_size >> 1) + 0x20));
                 *(uint64_t *)(loop_counter + *(longlong *)(system_context + 0x43b8)) = temp_pointer;
                 if (*(longlong *)(loop_counter + *(longlong *)(system_context + 0x43b8)) == 0) {
-                    FUN_18066d370(context_base, 2, &UNK_180946ce0);
+                    FUN_18066d370(context_base, 2, &unknown_var_8144_ptr);
                 }
                 item_count = (int)data_index + 1;
                 data_index = (ulonglong)item_count;
@@ -918,7 +918,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
         allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
         *(longlong *)(system_context + 0x43c0) = allocated_memory;
         if (allocated_memory == 0) {
-            FUN_18066d370(context_base, 2, &UNK_180946d10);
+            FUN_18066d370(context_base, 2, &unknown_var_8192_ptr);
         }
         
         // 分配扩展数据缓冲区（五级缓冲区）
@@ -929,7 +929,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
                 temp_pointer = FUN_18066e960(0x10, (longlong)(((int)buffer_size >> 1) + 0x20));
                 *(uint64_t *)(data_index + *(longlong *)(system_context + 0x43c0)) = temp_pointer;
                 if (*(longlong *)(data_index + *(longlong *)(system_context + 0x43c0)) == 0) {
-                    FUN_18066d370(context_base, 2, &UNK_180946d38);
+                    FUN_18066d370(context_base, 2, &unknown_var_8232_ptr);
                 }
                 item_count = (int)loop_counter + 1;
                 loop_counter = (ulonglong)item_count;
@@ -941,7 +941,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
         allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
         *(longlong *)(system_context + 0x43c8) = allocated_memory;
         if (allocated_memory == 0) {
-            FUN_18066d370(context_base, 2, &UNK_180946d68);
+            FUN_18066d370(context_base, 2, &unknown_var_8280_ptr);
         }
         
         // 分配控制数据缓冲区（主缓冲区）
@@ -952,7 +952,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
                 temp_pointer = FUN_18066e8f0(0x10, 1);
                 *(uint64_t *)(data_index + *(longlong *)(system_context + 0x43c8)) = temp_pointer;
                 if (*(longlong *)(data_index + *(longlong *)(system_context + 0x43c8)) == 0) {
-                    FUN_18066d370(context_base, 2, &UNK_180946d90);
+                    FUN_18066d370(context_base, 2, &unknown_var_8320_ptr);
                 }
                 item_count = (int)loop_counter + 1;
                 data_index = data_index + 8;
@@ -964,7 +964,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
         allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
         *(longlong *)(system_context + 0x43d0) = allocated_memory;
         if (allocated_memory == 0) {
-            FUN_18066d370(context_base, 2, &UNK_180946db8);
+            FUN_18066d370(context_base, 2, &unknown_var_8360_ptr);
         }
         
         // 分配状态数据缓冲区（主缓冲区）
@@ -975,7 +975,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
                 temp_pointer = FUN_18066e8f0(8);
                 *(uint64_t *)(data_index + *(longlong *)(system_context + 0x43d0)) = temp_pointer;
                 if (*(longlong *)(data_index + *(longlong *)(system_context + 0x43d0)) == 0) {
-                    FUN_18066d370(context_base, 2, &UNK_180946de0);
+                    FUN_18066d370(context_base, 2, &unknown_var_8400_ptr);
                 }
                 item_count = (int)loop_counter + 1;
                 data_index = data_index + 8;
@@ -987,7 +987,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
         allocated_memory = FUN_18066e8f0(8, (longlong)*(int *)(system_context + 0x1e74));
         *(longlong *)(system_context + 0x43d8) = allocated_memory;
         if (allocated_memory == 0) {
-            FUN_18066d370(context_base, 2, &UNK_180946e08);
+            FUN_18066d370(context_base, 2, &unknown_var_8440_ptr);
         }
         
         // 分配状态数据缓冲区（三级缓冲区）
@@ -997,7 +997,7 @@ void ui_system_initialize_data_buffers(longlong system_context, uint buffer_size
                 temp_pointer = FUN_18066e8f0(8);
                 *(uint64_t *)(data_index + *(longlong *)(system_context + 0x43d8)) = temp_pointer;
                 if (*(longlong *)(data_index + *(longlong *)(system_context + 0x43d8)) == 0) {
-                    FUN_18066d370(context_base, 2, &UNK_180946e30);
+                    FUN_18066d370(context_base, 2, &unknown_var_8480_ptr);
                 }
                 item_count = (int)buffer_index + 1;
                 buffer_index = (ulonglong)item_count;

@@ -444,25 +444,25 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   // 根据渲染模式选择着色器
   switch(render_mode) {
   case 0:
-    FUN_180094b30(shader_params, &UNK_180a1a8f0);
+    FUN_180094b30(shader_params, &unknown_var_5488_ptr);
     break;
   case 1:
-    FUN_180094b30(shader_params, &UNK_180a1a9d8);
+    FUN_180094b30(shader_params, &unknown_var_5720_ptr);
     break;
   case 2:
-    FUN_180094b30(shader_params, &UNK_180a1a9b0);
+    FUN_180094b30(shader_params, &unknown_var_5680_ptr);
     break;
   case 3:
-    FUN_180094b30(shader_params, &UNK_180a1a988);
+    FUN_180094b30(shader_params, &unknown_var_5640_ptr);
     break;
   case 4:
-    FUN_180094b30(shader_params, &UNK_180a1a960);
+    FUN_180094b30(shader_params, &unknown_var_5600_ptr);
     break;
   case 5:
-    FUN_180094b30(shader_params, &UNK_180a1aa70);
+    FUN_180094b30(shader_params, &unknown_var_5872_ptr);
     break;
   default:
-    FUN_180626ee0(&UNK_180a1aa38);
+    FUN_180626ee0(&unknown_var_5816_ptr);
   }
   
   // 初始化渲染对象
@@ -509,16 +509,16 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     buffer_size_1 = 0x80;
     buffer_size_2 = 0x80;
     buffer_size_6 = *(int32_t *)(render_params + 0x1bd4);
-    render_ptr = &UNK_1809fcc28;
+    render_ptr = &unknown_var_3432_ptr;
     render_data_ptr = render_stack;
     render_stack[0] = 0;
     render_data_param = 0x11;
-    global_data = strcpy_s(render_stack, 0x80, &UNK_180a1aa20);
+    global_data = strcpy_s(render_stack, 0x80, &unknown_var_5792_ptr);
     FUN_1800b1d80(global_data, &resource_chain_1, &render_ptr, &buffer_size_1);
     
     // 配置渲染链
     render_object = resource_chain_1;
-    render_ptr = &UNK_18098bcb0;
+    render_ptr = &unknown_var_720_ptr;
     shader_params[1] = shader_params[1] | RENDER_FLAG_MODIFIED;
     *(uint64_t *)(shader_params + 0x2684) = 0;
     *(uint64_t *)(shader_params + 0x2686) = 0;
@@ -755,7 +755,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   }
   
   // 清理渲染资源
-  buffer_ptr = &UNK_180a3c3e0;
+  buffer_ptr = &unknown_var_3456_ptr;
   buffer_data = 0;
   data_ptr = (uint64_t *)0x0;
   buffer_param = 0;
@@ -782,7 +782,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     (**(code **)(*resource_chain_8 + FUNCTION_POINTER_OFFSET))();
   }
   
-  buffer_ptr = &UNK_180a3c3e0;
+  buffer_ptr = &unknown_var_3456_ptr;
   FUN_18064e900(vertex_data);
 }
 

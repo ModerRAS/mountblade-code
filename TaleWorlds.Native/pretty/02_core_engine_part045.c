@@ -1123,15 +1123,15 @@ LAB_18008642b:
  */
 uint64_t *Engine_ReleaseObjectMemory_086490(uint64_t *obj_ptr, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
-    obj_ptr[4] = &UNK_180a3c3e0;
+    obj_ptr[4] = &global_var_3456_ptr;
     if (obj_ptr[5] != 0) {
         Memory_FreeBlock();
     }
     obj_ptr[5] = 0;
     *(int32_t *)(obj_ptr + 7) = 0;
-    obj_ptr[4] = &UNK_18098bcb0;
-    *obj_ptr = &UNK_180a21720;
-    *obj_ptr = &UNK_180a21690;
+    obj_ptr[4] = &global_var_720_ptr;
+    *obj_ptr = &global_var_3696_ptr;
+    *obj_ptr = &global_var_3552_ptr;
     if ((param_2 & 1) != 0) {
         free(obj_ptr, OBJECT_SIZE_112, param_3, param_4, 0xfffffffffffffffe);
     }
@@ -1172,10 +1172,10 @@ uint64_t *Engine_InitializeStringObject_086570(uint64_t *obj_ptr, longlong str_p
 {
     longlong str_length;
     
-    *obj_ptr = &UNK_18098bcb0;
+    *obj_ptr = &global_var_720_ptr;
     obj_ptr[1] = 0;
     *(int32_t *)(obj_ptr + 2) = 0;
-    *obj_ptr = &UNK_1809fcc28;
+    *obj_ptr = &global_var_3432_ptr;
     obj_ptr[1] = obj_ptr + 3;
     *(int32_t *)(obj_ptr + 2) = 0;
     *(int8_t *)(obj_ptr + 3) = 0;
@@ -1209,7 +1209,7 @@ uint64_t *Engine_CreateMatrixObject_086600(uint64_t param_1, int32_t param_2)
     
     matrix_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(matrix_obj, param_1, param_2);
-    *matrix_obj = &UNK_180a14ff8;
+    *matrix_obj = &global_var_2712_ptr;
     matrix_obj[0x16] = 0;
     return matrix_obj;
 }
@@ -1231,7 +1231,7 @@ uint64_t *Engine_CreateVectorObject_086670(uint64_t param_1, int32_t param_2)
     
     vector_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_176, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(vector_obj, param_1, param_2);
-    *vector_obj = &UNK_180a01240;
+    *vector_obj = &global_var_1376_ptr;
     return vector_obj;
 }
 
@@ -1277,7 +1277,7 @@ uint64_t *Engine_CreateTransformObject_086740(uint64_t param_1, int32_t param_2)
     
     transform_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(transform_obj, param_1, param_2);
-    *transform_obj = &UNK_180a01188;
+    *transform_obj = &global_var_1192_ptr;
     transform_obj[0x16] = 0;
     return transform_obj;
 }
@@ -1327,7 +1327,7 @@ uint64_t *Engine_CreateQuaternionObject_086830(uint64_t param_1, int32_t param_2
     
     quaternion_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(quaternion_obj, param_1, param_2);
-    *quaternion_obj = &UNK_180a010d0;
+    *quaternion_obj = &global_var_1008_ptr;
     quaternion_obj[0x16] = 0;
     return quaternion_obj;
 }
@@ -1349,7 +1349,7 @@ uint64_t *Engine_CreateColorObject_0868d0(uint64_t param_1, int32_t param_2)
     
     color_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(color_obj, param_1, param_2);
-    *color_obj = &UNK_180a00f10;
+    *color_obj = &global_var_560_ptr;
     color_obj[0x16] = 0;
     return color_obj;
 }
@@ -1371,7 +1371,7 @@ uint64_t *Engine_CreateBoundingBoxObject_086960(uint64_t param_1, int32_t param_
     
     bbox_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(bbox_obj, param_1, param_2);
-    *bbox_obj = &UNK_180a00e58;
+    *bbox_obj = &global_var_376_ptr;
     bbox_obj[0x16] = 0;
     return bbox_obj;
 }
@@ -1393,7 +1393,7 @@ uint64_t *Engine_CreatePlaneObject_086a00(uint64_t param_1, int32_t param_2)
     
     plane_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(plane_obj, param_1, param_2);
-    *plane_obj = &UNK_180a00d78;
+    *plane_obj = &global_var_152_ptr;
     plane_obj[0x16] = 0;
     return plane_obj;
 }
@@ -1415,7 +1415,7 @@ uint64_t *Engine_CreateRayObject_086aa0(uint64_t param_1, int32_t param_2)
     
     ray_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(ray_obj, param_1, param_2);
-    *ray_obj = &UNK_180a00ca8;
+    *ray_obj = &global_var_9944_ptr;
     ray_obj[0x16] = 0;
     return ray_obj;
 }
@@ -1437,7 +1437,7 @@ uint64_t *Engine_CreateSphereObject_086b40(uint64_t param_1, int32_t param_2)
     
     sphere_obj = (uint64_t *)Memory_AllocateObject(_DAT_180c8ed18, OBJECT_SIZE_184, 8, 0x1a, 0xfffffffffffffffe);
     Object_InitializeBase(sphere_obj, param_1, param_2);
-    *sphere_obj = &UNK_180a00be0;
+    *sphere_obj = &global_var_9744_ptr;
     sphere_obj[0x16] = 0;
     return sphere_obj;
 }
@@ -1482,8 +1482,8 @@ void Engine_InitializeRenderObject_086bd0(longlong obj_ptr, uint64_t param_2, lo
         shader_ptr = stack_ptr2;
     }
     
-    Render_InitializeObject(obj_ptr, &UNK_180a00550, shader_ptr, render_ptr, texture_ptr);
-    stack_ptr1 = &UNK_180a3c3e0;
+    Render_InitializeObject(obj_ptr, &global_var_8064_ptr, shader_ptr, render_ptr, texture_ptr);
+    stack_ptr1 = &global_var_3456_ptr;
     if (stack_ptr2 != (void *)0x0) {
         Memory_FreeBlock();
     }

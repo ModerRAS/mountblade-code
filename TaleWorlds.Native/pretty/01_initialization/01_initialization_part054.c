@@ -6,7 +6,7 @@
 #define render_global_data _DAT_180c86890
 #define render_config_data _DAT_180c86870
 #define render_tls_value _DAT_180d49158
-#define default_render_context UNK_1809fcc28
+#define default_render_context unknown_var_3432
 
 /**
  * 处理渲染数据

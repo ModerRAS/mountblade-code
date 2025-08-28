@@ -825,7 +825,7 @@ void FUN_1808d4e50(longlong *param_1)
 {
   (**(code **)(*param_1 + 0x28))(param_1,0);
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1 + -6,&UNK_180988440,0x9a,1);
+  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1 + -6,&unknown_var_6272_ptr,0x9a,1);
 }
 
 

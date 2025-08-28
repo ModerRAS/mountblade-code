@@ -848,19 +848,19 @@ void ui_system_cpu_feature_detector(void)
     }
     
     // 配置优化参数
-    _DAT_180d4a9b0 = &UNK_1800018c7;
+    _DAT_180d4a9b0 = &unknown_var_7287_ptr;
     if (has_sse2) {
-        _DAT_180d4a9b0 = &UNK_1800025f0;
+        _DAT_180d4a9b0 = &unknown_var_656_ptr;
     }
     
-    _DAT_180d4a9a8 = &UNK_180001b8d;
+    _DAT_180d4a9a8 = &unknown_var_7997_ptr;
     if (has_sse2) {
-        _DAT_180d4a9a8 = &UNK_1800028e4;
+        _DAT_180d4a9a8 = &unknown_var_1412_ptr;
     }
     
-    _DAT_180d4a990 = &UNK_180002cb0;
+    _DAT_180d4a990 = &unknown_var_2384_ptr;
     if (has_sse2) {
-        _DAT_180d4a990 = &UNK_180002d90;
+        _DAT_180d4a990 = &unknown_var_2608_ptr;
     }
     
     // 设置系统函数指针

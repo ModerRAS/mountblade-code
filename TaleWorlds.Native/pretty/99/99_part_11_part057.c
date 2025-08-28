@@ -82,18 +82,18 @@
 // ============================================================================
 
 /** 系统数据结构引用 */
-extern uint64_t UNK_180982790;                  ///< 系统配置数据
-extern uint64_t UNK_180958180;                  ///< 系统调用数据
-extern uint64_t UNK_18097c258;                  ///< 配置更新数据
-extern uint64_t UNK_18097c268;                  ///< 数据传输数据
-extern uint64_t UNK_18097c278;                  ///< 系统调用数据
-extern uint64_t UNK_18097c288;                  ///< 内存操作数据
-extern uint64_t UNK_18097c294;                  ///< 控制流数据
-extern uint64_t UNK_18097c29c;                  ///< 状态更新数据
-extern uint64_t UNK_18097c2a8;                  ///< 事件处理数据
-extern uint64_t UNK_18097c2b8;                  ///< 资源管理数据
-extern uint64_t UNK_18097c2c8;                  ///< 数据验证数据
-extern uint64_t UNK_18097c2d8;                  ///< 自定义操作数据
+extern uint64_t global_state_2544;                  ///< 系统配置数据
+extern uint64_t global_state_8960;                  ///< 系统调用数据
+extern uint64_t global_state_6632_ptr;                  ///< 配置更新数据
+extern uint64_t global_state_6648_ptr;                  ///< 数据传输数据
+extern uint64_t global_state_6664_ptr;                  ///< 系统调用数据
+extern uint64_t global_state_6680_ptr;                  ///< 内存操作数据
+extern uint64_t global_state_6692_ptr;                  ///< 控制流数据
+extern uint64_t global_state_6700_ptr;                  ///< 状态更新数据
+extern uint64_t global_state_6712_ptr;                  ///< 事件处理数据
+extern uint64_t global_state_6728_ptr;                  ///< 资源管理数据
+extern uint64_t global_state_6744_ptr;                  ///< 数据验证数据
+extern uint64_t global_state_6760_ptr;                  ///< 自定义操作数据
 extern uint64_t system_memory_64c8;                  ///< 系统配置表
 extern uint64_t _DAT_180bf00a8;                 ///< 系统数据表
 
@@ -312,47 +312,47 @@ LAB_1807bb271:
                                             uStack_158 = 0;
                                             uStack_160 = 1;
                                             uStack_168 = 4;
-                                            InternalConfigUpdate(*param_1, 7, &UNK_18097c258);
+                                            InternalConfigUpdate(*param_1, 7, &global_state_6632_ptr);
                                         }
                                         break;
                                         
                                     case PROTOCOL_CMD_DATA_TRANSFER:
                                         // 数据传输命令
-                                        InternalDataTransfer(param_1, &UNK_18097c268, uVar8);
+                                        InternalDataTransfer(param_1, &global_state_6648_ptr, uVar8);
                                         break;
                                         
                                     case PROTOCOL_CMD_SYSTEM_CALL:
                                         // 系统调用命令
-                                        InternalSystemCall(auStack_138, 0x100, &UNK_18097c278, (int)param_1[3]);
+                                        InternalSystemCall(auStack_138, 0x100, &global_state_6664_ptr, (int)param_1[3]);
                                         
                                     case PROTOCOL_CMD_MEMORY_OP:
                                         // 内存操作命令
-                                        InternalDataTransfer(param_1, &UNK_18097c288, uVar8);
+                                        InternalDataTransfer(param_1, &global_state_6680_ptr, uVar8);
                                         break;
                                         
                                     case PROTOCOL_CMD_CONTROL_FLOW:
                                         // 控制流命令
-                                        InternalDataTransfer(param_1, &UNK_18097c294, uVar8);
+                                        InternalDataTransfer(param_1, &global_state_6692_ptr, uVar8);
                                         break;
                                         
                                     case PROTOCOL_CMD_STATE_UPDATE:
                                         // 状态更新命令
-                                        InternalDataTransfer(param_1, &UNK_18097c29c, uVar8);
+                                        InternalDataTransfer(param_1, &global_state_6700_ptr, uVar8);
                                         break;
                                         
                                     case PROTOCOL_CMD_EVENT_HANDLER:
                                         // 事件处理命令
-                                        InternalDataTransfer(param_1, &UNK_18097c2a8, uVar8);
+                                        InternalDataTransfer(param_1, &global_state_6712_ptr, uVar8);
                                         break;
                                         
                                     case PROTOCOL_CMD_RESOURCE_MGMT:
                                         // 资源管理命令
-                                        InternalDataTransfer(param_1, &UNK_18097c2b8, uVar8);
+                                        InternalDataTransfer(param_1, &global_state_6728_ptr, uVar8);
                                         break;
                                         
                                     case PROTOCOL_CMD_DATA_VALIDATION:
                                         // 数据验证命令
-                                        InternalDataTransfer(param_1, &UNK_18097c2c8, uVar8);
+                                        InternalDataTransfer(param_1, &global_state_6744_ptr, uVar8);
                                         break;
                                         
                                     case PROTOCOL_CMD_EXTENDED_OP:
@@ -442,7 +442,7 @@ code_r0x0001807bb4a3:
                                         
                                     case PROTOCOL_CMD_CUSTOM_OP:
                                         // 自定义操作命令
-                                        InternalDataTransfer(param_1, &UNK_18097c2d8, uVar8);
+                                        InternalDataTransfer(param_1, &global_state_6760_ptr, uVar8);
                                     }
                                     
                                     goto LAB_1807bb778;

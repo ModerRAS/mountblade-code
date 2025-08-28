@@ -82,7 +82,7 @@ char system_memory_0101;              /* 输入系统状态 */
  * 全局对象实例
  * 存储系统中重要的全局对象和单例
  */
-uint8_t UNK_180a22db0;         /* 全局对象1 */
+uint8_t unknown_var_9472;         /* 全局对象1 */
 uint8_t system_memory_99f0;         /* 全局数据1 */
 uint8_t system_memory_99f8;         /* 全局数据2 */
 uint8_t system_memory_9a00;         /* 全局数据3 */
@@ -395,7 +395,7 @@ void RegisterSystemCallback(void* callback_data)
     /* 设置回调函数数据 */
     prev_ptr[6] = 0x4fc124d23d41985f;  /* 回调标识符 */
     prev_ptr[7] = 0xe2f4a30d6e6ae482;  /* 回调类型 */
-    prev_ptr[8] = &UNK_18098c790;      /* 回调数据 */
+    prev_ptr[8] = &unknown_var_3504_ptr;      /* 回调数据 */
     prev_ptr[9] = 0;                   /* 回调标志 */
     prev_ptr[10] = callback_function;  /* 回调函数指针 */
 }
@@ -454,7 +454,7 @@ void RegisterInputCallback(void* input_data)
     /* 设置输入回调数据 */
     prev_ptr[6] = 0x4770584fbb1df897;  /* 输入标识符 */
     prev_ptr[7] = 0x47f249e43f66f2ab;  /* 输入类型 */
-    prev_ptr[8] = &UNK_18098c7a0;      /* 输入数据 */
+    prev_ptr[8] = &unknown_var_3520_ptr;      /* 输入数据 */
     prev_ptr[9] = 1;                   /* 输入标志 */
     prev_ptr[10] = callback_data;      /* 输入处理函数 */
 }
@@ -513,7 +513,7 @@ void RegisterRenderCallback(void* render_data)
     /* 设置渲染回调数据 */
     prev_ptr[6] = 0x4666df49b97e0f10;  /* 渲染标识符 */
     prev_ptr[7] = 0x4e4b0d63a6ad1d8f;  /* 渲染类型 */
-    prev_ptr[8] = &UNK_18098c7b8;      /* 渲染数据 */
+    prev_ptr[8] = &unknown_var_3544_ptr;      /* 渲染数据 */
     prev_ptr[9] = 0;                   /* 渲染标志 */
     prev_ptr[10] = callback_data;      /* 渲染处理函数 */
 }

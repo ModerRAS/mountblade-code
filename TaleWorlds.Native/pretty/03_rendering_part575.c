@@ -836,10 +836,10 @@ void FUN_1805828f0(longlong param_1)
       __Throw_C_error_std__YAXH_Z(iVar5);
     }
     uVar1 = *(int32_t *)(param_1 + 0xc);
-    cVar4 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
-    if ((cVar4 != '\0') && (cVar4 = FUN_180645c10(0x180c95578,0x13,&UNK_1809fa540), cVar4 != '\0'))
+    cVar4 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+    if ((cVar4 != '\0') && (cVar4 = FUN_180645c10(0x180c95578,0x13,&unknown_var_3472_ptr), cVar4 != '\0'))
     {
-      FUN_180645c10(0x180c95578,uVar1,&UNK_1809fa490);
+      FUN_180645c10(0x180c95578,uVar1,&unknown_var_3296_ptr);
     }
     _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
     iVar5 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);

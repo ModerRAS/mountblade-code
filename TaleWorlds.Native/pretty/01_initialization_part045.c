@@ -697,7 +697,7 @@ void FUN_1800744b0(longlong param_1,longlong param_2)
   lVar5 = *(longlong *)(param_2 + 8);
   *(int32_t **)(param_2 + 8) = (int32_t *)(lVar5 + 1);
   if (iVar2 == 0) {
-    puStack_c8 = &UNK_1809fcc28;
+    puStack_c8 = &unknown_var_3432_ptr;
     puStack_c0 = auStack_b0;
     uStack_b8 = 0;
     auStack_b0[0] = 0;
@@ -708,7 +708,7 @@ void FUN_1800744b0(longlong param_1,longlong param_2)
       FUN_180049910(&puStack_c8,puVar1,uVar3);
       *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar3;
     }
-    puStack_c8 = &UNK_18098bcb0;
+    puStack_c8 = &unknown_var_720_ptr;
     puVar13 = *(int32_t **)(param_2 + 8);
   }
   else {
@@ -745,8 +745,8 @@ uint64_t * FUN_1800745f0(uint64_t param_1,longlong param_2)
   uint64_t *puVar2;
   
   puVar2 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,3,0xfffffffffffffffe);
-  *puVar2 = &UNK_1809ffa18;
-  *puVar2 = &UNK_1809ff9a8;
+  *puVar2 = &unknown_var_5192_ptr;
+  *puVar2 = &unknown_var_5080_ptr;
   *(uint64_t *)((longlong)puVar2 + 0x2c) = 0;
   *(int32_t *)((longlong)puVar2 + 0x34) = 0;
   *(int8_t *)(puVar2 + 5) = 0;
@@ -787,14 +787,14 @@ void FUN_1800746c0(longlong param_1)
   
   if (*(char *)(*(longlong *)(param_1 + 0x20) + 0x28) == '\0') {
     plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0xc0,0x10,4,0xfffffffffffffffe);
-    *plVar3 = (longlong)&UNK_180a21690;
-    *plVar3 = (longlong)&UNK_180a21720;
+    *plVar3 = (longlong)&unknown_var_3552_ptr;
+    *plVar3 = (longlong)&unknown_var_3696_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (longlong)&UNK_180a02e68;
-    plVar3[2] = (longlong)&UNK_18098bcb0;
+    *plVar3 = (longlong)&unknown_var_8584_ptr;
+    plVar3[2] = (longlong)&unknown_var_720_ptr;
     plVar3[3] = 0;
     *(int32_t *)(plVar3 + 4) = 0;
-    plVar3[2] = (longlong)&UNK_1809fcc28;
+    plVar3[2] = (longlong)&unknown_var_3432_ptr;
     plVar3[3] = (longlong)(plVar3 + 5);
     *(int32_t *)(plVar3 + 4) = 0;
     *(int8_t *)(plVar3 + 5) = 0;
@@ -802,7 +802,7 @@ void FUN_1800746c0(longlong param_1)
     *(int32_t *)(plVar3 + 1) = 0;
     *(int16_t *)(plVar3 + 0x16) = 0;
     plVar3[0x15] = 0;
-    *plVar3 = (longlong)&UNK_180a13a28;
+    *plVar3 = (longlong)&unknown_var_7128_ptr;
     plVar3[0x15] = 0;
     *(int8_t *)(plVar3 + 0x17) = 0;
     (**(code **)(*plVar3 + 0x28))(plVar3);

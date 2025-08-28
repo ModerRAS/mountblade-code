@@ -425,7 +425,7 @@ RenderingSystemParameterPtr RenderingSystemAdvancedPipelineManager(
             stack_handle = pipeline_ptr;
             (**(RenderingSystemCallback)(*pipeline_ptr + 0x28))(pipeline_ptr);
             (**(RenderingSystemCallback)(*pipeline_ptr + 0x38))(pipeline_ptr);
-            data_ptr = &UNK_180a3c3e0;
+            data_ptr = &unknown_var_3456_ptr;
             if (stack_handle_1 != 0) {
                 // 处理错误情况
                 FUN_18064e900();
@@ -436,7 +436,7 @@ RenderingSystemParameterPtr RenderingSystemAdvancedPipelineManager(
 LAB_18043f597:
     stack_handle = (RenderingSystemHandlePtr)0x0;
     stack_state_1 = RENDERING_SYSTEM_HANDLE_NULL;
-    data_ptr = &UNK_180a3c3e0;
+    data_ptr = &unknown_var_3456_ptr;
     if (stack_handle_1 != 0) {
         FUN_18064e900();
     }
@@ -536,7 +536,7 @@ RenderingSystemHandlePtr RenderingSystemMemoryCleaner(
             stack_handle = memory_ptr;
             (**(RenderingSystemCallback)(*memory_ptr + 0x28))(memory_ptr);
             (**(RenderingSystemCallback)(*memory_ptr + 0x38))(memory_ptr);
-            stack_param_1 = &UNK_180a3c3e0;
+            stack_param_1 = &unknown_var_3456_ptr;
             if (stack_handle_1 != 0) {
                 FUN_18064e900();
             }
@@ -545,7 +545,7 @@ RenderingSystemHandlePtr RenderingSystemMemoryCleaner(
     }
     stack_handle = (RenderingSystemHandlePtr)0x0;
     stack_state_1 = RENDERING_SYSTEM_HANDLE_NULL;
-    stack_param_1 = &UNK_180a3c3e0;
+    stack_param_1 = &unknown_var_3456_ptr;
     if (stack_handle_1 != 0) {
         FUN_18064e900();
     }
@@ -582,7 +582,7 @@ RenderingSystemState RenderingSystemStateUpdater(
     RenderingSystemParameter stack_param;
     
     // 初始化数据指针
-    data_ptr = &UNK_180a3c3e0;
+    data_ptr = &unknown_var_3456_ptr;
     stack_param = 0;
     memory_handle = 0;
     stack_state_1 = 0;
@@ -612,7 +612,7 @@ RenderingSystemState RenderingSystemStateUpdater(
     // 执行状态更新
     result_state = (**(RenderingSystemCallback)(*_DAT_180c8f008 + RENDERING_SYSTEM_OFFSET_BASE))
         (_DAT_180c8f008, &data_ptr);
-    data_ptr = &UNK_180a3c3e0;
+    data_ptr = &unknown_var_3456_ptr;
     if (memory_handle != 0) {
         FUN_18064e900();
     }
@@ -684,7 +684,7 @@ void RenderingSystemBatchProcessor(
     }
     
     // 设置默认批处理参数
-    FUN_180626f80(&UNK_180a2a348);
+    FUN_180626f80(&unknown_var_9576_ptr);
     *param_2 = RENDERING_MATH_FLOAT_ONE;
     param_2[1] = RENDERING_MATH_FLOAT_ZERO;
     param_2[2] = RENDERING_MATH_DOUBLE_ONE;
@@ -834,7 +834,7 @@ void RenderingSystemVectorProcessor(
     }
     
     // 设置默认向量参数
-    FUN_180626f80(&UNK_180a2a260);
+    FUN_180626f80(&unknown_var_9344_ptr);
     *param_2 = RENDERING_MATH_FLOAT_ONE;
     param_2[1] = RENDERING_MATH_FLOAT_ZERO;
     param_2[2] = RENDERING_MATH_DOUBLE_ONE;
@@ -881,7 +881,7 @@ void RenderingSystemParameterHandler(
     }
     
     // 设置默认参数
-    FUN_180626f80(&UNK_180a2a298);
+    FUN_180626f80(&unknown_var_9400_ptr);
     *param_2 = RENDERING_MATH_FLOAT_ONE;
     param_2[1] = RENDERING_MATH_FLOAT_ZERO;
     param_2[2] = RENDERING_MATH_DOUBLE_ONE;
@@ -1299,13 +1299,13 @@ void RenderingSystemAdvancedRenderer(
         (**(RenderingSystemCallback)(*render_ptr + 0xb8))(render_ptr, &stack_state[0]);
     }
     
-    data_ptr = &UNK_180a3c3e0;
+    data_ptr = &unknown_var_3456_ptr;
     if (memory_handle != 0) {
         FUN_18064e900();
     }
     memory_handle = 0;
     stack_state_2 = 0;
-    data_ptr = &UNK_18098bcb0;
+    data_ptr = &unknown_var_720_ptr;
     if (resource_ptr != (RenderingSystemHandlePtr)0x0) {
         (**(RenderingSystemCallback)(*resource_ptr + 0x38))();
     }

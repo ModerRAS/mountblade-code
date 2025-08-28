@@ -298,7 +298,7 @@ LAB_18038dd91:
     } while ((ulonglong)(longlong)(int)uVar19 < uVar18);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a21d98);
+  FUN_180062300(_DAT_180c86928,&unknown_var_5352_ptr);
 }
 
 
@@ -588,7 +588,7 @@ LAB_18038dd91:
     } while ((ulonglong)(longlong)(int)uVar12 < uVar11);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a21d98);
+  FUN_180062300(_DAT_180c86928,&unknown_var_5352_ptr);
 }
 
 
@@ -675,7 +675,7 @@ LAB_18038dd91:
     } while ((ulonglong)(longlong)unaff_EDI < uVar6);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a21d98);
+  FUN_180062300(_DAT_180c86928,&unknown_var_5352_ptr);
 }
 
 
@@ -741,7 +741,7 @@ LAB_18038dd91:
     } while ((ulonglong)(longlong)unaff_EDI < uVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a21d98);
+  FUN_180062300(_DAT_180c86928,&unknown_var_5352_ptr);
 }
 
 

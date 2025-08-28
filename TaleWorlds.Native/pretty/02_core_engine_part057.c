@@ -641,15 +641,15 @@ void FUN_180093780(uint64_t param_1,int param_2,int param_3)
     plVar9 = (longlong *)
              FUN_18062b1e0(_DAT_180c8ed18,0x48,8,CONCAT71((int7)((ulonglong)lVar1 >> 8),3),
                            0xfffffffffffffffe);
-    *plVar9 = (longlong)&UNK_180a21690;
-    *plVar9 = (longlong)&UNK_180a21720;
+    *plVar9 = (longlong)&unknown_var_3552_ptr;
+    *plVar9 = (longlong)&unknown_var_3696_ptr;
     *(int32_t *)(plVar9 + 1) = 0;
-    *plVar9 = (longlong)&UNK_18098bdc8;
+    *plVar9 = (longlong)&unknown_var_1000_ptr;
     LOCK();
     *(int8_t *)(plVar9 + 2) = 0;
     UNLOCK();
     plVar9[3] = -1;
-    *plVar9 = (longlong)&UNK_180a08c60;
+    *plVar9 = (longlong)&unknown_var_2640_ptr;
     *(int32_t *)(plVar9 + 5) = 5;
     plVar9[4] = lVar2;
     (**(code **)(*plVar9 + 0x28))(plVar9);

@@ -1040,20 +1040,20 @@ void perform_emergency_exit(uint64_t param1, uint64_t error_message)
 #define detailed_logging_enabled system_memory_0100
 #define report_generation_enabled system_memory_2851
 
-#define debug_output_channel_1 UNK_18098bcb0
-#define debug_output_channel_2 UNK_180a3c3e0
+#define debug_output_channel_1 unknown_var_720
+#define debug_output_channel_2 unknown_var_3456
 #define default_error_buffer system_buffer_ptr
 
-#define error_format_string UNK_1809ff538
-#define error_header_string UNK_1809ff550
-#define error_detail_string UNK_1809ff5b0
-#define critical_error_title UNK_1809ff5b8
-#define app_error_format_string UNK_1809ff5c0
-#define module_error_format_string UNK_1809ff5f8
-#define module_error_title UNK_1809ff630
-#define silent_error_format UNK_1809ff610
-#define emergency_exit_format_string UNK_1809ff538
-#define error_dialog_format UNK_180a04f08
+#define error_format_string unknown_var_3944
+#define error_header_string unknown_var_3968
+#define error_detail_string unknown_var_4064
+#define critical_error_title unknown_var_4072
+#define app_error_format_string unknown_var_4080
+#define module_error_format_string unknown_var_4136
+#define module_error_title unknown_var_4192
+#define silent_error_format unknown_var_4160
+#define emergency_exit_format_string unknown_var_3944
+#define error_dialog_format unknown_var_6936
 
 // 重命名的函数调用
 #define trigger_critical_error FUN_18064e900

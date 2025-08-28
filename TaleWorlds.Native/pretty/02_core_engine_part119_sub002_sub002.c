@@ -878,7 +878,7 @@ LAB_18012ac57:
     _fStack0000000000000070 = 0x7f7fffff7f7fffff;
     fStack0000000000000060 = 3.4028235e+38;
     fStack0000000000000064 = 3.4028235e+38;
-    FUN_18012e1b0(&UNK_180a064a0);
+    FUN_18012e1b0(&unknown_var_2464_ptr);
     lVar23 = _fStack0000000000000050;
     lVar29 = 0;
     pfVar16 = (float *)0x180bf66e8;
@@ -1182,7 +1182,7 @@ LAB_18012b465:
           (*(int *)(unaff_RSI + 0x1a90) - *(int *)(unaff_RSI + 0x1e44) < 2)) &&
          ((*(char *)(unaff_RSI + 0xc3) != '\0' &&
           (((*(int *)(unaff_RSI + 0x1df4) != -1 &&
-            (iVar24 = strcmp(&UNK_180a06400,unaff_RSI + 0x1df8), iVar24 == 0)) &&
+            (iVar24 = strcmp(&unknown_var_2304_ptr,unaff_RSI + 0x1df8), iVar24 == 0)) &&
            (bVar30 = false, (longlong *)**(uint64_t **)(unaff_RSI + 0x1de0) == plVar19)))))) {
         bVar30 = true;
       }
@@ -1323,7 +1323,7 @@ LAB_18012b465:
       fVar35 = (float)(int)(fVar35 * 0.55);
       unaff_RBP[-0x1e] = fVar38 + fVar35;
       unaff_RBP[-0x1d] = fVar36 + fVar35;
-      uVar10 = FUN_180123c00(in_stack_00000040,&UNK_180a064c0,0);
+      uVar10 = FUN_180123c00(in_stack_00000040,&unknown_var_2496_ptr,0);
       uVar15 = CONCAT44(uVar11,0x20);
       cVar7 = FUN_18010f170(unaff_RBP + -0x20,uVar10,(longlong)&stack0x00000058 + 1,&stack0x00000058
                             ,uVar15);
@@ -1643,7 +1643,7 @@ LAB_18012b465:
     *(int32_t *)(in_stack_00000040 + 0x2e) = 2;
     if (((uint)fVar33 & 0x20) == 0) {
       plVar19 = in_stack_00000040 + 8;
-      uVar10 = FUN_180123c00(in_stack_00000040,&UNK_180a064b0,0);
+      uVar10 = FUN_180123c00(in_stack_00000040,&unknown_var_2480_ptr,0);
       cVar7 = FUN_180110000(uVar10,plVar19,0);
       if (cVar7 != '\0') {
         *(int8_t *)((longlong)in_stack_00000040 + 0xb3) = 1;
@@ -1657,7 +1657,7 @@ LAB_18012b465:
                                    *(float *)(unaff_RSI + 0x165c)) - fVar31,
                                    *(float *)((longlong)in_stack_00000040 + 0x44) +
                                    *(float *)(unaff_RSI + 0x1660) + fVar31);
-      uVar10 = FUN_180123c00(in_stack_00000040,&UNK_180a064d0,0);
+      uVar10 = FUN_180123c00(in_stack_00000040,&unknown_var_2512_ptr,0);
       cVar7 = FUN_18010fd40(uVar10,uVar15);
       if (cVar7 != '\0') {
         **(int8_t **)(unaff_RBP + 10) = 0;

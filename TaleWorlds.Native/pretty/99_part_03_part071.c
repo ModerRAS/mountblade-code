@@ -96,7 +96,7 @@ ulonglong FUN_18023cf80(longlong param_1)
 uint64_t * FUN_18023cff0(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180a13fd0;
+  *param_1 = &unknown_var_8576_ptr;
   if (param_1[0x1a] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

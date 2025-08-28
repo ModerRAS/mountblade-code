@@ -951,12 +951,12 @@ void FUN_18047f630(longlong param_1)
     }
   }
   puVar3 = (uint64_t *)FUN_1808fc418(0x28);
-  *puVar3 = &UNK_180a2bd18;
+  *puVar3 = &unknown_var_6184_ptr;
   *(int32_t *)(puVar3 + 1) = uVar2;
   *(int32_t *)((longlong)puVar3 + 0xc) = 0;
   puVar3[2] = 0;
   puVar3[3] = 0;
-  *puVar3 = &UNK_180a2bcd8;
+  *puVar3 = &unknown_var_6120_ptr;
   puVar3[4] = lVar4;
   puVar3[3] = *(uint64_t *)(param_1 + 0x48);
   lVar4 = *(longlong *)(param_1 + 0x48);
@@ -999,11 +999,11 @@ void FUN_18047f6d0(longlong param_1)
   longlong lVar2;
   
   puVar1 = (uint64_t *)FUN_1808fc418();
-  *puVar1 = &UNK_180a2bd18;
+  *puVar1 = &unknown_var_6184_ptr;
   puVar1[1] = 7;
   puVar1[2] = 0;
   puVar1[3] = 0;
-  *puVar1 = &UNK_180a2bb98;
+  *puVar1 = &unknown_var_5800_ptr;
   puVar1[4] = 0;
   puVar1[5] = 0;
   puVar1[6] = 0;

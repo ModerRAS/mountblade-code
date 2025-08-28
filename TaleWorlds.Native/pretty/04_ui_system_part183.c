@@ -17,7 +17,7 @@ uint64_t * FUN_180773a80(uint64_t *param_1)
   uint64_t *puVar1;
   
   func_0x00018074fb20();
-  *param_1 = &UNK_1809591b0;
+  *param_1 = &unknown_var_3104_ptr;
   puVar1 = param_1 + 0x2c;
   param_1[0x2d] = puVar1;
   *puVar1 = puVar1;
@@ -495,7 +495,7 @@ uint64_t FUN_180774390(longlong *param_1)
   if (*(longlong *)(*param_1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
     FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(*param_1 + 0x240),
-                  &UNK_180959410,0x9a,1);
+                  &unknown_var_3712_ptr,0x9a,1);
   }
   return 0;
 }
@@ -530,7 +530,7 @@ uint64_t FUN_180774450(longlong *param_1,int param_2,int32_t *param_3,longlong p
     fVar2 = *(float *)(lVar1 + 0x8278);
   }
                     // WARNING: Subroutine does not return
-  FUN_18076b390(param_4,0x20,&UNK_180958d90,(double)fVar2);
+  FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
 }
 
 

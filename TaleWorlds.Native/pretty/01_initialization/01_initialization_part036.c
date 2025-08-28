@@ -112,7 +112,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
       // 创建新的文件表项
       create_file_table_entry(engine_context + 0x330, hash_params, file_count, file_params);
       *(uint64_t *)(hash_params[0] + 0x118) = 0;
-      temp_ptr1 = &UNK_18098bcb0;
+      temp_ptr1 = &unknown_var_720_ptr;
       
       // 触发安全检查
       security_check_failed(security_cookie ^ (ulonglong)stack_buffer);
@@ -907,11 +907,11 @@ initialize_file_read_context(uint64_t *file_context, longlong file_info, uint64_
   void *file_path;
   
   // 初始化基本字段
-  *file_context = &UNK_18098bcb0;  // 设置默认路径
+  *file_context = &unknown_var_720_ptr;  // 设置默认路径
   file_context[1] = 0;               // 清理偏移量
   *(int32_t *)(file_context + 2) = 0;  // 清理大小
   
-  *file_context = &UNK_1809feda8;  // 设置路径缓冲区
+  *file_context = &unknown_var_2008_ptr;  // 设置路径缓冲区
   file_context[1] = file_context + 3;  // 设置路径指针
   *(int32_t *)(file_context + 2) = 0;  // 清理路径长度
   *(int8_t *)(file_context + 3) = 0;  // 路径终止符
@@ -939,11 +939,11 @@ uint64_t * initialize_memory_manager(uint64_t *memory_manager)
 
 {
   // 初始化基本字段
-  *memory_manager = &UNK_18098bcb0;  // 设置默认值
+  *memory_manager = &unknown_var_720_ptr;  // 设置默认值
   memory_manager[1] = 0;               // 清理计数器
   *(int32_t *)(memory_manager + 2) = 0;  // 清理标志
   
-  *memory_manager = &UNK_1809feda8;  // 设置数据缓冲区
+  *memory_manager = &unknown_var_2008_ptr;  // 设置数据缓冲区
   memory_manager[1] = memory_manager + 3;  // 设置数据指针
   *(int32_t *)(memory_manager + 2) = 0;  // 清理数据长度
   *(int8_t *)(memory_manager + 3) = 0;  // 数据终止符
@@ -1009,7 +1009,7 @@ longlong release_file_info(longlong file_info, ulonglong release_flags, uint64_t
 
 {
   // 设置默认文件路径
-  *(void **)(file_info + 8) = &UNK_18098bcb0;
+  *(void **)(file_info + 8) = &unknown_var_720_ptr;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {
@@ -1032,7 +1032,7 @@ release_memory_block(uint64_t *memory_block, ulonglong release_flags, uint64_t p
 
 {
   // 设置默认值
-  *memory_block = &UNK_18098bcb0;
+  *memory_block = &unknown_var_720_ptr;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {
@@ -1126,7 +1126,7 @@ void string_search_and_replace(longlong target_string, longlong search_string, l
   // 初始化栈保护
   stack_guard = 0xfffffffffffffffe;
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
-  temp_ptr = &UNK_1809feda8;
+  temp_ptr = &unknown_var_2008_ptr;
   result_buffer = work_buffer;
   result_len = 0;
   work_buffer[0] = 0;
@@ -1151,7 +1151,7 @@ void string_search_and_replace(longlong target_string, longlong search_string, l
     memcpy(result_buffer, *(longlong *)(target_string + 8), search_pos - *(longlong *)(target_string + 8));
   }
   
-  temp_ptr = &UNK_18098bcb0;
+  temp_ptr = &unknown_var_720_ptr;
   // WARNING: 子函数不返回
   // 执行安全检查
   perform_security_check(security_cookie ^ (ulonglong)stack_buffer);
@@ -1193,7 +1193,7 @@ void set_string_value(longlong target_string, longlong source_string)
   }
   
   // 字符串过长，处理错误情况
-  handle_string_too_long_error(&UNK_18098bc48, 0x100, source_string);
+  handle_string_too_long_error(&unknown_var_616_ptr, 0x100, source_string);
   *(int32_t *)(target_string + 0x10) = 0;
   **(int8_t **)(target_string + 8) = 0;
   return;
@@ -1212,7 +1212,7 @@ longlong release_file_table_entry(longlong file_entry, ulonglong release_flags, 
 
 {
   // 设置默认文件路径
-  *(void **)(file_entry + 8) = &UNK_18098bcb0;
+  *(void **)(file_entry + 8) = &unknown_var_720_ptr;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {
@@ -1235,7 +1235,7 @@ void FUN_180069530(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   if ((code *)param_1[0x2b] != (code *)0x0) {
     (*(code *)param_1[0x2b])(param_1 + 0x29,0,0);
   }
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &unknown_var_720_ptr;
   return;
 }
 
@@ -1250,7 +1250,7 @@ void reset_file_info(longlong file_info)
 
 {
   // 设置默认文件路径
-  *(void **)(file_info + 8) = &UNK_18098bcb0;
+  *(void **)(file_info + 8) = &unknown_var_720_ptr;
   return;
 }
 
@@ -1268,9 +1268,9 @@ release_memory_manager(uint64_t *memory_manager, ulonglong release_flags, uint64
 
 {
   // 重置内存管理器的各个字段
-  *memory_manager = &UNK_18098bdc8;
-  *memory_manager = &UNK_180a21720;
-  *memory_manager = &UNK_180a21690;
+  *memory_manager = &unknown_var_1000_ptr;
+  *memory_manager = &unknown_var_3696_ptr;
+  *memory_manager = &unknown_var_3552_ptr;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {
@@ -1290,7 +1290,7 @@ uint64_t * release_string_buffer(uint64_t *string_buffer, ulonglong release_flag
 
 {
   // 重置字符串缓冲区
-  *string_buffer = &UNK_1809feeb8;
+  *string_buffer = &unknown_var_2280_ptr;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {

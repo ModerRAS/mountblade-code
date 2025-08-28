@@ -1061,7 +1061,7 @@ void process_render_batch_update(uint64_t batch_params, int batch_index)
   *(int32_t *)(_DAT_180c8a9b0 + 0x1c04) = 0x43c80000;
   *(int32_t *)(batch_data + 0x1c08) = 0x43c80000;
   *(int32_t *)(batch_data + 0x1bd4) = 4;
-  FUN_1801299b0(&UNK_180a06480, 0, 0);
+  FUN_1801299b0(&unknown_var_2432_ptr, 0, 0);
   *(int8_t *)(engine_context + 2) = 1;
   return;
 }
@@ -1136,7 +1136,7 @@ void process_render_resource_cleanup(void)
   *(int32_t *)(_DAT_180c8a9b0 + 0x1c04) = 0x43c80000;
   *(int32_t *)(resource_ptr + 0x1c08) = 0x43c80000;
   *(int32_t *)(resource_ptr + 0x1bd4) = 4;
-  FUN_1801299b0(&UNK_180a06480, 0, 0);
+  FUN_1801299b0(&unknown_var_2432_ptr, 0, 0);
   *(int8_t *)(engine_context + 2) = 1;
   return;
 }

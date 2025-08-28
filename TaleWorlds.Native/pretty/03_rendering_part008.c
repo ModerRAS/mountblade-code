@@ -23,7 +23,7 @@ void FUN_180271c54(void)
     FUN_180639ec0();
     unaff_RBP = unaff_RBP + -1;
   } while (unaff_RBP != 0);
-  FUN_18025a940(&UNK_18098dfd0,*(int32_t *)(unaff_RDI + 0x7c8));
+  FUN_18025a940(&unknown_var_9712_ptr,*(int32_t *)(unaff_RDI + 0x7c8));
   puVar5 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0x7cc);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 2) {
@@ -830,7 +830,7 @@ void FUN_180271cf0(longlong param_1,longlong param_2)
     do {
       iVar1 = **(int **)(param_2 + 8);
       *(int **)(param_2 + 8) = *(int **)(param_2 + 8) + 1;
-      puStack_e8 = &UNK_1809fcc28;
+      puStack_e8 = &unknown_var_3432_ptr;
       puStack_e0 = auStack_d0;
       uStack_d8 = 0;
       auStack_d0[0] = 0;
@@ -848,7 +848,7 @@ void FUN_180271cf0(longlong param_1,longlong param_2)
         }
         (**(code **)(*plVar6 + 0x10))(plVar6,puVar8);
       }
-      puStack_e8 = &UNK_18098bcb0;
+      puStack_e8 = &unknown_var_720_ptr;
       plVar6 = plVar6 + 0xb;
       lVar13 = lVar13 + -1;
     } while (lVar13 != 0);

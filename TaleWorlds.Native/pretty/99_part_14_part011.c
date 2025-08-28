@@ -45,7 +45,7 @@ FUN_1808f0f30(longlong *param_1,uint64_t *param_2,char param_3,uint64_t *param_4
   longlong *plVar11;
   
   if (0x3fffffffffffffd < (ulonglong)param_1[1]) {
-    __Xlength_error_std__YAXPEBD_Z(&UNK_180a009a8);
+    __Xlength_error_std__YAXPEBD_Z(&unknown_var_9176_ptr);
     pcVar4 = (code *)swi(3);
     puVar6 = (uint64_t *)(*pcVar4)();
     return puVar6;
@@ -355,7 +355,7 @@ void FUN_1808f11b3(void)
 {
   code *pcVar1;
   
-  __Xlength_error_std__YAXPEBD_Z(&UNK_180a009a8);
+  __Xlength_error_std__YAXPEBD_Z(&unknown_var_9176_ptr);
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;

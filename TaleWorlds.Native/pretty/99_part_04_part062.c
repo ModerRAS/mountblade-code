@@ -1045,7 +1045,7 @@ uint64_t FUN_1802bf350(uint64_t param_1,uint64_t param_2)
               0x48) < _DAT_180d48db0) {
     FUN_1808fcb90(&system_ptr_8db0);
     if (_DAT_180d48db0 == -1) {
-      _DAT_180d48db8 = &UNK_180a3c3e0;
+      _DAT_180d48db8 = &unknown_var_3456_ptr;
       _DAT_180d48dd0 = 0;
       _DAT_180d48dc0 = (int32_t *)0x0;
       _DAT_180d48dc8 = 0;

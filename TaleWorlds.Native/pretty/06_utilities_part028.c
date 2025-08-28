@@ -210,14 +210,14 @@ void FUN_180942750(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     // 初始化全局指针数组
     puVar1 = _DAT_180bfaea8;
     for (puVar2 = _DAT_180bfaea0; puVar2 != puVar1; puVar2 = puVar2 + 7) {
-        *puVar2 = &UNK_180a3c3e0;
+        *puVar2 = &unknown_var_3456_ptr;
         if (puVar2[1] != 0) {
             // 错误处理：不返回的函数调用
             FUN_18064e900();
         }
         puVar2[1] = 0;
         *(int32_t *)(puVar2 + 3) = 0;
-        *puVar2 = &UNK_18098bcb0;
+        *puVar2 = &unknown_var_720_ptr;
     }
     
     // 验证初始化结果
@@ -240,7 +240,7 @@ void FUN_180942750(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
 void FUN_180942790(void)
 {
     // 设置全局清理标志
-    _DAT_180c92050 = &UNK_18098bcb0;
+    _DAT_180c92050 = &unknown_var_720_ptr;
     
     // 销毁互斥量（可能不返回）
     _Mtx_destroy_in_situ();
@@ -258,7 +258,7 @@ void FUN_180942790(void)
 void FUN_1809427d0(void)
 {
     // 重置全局状态指针
-    _DAT_180bfaef0 = &UNK_18098bcb0;
+    _DAT_180bfaef0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -272,7 +272,7 @@ void FUN_1809427d0(void)
 void FUN_1809427f0(void)
 {
     // 设置系统就绪标志
-    _DAT_180bfb310 = &UNK_18098bcb0;
+    _DAT_180bfb310 = &unknown_var_720_ptr;
     return;
 }
 
@@ -286,7 +286,7 @@ void FUN_1809427f0(void)
 void FUN_180942810(void)
 {
     // 设置系统配置标志
-    _DAT_180bfb730 = &UNK_18098bcb0;
+    _DAT_180bfb730 = &unknown_var_720_ptr;
     return;
 }
 
@@ -300,7 +300,7 @@ void FUN_180942810(void)
 void FUN_180942830(void)
 {
     // 设置系统验证标志
-    _DAT_180d499d0 = &UNK_18098bcb0;
+    _DAT_180d499d0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -314,7 +314,7 @@ void FUN_180942830(void)
 void FUN_180942850(void)
 {
     // 设置启动序列标志
-    _DAT_180d49bf0 = &UNK_18098bcb0;
+    _DAT_180d49bf0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -747,7 +747,7 @@ void FUN_180942a40(void)
 void FUN_180942a60(void)
 {
     // 设置全局变量
-    _DAT_180bf6048 = &UNK_18098bcb0;
+    _DAT_180bf6048 = &unknown_var_720_ptr;
     return;
 }
 
@@ -761,7 +761,7 @@ void FUN_180942a60(void)
 void FUN_180942a80(void)
 {
     // 设置全局变量
-    _DAT_180bf6498 = &UNK_18098bcb0;
+    _DAT_180bf6498 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1048,7 +1048,7 @@ void FUN_180942f50(void)
 void FUN_180942fa0(void)
 {
     // 设置系统状态
-    _DAT_180bf64f8 = &UNK_18098bcb0;
+    _DAT_180bf64f8 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1062,7 +1062,7 @@ void FUN_180942fa0(void)
 void FUN_180942fc0(void)
 {
     // 设置状态验证标志
-    _DAT_180bf6558 = &UNK_18098bcb0;
+    _DAT_180bf6558 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1118,7 +1118,7 @@ void FUN_180943070(void)
 void FUN_180943090(void)
 {
     // 保存系统状态
-    _DAT_180d49f80 = &UNK_18098bcb0;
+    _DAT_180d49f80 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1132,7 +1132,7 @@ void FUN_180943090(void)
 void FUN_1809430b0(void)
 {
     // 加载系统状态
-    _DAT_180d49fe0 = &UNK_18098bcb0;
+    _DAT_180d49fe0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1146,14 +1146,14 @@ void FUN_1809430b0(void)
 void FUN_1809430e0(void)
 {
     // 管理系统状态
-    _DAT_180d4a068 = &UNK_180a3c3e0;
+    _DAT_180d4a068 = &unknown_var_3456_ptr;
     if (_DAT_180d4a070 != 0) {
         // 状态管理失败
         FUN_18064e900();
     }
     _DAT_180d4a070 = 0;
     _DAT_180d4a080 = 0;
-    _DAT_180d4a068 = &UNK_18098bcb0;
+    _DAT_180d4a068 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1228,14 +1228,14 @@ void FUN_1809431a0(void)
     lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
     
     // 初始化线程本地存储
-    *(uint64_t *)(lVar1 + 0x18) = &UNK_180a3c3e0;
+    *(uint64_t *)(lVar1 + 0x18) = &unknown_var_3456_ptr;
     if (*(longlong *)(lVar1 + 0x20) != 0) {
         // 线程本地存储初始化失败
         FUN_18064e900();
     }
     *(uint64_t *)(lVar1 + 0x20) = 0;
     *(int32_t *)(lVar1 + 0x30) = 0;
-    *(uint64_t *)(lVar1 + 0x18) = &UNK_18098bcb0;
+    *(uint64_t *)(lVar1 + 0x18) = &unknown_var_720_ptr;
     return;
 }
 
@@ -1263,14 +1263,14 @@ void FUN_180943200(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     
     // 清理线程本地存储
     FUN_180657620(&system_memory_67e0, *_DAT_180c967f0, param_3, param_4, 0xfffffffffffffffe);
-    puVar1[4] = &UNK_180a3c3e0;
+    puVar1[4] = &unknown_var_3456_ptr;
     if (puVar1[5] != 0) {
         // 线程本地存储清理失败
         FUN_18064e900();
     }
     puVar1[5] = 0;
     *(int32_t *)(puVar1 + 7) = 0;
-    puVar1[4] = &UNK_18098bcb0;
+    puVar1[4] = &unknown_var_720_ptr;
     // 清理完成
     FUN_18064e900(puVar1);
 }

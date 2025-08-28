@@ -471,14 +471,14 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
   // 验证顶点管线和片段管线是否都成功激活
   // 这是关键的错误检查点，确保双管线架构的完整性
   if ((plStack_3b0 == (longlong *)0x0) || (plStack_3f8 == (longlong *)0x0)) {
-    FUN_180627020(&UNK_180a1f6f0);                    // 管线激活失败，调用错误处理函数
+    FUN_180627020(&unknown_var_5456_ptr);                    // 管线激活失败，调用错误处理函数
   }
   else {
     // 管线激活成功，开始执行核心渲染算法
     // 设置顶点管线处理器的配置参数
     uStack_3e8 = (void **)alStack_1b8;
     uStack_3e0 = &plStack_3b0;
-    pcStack_3c8 = (code *)&UNK_180360340;
+    pcStack_3c8 = (code *)&unknown_var_720_ptr;
     pcStack_3c0 = FUN_180360210;
     pfStack_438 = (float *)auStack_3d8;
     auStack_3d8 = (int8_t  [8])uStack_3e8;
@@ -490,7 +490,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
     }
     uStack_3e8 = &puStack_148;
     uStack_3e0 = &plStack_3f8;
-    pcStack_3c8 = (code *)&UNK_180360300;
+    pcStack_3c8 = (code *)&unknown_var_656_ptr;
     pcStack_3c0 = FUN_180360210;
     puStack_3d0 = uStack_3e0;
     auStack_3d8 = (int8_t  [8])uStack_3e8;
@@ -646,7 +646,7 @@ LAB_18035f156:
       if (plVar12 != (longlong *)0x0) {
         (**(code **)(*plVar12 + 0x28))(plVar12);
       }
-      (**(code **)(plVar12[0x3e] + 0x10))(plVar12 + 0x3e,&UNK_180a1f6e0);
+      (**(code **)(plVar12[0x3e] + 0x10))(plVar12 + 0x3e,&unknown_var_5440_ptr);
       uVar11 = *(uint64_t *)(renderContext + 0x18);
       pplStack_400 = &plStack_3b8;
       plStack_3b8 = plVar12;
@@ -663,18 +663,18 @@ LAB_18035f156:
       if (plVar13 != (longlong *)0x0) {
         (**(code **)(*plVar13 + 0x28))(plVar13);
       }
-      (**(code **)(plVar13[2] + 0x10))(plVar13 + 2,&UNK_180a1f770);
-      puStack_1f0 = &UNK_18098bc80;
+      (**(code **)(plVar13[2] + 0x10))(plVar13 + 2,&unknown_var_5584_ptr);
+      puStack_1f0 = &unknown_var_672_ptr;
       ppuStack_1e8 = &puStack_1d8;
       puStack_1d8 = (void *)((ulonglong)puStack_1d8 & 0xffffffffffffff00);
       uStack_1e0 = (void *)CONCAT44((int)((ulonglong)uStack_1e0 >> 0x20),0x12);
-      strcpy_s(&puStack_1d8,0x20,&UNK_180a1f758);
+      strcpy_s(&puStack_1d8,0x20,&unknown_var_5560_ptr);
       uVar11 = FUN_1800b30d0(_DAT_180c86930,&uStack_410,&puStack_1f0,1);
       FUN_180076910(plVar13,uVar11);
       if (uStack_410 != (longlong **)0x0) {
         (*(code *)(*uStack_410)[7])();
       }
-      puStack_1f0 = &UNK_18098bcb0;
+      puStack_1f0 = &unknown_var_720_ptr;
       plStack_390 = (longlong *)0x0;
       pplStack_388 = (longlong **)0x0;
       pplStack_400 = &plStack_380;
@@ -859,11 +859,11 @@ LAB_18035f156:
           pfVar21 = pfVar21 + 7;
         } while (pfVar14 != pfStack_268);
       }
-      puStack_1f0 = &UNK_180234790;
-      ppuStack_1e8 = (void **)&UNK_18022bf60;
-      uStack_1e0 = &UNK_1802347a0;
-      puStack_1d8 = &UNK_1802347f0;
-      puStack_1d0 = &UNK_180234830;
+      puStack_1f0 = &unknown_var_3024_ptr;
+      ppuStack_1e8 = (void **)&unknown_var_8160_ptr;
+      uStack_1e0 = &unknown_var_3040_ptr;
+      puStack_1d8 = &unknown_var_3120_ptr;
+      puStack_1d0 = &unknown_var_3184_ptr;
       pcStack_1c8 = FUN_180234880;
       uStack_1c0 = 0;
       uStack_3e8 = &puStack_1f0;
@@ -877,7 +877,7 @@ LAB_18035f156:
           puStack_428 = (void *)plStack_390[3];
         }
         ppplStack_430 = (longlong ***)((ulonglong)ppplStack_430 & 0xffffffff00000000);
-        pfStack_438 = (float *)&UNK_1809ffb30;
+        pfStack_438 = (float *)&unknown_var_5472_ptr;
         FUN_1800623b0(_DAT_180c86928,0,0x80000000000,3);
       }
       cStack_360 = '\x01';
@@ -903,7 +903,7 @@ LAB_18035f156:
       uStack_410 = (longlong **)plVar13;
       (**(code **)(*plVar13 + 0x28))(plVar13);
       FUN_180275cf0(plVar12,0,&uStack_410,1);
-      if (*(code **)(*plVar12 + 0x160) == (code *)&UNK_180277350) {
+      if (*(code **)(*plVar12 + 0x160) == (code *)&unknown_var_6368_ptr) {
         FUN_180276f30(plVar12,(longlong)plVar12 + 0x214,0);
       }
       else {

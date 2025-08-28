@@ -68,7 +68,7 @@ void RenderingBatchManager(void *render_context, longlong *batch_data)
             index_stride = texture_id;
             
             // 获取渲染设备上下文
-            if (*(code **)(*batch_data + 0x158) == (code *)&UNK_18027d980) {
+            if (*(code **)(*batch_data + 0x158) == (code *)&unknown_var_2528_ptr) {
                 uniform_buffer = batch_data + 0x66;
             }
             else {
@@ -360,7 +360,7 @@ void MaterialBatchProcessor(uint64_t context_base, uint64_t render_context, long
     instance_hash = batch_flags;
     
     // 获取统一缓冲区
-    if (*(code **)(*render_buffer + 0x158) == (code *)&UNK_18027d980) {
+    if (*(code **)(*render_buffer + 0x158) == (code *)&unknown_var_2528_ptr) {
       uniform_buffer = render_buffer + 0x66;
     }
     else {

@@ -213,7 +213,7 @@ void UIControlAdvancedProcessor(UISystemContext* param_1, ulonglong param_2) {
         
         // 配置控件属性
         current_value = (**(code **)(**(longlong **)((longlong)param_1 + -0x61) + 0x18))
-                         (*(longlong **)((longlong)param_1 + -0x61), &UNK_18097ed30, 0x17, 0, context_data);
+                         (*(longlong **)((longlong)param_1 + -0x61), &unknown_var_7600_ptr, 0x17, 0, context_data);
         if (-1 < current_value) {
             // 执行控件初始化
             (**(code **)(**(longlong **)((longlong)param_1 + -0x61) + 0x10))();
@@ -343,7 +343,7 @@ void UIControlAdvancedProcessor(UISystemContext* param_1, ulonglong param_2) {
                     if ((((resource_handle != 0) &&
                           (current_value = (**(code **)(*(longlong*)*context_data + 0x68))((longlong*)*context_data, resource_handle), -1 < current_value)) &&
                          (current_value = (**(code **)(*(longlong*)*context_data + 0x20))((longlong*)*context_data, (UIContext)param_1 + 0x750), -1 < current_value)) &&
-                        (current_value = (**(code **)(*(longlong*)*context_data + 0x70))((longlong*)*context_data, &UNK_18097edf8, (UIContext)param_1 + 0x730), -1 < current_value)) {
+                        (current_value = (**(code **)(*(longlong*)*context_data + 0x70))((longlong*)*context_data, &unknown_var_7800_ptr, (UIContext)param_1 + 0x730), -1 < current_value)) {
                         
                         // 设置事件处理器
                         resource_manager = *(longlong**)((UIContext)param_1 + 0x730);
@@ -358,14 +358,14 @@ void UIControlAdvancedProcessor(UISystemContext* param_1, ulonglong param_2) {
                             // 分配渲染资源
                             current_value = (uint)*(ushort*)((longlong)param_1 + -0x2d) * *(int*)((UIContext)param_1 + 0x748);
                             *(int*)((UIContext)param_1 + 0x74c) = current_value;
-                            resource_handle = FUN_180741d80(*(void*)(_DAT_180be12f0 + 0x1a0), current_value, 0x20, &UNK_18097ed60, CONCAT44(operation_result, 0x1bb));
+                            resource_handle = FUN_180741d80(*(void*)(_DAT_180be12f0 + 0x1a0), current_value, 0x20, &unknown_var_7648_ptr, CONCAT44(operation_result, 0x1bb));
                             *(longlong*)((UIContext)param_1 + 0x740) = resource_handle;
                             
                             if (resource_handle != 0) {
-                                context_data = (void*)FUN_180741e10(*(void*)(_DAT_180be12f0 + 0x1a0), 0x10, &UNK_18097ed60, 0x1d2, resource_flags & 0xffffffff00000000);
+                                context_data = (void*)FUN_180741e10(*(void*)(_DAT_180be12f0 + 0x1a0), 0x10, &unknown_var_7648_ptr, 0x1d2, resource_flags & 0xffffffff00000000);
                                 if (context_data != (void*)0x0) {
                                     *(uint*)(context_data + 1) = 0;
-                                    *(void**)context_data = &UNK_18097ecf0;
+                                    *(void**)context_data = &unknown_var_7536_ptr;
                                     event_data = context_data;
                                 }
                                 *(void**)((UIContext)param_1 + 0x758) = event_data;
@@ -534,7 +534,7 @@ void UIEventProcessor(ulonglong param_1, void* param_2, UISystemContext* param_3
         if ((((resource_handle != 0) &&
               (current_value = (**(code **)(*(longlong*)*(void**)((longlong)param_2 + -0x11) + 0x68))((longlong*)*(void**)((longlong)param_2 + -0x11), resource_handle), -1 < current_value)) &&
              (current_value = (**(code **)(*(longlong*)*(void**)((longlong)param_2 + -0x11) + 0x20))((longlong*)*(void**)((longlong)param_2 + -0x11), (UIContext)param_2 + 0x750), -1 < current_value)) &&
-            (current_value = (**(code **)(*(longlong*)*(void**)((longlong)param_2 + -0x11) + 0x70))((longlong*)*(void**)((longlong)param_2 + -0x11), &UNK_18097edf8, (UIContext)param_2 + 0x730), -1 < current_value)) {
+            (current_value = (**(code **)(*(longlong*)*(void**)((longlong)param_2 + -0x11) + 0x70))((longlong*)*(void**)((longlong)param_2 + -0x11), &unknown_var_7800_ptr, (UIContext)param_2 + 0x730), -1 < current_value)) {
             
             // 设置事件处理器
             resource_manager = *(longlong**)((UIContext)param_2 + 0x730);
@@ -549,14 +549,14 @@ void UIEventProcessor(ulonglong param_1, void* param_2, UISystemContext* param_3
                 // 执行事件回调
                 current_value = (uint)*(ushort*)((longlong)param_2 + -0x2d) * *(int*)((UIContext)param_2 + 0x748);
                 *(int*)((UIContext)param_2 + 0x74c) = current_value;
-                resource_handle = FUN_180741d80(*(void*)(_DAT_180be12f0 + 0x1a0), current_value, 0x20, &UNK_18097ed60, CONCAT44(operation_result, 0x1bb));
+                resource_handle = FUN_180741d80(*(void*)(_DAT_180be12f0 + 0x1a0), current_value, 0x20, &unknown_var_7648_ptr, CONCAT44(operation_result, 0x1bb));
                 *(longlong*)((UIContext)param_2 + 0x740) = resource_handle;
                 
                 if (resource_handle != 0) {
-                    context_data = (void*)FUN_180741e10(*(void*)(_DAT_180be12f0 + 0x1a0), 0x10, &UNK_18097ed60, 0x1d2, param_1 & 0xffffffff);
+                    context_data = (void*)FUN_180741e10(*(void*)(_DAT_180be12f0 + 0x1a0), 0x10, &unknown_var_7648_ptr, 0x1d2, param_1 & 0xffffffff);
                     if (context_data != (void*)0x0) {
                         *(int*)(context_data + 1) = (int)param_1;
-                        *(void**)context_data = &UNK_18097ecf0;
+                        *(void**)context_data = &unknown_var_7536_ptr;
                         param_1 = context_data;
                     }
                     *(void**)((UIContext)param_2 + 0x758) = (void*)param_1;

@@ -97,25 +97,25 @@ typedef struct {
 /**
  * @brief 系统数据处理核心数据区域
  */
-extern uint8_t UNK_180bf00a8;           /* 系统主控制器 */
-extern uint8_t UNK_180c8ed18;           /* 系统配置管理器 */
-extern uint8_t UNK_180c86930;           /* 系统数据处理器 */
-extern uint8_t UNK_180c86938;           /* 系统状态管理器 */
-extern uint8_t UNK_180c86870;           /* 系统资源管理器 */
-extern uint8_t UNK_180c86890;           /* 系统渲染管理器 */
-extern uint8_t UNK_180c8695c;           /* 系统计数器 */
-extern uint8_t UNK_180c86968;           /* 系统回调管理器 */
-extern uint8_t UNK_180a3c3e0;           /* 系统数据缓冲区 */
-extern uint8_t UNK_180a1a8d8;           /* 系统字符串处理器 */
-extern uint8_t UNK_18098bc73;           /* 系统默认字符串 */
-extern uint8_t UNK_1809fcc28;           /* 系统数据接口 */
-extern uint8_t UNK_18098bcb0;           /* 系统状态接口 */
-extern uint8_t UNK_1809fcc58;           /* 系统配置接口 */
-extern uint8_t UNK_180a26368;           /* 系统对象管理器 */
-extern uint8_t UNK_180a264e0;           /* 系统内存管理器 */
-extern uint8_t UNK_180a26270;           /* 系统渲染数据1 */
-extern uint8_t UNK_180a26280;           /* 系统渲染数据2 */
-extern uint8_t UNK_180a0eb68;           /* 系统常量数据 */
+extern uint8_t global_state_8488;           /* 系统主控制器 */
+extern uint8_t global_state_8840;           /* 系统配置管理器 */
+extern uint8_t global_state_5072;           /* 系统数据处理器 */
+extern uint8_t global_state_5080;           /* 系统状态管理器 */
+extern uint8_t global_state_4880;           /* 系统资源管理器 */
+extern uint8_t global_state_4912;           /* 系统渲染管理器 */
+extern uint8_t global_state_5116;           /* 系统计数器 */
+extern uint8_t global_state_5128;           /* 系统回调管理器 */
+extern uint8_t global_state_3456_ptr;           /* 系统数据缓冲区 */
+extern uint8_t global_state_5464_ptr;           /* 系统字符串处理器 */
+extern uint8_t global_state_659;           /* 系统默认字符串 */
+extern uint8_t global_state_3432_ptr;           /* 系统数据接口 */
+extern uint8_t global_state_720_ptr;           /* 系统状态接口 */
+extern uint8_t global_state_3480_ptr;           /* 系统配置接口 */
+extern uint8_t global_state_3224_ptr;           /* 系统对象管理器 */
+extern uint8_t global_state_3600_ptr;           /* 系统内存管理器 */
+extern uint8_t global_state_2976_ptr;           /* 系统渲染数据1 */
+extern uint8_t global_state_2992_ptr;           /* 系统渲染数据2 */
+extern uint8_t global_state_6968;           /* 系统常量数据 */
 
 /* ============================================================================
  * 系统数据处理函数声明
@@ -271,35 +271,35 @@ void FUN_1803fa980(longlong *param_1, longlong param_2);
  * @brief 系统数据处理相关变量
  */
 extern uint8_t system_stack_cookie;           /* 系统数据控制器 */
-extern uint8_t UNK_1801f9270;           /* 系统初始化器 */
-extern uint8_t UNK_18062b420;           /* 系统内存分配器 */
-extern uint8_t UNK_18064e990;           /* 系统数据验证器 */
-extern uint8_t UNK_180628040;           /* 系统字符串管理器 */
-extern uint8_t UNK_1800b1230;           /* 系统数据处理器 */
-extern uint8_t UNK_18029ad30;           /* 系统资源管理器 */
-extern uint8_t UNK_18029de40;           /* 系统状态更新器 */
-extern uint8_t UNK_18029fc10;           /* 系统配置管理器 */
-extern uint8_t UNK_1801f7d20;           /* 系统参数处理器 */
-extern uint8_t UNK_180627ae0;           /* 系统数据代码分析器 */
-extern uint8_t UNK_180299eb0;           /* 系统数据优化器 */
-extern uint8_t UNK_18029d150;           /* 系统渲染管理器 */
-extern uint8_t UNK_18029d000;           /* 系统资源释放器 */
-extern uint8_t UNK_18029cdd0;           /* 系统数据同步器 */
-extern uint8_t UNK_18029e110;           /* 系统状态同步器 */
-extern uint8_t UNK_1808fc838;           /* 系统对象创建器 */
-extern uint8_t UNK_1808fc8a8;           /* 系统对象配置器 */
-extern uint8_t UNK_1801f9920;           /* 系统初始化管理器 */
-extern uint8_t UNK_1801f8ea0;           /* 系统数据管理器 */
-extern uint8_t UNK_18062b1e0;           /* 系统内存管理器 */
-extern uint8_t UNK_1808fc050;           /* 系统清理器 */
-extern uint8_t UNK_1802c22a0;           /* 系统字符串处理器 */
-extern uint8_t UNK_180049bf0;           /* 系统数据处理器 */
-extern uint8_t UNK_1802c2560;           /* 系统资源管理器 */
-extern uint8_t UNK_1802c2ac0;           /* 系统资源清理器 */
-extern uint8_t UNK_18064e900;           /* 系统错误处理器 */
-extern uint8_t UNK_1801fa180;           /* 系统配置管理器 */
-extern uint8_t UNK_180045af0;           /* 系统回调处理器 */
-extern uint8_t UNK_1801f6650;           /* 系统渲染管理器 */
+extern uint8_t global_state_48;           /* 系统初始化器 */
+extern uint8_t global_state_9584;           /* 系统内存分配器 */
+extern uint8_t global_state_4336;           /* 系统数据验证器 */
+extern uint8_t global_state_6304;           /* 系统字符串管理器 */
+extern uint8_t global_state_6496;           /* 系统数据处理器 */
+extern uint8_t global_state_2256;           /* 系统资源管理器 */
+extern uint8_t global_state_4816;           /* 系统状态更新器 */
+extern uint8_t global_state_2448;           /* 系统配置管理器 */
+extern uint8_t global_state_4592;           /* 系统参数处理器 */
+extern uint8_t global_state_4928;           /* 系统数据代码分析器 */
+extern uint8_t global_state_8544;           /* 系统数据优化器 */
+extern uint8_t global_state_1504;           /* 系统渲染管理器 */
+extern uint8_t global_state_1168;           /* 系统资源释放器 */
+extern uint8_t global_state_608;           /* 系统数据同步器 */
+extern uint8_t global_state_5536;           /* 系统状态同步器 */
+extern uint8_t global_state_3848;           /* 系统对象创建器 */
+extern uint8_t global_state_3960;           /* 系统对象配置器 */
+extern uint8_t global_state_1760;           /* 系统初始化管理器 */
+extern uint8_t global_state_9072;           /* 系统数据管理器 */
+extern uint8_t global_state_9008;           /* 系统内存管理器 */
+extern uint8_t global_state_1824;           /* 系统清理器 */
+extern uint8_t global_state_3392;           /* 系统字符串处理器 */
+extern uint8_t global_state_3008;           /* 系统数据处理器 */
+extern uint8_t global_state_4096;           /* 系统资源管理器 */
+extern uint8_t global_state_5472;           /* 系统资源清理器 */
+extern uint8_t global_state_4192;           /* 系统错误处理器 */
+extern uint8_t global_state_3904;           /* 系统配置管理器 */
+extern uint8_t global_state_6368;           /* 系统回调处理器 */
+extern uint8_t global_state_8752;           /* 系统渲染管理器 */
 
 /* ============================================================================
  * 系统数据处理实现
@@ -389,7 +389,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         
         // 系统数据处理流程
         uStack_1b8 = 0x1f;
-        puStack_1e8 = &UNK_180a3c3e0;
+        puStack_1e8 = &global_state_3456_ptr;
         uStack_1d0 = 0;
         puStack_1e0 = (uint64_t *)0x0;
         uStack_1d8 = 0;
@@ -413,10 +413,10 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         if (*(void **)(param_2 + 0x3528) != (void *)0x0) {
             puVar5 = *(void **)(param_2 + 0x3528);
         }
-        FUN_180628040(&puStack_1e8,&UNK_180a1a8d8,puVar5);
+        FUN_180628040(&puStack_1e8,&global_state_5464_ptr,puVar5);
         
         // 数据处理和资源管理
-        puStack_188 = &UNK_1809fcc28;
+        puStack_188 = &global_state_3432_ptr;
         puStack_180 = auStack_170;
         auStack_170[0] = 0;
         uStack_178 = uStack_1d8;
@@ -440,9 +440,9 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         }
         
         // 渲染数据处理
-        puStack_188 = &UNK_18098bcb0;
+        puStack_188 = &global_state_720_ptr;
         uStack_1b8 = 4;
-        puStack_208 = &UNK_180a3c3e0;
+        puStack_208 = &global_state_3456_ptr;
         uStack_1f0 = 0;
         puStack_200 = (uint64_t *)0x0;
         uStack_1f8 = 0;
@@ -462,10 +462,10 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         if (*(void **)(param_2 + 0x3528) != (void *)0x0) {
             puVar5 = *(void **)(param_2 + 0x3528);
         }
-        FUN_180628040(&puStack_208,&UNK_180a1a8d8,puVar5);
+        FUN_180628040(&puStack_208,&global_state_5464_ptr,puVar5);
         
         // 渲染数据处理
-        puStack_e8 = &UNK_1809fcc28;
+        puStack_e8 = &global_state_3432_ptr;
         puStack_e0 = auStack_d0;
         auStack_d0[0] = 0;
         uStack_d8 = uStack_1f8;
@@ -489,9 +489,9 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         }
         
         // 高级渲染处理
-        puStack_e8 = &UNK_18098bcb0;
+        puStack_e8 = &global_state_720_ptr;
         uStack_1b8 = 0x31;
-        puStack_228 = &UNK_180a3c3e0;
+        puStack_228 = &global_state_3456_ptr;
         uStack_210 = 0;
         puStack_220 = (uint64_t *)0x0;
         uStack_218 = 0;
@@ -514,10 +514,10 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         if (*(void **)(param_2 + 0x3528) != (void *)0x0) {
             puVar5 = *(void **)(param_2 + 0x3528);
         }
-        FUN_180628040(&puStack_228,&UNK_180a1a8d8,puVar5);
+        FUN_180628040(&puStack_228,&global_state_5464_ptr,puVar5);
         
         // 高级渲染数据处理
-        puStack_188 = &UNK_1809fcc28;
+        puStack_188 = &global_state_3432_ptr;
         puStack_180 = auStack_170;
         auStack_170[0] = 0;
         uStack_178 = uStack_218;
@@ -541,28 +541,28 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         }
         
         // 资源清理和状态管理
-        puStack_188 = &UNK_18098bcb0;
-        puStack_228 = &UNK_180a3c3e0;
+        puStack_188 = &global_state_720_ptr;
+        puStack_228 = &global_state_3456_ptr;
         if (puStack_220 != (uint64_t *)0x0) {
             FUN_18064e900();  // 资源清理
         }
         puStack_220 = (uint64_t *)0x0;
         uStack_210 = uStack_210 & 0xffffffff00000000;
-        puStack_228 = &UNK_18098bcb0;
-        puStack_208 = &UNK_180a3c3e0;
+        puStack_228 = &global_state_720_ptr;
+        puStack_208 = &global_state_3456_ptr;
         if (puStack_200 != (uint64_t *)0x0) {
             FUN_18064e900();  // 资源清理
         }
         puStack_200 = (uint64_t *)0x0;
         uStack_1f0 = uStack_1f0 & 0xffffffff00000000;
-        puStack_208 = &UNK_18098bcb0;
-        puStack_1e8 = &UNK_180a3c3e0;
+        puStack_208 = &global_state_720_ptr;
+        puStack_1e8 = &global_state_3456_ptr;
         if (puStack_1e0 != (uint64_t *)0x0) {
             FUN_18064e900();  // 资源清理
         }
         puStack_1e0 = (uint64_t *)0x0;
         uStack_1d0 = uStack_1d0 & 0xffffffff00000000;
-        puStack_1e8 = &UNK_18098bcb0;
+        puStack_1e8 = &global_state_720_ptr;
     }
     
     // 最终资源清理
@@ -656,7 +656,7 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
     // 系统初始化和配置
     uStack_208 = 0xfffffffffffffffe;
     uStack_78 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
-    puStack_118 = &UNK_1809fcc28;
+    puStack_118 = &global_state_3432_ptr;
     puStack_110 = auStack_100;
     auStack_100[0] = 0;
     uStack_108 = 0xc;
@@ -691,7 +691,7 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
         puVar6 = (void *)param_1[3];
     }
     ppuStack_1a0 = &puStack_178;
-    puStack_178 = &UNK_1809fcc58;
+    puStack_178 = &global_state_3480_ptr;
     puStack_170 = auStack_160;
     uStack_168 = 0;
     auStack_160[0] = 0;
@@ -812,7 +812,7 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
         uStack_184._0_2_ = 4;
         puStack_268 = (void *)param_1[6];
         plStack_248 = (longlong *)0x0;
-        puStack_240 = &UNK_180a3c3e0;
+        puStack_240 = &global_state_3456_ptr;
         uStack_228 = 0;
         lStack_238 = 0;
         uStack_230 = 0;
@@ -867,7 +867,7 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
                 *(int8_t *)(lVar5 + 0x1ce0 + lVar3) = 0;
             }
             FUN_18029e110(*(uint64_t *)(_DAT_180c86938 + 0x1cd8));
-            if ((void *)*param_1 != &UNK_180a26368) {
+            if ((void *)*param_1 != &global_state_3224_ptr) {
                 (**(code **)((void *)*param_1 + 0x28))(param_1);
             }
             
@@ -905,13 +905,13 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
             (**(code **)(*plStack_210 + 0x38))();
         }
         ppuStack_1a0 = &puStack_240;
-        puStack_240 = &UNK_180a3c3e0;
+        puStack_240 = &global_state_3456_ptr;
         if (lStack_238 != 0) {
             FUN_18064e900();  // 错误处理
         }
         lStack_238 = 0;
         uStack_228 = uStack_228 & 0xffffffff00000000;
-        puStack_240 = &UNK_18098bcb0;
+        puStack_240 = &global_state_720_ptr;
         if (plStack_248 != (longlong *)0x0) {
             (**(code **)(*plStack_248 + 0x38))();
         }
@@ -924,7 +924,7 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, longlong param_3, int32_
     FUN_1802c2ac0(&puStack_178);
     _DAT_180c8695c = _DAT_180c8695c + -1;
     (**(code **)(*_DAT_180c86968 + 0x20))();
-    puStack_118 = &UNK_18098bcb0;
+    puStack_118 = &global_state_720_ptr;
     FUN_1808fc050(uStack_78 ^ (ulonglong)auStack_2a8);
 }
 
@@ -999,7 +999,7 @@ uint64_t * FUN_1803fa510(uint64_t *param_1) {
     
     // 系统初始化和配置
     FUN_1801fa180();
-    *param_1 = &UNK_180a264e0;
+    *param_1 = &global_state_3600_ptr;
     
     // 对象创建和初始化
     FUN_1808fc838(param_1 + 0x8a,8,2,&SUB_18005d5f0,FUN_180045af0);
@@ -1048,7 +1048,7 @@ uint64_t * FUN_1803fa510(uint64_t *param_1) {
  */
 uint64_t * FUN_1803fa610(uint64_t *param_1, uint param_2) {
     // 系统资源初始化和配置
-    *param_1 = &UNK_180a264e0;
+    *param_1 = &global_state_3600_ptr;
     
     // 资源清理和释放
     FUN_1808fc8a8(param_1 + 0x8c,8,3,FUN_180045af0,0xfffffffffffffffe);
@@ -1284,11 +1284,11 @@ void FUN_1803fa980(longlong *param_1, longlong param_2) {
         
         // 渲染数据准备
         if (param_1[0x8a] == 0) {
-            puStack_c8 = &UNK_1809fcc28;
+            puStack_c8 = &global_state_3432_ptr;
             puStack_c0 = auStack_b0;
             auStack_b0[0] = 0;
             uStack_b8 = 0xe;
-            strcpy_s(auStack_b0,0x80,&UNK_180a26270);
+            strcpy_s(auStack_b0,0x80,&global_state_2976_ptr);
             plVar2 = (longlong *)FUN_1800b1230(_DAT_180c86930,&plStack_1b8,&puStack_c8,&uStack_1b0);
             lVar1 = *plVar2;
             *plVar2 = 0;
@@ -1300,16 +1300,16 @@ void FUN_1803fa980(longlong *param_1, longlong param_2) {
             if (plStack_1b8 != (longlong *)0x0) {
                 (**(code **)(*plStack_1b8 + 0x38))();
             }
-            puStack_c8 = &UNK_18098bcb0;
+            puStack_c8 = &global_state_720_ptr;
         }
         
         // 渲染数据处理
         if (param_1[0x8b] == 0) {
-            puStack_168 = &UNK_1809fcc28;
+            puStack_168 = &global_state_3432_ptr;
             puStack_160 = auStack_150;
             auStack_150[0] = 0;
             uStack_158 = 0xe;
-            strcpy_s(auStack_150,0x80,&UNK_180a26280);
+            strcpy_s(auStack_150,0x80,&global_state_2992_ptr);
             plVar2 = (longlong *)FUN_1800b1230(_DAT_180c86930,&plStack_1c0,&puStack_168,&uStack_1b0);
             lVar1 = *plVar2;
             *plVar2 = 0;
@@ -1321,7 +1321,7 @@ void FUN_1803fa980(longlong *param_1, longlong param_2) {
             if (plStack_1c0 != (longlong *)0x0) {
                 (**(code **)(*plStack_1c0 + 0x38))();
             }
-            puStack_168 = &UNK_18098bcb0;
+            puStack_168 = &global_state_720_ptr;
         }
     }
     else {
@@ -1330,11 +1330,11 @@ void FUN_1803fa980(longlong *param_1, longlong param_2) {
         uStack_1ac = (int32_t)(longlong)((double)*(int *)(param_2 + 0x3594) * (double)param_1[0xc]);
         
         // 渲染数据处理
-        puStack_168 = &UNK_1809fcc28;
+        puStack_168 = &global_state_3432_ptr;
         puStack_160 = auStack_150;
         auStack_150[0] = 0;
         uStack_158 = 0xe;
-        strcpy_s(auStack_150,0x80,&UNK_180a26270);
+        strcpy_s(auStack_150,0x80,&global_state_2976_ptr);
         plVar2 = (longlong *)FUN_1800b1230(_DAT_180c86930,&plStack_1b8,&puStack_168,&uStack_1b0);
         lVar1 = *plVar2;
         *plVar2 = 0;
@@ -1346,14 +1346,14 @@ void FUN_1803fa980(longlong *param_1, longlong param_2) {
         if (plStack_1b8 != (longlong *)0x0) {
             (**(code **)(*plStack_1b8 + 0x38))();
         }
-        puStack_168 = &UNK_18098bcb0;
+        puStack_168 = &global_state_720_ptr;
         
         // 渲染数据处理
-        puStack_c8 = &UNK_1809fcc28;
+        puStack_c8 = &global_state_3432_ptr;
         puStack_c0 = auStack_b0;
         auStack_b0[0] = 0;
         uStack_b8 = 0xe;
-        strcpy_s(auStack_b0,0x80,&UNK_180a26280);
+        strcpy_s(auStack_b0,0x80,&global_state_2992_ptr);
         plVar2 = (longlong *)FUN_1800b1230(_DAT_180c86930,&plStack_1c8,&puStack_c8,&uStack_1b0);
         lVar1 = *plVar2;
         *plVar2 = 0;
@@ -1365,7 +1365,7 @@ void FUN_1803fa980(longlong *param_1, longlong param_2) {
         if (plStack_1c8 != (longlong *)0x0) {
             (**(code **)(*plStack_1c8 + 0x38))();
         }
-        puStack_c8 = &UNK_18098bcb0;
+        puStack_c8 = &global_state_720_ptr;
     }
     
     // 渲染操作执行

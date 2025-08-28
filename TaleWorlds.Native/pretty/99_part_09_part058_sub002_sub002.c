@@ -209,12 +209,12 @@ LAB_1805dc9b4:
     else {
       cVar6 = '\0';
     }
-    puVar11 = &UNK_180a30c20;
+    puVar11 = &unknown_var_6416_ptr;
     if (cVar6 != '\0') {
-      puVar11 = &UNK_180a30bd8;
+      puVar11 = &unknown_var_6344_ptr;
     }
     in_stack_fffffffffffffe90 = (double)*(float *)(lStackX_10 + 0x14);
-    func_0x000180508000(*(uint64_t *)(param_1 + 8),&UNK_180a37590,*param_1,(double)*pfVar1,
+    func_0x000180508000(*(uint64_t *)(param_1 + 8),&unknown_var_3408_ptr,*param_1,(double)*pfVar1,
                         (double)*(float *)(lStackX_10 + 0x10),in_stack_fffffffffffffe90,puVar11);
     uVar28 = (int32_t)((ulonglong)puVar11 >> 0x20);
     *param_1 = 0;
@@ -582,7 +582,7 @@ LAB_1805dc9b4:
     else {
       cVar5 = '\0';
     }
-    func_0x000180508000(*(uint64_t *)(unaff_RDI + 8),&UNK_180a37590,*unaff_RDI,(double)*unaff_R12,
+    func_0x000180508000(*(uint64_t *)(unaff_RDI + 8),&unknown_var_3408_ptr,*unaff_RDI,(double)*unaff_R12,
                         (double)*(float *)(*(longlong *)(unaff_RBP + 0xa8) + 0x10));
     *unaff_RDI = unaff_R15D;
     *(int8_t *)((longlong)unaff_RDI + 0x1145) = 1;

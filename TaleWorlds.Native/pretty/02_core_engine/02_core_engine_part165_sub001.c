@@ -6,8 +6,8 @@
 // 全局变量和常量定义
 extern longlong* _DAT_180c8ed18;  // 内存分配器实例
 extern longlong _DAT_180c8aa00;    // 默认数据模板
-extern uint64_t UNK_180a3c3e0;    // 虚函数表指针
-extern uint64_t UNK_18098bcb0;    // 空对象引用
+extern uint64_t global_state_3456_ptr;    // 虚函数表指针
+extern uint64_t global_state_720_ptr;    // 空对象引用
 
 /**
  * 复制数据块到目标缓冲区
@@ -373,13 +373,13 @@ void reset_container_state(longlong *container_ptr)
     
     end_pos = container_ptr[1];
     for (current_pos = *container_ptr; current_pos != end_pos; current_pos = current_pos + 0x48) {
-        *(uint64_t *)(current_pos + 0x28) = &UNK_180a3c3e0;
+        *(uint64_t *)(current_pos + 0x28) = &global_state_3456_ptr;
         if (*(longlong *)(current_pos + 0x30) != 0) {
             release_memory();
         }
         *(uint64_t *)(current_pos + 0x30) = 0;
         *(int32_t *)(current_pos + 0x40) = 0;
-        *(uint64_t *)(current_pos + 0x28) = &UNK_18098bcb0;
+        *(uint64_t *)(current_pos + 0x28) = &global_state_720_ptr;
     }
     
     if (*container_ptr != 0) {
@@ -400,13 +400,13 @@ void cleanup_smart_pointer_container(longlong *container_ptr)
     
     end_pos = container_ptr[1];
     for (current_pos = *container_ptr; current_pos != end_pos; current_pos = current_pos + 0x38) {
-        *(uint64_t *)(current_pos + 0x18) = &UNK_180a3c3e0;
+        *(uint64_t *)(current_pos + 0x18) = &global_state_3456_ptr;
         if (*(longlong *)(current_pos + 0x20) != 0) {
             release_memory();
         }
         *(uint64_t *)(current_pos + 0x20) = 0;
         *(int32_t *)(current_pos + 0x30) = 0;
-        *(uint64_t *)(current_pos + 0x18) = &UNK_18098bcb0;
+        *(uint64_t *)(current_pos + 0x18) = &global_state_720_ptr;
     }
     
     if (*container_ptr != 0) {
@@ -426,7 +426,7 @@ void destruct_smart_pointer_array(longlong *array_ptr)
         return;
     }
     
-    array_ptr[0xc] = (longlong)&UNK_18098bcb0;
+    array_ptr[0xc] = (longlong)&global_state_720_ptr;
     free_container_resources();
     
     if (array_ptr[4] != 0) {

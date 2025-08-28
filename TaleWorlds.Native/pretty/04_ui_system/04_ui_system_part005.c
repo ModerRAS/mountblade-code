@@ -87,17 +87,17 @@ void ui_system_resource_manager(void)
   resource_count = 0;
   temp_resource_type = 0;
   temp_hash_value = _DAT_180c91030;
-  temp_ptr1 = &UNK_1809fdc18;
+  temp_ptr1 = &unknown_var_7512_ptr;
   temp_string_ptr = temp_data_buffer;
   temp_data_buffer[0] = 0;
   temp_resource_type = 6;
-  strcpy_s(temp_data_buffer, 0x10, &UNK_180a3c07c);
+  strcpy_s(temp_data_buffer, 0x10, &unknown_var_2588_ptr);
   temp_resource_type = 1;
   initialize_string_buffer(temp_data_buffer, &temp_ptr1);
   temp_resource_type = 0;
-  temp_ptr1 = &UNK_18098bcb0;
+  temp_ptr1 = &unknown_var_720_ptr;
   concatenate_string_buffers(temp_string_buffer, temp_data_buffer);
-  temp_buffer_ptr = &UNK_180a3c3e0;
+  temp_buffer_ptr = &unknown_var_3456_ptr;
   temp_resource_size = 0;
   temp_string_ptr = (int8_t *)0x0;
   temp_string_length = 0;
@@ -113,7 +113,7 @@ void ui_system_resource_manager(void)
   if ((temp_ptr1 != (void *)0x0) && (temp_string_length = 0, temp_string_ptr != (int8_t *)0x0)) {
     *temp_string_ptr = 0;
   }
-  temp_heap_ptr = &UNK_180a3c3e0;
+  temp_heap_ptr = &unknown_var_3456_ptr;
   temp_resource_size = 0;
   resource_array_ptr = (int32_t *)0x0;
   temp_resource_type = 0;
@@ -126,7 +126,7 @@ void ui_system_resource_manager(void)
   *(int8_t *)(resource_handle_ptr + 1) = 0;
   temp_resource_type = 4;
   resource_offset = process_resource_path(&temp_buffer_ptr, &temp_ptr1, &temp_heap_ptr);
-  temp_string_ptr = &UNK_180a3c3e0;
+  temp_string_ptr = &unknown_var_3456_ptr;
   temp_resource_size = 0;
   temp_string_ptr = (int8_t *)0x0;
   temp_string_length = 0;
@@ -185,7 +185,7 @@ LAB_RESOURCE_PATH_COMPLETE:
   resource_array_ptr[3] = 0x435f676e;
   *(int32_t *)(resource_data_ptr + buffer_size + 0x10) = 0x6e65696c;
   *(int16_t *)(resource_data_ptr + buffer_size + 0x14) = 0x74;
-  temp_buffer_ptr = &UNK_180a3c3e0;
+  temp_buffer_ptr = &unknown_var_3456_ptr;
   temp_resource_data = 0;
   temp_handle_ptr = (int16_t *)0x0;
   temp_resource_type = 0;
@@ -198,7 +198,7 @@ LAB_RESOURCE_PATH_COMPLETE:
   *resource_handle_ptr = 0x2f;
   temp_resource_type = 1;
   process_resource_path(&temp_string_ptr, temp_data_buffer, &temp_buffer_ptr);
-  temp_buffer_ptr = &UNK_180a3c3e0;
+  temp_buffer_ptr = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
   memory_deallocator(resource_handle_ptr);
 }
@@ -211,7 +211,7 @@ ui_component_allocator(uint64_t *component_ptr, ulonglong allocation_flags, uint
   uint64_t stack_parameter;
   
   stack_parameter = 0xfffffffffffffffe;
-  *component_ptr = &UNK_180a3e030;
+  *component_ptr = &unknown_var_704_ptr;
   initialize_ui_system();
   if ((allocation_flags & 1) != 0) {
     free(component_ptr, 400, param_3, param_4, stack_parameter);
@@ -243,20 +243,20 @@ int ui_property_getter(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
   initialize_string_buffer(&temp_buffer_ptr, param_1, param_3, param_4, 0xfffffffffffffffe);
   string_offset2 = buffer_data;
   if (buffer_length == 0x19) {
-    property_value = strcmp(buffer_data, &UNK_180a3e128);
+    property_value = strcmp(buffer_data, &unknown_var_952_ptr);
     if (property_value == 0) {
       property_value = 0x84;
       goto LAB_PROPERTY_VALUE_FOUND;
     }
   }
   else if (buffer_length == 0x18) {
-    property_value = strcmp(buffer_data, &UNK_180a3e0f0);
+    property_value = strcmp(buffer_data, &unknown_var_896_ptr);
     if (property_value == 0) {
       property_value = 0x10;
       goto LAB_PROPERTY_VALUE_FOUND;
     }
 LAB_PROPERTY_DEFAULT:
-    property_ptr = &UNK_180a3e180;
+    property_ptr = &unknown_var_1040_ptr;
 LAB_PROPERTY_COMPARE:
     property_value = strcmp(string_offset2, property_ptr);
     if (property_value == 0) {
@@ -265,23 +265,23 @@ LAB_PROPERTY_COMPARE:
     }
   }
   else if (buffer_length == 0x12) {
-    property_value = strcmp(buffer_data, &UNK_180a3e110);
+    property_value = strcmp(buffer_data, &unknown_var_928_ptr);
     if (property_value == 0) {
       property_value = 0xa0;
       goto LAB_PROPERTY_VALUE_FOUND;
     }
 LAB_PROPERTY_EXTENDED:
-    property_value = strcmp(string_offset2, &UNK_180a3e230);
+    property_value = strcmp(string_offset2, &unknown_var_1216_ptr);
     if (property_value == 0) {
       property_value = 8;
       goto LAB_PROPERTY_VALUE_FOUND;
     }
-    property_value = strcmp(string_offset2, &UNK_180a3e1f8);
+    property_value = strcmp(string_offset2, &unknown_var_1160_ptr);
     if (property_value == 0) {
       property_value = 0x10;
       goto LAB_PROPERTY_VALUE_FOUND;
     }
-    property_ptr = &UNK_180a3e210;
+    property_ptr = &unknown_var_1184_ptr;
 LAB_PROPERTY_COMPARE_EXTENDED:
     property_value = strcmp(string_offset2, property_ptr);
     if (property_value == 0) {
@@ -290,7 +290,7 @@ LAB_PROPERTY_COMPARE_EXTENDED:
     }
   }
   else if (buffer_length == 0x1a) {
-    property_value = strcmp(buffer_data, &UNK_180a3e0b8);
+    property_value = strcmp(buffer_data, &unknown_var_840_ptr);
     if (property_value == 0) {
       property_value = 0x204;
       goto LAB_PROPERTY_VALUE_FOUND;
@@ -298,16 +298,16 @@ LAB_PROPERTY_COMPARE_EXTENDED:
   }
   else {
     if (buffer_length == 0x15) {
-      property_value = strcmp(buffer_data, &UNK_180a3e0d8);
+      property_value = strcmp(buffer_data, &unknown_var_872_ptr);
       if (property_value == 0) {
         property_value = 0x404;
         goto LAB_PROPERTY_VALUE_FOUND;
       }
-      property_ptr = &UNK_180a3e1b0;
+      property_ptr = &unknown_var_1088_ptr;
       goto LAB_PROPERTY_COMPARE;
     }
     if (buffer_length == 0x11) {
-      property_value = strcmp(buffer_data, &UNK_180a3e1c8);
+      property_value = strcmp(buffer_data, &unknown_var_1112_ptr);
       if (property_value == 0) {
         property_value = 0x50;
         goto LAB_PROPERTY_VALUE_FOUND;
@@ -316,14 +316,14 @@ LAB_PROPERTY_COMPARE_EXTENDED:
     else {
       if (buffer_length == 0x18) goto LAB_PROPERTY_DEFAULT;
       if (buffer_length == 0xb) {
-        property_value = strcmp(buffer_data, &UNK_180a3e1a0);
+        property_value = strcmp(buffer_data, &unknown_var_1072_ptr);
         if (property_value == 0) {
           property_value = 8;
           goto LAB_PROPERTY_VALUE_FOUND;
         }
       }
       else if (buffer_length == 0x16) {
-        property_ptr = &UNK_180a3e160;
+        property_ptr = &unknown_var_1008_ptr;
 LAB_PROPERTY_COMPARE_SIMPLE:
         property_value = strcmp(buffer_data, property_ptr);
         if (property_value == 0) {
@@ -336,7 +336,7 @@ LAB_PROPERTY_COMPARE_SIMPLE:
           string_offset2 = 0;
           do {
             string_offset1 = string_offset2 + 1;
-            if (*(char *)(buffer_data + string_offset2) != (&UNK_180a3e178)[string_offset2]) {
+            if (*(char *)(buffer_data + string_offset2) != (&unknown_var_1032_ptr)[string_offset2]) {
               string_offset2 = 0;
               goto LAB_PROPERTY_STRING_COMPARE;
             }
@@ -346,7 +346,7 @@ LAB_PROPERTY_COMPARE_SIMPLE:
           goto LAB_PROPERTY_VALUE_FOUND;
         }
         if (buffer_length == 0xf) {
-          property_value = strcmp(buffer_data, &UNK_180a3e150);
+          property_value = strcmp(buffer_data, &unknown_var_992_ptr);
           if (property_value == 0) {
             property_value = 0x40;
             goto LAB_PROPERTY_VALUE_FOUND;
@@ -354,18 +354,18 @@ LAB_PROPERTY_COMPARE_SIMPLE:
         }
         else {
           if (buffer_length == 0x13) {
-            property_ptr = &UNK_180a3e248;
+            property_ptr = &unknown_var_1240_ptr;
             goto LAB_PROPERTY_COMPARE_SIMPLE;
           }
           if (buffer_length == 0xd) {
-            property_ptr = &UNK_180a3e260;
+            property_ptr = &unknown_var_1264_ptr;
             goto LAB_PROPERTY_COMPARE_EXTENDED;
           }
           if (buffer_length == 6) {
             string_offset2 = 0;
             do {
               string_offset1 = string_offset2;
-              if (*(char *)(buffer_data + string_offset1) != (&UNK_180a3e224)[string_offset1]) goto LAB_PROPERTY_VALUE_RETURN;
+              if (*(char *)(buffer_data + string_offset1) != (&unknown_var_1204_ptr)[string_offset1]) goto LAB_PROPERTY_VALUE_RETURN;
               string_offset2 = string_offset1 + 1;
             } while (string_offset1 + 1 != 7);
             property_value = (int)string_offset1 + 0x1e;
@@ -379,7 +379,7 @@ LAB_PROPERTY_COMPARE_SIMPLE:
 LAB_PROPERTY_VALUE_RETURN:
   property_value = 0;
 LAB_PROPERTY_VALUE_FOUND:
-  temp_buffer_ptr = &UNK_180a3c3e0;
+  temp_buffer_ptr = &unknown_var_3456_ptr;
   if (buffer_data != 0) {
                     // WARNING: Subroutine does not return
     memory_deallocator(buffer_data);
@@ -388,7 +388,7 @@ LAB_PROPERTY_VALUE_FOUND:
   while (string_offset2 = string_offset1, string_offset1 != 8) {
 LAB_PROPERTY_STRING_COMPARE:
     string_offset1 = string_offset2 + 1;
-    if (*(char *)(buffer_data + string_offset2) != (&UNK_180a3e148)[string_offset2]) goto LAB_PROPERTY_VALUE_RETURN;
+    if (*(char *)(buffer_data + string_offset2) != (&unknown_var_984_ptr)[string_offset2]) goto LAB_PROPERTY_VALUE_RETURN;
   }
   property_value = 0x30;
   goto LAB_PROPERTY_VALUE_FOUND;
@@ -418,18 +418,18 @@ ulonglong ui_property_validator(uint64_t param_1, uint64_t param_2, uint64_t par
   initialize_string_buffer(&temp_buffer_ptr1, param_2);
   string_offset2 = buffer_data;
   if (property_id == 0x19) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e128);
+    compare_result = strcmp(buffer_data, &unknown_var_952_ptr);
     if (compare_result == 0) {
       if (buffer_length == 7) {
         string_offset2 = 0;
         do {
           string_offset1 = string_offset2 + 1;
-          if (string_buffer_ptr[string_offset2] != (&UNK_180a3e1e0)[string_offset2]) break;
+          if (string_buffer_ptr[string_offset2] != (&unknown_var_1136_ptr)[string_offset2]) break;
           string_offset2 = string_offset1;
         } while (string_offset1 != 8);
       }
       else if (buffer_length == 9) {
-        property_ptr = &UNK_180a3e1e8;
+        property_ptr = &unknown_var_1144_ptr;
 LAB_PROPERTY_COMPARE_EXTENDED:
         compare_result = strcmp(string_buffer_ptr, property_ptr);
         validation_flag = compare_result == 0;
@@ -442,13 +442,13 @@ LAB_PROPERTY_VALIDATION:
     }
   }
   else if (property_id == 0x18) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e0f0);
+    compare_result = strcmp(buffer_data, &unknown_var_896_ptr);
     if ((compare_result == 0) && (buffer_length == 7)) {
       property_value = 8;
       string_offset2 = 0;
       do {
         string_offset1 = string_offset2 + 1;
-        if (string_buffer_ptr[string_offset2] != (&UNK_180a3e2b0)[string_offset2]) {
+        if (string_buffer_ptr[string_offset2] != (&unknown_var_1344_ptr)[string_offset2]) {
           string_offset2 = 0;
           goto LAB_PROPERTY_VALIDATION_RESULT;
         }
@@ -457,12 +457,12 @@ LAB_PROPERTY_VALIDATION:
     }
   }
   else if (property_id == 0x1a) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e0b8);
+    compare_result = strcmp(buffer_data, &unknown_var_840_ptr);
     if ((compare_result == 0) && (buffer_length == 4)) {
       string_offset2 = 0;
       do {
         string_offset1 = string_offset2 + 1;
-        if (string_buffer_ptr[string_offset2] != (&UNK_180a0ee30)[string_offset2]) {
+        if (string_buffer_ptr[string_offset2] != (&unknown_var_7680_ptr)[string_offset2]) {
           validation_result = 0;
           goto LAB_PROPERTY_VALIDATION_RETURN;
         }
@@ -471,30 +471,30 @@ LAB_PROPERTY_VALIDATION:
     }
   }
   else if (property_id == 0x15) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e0d8);
+    compare_result = strcmp(buffer_data, &unknown_var_872_ptr);
     if (compare_result == 0) {
       if (buffer_length == 0xb) {
-        strcmp(string_buffer_ptr, &UNK_180a3e2b8);
+        strcmp(string_buffer_ptr, &unknown_var_1352_ptr);
       }
-      else if ((buffer_length == 9) && (compare_result = strcmp(string_buffer_ptr, &UNK_180a3e2a0), compare_result == 0)) {
+      else if ((buffer_length == 9) && (compare_result = strcmp(string_buffer_ptr, &unknown_var_1328_ptr), compare_result == 0)) {
         property_value = 0x204;
         goto LAB_PROPERTY_VALID;
       }
     }
   }
   else if (property_id == 0x11) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e1c8);
+    compare_result = strcmp(buffer_data, &unknown_var_1112_ptr);
     if (compare_result == 0) {
       if (buffer_length == 6) {
         string_offset2 = 0;
         do {
           string_offset1 = string_offset2 + 1;
-          if (string_buffer_ptr[string_offset2] != (&UNK_180a1a478)[string_offset2]) break;
+          if (string_buffer_ptr[string_offset2] != (&unknown_var_4344_ptr)[string_offset2]) break;
           string_offset2 = string_offset1;
         } while (string_offset1 != 7);
       }
       else if (buffer_length == 8) {
-        property_ptr = &UNK_180a16818;
+        property_ptr = &unknown_var_8888_ptr;
 LAB_PROPERTY_COMPARE_STANDARD:
         compare_result = strcmp(string_buffer_ptr, property_ptr);
         if (compare_result == 0) {
@@ -506,7 +506,7 @@ LAB_PROPERTY_COMPARE_STANDARD:
         string_offset2 = 0;
         do {
           string_offset1 = string_offset2;
-          if (string_buffer_ptr[string_offset1] != (&UNK_180a0f108)[string_offset1]) goto LAB_PROPERTY_VALIDATION_CONTINUE;
+          if (string_buffer_ptr[string_offset1] != (&unknown_var_8408_ptr)[string_offset1]) goto LAB_PROPERTY_VALIDATION_CONTINUE;
           string_offset2 = string_offset1 + 1;
         } while (string_offset1 + 1 != 6);
         property_value = (ulonglong)((int)string_offset1 + 0x3b);
@@ -515,7 +515,7 @@ LAB_PROPERTY_COMPARE_STANDARD:
     }
   }
   else if (property_id == 0xb) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e1a0);
+    compare_result = strcmp(buffer_data, &unknown_var_1072_ptr);
     if (compare_result == 0) {
 LAB_PROPERTY_COORDINATE:
       if ((buffer_length == 1) &&
@@ -526,7 +526,7 @@ LAB_PROPERTY_COORDINATE:
     }
   }
   else if (property_id == 0x16) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e160);
+    compare_result = strcmp(buffer_data, &unknown_var_1008_ptr);
     if (((compare_result == 0) && (buffer_length == 1)) && ((*string_buffer_ptr != 'x' || (string_buffer_ptr[1] != '\0')))) {
       if ((*string_buffer_ptr == 'y') && (string_buffer_ptr[1] == '\0')) {
         property_value = 4;
@@ -547,7 +547,7 @@ LAB_PROPERTY_AXIS_CHECK:
     string_offset2 = 0;
     do {
       string_offset1 = string_offset2 + 1;
-      if (*(char *)(buffer_data + string_offset2) != (&UNK_180a3e178)[string_offset2]) {
+      if (*(char *)(buffer_data + string_offset2) != (&unknown_var_1032_ptr)[string_offset2]) {
         string_offset2 = 0;
         goto LAB_PROPERTY_STRING_VALIDATION;
       }
@@ -557,13 +557,13 @@ LAB_PROPERTY_AXIS_CHECK:
         (*string_buffer_ptr == 'f') && (string_buffer_ptr[1] == '\0')) goto LAB_PROPERTY_VALID;
   }
   else if (property_id == 0xf) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e150);
+    compare_result = strcmp(buffer_data, &unknown_var_992_ptr);
     if (compare_result == 0) {
       if (buffer_length == 3) {
         string_offset2 = 0;
         do {
           string_offset1 = string_offset2 + 1;
-          if (string_buffer_ptr[string_offset2] != (&UNK_180a3e294)[string_offset2]) break;
+          if (string_buffer_ptr[string_offset2] != (&unknown_var_1316_ptr)[string_offset2]) break;
           string_offset2 = string_offset1;
         } while (string_offset1 != 4);
       }
@@ -574,18 +574,18 @@ LAB_PROPERTY_AXIS_CHECK:
     }
   }
   else if (property_id == 0x13) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e248);
+    compare_result = strcmp(buffer_data, &unknown_var_1240_ptr);
     if (compare_result == 0) {
       if (buffer_length == 10) {
-        strcmp(string_buffer_ptr, &UNK_180a3e270);
+        strcmp(string_buffer_ptr, &unknown_var_1280_ptr);
       }
       else {
         if (buffer_length == 0x10) {
-          property_ptr = &UNK_180a3e280;
+          property_ptr = &unknown_var_1296_ptr;
           goto LAB_PROPERTY_COMPARE_EXTENDED;
         }
         if (buffer_length == 0x11) {
-          compare_result = strcmp(string_buffer_ptr, &UNK_180a3e2e8);
+          compare_result = strcmp(string_buffer_ptr, &unknown_var_1400_ptr);
           validation_flag = compare_result == 0;
           goto LAB_PROPERTY_AXIS_CHECK;
         }
@@ -593,7 +593,7 @@ LAB_PROPERTY_AXIS_CHECK:
     }
   }
   else if (property_id == 0xd) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e260);
+    compare_result = strcmp(buffer_data, &unknown_var_1264_ptr);
     if (((compare_result == 0) && (buffer_length == 1)) && ((*string_buffer_ptr != 'w' || (string_buffer_ptr[1] != '\0')))) {
       if ((*string_buffer_ptr == 'x') && (string_buffer_ptr[1] == '\0')) {
         property_value = 4;
@@ -617,33 +617,33 @@ LAB_PROPERTY_COORDINATE_VALIDATION:
     string_offset2 = 0;
     do {
       string_offset1 = string_offset2 + 1;
-      if (*(char *)(buffer_data + string_offset2) != (&UNK_180a3e224)[string_offset2]) goto LAB_PROPERTY_VALIDATION_CONTINUE;
+      if (*(char *)(buffer_data + string_offset2) != (&unknown_var_1204_ptr)[string_offset2]) goto LAB_PROPERTY_VALIDATION_CONTINUE;
       string_offset2 = string_offset1;
     } while (string_offset1 != 7);
     if (buffer_length == 7) {
       string_offset2 = 0;
       do {
         string_offset1 = string_offset2 + 1;
-        if (string_buffer_ptr[string_offset2] != (&UNK_180a3e300)[string_offset2]) break;
+        if (string_buffer_ptr[string_offset2] != (&unknown_var_1424_ptr)[string_offset2]) break;
         string_offset2 = string_offset1;
       } while (string_offset1 != 8);
     }
     else {
       if (buffer_length == 10) {
-        property_ptr = &UNK_180a3e2c8;
+        property_ptr = &unknown_var_1368_ptr;
         goto LAB_PROPERTY_COMPARE_STANDARD;
       }
       if (buffer_length == 0xd) {
-        compare_result = strcmp(string_buffer_ptr, &UNK_180a3e2d8);
+        compare_result = strcmp(string_buffer_ptr, &unknown_var_1384_ptr);
         validation_flag = compare_result == 0;
         goto LAB_PROPERTY_ORIENTATION_CHECK;
       }
     }
   }
   else if (property_id == 0x12) {
-    compare_result = strcmp(buffer_data, &UNK_180a3e230);
+    compare_result = strcmp(buffer_data, &unknown_var_1216_ptr);
     if (compare_result == 0) goto LAB_PROPERTY_COORDINATE;
-    compare_result = strcmp(string_offset2, &UNK_180a3e1f8);
+    compare_result = strcmp(string_offset2, &unknown_var_1160_ptr);
     if (((compare_result == 0) && (buffer_length == 1)) && ((*string_buffer_ptr != 'x' || (string_buffer_ptr[1] != '\0')))) {
       if ((*string_buffer_ptr == 'y') && (string_buffer_ptr[1] == '\0')) {
         property_value = 4;
@@ -663,20 +663,20 @@ LAB_PROPERTY_COORDINATE_VALIDATION:
   while (validation_result = property_value + 1, property_value + 1 != 5) {
 LAB_PROPERTY_VALIDATION_RETURN:
     property_value = validation_result;
-    if (string_buffer_ptr[property_value] != (&UNK_180a1022c)[property_value]) goto LAB_PROPERTY_VALIDATION_CONTINUE;
+    if (string_buffer_ptr[property_value] != (&unknown_var_2796_ptr)[property_value]) goto LAB_PROPERTY_VALIDATION_CONTINUE;
   }
   property_value = property_value & 0xffffffff;
   goto LAB_PROPERTY_VALID;
   while (string_offset2 = string_offset1, string_offset1 != 8) {
 LAB_PROPERTY_VALIDATION_RESULT:
     string_offset1 = string_offset2 + 1;
-    if (string_buffer_ptr[string_offset2] != (&UNK_180a3e1e0)[string_offset2]) goto LAB_PROPERTY_VALIDATION_CONTINUE;
+    if (string_buffer_ptr[string_offset2] != (&unknown_var_1136_ptr)[string_offset2]) goto LAB_PROPERTY_VALIDATION_CONTINUE;
   }
   goto LAB_PROPERTY_VALID;
   while (string_offset2 = string_offset1, string_offset1 != 8) {
 LAB_PROPERTY_STRING_VALIDATION:
     string_offset1 = string_offset2 + 1;
-    if (*(char *)(buffer_data + string_offset2) != (&UNK_180a3e148)[string_offset2]) goto LAB_PROPERTY_VALIDATION_CONTINUE;
+    if (*(char *)(buffer_data + string_offset2) != (&unknown_var_984_ptr)[string_offset2]) goto LAB_PROPERTY_VALIDATION_CONTINUE;
   }
   if ((buffer_length == 1) && ((*string_buffer_ptr != 's' || (string_buffer_ptr[1] != '\0')))) {
     if ((*string_buffer_ptr == 'f') && (string_buffer_ptr[1] == '\0')) {
@@ -695,15 +695,15 @@ LAB_PROPERTY_ORIENTATION_CHECK:
 LAB_PROPERTY_VALIDATION_CONTINUE:
   property_value = 0;
 LAB_PROPERTY_VALID:
-  temp_buffer_ptr1 = &UNK_180a3c3e0;
+  temp_buffer_ptr1 = &unknown_var_3456_ptr;
   if (string_buffer_ptr != (char *)0x0) {
                     // WARNING: Subroutine does not return
     memory_deallocator(string_buffer_ptr);
   }
   string_buffer_ptr = (char *)0x0;
   temp_property = 0;
-  temp_buffer_ptr1 = &UNK_18098bcb0;
-  temp_buffer_ptr2 = &UNK_180a3c3e0;
+  temp_buffer_ptr1 = &unknown_var_720_ptr;
+  temp_buffer_ptr2 = &unknown_var_3456_ptr;
   if (buffer_data == 0) {
     return property_value;
   }
@@ -908,7 +908,7 @@ ui_component_creator(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint6
   component_data[2] = 0;
   component_count = 3;
   stack_parameter = (longlong *)((ulonglong)component_data & 0xffffffff00000000);
-  create_ui_component(component_data, &stack_parameter, param_3, param_4, 0xfffffffffffffffe, &UNK_1809fe070, 0);
+  create_ui_component(component_data, &stack_parameter, param_3, param_4, 0xfffffffffffffffe, &unknown_var_8624_ptr, 0);
   create_ui_component(component_data, (longlong)&stack_parameter + 1);
   create_ui_component(component_data, (longlong)&stack_parameter + 2);
   create_ui_component(component_data, (longlong)&stack_parameter + 3);
@@ -938,10 +938,10 @@ int32_t * ui_attribute_initializer(int32_t *attribute_ptr)
   attribute_table_ptr[3] = 0;
   attribute_table_ptr[4] = 0;
   attribute_table_ptr[5] = 0;
-  *attribute_table_ptr = (longlong)&UNK_180a21690;
-  *attribute_table_ptr = (longlong)&UNK_180a21720;
+  *attribute_table_ptr = (longlong)&unknown_var_3552_ptr;
+  *attribute_table_ptr = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(attribute_table_ptr + 1) = 0;
-  *attribute_table_ptr = (longlong)&UNK_1809fe070;
+  *attribute_table_ptr = (longlong)&unknown_var_8624_ptr;
   attribute_table_ptr[2] = 0;
   attribute_table_ptr[3] = 0;
   attribute_table_ptr[4] = 0;
@@ -1021,10 +1021,10 @@ int32_t * ui_transform_initializer(int32_t *transform_ptr)
   transform_table_ptr[3] = 0;
   transform_table_ptr[4] = 0;
   transform_table_ptr[5] = 0;
-  *transform_table_ptr = (longlong)&UNK_180a21690;
-  *transform_table_ptr = (longlong)&UNK_180a21720;
+  *transform_table_ptr = (longlong)&unknown_var_3552_ptr;
+  *transform_table_ptr = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(transform_table_ptr + 1) = 0;
-  *transform_table_ptr = (longlong)&UNK_180a3e310;
+  *transform_table_ptr = (longlong)&unknown_var_1440_ptr;
   transform_table_ptr[2] = 0;
   transform_table_ptr[3] = 0;
   transform_table_ptr[4] = 0;
@@ -1051,8 +1051,8 @@ ui_system_component_manager(uint64_t *component_ptr, ulonglong manager_flags, ui
   
   stack_parameter = 0xfffffffffffffffe;
   initialize_ui_component_system();
-  *component_ptr = &UNK_180a21720;
-  *component_ptr = &UNK_180a21690;
+  *component_ptr = &unknown_var_3696_ptr;
+  *component_ptr = &unknown_var_3552_ptr;
   if ((manager_flags & 1) != 0) {
     free(component_ptr, 0x30, param_3, param_4, stack_parameter);
   }
@@ -1127,14 +1127,14 @@ int32_t * ui_event_handler_initializer(int32_t *event_handler_ptr)
   event_table_ptr[3] = 0;
   event_table_ptr[4] = 0;
   event_table_ptr[5] = 0;
-  *event_table_ptr = (longlong)&UNK_180a21690;
-  *event_table_ptr = (longlong)&UNK_180a21720;
+  *event_table_ptr = (longlong)&unknown_var_3552_ptr;
+  *event_table_ptr = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(event_table_ptr + 1) = 0;
-  *event_table_ptr = (longlong)&UNK_180a3e378;
-  event_table_ptr[2] = (longlong)&UNK_18098bcb0;
+  *event_table_ptr = (longlong)&unknown_var_1544_ptr;
+  event_table_ptr[2] = (longlong)&unknown_var_720_ptr;
   event_table_ptr[3] = 0;
   *(int32_t *)(event_table_ptr + 4) = 0;
-  event_table_ptr[2] = (longlong)&UNK_180a3c3e0;
+  event_table_ptr[2] = (longlong)&unknown_var_3456_ptr;
   event_table_ptr[5] = 0;
   event_table_ptr[3] = 0;
   *(int32_t *)(event_table_ptr + 4) = 0;
@@ -1156,16 +1156,16 @@ uint64_t *
 ui_system_event_manager(uint64_t *event_manager_ptr, ulonglong event_flags, uint64_t param_3, uint64_t param_4)
 
 {
-  event_manager_ptr[2] = &UNK_180a3c3e0;
+  event_manager_ptr[2] = &unknown_var_3456_ptr;
   if (event_manager_ptr[3] != 0) {
                     // WARNING: Subroutine does not return
     memory_deallocator(event_manager_ptr);
   }
   event_manager_ptr[3] = 0;
   *(int32_t *)(event_manager_ptr + 5) = 0;
-  event_manager_ptr[2] = &UNK_18098bcb0;
-  *event_manager_ptr = &UNK_180a21720;
-  *event_manager_ptr = &UNK_180a21690;
+  event_manager_ptr[2] = &unknown_var_720_ptr;
+  *event_manager_ptr = &unknown_var_3696_ptr;
+  *event_manager_ptr = &unknown_var_3552_ptr;
   if ((event_flags & 1) != 0) {
     free(event_manager_ptr, 0x30, param_3, param_4, 0xfffffffffffffffe);
   }
@@ -1184,7 +1184,7 @@ int32_t ui_system_event_processor(longlong event_data, uint64_t param_2, uint64_
   
   initialize_event_buffer(&temp_buffer_ptr, event_data + 0x10, param_3, param_4, 0xfffffffffffffffe);
   process_result = (**(code **)(*_DAT_180c8f008 + 0x70))(_DAT_180c8f008, &temp_buffer_ptr);
-  temp_buffer_ptr = &UNK_180a3c3e0;
+  temp_buffer_ptr = &unknown_var_3456_ptr;
   if (buffer_data != 0) {
                     // WARNING: Subroutine does not return
     memory_deallocator(buffer_data);

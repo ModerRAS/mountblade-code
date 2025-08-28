@@ -63,7 +63,7 @@ void FUN_180179ff0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
 
 {
   FUN_180179f00(param_1 + 1,param_1[3],param_3,param_4,0xfffffffffffffffe);
-  *param_1 = &UNK_180a09578;
+  *param_1 = &unknown_var_4968_ptr;
   return;
 }
 
@@ -151,8 +151,8 @@ uint64_t *
 FUN_18017a0a0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_180a095b0;
-  *param_1 = &UNK_180a095d0;
+  *param_1 = &unknown_var_5024_ptr;
+  *param_1 = &unknown_var_5056_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8,param_3,param_4,0xfffffffffffffffe);
   }
@@ -164,7 +164,7 @@ FUN_18017a0a0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 uint64_t * FUN_18017a0f0(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180a095d0;
+  *param_1 = &unknown_var_5056_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -179,8 +179,8 @@ uint64_t * FUN_18017a0f0(uint64_t *param_1,ulonglong param_2)
 void FUN_18017a130(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_180a095b0;
-  *param_1 = &UNK_180a095d0;
+  *param_1 = &unknown_var_5024_ptr;
+  *param_1 = &unknown_var_5056_ptr;
   return;
 }
 
@@ -189,7 +189,7 @@ void FUN_18017a130(uint64_t *param_1)
 uint64_t * FUN_18017a160(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180a095f0;
+  *param_1 = &unknown_var_5088_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -204,7 +204,7 @@ uint64_t * FUN_18017a160(uint64_t *param_1,ulonglong param_2)
 void FUN_18017a1a0(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_180a095f0;
+  *param_1 = &unknown_var_5088_ptr;
   return;
 }
 
@@ -226,7 +226,7 @@ void FUN_18017a1c0(void)
 uint64_t * FUN_18017a200(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180a09640;
+  *param_1 = &unknown_var_5168_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -381,9 +381,9 @@ LAB_18017a372:
     UNLOCK();
     uVar11 = uVar15;
   }
-  pcStack_58 = (code *)&UNK_1800830c0;
-  puStack_50 = &UNK_1800830b0;
-  pcStack_78 = (code *)&UNK_180083130;
+  pcStack_58 = (code *)&unknown_var_7712_ptr;
+  puStack_50 = &unknown_var_7696_ptr;
+  pcStack_78 = (code *)&unknown_var_7824_ptr;
   pcStack_70 = FUN_180083100;
   uStack_a0 = SUB84(plVar7,0);
   uStack_9c = (int32_t)((ulonglong)plVar7 >> 0x20);

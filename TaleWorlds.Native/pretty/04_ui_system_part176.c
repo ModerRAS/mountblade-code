@@ -213,7 +213,7 @@ uint64_t FUN_18076e1c0(longlong *param_1,int param_2,float *param_3,longlong par
   }
   if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(param_4,0x20,&UNK_180958d90,(double)*param_3);
+    FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,(double)*param_3);
   }
   return 0;
 }

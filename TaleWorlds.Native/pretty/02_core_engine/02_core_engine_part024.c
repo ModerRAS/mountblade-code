@@ -44,7 +44,7 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
       puVar4 = *(void **)(param_2 + 8);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&UNK_1809fecd8,puVar4);
+    FUN_180062300(_DAT_180c86928,&unknown_var_1800_ptr,puVar4);
   }
   lVar3 = CreateIoCompletionPort(lVar2,*(uint64_t *)(param_1 + 0x213430),0,0);
   if (lVar3 != *(longlong *)(param_1 + 0x213430)) {
@@ -53,7 +53,7 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
       puVar4 = *(void **)(param_2 + 8);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&UNK_1809fed10,puVar4);
+    FUN_180062300(_DAT_180c86928,&unknown_var_1856_ptr,puVar4);
   }
   lVar3 = param_1 + 0x2133e0;
   lStack_2a8 = lVar3;
@@ -87,7 +87,7 @@ void create_file_with_completion_port(longlong engine_context, longlong file_par
       uStack_2c8 = uVar6;
       FUN_180068860(param_1 + 0x330,alStack_288,uVar8,param_2);
       *(uint64_t *)(alStack_288[0] + 0x118) = 0;
-      puStack_268 = &UNK_18098bcb0;
+      puStack_268 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_2e8);
     }
@@ -163,12 +163,12 @@ uint64_t process_memory_block(longlong memory_context, longlong block_param, lon
                          0);
         if (lock_result != 0) {
                     // WARNING: Subroutine does not return
-          throw_file_error(_DAT_180c86928,&UNK_1809fed78);
+          throw_file_error(_DAT_180c86928,&unknown_var_1960_ptr);
         }
         lock_result = GetLastError();
         if (lock_result != 0x3e5) {
                     // WARNING: Subroutine does not return
-          throw_file_error(_DAT_180c86928,&UNK_1809fed40,lock_result);
+          throw_file_error(_DAT_180c86928,&unknown_var_1904_ptr,lock_result);
         }
         return_value = 1;
       }
@@ -732,10 +732,10 @@ uint64_t *initialize_resource_entry(uint64_t *resource_entry, longlong config_pa
 {
   void *puVar1;
   
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &unknown_var_720_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809feda8;
+  *param_1 = &unknown_var_2008_ptr;
   param_1[1] = param_1 + 3;
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;
@@ -757,10 +757,10 @@ uint64_t *initialize_resource_entry(uint64_t *resource_entry, longlong config_pa
 uint64_t * create_default_resource_entry(uint64_t *resource_entry)
 
 {
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &unknown_var_720_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809feda8;
+  *param_1 = &unknown_var_2008_ptr;
   param_1[1] = param_1 + 3;
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;
@@ -814,7 +814,7 @@ void move_resource_callbacks(longlong dest_resource, longlong src_resource)
 longlong free_memory_block_resource(longlong memory_block, ulonglong free_flag, uint64_t param_3, uint64_t param_4)
 
 {
-  *(void **)(param_1 + 8) = &UNK_18098bcb0;
+  *(void **)(param_1 + 8) = &unknown_var_720_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x128,param_3,param_4,0xfffffffffffffffe);
   }
@@ -832,7 +832,7 @@ longlong free_memory_block_resource(longlong memory_block, ulonglong free_flag, 
 uint64_t *free_file_handle_resource(uint64_t *file_handle, ulonglong free_flag, uint64_t param_3, uint64_t param_4)
 
 {
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &unknown_var_720_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x118,param_3,param_4,0xfffffffffffffffe);
   }
@@ -920,7 +920,7 @@ void perform_string_replace(longlong string_manager, longlong search_string, lon
   
   uStack_178 = 0xfffffffffffffffe;
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
-  puStack_168 = &UNK_1809feda8;
+  puStack_168 = &unknown_var_2008_ptr;
   puStack_160 = auStack_150;
   uStack_158 = 0;
   auStack_150[0] = 0;
@@ -937,7 +937,7 @@ void perform_string_replace(longlong string_manager, longlong search_string, lon
                     // WARNING: Subroutine does not return
     memcpy(puStack_160,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
   }
-  puStack_168 = &UNK_18098bcb0;
+  puStack_168 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
 }
@@ -972,7 +972,7 @@ void set_string_buffer(longlong buffer_struct, longlong src_string)
     strcpy_s(*(uint64_t *)(param_1 + 8),0x100);
     return;
   }
-  FUN_180626f80(&UNK_18098bc48,0x100,param_2);
+  FUN_180626f80(&unknown_var_616_ptr,0x100,param_2);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;
@@ -989,7 +989,7 @@ void set_string_buffer(longlong buffer_struct, longlong src_string)
 longlong free_hash_table_resource(longlong hash_table, ulonglong free_flag, uint64_t param_3, uint64_t param_4)
 
 {
-  *(void **)(param_1 + 8) = &UNK_18098bcb0;
+  *(void **)(param_1 + 8) = &unknown_var_720_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x130,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1014,7 +1014,7 @@ void cleanup_resource_entry(uint64_t *resource_entry, uint64_t param_2, uint64_t
   if ((code *)param_1[0x2b] != (code *)0x0) {
     (*(code *)param_1[0x2b])(param_1 + 0x29,0,0);
   }
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &unknown_var_720_ptr;
   return;
 }
 
@@ -1029,7 +1029,7 @@ void cleanup_resource_entry(uint64_t *resource_entry, uint64_t param_2, uint64_t
 void reset_string_pointer(longlong string_struct)
 
 {
-  *(void **)(param_1 + 8) = &UNK_18098bcb0;
+  *(void **)(param_1 + 8) = &unknown_var_720_ptr;
   return;
 }
 
@@ -1044,9 +1044,9 @@ void reset_string_pointer(longlong string_struct)
 uint64_t *initialize_sync_object(uint64_t *sync_object, ulonglong init_flag, uint64_t param_3, uint64_t param_4)
 
 {
-  *param_1 = &UNK_18098bdc8;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_1000_ptr;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x30,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1063,7 +1063,7 @@ uint64_t *initialize_sync_object(uint64_t *sync_object, ulonglong init_flag, uin
 uint64_t * free_sync_object(uint64_t *sync_object, ulonglong free_flag)
 
 {
-  *param_1 = &UNK_1809feeb8;
+  *param_1 = &unknown_var_2280_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x58);
   }

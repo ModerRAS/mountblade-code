@@ -971,14 +971,14 @@ uint64_t *
 FUN_180254770(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
+  *param_2 = &unknown_var_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x13;
-  strcpy_s(param_2[1],0x80,&UNK_180a14840,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&unknown_var_736_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -988,10 +988,10 @@ uint64_t *
 FUN_1802547f0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_180a14860;
+  *param_1 = &unknown_var_768_ptr;
   param_1[5] = 0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x30,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1007,10 +1007,10 @@ FUN_1802547f0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 void FUN_180254850(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_180a14860;
+  *param_1 = &unknown_var_768_ptr;
   param_1[5] = 0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   return;
 }
 

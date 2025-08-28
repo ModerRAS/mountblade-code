@@ -26,19 +26,19 @@ void FUN_18040da70(longlong param_1)
       }
       *(uint64_t *)(lVar3 + 0xf8) = 0;
       if (*(uint64_t **)(lVar3 + 0x180) != (uint64_t *)0x0) {
-        **(uint64_t **)(lVar3 + 0x180) = &UNK_18098bcb0;
+        **(uint64_t **)(lVar3 + 0x180) = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       *(uint64_t *)(lVar3 + 0x180) = 0;
-      *(uint64_t *)(lVar3 + 0x188) = &UNK_180a3c3e0;
+      *(uint64_t *)(lVar3 + 0x188) = &unknown_var_3456_ptr;
       if (*(longlong *)(lVar3 + 400) != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       *(uint64_t *)(lVar3 + 400) = 0;
       *(int32_t *)(lVar3 + 0x1a0) = 0;
-      *(uint64_t *)(lVar3 + 0x188) = &UNK_18098bcb0;
+      *(uint64_t *)(lVar3 + 0x188) = &unknown_var_720_ptr;
       uVar4 = (ulonglong)(uint)((int)uVar4 + (int)uVar1);
       uVar2 = uVar2 - 1;
     } while (uVar2 != 0);

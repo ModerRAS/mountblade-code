@@ -326,7 +326,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         FUN_180627ae0(&puStack_3b8, param_2 + 10);
         if (RENDERING_MAX_STRING_LENGTH < (int)uStack_3a8) {
             // 处理长字符串资源
-            puStack_3f0 = &UNK_180a3c3e0;
+            puStack_3f0 = &unknown_var_3456_ptr;
             uStack_3d8 = 0;
             puStack_3e8 = (void *)0x0;
             uStack_3e0 = 0;
@@ -361,13 +361,13 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             uStack_3c0 = 0;
             puStack_3e8 = (void *)0x0;
             uStack_3d8 = 0;
-            puStack_3f0 = &UNK_18098bcb0;
+            puStack_3f0 = &unknown_var_720_ptr;
             plVar12 = plStack_3c8;
             param_3 = lStack_330;
         }
         
         // 配置渲染参数
-        puStack_e8 = &UNK_1809fcc28;
+        puStack_e8 = &unknown_var_3432_ptr;
         puStack_e0 = auStack_d0;
         auStack_d0[0] = 0;
         uStack_d8 = uStack_3a8;
@@ -396,14 +396,14 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         }
         
         // 清理临时资源
-        puStack_e8 = &UNK_18098bcb0;
-        puStack_3b8 = &UNK_180a3c3e0;
+        puStack_e8 = &unknown_var_720_ptr;
+        puStack_3b8 = &unknown_var_3456_ptr;
         if (puStack_3b0 != (void *)0x0) {
             FUN_18064e900();
         }
         puStack_3b0 = (void *)0x0;
         uStack_3a0 = uStack_3a0 & 0xffffffff00000000;
-        puStack_3b8 = &UNK_18098bcb0;
+        puStack_3b8 = &unknown_var_720_ptr;
         lVar18 = param_2[2];
     }
     
@@ -455,7 +455,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         else {
             // 跨线程处理
             pplStack_3d0 = (longlong **)&puStack_1c8;
-            puStack_1c8 = &UNK_1809fcc28;
+            puStack_1c8 = &unknown_var_3432_ptr;
             puStack_1c0 = auStack_1b0;
             uStack_1b8 = 0;
             auStack_1b0[0] = 0;
@@ -470,7 +470,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             uStack_fc = uStack_33c;
             uStack_f8 = CONCAT44(uStack_334, uStack_338);
             puStack_f0 = (uint64_t *)param_2[2];
-            if ((void *)*puStack_f0 == &UNK_180a14060) {
+            if ((void *)*puStack_f0 == &unknown_var_8720_ptr) {
                 LOCK();
                 *(int *)(puStack_f0 + 1) = *(int *)(puStack_f0 + 1) + 1;
                 UNLOCK();
@@ -497,7 +497,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
                 (**(code **)(*plVar12 + 0x38))(plVar12);
             }
             pplStack_3d0 = (longlong **)&puStack_1c8;
-            puStack_1c8 = &UNK_18098bcb0;
+            puStack_1c8 = &unknown_var_720_ptr;
             plVar20 = plStack_398;
             plVar21 = plStack_380;
             plVar8 = plStack_388;
@@ -684,14 +684,14 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
                 if (*(code **)(lVar14 + 0x98) != (code *)0x0) {
                     (**(code **)(lVar14 + 0x98))(lVar14 + 0x88, 0, 0);
                 }
-                *(void **)(lVar14 + 0x98) = &UNK_1802e4bc0;
-                *(void **)(lVar14 + 0xa0) = &UNK_1800ee4c0;
+                *(void **)(lVar14 + 0x98) = &unknown_var_4992_ptr;
+                *(void **)(lVar14 + 0xa0) = &unknown_var_7008_ptr;
                 *(code **)(lVar14 + 0x88) = FUN_180489700;
                 if (*(code **)(lVar18 + 0x9640) != (code *)0x0) {
                     (**(code **)(lVar18 + 0x9640))(lVar18 + 0x9630, 0, 0);
                 }
-                *(void **)(lVar18 + 0x9640) = &UNK_1800ee4d0;
-                *(void **)(lVar18 + 0x9648) = &UNK_1800ee4c0;
+                *(void **)(lVar18 + 0x9640) = &unknown_var_7024_ptr;
+                *(void **)(lVar18 + 0x9648) = &unknown_var_7008_ptr;
                 *(code **)(lVar18 + 0x9630) = FUN_180489990;
                 *(longlong *)(lVar18 + 0x9658) = lVar14;
                 *(uint *)(lVar18 + 4) = *(uint *)(lVar18 + 4) | 0x4000;

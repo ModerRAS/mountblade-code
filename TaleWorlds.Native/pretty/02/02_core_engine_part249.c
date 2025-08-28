@@ -835,24 +835,24 @@ int32_t get_render_object_status(uint64_t render_object, uint64_t status_id)
 
 // 全局常量定义
 #define DEFAULT_STRING_CONST system_buffer_ptr
-#define EMPTY_STRING_CONST UNK_180a3c3e0
-#define GLOBAL_STRING_CONST UNK_18098bcb0
+#define EMPTY_STRING_CONST unknown_var_3456
+#define GLOBAL_STRING_CONST unknown_var_720
 #define GLOBAL_MEMORY_POOL _DAT_180c8ed18
 #define GLOBAL_LOGGER_HANDLE _DAT_180c86928
 #define GLOBAL_DEBUG_FLAG _DAT_180c8a9c8
 #define GLOBAL_RESOURCE_COUNTER _DAT_180c967dc
 #define EVENT_HANDLER_DEFAULT system_memory_02f0
-#define MATERIAL_NOT_FOUND UNK_180a108d0
-#define TEXTURE_NOT_FOUND UNK_180a10988
-#define RENDER_STATE_RESET UNK_180a109b8
-#define EVENT_HANDLER_ERROR UNK_180a10938
-#define GLOBAL_EVENT_ERROR UNK_180a10938
-#define DEVICE_EVENT_ERROR UNK_180a10938
-#define DEBUG_RENDER_OBJECT UNK_180a1b008
-#define RENDER_OBJECT_VTABLE UNK_180a21690
-#define RENDER_OBJECT_VTABLE2 UNK_180a21720
-#define RENDER_OBJECT_VTABLE3 UNK_180a079c0
-#define RENDER_OBJECT_VTABLE4 UNK_180a128b0
+#define MATERIAL_NOT_FOUND unknown_var_4496
+#define TEXTURE_NOT_FOUND unknown_var_4680
+#define RENDER_STATE_RESET unknown_var_4728
+#define EVENT_HANDLER_ERROR unknown_var_4600
+#define GLOBAL_EVENT_ERROR unknown_var_4600
+#define DEVICE_EVENT_ERROR unknown_var_4600
+#define DEBUG_RENDER_OBJECT unknown_var_7304
+#define RENDER_OBJECT_VTABLE unknown_var_3552
+#define RENDER_OBJECT_VTABLE2 unknown_var_3696
+#define RENDER_OBJECT_VTABLE3 unknown_var_7872
+#define RENDER_OBJECT_VTABLE4 unknown_var_2656
 
 // 函数指针映射表（简化实现）
 #define get_resource_info FUN_1808455f0

@@ -59,7 +59,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
           stack_guard1 = 0;
           status_flag1 = status_flag;
           status_flag2 = status_flag;
-          cleanup_ptr = (longlong *)allocate_memory_block(context_ptr,&resource_ptr2,&UNK_180a104d0,*resource_array + 0x18);
+          cleanup_ptr = (longlong *)allocate_memory_block(context_ptr,&resource_ptr2,&unknown_var_3472_ptr,*resource_array + 0x18);
           temp_var1 = *cleanup_ptr;
           *cleanup_ptr = 0;
           resource_ptr1 = (longlong *)*resource_array;
@@ -79,7 +79,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
     } while (timeout_value != 0);
   }
   if (-1 < *(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 0x330)) {
-    process_system_tasks(context_ptr[0x6d],&UNK_180a108b0,&resource_ptr2);
+    process_system_tasks(context_ptr[0x6d],&unknown_var_4464_ptr,&resource_ptr2);
     execute_task_queue(resource_ptr2,&resource_ptr1);
     if (resource_ptr1 == (longlong *)0x0) {
       *(int8_t *)((longlong)context_ptr + 0x401) = 1;
@@ -90,7 +90,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
       memset(large_buffer,0,0xd8);
     }
   }
-  if ((void *)*context_ptr == &UNK_180a10cd8) {
+  if ((void *)*context_ptr == &unknown_var_5528_ptr) {
     initialize_system_state();
     pending_tasks = (uint64_t *)0x0;
     active_tasks = (uint64_t *)0x0;
@@ -137,7 +137,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
   }
   if (*(char *)(context_ptr + 0x42) == '\0') {
     operation_result = get_system_status(context_ptr[0x6d]);
-    register_task_result(operation_result,&UNK_180a10878);
+    register_task_result(operation_result,&unknown_var_4408_ptr);
   }
                     // WARNING: Subroutine does not return
   cleanup_system_state(security_cookie ^ (ulonglong)local_buffer);
@@ -546,7 +546,7 @@ void generate_error_report(longlong error_context)
   if (error_code == 0) {
     return;
   }
-  output_stream = &UNK_180a3c3e0;
+  output_stream = &unknown_var_3456_ptr;
   system_handle = 0;
   report_buffer = (uint64_t *)0x0;
   buffer_capacity = 0;
@@ -605,7 +605,7 @@ APPEND_ERROR_CODE:
   do {
     system_data = error_offset;
     error_offset = system_data + 1;
-  } while ((&UNK_18098bc74)[system_data] != '\0');
+  } while ((&unknown_var_660_ptr)[system_data] != '\0');
   char_count = (int)(system_data + 1);
   buffer_capacity = message_length;
   if (0 < char_count) {
@@ -708,7 +708,7 @@ FINALIZE_REPORT:
   }
   buffer_capacity = error_code;
   log_error_message(_DAT_180c86928,0,0x1000000000000,3,message_buffer);
-  output_stream = &UNK_180a3c3e0;
+  output_stream = &unknown_var_3456_ptr;
   if (report_buffer == (uint64_t *)0x0) {
     return;
   }

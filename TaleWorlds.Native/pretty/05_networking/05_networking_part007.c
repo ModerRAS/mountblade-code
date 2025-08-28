@@ -620,7 +620,7 @@ void network_connection_pool_manager(longlong *connection_pool, uint pool_size, 
         result = FUN_18088f710(network_context, stack_buffer2);
         if ((result == 0) && (result = FUN_18088f710(stack_buffer2, &stack_buffer), result == 0)) {
             // 配置连接池属性
-            result = FUN_18010cbc0(stack_buffer, &UNK_180986258, (longlong)connection_pool + 0x14, connection_pool + 3,
+            result = FUN_18010cbc0(stack_buffer, &unknown_var_7592_ptr, (longlong)connection_pool + 0x14, connection_pool + 3,
                                   (longlong)connection_pool + 0x1c);
             if (((result == 3) ||
                 (((result = FUN_18088eea0(&stack_buffer, (longlong)connection_pool + 0x14), result == 0 &&
@@ -628,7 +628,7 @@ void network_connection_pool_manager(longlong *connection_pool, uint pool_size, 
                  (result = FUN_18088eea0(&stack_buffer, (longlong)connection_pool + 0x1c), result == 0)))) &&
                 (result = FUN_18088f710(stack_buffer2, &stack_buffer), result == 0)) {
                 // 设置连接池参数
-                result = FUN_18010cbc0(stack_buffer, &UNK_180986258, connection_pool + 4, (longlong)connection_pool + 0x24,
+                result = FUN_18010cbc0(stack_buffer, &unknown_var_7592_ptr, connection_pool + 4, (longlong)connection_pool + 0x24,
                                       connection_pool + 5);
                 if (((result == 3) ||
                     (((result = FUN_18088eea0(&stack_buffer, connection_pool + 4), result == 0 &&
@@ -967,7 +967,7 @@ uint64_t network_memory_allocator(longlong *memory_ptr, uint64_t size)
     allocated_memory = 0;
     if (result != 0) {
         if (result - 1U < 0x3fffffff) {
-            allocated_memory = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), size, &UNK_180957f70, NETWORK_HEADER_SIZE, 0, 0,
+            allocated_memory = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), size, &unknown_var_8432_ptr, NETWORK_HEADER_SIZE, 0, 0,
                                         1);
             if (allocated_memory != 0) {
                 if ((int)memory_ptr[1] != 0) {
@@ -982,7 +982,7 @@ uint64_t network_memory_allocator(longlong *memory_ptr, uint64_t size)
 allocation_complete:
     if ((0 < *(int *)((longlong)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
         // 释放旧内存
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &UNK_180957f70, BUFFER_SIZE, 1);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
     }
     *memory_ptr = allocated_memory;
     *(int *)((longlong)memory_ptr + 0xc) = result;
@@ -1009,14 +1009,14 @@ uint64_t network_memory_deallocator(uint64_t param1, uint64_t size)
     release_complete:
         if ((0 < *(int *)((longlong)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
             // 释放内存
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &UNK_180957f70, BUFFER_SIZE, 1);
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
         }
         *memory_ptr = allocated_memory;
         *(int *)((longlong)memory_ptr + 0xc) = size_int;
         return NETWORK_ERROR_NONE;
     }
     if ((int)size - 1U < 0x3fffffff) {
-        allocated_memory = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), size, &UNK_180957f70, NETWORK_HEADER_SIZE, 0);
+        allocated_memory = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), size, &unknown_var_8432_ptr, NETWORK_HEADER_SIZE, 0);
         if (allocated_memory != 0) {
             if ((int)memory_ptr[1] != 0) {
                 // 复制数据到新内存
@@ -1068,7 +1068,7 @@ uint64_t network_connection_array_manager(longlong *connection_array, int array_
     if (array_size != 0) {
         if (array_size * 0x14 - 1U < 0x3fffffff) {
             dest_ptr = (int32_t *)
-                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), array_size * 0x14, &UNK_180957f70,
+                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), array_size * 0x14, &unknown_var_8432_ptr,
                                    NETWORK_HEADER_SIZE, 0, 0, 1);
             if (dest_ptr != (int32_t *)0x0) {
                 current_size = (int)connection_array[1];
@@ -1098,7 +1098,7 @@ uint64_t network_connection_array_manager(longlong *connection_array, int array_
 array_management_complete:
     if ((0 < *(int *)((longlong)connection_array + 0xc)) && (*connection_array != 0)) {
         // 清理旧数组
-        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *connection_array, &UNK_180957f70, BUFFER_SIZE, 1);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *connection_array, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
     }
     *connection_array = (longlong)dest_ptr;
     *(int *)((longlong)connection_array + 0xc) = array_size;
@@ -1133,7 +1133,7 @@ uint64_t network_connection_array_cleaner(uint64_t param1, int array_size)
     array_clean_complete:
         if ((0 < *(int *)((longlong)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
             // 清理数组内存
-            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &UNK_180957f70, BUFFER_SIZE, 1);
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
         }
         *memory_ptr = (longlong)dest_ptr;
         *(int *)((longlong)memory_ptr + 0xc) = size_int;
@@ -1141,7 +1141,7 @@ uint64_t network_connection_array_cleaner(uint64_t param1, int array_size)
     }
     if (array_size * 0x14 - 1U < 0x3fffffff) {
         dest_ptr = (int32_t *)
-                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), array_size * 0x14, &UNK_180957f70,
+                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), array_size * 0x14, &unknown_var_8432_ptr,
                                NETWORK_HEADER_SIZE, 0);
         if (dest_ptr != (int32_t *)0x0) {
             current_size = (int)memory_ptr[1];
@@ -1214,7 +1214,7 @@ void network_message_broadcaster(uint64_t message_id)
        (result = FUN_18088dec0(*(uint64_t *)(stack_array[0] + 0x98), ptr_array, 0x18), result == 0))
     {
         // 设置广播消息
-        *ptr_array[0] = &UNK_180983cf8;
+        *ptr_array[0] = &unknown_var_8024_ptr;
         *(int32_t *)(ptr_array[0] + 1) = 0x18;
         *(int *)(ptr_array[0] + 2) = (int)message_id;
         func_0x00018088e0d0(*(uint64_t *)(stack_array[0] + 0x98));
@@ -1265,7 +1265,7 @@ void network_connection_closer(ulonglong connection_id)
         stack_ptr = large_buffer;
         large_buffer[0] = 0;
         // 记录关闭日志
-        FUN_180749ef0(result, 0xb, connection_id, &UNK_1809570e8);
+        FUN_180749ef0(result, 0xb, connection_id, &unknown_var_4712_ptr);
     }
 connection_close_complete:
     // 安全清理
@@ -1306,7 +1306,7 @@ void network_config_setter(uint64_t config_id, uint64_t *config_data)
         func_0x00018074bda0(large_buffer, 0x100, 0);
         stack_ptr = large_buffer;
         // 记录配置日志
-        FUN_180749ef0(0x1f, 0xd, config_id, &UNK_1809838a8);
+        FUN_180749ef0(0x1f, 0xd, config_id, &unknown_var_6920_ptr);
     }
     stack_value = 0;
     result = func_0x00018088c590(config_id, &stack_long);
@@ -1322,7 +1322,7 @@ void network_config_setter(uint64_t config_id, uint64_t *config_data)
     if ((status == 0) &&
        (result = FUN_18088dec0(*(uint64_t *)(stack_long + 0x98), ptr_array, 0x48), result == 0)) {
         // 设置配置数据
-        *ptr_array[0] = &UNK_180983840;
+        *ptr_array[0] = &unknown_var_6816_ptr;
         *(int32_t *)(ptr_array[0] + 1) = 0x48;
         *(int *)(ptr_array[0] + 2) = (int)config_id;
         value4 = config_data[1];
@@ -1376,7 +1376,7 @@ void network_connection_validator(uint64_t connection_id, uint64_t validation_da
         func_0x00018074bda0(large_buffer, 0x100, validation_data);
         stack_ptr = large_buffer;
         // 记录验证日志
-        FUN_180749ef0(result, 0xb, connection_id, &UNK_180957208);
+        FUN_180749ef0(result, 0xb, connection_id, &unknown_var_5000_ptr);
     }
     // 安全清理
     FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);

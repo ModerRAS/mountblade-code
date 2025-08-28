@@ -6,13 +6,13 @@
 // 全局变量
 extern longlong _DAT_180c8a9b0;      // 引擎全局上下文
 extern ulonglong _DAT_180bf00a8;     // 安全检查相关
-extern char UNK_18098d0f8[];          // 数据类型映射表
+extern char global_var_5912_ptr[];          // 数据类型映射表
 extern char system_buffer_ptr;            // 默认格式字符串
-extern char UNK_180a063b0;            // 操作符标识
+extern char global_var_2224_ptr;            // 操作符标识
 extern char system_buffer_63b4;            // 减法操作符
-extern char UNK_180a063c0;            // 加法操作符
-extern uint UNK_180114854[];          // 函数跳转表1
-extern uint UNK_18011486c[];          // 函数跳转表2
+extern char global_var_2240_ptr;            // 加法操作符
+extern uint global_var_3572_ptr[];          // 函数跳转表1
+extern uint global_var_3596_ptr[];          // 函数跳转表2
 
 /**
  * 处理格式化字符串并执行渲染操作
@@ -184,7 +184,7 @@ void execute_numeric_operation(char *param_1, uint param_2, double *param_3, dou
   
   // 获取格式字符串
   if (param_6 == 0) {
-    param_6 = *(ulonglong *)(&UNK_18098d0f8 + (longlong)(int)param_2 * 0x18);
+    param_6 = *(ulonglong *)(&global_var_5912_ptr + (longlong)(int)param_2 * 0x18);
   }
   
   // 格式化数值
@@ -280,7 +280,7 @@ skip_format_conversion:
     // 执行加法操作
     func_0x00018012e760(0, *(int32_t *)(engine_context + 0x1674));
     render_param4 = CONCAT44(timing_factor3, timing_factor3);
-    operation_result = FUN_18010f6f0(&UNK_180a063c0, &render_param4, operation_flags);
+    operation_result = FUN_18010f6f0(&global_var_2240_ptr, &render_param4, operation_flags);
     if (operation_result != '\0') {
       if ((*(char *)(engine_context + 0x134) == '\0') || (param_5 == (double *)0x0)) {
         param_5 = param_4;
@@ -354,7 +354,7 @@ void simplified_numeric_operation(int32_t param_1, uint64_t param_2, double *par
   
   format_param = (int32_t)((ulonglong)stack_param1 >> 0x20);
   if (stack_param5 == 0) {
-    stack_param5 = *(longlong *)(&UNK_18098d0f8 + 
+    stack_param5 = *(longlong *)(&global_var_5912_ptr + 
             (CONCAT44(stack_param4, data_type) * 2 + CONCAT44(stack_param4, data_type)) * 8);
   }
   
@@ -422,23 +422,23 @@ skip_format:
     
     if ((operation_result != '\0') && (data_type < 6)) {
       // 执行减法操作（通过跳转表）
-      (*(code *)((ulonglong)*(uint *)(&UNK_180114854 + CONCAT44(stack_param4, data_type) * 4) +
+      (*(code *)((ulonglong)*(uint *)(&global_var_3572_ptr + CONCAT44(stack_param4, data_type) * 4) +
                 0x180000000))
                 ((code *)((ulonglong)
-                          *(uint *)(&UNK_180114854 + CONCAT44(stack_param4, data_type) * 4) +
+                          *(uint *)(&global_var_3572_ptr + CONCAT44(stack_param4, data_type) * 4) +
                          0x180000000));
       return;
     }
     
     func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
     stack_param2 = CONCAT44(result_float, result_float);
-    operation_result = FUN_18010f6f0(&UNK_180a063c0, &stack_param2, operation_flags);
+    operation_result = FUN_18010f6f0(&global_var_2240_ptr, &stack_param2, operation_flags);
     if ((operation_result != '\0') && (data_type < 6)) {
       // 执行加法操作（通过跳转表）
-      (*(code *)((ulonglong)*(uint *)(&UNK_18011486c + CONCAT44(stack_param4, data_type) * 4) +
+      (*(code *)((ulonglong)*(uint *)(&global_var_3596_ptr + CONCAT44(stack_param4, data_type) * 4) +
                 0x180000000))
                 ((code *)((ulonglong)
-                          *(uint *)(&UNK_18011486c + CONCAT44(stack_param4, data_type) * 4) +
+                          *(uint *)(&global_var_3596_ptr + CONCAT44(stack_param4, data_type) * 4) +
                          0x180000000));
       return;
     }
@@ -509,23 +509,23 @@ void execute_core_engine_operation(void)
   
   if ((operation_result != '\0') && (data_type < 6)) {
     // 执行减法操作（通过跳转表）
-    (*(code *)((ulonglong)*(uint *)(&UNK_180114854 + CONCAT44(format_param, data_type) * 4) +
+    (*(code *)((ulonglong)*(uint *)(&global_var_3572_ptr + CONCAT44(format_param, data_type) * 4) +
               0x180000000))
               ((code *)((ulonglong)
-                        *(uint *)(&UNK_180114854 + CONCAT44(format_param, data_type) * 4) +
+                        *(uint *)(&global_var_3572_ptr + CONCAT44(format_param, data_type) * 4) +
                        0x180000000));
     return;
   }
   
   func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
   stack_param2 = CONCAT44(timing_factor3, timing_factor3);
-  operation_result = FUN_18010f6f0(&UNK_180a063c0, &stack_param2, operation_flags);
+  operation_result = FUN_18010f6f0(&global_var_2240_ptr, &stack_param2, operation_flags);
   if ((operation_result != '\0') && (data_type < 6)) {
     // 执行加法操作（通过跳转表）
-    (*(code *)((ulonglong)*(uint *)(&UNK_18011486c + CONCAT44(format_param, data_type) * 4) +
+    (*(code *)((ulonglong)*(uint *)(&global_var_3596_ptr + CONCAT44(format_param, data_type) * 4) +
               0x180000000))
               ((code *)((ulonglong)
-                        *(uint *)(&UNK_18011486c + CONCAT44(format_param, data_type) * 4) +
+                        *(uint *)(&global_var_3596_ptr + CONCAT44(format_param, data_type) * 4) +
                        0x180000000));
     return;
   }
@@ -558,10 +558,10 @@ void execute_addition_operation(void)
   
   if (data_type < 6) {
     // 执行加法操作（通过跳转表）
-    (*(code *)((ulonglong)*(uint *)(&UNK_18011486c + CONCAT44(format_param, data_type) * 4) +
+    (*(code *)((ulonglong)*(uint *)(&global_var_3596_ptr + CONCAT44(format_param, data_type) * 4) +
               0x180000000))
               ((code *)((ulonglong)
-                        *(uint *)(&UNK_18011486c + CONCAT44(format_param, data_type) * 4) +
+                        *(uint *)(&global_var_3596_ptr + CONCAT44(format_param, data_type) * 4) +
                        0x180000000));
     return;
   }
@@ -637,7 +637,7 @@ ulonglong process_batch_numeric_operations(char *param_1, uint64_t param_2, long
   if (0 < param_4) {
     do {
       FUN_18012e2d0(array_index);
-      operation_success = FUN_180114450(&UNK_180a063b0, 4, param_3, 0, 0, param_7, 0);
+      operation_success = FUN_180114450(&global_var_2224_ptr, 4, param_3, 0, 0, param_7, 0);
       batch_result = batch_result | operation_success;
       func_0x00018012e760(0, *(int32_t *)(engine_context + 0x1674));
       context_base = _DAT_180c8a9b0;
@@ -702,7 +702,7 @@ byte process_batch_numeric_operations_simple(void)
   if (0 < operation_count) {
     do {
       FUN_18012e2d0(array_index);
-      operation_success = FUN_180114450(&UNK_180a063b0, 4, value_array, 0, 0);
+      operation_success = FUN_180114450(&global_var_2224_ptr, 4, value_array, 0, 0);
       batch_result = batch_result | operation_success;
       func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
       context_base = _DAT_180c8a9b0;
@@ -758,7 +758,7 @@ byte process_loop_batch_numeric_operations(void)
   
   do {
     FUN_18012e2d0(loop_index);
-    operation_success = FUN_180114450(&UNK_180a063b0, 4, value_array);
+    operation_success = FUN_180114450(&global_var_2224_ptr, 4, value_array);
     loop_result = loop_result | operation_success;
     func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
     context_base = _DAT_180c8a9b0;

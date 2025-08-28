@@ -338,7 +338,7 @@ void handle_system_exception(void* exception_context, void* exception_data)
     system_interface = *(void**)_DAT_180c8ed08;
     
     // 检查接口类型
-    if (system_interface == &UNK_18098bb88) {
+    if (system_interface == &global_config_424_ptr) {
       is_debug_mode = (get_debug_flag() != 0);
     } else {
       is_debug_mode = (**(code **)(system_interface + 0x50))((void**)_DAT_180c8ed08);

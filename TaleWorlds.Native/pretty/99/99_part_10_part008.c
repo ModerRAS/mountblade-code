@@ -166,13 +166,13 @@ struct ObjectContext {
 
 /** 系统数据引用 */
 extern ObjectHandle _DAT_180be0050;       /**< 系统数据句柄 */
-extern void* UNK_18094b120;               /**< 未知数据引用 */
-extern void* UNK_18094b020;               /**< 未知数据引用 */
-extern void* UNK_18094aee8;               /**< 未知数据引用 */
-extern void* UNK_18094aef0;               /**< 未知数据引用 */
-extern void* UNK_18094af30;               /**< 未知数据引用 */
+extern void* global_state_5616;               /**< 未知数据引用 */
+extern void* global_state_5360;               /**< 未知数据引用 */
+extern void* global_state_5048;               /**< 未知数据引用 */
+extern void* global_state_5056;               /**< 未知数据引用 */
+extern void* global_state_5120;               /**< 未知数据引用 */
 extern void* system_buffer_ptr;               /**< 数据引用 */
-extern void* UNK_18094a9a8;               /**< 未知数据引用 */
+extern void* global_state_3704;               /**< 未知数据引用 */
 
 /* ==============================================
    函数声明

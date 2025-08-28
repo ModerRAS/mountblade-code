@@ -658,7 +658,7 @@ uint64_t FUN_18039f3e0(longlong param_1)
   if (*(longlong *)(param_1 + 0x38) - lVar2 >> 3 != 0) {
     lVar4 = 0;
     do {
-      if (((void *)**(uint64_t **)(lVar4 + lVar2) != &UNK_180a20758) &&
+      if (((void *)**(uint64_t **)(lVar4 + lVar2) != &unknown_var_9656_ptr) &&
          (iVar1 = (**(code **)((void *)**(uint64_t **)(lVar4 + lVar2) + 0x98))(), iVar1 == 0)
          ) {
         return *(uint64_t *)(*(longlong *)(param_1 + 0x30) + (longlong)iVar3 * 8);
@@ -687,7 +687,7 @@ uint64_t FUN_18039f480(longlong param_1,int32_t param_2,uint64_t param_3)
   if (*(longlong *)(param_1 + 0x38) - lVar4 >> 3 != 0) {
     lVar3 = 0;
     do {
-      if (((void *)**(uint64_t **)(lVar3 + lVar4) != &UNK_180a20758) &&
+      if (((void *)**(uint64_t **)(lVar3 + lVar4) != &unknown_var_9656_ptr) &&
          (iVar2 = (**(code **)((void *)**(uint64_t **)(lVar3 + lVar4) + 0x98))(), iVar2 == 0)
          ) {
         plVar1 = *(longlong **)(lVar3 + *(longlong *)(param_1 + 0x30));
@@ -728,7 +728,7 @@ void FUN_18039f590(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     lVar4 = 0;
     do {
       plVar1 = *(longlong **)(lVar4 + lVar5);
-      if (((void *)*plVar1 != &UNK_180a20758) &&
+      if (((void *)*plVar1 != &unknown_var_9656_ptr) &&
          (iVar2 = (**(code **)((void *)*plVar1 + 0x98))(plVar1), iVar2 == 0)) {
         (**(code **)(*plVar1 + 0x208))
                   (plVar1,param_2,param_3,param_4,param_5,param_6,param_7,param_8,param_9);
@@ -777,7 +777,7 @@ void FUN_18039f5c2(void)
   *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
   do {
     plVar1 = *(longlong **)(uVar3 + in_R10);
-    if ((void *)*plVar1 != &UNK_180a20758) {
+    if ((void *)*plVar1 != &unknown_var_9656_ptr) {
       iVar2 = (**(code **)((void *)*plVar1 + 0x98))(plVar1);
       if (iVar2 == 0) {
         (**(code **)(*plVar1 + 0x208))
@@ -839,7 +839,7 @@ void FUN_18039f65c(void)
       }
       unaff_RBX = *(longlong **)(unaff_RDI + *(longlong *)(unaff_RBP + 0x30));
       in_RAX = (void *)*unaff_RBX;
-    } while (in_RAX == &UNK_180a20758);
+    } while (in_RAX == &unknown_var_9656_ptr);
   } while( true );
 }
 

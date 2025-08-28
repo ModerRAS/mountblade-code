@@ -279,14 +279,14 @@ void cleanup_resource_array(longlong *param_1)
     
     puVar1 = (uint64_t *)param_1[1];
     for (puVar2 = (uint64_t *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 6) {
-        *puVar2 = &UNK_180a3c3e0;
+        *puVar2 = &unknown_var_3456_ptr;
         if (puVar2[1] != 0) {
                     // WARNING: 此函数不会返回
             FUN_18064e900();
         }
         puVar2[1] = 0;
         *(int32_t *)(puVar2 + 3) = 0;
-        *puVar2 = &UNK_18098bcb0;
+        *puVar2 = &unknown_var_720_ptr;
     }
     if (*param_1 != 0) {
                     // WARNING: 此函数不会返回
@@ -391,13 +391,13 @@ void process_resource_event_callbacks(longlong *param_1)
     uStack_60 = 0xfffffffffffffffe;
     uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
     uVar1 = *(uint64_t *)(param_1[0x37] + 0x1e0);
-    puStack_58 = &UNK_18098bc80;
+    puStack_58 = &unknown_var_672_ptr;
     puStack_50 = auStack_40;
     auStack_40[0] = auStack_40[0] & 0xffffffffffffff00;
     uStack_48._0_4_ = 0x12;
-    strcpy_s(auStack_40,0x20,&UNK_1809ffa98);
+    strcpy_s(auStack_40,0x20,&unknown_var_5320_ptr);
     uVar3 = FUN_180240430(uVar1,&puStack_58,0);
-    puStack_58 = &UNK_18098bcb0;
+    puStack_58 = &unknown_var_720_ptr;
     if (uVar3 != 0) {
         lVar5 = param_1[0x37];
         if ((*(ulonglong *)(lVar5 + 0x140) & uVar3) != 0) {
@@ -549,7 +549,7 @@ uint64_t process_resource_loading_status(longlong param_1, longlong param_2)
             bVar5 = false;
             if ((*(byte *)(param_1 + 0xfd) & 8) != 0) {
                 lVar13 = 0xb8;
-                pcVar15 = (code *)&UNK_1802426a0;
+                pcVar15 = (code *)&unknown_var_128_ptr;
                 do {
                     lVar12 = *(longlong *)(lVar13 + *(longlong *)(param_1 + 0x1b8));
                     if (((lVar12 != 0) && (lVar11 = *(longlong *)(lVar12 + 0x370), lVar11 != 0)) &&
@@ -600,7 +600,7 @@ uint64_t process_resource_loading_status(longlong param_1, longlong param_2)
                         *(longlong *)
                          (*(longlong *)(lVar11 + 0x3f70 + uVar14 * 8) + (ulonglong)(uVar3 + uVar9 * -0x400) * 8)
                              = lVar12;
-                        pcVar15 = (code *)&UNK_1802426a0;
+                        pcVar15 = (code *)&unknown_var_128_ptr;
                     }
                     lVar13 = lVar13 + 8;
                 } while (lVar13 < 0x138);

@@ -41,7 +41,7 @@ void FUN_1802595de(int *param_1,longlong param_2)
     (**(code **)(*(longlong *)(param_1 + 4) + 0x18))(param_1 + 4,lVar10,uVar12);
     *(longlong *)(unaff_RBX + 8) = *(longlong *)(unaff_RBX + 8) + (ulonglong)uVar12;
   }
-  FUN_18025a7b0(&UNK_18098d7e0);
+  FUN_18025a7b0(&unknown_var_7680_ptr);
   piVar6 = *(int **)(unaff_RBX + 8);
   iVar3 = piVar6[1];
   iVar4 = piVar6[2];
@@ -292,7 +292,7 @@ void FUN_1802595eb(int *param_1,longlong param_2)
     (**(code **)(*(longlong *)(param_1 + 4) + 0x18))(param_1 + 4,lVar11,uVar13);
     *(longlong *)(unaff_RBX + 8) = *(longlong *)(unaff_RBX + 8) + (ulonglong)uVar13;
   }
-  FUN_18025a7b0(&UNK_18098d7e0);
+  FUN_18025a7b0(&unknown_var_7680_ptr);
   puVar8 = *(int32_t **)(unaff_RBX + 8);
   uVar2 = puVar8[1];
   uVar6 = puVar8[2];

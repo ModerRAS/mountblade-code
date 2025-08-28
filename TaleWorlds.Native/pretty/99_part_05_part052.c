@@ -261,8 +261,8 @@ extern const void* _DAT_1809ff990;  /** 系统配置表3 */
 extern const void* _DAT_180c86870;  /** 系统配置表4 */
 
 /** 系统全局地址表 */
-extern const void* UNK_1809ff990;   /** 系统地址表1 */
-extern const void* UNK_1809ff9c0;   /** 系统地址表2 */
+extern const void* global_state_5056;   /** 系统地址表1 */
+extern const void* global_state_5104;   /** 系统地址表2 */
 
 // =============================================================================
 // 函数声明

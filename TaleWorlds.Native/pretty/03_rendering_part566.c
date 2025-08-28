@@ -50,7 +50,7 @@ void FUN_18057a3c0(longlong param_1,int param_2,uint64_t param_3,int32_t param_4
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                  0x48) < _DAT_180d4a038) && (FUN_1808fcb90(&system_ptr_a038), _DAT_180d4a038 == -1)) {
       _DAT_180d4a040 = 0;
-      FUN_1808fc820(&UNK_1809430d0);
+      FUN_1808fc820(&unknown_var_2768_ptr);
       FUN_1808fcb30(&system_ptr_a038);
     }
     puStack_118 = &system_ptr_a040;
@@ -183,7 +183,7 @@ void FUN_18057a7d0(longlong param_1)
   
   puVar2 = *(uint64_t **)(param_1 + 0xabf0);
   if (puVar2 != (uint64_t *)0x0) {
-    if ((void *)*puVar2 == &UNK_180a37930) {
+    if ((void *)*puVar2 == &unknown_var_4336_ptr) {
       FUN_1802091d0(puVar2 + 10);
       lVar6 = puVar2[0x114];
       iVar8 = 0;
@@ -229,8 +229,8 @@ uint64_t *
 FUN_18057a820(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_180a199c8;
-  *param_1 = &UNK_180a19ac8;
+  *param_1 = &unknown_var_1608_ptr;
+  *param_1 = &unknown_var_1864_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x110,param_3,param_4,0xfffffffffffffffe);
   }

@@ -157,11 +157,11 @@ extern ulonglong _DAT_180c8ed30;      // 全局时间计数器
 extern longlong _DAT_180c86938;        // 渲染设备基础地址
 extern longlong _DAT_180c86950;        // 渲染资源管理器地址
 extern int _DAT_180bf00b0;             // 渲染配置标志
-extern uint64_t UNK_18098bcb0;       // 未知数据结构引用
-extern uint64_t UNK_1809fcc28;       // 未知数据结构引用
-extern uint64_t UNK_180a16c38;       // 字符串常量引用
-extern uint64_t UNK_180a16c98;       // 对象虚函数表引用
-extern uint64_t UNK_180a3c3e0;       // 字符串常量引用
+extern uint64_t global_state_720_ptr;       // 未知数据结构引用
+extern uint64_t global_state_3432_ptr;       // 未知数据结构引用
+extern uint64_t global_state_9944;       // 字符串常量引用
+extern uint64_t global_state_40_ptr;       // 对象虚函数表引用
+extern uint64_t global_state_3456_ptr;       // 字符串常量引用
 extern uint64_t system_memory_f750;       // SIMD数据常量
 
 /**
@@ -271,12 +271,12 @@ void UpdateRenderTimestampAndQueue(longlong renderContext, uint64_t unknownParam
 uint64_t * InitializeRenderStringBuffer(uint64_t stringType, uint64_t *stringBuffer, uint64_t createFlags, uint64_t securityContext)
 {
   // 设置字符串缓冲区初始状态
-  *stringBuffer = &UNK_18098bcb0;     // 字符串类型标识
+  *stringBuffer = &global_state_720_ptr;     // 字符串类型标识
   stringBuffer[1] = 0;                 // 字符串长度
   *(int32_t *)(stringBuffer + 2) = 0;  // 字符串标志
   
   // 配置字符串缓冲区属性
-  *stringBuffer = &UNK_1809fcc28;     // 缓冲区配置表
+  *stringBuffer = &global_state_3432_ptr;     // 缓冲区配置表
   stringBuffer[1] = stringBuffer + 3; // 数据指针
   *(int8_t *)(stringBuffer + 3) = 0;  // 终止符
   *(int32_t *)(stringBuffer + 2) = 0x16; // 缓冲区大小
@@ -314,7 +314,7 @@ uint64_t * FreeRenderStringBuffer(uint64_t *stringBuffer, ulonglong freeFlags, u
   errorResult = 0xfffffffffffffffe;   // 错误代码
   
   // 调用析构函数
-  *stringBuffer = &UNK_180a16c98;     // 虚函数表
+  *stringBuffer = &global_state_40_ptr;     // 虚函数表
   if ((longlong *)stringBuffer[0x1e] != (longlong *)0x0) {
     (**(code **)(*(longlong *)stringBuffer[0x1e] + 0x38))();  // 调用虚析构函数
   }
@@ -355,12 +355,12 @@ uint64_t * CreateRenderTextureObject(uint64_t textureType, uint64_t *textureBuff
   uint64_t *dataPointer;
   
   // 初始化纹理缓冲区
-  *textureBuffer = &UNK_18098bcb0;    // 纹理类型标识
+  *textureBuffer = &global_state_720_ptr;    // 纹理类型标识
   textureBuffer[1] = 0;                // 纹理宽度
   *(int32_t *)(textureBuffer + 2) = 0;  // 纹理高度
   
   // 设置纹理属性
-  *textureBuffer = &UNK_180a3c3e0;    // 纹理配置表
+  *textureBuffer = &global_state_3456_ptr;    // 纹理配置表
   textureBuffer[3] = 0;                // 纹理深度
   textureBuffer[1] = 0;                // Mipmap级别
   *(int32_t *)(textureBuffer + 2) = 0;  // 纹理格式

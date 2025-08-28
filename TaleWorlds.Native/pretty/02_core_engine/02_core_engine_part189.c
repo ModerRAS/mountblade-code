@@ -12,16 +12,16 @@ uint64_t _DAT_180c86950;  // 渲染配置
 uint64_t _DAT_180c868d0;  // 线程状态
 
 // 函数指针和常量
-uint64_t UNK_1809fdc18;   // 虚函数表
-uint64_t UNK_180a089f0;   // 字符串常量
-uint64_t UNK_1809fe220;   // 回调函数
-uint64_t UNK_180a08d78;   // 事件处理器
-uint64_t UNK_18098bcb0;   // 空指针常量
-uint64_t UNK_180a08ce8;   // 初始化函数
-uint64_t UNK_180a21690;   // 对象虚函数表
-uint64_t UNK_180a21720;   // 方法指针
-uint64_t UNK_18098bdc8;   // 析构函数
-uint64_t UNK_180a08c60;   // 消息处理器
+uint64_t unknown_var_7512;   // 虚函数表
+uint64_t unknown_var_2016;   // 字符串常量
+uint64_t unknown_var_9056_ptr;   // 回调函数
+uint64_t unknown_var_2920_ptr;   // 事件处理器
+uint64_t unknown_var_720_ptr;   // 空指针常量
+uint64_t unknown_var_2776;   // 初始化函数
+uint64_t unknown_var_3552;   // 对象虚函数表
+uint64_t unknown_var_3696;   // 方法指针
+uint64_t unknown_var_1000;   // 析构函数
+uint64_t unknown_var_2640;   // 消息处理器
 
 /**
  * 初始化系统光标
@@ -177,8 +177,8 @@ void initialize_render_system(longlong render_context, uint64_t *init_params)
   message_handler = (longlong *)allocate_message_handler(_DAT_180c8ed18, 0x218, 8, 3);
   
   // 设置虚函数表
-  setup_virtual_table(message_handler, &UNK_1809fe220);
-  set_method_pointer(message_handler, &UNK_180a08d78);
+  setup_virtual_table(message_handler, &unknown_var_9056_ptr);
+  set_method_pointer(message_handler, &unknown_var_2920_ptr);
   
   // 初始化消息处理器
   initialize_message_handler(message_handler);
@@ -234,7 +234,7 @@ void enumerate_display_monitors(longlong display_context)
   // 初始化监视器列表
   if (monitor_end != monitor_start) {
     do {
-      *monitor_end = &UNK_18098bcb0;  // 设置为空指针
+      *monitor_end = &unknown_var_720_ptr;  // 设置为空指针
       monitor_end = monitor_end + 0xe;  // 移动到下一个监视器
     } while (monitor_end != monitor_start);
     monitor_end = *(uint64_t **)(display_context + 0x18);

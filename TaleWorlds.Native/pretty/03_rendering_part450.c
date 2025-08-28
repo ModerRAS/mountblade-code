@@ -196,16 +196,16 @@ void FUN_180511990(longlong param_1,int param_2,int param_3,char param_4,char pa
   longlong lVar18;
   longlong lVar19;
   
-  puVar15 = &UNK_180a30c20;
-  puVar6 = &UNK_180a30c20;
+  puVar15 = &unknown_var_6416_ptr;
+  puVar6 = &unknown_var_6416_ptr;
   if (param_5 != '\0') {
-    puVar6 = &UNK_180a30bd8;
+    puVar6 = &unknown_var_6344_ptr;
   }
   lVar13 = (longlong)param_2;
   if (param_4 != '\0') {
-    puVar15 = &UNK_180a30bd8;
+    puVar15 = &unknown_var_6344_ptr;
   }
-  func_0x000180508000(*(uint64_t *)(param_1 + 0x6e0),&UNK_180a30c98,&UNK_180a30cb0,lVar13,param_3,
+  func_0x000180508000(*(uint64_t *)(param_1 + 0x6e0),&unknown_var_6536_ptr,&unknown_var_6560_ptr,lVar13,param_3,
                       puVar15,puVar6,(double)param_6);
   lVar10 = *(longlong *)(param_1 + 0x8d8);
   lVar18 = 0;

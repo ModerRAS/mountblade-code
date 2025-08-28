@@ -71,7 +71,7 @@ void FUN_1808ccd80(void)
           *plVar1 = (longlong)plVar1;
           (**(code **)(*plVar8 + 0x28))(plVar8,0);
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar8,&UNK_1809882d0,0xec9,1);
+          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar8,&unknown_var_5904_ptr,0xec9,1);
         }
         break;
       }

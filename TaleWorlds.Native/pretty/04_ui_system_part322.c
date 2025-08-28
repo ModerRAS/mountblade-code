@@ -6,7 +6,7 @@
 void FUN_1808427f0(longlong param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f9b0(param_2,param_3,&UNK_1809843c0,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f9b0(param_2,param_3,&unknown_var_9760_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int8_t *)(param_1 + 0x18));
   return;
 }
@@ -23,7 +23,7 @@ int FUN_180842820(longlong param_1,longlong param_2,int param_3)
   
   uVar2 = *(int32_t *)(param_1 + 0x10);
   uVar1 = *(int32_t *)(param_1 + 0x18);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180984348);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_9640_ptr);
   iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -46,7 +46,7 @@ int FUN_1808428d0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int32_t *)(param_1 + 0x18);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_1809844b0);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_0_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -67,7 +67,7 @@ int FUN_180842990(longlong param_1,longlong param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180984248);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_9384_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -86,7 +86,7 @@ int FUN_180842a00(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int32_t *)(param_1 + 0x18);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983320);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_5504_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -109,7 +109,7 @@ int FUN_180842ac0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int32_t *)(param_1 + 0x18);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_1809833b0);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_5648_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -134,7 +134,7 @@ int FUN_180842b80(longlong param_1,longlong param_2,int param_3)
   uVar1 = *(int32_t *)(param_1 + 0x1c);
   uVar2 = *(int32_t *)(param_1 + 0x18);
   uVar3 = *(int32_t *)(param_1 + 0x10);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_180983440);
+  iVar4 = FUN_18074b880(param_2,param_3,&unknown_var_5792_ptr);
   iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
@@ -163,7 +163,7 @@ int FUN_180842c60(longlong param_1,longlong param_2,int param_3)
   uVar1 = *(int32_t *)(param_1 + 0x1c);
   uVar2 = *(int32_t *)(param_1 + 0x18);
   uVar3 = *(int32_t *)(param_1 + 0x10);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_1809834d0);
+  iVar4 = FUN_18074b880(param_2,param_3,&unknown_var_5936_ptr);
   iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
@@ -190,7 +190,7 @@ int FUN_180842d40(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int32_t *)(param_1 + 0x18);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983680);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_6368_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -211,7 +211,7 @@ int FUN_180842e00(longlong param_1,longlong param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983560);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_6080_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -228,7 +228,7 @@ int FUN_180842e70(longlong param_1,longlong param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983710);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_6512_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -245,7 +245,7 @@ int FUN_180842ee0(longlong param_1,longlong param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809835f0);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_6224_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -264,7 +264,7 @@ int FUN_180842f50(longlong param_1,longlong param_2,int param_3)
   
   uVar2 = *(uint64_t *)(param_1 + 0x18);
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983e68);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_8392_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
@@ -287,7 +287,7 @@ int FUN_180843010(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int32_t *)(param_1 + 0x18);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983de0);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_8256_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -308,7 +308,7 @@ int FUN_1808430d0(longlong param_1,longlong param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983ce0);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_8000_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -325,7 +325,7 @@ int FUN_180843140(longlong param_1,longlong param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983d60);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_8128_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -362,7 +362,7 @@ int FUN_1808431b0(longlong param_1,longlong param_2,int param_3)
   uStack_14 = *(int32_t *)(param_1 + 0x3c);
   uStack_10 = *(int32_t *)(param_1 + 0x40);
   uStack_c = *(int32_t *)(param_1 + 0x44);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809838a8);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_6920_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -385,7 +385,7 @@ int FUN_180843270(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int32_t *)(param_1 + 0x18);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983930);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_7056_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -412,7 +412,7 @@ int FUN_180843330(longlong param_1,longlong param_2,int param_3)
   uVar2 = *(int8_t *)(param_1 + 0x24);
   uVar3 = *(int32_t *)(param_1 + 0x10);
   uVar1 = *(int32_t *)(param_1 + 0x20);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_180983ef0);
+  iVar4 = FUN_18074b880(param_2,param_3,&unknown_var_8528_ptr);
   iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
@@ -445,7 +445,7 @@ int FUN_180843450(longlong param_1,longlong param_2,int param_3)
   uStackX_8 = *(uint64_t *)(param_1 + 0x18);
   uVar1 = *(int8_t *)(param_1 + 0x24);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983f78);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_8664_ptr);
   iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -478,7 +478,7 @@ int FUN_180843570(longlong param_1,longlong param_2,int param_3)
   uVar2 = *(int8_t *)(param_1 + 0x1c);
   uVar3 = *(int32_t *)(param_1 + 0x10);
   uVar1 = *(int32_t *)(param_1 + 0x18);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_1809840a0);
+  iVar4 = FUN_18074b880(param_2,param_3,&unknown_var_8960_ptr);
   iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
@@ -509,7 +509,7 @@ int FUN_180843690(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int8_t *)(param_1 + 0x1c);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180984130);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_9104_ptr);
   iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -540,7 +540,7 @@ int FUN_1808437b0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int8_t *)(param_1 + 0x18);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983ac8);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_7464_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -559,7 +559,7 @@ int FUN_1808437b0(longlong param_1,longlong param_2,int param_3)
 void FUN_180843870(longlong param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083fa50(param_2,param_3,&UNK_180983828,*(int32_t *)(param_1 + 0x10),
+  FUN_18083fa50(param_2,param_3,&unknown_var_6792_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18));
   return;
 }
@@ -578,7 +578,7 @@ int FUN_1808438a0(longlong param_1,longlong param_2,int param_3)
   uVar2 = *(int32_t *)(param_1 + 0x18);
   uVar3 = *(int32_t *)(param_1 + 0x10);
   uVar1 = *(int32_t *)(param_1 + 0x1c);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_1809839b8);
+  iVar4 = FUN_18074b880(param_2,param_3,&unknown_var_7192_ptr);
   iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
@@ -607,7 +607,7 @@ int FUN_180843990(longlong param_1,longlong param_2,int param_3)
   uVar2 = *(int32_t *)(param_1 + 0x18);
   uVar3 = *(int32_t *)(param_1 + 0x10);
   uVar1 = *(int32_t *)(param_1 + 0x1c);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_180983a40);
+  iVar4 = FUN_18074b880(param_2,param_3,&unknown_var_7328_ptr);
   iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
@@ -634,7 +634,7 @@ int FUN_180843a80(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int32_t *)(param_1 + 0x18);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983c50);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_7856_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -653,7 +653,7 @@ int FUN_180843a80(longlong param_1,longlong param_2,int param_3)
 void FUN_180843b40(longlong param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083fa50(param_2,param_3,&UNK_1809837a0,*(int32_t *)(param_1 + 0x10),
+  FUN_18083fa50(param_2,param_3,&unknown_var_6656_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18));
   return;
 }
@@ -668,7 +668,7 @@ int FUN_180843b70(longlong param_1,longlong param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180983b50);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_7600_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -687,7 +687,7 @@ int FUN_180843be0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int32_t *)(param_1 + 0x18);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180983bd0);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_7728_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -716,7 +716,7 @@ int FUN_180843ce0(longlong param_1,longlong param_2,int param_3)
   uStack_10 = *(int32_t *)(param_1 + 0x18);
   uStack_c = *(int32_t *)(param_1 + 0x1c);
   uVar1 = *(int32_t *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809820b0);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_784_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
@@ -745,7 +745,7 @@ int FUN_180843d90(longlong param_1,longlong param_2,int param_3)
   uStack_10 = *(int32_t *)(param_1 + 0x18);
   uStack_c = *(int32_t *)(param_1 + 0x1c);
   uVar1 = *(int32_t *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981ec0);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_288_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
@@ -766,7 +766,7 @@ int FUN_180843e40(longlong param_1,longlong param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982878);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_2776_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -781,7 +781,7 @@ int FUN_180843e40(longlong param_1,longlong param_2,int param_3)
 void FUN_180843eb0(longlong param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f7b0(param_2,param_3,&UNK_1809828f8,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f7b0(param_2,param_3,&unknown_var_2904_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x14));
   return;
 }
@@ -798,7 +798,7 @@ int FUN_180843ee0(longlong param_1,longlong param_2,int param_3)
   
   uVar1 = *(int32_t *)(param_1 + 0x14);
   uVar2 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180982a98);
+  iVar3 = FUN_18074b880(param_2,param_3,&unknown_var_3320_ptr);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
@@ -827,7 +827,7 @@ int FUN_180843fa0(longlong param_1,longlong param_2,int param_3)
   uStack_10 = *(int32_t *)(param_1 + 0x18);
   uStack_c = *(int32_t *)(param_1 + 0x1c);
   uVar1 = *(int32_t *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981fc0);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_544_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
@@ -856,7 +856,7 @@ int FUN_180844050(longlong param_1,longlong param_2,int param_3)
   uStack_10 = *(int32_t *)(param_1 + 0x18);
   uStack_c = *(int32_t *)(param_1 + 0x1c);
   uVar1 = *(int32_t *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981dc0);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_32_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
@@ -885,7 +885,7 @@ int FUN_180844100(longlong param_1,longlong param_2,int param_3)
   uStack_10 = *(int32_t *)(param_1 + 0x18);
   uStack_c = *(int32_t *)(param_1 + 0x1c);
   uVar1 = *(int32_t *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981f40);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_416_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
@@ -914,7 +914,7 @@ int FUN_1808441b0(longlong param_1,longlong param_2,int param_3)
   uStack_10 = *(int32_t *)(param_1 + 0x18);
   uStack_c = *(int32_t *)(param_1 + 0x1c);
   uVar1 = *(int32_t *)(param_1 + 0x20);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180981d40);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_9904_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b650(iVar2 + param_2,param_3 - iVar2,&uStack_18);
@@ -935,7 +935,7 @@ int FUN_180844260(longlong param_1,longlong param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982978);
+  iVar2 = FUN_18074b880(param_2,param_3,&unknown_var_3032_ptr);
   iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);

@@ -74,13 +74,13 @@ typedef enum {
 #define MathCalculator FUN_180285b40
 
 // 全局数据引用
-#define RenderingSystemGlobalData _DAT_180c8ed18
-#define RenderingSystemDefaultData &DAT_18098bc73
-#define RenderingSystemVTableData1 &unknown_var_720_ptr
-#define RenderingSystemVTableData2 &unknown_var_3480_ptr
-#define RenderingSystemVTableData3 &unknown_var_3456_ptr
-#define RenderingSystemVTableData4 &unknown_var_3696_ptr
-#define RenderingSystemVTableData5 &unknown_var_3552_ptr
+#define RenderingSystemGlobalData rendering_system_global_data
+#define RenderingSystemDefaultData &rendering_system_default_data
+#define RenderingSystemVTableData1 &rendering_vtable_data_720
+#define RenderingSystemVTableData2 &rendering_vtable_data_3480
+#define RenderingSystemVTableData3 &rendering_vtable_data_3456
+#define RenderingSystemVTableData4 &rendering_vtable_data_3696
+#define RenderingSystemVTableData5 &rendering_vtable_data_3552
 
 // ============================================================================
 // 函数声明

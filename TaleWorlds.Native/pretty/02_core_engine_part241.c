@@ -136,7 +136,7 @@ LAB_180209c65:
             pcVar9 = pcVar8 + (longlong)pcVar9;
             pcVar7 = pcVar14;
             if (pcVar9 <= pcVar8) break;
-            lVar11 = (longlong)&UNK_180a0ff38 - (longlong)pcVar8;
+            lVar11 = (longlong)&unknown_var_2040_ptr - (longlong)pcVar8;
             while (*pcVar8 == pcVar8[lVar11]) {
               pcVar8 = pcVar8 + 1;
               if (pcVar9 <= pcVar8) goto LAB_180209cd5;
@@ -192,7 +192,7 @@ LAB_180209d30:
 joined_r0x000180209daf:
               do {
                 if (pcVar8 == (char *)0x0) goto LAB_18020a368;
-                puStack_e8 = &UNK_180a3c3e0;
+                puStack_e8 = &unknown_var_3456_ptr;
                 uStack_d0 = 0;
                 lStack_e0 = 0;
                 iStack_d8 = 0;
@@ -222,7 +222,7 @@ LAB_180209e40:
                       FUN_180627c50(&puStack_e8,lVar11);
                       break;
                     }
-                    lVar11 = (longlong)&UNK_180a0ee30 - (longlong)pcVar14;
+                    lVar11 = (longlong)&unknown_var_7680_ptr - (longlong)pcVar14;
                     while (*pcVar14 == pcVar14[lVar11]) {
                       pcVar14 = pcVar14 + 1;
                       if (pcVar6 <= pcVar14) goto LAB_180209e40;
@@ -232,14 +232,14 @@ LAB_180209e40:
                 iVar3 = iStack_d8;
                 lVar11 = lStack_e0;
                 if (iStack_d8 == 10) {
-                  iVar2 = strcmp(lStack_e0,&UNK_180a0ff48);
+                  iVar2 = strcmp(lStack_e0,&unknown_var_2056_ptr);
                   bVar19 = iVar2 == 0;
                 }
                 else {
                   bVar19 = false;
                 }
                 if (bVar19) {
-                  puStack_c8 = &UNK_180a3c3e0;
+                  puStack_c8 = &unknown_var_3456_ptr;
                   uStack_b0 = 0;
                   lStack_c0 = 0;
                   uStack_b8 = 0;
@@ -287,14 +287,14 @@ LAB_180209f34:
                   if (plStack_80 != (longlong *)0x0) {
                     (**(code **)(*plStack_80 + 0x38))();
                   }
-                  puStack_c8 = &UNK_180a3c3e0;
+                  puStack_c8 = &unknown_var_3456_ptr;
                   if (lStack_c0 != 0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900();
                   }
                   lStack_c0 = 0;
                   uStack_b0 = uStack_b0 & 0xffffffff00000000;
-                  puStack_c8 = &UNK_18098bcb0;
+                  puStack_c8 = &unknown_var_720_ptr;
                 }
                 else {
                   if (iVar3 == 9) {
@@ -305,7 +305,7 @@ LAB_180209f34:
                     bVar19 = false;
                   }
                   if (bVar19) {
-                    puStack_a8 = &UNK_180a3c3e0;
+                    puStack_a8 = &unknown_var_3456_ptr;
                     uStack_90 = 0;
                     lStack_a0 = 0;
                     uStack_98 = 0;
@@ -353,25 +353,25 @@ LAB_18020a094:
                     if (plStack_70 != (longlong *)0x0) {
                       (**(code **)(*plStack_70 + 0x38))();
                     }
-                    puStack_a8 = &UNK_180a3c3e0;
+                    puStack_a8 = &unknown_var_3456_ptr;
                     if (lStack_a0 != 0) {
                     // WARNING: Subroutine does not return
                       FUN_18064e900();
                     }
                     lStack_a0 = 0;
                     uStack_90 = uStack_90 & 0xffffffff00000000;
-                    puStack_a8 = &UNK_18098bcb0;
+                    puStack_a8 = &unknown_var_720_ptr;
                   }
                   else {
                     if (iVar3 == 0xb) {
-                      iVar3 = strcmp(lVar11,&UNK_180a0ff28);
+                      iVar3 = strcmp(lVar11,&unknown_var_2024_ptr);
                       bVar19 = iVar3 == 0;
                     }
                     else {
                       bVar19 = false;
                     }
                     if (bVar19) {
-                      puStack_128 = &UNK_180a3c3e0;
+                      puStack_128 = &unknown_var_3456_ptr;
                       pcStack_110 = (code *)0x0;
                       lStack_120 = 0;
                       pcStack_118 = (code *)((ulonglong)pcStack_118 & 0xffffffff00000000);
@@ -419,14 +419,14 @@ LAB_18020a1f4:
                       if (plStack_60 != (longlong *)0x0) {
                         (**(code **)(*plStack_60 + 0x38))();
                       }
-                      puStack_128 = &UNK_180a3c3e0;
+                      puStack_128 = &unknown_var_3456_ptr;
                       if (lStack_120 != 0) {
                     // WARNING: Subroutine does not return
                         FUN_18064e900();
                       }
                       lStack_120 = 0;
                       pcStack_110 = (code *)((ulonglong)pcStack_110 & 0xffffffff00000000);
-                      puStack_128 = &UNK_18098bcb0;
+                      puStack_128 = &unknown_var_720_ptr;
                     }
                   }
                 }
@@ -457,17 +457,17 @@ LAB_18020a1f4:
                   }
                 }
 LAB_18020a31a:
-                puStack_e8 = &UNK_180a3c3e0;
+                puStack_e8 = &unknown_var_3456_ptr;
                 if (lStack_e0 != 0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
                 lStack_e0 = 0;
                 uStack_d0 = uStack_d0 & 0xffffffff00000000;
-                puStack_e8 = &UNK_18098bcb0;
+                puStack_e8 = &unknown_var_720_ptr;
               } while( true );
             }
-            lVar11 = (longlong)&UNK_180a0f118 - (longlong)pcVar14;
+            lVar11 = (longlong)&unknown_var_8424_ptr - (longlong)pcVar14;
             while (*pcVar14 == pcVar14[lVar11]) {
               pcVar14 = pcVar14 + 1;
               if (pcVar8 <= pcVar14) goto LAB_180209d30;
@@ -514,7 +514,7 @@ LAB_18020a3c0:
                   pcVar9 = pcVar8 + (longlong)pcVar9;
                   pcVar7 = pcVar15;
                   if (pcVar9 <= pcVar8) break;
-                  lVar11 = (longlong)&UNK_180a04ec0 - (longlong)pcVar8;
+                  lVar11 = (longlong)&unknown_var_6864_ptr - (longlong)pcVar8;
                   while (*pcVar8 == pcVar8[lVar11]) {
                     pcVar8 = pcVar8 + 1;
                     if (pcVar9 <= pcVar8) goto joined_r0x00018020a436;
@@ -525,7 +525,7 @@ joined_r0x00018020a436:
               do {
                 if (pcVar7 == (char *)0x0) goto LAB_18020a626;
                 plVar18 = plVar5 + 5;
-                puStack_108 = &UNK_180a3c3e0;
+                puStack_108 = &unknown_var_3456_ptr;
                 uStack_f0 = 0;
                 lStack_100 = 0;
                 uStack_f8 = 0;
@@ -608,7 +608,7 @@ LAB_18020a528:
                   if (pcVar15 == pcVar6 + -0x180a04ebf) {
                     pcVar15 = pcVar8 + (longlong)pcVar15;
                     if (pcVar15 <= pcVar8) goto LAB_18020a5e9;
-                    lVar11 = (longlong)&UNK_180a04ec0 - (longlong)pcVar8;
+                    lVar11 = (longlong)&unknown_var_6864_ptr - (longlong)pcVar8;
                     while (*pcVar8 == pcVar8[lVar11]) {
                       pcVar8 = pcVar8 + 1;
                       if (pcVar15 <= pcVar8) goto LAB_18020a5e9;
@@ -617,19 +617,19 @@ LAB_18020a528:
                 }
                 pcVar7 = (char *)0x0;
 LAB_18020a5e9:
-                puStack_108 = &UNK_180a3c3e0;
+                puStack_108 = &unknown_var_3456_ptr;
                 if (lStack_100 != 0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
                 lStack_100 = 0;
                 uStack_f0 = uStack_f0 & 0xffffffff00000000;
-                puStack_108 = &UNK_18098bcb0;
+                puStack_108 = &unknown_var_720_ptr;
                 plVar5 = plVar18;
                 plVar18 = plStack_58;
               } while( true );
             }
-            lVar11 = (longlong)&UNK_180a04ab8 - (longlong)pcVar15;
+            lVar11 = (longlong)&unknown_var_5832_ptr - (longlong)pcVar15;
             while (*pcVar15 == pcVar15[lVar11]) {
               pcVar15 = pcVar15 + 1;
               if (pcVar7 <= pcVar15) goto LAB_18020a3c0;

@@ -325,7 +325,7 @@ void BufferSizeInitializer(uint64_t param_1)
     
     // 初始化缓冲区大小和配置
     FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(uint64_t *)(unaff_RDI + 8),
-                &UNK_180989010,MEMORY_BLOCK_SIZE_168,1);
+                &unknown_var_9296_ptr,MEMORY_BLOCK_SIZE_168,1);
     
     return;
 }
@@ -381,7 +381,7 @@ uint64_t QueueSizeManager(longlong param_1, uint param_2)
     if ((int)uVar1 == 0) {
         // 分配队列节点内存
         lVar2 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_2, 
-                            &UNK_180989010, MEMORY_BLOCK_SIZE_36, 0, (char)uVar1, 1);
+                            &unknown_var_9296_ptr, MEMORY_BLOCK_SIZE_36, 0, (char)uVar1, 1);
         *(longlong *)(param_1 + 8) = lVar2;
         
         if (lVar2 == 0) {

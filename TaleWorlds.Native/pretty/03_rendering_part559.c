@@ -450,7 +450,7 @@ void FUN_1805778d0(longlong param_1,longlong param_2)
     *(longlong *)(param_1 + 0x2510) = param_2;
     if (param_2 != 0) {
       *(longlong *)(param_1 + 0x3450) = param_2;
-      *(void **)(param_1 + 0x3458) = &UNK_18057c600;
+      *(void **)(param_1 + 0x3458) = &unknown_var_3264_ptr;
     }
   }
   return;

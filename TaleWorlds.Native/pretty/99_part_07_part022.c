@@ -103,7 +103,7 @@ LAB_1804b0ec6:
     puStack_98 = puVar7;
   }
   if (puStack_98 == (uint64_t *)0x0) {
-    FUN_180626f80(&UNK_180a2e570);
+    FUN_180626f80(&unknown_var_6512_ptr);
     if ((plStack_128 != (longlong *)0x0) && (plStack_120 != (longlong *)0x0)) {
       if (cStack_f6 != '\0') {
         FUN_180075b70();

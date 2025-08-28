@@ -90,12 +90,12 @@ void process_engine_command_dispatcher(longlong context_ptr)
   // 验证命令类型范围
   if (0x2d < command_type) {
     // 命令类型超出范围，触发错误处理
-    trigger_engine_error_handler(&UNK_180a07378);
+    trigger_engine_error_handler(&unknown_var_6264_ptr);
     goto command_complete_handler;
   }
   
   // 获取命令处理函数地址
-  memory_address = (ulonglong)*(uint *)(&UNK_1801527b4 + (longlong)(int)command_type * 4) + 0x180000000;
+  memory_address = (ulonglong)*(uint *)(&unknown_var_7364_ptr + (longlong)(int)command_type * 4) + 0x180000000;
   
   // 根据命令类型分发处理
   switch(command_type) {
@@ -104,7 +104,7 @@ void process_engine_command_dispatcher(longlong context_ptr)
     validation_flag = check_system_initialization(_DAT_180c8aa08);
     if (validation_flag != '\0') {
       // 系统已初始化，触发初始化错误
-      trigger_initialization_error(_DAT_180c86928,&UNK_180a07340);
+      trigger_initialization_error(_DAT_180c86928,&unknown_var_6208_ptr);
     }
     break;
   case 1:
@@ -220,7 +220,7 @@ void process_engine_command_dispatcher(longlong context_ptr)
     stack_guard = (ulonglong)stack_guard._4_4_ << 0x20;
     error_code_ptr = (**(code **)(*physics_manager_ptr + 0x70))(physics_manager_ptr,*(uint64_t *)(memory_address + 0x10),0,4);
     if (error_code_ptr < 0) {
-      handle_render_error(error_code_ptr,&UNK_180a17358);
+      handle_render_error(error_code_ptr,&unknown_var_1768_ptr);
     }
     error_code_ptr = *(int *)(context_ptr + 0xb8);
     if (0 < error_code_ptr) {
@@ -247,7 +247,7 @@ void process_engine_command_dispatcher(longlong context_ptr)
     stack_guard = (ulonglong)stack_guard._4_4_ << 0x20;
     error_code_ptr = (**(code **)(*physics_manager_ptr + 0x70))(physics_manager_ptr,*(uint64_t *)(memory_address + 0x10),0,4);
     if (error_code_ptr < 0) {
-      handle_render_error(error_code_ptr,&UNK_180a17358);
+      handle_render_error(error_code_ptr,&unknown_var_1768_ptr);
     }
     data_length = *(ulonglong *)(context_ptr + 0xb8) >> 6;
     error_code_ptr = (int)(*(ulonglong *)(context_ptr + 0xb0) >> 6);
@@ -470,7 +470,7 @@ memory_free_handler:
       if (*(longlong *)(_DAT_180c86890 + 0x60) != 0) {
         while( true ) {
           cleanup_callback = *(code **)(**(longlong **)(_DAT_180c86890 + 0x60) + 0x68);
-          if (cleanup_callback == (code *)&UNK_1800467f0) {
+          if (cleanup_callback == (code *)&unknown_var_9696_ptr) {
             validation_flag = (char)(*(longlong **)(_DAT_180c86890 + 0x60))[2] != '\0';
           }
           else {
@@ -720,44 +720,44 @@ void reset_render_manager(longlong manager_context)
 
 {
   // 重置主渲染管理器
-  *(uint64_t *)(manager_context + 0x68) = &UNK_180a3c3e0;
+  *(uint64_t *)(manager_context + 0x68) = &unknown_var_3456_ptr;
   if (*(longlong *)(manager_context + 0x70) != 0) {
     // 渲染管理器状态错误
     trigger_render_manager_error();
   }
   *(uint64_t *)(manager_context + 0x70) = 0;
   *(int32_t *)(manager_context + 0x80) = 0;
-  *(uint64_t *)(manager_context + 0x68) = &UNK_18098bcb0;
+  *(uint64_t *)(manager_context + 0x68) = &unknown_var_720_ptr;
   
   // 重置纹理管理器
-  *(uint64_t *)(manager_context + 0x48) = &UNK_180a3c3e0;
+  *(uint64_t *)(manager_context + 0x48) = &unknown_var_3456_ptr;
   if (*(longlong *)(manager_context + 0x50) != 0) {
     // 纹理管理器状态错误
     trigger_texture_manager_error();
   }
   *(uint64_t *)(manager_context + 0x50) = 0;
   *(int32_t *)(manager_context + 0x60) = 0;
-  *(uint64_t *)(manager_context + 0x48) = &UNK_18098bcb0;
+  *(uint64_t *)(manager_context + 0x48) = &unknown_var_720_ptr;
   
   // 重置着色器管理器
-  *(uint64_t *)(manager_context + 0x28) = &UNK_180a3c3e0;
+  *(uint64_t *)(manager_context + 0x28) = &unknown_var_3456_ptr;
   if (*(longlong *)(manager_context + 0x30) != 0) {
     // 着色器管理器状态错误
     trigger_shader_manager_error();
   }
   *(uint64_t *)(manager_context + 0x30) = 0;
   *(int32_t *)(manager_context + 0x40) = 0;
-  *(uint64_t *)(manager_context + 0x28) = &UNK_18098bcb0;
+  *(uint64_t *)(manager_context + 0x28) = &unknown_var_720_ptr;
   
   // 重置缓冲区管理器
-  *(uint64_t *)(manager_context + 8) = &UNK_180a3c3e0;
+  *(uint64_t *)(manager_context + 8) = &unknown_var_3456_ptr;
   if (*(longlong *)(manager_context + 0x10) != 0) {
     // 缓冲区管理器状态错误
     trigger_buffer_manager_error();
   }
   *(uint64_t *)(manager_context + 0x10) = 0;
   *(int32_t *)(manager_context + 0x20) = 0;
-  *(uint64_t *)(manager_context + 8) = &UNK_18098bcb0;
+  *(uint64_t *)(manager_context + 8) = &unknown_var_720_ptr;
   return;
 }
 
@@ -808,14 +808,14 @@ void reset_shader_manager(uint64_t *shader_context)
 
 {
   batch_reset_render_managers();
-  *shader_context = &UNK_180a3c3e0;
+  *shader_context = &unknown_var_3456_ptr;
   if (shader_context[1] != 0) {
     // 着色器上下文错误
     trigger_shader_context_error();
   }
   shader_context[1] = 0;
   *(int32_t *)(shader_context + 3) = 0;
-  *shader_context = &UNK_18098bcb0;
+  *shader_context = &unknown_var_720_ptr;
   return;
 }
 
@@ -866,14 +866,14 @@ void reset_buffer_manager(uint64_t *buffer_context)
 
 {
   batch_reset_shader_managers();
-  *buffer_context = &UNK_180a3c3e0;
+  *buffer_context = &unknown_var_3456_ptr;
   if (buffer_context[1] != 0) {
     // 缓冲区上下文错误
     trigger_buffer_context_error();
   }
   buffer_context[1] = 0;
   *(int32_t *)(buffer_context + 3) = 0;
-  *buffer_context = &UNK_18098bcb0;
+  *buffer_context = &unknown_var_720_ptr;
   return;
 }
 
@@ -893,7 +893,7 @@ void initialize_engine_module(uint64_t module_handle,uint64_t init_flags,uint64_
   int32_t resource_count;
   uint64_t resource_handle;
   
-  module_security = &UNK_180a3c3e0;
+  module_security = &unknown_var_3456_ptr;
   resource_handle = 0;
   module_resources = (int32_t *)0x0;
   resource_count = 0;
@@ -909,7 +909,7 @@ void initialize_engine_module(uint64_t module_handle,uint64_t init_flags,uint64_
   *(int16_t *)(module_config + 4) = 0x69;  // "i"
   resource_count = 0x11;
   register_engine_module(module_handle,&module_security);
-  module_security = &UNK_180a3c3e0;
+  module_security = &unknown_var_3456_ptr;
                     // 模块初始化失败
   trigger_module_initialization_failure(module_config);
 }

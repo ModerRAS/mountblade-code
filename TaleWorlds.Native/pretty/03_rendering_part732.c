@@ -123,7 +123,7 @@ uint64_t FUN_180698e20(longlong param_1,uint64_t *param_2,uint *param_3)
       iVar6 = FUN_180697e60(param_1 + 0xb00,*(int *)(param_1 + 0x760) + 0xfU & 0xfffffff0,
                             *(int *)(param_1 + 0x764) + 0xfU & 0xfffffff0,0x20);
       if (iVar6 != 0) {
-        FUN_18066d370(param_1,2,&UNK_180948bc0);
+        FUN_18066d370(param_1,2,&unknown_var_6048_ptr);
       }
       *(int32_t *)(param_1 + 0xb90) = 1;
                     // WARNING: Subroutine does not return
@@ -236,7 +236,7 @@ uint64_t FUN_180698f21(longlong param_1)
     iVar2 = FUN_180697e60(param_1 + 0xb00,*(int *)(param_1 + 0x760) + 0xfU & 0xfffffff0,
                           *(int *)(param_1 + 0x764) + 0xfU & 0xfffffff0,0x20);
     if (iVar2 != 0) {
-      FUN_18066d370(extraout_XMM0_Da,2,&UNK_180948bc0);
+      FUN_18066d370(extraout_XMM0_Da,2,&unknown_var_6048_ptr);
     }
     *(int32_t *)(unaff_RSI + 0xb90) = 1;
                     // WARNING: Subroutine does not return

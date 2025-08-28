@@ -8,7 +8,7 @@ void FUN_180755270(longlong *param_1)
 {
   if (param_1[0xc] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1[0xc],&UNK_1809586e0,0xb7,1);
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1[0xc],&unknown_var_336_ptr,0xb7,1);
   }
   FUN_180768360(*(uint64_t *)(_DAT_180be12f0 + 0x120));
   *(longlong *)param_1[1] = *param_1;
@@ -36,7 +36,7 @@ uint64_t * FUN_1807554e0(uint64_t *param_1)
   param_1[0x31] = 0;
   param_1[0x30] = puVar1;
   *puVar1 = puVar1;
-  *param_1 = &UNK_180958758;
+  *param_1 = &unknown_var_456_ptr;
   puVar1 = param_1 + 0x32;
   param_1[0x34] = 0;
   *(int32_t *)(param_1 + 0x35) = 0xffffffff;
@@ -878,7 +878,7 @@ uint64_t FUN_180756640(longlong param_1,uint param_2,longlong param_3)
   uStack_14 = *(int32_t *)((longlong)puVar2 + 0x34);
   uStack_10 = *(int32_t *)(puVar2 + 7);
   uStack_c = *(int32_t *)((longlong)puVar2 + 0x3c);
-  puStack_40 = &UNK_180958970;
+  puStack_40 = &unknown_var_992_ptr;
   uVar3 = FUN_180742e00(*(uint64_t *)(param_1 + 8),&uStack_48,0,alStackX_8,0);
   if ((int)uVar3 == 0) {
     *(longlong *)(param_1 + 0x70) = alStackX_8[0];

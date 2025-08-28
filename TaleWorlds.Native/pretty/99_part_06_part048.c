@@ -818,7 +818,7 @@ uint64_t * FUN_1803d8b80(uint64_t *param_1,ulonglong param_2)
     (**(code **)(*(longlong *)param_1[0x40e] + 0x38))();
   }
   FUN_1808fc8a8(param_1 + 0xe,0x20,0x100,FUN_180046860,uVar1);
-  *param_1 = &UNK_180a1a2f0;
+  *param_1 = &unknown_var_3952_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

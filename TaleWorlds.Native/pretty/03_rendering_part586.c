@@ -26,7 +26,7 @@ void FUN_18058d360(longlong *param_1)
   uint64_t uStack_a8;
   
   uStack_a8 = 0xfffffffffffffffe;
-  if (*(code **)(*param_1 + 0xe8) == (code *)&UNK_18057c370) {
+  if (*(code **)(*param_1 + 0xe8) == (code *)&unknown_var_2608_ptr) {
     if ((param_1[0x49c] == 0) && (param_1[0x49d] == 0)) {
       cVar5 = '\0';
     }

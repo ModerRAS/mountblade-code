@@ -155,10 +155,10 @@ LAB_1803dc1f0:
 uint64_t * FUN_1803dc330(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
+  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &unknown_var_3696_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a216b8;
+  *param_1 = &unknown_var_3592_ptr;
   param_1[9] = 0;
   param_1[0x13] = 0;
   *(int32_t *)(param_1 + 0x1a) = 0;
@@ -208,15 +208,15 @@ uint64_t * FUN_1803dc330(uint64_t *param_1)
 void FUN_1803dc460(uint64_t *param_1)
 
 {
-  *param_1 = &UNK_180a216b8;
+  *param_1 = &unknown_var_3592_ptr;
   if ((longlong *)param_1[0x13] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x13] + 0x38))();
   }
   if ((longlong *)param_1[9] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[9] + 0x38))();
   }
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   return;
 }
 

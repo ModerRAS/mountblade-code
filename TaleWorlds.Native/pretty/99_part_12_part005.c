@@ -34,7 +34,7 @@ void FUN_1807ca2e5(longlong param_1)
   if ((((iVar2 == 1) || (iVar2 == 2)) || (iVar2 == 3)) || ((iVar2 == 4 || (iVar2 == 5)))) {
     if (*(int *)(unaff_RBX + 0x200) != 0) {
       lVar3 = FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(int *)(unaff_RBX + 0x200),
-                            &UNK_18097c920,0x178);
+                            &unknown_var_8368_ptr,0x178);
       *(longlong *)(unaff_RBX + 0x1f8) = lVar3;
       if (lVar3 == 0) goto LAB_1807ca2b6;
     }
@@ -361,7 +361,7 @@ uint64_t FUN_1807cb2b0(longlong param_1)
     if (*(longlong *)(param_1 + 0x900) != 0) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x900),
-                    &UNK_18097c9c0,0xc62,1);
+                    &unknown_var_8528_ptr,0xc62,1);
     }
     uVar1 = 0;
   }

@@ -508,7 +508,7 @@ int UtilitiesSystem_DataHandler1(longlong param_1)
         // 执行系统调用
         FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                      data_pointer, 
-                     &UNK_18095b500, 
+                     &unknown_var_2144_ptr, 
                      0xb8, 
                      1);
     }
@@ -623,7 +623,7 @@ ulonglong UtilitiesSystem_ResultProcessor1(longlong param_1, uint64_t param_2)
                 // 执行清理操作
                 FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                              data_pointer, 
-                             &UNK_180957f70, 
+                             &unknown_var_8432_ptr, 
                              0xe9);
                 return result_flags;
             }
@@ -686,7 +686,7 @@ int UtilitiesSystem_ConfigValidator1(int32_t param_1)
         // 执行配置清理
         FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                      config_pointer, 
-                     &UNK_180957f70, 
+                     &unknown_var_8432_ptr, 
                      0xe9, 
                      config_flags);
         return validation_status;
@@ -1759,7 +1759,7 @@ void UtilitiesSystem_ArrayProcessor1(longlong param_1, longlong param_2)
             if ((0x3ffffffe < new_size * 8 - 1U) ||
                 (data_pointer = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                                              new_size * 8, 
-                                             &UNK_180957f70, 
+                                             &unknown_var_8432_ptr, 
                                              UTIL_MEMORY_BLOCK_SIZE, 
                                              0, 
                                              0, 
@@ -1780,7 +1780,7 @@ void UtilitiesSystem_ArrayProcessor1(longlong param_1, longlong param_2)
             (*(longlong *)(stack_data2 + 0x20) != 0)) {
             FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                          *(longlong *)(stack_data2 + 0x20), 
-                         &UNK_180957f70, 
+                         &unknown_var_8432_ptr, 
                          0x100, 
                          1);
         }
@@ -1883,7 +1883,7 @@ void UtilitiesSystem_ArrayProcessor2(uint64_t param_1, uint64_t param_2,
             if ((0x3ffffffe < new_size * 8 - 1U) ||
                 (data_pointer = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                                              new_size * 8, 
-                                             &UNK_180957f70, 
+                                             &unknown_var_8432_ptr, 
                                              UTIL_MEMORY_BLOCK_SIZE, 
                                              0), 
                  data_pointer == 0)) {
@@ -1902,7 +1902,7 @@ void UtilitiesSystem_ArrayProcessor2(uint64_t param_1, uint64_t param_2,
             (*(longlong *)(in_stack_00000070 + 0x20) != 0)) {
             FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                          *(longlong *)(in_stack_00000070 + 0x20), 
-                         &UNK_180957f70, 
+                         &unknown_var_8432_ptr, 
                          0x100, 
                          1);
         }
@@ -1996,7 +1996,7 @@ void UtilitiesSystem_ArrayProcessor3(longlong in_RAX, uint64_t in_stack_00000060
             
             data_pointer = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                                         new_size * 8, 
-                                        &UNK_180957f70, 
+                                        &unknown_var_8432_ptr, 
                                         UTIL_MEMORY_BLOCK_SIZE, 
                                         0);
             
@@ -2016,7 +2016,7 @@ void UtilitiesSystem_ArrayProcessor3(longlong in_RAX, uint64_t in_stack_00000060
             (*(longlong *)(unaff_RBX + 0x20) != 0)) {
             FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                          *(longlong *)(unaff_RBX + 0x20), 
-                         &UNK_180957f70, 
+                         &unknown_var_8432_ptr, 
                          0x100, 
                          1);
         }
@@ -2096,7 +2096,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
             
             unaff_RSI = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                                      new_size * 8, 
-                                     &UNK_180957f70, 
+                                     &unknown_var_8432_ptr, 
                                      UTIL_MEMORY_BLOCK_SIZE);
             
             if (unaff_RSI == 0) {
@@ -2115,7 +2115,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
             (*(longlong *)(unaff_RBX + 0x20) != 0)) {
             FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                          *(longlong *)(unaff_RBX + 0x20), 
-                         &UNK_180957f70, 
+                         &unknown_var_8432_ptr, 
                          0x100, 
                          1);
         }

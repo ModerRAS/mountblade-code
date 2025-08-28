@@ -219,7 +219,7 @@ int ui_system_process_event_queue(longlong event_context)
     // 分配事件资源
     resource_handle = ui_system_allocate_event_resources(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                                                      UI_RESOURCE_POOL_SIZE, 
-                                                     &UNK_180958000, 
+                                                     &global_state_8576_ptr, 
                                                      UI_RESOURCE_ALIGNMENT, 
                                                      stack_parameter & UI_MEMORY_ALIGNMENT_MASK, 
                                                      0, 

@@ -305,7 +305,7 @@ void FUN_18019fc10(longlong param_1,float *param_2,float *param_3,int param_4,lo
                 plVar3 = *(longlong **)(lVar16 + uVar24);
                 iVar12 = (**(code **)(*plVar3 + 0x98))(plVar3);
                 if ((iVar12 == 0) && ((int)plVar3[0x42] != 0)) {
-                  if (*(code **)(*plVar3 + 0x158) == (code *)&UNK_18027d980) {
+                  if (*(code **)(*plVar3 + 0x158) == (code *)&unknown_var_2528_ptr) {
                     pfVar15 = (float *)(plVar3 + 0x66);
                   }
                   else {

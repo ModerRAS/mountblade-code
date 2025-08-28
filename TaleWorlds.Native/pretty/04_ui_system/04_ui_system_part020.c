@@ -130,7 +130,7 @@ void ui_system_matrix_transform_processor(uint64_t context_handle, longlong reso
 uint64_t *ui_system_memory_manager(uint64_t *memory_block, ulonglong memory_flags, uint64_t param_3, uint64_t param_4)
 {
   // 设置内存块指针到全局数据
-  *memory_block = &UNK_180a19ac8;
+  *memory_block = &unknown_var_1864_ptr;
   
   // 根据标志位条件释放内存
   if ((memory_flags & UI_ONE_FLOAT) != UI_ZERO_FLOAT) {
@@ -184,8 +184,8 @@ longlong ui_system_state_initializer(longlong state_data, int8_t init_flag_1, in
 uint64_t *ui_system_resource_manager(uint64_t *resource_data)
 {
   // 设置资源数据指针到全局数据
-  *resource_data = &UNK_180a19ac8;
-  *resource_data = &UNK_180a3e588;
+  *resource_data = &unknown_var_1864_ptr;
+  *resource_data = &unknown_var_2072_ptr;
   
   // 初始化资源状态
   ui_system_state_initializer(resource_data + UI_TWO_FLOAT, 0xff, 0xff, UI_ZERO_FLOAT, UI_ZERO_FLOAT, UI_ZERO_FLOAT, UI_FULL_MASK_64BIT - UI_TWO_FLOAT);

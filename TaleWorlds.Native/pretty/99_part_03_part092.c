@@ -274,7 +274,7 @@ void FUN_18024f8e0(longlong param_1)
       }
       puStackX_10 = &uStack_60;
       uStack_58 = &lStackX_8;
-      puStack_50 = &UNK_1801bc160;
+      puStack_50 = &unknown_var_9920_ptr;
       pcStack_48 = FUN_1801bbfb0;
       uStack_80 = (int32_t)lVar1;
       uStack_7c = (int32_t)((ulonglong)lVar1 >> 0x20);
@@ -302,7 +302,7 @@ void FUN_18024f8e0(longlong param_1)
        0 < (int)((*(longlong *)(lVar2 + 0x5b0) - *(longlong *)(lVar2 + 0x5a8)) / 0xc))) {
       puStackX_10 = &uStack_60;
       uStack_60 = &lStackX_8;
-      puStack_50 = &UNK_1801bbf70;
+      puStack_50 = &unknown_var_9424_ptr;
       pcStack_48 = FUN_1801bbf00;
       uStack_78 = (int32_t)lVar2;
       uStack_74 = (int32_t)((ulonglong)lVar2 >> 0x20);
@@ -501,7 +501,7 @@ void FUN_18024fb60(longlong param_1,longlong param_2,longlong param_3)
   uStack_80 = &uStack_110;
   uStack_78 = alStack_d0;
   uStack_f8 = FUN_180253fe0;
-  uStack_f0 = &UNK_180253fd0;
+  uStack_f0 = &unknown_var_2112_ptr;
   lStack_a8 = param_1;
   plStack_108 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x40,8,system_allocation_flags);
   *plStack_108 = (longlong)plStack_b0;

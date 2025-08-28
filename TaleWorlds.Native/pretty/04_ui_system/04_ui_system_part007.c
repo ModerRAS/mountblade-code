@@ -11,12 +11,12 @@
 
 // 全局常量定义
 // Steam API相关常量
-#define STEAM_INTERFACE_PTR_1   UNK_180a3e408
-#define STEAM_INTERFACE_PTR_2   UNK_180a3e418
-#define STEAM_INTERFACE_PTR_3   UNK_180a3e440
-#define STEAM_INTERFACE_PTR_4   UNK_180a3e470
-#define SYSTEM_DATA_PTR         UNK_180a3c3e0
-#define UI_HANDLER_PTR         UNK_18098bcb0
+#define STEAM_INTERFACE_PTR_1   unknown_var_1688
+#define STEAM_INTERFACE_PTR_2   unknown_var_1704
+#define STEAM_INTERFACE_PTR_3   unknown_var_1744
+#define STEAM_INTERFACE_PTR_4   unknown_var_1792
+#define SYSTEM_DATA_PTR         unknown_var_3456
+#define UI_HANDLER_PTR         unknown_var_720
 
 // 系统数据区域
 #define SYSTEM_CONFIG_AREA      system_buffer_67e0
@@ -280,9 +280,9 @@ void handle_ui_system_shutdown(void)
 
 // 全局变量和数据定义
 uint8_t SYSTEM_CONTROL_DATA;
-uint8_t UNK_180a3e3d8;
+uint8_t unknown_var_1640;
 uint8_t system_buffer_67d8;
-uint8_t UNK_180a3e3f0;
+uint8_t unknown_var_1664;
 uint8_t SYSTEM_CONFIG_AREA;
 uint8_t system_buffer_67e8;
 uint8_t system_buffer_67f0;

@@ -124,7 +124,7 @@ longlong * FUN_18030f1e0(longlong param_1)
   if (aplStackX_10[0] != (longlong *)0x0) {
     (**(code **)(*aplStackX_10[0] + 0x38))();
   }
-  (**(code **)(plStackX_8[2] + 0x10))(plStackX_8 + 2,&UNK_180a1a6e0);
+  (**(code **)(plStackX_8[2] + 0x10))(plStackX_8 + 2,&unknown_var_4960_ptr);
   FUN_1800b88d0(param_1 + 0x130 + (longlong)*(int *)(param_1 + 0x124) * 0x20,&plStackX_8);
   if (plStackX_8 != (longlong *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();

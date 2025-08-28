@@ -70,7 +70,7 @@ void initialize_scene_materials(longlong scene_context)
         if (material_name_ptr != (void *)0x0) {
           texture_name1 = material_name_ptr;
         }
-        log_material_error(&UNK_180a13b70,texture_name1,texture_name2,texture_name3);
+        log_material_error(&unknown_var_7456_ptr,texture_name1,texture_name2,texture_name3);
       }
       *(ulonglong *)(scene_context + 0x140) = *(ulonglong *)(scene_context + 0x140) | material_id;
       material_index = (ulonglong)((int)material_index + 1);
@@ -81,7 +81,7 @@ void initialize_scene_materials(longlong scene_context)
   if ((*(longlong *)(scene_context + 0xb8) != 0) &&
      ((*(uint *)(*(longlong *)(scene_context + 0xb8) + 0x328) >> 0xf & 1) == 0)) {
     base_texture = *(uint64_t *)(scene_context + 0x1e0);
-    stack_ptr1 = &UNK_18098bc80;
+    stack_ptr1 = &unknown_var_672_ptr;
     stack_ptr2 = stack_buffer2;
     stack_buffer2[0] = 0;
     stack_size1 = 0x10;
@@ -90,7 +90,7 @@ void initialize_scene_materials(longlong scene_context)
     *(ulonglong *)(scene_context + 0x140) = *(ulonglong *)(scene_context + 0x140) | texture_offset;
   }
   base_texture = *(uint64_t *)(scene_context + 0x1e0);
-  stack_ptr1 = &UNK_18098bc80;
+  stack_ptr1 = &unknown_var_672_ptr;
   stack_ptr2 = stack_buffer2;
   stack_buffer2[0] = 0;
   stack_size1 = 10;
@@ -101,58 +101,58 @@ void initialize_scene_materials(longlong scene_context)
     *(ulonglong *)(scene_context + 0x140) = ~texture_offset & *(ulonglong *)(scene_context + 0x140);
   }
   base_texture = *(uint64_t *)(scene_context + 0x1e0);
-  stack_ptr1 = &UNK_1809fcc58;
+  stack_ptr1 = &unknown_var_3480_ptr;
   stack_ptr2 = stack_buffer2;
   stack_buffer2[0] = 0;
   stack_size1 = 0xf;
   strcpy_s(stack_buffer2,0x40,&system_memory_ba58); // 法线纹理
   base_texture = get_material_handle(base_texture,&stack_ptr1,0);
   *(uint64_t *)(scene_context + 0x390) = base_texture;
-  stack_ptr1 = &UNK_18098bcb0;
+  stack_ptr1 = &unknown_var_720_ptr;
   base_texture = *(uint64_t *)(scene_context + 0x1e0);
-  stack_ptr3 = &UNK_1809fcc58;
+  stack_ptr3 = &unknown_var_3480_ptr;
   stack_ptr4 = stack_buffer3;
   stack_buffer3[0] = 0;
   stack_size2 = 9;
-  strcpy_s(stack_buffer3,0x40,&UNK_180a13aa8); // 高光纹理
+  strcpy_s(stack_buffer3,0x40,&unknown_var_7256_ptr); // 高光纹理
   material_handle = *(uint64_t *)(scene_context + 0x1e0);
-  stack_ptr1 = &UNK_1809fcc58;
+  stack_ptr1 = &unknown_var_3480_ptr;
   stack_ptr2 = stack_buffer2;
   stack_buffer2[0] = 0;
   stack_size1 = 0x17;
-  strcpy_s(stack_buffer2,0x40,&UNK_180a13ab8); // 环境光遮蔽纹理
+  strcpy_s(stack_buffer2,0x40,&unknown_var_7272_ptr); // 环境光遮蔽纹理
   texture_offset = get_material_handle(material_handle,&stack_ptr1,0);
   material_index = get_material_handle(base_texture,&stack_ptr3,0);
   *(ulonglong *)(scene_context + 0x3a8) = texture_offset | material_index;
-  stack_ptr1 = &UNK_18098bcb0;
-  stack_ptr3 = &UNK_18098bcb0;
+  stack_ptr1 = &unknown_var_720_ptr;
+  stack_ptr3 = &unknown_var_720_ptr;
   base_texture = *(uint64_t *)(scene_context + 0x1e0);
-  stack_ptr5 = &UNK_1809fcc58;
+  stack_ptr5 = &unknown_var_3480_ptr;
   stack_ptr6 = stack_buffer4;
   stack_buffer4[0] = 0;
   stack_size3 = 0x10;
   strcpy_s(stack_buffer4,0x40,&system_memory_d580); // 金属度纹理
   base_texture = get_material_handle(base_texture,&stack_ptr5,0);
   *(uint64_t *)(scene_context + 0x3b0) = base_texture;
-  stack_ptr5 = &UNK_18098bcb0;
+  stack_ptr5 = &unknown_var_720_ptr;
   base_texture = *(uint64_t *)(scene_context + 0x1e0);
-  stack_ptr7 = &UNK_1809fcc58;
+  stack_ptr7 = &unknown_var_3480_ptr;
   stack_ptr8 = stack_buffer5;
   stack_buffer5[0] = 0;
   stack_size4 = 0x14;
   strcpy_s(stack_buffer5,0x40,&system_memory_d5b8); // 粗糙度纹理
   base_texture = get_material_handle(base_texture,&stack_ptr7,0);
   *(uint64_t *)(scene_context + 0x3b8) = base_texture;
-  stack_ptr7 = &UNK_18098bcb0;
+  stack_ptr7 = &unknown_var_720_ptr;
   base_texture = *(uint64_t *)(scene_context + 0x1e0);
-  stack_ptr9 = &UNK_1809fcc58;
+  stack_ptr9 = &unknown_var_3480_ptr;
   stack_ptr10 = stack_buffer6;
   stack_buffer6[0] = 0;
   stack_size5 = 0x1d;
-  strcpy_s(stack_buffer6,0x40,&UNK_180a13bb8); // 发光纹理
+  strcpy_s(stack_buffer6,0x40,&unknown_var_7528_ptr); // 发光纹理
   base_texture = get_material_handle(base_texture,&stack_ptr9,0);
   *(uint64_t *)(scene_context + 0x398) = base_texture;
-  stack_ptr9 = &UNK_18098bcb0;
+  stack_ptr9 = &unknown_var_720_ptr;
   material_flags = get_scene_material_flags(scene_context);
   *(ulonglong *)(scene_context + 0x3a0) = (ulonglong)material_flags;
                     // WARNING: Subroutine does not return
@@ -224,10 +224,10 @@ LAB_cache_allocate:
           if (material_offset != cache_index) {
             cache_position = material_offset - (longlong)cache_start;
             do {
-              *cache_current = &UNK_18098bcb0;
+              *cache_current = &unknown_var_720_ptr;
               cache_current[1] = 0;
               *(int32_t *)(cache_current + 2) = 0;
-              *cache_current = &UNK_1809fcc58;
+              *cache_current = &unknown_var_3480_ptr;
               cache_current[1] = cache_current + 3;
               *(int32_t *)(cache_current + 2) = 0;
               *(int8_t *)(cache_current + 3) = 0;
@@ -321,7 +321,7 @@ void switch_scene_materials(longlong scene_context,uint64_t new_scene,longlong s
     if (*(void **)(scene_context + 0x18) != (void *)0x0) {
       material_name = *(void **)(scene_context + 0x18);
     }
-    log_scene_switch_error(&UNK_180a13c48,material_name);
+    log_scene_switch_error(&unknown_var_7672_ptr,material_name);
   }
   else {
     material_list = *(longlong **)(texture_offset + 0xb0);
@@ -356,11 +356,11 @@ void switch_scene_materials(longlong scene_context,uint64_t new_scene,longlong s
     material_list = (longlong *)(scene_data + 0x30 + scene_offset);
     if (((*material_list != 0) || (material_list[1] != 0)) &&
        (*(int *)(*(longlong *)(scene_context + 0x1e0) + 0x1c40 + texture_offset) != 0)) {
-      material_slot = find_scene_material(*(uint64_t *)(scene_context + 0xa8),&UNK_180a01170);
+      material_slot = find_scene_material(*(uint64_t *)(scene_context + 0xa8),&unknown_var_1168_ptr);
       material_handle = _DAT_180c86898;
       if (material_slot == 0) {
         if (*(longlong *)(_DAT_180c86898 + 0x98) == 0) {
-          texture_system = (uint64_t *)create_texture_manager(texture_flags,&texture_count,&UNK_180a03108,1);
+          texture_system = (uint64_t *)create_texture_manager(texture_flags,&texture_count,&unknown_var_9256_ptr,1);
           old_material = *texture_system;
           *texture_system = 0;
           texture_cache = *(longlong **)(material_handle + 0x98);
@@ -382,7 +382,7 @@ void switch_scene_materials(longlong scene_context,uint64_t new_scene,longlong s
           (*new_material)(&texture_system,0,0);
         }
         apply_texture_to_scene(scene_context + 0xb8 + render_offset,*(uint64_t *)(material_handle + 0x98));
-        material_name = &UNK_1809fcc58;
+        material_name = &unknown_var_3480_ptr;
         texture_ptr = material_buffer;
         material_buffer[0] = 0;
         material_index = *(int *)(texture_offset + 0x1c40 + *(longlong *)(scene_context + 0x1e0));
@@ -405,8 +405,8 @@ void switch_scene_materials(longlong scene_context,uint64_t new_scene,longlong s
             texture_ptr = texture_ptr;
           }
         }
-        log_material_assignment(&UNK_180a13c08,texture_ptr,material_name);
-        material_name = &UNK_18098bcb0;
+        log_material_assignment(&unknown_var_7608_ptr,texture_ptr,material_name);
+        material_name = &unknown_var_720_ptr;
       }
       else {
         apply_material_to_scene(scene_context + 0xb8 + render_offset,material_slot + 0xb0);
@@ -482,11 +482,11 @@ LAB_texture_found:
     new_material = texture_cache[7];
     *(int32_t *)(scene_context + 0x170) = 0;
     **(int8_t **)(scene_context + 0x168) = 0;
-    setup_material_properties(scene_context + 0x160,&UNK_180a02954,old_material);
+    setup_material_properties(scene_context + 0x160,&unknown_var_7284_ptr,old_material);
     *(uint64_t *)(scene_context + 0x148) = old_material;
     *(int32_t *)(scene_context + 0x1a8) = 0;
     **(int8_t **)(scene_context + 0x1a0) = 0;
-    setup_material_properties(scene_context + 0x198,&UNK_180a02954,new_material);
+    setup_material_properties(scene_context + 0x198,&unknown_var_7284_ptr,new_material);
     *(uint64_t *)(scene_context + 0x150) = new_material;
   }
   texture_format = *(uint *)(scene_context + 0x388);
@@ -540,49 +540,49 @@ ulonglong check_material_compatibility(longlong scene_context)
     if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
       scene_name = *(void **)(scene_context + 0x2d8);
     }
-    string_search_result = strstr(scene_name,&UNK_180a13c2c);
+    string_search_result = strstr(scene_name,&unknown_var_7644_ptr);
     if (string_search_result == 0) {
       scene_name = &system_buffer_ptr;
       if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
         scene_name = *(void **)(scene_context + 0x2d8);
       }
-      string_search_result = strstr(scene_name,&UNK_180a13c94);
+      string_search_result = strstr(scene_name,&unknown_var_7748_ptr);
       if (string_search_result == 0) {
         scene_name = &system_buffer_ptr;
         if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
           scene_name = *(void **)(scene_context + 0x2d8);
         }
-        string_search_result = strstr(scene_name,&UNK_180a13ca0);
+        string_search_result = strstr(scene_name,&unknown_var_7760_ptr);
         if (string_search_result == 0) {
           scene_name = &system_buffer_ptr;
           if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
             scene_name = *(void **)(scene_context + 0x2d8);
           }
-          string_search_result = strstr(scene_name,&UNK_180a12ea0);
+          string_search_result = strstr(scene_name,&unknown_var_4176_ptr);
           if (string_search_result == 0) {
             scene_name = &system_buffer_ptr;
             if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
               scene_name = *(void **)(scene_context + 0x2d8);
             }
-            string_search_result = strstr(scene_name,&UNK_180a13c70);
+            string_search_result = strstr(scene_name,&unknown_var_7712_ptr);
             if (string_search_result == 0) {
               scene_name = &system_buffer_ptr;
               if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
                 scene_name = *(void **)(scene_context + 0x2d8);
               }
-              string_search_result = strstr(scene_name,&UNK_180a13c88);
+              string_search_result = strstr(scene_name,&unknown_var_7736_ptr);
               if (string_search_result == 0) {
                 scene_name = &system_buffer_ptr;
                 if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
                   scene_name = *(void **)(scene_context + 0x2d8);
                 }
-                string_search_result = strstr(scene_name,&UNK_180a13cac);
+                string_search_result = strstr(scene_name,&unknown_var_7772_ptr);
                 if (string_search_result == 0) {
                   scene_name = &system_buffer_ptr;
                   if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
                     scene_name = *(void **)(scene_context + 0x2d8);
                   }
-                  string_search_result = strstr(scene_name,&UNK_180a04998);
+                  string_search_result = strstr(scene_name,&unknown_var_5544_ptr);
                   if (string_search_result == 0) {
                     scene_name = &system_buffer_ptr;
                     if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
@@ -653,43 +653,43 @@ longlong verify_material_loading(void)
     if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
       material_name = *(void **)(scene_context + 0x2d8);
     }
-    search_result = strstr(material_name,&UNK_180a13c94);
+    search_result = strstr(material_name,&unknown_var_7748_ptr);
     if (search_result == 0) {
       material_name = &system_buffer_ptr;
       if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
         material_name = *(void **)(scene_context + 0x2d8);
       }
-      search_result = strstr(material_name,&UNK_180a13ca0);
+      search_result = strstr(material_name,&unknown_var_7760_ptr);
       if (search_result == 0) {
         material_name = &system_buffer_ptr;
         if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
           material_name = *(void **)(scene_context + 0x2d8);
         }
-        search_result = strstr(material_name,&UNK_180a12ea0);
+        search_result = strstr(material_name,&unknown_var_4176_ptr);
         if (search_result == 0) {
           material_name = &system_buffer_ptr;
           if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
             material_name = *(void **)(scene_context + 0x2d8);
           }
-          search_result = strstr(material_name,&UNK_180a13c70);
+          search_result = strstr(material_name,&unknown_var_7712_ptr);
           if (search_result == 0) {
             material_name = &system_buffer_ptr;
             if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
               material_name = *(void **)(scene_context + 0x2d8);
             }
-            search_result = strstr(material_name,&UNK_180a13c88);
+            search_result = strstr(material_name,&unknown_var_7736_ptr);
             if (search_result == 0) {
               material_name = &system_buffer_ptr;
               if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
                 material_name = *(void **)(scene_context + 0x2d8);
               }
-              search_result = strstr(material_name,&UNK_180a13cac);
+              search_result = strstr(material_name,&unknown_var_7772_ptr);
               if (search_result == 0) {
                 material_name = &system_buffer_ptr;
                 if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {
                   material_name = *(void **)(scene_context + 0x2d8);
                 }
-                search_result = strstr(material_name,&UNK_180a04998);
+                search_result = strstr(material_name,&unknown_var_5544_ptr);
                 if (search_result == 0) {
                   material_name = &system_buffer_ptr;
                   if (*(void **)(scene_context + 0x2d8) != (void *)0x0) {

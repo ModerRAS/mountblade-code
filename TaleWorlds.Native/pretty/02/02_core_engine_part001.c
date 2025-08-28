@@ -758,25 +758,25 @@ void core_engine_module_cleanup(void)
 #define core_engine_debug_variable_watcher FUN_18021b090
 
 // 全局变量别名
-#define system_status_flags UNK_18098c880
+#define system_status_flags global_state_3744
 #define system_error_codes system_memory_c8c8
-#define system_configuration_data UNK_18098c898
+#define system_configuration_data global_state_3768
 #define system_performance_counters system_memory_5268
 #define system_memory_statistics system_memory_5270
 
 // 内存管理变量别名
 #define memory_pool_pointers system_memory_5280
 #define memory_allocation_tables system_memory_5288
-#define memory_usage_statistics UNK_180941780
+#define memory_usage_statistics global_state_6288
 #define memory_debug_information system_memory_1900
-#define memory_heap_managers UNK_1809ff978
+#define memory_heap_managers global_state_5032
 
 // 渲染系统变量别名
 #define render_context_data system_memory_f9e8
-#define render_device_pointers UNK_1809ff990
+#define render_device_pointers global_state_5056
 #define render_shader_cache system_memory_f9c0
-#define render_texture_buffers UNK_1809ff978
-#define render_vertex_buffers UNK_1809ff990
+#define render_texture_buffers global_state_5032
+#define render_vertex_buffers global_state_5056
 
 // 输入系统变量别名
 #define input_device_states system_memory_6330
@@ -790,11 +790,11 @@ void core_engine_module_cleanup(void)
 #define audio_buffer_pool system_memory_6318
 #define audio_channel_mixer system_memory_6338
 #define audio_stream_data SUB_18005d5f0
-#define audio_effect_chain UNK_180942f90
+#define audio_effect_chain global_state_2448
 
 // 网络系统变量别名
 #define network_connection_pool system_memory_6220
-#define network_packet_buffers UNK_180c96358
+#define network_packet_buffers global_state_9112
 #define network_protocol_state system_memory_64f8
 #define network_bandwidth_statistics system_memory_6500
 #define network_error_handlers system_memory_6508
@@ -803,8 +803,8 @@ void core_engine_module_cleanup(void)
 #define file_handle_table system_memory_6510
 #define file_cache_data system_memory_a9e0
 #define file_path_cache system_memory_68f8
-#define file_io_buffers UNK_1809fd534
-#define file_monitor_handles UNK_1809fd550
+#define file_io_buffers global_state_5748
+#define file_monitor_handles global_state_5776
 
 // 脚本系统变量别名
 #define script_virtual_machine system_memory_68d0

@@ -3,19 +3,19 @@
 // 03_rendering_part012.c - 渲染系统数据序列化函数
 
 // 渲染系统常量定义
-#define RENDER_VTABLE_BASE            (&UNK_18098bcb0)
-#define RENDER_VTABLE_EXTENDED        (&UNK_1809fcc28)
-#define RENDER_NAME_TEMPLATE          (&UNK_180a167d0)
-#define RENDERER_VTABLE1              (&UNK_180a21690)
-#define RENDERER_VTABLE2              (&UNK_180a21720)
-#define RENDERER_SHADER_TABLE         (&UNK_180a14860)
-#define RENDERER_CONFIG_TABLE         (&UNK_180a169b8)
-#define RENDERER_LOCK_TABLE           (&UNK_180a169a8)
-#define RENDER_STATE_NULL             (&UNK_18098bcb0)
-#define RENDER_MATERIAL_TABLE         (&UNK_180a3c3e0)
+#define RENDER_VTABLE_BASE            (&unknown_var_720_ptr)
+#define RENDER_VTABLE_EXTENDED        (&unknown_var_3432_ptr)
+#define RENDER_NAME_TEMPLATE          (&unknown_var_8816_ptr)
+#define RENDERER_VTABLE1              (&unknown_var_3552_ptr)
+#define RENDERER_VTABLE2              (&unknown_var_3696_ptr)
+#define RENDERER_SHADER_TABLE         (&unknown_var_768_ptr)
+#define RENDERER_CONFIG_TABLE         (&unknown_var_9304_ptr)
+#define RENDERER_LOCK_TABLE           (&unknown_var_9288_ptr)
+#define RENDER_STATE_NULL             (&unknown_var_720_ptr)
+#define RENDER_MATERIAL_TABLE         (&unknown_var_3456_ptr)
 #define RENDER_SPECIAL_TABLE          (_DAT_180c86930)
 #define RENDER_ALLOC_TABLE            (_DAT_180c8ed18)
-#define RENDER_CHECK_FUNCTION         (&UNK_180277e10)
+#define RENDER_CHECK_FUNCTION         (&unknown_var_9120_ptr)
 
 // 函数别名定义
 #define expand_buffer_if_needed       FUN_180639bf0
@@ -416,17 +416,17 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
 uint64_t * initialize_render_state(uint64_t *render_state)
 
 {
-  *render_state = &UNK_18098bcb0;
+  *render_state = &unknown_var_720_ptr;
   render_state[1] = 0;
   *(int32_t *)(render_state + 2) = 0;
-  *render_state = &UNK_180a14860;
+  *render_state = &unknown_var_768_ptr;
   render_state[1] = render_state + 3;
   *(int32_t *)(render_state + 2) = 0;
   *(int8_t *)(render_state + 3) = 0;
-  render_state[0x22] = &UNK_18098bcb0;
+  render_state[0x22] = &unknown_var_720_ptr;
   render_state[0x23] = 0;
   *(int32_t *)(render_state + 0x24) = 0;
-  render_state[0x22] = &UNK_180a3c3e0;
+  render_state[0x22] = &unknown_var_3456_ptr;
   render_state[0x25] = 0;
   render_state[0x23] = 0;
   *(int32_t *)(render_state + 0x24) = 0;

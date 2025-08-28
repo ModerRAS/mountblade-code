@@ -179,22 +179,22 @@ uint64_t * FUN_1801ecc70(uint64_t *param_1)
 {
   uint64_t *puVar1;
   
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
+  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &unknown_var_3696_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a0e090;
+  *param_1 = &unknown_var_4192_ptr;
   FUN_1808fc838(param_1 + 2,0x70,6,FUN_1801ecb30,FUN_1801ecbb0);
-  param_1[0x56] = &UNK_18098bcb0;
+  param_1[0x56] = &unknown_var_720_ptr;
   param_1[0x57] = 0;
   *(int32_t *)(param_1 + 0x58) = 0;
-  param_1[0x56] = &UNK_180a3c3e0;
+  param_1[0x56] = &unknown_var_3456_ptr;
   param_1[0x59] = 0;
   param_1[0x57] = 0;
   *(int32_t *)(param_1 + 0x58) = 0;
-  param_1[0x5a] = &UNK_18098bcb0;
+  param_1[0x5a] = &unknown_var_720_ptr;
   param_1[0x5b] = 0;
   *(int32_t *)(param_1 + 0x5c) = 0;
-  param_1[0x5a] = &UNK_180a3c3e0;
+  param_1[0x5a] = &unknown_var_3456_ptr;
   param_1[0x5d] = 0;
   param_1[0x5b] = 0;
   *(int32_t *)(param_1 + 0x5c) = 0;

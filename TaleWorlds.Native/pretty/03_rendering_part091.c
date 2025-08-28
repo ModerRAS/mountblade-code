@@ -139,11 +139,11 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
   depth_stencil_state = 0xfffffffffffffffe;
   frame_sync = _DAT_180bf00a8 ^ (ulonglong)alignment_buffer;
   render_pass = (code **)0x0;
-  vertex_shader = (code *)&UNK_1809fcc58;
+  vertex_shader = (code *)&unknown_var_3480_ptr;
   pixel_shader = (code *)vertex_data;
   vertex_data[0] = vertex_data[0] & 0xffffff00;
   topology = 0x1e;
-  blend_state = strcpy_s(vertex_data, 0x40, &UNK_180a1ad98);
+  blend_state = strcpy_s(vertex_data, 0x40, &unknown_var_6680_ptr);
   primitive_restart = 1;
   scissor_enable = 1;
   viewport = 0;
@@ -155,7 +155,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
   // 配置输入装配器
   FUN_1800b0a10(blend_state, &input_layout, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
   pipeline_config = _DAT_180c86898;
-  vertex_shader = (code *)&UNK_18098bcb0;
+  vertex_shader = (code *)&unknown_var_720_ptr;
   shader_program = render_context_ptr[0x11];
   
   // 检查渲染状态有效性
@@ -179,7 +179,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       
       // 初始化资源池
       if (*(longlong *)(pipeline_config + 0x410) == 0) {
-        resource_ptr = (uint64_t *)FUN_18009e9e0((longlong)render_state, &vertex_buffer, &UNK_180a03740);
+        resource_ptr = (uint64_t *)FUN_18009e9e0((longlong)render_state, &vertex_buffer, &unknown_var_848_ptr);
         render_target = *resource_ptr;
         *resource_ptr = 0;
         input_layout = *(code ***)(pipeline_config + 0x410);
@@ -196,7 +196,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       render_pass = *(code **)(pipeline_config + 0x410);
       vertex_buffer = (longlong *)0x0;
       input_layout = &pixel_shader;
-      pixel_shader = (code *)&UNK_180a3c3e0;
+      pixel_shader = (code *)&unknown_var_3456_ptr;
       frame_sync = 0;
       instance_buffer = 0;
       draw_indexed = 0;
@@ -268,11 +268,11 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       (**(code **)(*state_block + 0x148))(state_block, 1, 1, 1);
       
       // 配置第二渲染通道
-      vertex_shader = (code *)&UNK_1809fcc58;
+      vertex_shader = (code *)&unknown_var_3480_ptr;
       pixel_shader = (code *)vertex_data;
       vertex_data[0] = vertex_data[0] & 0xffffff00;
       topology = 0x1f;
-      blend_state = strcpy_s(vertex_data, 0x40, &UNK_180a1ae38);
+      blend_state = strcpy_s(vertex_data, 0x40, &unknown_var_6840_ptr);
       primitive_restart = 1;
       scissor_enable = 1;
       viewport = 0;
@@ -281,7 +281,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       stencil_ref = 0x21;
       depth_stencil_state._4_4_ = 0x10;
       FUN_1800b0a10(blend_state, &domain_shader, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
-      vertex_shader = (code *)&UNK_18098bcb0;
+      vertex_shader = (code *)&unknown_var_720_ptr;
       render_pass = (code **)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
       shader_program = domain_shader;
       render_pass[1] = (code *)0x0;
@@ -343,11 +343,11 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       *(float *)((longlong)render_pass + 0x3c) = viewport_scale;
       *(int32_t *)(render_pass + 8) = 0x7f7fffff;
       vertex_buffer = &geometry_shader;
-      hull_shader = (code *)&UNK_1802e4bc0;
-      stream_output_buffer = &UNK_1800ee4c0;
+      hull_shader = (code *)&unknown_var_4992_ptr;
+      stream_output_buffer = &unknown_var_7008_ptr;
       geometry_shader = FUN_18031d520;
       input_layout = &geometry_shader;
-      (*(code *)&UNK_1800ee4c0)(render_pass, &geometry_shader);
+      (*(code *)&unknown_var_7008_ptr)(render_pass, &geometry_shader);
       if (hull_shader != (code *)0x0) {
         (*hull_shader)(&geometry_shader, 0, 0);
       }
@@ -358,14 +358,14 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
         (**(code **)(*state_block + 0x38))();
       }
       vertex_buffer = &pixel_shader;
-      pixel_shader = (code *)&UNK_180a3c3e0;
+      pixel_shader = (code *)&unknown_var_3456_ptr;
       if (instance_buffer != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       instance_buffer = 0;
       frame_sync = frame_sync & 0xffffffff00000000;
-      pixel_shader = (code *)&UNK_18098bcb0;
+      pixel_shader = (code *)&unknown_var_720_ptr;
       if (vertex_buffer != (longlong *)0x0) {
         (**(code **)(*vertex_buffer + 0x38))();
       }
@@ -516,11 +516,11 @@ void RenderingSystem_ObjectProcessor(longlong render_object)
     if (render_context != (longlong *)0x0) {
       (**(code **)(*render_context + 0x28))(render_context);
       render_state = *(int *)(render_object + 0x60);
-      render_target = &UNK_1809fcc58;
+      render_target = &unknown_var_3480_ptr;
       shader_data = texture_buffer;
       texture_buffer[0] = 0;
       format = 0x10;
-      strcpy_s(texture_buffer, 0x40, &UNK_180a1ae20);
+      strcpy_s(texture_buffer, 0x40, &unknown_var_6816_ptr);
       topology = 1;
       scissor_enable = 1;
       depth_stencil_state = 0x10;
@@ -540,7 +540,7 @@ void RenderingSystem_ObjectProcessor(longlong render_object)
       if (pixel_shader != (longlong *)0x0) {
         (**(code **)(*pixel_shader + 0x38))();
       }
-      render_target = &UNK_18098bcb0;
+      render_target = &unknown_var_720_ptr;
       vertex_shader = *(longlong **)(render_object + 0x70);
       *(uint64_t *)(render_object + 0x70) = 0;
       if (vertex_shader != (longlong *)0x0) {
@@ -904,7 +904,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   }
   
   // 配置用户数据缓冲区
-  render_target = &UNK_180a3c3e0;
+  render_target = &unknown_var_3456_ptr;
   frame_buffer = 0;
   constant_buffer = (uint64_t *)0x0;
   buffer_size = 0;
@@ -951,7 +951,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   texture_depth = (int32_t)(longlong)((double)*(float *)(target_context + 0x11c20) / aspect_ratio_x);
   texture_mips = (int32_t)(longlong)((double)*(float *)(target_context + 0x11c24) / aspect_ratio_y);
   texture_format = 0x1e;
-  frame_buffer_ptr = &UNK_1809fcc28;
+  frame_buffer_ptr = &unknown_var_3432_ptr;
   shader_data = user_buffer;
   user_buffer[0] = 0;
   data_size = 0x1b;
@@ -982,7 +982,7 @@ LAB_18031eaf0:
   }
   
   _Thrd_id();
-  frame_buffer_ptr = &UNK_18098bcb0;
+  frame_buffer_ptr = &unknown_var_720_ptr;
   render_resource = *(longlong **)(source_context + 0x230);
   if (render_resource != (longlong *)0x0) {
     compute_shader = render_resource;
@@ -993,14 +993,14 @@ LAB_18031eaf0:
   if (compute_shader != (longlong *)0x0) {
     (**(code **)(*compute_shader + 0x38))();
   }
-  render_target = &UNK_180a3c3e0;
+  render_target = &unknown_var_3456_ptr;
   if (vertex_buffer != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(vertex_buffer);
   }
   constant_buffer = (uint64_t *)0x0;
   frame_buffer = (ulonglong)frame_buffer._4_4_ << 0x20;
-  render_target = &UNK_18098bcb0;
+  render_target = &unknown_var_720_ptr;
 LAB_18031ebd1:
   
   // 最终参数设置
@@ -1184,9 +1184,9 @@ RenderingSystem_MemoryAllocator(uint64_t *memory_ptr, ulonglong alloc_flags, uin
 
 {
   // 初始化内存指针链表
-  *memory_ptr = &UNK_180a1ae60;
-  *memory_ptr = &UNK_180a21720;
-  *memory_ptr = &UNK_180a21690;
+  *memory_ptr = &unknown_var_6880_ptr;
+  *memory_ptr = &unknown_var_3696_ptr;
+  *memory_ptr = &unknown_var_3552_ptr;
   
   // 检查是否需要释放内存
   if ((alloc_flags & 1) != 0) {

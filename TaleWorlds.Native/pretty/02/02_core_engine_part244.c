@@ -1082,7 +1082,7 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     output_flag_7e8 = 0xfffffffffffffffe;
     security_cookie = _DAT_180bf00a8 ^ (ulonglong)output_buffer;
     output_length_808 = 0;
-    output_ptr_6b8 = &UNK_1809feda8;
+    output_ptr_6b8 = &unknown_var_2008_ptr;
     output_ptr_6b0 = output_buffer_6a0;
     output_length_6a8 = 0;
     output_buffer_6a0[0] = 0;
@@ -1098,7 +1098,7 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     }
     
     string_length = format_output_data(output_array, &output_ptr_6b8);
-    output_ptr_598 = &UNK_1809feda8;
+    output_ptr_598 = &unknown_var_2008_ptr;
     output_ptr_590 = output_buffer_580;
     output_buffer_580[0] = 0;
     output_length_588 = *(int32_t *)(string_length + 0x10);
@@ -1109,20 +1109,20 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     }
     
     strcpy_s(output_buffer_580, 0x100, format_ptr);
-    output_array[0] = &UNK_18098bcb0;
-    output_ptr_6b8 = &UNK_18098bcb0;
+    output_array[0] = &unknown_var_720_ptr;
+    output_ptr_6b8 = &unknown_var_720_ptr;
     output_length = 0x118;
     output_ptr = output_buffer_258;
     
     // 转换为宽字符
     MultiByteToWideChar(0xfde9, 0, output_ptr_590, 0xffffffff);
-    output_ptr_7d8 = &UNK_180a01620;
+    output_ptr_7d8 = &unknown_var_2368_ptr;
     initialize_output_stream(output_buffer_730);
     output_length_808 = 1;
     
     // 设置输出流
     setup_output_stream(&output_ptr_7d8, temp_buffer_7d0, 0, 0);
-    *(void **)(temp_buffer_7d0 + (longlong)*(int *)(output_ptr_7d8 + 4) + -8) = &UNK_180a01630;
+    *(void **)(temp_buffer_7d0 + (longlong)*(int *)(output_ptr_7d8 + 4) + -8) = &unknown_var_2384_ptr;
     *(int *)((longlong)&output_var_7dc + (longlong)*(int *)(output_ptr_7d8 + 4)) =
          *(int *)(output_ptr_7d8 + 4) + -0xa8;
     format_output_string(temp_buffer_7d0);
@@ -1143,13 +1143,13 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     }
     
     output_buffer_7f8 = output_buffer_730;
-    *(void **)(temp_buffer_7d0 + (longlong)*(int *)(output_ptr_7d8 + 4) + -8) = &UNK_180a01630;
+    *(void **)(temp_buffer_7d0 + (longlong)*(int *)(output_ptr_7d8 + 4) + -8) = &unknown_var_2384_ptr;
     *(int *)((longlong)&output_var_7dc + (longlong)*(int *)(output_ptr_7d8 + 4)) =
          *(int *)(output_ptr_7d8 + 4) + -0xa8;
     finalize_output_stream(temp_buffer_7d0);
     cleanup_output_stream(output_buffer_7c8);
     cleanup_input_stream(output_buffer_730);
-    output_ptr_598 = &UNK_18098bcb0;
+    output_ptr_598 = &unknown_var_720_ptr;
     
     // 警告：子程序不返回
     cleanup_security_cookie(security_cookie ^ (ulonglong)output_buffer);
@@ -1159,9 +1159,9 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
  * 全局变量和常量定义
  * 
  * 简化实现说明：
- * - UNK_180a3c3e0 -> EMPTY_RESOURCE_POOL (空资源池)
- * - UNK_18098bcb0 -> RESOURCE_CLEANUP_POOL (资源清理池)
- * - UNK_1809fcc58 -> RESOURCE_HANDLER_TABLE (资源处理表)
+ * - unknown_var_3456 -> EMPTY_RESOURCE_POOL (空资源池)
+ * - unknown_var_720_ptr -> RESOURCE_CLEANUP_POOL (资源清理池)
+ * - unknown_var_3480 -> RESOURCE_HANDLER_TABLE (资源处理表)
  * - system_buffer_ptr -> EMPTY_STRING_BUFFER (空字符串缓冲区)
  * - _DAT_180c868e8 -> GLOBAL_RESOURCE_TABLE (全局资源表)
  * - _DAT_180c86870 -> GLOBAL_RESOURCE_FLAG (全局资源标志)

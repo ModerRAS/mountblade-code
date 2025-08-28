@@ -153,11 +153,11 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
     
     // 执行文件操作
     execute_file_operation(local_buffer6, &temp_ptr11, &temp_ptr8);
-    temp_ptr11 = &UNK_18098bcb0;
-    *param_2 = &UNK_18098bcb0;
+    temp_ptr11 = &unknown_var_720_ptr;
+    *param_2 = &unknown_var_720_ptr;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
-    *param_2 = &UNK_180a3c3e0;
+    *param_2 = &unknown_var_3456_ptr;
     param_2[3] = 0;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
@@ -178,48 +178,48 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
     output_ptr = (void **)local_buffer7;    // 设置输出指针
     cleanup_temporary_buffer(local_buffer7);      // 清理临时缓冲区
     cleanup_file_operation_structure(local_buffer6);  // 清理文件操作结构
-    temp_ptr10 = &UNK_18098bcb0;
-    temp_ptr9 = &UNK_18098bcb0;
+    temp_ptr10 = &unknown_var_720_ptr;
+    temp_ptr9 = &unknown_var_720_ptr;
     output_ptr = &temp_ptr8;
-    temp_ptr8 = &UNK_18098bcb0;
-    temp_ptr7 = &UNK_180a3c3e0;
+    temp_ptr8 = &unknown_var_720_ptr;
+    temp_ptr7 = &unknown_var_3456_ptr;
     if (byte_ptr != (byte *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     byte_ptr = (byte *)0x0;
     temp_flag1 = 0;
-    temp_ptr7 = &UNK_18098bcb0;
-    temp_ptr6 = &UNK_180a3c3e0;
+    temp_ptr7 = &unknown_var_720_ptr;
+    temp_ptr6 = &unknown_var_3456_ptr;
     if (temp_ptr7 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_ptr7 = (void *)0x0;
     temp_flag5 = 0;
-    temp_ptr6 = &UNK_18098bcb0;
-    temp_ptr5 = &UNK_180a3c3e0;
+    temp_ptr6 = &unknown_var_720_ptr;
+    temp_ptr5 = &unknown_var_3456_ptr;
     if (temp_ptr3 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_ptr3 = (void *)0x0;
     temp_flag2 = 0;
-    temp_ptr5 = &UNK_18098bcb0;
-    temp_ptr4 = &UNK_180a3c3e0;
+    temp_ptr5 = &unknown_var_720_ptr;
+    temp_ptr4 = &unknown_var_3456_ptr;
     if (temp_ptr5 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_ptr5 = (void *)0x0;
     temp_flag4 = 0;
-    temp_ptr4 = &UNK_18098bcb0;
+    temp_ptr4 = &unknown_var_720_ptr;
   }
   else {
-    *param_2 = &UNK_18098bcb0;
+    *param_2 = &unknown_var_720_ptr;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
-    *param_2 = &UNK_180a3c3e0;
+    *param_2 = &unknown_var_3456_ptr;
     param_2[3] = 0;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
@@ -304,15 +304,15 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     buffer_size1 = 4;                           // 字符串长度
     local_var1._0_4_ = temp_flag;               // 存储内存大小信息
     add_string_to_array(&temp_ptr5, &temp_ptr1);  // 添加到字符串数组
-    temp_ptr1 = &UNK_180a3c3e0;
+    temp_ptr1 = &unknown_var_3456_ptr;
     if (temp_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_ptr2 = (uint64_t *)0x0;
     local_var1 = (ulonglong)local_var1._4_4_ << 0x20;
-    temp_ptr1 = &UNK_18098bcb0;
-    temp_ptr3 = &UNK_180a3c3e0;
+    temp_ptr1 = &unknown_var_720_ptr;
+    temp_ptr3 = &unknown_var_3456_ptr;
     local_var2 = 0;
     temp_ptr4 = (uint64_t *)0x0;
     buffer_size2 = 0;
@@ -326,15 +326,15 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     buffer_size2 = 7;                           // 字符串长度
     local_var2._0_4_ = temp_flag;               // 存储内存大小信息
     add_string_to_array(&temp_ptr5, &temp_ptr3);  // 添加到字符串数组
-    temp_ptr3 = &UNK_180a3c3e0;
+    temp_ptr3 = &unknown_var_3456_ptr;
     if (temp_ptr4 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_ptr4 = (uint64_t *)0x0;
     local_var2 = (ulonglong)local_var2._4_4_ << 0x20;
-    temp_ptr3 = &UNK_18098bcb0;
-    temp_ptr1 = &UNK_180a3c3e0;
+    temp_ptr3 = &unknown_var_720_ptr;
+    temp_ptr1 = &unknown_var_3456_ptr;
     local_var1 = 0;
     temp_ptr2 = (uint64_t *)0x0;
     buffer_size1 = 0;
@@ -346,15 +346,15 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     buffer_size1 = 7;
     local_var1._0_4_ = temp_flag;
     FUN_180066df0(&temp_ptr5, &temp_ptr1);
-    temp_ptr1 = &UNK_180a3c3e0;
+    temp_ptr1 = &unknown_var_3456_ptr;
     if (temp_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_ptr2 = (uint64_t *)0x0;
     local_var1 = (ulonglong)local_var1._4_4_ << 0x20;
-    temp_ptr1 = &UNK_18098bcb0;
-    temp_ptr3 = &UNK_180a3c3e0;
+    temp_ptr1 = &unknown_var_720_ptr;
+    temp_ptr3 = &unknown_var_3456_ptr;
     local_var2 = 0;
     temp_ptr4 = (uint64_t *)0x0;
     buffer_size2 = 0;
@@ -366,15 +366,15 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     buffer_size2 = 7;
     local_var2._0_4_ = temp_flag;
     FUN_180066df0(&temp_ptr5, &temp_ptr3);
-    temp_ptr3 = &UNK_180a3c3e0;
+    temp_ptr3 = &unknown_var_3456_ptr;
     if (temp_ptr4 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_ptr4 = (uint64_t *)0x0;
     local_var2 = (ulonglong)local_var2._4_4_ << 0x20;
-    temp_ptr3 = &UNK_18098bcb0;
-    temp_ptr1 = &UNK_180a3c3e0;
+    temp_ptr3 = &unknown_var_720_ptr;
+    temp_ptr1 = &unknown_var_3456_ptr;
     local_var1 = 0;
     temp_ptr2 = (uint64_t *)0x0;
     buffer_size1 = 0;
@@ -387,14 +387,14 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     buffer_size1 = 8;
     local_var1._0_4_ = temp_flag;
     FUN_180066df0(&temp_ptr5, &temp_ptr1);
-    temp_ptr1 = &UNK_180a3c3e0;
+    temp_ptr1 = &unknown_var_3456_ptr;
     if (temp_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_ptr2 = (uint64_t *)0x0;
     local_var1 = (ulonglong)local_var1._4_4_ << 0x20;
-    temp_ptr1 = &UNK_18098bcb0;
+    temp_ptr1 = &unknown_var_720_ptr;
     // 处理版本信息回调函数
     process_version_callbacks(0, *param_4, *param_4 + 0x20, &temp_ptr5);
     result_ptr = temp_ptr6;                      // 获取数组结束指针
@@ -410,10 +410,10 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
       free_string_array(temp_ptr5);
     }
   }
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
+  *param_2 = &unknown_var_3456_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -521,7 +521,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
     temp_ptr1[3] = 0x2f7372;  // "/sr"
     buffer_size1 = 0xf;
     temp_long = FUN_180627ce0(&temp_ptr3, &temp_ptr7, *param_3);
-    temp_ptr5 = &UNK_180a3c3e0;
+    temp_ptr5 = &unknown_var_3456_ptr;
     local_var2 = 0;
     temp_long1 = 0;
     buffer_size2 = 0;
@@ -543,7 +543,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
     buffer_size2 = temp_uint;
     FUN_1806277c0(&temp_ptr5, 1);
     *(int16_t *)((ulonglong)buffer_size2 + temp_long1) = 0x2f;  // "/"
-    temp_ptr7 = &UNK_180a3c3e0;
+    temp_ptr7 = &unknown_var_3456_ptr;
     buffer_size2 = temp_var2;
     if (temp_long3 != 0) {
                     // WARNING: Subroutine does not return
@@ -551,29 +551,29 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
     }
     temp_long3 = 0;
     temp_flag2 = 0;
-    temp_ptr7 = &UNK_18098bcb0;
+    temp_ptr7 = &unknown_var_720_ptr;
     temp_flag1 = 2;
-    temp_ptr3 = &UNK_180a3c3e0;
+    temp_ptr3 = &unknown_var_3456_ptr;
     if (temp_ptr4 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_ptr4 = (void *)0x0;
     local_var1 = local_var1 & 0xffffffff00000000;
-    temp_ptr3 = &UNK_18098bcb0;
-    temp_ptr6 = &UNK_180a3c3e0;
+    temp_ptr3 = &unknown_var_720_ptr;
+    temp_ptr6 = &unknown_var_3456_ptr;
     if (temp_long2 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_long2 = 0;
     local_var3 = (ulonglong)local_var3._4_4_ << 0x20;
-    temp_ptr6 = &UNK_18098bcb0;
+    temp_ptr6 = &unknown_var_720_ptr;
     temp_char = FUN_180624a00(&temp_ptr5);
     if (temp_char != '\0') {
       temp_var1 = FUN_180624440(pointer_array, &temp_ptr5);
       FUN_1806279c0(&temp_ptr3, temp_var1);
-      pointer_array[0] = &UNK_18098bcb0;
+      pointer_array[0] = &unknown_var_720_ptr;
       temp_ptr2 = &system_buffer_ptr;
       if (temp_ptr4 != (void *)0x0) {
         temp_ptr2 = temp_ptr4;
@@ -603,24 +603,24 @@ LAB_180167a3b:
       local_var5 = 0;
       local_var4 = 0;
       SHFileOperationW(&temp_ptr6);
-      temp_ptr3 = &UNK_180a3c3e0;
+      temp_ptr3 = &unknown_var_3456_ptr;
       if (temp_ptr4 != (void *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       temp_ptr4 = (void *)0x0;
       local_var1 = local_var1 & 0xffffffff00000000;
-      temp_ptr3 = &UNK_18098bcb0;
+      temp_ptr3 = &unknown_var_720_ptr;
     }
     temp_flag1 = 0;
-    temp_ptr5 = &UNK_180a3c3e0;
+    temp_ptr5 = &unknown_var_3456_ptr;
     if (temp_long1 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_long1 = 0;
     local_var2 = local_var2 & 0xffffffff00000000;
-    temp_ptr5 = &UNK_18098bcb0;
+    temp_ptr5 = &unknown_var_720_ptr;
   }
   temp_flag1 = 0;
                     // WARNING: Subroutine does not return

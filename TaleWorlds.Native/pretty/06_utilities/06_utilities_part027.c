@@ -327,7 +327,7 @@ void utilities_system_initializer(void)
     longlong iterator_var2;
     
     // 设置全局指针
-    _DAT_180bf52c0 = &UNK_180a3c3e0;
+    _DAT_180bf52c0 = &unknown_var_3456_ptr;
     if (_DAT_180bf52c8 != 0) {
         // 系统已经初始化，执行错误处理
         FUN_18064e900();
@@ -336,7 +336,7 @@ void utilities_system_initializer(void)
     // 重置系统状态
     _DAT_180bf52c8 = 0;
     _DAT_180bf52d8 = 0;
-    _DAT_180bf52c0 = &UNK_18098bcb0;
+    _DAT_180bf52c0 = &unknown_var_720_ptr;
     
     // 检查并初始化系统组件
     if (_DAT_180bf5288 == 0) {
@@ -363,7 +363,7 @@ void utilities_system_initializer(void)
  */
 void utilities_global_pointer_setter_1(void)
 {
-    _DAT_180bf5320 = &UNK_18098bcb0;
+    _DAT_180bf5320 = &unknown_var_720_ptr;
     return;
 }
 
@@ -375,7 +375,7 @@ void utilities_global_pointer_setter_1(void)
  */
 void utilities_global_pointer_setter_2(void)
 {
-    _DAT_180bf5770 = &UNK_18098bcb0;
+    _DAT_180bf5770 = &unknown_var_720_ptr;
     return;
 }
 
@@ -387,7 +387,7 @@ void utilities_global_pointer_setter_2(void)
  */
 void utilities_global_pointer_setter_3(void)
 {
-    _DAT_180bf5208 = &UNK_18098bcb0;
+    _DAT_180bf5208 = &unknown_var_720_ptr;
     return;
 }
 
@@ -399,7 +399,7 @@ void utilities_global_pointer_setter_3(void)
  */
 void utilities_global_pointer_setter_4(void)
 {
-    _DAT_180bf5bc0 = &UNK_18098bcb0;
+    _DAT_180bf5bc0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -411,7 +411,7 @@ void utilities_global_pointer_setter_4(void)
  */
 void utilities_global_pointer_setter_5(void)
 {
-    _DAT_180bf5c30 = &UNK_18098bcb0;
+    _DAT_180bf5c30 = &unknown_var_720_ptr;
     return;
 }
 
@@ -423,7 +423,7 @@ void utilities_global_pointer_setter_5(void)
  */
 void utilities_global_pointer_setter_6(void)
 {
-    _DAT_180bf6080 = &UNK_18098bcb0;
+    _DAT_180bf6080 = &unknown_var_720_ptr;
     return;
 }
 
@@ -521,7 +521,7 @@ void utilities_mutex_destroyer_5(void)
  */
 void utilities_global_pointer_setter_7(void)
 {
-    _DAT_180d49160 = &UNK_18098bcb0;
+    _DAT_180d49160 = &unknown_var_720_ptr;
     return;
 }
 
@@ -533,7 +533,7 @@ void utilities_global_pointer_setter_7(void)
  */
 void utilities_global_pointer_setter_8(void)
 {
-    _DAT_180bf64d0 = &UNK_18098bcb0;
+    _DAT_180bf64d0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -545,7 +545,7 @@ void utilities_global_pointer_setter_8(void)
  */
 void utilities_global_pointer_setter_9(void)
 {
-    _DAT_180bf6530 = &UNK_18098bcb0;
+    _DAT_180bf6530 = &unknown_var_720_ptr;
     return;
 }
 
@@ -557,7 +557,7 @@ void utilities_global_pointer_setter_9(void)
  */
 void utilities_global_pointer_setter_10(void)
 {
-    _DAT_180bf6590 = &UNK_18098bcb0;
+    _DAT_180bf6590 = &unknown_var_720_ptr;
     return;
 }
 
@@ -569,7 +569,7 @@ void utilities_global_pointer_setter_10(void)
  */
 void utilities_global_pointer_setter_11(void)
 {
-    _DAT_180bf65c0 = &UNK_18098bcb0;
+    _DAT_180bf65c0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -581,7 +581,7 @@ void utilities_global_pointer_setter_11(void)
  */
 void utilities_global_pointer_setter_12(void)
 {
-    _DAT_180bf65f0 = &UNK_18098bcb0;
+    _DAT_180bf65f0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -593,7 +593,7 @@ void utilities_global_pointer_setter_12(void)
  */
 void utilities_global_pointer_setter_13(void)
 {
-    _DAT_180bf6620 = &UNK_18098bcb0;
+    _DAT_180bf6620 = &unknown_var_720_ptr;
     return;
 }
 
@@ -605,7 +605,7 @@ void utilities_global_pointer_setter_13(void)
  */
 void utilities_global_pointer_setter_14(void)
 {
-    _DAT_180bf6650 = &UNK_18098bcb0;
+    _DAT_180bf6650 = &unknown_var_720_ptr;
     return;
 }
 
@@ -617,7 +617,7 @@ void utilities_global_pointer_setter_14(void)
  */
 void utilities_global_pointer_setter_15(void)
 {
-    _DAT_180bf6680 = &UNK_18098bcb0;
+    _DAT_180bf6680 = &unknown_var_720_ptr;
     return;
 }
 
@@ -629,7 +629,7 @@ void utilities_global_pointer_setter_15(void)
  */
 void utilities_global_pointer_setter_16(void)
 {
-    _DAT_180bf66b0 = &UNK_18098bcb0;
+    _DAT_180bf66b0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -666,7 +666,7 @@ void utilities_memory_manager(uint64_t param_1, uint64_t param_2, uint64_t param
  */
 void utilities_global_pointer_setter_17(void)
 {
-    _DAT_180bf52e8 = &UNK_18098bcb0;
+    _DAT_180bf52e8 = &unknown_var_720_ptr;
     return;
 }
 
@@ -678,7 +678,7 @@ void utilities_global_pointer_setter_17(void)
  */
 void utilities_global_pointer_setter_18(void)
 {
-    _DAT_180bf5738 = &UNK_18098bcb0;
+    _DAT_180bf5738 = &unknown_var_720_ptr;
     return;
 }
 
@@ -703,14 +703,14 @@ void utilities_mutex_destroyer_6(void)
  */
 void utilities_system_state_resetter_1(void)
 {
-    _DAT_180d49218 = &UNK_180a3c3e0;
+    _DAT_180d49218 = &unknown_var_3456_ptr;
     if (_DAT_180d49220 != 0) {
         // 系统状态异常，执行错误处理
         FUN_18064e900();
     }
     _DAT_180d49220 = 0;
     _DAT_180d49230 = 0;
-    _DAT_180d49218 = &UNK_18098bcb0;
+    _DAT_180d49218 = &unknown_var_720_ptr;
     return;
 }
 
@@ -722,14 +722,14 @@ void utilities_system_state_resetter_1(void)
  */
 void utilities_system_state_resetter_2(void)
 {
-    _DAT_180d49240 = &UNK_180a3c3e0;
+    _DAT_180d49240 = &unknown_var_3456_ptr;
     if (_DAT_180d49248 != 0) {
         // 系统状态异常，执行错误处理
         FUN_18064e900();
     }
     _DAT_180d49248 = 0;
     _DAT_180d49258 = 0;
-    _DAT_180d49240 = &UNK_18098bcb0;
+    _DAT_180d49240 = &unknown_var_720_ptr;
     return;
 }
 
@@ -781,14 +781,14 @@ void utilities_exception_handler(void)
  */
 void utilities_system_state_resetter_3(void)
 {
-    _DAT_180d49638 = &UNK_180a3c3e0;
+    _DAT_180d49638 = &unknown_var_3456_ptr;
     if (_DAT_180d49640 != 0) {
         // 系统状态异常，执行错误处理
         FUN_18064e900();
     }
     _DAT_180d49640 = 0;
     _DAT_180d49650 = 0;
-    _DAT_180d49638 = &UNK_18098bcb0;
+    _DAT_180d49638 = &unknown_var_720_ptr;
     return;
 }
 
@@ -800,7 +800,7 @@ void utilities_system_state_resetter_3(void)
  */
 void utilities_global_pointer_setter_19(void)
 {
-    _DAT_180bf7250 = &UNK_18098bcb0;
+    _DAT_180bf7250 = &unknown_var_720_ptr;
     return;
 }
 
@@ -812,7 +812,7 @@ void utilities_global_pointer_setter_19(void)
  */
 void utilities_global_pointer_setter_20(void)
 {
-    _DAT_180bf72b0 = &UNK_18098bcb0;
+    _DAT_180bf72b0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -824,7 +824,7 @@ void utilities_global_pointer_setter_20(void)
  */
 void utilities_global_pointer_setter_21(void)
 {
-    _DAT_180bf7310 = &UNK_18098bcb0;
+    _DAT_180bf7310 = &unknown_var_720_ptr;
     return;
 }
 
@@ -864,7 +864,7 @@ void utilities_system_cleaner(void)
  */
 void utilities_global_pointer_setter_22(void)
 {
-    _DAT_180bf90b0 = &UNK_18098bcb0;
+    _DAT_180bf90b0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -876,7 +876,7 @@ void utilities_global_pointer_setter_22(void)
  */
 void utilities_global_pointer_setter_23(void)
 {
-    _DAT_180bf5b88 = &UNK_18098bcb0;
+    _DAT_180bf5b88 = &unknown_var_720_ptr;
     return;
 }
 
@@ -888,14 +888,14 @@ void utilities_global_pointer_setter_23(void)
  */
 void utilities_system_state_resetter_4(void)
 {
-    _DAT_180d48db8 = &UNK_180a3c3e0;
+    _DAT_180d48db8 = &unknown_var_3456_ptr;
     if (_DAT_180d48dc0 != 0) {
         // 系统状态异常，执行错误处理
         FUN_18064e900();
     }
     _DAT_180d48dc0 = 0;
     _DAT_180d48dd0 = 0;
-    _DAT_180d48db8 = &UNK_18098bcb0;
+    _DAT_180d48db8 = &unknown_var_720_ptr;
     return;
 }
 
@@ -920,7 +920,7 @@ void utilities_mutex_destroyer_7(void)
  */
 void utilities_global_pointer_setter_24(void)
 {
-    _DAT_180d49730 = &UNK_18098bcb0;
+    _DAT_180d49730 = &unknown_var_720_ptr;
     return;
 }
 
@@ -942,7 +942,7 @@ void utilities_system_initializer_2(void)
         FUN_18064e900();
     }
     FUN_180320b20(0x180d498a0);
-    _DAT_180d49830 = &UNK_18098bcb0;
+    _DAT_180d49830 = &unknown_var_720_ptr;
     return;
 }
 
@@ -984,7 +984,7 @@ void utilities_memory_releaser(void)
  */
 void utilities_global_pointer_setter_25(void)
 {
-    _DAT_180bf91b0 = &UNK_18098bcb0;
+    _DAT_180bf91b0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -996,7 +996,7 @@ void utilities_global_pointer_setter_25(void)
  */
 void utilities_global_pointer_setter_26(void)
 {
-    _DAT_180bf9210 = &UNK_18098bcb0;
+    _DAT_180bf9210 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1008,7 +1008,7 @@ void utilities_global_pointer_setter_26(void)
  */
 void utilities_global_pointer_setter_27(void)
 {
-    _DAT_180bf9270 = &UNK_18098bcb0;
+    _DAT_180bf9270 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1020,7 +1020,7 @@ void utilities_global_pointer_setter_27(void)
  */
 void utilities_global_pointer_setter_28(void)
 {
-    _DAT_180bf92d0 = &UNK_18098bcb0;
+    _DAT_180bf92d0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1032,7 +1032,7 @@ void utilities_global_pointer_setter_28(void)
  */
 void utilities_global_pointer_setter_29(void)
 {
-    _DAT_180bf9330 = &UNK_18098bcb0;
+    _DAT_180bf9330 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1044,7 +1044,7 @@ void utilities_global_pointer_setter_29(void)
  */
 void utilities_global_pointer_setter_30(void)
 {
-    _DAT_180bf9390 = &UNK_18098bcb0;
+    _DAT_180bf9390 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1056,7 +1056,7 @@ void utilities_global_pointer_setter_30(void)
  */
 void utilities_global_pointer_setter_31(void)
 {
-    _DAT_180bf93f0 = &UNK_18098bcb0;
+    _DAT_180bf93f0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1068,7 +1068,7 @@ void utilities_global_pointer_setter_31(void)
  */
 void utilities_global_pointer_setter_32(void)
 {
-    _DAT_180bf9450 = &UNK_18098bcb0;
+    _DAT_180bf9450 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1080,7 +1080,7 @@ void utilities_global_pointer_setter_32(void)
  */
 void utilities_global_pointer_setter_33(void)
 {
-    _DAT_180bf94b0 = &UNK_18098bcb0;
+    _DAT_180bf94b0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1092,7 +1092,7 @@ void utilities_global_pointer_setter_33(void)
  */
 void utilities_global_pointer_setter_34(void)
 {
-    _DAT_180bf9510 = &UNK_18098bcb0;
+    _DAT_180bf9510 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1104,7 +1104,7 @@ void utilities_global_pointer_setter_34(void)
  */
 void utilities_global_pointer_setter_35(void)
 {
-    _DAT_180bf9570 = &UNK_18098bcb0;
+    _DAT_180bf9570 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1116,7 +1116,7 @@ void utilities_global_pointer_setter_35(void)
  */
 void utilities_global_pointer_setter_36(void)
 {
-    _DAT_180bf95d0 = &UNK_18098bcb0;
+    _DAT_180bf95d0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1128,7 +1128,7 @@ void utilities_global_pointer_setter_36(void)
  */
 void utilities_global_pointer_setter_37(void)
 {
-    _DAT_180bf9630 = &UNK_18098bcb0;
+    _DAT_180bf9630 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1140,7 +1140,7 @@ void utilities_global_pointer_setter_37(void)
  */
 void utilities_global_pointer_setter_38(void)
 {
-    _DAT_180bf9690 = &UNK_18098bcb0;
+    _DAT_180bf9690 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1152,7 +1152,7 @@ void utilities_global_pointer_setter_38(void)
  */
 void utilities_global_pointer_setter_39(void)
 {
-    _DAT_180bf96f0 = &UNK_18098bcb0;
+    _DAT_180bf96f0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1164,7 +1164,7 @@ void utilities_global_pointer_setter_39(void)
  */
 void utilities_global_pointer_setter_40(void)
 {
-    _DAT_180bf9750 = &UNK_18098bcb0;
+    _DAT_180bf9750 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1176,7 +1176,7 @@ void utilities_global_pointer_setter_40(void)
  */
 void utilities_global_pointer_setter_41(void)
 {
-    _DAT_180bf97b0 = &UNK_18098bcb0;
+    _DAT_180bf97b0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1188,7 +1188,7 @@ void utilities_global_pointer_setter_41(void)
  */
 void utilities_global_pointer_setter_42(void)
 {
-    _DAT_180bf9810 = &UNK_18098bcb0;
+    _DAT_180bf9810 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1200,7 +1200,7 @@ void utilities_global_pointer_setter_42(void)
  */
 void utilities_global_pointer_setter_43(void)
 {
-    _DAT_180bf9870 = &UNK_18098bcb0;
+    _DAT_180bf9870 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1212,7 +1212,7 @@ void utilities_global_pointer_setter_43(void)
  */
 void utilities_global_pointer_setter_44(void)
 {
-    _DAT_180bf98d0 = &UNK_18098bcb0;
+    _DAT_180bf98d0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1224,7 +1224,7 @@ void utilities_global_pointer_setter_44(void)
  */
 void utilities_global_pointer_setter_45(void)
 {
-    _DAT_180bf9930 = &UNK_18098bcb0;
+    _DAT_180bf9930 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1236,7 +1236,7 @@ void utilities_global_pointer_setter_45(void)
  */
 void utilities_global_pointer_setter_46(void)
 {
-    _DAT_180bf9990 = &UNK_18098bcb0;
+    _DAT_180bf9990 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1248,7 +1248,7 @@ void utilities_global_pointer_setter_46(void)
  */
 void utilities_global_pointer_setter_47(void)
 {
-    _DAT_180bf99f0 = &UNK_18098bcb0;
+    _DAT_180bf99f0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1260,7 +1260,7 @@ void utilities_global_pointer_setter_47(void)
  */
 void utilities_global_pointer_setter_48(void)
 {
-    _DAT_180bf9a50 = &UNK_18098bcb0;
+    _DAT_180bf9a50 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1272,7 +1272,7 @@ void utilities_global_pointer_setter_48(void)
  */
 void utilities_global_pointer_setter_49(void)
 {
-    _DAT_180bf9ab0 = &UNK_18098bcb0;
+    _DAT_180bf9ab0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1284,7 +1284,7 @@ void utilities_global_pointer_setter_49(void)
  */
 void utilities_global_pointer_setter_50(void)
 {
-    _DAT_180bf9b10 = &UNK_18098bcb0;
+    _DAT_180bf9b10 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1296,7 +1296,7 @@ void utilities_global_pointer_setter_50(void)
  */
 void utilities_global_pointer_setter_51(void)
 {
-    _DAT_180bf9b70 = &UNK_18098bcb0;
+    _DAT_180bf9b70 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1308,7 +1308,7 @@ void utilities_global_pointer_setter_51(void)
  */
 void utilities_global_pointer_setter_52(void)
 {
-    _DAT_180bf9bd0 = &UNK_18098bcb0;
+    _DAT_180bf9bd0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1320,7 +1320,7 @@ void utilities_global_pointer_setter_52(void)
  */
 void utilities_global_pointer_setter_53(void)
 {
-    _DAT_180bf9c30 = &UNK_18098bcb0;
+    _DAT_180bf9c30 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1332,7 +1332,7 @@ void utilities_global_pointer_setter_53(void)
  */
 void utilities_global_pointer_setter_54(void)
 {
-    _DAT_180bf9c90 = &UNK_18098bcb0;
+    _DAT_180bf9c90 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1344,7 +1344,7 @@ void utilities_global_pointer_setter_54(void)
  */
 void utilities_global_pointer_setter_55(void)
 {
-    _DAT_180bf9cf0 = &UNK_18098bcb0;
+    _DAT_180bf9cf0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1356,7 +1356,7 @@ void utilities_global_pointer_setter_55(void)
  */
 void utilities_global_pointer_setter_56(void)
 {
-    _DAT_180bf9d50 = &UNK_18098bcb0;
+    _DAT_180bf9d50 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1368,7 +1368,7 @@ void utilities_global_pointer_setter_56(void)
  */
 void utilities_global_pointer_setter_57(void)
 {
-    _DAT_180bf9db0 = &UNK_18098bcb0;
+    _DAT_180bf9db0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1380,7 +1380,7 @@ void utilities_global_pointer_setter_57(void)
  */
 void utilities_global_pointer_setter_58(void)
 {
-    _DAT_180bf9e10 = &UNK_18098bcb0;
+    _DAT_180bf9e10 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1392,7 +1392,7 @@ void utilities_global_pointer_setter_58(void)
  */
 void utilities_global_pointer_setter_59(void)
 {
-    _DAT_180bf9e70 = &UNK_18098bcb0;
+    _DAT_180bf9e70 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1404,7 +1404,7 @@ void utilities_global_pointer_setter_59(void)
  */
 void utilities_global_pointer_setter_60(void)
 {
-    _DAT_180bf9ed0 = &UNK_18098bcb0;
+    _DAT_180bf9ed0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1416,7 +1416,7 @@ void utilities_global_pointer_setter_60(void)
  */
 void utilities_global_pointer_setter_61(void)
 {
-    _DAT_180bf9f30 = &UNK_18098bcb0;
+    _DAT_180bf9f30 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1428,7 +1428,7 @@ void utilities_global_pointer_setter_61(void)
  */
 void utilities_global_pointer_setter_62(void)
 {
-    _DAT_180bf9f90 = &UNK_18098bcb0;
+    _DAT_180bf9f90 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1440,7 +1440,7 @@ void utilities_global_pointer_setter_62(void)
  */
 void utilities_global_pointer_setter_63(void)
 {
-    _DAT_180bf9ff0 = &UNK_18098bcb0;
+    _DAT_180bf9ff0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1452,7 +1452,7 @@ void utilities_global_pointer_setter_63(void)
  */
 void utilities_global_pointer_setter_64(void)
 {
-    _DAT_180bfa050 = &UNK_18098bcb0;
+    _DAT_180bfa050 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1464,7 +1464,7 @@ void utilities_global_pointer_setter_64(void)
  */
 void utilities_global_pointer_setter_65(void)
 {
-    _DAT_180bfa0b0 = &UNK_18098bcb0;
+    _DAT_180bfa0b0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1476,7 +1476,7 @@ void utilities_global_pointer_setter_65(void)
  */
 void utilities_global_pointer_setter_66(void)
 {
-    _DAT_180bfa110 = &UNK_18098bcb0;
+    _DAT_180bfa110 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1488,7 +1488,7 @@ void utilities_global_pointer_setter_66(void)
  */
 void utilities_global_pointer_setter_67(void)
 {
-    _DAT_180bfa170 = &UNK_18098bcb0;
+    _DAT_180bfa170 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1500,7 +1500,7 @@ void utilities_global_pointer_setter_67(void)
  */
 void utilities_global_pointer_setter_68(void)
 {
-    _DAT_180bfa1d0 = &UNK_18098bcb0;
+    _DAT_180bfa1d0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1512,7 +1512,7 @@ void utilities_global_pointer_setter_68(void)
  */
 void utilities_global_pointer_setter_69(void)
 {
-    _DAT_180bfa230 = &UNK_18098bcb0;
+    _DAT_180bfa230 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1524,7 +1524,7 @@ void utilities_global_pointer_setter_69(void)
  */
 void utilities_global_pointer_setter_70(void)
 {
-    _DAT_180bfa290 = &UNK_18098bcb0;
+    _DAT_180bfa290 = &unknown_var_720_ptr;
     return;
 }
 

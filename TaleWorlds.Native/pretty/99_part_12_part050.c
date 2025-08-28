@@ -288,7 +288,7 @@ int AudioSimd_InitializeBuffers(void* audio_context, float time_scale)
     void* allocated_memory = Memory_AllocateAligned(
         *(void**)((uintptr_t)_DAT_180be12f0 + 0x1a0), 
         total_size * 4, 
-        &UNK_18097db40, 
+        &unknown_var_3008_ptr, 
         0x9b, 
         0
     );

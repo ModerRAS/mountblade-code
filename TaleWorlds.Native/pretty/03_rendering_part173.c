@@ -547,7 +547,7 @@ void FUN_180374f40(longlong param_1,longlong param_2)
     }
     else {
       puVar1 = *(uint64_t **)(param_1 + 0x2308);
-      if ((void *)*puVar1 == &UNK_180a2ada8) {
+      if ((void *)*puVar1 == &unknown_var_2232_ptr) {
         uStack_78 = puVar1[0x18];
         plVar9 = (longlong *)
                  (((longlong)*(int *)(*(longlong *)(uStack_78 + 0x2148) + 0x3054) + 0x10b) * 0x20 +
@@ -595,7 +595,7 @@ void FUN_180374f40(longlong param_1,longlong param_2)
         (**(code **)((void *)*puVar1 + 0x60))(puVar1);
       }
       puVar1 = *(uint64_t **)(param_1 + 0x2308);
-      if ((void *)*puVar1 == &UNK_180a2ada8) {
+      if ((void *)*puVar1 == &unknown_var_2232_ptr) {
         LOCK();
         *(int8_t *)(puVar1 + 2) = 1;
         UNLOCK();

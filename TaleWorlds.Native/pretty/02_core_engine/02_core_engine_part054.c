@@ -141,7 +141,7 @@ uint64_t *
 initialize_memory_block_with_vtable(uint64_t *memory_block, ulonglong flags, uint64_t param3, uint64_t param4)
 {
   // 设置虚函数表指针
-  *memory_block = &UNK_18098bcb0;
+  *memory_block = &unknown_var_720_ptr;
   
   // 如果设置了释放标志，则释放内存
   if ((flags & 1) != 0) {
@@ -188,7 +188,7 @@ void safe_copy_string_to_buffer(longlong string_buffer, longlong source_string)
   }
   
   // 字符串过长，使用扩展处理函数
-  FUN_180626f80(&UNK_18098bc48, 0x200, source_string);
+  FUN_180626f80(&unknown_var_616_ptr, 0x200, source_string);
   *(int *)(string_buffer + 0x10) = 0;  // 重置长度标志
   **(char **)(string_buffer + 8) = 0;  // 清空字符串内容
   return;
@@ -287,7 +287,7 @@ void string_replace_and_memory_operation(longlong string_buffer, longlong search
   // 初始化栈变量和安全cookie
   stack_value_278 = 0xfffffffffffffffe;
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_298;
-  stack_ptr_268 = &UNK_180a009c8;
+  stack_ptr_268 = &unknown_var_9208_ptr;
   stack_buffer_260 = stack_buffer_250;
   stack_value_258 = 0;
   stack_buffer_250[0] = 0;
@@ -312,7 +312,7 @@ void string_replace_and_memory_operation(longlong string_buffer, longlong search
   }
   
   // 设置虚函数表指针
-  stack_ptr_268 = &UNK_18098bcb0;
+  stack_ptr_268 = &unknown_var_720_ptr;
   
   // 执行内存清理操作
   FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer_298);
@@ -341,7 +341,7 @@ uint64_t * create_memory_manager_object(uint64_t memory_pool, int32_t config_fla
   FUN_1802565b0(manager_ptr, memory_pool, config_flags);
   
   // 设置虚函数表
-  *manager_ptr = &UNK_180a00a18;
+  *manager_ptr = &unknown_var_9288_ptr;
   
   // 初始化成员变量
   manager_ptr[0x16] = 0;
@@ -372,7 +372,7 @@ uint64_t * create_advanced_memory_manager_object(uint64_t memory_pool, int32_t c
   FUN_1802565b0(manager_ptr, memory_pool, config_flags);
   
   // 设置高级虚函数表
-  *manager_ptr = &UNK_180a00ae8;
+  *manager_ptr = &unknown_var_9496_ptr;
   
   // 初始化成员变量
   manager_ptr[0x16] = 0;
@@ -455,7 +455,7 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
     }
     
     // 调用线程对象的设置函数
-    (**(code **)(*(longlong *)(*thread_pool + 0x10) + 0x10))((longlong *)(*thread_pool + 0x10), &UNK_180a01310);
+    (**(code **)(*(longlong *)(*thread_pool + 0x10) + 0x10))((longlong *)(*thread_pool + 0x10), &unknown_var_1584_ptr);
     
     object_ptr = *thread_pool;
     
@@ -860,7 +860,7 @@ void process_render_objects(float *render_manager, uint64_t render_context, int3
       render_object = *(longlong **)(render_manager + render_index * 2 + 2);
       
       // 检查对象是否对齐
-      if (*(code **)(*render_object + 0xc0) == (code *)&UNK_180277e10) {
+      if (*(code **)(*render_object + 0xc0) == (code *)&unknown_var_9120_ptr) {
         is_aligned = (render_object[8] - render_object[7] & 0xfffffffffffffff0U) == 0;
       }
       else {
@@ -1092,7 +1092,7 @@ longlong * create_render_manager(longlong *render_manager)
   
   // 调用渲染对象的设置函数
   (**(code **)(*(longlong *)(*render_manager + 0x10) + 0x10))
-            ((longlong *)(*render_manager + 0x10), &UNK_180a01378);
+            ((longlong *)(*render_manager + 0x10), &unknown_var_1688_ptr);
   
   return render_manager;
 }
@@ -1264,11 +1264,11 @@ void main_render_loop(void)
     if (current_state != '\0') goto ACTIVE_RENDERING;
     
     // 初始化渲染资源
-    resource_manager = &UNK_1809fcc58;
+    resource_manager = &unknown_var_3480_ptr;
     string_buffer = stack_buffer_70;
     stack_buffer_70[0] = 0;
     buffer_size = 0x17;
-    render_result = strcpy_s(stack_buffer_70, 0x40, &UNK_180a01360);
+    render_result = strcpy_s(stack_buffer_70, 0x40, &unknown_var_1664_ptr);
     active_flag = 1;
     render_result = FUN_180157390(render_result, &resource_ptr, &resource_manager, 0);
     FUN_180060b80(engine_context + 0x1698, render_result);
@@ -1279,7 +1279,7 @@ void main_render_loop(void)
     }
     
     // 设置资源管理器
-    resource_manager = &UNK_18098bcb0;
+    resource_manager = &unknown_var_720_ptr;
     (**(code **)(**(longlong **)(engine_context + 0x1698) + 0x60))();
     
 RENDER_CONTINUE:
@@ -1394,7 +1394,7 @@ void update_render_parameters(void)
   
   // 分辨率发生变化，触发重新配置
   // 注意：此函数可能不返回，将触发系统重新初始化
-  FUN_180062300(_DAT_180c86928, &UNK_180a16bd0, *(int *)(config_ptr + 4), 
+  FUN_180062300(_DAT_180c86928, &unknown_var_9840_ptr, *(int *)(config_ptr + 4), 
                 *(int32_t *)(config_ptr + 8), new_height, new_width);
 }
 

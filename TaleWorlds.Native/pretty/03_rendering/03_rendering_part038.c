@@ -114,10 +114,10 @@ void update_render_animation_time(longlong render_context, uint64_t param_2, uin
 uint64_t *
 process_render_string(uint64_t param_1, uint64_t *string_buffer, uint64_t param_3, uint64_t param_4)
 {
-  *string_buffer = &UNK_18098bcb0;
+  *string_buffer = &unknown_var_720_ptr;
   string_buffer[1] = 0;
   *(int32_t *)(string_buffer + 2) = 0;
-  *string_buffer = &UNK_1809fcc28;
+  *string_buffer = &unknown_var_3432_ptr;
   string_buffer[1] = string_buffer + 3;
   *(int8_t *)(string_buffer + 3) = 0;
   *(int32_t *)(string_buffer + 2) = 0x16;
@@ -141,7 +141,7 @@ cleanup_render_resources(uint64_t *resource_ptr, ulonglong cleanup_flags, uint64
   uint64_t cleanup_flag;
   
   cleanup_flag = MAX_RENDER_QUEUE_SIZE;
-  *resource_ptr = &UNK_180a16c98;
+  *resource_ptr = &unknown_var_40_ptr;
   if ((longlong *)resource_ptr[0x1e] != (longlong *)0x0) {
     (**(code **)(*(longlong *)resource_ptr[0x1e] + 0x38))();
   }
@@ -167,10 +167,10 @@ initialize_render_data(uint64_t param_1, uint64_t *data_buffer, uint64_t param_3
 {
   uint64_t *data_ptr;
   
-  *data_buffer = &UNK_18098bcb0;
+  *data_buffer = &unknown_var_720_ptr;
   data_buffer[1] = 0;
   *(int32_t *)(data_buffer + 2) = 0;
-  *data_buffer = &UNK_180a3c3e0;
+  *data_buffer = &unknown_var_3456_ptr;
   data_buffer[3] = 0;
   data_buffer[1] = 0;
   *(int32_t *)(data_buffer + 2) = 0;

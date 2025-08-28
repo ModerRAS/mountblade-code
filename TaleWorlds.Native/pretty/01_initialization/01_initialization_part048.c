@@ -332,14 +332,14 @@ void CleanupObjectList(longlong *object_list)
   
   list_end = (uint64_t *)object_list[1];
   for (list_item = (uint64_t *)*object_list; list_item != list_end; list_item = list_item + 6) {
-    *list_item = &UNK_180a3c3e0;  // 设置默认值
+    *list_item = &unknown_var_3456_ptr;  // 设置默认值
     if (list_item[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();  // 释放内存
     }
     list_item[1] = 0;
     *(int32_t *)(list_item + 3) = 0;
-    *list_item = &UNK_18098bcb0;  // 重置状态
+    *list_item = &unknown_var_720_ptr;  // 重置状态
   }
   if (*object_list != 0) {
                     // WARNING: Subroutine does not return
@@ -452,13 +452,13 @@ void ProcessDeviceOperations(longlong *device_params)
   stack_var3 = 0xfffffffffffffffe;
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
   device_config = *(uint64_t *)(device_params[0x37] + 0x1e0);
-  stack_ptr2 = &UNK_18098bc80;
+  stack_ptr2 = &unknown_var_672_ptr;
   stack_ptr3 = stack_buffer2;
   stack_buffer2[0] = stack_buffer2[0] & 0xffffffffffffff00;
   stack_var2._0_4_ = 0x12;
-  strcpy_s(stack_buffer2, 0x20, &UNK_1809ffa98);
+  strcpy_s(stack_buffer2, 0x20, &unknown_var_5320_ptr);
   config_mask = FUN_180240430(device_config, &stack_ptr2, 0);
-  stack_ptr2 = &UNK_18098bcb0;
+  stack_ptr2 = &unknown_var_720_ptr;
   
   if (config_mask != 0) {
     device_base = device_params[0x37];
@@ -620,7 +620,7 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
       // 检查是否需要处理特殊标志
       if ((*(byte *)(device_ptr + 0xfd) & 8) != 0) {
         component_ptr = 0xb8;
-        device_callback = (code *)&UNK_1802426a0;
+        device_callback = (code *)&unknown_var_128_ptr;
         do {
           list_ptr = *(longlong *)(component_ptr + *(longlong *)(device_ptr + 0x1b8));
           if (((list_ptr != 0) && (component_ptr = *(longlong *)(list_ptr + 0x370), component_ptr != 0)) &&
@@ -675,7 +675,7 @@ uint64_t ProcessDeviceStatusUpdate(longlong device_ptr, longlong context_ptr)
             *(longlong *)
              (*(longlong *)(component_ptr + 0x3f70 + hash_value * 8) + (ulonglong)(counter_value + hash_index * -0x400) * 8)
                  = list_ptr;
-            device_callback = (code *)&UNK_1802426a0;
+            device_callback = (code *)&unknown_var_128_ptr;
           }
           component_ptr = component_ptr + 8;
         } while (component_ptr < 0x138);

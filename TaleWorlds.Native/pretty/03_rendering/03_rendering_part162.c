@@ -162,7 +162,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         } while (temp_counter + 1 != RENDERING_SYSTEM_STRING_LENGTH_5);
         
         // 准备输出缓冲区
-        stack_buffer_60 = &UNK_180a3c3e0;
+        stack_buffer_60 = &unknown_var_3456_ptr;
         stack_ulong_48 = 0;
         stack_buffer_58 = (void*)0x0;
         stack_uint_50 = 0;
@@ -170,7 +170,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         // 分配字符串缓冲区
         buffer_ptr = (uint32_t*)
                     FUN_18062b420(_DAT_180c8ed18, (int)temp_counter + RENDERING_SYSTEM_BUFFER_SIZE_12, 
-                                 &UNK_180a20e13, param_4, RENDERING_SYSTEM_FLAG_0xfffffffffffffffe);
+                                 &unknown_var_1379_ptr, param_4, RENDERING_SYSTEM_FLAG_0xfffffffffffffffe);
         
         // 初始化缓冲区
         *(uint8_t*)buffer_ptr = 0;
@@ -190,7 +190,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         FUN_180066df0(output_handler, &stack_buffer_60);
         
         // 清理缓冲区
-        stack_buffer_60 = &UNK_180a3c3e0;
+        stack_buffer_60 = &unknown_var_3456_ptr;
         if (stack_buffer_58 != (void*)0x0) {
             // 释放缓冲区
             FUN_18064e900();
@@ -199,8 +199,8 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         // 准备下一个输出
         stack_buffer_58 = (void*)0x0;
         stack_ulong_48 = (uint64_t)stack_ulong_48 >> 0x20;
-        stack_buffer_60 = &UNK_18098bcb0;
-        stack_buffer_40 = &UNK_180a3c3e0;
+        stack_buffer_60 = &unknown_var_720_ptr;
+        stack_buffer_40 = &unknown_var_3456_ptr;
         stack_ulong_28 = 0;
         stack_buffer_38 = (void*)0x0;
         stack_uint_30 = 0;
@@ -220,7 +220,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 输出第二个字符串
         FUN_180066df0(output_handler, &stack_buffer_40);
-        stack_buffer_40 = &UNK_180a3c3e0;
+        stack_buffer_40 = &unknown_var_3456_ptr;
         
         // 清理第二个缓冲区
         if (stack_buffer_38 != (void*)0x0) {
@@ -230,8 +230,8 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         // 准备第三个输出
         stack_buffer_38 = (void*)0x0;
         stack_ulong_28 = (uint64_t)stack_ulong_28 >> 0x20;
-        stack_buffer_40 = &UNK_18098bcb0;
-        stack_buffer_60 = &UNK_180a3c3e0;
+        stack_buffer_40 = &unknown_var_720_ptr;
+        stack_buffer_60 = &unknown_var_3456_ptr;
         stack_ulong_48 = 0;
         stack_buffer_58 = (void*)0x0;
         stack_uint_50 = 0;
@@ -252,7 +252,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 输出第三个字符串
         FUN_180066df0(output_handler, &stack_buffer_60);
-        stack_buffer_60 = &UNK_180a3c3e0;
+        stack_buffer_60 = &unknown_var_3456_ptr;
         
         // 清理第三个缓冲区
         if (stack_buffer_58 != (void*)0x0) {
@@ -262,8 +262,8 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         // 准备第四个输出
         stack_buffer_58 = (void*)0x0;
         stack_ulong_48 = (uint64_t)stack_ulong_48 >> 0x20;
-        stack_buffer_60 = &UNK_18098bcb0;
-        stack_buffer_40 = &UNK_180a3c3e0;
+        stack_buffer_60 = &unknown_var_720_ptr;
+        stack_buffer_40 = &unknown_var_3456_ptr;
         stack_ulong_28 = 0;
         stack_buffer_38 = (void*)0x0;
         stack_uint_30 = 0;
@@ -287,7 +287,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 输出第四个字符串
         FUN_180066df0(output_handler, &stack_buffer_40);
-        stack_buffer_40 = &UNK_180a3c3e0;
+        stack_buffer_40 = &unknown_var_3456_ptr;
         
         // 清理第四个缓冲区
         if (stack_buffer_38 != (void*)0x0) {
@@ -370,7 +370,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
     
     // 检查对象状态
     if (long_ptr2[0x4d] == 0) {
-        FUN_180170ac0(long_ptr2, &UNK_180a0ba98);
+        FUN_180170ac0(long_ptr2, &unknown_var_4472_ptr);
     }
     
     // 初始化对象数据
@@ -396,7 +396,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
     }
     
     stack_uint_38 = 0;
-    FUN_180170ac0(*(uint64_t*)(object_data + 0xe8), &UNK_180a1ed48);
+    FUN_180170ac0(*(uint64_t*)(object_data + 0xe8), &unknown_var_2984_ptr);
     long_val = *(int64_t*)(object_data + 0xe8);
     uint_val3 = *(uint*)(long_val + RENDERING_SYSTEM_OFFSET_0x2ac);
     *(uint*)(long_val + RENDERING_SYSTEM_OFFSET_0x2ac) = uint_val3 | RENDERING_SYSTEM_FLAG_0x2020000;
@@ -431,7 +431,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
             void_ptr = *(void**)(long_val + RENDERING_SYSTEM_OFFSET_0x290);
         }
         stack_ulong2 = 0x18036b358;
-        FUN_180626f80(&UNK_180a20e90, void_ptr);
+        FUN_180626f80(&unknown_var_1504_ptr, void_ptr);
     }
     
     // 更新对象状态

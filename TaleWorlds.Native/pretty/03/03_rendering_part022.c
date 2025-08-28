@@ -162,17 +162,17 @@ LAB_18027c801:
   
   // 检查渲染标志差异
   if (*(int *)((longlong)mesh_component_ptr + 0x324) != *(int *)((longlong)stack_mesh_ptr + 0x324)) {
-    FUN_180630c80(render_context_ptr, component_data_ptr, &UNK_180a16828);
+    FUN_180630c80(render_context_ptr, component_data_ptr, &unknown_var_8904_ptr);
   }
   
   // 获取网格数据和纹理数据
-  if ((void *)*stack_mesh_ptr == &UNK_180a169b8) {
+  if ((void *)*stack_mesh_ptr == &unknown_var_9304_ptr) {
     mesh_data_ptr = stack_mesh_ptr + 0x66;
   }
   else {
     mesh_data_ptr = (uint64_t *)(**(code **)((void *)*stack_mesh_ptr + 0x158))(stack_mesh_ptr);
   }
-  if ((void *)*mesh_component_ptr == &UNK_180a169b8) {
+  if ((void *)*mesh_component_ptr == &unknown_var_9304_ptr) {
     texture_ptr = mesh_component_ptr + 0x66;
   }
   else {
@@ -189,9 +189,9 @@ LAB_18027c801:
     float_pack2 = *(int32_t *)((longlong)mesh_component_ptr + 0x36c);
     FUN_1801c1720(mesh_component_ptr + 0x66, &float_val);
     FUN_180085020(mesh_component_ptr + 0x66, stack_array);
-    FUN_18062fb40(render_context_ptr, component_data_ptr, &UNK_180a16808, &float_val4);
-    FUN_18062fb40(render_context_ptr, component_data_ptr, &UNK_180a16818, &float_val);
-    FUN_18062fb40(render_context_ptr, component_data_ptr, &UNK_180a0f108, stack_array);
+    FUN_18062fb40(render_context_ptr, component_data_ptr, &unknown_var_8872_ptr, &float_val4);
+    FUN_18062fb40(render_context_ptr, component_data_ptr, &unknown_var_8888_ptr, &float_val);
+    FUN_18062fb40(render_context_ptr, component_data_ptr, &unknown_var_8408_ptr, stack_array);
   }
   
   // 处理材质
@@ -201,7 +201,7 @@ LAB_18027c801:
     if (render_obj_ptr != (void *)0x0) {
       material_ptr = render_obj_ptr;
     }
-    FUN_180630b20(render_context_ptr, component_data_ptr, &UNK_180a16840, material_ptr);
+    FUN_180630b20(render_context_ptr, component_data_ptr, &unknown_var_8928_ptr, material_ptr);
   }
   
   // 处理子网格
@@ -211,7 +211,7 @@ LAB_18027c801:
     stack_array[0] = 0;
     do {
       mesh_index = stack_array[0];
-      render_obj_ptr = &UNK_180a3c3e0;
+      render_obj_ptr = &unknown_var_3456_ptr;
       long_val = *(longlong *)(long_val + mesh_index * 0x10);
       
       // 获取网格数据
@@ -272,7 +272,7 @@ LAB_18027c801:
         string_ptr2 = string_ptr;
         string_ptr = string_ptr2 + 1;
       } while (*string_ptr != '\0');
-      *mesh_data_ptr = &UNK_180a0f3e8;
+      *mesh_data_ptr = &unknown_var_9144_ptr;
       mesh_data_ptr[2] = string_ptr2 + -0x180a0f3e7;
       
       // 处理子网格数据
@@ -291,7 +291,7 @@ LAB_18027c801:
           
           // 处理子网格名称
           stack_uint2 = (uint)data_ptr;
-          stack_data_ptr = &UNK_180a3c3e0;
+          stack_data_ptr = &unknown_var_3456_ptr;
           stack_ulong2 = 0;
           data_ptr = data_ptr;
           if (*(int *)(long_val2 + 0x10) != 0) {
@@ -419,7 +419,7 @@ LAB_18027cd98:
                   FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                   long_val2 = FUN_180079430(long_val);
-                  stack_data_ptr = &UNK_180a3c3e0;
+                  stack_data_ptr = &unknown_var_3456_ptr;
                   stack_ulong2 = 0;
                   stack_char_ptr2 = (int8_t *)0x0;
                   stack_uint2 = 0;
@@ -469,14 +469,14 @@ LAB_18027cd98:
                   if (stack_char_ptr2 != (int8_t *)0x0) {
                     data_ptr = stack_char_ptr2;
                   }
-                  FUN_180630b20(render_context_ptr, mesh_data_ptr, &UNK_180a04ec0, data_ptr);
-                  stack_data_ptr = &UNK_180a3c3e0;
+                  FUN_180630b20(render_context_ptr, mesh_data_ptr, &unknown_var_6864_ptr, data_ptr);
+                  stack_data_ptr = &unknown_var_3456_ptr;
                   if (stack_char_ptr2 != (int8_t *)0x0) {
                     FUN_18064e900();
                   }
                   stack_char_ptr2 = (int8_t *)0x0;
                   stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-                  stack_data_ptr = &UNK_18098bcb0;
+                  stack_data_ptr = &unknown_var_720_ptr;
                 }
               }
               
@@ -518,7 +518,7 @@ LAB_18027cd98:
                 if (uint_val5 < 0xff) {
                   uint_val4 = uint_val5;
                 }
-                FUN_18062f640(render_context_ptr, mesh_data_ptr, &UNK_180a1674c,
+                FUN_18062f640(render_context_ptr, mesh_data_ptr, &unknown_var_8684_ptr,
                               ((uint_val6 << 8 | uint_val2) << 8 | uint_val3) << 8 | uint_val4);
               }
               
@@ -560,7 +560,7 @@ LAB_18027cd98:
                 if (uint_val5 < 0xff) {
                   uint_val4 = uint_val5;
                 }
-                FUN_18062f640(render_context_ptr, mesh_data_ptr, &UNK_180a16800,
+                FUN_18062f640(render_context_ptr, mesh_data_ptr, &unknown_var_8864_ptr,
                               ((uint_val6 << 8 | uint_val2) << 8 | uint_val3) << 8 | uint_val4);
               }
               
@@ -576,7 +576,7 @@ LAB_18027cd98:
                   FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                 }
-                FUN_180630010(render_context_ptr, mesh_data_ptr, &UNK_180a167e0, long_val + 0x2a8);
+                FUN_180630010(render_context_ptr, mesh_data_ptr, &unknown_var_8832_ptr, long_val + 0x2a8);
               }
               if (((*(float *)(mesh_index + 0x2b8) != *(float *)(long_val + 0x2b8)) ||
                   (*(float *)(mesh_index + 700) != *(float *)(long_val + 700))) ||
@@ -589,7 +589,7 @@ LAB_18027cd98:
                   FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                 }
-                FUN_180630010(render_context_ptr, mesh_data_ptr, &UNK_180a167f0, long_val + 0x2b8);
+                FUN_180630010(render_context_ptr, mesh_data_ptr, &unknown_var_8848_ptr, long_val + 0x2b8);
               }
               
               // 添加子网格到组件
@@ -609,26 +609,26 @@ LAB_18027cd98:
             }
           }
           else if (buffer_size == 0) goto LAB_18027cd22;
-          stack_data_ptr = &UNK_180a3c3e0;
+          stack_data_ptr = &unknown_var_3456_ptr;
           if (stack_char_ptr2 != (int8_t *)0x0) {
             FUN_18064e900();
           }
           stack_char_ptr2 = (int8_t *)0x0;
           stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-          stack_data_ptr = &UNK_18098bcb0;
+          stack_data_ptr = &unknown_var_720_ptr;
           stack_index = stack_index + 1;
           stack_long = stack_long + 1;
           mesh_index = stack_array[0];
         } while ((ulonglong)(longlong)stack_index <
                  (ulonglong)((longlong)(mesh_component_ptr[8] - mesh_component_ptr[7]) >> 4));
       }
-      stack_render_ptr = &UNK_180a3c3e0;
+      stack_render_ptr = &unknown_var_3456_ptr;
       if (stack_buffer_ptr != (byte *)0x0) {
         FUN_18064e900();
       }
       stack_buffer_ptr = (byte *)0x0;
       buffer_capacity = buffer_capacity & 0xffffffff00000000;
-      stack_render_ptr = &UNK_18098bcb0;
+      stack_render_ptr = &unknown_var_720_ptr;
       iStack_a8 = iStack_a8 + 1;
       stack_array[0] = mesh_index + 1;
       long_val = mesh_component_ptr[7];
@@ -638,7 +638,7 @@ LAB_18027cd98:
   // 将组件添加到场景对象
   if ((component_data_ptr[6] != 0) || (component_data_ptr[8] != 0)) {
     if (render_flags != 0) {
-      FUN_180630c80(render_context_ptr, component_data_ptr, &UNK_180a16930);
+      FUN_180630c80(render_context_ptr, component_data_ptr, &unknown_var_9168_ptr);
     }
     if (*(longlong *)(scene_object_ptr + 0x30) == 0) {
       component_data_ptr[10] = 0;
@@ -726,13 +726,13 @@ LAB_18027d492:
   *(int32_t *)(file_offset + 0x10) = 0;
   *(uint64_t *)(file_offset + 8) = 0;
   *(uint64_t *)(file_offset + 0x18) = 0;
-  temp_ptr = &UNK_180a3c3e0;
+  temp_ptr = &unknown_var_3456_ptr;
   if (temp_size != 0) {
     FUN_18064e900();
   }
   temp_size = 0;
   temp_data = 0;
-  temp_ptr = &UNK_18098bcb0;
+  temp_ptr = &unknown_var_720_ptr;
   file_size = path_length + 4;
   FUN_1806277c0(path_buffer, file_size);
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2f;  // "/mmd"
@@ -753,7 +753,7 @@ LAB_18027d492:
   }
   *file_handle = 0;
   *(int8_t *)(file_handle + 2) = 0;
-  FUN_18062dee0(file_handle, data_ptr, &UNK_180a0cf4c);
+  FUN_18062dee0(file_handle, data_ptr, &unknown_var_9772_ptr);
   magic_number = 0x31444d4d;  // "MMD1"
   fwrite(&magic_number, 4, 1, file_handle[1]);
   

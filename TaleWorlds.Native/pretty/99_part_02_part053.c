@@ -896,7 +896,7 @@ LAB_1801bf606:
           plVar10 = plVar13 + uVar9;
           plVar8 = (longlong *)*plVar10;
           pcVar3 = *(code **)(*plVar8 + 0x68);
-          if (pcVar3 == (code *)&UNK_1800467f0) {
+          if (pcVar3 == (code *)&unknown_var_9696_ptr) {
             cVar14 = (char)plVar8[2] != '\0';
             plVar13 = plStack_68;
           }
@@ -910,7 +910,7 @@ LAB_1801bf606:
             if (cVar14 == '\0') {
               plVar10 = (longlong *)*plVar10;
               pcVar3 = *(code **)(*plVar10 + 0x80);
-              if (pcVar3 == (code *)&UNK_180049760) {
+              if (pcVar3 == (code *)&unknown_var_1840_ptr) {
                 FUN_1800496b0(plVar10 + 4);
               }
               else {

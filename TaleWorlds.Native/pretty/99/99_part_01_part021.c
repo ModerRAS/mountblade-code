@@ -620,7 +620,7 @@ LAB_1800b56df:
         if (*(void **)(*param_2 + 0x18) != (void *)0x0) {
             puVar7 = *(void **)(*param_2 + 0x18);
         }
-        FUN_180626f80(&UNK_180a02bc8, puVar7);
+        FUN_180626f80(&unknown_var_7912_ptr, puVar7);
     }
     
     // 清理事件处理器
@@ -685,7 +685,7 @@ void SystemMemoryManager(uint64_t param_1, longlong *param_2) {
     if (plVar7 != *(longlong **)(_DAT_180c86930 + 0x1d8)) {
         do {
             // 初始化内存块信息
-            puStack_98 = &UNK_1809fcc58;
+            puStack_98 = &unknown_var_3480_ptr;
             puStack_90 = auStack_80;
             auStack_80[0] = 0;
             uStack_88 = *(int32_t *)(*plVar7 + 0x20);
@@ -701,10 +701,10 @@ void SystemMemoryManager(uint64_t param_1, longlong *param_2) {
             if (puVar4 < (uint64_t *)param_2[2]) {
                 // 分配新的内存块
                 param_2[1] = (longlong)(puVar4 + 0xb);
-                *puVar4 = &UNK_18098bcb0;
+                *puVar4 = &unknown_var_720_ptr;
                 puVar4[1] = 0;
                 *(int32_t *)(puVar4 + 2) = 0;
-                *puVar4 = &UNK_1809fcc58;
+                *puVar4 = &unknown_var_3480_ptr;
                 puVar4[1] = puVar4 + 3;
                 *(int32_t *)(puVar4 + 2) = 0;
                 *(int8_t *)(puVar4 + 3) = 0;
@@ -739,10 +739,10 @@ LAB_1800b5909:
                     // 复制现有数据到新的内存池
                     lVar9 = (longlong)puVar3 - (longlong)puVar1;
                     do {
-                        *puVar2 = &UNK_18098bcb0;
+                        *puVar2 = &unknown_var_720_ptr;
                         puVar2[1] = 0;
                         *(int32_t *)(puVar2 + 2) = 0;
-                        *puVar2 = &UNK_1809fcc58;
+                        *puVar2 = &unknown_var_3480_ptr;
                         puVar2[1] = puVar2 + 3;
                         *(int32_t *)(puVar2 + 2) = 0;
                         *(int8_t *)(puVar2 + 3) = 0;
@@ -761,10 +761,10 @@ LAB_1800b5909:
                 }
                 
                 // 添加新的内存块
-                *puVar2 = &UNK_18098bcb0;
+                *puVar2 = &unknown_var_720_ptr;
                 puVar2[1] = 0;
                 *(int32_t *)(puVar2 + 2) = 0;
-                *puVar2 = &UNK_1809fcc58;
+                *puVar2 = &unknown_var_3480_ptr;
                 puVar2[1] = puVar2 + 3;
                 *(int32_t *)(puVar2 + 2) = 0;
                 *(int8_t *)(puVar2 + 3) = 0;
@@ -797,7 +797,7 @@ LAB_1800b5909:
                 param_2[1] = (longlong)(puVar2 + 0xb);
                 param_2[2] = (longlong)(puVar1 + lVar10 * 0xb);
             }
-            puStack_98 = &UNK_18098bcb0;
+            puStack_98 = &unknown_var_720_ptr;
             plVar7 = plVar7 + 1;
         } while (plVar7 != *(longlong **)(lVar8 + 0x1d8));
     }
@@ -859,15 +859,15 @@ void SystemStatusMonitor(uint64_t param_1, longlong *param_2, float param_3) {
     
     // 检查是否需要初始化监控器
     if (*plVar6 == 0) {
-        puStack_90 = &UNK_180a3c3e0;
+        puStack_90 = &unknown_var_3456_ptr;
         uStack_78 = 0;
         lStack_88 = 0;
         uStack_80 = 0;
         
         // 初始化监控数据缓冲区
         do {
-            (**(code **)(puStack_90 + 0x10))(&puStack_90, &UNK_180a02bb8);
-            FUN_180060680(acStack_50, &UNK_1809fd0a0, iVar7);
+            (**(code **)(puStack_90 + 0x10))(&puStack_90, &unknown_var_7896_ptr);
+            FUN_180060680(acStack_50, &unknown_var_4576_ptr, iVar7);
             lVar2 = -1;
             
             // 计算字符串长度
@@ -910,13 +910,13 @@ void SystemStatusMonitor(uint64_t param_1, longlong *param_2, float param_3) {
             plVar6 = plVar6 + 1;
         } while (iVar7 < 0x14);
         
-        puStack_90 = &UNK_180a3c3e0;
+        puStack_90 = &unknown_var_3456_ptr;
         if (lStack_88 != 0) {
             FUN_18064e900();
         }
         lStack_88 = 0;
         uStack_78 = uStack_78 & 0xffffffff00000000;
-        puStack_90 = &UNK_18098bcb0;
+        puStack_90 = &unknown_var_720_ptr;
     }
     
     // 选择状态监控器

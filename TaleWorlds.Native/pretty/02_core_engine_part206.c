@@ -593,7 +593,7 @@ void FUN_180189990(void)
 {
   code *pcVar1;
   
-  __Xlength_error_std__YAXPEBD_Z(&UNK_180a0aaa8);
+  __Xlength_error_std__YAXPEBD_Z(&unknown_var_392_ptr);
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -836,7 +836,7 @@ void FUN_180189ee0(uint64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t p
   
   uStackX_18 = func_0x0001801836e0(*param_2);
   uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0a9b0,&uStackX_18);
+  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&unknown_var_144_ptr,&uStackX_18);
   return;
 }
 
@@ -855,7 +855,7 @@ void FUN_180189f10(uint64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t p
   
   uStackX_18 = func_0x0001801836e0(*param_2);
   uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0aa20,&uStackX_18);
+  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&unknown_var_256_ptr,&uStackX_18);
   return;
 }
 
@@ -874,7 +874,7 @@ void FUN_180189f40(uint64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t p
   
   uStackX_18 = func_0x0001801836e0(*param_2);
   uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0aa58,&uStackX_18);
+  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&unknown_var_312_ptr,&uStackX_18);
   return;
 }
 
@@ -893,7 +893,7 @@ void FUN_180189f70(uint64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t p
   
   uStackX_18 = func_0x0001801836e0(*param_2);
   uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0aa40,&uStackX_18);
+  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&unknown_var_288_ptr,&uStackX_18);
   return;
 }
 
@@ -912,7 +912,7 @@ void FUN_180189fa0(uint64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t p
   
   uStackX_18 = func_0x0001801836e0(*param_2);
   uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0aa90,&uStackX_18);
+  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&unknown_var_368_ptr,&uStackX_18);
   return;
 }
 
@@ -931,7 +931,7 @@ void FUN_180189fd0(uint64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t p
   
   uStackX_18 = func_0x0001801836e0(*param_2);
   uStackX_20 = param_4;
-  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&UNK_180a0aa70,&uStackX_18);
+  FUN_180061f80(_DAT_180c86928,0,0xffffffff00000000,0xd,&unknown_var_336_ptr,&uStackX_18);
   return;
 }
 

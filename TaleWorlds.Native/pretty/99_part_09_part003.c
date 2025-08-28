@@ -47,13 +47,13 @@ void FUN_1805beae0(longlong param_1)
     if (lStack_a0 == 0) {
       cVar4 = '\0';
       if (*(char *)(param_1 + 0x1c30) != '\0') {
-        puVar8 = &UNK_180a30c20;
-        puStack_18 = &UNK_180a30c20;
+        puVar8 = &unknown_var_6416_ptr;
+        puStack_18 = &unknown_var_6416_ptr;
         if (*(char *)(param_1 + 0x1c30) != '\0') {
-          puVar8 = &UNK_180a30bd8;
+          puVar8 = &unknown_var_6344_ptr;
         }
         uStack_40 = 0x1805b784a;
-        func_0x000180508000(param_1,&UNK_180a37508,&UNK_180a374e0,puVar8);
+        func_0x000180508000(param_1,&unknown_var_3272_ptr,&unknown_var_3232_ptr,puVar8);
         *(char *)(param_1 + 0x1c30) = cVar4;
         if (cVar4 == '\0') {
           *(int32_t *)(param_1 + 0x1c0c) = 0xffffffff;
@@ -84,17 +84,17 @@ void FUN_1805beae0(longlong param_1)
           *(uint64_t *)(param_1 + 0x1c38) =
                *(uint64_t *)(&system_error_code + (longlong)*(int *)(param_1 + 0x1c40) * 8);
           puVar10 = &system_error_code;
-          puVar8 = &UNK_180a30c20;
+          puVar8 = &unknown_var_6416_ptr;
           puStack_18 = (void *)(double)*(float *)(param_1 + 0x13b8);
           if (*(char *)(param_1 + 0x13bc) != '\0') {
-            puVar8 = &UNK_180a30bd8;
+            puVar8 = &unknown_var_6344_ptr;
           }
           dStack_10 = (double)((float)(*(longlong *)
                                         (&system_error_code + (longlong)*(int *)(param_1 + 0x13b0) * 8)
                                       - *(longlong *)(param_1 + 0x13a8)) * 1e-05);
           uStack_40 = 0x180508086;
           lVar9 = param_1;
-          func_0x000180508000(param_1,&UNK_180a30c70,&UNK_180a30be0,puVar8);
+          func_0x000180508000(param_1,&unknown_var_6496_ptr,&unknown_var_6352_ptr,puVar8);
           if (*(char *)(param_1 + 0x13bc) == '\0') {
             *(int8_t *)(param_1 + 0x13bc) = 1;
             uVar3 = *(uint *)(param_1 + 0x1390) << 0xd ^ *(uint *)(param_1 + 0x1390);

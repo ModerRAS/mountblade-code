@@ -351,7 +351,7 @@ LAB_18051210c:
           if ((*(int *)(*(longlong *)
                          ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48)
                < _DAT_180d49ec0) && (FUN_1808fcb90(&system_ptr_9ec0), _DAT_180d49ec0 == -1)) {
-            puStack_d8 = &UNK_180a3c3e0;
+            puStack_d8 = &unknown_var_3456_ptr;
             uStack_c0 = 0;
             uStack_bc = 0;
             puStack_d0 = (int32_t *)0x0;
@@ -364,7 +364,7 @@ LAB_18051210c:
             *(int8_t *)(puVar16 + 1) = 0;
             uStack_c8 = 4;
             _DAT_180d49ec4 = FUN_180571e20(&system_ptr_60c0,&puStack_d8);
-            puStack_d8 = &UNK_180a3c3e0;
+            puStack_d8 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
             FUN_18064e900(puVar16);
           }

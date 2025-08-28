@@ -302,7 +302,7 @@ LAB_1808c01ad:
           *(longlong *)(unaff_RBP + -0x70) = lVar13;
           if (lVar13 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18076b390(unaff_RBP + -0x20,0x27,&UNK_180958180,*(int32_t *)(lVar9 + 0x10),
+            FUN_18076b390(unaff_RBP + -0x20,0x27,&unknown_var_8960_ptr,*(int32_t *)(lVar9 + 0x10),
                           *(int16_t *)(lVar9 + 0x14));
           }
           *(longlong *)(lVar18 + 0x50) = lVar13;

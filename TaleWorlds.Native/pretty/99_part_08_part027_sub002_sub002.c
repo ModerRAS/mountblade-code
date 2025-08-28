@@ -464,7 +464,7 @@ LAB_1804fa35d:
       uVar12 = uVar19;
       puVar17 = puStack_6c0;
       if ((3 < uVar8) &&
-         ((&UNK_1809f7764 < puStack_6c0 || (uVar12 = 0, puStack_6c0 + (uVar8 - 1) < &UNK_1809f7764))
+         ((&unknown_var_1732_ptr < puStack_6c0 || (uVar12 = 0, puStack_6c0 + (uVar8 - 1) < &unknown_var_1732_ptr))
          )) {
         do {
           uVar19 = uVar19 + 4;

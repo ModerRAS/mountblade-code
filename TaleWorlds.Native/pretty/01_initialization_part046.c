@@ -368,7 +368,7 @@ uint64_t *
 FUN_180074f20(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_1809ffa18;
+  *param_1 = &unknown_var_5192_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x38,param_3,param_4,0xfffffffffffffffe);
   }
@@ -380,7 +380,7 @@ FUN_180074f20(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 uint64_t * FUN_180074f70(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_1809ffa18;
+  *param_1 = &unknown_var_5192_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -393,14 +393,14 @@ uint64_t *
 FUN_180074fb0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &unknown_var_720_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
+  *param_2 = &unknown_var_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 7;
-  strcpy_s(param_2[1],0x80,&UNK_1809ffa30,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&unknown_var_5216_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -416,14 +416,14 @@ uint64_t * FUN_180075030(uint64_t *param_1,char param_2,char param_3)
   longlong *plVar3;
   longlong *plVar4;
   
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
+  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &unknown_var_3696_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
+  *param_1 = &unknown_var_8584_ptr;
+  param_1[2] = &unknown_var_720_ptr;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  param_1[2] = &UNK_1809fcc28;
+  param_1[2] = &unknown_var_3432_ptr;
   param_1[3] = param_1 + 5;
   *(int32_t *)(param_1 + 4) = 0;
   *(int8_t *)(param_1 + 5) = 0;
@@ -431,7 +431,7 @@ uint64_t * FUN_180075030(uint64_t *param_1,char param_2,char param_3)
   *(int32_t *)(param_1 + 1) = 0;
   *(int16_t *)(param_1 + 0x16) = 0;
   param_1[0x15] = 0;
-  *param_1 = &UNK_180a00270;
+  *param_1 = &unknown_var_7328_ptr;
   func_0x000180086550(param_1 + 0x19);
   *(int32_t *)(param_1 + 0x1e) = 0;
   LOCK();
@@ -566,14 +566,14 @@ uint64_t * FUN_180075030(uint64_t *param_1,char param_2,char param_3)
   *(int32_t *)((longlong)param_1 + 0x1ac) = 0x7f7fffff;
   *(int32_t *)(param_1 + 0x3a) = 0xffffffff;
   plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,9,plVar4,plVar3);
-  *plVar3 = (longlong)&UNK_180a21690;
-  *plVar3 = (longlong)&UNK_180a21720;
+  *plVar3 = (longlong)&unknown_var_3552_ptr;
+  *plVar3 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar3 + 1) = 0;
-  *plVar3 = (longlong)&UNK_180a00208;
-  plVar3[4] = (longlong)&UNK_18098bcb0;
+  *plVar3 = (longlong)&unknown_var_7224_ptr;
+  plVar3[4] = (longlong)&unknown_var_720_ptr;
   plVar3[5] = 0;
   *(int32_t *)(plVar3 + 6) = 0;
-  plVar3[4] = (longlong)&UNK_180a3c3e0;
+  plVar3[4] = (longlong)&unknown_var_3456_ptr;
   plVar3[7] = 0;
   plVar3[5] = 0;
   *(int32_t *)(plVar3 + 6) = 0;
@@ -635,7 +635,7 @@ int8_t FUN_1800755c0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t
   uVar2 = 0xfffffffffffffffe;
   FUN_1806279c0(&puStack_30);
   uVar1 = FUN_180063510(param_1 + 0x218,&puStack_30,param_3,param_4,uVar2);
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -703,7 +703,7 @@ void FUN_180075630(longlong param_1,uint64_t *param_2)
   *(int32_t *)(param_1 + 0x158) = uVar5;
   *(int32_t *)(param_1 + 0x15c) = uVar6;
   if (plVar2 != (longlong *)0x0) {
-    if (*(code **)(*plVar2 + 0x160) == (code *)&UNK_180277350) {
+    if (*(code **)(*plVar2 + 0x160) == (code *)&unknown_var_6368_ptr) {
       puVar1 = (uint64_t *)((longlong)plVar2 + 0x214);
       *(int32_t *)((longlong)plVar2 + 0x244) = 0;
       if (plVar2[8] - plVar2[7] >> 4 == 0) {
@@ -835,7 +835,7 @@ void FUN_1800756e0(uint64_t *param_1)
   uint64_t uVar4;
   
   uVar4 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a00270;
+  *param_1 = &unknown_var_7328_ptr;
   param_1[0x39] = 0;
   if (param_1[0x59] != 0) {
                     // WARNING: Subroutine does not return
@@ -933,10 +933,10 @@ void FUN_1800756e0(uint64_t *param_1)
   if ((longlong *)param_1[0x23] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x23] + 0x38))();
   }
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_8584_ptr;
+  param_1[2] = &unknown_var_720_ptr;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   return;
 }
 

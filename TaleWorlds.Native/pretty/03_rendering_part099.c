@@ -338,8 +338,8 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             uVar26 = FUN_1800b33d0(_DAT_180c86930,&plStack_118,&puStack_108);
             uStack_110 = 1;
             if (plStack_118 == (longlong *)0x0) {
-                if (((uint)uStack_f8 == 0xb) && (iVar13 = strcmp(lStack_100,&UNK_180a03008), iVar13 == 0)) {
-                    uVar26 = FUN_180626ee0(&UNK_180a02a80,&UNK_180a03008);
+                if (((uint)uStack_f8 == 0xb) && (iVar13 = strcmp(lStack_100,&unknown_var_9000_ptr), iVar13 == 0)) {
+                    uVar26 = FUN_180626ee0(&unknown_var_7584_ptr,&unknown_var_9000_ptr);
                 }
                 else {
                     puVar14 = (uint64_t *)FUN_1800befa0(_DAT_180c86898,&plStack_c8);
@@ -366,13 +366,13 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             if (plStack_118 != (longlong *)0x0) {
                 uVar26 = (**(code **)(*plStack_118 + 0x38))();
             }
-            puStack_108 = &UNK_180a3c3e0;
+            puStack_108 = &unknown_var_3456_ptr;
             if (lStack_100 != 0) {
                 FUN_18064e900();
             }
             lStack_100 = 0;
             plStack_f0 = (longlong *)((ulonglong)plStack_f0 & MEMORY_ALIGNMENT_MASK);
-            puStack_108 = &UNK_18098bcb0;
+            puStack_108 = &unknown_var_720_ptr;
             
             // 渲染状态获取和处理
             if (*(int *)(param_1 + 0x198) == -1) {
@@ -422,7 +422,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                 if (lVar17 == 0) goto LAB_180326da7;
                 cVar11 = FUN_1801ef300(uVar26,param_3,lVar17);
                 if (cVar11 == '\0') {
-                    FUN_180626f80(&UNK_180a0fec0);
+                    FUN_180626f80(&unknown_var_1920_ptr);
                     goto LAB_180326e7a;
                 }
                 lVar19 = FUN_1801ef620(extraout_XMM0_Da_02,param_3,lVar17);
@@ -472,7 +472,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             if (*(longlong *)(*(longlong *)(param_3 + 0x1b8) + 0x3b8) != 0) {
                 FUN_18022cb40(*(longlong *)(param_3 + 0x1b8),&plStack_118);
                 plVar16 = plStack_118;
-                puStack_a8 = &UNK_1809fcc58;
+                puStack_a8 = &unknown_var_3480_ptr;
                 puStack_a0 = auStack_90;
                 auStack_90[0] = 0;
                 uStack_98 = 0x14;
@@ -481,7 +481,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                 plVar16[0x28] = plVar16[0x28] | uVar18;
                 FUN_18022dd60(plVar16);
                 *(int16_t *)(plVar16 + 0x78) = 0xffff;
-                puStack_a8 = &UNK_18098bcb0;
+                puStack_a8 = &unknown_var_720_ptr;
                 FUN_18022cd30(plStack_118,1,uVar3);
                 FUN_180076910(param_3);
                 if (plStack_118 != (longlong *)0x0) {

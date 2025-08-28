@@ -102,7 +102,7 @@ void FUN_1801356a0(longlong param_1)
         } while ((int)uVar12 < *(int *)(lVar15 + 0x2e28));
       }
       if (1 < (int)uVar6) {
-        qsort(puVar7,(longlong)(int)uVar6,8,&UNK_180135af0);
+        qsort(puVar7,(longlong)(int)uVar6,8,&unknown_var_9408_ptr);
       }
       if (0 < (int)uVar6) {
         uVar17 = (ulonglong)uVar6;
@@ -925,7 +925,7 @@ void FUN_180136210(longlong param_1,longlong param_2,int param_3)
         puVar4 = puVar3;
         puVar6 = *(int32_t **)(puVar3 + 2);
       }
-      FUN_180121200(&bStack_48,0x14,&UNK_180a06578,*puVar4);
+      FUN_180121200(&bStack_48,0x14,&unknown_var_2680_ptr,*puVar4);
       uVar12 = 0xffffffff;
       pbVar5 = abStack_47;
       bVar1 = bStack_48;
@@ -933,7 +933,7 @@ void FUN_180136210(longlong param_1,longlong param_2,int param_3)
         if (((bVar1 == 0x23) && (*pbVar5 == 0x23)) && (pbVar5[1] == 0x23)) {
           uVar12 = 0xffffffff;
         }
-        uVar12 = *(uint *)(&UNK_18098d290 + ((ulonglong)(uVar12 & 0xff) ^ (ulonglong)bVar1) * 4) ^
+        uVar12 = *(uint *)(&unknown_var_6320_ptr + ((ulonglong)(uVar12 & 0xff) ^ (ulonglong)bVar1) * 4) ^
                  uVar12 >> 8;
         bVar1 = *pbVar5;
         pbVar5 = pbVar5 + 1;

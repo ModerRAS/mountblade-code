@@ -256,8 +256,8 @@ uint64_t * FUN_1806b6ae0(uint64_t *param_1,uint64_t param_2)
   void *puVar5;
   uint64_t uVar6;
   
-  *param_1 = &UNK_18094b540;
-  param_1[1] = &UNK_18094b578;
+  *param_1 = &unknown_var_6672_ptr;
+  param_1[1] = &unknown_var_6728_ptr;
   iVar2 = _getSize_MutexImpl_shdfnd_physx__SAIXZ();
   uVar6 = 0;
   if (iVar2 != 0) {
@@ -265,12 +265,12 @@ uint64_t * FUN_1806b6ae0(uint64_t *param_1,uint64_t param_2)
     plVar4 = (longlong *)PxGetFoundation();
     cVar1 = (**(code **)(*plVar4 + 0x28))(plVar4);
     if (cVar1 == '\0') {
-      puVar5 = &UNK_18094a1f0;
+      puVar5 = &unknown_var_1728_ptr;
     }
     else {
       puVar5 = (void *)__std_type_info_name(0x180bfc198,0x180c827e0);
     }
-    uVar6 = (**(code **)(*plVar3 + 8))(plVar3,iVar2,puVar5,&UNK_18094a1b0,0x71);
+    uVar6 = (**(code **)(*plVar3 + 8))(plVar3,iVar2,puVar5,&unknown_var_1664_ptr,0x71);
   }
   param_1[2] = uVar6;
   __0MutexImpl_shdfnd_physx__QEAA_XZ(uVar6);
@@ -351,8 +351,8 @@ void FUN_1806b6bc0(uint64_t *param_1)
   longlong lVar1;
   longlong *plVar2;
   
-  *param_1 = &UNK_18094b540;
-  param_1[1] = &UNK_18094b578;
+  *param_1 = &unknown_var_6672_ptr;
+  param_1[1] = &unknown_var_6728_ptr;
   (**(code **)(*(longlong *)param_1[3] + 0x50))((longlong *)param_1[3],param_1);
   lVar1 = param_1[5];
   if ((((*(uint *)((longlong)param_1 + 0x34) & 0x7fffffff) != 0) &&
@@ -366,8 +366,8 @@ void FUN_1806b6bc0(uint64_t *param_1)
     plVar2 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
     (**(code **)(*plVar2 + 0x10))(plVar2,lVar1);
   }
-  param_1[1] = &UNK_18094a240;
-  *param_1 = &UNK_18094b130;
+  param_1[1] = &unknown_var_1808_ptr;
+  *param_1 = &unknown_var_5632_ptr;
   return;
 }
 
@@ -450,13 +450,13 @@ void FUN_1806b6d70(longlong param_1,longlong param_2)
   
   plVar2 = (longlong *)
            (**(code **)(*_DAT_180be0050 + 8))
-                     (_DAT_180be0050,0x18,&UNK_18094b608,&UNK_18094b5c0,0x96);
+                     (_DAT_180be0050,0x18,&unknown_var_6872_ptr,&unknown_var_6800_ptr,0x96);
   if (plVar2 == (longlong *)0x0) {
     plVar2 = (longlong *)0x0;
   }
   else {
     lVar1 = *(longlong *)(param_1 + 0x18);
-    *plVar2 = (longlong)&UNK_18094b590;
+    *plVar2 = (longlong)&unknown_var_6752_ptr;
     plVar2[2] = lVar1;
     plVar2[1] = param_2;
   }
@@ -603,9 +603,9 @@ uint64_t * FUN_1806b6ee0(uint64_t *param_1,uint param_2)
 {
   longlong *plVar1;
   
-  *param_1 = &UNK_18094b590;
+  *param_1 = &unknown_var_6752_ptr;
   (**(code **)(*(longlong *)param_1[1] + 0x10))((longlong *)param_1[1],param_1);
-  *param_1 = &UNK_18094a240;
+  *param_1 = &unknown_var_1808_ptr;
   if ((param_2 & 1) != 0) {
     if ((param_2 & 4) == 0) {
       plVar1 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
@@ -625,8 +625,8 @@ uint64_t * FUN_1806b6f60(uint64_t *param_1,uint param_2)
   longlong lVar1;
   longlong *plVar2;
   
-  *param_1 = &UNK_18094b540;
-  param_1[1] = &UNK_18094b578;
+  *param_1 = &unknown_var_6672_ptr;
+  param_1[1] = &unknown_var_6728_ptr;
   (**(code **)(*(longlong *)param_1[3] + 0x50))((longlong *)param_1[3],param_1);
   lVar1 = param_1[5];
   if ((((*(uint *)((longlong)param_1 + 0x34) & 0x7fffffff) != 0) &&
@@ -640,8 +640,8 @@ uint64_t * FUN_1806b6f60(uint64_t *param_1,uint param_2)
     plVar2 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
     (**(code **)(*plVar2 + 0x10))(plVar2,lVar1);
   }
-  param_1[1] = &UNK_18094a240;
-  *param_1 = &UNK_18094b130;
+  param_1[1] = &unknown_var_1808_ptr;
+  *param_1 = &unknown_var_5632_ptr;
   if ((param_2 & 1) != 0) {
     if ((param_2 & 4) == 0) {
       plVar2 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
@@ -673,8 +673,8 @@ void FUN_1806b7050(longlong *param_1)
   lVar1 = *(longlong *)param_1[2];
   uVar2 = (**(code **)(*(longlong *)param_1[1] + 0x20))();
   (**(code **)(lVar1 + 0xb0))(param_1[2],param_1[1],uVar2);
-  puStack_18 = &UNK_18094a2a0;
-  puStack_10 = &UNK_18094a328;
+  puStack_18 = &unknown_var_1904_ptr;
+  puStack_10 = &unknown_var_2040_ptr;
   (**(code **)(*(longlong *)param_1[2] + 8))((longlong *)param_1[2],&puStack_18,param_1[1]);
   (**(code **)(*(longlong *)param_1[1] + 8))((longlong *)param_1[1],param_1);
   (*(code *)**(uint64_t **)(param_1[1] + 8))((uint64_t *)(param_1[1] + 8),auStack_28);
@@ -716,13 +716,13 @@ LAB_1806b713d:
       plVar5 = (longlong *)PxGetFoundation();
       cVar2 = (**(code **)(*plVar5 + 0x28))(plVar5);
       if (cVar2 == '\0') {
-        puVar6 = &UNK_18094a1f0;
+        puVar6 = &unknown_var_1728_ptr;
       }
       else {
         puVar6 = (void *)__std_type_info_name(0x180bfc4a8,0x180c827e0);
       }
       puVar7 = (uint64_t *)
-               (**(code **)(*plVar4 + 8))(plVar4,(ulonglong)uVar12 << 3,puVar6,&UNK_18094a610,0x229)
+               (**(code **)(*plVar4 + 8))(plVar4,(ulonglong)uVar12 << 3,puVar6,&unknown_var_2784_ptr,0x229)
       ;
       goto LAB_1806b71b3;
     }
@@ -795,13 +795,13 @@ LAB_1806b713d:
       plVar5 = (longlong *)PxGetFoundation();
       cVar2 = (**(code **)(*plVar5 + 0x28))(plVar5);
       if (cVar2 == '\0') {
-        puVar6 = &UNK_18094a1f0;
+        puVar6 = &unknown_var_1728_ptr;
       }
       else {
         puVar6 = (void *)__std_type_info_name(0x180bfc4a8,0x180c827e0);
       }
       puVar7 = (uint64_t *)
-               (**(code **)(*plVar4 + 8))(plVar4,(ulonglong)uVar12 << 3,puVar6,&UNK_18094a610,0x229)
+               (**(code **)(*plVar4 + 8))(plVar4,(ulonglong)uVar12 << 3,puVar6,&unknown_var_2784_ptr,0x229)
       ;
       goto LAB_1806b71b3;
     }
@@ -992,7 +992,7 @@ void FUN_1806b7240(longlong param_1,longlong param_2,ulonglong param_3)
   uStack_c = 1;
   lStack_28 = param_2;
   (**(code **)(**(longlong **)(param_1 + 0x10) + 0x18))
-            (*(longlong **)(param_1 + 0x10),*(uint64_t *)(param_1 + 8),&UNK_180a25ac8,&lStack_28,
+            (*(longlong **)(param_1 + 0x10),*(uint64_t *)(param_1 + 8),&unknown_var_1016_ptr,&lStack_28,
              &uStack_18);
   return;
 }

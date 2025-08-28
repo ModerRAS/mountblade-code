@@ -5,17 +5,17 @@
 // 全局变量声明
 extern uint64_t _DAT_180c8a9e0;    // 核心引擎数据结构指针
 extern uint64_t _DAT_180bf00a8;    // 安全检查相关数据
-extern int8_t UNK_180a3c3e0;     // 空字符串标记
-extern int8_t UNK_18098bcb0;      // 字符串常量
-extern int8_t UNK_180a0aa34;      // 格式化字符串
-extern int8_t UNK_180a0abe0;      // 处理器标记
-extern int8_t UNK_180a0ab70;      // 双参数标记
-extern int8_t UNK_180a0aba8;      // 四参数标记
-extern int8_t UNK_180a0ab00;      // 数组处理标记
-extern int8_t UNK_180a0ab38;      // 结果处理标记
-extern int8_t UNK_180a0ac88;      // 节点类型标记
-extern int8_t UNK_180a0acd8;      // 链表类型标记
-extern int8_t UNK_180a0ad28;      // 特殊处理标记
+extern int8_t global_var_3456_ptr;     // 空字符串标记
+extern int8_t global_var_720_ptr;      // 字符串常量
+extern int8_t global_var_276_ptr;      // 格式化字符串
+extern int8_t global_var_704_ptr;      // 处理器标记
+extern int8_t global_var_592_ptr;      // 双参数标记
+extern int8_t global_var_648_ptr;      // 四参数标记
+extern int8_t global_var_480_ptr;      // 数组处理标记
+extern int8_t global_var_536_ptr;      // 结果处理标记
+extern int8_t global_var_872_ptr;      // 节点类型标记
+extern int8_t global_var_952_ptr;      // 链表类型标记
+extern int8_t global_var_1032_ptr;      // 特殊处理标记
 extern uint64_t _DAT_180c8ed18;    // 内存池标识
 extern int8_t system_buffer_ptr;      // 默认字符串数据
 
@@ -150,7 +150,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
   security_xor = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
   output_data = data_ptr;
   if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
-    *data_ptr = &UNK_180a3c3e0;
+    *data_ptr = &global_var_3456_ptr;
     if (data_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -183,7 +183,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     temp_data = 0;
     alloc_size = 0xf;
     temp_string = (void *)((ulonglong)temp_string & 0xffffffffffffff00);
-    FUN_1800671b0(&temp_string,&UNK_180a0aa34,5);
+    FUN_1800671b0(&temp_string,&global_var_276_ptr,5);
     format_result = FUN_180187f00(&format_data,&temp_string);
     do {
       string_length = string_length + 1;
@@ -206,7 +206,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     alloc_size = 0xf;
     engine_data = *(longlong **)(engine_data + 8);
     temp_pointer = (longlong **)&temp_string;
-    temp_string = &UNK_180a0abe0;
+    temp_string = &global_var_704_ptr;
     temp_length = engine_data;
     string_pointer = &temp_string;
     (**(code **)(*engine_data + 0x18))(engine_data,temp_buffer,&temp_string,0);
@@ -219,7 +219,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     format_flag = 0;
     free(format_data,0x60);
     FUN_180067070(temp_buffer);
-    *data_ptr = &UNK_180a3c3e0;
+    *data_ptr = &global_var_3456_ptr;
     if (data_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -227,7 +227,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     data_ptr[1] = 0;
     *(int32_t *)(data_ptr + 3) = 0;
   }
-  *data_ptr = &UNK_18098bcb0;
+  *data_ptr = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(security_xor ^ (ulonglong)security_buffer);
 }
@@ -307,15 +307,15 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
   output_first = first_data;
   output_second = second_data;
   if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
-    *first_data = &UNK_180a3c3e0;
+    *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     first_data[1] = 0;
     *(int32_t *)(first_data + 3) = 0;
-    *first_data = &UNK_18098bcb0;
-    *second_data = &UNK_180a3c3e0;
+    *first_data = &global_var_720_ptr;
+    *second_data = &global_var_3456_ptr;
     if (second_data[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -350,21 +350,21 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
     FUN_1800671b0(second_buffer,string_data,first_length);
     engine_data = *(longlong **)(engine_data + 8);
     format_pointer = &format_data;
-    format_data = &UNK_180a0ab70;
+    format_data = &global_var_592_ptr;
     engine_context = engine_data;
     temp_pointer = &format_data;
     (**(code **)(*engine_data + 0x28))(engine_data,first_buffer,&format_data,0);
     FUN_180067070(second_buffer);
     FUN_180067070(first_buffer);
-    *first_data = &UNK_180a3c3e0;
+    *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     first_data[1] = 0;
     *(int32_t *)(first_data + 3) = 0;
-    *first_data = &UNK_18098bcb0;
-    *second_data = &UNK_180a3c3e0;
+    *first_data = &global_var_720_ptr;
+    *second_data = &global_var_3456_ptr;
     if (second_data[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -372,7 +372,7 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
     second_data[1] = 0;
     *(int32_t *)(second_data + 3) = 0;
   }
-  *second_data = &UNK_18098bcb0;
+  *second_data = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(security_xor ^ (ulonglong)security_buffer);
 }
@@ -444,15 +444,15 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
   output_first = first_data;
   output_second = second_data;
   if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
-    *first_data = &UNK_180a3c3e0;
+    *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     first_data[1] = 0;
     *(int32_t *)(first_data + 3) = 0;
-    *first_data = &UNK_18098bcb0;
-    *second_data = &UNK_180a3c3e0;
+    *first_data = &global_var_720_ptr;
+    *second_data = &global_var_3456_ptr;
     if (second_data[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -489,21 +489,21 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
     FUN_1800671b0(second_buffer,string_data,first_length);
     engine_data = *(longlong **)(engine_data + 8);
     format_pointer = &format_data;
-    format_data = &UNK_180a0aba8;
+    format_data = &global_var_648_ptr;
     engine_context = engine_data;
     temp_pointer = &format_data;
     (**(code **)(*engine_data + 0x30))(engine_data,first_buffer,&format_data,0);
     FUN_180067070(second_buffer);
     FUN_180067070(first_buffer);
-    *first_data = &UNK_180a3c3e0;
+    *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     first_data[1] = 0;
     *(int32_t *)(first_data + 3) = 0;
-    *first_data = &UNK_18098bcb0;
-    *second_data = &UNK_180a3c3e0;
+    *first_data = &global_var_720_ptr;
+    *second_data = &global_var_3456_ptr;
     if (second_data[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -511,7 +511,7 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
     second_data[1] = 0;
     *(int32_t *)(second_data + 3) = 0;
   }
-  *second_data = &UNK_18098bcb0;
+  *second_data = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(security_xor ^ (ulonglong)security_buffer);
 }
@@ -589,7 +589,7 @@ void process_array_data_formatting(uint64_t context, longlong array_data, ulongl
     }
     engine_data = *(longlong **)(engine_data + 8);
     array_temp = &temp_string;
-    temp_string = &UNK_180a0ab00;
+    temp_string = &global_var_480_ptr;
     engine_context = engine_data;
     format_pointer = &temp_string;
     (**(code **)(*engine_data + 0x38))(engine_data,&array_head,&temp_string,0);
@@ -693,16 +693,16 @@ ENTRY_FOUND:
                     // WARNING: Subroutine does not return
               FUN_18064e900();
             }
-            map_entry[4] = &UNK_180a3c3e0;
+            map_entry[4] = &global_var_3456_ptr;
             if (map_entry[5] == 0) {
               map_entry[5] = 0;
               *(int32_t *)(map_entry + 7) = 0;
-              map_entry[4] = &UNK_18098bcb0;
-              *map_entry = &UNK_180a3c3e0;
+              map_entry[4] = &global_var_720_ptr;
+              *map_entry = &global_var_3456_ptr;
               if (map_entry[1] == 0) {
                 map_entry[1] = 0;
                 *(int32_t *)(map_entry + 3) = 0;
-                *map_entry = &UNK_18098bcb0;
+                *map_entry = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
                 FUN_18064e900(map_entry);
               }
@@ -727,12 +727,12 @@ ENTRY_FOUND:
       map_start = map_start + 1;
     } while (map_start != *(uint64_t **)(_DAT_180c8a9e0 + 0x20));
   }
-  FUN_180187390(engine_data,&UNK_180a0aa34);
-  *string_data = &UNK_180a3c3e0;
+  FUN_180187390(engine_data,&global_var_276_ptr);
+  *string_data = &global_var_3456_ptr;
   if (string_data[1] == 0) {
     string_data[1] = 0;
     *(int32_t *)(string_data + 3) = 0;
-    *string_data = &UNK_18098bcb0;
+    *string_data = &global_var_720_ptr;
     return;
   }
                     // WARNING: Subroutine does not return
@@ -807,12 +807,12 @@ void process_string_map_structure(void **map_ptr, longlong search_key)
   if ((current_node != (uint64_t *)0x0) &&
      (((longlong)map_ptr[4] - (longlong)map_ptr[3] & 0xfffffffffffffff8U) != 0)) {
     node_data = (uint64_t *)FUN_1808fc418(0x10);
-    *node_data = &UNK_180a0ac88;
-    *node_data = &UNK_180a0acd8;
+    *node_data = &global_var_872_ptr;
+    *node_data = &global_var_952_ptr;
     ref_count = 0;
     result_data = node_data;
     if (current_node != (uint64_t *)0x0) {
-      if ((void *)*current_node == &UNK_180a0ad28) {
+      if ((void *)*current_node == &global_var_1032_ptr) {
         ref_count = current_node[1];
       }
       else {
@@ -974,7 +974,7 @@ INSERT_NEW:
       FUN_180067070(&temp_data);
     }
     map_pointer = &temp_data;
-    temp_data = &UNK_180a0ab38;
+    temp_data = &global_var_536_ptr;
     node_pointer = &temp_data;
     temp_pointer = map_ptr;
     (**(code **)(*(longlong *)map_ptr[1] + 8))(map_ptr[1],&result_start,&temp_data,0);

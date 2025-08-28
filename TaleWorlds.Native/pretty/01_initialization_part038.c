@@ -76,7 +76,7 @@ void FUN_18006c070(longlong param_1)
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_278);
     }
-    puStack_1f8 = &UNK_1809feda8;
+    puStack_1f8 = &unknown_var_2008_ptr;
     pbStack_1f0 = abStack_1e0;
     iStack_1e8 = 0;
     abStack_1e0[0] = 0;
@@ -189,7 +189,7 @@ void FUN_18006c070(longlong param_1)
       bVar7 = true;
     }
     puVar20 = *(uint64_t **)(param_1 + 0xc0);
-    if ((void *)*puVar20 == &UNK_1809fee70) {
+    if ((void *)*puVar20 == &unknown_var_2208_ptr) {
       cVar9 = FUN_180068a90(puVar20 + 2,&plStack_240);
       while (cVar9 != '\0') {
         plVar23 = (longlong *)puVar20[99];
@@ -308,7 +308,7 @@ LAB_18006c852:
             pbVar12 = pbStack_1f0;
           }
                     // WARNING: Subroutine does not return
-          FUN_180062300(_DAT_180c86928,&UNK_1809ff390,uVar19,pbVar12);
+          FUN_180062300(_DAT_180c86928,&unknown_var_3520_ptr,uVar19,pbVar12);
         }
         if (((uStack_258 < lVar10 + uVar19) ||
             ((ulonglong)(longlong)*(int *)(param_1 + 0x3fc) < (longlong)iVar17 + 1U)) ||
@@ -370,7 +370,7 @@ LAB_18006ca44:
                 }
                 puVar5[0x24] = puVar6[0x24];
               }
-              *puVar20 = &UNK_18098bcb0;
+              *puVar20 = &unknown_var_720_ptr;
               ppuStack_248 = (void **)puVar20;
                     // WARNING: Subroutine does not return
               FUN_18064e900(puVar20);
@@ -456,7 +456,7 @@ LAB_18006ca95:
       }
     }
     ppuStack_248 = &puStack_1f8;
-    puStack_1f8 = &UNK_18098bcb0;
+    puStack_1f8 = &unknown_var_720_ptr;
     cVar9 = *(char *)(*(longlong *)(param_1 + 1000) + 0x58);
   } while( true );
 }
@@ -481,7 +481,7 @@ void FUN_18006cb90(longlong param_1)
     do {
       puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
       if (puVar2 != (uint64_t *)0x0) {
-        *puVar2 = &UNK_18098bcb0;
+        *puVar2 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }

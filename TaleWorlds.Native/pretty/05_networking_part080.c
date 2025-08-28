@@ -133,7 +133,7 @@ uint64_t FUN_180889f10(longlong param_1,uint *param_2)
     if (*(longlong *)(param_1 + 0x2d8) != 0) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(param_1 + 0x2d8),
-                    &UNK_180985b90,0x1a9,1);
+                    &unknown_var_5856_ptr,0x1a9,1);
     }
                     // WARNING: Subroutine does not return
     memcpy(param_1 + 0x2c0,param_2,(longlong)(int)uVar1);
@@ -155,7 +155,7 @@ void FUN_180889f60(uint64_t param_1,longlong param_2)
   
   if (param_2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2,&UNK_180985b90,0x1a9,1);
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_2,&unknown_var_5856_ptr,0x1a9,1);
   }
                     // WARNING: Subroutine does not return
   memcpy(unaff_RDI + 0x2c0);

@@ -17,7 +17,7 @@ void FUN_18027d880(uint64_t *param_1,uint64_t *param_2)
   if (cVar3 != '\0') {
     uVar4 = func_0x00018023a100(puVar5);
     *(int8_t *)(param_1 + 100) = uVar4;
-    if ((void *)*param_1 == &UNK_180a169b8) {
+    if ((void *)*param_1 == &unknown_var_9304_ptr) {
       FUN_180276f30(param_1,(longlong)param_1 + 0x214,0);
     }
     else {

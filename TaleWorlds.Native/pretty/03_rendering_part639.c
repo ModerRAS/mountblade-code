@@ -151,7 +151,7 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
     
     /* 初始化字符串缓冲区 */
     FUN_1806279c0(auStack_88);
-    puStack_68 = &UNK_180a3c3e0;
+    puStack_68 = &unknown_var_3456_ptr;
     uStack_50 = 0;
     uStack_60 = 0;
     uStack_58 = 0;
@@ -170,7 +170,7 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
     OutputDebugStringA(puVar2);
     
     /* 清理资源 */
-    puStack_b8 = &UNK_180a3c3e0;
+    puStack_b8 = &unknown_var_3456_ptr;
     if (lStack_b0 != 0) {
         /* 执行资源清理函数 */
         FUN_18064e900();
@@ -179,7 +179,7 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
     /* 重置状态 */
     lStack_b0 = 0;
     uStack_a0 = 0;
-    puStack_b8 = &UNK_18098bcb0;
+    puStack_b8 = &unknown_var_720_ptr;
     
     /* 执行最终清理 */
     FUN_1808fc8a8(auStack_88, 0x20, 3, FUN_180627b90);
@@ -254,7 +254,7 @@ void RenderingSystem_DebugStringFormatter2(uint64_t param_1, uint64_t param_2, u
     OutputDebugStringA(puVar1);
     
     /* 清理资源 */
-    puStack_d8 = &UNK_180a3c3e0;
+    puStack_d8 = &unknown_var_3456_ptr;
     if (puStack_d0 != (void *)0x0) {
         /* 执行资源清理函数 */
         FUN_18064e900();
@@ -263,7 +263,7 @@ void RenderingSystem_DebugStringFormatter2(uint64_t param_1, uint64_t param_2, u
     /* 重置状态和清理 */
     puStack_d0 = (void *)0x0;
     uStack_c0 = 0;
-    puStack_d8 = &UNK_18098bcb0;
+    puStack_d8 = &unknown_var_720_ptr;
     
     /* 执行最终清理 */
     FUN_1808fc8a8(auStack_a8, 0x20, 4, FUN_180627b90);
@@ -440,7 +440,7 @@ void RenderingSystem_DebugStringGenerator2(void)
     OutputDebugStringA(puVar1);
     
     /* 清理资源 */
-    puStack_50 = &UNK_180a3c3e0;
+    puStack_50 = &unknown_var_3456_ptr;
     if (puStack_48 != (void *)0x0) {
         /* 执行资源清理函数 */
         FUN_18064e900();
@@ -449,8 +449,8 @@ void RenderingSystem_DebugStringGenerator2(void)
     /* 重置状态和清理 */
     puStack_48 = (void *)0x0;
     uStack_38 = 0;
-    puStack_50 = &UNK_18098bcb0;
-    puStack_30 = &UNK_180a3c3e0;
+    puStack_50 = &unknown_var_720_ptr;
+    puStack_30 = &unknown_var_3456_ptr;
     
     /* 清理额外内容资源 */
     if (lStack_28 != 0) {
@@ -661,7 +661,7 @@ LAB_18062653a:
             FUN_18064e900(puVar3);
         }
         
-        puStack_40 = &UNK_180a3c3e0;
+        puStack_40 = &unknown_var_3456_ptr;
         if (lStack_38 != 0) {
             /* 执行资源清理函数 */
             FUN_18064e900();
@@ -800,7 +800,7 @@ LAB_1806267aa:
             FUN_18064e900(puVar3);
         }
         
-        puStack_40 = &UNK_180a3c3e0;
+        puStack_40 = &unknown_var_3456_ptr;
         if (lStack_38 != 0) {
             /* 执行资源清理函数 */
             FUN_18064e900();
@@ -911,7 +911,7 @@ void RenderingSystem_DebugStringGenerator4(void)
     OutputDebugStringA(puVar1);
     
     /* 清理资源 */
-    puStack_50 = &UNK_180a3c3e0;
+    puStack_50 = &unknown_var_3456_ptr;
     if (puStack_48 != (void *)0x0) {
         /* 执行资源清理函数 */
         FUN_18064e900();
@@ -920,8 +920,8 @@ void RenderingSystem_DebugStringGenerator4(void)
     /* 重置状态和清理 */
     puStack_48 = (void *)0x0;
     uStack_38 = 0;
-    puStack_50 = &UNK_18098bcb0;
-    puStack_30 = &UNK_180a3c3e0;
+    puStack_50 = &unknown_var_720_ptr;
+    puStack_30 = &unknown_var_3456_ptr;
     
     /* 清理额外内容资源 */
     if (lStack_28 != 0) {
@@ -1092,17 +1092,17 @@ void RenderingSystem_DebugStringGenerator5(void)
     uStack_168 = 0;
     
     /* 构建路径前缀 "Module/" */
-    puStack_b0 = &UNK_1809fdc18;
+    puStack_b0 = &unknown_var_7512_ptr;
     puStack_a8 = auStack_98;
     auStack_98[0] = 0;
     uStack_a0 = 6;
-    strcpy_s(auStack_98, 0x10, &UNK_180a3c07c);
+    strcpy_s(auStack_98, 0x10, &unknown_var_2588_ptr);
     
     /* 初始化主字符串缓冲区 */
     FUN_1806279c0(&puStack_160, &puStack_b0);
     uVar1 = uStack_150;
     uStack_168 = 0;
-    puStack_b0 = &UNK_18098bcb0;
+    puStack_b0 = &unknown_var_720_ptr;
     
     /* 分配缓冲区空间 */
     uVar5 = uStack_150 + 0xf;
@@ -1131,7 +1131,7 @@ void RenderingSystem_DebugStringGenerator5(void)
         puVar4 = puStack_158;
     }
     uStack_150 = uVar1 + 0x1b;
-    FUN_18062dee0(&uStack_100, puVar4, &UNK_1809fcfbc);
+    FUN_18062dee0(&uStack_100, puVar4, &unknown_var_4348_ptr);
     bVar6 = lStack_f8 == 0;
     
     /* 清理文件资源 */
@@ -1144,26 +1144,26 @@ void RenderingSystem_DebugStringGenerator5(void)
     }
     
     /* 清理主缓冲区 */
-    puStack_160 = &UNK_180a3c3e0;
+    puStack_160 = &unknown_var_3456_ptr;
     if (puStack_158 == (void *)0x0) {
         puStack_158 = (void *)0x0;
         uStack_148 = 0;
-        puStack_160 = &UNK_18098bcb0;
+        puStack_160 = &unknown_var_720_ptr;
         
         /* 如果第一个文件不存在，尝试第二个文件 */
         if (bVar6) {
             /* 构建备用路径 "Module/Native/pipe.tga" */
-            puStack_88 = &UNK_1809fdc18;
+            puStack_88 = &unknown_var_7512_ptr;
             puStack_80 = auStack_70;
             auStack_70[0] = 0;
             uStack_78 = 6;
-            strcpy_s(auStack_70, 0x10, &UNK_180a3c07c);
+            strcpy_s(auStack_70, 0x10, &unknown_var_2588_ptr);
             
             /* 初始化备用字符串缓冲区 */
             FUN_1806279c0(&puStack_140, &puStack_88);
             uVar1 = uStack_130;
             uStack_168 = 0;
-            puStack_88 = &UNK_18098bcb0;
+            puStack_88 = &unknown_var_720_ptr;
             
             /* 分配备用缓冲区空间 */
             uVar5 = uStack_130 + 0xf;
@@ -1190,7 +1190,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                 puVar4 = puStack_138;
             }
             uStack_130 = uVar1 + 0x1a;
-            FUN_18062dee0(&uStack_e8, puVar4, &UNK_1809fcfbc);
+            FUN_18062dee0(&uStack_e8, puVar4, &unknown_var_4348_ptr);
             bVar6 = lStack_e0 == 0;
             
             /* 清理备用文件资源 */
@@ -1203,28 +1203,28 @@ void RenderingSystem_DebugStringGenerator5(void)
             }
             
             /* 清理备用缓冲区 */
-            puStack_140 = &UNK_180a3c3e0;
+            puStack_140 = &unknown_var_3456_ptr;
             if (puStack_138 != (void *)0x0) {
                 /* 执行资源清理函数 */
                 FUN_18064e900();
             }
             puStack_138 = (void *)0x0;
             uStack_128 = 0;
-            puStack_140 = &UNK_18098bcb0;
+            puStack_140 = &unknown_var_720_ptr;
             
             /* 如果备用文件也不存在，尝试第三个文件 */
             if (bVar6) {
                 /* 构建第三备用路径 "Module/Native/gor.tag" */
-                puStack_60 = &UNK_1809fdc18;
+                puStack_60 = &unknown_var_7512_ptr;
                 puStack_58 = auStack_48;
                 auStack_48[0] = 0;
                 uStack_50 = 6;
-                strcpy_s(auStack_48, 0x10, &UNK_180a3c07c);
+                strcpy_s(auStack_48, 0x10, &unknown_var_2588_ptr);
                 
                 /* 初始化第三备用字符串缓冲区 */
                 FUN_1806279c0(&puStack_120, &puStack_60);
                 uVar1 = uStack_110;
-                puStack_60 = &UNK_18098bcb0;
+                puStack_60 = &unknown_var_720_ptr;
                 
                 /* 分配第三备用缓冲区空间 */
                 uVar5 = uStack_110 + 0xf;
@@ -1253,7 +1253,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                     puVar4 = puStack_118;
                 }
                 uStack_110 = uVar1 + 0x19;
-                FUN_18062dee0(&uStack_d0, puVar4, &UNK_1809fcfbc);
+                FUN_18062dee0(&uStack_d0, puVar4, &unknown_var_4348_ptr);
                 
                 /* 清理第三备用文件资源 */
                 if (lStack_c8 != 0) {
@@ -1265,14 +1265,14 @@ void RenderingSystem_DebugStringGenerator5(void)
                 }
                 
                 /* 清理第三备用缓冲区 */
-                puStack_120 = &UNK_180a3c3e0;
+                puStack_120 = &unknown_var_3456_ptr;
                 if (puStack_118 != (void *)0x0) {
                     /* 执行资源清理函数 */
                     FUN_18064e900();
                 }
                 puStack_118 = (void *)0x0;
                 uStack_108 = 0;
-                puStack_120 = &UNK_18098bcb0;
+                puStack_120 = &unknown_var_720_ptr;
             }
         }
         
@@ -1796,12 +1796,12 @@ uint64_t *RenderingSystem_PathExtractor1(uint64_t *param_1, longlong param_2, ui
     /* 如果没有找到点号，返回默认值 */
     if (lVar1 == 0) {
         /* 初始化默认结果 */
-        *param_1 = &UNK_18098bcb0;
+        *param_1 = &unknown_var_720_ptr;
         param_1[1] = 0;
         *(int32_t *)(param_1 + 2) = 0;
         
         /* 设置默认字符串 */
-        *param_1 = &UNK_1809fdc18;
+        *param_1 = &unknown_var_7512_ptr;
         param_1[1] = param_1 + 3;
         *(int8_t *)(param_1 + 3) = 0;
         *(int32_t *)(param_1 + 2) = 0;
@@ -1879,12 +1879,12 @@ uint64_t *RenderingSystem_PathExtractor2(uint64_t *param_1, longlong param_2, ui
     }
     
     /* 如果没有找到点号或扩展名过长，返回默认值 */
-    *param_1 = &UNK_18098bcb0;
+    *param_1 = &unknown_var_720_ptr;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
     
     /* 设置默认字符串 */
-    *param_1 = &UNK_1809fdc18;
+    *param_1 = &unknown_var_7512_ptr;
     param_1[1] = param_1 + 3;
     *(int8_t *)(param_1 + 3) = 0;
     *(int32_t *)(param_1 + 2) = 0;
@@ -2018,12 +2018,12 @@ longlong *RenderingSystem_PathExtractor3(longlong *param_1, longlong param_2, ui
     lVar2 = strrchr(puVar3, 0x2f, param_3, param_4, 0, 0xfffffffffffffffe);
     
     /* 初始化结果缓冲区 */
-    *param_1 = (longlong)&UNK_18098bcb0;
+    *param_1 = (longlong)&unknown_var_720_ptr;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
     
     /* 设置字符串构建器 */
-    *param_1 = (longlong)&UNK_1809feda8;
+    *param_1 = (longlong)&unknown_var_2008_ptr;
     param_1[1] = (longlong)(param_1 + 3);
     *(int32_t *)(param_1 + 2) = 0;
     *(int8_t *)(param_1 + 3) = 0;

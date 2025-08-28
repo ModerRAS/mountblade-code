@@ -603,8 +603,8 @@ extern UInt64   _DAT_180bfaea0;                ///< 全局数据指针1
 extern UInt64   _DAT_180bfaea8;                ///< 全局数据指针2
 extern UInt64   _DAT_180bfaed0;                ///< 全局数据指针3
 extern UInt64   _DAT_180c92050;                ///< 全局数据指针4
-extern UInt8    UNK_180a3c3e0;                 ///< 全局未知数据1
-extern UInt8    UNK_18098bcb0;                 ///< 全局未知数据2
+extern UInt8    global_state_3456_ptr;                 ///< 全局未知数据1
+extern UInt8    global_state_720_ptr;                 ///< 全局未知数据2
 extern VoidPtr  ExceptionList;                 ///< 异常列表指针
 /** @} */
 
@@ -692,7 +692,7 @@ void System_Initializer(Void) {
     UInt64 addressValue;                ///< 地址值
     
     // 设置全局系统指针
-    _DAT_180c92050 = &UNK_18098bcb0;
+    _DAT_180c92050 = &global_state_720_ptr;
     
     // 执行系统清理操作（注意：此处可能有间接跳转）
     _Mtx_destroy_in_situ();
@@ -735,7 +735,7 @@ void System_ResourceManager(UInt64 resourceHandle, UInt32 operationType, UInt64 
         while (resourcePointer != resourceTable) {
             
             // 设置资源数据
-            *resourcePointer = &UNK_180a3c3e0;
+            *resourcePointer = &global_state_3456_ptr;
             
             // 检查资源状态
             if (resourcePointer[1] != 0) {
@@ -747,7 +747,7 @@ void System_ResourceManager(UInt64 resourceHandle, UInt32 operationType, UInt64 
             // 清理资源数据
             resourcePointer[1] = 0;
             *(UInt32*)(resourcePointer + 3) = 0;
-            *resourcePointer = &UNK_18098bcb0;
+            *resourcePointer = &global_state_720_ptr;
             
             // 移动到下一个资源
             resourcePointer = resourcePointer + 7;

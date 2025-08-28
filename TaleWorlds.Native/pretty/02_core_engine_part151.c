@@ -111,7 +111,7 @@ void FUN_18013a920(int32_t *param_1)
           fVar19 = fVar3 + *(float *)(lVar5 + 0x38 + *(longlong *)(param_1 + 4));
           fVar18 = (*(float *)(lVar5 + 0x40 + *(longlong *)(param_1 + 6)) +
                    *(float *)(lVar5 + 0x38 + *(longlong *)(param_1 + 6))) - fVar3;
-          iVar11 = FUN_18012e350(&UNK_180a065b8);
+          iVar11 = FUN_18012e350(&unknown_var_2744_ptr);
           if (*(int *)(lVar16 + 0x1b2c) == iVar11) {
             lVar5 = *(longlong *)(puVar6 + 4);
             puStackX_8 = puVar6;
@@ -555,7 +555,7 @@ LAB_18013b1d6:
     } while ((int)uVar7 < *(int *)(lVar4 + 0x2e28));
   }
   if (1 < (int)uVar12) {
-    qsort(puVar9,(longlong)(int)uVar12,8,&UNK_180135af0);
+    qsort(puVar9,(longlong)(int)uVar12,8,&unknown_var_9408_ptr);
   }
   if (0 < (int)uVar12) {
     uVar10 = (ulonglong)uVar12;

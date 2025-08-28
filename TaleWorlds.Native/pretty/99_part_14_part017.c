@@ -68,7 +68,7 @@ uint64_t FUN_1808f8e50(uint64_t param_1,uint64_t param_2)
   char cVar1;
   int8_t auStack_80 [88];
   
-  cVar1 = FUN_1808fbf50(param_2,&UNK_18098a888);
+  cVar1 = FUN_1808fbf50(param_2,&unknown_var_5560_ptr);
   if (cVar1 == '\0') {
     return 0xbad0000f;
   }
@@ -111,17 +111,17 @@ uint64_t FUN_1808f8f41(void)
   
   lVar6 = FUN_1808fa290();
   if (lVar6 != 0) {
-    _DAT_180c69e80 = (code *)GetProcAddress(lVar6,&UNK_18098a8a8);
-    _DAT_180c69e88 = (code *)GetProcAddress(lVar6,&UNK_18098a8c0);
-    _DAT_180c69e90 = GetProcAddress(lVar6,&UNK_18098a8e0);
-    _DAT_180c69ea0 = GetProcAddress(lVar6,&UNK_18098a900);
-    _DAT_180c69e98 = GetProcAddress(lVar6,&UNK_18098a920);
-    _DAT_180c69ea8 = GetProcAddress(lVar6,&UNK_18098a948);
-    _DAT_180c69eb0 = GetProcAddress(lVar6,&UNK_18098a968);
-    _DAT_180c69eb8 = GetProcAddress(lVar6,&UNK_18098a988);
-    _DAT_180c69ec0 = GetProcAddress(lVar6,&UNK_18098a9a8);
-    _DAT_180c69ec8 = GetProcAddress(lVar6,&UNK_18098a9d0);
-    _DAT_180c69ed0 = GetProcAddress(lVar6,&UNK_18098a9f8);
+    _DAT_180c69e80 = (code *)GetProcAddress(lVar6,&unknown_var_5592_ptr);
+    _DAT_180c69e88 = (code *)GetProcAddress(lVar6,&unknown_var_5616_ptr);
+    _DAT_180c69e90 = GetProcAddress(lVar6,&unknown_var_5648_ptr);
+    _DAT_180c69ea0 = GetProcAddress(lVar6,&unknown_var_5680_ptr);
+    _DAT_180c69e98 = GetProcAddress(lVar6,&unknown_var_5712_ptr);
+    _DAT_180c69ea8 = GetProcAddress(lVar6,&unknown_var_5752_ptr);
+    _DAT_180c69eb0 = GetProcAddress(lVar6,&unknown_var_5784_ptr);
+    _DAT_180c69eb8 = GetProcAddress(lVar6,&unknown_var_5816_ptr);
+    _DAT_180c69ec0 = GetProcAddress(lVar6,&unknown_var_5848_ptr);
+    _DAT_180c69ec8 = GetProcAddress(lVar6,&unknown_var_5888_ptr);
+    _DAT_180c69ed0 = GetProcAddress(lVar6,&unknown_var_5928_ptr);
   }
   pcVar5 = _DAT_180c69e88;
   pcVar4 = _DAT_180c69e80;
@@ -383,13 +383,13 @@ bool FUN_1808f92e0(longlong param_1,uint64_t param_2)
   auStackX_8[0] = 8;
   if (*(int *)(param_1 + 0x68) != 0) {
     do {
-      iVar3 = lstrcmpA(*(uint64_t *)(*(longlong *)(param_1 + 0x70) + uVar5 * 0x18),&UNK_18098ade0)
+      iVar3 = lstrcmpA(*(uint64_t *)(*(longlong *)(param_1 + 0x70) + uVar5 * 0x18),&unknown_var_6928_ptr)
       ;
       pcVar2 = _DAT_180c69f78;
       if (iVar3 == 0) {
         puVar1 = *(int32_t **)(*(longlong *)(param_1 + 0x70) + 0x10 + uVar5 * 0x18);
         _guard_check_icall(_DAT_180c69f78);
-        iVar3 = (*pcVar2)(0x10001,&UNK_18098ade0,*(uint64_t *)(puVar1 + 2),*puVar1,0,0,param_2,
+        iVar3 = (*pcVar2)(0x10001,&unknown_var_6928_ptr,*(uint64_t *)(puVar1 + 2),*puVar1,0,0,param_2,
                           auStackX_8);
         return iVar3 == 1;
       }

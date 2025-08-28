@@ -110,7 +110,7 @@ extern ulonglong _DAT_180bf00a8;              // 数据基址
 extern ulonglong _DAT_180c0c210;              // 临界区指针
 extern int _DAT_180c0c218;                    // 引用计数
 extern int _DAT_180c0c21c;                    // 初始化标志
-extern byte UNK_1809495c0[];                   // 未知数据表
+extern byte global_var_8608_ptr[];                   // 未知数据表
 extern int8_t _DAT_180d9e5c0[16];          // 数据掩码
 extern int8_t _DAT_180d9e5d0[16];          // 数据基准
 extern int8_t _DAT_180d9e5f0[16];          // 偏移量1
@@ -208,7 +208,7 @@ bool FUN_18069bbd0(longlong param_1, int param_2)
     }
     
     // 处理位流数据
-    bit_value = (&UNK_1809495c0)[processed_size];
+    bit_value = (&global_var_8608_ptr)[processed_size];
     *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)bit_value;
     *(uint *)(param_1 + 0x1c) = processed_size << (bit_value & 0x1f);
     *(ulonglong *)(param_1 + 0x10) = data_bits << (bit_value & RENDER_SHIFT_VALUE_3F);

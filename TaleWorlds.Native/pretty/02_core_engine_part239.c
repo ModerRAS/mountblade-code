@@ -76,7 +76,7 @@ void FUN_1802089d7(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t p
             else {
               cVar6 = FUN_1801ef300(lVar14,lVar9,lVar4);
               if (cVar6 == '\0') {
-                FUN_180626f80(&UNK_180a0fec0);
+                FUN_180626f80(&unknown_var_1920_ptr);
                 iVar15 = *(int *)(lVar11 + uVar27);
                 param_3 = param_9;
                 uVar18 = (uint)param_6;

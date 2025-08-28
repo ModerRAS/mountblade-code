@@ -38,7 +38,7 @@ void process_string_operation(longlong param_1,longlong param_2,longlong param_3
   
   stack_guard = 0xfffffffffffffffe;
   stack_hash = _DAT_180bf00a8 ^ (ulonglong)auStack_498;
-  debug_ptr = &UNK_18098bb30;
+  debug_ptr = &unknown_var_336_ptr;
   buffer_ptr = auStack_450;
   buffer_size = 0;
   auStack_450[0] = 0;
@@ -55,7 +55,7 @@ void process_string_operation(longlong param_1,longlong param_2,longlong param_3
                     // WARNING: Subroutine does not return
     memcpy(buffer_ptr,*(longlong *)(param_1 + 8),substr_ptr - *(longlong *)(param_1 + 8));
   }
-  debug_ptr = &UNK_18098bcb0;
+  debug_ptr = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(stack_hash ^ (ulonglong)auStack_498);
 }
@@ -154,7 +154,7 @@ longlong process_data_structure(int32_t *data_ptr,int32_t *input_ptr)
         if (*(void **)(data_ptr + 4) != (void *)0x0) {
           error_msg = *(void **)(data_ptr + 4);
         }
-        FUN_180626f80(&UNK_18098bc00,error_msg);
+        FUN_180626f80(&unknown_var_544_ptr,error_msg);
       }
       *data_ptr = data_ptr[0x12];
       return (ulonglong)(uint3)((uint)data_ptr[0x12] >> 8) << 8;
@@ -190,7 +190,7 @@ void set_system_parameter(uint64_t system_handle,int32_t parameter)
       if (*(void **)(system_base + 0x22a0) != (void *)0x0) {
         error_msg = *(void **)(system_base + 0x22a0);
       }
-      FUN_180626f80(&UNK_18098bc00,error_msg);
+      FUN_180626f80(&unknown_var_544_ptr,error_msg);
     }
     *(int32_t *)(system_base + 0x2290) = *(int32_t *)(system_base + 0x22d8);
     return;
@@ -207,7 +207,7 @@ uint64_t *
 free_memory_block(uint64_t *mem_ptr,ulonglong flags,uint64_t param_3,uint64_t param_4)
 
 {
-  *mem_ptr = &UNK_18098bcb0;
+  *mem_ptr = &unknown_var_720_ptr;
   if ((flags & 1) != 0) {
     free(mem_ptr,0x38,param_3,param_4,0xfffffffffffffffe);
   }
@@ -241,7 +241,7 @@ void initialize_string_data(longlong str_ptr,longlong input_str)
     strcpy_s(*(uint64_t *)(str_ptr + 8),0x20);
     return;
   }
-  FUN_180626f80(&UNK_18098bc48,0x20,input_str);
+  FUN_180626f80(&unknown_var_616_ptr,0x20,input_str);
   *(int32_t *)(str_ptr + 0x10) = 0;
   **(int8_t **)(str_ptr + 8) = 0;
   return;
@@ -301,10 +301,10 @@ void clear_data(int8_t *data_ptr)
 uint64_t * initialize_data_structure(uint64_t *data_ptr)
 
 {
-  *data_ptr = &UNK_18098bcb0;
+  *data_ptr = &unknown_var_720_ptr;
   data_ptr[1] = 0;
   *(int32_t *)(data_ptr + 2) = 0;
-  *data_ptr = &UNK_18098bc80;
+  *data_ptr = &unknown_var_672_ptr;
   data_ptr[1] = data_ptr + 3;
   *(int32_t *)(data_ptr + 2) = 0;
   *(int8_t *)(data_ptr + 3) = 0;
@@ -335,7 +335,7 @@ void string_operation_with_guard(longlong param_1,longlong param_2,longlong para
   
   stack_guard = 0xfffffffffffffffe;
   stack_hash = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
-  debug_ptr = &UNK_18098bc80;
+  debug_ptr = &unknown_var_672_ptr;
   buffer_ptr = auStack_68;
   buffer_size = 0;
   auStack_68[0] = 0;
@@ -352,7 +352,7 @@ void string_operation_with_guard(longlong param_1,longlong param_2,longlong para
                     // WARNING: Subroutine does not return
     memcpy(buffer_ptr,*(longlong *)(param_1 + 8),substr_ptr - *(longlong *)(param_1 + 8));
   }
-  debug_ptr = &UNK_18098bcb0;
+  debug_ptr = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(stack_hash ^ (ulonglong)auStack_a8);
 }
@@ -364,7 +364,7 @@ void string_operation_with_guard(longlong param_1,longlong param_2,longlong para
 uint64_t * free_small_memory_block(uint64_t *mem_ptr,ulonglong flags)
 
 {
-  *mem_ptr = &UNK_18098bcb0;
+  *mem_ptr = &unknown_var_720_ptr;
   if ((flags & 1) != 0) {
     free(mem_ptr,0x18);
   }
@@ -425,9 +425,9 @@ void broadcast_condition(longlong cond_ptr)
 void reset_pointers(uint64_t *ptr_array)
 
 {
-  *ptr_array = &UNK_18098bdc8;
-  *ptr_array = &UNK_180a21720;
-  *ptr_array = &UNK_180a21690;
+  *ptr_array = &unknown_var_1000_ptr;
+  *ptr_array = &unknown_var_3696_ptr;
+  *ptr_array = &unknown_var_3552_ptr;
   return;
 }
 
@@ -439,9 +439,9 @@ uint64_t *
 reset_pointers_with_free(uint64_t *ptr_array,ulonglong flags,uint64_t param_3,uint64_t param_4)
 
 {
-  *ptr_array = &UNK_18098bdc8;
-  *ptr_array = &UNK_180a21720;
-  *ptr_array = &UNK_180a21690;
+  *ptr_array = &unknown_var_1000_ptr;
+  *ptr_array = &unknown_var_3696_ptr;
+  *ptr_array = &unknown_var_3552_ptr;
   if ((flags & 1) != 0) {
     free(ptr_array,0x20,param_3,param_4,0xfffffffffffffffe);
   }
@@ -485,14 +485,14 @@ void cleanup_linked_list(longlong *list_ptr)
   
   end_node = (uint64_t *)list_ptr[1];
   for (current_node = (uint64_t *)*list_ptr; current_node != end_node; current_node = current_node + 5) {
-    *current_node = &UNK_180a3c3e0;
+    *current_node = &unknown_var_3456_ptr;
     if (current_node[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     current_node[1] = 0;
     *(int32_t *)(current_node + 3) = 0;
-    *current_node = &UNK_18098bcb0;
+    *current_node = &unknown_var_720_ptr;
   }
   if (*list_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -596,7 +596,7 @@ int insert_into_dynamic_array(longlong array_ptr,longlong element_ptr)
   
   uStack_38 = 0xfffffffffffffffe;
   new_memory = 0;
-  element_list = (uint64_t *)&UNK_180a3c3e0;
+  element_list = (uint64_t *)&unknown_var_3456_ptr;
   uStack_120 = 0;
   cleanup_flag = 0;
   uStack_128 = 0;
@@ -680,7 +680,7 @@ LAB_RETURN_INDEX:
   temp_ptr = &cleanup_stack;
   FUN_180049fd0(&cleanup_stack,uStack_58);
   temp_ptr = (uint64_t ***)&element_list;
-  element_list = (uint64_t *)&UNK_180a3c3e0;
+  element_list = (uint64_t *)&unknown_var_3456_ptr;
   if (cleanup_flag == 0) {
     return index;
   }
@@ -698,14 +698,14 @@ void cleanup_single_block(uint64_t *block_ptr,uint64_t param_2,uint64_t param_3,
 
 {
   FUN_180049fd0(block_ptr + 0x1a,block_ptr[0x1c],param_3,param_4,0xfffffffffffffffe);
-  *block_ptr = &UNK_180a3c3e0;
+  *block_ptr = &unknown_var_3456_ptr;
   if (block_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   block_ptr[1] = 0;
   *(int32_t *)(block_ptr + 3) = 0;
-  *block_ptr = &UNK_18098bcb0;
+  *block_ptr = &unknown_var_720_ptr;
   return;
 }
 
@@ -812,8 +812,8 @@ void initialize_system_components(longlong *system_ptr,uint64_t *config_ptr)
   new_system = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,200,8,3,flags,stack_guard);
   temp_ptr = new_system;
   FUN_180049830(new_system);
-  *new_system = (longlong)&UNK_1809fcb00;
-  new_system[0x18] = (longlong)&UNK_180046dd0;
+  *new_system = (longlong)&unknown_var_3136_ptr;
+  new_system[0x18] = (longlong)&unknown_var_1200_ptr;
   vtable_ptr = new_system;
   (**(code **)(*new_system + 0x28))(new_system);
   stack_guard = _DAT_180c82868;
@@ -824,14 +824,14 @@ void initialize_system_components(longlong *system_ptr,uint64_t *config_ptr)
   (**(code **)(*new_system + 0x38))(new_system);
   _DAT_180bf52b0 = (longlong)*(int *)(_DAT_180c86870 + 0x224);
   FUN_180627be0(&system_memory_52c0,config_ptr);
-  *config_ptr = &UNK_180a3c3e0;
+  *config_ptr = &unknown_var_3456_ptr;
   if (config_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   config_ptr[1] = 0;
   *(int32_t *)(config_ptr + 3) = 0;
-  *config_ptr = &UNK_18098bcb0;
+  *config_ptr = &unknown_var_720_ptr;
   return;
 }
 
@@ -924,8 +924,8 @@ void initialize_game_engine(void)
   engine_obj = (longlong ***)FUN_18062b1e0(_DAT_180c8ed18,200,8,3);
   temp_engine = engine_obj;
   FUN_180049830(engine_obj);
-  *engine_obj = (longlong **)&UNK_1809fcb00;
-  engine_obj[0x18] = (longlong **)&UNK_180047d20;
+  *engine_obj = (longlong **)&unknown_var_3136_ptr;
+  engine_obj[0x18] = (longlong **)&unknown_var_5120_ptr;
   engine_instance = (longlong **)engine_obj;
   (*(code *)(*engine_obj)[5])(engine_obj);
   system_handle = _DAT_180c82868;
@@ -938,7 +938,7 @@ void initialize_game_engine(void)
   (*(code *)(*engine_obj)[7])(engine_obj);
   FUN_180627ae0(&context_ptr,&system_memory_52c0);
   if (data_size == 0) {
-    (**(code **)(context_ptr + 0x10))(&context_ptr,&UNK_1809fc7a0);
+    (**(code **)(context_ptr + 0x10))(&context_ptr,&unknown_var_2272_ptr);
     success = FUN_180624a00(&context_ptr);
     if (success == '\0') {
       FUN_180624910(&context_ptr);
@@ -948,50 +948,50 @@ void initialize_game_engine(void)
   if (success == '\0') {
     FUN_180624910(&context_ptr);
   }
-  temp_ptr6 = &UNK_1809fcc58;
+  temp_ptr6 = &unknown_var_3480_ptr;
   string_buffer = temp_string;
   temp_string[0] = 0;
   string_size = 0x18;
-  strcpy_s(temp_string,0x40,&UNK_1809fc7b8);
+  strcpy_s(temp_string,0x40,&unknown_var_2296_ptr);
   FUN_180097d40(_DAT_180c86960,&temp_ptr6,&context_ptr);
-  temp_ptr6 = &UNK_18098bcb0;
-  temp_ptr7 = &UNK_1809fcc58;
+  temp_ptr6 = &unknown_var_720_ptr;
+  temp_ptr7 = &unknown_var_3480_ptr;
   temp_buffer2 = temp_string2;
   temp_string2[0] = 0;
   temp_size2 = 0xb;
-  strcpy_s(temp_string2,0x40,&UNK_1809fc790);
+  strcpy_s(temp_string2,0x40,&unknown_var_2256_ptr);
   FUN_180097d40(_DAT_180c86960,&temp_ptr7,&context_ptr);
-  temp_ptr7 = &UNK_18098bcb0;
-  temp_ptr8 = &UNK_1809fcc58;
+  temp_ptr7 = &unknown_var_720_ptr;
+  temp_ptr8 = &unknown_var_3480_ptr;
   temp_buffer3 = temp_string3;
   temp_string3[0] = 0;
   temp_size3 = 0x18;
-  config_id = strcpy_s(temp_string3,0x40,&UNK_1809fc7b8);
+  config_id = strcpy_s(temp_string3,0x40,&unknown_var_2296_ptr);
   _DAT_180bf52b8 = (float)FUN_180095480(config_id,&temp_ptr8);
   _DAT_180bf52b8 = 1.0 / _DAT_180bf52b8;
-  temp_ptr8 = &UNK_18098bcb0;
-  temp_ptr9 = &UNK_1809fcc58;
+  temp_ptr8 = &unknown_var_720_ptr;
+  temp_ptr9 = &unknown_var_3480_ptr;
   temp_buffer4 = temp_string4;
   temp_string4[0] = 0;
   temp_size4 = 0xb;
-  config_id = strcpy_s(temp_string4,0x40,&UNK_1809fc790);
+  config_id = strcpy_s(temp_string4,0x40,&unknown_var_2256_ptr);
   _DAT_180bf52bc = (float)FUN_180095480(config_id,&temp_ptr9);
   _DAT_180bf52bc = 1.0 / _DAT_180bf52bc;
-  temp_ptr9 = &UNK_18098bcb0;
-  temp_ptr10 = &UNK_1809fcc58;
+  temp_ptr9 = &unknown_var_720_ptr;
+  temp_ptr10 = &unknown_var_3480_ptr;
   temp_buffer5 = temp_string5;
   temp_string5[0] = 0;
   temp_size5 = 0xb;
-  config_id = strcpy_s(temp_string5,0x40,&UNK_1809fc790);
+  config_id = strcpy_s(temp_string5,0x40,&unknown_var_2256_ptr);
   scale_x = (float)FUN_180095720(config_id,&temp_ptr10);
-  temp_ptr10 = &UNK_18098bcb0;
-  temp_ptr11 = &UNK_1809fcc58;
+  temp_ptr10 = &unknown_var_720_ptr;
+  temp_ptr11 = &unknown_var_3480_ptr;
   temp_buffer6 = config_buffer;
   config_buffer[0] = 0;
   temp_size6 = 0x18;
-  config_id = strcpy_s(config_buffer,0x40,&UNK_1809fc7b8);
+  config_id = strcpy_s(config_buffer,0x40,&unknown_var_2296_ptr);
   scale_y = (float)FUN_180095720(config_id,&temp_ptr11);
-  temp_ptr11 = &UNK_18098bcb0;
+  temp_ptr11 = &unknown_var_720_ptr;
   timestamp = FUN_180623ce0();
   if (0 < _DAT_180bf52d0) {
     FUN_180629a40(&system_memory_52c0,&temp_ptr3,0,_DAT_180bf52d0 + -1);
@@ -1015,7 +1015,7 @@ void initialize_game_engine(void)
     file_offset = (longlong)index * 0x100;
     temp_engine = (longlong ***)(_DAT_180bf5248 + 0x30 + file_offset);
     engine_ptr_ptr = param_array;
-    temp_ptr5 = &UNK_1800adc10;
+    temp_ptr5 = &unknown_var_2640_ptr;
     callback_func = FUN_1800adba0;
     param_array[0] = (longlong ***)&temp_engine;
     FUN_18005c650(param_array);
@@ -1024,28 +1024,28 @@ void initialize_game_engine(void)
     *(int *)(file_offset + 0xb0 + _DAT_180bf5248) = (int)(longlong)_DAT_180bf52b8;
     *(int *)(file_offset + 200 + _DAT_180bf5248) = (int)(longlong)_DAT_180bf52bc;
     *(double *)(file_offset + 0x20 + _DAT_180bf5248) = (double)(timestamp >> 0x14);
-    temp_ptr4 = &UNK_180a3c3e0;
+    temp_ptr4 = &unknown_var_3456_ptr;
     if (temp_offset2 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_offset2 = 0;
     temp_val4 = 0;
-    temp_ptr4 = &UNK_18098bcb0;
-    temp_ptr3 = &UNK_180a3c3e0;
+    temp_ptr4 = &unknown_var_720_ptr;
+    temp_ptr3 = &unknown_var_3456_ptr;
     if (temp_offset != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_offset = 0;
     temp_val5 = 0;
-    temp_ptr3 = &UNK_18098bcb0;
+    temp_ptr3 = &unknown_var_720_ptr;
   }
-  temp_ptr2 = &UNK_180a3c3e0;
+  temp_ptr2 = &unknown_var_3456_ptr;
   temp_val3 = 0;
   temp_val1 = 0;
   temp_val2 = 0;
-  temp_ptr1 = &UNK_180a3c3e0;
+  temp_ptr1 = &unknown_var_3456_ptr;
   temp_size = 0;
   temp_buffer = (int8_t *)0x0;
   buffer_size = 0;
@@ -1131,7 +1131,7 @@ copy_data_structure(uint64_t *dest_ptr,uint64_t *src_ptr,uint64_t param_3,uint64
 void reset_specific_pointer(longlong data_ptr)
 
 {
-  *(void **)(data_ptr + 0x10) = &UNK_18098bcb0;
+  *(void **)(data_ptr + 0x10) = &unknown_var_720_ptr;
   return;
 }
 
@@ -1144,7 +1144,7 @@ void reset_specific_pointer(longlong data_ptr)
 void simple_pointer_reset(uint64_t *ptr)
 
 {
-  *ptr = &UNK_18098bcb0;
+  *ptr = &unknown_var_720_ptr;
   return;
 }
 

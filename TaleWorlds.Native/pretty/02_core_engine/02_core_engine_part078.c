@@ -60,11 +60,11 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
   context_data = context_ptr;
   
   // 处理版本信息请求 (request_type == 0x11)
-  if ((request_type == 0x11) && (compare_result = strcmp(*(uint64_t *)(request_id + 8),&UNK_180a06028), compare_result == 0))
+  if ((request_type == 0x11) && (compare_result = strcmp(*(uint64_t *)(request_id + 8),&unknown_var_1320_ptr), compare_result == 0))
   {
     // 提取字符串数据并检查是否包含特定标记
     extract_string_data(&result_ptr,config_ptr);
-    if ((0 < (int)data_length) && (string_pos = strstr(string_data,&UNK_180a028e0), string_pos != 0)) {
+    if ((0 < (int)data_length) && (string_pos = strstr(string_data,&unknown_var_7168_ptr), string_pos != 0)) {
       request_type = 5;
       buffer_size = (int)string_pos - (int)string_data;
       string_length = (ulonglong)buffer_size;
@@ -85,7 +85,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       // 分配和初始化字符串缓冲区
       uStack_1a8 = uStack_1a8 - request_type;
       *(int8_t *)((ulonglong)uStack_1a8 + (longlong)puStack_1b0) = 0;
-      puStack_190 = &UNK_180a3c3e0;
+      puStack_190 = &unknown_var_3456_ptr;
       uStack_178 = 0;
       puStack_188 = (int16_t *)0x0;
       uStack_180 = 0;
@@ -97,7 +97,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       *string_buffer = 0x20;
       uStack_180 = 1;
       process_string_operation(&puStack_1b8,(int)string_pos - (int)puStack_1b0,&puStack_190);
-      puStack_190 = &UNK_180a3c3e0;
+      puStack_190 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
       cleanup_memory(string_buffer);
     }
@@ -105,36 +105,36 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
     config_data = (uint64_t *)extract_string_data(&puStack_190,&puStack_1b8);
     puStack_168 = config_data;
     FUN_18005c8a0(puStack_170 + 0x124,config_data);
-    *config_data = &UNK_180a3c3e0;
+    *config_data = &unknown_var_3456_ptr;
     if (config_data[1] != 0) {
                     // WARNING: Subroutine does not return
       cleanup_memory();
     }
     config_data[1] = 0;
     *(int32_t *)(config_data + 3) = 0;
-    *config_data = &UNK_18098bcb0;
-    puStack_1b8 = &UNK_180a3c3e0;
+    *config_data = &unknown_var_720_ptr;
+    puStack_1b8 = &unknown_var_3456_ptr;
     if (puStack_1b0 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
       cleanup_memory();
     }
     puStack_1b0 = (int8_t *)0x0;
     uStack_1a0 = (ulonglong)uStack_1a0._4_4_ << 0x20;
-    puStack_1b8 = &UNK_18098bcb0;
+    puStack_1b8 = &unknown_var_720_ptr;
   }
   // 处理名称信息请求 (request_type == 0x12)
   else if ((request_type == 0x12) &&
-          (compare_result = strcmp(*(uint64_t *)(config_ptr + 8),&UNK_180a06248), compare_result == 0)) {
+          (compare_result = strcmp(*(uint64_t *)(config_ptr + 8),&unknown_var_1864_ptr), compare_result == 0)) {
     puStack_170 = context_ptr + 0x270;
     FUN_180057110(puStack_170);
     config_data = &system_buffer_ptr;
     if (*(void **)(config_ptr + 8) != (void *)0x0) {
       config_data = *(void **)(config_ptr + 8);
     }
-    request_type = FUN_18010cbc0(config_data,&UNK_180a06288,stack_buffer);
+    request_type = FUN_18010cbc0(config_data,&unknown_var_1928_ptr,stack_buffer);
     buffer_size = 0;
     while (request_type != -1) {
-      FUN_18010cbc0(config_data,&UNK_180a06280,temp_array);
+      FUN_18010cbc0(config_data,&unknown_var_1920_ptr,temp_array);
       string_pos = -1;
       do {
         loop_counter = string_pos + 1;
@@ -142,7 +142,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         string_pos = loop_counter;
       } while (stack_buffer[array_index] != '\0');
       uStack_194 = buffer_size + (int)loop_counter + 1;
-      puStack_1b8 = &UNK_180a3c3e0;
+      puStack_1b8 = &unknown_var_3456_ptr;
       uStack_1a0 = 0;
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a8 = 0;
@@ -167,7 +167,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       uStack_1a0 = 0;
       uStack_1a8 = 0;
       puStack_1b0 = (int8_t *)0x0;
-      puStack_1b8 = &UNK_180a3c3e0;
+      puStack_1b8 = &unknown_var_3456_ptr;
       if ((ulonglong)puStack_170[1] < (ulonglong)puStack_170[2]) {
         puStack_170[1] = puStack_170[1] + 0x20;
         extract_string_data();
@@ -179,7 +179,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       do {
         string_length = string_length + 1;
       } while (config_data[string_length] != '\0');
-      puStack_1b8 = &UNK_180a3c3e0;
+      puStack_1b8 = &unknown_var_3456_ptr;
       if (string_length <= (ulonglong)(longlong)(int)uStack_194) {
         if (puStack_1b0 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -187,7 +187,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         }
         puStack_1b0 = (int8_t *)0x0;
         uStack_1a0 = (ulonglong)uStack_1a0._4_4_ << 0x20;
-        puStack_1b8 = &UNK_18098bcb0;
+        puStack_1b8 = &unknown_var_720_ptr;
         break;
       }
       if (puStack_1b0 != (int8_t *)0x0) {
@@ -196,14 +196,14 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       }
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a0 = (ulonglong)uStack_1a0._4_4_ << 0x20;
-      puStack_1b8 = &UNK_18098bcb0;
-      request_type = FUN_18010cbc0(config_data + (int)uStack_194,&UNK_180a06288,stack_buffer);
+      puStack_1b8 = &unknown_var_720_ptr;
+      request_type = FUN_18010cbc0(config_data + (int)uStack_194,&unknown_var_1928_ptr,stack_buffer);
       buffer_size = uStack_194;
     }
   }
   // 处理路径信息请求 (request_type == 0x0d)
   else if ((request_type == 0xd) &&
-          (request_type = strcmp(*(uint64_t *)(config_ptr + 8),&UNK_180a062b0), request_type == 0)) {
+          (request_type = strcmp(*(uint64_t *)(config_ptr + 8),&unknown_var_1968_ptr), request_type == 0)) {
     array_ptr = context_ptr + 0x274;
     FUN_180057110(array_ptr);
     config_data = (uint64_t *)&system_buffer_ptr;
@@ -211,10 +211,10 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       config_data = *(uint64_t **)(config_ptr + 8);
     }
     puStack_168 = config_data;
-    request_type = FUN_18010cbc0(config_data,&UNK_180a06288,stack_buffer);
+    request_type = FUN_18010cbc0(config_data,&unknown_var_1928_ptr,stack_buffer);
     memory_ptr = (uint64_t *)0x0;
     while (request_type != -1) {
-      FUN_18010cbc0(config_data,&UNK_180a06280,temp_array);
+      FUN_18010cbc0(config_data,&unknown_var_1920_ptr,temp_array);
       string_pos = -1;
       do {
         loop_counter = string_pos + 1;
@@ -222,7 +222,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         string_pos = loop_counter;
       } while (stack_buffer[array_index] != '\0');
       uStack_194 = (int)memory_ptr + (int)loop_counter + 1;
-      puStack_1b8 = &UNK_180a3c3e0;
+      puStack_1b8 = &unknown_var_3456_ptr;
       uStack_160 = 0;
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a8 = 0;
@@ -250,10 +250,10 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       memory_ptr = (uint64_t *)context_ptr[0x275];
       if (memory_ptr < (uint64_t *)context_ptr[0x276]) {
         context_ptr[0x275] = memory_ptr + 4;
-        *memory_ptr = &UNK_18098bcb0;
+        *memory_ptr = &unknown_var_720_ptr;
         memory_ptr[1] = 0;
         *(int32_t *)(memory_ptr + 2) = 0;
-        *memory_ptr = &UNK_180a3c3e0;
+        *memory_ptr = &unknown_var_3456_ptr;
         *(int32_t *)(memory_ptr + 2) = 0;
         memory_ptr[1] = 0;
         *(int32_t *)((longlong)memory_ptr + 0x1c) = 0;
@@ -280,10 +280,10 @@ LAB_18010b692:
         }
         puStack_170 = config_data;
         puStack_150 = (uint64_t *)FUN_180059780(string_pos,memory_ptr,config_data);
-        *puStack_150 = &UNK_18098bcb0;
+        *puStack_150 = &unknown_var_720_ptr;
         puStack_150[1] = 0;
         *(int32_t *)(puStack_150 + 2) = 0;
-        *puStack_150 = &UNK_180a3c3e0;
+        *puStack_150 = &unknown_var_3456_ptr;
         *(int32_t *)(puStack_150 + 2) = 0;
         puStack_150[1] = 0;
         *(int32_t *)((longlong)puStack_150 + 0x1c) = 0;
@@ -313,14 +313,14 @@ LAB_18010b692:
       memory_ptr = (uint64_t *)(ulonglong)uStack_194;
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a0 = uStack_1a0 & 0xffffffff00000000;
-      puStack_1b8 = &UNK_18098bcb0;
+      puStack_1b8 = &unknown_var_720_ptr;
       string_length = 0xffffffffffffffff;
       do {
         string_length = string_length + 1;
       } while (*(char *)((longlong)config_data + string_length) != '\0');
       if (string_length <= (ulonglong)(longlong)(int)uStack_194) break;
       request_type = FUN_18010cbc0((void *)((longlong)(int)uStack_194 + (longlong)config_data),
-                             &UNK_180a06288,stack_buffer);
+                             &unknown_var_1928_ptr,stack_buffer);
     }
   }
   // 清理堆栈并返回
@@ -383,14 +383,14 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
     // 初始化堆栈保护值
     uStack_38 = 0xfffffffffffffffe;
     string_length = 0;
-    puStack_d8 = &UNK_180a3c3e0;
+    puStack_d8 = &unknown_var_3456_ptr;
     uStack_c0 = 0;
     lStack_d0 = 0;
     iStack_c8 = 0;
     
     // 处理主字符串区域
     if (*(longlong *)(context_ptr + 5000) - *(longlong *)(context_ptr + 0x1380) >> 5 != 0) {
-      FUN_180628040(&puStack_d8,&UNK_180a06298);
+      FUN_180628040(&puStack_d8,&unknown_var_1944_ptr);
       longlong end_pos = *(longlong *)(context_ptr + 5000);
       longlong start_pos = *(longlong *)(context_ptr + 0x1380);
       ulonglong current_offset = string_length;
@@ -419,31 +419,31 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
             }
             uStack_a8 = uStack_a8 - remove_count;
             puStack_b0[uStack_a8] = 0;
-            uint64_t marker = FUN_180627910(&puStack_78,&UNK_180a028e0);
+            uint64_t marker = FUN_180627910(&puStack_78,&unknown_var_7168_ptr);
             process_string_operation(&puStack_b8,(int)end_pos - (int)puStack_b0,marker);
-            puStack_78 = &UNK_180a3c3e0;
+            puStack_78 = &unknown_var_3456_ptr;
             if (lStack_70 != 0) {
                     // WARNING: Subroutine does not return
               cleanup_memory();
             }
             lStack_70 = 0;
             uStack_60 = 0;
-            puStack_78 = &UNK_18098bcb0;
+            puStack_78 = &unknown_var_720_ptr;
           }
           // 记录处理结果
           void *record_ptr = &system_buffer_ptr;
           if (puStack_b0 != (void *)0x0) {
             record_ptr = puStack_b0;
           }
-          FUN_180628040(&puStack_d8,&UNK_180a062d4,record_ptr);
-          puStack_b8 = &UNK_180a3c3e0;
+          FUN_180628040(&puStack_d8,&unknown_var_2004_ptr,record_ptr);
+          puStack_b8 = &unknown_var_3456_ptr;
           if (puStack_b0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
             cleanup_memory();
           }
           puStack_b0 = (void *)0x0;
           uStack_a0 = 0;
-          puStack_b8 = &UNK_18098bcb0;
+          puStack_b8 = &unknown_var_720_ptr;
           uint item_count = (int)total_items + 1;
           end_pos = *(longlong *)(context_ptr + 5000);
           start_pos = *(longlong *)(context_ptr + 0x1380);
@@ -470,36 +470,36 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
         }
         uStack_88 = uStack_88 - remove_count;
         puStack_90[uStack_88] = 0;
-        uint64_t marker = FUN_180627910(&puStack_58,&UNK_180a028e0);
+        uint64_t marker = FUN_180627910(&puStack_58,&unknown_var_7168_ptr);
         process_string_operation(&puStack_98,(int)end_pos - (int)puStack_90,marker);
-        puStack_58 = &UNK_180a3c3e0;
+        puStack_58 = &unknown_var_3456_ptr;
         if (lStack_50 != 0) {
                     // WARNING: Subroutine does not return
           cleanup_memory();
         }
         lStack_50 = 0;
         uStack_40 = 0;
-        puStack_58 = &UNK_18098bcb0;
+        puStack_58 = &unknown_var_720_ptr;
       }
       // 记录最终结果
       void *final_record = &system_buffer_ptr;
       if (puStack_90 != (void *)0x0) {
         final_record = puStack_90;
       }
-      FUN_180628040(&puStack_d8,&UNK_1809fe62c,final_record);
-      puStack_98 = &UNK_180a3c3e0;
+      FUN_180628040(&puStack_d8,&unknown_var_92_ptr,final_record);
+      puStack_98 = &unknown_var_3456_ptr;
       if (puStack_90 != (void *)0x0) {
                     // WARNING: Subroutine does not return
         cleanup_memory();
       }
       puStack_90 = (void *)0x0;
       uStack_80 = 0;
-      puStack_98 = &UNK_18098bcb0;
+      puStack_98 = &unknown_var_720_ptr;
     }
     
     // 处理附加数据区域
     if (*(longlong *)(context_ptr + 0x13a8) - *(longlong *)(context_ptr + 0x13a0) >> 5 != 0) {
-      FUN_180628040(&puStack_d8,&UNK_180a062c0);
+      FUN_180628040(&puStack_d8,&unknown_var_1984_ptr);
       longlong end_pos = *(longlong *)(context_ptr + 0x13a8);
       longlong start_pos = *(longlong *)(context_ptr + 0x13a0);
       current_offset = string_length;
@@ -512,7 +512,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
           if (item_data != (void *)0x0) {
             default_data = item_data;
           }
-          FUN_180628040(&puStack_d8,&UNK_180a062d4,default_data);
+          FUN_180628040(&puStack_d8,&unknown_var_2004_ptr,default_data);
           uint item_count = (int)current_offset + 1;
           string_length = string_length + 0x20;
           end_pos = *(longlong *)(context_ptr + 0x13a8);
@@ -526,7 +526,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
       if (last_item != (void *)0x0) {
         default_last = last_item;
       }
-      FUN_180628040(&puStack_d8,&UNK_1809fe62c,default_last);
+      FUN_180628040(&puStack_d8,&unknown_var_92_ptr,default_last);
     }
     
     // 写入输出文件并清理
@@ -538,7 +538,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
       _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
       UNLOCK();
     }
-    puStack_d8 = &UNK_180a3c3e0;
+    puStack_d8 = &unknown_var_3456_ptr;
     if (lStack_d0 != 0) {
                     // WARNING: Subroutine does not return
       cleanup_memory();
@@ -718,8 +718,8 @@ void empty_operation_variant2(void)
 longlong init_config_operation_type1(longlong config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &UNK_18010c780;
-  *(void **)(config_ptr + 0x18) = &UNK_18010c750;
+  *(void **)(config_ptr + 0x10) = &unknown_var_592_ptr;
+  *(void **)(config_ptr + 0x18) = &unknown_var_544_ptr;
   return config_ptr;
 }
 
@@ -734,8 +734,8 @@ longlong init_config_operation_type1(longlong config_ptr)
 longlong init_config_operation_type2(longlong config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &UNK_18010c760;
-  *(void **)(config_ptr + 0x18) = &UNK_18010c750;
+  *(void **)(config_ptr + 0x10) = &unknown_var_560_ptr;
+  *(void **)(config_ptr + 0x18) = &unknown_var_544_ptr;
   return config_ptr;
 }
 
@@ -750,8 +750,8 @@ longlong init_config_operation_type2(longlong config_ptr)
 longlong init_config_operation_type3(longlong config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &UNK_18010c730;
-  *(void **)(config_ptr + 0x18) = &UNK_18010c300;
+  *(void **)(config_ptr + 0x10) = &unknown_var_512_ptr;
+  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
   return config_ptr;
 }
 
@@ -766,8 +766,8 @@ longlong init_config_operation_type3(longlong config_ptr)
 longlong init_config_operation_type4(longlong config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &UNK_18010c710;
-  *(void **)(config_ptr + 0x18) = &UNK_18010c700;
+  *(void **)(config_ptr + 0x10) = &unknown_var_480_ptr;
+  *(void **)(config_ptr + 0x18) = &unknown_var_464_ptr;
   return config_ptr;
 }
 
@@ -782,8 +782,8 @@ longlong init_config_operation_type4(longlong config_ptr)
 longlong init_config_operation_type5(longlong config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &UNK_18010c6e0;
-  *(void **)(config_ptr + 0x18) = &UNK_18010c6d0;
+  *(void **)(config_ptr + 0x10) = &unknown_var_432_ptr;
+  *(void **)(config_ptr + 0x18) = &unknown_var_416_ptr;
   return config_ptr;
 }
 
@@ -798,8 +798,8 @@ longlong init_config_operation_type5(longlong config_ptr)
 longlong init_config_operation_type6(longlong config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &UNK_18010c6b0;
-  *(void **)(config_ptr + 0x18) = &UNK_18010c300;
+  *(void **)(config_ptr + 0x10) = &unknown_var_384_ptr;
+  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
   return config_ptr;
 }
 
@@ -814,8 +814,8 @@ longlong init_config_operation_type6(longlong config_ptr)
 longlong init_config_operation_type7(longlong config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &UNK_18010c690;
-  *(void **)(config_ptr + 0x18) = &UNK_18010c300;
+  *(void **)(config_ptr + 0x10) = &unknown_var_352_ptr;
+  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
   return config_ptr;
 }
 
@@ -830,8 +830,8 @@ longlong init_config_operation_type7(longlong config_ptr)
 longlong init_config_operation_type8(longlong config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &UNK_18010c670;
-  *(void **)(config_ptr + 0x18) = &UNK_18010c300;
+  *(void **)(config_ptr + 0x10) = &unknown_var_320_ptr;
+  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
   return config_ptr;
 }
 
@@ -846,8 +846,8 @@ longlong init_config_operation_type8(longlong config_ptr)
 longlong init_config_operation_type9(longlong config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &UNK_18010c650;
-  *(void **)(config_ptr + 0x18) = &UNK_18010c300;
+  *(void **)(config_ptr + 0x10) = &unknown_var_288_ptr;
+  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
   return config_ptr;
 }
 
@@ -862,8 +862,8 @@ longlong init_config_operation_type9(longlong config_ptr)
 longlong init_config_operation_type10(longlong config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &UNK_18010c630;
-  *(void **)(config_ptr + 0x18) = &UNK_18010c300;
+  *(void **)(config_ptr + 0x10) = &unknown_var_256_ptr;
+  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
   return config_ptr;
 }
 
@@ -922,7 +922,7 @@ void set_config_value_type1(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0x1ba0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x1ba0);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x1b90) = *(int32_t *)(config_context + 0x1bd8);
     return;
@@ -959,7 +959,7 @@ void set_config_value_type2(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0x1f90) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x1f90);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x1f80) = *(int32_t *)(config_context + 0x1fc8);
     return;
@@ -996,7 +996,7 @@ void set_config_value_type3(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0x2070) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x2070);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x2060) = *(int32_t *)(config_context + 0x20a8);
     return;
@@ -1033,7 +1033,7 @@ void set_config_value_type4(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0x21c0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x21c0);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x21b0) = *(int32_t *)(config_context + 0x21f8);
     return;
@@ -1070,7 +1070,7 @@ void set_config_value_type5(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0x2230) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x2230);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x2220) = *(int32_t *)(config_context + 0x2268);
     return;
@@ -1107,7 +1107,7 @@ void set_config_value_type6(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0x2150) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x2150);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x2140) = *(int32_t *)(config_context + 0x2188);
     return;
@@ -1144,7 +1144,7 @@ void set_config_value_type7(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0x20e0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x20e0);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x20d0) = *(int32_t *)(config_context + 0x2118);
     return;
@@ -1181,7 +1181,7 @@ void set_config_value_type8(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0x12e0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x12e0);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x12d0) = *(int32_t *)(config_context + 0x1318);
     return;
@@ -1218,7 +1218,7 @@ void set_config_value_type9(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0x10b0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x10b0);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x10a0) = *(int32_t *)(config_context + 0x10e8);
     return;
@@ -1255,7 +1255,7 @@ void set_config_value_type10(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0x1040) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x1040);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x1030) = *(int32_t *)(config_context + 0x1078);
     return;
@@ -1292,7 +1292,7 @@ void set_config_value_type11(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0xfd0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0xfd0);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0xfc0) = *(int32_t *)(config_context + 0x1008);
     return;
@@ -1329,7 +1329,7 @@ void set_config_value_type12(longlong config_context, int32_t value)
       if (*(void **)(config_context + 0xf60) != (void *)0x0) {
         default_string = *(void **)(config_context + 0xf60);
       }
-      FUN_180626f80(&UNK_18098bc00,default_string);
+      FUN_180626f80(&unknown_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0xf50) = *(int32_t *)(config_context + 0xf98);
     return;

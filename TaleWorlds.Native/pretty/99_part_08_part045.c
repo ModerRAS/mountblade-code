@@ -10,8 +10,8 @@ void FUN_1805a4b02(void)
   
                     // WARNING: Could not recover jumptable at 0x0001805a4b2b. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ulonglong)*(uint *)(&UNK_1805a6b60 + in_R11 * 4) + 0x180000000))
-            ((code *)((ulonglong)*(uint *)(&UNK_1805a6b60 + in_R11 * 4) + 0x180000000));
+  (*(code *)((ulonglong)*(uint *)(&unknown_var_6672_ptr + in_R11 * 4) + 0x180000000))
+            ((code *)((ulonglong)*(uint *)(&unknown_var_6672_ptr + in_R11 * 4) + 0x180000000));
   return;
 }
 
@@ -834,7 +834,7 @@ LAB_1805a7803:
      (_DAT_180c92514 != 4)) {
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                  0x48) < _DAT_180d4a058) && (FUN_1808fcb90(&system_ptr_a058), _DAT_180d4a058 == -1)) {
-      uStack_80 = &UNK_180a3c3e0;
+      uStack_80 = &unknown_var_3456_ptr;
       uStack_68 = 0;
       puStack_78 = (int32_t *)0x0;
       uStack_70 = 0;
@@ -847,7 +847,7 @@ LAB_1805a7803:
       *(int16_t *)(puVar7 + 1) = 0x74;
       uStack_70 = 5;
       _DAT_180d4a05c = FUN_180571e20(&system_ptr_60c0,&uStack_80);
-      uStack_80 = &UNK_180a3c3e0;
+      uStack_80 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
       FUN_18064e900(puVar7);
     }

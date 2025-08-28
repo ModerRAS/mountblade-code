@@ -128,7 +128,7 @@ void FUN_180726c40(longlong param_1,longlong param_2,longlong param_3,uint64_t p
     } while (lVar9 < lVar8);
   }
   if (*(char *)(param_3 + 0x1d) == '\x02') {
-    iStack_468 = (int)*(short *)(&UNK_1809535e0 + (longlong)*(char *)(param_3 + 0x21) * 2);
+    iStack_468 = (int)*(short *)(&unknown_var_9600_ptr + (longlong)*(char *)(param_3 + 0x21) * 2);
   }
   iVar3 = *(int *)(param_1 + 0x11e4);
   if (0 < (longlong)iVar3) {

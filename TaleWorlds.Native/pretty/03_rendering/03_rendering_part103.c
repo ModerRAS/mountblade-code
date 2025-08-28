@@ -684,7 +684,7 @@ longlong RenderingSystemResourceSetter(longlong resource_manager, uint resource_
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                  0x48) < _DAT_180d496d0) && (FUN_1808fcb90(&system_memory_96d0), _DAT_180d496d0 == -1)) {
         // 初始化线程局部数据
-        _DAT_180d49730 = &UNK_1809fcc58;
+        _DAT_180d49730 = &unknown_var_3480_ptr;
         _DAT_180d49738 = &system_memory_9748;
         _DAT_180d49740 = 0;
     }
@@ -731,16 +731,16 @@ void RenderingSystemFileWriter(longlong render_context, uint64_t file_handle)
     // 初始化文件头
     *file_header = 0;
     *(int8_t *)(file_header + 2) = 0;
-    FUN_18062dee0(file_header, file_format, &UNK_180a0cf4c);
+    FUN_18062dee0(file_header, file_format, &unknown_var_9772_ptr);
     
     // 设置文件栈信息
-    file_stack = &UNK_180a3c3e0;
+    file_stack = &unknown_var_3456_ptr;
     if (file_offset != 0) {
         FUN_18064e900();
     }
     file_offset = 0;
     write_count = 0;
-    file_stack = &UNK_18098bcb0;
+    file_stack = &unknown_var_720_ptr;
     
     // 定位到文件开头
     _fseeki64(file_header[1], 0, 0);
@@ -890,11 +890,11 @@ void RenderingSystemResourceLoader(longlong render_context, longlong file_handle
     // 初始化资源缓冲区
     *resource_buffer = 0;
     *(int8_t *)(resource_buffer + 2) = 0;
-    FUN_18062dee0(resource_buffer, resource_format, &UNK_180a01ff0);
+    FUN_18062dee0(resource_buffer, resource_format, &unknown_var_4880_ptr);
     
     // 检查文件句柄
     if (resource_buffer[1] == 0) {
-        FUN_180626f80(&UNK_180a1b150);
+        FUN_180626f80(&unknown_var_7632_ptr);
         if (resource_buffer[1] != 0) {
             fclose();
             resource_buffer[1] = 0;
@@ -1221,7 +1221,7 @@ void RenderingSystemDataSerializer(longlong render_context, longlong file_handle
     buffer_start = _ftelli64(*(uint64_t *)(file_handle + 8));
     
     // 更新文件信息
-    FUN_180062300(_DAT_180c86928, &UNK_180a1b118, data_flags, buffer_start - offset,
+    FUN_180062300(_DAT_180c86928, &unknown_var_7576_ptr, data_flags, buffer_start - offset,
                   *(uint64_t *)(render_context + 0x2d0));
 }
 

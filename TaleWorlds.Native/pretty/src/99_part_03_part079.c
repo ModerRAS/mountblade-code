@@ -200,7 +200,7 @@ SystemInt32 SystemResourceMonitor_Monitor(SystemHandle context);
  * 
  * 主要功能：
  * - 初始化系统函数指针表（FUN_1802436f0）
- * - 设置默认资源处理回调（UNK_1800ee4d0, UNK_1800ee4c0）
+ * - 设置默认资源处理回调（unknown_var_7024_ptr, unknown_var_7008_ptr）
  * - 配置系统状态监控和清理机制
  * - 建立资源分配和释放的管理策略
  * 
@@ -254,10 +254,10 @@ SystemInt32 SystemResourceManager_Initialize(SystemHandle context)
     
     // 设置资源处理回调函数表
     resource_callback_ptr = (SystemHandle*)(*(SystemUInt64*)context + 0x9620);
-    *resource_callback_ptr = &UNK_1800ee4d0;
+    *resource_callback_ptr = &unknown_var_7024_ptr;
     
     resource_callback_ptr = (SystemHandle*)(*(SystemUInt64*)context + 0x9628);
-    *resource_callback_ptr = &UNK_1800ee4c0;
+    *resource_callback_ptr = &unknown_var_7008_ptr;
     
     // 设置系统核心函数指针
     system_table_ptr = (SystemHandle*)(*(SystemUInt64*)context + 0x9610);
@@ -381,21 +381,21 @@ SystemHandle SystemResourceAllocator_Allocate(SystemUInt32 size, SystemUInt32 al
     SystemHandle allocated_resource;
     
     // 设置默认资源类型
-    *resource_allocator = &UNK_180a143e8;
+    *resource_allocator = &unknown_var_9624_ptr;
     
     // 获取内存池指针
     memory_pool_ptr = (SystemHandle*)resource_allocator[0x1c];
     if (memory_pool_ptr == (SystemHandle*)0x0) {
         // 初始化内存池
         resource_allocator[0x1c] = 0;
-        resource_allocator[0x18] = &UNK_180a3c3e0;
+        resource_allocator[0x18] = &unknown_var_3456_ptr;
         if (resource_allocator[0x19] != 0) {
             // 内存池初始化失败，执行错误恢复
             FUN_18064e900();
         }
         resource_allocator[0x19] = 0;
         *(SystemUInt32*)(resource_allocator + 0x1b) = 0;
-        resource_allocator[0x18] = &UNK_18098bcb0;
+        resource_allocator[0x18] = &unknown_var_720_ptr;
         
         // 调用内存池初始化函数
         FUN_180049470(resource_allocator);
@@ -504,13 +504,13 @@ SystemInt32 SystemResourceMonitor_Monitor(SystemHandle context)
         resource_counter2 = *(SystemInt32*)(context + 0x3594);
         
         // 配置监控参数
-        config_pointer = &UNK_1809fcc28;
+        config_pointer = &unknown_var_3432_ptr;
         string_buffer = monitor_config;
         string_buffer[0] = 0;
         buffer_size = 10;
         
         // 设置监控字符串
-        strcpy_s(string_buffer, 0x80, &UNK_180a146b0);
+        strcpy_s(string_buffer, 0x80, &unknown_var_336_ptr);
         
         // 获取资源名称
         resource_pointer = &system_buffer_ptr;
@@ -580,7 +580,7 @@ SystemInt32 SystemResourceMonitor_Monitor(SystemHandle context)
         
         // 获取线程ID
         _Thrd_id();
-        config_pointer = &UNK_18098bcb0;
+        config_pointer = &unknown_var_720_ptr;
     }
     
     // 执行栈保护检查
@@ -682,14 +682,14 @@ void SystemResourceManager_ReleaseAll(SystemHandle context)
         *(SystemUInt32*)(stack_guard + 3) = *(SystemUInt32*)(context + 0x1bd4);
         
         // 配置清理处理器
-        resource_allocator = &UNK_1809fcc28;
+        resource_allocator = &unknown_var_3432_ptr;
         string_buffer = stack_guard + 4;
         string_buffer[0] = 0;
         buffer_size = 7;
         resource_sizes = allocation_size;
         
         // 执行字符串复制操作
-        allocation_size = strcpy_s(string_buffer, 0x80, &UNK_180a146f0);
+        allocation_size = strcpy_s(string_buffer, 0x80, &unknown_var_400_ptr);
         
         // 调用资源分配器进行清理
         resource_allocator = (SystemHandle*)FUN_1800b1d80(allocation_size, &cleanup_handlers[1], &resource_allocator, memory_stats);
@@ -709,7 +709,7 @@ void SystemResourceManager_ReleaseAll(SystemHandle context)
         }
         
         // 重置资源分配器
-        resource_allocator = &UNK_18098bcb0;
+        resource_allocator = &unknown_var_720_ptr;
     }
     
     // 执行栈保护检查

@@ -719,7 +719,7 @@ void FUN_180208720(longlong *param_1,ulonglong param_2,float *param_3,int param_
                   else {
                     cVar5 = FUN_1801ef300(lVar16,lVar10,lVar8);
                     if (cVar5 == '\0') {
-                      FUN_180626f80(&UNK_180a0fec0);
+                      FUN_180626f80(&unknown_var_1920_ptr);
                       iVar14 = *(int *)(lVar20 + lStack_48);
                       uVar19 = uStack_68;
                       goto LAB_180208aa2;

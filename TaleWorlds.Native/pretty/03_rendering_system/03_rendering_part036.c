@@ -5,10 +5,10 @@
 
 // 全局变量和常量定义
 ulonglong g_RenderContextManager = 0xfffffffffffffffe;  // 渲染上下文管理器
-uint64_t *g_RenderInterfaceTable = &UNK_180a16dc0;     // 渲染接口表
-uint64_t *g_DeviceContext = &UNK_1809fcc58;           // 设备上下文
-uint64_t *g_MemoryAllocator = &UNK_18098bcb0;          // 内存分配器
-uint64_t *g_RenderDevice = &UNK_180a3c3e0;             // 渲染设备
+uint64_t *g_RenderInterfaceTable = &unknown_var_336_ptr;     // 渲染接口表
+uint64_t *g_DeviceContext = &unknown_var_3480_ptr;           // 设备上下文
+uint64_t *g_MemoryAllocator = &unknown_var_720_ptr;          // 内存分配器
+uint64_t *g_RenderDevice = &unknown_var_3456_ptr;             // 渲染设备
 char *g_RenderDeviceName = "Llg_Global_services_view_wi"; // 渲染设备名称字符串
 
 /**
@@ -114,17 +114,17 @@ void InitializeRenderingSystem(uint64_t *renderContext)
   deviceHandle = _DAT_180c86930;
   
   // 创建设备接口
-  vertexData = &UNK_1809fcc58;
+  vertexData = &unknown_var_3480_ptr;
   pixelShader = constantBuffer;
   constantBuffer[0] = 0;
   rasterState = 0x23;
   textureCache = textureManager;
-  strcpy_s(constantBuffer,0x40,&UNK_180a16c68);
+  strcpy_s(constantBuffer,0x40,&unknown_var_9992_ptr);
   FUN_1800b30d0(deviceHandle,&shaderCache,&vertexData,1);
   tempCounter = 1;
   
   // 配置渲染管线
-  vertexData = &UNK_18098bcb0;
+  vertexData = &unknown_var_720_ptr;
   deviceCaps = FUN_18022cb40(shaderCache,&textureCache);
   textureCount = 0;
   tempCounter = 0;
@@ -264,13 +264,13 @@ LAB_18028843a:
           (**(code **)(*renderTarget + 0x38))();
         }
         
-        vertexData = &UNK_180a3c3e0;
+        vertexData = &unknown_var_3456_ptr;
         if (frameTime != 0) {
           FUN_18064e900();
         }
         frameTime = 0;
         clearColor[0] = 0;
-        vertexData = &UNK_18098bcb0;
+        vertexData = &unknown_var_720_ptr;
         frameIndex = renderFlags + 1;
         textureCount = tempCounter;
       } while (frameIndex < (int)textureManager);
@@ -303,14 +303,14 @@ LAB_18028843a:
   
   // 第二阶段渲染初始化
   deviceHandle = _DAT_180c86930;
-  depthStencil = &UNK_1809fcc58;
+  depthStencil = &unknown_var_3480_ptr;
   renderTargetView = renderTargetArray;
   renderTargetArray[0] = 0;
   depthStencilState = 0xb;
-  strcpy_s(renderTargetArray,0x40,&UNK_180a16c28);
+  strcpy_s(renderTargetArray,0x40,&unknown_var_9928_ptr);
   FUN_1800b30d0(deviceHandle,&renderTarget,&depthStencil,1);
   tempCounter = textureCount & 0xffffffef | 8;
-  depthStencil = &UNK_18098bcb0;
+  depthStencil = &unknown_var_720_ptr;
   renderInterface = (uint64_t *)FUN_18022cb40(renderTarget,&frameIndex);
   bufferManager = (longlong *)*renderInterface;
   *renderInterface = 0;

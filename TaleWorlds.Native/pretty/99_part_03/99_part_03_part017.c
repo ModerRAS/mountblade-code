@@ -57,8 +57,8 @@
 
 // 全局数据结构引用
 extern uint64_t system_buffer_ptr;     // 默认数据结构引用
-extern uint64_t UNK_180a3c3e0;     // 未知数据结构引用
-extern uint64_t UNK_18098bcb0;     // 系统数据结构引用
+extern uint64_t global_var_3456_ptr;     // 未知数据结构引用
+extern uint64_t global_var_720_ptr;     // 系统数据结构引用
 
 // =============================================================================
 // 核心功能函数实现
@@ -390,7 +390,7 @@ void process_complex_data_structure(uint64_t context_param, uint64_t *structure_
           // 检查位标志
           if ((*(uint *)(*(longlong *)(search_key + structure_address) + 0x100) & BIT_FLAG_CHECK_MASK) != 0) {
             structure_address = *(longlong *)(*(longlong *)(search_key + structure_address) + 0x1b8);
-            stack_d0_ptr = &UNK_180a3c3e0;
+            stack_d0_ptr = &global_var_3456_ptr;
             stack_b8_value = 0;
             stack_c8_ptr = (byte *)0x0;
             stack_c0_value = 0;
@@ -474,13 +474,13 @@ LAB_TREE_FOUND:
             stack_88_value = 0;
             validate_structure_data(structure_ptr, stack_48_buffer);
             stack_58_ptr = &stack_a8_ptr;
-            stack_a8_ptr = &UNK_180a3c3e0;
+            stack_a8_ptr = &global_var_3456_ptr;
             if (stack_a0_value != 0) {
               cleanup_memory_resources();
             }
             stack_a0_value = 0;
             stack_90_value = 0;
-            stack_a8_ptr = &UNK_18098bcb0;
+            stack_a8_ptr = &global_var_720_ptr;
             current_node = (uint64_t *)structure_ptr[2];
             traverse_ptr = structure_ptr;
             if (current_node == (uint64_t *)0x0) {
@@ -549,13 +549,13 @@ LAB_RESOURCE_PROCESS:
               (**(code **)(*data_header + 0x38))(data_header);
               *(int8_t *)(parent_node + 8) = 1;
             }
-            stack_d0_ptr = &UNK_180a3c3e0;
+            stack_d0_ptr = &global_var_3456_ptr;
             if (stack_c8_ptr != (byte *)0x0) {
               cleanup_memory_resources();
             }
             stack_c8_ptr = (byte *)0x0;
             stack_b8_value = stack_b8_value & 0xffffffff00000000;
-            stack_d0_ptr = &UNK_18098bcb0;
+            stack_d0_ptr = &global_var_720_ptr;
           }
           node_value = (int)node_count + 1;
           search_key = search_key + 0x10;

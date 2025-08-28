@@ -13,7 +13,7 @@ void FUN_18061fec0(uint64_t *param_1)
   ulonglong uVar5;
   ulonglong uVar6;
   
-  *param_1 = &UNK_180a3beb8;
+  *param_1 = &unknown_var_2136_ptr;
   uVar5 = 0;
   plVar2 = param_1 + 0x38;
   uVar4 = uVar5;
@@ -100,7 +100,7 @@ void FUN_18061fec0(uint64_t *param_1)
     }
     if (param_1[5] == 0) {
       if (param_1[1] == 0) {
-        *param_1 = &UNK_180a3bf30;
+        *param_1 = &unknown_var_2256_ptr;
         return;
       }
                     // WARNING: Subroutine does not return

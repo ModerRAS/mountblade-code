@@ -36,10 +36,10 @@ extern int _DAT_180bf6678;         // 系统标识符1
 extern int _DAT_180bf667c;         // 系统标识符2
 
 // 位操作掩码表
-extern uint64_t UNK_1809fabe0;    // 位清除掩码表
-extern uint64_t UNK_1809f9308;    // 位置位掩码表
-extern int UNK_1809fb100;           // 阈值表
-extern int UNK_1809fb110;           // 偏移量表
+extern uint64_t global_config_5168_ptr;    // 位清除掩码表
+extern uint64_t global_config_8808_ptr;    // 位置位掩码表
+extern int global_config_6480_ptr;           // 阈值表
+extern int global_config_6496_ptr;           // 偏移量表
 
 // 函数别名定义
 #define ProcessResourceCleanup FUN_1805b30b6
@@ -277,15 +277,15 @@ void ProcessBitOperations(longlong *bit_array, uint index1, uint index2, char op
   bit_pointer = (byte *)((longlong)((int)((int)bit_array[1] >> 3) * index1 + ((int)index2 >> 3)) + *bit_array);
   if (operation_type == '\0') {
     // 执行位清除操作
-    *bit_pointer = (&UNK_1809fabe0)[index2 & 7] & *bit_pointer;
+    *bit_pointer = (&global_config_5168_ptr)[index2 & 7] & *bit_pointer;
     bit_pointer = (byte *)((longlong)((int)((int)bit_array[1] >> 3) * index2 + ((int)index1 >> 3)) + *bit_array);
-    *bit_pointer = *bit_pointer & (&UNK_1809fabe0)[index1 & 7];
+    *bit_pointer = *bit_pointer & (&global_config_5168_ptr)[index1 & 7];
   }
   else {
     // 执行位置位操作
-    *bit_pointer = (&UNK_1809f9308)[index2 & 7] | *bit_pointer;
+    *bit_pointer = (&global_config_8808_ptr)[index2 & 7] | *bit_pointer;
     bit_pointer = (byte *)((longlong)((int)((int)bit_array[1] >> 3) * index2 + ((int)index1 >> 3)) + *bit_array);
-    *bit_pointer = *bit_pointer | (&UNK_1809f9308)[index1 & 7];
+    *bit_pointer = *bit_pointer | (&global_config_8808_ptr)[index1 & 7];
   }
   return;
 }
@@ -442,8 +442,8 @@ void ProcessSystemData(int *data_array, int array_size, longlong data_source, lo
         current_item = data_item - (int)loop_counter;
         performance_counter = 0;
         do {
-          if (current_item < *(int *)(&UNK_1809fb100 + performance_counter * 4)) {
-            data_value = *(int *)(&UNK_1809fb110 + performance_counter * 4);
+          if (current_item < *(int *)(&global_config_6480_ptr + performance_counter * 4)) {
+            data_value = *(int *)(&global_config_6496_ptr + performance_counter * 4);
             goto LAB_1805b3980;
           }
           performance_counter = performance_counter + 1;
@@ -475,7 +475,7 @@ LAB_1805b3980:
       data_offset = data_offset + -1;
     } while (data_offset != 0);
   }
-  data_pointer = (int *)&UNK_1809fb100;
+  data_pointer = (int *)&global_config_6480_ptr;
   do {
     if (0 < *data_pointer) break;
     data_pointer = data_pointer + 1;
@@ -518,8 +518,8 @@ void ExecuteSystemProcessor(void)
       resource_handle = (longlong)current_item;
       data_offset = 0;
       do {
-        if (current_item - (int)resource_count < *(int *)(&UNK_1809fb100 + data_offset * 4)) {
-          data_value = *(int *)(&UNK_1809fb110 + data_offset * 4);
+        if (current_item - (int)resource_count < *(int *)(&global_config_6480_ptr + data_offset * 4)) {
+          data_value = *(int *)(&global_config_6496_ptr + data_offset * 4);
           goto LAB_1805b3980;
         }
         data_offset = data_offset + 1;
@@ -550,11 +550,11 @@ LAB_1805b3980:
     data_array = data_array + 3;
     resource_count = resource_count + -1;
   } while (resource_count != 0);
-  data_pointer = (int *)&UNK_1809fb100;
+  data_pointer = (int *)&global_config_6480_ptr;
   current_item = 0;
   do {
     if (0 < *data_pointer) {
-      status_flag = (byte)*(int32_t *)(&UNK_1809fb110 + (longlong)current_item * 4);
+      status_flag = (byte)*(int32_t *)(&global_config_6496_ptr + (longlong)current_item * 4);
       goto LAB_1806193ee;
     }
     current_item = current_item + 1;
@@ -584,11 +584,11 @@ void ProcessSystemCleanup(void)
   int cleanup_mask;
   int32_t config_param;
   
-  data_pointer = (int *)&UNK_1809fb100;
+  data_pointer = (int *)&global_config_6480_ptr;
   data_value = 0;
   do {
     if (0 < *data_pointer) {
-      config_param = *(int32_t *)(&UNK_1809fb110 + (longlong)data_value * 4);
+      config_param = *(int32_t *)(&global_config_6496_ptr + (longlong)data_value * 4);
       goto LAB_1806193ee;
     }
     data_value = data_value + 1;

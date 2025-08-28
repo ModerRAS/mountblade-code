@@ -100,7 +100,7 @@ void FUN_1806b10f0(longlong *param_1,uint param_2,longlong param_3)
   puVar4 = (uint64_t *)(uVar2 * 0x78 + lVar5);
   if (puVar4 < puVar3) {
     do {
-      *puVar4 = &UNK_18094a9a8;
+      *puVar4 = &unknown_var_3704_ptr;
       uVar1 = *(uint64_t *)(param_3 + 0x10);
       puVar4[1] = *(uint64_t *)(param_3 + 8);
       puVar4[2] = uVar1;
@@ -129,7 +129,7 @@ void FUN_1806b10f0(longlong *param_1,uint param_2,longlong param_3)
   }
   for (puVar3 = (uint64_t *)(lVar6 + lVar5); puVar3 < (uint64_t *)(uVar2 * 0x78 + lVar5);
       puVar3 = puVar3 + 0xf) {
-    *puVar3 = &UNK_18094a9a8;
+    *puVar3 = &unknown_var_3704_ptr;
   }
   *(uint *)(param_1 + 1) = param_2;
   return;
@@ -957,10 +957,10 @@ uint64_t * FUN_1806b1b20(uint64_t *param_1,uint64_t param_2)
   uint64_t uVar6;
   
   param_1[2] = param_2;
-  *param_1 = &UNK_18094b168;
+  *param_1 = &unknown_var_5688_ptr;
   uVar6 = 0;
   param_1[3] = 0;
-  param_1[1] = &UNK_18094b1a0;
+  param_1[1] = &unknown_var_5744_ptr;
   *(int8_t *)(param_1 + 4) = 0;
   iVar2 = _getSize_MutexImpl_shdfnd_physx__SAIXZ();
   if (iVar2 != 0) {
@@ -968,12 +968,12 @@ uint64_t * FUN_1806b1b20(uint64_t *param_1,uint64_t param_2)
     plVar4 = (longlong *)PxGetFoundation();
     cVar1 = (**(code **)(*plVar4 + 0x28))(plVar4);
     if (cVar1 == '\0') {
-      puVar5 = &UNK_18094a1f0;
+      puVar5 = &unknown_var_1728_ptr;
     }
     else {
       puVar5 = (void *)__std_type_info_name(0x180bfc198,0x180c827e0);
     }
-    uVar6 = (**(code **)(*plVar3 + 8))(plVar3,iVar2,puVar5,&UNK_18094a1b0,0x71);
+    uVar6 = (**(code **)(*plVar3 + 8))(plVar3,iVar2,puVar5,&unknown_var_1664_ptr,0x71);
   }
   param_1[5] = uVar6;
   __0MutexImpl_shdfnd_physx__QEAA_XZ(uVar6);
@@ -995,8 +995,8 @@ void FUN_1806b1c00(uint64_t *param_1)
   char cVar2;
   longlong *plVar3;
   
-  *param_1 = &UNK_18094b168;
-  param_1[1] = &UNK_18094b1a0;
+  *param_1 = &unknown_var_5688_ptr;
+  param_1[1] = &unknown_var_5744_ptr;
   (**(code **)(*(longlong *)param_1[2] + 0x50))((longlong *)param_1[2],param_1);
   cVar2 = (**(code **)(*(longlong *)(param_1[6] + 8) + 0x18))();
   if (cVar2 != '\0') {
@@ -1009,8 +1009,8 @@ void FUN_1806b1c00(uint64_t *param_1)
     plVar3 = (longlong *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
     (**(code **)(*plVar3 + 0x10))(plVar3,lVar1);
   }
-  param_1[1] = &UNK_18094a240;
-  *param_1 = &UNK_18094b130;
+  param_1[1] = &unknown_var_1808_ptr;
+  *param_1 = &unknown_var_5632_ptr;
   return;
 }
 
@@ -1031,8 +1031,8 @@ void FUN_1806b1cc0(longlong param_1)
     *(int8_t *)(param_1 + 0x20) = 1;
     plVar1 = (longlong *)FUN_1806a3140(*(uint64_t *)(param_1 + 0x10));
     *(longlong **)(param_1 + 0x18) = plVar1;
-    puStack_18 = &UNK_18094a2a0;
-    puStack_10 = &UNK_18094a338;
+    puStack_18 = &unknown_var_1904_ptr;
+    puStack_10 = &unknown_var_2056_ptr;
     (**(code **)(*plVar1 + 8))(plVar1,&puStack_18,*(uint64_t *)(param_1 + 0x30));
     plVar1 = (longlong *)(*(longlong *)(param_1 + 0x30) + 8);
                     // WARNING: Could not recover jumptable at 0x0001806b1d29. Too many branches

@@ -42,7 +42,7 @@ void process_engine_component_initialization(longlong *component_context)
     temp_ptr_1 = temp_array_2;
     temp_array_2[0] = 0;
     // 处理错误情况
-    FUN_180749ef0(index,3,engine_data,&UNK_180957a48);
+    FUN_180749ef0(index,3,engine_data,&unknown_var_7112_ptr);
   }
   
   if (stack_long_1 != 0) {
@@ -154,7 +154,7 @@ void process_engine_queue(longlong queue_context,uint64_t param_2,uint64_t param
   
   // 检查队列是否有数据需要处理
   if (*(longlong *)(queue_context + 0x2b8) - *(longlong *)(queue_context + 0x2b0) >> 4 != 0) {
-    FUN_180062300(_DAT_180c86928,&UNK_180a10c10,0,param_4,queue_param);
+    FUN_180062300(_DAT_180c86928,&unknown_var_5328_ptr,0,param_4,queue_param);
   }
   
   // 释放队列锁
@@ -281,7 +281,7 @@ void process_engine_components(longlong component_context)
   stack_ulonglong_1 = _DAT_180bf00a8 ^ (ulonglong)temp_array_1;
   
   // 初始化组件处理
-  FUN_1801299b0(&UNK_180a10be0,0,0);
+  FUN_1801299b0(&unknown_var_5280_ptr,0,0);
   component_list = *(longlong **)(component_context + 0x38);
   current_component = *component_list;
   component_ptr = component_list;
@@ -303,7 +303,7 @@ void process_engine_components(longlong component_context)
       FUN_180846610(component_list[0xf],temp_array_4,0x100,temp_array_3);
       
       // 检查组件类型
-      if ((void *)*component_list == &UNK_180a128b0) {
+      if ((void *)*component_list == &unknown_var_2656_ptr) {
         temp_int = FUN_180846a90(component_list[0x10],&temp_int_1);
         FUN_180211a30(temp_int,&system_buffer_ptr);
         if ((temp_int == 0) && ((temp_int_1 == 0 || (temp_int_1 == 3)))) {
@@ -318,7 +318,7 @@ void process_engine_components(longlong component_context)
       }
       
       // 获取组件状态信息
-      if ((void *)*component_list == &UNK_180a128b0) {
+      if ((void *)*component_list == &unknown_var_2656_ptr) {
         FUN_180846810(component_list[0x10],temp_array_2);
       }
       else {
@@ -327,7 +327,7 @@ void process_engine_components(longlong component_context)
       
       // 处理组件
       if (should_process != '\0') {
-        if ((void *)*component_list == &UNK_180a128b0) {
+        if ((void *)*component_list == &unknown_var_2656_ptr) {
           temp_int = FUN_1808473f0(component_list[0x10],&temp_float,0);
           component_value = temp_float;
           if (temp_int != 0) {
@@ -339,8 +339,8 @@ void process_engine_components(longlong component_context)
         }
         
         // 记录组件信息
-        FUN_18010f010(&UNK_180a10bf0,temp_array_4,(double)component_value);
-        temp_ptr_1 = &UNK_180a3c3e0;
+        FUN_18010f010(&unknown_var_5296_ptr,temp_array_4,(double)component_value);
+        temp_ptr_1 = &unknown_var_3456_ptr;
         temp_ulonglong = 0;
         temp_ptr_2 = (int32_t *)0x0;
         temp_uint_1 = 0;
@@ -354,7 +354,7 @@ void process_engine_components(longlong component_context)
         *(int16_t *)(temp_ptr_2 + 1) = 0x5f;
         temp_uint_1 = 5;
         
-        FUN_180628040(&temp_ptr_1,&UNK_1809fe7f8,temp_array_4);
+        FUN_180628040(&temp_ptr_1,&unknown_var_552_ptr,temp_array_4);
         temp_8_1 = 0;
         temp_ptr = (int32_t *)&system_buffer_ptr;
         
@@ -368,13 +368,13 @@ void process_engine_components(longlong component_context)
         }
         
         // 清理临时字符串
-        temp_ptr_1 = &UNK_180a3c3e0;
+        temp_ptr_1 = &unknown_var_3456_ptr;
         if (temp_ptr_2 != (int32_t *)0x0) {
           FUN_18064e900();
         }
         temp_ptr_2 = (int32_t *)0x0;
         temp_ulonglong = temp_ulonglong & 0xffffffff00000000;
-        temp_ptr_1 = &UNK_18098bcb0;
+        temp_ptr_1 = &unknown_var_720_ptr;
       }
       
       // 移动到下一个组件
@@ -519,10 +519,10 @@ void resize_object_array(longlong *object_array_ptr,uint64_t param_2,uint64_t pa
     if (old_array_ptr != new_object_ptr) {
       offset = (longlong)old_array_ptr - (longlong)new_array_ptr;
       do {
-        *temp_ptr = &UNK_18098bcb0;
+        *temp_ptr = &unknown_var_720_ptr;
         temp_ptr[1] = 0;
         *(int32_t *)(temp_ptr + 2) = 0;
-        *temp_ptr = &UNK_1809fcc28;
+        *temp_ptr = &unknown_var_3432_ptr;
         temp_ptr[1] = temp_ptr + 3;
         *(int32_t *)(temp_ptr + 2) = 0;
         *(int8_t *)(temp_ptr + 3) = 0;
@@ -614,10 +614,10 @@ void expand_object_array(longlong *object_array_ptr,uint64_t param_2,uint64_t pa
     end_pos = allocation_size;
     
     do {
-      *(void **)(element_ptr + -4) = &UNK_18098bcb0;
+      *(void **)(element_ptr + -4) = &unknown_var_720_ptr;
       *(uint64_t *)(element_ptr + -2) = 0;
       *element_ptr = 0;
-      *(void **)(element_ptr + -4) = &UNK_1809fcc28;
+      *(void **)(element_ptr + -4) = &unknown_var_3432_ptr;
       *(int32_t **)(element_ptr + -2) = element_ptr + 2;
       *element_ptr = 0;
       *(int8_t *)(element_ptr + 2) = 0;
@@ -708,10 +708,10 @@ EXPANSION_DONE:
   if (array_size != current_pos) {
     element_count = array_size - (longlong)new_ptr;
     do {
-      *insert_ptr = &UNK_18098bcb0;
+      *insert_ptr = &unknown_var_720_ptr;
       insert_ptr[1] = 0;
       *(int32_t *)(insert_ptr + 2) = 0;
-      *insert_ptr = &UNK_1809fcc28;
+      *insert_ptr = &unknown_var_3432_ptr;
       insert_ptr[1] = insert_ptr + 3;
       *(int32_t *)(insert_ptr + 2) = 0;
       *(int8_t *)(insert_ptr + 3) = 0;
@@ -799,11 +799,11 @@ void cleanup_engine_resource_manager(longlong resource_manager)
       resource_ptr = *(uint64_t **)(table_ptr + index * 8);
       if (resource_ptr != (uint64_t *)0x0) {
         FUN_180211720(resource_ptr + 4);
-        *resource_ptr = &UNK_180a3c3e0;
+        *resource_ptr = &unknown_var_3456_ptr;
         if (resource_ptr[1] == 0) {
           resource_ptr[1] = 0;
           *(int32_t *)(resource_ptr + 3) = 0;
-          *resource_ptr = &UNK_18098bcb0;
+          *resource_ptr = &unknown_var_720_ptr;
           FUN_18064e900(resource_ptr);
         }
         FUN_18064e900();

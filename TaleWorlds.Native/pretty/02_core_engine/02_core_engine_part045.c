@@ -6,15 +6,15 @@
 // 全局变量声明
 uint64_t _DAT_180c8ed18;  // 内存管理器
 uint64_t _DAT_180c86870;  // 引擎配置数据
-uint64_t UNK_180a3c3e0;   // 全局数据指针
-uint64_t UNK_18098bcb0;   // 函数表指针
-uint64_t UNK_180a21720;   // 虚函数表指针
-uint64_t UNK_180a21690;   // 虚函数表指针
-uint64_t UNK_180a00330;   // 比较数据指针
-uint64_t UNK_18098bc73;   // 默认配置指针
+uint64_t unknown_var_3456_ptr;   // 全局数据指针
+uint64_t unknown_var_720_ptr;   // 函数表指针
+uint64_t unknown_var_3696_ptr;   // 虚函数表指针
+uint64_t unknown_var_3552_ptr;   // 虚函数表指针
+uint64_t unknown_var_7520;   // 比较数据指针
+uint64_t unknown_var_659;   // 默认配置指针
 uint64_t _DAT_180bf6658;  // 配置覆盖指针
-uint64_t UNK_180a00550;   // 初始化函数指针
-uint64_t UNK_1809fcc28;   // 字符串函数表指针
+uint64_t unknown_var_8064_ptr;   // 初始化函数指针
+uint64_t unknown_var_3432_ptr;   // 字符串函数表指针
 
 /**
  * 处理数据结构初始化和复制操作
@@ -919,15 +919,15 @@ ARRAY_RESIZE_DONE:
  */
 uint64_t *initialize_object_instance(uint64_t *object_ptr, ulonglong init_flags, uint64_t param3, uint64_t param4)
 {
-    object_ptr[4] = &UNK_180a3c3e0;
+    object_ptr[4] = &unknown_var_3456_ptr;
     if (object_ptr[5] != 0) {
         release_memory_buffer();
     }
     object_ptr[5] = 0;
     *(int32_t *)(object_ptr + 7) = 0;
-    object_ptr[4] = &UNK_18098bcb0;
-    *object_ptr = &UNK_180a21720;
-    *object_ptr = &UNK_180a21690;
+    object_ptr[4] = &unknown_var_720_ptr;
+    *object_ptr = &unknown_var_3696_ptr;
+    *object_ptr = &unknown_var_3552_ptr;
     if ((init_flags & 1) != 0) {
         free(object_ptr, 0x70, param3, param4, 0xfffffffffffffffe);
     }
@@ -960,10 +960,10 @@ uint64_t *initialize_string_object(uint64_t *string_obj, longlong string_data, u
 {
     longlong string_length;      // 字符串长度
     
-    *string_obj = &UNK_18098bcb0;
+    *string_obj = &unknown_var_720_ptr;
     string_obj[1] = 0;
     *(int32_t *)(string_obj + 2) = 0;
-    *string_obj = &UNK_1809fcc28;
+    *string_obj = &unknown_var_3432_ptr;
     string_obj[1] = string_obj + 3;
     *(int32_t *)(string_obj + 2) = 0;
     *(int8_t *)(string_obj + 3) = 0;
@@ -992,7 +992,7 @@ uint64_t *create_object_typeA(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &UNK_180a14ff8;
+    *new_object = &unknown_var_2712_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1010,7 +1010,7 @@ uint64_t *create_object_typeB(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb0, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &UNK_180a01240;
+    *new_object = &unknown_var_1376_ptr;
     return new_object;
 }
 
@@ -1046,7 +1046,7 @@ uint64_t *create_object_typeC(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &UNK_180a01188;
+    *new_object = &unknown_var_1192_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1086,7 +1086,7 @@ uint64_t *create_object_typeD(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &UNK_180a010d0;
+    *new_object = &unknown_var_1008_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1104,7 +1104,7 @@ uint64_t *create_object_typeE(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &UNK_180a00f10;
+    *new_object = &unknown_var_560_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1122,7 +1122,7 @@ uint64_t *create_object_typeF(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &UNK_180a00e58;
+    *new_object = &unknown_var_376_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1140,7 +1140,7 @@ uint64_t *create_object_typeG(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &UNK_180a00d78;
+    *new_object = &unknown_var_152_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1158,7 +1158,7 @@ uint64_t *create_object_typeH(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &UNK_180a00ca8;
+    *new_object = &unknown_var_9944_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1176,7 +1176,7 @@ uint64_t *create_object_typeI(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &UNK_180a00be0;
+    *new_object = &unknown_var_9744_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1217,8 +1217,8 @@ void initialize_render_configuration(longlong config_ptr, uint64_t param2, longl
         config_param2 = stack_param2;
     }
     
-    setup_render_parameters(config_ptr, &UNK_180a00550, config_param2, config_param3, config_param1);
-    stack_param1 = &UNK_180a3c3e0;
+    setup_render_parameters(config_ptr, &unknown_var_8064_ptr, config_param2, config_param3, config_param1);
+    stack_param1 = &unknown_var_3456_ptr;
     if (stack_param2 != (void *)0x0) {
         release_memory_buffer();
     }

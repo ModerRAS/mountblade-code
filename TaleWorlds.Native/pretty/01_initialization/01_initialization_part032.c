@@ -737,28 +737,28 @@ void 关闭句柄(uint64_t *handle_ptr)
 void 销毁互斥锁清理资源(uint64_t *mutex_ptr)
 
 {
-  *mutex_ptr = &UNK_180a3cf50;
+  *mutex_ptr = &unknown_var_6384_ptr;
   if (*(char *)((longlong)mutex_ptr + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *mutex_ptr = &UNK_180a30778;
-  mutex_ptr[7] = &UNK_180a3c3e0;
+  *mutex_ptr = &unknown_var_5224_ptr;
+  mutex_ptr[7] = &unknown_var_3456_ptr;
   if (mutex_ptr[8] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   mutex_ptr[8] = 0;
   *(int32_t *)(mutex_ptr + 10) = 0;
-  mutex_ptr[7] = &UNK_18098bcb0;
-  mutex_ptr[1] = &UNK_180a3c3e0;
+  mutex_ptr[7] = &unknown_var_720_ptr;
+  mutex_ptr[1] = &unknown_var_3456_ptr;
   if (mutex_ptr[2] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   mutex_ptr[2] = 0;
   *(int32_t *)(mutex_ptr + 4) = 0;
-  mutex_ptr[1] = &UNK_18098bcb0;
+  mutex_ptr[1] = &unknown_var_720_ptr;
   return;
 }
 
@@ -780,7 +780,7 @@ uint64_t *
   uint64_t alloc_flags;
   
   alloc_flags = 0xfffffffffffffffe;
-  *mutex_ptr = &UNK_180a3cf50;
+  *mutex_ptr = &unknown_var_6384_ptr;
   if (*(char *)((longlong)mutex_ptr + 0xb1) != '\0') {
     FUN_180639250();
   }
@@ -831,21 +831,21 @@ void 初始化线程池资源(uint64_t param1,longlong config_ptr)
   uStack_1b8 = 0xfffffffffffffffe;
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
   lStack_210 = _DAT_180c86928;
-  puStack_1a8 = &UNK_1809fdc18;
+  puStack_1a8 = &unknown_var_7512_ptr;
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 6;
-  strcpy_s(auStack_190,0x10,&UNK_1809fe2c0);
+  strcpy_s(auStack_190,0x10,&unknown_var_9216_ptr);
   puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x208,8,3);
   lStack_248 = lVar1 + 0x70;
   puStack_238 = puVar3;
   FUN_18020e0e0(puVar3,&puStack_1a8,3,lVar1 + 0x2e0);
-  *puVar3 = &UNK_1809fe220;
+  *puVar3 = &unknown_var_9056_ptr;
   puStack_238 = puVar3;
   FUN_18020e840(puVar3);
   FUN_18005ea90(lVar1 + 0x48,&puStack_238);
   *(uint64_t **)(lVar2 + 400) = puVar3;
-  puStack_1a8 = &UNK_18098bcb0;
+  puStack_1a8 = &unknown_var_720_ptr;
   FUN_180627e10(_DAT_180c86870 + 0x170,auStack_230,&system_buffer_c8c8);
   if (0 < *(int *)(param_2 + 0x10)) {
     FUN_1806277c0(auStack_230,uStack_220 + *(int *)(param_2 + 0x10));

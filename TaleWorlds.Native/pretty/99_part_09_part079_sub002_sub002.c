@@ -84,7 +84,7 @@ void FUN_1805f0b13(void)
   puVar15 = in_R9;
   if (!in_ZF) {
     puVar4 = *(uint64_t **)(unaff_RSI + 0xd8);
-    if ((void *)*puVar4 == &UNK_180a3beb8) {
+    if ((void *)*puVar4 == &unknown_var_2136_ptr) {
       puVar29 = (uint64_t *)((ulonglong)in_R9 & 0xffffffff);
       in_RAX = (uint64_t *)((longlong)(puVar4[10] - puVar4[9]) >> 3);
       if (in_RAX != (uint64_t *)0x0) {

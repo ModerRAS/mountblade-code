@@ -130,7 +130,7 @@ void FUN_1805d4fe0(longlong *param_1)
       }
       if (fVar11 < *(float *)((longlong)param_1 + 0x104) * *(float *)((longlong)param_1 + 0x104)) {
         iStack_98 = 0;
-        puStack_158 = &UNK_180a0c240;
+        puStack_158 = &unknown_var_6432_ptr;
         uStack_150 = 2;
         uStack_148 = 0;
         uStack_14c = 0x31b789;

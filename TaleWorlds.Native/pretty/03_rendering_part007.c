@@ -192,7 +192,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
     
     // 调用渲染初始化函数
-    FUN_180272d60(&UNK_18098de80, *param_1);
+    FUN_180272d60(&unknown_var_9376_ptr, *param_1);
     
     // 批量数据处理循环（9次）
     for (int i = 0; i < RENDERING_PADDING_9; i++) {
@@ -270,7 +270,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     } while (lVar6 != 0);
     
     // 调用渲染完成处理函数
-    FUN_18025a940(&UNK_18098dfd0, param_1[0x1f2]);
+    FUN_18025a940(&unknown_var_9712_ptr, param_1[0x1f2]);
     
     // 处理渲染标志位
     puVar3 = (int8_t *)unaff_RBX[1];
@@ -550,7 +550,7 @@ void RenderingStateManager(int32_t *param_1)
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
     
     // 调用状态初始化函数
-    FUN_180272d60(&UNK_18098de80, *unaff_RDI);
+    FUN_180272d60(&unknown_var_9376_ptr, *unaff_RDI);
     
     // 批量状态处理循环（9次）
     for (int i = 0; i < RENDERING_PADDING_9; i++) {
@@ -628,7 +628,7 @@ void RenderingStateManager(int32_t *param_1)
     } while (lVar6 != 0);
     
     // 调用状态同步完成函数
-    FUN_18025a940(&UNK_18098dfd0, unaff_RDI[0x1f2]);
+    FUN_18025a940(&unknown_var_9712_ptr, unaff_RDI[0x1f2]);
     
     // 处理状态标志位
     puVar3 = (int8_t *)unaff_RBX[1];
@@ -947,7 +947,7 @@ void RenderingResourceProcessor(void)
     } while (lVar8 != 0);
     
     // 调用资源初始化函数
-    FUN_18025a940(&UNK_18098dfd0, *(int32_t *)(unaff_RDI + 0x7c8));
+    FUN_18025a940(&unknown_var_9712_ptr, *(int32_t *)(unaff_RDI + 0x7c8));
     
     // 处理资源标志位
     puVar4 = (int8_t *)unaff_RBX[1];
@@ -1232,7 +1232,7 @@ void RenderingParameterOptimizer(void)
     } while (lVar8 != 0);
     
     // 调用参数初始化函数
-    FUN_18025a940(&UNK_18098dfd0, *(int32_t *)(unaff_RDI + 0x7c8));
+    FUN_18025a940(&unknown_var_9712_ptr, *(int32_t *)(unaff_RDI + 0x7c8));
     
     // 处理参数标志位
     puVar4 = (int8_t *)unaff_RBX[1];

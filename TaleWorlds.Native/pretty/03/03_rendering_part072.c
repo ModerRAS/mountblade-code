@@ -640,7 +640,7 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context, u
   longlong resource_ptr;
   
   temp_var4 = 0xfffffffffffffffe;
-  *resource_context = &UNK_180a1a368;
+  *resource_context = &unknown_var_4072_ptr;
   resource_table = _DAT_180c8a980;
   resource_indices[0] = *(int *)(resource_context + 2);
   resource_ptr = (longlong)resource_indices[0];
@@ -660,12 +660,12 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context, u
     (**(code **)(*(longlong *)resource_context[0x30] + 0x38))();
   }
   // 设置资源上下文状态
-  resource_context[0x1c] = &UNK_18098bcb0;
-  resource_context[7] = &UNK_18098bcb0;
+  resource_context[0x1c] = &unknown_var_720_ptr;
+  resource_context[7] = &unknown_var_720_ptr;
   temp_stack_ptr = resource_context + 3;
   FUN_1800f89b0();
-  *resource_context = &UNK_180a21720;
-  *resource_context = &UNK_180a21690;
+  *resource_context = &unknown_var_3696_ptr;
+  *resource_context = &unknown_var_3552_ptr;
   // 根据标志释放资源
   if ((resource_flags & 1) != 0) {
     free(resource_context, 0x188);
@@ -931,15 +931,15 @@ LAB_18030a662:
 uint64_t * render_system_resource_data_initializer(uint64_t resource_id, uint64_t *resource_data_context, uint64_t resource_config, uint64_t resource_options)
 {
   // 初始化资源数据结构
-  *resource_data_context = &UNK_18098bcb0;
+  *resource_data_context = &unknown_var_720_ptr;
   resource_data_context[1] = 0;
   *(int32_t *)(resource_data_context + 2) = 0;
-  *resource_data_context = &UNK_1809fcc28;
+  *resource_data_context = &unknown_var_3432_ptr;
   resource_data_context[1] = resource_data_context + 3;
   *(int8_t *)(resource_data_context + 3) = 0;
   *(int32_t *)(resource_data_context + 2) = 0x1c;
   // 复制资源数据字符串
-  strcpy_s(resource_data_context[1], 0x80, &UNK_180a1a450, resource_options, 0, 0xfffffffffffffffe);
+  strcpy_s(resource_data_context[1], 0x80, &unknown_var_4304_ptr, resource_options, 0, 0xfffffffffffffffe);
   return resource_data_context;
 }
 

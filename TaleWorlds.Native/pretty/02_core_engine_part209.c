@@ -86,7 +86,7 @@ LAB_18018c406:
       pcVar7 = pcVar7 + (longlong)pcVar13;
       pcVar19 = pcVar22;
       if (pcVar7 <= pcVar13) break;
-      lVar14 = (longlong)&UNK_180a0ae10 - (longlong)pcVar13;
+      lVar14 = (longlong)&unknown_var_1264_ptr - (longlong)pcVar13;
       while (*pcVar13 == pcVar13[lVar14]) {
         pcVar13 = pcVar13 + 1;
         if (pcVar7 <= pcVar13) goto LAB_18018c46e;
@@ -114,7 +114,7 @@ LAB_18018c46e:
       pcVar7 = pcVar13 + (longlong)pcVar7;
       pcVar19 = pcVar22;
       if (pcVar7 <= pcVar13) break;
-      lVar14 = (longlong)&UNK_180a0ae30 - (longlong)pcVar13;
+      lVar14 = (longlong)&unknown_var_1296_ptr - (longlong)pcVar13;
       while (*pcVar13 == pcVar13[lVar14]) {
         pcVar13 = pcVar13 + 1;
         if (pcVar7 <= pcVar13) goto LAB_18018c4de;
@@ -127,7 +127,7 @@ LAB_18018c4de:
     puVar1 = (uint64_t *)(lVar6 + 0x50);
     uStackX_8 = param_1;
     do {
-      puStack_60 = &UNK_180a3c3e0;
+      puStack_60 = &unknown_var_3456_ptr;
       uStack_48 = 0;
       pbStack_58 = (byte *)0x0;
       iStack_50 = 0;
@@ -157,7 +157,7 @@ LAB_18018c580:
             FUN_180627c50(&puStack_60,lVar14);
             break;
           }
-          lVar14 = (longlong)&UNK_180a0ae28 - (longlong)pcVar22;
+          lVar14 = (longlong)&unknown_var_1288_ptr - (longlong)pcVar22;
           while (*pcVar22 == pcVar22[lVar14]) {
             pcVar22 = pcVar22 + 1;
             if (pcVar12 <= pcVar22) goto LAB_18018c580;
@@ -170,17 +170,17 @@ LAB_18018c580:
       if (puVar10 == (uint64_t *)0x0) {
 LAB_18018c727:
         puVar10 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x48,8,3);
-        *puVar10 = &UNK_18098bcb0;
+        *puVar10 = &unknown_var_720_ptr;
         puVar10[1] = 0;
         *(int32_t *)(puVar10 + 2) = 0;
-        *puVar10 = &UNK_180a3c3e0;
+        *puVar10 = &unknown_var_3456_ptr;
         puVar10[3] = 0;
         puVar10[1] = 0;
         *(int32_t *)(puVar10 + 2) = 0;
-        puVar10[4] = &UNK_18098bcb0;
+        puVar10[4] = &unknown_var_720_ptr;
         puVar10[5] = 0;
         *(int32_t *)(puVar10 + 6) = 0;
-        puVar10[4] = &UNK_180a3c3e0;
+        puVar10[4] = &unknown_var_3456_ptr;
         puVar10[7] = 0;
         puVar10[5] = 0;
         *(int32_t *)(puVar10 + 6) = 0;
@@ -406,7 +406,7 @@ LAB_18018c714:
         if (pcVar22 == pcVar23 + -0x180a0ae2f) {
           pcVar22 = pcVar22 + (longlong)pcVar12;
           if (pcVar22 <= pcVar12) goto LAB_18018c9b2;
-          lVar14 = (longlong)&UNK_180a0ae30 - (longlong)pcVar12;
+          lVar14 = (longlong)&unknown_var_1296_ptr - (longlong)pcVar12;
           while (*pcVar12 == pcVar12[lVar14]) {
             pcVar12 = pcVar12 + 1;
             if (pcVar22 <= pcVar12) goto LAB_18018c9b2;
@@ -416,7 +416,7 @@ LAB_18018c714:
       puVar10 = (uint64_t *)0x0;
 LAB_18018c9b2:
       *param_5 = (longlong)puVar10;
-      puStack_60 = &UNK_180a3c3e0;
+      puStack_60 = &unknown_var_3456_ptr;
       if (pbStack_58 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();

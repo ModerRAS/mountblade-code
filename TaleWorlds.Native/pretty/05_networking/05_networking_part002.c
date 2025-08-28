@@ -20,20 +20,20 @@
 #define NETWORK_ERROR_LOGGER    _DAT_180be12f0
 #define PACKET_HEADER_PTR      NETWORK_PACKET_HEADER
 #define ERROR_MESSAGE_PTR      NETWORK_ERROR_MESSAGE
-#define UNK_180983020          BASIC_PACKET_CONFIG
-#define UNK_1809830a0          EXTENDED_PACKET_CONFIG
-#define UNK_180983120          COMPREHENSIVE_DATA_HANDLER
-#define UNK_180982ea0          ALTERNATE_PACKET_CONFIG
-#define UNK_180982f20          SECONDARY_PACKET_CONFIG
-#define UNK_180982fa0          ALTERNATE_DATA_HANDLER
-#define UNK_180982c20          PRIMARY_PACKET_CONFIG
-#define UNK_180982ca0          URGENT_PACKET_CONFIG
-#define UNK_1809831a0          FINAL_PACKET_CONFIG
-#define UNK_180983220          COMPRESSED_PACKET_HANDLER
-#define UNK_1809832a0          ENCRYPTED_PACKET_HANDLER
-#define UNK_180983320          SECURE_PACKET_HANDLER
-#define UNK_1809833a0          PRIORITY_PACKET_HANDLER
-#define UNK_180983420          HIGH_PRIORITY_PACKET_HANDLER
+#define unknown_var_4736          BASIC_PACKET_CONFIG
+#define unknown_var_4864          EXTENDED_PACKET_CONFIG
+#define unknown_var_4992          COMPREHENSIVE_DATA_HANDLER
+#define unknown_var_4352          ALTERNATE_PACKET_CONFIG
+#define unknown_var_4480          SECONDARY_PACKET_CONFIG
+#define unknown_var_4608          ALTERNATE_DATA_HANDLER
+#define unknown_var_3712          PRIMARY_PACKET_CONFIG
+#define unknown_var_3840          URGENT_PACKET_CONFIG
+#define unknown_var_5120          FINAL_PACKET_CONFIG
+#define unknown_var_5248          COMPRESSED_PACKET_HANDLER
+#define unknown_var_5376          ENCRYPTED_PACKET_HANDLER
+#define unknown_var_5504          SECURE_PACKET_HANDLER
+#define unknown_var_5632          PRIORITY_PACKET_HANDLER
+#define unknown_var_5760          HIGH_PRIORITY_PACKET_HANDLER
 #define DATA_BUFFER_PTR        system_temp_buffer
 
 // 函数别名定义

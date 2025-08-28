@@ -34,24 +34,47 @@
  * @defgroup rendering_function_aliases 渲染系统函数别名
  * @{
  */
-#define RenderingSystem_InitializeRenderState FUN_1803691c0
-#define RenderingSystem_CreateRenderContext FUN_1803692d0
-#define RenderingSystem_AllocateRenderMemory FUN_1803697a0
+#define RenderingSystem_InitializeRenderState FUN_1803687c0
+#define RenderingSystem_CreateRenderContext FUN_180368920
+#define RenderingSystem_AllocateRenderMemory FUN_180368e00
 #define RenderingSystem_SetupRenderParameters FUN_1803697f0
 #define RenderingSystem_ValidateRenderParameters FUN_180369850
 #define RenderingSystem_ProcessRenderConfiguration FUN_180369890
-#define RenderingSystem_CalculateInterpolationValues FUN_180369d50
-#define RenderingSystem_ComputeInterpolationFactors FUN_180369d8d
-#define RenderingSystem_ApplyInterpolation FUN_180369e32
-#define RenderingSystem_InitializeRenderPipeline FUN_180369ef0
-#define RenderingSystem_CleanupRenderContext FUN_18036a6a0
-#define RenderingSystem_ResetRenderState FUN_18036a7e0
-#define RenderingSystem_EnableRenderFeature FUN_18036a930
-#define RenderingSystem_DisableRenderFeature FUN_18036aa50
-#define RenderingSystem_ConfigureRenderSettings FUN_18036ab70
-#define RenderingSystem_UpdateRenderResources FUN_18036abc0
-#define RenderingSystem_SynchronizeRenderState FUN_18036ac90
-#define RenderingSystem_ValidateRenderConfiguration FUN_18036adb0
+#define RenderingSystem_ColorInterpolatorBase FUN_180369d50
+#define RenderingSystem_ColorInterpolatorAdvanced FUN_180369d8d
+#define RenderingSystem_FastColorInterpolator FUN_180369e32
+#define RenderingSystem_StringManagerInitializer FUN_180369ef0
+#define RenderingSystem_ManagerCleaner FUN_18036a6a0
+#define RenderingSystem_ParameterInitializer FUN_18036a7e0
+#define RenderingSystem_ProcessorInitializer_Standard FUN_18036a930
+#define RenderingSystem_ProcessorInitializer_Enhanced FUN_18036aa50
+#define RenderingSystem_ManagerCreator FUN_18036ab70
+#define RenderingSystem_HandleUpdater FUN_18036abc0
+#define RenderingSystem_SimpleHandleSetter FUN_18036ac90
+#define RenderingSystem_StringValidator FUN_18036adb0
+/* @} */
+
+/**
+ * @defgroup system_function_aliases 系统函数别名
+ * @{
+ */
+#define SystemResourceInitializer FUN_1800b8300
+#define SystemContextProcessor FUN_180180730
+#define SystemSecurityChecker FUN_1808fc050
+#define SystemBaseInitializer FUN_1803456e0
+#define SystemMemoryAllocator FUN_18062b420
+#define SystemStringHashCalculator FUN_18064e990
+#define SystemContextManager FUN_1803460a0
+#define SystemMemoryReleaser FUN_18064e900
+#define SystemMemoryDeallocator FUN_1803457d0
+#define SystemMemoryManager FUN_18062b1e0
+#define SystemStringInitializer FUN_18005d190
+#define SystemRenderObjectGetter FUN_1802e8fb0
+#define SystemStringHandleManager FUN_1800b6de0
+#define SystemRenderInitializer FUN_18036b140
+#define SystemHandleProcessor FUN_180389090
+#define SystemRenderUpdater FUN_18036abc0
+#define SystemRenderPostProcessor FUN_18036b380
 /* @} */
 
 /**
@@ -85,15 +108,15 @@ void RenderingSystem_InitializeRenderState(uint64_t render_context)
     config_buffer[0] = 0;
     string_length = 5;
     strcpy_s(config_buffer, RENDERING_SYSTEM_STRING_LENGTH_0x40, &system_memory_d570);
-    FUN_1800b8300(resource_array, &cleanup_handler);
+    SystemResourceInitializer(resource_array, &cleanup_handler);
     operation_flag = 2;
     status_flag = 1;
-    FUN_180180730(render_context, callback_array, resource_array);
+    SystemContextProcessor(render_context, callback_array, resource_array);
     status_flag = 0;
     callback_array[0] = resource_array;
     resource_array[0] = &unknown_var_720_ptr;
     cleanup_handler = &unknown_var_720_ptr;
-    FUN_1808fc050(security_hash ^ (ulonglong)security_buffer);
+    SystemSecurityChecker(security_hash ^ (ulonglong)security_buffer);
 }
 
 
@@ -123,7 +146,7 @@ void RenderingSystem_CreateRenderContext(uint64_t *context_ptr)
     
     thread_counter = 0xfffffffffffffffe;
     context_data = context_ptr;
-    FUN_1803456e0();
+    SystemBaseInitializer();
     *context_data = &unknown_var_1040_ptr;
     cleanup_handler = &unknown_var_3456_ptr;
     thread_counter = 0;

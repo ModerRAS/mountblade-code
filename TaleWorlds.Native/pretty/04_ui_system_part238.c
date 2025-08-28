@@ -34,7 +34,7 @@ void FUN_180803d63(longlong *param_1,longlong param_2)
   if (-1 < iVar7) {
     puVar10 = (uint64_t *)(unaff_RDI + 0x728);
     iVar7 = (**(code **)(**(longlong **)(unaff_RBP + -0x61) + 0x18))
-                      (*(longlong **)(unaff_RBP + -0x61),&UNK_18097ed30,0x17,0,puVar10);
+                      (*(longlong **)(unaff_RBP + -0x61),&unknown_var_7600_ptr,0x17,0,puVar10);
     if (-1 < iVar7) {
       (**(code **)(**(longlong **)(unaff_RBP + -0x61) + 0x10))();
       plVar4 = (longlong *)*puVar10;
@@ -160,7 +160,7 @@ void FUN_180803d63(longlong *param_1,longlong param_2)
               (iVar7 = (**(code **)(*(longlong *)*puVar10 + 0x20))
                                  ((longlong *)*puVar10,unaff_RDI + 0x750), -1 < iVar7)) &&
              (iVar7 = (**(code **)(*(longlong *)*puVar10 + 0x70))
-                                ((longlong *)*puVar10,&UNK_18097edf8,unaff_RDI + 0x730), -1 < iVar7)
+                                ((longlong *)*puVar10,&unknown_var_7800_ptr,unaff_RDI + 0x730), -1 < iVar7)
              ) {
             plVar4 = *(longlong **)(unaff_RDI + 0x730);
             uVar2 = *(int32_t *)(unaff_RDI + 0x750);
@@ -175,15 +175,15 @@ void FUN_180803d63(longlong *param_1,longlong param_2)
               uVar15 = CONCAT44(uVar12,0x1bb);
               *(int *)(unaff_RDI + 0x74c) = iVar7;
               lVar9 = FUN_180741d80(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar7,0x20,
-                                    &UNK_18097ed60,uVar15);
+                                    &unknown_var_7648_ptr,uVar15);
               *(longlong *)(unaff_RDI + 0x740) = lVar9;
               if (lVar9 != 0) {
                 puVar10 = (uint64_t *)
-                          FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x10,&UNK_18097ed60,
+                          FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x10,&unknown_var_7648_ptr,
                                         0x1d2,uVar15 & 0xffffffff00000000);
                 if (puVar10 != (uint64_t *)0x0) {
                   *(int32_t *)(puVar10 + 1) = 0;
-                  *puVar10 = &UNK_18097ecf0;
+                  *puVar10 = &unknown_var_7536_ptr;
                   puVar13 = puVar10;
                 }
                 *(uint64_t **)(unaff_RDI + 0x758) = puVar13;
@@ -352,7 +352,7 @@ void FUN_180803ddf(uint64_t param_1,uint64_t param_2,longlong param_3)
         (iVar6 = (**(code **)(*(longlong *)*unaff_RSI + 0x20))
                            ((longlong *)*unaff_RSI,unaff_RDI + 0x750), -1 < iVar6)) &&
        (iVar6 = (**(code **)(*(longlong *)*unaff_RSI + 0x70))
-                          ((longlong *)*unaff_RSI,&UNK_18097edf8,unaff_RDI + 0x730), -1 < iVar6)) {
+                          ((longlong *)*unaff_RSI,&unknown_var_7800_ptr,unaff_RDI + 0x730), -1 < iVar6)) {
       plVar4 = *(longlong **)(unaff_RDI + 0x730);
       uVar2 = *(int32_t *)(unaff_RDI + 0x750);
       *(uint64_t **)(unaff_RBP + -0x41) = unaff_RBX;
@@ -364,16 +364,16 @@ void FUN_180803ddf(uint64_t param_1,uint64_t param_2,longlong param_3)
          (iVar6 = (**(code **)(*(longlong *)*unaff_RSI + 0x50))(), -1 < iVar6)) {
         iVar6 = (uint)*(ushort *)(unaff_RBP + -0x2d) * *(int *)(unaff_RDI + 0x748);
         *(int *)(unaff_RDI + 0x74c) = iVar6;
-        lVar8 = FUN_180741d80(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar6,0x20,&UNK_18097ed60,
+        lVar8 = FUN_180741d80(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),iVar6,0x20,&unknown_var_7648_ptr,
                               CONCAT44(uVar11,0x1bb));
         *(longlong *)(unaff_RDI + 0x740) = lVar8;
         if (lVar8 != 0) {
           puVar9 = (uint64_t *)
-                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x10,&UNK_18097ed60,0x1d2,
+                   FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x10,&unknown_var_7648_ptr,0x1d2,
                                  (ulonglong)unaff_RBX & 0xffffffff);
           if (puVar9 != (uint64_t *)0x0) {
             *(int *)(puVar9 + 1) = (int)unaff_RBX;
-            *puVar9 = &UNK_18097ecf0;
+            *puVar9 = &unknown_var_7536_ptr;
             unaff_RBX = puVar9;
           }
           *(uint64_t **)(unaff_RDI + 0x758) = unaff_RBX;

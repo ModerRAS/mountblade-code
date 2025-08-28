@@ -47,7 +47,7 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
   }
   *puVar4 = 1;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  FUN_180272d60(&UNK_18098de80,*render_params);
+  FUN_180272d60(&unknown_var_9376_ptr,*render_params);
   FUN_180639ec0();
   FUN_180639ec0();
   FUN_180639ec0();
@@ -105,7 +105,7 @@ void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
     FUN_180639ec0();
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
-  FUN_18025a940(&UNK_18098dfd0,render_params[0x1f2]);
+  FUN_18025a940(&unknown_var_9712_ptr,render_params[0x1f2]);
   puVar3 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(render_params + RENDER_FLAG_OFFSET);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
@@ -293,7 +293,7 @@ void process_render_batch(int32_t *render_params)
   }
   *render_params = 1;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  FUN_180272d60(&UNK_18098de80,*unaff_RDI);
+  FUN_180272d60(&unknown_var_9376_ptr,*unaff_RDI);
   FUN_180639ec0();
   FUN_180639ec0();
   FUN_180639ec0();
@@ -351,7 +351,7 @@ void process_render_batch(int32_t *render_params)
     FUN_180639ec0();
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
-  FUN_18025a940(&UNK_18098dfd0,unaff_RDI[0x1f2]);
+  FUN_18025a940(&unknown_var_9712_ptr,unaff_RDI[0x1f2]);
   puVar3 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + RENDER_FLAG_OFFSET);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
@@ -579,7 +579,7 @@ void serialize_vertex_attributes(void)
   } while (data_count != 0);
   
   // 处理材质标识符
-  FUN_18025a940(&UNK_18098dfd0, *(int32_t *)(unaff_RDI + 0x7c8));
+  FUN_18025a940(&unknown_var_9712_ptr, *(int32_t *)(unaff_RDI + 0x7c8));
   byte_ptr = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
@@ -798,7 +798,7 @@ void serialize_material_properties(void)
   } while (data_count != 0);
   
   // 处理材质标识符
-  FUN_18025a940(&UNK_18098dfd0, *(int32_t *)(unaff_RDI + 0x7c8));
+  FUN_18025a940(&unknown_var_9712_ptr, *(int32_t *)(unaff_RDI + 0x7c8));
   byte_ptr = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {

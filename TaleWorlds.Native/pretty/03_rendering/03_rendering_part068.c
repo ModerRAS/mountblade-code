@@ -157,7 +157,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
             batch_processor = queue_parameters;
             resource_allocator = &queue_size;
             entry_point = FUN_1803089a0;
-            exit_handler = &UNK_180308990;
+            exit_handler = &unknown_var_1888_ptr;
             queue_capacity = render_context;
             resource_table[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, system_allocation_flags);
             *resource_table[0] = (longlong)render_target;
@@ -480,7 +480,7 @@ bool rendering_system_check_render_visibility(longlong render_context, longlong 
   
   (**(code **)(*camera_matrix + 0x218))(camera_matrix);
   (**(code **)(*camera_matrix + 0x218))(camera_matrix);
-  if ((void *)*camera_matrix == &UNK_180a19770) {
+  if ((void *)*camera_matrix == &unknown_var_1008_ptr) {
     render_priority = *(uint *)((longlong)camera_matrix + 0x174);
   }
   else {

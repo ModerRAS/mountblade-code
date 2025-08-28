@@ -236,7 +236,7 @@ int32_t rendering_system_get_render_status(uint64_t render_object, longlong stat
     if (*(void **)(state_context + 8) != (void *)0x0) {
       error_msg_ptr = *(void **)(state_context + 8);
     }
-    FUN_180627020(&UNK_180a30f00, error_msg_ptr);
+    FUN_180627020(&unknown_var_7152_ptr, error_msg_ptr);
   }
   return 0xffffffff;
 }
@@ -320,7 +320,7 @@ uint64_t rendering_system_get_global_render_data(void)
     // 如果数据初始化失败，执行清理和重新初始化
     if (_DAT_180d49128 == -1) {
       FUN_18058f390(0x180d48f30);
-      FUN_1808fc820(&UNK_180943060);
+      FUN_1808fc820(&unknown_var_2656_ptr);
       FUN_1808fcb30(&system_state_9128);
       return 0x180d48f30;
     }
@@ -1000,8 +1000,8 @@ void rendering_system_process_render_state(longlong *state_ptr, uint64_t param_1
   state_data = *state_ptr;
   if (state_data != 0) {
     // 获取状态信息
-    system_status = FUN_18055f260(param_2, &stack_pointer, &UNK_1809fa490);
-    FUN_1804fe350(&UNK_180a30280, system_status, &UNK_180a302c0, &stack_pointer);
+    system_status = FUN_18055f260(param_2, &stack_pointer, &unknown_var_3296_ptr);
+    FUN_1804fe350(&unknown_var_3952_ptr, system_status, &unknown_var_4016_ptr, &stack_pointer);
     
     // 检查状态有效性
     if ((((system_status != '\0') && (-1 < (int)(uint)stack_pointer)) &&
@@ -1022,12 +1022,12 @@ void rendering_system_process_render_state(longlong *state_ptr, uint64_t param_1
         
         // 获取状态值
         state_flag = *(int32_t *)(state_data + 0xc);
-        system_status = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+        system_status = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
         
         // 处理状态清理
         if ((system_status != '\0') &&
-           (system_status = FUN_180645c10(0x180c95578, 0x13, &UNK_1809fa540), system_status != '\0')) {
-          FUN_180645c10(0x180c95578, state_flag, &UNK_1809fa490);
+           (system_status = FUN_180645c10(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
+          FUN_180645c10(0x180c95578, state_flag, &unknown_var_3296_ptr);
         }
         
         // 清理全局状态
@@ -1104,7 +1104,7 @@ void rendering_system_cleanup_render_resources(void)
   
   // 执行状态检查函数
   system_status = FUN_18055f260();
-  FUN_1804fe350(&UNK_180a30280, system_status, &UNK_180a302c0, &stack_param);
+  FUN_1804fe350(&unknown_var_3952_ptr, system_status, &unknown_var_4016_ptr, &stack_param);
   
   // 验证系统状态
   if (((system_status != '\0') && (-1 < (int)stack_param)) &&
@@ -1129,12 +1129,12 @@ void rendering_system_cleanup_render_resources(void)
         
         // 处理状态标志
         status_flag = *(int32_t *)(state_data + 0xc);
-        system_status = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+        system_status = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
         
         // 验证系统状态
         if ((system_status != '\0') && 
-            (system_status = FUN_180645c10(0x180c95578, 0x13, &UNK_1809fa540), system_status != '\0')) {
-          FUN_180645c10(0x180c95578, status_flag, &UNK_1809fa490);
+            (system_status = FUN_180645c10(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
+          FUN_180645c10(0x180c95578, status_flag, &unknown_var_3296_ptr);
         }
         
         // 清理状态数据
@@ -1227,12 +1227,12 @@ void rendering_system_reset_render_state(uint context_param)
       
       // 处理状态标志
       status_flag = *(int32_t *)(state_data + 0xc);
-      system_status = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+      system_status = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
       
       // 验证系统状态
       if ((system_status != '\0') && 
-          (system_status = FUN_180645c10(0x180c95578, 0x13, &UNK_1809fa540), system_status != '\0')) {
-        FUN_180645c10(0x180c95578, status_flag, &UNK_1809fa490);
+          (system_status = FUN_180645c10(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
+        FUN_180645c10(0x180c95578, status_flag, &unknown_var_3296_ptr);
       }
       
       // 清理状态数据

@@ -20,12 +20,12 @@
 // 全局常量定义
 #define MEMORY_POOL_HANDLE      _DAT_180c8ed18
 #define RESOURCE_MANAGER_HANDLE _DAT_180c967f0
-#define EMPTY_STRING_PTR       UNK_180a3c3e0
-#define NULL_STRING_PTR        UNK_18098bcb0
-#define ERROR_FORMAT_PTR       UNK_1809fcc28
-#define WARNING_FORMAT_PTR     UNK_1809fcc28
-#define ERROR_TEMPLATE_STRING  UNK_180a3e3d8
-#define WARNING_TEMPLATE_STRING UNK_180a3e3f0
+#define EMPTY_STRING_PTR       unknown_var_3456_ptr
+#define NULL_STRING_PTR        unknown_var_720_ptr
+#define ERROR_FORMAT_PTR       unknown_var_3432
+#define WARNING_FORMAT_PTR     unknown_var_3432
+#define ERROR_TEMPLATE_STRING  unknown_var_1640
+#define WARNING_TEMPLATE_STRING unknown_var_1664
 
 // 函数别名定义
 #define allocate_string_memory  FUN_180627910
@@ -269,7 +269,7 @@ void ui_execute_resource_manager(longlong *manager_context)
       manager_ptr = plStack_70;
       do {
         temp_ptr = resource_list;
-        string_handler = &UNK_180a3c3e0;
+        string_handler = &unknown_var_3456_ptr;
         data_size = 0;
         string_data = (int8_t *)0x0;
         string_length = 0;
@@ -286,7 +286,7 @@ void ui_execute_resource_manager(longlong *manager_context)
           }
           data_size = data_size & 0xffffffff;
         }
-        format_ptr = &UNK_180a3c3e0;
+        format_ptr = &unknown_var_3456_ptr;
         temp_size = 0;
         output_ptr = (int8_t *)0x0;
         output_size = 0;
@@ -350,22 +350,22 @@ LAB_180656abd:
             plStack_68 = array_ptr;
           }
         }
-        format_ptr = &UNK_180a3c3e0;
+        format_ptr = &unknown_var_3456_ptr;
         if (output_ptr != (int8_t *)0x0) {
           // 警告：子函数不返回
           FUN_18064e900();
         }
         output_ptr = (int8_t *)0x0;
         temp_size = temp_size & 0xffffffff00000000;
-        format_ptr = &UNK_18098bcb0;
-        string_handler = &UNK_180a3c3e0;
+        format_ptr = &unknown_var_720_ptr;
+        string_handler = &unknown_var_3456_ptr;
         if (string_data != (int8_t *)0x0) {
           // 警告：子函数不返回
           FUN_18064e900();
         }
         string_data = (byte *)0x0;
         data_size = data_size & 0xffffffff00000000;
-        string_handler = &UNK_18098bcb0;
+        string_handler = &unknown_var_720_ptr;
         resource_count = (int)index + 1;
         index = (ulonglong)resource_count;
         buffer_size = buffer_size + 0x20;
@@ -397,7 +397,7 @@ LAB_180656abd:
       index = 0;
       char_buffer = &system_memory_67e0;
       resource_id = *resource_array;
-      string_handler = &UNK_180a3c3e0;
+      string_handler = &unknown_var_3456_ptr;
       data_size = 0;
       string_data = (byte *)0x0;
       string_length = 0;
@@ -536,14 +536,14 @@ LAB_180656d07:
         }
       }
 LAB_180656e1e:
-      string_handler = &UNK_180a3c3e0;
+      string_handler = &unknown_var_3456_ptr;
       if (string_data != (byte *)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
       }
       string_data = (byte *)0x0;
       data_size = data_size & 0xffffffff00000000;
-      string_handler = &UNK_18098bcb0;
+      string_handler = &unknown_var_720_ptr;
       loop_counter = loop_counter + 1;
       resource_array = resource_array + 1;
     } while ((ulonglong)(longlong)loop_counter < buffer_size);
@@ -602,15 +602,15 @@ void ui_initialize_resource_loader(ulonglong *param_1)
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
   size_val = 0;
   buffer_flag = 0;
-  format_handler = &UNK_1809fdc18;
+  format_handler = &unknown_var_7512_ptr;
   temp_ptr = config_array;
   config_array[0] = config_array[0] & 0xffffffffffffff00;
   config_count = 6;
-  strcpy_s(config_array, 0x10, &UNK_180a3c07c);
+  strcpy_s(config_array, 0x10, &unknown_var_2588_ptr);
   buffer_flag = 1;
   FUN_1806279c0(&string_ptr, &format_handler);
   buffer_flag = 0;
-  format_handler = &UNK_18098bcb0;
+  format_handler = &unknown_var_720_ptr;
   config_count = path_size + 8;
   FUN_1806277c0(&string_ptr, config_count);
   *(uint64_t *)((ulonglong)path_size + path_offset) = 0x2f73656c75646f4d;
@@ -629,7 +629,7 @@ void ui_initialize_resource_loader(ulonglong *param_1)
   if (total_size != 0) {
     config_size_ptr = (int *)(resource_array + 2);
     do {
-      format_handler = &UNK_180a3c3e0;
+      format_handler = &unknown_var_3456_ptr;
       config_array[0] = 0;
       temp_ptr = (ulonglong *)0x0;
       config_count = 0;
@@ -645,7 +645,7 @@ void ui_initialize_resource_loader(ulonglong *param_1)
         }
         config_array[0] = config_array[0] & 0xffffffff;
       }
-      temp_ptr = &UNK_180a3c3e0;
+      temp_ptr = &unknown_var_3456_ptr;
       buffer_size = 0;
       string_ptr = (int8_t *)0x0;
       string_len = 0;
@@ -707,22 +707,22 @@ LAB_1806572f9:
           total_size = path_capacity;
         }
       }
-      temp_ptr = &UNK_180a3c3e0;
+      temp_ptr = &unknown_var_3456_ptr;
       if (string_ptr != (int8_t *)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
       }
       string_ptr = (int8_t *)0x0;
       buffer_size = buffer_size & 0xffffffff00000000;
-      temp_ptr = &UNK_18098bcb0;
-      format_handler = &UNK_180a3c3e0;
+      temp_ptr = &unknown_var_720_ptr;
+      format_handler = &unknown_var_3456_ptr;
       if (temp_ptr != (ulonglong *)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
       }
       temp_ptr = (ulonglong *)0x0;
       config_array[0] = config_array[0] & 0xffffffff00000000;
-      format_handler = &UNK_18098bcb0;
+      format_handler = &unknown_var_720_ptr;
       size_val = size_val + 1;
       config_size_ptr = config_size_ptr + 8;
       prev_config = resource_array;
@@ -745,7 +745,7 @@ LAB_1806572f9:
     // 警告：子函数不返回
     FUN_18064e900(config_ptr);
   }
-  string_ptr = &UNK_180a3c3e0;
+  string_ptr = &unknown_var_3456_ptr;
   if (path_offset != 0) {
     resource_array = start_config;
     array_end = current_config;
@@ -754,7 +754,7 @@ LAB_1806572f9:
   }
   path_offset = 0;
   path_flag = 0;
-  string_ptr = &UNK_18098bcb0;
+  string_ptr = &unknown_var_720_ptr;
   resource_array = start_config;
   array_end = current_config;
   // 警告：子函数不返回
@@ -797,7 +797,7 @@ ui_process_path_string(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
   else {
     result = *(uint64_t *)(temp_array[0] + 0x40);
   }
-  string_handler = &UNK_180a3c3e0;
+  string_handler = &unknown_var_3456_ptr;
   if (buffer_ptr != 0) {
     // 警告：子函数不返回
     FUN_18064e900();
@@ -916,14 +916,14 @@ void ui_free_resource_memory(uint64_t param_1, uint64_t *param_2, uint64_t param
     return;
   }
   FUN_180657620(&system_memory_67e0, *param_2, param_3, param_4, 0xfffffffffffffffe);
-  param_2[4] = &UNK_180a3c3e0;
+  param_2[4] = &unknown_var_3456_ptr;
   if (param_2[5] != 0) {
     // 警告：子函数不返回
     FUN_18064e900();
   }
   param_2[5] = 0;
   *(int32_t *)(param_2 + 7) = 0;
-  param_2[4] = &UNK_18098bcb0;
+  param_2[4] = &unknown_var_720_ptr;
   // 警告：子函数不返回
   FUN_18064e900(param_2);
 }

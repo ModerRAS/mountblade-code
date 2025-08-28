@@ -106,7 +106,7 @@ LAB_180198f21:
   }
   
   // 事件处理循环
-  global_ptr = &UNK_180a3c3e0;
+  global_ptr = &unknown_var_3456_ptr;
   global_checksum = 0;
   global_buffer = (byte *)0x0;
   global_size = 0;
@@ -197,7 +197,7 @@ longlong * create_engine_event_handler(uint64_t engine_instance, longlong *event
     FUN_180275cf0(temp_value, 0, &stack_handler_ptr, 1);
     (**(code **)(*(longlong *)*event_params + 0x100))((longlong *)*event_params, 0);
     (**(code **)(*(longlong *)(*event_params + 0x1f0) + 0x10))
-              ((longlong *)(*event_params + 0x1f0), &UNK_180a0b290);
+              ((longlong *)(*event_params + 0x1f0), &unknown_var_2416_ptr);
     FUN_180276f30(*event_params, *event_params + 0x214, 1);
     (**(code **)(*(longlong *)*event_params + 0x148))((longlong *)*event_params, &system_memory_0300);
   }

@@ -29,7 +29,7 @@ void memory_block_copy(void **target_ptr, void *source_ptr, long long *size_ptr)
 void *initialize_memory_pointer(void *mem_ptr, unsigned long long flags)
 {
     // 将指针指向全局数据结构
-    *(void **)mem_ptr = (void *)0x180a09578;  // UNK_180a09578 全局数据结构
+    *(void **)mem_ptr = (void *)0x180a09578;  // unknown_var_4968 全局数据结构
     
     // 如果设置了第1位标志，则释放内存
     if ((flags & 1) != 0) {

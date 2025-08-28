@@ -567,7 +567,7 @@ void FUN_18038c180(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&UNK_180a21d68);
+  FUN_180062300(_DAT_180c86928,&unknown_var_5304_ptr);
 }
 
 

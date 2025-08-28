@@ -838,7 +838,7 @@ void initialize_thread_manager(uint64_t *thread_manager_ptr)
 uint64_t * initialize_graphics_object(uint64_t *graphics_obj_ptr, ulonglong param_2)
 {
   // 设置主对象指针
-  *graphics_obj_ptr = &UNK_1809fdd78;
+  *graphics_obj_ptr = &unknown_var_7864_ptr;
   
   // 初始化各种图形组件（按偏移量递减顺序）
   FUN_18005b7c0(graphics_obj_ptr + 0xa4);  // 初始化组件10 (偏移0xa4)
@@ -881,7 +881,7 @@ void process_engine_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   uint64_t stack_param;
   
   // 设置栈参数
-  stack_ptr1 = &UNK_180a3c3e0;
+  stack_ptr1 = &unknown_var_3456_ptr;
   stack_param = 0;
   stack_ptr2 = (uint64_t *)0x0;
   stack_length = 0;
@@ -905,7 +905,7 @@ void process_engine_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   
   // 处理引擎定义
   FUN_1800ae520(param_1, &stack_ptr1);
-  stack_ptr1 = &UNK_180a3c3e0;
+  stack_ptr1 = &unknown_var_3456_ptr;
   
   // 临时字符串内存（不返回）
   FUN_18064e900(engine_string);
@@ -933,7 +933,7 @@ uint64_t initialize_render_system(uint64_t param_1, ulonglong param_2)
 void initialize_render_pipeline(uint64_t *render_pipeline_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   // 设置主管线指针
-  *render_pipeline_ptr = &UNK_1809fddc8;
+  *render_pipeline_ptr = &unknown_var_7944_ptr;
   
   // 初始化渲染管线组件（按偏移量递减顺序）
   FUN_18005ab50(render_pipeline_ptr + 0x143);  // 初始化阶段20 (偏移0x143)
@@ -960,8 +960,8 @@ void initialize_render_pipeline(uint64_t *render_pipeline_ptr, uint64_t param_2,
   FUN_18005b7c0(render_pipeline_ptr + 0x1c);   // 初始化缓冲区1 (偏移0x1c)
   
   // 设置管线状态
-  *render_pipeline_ptr = &UNK_180a02968;  // 设置管线状态指针
-  render_pipeline_ptr[0x18] = &UNK_180a3c3e0;  // 设置默认缓冲区
+  *render_pipeline_ptr = &unknown_var_7304_ptr;  // 设置管线状态指针
+  render_pipeline_ptr[0x18] = &unknown_var_3456_ptr;  // 设置默认缓冲区
   
   // 检查并清理阶段19
   if (render_pipeline_ptr[0x19] != 0) {
@@ -969,7 +969,7 @@ void initialize_render_pipeline(uint64_t *render_pipeline_ptr, uint64_t param_2,
   }
   render_pipeline_ptr[0x19] = 0;
   *(int32_t *)(render_pipeline_ptr + 0x1b) = 0;  // 清空阶段19标志
-  render_pipeline_ptr[0x18] = &UNK_18098bcb0;  // 设置阶段18缓冲区
+  render_pipeline_ptr[0x18] = &unknown_var_720_ptr;  // 设置阶段18缓冲区
   
   // 初始化渲染管线细节
   FUN_18005d260(render_pipeline_ptr + 0x12, render_pipeline_ptr[0x14], param_3, param_4, 0xfffffffffffffffe);
@@ -1037,22 +1037,22 @@ void cleanup_render_stage(longlong stage_ptr, uint64_t param_2, uint64_t param_3
   }
   
   // 清理第一个缓冲区
-  *(uint64_t *)(stage_ptr + 0x30) = &UNK_180a3c3e0;  // 设置默认缓冲区
+  *(uint64_t *)(stage_ptr + 0x30) = &unknown_var_3456_ptr;  // 设置默认缓冲区
   if (*(longlong *)(stage_ptr + 0x38) != 0) {
     FUN_18064e900();  // 释放缓冲区内存
   }
   *(uint64_t *)(stage_ptr + 0x38) = 0;  // 清空缓冲区指针
   *(int32_t *)(stage_ptr + 0x48) = 0;  // 清空缓冲区标志
-  *(uint64_t *)(stage_ptr + 0x30) = &UNK_18098bcb0;  // 设置缓冲区状态
+  *(uint64_t *)(stage_ptr + 0x30) = &unknown_var_720_ptr;  // 设置缓冲区状态
   
   // 清理第二个缓冲区
-  *(uint64_t *)(stage_ptr + 0x10) = &UNK_180a3c3e0;  // 设置默认缓冲区
+  *(uint64_t *)(stage_ptr + 0x10) = &unknown_var_3456_ptr;  // 设置默认缓冲区
   if (*(longlong *)(stage_ptr + 0x18) != 0) {
     FUN_18064e900();  // 释放缓冲区内存
   }
   *(uint64_t *)(stage_ptr + 0x18) = 0;  // 清空缓冲区指针
   *(int32_t *)(stage_ptr + 0x28) = 0;  // 清空缓冲区标志
-  *(uint64_t *)(stage_ptr + 0x10) = &UNK_18098bcb0;  // 设置缓冲区状态
+  *(uint64_t *)(stage_ptr + 0x10) = &unknown_var_720_ptr;  // 设置缓冲区状态
   
   return;
 }
@@ -1075,7 +1075,7 @@ void process_device_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   uint64_t stack_param;
   
   // 设置栈参数
-  stack_ptr1 = &UNK_180a3c3e0;
+  stack_ptr1 = &unknown_var_3456_ptr;
   stack_param = 0;
   stack_ptr2 = (int32_t *)0x0;
   stack_length = 0;
@@ -1102,7 +1102,7 @@ void process_device_definition(uint64_t param_1, uint64_t param_2, uint64_t para
   
   // 处理设备定义
   FUN_1800ae520(param_1, &stack_ptr1);
-  stack_ptr1 = &UNK_180a3c3e0;
+  stack_ptr1 = &unknown_var_3456_ptr;
   
   // 临时字符串内存（不返回）
   FUN_18064e900(device_string);

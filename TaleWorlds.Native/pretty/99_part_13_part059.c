@@ -33,7 +33,7 @@ void FUN_1808cf489(longlong *param_1)
     plVar5 = (longlong *)(**(code **)*unaff_R14)();
     (**(code **)(*plVar5 + 0x30))(plVar5,(longlong)&stack0x00000070 + 4);
                     // WARNING: Subroutine does not return
-    FUN_18076b390(&stack0x00000088,0x27,&UNK_180958180,uStack0000000000000074,in_stack_00000078);
+    FUN_18076b390(&stack0x00000088,0x27,&unknown_var_8960_ptr,uStack0000000000000074,in_stack_00000078);
   }
   if (cStack0000000000000070 == '\0') goto LAB_1808cf945;
   plVar5 = unaff_R14 + 0x1f;
@@ -732,7 +732,7 @@ FUN_1808cfed0(longlong *param_1,uint64_t param_2,longlong param_3,int32_t param_
       uStack_c0 = (uint)uStack_6e;
       uStack_c8 = (uint)uStack_70;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_60,0x27,&UNK_180958180,uStack_74);
+      FUN_18076b390(auStack_60,0x27,&unknown_var_8960_ptr,uStack_74);
     }
     if (acStack_78[0] != '\0') {
       plVar5 = param_1 + 0x1f;

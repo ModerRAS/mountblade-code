@@ -140,7 +140,7 @@ void NetworkInitializePacket(uint64_t packet_context)
                     (status_code = FUN_18088dec0(*(uint64_t *)(network_handles[0] + 0x98), 
                                                data_pointers, 0x10), status_code == 0)) {
                     // 设置数据包处理器
-                    *data_pointers[0] = &UNK_180982b30;
+                    *data_pointers[0] = &unknown_var_3472_ptr;
                     *(int32_t *)(data_pointers[0] + 1) = 0x10;
                     func_0x00018088e0d0(*(uint64_t *)(network_handles[0] + 0x98));
                     // 数据包处理器激活（不返回）
@@ -159,7 +159,7 @@ void NetworkInitializePacket(uint64_t packet_context)
         packet_buffer = stack_buffer;
         stack_buffer[0] = 0;
         // 错误报告函数调用（不返回）
-        FUN_180749ef0(status_code, 0xb, packet_context, &UNK_180982b98);
+        FUN_180749ef0(status_code, 0xb, packet_context, &unknown_var_3576_ptr);
     }
 
 cleanup:
@@ -1535,7 +1535,7 @@ int SerializeMaterialData(longlong data_ptr, longlong buffer_ptr, int buffer_siz
 void SendPacketHeader(longlong header_ptr, uint64_t target_ptr, int32_t packet_size)
 {
     // 调用底层发送函数传输包头
-    FUN_18083f850(target_ptr, packet_size, &UNK_180983020, 
+    FUN_18083f850(target_ptr, packet_size, &unknown_var_4736_ptr, 
                  *(int32_t *)(header_ptr + 0x10), *(int32_t *)(header_ptr + 0x18));
     return;
 }
@@ -1556,7 +1556,7 @@ void SendPacketHeader(longlong header_ptr, uint64_t target_ptr, int32_t packet_s
 void SendPacketFooter(longlong footer_ptr, uint64_t target_ptr, int32_t packet_size)
 {
     // 调用底层发送函数传输包尾
-    FUN_18083f8f0(target_ptr, packet_size, &UNK_1809830a0, 
+    FUN_18083f8f0(target_ptr, packet_size, &unknown_var_4864_ptr, 
                  *(int32_t *)(footer_ptr + 0x10), *(int32_t *)(footer_ptr + 0x18),
                  *(int32_t *)(footer_ptr + 0x1c));
     return;
@@ -1595,7 +1595,7 @@ int SendDataPacket(longlong packet_ptr, longlong target_ptr, int packet_size)
     tertiary_header = *(int32_t *)(packet_ptr + 0x10);
     
     // 发送数据包头
-    sent_bytes = FUN_18074b880(target_ptr, packet_size, &UNK_180983120);
+    sent_bytes = FUN_18074b880(target_ptr, packet_size, &unknown_var_4992_ptr);
     
     // 发送分隔符
     processed_bytes = FUN_18074b880(target_ptr + sent_bytes, 
@@ -1655,7 +1655,7 @@ int SendDataPacket(longlong packet_ptr, longlong target_ptr, int packet_size)
 void SendAckPacket(longlong ack_ptr, uint64_t target_ptr, int32_t ack_size)
 {
     // 调用底层发送函数传输确认包
-    FUN_18083f850(target_ptr, ack_size, &UNK_180982ea0, 
+    FUN_18083f850(target_ptr, ack_size, &unknown_var_4352_ptr, 
                  *(int32_t *)(ack_ptr + 0x10), *(int32_t *)(ack_ptr + 0x18));
     return;
 }
@@ -1676,7 +1676,7 @@ void SendAckPacket(longlong ack_ptr, uint64_t target_ptr, int32_t ack_size)
 void SendNackPacket(longlong nack_ptr, uint64_t target_ptr, int32_t nack_size)
 {
     // 调用底层发送函数传输非确认包
-    FUN_18083f8f0(target_ptr, nack_size, &UNK_180982f20, 
+    FUN_18083f8f0(target_ptr, nack_size, &unknown_var_4480_ptr, 
                  *(int32_t *)(nack_ptr + 0x10), *(int32_t *)(nack_ptr + 0x18),
                  *(int32_t *)(nack_ptr + 0x1c));
     return;
@@ -1714,7 +1714,7 @@ int SendHeartbeatPacket(longlong heartbeat_ptr, longlong target_ptr, int heartbe
     tertiary_header = *(int32_t *)(heartbeat_ptr + 0x10);
     
     // 发送心跳包头
-    sent_bytes = FUN_18074b880(target_ptr, heartbeat_size, &UNK_180982fa0);
+    sent_bytes = FUN_18074b880(target_ptr, heartbeat_size, &unknown_var_4608_ptr);
     
     // 发送分隔符
     processed_bytes = FUN_18074b880(target_ptr + sent_bytes, 
@@ -1774,7 +1774,7 @@ int SendHeartbeatPacket(longlong heartbeat_ptr, longlong target_ptr, int heartbe
 void SendDisconnectPacket(longlong disconnect_ptr, uint64_t target_ptr, int32_t disconnect_size)
 {
     // 调用底层发送函数传输断开连接包
-    FUN_18083f850(target_ptr, disconnect_size, &UNK_180982c20, 
+    FUN_18083f850(target_ptr, disconnect_size, &unknown_var_3712_ptr, 
                  *(int32_t *)(disconnect_ptr + 0x10), *(int32_t *)(disconnect_ptr + 0x18));
     return;
 }
@@ -1795,7 +1795,7 @@ void SendDisconnectPacket(longlong disconnect_ptr, uint64_t target_ptr, int32_t 
 void SendPingPacket(longlong ping_ptr, uint64_t target_ptr, int32_t ping_size)
 {
     // 调用底层发送函数传输Ping包
-    FUN_18083f850(target_ptr, ping_size, &UNK_180982ca0, 
+    FUN_18083f850(target_ptr, ping_size, &unknown_var_3840_ptr, 
                  *(int32_t *)(ping_ptr + 0x10), *(int32_t *)(ping_ptr + 0x18));
     return;
 }
@@ -1816,7 +1816,7 @@ void SendPingPacket(longlong ping_ptr, uint64_t target_ptr, int32_t ping_size)
 void SendPongPacket(longlong pong_ptr, uint64_t target_ptr, int32_t pong_size)
 {
     // 调用底层发送函数传输Pong包
-    FUN_18083f850(target_ptr, pong_size, &UNK_1809831a0, 
+    FUN_18083f850(target_ptr, pong_size, &unknown_var_5120_ptr, 
                  *(int32_t *)(pong_ptr + 0x10), *(int32_t *)(pong_ptr + 0x18));
     return;
 }

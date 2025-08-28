@@ -18,14 +18,14 @@ void FUN_1803e11f0(longlong *param_1,longlong *param_2,uint64_t param_3,uint64_t
   
   uVar3 = (**(code **)(*param_1 + 0x90))(param_1,&puStack_40,param_3,param_4,0xfffffffffffffffe);
   FUN_180639ec0(param_2,uVar3);
-  puStack_40 = &UNK_180a3c3e0;
+  puStack_40 = &unknown_var_3456_ptr;
   if (lStack_38 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_38 = 0;
   uStack_28 = 0;
-  puStack_40 = &UNK_18098bcb0;
+  puStack_40 = &unknown_var_720_ptr;
   lVar5 = param_1[0x18];
   puVar4 = (int32_t *)param_2[1];
   if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {

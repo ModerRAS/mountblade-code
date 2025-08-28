@@ -158,14 +158,14 @@ int * process_object_collision(int *object_data)
   position_x = (float)object_data[0xc];
   *(int *)(object_transform + 0x104) = object_data[0xb];
   *(float *)(object_transform + 0x100) = position_x - collision_width;
-  collision_result_char = FUN_18010fad0(&UNK_180a063f8, 0, matrix_data);
+  collision_result_char = FUN_18010fad0(&unknown_var_2296_ptr, 0, matrix_data);
   position_x = (float)object_data[0xc];
   *(int *)(object_transform + 0x104) = object_data[0xb];
   if (collision_result_char != '\0') {
     boundary_check = -1;
   }
   *(float *)(object_transform + 0x100) = (position_x - collision_width) + collision_height;
-  collision_result_char = FUN_18010fad0(&UNK_180a0640c, 1, matrix_data);
+  collision_result_char = FUN_18010fad0(&unknown_var_2316_ptr, 1, matrix_data);
   camera_data = _DAT_180c8a9b0;
   if (collision_result_char != '\0') {
     boundary_check = 1;
@@ -302,7 +302,7 @@ ulonglong update_object_position(int *object_data)
   FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &stack_param1);
   *(uint64_t *)(engine_base + 0x1818) = 0;
   *(uint64_t *)(engine_base + 0x1820) = 0;
-  update_flag = FUN_1801129b0(&UNK_180a063b0, 0, 0x41);
+  update_flag = FUN_1801129b0(&unknown_var_2224_ptr, 0, 0x41);
   camera_offset = _DAT_180c8a9b0;
   position_data = (uint64_t *)
            (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
@@ -425,7 +425,7 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
   FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &stack0x00000030);
   *(uint64_t *)(engine_base + 0x1818) = 0;
   *(uint64_t *)(engine_base + 0x1820) = 0;
-  update_flag = FUN_1801129b0(&UNK_180a063b0, 0, 0x41);
+  update_flag = FUN_1801129b0(&unknown_var_2224_ptr, 0, 0x41);
   camera_offset = _DAT_180c8a9b0;
   distance_data = (uint64_t *)
            (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +

@@ -606,7 +606,7 @@ void FUN_1805ac830(longlong *param_1,longlong *param_2,char param_3,uint64_t par
           plVar2 = *(longlong **)(lVar16 + lVar21);
           iVar11 = (**(code **)(*plVar2 + 0x98))(plVar2);
           if (iVar11 == 0) {
-            if (*(code **)(*plVar2 + 0x158) == (code *)&UNK_18027d980) {
+            if (*(code **)(*plVar2 + 0x158) == (code *)&unknown_var_2528_ptr) {
               pfVar15 = (float *)(plVar2 + 0x66);
             }
             else {

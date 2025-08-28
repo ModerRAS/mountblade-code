@@ -70,7 +70,7 @@ void release_engine_resources(longlong *resource_ptr)
             *(int *)(ref_count + 0x14) = *(int *)(ref_count + 0x14) + 1;
             UNLOCK();
             resource_list = &resource_type;
-            resource_type = &UNK_1809fcc28;
+            resource_type = &unknown_var_3432_ptr;
             resource_info = resource_cache;
             buffer_size = 0;
             resource_cache[0] = 0;
@@ -92,13 +92,13 @@ void release_engine_resources(longlong *resource_ptr)
             if (resource_interface != (void **)0x0) {
                 (**(code **)(*resource_interface + 0x38))(resource_interface);
             }
-            resource_type = &UNK_18098bcb0;
+            resource_type = &unknown_var_720_ptr;
             heap_buffer = resource_ptr[1];
             LOCK();
             *(int *)(heap_buffer + 0x10) = *(int *)(heap_buffer + 0x10) + 1;
             UNLOCK();
             interface_ptr = (void ***)&resource_properties;
-            resource_properties = &UNK_1809fcc28;
+            resource_properties = &unknown_var_3432_ptr;
             resource_metadata = metadata_buffer;
             metadata_size = 0;
             metadata_buffer[0] = 0;
@@ -120,7 +120,7 @@ void release_engine_resources(longlong *resource_ptr)
                 (**(code **)(*resource_data + 0x38))(resource_data);
             }
             interface_ptr = (void ***)&resource_properties;
-            resource_properties = &UNK_18098bcb0;
+            resource_properties = &unknown_var_720_ptr;
         }
         LOCK();
         *(int8_t *)((longlong)resource_ptr + 0x15) = 0;
@@ -1243,13 +1243,13 @@ void cleanup_resource_handles(longlong *resource_array)
     
     current_handle = (uint64_t *)resource_array[1];
     for (end_handle = (uint64_t *)*resource_array; end_handle != current_handle; end_handle = end_handle + 6) {
-        *end_handle = &UNK_180a3c3e0;
+        *end_handle = &unknown_var_3456_ptr;
         if (end_handle[1] != 0) {
             FUN_18064e900();
         }
         end_handle[1] = 0;
         *(int32_t *)(end_handle + 3) = 0;
-        *end_handle = &UNK_18098bcb0;
+        *end_handle = &unknown_var_720_ptr;
     }
     if (*resource_array != 0) {
         FUN_18064e900();

@@ -335,7 +335,7 @@ uint FUN_180325ed0(longlong param_1,uint64_t param_2,longlong param_3,uint param
      ((uVar11 >> 1 & 1) != 0)) {
     FUN_1800c1750(param_1,aplStack_78,*(int32_t *)(param_3 + 0xf0));
     if (aplStack_78[0] == (longlong *)0x0) {
-      FUN_180627020(&UNK_180a191a8,*(int32_t *)(param_3 + 0xf0));
+      FUN_180627020(&unknown_var_9528_ptr,*(int32_t *)(param_3 + 0xf0));
       if (aplStack_78[0] != (longlong *)0x0) {
         (**(code **)(*aplStack_78[0] + 0x38))();
       }
@@ -650,7 +650,7 @@ uint FUN_1803263e0(longlong *param_1,longlong param_2,longlong param_3)
     if ((void *)puVar20[3] != (void *)0x0) {
       puVar15 = (void *)puVar20[3];
     }
-    lVar11 = strstr(puVar15,&UNK_180a1b0f8);
+    lVar11 = strstr(puVar15,&unknown_var_7544_ptr);
     if (lVar11 != 0) {
       uVar8 = FUN_18032b4a0(param_2);
       lVar11 = *(longlong *)(param_2 + 0xaf0);
@@ -666,7 +666,7 @@ uint FUN_1803263e0(longlong *param_1,longlong param_2,longlong param_3)
       puVar17 = *(uint **)(lVar11 + lVar12 * 8);
 LAB_1803265ac:
       if (puVar17 == *(uint **)(lVar11 + lVar12 * 8)) {
-        if ((void *)*puVar20 == &UNK_180a14060) {
+        if ((void *)*puVar20 == &unknown_var_8720_ptr) {
           LOCK();
           *(int *)(puVar20 + 1) = *(int *)(puVar20 + 1) + 1;
           UNLOCK();

@@ -501,12 +501,12 @@ code *get_or_create_context_handler(longlong context_ptr, char handler_type)
                 return return_value;
             }
             
-            FUN_1806272a0(&UNK_1809ffbe0);
-            return_value = (code *)FUN_180626f80(&UNK_1809ffab0);
+            FUN_1806272a0(&unknown_var_5648_ptr);
+            return_value = (code *)FUN_180626f80(&unknown_var_5344_ptr);
         }
         else {
             temp_ptr = *(longlong **)(*(longlong *)(context_ptr + 0xa8) + 0x88);
-            temp_stack_20 = (code *)&UNK_180083070;
+            temp_stack_20 = (code *)&unknown_var_7632_ptr;
             temp_stack_18 = FUN_180082fd0;
             temp_stack_30 = context_ptr;
             (**(code **)(*temp_ptr + 0x60))(temp_ptr, &system_memory_c740, context_ptr + 0xb8, 0, &temp_stack_30);

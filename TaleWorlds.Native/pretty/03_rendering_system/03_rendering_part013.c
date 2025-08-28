@@ -172,7 +172,7 @@ void add_bone_index_to_render_object(longlong *render_object, int bone_index, lo
   
   // 如果需要更新，触发更新
   if (should_update != '\0') {
-    if (*(code **)(*render_object + 0x160) == (code *)&UNK_180277350) {
+    if (*(code **)(*render_object + 0x160) == (code *)&unknown_var_6368_ptr) {
       FUN_180276f30(render_object, (longlong)render_object + 0x214, 0);
     }
     else {
@@ -236,7 +236,7 @@ void add_bone_mask_to_render_object(longlong *render_object, uint bone_mask, lon
   
   // 如果需要更新，触发更新
   if (should_update != '\0') {
-    if (*(code **)(*render_object + 0x160) == (code *)&UNK_180277350) {
+    if (*(code **)(*render_object + 0x160) == (code *)&unknown_var_6368_ptr) {
       FUN_180276f30(render_object, (longlong)render_object + 0x214, 0);
     }
     else {
@@ -422,7 +422,7 @@ LAB_180276376:
       
       // 距离剔除检测
       if ((visibility_mask != 0) && (bone_transform_z = *(float *)(render_object + 0xd), bone_transform_z != 3.4028235e+38)) {
-        if ((void *)*render_object == &UNK_180a169b8) {
+        if ((void *)*render_object == &unknown_var_9304_ptr) {
           current_bone = (longlong)render_object + 0x214;
         }
         else {
@@ -461,7 +461,7 @@ LAB_180276376:
       // 蒙皮动画处理
       visibility_mask = *(ulonglong *)(visibility_flags + 10);
       if ((visibility_mask != 0) && (bone_transform_z = *(float *)(render_object + 0xd), bone_transform_z != 3.4028235e+38)) {
-        if ((void *)*render_object == &UNK_180a169b8) {
+        if ((void *)*render_object == &unknown_var_9304_ptr) {
           current_bone = (longlong)render_object + 0x214;
         }
         else {
@@ -589,7 +589,7 @@ ulonglong process_vertex_transform_visibility(uint64_t param_1, uint64_t param_2
   
   // 距离剔除检测
   if ((in_RAX != 0) && (param4_float = *(float *)(unaff_RBX + 0xd), param4_float != 3.4028235e+38)) {
-    if ((void *)*unaff_RBX == &UNK_180a169b8) {
+    if ((void *)*unaff_RBX == &unknown_var_9304_ptr) {
       current_bone = (longlong)unaff_RBX + 0x214;
     }
     else {
@@ -658,7 +658,7 @@ ulonglong process_bone_visibility_simple(void)
   // 获取视距参数
   distance_z = *(float *)(unaff_RBX + 0xd);
   if (distance_z != 3.4028235e+38) {
-    if ((void *)*unaff_RBX == &UNK_180a169b8) {
+    if ((void *)*unaff_RBX == &unknown_var_9304_ptr) {
       current_bone = (longlong)unaff_RBX + 0x214;
     }
     else {

@@ -16,9 +16,9 @@
 #include "TaleWorlds.Native.Split.h"
 
 /* 全局变量和常量 */
-#define GLOBAL_ENGINE_VTABLE_1 (&UNK_180a0c4a0)
-#define GLOBAL_ENGINE_VTABLE_2 (&UNK_180a21720)
-#define GLOBAL_ENGINE_VTABLE_3 (&UNK_180a21690)
+#define GLOBAL_ENGINE_VTABLE_1 (&unknown_var_7040_ptr)
+#define GLOBAL_ENGINE_VTABLE_2 (&unknown_var_3696_ptr)
+#define GLOBAL_ENGINE_VTABLE_3 (&unknown_var_3552_ptr)
 #define GLOBAL_EVENT_SYSTEM_HANDLE (_DAT_180c8a9c0)
 #define GLOBAL_MEMORY_ALLOCATOR (_DAT_180c8ed18)
 #define GLOBAL_EVENT_MANAGER (_DAT_180c8f008)
@@ -92,13 +92,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     FUN_18004b730();  // 清理图形设备
     
     // 设置渲染目标为默认状态
-    engine_context[0xc169] = &UNK_180a3c3e0;
+    engine_context[0xc169] = &unknown_var_3456_ptr;
     if (engine_context[0xc16a] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0xc16a] = 0;
     *(int32_t *)(engine_context + 0xc16c) = 0;
-    engine_context[0xc169] = &UNK_18098bcb0;
+    engine_context[0xc169] = &unknown_var_720_ptr;
     
     // 清理渲染管线
     FUN_180196de0(engine_context + 0xc11e);
@@ -133,13 +133,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     // 重置音频缓冲区
-    engine_context[0x103a] = &UNK_180a3c3e0;
+    engine_context[0x103a] = &unknown_var_3456_ptr;
     if (engine_context[0x103b] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x103b] = 0;
     *(int32_t *)(engine_context + 0x103d) = 0;
-    engine_context[0x103a] = &UNK_18098bcb0;
+    engine_context[0x103a] = &unknown_var_720_ptr;
     
     // 多次清理内存池
     FUN_180057830();
@@ -178,13 +178,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     FUN_1800e7c40(engine_context + 0x7ed);
     
     // 重置物理世界状态
-    engine_context[0x7da] = &UNK_180a3c3e0;
+    engine_context[0x7da] = &unknown_var_3456_ptr;
     if (engine_context[0x7db] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x7db] = 0;
     *(int32_t *)(engine_context + 0x7dd) = 0;
-    engine_context[0x7da] = &UNK_18098bcb0;
+    engine_context[0x7da] = &unknown_var_720_ptr;
     
     if (engine_context[0x7ce] != 0) {
         FUN_18064e900();  // 触发错误处理
@@ -219,13 +219,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     FUN_1801c0df0(engine_context + 0x519);
     
     // 重置着色器程序状态
-    engine_context[0x512] = &UNK_180a3c3e0;
+    engine_context[0x512] = &unknown_var_3456_ptr;
     if (engine_context[0x513] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x513] = 0;
     *(int32_t *)(engine_context + 0x515) = 0;
-    engine_context[0x512] = &UNK_18098bcb0;
+    engine_context[0x512] = &unknown_var_720_ptr;
     
     if (engine_context[0x50e] != 0) {
         FUN_18064e900();  // 触发错误处理
@@ -252,13 +252,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     // 重置脚本引擎状态
-    engine_context[0x4f9] = &UNK_180a3c3e0;
+    engine_context[0x4f9] = &unknown_var_3456_ptr;
     if (engine_context[0x4fa] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x4fa] = 0;
     *(int32_t *)(engine_context + 0x4fc) = 0;
-    engine_context[0x4f9] = &UNK_18098bcb0;
+    engine_context[0x4f9] = &unknown_var_720_ptr;
     
     // 清理线程同步对象
     _Mtx_destroy_in_situ();
@@ -277,40 +277,40 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     // 重置UI渲染器状态
-    engine_context[0xa4] = &UNK_180a3c3e0;
+    engine_context[0xa4] = &unknown_var_3456_ptr;
     if (engine_context[0xa5] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0xa5] = 0;
     *(int32_t *)(engine_context + 0xa7) = 0;
-    engine_context[0xa4] = &UNK_18098bcb0;
+    engine_context[0xa4] = &unknown_var_720_ptr;
     
     // 重置字体系统状态
-    engine_context[0xa0] = &UNK_180a3c3e0;
+    engine_context[0xa0] = &unknown_var_3456_ptr;
     if (engine_context[0xa1] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0xa1] = 0;
     *(int32_t *)(engine_context + 0xa3) = 0;
-    engine_context[0xa0] = &UNK_18098bcb0;
+    engine_context[0xa0] = &unknown_var_720_ptr;
     
     // 重置文本渲染器状态
-    engine_context[0x9b] = &UNK_180a3c3e0;
+    engine_context[0x9b] = &unknown_var_3456_ptr;
     if (engine_context[0x9c] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x9c] = 0;
     *(int32_t *)(engine_context + 0xa7) = 0;
-    engine_context[0x9b] = &UNK_18098bcb0;
+    engine_context[0x9b] = &unknown_var_720_ptr;
     
     // 重置窗口系统状态
-    engine_context[0x91] = &UNK_180a3c3e0;
+    engine_context[0x91] = &unknown_var_3456_ptr;
     if (engine_context[0x92] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x92] = 0;
     *(int32_t *)(engine_context + 0x94) = 0;
-    engine_context[0x91] = &UNK_18098bcb0;
+    engine_context[0x91] = &unknown_var_720_ptr;
     
     // 清理其他系统组件
     if ((longlong *)engine_context[0x77] != (longlong *)0x0) {
@@ -764,24 +764,24 @@ SCENE_INITIALIZED:
     if (*(float *)(scene_context + 0x3140) <= 0.1) {
         // 创建简单实体
         entity_list = (longlong *)FUN_18062b1e0(GLOBAL_MEMORY_ALLOCATOR, 0x10, 8, 3);
-        *entity_list = (longlong)&UNK_180a0c178;
+        *entity_list = (longlong)&unknown_var_6232_ptr;
         entity_list[1] = scene_context;
     }
     else if (*(int *)(scene_context + 0x3054) == 2) {
         // 创建中等复杂度实体
         entity_list = (longlong *)FUN_18062b1e0(GLOBAL_MEMORY_ALLOCATOR, 0x20, 8, 3);
-        *entity_list = (longlong)&UNK_180a0c178;
+        *entity_list = (longlong)&unknown_var_6232_ptr;
         entity_list[1] = scene_context;
-        *entity_list = (longlong)&UNK_180a0c118;
+        *entity_list = (longlong)&unknown_var_6136_ptr;
         entity_list[2] = 0;
         entity_list[3] = 0;
     }
     else {
         // 创建复杂实体
         entity_list = (longlong *)FUN_18062b1e0(GLOBAL_MEMORY_ALLOCATOR, 0x70, 8, 3);
-        *entity_list = (longlong)&UNK_180a0c178;
+        *entity_list = (longlong)&unknown_var_6232_ptr;
         entity_list[1] = scene_context;
-        *entity_list = (longlong)&UNK_180a0c148;
+        *entity_list = (longlong)&unknown_var_6184_ptr;
         entity_list[2] = 0;
         entity_list[3] = 0;
         entity_list[4] = 0;
@@ -829,7 +829,7 @@ longlong *create_game_entity(uint64_t entity_type, longlong *entity_output, int8
     
     // 检查实体创建是否成功
     if (*entity_output == 0) {
-        FUN_180626ee0(&UNK_180a0b200);  // 触发实体创建错误
+        FUN_180626ee0(&unknown_var_2272_ptr);  // 触发实体创建错误
     }
     
     // 获取实体引用并初始化
@@ -950,7 +950,7 @@ void destroy_game_entity(longlong entity_system, longlong *entity_ptr, uint64_t 
         }
     }
     else {
-        FUN_180626f80(&UNK_180a0b258);  // 触发实体销毁错误
+        FUN_180626f80(&unknown_var_2360_ptr);  // 触发实体销毁错误
     }
     
     // 调用实体销毁方法
@@ -993,12 +993,12 @@ ulonglong update_entity_status(longlong world_context, longlong *entity_ptr, int
     update_result = 0xfffffffffffffffe;
     
     // 检查实体属性
-    entity_property = FUN_1802eee20(*entity_ptr, &UNK_180a0c460);
+    entity_property = FUN_1802eee20(*entity_ptr, &unknown_var_6976_ptr);
     if (entity_property != '\0') {
         *(int16_t *)(world_context + 0x5c40) = 0x101;
     }
     
-    entity_property = FUN_1802eee20(*entity_ptr, &UNK_180a0c480);
+    entity_property = FUN_1802eee20(*entity_ptr, &unknown_var_7008_ptr);
     if (entity_property != '\0') {
         *(int8_t *)(world_context + 0x5bf0) = 1;
         *(int8_t *)(world_context + 0x5c42) = 1;
@@ -1025,7 +1025,7 @@ ulonglong update_entity_status(longlong world_context, longlong *entity_ptr, int
                     if (*(void **)(world_entity + 0x290) != (void *)0x0) {
                         property_vtable = *(void **)(world_entity + 0x290);
                     }
-                    property_list = (longlong *)FUN_180626f80(&UNK_180a0b220, property_vtable);
+                    property_list = (longlong *)FUN_180626f80(&unknown_var_2304_ptr, property_vtable);
                 }
                 
                 if ((longlong *)*entity_ptr != (longlong *)0x0) {

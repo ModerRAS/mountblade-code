@@ -5,9 +5,9 @@
 
 // 全局变量声明
 extern void *_DAT_180c8ed18;  // 内存分配器指针
-extern void *UNK_1809fe210;   // 未知数据结构指针
-extern void *UNK_1809fe200;   // 未知数据结构指针  
-extern void *UNK_1809fe1f0;   // 未知数据结构指针
+extern void *global_var_9040_ptr;   // 未知数据结构指针
+extern void *global_var_9024_ptr;   // 未知数据结构指针  
+extern void *global_var_9008_ptr;   // 未知数据结构指针
 
 /**
  * 向动态数组中添加元素
@@ -546,7 +546,7 @@ uint64_t *allocate_thread_local_value(longlong *tls_base, char param_2, int8_t *
         new_entry[1] = 0;
         *(int8_t *)(new_entry + 2) = 0;
         new_entry[3] = 0;
-        *new_entry = &UNK_1809fe210;
+        *new_entry = &global_var_9040_ptr;
         new_entry[4] = 0;
         new_entry[5] = 0;
         new_entry[6] = 0;
@@ -554,7 +554,7 @@ uint64_t *allocate_thread_local_value(longlong *tls_base, char param_2, int8_t *
         new_entry[8] = 0;
         *(int8_t *)(new_entry + 9) = 0;
         new_entry[10] = tls_base;
-        *new_entry = &UNK_1809fe200;
+        *new_entry = &global_var_9024_ptr;
         new_entry[0xb] = 0x20;
         new_entry[0xc] = 0;
         initialize_thread_local_entry(new_entry);
@@ -569,7 +569,7 @@ uint64_t *allocate_thread_local_value(longlong *tls_base, char param_2, int8_t *
         new_entry[1] = 0;
         *(int8_t *)(new_entry + 2) = 0;
         new_entry[3] = 0;
-        *new_entry = &UNK_1809fe210;
+        *new_entry = &global_var_9040_ptr;
         new_entry[4] = 0;
         new_entry[5] = 0;
         new_entry[6] = 0;
@@ -577,7 +577,7 @@ uint64_t *allocate_thread_local_value(longlong *tls_base, char param_2, int8_t *
         new_entry[8] = 0;
         *(int8_t *)(new_entry + 9) = 1;
         new_entry[10] = tls_base;
-        *new_entry = &UNK_1809fe1f0;
+        *new_entry = &global_var_9008_ptr;
         new_entry[0xb] = 0;
         new_entry[0xc] = 0;
         new_entry[0xd] = 0x10;

@@ -447,7 +447,7 @@ uint64_t FUN_1807a9f00(longlong *param_1,int param_2,float *param_3,longlong par
       fVar2 = *(float *)(lVar1 + 0x230);
 LAB_1807a9f68:
                     // WARNING: Subroutine does not return
-      FUN_18076b390(param_4,0x20,&UNK_180958d90,(double)fVar2);
+      FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
     }
   }
   else if (param_2 == 1) {
@@ -482,12 +482,12 @@ FUN_1807a9fb0(longlong *param_1,int param_2,uint64_t *param_3,int32_t *param_4,l
     *param_3 = (int *)(lVar1 + 0x238);
     *param_4 = 4;
     if (param_5 != 0) {
-      puVar2 = &UNK_180a06420;
+      puVar2 = &unknown_var_2336_ptr;
       if (*(int *)(lVar1 + 0x238) != 0) {
-        puVar2 = &UNK_180a06418;
+        puVar2 = &unknown_var_2328_ptr;
       }
                     // WARNING: Subroutine does not return
-      FUN_18076b390(param_5,0x20,&UNK_1809fe7f8,puVar2);
+      FUN_18076b390(param_5,0x20,&unknown_var_552_ptr,puVar2);
     }
   }
   return 0;

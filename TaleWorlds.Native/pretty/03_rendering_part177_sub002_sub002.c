@@ -641,7 +641,7 @@ LAB_1803763e0:
                                         fVar42 = 0.0;
                                       }
                                       else if (*(code **)(*plVar18 + 0x198) ==
-                                               (code *)&UNK_18027d990) {
+                                               (code *)&unknown_var_2544_ptr) {
                                         fVar42 = *(float *)((longlong)plVar18 + 0x244);
                                       }
                                       else {

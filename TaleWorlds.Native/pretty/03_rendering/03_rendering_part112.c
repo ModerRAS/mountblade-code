@@ -170,7 +170,7 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, uint64_
                 // 矩阵初始化和处理
                 int32_t *puVar5 = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, 0xa8, 8, 3);
                 longlong *plVar2 = (longlong *)(puVar5 + 0x22);
-                *plVar2 = (longlong)&UNK_18098bcb0;
+                *plVar2 = (longlong)&unknown_var_720_ptr;
                 
                 // 设置矩阵参数
                 *puVar5 = 0xffffffff;
@@ -344,7 +344,7 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, uint64_
                 // 内存初始化和处理
                 int32_t *puVar6 = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
                 longlong *plVar1 = (longlong *)(puVar6 + 10);
-                *plVar1 = (longlong)&UNK_18098bcb0;
+                *plVar1 = (longlong)&unknown_var_720_ptr;
                 
                 // 设置内存参数
                 *puVar6 = 0xffffffff;
@@ -420,7 +420,7 @@ void RenderingSystem_DataSerializer(longlong param_1, uint param_2)
     
     // 初始化序列化器
     FUN_180049830(plVar6);
-    *plVar6 = (longlong)&UNK_180a1b248;
+    *plVar6 = (longlong)&unknown_var_7880_ptr;
     ulonglong *puVar1 = (ulonglong *)(plVar6 + 0x18);
     *puVar1 = 0;
     plVar6[0x19] = 0;

@@ -587,7 +587,7 @@ FUN_18008f470(longlong *param_1,uint64_t *param_2,char param_3,uint64_t *param_4
   
   if (0x2e8ba2e8ba2e8b8 < (ulonglong)param_1[1]) {
     func_0x00018008d310(0x2e8ba2e8ba2e8b9,param_6);
-    __Xlength_error_std__YAXPEBD_Z(&UNK_180a009a8);
+    __Xlength_error_std__YAXPEBD_Z(&unknown_var_9176_ptr);
     pcVar3 = (code *)swi(3);
     puVar4 = (uint64_t *)(*pcVar3)();
     return puVar4;

@@ -76,7 +76,7 @@ LAB_1806d5e06:
       } while (uVar12 != 0);
       do {
         uVar4 = *(uint64_t *)(puStack_5d0 + lVar9);
-        FUN_1806d7170(param_1,&UNK_18094bf38);
+        FUN_1806d7170(param_1,&unknown_var_9224_ptr);
         iVar1 = *(int *)(*param_1 + 0x10);
         if ((iVar1 != 0) &&
            (puVar8 = (uint64_t *)(*(longlong *)(*param_1 + 8) + (ulonglong)(iVar1 - 1) * 0x10),
@@ -89,10 +89,10 @@ LAB_1806d5e06:
         uStackX_8 = uVar4;
         lVar10 = func_0x0001806d5360(param_1[5],&uStackX_8);
         if (lVar10 != 0) {
-          FUN_1806d2c90(param_1[1],param_1[4],param_1[3],&UNK_18094c0b0,*(uint64_t *)(lVar10 + 8))
+          FUN_1806d2c90(param_1[1],param_1[4],param_1[3],&unknown_var_9600_ptr,*(uint64_t *)(lVar10 + 8))
           ;
         }
-        FUN_1806d2c90(param_1[1],param_1[4],param_1[3],&UNK_180a06958,uVar4);
+        FUN_1806d2c90(param_1[1],param_1[4],param_1[3],&unknown_var_3672_ptr,uVar4);
         __0PxArticulationLinkGeneratedInfo_physx__QEAA_XZ(auStack_398);
         FUN_1806d28e0(*param_1,uVar4,param_1[1],param_1[3],param_1[4]);
         lVar10 = *param_1;
@@ -220,10 +220,10 @@ LAB_1806d5e06:
       *(uint64_t *)(unaff_RBP + 0x710) = uVar4;
       lVar10 = func_0x0001806d5360(lVar10,unaff_RBP + 0x710);
       if (lVar10 != 0) {
-        FUN_1806d2c90(unaff_RBX[1],unaff_RBX[4],unaff_RBX[3],&UNK_18094c0b0,
+        FUN_1806d2c90(unaff_RBX[1],unaff_RBX[4],unaff_RBX[3],&unknown_var_9600_ptr,
                       *(uint64_t *)(lVar10 + 8));
       }
-      FUN_1806d2c90(unaff_RBX[1],unaff_RBX[4],unaff_RBX[3],&UNK_180a06958,uVar4);
+      FUN_1806d2c90(unaff_RBX[1],unaff_RBX[4],unaff_RBX[3],&unknown_var_3672_ptr,uVar4);
       __0PxArticulationLinkGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0x370);
       FUN_1806d28e0(*unaff_RBX,uVar4,unaff_RBX[1],unaff_RBX[3],unaff_RBX[4]);
       lVar10 = *unaff_RBX;
@@ -377,8 +377,8 @@ void FUN_1806d6010(longlong *param_1,longlong param_2)
   uVar6 = (**(code **)(*(longlong *)param_1[2] + 0x38))();
   switch(uVar6) {
   case 0:
-    FUN_1806d7170(param_1,&UNK_18094c830);
-    FUN_1806d7170(param_1,&UNK_18094c048);
+    FUN_1806d7170(param_1,&unknown_var_1520_ptr);
+    FUN_1806d7170(param_1,&unknown_var_9496_ptr);
     auStackX_8[0] = 0;
     auStackX_8[1] = 0;
     _getGeometry_PxShapeGeometryPropertyHelper_physx__QEBA_NPEBVPxShape_2_AEAVPxSphereGeometry_2__Z
@@ -400,8 +400,8 @@ void FUN_1806d6010(longlong *param_1,longlong param_2)
     FUN_1806c10d0(&lStack_1e8,auStack_208,0);
     break;
   case 1:
-    FUN_1806d7170(param_1,&UNK_18094c830);
-    FUN_1806d7170(param_1,&UNK_18094c060);
+    FUN_1806d7170(param_1,&unknown_var_1520_ptr);
+    FUN_1806d7170(param_1,&unknown_var_9520_ptr);
     auStackX_20[0] = 1;
     _getGeometry_PxShapeGeometryPropertyHelper_physx__QEBA_NPEBVPxShape_2_AEAVPxPlaneGeometry_2__Z
               (param_2 + 0x18,param_1[2],auStackX_20);
@@ -410,12 +410,12 @@ void FUN_1806d6010(longlong *param_1,longlong param_2)
     plVar2 = (longlong *)param_1[1];
     auStackX_8[0] = auStackX_8[0] & 0xffffff00;
     (**(code **)*puVar1)(puVar1,auStackX_8,1);
-    (**(code **)(*plVar2 + 0x10))(plVar2,&UNK_18094c060,puVar1[4]);
+    (**(code **)(*plVar2 + 0x10))(plVar2,&unknown_var_9520_ptr,puVar1[4]);
     puVar1[3] = 0;
     break;
   case 2:
-    FUN_1806d7170(param_1,&UNK_18094c830);
-    FUN_1806d7170(param_1,&UNK_18094c018);
+    FUN_1806d7170(param_1,&unknown_var_1520_ptr);
+    FUN_1806d7170(param_1,&unknown_var_9448_ptr);
     auStack_208[0] = 2;
     auStack_208[1] = 0;
     uStack_200 = (ulonglong)uStack_200._4_4_ << 0x20;
@@ -438,8 +438,8 @@ void FUN_1806d6010(longlong *param_1,longlong param_2)
     FUN_1806ce230(&lStack_1a8,&lStack_1e8,0);
     break;
   case 3:
-    FUN_1806d7170(param_1,&UNK_18094c830);
-    FUN_1806d7170(param_1,&UNK_18094c008);
+    FUN_1806d7170(param_1,&unknown_var_1520_ptr);
+    FUN_1806d7170(param_1,&unknown_var_9432_ptr);
     auStack_208[0] = 3;
     auStack_208[1] = 0;
     uStack_200 = 0;
@@ -461,8 +461,8 @@ void FUN_1806d6010(longlong *param_1,longlong param_2)
     FUN_1806c0d90(&lStack_1a8,auStack_168,0);
     break;
   case 4:
-    FUN_1806d7170(param_1,&UNK_18094c830);
-    FUN_1806d7170(param_1,&UNK_18094c030);
+    FUN_1806d7170(param_1,&unknown_var_1520_ptr);
+    FUN_1806d7170(param_1,&unknown_var_9472_ptr);
     uStack_1cc = 0x3f800000;
     lStack_1e0 = 0x3f8000003f800000;
     uStack_1d8._0_4_ = 0;
@@ -490,8 +490,8 @@ void FUN_1806d6010(longlong *param_1,longlong param_2)
     FUN_1806ce3e0(auStack_168,&lStack_1a8,0);
     break;
   case 5:
-    FUN_1806d7170(param_1,&UNK_18094c830);
-    FUN_1806d7170(param_1,&UNK_18094c070);
+    FUN_1806d7170(param_1,&unknown_var_1520_ptr);
+    FUN_1806d7170(param_1,&unknown_var_9536_ptr);
     uStack_1cc = 0x3f800000;
     lStack_1e0 = 0x3f8000003f800000;
     uStack_1d8._0_4_ = 0;
@@ -518,8 +518,8 @@ void FUN_1806d6010(longlong *param_1,longlong param_2)
     FUN_1806d26b0(auStack_168,&lStack_1a8,0);
     break;
   case 6:
-    FUN_1806d7170(param_1,&UNK_18094c830);
-    FUN_1806d7170(param_1,&UNK_18094c088);
+    FUN_1806d7170(param_1,&unknown_var_1520_ptr);
+    FUN_1806d7170(param_1,&unknown_var_9560_ptr);
     auStack_208[0] = 6;
     uStack_200 = 0;
     uStack_1f8 = 0x3f800000;
@@ -580,8 +580,8 @@ void FUN_1806d603d(void)
   
                     // WARNING: Could not recover jumptable at 0x0001806d6068. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ulonglong)*(uint *)(&UNK_1806d6594 + (longlong)in_EAX * 4) + 0x180000000))
-            ((code *)((ulonglong)*(uint *)(&UNK_1806d6594 + (longlong)in_EAX * 4) + 0x180000000));
+  (*(code *)((ulonglong)*(uint *)(&unknown_var_372_ptr + (longlong)in_EAX * 4) + 0x180000000))
+            ((code *)((ulonglong)*(uint *)(&unknown_var_372_ptr + (longlong)in_EAX * 4) + 0x180000000));
   return;
 }
 
@@ -644,7 +644,7 @@ void FUN_1806d65b0(longlong *param_1,longlong param_2)
   
   FUN_1806d56e0();
   lVar11 = *param_1;
-  puStack_2c0 = &UNK_18094c0a8;
+  puStack_2c0 = &unknown_var_9592_ptr;
   uStack_2b0 = (int8_t)param_1[9];
   uVar2 = *(uint *)(lVar11 + 0x10);
   uStack_2b8 = uStack_2b8 & 0xffffff00;
@@ -905,7 +905,7 @@ void FUN_1806d68d0(longlong *param_1,longlong param_2)
   
   lVar4 = (**(code **)(param_2 + 0x10))(param_1[2]);
   if (lVar4 != 0) {
-    FUN_1806d7170(param_1,&UNK_18094c0a8);
+    FUN_1806d7170(param_1,&unknown_var_9592_ptr);
     sVar1 = *(short *)(lVar4 + 8);
     lVar5 = 0;
     if (sVar1 == 0xe) {

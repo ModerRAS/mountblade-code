@@ -667,7 +667,7 @@ void FUN_18071fef0(longlong param_1,longlong param_2,float *param_3)
             dVar6 = (double)(longlong)(lVar18 - (ulonglong)(uVar19 & 1));
           }
           pfVar17 = (float *)(longlong)(int)dVar6;
-          fVar27 = *(float *)(&UNK_180953730 + (longlong)pfVar17 * 4);
+          fVar27 = *(float *)(&unknown_var_9936_ptr + (longlong)pfVar17 * 4);
           fVar30 = ABS(fVar30) - (float)(int)dVar6 * 0.04;
           fVar26 = ((1.0 - fVar27 * fVar27) * fVar30 * (1.0 - fVar27 * fVar30) + fVar27) * fVar26;
         }
@@ -772,7 +772,7 @@ void FUN_18071fef0(longlong param_1,longlong param_2,float *param_3)
             dVar6 = (double)(longlong)(lVar22 - (ulonglong)(uVar16 & 1));
           }
           pfVar17 = (float *)(longlong)(int)dVar6;
-          fVar27 = *(float *)(&UNK_180953730 + (longlong)pfVar17 * 4);
+          fVar27 = *(float *)(&unknown_var_9936_ptr + (longlong)pfVar17 * 4);
           fVar30 = ABS(fVar30) - (float)(int)dVar6 * 0.04;
           fVar26 = ((1.0 - fVar27 * fVar27) * fVar30 * (1.0 - fVar27 * fVar30) + fVar27) * fVar26;
         }

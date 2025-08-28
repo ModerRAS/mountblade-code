@@ -545,10 +545,10 @@ uint64_t *data_structure_initializer(uint64_t *data_structure, uint64_t init_par
     FUN_1808d2f20();
     
     // 设置数据结构
-    *data_structure = &UNK_1809884c0;
-    data_structure[3] = &UNK_1809884f8;
-    data_structure[6] = &UNK_180988500;
-    data_structure[9] = &UNK_180988530;
+    *data_structure = &unknown_var_6400_ptr;
+    data_structure[3] = &unknown_var_6456_ptr;
+    data_structure[6] = &unknown_var_6464_ptr;
+    data_structure[9] = &unknown_var_6512_ptr;
     data_structure[0x13] = init_params;
     data_structure[0x14] = 0;
     data_structure[0x15] = 0;
@@ -577,10 +577,10 @@ uint64_t *memory_pool_manager(uint64_t *memory_pool, uint64_t memory_params)
     FUN_1808d2f20();
     
     // 设置内存池
-    *memory_pool = &UNK_180988620;
-    memory_pool[3] = &UNK_180988658;
-    memory_pool[6] = &UNK_180988660;
-    memory_pool[9] = &UNK_180988690;
+    *memory_pool = &unknown_var_6752_ptr;
+    memory_pool[3] = &unknown_var_6808_ptr;
+    memory_pool[6] = &unknown_var_6816_ptr;
+    memory_pool[9] = &unknown_var_6864_ptr;
     memory_pool[0x13] = 0;
     memory_pool[0x14] = 0;
     memory_pool[0x15] = memory_params;
@@ -614,10 +614,10 @@ uint64_t *system_configurator(uint64_t *system_config, uint64_t config_param1, u
     FUN_1808d2f20();
     
     // 设置系统配置
-    *system_config = &UNK_1809886d0;
-    system_config[3] = &UNK_180988708;
-    system_config[6] = &UNK_180988710;
-    system_config[9] = &UNK_180988740;
+    *system_config = &unknown_var_6928_ptr;
+    system_config[3] = &unknown_var_6984_ptr;
+    system_config[6] = &unknown_var_6992_ptr;
+    system_config[9] = &unknown_var_7040_ptr;
     system_config[0x13] = config_param6;
     system_config[0x14] = config_param1;
     system_config[0x15] = 0;
@@ -669,10 +669,10 @@ void system_parameter_setup(uint64_t *system_params, uint64_t param_set1, uint64
     system_params[10] = 0;
     system_params[0xb] = 0;
     system_params[0xc] = 0;
-    *system_params = &UNK_180988388;
-    system_params[3] = &UNK_1809883c0;
-    system_params[6] = &UNK_1809883c8;
-    system_params[9] = &UNK_1809883f8;
+    *system_params = &unknown_var_6088_ptr;
+    system_params[3] = &unknown_var_6144_ptr;
+    system_params[6] = &unknown_var_6152_ptr;
+    system_params[9] = &unknown_var_6200_ptr;
     system_params[0x10] = param_set5;
     system_params[0x11] = param_set6;
     system_params[0xd] = 4;
@@ -758,10 +758,10 @@ uint64_t *resource_allocator(uint64_t *resource_allocator_ptr, uint64_t alloc_pa
     FUN_1808d2f20();
     
     // 设置资源分配器
-    *resource_allocator_ptr = &UNK_180988570;
-    resource_allocator_ptr[3] = &UNK_1809885a8;
-    resource_allocator_ptr[6] = &UNK_1809885b0;
-    resource_allocator_ptr[9] = &UNK_1809885e0;
+    *resource_allocator_ptr = &unknown_var_6576_ptr;
+    resource_allocator_ptr[3] = &unknown_var_6632_ptr;
+    resource_allocator_ptr[6] = &unknown_var_6640_ptr;
+    resource_allocator_ptr[9] = &unknown_var_6688_ptr;
     resource_allocator_ptr[0x13] = alloc_param;
     resource_allocator_ptr[0x15] = 0;
     *(int32_t *)(resource_allocator_ptr + 0x16) = 0;
@@ -784,17 +784,17 @@ void object_initializer(uint64_t *object_ptr)
     longlong *temp_ptr1;
     
     // 设置对象参数
-    *object_ptr = &UNK_180988388;
-    object_ptr[3] = &UNK_1809883c0;
-    object_ptr[6] = &UNK_1809883c8;
-    object_ptr[9] = &UNK_1809883f8;
+    *object_ptr = &unknown_var_6088_ptr;
+    object_ptr[3] = &unknown_var_6144_ptr;
+    object_ptr[6] = &unknown_var_6152_ptr;
+    object_ptr[9] = &unknown_var_6200_ptr;
     
     // 调用初始化函数
     FUN_1808b1a30();
     
     // 初始化对象链表
     temp_ptr1 = object_ptr + 7;
-    object_ptr[6] = &UNK_180988358;
+    object_ptr[6] = &unknown_var_6040_ptr;
     *(longlong *)object_ptr[8] = *temp_ptr1;
     *(uint64_t *)(*temp_ptr1 + 8) = object_ptr[8];
     object_ptr[8] = temp_ptr1;
@@ -935,7 +935,7 @@ uint64_t *linked_list_initializer(uint64_t *linked_list, ulonglong init_flag)
     
     // 初始化链表
     temp_ptr1 = linked_list + 1;
-    *linked_list = &UNK_180988358;
+    *linked_list = &unknown_var_6040_ptr;
     *(longlong *)linked_list[2] = *temp_ptr1;
     *(uint64_t *)(*temp_ptr1 + 8) = linked_list[2];
     linked_list[2] = temp_ptr1;

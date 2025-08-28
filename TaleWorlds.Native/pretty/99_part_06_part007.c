@@ -613,7 +613,7 @@ ObjectPointer HashTableFind(longlong param_1, longlong* param_2, uint param_3)
     }
     
     // 未找到目标节点，构建查找字符串
-    string_allocator = &UNK_180a3c3e0;
+    string_allocator = &unknown_var_3456_ptr;
     string_handle = 0;
     result_ptr = (ObjectPointer*)0x0;
     string_length = 0;
@@ -677,7 +677,7 @@ BUILD_STRING:
     string_buffer = result_value;
     FUN_1801e8ce0(tree_root, name_buffer, priority_array);
     
-    string_allocator = &UNK_180a3c3e0;
+    string_allocator = &unknown_var_3456_ptr;
     if (result_ptr == (ObjectPointer*)0x0) {
         return result_value;
     }
@@ -763,7 +763,7 @@ ObjectPointer HashTableClear(longlong param_1, longlong* param_2, uint param_3)
     }
     
     // 未找到目标节点，构建清理字符串
-    string_allocator = &UNK_180a3c3e0;
+    string_allocator = &unknown_var_3456_ptr;
     string_handle = 0;
     result_ptr = (ObjectPointer*)0x0;
     string_length = 0;
@@ -830,7 +830,7 @@ BUILD_STRING:
     string_buffer = result_value;
     FUN_1801e8ce0(tree_root, name_buffer, priority_array);
     
-    string_allocator = &UNK_180a3c3e0;
+    string_allocator = &unknown_var_3456_ptr;
     if (result_ptr == (ObjectPointer*)0x0) {
         return result_value;
     }

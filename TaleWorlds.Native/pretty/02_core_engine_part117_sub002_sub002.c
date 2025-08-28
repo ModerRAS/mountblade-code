@@ -830,7 +830,7 @@ LAB_18012ac57:
     uStack_208 = 0x7f7fffff7f7fffff;
     fStack_218 = 3.4028235e+38;
     fStack_214 = 3.4028235e+38;
-    FUN_18012e1b0(&UNK_180a064a0);
+    FUN_18012e1b0(&unknown_var_2464_ptr);
     lVar17 = uStack_228;
     lVar30 = 0;
     pfVar15 = (float *)0x180bf66e8;
@@ -1111,7 +1111,7 @@ LAB_18012b82d:
           (*(int *)(lVar4 + 0x1a90) - *(int *)(lVar4 + 0x1e44) < 2)) &&
          ((*(char *)(lVar4 + 0xc3) != '\0' &&
           (((*(int *)(lVar4 + 0x1df4) != -1 &&
-            (iVar23 = strcmp(&UNK_180a06400,lVar4 + 0x1df8), iVar23 == 0)) &&
+            (iVar23 = strcmp(&unknown_var_2304_ptr,lVar4 + 0x1df8), iVar23 == 0)) &&
            (bVar31 = false, (longlong *)**(uint64_t **)(lVar4 + 0x1de0) == plVar14)))))) {
         bVar31 = true;
       }
@@ -1227,7 +1227,7 @@ LAB_18012b82d:
       fStack_1ec = (float)(int)(*(float *)(lVar4 + 0x19f8) * 0.55);
       fStack_1f0 = fStack_1f8 + fStack_1ec;
       fStack_1ec = fStack_1f4 + fStack_1ec;
-      uVar9 = FUN_180123c00(plStack_238,&UNK_180a064c0,0);
+      uVar9 = FUN_180123c00(plStack_238,&unknown_var_2496_ptr,0);
       pfStack_258._0_4_ = 0x20;
       cVar6 = FUN_18010f170(&fStack_1f8,uVar9,acStack_21f,&cStack_220);
       if (cVar6 != '\0') {
@@ -1495,7 +1495,7 @@ LAB_18012b82d:
     *(int32_t *)(plStack_238 + 0x2e) = 2;
     if ((uVar32 & 0x20) == 0) {
       plVar14 = plStack_238 + 8;
-      uVar9 = FUN_180123c00(plStack_238,&UNK_180a064b0,0);
+      uVar9 = FUN_180123c00(plStack_238,&unknown_var_2480_ptr,0);
       cVar6 = FUN_180110000(uVar9,plVar14,0);
       if (cVar6 != '\0') {
         *(int8_t *)((longlong)plStack_238 + 0xb3) = 1;
@@ -1508,7 +1508,7 @@ LAB_18012b82d:
                                    *(float *)(lVar4 + 0x165c)) - fVar33,
                                    *(float *)((longlong)plStack_238 + 0x44) +
                                    *(float *)(lVar4 + 0x1660) + fVar33);
-      uVar9 = FUN_180123c00(plStack_238,&UNK_180a064d0,0);
+      uVar9 = FUN_180123c00(plStack_238,&unknown_var_2512_ptr,0);
       cVar6 = FUN_18010fd40(uVar9,uVar13);
       if (cVar6 != '\0') {
         *puStack_150 = 0;

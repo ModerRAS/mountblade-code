@@ -352,7 +352,7 @@ uint64_t * initialize_rendering_pool(uint64_t *pool_data)
         memory_block = (uint64_t *)FUN_1801ee790();
         if (memory_block == (uint64_t *)0x0) {
             FUN_180287f70(stack_data2);
-            _CxxThrowException(stack_data2, &UNK_180bd8a18);
+            _CxxThrowException(stack_data2, &unknown_var_2600_ptr);
         }
         memory_block[0x10] = memory_block;
     }
@@ -384,7 +384,7 @@ uint64_t * initialize_rendering_pool(uint64_t *pool_data)
             
             if (memory_block == (uint64_t *)0x0) {
                 FUN_180287f70(stack_data1);
-                _CxxThrowException(stack_data1, &UNK_180bd8a18);
+                _CxxThrowException(stack_data1, &unknown_var_2600_ptr);
             }
             
             // 链接内存块
@@ -435,7 +435,7 @@ void set_rendering_state(char *state_ptr, int param1, int param2)
     }
     
     // 状态冲突，抛出异常
-    FUN_180062300(_DAT_180c86928, &UNK_180a16bd0, *(int *)(state_ptr + 4), 
+    FUN_180062300(_DAT_180c86928, &unknown_var_9840_ptr, *(int *)(state_ptr + 4), 
                  *(int32_t *)(state_ptr + 8), param1, param2);
 }
 
@@ -447,11 +447,11 @@ void set_rendering_state(char *state_ptr, int param1, int param2)
  */
 uint64_t * create_exception_data(uint64_t *exception_data, longlong exception_info)
 {
-    *exception_data = &UNK_18098b928;
+    *exception_data = &unknown_var_9816_ptr;
     exception_data[1] = 0;
     exception_data[2] = 0;
     __std_exception_copy(exception_info + 8);
-    *exception_data = &UNK_18098b940;
+    *exception_data = &unknown_var_9840_ptr;
     return exception_data;
 }
 
@@ -462,10 +462,10 @@ uint64_t * create_exception_data(uint64_t *exception_data, longlong exception_in
  */
 uint64_t * create_runtime_exception(uint64_t *exception_data)
 {
-    *exception_data = &UNK_18098b928;
+    *exception_data = &unknown_var_9816_ptr;
     exception_data[2] = 0;
-    exception_data[1] = &UNK_180a16c18;
-    *exception_data = &UNK_18098b940;
+    exception_data[1] = &unknown_var_9912_ptr;
+    *exception_data = &unknown_var_9840_ptr;
     return exception_data;
 }
 
@@ -481,10 +481,10 @@ uint64_t * create_runtime_exception(uint64_t *exception_data)
 uint64_t * create_string_exception(uint64_t param1, uint64_t *exception_data, 
                                    uint64_t param2, uint64_t param3)
 {
-    *exception_data = &UNK_18098bcb0;
+    *exception_data = &unknown_var_720_ptr;
     exception_data[1] = 0;
     *(int32_t *)(exception_data + 2) = 0;
-    *exception_data = &UNK_1809fcc28;
+    *exception_data = &unknown_var_3432_ptr;
     exception_data[1] = exception_data + 3;
     *(int8_t *)(exception_data + 3) = 0;
     *(int32_t *)(exception_data + 2) = 0x16;

@@ -213,8 +213,8 @@ uint64_t * FUN_18061e9c0(uint64_t *param_1,longlong param_2)
   
   afStack_188[8] = -NAN;
   afStack_188[9] = -NAN;
-  *param_1 = &UNK_180a3bf30;
-  *param_1 = &UNK_180a3beb8;
+  *param_1 = &unknown_var_2256_ptr;
+  *param_1 = &unknown_var_2136_ptr;
   puVar24 = (uint64_t *)0x0;
   param_1[1] = 0;
   param_1[2] = 0;
@@ -778,17 +778,17 @@ LAB_18061fb27:
   }
   *(int *)(param_1 + 0x35) = (int)(param_1[10] - *plVar1 >> 3);
   puVar13 = (uint64_t *)FUN_1808fc418(0x80);
-  *puVar13 = &UNK_1809fcd18;
-  *puVar13 = &UNK_180a3c018;
+  *puVar13 = &unknown_var_3672_ptr;
+  *puVar13 = &unknown_var_2488_ptr;
   puStackX_18 = puVar13;
   FUN_1808fc838(puVar13 + 1,0x38,2,FUN_18061cb70,FUN_18061cd80);
   *(int32_t *)(puVar13 + 0xf) = 0;
   param_1[0x48] = puVar13;
   puVar13 = (uint64_t *)FUN_1808fc418(0xb8);
-  *puVar13 = &UNK_180a3bff8;
-  *puVar13 = &UNK_180a3bfa8;
+  *puVar13 = &unknown_var_2456_ptr;
+  *puVar13 = &unknown_var_2376_ptr;
   puStackX_20 = puVar13 + 1;
-  *puStackX_20 = &UNK_180a3bfe0;
+  *puStackX_20 = &unknown_var_2432_ptr;
   puVar13[2] = 0;
   puStack_220 = puVar13 + 3;
   *puStack_220 = 0;

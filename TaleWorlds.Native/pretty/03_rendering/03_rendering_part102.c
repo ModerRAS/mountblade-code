@@ -155,7 +155,7 @@ uint64_t RenderingSystemProcessResourceRequest(longlong render_context, longlong
             
             // 处理纹理资源相关操作
             if (*(int *)(resource_params + 0x160) != 0) {
-                temp_ptr2 = (uint64_t *)FUN_1800b32c0(_DAT_180c86930, &stack_ptr2, resource_params + 0x150, 1, &UNK_180a1b168);
+                temp_ptr2 = (uint64_t *)FUN_1800b32c0(_DAT_180c86930, &stack_ptr2, resource_params + 0x150, 1, &unknown_var_7656_ptr);
                 FUN_1800763c0(*temp_ptr2, &stack_ptr1);
                 if (stack_ptr2 != (longlong *)0x0) {
                     (**(code **)(*stack_ptr2 + 0x38))();
@@ -529,7 +529,7 @@ void RenderingSystemCleanupResources(longlong render_context)
                 }
                 while (stack_ptr1 = temp_ptr1, temp_long2 != temp_long3) {
                     if (*(longlong *)(temp_long2 + 8) != 0) {
-                        *(void **)(*(longlong *)(temp_long2 + 8) + 0x50) = &UNK_18098bcb0;
+                        *(void **)(*(longlong *)(temp_long2 + 8) + 0x50) = &unknown_var_720_ptr;
                         FUN_18064e900();
                     }
                     *(uint64_t *)(temp_long2 + 8) = 0;
@@ -682,7 +682,7 @@ void RenderingSystemCleanupResources(longlong render_context)
     
     while (temp_long2 != temp_long3) {
         temp_ptr1 = *(longlong **)(temp_long2 + 8);
-        if ((void *)*temp_ptr1 == &UNK_180a14060) {
+        if ((void *)*temp_ptr1 == &unknown_var_8720_ptr) {
             LOCK();
             temp_ptr3 = temp_ptr1 + 1;
             temp_long1 = *temp_ptr3;

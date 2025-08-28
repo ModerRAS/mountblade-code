@@ -98,10 +98,10 @@ memory_allocation_complete:
       temp_var4 = temp_ptr[1];
       *(uint64_t *)((longlong)object_ptr + -0x1c) = *temp_ptr;
       *(uint64_t *)((longlong)object_ptr + -0x14) = temp_var4;
-      object_ptr[-1] = &UNK_18098bcb0;
+      object_ptr[-1] = &unknown_var_720_ptr;
       *object_ptr = 0;
       *(int32_t *)(object_ptr + 1) = 0;
-      object_ptr[-1] = &UNK_180a3c3e0;
+      object_ptr[-1] = &unknown_var_3456_ptr;
       object_ptr[2] = 0;
       *object_ptr = 0;
       *(int32_t *)(object_ptr + 1) = 0;
@@ -163,7 +163,7 @@ uint64_t rendering_system_check_render_object_state(longlong object_handle)
   char is_empty;
   
   object_ptr = *(longlong **)(object_handle + 0x48);
-  if (*(code **)(*object_ptr + 0xc0) == (code *)&UNK_180277e10) {
+  if (*(code **)(*object_ptr + 0xc0) == (code *)&unknown_var_9120_ptr) {
     is_empty = ((object_ptr[8] - object_ptr[7] & 0xfffffffffffffff0U) == 0);
   }
   else {
@@ -198,14 +198,14 @@ uint64_t *rendering_system_reset_render_object_data(uint64_t *object_ptr)
 uint64_t *rendering_system_create_render_object_helper(uint64_t param_1, uint64_t *dest_ptr, uint64_t param_3, uint64_t param_4)
 
 {
-  *dest_ptr = &UNK_18098bcb0;
+  *dest_ptr = &unknown_var_720_ptr;
   dest_ptr[1] = 0;
   *(int32_t *)(dest_ptr + 2) = 0;
-  *dest_ptr = &UNK_1809fcc28;
+  *dest_ptr = &unknown_var_3432_ptr;
   dest_ptr[1] = dest_ptr + 3;
   *(int8_t *)(dest_ptr + 3) = 0;
   *(int32_t *)(dest_ptr + 2) = 0x15;
-  strcpy_s(dest_ptr[1], 0x80, &UNK_180a1a6c8, param_4, 0, RENDER_OBJECT_FLAG_MASK);
+  strcpy_s(dest_ptr[1], 0x80, &unknown_var_4936_ptr, param_4, 0, RENDER_OBJECT_FLAG_MASK);
   return dest_ptr;
 }
 
@@ -227,12 +227,12 @@ uint64_t *rendering_system_initialize_render_object_controller(uint64_t *control
   uint64_t *temp_ptr3;
   
   FUN_180244190();
-  *controller_ptr = &UNK_180a1a710;
-  controller_ptr[0x1e] = &UNK_18098bcb0;
+  *controller_ptr = &unknown_var_5008_ptr;
+  controller_ptr[0x1e] = &unknown_var_720_ptr;
   temp_ptr3 = (uint64_t *)0x0;
   controller_ptr[0x1f] = 0;
   *(int32_t *)(controller_ptr + 0x20) = 0;
-  controller_ptr[0x1e] = &UNK_180a3c3e0;
+  controller_ptr[0x1e] = &unknown_var_3456_ptr;
   controller_ptr[0x21] = 0;
   controller_ptr[0x1f] = 0;
   *(int32_t *)(controller_ptr + 0x20) = 0;
@@ -334,7 +334,7 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
   ulonglong array_size;
   ulonglong loop_var;
   
-  *controller_ptr = &UNK_180a1a710;
+  *controller_ptr = &unknown_var_5008_ptr;
   index = 0;
   if (_DAT_180c86880 != 0) {
     object_ptr = *(uint64_t **)(_DAT_180c86880 + 0x20);
@@ -413,36 +413,36 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
   }
   FUN_1808fc8a8(controller_ptr + 0x2e, 0x20, 2, FUN_18004c030);
   FUN_1808fc8a8(controller_ptr + 0x26, 0x20, 2, FUN_18004c030);
-  controller_ptr[0x1e] = &UNK_180a3c3e0;
+  controller_ptr[0x1e] = &unknown_var_3456_ptr;
   if (controller_ptr[0x1f] != 0) {
     FUN_18064e900();
   }
   controller_ptr[0x1f] = 0;
   *(int32_t *)(controller_ptr + 0x21) = 0;
-  controller_ptr[0x1e] = &UNK_18098bcb0;
-  *controller_ptr = &UNK_180a144f8;
-  controller_ptr[0x15] = &UNK_180a3c3e0;
+  controller_ptr[0x1e] = &unknown_var_720_ptr;
+  *controller_ptr = &unknown_var_9896_ptr;
+  controller_ptr[0x15] = &unknown_var_3456_ptr;
   if (controller_ptr[0x16] != 0) {
     FUN_18064e900();
   }
   controller_ptr[0x16] = 0;
   *(int32_t *)(controller_ptr + 0x18) = 0;
-  controller_ptr[0x15] = &UNK_18098bcb0;
-  controller_ptr[0x11] = &UNK_180a3c3e0;
+  controller_ptr[0x15] = &unknown_var_720_ptr;
+  controller_ptr[0x11] = &unknown_var_3456_ptr;
   if (controller_ptr[0x12] != 0) {
     FUN_18064e900();
   }
   controller_ptr[0x12] = 0;
   *(int32_t *)(controller_ptr + 0x14) = 0;
-  controller_ptr[0x11] = &UNK_18098bcb0;
+  controller_ptr[0x11] = &unknown_var_720_ptr;
   if ((longlong *)controller_ptr[7] != (longlong *)0x0) {
     ((**(code **)(*(longlong *)controller_ptr[7] + 0x38))();
   }
   if ((longlong *)controller_ptr[2] != (longlong *)0x0) {
     ((**(code **)(*(longlong *)controller_ptr[2] + 0x38))();
   }
-  *controller_ptr = &UNK_180a21720;
-  *controller_ptr = &UNK_180a21690;
+  *controller_ptr = &unknown_var_3696_ptr;
+  *controller_ptr = &unknown_var_3552_ptr;
   return;
 }
 
@@ -460,7 +460,7 @@ uint64_t rendering_system_create_render_object_manager(longlong manager_handle)
   
   manager_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 200, 8, 3, RENDER_OBJECT_FLAG_MASK);
   FUN_180049830(manager_ptr);
-  *manager_ptr = (longlong)&UNK_180a1a838;
+  *manager_ptr = (longlong)&unknown_var_5304_ptr;
   manager_ptr[0x18] = manager_handle;
   temp_ptr = manager_ptr;
   ((**(code **)(*manager_ptr + 0x28))(manager_ptr));

@@ -35,7 +35,7 @@ int initialize_system_core(void)
     
     // 调用初始化函数
     FUN_180629770();
-    result = FUN_1808fc7d0(&UNK_180943130);
+    result = FUN_1808fc7d0(&global_config_2864_ptr);
     return (result != 0) - 1;
 }
 
@@ -120,11 +120,11 @@ void initialize_string_system_1(void)
     int32_t uStack_90;
     int8_t auStack_88 [136];
     
-    puStack_a0 = &UNK_1809fcc28;
+    puStack_a0 = &global_config_3432_ptr;
     puStack_98 = auStack_88;
     auStack_88[0] = 0;
     uStack_90 = 0x10;
-    strcpy_s(auStack_88, 0x80, &UNK_180a3def0, in_R9, 0xfffffffffffffffe);
+    strcpy_s(auStack_88, 0x80, &global_config_384_ptr, in_R9, 0xfffffffffffffffe);
     _DAT_180c967d0 = FUN_180623800(&puStack_a0);
     return;
 }
@@ -147,10 +147,10 @@ uint64_t initialize_thread_local_storage(void)
     tls_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
     
     // 设置线程本地存储数据
-    *(uint64_t *)(tls_ptr + 0x18) = &UNK_18098bcb0;
+    *(uint64_t *)(tls_ptr + 0x18) = &global_config_720_ptr;
     *(uint64_t *)(tls_ptr + 0x20) = 0;
     *(int32_t *)(tls_ptr + 0x28) = 0;
-    *(uint64_t *)(tls_ptr + 0x18) = &UNK_180a3c3e0;
+    *(uint64_t *)(tls_ptr + 0x18) = &global_config_3456_ptr;
     *(uint64_t *)(tls_ptr + 0x30) = 0;
     *(uint64_t *)(tls_ptr + 0x20) = 0;
     *(int32_t *)(tls_ptr + 0x28) = 0;
@@ -201,11 +201,11 @@ void initialize_string_system_2(void)
     int32_t uStack_90;
     int8_t auStack_88 [136];
     
-    puStack_a0 = &UNK_1809fcc28;
+    puStack_a0 = &global_config_3432_ptr;
     puStack_98 = auStack_88;
     auStack_88[0] = 0;
     uStack_90 = 0x17;
-    strcpy_s(auStack_88, 0x80, &UNK_180a3e3d8, in_R9, 0xfffffffffffffffe);
+    strcpy_s(auStack_88, 0x80, &global_config_1640_ptr, in_R9, 0xfffffffffffffffe);
     _DAT_180c967d4 = FUN_180623800(&puStack_a0);
     return;
 }
@@ -231,11 +231,11 @@ void initialize_string_system_3(void)
     int32_t uStack_90;
     int8_t auStack_88 [136];
     
-    puStack_a0 = &UNK_1809fcc28;
+    puStack_a0 = &global_config_3432_ptr;
     puStack_98 = auStack_88;
     auStack_88[0] = 0;
     uStack_90 = 0x11;
-    strcpy_s(auStack_88, 0x80, &UNK_180a3e3f0, in_R9, 0xfffffffffffffffe);
+    strcpy_s(auStack_88, 0x80, &global_config_1664_ptr, in_R9, 0xfffffffffffffffe);
     _DAT_180c967d8 = FUN_180623800(&puStack_a0);
     return;
 }
@@ -289,7 +289,7 @@ int initialize_system_configuration(void)
     // 设置配置标志
     *(uint *)(_DAT_180be14a0 + 0x330) = *(uint *)(_DAT_180be14a0 + 0x330) | 4;
     _DAT_180be1324 = 0xffffffff;
-    result = FUN_1808fc7d0(&UNK_180943250);
+    result = FUN_1808fc7d0(&global_config_3152_ptr);
     return (result != 0) - 1;
 }
 
@@ -306,7 +306,7 @@ int initialize_memory_management(void)
     
     // 调用内存管理初始化函数
     func_0x000180741c80(0x180c0c340);
-    result = FUN_1808fc7d0(&UNK_180943260);
+    result = FUN_1808fc7d0(&global_config_3168_ptr);
     return (result != 0) - 1;
 }
 
@@ -511,12 +511,12 @@ int initialize_system_data_array(void)
     counter = 0x10;
     do {
         func_0x000180767970(data_ptr);
-        *data_ptr = &UNK_18097e888;
+        *data_ptr = &global_config_6408_ptr;
         data_ptr = data_ptr + 0x2b;
         counter = counter + -1;
     } while (counter != 0);
     
-    counter = FUN_1808fc7d0(&UNK_180943270);
+    counter = FUN_1808fc7d0(&global_config_3184_ptr);
     return (counter != 0) - 1;
 }
 
@@ -592,7 +592,7 @@ int initialize_debug_system(void)
     longlong result;
     
     FUN_1808dbcd0(0x180c4f510);
-    result = FUN_1808fc7d0(&UNK_180943310);
+    result = FUN_1808fc7d0(&global_config_3344_ptr);
     return (result != 0) - 1;
 }
 
@@ -608,7 +608,7 @@ int initialize_third_mutex(void)
     longlong result;
     
     _Mtx_init_in_situ(0x180c82170, 2);
-    result = FUN_1808fc7d0(&UNK_180943320);
+    result = FUN_1808fc7d0(&global_config_3360_ptr);
     return (result != 0) - 1;
 }
 
@@ -648,7 +648,7 @@ void handle_system_initialization_complete(longlong param_1)
     
     // 检查全局状态
     if (_DAT_180c91048 != (longlong *)0x0) {
-        if ((void *)*_DAT_180c91048 == &UNK_1809fe100) {
+        if ((void *)*_DAT_180c91048 == &global_config_8768_ptr) {
             cVar3 = (char)_DAT_180c91048[2] != '\0';
         }
         else {
@@ -661,7 +661,7 @@ void handle_system_initialization_complete(longlong param_1)
     plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0xc0, 8, 3, uVar4);
     plStackX_20 = plVar2;
     FUN_180049830(plVar2);
-    *plVar2 = (longlong)&UNK_1809fe100;
+    *plVar2 = (longlong)&global_config_8768_ptr;
     plVar2[3] = -4;
     pplStackX_10 = (longlong **)plVar2;
     (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -676,7 +676,7 @@ void handle_system_initialization_complete(longlong param_1)
     }
     
     _DAT_180c91048 = plVar2;
-    if ((void *)*_DAT_180c91048 == &UNK_1809fe100) {
+    if ((void *)*_DAT_180c91048 == &global_config_8768_ptr) {
         if (_DAT_180c86948 != 0) {
             FUN_18006e990();
         }
@@ -698,15 +698,15 @@ LAB_180043e47:
     // 处理额外资源
     if (*(char *)(_DAT_180c86870 + 0x1ed) != '\0') {
         plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, 3);
-        *plVar2 = (longlong)&UNK_180a21690;
-        *plVar2 = (longlong)&UNK_180a21720;
+        *plVar2 = (longlong)&global_config_3552_ptr;
+        *plVar2 = (longlong)&global_config_3696_ptr;
         *(int32_t *)(plVar2 + 1) = 0;
-        *plVar2 = (longlong)&UNK_18098bdc8;
+        *plVar2 = (longlong)&global_config_1000_ptr;
         LOCK();
         *(int8_t *)(plVar2 + 2) = 0;
         UNLOCK();
         plVar2[3] = -1;
-        *plVar2 = (longlong)&UNK_18098bd40;
+        *plVar2 = (longlong)&global_config_864_ptr;
         plVar2[4] = 0x180c91060;
         plStackX_20 = plVar2;
         (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -731,10 +731,10 @@ LAB_180043e47:
 uint64_t *cleanup_memory_resources(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
     // 清理多个内存资源
-    *param_1 = &UNK_18098bd40;
-    *param_1 = &UNK_18098bdc8;
-    *param_1 = &UNK_180a21720;
-    *param_1 = &UNK_180a21690;
+    *param_1 = &global_config_864_ptr;
+    *param_1 = &global_config_1000_ptr;
+    *param_1 = &global_config_3696_ptr;
+    *param_1 = &global_config_3552_ptr;
     
     // 如果需要，释放内存
     if ((param_2 & 1) != 0) {
@@ -774,7 +774,7 @@ void system_terminate(void)
  */
 void initialize_pointer_array(uint64_t *param_1)
 {
-    *param_1 = &UNK_18098bcb0;
+    *param_1 = &global_config_720_ptr;
     return;
 }
 
@@ -854,18 +854,18 @@ void initialize_system_environment(void)
         FUN_1800624c0();
         
         // 获取计算机名
-        puStack_1d8 = &UNK_180a3c3e0;
+        puStack_1d8 = &global_config_3456_ptr;
         uStack_1c0 = 0;
         puStack_1d0 = (void *)0x0;
         uStack_1c8 = 0;
-        puStack_1f8 = &UNK_180a3c3e0;
+        puStack_1f8 = &global_config_3456_ptr;
         uStack_1e0 = 0;
         puStack_1f0 = (void *)0x0;
         uStack_1e8 = 0;
         plStack_208 = (longlong *)CONCAT44(plStack_208._4_4_, 0x10);
         iVar4 = GetComputerNameA(applStack_150, &plStack_208);
         if (iVar4 == 0) {
-            FUN_180627160(&UNK_180a3c110);
+            FUN_180627160(&global_config_2736_ptr);
         }
         else {
             if (0xf < ((ulonglong)plStack_208 & 0xffffffff)) goto LAB_180044db8;
@@ -877,7 +877,7 @@ void initialize_system_environment(void)
         plStack_208 = (longlong *)CONCAT44(plStack_208._4_4_, 0x101);
         iVar4 = GetUserNameA(auStack_138, &plStack_208);
         if (iVar4 == 0) {
-            FUN_180627160(&UNK_180a3c138);
+            FUN_180627160(&global_config_2776_ptr);
         }
         else {
             if (0x100 < ((ulonglong)plStack_208 & 0xffffffff)) {
@@ -901,46 +901,46 @@ LAB_180044db8:
         if (puStack_1d0 != (void *)0x0) {
             puStack_220 = puStack_1d0;
         }
-        puStack_228 = &UNK_18098bab0;
+        puStack_228 = &global_config_208_ptr;
         FUN_1800623b0(_DAT_180c86928, 5, 0xffffffffffffffff, 4);
-        puStack_188 = &UNK_18098bc80;
+        puStack_188 = &global_config_672_ptr;
         puStack_180 = auStack_170;
         uStack_178 = 0;
         auStack_170[0] = 0;
         uStack_200 = 2;
-        FUN_18004b860(&puStack_188, &UNK_1809fd0a0, 0x130a7);
+        FUN_18004b860(&puStack_188, &global_config_4576_ptr, 0x130a7);
         puStack_220 = &system_buffer_ptr;
         if (puStack_180 != (void *)0x0) {
             puStack_220 = puStack_180;
         }
-        puStack_228 = &UNK_18098bac8;
+        puStack_228 = &global_config_232_ptr;
         FUN_1800623b0(_DAT_180c86928, 5, 0xffffffffffffffff, 4);
         uStack_200 = 0;
-        puStack_188 = &UNK_18098bcb0;
-        puStack_1f8 = &UNK_180a3c3e0;
+        puStack_188 = &global_config_720_ptr;
+        puStack_1f8 = &global_config_3456_ptr;
         if (puStack_1f0 != (void *)0x0) {
             // WARNING: Subroutine does not return
             FUN_18064e900();
         }
         puStack_1f0 = (void *)0x0;
         uStack_1e0 = uStack_1e0 & 0xffffffff00000000;
-        puStack_1f8 = &UNK_18098bcb0;
-        puStack_1d8 = &UNK_180a3c3e0;
+        puStack_1f8 = &global_config_720_ptr;
+        puStack_1d8 = &global_config_3456_ptr;
         if (puStack_1d0 != (void *)0x0) {
             // WARNING: Subroutine does not return
             FUN_18064e900();
         }
         puStack_1d0 = (void *)0x0;
         uStack_1c0 = uStack_1c0 & 0xffffffff00000000;
-        puStack_1d8 = &UNK_18098bcb0;
-        puStack_1b8 = &UNK_180a3c3e0;
+        puStack_1d8 = &global_config_720_ptr;
+        puStack_1b8 = &global_config_3456_ptr;
         if (lStack_1b0 != 0) {
             // WARNING: Subroutine does not return
             FUN_18064e900();
         }
         lStack_1b0 = 0;
         uStack_1a0 = 0;
-        puStack_1b8 = &UNK_18098bcb0;
+        puStack_1b8 = &global_config_720_ptr;
     }
     uStack_200 = 0;
     // WARNING: Subroutine does not return
@@ -1031,10 +1031,10 @@ void initialize_debug_and_performance(uint64_t param_1, longlong param_2)
     // 加载调试库
     lVar7 = plVar6[0xb];
     if (lVar7 == 0) {
-        lVar7 = LoadLibraryA(&UNK_180a3c428);
+        lVar7 = LoadLibraryA(&global_config_3528_ptr);
         plVar6[0xb] = lVar7;
         if (lVar7 != 0) goto LAB_180044ee3;
-        puStack_b8 = &UNK_180a3c3e0;
+        puStack_b8 = &global_config_3456_ptr;
         if (puStack_b0 != (void *)0x0) {
             // WARNING: Subroutine does not return
             FUN_18064e900();
@@ -1044,10 +1044,10 @@ void initialize_debug_and_performance(uint64_t param_1, longlong param_2)
 LAB_180044ee3:
         // 获取调试函数地址
         if (plVar6[0xc] == 0) {
-            lVar7 = GetProcAddress(lVar7, &UNK_180a3c410);
+            lVar7 = GetProcAddress(lVar7, &global_config_3504_ptr);
             plVar6[0xc] = lVar7;
             if (lVar7 == 0) {
-                puStack_b8 = &UNK_180a3c3e0;
+                puStack_b8 = &global_config_3456_ptr;
                 if (puStack_b0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900();
@@ -1063,7 +1063,7 @@ LAB_180044ee3:
         }
         iVar2 = SymInitialize(_DAT_180c96218, puVar13, 1);
         if (iVar2 == 0) {
-            puStack_b8 = &UNK_180a3c3e0;
+            puStack_b8 = &global_config_3456_ptr;
             if (puStack_b0 != (void *)0x0) {
                 // WARNING: Subroutine does not return
                 FUN_18064e900();
@@ -1071,7 +1071,7 @@ LAB_180044ee3:
         }
         else {
             *(char *)plVar6 = '\x01';
-            puStack_b8 = &UNK_180a3c3e0;
+            puStack_b8 = &global_config_3456_ptr;
             if (puStack_b0 != (void *)0x0) {
                 // WARNING: Subroutine does not return
                 FUN_18064e900();
@@ -1081,7 +1081,7 @@ LAB_180044ee3:
 LAB_180044f8f:
     uStack_a0 = 0;
     puStack_b0 = (void *)0x0;
-    puStack_b8 = &UNK_18098bcb0;
+    puStack_b8 = &global_config_720_ptr;
     iVar2 = _Mtx_unlock(pplVar1);
     if (iVar2 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar2);
@@ -1091,8 +1091,8 @@ LAB_180044faf:
     puVar8 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 8, 8, 3);
     *puVar8 = 0;
     puVar9 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 8, 8, 3);
-    *puVar8 = &UNK_18098bb60;
-    *puVar9 = &UNK_18098bb88;
+    *puVar8 = &global_config_384_ptr;
+    *puVar9 = &global_config_424_ptr;
     puVar10 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, 3);
     puVar11 = (int8_t *)FUN_18062b1e0(_DAT_180c8ed18, 1, 1, 3);
     *puVar11 = 0;
@@ -1112,7 +1112,7 @@ LAB_180044faf:
     // 初始化性能计数器
     iVar2 = QueryPerformanceFrequency(&pplStackX_18);
     if (iVar2 == 0) {
-        FUN_180626ee0(&UNK_180a3c090);
+        FUN_180626ee0(&global_config_2608_ptr);
     }
     _DAT_180c8ed50 = 1.0 / (double)(longlong)pplStackX_18;
     timeBeginPeriod(1);
@@ -1145,7 +1145,7 @@ void initialize_thread_info(void)
     int32_t uStack_58;
     uint64_t uStack_50;
     
-    puStack_68 = &UNK_180a3c3e0;
+    puStack_68 = &global_config_3456_ptr;
     uStack_50 = 0;
     puStack_60 = (uint64_t *)0x0;
     uStack_58 = 0;
@@ -1162,7 +1162,7 @@ void initialize_thread_info(void)
     uStack_58 = 7;
     uVar1 = GetCurrentThread();
     FUN_180623fd0(uVar1, &puStack_68);
-    puStack_68 = &UNK_180a3c3e0;
+    puStack_68 = &global_config_3456_ptr;
     
     // WARNING: Subroutine does not return
     FUN_18064e900(puVar3);
@@ -1203,7 +1203,7 @@ int32_t system_main_cleanup(void)
     // 等待系统就绪
     if (_DAT_180c91048 != (uint64_t *)0x0) {
         while( true ) {
-            if ((void *)*_DAT_180c91048 == &UNK_1809fe100) {
+            if ((void *)*_DAT_180c91048 == &global_config_8768_ptr) {
                 cVar11 = *(char *)(_DAT_180c91048 + 2) != '\0';
             }
             else {
@@ -1218,7 +1218,7 @@ int32_t system_main_cleanup(void)
     pppplVar6 = (longlong ****)FUN_18062b1e0(_DAT_180c8ed18, 0xc0, 8, 3, uVar12);
     pppplStackX_8 = pppplVar6;
     FUN_180049830(pppplVar6);
-    *pppplVar6 = (longlong ***)&UNK_1809ff2f8;
+    *pppplVar6 = (longlong ***)&global_config_3368_ptr;
     ppplStackX_20 = (longlong ***)pppplVar6;
     (*(code *)(*pppplVar6)[5])(pppplVar6);
     lVar10 = _DAT_180c82868;
@@ -1229,7 +1229,7 @@ int32_t system_main_cleanup(void)
     
     // 等待清理完成
     while( true ) {
-        if (*pppplVar6 == (longlong ***)&UNK_1809ff2f8) {
+        if (*pppplVar6 == (longlong ***)&global_config_3368_ptr) {
             cVar11 = *(char *)(pppplVar6 + 2) != '\0';
         }
         else {
@@ -1288,7 +1288,7 @@ int32_t system_main_cleanup(void)
     *(int8_t *)(_DAT_180c86940[1] + 0x80) = 1;
     while( true ) {
         pplVar3 = *pppplVar14[1];
-        if (pplVar3 == (longlong **)&UNK_1809ff3f8) {
+        if (pplVar3 == (longlong **)&global_config_3624_ptr) {
             cVar11 = *(char *)(pppplVar14[1] + 2) != '\0';
         }
         else {
@@ -1303,7 +1303,7 @@ int32_t system_main_cleanup(void)
     pppplStackX_8 = _DAT_180c86940;
     if (_DAT_180c86940 != (longlong ****)0x0) {
         lVar10 = __RTCastToVoid(_DAT_180c86940);
-        *pppplVar8 = (longlong ***)&UNK_1809fee70;
+        *pppplVar8 = (longlong ***)&global_config_2208_ptr;
         PostQueuedCompletionStatus(pppplVar8[0x42686], 0, 0xffffffffffffffff);
         CloseHandle(pppplVar8[0x42686]);
         ppplStackX_10 = (longlong ***)(pppplVar8 + 0x42687);
@@ -1422,7 +1422,7 @@ void copy_string_to_object(longlong param_1, longlong param_2)
     }
     
     // 处理长字符串
-    FUN_180626f80(&UNK_18098bc48, 0x1000, param_2);
+    FUN_180626f80(&global_config_616_ptr, 0x1000, param_2);
     *(int32_t *)(param_1 + 0x10) = 0;
     **(int8_t **)(param_1 + 8) = 0;
     return;
@@ -1520,7 +1520,7 @@ void system_fast_terminate(void)
  */
 uint64_t *cleanup_large_memory_block(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
-    *param_1 = &UNK_18098bcb0;
+    *param_1 = &global_config_720_ptr;
     
     // 如果需要，释放大内存块
     if ((param_2 & 1) != 0) {
@@ -1539,7 +1539,7 @@ uint64_t *cleanup_large_memory_block(uint64_t *param_1, ulonglong param_2, uint6
  */
 uint64_t *cleanup_io_completion_port(uint64_t *param_1, uint param_2)
 {
-    *param_1 = &UNK_1809fee70;
+    *param_1 = &global_config_2208_ptr;
     
     // 清理I/O完成端口
     PostQueuedCompletionStatus(param_1[0x42686], 0, 0xffffffffffffffff, 0, 0xfffffffffffffffe);
@@ -1585,7 +1585,7 @@ void guard_check_icall(void)
  */
 uint64_t *cleanup_small_memory_block(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
-    *param_1 = &UNK_18098bcb0;
+    *param_1 = &global_config_720_ptr;
     
     // 如果需要，释放小内存块
     if ((param_2 & 1) != 0) {
@@ -1633,7 +1633,7 @@ void copy_short_string_to_object(longlong param_1, longlong param_2)
     }
     
     // 处理长字符串
-    FUN_180626f80(&UNK_18098bc48, 0x400, param_2);
+    FUN_180626f80(&global_config_616_ptr, 0x400, param_2);
     *(int32_t *)(param_1 + 0x10) = 0;
     **(int8_t **)(param_1 + 8) = 0;
     return;

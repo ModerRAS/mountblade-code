@@ -347,7 +347,7 @@ void SystemGuardManager(void) {
     longlong *guard_table;
     
     // 遍历保护表并分发调用
-    for (guard_table = (longlong *)&UNK_180a908f8; guard_table < &UNK_180a908f8; guard_table = guard_table + 1) {
+    for (guard_table = (longlong *)&unknown_var_8824_ptr; guard_table < &unknown_var_8824_ptr; guard_table = guard_table + 1) {
         if (*guard_table != 0) {
             _guard_dispatch_icall();
         }
@@ -364,7 +364,7 @@ void ExceptionHandler(void) {
     longlong *exception_table;
     
     // 遍历异常表并分发调用
-    for (exception_table = (longlong *)&UNK_180a90908; exception_table < &UNK_180a90908; exception_table = exception_table + 1) {
+    for (exception_table = (longlong *)&unknown_var_8840_ptr; exception_table < &unknown_var_8840_ptr; exception_table = exception_table + 1) {
         if (*exception_table != 0) {
             _guard_dispatch_icall();
         }
@@ -392,11 +392,11 @@ void free(void) {
  * @details 分配内存并处理异常上下文
  */
 uint64_t * MemoryAllocator(uint64_t *param_1, longlong param_2) {
-    *param_1 = &UNK_18098b928;
+    *param_1 = &unknown_var_9816_ptr;
     param_1[1] = 0;
     param_1[2] = 0;
     __std_exception_copy(param_2 + 8);
-    *param_1 = &UNK_18098b958;
+    *param_1 = &unknown_var_9864_ptr;
     return param_1;
 }
 
@@ -408,7 +408,7 @@ uint64_t * MemoryAllocator(uint64_t *param_1, longlong param_2) {
  * @details 释放内存并处理异常清理
  */
 uint64_t * MemoryDeallocator(uint64_t *param_1, ulonglong param_2) {
-    *param_1 = &UNK_18098b928;
+    *param_1 = &unknown_var_9816_ptr;
     __std_exception_destroy(param_1 + 1);
     
     if ((param_2 & 1) != 0) {
@@ -427,7 +427,7 @@ void SystemExceptionThrower(void) {
     
     FUN_180287f70(exception_context);
     // WARNING: Subroutine does not return
-    _CxxThrowException(exception_context, &UNK_180bd8a18);
+    _CxxThrowException(exception_context, &unknown_var_2600_ptr);
 }
 
 /**
@@ -439,7 +439,7 @@ void SystemErrorThrower(void) {
     
     func_0x0001808fd81c(error_context);
     // WARNING: Subroutine does not return
-    _CxxThrowException(error_context, &UNK_180bd88e8);
+    _CxxThrowException(error_context, &unknown_var_2296_ptr);
 }
 
 /**
@@ -692,9 +692,9 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                 } else {
                     // 高精度数学计算
                     result_value = (ulonglong)(((uint)ABS(vector_component) >> 0x17) - 0x8e & 0xfff8);
-                    double final_val = (double)(*(ulonglong *)(&UNK_180d9f410 + result_value * 2) & 0xffffffffff000000) *
+                    double final_val = (double)(*(ulonglong *)(&unknown_var_4736_ptr + result_value * 2) & 0xffffffffff000000) *
                                      temp_val;
-                    double result_val = (double)(*(ulonglong *)(&UNK_180d9f410 + result_value * 2) << 0x28) * temp_val;
+                    double result_val = (double)(*(ulonglong *)(&unknown_var_4736_ptr + result_value * 2) << 0x28) * temp_val;
                     
                     final_val = final_val + result_val;
                     integer_value = SUB84(final_val + 6755399441055744.0, 0);
@@ -702,14 +702,14 @@ ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                     range_flags = integer_value * 2;
                     stack_flags[1] = (integer_value << 0x19) >> 0x1f;
                     
-                    temp_val = temp_val * *(double *)(&UNK_180d9f418 + result_value * 2) + result_val + 
+                    temp_val = temp_val * *(double *)(&unknown_var_4744_ptr + result_value * 2) + result_val + 
                              (final_val - final_val) + (final_val - ((final_val + 6755399441055744.0) - 6755399441055744.0));
                     
                     result_value = (ulonglong)((range_flags + stack_flags[1] ^ stack_flags[1]) & 0xfe);
                     
                     vector_component = (float)((double)((ulonglong)
                                                       ((3320.092545592124 - temp_val * temp_val) *
-                                                       *(double *)(&UNK_180d9f008 + result_value * 8)) ^
+                                                       *(double *)(&unknown_var_3704_ptr + result_value * 8)) ^
                                                       (ulonglong)((range_flags & 0x100) << 0x17) << 0x20) +
                                      *(double *)(&system_memory_f000 + result_value * 8) * temp_val *
                                      (double)((ulonglong)(9960.277636776373 - temp_val * temp_val) ^
@@ -984,9 +984,9 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
                 } else {
                     // 高精度数学计算
                     result_value = (ulonglong)(((uint)ABS(final_x) >> 0x17) - 0x8e & 0xfff8);
-                    double final_val = (double)(*(ulonglong *)(&UNK_180d9fb10 + result_value * 2) & 0xffffffffff000000) *
+                    double final_val = (double)(*(ulonglong *)(&unknown_var_6528_ptr + result_value * 2) & 0xffffffffff000000) *
                                      temp_val;
-                    double result_val = (double)(*(ulonglong *)(&UNK_180d9fb10 + result_value * 2) << 0x28) * temp_val;
+                    double result_val = (double)(*(ulonglong *)(&unknown_var_6528_ptr + result_value * 2) << 0x28) * temp_val;
                     
                     final_val = final_val + result_val;
                     temp_index = SUB84(final_val + 6755399441055744.0, 0);
@@ -994,16 +994,16 @@ ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
                     optimization_flags = temp_index * 2;
                     stack_flags[1] = (temp_index << 0x19) >> 0x1f;
                     
-                    temp_val = temp_val * *(double *)(&UNK_180d9fb18 + result_value * 2) + result_val + 
+                    temp_val = temp_val * *(double *)(&unknown_var_6536_ptr + result_value * 2) + result_val + 
                              (final_val - final_val) + (final_val - ((final_val + 6755399441055744.0) - 6755399441055744.0));
                     
                     result_value = (ulonglong)((optimization_flags + stack_flags[1] ^ stack_flags[1]) & 0xfe);
                     
                     final_x = (float)((double)((ulonglong)
                                              ((3320.092545592124 - temp_val * temp_val) *
-                                              *(double *)(&UNK_180d9f708 + result_value * 8)) ^
+                                              *(double *)(&unknown_var_5496_ptr + result_value * 8)) ^
                                              (ulonglong)(((optimization_flags & 0x180) + 0x80 & 0x100) << 0x17) << 0x20) +
-                                    *(double *)(&UNK_180d9f700 + result_value * 8) * temp_val *
+                                    *(double *)(&unknown_var_5488_ptr + result_value * 8) * temp_val *
                                     (double)((ulonglong)(9960.277636776373 - temp_val * temp_val) ^
                                             (ulonglong)((optimization_flags & 0x100) << 0x17) << 0x20));
                 }

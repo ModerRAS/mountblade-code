@@ -295,7 +295,7 @@ uint64_t UtilitiesSystem_MemoryManager(longlong *param_1, int param_2)
             target_buffer = (uint64_t *)
                      FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                                   param_2 * UTILITIES_MEMORY_BLOCK_SIZE, 
-                                  &UNK_180957f70, 
+                                  &unknown_var_8432_ptr, 
                                   UTILITIES_SYSTEM_TIMEOUT, 
                                   0, 0, 1);
             
@@ -328,7 +328,7 @@ MEMORY_CLEANUP:
         /* 释放现有内存资源 */
         FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *param_1, 
-                      &UNK_180957f70, 
+                      &unknown_var_8432_ptr, 
                       UTILITIES_SYSTEM_STACK_SIZE, 
                       1);
     }
@@ -373,7 +373,7 @@ uint64_t UtilitiesSystem_ResourceHandler(uint64_t param_1, int param_2)
         target_buffer = (uint64_t *)
                  FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                               param_2 * UTILITIES_MEMORY_BLOCK_SIZE, 
-                              &UNK_180957f70, 
+                              &unknown_var_8432_ptr, 
                               UTILITIES_SYSTEM_TIMEOUT, 
                               0);
         
@@ -405,7 +405,7 @@ RESOURCE_CLEANUP:
         /* 释放资源内存 */
         FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *unaff_RBX, 
-                      &UNK_180957f70, 
+                      &unknown_var_8432_ptr, 
                       UTILITIES_SYSTEM_STACK_SIZE, 
                       1);
     }
@@ -457,7 +457,7 @@ uint64_t UtilitiesSystem_ConfigManager(longlong *param_1, int param_2)
             /* 分配配置内存 */
             configuration_address = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                                                  param_2 * UTILITIES_MEMORY_BLOCK_SIZE, 
-                                                 &UNK_180957f70, 
+                                                 &unknown_var_8432_ptr, 
                                                  UTILITIES_SYSTEM_TIMEOUT, 
                                                  0, 0, 1);
             
@@ -482,7 +482,7 @@ CONFIG_CLEANUP:
         /* 释放配置内存 */
         FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *param_1, 
-                      &UNK_180957f70, 
+                      &unknown_var_8432_ptr, 
                       UTILITIES_SYSTEM_STACK_SIZE, 
                       1);
     }
@@ -601,7 +601,7 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
                                 /* 处理数据操作 */
                                 stack_value_e0 = *(int32_t *)(temp_address + 0xc + temp_long * 0x10);
                                 stack_value_e8 = 0;
-                                stack_pointer_f0 = &UNK_180983588;
+                                stack_pointer_f0 = &unknown_var_6120_ptr;
                                 FUN_180892120(&stack_pointer_f0, *(uint64_t *)(param_1 + 0x58));
                                 processing_status = func_0x0001808c7ed0(operation_result);
                             } while (0 < processing_status);
@@ -655,7 +655,7 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
         if (-1 < index_value + -1) {
             do {
                 stack_value_100 = stack_value_100 & 0xffffffff00000000;
-                stack_pointer_108 = (longlong *)&UNK_180982dc0;
+                stack_pointer_108 = (longlong *)&unknown_var_4128_ptr;
                 stack_array_f8[0] = *(int *)(final_result + temp_address * 4);
                 FUN_180891af0(&stack_pointer_108, *(uint64_t *)(param_1 + 0x58));
                 temp_address = temp_address + -1;
@@ -674,7 +674,7 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
                 /* 释放资源 */
                 FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                               final_result, 
-                              &UNK_180957f70, 
+                              &unknown_var_8432_ptr, 
                               UTILITIES_SYSTEM_STACK_SIZE, 
                               1);
             }
@@ -788,7 +788,7 @@ ADVANCED_PROCESSING_COMPLETE:
 uint64_t *UtilitiesSystem_ObjectInitializer(uint64_t *param_1, ulonglong param_2)
 {
     /* 设置对象默认值 */
-    *param_1 = &UNK_180986350;
+    *param_1 = &unknown_var_7840_ptr;
     
     /* 根据标志决定是否释放内存 */
     if ((param_2 & 1) != 0) {
@@ -811,13 +811,13 @@ uint64_t *UtilitiesSystem_ObjectInitializer(uint64_t *param_1, ulonglong param_2
 uint64_t *UtilitiesSystem_ObjectFinalizer(uint64_t *param_1, ulonglong param_2)
 {
     /* 设置对象终结状态 */
-    *param_1 = &UNK_180986370;
+    *param_1 = &unknown_var_7872_ptr;
     
     /* 执行清理操作 */
     FUN_180840270(param_1 + 5);
     
     /* 重置对象状态 */
-    *param_1 = &UNK_180986350;
+    *param_1 = &unknown_var_7840_ptr;
     
     /* 根据标志决定是否释放内存 */
     if ((param_2 & 1) != 0) {

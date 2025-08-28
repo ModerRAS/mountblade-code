@@ -23,7 +23,7 @@ void FUN_18016060f(float param_1,longlong param_2)
     lVar5 = 0;
     iVar3 = *(int *)(in_R11 + 0x18 + in_R10 * 4);
     do {
-      if (uVar2 == *(uint *)(&UNK_18098d770 + lVar5 * 4)) goto LAB_18016064a;
+      if (uVar2 == *(uint *)(&unknown_var_7568_ptr + lVar5 * 4)) goto LAB_18016064a;
       lVar5 = lVar5 + 1;
     } while (lVar5 < 3);
     lVar5 = -1;
@@ -43,7 +43,7 @@ LAB_180160689:
       if ((*(char *)(param_2 + 0x18 + uVar4 * 0x18) != '\0') ||
          ((pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18), *pfVar1 <= param_1 && param_1 != *pfVar1
           && ((*(byte *)(param_2 + 0x14 + uVar4 * 0x18) & 1) == 0)))) {
-        uVar4 = (ulonglong)*(uint *)(&UNK_18098d780 + lVar5 * 4);
+        uVar4 = (ulonglong)*(uint *)(&unknown_var_7584_ptr + lVar5 * 4);
         goto LAB_180160689;
       }
 LAB_180160797:
@@ -80,7 +80,7 @@ LAB_180160791:
              *pfVar1 <= param_1 && param_1 != *pfVar1 &&
              ((*(byte *)(param_2 + 0x14 + uVar4 * 0x18) & 1) == 0)))))) {
           if ((lVar5 < 0) ||
-             (uVar4 = (ulonglong)*(uint *)(&UNK_18098d780 + lVar5 * 4),
+             (uVar4 = (ulonglong)*(uint *)(&unknown_var_7584_ptr + lVar5 * 4),
              *(char *)(param_2 + 0x18 + uVar4 * 0x18) != '\0')) goto LAB_180160797;
           pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18);
           if (*pfVar1 <= param_1 && param_1 != *pfVar1) {

@@ -13,7 +13,7 @@
 
 // 全局变量引用
 extern longlong _DAT_180c8a9b0;  // 引擎全局上下文
-extern uint UNK_18098d290[];      // 哈希计算查找表
+extern uint global_var_6320_ptr[];      // 哈希计算查找表
 extern void FUN_18011db30(int *param_1, int param_2);  // 动态数组扩容
 extern void *func_0x000180120ce0(longlong param_1, void *param_2);  // 内存分配
 extern int FUN_18011ce30(void *param_1, longlong param_2, char param_3);  // 资源处理
@@ -22,7 +22,7 @@ extern int FUN_18011bd30(int *param_1);  // 优先级计算
 extern int FUN_180121250(byte *param_1, int param_2, int param_3);  // 哈希计算
 extern int FUN_180121250(void);  // 默认哈希计算
 extern void qsort(void *base, longlong num, longlong size, int (*compar)(const void *, const void *));  // 快速排序
-extern int UNK_18011ae80;  // 比较函数指针
+extern int global_var_9728_ptr;  // 比较函数指针
 
 /**
  * 处理渲染队列并优化渲染性能
@@ -319,7 +319,7 @@ void process_render_queue_optimization(int *render_queue)
     else {
         if (1 < queue_count) {
             qsort(*(uint64_t *)(engine_context + 0x1ea0),
-                  (longlong)*(int *)(engine_context + 0x1e98), 8, &UNK_18011ae80);
+                  (longlong)*(int *)(engine_context + 0x1e98), 8, &global_var_9728_ptr);
         }
         
         item_offset = 1;
@@ -591,7 +591,7 @@ void calculate_string_hash(longlong context, byte *string)
             if (((current_char == 0x23) && (*char_ptr == 0x23)) && (char_ptr[1] == 0x23)) {
                 hash_value = 0xffffffff;
             }
-            hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+            hash_value = *(uint *)(&global_var_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
                     hash_value >> 8;
             current_char = *char_ptr;
             char_ptr = char_ptr + 1;

@@ -25,10 +25,10 @@ extern uint64_t _DAT_180c86938;
 extern uint64_t _DAT_180c82868;
 extern uint64_t _DAT_180c8ed18;
 extern uint64_t _DAT_180bf00a8;
-extern uint64_t UNK_180a17010;
-extern uint64_t UNK_180a17458;
-extern uint64_t UNK_18098bcb0;
-extern uint64_t UNK_1809fcc28;
+extern uint64_t global_state_928_ptr;
+extern uint64_t global_state_2024_ptr;
+extern uint64_t global_state_720_ptr;
+extern uint64_t global_state_3432_ptr;
 
 // 外部函数声明
 extern void func_0x000180074f10(uint64_t *param_1);
@@ -95,7 +95,7 @@ uint64_t * render_context_initialize(uint64_t *context_ptr)
   uint64_t *init_ptr;
   
   // 设置虚函数表指针
-  *context_ptr = &UNK_180a17010;
+  *context_ptr = &global_state_928_ptr;
   
   // 初始化各个字段为默认值
   context_ptr[0x2ef] = 0;
@@ -181,7 +181,7 @@ render_context_cleanup(uint64_t *context_ptr,ulonglong cleanup_flags,uint64_t pa
   uint64_t cleanup_result;
   
   cleanup_result = 0xfffffffffffffffe;
-  *context_ptr = &UNK_180a17010;
+  *context_ptr = &global_state_928_ptr;
   
   // 清理资源
   if ((longlong *)context_ptr[0x1049] != (longlong *)0x0) {
@@ -218,7 +218,7 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
   longlong array_end;
   ulonglong resource_index;
   
-  *context_ptr = &UNK_180a17010;
+  *context_ptr = &global_state_928_ptr;
   
   // 清理主资源
   if ((longlong *)context_ptr[0x1049] != (longlong *)0x0) {
@@ -256,7 +256,7 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
         }
         
         // 重置资源指针并释放内存
-        *resource_ptr = &UNK_18098bcb0;
+        *resource_ptr = &global_state_720_ptr;
         FUN_18064e900(resource_ptr);
       }
       *(uint64_t *)(resource_index * 8 + *resource_array) = 0;
@@ -272,7 +272,7 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
   resource_ptr = (uint64_t *)context_ptr[0x1043];
   if (resource_ptr != (uint64_t *)0x0) {
     FUN_1800f74f0(context_ptr + 0x1041,*resource_ptr);
-    resource_ptr[4] = &UNK_18098bcb0;
+    resource_ptr[4] = &global_state_720_ptr;
     FUN_18064e900(resource_ptr);
   }
   
@@ -398,7 +398,7 @@ void render_state_initialize(longlong *render_context)
   } while (state_index < 9);
   
   // 根据渲染器类型进行特定初始化
-  if ((void *)*render_context == &UNK_180a17458) {
+  if ((void *)*render_context == &global_state_2024_ptr) {
     state_array = render_context + 0x1147;
     array_ptr = render_context + 0x1087;
     do {
@@ -528,7 +528,7 @@ void render_state_initialize_alt(longlong *render_context)
   } while ((int)state_index < 9);
   
   // 根据渲染器类型进行特定初始化
-  if ((void *)*render_context == &UNK_180a17458) {
+  if ((void *)*render_context == &global_state_2024_ptr) {
     array_index = init_param & 0xffffffff;
     state_array = render_context + 0x1147;
     array_ptr = (ulonglong *)(render_context + 0x1087);
@@ -1003,7 +1003,7 @@ void render_thread_safe_operation(longlong *render_context,uint64_t operation_pa
   else {
     // 工作线程创建任务
     ppuStack_148 = &puStack_128;
-    puStack_128 = &UNK_1809fcc28;
+    puStack_128 = &global_state_3432_ptr;
     puStack_120 = auStack_110;
     stack_data_flag = 0;
     auStack_110[0] = 0;
@@ -1014,7 +1014,7 @@ void render_thread_safe_operation(longlong *render_context,uint64_t operation_pa
     task_resource = resource_ptr;
     
     // 增加资源引用计数
-    if (*(code **)(*resource_ptr + 0x28) == (code *)&UNK_180084660) {
+    if (*(code **)(*resource_ptr + 0x28) == (code *)&global_state_3248_ptr) {
       LOCK();
       *(int *)(resource_ptr + 1) = (int)resource_ptr[1] + 1;
       UNLOCK();
@@ -1045,7 +1045,7 @@ void render_thread_safe_operation(longlong *render_context,uint64_t operation_pa
       (**(code **)(*task_ptr + 0x38))(task_ptr);
     }
     pppuStack_140 = (void ***)&puStack_128;
-    puStack_128 = &UNK_18098bcb0;
+    puStack_128 = &global_state_720_ptr;
   }
   
   // 验证安全cookie
@@ -1105,7 +1105,7 @@ void render_thread_operation_alt(longlong *render_context,uint64_t operation_par
   else {
     // 工作线程创建任务
     ppuStack_128 = &puStack_108;
-    puStack_108 = &UNK_1809fcc28;
+    puStack_108 = &global_state_3432_ptr;
     puStack_100 = auStack_f0;
     stack_data = 0;
     auStack_f0[0] = 0;
@@ -1115,7 +1115,7 @@ void render_thread_operation_alt(longlong *render_context,uint64_t operation_par
     task_resource = resource_ptr;
     
     // 增加资源引用计数
-    if (*(code **)(*resource_ptr + 0x28) == (code *)&UNK_180084660) {
+    if (*(code **)(*resource_ptr + 0x28) == (code *)&global_state_3248_ptr) {
       LOCK();
       *(int *)(resource_ptr + 1) = (int)resource_ptr[1] + 1;
       UNLOCK();
@@ -1146,7 +1146,7 @@ void render_thread_operation_alt(longlong *render_context,uint64_t operation_par
       (**(code **)(*task_ptr + 0x38))(task_ptr);
     }
     pppuStack_120 = (void ***)&puStack_108;
-    puStack_108 = &UNK_18098bcb0;
+    puStack_108 = &global_state_720_ptr;
   }
   
   // 验证安全cookie

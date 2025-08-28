@@ -714,7 +714,7 @@ longlong * FUN_180605570(longlong param_1,int32_t param_2)
   longlong *plVar2;
   
   plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x3090,8,3,0xfffffffffffffffe);
-  *plVar2 = (longlong)&UNK_180a2d380;
+  *plVar2 = (longlong)&unknown_var_1920_ptr;
   plVar2[1] = 0;
   FUN_1804d9b70(plVar2 + 2);
   FUN_1804ca350(plVar2 + 0x5a6,param_2);
@@ -756,7 +756,7 @@ void FUN_180605670(longlong *param_1,uint64_t param_2,char param_3)
   
   uVar9 = 0xfffffffffffffffe;
   if (param_3 == '\0') {
-    if ((void *)*param_1 == &UNK_180a0c4a0) {
+    if ((void *)*param_1 == &unknown_var_7040_ptr) {
       LOCK();
       *(int *)(param_1 + 1) = (int)param_1[1] + 1;
       UNLOCK();
@@ -766,7 +766,7 @@ void FUN_180605670(longlong *param_1,uint64_t param_2,char param_3)
     }
     uVar9 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3,uVar9);
     pplStackX_8 = aplStack_28;
-    puStack_18 = &UNK_180607c40;
+    puStack_18 = &unknown_var_4208_ptr;
     pcStack_10 = FUN_180607bb0;
     aplStack_28[0] = param_1;
     pplVar6 = (longlong **)FUN_18006b640(uVar9,aplStack_28);

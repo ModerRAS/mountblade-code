@@ -460,7 +460,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     *(uint64_t *)(param_2 + 0x20) = 0;
     
     // 设置默认路径
-    path_ptr = &UNK_180a3c3e0;
+    path_ptr = &unknown_var_3456_ptr;
     name_capacity = 0;
     data_ptr = (uint64_t *)0x0;
     data_size = 0;
@@ -499,7 +499,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
         resource_name = *(void **)(data_offset + 8);
     }
     
-    resource_ptr = &UNK_180a009c8;
+    resource_ptr = &unknown_var_9208_ptr;
     resource_type = file_data_buffer;
     resource_id = 0;
     file_data_buffer[0] = 0;
@@ -533,7 +533,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
         stream_status = *(byte *)((longlong)*(int *)(*stream_ptr + 4) + 0x10 + (longlong)stream_ptr);
         
         while ((stream_status & 6) == 0) {
-            path_ptr = &UNK_180a3c3e0;
+            path_ptr = &unknown_var_3456_ptr;
             name_capacity = 0;
             name_buffer = (int8_t *)0x0;
             name_size = 0;
@@ -575,7 +575,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
                 release_resource_memory(extraout_XMM0_Da, data_offset);
             }
             
-            path_ptr = &UNK_180a3c3e0;
+            path_ptr = &unknown_var_3456_ptr;
             if (name_buffer != (int8_t *)0x0) {
                 free_memory(name_buffer);
             }
@@ -596,7 +596,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     
     resource_ptr = g_resource_header;
     buffer_ptr = line_storage;
-    *(void **)((longlong)stream_params + (longlong)*(int *)(stream_params[0] + 4)) = &UNK_180a03ad8;
+    *(void **)((longlong)stream_params + (longlong)*(int *)(stream_params[0] + 4)) = &unknown_var_1768_ptr;
     *(int *)((longlong)&buffer_offset + (longlong)*(int *)(stream_params[0] + 4)) =
          *(int *)(stream_params[0] + 4) + -0xb8;
     
@@ -604,7 +604,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     destroy_file_stream(line_buffer);
     destroy_file_stream(line_storage);
     
-    path_ptr = &UNK_180a3c3e0;
+    path_ptr = &unknown_var_3456_ptr;
     if (data_ptr != (uint64_t *)0x0) {
         free_memory(data_ptr);
     }

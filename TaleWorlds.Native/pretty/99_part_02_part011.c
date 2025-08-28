@@ -472,7 +472,7 @@ LAB_1800ef805:
                   ppppppplStackX_8 = ppppppplVar15;
                   FUN_180049830(ppppppplVar15);
                   pppppplVar16 = pppppplStack_e0;
-                  *ppppppplVar15 = (longlong ******)&UNK_180a04da8;
+                  *ppppppplVar15 = (longlong ******)&unknown_var_6584_ptr;
                   ppppppplVar15[0x18] = (longlong ******)0x0;
                   pppppplStack_b0 = pppppplStack_e0;
                   (*(code *)(*pppppplStack_e0)[5])(pppppplStack_e0);
@@ -522,7 +522,7 @@ LAB_1800ef805:
             ppppppplVar15 = (longlong *******)FUN_18062b1e0(_DAT_180c8ed18,0xd0,8);
             ppppppplStackX_8 = ppppppplVar15;
             FUN_180049830(ppppppplVar15);
-            *ppppppplVar15 = (longlong ******)&UNK_180a04e38;
+            *ppppppplVar15 = (longlong ******)&unknown_var_6728_ptr;
             ppppppplVar15[0x18] = (longlong ******)0x0;
             *(bool *)(ppppppplVar15 + 0x19) = bVar28;
             if (pppppplVar8 != (longlong ******)0x0) {

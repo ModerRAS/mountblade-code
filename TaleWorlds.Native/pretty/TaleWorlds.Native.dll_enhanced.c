@@ -98,23 +98,23 @@ extern uint8_t system_memory_c8c8;    /** 系统通信数据 */
  * 未知类型变量组 (UNK_ 前缀)
  * 这些变量的具体用途需要进一步分析
  */
-extern uint8_t UNK_18098c790;    /** 未知类型变量 - 可能是系统句柄 */
-extern uint8_t UNK_18098c7a0;    /** 未知类型变量 - 可能是接口指针 */
-extern uint8_t UNK_18098c7b8;    /** 未知类型变量 - 可能是状态标志 */
-extern uint8_t UNK_18098c7c8;    /** 未知类型变量 - 可能是配置指针 */
-extern uint8_t UNK_18098c7d8;    /** 未知类型变量 - 可能是缓存指针 */
-extern uint8_t UNK_18098c7f0;    /** 未知类型变量 - 可能是管理器指针 */
-extern uint8_t UNK_18098c810;    /** 未知类型变量 - 可能是处理器指针 */
-extern uint8_t UNK_18098c870;    /** 未知类型变量 - 可能是系统对象 */
-extern uint8_t UNK_18098c880;    /** 未知类型变量 - 可能是服务对象 */
-extern uint8_t UNK_18098c898;    /** 未知类型变量 - 可能是引擎对象 */
-extern uint8_t UNK_18098bc80;    /** 未知类型变量 - 可能是渲染对象 */
+extern uint8_t global_state_3504;    /** 未知类型变量 - 可能是系统句柄 */
+extern uint8_t global_state_3520;    /** 未知类型变量 - 可能是接口指针 */
+extern uint8_t global_state_3544;    /** 未知类型变量 - 可能是状态标志 */
+extern uint8_t global_state_3560;    /** 未知类型变量 - 可能是配置指针 */
+extern uint8_t global_state_3576;    /** 未知类型变量 - 可能是缓存指针 */
+extern uint8_t global_state_3600;    /** 未知类型变量 - 可能是管理器指针 */
+extern uint8_t global_state_3632;    /** 未知类型变量 - 可能是处理器指针 */
+extern uint8_t global_state_3728;    /** 未知类型变量 - 可能是系统对象 */
+extern uint8_t global_state_3744;    /** 未知类型变量 - 可能是服务对象 */
+extern uint8_t global_state_3768;    /** 未知类型变量 - 可能是引擎对象 */
+extern uint8_t global_state_672;    /** 未知类型变量 - 可能是渲染对象 */
 
 /** 特殊类型变量 */
 extern int8_t system_memory_5240;   /** 1字节状态标志变量 */
 extern int8_t system_memory_52e0;   /** 1字节控制标志变量 */
-extern uint64_t UNK_180bf5278;   /** 8字节时间戳变量 */
-extern uint64_t UNK_180bf5298;   /** 8字节计数器变量 */
+extern uint64_t global_state_9432;   /** 8字节时间戳变量 */
+extern uint64_t global_state_9464;   /** 8字节计数器变量 */
 
 /* ============================================================================
  * 渲染系统变量组
@@ -232,11 +232,11 @@ extern int8_t system_memory_12d8;   /** 系统状态标志4 */
 
 /** 系统管理变量 */
 extern uint8_t system_memory_e0d0;    /** 系统管理主数据 */
-extern uint8_t UNK_1809fd0d8;    /** 系统管理指针 */
+extern uint8_t global_state_4632;    /** 系统管理指针 */
 extern uint8_t system_memory_f9e8;    /** 系统配置主数据 */
-extern uint8_t UNK_1809ff978;    /** 系统配置指针 */
+extern uint8_t global_state_5032;    /** 系统配置指针 */
 extern uint8_t system_memory_f9c0;    /** 系统缓存主数据 */
-extern uint8_t UNK_1809ff990;    /** 系统缓存指针 */
+extern uint8_t global_state_5056;    /** 系统缓存指针 */
 
 /* ============================================================================
  * 工具函数声明
@@ -249,8 +249,8 @@ extern uint8_t FUN_18008f140;    /** 内存操作函数 */
 
 /** 系统工具函数 */
 extern uint8_t FUN_1809fcc58;    /** 系统工具函数1 */
-extern uint8_t UNK_180941760;    /** 系统工具函数2 */
-extern uint8_t UNK_180941780;    /** 系统工具函数3 */
+extern uint8_t global_state_6256;    /** 系统工具函数2 */
+extern uint8_t global_state_6288;    /** 系统工具函数3 */
 extern uint8_t system_memory_1900;    /** 系统工具数据 */
 
 /* ============================================================================

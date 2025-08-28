@@ -1099,14 +1099,14 @@ void SystemDataProcessor_Type2(SystemInt64 param_1)
     FUN_180057830();
     
     /* 设置系统句柄 */
-    *(SystemUInt8 *)(param_1 + 0x560) = &UNK_180a3c3e0;
+    *(SystemUInt8 *)(param_1 + 0x560) = &unknown_var_3456_ptr;
     if (*(SystemInt64 *)(param_1 + 0x568) != 0) {
         FUN_18064e900();
     }
     
     *(SystemInt64 *)(param_1 + 0x568) = 0;
     *(SystemUInt32 *)(param_1 + 0x578) = 0;
-    *(SystemUInt8 *)(param_1 + 0x560) = &UNK_18098bcb0;
+    *(SystemUInt8 *)(param_1 + 0x560) = &unknown_var_720_ptr;
     
     /* 初始化配置管理器 */
     FUN_1808fc8a8(param_1 + 8, 0x98, 9, FUN_1802ab7f0);
@@ -1613,7 +1613,7 @@ SystemInt64* SystemErrorProcessor(SystemInt64 param_1, SystemInt64 *param_2, Sys
             resource_data = *(SystemUInt8 **)(param_3 + 8);
         }
         
-        FUN_1806272a0(&UNK_180a02b98, resource_data);
+        FUN_1806272a0(&unknown_var_7864_ptr, resource_data);
         resource_ptr = *(SystemInt64 **)(param_1 + 0xc58);
         
         if (resource_ptr != (SystemInt64 *)0x0) {
@@ -1746,10 +1746,10 @@ SystemUInt64* SystemInitializer(SystemUInt64 *param_1)
     FUN_1808fc838(param_1 + 1, 0x98, 9, FUN_1802ab780, FUN_1802ab7f0);
     
     /* 配置系统参数 */
-    param_1[0xac] = &UNK_18098bcb0;
+    param_1[0xac] = &unknown_var_720_ptr;
     param_1[0xad] = 0;
     *(SystemUInt32 *)(param_1 + 0xae) = 0;
-    param_1[0xac] = &UNK_180a3c3e0;
+    param_1[0xac] = &unknown_var_3456_ptr;
     param_1[0xaf] = 0;
     param_1[0xad] = 0;
     *(SystemUInt32 *)(param_1 + 0xae) = 0;

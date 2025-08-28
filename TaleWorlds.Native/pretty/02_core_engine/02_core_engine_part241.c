@@ -149,7 +149,7 @@ LAB_180209c65:
             temp_path = texture_name + (longlong)temp_path;
             texture_ext = material_name;
             if (temp_path <= texture_name) break;
-            path_length = (longlong)&UNK_180a0ff38 - (longlong)texture_name;
+            path_length = (longlong)&global_config_2040_ptr - (longlong)texture_name;
             while (*texture_name == texture_name[path_length]) {
               texture_name = texture_name + 1;
               if (temp_path <= texture_name) goto LAB_180209cd5;
@@ -205,7 +205,7 @@ LAB_180209d30:
 joined_r0x000180209daf:
               do {
                 if (texture_name == (char *)0x0) goto LAB_18020a368;
-                stack_resource_3 = &UNK_180a3c3e0;
+                stack_resource_3 = &global_config_3456_ptr;
                 stack_counter = 0;
                 stack_offset_3 = 0;
                 stack_index = 0;
@@ -235,7 +235,7 @@ LAB_180209e40:
                       FUN_180627c50(&stack_resource_3,path_length);
                       break;
                     }
-                    path_length = (longlong)&UNK_180a0ee30 - (longlong)material_name;
+                    path_length = (longlong)&global_config_7680_ptr - (longlong)material_name;
                     while (*material_name == material_name[path_length]) {
                       material_name = material_name + 1;
                       if (texture_path <= material_name) goto LAB_180209e40;
@@ -245,14 +245,14 @@ LAB_180209e40:
                 texture_index = stack_index;
                 path_length = stack_offset_3;
                 if (stack_index == 10) {
-                  material_index = strcmp(stack_offset_3,&UNK_180a0ff48);
+                  material_index = strcmp(stack_offset_3,&global_config_2056_ptr);
                   is_match = material_index == 0;
                 }
                 else {
                   is_match = false;
                 }
                 if (is_match) {
-                  stack_resource_4 = &UNK_180a3c3e0;
+                  stack_resource_4 = &global_config_3456_ptr;
                   stack_param_4 = 0;
                   stack_offset_4 = 0;
                   stack_param_3 = 0;
@@ -300,14 +300,14 @@ LAB_180209f34:
                   if (stack_ptr_5 != (longlong *)0x0) {
                     (**(code **)(*stack_ptr_5 + 0x38))();
                   }
-                  stack_resource_4 = &UNK_180a3c3e0;
+                  stack_resource_4 = &global_config_3456_ptr;
                   if (stack_offset_4 != 0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900();
                   }
                   stack_offset_4 = 0;
                   stack_param_4 = stack_param_4 & 0xffffffff00000000;
-                  stack_resource_4 = &UNK_18098bcb0;
+                  stack_resource_4 = &global_config_720_ptr;
                 }
                 else {
                   if (texture_index == 9) {
@@ -318,7 +318,7 @@ LAB_180209f34:
                     is_match = false;
                   }
                   if (is_match) {
-                    stack_resource_5 = &UNK_180a3c3e0;
+                    stack_resource_5 = &global_config_3456_ptr;
                     stack_param_2 = 0;
                     stack_offset_5 = 0;
                     stack_param_1 = 0;
@@ -366,25 +366,25 @@ LAB_18020a094:
                     if (stack_ptr_4 != (longlong *)0x0) {
                       (**(code **)(*stack_ptr_4 + 0x38))();
                     }
-                    stack_resource_5 = &UNK_180a3c3e0;
+                    stack_resource_5 = &global_config_3456_ptr;
                     if (stack_offset_5 != 0) {
                     // WARNING: Subroutine does not return
                       FUN_18064e900();
                     }
                     stack_offset_5 = 0;
                     stack_param_2 = stack_param_2 & 0xffffffff00000000;
-                    stack_resource_5 = &UNK_18098bcb0;
+                    stack_resource_5 = &global_config_720_ptr;
                   }
                   else {
                     if (texture_index == 0xb) {
-                      texture_index = strcmp(path_length,&UNK_180a0ff28);
+                      texture_index = strcmp(path_length,&global_config_2024_ptr);
                       is_match = texture_index == 0;
                     }
                     else {
                       is_match = false;
                     }
                     if (is_match) {
-                      stack_resource_1 = &UNK_180a3c3e0;
+                      stack_resource_1 = &global_config_3456_ptr;
                       callback_func_2 = (code *)0x0;
                       stack_offset_1 = 0;
                       callback_func_1 = (code *)((ulonglong)callback_func_1 & 0xffffffff00000000);
@@ -432,14 +432,14 @@ LAB_18020a1f4:
                       if (stack_ptr_3 != (longlong *)0x0) {
                         (**(code **)(*stack_ptr_3 + 0x38))();
                       }
-                      stack_resource_1 = &UNK_180a3c3e0;
+                      stack_resource_1 = &global_config_3456_ptr;
                       if (stack_offset_1 != 0) {
                     // WARNING: Subroutine does not return
                         FUN_18064e900();
                       }
                       stack_offset_1 = 0;
                       callback_func_2 = (code *)((ulonglong)callback_func_2 & 0xffffffff00000000);
-                      stack_resource_1 = &UNK_18098bcb0;
+                      stack_resource_1 = &global_config_720_ptr;
                     }
                   }
                 }
@@ -470,17 +470,17 @@ LAB_18020a1f4:
                   }
                 }
 LAB_18020a31a:
-                stack_resource_3 = &UNK_180a3c3e0;
+                stack_resource_3 = &global_config_3456_ptr;
                 if (stack_offset_3 != 0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
                 stack_offset_3 = 0;
                 stack_counter = stack_counter & 0xffffffff00000000;
-                stack_resource_3 = &UNK_18098bcb0;
+                stack_resource_3 = &global_config_720_ptr;
               } while( true );
             }
-            path_length = (longlong)&UNK_180a0f118 - (longlong)material_name;
+            path_length = (longlong)&global_config_8424_ptr - (longlong)material_name;
             while (*material_name == material_name[path_length]) {
               material_name = material_name + 1;
               if (texture_name <= material_name) goto LAB_180209d30;
@@ -527,7 +527,7 @@ LAB_18020a3c0:
                   temp_path = texture_name + (longlong)temp_path;
                   texture_ext = temp_name;
                   if (temp_path <= texture_name) break;
-                  path_length = (longlong)&UNK_180a04ec0 - (longlong)texture_name;
+                  path_length = (longlong)&global_config_6864_ptr - (longlong)texture_name;
                   while (*texture_name == texture_name[path_length]) {
                     texture_name = texture_name + 1;
                     if (temp_path <= texture_name) goto joined_r0x00018020a436;
@@ -538,7 +538,7 @@ joined_r0x00018020a436:
               do {
                 if (texture_ext == (char *)0x0) goto LAB_18020a626;
                 resource_ptr = material_ptr + 5;
-                stack_resource_2 = &UNK_180a3c3e0;
+                stack_resource_2 = &global_config_3456_ptr;
                 stack_config_2 = 0;
                 stack_offset_2 = 0;
                 stack_flags = 0;
@@ -621,7 +621,7 @@ LAB_18020a528:
                   if (temp_name == texture_path + -0x180a04ebf) {
                     temp_name = texture_name + (longlong)temp_name;
                     if (temp_name <= texture_name) goto LAB_18020a5e9;
-                    path_length = (longlong)&UNK_180a04ec0 - (longlong)texture_name;
+                    path_length = (longlong)&global_config_6864_ptr - (longlong)texture_name;
                     while (*texture_name == texture_name[path_length]) {
                       texture_name = texture_name + 1;
                       if (temp_name <= texture_name) goto LAB_18020a5e9;
@@ -630,19 +630,19 @@ LAB_18020a528:
                 }
                 texture_ext = (char *)0x0;
 LAB_18020a5e9:
-                stack_resource_2 = &UNK_180a3c3e0;
+                stack_resource_2 = &global_config_3456_ptr;
                 if (stack_offset_2 != 0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
                 stack_offset_2 = 0;
                 stack_config_2 = stack_config_2 & 0xffffffff00000000;
-                stack_resource_2 = &UNK_18098bcb0;
+                stack_resource_2 = &global_config_720_ptr;
                 material_ptr = resource_ptr;
                 resource_ptr = stack_ptr_6;
               } while( true );
             }
-            path_length = (longlong)&UNK_180a04ab8 - (longlong)temp_name;
+            path_length = (longlong)&global_config_5832_ptr - (longlong)temp_name;
             while (*temp_name == temp_name[path_length]) {
               temp_name = temp_name + 1;
               if (texture_ext <= temp_name) goto LAB_18020a3c0;

@@ -40,7 +40,7 @@ void FUN_180816fb0(uint64_t param_1,uint64_t *param_2)
     plVar3 = (longlong *)(lVar1 + 800);
     do {
       if (*plVar3 != 0) {
-        (**(code **)(*(longlong *)(&UNK_180980730 + (longlong)*piVar5 * 8) + 0x10))(param_1);
+        (**(code **)(*(longlong *)(&unknown_var_4256_ptr + (longlong)*piVar5 * 8) + 0x10))(param_1);
       }
       iVar2 = iVar2 + 1;
       plVar3 = plVar3 + 1;
@@ -53,7 +53,7 @@ void FUN_180816fb0(uint64_t param_1,uint64_t *param_2)
     plVar3 = (longlong *)(lVar1 + 0x620);
     do {
       if (*plVar3 != 0) {
-        (**(code **)(*(longlong *)(&UNK_180980708 + (longlong)*piVar5 * 8) + 0x18))(param_1);
+        (**(code **)(*(longlong *)(&unknown_var_4216_ptr + (longlong)*piVar5 * 8) + 0x18))(param_1);
       }
       iVar2 = iVar2 + 1;
       plVar3 = plVar3 + 1;
@@ -66,7 +66,7 @@ void FUN_180816fb0(uint64_t param_1,uint64_t *param_2)
     plVar3 = (longlong *)(lVar1 + 0x920);
     do {
       if (*plVar3 != 0) {
-        (**(code **)(*(longlong *)(&UNK_180980718 + (longlong)*piVar5 * 8) + 0x18))(param_1);
+        (**(code **)(*(longlong *)(&unknown_var_4232_ptr + (longlong)*piVar5 * 8) + 0x18))(param_1);
       }
       iVar2 = iVar2 + 1;
       plVar3 = plVar3 + 1;
@@ -127,7 +127,7 @@ void FUN_180816fcc(void)
     plVar2 = (longlong *)(unaff_RBX + 800);
     do {
       if (*plVar2 != 0) {
-        (**(code **)(*(longlong *)(&UNK_180980730 + (longlong)*piVar4 * 8) + 0x10))();
+        (**(code **)(*(longlong *)(&unknown_var_4256_ptr + (longlong)*piVar4 * 8) + 0x10))();
       }
       iVar1 = iVar1 + 1;
       plVar2 = plVar2 + 1;
@@ -140,7 +140,7 @@ void FUN_180816fcc(void)
     plVar2 = (longlong *)(unaff_RBX + 0x620);
     do {
       if (*plVar2 != 0) {
-        (**(code **)(*(longlong *)(&UNK_180980708 + (longlong)*piVar4 * 8) + 0x18))();
+        (**(code **)(*(longlong *)(&unknown_var_4216_ptr + (longlong)*piVar4 * 8) + 0x18))();
       }
       iVar1 = iVar1 + 1;
       plVar2 = plVar2 + 1;
@@ -153,7 +153,7 @@ void FUN_180816fcc(void)
     plVar2 = (longlong *)(unaff_RBX + 0x920);
     do {
       if (*plVar2 != 0) {
-        (**(code **)(*(longlong *)(&UNK_180980718 + (longlong)*piVar4 * 8) + 0x18))();
+        (**(code **)(*(longlong *)(&unknown_var_4232_ptr + (longlong)*piVar4 * 8) + 0x18))();
       }
       iVar1 = iVar1 + 1;
       plVar2 = plVar2 + 1;
@@ -213,7 +213,7 @@ void FUN_180816fda(void)
     iVar2 = unaff_EDI;
     do {
       if (*plVar1 != 0) {
-        (**(code **)(*(longlong *)(&UNK_180980730 + (longlong)*piVar3 * 8) + 0x10))();
+        (**(code **)(*(longlong *)(&unknown_var_4256_ptr + (longlong)*piVar3 * 8) + 0x10))();
       }
       iVar2 = iVar2 + 1;
       plVar1 = plVar1 + 1;
@@ -226,7 +226,7 @@ void FUN_180816fda(void)
     iVar2 = unaff_EDI;
     do {
       if (*plVar1 != 0) {
-        (**(code **)(*(longlong *)(&UNK_180980708 + (longlong)*piVar3 * 8) + 0x18))();
+        (**(code **)(*(longlong *)(&unknown_var_4216_ptr + (longlong)*piVar3 * 8) + 0x18))();
       }
       iVar2 = iVar2 + 1;
       plVar1 = plVar1 + 1;
@@ -239,7 +239,7 @@ void FUN_180816fda(void)
     iVar2 = unaff_EDI;
     do {
       if (*plVar1 != 0) {
-        (**(code **)(*(longlong *)(&UNK_180980718 + (longlong)*piVar3 * 8) + 0x18))();
+        (**(code **)(*(longlong *)(&unknown_var_4232_ptr + (longlong)*piVar3 * 8) + 0x18))();
       }
       iVar2 = iVar2 + 1;
       plVar1 = plVar1 + 1;
@@ -735,7 +735,7 @@ int FUN_180817560(uint64_t param_1,longlong param_2,uint64_t param_3)
             goto LAB_1808178c2;
           }
           if (1 < uVar5) goto LAB_1808178c2;
-          lVar7 = (**(code **)(*(longlong *)(&UNK_180980708 + (longlong)(int)uVar5 * 8) + 8))
+          lVar7 = (**(code **)(*(longlong *)(&unknown_var_4216_ptr + (longlong)(int)uVar5 * 8) + 8))
                             (param_1,param_2,param_3);
           *plVar9 = lVar7;
           if (lVar7 == 0) goto LAB_1808178c2;
@@ -753,7 +753,7 @@ int FUN_180817560(uint64_t param_1,longlong param_2,uint64_t param_3)
             uVar5 = FUN_18082d7f0(param_3,0x10);
             *puVar10 = uVar5;
             if (2 < uVar5) goto LAB_1808178c2;
-            lVar7 = (**(code **)(*(longlong *)(&UNK_180980718 + (longlong)(int)uVar5 * 8) + 8))
+            lVar7 = (**(code **)(*(longlong *)(&unknown_var_4232_ptr + (longlong)(int)uVar5 * 8) + 8))
                               (param_1,param_2,param_3);
             *plVar9 = lVar7;
             if (lVar7 == 0) goto LAB_1808178c2;

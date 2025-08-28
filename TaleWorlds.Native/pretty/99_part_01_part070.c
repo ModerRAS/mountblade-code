@@ -166,8 +166,8 @@ uint64_t *
 FUN_1800e97f0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x18,param_3,param_4,0xfffffffffffffffe);
   }
@@ -189,9 +189,9 @@ FUN_1800e9840(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
   if ((code *)param_1[6] != (code *)0x0) {
     (*(code *)param_1[6])(param_1 + 4,0,0,param_4,uVar1);
   }
-  *param_1 = &UNK_18098bdc8;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &unknown_var_1000_ptr;
+  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &unknown_var_3552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x58);
   }

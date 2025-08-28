@@ -832,15 +832,15 @@ void FUN_18072b930(longlong param_1,longlong param_2,int param_3,ulonglong param
   uStack_144 = (uint)param_4;
   if (param_5 == 4) {
     iStack_148 = 0x22;
-    iVar7 = (int)(char)(&UNK_180956e8c)[param_6];
-    pcVar10 = &UNK_180956f18 + (longlong)param_6 * 8;
-    puVar13 = &UNK_180956e90;
+    iVar7 = (int)(char)(&unknown_var_4108_ptr)[param_6];
+    pcVar10 = &unknown_var_4248_ptr + (longlong)param_6 * 8;
+    puVar13 = &unknown_var_4112_ptr;
   }
   else {
     iVar7 = 0xc;
-    pcVar10 = &UNK_180956f50;
+    pcVar10 = &unknown_var_4304_ptr;
     iStack_148 = 0xc;
-    puVar13 = &UNK_180956f38;
+    puVar13 = &unknown_var_4280_ptr;
   }
   lStack_138 = (longlong)iVar7;
   param_2 = param_2 + (longlong)(int)(uStack_144 * 4) * 4;

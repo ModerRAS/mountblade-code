@@ -109,10 +109,10 @@ void FUN_18052af20(longlong param_1)
         if (iVar5 != 0) {
           __Throw_C_error_std__YAXH_Z(iVar5);
         }
-        cVar4 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
+        cVar4 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
         if ((cVar4 != '\0') &&
-           (cVar4 = FUN_180645c10(0x180c95578,0xd,&UNK_1809fa540), cVar4 != '\0')) {
-          FUN_180645c10(0x180c95578,iVar6,&UNK_1809fa510);
+           (cVar4 = FUN_180645c10(0x180c95578,0xd,&unknown_var_3472_ptr), cVar4 != '\0')) {
+          FUN_180645c10(0x180c95578,iVar6,&unknown_var_3424_ptr);
         }
         _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
         iVar6 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);

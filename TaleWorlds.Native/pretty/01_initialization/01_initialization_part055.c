@@ -108,7 +108,7 @@ float * calculate_bounding_box(float *object_ptr)
         stack_temp_48 = *(void **)(object_ptr + 6);
       }
       stack_temp_40 = CONCAT44(stack_temp_40._4_4_,*(int32_t *)(*(longlong *)(object_ptr + 0x84) + 0x60));
-      stack_temp_58 = &UNK_1809ffb30;
+      stack_temp_58 = &unknown_var_5472_ptr;
       stack_temp_80 = 0x18007967a;
       stack_temp_50 = time_value;
       FUN_1800623b0(system_message_context,0,0x80000000000,3);

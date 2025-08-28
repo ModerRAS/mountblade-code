@@ -19,10 +19,10 @@
 #define rendering_system_transform_data FUN_1803076d0
 
 // 全局变量别名定义
-#define g_rendering_system_context_table UNK_180a1a278
-#define g_rendering_system_context_vtable UNK_180a1a2f0
-#define g_rendering_system_string_constants UNK_180a1a248
-#define g_rendering_system_string_table UNK_180a1a258
+#define g_rendering_system_context_table unknown_var_3832
+#define g_rendering_system_context_vtable unknown_var_3952
+#define g_rendering_system_string_constants unknown_var_3784
+#define g_rendering_system_string_table unknown_var_3800
 #define g_rendering_system_memory_allocator system_main_module_state
 #define g_rendering_system_texture_manager system_buffer_ptr
 #define g_rendering_system_resource_manager system_memory_bc80
@@ -33,7 +33,7 @@
 #define g_rendering_system_resource_count _DAT_180bfaeb8
 #define g_rendering_system_module_registry _DAT_180c8ed18
 #define g_rendering_system_global_state _DAT_180c86920
-#define g_rendering_system_name_registry UNK_180a0c288
+#define g_rendering_system_name_registry unknown_var_6504
 
 // 函数声明
 void rendering_system_initialize_context(uint64_t *context, int context_id);
@@ -475,7 +475,7 @@ void rendering_system_transform_data(longlong context, longlong *transform_data,
     *(float *)((longlong)output2 + 0xc) = vector_length * 1.5;
     
     // 处理变换数据
-    if ((void *)*transform_data == &UNK_180a19770) {
+    if ((void *)*transform_data == &unknown_var_1008_ptr) {
         temp_ptr1 = (uint64_t *)((longlong)transform_data + 0x244);
     }
     else {

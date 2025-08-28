@@ -1222,7 +1222,7 @@ void RenderingSystemMemoryAccessor(longlong param_1, uint64_t param_2, uint64_t 
     if (plStackX_8 != (longlong *)0x0) {
         (**(code **)(*plStackX_8 + 0x28))();
     }
-    FUN_18058e430(lVar2, param_2, param_3, param_4, &UNK_180a30990, 0, 0, &param_5, 0, 0xffffffff, 0);
+    FUN_18058e430(lVar2, param_2, param_3, param_4, &unknown_var_5760_ptr, 0, 0, &param_5, 0, 0xffffffff, 0);
     FUN_18005ea90(param_1 + 0x900, alStack_38);
     uVar1 = *(uint64_t *)(param_1 + 0x6d8);
     puStack_20 = &param_5;
@@ -1710,7 +1710,7 @@ RenderingSystemQueryHandler(uint64_t param_1, uint64_t param_2, uint64_t param_3
     
     uVar2 = FUN_180627910(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
     uVar1 = FUN_180555eb0(&system_memory_60a0, uVar2);
-    puStack_30 = &UNK_180a3c3e0;
+    puStack_30 = &unknown_var_3456_ptr;
     if (lStack_28 != 0) {
         // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -1917,7 +1917,7 @@ void RenderingSystemOptimizer(longlong param_1)
     }
     if (*(longlong *)plVar2[0x1f] == 0) {
         // WARNING: Subroutine does not return
-        FUN_180062300(_DAT_180c86928, &UNK_180a36fd8);
+        FUN_180062300(_DAT_180c86928, &unknown_var_1944_ptr);
     }
     lVar3 = FUN_18040db80(*(longlong *)plVar2[0x1f]);
     fVar7 = 0.0;

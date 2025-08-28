@@ -17,29 +17,29 @@
 
 /* 游戏核心数据结构 */
 uint8_t system_state_c740;           // 核心游戏数据存储
-uint8_t UNK_18098c790;           // 未知数据结构 - 待分析
+uint8_t unknown_var_3504;           // 未知数据结构 - 待分析
 uint8_t FUN_18007fcd0;           // 核心游戏函数指针
 uint8_t system_state_c768;           // 游戏状态数据
-uint8_t UNK_18098c7a0;           // 未知数据结构 - 待分析
+uint8_t unknown_var_3520;           // 未知数据结构 - 待分析
 uint8_t system_state_c9b8;           // 游戏配置数据
-uint8_t UNK_18098c7b8;           // 未知数据结构 - 待分析
+uint8_t unknown_var_3544;           // 未知数据结构 - 待分析
 uint8_t system_state_c940;           // 渲染系统数据
-uint8_t UNK_18098c7c8;           // 未知数据结构 - 待分析
+uint8_t unknown_var_3560;           // 未知数据结构 - 待分析
 uint8_t system_state_c918;           // 物理系统数据
-uint8_t UNK_18098c7d8;           // 未知数据结构 - 待分析
+uint8_t unknown_var_3576;           // 未知数据结构 - 待分析
 uint8_t system_state_c968;           // 音频系统数据
-uint8_t UNK_18098c7f0;           // 未知数据结构 - 待分析
+uint8_t unknown_var_3600;           // 未知数据结构 - 待分析
 uint8_t system_state_c990;           // 输入系统数据
-uint8_t UNK_18098c810;           // 未知数据结构 - 待分析
+uint8_t unknown_var_3632;           // 未知数据结构 - 待分析
 uint8_t system_state_c9e0;           // UI系统数据
-uint8_t UNK_18098c870;           // 未知数据结构 - 待分析
+uint8_t unknown_var_3728;           // 未知数据结构 - 待分析
 uint8_t system_state_c8f0;           // 网络系统数据
 
 /* 主要功能函数 */
 uint8_t FUN_180073930;           // 游戏初始化函数
-uint8_t UNK_18098c880;           // 未知功能 - 待分析
+uint8_t unknown_var_3744;           // 未知功能 - 待分析
 uint8_t system_state_c8c8;           // 系统配置数据
-uint8_t UNK_18098c898;           // 未知数据结构 - 待分析
+uint8_t unknown_var_3768;           // 未知数据结构 - 待分析
 
 /* 引擎核心数据 */
 uint8_t system_state_5268;           // 引擎核心数据1
@@ -59,16 +59,16 @@ int8_t system_state_5240;          // 布尔类型数据
 uint8_t system_state_52a8;           // 引擎扩展数据1
 uint8_t system_state_52b0;           // 引擎扩展数据2
 int8_t system_state_52e0;          // 布尔类型数据2
-uint8_t UNK_180a3c3e0;           // 未知数据结构 - 待分析
-uint64_t UNK_180bf5278;          // 64位数据结构
-uint64_t UNK_180bf5298;          // 64位数据结构2
+uint8_t unknown_var_3456;           // 未知数据结构 - 待分析
+uint64_t unknown_var_9432;          // 64位数据结构
+uint64_t unknown_var_9464;          // 64位数据结构2
 
 /* 游戏世界数据 */
 uint8_t system_state_5320;           // 游戏世界数据1
 uint8_t system_state_5328;           // 游戏世界数据2
 uint8_t system_state_5330;           // 游戏世界数据3
 uint8_t system_state_5338;           // 游戏世界数据4
-uint8_t UNK_18098bb30;           // 未知游戏数据 - 待分析
+uint8_t unknown_var_336;           // 未知游戏数据 - 待分析
 uint8_t FUN_180941590;           // 游戏世界功能函数
 uint8_t system_state_5770;           // 游戏世界状态数据
 

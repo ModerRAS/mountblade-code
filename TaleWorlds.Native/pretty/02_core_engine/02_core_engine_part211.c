@@ -67,7 +67,7 @@ void process_string_search_and_scoring(uint64_t param_1, longlong param_2, longl
     do {
       iVar13 = (int)puVar6;
       lVar12 = (longlong)iVar13 * 0x348 + *(longlong *)(_DAT_180c8a9f8 + 0x3a0);
-      puStack_160 = &UNK_180a3c3e0;
+      puStack_160 = &unknown_var_3456_ptr;
       uStack_148 = 0;
       puStack_158 = (int8_t *)0x0;
       uStack_150 = 0;
@@ -102,10 +102,10 @@ void process_string_search_and_scoring(uint64_t param_1, longlong param_2, longl
         puVar9 = puStack_158;
       }
       // 执行字符串搜索
-      lVar5 = strstr(puVar9, &UNK_180a0aef8);
+      lVar5 = strstr(puVar9, &unknown_var_1496_ptr);
       puVar11 = puStack_120;
       if (lVar5 == 0) {
-        puStack_160 = &UNK_180a3c3e0;
+        puStack_160 = &unknown_var_3456_ptr;
         if (puStack_158 != (int8_t *)0x0) {
           // 内存分配失败处理
           FUN_18064e900();
@@ -181,7 +181,7 @@ LAB_18018e486:
           puStack_110 = puVar14;
         }
         puVar7 = puVar7 + 1;
-        puStack_160 = &UNK_180a3c3e0;
+        puStack_160 = &unknown_var_3456_ptr;
         puStack_118 = puVar7;
         if (puStack_158 != (int8_t *)0x0) {
           // 内存分配失败处理
@@ -192,7 +192,7 @@ LAB_18018e486:
       param_2 = lStack_128;
       uStack_148 = uStack_148 & 0xffffffff00000000;
       puStack_158 = (int8_t *)0x0;
-      puStack_160 = &UNK_18098bcb0;
+      puStack_160 = &unknown_var_720_ptr;
       uVar16 = iVar13 + 1;
       puVar6 = (ulonglong *)(ulonglong)uVar16;
       uStack_140 = CONCAT44(uStack_140._4_4_, uVar16);
@@ -292,8 +292,8 @@ initialize_data_structure_copy(uint64_t *param_1, longlong param_2, uint64_t par
   uint64_t uVar5;
   
   uVar5 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a07218;
-  *param_1 = &UNK_180a071f8;
+  *param_1 = &unknown_var_5912_ptr;
+  *param_1 = &unknown_var_5880_ptr;
   // 初始化数据结构
   FUN_180627ae0(param_1 + 1, param_2 + 8, param_3, param_4, 0xfffffffffffffffe);
   *(int32_t *)(param_1 + 5) = *(int32_t *)(param_2 + 0x28);

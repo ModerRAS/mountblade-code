@@ -57,10 +57,10 @@ void extend_render_data_structure_capacity(longlong *render_context, ulonglong r
     if (allocated_buffer != current_data_ptr) {
       offset = (longlong)allocated_buffer - (longlong)dest_ptr;
       do {
-        *dest_ptr = &UNK_18098bcb0;
+        *dest_ptr = &unknown_var_720_ptr;
         dest_ptr[1] = 0;
         *(int32_t *)(dest_ptr + 2) = 0;
-        *dest_ptr = &UNK_1809fcc28;
+        *dest_ptr = &unknown_var_3432_ptr;
         dest_ptr[1] = dest_ptr + 3;
         *(int32_t *)(dest_ptr + 2) = 0;
         *(int8_t *)(dest_ptr + 3) = 0;
@@ -78,10 +78,10 @@ void extend_render_data_structure_capacity(longlong *render_context, ulonglong r
       current_data_ptr = dest_ptr + 1;
       current_capacity = required_capacity;
       do {
-        current_data_ptr[-1] = &UNK_18098bcb0;
+        current_data_ptr[-1] = &unknown_var_720_ptr;
         *current_data_ptr = 0;
         *(int32_t *)(current_data_ptr + 1) = 0;
-        current_data_ptr[-1] = &UNK_1809fcc28;
+        current_data_ptr[-1] = &unknown_var_3432_ptr;
         *current_data_ptr = current_data_ptr + 2;
         *(int32_t *)(current_data_ptr + 1) = 0;
         *(int8_t *)(current_data_ptr + 2) = 0;
@@ -110,10 +110,10 @@ void extend_render_data_structure_capacity(longlong *render_context, ulonglong r
     new_capacity = required_capacity;
     if (required_capacity != 0) {
       do {
-        *current_data_ptr = &UNK_18098bcb0;
+        *current_data_ptr = &unknown_var_720_ptr;
         current_data_ptr[1] = 0;
         *(int32_t *)(current_data_ptr + 2) = 0;
-        *current_data_ptr = &UNK_1809fcc28;
+        *current_data_ptr = &unknown_var_3432_ptr;
         current_data_ptr[1] = current_data_ptr + 3;
         *(int32_t *)(current_data_ptr + 2) = 0;
         *(int8_t *)(current_data_ptr + 3) = 0;
@@ -166,7 +166,7 @@ initialize_rendering_memory_pool(uint64_t *memory_pool,ulonglong memory_flags,ui
   
   memory_flag = 0xfffffffffffffffe;
   initialize_rendering_system();
-  *memory_pool = &UNK_1809ffa18;
+  *memory_pool = &unknown_var_5192_ptr;
   if ((memory_flags & 1) != 0) {
     free(memory_pool,0x1c8,param_3,param_4,memory_flag);
   }
@@ -270,12 +270,12 @@ LAB_1802733d5:
     context_ptr = *(longlong **)(render_state + 0xb0);
     *(int32_t *)(context_ptr + 0x170) = 0;
     **(int8_t **)(context_ptr + 0x168) = 0;
-    initialize_render_buffer(context_ptr + 0x160,&UNK_180a02954,state_handle);
+    initialize_render_buffer(context_ptr + 0x160,&unknown_var_7284_ptr,state_handle);
     *(uint64_t *)(context_ptr + 0x148) = state_handle;
     context_ptr = *(longlong **)(render_state + 0xb0);
     *(int32_t *)(context_ptr + 0x1a8) = 0;
     **(int8_t **)(context_ptr + 0x1a0) = 0;
-    initialize_render_buffer(context_ptr + 0x198,&UNK_180a02954,render_data);
+    initialize_render_buffer(context_ptr + 0x198,&unknown_var_7284_ptr,render_data);
     *(uint64_t *)(context_ptr + 0x150) = render_data;
   }
   return;
@@ -464,8 +464,8 @@ uint64_t * create_rendering_object(uint64_t object_params,longlong template_data
   uint64_t *render_object;
   
   render_object = (uint64_t *)allocate_rendering_memory(_DAT_180c8ed18,0x1c8,8,3,0xfffffffffffffffe);
-  *render_object = &UNK_1809ffa18;
-  *render_object = &UNK_180a167b8;
+  *render_object = &unknown_var_5192_ptr;
+  *render_object = &unknown_var_8792_ptr;
   *(int32_t *)(render_object + 1) = 0;
   *(int32_t *)((longlong)render_object + 0xc) = 0;
   *(int32_t *)(render_object + 2) = 0;

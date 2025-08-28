@@ -105,7 +105,7 @@ void FUN_1804d2fd0(longlong *param_1,longlong param_2)
   uStack_190 = auStack_178;
   plStack_188 = alStack_1c8 + 2;
   pcStack_1d8 = FUN_1804df640;
-  pcStack_1d0 = (code *)&UNK_1804df630;
+  pcStack_1d0 = (code *)&unknown_var_240_ptr;
   plStack_1a8 = param_1;
   aplStack_1e8[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(int)lVar13 + 0x28,8,system_allocation_flags);
   *aplStack_1e8[0] = (longlong)plStack_1a8;
@@ -174,7 +174,7 @@ LAB_1804d32bc:
     } while ((int)(uVar12 + 1) < *(int *)((longlong)param_1 + 0x2c3c));
   }
   pplStack_1b0 = aplStack_1e8;
-  pcStack_1d8 = (code *)&UNK_1804df5f0;
+  pcStack_1d8 = (code *)&unknown_var_176_ptr;
   pcStack_1d0 = FUN_1804df470;
   pplStack_1f0 = aplStack_1e8;
   uStack_1f8 = 0xffffffffffffffff;

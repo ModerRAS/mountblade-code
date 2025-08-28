@@ -147,7 +147,7 @@ uint64_t FUN_180441c50(longlong param_1,uint64_t param_2)
     if (*(void **)(param_1 + 0x290) != (void *)0x0) {
       puVar2 = *(void **)(param_1 + 0x290);
     }
-    FUN_180626f80(&UNK_180a2a3a0,puVar2);
+    FUN_180626f80(&unknown_var_9664_ptr,puVar2);
   }
   return 0;
 }

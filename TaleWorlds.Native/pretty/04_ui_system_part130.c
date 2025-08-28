@@ -64,7 +64,7 @@ uint64_t FUN_180743880(longlong param_1)
   *(uint64_t *)(param_1 + 0x10820) = 0;
   if ((longlong *)*plVar2 != plVar2) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),((longlong *)*plVar2)[2],&UNK_180957e90,
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),((longlong *)*plVar2)[2],&unknown_var_8208_ptr,
                   0xff,1);
   }
   *(longlong **)(param_1 + 0x10838) = plVar2;
@@ -87,7 +87,7 @@ void FUN_1807438b7(void)
   
                     // WARNING: Subroutine does not return
   FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(uint64_t *)(unaff_RSI + 0x10),
-                &UNK_180957e90,0xff,1);
+                &unknown_var_8208_ptr,0xff,1);
 }
 
 
@@ -427,7 +427,7 @@ void FUN_180743e90(uint64_t *param_1)
   longlong lVar2;
   uint64_t *puVar3;
   
-  *param_1 = &UNK_180957fe0;
+  *param_1 = &unknown_var_8544_ptr;
   func_0x00018074fb20(param_1 + 0x10);
   FUN_1807554e0(param_1 + 0x3e);
   FUN_1807554e0(param_1 + 0x84);
@@ -617,7 +617,7 @@ uint64_t * FUN_180744640(uint64_t *param_1,ulonglong param_2)
   longlong *plVar1;
   int iVar2;
   
-  *param_1 = &UNK_180957fe0;
+  *param_1 = &unknown_var_8544_ptr;
   FUN_180744d60(param_1 + 0x24fc);
   plVar1 = param_1 + 0x24fa;
   *(longlong *)param_1[0x24fb] = *plVar1;
@@ -635,7 +635,7 @@ uint64_t * FUN_180744640(uint64_t *param_1,ulonglong param_2)
   FUN_180744e20(param_1 + 0x24f7);
   FUN_180744cc0(param_1 + 0x24f5);
   func_0x000180785a10(param_1 + 0x2487);
-  param_1[0x2444] = &UNK_180957f58;
+  param_1[0x2444] = &unknown_var_8408_ptr;
   thunk_FUN_180742070(param_1 + 0x217a);
   thunk_FUN_180742070(param_1 + 0x2109);
   plVar1 = param_1 + 0xd8;
@@ -654,7 +654,7 @@ uint64_t * FUN_180744640(uint64_t *param_1,ulonglong param_2)
 uint64_t * FUN_180744750(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180957f58;
+  *param_1 = &unknown_var_8408_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x150);
   }
@@ -684,7 +684,7 @@ uint64_t FUN_180744780(longlong param_1)
   iVar1 = (int)uVar5;
   plVar2 = (longlong *)
            FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),(uVar6 + 0x16) * iVar1 * 4 + 0x40,
-                         &UNK_180958000,0x3b5,0);
+                         &unknown_var_8576_ptr,0x3b5,0);
   if (plVar2 == (longlong *)0x0) {
     return 0x26;
   }

@@ -7,8 +7,8 @@
 // 全局变量声明
 extern void *_DAT_180c8a9b0;  // 渲染系统全局状态指针
 extern void *_DAT_180c8a9a8;  // 渲染系统内存管理器指针
-extern void *UNK_180a16f40;   // 渲染系统默认参数配置指针
-extern void *UNK_18098e3b0;   // 渲染系统算法配置指针
+extern void *global_config_720_ptr;   // 渲染系统默认参数配置指针
+extern void *global_config_704_ptr;   // 渲染系统算法配置指针
 extern uint64_t _DAT_180bf00a8; // 渲染系统安全校验常量
 
 // 外部函数声明
@@ -411,7 +411,7 @@ void initialize_render_parameters_with_resources(void *render_context, void **pa
                 default_floats[1] = 0x7f7fffff; // FLT_MAX
                 
                 // 调用渲染配置函数
-                resource_ptr = FUN_180294c20(render_context, &UNK_18098e3b0, param_3, default_params);
+                resource_ptr = FUN_180294c20(render_context, &global_config_704_ptr, param_3, default_params);
                 *(uint32_t *)((uint8_t *)resource_ptr + 0xc) = 0x3f800000; // 1.0f
             }
             FUN_180294f50(render_context);
@@ -511,8 +511,8 @@ void initialize_advanced_render_parameters(void *render_context, void **param_2,
                 const char *render_format = "Program Cyg, 1.3 ,.txt, x";
                 
                 // 调用高级渲染配置函数
-                resource_ptr = FUN_180294c20(render_context, &UNK_18098e3b0, param_3, advanced_params, 
-                                            param_13 != NULL ? param_13 : &UNK_180a16f40);
+                resource_ptr = FUN_180294c20(render_context, &global_config_704_ptr, param_3, advanced_params, 
+                                            param_13 != NULL ? param_13 : &global_config_720_ptr);
                 *(uint32_t *)((uint8_t *)resource_ptr + 0xc) = 0x3f800000; // 1.0f
             }
             FUN_180294f50(render_context);
@@ -611,8 +611,8 @@ void initialize_optimized_render_parameters(void *render_context, void **param_2
                 format_value = 0x676f7250; // "Prog"
                 
                 // 调用优化渲染配置函数
-                resource_ptr = FUN_180294c20(format_value, &UNK_18098e3b0, param_3, optimized_params, 
-                                            param_13 != NULL ? param_13 : &UNK_180a16f40);
+                resource_ptr = FUN_180294c20(format_value, &global_config_704_ptr, param_3, optimized_params, 
+                                            param_13 != NULL ? param_13 : &global_config_720_ptr);
                 *(uint32_t *)((uint8_t *)resource_ptr + 0xc) = 0x3f800000; // 1.0f
             }
             FUN_180294f50();

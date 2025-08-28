@@ -331,16 +331,16 @@ typedef struct {
 
 /** 系统全局变量 */
 extern int _DAT_180c8ec8c;                              /**< 数据标志全局变量 */
-extern void* UNK_180a28e90;                              /**< 未知数据指针 */
-extern void* UNK_180a28e70;                              /**< 未知数据指针 */
-extern void* UNK_180a29171;                              /**< 未知数据指针 */
-extern void* UNK_180a29159;                              /**< 未知数据指针 */
-extern void* UNK_180a290b0;                              /**< 未知数据指针 */
-extern void* UNK_180a28230;                              /**< 未知数据指针 */
-extern void* UNK_180a28241;                              /**< 未知数据指针 */
-extern void* UNK_180a28219;                              /**< 未知数据指针 */
-extern void* UNK_180a28170;                              /**< 未知数据指针 */
-extern void* UNK_180a28e60;                              /**< 未知数据指针 */
+extern void* global_state_4272_ptr;                              /**< 未知数据指针 */
+extern void* global_state_4240_ptr;                              /**< 未知数据指针 */
+extern void* global_state_5009_ptr;                              /**< 未知数据指针 */
+extern void* global_state_4985_ptr;                              /**< 未知数据指针 */
+extern void* global_state_4816_ptr;                              /**< 未知数据指针 */
+extern void* global_state_1104_ptr;                              /**< 未知数据指针 */
+extern void* global_state_1121_ptr;                              /**< 未知数据指针 */
+extern void* global_state_1081_ptr;                              /**< 未知数据指针 */
+extern void* global_state_912_ptr;                              /**< 未知数据指针 */
+extern void* global_state_4224_ptr;                              /**< 未知数据指针 */
 
 // ============================================================================
 // 函数声明
@@ -511,7 +511,7 @@ void RenderingAdvancedImageProcessor(void)
     } while (dataOffset < IMAGE_PROCESSING_MAX_DIMENSION);
     
     // 初始化采样系数处理
-    coefficientPointer = (float *)&UNK_180a28e90;
+    coefficientPointer = (float *)&global_state_4272_ptr;
     dataOffset = 0;
     do {
         sampleValue1 = *coefficientPointer;
@@ -589,27 +589,27 @@ void RenderingAdvancedImageProcessor(void)
     *(int8_t *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_10) = 0;
     
     // 执行编码器控制函数
-    ((ImageControlFunction)*stackPointer)(contextParam1, &UNK_180a28e70, 0x19);
+    ((ImageControlFunction)*stackPointer)(contextParam1, &global_state_4240_ptr, 0x19);
     ((ImageControlFunction)*stackPointer)(stackPointer[1], contextParam2 + BUFFER_OFFSET_OUTPUT_REGION_1, IMAGE_PROCESSING_MAX_DIMENSION);
     stackParam4 = 1;
     ((ImageControlFunction)*stackPointer)(stackPointer[1], &stack0x00000040, 1);
     ((ImageControlFunction)*stackPointer)(stackPointer[1], contextParam2 + BUFFER_OFFSET_OUTPUT_REGION_2, IMAGE_PROCESSING_MAX_DIMENSION);
     ((ImageControlFunction)*stackPointer)(stackPointer[1], contextParam2 + BUFFER_OFFSET_CONTROL_DATA, 0x18);
-    ((ImageControlFunction)*stackPointer)(stackPointer[1], &UNK_180a29171, 0x10);
-    ((ImageControlFunction)*stackPointer)(stackPointer[1], &UNK_180a28230, 0xc);
+    ((ImageControlFunction)*stackPointer)(stackPointer[1], &global_state_5009_ptr, 0x10);
+    ((ImageControlFunction)*stackPointer)(stackPointer[1], &global_state_1104_ptr, 0xc);
     stackParam4 = 0x10;
     ((ImageControlFunction)*stackPointer)(stackPointer[1], &stack0x00000040, 1);
-    ((ImageControlFunction)*stackPointer)(stackPointer[1], &UNK_180a29159, 0x10);
-    ((ImageControlFunction)*stackPointer)(stackPointer[1], &UNK_180a290b0, 0xa2);
+    ((ImageControlFunction)*stackPointer)(stackPointer[1], &global_state_4985_ptr, 0x10);
+    ((ImageControlFunction)*stackPointer)(stackPointer[1], &global_state_4816_ptr, 0xa2);
     stackParam4 = 1;
     ((ImageControlFunction)*stackPointer)(stackPointer[1], &stack0x00000040, 1);
-    ((ImageControlFunction)*stackPointer)(stackPointer[1], &UNK_180a28241, 0x10);
-    ((ImageControlFunction)*stackPointer)(stackPointer[1], &UNK_180a28230, 0xc);
+    ((ImageControlFunction)*stackPointer)(stackPointer[1], &global_state_1121_ptr, 0x10);
+    ((ImageControlFunction)*stackPointer)(stackPointer[1], &global_state_1104_ptr, 0xc);
     stackParam4 = 0x11;
     ((ImageControlFunction)*stackPointer)(stackPointer[1], &stack0x00000040, 1);
-    ((ImageControlFunction)*stackPointer)(stackPointer[1], &UNK_180a28219, 0x10);
-    ((ImageControlFunction)*stackPointer)(stackPointer[1], &UNK_180a28170, 0xa2);
-    ((ImageControlFunction)*stackPointer)(stackPointer[1], &UNK_180a28e60);
+    ((ImageControlFunction)*stackPointer)(stackPointer[1], &global_state_1081_ptr, 0x10);
+    ((ImageControlFunction)*stackPointer)(stackPointer[1], &global_state_912_ptr, 0xa2);
+    ((ImageControlFunction)*stackPointer)(stackPointer[1], &global_state_4224_ptr);
     
     // 初始化颜色转换处理
     dimensionCount = 0;

@@ -314,16 +314,16 @@ LAB_1801da300:
           plStack_260 = plVar22;
           if (plVar22 == (longlong *)0x0) {
             if (*(longlong *)(_DAT_180c86898 + 0x278) == 0) {
-              puStack_f8 = &UNK_1809fcc58;
+              puStack_f8 = &unknown_var_3480_ptr;
               puStack_f0 = auStack_e0;
               auStack_e0[0] = 0;
               uStack_e8 = 0x10;
-              strcpy_s(auStack_e0,0x40,&UNK_180a030c0);
+              strcpy_s(auStack_e0,0x40,&unknown_var_9184_ptr);
               FUN_1800b30d0(uVar13,&plStack_320,&puStack_f8,1);
               plVar22 = plStack_320;
               uVar20 = uStack_378;
               uStack_378 = uStack_378 & 0xfffffff7 | 4;
-              puStack_f8 = &UNK_18098bcb0;
+              puStack_f8 = &unknown_var_720_ptr;
               plStack_320 = (longlong *)0x0;
               plStack_208 = *(longlong **)(lVar31 + 0x278);
               *(longlong **)(lVar31 + 0x278) = plVar22;
@@ -433,13 +433,13 @@ LAB_1801da300:
             }
             uVar17 = FUN_180241250(plStack_2d0);
             pplStack_2c0 = (longlong **)(uVar25 & ~uVar17);
-            puStack_98 = &UNK_1809fcc58;
+            puStack_98 = &unknown_var_3480_ptr;
             puStack_90 = auStack_80;
             auStack_80[0] = 0;
             uStack_88 = 0x15;
             strcpy_s(auStack_80,0x40,&system_data_e020);
             FUN_180240430(plStack_2d0,&puStack_98,0);
-            puStack_98 = &UNK_18098bcb0;
+            puStack_98 = &unknown_var_720_ptr;
             puStack_360 = (int32_t *)0x0;
             puStack_358 = (int32_t *)0x0;
             puStack_350 = (int32_t *)0x0;
@@ -780,7 +780,7 @@ LAB_1801dae19:
             uStack_158 = &ppppuStack_298;
             uStack_150 = &plStack_2d0;
             uStack_1d8 = FUN_1801eb0f0;
-            puStack_1d0 = &UNK_1801eb0e0;
+            puStack_1d0 = &unknown_var_2304_ptr;
             plStack_1e8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags);
             *plStack_1e8 = (longlong)plStack_178;
             plStack_1e8[1] = (longlong)plStack_170;

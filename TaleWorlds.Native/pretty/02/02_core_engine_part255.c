@@ -47,22 +47,22 @@
 #define RESOURCE_ID_CACHE_BASE        0x1a
 
 // 全局变量引用
-extern char *RESOURCE_NAME_TEXTURE;      // UNK_180a12f38
-extern char *RESOURCE_NAME_BUFFER;       // UNK_180a12f80
-extern char *RESOURCE_NAME_MEMORY;       // UNK_180a12f90
-extern char *RESOURCE_NAME_SHADER;       // UNK_180a12f48
-extern char *RESOURCE_NAME_MESH;         // UNK_180a12f68
-extern char *RESOURCE_NAME_AUDIO;        // UNK_180a12fc8
-extern char *RESOURCE_NAME_LARGE_BUFFER; // UNK_180a12fd8
-extern char *RESOURCE_NAME_SMALL_BUFFER; // UNK_180a12fa8
-extern char *RESOURCE_NAME_STREAM;       // UNK_180a12fb8
-extern char *RESOURCE_NAME_CONFIG;       // UNK_180a13020
-extern char *RESOURCE_NAME_TEMP;         // UNK_180a13030
-extern char *RESOURCE_NAME_CACHE;        // UNK_180a12fe8
-extern char *RESOURCE_NAME_HEAP;         // UNK_180a13000
+extern char *RESOURCE_NAME_TEXTURE;      // global_state_4328
+extern char *RESOURCE_NAME_BUFFER;       // global_state_4400
+extern char *RESOURCE_NAME_MEMORY;       // global_state_4416
+extern char *RESOURCE_NAME_SHADER;       // global_state_4344
+extern char *RESOURCE_NAME_MESH;         // global_state_4376
+extern char *RESOURCE_NAME_AUDIO;        // global_state_4472
+extern char *RESOURCE_NAME_LARGE_BUFFER; // global_state_4488
+extern char *RESOURCE_NAME_SMALL_BUFFER; // global_state_4440
+extern char *RESOURCE_NAME_STREAM;       // global_state_4456
+extern char *RESOURCE_NAME_CONFIG;       // global_state_4560
+extern char *RESOURCE_NAME_TEMP;         // global_state_4576
+extern char *RESOURCE_NAME_CACHE;        // global_state_4504
+extern char *RESOURCE_NAME_HEAP;         // global_state_4528
 
-extern void *SYSTEM_STATE_ACTIVE;        // UNK_18098bcb0
-extern void *SYSTEM_CONTEXT_POINTER;     // UNK_1809fcc58
+extern void *SYSTEM_STATE_ACTIVE;        // global_state_720
+extern void *SYSTEM_CONTEXT_POINTER;     // global_state_3480
 
 /**
  * 初始化资源管理器

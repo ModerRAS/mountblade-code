@@ -708,18 +708,18 @@ uint8_t FUN_1801b99e0;  /**< 数据解压缩函数 */
 
 /* 数据变量声明 */
 uint8_t system_memory_1078;  /**< 系统状态数据 */
-uint8_t UNK_180a00388;  /**< 内存池指针 */
+uint8_t global_state_7608;  /**< 内存池指针 */
 uint8_t system_memory_1050;  /**< 内存池大小 */
-uint8_t UNK_180a003a0;  /**< 内存分配计数 */
+uint8_t global_state_7632;  /**< 内存分配计数 */
 uint8_t system_memory_1028;  /**< 当前游戏状态 */
-uint8_t UNK_180a003b8;  /**< 前一个游戏状态 */
+uint8_t global_state_7656;  /**< 前一个游戏状态 */
 uint8_t system_memory_1000;  /**< 游戏存档路径 */
-uint8_t UNK_180a003d0;  /**< 网络连接状态 */
+uint8_t global_state_7680;  /**< 网络连接状态 */
 uint8_t system_memory_0fd8;  /**< 活跃连接表 */
-uint8_t UNK_1800868c0;  /**< 最后错误码 */
-uint8_t UNK_180a003e8;  /**< 错误消息缓冲区 */
+uint8_t global_state_2048;  /**< 最后错误码 */
+uint8_t global_state_7704;  /**< 错误消息缓冲区 */
 uint8_t system_memory_0fb0;  /**< 活跃线程数 */
-uint8_t UNK_180a00400;  /**< 线程ID表 */
+uint8_t global_state_7728;  /**< 线程ID表 */
 
 /* ================================ */
 /* 文件结束标识 */

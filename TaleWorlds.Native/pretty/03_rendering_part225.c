@@ -448,7 +448,7 @@ void FUN_180395270(longlong param_1,int param_2,byte param_3)
   int32_t uStack_48;
   
   if (param_2 == 0) {
-    FUN_180626f80(&UNK_180a21f48);
+    FUN_180626f80(&unknown_var_5784_ptr);
   }
   else {
     plStack_60 = (longlong *)0x0;

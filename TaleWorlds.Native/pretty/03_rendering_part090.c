@@ -266,12 +266,12 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
     ppcVar8 = (code **)0x0;
     
     // 初始化渲染字符串处理
-    FUN_1802c22a0(auStack_208, &UNK_180a1adf0);
-    puStack_148 = &UNK_1809fcc58;
+    FUN_1802c22a0(auStack_208, &unknown_var_6768_ptr);
+    puStack_148 = &unknown_var_3480_ptr;
     pcStack_140 = (code *)auStack_130;
     auStack_130[0] = auStack_130[0] & 0xffffff00;
     uStack_138 = 0x13;
-    uVar10 = strcpy_s(auStack_130, 0x40, &UNK_180a1add8);
+    uVar10 = strcpy_s(auStack_130, 0x40, &unknown_var_6744_ptr);
     
     // 设置渲染参数
     uStack_210 = 1;
@@ -285,7 +285,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
     
     // 处理渲染对象创建
     FUN_1800b0a10(uVar10, &pcStack_1f0, *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0xa0), &puStack_148);
-    puStack_148 = &UNK_18098bcb0;
+    puStack_148 = &unknown_var_720_ptr;
     lVar9 = *(longlong *)(param_1 + 0x88);
     
     // 检查渲染状态和条件
@@ -302,11 +302,11 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             pcStack_1e8 = (code *)0x0;
             uStack_1e0 = 0;
             uStack_1dc = 0;
-            puStack_e8 = &UNK_1809fcc28;
+            puStack_e8 = &unknown_var_3432_ptr;
             puStack_e0 = auStack_d0;
             auStack_d0[0] = 0;
             uStack_d8 = 0x18;
-            strcpy_s(auStack_d0, 0x80, &UNK_180a0db08);
+            strcpy_s(auStack_d0, 0x80, &unknown_var_2776_ptr);
             
             // 创建渲染资源
             plVar6 = (longlong *)FUN_1800b31f0(_DAT_180c86930, &ppcStack_1f8, &puStack_e8, 1);
@@ -317,9 +317,9 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             }
             
             // 处理渲染参数
-            puStack_e8 = &UNK_18098bcb0;
+            puStack_e8 = &unknown_var_720_ptr;
             plStack_198 = (longlong *)0x0;
-            puStack_190 = &UNK_180a3c3e0;
+            puStack_190 = &unknown_var_3456_ptr;
             uStack_178 = 0;
             lStack_188 = 0;
             uStack_180 = 0;
@@ -397,11 +397,11 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             (**(code **)(*plVar6 + 0x148))(plVar6, 1, 1, 1);
             
             // 处理纹理渲染
-            puStack_148 = &UNK_1809fcc58;
+            puStack_148 = &unknown_var_3480_ptr;
             pcStack_140 = (code *)auStack_130;
             auStack_130[0] = auStack_130[0] & 0xffffff00;
             uStack_138 = 0x1b;
-            uVar10 = strcpy_s(auStack_130, 0x40, &UNK_180a1adb8);
+            uVar10 = strcpy_s(auStack_130, 0x40, &unknown_var_6712_ptr);
             uStack_210 = 1;
             uStack_218 = 1;
             uStack_220 = 0;
@@ -413,7 +413,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             FUN_1800b0a10(uVar10, apcStack_1c8, *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0xa0), &puStack_148);
             
             // 创建着色器资源
-            puStack_148 = &UNK_18098bcb0;
+            puStack_148 = &unknown_var_720_ptr;
             ppcVar8 = (code **)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
             pcVar4 = apcStack_1c8[0];
             ppcVar8[1] = (code *)0x0;
@@ -472,11 +472,11 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             *(int32_t *)(ppcVar8 + 4) = *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0x30cc);
             ppcVar8[3] = param_2;
             ppcStack_200 = &pcStack_1e8;
-            pcStack_1d8 = (code *)&UNK_1802e4bc0;
-            puStack_1d0 = &UNK_1800ee4c0;
+            pcStack_1d8 = (code *)&unknown_var_4992_ptr;
+            puStack_1d0 = &unknown_var_7008_ptr;
             pcStack_1e8 = RenderingSystemResourceInitializer;
             ppcStack_1f8 = &pcStack_1e8;
-            (*(code *)&UNK_1800ee4c0)(ppcVar8, &pcStack_1e8);
+            (*(code *)&unknown_var_7008_ptr)(ppcVar8, &pcStack_1e8);
             
             if (pcStack_1d8 != (code *)0x0) {
                 (*pcStack_1d8)(&pcStack_1e8, 0, 0);
@@ -492,7 +492,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             }
             
             ppcStack_200 = (code **)&puStack_190;
-            puStack_190 = &UNK_180a3c3e0;
+            puStack_190 = &unknown_var_3456_ptr;
             
             if (lStack_188 != 0) {
                 // 处理渲染错误
@@ -501,7 +501,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             
             lStack_188 = 0;
             uStack_178 = uStack_178 & 0xffffffff00000000;
-            puStack_190 = &UNK_18098bcb0;
+            puStack_190 = &unknown_var_720_ptr;
             
             if (plStack_198 != (longlong *)0x0) {
                 (**(code **)(*plStack_198 + 0x38))();
@@ -602,7 +602,7 @@ void RenderingSystemParameterProcessor(longlong *param_1)
     // 处理渲染对象
     iVar12 = (**(code **)(*plVar4 + 0x70))(plVar4, *(uint64_t *)(lVar15 + 0x10), 0, 1);
     if (iVar12 < 0) {
-        FUN_180220810(iVar12, &UNK_180a17358);
+        FUN_180220810(iVar12, &unknown_var_1768_ptr);
     }
     
     // 处理渲染数据
@@ -778,7 +778,7 @@ void RenderingSystemDataProcessor(void)
     // 处理渲染对象
     iVar15 = (**(code **)(*plVar6 + 0x70))(plVar6, *(uint64_t *)(lVar18 + 0x10), 0, 1, 0);
     if (iVar15 < 0) {
-        FUN_180220810(iVar15, &UNK_180a17358);
+        FUN_180220810(iVar15, &unknown_var_1768_ptr);
     }
     
     // 处理渲染数据
@@ -1035,20 +1035,20 @@ static longlong _DAT_180c86968 = 0;
 static longlong _DAT_180bf00a8 = 0;
 
 // 渲染系统常量数据
-static uint64_t UNK_180a1adf0 = 0;
-static uint64_t UNK_180a1add8 = 0;
-static uint64_t UNK_180a1adb8 = 0;
-static uint64_t UNK_1809fcc58 = 0;
-static uint64_t UNK_18098bcb0 = 0;
-static uint64_t UNK_1809fcc28 = 0;
-static uint64_t UNK_180a0db08 = 0;
-static uint64_t UNK_180a3c3e0 = 0;
-static uint64_t UNK_180a17358 = 0;
-static uint64_t UNK_180c86930 = 0;
-static uint64_t UNK_180c86870 = 0;
-static uint64_t UNK_180c8ed18 = 0;
-static uint64_t UNK_1802e4bc0 = 0;
-static uint64_t UNK_1800ee4c0 = 0;
+static uint64_t unknown_var_6768_ptr = 0;
+static uint64_t unknown_var_6744_ptr = 0;
+static uint64_t unknown_var_6712_ptr = 0;
+static uint64_t unknown_var_3480_ptr = 0;
+static uint64_t unknown_var_720_ptr = 0;
+static uint64_t unknown_var_3432_ptr = 0;
+static uint64_t unknown_var_2776_ptr = 0;
+static uint64_t unknown_var_3456_ptr = 0;
+static uint64_t unknown_var_1768_ptr = 0;
+static uint64_t unknown_var_5072 = 0;
+static uint64_t unknown_var_4880 = 0;
+static uint64_t unknown_var_8840 = 0;
+static uint64_t unknown_var_4992_ptr = 0;
+static uint64_t unknown_var_7008_ptr = 0;
 
 // =============================================================================
 // 技术说明

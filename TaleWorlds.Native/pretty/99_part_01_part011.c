@@ -860,7 +860,7 @@ void SystemStateManager(longlong param_1)
         // 子线程处理
         FUN_18005e630(_DAT_180c82868);
         stackLongPtr1 = stackLongArray;
-        stackPtr1 = &UNK_1800adcc0;
+        stackPtr1 = &unknown_var_2816_ptr;
         stackCodePtr = FUN_1800adc50;
         stackLongArray[0] = param_1;
         FUN_18005c650(stackLongArray);
@@ -868,7 +868,7 @@ void SystemStateManager(longlong param_1)
     
     // 执行系统调用
     (**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x48))
-            (*(longlong **)(param_1 + 0x1d70), 0, &UNK_180a026e0, stackLongPtrArray);
+            (*(longlong **)(param_1 + 0x1d70), 0, &unknown_var_6656_ptr, stackLongPtrArray);
     
     if (stackLongPtrArray[0] != (longlong *)0x0) {
         (**(code **)(*stackLongPtrArray[0] + 0x10))();
@@ -890,12 +890,12 @@ void SystemStateManager(longlong param_1)
     if (tempInt2 < 0) {
         if ((tempInt2 + 0x7785fffbU & 0xfffffffd) == 0) {
             tempUint2 = (**(code **)(**(longlong **)(param_1 + 0x1d78) + 0x138))();
-            FUN_180220810(tempUint2, &UNK_180a025d0);
+            FUN_180220810(tempUint2, &unknown_var_6384_ptr);
         }
     } else {
         // 成功处理逻辑
         (**(code **)(**(longlong **)(param_1 + 0x1d70) + 0x48))
-                  (*(longlong **)(param_1 + 0x1d70), 0, &UNK_180a026e0, stackLongPtrArray);
+                  (*(longlong **)(param_1 + 0x1d70), 0, &unknown_var_6656_ptr, stackLongPtrArray);
         stackUlong1 = 0;
         
         (**(code **)(**(longlong **)(param_1 + 0x1d78) + 0x48))
@@ -920,16 +920,16 @@ void SystemStateManager(longlong param_1)
         
         // 设置资源属性
         tempLongPtr1 = (longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x10);
-        (**(code **)(*tempLongPtr1 + 0x10))(tempLongPtr1, &UNK_180a01928);
+        (**(code **)(*tempLongPtr1 + 0x10))(tempLongPtr1, &unknown_var_3144_ptr);
         *(longlong **)(*(longlong *)(param_1 + 0x121e0) + 0x170) = stackLongPtrArray[0];
         
         // 初始化资源数据
         stackPtrPtr1 = &stackPtr4;
-        stackPtr4 = &UNK_1809fcc28;
+        stackPtr4 = &unknown_var_3432_ptr;
         stackPtr5 = stackBuffer3;
         stackBuffer3[0] = 0;
         stackUint4 = 0x15;
-        strcpy_s(stackBuffer3, 0x80, &UNK_180a01928);
+        strcpy_s(stackBuffer3, 0x80, &unknown_var_3144_ptr);
         
         stackPtrPtr2 = &stackPtr4;
         *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x168) = *(longlong *)(param_1 + 0x121e0);
@@ -987,14 +987,14 @@ void SystemStateManager(longlong param_1)
         
         // 更新资源信息
         stackPtrPtr2 = &stackPtr2;
-        stackPtr2 = &UNK_1809fcc28;
+        stackPtr2 = &unknown_var_3432_ptr;
         stackPtr3 = stackBuffer2;
         stackBuffer2[0] = 0;
         stackUint3 = 0x15;
-        strcpy_s(stackBuffer2, 0x80, &UNK_180a01928);
+        strcpy_s(stackBuffer2, 0x80, &unknown_var_3144_ptr);
         
         stackPtrPtr1 = &stackPtr2;
-        stackPtr2 = &UNK_18098bcb0;
+        stackPtr2 = &unknown_var_720_ptr;
         tempLong2 = *(longlong *)(param_1 + 0x121e0);
         tempLongPtr1 = *(longlong **)(tempLong2 + 0x1d8);
         
@@ -1218,7 +1218,7 @@ void AlgorithmExecutionController(longlong param_1, int8_t *param_2)
                     (*(longlong **)(param_1 + 0x1d78), &stackUint1, stackBuffer2);
     
     if (tempInt1 < 0) {
-        FUN_180220810(tempInt1, &UNK_180a02440);
+        FUN_180220810(tempInt1, &unknown_var_5984_ptr);
     }
     
     // 清理栈并返回

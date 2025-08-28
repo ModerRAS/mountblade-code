@@ -329,7 +329,7 @@ uint64_t rendering_system_parameter_query_handler(longlong param_1, uint64_t *pa
       iVar6 = FUN_180697e60(param_1 + 0xb00, *(int *)(param_1 + 0x760) + RENDERING_SYSTEM_MEMORY_VALUE_15 & RENDERING_SYSTEM_MEMORY_VALUE_240,
                             *(int *)(param_1 + 0x764) + RENDERING_SYSTEM_MEMORY_VALUE_15 & RENDERING_SYSTEM_MEMORY_VALUE_240, RENDERING_SYSTEM_MAX_VALUE_32);
       if (iVar6 != 0) {
-        FUN_18066d370(param_1, RENDERING_SYSTEM_DIVISION_2, &UNK_180948bc0);
+        FUN_18066d370(param_1, RENDERING_SYSTEM_DIVISION_2, &unknown_var_6048_ptr);
       }
       *(int32_t *)(param_1 + 0xb90) = 1;
                     // WARNING: Subroutine does not return
@@ -464,7 +464,7 @@ uint64_t rendering_system_state_manager(longlong param_1)
     iVar2 = FUN_180697e60(param_1 + 0xb00, *(int *)(param_1 + 0x760) + RENDERING_SYSTEM_MEMORY_VALUE_15 & RENDERING_SYSTEM_MEMORY_VALUE_240,
                           *(int *)(param_1 + 0x764) + RENDERING_SYSTEM_MEMORY_VALUE_15 & RENDERING_SYSTEM_MEMORY_VALUE_240, RENDERING_SYSTEM_MAX_VALUE_32);
     if (iVar2 != 0) {
-      FUN_18066d370(extraout_XMM0_Da, RENDERING_SYSTEM_DIVISION_2, &UNK_180948bc0);
+      FUN_18066d370(extraout_XMM0_Da, RENDERING_SYSTEM_DIVISION_2, &unknown_var_6048_ptr);
     }
     *(int32_t *)(unaff_RSI + 0xb90) = 1;
                     // WARNING: Subroutine does not return

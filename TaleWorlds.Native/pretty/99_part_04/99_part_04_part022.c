@@ -323,11 +323,11 @@ void AdvancedDataStructureProcessor(uint64_t *param_1, longlong param_2)
     }
     
     // 系统配置处理
-    FUN_18025a7b0(&UNK_18098dc90, param_2, param_1 + 0xc);
+    FUN_18025a7b0(&unknown_var_8880_ptr, param_2, param_1 + 0xc);
     
     // 字符串处理和表查找
     uVar15 = 0;
-    puStack_468 = &UNK_18098bb30;
+    puStack_468 = &unknown_var_336_ptr;
     pbStack_460 = abStack_450;
     iStack_458 = 0;
     abStack_450[0] = 0;
@@ -371,7 +371,7 @@ LAB_18026c58e:
     } while ((longlong)plVar18 < 0x180bf8ed0);
     
     // 继续字符串处理
-    puStack_468 = &UNK_18098bb30;
+    puStack_468 = &unknown_var_336_ptr;
     pbStack_460 = abStack_450;
     iStack_458 = 0;
     abStack_450[0] = 0;
@@ -414,7 +414,7 @@ LAB_18026c687:
     } while ((longlong)plVar18 < 0x180bf8f00);
     
     // 数据字段处理
-    puStack_468 = &UNK_18098bcb0;
+    puStack_468 = &unknown_var_720_ptr;
     *(int32_t *)((longlong)param_1 + 0x6c) = **(int32_t **)(param_2 + 8);
     lVar14 = *(longlong *)(param_2 + 8);
     *(int32_t *)((longlong)param_1 + 0x74) = *(int32_t *)(lVar14 + 8);
@@ -523,7 +523,7 @@ LAB_18026c687:
     *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 0x10;
     
     // 字符串处理和表查找（第三个循环）
-    puStack_468 = &UNK_18098bb30;
+    puStack_468 = &unknown_var_336_ptr;
     pbStack_460 = abStack_450;
     iStack_458 = 0;
     abStack_450[0] = 0;
@@ -566,7 +566,7 @@ LAB_18026ca07:
     } while ((longlong)plVar18 < 0x180bf8fa0);
     
     // 继续字符串处理
-    puStack_468 = &UNK_18098bb30;
+    puStack_468 = &unknown_var_336_ptr;
     pbStack_460 = abStack_450;
     iStack_458 = 0;
     abStack_450[0] = 0;
@@ -611,7 +611,7 @@ LAB_18026cafa:
     
     // 条件性处理逻辑
     if (1 < uVar16) {
-        puStack_468 = &UNK_18098bb30;
+        puStack_468 = &unknown_var_336_ptr;
         pbStack_460 = abStack_450;
         iStack_458 = 0;
         abStack_450[0] = 0;
@@ -655,7 +655,7 @@ LAB_18026cbfa:
     }
     
     // 继续数据处理
-    puStack_468 = &UNK_18098bcb0;
+    puStack_468 = &unknown_var_720_ptr;
     lVar14 = *(longlong *)(param_2 + 8);
     *(int32_t *)((longlong)param_1 + 0x15c) = *(int32_t *)(lVar14 + 8);
     *(int32_t *)(param_1 + 0x2b) = *(int32_t *)(lVar14 + 0xc);
@@ -740,7 +740,7 @@ LAB_18026cbfa:
     *(longlong *)(param_2 + 8) = lVar14 + 0x24;
     
     // 字符串处理和表查找（最终循环）
-    puStack_468 = &UNK_18098bb30;
+    puStack_468 = &unknown_var_336_ptr;
     pbStack_460 = abStack_450;
     iStack_458 = 0;
     abStack_450[0] = 0;
@@ -783,7 +783,7 @@ LAB_18026cf9a:
     } while ((longlong)plVar18 < 0x180bf8f70);
     
     // 最终字符串处理
-    puStack_468 = &UNK_18098bb30;
+    puStack_468 = &unknown_var_336_ptr;
     pbStack_460 = abStack_450;
     iStack_458 = 0;
     abStack_450[0] = 0;
@@ -827,7 +827,7 @@ LAB_18026d094:
         if (0x180bf8fcf < (longlong)plVar18) {
 LAB_18026d0a6:
             // 高级配置处理
-            puStack_468 = &UNK_18098bcb0;
+            puStack_468 = &unknown_var_720_ptr;
             FUN_18026fc50(param_1 + 0x90, param_2);
             puVar10 = *(int32_t **)(param_2 + 8);
             *(int32_t *)(param_1 + 0xfc) = *puVar10;

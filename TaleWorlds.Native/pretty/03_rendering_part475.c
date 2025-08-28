@@ -82,21 +82,21 @@ LAB_1805205ee:
     if (puStack_c0 != (void *)0x0) {
       puVar9 = puStack_c0;
     }
-    FUN_180627020(&UNK_180a0af90,puVar9);
+    FUN_180627020(&unknown_var_1648_ptr,puVar9);
     uVar11 = 0xffffffff;
   }
   else {
     uVar11 = (int32_t)(lVar6 - *_DAT_180c8aa00 >> 5);
   }
   *(int32_t *)(param_1 + 0x740) = uVar11;
-  puStack_c8 = &UNK_180a3c3e0;
+  puStack_c8 = &unknown_var_3456_ptr;
   if (puStack_c0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_c0 = (void *)0x0;
   uStack_b0 = 0;
-  puStack_c8 = &UNK_18098bcb0;
+  puStack_c8 = &unknown_var_720_ptr;
   if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
     (**(code **)(_DAT_180c8f008 + 0x18))(iVar2);
   }

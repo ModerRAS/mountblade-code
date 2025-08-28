@@ -12,7 +12,7 @@ void FUN_180883a30(uint64_t param_1)
   if (iVar1 == 0) {
     FUN_180873460(param_1);
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&UNK_180985b90,0x43b,1);
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&unknown_var_5856_ptr,0x43b,1);
   }
   return;
 }
