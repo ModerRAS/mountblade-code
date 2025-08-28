@@ -1,9 +1,10 @@
+#include "FUN_1808995c0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 05_networking_part098.c - 16 个函数
 
-// 函数: void FUN_1808995c0(int64_t *param_1,int32_t *param_2)
-void FUN_1808995c0(int64_t *param_1,int32_t *param_2)
+// 函数: void SystemDataManager(int64_t *param_1,int32_t *param_2)
+void SystemDataManager(int64_t *param_1,int32_t *param_2)
 
 {
   int iVar1;

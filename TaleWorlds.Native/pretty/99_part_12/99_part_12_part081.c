@@ -1,3 +1,4 @@
+#include "FUN_1808de000_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 //==============================================================================
@@ -284,7 +285,7 @@ void FUN_1808a0f37(void)
   
 LAB_1808a1016:
   // 步骤6：最终系统调用和清理
-  FUN_1808de000();
+  SystemThreadManager();
 }
 
 //------------------------------------------------------------------------------
@@ -431,7 +432,7 @@ uint64_t FUN_1808a1090(int64_t param_1, int64_t *param_2)
       // 步骤5：最终处理和系统调用
       if (data_size == 0) {
         // WARNING: Subroutine does not return
-        FUN_1808de000(param_2, data_buffer);
+        SystemThreadManager(param_2, data_buffer);
       }
       data_handle = (uint64_t)data_size;
     }
@@ -517,7 +518,7 @@ uint64_t FUN_1808a10c8(void)
     // 步骤5：最终处理和系统调用
     if (param_size == 0) {
       // WARNING: Subroutine does not return
-      FUN_1808de000();
+      SystemThreadManager();
     }
     operation_result = (uint64_t)param_size;
   }
@@ -589,7 +590,7 @@ uint64_t FUN_1808a110e(void)
   }
   
   // WARNING: Subroutine does not return
-  FUN_1808de000();
+  SystemThreadManager();
 }
 
 //------------------------------------------------------------------------------
@@ -730,7 +731,7 @@ uint64_t FUN_1808a11c0(uint64_t *param_1, int64_t *param_2)
             if ((object_handle < *param_1) || 
                 (*param_1 + (int64_t)(int)param_1[1] * DATA_HEADER_SIZE <= object_handle)) {
               // WARNING: Subroutine does not return
-              FUN_1808de000(param_2, data_buffer);
+              SystemThreadManager(param_2, data_buffer);
             }
             
             // 步骤9.2：对象状态验证
@@ -821,7 +822,7 @@ void FUN_1808a12c6(int32_t param_1)
       if ((object_handle < *unaff_R14) || 
           (*unaff_R14 + (int64_t)(int)unaff_R14[1] * DATA_HEADER_SIZE <= object_handle)) {
         // WARNING: Subroutine does not return
-        FUN_1808de000(param_1, &stack0x00000038);
+        SystemThreadManager(param_1, &stack0x00000038);
       }
       
       // 步骤3：系统状态验证
@@ -991,7 +992,7 @@ uint64_t FUN_1808a13f0(int64_t param_1, uint64_t *param_2)
            (operation_result = FUN_1808a7c90(param_2, param_1 + 0x40, 0x3d), 
             (int)operation_result == SYSTEM_SUCCESS_CODE)) {
           // WARNING: Subroutine does not return
-          FUN_1808de000(param_2, data_buffer1);
+          SystemThreadManager(param_2, data_buffer1);
         }
       }
     }
@@ -1054,7 +1055,7 @@ uint64_t FUN_1808a1530(int64_t param_1, uint64_t *param_2)
       operation_result = FUN_1808a27f0(*param_2, param_1 + 0xd8);
       if ((int)operation_result == SYSTEM_SUCCESS_CODE) {
         // WARNING: Subroutine does not return
-        FUN_1808de000(param_2, data_buffer1);
+        SystemThreadManager(param_2, data_buffer1);
       }
     }
   }
@@ -1225,14 +1226,14 @@ uint64_t FUN_1808a1610(int64_t param_1, int64_t *param_2)
           
 LAB_1808a1807:
           // WARNING: Subroutine does not return
-          FUN_1808de000(param_2, data_buffer1);
+          SystemThreadManager(param_2, data_buffer1);
         }
       }
     }
   }
   
   // WARNING: Subroutine does not return
-  FUN_1808de000(param_2, data_buffer2);
+  SystemThreadManager(param_2, data_buffer2);
 }
 
 //------------------------------------------------------------------------------
@@ -1387,14 +1388,14 @@ uint64_t FUN_1808a164e(uint64_t param_1, uint64_t *param_2)
           
 LAB_1808a1807:
           // WARNING: Subroutine does not return
-          FUN_1808de000();
+          SystemThreadManager();
         }
       }
     }
   }
   
   // WARNING: Subroutine does not return
-  FUN_1808de000();
+  SystemThreadManager();
 }
 
 //------------------------------------------------------------------------------
@@ -1634,7 +1635,7 @@ uint64_t FUN_1808a1910(int64_t param_1, int64_t *param_2)
               (operation_result = FUN_1808992f0(param_2, param_1 + 0x108), 
                (int)operation_result == SYSTEM_SUCCESS_CODE)))) {
             // WARNING: Subroutine does not return
-            FUN_1808de000(param_2, data_buffer1);
+            SystemThreadManager(param_2, data_buffer1);
           }
         }
       }
@@ -1717,7 +1718,7 @@ void FUN_1808a19dc(void)
           return;
         }
         // WARNING: Subroutine does not return
-        FUN_1808de000();
+        SystemThreadManager();
       }
     }
   }

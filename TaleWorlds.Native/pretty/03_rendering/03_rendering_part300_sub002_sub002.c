@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingGeometryProcessor */
+#define RenderingGeometryProcessor RenderingGeometryProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -284,7 +288,7 @@ int8_t *rendering_system_data_buffer_processor(int64_t param_1, int *param_2, ui
         first_byte = 0;
     }
     else {
-        FUN_18041ee20(param_1);
+        RenderingGeometryProcessor0(param_1);
         buffer_end = *(byte **)(param_1 + 0xc0);
         first_byte = **(byte **)(param_1 + 0xb8);
         buffer_ptr = *(byte **)(param_1 + 0xb8) + 1;
@@ -301,7 +305,7 @@ int8_t *rendering_system_data_buffer_processor(int64_t param_1, int *param_2, ui
         temp_stack_byte = 0;
     }
     else {
-        FUN_18041ee20(param_1);
+        RenderingGeometryProcessor0(param_1);
         buffer_end = *(byte **)(param_1 + 0xc0);
         temp_stack_byte = **(byte **)(param_1 + 0xb8);
         buffer_ptr = *(byte **)(param_1 + 0xb8) + 1;
@@ -317,7 +321,7 @@ int8_t *rendering_system_data_buffer_processor(int64_t param_1, int *param_2, ui
         control_byte = 0;
     }
     else {
-        FUN_18041ee20(param_1);
+        RenderingGeometryProcessor0(param_1);
         control_byte = **(byte **)(param_1 + 0xb8);
         *(byte **)(param_1 + 0xb8) = *(byte **)(param_1 + 0xb8) + 1;
     }
@@ -336,7 +340,7 @@ int8_t *rendering_system_data_buffer_processor(int64_t param_1, int *param_2, ui
         data_size = 0;
     }
     else {
-        FUN_18041ee20(param_1);
+        RenderingGeometryProcessor0(param_1);
         data_size = (uint)**(byte **)(param_1 + 0xb8);
         *(byte **)(param_1 + 0xb8) = *(byte **)(param_1 + 0xb8) + 1;
     }
@@ -359,7 +363,7 @@ int8_t *rendering_system_data_buffer_processor(int64_t param_1, int *param_2, ui
         temp_stack_offset = 0;
     }
     else {
-        FUN_18041ee20(param_1);
+        RenderingGeometryProcessor0(param_1);
         buffer_ptr = *(byte **)(param_1 + 0xc0);
         temp_stack_offset = (uint)**(byte **)(param_1 + 0xb8);
         buffer_end = *(byte **)(param_1 + 0xb8) + 1;
@@ -375,7 +379,7 @@ int8_t *rendering_system_data_buffer_processor(int64_t param_1, int *param_2, ui
         control_byte = 0;
     }
     else {
-        FUN_18041ee20(param_1);
+        RenderingGeometryProcessor0(param_1);
         control_byte = **(byte **)(param_1 + 0xb8);
         *(byte **)(param_1 + 0xb8) = *(byte **)(param_1 + 0xb8) + 1;
     }
@@ -545,7 +549,7 @@ LABEL_COMPRESSION_DETECTED:
                                     second_byte = 0;
                                 }
                                 else {
-                                    FUN_18041ee20(param_1);
+                                    RenderingGeometryProcessor0(param_1);
                                     second_byte = **(int8_t **)(param_1 + 0xb8);
                                     *(int8_t **)(param_1 + 0xb8) = *(int8_t **)(param_1 + 0xb8) + 1;
                                 }
@@ -568,7 +572,7 @@ LABEL_COMPRESSION_DETECTED:
                             compression_marker = 0;
                         }
                         else {
-                            FUN_18041ee20(param_1);
+                            RenderingGeometryProcessor0(param_1);
                             first_byte = **(byte **)(param_1 + 0xb8);
                             *(byte **)(param_1 + 0xb8) = *(byte **)(param_1 + 0xb8) + 1;
                             compression_marker = (uint)first_byte;
@@ -600,7 +604,7 @@ LABEL_COMPRESSION_DETECTED:
                         data_size = 0;
                     }
                     else {
-                        FUN_18041ee20(param_1);
+                        RenderingGeometryProcessor0(param_1);
                         data_size = (uint)**(byte **)(param_1 + 0xb8);
                         *(byte **)(param_1 + 0xb8) = *(byte **)(param_1 + 0xb8) + 1;
                     }
@@ -794,7 +798,7 @@ uint64_t rendering_system_pixel_reader(int64_t param_1, byte *param_2, int param
                         pixel_value = 0;
                     }
                     else {
-                        FUN_18041ee20(param_1);
+                        RenderingGeometryProcessor0(param_1);
                         pixel_value = **(byte **)(param_1 + 0xb8);
                         *(byte **)(param_1 + 0xb8) = *(byte **)(param_1 + 0xb8) + 1;
                     }
@@ -966,7 +970,7 @@ rendering_system_texture_processor(int64_t param_1, int *param_2, int *param_3, 
                                                 pixel_byte = 0;
                                             }
                                             else {
-                                                FUN_18041ee20(param_1);
+                                                RenderingGeometryProcessor0(param_1);
                                                 pixel_byte = *(int8_t *)*stream_position;
                                                 *stream_position = (int64_t)((int8_t *)*stream_position + 1);
                                             }
@@ -1202,7 +1206,7 @@ uint64_t rendering_system_string_matcher(int64_t param_1, int64_t param_2)
             current_char = STRING_TERMINATOR;
         }
         else {
-            FUN_18041ee20(param_1);
+            RenderingGeometryProcessor0(param_1);
             current_char = **(char **)(param_1 + 0xb8);
             *(char **)(param_1 + 0xb8) = *(char **)(param_1 + 0xb8) + 1;
         }
@@ -1271,7 +1275,7 @@ int64_t rendering_system_bit_flag_processor(int64_t param_1, uint param_2, int64
                 data_byte = 0;
             }
             else {
-                FUN_18041ee20(param_1);
+                RenderingGeometryProcessor0(param_1);
                 data_byte = **(int8_t **)(param_1 + 0xb8);
                 *(int8_t **)(param_1 + 0xb8) = *(int8_t **)(param_1 + 0xb8) + 1;
             }

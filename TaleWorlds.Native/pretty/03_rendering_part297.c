@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingGeometryProcessor */
+#define RenderingGeometryProcessor RenderingGeometryProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -354,7 +358,7 @@ int32_t FUN_1804276f0(int *param_1,int *param_2)
     if (param_1[0xc] == 0) {
       return 0;
     }
-    FUN_18041ee20();
+    RenderingGeometryProcessor0();
     pcVar4 = *(char **)(param_1 + 0x2e);
   }
   cVar1 = *pcVar4;
@@ -365,7 +369,7 @@ int32_t FUN_1804276f0(int *param_1,int *param_2)
       if (param_1[0xc] == 0) {
         return 0;
       }
-      FUN_18041ee20(param_1);
+      RenderingGeometryProcessor0(param_1);
       pcVar4 = *(char **)(param_1 + 0x2e);
     }
     cVar1 = *pcVar4;
