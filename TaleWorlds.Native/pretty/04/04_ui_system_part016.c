@@ -1230,10 +1230,10 @@ update_complete:
 
 // 函数别名定义 - 保持与原函数名的兼容性
 void FUN_18065bba0(longlong param_1, longlong param_2, float *param_3, char param_4) 
-    __attribute__((alias("ui_system_interpolation_processor_main")));
+    __attribute__((alias("ui_system_data_initializer")));
 
 void FUN_18065bbcf(longlong param_1, longlong param_2, float *param_3) 
-    __attribute__((alias("ui_system_interpolation_processor_optimized")));
+    __attribute__((alias("ui_system_interpolation_processor")));
 
 void FUN_18065bd4f(void) __attribute__((alias("ui_system_null_operation_handler")));
 
@@ -1261,18 +1261,24 @@ void FUN_18065d0a0(longlong param_1, float param_2, undefined8 param_3, float pa
     __attribute__((alias("ui_system_animation_processor")));
 
 // 函数功能说明:
-// 1. ui_system_interpolation_processor_main - UI系统插值处理器主函数，处理复杂的插值计算和状态管理
+// 1. ui_system_data_initializer - UI系统数据初始化器，初始化UI系统数据结构
+//    - 根据参数设置初始化UI系统的数据结构
+//    - 处理数据块和向量的初始化
 //    - 批量数据处理和优化
 //    - 阈值检查和状态验证
 //    - 平滑曲线计算
 //    - 多通道并行处理
 //    - 输出结果生成
 
-// 2. ui_system_interpolation_processor_optimized - UI系统插值处理器优化版，性能改进版本
+// 2. ui_system_interpolation_processor - UI系统插值处理器，处理UI系统插值计算
 //    - 寄存器优化
 //    - 批量处理优化
 //    - 内存访问优化
 //    - 计算流程优化
+//    - 四通道并行处理
+//    - 剩余数据处理
+//    - 平滑曲线计算
+//    - 输出结果生成
 
 // 3. ui_system_null_operation_handler - UI系统空操作处理器，用于占位或未来扩展
 //    - 空操作实现
