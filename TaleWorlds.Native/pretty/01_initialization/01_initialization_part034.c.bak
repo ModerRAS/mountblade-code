@@ -562,7 +562,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   }
   
   // 添加模块名称到日志
-  CoreMemoryPoolValidator(&puStack_1c0, puVar16);
+  FUN_180627910(&puStack_1c0, puVar16);
   
   // 检查日志系统状态并获取版本信息
   if ((system_cache_buffer == (int64_t *)0x0) ||
@@ -577,7 +577,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
       puVar16 = *(void **)(lVar9 + 8);
     }
   }
-  CoreMemoryPoolValidator(&puStack_1e0, puVar16);
+  FUN_180627910(&puStack_1e0, puVar16);
   
   // 初始化路径缓冲区
   puStack_c8 = &global_var_672_ptr;
@@ -763,7 +763,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
         puVar16 = *(void **)(lVar9 + 8);
       }
     }
-    CoreMemoryPoolValidator(&puStack_240, puVar16);
+    FUN_180627910(&puStack_240, puVar16);
     
     // 初始化错误处理容器
     puStack_260 = (uint64_t *)0x0;
@@ -929,7 +929,7 @@ LAB_180065a3e:
     if (*(void **)(lVar9 + 8) != (void *)0x0) {
       puVar16 = *(void **)(lVar9 + 8);
     }
-    CoreMemoryPoolValidator(&puStack_1a0, puVar16);
+    FUN_180627910(&puStack_1a0, puVar16);
     puVar16 = &system_buffer_ptr;
     if (puStack_198 != (void *)0x0) {
       puVar16 = puStack_198;
@@ -1156,7 +1156,7 @@ void ProcessStartupParametersAndInitialize(uint64_t param_1, int64_t param_2, ui
   else {
     // 使用指定参数
     pcVar1 = *(code **)(*plStack_b0 + 0x10);
-    uVar3 = CoreMemoryPoolValidator(&puStack_88, param_2);
+    uVar3 = FUN_180627910(&puStack_88, param_2);
     (*pcVar1)(plStack_b0, param_1, uVar3);
     puStack_88 = &global_var_3456_ptr;
     if (lStack_80 != 0) {

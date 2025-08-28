@@ -186,7 +186,7 @@ LAB_180158aea:
       }
       else {
         if (uVar4 <= (uint)uStack_48) goto LAB_180158c0c;
-        puStack_58 = (int32_t *)DataValidator(system_memory_pool_ptr,puStack_58,uVar4,0x10,0x13);
+        puStack_58 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_58,uVar4,0x10,0x13);
       }
       uStack_48._0_4_ = CoreEngineSystemCleanup(puStack_58);
     }

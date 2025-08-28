@@ -198,7 +198,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
     // 初始化栈变量
     stack0xfffffffffffffe7c = 0;
     // 调用角度处理函数（不返回）
-    AdvancedSystemController(rotationAngle1 * 0.5);
+    FUN_1808fd400(rotationAngle1 * 0.5);
   }
   
   // ========================= 四元数旋转计算 =========================
@@ -221,7 +221,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
     // 计算反正弦值并处理角度
     interpolationFactor1 = (float)asinf(interpolationFactor1 * 0.5 * (3.0 - rotationComponent19 * interpolationFactor1 * interpolationFactor1) * rotationComponent19);
     // 调用角度处理函数（不返回）
-    AdvancedSystemController(interpolationFactor1 * 0.5);
+    FUN_1808fd400(interpolationFactor1 * 0.5);
   }
   fVar57 = *(float *)(param_1 + 8);
   if (1.0000001e-06 < *(float *)(param_1 + 0xc) * *(float *)(param_1 + 0xc) + fVar57 * fVar57) {
@@ -237,7 +237,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
     fVar57 = auVar20._0_4_;
     fVar57 = (float)asinf(fVar57 * 0.5 * (3.0 - fVar55 * fVar57 * fVar57) * fVar55);
                     // WARNING: Subroutine does not return
-    AdvancedSystemController(fVar57 * 0.5);
+    FUN_1808fd400(fVar57 * 0.5);
   }
   fStack_168 = *(float *)(param_1 + 0x10);
   if (1.0000001e-06 <
@@ -257,7 +257,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
     fStack_168 = fStack_168 * fVar57;
     fStack_164 = (float)asinf(fVar57 * fVar55);
                     // WARNING: Subroutine does not return
-    AdvancedSystemController(fStack_164 * 0.5);
+    FUN_1808fd400(fStack_164 * 0.5);
   }
   if ((*param_19 == 0.0) && (param_19[1] == 0.0)) {
     pfVar13 = (float *)FUN_18022a890(param_2,param_17,uVar2);
@@ -1058,7 +1058,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
   }
   fVar57 = (float)asinf(fVar55);
                     // WARNING: Subroutine does not return
-  AdvancedSystemController(fVar57 * 0.5);
+  FUN_1808fd400(fVar57 * 0.5);
 }
 
 

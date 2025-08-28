@@ -311,7 +311,7 @@ LAB_18089ed1b:
   }
   if ((int)uVar4 == 0) {
                     // WARNING: Subroutine does not return
-    AdvancedSystemManager(param_2,auStack_78);
+    FUN_1808ddf80(param_2,auStack_78);
   }
   return uVar4;
 }
@@ -619,7 +619,7 @@ LAB_18089ed1b:
   }
   if ((int)uVar4 == 0) {
                     // WARNING: Subroutine does not return
-    AdvancedSystemManager();
+    FUN_1808ddf80();
   }
   return uVar4;
 }
@@ -914,7 +914,7 @@ LAB_18089ed1b:
     return uVar5;
   }
                     // WARNING: Subroutine does not return
-  AdvancedSystemManager();
+  FUN_1808ddf80();
 }
 
 
@@ -966,7 +966,7 @@ uint64_t FUN_18089ede0(int64_t param_1,uint64_t *param_2)
     }
     if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
-      AdvancedSystemManager(param_2,auStack_48);
+      FUN_1808ddf80(param_2,auStack_48);
     }
   }
   return uVar2;
@@ -999,7 +999,7 @@ uint64_t FUN_18089ee64(void)
   }
   if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
-    AdvancedSystemManager();
+    FUN_1808ddf80();
   }
   return uVar2;
 }
@@ -1030,7 +1030,7 @@ void FUN_18089ee87(void)
   }
   if (iVar2 == 0) {
                     // WARNING: Subroutine does not return
-    AdvancedSystemManager();
+    FUN_1808ddf80();
   }
   return;
 }
@@ -1044,7 +1044,7 @@ void FUN_18089eef2(void)
 
 {
                     // WARNING: Subroutine does not return
-  AdvancedSystemManager();
+  FUN_1808ddf80();
 }
 
 

@@ -152,7 +152,7 @@ typedef ui_system_error_t (*ui_system_transform_func_t)(ui_system_transform_para
 #define ui_system_empty_function_1                       FUN_180749e0b
 #define ui_system_empty_function_2                       FUN_180749e21
 #define ui_system_data_validator                         FUN_180749e60
-#define ui_system_event_processor                         DataTransformer
+#define ui_system_event_processor                         FUN_180749ef0
 #define ui_system_vector_normalizer                       FUN_180749f70
 #define ui_system_data_cleaner                            FUN_18074a310
 #define ui_system_batch_processor                         FUN_18074a350

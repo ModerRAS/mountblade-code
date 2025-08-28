@@ -965,7 +965,7 @@ bool check_system_status(uint64_t param_1, uint64_t *param_2)
 // 函数映射说明：
 // ===================
 // FUN_1800634b0 -> initialize_string_buffer - 初始化字符串缓冲区
-// CoreMemoryPoolValidator -> create_string_handler - 创建字符串处理器
+// FUN_180627910 -> create_string_handler - 创建字符串处理器
 // CoreEngineMemoryPoolAllocator -> allocate_string_memory - 分配字符串内存
 // CoreEngineSystemCleanup -> get_string_length - 获取字符串长度
 // DataValidator -> reallocate_string_memory - 重新分配字符串内存
@@ -1076,7 +1076,7 @@ void log_system_error(uint64_t param_1, uint64_t param_2)
 // 函数映射说明：
 // ===================
 // FUN_1800634b0 -> initialize_string_buffer - 初始化字符串缓冲区
-// CoreMemoryPoolValidator -> create_string_handler - 创建字符串处理器
+// FUN_180627910 -> create_string_handler - 创建字符串处理器
 // CoreEngineMemoryPoolAllocator -> allocate_string_memory - 分配字符串内存
 // CoreEngineSystemCleanup -> get_string_length - 获取字符串长度
 // DataValidator -> reallocate_string_memory - 重新分配字符串内存

@@ -187,7 +187,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_control = stack_control & 0xffffffff00000000;
   stack_string_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_buffer);
+  FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
 }
 
 
@@ -577,7 +577,7 @@ LAB_shader_found:
     } while (file_count < (int)total_files);
   }
                     // WARNING: Subroutine does not return
-  SystemSecurityChecker(stack_guard ^ (uint64_t)shader_buffer);
+  FUN_1808fc050(stack_guard ^ (uint64_t)shader_buffer);
 }
 
 

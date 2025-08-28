@@ -778,7 +778,7 @@ void ui_system_advanced_matrix_transform_processor(int64_t context_ptr,int64_t t
         }
         FUN_18022a890(lVar12,*puVar22,lStack_188,fVar23);
                     // WARNING: Subroutine does not return
-        AdvancedSystemController(fVar24 * fVar27 * fStack_168 * 0.5);
+        FUN_1808fd400(fVar24 * fVar27 * fStack_168 * 0.5);
       }
     }
     pfVar21 = pfVar21 + 6;

@@ -76,7 +76,7 @@ void process_error_log_and_show_ui(uint64_t context_ptr, int64_t error_msg_ptr, 
   uStack_98 = param_3;
   lStack_88 = param_4;
   FUN_1800634b0(&uStack_58,0x10,&unknown_var_4576_ptr,param_3);
-  lVar9 = CoreMemoryPoolValidator(&puStack_d8,param_4);
+  lVar9 = FUN_180627910(&puStack_d8,param_4);
   puStack_118 = &system_data_buffer_ptr;
   uStack_100 = 0;
   puStack_110 = (int8_t *)0x0;

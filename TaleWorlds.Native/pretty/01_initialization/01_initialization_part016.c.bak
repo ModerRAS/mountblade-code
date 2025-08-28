@@ -712,7 +712,7 @@ void cleanup_path_string(void)
   if (file_path != (void *)0x0) {
     temp_ptr = file_path;
   }
-  CoreMemoryPoolValidator(path_ptr + 1, temp_ptr);
+  FUN_180627910(path_ptr + 1, temp_ptr);
   path_str = (char *)path_ptr[2];
   if (*path_str != '\0') {
     path_len = 0;

@@ -29,7 +29,7 @@
 #define WARNING_TEMPLATE_STRING unknown_var_1664
 
 // 函数别名定义
-#define allocate_string_memory  CoreMemoryPoolValidator
+#define allocate_string_memory  FUN_180627910
 #define allocate_memory_buffer  CoreEngineDataBufferProcessor
 #define copy_string_data        memcpy
 #define release_memory_buffer   CoreEngineMemoryPoolCleaner

@@ -188,7 +188,7 @@ void ui_advanced_animation_transform(float param_1, float param_2, int64_t param
     
     if (register_r14[8] != register_xmm6) {
         stack_return_address = 0x1806598e8;
-        AdvancedSystemController(-register_r14[8]);
+        FUN_1808fd400(-register_r14[8]);
     }
     
     // 进行角度归一化和范围限制

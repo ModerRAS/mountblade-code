@@ -431,7 +431,7 @@ void ui_system_advanced_transform_processor(int64_t transform_context, int64_t r
                          temp_float_1 * transform_x + matrix_z * matrix_x * transform_y);
   
   // 返回最终结果
-  AdvancedSystemController(temp_float_1 * UI_HALF_FLOAT);
+  FUN_1808fd400(temp_float_1 * UI_HALF_FLOAT);
 }
 
 // UI系统数据同步器 - 同步UI系统中的数据和状态

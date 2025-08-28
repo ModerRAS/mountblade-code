@@ -286,7 +286,7 @@ uint64_t ui_add_event_listener(int64_t param_1, uint64_t param_2, int32_t param_
   if (*(void **)(lVar1 + 8) != (void *)0x0) {
     puVar2 = *(void **)(lVar1 + 8);
   }
-  CoreMemoryPoolValidator(param_2, puVar2);
+  FUN_180627910(param_2, puVar2);
   return param_2;
 }
 
@@ -321,7 +321,7 @@ uint64_t ui_process_event_data(int64_t param_1, int64_t param_2, int64_t param_3
   if (*(void **)(lVar1 + 8) != (void *)0x0) {
     puVar3 = *(void **)(lVar1 + 8);
   }
-  CoreMemoryPoolValidator(&puStack_30, puVar3);
+  FUN_180627910(&puStack_30, puVar3);
   if (uStack_20 == 7) {
     lVar1 = 0;
     do {
@@ -707,7 +707,7 @@ ui_format_component_string(int64_t *param_1, uint64_t *param_2, uint64_t param_3
   int64_t lVar4;
   
   lVar6 = 0;
-  CoreMemoryPoolValidator(&puStack_38, &DEFAULT_UI_STRING_PTR, param_3, param_4, 0, 0xfffffffffffffffe);
+  FUN_180627910(&puStack_38, &DEFAULT_UI_STRING_PTR, param_3, param_4, 0, 0xfffffffffffffffe);
   lVar4 = -1;
   do {
     lVar3 = lVar4 + 1;
@@ -717,7 +717,7 @@ ui_format_component_string(int64_t *param_1, uint64_t *param_2, uint64_t param_3
   if (lVar3 == 0) {
     uVar5 = param_1[1] - *param_1 >> 5;
     if ((int)uVar5 == 0) {
-      CoreMemoryPoolValidator(param_2, &unknown_var_9944_ptr);
+      FUN_180627910(param_2, &unknown_var_9944_ptr);
       puStack_38 = &system_data_buffer_ptr;
       if (lStack_30 == 0) {
         return param_2;
@@ -812,7 +812,7 @@ ui_convert_mono_string(uint64_t *param_1, int64_t param_2, uint64_t param_3, uin
   uVar2 = 0;
   if ((param_2 != 0) && (*(int *)(param_2 + 0x10) != 0)) {
     uVar1 = mono_string_to_utf8(param_2);
-    CoreMemoryPoolValidator(auStack_28, uVar1, param_3, param_4, uVar2, uVar3);
+    FUN_180627910(auStack_28, uVar1, param_3, param_4, uVar2, uVar3);
     mono_free(uVar1);
     *param_1 = &system_state_ptr;
     param_1[1] = 0;

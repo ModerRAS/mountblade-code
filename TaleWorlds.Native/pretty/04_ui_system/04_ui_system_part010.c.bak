@@ -823,4 +823,4 @@ FINAL_RENDER_SETUP:
 #define ui_system_calculate_weight_factor FUN_18065bf60
 #define ui_system_get_render_data FUN_18065fd40
 #define ui_system_final_render SystemSecurityChecker
-#define memory_allocation_error_handler AdvancedSystemController
+#define memory_allocation_error_handler FUN_1808fd400

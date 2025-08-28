@@ -112,7 +112,7 @@ void system_register_base_function(uint64 hash_value, init_function_ptr callback
     if ((parent_node == current_node) || 
         (compare_result = memcmp(&hash_value, parent_node + 4, INIT_HASH_SIZE), compare_result < 0)) {
         int64_t allocation_size = NetworkConnectionManager(registry_ptr);
-        NetworkProtocolHandler(registry_ptr, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        FUN_18008f140(registry_ptr, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     

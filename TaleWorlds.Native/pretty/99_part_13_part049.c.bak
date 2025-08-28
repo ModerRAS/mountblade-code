@@ -693,12 +693,12 @@ uint64_t FUN_1808c7c80(int64_t param_1,uint64_t param_2)
         iVar1 = FUN_18088ac50(param_2);
         if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-          AdvancedSystemProcessor(&uStackX_8);
+          FUN_18088c790(&uStackX_8);
         }
       }
     }
                     // WARNING: Subroutine does not return
-    AdvancedSystemProcessor(&uStackX_8);
+    FUN_18088c790(&uStackX_8);
   }
   return 0;
 }
@@ -725,12 +725,12 @@ uint64_t FUN_1808c7caf(int param_1)
       iVar1 = FUN_18088ac50();
       if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-        AdvancedSystemProcessor(&stack0x00000030);
+        FUN_18088c790(&stack0x00000030);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  AdvancedSystemProcessor(&stack0x00000030);
+  FUN_18088c790(&stack0x00000030);
 }
 
 

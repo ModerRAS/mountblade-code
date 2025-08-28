@@ -46,7 +46,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
     default_params[0] = 0xff00ff00;
     
     // 初始化栈缓冲区
-    CoreMemoryPoolValidator(&stack_buffer, config_param);
+    FUN_180627910(&stack_buffer, config_param);
     
     // 获取系统指针
     system_ptr = *(void **)*init_system_data_config;
@@ -113,7 +113,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
     custom_params[0] = custom_param;
     
     // 初始化栈缓冲区
-    CoreMemoryPoolValidator(&stack_buffer, additional_config);
+    FUN_180627910(&stack_buffer, additional_config);
     
     // 获取系统指针
     system_ptr = *(void **)*init_system_data_config;
