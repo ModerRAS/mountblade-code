@@ -1,88 +1,130 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part108.c - 2 个函数
+/**
+ * @file 03_rendering_part108.c
+ * @brief 渲染系统高级数据处理和资源管理模块
+ * 
+ * 本模块包含2个核心函数，涵盖渲染系统高级数据处理、资源管理、
+ * 批量操作、内存管理、文件写入和资源清理等高级渲染功能。
+ */
 
-// 函数: void FUN_180331530(longlong param_1,longlong param_2,uint param_3)
-void FUN_180331530(longlong param_1,longlong param_2,uint param_3)
+/**
+ * @defgroup rendering_constants 渲染系统常量定义
+ * @{
+ */
+#define RENDERING_RESOURCE_POOL_SIZE 0x100000
+#define RENDERING_BUFFER_SIZE 0x30
+#define RENDERING_ARRAY_SIZE 0x20
+#define RENDERING_FLOAT_MULTIPLIER 0.03125f
+#define RENDERING_ALIGNMENT_FACTOR 0x1f
+#define RENDERING_STACK_ALIGNMENT 8
+#define RENDERING_MAX_ITERATIONS 0x40
+#define RENDERING_MEMORY_BLOCK_SIZE 0x10
+#define RENDERING_FILE_CHUNK_SIZE 4
+#define RENDERING_HASH_TABLE_SIZE 8
+#define RENDERING_MUTEX_TIMEOUT 0x30000
+#define RENDERING_THREAD_SAFE 3
+/* @} */
+
+/**
+ * @defgroup rendering_function_aliases 渲染系统函数别名
+ * @{
+ */
+#define RenderingSystem_ProcessResourceData FUN_180331530
+#define RenderingSystem_ExecuteBatchOperations FUN_180332110
+/* @} */
+
+/**
+ * @brief 渲染系统资源数据处理器
+ * 
+ * 该函数负责处理渲染系统资源数据，包括数据写入、路径处理、
+ * 字符串操作和文件管理等高级渲染功能。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param output_handle 输出文件句柄
+ * @param resource_data 资源数据指针
+ * @return void
+ */
+void RenderingSystem_ProcessResourceData(longlong render_context, longlong output_handle, uint resource_data)
 
 {
-  undefined4 uVar1;
-  undefined8 *puVar2;
-  longlong *plVar3;
-  longlong *plVar4;
-  uint uVar5;
-  uint uVar6;
-  ulonglong *puVar7;
-  uint *puVar8;
-  longlong lVar9;
-  ulonglong *puVar10;
-  int iVar11;
-  int *piVar12;
-  ulonglong uVar13;
-  int iVar14;
-  undefined *puVar15;
-  undefined4 *puVar16;
-  ulonglong uVar17;
-  undefined8 *puVar18;
-  uint uVar19;
-  longlong **pplVar20;
-  ulonglong *puVar21;
-  longlong lVar22;
-  longlong lVar23;
-  ulonglong *puVar24;
-  undefined1 auVar25 [16];
-  longlong lStackX_10;
-  uint uStackX_18;
-  uint auStackX_20 [2];
-  longlong *plStack_148;
-  uint *puStack_140;
-  longlong *plStack_138;
-  undefined4 uStack_130;
-  ulonglong uStack_128;
-  ulonglong uStack_120;
-  ulonglong *puStack_118;
-  ulonglong *puStack_110;
-  ulonglong *puStack_108;
-  undefined4 uStack_100;
-  longlong *plStack_f8;
-  undefined8 uStack_f0;
-  code *pcStack_e8;
-  undefined *puStack_e0;
-  ulonglong *puStack_d8;
-  ulonglong *puStack_d0;
-  longlong **pplStack_c8;
-  longlong lStack_c0;
-  longlong *plStack_b8;
-  ulonglong **ppuStack_b0;
-  longlong **pplStack_a8;
-  undefined1 uStack_a0;
-  undefined8 uStack_98;
-  undefined1 auStack_88 [16];
-  ulonglong uStack_78;
-  undefined *puStack_68;
-  longlong lStack_60;
-  undefined4 uStack_50;
+  undefined4 render_data;
+  undefined8 *resource_pool_ptr;
+  longlong *memory_block_ptr;
+  longlong *memory_block_ptr2;
+  uint loop_counter;
+  uint alignment_counter;
+  ulonglong *data_buffer_ptr;
+  uint *uint_array_ptr;
+  longlong hash_table_entry;
+  ulonglong *resource_data_ptr;
+  int array_size;
+  int *hash_entry_ptr;
+  ulonglong resource_id;
+  int float_value;
+  undefined *string_data;
+  undefined4 *resource_array_ptr;
+  ulonglong resource_size;
+  undefined8 *resource_manager_ptr;
+  uint item_count;
+  longlong **context_ptr_ptr;
+  ulonglong *output_buffer_ptr;
+  longlong data_offset;
+  longlong resource_offset;
+  ulonglong *temp_buffer_ptr;
+  undefined1 float_buffer [16];
+  longlong output_handle;
+  uint resource_data_param;
+  uint count_array [2];
+  longlong *memory_pool_ptr;
+  uint *uint_buffer_ptr;
+  longlong *long_buffer_ptr;
+  undefined4 memory_flag;
+  ulonglong write_data_1;
+  ulonglong write_data_2;
+  ulonglong *buffer_start_ptr;
+  ulonglong *buffer_current_ptr;
+  ulonglong *buffer_end_ptr;
+  undefined4 allocation_flag;
+  longlong *stack_buffer_ptr;
+  undefined8 callback_data;
+  code *callback_function;
+  undefined *error_handler;
+  ulonglong *resource_list_ptr;
+  ulonglong *data_stream_ptr;
+  longlong **context_manager_ptr;
+  longlong render_context_local;
+  longlong *file_handle_ptr;
+  ulonglong **buffer_manager_ptr;
+  longlong **thread_manager_ptr;
+  undefined1 thread_flag;
+  undefined8 thread_counter;
+  undefined1 stack_buffer [16];
+  ulonglong performance_counter;
+  undefined *cleanup_handler;
+  longlong cleanup_flag;
+  undefined4 status_flag;
   
-  uStack_98 = 0xfffffffffffffffe;
-  uVar13 = (ulonglong)param_3;
-  auStackX_20[0] = 0;
-  puStack_118 = (ulonglong *)0x0;
-  puStack_110 = (ulonglong *)0x0;
-  puStack_108 = (ulonglong *)0x0;
-  uStack_100 = 3;
-  plStack_148 = (longlong *)0x0;
-  puStack_140 = (uint *)0x0;
-  plStack_138 = (longlong *)0x0;
-  uStack_130 = 3;
-  puVar2 = *(undefined8 **)(param_1 + 0x9f8);
-  puVar16 = (undefined4 *)*puVar2;
-  puVar18 = puVar2;
-  if (puVar16 == (undefined4 *)0x0) {
-    puVar18 = puVar2 + 1;
-    puVar16 = (undefined4 *)*puVar18;
-    while (puVar16 == (undefined4 *)0x0) {
-      puVar18 = puVar18 + 1;
-      puVar16 = (undefined4 *)*puVar18;
+  thread_counter = 0xfffffffffffffffe;
+  resource_id = (ulonglong)resource_data;
+  count_array[0] = 0;
+  buffer_start_ptr = (ulonglong *)0x0;
+  buffer_current_ptr = (ulonglong *)0x0;
+  buffer_end_ptr = (ulonglong *)0x0;
+  allocation_flag = 3;
+  memory_pool_ptr = (longlong *)0x0;
+  uint_buffer_ptr = (uint *)0x0;
+  long_buffer_ptr = (longlong *)0x0;
+  memory_flag = 3;
+  resource_pool_ptr = *(undefined8 **)(render_context + 0x9f8);
+  resource_array_ptr = (undefined4 *)*resource_pool_ptr;
+  resource_manager_ptr = resource_pool_ptr;
+  if (resource_array_ptr == (undefined4 *)0x0) {
+    resource_manager_ptr = resource_pool_ptr + 1;
+    resource_array_ptr = (undefined4 *)*resource_manager_ptr;
+    while (resource_array_ptr == (undefined4 *)0x0) {
+      resource_manager_ptr = resource_manager_ptr + 1;
+      resource_array_ptr = (undefined4 *)*resource_manager_ptr;
     }
   }
   uVar19 = 0;
