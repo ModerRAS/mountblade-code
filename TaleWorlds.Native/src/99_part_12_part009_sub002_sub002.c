@@ -453,49 +453,51 @@ undefined8 LoopDataProcessor(void)
   uint target_index;
   
   do {
-    if (*(int *)(unaff_RBX + 0xbec) == 0) {
-      if ((*(char *)(unaff_RBX + 0xbe9) == '\0') || (*(char *)(unaff_RBX + 0xbea) != '\0')) {
-        uVar4 = *(uint *)(unaff_RBX + 0xc0c);
-        uVar5 = (ulonglong)(int)uVar4;
-        if (-1 < (int)uVar4) {
-          *(uint *)(unaff_RBX + 0xbfc) = uVar4;
-          cVar1 = *(char *)(uVar5 + 0x290 + unaff_RBX);
-          while (cVar1 == -2) {
-            uVar4 = (int)uVar5 + 1;
-            *(uint *)(unaff_RBX + 0xbfc) = uVar4;
-            if (*(int *)(unaff_RBX + 0x8ec) <= (int)uVar4) {
-              if (*(char *)(unaff_RBX + 0xbea) == '\0') {
+    // 检查系统处理状态
+    if (*(int *)(system_context + SYSTEM_OFFSET_BEC) == 0) {
+      // 检查系统标志位状态
+      if ((*(char *)(system_context + SYSTEM_OFFSET_BE9) == '\0') || (*(char *)(system_context + SYSTEM_OFFSET_BEA) != '\0')) {
+        current_index = *(uint *)(system_context + SYSTEM_OFFSET_C0C);
+        data_offset = (ulonglong)(int)current_index;
+        if (-1 < (int)current_index) {
+          *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_index;
+          state_flag = *(char *)(data_offset + SYSTEM_OFFSET_290 + system_context);
+          while (state_flag == SYSTEM_DATA_FLAG_NEG2) {
+            current_index = (int)data_offset + 1;
+            *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_index;
+            if (*(int *)(system_context + SYSTEM_OFFSET_8EC) <= (int)current_index) {
+              if (*(char *)(system_context + SYSTEM_OFFSET_BEA) == '\0') {
                 FUN_18080d690();
               }
-              uVar4 = *(uint *)(unaff_RBX + 0xbd0);
-              *(uint *)(unaff_RBX + 0xbfc) = uVar4;
+              current_index = *(uint *)(system_context + SYSTEM_OFFSET_BD0);
+              *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_index;
             }
-            uVar5 = (ulonglong)uVar4;
-            cVar1 = *(char *)((longlong)(int)uVar4 + 0x290 + unaff_RBX);
+            data_offset = (ulonglong)current_index;
+            state_flag = *(char *)((longlong)(int)current_index + SYSTEM_OFFSET_290 + system_context);
           }
-          if (*(char *)((longlong)(int)uVar4 + 0x290 + unaff_RBX) == -1) {
-            *(undefined4 *)(unaff_RBX + 0xbfc) = *(undefined4 *)(unaff_RBX + 0xbd0);
+          if (*(char *)((longlong)(int)current_index + SYSTEM_OFFSET_290 + system_context) == SYSTEM_INVALID_INDEX) {
+            *(undefined4 *)(system_context + SYSTEM_OFFSET_BFC) = *(undefined4 *)(system_context + SYSTEM_OFFSET_BD0);
           }
-          *(undefined4 *)(unaff_RBX + 0xc0c) = 0xffffffff;
+          *(undefined4 *)(system_context + SYSTEM_OFFSET_C0C) = 0xffffffff;
         }
-        if (-1 < *(int *)(unaff_RBX + 0xc08)) {
-          *(int *)(unaff_RBX + 0xbf8) = *(int *)(unaff_RBX + 0xc08);
-          *(undefined4 *)(unaff_RBX + 0xc08) = 0xffffffff;
+        if (-1 < *(int *)(system_context + SYSTEM_OFFSET_C08)) {
+          *(int *)(system_context + SYSTEM_OFFSET_BF8) = *(int *)(system_context + SYSTEM_OFFSET_C08);
+          *(undefined4 *)(system_context + SYSTEM_OFFSET_C08) = 0xffffffff;
         }
-        FUN_1807ce620();
-        if (*(int *)(unaff_RBX + 0xc08) == -1) {
-          iVar6 = *(int *)(unaff_RBX + 0xbf8) + 1;
-          *(int *)(unaff_RBX + 0xc08) = iVar6;
-          if (*(int *)(*(longlong *)(unaff_RBX + 0x278) +
+        ErrorCodeReturner();
+        if (*(int *)(system_context + SYSTEM_OFFSET_C08) == -1) {
+          iteration_count = *(int *)(system_context + SYSTEM_OFFSET_BF8) + 1;
+          *(int *)(system_context + SYSTEM_OFFSET_C08) = iteration_count;
+          if (*(int *)(*(longlong *)(system_context + SYSTEM_OFFSET_278) +
                       (ulonglong)
-                      *(byte *)((longlong)*(int *)(unaff_RBX + 0xbfc) + 0x290 + unaff_RBX) * 0x10)
-              <= iVar6) {
-            iVar6 = *(int *)(unaff_RBX + 0xbfc) + 1;
-            *(int *)(unaff_RBX + 0xc0c) = iVar6;
-            if (*(int *)(unaff_RBX + 0x8ec) <= iVar6) {
-              *(undefined4 *)(unaff_RBX + 0xc0c) = *(undefined4 *)(unaff_RBX + 0xbd0);
+                      *(byte *)((longlong)*(int *)(system_context + SYSTEM_OFFSET_BFC) + SYSTEM_OFFSET_290 + system_context) * SYSTEM_ALIGNMENT_SIZE)
+              <= iteration_count) {
+            iteration_count = *(int *)(system_context + SYSTEM_OFFSET_BFC) + 1;
+            *(int *)(system_context + SYSTEM_OFFSET_C0C) = iteration_count;
+            if (*(int *)(system_context + SYSTEM_OFFSET_8EC) <= iteration_count) {
+              *(undefined4 *)(system_context + SYSTEM_OFFSET_C0C) = *(undefined4 *)(system_context + SYSTEM_OFFSET_BD0);
             }
-            *(undefined4 *)(unaff_RBX + 0xc08) = 0;
+            *(undefined4 *)(system_context + SYSTEM_OFFSET_C08) = 0;
           }
         }
       }
@@ -506,27 +508,31 @@ undefined8 LoopDataProcessor(void)
     else {
       FUN_1807cd7f0();
     }
-    if (*(int *)(unaff_RBX + 0xbf0) == 0) {
-      *(undefined1 *)(unaff_RBX + 0xbe9) = 1;
+    // 处理系统状态更新
+    if (*(int *)(system_context + SYSTEM_OFFSET_BF0) == 0) {
+      *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9) = 1;
     }
     else {
-      *(int *)(unaff_RBX + 0xbec) = *(int *)(unaff_RBX + 0xbec) + 1;
-      if (*(int *)(unaff_RBX + 0xbf0) + *(int *)(unaff_RBX + 0xc00) <= *(int *)(unaff_RBX + 0xbec))
+      *(int *)(system_context + SYSTEM_OFFSET_BEC) = *(int *)(system_context + SYSTEM_OFFSET_BEC) + 1;
+      if (*(int *)(system_context + SYSTEM_OFFSET_BF0) + *(int *)(system_context + SYSTEM_OFFSET_C00) <= *(int *)(system_context + SYSTEM_OFFSET_BEC))
       {
-        *(undefined4 *)(unaff_RBX + 0xc00) = 0;
-        *(undefined4 *)(unaff_RBX + 0xbec) = 0;
+        *(undefined4 *)(system_context + SYSTEM_OFFSET_C00) = 0;
+        *(undefined4 *)(system_context + SYSTEM_OFFSET_BEC) = 0;
       }
     }
-    *(int *)(unaff_RBX + 0x858) = *(int *)(unaff_RBX + 0x858) + *(int *)(unaff_RBX + 0x854);
-  } while (*(uint *)(unaff_RBX + 0x858) < unaff_EDI);
-  if (unaff_SIL != '\0') {
-    uVar2 = *(undefined1 *)(unaff_RBX + 0xbe8);
-    uVar3 = *(undefined1 *)(unaff_RBX + 0xbe9);
+    // 更新系统缓冲区大小
+    *(int *)(system_context + SYSTEM_BUFFER_SIZE) = *(int *)(system_context + SYSTEM_BUFFER_SIZE) + *(int *)(system_context + SYSTEM_OFFSET_854);
+  } while (*(uint *)(system_context + SYSTEM_BUFFER_SIZE) < target_index);
+  
+  // 处理上下文状态恢复
+  if (context_flag != '\0') {
+    validation_flag = *(undefined1 *)(system_context + SYSTEM_OFFSET_BE8);
+    processing_flag = *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9);
     FUN_18080d690();
-    *(undefined1 *)(unaff_RBX + 0xbe8) = uVar2;
-    *(undefined1 *)(unaff_RBX + 0xbe9) = uVar3;
+    *(undefined1 *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
+    *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
   }
-  return 0;
+  return SYSTEM_SUCCESS;
 }
 
 
