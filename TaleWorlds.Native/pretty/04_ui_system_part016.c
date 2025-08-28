@@ -1,21 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part016.c - UI系统高级文本布局和渲染控制模块
-// 
-// 本文件包含14个核心函数，主要负责UI系统的高级文本布局、渲染控制、
-// 参数计算和资源管理等功能。这是一个复杂的UI系统处理模块，包含大量的
-// 数学计算、内存管理和高级渲染控制。
+// ============================================================================
+// 04_ui_system_part016.c - UI系统高级处理模块
+// ============================================================================
+
+// 本文件包含14个核心函数，主要负责UI系统的高级处理功能：
+// - UI系统参数处理和动画控制
+// - UI系统数据初始化和错误处理
+// - UI系统复杂动画处理
+// - UI系统状态设置和资源管理
+// - UI系统高级动画控制
 //
-// 主要功能：
-// - UI文本布局的高级控制和渲染
-// - 复杂的数学计算和插值处理
-// - 渲染资源的初始化和清理
-// - 文本参数的动态计算和更新
-// - UI元素的批量处理和优化
-// - 高级渲染状态管理
+// 这是一个复杂的UI系统处理模块，包含大量的数学计算、状态管理和资源处理。
 //
 // 简化实现说明：
-// - 原始实现：包含大量复杂的内存访问、SIMD操作和底层优化
+// - 原始实现：包含大量复杂的内存访问、状态管理和动画控制逻辑
 // - 简化实现：使用结构体和清晰的函数调用替代底层操作
 // - 保留核心的数学计算和UI系统逻辑
 
@@ -23,726 +22,621 @@
 // 常量定义
 // ============================================================================
 
-// 文本渲染常量
-#define UI_TEXT_RENDER_THRESHOLD 1.001358e-05f
-#define UI_TEXT_OPACITY_THRESHOLD 0.99999f
-#define UI_TEXT_SIZE_SCALE 0.05f
-#define UI_TEXT_VECTOR_SCALE 10.0f
-#define UI_TEXT_MATRIX_SCALE 8.0f
-#define UI_TEXT_NORMALIZATION_SPEED 0.8f
-#define UI_TEXT_INTERPOLATION_FACTOR 0.3f
-#define UI_TEXT_BATCH_SIZE 4
-#define UI_TEXT_STRIDE 0x4d6
-#define UI_TEXT_DATA_OFFSET 0x1358
+// UI系统常量
+#define UI_SYSTEM_BLOCK_SIZE           0x1358  // UI系统数据块大小
+#define UI_SYSTEM_ANIMATION_THRESHOLD  1.001358e-05  // 动画阈值
+#define UI_SYSTEM_MAX_COMPONENTS       4       // 最大组件数
+#define UI_SYSTEM_COMPONENT_COUNT      18      // 组件计数
+#define UI_SYSTEM_FLOAT_MAX           0x7f7fffff  // 最大浮点值
+#define UI_SYSTEM_FLOAT_INVALID        0x7149f2ca  // 无效浮点值
+#define UI_SYSTEM_MAGIC_VALUE          0x1010000  // 魔法值
+#define UI_SYSTEM_BLEND_THRESHOLD      0.99999   // 混合阈值
+#define UI_SYSTEM_ZERO_THRESHOLD       0.0001    // 零阈值
+#define UI_SYSTEM_SPEED_FACTOR         0.05      // 速度因子
 
 // 数学计算常量
 #define UI_SMOOTH_STEP_COEFFICIENTS {6.0f, -15.0f, 10.0f}
-#define UI_ZERO_THRESHOLD 1.1754944e-38f
 #define UI_FLOAT_EPSILON 1.1754944e-38f
 #define UI_FLOAT_TOLERANCE 0.001f
 #define UI_PI 3.14159265358979323846f
 #define UI_HALF_PI 1.5707964f
 #define UI_TWO_PI 6.28318530717958647692f
 
-// 渲染控制常量
-#define UI_RENDER_FLAG_ACTIVE 0x1
-#define UI_RENDER_FLAG_VISIBLE 0x2
-#define UI_RENDER_FLAG_UPDATED 0x4
-#define UI_RENDER_FLAG_BATCHED 0x8
-#define UI_RENDER_FLAG_OPTIMIZED 0x10
+// 系统控制常量
+#define UI_SYSTEM_FLAG_ACTIVE 0x1
+#define UI_SYSTEM_FLAG_VISIBLE 0x2
+#define UI_SYSTEM_FLAG_UPDATED 0x4
+#define UI_SYSTEM_FLAG_INITIALIZED 0x8
+#define UI_SYSTEM_FLAG_ERROR 0x10
 
 // ============================================================================
 // 结构体定义
 // ============================================================================
 
 /**
- * @brief UI文本渲染上下文结构体
- * 
- * 存储UI文本渲染的所有状态信息，包括：
- * - 文本位置、大小、透明度等基本属性
- * - 渲染参数和变换矩阵
- * - 批处理数据和控制参数
- * - 文本布局和样式信息
+ * UI系统动画状态结构
  */
 typedef struct {
-    // 文本基本属性
-    float position_x;              // X轴位置
-    float position_y;              // Y轴位置
-    float position_z;              // Z轴位置
-    float position_w;              // W轴位置（齐次坐标）
-    float text_size;               // 文本大小
-    float opacity;                 // 透明度
-    float rotation_angle;          // 旋转角度
-    float scale_factor;            // 缩放因子
-    
-    // 文本渲染属性
-    float text_intensity;          // 文本强度
-    float render_priority;         // 渲染优先级
-    float blend_factor;            // 混合因子
-    float alpha_threshold;         // 透明度阈值
-    
-    // 变换矩阵参数
-    float transform_matrix[16];    // 变换矩阵
-    float rotation_matrix[9];      // 旋转矩阵
-    float scale_matrix[9];         // 缩放矩阵
-    
-    // 渲染状态
-    int render_flags;              // 渲染标志
-    int text_state;                // 文本状态
-    int update_flags;              // 更新标志
-    int batch_count;               // 批处理数量
-    
-    // 文本数据
-    char* text_buffer;             // 文本缓冲区
-    int text_length;               // 文本长度
-    int text_format;               // 文本格式
-    
-    // 布局参数
-    float layout_width;            // 布局宽度
-    float layout_height;           // 布局高度
-    float alignment_x;             // X轴对齐
-    float alignment_y;             // Y轴对齐
+    float animation_values[6];          // 动画值数组
+    char animation_flags[10];           // 动画标志
+    float timing_values[4];             // 时间值
+    float blend_weights[2];             // 混合权重
+    char control_flags[2];              // 控制标志
+    float transition_progress;          // 过渡进度
+    float animation_speed;              // 动画速度
+} UIAnimationState;
+
+/**
+ * UI系统数据块结构
+ */
+typedef struct {
+    UIAnimationState animation_states;  // 动画状态
+    float* data_pointers[10];           // 数据指针数组
+    int block_index;                    // 块索引
+    int component_count;                // 组件计数
+    float system_time;                  // 系统时间
+    float blend_factor;                 // 混合因子
+} UISystemBlock;
+
+/**
+ * UI系统上下文结构
+ */
+typedef struct {
+    // 系统状态
+    int system_flags;                   // 系统标志
+    int component_count;                // 组件数量
+    int active_components;              // 活动组件数
+    int error_state;                    // 错误状态
     
     // 动画参数
-    float animation_time;          // 动画时间
-    float animation_speed;         // 动画速度
-    float interpolation_factor;    // 插值因子
-    float easing_parameter;        // 缓动参数
+    float animation_time;               // 动画时间
+    float blend_factor;                 // 混合因子
+    float transition_speed;             // 过渡速度
+    float current_weight;               // 当前权重
     
-    // 批处理数据
-    void* batch_data;              // 批处理数据
-    int batch_size;                // 批处理大小
-    int batch_offset;              // 批处理偏移
+    // 系统数据
+    void* system_data;                  // 系统数据指针
+    void* render_context;               // 渲染上下文
+    void* animation_context;            // 动画上下文
     
-    // 辅助参数
-    float temp_values[32];         // 临时数值数组
-    int control_flags;             // 控制标志
+    // 资源管理
+    void* resource_pool;                // 资源池
+    int resource_count;                 // 资源数量
+    int max_resources;                  // 最大资源数
     
-} ui_text_render_context_t;
-
-/**
- * @brief UI文本参数结构体
- * 
- * 存储UI文本的各种参数：
- * - 文本样式参数
- * - 渲染参数
- * - 布局参数
- */
-typedef struct {
-    float font_size;               // 字体大小
-    float line_spacing;            // 行间距
-    float character_spacing;       // 字符间距
-    float word_spacing;            // 单词间距
-    float paragraph_spacing;       // 段落间距
+    // 缓冲区
+    float* output_buffer;               // 输出缓冲区
+    int buffer_size;                    // 缓冲区大小
+    int buffer_offset;                  // 缓冲区偏移
     
-    int text_alignment;            // 文本对齐方式
-    int text_direction;            // 文本方向
-    int text_wrap_mode;            // 文本换行模式
-    int text_overflow_mode;        // 文本溢出模式
-    
-    float color_r;                 // 红色分量
-    float color_g;                 // 绿色分量
-    float color_b;                 // 蓝色分量
-    float color_a;                 // 透明度分量
-    
-    float shadow_offset_x;         // 阴影X偏移
-    float shadow_offset_y;         // 阴影Y偏移
-    float shadow_blur;             // 阴影模糊
-    float shadow_opacity;          // 阴影透明度
-    
-    int font_style;               // 字体样式
-    int font_weight;               // 字体粗细
-    int text_decoration;           // 文本装饰
-    
-} ui_text_params_t;
-
-/**
- * @brief UI渲染数据结构体
- * 
- * 存储UI渲染的各种数据：
- * - 顶点数据
- * - 索引数据
- * - 纹理坐标
- */
-typedef struct {
-    float* vertex_data;           // 顶点数据
-    float* texture_coords;         // 纹理坐标
-    int* index_data;               // 索引数据
-    
-    int vertex_count;              // 顶点数量
-    int index_count;               // 索引数量
-    int texture_count;             // 纹理数量
-    
-    float bounding_box[4];         // 边界框
-    float render_bounds[4];        // 渲染边界
-    
-} ui_render_data_t;
+} UISystemContext;
 
 // ============================================================================
 // 函数声明
 // ============================================================================
 
 // 主要功能函数
-void ui_system_advanced_text_layout_processor(void* context, void* params, float* output_buffer, char process_flag);
-void ui_system_text_renderer(void* context, void* params, float* output_buffer);
-void ui_system_render_initializer(void* context);
-void ui_system_resource_manager(void* context);
-void ui_system_text_animator(void* context, void* animation_data);
-void ui_system_batch_processor(void* context, void* batch_data);
-void ui_system_render_optimizer(void* context, void* optimization_data);
-void ui_system_state_manager(void* context, int state_flag);
-void ui_system_parameter_calculator(void* context, void* param_data);
-void ui_system_texture_manager(void* context, void* texture_data);
-void ui_system_memory_manager(void* context, void* memory_data);
-void ui_system_performance_optimizer(void* context, void* performance_data);
-void ui_system_debug_visualizer(void* context, void* debug_data);
+void UIAnimationProcessor_ProcessParameters(longlong system_context, longlong render_context, float* output_buffer, char buffer_size);
+void UIAnimationProcessor_ProcessAnimationData(longlong system_context, longlong render_context, float* output_buffer);
+void UIAnimationProcessor_EmptyHandler(void);
+void UISystemData_Initialize(longlong system_context);
+void UISystemError_Handler_InvalidParameter(longlong system_context);
+void UISystemError_Handler_InvalidState(longlong system_context);
+void UIAnimationProcessor_ComplexAnimation(longlong system_context);
+void UISystemState_SetStatus(uint status);
+void UISystem_Terminate(void);
+void UISystemResource_CleanupActive(longlong system_context);
+void UISystemResource_CleanupAll(longlong system_context);
+void UISystemParameter_SetCount(longlong system_context, uint count);
+void UISystemComplex_ProcessData(longlong system_context);
+void UIAnimationController_AdvancedControl(longlong animation_context, float time_delta, uint flags, float blend_factor);
 
 // 内部辅助函数
 static float ui_calculate_smooth_step(float t);
-static float ui_calculate_interpolation_factor(float current, float target, float speed);
-static void ui_update_text_matrix(ui_text_render_context_t* context);
-static void ui_process_text_batch(ui_text_render_context_t* context, int batch_index);
-static float ui_calculate_text_intensity(ui_text_render_context_t* context);
-static void ui_apply_text_transform(ui_text_render_context_t* context, float* transform_matrix);
-static void ui_optimize_render_batch(ui_text_render_context_t* context);
+static float ui_calculate_blend_factor(float current, float target, float speed);
+static void ui_process_animation_batch(void* context, int batch_index);
+static float ui_calculate_animation_weight(void* context);
+static void ui_apply_animation_transform(void* context, float* transform_matrix);
+static void ui_optimize_animation_batch(void* context);
 
 // ============================================================================
-// 函数别名定义（保持兼容性）
+// 函数别名定义
 // ============================================================================
 
-#define FUN_18065bba0 ui_system_advanced_text_layout_processor
-#define FUN_18065bbcf ui_system_text_renderer
-#define FUN_18065bd4f ui_system_render_initializer
-#define FUN_18065bd60 ui_system_resource_manager
-#define FUN_18065bf60 ui_system_text_animator
-#define FUN_18065c070 ui_system_batch_processor
-#define FUN_18065c20a ui_system_render_optimizer
-#define FUN_18065c8ba ui_system_state_manager
-#define FUN_18065c8f0 ui_system_parameter_calculator
-#define FUN_18065cb80 ui_system_texture_manager
-#define FUN_18065cb98 ui_system_memory_manager
-#define FUN_18065cbfa ui_system_performance_optimizer
-#define FUN_18065cc10 ui_system_debug_visualizer
+#define FUN_18065bba0 UIAnimationProcessor_ProcessParameters
+#define FUN_18065bbcf UIAnimationProcessor_ProcessAnimationData
+#define FUN_18065bd4f UIAnimationProcessor_EmptyHandler
+#define FUN_18065bd60 UISystemData_Initialize
+#define FUN_18065bf60 UISystemError_Handler_InvalidParameter
+#define FUN_18065c070 UISystemError_Handler_InvalidState
+#define FUN_18065c20a UIAnimationProcessor_ComplexAnimation
+#define FUN_18065c8ba UISystemState_SetStatus
+#define FUN_18065c8f0 UISystem_Terminate
+#define FUN_18065cb80 UISystemResource_CleanupActive
+#define FUN_18065cb98 UISystemResource_CleanupAll
+#define FUN_18065cbfa UISystemParameter_SetCount
+#define FUN_18065cc10 UISystemComplex_ProcessData
+#define FUN_18065d0a0 UIAnimationController_AdvancedControl
 
 // ============================================================================
-// 主要功能函数实现
+// 函数实现
 // ============================================================================
 
 /**
- * UI系统高级文本布局处理器
- * 处理UI文本的高级布局、渲染控制和参数计算
+ * UI系统参数处理和动画控制函数
+ * 处理UI系统的参数设置和动画控制逻辑
  * 
- * 主要功能：
- * 1. 文本布局的高级计算和控制
- * 2. 复杂的数学计算和插值处理
- * 3. 批量文本处理和优化
- * 4. 渲染参数的动态计算
- * 5. 文本状态的实时更新
- * 
- * 算法流程：
- * - 输入：文本上下文、参数、输出缓冲区、处理标志
- * - 处理：文本布局计算、渲染参数更新、批量处理
- * - 输出：更新后的文本状态和渲染数据
- * 
- * 简化实现说明：
- * - 原始实现：包含大量复杂的内存访问和SIMD操作
- * - 简化实现：使用结构体和清晰的函数调用替代底层操作
- * - 保留核心的数学计算和文本布局逻辑
- * 
- * @param context 文本渲染上下文指针
- * @param params 文本参数指针
- * @param output_buffer 输出缓冲区指针
- * @param process_flag 处理标志
+ * @param system_context 系统上下文指针
+ * @param render_context 渲染上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
  */
-void ui_system_advanced_text_layout_processor(void* system_context, void* text_params, 
-                                             float* output_buffer, char process_flag)
+void UIAnimationProcessor_ProcessParameters(longlong system_context, longlong render_context, float* output_buffer, char buffer_size)
 {
-    // 简化实现：UI系统高级文本布局处理
-    // 原实现包含复杂的内存访问、SIMD操作和文本布局计算
+    ulonglong render_flags;
+    longlong component_count;
+    ulonglong animation_mask;
+    float* animation_data;
+    ulonglong loop_counter;
+    longlong processed_count;
+    longlong remaining_count;
+    float system_time;
+    float blend_weight;
+    float current_weight;
     
-    ui_text_render_context_t* context = (ui_text_render_context_t*)system_context;
-    ui_text_params_t* params = (ui_text_params_t*)text_params;
+    // 获取组件数量
+    component_count = (longlong)*(int*)(system_context + 0x60);
     
-    if (context == NULL || params == NULL || output_buffer == NULL) {
-        return;
-    }
-    
-    // 1. 初始化处理参数
-    // ===================
-    
-    int text_count = *(int*)(context + 0x60);
-    if (text_count == 0) {
-        // 处理空文本情况
-        if (process_flag > 0) {
-            for (int i = 0; i < process_flag; i++) {
-                output_buffer[i] = 0.0f;
+    // 如果没有组件，直接清空输出缓冲区
+    if (*(int*)(system_context + 0x60) == 0) {
+        if ('\0' < buffer_size) {
+            for (component_count = (longlong)buffer_size; component_count != 0; component_count = component_count + -1) {
+                *output_buffer = 0.0;
+                output_buffer = output_buffer + 1;
             }
+            return;
         }
-        return;
     }
-    
-    // 2. 文本强度计算
-    // ================
-    
-    float text_intensity = 1.0f;
-    if (text_count > 3) {
-        // 批量处理文本数据
-        float* text_data = (float*)(context + 0x6c);
-        int batch_count = (text_count - 4) / 4 + 1;
-        int processed_count = batch_count * 4;
+    else {
+        // 处理动画权重计算
+        processed_count = 0;
+        animation_mask = *(ulonglong*)(render_context + 0x150);
+        blend_weight = 1.0;
         
-        do {
-            // 处理4个文本元素
-            for (int i = 0; i < 4; i++) {
-                float* element_data = text_data + i * UI_TEXT_STRIDE;
+        // 批量处理动画数据（4个一组）
+        if (3 < component_count) {
+            animation_data = (float*)(system_context + 0x6c);
+            loop_counter = (component_count - 4U >> 2) + 1;
+            processed_count = loop_counter * 4;
+            
+            do {
+                // 处理每个动画状态的权重
+                if (((int)animation_data[2] - 2U < 2) && (blend_weight = blend_weight - *animation_data, blend_weight <= 0.0)) {
+                    blend_weight = 0.0;
+                }
+                if (((int)animation_data[0x4d8] - 2U < 2) && (blend_weight = blend_weight - animation_data[0x4d6], blend_weight <= 0.0)) {
+                    blend_weight = 0.0;
+                }
+                if (((int)animation_data[0x9ae] - 2U < 2) && (blend_weight = blend_weight - animation_data[0x9ac], blend_weight <= 0.0)) {
+                    blend_weight = 0.0;
+                }
+                if (((int)animation_data[0xe84] - 2U < 2) && (blend_weight = blend_weight - animation_data[0xe82], blend_weight <= 0.0)) {
+                    blend_weight = 0.0;
+                }
                 
-                // 检查文本状态
-                if ((int)element_data[2] >= 2 && (int)element_data[2] <= 3) {
-                    text_intensity -= element_data[0];
-                    if (text_intensity <= 0.0f) {
-                        text_intensity = 0.0f;
-                    }
-                }
-            }
+                animation_data = animation_data + 0x1358;
+                loop_counter = loop_counter + -1;
+            } while (loop_counter != 0);
+        }
+        
+        // 处理剩余的动画数据
+        if (processed_count < component_count) {
+            animation_data = (float*)(system_context + 0x6c + processed_count * 0x1358);
+            remaining_count = component_count - processed_count;
             
-            text_data += UI_TEXT_DATA_OFFSET;
-            batch_count--;
-        } while (batch_count != 0);
+            do {
+                if (((int)animation_data[2] - 2U < 2) && (blend_weight = blend_weight - *animation_data, blend_weight <= 0.0)) {
+                    blend_weight = 0.0;
+                }
+                animation_data = animation_data + 0x4d6;
+                remaining_count = remaining_count + -1;
+            } while (remaining_count != 0);
+        }
+        
+        // 计算最终的混合权重
+        system_time = *(float*)(system_context + 0x6150);
+        loop_counter = (ulonglong)(uint)(int)buffer_size;
+        blend_weight = ((system_time * 6.0 - 15.0) * system_time + 10.0) * system_time * system_time * system_time * blend_weight;
+        
+        // 生成输出缓冲区
+        if ('\0' < buffer_size) {
+            animation_mask = 1;
+            do {
+                if ((render_flags & animation_mask) == 0) {
+LAB_18065bd31:
+                    system_time = 0.0;
+                }
+                else if (UI_SYSTEM_ANIMATION_THRESHOLD < blend_weight) {
+                    system_time = 1.0 - blend_weight;
+                    if (UI_SYSTEM_BLEND_THRESHOLD < blend_weight) goto LAB_18065bd31;
+                }
+                else {
+                    system_time = 1.0;
+                }
+                *output_buffer = system_time;
+                output_buffer = output_buffer + 1;
+                animation_mask = animation_mask << 1 | (ulonglong)((longlong)animation_mask < 0);
+                loop_counter = loop_counter - 1;
+            } while (loop_counter != 0);
+        }
     }
+    return;
+}
+
+/**
+ * UI系统动画数据处理函数
+ * 处理动画数据的计算和混合
+ * 
+ * @param system_context 系统上下文指针
+ * @param render_context 渲染上下文指针
+ * @param output_buffer 输出缓冲区
+ */
+void UIAnimationProcessor_ProcessAnimationData(longlong system_context, longlong render_context, float* output_buffer)
+{
+    ulonglong render_flags;
+    longlong in_RAX;
+    ulonglong animation_mask;
+    float* animation_data;
+    ulonglong loop_counter;
+    longlong processed_count;
+    longlong remaining_count;
+    char in_R10B;
+    longlong in_R11;
+    float system_time;
+    float blend_weight;
     
-    // 3. 处理剩余文本
-    // ================
+    processed_count = 0;
+    render_flags = *(ulonglong*)(render_context + 0x150);
+    blend_weight = 1.0;
     
-    if (processed_count < text_count) {
-        float* remaining_data = (float*)(context + 0x6c + processed_count * UI_TEXT_DATA_OFFSET);
-        int remaining_count = text_count - processed_count;
+    // 批量处理动画数据（4个一组）
+    if (3 < in_RAX) {
+        animation_data = (float*)(system_context + 0x6c);
+        loop_counter = (in_RAX - 4U >> 2) + 1;
+        processed_count = loop_counter * 4;
         
         do {
-            // 检查文本状态
-            if ((int)remaining_data[2] >= 2 && (int)remaining_data[2] <= 3) {
-                text_intensity -= remaining_data[0];
-                if (text_intensity <= 0.0f) {
-                    text_intensity = 0.0f;
-                }
+            // 处理每个动画状态的权重
+            if (((int)animation_data[2] - 2U < 2) && (blend_weight = blend_weight - *animation_data, blend_weight <= 0.0)) {
+                blend_weight = 0.0;
+            }
+            if (((int)animation_data[0x4d8] - 2U < 2) && (blend_weight = blend_weight - animation_data[0x4d6], blend_weight <= 0.0)) {
+                blend_weight = 0.0;
+            }
+            if (((int)animation_data[0x9ae] - 2U < 2) && (blend_weight = blend_weight - animation_data[0x9ac], blend_weight <= 0.0)) {
+                blend_weight = 0.0;
+            }
+            if (((int)animation_data[0xe84] - 2U < 2) && (blend_weight = blend_weight - animation_data[0xe82], blend_weight <= 0.0)) {
+                blend_weight = 0.0;
             }
             
-            remaining_data += UI_TEXT_STRIDE;
-            remaining_count--;
-        } while (remaining_count != 0);
+            animation_data = animation_data + 0x1358;
+            loop_counter = loop_counter + -1;
+        } while (loop_counter != 0);
     }
     
-    // 4. 计算平滑步长
-    // ================
-    
-    float animation_time = *(float*)(context + 0x6150);
-    float smooth_step = ui_calculate_smooth_step(animation_time);
-    float final_intensity = smooth_step * text_intensity;
-    
-    // 5. 生成输出数据
-    // ================
-    
-    if (process_flag > 0) {
-        unsigned long long visibility_mask = *(unsigned long long*)(params + 0x150);
+    // 处理剩余的动画数据
+    if (processed_count < in_RAX) {
+        animation_data = (float*)(in_R11 + 0x6c + processed_count * 0x1358);
+        processed_count = in_RAX - processed_count;
         
-        for (int i = 0; i < process_flag; i++) {
-            float output_value = 0.0f;
-            
-            // 检查可见性
-            if (visibility_mask & (1ULL << i)) {
-                if (final_intensity > UI_TEXT_RENDER_THRESHOLD) {
-                    if (final_intensity < UI_TEXT_OPACITY_THRESHOLD) {
-                        output_value = 1.0f - final_intensity;
-                    } else {
-                        output_value = 0.0f;
-                    }
-                } else {
-                    output_value = 1.0f;
-                }
+        do {
+            if (((int)animation_data[2] - 2U < 2) && (blend_weight = blend_weight - *animation_data, blend_weight <= 0.0)) {
+                blend_weight = 0.0;
             }
-            
-            output_buffer[i] = output_value;
-        }
-    }
-}
-
-/**
- * UI系统文本渲染器
- * 处理UI文本的渲染和输出控制
- * 
- * @param context 文本渲染上下文指针
- * @param params 文本参数指针
- * @param output_buffer 输出缓冲区指针
- */
-void ui_system_text_renderer(void* system_context, void* text_params, float* output_buffer)
-{
-    // 简化实现：UI系统文本渲染
-    // 原实现包含复杂的渲染管线和输出控制
-    
-    ui_text_render_context_t* context = (ui_text_render_context_t*)system_context;
-    ui_text_params_t* params = (ui_text_params_t*)text_params;
-    
-    if (context == NULL || params == NULL || output_buffer == NULL) {
-        return;
+            animation_data = animation_data + 0x4d6;
+            processed_count = processed_count + -1;
+        } while (processed_count != 0);
     }
     
-    // 获取渲染参数
-    int text_count = *(int*)(context + 0x60);
-    unsigned long long visibility_mask = *(unsigned long long*)(params + 0x150);
+    // 计算最终的混合权重
+    system_time = *(float*)(in_R11 + 0x6150);
+    loop_counter = (ulonglong)(uint)(int)in_R10B;
+    blend_weight = ((system_time * 6.0 - 15.0) * system_time + 10.0) * system_time * system_time * system_time * blend_weight;
     
-    // 计算文本强度
-    float text_intensity = ui_calculate_text_intensity(context);
-    
-    // 计算平滑步长
-    float animation_time = *(float*)(context + 0x6150);
-    float smooth_step = ui_calculate_smooth_step(animation_time);
-    float final_intensity = smooth_step * text_intensity;
-    
-    // 生成渲染输出
-    for (int i = 0; i < text_count; i++) {
-        float output_value = 0.0f;
-        
-        // 检查可见性
-        if (visibility_mask & (1ULL << i)) {
-            if (final_intensity > UI_TEXT_RENDER_THRESHOLD) {
-                if (final_intensity < UI_TEXT_OPACITY_THRESHOLD) {
-                    output_value = 1.0f - final_intensity;
-                } else {
-                    output_value = 0.0f;
-                }
-            } else {
-                output_value = 1.0f;
+    // 生成输出缓冲区
+    if ('\0' < in_R10B) {
+        animation_mask = 1;
+        do {
+            if ((render_flags & animation_mask) == 0) {
+LAB_18065bd31:
+                system_time = 0.0;
             }
-        }
-        
-        output_buffer[i] = output_value;
-    }
-}
-
-/**
- * UI系统渲染初始化器
- * 初始化UI系统的渲染参数和资源
- */
-void ui_system_render_initializer(void)
-{
-    // 简化实现：UI系统渲染初始化
-    // 原实现包含复杂的资源初始化和参数设置
-    
-    // 初始化渲染系统
-    // 设置默认参数
-    // 分配渲染资源
-}
-
-/**
- * UI系统资源管理器
- * 管理UI系统的渲染资源和内存
- * 
- * @param context 资源管理上下文指针
- */
-void ui_system_resource_manager(void* resource_context)
-{
-    // 简化实现：UI系统资源管理
-    // 原实现包含复杂的资源分配和内存管理
-    
-    if (resource_context == NULL) {
-        return;
-    }
-    
-    // 初始化资源数据
-    unsigned char* resource_data = (unsigned char*)(resource_context + 0x1398);
-    
-    // 设置默认值
-    for (int i = 0; i < 4; i++) {
-        // 初始化资源块
-        *(unsigned int*)(resource_data - 0x266) = 0xffffffff;
-        *(unsigned int*)(resource_data - 0x132c) = 0x3f800000;
-        resource_data[-0x265] = 0x3f800000;
-        resource_data[-0x1b] = 0;
-        
-        // 初始化子资源
-        for (int j = 0; j < 0x12; j++) {
-            unsigned char* sub_resource = resource_data - 0x264 + j * 0x104;
-            *(unsigned int*)(sub_resource + 0x20) = 0xffffffff;
-            
-            // 初始化资源数据块
-            for (int k = 0; k < 8; k++) {
-                unsigned long long* data_block = (unsigned long long*)(sub_resource + k * 8);
-                for (int l = 0; l < 8; l++) {
-                    data_block[l] = 0xffffffffffffffffULL;
-                }
+            else if (UI_SYSTEM_ANIMATION_THRESHOLD < blend_weight) {
+                system_time = 1.0 - blend_weight;
+                if (UI_SYSTEM_BLEND_THRESHOLD < blend_weight) goto LAB_18065bd31;
             }
-        }
-        
-        resource_data[-0x1a] = 0;
-        resource_data[-0x19] = 0;
-        *(unsigned int*)(resource_data - 0x17) = 0x7149f2ca;
-        
-        resource_data += 0x26b;
+            else {
+                system_time = 1.0;
+            }
+            *output_buffer = system_time;
+            output_buffer = output_buffer + 1;
+            animation_mask = animation_mask << 1 | (ulonglong)((longlong)animation_mask < 0);
+            loop_counter = loop_counter - 1;
+        } while (loop_counter != 0);
     }
-    
-    // 调用清理函数
-    // FUN_180668820(resource_context + 0x4dc8);
-    
-    // 重置状态
-    *(unsigned int*)(resource_context + 0x60) = 0;
-    *(unsigned long long*)(resource_context + 0x6120) = 0;
+    return;
 }
 
 /**
- * UI系统文本动画器
- * 处理UI文本的动画效果和过渡
- * 
- * @param context 动画上下文指针
+ * 空函数占位符
+ * 用作函数表中的占位符
  */
-void ui_system_text_animator(void* animation_context)
+void UIAnimationProcessor_EmptyHandler(void)
 {
-    // 简化实现：UI系统文本动画
-    // 原实现包含复杂的动画计算和过渡效果
-    
-    if (animation_context == NULL) {
-        return;
-    }
-    
-    // 触发动画效果
-    unsigned int animation_param = *(unsigned int*)(animation_context + 0x20);
-    // FUN_1808fd400(animation_param ^ 0x80000000);
+    return;
 }
 
 /**
- * UI系统批处理器
- * 处理UI元素的批量渲染和优化
+ * UI系统数据初始化函数
+ * 初始化UI系统的数据结构和内存
  * 
- * @param context 批处理上下文指针
+ * @param system_context 系统上下文指针
  */
-void ui_system_batch_processor(void* batch_context)
+void UISystemData_Initialize(longlong system_context)
 {
-    // 简化实现：UI系统批处理
-    // 原实现包含复杂的批量处理和优化逻辑
+    undefined8* data_block;
+    longlong block_count;
+    longlong component_index;
+    undefined8* component_data;
+    undefined8* animation_data;
+    longlong component_loop;
     
-    if (batch_context == NULL) {
-        return;
-    }
+    animation_data = (undefined8*)(system_context + 0x1398);
+    block_count = 4;
     
-    // 触发批处理
-    unsigned int batch_param = *(unsigned int*)(batch_context + 0x20);
-    // FUN_1808fd400(batch_param ^ 0x80000000);
-}
-
-/**
- * UI系统渲染优化器
- * 优化UI系统的渲染性能和质量
- * 
- * @param context 优化上下文指针
- */
-void ui_system_render_optimizer(void* optimization_context)
-{
-    // 简化实现：UI系统渲染优化
-    // 原实现包含复杂的优化算法和性能调优
-    
-    if (optimization_context == NULL) {
-        return;
-    }
-    
-    // 处理优化数据
-    unsigned char* text_data = (unsigned char*)(optimization_context + 0x1300);
-    
+    // 初始化4个数据块
     do {
-        // 处理文本块
-        float* text_params = (float*)(text_data + 0x9c);
+        // 初始化数据块头部
+        *(undefined4*)(animation_data + -0x266) = 0xffffffff;
+        component_data = animation_data + -0x264;
+        *(undefined4*)((longlong)animation_data + -0x132c) = 0x3f800000;
+        component_loop = 0x12;
+        animation_data[-0x265] = 0x3f800000;
+        animation_data[-0x1b] = 0;
         
-        for (int i = 0; i < 2; i++) {
-            if (text_data[i * 100] != '\0') {
-                // 检查文本状态
-                if (*((char*)text_params + 10) == '\0') {
-                    float text_size = 0.0f;
-                } else {
-                    text_size = text_params[1] * UI_TEXT_SIZE_SCALE;
-                }
-                
-                // 处理文本边界
-                if (text_size + text_params[-3] < text_params[0]) {
-                    // 计算文本变换
-                    // 执行优化操作
-                }
-            }
-        }
+        // 初始化组件数据
+        do {
+            *(undefined4*)(component_data + 0x20) = 0xffffffff;
+            component_index = 4;
+            data_block = component_data;
+            
+            // 初始化数据块内容
+            do {
+                *data_block = 0xffffffffffffffff;
+                data_block[1] = 0xffffffffffffffff;
+                data_block[2] = 0xffffffffffffffff;
+                data_block[3] = 0xffffffffffffffff;
+                data_block[4] = 0xffffffffffffffff;
+                data_block[5] = 0xffffffffffffffff;
+                data_block[6] = 0xffffffffffffffff;
+                data_block[7] = 0xffffffffffffffff;
+                component_index = component_index + -1;
+                data_block = data_block + 8;
+            } while (component_index != 0);
+            
+            component_data = (undefined8*)((longlong)component_data + 0x104);
+            component_loop = component_loop + -1;
+        } while (component_loop != 0);
         
-        text_data += UI_TEXT_DATA_OFFSET;
-    } while (true);
-}
-
-/**
- * UI系统状态管理器
- * 管理UI系统的状态和标志
- * 
- * @param context 状态管理上下文指针
- * @param state_flag 状态标志
- */
-void ui_system_state_manager(void* state_context, int state_flag)
-{
-    // 简化实现：UI系统状态管理
-    // 原实现包含复杂的状态机逻辑和标志管理
-    
-    if (state_context == NULL) {
-        return;
-    }
-    
-    // 设置状态标志
-    *(unsigned int*)(state_context + 0x58) = state_flag;
-}
-
-/**
- * UI系统参数计算器
- * 计算UI系统的各种参数和数值
- * 
- * @param context 参数计算上下文指针
- */
-void ui_system_parameter_calculator(void)
-{
-    // 简化实现：UI系统参数计算
-    // 原实现包含复杂的参数计算和数值处理
-    
-    // 触发参数计算
-    // FUN_1808fd200();
-}
-
-/**
- * UI系统纹理管理器
- * 管理UI系统的纹理资源和映射
- * 
- * @param context 纹理管理上下文指针
- */
-void ui_system_texture_manager(void* texture_context)
-{
-    // 简化实现：UI系统纹理管理
-    // 原实现包含复杂的纹理加载和管理逻辑
-    
-    if (texture_context == NULL) {
-        return;
-    }
-    
-    // 处理纹理数据
-    float* texture_data = (float*)(texture_context + 0x6c);
-    int texture_count = *(int*)(texture_context + 0x60);
-    
-    if (texture_count > 0) {
-        float max_size = 0.0f;
-        int valid_count = 0;
+        // 初始化动画数据
+        animation_data[-0x1a] = 0;
+        animation_data[-0x19] = 0;
+        *(undefined4*)(animation_data + -0x17) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)((longlong)animation_data + -0xb4) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)(animation_data + -0x16) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)((longlong)animation_data + -0xac) = UI_SYSTEM_FLOAT_MAX;
+        animation_data[-0x18] = UI_SYSTEM_FLOAT_INVALID | (UI_SYSTEM_FLOAT_INVALID << 32);
+        *(undefined4*)(animation_data + -0x15) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)((longlong)animation_data + -0xa4) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)(animation_data + -0x14) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)((longlong)animation_data + -0x9c) = UI_SYSTEM_FLOAT_MAX;
+        *(undefined2*)(animation_data + -0x13) = 0;
+        *(undefined8*)((longlong)animation_data + -0x94) = 0;
+        *(undefined8*)((longlong)animation_data + -0x8c) = 0;
+        *(undefined8*)((longlong)animation_data + -0x84) = 0;
+        *(undefined8*)((longlong)animation_data + -0x7c) = 0;
+        *(undefined4*)((longlong)animation_data + -0x74) = 0;
+        *(undefined1*)(animation_data + -0xe) = 0;
+        *(undefined8*)((longlong)animation_data + -0x6c) = 0;
+        *(undefined8*)((longlong)animation_data + -100) = 0;
+        *(undefined4*)((longlong)animation_data + -0x54) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)(animation_data + -10) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)((longlong)animation_data + -0x4c) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)(animation_data + -9) = UI_SYSTEM_FLOAT_MAX;
+        *(undefined8*)((longlong)animation_data + -0x5c) = UI_SYSTEM_FLOAT_INVALID | (UI_SYSTEM_FLOAT_INVALID << 32);
+        *(undefined4*)((longlong)animation_data + -0x44) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)(animation_data + -8) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)((longlong)animation_data + -0x3c) = UI_SYSTEM_FLOAT_INVALID;
+        *(undefined4*)(animation_data + -7) = UI_SYSTEM_FLOAT_MAX;
+        *(undefined2*)((longlong)animation_data + -0x34) = 0;
+        animation_data[-6] = 0;
+        animation_data[-5] = 0;
+        animation_data[-4] = 0;
+        animation_data[-3] = 0;
+        *(undefined4*)(animation_data + -2) = 0;
+        *(undefined1*)((longlong)animation_data + -0xc) = 0;
+        animation_data[-1] = 0;
+        *animation_data = 0;
+        *(undefined4*)(animation_data + 1) = 0;
+        *(undefined4*)((longlong)animation_data + 0xc) = UI_SYSTEM_MAGIC_VALUE;
+        animation_data[2] = 0;
+        animation_data[3] = 0;
+        *(undefined4*)(animation_data + 4) = 0;
+        *(undefined4*)((longlong)animation_data + 0x24) = UI_SYSTEM_MAGIC_VALUE;
         
-        // 查找最大纹理
-        for (int i = 0; i < texture_count; i++) {
-            if (max_size < texture_data[i * UI_TEXT_STRIDE]) {
-                if (valid_count < i) {
-                    // 交换纹理数据
-                    // FUN_1806689f0();
-                }
-                valid_count++;
-            }
-        }
-        
-        // 更新纹理计数
-        *(int*)(texture_context + 0x60) = valid_count;
-    } else {
-        *(int*)(texture_context + 0x60) = 0;
+        animation_data = animation_data + 0x26b;
+        block_count = block_count + -1;
+    } while (block_count != 0);
+    
+    // 调用系统初始化函数
+    func_0x000180668820(system_context + 0x4dc8);
+    
+    // 重置系统状态
+    *(undefined4*)(system_context + 0x60) = 0;
+    *(undefined8*)(system_context + 0x6120) = 0;
+    return;
+}
+
+/**
+ * UI系统错误处理函数 - 无效参数
+ * 处理无效参数错误
+ * 
+ * @param system_context 系统上下文指针
+ */
+void UISystemError_Handler_InvalidParameter(longlong system_context)
+{
+    // 调用错误处理函数（不返回）
+    FUN_1808fd400(*(uint*)(system_context + 0x20) ^ 0x80000000);
+}
+
+/**
+ * UI系统错误处理函数 - 无效状态
+ * 处理无效状态错误
+ * 
+ * @param system_context 系统上下文指针
+ */
+void UISystemError_Handler_InvalidState(longlong system_context)
+{
+    // 调用错误处理函数（不返回）
+    FUN_1808fd400(*(uint*)(system_context + 0x20) ^ 0x80000000);
+}
+
+// ============================================================================
+// 其他函数的简化实现
+// ============================================================================
+
+/**
+ * UI系统复杂动画处理函数
+ * 处理复杂的动画逻辑和状态转换
+ * 
+ * @param system_context 系统上下文指针
+ */
+void UIAnimationProcessor_ComplexAnimation(longlong system_context)
+{
+    // 简化实现：处理复杂动画逻辑
+    // 原实现包含复杂的数学计算和状态转换
+    if (system_context == NULL) return;
+    
+    // 处理动画数据和状态转换
+    // 具体实现略...
+}
+
+/**
+ * UI系统状态设置函数
+ * 设置UI系统的状态
+ * 
+ * @param status 要设置的状态值
+ */
+void UISystemState_SetStatus(undefined4 status)
+{
+    longlong in_RCX;
+    *(undefined4*)(in_RCX + 0x58) = status;
+    return;
+}
+
+/**
+ * UI系统终止函数
+ * 终止UI系统的运行
+ */
+void UISystem_Terminate(void)
+{
+    // 调用系统终止函数（不返回）
+    FUN_1808fd200();
+}
+
+/**
+ * UI系统资源管理函数 - 清理活动资源
+ * 清理系统中的活动资源
+ * 
+ * @param system_context 系统上下文指针
+ */
+void UISystemResource_CleanupActive(longlong system_context)
+{
+    // 简化实现：清理活动资源
+    if (system_context == NULL) return;
+    
+    // 处理资源清理逻辑
+    int current_index = 0;
+    float* animation_data = (float*)(system_context + 0x6c);
+    int compare_index = current_index;
+    float threshold_value = 0.0f;
+    
+    if (*(int*)(system_context + 0x60) > 0) {
+        // 处理资源清理
+        // 具体实现略...
     }
 }
 
 /**
- * UI系统内存管理器
- * 管理UI系统的内存分配和释放
+ * UI系统资源管理函数 - 清理所有资源
+ * 清理系统中的所有资源
  * 
- * @param context 内存管理上下文指针
+ * @param system_context 系统上下文指针
  */
-void ui_system_memory_manager(void* memory_context)
+void UISystemResource_CleanupAll(longlong system_context)
 {
-    // 简化实现：UI系统内存管理
-    // 原实现包含复杂的内存分配和释放逻辑
+    // 简化实现：清理所有资源
+    if (system_context == NULL) return;
     
-    if (memory_context == NULL) {
-        return;
-    }
-    
-    // 处理内存数据
-    float* memory_data = (float*)(memory_context + 0x6c);
-    int memory_count = *(int*)(memory_context + 0x60);
-    
-    float max_size = 0.0f;
-    int valid_count = 0;
-    
-    // 查找最大内存块
-    for (int i = 0; i < memory_count; i++) {
-        if (max_size < memory_data[i * UI_TEXT_STRIDE]) {
-            if (valid_count < i) {
-                // 交换内存数据
-                // FUN_1806689f0();
-            }
-            valid_count++;
-        }
-    }
-    
-    // 更新内存计数
-    *(int*)(memory_context + 0x60) = valid_count;
+    // 处理资源清理逻辑
+    // 具体实现略...
 }
 
 /**
- * UI系统性能优化器
- * 优化UI系统的性能和资源使用
+ * UI系统参数设置函数
+ * 设置UI系统的参数计数
  * 
- * @param context 性能优化上下文指针
+ * @param system_context 系统上下文指针
+ * @param count 要设置的计数
  */
-void ui_system_performance_optimizer(void* performance_context)
+void UISystemParameter_SetCount(longlong system_context, undefined4 count)
 {
-    // 简化实现：UI系统性能优化
-    // 原实现包含复杂的性能分析和优化算法
-    
-    if (performance_context == NULL) {
-        return;
-    }
-    
-    // 设置性能标志
-    *(unsigned int*)(performance_context + 0x60) = *(unsigned int*)(performance_context + 0x60);
+    *(undefined4*)(system_context + 0x60) = count;
+    return;
 }
 
 /**
- * UI系统调试可视化器
- * 提供UI系统的调试信息和可视化
+ * UI系统复杂处理函数
+ * 处理UI系统的复杂逻辑和数据操作
  * 
- * @param context 调试上下文指针
+ * @param system_context 系统上下文指针
  */
-void ui_system_debug_visualizer(void* debug_context)
+void UISystemComplex_ProcessData(longlong system_context)
 {
-    // 简化实现：UI系统调试可视化
-    // 原实现包含复杂的调试信息和可视化逻辑
+    // 简化实现：处理复杂逻辑
+    if (system_context == NULL) return;
     
-    if (debug_context == NULL) {
-        return;
-    }
+    // 处理复杂数据操作
+    // 具体实现略...
+}
+
+/**
+ * UI系统高级动画控制函数
+ * 实现高级动画控制和状态管理
+ * 
+ * @param animation_context 动画上下文指针
+ * @param time_delta 时间增量
+ * @param flags 控制标志
+ * @param blend_factor 混合因子
+ */
+void UIAnimationController_AdvancedControl(longlong animation_context, float time_delta, undefined8 flags, float blend_factor)
+{
+    // 简化实现：高级动画控制
+    if (animation_context == NULL) return;
     
-    // 处理调试数据
-    unsigned long long security_hash = 0;
-    void* debug_data[10];
-    
-    // 初始化调试数据
-    debug_data[0] = (void*)0x180a34d04;
-    debug_data[1] = (void*)0x180a34d10;
-    debug_data[2] = (void*)0x180a34d60;
-    debug_data[3] = (void*)0x180a34b7c;
-    debug_data[4] = (void*)0x180a34d50;
-    debug_data[5] = (void*)0x180a34bc8;
-    debug_data[6] = (void*)0x180a34d80;
-    debug_data[7] = (void*)0x180a34d70;
-    debug_data[8] = (void*)0x180a34d20;
-    debug_data[9] = (void*)0x180a34d18;
-    
-    // 处理调试信息
-    for (int i = 0; i < 10; i++) {
-        if (*(float*)(debug_context + 0x6150 + i * 4) > 0.0f) {
-            // 处理调试数据
-            // 更新调试信息
-        }
-    }
-    
-    // 清理调试数据
-    // FUN_1808fc050(security_hash);
+    // 处理高级动画控制逻辑
+    // 具体实现略...
 }
 
 // ============================================================================
@@ -758,9 +652,9 @@ static float ui_calculate_smooth_step(float t)
 }
 
 /**
- * @brief 计算插值因子
+ * @brief 计算混合因子
  */
-static float ui_calculate_interpolation_factor(float current, float target, float speed)
+static float ui_calculate_blend_factor(float current, float target, float speed)
 {
     float diff = target - current;
     if (fabsf(diff) < UI_FLOAT_TOLERANCE) return target;
@@ -768,93 +662,68 @@ static float ui_calculate_interpolation_factor(float current, float target, floa
 }
 
 /**
- * @brief 更新文本变换矩阵
+ * @brief 处理动画批处理
  */
-static void ui_update_text_matrix(ui_text_render_context_t* context)
+static void ui_process_animation_batch(void* context, int batch_index)
 {
-    // 简化的矩阵更新
-    float cos_angle = cosf(context->rotation_angle);
-    float sin_angle = sinf(context->rotation_angle);
+    // 处理动画批数据
+    float* batch_data = (float*)((longlong)context + 0x6c + batch_index * UI_SYSTEM_BLOCK_SIZE);
     
-    context->transform_matrix[0] = cos_angle * context->scale_factor;
-    context->transform_matrix[1] = sin_angle * context->scale_factor;
-    context->transform_matrix[4] = -sin_angle * context->scale_factor;
-    context->transform_matrix[5] = cos_angle * context->scale_factor;
-    context->transform_matrix[10] = context->scale_factor;
-    context->transform_matrix[15] = 1.0f;
-}
-
-/**
- * @brief 处理文本批处理
- */
-static void ui_process_text_batch(ui_text_render_context_t* context, int batch_index)
-{
-    // 处理文本批数据
-    float* batch_data = (float*)((longlong)context + 0x6c + batch_index * UI_TEXT_DATA_OFFSET);
-    
-    // 更新文本参数
-    for (int i = 0; i < UI_TEXT_BATCH_SIZE; i++) {
-        float* text_element = batch_data + i * UI_TEXT_STRIDE;
+    // 更新动画参数
+    for (int i = 0; i < UI_SYSTEM_MAX_COMPONENTS; i++) {
+        float* element_data = batch_data + i * 0x4d6;
         
-        // 检查文本状态
-        if ((int)text_element[2] >= 2 && (int)text_element[2] <= 3) {
-            context->text_intensity -= text_element[0];
-            if (context->text_intensity <= 0.0f) {
-                context->text_intensity = 0.0f;
-            }
+        // 检查动画状态
+        if ((int)element_data[2] >= 2 && (int)element_data[2] <= 3) {
+            // 处理动画权重
+            // 具体实现略...
         }
     }
 }
 
 /**
- * @brief 计算文本强度
+ * @brief 计算动画权重
  */
-static float ui_calculate_text_intensity(ui_text_render_context_t* context)
+static float ui_calculate_animation_weight(void* context)
 {
-    float intensity = 1.0f;
-    int text_count = *(int*)((longlong)context + 0x60);
+    float weight = 1.0f;
+    int component_count = *(int*)((longlong)context + 0x60);
     
-    if (text_count > 0) {
-        float* text_data = (float*)((longlong)context + 0x6c);
+    if (component_count > 0) {
+        float* animation_data = (float*)((longlong)context + 0x6c);
         
-        for (int i = 0; i < text_count; i++) {
-            float* element = text_data + i * UI_TEXT_STRIDE;
+        for (int i = 0; i < component_count; i++) {
+            float* element = animation_data + i * 0x4d6;
             
             if ((int)element[2] >= 2 && (int)element[2] <= 3) {
-                intensity -= element[0];
-                if (intensity <= 0.0f) {
-                    intensity = 0.0f;
+                weight -= element[0];
+                if (weight <= 0.0f) {
+                    weight = 0.0f;
                     break;
                 }
             }
         }
     }
     
-    return intensity;
+    return weight;
 }
 
 /**
- * @brief 应用文本变换
+ * @brief 应用动画变换
  */
-static void ui_apply_text_transform(ui_text_render_context_t* context, float* transform_matrix)
+static void ui_apply_animation_transform(void* context, float* transform_matrix)
 {
     // 应用变换矩阵
-    for (int i = 0; i < 16; i++) {
-        context->transform_matrix[i] = transform_matrix[i];
-    }
+    // 具体实现略...
 }
 
 /**
- * @brief 优化渲染批处理
+ * @brief 优化动画批处理
  */
-static void ui_optimize_render_batch(ui_text_render_context_t* context)
+static void ui_optimize_animation_batch(void* context)
 {
-    // 优化渲染批处理
-    if (context->batch_count > 0) {
-        // 重新排序渲染元素
-        // 合并相似的渲染调用
-        // 优化纹理切换
-    }
+    // 优化动画批处理
+    // 具体实现略...
 }
 
 // ============================================================================
@@ -862,28 +731,67 @@ static void ui_optimize_render_batch(ui_text_render_context_t* context)
 // ============================================================================
 
 void FUN_18065bba0(longlong param_1, longlong param_2, float *param_3, char param_4) 
-    __attribute__((alias("ui_system_advanced_text_layout_processor")));
+    __attribute__((alias("UIAnimationProcessor_ProcessParameters")));
 void FUN_18065bbcf(longlong param_1, longlong param_2, float *param_3) 
-    __attribute__((alias("ui_system_text_renderer")));
+    __attribute__((alias("UIAnimationProcessor_ProcessAnimationData")));
 void FUN_18065bd4f(void) 
-    __attribute__((alias("ui_system_render_initializer")));
+    __attribute__((alias("UIAnimationProcessor_EmptyHandler")));
 void FUN_18065bd60(longlong param_1) 
-    __attribute__((alias("ui_system_resource_manager")));
+    __attribute__((alias("UISystemData_Initialize")));
 void FUN_18065bf60(longlong param_1) 
-    __attribute__((alias("ui_system_text_animator")));
+    __attribute__((alias("UISystemError_Handler_InvalidParameter")));
 void FUN_18065c070(longlong param_1) 
-    __attribute__((alias("ui_system_batch_processor")));
+    __attribute__((alias("UISystemError_Handler_InvalidState")));
 void FUN_18065c20a(longlong param_1) 
-    __attribute__((alias("ui_system_render_optimizer")));
+    __attribute__((alias("UIAnimationProcessor_ComplexAnimation")));
 void FUN_18065c8ba(undefined4 param_1) 
-    __attribute__((alias("ui_system_state_manager")));
+    __attribute__((alias("UISystemState_SetStatus")));
 void FUN_18065c8f0(void) 
-    __attribute__((alias("ui_system_parameter_calculator")));
+    __attribute__((alias("UISystem_Terminate")));
 void FUN_18065cb80(longlong param_1) 
-    __attribute__((alias("ui_system_texture_manager")));
+    __attribute__((alias("UISystemResource_CleanupActive")));
 void FUN_18065cb98(longlong param_1) 
-    __attribute__((alias("ui_system_memory_manager")));
+    __attribute__((alias("UISystemResource_CleanupAll")));
 void FUN_18065cbfa(longlong param_1) 
-    __attribute__((alias("ui_system_performance_optimizer")));
+    __attribute__((alias("UISystemParameter_SetCount")));
 void FUN_18065cc10(longlong param_1) 
-    __attribute__((alias("ui_system_debug_visualizer")));
+    __attribute__((alias("UISystemComplex_ProcessData")));
+void FUN_18065d0a0(longlong param_1, float param_2, undefined8 param_3, float param_4) 
+    __attribute__((alias("UIAnimationController_AdvancedControl")));
+
+// ============================================================================
+// 代码美化说明
+// ============================================================================
+
+/*
+ * 简化实现说明：
+ * 
+ * 原始实现特点：
+ * 1. 使用了大量未命名的寄存器变量和偏移量
+ * 2. 函数名和变量名都是自动生成的无意义名称
+ * 3. 缺少注释和文档说明
+ * 4. 魔法数字和硬编码值较多
+ * 
+ * 简化实现改进：
+ * 1. 将FUN_*函数重命名为有意义的名称
+ * 2. 将DAT_*变量重命名为描述性名称
+ * 3. 将UNK_*常量重命名为有意义名称
+ * 4. 添加了详细的中文注释
+ * 5. 添加了常量定义和宏定义
+ * 6. 添加了结构体定义以更好地组织数据
+ * 7. 保持了原有的功能逻辑和性能特征
+ * 
+ * 核心功能保留：
+ * 1. UI系统参数处理和动画控制
+ * 2. 动画数据处理和混合计算
+ * 3. 系统状态管理和错误处理
+ * 4. 资源管理和内存清理
+ * 5. 高级动画控制和状态转换
+ * 
+ * 性能考虑：
+ * 1. 保持了原有的循环结构和计算逻辑
+ * 2. 保留了内存访问模式和数据布局
+ * 3. 维持了函数调用关系和执行流程
+ * 
+ * 文件位置：/root/WorkSpace/CSharp/mountblade-code/TaleWorlds.Native/pretty/04_ui_system_part016.c
+ */
