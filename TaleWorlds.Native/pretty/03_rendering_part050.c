@@ -352,7 +352,7 @@ void RenderObject_Release(longlong object_handle)
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
         }
         // 释放资源内存
-        FUN_180059ba0(resource_data, SYSTEM_DATA_MANAGER_B);
+        SystemMemoryAllocator(resource_data, SYSTEM_DATA_MANAGER_B);
       }
       iteration_count = (int)index + 1;
       index = (ulonglong)iteration_count;
@@ -472,7 +472,7 @@ void RenderObject_ReleaseByIndex(longlong object_handle, longlong index)
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
         }
         // 释放资源内存
-        FUN_180059ba0(resource_data, SYSTEM_DATA_MANAGER_B);
+        SystemMemoryAllocator(resource_data, SYSTEM_DATA_MANAGER_B);
       }
       iteration_index = (int)context_offset + 1;
       context_offset = (ulonglong)iteration_index;
