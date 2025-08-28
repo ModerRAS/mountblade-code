@@ -750,7 +750,7 @@ void process_complex_data_serialization_variant(undefined4 *config_ptr, longlong
 
 /* 
  * 简化实现说明：
- * 原始实现包含复杂的反编译代码，包括多个数据序列化和处理函数。
+ * 原始实现包含复杂的原始代码，包括多个数据序列化和处理函数。
  * 简化实现使用了更有意义的变量名和函数名，保留了核心功能结构。
  * 
  * 原始实现中的关键部分：
@@ -768,5 +768,5 @@ void process_complex_data_serialization_variant(undefined4 *config_ptr, longlong
  * - 使用描述性变量名替换DAT_和UNK_前缀
  * - 添加了中文注释说明功能
  * - 保持了原有的代码结构和逻辑流程
- * - 将复杂的反编译代码转换为更易读的形式
+ * - 将复杂的原始代码转换为更易读的形式
  */

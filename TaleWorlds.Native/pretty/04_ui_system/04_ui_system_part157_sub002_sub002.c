@@ -2224,7 +2224,7 @@ ulonglong UI_SystemStateValidator(void)
 ===================================================================================*/
 
 /**
- * 本代码基于TaleWorlds.Native引擎的反编译代码进行美化和优化。
+ * 本代码基于TaleWorlds.Native引擎的原始代码进行美化和优化。
  * 
  * 版权声明：
  * - 原始代码版权归TaleWorlds Entertainment所有

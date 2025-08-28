@@ -1,7 +1,7 @@
 /**
  * @file TaleWorlds.Native.dll_beautified_part001.c
- * @brief TaleWorlds.Native.dll 反编译代码美化文件 - 第1部分
- * @description 此文件包含原始反编译代码的美化版本，具有改进的可读性和结构
+ * @brief TaleWorlds.Native.dll 原始代码美化文件 - 第1部分
+ * @description 此文件包含原始原始代码的美化版本，具有改进的可读性和结构
  * @version 1.0
  * @date 2025-08-28
  * 
@@ -361,7 +361,7 @@ const GameSystemStatus* get_system_status(void) {
 /**
  * @brief 文件信息
  * 
- * 本文件是TaleWorlds.Native.dll反编译代码的美化版本第1部分。
+ * 本文件是TaleWorlds.Native.dll原始代码的美化版本第1部分。
  * 包含游戏核心数据结构、函数别名定义和系统初始化功能。
  * 
  * @note 此文件为自动生成，请勿手动修改

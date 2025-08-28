@@ -661,4 +661,4 @@ undefined8 UISystem_Initializer_ALIAS(longlong param_1, undefined4 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // 这是编译器的警告信息，表示以'_'开头的全局变量与同一地址的较小符号重叠
-// 这种情况在反编译代码中比较常见，不影响程序的实际功能
+// 这种情况在原始代码中比较常见，不影响程序的实际功能

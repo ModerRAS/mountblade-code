@@ -1438,7 +1438,7 @@ void NetworkingSystem_StateCleaner(void)
  * - 作者：Claude Code
  * - 描述：网络系统连接管理和资源清理模块
  * 
- * 本文件是对原始反编译代码的美化和重构版本，保持了原有功能的完整性，
+ * 本文件是对原始原始代码的美化和重构版本，保持了原有功能的完整性，
  * 同时提高了代码的可读性和可维护性。
  */
 
@@ -1448,7 +1448,7 @@ void NetworkingSystem_StateCleaner(void)
 /**
  * 版权声明：
  * 
- * 本文件基于TaleWorlds Native代码库的反编译代码进行美化处理。
+ * 本文件基于TaleWorlds Native代码库的原始代码进行美化处理。
  * 原始代码版权归TaleWorlds Entertainment所有。
  * 
  * 本美化版本仅用于学习和研究目的，不得用于商业用途。

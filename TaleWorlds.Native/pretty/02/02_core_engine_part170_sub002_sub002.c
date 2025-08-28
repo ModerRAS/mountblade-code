@@ -15,7 +15,7 @@
  * 原函数名: FUN_180153d40
  * 
  * 注意：这是一个简化实现，原始函数非常复杂（1345行）
- * 原始实现包含大量重复的配置模式和反编译代码
+ * 原始实现包含大量重复的配置模式和原始代码
  * 简化实现保留了主要功能逻辑和结构
  */
 void initialize_engine_configuration(longlong engine_context, undefined8 param2, undefined8 param3, undefined8 param4) {

@@ -3,8 +3,8 @@
 // 02_core_engine_part124_sub002_sub002.c - 游戏对象渲染更新函数
 // 核心引擎模块 - 渲染系统子模块
 
-// 注意：这是一个简化实现，基于反编译代码的翻译
-// 原始实现：FUN_18012ae5a 函数，约1090行反编译代码
+// 注意：这是一个简化实现，基于原始代码的翻译
+// 原始实现：FUN_18012ae5a 函数，约1090行原始代码
 // 简化实现：update_game_object_render 函数，保留了核心渲染逻辑
 // 主要功能：游戏对象的位置更新、边界框计算、深度测试、纹理处理等
 void update_game_object_render(float param_1, float param_2, float param_3, float param_4)

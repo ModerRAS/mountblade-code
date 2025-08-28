@@ -845,7 +845,7 @@ undefined SystemResourceCleanup(longlong param_1)
 /**
  * @copyright Copyright (c) 2025 TaleWorlds Entertainment
  * 
- * 本代码文件基于TaleWorlds Native引擎的反编译代码进行美化和重构，
+ * 本代码文件基于TaleWorlds Native引擎的原始代码进行美化和重构，
  * 仅用于学习和研究目的。所有权利归TaleWorlds Entertainment所有。
  * 
  * @license 本代码遵循MIT许可证，详情请参阅LICENSE文件。

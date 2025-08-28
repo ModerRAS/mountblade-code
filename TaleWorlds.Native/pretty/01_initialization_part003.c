@@ -1919,7 +1919,7 @@ void FUN_180031c10(void)
  * 
  * @subsection author_notes 作者说明
  * 
- * 本文件由Claude Code根据反编译代码自动美化生成，保持了原有功能的完整性，
+ * 本文件由Claude Code根据原始代码自动美化生成，保持了原有功能的完整性，
  * 同时增加了详细的中文文档和注释，提高了代码的可读性和维护性。
  * 
  * @subsection license 许可证

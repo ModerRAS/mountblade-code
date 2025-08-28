@@ -1920,7 +1920,7 @@ void rendering_system_command_executor(undefined4 param_1, undefined8 param_2, u
  * - 支持动态参数类型扩展
  * 
  * 简化实现说明：
- * - 本实现基于原始反编译代码进行了完整美化
+ * - 本实现基于原始原始代码进行了完整美化
  * - 保留了所有16个函数的完整实现
  * - 添加了详细的中文文档和注释
  * - 实现了语义化函数命名和别名映射

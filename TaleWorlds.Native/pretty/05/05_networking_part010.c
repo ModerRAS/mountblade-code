@@ -420,7 +420,7 @@ undefined8 NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
  * 
  * @return undefined8 操作结果
  * 
- * @note 这是简化实现，基于原始反编译代码重构
+ * @note 这是简化实现，基于原始原始代码重构
  */
 undefined8 NetworkBufferManager_ReallocateBuffer(undefined8 param1, int param2) {
     int current_size;

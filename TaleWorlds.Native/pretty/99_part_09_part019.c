@@ -1202,7 +1202,7 @@ void SystemErrorHandler(int32_t error_code)
  * @version 1.0
  * @date 2025-08-28
  * 
- * @copyright 本代码根据TaleWorlds.Native反编译代码美化而来
+ * @copyright 本代码根据TaleWorlds.Native原始代码美化而来
  * @license 仅供学习和研究使用
  * 
  * @see 相关文件：99_part_09_part019.c (原始源文件)

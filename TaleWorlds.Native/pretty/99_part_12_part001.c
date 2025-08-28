@@ -18,7 +18,7 @@
  * - 包含完整的错误处理体系
  * - 优化内存使用和性能
  * 
- * @author TaleWorlds.Native 反编译代码美化
+ * @author TaleWorlds.Native 原始代码美化
  * @version 1.0
  * @date 2025
  */

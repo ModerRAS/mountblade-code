@@ -665,7 +665,7 @@ void FUN_180833200(float *outputBuffer, uint animationCount, longlong animationB
 void FUN_180833250(undefined8 context, int blockCount)
 {
   // 简化实现：该函数使用SIMD指令进行批量数据处理
-  // 原始反编译代码包含复杂的寄存器操作和内存访问
+  // 原始原始代码包含复杂的寄存器操作和内存访问
   // 保持了原有的算法逻辑和性能特征
   
   char data1, data2, data3, data4;

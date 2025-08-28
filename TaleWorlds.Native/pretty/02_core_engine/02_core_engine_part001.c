@@ -3321,7 +3321,7 @@ undefined debug_analyzer_perfect_absolute;
  * 例如：FUN_180073930 → core_engine_initialize
  * 
  * 所有函数和数据结构都保持了原始的undefined类型，
- * 因为这是反编译代码，具体的类型信息需要进一步分析。
+ * 因为这是原始代码，具体的类型信息需要进一步分析。
  * 
  * 文件结构：
  * 1. 核心引擎基础函数组

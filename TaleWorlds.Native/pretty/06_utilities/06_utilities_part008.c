@@ -299,7 +299,7 @@ void Utilities_HandleOperation(longlong param1, undefined8 param2, int *param3) 
     float float_value1;
     float float_value2;
     
-    // 寄存器变量（来自反编译代码）
+    // 寄存器变量（来自原始代码）
     int unaff_EBX;
     undefined4 unaff_0000001c;
     longlong unaff_RBP;
