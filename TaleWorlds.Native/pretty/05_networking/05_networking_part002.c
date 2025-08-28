@@ -578,353 +578,517 @@ int process_extended_data_validation(longlong extended_config, longlong data_ptr
 
 
 
-int FUN_1808416d0(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_dual_layer_data_validation(longlong dual_config, longlong data_ptr, int data_size)
+// 双层数据验证处理
+// 参数: dual_config - 双层验证配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理双层数据验证，包括初始化、第一层验证、第二层编码
+int process_dual_layer_data_validation(longlong dual_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 primary_key;
+  undefined4 secondary_key;
+  int bytes_processed;
+  int bytes_validated;
   
-  uVar2 = *(undefined4 *)(param_1 + 0x18);
-  uVar1 = *(undefined4 *)(param_1 + 0x1c);
-  iVar3 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b830(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 获取双层验证密钥
+  primary_key = *(undefined4 *)(dual_config + 0x18);
+  secondary_key = *(undefined4 *)(dual_config + 0x1c);
+  
+  // 初始化双层验证
+  bytes_processed = initialize_checksum(data_ptr, data_size, *(undefined4 *)(dual_config + 0x10));
+  bytes_validated = process_checksum_data(data_ptr + bytes_processed, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用第一层验证
+  bytes_validated = process_encryption(bytes_processed + data_ptr, data_size - bytes_processed, primary_key);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理第一层验证后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用第二层编码
+  bytes_validated = func_0x00018074b830(bytes_processed + data_ptr, data_size - bytes_processed, secondary_key);
+  return bytes_validated + bytes_processed;
 }
 
 
 
-int FUN_180841790(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_multi_param_data_validation(longlong multi_config, longlong data_ptr, int data_size)
+// 多参数数据验证处理
+// 参数: multi_config - 多参数配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理多参数数据的验证，包括填充处理和最终验证
+int process_multi_param_data_validation(longlong multi_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined4 final_key;
+  int bytes_processed;
+  int bytes_validated;
+  undefined4 param1;
+  undefined4 param2;
+  undefined4 param3;
+  undefined4 param4;
   
-  uStack_18 = *(undefined4 *)(param_1 + 0x10);
-  uStack_14 = *(undefined4 *)(param_1 + 0x14);
-  uStack_10 = *(undefined4 *)(param_1 + 0x18);
-  uStack_c = *(undefined4 *)(param_1 + 0x1c);
-  uVar1 = *(undefined4 *)(param_1 + 0x20);
-  iVar2 = FUN_18074b650(param_2,param_3,&uStack_18);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取多参数配置
+  param1 = *(undefined4 *)(multi_config + 0x10);
+  param2 = *(undefined4 *)(multi_config + 0x14);
+  param3 = *(undefined4 *)(multi_config + 0x18);
+  param4 = *(undefined4 *)(multi_config + 0x1c);
+  final_key = *(undefined4 *)(multi_config + 0x20);
+  
+  // 应用多参数填充处理
+  bytes_processed = apply_data_padding(data_ptr, data_size, &param1);
+  bytes_validated = process_checksum_data(data_ptr + bytes_processed, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用最终验证
+  bytes_validated = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, final_key);
+  return bytes_validated + bytes_processed;
 }
 
 
 
-int FUN_180841830(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_double_encryption_validation(longlong encryption_config, longlong data_ptr, int data_size)
+// 双重加密验证处理
+// 参数: encryption_config - 加密配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理双重加密数据的验证，包括初始化加密和二次加密
+int process_double_encryption_validation(longlong encryption_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 secondary_key;
+  int bytes_processed;
+  int bytes_encrypted;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x14);
-  iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b7d0(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取次要加密密钥
+  secondary_key = *(undefined4 *)(encryption_config + 0x14);
+  
+  // 应用初次加密
+  bytes_processed = process_encryption(data_ptr, data_size, *(undefined4 *)(encryption_config + 0x10));
+  bytes_encrypted = process_checksum_data(data_ptr + bytes_processed, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_encrypted;
+  
+  // 应用二次加密
+  bytes_encrypted = process_encryption(bytes_processed + data_ptr, data_size - bytes_processed, secondary_key);
+  return bytes_encrypted + bytes_processed;
 }
 
 
 
-int FUN_1808418a0(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_encrypted_checksum_validation(longlong checksum_config, longlong data_ptr, int data_size)
+// 加密校验和验证处理
+// 参数: checksum_config - 校验和配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理加密校验和的验证，包括加密处理和校验和计算
+int process_encrypted_checksum_validation(longlong checksum_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 checksum_key;
+  int bytes_processed;
+  int bytes_checksummed;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x14);
-  iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取校验和密钥
+  checksum_key = *(undefined4 *)(checksum_config + 0x14);
+  
+  // 应用加密处理
+  bytes_processed = process_encryption(data_ptr, data_size, *(undefined4 *)(checksum_config + 0x10));
+  bytes_checksummed = process_checksum_data(data_ptr + bytes_processed, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_checksummed;
+  
+  // 应用校验和计算
+  bytes_checksummed = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, checksum_key);
+  return bytes_checksummed + bytes_processed;
 }
 
 
 
-int FUN_180841910(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_protocol_data_validation(longlong protocol_config, longlong data_ptr, int data_size)
+// 协议数据验证处理
+// 参数: protocol_config - 协议配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理协议数据的验证，包括协议初始化、参数设置和最终验证
+int process_protocol_data_validation(longlong protocol_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined8 uStack_18;
+  undefined4 primary_param;
+  undefined4 secondary_param;
+  int bytes_processed;
+  int bytes_validated;
+  undefined8 base_addr;
+  undefined8 version_info;
+  undefined8 header_format;
+  undefined8 data_format;
+  undefined4 timeout_val;
+  undefined4 retry_count;
+  undefined4 buffer_size;
+  undefined4 compression_level;
+  undefined8 encryption_info;
   
-  uStack_48 = *(undefined8 *)(param_1 + 0x10);
-  uStack_40 = *(undefined8 *)(param_1 + 0x18);
-  uVar1 = *(undefined4 *)(param_1 + 0x4c);
-  uStack_38 = *(undefined8 *)(param_1 + 0x20);
-  uStack_30 = *(undefined8 *)(param_1 + 0x28);
-  uVar2 = *(undefined4 *)(param_1 + 0x48);
-  uStack_28 = *(undefined4 *)(param_1 + 0x30);
-  uStack_24 = *(undefined4 *)(param_1 + 0x34);
-  uStack_20 = *(undefined4 *)(param_1 + 0x38);
-  uStack_1c = *(undefined4 *)(param_1 + 0x3c);
-  uStack_18 = *(undefined8 *)(param_1 + 0x40);
-  iVar3 = func_0x00018088ecd0(param_2,param_3,&uStack_48);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 获取协议配置参数
+  base_addr = *(undefined8 *)(protocol_config + 0x10);
+  version_info = *(undefined8 *)(protocol_config + 0x18);
+  primary_param = *(undefined4 *)(protocol_config + 0x4c);
+  header_format = *(undefined8 *)(protocol_config + 0x20);
+  data_format = *(undefined8 *)(protocol_config + 0x28);
+  secondary_param = *(undefined4 *)(protocol_config + 0x48);
+  timeout_val = *(undefined4 *)(protocol_config + 0x30);
+  retry_count = *(undefined4 *)(protocol_config + 0x34);
+  buffer_size = *(undefined4 *)(protocol_config + 0x38);
+  compression_level = *(undefined4 *)(protocol_config + 0x3c);
+  encryption_info = *(undefined8 *)(protocol_config + 0x40);
+  
+  // 初始化协议处理
+  bytes_processed = func_0x00018088ecd0(data_ptr, data_size, &base_addr);
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用主要协议参数
+  bytes_validated = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, secondary_param);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理协议参数后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用次要协议参数
+  bytes_validated = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, primary_param);
+  return bytes_validated + bytes_processed;
 }
 
 
 
-int FUN_1808419e0(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_buffered_data_validation(longlong buffer_config, longlong data_ptr, int data_size)
+// 缓冲区数据验证处理
+// 参数: buffer_config - 缓冲区配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理缓冲区数据的验证，包括缓冲区处理和双重校验和计算
+int process_buffered_data_validation(longlong buffer_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 primary_key;
+  undefined4 secondary_key;
+  int bytes_processed;
+  int bytes_buffered;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  uVar2 = *(undefined4 *)(param_1 + 0x14);
-  iVar3 = FUN_18074b880(param_2,param_3,param_1 + 0x18);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  // 获取缓冲区验证密钥
+  primary_key = *(undefined4 *)(buffer_config + 0x10);
+  secondary_key = *(undefined4 *)(buffer_config + 0x14);
+  
+  // 处理缓冲区数据
+  bytes_processed = process_checksum_data(data_ptr, data_size, buffer_config + 0x18);
+  bytes_buffered = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_buffered;
+  
+  // 应用次要校验和
+  bytes_buffered = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, secondary_key);
+  bytes_processed = bytes_processed + bytes_buffered;
+  
+  // 处理校验和后数据
+  bytes_buffered = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_buffered;
+  
+  // 应用主要校验和
+  bytes_buffered = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, primary_key);
+  return bytes_buffered + bytes_processed;
 }
 
 
 
-int FUN_180841a90(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_quad_layer_data_validation(longlong quad_config, longlong data_ptr, int data_size)
+// 四层数据验证处理
+// 参数: quad_config - 四层验证配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理四层数据验证，包括压缩、双重加密和双重校验和
+int process_quad_layer_data_validation(longlong quad_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  int iVar5;
-  int iVar6;
+  undefined4 final_key;
+  undefined4 tertiary_key;
+  undefined4 secondary_key;
+  undefined4 primary_key;
+  int bytes_processed;
+  int bytes_validated;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x24);
-  uVar2 = *(undefined4 *)(param_1 + 0x20);
-  uVar3 = *(undefined4 *)(param_1 + 0x1c);
-  uVar4 = *(undefined4 *)(param_1 + 0x18);
-  iVar5 = func_0x00018074bda0(param_2,param_3,*(undefined8 *)(param_1 + 0x10));
-  iVar6 = FUN_18074b880(param_2 + iVar5,param_3 - iVar5,&DAT_180a06434);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = func_0x00018074b7d0(iVar5 + param_2,param_3 - iVar5,uVar4);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = FUN_18074b880(iVar5 + param_2,param_3 - iVar5,&DAT_180a06434);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = func_0x00018074b7d0(iVar5 + param_2,param_3 - iVar5,uVar3);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = FUN_18074b880(iVar5 + param_2,param_3 - iVar5,&DAT_180a06434);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = func_0x00018074b800(iVar5 + param_2,param_3 - iVar5,uVar2);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = FUN_18074b880(iVar5 + param_2,param_3 - iVar5,&DAT_180a06434);
-  iVar5 = iVar5 + iVar6;
-  iVar6 = func_0x00018074b800(iVar5 + param_2,param_3 - iVar5,uVar1);
-  return iVar6 + iVar5;
+  // 获取四层验证密钥
+  final_key = *(undefined4 *)(quad_config + 0x24);
+  tertiary_key = *(undefined4 *)(quad_config + 0x20);
+  secondary_key = *(undefined4 *)(quad_config + 0x1c);
+  primary_key = *(undefined4 *)(quad_config + 0x18);
+  
+  // 初始化四层验证（压缩）
+  bytes_processed = func_0x00018074bda0(data_ptr, data_size, *(undefined8 *)(quad_config + 0x10));
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用第一层加密
+  bytes_validated = process_encryption(bytes_processed + data_ptr, data_size - bytes_processed, primary_key);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理第一层加密后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用第二层加密
+  bytes_validated = process_encryption(bytes_processed + data_ptr, data_size - bytes_processed, secondary_key);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理第二层加密后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用第三层校验和
+  bytes_validated = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, tertiary_key);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理第三层校验和后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用第四层最终校验和
+  bytes_validated = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, final_key);
+  return bytes_validated + bytes_processed;
 }
 
 
 
-int FUN_180841bc0(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_extended_security_validation(longlong security_config, longlong data_ptr, int data_size)
+// 扩展安全验证处理
+// 参数: security_config - 安全配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理扩展安全验证，包括多重加密、协议处理和签名验证
+int process_extended_security_validation(longlong security_config, longlong data_ptr, int data_size)
 
 {
-  undefined1 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined8 uStack_48;
-  undefined4 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined1 signature_flag;
+  int bytes_processed;
+  int bytes_secured;
+  undefined8 security_params;
+  undefined4 integrity_key;
+  undefined8 connection_info;
+  undefined8 protocol_info;
+  undefined4 timeout_val;
+  undefined4 retry_count;
+  undefined4 buffer_size;
+  undefined4 compression_level;
+  undefined4 encryption_level;
+  undefined4 checksum_type;
   
-  uStack_48 = *(undefined8 *)(param_1 + 0x44);
-  uStack_28 = *(undefined4 *)(param_1 + 0x24);
-  uStack_24 = *(undefined4 *)(param_1 + 0x28);
-  uStack_20 = *(undefined4 *)(param_1 + 0x2c);
-  uStack_1c = *(undefined4 *)(param_1 + 0x30);
-  uStack_40 = *(undefined4 *)(param_1 + 0x4c);
-  uVar1 = *(undefined1 *)(param_1 + 0x50);
-  uStack_38 = *(undefined8 *)(param_1 + 0x14);
-  uStack_30 = *(undefined8 *)(param_1 + 0x1c);
-  uStack_18 = *(undefined4 *)(param_1 + 0x34);
-  uStack_14 = *(undefined4 *)(param_1 + 0x38);
-  uStack_10 = *(undefined4 *)(param_1 + 0x3c);
-  uStack_c = *(undefined4 *)(param_1 + 0x40);
-  iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18088ebb0(iVar2 + param_2,param_3 - iVar2,&uStack_38);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b6f0(iVar2 + param_2,param_3 - iVar2,&uStack_48);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取扩展安全参数
+  security_params = *(undefined8 *)(security_config + 0x44);
+  timeout_val = *(undefined4 *)(security_config + 0x24);
+  retry_count = *(undefined4 *)(security_config + 0x28);
+  buffer_size = *(undefined4 *)(security_config + 0x2c);
+  compression_level = *(undefined4 *)(security_config + 0x30);
+  integrity_key = *(undefined4 *)(security_config + 0x4c);
+  signature_flag = *(undefined1 *)(security_config + 0x50);
+  connection_info = *(undefined8 *)(security_config + 0x14);
+  protocol_info = *(undefined8 *)(security_config + 0x1c);
+  encryption_level = *(undefined4 *)(security_config + 0x34);
+  checksum_type = *(undefined4 *)(security_config + 0x38);
+  
+  // 初始化安全处理
+  bytes_processed = apply_checksum(data_ptr, data_size, *(undefined4 *)(security_config + 0x10));
+  bytes_secured = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_secured;
+  
+  // 应用连接信息
+  bytes_secured = FUN_18088ebb0(bytes_processed + data_ptr, data_size - bytes_processed, &connection_info);
+  bytes_processed = bytes_processed + bytes_secured;
+  
+  // 处理连接信息后数据
+  bytes_secured = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_secured;
+  
+  // 应用安全参数
+  bytes_secured = FUN_18074b6f0(bytes_processed + data_ptr, data_size - bytes_processed, &security_params);
+  bytes_processed = bytes_processed + bytes_secured;
+  
+  // 处理安全参数后数据
+  bytes_secured = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_secured;
+  
+  // 应用签名标志
+  bytes_secured = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
+  return bytes_secured + bytes_processed;
 }
 
 
 
-int FUN_180841cc0(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_simple_encryption_validation(longlong encryption_config, longlong data_ptr, int data_size)
+// 简单加密验证处理
+// 参数: encryption_config - 加密配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理简单加密验证，包括加密处理和编码验证
+int process_simple_encryption_validation(longlong encryption_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 encryption_key;
+  int bytes_processed;
+  int bytes_encrypted;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x14);
-  iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b830(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取加密密钥
+  encryption_key = *(undefined4 *)(encryption_config + 0x14);
+  
+  // 应用加密处理
+  bytes_processed = apply_checksum(data_ptr, data_size, *(undefined4 *)(encryption_config + 0x10));
+  bytes_encrypted = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_encrypted;
+  
+  // 应用编码验证
+  bytes_encrypted = func_0x00018074b830(bytes_processed + data_ptr, data_size - bytes_processed, encryption_key);
+  return bytes_encrypted + bytes_processed;
 }
 
 
 
-int FUN_180841d30(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_secure_connection_validation(longlong connection_config, longlong data_ptr, int data_size)
+// 安全连接验证处理
+// 参数: connection_config - 连接配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理安全连接验证，包括连接参数应用、编码处理和签名验证
+int process_secure_connection_validation(longlong connection_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  undefined1 uVar2;
-  int iVar3;
-  int iVar4;
-  undefined8 uStackX_8;
+  undefined4 encoding_key;
+  undefined1 signature_flag;
+  int bytes_processed;
+  int bytes_validated;
+  undefined8 connection_params;
   
-  uStackX_8 = *(undefined8 *)(param_1 + 0x10);
-  uVar2 = *(undefined1 *)(param_1 + 0x1c);
-  uVar1 = *(undefined4 *)(param_1 + 0x18);
-  iVar3 = FUN_18088ece0(param_2,param_3,&uStackX_8);
-  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b830(iVar3 + param_2,param_3 - iVar3,uVar1);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar2);
-  return iVar4 + iVar3;
+  // 获取连接参数
+  connection_params = *(undefined8 *)(connection_config + 0x10);
+  signature_flag = *(undefined1 *)(connection_config + 0x1c);
+  encoding_key = *(undefined4 *)(connection_config + 0x18);
+  
+  // 应用连接参数
+  bytes_processed = FUN_18088ece0(data_ptr, data_size, &connection_params);
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用编码密钥
+  bytes_validated = func_0x00018074b830(bytes_processed + data_ptr, data_size - bytes_processed, encoding_key);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理编码后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用签名标志
+  bytes_validated = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
+  return bytes_validated + bytes_processed;
 }
 
 
 
-int FUN_180841df0(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_extended_connection_validation(longlong connection_config, longlong data_ptr, int data_size)
+// 扩展连接验证处理
+// 参数: connection_config - 连接配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理扩展连接验证，包括连接参数应用、密钥处理和签名验证
+int process_extended_connection_validation(longlong connection_config, longlong data_ptr, int data_size)
 
 {
-  undefined1 uVar1;
-  int iVar2;
-  int iVar3;
-  undefined8 uStackX_8;
+  undefined1 signature_flag;
+  int bytes_processed;
+  int bytes_validated;
+  undefined8 connection_params;
   
-  uStackX_8 = *(undefined8 *)(param_1 + 0x10);
-  uVar1 = *(undefined1 *)(param_1 + 0x1c);
-  iVar2 = FUN_18088ece0(param_2,param_3,&uStackX_8);
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,param_1 + 0x1d);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取连接参数
+  connection_params = *(undefined8 *)(connection_config + 0x10);
+  signature_flag = *(undefined1 *)(connection_config + 0x1c);
+  
+  // 应用连接参数
+  bytes_processed = FUN_18088ece0(data_ptr, data_size, &connection_params);
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用连接密钥
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, connection_config + 0x1d);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理密钥应用后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用签名标志
+  bytes_validated = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
+  return bytes_validated + bytes_processed;
 }
 
 
 
-int FUN_180841ea0(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_data_stream_validation(longlong stream_config, longlong data_ptr, int data_size)
+// 数据流验证处理
+// 参数: stream_config - 流配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理数据流验证，包括流数据处理、编码和签名验证
+int process_data_stream_validation(longlong stream_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  undefined1 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 stream_key;
+  undefined1 signature_flag;
+  int bytes_processed;
+  int bytes_streamed;
   
-  uVar2 = *(undefined1 *)(param_1 + 0x14);
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,param_1 + 0x20);
-  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b830(iVar3 + param_2,param_3 - iVar3,uVar1);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074be90(iVar3 + param_2,param_3 - iVar3,uVar2);
-  return iVar4 + iVar3;
+  // 获取流参数
+  signature_flag = *(undefined1 *)(stream_config + 0x14);
+  stream_key = *(undefined4 *)(stream_config + 0x10);
+  
+  // 处理流数据
+  bytes_processed = process_checksum_data(data_ptr, data_size, stream_config + 0x20);
+  bytes_streamed = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_streamed;
+  
+  // 应用流编码
+  bytes_streamed = func_0x00018074b830(bytes_processed + data_ptr, data_size - bytes_processed, stream_key);
+  bytes_processed = bytes_processed + bytes_streamed;
+  
+  // 处理编码后数据
+  bytes_streamed = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_streamed;
+  
+  // 应用签名标志
+  bytes_streamed = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
+  return bytes_streamed + bytes_processed;
 }
 
 
 
-int FUN_180841f50(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_extended_stream_validation(longlong stream_config, longlong data_ptr, int data_size)
+// 扩展流验证处理
+// 参数: stream_config - 流配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理扩展流验证，包括多重流处理和签名验证
+int process_extended_stream_validation(longlong stream_config, longlong data_ptr, int data_size)
 
 {
-  undefined1 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined1 signature_flag;
+  int bytes_processed;
+  int bytes_streamed;
   
-  uVar1 = *(undefined1 *)(param_1 + 0x14);
-  iVar2 = FUN_18074b880(param_2,param_3,param_1 + 0x20);
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,param_1 + 0xa0);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取流参数
+  signature_flag = *(undefined1 *)(stream_config + 0x14);
+  
+  // 处理初始流数据
+  bytes_processed = process_checksum_data(data_ptr, data_size, stream_config + 0x20);
+  bytes_streamed = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_streamed;
+  
+  // 处理扩展流数据
+  bytes_streamed = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, stream_config + 0xa0);
+  bytes_processed = bytes_processed + bytes_streamed;
+  
+  // 处理扩展流后数据
+  bytes_streamed = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_streamed;
+  
+  // 应用签名标志
+  bytes_streamed = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
+  return bytes_streamed + bytes_processed;
 }
 
 
 
 
 
-// 函数: void FUN_180842030(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842030(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void send_basic_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 发送基础网络数据包
+// 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
+// 功能: 发送基础网络数据包，使用连接信息和数据包参数
+void send_basic_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f850(param_2,param_3,&UNK_180983020,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
+  FUN_18083f850(packet_data, packet_size, &UNK_180983020, *(undefined4 *)(connection_info + 0x10),
+                *(undefined4 *)(connection_info + 0x18));
   return;
 }
 
@@ -932,133 +1096,94 @@ void FUN_180842030(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_180842060(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842060(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void send_extended_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 发送扩展网络数据包
+// 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
+// 功能: 发送扩展网络数据包，使用三重连接参数
+void send_extended_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f8f0(param_2,param_3,&UNK_1809830a0,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18),*(undefined4 *)(param_1 + 0x1c));
+  FUN_18083f8f0(packet_data, packet_size, &UNK_1809830a0, *(undefined4 *)(connection_info + 0x10),
+                *(undefined4 *)(connection_info + 0x18), *(undefined4 *)(connection_info + 0x1c));
   return;
 }
 
 
 
-int FUN_1808420a0(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_comprehensive_data_validation(longlong comprehensive_config, longlong data_ptr, int data_size)
+// 综合数据验证处理
+// 参数: comprehensive_config - 综合配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理综合数据验证，包括多重参数处理、加密、填充和校验和
+int process_comprehensive_data_validation(longlong comprehensive_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  int iVar5;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
+  undefined4 final_key;
+  undefined4 tertiary_key;
+  undefined4 secondary_key;
+  undefined4 primary_key;
+  int bytes_processed;
+  int bytes_validated;
+  undefined4 padding_param1;
+  undefined4 padding_param2;
+  undefined4 padding_param3;
+  undefined4 padding_param4;
   
-  uStack_28 = *(undefined4 *)(param_1 + 0x1c);
-  uStack_24 = *(undefined4 *)(param_1 + 0x20);
-  uStack_20 = *(undefined4 *)(param_1 + 0x24);
-  uStack_1c = *(undefined4 *)(param_1 + 0x28);
-  uVar1 = *(undefined4 *)(param_1 + 0x2c);
-  uVar2 = *(undefined4 *)(param_1 + 0x18);
-  uVar3 = *(undefined4 *)(param_1 + 0x10);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_180983120);
-  iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b7d0(iVar4 + param_2,param_3 - iVar4,uVar2);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b650(iVar4 + param_2,param_3 - iVar4,&uStack_28);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar1);
-  return iVar5 + iVar4;
-}
-
-
-
-
-
-// 函数: void FUN_1808421c0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808421c0(longlong param_1,undefined8 param_2,undefined4 param_3)
-
-{
-  FUN_18083f850(param_2,param_3,&UNK_180982ea0,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_1808421f0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808421f0(longlong param_1,undefined8 param_2,undefined4 param_3)
-
-{
-  FUN_18083f8f0(param_2,param_3,&UNK_180982f20,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18),*(undefined4 *)(param_1 + 0x1c));
-  return;
-}
-
-
-
-int FUN_180842230(longlong param_1,longlong param_2,int param_3)
-
-{
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  int iVar5;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
+  // 获取综合验证参数
+  padding_param1 = *(undefined4 *)(comprehensive_config + 0x1c);
+  padding_param2 = *(undefined4 *)(comprehensive_config + 0x20);
+  padding_param3 = *(undefined4 *)(comprehensive_config + 0x24);
+  padding_param4 = *(undefined4 *)(comprehensive_config + 0x28);
+  final_key = *(undefined4 *)(comprehensive_config + 0x2c);
+  tertiary_key = *(undefined4 *)(comprehensive_config + 0x18);
+  primary_key = *(undefined4 *)(comprehensive_config + 0x10);
   
-  uStack_28 = *(undefined4 *)(param_1 + 0x1c);
-  uStack_24 = *(undefined4 *)(param_1 + 0x20);
-  uStack_20 = *(undefined4 *)(param_1 + 0x24);
-  uStack_1c = *(undefined4 *)(param_1 + 0x28);
-  uVar1 = *(undefined4 *)(param_1 + 0x2c);
-  uVar2 = *(undefined4 *)(param_1 + 0x18);
-  uVar3 = *(undefined4 *)(param_1 + 0x10);
-  iVar4 = FUN_18074b880(param_2,param_3,&UNK_180982fa0);
-  iVar5 = FUN_18074b880(param_2 + iVar4,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b7d0(iVar4 + param_2,param_3 - iVar4,uVar2);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b650(iVar4 + param_2,param_3 - iVar4,&uStack_28);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = FUN_18074b880(iVar4 + param_2,param_3 - iVar4,&DAT_180a06434);
-  iVar4 = iVar4 + iVar5;
-  iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar1);
-  return iVar5 + iVar4;
+  // 处理初始数据
+  bytes_processed = process_checksum_data(data_ptr, data_size, &UNK_180983120);
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用主要密钥
+  bytes_validated = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, primary_key);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理主要密钥后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用次要密钥
+  bytes_validated = apply_checksum(bytes_processed + data_ptr, data_size - bytes_processed, tertiary_key);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理次要密钥后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用填充参数
+  bytes_validated = apply_data_padding(bytes_processed + data_ptr, data_size - bytes_processed, &padding_param1);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理填充后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用最终密钥
+  bytes_validated = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, final_key);
+  return bytes_validated + bytes_processed;
 }
 
 
 
 
 
-// 函数: void FUN_180842350(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842350(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void send_alternate_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 发送备用网络数据包
+// 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
+// 功能: 发送备用网络数据包，使用备用连接参数
+void send_alternate_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f850(param_2,param_3,&UNK_180982c20,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
+  FUN_18083f850(packet_data, packet_size, &UNK_180982ea0, *(undefined4 *)(connection_info + 0x10),
+                *(undefined4 *)(connection_info + 0x18));
   return;
 }
 
@@ -1066,12 +1191,94 @@ void FUN_180842350(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_180842380(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842380(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void send_secondary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 发送次要网络数据包
+// 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
+// 功能: 发送次要网络数据包，使用次要连接参数
+void send_secondary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f850(param_2,param_3,&UNK_180982ca0,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
+  FUN_18083f8f0(packet_data, packet_size, &UNK_180982f20, *(undefined4 *)(connection_info + 0x10),
+                *(undefined4 *)(connection_info + 0x18), *(undefined4 *)(connection_info + 0x1c));
+  return;
+}
+
+
+
+// 函数: int process_alternate_comprehensive_validation(longlong alternate_config, longlong data_ptr, int data_size)
+// 备用综合验证处理
+// 参数: alternate_config - 备用配置信息, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理备用综合验证，包括多重参数处理、加密、填充和校验和
+int process_alternate_comprehensive_validation(longlong alternate_config, longlong data_ptr, int data_size)
+
+{
+  undefined4 final_key;
+  undefined4 tertiary_key;
+  undefined4 secondary_key;
+  undefined4 primary_key;
+  int bytes_processed;
+  int bytes_validated;
+  undefined4 padding_param1;
+  undefined4 padding_param2;
+  undefined4 padding_param3;
+  undefined4 padding_param4;
+  
+  // 获取备用验证参数
+  padding_param1 = *(undefined4 *)(alternate_config + 0x1c);
+  padding_param2 = *(undefined4 *)(alternate_config + 0x20);
+  padding_param3 = *(undefined4 *)(alternate_config + 0x24);
+  padding_param4 = *(undefined4 *)(alternate_config + 0x28);
+  final_key = *(undefined4 *)(alternate_config + 0x2c);
+  tertiary_key = *(undefined4 *)(alternate_config + 0x18);
+  primary_key = *(undefined4 *)(alternate_config + 0x10);
+  
+  // 处理备用数据
+  bytes_processed = process_checksum_data(data_ptr, data_size, &UNK_180982fa0);
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用主要密钥
+  bytes_validated = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, primary_key);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理主要密钥后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用次要密钥
+  bytes_validated = apply_checksum(bytes_processed + data_ptr, data_size - bytes_processed, tertiary_key);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理次要密钥后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用填充参数
+  bytes_validated = apply_data_padding(bytes_processed + data_ptr, data_size - bytes_processed, &padding_param1);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 处理填充后数据
+  bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用最终密钥
+  bytes_validated = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, final_key);
+  return bytes_validated + bytes_processed;
+}
+
+
+
+
+
+// 函数: void send_primary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 发送主要网络数据包
+// 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
+// 功能: 发送主要网络数据包，使用主要连接参数
+void send_primary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+
+{
+  FUN_18083f850(packet_data, packet_size, &UNK_180982c20, *(undefined4 *)(connection_info + 0x10),
+                *(undefined4 *)(connection_info + 0x18));
   return;
 }
 
@@ -1079,12 +1286,31 @@ void FUN_180842380(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_1808423b0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808423b0(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void send_urgent_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 发送紧急网络数据包
+// 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
+// 功能: 发送紧急网络数据包，使用紧急连接参数
+void send_urgent_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f850(param_2,param_3,&UNK_1809831a0,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18));
+  FUN_18083f850(packet_data, packet_size, &UNK_180982ca0, *(undefined4 *)(connection_info + 0x10),
+                *(undefined4 *)(connection_info + 0x18));
+  return;
+}
+
+
+
+
+
+// 函数: void send_final_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 发送最终网络数据包
+// 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
+// 功能: 发送最终网络数据包，使用最终连接参数
+void send_final_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+
+{
+  FUN_18083f850(packet_data, packet_size, &UNK_1809831a0, *(undefined4 *)(connection_info + 0x10),
+                *(undefined4 *)(connection_info + 0x18));
   return;
 }
 
