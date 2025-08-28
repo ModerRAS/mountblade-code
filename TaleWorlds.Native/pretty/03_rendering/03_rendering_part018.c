@@ -248,100 +248,112 @@ void update_render_counters(longlong render_context)
 
 
 
-// 函数: 初始化材质参数和资源管理
-// 原函数名: FUN_1802786d0
+/**
+ * 渲染系统参数初始化器
+ * 
+ * 该函数负责初始化渲染系统的各种参数，包括：
+ * - 基础参数设置
+ * - 纹理参数配置
+ * - 颜色参数初始化
+ * - 资源参数设置
+ * 
+ * @param context 渲染系统上下文指针
+ * @param resource1 资源指针1
+ * @param resource2 资源指针2
+ * @param flags 初始化标志
+ */
+void RenderingSystemParameterInitializer(render_context_t context, render_resource_t resource1, render_resource_t resource2, render_byte_t flags)
+{
+    render_resource_t* resource_ptr1;  // 资源指针1
+    render_resource_t* resource_ptr2;  // 资源指针2
+    
+    // 初始化基础参数
+    *(render_byte_t*)((uint8_t*)context + RENDERING_OFFSET_ENABLE_FLAG) = 0;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_PARAM_DATA) = 0;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_MATERIAL_DATA) = 0;
+    
+    // 初始化纹理参数
+    *(render_float_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA) = RENDERING_DEFAULT_FLOAT_VALUE;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 8) = 0;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 16) = 0;
+    *(render_double_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 16) = RENDERING_DEFAULT_DOUBLE_VALUE;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 24) = 0;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 32) = 0;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 40) = RENDERING_DEFAULT_FLOAT_VALUE;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 48) = 0;
+    *(render_double_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 56) = RENDERING_DEFAULT_DOUBLE_VALUE;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 64) = RENDERING_DEFAULT_FLOAT_VALUE;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 72) = 0;
+    *(render_double_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 80) = RENDERING_DEFAULT_DOUBLE_VALUE;
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_TEXTURE_DATA + 88) = 0;
+    
+    // 初始化颜色参数
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_COLOR_DATA) = 0;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_COLOR_DATA + 4) = 0;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_COLOR_DATA + 8) = RENDERING_DEFAULT_FLOAT_VALUE;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_COLOR_DATA + 12) = 0;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_COLOR_DATA + 16) = 0;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_COLOR_DATA + 20) = 0;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_COLOR_DATA + 24) = 0;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_COLOR_DATA + 28) = RENDERING_DEFAULT_FLOAT_VALUE;
+    
+    // 初始化透明度参数
+    *(render_byte_t*)((uint8_t*)context + RENDERING_OFFSET_ALPHA_DATA) = RENDERING_DEFAULT_ALPHA_VALUE;
+    *(render_byte_t*)((uint8_t*)context + RENDERING_OFFSET_STATUS_DATA) = 1;
+    
+    // 初始化配置参数
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_CONFIG_DATA) = RENDERING_DEFAULT_CONFIG_VALUE;
+    *(render_byte_t*)((uint8_t*)context + RENDERING_OFFSET_ALPHA_DATA + 16) = 0;
+    
+    // 初始化掩码参数
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_MATERIAL_DATA + 0x2f8) = RENDERING_DEFAULT_MASK_VALUE;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_ALPHA_DATA - 16) = 0;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_MATERIAL_DATA + 0x2f4) = 0;
+    *(render_byte_t*)((uint8_t*)context + RENDERING_OFFSET_MATERIAL_DATA + 0x2fc) = 0;
+    
+    // 初始化限制参数
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_PARAM_DATA + 16) = RENDERING_DEFAULT_LIMIT_VALUE;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_ALPHA_DATA - 32) = 0;
+    
+    // 释放旧资源
+    resource_ptr1 = *(render_resource_t**)((uint8_t*)context + RENDERING_OFFSET_ALPHA_DATA + 8);
+    *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_ALPHA_DATA + 8) = 0;
+    if (resource_ptr1 != (render_resource_t*)0x0) {
+        (**(render_callback_t**)(*resource_ptr1 + 0x38))(resource_ptr1, 0, resource2, flags, RENDERING_DEFAULT_QUEUE_INDEX);
+    }
+    
+    // 初始化队列参数
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_CONFIG_DATA + 0x38) = RENDERING_DEFAULT_MASK_VALUE;
+    
+    // 分配新资源
+    resource_ptr2 = (render_resource_t*)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_SYSTEM_QUEUE_SIZE, 8, 0x1e);
+    *resource_ptr2 = (render_resource_t)&UNK_180a21690;
+    *resource_ptr2 = (render_resource_t)&UNK_180a21720;
+    *(render_flag_t*)(resource_ptr2 + 1) = 0;
+    *resource_ptr2 = (render_resource_t)&UNK_180a16940;
+    resource_ptr2[3] = 0;
+    resource_ptr2[4] = 0;
+    *(render_flag_t*)(resource_ptr2 + 2) = 0;
+    *(render_flag_t*)(resource_ptr2 + 5) = 0;
+    (**(render_callback_t**)(*resource_ptr2 + 0x28))(resource_ptr2);
+    
+    // 更新资源指针
+    resource_ptr1 = *(render_resource_t**)((uint8_t*)context + RENDERING_OFFSET_RESOURCE_DATA);
+    *(render_resource_t**)((uint8_t*)context + RENDERING_OFFSET_RESOURCE_DATA) = resource_ptr2;
+    if (resource_ptr1 != (render_resource_t*)0x0) {
+        (**(render_callback_t**)(*resource_ptr1 + 0x38))();
+    }
+    
+    // 最终初始化
+    *(render_byte_t*)((uint8_t*)context + RENDERING_OFFSET_MATERIAL_DATA + 0x2f2) = 0;
+    *(render_flag_t*)((uint8_t*)context + RENDERING_OFFSET_ALPHA_DATA + 4) = 0;
+    return;
+}
+
+// 函数别名：保持与原代码的兼容性
 void initialize_material_parameters(longlong material_context, undefined8 resource_manager, undefined8 texture_data, undefined1 flags)
 {
-    longlong *previous_resource;
-    longlong *new_resource;
-    
-    // 初始化材质上下文的基本参数
-    *(byte *)(material_context + 0x60) = 0;       // 材质状态标志
-    *(undefined8 *)(material_context + 0x58) = 0; // 清空材质指针
-    *(undefined8 *)(material_context + 0x30) = 0; // 清空纹理数组
-    
-    // 初始化浮点参数数组 - 设置默认值
-    *(undefined8 *)(material_context + 0x330) = 0x3f800000;    // float[0] = 1.0f
-    *(undefined8 *)(material_context + 0x338) = 0;               // float[1] = 0.0f
-    *(undefined8 *)(material_context + 0x340) = 0x3f80000000000000; // float[2] = 1.0
-    *(undefined8 *)(material_context + 0x348) = 0;               // float[3] = 0.0
-    *(undefined8 *)(material_context + 0x350) = 0;               // float[4] = 0.0
-    *(undefined8 *)(material_context + 0x358) = 0x3f800000;    // float[5] = 1.0f
-    *(undefined8 *)(material_context + 0x360) = 0;               // float[6] = 0.0f
-    *(undefined8 *)(material_context + 0x368) = 0x3f80000000000000; // float[7] = 1.0
-    *(undefined8 *)(material_context + 0x370) = 0x3f800000;    // float[8] = 1.0f
-    *(undefined8 *)(material_context + 0x378) = 0;               // float[9] = 0.0f
-    *(undefined8 *)(material_context + 0x380) = 0x3f80000000000000; // float[10] = 1.0
-    *(undefined8 *)(material_context + 0x388) = 0;               // float[11] = 0.0f
-    
-    // 初始化整数参数数组
-    *(undefined4 *)(material_context + 0x390) = 0;   // int[0] = 0
-    *(undefined4 *)(material_context + 0x394) = 0;   // int[1] = 0
-    *(undefined4 *)(material_context + 0x398) = 0x3f800000; // int[2] = 1.0f (float)
-    *(undefined4 *)(material_context + 0x39c) = 0;   // int[3] = 0
-    *(undefined4 *)(material_context + 0x3a0) = 0;   // int[4] = 0
-    *(undefined4 *)(material_context + 0x3a4) = 0;   // int[5] = 0
-    *(undefined4 *)(material_context + 0x3a8) = 0;   // int[6] = 0
-    *(undefined4 *)(material_context + 0x3ac) = 0x3f800000; // int[7] = 1.0f (float)
-    
-    // 设置材质属性标志
-    *(byte *)(material_context + 0x3b0) = 0xff;   // 材质类型标志
-    *(byte *)(material_context + 800) = 1;         // 激活标志
-    
-    // 初始化渲染状态
-    *(undefined4 *)(material_context + 0x210) = 0x21; // 渲染模式
-    *(byte *)(material_context + 0x3c0) = 0;      // 额外状态标志
-    
-    // 设置材质参数限制
-    *(undefined4 *)(material_context + 0x328) = 0xffffffff; // 最大值限制
-    *(undefined4 *)(material_context + 0x3c4) = 0;         // 最小值限制
-    
-    // 清空辅助参数
-    *(undefined4 *)(material_context + 0x324) = 0;   // 辅助参数1
-    *(byte *)(material_context + 0x32c) = 0;       // 辅助参数2
-    
-    // 设置材质精度参数
-    *(undefined4 *)(material_context + 0x68) = 0x7f7fffff; // 最大浮点值
-    *(undefined4 *)(material_context + 0x7c) = 0;         // 最小浮点值
-    
-    // 释放旧的资源管理器
-    previous_resource = *(longlong **)(material_context + 0x3b8);
-    *(undefined8 *)(material_context + 0x3b8) = 0; // 清空资源管理器指针
-    if (previous_resource != (longlong *)0x0) {
-        // 调用资源管理器的释放方法
-        (**(code **)(*previous_resource + 0x38))(previous_resource, 0, texture_data, flags, 0xfffffffffffffffe);
-    }
-    
-    // 初始化材质数据缓冲区
-    *(undefined4 *)(material_context + 0x248) = 0xffffffff; // 设置缓冲区大小
-    
-    // 创建新的资源管理器
-    new_resource = (longlong *)create_resource_manager(_DAT_180c8ed18, 0x30, 8, 0x1e);
-    *new_resource = (longlong)&UNK_180a21690; // 设置资源类型
-    *new_resource = (longlong)&UNK_180a21720; // 设置资源路径
-    *(undefined4 *)(new_resource + 1) = 0;    // 清空资源标志
-    *new_resource = (longlong)&UNK_180a16940; // 设置资源数据
-    new_resource[3] = 0;                      // 清空资源计数
-    new_resource[4] = 0;                      // 清空资源索引
-    *(undefined4 *)(new_resource + 2) = 0;    // 清空资源状态
-    *(undefined4 *)(new_resource + 5) = 0;    // 清空资源标志
-    
-    // 初始化新的资源管理器
-    (**(code **)(*new_resource + 0x28))(new_resource);
-    
-    // 替换资源管理器指针
-    previous_resource = *(longlong **)(material_context + 0x3c8);
-    *(longlong **)(material_context + 0x3c8) = new_resource;
-    if (previous_resource != (longlong *)0x0) {
-        // 释放旧的资源管理器
-        (**(code **)(*previous_resource + 0x38))();
-    }
-    
-    // 完成材质初始化
-    *(byte *)(material_context + 0x322) = 0;  // 设置初始化完成标志
-    *(undefined4 *)(material_context + 0x3b4) = 0; // 清空错误标志
-    
-    return;
+    RenderingSystemParameterInitializer((render_context_t)material_context, (render_resource_t)resource_manager, (render_resource_t)texture_data, (render_byte_t)flags);
 }
 
 
