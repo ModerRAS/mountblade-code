@@ -40,6 +40,12 @@
 #define initialize_compression  func_0x00018074b800
 #define process_compression      FUN_18074b880
 #define finalize_compression    func_0x00018074b7d0
+#define compress_data           func_0x00018074bda0
+#define validate_packet_signature FUN_18074be90
+#define encode_data            func_0x00018074b830
+#define apply_security_params   FUN_18074b6f0
+#define send_basic_packet       FUN_18083f850
+#define send_extended_packet    FUN_18083f8f0
 
 // 函数: void process_network_packet(undefined8 packet_ptr)
 // 处理网络数据包的接收和解析
@@ -206,7 +212,7 @@ int compress_network_data(longlong compression_info, longlong data_ptr, int data
   compressed_size = compressed_size + processed_bytes;
   
   // 执行压缩
-  processed_bytes = func_0x00018074bda0(compressed_size + data_ptr, data_size - compressed_size, compression_algorithm);
+  processed_bytes = compress_data(compressed_size + data_ptr, data_size - compressed_size, compression_algorithm);
   return processed_bytes + compressed_size;
 }
 // 函数: int validate_packet_signature(longlong signature_info, longlong data_ptr, int data_size)
@@ -227,7 +233,7 @@ int validate_packet_signature(longlong signature_info, longlong data_ptr, int da
   signature_size = signature_size + validated_bytes;
   
   // 验证签名
-  validated_bytes = FUN_18074be90(signature_size + data_ptr, data_size - signature_size, signature_key);
+  validated_bytes = validate_packet_signature(signature_size + data_ptr, data_size - signature_size, signature_key);
   return validated_bytes + signature_size;
 }
 // 函数: int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size)
@@ -248,7 +254,7 @@ int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size
   encoded_size = encoded_size + processed_bytes;
   
   // 执行编码
-  processed_bytes = func_0x00018074b830(encoded_size + data_ptr, data_size - encoded_size, encoding_type);
+  processed_bytes = encode_data(encoded_size + data_ptr, data_size - encoded_size, encoding_type);
   return processed_bytes + encoded_size;
 }
 // 函数: int verify_data_integrity(longlong integrity_info, longlong data_ptr, int data_size)
@@ -894,7 +900,7 @@ int process_extended_security_validation(longlong security_config, longlong data
   bytes_processed = bytes_processed + bytes_secured;
   
   // 应用安全参数
-  bytes_secured = FUN_18074b6f0(bytes_processed + data_ptr, data_size - bytes_processed, &security_params);
+  bytes_secured = apply_security_params(bytes_processed + data_ptr, data_size - bytes_processed, &security_params);
   bytes_processed = bytes_processed + bytes_secured;
   
   // 处理安全参数后数据
@@ -902,7 +908,7 @@ int process_extended_security_validation(longlong security_config, longlong data
   bytes_processed = bytes_processed + bytes_secured;
   
   // 应用签名标志
-  bytes_secured = FUN_18074be90(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
+  bytes_secured = validate_packet_signature(bytes_processed + data_ptr, data_size - bytes_processed, signature_flag);
   return bytes_secured + bytes_processed;
 }
 
@@ -928,7 +934,7 @@ int process_simple_encryption_validation(longlong encryption_config, longlong da
   bytes_processed = bytes_processed + bytes_encrypted;
   
   // 应用编码验证
-  bytes_encrypted = func_0x00018074b830(bytes_processed + data_ptr, data_size - bytes_processed, encryption_key);
+  bytes_encrypted = encode_data(bytes_processed + data_ptr, data_size - bytes_processed, encryption_key);
   return bytes_encrypted + bytes_processed;
 }
 
@@ -1087,7 +1093,7 @@ int process_extended_stream_validation(longlong stream_config, longlong data_ptr
 void send_basic_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f850(packet_data, packet_size, &UNK_180983020, *(undefined4 *)(connection_info + 0x10),
+  send_basic_packet(packet_data, packet_size, &UNK_180983020, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18));
   return;
 }
@@ -1103,7 +1109,7 @@ void send_basic_network_packet(longlong connection_info, undefined8 packet_data,
 void send_extended_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f8f0(packet_data, packet_size, &UNK_1809830a0, *(undefined4 *)(connection_info + 0x10),
+  send_extended_packet(packet_data, packet_size, &UNK_1809830a0, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18), *(undefined4 *)(connection_info + 0x1c));
   return;
 }
@@ -1182,7 +1188,7 @@ int process_comprehensive_data_validation(longlong comprehensive_config, longlon
 void send_alternate_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f850(packet_data, packet_size, &UNK_180982ea0, *(undefined4 *)(connection_info + 0x10),
+  send_basic_packet(packet_data, packet_size, &UNK_180982ea0, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18));
   return;
 }
@@ -1198,7 +1204,7 @@ void send_alternate_network_packet(longlong connection_info, undefined8 packet_d
 void send_secondary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f8f0(packet_data, packet_size, &UNK_180982f20, *(undefined4 *)(connection_info + 0x10),
+  send_extended_packet(packet_data, packet_size, &UNK_180982f20, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18), *(undefined4 *)(connection_info + 0x1c));
   return;
 }
@@ -1277,7 +1283,7 @@ int process_alternate_comprehensive_validation(longlong alternate_config, longlo
 void send_primary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f850(packet_data, packet_size, &UNK_180982c20, *(undefined4 *)(connection_info + 0x10),
+  send_basic_packet(packet_data, packet_size, &UNK_180982c20, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18));
   return;
 }
@@ -1293,7 +1299,7 @@ void send_primary_network_packet(longlong connection_info, undefined8 packet_dat
 void send_urgent_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f850(packet_data, packet_size, &UNK_180982ca0, *(undefined4 *)(connection_info + 0x10),
+  send_basic_packet(packet_data, packet_size, &UNK_180982ca0, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18));
   return;
 }
@@ -1309,7 +1315,7 @@ void send_urgent_network_packet(longlong connection_info, undefined8 packet_data
 void send_final_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083f850(packet_data, packet_size, &UNK_1809831a0, *(undefined4 *)(connection_info + 0x10),
+  send_basic_packet(packet_data, packet_size, &UNK_1809831a0, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18));
   return;
 }
