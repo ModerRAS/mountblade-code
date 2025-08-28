@@ -65,10 +65,10 @@ typedef enum {
 #define AdvancedMemoryAllocator FUN_18062b420
 
 // 资源释放器 - 用于释放渲染系统资源
-#define ResourceReleaser ResourceReleaser
+#define ResourceReleaser FUN_18064e900
 
 // 状态查询处理器 - 用于查询渲染系统状态
-#define StateQueryProcessor FUN_18007b240
+#define StateQueryProcessor StateQueryProcessor
 
 // 数学计算器 - 用于渲染系统数学计算
 #define MathCalculator FUN_180285b40
@@ -991,7 +991,7 @@ int8_t RenderingSystemQueryState(longlong param_1, int8_t param_2)
                 }
                 *(char *)(lVar2 + 0x38c) = cVar3;
             }
-            cVar3 = FUN_18007b240(lVar8, lVar8 + 0x1e8, cVar3, param_2);
+            cVar3 = StateQueryProcessor(lVar8, lVar8 + 0x1e8, cVar3, param_2);
             if (cVar3 == '\0') {
                 *(byte *)(lVar8 + 0xfe) = *(byte *)(lVar8 + 0xfe) & 0xfb;
             }
@@ -1062,7 +1062,7 @@ int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, longlong 
             }
             *(char *)(lVar3 + 0x38c) = cVar4;
         }
-        cVar4 = FUN_18007b240(lVar2, lVar2 + 0x1e8, cVar4, unaff_R15B);
+        cVar4 = StateQueryProcessor(lVar2, lVar2 + 0x1e8, cVar4, unaff_R15B);
         if (cVar4 == '\0') {
             *(byte *)(lVar2 + 0xfe) = *(byte *)(lVar2 + 0xfe) & 0xfb;
         }

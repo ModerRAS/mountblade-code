@@ -1744,8 +1744,7 @@ void utilities_system_ptr_array_resetter_18(void)
 
 
 
-// 函数: void FUN_180942160(void)
-void FUN_180942160(void)
+void utilities_system_ptr_array_resetter_19(void)
 
 {
   *utilities_system_ptr_array[19] = SYSTEM_DEFAULT_VALUE;
@@ -1758,8 +1757,7 @@ void FUN_180942160(void)
 
 
 
-// 函数: void FUN_180942180(void)
-void FUN_180942180(void)
+void utilities_system_ptr_array_resetter_20(void)
 
 {
   *utilities_system_ptr_array[20] = SYSTEM_DEFAULT_VALUE;
@@ -1772,8 +1770,7 @@ void FUN_180942180(void)
 
 
 
-// 函数: void FUN_1809421a0(void)
-void FUN_1809421a0(void)
+void utilities_system_ptr_array_resetter_21(void)
 
 {
   *utilities_system_ptr_array[21] = SYSTEM_DEFAULT_VALUE;
@@ -1786,8 +1783,7 @@ void FUN_1809421a0(void)
 
 
 
-// 函数: void FUN_1809421c0(void)
-void FUN_1809421c0(void)
+void utilities_system_ptr_array_resetter_22(void)
 
 {
   *utilities_system_ptr_array[22] = SYSTEM_DEFAULT_VALUE;
@@ -1800,8 +1796,7 @@ void FUN_1809421c0(void)
 
 
 
-// 函数: void FUN_1809421e0(void)
-void FUN_1809421e0(void)
+void utilities_system_ptr_array_resetter_23(void)
 
 {
   *utilities_system_ptr_array[23] = SYSTEM_DEFAULT_VALUE;
@@ -1814,8 +1809,7 @@ void FUN_1809421e0(void)
 
 
 
-// 函数: void FUN_180942200(void)
-void FUN_180942200(void)
+void utilities_system_ptr_array_resetter_24(void)
 
 {
   *utilities_system_ptr_array[24] = SYSTEM_DEFAULT_VALUE;
@@ -1828,8 +1822,7 @@ void FUN_180942200(void)
 
 
 
-// 函数: void FUN_180942220(void)
-void FUN_180942220(void)
+void utilities_system_ptr_array_resetter_25(void)
 
 {
   *utilities_system_ptr_array[25] = SYSTEM_DEFAULT_VALUE;
@@ -1842,8 +1835,7 @@ void FUN_180942220(void)
 
 
 
-// 函数: void FUN_180942240(void)
-void FUN_180942240(void)
+void utilities_system_ptr_array_resetter_26(void)
 
 {
   *utilities_system_ptr_array[26] = SYSTEM_DEFAULT_VALUE;
@@ -1856,8 +1848,7 @@ void FUN_180942240(void)
 
 
 
-// 函数: void FUN_180942260(void)
-void FUN_180942260(void)
+void utilities_system_ptr_array_resetter_27(void)
 
 {
   *utilities_system_ptr_array[27] = SYSTEM_DEFAULT_VALUE;
@@ -1870,8 +1861,7 @@ void FUN_180942260(void)
 
 
 
-// 函数: void FUN_180942280(void)
-void FUN_180942280(void)
+void utilities_system_ptr_array_resetter_28(void)
 
 {
   *utilities_system_ptr_array[28] = SYSTEM_DEFAULT_VALUE;
