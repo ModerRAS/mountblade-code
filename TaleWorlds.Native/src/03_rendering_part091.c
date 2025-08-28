@@ -391,34 +391,57 @@ LAB_18031df5a:
 
 
 
-// 函数: void FUN_18031dfa0(longlong param_1)
-void FUN_18031dfa0(longlong param_1)
+// ===================================================================
+// 函数实现：资源清理器
+// ===================================================================
+
+/**
+ * 资源清理器 - 负责渲染资源的释放和清理
+ * 
+ * @param resource_context 资源上下文句柄
+ * @return void
+ * 
+ * 技术说明：
+ * - 清理渲染管线资源
+ * - 释放着色器和缓冲区
+ * - 重置资源引用计数
+ * - 处理资源生命周期
+ * - 确保资源正确释放
+ */
+void RenderingSystem_ResourceCleaner(longlong resource_context)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
+  longlong texture_resource;
+  longlong *shader_resource;
   
-  lVar1 = *(longlong *)(param_1 + 0x3c8);
-  if (lVar1 != 0) {
-    FUN_18045fb80(lVar1);
+  // 清理纹理资源
+  texture_resource = *(longlong *)(resource_context + 0x3c8);
+  if (texture_resource != 0) {
+    FUN_18045fb80(texture_resource);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lVar1);
+    FUN_18064e900(texture_resource);
   }
-  *(undefined8 *)(param_1 + 0x3c8) = 0;
-  plVar2 = *(longlong **)(param_1 + 0x1c8);
-  *(undefined8 *)(param_1 + 0x1c8) = 0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  *(undefined8 *)(resource_context + 0x3c8) = 0;
+  
+  // 清理顶点着色器资源
+  shader_resource = *(longlong **)(resource_context + 0x1c8);
+  *(undefined8 *)(resource_context + 0x1c8) = 0;
+  if (shader_resource != (longlong *)0x0) {
+    (**(code **)(*shader_resource + 0x38))();
   }
-  plVar2 = *(longlong **)(param_1 + 0x1d0);
-  *(undefined8 *)(param_1 + 0x1d0) = 0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  
+  // 清理像素着色器资源
+  shader_resource = *(longlong **)(resource_context + 0x1d0);
+  *(undefined8 *)(resource_context + 0x1d0) = 0;
+  if (shader_resource != (longlong *)0x0) {
+    (**(code **)(*shader_resource + 0x38))();
   }
-  plVar2 = *(longlong **)(param_1 + 0x1d8);
-  *(undefined8 *)(param_1 + 0x1d8) = 0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  
+  // 清理几何着色器资源
+  shader_resource = *(longlong **)(resource_context + 0x1d8);
+  *(undefined8 *)(resource_context + 0x1d8) = 0;
+  if (shader_resource != (longlong *)0x0) {
+    (**(code **)(*shader_resource + 0x38))();
   }
   return;
 }
