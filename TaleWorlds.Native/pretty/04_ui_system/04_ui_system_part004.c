@@ -1040,121 +1040,147 @@ void ui_mono_environment_initializer(void)
 
 
 
-// 函数: void FUN_180653940(void)
-void FUN_180653940(void)
+/**
+ * UI系统Mono程序集加载器
+ * 加载并初始化Mono运行时程序集和类
+ * 
+ * 注意：此函数负责加载TaleWorlds.Native.dll程序集并获取UI相关类
+ */
+void ui_mono_assembly_loader(void)
 
 {
-  longlong *plVar1;
-  undefined4 *puVar2;
-  undefined4 uVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
-  undefined4 *puVar6;
-  ulonglong uVar7;
-  undefined1 auStack_d8 [32];
-  undefined *puStack_b8;
-  undefined4 *puStack_b0;
-  uint uStack_a8;
-  ulonglong uStack_a0;
-  undefined4 uStack_98;
-  undefined *puStack_90;
-  undefined8 *puStack_88;
-  undefined4 uStack_80;
-  undefined8 uStack_78;
-  undefined8 uStack_50;
-  ulonglong uStack_30;
+  longlong *assembly_handle;
+  undefined4 *assembly_name;
+  undefined4 name_length;
+  longlong domain_result;
+  undefined8 *class_name;
+  undefined4 *namespace_name;
+  ulonglong string_length;
+  undefined1 security_buffer [32];
+  undefined *temp_resource;
+  undefined4 *name_buffer;
+  uint buffer_size;
+  ulonglong buffer_offset;
+  undefined4 security_flag;
+  undefined *resource_ptr;
+  undefined8 *temp_ptr;
+  undefined4 ptr_size;
+  undefined8 buffer_handle;
+  undefined8 security_param;
+  ulonglong security_hash;
   
-  plVar1 = _DAT_180c91020;
-  uStack_50 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_98 = 0;
-  puStack_b8 = &UNK_180a3c3e0;
-  uStack_a0 = 0;
-  puStack_b0 = (undefined4 *)0x0;
-  uStack_a8 = 0;
-  FUN_1806277c0(&puStack_b8,0x15);
-  puVar2 = puStack_b0;
-  uVar7 = (ulonglong)uStack_a8;
-  puVar6 = (undefined4 *)((longlong)puStack_b0 + uVar7);
-  *puVar6 = 0x656c6154;
-  puVar6[1] = 0x6c726f57;
-  puVar6[2] = 0x442e7364;
-  puVar6[3] = 0x654e746f;
-  *(undefined4 *)((longlong)puStack_b0 + uVar7 + 0x10) = 0x6c642e74;
-  *(undefined2 *)((longlong)puStack_b0 + uVar7 + 0x14) = 0x6c;
-  uStack_a8 = 0x15;
-  puVar6 = (undefined4 *)&DAT_18098bc73;
-  if (puStack_b0 != (undefined4 *)0x0) {
-    puVar6 = puStack_b0;
+  assembly_handle = mono_assembly_handle_ptr;  // _DAT_180c91020
+  security_param = 0xfffffffffffffffe;
+  security_hash = security_constant ^ (ulonglong)security_buffer;  // _DAT_180bf00a8
+  security_flag = 0;
+  temp_resource = &ui_cleanup_marker;  // UNK_180a3c3e0
+  buffer_offset = 0;
+  name_buffer = (undefined4 *)0x0;
+  buffer_size = 0;
+  // 初始化程序集名称缓冲区
+  initialize_ui_string_buffer(&temp_resource, 0x15);
+  assembly_name = name_buffer;
+  string_length = (ulonglong)buffer_size;
+  namespace_name = (undefined4 *)((longlong)name_buffer + string_length);
+  // 设置程序集名称 "TaleWorlds.Native.dll"
+  *namespace_name = 0x656c6154;  // "TaleW"
+  namespace_name[1] = 0x6c726f57; // "orlds"
+  namespace_name[2] = 0x442e7364; // "s.Na"
+  namespace_name[3] = 0x654e746f; // "tive"
+  *(undefined4 *)((longlong)name_buffer + string_length + 0x10) = 0x6c642e74; // ".dll"
+  *(undefined2 *)((longlong)name_buffer + string_length + 0x14) = 0x6c;
+  buffer_size = 0x15;
+  namespace_name = (undefined4 *)&default_ui_data;  // DAT_18098bc73
+  if (name_buffer != (undefined4 *)0x0) {
+    namespace_name = name_buffer;
   }
-  lVar4 = mono_domain_assembly_open(_DAT_180c91028,puVar6);
-  puStack_b8 = &UNK_180a3c3e0;
-  if (puVar2 != (undefined4 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
+  // 打开Mono程序集
+  domain_result = mono_domain_assembly_open(mono_domain_ptr, namespace_name);  // _DAT_180c91028
+  temp_resource = &ui_cleanup_marker;  // UNK_180a3c3e0
+  if (assembly_name != (undefined4 *)0x0) {
+    // 清理程序集名称资源
+    cleanup_ui_resources(assembly_name);  // FUN_18064e900
   }
-  puStack_b0 = (undefined4 *)0x0;
-  uStack_a0 = uStack_a0 & 0xffffffff00000000;
-  puStack_b8 = &UNK_18098bcb0;
-  *plVar1 = lVar4;
-  if (lVar4 == 0) {
-    FUN_180626ee0(&UNK_180a3ddc0,&DAT_180a3dda8);
-    lVar4 = *plVar1;
+  name_buffer = (undefined4 *)0x0;
+  buffer_offset = buffer_offset & 0xffffffff00000000;
+  temp_resource = &ui_buffer_marker;  // UNK_18098bcb0
+  *assembly_handle = domain_result;
+  if (domain_result == 0) {
+    // 程序集加载失败，记录错误
+    log_assembly_load_error(&assembly_error_marker, &error_data_marker);  // FUN_180626ee0
+    domain_result = *assembly_handle;
   }
-  lVar4 = mono_assembly_get_image(lVar4);
-  plVar1[1] = lVar4;
-  if (lVar4 == 0) {
-    FUN_180626ee0(&UNK_180a3deb8);
+  // 获取程序集映像
+  domain_result = mono_assembly_get_image(domain_result);
+  assembly_handle[1] = domain_result;
+  if (domain_result == 0) {
+    // 映像获取失败，记录错误
+    log_image_load_error(&image_error_marker);  // FUN_180626ee0
   }
-  puStack_90 = &UNK_180a3c3e0;
-  uStack_78 = 0;
-  puStack_88 = (undefined8 *)0x0;
-  uStack_80 = 0;
-  puVar5 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)puVar5 = 0;
-  puStack_88 = puVar5;
-  uVar3 = FUN_18064e990(puVar5);
-  uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
-  *puVar5 = 0x6c6c6f72746e6f43;
-  *(undefined2 *)(puVar5 + 1) = 0x7265;
-  *(undefined1 *)((longlong)puVar5 + 10) = 0;
-  uStack_80 = 10;
-  puStack_b8 = &UNK_180a3c3e0;
-  uStack_a0 = 0;
-  puStack_b0 = (undefined4 *)0x0;
-  uStack_a8 = 0;
-  puVar6 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x12,0x13);
-  *(undefined1 *)puVar6 = 0;
-  puStack_b0 = puVar6;
-  uVar3 = FUN_18064e990(puVar6);
-  uStack_a0 = CONCAT44(uStack_a0._4_4_,uVar3);
-  *puVar6 = 0x656c6154;
-  puVar6[1] = 0x6c726f57;
-  puVar6[2] = 0x442e7364;
-  puVar6[3] = 0x654e746f;
-  *(undefined2 *)(puVar6 + 4) = 0x74;
-  uStack_a8 = 0x11;
-  mono_class_from_name(plVar1[1],puVar6,puVar5);
-  puStack_b8 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(puVar6);
+  resource_ptr = &ui_cleanup_marker;  // UNK_180a3c3e0
+  buffer_handle = 0;
+  temp_ptr = (undefined8 *)0x0;
+  ptr_size = 0;
+  // 创建类名 "Control"
+  class_name = (undefined8 *)allocate_ui_memory(memory_allocator, 0x10, 0x13);  // FUN_18062b420
+  *(undefined1 *)class_name = 0;
+  temp_ptr = class_name;
+  name_length = secure_string_init(class_name);  // FUN_18064e990
+  buffer_handle = CONCAT44(buffer_handle._4_4_, name_length);
+  *class_name = 0x6c6c6f72746e6f43;  // "Control"
+  *(undefined2 *)(class_name + 1) = 0x7265;
+  *(undefined1 *)((longlong)class_name + 10) = 0;
+  ptr_size = 10;
+  temp_resource = &ui_cleanup_marker;  // UNK_180a3c3e0
+  buffer_offset = 0;
+  name_buffer = (undefined4 *)0x0;
+  buffer_size = 0;
+  // 创建命名空间名 "TaleWorlds.Native"
+  namespace_name = (undefined4 *)allocate_ui_memory(memory_allocator, 0x12, 0x13);  // FUN_18062b420
+  *(undefined1 *)namespace_name = 0;
+  name_buffer = namespace_name;
+  name_length = secure_string_init(namespace_name);  // FUN_18064e990
+  buffer_offset = CONCAT44(buffer_offset._4_4_, name_length);
+  *namespace_name = 0x656c6154;  // "TaleW"
+  namespace_name[1] = 0x6c726f57; // "orlds"
+  namespace_name[2] = 0x442e7364; // "s.Na"
+  namespace_name[3] = 0x654e746f; // "tive"
+  *(undefined2 *)(namespace_name + 4) = 0x74;
+  buffer_size = 0x11;
+  // 从程序集中获取类
+  mono_class_from_name(assembly_handle[1], namespace_name, class_name);
+  temp_resource = &ui_cleanup_marker;  // UNK_180a3c3e0
+  // 清理命名空间名称资源
+  cleanup_ui_resources(namespace_name);  // FUN_18064e900
 }
 
 
 
+/**
+ * UI系统字符串格式化器
+ * 格式化UI系统中的字符串数据
+ * 
+ * @param format_param 格式化参数
+ * @param output_buffer 输出缓冲区指针
+ * @param format_flag 格式化标志
+ * @param string_data 字符串数据
+ * @return 返回输出缓冲区指针
+ */
 undefined8 *
-FUN_180653ce0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+ui_string_formatter(undefined8 format_param, undefined8 *output_buffer, undefined8 format_flag, undefined8 string_data)
 
 {
-  *param_2 = &UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
-  param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 0x10;
-  strcpy_s(param_2[1],0x80,&UNK_180a3def0,param_4,0,0xfffffffffffffffe);
-  return param_2;
+  // 初始化输出缓冲区
+  *output_buffer = &ui_buffer_marker;  // UNK_18098bcb0
+  output_buffer[1] = 0;
+  *(undefined4 *)(output_buffer + 2) = 0;
+  *output_buffer = &ui_format_marker;  // UNK_1809fcc28
+  output_buffer[1] = output_buffer + 3;
+  *(undefined1 *)(output_buffer + 3) = 0;
+  *(undefined4 *)(output_buffer + 2) = 0x10;
+  // 安全复制格式化字符串
+  strcpy_s(output_buffer[1], 0x80, &ui_format_template, string_data, 0, 0xfffffffffffffffe);  // UNK_180a3def0
+  return output_buffer;
 }
 
 
@@ -1163,70 +1189,83 @@ FUN_180653ce0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 
 
 
-// 函数: void FUN_180653d60(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180653d60(longlong param_1,undefined8 param_2,int param_3)
+/**
+ * UI系统动态缓冲区管理器
+ * 管理UI系统的动态缓冲区，自动调整大小和内存重新分配
+ * 
+ * @param buffer_manager 缓冲区管理器指针
+ * @param data_source 数据源指针
+ * @param data_size 数据大小
+ */
+void ui_dynamic_buffer_manager(longlong buffer_manager, undefined8 data_source, int data_size)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
-  int iVar7;
+  longlong buffer_end;
+  longlong buffer_start;
+  ulonglong current_size;
+  longlong data_end;
+  ulonglong new_size;
+  ulonglong required_size;
+  int used_size;
   
-  iVar7 = *(int *)(param_1 + 0x18) - *(int *)(param_1 + 0x10);
-  lVar1 = *(longlong *)(param_1 + 0x18);
-  lVar2 = *(longlong *)(param_1 + 0x10);
-  uVar3 = lVar1 - lVar2;
-  uVar6 = (ulonglong)(iVar7 + param_3);
-  if (uVar3 < uVar6) {
-    uVar6 = (lVar2 - lVar1) + uVar6;
-    if ((ulonglong)(*(longlong *)(param_1 + 0x20) - lVar1) < uVar6) {
-      uVar5 = uVar3 * 2;
-      if (uVar3 == 0) {
-        uVar5 = 1;
+  // 获取当前缓冲区状态
+  used_size = *(int *)(buffer_manager + 0x18) - *(int *)(buffer_manager + 0x10);
+  buffer_end = *(longlong *)(buffer_manager + 0x18);
+  buffer_start = *(longlong *)(buffer_manager + 0x10);
+  current_size = buffer_end - buffer_start;
+  required_size = (ulonglong)(used_size + data_size);
+  
+  // 检查是否需要重新分配缓冲区
+  if (current_size < required_size) {
+    required_size = (buffer_start - buffer_end) + required_size;
+    if ((ulonglong)(*(longlong *)(buffer_manager + 0x20) - buffer_end) < required_size) {
+      // 计算新的缓冲区大小（至少翻倍）
+      new_size = current_size * 2;
+      if (current_size == 0) {
+        new_size = 1;
       }
-      if (uVar5 < uVar3 + uVar6) {
-        uVar5 = uVar3 + uVar6;
+      if (new_size < current_size + required_size) {
+        new_size = current_size + required_size;
       }
-      if (uVar5 == 0) {
-        lVar4 = lVar1;
-        lVar1 = 0;
+      if (new_size == 0) {
+        data_end = buffer_end;
+        buffer_end = 0;
       }
       else {
-        lVar1 = FUN_18062b420(_DAT_180c8ed18,uVar5,*(undefined1 *)(param_1 + 0x28));
-        lVar2 = *(longlong *)(param_1 + 0x10);
-        lVar4 = *(longlong *)(param_1 + 0x18);
+        // 分配新的缓冲区
+        buffer_end = allocate_ui_memory(memory_allocator, new_size, *(undefined1 *)(buffer_manager + 0x28));  // FUN_18062b420
+        buffer_start = *(longlong *)(buffer_manager + 0x10);
+        data_end = *(longlong *)(buffer_manager + 0x18);
       }
-      if (lVar2 != lVar4) {
-                    // WARNING: Subroutine does not return
-        memmove(lVar1,lVar2,lVar4 - lVar2);
+      // 移动现有数据到新缓冲区
+      if (buffer_start != data_end) {
+        memmove(buffer_end, buffer_start, data_end - buffer_start);  // WARNING: Subroutine does not return
       }
-      if (uVar6 != 0) {
-                    // WARNING: Subroutine does not return
-        memset(lVar1,0,uVar6);
+      // 清理新的缓冲区空间
+      if (required_size != 0) {
+        memset(buffer_end, 0, required_size);  // WARNING: Subroutine does not return
       }
-      if (*(longlong *)(param_1 + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
+      // 释放旧的缓冲区
+      if (*(longlong *)(buffer_manager + 0x10) != 0) {
+        cleanup_ui_resources();  // FUN_18064e900
       }
-      *(longlong *)(param_1 + 0x10) = lVar1;
-      *(ulonglong *)(param_1 + 0x20) = lVar1 + uVar5;
+      // 更新缓冲区指针
+      *(longlong *)(buffer_manager + 0x10) = buffer_end;
+      *(ulonglong *)(buffer_manager + 0x20) = buffer_end + new_size;
     }
-    else if (uVar6 != 0) {
-                    // WARNING: Subroutine does not return
-      memset(lVar1,0,uVar6);
+    else if (required_size != 0) {
+      // 扩展现有缓冲区
+      memset(buffer_end, 0, required_size);  // WARNING: Subroutine does not return
     }
   }
   else {
-    lVar1 = lVar2 + uVar6;
+    // 缓冲区足够大，直接移动结束指针
+    buffer_end = buffer_start + required_size;
   }
-  *(longlong *)(param_1 + 0x18) = lVar1;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
-  memcpy((longlong)iVar7 + *(longlong *)(param_1 + 0x10),param_2,(longlong)param_3);
+  // 更新缓冲区结束位置
+  *(longlong *)(buffer_manager + 0x18) = buffer_end;
+  // 复制新数据到缓冲区
+  memcpy((longlong)used_size + *(longlong *)(buffer_manager + 0x10), data_source, (longlong)data_size);
   return;
 }
 

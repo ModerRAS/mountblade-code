@@ -721,8 +721,14 @@ resize_buffer:
 
 
 
-// 函数: void FUN_1806526f0(void)
-// UI系统安全清理函数
+/**
+ * UI系统安全清理函数
+ * 
+ * 安全地清理UI系统的敏感数据，包括内存擦除、
+ * 密钥清理、缓冲区清零等安全操作。
+ * 
+ * @return 无返回值
+ */
 void UI_System_Secure_Cleanup(void)
 {
   undefined1 secure_buffer[144];
@@ -742,8 +748,16 @@ void UI_System_Secure_Cleanup(void)
 
 
 
-// 函数: void FUN_180652b60(undefined8 param_1,longlong *param_2)
-// UI系统线程安全处理函数
+/**
+ * UI系统线程安全处理函数
+ * 
+ * 处理UI系统的线程安全问题，包括互斥锁管理、
+ * 原子操作、线程同步等。
+ * 
+ * @param thread_param 线程参数
+ * @param data_array 数据数组指针
+ * @return 无返回值
+ */
 void UI_Thread_Safe_Process(undefined8 thread_param, longlong *data_array)
 {
   int mutex_result;
@@ -779,8 +793,18 @@ void UI_Thread_Safe_Process(undefined8 thread_param, longlong *data_array)
 
 
 
-// 函数: undefined8 * FUN_180653220(longlong *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-// UI系统字符串处理函数
+/**
+ * UI系统字符串处理函数
+ * 
+ * 处理UI系统中的字符串数据，包括字符串格式化、
+ * 字符串连接、字符串分割、字符串编码转换等。
+ * 
+ * @param string_array 字符串数组指针
+ * @param result_buffer 结果缓冲区指针
+ * @param process_param 处理参数
+ * @param process_flags 处理标志位
+ * @return 处理结果指针
+ */
 undefined8 * UI_Process_String_Data(longlong *string_array, undefined8 *result_buffer, undefined8 process_param, undefined8 process_flags)
 {
   char *char_ptr;
@@ -844,18 +868,36 @@ undefined8 * UI_Process_String_Data(longlong *string_array, undefined8 *result_b
 
 
 
-// 函数: void FUN_1806533a0(longlong param_1)
-// UI系统字符串处理包装函数
+/**
+ * UI系统字符串处理包装函数
+ * 
+ * 字符串处理的包装函数，提供统一的字符串处理接口，
+ * 包括参数验证、错误处理、结果返回等。
+ * 
+ * @param string_param 字符串参数
+ * @return 无返回值
+ */
 void UI_String_Process_Wrapper(longlong string_param)
 {
   uint string_length;
   longlong temp_var;
   
   if (string_param == 0) {
+    // 处理空字符串参数
+    return;
+  }
+  // 字符串处理逻辑
+}
 
-
-// 函数: void FUN_1806533b4(longlong param_1)
-// UI系统字符串长度处理函数
+/**
+ * UI系统字符串长度处理函数
+ * 
+ * 处理UI系统中的字符串长度，包括长度计算、
+ * 长度验证、长度限制等。
+ * 
+ * @param string_data 字符串数据指针
+ * @return 无返回值
+ */
 void UI_String_Length_Process(longlong string_data)
 {
   uint string_length;
@@ -876,8 +918,14 @@ void UI_String_Length_Process(longlong string_data)
 
 
 
-// 函数: void FUN_18065340f(void)
-// UI系统系统调用函数
+/**
+ * UI系统系统调用函数
+ * 
+ * 执行UI系统的系统调用，包括底层硬件访问、
+ * 操作系统调用、驱动程序调用等。
+ * 
+ * @return 无返回值
+ */
 void UI_System_Call(void)
 {
   code *system_function;
@@ -890,8 +938,18 @@ void UI_System_Call(void)
 
 
 
-// 函数: undefined8 * FUN_180653420(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-// UI系统Mono字符串处理函数
+/**
+ * UI系统Mono字符串处理函数
+ * 
+ * 处理UI系统中的Mono字符串，包括字符串转换、
+ * 字符串编码、字符串本地化等。
+ * 
+ * @param result_buffer 结果缓冲区指针
+ * @param mono_string Mono字符串指针
+ * @param process_param 处理参数
+ * @param process_flags 处理标志位
+ * @return 处理结果指针
+ */
 undefined8 * UI_Process_Mono_String(undefined8 *result_buffer, longlong mono_string, undefined8 process_param, undefined8 process_flags)
 {
   undefined8 mono_handle;

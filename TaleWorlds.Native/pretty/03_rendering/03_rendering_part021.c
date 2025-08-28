@@ -4,90 +4,90 @@
 // 本文件包含材质文件解析、加载和处理的复杂函数
 
 /**
- * 处理材质文件加载和解析
- * 这是一个复杂的材质文件处理函数，负责：
- * 1. 解析材质文件路径
- * 2. 读取材质文件头部信息
- * 3. 处理材质数据块
- * 4. 加载材质参数和纹理
- * 5. 集成到渲染系统中
+ * 材质文件加载和解析处理函数
+ * 支持MMD1和MMD2格式的材质文件加载和处理，包括：
+ * 1. 解析材质文件路径和文件头
+ * 2. 处理MMD格式的材质数据块
+ * 3. 加载材质参数和纹理映射
+ * 4. 管理材质缓存和场景对象集成
+ * 5. 处理材质参数验证和应用
  * 
- * @param render_context 渲染系统上下文指针
- * @param material_path 材质文件路径
- * @param load_flag 加载标志
+ * @param render_context 渲染系统上下文指针，包含材质缓存和场景管理器
+ * @param material_path 材质文件路径字符串指针
+ * @param load_flag 加载标志，控制加载行为和缓存策略
  */
-void Process_Material_File_Load(longlong render_context, undefined8 material_path, undefined1 load_flag)
+void mmd_material_loader_process(longlong render_context, char *material_path, uint8_t load_flag)
 {
-  char path_char1;
-  char path_char2;
-  bool texture_match;
-  longlong *material_entry;
-  longlong *texture_array;
-  undefined4 texture_count;
-  longlong file_position;
-  undefined8 *file_handle;
-  longlong array_index;
-  longlong texture_offset;
-  undefined4 *texture_data;
-  longlong *material_ptr;
-  char *path_buffer;
-  ulonglong buffer_size;
-  undefined *string_ptr;
-  ulonglong path_length;
-  uint material_count;
-  ulonglong entry_index;
-  undefined4 *material_params;
-  int param_index;
-  ulonglong param_offset;
-  int entry_count;
-  bool material_found;
-  undefined1 *texture_name;
-  int texture_indices[2];
-  undefined8 *temp_handle;
-  undefined1 path_segment[8];
-  undefined *string_buffer;
-  uint buffer_length;
-  undefined8 path_hash;
-  int path_indices[2];
-  undefined *temp_buffer;
-  char *texture_path;
-  uint texture_path_len;
-  ulonglong texture_size;
-  longlong *texture_ptr;
-  longlong *texture_ptr2;
-  longlong material_offset;
-  longlong *entry_ptr;
-  undefined4 buffer_param;
-  longlong *stack_ptr;
-  undefined2 texture_flag;
-  char texture_separator;
-  int entry_data[2];
-  longlong *entry_list;
-  longlong *entry_list2;
-  undefined1 texture_id[8];
-  undefined8 stack_param;
-  longlong *temp_ptr1;
+  char path_compare_char1;
+  char path_compare_char2;
+  bool texture_name_match;
+  longlong *material_cache_entry;
+  longlong *texture_reference_array;
+  uint32_t texture_data_size;
+  longlong current_file_position;
+  FILE *material_file_handle;
+  longlong array_processing_index;
+  longlong texture_data_offset;
+  uint32_t *texture_parameter_data;
+  longlong *material_system_ptr;
+  char *material_path_buffer;
+  uint64_t buffer_allocation_size;
+  char *material_name_string;
+  uint64_t material_name_length;
+  uint32_t material_entry_count;
+  uint64_t cache_entry_index;
+  uint32_t *material_parameter_array;
+  int loop_index;
+  uint64_t cache_offset;
+  int material_entry_count;
+  bool material_found_in_cache;
+  char *texture_name_ptr;
+  int texture_processing_indices[2];
+  FILE *temporary_file_handle;
+  char material_path_segment[8];
+  char *material_string_buffer;
+  uint32_t material_string_length;
+  uint64_t material_path_hash;
+  int path_hash_indices[2];
+  void *temporary_buffer;
+  char *texture_file_path;
+  uint32_t texture_path_length;
+  uint64_t texture_memory_size;
+  longlong *texture_object_ptr;
+  longlong *texture_object_ptr2;
+  longlong material_data_offset;
+  longlong *cache_entry_ptr;
+  uint32_t buffer_parameter;
+  longlong *stack_allocator_ptr;
+  uint16_t texture_processing_flag;
+  char texture_name_separator;
+  int file_entry_data[2];
+  longlong *material_entry_list;
+  longlong *material_entry_list2;
+  char texture_identifier[8];
+  uint64_t stack_parameter;
+  longlong *temporary_ptr1;
   char stack_char1;
   char stack_char2;
   char stack_char3;
-  undefined *ptr1;
-  undefined *ptr2;
-  uint param_count;
-  undefined4 param_value;
-  int temp_indices[2];
-  longlong *temp_ptr2;
-  longlong *temp_ptr3;
-  undefined1 temp_array1[4];
-  undefined1 temp_array2[4];
-  longlong *temp_ptr4;
-  longlong *temp_ptr5;
-  longlong *temp_ptr6;
-  longlong *temp_ptr7;
-  longlong *temp_ptr8;
-  undefined *temp_ptr9;
-  longlong stack_offset;
-  undefined4 stack_param2;
-  undefined8 stack_param3;
+  void *heap_ptr1;
+  void *heap_ptr2;
+  uint32_t parameter_count;
+  uint32_t parameter_value;
+  int temp_processing_indices[2];
+  longlong *temporary_ptr2;
+  longlong *temporary_ptr3;
+  uint8_t temp_buffer1[4];
+  uint8_t temp_buffer2[4];
+  longlong *temporary_ptr4;
+  longlong *temporary_ptr5;
+  longlong *temporary_ptr6;
+  longlong *temporary_ptr7;
+  longlong *temporary_ptr8;
+  void *temporary_ptr9;
+  longlong stack_memory_offset;
+  uint32_t stack_parameter2;
+  uint64_t stack_parameter3;
   longlong *stack_ptr1;
   
   texture_indices[0] = CONCAT31(texture_indices[0]._1_3_, load_flag);
