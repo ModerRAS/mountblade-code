@@ -712,7 +712,7 @@ void rendering_system_copy_render_data_arrays(void)
 {
     uint *uint_ptr1;
     float float_var1;
-    uint64_t undefined_var1;
+    uint64_t data_section_ptr;
     uint64_t *ptr_var1;
     uint64_t *ptr_var2;
     longlong in_rax;
@@ -736,58 +736,58 @@ void rendering_system_copy_render_data_arrays(void)
     do {
         ptr_var4 = ptr_var2;
         ptr_var3 = ptr_var1;
-        undefined_var1 = ptr_var4[1];
+        data_section_ptr = ptr_var4[1];
         *ptr_var3 = *ptr_var4;
-        ptr_var3[1] = undefined_var1;
+        ptr_var3[1] = data_section_ptr;
         
-        undefined_var1 = ptr_var4[3];
+        data_section_ptr = ptr_var4[3];
         ptr_var3[2] = ptr_var4[2];
-        ptr_var3[3] = undefined_var1;
+        ptr_var3[3] = data_section_ptr;
         
-        undefined_var1 = ptr_var4[5];
+        data_section_ptr = ptr_var4[5];
         ptr_var3[4] = ptr_var4[4];
-        ptr_var3[5] = undefined_var1;
+        ptr_var3[5] = data_section_ptr;
         
-        undefined_var1 = ptr_var4[7];
+        data_section_ptr = ptr_var4[7];
         ptr_var3[6] = ptr_var4[6];
-        ptr_var3[7] = undefined_var1;
+        ptr_var3[7] = data_section_ptr;
         
-        undefined_var1 = ptr_var4[9];
+        data_section_ptr = ptr_var4[9];
         ptr_var3[8] = ptr_var4[8];
-        ptr_var3[9] = undefined_var1;
+        ptr_var3[9] = data_section_ptr;
         
-        undefined_var1 = ptr_var4[0xb];
+        data_section_ptr = ptr_var4[0xb];
         ptr_var3[10] = ptr_var4[10];
-        ptr_var3[0xb] = undefined_var1;
+        ptr_var3[0xb] = data_section_ptr;
         
-        undefined_var1 = ptr_var4[0xd];
+        data_section_ptr = ptr_var4[0xd];
         ptr_var3[0xc] = ptr_var4[0xc];
-        ptr_var3[0xd] = undefined_var1;
+        ptr_var3[0xd] = data_section_ptr;
         
-        undefined_var1 = ptr_var4[0xf];
+        data_section_ptr = ptr_var4[0xf];
         ptr_var3[0xe] = ptr_var4[0xe];
-        ptr_var3[0xf] = undefined_var1;
+        ptr_var3[0xf] = data_section_ptr;
         
         long_var1 = long_var1 + -1;
         ptr_var1 = ptr_var3 + 0x10;
         ptr_var2 = ptr_var4 + 0x10;
     } while (long_var1 != 0);
     
-    undefined_var1 = ptr_var4[0x11];
+    data_section_ptr = ptr_var4[0x11];
     ptr_var3[0x10] = ptr_var4[0x10];
-    ptr_var3[0x11] = undefined_var1;
+    ptr_var3[0x11] = data_section_ptr;
     
-    undefined_var1 = ptr_var4[0x13];
+    data_section_ptr = ptr_var4[0x13];
     ptr_var3[0x12] = ptr_var4[0x12];
-    ptr_var3[0x13] = undefined_var1;
+    ptr_var3[0x13] = data_section_ptr;
     
-    undefined_var1 = ptr_var4[0x15];
+    data_section_ptr = ptr_var4[0x15];
     ptr_var3[0x14] = ptr_var4[0x14];
-    ptr_var3[0x15] = undefined_var1;
+    ptr_var3[0x15] = data_section_ptr;
     
-    undefined_var1 = ptr_var4[0x17];
+    data_section_ptr = ptr_var4[0x17];
     ptr_var3[0x16] = ptr_var4[0x16];
-    ptr_var3[0x17] = undefined_var1;
+    ptr_var3[0x17] = data_section_ptr;
     
     // 计算颜色值
     float_var1 = *(float *)(unaff_rbp + 0x1ec);
@@ -853,10 +853,10 @@ void rendering_system_empty_function_placeholder(void)
 void rendering_system_process_render_batch_operations(longlong param1)
 {
     longlong long_var1;
-    int32_t undefined_var1;
+    int32_t render_param2;
     int int_var1;
     uint64_t *ptr_var1;
-    uint64_t undefined_var2;
+    uint64_t render_param3;
     ulonglong ulong_var1;
     longlong long_var2;
     longlong *long_ptr1;
@@ -938,8 +938,8 @@ void rendering_system_process_render_batch_operations(longlong param1)
                 stack_var9 = *(int32_t *)((longlong)ptr_var1 + 0x2c);
                 stack_var10 = *(int32_t *)(ptr_var1 + 6);
                 
-                undefined_var2 = (**(code **)(**(longlong **)(ulong_var1 + (longlong)stack_ptr3) + 0x158))();
-                FUN_18063a240(&stack_var24, &stack_ptr1, undefined_var2);
+                render_param3 = (**(code **)(**(longlong **)(ulong_var1 + (longlong)stack_ptr3) + 0x158))();
+                FUN_18063a240(&stack_var24, &stack_ptr1, render_param3);
                 
                 uint_var1 = (int)ulong_var2 + 1;
                 ulong_var1 = ulong_var1 + 8;
@@ -1018,7 +1018,7 @@ void rendering_system_process_render_batch_operations(longlong param1)
         
         FUN_180632d00(_DAT, &stack_var11, &stack_ptr1, _DAT);
         long_var1 = _DAT;
-        undefined_var1 = _DAT;
+        render_param2 = _DAT;
         
         stack_var15 = RENDER_FLOAT_ONE_0X3F800000;
         stack_var16 = 0;
@@ -1041,7 +1041,7 @@ void rendering_system_process_render_batch_operations(longlong param1)
             }
             func_0x000180632b30(stack_buffer2, param1 + 0x70, param1 + 0x80, &stack_var15);
             stack_var1 = stack_var1 & 0xffffffff00000000;
-            FUN_180633220(long_var1, stack_buffer2, undefined_var1, 0);
+            FUN_180633220(long_var1, stack_buffer2, render_param2, 0);
             int_var1 = _Mtx_unlock(long_var1);
             if (int_var1 != 0) {
                 __Throw_C_error_std__YAXH_Z(int_var1);

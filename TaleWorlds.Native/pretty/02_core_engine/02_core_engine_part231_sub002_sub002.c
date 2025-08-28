@@ -99,21 +99,24 @@ void process_engine_data(uint64_t engine_context, int operation_type, void **dat
   // 根据操作类型执行不同的处理逻辑
   if (operation_type == 1) {
     // 初始化操作
-    ptr_undefined_1 = *(void **)
+    void *init_callback_ptr;
+    init_callback_ptr = *(void **)
                ((longlong)*(int *)(_DAT + 0x1d40) * 0xd0 + 0x18 +
                *(longlong *)(_DAT + 0x1d20));
-    ptr_undefined_2 = &DAT;
-    if (ptr_undefined_1 != (void *)0x0) {
-      ptr_undefined_2 = ptr_undefined_1;
+    void *data_section_ptr;
+    data_section_ptr = &DAT;
+    if (init_callback_ptr != (void *)0x0) {
+      data_section_ptr = init_callback_ptr;
     }
     // 调用初始化回调函数
-    (**(code **)(*(longlong *)(_DAT + 0x20) + 0x10))(_DAT + 0x20,ptr_undefined_2);
+    (**(code **)(*(longlong *)(_DAT + 0x20) + 0x10))(_DAT + 0x20,data_section_ptr);
     long_var_2 = FUN_180623de0(stack_ptr_array_1);
-    ptr_undefined_1 = &DAT;
+    void *context_ptr;
+    context_ptr = &DAT;
     if (*(void **)(long_var_2 + 8) != (void *)0x0) {
-      ptr_undefined_1 = *(void **)(long_var_2 + 8);
+      context_ptr = *(void **)(long_var_2 + 8);
     }
-    (**(code **)(*(longlong *)(long_var_1 + 0x40) + 0x10))(long_var_1 + 0x40,ptr_undefined_1);
+    (**(code **)(*(longlong *)(long_var_1 + 0x40) + 0x10))(long_var_1 + 0x40,context_ptr);
     stack_ptr_ptr_1 = stack_ptr_array_1;
     stack_ptr_array_1[0] = &UNK_18098bcb0;
     FUN_180628a40(long_var_1 + 0x40);

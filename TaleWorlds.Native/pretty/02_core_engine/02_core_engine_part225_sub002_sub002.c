@@ -86,7 +86,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   longlong *stack_ptr_long21;      // 栈长整型指针21
   longlong *stack_ptr_long22;      // 栈长整型指针22
   void *stack_ptr_int16_t; // 栈未定义指针2
-  void *stack_ptr_undefined3; // 栈未定义指针3
+  void *stack_data_ptr_3; // 栈数据指针3
   uint64_t stack_uint64_t_6;   // 栈未定义8字节变量6
   longlong stack_array_40[40];     // 40个长整型的栈数组
   ulonglong stack_ulonglong;       // 栈无符号长整型变量
