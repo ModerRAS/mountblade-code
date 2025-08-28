@@ -100,14 +100,14 @@
 // 系统安全常量
 #define system_stack_cookie _DAT_180bf00a8        // 系统栈cookie（用于安全检查）
 #define system_null_ptr system_null_data_ptr             // 系统空指针
-#define system_alt_null_ptr UNK_18098bcb0          // 系统备用空指针
+#define system_alt_null_ptr system_alt_null_data_ptr          // 系统备用空指针
 
 // 系统数据结构指针
 #define data_structure_vtable_cleanup system_null_data_ptr // 数据结构虚表清理指针
-#define data_structure_vtable_reset UNK_18098bcb0  // 数据结构虚表重置指针
+#define data_structure_vtable_reset system_alt_null_data_ptr  // 数据结构虚表重置指针
 
 // 系统验证和配置常量
-#define system_validation_pattern UNK_180a01ff0     // 系统验证模式
+#define system_validation_pattern system_file_validation_pattern     // 系统验证模式
 #define system_config_base UNK_1809fd0a0          // 系统配置基础地址
 #define system_string_base UNK_1809fdc18          // 系统字符串基础地址
 #define system_path_separator UNK_180a3c07c        // 系统路径分隔符

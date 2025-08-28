@@ -751,35 +751,57 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
 
 
 
-// 函数: void FUN_1803f89a0(longlong param_1)
-void FUN_1803f89a0(longlong param_1)
-
+/**
+ * @brief 双缓冲资源交换器
+ * 
+ * 负责在双缓冲系统中交换资源缓冲区
+ * 确保在渲染或处理过程中平滑切换资源，避免闪烁和数据竞争
+ * 
+ * @param bufferManager 缓冲区管理器指针
+ * 
+ * @return void
+ */
+void DoubleBufferManager_SwapBuffers(longlong bufferManager)
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong *plVar3;
+  longlong bufferOffset;
+  longlong *currentBuffer;
+  longlong *previousBuffer;
   
-  *(int32_t *)(param_1 + 0x74 + (longlong)*(int *)(param_1 + 0x474) * 4) = 0xffffffe8;
-  lVar1 = param_1 + (longlong)*(int *)(param_1 + 0x474) * 8;
-  plVar2 = *(longlong **)(param_1 + (longlong)*(int *)(param_1 + 0x470) * 8 + 0x458);
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))(plVar2);
+  /* 设置缓冲区状态为交换中 */
+  *(int32_t *)(bufferManager + 0x74 + (longlong)*(int *)(bufferManager + 0x474) * 4) = 0xffffffe8;
+  
+  /* 计算当前缓冲区偏移 */
+  bufferOffset = bufferManager + (longlong)*(int *)(bufferManager + 0x474) * 8;
+  
+  /* 获取当前缓冲区 */
+  currentBuffer = *(longlong **)(bufferManager + (longlong)*(int *)(bufferManager + 0x470) * 8 + 0x458);
+  if (currentBuffer != (longlong *)0x0) {
+    (**(code **)(*currentBuffer + 0x28))(currentBuffer);
   }
-  plVar3 = *(longlong **)(lVar1 + 0x138);
-  *(longlong **)(lVar1 + 0x138) = plVar2;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  
+  /* 交换缓冲区指针 */
+  previousBuffer = *(longlong **)(bufferOffset + 0x138);
+  *(longlong **)(bufferOffset + 0x138) = currentBuffer;
+  if (previousBuffer != (longlong *)0x0) {
+    (**(code **)(*previousBuffer + 0x38))();
   }
-  plVar2 = *(longlong **)(param_1 + 0x458 + (longlong)(1 - *(int *)(param_1 + 0x470)) * 8);
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))(plVar2);
+  
+  /* 获取备用缓冲区 */
+  currentBuffer = *(longlong **)(bufferManager + 0x458 + (longlong)(1 - *(int *)(bufferManager + 0x470)) * 8);
+  if (currentBuffer != (longlong *)0x0) {
+    (**(code **)(*currentBuffer + 0x28))(currentBuffer);
   }
-  plVar3 = *(longlong **)(param_1 + 0x428);
-  *(longlong **)(param_1 + 0x428) = plVar2;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  
+  /* 更新备用缓冲区指针 */
+  previousBuffer = *(longlong **)(bufferManager + 0x428);
+  *(longlong **)(bufferManager + 0x428) = currentBuffer;
+  if (previousBuffer != (longlong *)0x0) {
+    (**(code **)(*previousBuffer + 0x38))();
   }
-  *(int *)(param_1 + 0x470) = 1 - *(int *)(param_1 + 0x470);
+  
+  /* 切换缓冲区索引 */
+  *(int *)(bufferManager + 0x470) = 1 - *(int *)(bufferManager + 0x470);
+  
   return;
 }
 
