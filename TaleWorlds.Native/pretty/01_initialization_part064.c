@@ -897,7 +897,7 @@ int32_t InitializationSystem_AllocateResource(void)
  * 
  * 该函数负责释放系统占用的资源。
  * 
- * @return undefined 释放结果状态
+ * @return int32_t 释放结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_ReleaseResource(void)
 {
@@ -933,7 +933,7 @@ int32_t InitializationSystem_ReleaseResource(void)
  * 
  * 该函数负责更新系统状态。
  * 
- * @return undefined 更新结果状态
+ * @return int32_t 更新结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_UpdateStatus(void)
 {
@@ -969,7 +969,7 @@ int32_t InitializationSystem_UpdateStatus(void)
  * 
  * 该函数负责记录系统事件。
  * 
- * @return undefined 记录结果状态
+ * @return int32_t 记录结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_LogEvent(void)
 {
