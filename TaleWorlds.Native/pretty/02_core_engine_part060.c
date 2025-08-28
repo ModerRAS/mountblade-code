@@ -105,12 +105,43 @@ typedef struct {
 // 语义别名定义 - 系统工具函数
 #define SystemUtilityFunction FUN_180097d40
 
+// 系统数据指针常量定义
+extern void* system_data_flag_ptr;           // 系统数据标志指针
+extern void* system_context_flag_ptr;        // 系统上下文标志指针
+extern void* system_config_data_ptr;         // 系统配置数据指针
+extern void* system_string_data_ptr;         // 系统字符串数据指针
+extern void* system_status_flag_ptr;         // 系统状态标志指针
+extern void* system_processing_flag_ptr;      // 系统处理标志指针
+extern void* system_manager_flag_ptr;         // 系统管理器标志指针
+extern void* system_buffer_data_ptr;          // 系统缓冲区数据指针
+extern void* system_queue_data_ptr;           // 系统队列数据指针
+extern void* system_handler_data_ptr;          // 系统处理器数据指针
+extern void* system_message_data_ptr;          // 系统消息数据指针
+extern void* system_init_data_ptr;             // 系统初始化数据指针
+extern void* system_callback_data_ptr;         // 系统回调数据指针
+extern void* system_resource_data_ptr;        // 系统资源数据指针
+extern void* system_sync_data_ptr;             // 系统同步数据指针
+
+// 系统处理器指针常量定义
+extern void* system_data_processor_ptr;       // 系统数据处理器指针
+extern void* system_context_processor_ptr;    // 系统上下文处理器指针
+extern void* system_buffer_processor_ptr;     // 系统缓冲区处理器指针
+extern void* system_queue_processor_ptr;       // 系统队列处理器指针
+extern void* system_manager_processor_ptr;    // 系统管理器处理器指针
+extern void* system_handler_processor_ptr;    // 系统处理器指针
+
+// 系统句柄常量定义
+extern void* system_handler1_ptr;             // 系统处理器1句柄
+extern void* system_handler2_ptr;             // 系统处理器2句柄
+
 // 全局变量引用
 extern uint64_t* core_system_data_memory;
 extern void* system_data_buffer_ptr;
 extern void* system_state_ptr;
 extern void* system_memory_pool_ptr;
 extern void* system_parameter_buffer;
+extern void* system_config_ptr;
+extern void* system_message_buffer;
 extern uint64_t SYSTEM_DATA_MANAGER_A;
 
 /**
