@@ -1,9 +1,70 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part428.c - 8 个函数
+// 04_ui_system_part428.c - UI系统高级控件和事件处理模块
+// 包含16个核心函数，涵盖UI系统高级控件管理、事件处理、状态验证、数据流控制、资源管理等高级UI功能
 
-// 函数: void FUN_18089ef24(void)
-void FUN_18089ef24(void)
+// 常量定义
+#define UI_SYSTEM_SUCCESS 0
+#define UI_SYSTEM_ERROR 0x1c
+#define UI_SYSTEM_LIST_FLAG 0x5453494c
+#define UI_SYSTEM_BEF_FLAG 0x46464542
+#define UI_SYSTEM_IDMC_FLAG 0x49444d43
+#define UI_SYSTEM_BDMC_FLAG 0x42444d43
+#define UI_SYSTEM_LRTC_FLAG 0x4c525443
+#define UI_SYSTEM_TIFE_FLAG 0x54494645
+#define UI_SYSTEM_BIFE_FLAG 0x42494645
+#define UI_SYSTEM_TIVE_FLAG 0x54495645
+#define UI_SYSTEM_BIVE_FLAG 0x42495645
+#define UI_SYSTEM_TNVE_FLAG 0x544e5645
+#define UI_SYSTEM_BTVE_FLAG 0x42545645
+#define UI_SYSTEM_VRUC_FLAG 0x56525543
+#define UI_SYSTEM_ORTC_FLAG 0x4f525443
+
+// 阈值定义
+#define UI_SYSTEM_SIZE_THRESHOLD_58 0x58
+#define UI_SYSTEM_SIZE_THRESHOLD_5a 0x5a
+#define UI_SYSTEM_SIZE_THRESHOLD_5f 0x5f
+#define UI_SYSTEM_SIZE_THRESHOLD_3b 0x3b
+#define UI_SYSTEM_SIZE_THRESHOLD_40 0x40
+#define UI_SYSTEM_SIZE_THRESHOLD_6e 0x6e
+#define UI_SYSTEM_SIZE_THRESHOLD_53 0x53
+#define UI_SYSTEM_SIZE_THRESHOLD_55 0x55
+#define UI_SYSTEM_SIZE_THRESHOLD_31 0x31
+
+// 函数别名定义
+#define ui_system_empty_initializer FUN_18089ef24
+#define ui_system_control_processor FUN_18089ef40
+#define ui_system_event_handler FUN_18089f0b0
+#define ui_system_event_dispatcher FUN_18089f112
+#define ui_system_control_validator FUN_18089f31e
+#define ui_system_empty_cleanup_1 FUN_18089f474
+#define ui_system_empty_cleanup_2 FUN_18089f47c
+#define ui_system_data_flow_processor FUN_18089f530
+#define ui_system_async_data_handler FUN_18089f571
+#define ui_system_empty_finalizer FUN_18089f7fd
+#define ui_system_component_manager FUN_18089f830
+#define ui_system_layout_processor FUN_18089f970
+#define ui_system_layout_handler FUN_18089f9b3
+#define ui_system_layout_controller FUN_18089f9f6
+#define ui_system_layout_manager FUN_18089fa3c
+#define ui_system_layout_validator FUN_18089fac2
+#define ui_system_layout_finalizer FUN_18089fad8
+#define ui_system_state_cleaner FUN_18089fb06
+#define ui_system_empty_handler FUN_18089fb2b
+#define ui_system_resource_cleaner FUN_18089fb40
+#define ui_system_vertex_processor FUN_18089fba0
+#define ui_system_texture_manager FUN_18089fc50
+#define ui_system_parameter_processor FUN_18089fd30
+#define ui_system_view_manager FUN_18089fed0
+#define ui_system_vertex_handler FUN_18089ffe0
+
+/**
+ * UI系统空初始化器
+ * 空操作函数，用于系统初始化时的占位符
+ * 
+ * @return void
+ */
+void ui_system_empty_initializer(void)
 
 {
   return;
