@@ -677,7 +677,7 @@ void FUN_1809417c0(void)
   // WARNING: Treating indirect jump as call
   
   // 销毁指定位置的互斥锁
-  _Mtx_destroy_in_situ(0x180c91910);
+  _Mtx_destroy_in_situ((uint64_t*)system_mutex_ptr);
   return;
 }
 

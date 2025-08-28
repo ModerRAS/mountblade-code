@@ -1469,21 +1469,21 @@ uint32_t EntityDataTransfer(EntityContextPtr entity_data)
 
 {
   // 局部变量声明
-  int32_t *ptr_int32_t_1;   // 未定义4字节指针1
-  int32_t temp_int32_t_1;   // 临时未定义4字节变量1
+  int32_t *status_ptr;             // 状态指针
+  int32_t original_status;          // 原始状态
   longlong temp_long1;            // 临时长整型变量1
   longlong temp_long2;            // 临时长整型变量2
-  int32_t temp_int32_t_2;   // 临时未定义4字节变量2
-  int32_t temp_int32_t_3;   // 临时未定义4字节变量3
-  int32_t temp_int32_t_4;   // 临时未定义4字节变量4
-  int32_t temp_int32_t_5;   // 临时未定义4字节变量5
-  int32_t temp_int32_t_6;   // 临时未定义4字节变量6
-  int32_t temp_int32_t_7;   // 临时未定义4字节变量7
-  uint64_t temp_uint64_t_1;   // 临时未定义8字节变量1
-  uint64_t temp_uint64_t_2;   // 临时未定义8字节变量2
-  uint64_t temp_uint64_t_3;   // 临时未定义8字节变量3
-  uint64_t temp_uint64_t_4;   // 临时未定义8字节变量4
-  uint64_t temp_uint64_t_5;   // 临时未定义8字节变量5;
+  int32_t source_data_1;           // 源数据1
+  int32_t source_data_2;           // 源数据2
+  int32_t target_data_1;           // 目标数据1
+  int32_t target_data_2;           // 目标数据2
+  int32_t target_data_3;           // 目标数据3
+  int32_t target_data_4;           // 目标数据4
+  uint64_t transform_data_1;        // 变换数据1
+  uint64_t transform_data_2;        // 变换数据2
+  uint64_t transform_data_3;        // 变换数据3
+  uint64_t transform_data_4;        // 变换数据4
+  uint64_t transform_data_5;        // 变换数据5;
   
   // 获取实体数据指针和组件数据
   temp_long1 = *(longlong *)(entity_data + 0xc0);
