@@ -1,1099 +1,852 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part009.c - UI系统高级向量处理和动画控制模块
-// 该文件包含4个核心函数，涵盖UI向量归一化处理、动画权重计算、角度插值等高级UI功能
+// 04_ui_system_part009.c - 4 个函数
 
-/*========================================================================================
-函数别名定义 - 将原始FUN_*名称映射为语义化名称
-========================================================================================*/
-
-// 向量归一化处理函数别名
-#define normalize_ui_vectors_with_scale FUN_1806593b0
-#define normalize_ui_vectors_advanced FUN_1806593d9
-
-// UI系统控制函数别名  
-#define ui_system_empty_handler FUN_1806594bd
-#define process_ui_animation_data FUN_1806596a0
-
-/*========================================================================================
-核心函数实现
-========================================================================================*/
-
-/**
- * UI向量归一化和缩放处理函数
- * 对UI元素向量数组进行归一化处理并应用缩放因子
- * 
- * @param vector_array 向量数组指针，包含待处理的UI元素向量数据
- * @param scale_factor 缩放因子，用于调整归一化后的向量大小
- * @return void
- * 
- * 功能说明：
- * - 遍历向量数组中的每个向量
- * - 计算向量的长度（模）
- * - 使用快速倒数平方根算法进行归一化
- * - 应用缩放因子调整向量大小
- * - 更新原始向量数据
- */
-void normalize_ui_vectors_with_scale(longlong *vector_array, float scale_factor)
+// 函数: void FUN_1806593b0(longlong *param_1,float param_2)
+void FUN_1806593b0(longlong *param_1,float param_2)
 
 {
-  ulonglong index;
-  longlong array_start;
-  uint element_count;
-  ulonglong current_offset;
-  float vector_x;
-  float vector_y;
-  float vector_length;
-  float normalized_length;
-  float inverse_length;
-  float scaled_x;
-  float scaled_y;
+  ulonglong uVar1;
+  longlong lVar2;
+  uint uVar3;
+  ulonglong uVar4;
+  float fVar5;
+  float fVar6;
+  undefined1 auVar7 [16];
+  float fStackX_8;
+  float fStackX_c;
   
-  array_start = *vector_array;
-  index = 0;
-  current_offset = index;
-  element_count = (uint)((vector_array[1] - array_start) >> 3);
-  if (element_count != 0) {
+  lVar2 = *param_1;
+  uVar1 = 0;
+  uVar4 = uVar1;
+  if (param_1[1] - lVar2 >> 3 != 0) {
     do {
-      // 提取向量分量（高32位为Y坐标，低32位为X坐标）
-      vector_y = (float)((ulonglong)*(undefined8 *)(current_offset + array_start) >> 0x20);
-      vector_x = (float)*(undefined8 *)(current_offset + array_start);
-      
-      // 计算向量长度
-      vector_length = vector_y * vector_y + vector_x * vector_x;
-      
-      // 使用快速倒数平方根算法计算归一化因子
-      inverse_length = rsqrtss(ZEXT416((uint)vector_length), ZEXT416((uint)vector_length))._0_4_;
-      
-      // 牛顿迭代法提高精度
-      normalized_length = inverse_length * 0.5f * (3.0f - vector_length * inverse_length * inverse_length);
-      
-      // 应用缩放因子并更新向量
-      scaled_x = normalized_length * vector_x * scale_factor + *(float *)(current_offset + array_start);
-      scaled_y = normalized_length * vector_y * scale_factor + *(float *)(current_offset + 4 + array_start);
-      
-      *(ulonglong *)(current_offset + vector_array[0x11]) = CONCAT44(scaled_y, scaled_x);
-      
-      current_offset = current_offset + 8;
-      array_start = *vector_array;
-      element_count = (uint)((vector_array[1] - array_start) >> 3);
-    } while (current_offset < (ulonglong)((vector_array[1] - array_start) >> 3));
+      uVar3 = (int)uVar4 + 1;
+      fStackX_c = (float)((ulonglong)*(undefined8 *)(uVar1 + lVar2) >> 0x20);
+      fStackX_8 = (float)*(undefined8 *)(uVar1 + lVar2);
+      fVar5 = fStackX_c * fStackX_c + fStackX_8 * fStackX_8;
+      auVar7 = rsqrtss(ZEXT416((uint)fVar5),ZEXT416((uint)fVar5));
+      fVar6 = auVar7._0_4_;
+      fVar5 = fVar6 * 0.5 * (3.0 - fVar5 * fVar6 * fVar6);
+      *(ulonglong *)(uVar1 + param_1[0x11]) =
+           CONCAT44(fVar5 * fStackX_c * param_2 + *(float *)(uVar1 + 4 + lVar2),
+                    fVar5 * fStackX_8 * param_2 + *(float *)(uVar1 + lVar2));
+      uVar1 = uVar1 + 8;
+      lVar2 = *param_1;
+      uVar4 = (ulonglong)uVar3;
+    } while ((ulonglong)(longlong)(int)uVar3 < (ulonglong)(param_1[1] - lVar2 >> 3));
   }
   return;
 }
 
-/**
- * UI系统高级向量归一化处理函数
- * 对UI元素进行高级向量处理，支持复杂数据结构和多种参数
- * 
- * @param render_context 渲染上下文，用于UI渲染操作
- * @param vector_data 向量数据指针，包含待处理的UI向量信息
- * @param processing_params 处理参数，控制向量处理的行为
- * @param data_offset 数据偏移量，指定处理起始位置
- * @return void
- * 
- * 功能说明：
- * - 支持复杂数据结构的向量处理
- * - 使用优化的归一化算法
- * - 处理大容量向量数据
- * - 支持动态偏移和批量处理
- */
-void normalize_ui_vectors_advanced(undefined8 render_context, longlong *vector_data, 
-                                undefined8 processing_params, longlong data_offset)
+
+
+
+
+// 函数: void FUN_1806593d9(undefined8 param_1,longlong *param_2,undefined8 param_3,longlong param_4)
+void FUN_1806593d9(undefined8 param_1,longlong *param_2,undefined8 param_3,longlong param_4)
 
 {
-  ulonglong current_offset;
-  uint element_index;
-  float vector_x;
-  float vector_y;
-  float vector_length;
-  float inverse_length;
-  float normalized_length;
-  float scale_factor;
-  float scaled_x;
-  float scaled_y;
+  ulonglong uVar1;
+  uint in_R10D;
+  float fVar2;
+  float fVar3;
+  undefined1 auVar4 [16];
+  float unaff_XMM7_Da;
+  float fStack0000000000000050;
+  float fStack0000000000000054;
   
-  current_offset = 0;
-  element_index = 0;
-  scale_factor = *(float *)&processing_params;  // 从处理参数中提取缩放因子
-  
+  uVar1 = (ulonglong)in_R10D;
   do {
-    element_index = element_index + 1;
-    
-    // 提取向量分量
-    vector_y = (float)((ulonglong)*(undefined8 *)(current_offset + data_offset) >> 0x20);
-    vector_x = (float)*(undefined8 *)(current_offset + data_offset);
-    
-    // 计算向量长度
-    vector_length = vector_y * vector_y + vector_x * vector_x;
-    
-    // 快速倒数平方根归一化
-    inverse_length = rsqrtss(ZEXT416((uint)vector_length), ZEXT416((uint)vector_length))._0_4_;
-    normalized_length = inverse_length * 0.5f * (3.0f - vector_length * inverse_length * inverse_length);
-    
-    // 应用缩放并更新向量
-    scaled_x = normalized_length * vector_x * scale_factor + *(float *)(current_offset + data_offset);
-    scaled_y = normalized_length * vector_y * scale_factor + *(float *)(current_offset + 4 + data_offset);
-    
-    *(ulonglong *)(current_offset + vector_data[0x11]) = CONCAT44(scaled_y, scaled_x);
-    
-    current_offset = current_offset + 8;
-    data_offset = *vector_data;
-  } while (current_offset < (ulonglong)((vector_data[1] - data_offset) >> 3));
-  
+    in_R10D = in_R10D + 1;
+    fStack0000000000000054 = (float)((ulonglong)*(undefined8 *)(uVar1 + param_4) >> 0x20);
+    fStack0000000000000050 = (float)*(undefined8 *)(uVar1 + param_4);
+    fVar2 = fStack0000000000000054 * fStack0000000000000054 +
+            fStack0000000000000050 * fStack0000000000000050;
+    auVar4 = rsqrtss(ZEXT416((uint)fVar2),ZEXT416((uint)fVar2));
+    fVar3 = auVar4._0_4_;
+    fVar2 = fVar3 * 0.5 * (3.0 - fVar2 * fVar3 * fVar3);
+    *(ulonglong *)(uVar1 + param_2[0x11]) =
+         CONCAT44(fVar2 * fStack0000000000000054 * unaff_XMM7_Da + *(float *)(uVar1 + 4 + param_4),
+                  fVar2 * fStack0000000000000050 * unaff_XMM7_Da + *(float *)(uVar1 + param_4));
+    uVar1 = uVar1 + 8;
+    param_4 = *param_2;
+  } while ((ulonglong)(longlong)(int)in_R10D < (ulonglong)(param_2[1] - param_4 >> 3));
   return;
 }
 
-/**
- * UI系统空处理函数
- * 预留的UI系统处理函数，当前为空实现
- * 
- * @return void
- * 
- * 功能说明：
- * - 作为系统扩展点预留
- * - 可用于未来功能扩展
- * - 保持系统架构完整性
- */
-void ui_system_empty_handler(void)
+
+
+
+
+// 函数: void FUN_1806594bd(void)
+void FUN_1806594bd(void)
 
 {
   return;
 }
 
-/**
- * UI系统动画数据处理函数
- * 处理UI动画的核心数据，包括权重计算、角度插值、状态更新等
- * 
- * @param animation_data 动画数据数组，包含关键帧和插值信息
- * @param time_delta 时间增量，用于动画插值计算
- * @param animation_params 动画参数，控制动画行为
- * @param blend_mode 融合模式，指定动画混合方式
- * @param loop_enabled 循环启用标志，控制动画循环播放
- * @param reverse_mode 反向模式标志，控制动画播放方向
- * @param context1 上下文参数1，用于扩展功能
- * @param context2 上下文参数2，用于扩展功能
- * @param blend_weight 融合权重，控制动画强度
- * @param context3 上下文参数3，用于扩展功能
- * @return void
- * 
- * 功能说明：
- * - 处理复杂的UI动画数据
- * - 支持权重归一化和插值
- * - 实现角度标准化和范围限制
- * - 支持多种动画模式
- * - 提供高级动画控制功能
- */
-void process_ui_animation_data(float *animation_data, float time_delta, longlong animation_params,
-                              char blend_mode, char loop_enabled, char reverse_mode,
-                              undefined8 context1, undefined8 context2, float blend_weight,
-                              undefined8 context3)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_1806596a0(float *param_1,float param_2,longlong param_3,char param_4,char param_5,
+void FUN_1806596a0(float *param_1,float param_2,longlong param_3,char param_4,char param_5,
+                  char param_6,undefined8 param_7,undefined8 param_8,float param_9,
+                  undefined8 param_10)
 
 {
-  undefined8 temp_storage1;
-  undefined8 temp_storage2;
-  bool is_active_animation;
-  char direction_flag;
-  int frame_index;
-  longlong data_start;
-  float *current_keyframe;
-  longlong data_end;
-  longlong keyframe_data;
-  float *next_keyframe;
-  int blend_count;
-  ulonglong total_elements;
-  float current_weight;
-  float angle_value;
-  float interpolated_value;
-  float min_boundary;
-  float max_boundary;
-  float animation_speed;
-  float normalized_weight;
-  float accumulated_weight;
-  float weight_factor;
-  float interpolation_factor;
-  float angle_difference;
-  float normalized_angle;
-  float temp_angle1;
-  float temp_angle2;
-  float blend_result1;
-  float blend_result2;
-  float final_blend1;
-  float final_blend2;
-  float animation_progress;
-  float target_weight;
-  undefined1 vector_data [16];
-  float blend_result3;
-  float blend_result4;
-  float blend_result5;
-  float blend_result6;
-  float blend_result7;
-  float blend_result8;
-  float animation_buffer [6200];
-  undefined8 control_flag;
-  undefined1 temp_storage [32];
-  float current_time;
-  float *keyframe_pointer;
-  char state_flag;
-  float temp_value1;
-  undefined8 temp_storage3;
-  float temp_value2;
-  undefined8 temp_storage4;
-  float temp_value3;
-  float temp_value4;
-  float temp_value5;
-  float temp_value6;
-  undefined8 temp_storage5;
-  float temp_value7;
-  float temp_value8;
-  float temp_value9;
-  float temp_value10;
-  float temp_value11;
-  ulonglong storage_index;
+  undefined8 uVar1;
+  undefined8 uVar2;
+  bool bVar3;
+  char cVar4;
+  int iVar5;
+  longlong lVar6;
+  float *pfVar7;
+  longlong lVar8;
+  longlong lVar9;
+  float *pfVar10;
+  int iVar11;
+  ulonglong uVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  undefined1 auVar22 [16];
+  float fVar23;
+  float fVar24;
+  float fVar25;
+  float afStack_6260 [6200];
+  undefined8 uStack_180;
+  undefined1 auStack_178 [32];
+  float fStack_158;
+  float *pfStack_150;
+  char cStack_148;
+  float fStack_144;
+  undefined8 uStack_140;
+  float fStack_138;
+  undefined8 uStack_130;
+  float fStack_128;
+  float fStack_124;
+  float fStack_120;
+  float fStack_11c;
+  undefined8 uStack_118;
+  float fStack_110;
+  float fStack_10c;
+  float fStack_108;
+  float fStack_104;
+  float fStack_100;
+  float fStack_fc;
+  float fStack_f8;
+  float fStack_f4;
+  float fStack_f0;
+  float fStack_ec;
+  ulonglong uStack_e8;
   
-  storage_index = _DAT_180bf00a8 ^ (ulonglong)temp_storage;
-  accumulated_weight = 0.0f;
-  frame_index = 0;
-  control_flag = context3;
-  state_flag = blend_mode;
-  current_time = time_delta;
-  
-  // 处理关键帧权重调整
-  if (0 < (int)animation_data[0x18]) {
-    current_keyframe = animation_data + 0x1b;
-    next_keyframe = current_keyframe;
-    blend_count = frame_index;
-    
+  uStack_e8 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  fVar25 = 0.0;
+  iVar5 = 0;
+  uStack_118 = param_10;
+  cStack_148 = param_4;
+  fStack_144 = param_2;
+  if (0 < (int)param_1[0x18]) {
+    pfVar7 = param_1 + 0x1b;
+    pfVar10 = pfVar7;
+    iVar11 = iVar5;
     do {
-      // 提取关键帧边界值
-      max_boundary = next_keyframe[1];
-      current_weight = *next_keyframe;
-      current_time = animation_data[0x11];
-      
-      // 根据时间增量调整边界
-      if (max_boundary <= current_weight) {
-        current_weight = current_weight - time_delta * 4.0f;
-        if (current_weight <= max_boundary) {
-          current_weight = max_boundary;
+      fVar19 = pfVar10[1];
+      fVar13 = *pfVar10;
+      fStack_158 = param_1[0x11];
+      if (fVar19 <= fVar13) {
+        fVar13 = fVar13 - param_2 * 4.0;
+        if (fVar13 <= fVar19) {
+          fVar13 = fVar19;
         }
       }
       else {
-        current_weight = time_delta * 4.0f + current_weight;
-        if (max_boundary <= current_weight) {
-          current_weight = max_boundary;
+        fVar13 = param_2 * 4.0 + fVar13;
+        if (fVar19 <= fVar13) {
+          fVar13 = fVar19;
         }
       }
-      
-      keyframe_pointer = next_keyframe + 0x4c9;
-      *next_keyframe = current_weight;
-      temp_storage1 = 0x1806597d3;
-      
-      // 调用动画处理函数
-      FUN_18065ee60(*(undefined8 *)(next_keyframe + 0x495), animation_data + 0x1854);
-      
-      // 更新动画状态标志
-      if ((*(char *)(next_keyframe + 0x4af) == '\0') && (*(char *)(next_keyframe + 0x4ce) != '\0')) {
-        *(undefined1 *)(next_keyframe + 0x4af) = 1;
+      pfStack_150 = pfVar10 + 0x4c9;
+      *pfVar10 = fVar13;
+      uStack_180 = 0x1806597d3;
+      FUN_18065ee60(*(undefined8 *)(pfVar10 + 0x495),param_1 + 0x1854);
+      if ((*(char *)(pfVar10 + 0x4af) == '\0') && (*(char *)(pfVar10 + 0x4ce) != '\0')) {
+        *(undefined1 *)(pfVar10 + 0x4af) = 1;
       }
-      if ((*(char *)(next_keyframe + 0x4c8) == '\0') && (*(char *)(next_keyframe + 0x4d4) != '\0')) {
-        *(undefined1 *)(next_keyframe + 0x4c8) = 1;
+      if ((*(char *)(pfVar10 + 0x4c8) == '\0') && (*(char *)(pfVar10 + 0x4d4) != '\0')) {
+        *(undefined1 *)(pfVar10 + 0x4c8) = 1;
       }
-      
-      accumulated_weight = accumulated_weight + *next_keyframe;
-      next_keyframe = next_keyframe + 0x4d6;
-      blend_count = blend_count + 1;
-    } while (blend_count < (int)animation_data[0x18]);
-    
-    // 权重归一化处理
-    if (((0.0f < accumulated_weight) && (accumulated_weight != 1.0f)) && (0 < (int)animation_data[0x18])) {
+      fVar25 = fVar25 + *pfVar10;
+      pfVar10 = pfVar10 + 0x4d6;
+      iVar11 = iVar11 + 1;
+    } while (iVar11 < (int)param_1[0x18]);
+    if (((0.0 < fVar25) && (fVar25 != 1.0)) && (0 < (int)param_1[0x18])) {
       do {
-        frame_index = frame_index + 1;
-        *current_keyframe = (1.0f / accumulated_weight) * *current_keyframe;
-        current_keyframe = current_keyframe + 0x4d6;
-      } while (frame_index < (int)animation_data[0x18]);
+        iVar5 = iVar5 + 1;
+        *pfVar7 = (1.0 / fVar25) * *pfVar7;
+        pfVar7 = pfVar7 + 0x4d6;
+      } while (iVar5 < (int)param_1[0x18]);
     }
   }
-  
-  direction_flag = state_flag;
-  temp_storage1 = 0x18065986c;
-  FUN_18065cb80(animation_data);
-  
-  // 处理动画数据变换
-  if (((animation_data[4] == 0.0f) && (animation_data[5] == 0.0f)) &&
-     (0.25f < animation_data[2] * animation_data[2] + animation_data[3] * animation_data[3])) {
-    *(undefined8 *)(animation_data + 4) = *(undefined8 *)(animation_data + 2);
+  cVar4 = cStack_148;
+  uStack_180 = 0x18065986c;
+  FUN_18065cb80(param_1);
+  if (((param_1[4] == 0.0) && (param_1[5] == 0.0)) &&
+     (0.25 < param_1[2] * param_1[2] + param_1[3] * param_1[3])) {
+    *(undefined8 *)(param_1 + 4) = *(undefined8 *)(param_1 + 2);
   }
-  
-  temp_storage1 = *(undefined8 *)(animation_data + 4);
-  temp_storage2 = *(undefined8 *)(animation_data + 2);
-  temp_storage3 = temp_storage1;
-  temp_storage4 = temp_storage2;
-  
-  if (animation_data[8] != 0.0f) {
-    temp_storage1 = 0x1806598e8;
-    FUN_1808fd400(-animation_data[8]);
+  uVar1 = *(undefined8 *)(param_1 + 4);
+  uVar2 = *(undefined8 *)(param_1 + 2);
+  uStack_140 = uVar1;
+  uStack_130 = uVar2;
+  if (param_1[8] != 0.0) {
+                    // WARNING: Subroutine does not return
+    uStack_180 = 0x1806598e8;
+    FUN_1808fd400(-param_1[8]);
   }
-  
-  temp_storage3._4_4_ = (float)((ulonglong)temp_storage1 >> 0x20);
-  blend_result4 = temp_storage3._4_4_;
-  temp_storage3._0_4_ = (float)temp_storage1;
-  current_weight = (float)temp_storage3;
-  temp_storage4._4_4_ = (float)((ulonglong)temp_storage2 >> 0x20);
-  blend_result7 = temp_storage4._4_4_;
-  temp_storage4._0_4_ = (float)temp_storage2;
-  animation_progress = (float)temp_storage4;
-  
-  // 检查动画激活状态
-  animation_speed = animation_data[0x185d];
-  if (((animation_data[0x10] == 0.0f) || (animation_data[0x10] == 0.5f)) || (animation_speed <= 0.0f)) {
-    is_active_animation = false;
+  uStack_140._4_4_ = (float)((ulonglong)uVar1 >> 0x20);
+  fVar24 = uStack_140._4_4_;
+  uStack_140._0_4_ = (float)uVar1;
+  fVar13 = (float)uStack_140;
+  uStack_130._4_4_ = (float)((ulonglong)uVar2 >> 0x20);
+  fVar21 = uStack_130._4_4_;
+  uStack_130._0_4_ = (float)uVar2;
+  fVar17 = (float)uStack_130;
+  fVar19 = param_1[0x185d];
+  if (((param_1[0x10] == 0.0) || (param_1[0x10] == 0.5)) || (fVar19 <= 0.0)) {
+    bVar3 = false;
   }
   else {
-    is_active_animation = true;
+    bVar3 = true;
   }
-  
-  temp_storage1 = 0x1806599e0;
-  
-  // 计算动画角度
-  normalized_angle = (float)atan2f(*(uint *)(*(longlong *)(animation_params + 0x10) + 0x80) ^ 0x80000000,
-                         *(undefined4 *)(*(longlong *)(animation_params + 0x10) + 0x84));
-  normalized_angle = normalized_angle + animation_data[6];
-  animation_data[0xb] = normalized_angle;
-  
-  // 角度标准化处理
-  if (normalized_angle <= 3.1415927f) {
-    if (normalized_angle < -3.1415927f) {
-      normalized_angle = normalized_angle + 6.2831855f;
-      animation_data[0xb] = normalized_angle;
+  uStack_180 = 0x1806599e0;
+  fVar14 = (float)atan2f(*(uint *)(*(longlong *)(param_3 + 0x10) + 0x80) ^ 0x80000000,
+                         *(undefined4 *)(*(longlong *)(param_3 + 0x10) + 0x84));
+  fVar14 = fVar14 + param_1[6];
+  param_1[0xb] = fVar14;
+  if (fVar14 <= 3.1415927) {
+    if (fVar14 < -3.1415927) {
+      fVar14 = fVar14 + 6.2831855;
+      goto LAB_180659a1a;
     }
   }
   else {
-    normalized_angle = normalized_angle - 6.2831855f;
-    animation_data[0xb] = normalized_angle;
+    fVar14 = fVar14 - 6.2831855;
+LAB_180659a1a:
+    param_1[0xb] = fVar14;
   }
-  
-  normalized_angle = animation_data[0x18];
-  data_start = (longlong)(int)normalized_angle;
-  if (0 < (int)normalized_angle) {
-    if (*(char *)(data_start * 0x1358 + 0x4e + (longlong)animation_data) == '\0') {
-      max_boundary = 0.0f;
+  fVar14 = param_1[0x18];
+  lVar8 = (longlong)(int)fVar14;
+  if (0 < (int)fVar14) {
+    if (*(char *)(lVar8 * 0x1358 + 0x4e + (longlong)param_1) == '\0') {
+      fVar15 = 0.0;
     }
     else {
-      max_boundary = animation_data[data_start * 0x4d6 + 0x12] * 0.05f;
+      fVar15 = param_1[lVar8 * 0x4d6 + 0x12] * 0.05;
     }
-    
-    if ((max_boundary + animation_data[data_start * 0x4d6 + 0xe] < animation_data[data_start * 0x4d6 + 0x11]) ||
-       (*(char *)(animation_data + data_start * 0x4d6 + 0x13) != '\0')) {
-      animation_data[0xc] = animation_data[0xb];
-      normalized_angle = animation_data[0x18];
+    if ((fVar15 + param_1[lVar8 * 0x4d6 + 0xe] < param_1[lVar8 * 0x4d6 + 0x11]) ||
+       (*(char *)(param_1 + lVar8 * 0x4d6 + 0x13) != '\0')) {
+      param_1[0xc] = param_1[0xb];
+      fVar14 = param_1[0x18];
     }
-    
-    data_start = (longlong)(int)normalized_angle;
-    if (*(char *)(data_start * 0x1358 + 0x66 + (longlong)animation_data) == '\0') {
-      max_boundary = 0.0f;
+    lVar8 = (longlong)(int)fVar14;
+    if (*(char *)(lVar8 * 0x1358 + 0x66 + (longlong)param_1) == '\0') {
+      fVar15 = 0.0;
     }
     else {
-      max_boundary = animation_data[data_start * 0x4d6 + 0x18] * 0.05f;
+      fVar15 = param_1[lVar8 * 0x4d6 + 0x18] * 0.05;
     }
-    
-    if ((max_boundary + animation_data[data_start * 0x4d6 + 0x14] < animation_data[data_start * 0x4d6 + 0x17]) ||
-       (*(char *)(animation_data + data_start * 0x4d6 + 0x19) != '\0')) {
-      animation_data[0xd] = animation_data[0xb];
-      normalized_angle = animation_data[0x18];
+    if ((fVar15 + param_1[lVar8 * 0x4d6 + 0x14] < param_1[lVar8 * 0x4d6 + 0x17]) ||
+       (*(char *)(param_1 + lVar8 * 0x4d6 + 0x19) != '\0')) {
+      param_1[0xd] = param_1[0xb];
+      fVar14 = param_1[0x18];
     }
   }
-  
-  temp_value2 = 1.0f;
-  if ((((((int)normalized_angle < 1) || (animation_data[2] != 0.0f)) || (animation_data[3] != 0.0f)) || (animation_data[6] == 0.0f))
-     || ((ABS(animation_data[0xb] - animation_data[0xc]) < 0.5f && (ABS(animation_data[0xb] - animation_data[0xd]) < 0.5f)))) {
-    if ((is_active_animation) && ((animation_data[2] == 0.0f && (animation_data[3] == 0.0f)))) {
-      goto LAB_180659b1a;
-    }
-    
-    animation_data[0x14] = 0.0f;
-    if (0.0f <= current_weight) {
-      if (current_weight <= 0.0f) goto LAB_180659b1a;
-      temp_value2 = 1.0f;
+  fStack_138 = 1.0;
+  if ((((((int)fVar14 < 1) || (param_1[2] != 0.0)) || (param_1[3] != 0.0)) || (param_1[6] == 0.0))
+     || ((ABS(param_1[0xb] - param_1[0xc]) < 0.5 && (ABS(param_1[0xb] - param_1[0xd]) < 0.5)))) {
+    if ((bVar3) && ((param_1[2] == 0.0 && (param_1[3] == 0.0)))) goto LAB_180659b1a;
+    param_1[0x14] = 0.0;
+    if (0.0 <= fVar13) {
+      if (fVar13 <= 0.0) goto LAB_180659b1a;
+      fStack_138 = 1.0;
     }
     else {
-      temp_value2 = 0.0f;
+      fStack_138 = 0.0;
     }
   }
   else {
-    is_active_animation = true;
-    animation_data[0x14] = 1.0f;
+    bVar3 = true;
+    param_1[0x14] = 1.0;
 LAB_180659b1a:
-    if ((direction_flag == '\0') || (1.0f < animation_data[0x1854] || animation_data[0x1854] == 1.0f)) {
-      if (*(char *)(animation_data + 0x17) == '\0') {
-        temp_value2 = 1.0f;
+    if ((cVar4 == '\0') || (1.0 < param_1[0x1854] || param_1[0x1854] == 1.0)) {
+      if (*(char *)(param_1 + 0x17) == '\0') {
+        fStack_138 = 1.0;
       }
       else {
-        temp_value2 = 0.0f;
+        fStack_138 = 0.0;
       }
     }
   }
-  
-  // 处理动画进度
-  if ((animation_speed <= 0.0f) && (0.0f < animation_data[0x14])) {
-    animation_speed = animation_data[0xb] - animation_data[0xc];
-    normalized_angle = animation_data[0xb] - animation_data[0xd];
-    if (ABS(animation_speed) <= ABS(normalized_angle)) {
-      animation_speed = normalized_angle;
+  if ((fVar19 <= 0.0) && (0.0 < param_1[0x14])) {
+    fVar19 = param_1[0xb] - param_1[0xc];
+    fVar14 = param_1[0xb] - param_1[0xd];
+    if (ABS(fVar19) <= ABS(fVar14)) {
+      fVar19 = fVar14;
     }
-    
-    if (animation_speed <= 3.1415927f) {
-      if (animation_speed < -3.1415927f) {
-        animation_speed = animation_speed + 6.2831855f;
+    if (fVar19 <= 3.1415927) {
+      if (fVar19 < -3.1415927) {
+        fVar19 = fVar19 + 6.2831855;
       }
     }
     else {
-      animation_speed = animation_speed + -6.2831855f;
+      fVar19 = fVar19 + -6.2831855;
     }
-    
-    if (animation_speed <= 0.0f) {
-      animation_speed = 0.0f;
+    if (fVar19 <= 0.0) {
+      fVar19 = 0.0;
     }
     else {
-      animation_speed = 0.5f;
+      fVar19 = 0.5;
     }
-    animation_data[0x10] = animation_speed;
+    param_1[0x10] = fVar19;
   }
-  
-  // 处理活动动画
-  if ((is_active_animation) && (0 < (int)animation_data[0x18])) {
-    animation_speed = 0.0f;
-    current_keyframe = animation_data + 0x1b;
-    total_elements = (ulonglong)(uint)animation_data[0x18];
-    
+  if ((bVar3) && (0 < (int)param_1[0x18])) {
+    fVar19 = 0.0;
+    pfVar7 = param_1 + 0x1b;
+    uVar12 = (ulonglong)(uint)param_1[0x18];
     do {
-      keyframe_pointer = current_keyframe + 0x495;
-      normalized_angle = *current_keyframe;
-      current_keyframe = current_keyframe + 0x4d6;
-      animation_speed = animation_speed + *(float *)(*(longlong *)(*(longlong *)keyframe_pointer + 0x48) + 0x188) * normalized_angle;
-      total_elements = total_elements - 1;
-    } while (total_elements != 0);
-    
-    normalized_angle = animation_data[0x10];
-    animation_speed = (current_time * animation_data[7]) / animation_speed + normalized_angle;
-    animation_data[0x10] = animation_speed;
-    
-    if (animation_speed <= 1.0f) {
-      if ((((normalized_angle <= 0.5f) && (0.5f < animation_speed)) && (ABS(animation_data[0xb] - animation_data[0xc]) < 0.5f)) &&
-         (ABS(animation_data[0xb] - animation_data[0xd]) < 0.5f)) {
-        animation_data[0x10] = 0.5f;
+      pfVar10 = pfVar7 + 0x495;
+      fVar14 = *pfVar7;
+      pfVar7 = pfVar7 + 0x4d6;
+      fVar19 = fVar19 + *(float *)(*(longlong *)(*(longlong *)pfVar10 + 0x48) + 0x188) * fVar14;
+      uVar12 = uVar12 - 1;
+    } while (uVar12 != 0);
+    fVar14 = param_1[0x10];
+    fVar19 = (fStack_144 * param_1[7]) / fVar19 + fVar14;
+    param_1[0x10] = fVar19;
+    if (fVar19 <= 1.0) {
+      if ((((fVar14 <= 0.5) && (0.5 < fVar19)) && (ABS(param_1[0xb] - param_1[0xc]) < 0.5)) &&
+         (ABS(param_1[0xb] - param_1[0xd]) < 0.5)) {
+        param_1[0x10] = 0.5;
       }
     }
-    else if ((0.5f <= ABS(animation_data[0xb] - animation_data[0xc])) || (0.5f <= ABS(animation_data[0xb] - animation_data[0xd]))) {
-      animation_data[0x10] = animation_speed - 1.0f;
+    else if ((0.5 <= ABS(param_1[0xb] - param_1[0xc])) || (0.5 <= ABS(param_1[0xb] - param_1[0xd])))
+    {
+      param_1[0x10] = fVar19 - 1.0;
     }
     else {
-      animation_data[0x10] = 0.0f;
+      param_1[0x10] = 0.0;
     }
   }
-  
-  // 处理动画混合
-  animation_speed = 1.0f;
-  if ((((reverse_mode != '\0') || (loop_enabled != '\0')) && ((animation_data[2] != 0.0f || (animation_data[3] != 0.0f)))) ||
-     (((animation_data[4] != 0.0f || (animation_data[5] != 0.0f)) || (0.0f < animation_data[0x14])))) {
-    animation_speed = 0.0f;
+  fVar19 = 1.0;
+  if ((((param_5 != '\0') || (param_6 != '\0')) && ((param_1[2] != 0.0 || (param_1[3] != 0.0)))) ||
+     (((param_1[4] != 0.0 || (param_1[5] != 0.0)) || (0.0 < param_1[0x14])))) {
+    fVar19 = 0.0;
   }
-  
-  normalized_angle = current_time + current_time;
-  max_boundary = *animation_data - animation_data[1];
-  normalized_angle = max_boundary;
-  if ((normalized_angle < ABS(max_boundary)) && (normalized_angle = normalized_angle, max_boundary < 0.0f)) {
-    normalized_angle = -normalized_angle;
+  fVar20 = fStack_144 + fStack_144;
+  fVar15 = *param_1 - param_1[1];
+  fVar14 = fVar15;
+  if ((fVar20 < ABS(fVar15)) && (fVar14 = fVar20, fVar15 < 0.0)) {
+    fVar14 = -fVar20;
   }
-  
-  animation_data[1] = animation_data[1] + normalized_angle;
-  temp_storage1 = 0x180659d72;
-  max_boundary = (float)FUN_18065c070(animation_data, animation_params, control_flag);
-  normalized_angle = current_time;
-  
-  if (max_boundary <= 0.75f) {
-    max_boundary = 0.75f;
+  param_1[1] = param_1[1] + fVar14;
+  uStack_180 = 0x180659d72;
+  fVar15 = (float)FUN_18065c070(param_1,param_3,uStack_118);
+  fVar14 = fStack_144;
+  if (fVar15 <= 0.75) {
+    fVar15 = 0.75;
   }
-  
-  blend_result3 = max_boundary - animation_data[0x16];
-  if (0.001f <= ABS(blend_result3)) {
-    max_boundary = blend_result3 * normalized_angle + animation_data[0x16];
+  fVar20 = fVar15 - param_1[0x16];
+  if (0.001 <= ABS(fVar20)) {
+    fVar15 = fVar20 * fStack_144 + param_1[0x16];
   }
-  animation_data[0x16] = max_boundary;
-  
-  // 处理动画权重更新
-  if ((accumulated_weight <= 0.0f) || (animation_data[0x1854] <= 0.0f)) {
-    animation_data[0xf] = 0.0f;
+  param_1[0x16] = fVar15;
+  if ((fVar25 <= 0.0) || (param_1[0x1854] <= 0.0)) {
+    param_1[0xf] = 0.0;
   }
   else {
-    accumulated_weight = 0.0f;
-    if (0 < (int)animation_data[0x18]) {
-      current_keyframe = animation_data + 0x1b;
-      total_elements = (ulonglong)(uint)animation_data[0x18];
-      
+    fVar25 = 0.0;
+    if (0 < (int)param_1[0x18]) {
+      pfVar7 = param_1 + 0x1b;
+      uVar12 = (ulonglong)(uint)param_1[0x18];
       do {
-        keyframe_pointer = current_keyframe + 0x495;
-        max_boundary = *current_keyframe;
-        current_keyframe = current_keyframe + 0x4d6;
-        accumulated_weight = accumulated_weight + *(float *)(**(longlong **)keyframe_pointer + 0x188) * max_boundary;
-        total_elements = total_elements - 1;
-      } while (total_elements != 0);
+        pfVar10 = pfVar7 + 0x495;
+        fVar15 = *pfVar7;
+        pfVar7 = pfVar7 + 0x4d6;
+        fVar25 = fVar25 + *(float *)(**(longlong **)pfVar10 + 0x188) * fVar15;
+        uVar12 = uVar12 - 1;
+      } while (uVar12 != 0);
     }
-    
-    temp_storage1 = 0x180659e10;
-    accumulated_weight = (float)fmodf(normalized_angle / accumulated_weight + animation_data[0xf], 0x3f800000);
-    animation_data[0xf] = accumulated_weight;
+    uStack_180 = 0x180659e10;
+    fVar25 = (float)fmodf(fStack_144 / fVar25 + param_1[0xf],0x3f800000);
+    param_1[0xf] = fVar25;
   }
-  
-  accumulated_weight = animation_data[0x18];
-  frame_index = 0;
-  max_boundary = 0.0f;
-  if (0 < (int)accumulated_weight) {
-    current_keyframe = animation_data + 0x1b;
-    
+  fVar25 = param_1[0x18];
+  iVar5 = 0;
+  fVar15 = 0.0;
+  if (0 < (int)fVar25) {
+    pfVar7 = param_1 + 0x1b;
     do {
-      temp_storage1 = 0x180659e3d;
-      blend_result6 = (float)FUN_18065bf60(animation_data, frame_index);
-      normalized_angle = *current_keyframe;
-      frame_index = frame_index + 1;
-      current_keyframe = current_keyframe + 0x4d6;
-      max_boundary = max_boundary + blend_result6 * normalized_angle;
-    } while (frame_index < (int)accumulated_weight);
+      uStack_180 = 0x180659e3d;
+      fVar16 = (float)FUN_18065bf60(param_1,iVar5);
+      fVar20 = *pfVar7;
+      iVar5 = iVar5 + 1;
+      pfVar7 = pfVar7 + 0x4d6;
+      fVar15 = fVar15 + fVar16 * fVar20;
+    } while (iVar5 < (int)fVar25);
   }
-  
-  // 处理动画混合结果
-  if (animation_speed < 1.0f) {
-    if (animation_data[0x1854] <= 1.0f && animation_data[0x1854] != 1.0f) {
-      accumulated_weight = max_boundary * normalized_angle + animation_data[0xe];
-      animation_data[0xe] = accumulated_weight;
-      if (1.0f < accumulated_weight) {
-        animation_data[0xe] = accumulated_weight - 1.0f;
+  if (fVar19 < 1.0) {
+    if (param_1[0x1854] <= 1.0 && param_1[0x1854] != 1.0) {
+      fVar25 = fVar15 * fVar14 + param_1[0xe];
+      param_1[0xe] = fVar25;
+      if (1.0 < fVar25) {
+        param_1[0xe] = fVar25 - 1.0;
       }
     }
-    else if ((int)accumulated_weight < 1) {
-      animation_data[0xe] = 0.0f;
+    else if ((int)fVar25 < 1) {
+      param_1[0xe] = 0.0;
     }
     else {
-      if (*(char *)(animation_data + 0x17) == '\0') {
-        normalized_angle = 1.0f;
+      if (*(char *)(param_1 + 0x17) == '\0') {
+        fVar14 = 1.0;
       }
       else {
-        normalized_angle = -1.0f;
+        fVar14 = -1.0;
       }
-      
-      data_start = *(longlong *)(animation_data + (longlong)(int)accumulated_weight * 0x4d6 + -0x26);
-      temp_storage1 = 0x180659ea7;
-      data_end = FUN_18065fd40(*(undefined8 *)(data_start + 8));
-      keyframe_data = 0x14;
-      
-      if (0.0f <= (blend_result7 - ABS(animation_progress)) * normalized_angle) {
-        keyframe_data = 0x18;
+      lVar8 = *(longlong *)(param_1 + (longlong)(int)fVar25 * 0x4d6 + -0x26);
+      uStack_180 = 0x180659ea7;
+      lVar6 = FUN_18065fd40(*(undefined8 *)(lVar8 + 8));
+      lVar9 = 0x14;
+      if (0.0 <= (fVar21 - ABS(fVar17)) * fVar14) {
+        lVar9 = 0x18;
       }
-      
-      accumulated_weight = *(float *)(keyframe_data + data_end);
-      temp_storage1 = 0x180659edd;
-      FUN_18065fd40(*(undefined8 *)(data_start + 8));
-      animation_data[0xe] = accumulated_weight;
+      fVar25 = *(float *)(lVar9 + lVar6);
+      uStack_180 = 0x180659edd;
+      FUN_18065fd40(*(undefined8 *)(lVar8 + 8));
+      param_1[0xe] = fVar25;
     }
   }
-  
-  // 计算最终动画结果
-  accumulated_weight = blend_result4 * blend_result4 + current_weight * current_weight;
-  accumulated_weight = (float)(accumulated_weight <= 1.1754944e-38f) * 1.1754944e-38f + accumulated_weight;
-  
-  vector_data = rsqrtss(ZEXT416((uint)accumulated_weight), ZEXT416((uint)accumulated_weight));
-  normalized_angle = vector_data._0_4_;
-  
-  if (-0.2f <= blend_result4 * normalized_angle * 0.5f * (3.0f - accumulated_weight * normalized_angle * normalized_angle)) {
-    accumulated_weight = 1.0f;
+  fVar25 = fVar24 * fVar24 + fVar13 * fVar13;
+  fVar25 = (float)(fVar25 <= 1.1754944e-38) * 1.1754944e-38 + fVar25;
+  auVar22 = rsqrtss(ZEXT416((uint)fVar25),ZEXT416((uint)fVar25));
+  fVar14 = auVar22._0_4_;
+  if (-0.2 <= fVar24 * fVar14 * 0.5 * (3.0 - fVar25 * fVar14 * fVar14)) {
+    fVar25 = 1.0;
   }
   else {
-    accumulated_weight = 0.0f;
+    fVar25 = 0.0;
   }
-  
-  animation_data[0x13] = accumulated_weight;
-  normalized_angle = animation_progress;
-  blend_result3 = blend_result7;
-  
-  if ((current_weight != 0.0f) || (blend_result4 != 0.0f)) {
-    if (0.0f <= animation_progress * current_weight) {
-      if (ABS(animation_progress) < ABS(current_weight)) {
-        normalized_angle = current_weight;
+  param_1[0x13] = fVar25;
+  fVar14 = fVar17;
+  fVar20 = fVar21;
+  if ((fVar13 != 0.0) || (fVar24 != 0.0)) {
+    if (0.0 <= fVar17 * fVar13) {
+      if (ABS(fVar17) < ABS(fVar13)) {
+        fVar14 = fVar13;
       }
     }
     else {
-      normalized_angle = animation_progress + current_weight;
+      fVar14 = fVar17 + fVar13;
     }
-    
-    if (0.0f <= blend_result4 * blend_result7) {
-      if (ABS(blend_result7) < ABS(blend_result4)) {
-        blend_result3 = blend_result4;
+    if (0.0 <= fVar24 * fVar21) {
+      if (ABS(fVar21) < ABS(fVar24)) {
+        fVar20 = fVar24;
       }
     }
     else {
-      blend_result3 = blend_result7 + blend_result4;
+      fVar20 = fVar21 + fVar24;
     }
   }
-  
-  temp_storage1 = 0x18065a04d;
-  temp_storage3 = temp_storage2;
-  normalized_angle = (float)atan2f(-normalized_angle, blend_result3);
-  normalized_angle = ABS(normalized_angle);
-  
-  if (1.5707964f < normalized_angle) {
-    normalized_angle = 3.1415927f - normalized_angle;
+  uStack_180 = 0x18065a04d;
+  uStack_140 = uVar2;
+  fVar14 = (float)atan2f(-fVar14,fVar20);
+  fVar14 = ABS(fVar14);
+  if (1.5707964 < fVar14) {
+    fVar14 = 3.1415927 - fVar14;
   }
-  
-  normalized_angle = normalized_angle * 0.63661975f;
-  blend_result3 = (1.0f - blend_weight) * 0.3f;
-  
-  if (blend_result3 + 0.05f <= normalized_angle) {
-    if (0.95f - blend_result3 < normalized_angle) {
-      normalized_angle = 1.0f;
+  fVar14 = fVar14 * 0.63661975;
+  fVar20 = (1.0 - param_9) * 0.3;
+  if (fVar20 + 0.05 <= fVar14) {
+    if (0.95 - fVar20 < fVar14) {
+      fVar14 = 1.0;
     }
   }
   else {
-    normalized_angle = 0.0f;
+    fVar14 = 0.0;
   }
-  
-  blend_result6 = normalized_angle - animation_data[0x15];
-  blend_result5 = ABS(blend_result6);
-  blend_result3 = normalized_angle;
-  
-  if (0.001f <= blend_result5) {
-    temp_value1 = current_time;
-    if (blend_result6 < 0.0f) {
-      temp_value1 = -current_time;
+  fVar16 = fVar14 - param_1[0x15];
+  fVar23 = ABS(fVar16);
+  fVar20 = fVar14;
+  if (0.001 <= fVar23) {
+    fVar18 = fStack_144;
+    if (fVar16 < 0.0) {
+      fVar18 = -fStack_144;
     }
-    
-    blend_result6 = 0.1f;
-    if ((0.1f <= blend_result5) && (blend_result6 = blend_result5, 0.5f <= blend_result5)) {
-      blend_result6 = 0.5f;
+    fVar16 = 0.1;
+    if ((0.1 <= fVar23) && (fVar16 = fVar23, 0.5 <= fVar23)) {
+      fVar16 = 0.5;
     }
-    
-    blend_result6 = temp_value1 * blend_result6 * 12.0f;
-    if (ABS(blend_result6) <= blend_result5) {
-      blend_result3 = animation_data[0x15] + blend_result6;
+    fVar16 = fVar18 * fVar16 * 12.0;
+    if (ABS(fVar16) <= fVar23) {
+      fVar20 = param_1[0x15] + fVar16;
     }
   }
-  
-  animation_data[0x15] = blend_result3;
-  
-  // 处理动画状态转换
-  if ((((blend_result7 <= -0.1f) || (loop_enabled == '\0')) || (reverse_mode != '\0')) || (blend_result4 <= -0.1f)) {
+  param_1[0x15] = fVar20;
+  if ((((fVar21 <= -0.1) || (param_6 == '\0')) || (param_5 != '\0')) || (fVar24 <= -0.1)) {
 LAB_18065a17c:
-    if ((animation_data[0x11] <= 0.0f) || (1.0f <= animation_data[0x11])) {
-      animation_data[0x11] = 0.0f;
-      animation_data[0x12] = -1.0f;
+    if ((param_1[0x11] <= 0.0) || (1.0 <= param_1[0x11])) {
+      param_1[0x11] = 0.0;
+      param_1[0x12] = -1.0;
       goto LAB_18065a2e9;
     }
   }
   else {
-    blend_result4 = blend_result7 * blend_result7 + blend_result7 * blend_result7;
-    blend_result4 = blend_result4 + blend_result4;
-    if (blend_result4 <= 1.0f) {
-      blend_result4 = 1.0f;
+    fVar24 = fVar21 * fVar21 + fVar21 * fVar21;
+    fVar24 = fVar24 + fVar24;
+    if (fVar24 <= 1.0) {
+      fVar24 = 1.0;
     }
-    if (-blend_result4 <= animation_progress * current_weight) goto LAB_18065a17c;
+    if (-fVar24 <= fVar17 * fVar13) goto LAB_18065a17c;
   }
-  
-  blend_result4 = animation_data[0x11];
-  if (blend_result4 == 0.0f) {
-    *(bool *)((longlong)animation_data + 0x5d) = current_weight < 0.0f;
+  fVar24 = param_1[0x11];
+  if (fVar24 == 0.0) {
+    *(bool *)((longlong)param_1 + 0x5d) = fVar13 < 0.0;
   }
-  
-  blend_result4 = (*(float *)(*(longlong *)
-                        (*(longlong *)(animation_data + (longlong)(int)animation_data[0x18] * 0x4d6 + -0x26) + 8)
+  fVar24 = (*(float *)(*(longlong *)
+                        (*(longlong *)(param_1 + (longlong)(int)param_1[0x18] * 0x4d6 + -0x26) + 8)
                       + 0x188) /
            *(float *)(*(longlong *)
-                       (*(longlong *)(animation_data + (longlong)(int)animation_data[0x18] * 0x4d6 + -0x26) + 0x38
-                       ) + 0x188)) * max_boundary * current_time + blend_result4;
-  
-  if (1.0f <= blend_result4) {
-    blend_result4 = 1.0f;
+                       (*(longlong *)(param_1 + (longlong)(int)param_1[0x18] * 0x4d6 + -0x26) + 0x38
+                       ) + 0x188)) * fVar15 * fStack_144 + fVar24;
+  if (1.0 <= fVar24) {
+    fVar24 = 1.0;
   }
-  
-  animation_data[0x11] = blend_result4;
-  
-  if (animation_data[0x12] <= 0.0f && animation_data[0x12] != 0.0f) {
-    if (*(char *)((longlong)animation_data + 0x5d) == '\0') {
-      animation_progress = 1.0f;
+  param_1[0x11] = fVar24;
+  if (param_1[0x12] <= 0.0 && param_1[0x12] != 0.0) {
+    if (*(char *)((longlong)param_1 + 0x5d) == '\0') {
+      fVar17 = 1.0;
     }
     else {
-      animation_progress = -1.0f;
+      fVar17 = -1.0;
     }
-    
-    if (0.0f <= animation_progress * current_weight) {
-      current_weight = blend_result4;
-      if (*(char *)((longlong)animation_data + 0x5d) == '\0') {
-        temp_storage1 = 0x18065a252;
-        current_weight = (float)fmodf(blend_result4 + 0.5f, 0x3f800000);
+    if (0.0 <= fVar17 * fVar13) {
+      fVar13 = fVar24;
+      if (*(char *)((longlong)param_1 + 0x5d) == '\0') {
+        uStack_180 = 0x18065a252;
+        fVar13 = (float)fmodf(fVar24 + 0.5,0x3f800000);
       }
-      
-      current_weight = current_weight - animation_data[0xe];
-      if (current_weight <= 0.5f) {
-        if (current_weight < -0.5f) {
-          current_weight = current_weight + 1.0f;
+      fVar13 = fVar13 - param_1[0xe];
+      if (fVar13 <= 0.5) {
+        if (fVar13 < -0.5) {
+          fVar13 = fVar13 + 1.0;
         }
       }
       else {
-        current_weight = current_weight + -1.0f;
+        fVar13 = fVar13 + -1.0;
       }
-      
-      animation_progress = blend_result4 * blend_result4 * blend_result4 + current_time;
-      if (1.0f <= animation_progress) {
-        animation_progress = 1.0f;
+      fVar17 = fVar24 * fVar24 * fVar24 + fStack_144;
+      if (1.0 <= fVar17) {
+        fVar17 = 1.0;
       }
-      
-      current_weight = animation_progress * blend_result4 * current_weight + animation_data[0xe];
-      animation_data[0xe] = current_weight;
-      
-      if (0.0f <= current_weight) {
-        if (1.0f <= current_weight) {
-          animation_data[0xe] = current_weight - 1.0f;
+      fVar13 = fVar17 * fVar24 * fVar13 + param_1[0xe];
+      param_1[0xe] = fVar13;
+      if (0.0 <= fVar13) {
+        if (1.0 <= fVar13) {
+          param_1[0xe] = fVar13 - 1.0;
         }
       }
       else {
-        animation_data[0xe] = current_weight + 1.0f;
+        param_1[0xe] = fVar13 + 1.0;
       }
     }
     else {
-      animation_data[0x12] = blend_result4 + 0.25f;
+      param_1[0x12] = fVar24 + 0.25;
     }
   }
-  
 LAB_18065a2e9:
-  normalized_angle = animation_data[0x14];
-  blend_result4 = 0.0f;
-  temp_value10 = (1.0f - normalized_angle) * (1.0f - animation_speed);
-  storage_index = (1.0f - animation_speed) * normalized_angle;
-  temp_value3 = (1.0f - accumulated_weight) * temp_value10;
-  temp_value9 = (1.0f - normalized_angle) * accumulated_weight * temp_value10;
-  temp_value8 = (1.0f - normalized_angle) * temp_value3;
-  temp_storage4 = CONCAT44(temp_storage4._4_4_, temp_value9);
-  temp_value7 = accumulated_weight * temp_value10 * normalized_angle;
-  temp_value3 = temp_value3 * normalized_angle;
-  temp_value10 = temp_value10 * normalized_angle;
-  temp_value6 = temp_value7 * temp_value2;
-  temp_value5 = temp_value3 * temp_value2;
-  temp_value4 = (1.0f - temp_value2) * temp_value3;
-  temp_value11 = (1.0f - temp_value2) * temp_value7;
-  temp_storage3 = CONCAT44(temp_storage3._4_4_, temp_value4);
-  
-  // 处理动画速度调整
-  if ((direction_flag == '\0') || (0.0f < temp_value2)) {
-    if (normalized_angle <= 0.0f) {
-      accumulated_weight = 3.0f;
+  fVar13 = param_1[0x14];
+  fVar24 = 0.0;
+  fStack_124 = (1.0 - fVar13) * (1.0 - fVar19);
+  fStack_ec = (1.0 - fVar19) * fVar13;
+  fStack_128 = (1.0 - fVar25) * fStack_124;
+  fStack_10c = (1.0 - fVar14) * fVar25 * fStack_124;
+  fStack_108 = (1.0 - fVar14) * fStack_128;
+  uStack_130 = CONCAT44(uStack_130._4_4_,fStack_10c);
+  fStack_120 = fVar25 * fStack_124 * fVar14;
+  fStack_128 = fStack_128 * fVar14;
+  fStack_124 = fStack_124 * fVar14;
+  fStack_104 = fStack_120 * fStack_138;
+  fStack_100 = fStack_128 * fStack_138;
+  fStack_f8 = (1.0 - fStack_138) * fStack_128;
+  fStack_11c = (1.0 - fStack_138) * fStack_120;
+  uStack_118 = CONCAT44(uStack_118._4_4_,fStack_f8);
+  if ((cStack_148 == '\0') || (0.0 < fStack_138)) {
+    if (fVar13 <= 0.0) {
+      fVar25 = 3.0;
     }
     else {
-      accumulated_weight = 5.0f;
+      fVar25 = 5.0;
     }
   }
   else {
-    accumulated_weight = 2.0f;
+    fVar25 = 2.0;
   }
-  
-  normalized_angle = animation_data[0x184a];
-  if (animation_speed <= normalized_angle) {
-    normalized_angle = normalized_angle - accumulated_weight * current_time;
-    if (normalized_angle <= animation_speed) {
-      normalized_angle = animation_speed;
+  fVar13 = param_1[0x184a];
+  if (fVar19 <= fVar13) {
+    fVar13 = fVar13 - fVar25 * fStack_144;
+    if (fVar13 <= fVar19) {
+      fVar13 = fVar19;
     }
   }
   else {
-    normalized_angle = normalized_angle + accumulated_weight * current_time;
-    if (animation_speed <= normalized_angle) {
-      normalized_angle = animation_speed;
+    fVar13 = fVar13 + fVar25 * fStack_144;
+    if (fVar19 <= fVar13) {
+      fVar13 = fVar19;
     }
   }
-  
-  animation_data[0x184a] = normalized_angle;
-  animation_data[0x1854] = normalized_angle;
-  
-  accumulated_weight = animation_data[0x11];
-  if (0.2f <= accumulated_weight) {
-    normalized_angle = 1.0f;
-    if (0.7f < accumulated_weight) {
-      normalized_angle = (1.0f - accumulated_weight) * 3.333333f;
+  param_1[0x184a] = fVar13;
+  param_1[0x1854] = fVar13;
+  fVar25 = param_1[0x11];
+  if (0.2 <= fVar25) {
+    fVar13 = 1.0;
+    if (0.7 < fVar25) {
+      fVar13 = (1.0 - fVar25) * 3.333333;
     }
   }
   else {
-    normalized_angle = accumulated_weight * 5.0f;
+    fVar13 = fVar25 * 5.0;
   }
-  
-  if (0.0f < animation_data[0x12]) {
-    accumulated_weight = (animation_data[0x12] - accumulated_weight) * 4.0f;
-    if (accumulated_weight <= 0.0f) {
-      accumulated_weight = 0.0f;
+  if (0.0 < param_1[0x12]) {
+    fVar25 = (param_1[0x12] - fVar25) * 4.0;
+    if (fVar25 <= 0.0) {
+      fVar25 = 0.0;
     }
-    normalized_angle = normalized_angle * accumulated_weight;
+    fVar13 = fVar13 * fVar25;
   }
-  
-  current_keyframe = animation_data + 0x1855;
-  frame_index = 1;
-  
+  pfVar7 = param_1 + 0x1855;
+  iVar5 = 1;
   do {
-    accumulated_weight = *(float *)(((longlong)animation_buffer - (longlong)animation_data) + (longlong)current_keyframe);
-    animation_progress = accumulated_weight - current_keyframe[-10];
-    blend_result3 = ABS(animation_progress);
-    
-    if (0.001f <= blend_result3) {
-      if (animation_progress < 0.0f) {
-        normalized_angle = -1.0f;
+    fVar25 = *(float *)(((longlong)afStack_6260 - (longlong)param_1) + (longlong)pfVar7);
+    fVar17 = fVar25 - pfVar7[-10];
+    fVar21 = ABS(fVar17);
+    if (0.001 <= fVar21) {
+      if (fVar17 < 0.0) {
+        fVar14 = -1.0;
       }
       else {
-        normalized_angle = 1.0f;
+        fVar14 = 1.0;
       }
-      
-      if (0.05f <= blend_result3) {
-        if (0.5f <= blend_result3) {
-          blend_result3 = 0.5f;
+      if (0.05 <= fVar21) {
+        if (0.5 <= fVar21) {
+          fVar21 = 0.5;
         }
       }
       else {
-        blend_result3 = 0.05f;
+        fVar21 = 0.05;
       }
-      
-      blend_result3 = blend_result3 * normalized_angle * current_time * 6.0f;
-      if (blend_result3 * normalized_angle <= normalized_angle * animation_progress) {
-        accumulated_weight = current_keyframe[-10] + blend_result3;
+      fVar21 = fVar21 * fVar14 * fStack_144 * 6.0;
+      if (fVar21 * fVar14 <= fVar14 * fVar17) {
+        fVar25 = pfVar7[-10] + fVar21;
       }
     }
-    
-    current_keyframe[-10] = accumulated_weight;
-    *current_keyframe = accumulated_weight;
-    
-    if (2 < frame_index) {
-      if (frame_index < 7) {
-        animation_progress = 1.0f - normalized_angle;
+    pfVar7[-10] = fVar25;
+    *pfVar7 = fVar25;
+    if (2 < iVar5) {
+      if (iVar5 < 7) {
+        fVar17 = 1.0 - fVar13;
       }
       else {
-        animation_progress = normalized_angle;
-        if (frame_index == 7) {
-          if (*(char *)((longlong)animation_data + 0x5d) != '\0') {
+        fVar17 = fVar13;
+        if (iVar5 == 7) {
+          if (*(char *)((longlong)param_1 + 0x5d) != '\0') {
 LAB_18065a5be:
-            animation_progress = 0.0f;
+            fVar17 = 0.0;
           }
         }
         else {
-          if (frame_index != 8) goto LAB_18065a5d3;
-          if (*(char *)((longlong)animation_data + 0x5d) == '\0') goto LAB_18065a5be;
+          if (iVar5 != 8) goto LAB_18065a5d3;
+          if (*(char *)((longlong)param_1 + 0x5d) == '\0') goto LAB_18065a5be;
         }
       }
-      accumulated_weight = animation_progress * accumulated_weight;
-      *current_keyframe = accumulated_weight;
+      fVar25 = fVar17 * fVar25;
+      *pfVar7 = fVar25;
     }
-    
 LAB_18065a5d3:
-    animation_progress = *(float *)((longlong)animation_buffer + (4 - (longlong)animation_data) + (longlong)current_keyframe);
-    blend_result3 = animation_progress - current_keyframe[-9];
-    normalized_angle = ABS(blend_result3);
-    
-    if (0.001f <= normalized_angle) {
-      if (blend_result3 < 0.0f) {
-        max_boundary = -1.0f;
+    fVar17 = *(float *)((longlong)afStack_6260 + (4 - (longlong)param_1) + (longlong)pfVar7);
+    fVar21 = fVar17 - pfVar7[-9];
+    fVar14 = ABS(fVar21);
+    if (0.001 <= fVar14) {
+      if (fVar21 < 0.0) {
+        fVar15 = -1.0;
       }
       else {
-        max_boundary = 1.0f;
+        fVar15 = 1.0;
       }
-      
-      if (0.05f <= normalized_angle) {
-        if (0.5f <= normalized_angle) {
-          normalized_angle = 0.5f;
+      if (0.05 <= fVar14) {
+        if (0.5 <= fVar14) {
+          fVar14 = 0.5;
         }
       }
       else {
-        normalized_angle = 0.05f;
+        fVar14 = 0.05;
       }
-      
-      normalized_angle = normalized_angle * max_boundary * current_time * 6.0f;
-      if (normalized_angle * max_boundary <= max_boundary * blend_result3) {
-        animation_progress = current_keyframe[-9] + normalized_angle;
+      fVar14 = fVar14 * fVar15 * fStack_144 * 6.0;
+      if (fVar14 * fVar15 <= fVar15 * fVar21) {
+        fVar17 = pfVar7[-9] + fVar14;
       }
     }
-    
-    blend_count = frame_index + 1;
-    current_keyframe[-9] = animation_progress;
-    current_keyframe[1] = animation_progress;
-    
-    if (2 < blend_count) {
-      if (blend_count < 7) {
-        normalized_angle = 1.0f - normalized_angle;
+    iVar11 = iVar5 + 1;
+    pfVar7[-9] = fVar17;
+    pfVar7[1] = fVar17;
+    if (2 < iVar11) {
+      if (iVar11 < 7) {
+        fVar21 = 1.0 - fVar13;
       }
       else {
-        normalized_angle = normalized_angle;
-        if (blend_count == 7) {
-          if (*(char *)((longlong)animation_data + 0x5d) != '\0') {
+        fVar21 = fVar13;
+        if (iVar11 == 7) {
+          if (*(char *)((longlong)param_1 + 0x5d) != '\0') {
 LAB_18065a686:
-            normalized_angle = 0.0f;
+            fVar21 = 0.0;
           }
         }
         else {
-          if (blend_count != 8) goto LAB_18065a69c;
-          if (*(char *)((longlong)animation_data + 0x5d) == '\0') goto LAB_18065a686;
+          if (iVar11 != 8) goto LAB_18065a69c;
+          if (*(char *)((longlong)param_1 + 0x5d) == '\0') goto LAB_18065a686;
         }
       }
-      animation_progress = normalized_angle * animation_progress;
-      current_keyframe[1] = animation_progress;
+      fVar17 = fVar21 * fVar17;
+      pfVar7[1] = fVar17;
     }
-    
 LAB_18065a69c:
-    animation_progress = *(float *)((longlong)animation_buffer + (8 - (longlong)animation_data) + (longlong)current_keyframe);
-    normalized_angle = animation_progress - current_keyframe[-8];
-    max_boundary = ABS(normalized_angle);
-    
-    if (0.001f <= max_boundary) {
-      if (normalized_angle < 0.0f) {
-        blend_result3 = -1.0f;
+    fVar21 = *(float *)((longlong)afStack_6260 + (8 - (longlong)param_1) + (longlong)pfVar7);
+    fVar14 = fVar21 - pfVar7[-8];
+    fVar15 = ABS(fVar14);
+    if (0.001 <= fVar15) {
+      if (fVar14 < 0.0) {
+        fVar20 = -1.0;
       }
       else {
-        blend_result3 = 1.0f;
+        fVar20 = 1.0;
       }
-      
-      if (0.05f <= max_boundary) {
-        if (0.5f <= max_boundary) {
-          max_boundary = 0.5f;
+      if (0.05 <= fVar15) {
+        if (0.5 <= fVar15) {
+          fVar15 = 0.5;
         }
       }
       else {
-        max_boundary = 0.05f;
+        fVar15 = 0.05;
       }
-      
-      max_boundary = max_boundary * blend_result3 * current_time * 6.0f;
-      if (max_boundary * blend_result3 <= blend_result3 * normalized_angle) {
-        animation_progress = current_keyframe[-8] + max_boundary;
+      fVar15 = fVar15 * fVar20 * fStack_144 * 6.0;
+      if (fVar15 * fVar20 <= fVar20 * fVar14) {
+        fVar21 = pfVar7[-8] + fVar15;
       }
     }
-    
-    blend_count = frame_index + 2;
-    current_keyframe[-8] = animation_progress;
-    current_keyframe[2] = animation_progress;
-    
-    if (2 < blend_count) {
-      if (blend_count < 7) {
-        normalized_angle = 1.0f - normalized_angle;
+    iVar11 = iVar5 + 2;
+    pfVar7[-8] = fVar21;
+    pfVar7[2] = fVar21;
+    if (2 < iVar11) {
+      if (iVar11 < 7) {
+        fVar14 = 1.0 - fVar13;
       }
       else {
-        normalized_angle = normalized_angle;
-        if (blend_count == 7) {
-          if (*(char *)((longlong)animation_data + 0x5d) != '\0') {
+        fVar14 = fVar13;
+        if (iVar11 == 7) {
+          if (*(char *)((longlong)param_1 + 0x5d) != '\0') {
 LAB_18065a74f:
-            normalized_angle = 0.0f;
+            fVar14 = 0.0;
           }
         }
         else {
-          if (blend_count != 8) goto LAB_18065a765;
-          if (*(char *)((longlong)animation_data + 0x5d) == '\0') goto LAB_18065a74f;
+          if (iVar11 != 8) goto LAB_18065a765;
+          if (*(char *)((longlong)param_1 + 0x5d) == '\0') goto LAB_18065a74f;
         }
       }
-      animation_progress = normalized_angle * animation_progress;
-      current_keyframe[2] = animation_progress;
+      fVar21 = fVar14 * fVar21;
+      pfVar7[2] = fVar21;
     }
-    
 LAB_18065a765:
-    frame_index = frame_index + 3;
-    blend_result4 = blend_result4 + accumulated_weight + animation_progress + animation_progress;
-    current_keyframe = current_keyframe + 3;
-    
-    if (9 < frame_index) {
-      accumulated_weight = animation_data[0x1854];
-      accumulated_weight = 1.0f - ((accumulated_weight * 6.0f - 15.0f) * accumulated_weight + 10.0f) * accumulated_weight * accumulated_weight * accumulated_weight;
-      
-      if (blend_result4 != accumulated_weight) {
-        if (blend_result4 <= 0.0f) {
-          animation_data[0x1854] = 1.0f;
+    iVar5 = iVar5 + 3;
+    fVar24 = fVar24 + fVar25 + fVar17 + fVar21;
+    pfVar7 = pfVar7 + 3;
+    if (9 < iVar5) {
+      fVar25 = param_1[0x1854];
+      fVar25 = 1.0 - ((fVar25 * 6.0 - 15.0) * fVar25 + 10.0) * fVar25 * fVar25 * fVar25;
+      if (fVar24 != fVar25) {
+        if (fVar24 <= 0.0) {
+          param_1[0x1854] = 1.0;
         }
         else {
-          accumulated_weight = accumulated_weight / blend_result4;
-          animation_data[0x1855] = animation_data[0x1855] * accumulated_weight;
-          animation_data[0x1856] = animation_data[0x1856] * accumulated_weight;
-          animation_data[0x1857] = animation_data[0x1857] * accumulated_weight;
-          animation_data[0x1858] = animation_data[0x1858] * accumulated_weight;
-          animation_data[0x1859] = animation_data[0x1859] * accumulated_weight;
-          animation_data[0x185a] = animation_data[0x185a] * accumulated_weight;
-          animation_data[0x185b] = animation_data[0x185b] * accumulated_weight;
-          animation_data[0x185c] = animation_data[0x185c] * accumulated_weight;
-          animation_data[0x185d] = accumulated_weight * animation_data[0x185d];
+          fVar25 = fVar25 / fVar24;
+          param_1[0x1855] = param_1[0x1855] * fVar25;
+          param_1[0x1856] = param_1[0x1856] * fVar25;
+          param_1[0x1857] = param_1[0x1857] * fVar25;
+          param_1[0x1858] = param_1[0x1858] * fVar25;
+          param_1[0x1859] = param_1[0x1859] * fVar25;
+          param_1[0x185a] = param_1[0x185a] * fVar25;
+          param_1[0x185b] = param_1[0x185b] * fVar25;
+          param_1[0x185c] = param_1[0x185c] * fVar25;
+          param_1[0x185d] = fVar25 * param_1[0x185d];
         }
       }
-      
-      blend_result4 = temp_value9 - temp_value8;
-      animation_progress = ((((temp_value3 + temp_value7) * temp_value2 + temp_value10) - temp_value11) - temp_value4) - temp_value10;
-      accumulated_weight = blend_result4 * blend_result4 + animation_progress * animation_progress;
-      accumulated_weight = (float)(accumulated_weight <= 1.1754944e-38f) * 1.1754944e-38f + accumulated_weight;
-      
-      vector_data = rsqrtss(ZEXT416((uint)accumulated_weight), ZEXT416((uint)accumulated_weight));
-      normalized_angle = vector_data._0_4_;
-      accumulated_weight = normalized_angle * 0.5f * (3.0f - accumulated_weight * normalized_angle * normalized_angle);
-      blend_result4 = accumulated_weight * blend_result4;
-      accumulated_weight = accumulated_weight * animation_progress;
-      temp_storage3 = CONCAT44(blend_result4, accumulated_weight);
-      
-      if (ABS(accumulated_weight * animation_data[0x185e] + blend_result4 * animation_data[0x185f]) <= 0.999f) {
-        animation_progress = animation_data[0x1855] - animation_data[0x1856];
-        blend_result3 = (((animation_data[0x1858] + animation_data[0x1857] + animation_data[0x185b]) - animation_data[0x1859]) -
-                 animation_data[0x185a]) - animation_data[0x185c];
-        accumulated_weight = animation_progress * animation_progress + blend_result3 * blend_result3;
-        accumulated_weight = (float)(accumulated_weight <= 1.1754944e-38f) * 1.1754944e-38f + accumulated_weight;
-        
-        vector_data = rsqrtss(ZEXT416((uint)accumulated_weight), ZEXT416((uint)accumulated_weight));
-        normalized_angle = vector_data._0_4_;
-        blend_result4 = current_time * 8.0f;
-        accumulated_weight = normalized_angle * 0.5f * (3.0f - accumulated_weight * normalized_angle * normalized_angle);
-        temp_storage3 = CONCAT44(accumulated_weight * animation_progress * blend_result4 + (1.0f - blend_result4) * animation_data[0x185f],
-                              accumulated_weight * blend_result3 * blend_result4 + (1.0f - blend_result4) * animation_data[0x185e]);
-        *(undefined8 *)(animation_data + 0x185e) = temp_storage3;
-        blend_result4 = animation_data[0x185f];
-        normalized_angle = animation_data[0x185e];
-        blend_result3 = normalized_angle * normalized_angle + blend_result4 * blend_result4;
-        
-        vector_data = rsqrtss(ZEXT416((uint)blend_result3), ZEXT416((uint)blend_result3));
-        animation_progress = vector_data._0_4_;
-        blend_result3 = animation_progress * 0.5f * (3.0f - blend_result3 * animation_progress * animation_progress);
-        animation_data[0x185f] = blend_result3 * blend_result4;
-        animation_data[0x185e] = blend_result3 * normalized_angle;
+      fVar24 = fStack_10c - fStack_108;
+      fVar17 = ((((fStack_128 + fStack_120) * fStack_138 + fStack_124) - fStack_11c) - fStack_f8) -
+               fStack_124;
+      fVar25 = fVar24 * fVar24 + fVar17 * fVar17;
+      fVar25 = (float)(fVar25 <= 1.1754944e-38) * 1.1754944e-38 + fVar25;
+      auVar22 = rsqrtss(ZEXT416((uint)fVar25),ZEXT416((uint)fVar25));
+      fVar13 = auVar22._0_4_;
+      fVar25 = fVar13 * 0.5 * (3.0 - fVar25 * fVar13 * fVar13);
+      fVar24 = fVar25 * fVar24;
+      fVar25 = fVar25 * fVar17;
+      uStack_140 = CONCAT44(fVar24,fVar25);
+      if (ABS(fVar25 * param_1[0x185e] + fVar24 * param_1[0x185f]) <= 0.999) {
+        fVar17 = param_1[0x1855] - param_1[0x1856];
+        fVar21 = (((param_1[0x1858] + param_1[0x1857] + param_1[0x185b]) - param_1[0x1859]) -
+                 param_1[0x185a]) - param_1[0x185c];
+        fVar25 = fVar17 * fVar17 + fVar21 * fVar21;
+        fVar25 = (float)(fVar25 <= 1.1754944e-38) * 1.1754944e-38 + fVar25;
+        auVar22 = rsqrtss(ZEXT416((uint)fVar25),ZEXT416((uint)fVar25));
+        fVar13 = auVar22._0_4_;
+        fVar24 = fStack_144 * 8.0;
+        fVar25 = fVar13 * 0.5 * (3.0 - fVar25 * fVar13 * fVar13);
+        uStack_140 = CONCAT44(fVar25 * fVar17 * fVar24 + (1.0 - fVar24) * param_1[0x185f],
+                              fVar25 * fVar21 * fVar24 + (1.0 - fVar24) * param_1[0x185e]);
+        *(undefined8 *)(param_1 + 0x185e) = uStack_140;
+        fVar25 = param_1[0x185f];
+        fVar13 = param_1[0x185e];
+        fVar24 = fVar13 * fVar13 + fVar25 * fVar25;
+        auVar22 = rsqrtss(ZEXT416((uint)fVar24),ZEXT416((uint)fVar24));
+        fVar17 = auVar22._0_4_;
+        fVar24 = fVar17 * 0.5 * (3.0 - fVar24 * fVar17 * fVar17);
+        param_1[0x185f] = fVar24 * fVar25;
+        param_1[0x185e] = fVar24 * fVar13;
       }
       else {
-        *(undefined8 *)(animation_data + 0x185e) = temp_storage3;
+        *(undefined8 *)(param_1 + 0x185e) = uStack_140;
       }
-      
-      temp_storage1 = 0x18065aa9f;
-      temp_value7 = animation_speed;
-      temp_value4 = temp_value11;
-      temp_value11 = temp_value10;
-      temp_value10 = temp_value10;
-      FUN_1808fc050(storage_index ^ (ulonglong)temp_storage);
+                    // WARNING: Subroutine does not return
+      uStack_180 = 0x18065aa9f;
+      fStack_110 = fVar19;
+      fStack_fc = fStack_11c;
+      fStack_f4 = fStack_124;
+      fStack_f0 = fStack_124;
+      FUN_1808fc050(uStack_e8 ^ (ulonglong)auStack_178);
     }
   } while( true );
 }
 
-/*========================================================================================
-文件说明
-========================================================================================*/
 
-/**
- * 文件功能概述：
- * 该文件实现了UI系统的高级向量处理和动画控制功能，主要包含以下核心模块：
- * 
- * 1. 向量归一化处理模块
- *    - 支持基本向量和高级向量归一化
- *    - 使用优化的快速倒数平方根算法
- *    - 提供缩放因子调整功能
- * 
- * 2. UI动画处理模块
- *    - 复杂的动画数据处理和控制
- *    - 支持关键帧插值和权重计算
- *    - 提供角度标准化和范围限制
- *    - 支持多种动画模式和状态管理
- * 
- * 3. 系统架构特点
- *    - 模块化设计，便于扩展和维护
- *    - 高性能算法，支持实时UI处理
- *    - 完整的错误处理和边界检查
- *    - 灵活的参数配置系统
- * 
- * 主要应用场景：
- * - 游戏UI系统中的动画控制
- * - 用户界面的平滑过渡效果
- * - 复杂的UI元素变换和插值
- * - 实时的UI状态管理和更新
- */
+
+
+
