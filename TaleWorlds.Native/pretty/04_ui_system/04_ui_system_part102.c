@@ -543,25 +543,29 @@ void UIDataConversionProcessor(longlong param_1, longlong param_2, int param_3, 
 
 
 
-// 函数: void FUN_18072b33f(double param_1)
-void FUN_18072b33f(double param_1)
-
+// 函数: UI系统循环数据处理器
+// 原始函数名: FUN_18072b33f
+// 功能: 执行UI系统中的循环数据处理，调用外部函数进行迭代计算
+// 参数:
+//   param_1 - 初始计算值
+void UIIterativeDataProcessor(double param_1)
 {
-  ulonglong uVar1;
-  longlong unaff_RBP;
-  int unaff_ESI;
-  uint unaff_EDI;
-  longlong unaff_R14;
-  longlong unaff_R15;
+  ulonglong element_index;
+  longlong array_size;
+  int data_count;
+  uint start_index;
+  longlong data_pointer;
+  longlong output_pointer;
   
-  uVar1 = (ulonglong)unaff_EDI;
+  element_index = (ulonglong)start_index;
   do {
-    param_1 = (double)FUN_180734500(param_1,unaff_R14 + (longlong)(int)unaff_EDI * 4,unaff_ESI);
-    unaff_EDI = unaff_EDI + 1;
-    unaff_ESI = unaff_ESI + -1;
-    *(float *)(unaff_R15 + uVar1 * 4) = (float)param_1;
-    uVar1 = uVar1 + 1;
-  } while ((longlong)uVar1 < unaff_RBP);
+    // 调用外部函数进行迭代计算
+    param_1 = (double)FUN_180734500(param_1, data_pointer + (longlong)(int)start_index * 4, data_count);
+    start_index = start_index + 1;
+    data_count = data_count + -1;
+    *(float *)(output_pointer + element_index * 4) = (float)param_1;
+    element_index = element_index + 1;
+  } while ((longlong)element_index < array_size);
   return;
 }
 
@@ -569,108 +573,127 @@ void FUN_18072b33f(double param_1)
 
 
 
-// 函数: void FUN_18072b380(void)
-void FUN_18072b380(void)
-
+// 函数: UI系统空操作处理器3
+// 原始函数名: FUN_18072b380
+// 功能: 空操作函数，用于系统初始化或占位
+void UIEmptyOperationHandler3(void)
 {
   return;
 }
 
 
 
-double FUN_18072b3a0(longlong param_1,int param_2)
-
+// 函数: UI系统向量平方和计算器
+// 原始函数名: FUN_18072b3a0
+// 功能: 计算UI系统中向量的平方和，用于数学运算和优化处理
+// 参数:
+//   param_1 - 向量数据指针
+//   param_2 - 向量元素数量
+// 返回值: 向量平方和结果
+double UIVectorSquareSumCalculator(longlong param_1, int param_2)
 {
-  float *pfVar1;
-  float *pfVar2;
-  float *pfVar3;
-  undefined8 *puVar4;
-  float fVar5;
-  uint uVar6;
-  longlong lVar7;
-  float *pfVar8;
-  int iVar9;
-  undefined8 *puVar10;
-  ulonglong uVar11;
-  double dVar12;
-  double dVar13;
-  double dVar14;
-  double dVar15;
-  double dVar16;
-  double dVar17;
-  double dVar18;
+  float *vector_ptr1;
+  float *vector_ptr2;
+  float *vector_ptr3;
+  undefined8 *data_ptr;
+  float element_val;
+  uint batch_count;
+  longlong remaining_elements;
+  float *vector_array;
+  int processed_elements;
+  undefined8 *batch_ptr;
+  ulonglong batch_iterations;
+  double square_val1;
+  double square_val2;
+  double sum_part1;
+  double sum_part2;
+  double sum_part3;
+  double sum_part4;
+  double total_sum;
+  double temp_sum1;
+  double temp_sum2;
   
-  iVar9 = 0;
-  dVar16 = 0.0;
+  processed_elements = 0;
+  total_sum = 0.0;
+  
+  // 批量处理4元素组（优化计算）
   if (0 < param_2 + -3) {
-    pfVar8 = (float *)(param_1 + 8);
-    uVar6 = (param_2 - 4U >> 2) + 1;
-    uVar11 = (ulonglong)uVar6;
-    iVar9 = uVar6 * 4;
+    vector_array = (float *)(param_1 + 8);
+    batch_count = (param_2 - 4U >> 2) + 1;
+    batch_iterations = (ulonglong)batch_count;
+    processed_elements = batch_count * 4;
     do {
-      pfVar1 = pfVar8 + -1;
-      pfVar2 = pfVar8 + -2;
-      fVar5 = *pfVar8;
-      pfVar3 = pfVar8 + 1;
-      pfVar8 = pfVar8 + 4;
-      dVar16 = dVar16 + (double)*pfVar2 * (double)*pfVar2 + (double)*pfVar1 * (double)*pfVar1 +
-                        (double)fVar5 * (double)fVar5 + (double)*pfVar3 * (double)*pfVar3;
-      uVar11 = uVar11 - 1;
-    } while (uVar11 != 0);
+      // 计算4个元素的平方和
+      vector_ptr1 = vector_array + -1;
+      vector_ptr2 = vector_array + -2;
+      element_val = *vector_array;
+      vector_ptr3 = vector_array + 1;
+      vector_array = vector_array + 4;
+      total_sum = total_sum + (double)*vector_ptr2 * (double)*vector_ptr2 + (double)*vector_ptr1 * (double)*vector_ptr1 +
+                          (double)element_val * (double)element_val + (double)*vector_ptr3 * (double)*vector_ptr3;
+      batch_iterations = batch_iterations - 1;
+    } while (batch_iterations != 0);
   }
-  if (iVar9 < param_2) {
-    if (3 < (uint)(param_2 - iVar9)) {
-      uVar6 = param_2 - iVar9 & 0x80000003;
-      if ((int)uVar6 < 0) {
-        uVar6 = (uVar6 - 1 | 0xfffffffc) + 1;
+  
+  // 处理剩余元素
+  if (processed_elements < param_2) {
+    if (3 < (uint)(param_2 - processed_elements)) {
+      // 对齐处理8字节边界
+      batch_count = param_2 - processed_elements & 0x80000003;
+      if ((int)batch_count < 0) {
+        batch_count = (batch_count - 1 | 0xfffffffc) + 1;
       }
-      dVar14 = 0.0;
-      dVar15 = 0.0;
-      dVar17 = 0.0;
-      dVar18 = 0.0;
-      puVar10 = (undefined8 *)(param_1 + (longlong)iVar9 * 4);
+      sum_part1 = 0.0;
+      sum_part2 = 0.0;
+      sum_part3 = 0.0;
+      temp_sum2 = 0.0;
+      batch_ptr = (undefined8 *)(param_1 + (longlong)processed_elements * 4);
       do {
-        iVar9 = iVar9 + 4;
-        dVar12 = (double)(float)*puVar10;
-        dVar13 = (double)(float)((ulonglong)*puVar10 >> 0x20);
-        puVar4 = puVar10 + 1;
-        puVar10 = puVar10 + 2;
-        dVar14 = dVar14 + dVar12 * dVar12;
-        dVar15 = dVar15 + dVar13 * dVar13;
-        dVar12 = (double)(float)*puVar4;
-        dVar13 = (double)(float)((ulonglong)*puVar4 >> 0x20);
-        dVar17 = dVar17 + dVar12 * dVar12;
-        dVar18 = dVar18 + dVar13 * dVar13;
-      } while (iVar9 < (int)(param_2 - uVar6));
-      dVar16 = dVar16 + dVar14 + dVar17 + dVar15 + dVar18;
+        processed_elements = processed_elements + 4;
+        square_val1 = (double)(float)*batch_ptr;
+        square_val2 = (double)(float)((ulonglong)*batch_ptr >> 0x20);
+        data_ptr = batch_ptr + 1;
+        batch_ptr = batch_ptr + 2;
+        sum_part1 = sum_part1 + square_val1 * square_val1;
+        sum_part2 = sum_part2 + square_val2 * square_val2;
+        square_val1 = (double)(float)*data_ptr;
+        square_val2 = (double)(float)((ulonglong)*data_ptr >> 0x20);
+        sum_part3 = sum_part3 + square_val1 * square_val1;
+        temp_sum2 = temp_sum2 + square_val2 * square_val2;
+      } while (processed_elements < (int)(param_2 - batch_count));
+      total_sum = total_sum + sum_part1 + sum_part3 + sum_part2 + temp_sum2;
     }
-    if (iVar9 < param_2) {
-      if (3 < param_2 - iVar9) {
-        pfVar8 = (float *)(param_1 + ((longlong)iVar9 + 2) * 4);
+    
+    if (processed_elements < param_2) {
+      if (3 < param_2 - processed_elements) {
+        // 继续处理剩余的4元素组
+        vector_array = (float *)(param_1 + ((longlong)processed_elements + 2) * 4);
         do {
-          pfVar1 = pfVar8 + -2;
-          iVar9 = iVar9 + 4;
-          pfVar2 = pfVar8 + -1;
-          fVar5 = *pfVar8;
-          pfVar3 = pfVar8 + 1;
-          pfVar8 = pfVar8 + 4;
-          dVar16 = (double)*pfVar1 * (double)*pfVar1 + dVar16 + (double)*pfVar2 * (double)*pfVar2 +
-                   (double)fVar5 * (double)fVar5 + (double)*pfVar3 * (double)*pfVar3;
-        } while (iVar9 < param_2 + -3);
+          vector_ptr1 = vector_array + -2;
+          processed_elements = processed_elements + 4;
+          vector_ptr2 = vector_array + -1;
+          element_val = *vector_array;
+          vector_ptr3 = vector_array + 1;
+          vector_array = vector_array + 4;
+          total_sum = (double)*vector_ptr1 * (double)*vector_ptr1 + total_sum + (double)*vector_ptr2 * (double)*vector_ptr2 +
+                       (double)element_val * (double)element_val + (double)*vector_ptr3 * (double)*vector_ptr3;
+        } while (processed_elements < param_2 + -3);
       }
-      if (iVar9 < param_2) {
-        pfVar8 = (float *)(param_1 + (longlong)iVar9 * 4);
-        lVar7 = (longlong)(param_2 - iVar9);
+      
+      // 处理最后剩余的元素
+      if (processed_elements < param_2) {
+        vector_array = (float *)(param_1 + (longlong)processed_elements * 4);
+        remaining_elements = (longlong)(param_2 - processed_elements);
         do {
-          fVar5 = *pfVar8;
-          pfVar8 = pfVar8 + 1;
-          dVar16 = dVar16 + (double)fVar5 * (double)fVar5;
-          lVar7 = lVar7 + -1;
-        } while (lVar7 != 0);
+          element_val = *vector_array;
+          vector_array = vector_array + 1;
+          total_sum = total_sum + (double)element_val * (double)element_val;
+          remaining_elements = remaining_elements + -1;
+        } while (remaining_elements != 0);
       }
     }
   }
-  return dVar16;
+  return total_sum;
 }
 
 
