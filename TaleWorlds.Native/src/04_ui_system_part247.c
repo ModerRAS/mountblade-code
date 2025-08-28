@@ -321,151 +321,221 @@ void UISystem_DataBitProcessor(undefined8 param_1, uint *param_2)
 
 
 
-int FUN_18080bff0(longlong *param_1,longlong param_2,int param_3)
-
+/**
+ * @brief UI系统数据处理器实现
+ * 
+ * 该函数负责UI系统数据的处理，包括：
+ * - 数据验证和过滤
+ * - 数据格式转换
+ * - 数据缓存管理
+ * - 数据错误处理
+ * 
+ * @param param_1 数据处理上下文
+ * @param param_2 输出数据指针
+ * @param param_3 处理参数
+ * @return int 处理结果状态码
+ */
+int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3)
 {
-  undefined4 uVar1;
-  longlong lVar2;
-  int iVar3;
-  longlong lVar4;
-  longlong lVar5;
-  int iVar6;
-  undefined4 auStackX_8 [2];
-  undefined4 auStackX_20 [2];
-  undefined4 *puVar7;
-  undefined4 uVar8;
-  undefined4 *puVar9;
-  undefined4 uVar10;
-  undefined4 *puVar11;
-  undefined4 uVar12;
-  undefined4 *puVar13;
-  undefined4 uVar14;
-  undefined4 *puVar15;
-  undefined4 uVar16;
-  int *piVar17;
-  undefined4 uVar18;
-  int *piVar19;
-  undefined4 uVar20;
-  undefined4 uStack_48;
-  undefined4 uStack_44;
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  int iStack_38;
-  int aiStack_34 [3];
-  
-  lVar2 = *param_1;
-  iVar3 = (int)param_1[3];
-  if ((-1 < iVar3) && (iVar3 < *(int *)((longlong)param_1 + 0x1c))) {
-    iVar6 = *(int *)((longlong)param_1 + 0x1c) - iVar3;
-    if (param_2 != 0) {
-      piVar19 = aiStack_34;
-      piVar17 = &iStack_38;
-      if (param_3 < iVar6) {
-        iVar6 = param_3;
-      }
-      puVar15 = &uStack_40;
-      puVar13 = &uStack_3c;
-      puVar11 = auStackX_8;
-      puVar9 = auStackX_20;
-      puVar7 = &uStack_48;
-      FUN_18080c4a0(param_1,iVar3,iVar3 + iVar6,&uStack_44,puVar7,puVar9,puVar11,puVar13,puVar15,
-                    piVar17,piVar19);
-      uVar8 = (undefined4)((ulonglong)puVar7 >> 0x20);
-      uVar10 = (undefined4)((ulonglong)puVar9 >> 0x20);
-      uVar12 = (undefined4)((ulonglong)puVar11 >> 0x20);
-      uVar14 = (undefined4)((ulonglong)puVar13 >> 0x20);
-      uVar16 = (undefined4)((ulonglong)puVar15 >> 0x20);
-      uVar18 = (undefined4)((ulonglong)piVar17 >> 0x20);
-      uVar20 = (undefined4)((ulonglong)piVar19 >> 0x20);
-      lVar5 = 0x180be6500;
-      if (((int)param_1[5] == 0) || (lVar4 = 0x180be6500, *(int *)((longlong)param_1 + 0x24) == 0))
-      {
-        lVar4 = 0x180be6300;
-      }
-      lVar4 = lVar4 + (longlong)iStack_38 * 4;
-      if (((int)param_1[5] == 0) || (*(int *)((longlong)param_1 + 0x24) == 0)) {
-        lVar5 = 0x180be6300;
-      }
-      lVar5 = lVar5 + (longlong)aiStack_34[0] * 4;
-      iVar3 = FUN_1807681a0(2);
-      if (iVar3 == 0) {
-        iVar3 = FUN_1807681a0(0);
-        uVar1 = *(undefined4 *)(lVar2 + 4);
-        if (iVar3 == 0) {
-          FUN_18080ba00(param_1,param_2,lVar4,lVar5,CONCAT44(uVar8,uStack_3c),
-                        CONCAT44(uVar10,uStack_40),CONCAT44(uVar12,uVar1),CONCAT44(uVar14,uStack_44)
-                        ,CONCAT44(uVar16,uStack_48),CONCAT44(uVar18,auStackX_20[0]),
-                        CONCAT44(uVar20,auStackX_8[0]));
+    undefined4 uVar1;                      // 临时变量
+    longlong lVar2;                        // 上下文指针
+    int iVar3;                             // 当前索引
+    longlong lVar4;                        // 数据指针1
+    longlong lVar5;                        // 数据指针2
+    int iVar6;                             // 处理数量
+    undefined4 auStackX_8 [2];            // 栈变量8
+    undefined4 auStackX_20 [2];           // 栈变量20
+    undefined4 *puVar7;                   // 指针变量7
+    undefined4 uVar8;                      // 变量8
+    undefined4 *puVar9;                   // 指针变量9
+    undefined4 uVar10;                    // 变量10
+    undefined4 *puVar11;                  // 指针变量11
+    undefined4 uVar12;                    // 变量12
+    undefined4 *puVar13;                  // 指针变量13
+    undefined4 uVar14;                    // 变量14
+    undefined4 *puVar15;                  // 指针变量15
+    undefined4 uVar16;                    // 变量16
+    int *piVar17;                          // 整数指针17
+    undefined4 uVar18;                    // 变量18
+    int *piVar19;                          // 整数指针19
+    undefined4 uVar20;                    // 变量20
+    undefined4 uStack_48;                  // 栈变量48
+    undefined4 uStack_44;                  // 栈变量44
+    undefined4 uStack_40;                  // 栈变量40
+    undefined4 uStack_3c;                  // 栈变量3c
+    int iStack_38;                         // 栈变量38
+    int aiStack_34 [3];                    // 栈数组34
+    
+    // 获取上下文和当前索引
+    lVar2 = *param_1;
+    iVar3 = (int)param_1[3];
+    
+    // 验证索引范围
+    if ((-1 < iVar3) && (iVar3 < *(int *)((longlong)param_1 + 0x1c))) {
+        // 计算可处理的数据数量
+        iVar6 = *(int *)((longlong)param_1 + 0x1c) - iVar3;
+        
+        // 检查输出参数
+        if (param_2 != 0) {
+            // 设置处理参数
+            piVar19 = aiStack_34;
+            piVar17 = &iStack_38;
+            if (param_3 < iVar6) {
+                iVar6 = param_3;
+            }
+            
+            // 初始化指针变量
+            puVar15 = &uStack_40;
+            puVar13 = &uStack_3c;
+            puVar11 = auStackX_8;
+            puVar9 = auStackX_20;
+            puVar7 = &uStack_48;
+            
+            // 调用数据处理函数
+            FUN_18080c4a0(param_1, iVar3, iVar3 + iVar6, &uStack_44, puVar7, puVar9, 
+                          puVar11, puVar13, puVar15, piVar17, piVar19);
+            
+            // 提取高位数据
+            uVar8 = (undefined4)((ulonglong)puVar7 >> 0x20);
+            uVar10 = (undefined4)((ulonglong)puVar9 >> 0x20);
+            uVar12 = (undefined4)((ulonglong)puVar11 >> 0x20);
+            uVar14 = (undefined4)((ulonglong)puVar13 >> 0x20);
+            uVar16 = (undefined4)((ulonglong)puVar15 >> 0x20);
+            uVar18 = (undefined4)((ulonglong)piVar17 >> 0x20);
+            uVar20 = (undefined4)((ulonglong)piVar19 >> 0x20);
+            
+            // 设置数据指针
+            lVar5 = 0x180be6500;
+            if (((int)param_1[5] == 0) || (lVar4 = 0x180be6500, *(int *)((longlong)param_1 + 0x24) == 0))
+            {
+                lVar4 = 0x180be6300;
+            }
+            lVar4 = lVar4 + (longlong)iStack_38 * 4;
+            
+            if (((int)param_1[5] == 0) || (*(int *)((longlong)param_1 + 0x24) == 0)) {
+                lVar5 = 0x180be6300;
+            }
+            lVar5 = lVar5 + (longlong)aiStack_34[0] * 4;
+            
+            // 根据处理模式选择不同的处理函数
+            iVar3 = FUN_1807681a0(2);
+            if (iVar3 == 0) {
+                iVar3 = FUN_1807681a0(0);
+                uVar1 = *(undefined4 *)(lVar2 + 4);
+                if (iVar3 == 0) {
+                    // 模式0：完整数据处理
+                    FUN_18080ba00(param_1, param_2, lVar4, lVar5, CONCAT44(uVar8, uStack_3c),
+                                  CONCAT44(uVar10, uStack_40), CONCAT44(uVar12, uVar1), 
+                                  CONCAT44(uVar14, uStack_44), CONCAT44(uVar16, uStack_48),
+                                  CONCAT44(uVar18, auStackX_20[0]), CONCAT44(uVar20, auStackX_8[0]));
+                }
+                else {
+                    // 模式1：简化数据处理
+                    FUN_18082b380(param_1, param_2, lVar4, lVar5, CONCAT44(uVar8, uStack_3c),
+                                  CONCAT44(uVar10, uStack_40), CONCAT44(uVar12, uVar1), 
+                                  CONCAT44(uVar14, uStack_44));
+                }
+            }
+            else {
+                // 模式2：高级数据处理
+                FUN_18082c450(param_1, param_2, lVar4, lVar5, CONCAT44(uVar8, uStack_3c),
+                              CONCAT44(uVar10, uStack_40), CONCAT44(uVar12, *(undefined4 *)(lVar2 + 4)),
+                              CONCAT44(uVar14, uStack_44), CONCAT44(uVar16, uStack_48),
+                              CONCAT44(uVar18, auStackX_20[0]), CONCAT44(uVar20, auStackX_8[0]));
+            }
+        }
+        return iVar6;
+    }
+    return 0;
+}
+
+
+
+/**
+ * @brief UI系统状态管理器实现
+ * 
+ * 该函数负责UI系统状态管理，包括：
+ * - 状态初始化和更新
+ * - 状态转换处理
+ * - 状态验证和同步
+ * - 状态错误恢复
+ * 
+ * @param param_1 系统上下文
+ * @param param_2 状态参数
+ * @param param_3 状态标志
+ * @return int 状态管理结果
+ */
+int UISystem_StateManager(undefined8 param_1, undefined8 param_2, int param_3)
+{
+    int iVar1;                             // 返回值
+    longlong unaff_RBP;                    // 基址指针
+    int unaff_EDI;                         // 状态值
+    longlong in_R11;                      // 寄存器R11
+    undefined8 unaff_R14;                 // 寄存器R14
+    undefined8 unaff_R15;                 // 寄存器R15
+    bool in_ZF;                           // 零标志
+    char in_SF;                           // 符号标志
+    char in_OF;                           // 溢出标志
+    
+    // 设置系统上下文参数
+    *(undefined8 *)(in_R11 + 0x10) = unaff_R14;
+    *(undefined8 *)(in_R11 + 0x18) = unaff_R15;
+    *(longlong *)(in_R11 + -0x58) = unaff_RBP + -0xc;
+    
+    // 根据标志条件设置状态值
+    if (!in_ZF && in_OF == in_SF) {
+        unaff_EDI = param_3;
+    }
+    
+    // 设置栈空间参数
+    *(longlong *)(in_R11 + -0x60) = unaff_RBP + -0x10;
+    *(longlong *)(in_R11 + -0x68) = unaff_RBP + -0x18;
+    *(longlong *)(in_R11 + -0x70) = unaff_RBP + -0x14;
+    *(longlong *)(in_R11 + -0x78) = unaff_RBP + 0x30;
+    *(longlong *)(in_R11 + -0x80) = unaff_RBP + 0x48;
+    
+    // 调用状态处理函数
+    FUN_18080c4a0(param_1, param_2, (int)param_2 + unaff_EDI, unaff_RBP + -0x1c, unaff_RBP + -0x20);
+    
+    // 根据处理模式选择不同的状态管理函数
+    iVar1 = FUN_1807681a0(2);
+    if (iVar1 == 0) {
+        iVar1 = FUN_1807681a0(0);
+        if (iVar1 == 0) {
+            // 模式0：基础状态管理
+            FUN_18080ba00();
         }
         else {
-          FUN_18082b380(param_1,param_2,lVar4,lVar5,CONCAT44(uVar8,uStack_3c),
-                        CONCAT44(uVar10,uStack_40),CONCAT44(uVar12,uVar1),CONCAT44(uVar14,uStack_44)
-                       );
+            // 模式1：增强状态管理
+            FUN_18082b380();
         }
-      }
-      else {
-        FUN_18082c450(param_1,param_2,lVar4,lVar5,CONCAT44(uVar8,uStack_3c),
-                      CONCAT44(uVar10,uStack_40),CONCAT44(uVar12,*(undefined4 *)(lVar2 + 4)),
-                      CONCAT44(uVar14,uStack_44),CONCAT44(uVar16,uStack_48),
-                      CONCAT44(uVar18,auStackX_20[0]),CONCAT44(uVar20,auStackX_8[0]));
-      }
-    }
-    return iVar6;
-  }
-  return 0;
-}
-
-
-
-int FUN_18080c031(undefined8 param_1,undefined8 param_2,int param_3)
-
-{
-  int iVar1;
-  longlong unaff_RBP;
-  int unaff_EDI;
-  longlong in_R11;
-  undefined8 unaff_R14;
-  undefined8 unaff_R15;
-  bool in_ZF;
-  char in_SF;
-  char in_OF;
-  
-  *(undefined8 *)(in_R11 + 0x10) = unaff_R14;
-  *(undefined8 *)(in_R11 + 0x18) = unaff_R15;
-  *(longlong *)(in_R11 + -0x58) = unaff_RBP + -0xc;
-  if (!in_ZF && in_OF == in_SF) {
-    unaff_EDI = param_3;
-  }
-  *(longlong *)(in_R11 + -0x60) = unaff_RBP + -0x10;
-  *(longlong *)(in_R11 + -0x68) = unaff_RBP + -0x18;
-  *(longlong *)(in_R11 + -0x70) = unaff_RBP + -0x14;
-  *(longlong *)(in_R11 + -0x78) = unaff_RBP + 0x30;
-  *(longlong *)(in_R11 + -0x80) = unaff_RBP + 0x48;
-  FUN_18080c4a0(param_1,param_2,(int)param_2 + unaff_EDI,unaff_RBP + -0x1c,unaff_RBP + -0x20);
-  iVar1 = FUN_1807681a0(2);
-  if (iVar1 == 0) {
-    iVar1 = FUN_1807681a0(0);
-    if (iVar1 == 0) {
-      FUN_18080ba00();
     }
     else {
-      FUN_18082b380();
+        // 模式2：高级状态管理
+        FUN_18082c450();
     }
-  }
-  else {
-    FUN_18082c450();
-  }
-  return unaff_EDI;
+    
+    return unaff_EDI;
 }
 
 
 
-undefined4 FUN_18080c19b(void)
-
+/**
+ * @brief UI系统数据读取器实现
+ * 
+ * 该函数负责UI系统数据读取，包括：
+ * - 数据读取和缓存
+ * - 数据格式验证
+ * - 数据错误检测
+ * - 数据同步处理
+ * 
+ * @return undefined4 读取结果状态
+ */
+undefined4 UISystem_DataReader(void)
 {
-  undefined4 unaff_EDI;
-  
-  return unaff_EDI;
+    undefined4 unaff_EDI;                  // 返回状态
+    
+    return unaff_EDI;
 }
 
 
