@@ -511,7 +511,7 @@ LAB_18065a765:
       // 调用渲染处理函数
       return_address = 0x18065aa9f;
       temp_storage_5 = temp_storage_2;
-      FUN_1808fc050(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -820,7 +820,7 @@ LAB_18065a765:
       
       // 调用渲染处理函数
       return_address = 0x18065aa9f;
-      FUN_1808fc050(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }

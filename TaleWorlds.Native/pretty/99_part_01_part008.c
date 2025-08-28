@@ -176,14 +176,14 @@ static inline void func_0x0001800adfc0(pointer param);
 static inline void func_0x0001802a1bc0(pointer param);
 
 /* 外部函数声明 */
-extern void FUN_180626f80(pointer param1, pointer param2);
+extern void SystemDataInitializer(pointer param1, pointer param2);
 extern void FUN_1802a1bc0(pointer param);
-extern uint64_t FUN_18062b420(uint64_t param1, uint64_t param2);
+extern uint64_t CoreEngineMemoryPoolAllocator(uint64_t param1, uint64_t param2);
 extern uint64_t FUN_1800ad760(uint64_t param);
-extern void FUN_18064e900(uint64_t param);
+extern void CoreEngineMemoryPoolCleaner(uint64_t param);
 extern void FUN_180220810(int32_t param1, pointer param2);
 extern void FUN_1800adfe0(pointer param1, pointer param2);
-extern void FUN_1808fc050(uint64_t param);
+extern void SystemSecurityChecker(uint64_t param);
 extern void FUN_1800adfc0(pointer param);
 
 /**
@@ -311,7 +311,7 @@ void SystemDataStreamProcessor(int64_t param_1, int64_t *param_2, int32_t param_
         if (*(pointer *)(param_5 + 0x18) != (pointer)0x0) {
             local_ptr1 = *(pointer *)(param_5 + 0x18);
         }
-        FUN_180626f80(&global_state_3448_ptr, local_ptr1);
+        SystemDataInitializer(&global_state_3448_ptr, local_ptr1);
         goto cleanup_handler;
     }
     
@@ -365,7 +365,7 @@ void SystemDataStreamProcessor(int64_t param_1, int64_t *param_2, int32_t param_
     if (local_ulong1 == 0) {
         local_stack_158 = 0;
     } else {
-        local_stack_158 = FUN_18062b420(system_memory_pool_ptr, local_ulong1 << 8);
+        local_stack_158 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, local_ulong1 << 8);
     }
     local_int1 = FUN_1800ad760(local_ulong1 << 4);
     
@@ -380,11 +380,11 @@ stream_cleanup_handler:
 resource_cleanup_handler:
         if (local_stack_158 != 0) {
             /* 警告：子函数不返回 */
-            FUN_18064e900(local_stack_158);
+            CoreEngineMemoryPoolCleaner(local_stack_158);
         }
         if (local_int1 != 0) {
             /* 警告：子函数不返回 */
-            FUN_18064e900(local_int1);
+            CoreEngineMemoryPoolCleaner(local_int1);
         }
     } else {
         if (local_flag != '\x02') {
@@ -431,7 +431,7 @@ resource_cleanup_handler:
             if (*(pointer *)(param_5 + 0x18) != (pointer)0x0) {
                 local_ptr1 = *(pointer *)(param_5 + 0x18);
             }
-            FUN_180626f80(&global_state_3584_ptr, local_ptr1);
+            SystemDataInitializer(&global_state_3584_ptr, local_ptr1);
         } else {
             /* 设置数据流处理参数 */
             *(int32_t *)(param_5 + 0x360) = local_result;
@@ -509,7 +509,7 @@ resource_cleanup_handler:
                 if (*(pointer *)(param_5 + 0x18) != (pointer)0x0) {
                     local_ptr1 = *(pointer *)(param_5 + 0x18);
                 }
-                FUN_180626f80(&global_state_3952_ptr, local_ptr1, local_result);
+                SystemDataInitializer(&global_state_3952_ptr, local_ptr1, local_result);
             } else {
                 /* 处理成功情况 */
                 local_ulong3 = 0;
@@ -518,7 +518,7 @@ resource_cleanup_handler:
                     if (*(uint16_t *)((int64_t)param_2 + 0x62) < 2) {
                         local_stack_144 = 4;
                         if (local_uint2 != 0) {
-                            local_ulong3 = FUN_18062b420(system_memory_pool_ptr, (uint64_t)local_uint2 * 8, 3);
+                            local_ulong3 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (uint64_t)local_uint2 * 8, 3);
                         }
                         local_int4 = local_stack_128;
                         local_ulong2 = 0;
@@ -611,11 +611,11 @@ resource_cleanup_handler:
             /* 清理资源 */
             if (local_int5 != 0) {
                 /* 警告：子函数不返回 */
-                FUN_18064e900(local_int5);
+                CoreEngineMemoryPoolCleaner(local_int5);
             }
             if (local_int1 != 0) {
                 /* 警告：子函数不返回 */
-                FUN_18064e900(local_int1);
+                CoreEngineMemoryPoolCleaner(local_int1);
             }
         }
     }
@@ -624,7 +624,7 @@ resource_cleanup_handler:
     if (local_stack_d8 == 0) {
         if ((local_stack_d8 == 0) && (local_stack_e8[0] != 0)) {
             /* 警告：子函数不返回 */
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         local_stack_e8[0] = 0;
         local_stack_e8[1] = 0;
@@ -633,7 +633,7 @@ resource_cleanup_handler:
     
 cleanup_handler:
     /* 警告：子函数不返回 */
-    FUN_1808fc050(local_stack_48 ^ (uint64_t)local_stack_188);
+    SystemSecurityChecker(local_stack_48 ^ (uint64_t)local_stack_188);
 }
 
 /**
@@ -851,7 +851,7 @@ void SystemStreamManager(int64_t param_1, int64_t param_2, int64_t *param_3)
     }
     
     /* 警告：子函数不返回 */
-    FUN_1808fc050(local_stack_48 ^ (uint64_t)local_stack_a18);
+    SystemSecurityChecker(local_stack_48 ^ (uint64_t)local_stack_a18);
 }
 
 /**
@@ -1006,7 +1006,7 @@ void SystemStateProcessor(void)
     }
     
     /* 警告：子函数不返回 */
-    FUN_1808fc050(*(uint64_t *)(*(int64_t *)(local_rax + 0x1d78) + 0x8d0) ^ (uint64_t)&local_stack_68);
+    SystemSecurityChecker(*(uint64_t *)(*(int64_t *)(local_rax + 0x1d78) + 0x8d0) ^ (uint64_t)&local_stack_68);
 }
 
 /**
@@ -1130,7 +1130,7 @@ void SystemStreamProcessor(void)
     }
     
     /* 警告：子函数不返回 */
-    FUN_1808fc050(*(uint64_t *)(*(int64_t *)(local_rax + 0x1d78) + 0x8d0) ^ (uint64_t)&local_stack_68);
+    SystemSecurityChecker(*(uint64_t *)(*(int64_t *)(local_rax + 0x1d78) + 0x8d0) ^ (uint64_t)&local_stack_68);
 }
 
 /**
@@ -1207,7 +1207,7 @@ void SystemDataCopier(uint32_t param_1, uint32_t param_2, char param_3, uint64_t
                 (**(code **)(*param_8 + 0x10))();
             }
             /* 警告：子函数不返回 */
-            FUN_1808fc050(*(uint64_t *)(local_rbp + 0x8d0) ^ (uint64_t)&local_stack_34);
+            SystemSecurityChecker(*(uint64_t *)(local_rbp + 0x8d0) ^ (uint64_t)&local_stack_34);
         }
     } while (true);
 }
@@ -1226,7 +1226,7 @@ void SystemCleanupHandler(void)
         (**(code **)(*local_stack_40 + 0x10))();
     }
     /* 警告：子函数不返回 */
-    FUN_1808fc050(*(uint64_t *)(local_rbp + 0x8d0) ^ (uint64_t)&local_stack_40);
+    SystemSecurityChecker(*(uint64_t *)(local_rbp + 0x8d0) ^ (uint64_t)&local_stack_40);
 }
 
 /**
@@ -1242,7 +1242,7 @@ void SystemResourceFinalizer(int64_t *param_1)
     
     (**(code **)(*param_1 + 0x10))();
     /* 警告：子函数不返回 */
-    FUN_1808fc050(*(uint64_t)(local_rbp + 0x8d0) ^ (uint64_t)&param_1);
+    SystemSecurityChecker(*(uint64_t)(local_rbp + 0x8d0) ^ (uint64_t)&param_1);
 }
 
 /**

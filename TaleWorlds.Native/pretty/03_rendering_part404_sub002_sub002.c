@@ -842,7 +842,7 @@ void FUN_180491420(int64_t param_1,float *param_2,int8_t (*param_3) [12],int par
   }
 FUN_180492067:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_388);
+  SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_388);
 }
 
 

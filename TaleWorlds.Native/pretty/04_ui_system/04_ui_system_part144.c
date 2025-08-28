@@ -146,7 +146,7 @@ void ui_system_state_manager(void)
     int64_t system_context;
     
     // 调用状态更新回调函数
-    FUN_180768360(*(uint64_t *)(*(int64_t *)(callback_param + 0x10) + 0x168));
+    SystemMemoryAllocator(*(uint64_t *)(*(int64_t *)(callback_param + 0x10) + 0x168));
     
     // 获取系统上下文数据
     context_ptr = *(int64_t *)(system_context + 0x108);
@@ -159,7 +159,7 @@ void ui_system_state_manager(void)
     *data_ptr = (int64_t)data_ptr;
     
     // 调用状态处理完成回调
-    FUN_180768400(*(uint64_t *)(*(int64_t *)(*(int64_t *)(system_context + 0x108) + 0x10) + 0x168));
+    SystemMemoryManager(*(uint64_t *)(*(int64_t *)(*(int64_t *)(system_context + 0x108) + 0x10) + 0x168));
 }
 
 /**
@@ -574,7 +574,7 @@ uint64_t ui_system_control_initializer(int64_t param_1, int param_2, uint64_t *p
                ((*(uint *)(control_ptr + 0xb) >> 4 & 1) != 0)) {
                 context_ptr1 = *(int64_t *)(control_ptr[0x21] + 0x10);
                 result = *(uint64_t *)(context_ptr1 + 0x168);
-                FUN_180768360(result);
+                SystemMemoryAllocator(result);
                 
                 *(int *)(control_ptr + 0x18) = param_2;
                 LOCK();
@@ -592,7 +592,7 @@ uint64_t ui_system_control_initializer(int64_t param_1, int param_2, uint64_t *p
                 *(int64_t **)(context_ptr1 + 0x158) = control_ptr;
                 **(uint64_t **)(context_ptr2 + 0x20) = control_ptr;
                 
-                FUN_180768400(result);
+                SystemMemoryManager(result);
             }
         }
     }
@@ -721,7 +721,7 @@ ui_system_control_processor(int64_t param_1, uint64_t param_2, uint64_t *param_3
                ((*(uint *)(control_ptr + 0xb) >> 4 & 1) != 0)) {
                 context_ptr1 = *(int64_t *)(control_ptr[0x21] + 0x10);
                 result = *(uint64_t *)(context_ptr1 + 0x168);
-                FUN_180768360(result);
+                SystemMemoryAllocator(result);
                 
                 *(int *)(control_ptr + 0x18) = status;
                 LOCK();
@@ -739,7 +739,7 @@ ui_system_control_processor(int64_t param_1, uint64_t param_2, uint64_t *param_3
                 *(int64_t **)(context_ptr1 + 0x158) = control_ptr;
                 **(uint64_t **)(context_ptr2 + 0x20) = control_ptr;
                 
-                FUN_180768400(result);
+                SystemMemoryManager(result);
             }
         }
     }
@@ -772,7 +772,7 @@ void ui_system_resource_cleaner(void)
     callback_param = *(uint64_t *)(context_ptr + 0x168);
     
     // 调用资源清理回调
-    FUN_180768360(callback_param);
+    SystemMemoryAllocator(callback_param);
     
     // 设置系统状态
     *(int32_t *)(resource_context + 0xc0) = state_param;
@@ -796,7 +796,7 @@ void ui_system_resource_cleaner(void)
     **(uint64_t **)(cleanup_context + 0x20) = resource_ptr;
     
     // 调用清理完成回调
-    FUN_180768400(callback_param);
+    SystemMemoryManager(callback_param);
 }
 
 /**

@@ -317,7 +317,7 @@ void ui_system_thread_worker(int *thread_params)
     }
     
     // 栈保护验证和函数退出
-    FUN_1808fc050(stack_cookie ^ (uint64_t)stack_protector_1);
+    SystemSecurityChecker(stack_cookie ^ (uint64_t)stack_protector_1);
 }
 
 /**
@@ -352,7 +352,7 @@ void ui_system_thread_controller(void)
     } while (*(int *)(thread_pool_context + 0x4380) != 0);
     
     // 栈保护验证和函数退出
-    FUN_1808fc050(stack_cookie ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -364,7 +364,7 @@ void ui_system_empty_handler_1(void)
     uint64_t stack_cookie;
     
     // 栈保护验证和函数退出
-    FUN_1808fc050(stack_cookie ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 /**

@@ -70,7 +70,7 @@ LAB_1805a1876:
     *(float *)(unaff_R13 + 0x44) = fVar35;
     FUN_1805a0af0(fVar35,unaff_XMM7_Da,1);
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x1c0) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1c0) ^ (uint64_t)&stack0x00000000);
   }
   do {
     lVar5 = *unaff_RDI;

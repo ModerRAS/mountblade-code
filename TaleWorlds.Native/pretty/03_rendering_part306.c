@@ -830,7 +830,7 @@ void rendering_system_advanced_image_compressor(uint64_t param_1, uint64_t param
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_d8);
+  SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_d8);
 }
 
 
@@ -1045,7 +1045,7 @@ void rendering_system_simd_optimizer(void) {
     }
     
     // 安全检查
-    FUN_1808fc050(security_cookie ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -1098,7 +1098,7 @@ void rendering_system_memory_cleanup(void) {
     }
     
     // 执行安全检查
-    FUN_1808fc050(security_token ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(security_token ^ (uint64_t)&stack0x00000000);
 }
 
 

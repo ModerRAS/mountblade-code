@@ -881,7 +881,7 @@ LAB_18025a8de:
     } while (uVar7 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_498);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_498);
 }
 
 

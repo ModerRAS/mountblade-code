@@ -230,7 +230,7 @@ void ui_system_advanced_path_optimizer(int64_t param_1, int64_t param_2, int64_t
     (*(code *)function_ptr_array[1])(grid_data_y, param_8, grid_data_y, grid_width);
     
     // 栈保护清理
-    FUN_1808fc050(stack_protection_3 ^ (uint64_t)stack_protection_1);
+    SystemSecurityChecker(stack_protection_3 ^ (uint64_t)stack_protection_1);
 }
 
 /**
@@ -974,7 +974,7 @@ void ui_system_coordinate_transformer(int64_t param_1, int64_t *param_2)
     *(int8_t *)param_2[5] = transform_flag;
     
     // 栈保护清理
-    FUN_1808fc050(stack_protection_var ^ (uint64_t)stack_protection);
+    SystemSecurityChecker(stack_protection_var ^ (uint64_t)stack_protection);
 }
 
 // 技术说明：

@@ -263,7 +263,7 @@ void ui_system_advanced_path_searcher(int64_t ui_context, int64_t render_params,
     (*(code *)callback_array[1])(base_address, cost_buffer[3], target_address, stack_backup[5]);
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (uint64_t)stack_backup);
+    SystemSecurityChecker(stack_guard ^ (uint64_t)stack_backup);
 }
 
 /**
@@ -604,7 +604,7 @@ void ui_system_movement_processor(int64_t ui_context, int64_t render_params, int
     (*(code *)callback_ptr[1])(base_address, cost_buffer[3], search_address, best_cost);
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (uint64_t)stack_backup);
+    SystemSecurityChecker(stack_guard ^ (uint64_t)stack_backup);
 }
 
 /**
@@ -815,7 +815,7 @@ void ui_system_advanced_movement_processor(int64_t ui_context, int64_t render_pa
     (*(code *)callback_ptr[1])(base_address, cost_buffer_large[7], search_address, movement_count);
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (uint64_t)stack_backup);
+    SystemSecurityChecker(stack_guard ^ (uint64_t)stack_backup);
 }
 
 /**
@@ -986,7 +986,7 @@ void ui_system_path_searcher_optimized(int64_t ui_context, int64_t render_params
     (*(code *)callback_array[1])(base_address, render_flag, target_address, line_width);
     
     // 栈保护清理
-    FUN_1808fc050(stack_guard ^ (uint64_t)stack_backup);
+    SystemSecurityChecker(stack_guard ^ (uint64_t)stack_backup);
 }
 
 // 技术说明：

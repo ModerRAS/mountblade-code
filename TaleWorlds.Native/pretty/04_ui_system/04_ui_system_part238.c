@@ -363,7 +363,7 @@ void UIControlAdvancedProcessor(UISystemContext* param_1, uint64_t param_2) {
                             *(int64_t*)((UIContext)param_1 + 0x740) = resource_handle;
                             
                             if (resource_handle != 0) {
-                                context_data = (void*)FUN_180741e10(*(void*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x10, &unknown_var_7648_ptr, 0x1d2, resource_flags & 0xffffffff00000000);
+                                context_data = (void*)SystemResourceManager(*(void*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x10, &unknown_var_7648_ptr, 0x1d2, resource_flags & 0xffffffff00000000);
                                 if (context_data != (void*)0x0) {
                                     *(uint*)(context_data + 1) = 0;
                                     *(void**)context_data = &unknown_var_7536_ptr;
@@ -382,7 +382,7 @@ void UIControlAdvancedProcessor(UISystemContext* param_1, uint64_t param_2) {
         }
     }
     // 调用系统退出处理
-    FUN_1808fc050(*(uint64_t*)((int64_t)param_1 + -0x11) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t*)((int64_t)param_1 + -0x11) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -554,7 +554,7 @@ void UIEventProcessor(uint64_t param_1, void* param_2, UISystemContext* param_3)
                 *(int64_t*)((UIContext)param_2 + 0x740) = resource_handle;
                 
                 if (resource_handle != 0) {
-                    context_data = (void*)FUN_180741e10(*(void*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x10, &unknown_var_7648_ptr, 0x1d2, param_1 & 0xffffffff);
+                    context_data = (void*)SystemResourceManager(*(void*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x10, &unknown_var_7648_ptr, 0x1d2, param_1 & 0xffffffff);
                     if (context_data != (void*)0x0) {
                         *(int*)(context_data + 1) = (int)param_1;
                         *(void**)context_data = &unknown_var_7536_ptr;
@@ -570,7 +570,7 @@ void UIEventProcessor(uint64_t param_1, void* param_2, UISystemContext* param_3)
         }
     }
     // 调用系统退出处理
-    FUN_1808fc050(*(uint64_t*)((int64_t)param_2 + -0x11) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t*)((int64_t)param_2 + -0x11) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -589,7 +589,7 @@ void UIStateCleaner(void) {
     int64_t context_ptr;
     
     // 调用系统退出处理函数
-    FUN_1808fc050(*(uint64_t*)(context_ptr + -0x11) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t*)(context_ptr + -0x11) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -608,7 +608,7 @@ void UIResourceReleaser(void) {
     int64_t context_ptr;
     
     // 调用系统退出处理函数
-    FUN_1808fc050(*(uint64_t*)(context_ptr + -0x11) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t*)(context_ptr + -0x11) ^ (uint64_t)&stack0x00000000);
 }
 
 /**

@@ -363,5 +363,5 @@ void ui_system_advanced_render_batch_processor(int64_t ui_context, int64_t rende
     }
     
     // 安全退出
-    FUN_1808fc050(stack_security ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(stack_security ^ (uint64_t)stack_buffer);
 }

@@ -245,7 +245,7 @@ void UIMatrixInverseTransform(int64_t param_1, int64_t param_2, int param_3)
   }
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(security_cookie ^ (uint64_t)stack_protector);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)stack_protector);
 }
 
 
@@ -342,7 +342,7 @@ void UIAdvancedMatrixProcessor(void)
   } while (iteration_index < matrix_limit);
   
   // 安全检查：函数不会返回
-  FUN_1808fc050((float)matrix_stack[0]);
+  SystemSecurityChecker((float)matrix_stack[0]);
 }
 
 
@@ -361,7 +361,7 @@ void UIStackProtectionHandler(void)
   uint64_t stack_cookie;
   
   // 安全检查：函数不会返回
-  FUN_1808fc050((float)stack_cookie);
+  SystemSecurityChecker((float)stack_cookie);
 }
 
 
@@ -960,7 +960,7 @@ void UIDoubleArrayProcessor(double *param_1, int64_t param_2, float param_3, int
   }
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(security_cookie ^ (uint64_t)filter_buffer1);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)filter_buffer1);
 }
 
 
@@ -1176,7 +1176,7 @@ void UIEncodedDataProcessor(int64_t param_1, int64_t param_2, int param_3, uint6
   }
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(security_cookie ^ (uint64_t)stack_guard);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)stack_guard);
 }
 
 
@@ -1306,7 +1306,7 @@ void UIAdvancedEncodedDataProcessor(uint64_t param_1, uint64_t param_2, int para
   } while (param_7 != 0);
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(stack_cookie ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(stack_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -1327,7 +1327,7 @@ void UIStackProtectionTerminator(void)
   uint64_t stack_cookie;
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(stack_cookie ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(stack_cookie ^ (uint64_t)&stack0x00000000);
 }
 
 // =============================================================================

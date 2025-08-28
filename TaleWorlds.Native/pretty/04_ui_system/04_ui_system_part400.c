@@ -521,7 +521,7 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
             resource_ptr = *(uint64_t **)(system_handle + 0xb0);
             (**(code **)*resource_ptr)(resource_ptr,0);
             stack_ptr = (int64_t *)CONCAT71(stack_ptr._1_7_,1);
-            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),resource_ptr,&unknown_var_5856_ptr,0x17a);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),resource_ptr,&unknown_var_5856_ptr,0x17a);
         }
     }
     else if (*(int64_t *)(system_handle + 0xb0) == 0) {
@@ -530,7 +530,7 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         stack_flag_2 = 1;
         stack_flag_1 = 0;
         stack_ptr = (int64_t *)((uint64_t)stack_ptr & 0xffffffff00000000);
-        system_data = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&unknown_var_5856_ptr,0x171);
+        system_data = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&unknown_var_5856_ptr,0x171);
         if (system_data != 0) {
             resource_value = func_0x0001808967b0(system_data,system_handle,(status_code & 1) << 0x18);
             *(uint64_t *)(system_handle + 0xb0) = resource_value;
@@ -540,7 +540,7 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
 
 error_handler:
     // 错误处理和清理
-    FUN_1808fc050(stack_memory_addr ^ (uint64_t)state_buffer);
+    SystemSecurityChecker(stack_memory_addr ^ (uint64_t)state_buffer);
 }
 
 /**
@@ -754,11 +754,11 @@ void UISystemAdvancedEventHandler(void)
            (loop_counter = FUN_18088e8b0(*(uint64_t *)(unaff_RDI + 0x98)), loop_counter == 0)) {
             resource_ptr = *(uint64_t **)(unaff_RDI + 0xb0);
             (**(code **)*resource_ptr)(resource_ptr,0);
-            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),resource_ptr,&unknown_var_5856_ptr,0x17a,1);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),resource_ptr,&unknown_var_5856_ptr,0x17a,1);
         }
     }
     else if ((*(int64_t *)(unaff_RDI + 0xb0) == 0) &&
-            (control_data = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&unknown_var_5856_ptr,0x171,
+            (control_data = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&unknown_var_5856_ptr,0x171,
                                    (uint64_t)stack_ptr_1 & 0xffffffff00000000), control_data != 0)) {
         resource_value = func_0x0001808967b0(control_data);
         *(uint64_t *)(unaff_RDI + 0xb0) = resource_value;
@@ -767,7 +767,7 @@ void UISystemAdvancedEventHandler(void)
 
 error_handler:
     // 错误处理和清理
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x180) ^ (uint64_t)&stack_data_1);
+    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x180) ^ (uint64_t)&stack_data_1);
 }
 
 // ============================================================================

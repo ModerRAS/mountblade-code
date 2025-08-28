@@ -74,8 +74,8 @@ LAB_1806579e7:
   uVar4 = 0;
 LAB_1806579f0:
   // 创建系统数据结构并处理请求
-  lVar5 = FUN_18062b420(SYSTEM_PARAM_DATA,0x48,SYSTEM_BUFFER_SIZE,param_4,0xfffffffffffffffe);
-  FUN_180627ae0(lVar5 + 0x20,param_5);
+  lVar5 = CoreEngineMemoryPoolAllocator(SYSTEM_PARAM_DATA,0x48,SYSTEM_BUFFER_SIZE,param_4,0xfffffffffffffffe);
+  CoreEngineDataTransformer(lVar5 + 0x20,param_5);
   *(uint64_t *)(lVar5 + 0x40) = 0;
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(lVar5,param_3,&SYSTEM_CONFIG_AREA,uVar4);
@@ -205,7 +205,7 @@ void process_ui_data_batch(int64_t param_1,int64_t param_2,uint64_t param_3,uint
       uStack_38 = 0;
       puStack_48 = (int8_t *)0x0;
       iStack_40 = 0;
-      FUN_1806277c0(&puStack_50,*(int32_t *)(uVar4 + 0x10 + lVar3));
+      CoreEngineDataBufferProcessor(&puStack_50,*(int32_t *)(uVar4 + 0x10 + lVar3));
       iVar1 = *(int *)(uVar4 + 0x10 + lVar3);
       if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
@@ -230,7 +230,7 @@ void process_ui_data_batch(int64_t param_1,int64_t param_2,uint64_t param_3,uint
         puVar2[3] = 0;
         puVar2[1] = 0;
         *(int32_t *)(puVar2 + 2) = 0;
-        FUN_1806277c0(puVar2,iStack_40);
+        CoreEngineDataBufferProcessor(puVar2,iStack_40);
         if (iStack_40 != 0) {
                     // WARNING: Subroutine does not return
           memcpy(puVar2[1],puStack_48,iStack_40 + 1,param_4,uVar7);
@@ -251,7 +251,7 @@ void process_ui_data_batch(int64_t param_1,int64_t param_2,uint64_t param_3,uint
       // 清理临时数据
       if (puStack_48 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       uVar5 = (int)uVar6 + 1;
       uVar4 = uVar4 + 0x20;

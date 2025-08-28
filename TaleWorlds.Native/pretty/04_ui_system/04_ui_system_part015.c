@@ -788,7 +788,7 @@ void ui_system_advanced_matrix_transform_processor(int64_t context_ptr,int64_t t
     lStack_158 = lVar16;
   } while (lVar16 != 0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_1c8);
+  SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_1c8);
 }
 
 

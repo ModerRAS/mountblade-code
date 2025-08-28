@@ -136,7 +136,7 @@ typedef struct {
  * 
  * @note 本函数是系统核心组件，修改时需要充分测试
  * @warning 包含复杂的内存管理逻辑，需要谨慎处理
- * @see 相关函数：FUN_180081480, FUN_18062b1e0, FUN_1800a4010
+ * @see 相关函数：FUN_180081480, CoreEngineMemoryPoolReallocator, FUN_1800a4010
  */
 void FUN_1800b0a10(uint64_t param_1, uint64_t *param_2, int param_3, int64_t param_4, uint param_5,
                   int param_6, int param_7, int param_8, int param_9, int64_t *param_10, char param_11,
@@ -278,7 +278,7 @@ void FUN_1800b0a10(uint64_t param_1, uint64_t *param_2, int param_3, int64_t par
 LAB_1800b0d28:
     // 创建和管理资源对象
     plVar18 = plStack_268;
-    plVar7 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x170, 8, 3);
+    plVar7 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x170, 8, 3);
     
     // 初始化资源对象结构
     *plVar7 = (int64_t)&system_handler1_ptr;
@@ -379,7 +379,7 @@ LAB_1800b0d28:
       }
       
       // 执行异步操作
-      uVar8 = FUN_18062b1e0(system_memory_pool_ptr, 0x100, 8, 3);
+      uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x100, 8, 3);
       plVar9 = (int64_t *)FUN_18005ce30(uVar8, &puStack_1c8);
       ppuStack_200 = (void **)plVar9;
       if (plVar9 != (int64_t *)0x0) {
@@ -424,7 +424,7 @@ LAB_1800b0d28:
         if (lVar11 == 0) {
           lVar11 = 1;
 LAB_1800b1065:
-          puVar10 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, lVar11 * 8);
+          puVar10 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, lVar11 * 8);
           puVar14 = (uint64_t *)plVar15[1];
           puVar6 = (uint64_t *)*plVar15;
           puStack_258 = puVar10;
@@ -457,7 +457,7 @@ LAB_1800b1065:
           plVar9 = (int64_t *)*plVar15;
         }
         if (plVar9 != (int64_t *)0x0) {
-          FUN_18064e900(plVar9);
+          CoreEngineMemoryPoolCleaner(plVar9);
         }
         *plVar15 = (int64_t)puStack_258;
         plVar15[1] = (int64_t)plStack_248;
@@ -584,7 +584,7 @@ LAB_1800b1065:
   
 LAB_1800b11f1:
   // 执行最终的清理操作
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_2b8);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_2b8);
 }
 
 // =============================================================================

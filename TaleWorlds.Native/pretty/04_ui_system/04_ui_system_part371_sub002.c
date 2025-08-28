@@ -113,7 +113,7 @@ typedef struct {
 
 // 主要函数别名
 #define UI_SystemCleanupHandler     FUN_18086acbc   // UI系统清理处理器
-#define UI_StackSecurityHandler    FUN_1808fc050   // UI系统栈安全处理器
+#define UI_StackSecurityHandler    SystemSecurityChecker   // UI系统栈安全处理器
 
 // 辅助函数别名
 #define UI_InitializeContext       FUN_18086ad00   // UI系统上下文初始化器
@@ -177,7 +177,7 @@ void UI_SystemCleanupHandler(void) {
     // 这个函数不会返回，因为它会调用系统级的清理函数
     // 该函数会执行最终的清理操作并终止当前执行上下文
     
-    FUN_1808fc050(stack_security_cookie ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_security_cookie ^ (uint64_t)&stack0x00000000);
     
     // 注意：以下代码不会被执行，因为上面的函数调用不会返回
     // 这是设计的清理流程，确保系统资源的完整释放

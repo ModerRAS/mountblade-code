@@ -537,7 +537,7 @@ special_render_handling:
                 ReleaseSemaphore(*(uint64_t*)(base_reg2 + 0x4400),1);
             }
             // 渲染完成，返回控制权
-            FUN_1808fc050(*(uint64_t*)(base_reg2 + 0x50) ^ (uint64_t)&stack0x00000000);
+            SystemSecurityChecker(*(uint64_t*)(base_reg2 + 0x50) ^ (uint64_t)&stack0x00000000);
         }
     } while( true );
 }
@@ -563,7 +563,7 @@ void ui_system_semaphore_handler(void)
         ReleaseSemaphore(*(uint64_t*)(base_reg3 + 0x4400),1);
     }
     // 返回控制权
-    FUN_1808fc050(*(uint64_t*)(base_reg2 + 0x50) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t*)(base_reg2 + 0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -583,7 +583,7 @@ void ui_system_semaphore_releaser(void)
     // 释放信号量
     ReleaseSemaphore(*(uint64_t*)(base_reg3 + 0x4400),1);
     // 返回控制权
-    FUN_1808fc050(*(uint64_t*)(base_reg2 + 0x50) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t*)(base_reg2 + 0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 /**

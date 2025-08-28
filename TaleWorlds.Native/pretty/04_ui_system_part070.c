@@ -877,18 +877,18 @@ void FUN_1807058d0(void)
     if ((uVar3 >> 0x19 & 1) != 0) {
       if ((uVar3 >> 0x1a & 1) == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_28);
+        SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_28);
       }
       if ((*(uint *)(lVar2 + 0xc) >> 0x13 & 1) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_28);
+        SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_28);
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_28);
+      SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_28);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_28,uVar3);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_28,uVar3);
 }
 
 

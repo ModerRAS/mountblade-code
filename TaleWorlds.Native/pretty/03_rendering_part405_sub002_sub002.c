@@ -644,7 +644,7 @@ void FUN_180491818(uint64_t param_1,uint64_t param_2)
   }
 FUN_180492057:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)unaff_RBP[0x1b] ^ (uint64_t)&stack0x00000000,param_2,uVar15,uVar17,
+  SystemSecurityChecker(*(uint64_t *)unaff_RBP[0x1b] ^ (uint64_t)&stack0x00000000,param_2,uVar15,uVar17,
                 auVar32);
 }
 

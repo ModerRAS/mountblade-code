@@ -868,7 +868,7 @@ void FUN_1801129b0(char *param_1,float *param_2,uint param_3)
   }
 LAB_180112f8f:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d0 ^ (uint64_t)auStack_178);
+  SystemSecurityChecker(uStack_d0 ^ (uint64_t)auStack_178);
 }
 
 
