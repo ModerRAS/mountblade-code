@@ -52,7 +52,7 @@
  * @param param2 渲染系统参数2
  * @return 渲染系统句柄，失败返回INVALID_HANDLE_VALUE
  */
-SystemHandle RenderingSystemInitializer(uint64_t param1, uint64_t param2)
+SystemHandle RenderingSystemInitialize(uint64_t param1, uint64_t param2)
 {
     SystemHandle handle;
     int local_10;
