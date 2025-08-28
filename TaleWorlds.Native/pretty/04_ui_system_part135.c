@@ -86,6 +86,7 @@
 #define UI_ERROR_INVALID_FLOAT     0x1d          // 无效浮点数
 #define UI_ERROR_INVALID_VECTOR    0x24          // 无效向量
 #define UI_ERROR_INVALID_PARAM    0x1f          // 无效参数
+#define UI_SYSTEM_SUCCESS          0x00          // 系统成功
 
 // ============================================================================
 // 类型别名定义
@@ -101,6 +102,15 @@ typedef int32_t UIStatus;                    // UI状态
 typedef uint32_t UIErrorCode;                // UI错误码
 typedef float* UIFloatVector;                // UI浮点向量
 typedef void* UIContext;                     // UI上下文
+
+// ============================================================================
+// 系统函数别名声明
+// ============================================================================
+
+// 外部系统函数别名
+uint64_t UISystem_GetSystemStatus(void);
+void UISystem_ExecuteSystemOperation(longlong param_1, int32_t param_2, int param_3, int param_4, longlong param_5, int param_6, int param_7, int param_8);
+void UISystem_ExecuteSystemCleanup(longlong param_1, int param_2);
 
 // ============================================================================
 // 函数别名定义
