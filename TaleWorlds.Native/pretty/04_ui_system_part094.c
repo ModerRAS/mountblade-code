@@ -446,7 +446,7 @@ void FUN_180722cf0(uint64_t param_1,longlong param_2,int param_3,int32_t param_4
             uVar8 = (ulonglong)uVar13;
             if (0 < (int)uVar13) {
               do {
-                sVar2 = FUN_18070f3e0(param_1,&unknown_var_9552_ptr,8);
+                sVar2 = FUN_18070f3e0(param_1,&system_string1_ptr,8);
                 sVar6 = sVar2 + sVar6 * 2;
                 uVar8 = uVar8 - 1;
               } while (uVar8 != 0);

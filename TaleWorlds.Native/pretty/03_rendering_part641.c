@@ -114,7 +114,7 @@ void FUN_1806288c0(longlong param_1,int param_2,longlong param_3)
     memcpy((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8),lStack_28,
            (longlong)(iStack_20 + 1));
   }
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -142,7 +142,7 @@ void FUN_1806289a0(longlong param_1,uint64_t param_2,uint64_t param_3)
     memcpy((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8),lStack_28,
            (longlong)(iStack_20 + 1));
   }
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -197,7 +197,7 @@ void FUN_180628a40(longlong param_1)
     memcpy((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8),lStack_28,
            (longlong)(iStack_20 + 1));
   }
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -232,7 +232,7 @@ uint64_t FUN_180628ba0(longlong param_1,longlong param_2,longlong param_3,uint64
     if (lVar3 != 0) {
       uVar4 = FUN_180627910(&puStack_30,param_3);
       FUN_1806288c0(param_1,(int)lVar1 - *(int *)(param_1 + 8),uVar4);
-      puStack_30 = &unknown_var_3456_ptr;
+      puStack_30 = &system_data_buffer_ptr;
       if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -254,7 +254,7 @@ void * FUN_180628ca0(void)
               0x48) < render_system_config_config) {
     FUN_1808fcb90(&system_ptr_a060);
     if (render_system_config_config == -1) {
-      render_system_config_config = &unknown_var_3456_ptr;
+      render_system_config_config = &system_data_buffer_ptr;
       render_system_config_config = 0;
       render_system_config_config = 0;
       render_system_config_config = 0;
@@ -430,10 +430,10 @@ void FUN_180629090(uint64_t *param_1)
   
   uStack_230 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_3456_ptr;
+  *param_1 = &system_data_buffer_ptr;
   param_1[3] = 0;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;

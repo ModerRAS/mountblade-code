@@ -68,7 +68,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
     }
     
     // 设置缓冲区指针
-    stack_buffer = &unknown_var_3456_ptr;
+    stack_buffer = &system_data_buffer_ptr;
     
     // 检查栈状态
     if (stack_check != 0) {
@@ -135,7 +135,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
     }
     
     // 设置缓冲区指针
-    stack_buffer = &unknown_var_3456_ptr;
+    stack_buffer = &system_data_buffer_ptr;
     
     // 检查栈状态
     if (stack_check != 0) {
@@ -183,7 +183,7 @@ void initialize_complex_structure(uint64_t main_handle, uint64_t base_config, ui
   
   // 初始化基本参数
   init_flag = 0xfffffffffffffffe;  // 初始化标志
-  structure_ptr = &unknown_var_3456_ptr;  // 结构体指针
+  structure_ptr = &system_data_buffer_ptr;  // 结构体指针
   
   // 清零所有配置字段
   mesh_data_ptr = 0;              // 网格数据指针
@@ -259,7 +259,7 @@ void reset_structure_pointers(uint64_t *structure_ptr)
   FUN_180074a80();
   
   // 设置主指针
-  *structure_ptr = &unknown_var_3456_ptr;
+  *structure_ptr = &system_data_buffer_ptr;
   
   // 检查并重置索引1处的指针
   if (structure_ptr[1] != 0) {
@@ -272,7 +272,7 @@ void reset_structure_pointers(uint64_t *structure_ptr)
   *(int32_t *)(structure_ptr + 3) = 0;
   
   // 设置最终指针状态
-  *structure_ptr = &unknown_var_720_ptr;
+  *structure_ptr = &system_state_ptr;
   
   return;
 }
@@ -377,13 +377,13 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
   longlong loop_counter;           // 循环计数器
   
   // 初始化序列化过程
-  FUN_180639ec0(buffer_ptr, mesh_handle);
+  System_QueueProcessor(buffer_ptr, mesh_handle);
   lVar6 = *(longlong *)(param_1 + 0x28) - *(longlong *)(param_1 + 0x20);
   piVar3 = (int *)param_2[1];
   lVar6 = lVar6 / 0x12 + (lVar6 >> 0x3f);
   iVar8 = (int)(lVar6 >> 1) - (int)(lVar6 >> 0x3f);
   if ((ulonglong)((*param_2 - (longlong)piVar3) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)piVar3 + (4 - *param_2));
+    System_BufferManager(param_2,(longlong)piVar3 + (4 - *param_2));
     piVar3 = (int *)param_2[1];
   }
   *piVar3 = iVar8;
@@ -395,14 +395,14 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
     do {
       lVar7 = *(longlong *)(param_1 + 0x20) + lVar10;
       if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
+        System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
         puVar4 = (int32_t *)param_2[1];
       }
       *puVar4 = 0;
       param_2[1] = param_2[1] + 4;
       puVar4 = (int32_t *)param_2[1];
       if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
+        System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
         puVar4 = (int32_t *)param_2[1];
       }
       *puVar4 = 0x10;
@@ -410,7 +410,7 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
       puVar5 = (uint *)param_2[1];
       uVar1 = *(ushort *)(lVar7 + 0x10);
       if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(longlong)puVar5 + (4 - *param_2));
+        System_BufferManager(param_2,(longlong)puVar5 + (4 - *param_2));
         puVar5 = (uint *)param_2[1];
       }
       *puVar5 = (uint)uVar1;
@@ -420,7 +420,7 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
         uVar2 = *(uint64_t *)(lVar7 + 8);
         uVar9 = (ulonglong)*(ushort *)(lVar7 + 0x10) * 4;
         if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) <= uVar9) {
-          FUN_180639bf0(param_2,(longlong)puVar4 + (uVar9 - *param_2));
+          System_BufferManager(param_2,(longlong)puVar4 + (uVar9 - *param_2));
           puVar4 = (int32_t *)param_2[1];
         }
                     // WARNING: Subroutine does not return
@@ -428,14 +428,14 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
       }
       lVar7 = *(longlong *)(param_1 + 0x20) + lVar10;
       if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
+        System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
         puVar4 = (int32_t *)param_2[1];
       }
       *puVar4 = 0;
       param_2[1] = param_2[1] + 4;
       puVar4 = (int32_t *)param_2[1];
       if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
+        System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
         puVar4 = (int32_t *)param_2[1];
       }
       *puVar4 = 0x10;
@@ -443,7 +443,7 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
       puVar5 = (uint *)param_2[1];
       uVar1 = *(ushort *)(lVar7 + 0x22);
       if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(longlong)puVar5 + (4 - *param_2));
+        System_BufferManager(param_2,(longlong)puVar5 + (4 - *param_2));
         puVar5 = (uint *)param_2[1];
       }
       *puVar5 = (uint)uVar1;
@@ -453,7 +453,7 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
         uVar2 = *(uint64_t *)(lVar7 + 0x1a);
         uVar9 = (ulonglong)*(ushort *)(lVar7 + 0x22) * 4;
         if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) <= uVar9) {
-          FUN_180639bf0(param_2,(longlong)puVar4 + (uVar9 - *param_2));
+          System_BufferManager(param_2,(longlong)puVar4 + (uVar9 - *param_2));
           puVar4 = (int32_t *)param_2[1];
         }
                     // WARNING: Subroutine does not return
@@ -464,14 +464,14 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
     } while (lVar6 != 0);
   }
   if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
+    System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
     puVar4 = (int32_t *)param_2[1];
   }
   *puVar4 = 0;
   param_2[1] = param_2[1] + 4;
   puVar4 = (int32_t *)param_2[1];
   if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
+    System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
     puVar4 = (int32_t *)param_2[1];
   }
   *puVar4 = 0x10;
@@ -479,7 +479,7 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
   puVar5 = (uint *)param_2[1];
   uVar1 = *(ushort *)(param_1 + 0x50);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (4 - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (4 - *param_2));
     puVar5 = (uint *)param_2[1];
   }
   *puVar5 = (uint)uVar1;
@@ -489,21 +489,21 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
     uVar2 = *(uint64_t *)(param_1 + 0x48);
     uVar9 = (ulonglong)*(ushort *)(param_1 + 0x50) * 4;
     if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) <= uVar9) {
-      FUN_180639bf0(param_2,(longlong)puVar4 + (uVar9 - *param_2));
+      System_BufferManager(param_2,(longlong)puVar4 + (uVar9 - *param_2));
       puVar4 = (int32_t *)param_2[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(puVar4,uVar2,uVar9);
   }
   if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
+    System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
     puVar4 = (int32_t *)param_2[1];
   }
   *puVar4 = 0;
   param_2[1] = param_2[1] + 4;
   puVar4 = (int32_t *)param_2[1];
   if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
+    System_BufferManager(param_2,(longlong)puVar4 + (4 - *param_2));
     puVar4 = (int32_t *)param_2[1];
   }
   *puVar4 = 0x10;
@@ -511,7 +511,7 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
   puVar5 = (uint *)param_2[1];
   uVar1 = *(ushort *)(param_1 + 0x62);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (4 - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (4 - *param_2));
     puVar5 = (uint *)param_2[1];
   }
   *puVar5 = (uint)uVar1;
@@ -523,7 +523,7 @@ void serialize_mesh_data(longlong mesh_handle, longlong *buffer_ptr)
   uVar2 = *(uint64_t *)(param_1 + 0x5a);
   uVar9 = (ulonglong)*(ushort *)(param_1 + 0x62) * 4;
   if ((ulonglong)((*param_2 - lVar6) + param_2[2]) <= uVar9) {
-    FUN_180639bf0(param_2,uVar9 + (lVar6 - *param_2));
+    System_BufferManager(param_2,uVar9 + (lVar6 - *param_2));
     lVar6 = param_2[1];
   }
                     // WARNING: Subroutine does not return
@@ -557,13 +557,13 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
   ulonglong uVar9;
   longlong lVar10;
   
-  FUN_180639ec0();
+  System_QueueProcessor();
   lVar6 = *(longlong *)(param_1 + 0x28) - *(longlong *)(param_1 + 0x20);
   piVar3 = (int *)unaff_RBX[1];
   lVar6 = lVar6 / 0x12 + (lVar6 >> 0x3f);
   iVar8 = (int)(lVar6 >> 1) - (int)(lVar6 >> 0x3f);
   if ((ulonglong)((*unaff_RBX - (longlong)piVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     piVar3 = (int *)unaff_RBX[1];
   }
   *piVar3 = iVar8;
@@ -575,14 +575,14 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
     do {
       lVar7 = *(longlong *)(param_1 + 0x20) + lVar10;
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = 0;
       unaff_RBX[1] = unaff_RBX[1] + 4;
       puVar4 = (int32_t *)unaff_RBX[1];
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = 0x10;
@@ -590,7 +590,7 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
       puVar5 = (uint *)unaff_RBX[1];
       uVar1 = *(ushort *)(lVar7 + 0x10);
       if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar5 = (uint *)unaff_RBX[1];
       }
       *puVar5 = (uint)uVar1;
@@ -600,7 +600,7 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
         uVar2 = *(uint64_t *)(lVar7 + 8);
         uVar9 = (ulonglong)*(ushort *)(lVar7 + 0x10) * 4;
         if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar9) {
-          FUN_180639bf0();
+          System_BufferManager();
           puVar4 = (int32_t *)unaff_RBX[1];
         }
                     // WARNING: Subroutine does not return
@@ -608,14 +608,14 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
       }
       lVar7 = *(longlong *)(param_1 + 0x20) + lVar10;
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = 0;
       unaff_RBX[1] = unaff_RBX[1] + 4;
       puVar4 = (int32_t *)unaff_RBX[1];
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = 0x10;
@@ -623,7 +623,7 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
       puVar5 = (uint *)unaff_RBX[1];
       uVar1 = *(ushort *)(lVar7 + 0x22);
       if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar5 = (uint *)unaff_RBX[1];
       }
       *puVar5 = (uint)uVar1;
@@ -633,7 +633,7 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
         uVar2 = *(uint64_t *)(lVar7 + 0x1a);
         uVar9 = (ulonglong)*(ushort *)(lVar7 + 0x22) * 4;
         if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar9) {
-          FUN_180639bf0();
+          System_BufferManager();
           puVar4 = (int32_t *)unaff_RBX[1];
         }
                     // WARNING: Subroutine does not return
@@ -644,14 +644,14 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
     } while (lVar6 != 0);
   }
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = 0;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar4 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = 0x10;
@@ -659,7 +659,7 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
   puVar5 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(param_1 + 0x50);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (uint *)unaff_RBX[1];
   }
   *puVar5 = (uint)uVar1;
@@ -669,21 +669,21 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
     uVar2 = *(uint64_t *)(param_1 + 0x48);
     uVar9 = (ulonglong)*(ushort *)(param_1 + 0x50) * 4;
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar9) {
-      FUN_180639bf0();
+      System_BufferManager();
       puVar4 = (int32_t *)unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(puVar4,uVar2,uVar9);
   }
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = 0;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar4 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = 0x10;
@@ -691,7 +691,7 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
   puVar5 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(param_1 + 0x62);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (uint *)unaff_RBX[1];
   }
   *puVar5 = (uint)uVar1;
@@ -703,7 +703,7 @@ void serialize_mesh_data_buffer(longlong mesh_handle)
   uVar2 = *(uint64_t *)(param_1 + 0x5a);
   uVar9 = (ulonglong)*(ushort *)(param_1 + 0x62) * 4;
   if ((ulonglong)((*unaff_RBX - lVar6) + unaff_RBX[2]) <= uVar9) {
-    FUN_180639bf0();
+    System_BufferManager();
     lVar6 = unaff_RBX[1];
   }
                     // WARNING: Subroutine does not return
@@ -740,14 +740,14 @@ void process_mesh_batch(uint *batch_params)
   do {
     lVar5 = *(longlong *)(unaff_R15 + 0x20) + uVar6;
     if ((ulonglong)((*unaff_RBX - (longlong)param_1) + unaff_RBX[2]) < 5) {
-      FUN_180639bf0();
+      System_BufferManager();
       param_1 = (uint *)unaff_RBX[1];
     }
     *param_1 = unaff_R13D;
     unaff_RBX[1] = unaff_RBX[1] + 4;
     puVar3 = (int32_t *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-      FUN_180639bf0();
+      System_BufferManager();
       puVar3 = (int32_t *)unaff_RBX[1];
     }
     *puVar3 = 0x10;
@@ -755,7 +755,7 @@ void process_mesh_batch(uint *batch_params)
     puVar4 = (uint *)unaff_RBX[1];
     uVar1 = *(ushort *)(lVar5 + 0x10);
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-      FUN_180639bf0();
+      System_BufferManager();
       puVar4 = (uint *)unaff_RBX[1];
     }
     *puVar4 = (uint)uVar1;
@@ -765,7 +765,7 @@ void process_mesh_batch(uint *batch_params)
       uVar2 = *(uint64_t *)(lVar5 + 8);
       uVar6 = (ulonglong)*(ushort *)(lVar5 + 0x10) * 4;
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar6) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (uint *)unaff_RBX[1];
       }
                     // WARNING: Subroutine does not return
@@ -773,14 +773,14 @@ void process_mesh_batch(uint *batch_params)
     }
     lVar5 = *(longlong *)(unaff_R15 + 0x20) + uVar6;
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-      FUN_180639bf0();
+      System_BufferManager();
       puVar4 = (uint *)unaff_RBX[1];
     }
     *puVar4 = unaff_R13D;
     unaff_RBX[1] = unaff_RBX[1] + 4;
     puVar3 = (int32_t *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-      FUN_180639bf0();
+      System_BufferManager();
       puVar3 = (int32_t *)unaff_RBX[1];
     }
     *puVar3 = 0x10;
@@ -788,7 +788,7 @@ void process_mesh_batch(uint *batch_params)
     puVar4 = (uint *)unaff_RBX[1];
     uVar1 = *(ushort *)(lVar5 + 0x22);
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-      FUN_180639bf0();
+      System_BufferManager();
       puVar4 = (uint *)unaff_RBX[1];
     }
     *puVar4 = (uint)uVar1;
@@ -798,7 +798,7 @@ void process_mesh_batch(uint *batch_params)
       uVar2 = *(uint64_t *)(lVar5 + 0x1a);
       uVar6 = (ulonglong)*(ushort *)(lVar5 + 0x22) * 4;
       if ((ulonglong)((*unaff_RBX - (longlong)param_1) + unaff_RBX[2]) <= uVar6) {
-        FUN_180639bf0();
+        System_BufferManager();
         param_1 = (uint *)unaff_RBX[1];
       }
                     // WARNING: Subroutine does not return
@@ -808,14 +808,14 @@ void process_mesh_batch(uint *batch_params)
     unaff_R12 = unaff_R12 + -1;
   } while (unaff_R12 != 0);
   if ((ulonglong)((*unaff_RBX - (longlong)param_1) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     param_1 = (uint *)unaff_RBX[1];
   }
   *param_1 = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = 0x10;
@@ -823,7 +823,7 @@ void process_mesh_batch(uint *batch_params)
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x50);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = (uint)uVar1;
@@ -833,21 +833,21 @@ void process_mesh_batch(uint *batch_params)
     uVar2 = *(uint64_t *)(unaff_R15 + 0x48);
     uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4;
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar6) {
-      FUN_180639bf0();
+      System_BufferManager();
       puVar4 = (uint *)unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(puVar4,uVar2,uVar6);
   }
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = 0x10;
@@ -855,7 +855,7 @@ void process_mesh_batch(uint *batch_params)
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x62);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = (uint)uVar1;
@@ -865,7 +865,7 @@ void process_mesh_batch(uint *batch_params)
     uVar2 = *(uint64_t *)(unaff_R15 + 0x5a);
     uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
     if ((ulonglong)((*unaff_RBX - lVar5) + unaff_RBX[2]) <= uVar6) {
-      FUN_180639bf0();
+      System_BufferManager();
       lVar5 = unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
@@ -900,14 +900,14 @@ void write_buffer_header(int32_t *buffer_ptr)
   longlong unaff_R15;
   
   if ((ulonglong)((*unaff_RBX - (longlong)param_1) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     param_1 = (int32_t *)unaff_RBX[1];
   }
   *param_1 = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = 0x10;
@@ -915,7 +915,7 @@ void write_buffer_header(int32_t *buffer_ptr)
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x50);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = (uint)uVar1;
@@ -925,21 +925,21 @@ void write_buffer_header(int32_t *buffer_ptr)
     uVar2 = *(uint64_t *)(unaff_R15 + 0x48);
     uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4;
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) <= uVar6) {
-      FUN_180639bf0();
+      System_BufferManager();
       puVar3 = (int32_t *)unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(puVar3,uVar2,uVar6);
   }
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = 0x10;
@@ -947,7 +947,7 @@ void write_buffer_header(int32_t *buffer_ptr)
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x62);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = (uint)uVar1;
@@ -957,7 +957,7 @@ void write_buffer_header(int32_t *buffer_ptr)
     uVar2 = *(uint64_t *)(unaff_R15 + 0x5a);
     uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
     if ((ulonglong)((*unaff_RBX - lVar5) + unaff_RBX[2]) <= uVar6) {
-      FUN_180639bf0();
+      System_BufferManager();
       lVar5 = unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
@@ -991,12 +991,12 @@ void initialize_buffer_writer(void)
   int32_t init_flags;           // 初始化标志;
   longlong unaff_R15;
   
-  FUN_180639bf0();
+  System_BufferManager();
   *(int32_t *)unaff_RBX[1] = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = 0x10;
@@ -1004,7 +1004,7 @@ void initialize_buffer_writer(void)
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x50);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = (uint)uVar1;
@@ -1014,21 +1014,21 @@ void initialize_buffer_writer(void)
     uVar2 = *(uint64_t *)(unaff_R15 + 0x48);
     uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4;
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) <= uVar6) {
-      FUN_180639bf0();
+      System_BufferManager();
       puVar3 = (int32_t *)unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(puVar3,uVar2,uVar6);
   }
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = unaff_R13D;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = 0x10;
@@ -1036,7 +1036,7 @@ void initialize_buffer_writer(void)
   puVar4 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x62);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (uint *)unaff_RBX[1];
   }
   *puVar4 = (uint)uVar1;
@@ -1046,7 +1046,7 @@ void initialize_buffer_writer(void)
     uVar2 = *(uint64_t *)(unaff_R15 + 0x5a);
     uVar6 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
     if ((ulonglong)((*unaff_RBX - lVar5) + unaff_RBX[2]) <= uVar6) {
-      FUN_180639bf0();
+      System_BufferManager();
       lVar5 = unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return
@@ -1078,13 +1078,13 @@ void finalize_buffer_writer(void)
   ulonglong remaining_size;        // 剩余大小
   longlong resource_handle;        // 资源句柄;
   
-  FUN_180639bf0();
+  System_BufferManager();
   *(int32_t *)unaff_RBX[1] = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   puVar3 = (uint *)unaff_RBX[1];
   uVar1 = *(ushort *)(unaff_R15 + 0x62);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar3 = (uint *)unaff_RBX[1];
   }
   *puVar3 = (uint)uVar1;
@@ -1094,7 +1094,7 @@ void finalize_buffer_writer(void)
     uVar2 = *(uint64_t *)(unaff_R15 + 0x5a);
     uVar5 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
     if ((ulonglong)((*unaff_RBX - lVar4) + unaff_RBX[2]) <= uVar5) {
-      FUN_180639bf0();
+      System_BufferManager();
       lVar4 = unaff_RBX[1];
     }
                     // WARNING: Subroutine does not return

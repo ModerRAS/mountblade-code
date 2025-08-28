@@ -35,7 +35,7 @@ void FUN_1805fede0(uint64_t param_1,longlong param_2)
     strcpy_s(auStack_38,0x20,param_2);
   }
   FUN_18040b330(uVar1,&puStack_50,1);
-  puStack_50 = &unknown_var_720_ptr;
+  puStack_50 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_78);
 }

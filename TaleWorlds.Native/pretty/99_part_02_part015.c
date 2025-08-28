@@ -684,7 +684,7 @@ LAB_1800f4beb:
   }
   puVar5 = puVar9;
 LAB_1800f4c2c:
-  puStack_d8 = &unknown_var_720_ptr;
+  puStack_d8 = &system_state_ptr;
   if (puVar5 == puVar9) {
     *param_2 = 0;
   }

@@ -122,7 +122,7 @@ void initialize_engine_core_module(uint64_t *module_config)
   stack_guard_2 = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer_1;
   init_status = 0;
   buffer_ptr = temp_buffer_2;
-  resource_ptr = &unknown_var_7512_ptr;
+  resource_ptr = &system_config_ptr;
   string_ptr = name_buffer;
   name_buffer[0] = 0;
   buffer_size = 0;
@@ -130,11 +130,11 @@ void initialize_engine_core_module(uint64_t *module_config)
   strcpy_s(name_buffer,0x10,&system_buffer_ptr);
   initialize_resource_buffer(temp_buffer_2,&resource_ptr);
   initialize_engine_system();
-  resource_ptr = &unknown_var_720_ptr;
-  *module_config = &unknown_var_720_ptr;
+  resource_ptr = &system_state_ptr;
+  *module_config = &system_state_ptr;
   module_config[1] = 0;
   *(int32_t *)(module_config + 2) = 0;
-  *module_config = &unknown_var_3456_ptr;
+  *module_config = &system_data_buffer_ptr;
   module_config[3] = 0;
   module_config[1] = 0;
   *(int32_t *)(module_config + 2) = 0;
@@ -165,10 +165,10 @@ configure_engine_parameters(uint64_t *config_ptr,uint64_t param2,uint64_t param3
   int32_t *instance_data;
   
   *(int32_t *)(core_system_data_config + 0x2f8) = *(int32_t *)(system_main_module_state + 0x224);
-  *config_ptr = &unknown_var_720_ptr;
+  *config_ptr = &system_state_ptr;
   config_ptr[1] = 0;
   *(int32_t *)(config_ptr + 2) = 0;
-  *config_ptr = &unknown_var_3456_ptr;
+  *config_ptr = &system_data_buffer_ptr;
   config_ptr[3] = 0;
   config_ptr[1] = 0;
   *(int32_t *)(config_ptr + 2) = 0;

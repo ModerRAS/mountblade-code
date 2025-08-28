@@ -68,14 +68,14 @@ longlong FUN_1804c98d0(longlong *param_1,longlong *param_2,int param_3)
   if (param_3 == 0) {
     lVar2 = *param_1;
     if (lVar2 != 0) {
-      *(uint64_t *)(lVar2 + 0x10) = &unknown_var_3456_ptr;
+      *(uint64_t *)(lVar2 + 0x10) = &system_data_buffer_ptr;
       if (*(longlong *)(lVar2 + 0x18) != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       *(uint64_t *)(lVar2 + 0x18) = 0;
       *(int32_t *)(lVar2 + 0x28) = 0;
-      *(uint64_t *)(lVar2 + 0x10) = &unknown_var_720_ptr;
+      *(uint64_t *)(lVar2 + 0x10) = &system_state_ptr;
                     // WARNING: Subroutine does not return
       FUN_18064e900(lVar2);
     }
@@ -167,7 +167,7 @@ void FUN_1804c9a60(longlong param_1)
   uStack_e8._0_4_ = 0x10;
   strcpy_s(auStack_e0,0x40,&unknown_var_1944_ptr);
   FUN_1800b33d0(system_resource_state,&puStack_128,&plStack_f8);
-  plStack_f8 = (longlong *)&unknown_var_720_ptr;
+  plStack_f8 = (longlong *)&system_state_ptr;
   if (puStack_128 == (ulonglong *)0x0) {
     FUN_180626f80(&unknown_var_1808_ptr);
     uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,3);
@@ -258,7 +258,7 @@ void FUN_1804c9a60(longlong param_1)
   if ((longlong *)CONCAT44(uStack_130._4_4_,(int32_t)uStack_130) != (longlong *)0x0) {
     (**(code **)(*(longlong *)CONCAT44(uStack_130._4_4_,(int32_t)uStack_130) + 0x38))();
   }
-  puStack_98 = &unknown_var_720_ptr;
+  puStack_98 = &system_state_ptr;
   if (puStack_128 == (ulonglong *)0x0) {
     FUN_180626f80(&unknown_var_1968_ptr);
     uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,3);
@@ -384,7 +384,7 @@ void FUN_1804ca020(longlong *param_1)
   FUN_1800623b0(system_message_context,0,0xffffffff00000000,4,&unknown_var_2232_ptr,system_interrupt_handler);
   fVar6 = (float)FUN_180623d40();
   FUN_1800623b0(system_message_context,0,0xffffffff00000000,7,&unknown_var_2200_ptr,(double)fVar6);
-  puStack_68 = &unknown_var_3456_ptr;
+  puStack_68 = &system_data_buffer_ptr;
   uStack_50 = 0;
   puStack_60 = (void *)0x0;
   uStack_58 = 0;

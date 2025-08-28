@@ -294,8 +294,8 @@ uint64_t *rendering_system_memory_allocator(uint64_t *memory_block, ulonglong al
     
     // 基本的内存块初始化
     *memory_block = &unknown_var_6880_ptr;
-    *memory_block = &unknown_var_3696_ptr;
-    *memory_block = &unknown_var_3552_ptr;
+    *memory_block = &system_handler2_ptr;
+    *memory_block = &system_handler1_ptr;
     
     // 简化的内存分配检查
     if ((allocation_size & 1) != 0) {

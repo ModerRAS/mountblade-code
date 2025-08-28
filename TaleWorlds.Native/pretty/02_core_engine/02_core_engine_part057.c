@@ -342,8 +342,8 @@ void process_render_event(uint64_t event_context, int event_x, int event_y)
         event_queue = (longlong *)allocate_event_memory(system_memory_pool_ptr, 0x48, 8, CONCAT71((int7)((ulonglong)render_state1 >> 8), 3), 0xfffffffffffffffe);
         
         // 设置事件队列
-        *event_queue = (longlong)&unknown_var_3552_ptr;
-        *event_queue = (longlong)&unknown_var_3696_ptr;
+        *event_queue = (longlong)&system_handler1_ptr;
+        *event_queue = (longlong)&system_handler2_ptr;
         *(int32_t *)(event_queue + 1) = 0;
         *event_queue = (longlong)&unknown_var_1000_ptr;
         LOCK();

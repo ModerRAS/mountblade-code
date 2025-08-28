@@ -223,29 +223,29 @@ void FUN_1804940f4(uint64_t param_1,uint64_t param_2,longlong param_3)
     do {
       uVar11 = uStack000000000000005c * 3;
       uVar36 = *(uint64_t *)
-                (unaff_RBP + (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)uVar11 * 4) * 4 + 8 +
+                (unaff_RBP + (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)uVar11 * 4) * 4 + 8 +
                 2);
       *(uint64_t *)(unaff_RBP + -8) =
            *(uint64_t *)
-            (unaff_RBP + (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)uVar11 * 4) * 4 + 8);
+            (unaff_RBP + (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)uVar11 * 4) * 4 + 8);
       *(uint64_t *)(unaff_RBP + -6) = uVar36;
       if (unaff_XMM7_Da + in_XMM4_Da * fVar2 + unaff_XMM6_Da * fVar1 < 0.0) {
         uVar36 = *(uint64_t *)
                   (unaff_RBP +
-                  (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar11 + 1) * 4) * 4 + 8);
+                  (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar11 + 1) * 4) * 4 + 8);
         uVar37 = *(uint64_t *)
                   (unaff_RBP +
-                   (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar11 + 1) * 4) * 4 + 8 + 2);
-        uVar11 = *(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar11 + 2) * 4);
+                   (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar11 + 1) * 4) * 4 + 8 + 2);
+        uVar11 = *(uint *)(&system_handler3_ptr + (ulonglong)(uVar11 + 2) * 4);
       }
       else {
         uVar36 = *(uint64_t *)
                   (unaff_RBP +
-                  (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar11 + 2) * 4) * 4 + 8);
+                  (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar11 + 2) * 4) * 4 + 8);
         uVar37 = *(uint64_t *)
                   (unaff_RBP +
-                   (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar11 + 2) * 4) * 4 + 8 + 2);
-        uVar11 = *(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar11 + 1) * 4);
+                   (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar11 + 2) * 4) * 4 + 8 + 2);
+        uVar11 = *(uint *)(&system_handler3_ptr + (ulonglong)(uVar11 + 1) * 4);
       }
       fVar3 = unaff_RBP[-6];
       *(uint64_t *)(unaff_RBP + -4) = uVar36;

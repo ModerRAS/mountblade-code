@@ -548,7 +548,7 @@ uint64_t *
 FUN_1806236f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
   *param_2 = &unknown_var_3432_ptr;
@@ -567,8 +567,8 @@ FUN_1806236f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
 void FUN_180623770(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   return;
 }
 
@@ -733,7 +733,7 @@ void FUN_180623800(uint64_t *param_1)
     *(int32_t *)(puVar5 + 0x10) = uStack_28;
     puVar4[1] = puVar4[1] + 0x84;
   }
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_d8);
 }
@@ -746,10 +746,10 @@ FUN_1806239a0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
 {
   uint64_t *puVar1;
   
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -1002,7 +1002,7 @@ void FUN_180623de0(longlong *param_1)
   
   uStack_a0 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
-  *param_1 = (longlong)&unknown_var_720_ptr;
+  *param_1 = (longlong)&system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
   *param_1 = (longlong)&unknown_var_3432_ptr;
@@ -1108,10 +1108,10 @@ uint64_t *
 FUN_180624030(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_7512_ptr;
+  *param_1 = &system_config_ptr;
   param_1[1] = param_1 + 3;
   *(int8_t *)(param_1 + 3) = 0;
   *(int32_t *)(param_1 + 2) = 6;

@@ -415,7 +415,7 @@ LAB_18026c687:
     } while ((longlong)plVar18 < 0x180bf8f00);
     
     // 数据字段处理
-    puStack_468 = &unknown_var_720_ptr;
+    puStack_468 = &system_state_ptr;
     *(int32_t *)((longlong)param_1 + 0x6c) = **(int32_t **)(param_2 + 8);
     lVar14 = *(longlong *)(param_2 + 8);
     *(int32_t *)((longlong)param_1 + 0x74) = *(int32_t *)(lVar14 + 8);
@@ -656,7 +656,7 @@ LAB_18026cbfa:
     }
     
     // 继续数据处理
-    puStack_468 = &unknown_var_720_ptr;
+    puStack_468 = &system_state_ptr;
     lVar14 = *(longlong *)(param_2 + 8);
     *(int32_t *)((longlong)param_1 + 0x15c) = *(int32_t *)(lVar14 + 8);
     *(int32_t *)(param_1 + 0x2b) = *(int32_t *)(lVar14 + 0xc);
@@ -828,7 +828,7 @@ LAB_18026d094:
         if (0x180bf8fcf < (longlong)plVar18) {
 LAB_18026d0a6:
             // 高级配置处理
-            puStack_468 = &unknown_var_720_ptr;
+            puStack_468 = &system_state_ptr;
             FUN_18026fc50(param_1 + 0x90, param_2);
             puVar10 = *(int32_t **)(param_2 + 8);
             *(int32_t *)(param_1 + 0xfc) = *puVar10;

@@ -659,7 +659,7 @@ void initialize_rendering_system(void) {
 #define DEFAULT_TEXTURE_NAME &system_buffer_ptr
 #define MATERIAL_PATH_DELIMITER &system_memory_ff10
 #define DEFAULT_TEXTURE_HANDLE &unknown_var_3432_ptr
-#define CLEANUP_TEXTURE_HANDLE &unknown_var_720_ptr
+#define CLEANUP_TEXTURE_HANDLE &system_state_ptr
 #define DEFAULT_RENDER_OBJECT &unknown_var_9304_ptr
 
 // 函数别名定义

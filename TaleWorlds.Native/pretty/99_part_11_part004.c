@@ -699,7 +699,7 @@ void FUN_1806d88f0(uint64_t *param_1)
   if (param_1[1] != 0) {
     fclose();
   }
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler1_ptr;
   return;
 }
 
@@ -712,7 +712,7 @@ uint64_t * FUN_1806d89b0(uint64_t *param_1,ulonglong param_2)
   if (param_1[1] != 0) {
     fclose();
   }
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x18);
   }
@@ -740,7 +740,7 @@ uint64_t * FUN_1806d8a10(uint64_t *param_1,ulonglong param_2)
 uint64_t * FUN_1806d8a70(uint64_t *param_1,ulonglong param_2)
 
 {
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x20);
   }
@@ -776,7 +776,7 @@ FUN_1806d8aa0(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   else {
     puVar4 = (void *)__std_type_info_name(0x180bfc5e8,0x180c827e0);
   }
-  lVar5 = (**(code **)(*plVar2 + 8))(plVar2,0x78,puVar4,&unknown_var_2240_ptr,CONCAT44(uVar7,0x31));
+  lVar5 = (**(code **)(*plVar2 + 8))(plVar2,0x78,puVar4,&system_callback1_ptr,CONCAT44(uVar7,0x31));
   if (lVar5 == 0) {
     plVar2 = (longlong *)0x0;
   }

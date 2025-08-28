@@ -909,7 +909,7 @@ LAB_1802b2c74:
       puVar7 = puStack_b0;
     }
     FUN_180630b20(param_2,uVar6,&unknown_var_6228_ptr,puVar7);
-    puStack_b8 = &unknown_var_720_ptr;
+    puStack_b8 = &system_state_ptr;
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_118);

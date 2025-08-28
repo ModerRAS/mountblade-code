@@ -170,7 +170,7 @@ void FUN_180246810(int32_t *param_1)
   if (puVar11 != puVar10) {
     do {
       plStack_628 = puVar11;
-      *plStack_628 = (longlong)&unknown_var_720_ptr;
+      *plStack_628 = (longlong)&system_state_ptr;
       plStack_638 = plStack_628 + 0x18;
       puVar11 = plStack_638;
     } while (plStack_638 != puVar10);

@@ -719,7 +719,7 @@ LAB_18033c6e9:
 LAB_18033c811:
       *param_2 = puVar5;
       *(int8_t *)(param_2 + 1) = 0;
-      puStack_40 = &unknown_var_3456_ptr;
+      puStack_40 = &system_data_buffer_ptr;
       if (pbStack_38 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();

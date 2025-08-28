@@ -157,7 +157,7 @@ void utilities_initialize_global_variables(uint64_t param_1, uint64_t param_2, u
     
     // 循环处理数据结构，初始化全局变量
     while (data_ptr2 != data_ptr1) {
-        *data_ptr2 = &unknown_var_3456_ptr;
+        *data_ptr2 = &system_data_buffer_ptr;
         
         // 检查数据状态，如果非零则报错
         if (data_ptr2[1] != 0) {
@@ -167,7 +167,7 @@ void utilities_initialize_global_variables(uint64_t param_1, uint64_t param_2, u
         
         data_ptr2[1] = 0;
         *(uint32_t*)(data_ptr2 + 3) = 0;
-        *data_ptr2 = &unknown_var_720_ptr;
+        *data_ptr2 = &system_state_ptr;
         
         data_ptr2 += 7; // 移动到下一个数据块
     }
@@ -190,7 +190,7 @@ void utilities_initialize_global_variables(uint64_t param_1, uint64_t param_2, u
 void utilities_mutex_destroy(void)
 {
     // 设置全局互斥量状态
-    system_pointer_data_2050 = &unknown_var_720_ptr;
+    system_pointer_data_2050 = &system_state_ptr;
     
     // 调用互斥量销毁函数
     _Mtx_destroy_in_situ();
@@ -206,7 +206,7 @@ void utilities_mutex_destroy(void)
 void utilities_set_global_variable_1(void)
 {
     // 设置全局变量状态
-    system_control_pointer_data_aef0 = &unknown_var_720_ptr;
+    system_control_pointer_data_aef0 = &system_state_ptr;
 }
 
 /**
@@ -219,7 +219,7 @@ void utilities_set_global_variable_1(void)
 void utilities_set_global_variable_2(void)
 {
     // 设置全局变量状态
-    system_control_pointer_data_b310 = &unknown_var_720_ptr;
+    system_control_pointer_data_b310 = &system_state_ptr;
 }
 
 /**
@@ -232,7 +232,7 @@ void utilities_set_global_variable_2(void)
 void utilities_set_global_variable_3(void)
 {
     // 设置全局变量状态
-    system_control_pointer_data_b730 = &unknown_var_720_ptr;
+    system_control_pointer_data_b730 = &system_state_ptr;
 }
 
 /**
@@ -245,7 +245,7 @@ void utilities_set_global_variable_3(void)
 void utilities_set_global_variable_4(void)
 {
     // 设置全局变量状态
-    system_config_pointer_data_99d0 = &unknown_var_720_ptr;
+    system_config_pointer_data_99d0 = &system_state_ptr;
 }
 
 /**
@@ -258,7 +258,7 @@ void utilities_set_global_variable_4(void)
 void utilities_set_global_variable_5(void)
 {
     // 设置全局变量状态
-    system_config_pointer_data_9bf0 = &unknown_var_720_ptr;
+    system_config_pointer_data_9bf0 = &system_state_ptr;
 }
 
 /**
@@ -709,7 +709,7 @@ void utilities_mutex_destroy_2(void)
 void utilities_set_global_variable_6(void)
 {
     // 设置全局变量状态
-    system_control_pointer_data_6048 = &unknown_var_720_ptr;
+    system_control_pointer_data_6048 = &system_state_ptr;
 }
 
 /**
@@ -722,7 +722,7 @@ void utilities_set_global_variable_6(void)
 void utilities_set_global_variable_7(void)
 {
     // 设置全局变量状态
-    system_control_pointer_data_6498 = &unknown_var_720_ptr;
+    system_control_pointer_data_6498 = &system_state_ptr;
 }
 
 /**
@@ -1019,7 +1019,7 @@ void utilities_check_system_state_13(void)
 void utilities_set_global_variable_8(void)
 {
     // 设置全局变量状态
-    system_control_pointer_data_64f8 = &unknown_var_720_ptr;
+    system_control_pointer_data_64f8 = &system_state_ptr;
 }
 
 /**
@@ -1032,7 +1032,7 @@ void utilities_set_global_variable_8(void)
 void utilities_set_global_variable_9(void)
 {
     // 设置全局变量状态
-    system_control_pointer_data_6558 = &unknown_var_720_ptr;
+    system_control_pointer_data_6558 = &system_state_ptr;
 }
 
 /**
@@ -1084,7 +1084,7 @@ void utilities_mutex_destroy_5(void)
 void utilities_set_global_variable_10(void)
 {
     // 设置全局变量状态
-    system_config_pointer_data_9f80 = &unknown_var_720_ptr;
+    system_config_pointer_data_9f80 = &system_state_ptr;
 }
 
 /**
@@ -1097,7 +1097,7 @@ void utilities_set_global_variable_10(void)
 void utilities_set_global_variable_11(void)
 {
     // 设置全局变量状态
-    system_config_pointer_data_9fe0 = &unknown_var_720_ptr;
+    system_config_pointer_data_9fe0 = &system_state_ptr;
 }
 
 /**
@@ -1110,7 +1110,7 @@ void utilities_set_global_variable_11(void)
 void utilities_cleanup_data_1(void)
 {
     // 设置数据状态
-    system_config_pointer_data_a068 = &unknown_var_3456_ptr;
+    system_config_pointer_data_a068 = &system_data_buffer_ptr;
     
     if (system_config_pointer_data_a070 != 0) {
         // 系统错误处理函数调用
@@ -1120,7 +1120,7 @@ void utilities_cleanup_data_1(void)
     // 重置数据状态
     system_config_pointer_data_a070 = 0;
     system_config_pointer_data_a080 = 0;
-    system_config_pointer_data_a068 = &unknown_var_720_ptr;
+    system_config_pointer_data_a068 = &system_state_ptr;
 }
 
 /**
@@ -1193,7 +1193,7 @@ void utilities_process_tls(void)
     tls_ptr = *(int64_t*)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
     
     // 设置TLS数据状态
-    *(uint64_t*)(tls_ptr + 0x18) = &unknown_var_3456_ptr;
+    *(uint64_t*)(tls_ptr + 0x18) = &system_data_buffer_ptr;
     
     if (*(int64_t*)(tls_ptr + 0x20) != 0) {
         // 系统错误处理函数调用
@@ -1203,7 +1203,7 @@ void utilities_process_tls(void)
     // 重置TLS数据状态
     *(uint64_t*)(tls_ptr + 0x20) = 0;
     *(uint32_t*)(tls_ptr + 0x30) = 0;
-    *(uint64_t*)(tls_ptr + 0x18) = &unknown_var_720_ptr;
+    *(uint64_t*)(tls_ptr + 0x18) = &system_state_ptr;
 }
 
 /**
@@ -1233,7 +1233,7 @@ void utilities_process_parameters_3(uint64_t param_1, uint64_t param_2, uint64_t
     FUN_180657620(&system_memory_67e0, *system_pointer_data_67f0, param_3, param_4, 0xfffffffffffffffe);
     
     // 设置数据状态
-    data_ptr[4] = &unknown_var_3456_ptr;
+    data_ptr[4] = &system_data_buffer_ptr;
     
     if (data_ptr[5] != 0) {
         // 系统错误处理函数调用
@@ -1243,7 +1243,7 @@ void utilities_process_parameters_3(uint64_t param_1, uint64_t param_2, uint64_t
     // 重置数据状态
     data_ptr[5] = 0;
     *(uint32_t*)(data_ptr + 7) = 0;
-    data_ptr[4] = &unknown_var_720_ptr;
+    data_ptr[4] = &system_state_ptr;
     
     // 系统错误处理函数调用
     FUN_18064e900(data_ptr);

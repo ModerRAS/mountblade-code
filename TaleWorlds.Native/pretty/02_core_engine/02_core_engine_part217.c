@@ -60,7 +60,7 @@ LAB_180193562:
   }
   
   // 处理碰撞声音材质名称覆盖
-  puStack_50 = &unknown_var_3456_ptr;
+  puStack_50 = &system_data_buffer_ptr;
   uStack_38 = 0;
   lStack_48 = 0;
   uStack_40 = 0;
@@ -330,7 +330,7 @@ LAB_180193a66:
       if ((physics_context + 0x60 != 0) && (pcVar7 != (char *)0x0)) {
         FUN_18010cbc0(pcVar7,&system_flag_6430,physics_context + 0x60); // 设置角阻尼
       }
-      puStack_50 = &unknown_var_3456_ptr;
+      puStack_50 = &system_data_buffer_ptr;
       if (lStack_48 == 0) {
         return;
       }
@@ -576,17 +576,17 @@ create_material_property_array(ulonglong array_size, uint64_t param_2, uint64_t 
       puVar3[-2] = (ulonglong)&unknown_var_5912_ptr;
       puVar3[-2] = (ulonglong)&unknown_var_2184_ptr;
       puVar1 = puVar3 + -1;
-      *puVar1 = (ulonglong)&unknown_var_720_ptr;
+      *puVar1 = (ulonglong)&system_state_ptr;
       *puVar3 = 0;
       *(int32_t *)(puVar3 + 1) = 0;
-      *puVar1 = (ulonglong)&unknown_var_3456_ptr;
+      *puVar1 = (ulonglong)&system_data_buffer_ptr;
       puVar3[2] = 0;
       *puVar3 = 0;
       *(int32_t *)(puVar3 + 1) = 0;
-      puVar3[3] = (ulonglong)&unknown_var_720_ptr;
+      puVar3[3] = (ulonglong)&system_state_ptr;
       puVar3[4] = 0;
       *(int32_t *)(puVar3 + 5) = 0;
-      puVar3[3] = (ulonglong)&unknown_var_3456_ptr;
+      puVar3[3] = (ulonglong)&system_data_buffer_ptr;
       puVar3[6] = 0;
       puVar3[4] = 0;
       *(int32_t *)(puVar3 + 5) = 0;
@@ -1007,22 +1007,22 @@ initialize_material_property_node(uint64_t *node_ptr, ulonglong flags, uint64_t 
 
 {
   // 初始化材质属性节点的第一个字段
-  node_ptr[5] = &unknown_var_3456_ptr;
+  node_ptr[5] = &system_data_buffer_ptr;
   if (node_ptr[6] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   node_ptr[6] = 0;
   *(int32_t *)(node_ptr + 8) = 0;
-  node_ptr[5] = &unknown_var_720_ptr;
-  node_ptr[1] = &unknown_var_3456_ptr;
+  node_ptr[5] = &system_state_ptr;
+  node_ptr[1] = &system_data_buffer_ptr;
   if (node_ptr[2] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   node_ptr[2] = 0;
   *(int32_t *)(node_ptr + 4) = 0;
-  node_ptr[1] = &unknown_var_720_ptr;
+  node_ptr[1] = &system_state_ptr;
   *node_ptr = &unknown_var_5912_ptr;
   if ((flags & 1) != 0) {
     free(node_ptr,0x68,param_3,param_4,0xfffffffffffffffe);

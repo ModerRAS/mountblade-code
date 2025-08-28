@@ -925,15 +925,15 @@ void FUN_180565300(longlong param_1)
   uStack_88 = 1;
   FUN_1803ae570(uVar2,uVar3,&puStack_58);
   uStack_88 = 0;
-  puStack_80 = &unknown_var_3456_ptr;
+  puStack_80 = &system_data_buffer_ptr;
   if (lStack_78 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_78 = 0;
   uStack_68 = 0;
-  puStack_80 = &unknown_var_720_ptr;
-  puStack_58 = &unknown_var_720_ptr;
+  puStack_80 = &system_state_ptr;
+  puStack_58 = &system_state_ptr;
   puVar1 = *(uint64_t **)(param_1 + 0x3360);
   if (puVar1 != (uint64_t *)0x0) {
     lVar4 = __RTCastToVoid(puVar1);

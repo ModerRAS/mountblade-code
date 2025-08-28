@@ -541,7 +541,7 @@ void FUN_1801a8f60(longlong *param_1)
     FUN_1801ba230(param_1[1] + 0x608);
     FUN_1801ba230(param_1[1] + 0x628);
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_3456_ptr,
+    FUN_180062300(system_message_context,&system_data_buffer_ptr,
                   ((longlong *)*param_1)[1] - *(longlong *)*param_1 >> 3);
   }
   return;

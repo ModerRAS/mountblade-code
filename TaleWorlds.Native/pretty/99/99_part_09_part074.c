@@ -191,10 +191,10 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
   FUN_1800623b0(system_message_context, 0, 4, 10, &unknown_var_2992_ptr, param_4);
   
   /* 系统状态验证 - 多层次状态检查 */
-  system_status_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
+  system_status_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
   if (((((system_status_flag != '\0') && 
          (system_status_flag = FUN_180645c10(0x180c95578, 0x12, &unknown_var_3472_ptr), system_status_flag != '\0')) &&
-        (system_status_flag = FUN_180645c10(0x180c95578, param_2, &unknown_var_3504_ptr), system_status_flag != '\0')) &&
+        (system_status_flag = FUN_180645c10(0x180c95578, param_2, &system_param1_ptr), system_status_flag != '\0')) &&
        ((system_status_flag = FUN_180645c10(0x180c95578, param_3, &unknown_var_3424_ptr), system_status_flag != '\0' &&
         (system_status_flag = FUN_180645c10(0x180c95578, param_4, &unknown_var_3424_ptr), system_status_flag != '\0')))) &&
       (system_status_flag = FUN_180645c10(0x180c95578, param_5, &system_memory_bc90), system_status_flag != '\0')) {
@@ -287,7 +287,7 @@ void system_data_validator(longlong *param_1)
   
   /* 系统参数获取 - 获取验证参数 */
   system_parameter = *(int32_t *)(*param_1 + 0x10);
-  system_validation_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
+  system_validation_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
   
   /* 系统数据验证流程 - 多级验证逻辑 */
   if (system_validation_flag != '\0') {
@@ -376,7 +376,7 @@ void system_resource_manager(longlong *param_1, uint64_t param_2, longlong param
   
   /* 系统参数获取 - 获取资源管理参数 */
   system_parameter = *(int32_t *)(*param_1 + 0x10);
-  system_validation_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
+  system_validation_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
   
   /* 系统资源验证流程 - 多级验证逻辑 */
   if (system_validation_flag != '\0') {
@@ -515,7 +515,7 @@ void system_parameter_handler(longlong *param_1, longlong param_2, int32_t param
     }
     
     /* 系统参数状态验证 - 验证参数状态 */
-    system_validation_flag = FUN_180645c10(system_context, 0, &unknown_var_3504_ptr);
+    system_validation_flag = FUN_180645c10(system_context, 0, &system_param1_ptr);
     if ((system_validation_flag != '\0') && 
         (system_validation_flag = FUN_180645c10(system_context, 0x16, &unknown_var_3472_ptr), 
          system_validation_flag != '\0')) {
@@ -572,7 +572,7 @@ void system_thread_synchronizer(void)
   }
   
   /* 系统状态验证 - 验证系统状态 */
-  system_validation_flag = FUN_180645c10(system_context, 0, &unknown_var_3504_ptr);
+  system_validation_flag = FUN_180645c10(system_context, 0, &system_param1_ptr);
   if ((system_validation_flag != '\0') && 
       (system_validation_flag = FUN_180645c10(system_context, 0x16, &unknown_var_3472_ptr), 
        system_validation_flag != '\0')) {
@@ -664,9 +664,9 @@ void system_empty_function(void)
 uint64_t *system_allocator(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
   /* 系统内存池初始化 - 初始化内存池 */
-  *param_1 = &unknown_var_4192_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler3_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   
   /* 系统内存释放 - 根据标志释放内存 */
   if ((param_2 & 1) != 0) {
@@ -696,9 +696,9 @@ uint64_t *system_allocator(uint64_t *param_1, ulonglong param_2, uint64_t param_
 void system_resource_initializer(uint64_t *param_1)
 {
   /* 系统资源池初始化 - 初始化资源池 */
-  *param_1 = &unknown_var_4192_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler3_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   
   return;
 }

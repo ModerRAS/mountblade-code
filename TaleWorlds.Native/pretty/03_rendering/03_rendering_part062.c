@@ -340,7 +340,7 @@ void rendering_resource_allocator(uint64_t render_context, longlong resource_dat
     }
     stack_ptr4 = (longlong *)0x0;
     stack_ptr2 = resource_ptr;
-    stack_ptr5 = &unknown_var_7512_ptr;
+    stack_ptr5 = &system_config_ptr;
     stack_ptr6 = stack_buffer2;
     stack_buffer2[0] = 0;
     stack_param17 = 9;
@@ -355,8 +355,8 @@ void rendering_resource_allocator(uint64_t render_context, longlong resource_dat
     }
     strcpy_s(stack_buffer3, 0x80, data_ptr);
     FUN_1800b2450();
-    stack_ptr7 = &unknown_var_720_ptr;
-    stack_ptr5 = &unknown_var_720_ptr;
+    stack_ptr7 = &system_state_ptr;
+    stack_ptr5 = &system_state_ptr;
     
     // 执行资源分配
     stack_param4 = (uint)*(byte *)((longlong)stack_ptr3 + 0x335);
@@ -631,8 +631,8 @@ void rendering_resource_manager(longlong render_context, longlong resource_data,
     }
     strcpy_s(stack_buffer3, 0x80, data_ptr);
     FUN_1800b2450();
-    stack_ptr6 = &unknown_var_720_ptr;
-    stack_ptr5 = &unknown_var_720_ptr;
+    stack_ptr6 = &system_state_ptr;
+    stack_ptr5 = &system_state_ptr;
     resource_handle = FUN_18023a940(stack_ptr2);
     stack_param6 = *(uint64_t *)(resource_handle + 8);
     param_value2 = (uint)*(byte *)(resource_data + 0x335);
@@ -868,7 +868,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         strcpy_s(stack_buffer4, 0x100, data_ptr1);
         resource_handle = FUN_18029fcf0(render_context + 0x8208, &stack_ptr3);
         *(longlong *)(resource_handle + 8) = *(longlong *)(resource_handle + 8) + stack_param12;
-        stack_ptr3 = &unknown_var_720_ptr;
+        stack_ptr3 = &system_state_ptr;
         stack_ptr5 = &unknown_var_2008_ptr;
         stack_ptr6 = stack_buffer5;
         stack_buffer5[0] = 0;
@@ -881,7 +881,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         strcpy_s(stack_buffer5, 0x100, data_ptr1);
         resource_handle = FUN_18029fcf0(render_context + 0x8208, &stack_ptr5);
         *(longlong *)(resource_handle + 0x18) = *(longlong *)(resource_handle + 0x18) + stack_param11;
-        stack_ptr5 = &unknown_var_720_ptr;
+        stack_ptr5 = &system_state_ptr;
         stack_ptr1 = &unknown_var_2008_ptr;
         stack_ptr2 = stack_buffer2;
         stack_buffer2[0] = 0;
@@ -894,7 +894,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         strcpy_s(stack_buffer2, 0x100, data_ptr1);
         resource_handle = FUN_18029fcf0(render_context + 0x8208, &stack_ptr1);
         *(longlong *)(resource_handle + 0x10) = *(longlong *)(resource_handle + 0x10) + stack_param10;
-        stack_ptr1 = &unknown_var_720_ptr;
+        stack_ptr1 = &system_state_ptr;
     }
     
     // 处理性能数据
@@ -921,7 +921,7 @@ void rendering_performance_optimizer(longlong render_context, longlong resource_
         strcpy_s(stack_buffer2, 0x100, data_ptr1);
         context_ptr = (longlong *)FUN_18029fcf0(render_context + 0x8208, &stack_ptr1);
         *context_ptr = *context_ptr + resource_handle;
-        stack_ptr1 = &unknown_var_720_ptr;
+        stack_ptr1 = &system_state_ptr;
     }
     
     // 性能优化计算

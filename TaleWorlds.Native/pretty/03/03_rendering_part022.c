@@ -212,7 +212,7 @@ LAB_18027c801:
     stack_array[0] = 0;
     do {
       mesh_index = stack_array[0];
-      render_obj_ptr = &unknown_var_3456_ptr;
+      render_obj_ptr = &system_data_buffer_ptr;
       long_val = *(longlong *)(long_val + mesh_index * 0x10);
       
       // 获取网格数据
@@ -292,7 +292,7 @@ LAB_18027c801:
           
           // 处理子网格名称
           stack_uint2 = (uint)data_ptr;
-          stack_data_ptr = &unknown_var_3456_ptr;
+          stack_data_ptr = &system_data_buffer_ptr;
           stack_ulong2 = 0;
           data_ptr = data_ptr;
           if (*(int *)(long_val2 + 0x10) != 0) {
@@ -420,7 +420,7 @@ LAB_18027cd98:
                   FUN_180630b20(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                   long_val2 = FUN_180079430(long_val);
-                  stack_data_ptr = &unknown_var_3456_ptr;
+                  stack_data_ptr = &system_data_buffer_ptr;
                   stack_ulong2 = 0;
                   stack_char_ptr2 = (int8_t *)0x0;
                   stack_uint2 = 0;
@@ -471,13 +471,13 @@ LAB_18027cd98:
                     data_ptr = stack_char_ptr2;
                   }
                   FUN_180630b20(render_context_ptr, mesh_data_ptr, &unknown_var_6864_ptr, data_ptr);
-                  stack_data_ptr = &unknown_var_3456_ptr;
+                  stack_data_ptr = &system_data_buffer_ptr;
                   if (stack_char_ptr2 != (int8_t *)0x0) {
                     FUN_18064e900();
                   }
                   stack_char_ptr2 = (int8_t *)0x0;
                   stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-                  stack_data_ptr = &unknown_var_720_ptr;
+                  stack_data_ptr = &system_state_ptr;
                 }
               }
               
@@ -610,26 +610,26 @@ LAB_18027cd98:
             }
           }
           else if (buffer_size == 0) goto LAB_18027cd22;
-          stack_data_ptr = &unknown_var_3456_ptr;
+          stack_data_ptr = &system_data_buffer_ptr;
           if (stack_char_ptr2 != (int8_t *)0x0) {
             FUN_18064e900();
           }
           stack_char_ptr2 = (int8_t *)0x0;
           stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-          stack_data_ptr = &unknown_var_720_ptr;
+          stack_data_ptr = &system_state_ptr;
           stack_index = stack_index + 1;
           stack_long = stack_long + 1;
           mesh_index = stack_array[0];
         } while ((ulonglong)(longlong)stack_index <
                  (ulonglong)((longlong)(mesh_component_ptr[8] - mesh_component_ptr[7]) >> 4));
       }
-      stack_render_ptr = &unknown_var_3456_ptr;
+      stack_render_ptr = &system_data_buffer_ptr;
       if (stack_buffer_ptr != (byte *)0x0) {
         FUN_18064e900();
       }
       stack_buffer_ptr = (byte *)0x0;
       buffer_capacity = buffer_capacity & 0xffffffff00000000;
-      stack_render_ptr = &unknown_var_720_ptr;
+      stack_render_ptr = &system_state_ptr;
       iStack_a8 = iStack_a8 + 1;
       stack_array[0] = mesh_index + 1;
       long_val = mesh_component_ptr[7];
@@ -727,13 +727,13 @@ LAB_18027d492:
   *(int32_t *)(file_offset + 0x10) = 0;
   *(uint64_t *)(file_offset + 8) = 0;
   *(uint64_t *)(file_offset + 0x18) = 0;
-  temp_ptr = &unknown_var_3456_ptr;
+  temp_ptr = &system_data_buffer_ptr;
   if (temp_size != 0) {
     FUN_18064e900();
   }
   temp_size = 0;
   temp_data = 0;
-  temp_ptr = &unknown_var_720_ptr;
+  temp_ptr = &system_state_ptr;
   file_size = path_length + 4;
   FUN_1806277c0(path_buffer, file_size);
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2f;  // "/mmd"

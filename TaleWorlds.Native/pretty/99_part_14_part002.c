@@ -314,7 +314,7 @@ void FUN_1808e7c80(uint64_t param_1,uint64_t param_2,int32_t param_3,longlong *p
     *(uint64_t *)((longlong)puVar4 + 0xc) = 0;
     *(uint64_t *)((longlong)puVar4 + 0x14) = 0;
     *(int32_t *)((longlong)puVar4 + 0x1c) = 0;
-    *puVar4 = &unknown_var_9776_ptr;
+    *puVar4 = &system_string2_ptr;
     *(int32_t *)(puVar4 + 1) = 0x20;
     (*(code *)&unknown_var_7856_ptr)(puVar4,param_3,param_2);
     return;

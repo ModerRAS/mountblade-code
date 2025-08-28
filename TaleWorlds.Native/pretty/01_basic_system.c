@@ -395,7 +395,7 @@ void RegisterSystemCallback(void* callback_data)
     /* 设置回调函数数据 */
     prev_ptr[6] = 0x4fc124d23d41985f;  /* 回调标识符 */
     prev_ptr[7] = 0xe2f4a30d6e6ae482;  /* 回调类型 */
-    prev_ptr[8] = &unknown_var_3504_ptr;      /* 回调数据 */
+    prev_ptr[8] = &system_param1_ptr;      /* 回调数据 */
     prev_ptr[9] = 0;                   /* 回调标志 */
     prev_ptr[10] = callback_function;  /* 回调函数指针 */
 }

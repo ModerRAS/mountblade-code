@@ -237,7 +237,7 @@ longlong * FUN_18033d790(longlong *param_1,longlong *param_2,longlong *param_3,i
       param_4[9] = uVar3;
       param_4[10] = (int)lVar5;
       param_4[0xb] = uVar4;
-      *(void **)(param_4 + 0xc) = &unknown_var_720_ptr;
+      *(void **)(param_4 + 0xc) = &system_state_ptr;
       *(uint64_t *)(param_4 + 0xe) = 0;
       param_4[0x10] = 0;
       *(void **)(param_4 + 0xc) = &unknown_var_3480_ptr;
@@ -526,10 +526,10 @@ void FUN_18033dd07(void)
 uint64_t * FUN_18033dd20(uint64_t param_1,uint64_t *param_2)
 
 {
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;

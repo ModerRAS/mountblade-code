@@ -88,7 +88,7 @@ void ui_system_resource_manager(void)
   resource_count = 0;
   temp_resource_type = 0;
   temp_hash_value = ui_system_pointer;
-  temp_ptr1 = &unknown_var_7512_ptr;
+  temp_ptr1 = &system_config_ptr;
   temp_string_ptr = temp_data_buffer;
   temp_data_buffer[0] = 0;
   temp_resource_type = 6;
@@ -96,9 +96,9 @@ void ui_system_resource_manager(void)
   temp_resource_type = 1;
   initialize_string_buffer(temp_data_buffer, &temp_ptr1);
   temp_resource_type = 0;
-  temp_ptr1 = &unknown_var_720_ptr;
+  temp_ptr1 = &system_state_ptr;
   concatenate_string_buffers(temp_string_buffer, temp_data_buffer);
-  temp_buffer_ptr = &unknown_var_3456_ptr;
+  temp_buffer_ptr = &system_data_buffer_ptr;
   temp_resource_size = 0;
   temp_string_ptr = (int8_t *)0x0;
   temp_string_length = 0;
@@ -114,7 +114,7 @@ void ui_system_resource_manager(void)
   if ((temp_ptr1 != (void *)0x0) && (temp_string_length = 0, temp_string_ptr != (int8_t *)0x0)) {
     *temp_string_ptr = 0;
   }
-  temp_heap_ptr = &unknown_var_3456_ptr;
+  temp_heap_ptr = &system_data_buffer_ptr;
   temp_resource_size = 0;
   resource_array_ptr = (int32_t *)0x0;
   temp_resource_type = 0;
@@ -127,7 +127,7 @@ void ui_system_resource_manager(void)
   *(int8_t *)(resource_handle_ptr + 1) = 0;
   temp_resource_type = 4;
   resource_offset = process_resource_path(&temp_buffer_ptr, &temp_ptr1, &temp_heap_ptr);
-  temp_string_ptr = &unknown_var_3456_ptr;
+  temp_string_ptr = &system_data_buffer_ptr;
   temp_resource_size = 0;
   temp_string_ptr = (int8_t *)0x0;
   temp_string_length = 0;
@@ -186,7 +186,7 @@ LAB_RESOURCE_PATH_COMPLETE:
   resource_array_ptr[3] = 0x435f676e;
   *(int32_t *)(resource_data_ptr + buffer_size + 0x10) = 0x6e65696c;
   *(int16_t *)(resource_data_ptr + buffer_size + 0x14) = 0x74;
-  temp_buffer_ptr = &unknown_var_3456_ptr;
+  temp_buffer_ptr = &system_data_buffer_ptr;
   temp_resource_data = 0;
   temp_handle_ptr = (int16_t *)0x0;
   temp_resource_type = 0;
@@ -199,7 +199,7 @@ LAB_RESOURCE_PATH_COMPLETE:
   *resource_handle_ptr = 0x2f;
   temp_resource_type = 1;
   process_resource_path(&temp_string_ptr, temp_data_buffer, &temp_buffer_ptr);
-  temp_buffer_ptr = &unknown_var_3456_ptr;
+  temp_buffer_ptr = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   memory_deallocator(resource_handle_ptr);
 }
@@ -380,7 +380,7 @@ LAB_PROPERTY_COMPARE_SIMPLE:
 LAB_PROPERTY_VALUE_RETURN:
   property_value = 0;
 LAB_PROPERTY_VALUE_FOUND:
-  temp_buffer_ptr = &unknown_var_3456_ptr;
+  temp_buffer_ptr = &system_data_buffer_ptr;
   if (buffer_data != 0) {
                     // WARNING: Subroutine does not return
     memory_deallocator(buffer_data);
@@ -696,15 +696,15 @@ LAB_PROPERTY_ORIENTATION_CHECK:
 LAB_PROPERTY_VALIDATION_CONTINUE:
   property_value = 0;
 LAB_PROPERTY_VALID:
-  temp_buffer_ptr1 = &unknown_var_3456_ptr;
+  temp_buffer_ptr1 = &system_data_buffer_ptr;
   if (string_buffer_ptr != (char *)0x0) {
                     // WARNING: Subroutine does not return
     memory_deallocator(string_buffer_ptr);
   }
   string_buffer_ptr = (char *)0x0;
   temp_property = 0;
-  temp_buffer_ptr1 = &unknown_var_720_ptr;
-  temp_buffer_ptr2 = &unknown_var_3456_ptr;
+  temp_buffer_ptr1 = &system_state_ptr;
+  temp_buffer_ptr2 = &system_data_buffer_ptr;
   if (buffer_data == 0) {
     return property_value;
   }
@@ -939,8 +939,8 @@ int32_t * ui_attribute_initializer(int32_t *attribute_ptr)
   attribute_table_ptr[3] = 0;
   attribute_table_ptr[4] = 0;
   attribute_table_ptr[5] = 0;
-  *attribute_table_ptr = (longlong)&unknown_var_3552_ptr;
-  *attribute_table_ptr = (longlong)&unknown_var_3696_ptr;
+  *attribute_table_ptr = (longlong)&system_handler1_ptr;
+  *attribute_table_ptr = (longlong)&system_handler2_ptr;
   *(int32_t *)(attribute_table_ptr + 1) = 0;
   *attribute_table_ptr = (longlong)&unknown_var_8624_ptr;
   attribute_table_ptr[2] = 0;
@@ -1022,8 +1022,8 @@ int32_t * ui_transform_initializer(int32_t *transform_ptr)
   transform_table_ptr[3] = 0;
   transform_table_ptr[4] = 0;
   transform_table_ptr[5] = 0;
-  *transform_table_ptr = (longlong)&unknown_var_3552_ptr;
-  *transform_table_ptr = (longlong)&unknown_var_3696_ptr;
+  *transform_table_ptr = (longlong)&system_handler1_ptr;
+  *transform_table_ptr = (longlong)&system_handler2_ptr;
   *(int32_t *)(transform_table_ptr + 1) = 0;
   *transform_table_ptr = (longlong)&unknown_var_1440_ptr;
   transform_table_ptr[2] = 0;
@@ -1052,8 +1052,8 @@ ui_system_component_manager(uint64_t *component_ptr, ulonglong manager_flags, ui
   
   stack_parameter = 0xfffffffffffffffe;
   initialize_ui_component_system();
-  *component_ptr = &unknown_var_3696_ptr;
-  *component_ptr = &unknown_var_3552_ptr;
+  *component_ptr = &system_handler2_ptr;
+  *component_ptr = &system_handler1_ptr;
   if ((manager_flags & 1) != 0) {
     free(component_ptr, 0x30, param_3, param_4, stack_parameter);
   }
@@ -1128,14 +1128,14 @@ int32_t * ui_event_handler_initializer(int32_t *event_handler_ptr)
   event_table_ptr[3] = 0;
   event_table_ptr[4] = 0;
   event_table_ptr[5] = 0;
-  *event_table_ptr = (longlong)&unknown_var_3552_ptr;
-  *event_table_ptr = (longlong)&unknown_var_3696_ptr;
+  *event_table_ptr = (longlong)&system_handler1_ptr;
+  *event_table_ptr = (longlong)&system_handler2_ptr;
   *(int32_t *)(event_table_ptr + 1) = 0;
   *event_table_ptr = (longlong)&unknown_var_1544_ptr;
-  event_table_ptr[2] = (longlong)&unknown_var_720_ptr;
+  event_table_ptr[2] = (longlong)&system_state_ptr;
   event_table_ptr[3] = 0;
   *(int32_t *)(event_table_ptr + 4) = 0;
-  event_table_ptr[2] = (longlong)&unknown_var_3456_ptr;
+  event_table_ptr[2] = (longlong)&system_data_buffer_ptr;
   event_table_ptr[5] = 0;
   event_table_ptr[3] = 0;
   *(int32_t *)(event_table_ptr + 4) = 0;
@@ -1157,16 +1157,16 @@ uint64_t *
 ui_system_event_manager(uint64_t *event_manager_ptr, ulonglong event_flags, uint64_t param_3, uint64_t param_4)
 
 {
-  event_manager_ptr[2] = &unknown_var_3456_ptr;
+  event_manager_ptr[2] = &system_data_buffer_ptr;
   if (event_manager_ptr[3] != 0) {
                     // WARNING: Subroutine does not return
     memory_deallocator(event_manager_ptr);
   }
   event_manager_ptr[3] = 0;
   *(int32_t *)(event_manager_ptr + 5) = 0;
-  event_manager_ptr[2] = &unknown_var_720_ptr;
-  *event_manager_ptr = &unknown_var_3696_ptr;
-  *event_manager_ptr = &unknown_var_3552_ptr;
+  event_manager_ptr[2] = &system_state_ptr;
+  *event_manager_ptr = &system_handler2_ptr;
+  *event_manager_ptr = &system_handler1_ptr;
   if ((event_flags & 1) != 0) {
     free(event_manager_ptr, 0x30, param_3, param_4, 0xfffffffffffffffe);
   }
@@ -1185,7 +1185,7 @@ int32_t ui_system_event_processor(longlong event_data, uint64_t param_2, uint64_
   
   initialize_event_buffer(&temp_buffer_ptr, event_data + 0x10, param_3, param_4, 0xfffffffffffffffe);
   process_result = (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer, &temp_buffer_ptr);
-  temp_buffer_ptr = &unknown_var_3456_ptr;
+  temp_buffer_ptr = &system_data_buffer_ptr;
   if (buffer_data != 0) {
                     // WARNING: Subroutine does not return
     memory_deallocator(buffer_data);

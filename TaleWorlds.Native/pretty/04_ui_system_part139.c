@@ -259,7 +259,7 @@ uint FUN_18074bb00(int8_t *param_1,int param_2,float *param_3,int param_4)
     if ((int)(param_2 - uVar4) < 2) {
 LAB_18074bb80:
                     // WARNING: Subroutine does not return
-      FUN_18076b390(puVar2,param_2 - uVar4,&unknown_var_9584_ptr,(double)fVar1);
+      FUN_18076b390(puVar2,param_2 - uVar4,&system_pattern2_ptr,(double)fVar1);
     }
     if (fVar1 == 0.0) {
       *puVar2 = 0x30;
@@ -282,7 +282,7 @@ LAB_18074bb80:
         if (iVar3 < 2) {
 LAB_18074bbf9:
                     // WARNING: Subroutine does not return
-          FUN_18076b390(puVar2,iVar3,&unknown_var_9584_ptr,(double)fVar1);
+          FUN_18076b390(puVar2,iVar3,&system_pattern2_ptr,(double)fVar1);
         }
         if (fVar1 == 0.0) {
           *puVar2 = 0x30;

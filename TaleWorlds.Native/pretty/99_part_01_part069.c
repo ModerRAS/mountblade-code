@@ -796,8 +796,8 @@ void FUN_1800e8d00(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_
       plVar4 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
       plVar4[1] = 0;
       plVar4[2] = 0;
-      *plVar4 = (longlong)&unknown_var_3552_ptr;
-      *plVar4 = (longlong)&unknown_var_3696_ptr;
+      *plVar4 = (longlong)&system_handler1_ptr;
+      *plVar4 = (longlong)&system_handler2_ptr;
       *(int32_t *)(plVar4 + 1) = 0;
       *plVar4 = (longlong)&unknown_var_5008_ptr;
       (**(code **)(*plVar4 + 0x28))(plVar4);

@@ -199,13 +199,13 @@ void FUN_1804ec4e0(longlong param_1,longlong param_2,int param_3,longlong param_
         __Throw_C_error_std__YAXH_Z(iVar6);
       }
       uVar22 = *(int32_t *)(param_2 + 0x10);
-      cVar5 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+      cVar5 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
       if ((((cVar5 != '\0') &&
            (cVar5 = FUN_180645c10(0x180c95578,0xe,&unknown_var_3472_ptr), cVar5 != '\0')) &&
           (cVar5 = FUN_180645c10(0x180c95578,uVar22,&unknown_var_3424_ptr), cVar5 != '\0')) &&
          (cVar5 = FUN_180645c10(0x180c95578,(lVar10 >> 2) - (lVar10 >> 0x3f) & 0xffffffff,
                                 &unknown_var_3344_ptr), cVar5 != '\0')) {
-        FUN_180645c10(0x180c95578,param_5,&unknown_var_3504_ptr);
+        FUN_180645c10(0x180c95578,param_5,&system_param1_ptr);
       }
       lVar9 = 0;
       system_system_config = system_system_config & 0xffffffff00000000;

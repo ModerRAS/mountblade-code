@@ -580,14 +580,14 @@ float * FUN_1802f4040(longlong *param_1,float *param_2,char param_3,char param_4
           if (plStackX_8 != (longlong *)0x0) {
             (**(code **)(*plStackX_8 + 0x38))();
           }
-          puStack_78 = &unknown_var_3456_ptr;
+          puStack_78 = &system_data_buffer_ptr;
           if (lStack_70 != 0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
           lStack_70 = 0;
           uStack_60 = 0;
-          puStack_78 = &unknown_var_720_ptr;
+          puStack_78 = &system_state_ptr;
         }
         lVar6 = lStack_58;
         if (plVar3 != (longlong *)0x0) {

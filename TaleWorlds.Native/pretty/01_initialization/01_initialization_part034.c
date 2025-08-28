@@ -594,23 +594,23 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   }
   
   // 添加系统信息到日志
-  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_160_ptr);
+  System_DataHandler(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_160_ptr);
   uStack_310 = 0;
   puStack_c8 = &global_var_720_ptr;
   puStack_348 = &global_var_184_ptr;
-  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_192_ptr);
+  System_DataHandler(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_192_ptr);
   puStack_348 = &system_memory_ba28;
-  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_96_ptr);
+  System_DataHandler(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_96_ptr);
   puStack_348 = &system_buffer_ptr;
   if (puStack_1b8 != (void *)0x0) {
     puStack_348 = puStack_1b8;
   }
-  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_144_ptr);
+  System_DataHandler(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_144_ptr);
   puStack_348 = &system_buffer_ptr;
   if (puStack_1d8 != (void *)0x0) {
     puStack_348 = puStack_1d8;
   }
-  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_128_ptr);
+  System_DataHandler(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_128_ptr);
   
   // 清理临时字符串
   puStack_1e0 = &global_var_3456_ptr;
@@ -644,7 +644,7 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   
   // 获取系统内存信息
   uVar10 = FUN_180623ce0();
-  FUN_180628040(&puStack_2e8, &global_var_808_ptr, uVar10 / 0x100000 & 0xffffffff);
+  System_DataHandler(&puStack_2e8, &global_var_808_ptr, uVar10 / 0x100000 & 0xffffffff);
   auStack_88[0] = 0x48;
   uVar11 = GetCurrentProcess();
   iVar8 = K32GetProcessMemoryInfo(uVar11, auStack_88, 0x48);
@@ -652,21 +652,21 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   if (iVar8 != 0) {
     uVar10 = uStack_50;
   }
-  FUN_180628040(&puStack_308, &global_var_808_ptr, uVar10 / 0x100000 & 0xffffffff);
+  System_DataHandler(&puStack_308, &global_var_808_ptr, uVar10 / 0x100000 & 0xffffffff);
   
   // 添加系统信息到日志
   puStack_348 = &system_buffer_ptr;
-  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_896_ptr);
+  System_DataHandler(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_896_ptr);
   puStack_348 = &system_buffer_ptr;
   if (puStack_2e0 != (void *)0x0) {
     puStack_348 = puStack_2e0;
   }
-  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_920_ptr);
+  System_DataHandler(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_920_ptr);
   puStack_348 = &system_buffer_ptr;
   if (puStack_300 != (void *)0x0) {
     puStack_348 = puStack_300;
   }
-  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_936_ptr);
+  System_DataHandler(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_936_ptr);
   
   // 获取性能计数器信息
   lVar9 = system_main_module_state;
@@ -696,14 +696,14 @@ void PerformComplexInitializationAndLogging(uint64_t param_1)
   }
   puStack_348 = (void *)
                 ((double)(lVar14 - init_system_data_memory) * init_system_data_memory - *(double *)(lVar9 + 0x210));
-  FUN_180628040(&puStack_330, &global_var_968_ptr, &global_var_48_ptr, &global_var_952_ptr);
+  System_DataHandler(&puStack_330, &global_var_968_ptr, &global_var_48_ptr, &global_var_952_ptr);
   
   // 添加配置信息到日志
   puStack_348 = &system_buffer_ptr;
   if (puStack_1f8 != (void *)0x0) {
     puStack_348 = puStack_1f8;
   }
-  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_112_ptr);
+  System_DataHandler(&puStack_330, &global_var_880_ptr, &global_var_48_ptr, &global_var_112_ptr);
   
   // 初始化日志条目容器
   puStack_220 = (uint64_t *)0x0;
@@ -847,7 +847,7 @@ LAB_180065a3e:
                   if ((void *)puVar17[1] != (void *)0x0) {
                     puVar16 = (void *)puVar17[1];
                   }
-                  FUN_180628040(&puStack_330, &global_var_880_ptr, &global_var_1016_ptr, puVar16);
+                  System_DataHandler(&puStack_330, &global_var_880_ptr, &global_var_1016_ptr, puVar16);
                   break;
                 }
               }
@@ -934,7 +934,7 @@ LAB_180065a3e:
     if (puStack_198 != (void *)0x0) {
       puVar16 = puStack_198;
     }
-    FUN_180628040(&puStack_330, &global_var_552_ptr, puVar16);
+    System_DataHandler(&puStack_330, &global_var_552_ptr, puVar16);
     puStack_1a0 = &global_var_3456_ptr;
     if (puStack_198 != (void *)0x0) {
       FUN_18064e900();

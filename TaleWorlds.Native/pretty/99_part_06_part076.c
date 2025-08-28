@@ -950,7 +950,7 @@ LAB_1803f392d:
   if (uVar8 != uVar6) {
     lVar9 = uVar8 - (longlong)puVar3;
     do {
-      *puVar4 = &unknown_var_720_ptr;
+      *puVar4 = &system_state_ptr;
       puVar4[1] = 0;
       *(int32_t *)(puVar4 + 2) = 0;
       *puVar4 = &unknown_var_2008_ptr;

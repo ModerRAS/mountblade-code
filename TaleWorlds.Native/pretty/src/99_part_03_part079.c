@@ -203,8 +203,8 @@ typedef struct {
 #define SystemResourceCallbackB unknown_var_7008_ptr                 // 系统资源回调B
 #define SystemBufferPointer system_buffer_ptr                         // 系统缓冲区指针
 #define SystemErrorHandlerA unknown_var_9624_ptr                     // 系统错误处理器A
-#define SystemMemoryPoolA unknown_var_3456_ptr                       // 系统内存池A
-#define SystemCleanupHandlerA unknown_var_720_ptr                   // 系统清理处理器A
+#define SystemMemoryPoolA system_data_buffer_ptr                       // 系统内存池A
+#define SystemCleanupHandlerA system_state_ptr                   // 系统清理处理器A
 #define SystemStringConstantA unknown_var_336_ptr                   // 系统字符串常量A
 #define SystemStringConstantB unknown_var_400_ptr                   // 系统字符串常量B
 
@@ -653,14 +653,14 @@ SystemHandle SystemResourceAllocator_Allocate(SystemUInt32 size, SystemUInt32 al
     if (memory_pool_ptr == (SystemHandle*)0x0) {
         // 初始化内存池
         resource_allocator[0x1c] = 0;
-        resource_allocator[0x18] = &unknown_var_3456_ptr;
+        resource_allocator[0x18] = &system_data_buffer_ptr;
         if (resource_allocator[0x19] != 0) {
             // 内存池初始化失败，执行错误恢复
             SystemErrorHandler(resource_allocator);
         }
         resource_allocator[0x19] = 0;
         *(SystemUInt32*)(resource_allocator + 0x1b) = 0;
-        resource_allocator[0x18] = &unknown_var_720_ptr;
+        resource_allocator[0x18] = &system_state_ptr;
         
         // 调用内存池初始化函数
         SystemMemoryPoolInitializer(resource_allocator);
@@ -845,7 +845,7 @@ SystemInt32 SystemResourceMonitor_Monitor(SystemHandle context)
         
         // 获取线程ID
         _Thrd_id();
-        config_pointer = &unknown_var_720_ptr;
+        config_pointer = &system_state_ptr;
     }
     
     // 执行栈保护检查
@@ -974,7 +974,7 @@ void SystemResourceManager_ReleaseAll(SystemHandle context)
         }
         
         // 重置资源分配器
-        resource_allocator = &unknown_var_720_ptr;
+        resource_allocator = &system_state_ptr;
     }
     
     // 执行栈保护检查

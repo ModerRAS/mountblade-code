@@ -530,14 +530,14 @@ void cleanup_memory_region(longlong *param_1)
   
   temp_long1 = param_1[1];
   for (temp_long2 = *param_1; temp_long2 != temp_long1; temp_long2 = temp_long2 + 0x28) {
-    *(uint64_t *)(temp_long2 + 8) = &unknown_var_3456_ptr;
+    *(uint64_t *)(temp_long2 + 8) = &system_data_buffer_ptr;
     if (*(longlong *)(temp_long2 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       trigger_memory_error();
     }
     *(uint64_t *)(temp_long2 + 0x10) = 0;
     *(int32_t *)(temp_long2 + 0x20) = 0;
-    *(uint64_t *)(temp_long2 + 8) = &unknown_var_720_ptr;
+    *(uint64_t *)(temp_long2 + 8) = &system_state_ptr;
   }
   if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
@@ -588,11 +588,11 @@ void recursive_resource_cleanup(uint64_t *param_1, uint64_t param_2, uint64_t pa
   
   // 处理空数组情况
   if (*array_ptr == 0) {
-    *param_1 = &unknown_var_3456_ptr;
+    *param_1 = &system_data_buffer_ptr;
     if (param_1[1] == 0) {
       param_1[1] = 0;
       *(int32_t *)(param_1 + 3) = 0;
-      *param_1 = &unknown_var_720_ptr;
+      *param_1 = &system_state_ptr;
                     // WARNING: Subroutine does not return
       trigger_memory_error(param_1);
     }
@@ -643,10 +643,10 @@ LAB_18016d07b:
     temp_long1 = temp_long1 - (longlong)dest_ptr;
     do {
       *dest_ptr = *(int32_t *)((longlong)temp_ptr1 + temp_long1 + -0x10);
-      temp_ptr1[-1] = &unknown_var_720_ptr;
+      temp_ptr1[-1] = &system_state_ptr;
       *temp_ptr1 = 0;
       *(int32_t *)(temp_ptr1 + 1) = 0;
-      temp_ptr1[-1] = &unknown_var_3456_ptr;
+      temp_ptr1[-1] = &system_data_buffer_ptr;
       temp_ptr1[2] = 0;
       *temp_ptr1 = 0;
       *(int32_t *)(temp_ptr1 + 1) = 0;
@@ -664,10 +664,10 @@ LAB_18016d07b:
   
   // 添加新元素
   *dest_ptr = *param_2;
-  *(void **)(dest_ptr + 2) = &unknown_var_720_ptr;
+  *(void **)(dest_ptr + 2) = &system_state_ptr;
   *(uint64_t *)(dest_ptr + 4) = 0;
   dest_ptr[6] = 0;
-  *(void **)(dest_ptr + 2) = &unknown_var_3456_ptr;
+  *(void **)(dest_ptr + 2) = &system_data_buffer_ptr;
   *(uint64_t *)(dest_ptr + 8) = 0;
   *(uint64_t *)(dest_ptr + 4) = 0;
   dest_ptr[6] = 0;
@@ -686,14 +686,14 @@ LAB_18016d07b:
   // 释放旧内存
   if (temp_long1 != temp_long2) {
     do {
-      *(uint64_t *)(temp_long1 + 8) = &unknown_var_3456_ptr;
+      *(uint64_t *)(temp_long1 + 8) = &system_data_buffer_ptr;
       if (*(longlong *)(temp_long1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
         trigger_memory_error();
       }
       *(uint64_t *)(temp_long1 + 0x10) = 0;
       *(int32_t *)(temp_long1 + 0x20) = 0;
-      *(uint64_t *)(temp_long1 + 8) = &unknown_var_720_ptr;
+      *(uint64_t *)(temp_long1 + 8) = &system_state_ptr;
       temp_long1 = temp_long1 + 0x28;
     } while (temp_long1 != temp_long2);
     temp_long1 = *param_1;
@@ -826,10 +826,10 @@ void insert_into_data_structure(longlong *param_1, uint64_t *param_2, longlong p
     *(uint64_t *)(param_3 + 8) = 0;
     *(uint64_t *)(param_3 + 0x18) = 0;
     temp_ptr1 = (uint64_t *)param_1[1];
-    *temp_ptr1 = &unknown_var_720_ptr;
+    *temp_ptr1 = &system_state_ptr;
     temp_ptr1[1] = 0;
     *(int32_t *)(temp_ptr1 + 2) = 0;
-    *temp_ptr1 = &unknown_var_3456_ptr;
+    *temp_ptr1 = &system_data_buffer_ptr;
     temp_ptr1[3] = 0;
     temp_ptr1[1] = 0;
     *(int32_t *)(temp_ptr1 + 2) = 0;
@@ -842,10 +842,10 @@ void insert_into_data_structure(longlong *param_1, uint64_t *param_2, longlong p
     temp_ptr1[-1] = 0;
     process_data_structure_node(param_2, param_1[1] + -0x20);
     (**(code **)*param_2)(param_2, 0);
-    *param_2 = &unknown_var_720_ptr;
+    *param_2 = &system_state_ptr;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
-    *param_2 = &unknown_var_3456_ptr;
+    *param_2 = &system_data_buffer_ptr;
     *(int32_t *)(param_2 + 2) = temp_val1;
     param_2[1] = temp_val4;
     *(int32_t *)((longlong)param_2 + 0x1c) = temp_val2;
@@ -865,10 +865,10 @@ void insert_into_data_structure(longlong *param_1, uint64_t *param_2, longlong p
   temp_long1 = allocate_memory_block(system_memory_pool_ptr, temp_long3 << 5, (char)param_1[3], param_4, 0xfffffffffffffffe);
 LAB_18016d59c:
   temp_ptr1 = (uint64_t *)(((longlong)param_2 - temp_long2 & 0xffffffffffffffe0U) + temp_long1);
-  *temp_ptr1 = &unknown_var_720_ptr;
+  *temp_ptr1 = &system_state_ptr;
   temp_ptr1[1] = 0;
   *(int32_t *)(temp_ptr1 + 2) = 0;
-  *temp_ptr1 = &unknown_var_3456_ptr;
+  *temp_ptr1 = &system_data_buffer_ptr;
   temp_ptr1[3] = 0;
   temp_ptr1[1] = 0;
   *(int32_t *)(temp_ptr1 + 2) = 0;
@@ -1014,10 +1014,10 @@ initialize_data_structure(uint64_t *param_1, uint64_t param_2, ulonglong param_3
     } while ((ulonglong)(longlong)(int)temp_uint1 <
              (ulonglong)(*(longlong *)(char_ptr + 0x10) - *(longlong *)(char_ptr + 8) >> 3));
   }
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_3456_ptr;
+  *param_1 = &system_data_buffer_ptr;
   param_1[3] = 0;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;

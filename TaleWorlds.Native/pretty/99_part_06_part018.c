@@ -136,11 +136,11 @@ void FUN_1803b5630(longlong *param_1,char param_2,char param_3)
       param_1[0x385] = (longlong)piVar11;
       iStack_a84 = iVar21;
       if (uStack_a60 < uVar17) {
-        FUN_180639bf0(&lStack_a70,uVar17);
+        System_BufferManager(&lStack_a70,uVar17);
         piVar11 = (int *)param_1[0x385];
       }
       if ((uStack_a60 - (longlong)piStack_a68) + lStack_a70 <= uVar17) {
-        FUN_180639bf0(&lStack_a70,(longlong)piStack_a68 + (uVar17 - lStack_a70));
+        System_BufferManager(&lStack_a70,(longlong)piStack_a68 + (uVar17 - lStack_a70));
       }
                     // WARNING: Subroutine does not return
       memcpy(piStack_a68,piVar11,uVar17);
@@ -247,7 +247,7 @@ LAB_1803b6243:
             piStack_a38 = piVar11;
             uVar9 = FUN_18062b1e0(system_memory_pool_ptr,0x3b0,0x10,3);
             lVar12 = FUN_18023a2e0(uVar9,0);
-            puStack_9d8 = &unknown_var_3456_ptr;
+            puStack_9d8 = &system_data_buffer_ptr;
             uStack_9c0 = 0;
             puStack_9d0 = (int32_t *)0x0;
             uStack_9c8 = 0;
@@ -311,7 +311,7 @@ LAB_1803b6243:
           uVar17 = (ulonglong)*piVar11;
           piStack_a38 = piVar11 + 1;
           if ((uStack_a78 - (longlong)piStack_a38) + uStack_a80 <= uVar17) {
-            FUN_180639bf0(&lStack_a40,(longlong)piStack_a38 + (uVar17 - uStack_a80));
+            System_BufferManager(&lStack_a40,(longlong)piStack_a38 + (uVar17 - uStack_a80));
             uStack_a78 = uStack_a30;
             uStack_a80 = lStack_a40;
           }
@@ -704,14 +704,14 @@ LAB_1803b69fc:
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puStack_a00 = &unknown_var_3456_ptr;
+  puStack_a00 = &system_data_buffer_ptr;
   if (puStack_9f8 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_9f8 = (int8_t *)0x0;
   uStack_9e8 = 0;
-  puStack_a00 = &unknown_var_720_ptr;
+  puStack_a00 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_ac8);
 }

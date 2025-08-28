@@ -1032,7 +1032,7 @@ void InitializeThreadManager(uint64_t *threadManager, uint64_t param2, uint64_t 
       *(uint64_t *)(param_1[0xe] + 0x10) = 0;
       *(int8_t *)(param_1[0xe] + 8) = 1;
     }
-    param_1[2] = &unknown_var_720_ptr;
+    param_1[2] = &system_state_ptr;
     return;
   }
   if (*(int *)(param_1[1] + 8) == 0) {

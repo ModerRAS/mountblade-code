@@ -273,7 +273,7 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
         }
         
         // 创建第二个渲染管线
-        puStack_128 = &unknown_var_720_ptr;
+        puStack_128 = &system_state_ptr;
         puStack_c8 = &unknown_var_3480_ptr;
         puStack_c0 = auStack_b0;
         auStack_b0[0] = 0;
@@ -305,7 +305,7 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
         }
         
         // 执行渲染批处理
-        puStack_c8 = &unknown_var_720_ptr;
+        puStack_c8 = &system_state_ptr;
         uStack_418 = 0;
         
         if (0 < iVar16) {
@@ -452,7 +452,7 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
           (**(code **)(*plVar11 + 0x38))(plVar11);
         }
         
-        puStack_2e8 = &unknown_var_720_ptr;
+        puStack_2e8 = &system_state_ptr;
         pplStack_408 = (longlong **)&puStack_208;
         puStack_208 = &unknown_var_3432_ptr;
         puStack_200 = auStack_1f0;
@@ -481,7 +481,7 @@ void rendering_system_initialize_render_context(longlong *param_1, longlong *par
           (**(code **)(*plVar11 + 0x38))(plVar11);
         }
         ppuStack_3b8 = &puStack_208;
-        puStack_208 = &unknown_var_720_ptr;
+        puStack_208 = &system_state_ptr;
       }
       goto LAB_1803084bf;
     }

@@ -152,7 +152,7 @@ void FUN_1802d0150(longlong param_1,longlong param_2,uint param_3)
     if (plStack_2d0 != (longlong *)0x0) {
       (**(code **)(*plStack_2d0 + 0x38))();
     }
-    puStack_188 = &unknown_var_720_ptr;
+    puStack_188 = &system_state_ptr;
     if (plStack_3b8 != (longlong *)0x0) {
       (**(code **)(*plStack_3b8 + 0x38))();
     }
@@ -186,7 +186,7 @@ void FUN_1802d0150(longlong param_1,longlong param_2,uint param_3)
     if (plStack_340 != (longlong *)0x0) {
       (**(code **)(*plStack_340 + 0x38))();
     }
-    puStack_e8 = &unknown_var_720_ptr;
+    puStack_e8 = &system_state_ptr;
     if (plStack_380 != (longlong *)0x0) {
       (**(code **)(*plStack_380 + 0x38))();
     }
@@ -267,7 +267,7 @@ void FUN_1802d0150(longlong param_1,longlong param_2,uint param_3)
   if (plStack_300 != (longlong *)0x0) {
     (**(code **)(*plStack_300 + 0x38))();
   }
-  puStack_1c8 = &unknown_var_720_ptr;
+  puStack_1c8 = &system_state_ptr;
   lVar16 = *plVar1;
 LAB_1802d0648:
   lStack_3f8 = *(longlong *)(lVar16 + 0x10);
@@ -539,7 +539,7 @@ LAB_1802d0862:
         (**(code **)(*plVar14 + 0x38))(plVar14);
       }
       ppuStack_2c8 = &puStack_2a8;
-      puStack_2a8 = &unknown_var_720_ptr;
+      puStack_2a8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_468);
     }
@@ -601,13 +601,13 @@ void FUN_1802d0d30(uint64_t param_1,longlong param_2)
   if (0 < *(int *)(param_2 + 0x27f8)) {
     uVar1 = *(uint64_t *)(param_2 + 0x99c0);
     uVar9 = 0;
-    puStack_c0 = &unknown_var_7512_ptr;
+    puStack_c0 = &system_config_ptr;
     puStack_b8 = auStack_a8;
     auStack_a8[0] = 0;
     uStack_b0 = 0xb;
     strcpy_s(auStack_a8,0x10,&unknown_var_4832_ptr);
     lVar6 = FUN_1802c90a0(uVar1,&puStack_c0);
-    puStack_c0 = &unknown_var_720_ptr;
+    puStack_c0 = &system_state_ptr;
     uStack_118 = 0xffffffff;
     FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x10,*(uint64_t *)(lVar6 + 0x428));
     uVar1 = *(uint64_t *)(system_message_buffer + 0x1cd8);

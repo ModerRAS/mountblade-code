@@ -312,9 +312,9 @@ FUN_18022a810(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 
 {
   *param_1 = &unknown_var_8584_ptr;
-  param_1[2] = &unknown_var_720_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  param_1[2] = &system_state_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xc0,param_3,param_4,0xfffffffffffffffe);
   }

@@ -307,7 +307,7 @@ void FUN_1802a1dd0(longlong param_1,int32_t *param_2)
         uVar4 = FUN_180049eb0(apuStack_88,param_2 + 7);
         uVar2 = FUN_180225200(uVar4);
         param_2[0x17] = uVar2;
-        apuStack_88[0] = &unknown_var_720_ptr;
+        apuStack_88[0] = &system_state_ptr;
         FUN_1802a1bc0(param_2 + 2);
         *param_2 = uStack_ac;
         fread(*(uint64_t *)(param_2 + 2),*(uint64_t *)(param_2 + 4),1,lVar6);

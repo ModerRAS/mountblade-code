@@ -151,7 +151,7 @@ void RenderingSystem_StateUpdater(longlong param_1, uint64_t param_2, int8_t par
     *(int16_t *)(param_1 + RENDERING_SYSTEM_OFFSET_3C0) = 0xffff;
     
     // 清理资源
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
         FUN_18064e900();
     }
@@ -281,7 +281,7 @@ void RenderingSystem_ObjectCleaner(longlong param_1)
         }
         
         // 清理资源
-        puStack_28 = &unknown_var_3456_ptr;
+        puStack_28 = &system_data_buffer_ptr;
         if (lStack_20 != 0) {
             FUN_18064e900();
         }
@@ -410,7 +410,7 @@ ulonglong RenderingSystem_StateChecker(longlong param_1, uint64_t param_2, uint6
     bVar1 = FUN_1800755c0(param_1, uVar2, param_3, param_4, uVar3);
     
     // 清理资源
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
         FUN_18064e900();
     }
@@ -497,7 +497,7 @@ LAB_180447540:
     if (plVar3 != (longlong *)0x0) {
         (**(code **)(*plVar3 + 0x38))(plVar3);
     }
-    puStack_48 = &unknown_var_3456_ptr;
+    puStack_48 = &system_data_buffer_ptr;
     if (lStack_40 != 0) {
         FUN_18064e900();
     }
@@ -754,7 +754,7 @@ int32_t * RenderingSystem_ResourceAllocator(int32_t *param_1, uint64_t param_2, 
     if (aplStackX_8[0] != (longlong *)0x0) {
         (**(code **)(*aplStackX_8[0] + 0x38))();
     }
-    puStack_40 = &unknown_var_3456_ptr;
+    puStack_40 = &system_data_buffer_ptr;
     if (lStack_38 == 0) {
         return param_1;
     }
@@ -866,7 +866,7 @@ int32_t * RenderingSystem_DataProcessor3(int32_t *param_1, uint64_t param_2, uin
     if (plStackX_8 != (longlong *)0x0) {
         (**(code **)(*plStackX_8 + 0x38))();
     }
-    puStack_70 = &unknown_var_3456_ptr;
+    puStack_70 = &system_data_buffer_ptr;
     if (lStack_68 == 0) {
         return param_1;
     }
@@ -999,7 +999,7 @@ void RenderingSystem_ObjectInitializer(longlong param_1, uint64_t param_2, uint6
     (*pcVar1)((longlong *)(param_1 + 0x10), puVar2, pcVar1, param_4, uVar3);
     
     // 清理资源
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (puStack_28 != (void *)0x0) {
         FUN_18064e900();
     }

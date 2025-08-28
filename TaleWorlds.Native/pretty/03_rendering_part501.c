@@ -1220,7 +1220,7 @@ void FUN_180535ba0(longlong *param_1,uint64_t param_2,uint64_t param_3)
     condition_array[0] = (uint)((char)condition_array[0] != '\0');
     
     // 步骤2.2：执行第二轮状态验证
-    validation_status = FUN_18055f260(param_3, condition_array, &unknown_var_3504_ptr);
+    validation_status = FUN_18055f260(param_3, condition_array, &system_param1_ptr);
     condition_array[0] = CONCAT31(condition_array[0]._1_3_, condition_array[0] != 0);
     
     // 步骤2.3：检查第二轮验证结果

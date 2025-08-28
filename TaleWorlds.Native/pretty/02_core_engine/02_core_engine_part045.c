@@ -7,10 +7,10 @@
 // 全局变量声明
 uint64_t system_memory_pool_ptr;  // 内存管理器
 uint64_t system_main_module_state;  // 引擎配置数据
-uint64_t unknown_var_3456_ptr;   // 全局数据指针
-uint64_t unknown_var_720_ptr;   // 函数表指针
-uint64_t unknown_var_3696_ptr;   // 虚函数表指针
-uint64_t unknown_var_3552_ptr;   // 虚函数表指针
+uint64_t system_data_buffer_ptr;   // 全局数据指针
+uint64_t system_state_ptr;   // 函数表指针
+uint64_t system_handler2_ptr;   // 虚函数表指针
+uint64_t system_handler1_ptr;   // 虚函数表指针
 uint64_t unknown_var_7520;   // 比较数据指针
 uint64_t unknown_var_659;   // 默认配置指针
 uint64_t core_system_control_pointer;  // 配置覆盖指针
@@ -920,15 +920,15 @@ ARRAY_RESIZE_DONE:
  */
 uint64_t *initialize_object_instance(uint64_t *object_ptr, ulonglong init_flags, uint64_t param3, uint64_t param4)
 {
-    object_ptr[4] = &unknown_var_3456_ptr;
+    object_ptr[4] = &system_data_buffer_ptr;
     if (object_ptr[5] != 0) {
         release_memory_buffer();
     }
     object_ptr[5] = 0;
     *(int32_t *)(object_ptr + 7) = 0;
-    object_ptr[4] = &unknown_var_720_ptr;
-    *object_ptr = &unknown_var_3696_ptr;
-    *object_ptr = &unknown_var_3552_ptr;
+    object_ptr[4] = &system_state_ptr;
+    *object_ptr = &system_handler2_ptr;
+    *object_ptr = &system_handler1_ptr;
     if ((init_flags & 1) != 0) {
         free(object_ptr, 0x70, param3, param4, 0xfffffffffffffffe);
     }
@@ -961,7 +961,7 @@ uint64_t *initialize_string_object(uint64_t *string_obj, longlong string_data, u
 {
     longlong string_length;      // 字符串长度
     
-    *string_obj = &unknown_var_720_ptr;
+    *string_obj = &system_state_ptr;
     string_obj[1] = 0;
     *(int32_t *)(string_obj + 2) = 0;
     *string_obj = &unknown_var_3432_ptr;
@@ -1219,7 +1219,7 @@ void initialize_render_configuration(longlong config_ptr, uint64_t param2, longl
     }
     
     setup_render_parameters(config_ptr, &unknown_var_8064_ptr, config_param2, config_param3, config_param1);
-    stack_param1 = &unknown_var_3456_ptr;
+    stack_param1 = &system_data_buffer_ptr;
     if (stack_param2 != (void *)0x0) {
         release_memory_buffer();
     }

@@ -255,7 +255,7 @@ static void exception_context_cleaner(uint64_t context, longlong exception_data,
 static void exception_resource_manager(uint64_t context, longlong exception_data)
 {
   // 设置异常资源状态
-  *(uint64_t *)(exception_data + 0x178) = &unknown_var_3456_ptr;
+  *(uint64_t *)(exception_data + 0x178) = &system_data_buffer_ptr;
   
   // 检查资源状态
   if (*(longlong *)(exception_data + 0x180) != 0) {
@@ -266,7 +266,7 @@ static void exception_resource_manager(uint64_t context, longlong exception_data
   // 重置资源状态
   *(uint64_t *)(exception_data + 0x180) = 0;
   *(int32_t *)(exception_data + 400) = 0;
-  *(uint64_t *)(exception_data + 0x178) = &unknown_var_720_ptr;
+  *(uint64_t *)(exception_data + 0x178) = &system_state_ptr;
   return;
 }
 
@@ -280,7 +280,7 @@ static void exception_resource_manager(uint64_t context, longlong exception_data
 static void exception_memory_cleaner(uint64_t context, longlong exception_data)
 {
   // 清理内存资源
-  **(uint64_t **)(exception_data + 0x270) = &unknown_var_720_ptr;
+  **(uint64_t **)(exception_data + 0x270) = &system_state_ptr;
   return;
 }
 
@@ -330,7 +330,7 @@ static void exception_state_synchronizer(uint64_t context, longlong exception_da
 static void memory_pool_manager(uint64_t context, longlong memory_data)
 {
   // 清理内存池
-  *(void **)(memory_data + 0x2b0) = &unknown_var_720_ptr;
+  *(void **)(memory_data + 0x2b0) = &system_state_ptr;
   return;
 }
 
@@ -344,7 +344,7 @@ static void memory_pool_manager(uint64_t context, longlong memory_data)
 static void memory_allocator_controller(uint64_t context, longlong memory_data)
 {
   // 设置内存分配器状态
-  *(uint64_t *)(memory_data + 0x158) = &unknown_var_3456_ptr;
+  *(uint64_t *)(memory_data + 0x158) = &system_data_buffer_ptr;
   
   // 检查内存分配器状态
   if (*(longlong *)(memory_data + 0x160) != 0) {
@@ -355,7 +355,7 @@ static void memory_allocator_controller(uint64_t context, longlong memory_data)
   // 重置分配器状态
   *(uint64_t *)(memory_data + 0x160) = 0;
   *(int32_t *)(memory_data + 0x170) = 0;
-  *(uint64_t *)(memory_data + 0x158) = &unknown_var_720_ptr;
+  *(uint64_t *)(memory_data + 0x158) = &system_state_ptr;
   return;
 }
 
@@ -387,7 +387,7 @@ static void memory_cache_cleaner(uint64_t context, longlong memory_data)
 static void memory_state_manager(uint64_t context, longlong memory_data)
 {
   // 设置内存状态
-  *(uint64_t *)(memory_data + 0x178) = &unknown_var_3456_ptr;
+  *(uint64_t *)(memory_data + 0x178) = &system_data_buffer_ptr;
   
   // 检查内存状态
   if (*(longlong *)(memory_data + 0x180) != 0) {
@@ -398,7 +398,7 @@ static void memory_state_manager(uint64_t context, longlong memory_data)
   // 重置内存状态
   *(uint64_t *)(memory_data + 0x180) = 0;
   *(int32_t *)(memory_data + 400) = 0;
-  *(uint64_t *)(memory_data + 0x178) = &unknown_var_720_ptr;
+  *(uint64_t *)(memory_data + 0x178) = &system_state_ptr;
   return;
 }
 
@@ -412,7 +412,7 @@ static void memory_state_manager(uint64_t context, longlong memory_data)
 static void memory_resource_cleaner(uint64_t context, longlong memory_data)
 {
   // 清理内存资源
-  **(uint64_t **)(memory_data + 0x270) = &unknown_var_720_ptr;
+  **(uint64_t **)(memory_data + 0x270) = &system_state_ptr;
   return;
 }
 
@@ -426,7 +426,7 @@ static void memory_resource_cleaner(uint64_t context, longlong memory_data)
 static void thread_sync_manager(uint64_t context, longlong thread_data)
 {
   // 设置线程同步状态
-  *(uint64_t *)(thread_data + 0x158) = &unknown_var_3456_ptr;
+  *(uint64_t *)(thread_data + 0x158) = &system_data_buffer_ptr;
   
   // 检查线程同步状态
   if (*(longlong *)(thread_data + 0x160) != 0) {
@@ -437,7 +437,7 @@ static void thread_sync_manager(uint64_t context, longlong thread_data)
   // 重置线程同步状态
   *(uint64_t *)(thread_data + 0x160) = 0;
   *(int32_t *)(thread_data + 0x170) = 0;
-  *(uint64_t *)(thread_data + 0x158) = &unknown_var_720_ptr;
+  *(uint64_t *)(thread_data + 0x158) = &system_state_ptr;
   return;
 }
 
@@ -487,7 +487,7 @@ static void thread_scheduler(uint64_t context, longlong thread_data)
 static void thread_cache_manager(uint64_t context, longlong thread_data)
 {
   // 清理线程缓存
-  *(void **)(thread_data + 0x2b0) = &unknown_var_720_ptr;
+  *(void **)(thread_data + 0x2b0) = &system_state_ptr;
   return;
 }
 

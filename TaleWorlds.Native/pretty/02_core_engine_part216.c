@@ -675,7 +675,7 @@ LAB_180191c97:
   }
   puVar9 = puVar2;
 LAB_180191cda:
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   if (pbStack_28 == (byte *)0x0) {
     if (puVar9 == *(uint64_t **)(param_1 + 0x30)) {
       uVar4 = 0xffffffff;

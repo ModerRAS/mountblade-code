@@ -107,7 +107,7 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
     if (0 < aiStack_108[0]) {
       lStack_e0 = param_1 + 0xb48;
       do {
-        puStack_100 = &unknown_var_3456_ptr;
+        puStack_100 = &system_data_buffer_ptr;
         uStack_e8 = 0;
         puStack_f8 = (int8_t *)0x0;
         uStack_f0 = 0;
@@ -160,7 +160,7 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
         uStack_c0 = 0;
         uStack_be = 3;
         if (lStack_e0 != 0) {
-          FUN_180639bf0(alStack_d8);
+          System_BufferManager(alStack_d8);
         }
         fread(alStack_d8[0],lStack_e0,1,lVar1);
         puVar2 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x10,8,3);
@@ -198,14 +198,14 @@ void RenderingSystem_ProcessResourceFile(longlong render_context, longlong outpu
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        puStack_100 = &unknown_var_3456_ptr;
+        puStack_100 = &system_data_buffer_ptr;
         if (puStack_f8 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         puStack_f8 = (int8_t *)0x0;
         uStack_e8 = uStack_e8 & 0xffffffff00000000;
-        puStack_100 = &unknown_var_720_ptr;
+        puStack_100 = &system_state_ptr;
         iVar10 = iVar10 + 1;
         puVar11 = puVar11 + 1;
         puVar2 = puStack_b8;
@@ -291,7 +291,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
     fread(puStack_a0,4,(longlong)aiStack_108[0],*(uint64_t *)(param_2 + 8));
     uStack_c0 = 0;
     if (0 < aiStack_108[0]) {
-      puStack_e0 = &unknown_var_3456_ptr;
+      puStack_e0 = &system_data_buffer_ptr;
       uStack_c8 = 0;
       puStack_d8 = (int8_t *)0x0;
       uStack_d0 = 0;
@@ -347,16 +347,16 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, longlong output
       uStack_e8 = 0;
       uStack_e6 = 3;
       if (alStack_b8[0] != 0) {
-        FUN_180639bf0(&uStack_100);
+        System_BufferManager(&uStack_100);
       }
       fread(uStack_100,alStack_b8[0],1,uStack_90);
       puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x78,8,3);
       puStack_58 = puVar3 + 10;
-      *puStack_58 = &unknown_var_720_ptr;
+      *puStack_58 = &system_state_ptr;
       uVar4 = 0;
       puVar3[0xb] = 0;
       *(int32_t *)(puVar3 + 0xc) = 0;
-      *puStack_58 = &unknown_var_3456_ptr;
+      *puStack_58 = &system_data_buffer_ptr;
       puVar3[0xd] = 0;
       puVar3[0xb] = 0;
       *(int32_t *)(puVar3 + 0xc) = 0;
@@ -531,7 +531,7 @@ void RenderingSystem_OptimizeResourceData(longlong render_context, longlong outp
         uStack_9e = 3;
         lVar5 = *plVar15;
         if (lVar5 != 0) {
-          FUN_180639bf0(&lStack_b8);
+          System_BufferManager(&lStack_b8);
           lVar5 = *plVar15;
         }
         fread(lStack_b8,lVar5,1,lStack_80);
@@ -635,7 +635,7 @@ LAB_180330378:
       SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
-    puStack_e8 = &unknown_var_3456_ptr;
+    puStack_e8 = &system_data_buffer_ptr;
     if (puStack_e0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -789,7 +789,7 @@ void RenderingSystem_CompressRenderData(longlong render_context, longlong output
         iVar3 = *piVar13;
         piStack_100 = piVar13;
         if (((longlong)iVar3 & 0xfffffffffffffffU) != 0) {
-          FUN_180639bf0(&lStack_128);
+          System_BufferManager(&lStack_128);
           iVar3 = *piVar13;
         }
         lVar7 = lStack_128;
@@ -928,14 +928,14 @@ LAB_18033084a:
       UNLOCK();
       lVar7 = lStack_108;
     }
-    puStack_148 = &unknown_var_3456_ptr;
+    puStack_148 = &system_data_buffer_ptr;
     if (puStack_140 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_140 = (void *)0x0;
     uStack_130 = 0;
-    puStack_148 = &unknown_var_720_ptr;
+    puStack_148 = &system_state_ptr;
   }
   iVar3 = _Mtx_unlock(lVar7);
   if (iVar3 != 0) {

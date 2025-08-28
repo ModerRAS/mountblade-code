@@ -654,7 +654,7 @@ LAB_18038ff34:
         if ((*(float *)(lVar26 + 0xd8) <= 0.0 && *(float *)(lVar26 + 0xd8) != 0.0) ||
            ((3 < *(byte *)(lVar26 + 0xa8) &&
             (*(float *)(lVar26 + 0xe4) <= 0.0 && *(float *)(lVar26 + 0xe4) != 0.0)))) {
-          puStack_1c8 = &unknown_var_3456_ptr;
+          puStack_1c8 = &system_data_buffer_ptr;
           uStack_1b0 = 0;
           puStack_1c0 = (uint64_t *)0x0;
           uStack_1b8 = 0;
@@ -697,14 +697,14 @@ LAB_18038ff34:
           }
           uStack_1b8 = iVar42;
           FUN_180627020(puVar29);
-          puStack_1c8 = &unknown_var_3456_ptr;
+          puStack_1c8 = &system_data_buffer_ptr;
           if (puStack_1c0 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
           puStack_1c0 = (uint64_t *)0x0;
           uStack_1b0 = uStack_1b0 & 0xffffffff00000000;
-          puStack_1c8 = &unknown_var_720_ptr;
+          puStack_1c8 = &system_state_ptr;
         }
         plStack_1a0[(longlong)puStack_150] = lVar26;
         iStack_1a8 = iStack_1a8 + 1;

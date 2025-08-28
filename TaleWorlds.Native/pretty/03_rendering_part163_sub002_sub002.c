@@ -302,7 +302,7 @@ void FUN_18036b380(longlong *******param_1)
     uStack_128 = 10;
     uVar13 = strcpy_s(auStack_120,0x40,&unknown_var_1680_ptr);
     FUN_1800b3430(uVar13,&plStack_390,&puStack_138,1);
-    puStack_138 = &unknown_var_720_ptr;
+    puStack_138 = &system_state_ptr;
     uStack_458 = (longlong ****)0x3f8000003f800000;
     uStack_450 = (longlong ****)0x3f800000;
     FUN_18014cb90();

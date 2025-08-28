@@ -98,7 +98,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
       // 复制现有对象到新数组
       do {
         // 初始化新对象的虚函数表
-        temp_ptr->vtable_ptr = &unknown_var_720_ptr;
+        temp_ptr->vtable_ptr = &system_state_ptr;
         temp_ptr->object_data = NULL;
         temp_ptr->flags = 0;
         
@@ -128,7 +128,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
       
       do {
         // 初始化新对象的虚函数表
-        new_object_ptr->vtable_ptr = &unknown_var_720_ptr;
+        new_object_ptr->vtable_ptr = &system_state_ptr;
         new_object_ptr->object_data = NULL;
         new_object_ptr->flags = 0;
         
@@ -171,7 +171,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
       render_object_t *array_ptr = old_array_end;
       do {
         // 初始化新对象的虚函数表
-        array_ptr->vtable_ptr = &unknown_var_720_ptr;
+        array_ptr->vtable_ptr = &system_state_ptr;
         array_ptr->object_data = NULL;
         array_ptr->flags = 0;
         

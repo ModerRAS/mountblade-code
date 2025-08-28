@@ -344,10 +344,10 @@ LAB_180614ba5:
         // 执行数据复制操作
         do {
             RenderingSystem_ProcessStringLength(lVar3, (longlong)puVar4 + lVar6 + -0x50);
-            puVar4[-1] = &unknown_var_720_ptr;
+            puVar4[-1] = &system_state_ptr;
             *puVar4 = 0;
             *(int32_t *)(puVar4 + 1) = 0;
-            puVar4[-1] = &unknown_var_3456_ptr;
+            puVar4[-1] = &system_data_buffer_ptr;
             puVar4[2] = 0;
             *puVar4 = 0;
             *(int32_t *)(puVar4 + 1) = 0;
@@ -611,7 +611,7 @@ void RenderingSystem_GetStringParameter(char *param_1)
         *param_1 = cVar2;
         
         if (cVar2 != '\0') {
-            puStack_868 = &unknown_var_3456_ptr;
+            puStack_868 = &system_data_buffer_ptr;
             uStack_850 = 0;
             puStack_860 = (int8_t *)0x0;
             uStack_858 = 0;
@@ -643,7 +643,7 @@ void RenderingSystem_GetStringParameter(char *param_1)
             
             uStack_858 = 0;
             (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer, &puStack_868);
-            puStack_868 = &unknown_var_3456_ptr;
+            puStack_868 = &system_data_buffer_ptr;
             
             if (puStack_860 != (int8_t *)0x0) {
                 RenderingSystem_ClearMemory();
@@ -651,7 +651,7 @@ void RenderingSystem_GetStringParameter(char *param_1)
             
             puStack_860 = (int8_t *)0x0;
             uStack_850 = uStack_850 & 0xffffffff00000000;
-            puStack_868 = &unknown_var_720_ptr;
+            puStack_868 = &system_state_ptr;
             goto LAB_1806152c2;
         }
     }
@@ -1143,7 +1143,7 @@ void RenderingSystem_ProcessNetworkAddress(void)
     }
     
     // 处理网络地址字符串
-    puStack_50 = &unknown_var_7512_ptr;
+    puStack_50 = &system_config_ptr;
     puStack_48 = auStack_38;
     auStack_38[0] = 0;
     lVar2 = -1;
@@ -1160,7 +1160,7 @@ void RenderingSystem_ProcessNetworkAddress(void)
     
     // 执行网络地址处理
     (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer, &puStack_50);
-    puStack_50 = &unknown_var_720_ptr;
+    puStack_50 = &system_state_ptr;
     
     // 执行堆栈安全清理
     RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_78);

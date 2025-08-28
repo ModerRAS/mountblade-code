@@ -65,11 +65,11 @@ void FUN_1802f6cc0(longlong *param_1,longlong param_2)
   
   uStack_40 = 0xfffffffffffffffe;
   pcVar5 = (char *)0x0;
-  puStack_128 = &unknown_var_3456_ptr;
+  puStack_128 = &system_data_buffer_ptr;
   uStack_110 = 0;
   uStack_120 = 0;
   uStack_118 = 0;
-  puStack_148 = &unknown_var_3456_ptr;
+  puStack_148 = &system_data_buffer_ptr;
   uStack_130 = 0;
   lStack_140 = 0;
   iStack_138 = 0;
@@ -453,7 +453,7 @@ LAB_1802f73d0:
   fStack_c4 = uStack_50._4_4_ * fStack_f0;
   fStack_c0 = (float)uStack_48 * fStack_f0;
   (**(code **)(*param_1 + 0x148))(param_1,&fStack_e8);
-  puStack_148 = &unknown_var_3456_ptr;
+  puStack_148 = &system_data_buffer_ptr;
   if (lStack_140 == 0) {
     return;
   }

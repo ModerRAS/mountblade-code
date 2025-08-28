@@ -1510,7 +1510,7 @@ void FUN_18003a2b0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x4fc124d23d41985f;  // 节点哈希值1
     search_context.found_node[7] = 0xe2f4a30d6e6ae482;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_3504_ptr;      // 节点数据指针
+    search_context.found_node[8] = &system_param1_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = key_callback;      // 节点键值回调函数
     

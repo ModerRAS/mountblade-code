@@ -821,7 +821,7 @@ void FUN_1801efe50(void)
       (**(code **)(*plStack_c0 + 0x38))();
     }
     plVar4 = plStack_d8;
-    puStack_a0 = &unknown_var_720_ptr;
+    puStack_a0 = &system_state_ptr;
     puStack_68 = &unknown_var_672_ptr;
     puStack_60 = auStack_50;
     auStack_50[0] = 0;
@@ -846,7 +846,7 @@ void FUN_1801efe50(void)
     if (plStack_b8 != (longlong *)0x0) {
       (**(code **)(*plStack_b8 + 0x38))();
     }
-    puStack_68 = &unknown_var_720_ptr;
+    puStack_68 = &system_state_ptr;
     *(int8_t *)(lVar3 + 0xe8) = 0;
     if (plStack_d8 != (longlong *)0x0) {
       (**(code **)(*plStack_d8 + 0x38))();

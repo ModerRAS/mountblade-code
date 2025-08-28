@@ -721,14 +721,14 @@ object_copier(uint64_t *dest_ptr,uint64_t *src_ptr,uint64_t param3,uint64_t para
 void initialize_memory_region(uint64_t param1,longlong param2)
 
 {
-  *(uint64_t *)(param2 + 0x20) = &unknown_var_3456_ptr;
+  *(uint64_t *)(param2 + 0x20) = &system_data_buffer_ptr;
   if (*(longlong *)(param2 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     trigger_critical_error();
   }
   *(uint64_t *)(param2 + 0x28) = 0;
   *(int32_t *)(param2 + 0x38) = 0;
-  *(uint64_t *)(param2 + 0x20) = &unknown_var_720_ptr;
+  *(uint64_t *)(param2 + 0x20) = &system_state_ptr;
   if (param2 != 0) {
                     // WARNING: Subroutine does not return
     safe_free_memory(param2);

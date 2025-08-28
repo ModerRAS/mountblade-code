@@ -58,7 +58,7 @@ void extend_render_data_structure_capacity(longlong *render_context, ulonglong r
     if (allocated_buffer != current_data_ptr) {
       offset = (longlong)allocated_buffer - (longlong)dest_ptr;
       do {
-        *dest_ptr = &unknown_var_720_ptr;
+        *dest_ptr = &system_state_ptr;
         dest_ptr[1] = 0;
         *(int32_t *)(dest_ptr + 2) = 0;
         *dest_ptr = &unknown_var_3432_ptr;
@@ -79,7 +79,7 @@ void extend_render_data_structure_capacity(longlong *render_context, ulonglong r
       current_data_ptr = dest_ptr + 1;
       current_capacity = required_capacity;
       do {
-        current_data_ptr[-1] = &unknown_var_720_ptr;
+        current_data_ptr[-1] = &system_state_ptr;
         *current_data_ptr = 0;
         *(int32_t *)(current_data_ptr + 1) = 0;
         current_data_ptr[-1] = &unknown_var_3432_ptr;
@@ -111,7 +111,7 @@ void extend_render_data_structure_capacity(longlong *render_context, ulonglong r
     new_capacity = required_capacity;
     if (required_capacity != 0) {
       do {
-        *current_data_ptr = &unknown_var_720_ptr;
+        *current_data_ptr = &system_state_ptr;
         current_data_ptr[1] = 0;
         *(int32_t *)(current_data_ptr + 2) = 0;
         *current_data_ptr = &unknown_var_3432_ptr;

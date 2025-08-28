@@ -286,7 +286,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
     
     // 处理渲染对象创建
     FUN_1800b0a10(uVar10, &pcStack_1f0, *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0xa0), &puStack_148);
-    puStack_148 = &unknown_var_720_ptr;
+    puStack_148 = &system_state_ptr;
     lVar9 = *(longlong *)(param_1 + 0x88);
     
     // 检查渲染状态和条件
@@ -318,9 +318,9 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             }
             
             // 处理渲染参数
-            puStack_e8 = &unknown_var_720_ptr;
+            puStack_e8 = &system_state_ptr;
             plStack_198 = (longlong *)0x0;
-            puStack_190 = &unknown_var_3456_ptr;
+            puStack_190 = &system_data_buffer_ptr;
             uStack_178 = 0;
             lStack_188 = 0;
             uStack_180 = 0;
@@ -414,7 +414,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             FUN_1800b0a10(uVar10, apcStack_1c8, *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0xa0), &puStack_148);
             
             // 创建着色器资源
-            puStack_148 = &unknown_var_720_ptr;
+            puStack_148 = &system_state_ptr;
             ppcVar8 = (code **)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3);
             pcVar4 = apcStack_1c8[0];
             ppcVar8[1] = (code *)0x0;
@@ -493,7 +493,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             }
             
             ppcStack_200 = (code **)&puStack_190;
-            puStack_190 = &unknown_var_3456_ptr;
+            puStack_190 = &system_data_buffer_ptr;
             
             if (lStack_188 != 0) {
                 // 处理渲染错误
@@ -502,7 +502,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             
             lStack_188 = 0;
             uStack_178 = uStack_178 & 0xffffffff00000000;
-            puStack_190 = &unknown_var_720_ptr;
+            puStack_190 = &system_state_ptr;
             
             if (plStack_198 != (longlong *)0x0) {
                 (**(code **)(*plStack_198 + 0x38))();
@@ -1040,10 +1040,10 @@ static uint64_t unknown_var_6768_ptr = 0;
 static uint64_t unknown_var_6744_ptr = 0;
 static uint64_t unknown_var_6712_ptr = 0;
 static uint64_t unknown_var_3480_ptr = 0;
-static uint64_t unknown_var_720_ptr = 0;
+static uint64_t system_state_ptr = 0;
 static uint64_t unknown_var_3432_ptr = 0;
 static uint64_t unknown_var_2776_ptr = 0;
-static uint64_t unknown_var_3456_ptr = 0;
+static uint64_t system_data_buffer_ptr = 0;
 static uint64_t unknown_var_1768_ptr = 0;
 static uint64_t unknown_var_5072 = 0;
 static uint64_t unknown_var_4880 = 0;

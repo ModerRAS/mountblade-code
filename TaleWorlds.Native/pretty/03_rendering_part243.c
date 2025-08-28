@@ -903,14 +903,14 @@ void FUN_180406500(longlong param_1)
   longlong *plVar1;
   longlong *plVar2;
   
-  *(uint64_t *)(param_1 + 0x40) = &unknown_var_3456_ptr;
+  *(uint64_t *)(param_1 + 0x40) = &system_data_buffer_ptr;
   if (*(longlong *)(param_1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(param_1 + 0x48) = 0;
   *(int32_t *)(param_1 + 0x58) = 0;
-  *(uint64_t *)(param_1 + 0x40) = &unknown_var_720_ptr;
+  *(uint64_t *)(param_1 + 0x40) = &system_state_ptr;
   if (*(longlong *)(param_1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

@@ -83,7 +83,7 @@ void FUN_18059a7f0(longlong param_1,longlong param_2,int16_t param_3,int16_t par
     *(int32_t *)(lVar11 + 0x60 + lVar12) = in_stack_ffffffffffffffe8;
     return;
   }
-  puStack_40 = &unknown_var_3456_ptr;
+  puStack_40 = &system_data_buffer_ptr;
   uStack_28 = 0;
   puStack_38 = (int32_t *)0x0;
   uStack_30 = 0;
@@ -107,7 +107,7 @@ void FUN_18059a7f0(longlong param_1,longlong param_2,int16_t param_3,int16_t par
   if (puVar3 != (void *)0x0) {
     puVar16 = puVar3;
   }
-  FUN_180628040(&puStack_40,&unknown_var_2736_ptr,puVar16);
+  System_DataHandler(&puStack_40,&unknown_var_2736_ptr,puVar16);
   iVar15 = uStack_30 + 0x2a;
   if (iVar15 != 0) {
     uVar10 = uStack_30 + 0x2b;
@@ -148,7 +148,7 @@ LAB_1805aa1de:
     puVar14 = puStack_38;
   }
   FUN_180626f80(&unknown_var_2704_ptr,puVar14);
-  puStack_40 = &unknown_var_3456_ptr;
+  puStack_40 = &system_data_buffer_ptr;
   if (puStack_38 == (int32_t *)0x0) {
     return;
   }
@@ -278,7 +278,7 @@ void FUN_18059a907(uint64_t param_1,longlong param_2)
   
   uStack0000000000000050 = 0xfffffffffffffffe;
   uStack00000000000000a0 = in_stack_00000090;
-  puStack0000000000000058 = &unknown_var_3456_ptr;
+  puStack0000000000000058 = &system_data_buffer_ptr;
   _uStack0000000000000070 = 0;
   puStack0000000000000060 = (int32_t *)0x0;
   uStack0000000000000068 = 0;
@@ -302,7 +302,7 @@ void FUN_18059a907(uint64_t param_1,longlong param_2)
   if (puVar1 != (void *)0x0) {
     puVar7 = puVar1;
   }
-  FUN_180628040(&stack0x00000058,&unknown_var_2736_ptr,puVar7);
+  System_DataHandler(&stack0x00000058,&unknown_var_2736_ptr,puVar7);
   iVar6 = uStack0000000000000068 + 0x2a;
   if (iVar6 != 0) {
     uVar3 = uStack0000000000000068 + 0x2b;
@@ -345,7 +345,7 @@ LAB_1805aa1de:
     puVar5 = puStack0000000000000060;
   }
   FUN_180626f80(&unknown_var_2704_ptr,puVar5);
-  puStack0000000000000058 = &unknown_var_3456_ptr;
+  puStack0000000000000058 = &system_data_buffer_ptr;
   if (puStack0000000000000060 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

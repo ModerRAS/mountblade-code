@@ -129,7 +129,7 @@ void FUN_1802eaec0(longlong param_1,longlong param_2,char param_3,char param_4,l
             pppplVar3[0x14] = pppplVar4[0x14];
           }
           pppplStackX_8 = pppplStack_80;
-          *pppplStack_80 = (longlong ***)&unknown_var_720_ptr;
+          *pppplStack_80 = (longlong ***)&system_state_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(pppplStack_80);
         }

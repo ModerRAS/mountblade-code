@@ -314,7 +314,7 @@ STRING_COMPARE_FAILED:
     }
     
     // 更新指针状态
-    pointer_33 = &unknown_var_720_ptr;
+    pointer_33 = &system_state_ptr;
     
     // 根据匹配结果进行不同的配置设置
     if (match_result) {
@@ -360,7 +360,7 @@ STRING_COMPARE_FAILED:
             config_buffer_8[0] = 0;
             config_value_8 = STRING_LENGTH_26;
             strcpy_s(config_buffer_8, STRING_BUFFER_SIZE_MEDIUM, &system_memory_ecf8);
-            pointer_39 = &unknown_var_720_ptr;
+            pointer_39 = &system_state_ptr;
             
             goto FINALIZE_RENDER_PROCESS;
         }
@@ -415,7 +415,7 @@ SECONDARY_COMPARE_FAILED:
             }
         }
         
-        pointer_33 = &unknown_var_720_ptr;
+        pointer_33 = &system_state_ptr;
         if (match_result) {
             if (*(char *)(render_context + RENDER_STATE_FLAG_2) == '\0') {
                 // 第五组配置设置
@@ -451,7 +451,7 @@ SECONDARY_COMPARE_FAILED:
         strcpy_s(config_buffer_1, STRING_BUFFER_SIZE_MEDIUM, &system_memory_ecd0);
     }
     
-    pointer_1 = &unknown_var_720_ptr;
+    pointer_1 = &system_state_ptr;
     
 FINALIZE_RENDER_PROCESS:
     // 执行渲染管线处理
@@ -616,49 +616,49 @@ static inline void set_render_configuration_group_1(
     b1[0] = 0;
     v1 = STRING_LENGTH_19;
     strcpy_s(b1, STRING_BUFFER_SIZE_MEDIUM, &unknown_var_3024_ptr);
-    *p1 = &unknown_var_720_ptr;
+    *p1 = &system_state_ptr;
     
     *p3 = &unknown_var_3480_ptr;
     *p4 = b2;
     b2[0] = 0;
     v2 = STRING_LENGTH_23;
     strcpy_s(b2, STRING_BUFFER_SIZE_MEDIUM, &unknown_var_3000_ptr);
-    *p3 = &unknown_var_720_ptr;
+    *p3 = &system_state_ptr;
     
     *p5 = &unknown_var_3480_ptr;
     *p6 = b3;
     b3[0] = 0;
     v3 = STRING_LENGTH_35;
     strcpy_s(b3, STRING_BUFFER_SIZE_MEDIUM, &system_memory_eba8);
-    *p5 = &unknown_var_720_ptr;
+    *p5 = &system_state_ptr;
     
     *p7 = &unknown_var_3480_ptr;
     *p8 = b4;
     b4[0] = 0;
     v4 = STRING_LENGTH_19;
     strcpy_s(b4, STRING_BUFFER_SIZE_MEDIUM, &system_memory_eb48);
-    *p7 = &unknown_var_720_ptr;
+    *p7 = &system_state_ptr;
     
     *p9 = &unknown_var_3480_ptr;
     *p10 = b5;
     b5[0] = 0;
     v5 = STRING_LENGTH_17;
     strcpy_s(b5, STRING_BUFFER_SIZE_MEDIUM, &unknown_var_3048_ptr);
-    *p9 = &unknown_var_720_ptr;
+    *p9 = &system_state_ptr;
     
     *p11 = &unknown_var_3480_ptr;
     *p12 = b6;
     b6[0] = 0;
     v6 = STRING_LENGTH_34;
     strcpy_s(b6, STRING_BUFFER_SIZE_MEDIUM, &system_memory_ec30);
-    *p11 = &unknown_var_720_ptr;
+    *p11 = &system_state_ptr;
     
     *p13 = &unknown_var_3480_ptr;
     *p14 = b7;
     b7[0] = 0;
     v7 = STRING_LENGTH_21;
     strcpy_s(b7, STRING_BUFFER_SIZE_MEDIUM, &system_memory_ec18);
-    *p13 = &unknown_var_720_ptr;
+    *p13 = &system_state_ptr;
 }
 
 /**

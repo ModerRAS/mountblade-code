@@ -251,12 +251,12 @@ void FUN_180494b06(float param_1,longlong param_2,int param_3)
     do {
       uVar32 = uStack0000000000000034 * 3;
       pfVar23 = (float *)(unaff_RBP + -0x60 +
-                         (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)uVar32 * 4) * 0x10);
+                         (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)uVar32 * 4) * 0x10);
       fVar4 = pfVar23[2];
       pfVar1 = (float *)(unaff_RBP + -0x60 +
-                        (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar32 + 2) * 4) * 0x10);
+                        (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar32 + 2) * 4) * 0x10);
       pfVar2 = (float *)(unaff_RBP + -0x60 +
-                        (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar32 + 1) * 4) * 0x10);
+                        (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar32 + 1) * 4) * 0x10);
       uVar26 = (uint)(*pfVar23 + 0.5);
       uVar9 = (uint)(pfVar23[1] + 0.5);
       uVar24 = (uint)(*pfVar1 + 0.5);

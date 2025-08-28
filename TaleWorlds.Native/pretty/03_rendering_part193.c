@@ -249,7 +249,7 @@ void FUN_18037dc60(int *param_1,longlong param_2,float param_3)
   
   uStack_80 = 0xfffffffffffffffe;
   pcVar11 = (char *)0x0;
-  puStack_b0 = &unknown_var_3456_ptr;
+  puStack_b0 = &system_data_buffer_ptr;
   uStack_98 = 0;
   puStack_a8 = (void *)0x0;
   uStack_a0 = 0;
@@ -521,7 +521,7 @@ LAB_18037e0f4:
         do {
           if (puVar8 == (uint64_t *)0x0) {
 LAB_18037e219:
-            puStack_b0 = &unknown_var_3456_ptr;
+            puStack_b0 = &system_data_buffer_ptr;
             if (puStack_a8 != (void *)0x0) {
                     // WARNING: Subroutine does not return
               FUN_18064e900();

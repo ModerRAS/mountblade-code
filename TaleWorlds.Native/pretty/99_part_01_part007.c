@@ -662,7 +662,7 @@ uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong
     *(int *)(resource_handle + 0x368) = config_param2 * *init_params;
     *(uint64_t *)(resource_handle + 0x170) = temp_storage12;
     context_ptr = (void **)FUN_180049b30(buffer2,resource_handle + 0x10);
-    *context_ptr = &unknown_var_720_ptr;
+    *context_ptr = &system_state_ptr;
     *(longlong *)(resource_handle + 0x168) = resource_handle;
     
     /* 处理资源数据 */

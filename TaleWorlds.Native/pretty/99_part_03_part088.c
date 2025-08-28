@@ -369,11 +369,11 @@ void FUN_18024c0f0(longlong param_1,uint64_t param_2)
   FUN_1800b8300(param_2,ppuVar1);
   if ((uVar2 & 2) != 0) {
     uVar2 = uVar2 & 0xfffffffd;
-    puStack_e8 = &unknown_var_720_ptr;
+    puStack_e8 = &system_state_ptr;
   }
   if ((uVar2 & 1) != 0) {
     uVar2 = uVar2 & 0xfffffffe;
-    puStack_88 = &unknown_var_720_ptr;
+    puStack_88 = &system_state_ptr;
   }
   uStack_108 = uVar2 | 4;
                     // WARNING: Subroutine does not return

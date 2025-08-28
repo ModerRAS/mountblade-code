@@ -119,7 +119,7 @@ LAB_180418790:
                   if (pcVar8 <= pcVar22) {
 LAB_180418fe0:
                     do {
-                      puStack_510 = &unknown_var_3456_ptr;
+                      puStack_510 = &system_data_buffer_ptr;
                       uStack_4f8 = 0;
                       lStack_508 = 0;
                       uStack_500 = 0;
@@ -273,14 +273,14 @@ LAB_180419244:
                       }
 LAB_1804192cd:
                       puVar17 = (uint64_t *)puVar17[0xb];
-                      puStack_510 = &unknown_var_3456_ptr;
+                      puStack_510 = &system_data_buffer_ptr;
                       if (lStack_508 != 0) {
                     // WARNING: Subroutine does not return
                         FUN_18064e900();
                       }
                       lStack_508 = 0;
                       uStack_4f8 = uStack_4f8 & 0xffffffff00000000;
-                      puStack_510 = &unknown_var_720_ptr;
+                      puStack_510 = &system_state_ptr;
                       uStack_4c0 = (longlong **)CONCAT44(uStack_4c0._4_4_,(int32_t)uStack_4c0);
                     } while (puVar17 != (uint64_t *)0x0);
                     break;
@@ -401,7 +401,7 @@ LAB_1804188d6:
                                  );
                     goto LAB_18041931c;
                   }
-                  puStack_510 = &unknown_var_3456_ptr;
+                  puStack_510 = &system_data_buffer_ptr;
                   uStack_4f8 = 0;
                   lStack_508 = 0;
                   uStack_500 = 0;
@@ -646,14 +646,14 @@ LAB_180418e21:
                   }
                   plStack_470 = plVar9 + 1;
                   pcVar8 = *(char **)(pcVar8 + 0x58);
-                  puStack_510 = &unknown_var_3456_ptr;
+                  puStack_510 = &system_data_buffer_ptr;
                   if (lStack_508 != 0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900();
                   }
                   lStack_508 = 0;
                   uStack_4f8 = uStack_4f8 & 0xffffffff00000000;
-                  puStack_510 = &unknown_var_720_ptr;
+                  puStack_510 = &system_state_ptr;
                   param_1 = puStack_4c8;
                 } while( true );
               }

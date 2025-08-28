@@ -563,7 +563,7 @@ STATUS_CHECK_DONE:
     }
     current_entry = status_array;
 STATUS_VALID:
-    context_ptr = &unknown_var_3456_ptr;
+    context_ptr = &system_data_buffer_ptr;
     if (string_buffer == (byte *)0x0) {
         return current_entry != status_array;
     }
@@ -648,7 +648,7 @@ void process_module_data(longlong module_context, longlong data_source, uint64_t
         }
         return;
     }
-    source_ptr = &unknown_var_3456_ptr;
+    source_ptr = &system_data_buffer_ptr;
     source_data = 0;
     source_buffer = (uint64_t *)0x0;
     source_flag = 0;
@@ -663,7 +663,7 @@ void process_module_data(longlong module_context, longlong data_source, uint64_t
     source_flag = 10;
     transfer_result = FUN_180628d60(module_context + 0x2c0,&source_ptr);
     if (-1 < transfer_result) {
-        context_ptr = &unknown_var_3456_ptr;
+        context_ptr = &system_data_buffer_ptr;
         target_data = 0;
         target_buffer = (uint64_t *)0x0;
         target_flag = 0;
@@ -677,10 +677,10 @@ void process_module_data(longlong module_context, longlong data_source, uint64_t
         *(int8_t *)((longlong)data_buffer + 10) = 0;
         target_flag = 10;
         FUN_180628d60(module_context + 0x2c0,&context_ptr);
-        context_ptr = &unknown_var_3456_ptr;
+        context_ptr = &system_data_buffer_ptr;
         FUN_18064e900(data_buffer);
     }
-    source_ptr = &unknown_var_3456_ptr;
+    source_ptr = &system_data_buffer_ptr;
     FUN_18064e900(data_buffer);
 }
 
@@ -706,7 +706,7 @@ uint64_t register_system_module(uint64_t module_handle, uint64_t module_data)
         FUN_180627ae0(module_data,system_main_module_state + 0xb8);
         return module_data;
     }
-    source_ptr = &unknown_var_3456_ptr;
+    source_ptr = &system_data_buffer_ptr;
     source_data = 0;
     source_buffer = (uint64_t *)0x0;
     source_flag = 0;
@@ -721,7 +721,7 @@ uint64_t register_system_module(uint64_t module_handle, uint64_t module_data)
     source_flag = 10;
     register_result = FUN_180628d60(system_context + 0x2c0,&source_ptr);
     if (-1 < register_result) {
-        context_ptr = &unknown_var_3456_ptr;
+        context_ptr = &system_data_buffer_ptr;
         target_data = 0;
         target_buffer = (uint64_t *)0x0;
         target_flag = 0;
@@ -735,9 +735,9 @@ uint64_t register_system_module(uint64_t module_handle, uint64_t module_data)
         *(int8_t *)((longlong)module_info + 10) = 0;
         target_flag = 10;
         FUN_180628d60(system_context + 0x2c0,&context_ptr);
-        context_ptr = &unknown_var_3456_ptr;
+        context_ptr = &system_data_buffer_ptr;
         FUN_18064e900(module_info);
     }
-    source_ptr = &unknown_var_3456_ptr;
+    source_ptr = &system_data_buffer_ptr;
     FUN_18064e900(module_info);
 }

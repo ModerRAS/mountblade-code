@@ -267,7 +267,7 @@ LAB_18052bb8d:
             uStack_138 = 0x1d;
             strcpy_s(auStack_130,0x80,&unknown_var_6992_ptr);
             FUN_1800c1520(render_system_data_memory,&fStack_1a0,&puStack_148);
-            puStack_148 = &unknown_var_720_ptr;
+            puStack_148 = &system_state_ptr;
             uVar16 = FUN_18062b1e0(system_memory_pool_ptr,0x168,8,3);
             plVar17 = (longlong *)FUN_1802ac390(uVar16);
             if (plVar17 != (longlong *)0x0) {
@@ -519,7 +519,7 @@ LAB_18052c185:
     afStack_118[lVar4 * 0xc + 1] = (float)(int)cVar1 * 0.1;
     auStack_110[lVar4 * 0x30] = 1;
     iStack_78 = iStack_78 + 1;
-    puStack_160 = &unknown_var_720_ptr;
+    puStack_160 = &system_state_ptr;
     pplVar6 = aplStack_138;
   }
   if (0.0 < *(float *)(param_2 + 0x18)) {
@@ -551,7 +551,7 @@ LAB_18052c185:
     afStack_118[lVar4 * 0xc + 1] = fVar8;
     auStack_110[lVar4 * 0x30] = 1;
     iStack_78 = iStack_78 + 1;
-    puStack_160 = &unknown_var_720_ptr;
+    puStack_160 = &system_state_ptr;
     pplVar6 = aplStack_138;
   }
   uStack_180 = 0;

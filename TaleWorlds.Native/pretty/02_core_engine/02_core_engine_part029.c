@@ -10,12 +10,12 @@ uint64_t GET_SECURITY_COOKIE();  // 加密密钥相关
 uint64_t system_resource_state;  // 初始化地址
 uint64_t unknown_var_5192_ptr;  // 对象模板
 uint64_t unknown_var_5080;  // 对象模板
-uint64_t unknown_var_3552_ptr;  // 上下文模板
+uint64_t system_handler1_ptr;  // 上下文模板
 uint64_t unknown_var_3696;  // 上下文模板
 uint64_t unknown_var_8584;  // 上下文模板
 uint64_t unknown_var_7128;  // 上下文模板
 uint64_t unknown_var_3432;  // 未知数据结构
-uint64_t unknown_var_720_ptr;  // 未知数据结构
+uint64_t system_state_ptr;  // 未知数据结构
 uint64_t system_buffer_ptr;  // 默认名称指针
 
 /**
@@ -237,8 +237,8 @@ void initialize_data_processor(longlong processor)
         handler_ptr = (longlong *)allocate_memory(system_memory_pool_ptr, 0xc0, 0x10, 4, 0xfffffffffffffffe);
         
         // 设置处理器回调
-        *handler_ptr = (longlong)&unknown_var_3552_ptr;
-        handler_ptr[2] = (longlong)&unknown_var_720_ptr;
+        *handler_ptr = (longlong)&system_handler1_ptr;
+        handler_ptr[2] = (longlong)&system_state_ptr;
         
         // 初始化处理器状态
         *(longlong **)(processor + 0xb0) = handler_ptr;

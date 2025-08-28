@@ -337,7 +337,7 @@ ulonglong FUN_180896140(longlong param_1)
               uStack_90 = 0;
               uStack_80 = 0;
               FUN_180891cf0(&puStack_98,*(uint64_t *)(param_1 + 0x58));
-              puStack_b8 = &unknown_var_9776_ptr;
+              puStack_b8 = &system_string2_ptr;
               uStack_a8 = *(int32_t *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = uStack_a0 & 0xffffff00;

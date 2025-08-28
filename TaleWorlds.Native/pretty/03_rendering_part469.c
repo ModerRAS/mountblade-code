@@ -776,7 +776,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
         if ((*(int *)(*(longlong *)
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
              render_system_config_memory) && (FUN_1808fcb90(&system_memory_9ec8), render_system_config_memory == -1)) {
-          uStack_178 = &unknown_var_3456_ptr;
+          uStack_178 = &system_data_buffer_ptr;
           fStack_160 = 0.0;
           fStack_15c = 0.0;
           uStack_170 = (int32_t *)0x0;
@@ -789,7 +789,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
           *(int8_t *)(puVar11 + 1) = 0;
           fStack_168 = 5.60519e-45;
           render_system_config_memory = FUN_180571e20(&system_memory_60c0,&uStack_178);
-          uStack_178 = &unknown_var_3456_ptr;
+          uStack_178 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar11);
         }
@@ -902,7 +902,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
           else {
             uVar9 = 0;
           }
-          cVar5 = FUN_180645c10(uVar9,0,&unknown_var_3504_ptr);
+          cVar5 = FUN_180645c10(uVar9,0,&system_param1_ptr);
           if (((cVar5 != '\0') && (cVar5 = FUN_180645c10(uVar9,5,&unknown_var_3472_ptr), cVar5 != '\0')) &&
              ((cVar5 = FUN_180645fa0(uVar9), cVar5 != '\0' &&
               (cVar5 = FUN_180645fa0(uVar9), cVar5 != '\0')))) {
@@ -958,7 +958,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
         if ((*(int *)(*(longlong *)
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
              render_system_config_memory) && (FUN_1808fcb90(&system_memory_9ed0), render_system_config_memory == -1)) {
-          uStack_178 = &unknown_var_3456_ptr;
+          uStack_178 = &system_data_buffer_ptr;
           fStack_160 = 0.0;
           fStack_15c = 0.0;
           uStack_170 = (int32_t *)0x0;
@@ -971,7 +971,7 @@ void FUN_18051c010(longlong param_1,longlong param_2)
           *(int8_t *)(puVar11 + 1) = 0;
           fStack_168 = 5.60519e-45;
           render_system_config_memory = FUN_180571e20(&system_memory_60c0,&uStack_178);
-          uStack_178 = &unknown_var_3456_ptr;
+          uStack_178 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar11);
         }

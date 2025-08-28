@@ -199,7 +199,7 @@ void FUN_1802e1bb0(int *param_1,longlong param_2,float param_3)
         FUN_180045af0(&uStack_4e8);
         FUN_180045af0(&uStack_528);
       }
-      apuStack_368[0] = &unknown_var_720_ptr;
+      apuStack_368[0] = &system_state_ptr;
       FUN_180627b90(&uStack_188);
     }
     if (1 < *param_1) {
@@ -810,7 +810,7 @@ void FUN_1802e1bb0(int *param_1,longlong param_2,float param_3)
       FUN_1802864f0(puVar7);
       lVar11 = FUN_1802e3860(param_1,param_2,fStack_458);
       FUN_180627850(&puStack_4a8);
-      FUN_180628040(&puStack_4a8,&unknown_var_9936_ptr,uVar16 & 0xffffffff);
+      System_DataHandler(&puStack_4a8,&unknown_var_9936_ptr,uVar16 & 0xffffffff);
       func_0x000180094d10(lVar11,&puStack_4a8);
       puVar9 = (uint64_t *)(lVar11 + 0x30);
       do {

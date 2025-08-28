@@ -125,7 +125,7 @@ void FUN_1804a45f0(uint64_t param_1,longlong *param_2)
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar3);
       }
-      puStack_80 = &unknown_var_3456_ptr;
+      puStack_80 = &system_data_buffer_ptr;
       if (lStack_78 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();

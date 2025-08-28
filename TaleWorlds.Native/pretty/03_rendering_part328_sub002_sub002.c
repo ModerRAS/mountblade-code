@@ -341,7 +341,7 @@ LAB_18043d074:
 LAB_18043d0b7:
   uVar5 = 0;
 LAB_18043d0b9:
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 == 0) {
     return uVar5;
   }
@@ -1029,7 +1029,7 @@ LAB_18043e151:
     else {
       cVar1 = FUN_180629850(auStack_50,&unknown_var_7496_ptr,1);
       if (cVar1 == '\0') {
-        puVar2 = &unknown_var_7512_ptr;
+        puVar2 = &system_config_ptr;
 LAB_18043d1f9:
         cVar1 = FUN_180629850(auStack_50,puVar2,1);
         if (cVar1 != '\0') {

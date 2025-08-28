@@ -206,7 +206,7 @@ longlong process_event_type(longlong event_context, int event_type, char is_enab
   
   if (*(int *)(core_system_data_buffer + 0x9a0) == 0) goto skip_debug_logging;
   
-  string_data = &unknown_var_3456_ptr;
+  string_data = &system_data_buffer_ptr;
   result_code = 0;
   temp_buffer = (int32_t *)0x0;
   temp_size = 0;
@@ -254,13 +254,13 @@ buffer_ready:
   
   // 输出调试消息
   FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, message_buffer);
-  string_data = &unknown_var_3456_ptr;
+  string_data = &system_data_buffer_ptr;
   if (temp_buffer != (int32_t *)0x0) {
     FUN_18064e900();
   }
   temp_buffer = (int32_t *)0x0;
   result_code = (ulonglong)result_code._4_4_ << 0x20;
-  string_data = &unknown_var_720_ptr;
+  string_data = &system_state_ptr;
 
 skip_debug_logging:
   context_backup = 0;
@@ -398,7 +398,7 @@ uint64_t process_thread_safe_event_operation(longlong event_context, int32_t ope
   
   if (*(int *)(core_system_data_buffer + 0x9a0) == 0) goto skip_debug_logging;
   
-  string_data = &unknown_var_3456_ptr;
+  string_data = &system_data_buffer_ptr;
   debug_result = 0;
   temp_buffer = (int32_t *)0x0;
   temp_size = 0;
@@ -448,13 +448,13 @@ buffer_ready:
   
   // 输出调试消息
   FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, message_buffer);
-  string_data = &unknown_var_3456_ptr;
+  string_data = &system_data_buffer_ptr;
   if (temp_buffer != (int32_t *)0x0) {
     FUN_18064e900();
   }
   temp_buffer = (int32_t *)0x0;
   debug_result = (ulonglong)debug_result._4_4_ << 0x20;
-  string_data = &unknown_var_720_ptr;
+  string_data = &system_state_ptr;
 
 skip_debug_logging:
   process_result = process_event_type(event_context, operation_code, 0);
@@ -463,7 +463,7 @@ skip_debug_logging:
   process_result = result_code;
   
   if (lock_result != 0) {
-    FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &unknown_var_3552_ptr, result_code);
+    FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &system_handler1_ptr, result_code);
     process_result = 0;
   }
   
@@ -511,7 +511,7 @@ void add_event_to_queue(longlong event_context, uint64_t event_data)
   parsed_data = FUN_180624440(security_buffer, event_data);
   FUN_1806279c0(&temp_string, parsed_data);
   
-  security_buffer[0] = &unknown_var_720_ptr;
+  security_buffer[0] = &system_state_ptr;
   debug_handle = 0;
   
   string_ptr = &system_buffer_ptr;
@@ -608,13 +608,13 @@ calculate_new_size:
   *(uint64_t **)(event_context + 0x388) = new_queue + search_result;
 
 cleanup_and_exit:
-  temp_string = &unknown_var_3456_ptr;
+  temp_string = &system_data_buffer_ptr;
   if (temp_string != (void *)0x0) {
     FUN_18064e900();
   }
   temp_string = (void *)0x0;
   format_result = 0;
-  temp_string = &unknown_var_720_ptr;
+  temp_string = &system_state_ptr;
   
   // 释放线程锁
   lock_result = _Mtx_unlock(lock_address);

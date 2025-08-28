@@ -58,7 +58,7 @@ void FUN_1805698e0(longlong param_1)
   (**(code **)(param_1 + 0x100))(0x30,FUN_180603140);
   (**(code **)(param_1 + 0x100))(0x31,&unknown_var_1728_ptr);
   (**(code **)(param_1 + 0x100))(0x32,&unknown_var_5024_ptr);
-  (**(code **)(param_1 + 0x100))(0x33,&unknown_var_9584_ptr);
+  (**(code **)(param_1 + 0x100))(0x33,&system_pattern2_ptr);
   (**(code **)(param_1 + 0x100))(0x34,&unknown_var_2912_ptr);
   (**(code **)(param_1 + 0x100))(0x35,&unknown_var_6096_ptr);
   (**(code **)(param_1 + 0x100))(0x36,&unknown_var_6240_ptr);
@@ -106,7 +106,7 @@ void FUN_1805698e0(longlong param_1)
   (**(code **)(param_1 + 0x100))(0x60,FUN_180601520);
   (**(code **)(param_1 + 0x100))(0x61,FUN_180601ce0);
   (**(code **)(param_1 + 0x100))(0x62,&unknown_var_4576_ptr);
-  (**(code **)(param_1 + 0x100))(99,&unknown_var_720_ptr);
+  (**(code **)(param_1 + 0x100))(99,&system_state_ptr);
   (**(code **)(param_1 + 0x100))(100,&unknown_var_736_ptr);
   (**(code **)(param_1 + 0x100))(0x65,FUN_1806013b0);
   (**(code **)(param_1 + 0x100))(0x66,&unknown_var_7744_ptr);
@@ -138,7 +138,7 @@ void FUN_1805698e0(longlong param_1)
   (**(code **)(param_1 + 0x100))(0x80,&unknown_var_5120_ptr);
   (**(code **)(param_1 + 0x100))(0x81,&unknown_var_9536_ptr);
   (**(code **)(param_1 + 0x100))(0x82,&unknown_var_592_ptr);
-  (**(code **)(param_1 + 0x100))(0x83,&unknown_var_9552_ptr);
+  (**(code **)(param_1 + 0x100))(0x83,&system_string1_ptr);
   (**(code **)(param_1 + 0x100))(0x84,FUN_180602950);
   (**(code **)(param_1 + 0x100))(0x85,&unknown_var_7104_ptr);
   (**(code **)(param_1 + 0x100))(0x86,&unknown_var_576_ptr);
@@ -183,7 +183,7 @@ void FUN_1805698e0(longlong param_1)
   (**(code **)(param_1 + 0x100))(0xad,FUN_180600b80);
   (**(code **)(param_1 + 0x100))(0xae,FUN_180603210);
   (**(code **)(param_1 + 0x100))(0xaf,FUN_180603540);
-  (**(code **)(param_1 + 0x100))(0xb0,&unknown_var_3552_ptr);
+  (**(code **)(param_1 + 0x100))(0xb0,&system_handler1_ptr);
   (**(code **)(param_1 + 0x100))(0xb1,FUN_1805ff9e0);
   (**(code **)(param_1 + 0x100))(0xb2,&unknown_var_8960_ptr);
   (**(code **)(param_1 + 0x100))(0xb3,&unknown_var_1536_ptr);
@@ -551,7 +551,7 @@ void FUN_1805698e0(longlong param_1)
   (**(code **)(param_1 + 0x100))(0x21d,FUN_180615130);
   (**(code **)(param_1 + 0x100))(0x21e,FUN_180614e00);
   (**(code **)(param_1 + 0x100))(0x21f,FUN_180614f60);
-  (**(code **)(param_1 + 0x100))(0x220,&unknown_var_3456_ptr);
+  (**(code **)(param_1 + 0x100))(0x220,&system_data_buffer_ptr);
   (**(code **)(param_1 + 0x100))(0x221,_guard_check_icall);
   (**(code **)(param_1 + 0x100))(0x222,_guard_check_icall);
   (**(code **)(param_1 + 0x100))(0x223,FUN_1806163f0);
@@ -599,7 +599,7 @@ void FUN_1805698e0(longlong param_1)
   (**(code **)(param_1 + 0x100))(0x24d,FUN_1806177c0);
   (**(code **)(param_1 + 0x100))(0x24e,FUN_1806178d0);
   (**(code **)(param_1 + 0x100))(0x24f,FUN_180617480);
-  (**(code **)(param_1 + 0x100))(0x250,&unknown_var_9376_ptr);
+  (**(code **)(param_1 + 0x100))(0x250,&render_data_ptr);
   (**(code **)(param_1 + 0x100))(0x251,FUN_180617ba0);
   (**(code **)(param_1 + 0x100))(0x252,FUN_180617af0);
   (**(code **)(param_1 + 0x100))(0x253,FUN_180617c60);
@@ -621,7 +621,7 @@ void FUN_1805698e0(longlong param_1)
   (**(code **)(param_1 + 0x100))(0x263,FUN_18060e650);
   (**(code **)(param_1 + 0x100))(0x264,FUN_18060e720);
   (**(code **)(param_1 + 0x100))(0x265,FUN_18060e5e0);
-  (**(code **)(param_1 + 0x100))(0x266,&unknown_var_3456_ptr);
+  (**(code **)(param_1 + 0x100))(0x266,&system_data_buffer_ptr);
   (**(code **)(param_1 + 0x100))(0x267,&unknown_var_2080_ptr);
   (**(code **)(param_1 + 0x100))(0x268,&unknown_var_3472_ptr);
   (**(code **)(param_1 + 0x100))(0x269,FUN_1806188d0);

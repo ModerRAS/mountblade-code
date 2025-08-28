@@ -198,7 +198,7 @@ LAB_1801a39ab:
     if (iVar3 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar3);
     }
-    puStack_148 = &unknown_var_720_ptr;
+    puStack_148 = &system_state_ptr;
   }
   if ((*(byte *)(param_2 + 1) & 4) == 0) {
     lVar7 = *(longlong *)(param_1 + 0x60b80);
@@ -248,7 +248,7 @@ LAB_1801a39ab:
       FUN_1800b08e0(lVar9,&plStack_220,&puStack_108,1);
       plVar6 = plStack_220;
       uStack_248 = 1;
-      puStack_108 = &unknown_var_720_ptr;
+      puStack_108 = &system_state_ptr;
       plStack_220 = (longlong *)0x0;
       plStack_170 = *(longlong **)(lVar7 + 0x10);
       *(longlong **)(lVar7 + 0x10) = plVar6;
@@ -281,7 +281,7 @@ LAB_1801a39ab:
       FUN_1800b30d0(lVar9,aplStack_218,&puStack_a8,1);
       plVar6 = aplStack_218[0];
       uStack_248 = uVar11 & 0xffffffef | 8;
-      puStack_a8 = &unknown_var_720_ptr;
+      puStack_a8 = &system_state_ptr;
       aplStack_218[0] = (longlong *)0x0;
       plStack_168 = *(longlong **)(lVar7 + 0xe0);
       *(longlong **)(lVar7 + 0xe0) = plVar6;

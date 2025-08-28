@@ -263,14 +263,14 @@ void FUN_180077020(longlong *param_1)
   
   puVar1 = (uint64_t *)param_1[1];
   for (puVar2 = (uint64_t *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 6) {
-    *puVar2 = &unknown_var_3456_ptr;
+    *puVar2 = &system_data_buffer_ptr;
     if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puVar2[1] = 0;
     *(int32_t *)(puVar2 + 3) = 0;
-    *puVar2 = &unknown_var_720_ptr;
+    *puVar2 = &system_state_ptr;
   }
   if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
@@ -375,7 +375,7 @@ void FUN_180077150(longlong *param_1)
   uStack_48._0_4_ = 0x12;
   strcpy_s(auStack_40,0x20,&unknown_var_5320_ptr);
   uVar3 = FUN_180240430(uVar1,&puStack_58,0);
-  puStack_58 = &unknown_var_720_ptr;
+  puStack_58 = &system_state_ptr;
   if (uVar3 != 0) {
     lVar5 = param_1[0x37];
     if ((*(ulonglong *)(lVar5 + 0x140) & uVar3) != 0) {

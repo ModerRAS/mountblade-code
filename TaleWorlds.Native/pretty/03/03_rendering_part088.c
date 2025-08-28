@@ -304,7 +304,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
       stack_guard1._0_1_ = 1;
       stack_param1 = config_param;
       rendering_system_configure_render_context(&temp_ptr6, render_context + 0x22);
-      temp_ptr6 = &unknown_var_720_ptr;
+      temp_ptr6 = &system_state_ptr;
       config_param = *(int32_t *)(render_params + 0x1bd4);
       is_enabled = system_buffer_aa6a == '\0';
       temp_ptr15 = &unknown_var_3480_ptr;
@@ -315,7 +315,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
       stack_param1 = config_param;
       stack_guard1._0_1_ = is_enabled;
       rendering_system_configure_render_context(&temp_ptr15, render_context + 0x21);
-      temp_ptr15 = &unknown_var_720_ptr;
+      temp_ptr15 = &system_state_ptr;
       config_param = *(int32_t *)(render_params + 0x1bd4);
       temp_ptr17 = &unknown_var_3480_ptr;
       temp_ptr18 = temp_buffer10;
@@ -325,7 +325,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
       stack_guard1 = CONCAT71(stack_guard1._1_7_,1);
       stack_param1 = config_param;
       rendering_system_configure_render_context(&temp_ptr17, render_context + 0x24);
-      temp_ptr17 = &unknown_var_720_ptr;
+      temp_ptr17 = &system_state_ptr;
       temp_var1 = rendering_system_get_render_context();
       *(uint *)(temp_var1 + 4) = *(uint *)(temp_var1 + 4) | 0x8000000;
       if (*(code **)(temp_var1 + 0x9620) != (code *)0x0) {
@@ -393,7 +393,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
           (**(code **)(*resource_ptr + DESTRUCTOR_OFFSET))(resource_ptr);
         }
         resource_array2 = &temp_resource5;
-        temp_resource5 = (longlong *)&unknown_var_720_ptr;
+        temp_resource5 = (longlong *)&system_state_ptr;
       }
       else if (current_state == 5) {
         *(int32_t *)((longlong)render_context + 0x4c) = 6;
@@ -433,7 +433,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
           (**(code **)(*resource_ptr + DESTRUCTOR_OFFSET))(resource_ptr);
         }
         resource_array3 = &temp_resource3;
-        temp_resource3 = (longlong *)&unknown_var_720_ptr;
+        temp_resource3 = (longlong *)&system_state_ptr;
       }
       else if (current_state != 0x13) {
         // 继续处理更多状态转换...
@@ -505,7 +505,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
               (**(code **)(*resource_ptr + DESTRUCTOR_OFFSET))(resource_ptr);
             }
             resource_array4 = &temp_resource6;
-            temp_resource6 = (longlong *)&unknown_var_720_ptr;
+            temp_resource6 = (longlong *)&system_state_ptr;
           }
           else if (current_state == 0xb) {
             *(int32_t *)((longlong)render_context + 0x4c) = 0xc;
@@ -545,7 +545,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
               (**(code **)(*resource_ptr + DESTRUCTOR_OFFSET))(resource_ptr);
             }
             resource_array5 = &temp_resource4;
-            temp_resource4 = (longlong *)&unknown_var_720_ptr;
+            temp_resource4 = (longlong *)&system_state_ptr;
           }
           else if (current_state == 0xd) {
             temp_var1 = rendering_system_get_render_context();
@@ -627,7 +627,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
                 (**(code **)(*resource_ptr + DESTRUCTOR_OFFSET))(resource_ptr);
               }
               resource_array6 = &temp_resource7;
-              temp_resource7 = (longlong *)&unknown_var_720_ptr;
+              temp_resource7 = (longlong *)&system_state_ptr;
             }
             else if (current_state == 0x11) {
               *(int32_t *)((longlong)render_context + 0x4c) = 0x12;
@@ -667,7 +667,7 @@ void rendering_system_state_manager(uint64_t *render_context, longlong render_pa
                 (**(code **)(*resource_ptr + DESTRUCTOR_OFFSET))(resource_ptr);
               }
               temp_ptr19 = &temp_ptr6;
-              temp_ptr6 = &unknown_var_720_ptr;
+              temp_ptr6 = &system_state_ptr;
             }
             else if (current_state == 0x14) {
               rendering_system_reset_context(render_context);
@@ -848,7 +848,7 @@ void rendering_system_manage_resources(longlong render_context, longlong *resour
     stack_param2 = param2;
     stack_param1 = 1;
     rendering_system_configure_render_context(&temp_ptr1, render_context + 0x40);
-    temp_ptr1 = &unknown_var_720_ptr;
+    temp_ptr1 = &system_state_ptr;
   }
   
   // 安全退出
@@ -967,8 +967,8 @@ uint64_t * rendering_system_create_render_object(uint64_t *render_object, uint64
   temp_var1 = 0xfffffffffffffffe;
   
   // 设置渲染对象的虚函数表
-  *render_object = &unknown_var_3552_ptr;
-  *render_object = &unknown_var_3696_ptr;
+  *render_object = &system_handler1_ptr;
+  *render_object = &system_handler2_ptr;
   *(int32_t *)(render_object + 1) = 0;
   *render_object = &unknown_var_6584_ptr;
   
@@ -1055,8 +1055,8 @@ uint64_t * rendering_system_destroy_render_object(uint64_t *render_object, ulong
   rendering_system_cleanup_render_system(render_object + 2);
   
   // 重置虚函数表
-  *render_object = &unknown_var_3696_ptr;
-  *render_object = &unknown_var_3552_ptr;
+  *render_object = &system_handler2_ptr;
+  *render_object = &system_handler1_ptr;
   
   // 根据销毁标志决定是否释放内存
   if ((destroy_flag & 1) != 0) {

@@ -591,7 +591,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                 state_handle_2 = state_handle_2 + 2;
             } while ((RenderStateHandle)state_handle_2 < 0x1809f9070);
             
-            stack_ptr_4 = &unknown_var_720_ptr;
+            stack_ptr_4 = &system_state_ptr;
             data_size_1 = data_size_1 - 1;
         } while (data_size_1 != 0);
         param_ptr_1 = *(RenderParamPointer **)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET);
@@ -841,7 +841,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
             }
             
             // 继续处理循环
-            stack_ptr_2 = &unknown_var_720_ptr;
+            stack_ptr_2 = &system_state_ptr;
             data_size_1 = data_size_1 - 1;
         } while (data_size_1 != 0);
     }

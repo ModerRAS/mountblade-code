@@ -801,7 +801,7 @@ void FUN_1802f8640(longlong param_1,longlong param_2)
     puVar2 = puStack_70;
   }
   (**(code **)(*(longlong *)(param_1 + 0x138) + 0x10))((longlong *)(param_1 + 0x138),puVar2);
-  puStack_78 = &unknown_var_720_ptr;
+  puStack_78 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_a8);
 }

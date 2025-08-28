@@ -1074,7 +1074,7 @@ void FUN_18003ee90(void)
     // 设置资源属性
     previous_node[6] = 0x4fc124d23d41985f;    // 资源类型标识符
     previous_node[7] = 0xe2f4a30d6e6ae482;    // 资源版本信息
-    previous_node[8] = &unknown_var_3504_ptr;        // 资源数据指针
+    previous_node[8] = &system_param1_ptr;        // 资源数据指针
     previous_node[9] = 0;                      // 资源状态
     previous_node[10] = resource_loader;       // 资源加载器
     return;

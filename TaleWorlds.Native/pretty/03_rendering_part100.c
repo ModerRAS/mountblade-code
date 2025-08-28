@@ -26,14 +26,14 @@ void FUN_1803276a0(longlong param_1,longlong *param_2,longlong param_3)
     }
     FUN_180627910(&puStack_28,puVar3);
     FUN_180058080(param_1 + 0xbf8,&plStack_38,&puStack_28);
-    puStack_28 = &unknown_var_3456_ptr;
+    puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_20 = 0;
     uStack_10 = 0;
-    puStack_28 = &unknown_var_720_ptr;
+    puStack_28 = &system_state_ptr;
     plVar2 = (longlong *)plStack_38[8];
     if (plVar2 != (longlong *)0x0) {
       plStack_38 = plVar2;

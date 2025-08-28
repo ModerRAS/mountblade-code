@@ -777,7 +777,7 @@ void RenderSystem_Initialize(longlong system_handle, uint64_t *output_data, int3
         texture_flags = 0x6c437967;
         texture_width = 0x676f7250;
         texture_height = 0x4150000000000000;
-        resource_pointer = &unknown_var_720_ptr;
+        resource_pointer = &system_state_ptr;
         texture_manager = FUN_180294c20(system_handle, &unknown_var_704_ptr, param3, &texture_handle);
         *(int32_t *)(texture_manager + 0xc) = 0x3f800000;
       }
@@ -949,7 +949,7 @@ void RenderSystem_ConfigureParameters(longlong system_handle, uint64_t *output_d
           param8 = CONCAT44(0x41500000, (int)texture_handle);
         }
         
-        resource_pointer = &unknown_var_720_ptr;
+        resource_pointer = &system_state_ptr;
         if (param13 != (void *)0x0) {
           resource_pointer = param13;
         }
@@ -1129,7 +1129,7 @@ void RenderSystem_AdvancedConfigure(longlong system_handle, uint64_t *output_dat
           param8 = CONCAT44(0x41500000, (int)texture_handle);
         }
         
-        resource_pointer = &unknown_var_720_ptr;
+        resource_pointer = &system_state_ptr;
         if (param13 != (void *)0x0) {
           resource_pointer = param13;
         }

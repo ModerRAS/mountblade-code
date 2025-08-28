@@ -36,7 +36,7 @@ void FUN_1800af9f0(longlong param_1,uint64_t *param_2,longlong param_3)
   uStack_70 = 0xfffffffffffffffe;
   uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
   uStack_78 = 0;
-  puStack_98 = &unknown_var_3456_ptr;
+  puStack_98 = &system_data_buffer_ptr;
   uStack_80 = 0;
   puStack_90 = (int8_t *)0x0;
   uStack_88 = 0;
@@ -85,10 +85,10 @@ LAB_1800afade:
                     // WARNING: Subroutine does not return
             memcpy(puVar5,&uStack_60,(longlong)iVar10);
           }
-          *param_2 = &unknown_var_720_ptr;
+          *param_2 = &system_state_ptr;
           param_2[1] = 0;
           *(int32_t *)(param_2 + 2) = 0;
-          *param_2 = &unknown_var_3456_ptr;
+          *param_2 = &system_data_buffer_ptr;
           *(int32_t *)(param_2 + 2) = 0;
           param_2[1] = 0;
           *(int32_t *)((longlong)param_2 + 0x1c) = 0;
@@ -146,10 +146,10 @@ LAB_1800afc3f:
                     // WARNING: Subroutine does not return
             memcpy(puVar5,&uStack_60,(longlong)iVar10);
           }
-          *param_2 = &unknown_var_720_ptr;
+          *param_2 = &system_state_ptr;
           param_2[1] = 0;
           *(int32_t *)(param_2 + 2) = 0;
-          *param_2 = &unknown_var_3456_ptr;
+          *param_2 = &system_data_buffer_ptr;
           *(int32_t *)(param_2 + 2) = 0;
           param_2[1] = 0;
           *(int32_t *)((longlong)param_2 + 0x1c) = 0;
@@ -227,10 +227,10 @@ LAB_1800afda6:
                     // WARNING: Subroutine does not return
             memcpy(puStack_90,*(uint64_t *)(lVar13 + 8),(longlong)(*(int *)(lVar13 + 0x10) + 1));
           }
-          *param_2 = &unknown_var_720_ptr;
+          *param_2 = &system_state_ptr;
           param_2[1] = 0;
           *(int32_t *)(param_2 + 2) = 0;
-          *param_2 = &unknown_var_3456_ptr;
+          *param_2 = &system_data_buffer_ptr;
           *(int32_t *)(param_2 + 2) = 0;
           param_2[1] = 0;
           *(int32_t *)((longlong)param_2 + 0x1c) = 0;
@@ -314,10 +314,10 @@ LAB_1800aff9c:
                     // WARNING: Subroutine does not return
             memcpy(puStack_90,&uStack_60,(longlong)((int)lVar11 + 2));
           }
-          *param_2 = &unknown_var_720_ptr;
+          *param_2 = &system_state_ptr;
           param_2[1] = 0;
           *(int32_t *)(param_2 + 2) = 0;
-          *param_2 = &unknown_var_3456_ptr;
+          *param_2 = &system_data_buffer_ptr;
           *(int32_t *)(param_2 + 2) = 0;
           param_2[1] = 0;
           *(int32_t *)((longlong)param_2 + 0x1c) = 0;
@@ -338,7 +338,7 @@ LAB_1800aff9c:
 LAB_1800affe3:
   uStack_78 = 1;
   puStack_90 = (int8_t *)0x0;
-  puStack_98 = &unknown_var_720_ptr;
+  puStack_98 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_b8);
 }

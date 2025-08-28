@@ -709,7 +709,7 @@ LAB_1805256ec:
       uStack_160 = 0xc;
       strcpy_s(auStack_158,0x20,&unknown_var_5088_ptr);
       render_system_config_memory = FUN_180191c00(render_system_data_memory,&puStack_170);
-      puStack_170 = &unknown_var_720_ptr;
+      puStack_170 = &system_state_ptr;
       FUN_1808fcb30(&system_ptr_9ef8);
     }
     if (iVar11 == -1) {
@@ -727,7 +727,7 @@ LAB_1805256ec:
     if (iStack_1b8 == 4) {
       uVar15 = 0x3dcccccd;
 LAB_1805257df:
-      puStack_170 = &unknown_var_7512_ptr;
+      puStack_170 = &system_config_ptr;
       puStack_168 = auStack_158;
       auStack_158[0] = 0;
       uStack_160 = 0xe;
@@ -743,7 +743,7 @@ LAB_1805257df:
       auStack_110[lVar8 * 0x30] = 1;
       iStack_78 = iStack_78 + 1;
       plStack_1e8 = alStack_138;
-      puStack_170 = &unknown_var_720_ptr;
+      puStack_170 = &system_state_ptr;
       iVar12 = iStack_1c0;
     }
     else {
@@ -836,7 +836,7 @@ void FUN_180525ac0(longlong param_1,char param_2)
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
-    cVar3 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+    cVar3 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
     if (((cVar3 != '\0') && (cVar3 = FUN_180645c10(0x180c95578,9,&unknown_var_3472_ptr), cVar3 != '\0')) &&
        (cVar3 = FUN_180645c10(0x180c95578,uVar1,&unknown_var_3424_ptr), cVar3 != '\0')) {
       FUN_180645c10(0x180c95578,(int)param_2,&unknown_var_3040_ptr);

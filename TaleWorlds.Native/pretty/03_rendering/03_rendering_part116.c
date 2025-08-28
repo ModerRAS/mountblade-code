@@ -173,7 +173,7 @@ void rendering_system_object_serializer(longlong param_1, longlong *param_2) {
     // 检查缓冲区容量
     if ((ulonglong)((param_2[2] - (longlong)data_ptr) + *param_2) < 5) {
         // 缓冲区扩容
-        // FUN_180639bf0(param_2, (longlong)data_ptr + (4 - *param_2));
+        // System_BufferManager(param_2, (longlong)data_ptr + (4 - *param_2));
         data_ptr = (uint32_t*)param_2[1];
     }
     
@@ -330,7 +330,7 @@ uint64_t *rendering_system_object_creator(uint64_t *param_1) {
     
     // 设置对象函数表
     *param_1 = &unknown_var_8368_ptr;
-    param_1[0x16] = &unknown_var_720_ptr;
+    param_1[0x16] = &system_state_ptr;
     param_1[0x17] = 0;
     *(uint32_t*)(param_1 + 0x18) = 0;
     
@@ -529,7 +529,7 @@ void rendering_system_advanced_serializer(longlong param_1, longlong *param_2, u
     // 检查缓冲区容量
     if ((ulonglong)((param_2[2] - (longlong)data_ptr) + *param_2) < 5) {
         // 缓冲区扩容
-        // FUN_180639bf0(param_2, (longlong)data_ptr + (4 - *param_2));
+        // System_BufferManager(param_2, (longlong)data_ptr + (4 - *param_2));
         data_ptr = (uint32_t*)param_2[1];
     }
     

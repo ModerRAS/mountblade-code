@@ -157,7 +157,7 @@ static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, ulonglo
     if (memory_block == (longlong *)0x0) {
         // 分配新资源
         param_1[0x1c] = 0;
-        param_1[0x18] = &unknown_var_3456_ptr;
+        param_1[0x18] = &system_data_buffer_ptr;
         
         // 处理分配标志
         if (param_1[0x19] != 0) {
@@ -167,7 +167,7 @@ static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, ulonglo
         
         param_1[0x19] = 0;
         *(int32_t *)(param_1 + 0x1b) = 0;
-        param_1[0x18] = &unknown_var_720_ptr;
+        param_1[0x18] = &system_state_ptr;
         
         // 调用初始化函数
         FUN_180049470(param_1);
@@ -268,7 +268,7 @@ static void unmatched_advanced_resource_processor(longlong param_1)
         
         // 获取线程ID
         _Thrd_id();
-        string_resource = &unknown_var_720_ptr;
+        string_resource = &system_state_ptr;
     }
     
     // 恢复栈保护

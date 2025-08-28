@@ -471,7 +471,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
         strcpy_s(stackBuffer2, 0x80, &unknown_var_3144_ptr);
         
         stackPointerPtr1 = &stackPtr2;
-        stackPtr2 = &unknown_var_720_ptr;
+        stackPtr2 = &system_state_ptr;
         tempLong1 = *(longlong *)(param_1 + 0x121e0);
         dataPointer = *(longlong **)(tempLong1 + 0x1d8);
         
@@ -800,7 +800,7 @@ void ComplexAlgorithmHandler(longlong param_1, uint param_2, int param_3, int pa
         }
         
         strcpy_s(stackBuffer2, 0x80, tempPtr1);
-        stackPtr5 = &unknown_var_720_ptr;
+        stackPtr5 = &system_state_ptr;
     }
     
 LAB_1800a4380:
@@ -1025,7 +1025,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
     
     *(uint64_t *)(param_3 + 0x170) = stackUlong4;
     tempPtrPtr1 = (void **)FUN_180049b30(stackBuffer4, param_3 + 0x10);
-    *tempPtrPtr1 = &unknown_var_720_ptr;
+    *tempPtrPtr1 = &system_state_ptr;
     *(longlong *)(param_3 + 0x168) = param_3;
     
     // 计算资源大小
@@ -1129,7 +1129,7 @@ LAB_1800a46f5:
                     }
                     
                     strcpy_s(stackBuffer2, 0x80, tempPtr1);
-                    stackPtr1 = &unknown_var_720_ptr;
+                    stackPtr1 = &system_state_ptr;
                     dataPtr1 = dataPtr2;
                     
                     if (*(longlong *)(param_3 + 0x1d8) != 0) {

@@ -8,8 +8,8 @@
 ulonglong g_RenderContextManager = 0xfffffffffffffffe;  // 渲染上下文管理器
 uint64_t *g_RenderInterfaceTable = &unknown_var_336_ptr;     // 渲染接口表
 uint64_t *g_DeviceContext = &unknown_var_3480_ptr;           // 设备上下文
-uint64_t *g_MemoryAllocator = &unknown_var_720_ptr;          // 内存分配器
-uint64_t *g_RenderDevice = &unknown_var_3456_ptr;             // 渲染设备
+uint64_t *g_MemoryAllocator = &system_state_ptr;          // 内存分配器
+uint64_t *g_RenderDevice = &system_data_buffer_ptr;             // 渲染设备
 char *g_RenderDeviceName = "Llg_Global_services_view_wi"; // 渲染设备名称字符串
 
 /**
@@ -125,7 +125,7 @@ void InitializeRenderingSystem(uint64_t *renderContext)
   tempCounter = 1;
   
   // 配置渲染管线
-  vertexData = &unknown_var_720_ptr;
+  vertexData = &system_state_ptr;
   deviceCaps = FUN_18022cb40(shaderCache,&textureCache);
   textureCount = 0;
   tempCounter = 0;
@@ -265,13 +265,13 @@ LAB_18028843a:
           (**(code **)(*renderTarget + 0x38))();
         }
         
-        vertexData = &unknown_var_3456_ptr;
+        vertexData = &system_data_buffer_ptr;
         if (frameTime != 0) {
           FUN_18064e900();
         }
         frameTime = 0;
         clearColor[0] = 0;
-        vertexData = &unknown_var_720_ptr;
+        vertexData = &system_state_ptr;
         frameIndex = renderFlags + 1;
         textureCount = tempCounter;
       } while (frameIndex < (int)textureManager);
@@ -311,7 +311,7 @@ LAB_18028843a:
   strcpy_s(renderTargetArray,0x40,&unknown_var_9928_ptr);
   FUN_1800b30d0(deviceHandle,&renderTarget,&depthStencil,1);
   tempCounter = textureCount & 0xffffffef | 8;
-  depthStencil = &unknown_var_720_ptr;
+  depthStencil = &system_state_ptr;
   renderInterface = (uint64_t *)FUN_18022cb40(renderTarget,&frameIndex);
   bufferManager = (longlong *)*renderInterface;
   *renderInterface = 0;

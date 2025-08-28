@@ -202,10 +202,10 @@ longlong FUN_18040ca50(longlong param_1)
   *(uint64_t *)(param_1 + 0x16c) = 0;
   *(uint64_t *)(param_1 + 0x174) = 0;
   *(int32_t *)(param_1 + 0x17c) = 0xbf800000;
-  *(uint64_t *)(param_1 + 0x188) = &unknown_var_720_ptr;
+  *(uint64_t *)(param_1 + 0x188) = &system_state_ptr;
   *(uint64_t *)(param_1 + 400) = 0;
   *(int32_t *)(param_1 + 0x198) = 0;
-  *(uint64_t *)(param_1 + 0x188) = &unknown_var_3456_ptr;
+  *(uint64_t *)(param_1 + 0x188) = &system_data_buffer_ptr;
   *(uint64_t *)(param_1 + 0x1a0) = 0;
   *(uint64_t *)(param_1 + 400) = 0;
   *(int32_t *)(param_1 + 0x198) = 0;
@@ -222,7 +222,7 @@ longlong FUN_18040ca50(longlong param_1)
   *(uint64_t *)((longlong)puVar1 + 0x4c) = 0;
   *(uint64_t *)((longlong)puVar1 + 0x54) = 0;
   *(int32_t *)((longlong)puVar1 + 0x5c) = 0;
-  *puVar1 = &unknown_var_720_ptr;
+  *puVar1 = &system_state_ptr;
   puVar1[1] = 0;
   *(int32_t *)(puVar1 + 2) = 0;
   *puVar1 = &unknown_var_3480_ptr;

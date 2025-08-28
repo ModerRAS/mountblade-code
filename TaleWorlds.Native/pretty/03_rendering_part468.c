@@ -201,10 +201,10 @@ void FUN_18051ac20(longlong param_1,char param_2)
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
     uVar8 = *(int32_t *)(*plVar1 + 0x10);
-    cVar3 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+    cVar3 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
     if (((cVar3 != '\0') && (cVar3 = FUN_180645c10(0x180c95578,0xc,&unknown_var_3472_ptr), cVar3 != '\0'))
        && (cVar3 = FUN_180645c10(0x180c95578,uVar8,&unknown_var_3424_ptr), cVar3 != '\0')) {
-      FUN_180645c10(0x180c95578,param_2,&unknown_var_3504_ptr);
+      FUN_180645c10(0x180c95578,param_2,&system_param1_ptr);
     }
     render_system_config = render_system_config & 0xffffffff00000000;
     iVar4 = (int)(render_system_config - render_system_config >> 3);

@@ -414,7 +414,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         if (*(void **)(param_2 + 0x3528) != (void *)0x0) {
             puVar5 = *(void **)(param_2 + 0x3528);
         }
-        FUN_180628040(&puStack_1e8,&global_state_5464_ptr,puVar5);
+        System_DataHandler(&puStack_1e8,&global_state_5464_ptr,puVar5);
         
         // 数据处理和资源管理
         puStack_188 = &global_state_3432_ptr;
@@ -463,7 +463,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         if (*(void **)(param_2 + 0x3528) != (void *)0x0) {
             puVar5 = *(void **)(param_2 + 0x3528);
         }
-        FUN_180628040(&puStack_208,&global_state_5464_ptr,puVar5);
+        System_DataHandler(&puStack_208,&global_state_5464_ptr,puVar5);
         
         // 渲染数据处理
         puStack_e8 = &global_state_3432_ptr;
@@ -515,7 +515,7 @@ void FUN_1803f94b0(longlong param_1, longlong param_2) {
         if (*(void **)(param_2 + 0x3528) != (void *)0x0) {
             puVar5 = *(void **)(param_2 + 0x3528);
         }
-        FUN_180628040(&puStack_228,&global_state_5464_ptr,puVar5);
+        System_DataHandler(&puStack_228,&global_state_5464_ptr,puVar5);
         
         // 高级渲染数据处理
         puStack_188 = &global_state_3432_ptr;

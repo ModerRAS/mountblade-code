@@ -117,7 +117,7 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
     
     // 初始化材质参数
     material_params[1] = 0;
-    texture_manager = &unknown_var_3456_ptr;  // 默认纹理管理器
+    texture_manager = &system_data_buffer_ptr;  // 默认纹理管理器
     render_state = 0;
     name_buffer_ptr = 0;
     name_length = 0;
@@ -198,7 +198,7 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
     }
     
     // 处理材质属性
-    material_resource = &unknown_var_3456_ptr;
+    material_resource = &system_data_buffer_ptr;
     second_material_handle = 0;
     material_index_int = 0;
     material_data_size = 0;
@@ -263,20 +263,20 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
     }
     
     // 重置材质资源
-    material_resource = &unknown_var_3456_ptr;
+    material_resource = &system_data_buffer_ptr;
     if (second_material_handle != 0) {
         FUN_18064e900();
     }
     second_material_handle = 0;
     material_data_size = material_data_size & 0xffffffff00000000;
-    material_resource = &unknown_var_720_ptr;
+    material_resource = &system_state_ptr;
     
     // 处理网格材质数据
     material_node = (uint64_t *)material_data[6];
     if (material_node != (uint64_t *)0x0) {
         do {
             // 初始化处理参数
-            texture_data[0] = &unknown_var_3456_ptr;
+            texture_data[0] = &system_data_buffer_ptr;
             color_data[0] = 0;
             texture_data[2] = 0;
             factor_value = 0.0f;
@@ -612,10 +612,10 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
                             *(int32_t *)(current_material + MATERIAL_SECOND_UV_OFFSET + 12) = render_params[3];
                         }
                         
-                        resource_manager = &unknown_var_720_ptr;
+                        resource_manager = &system_state_ptr;
                     }
                     
-                    mesh_processor = &unknown_var_720_ptr;
+                    mesh_processor = &system_state_ptr;
                     material_count = (int)data_size + 1;
                     material_index++;
                     current_material = render_context[7];
@@ -624,13 +624,13 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
             }
             
             // 清理处理数据
-            texture_data[0] = &unknown_var_3456_ptr;
+            texture_data[0] = &system_data_buffer_ptr;
             if (texture_data[2] != 0) {
                 FUN_18064e900();
             }
             texture_data[2] = 0;
             color_data[0] = color_data[0] & 0xffffffff00000000;
-            texture_data[0] = &unknown_var_720_ptr;
+            texture_data[0] = &system_state_ptr;
             
             // 处理网格数据
             search_name = "mesh";
@@ -719,7 +719,7 @@ cleanup_section:
 final_processing:
                 // 设置渲染状态
                 *(int8_t *)((longlong)render_context + 0x32c) = 0;
-                data_processor = &unknown_var_3456_ptr;
+                data_processor = &system_data_buffer_ptr;
                 material_data_size = 0;
                 data_buffer = 0;
                 process_flags = 0;
@@ -796,21 +796,21 @@ final_processing:
                             } while (material_list < (longlong *)render_context[8]);
                         }
                         
-                        data_processor = &unknown_var_3456_ptr;
+                        data_processor = &system_data_buffer_ptr;
                         if (data_buffer != 0) {
                             FUN_18064e900();
                         }
                         data_buffer = 0;
                         material_data_size = material_data_size & 0xffffffff00000000;
-                        data_processor = &unknown_var_720_ptr;
-                        texture_manager = &unknown_var_3456_ptr;
+                        data_processor = &system_state_ptr;
+                        texture_manager = &system_data_buffer_ptr;
                         
                         if (name_buffer_ptr != 0) {
                             FUN_18064e900();
                         }
                         name_buffer_ptr = 0;
                         render_state = render_state & 0xffffffff00000000;
-                        texture_manager = &unknown_var_720_ptr;
+                        texture_manager = &system_state_ptr;
                         
                         // 最终处理
                         FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer_2d8);
@@ -1061,13 +1061,13 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
                         FUN_18064e900(material_buffer);
                     }
                     
-                    texture_manager = &unknown_var_3456_ptr;
+                    texture_manager = &system_data_buffer_ptr;
                     if (string_buffer != 0) {
                         FUN_18064e900();
                     }
                     string_buffer = 0;
                     buffer_flags = 0;
-                    texture_manager = &unknown_var_720_ptr;
+                    texture_manager = &system_state_ptr;
                     read_status++;
                 } while (read_status < total_materials);
             }
@@ -1132,13 +1132,13 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
                     FUN_18064e900(mesh_buffer);
                 }
                 
-                texture_manager = &unknown_var_3456_ptr;
+                texture_manager = &system_data_buffer_ptr;
                 if (string_buffer != 0) {
                     FUN_18064e900();
                 }
                 string_buffer = 0;
                 buffer_flags = 0;
-                texture_manager = &unknown_var_720_ptr;
+                texture_manager = &system_state_ptr;
                 material_count--;
             } while (material_count != 0);
         }

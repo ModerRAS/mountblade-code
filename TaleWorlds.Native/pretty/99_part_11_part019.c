@@ -298,11 +298,11 @@ void FUN_1806ee9b0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
     (**(code **)(**(longlong **)(param_6 + 8) + 0x38))
               (*(longlong **)(param_6 + 8),auStack_e8,&puStack_118,0);
     FUN_1806f0c90(param_4,param_5,0x10,uStack_f8,(int32_t)uStack_100,&unknown_var_8648_ptr,
-                  &unknown_var_9376_ptr);
+                  &render_data_ptr);
     puStack_118 = &unknown_var_8576_ptr;
     puStack_110 = &unknown_var_8592_ptr;
     FUN_1806f1550(puStack_108,uStack_f8);
-    puStack_110 = &unknown_var_3552_ptr;
+    puStack_110 = &system_handler1_ptr;
     puStack_118 = &unknown_var_1760_ptr;
     FUN_1806f1080(&puStack_90);
   }
@@ -381,7 +381,7 @@ void FUN_1806eea3d(void)
   in_stack_00000040 = &unknown_var_8576_ptr;
   in_stack_00000048 = &unknown_var_8592_ptr;
   FUN_1806f1550(in_stack_00000050,in_stack_00000060);
-  in_stack_00000048 = &unknown_var_3552_ptr;
+  in_stack_00000048 = &system_handler1_ptr;
   in_stack_00000040 = &unknown_var_1760_ptr;
   FUN_1806f1080(unaff_RBP + -7);
   return;
@@ -497,7 +497,7 @@ LAB_1806eedb9:
   *param_2 = &unknown_var_9128_ptr;
   puStack_110 = &unknown_var_8592_ptr;
   FUN_1806f1550(puStack_108,uStack_f8);
-  puStack_110 = &unknown_var_3552_ptr;
+  puStack_110 = &system_handler1_ptr;
   puStack_118 = &unknown_var_1760_ptr;
   FUN_1806f1080(&puStack_90);
   return param_2;

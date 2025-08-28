@@ -59,10 +59,10 @@ FUN_18048cfd0(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t *pa
       puVar2[-0xf] = 0;
       param_4[5] = puVar2[-0xe];
       puVar2[-0xe] = 0;
-      param_4[6] = &unknown_var_720_ptr;
+      param_4[6] = &system_state_ptr;
       param_4[7] = 0;
       *(int32_t *)(param_4 + 8) = 0;
-      param_4[6] = &unknown_var_3456_ptr;
+      param_4[6] = &system_data_buffer_ptr;
       param_4[9] = 0;
       param_4[7] = 0;
       *(int32_t *)(param_4 + 8) = 0;
@@ -73,10 +73,10 @@ FUN_18048cfd0(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t *pa
       *(int32_t *)(puVar2 + -0xb) = 0;
       puVar2[-0xc] = 0;
       puVar2[-10] = 0;
-      param_4[10] = &unknown_var_720_ptr;
+      param_4[10] = &system_state_ptr;
       param_4[0xb] = 0;
       *(int32_t *)(param_4 + 0xc) = 0;
-      param_4[10] = &unknown_var_3456_ptr;
+      param_4[10] = &system_data_buffer_ptr;
       param_4[0xd] = 0;
       param_4[0xb] = 0;
       *(int32_t *)(param_4 + 0xc) = 0;
@@ -308,7 +308,7 @@ uint64_t *
 FUN_18048d650(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
   *param_2 = &unknown_var_3432_ptr;
@@ -399,7 +399,7 @@ void FUN_18048d750(longlong param_1,longlong param_2)
       puVar15 = puStack_58;
     }
     (**(code **)(*(longlong *)(lVar12 + 0x3520) + 0x10))((longlong *)(lVar12 + 0x3520),puVar15);
-    puStack_60 = &unknown_var_720_ptr;
+    puStack_60 = &system_state_ptr;
     plVar4 = *(longlong **)(system_message_buffer + 0x121e0);
     if (plVar4 != (longlong *)0x0) {
       plStack_78 = plVar4;
@@ -523,10 +523,10 @@ FUN_18048da30(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
 {
   uint64_t *puVar1;
   
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;

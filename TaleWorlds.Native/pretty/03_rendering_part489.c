@@ -110,7 +110,7 @@ void FUN_18052af20(longlong param_1)
         if (iVar5 != 0) {
           __Throw_C_error_std__YAXH_Z(iVar5);
         }
-        cVar4 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+        cVar4 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
         if ((cVar4 != '\0') &&
            (cVar4 = FUN_180645c10(0x180c95578,0xd,&unknown_var_3472_ptr), cVar4 != '\0')) {
           FUN_180645c10(0x180c95578,iVar6,&unknown_var_3424_ptr);

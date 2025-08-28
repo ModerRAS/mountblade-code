@@ -360,13 +360,13 @@ void process_batch_data(longlong process_context, uint64_t param2, uint64_t para
 void initialize_data_structure(uint64_t *data_ptr)
 {
   FUN_180048980();  // 调用初始化函数
-  *data_ptr = &unknown_var_3456_ptr;  // 设置初始值
+  *data_ptr = &system_data_buffer_ptr;  // 设置初始值
   if (data_ptr[1] != 0) {
     FUN_18064e900();  // 错误处理
   }
   data_ptr[1] = 0;
   *(int32_t *)(data_ptr + 3) = 0;
-  *data_ptr = &unknown_var_720_ptr;  // 设置默认值
+  *data_ptr = &system_state_ptr;  // 设置默认值
   return;
 }
 
@@ -412,7 +412,7 @@ longlong *create_data_buffer(longlong context, longlong *buffer_ptr, uint64_t pa
   if (*(longlong *)(context + 0x398) != data_length) {
     current_pos = *(longlong *)(context + 0x398) - (longlong)buffer_data;
     do {
-      *buffer_data = &unknown_var_720_ptr;
+      *buffer_data = &system_state_ptr;
       buffer_data[1] = 0;
       *(int32_t *)(buffer_data + 2) = 0;
       *buffer_data = &unknown_var_3432_ptr;
@@ -443,8 +443,8 @@ longlong *create_data_buffer(longlong context, longlong *buffer_ptr, uint64_t pa
  */
 uint64_t *initialize_object_structure(uint64_t *object_ptr)
 {
-  *object_ptr = &unknown_var_3552_ptr;
-  *object_ptr = &unknown_var_3696_ptr;
+  *object_ptr = &system_handler1_ptr;
+  *object_ptr = &system_handler2_ptr;
   *(int32_t *)(object_ptr + 1) = 0;
   *object_ptr = &unknown_var_7872_ptr;
   FUN_18015c2b0(object_ptr + 2);
@@ -513,7 +513,7 @@ void format_error_message(int error_code, longlong error_message)
   }
   
   // 初始化缓冲区
-  stack_ptr = &unknown_var_3456_ptr;
+  stack_ptr = &system_data_buffer_ptr;
   buffer_info = 0;
   buffer_data = (uint64_t *)0x0;
   buffer_capacity = 0;
@@ -701,7 +701,7 @@ LAB_180211e24:
   
   // 输出错误消息
   FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, buffer_ptr);
-  stack_ptr = &unknown_var_3456_ptr;
+  stack_ptr = &system_data_buffer_ptr;
   
   // 释放缓冲区
   if (buffer_data == (uint64_t *)0x0) {
@@ -729,7 +729,7 @@ uint64_t process_parameter_data(uint64_t param1, int param2, uint64_t param3, ui
   if (param2 == 8) {
     FUN_180627910(&temp_ptr, param4, param3, param4, 0xfffffffffffffffe);
     FUN_180623fd0(param3, &temp_ptr);
-    temp_ptr = &unknown_var_3456_ptr;
+    temp_ptr = &system_data_buffer_ptr;
     if (temp_value != 0) {
       FUN_18064e900();  // 错误处理
     }
@@ -1122,12 +1122,12 @@ void cleanup_pointer_array(longlong param1)
       pointer_ptr = *(uint64_t **)(array_ptr + pointer_index * 8);
       if (pointer_ptr != (uint64_t *)0x0) {
         FUN_180211720(pointer_ptr + 4);
-        *pointer_ptr = &unknown_var_3456_ptr;
+        *pointer_ptr = &system_data_buffer_ptr;
         
         if (pointer_ptr[1] == 0) {
           pointer_ptr[1] = 0;
           *(int32_t *)(pointer_ptr + 3) = 0;
-          *pointer_ptr = &unknown_var_720_ptr;
+          *pointer_ptr = &system_state_ptr;
           FUN_18064e900(pointer_ptr);
         }
         FUN_18064e900();  // 错误处理
@@ -1193,12 +1193,12 @@ void cleanup_object_array(longlong param1)
       object_ptr = *(uint64_t **)(array_ptr + object_index * 8);
       if (object_ptr != (uint64_t *)0x0) {
         FUN_180211720(object_ptr + 4);
-        *object_ptr = &unknown_var_3456_ptr;
+        *object_ptr = &system_data_buffer_ptr;
         
         if (object_ptr[1] == 0) {
           object_ptr[1] = 0;
           *(int32_t *)(object_ptr + 3) = 0;
-          *object_ptr = &unknown_var_720_ptr;
+          *object_ptr = &system_state_ptr;
           FUN_18064e900(object_ptr);
         }
         FUN_18064e900();  // 错误处理

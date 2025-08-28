@@ -179,7 +179,7 @@ void FUN_180242e60(uint64_t *param_1)
         (**(code **)(*plVar8 + 0x38))(plVar8);
       }
       ppuStack_358 = &puStack_118;
-      puStack_118 = &unknown_var_720_ptr;
+      puStack_118 = &system_state_ptr;
     }
   }
   *(int *)((longlong)param_1 + 0x894) = iVar6;
@@ -355,10 +355,10 @@ uint64_t * FUN_180243550(uint64_t *param_1,uint64_t param_2)
 {
   uint64_t *apuStackX_10 [3];
   
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_3456_ptr;
+  *param_1 = &system_data_buffer_ptr;
   param_1[3] = 0;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;

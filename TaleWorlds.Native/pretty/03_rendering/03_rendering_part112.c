@@ -65,7 +65,7 @@ void RenderingSystem_DataTransformer(longlong param_1, longlong param_2, longlon
     longlong lStackX_18 = param_3;
     
     // 执行数据变换操作
-    FUN_180639bf0(&lStack_70, 8, param_3, param_4, 0xfffffffffffffffe);
+    System_BufferManager(&lStack_70, 8, param_3, param_4, 0xfffffffffffffffe);
     *(uint64_t *)puStack_68 = uVar2;
     uint *puVar10 = (uint *)((longlong)puStack_68 + 8);
     longlong lStackX_20 = param_1 + 0x878;
@@ -84,7 +84,7 @@ void RenderingSystem_DataTransformer(longlong param_1, longlong param_2, longlon
             
             // 缓冲区管理
             if ((ulonglong)((lVar8 - (longlong)puVar10) + lStack_60) < 9) {
-                FUN_180639bf0(&lStack_70, (longlong)puVar10 + (8 - lVar8));
+                System_BufferManager(&lStack_70, (longlong)puVar10 + (8 - lVar8));
                 lVar8 = lStack_70;
                 puVar10 = puStack_68;
             }
@@ -137,7 +137,7 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, uint64_
     
     // 分配矩阵内存
     if (lStackX_10 != 0) {
-        FUN_180639bf0(&lStack_70);
+        System_BufferManager(&lStack_70);
     }
     
     longlong lVar7 = lStack_70;
@@ -171,7 +171,7 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, uint64_
                 // 矩阵初始化和处理
                 int32_t *puVar5 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xa8, 8, 3);
                 longlong *plVar2 = (longlong *)(puVar5 + 0x22);
-                *plVar2 = (longlong)&unknown_var_720_ptr;
+                *plVar2 = (longlong)&system_state_ptr;
                 
                 // 设置矩阵参数
                 *puVar5 = 0xffffffff;
@@ -237,7 +237,7 @@ void RenderingSystem_ResourceManager(longlong param_1, longlong param_2, longlon
     longlong lStackX_18 = param_3;
     
     // 执行资源管理操作
-    FUN_180639bf0(&lStack_70, 8, param_3, param_4, 0xfffffffffffffffe);
+    System_BufferManager(&lStack_70, 8, param_3, param_4, 0xfffffffffffffffe);
     *(uint64_t *)puStack_68 = uVar2;
     uint *puVar8 = (uint *)((longlong)puStack_68 + 8);
     longlong lStackX_20 = param_1 + 0x8a8;
@@ -256,7 +256,7 @@ void RenderingSystem_ResourceManager(longlong param_1, longlong param_2, longlon
             
             // 缓冲区管理
             if ((ulonglong)((lStack_60 - (longlong)puVar8) + lVar9) < 9) {
-                FUN_180639bf0(&lStack_70, (longlong)puVar8 + (8 - lVar9));
+                System_BufferManager(&lStack_70, (longlong)puVar8 + (8 - lVar9));
                 puVar8 = puStack_68;
                 lVar9 = lStack_70;
             }
@@ -309,7 +309,7 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, uint64_
     
     // 分配内存
     if (lStackX_10 != 0) {
-        FUN_180639bf0(&lStack_68);
+        System_BufferManager(&lStack_68);
     }
     
     longlong lVar8 = lStack_68;
@@ -345,7 +345,7 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, uint64_
                 // 内存初始化和处理
                 int32_t *puVar6 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3);
                 longlong *plVar1 = (longlong *)(puVar6 + 10);
-                *plVar1 = (longlong)&unknown_var_720_ptr;
+                *plVar1 = (longlong)&system_state_ptr;
                 
                 // 设置内存参数
                 *puVar6 = 0xffffffff;

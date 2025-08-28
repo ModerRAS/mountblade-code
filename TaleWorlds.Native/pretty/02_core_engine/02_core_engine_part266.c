@@ -109,7 +109,7 @@ void initialize_scene_materials(longlong scene_context)
   strcpy_s(stack_buffer2,0x40,&system_memory_ba58); // 法线纹理
   base_texture = get_material_handle(base_texture,&stack_ptr1,0);
   *(uint64_t *)(scene_context + 0x390) = base_texture;
-  stack_ptr1 = &unknown_var_720_ptr;
+  stack_ptr1 = &system_state_ptr;
   base_texture = *(uint64_t *)(scene_context + 0x1e0);
   stack_ptr3 = &unknown_var_3480_ptr;
   stack_ptr4 = stack_buffer3;
@@ -125,8 +125,8 @@ void initialize_scene_materials(longlong scene_context)
   texture_offset = get_material_handle(material_handle,&stack_ptr1,0);
   material_index = get_material_handle(base_texture,&stack_ptr3,0);
   *(ulonglong *)(scene_context + 0x3a8) = texture_offset | material_index;
-  stack_ptr1 = &unknown_var_720_ptr;
-  stack_ptr3 = &unknown_var_720_ptr;
+  stack_ptr1 = &system_state_ptr;
+  stack_ptr3 = &system_state_ptr;
   base_texture = *(uint64_t *)(scene_context + 0x1e0);
   stack_ptr5 = &unknown_var_3480_ptr;
   stack_ptr6 = stack_buffer4;
@@ -135,7 +135,7 @@ void initialize_scene_materials(longlong scene_context)
   strcpy_s(stack_buffer4,0x40,&system_memory_d580); // 金属度纹理
   base_texture = get_material_handle(base_texture,&stack_ptr5,0);
   *(uint64_t *)(scene_context + 0x3b0) = base_texture;
-  stack_ptr5 = &unknown_var_720_ptr;
+  stack_ptr5 = &system_state_ptr;
   base_texture = *(uint64_t *)(scene_context + 0x1e0);
   stack_ptr7 = &unknown_var_3480_ptr;
   stack_ptr8 = stack_buffer5;
@@ -144,7 +144,7 @@ void initialize_scene_materials(longlong scene_context)
   strcpy_s(stack_buffer5,0x40,&system_memory_d5b8); // 粗糙度纹理
   base_texture = get_material_handle(base_texture,&stack_ptr7,0);
   *(uint64_t *)(scene_context + 0x3b8) = base_texture;
-  stack_ptr7 = &unknown_var_720_ptr;
+  stack_ptr7 = &system_state_ptr;
   base_texture = *(uint64_t *)(scene_context + 0x1e0);
   stack_ptr9 = &unknown_var_3480_ptr;
   stack_ptr10 = stack_buffer6;
@@ -153,7 +153,7 @@ void initialize_scene_materials(longlong scene_context)
   strcpy_s(stack_buffer6,0x40,&unknown_var_7528_ptr); // 发光纹理
   base_texture = get_material_handle(base_texture,&stack_ptr9,0);
   *(uint64_t *)(scene_context + 0x398) = base_texture;
-  stack_ptr9 = &unknown_var_720_ptr;
+  stack_ptr9 = &system_state_ptr;
   material_flags = get_scene_material_flags(scene_context);
   *(ulonglong *)(scene_context + 0x3a0) = (ulonglong)material_flags;
                     // WARNING: Subroutine does not return
@@ -225,7 +225,7 @@ LAB_cache_allocate:
           if (material_offset != cache_index) {
             cache_position = material_offset - (longlong)cache_start;
             do {
-              *cache_current = &unknown_var_720_ptr;
+              *cache_current = &system_state_ptr;
               cache_current[1] = 0;
               *(int32_t *)(cache_current + 2) = 0;
               *cache_current = &unknown_var_3480_ptr;
@@ -407,7 +407,7 @@ void switch_scene_materials(longlong scene_context,uint64_t new_scene,longlong s
           }
         }
         log_material_assignment(&unknown_var_7608_ptr,texture_ptr,material_name);
-        material_name = &unknown_var_720_ptr;
+        material_name = &system_state_ptr;
       }
       else {
         apply_material_to_scene(scene_context + 0xb8 + render_offset,material_slot + 0xb0);

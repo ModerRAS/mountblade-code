@@ -142,7 +142,7 @@ uint64_t *
 initialize_memory_block_with_vtable(uint64_t *memory_block, ulonglong flags, uint64_t param3, uint64_t param4)
 {
   // 设置虚函数表指针
-  *memory_block = &unknown_var_720_ptr;
+  *memory_block = &system_state_ptr;
   
   // 如果设置了释放标志，则释放内存
   if ((flags & 1) != 0) {
@@ -313,7 +313,7 @@ void string_replace_and_memory_operation(longlong string_buffer, longlong search
   }
   
   // 设置虚函数表指针
-  stack_ptr_268 = &unknown_var_720_ptr;
+  stack_ptr_268 = &system_state_ptr;
   
   // 执行内存清理操作
   FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer_298);
@@ -1280,7 +1280,7 @@ void main_render_loop(void)
     }
     
     // 设置资源管理器
-    resource_manager = &unknown_var_720_ptr;
+    resource_manager = &system_state_ptr;
     (**(code **)(**(longlong **)(engine_context + 0x1698) + 0x60))();
     
 RENDER_CONTINUE:

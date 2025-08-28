@@ -500,7 +500,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, ulonglong param_2)
     if (plVar1 == (longlong *)0x0) {
         /* 初始化新资源 */
         param_1[SYSTEM_CONFIG_MAX_SLOTS] = 0;
-        param_1[0x18] = &unknown_var_3456_ptr;
+        param_1[0x18] = &system_data_buffer_ptr;
         
         /* 验证资源状态 */
         if (param_1[0x19] != 0) {
@@ -511,7 +511,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, ulonglong param_2)
         /* 重置资源参数 */
         param_1[0x19] = 0;
         *(int32_t *)(param_1 + 0x1b) = 0;
-        param_1[0x18] = &unknown_var_720_ptr;
+        param_1[0x18] = &system_state_ptr;
         
         /* 执行资源初始化 */
         FUN_180049470(param_1);
@@ -673,7 +673,7 @@ void FUN_180244ff0(longlong param_1)
         
         /* 执行线程ID操作 */
         _Thrd_id();
-        puStack_d8 = &unknown_var_720_ptr;
+        puStack_d8 = &system_state_ptr;
     }
     
     /* 执行系统操作 */
@@ -767,7 +767,7 @@ void FUN_180245280(longlong param_1)
             (**(code **)(*plStack_d0 + 0x38))();
         }
         
-        puStack_b8 = &unknown_var_720_ptr;
+        puStack_b8 = &system_state_ptr;
     }
     
     /* 执行系统操作 */

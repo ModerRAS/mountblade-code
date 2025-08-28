@@ -87,24 +87,24 @@ void cleanup_resource_manager(longlong *config_ptr)
   resource_ptr = (uint64_t *)config_ptr[0x7c];
   if (resource_ptr != (uint64_t *)0x0) {
     // 清理第一个资源块
-    resource_ptr[0x14] = &unknown_var_3456_ptr;
+    resource_ptr[0x14] = &system_data_buffer_ptr;
     if (resource_ptr[0x15] != 0) {
       // 警告：子程序不返回
       FUN_18064e900();
     }
     resource_ptr[0x15] = 0;
     *(int32_t *)(resource_ptr + 0x17) = 0;
-    resource_ptr[0x14] = &unknown_var_720_ptr;
+    resource_ptr[0x14] = &system_state_ptr;
     
     // 清理第二个资源块
-    resource_ptr[0x10] = &unknown_var_3456_ptr;
+    resource_ptr[0x10] = &system_data_buffer_ptr;
     if (resource_ptr[0x11] != 0) {
       // 警告：子程序不返回
       FUN_18064e900();
     }
     resource_ptr[0x11] = 0;
     *(int32_t *)(resource_ptr + 0x13) = 0;
-    resource_ptr[0x10] = &unknown_var_720_ptr;
+    resource_ptr[0x10] = &system_state_ptr;
     
     // 清理第三个资源块
     if (resource_ptr[0xc] != 0) {
@@ -115,14 +115,14 @@ void cleanup_resource_manager(longlong *config_ptr)
     FUN_180057170();
     
     // 清理主资源块
-    *resource_ptr = &unknown_var_3456_ptr;
+    *resource_ptr = &system_data_buffer_ptr;
     if (resource_ptr[1] != 0) {
       // 警告：子程序不返回
       FUN_18064e900();
     }
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 3) = 0;
-    *resource_ptr = &unknown_var_720_ptr;
+    *resource_ptr = &system_state_ptr;
     // 警告：子程序不返回
     FUN_18064e900(resource_ptr);
   }
@@ -137,14 +137,14 @@ void cleanup_resource_manager(longlong *config_ptr)
     resource_ptr[0x28] = 0;
     
     // 清理附加资源
-    resource_ptr[0x29] = &unknown_var_3456_ptr;
+    resource_ptr[0x29] = &system_data_buffer_ptr;
     if (resource_ptr[0x2a] != 0) {
       // 警告：子程序不返回
       FUN_18064e900();
     }
     resource_ptr[0x2a] = 0;
     *(int32_t *)(resource_ptr + 0x2c) = 0;
-    resource_ptr[0x29] = &unknown_var_720_ptr;
+    resource_ptr[0x29] = &system_state_ptr;
     
     FUN_180174950();
     if (temp_var != 0) {
@@ -184,89 +184,89 @@ void cleanup_resource_manager(longlong *config_ptr)
   config_ptr[6] = 0;
   
   // 清理配置块1
-  config_ptr[0x6d] = (longlong)&unknown_var_3456_ptr;
+  config_ptr[0x6d] = (longlong)&system_data_buffer_ptr;
   if (config_ptr[0x6e] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x6e] = 0;
   *(int32_t *)(config_ptr + 0x70) = 0;
-  config_ptr[0x6d] = (longlong)&unknown_var_720_ptr;
+  config_ptr[0x6d] = (longlong)&system_state_ptr;
   
   // 清理配置块2
-  config_ptr[0x69] = (longlong)&unknown_var_3456_ptr;
+  config_ptr[0x69] = (longlong)&system_data_buffer_ptr;
   if (config_ptr[0x6a] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x6a] = 0;
   *(int32_t *)(config_ptr + 0x6c) = 0;
-  config_ptr[0x69] = (longlong)&unknown_var_720_ptr;
+  config_ptr[0x69] = (longlong)&system_state_ptr;
   
   // 执行清理操作
   FUN_180057830();
   FUN_18005d260(config_ptr + 0x5c, config_ptr[0x5e]);
   
   // 清理配置块3
-  config_ptr[0x58] = (longlong)&unknown_var_3456_ptr;
+  config_ptr[0x58] = (longlong)&system_data_buffer_ptr;
   if (config_ptr[0x59] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x59] = 0;
   *(int32_t *)(config_ptr + 0x5b) = 0;
-  config_ptr[0x58] = (longlong)&unknown_var_720_ptr;
+  config_ptr[0x58] = (longlong)&system_state_ptr;
   
   // 清理配置块4
-  config_ptr[0x52] = (longlong)&unknown_var_3456_ptr;
+  config_ptr[0x52] = (longlong)&system_data_buffer_ptr;
   if (config_ptr[0x53] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x53] = 0;
   *(int32_t *)(config_ptr + 0x55) = 0;
-  config_ptr[0x52] = (longlong)&unknown_var_720_ptr;
+  config_ptr[0x52] = (longlong)&system_state_ptr;
   
   // 清理配置块5
-  config_ptr[0x4e] = (longlong)&unknown_var_3456_ptr;
+  config_ptr[0x4e] = (longlong)&system_data_buffer_ptr;
   if (config_ptr[0x4f] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x4f] = 0;
   *(int32_t *)(config_ptr + 0x51) = 0;
-  config_ptr[0x4e] = (longlong)&unknown_var_720_ptr;
+  config_ptr[0x4e] = (longlong)&system_state_ptr;
   
   // 清理配置块6
-  config_ptr[0x39] = (longlong)&unknown_var_3456_ptr;
+  config_ptr[0x39] = (longlong)&system_data_buffer_ptr;
   if (config_ptr[0x3a] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x3a] = 0;
   *(int32_t *)(config_ptr + 0x3c) = 0;
-  config_ptr[0x39] = (longlong)&unknown_var_720_ptr;
+  config_ptr[0x39] = (longlong)&system_state_ptr;
   
   // 清理配置块7
-  config_ptr[0x32] = (longlong)&unknown_var_720_ptr;
-  config_ptr[0x2e] = (longlong)&unknown_var_3456_ptr;
+  config_ptr[0x32] = (longlong)&system_state_ptr;
+  config_ptr[0x2e] = (longlong)&system_data_buffer_ptr;
   if (config_ptr[0x2f] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x2f] = 0;
   *(int32_t *)(config_ptr + 0x31) = 0;
-  config_ptr[0x2e] = (longlong)&unknown_var_720_ptr;
+  config_ptr[0x2e] = (longlong)&system_state_ptr;
   
   // 清理配置块8
-  config_ptr[0x29] = (longlong)&unknown_var_3456_ptr;
+  config_ptr[0x29] = (longlong)&system_data_buffer_ptr;
   if (config_ptr[0x2a] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x2a] = 0;
   *(int32_t *)(config_ptr + 0x2c) = 0;
-  config_ptr[0x29] = (longlong)&unknown_var_720_ptr;
+  config_ptr[0x29] = (longlong)&system_state_ptr;
   
   // 清理配置块9
   if (config_ptr[0x21] != 0) {
@@ -278,14 +278,14 @@ void cleanup_resource_manager(longlong *config_ptr)
   FUN_18005d580();
   
   // 清理配置块10
-  config_ptr[0x17] = (longlong)&unknown_var_3456_ptr;
+  config_ptr[0x17] = (longlong)&system_data_buffer_ptr;
   if (config_ptr[0x18] != 0) {
     // 警告：子程序不返回
     FUN_18064e900();
   }
   config_ptr[0x18] = 0;
   *(int32_t *)(config_ptr + 0x1a) = 0;
-  config_ptr[0x17] = (longlong)&unknown_var_720_ptr;
+  config_ptr[0x17] = (longlong)&system_state_ptr;
   
   // 清理配置块11
   if (config_ptr[0xf] != 0) {
@@ -468,7 +468,7 @@ void parse_config_string(uint64_t config_handle, longlong string_param)
     lVar20 = lVar9 + 1;
   } while (puVar17[lVar20] != '\0');
   uVar21 = lVar9 + 2;
-  puStack_310 = &unknown_var_3456_ptr;
+  puStack_310 = &system_data_buffer_ptr;
   uStack_2f8 = 0;
   puStack_308 = (int8_t *)0x0;
   uStack_300 = 0;
@@ -620,7 +620,7 @@ uint initialize_graphics_driver_config(void)
   
   // 处理第一个配置块
   if ((config_data._12_4_ != 0) && (config_data._8_4_ != 0)) {
-    cleanup_ptr = &unknown_var_3456_ptr;
+    cleanup_ptr = &system_data_buffer_ptr;
     buffer_flags = 0;
     buffer_ptr = 0;
     buffer_size = 0;
@@ -649,29 +649,29 @@ uint initialize_graphics_driver_config(void)
     FUN_18005c8a0(init_system_data_pointer + 0xe30, resource_ptr);
     
     // 清理资源
-    *resource_ptr = &unknown_var_3456_ptr;
+    *resource_ptr = &system_data_buffer_ptr;
     if (resource_ptr[1] != 0) {
       // 警告：子程序不返回
       FUN_18064e900();
     }
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 3) = 0;
-    *resource_ptr = &unknown_var_720_ptr;
-    cleanup_ptr = &unknown_var_3456_ptr;
+    *resource_ptr = &system_state_ptr;
+    cleanup_ptr = &system_data_buffer_ptr;
     if (buffer_ptr != 0) {
       // 警告：子程序不返回
       FUN_18064e900();
     }
     buffer_ptr = 0;
     buffer_flags = buffer_flags & 0xffffffff00000000;
-    cleanup_ptr = &unknown_var_720_ptr;
+    cleanup_ptr = &system_state_ptr;
   }
   
   // 处理第二个配置块
   engine_ptr = *(longlong *)(main_engine + 8);
   config_data = *(int8_t (*) [16])(engine_ptr + 0xdc + (ulonglong)(*(uint *)(engine_ptr + 0x13c) & 1) * 0x48);
   if ((config_data._12_4_ != 0) && (config_data._8_4_ != 0)) {
-    string_ptr = &unknown_var_3456_ptr;
+    string_ptr = &system_data_buffer_ptr;
     stack_guard1 = 0;
     string_buffer = 0;
     string_length = 0;
@@ -700,15 +700,15 @@ uint initialize_graphics_driver_config(void)
     FUN_18005c8a0(init_system_data_pointer + 0xef0, resource_ptr);
     
     // 清理资源
-    *resource_ptr = &unknown_var_3456_ptr;
+    *resource_ptr = &system_data_buffer_ptr;
     if (resource_ptr[1] != 0) {
       // 警告：子程序不返回
       FUN_18064e900();
     }
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 3) = 0;
-    *resource_ptr = &unknown_var_720_ptr;
-    string_ptr = &unknown_var_3456_ptr;
+    *resource_ptr = &system_state_ptr;
+    string_ptr = &system_data_buffer_ptr;
     if (string_buffer != 0) {
       // 警告：子程序不返回
       FUN_18064e900();
@@ -788,7 +788,7 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   uint64_t result_flags;    // 结果标志
   
   config_ptr1 = init_system_data_pointer;
-  cleanup_ptr = &unknown_var_3456_ptr;
+  cleanup_ptr = &system_data_buffer_ptr;
   result_flags = 0;
   buffer_ptr = 0;
   buffer_size_total = 0;
@@ -843,7 +843,7 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
     *(int8_t *)(data_size + buffer_ptr) = 0;
   }
   result_flags = CONCAT44(*(int32_t *)(config_ptr2 + 0xfcc), (int32_t)result_flags);
-  cleanup_ptr = &unknown_var_3456_ptr;
+  cleanup_ptr = &system_data_buffer_ptr;
   
   // 清理缓冲区
   if (buffer_ptr != 0) {
@@ -985,7 +985,7 @@ void initialize_system_parameters(void)
   // 初始化子系统配置
   subsystem_config = system_parameter_buffer;
   engine_config = system_context_ptr;
-  cleanup_ptr = &unknown_var_7512_ptr;
+  cleanup_ptr = &system_config_ptr;
   data_ptr = temp_buffer3;
   temp_buffer3[0] = 0;
   data_size = 0xd;
@@ -999,7 +999,7 @@ void initialize_system_parameters(void)
   FUN_18020e840(puVar6);
   FUN_18005ea90(lVar2 + 0x48,apuStack_1c8);
   *(uint64_t **)(lVar4 + 0x18) = puVar6;
-  puStack_168 = &unknown_var_720_ptr;
+  puStack_168 = &system_state_ptr;
   puVar8 = &system_buffer_ptr;
   if (*(void **)(lVar3 + 0x278) != (void *)0x0) {
     puVar8 = *(void **)(lVar3 + 0x278);

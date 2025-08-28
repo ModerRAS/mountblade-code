@@ -299,7 +299,7 @@ uint64_t * FUN_1806f1240(uint64_t *param_1,uint param_2)
   *param_1 = &unknown_var_8576_ptr;
   param_1[1] = &unknown_var_8592_ptr;
   FUN_1806f1550(param_1[2],param_1[4]);
-  param_1[1] = &unknown_var_3552_ptr;
+  param_1[1] = &system_handler1_ptr;
   *param_1 = &unknown_var_1760_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x30);

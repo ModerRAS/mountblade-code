@@ -172,7 +172,7 @@ void RenderingSystem_AdvancedDataProcessor(int param_1, uint param_2, float para
         } while ((int)uVar9 < *(int *)(lVar5 + RENDERING_DATA_OFFSET_5D0));
         return;
     }
-    puStack_68 = &unknown_var_3456_ptr;
+    puStack_68 = &system_data_buffer_ptr;
     uStack_50 = 0;
     puStack_60 = (int32_t *)0x0;
     uStack_58 = 0;
@@ -261,13 +261,13 @@ LAB_18060e4bb:
         memcpy((int8_t *)((ulonglong)uStack_58 + (longlong)puStack_60), *(uint64_t *)(lVar5 + 8),
                (longlong)(*(int *)(lVar5 + 0x10) + 1));
     }
-    puStack_48 = &unknown_var_3456_ptr;
+    puStack_48 = &system_data_buffer_ptr;
     if (lStack_40 != 0) {
         FUN_18064e900();
     }
     lStack_40 = 0;
     uStack_30 = 0;
-    puStack_48 = &unknown_var_720_ptr;
+    puStack_48 = &system_state_ptr;
     iVar12 = uStack_58 + 0x2f;
     if (iVar12 != 0) {
         uVar9 = uStack_58 + 0x30;
@@ -303,7 +303,7 @@ LAB_18060e558:
     }
     uStack_58 = iVar12;
     FUN_180626f80(puVar8);
-    puStack_68 = &unknown_var_3456_ptr;
+    puStack_68 = &system_data_buffer_ptr;
     if (puStack_60 == (int32_t *)0x0) {
         return;
     }
@@ -325,7 +325,7 @@ int RenderingSystem_DataQueryProcessor(uint64_t param_1, uint64_t param_2, uint6
     
     FUN_180627910(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
     sVar1 = FUN_180571e20(&system_memory_60c0, &puStack_30);
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
         FUN_18064e900();
     }
@@ -1078,7 +1078,7 @@ int32_t RenderingSystem_DataValidator(uint64_t param_1, uint64_t param_2, uint64
     
     uVar2 = FUN_180627910(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
     uVar1 = FUN_180552800(&system_memory_5ff0, uVar2);
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
         FUN_18064e900();
     }
@@ -1101,7 +1101,7 @@ byte RenderingSystem_DataChecker(uint64_t param_1, uint64_t param_2, uint64_t pa
     
     uVar2 = FUN_180627910(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
     iVar1 = FUN_180552800(&system_memory_5ff0, uVar2);
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
         FUN_18064e900();
     }
@@ -1124,7 +1124,7 @@ int32_t RenderingSystem_ParameterProcessor(uint64_t param_1, uint64_t param_2, u
     
     uVar2 = FUN_180627910(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
     uVar1 = FUN_1804c3680(&system_memory_61b0, uVar2);
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
         FUN_18064e900();
     }
@@ -1181,7 +1181,7 @@ ulonglong RenderingSystem_DataRetriever(uint64_t param_1, uint64_t param_2, uint
     
     uVar2 = FUN_180627910(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
     iVar1 = FUN_180552800(&system_memory_5ff0, uVar2);
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
         FUN_18064e900();
     }
@@ -1264,7 +1264,7 @@ void RenderingSystem_SystemCallHandler(uint64_t param_1, uint64_t param_2, uint6
         (**(code **)(*(longlong *)render_system_data_memory[1] + 0x18))
                   ((longlong *)render_system_data_memory[1], &puStack_30, auStackX_10);
     }
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
         FUN_18064e900();
     }

@@ -606,7 +606,7 @@ void RenderingSystem_FullInitializerAndCleaner(longlong param_1)
         }
         while (plStackX_10 = plVar2, lVar9 != lVar10) {
           if (*(longlong *)(lVar9 + 8) != 0) {
-            *(void **)(*(longlong *)(lVar9 + 8) + 0x50) = &unknown_var_720_ptr;
+            *(void **)(*(longlong *)(lVar9 + 8) + 0x50) = &system_state_ptr;
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }

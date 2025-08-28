@@ -42,14 +42,14 @@ void FUN_18033ce60(uint64_t *param_1)
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   FUN_1806279c0(&puStack_d8);
   FUN_1800b2a30();
-  puStack_d8 = &unknown_var_3456_ptr;
+  puStack_d8 = &system_data_buffer_ptr;
   if (lStack_d0 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_d0 = 0;
   uStack_c0 = 0;
-  puStack_d8 = &unknown_var_720_ptr;
+  puStack_d8 = &system_state_ptr;
   alStack_a8[0] = 0;
   alStack_a8[1] = 0;
   uStack_98 = 0;

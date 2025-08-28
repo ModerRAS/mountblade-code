@@ -798,20 +798,20 @@ void reset_queue_manager(uint64_t *manager)
   }
   _Mtx_destroy_in_situ();
   *manager = &unknown_var_5224_ptr;
-  manager[7] = &unknown_var_3456_ptr;
+  manager[7] = &system_data_buffer_ptr;
   if (manager[8] != 0) {
     FUN_18064e900();
   }
   manager[8] = 0;
   *(int32_t *)(manager + 10) = 0;
-  manager[7] = &unknown_var_720_ptr;
-  manager[1] = &unknown_var_3456_ptr;
+  manager[7] = &system_state_ptr;
+  manager[1] = &system_data_buffer_ptr;
   if (manager[2] != 0) {
     FUN_18064e900();
   }
   manager[2] = 0;
   *(int32_t *)(manager + 4) = 0;
-  manager[1] = &unknown_var_720_ptr;
+  manager[1] = &system_state_ptr;
   return;
 }
 
@@ -875,7 +875,7 @@ void initialize_engine_core(uint64_t engine_param, longlong config_data)
   buffer_flags = TIMEOUT_INFINITE;
   checksum = GET_SECURITY_COOKIE() ^ (ulonglong)local_config;
   stack_config = system_message_context;
-  stack_pointer = &unknown_var_7512_ptr;
+  stack_pointer = &system_config_ptr;
   config_pointer = local_buffer;
   local_buffer[0] = 0;
   config_type = 6;
@@ -891,7 +891,7 @@ void initialize_engine_core(uint64_t engine_param, longlong config_data)
   register_engine_component(engine_base + 0x48, &config_ptr);
   *(uint64_t **)(system_address + 400) = component_handle;
   
-  stack_pointer = &unknown_var_720_ptr;
+  stack_pointer = &system_state_ptr;
   setup_engine_config(system_main_module_state + 0x170, temp_config, &system_memory_c8c8);
   
   if (0 < *(int *)(config_data + 0x10)) {

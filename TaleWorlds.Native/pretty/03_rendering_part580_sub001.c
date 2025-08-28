@@ -60,7 +60,7 @@ void FUN_180587460(longlong param_1,longlong param_2,longlong param_3)
                     // WARNING: Subroutine does not return
     memcpy(puStack_68,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
   }
-  puStack_70 = &unknown_var_720_ptr;
+  puStack_70 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
 }
@@ -186,7 +186,7 @@ void FUN_1805876a0(longlong param_1,longlong param_2,longlong param_3)
                     // WARNING: Subroutine does not return
     memcpy(puStack_58,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
   }
-  puStack_60 = &unknown_var_720_ptr;
+  puStack_60 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_88);
 }

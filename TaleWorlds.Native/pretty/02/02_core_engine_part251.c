@@ -382,7 +382,7 @@ void process_engine_components(longlong component_context)
         
         // 记录组件信息
         ComponentLogger_LogComponentInfo(&unknown_var_5296_ptr,temp_array_4,(double)component_value);
-        temp_ptr_1 = &unknown_var_3456_ptr;
+        temp_ptr_1 = &system_data_buffer_ptr;
         temp_ulonglong = 0;
         temp_ptr_2 = (int32_t *)0x0;
         temp_uint_1 = 0;
@@ -410,13 +410,13 @@ void process_engine_components(longlong component_context)
         }
         
         // 清理临时字符串
-        temp_ptr_1 = &unknown_var_3456_ptr;
+        temp_ptr_1 = &system_data_buffer_ptr;
         if (temp_ptr_2 != (int32_t *)0x0) {
           StringProcessor_ReleaseString();
         }
         temp_ptr_2 = (int32_t *)0x0;
         temp_ulonglong = temp_ulonglong & 0xffffffff00000000;
-        temp_ptr_1 = &unknown_var_720_ptr;
+        temp_ptr_1 = &system_state_ptr;
       }
       
       // 移动到下一个组件
@@ -561,7 +561,7 @@ void resize_object_array(longlong *object_array_ptr,uint64_t param_2,uint64_t pa
     if (old_array_ptr != new_object_ptr) {
       offset = (longlong)old_array_ptr - (longlong)new_array_ptr;
       do {
-        *temp_ptr = &unknown_var_720_ptr;
+        *temp_ptr = &system_state_ptr;
         temp_ptr[1] = 0;
         *(int32_t *)(temp_ptr + 2) = 0;
         *temp_ptr = &unknown_var_3432_ptr;
@@ -656,7 +656,7 @@ void expand_object_array(longlong *object_array_ptr,uint64_t param_2,uint64_t pa
     end_pos = allocation_size;
     
     do {
-      *(void **)(element_ptr + -4) = &unknown_var_720_ptr;
+      *(void **)(element_ptr + -4) = &system_state_ptr;
       *(uint64_t *)(element_ptr + -2) = 0;
       *element_ptr = 0;
       *(void **)(element_ptr + -4) = &unknown_var_3432_ptr;
@@ -750,7 +750,7 @@ EXPANSION_DONE:
   if (array_size != current_pos) {
     element_count = array_size - (longlong)new_ptr;
     do {
-      *insert_ptr = &unknown_var_720_ptr;
+      *insert_ptr = &system_state_ptr;
       insert_ptr[1] = 0;
       *(int32_t *)(insert_ptr + 2) = 0;
       *insert_ptr = &unknown_var_3432_ptr;
@@ -841,11 +841,11 @@ void cleanup_engine_resource_manager(longlong resource_manager)
       resource_ptr = *(uint64_t **)(table_ptr + index * 8);
       if (resource_ptr != (uint64_t *)0x0) {
         ResourceTable_ReleaseResource(resource_ptr + 4);
-        *resource_ptr = &unknown_var_3456_ptr;
+        *resource_ptr = &system_data_buffer_ptr;
         if (resource_ptr[1] == 0) {
           resource_ptr[1] = 0;
           *(int32_t *)(resource_ptr + 3) = 0;
-          *resource_ptr = &unknown_var_720_ptr;
+          *resource_ptr = &system_state_ptr;
           MemoryPool_ReleaseMemory(resource_ptr);
         }
         MemoryPool_ReleaseMemory();

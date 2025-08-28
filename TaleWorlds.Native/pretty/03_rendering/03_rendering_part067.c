@@ -193,7 +193,7 @@ uint64_t *rendering_system_set_render_parameters(uint64_t param_1, uint64_t *par
                                                    uint64_t param_3, uint64_t param_4)
 {
     // 初始化参数数据缓冲区
-    *param_2 = &unknown_var_720_ptr;
+    *param_2 = &system_state_ptr;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
     
@@ -282,7 +282,7 @@ void rendering_system_initialize_render_context(uint64_t *render_context)
     *(int8_t *)(render_context + 0x3e) = 0;               // 状态标志5
     
     // 初始化字符串缓冲区
-    stack_pointer_208 = &unknown_var_3456_ptr;
+    stack_pointer_208 = &system_data_buffer_ptr;
     stack_value_1f0 = 0;
     stack_pointer_200 = (uint64_t *)0x0;
     stack_value_1f8 = 0;
@@ -302,7 +302,7 @@ void rendering_system_initialize_render_context(uint64_t *render_context)
     
     // 初始化渲染系统
     FUN_1803460a0(render_context, &stack_pointer_208, render_context + 0x37, 1);
-    stack_pointer_208 = &unknown_var_3456_ptr;
+    stack_pointer_208 = &system_data_buffer_ptr;
     
     // 清理临时资源（该操作可能不会返回）
     FUN_18064e900(context_pointer);
@@ -477,7 +477,7 @@ void rendering_system_update_render_system(longlong render_context)
             
             // 处理渲染参数
             FUN_1800b1230(system_resource_state, &render_parameter, &string_buffer, &render_width);
-            string_buffer = &unknown_var_720_ptr;
+            string_buffer = &system_state_ptr;
             
             // 执行渲染操作
             (**(code **)(**(longlong **)(render_context + 0x1b0) + 0x68))
@@ -644,15 +644,15 @@ void rendering_system_process_render_parameters(longlong render_context, longlon
                     (**(code **)(*parameter_pointer + 0x38))(parameter_pointer);
                 }
                 parameter_array_pointer = (void ***)&output_buffer;
-                output_buffer = &unknown_var_720_ptr;
-                buffer_pointer = &unknown_var_3456_ptr;
+                output_buffer = &system_state_ptr;
+                buffer_pointer = &system_data_buffer_ptr;
                 if (string_buffer != 0) {
                     // 清理字符串缓冲区（该操作可能不会返回）
                     FUN_18064e900();
                 }
                 string_buffer = 0;
                 buffer_size = 0;
-                buffer_pointer = &unknown_var_720_ptr;
+                buffer_pointer = &system_state_ptr;
             }
         }
         
@@ -1153,7 +1153,7 @@ void rendering_system_manage_render_resources(longlong render_context)
         *(int32_t *)(render_context + 0xa0) = stack_value_48;
         
         // 初始化操作缓冲区
-        buffer_pointer = &unknown_var_3456_ptr;
+        buffer_pointer = &system_data_buffer_ptr;
         stack_value_190 = 0;
         stack_pointer_1a0 = (uint64_t *)0x0;
         stack_value_198 = 0;
@@ -1225,14 +1225,14 @@ void rendering_system_manage_render_resources(longlong render_context)
         }
         
         // 清理资源
-        buffer_pointer = &unknown_var_3456_ptr;
+        buffer_pointer = &system_data_buffer_ptr;
         if (resource_pointer != (uint64_t *)0x0) {
             // 释放资源（该操作可能不会返回）
             FUN_18064e900(resource_pointer);
         }
         stack_pointer_1a0 = (uint64_t *)0x0;
         stack_value_190 = (ulonglong)stack_value_190._4_4_ << 0x20;
-        buffer_pointer = &unknown_var_720_ptr;
+        buffer_pointer = &system_state_ptr;
         
         // 清理资源数组
         for (resource_array = array_pointer; resource_array != array_end; resource_array = resource_array + 1) {

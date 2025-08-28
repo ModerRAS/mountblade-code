@@ -294,7 +294,7 @@ void FUN_1802d8730(uint64_t param_1,longlong *param_2,int param_3)
   plStack_98 = param_2;
   strcpy_s(auStack_70,0x40,&system_data_fc60);
   FUN_1802037e0();
-  puStack_88 = &unknown_var_720_ptr;
+  puStack_88 = &system_state_ptr;
   uVar2 = FUN_18062b1e0(system_memory_pool_ptr,param_3,0x10,3);
   FUN_1802d9200(uVar1,param_2);
   *(uint64_t *)(*param_2 + 0x10) = uVar2;
@@ -341,7 +341,7 @@ void FUN_1802d8860(uint64_t param_1,longlong *param_2,int param_3)
   plStack_98 = param_2;
   strcpy_s(auStack_70,0x40,&system_data_fc60);
   FUN_1802037e0();
-  puStack_88 = &unknown_var_720_ptr;
+  puStack_88 = &system_state_ptr;
   uVar2 = FUN_18062b1e0(system_memory_pool_ptr,param_3,0x10,3);
   FUN_1802d9380(uVar1,param_2);
   *(uint64_t *)(*param_2 + 0x10) = uVar2;

@@ -303,8 +303,8 @@ FUN_1801566b0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *(int32_t *)((longlong)param_1 + 0x1d4) = 0x3f800000;
   FUN_180157050(param_1);
   plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x60,8,3);
-  *plVar2 = (longlong)&unknown_var_3552_ptr;
-  *plVar2 = (longlong)&unknown_var_3696_ptr;
+  *plVar2 = (longlong)&system_handler1_ptr;
+  *plVar2 = (longlong)&system_handler2_ptr;
   *(int32_t *)(plVar2 + 1) = 0;
   *plVar2 = (longlong)&unknown_var_7872_ptr;
   plStackX_20 = plVar2;
@@ -571,7 +571,7 @@ void FUN_180156c20(uint64_t param_1,longlong param_2,int8_t param_3)
   int8_t uStack_38;
   
   plVar6 = core_system_data_config;
-  puStack_58 = &unknown_var_3456_ptr;
+  puStack_58 = &system_data_buffer_ptr;
   uStack_40 = 0;
   lStack_50 = 0;
   uStack_48 = 0;
@@ -636,12 +636,12 @@ LAB_180156d7b:
            (longlong)(*(int *)(param_2 + 0x10) + 1));
   }
   (**(code **)(*plVar6 + 0x40))(plVar6,&puStack_78,param_3);
-  puStack_78 = &unknown_var_3456_ptr;
+  puStack_78 = &system_data_buffer_ptr;
   if (lStack_70 == 0) {
     lStack_70 = 0;
     uStack_60 = 0;
-    puStack_78 = &unknown_var_720_ptr;
-    puStack_58 = &unknown_var_3456_ptr;
+    puStack_78 = &system_state_ptr;
+    puStack_58 = &system_data_buffer_ptr;
     if (lStack_50 == 0) {
       return;
     }
@@ -683,7 +683,7 @@ void FUN_180156e40(uint64_t param_1,longlong param_2,int8_t param_3)
   int8_t uStack_38;
   
   plVar6 = core_system_data_config;
-  puStack_58 = &unknown_var_3456_ptr;
+  puStack_58 = &system_data_buffer_ptr;
   uStack_40 = 0;
   lStack_50 = 0;
   uStack_48 = 0;
@@ -744,12 +744,12 @@ LAB_180156f96:
            (longlong)(*(int *)(param_2 + 0x10) + 1));
   }
   (**(code **)(*plVar6 + 0x40))(plVar6,&puStack_78,param_3);
-  puStack_78 = &unknown_var_3456_ptr;
+  puStack_78 = &system_data_buffer_ptr;
   if (lStack_70 == 0) {
     lStack_70 = 0;
     uStack_60 = 0;
-    puStack_78 = &unknown_var_720_ptr;
-    puStack_58 = &unknown_var_3456_ptr;
+    puStack_78 = &system_state_ptr;
+    puStack_58 = &system_data_buffer_ptr;
     if (lStack_50 == 0) {
       return;
     }

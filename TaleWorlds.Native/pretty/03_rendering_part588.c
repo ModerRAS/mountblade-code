@@ -175,7 +175,7 @@ void FUN_18058e430(longlong *param_1,longlong param_2,longlong param_3,uint para
   }
   uVar3 = FUN_1800c17c0();
   *(int32_t *)(param_1 + 0x19) = uVar3;
-  puStack_1f8 = &unknown_var_720_ptr;
+  puStack_1f8 = &system_state_ptr;
   plVar8 = *(longlong **)(param_2 + 0xa0);
   if (plVar8 != (longlong *)0x0) {
     plStack_250 = plVar8;

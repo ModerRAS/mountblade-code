@@ -327,7 +327,7 @@ LAB_1803672a8:
               plStack_3e0 = (longlong *)&system_data_0000;
               lStack_3d0 = 0;
               uStack_3c4 = 0x40000000;
-              puStack_108 = &unknown_var_7512_ptr;
+              puStack_108 = &system_config_ptr;
               puStack_100 = auStack_f0;
               auStack_f0[0] = 0;
               uStack_f8 = 4;
@@ -345,7 +345,7 @@ LAB_1803672a8:
               uStack_464 = uVar37;
               lVar22 = strstr(puVar19,puVar24);
               if (lVar22 == 0) {
-                puStack_130 = &unknown_var_7512_ptr;
+                puStack_130 = &system_config_ptr;
                 puStack_128 = auStack_118;
                 auStack_118[0] = 0;
                 uStack_120 = 7;
@@ -362,7 +362,7 @@ LAB_1803672a8:
                 uStack_464 = uVar37;
                 lVar22 = strstr(puVar19,puVar24);
                 if (lVar22 != 0) goto LAB_18036764f;
-                puStack_158 = &unknown_var_7512_ptr;
+                puStack_158 = &system_config_ptr;
                 puStack_150 = auStack_140;
                 auStack_140[0] = 0;
                 uStack_148 = 6;
@@ -379,7 +379,7 @@ LAB_1803672a8:
                 uStack_464 = uVar37;
                 lVar22 = strstr(puVar19,puVar24);
                 if (lVar22 != 0) goto LAB_18036764f;
-                puStack_180 = &unknown_var_7512_ptr;
+                puStack_180 = &system_config_ptr;
                 puStack_178 = auStack_168;
                 auStack_168[0] = 0;
                 uStack_170 = 7;
@@ -403,23 +403,23 @@ LAB_18036764f:
               }
               if ((uVar37 & 8) != 0) {
                 uStack_464 = uVar37 & 0xfffffff7;
-                puStack_180 = &unknown_var_720_ptr;
+                puStack_180 = &system_state_ptr;
                 uVar37 = uStack_464;
               }
               if ((uVar37 & 4) != 0) {
                 uStack_464 = uVar37 & 0xfffffffb;
-                puStack_158 = &unknown_var_720_ptr;
+                puStack_158 = &system_state_ptr;
                 uVar37 = uStack_464;
               }
               if ((uVar37 & 2) != 0) {
                 uStack_464 = uVar37 & 0xfffffffd;
-                puStack_130 = &unknown_var_720_ptr;
+                puStack_130 = &system_state_ptr;
                 uVar37 = uStack_464;
               }
               uVar36 = uVar37;
               if ((uVar37 & 1) != 0) {
                 uStack_464 = uVar37 & 0xfffffffe;
-                puStack_108 = &unknown_var_720_ptr;
+                puStack_108 = &system_state_ptr;
                 uVar36 = uStack_464;
               }
               if ((char)lVar22 == '\0') {
@@ -435,7 +435,7 @@ LAB_18036764f:
                 auStack_c0[0] = 0;
                 iStack_c8 = 0x13;
                 strcpy_s(auStack_c0,0x40);
-                puStack_390 = &unknown_var_3456_ptr;
+                puStack_390 = &system_data_buffer_ptr;
                 uStack_378 = 0;
                 puStack_388 = (int8_t *)0x0;
                 uStack_380 = 0;
@@ -453,15 +453,15 @@ LAB_18036764f:
                   *puStack_388 = 0;
                 }
                 lVar22 = FUN_1802f17b0(puVar17,&puStack_390);
-                puStack_390 = &unknown_var_3456_ptr;
+                puStack_390 = &system_data_buffer_ptr;
                 if (puStack_388 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
                 puStack_388 = (int8_t *)0x0;
                 uStack_378 = uStack_378 & 0xffffffff00000000;
-                puStack_390 = &unknown_var_720_ptr;
-                puStack_d8 = &unknown_var_720_ptr;
+                puStack_390 = &system_state_ptr;
+                puStack_d8 = &system_state_ptr;
                 if ((lVar22 != 0) && (*(char *)(lVar22 + 0xa8) != '\0')) {
                   cStack_468 = '\x01';
                   uVar40 = *(int32_t *)(lVar22 + 0x98);
@@ -503,8 +503,8 @@ LAB_1803678fd:
                           FUN_1802f0510(plVar11,0);
                           if (puVar15 == (uint *)plStack_3e0[uStack_3d8]) {
                             ppppuVar14 = (uint64_t ****)FUN_18062b1e0(system_memory_pool_ptr,0x98,8);
-                            *ppppuVar14 = (uint64_t ***)&unknown_var_3552_ptr;
-                            *ppppuVar14 = (uint64_t ***)&unknown_var_3696_ptr;
+                            *ppppuVar14 = (uint64_t ***)&system_handler1_ptr;
+                            *ppppuVar14 = (uint64_t ***)&system_handler2_ptr;
                             *(int32_t *)(ppppuVar14 + 1) = 0;
                             *ppppuVar14 = (uint64_t ***)&unknown_var_768_ptr;
                             *(int32_t *)(ppppuVar14 + 2) = 4;

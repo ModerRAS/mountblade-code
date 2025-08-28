@@ -99,10 +99,10 @@ memory_allocation_complete:
       temp_var4 = temp_ptr[1];
       *(uint64_t *)((longlong)object_ptr + -0x1c) = *temp_ptr;
       *(uint64_t *)((longlong)object_ptr + -0x14) = temp_var4;
-      object_ptr[-1] = &unknown_var_720_ptr;
+      object_ptr[-1] = &system_state_ptr;
       *object_ptr = 0;
       *(int32_t *)(object_ptr + 1) = 0;
-      object_ptr[-1] = &unknown_var_3456_ptr;
+      object_ptr[-1] = &system_data_buffer_ptr;
       object_ptr[2] = 0;
       *object_ptr = 0;
       *(int32_t *)(object_ptr + 1) = 0;
@@ -199,7 +199,7 @@ uint64_t *rendering_system_reset_render_object_data(uint64_t *object_ptr)
 uint64_t *rendering_system_create_render_object_helper(uint64_t param_1, uint64_t *dest_ptr, uint64_t param_3, uint64_t param_4)
 
 {
-  *dest_ptr = &unknown_var_720_ptr;
+  *dest_ptr = &system_state_ptr;
   dest_ptr[1] = 0;
   *(int32_t *)(dest_ptr + 2) = 0;
   *dest_ptr = &unknown_var_3432_ptr;
@@ -229,11 +229,11 @@ uint64_t *rendering_system_initialize_render_object_controller(uint64_t *control
   
   FUN_180244190();
   *controller_ptr = &unknown_var_5008_ptr;
-  controller_ptr[0x1e] = &unknown_var_720_ptr;
+  controller_ptr[0x1e] = &system_state_ptr;
   temp_ptr3 = (uint64_t *)0x0;
   controller_ptr[0x1f] = 0;
   *(int32_t *)(controller_ptr + 0x20) = 0;
-  controller_ptr[0x1e] = &unknown_var_3456_ptr;
+  controller_ptr[0x1e] = &system_data_buffer_ptr;
   controller_ptr[0x21] = 0;
   controller_ptr[0x1f] = 0;
   *(int32_t *)(controller_ptr + 0x20) = 0;
@@ -414,36 +414,36 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
   }
   FUN_1808fc8a8(controller_ptr + 0x2e, 0x20, 2, FUN_18004c030);
   FUN_1808fc8a8(controller_ptr + 0x26, 0x20, 2, FUN_18004c030);
-  controller_ptr[0x1e] = &unknown_var_3456_ptr;
+  controller_ptr[0x1e] = &system_data_buffer_ptr;
   if (controller_ptr[0x1f] != 0) {
     FUN_18064e900();
   }
   controller_ptr[0x1f] = 0;
   *(int32_t *)(controller_ptr + 0x21) = 0;
-  controller_ptr[0x1e] = &unknown_var_720_ptr;
+  controller_ptr[0x1e] = &system_state_ptr;
   *controller_ptr = &unknown_var_9896_ptr;
-  controller_ptr[0x15] = &unknown_var_3456_ptr;
+  controller_ptr[0x15] = &system_data_buffer_ptr;
   if (controller_ptr[0x16] != 0) {
     FUN_18064e900();
   }
   controller_ptr[0x16] = 0;
   *(int32_t *)(controller_ptr + 0x18) = 0;
-  controller_ptr[0x15] = &unknown_var_720_ptr;
-  controller_ptr[0x11] = &unknown_var_3456_ptr;
+  controller_ptr[0x15] = &system_state_ptr;
+  controller_ptr[0x11] = &system_data_buffer_ptr;
   if (controller_ptr[0x12] != 0) {
     FUN_18064e900();
   }
   controller_ptr[0x12] = 0;
   *(int32_t *)(controller_ptr + 0x14) = 0;
-  controller_ptr[0x11] = &unknown_var_720_ptr;
+  controller_ptr[0x11] = &system_state_ptr;
   if ((longlong *)controller_ptr[7] != (longlong *)0x0) {
     ((**(code **)(*(longlong *)controller_ptr[7] + 0x38))();
   }
   if ((longlong *)controller_ptr[2] != (longlong *)0x0) {
     ((**(code **)(*(longlong *)controller_ptr[2] + 0x38))();
   }
-  *controller_ptr = &unknown_var_3696_ptr;
-  *controller_ptr = &unknown_var_3552_ptr;
+  *controller_ptr = &system_handler2_ptr;
+  *controller_ptr = &system_handler1_ptr;
   return;
 }
 

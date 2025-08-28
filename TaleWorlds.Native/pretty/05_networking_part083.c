@@ -853,7 +853,7 @@ void FUN_18088d510(longlong param_1)
         auStack_128[0] = 0;
         puStack_138 = auStack_128;
                     // WARNING: Subroutine does not return
-        FUN_180749ef0(iVar4,0xb,0,&unknown_var_7512_ptr);
+        FUN_180749ef0(iVar4,0xb,0,&system_config_ptr);
       }
     }
     cVar2 = *(char *)(param_1 + 0x189);
@@ -907,7 +907,7 @@ void FUN_18088d575(void)
       if ((iVar2 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
         in_stack_00000030 = 0;
                     // WARNING: Subroutine does not return
-        FUN_180749ef0(iVar2,0xb,0,&unknown_var_7512_ptr,&stack0x00000030);
+        FUN_180749ef0(iVar2,0xb,0,&system_config_ptr,&stack0x00000030);
       }
     }
     if (*(char *)(unaff_RDI + 0x189) != '\0') {

@@ -40,7 +40,7 @@ void FUN_180272ef0(longlong *param_1,ulonglong param_2)
     if (puVar7 != puVar4) {
       lVar9 = (longlong)puVar7 - (longlong)puVar2;
       do {
-        *puVar6 = &unknown_var_720_ptr;
+        *puVar6 = &system_state_ptr;
         puVar6[1] = 0;
         *(int32_t *)(puVar6 + 2) = 0;
         *puVar6 = &unknown_var_3432_ptr;
@@ -61,7 +61,7 @@ void FUN_180272ef0(longlong *param_1,ulonglong param_2)
       puVar4 = puVar6 + 1;
       uVar5 = param_2;
       do {
-        puVar4[-1] = &unknown_var_720_ptr;
+        puVar4[-1] = &system_state_ptr;
         *puVar4 = 0;
         *(int32_t *)(puVar4 + 1) = 0;
         puVar4[-1] = &unknown_var_3432_ptr;
@@ -93,7 +93,7 @@ void FUN_180272ef0(longlong *param_1,ulonglong param_2)
     uVar3 = param_2;
     if (param_2 != 0) {
       do {
-        *puVar4 = &unknown_var_720_ptr;
+        *puVar4 = &system_state_ptr;
         puVar4[1] = 0;
         *(int32_t *)(puVar4 + 2) = 0;
         *puVar4 = &unknown_var_3432_ptr;

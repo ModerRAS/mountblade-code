@@ -665,11 +665,11 @@ LAB_1800cc2f2:
     puStack_b0 = auStack_a0;
     auStack_a0[0] = 0;
     uStack_a8 = 0xd;
-    strcpy_s(auStack_a0,0x40,&unknown_var_9376_ptr);
+    strcpy_s(auStack_a0,0x40,&render_data_ptr);
     FUN_1800b08e0(uVar18,&plStack_1e0,&puStack_b8,0);
     plVar14 = plStack_1e0;
     uStack_1e8 = 1;
-    puStack_b8 = &unknown_var_720_ptr;
+    puStack_b8 = &system_state_ptr;
     plStack_1e0 = (longlong *)0x0;
     plStack_150 = *(longlong **)(lVar11 + 0xc0);
     *(longlong **)(lVar11 + 0xc0) = plVar14;

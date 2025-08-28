@@ -38,8 +38,8 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
     
     // 获取渲染对象数据
     resource_handle = (**(code **)(*render_obj + 0x90))(render_obj, &stack_data_ptr, param3, param4, 0xfffffffffffffffe);
-    FUN_180639ec0(output_buf, resource_handle);
-    stack_data_ptr = &unknown_var_3456_ptr;
+    System_QueueProcessor(output_buf, resource_handle);
+    stack_data_ptr = &system_data_buffer_ptr;
     
     // 检查数据完整性
     if (stack_str_ptr != (int8_t *)0x0) {
@@ -48,8 +48,8 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
     
     stack_str_ptr = (int8_t *)0x0;
     stack_data_handle = (ulonglong)stack_data_handle._4_4_ << 0x20;
-    stack_data_ptr = &unknown_var_720_ptr;
-    FUN_180639ec0(output_buf, render_obj + 0x3e);
+    stack_data_ptr = &system_state_ptr;
+    System_QueueProcessor(output_buf, render_obj + 0x3e);
     
     // 获取渲染标志
     render_flags = *(int32_t *)((longlong)render_obj + 0x324);
@@ -57,7 +57,7 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
     
     // 检查缓冲区空间
     if ((ulonglong)((*output_buf - (longlong)buffer_ptr) + output_buf[2]) < 5) {
-        FUN_180639bf0(output_buf, (longlong)buffer_ptr + (4 - *output_buf));
+        System_BufferManager(output_buf, (longlong)buffer_ptr + (4 - *output_buf));
         buffer_ptr = (int32_t *)output_buf[1];
     }
     
@@ -81,7 +81,7 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
         do {
             string_len = *array_ptr;
             if ((ulonglong)((*output_buf - (longlong)buffer_ptr) + output_buf[2]) < 5) {
-                FUN_180639bf0(output_buf, (longlong)buffer_ptr + (4 - *output_buf));
+                System_BufferManager(output_buf, (longlong)buffer_ptr + (4 - *output_buf));
                 buffer_ptr = (int32_t *)output_buf[1];
             }
             *buffer_ptr = (int)string_len;
@@ -96,7 +96,7 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
     // 序列化布尔标志
     array_size = render_obj[0x77];
     if ((ulonglong)((*output_buf - (longlong)buffer_ptr) + output_buf[2]) < 2) {
-        FUN_180639bf0(output_buf, (longlong)buffer_ptr + (1 - *output_buf));
+        System_BufferManager(output_buf, (longlong)buffer_ptr + (1 - *output_buf));
         buffer_ptr = (int32_t *)output_buf[1];
     }
     *(bool *)buffer_ptr = array_size != 0;
@@ -104,7 +104,7 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
     counter_ptr = (int *)output_buf[1];
     
     if (array_size != 0) {
-        FUN_180639ec0(output_buf, render_obj[0x77] + 0x10);
+        System_QueueProcessor(output_buf, render_obj[0x77] + 0x10);
         counter_ptr = (int *)output_buf[1];
     }
     
@@ -112,7 +112,7 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
     array_size = render_obj[8];
     data_offset = render_obj[7];
     if ((ulonglong)((*output_buf - (longlong)counter_ptr) + output_buf[2]) < 5) {
-        FUN_180639bf0(output_buf, (longlong)counter_ptr + (4 - *output_buf));
+        System_BufferManager(output_buf, (longlong)counter_ptr + (4 - *output_buf));
         counter_ptr = (int *)output_buf[1];
     }
     item_count = (int)(array_size - data_offset >> 4);
@@ -121,9 +121,9 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
     
     if (0 < item_count) {
         array_size = *(longlong *)render_obj[7];
-        FUN_180639ec0(output_buf, array_size + 0x10);
+        System_QueueProcessor(output_buf, array_size + 0x10);
         array_size = FUN_180079430(array_size);
-        stack_data_ptr = &unknown_var_3456_ptr;
+        stack_data_ptr = &system_data_buffer_ptr;
         stack_data_handle = 0;
         stack_str_ptr = (int8_t *)0x0;
         stack_str_size = 0;
@@ -160,7 +160,7 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64
             data_size = total_size + 4;
             uint_ptr = (uint *)output_buf[1];
             if ((ulonglong)((*output_buf - (longlong)uint_ptr) + output_buf[2]) <= data_size) {
-                FUN_180639bf0(output_buf, (longlong)uint_ptr + (data_size - *output_buf));
+                System_BufferManager(output_buf, (longlong)uint_ptr + (data_size - *output_buf));
                 uint_ptr = (uint *)output_buf[1];
             }
             *uint_ptr = buffer_size;

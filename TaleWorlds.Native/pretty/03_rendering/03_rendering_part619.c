@@ -369,7 +369,7 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   }
   
   // 初始化特效处理缓冲区
-  stack_pointer1 = &unknown_var_3456_ptr;
+  stack_pointer1 = &system_data_buffer_ptr;
   stack_value2 = 0;
   stack_pointer2 = (int32_t *)0x0;
   stack_value1 = 0;
@@ -471,13 +471,13 @@ EFFECT_PROCESSOR_LABEL3:
   }
   
   // 清理特效处理资源
-  stack_pointer3 = &unknown_var_3456_ptr;
+  stack_pointer3 = &system_data_buffer_ptr;
   if (stack_long_value != 0) {
     FUN_18064e900();
   }
   stack_long_value = 0;
   stack_value3 = 0;
-  stack_pointer3 = &unknown_var_720_ptr;
+  stack_pointer3 = &system_state_ptr;
   int_value1 = stack_value1 + 0x2f;
   
   if (int_value1 != 0) {
@@ -517,7 +517,7 @@ EFFECT_PROCESSOR_LABEL4:
   
   stack_value1 = int_value1;
   FUN_180626f80(pointer_value3);
-  stack_pointer1 = &unknown_var_3456_ptr;
+  stack_pointer1 = &system_data_buffer_ptr;
   
   if (stack_pointer2 == (int32_t *)0x0) {
     return;
@@ -544,7 +544,7 @@ int rendering_system_data_comparator(uint64_t data_item1, uint64_t data_item2, u
   
   FUN_180627910(&stack_pointer, data_item1, data_item3, data_item4, 0xfffffffffffffffe);
   comparison_result = FUN_180571e20(&system_buffer_60c0, &stack_pointer);
-  stack_pointer = &unknown_var_3456_ptr;
+  stack_pointer = &system_data_buffer_ptr;
   
   if (stack_long_value != 0) {
     FUN_18064e900();

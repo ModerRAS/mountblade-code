@@ -251,14 +251,14 @@ apply_final_colors:
   shader_type = 0xd;
   strcpy_s(shader_buffer + 4, RENDERING_SYSTEM_STRING_LENGTH, &unknown_var_984_ptr);
   FUN_1800b4910(system_resource_state, &texture_ptr, &render_target_ptr);
-  render_target_ptr = &unknown_var_720_ptr;
+  render_target_ptr = &system_state_ptr;
   
   // 初始化渲染配置
   render_config = 0;
   render_scale = 0.0;
   render_param1._0_2_ = 4;
   memory_pool = (longlong *)0x0;
-  data_stream = (longlong *)&unknown_var_3456_ptr;
+  data_stream = (longlong *)&system_data_buffer_ptr;
   hash_value = 0;
   stream_position = 0;
   stream_param = 0;
@@ -321,11 +321,11 @@ apply_final_colors:
   }
   
   texture_ptr_ptr = &data_stream;
-  data_stream = (longlong *)&unknown_var_3456_ptr;
+  data_stream = (longlong *)&system_data_buffer_ptr;
   if (stream_position == 0) {
     stream_position = 0;
     hash_value = hash_value & 0xffffffff00000000;
-    data_stream = (longlong *)&unknown_var_720_ptr;
+    data_stream = (longlong *)&system_state_ptr;
     if (memory_pool != (longlong *)0x0) {
       (**(code **)(*memory_pool + 0x38))();
     }
@@ -446,7 +446,7 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, longlong param_
   FUN_1800b1230(system_resource_state, param_1, &shader_code, &texture_height);
   
   render_param1 = 1;
-  shader_code = &unknown_var_720_ptr;
+  shader_code = &system_state_ptr;
   texture_index = 0;
   
   // 批量处理渲染数据
@@ -462,11 +462,11 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, longlong param_
     texture_index = texture_index + 1;
   } while ((int)texture_index < RENDERING_SYSTEM_PARAMETER_COUNT);
   
-  render_context = &unknown_var_3456_ptr;
+  render_context = &system_data_buffer_ptr;
   if (texture_buffer == (void *)0x0) {
     texture_buffer = (void *)0x0;
     texture_format = 0;
-    render_context = &unknown_var_720_ptr;
+    render_context = &system_state_ptr;
     // 安全检查：验证堆栈保护
     FUN_1808fc050(security_cookie ^ (ulonglong)stack_canary_check);
   }

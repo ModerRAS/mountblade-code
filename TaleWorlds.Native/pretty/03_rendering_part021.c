@@ -107,14 +107,14 @@ LAB_18027baf2:
   *(int32_t *)(lVar7 + 0x10) = 0;
   *(uint64_t *)(lVar7 + 8) = 0;
   *(uint64_t *)(lVar7 + 0x18) = 0;
-  puStack_70 = &unknown_var_3456_ptr;
+  puStack_70 = &system_data_buffer_ptr;
   if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_68 = 0;
   uStack_58 = 0;
-  puStack_70 = &unknown_var_720_ptr;
+  puStack_70 = &system_state_ptr;
   uVar17 = uStack_188 + 4;
   FUN_1806277c0(auStack_198,uVar17);
   *(int32_t *)(puStack_190 + uStack_188) = 0x646d6d2f;
@@ -192,7 +192,7 @@ LAB_18027c5be:
         else {
           do {
             lVar7 = *(longlong *)(uVar18 + lVar7);
-            puStack_170 = &unknown_var_3456_ptr;
+            puStack_170 = &system_data_buffer_ptr;
             uStack_158 = 0;
             pcStack_168 = (char *)0x0;
             uStack_160 = 0;
@@ -379,14 +379,14 @@ LAB_18027c306:
                 (**(code **)(*plStack_150 + 0x38))();
               }
             }
-            puStack_170 = &unknown_var_3456_ptr;
+            puStack_170 = &system_data_buffer_ptr;
             if (pcStack_168 != (char *)0x0) {
                     // WARNING: Subroutine does not return
               FUN_18064e900();
             }
             pcStack_168 = (char *)0x0;
             uStack_158 = uStack_158 & 0xffffffff00000000;
-            puStack_170 = &unknown_var_720_ptr;
+            puStack_170 = &system_state_ptr;
             uVar17 = (int)uVar14 + 1;
             uVar18 = uVar18 + 0x10;
             lVar7 = *(longlong *)(param_1 + 0x38);
@@ -403,14 +403,14 @@ LAB_18027c306:
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        puStack_d8 = &unknown_var_3456_ptr;
+        puStack_d8 = &system_data_buffer_ptr;
         if (puStack_d0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         puStack_d0 = (void *)0x0;
         uStack_c0 = 0;
-        puStack_d8 = &unknown_var_720_ptr;
+        puStack_d8 = &system_state_ptr;
         aiStackX_18[0] = aiStackX_18[0] + 1;
         puVar8 = puStackX_20;
       } while (aiStackX_18[0] < aiStack_118[0]);

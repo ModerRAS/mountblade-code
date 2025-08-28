@@ -142,7 +142,7 @@ LAB_18026b04e:
       puVar15 = puStack_4a0;
     }
     FUN_180627020(&unknown_var_7056_ptr,puVar15,puVar23,puVar24);
-    puStack_4a8 = &unknown_var_720_ptr;
+    puStack_4a8 = &system_state_ptr;
 LAB_18026af4d:
     aplStack_588[0] = (longlong *)0x0;
   }

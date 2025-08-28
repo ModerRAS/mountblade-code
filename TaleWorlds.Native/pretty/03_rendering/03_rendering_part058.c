@@ -618,7 +618,7 @@ uint64_t * render_mutex_initialize(uint64_t *mutex_data)
 {
   // 初始化互斥锁结构
   _Mtx_init_in_situ();
-  mutex_data[0x11] = &unknown_var_720_ptr;
+  mutex_data[0x11] = &system_state_ptr;
   mutex_data[0x12] = 0;
   *(int32_t *)(mutex_data + 0x13) = 0;
   mutex_data[0x11] = &unknown_var_3432_ptr;

@@ -530,7 +530,7 @@ void RenderingSystemCleanupResources(longlong render_context)
                 }
                 while (stack_ptr1 = temp_ptr1, temp_long2 != temp_long3) {
                     if (*(longlong *)(temp_long2 + 8) != 0) {
-                        *(void **)(*(longlong *)(temp_long2 + 8) + 0x50) = &unknown_var_720_ptr;
+                        *(void **)(*(longlong *)(temp_long2 + 8) + 0x50) = &system_state_ptr;
                         FUN_18064e900();
                     }
                     *(uint64_t *)(temp_long2 + 8) = 0;

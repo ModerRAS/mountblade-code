@@ -713,7 +713,7 @@ void FUN_1805ef2e0(longlong param_1,int param_2,longlong param_3,uint64_t param_
     *(int8_t *)(lVar12 + 0x1114 + param_1) = 0;
     return;
   }
-  puStack_50 = &unknown_var_3456_ptr;
+  puStack_50 = &system_data_buffer_ptr;
   uStack_38 = 0;
   pbStack_48 = (byte *)0x0;
   iStack_40 = 0;
@@ -787,7 +787,7 @@ LAB_1805ef418:
   }
   iVar8 = -1;
 LAB_1805ef490:
-  puStack_50 = &unknown_var_3456_ptr;
+  puStack_50 = &system_data_buffer_ptr;
   if (pbStack_48 == (byte *)0x0) {
     *(int *)(param_1 + 0x1108 + lVar12 * 4) = iVar8;
     *(char *)(lVar12 + 0x1114 + param_1) = (char)param_4;

@@ -1247,13 +1247,13 @@ LAB_1804eb07a:
   }
   FUN_1801a5620(*(uint64_t *)(param_1 + 6),system_system_data_memory + 0x37,(char)param_1[0x21ecec]);
   pcVar8 = *(code **)(*system_system_data_memory + 0x18);
-  puStack_208 = &unknown_var_7512_ptr;
+  puStack_208 = &system_config_ptr;
   puStack_200 = auStack_1f0;
   auStack_1f0[0] = 0;
   uStack_1f8 = 0xc;
   strcpy_s(auStack_1f0,0x10,&unknown_var_3752_ptr);
   (*pcVar8)(system_system_data_memory,&puStack_208);
-  puStack_208 = &unknown_var_720_ptr;
+  puStack_208 = &system_state_ptr;
   if (0 < *(int *)(SYSTEM_STATE_MANAGER + 0x23e0)) {
     FUN_1804f6fd0(param_1);
   }

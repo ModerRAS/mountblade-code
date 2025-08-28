@@ -533,7 +533,7 @@ void FUN_180545230(uint64_t *param_1,uint param_2,float *param_3,char param_4,fl
     afStack_118[lVar5 * 0xc + 1] = 1.0;
     auStack_110[lVar5 * 0x30] = 0;
     iStack_78 = iStack_78 + 1;
-    puStack_190 = &unknown_var_720_ptr;
+    puStack_190 = &system_state_ptr;
   }
   if ((0.0 < param_7) && ((*(byte *)(*(longlong *)*param_1 + 0x13 + uVar8 * 0x14) & 2) != 0)) {
     puStack_168 = &unknown_var_5352_ptr;
@@ -552,7 +552,7 @@ void FUN_180545230(uint64_t *param_1,uint param_2,float *param_3,char param_4,fl
     afStack_118[lVar5 * 0xc + 1] = param_7;
     auStack_110[lVar5 * 0x30] = 1;
     iStack_78 = iStack_78 + 1;
-    puStack_168 = &unknown_var_720_ptr;
+    puStack_168 = &system_state_ptr;
   }
   lVar5 = *(longlong *)*param_1;
   fVar11 = *(float *)(lVar5 + uVar8 * 0x14);
@@ -828,7 +828,7 @@ int FUN_180545d20(longlong param_1,int param_2,int param_3)
   lVar9 = (longlong)param_3 * 0x68 + *(longlong *)(render_system_data_memory + 0x38);
   sVar3 = -2;
   if ((*(int *)(lVar8 + 0x38) < 1) || (*(int *)(lVar9 + 0x38) < 1)) goto LAB_180545ff5;
-  puStack_50 = &unknown_var_3456_ptr;
+  puStack_50 = &system_data_buffer_ptr;
   uStack_38 = 0;
   puStack_48 = (int32_t *)0x0;
   uStack_40 = 0;
@@ -886,7 +886,7 @@ LAB_180545f12:
     uStack_40 = uVar7;
     sVar3 = (**(code **)(*render_system_data_memory + 0xd0))(render_system_data_memory,&puStack_50);
     *psVar1 = sVar3;
-    puStack_50 = &unknown_var_3456_ptr;
+    puStack_50 = &system_data_buffer_ptr;
     if (puStack_48 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();

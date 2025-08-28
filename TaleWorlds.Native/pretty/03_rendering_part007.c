@@ -183,7 +183,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     // 检查缓冲区空间是否足够
     if ((ulonglong)((*param_2 - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         // 缓冲区空间不足，调用扩展函数
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
     }
     
@@ -192,11 +192,11 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
     
     // 调用渲染初始化函数
-    FUN_180272d60(&unknown_var_9376_ptr, *param_1);
+    System_DataSerializer(&render_data_ptr, *param_1);
     
     // 批量数据处理循环（9次）
     for (int i = 0; i < RENDERING_PADDING_9; i++) {
-        FUN_180639ec0();
+        System_QueueProcessor();
     }
     
     // 计算数据块大小和数量
@@ -211,7 +211,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar5 = (int *)unaff_RBX[1];
     }
     
@@ -225,14 +225,14 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
         lVar9 = 0;
         do {
             // 处理单个数据块
-            FUN_180639ec0();
+            System_QueueProcessor();
             puVar4 = (int32_t *)unaff_RBX[1];
             uVar2 = *(int32_t *)(lVar9 + RENDERING_OFFSET_58 + 
                                    *(longlong *)(param_1 + RENDERING_OFFSET_4A));
             
             // 检查缓冲区空间
             if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-                FUN_180639bf0();
+                System_BufferManager();
                 puVar4 = (int32_t *)unaff_RBX[1];
             }
             
@@ -245,7 +245,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
             
             // 检查缓冲区空间
             if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-                FUN_180639bf0();
+                System_BufferManager();
                 puVar4 = (int32_t *)unaff_RBX[1];
             }
             
@@ -259,13 +259,13 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     
     // 批量数据处理循环（8次）
     for (int i = 0; i < RENDERING_PADDING_9 - 1; i++) {
-        FUN_180639ec0();
+        System_QueueProcessor();
     }
     
     // 处理渲染状态数据
     lVar6 = RENDERING_PADDING_10;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
     
@@ -278,7 +278,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar3 = (int8_t *)unaff_RBX[1];
     }
     
@@ -294,7 +294,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     // 处理渲染配置数据
     puVar4 = (int32_t *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
     }
     
@@ -310,7 +310,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar5 = (int *)unaff_RBX[1];
     }
     
@@ -323,20 +323,20 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     // 处理配置数据块
     if ((*(longlong *)(param_1 + 0x1fe) - *(longlong *)(param_1 + 0x1fc)) / RENDERING_DIVIDER_98 + lVar6 != lVar6) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(param_1 + 0x1fe) - *(longlong *)(param_1 + 0x1fc)) / RENDERING_DIVIDER_98));
     }
     
     // 处理渲染参数
-    FUN_180639ec0();
+    System_QueueProcessor();
     puVar3 = (int8_t *)unaff_RBX[1];
     uVar1 = *(int8_t *)(param_1 + 0x22a);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar3 = (int8_t *)unaff_RBX[1];
     }
     
@@ -348,14 +348,14 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入参数值
     *puVar4 = uVar2;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-    FUN_180639ec0();
+    System_QueueProcessor();
     
     // 处理渲染优化数据
     lVar6 = (*(longlong *)(param_1 + 0x254) - *(longlong *)(param_1 + 0x252)) / RENDERING_DIVIDER_26 +
@@ -364,7 +364,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     // 检查缓冲区空间
     piVar5 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar5 = (int *)unaff_RBX[1];
     }
     
@@ -377,7 +377,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     // 处理优化数据块
     if ((*(longlong *)(param_1 + 0x254) - *(longlong *)(param_1 + 0x252)) / RENDERING_DIVIDER_98 + lVar6 != lVar6) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(param_1 + 0x254) - *(longlong *)(param_1 + 0x252)) / RENDERING_DIVIDER_98));
@@ -386,7 +386,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     // 填充处理
     lVar6 = RENDERING_PADDING_5;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
     
@@ -397,7 +397,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     // 检查缓冲区空间
     piVar5 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar5 = (int *)unaff_RBX[1];
     }
     
@@ -410,7 +410,7 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     // 处理高级数据块
     if ((*(longlong *)(param_1 + 0x31a) - *(longlong *)(param_1 + 0x318)) / RENDERING_DIVIDER_98 + lVar6 != lVar6) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(param_1 + 0x31a) - *(longlong *)(param_1 + 0x318)) / RENDERING_DIVIDER_98));
@@ -419,20 +419,20 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     // 高级填充处理
     lVar6 = RENDERING_PADDING_9;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
     
     // 处理渲染状态同步
-    FUN_180639ec0();
-    FUN_180639ec0();
+    System_QueueProcessor();
+    System_QueueProcessor();
     lVar6 = (*(longlong *)(param_1 + 0x624) - *(longlong *)(param_1 + 0x622)) / RENDERING_DIVIDER_26 +
             (*(longlong *)(param_1 + 0x624) - *(longlong *)(param_1 + 0x622) >> RENDERING_SHIFT_3F);
     
     // 检查缓冲区空间
     piVar5 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar5 = (int *)unaff_RBX[1];
     }
     
@@ -445,20 +445,20 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     // 处理状态数据块
     if ((*(longlong *)(param_1 + 0x624) - *(longlong *)(param_1 + 0x622)) / RENDERING_DIVIDER_98 + lVar6 != lVar6) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(param_1 + 0x624) - *(longlong *)(param_1 + 0x622)) / RENDERING_DIVIDER_98));
     }
     
     // 处理渲染完成标志
-    FUN_180639ec0();
+    System_QueueProcessor();
     puVar3 = (int8_t *)unaff_RBX[1];
     uVar1 = *(int8_t *)((longlong)param_1 + 0x18c9);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar3 = (int8_t *)unaff_RBX[1];
     }
     
@@ -471,14 +471,14 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     if (*(char *)((longlong)param_1 + 0x18c9) != '\0') {
         // 批量处理完成标志
         for (int i = 0; i < RENDERING_PADDING_9 - 3; i++) {
-            FUN_180639ec0();
+            System_QueueProcessor();
         }
         puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
     }
     
@@ -490,12 +490,12 @@ void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
     do {
         piVar5 = (int *)unaff_RBX[1];
         if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-            FUN_180639bf0();
+            System_BufferManager();
             piVar5 = (int *)unaff_RBX[1];
         }
         *piVar5 = iVar8;
         unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-        FUN_180639ec0();
+        System_QueueProcessor();
         iVar8 = iVar8 + 1;
     } while (iVar8 < RENDERING_PADDING_10);
     
@@ -541,7 +541,7 @@ void RenderingStateManager(int32_t *param_1)
     
     // 检查缓冲区空间
     if ((ulonglong)((in_RAX - (longlong)param_1) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         param_1 = (int32_t *)unaff_RBX[1];
     }
     
@@ -550,11 +550,11 @@ void RenderingStateManager(int32_t *param_1)
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
     
     // 调用状态初始化函数
-    FUN_180272d60(&unknown_var_9376_ptr, *unaff_RDI);
+    System_DataSerializer(&render_data_ptr, *unaff_RDI);
     
     // 批量状态处理循环（9次）
     for (int i = 0; i < RENDERING_PADDING_9; i++) {
-        FUN_180639ec0();
+        System_QueueProcessor();
     }
     
     // 计算状态数据大小
@@ -569,7 +569,7 @@ void RenderingStateManager(int32_t *param_1)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar5 = (int *)unaff_RBX[1];
     }
     
@@ -583,14 +583,14 @@ void RenderingStateManager(int32_t *param_1)
         lVar9 = 0;
         do {
             // 处理单个状态数据块
-            FUN_180639ec0();
+            System_QueueProcessor();
             puVar4 = (int32_t *)unaff_RBX[1];
             uVar2 = *(int32_t *)(lVar9 + RENDERING_OFFSET_58 + 
                                    *(longlong *)(unaff_RDI + RENDERING_OFFSET_4A));
             
             // 检查缓冲区空间
             if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-                FUN_180639bf0();
+                System_BufferManager();
                 puVar4 = (int32_t *)unaff_RBX[1];
             }
             
@@ -603,7 +603,7 @@ void RenderingStateManager(int32_t *param_1)
             
             // 检查缓冲区空间
             if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-                FUN_180639bf0();
+                System_BufferManager();
                 puVar4 = (int32_t *)unaff_RBX[1];
             }
             
@@ -617,13 +617,13 @@ void RenderingStateManager(int32_t *param_1)
     
     // 批量状态同步处理（8次）
     for (int i = 0; i < RENDERING_PADDING_9 - 1; i++) {
-        FUN_180639ec0();
+        System_QueueProcessor();
     }
     
     // 处理状态同步数据
     lVar6 = RENDERING_PADDING_10;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
     
@@ -636,7 +636,7 @@ void RenderingStateManager(int32_t *param_1)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar3 = (int8_t *)unaff_RBX[1];
     }
     
@@ -652,7 +652,7 @@ void RenderingStateManager(int32_t *param_1)
     // 处理状态配置数据
     puVar4 = (int32_t *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
     }
     
@@ -668,7 +668,7 @@ void RenderingStateManager(int32_t *param_1)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar5 = (int *)unaff_RBX[1];
     }
     
@@ -681,20 +681,20 @@ void RenderingStateManager(int32_t *param_1)
     // 处理状态配置块
     if ((*(longlong *)(unaff_RDI + 0x1fe) - *(longlong *)(unaff_RDI + 0x1fc)) / RENDERING_DIVIDER_98 + lVar6 != lVar6) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0x1fe) - *(longlong *)(unaff_RDI + 0x1fc)) / RENDERING_DIVIDER_98));
     }
     
     // 处理状态参数
-    FUN_180639ec0();
+    System_QueueProcessor();
     puVar3 = (int8_t *)unaff_RBX[1];
     uVar1 = *(int8_t *)(unaff_RDI + 0x22a);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar3 = (int8_t *)unaff_RBX[1];
     }
     
@@ -706,14 +706,14 @@ void RenderingStateManager(int32_t *param_1)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入参数值
     *puVar4 = uVar2;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-    FUN_180639ec0();
+    System_QueueProcessor();
     
     // 处理状态优化数据
     lVar6 = (*(longlong *)(unaff_RDI + 0x254) - *(longlong *)(unaff_RDI + 0x252)) / RENDERING_DIVIDER_26 +
@@ -722,7 +722,7 @@ void RenderingStateManager(int32_t *param_1)
     // 检查缓冲区空间
     piVar5 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar5 = (int *)unaff_RBX[1];
     }
     
@@ -735,7 +735,7 @@ void RenderingStateManager(int32_t *param_1)
     // 处理优化数据块
     if ((*(longlong *)(unaff_RDI + 0x254) - *(longlong *)(unaff_RDI + 0x252)) / RENDERING_DIVIDER_98 + lVar6 != lVar6) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0x254) - *(longlong *)(unaff_RDI + 0x252)) / RENDERING_DIVIDER_98));
@@ -744,7 +744,7 @@ void RenderingStateManager(int32_t *param_1)
     // 状态填充处理
     lVar6 = RENDERING_PADDING_5;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
     
@@ -755,7 +755,7 @@ void RenderingStateManager(int32_t *param_1)
     // 检查缓冲区空间
     piVar5 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar5 = (int *)unaff_RBX[1];
     }
     
@@ -768,7 +768,7 @@ void RenderingStateManager(int32_t *param_1)
     // 处理高级状态数据块
     if ((*(longlong *)(unaff_RDI + 0x31a) - *(longlong *)(unaff_RDI + 0x318)) / RENDERING_DIVIDER_98 + lVar6 != lVar6) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0x31a) - *(longlong *)(unaff_RDI + 0x318)) / RENDERING_DIVIDER_98));
@@ -777,20 +777,20 @@ void RenderingStateManager(int32_t *param_1)
     // 高级状态填充处理
     lVar6 = RENDERING_PADDING_9;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
     
     // 处理状态同步数据
-    FUN_180639ec0();
-    FUN_180639ec0();
+    System_QueueProcessor();
+    System_QueueProcessor();
     lVar6 = (*(longlong *)(unaff_RDI + 0x624) - *(longlong *)(unaff_RDI + 0x622)) / RENDERING_DIVIDER_26 +
             (*(longlong *)(unaff_RDI + 0x624) - *(longlong *)(unaff_RDI + 0x622) >> RENDERING_SHIFT_3F);
     
     // 检查缓冲区空间
     piVar5 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar5 = (int *)unaff_RBX[1];
     }
     
@@ -803,20 +803,20 @@ void RenderingStateManager(int32_t *param_1)
     // 处理同步数据块
     if ((*(longlong *)(unaff_RDI + 0x624) - *(longlong *)(unaff_RDI + 0x622)) / RENDERING_DIVIDER_98 + lVar6 != lVar6) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0x624) - *(longlong *)(unaff_RDI + 0x622)) / RENDERING_DIVIDER_98));
     }
     
     // 处理状态完成标志
-    FUN_180639ec0();
+    System_QueueProcessor();
     puVar3 = (int8_t *)unaff_RBX[1];
     uVar1 = *(int8_t *)((longlong)unaff_RDI + 0x18c9);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar3 = (int8_t *)unaff_RBX[1];
     }
     
@@ -829,14 +829,14 @@ void RenderingStateManager(int32_t *param_1)
     if (*(char *)((longlong)unaff_RDI + 0x18c9) != '\0') {
         // 批量处理完成标志
         for (int i = 0; i < RENDERING_PADDING_9 - 3; i++) {
-            FUN_180639ec0();
+            System_QueueProcessor();
         }
         puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int32_t *)unaff_RBX[1];
     }
     
@@ -848,12 +848,12 @@ void RenderingStateManager(int32_t *param_1)
     do {
         piVar5 = (int *)unaff_RBX[1];
         if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-            FUN_180639bf0();
+            System_BufferManager();
             piVar5 = (int *)unaff_RBX[1];
         }
         *piVar5 = iVar8;
         unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-        FUN_180639ec0();
+        System_QueueProcessor();
         iVar8 = iVar8 + 1;
     } while (iVar8 < RENDERING_PADDING_10);
     
@@ -903,14 +903,14 @@ void RenderingResourceProcessor(void)
     uVar10 = (ulonglong)unaff_EBP;
     do {
         // 处理单个资源块
-        FUN_180639ec0();
+        System_QueueProcessor();
         puVar5 = (int32_t *)unaff_RBX[1];
         uVar2 = *(int32_t *)(uVar10 + RENDERING_OFFSET_58 + 
                                *(longlong *)(unaff_RDI + 0x128));
         
         // 检查缓冲区空间
         if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-            FUN_180639bf0();
+            System_BufferManager();
             puVar5 = (int32_t *)unaff_RBX[1];
         }
         
@@ -923,7 +923,7 @@ void RenderingResourceProcessor(void)
         
         // 检查缓冲区空间
         if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-            FUN_180639bf0();
+            System_BufferManager();
             puVar5 = (int32_t *)unaff_RBX[1];
         }
         
@@ -936,13 +936,13 @@ void RenderingResourceProcessor(void)
     
     // 批量资源同步处理（8次）
     for (int i = 0; i < RENDERING_PADDING_9 - 1; i++) {
-        FUN_180639ec0();
+        System_QueueProcessor();
     }
     
     // 处理资源同步数据
     lVar8 = RENDERING_PADDING_10;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar8 = lVar8 + -1;
     } while (lVar8 != 0);
     
@@ -955,7 +955,7 @@ void RenderingResourceProcessor(void)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int8_t *)unaff_RBX[1];
     }
     
@@ -971,7 +971,7 @@ void RenderingResourceProcessor(void)
     // 处理资源配置数据
     puVar5 = (int32_t *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar5 = (int32_t *)unaff_RBX[1];
     }
     
@@ -987,7 +987,7 @@ void RenderingResourceProcessor(void)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)piVar6) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar6 = (int *)unaff_RBX[1];
     }
     
@@ -1001,20 +1001,20 @@ void RenderingResourceProcessor(void)
     // 处理资源配置块
     if (lVar3 / RENDERING_DIVIDER_98 + lVar8 != lVar8) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / RENDERING_DIVIDER_98));
     }
     
     // 处理资源参数
-    FUN_180639ec0();
+    System_QueueProcessor();
     puVar4 = (int8_t *)unaff_RBX[1];
     uVar1 = *(int8_t *)(unaff_RDI + 0x8a8);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int8_t *)unaff_RBX[1];
     }
     
@@ -1026,14 +1026,14 @@ void RenderingResourceProcessor(void)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入参数值
     *puVar5 = uVar2;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-    FUN_180639ec0();
+    System_QueueProcessor();
     
     // 处理资源优化数据
     lVar8 = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
@@ -1042,7 +1042,7 @@ void RenderingResourceProcessor(void)
     // 检查缓冲区空间
     piVar6 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar6) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar6 = (int *)unaff_RBX[1];
     }
     
@@ -1056,7 +1056,7 @@ void RenderingResourceProcessor(void)
     // 处理优化数据块
     if (lVar3 / RENDERING_DIVIDER_98 + lVar8 != lVar8) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948)) / RENDERING_DIVIDER_98));
@@ -1065,7 +1065,7 @@ void RenderingResourceProcessor(void)
     // 资源填充处理
     lVar8 = RENDERING_PADDING_5;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar8 = lVar8 + -1;
     } while (lVar8 != 0);
     
@@ -1076,7 +1076,7 @@ void RenderingResourceProcessor(void)
     // 检查缓冲区空间
     piVar6 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar6) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar6 = (int *)unaff_RBX[1];
     }
     
@@ -1090,7 +1090,7 @@ void RenderingResourceProcessor(void)
     // 处理高级资源数据块
     if (lVar3 / RENDERING_DIVIDER_98 + lVar8 != lVar8) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60)) / RENDERING_DIVIDER_98));
@@ -1099,20 +1099,20 @@ void RenderingResourceProcessor(void)
     // 高级资源填充处理
     lVar8 = RENDERING_PADDING_9;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar8 = lVar8 + -1;
     } while (lVar8 != 0);
     
     // 处理资源同步数据
-    FUN_180639ec0();
-    FUN_180639ec0();
+    System_QueueProcessor();
+    System_QueueProcessor();
     lVar8 = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
     lVar8 = lVar8 / RENDERING_DIVIDER_26 + (lVar8 >> RENDERING_SHIFT_3F);
     
     // 检查缓冲区空间
     piVar6 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar6) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar6 = (int *)unaff_RBX[1];
     }
     
@@ -1126,20 +1126,20 @@ void RenderingResourceProcessor(void)
     // 处理同步数据块
     if (lVar3 / RENDERING_DIVIDER_98 + lVar8 != lVar8) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / RENDERING_DIVIDER_98));
     }
     
     // 处理资源完成标志
-    FUN_180639ec0();
+    System_QueueProcessor();
     puVar4 = (int8_t *)unaff_RBX[1];
     uVar1 = *(int8_t *)(unaff_RDI + 0x18c9);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int8_t *)unaff_RBX[1];
     }
     
@@ -1152,14 +1152,14 @@ void RenderingResourceProcessor(void)
     if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
         // 批量处理完成标志
         for (int i = 0; i < RENDERING_PADDING_9 - 3; i++) {
-            FUN_180639ec0();
+            System_QueueProcessor();
         }
         puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar5 = (int32_t *)unaff_RBX[1];
     }
     
@@ -1171,12 +1171,12 @@ void RenderingResourceProcessor(void)
     do {
         piVar6 = (int *)unaff_RBX[1];
         if ((ulonglong)((*unaff_RBX - (longlong)piVar6) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-            FUN_180639bf0();
+            System_BufferManager();
             piVar6 = (int *)unaff_RBX[1];
         }
         *piVar6 = iVar9;
         unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-        FUN_180639ec0();
+        System_QueueProcessor();
         iVar9 = iVar9 + 1;
     } while (iVar9 < RENDERING_PADDING_10);
     
@@ -1221,13 +1221,13 @@ void RenderingParameterOptimizer(void)
     
     // 批量参数处理循环（8次）
     for (int i = 0; i < RENDERING_PADDING_9 - 1; i++) {
-        FUN_180639ec0();
+        System_QueueProcessor();
     }
     
     // 处理参数同步数据
     lVar8 = RENDERING_PADDING_10;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar8 = lVar8 + -1;
     } while (lVar8 != 0);
     
@@ -1240,7 +1240,7 @@ void RenderingParameterOptimizer(void)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int8_t *)unaff_RBX[1];
     }
     
@@ -1256,7 +1256,7 @@ void RenderingParameterOptimizer(void)
     // 处理参数配置数据
     puVar5 = (int32_t *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar5 = (int32_t *)unaff_RBX[1];
     }
     
@@ -1272,7 +1272,7 @@ void RenderingParameterOptimizer(void)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)piVar6) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar6 = (int *)unaff_RBX[1];
     }
     
@@ -1286,20 +1286,20 @@ void RenderingParameterOptimizer(void)
     // 处理参数配置块
     if (lVar3 / RENDERING_DIVIDER_98 + lVar8 != lVar8) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / RENDERING_DIVIDER_98));
     }
     
     // 处理优化参数
-    FUN_180639ec0();
+    System_QueueProcessor();
     puVar4 = (int8_t *)unaff_RBX[1];
     uVar1 = *(int8_t *)(unaff_RDI + 0x8a8);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int8_t *)unaff_RBX[1];
     }
     
@@ -1311,14 +1311,14 @@ void RenderingParameterOptimizer(void)
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入参数值
     *puVar5 = uVar2;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-    FUN_180639ec0();
+    System_QueueProcessor();
     
     // 处理优化数据
     lVar8 = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
@@ -1327,7 +1327,7 @@ void RenderingParameterOptimizer(void)
     // 检查缓冲区空间
     piVar6 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar6) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar6 = (int *)unaff_RBX[1];
     }
     
@@ -1341,7 +1341,7 @@ void RenderingParameterOptimizer(void)
     // 处理优化数据块
     if (lVar3 / RENDERING_DIVIDER_98 + lVar8 != lVar8) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948)) / RENDERING_DIVIDER_98));
@@ -1350,7 +1350,7 @@ void RenderingParameterOptimizer(void)
     // 参数填充处理
     lVar8 = RENDERING_PADDING_5;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar8 = lVar8 + -1;
     } while (lVar8 != 0);
     
@@ -1361,7 +1361,7 @@ void RenderingParameterOptimizer(void)
     // 检查缓冲区空间
     piVar6 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar6) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar6 = (int *)unaff_RBX[1];
     }
     
@@ -1375,7 +1375,7 @@ void RenderingParameterOptimizer(void)
     // 处理高级参数数据块
     if (lVar3 / RENDERING_DIVIDER_98 + lVar8 != lVar8) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60)) / RENDERING_DIVIDER_98));
@@ -1384,20 +1384,20 @@ void RenderingParameterOptimizer(void)
     // 高级参数填充处理
     lVar8 = RENDERING_PADDING_9;
     do {
-        FUN_180639ec0();
+        System_QueueProcessor();
         lVar8 = lVar8 + -1;
     } while (lVar8 != 0);
     
     // 处理参数同步数据
-    FUN_180639ec0();
-    FUN_180639ec0();
+    System_QueueProcessor();
+    System_QueueProcessor();
     lVar8 = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
     lVar8 = lVar8 / RENDERING_DIVIDER_26 + (lVar8 >> RENDERING_SHIFT_3F);
     
     // 检查缓冲区空间
     piVar6 = (int *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)piVar6) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         piVar6 = (int *)unaff_RBX[1];
     }
     
@@ -1411,20 +1411,20 @@ void RenderingParameterOptimizer(void)
     // 处理同步数据块
     if (lVar3 / RENDERING_DIVIDER_98 + lVar8 != lVar8) {
         do {
-            FUN_180639ec0();
+            System_QueueProcessor();
             iVar7 = iVar7 + 1;
         } while ((ulonglong)(longlong)iVar7 <
                  (ulonglong)((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / RENDERING_DIVIDER_98));
     }
     
     // 处理参数完成标志
-    FUN_180639ec0();
+    System_QueueProcessor();
     puVar4 = (int8_t *)unaff_RBX[1];
     uVar1 = *(int8_t *)(unaff_RDI + 0x18c9);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar4 = (int8_t *)unaff_RBX[1];
     }
     
@@ -1437,14 +1437,14 @@ void RenderingParameterOptimizer(void)
     if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
         // 批量处理完成标志
         for (int i = 0; i < RENDERING_PADDING_9 - 3; i++) {
-            FUN_180639ec0();
+            System_QueueProcessor();
         }
         puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar5 = (int32_t *)unaff_RBX[1];
     }
     
@@ -1456,12 +1456,12 @@ void RenderingParameterOptimizer(void)
     do {
         piVar6 = (int *)unaff_RBX[1];
         if ((ulonglong)((*unaff_RBX - (longlong)piVar6) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
-            FUN_180639bf0();
+            System_BufferManager();
             piVar6 = (int *)unaff_RBX[1];
         }
         *piVar6 = iVar9;
         unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-        FUN_180639ec0();
+        System_QueueProcessor();
         iVar9 = iVar9 + 1;
     } while (iVar9 < RENDERING_PADDING_10);
     

@@ -827,11 +827,11 @@ LAB_1802f2c88:
                 
 LAB_1802f2d05:
                 // 处理变量输出
-                puStack_3b0 = &unknown_var_3456_ptr;
+                puStack_3b0 = &system_data_buffer_ptr;
                 uStack_398 = 0;
                 uStack_3a8 = 0;
                 uStack_3a0 = 0;
-                puStack_490 = &unknown_var_3456_ptr;
+                puStack_490 = &system_data_buffer_ptr;
                 uStack_478 = 0;
                 lStack_488 = 0;
                 uStack_480 = 0;
@@ -887,7 +887,7 @@ LAB_1802f2dc5:
                 }
                 
                 (**(code **)(*param_3 + 0xe0))(param_3);
-                puStack_490 = &unknown_var_3456_ptr;
+                puStack_490 = &system_data_buffer_ptr;
                 
                 if (lStack_488 != 0) {
                     FUN_18064e900();
@@ -895,10 +895,10 @@ LAB_1802f2dc5:
                 
                 lStack_488 = 0;
                 uStack_478 = uStack_478 & 0xffffffff00000000;
-                puStack_490 = &unknown_var_720_ptr;
+                puStack_490 = &system_state_ptr;
                 uStack_3a8 = 0;
                 uStack_398 = uStack_398 & 0xffffffff00000000;
-                puStack_3b0 = &unknown_var_720_ptr;
+                puStack_3b0 = &system_state_ptr;
                 
 LAB_1802f3a4a:
                 FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_4e8);

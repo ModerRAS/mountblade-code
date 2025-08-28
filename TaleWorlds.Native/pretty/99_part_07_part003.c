@@ -434,7 +434,7 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
     
     // 释放资源
     context.buffer_manager_ptr = (pointer_t)0x0;
-    context.callback_function1 = (pointer_t)&unknown_var_720_ptr;
+    context.callback_function1 = (pointer_t)&system_state_ptr;
 }
 
 /**
@@ -879,7 +879,7 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
     }
     
     // 更新系统状态
-    context.callback_function1 = (pointer_t)&unknown_var_720_ptr;
+    context.callback_function1 = (pointer_t)&system_state_ptr;
 }
 
 // ============================================================================

@@ -303,7 +303,7 @@ ulonglong update_object_position(int *object_data)
   FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80, &stack_param1);
   *(uint64_t *)(engine_base + 0x1818) = 0;
   *(uint64_t *)(engine_base + 0x1820) = 0;
-  update_flag = FUN_1801129b0(&unknown_var_2224_ptr, 0, 0x41);
+  update_flag = FUN_1801129b0(&system_callback2_ptr, 0, 0x41);
   camera_offset = SYSTEM_DATA_MANAGER_A;
   position_data = (uint64_t *)
            (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
@@ -426,7 +426,7 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
   FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80, &stack0x00000030);
   *(uint64_t *)(engine_base + 0x1818) = 0;
   *(uint64_t *)(engine_base + 0x1820) = 0;
-  update_flag = FUN_1801129b0(&unknown_var_2224_ptr, 0, 0x41);
+  update_flag = FUN_1801129b0(&system_callback2_ptr, 0, 0x41);
   camera_offset = SYSTEM_DATA_MANAGER_A;
   distance_data = (uint64_t *)
            (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +

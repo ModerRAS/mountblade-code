@@ -109,7 +109,7 @@
 #define SystemStateManager SYSTEM_STATE_MANAGER
 #define SystemContextVar1632 unknown_var_1632_ptr
 #define SystemContextVar3432 unknown_var_3432_ptr
-#define SystemContextVar720 unknown_var_720_ptr
+#define SystemContextVar720 system_state_ptr
 #define SystemBufferPtr system_buffer_ptr
 #define SystemResourceState system_resource_state
 

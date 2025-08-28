@@ -595,9 +595,9 @@ void InitializationSystem_StringProcessor(StringHandle string_buffer, longlong b
   *(int16_t *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8)) = 10;
   *(int *)(buffer_size + 0x10) = string_length + 0xc;
   
-  temp_pointer1 = &unknown_var_720_ptr;
+  temp_pointer1 = &system_state_ptr;
   pointer_array = &temp_pointer2;
-  temp_pointer2 = &unknown_var_720_ptr;
+  temp_pointer2 = &system_state_ptr;
   
   // 清理安全cookie并退出
   FUN_1808fc050(security_cookie ^ (ulonglong)temp_buffer);
@@ -666,7 +666,7 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   
   // 获取进程ID并初始化缓冲区
   process_id = GetCurrentProcessId();
-  temp_pointer3 = &unknown_var_3456_ptr;
+  temp_pointer3 = &system_data_buffer_ptr;
   temp_param4 = 0;
   stack_value = 0;
   stack_counter = 0;
@@ -704,11 +704,11 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   }
   
   FUN_180627910(temp_buffer2, temp_pointer);
-  temp_pointer4 = &unknown_var_3456_ptr;
+  temp_pointer4 = &system_data_buffer_ptr;
   temp_param5 = 0;
   temp_param6 = 0;
   temp_value3 = 0;
-  temp_pointer1 = &unknown_var_3456_ptr;
+  temp_pointer1 = &system_data_buffer_ptr;
   temp_counter = 0;
   temp_param1 = 0;
   temp_pointer2 = (int8_t *)0x0;
@@ -861,7 +861,7 @@ CALLBACK_PROCESSING_COMPLETE:
   
 CALLBACK_PROCESSING_LOOP:
   // 初始化临时缓冲区
-  temp_pointer1 = &unknown_var_3456_ptr;
+  temp_pointer1 = &system_data_buffer_ptr;
   temp_param2 = 0;
   memory_pointer = (int8_t *)0x0;
   memory_size = 0;
@@ -918,26 +918,26 @@ CALLBACK_PROCESSING_LOOP:
     
     resource_pointer = resource_pointer + 1;
     if (0x1809fde87 < (longlong)resource_pointer) {
-      temp_pointer1 = &unknown_var_3456_ptr;
+      temp_pointer1 = &system_data_buffer_ptr;
       if (memory_pointer != (int8_t *)0x0) {
         FUN_18064e900();
       }
       memory_pointer = (int8_t *)0x0;
       temp_param2 = (ulonglong)temp_param2._4_4_ << 0x20;
-      temp_pointer1 = &unknown_var_720_ptr;
+      temp_pointer1 = &system_state_ptr;
       completion_status = 1;
       goto CALLBACK_PROCESSING_COMPLETE;
     }
   } while( true );
   
   // 清理临时资源
-  temp_pointer1 = &unknown_var_3456_ptr;
+  temp_pointer1 = &system_data_buffer_ptr;
   if (memory_pointer != (int8_t *)0x0) {
     FUN_18064e900();
   }
   memory_pointer = (int8_t *)0x0;
   temp_param2 = (ulonglong)temp_param2._4_4_ << 0x20;
-  temp_pointer1 = &unknown_var_720_ptr;
+  temp_pointer1 = &system_state_ptr;
   
   string_length = (int)temp_counter + 1;
   temp_counter = (ulonglong)string_length;

@@ -397,7 +397,7 @@ void FUN_1804bfac0(longlong param_1,longlong param_2,longlong param_3)
                     // WARNING: Subroutine does not return
     memcpy(puStack_f0,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
   }
-  puStack_f8 = &unknown_var_720_ptr;
+  puStack_f8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_128);
 }
@@ -559,25 +559,25 @@ void FUN_1804bfd30(longlong *param_1)
       }
       return;
     }
-    puVar2[6] = &unknown_var_3456_ptr;
+    puVar2[6] = &system_data_buffer_ptr;
     if (puVar2[7] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puVar2[7] = 0;
     *(int32_t *)(puVar2 + 9) = 0;
-    puVar2[6] = &unknown_var_720_ptr;
+    puVar2[6] = &system_state_ptr;
     if ((longlong *)puVar2[5] != (longlong *)0x0) {
       (**(code **)(*(longlong *)puVar2[5] + 0x38))();
     }
     if ((longlong *)puVar2[4] != (longlong *)0x0) {
       (**(code **)(*(longlong *)puVar2[4] + 0x38))();
     }
-    *puVar2 = &unknown_var_3456_ptr;
+    *puVar2 = &system_data_buffer_ptr;
     if (puVar2[1] != 0) break;
     puVar2[1] = 0;
     *(int32_t *)(puVar2 + 3) = 0;
-    *puVar2 = &unknown_var_720_ptr;
+    *puVar2 = &system_state_ptr;
     puVar2 = puVar2 + 10;
   }
                     // WARNING: Subroutine does not return

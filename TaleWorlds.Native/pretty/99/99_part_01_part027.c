@@ -1262,7 +1262,7 @@ LAB_1800ba7cd:
     module_name_ptr[7] = 0x73;
     module_name_ptr[8] = 0x2f;
     module_name_ptr[9] = 0;
-    buffer_ptr2 = &unknown_var_3456_ptr;
+    buffer_ptr2 = &system_data_buffer_ptr;
     buffer_value4 = 0;
     buffer_value6 = 0;
     buffer_value5 = 0;
@@ -1387,10 +1387,10 @@ void FUN_1800baa80(uint64_t* dir_param)
     buffer_ptr = large_buffer;
     buffer_ptr2 = dir_param;
     SHGetFolderPathW(0, 0x23, 0, 0);
-    *dir_param = &unknown_var_720_ptr;
+    *dir_param = &system_state_ptr;
     dir_param[1] = 0;
     *(uint32_t*)(dir_param + 2) = 0;
-    *dir_param = &unknown_var_3456_ptr;
+    *dir_param = &system_data_buffer_ptr;
     dir_param[3] = 0;
     dir_param[1] = 0;
     *(uint32_t*)(dir_param + 2) = 0;

@@ -510,7 +510,7 @@ void FUN_180214cc0(longlong param_1)
   if (iVar3 == 0) {
     return;
   }
-  puStack_50 = &unknown_var_3456_ptr;
+  puStack_50 = &system_data_buffer_ptr;
   uStack_38 = 0;
   puStack_48 = (uint64_t *)0x0;
   uStack_40 = 0;
@@ -672,7 +672,7 @@ LAB_180211e24:
   }
   uStack_40 = iVar3;
   FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar5);
-  puStack_50 = &unknown_var_3456_ptr;
+  puStack_50 = &system_data_buffer_ptr;
   if (puStack_48 == (uint64_t *)0x0) {
     return;
   }

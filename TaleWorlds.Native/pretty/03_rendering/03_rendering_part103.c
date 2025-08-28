@@ -735,13 +735,13 @@ void RenderingSystemFileWriter(longlong render_context, uint64_t file_handle)
     FUN_18062dee0(file_header, file_format, &unknown_var_9772_ptr);
     
     // 设置文件栈信息
-    file_stack = &unknown_var_3456_ptr;
+    file_stack = &system_data_buffer_ptr;
     if (file_offset != 0) {
         FUN_18064e900();
     }
     file_offset = 0;
     write_count = 0;
-    file_stack = &unknown_var_720_ptr;
+    file_stack = &system_state_ptr;
     
     // 定位到文件开头
     _fseeki64(file_header[1], 0, 0);
@@ -1136,7 +1136,7 @@ void RenderingSystemDataSerializer(longlong render_context, longlong file_handle
     
     // 处理压缩数据
     if ((resource_index & 0xffffff) != 0) {
-        FUN_180639bf0(&buffer_start, (longlong)(resource_ids[0] << 8));
+        System_BufferManager(&buffer_start, (longlong)(resource_ids[0] << 8));
     }
     
     // 写入数据大小
@@ -1153,14 +1153,14 @@ void RenderingSystemDataSerializer(longlong render_context, longlong file_handle
         
         // 检查缓冲区空间
         if ((ulonglong)((buffer_end - (longlong)buffer_pointer) + buffer_start) < 5) {
-            FUN_180639bf0(&buffer_start, (longlong)buffer_pointer + (4 - buffer_start));
+            System_BufferManager(&buffer_start, (longlong)buffer_pointer + (4 - buffer_start));
         }
         
         *buffer_pointer = serialized_data;
         buffer_pointer = buffer_pointer + 1;
         
         if ((ulonglong)((buffer_end - (longlong)buffer_pointer) + buffer_start) < 0x11) {
-            FUN_180639bf0(&buffer_start, (longlong)buffer_pointer + (0x10 - buffer_start));
+            System_BufferManager(&buffer_start, (longlong)buffer_pointer + (0x10 - buffer_start));
         }
         
         *buffer_pointer = data_pointer[1];
@@ -1173,7 +1173,7 @@ void RenderingSystemDataSerializer(longlong render_context, longlong file_handle
         resource_index = (ulonglong)data_size + 4;
         
         if ((ulonglong)((buffer_end - (longlong)buffer_pointer) + buffer_start) <= resource_index) {
-            FUN_180639bf0(&buffer_start, (resource_index - buffer_start) + (longlong)buffer_pointer);
+            System_BufferManager(&buffer_start, (resource_index - buffer_start) + (longlong)buffer_pointer);
         }
         
         *buffer_pointer = data_size;

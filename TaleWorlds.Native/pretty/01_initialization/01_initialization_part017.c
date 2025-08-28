@@ -79,7 +79,7 @@ uint64_t * Initialize_VTable_Pointer_A(uint64_t *vtable, ulonglong flags)
 // 初始化虚表指针B
 uint64_t * Initialize_VTable_Pointer_B(uint64_t *vtable, ulonglong flags)
 {
-  *vtable = &unknown_var_3552_ptr;
+  *vtable = &system_handler1_ptr;
   if ((flags & 1) != 0) {
     free(vtable, 8);
   }
@@ -287,19 +287,19 @@ void Cleanup_Resource_Array(uint64_t context, uint64_t param_2, uint64_t param_3
     do {
       resource_item = *(uint64_t **)(*(longlong *)(array_context + 0x30) + item_index * 8);
       if (resource_item != (uint64_t *)0x0) {
-        resource_item[4] = &unknown_var_3456_ptr;
+        resource_item[4] = &system_data_buffer_ptr;
         if (resource_item[5] != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         resource_item[5] = 0;
         *(int32_t *)(resource_item + 7) = 0;
-        resource_item[4] = &unknown_var_720_ptr;
-        *resource_item = &unknown_var_3456_ptr;
+        resource_item[4] = &system_state_ptr;
+        *resource_item = &system_data_buffer_ptr;
         if (resource_item[1] == 0) {
           resource_item[1] = 0;
           *(int32_t *)(resource_item + 3) = 0;
-          *resource_item = &unknown_var_720_ptr;
+          *resource_item = &system_state_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(resource_item);
         }
@@ -351,7 +351,7 @@ void Process_Resource_Type_F(longlong resource_context, uint64_t param_2, uint64
 // 初始化内存管理器
 uint64_t * Initialize_Memory_Manager(uint64_t *manager)
 {
-  *manager = &unknown_var_720_ptr;
+  *manager = &system_state_ptr;
   manager[1] = 0;
   *(int32_t *)(manager + 2) = 0;
   *manager = &unknown_var_3480_ptr;
@@ -860,45 +860,45 @@ Initialize_Complex_Object(int8_t *object, uint64_t param_2, uint64_t param_3, ui
   longlong *component_c;
   
   component_c = (longlong *)(object + 8);
-  *component_c = (longlong)&unknown_var_720_ptr;
+  *component_c = (longlong)&system_state_ptr;
   *(uint64_t *)(object + 0x10) = 0;
   *(int32_t *)(object + 0x18) = 0;
-  *component_c = (longlong)&unknown_var_3456_ptr;
+  *component_c = (longlong)&system_data_buffer_ptr;
   *(uint64_t *)(object + 0x20) = 0;
   *(uint64_t *)(object + 0x10) = 0;
   *(int32_t *)(object + 0x18) = 0;
-  *(void **)(object + 0x38) = &unknown_var_720_ptr;
+  *(void **)(object + 0x38) = &system_state_ptr;
   *(uint64_t *)(object + 0x40) = 0;
   *(int32_t *)(object + 0x48) = 0;
-  *(void **)(object + 0x38) = &unknown_var_3456_ptr;
+  *(void **)(object + 0x38) = &system_data_buffer_ptr;
   *(uint64_t *)(object + 0x50) = 0;
   *(uint64_t *)(object + 0x40) = 0;
   *(int32_t *)(object + 0x48) = 0;
-  *(void **)(object + 0x58) = &unknown_var_720_ptr;
+  *(void **)(object + 0x58) = &system_state_ptr;
   *(uint64_t *)(object + 0x60) = 0;
   *(int32_t *)(object + 0x68) = 0;
-  *(void **)(object + 0x58) = &unknown_var_3456_ptr;
+  *(void **)(object + 0x58) = &system_data_buffer_ptr;
   *(uint64_t *)(object + 0x70) = 0;
   *(uint64_t *)(object + 0x60) = 0;
   *(int32_t *)(object + 0x68) = 0;
   component_a = (longlong *)(object + 0x80);
-  *component_a = (longlong)&unknown_var_720_ptr;
+  *component_a = (longlong)&system_state_ptr;
   *(uint64_t *)(object + 0x88) = 0;
   *(int32_t *)(object + 0x90) = 0;
-  *component_a = (longlong)&unknown_var_3456_ptr;
+  *component_a = (longlong)&system_data_buffer_ptr;
   *(uint64_t *)(object + 0x98) = 0;
   *(uint64_t *)(object + 0x88) = 0;
   *(int32_t *)(object + 0x90) = 0;
   component_b = (longlong *)(object + 0xa0);
-  *component_b = (longlong)&unknown_var_720_ptr;
+  *component_b = (longlong)&system_state_ptr;
   *(uint64_t *)(object + 0xa8) = 0;
   *(int32_t *)(object + 0xb0) = 0;
-  *component_b = (longlong)&unknown_var_3456_ptr;
+  *component_b = (longlong)&system_data_buffer_ptr;
   *(uint64_t *)(object + 0xb8) = 0;
   *(uint64_t *)(object + 0xa8) = 0;
   *(int32_t *)(object + 0xb0) = 0;
   *object = 0;
-  (**(code **)(*component_c + 0x10))(component_c, &unknown_var_4696_ptr, &unknown_var_720_ptr, param_4, 0xfffffffffffffffe);
+  (**(code **)(*component_c + 0x10))(component_c, &unknown_var_4696_ptr, &system_state_ptr, param_4, 0xfffffffffffffffe);
   *(uint64_t *)(object + 0x28) = 0;
   *(int32_t *)(object + 0x30) = 0;
   object[0x7c] = 0;
@@ -943,10 +943,10 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   param_1[0x10] = 0;
   param_1[0x11] = 0;
   *(int32_t *)(param_1 + 0x12) = 3;
-  param_1[0x17] = &unknown_var_720_ptr;
+  param_1[0x17] = &system_state_ptr;
   param_1[0x18] = 0;
   *(int32_t *)(param_1 + 0x19) = 0;
-  param_1[0x17] = &unknown_var_3456_ptr;
+  param_1[0x17] = &system_data_buffer_ptr;
   param_1[0x1a] = 0;
   param_1[0x18] = 0;
   *(int32_t *)(param_1 + 0x19) = 0;
@@ -959,23 +959,23 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   param_1[0x22] = 0;
   param_1[0x23] = 0;
   *(int32_t *)(param_1 + 0x24) = 3;
-  param_1[0x29] = &unknown_var_720_ptr;
+  param_1[0x29] = &system_state_ptr;
   param_1[0x2a] = 0;
   *(int32_t *)(param_1 + 0x2b) = 0;
-  param_1[0x29] = &unknown_var_3456_ptr;
+  param_1[0x29] = &system_data_buffer_ptr;
   param_1[0x2c] = 0;
   param_1[0x2a] = 0;
   *(int32_t *)(param_1 + 0x2b) = 0;
   plVar2 = param_1 + 0x2e;
-  *plVar2 = (longlong)&unknown_var_720_ptr;
+  *plVar2 = (longlong)&system_state_ptr;
   param_1[0x2f] = 0;
   *(int32_t *)(param_1 + 0x30) = 0;
-  *plVar2 = (longlong)&unknown_var_3456_ptr;
+  *plVar2 = (longlong)&system_data_buffer_ptr;
   param_1[0x31] = 0;
   param_1[0x2f] = 0;
   *(int32_t *)(param_1 + 0x30) = 0;
   plVar3 = param_1 + 0x32;
-  *plVar3 = (longlong)&unknown_var_720_ptr;
+  *plVar3 = (longlong)&system_state_ptr;
   param_1[0x33] = 0;
   *(int32_t *)(param_1 + 0x34) = 0;
   *plVar3 = (longlong)&unknown_var_672_ptr;
@@ -983,33 +983,33 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   *(int32_t *)(param_1 + 0x34) = 0;
   *(int8_t *)(param_1 + 0x35) = 0;
   plVar7 = param_1 + 0x39;
-  *plVar7 = (longlong)&unknown_var_720_ptr;
+  *plVar7 = (longlong)&system_state_ptr;
   param_1[0x3a] = 0;
   *(int32_t *)(param_1 + 0x3b) = 0;
-  *plVar7 = (longlong)&unknown_var_3456_ptr;
+  *plVar7 = (longlong)&system_data_buffer_ptr;
   param_1[0x3c] = 0;
   param_1[0x3a] = 0;
   *(int32_t *)(param_1 + 0x3b) = 0;
   *(uint64_t *)((longlong)param_1 + 0x254) = 0;
   *(uint64_t *)((longlong)param_1 + 0x25c) = 0;
-  param_1[0x4e] = &unknown_var_720_ptr;
+  param_1[0x4e] = &system_state_ptr;
   param_1[0x4f] = 0;
   *(int32_t *)(param_1 + 0x50) = 0;
-  param_1[0x4e] = &unknown_var_3456_ptr;
+  param_1[0x4e] = &system_data_buffer_ptr;
   param_1[0x51] = 0;
   param_1[0x4f] = 0;
   *(int32_t *)(param_1 + 0x50) = 0;
-  param_1[0x52] = &unknown_var_720_ptr;
+  param_1[0x52] = &system_state_ptr;
   param_1[0x53] = 0;
   *(int32_t *)(param_1 + 0x54) = 0;
-  param_1[0x52] = &unknown_var_3456_ptr;
+  param_1[0x52] = &system_data_buffer_ptr;
   param_1[0x55] = 0;
   param_1[0x53] = 0;
   *(int32_t *)(param_1 + 0x54) = 0;
-  param_1[0x58] = &unknown_var_720_ptr;
+  param_1[0x58] = &system_state_ptr;
   param_1[0x59] = 0;
   *(int32_t *)(param_1 + 0x5a) = 0;
-  param_1[0x58] = &unknown_var_3456_ptr;
+  param_1[0x58] = &system_data_buffer_ptr;
   param_1[0x5b] = 0;
   param_1[0x59] = 0;
   *(int32_t *)(param_1 + 0x5a) = 0;
@@ -1025,18 +1025,18 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   param_1[0x65] = 0;
   param_1[0x66] = 0;
   *(int32_t *)(param_1 + 0x67) = 3;
-  param_1[0x69] = &unknown_var_720_ptr;
+  param_1[0x69] = &system_state_ptr;
   param_1[0x6a] = 0;
   *(int32_t *)(param_1 + 0x6b) = 0;
-  param_1[0x69] = &unknown_var_3456_ptr;
+  param_1[0x69] = &system_data_buffer_ptr;
   param_1[0x6c] = 0;
   param_1[0x6a] = 0;
   *(int32_t *)(param_1 + 0x6b) = 0;
   apuStackX_10[0] = param_1 + 0x6d;
-  *apuStackX_10[0] = &unknown_var_720_ptr;
+  *apuStackX_10[0] = &system_state_ptr;
   param_1[0x6e] = 0;
   *(int32_t *)(param_1 + 0x6f) = 0;
-  *apuStackX_10[0] = &unknown_var_3456_ptr;
+  *apuStackX_10[0] = &system_data_buffer_ptr;
   param_1[0x70] = 0;
   param_1[0x6e] = 0;
   *(int32_t *)(param_1 + 0x6f) = 0;
@@ -1044,7 +1044,7 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   *param_1 = 0;
   *(int32_t *)(param_1 + 99) = 0;
   (**(code **)(*plVar7 + 0x10))
-            (plVar7,&unknown_var_4720_ptr,&unknown_var_3456_ptr,&unknown_var_720_ptr,0xfffffffffffffffe);
+            (plVar7,&unknown_var_4720_ptr,&system_data_buffer_ptr,&system_state_ptr,0xfffffffffffffffe);
   *(int32_t *)(param_1 + 0x3d) = 0;
   *(int32_t *)((longlong)param_1 + 0x1ed) = 0x1000001;
   param_1[0x62] = 0;
@@ -1141,8 +1141,8 @@ LAB_18004c7ef:
       puVar6[3] = 0;
       puVar6[4] = 0;
       puVar6[5] = 0;
-      *puVar6 = &unknown_var_3552_ptr;
-      *puVar6 = &unknown_var_3696_ptr;
+      *puVar6 = &system_handler1_ptr;
+      *puVar6 = &system_handler2_ptr;
       *(int32_t *)(puVar6 + 1) = 0;
       *puVar6 = &unknown_var_8624_ptr;
       puVar6[2] = 0;
@@ -1182,8 +1182,8 @@ Initialize_Special_Object(uint64_t *object, ulonglong flags, uint64_t param_3, u
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *object = &unknown_var_3696_ptr;
-  *object = &unknown_var_3552_ptr;
+  *object = &system_handler2_ptr;
+  *object = &system_handler1_ptr;
   if ((flags & 1) != 0) {
     free(object, 0x30, param_3, param_4, 0xfffffffffffffffe);
   }
@@ -1203,8 +1203,8 @@ void Reset_Special_Object(uint64_t *object)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *object = &unknown_var_3696_ptr;
-  *object = &unknown_var_3552_ptr;
+  *object = &system_handler2_ptr;
+  *object = &system_handler1_ptr;
   return;
 }
 

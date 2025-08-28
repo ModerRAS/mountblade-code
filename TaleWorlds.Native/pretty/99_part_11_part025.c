@@ -752,7 +752,7 @@ FUN_1806f5c30(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
     puVar4 = (void *)__std_type_info_name(0x180bfc700,0x180c827e0);
   }
   plVar2 = (longlong *)
-           (**(code **)(*plVar2 + 8))(plVar2,0x70,puVar4,&unknown_var_720_ptr,CONCAT44(uVar6,0x2c));
+           (**(code **)(*plVar2 + 8))(plVar2,0x70,puVar4,&system_state_ptr,CONCAT44(uVar6,0x2c));
   if (plVar2 == (longlong *)0x0) {
     plVar2 = (longlong *)0x0;
   }

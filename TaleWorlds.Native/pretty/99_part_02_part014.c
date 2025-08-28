@@ -97,7 +97,7 @@ void FUN_1800f2940(longlong param_1)
     if (plStack_210 != (longlong *)0x0) {
       (**(code **)(*plStack_210 + 0x38))();
     }
-    puStack_d8 = &unknown_var_720_ptr;
+    puStack_d8 = &system_state_ptr;
     puStack_a0 = &unknown_var_672_ptr;
     puStack_98 = auStack_88;
     auStack_88[0] = 0;
@@ -122,7 +122,7 @@ void FUN_1800f2940(longlong param_1)
     if (plStack_200 != (longlong *)0x0) {
       (**(code **)(*plStack_200 + 0x38))();
     }
-    puStack_a0 = &unknown_var_720_ptr;
+    puStack_a0 = &system_state_ptr;
     puStack_68 = &unknown_var_672_ptr;
     puStack_60 = auStack_50;
     auStack_50[0] = 0;
@@ -147,7 +147,7 @@ void FUN_1800f2940(longlong param_1)
     if (plStack_1f0 != (longlong *)0x0) {
       (**(code **)(*plStack_1f0 + 0x38))();
     }
-    puStack_68 = &unknown_var_720_ptr;
+    puStack_68 = &system_state_ptr;
     if (*(longlong *)(param_1 + 0x420) != 0) {
       ppuStack_238 = &puStack_1b8;
       puStack_1b8 = &unknown_var_3432_ptr;
@@ -271,7 +271,7 @@ void FUN_1800f2940(longlong param_1)
         (**(code **)(*plVar6 + 0x38))(plVar6);
       }
       ppuStack_1e8 = &puStack_1b8;
-      puStack_1b8 = &unknown_var_720_ptr;
+      puStack_1b8 = &system_state_ptr;
     }
   }
   ReleaseSRWLockExclusive(lStack_1e0);

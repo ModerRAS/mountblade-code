@@ -572,12 +572,12 @@ FUN_18030a110(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
   if ((longlong *)param_1[0x30] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x30] + 0x38))();
   }
-  param_1[0x1c] = &unknown_var_720_ptr;
-  param_1[7] = &unknown_var_720_ptr;
+  param_1[0x1c] = &system_state_ptr;
+  param_1[7] = &system_state_ptr;
   puStackX_18 = param_1 + 3;
   FUN_1800f89b0();
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x188);
   }
@@ -797,7 +797,7 @@ uint64_t *
 FUN_18030a6a0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
   *param_2 = &unknown_var_3432_ptr;

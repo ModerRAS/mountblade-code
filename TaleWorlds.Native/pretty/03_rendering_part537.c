@@ -361,7 +361,7 @@ float FUN_18055f6f0(float *param_1,float param_2)
   }
   if ((fVar1 * 0.5 + param_1[1] < param_2) || (fVar2 = *param_1, param_2 < fVar2 - fVar1 * 0.5)) {
     FUN_180627340(&unknown_var_6512_ptr,&unknown_var_6672_ptr,(double)*param_1,(double)param_1[1],(double)param_2,
-                  &unknown_var_3696_ptr);
+                  &system_handler2_ptr);
     FUN_180626f80(&unknown_var_6592_ptr,(double)*param_1,(double)param_1[1]);
     fVar1 = param_1[2];
     fVar2 = *param_1;

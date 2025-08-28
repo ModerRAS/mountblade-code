@@ -325,14 +325,14 @@ void FUN_1801fddb0(longlong param_1)
     plVar4 = plVar4 + 1;
     lVar3 = lVar3 + -1;
     if (lVar3 == 0) {
-      *(uint64_t *)(param_1 + 0x28) = &unknown_var_3456_ptr;
+      *(uint64_t *)(param_1 + 0x28) = &system_data_buffer_ptr;
       if (*(longlong *)(param_1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       *(uint64_t *)(param_1 + 0x30) = 0;
       *(int32_t *)(param_1 + 0x40) = 0;
-      *(uint64_t *)(param_1 + 0x28) = &unknown_var_720_ptr;
+      *(uint64_t *)(param_1 + 0x28) = &system_state_ptr;
       return;
     }
   }
@@ -350,22 +350,22 @@ void FUN_1801fddb0(longlong param_1)
     } while (uVar2 < (ulonglong)(*(longlong *)(lVar1 + 0x368) - lVar3 >> 3));
   }
   *(longlong *)(lVar1 + 0x368) = lVar3;
-  *(uint64_t *)(lVar1 + 0x3a8) = &unknown_var_3456_ptr;
+  *(uint64_t *)(lVar1 + 0x3a8) = &system_data_buffer_ptr;
   if (*(longlong *)(lVar1 + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(lVar1 + 0x3b0) = 0;
   *(int32_t *)(lVar1 + 0x3c0) = 0;
-  *(uint64_t *)(lVar1 + 0x3a8) = &unknown_var_720_ptr;
-  *(uint64_t *)(lVar1 + 0x388) = &unknown_var_3456_ptr;
+  *(uint64_t *)(lVar1 + 0x3a8) = &system_state_ptr;
+  *(uint64_t *)(lVar1 + 0x388) = &system_data_buffer_ptr;
   if (*(longlong *)(lVar1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(lVar1 + 0x390) = 0;
   *(int32_t *)(lVar1 + 0x3a0) = 0;
-  *(uint64_t *)(lVar1 + 0x388) = &unknown_var_720_ptr;
+  *(uint64_t *)(lVar1 + 0x388) = &system_state_ptr;
   if (*plVar4 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -424,7 +424,7 @@ LAB_1801fdfff:
       pcVar10 = pcVar13;
       do {
         lVar8 = FUN_180149750(pcVar10);
-        puVar17 = &unknown_var_3456_ptr;
+        puVar17 = &system_data_buffer_ptr;
         uVar20 = 0;
         pcVar18 = (char *)0x0;
         uVar19 = 0;

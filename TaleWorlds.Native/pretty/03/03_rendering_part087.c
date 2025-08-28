@@ -313,12 +313,12 @@ apply_parameters:
     
     // 初始化渲染资源
     FUN_1800b4910(system_resource_state, &texture_ptr, &data_source);
-    data_source = &unknown_var_720_ptr;
+    data_source = &system_state_ptr;
     texture_params = 0;
     texture_scale = 0.0;
     scale_flags._0_2_ = 4;
     memory_ptr = (longlong *)0x0;
-    allocator_ptr = (longlong *)&unknown_var_3456_ptr;
+    allocator_ptr = (longlong *)&system_data_buffer_ptr;
     checksum = 0;
     allocation_size = 0;
     alloc_flags = 0;
@@ -381,12 +381,12 @@ apply_parameters:
     }
     
     data_cache = &allocator_ptr;
-    allocator_ptr = (longlong *)&unknown_var_3456_ptr;
+    allocator_ptr = (longlong *)&system_data_buffer_ptr;
     
     if (allocation_size == 0) {
         allocation_size = 0;
         checksum = checksum & 0xffffffff00000000;
-        allocator_ptr = (longlong *)&unknown_var_720_ptr;
+        allocator_ptr = (longlong *)&system_state_ptr;
         
         if (memory_ptr != (longlong *)0x0) {
             (**(code **)(*memory_ptr + 0x38))();
@@ -512,7 +512,7 @@ void render_system_parameter_processor(uint64_t *render_context, longlong textur
     // 初始化渲染参数
     FUN_1800b1230(system_resource_state, render_context, &param_source, &data_width);
     data_height = 1;
-    param_source = &unknown_var_720_ptr;
+    param_source = &system_state_ptr;
     texture_size = 0;
     
     // 处理所有纹理参数
@@ -528,12 +528,12 @@ void render_system_parameter_processor(uint64_t *render_context, longlong textur
         texture_size = texture_size + 1;
     } while ((int)texture_size < 6);
     
-    data_target = &unknown_var_3456_ptr;
+    data_target = &system_data_buffer_ptr;
     
     if (data_source == (void *)0x0) {
         data_source = (void *)0x0;
         data_depth = 0;
-        data_target = &unknown_var_720_ptr;
+        data_target = &system_state_ptr;
         
         // 清理资源
         FUN_1808fc050(checksum ^ (ulonglong)param_buffer);

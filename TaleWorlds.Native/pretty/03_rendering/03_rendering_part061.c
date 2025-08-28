@@ -477,7 +477,7 @@ void FUN_18029d280(longlong param_1,longlong param_2)
       }
       
       // 写入插槽信息
-      FUN_180628040(param_2, &global_state_1648_ptr, slot_index, info_string);
+      System_DataHandler(param_2, &global_state_1648_ptr, slot_index, info_string);
       info_array[0] = &global_state_720_ptr;
       
       render_flags = *render_flags_array;
@@ -612,7 +612,7 @@ void FUN_18029d500(longlong param_1,longlong param_2)
       }
       
       // 写入渲染目标信息
-      FUN_180628040(param_2, &global_state_1688_ptr, slot_index, target_name);
+      System_DataHandler(param_2, &global_state_1688_ptr, slot_index, target_name);
       report_type = 0;
       target_info = &global_state_720_ptr;
     }
@@ -654,7 +654,7 @@ void FUN_18029d500(longlong param_1,longlong param_2)
     if (target_data != (void *)0x0) {
       target_name = target_data;
     }
-    FUN_180628040(param_2, &global_state_676_ptr, target_name);
+    System_DataHandler(param_2, &global_state_676_ptr, target_name);
     report_type = 0;
     target_info = &global_state_720_ptr;
   }

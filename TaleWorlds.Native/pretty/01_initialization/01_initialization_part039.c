@@ -420,7 +420,7 @@ longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, uint64_t *src_
     puVar3 = src_start + 0x2b;
     do {
       // 初始化目标数据结构
-      *dest_start = &unknown_var_720_ptr;
+      *dest_start = &system_state_ptr;
       dest_start[1] = 0;
       *(int32_t *)(dest_start + 2) = 0;
       *dest_start = &unknown_var_2008_ptr;

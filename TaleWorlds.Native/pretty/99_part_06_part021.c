@@ -585,14 +585,14 @@ int8_t FUN_1803ba0b0(longlong param_1,uint64_t param_2,longlong *param_3)
   lVar2 = *param_3;
   uVar3 = param_3[1];
   if (*(ulonglong *)(lVar2 + 0x1c30) < uVar3 + 1) {
-    FUN_180639bf0(lVar2 + 0x1c20);
+    System_BufferManager(lVar2 + 0x1c20);
     lVar2 = *param_3;
     uVar3 = param_3[1];
   }
   if ((ulonglong)
       ((*(longlong *)(lVar2 + 0x1c30) - *(longlong *)(lVar2 + 0x1c28)) +
       *(longlong *)(lVar2 + 0x1c20)) <= uVar3) {
-    FUN_180639bf0(lVar2 + 0x1c20,
+    System_BufferManager(lVar2 + 0x1c20,
                   (*(longlong *)(lVar2 + 0x1c28) - *(longlong *)(lVar2 + 0x1c20)) + uVar3);
     uVar3 = param_3[1];
     lVar2 = *param_3;
@@ -899,7 +899,7 @@ LAB_1803ba454:
                 }
               }
             }
-            puStack_98 = &unknown_var_720_ptr;
+            puStack_98 = &system_state_ptr;
           }
           else if (*(longlong *)(lVar1 + 0x260) == 0) {
             puVar10 = &system_buffer_ptr;
@@ -937,7 +937,7 @@ LAB_1803ba454:
           }
           break;
         }
-        lVar4 = (longlong)&unknown_var_2360_ptr - (longlong)pcVar8;
+        lVar4 = (longlong)&system_param2_ptr - (longlong)pcVar8;
         while (*pcVar8 == pcVar8[lVar4]) {
           pcVar8 = pcVar8 + 1;
           if (pcVar2 <= pcVar8) goto LAB_1803ba320;

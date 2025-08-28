@@ -333,14 +333,14 @@ void CleanupObjectList(longlong *object_list)
   
   list_end = (uint64_t *)object_list[1];
   for (list_item = (uint64_t *)*object_list; list_item != list_end; list_item = list_item + 6) {
-    *list_item = &unknown_var_3456_ptr;  // 设置默认值
+    *list_item = &system_data_buffer_ptr;  // 设置默认值
     if (list_item[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();  // 释放内存
     }
     list_item[1] = 0;
     *(int32_t *)(list_item + 3) = 0;
-    *list_item = &unknown_var_720_ptr;  // 重置状态
+    *list_item = &system_state_ptr;  // 重置状态
   }
   if (*object_list != 0) {
                     // WARNING: Subroutine does not return
@@ -459,7 +459,7 @@ void ProcessDeviceOperations(longlong *device_params)
   stack_var2._0_4_ = 0x12;
   strcpy_s(stack_buffer2, 0x20, &unknown_var_5320_ptr);
   config_mask = FUN_180240430(device_config, &stack_ptr2, 0);
-  stack_ptr2 = &unknown_var_720_ptr;
+  stack_ptr2 = &system_state_ptr;
   
   if (config_mask != 0) {
     device_base = device_params[0x37];

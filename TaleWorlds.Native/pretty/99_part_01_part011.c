@@ -995,7 +995,7 @@ void SystemStateManager(longlong param_1)
         strcpy_s(stackBuffer2, 0x80, &unknown_var_3144_ptr);
         
         stackPtrPtr1 = &stackPtr2;
-        stackPtr2 = &unknown_var_720_ptr;
+        stackPtr2 = &system_state_ptr;
         tempLong2 = *(longlong *)(param_1 + 0x121e0);
         tempLongPtr1 = *(longlong **)(tempLong2 + 0x1d8);
         

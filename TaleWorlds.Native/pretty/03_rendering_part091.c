@@ -156,7 +156,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
   // 配置输入装配器
   FUN_1800b0a10(blend_state, &input_layout, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
   pipeline_config = render_system_data_texture;
-  vertex_shader = (code *)&unknown_var_720_ptr;
+  vertex_shader = (code *)&system_state_ptr;
   shader_program = render_context_ptr[0x11];
   
   // 检查渲染状态有效性
@@ -197,7 +197,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       render_pass = *(code **)(pipeline_config + 0x410);
       vertex_buffer = (longlong *)0x0;
       input_layout = &pixel_shader;
-      pixel_shader = (code *)&unknown_var_3456_ptr;
+      pixel_shader = (code *)&system_data_buffer_ptr;
       frame_sync = 0;
       instance_buffer = 0;
       draw_indexed = 0;
@@ -282,7 +282,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       stencil_ref = 0x21;
       depth_stencil_state._4_4_ = 0x10;
       FUN_1800b0a10(blend_state, &domain_shader, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
-      vertex_shader = (code *)&unknown_var_720_ptr;
+      vertex_shader = (code *)&system_state_ptr;
       render_pass = (code **)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3);
       shader_program = domain_shader;
       render_pass[1] = (code *)0x0;
@@ -359,14 +359,14 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
         (**(code **)(*state_block + 0x38))();
       }
       vertex_buffer = &pixel_shader;
-      pixel_shader = (code *)&unknown_var_3456_ptr;
+      pixel_shader = (code *)&system_data_buffer_ptr;
       if (instance_buffer != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       instance_buffer = 0;
       frame_sync = frame_sync & 0xffffffff00000000;
-      pixel_shader = (code *)&unknown_var_720_ptr;
+      pixel_shader = (code *)&system_state_ptr;
       if (vertex_buffer != (longlong *)0x0) {
         (**(code **)(*vertex_buffer + 0x38))();
       }
@@ -541,7 +541,7 @@ void RenderingSystem_ObjectProcessor(longlong render_object)
       if (pixel_shader != (longlong *)0x0) {
         (**(code **)(*pixel_shader + 0x38))();
       }
-      render_target = &unknown_var_720_ptr;
+      render_target = &system_state_ptr;
       vertex_shader = *(longlong **)(render_object + 0x70);
       *(uint64_t *)(render_object + 0x70) = 0;
       if (vertex_shader != (longlong *)0x0) {
@@ -905,7 +905,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   }
   
   // 配置用户数据缓冲区
-  render_target = &unknown_var_3456_ptr;
+  render_target = &system_data_buffer_ptr;
   frame_buffer = 0;
   constant_buffer = (uint64_t *)0x0;
   buffer_size = 0;
@@ -983,7 +983,7 @@ LAB_18031eaf0:
   }
   
   _Thrd_id();
-  frame_buffer_ptr = &unknown_var_720_ptr;
+  frame_buffer_ptr = &system_state_ptr;
   render_resource = *(longlong **)(source_context + 0x230);
   if (render_resource != (longlong *)0x0) {
     compute_shader = render_resource;
@@ -994,14 +994,14 @@ LAB_18031eaf0:
   if (compute_shader != (longlong *)0x0) {
     (**(code **)(*compute_shader + 0x38))();
   }
-  render_target = &unknown_var_3456_ptr;
+  render_target = &system_data_buffer_ptr;
   if (vertex_buffer != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(vertex_buffer);
   }
   constant_buffer = (uint64_t *)0x0;
   frame_buffer = (ulonglong)frame_buffer._4_4_ << 0x20;
-  render_target = &unknown_var_720_ptr;
+  render_target = &system_state_ptr;
 LAB_18031ebd1:
   
   // 最终参数设置
@@ -1186,8 +1186,8 @@ RenderingSystem_MemoryAllocator(uint64_t *memory_ptr, ulonglong alloc_flags, uin
 {
   // 初始化内存指针链表
   *memory_ptr = &unknown_var_6880_ptr;
-  *memory_ptr = &unknown_var_3696_ptr;
-  *memory_ptr = &unknown_var_3552_ptr;
+  *memory_ptr = &system_handler2_ptr;
+  *memory_ptr = &system_handler1_ptr;
   
   // 检查是否需要释放内存
   if ((alloc_flags & 1) != 0) {

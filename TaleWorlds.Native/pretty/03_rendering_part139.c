@@ -22,17 +22,17 @@ void FUN_18034ef70(uint64_t *param_1)
   FUN_1803456e0();
   *puVar3 = &unknown_var_9296_ptr;
   plVar1 = puVar3 + 0xe;
-  *plVar1 = (longlong)&unknown_var_720_ptr;
+  *plVar1 = (longlong)&system_state_ptr;
   puVar3[0xf] = 0;
   *(int32_t *)(puVar3 + 0x10) = 0;
-  *plVar1 = (longlong)&unknown_var_3456_ptr;
+  *plVar1 = (longlong)&system_data_buffer_ptr;
   puVar3[0x11] = 0;
   puVar3[0xf] = 0;
   *(int32_t *)(puVar3 + 0x10) = 0;
   puVar3[0x12] = 0;
   plVar5 = plVar1;
   (**(code **)(*plVar1 + 0x10))(plVar1,&system_buffer_ptr);
-  puStack_98 = &unknown_var_3456_ptr;
+  puStack_98 = &system_data_buffer_ptr;
   uStack_80 = 0;
   puStack_90 = (uint64_t *)0x0;
   uStack_88 = 0;
@@ -45,7 +45,7 @@ void FUN_18034ef70(uint64_t *param_1)
   *(int16_t *)(puVar3 + 1) = 0x65;
   uStack_88 = 9;
   FUN_1803460a0(param_1,&puStack_98,plVar1,0,uVar4,plVar5);
-  puStack_98 = &unknown_var_3456_ptr;
+  puStack_98 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar3);
 }
@@ -66,14 +66,14 @@ uint64_t * FUN_18034f1f0(uint64_t *param_1,ulonglong param_2)
   if ((longlong *)param_1[0x12] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x12] + 0x38))();
   }
-  param_1[0xe] = &unknown_var_3456_ptr;
+  param_1[0xe] = &system_data_buffer_ptr;
   if (param_1[0xf] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0xf] = 0;
   *(int32_t *)(param_1 + 0x11) = 0;
-  param_1[0xe] = &unknown_var_720_ptr;
+  param_1[0xe] = &system_state_ptr;
   FUN_1803457d0(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xa0);
@@ -308,8 +308,8 @@ void FUN_18034f3a0(uint64_t param_1)
   FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
-  apuStack_1a8[0] = &unknown_var_720_ptr;
-  puStack_148 = &unknown_var_720_ptr;
+  apuStack_1a8[0] = &system_state_ptr;
+  puStack_148 = &system_state_ptr;
   puStack_e8 = &unknown_var_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
@@ -321,8 +321,8 @@ void FUN_18034f3a0(uint64_t param_1)
   FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
-  apuStack_1a8[0] = &unknown_var_720_ptr;
-  puStack_e8 = &unknown_var_720_ptr;
+  apuStack_1a8[0] = &system_state_ptr;
+  puStack_e8 = &system_state_ptr;
   puStack_88 = &unknown_var_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
@@ -334,8 +334,8 @@ void FUN_18034f3a0(uint64_t param_1)
   FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
-  apuStack_1a8[0] = &unknown_var_720_ptr;
-  puStack_88 = &unknown_var_720_ptr;
+  apuStack_1a8[0] = &system_state_ptr;
+  puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_1e8);
 }

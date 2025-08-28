@@ -415,10 +415,10 @@ void FUN_1802d3000(longlong param_1,longlong *param_2)
       plVar19[0xd] = 0;
       *(int32_t *)(plVar19 + 0xe) = 3;
       plVar2 = plVar19 + 0xf;
-      *plVar2 = (longlong)&unknown_var_720_ptr;
+      *plVar2 = (longlong)&system_state_ptr;
       plVar19[0x10] = 0;
       *(int32_t *)(plVar19 + 0x11) = 0;
-      *plVar2 = (longlong)&unknown_var_3456_ptr;
+      *plVar2 = (longlong)&system_data_buffer_ptr;
       plVar19[0x12] = 0;
       plVar19[0x10] = 0;
       *(int32_t *)(plVar19 + 0x11) = 0;
@@ -721,14 +721,14 @@ LAB_1802d35de:
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    *(uint64_t *)(lVar13 + 0x80) = &unknown_var_3456_ptr;
+    *(uint64_t *)(lVar13 + 0x80) = &system_data_buffer_ptr;
     if (*(longlong *)(lVar13 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     *(uint64_t *)(lVar13 + 0x88) = 0;
     *(int32_t *)(lVar13 + 0x98) = 0;
-    *(uint64_t *)(lVar13 + 0x80) = &unknown_var_720_ptr;
+    *(uint64_t *)(lVar13 + 0x80) = &system_state_ptr;
     if (*(longlong *)(lVar13 + 0x58) != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();

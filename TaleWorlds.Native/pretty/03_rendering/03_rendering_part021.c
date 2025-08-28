@@ -233,7 +233,7 @@ LAB_18027c5be:
         else {
           do {
             file_position = *(longlong *)(param_offset + file_position);
-            temp_buffer = &unknown_var_3456_ptr;
+            temp_buffer = &system_data_buffer_ptr;
             texture_size = 0;
             texture_path = (char *)0x0;
             texture_path_len = 0;
@@ -420,14 +420,14 @@ LAB_18027c306:
                 (**(code **)(*texture_ptr + 0x38))();
               }
             }
-            temp_buffer = &unknown_var_3456_ptr;
+            temp_buffer = &system_data_buffer_ptr;
             if (texture_path != (char *)0x0) {
                     // WARNING: Subroutine does not return
               FUN_18064e900();
             }
             texture_path = (char *)0x0;
             texture_size = texture_size & 0xffffffff00000000;
-            temp_buffer = &unknown_var_720_ptr;
+            temp_buffer = &system_state_ptr;
             material_count = (int)path_length + 1;
             param_offset = param_offset + 0x10;
             file_position = *(longlong *)(render_context + 0x38);
@@ -444,14 +444,14 @@ LAB_18027c306:
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        ptr1 = &unknown_var_3456_ptr;
+        ptr1 = &system_data_buffer_ptr;
         if (ptr2 != (void *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         ptr2 = (void *)0x0;
         param_value = 0;
-        ptr1 = &unknown_var_720_ptr;
+        ptr1 = &system_state_ptr;
         texture_indices[0] = texture_indices[0] + 1;
         file_handle = temp_handle;
       } while (texture_indices[0] < entry_data[0]);

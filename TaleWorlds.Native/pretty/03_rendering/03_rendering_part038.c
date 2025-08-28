@@ -115,7 +115,7 @@ void update_render_animation_time(longlong render_context, uint64_t param_2, uin
 uint64_t *
 process_render_string(uint64_t param_1, uint64_t *string_buffer, uint64_t param_3, uint64_t param_4)
 {
-  *string_buffer = &unknown_var_720_ptr;
+  *string_buffer = &system_state_ptr;
   string_buffer[1] = 0;
   *(int32_t *)(string_buffer + 2) = 0;
   *string_buffer = &unknown_var_3432_ptr;
@@ -168,10 +168,10 @@ initialize_render_data(uint64_t param_1, uint64_t *data_buffer, uint64_t param_3
 {
   uint64_t *data_ptr;
   
-  *data_buffer = &unknown_var_720_ptr;
+  *data_buffer = &system_state_ptr;
   data_buffer[1] = 0;
   *(int32_t *)(data_buffer + 2) = 0;
-  *data_buffer = &unknown_var_3456_ptr;
+  *data_buffer = &system_data_buffer_ptr;
   data_buffer[3] = 0;
   data_buffer[1] = 0;
   *(int32_t *)(data_buffer + 2) = 0;

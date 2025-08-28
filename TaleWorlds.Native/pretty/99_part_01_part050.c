@@ -285,7 +285,7 @@ LAB_1800d6939:
     strcpy_s(&fStack_1a0,0x20,&unknown_var_3344_ptr);
     lVar21 = FUN_1802e4d10(lVar26,&uStack_1b8);
     (**(code **)(**(longlong **)(lVar21 + 0x20) + 0x80))(*(longlong **)(lVar21 + 0x20),lVar21,0);
-    uStack_1b8 = &unknown_var_720_ptr;
+    uStack_1b8 = &system_state_ptr;
     uVar16 = *(uint64_t *)(lVar26 + 0xd0);
     *(uint64_t *)(lVar20 + 0x1a80) = *(uint64_t *)(lVar26 + 200);
     *(uint64_t *)(lVar20 + 0x1a88) = uVar16;
@@ -330,7 +330,7 @@ LAB_1800d6939:
     *(int32_t *)(lVar20 + 0x1b14) = uVar4;
     *(int32_t *)(lVar20 + 0x1b18) = uVar5;
     *(int32_t *)(lVar20 + 0x1b1c) = uVar6;
-    puStack_180 = &unknown_var_720_ptr;
+    puStack_180 = &system_state_ptr;
     lVar21 = system_message_buffer;
   }
   FUN_18029fc10(*(longlong *)(lVar21 + 0x1cd8),*(uint64_t *)(lVar21 + 0x1ca8),

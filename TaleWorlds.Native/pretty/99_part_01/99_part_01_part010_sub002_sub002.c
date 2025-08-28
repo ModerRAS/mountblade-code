@@ -206,8 +206,8 @@ void FUN_1800a73e0(longlong param_1, uint64_t param_2, longlong param_3, int8_t 
     FUN_1802230e0(param_1, &lStack_810, param_10, param_11);
     uVar5 = FUN_180624440(apuStack_2d8, param_2);
     FUN_1806279c0(auStack_7b0, uVar5);
-    apuStack_2d8[0] = &unknown_var_720_ptr;
-    puStack_858 = &unknown_var_3456_ptr;
+    apuStack_2d8[0] = &system_state_ptr;
+    puStack_858 = &system_data_buffer_ptr;
     uStack_840 = 0;
     uStack_850 = 0;
     uStack_848 = 0;
@@ -287,11 +287,11 @@ LAB_1800a7660:
     FUN_180627910(auStack_730, uVar5);
     
     // 初始化字符串缓冲区
-    puStack_988 = &unknown_var_3456_ptr;
+    puStack_988 = &system_data_buffer_ptr;
     uStack_970 = 0;
     puStack_980 = (int8_t *)0x0;
     uStack_978 = 0;
-    puStack_918 = &unknown_var_3456_ptr;
+    puStack_918 = &system_data_buffer_ptr;
     uStack_900 = 0;
     puStack_910 = (int8_t *)0x0;
     uStack_908 = 0;
@@ -323,7 +323,7 @@ LAB_1800a7660:
     // 数据处理逻辑
     uVar5 = FUN_180627600(apuStack_518, uStack_790);
     FUN_1806279c0(auStack_750, uVar5);
-    apuStack_518[0] = &unknown_var_720_ptr;
+    apuStack_518[0] = &system_state_ptr;
     puStack_638 = &unknown_var_2008_ptr;
     puStack_630 = auStack_620;
     auStack_620[0] = 0;

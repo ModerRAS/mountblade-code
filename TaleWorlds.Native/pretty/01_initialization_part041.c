@@ -357,7 +357,7 @@ uint64_t FUN_18006f620(uint64_t param_1, uint64_t param_2)
     debug_output = &global_state_3456_ptr;
     
     // 处理系统消息
-    FUN_180628040(&debug_output, &global_state_3944_ptr, param_2);
+    System_DataHandler(&debug_output, &global_state_3944_ptr, param_2);
     FUN_180062380(system_message_context, 5, 0xffffffff00000000, &global_state_3968_ptr);
     
     // 输出调试信息
@@ -490,7 +490,7 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     }
     
     // 处理系统消息
-    FUN_180628040(&event_data, &global_state_4080_ptr, param_2);
+    System_DataHandler(&event_data, &global_state_4080_ptr, param_2);
     FUN_180062380(system_message_context, 5, 0xffffffff00000000, &global_state_3968_ptr);
     
     // 输出事件信息
@@ -677,7 +677,7 @@ uint64_t FUN_18006ff80(uint64_t param_1, uint64_t param_2, char param_3)
     }
     
     // 处理资源消息
-    FUN_180628040(&temp_buffer, &global_state_4136_ptr, param_2);
+    System_DataHandler(&temp_buffer, &global_state_4136_ptr, param_2);
     FUN_180062380(system_message_context, 5, 0xffffffff00000000, &global_state_3968_ptr);
     
     // 输出资源信息
@@ -860,7 +860,7 @@ void FUN_180070680(uint64_t param_1, uint64_t param_2)
     }
     
     // 处理清理消息
-    FUN_180628040(&debug_output, &global_state_3944_ptr, param_2);
+    System_DataHandler(&debug_output, &global_state_3944_ptr, param_2);
     FUN_180062380(system_message_context, 5, 0xffffffff00000000, &global_state_3968_ptr);
     
     // 输出调试信息

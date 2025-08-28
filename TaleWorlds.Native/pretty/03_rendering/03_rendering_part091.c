@@ -107,7 +107,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
     // 初始化渲染资源
     FUN_1800b0a10(format_flag, &context_cache, *(int32_t *)(render_context[0x11] + 0xa0), &resource_base);
     memory_address = render_system_data_texture;
-    resource_base = (code *)&unknown_var_720_ptr;
+    resource_base = (code *)&system_state_ptr;
     resource_pointer = render_context[0x11];
     
     // 检查渲染状态并进行资源分配
@@ -140,7 +140,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             context_backup = *(code **)(memory_address + 0x410);
             vertex_pool = (longlong *)0x0;
             context_cache = &fragment_resource;
-            fragment_resource = (code *)&unknown_var_3456_ptr;
+            fragment_resource = (code *)&system_data_buffer_ptr;
             checksum_value = 0;
             fragment_offset = 0;
             fragment_flag = 0;
@@ -216,7 +216,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             padding_1 = 2;
             security_key = CONCAT44(security_key._4_4_, 0x10);
             FUN_1800b0a10(format_flag, &vertex_resource, *(int32_t *)(render_context[0x11] + 0xa0), &resource_base);
-            resource_base = (code *)&unknown_var_720_ptr;
+            resource_base = (code *)&system_state_ptr;
             temp_context = (code **)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3);
             resource_pointer = vertex_resource;
             temp_context[1] = (code *)0x0;
@@ -293,14 +293,14 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
                 (**(code **)(*memory_pool + 0x38))();
             }
             managed_context = &fragment_resource;
-            fragment_resource = (code *)&unknown_var_3456_ptr;
+            fragment_resource = (code *)&system_data_buffer_ptr;
             if (fragment_offset != 0) {
                 // WARNING: Subroutine does not return
                 FUN_18064e900();
             }
             fragment_offset = 0;
             checksum_value = checksum_value & 0xffffffff00000000;
-            fragment_resource = (code *)&unknown_var_720_ptr;
+            fragment_resource = (code *)&system_state_ptr;
             if (vertex_pool != (longlong *)0x0) {
                 (**(code **)(*vertex_pool + 0x38))();
             }
@@ -431,7 +431,7 @@ void rendering_system_resource_manager(longlong render_context)
             if (resource_backup != (longlong *)0x0) {
                 (**(code **)(*resource_backup + 0x38))();
             }
-            resource_data_ptr = &unknown_var_720_ptr;
+            resource_data_ptr = &system_state_ptr;
             managed_resource = *(longlong **)(render_context + 0x70);
             *(uint64_t *)(render_context + 0x70) = 0;
             if (managed_resource != (longlong *)0x0) {
@@ -731,7 +731,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
         goto texture_processing_complete;
     }
     
-    texture_reference = &unknown_var_3456_ptr;
+    texture_reference = &system_data_buffer_ptr;
     texture_resource = 0;
     texture_data = (uint64_t *)0x0;
     texture_format = 0;
@@ -808,7 +808,7 @@ texture_resource_allocation:
         goto texture_resource_allocation;
     }
     _Thrd_id();
-    resource_data = &unknown_var_720_ptr;
+    resource_data = &system_state_ptr;
     vector_processor = *(longlong **)(source_context + 0x230);
     if (vector_processor != (longlong *)0x0) {
         vector_target = vector_processor;
@@ -819,14 +819,14 @@ texture_resource_allocation:
     if (vector_target != (longlong *)0x0) {
         (**(code **)(*vector_target + 0x38))();
     }
-    texture_reference = &unknown_var_3456_ptr;
+    texture_reference = &system_data_buffer_ptr;
     if (data_pointer != (uint64_t *)0x0) {
         // WARNING: Subroutine does not return
         FUN_18064e900(data_pointer);
     }
     texture_data = (uint64_t *)0x0;
     texture_resource = (ulonglong)texture_resource._4_4_ << 0x20;
-    texture_reference = &unknown_var_720_ptr;
+    texture_reference = &system_state_ptr;
 texture_processing_complete:
     vector_component_x = *(float *)(source_context + 0x210);
     vector_component_y = *(float *)(source_context + 0x214);
@@ -959,8 +959,8 @@ uint64_t *
 rendering_system_memory_allocator(uint64_t *memory_block, ulonglong allocation_size, uint64_t alloc_flags, uint64_t memory_params)
 {
     *memory_block = &unknown_var_6880_ptr;
-    *memory_block = &unknown_var_3696_ptr;
-    *memory_block = &unknown_var_3552_ptr;
+    *memory_block = &system_handler2_ptr;
+    *memory_block = &system_handler1_ptr;
     if ((allocation_size & 1) != 0) {
         free(memory_block, 0x28, alloc_flags, memory_params, 0xfffffffffffffffe);
     }

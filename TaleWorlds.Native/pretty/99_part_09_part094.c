@@ -798,7 +798,7 @@ uint64_t * FUN_1806a0d90(uint64_t *param_1)
   param_1[3] = 0;
   param_1[4] = 0;
   param_1[5] = 0;
-  param_1[6] = &unknown_var_2240_ptr;
+  param_1[6] = &system_callback1_ptr;
   param_1[7] = 0;
   param_1[8] = 0;
   param_1[9] = 0;
@@ -866,7 +866,7 @@ uint64_t * FUN_1806a0d9c(uint64_t *param_1)
   param_1[3] = unaff_RBP;
   param_1[4] = unaff_RBP;
   param_1[5] = unaff_RBP;
-  param_1[6] = &unknown_var_2240_ptr;
+  param_1[6] = &system_callback1_ptr;
   param_1[7] = unaff_RBP;
   param_1[8] = unaff_RBP;
   param_1[9] = unaff_RBP;

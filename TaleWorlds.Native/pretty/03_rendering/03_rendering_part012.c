@@ -4,25 +4,25 @@
 // 03_rendering_part012.c - 渲染系统数据序列化函数
 
 // 渲染系统常量定义
-#define RENDER_VTABLE_BASE            (&unknown_var_720_ptr)
+#define RENDER_VTABLE_BASE            (&system_state_ptr)
 #define RENDER_VTABLE_EXTENDED        (&unknown_var_3432_ptr)
 #define RENDER_NAME_TEMPLATE          (&unknown_var_8816_ptr)
-#define RENDERER_VTABLE1              (&unknown_var_3552_ptr)
-#define RENDERER_VTABLE2              (&unknown_var_3696_ptr)
+#define RENDERER_VTABLE1              (&system_handler1_ptr)
+#define RENDERER_VTABLE2              (&system_handler2_ptr)
 #define RENDERER_SHADER_TABLE         (&unknown_var_768_ptr)
 #define RENDERER_CONFIG_TABLE         (&unknown_var_9304_ptr)
 #define RENDERER_LOCK_TABLE           (&unknown_var_9288_ptr)
-#define RENDER_STATE_NULL             (&unknown_var_720_ptr)
-#define RENDER_MATERIAL_TABLE         (&unknown_var_3456_ptr)
+#define RENDER_STATE_NULL             (&system_state_ptr)
+#define RENDER_MATERIAL_TABLE         (&system_data_buffer_ptr)
 #define RENDER_SPECIAL_TABLE          (system_resource_state)
 #define RENDER_ALLOC_TABLE            (system_memory_pool_ptr)
 #define RENDER_CHECK_FUNCTION         (&unknown_var_9120_ptr)
 
 // 函数别名定义
-#define expand_buffer_if_needed       FUN_180639bf0
-#define write_buffer_entry            FUN_180639ec0
+#define expand_buffer_if_needed       System_BufferManager
+#define write_buffer_entry            System_QueueProcessor
 #define serialize_material_data      FUN_1806399d0
-#define serialize_render_block_data  FUN_180639ec0
+#define serialize_render_block_data  System_QueueProcessor
 #define initialize_render_data_structures FUN_180285e20
 #define initialize_render_internal_data FUN_1802786d0
 #define apply_render_settings         FUN_18027a810
@@ -417,17 +417,17 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
 uint64_t * initialize_render_state(uint64_t *render_state)
 
 {
-  *render_state = &unknown_var_720_ptr;
+  *render_state = &system_state_ptr;
   render_state[1] = 0;
   *(int32_t *)(render_state + 2) = 0;
   *render_state = &unknown_var_768_ptr;
   render_state[1] = render_state + 3;
   *(int32_t *)(render_state + 2) = 0;
   *(int8_t *)(render_state + 3) = 0;
-  render_state[0x22] = &unknown_var_720_ptr;
+  render_state[0x22] = &system_state_ptr;
   render_state[0x23] = 0;
   *(int32_t *)(render_state + 0x24) = 0;
-  render_state[0x22] = &unknown_var_3456_ptr;
+  render_state[0x22] = &system_data_buffer_ptr;
   render_state[0x25] = 0;
   render_state[0x23] = 0;
   *(int32_t *)(render_state + 0x24) = 0;

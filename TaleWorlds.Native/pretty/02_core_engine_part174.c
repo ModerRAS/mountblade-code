@@ -648,8 +648,8 @@ void FUN_18015b810(uint64_t param_1,int param_2,int param_3,int param_4,uint64_t
       plVar4 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
       plVar4[1] = 0;
       plVar4[2] = 0;
-      *plVar4 = (longlong)&unknown_var_3552_ptr;
-      *plVar4 = (longlong)&unknown_var_3696_ptr;
+      *plVar4 = (longlong)&system_handler1_ptr;
+      *plVar4 = (longlong)&system_handler2_ptr;
       *(int32_t *)(plVar4 + 1) = 0;
       *plVar4 = (longlong)&unknown_var_5008_ptr;
       (**(code **)(*plVar4 + 0x28))(plVar4);
@@ -741,10 +741,10 @@ LAB_18015bf2e:
     lVar4 = (longlong)puVar2 - (longlong)puVar3;
     puVar3 = puVar3 + 1;
     do {
-      *puVar5 = &unknown_var_720_ptr;
+      *puVar5 = &system_state_ptr;
       *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
       *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
-      *puVar5 = &unknown_var_3456_ptr;
+      *puVar5 = &system_data_buffer_ptr;
       *(uint64_t *)(lVar4 + 0x10 + (longlong)puVar3) = 0;
       *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
       *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
@@ -767,14 +767,14 @@ LAB_18015bf2e:
   puVar3 = (uint64_t *)*param_1;
   if (puVar3 != puVar7) {
     do {
-      *puVar3 = &unknown_var_3456_ptr;
+      *puVar3 = &system_data_buffer_ptr;
       if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       puVar3[1] = 0;
       *(int32_t *)(puVar3 + 3) = 0;
-      *puVar3 = &unknown_var_720_ptr;
+      *puVar3 = &system_state_ptr;
       puVar3 = puVar3 + 5;
     } while (puVar3 != puVar7);
     puVar3 = (uint64_t *)*param_1;
@@ -896,10 +896,10 @@ FUN_18015c2b0(int32_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   longlong *plVar1;
   
   plVar1 = (longlong *)(param_1 + 2);
-  *plVar1 = (longlong)&unknown_var_720_ptr;
+  *plVar1 = (longlong)&system_state_ptr;
   *(uint64_t *)(param_1 + 4) = 0;
   param_1[6] = 0;
-  *plVar1 = (longlong)&unknown_var_3456_ptr;
+  *plVar1 = (longlong)&system_data_buffer_ptr;
   *(uint64_t *)(param_1 + 8) = 0;
   *(uint64_t *)(param_1 + 4) = 0;
   param_1[6] = 0;

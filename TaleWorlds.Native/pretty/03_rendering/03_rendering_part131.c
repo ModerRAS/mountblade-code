@@ -116,7 +116,7 @@ void rendering_system_process_render_parameters(longlong *render_context, uint64
       // 执行渲染回调函数
       (**(code **)(*render_context + 0xb0))(render_context, render_param);
     }
-    error_handler_ptr = &unknown_var_3456_ptr;
+    error_handler_ptr = &system_data_buffer_ptr;
     if (error_handler_stack != 0) {
       // 错误处理：清理资源
       FUN_18064e900();
@@ -195,7 +195,7 @@ void rendering_system_process_render_parameters(longlong *render_context, uint64
         // 2维向量参数处理（变体2）
         parameter_value = FUN_180627910(&error_handler_ptr, param_data + 0x60, param_data, param_size, 0xfffffffffffffffe);
         FUN_180346640(render_context, render_param, parameter_value, execute_callback);
-        error_handler_ptr = &unknown_var_3456_ptr;
+        error_handler_ptr = &system_data_buffer_ptr;
         if (error_handler_stack == 0) {
           return;
         }
@@ -283,10 +283,10 @@ LAB_1803464ba:
     pool_start_ptr = pool_start_ptr + 1;
     do {
       // 数据迁移和清理
-      *temp_pool_ptr = &unknown_var_720_ptr;
+      *temp_pool_ptr = &system_state_ptr;
       *(uint64_t *)(new_pool_size + (longlong)pool_start_ptr) = 0;
       *(int32_t *)(new_pool_size + 8 + (longlong)pool_start_ptr) = 0;
-      *temp_pool_ptr = &unknown_var_3456_ptr;
+      *temp_pool_ptr = &system_data_buffer_ptr;
       *(uint64_t *)(new_pool_size + 0x10 + (longlong)pool_start_ptr) = 0;
       *(uint64_t *)(new_pool_size + (longlong)pool_start_ptr) = 0;
       *(int32_t *)(new_pool_size + 8 + (longlong)pool_start_ptr) = 0;
@@ -305,10 +305,10 @@ LAB_1803464ba:
     } while (pool_current_ptr != temp_pool_ptr);
   }
   // 初始化新的池数据
-  *temp_pool_ptr = &unknown_var_720_ptr;
+  *temp_pool_ptr = &system_state_ptr;
   temp_pool_ptr[1] = 0;
   *(int32_t *)(temp_pool_ptr + 2) = 0;
-  *temp_pool_ptr = &unknown_var_3456_ptr;
+  *temp_pool_ptr = &system_data_buffer_ptr;
   temp_pool_ptr[3] = 0;
   temp_pool_ptr[1] = 0;
   *(int32_t *)(temp_pool_ptr + 2) = 0;
@@ -326,14 +326,14 @@ LAB_1803464ba:
   if (pool_start_ptr != temp_pool_ptr) {
     do {
       // 清理旧的池数据
-      *pool_start_ptr = &unknown_var_3456_ptr;
+      *pool_start_ptr = &system_data_buffer_ptr;
       if (pool_start_ptr[1] != 0) {
         // 错误处理：清理资源
         FUN_18064e900();
       }
       pool_start_ptr[1] = 0;
       *(int32_t *)(pool_start_ptr + 3) = 0;
-      *pool_start_ptr = &unknown_var_720_ptr;
+      *pool_start_ptr = &system_state_ptr;
       pool_start_ptr = pool_start_ptr + 6;
     } while (pool_start_ptr != temp_pool_ptr);
     pool_start_ptr = (uint64_t *)*pool_header;
@@ -444,8 +444,8 @@ uint64_t * rendering_system_create_render_parameter_object(uint64_t *param_obj, 
 {
   *param_obj = &unknown_var_4912_ptr;
   FUN_1802f5b10(param_obj + 4, param_obj[6], param_data, param_size, 0xfffffffffffffffe);
-  *param_obj = &unknown_var_3696_ptr;
-  *param_obj = &unknown_var_3552_ptr;
+  *param_obj = &system_handler2_ptr;
+  *param_obj = &system_handler1_ptr;
   if ((param_flags & RENDER_FLAG_ALLOCATE_MEMORY) != 0) {
     free(param_obj, RENDER_POOL_SIZE_80);
   }
@@ -549,7 +549,7 @@ void rendering_system_initialize_render_parameter_system(uint64_t *system_ptr)
   temp_ptr[0xf] = 0x4024000000000000;
   temp_ptr[0xe] = 0x3fe0000000000000;
   *(int8_t *)((longlong)temp_ptr + 0x81) = 0;
-  error_handler_ptr = &unknown_var_3456_ptr;
+  error_handler_ptr = &system_data_buffer_ptr;
   error_handler_value = 0;
   error_handler_data_ptr = (uint64_t *)0x0;
   error_handler_size = 0;
@@ -563,7 +563,7 @@ void rendering_system_initialize_render_parameter_system(uint64_t *system_ptr)
   *(int32_t *)(temp_ptr + 1) = 0x746e75;
   error_handler_size = 0xb;
   FUN_1803460a0(system_ptr, &error_handler_ptr, system_ptr + 0xf, 1, init_param_2);
-  error_handler_ptr = &unknown_var_3456_ptr;
+  error_handler_ptr = &system_data_buffer_ptr;
   // 错误处理：清理资源
   FUN_18064e900(temp_ptr);
 }
@@ -675,7 +675,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
     item_data = current_item_ptr[0x22];
     if (item_data != 0) {
       // 处理字符串数据
-      error_handler_ptr = &unknown_var_3456_ptr;
+      error_handler_ptr = &system_data_buffer_ptr;
       string_data = 0;
       string_buffer_ptr = (int8_t *)0x0;
       string_length = 0;
@@ -720,19 +720,19 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
       if (stack_item_ptr_1 != (longlong *)0x0) {
         (**(code **)(*stack_item_ptr_1 + 0x38))();
       }
-      error_handler_ptr = &unknown_var_3456_ptr;
+      error_handler_ptr = &system_data_buffer_ptr;
       if (string_buffer_ptr != (int8_t *)0x0) {
         // 错误处理：清理资源
         FUN_18064e900();
       }
       string_buffer_ptr = (int8_t *)0x0;
       string_data = string_data & 0xffffffff00000000;
-      error_handler_ptr = &unknown_var_720_ptr;
+      error_handler_ptr = &system_state_ptr;
     }
     item_data = current_item_ptr[2];
     if (item_data != 0) {
       // 处理第二个字符串数据
-      temp_ptr = &unknown_var_3456_ptr;
+      temp_ptr = &system_data_buffer_ptr;
       string_info = 0;
       string_ptr = (int8_t *)0x0;
       string_size = 0;
@@ -778,14 +778,14 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, long
       if (stack_item_ptr_2 != (longlong *)0x0) {
         (**(code **)(*stack_item_ptr_2 + 0x38))();
       }
-      temp_ptr = &unknown_var_3456_ptr;
+      temp_ptr = &system_data_buffer_ptr;
       if (string_ptr != (int8_t *)0x0) {
         // 错误处理：清理资源
         FUN_18064e900();
       }
       string_ptr = (int8_t *)0x0;
       string_info = string_info & 0xffffffff00000000;
-      temp_ptr = &unknown_var_720_ptr;
+      temp_ptr = &system_state_ptr;
     }
     (**(code **)(*current_item_ptr + 0x38))(current_item_ptr);
     queue_item_ptr = queue_item_ptr + 1;
@@ -893,8 +893,8 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
   callback_flag = 1;
   FUN_180180730(callback_param, callback_array, callback_params);
   callback_flag = 0;
-  callback_params[0] = &unknown_var_720_ptr;
-  callback_ptr = &unknown_var_720_ptr;
+  callback_params[0] = &system_state_ptr;
+  callback_ptr = &system_state_ptr;
   callback_handler_ptr = &unknown_var_3480_ptr;
   callback_handler_string_ptr = callback_handler_buffer;
   callback_handler_buffer[0] = 0;
@@ -906,8 +906,8 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
   callback_flag = 2;
   FUN_180180730(callback_param, callback_array, callback_params);
   callback_flag = 0;
-  callback_params[0] = &unknown_var_720_ptr;
-  callback_handler_ptr = &unknown_var_720_ptr;
+  callback_params[0] = &system_state_ptr;
+  callback_handler_ptr = &system_state_ptr;
   callback_array[0] = callback_params;
   // 错误处理：清理资源
   FUN_1808fc050(callback_info ^ (ulonglong)callback_stack);

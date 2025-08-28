@@ -807,7 +807,7 @@ LAB_1800ba7cd:
   psVar6[7] = 0x73;
   psVar6[8] = 0x2f;
   psVar6[9] = 0;
-  puStack_3b8 = &unknown_var_3456_ptr;
+  puStack_3b8 = &system_data_buffer_ptr;
   uStack_3a0 = 0;
   uStack_3b0 = 0;
   uStack_3a8 = 0;
@@ -899,10 +899,10 @@ void FUN_1800baa80(uint64_t *param_1)
   puStack_278 = auStack_248;
   puStack_258 = param_1;
   SHGetFolderPathW(0,0x23,0,0);
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_3456_ptr;
+  *param_1 = &system_data_buffer_ptr;
   param_1[3] = 0;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;

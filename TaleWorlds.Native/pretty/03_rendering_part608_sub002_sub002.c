@@ -1091,7 +1091,7 @@ LAB_18059d789:
         lVar21 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
         if ((*(int *)(lVar21 + 0x48) < render_system_config_memory) &&
            (FUN_1808fcb90(&system_ptr_a048), render_system_config_memory == -1)) {
-          puStack_970 = &unknown_var_3456_ptr;
+          puStack_970 = &system_data_buffer_ptr;
           uStack_958 = 0;
           puStack_968 = (int32_t *)0x0;
           uStack_960 = 0;
@@ -1104,13 +1104,13 @@ LAB_18059d789:
           *(int8_t *)(puVar11 + 1) = 0;
           uStack_960 = 4;
           render_system_config_memory = FUN_180571e20(&system_ptr_60c0,&puStack_970);
-          puStack_970 = &unknown_var_3456_ptr;
+          puStack_970 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar11);
         }
         if ((*(int *)(lVar21 + 0x48) < render_system_config_memory) &&
            (FUN_1808fcb90(&system_ptr_a050), render_system_config_memory == -1)) {
-          puStack_950 = &unknown_var_3456_ptr;
+          puStack_950 = &system_data_buffer_ptr;
           uStack_938 = 0;
           puStack_948 = (int32_t *)0x0;
           uStack_940 = 0;
@@ -1123,7 +1123,7 @@ LAB_18059d789:
           *(int16_t *)(puVar11 + 1) = 0x74;
           uStack_940 = 5;
           render_system_config_memory = FUN_180571e20(&system_ptr_60c0,&puStack_950);
-          puStack_950 = &unknown_var_3456_ptr;
+          puStack_950 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar11);
         }

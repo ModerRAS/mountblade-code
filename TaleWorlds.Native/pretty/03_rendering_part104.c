@@ -90,7 +90,7 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
         fread(&process_flag, 4, 1, *(uint64_t *)(file_context + 8));
         
         if (process_flag != 0) {
-          FUN_180639bf0(&stack_data_handle, process_flag);
+          System_BufferManager(&stack_data_handle, process_flag);
         }
         
         memory_block = stack_data_handle;
@@ -102,10 +102,10 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
           resource_pool = (uint64_t *)(render_context + 0x818);
           data_buffer = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, RENDERING_FILE_BUFFER_SIZE, RENDERING_ALIGNMENT_SIZE, 3);
           resource_ptr = (longlong *)(data_buffer + 6);
-          *resource_ptr = (longlong)&unknown_var_720_ptr;
+          *resource_ptr = (longlong)&system_state_ptr;
           *(uint64_t *)(data_buffer + 8) = 0;
           data_buffer[10] = 0;
-          *resource_ptr = (longlong)&unknown_var_3456_ptr;
+          *resource_ptr = (longlong)&system_data_buffer_ptr;
           *(uint64_t *)(data_buffer + 0xc) = 0;
           *(uint64_t *)(data_buffer + 8) = 0;
           data_buffer[10] = 0;
@@ -327,10 +327,10 @@ uint64_t *RenderingSystemResourceSerializer(uint64_t process_context, uint64_t *
     FUN_180624910(&buffer_ptr);
   }
   
-  *resource_data = &unknown_var_720_ptr;
+  *resource_data = &system_state_ptr;
   resource_data[1] = 0;
   *(int32_t *)(resource_data + 2) = 0;
-  *resource_data = &unknown_var_3456_ptr;
+  *resource_data = &system_data_buffer_ptr;
   resource_data[3] = 0;
   resource_data[1] = 0;
   *(int32_t *)(resource_data + 2) = 0;
@@ -366,7 +366,7 @@ uint64_t *RenderingSystemResourceSerializer(uint64_t process_context, uint64_t *
     process_result = FUN_180624a00(resource_data);
   } while (process_result != '\0');
   
-  buffer_ptr = &unknown_var_3456_ptr;
+  buffer_ptr = &system_data_buffer_ptr;
   
   if (data_handle != 0) {
     // 警告：子函数不返回
@@ -488,7 +488,7 @@ LAB_18032d78f:
       }
       
       resource_handle = context_data;
-      stack_ptr = &unknown_var_3456_ptr;
+      stack_ptr = &system_data_buffer_ptr;
       path_size = 0;
       string_ptr = (int8_t *)0x0;
       string_length = 0;
@@ -549,7 +549,7 @@ LAB_18032d78f:
       path_data[2] = 0;
       path_flags = 0;
       path_mode = 3;
-      FUN_180639bf0(path_data, RENDERING_MAX_PATH_LENGTH);
+      System_BufferManager(path_data, RENDERING_MAX_PATH_LENGTH);
       FUN_18007e5b0(*(uint64_t *)(*(longlong *)(resource_handle + 8) + 8), path_data);
       resource_handle = file_data;
       buffer_context = path_data[2];
@@ -587,7 +587,7 @@ LAB_18032d78f:
         final_buffer = read_buffer;
       }
       
-      stack_ptr = &unknown_var_3456_ptr;
+      stack_ptr = &system_data_buffer_ptr;
       
       if (string_ptr != (int8_t *)0x0) {
         // 警告：子函数不返回
@@ -596,7 +596,7 @@ LAB_18032d78f:
       
       string_ptr = (int8_t *)0x0;
       path_size = path_size & 0xffffffff00000000;
-      stack_ptr = &unknown_var_720_ptr;
+      stack_ptr = &system_state_ptr;
       resource_handle = *(longlong *)(resource_handle + 0x10);
       
       while (resource_handle == 0) {

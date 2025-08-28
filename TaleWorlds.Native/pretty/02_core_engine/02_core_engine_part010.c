@@ -56,7 +56,7 @@ void process_string_operation(longlong param_1,longlong param_2,longlong param_3
                     // WARNING: Subroutine does not return
     memcpy(buffer_ptr,*(longlong *)(param_1 + 8),substr_ptr - *(longlong *)(param_1 + 8));
   }
-  debug_ptr = &unknown_var_720_ptr;
+  debug_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(stack_hash ^ (ulonglong)auStack_498);
 }
@@ -208,7 +208,7 @@ uint64_t *
 free_memory_block(uint64_t *mem_ptr,ulonglong flags,uint64_t param_3,uint64_t param_4)
 
 {
-  *mem_ptr = &unknown_var_720_ptr;
+  *mem_ptr = &system_state_ptr;
   if ((flags & 1) != 0) {
     free(mem_ptr,0x38,param_3,param_4,0xfffffffffffffffe);
   }
@@ -302,7 +302,7 @@ void clear_data(int8_t *data_ptr)
 uint64_t * initialize_data_structure(uint64_t *data_ptr)
 
 {
-  *data_ptr = &unknown_var_720_ptr;
+  *data_ptr = &system_state_ptr;
   data_ptr[1] = 0;
   *(int32_t *)(data_ptr + 2) = 0;
   *data_ptr = &unknown_var_672_ptr;
@@ -353,7 +353,7 @@ void string_operation_with_guard(longlong param_1,longlong param_2,longlong para
                     // WARNING: Subroutine does not return
     memcpy(buffer_ptr,*(longlong *)(param_1 + 8),substr_ptr - *(longlong *)(param_1 + 8));
   }
-  debug_ptr = &unknown_var_720_ptr;
+  debug_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(stack_hash ^ (ulonglong)auStack_a8);
 }
@@ -365,7 +365,7 @@ void string_operation_with_guard(longlong param_1,longlong param_2,longlong para
 uint64_t * free_small_memory_block(uint64_t *mem_ptr,ulonglong flags)
 
 {
-  *mem_ptr = &unknown_var_720_ptr;
+  *mem_ptr = &system_state_ptr;
   if ((flags & 1) != 0) {
     free(mem_ptr,0x18);
   }
@@ -427,8 +427,8 @@ void reset_pointers(uint64_t *ptr_array)
 
 {
   *ptr_array = &unknown_var_1000_ptr;
-  *ptr_array = &unknown_var_3696_ptr;
-  *ptr_array = &unknown_var_3552_ptr;
+  *ptr_array = &system_handler2_ptr;
+  *ptr_array = &system_handler1_ptr;
   return;
 }
 
@@ -441,8 +441,8 @@ reset_pointers_with_free(uint64_t *ptr_array,ulonglong flags,uint64_t param_3,ui
 
 {
   *ptr_array = &unknown_var_1000_ptr;
-  *ptr_array = &unknown_var_3696_ptr;
-  *ptr_array = &unknown_var_3552_ptr;
+  *ptr_array = &system_handler2_ptr;
+  *ptr_array = &system_handler1_ptr;
   if ((flags & 1) != 0) {
     free(ptr_array,0x20,param_3,param_4,0xfffffffffffffffe);
   }
@@ -486,14 +486,14 @@ void cleanup_linked_list(longlong *list_ptr)
   
   end_node = (uint64_t *)list_ptr[1];
   for (current_node = (uint64_t *)*list_ptr; current_node != end_node; current_node = current_node + 5) {
-    *current_node = &unknown_var_3456_ptr;
+    *current_node = &system_data_buffer_ptr;
     if (current_node[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     current_node[1] = 0;
     *(int32_t *)(current_node + 3) = 0;
-    *current_node = &unknown_var_720_ptr;
+    *current_node = &system_state_ptr;
   }
   if (*list_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -597,7 +597,7 @@ int insert_into_dynamic_array(longlong array_ptr,longlong element_ptr)
   
   uStack_38 = 0xfffffffffffffffe;
   new_memory = 0;
-  element_list = (uint64_t *)&unknown_var_3456_ptr;
+  element_list = (uint64_t *)&system_data_buffer_ptr;
   uStack_120 = 0;
   cleanup_flag = 0;
   uStack_128 = 0;
@@ -681,7 +681,7 @@ LAB_RETURN_INDEX:
   temp_ptr = &cleanup_stack;
   FUN_180049fd0(&cleanup_stack,uStack_58);
   temp_ptr = (uint64_t ***)&element_list;
-  element_list = (uint64_t *)&unknown_var_3456_ptr;
+  element_list = (uint64_t *)&system_data_buffer_ptr;
   if (cleanup_flag == 0) {
     return index;
   }
@@ -699,14 +699,14 @@ void cleanup_single_block(uint64_t *block_ptr,uint64_t param_2,uint64_t param_3,
 
 {
   FUN_180049fd0(block_ptr + 0x1a,block_ptr[0x1c],param_3,param_4,0xfffffffffffffffe);
-  *block_ptr = &unknown_var_3456_ptr;
+  *block_ptr = &system_data_buffer_ptr;
   if (block_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   block_ptr[1] = 0;
   *(int32_t *)(block_ptr + 3) = 0;
-  *block_ptr = &unknown_var_720_ptr;
+  *block_ptr = &system_state_ptr;
   return;
 }
 
@@ -825,14 +825,14 @@ void initialize_system_components(longlong *system_ptr,uint64_t *config_ptr)
   (**(code **)(*new_system + 0x38))(new_system);
   core_system_control_pointer = (longlong)*(int *)(system_main_module_state + 0x224);
   FUN_180627be0(&system_memory_52c0,config_ptr);
-  *config_ptr = &unknown_var_3456_ptr;
+  *config_ptr = &system_data_buffer_ptr;
   if (config_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   config_ptr[1] = 0;
   *(int32_t *)(config_ptr + 3) = 0;
-  *config_ptr = &unknown_var_720_ptr;
+  *config_ptr = &system_state_ptr;
   return;
 }
 
@@ -955,14 +955,14 @@ void initialize_game_engine(void)
   string_size = 0x18;
   strcpy_s(temp_string,0x40,&unknown_var_2296_ptr);
   FUN_180097d40(core_system_data_pointer,&temp_ptr6,&context_ptr);
-  temp_ptr6 = &unknown_var_720_ptr;
+  temp_ptr6 = &system_state_ptr;
   temp_ptr7 = &unknown_var_3480_ptr;
   temp_buffer2 = temp_string2;
   temp_string2[0] = 0;
   temp_size2 = 0xb;
   strcpy_s(temp_string2,0x40,&unknown_var_2256_ptr);
   FUN_180097d40(core_system_data_pointer,&temp_ptr7,&context_ptr);
-  temp_ptr7 = &unknown_var_720_ptr;
+  temp_ptr7 = &system_state_ptr;
   temp_ptr8 = &unknown_var_3480_ptr;
   temp_buffer3 = temp_string3;
   temp_string3[0] = 0;
@@ -970,7 +970,7 @@ void initialize_game_engine(void)
   config_id = strcpy_s(temp_string3,0x40,&unknown_var_2296_ptr);
   core_system_control_pointer = (float)FUN_180095480(config_id,&temp_ptr8);
   core_system_control_pointer = 1.0 / core_system_control_pointer;
-  temp_ptr8 = &unknown_var_720_ptr;
+  temp_ptr8 = &system_state_ptr;
   temp_ptr9 = &unknown_var_3480_ptr;
   temp_buffer4 = temp_string4;
   temp_string4[0] = 0;
@@ -978,21 +978,21 @@ void initialize_game_engine(void)
   config_id = strcpy_s(temp_string4,0x40,&unknown_var_2256_ptr);
   core_system_control_pointer = (float)FUN_180095480(config_id,&temp_ptr9);
   core_system_control_pointer = 1.0 / core_system_control_pointer;
-  temp_ptr9 = &unknown_var_720_ptr;
+  temp_ptr9 = &system_state_ptr;
   temp_ptr10 = &unknown_var_3480_ptr;
   temp_buffer5 = temp_string5;
   temp_string5[0] = 0;
   temp_size5 = 0xb;
   config_id = strcpy_s(temp_string5,0x40,&unknown_var_2256_ptr);
   scale_x = (float)FUN_180095720(config_id,&temp_ptr10);
-  temp_ptr10 = &unknown_var_720_ptr;
+  temp_ptr10 = &system_state_ptr;
   temp_ptr11 = &unknown_var_3480_ptr;
   temp_buffer6 = config_buffer;
   config_buffer[0] = 0;
   temp_size6 = 0x18;
   config_id = strcpy_s(config_buffer,0x40,&unknown_var_2296_ptr);
   scale_y = (float)FUN_180095720(config_id,&temp_ptr11);
-  temp_ptr11 = &unknown_var_720_ptr;
+  temp_ptr11 = &system_state_ptr;
   timestamp = FUN_180623ce0();
   if (0 < core_system_control_pointer) {
     FUN_180629a40(&system_memory_52c0,&temp_ptr3,0,core_system_control_pointer + -1);
@@ -1025,28 +1025,28 @@ void initialize_game_engine(void)
     *(int *)(file_offset + 0xb0 + core_system_control_pointer) = (int)(longlong)core_system_control_pointer;
     *(int *)(file_offset + 200 + core_system_control_pointer) = (int)(longlong)core_system_control_pointer;
     *(double *)(file_offset + 0x20 + core_system_control_pointer) = (double)(timestamp >> 0x14);
-    temp_ptr4 = &unknown_var_3456_ptr;
+    temp_ptr4 = &system_data_buffer_ptr;
     if (temp_offset2 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_offset2 = 0;
     temp_val4 = 0;
-    temp_ptr4 = &unknown_var_720_ptr;
-    temp_ptr3 = &unknown_var_3456_ptr;
+    temp_ptr4 = &system_state_ptr;
+    temp_ptr3 = &system_data_buffer_ptr;
     if (temp_offset != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     temp_offset = 0;
     temp_val5 = 0;
-    temp_ptr3 = &unknown_var_720_ptr;
+    temp_ptr3 = &system_state_ptr;
   }
-  temp_ptr2 = &unknown_var_3456_ptr;
+  temp_ptr2 = &system_data_buffer_ptr;
   temp_val3 = 0;
   temp_val1 = 0;
   temp_val2 = 0;
-  temp_ptr1 = &unknown_var_3456_ptr;
+  temp_ptr1 = &system_data_buffer_ptr;
   temp_size = 0;
   temp_buffer = (int8_t *)0x0;
   buffer_size = 0;
@@ -1132,7 +1132,7 @@ copy_data_structure(uint64_t *dest_ptr,uint64_t *src_ptr,uint64_t param_3,uint64
 void reset_specific_pointer(longlong data_ptr)
 
 {
-  *(void **)(data_ptr + 0x10) = &unknown_var_720_ptr;
+  *(void **)(data_ptr + 0x10) = &system_state_ptr;
   return;
 }
 
@@ -1145,7 +1145,7 @@ void reset_specific_pointer(longlong data_ptr)
 void simple_pointer_reset(uint64_t *ptr)
 
 {
-  *ptr = &unknown_var_720_ptr;
+  *ptr = &system_state_ptr;
   return;
 }
 

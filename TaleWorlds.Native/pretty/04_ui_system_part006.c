@@ -518,7 +518,7 @@ void UISystem_DataStructureInitializer(longlong structure_context, uint64_t oper
     *(int8_t *)(data_length + *(longlong *)(structure_context + 0x18)) = 0;
   }
   *(int32_t *)(structure_context + 0x2c) = validation_result;
-  stack_data_buffer = &unknown_var_3456_ptr;
+  stack_data_buffer = &system_data_buffer_ptr;
   if (string_buffer_ptr != 0) {
     FUN_18064e900(string_buffer_ptr,string_buffer_ptr);
   }
@@ -546,10 +546,10 @@ uint64_t * UISystem_StringFormatter(longlong string_source)
   ulonglong char_index;
   
   formatted_string_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,MEMORY_ALLOCATION_SIZE,8,3);
-  *formatted_string_ptr = &unknown_var_720_ptr;
+  *formatted_string_ptr = &system_state_ptr;
   formatted_string_ptr[1] = 0;
   *(int32_t *)(formatted_string_ptr + 2) = 0;
-  *formatted_string_ptr = &unknown_var_3456_ptr;
+  *formatted_string_ptr = &system_data_buffer_ptr;
   formatted_string_ptr[3] = 0;
   formatted_string_ptr[1] = 0;
   *(int32_t *)(formatted_string_ptr + 2) = 0;
@@ -590,7 +590,7 @@ uint64_t *
 UISystem_StringCopier(uint64_t source_string, uint64_t *target_ptr, uint64_t operation_flag, uint64_t validation_flag)
 
 {
-  *target_ptr = &unknown_var_720_ptr;
+  *target_ptr = &system_state_ptr;
   target_ptr[1] = 0;
   *(int32_t *)(target_ptr + 2) = 0;
   *target_ptr = &unknown_var_3432_ptr;
@@ -620,7 +620,7 @@ uint64_t *
 UISystem_StringProcessor(uint64_t source_string, uint64_t *target_ptr, uint64_t operation_flag, uint64_t validation_flag)
 
 {
-  *target_ptr = &unknown_var_720_ptr;
+  *target_ptr = &system_state_ptr;
   target_ptr[1] = 0;
   *(int32_t *)(target_ptr + 2) = 0;
   *target_ptr = &unknown_var_3432_ptr;
@@ -738,7 +738,7 @@ void UISystem_DataStructureProcessor(longlong *data_context)
       data_item_ptr = data_ptr_array2;
       do {
         structure_array_ptr = memory_ptr1;
-        stack_buffer = &unknown_var_3456_ptr;
+        stack_buffer = &system_data_buffer_ptr;
         buffer_size = 0;
         string_buffer_ptr = (int8_t *)0x0;
         buffer_length = 0;
@@ -754,7 +754,7 @@ void UISystem_DataStructureProcessor(longlong *data_context)
           }
           buffer_size = buffer_size & 0xffffffff;
         }
-        data_buffer = &unknown_var_3456_ptr;
+        data_buffer = &system_data_buffer_ptr;
         data_buffer_size = 0;
         data_string_ptr = (int8_t *)0x0;
         string_data_length = 0;
@@ -815,20 +815,20 @@ LAB_180656abd:
             data_ptr_array3 = temp_data_ptr;
           }
         }
-        data_buffer = &unknown_var_3456_ptr;
+        data_buffer = &system_data_buffer_ptr;
         if (data_string_ptr != (int8_t *)0x0) {
           FUN_18064e900();
         }
         data_string_ptr = (int8_t *)0x0;
         data_buffer_size = data_buffer_size & 0xffffffff00000000;
-        data_buffer = &unknown_var_720_ptr;
-        stack_buffer = &unknown_var_3456_ptr;
+        data_buffer = &system_state_ptr;
+        stack_buffer = &system_data_buffer_ptr;
         if (string_buffer_ptr != (int8_t *)0x0) {
           FUN_18064e900();
         }
         string_buffer_ptr = (byte *)0x0;
         buffer_size = buffer_size & 0xffffffff00000000;
-        stack_buffer = &unknown_var_720_ptr;
+        stack_buffer = &system_state_ptr;
         temp_count = (int)current_offset + 1;
         current_offset = (ulonglong)temp_count;
         processed_count = processed_count + DATA_ELEMENT_SIZE;
@@ -859,7 +859,7 @@ LAB_180656abd:
       current_offset = 0;
       string_ptr1 = &system_memory_67e0;
       string_length = *data_array_ptr;
-      stack_buffer = &unknown_var_3456_ptr;
+      stack_buffer = &system_data_buffer_ptr;
       buffer_size = 0;
       string_buffer_ptr = (int8_t *)0x0;
       buffer_length = 0;
@@ -997,13 +997,13 @@ LAB_180656d07:
         }
       }
 LAB_180656e1e:
-      stack_buffer = &unknown_var_3456_ptr;
+      stack_buffer = &system_data_buffer_ptr;
       if (string_buffer_ptr != (byte *)0x0) {
         FUN_18064e900();
       }
       string_buffer_ptr = (byte *)0x0;
       buffer_size = buffer_size & 0xffffffff00000000;
-      stack_buffer = &unknown_var_720_ptr;
+      stack_buffer = &system_state_ptr;
       data_item_count = data_item_count + 1;
       data_array_ptr = data_array_ptr + 1;
     } while ((ulonglong)(longlong)data_item_count < processed_count);
@@ -1065,7 +1065,7 @@ void UISystem_ResourceManager(ulonglong *resource_context)
   security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)format_buffer;
   resource_id = 0;
   buffer_flag = 0;
-  context_ptr = &unknown_var_7512_ptr;
+  context_ptr = &system_config_ptr;
   context_array = context_buffer;
   context_buffer[0] = context_buffer[0] & 0xffffffffffffff00;
   context_size = 6;
@@ -1073,7 +1073,7 @@ void UISystem_ResourceManager(ulonglong *resource_context)
   buffer_flag = 1;
   FUN_1806279c0(&data_buffer,&context_ptr);
   buffer_flag = 0;
-  context_ptr = &unknown_var_720_ptr;
+  context_ptr = &system_state_ptr;
   resource_count = data_size + 8;
   FUN_1806277c0(&data_buffer,resource_count);
   *(uint64_t *)((ulonglong)data_size + data_length) = 0x2f73656c75646f4d;
@@ -1092,7 +1092,7 @@ void UISystem_ResourceManager(ulonglong *resource_context)
   if (resource_index != 0) {
     resource_id_ptr = (int *)(memory_ptr1 + 2);
     do {
-      context_ptr = &unknown_var_3456_ptr;
+      context_ptr = &system_data_buffer_ptr;
       context_buffer[0] = 0;
       context_array = (ulonglong *)0x0;
       context_size = 0;
@@ -1107,7 +1107,7 @@ void UISystem_ResourceManager(ulonglong *resource_context)
         }
         context_buffer[0] = context_buffer[0] & 0xffffffff;
       }
-      stack_buffer = &unknown_var_3456_ptr;
+      stack_buffer = &system_data_buffer_ptr;
       buffer_size = 0;
       string_buffer_ptr = (int8_t *)0x0;
       buffer_length = 0;
@@ -1166,20 +1166,20 @@ LAB_1806572f9:
           resource_index = data_buffer_size;
         }
       }
-      stack_buffer = &unknown_var_3456_ptr;
+      stack_buffer = &system_data_buffer_ptr;
       if (string_buffer_ptr != (int8_t *)0x0) {
         FUN_18064e900();
       }
       string_buffer_ptr = (int8_t *)0x0;
       buffer_size = buffer_size & 0xffffffff00000000;
-      stack_buffer = &unknown_var_720_ptr;
-      context_ptr = &unknown_var_3456_ptr;
+      stack_buffer = &system_state_ptr;
+      context_ptr = &system_data_buffer_ptr;
       if (context_array != (ulonglong *)0x0) {
         FUN_18064e900();
       }
       context_array = (ulonglong *)0x0;
       context_buffer[0] = context_buffer[0] & 0xffffffff00000000;
-      context_ptr = &unknown_var_720_ptr;
+      context_ptr = &system_state_ptr;
       resource_id = resource_id + 1;
       resource_id_ptr = resource_id_ptr + 8;
       resource_ptr3 = memory_ptr1;
@@ -1201,7 +1201,7 @@ LAB_1806572f9:
     memory_ptr2 = resource_ptr5;
     FUN_18064e900(resource_ptr1);
   }
-  data_buffer = &unknown_var_3456_ptr;
+  data_buffer = &system_data_buffer_ptr;
   if (data_length != 0) {
     memory_ptr1 = resource_ptr4;
     memory_ptr2 = resource_ptr5;
@@ -1209,7 +1209,7 @@ LAB_1806572f9:
   }
   data_length = 0;
   data_flag = 0;
-  data_buffer = &unknown_var_720_ptr;
+  data_buffer = &system_state_ptr;
   memory_ptr1 = resource_ptr4;
   memory_ptr2 = resource_ptr5;
   FUN_1808fc050(security_cookie ^ (ulonglong)format_buffer);
@@ -1261,7 +1261,7 @@ UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64
   else {
     memory_management_flag = *(uint64_t *)(data_array[0] + 0x40);
   }
-  stack_buffer = &unknown_var_3456_ptr;
+  stack_buffer = &system_data_buffer_ptr;
   if (string_buffer_ptr != 0) {
     FUN_18064e900();
   }
@@ -1399,13 +1399,13 @@ void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resour
     return;
   }
   FUN_180657620(&system_memory_67e0,*resource_type,operation_flag,validation_flag,0xfffffffffffffffe);
-  resource_type[4] = &unknown_var_3456_ptr;
+  resource_type[4] = &system_data_buffer_ptr;
   if (resource_type[5] != 0) {
     FUN_18064e900();
   }
   resource_type[5] = 0;
   *(int32_t *)(resource_type + 7) = 0;
-  resource_type[4] = &unknown_var_720_ptr;
+  resource_type[4] = &system_state_ptr;
   FUN_18064e900(resource_type);
 }
 

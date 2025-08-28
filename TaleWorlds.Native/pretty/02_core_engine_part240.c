@@ -101,7 +101,7 @@ LAB_180209615:
                (ulonglong)(*(longlong *)(lVar2 + 0x40) - *(longlong *)(lVar2 + 0x38) >> 4));
     }
   }
-  puStack_50 = &unknown_var_3456_ptr;
+  puStack_50 = &system_data_buffer_ptr;
   if (lStack_48 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

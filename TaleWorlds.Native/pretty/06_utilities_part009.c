@@ -939,7 +939,7 @@ uint64_t UtilitiesSystem_RenderStateManager(int64_t param_1)
                             stack_uint32_8 = 0;
                             stack_byte = 0;
                             FUN_180891cf0(&void_ptr4, *(uint64_t*)(param_1 + 0x58));
-                            void_ptr3 = &unknown_var_9776_ptr;
+                            void_ptr3 = &system_string2_ptr;
                             stack_uint32_7 = *(uint32_t*)(list_entry + 0xc + temp_offset * 0x10);
                             stack_uint32_5 = 0;
                             stack_uint32_7 = stack_uint32_7 & 0xffffff00;

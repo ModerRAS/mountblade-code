@@ -41,7 +41,7 @@ void FUN_1804f4a40(longlong param_1,uint64_t param_2,uint64_t param_3)
   
   uStackX_10._0_1_ = (char)param_2;
   _uStackX_10 = CONCAT44((int)((ulonglong)param_2 >> 0x20),(uint)((char)uStackX_10 != '\0'));
-  cVar2 = FUN_18055f260(param_3,&uStackX_10,&unknown_var_3504_ptr);
+  cVar2 = FUN_18055f260(param_3,&uStackX_10,&system_param1_ptr);
   bVar4 = uStackX_10 != 0;
   _uStackX_10 = CONCAT71(stack0x00000011,bVar4);
   uVar5 = extraout_XMM0_Da;
@@ -250,11 +250,11 @@ void FUN_1804f4ce0(longlong param_1,uint64_t param_2,uint64_t param_3)
          (cVar1 = FUN_18055f260(param_3,(longlong)&uStack_40 + 4,&system_data_bca0), cVar1 != '\0')) &&
         (cVar1 = FUN_18055f260(param_3,auStack_38,&system_data_bca0), cVar1 != '\0')))) {
       uStackX_10 = CONCAT44(uStackX_10._4_4_,(uint)((char)uStackX_10 != '\0'));
-      cVar1 = FUN_18055f260(param_3,&uStackX_10,&unknown_var_3504_ptr);
+      cVar1 = FUN_18055f260(param_3,&uStackX_10,&system_param1_ptr);
       bVar2 = (int)uStackX_10 != 0;
       if (cVar1 != '\0') {
         uStackX_10 = CONCAT44(uStackX_10._4_4_,(uint)((char)uStackX_10 != '\0'));
-        cVar1 = FUN_18055f260(param_3,&uStackX_10,&unknown_var_3504_ptr);
+        cVar1 = FUN_18055f260(param_3,&uStackX_10,&system_param1_ptr);
         if (((cVar1 != '\0') && (-1 < iStack_48)) &&
            (((iStack_48 < *(int *)(param_1 + 0x52ed94) &&
              (((-1 < *(short *)(param_1 + 0x52dda0 + (longlong)iStack_48 * 2) && (-1 < iStack_44))

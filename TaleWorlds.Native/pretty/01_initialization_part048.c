@@ -579,13 +579,13 @@ void InitializationSystem_ResourceCleaner(longlong *param_1)
     // 遍历并清理所有资源
     for (current_resource = resource_start; current_resource != resource_end; current_resource = current_resource + 6) {
         // 重置资源句柄
-        *current_resource = &unknown_var_3456_ptr;
+        *current_resource = &system_data_buffer_ptr;
         if (current_resource[1] != 0) {
             FUN_18064e900();
         }
         current_resource[1] = 0;
         *(int32_t*)(current_resource + 3) = 0;
-        *current_resource = &unknown_var_720_ptr;
+        *current_resource = &system_state_ptr;
     }
     
     // 验证资源清理完成
@@ -729,7 +729,7 @@ void InitializationSystem_ConfigManager(longlong *param_1)
     
     // 验证配置信息
     config_flag = FUN_180240430(config_handle, &data_pointer, 0);
-    data_pointer = &unknown_var_720_ptr;
+    data_pointer = &system_state_ptr;
     if (config_flag != 0) {
         resource_handle = param_1[0x37];
         if ((*(ulonglong*)(resource_handle + 0x140) & config_flag) != 0) {

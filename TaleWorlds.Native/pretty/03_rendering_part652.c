@@ -18,7 +18,7 @@ void FUN_180639bc0(longlong *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_180639bf0(longlong *param_1,ulonglong param_2)
+longlong System_BufferManager(longlong *param_1,ulonglong param_2)
 
 {
   longlong lVar1;
@@ -160,7 +160,7 @@ void FUN_180639d80(longlong *param_1,ulonglong param_2)
   
   lVar1 = param_1[1];
   if ((ulonglong)((param_1[2] - lVar1) + *param_1) <= param_2) {
-    FUN_180639bf0(param_1,param_2 + (lVar1 - *param_1));
+    System_BufferManager(param_1,param_2 + (lVar1 - *param_1));
     param_1[1] = param_1[1] + param_2;
     return;
   }
@@ -188,7 +188,7 @@ void FUN_180639de0(longlong *param_1,longlong param_2)
   puVar2 = (int32_t *)param_1[1];
   uVar3 = uVar4 & 0xffffffff;
   if ((ulonglong)((param_1[2] - (longlong)puVar2) + *param_1) <= uVar3 + 4) {
-    FUN_180639bf0(param_1,(longlong)puVar2 + ((uVar3 + 4) - *param_1));
+    System_BufferManager(param_1,(longlong)puVar2 + ((uVar3 + 4) - *param_1));
     puVar2 = (int32_t *)param_1[1];
   }
   *puVar2 = (int)uVar4;
@@ -216,8 +216,8 @@ void FUN_180639de0(longlong *param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180639ec0(longlong *param_1,longlong param_2)
-void FUN_180639ec0(longlong *param_1,longlong param_2)
+// 函数: void System_QueueProcessor(longlong *param_1,longlong param_2)
+void System_QueueProcessor(longlong *param_1,longlong param_2)
 
 {
   ulonglong uVar1;
@@ -230,7 +230,7 @@ void FUN_180639ec0(longlong *param_1,longlong param_2)
   puVar4 = (uint *)param_1[1];
   uVar1 = (ulonglong)uVar2 + 4;
   if ((ulonglong)((param_1[2] - (longlong)puVar4) + *param_1) <= uVar1) {
-    FUN_180639bf0(param_1,(longlong)puVar4 + (uVar1 - *param_1));
+    System_BufferManager(param_1,(longlong)puVar4 + (uVar1 - *param_1));
     puVar4 = (uint *)param_1[1];
   }
   *puVar4 = uVar2;
@@ -256,7 +256,7 @@ void FUN_180639f50(longlong *param_1,int32_t *param_2)
   
   puVar1 = (int32_t *)param_1[1];
   if ((ulonglong)((param_1[2] - (longlong)puVar1) + *param_1) < 0x11) {
-    FUN_180639bf0(param_1,(longlong)puVar1 + (0x10 - *param_1));
+    System_BufferManager(param_1,(longlong)puVar1 + (0x10 - *param_1));
     puVar1 = (int32_t *)param_1[1];
   }
   *puVar1 = *param_2;
@@ -282,7 +282,7 @@ void FUN_180639fd0(longlong *param_1,int32_t *param_2)
   
   puVar1 = (int32_t *)param_1[1];
   if ((ulonglong)((param_1[2] - (longlong)puVar1) + *param_1) < 0x11) {
-    FUN_180639bf0(param_1,(longlong)puVar1 + (0x10 - *param_1));
+    System_BufferManager(param_1,(longlong)puVar1 + (0x10 - *param_1));
     puVar1 = (int32_t *)param_1[1];
   }
   *puVar1 = *param_2;
@@ -312,13 +312,13 @@ void FUN_18063a050(longlong *param_1,int32_t *param_2)
   puVar1 = (int32_t *)param_1[1];
   lVar2 = *param_1;
   if ((ulonglong)((lVar2 - (longlong)puVar1) + lVar3) < 0x21) {
-    FUN_180639bf0(param_1,(longlong)puVar1 + (0x20 - lVar2));
+    System_BufferManager(param_1,(longlong)puVar1 + (0x20 - lVar2));
     puVar1 = (int32_t *)param_1[1];
     lVar3 = param_1[2];
     lVar2 = *param_1;
   }
   if ((ulonglong)((lVar2 - (longlong)puVar1) + lVar3) < 0x11) {
-    FUN_180639bf0(param_1,(longlong)puVar1 + (0x10 - lVar2));
+    System_BufferManager(param_1,(longlong)puVar1 + (0x10 - lVar2));
     puVar1 = (int32_t *)param_1[1];
   }
   *puVar1 = *param_2;
@@ -331,7 +331,7 @@ void FUN_18063a050(longlong *param_1,int32_t *param_2)
   param_1[1] = param_1[1] + 4;
   puVar1 = (int32_t *)param_1[1];
   if ((ulonglong)((param_1[2] - (longlong)puVar1) + *param_1) < 0x11) {
-    FUN_180639bf0(param_1,(longlong)puVar1 + (0x10 - *param_1));
+    System_BufferManager(param_1,(longlong)puVar1 + (0x10 - *param_1));
     puVar1 = (int32_t *)param_1[1];
   }
   *puVar1 = param_2[4];
@@ -357,14 +357,14 @@ void FUN_18063a110(longlong *param_1,longlong param_2,uint64_t param_3,uint64_t 
   uint64_t unaff_RDI;
   
   if ((ulonglong)((param_1[2] - param_1[1]) + *param_1) < 0x41) {
-    FUN_180639bf0(param_1,(param_1[1] - *param_1) + 0x40);
+    System_BufferManager(param_1,(param_1[1] - *param_1) + 0x40);
   }
   FUN_180639fd0(param_1,param_2);
   FUN_180639fd0(param_1,param_2 + 0x10);
   FUN_180639fd0(param_1,param_2 + 0x20);
   puVar1 = (int32_t *)param_1[1];
   if ((ulonglong)((param_1[2] - (longlong)puVar1) + *param_1) < 0x11) {
-    FUN_180639bf0(param_1,(longlong)puVar1 + (0x10 - *param_1),param_3,param_4,unaff_RDI);
+    System_BufferManager(param_1,(longlong)puVar1 + (0x10 - *param_1),param_3,param_4,unaff_RDI);
     puVar1 = (int32_t *)param_1[1];
   }
   *puVar1 = *(int32_t *)(param_2 + 0x30);
@@ -390,7 +390,7 @@ void FUN_18063a180(longlong *param_1,uint64_t param_2,ulonglong param_3)
   
   lVar1 = param_1[1];
   if ((ulonglong)((param_1[2] - lVar1) + *param_1) <= param_3) {
-    FUN_180639bf0(param_1,param_3 + (lVar1 - *param_1));
+    System_BufferManager(param_1,param_3 + (lVar1 - *param_1));
     lVar1 = param_1[1];
   }
                     // WARNING: Subroutine does not return

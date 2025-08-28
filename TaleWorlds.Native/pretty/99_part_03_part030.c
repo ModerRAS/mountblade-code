@@ -235,10 +235,10 @@ LAB_1801e8fdf:
         lVar4 = (longlong)puVar2 - (longlong)puVar3;
         puVar3 = puVar3 + 1;
         do {
-            *puVar5 = &unknown_var_720_ptr;
+            *puVar5 = &system_state_ptr;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *puVar5 = &unknown_var_3456_ptr;
+            *puVar5 = &system_data_buffer_ptr;
             *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
@@ -261,13 +261,13 @@ LAB_1801e8fdf:
     puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
-            *puVar3 = &unknown_var_3456_ptr;
+            *puVar3 = &system_data_buffer_ptr;
             if (puVar3[1] != 0) {
                 FUN_18064e900();
             }
             puVar3[1] = 0;
             *(int32_t *)(puVar3 + 3) = 0;
-            *puVar3 = &unknown_var_720_ptr;
+            *puVar3 = &system_state_ptr;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
         puVar3 = (uint64_t *)*param_1;
@@ -327,10 +327,10 @@ LAB_1801e91cf:
         lVar4 = (longlong)puVar2 - (longlong)puVar3;
         puVar3 = puVar3 + 1;
         do {
-            *puVar5 = &unknown_var_720_ptr;
+            *puVar5 = &system_state_ptr;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *puVar5 = &unknown_var_3456_ptr;
+            *puVar5 = &system_data_buffer_ptr;
             *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
@@ -353,13 +353,13 @@ LAB_1801e91cf:
     puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
-            *puVar3 = &unknown_var_3456_ptr;
+            *puVar3 = &system_data_buffer_ptr;
             if (puVar3[1] != 0) {
                 FUN_18064e900();
             }
             puVar3[1] = 0;
             *(int32_t *)(puVar3 + 3) = 0;
-            *puVar3 = &unknown_var_720_ptr;
+            *puVar3 = &system_state_ptr;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
         puVar3 = (uint64_t *)*param_1;
@@ -419,10 +419,10 @@ LAB_1801e93bf:
         lVar4 = (longlong)puVar2 - (longlong)puVar3;
         puVar3 = puVar3 + 1;
         do {
-            *puVar5 = &unknown_var_720_ptr;
+            *puVar5 = &system_state_ptr;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *puVar5 = &unknown_var_3456_ptr;
+            *puVar5 = &system_data_buffer_ptr;
             *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
@@ -445,13 +445,13 @@ LAB_1801e93bf:
     puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
-            *puVar3 = &unknown_var_3456_ptr;
+            *puVar3 = &system_data_buffer_ptr;
             if (puVar3[1] != 0) {
                 FUN_18064e900();
             }
             puVar3[1] = 0;
             *(int32_t *)(puVar3 + 3) = 0;
-            *puVar3 = &unknown_var_720_ptr;
+            *puVar3 = &system_state_ptr;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
         puVar3 = (uint64_t *)*param_1;
@@ -511,10 +511,10 @@ LAB_1801e95af:
         lVar4 = (longlong)puVar2 - (longlong)puVar3;
         puVar3 = puVar3 + 1;
         do {
-            *puVar5 = &unknown_var_720_ptr;
+            *puVar5 = &system_state_ptr;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *puVar5 = &unknown_var_3456_ptr;
+            *puVar5 = &system_data_buffer_ptr;
             *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
@@ -537,13 +537,13 @@ LAB_1801e95af:
     puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
-            *puVar3 = &unknown_var_3456_ptr;
+            *puVar3 = &system_data_buffer_ptr;
             if (puVar3[1] != 0) {
                 FUN_18064e900();
             }
             puVar3[1] = 0;
             *(int32_t *)(puVar3 + 3) = 0;
-            *puVar3 = &unknown_var_720_ptr;
+            *puVar3 = &system_state_ptr;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
         puVar3 = (uint64_t *)*param_1;
@@ -603,10 +603,10 @@ LAB_1801e979f:
         lVar4 = (longlong)puVar2 - (longlong)puVar3;
         puVar3 = puVar3 + 1;
         do {
-            *puVar5 = &unknown_var_720_ptr;
+            *puVar5 = &system_state_ptr;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *puVar5 = &unknown_var_3456_ptr;
+            *puVar5 = &system_data_buffer_ptr;
             *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
@@ -629,13 +629,13 @@ LAB_1801e979f:
     puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
-            *puVar3 = &unknown_var_3456_ptr;
+            *puVar3 = &system_data_buffer_ptr;
             if (puVar3[1] != 0) {
                 FUN_18064e900();
             }
             puVar3[1] = 0;
             *(int32_t *)(puVar3 + 3) = 0;
-            *puVar3 = &unknown_var_720_ptr;
+            *puVar3 = &system_state_ptr;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
         puVar3 = (uint64_t *)*param_1;
@@ -695,10 +695,10 @@ LAB_1801e998f:
         lVar4 = (longlong)puVar2 - (longlong)puVar3;
         puVar3 = puVar3 + 1;
         do {
-            *puVar5 = &unknown_var_720_ptr;
+            *puVar5 = &system_state_ptr;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *puVar5 = &unknown_var_3456_ptr;
+            *puVar5 = &system_data_buffer_ptr;
             *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
@@ -721,13 +721,13 @@ LAB_1801e998f:
     puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
-            *puVar3 = &unknown_var_3456_ptr;
+            *puVar3 = &system_data_buffer_ptr;
             if (puVar3[1] != 0) {
                 FUN_18064e900();
             }
             puVar3[1] = 0;
             *(int32_t *)(puVar3 + 3) = 0;
-            *puVar3 = &unknown_var_720_ptr;
+            *puVar3 = &system_state_ptr;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
         puVar3 = (uint64_t *)*param_1;
@@ -787,10 +787,10 @@ LAB_1801e9b7f:
         lVar4 = (longlong)puVar2 - (longlong)puVar3;
         puVar3 = puVar3 + 1;
         do {
-            *puVar5 = &unknown_var_720_ptr;
+            *puVar5 = &system_state_ptr;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *puVar5 = &unknown_var_3456_ptr;
+            *puVar5 = &system_data_buffer_ptr;
             *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
             *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
             *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
@@ -813,13 +813,13 @@ LAB_1801e9b7f:
     puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
-            *puVar3 = &unknown_var_3456_ptr;
+            *puVar3 = &system_data_buffer_ptr;
             if (puVar3[1] != 0) {
                 FUN_18064e900();
             }
             puVar3[1] = 0;
             *(int32_t *)(puVar3 + 3) = 0;
-            *puVar3 = &unknown_var_720_ptr;
+            *puVar3 = &system_state_ptr;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
         puVar3 = (uint64_t *)*param_1;

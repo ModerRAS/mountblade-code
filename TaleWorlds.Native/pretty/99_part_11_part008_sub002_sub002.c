@@ -808,7 +808,7 @@ longlong FUN_1806db910(float *param_1,float *param_2,uint64_t param_3,int32_t *p
             uVar7 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
             puVar45 = &unknown_var_2320_ptr;
             _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                      (uVar7,8,&unknown_var_2240_ptr,0x3eb,&unknown_var_2320_ptr);
+                      (uVar7,8,&system_callback1_ptr,0x3eb,&unknown_var_2320_ptr);
           }
         }
         else if (*(char *)((longlong)param_5 + 0x1df) == '\0') {
@@ -988,7 +988,7 @@ LAB_1806dd86a:
             uVar7 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
             puVar45 = &unknown_var_2320_ptr;
             _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                      (uVar7,8,&unknown_var_2240_ptr,0x3fb,&unknown_var_2320_ptr);
+                      (uVar7,8,&system_callback1_ptr,0x3fb,&unknown_var_2320_ptr);
           }
         }
         else if (*(char *)((longlong)param_5 + 0x1df) == '\0') {

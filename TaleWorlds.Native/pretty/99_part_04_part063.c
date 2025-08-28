@@ -175,10 +175,10 @@ FUN_1802bf680(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[0xc] = 0;
   param_1[0xd] = 0;
   *(int32_t *)(param_1 + 0xe) = 0x1b;
-  param_1[0x10] = &unknown_var_720_ptr;
+  param_1[0x10] = &system_state_ptr;
   param_1[0x11] = 0;
   *(int32_t *)(param_1 + 0x12) = 0;
-  param_1[0x10] = &unknown_var_3456_ptr;
+  param_1[0x10] = &system_data_buffer_ptr;
   param_1[0x13] = 0;
   param_1[0x11] = 0;
   *(int32_t *)(param_1 + 0x12) = 0;
@@ -215,7 +215,7 @@ FUN_1802bf680(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *(int32_t *)((longlong)param_1 + 0xe4) = 0;
   *(int32_t *)(param_1 + 0x1d) = 0;
   *(int32_t *)((longlong)param_1 + 0xec) = 0x3f800000;
-  FUN_18005c830(param_1 + 10,0,&unknown_var_3456_ptr,param_4,0xfffffffffffffffe);
+  FUN_18005c830(param_1 + 10,0,&system_data_buffer_ptr,param_4,0xfffffffffffffffe);
   *(int8_t *)(param_1 + 0xf) = 0;
   *(int32_t *)(param_1 + 1) = 0;
   return param_1;

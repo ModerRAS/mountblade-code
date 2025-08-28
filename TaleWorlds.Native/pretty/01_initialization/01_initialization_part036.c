@@ -113,7 +113,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
       // 创建新的文件表项
       create_file_table_entry(engine_context + 0x330, hash_params, file_count, file_params);
       *(uint64_t *)(hash_params[0] + 0x118) = 0;
-      temp_ptr1 = &unknown_var_720_ptr;
+      temp_ptr1 = &system_state_ptr;
       
       // 触发安全检查
       security_check_failed(security_cookie ^ (ulonglong)stack_buffer);
@@ -908,7 +908,7 @@ initialize_file_read_context(uint64_t *file_context, longlong file_info, uint64_
   void *file_path;
   
   // 初始化基本字段
-  *file_context = &unknown_var_720_ptr;  // 设置默认路径
+  *file_context = &system_state_ptr;  // 设置默认路径
   file_context[1] = 0;               // 清理偏移量
   *(int32_t *)(file_context + 2) = 0;  // 清理大小
   
@@ -940,7 +940,7 @@ uint64_t * initialize_memory_manager(uint64_t *memory_manager)
 
 {
   // 初始化基本字段
-  *memory_manager = &unknown_var_720_ptr;  // 设置默认值
+  *memory_manager = &system_state_ptr;  // 设置默认值
   memory_manager[1] = 0;               // 清理计数器
   *(int32_t *)(memory_manager + 2) = 0;  // 清理标志
   
@@ -1010,7 +1010,7 @@ longlong release_file_info(longlong file_info, ulonglong release_flags, uint64_t
 
 {
   // 设置默认文件路径
-  *(void **)(file_info + 8) = &unknown_var_720_ptr;
+  *(void **)(file_info + 8) = &system_state_ptr;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {
@@ -1033,7 +1033,7 @@ release_memory_block(uint64_t *memory_block, ulonglong release_flags, uint64_t p
 
 {
   // 设置默认值
-  *memory_block = &unknown_var_720_ptr;
+  *memory_block = &system_state_ptr;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {
@@ -1152,7 +1152,7 @@ void string_search_and_replace(longlong target_string, longlong search_string, l
     memcpy(result_buffer, *(longlong *)(target_string + 8), search_pos - *(longlong *)(target_string + 8));
   }
   
-  temp_ptr = &unknown_var_720_ptr;
+  temp_ptr = &system_state_ptr;
   // WARNING: 子函数不返回
   // 执行安全检查
   perform_security_check(security_cookie ^ (ulonglong)stack_buffer);
@@ -1213,7 +1213,7 @@ longlong release_file_table_entry(longlong file_entry, ulonglong release_flags, 
 
 {
   // 设置默认文件路径
-  *(void **)(file_entry + 8) = &unknown_var_720_ptr;
+  *(void **)(file_entry + 8) = &system_state_ptr;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {
@@ -1236,7 +1236,7 @@ void FUN_180069530(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   if ((code *)param_1[0x2b] != (code *)0x0) {
     (*(code *)param_1[0x2b])(param_1 + 0x29,0,0);
   }
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   return;
 }
 
@@ -1251,7 +1251,7 @@ void reset_file_info(longlong file_info)
 
 {
   // 设置默认文件路径
-  *(void **)(file_info + 8) = &unknown_var_720_ptr;
+  *(void **)(file_info + 8) = &system_state_ptr;
   return;
 }
 
@@ -1270,8 +1270,8 @@ release_memory_manager(uint64_t *memory_manager, ulonglong release_flags, uint64
 {
   // 重置内存管理器的各个字段
   *memory_manager = &unknown_var_1000_ptr;
-  *memory_manager = &unknown_var_3696_ptr;
-  *memory_manager = &unknown_var_3552_ptr;
+  *memory_manager = &system_handler2_ptr;
+  *memory_manager = &system_handler1_ptr;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {

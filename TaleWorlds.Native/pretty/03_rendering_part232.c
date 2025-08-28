@@ -58,7 +58,7 @@ void FUN_18039a420(longlong param_1,longlong param_2)
   }
   puVar14 = (uint64_t *)0x0;
 LAB_18039a4b5:
-  puStack_58 = &unknown_var_3456_ptr;
+  puStack_58 = &system_data_buffer_ptr;
   uStack_40 = 0;
   lStack_50 = 0;
   iStack_48 = 0;
@@ -71,7 +71,7 @@ LAB_18039a4b5:
   do {
     if (puVar14 == (uint64_t *)0x0) {
 LAB_18039b34d:
-      puStack_58 = &unknown_var_3456_ptr;
+      puStack_58 = &system_data_buffer_ptr;
       if (lStack_50 == 0) {
         return;
       }

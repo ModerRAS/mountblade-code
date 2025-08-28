@@ -107,7 +107,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
     // 创建材质资源
     FUN_1800b30d0(resource_handle, &stack_texture_ptr, &stack_render_ptr, 1);
     stack_counter = 1;
-    stack_render_ptr = &unknown_var_720_ptr;
+    stack_render_ptr = &system_state_ptr;
     material_id = FUN_18022cb40(stack_texture_ptr, &stack_shader_ptr);
     texture_count = 0;
     stack_counter = 0;
@@ -243,13 +243,13 @@ void initialize_rendering_manager(uint64_t *render_manager)
                 (**(code **)(*stack_buffer_ptr + 0x38))();
             }
             
-            stack_data_ptr = &unknown_var_3456_ptr;
+            stack_data_ptr = &system_data_buffer_ptr;
             if (stack_data_size != 0) {
                 FUN_18064e900();
             }
             stack_data_size = 0;
             stack_param2 = 0;
-            stack_data_ptr = &unknown_var_720_ptr;
+            stack_data_ptr = &system_state_ptr;
             stack_index = texture_index + 1;
             texture_count = stack_counter;
         } while (stack_index < (int)shader_list);
@@ -286,7 +286,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
     strcpy_s(stack_array, 0x40, &unknown_var_9928_ptr);
     FUN_1800b30d0(resource_handle, &stack_buffer_ptr, &stack_material_ptr2, 1);
     stack_counter = texture_count & 0xffffffef | 8;
-    stack_material_ptr2 = &unknown_var_720_ptr;
+    stack_material_ptr2 = &system_state_ptr;
     texture_ptr = (uint64_t *)FUN_18022cb40(stack_buffer_ptr, &stack_index);
     buffer_ptr = (longlong *)*texture_ptr;
     *texture_ptr = 0;
@@ -808,10 +808,10 @@ initialize_rendering_pipeline(uint64_t pipeline_param, uint64_t *pipeline_data, 
     uint64_t *pipeline_ptr;
     
     // 初始化管线数据
-    *pipeline_data = &unknown_var_720_ptr;
+    *pipeline_data = &system_state_ptr;
     pipeline_data[1] = 0;
     *(int32_t *)(pipeline_data + 2) = 0;
-    *pipeline_data = &unknown_var_3456_ptr;
+    *pipeline_data = &system_data_buffer_ptr;
     pipeline_data[3] = 0;
     pipeline_data[1] = 0;
     *(int32_t *)(pipeline_data + 2) = 0;

@@ -429,7 +429,7 @@ void FUN_1800b8090(longlong *param_1)
   if (plStack_148 != (longlong *)0x0) {
     (**(code **)(*plStack_148 + 0x38))();
   }
-  puStack_e8 = &unknown_var_720_ptr;
+  puStack_e8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
 }
@@ -464,7 +464,7 @@ FUN_1800b8300(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
 {
   void *puVar1;
   
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
   *param_1 = &unknown_var_3480_ptr;
@@ -528,7 +528,7 @@ LAB_1800b8417:
   if (uVar8 != uVar6) {
     lVar9 = uVar8 - (longlong)puVar3;
     do {
-      *puVar4 = &unknown_var_720_ptr;
+      *puVar4 = &system_state_ptr;
       puVar4[1] = 0;
       *(int32_t *)(puVar4 + 2) = 0;
       *puVar4 = &unknown_var_3480_ptr;

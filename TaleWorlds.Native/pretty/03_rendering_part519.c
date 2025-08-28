@@ -629,7 +629,7 @@ void FUN_180549be0(longlong param_1,longlong *param_2)
   puVar2 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0xb0);
   if ((ulonglong)((param_2[2] - (longlong)puVar2) + *param_2) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
+    System_BufferManager(param_2,(longlong)puVar2 + (4 - *param_2));
     puVar2 = (int32_t *)param_2[1];
   }
   *puVar2 = uVar1;
@@ -639,14 +639,14 @@ void FUN_180549be0(longlong param_1,longlong *param_2)
   puVar2 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0x128);
   if ((ulonglong)((param_2[2] - (longlong)puVar2) + *param_2) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
+    System_BufferManager(param_2,(longlong)puVar2 + (4 - *param_2));
     puVar2 = (int32_t *)param_2[1];
   }
   *puVar2 = uVar1;
   param_2[1] = param_2[1] + 4;
   lVar3 = param_2[1];
   if ((ulonglong)((param_2[2] - lVar3) + *param_2) < 0x569) {
-    FUN_180639bf0(param_2,(lVar3 - *param_2) + 0x568);
+    System_BufferManager(param_2,(lVar3 - *param_2) + 0x568);
     lVar3 = param_2[1];
   }
                     // WARNING: Subroutine does not return
@@ -883,10 +883,10 @@ FUN_18054a280(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
 {
   uint64_t *puVar1;
   
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;

@@ -516,8 +516,8 @@ void FUN_18035d260(uint64_t param_1)
   FUN_180180730(param_1, appuStack_e8, apuStack_78);
   uStack_f8 = 0;
   appuStack_e8[0] = apuStack_78;
-  apuStack_78[0] = &unknown_var_720_ptr;
-  puStack_d8 = &unknown_var_720_ptr;
+  apuStack_78[0] = &system_state_ptr;
+  puStack_d8 = &system_state_ptr;
   
   // 栈保护检查和退出
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_118);
@@ -772,17 +772,17 @@ void FUN_18035d3f0(uint64_t *param_1)
   
   // 初始化渲染组件指针
   puVar1 = puVar3 + 0xf;
-  *puVar1 = &unknown_var_720_ptr;
+  *puVar1 = &system_state_ptr;
   puVar3[0x10] = 0;
   *(int32_t *)(puVar3 + 0x11) = 0;
-  *puVar1 = &unknown_var_3456_ptr;
+  *puVar1 = &system_data_buffer_ptr;
   puVar3[0x12] = 0;
   puVar3[0x10] = 0;
   *(int32_t *)(puVar3 + 0x11) = 0;
-  puVar3[0x13] = &unknown_var_720_ptr;
+  puVar3[0x13] = &system_state_ptr;
   puVar3[0x14] = 0;
   *(int32_t *)(puVar3 + 0x15) = 0;
-  puVar3[0x13] = &unknown_var_3456_ptr;
+  puVar3[0x13] = &system_data_buffer_ptr;
   puVar3[0x16] = 0;
   puVar3[0x14] = 0;
   *(int32_t *)(puVar3 + 0x15) = 0;
@@ -791,7 +791,7 @@ void FUN_18035d3f0(uint64_t *param_1)
   *(int32_t *)(puVar3 + 0x18) = 0;
   
   // 初始化字符串处理
-  puStack_80 = &unknown_var_3456_ptr;
+  puStack_80 = &system_data_buffer_ptr;
   uStack_68 = 0;
   puStack_78 = (uint64_t *)0x0;
   uStack_70 = 0;
@@ -811,7 +811,7 @@ void FUN_18035d3f0(uint64_t *param_1)
   
   // 执行渲染初始化
   FUN_1803460a0(param_1, &puStack_80, puVar1, 0, uVar4);
-  puStack_80 = &unknown_var_3456_ptr;
+  puStack_80 = &system_data_buffer_ptr;
   
   // 清理字符串资源
   FUN_18064e900(puVar3);
@@ -849,22 +849,22 @@ uint64_t *FUN_18035d5e0(uint64_t *param_1, uint param_2, uint64_t param_3, uint6
   }
   
   // 清理材质资源
-  param_1[0x13] = &unknown_var_3456_ptr;
+  param_1[0x13] = &system_data_buffer_ptr;
   if (param_1[0x14] != 0) {
     FUN_18064e900();
   }
   param_1[0x14] = 0;
   *(int32_t *)(param_1 + 0x16) = 0;
-  param_1[0x13] = &unknown_var_720_ptr;
+  param_1[0x13] = &system_state_ptr;
   
   // 清理纹理资源
-  param_1[0xf] = &unknown_var_3456_ptr;
+  param_1[0xf] = &system_data_buffer_ptr;
   if (param_1[0x10] != 0) {
     FUN_18064e900();
   }
   param_1[0x10] = 0;
   *(int32_t *)(param_1 + 0x12) = 0;
-  param_1[0xf] = &unknown_var_720_ptr;
+  param_1[0xf] = &system_state_ptr;
   
   // 执行最终清理
   FUN_1803457d0(param_1);
@@ -902,17 +902,17 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   
   // 初始化渲染组件指针
   puVar1 = puVar3 + 0xf;
-  *puVar1 = &unknown_var_720_ptr;
+  *puVar1 = &system_state_ptr;
   puVar3[0x10] = 0;
   *(int32_t *)(puVar3 + 0x11) = 0;
-  *puVar1 = &unknown_var_3456_ptr;
+  *puVar1 = &system_data_buffer_ptr;
   puVar3[0x12] = 0;
   puVar3[0x10] = 0;
   *(int32_t *)(puVar3 + 0x11) = 0;
-  puVar3[0x13] = &unknown_var_720_ptr;
+  puVar3[0x13] = &system_state_ptr;
   puVar3[0x14] = 0;
   *(int32_t *)(puVar3 + 0x15) = 0;
-  puVar3[0x13] = &unknown_var_3456_ptr;
+  puVar3[0x13] = &system_data_buffer_ptr;
   puVar3[0x16] = 0;
   puVar3[0x14] = 0;
   *(int32_t *)(puVar3 + 0x15) = 0;
@@ -921,7 +921,7 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   *(int32_t *)(puVar3 + 0x18) = 0;
   
   // 初始化字符串处理
-  puStack_80 = &unknown_var_3456_ptr;
+  puStack_80 = &system_data_buffer_ptr;
   uStack_68 = 0;
   puStack_78 = (uint64_t *)0x0;
   uStack_70 = 0;
@@ -941,7 +941,7 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   
   // 执行渲染初始化
   FUN_1803460a0(puVar4, &puStack_80, puVar1, 0, uVar5);
-  puStack_80 = &unknown_var_3456_ptr;
+  puStack_80 = &system_data_buffer_ptr;
   
   // 清理字符串资源
   FUN_18064e900(puVar3);
@@ -991,8 +991,8 @@ void FUN_18035d760(uint64_t param_1)
   // 执行配置处理
   FUN_180180730(param_1, appuStack_160, apuStack_88);
   uStack_168 = 0;
-  apuStack_88[0] = &unknown_var_720_ptr;
-  puStack_148 = &unknown_var_720_ptr;
+  apuStack_88[0] = &system_state_ptr;
+  puStack_148 = &system_state_ptr;
   
   // 处理第二组配置
   puStack_e8 = &unknown_var_3480_ptr;
@@ -1012,8 +1012,8 @@ void FUN_18035d760(uint64_t param_1)
   // 执行第二组配置处理
   FUN_180180730(param_1, appuStack_160, apuStack_88);
   uStack_168 = 0;
-  apuStack_88[0] = &unknown_var_720_ptr;
-  puStack_e8 = &unknown_var_720_ptr;
+  apuStack_88[0] = &system_state_ptr;
+  puStack_e8 = &system_state_ptr;
   appuStack_160[0] = apuStack_88;
   
   // 栈保护检查和退出
@@ -1162,7 +1162,7 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     } while (lVar3 + 1 != 6);
     
     // 初始化参数处理
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     uStack_48 = 0;
     puStack_58 = (int32_t *)0x0;
     uStack_50 = 0;
@@ -1183,7 +1183,7 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     
     // 执行参数处理
     FUN_180066df0(param_3, &puStack_60);
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     
     // 清理参数资源
     if (puStack_58 != (int32_t *)0x0) {
@@ -1191,8 +1191,8 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     }
     puStack_58 = (int32_t *)0x0;
     uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
-    puStack_60 = &unknown_var_720_ptr;
-    puStack_40 = &unknown_var_3456_ptr;
+    puStack_60 = &system_state_ptr;
+    puStack_40 = &system_data_buffer_ptr;
     uStack_28 = 0;
     puStack_38 = (int32_t *)0x0;
     uStack_30 = 0;
@@ -1210,7 +1210,7 @@ void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
     
     // 执行第二组参数处理
     FUN_180066df0(param_3, &puStack_40);
-    puStack_40 = &unknown_var_3456_ptr;
+    puStack_40 = &system_data_buffer_ptr;
     
     // 清理第二组参数资源
     if (puStack_38 != (int32_t *)0x0) {

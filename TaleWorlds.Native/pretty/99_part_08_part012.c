@@ -455,7 +455,7 @@ uint64_t FUN_1804ebb80(longlong param_1,int32_t param_2,longlong param_3,char pa
       if (iVar6 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar6);
       }
-      cVar5 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+      cVar5 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
       fVar3 = fStack_94;
       fVar2 = fStack_98;
       fVar4 = (float)uStack_90;
@@ -652,7 +652,7 @@ void FUN_1804ebef0(longlong param_1,int32_t param_2,longlong *param_3,int param_
       if (iVar7 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar7);
       }
-      cVar6 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+      cVar6 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
       if ((((cVar6 != '\0') &&
            (cVar6 = FUN_180645c10(0x180c95578,0x11,&unknown_var_3472_ptr), cVar6 != '\0')) &&
           ((cVar6 = FUN_180645c10(0x180c95578,param_2,&system_data_bca0), cVar6 != '\0' &&

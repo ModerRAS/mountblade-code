@@ -125,15 +125,15 @@ void UI_Component_Process_Config(longlong ui_context, longlong *config_ptr, uint
   }
   (**(code **)(system_cache_buffer + 0xe8))(data_ptr1, data_ptr2);
   (**(code **)*config_ptr)(config_ptr);
-  stack_ptr_50 = &unknown_var_3456_ptr;
+  stack_ptr_50 = &system_data_buffer_ptr;
   if (stack_ptr_48 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     System_Error_Handler();
   }
   stack_ptr_48 = (void *)0x0;
   stack_value_38 = 0;
-  stack_ptr_50 = &unknown_var_720_ptr;
-  stack_ptr_30 = &unknown_var_3456_ptr;
+  stack_ptr_50 = &system_state_ptr;
+  stack_ptr_30 = &system_data_buffer_ptr;
   if (stack_ptr_28 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     System_Error_Handler();
@@ -404,7 +404,7 @@ data_process:
     *(int32_t *)(data_dest + 0x1c) = buffer_flags;
     result_status = 1;
   }
-  stack_buffer = &unknown_var_3456_ptr;
+  stack_buffer = &system_data_buffer_ptr;
   if (buffer_handle != 0) {
                     // WARNING: Subroutine does not return
     System_Error_Handler();
@@ -666,14 +666,14 @@ resize_buffer:
             config_context[2] = (longlong)(data_ptr4 + long_value2 * 3);
             item_count = stack_size;
           }
-          stack_ptr_78 = &unknown_var_3456_ptr;
+          stack_ptr_78 = &system_data_buffer_ptr;
           if (stack_value_70 != 0) {
                     // WARNING: Subroutine does not return
             System_Error_Handler();
           }
           stack_value_70 = 0;
           stack_value_60 = 0;
-          stack_ptr_78 = &unknown_var_720_ptr;
+          stack_ptr_78 = &system_state_ptr;
           for (data_ptr5 = data_ptr2; data_ptr5 != data_ptr3; data_ptr5 = data_ptr5 + 4) {
             (**(code **)*data_ptr5)(data_ptr5, 0);
           }
@@ -832,7 +832,7 @@ uint64_t * UI_Process_String_Data(longlong *string_array, uint64_t *result_buffe
     array_size = string_array[1] - *string_array >> 5;
     if ((int)array_size == 0) {
       System_String_Initialize(result_buffer, &unknown_var_9944_ptr);
-      stack_buffer = &unknown_var_3456_ptr;
+      stack_buffer = &system_data_buffer_ptr;
       if (buffer_handle == 0) {
         return result_buffer;
       }
@@ -854,10 +854,10 @@ uint64_t * UI_Process_String_Data(longlong *string_array, uint64_t *result_buffe
   else {
     (**(code **)(stack_buffer + 0x10))(&stack_buffer);
   }
-  *result_buffer = &unknown_var_720_ptr;
+  *result_buffer = &system_state_ptr;
   result_buffer[1] = 0;
   *(int32_t *)(result_buffer + 2) = 0;
-  *result_buffer = &unknown_var_3456_ptr;
+  *result_buffer = &system_data_buffer_ptr;
   *(int32_t *)(result_buffer + 2) = buffer_size;
   result_buffer[1] = buffer_handle;
   *(int32_t *)((longlong)result_buffer + 0x1c) = buffer_flags;
@@ -967,10 +967,10 @@ uint64_t * UI_Process_Mono_String(uint64_t *result_buffer, longlong mono_string,
     mono_handle = mono_string_to_utf8(mono_string);
     System_String_Initialize(temp_buffer, mono_handle, process_param, process_flags, buffer_size, process_mode);
     mono_free(mono_handle);
-    *result_buffer = &unknown_var_720_ptr;
+    *result_buffer = &system_state_ptr;
     result_buffer[1] = 0;
     *(int32_t *)(result_buffer + 2) = 0;
-    *result_buffer = &unknown_var_3456_ptr;
+    *result_buffer = &system_data_buffer_ptr;
     *(int32_t *)(result_buffer + 2) = buffer_length;
     result_buffer[1] = buffer_handle;
     *(int32_t *)((longlong)result_buffer + 0x1c) = buffer_flags;
@@ -1107,7 +1107,7 @@ void UI_Load_Assembly(void)
   stack_value_50 = 0xfffffffffffffffe;
   stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
   stack_value_98 = 0;
-  stack_ptr_b8 = &unknown_var_3456_ptr;
+  stack_ptr_b8 = &system_data_buffer_ptr;
   stack_size_a0 = 0;
   stack_ptr_b0 = (int32_t *)0x0;
   stack_size_a8 = 0;
@@ -1127,14 +1127,14 @@ void UI_Load_Assembly(void)
     namespace_ptr = stack_ptr_b0;
   }
   assembly_handle = mono_domain_assembly_open(ui_system_buffer, namespace_ptr);
-  stack_ptr_b8 = &unknown_var_3456_ptr;
+  stack_ptr_b8 = &system_data_buffer_ptr;
   if (assembly_name != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
     System_Error_Handler(assembly_name);
   }
   stack_ptr_b0 = (int32_t *)0x0;
   stack_size_a0 = stack_size_a0 & 0xffffffff00000000;
-  stack_ptr_b8 = &unknown_var_720_ptr;
+  stack_ptr_b8 = &system_state_ptr;
   *domain_handle = assembly_handle;
   if (assembly_handle == 0) {
     System_Error_Reporter(&unknown_var_80_ptr, &system_memory_dda8);
@@ -1145,7 +1145,7 @@ void UI_Load_Assembly(void)
   if (assembly_handle == 0) {
     System_Error_Reporter(&unknown_var_328_ptr);
   }
-  stack_ptr_90 = &unknown_var_3456_ptr;
+  stack_ptr_90 = &system_data_buffer_ptr;
   stack_value_78 = 0;
   stack_ptr_88 = (uint64_t *)0x0;
   stack_value_80 = 0;
@@ -1158,7 +1158,7 @@ void UI_Load_Assembly(void)
   *(int16_t *)(class_name + 1) = 0x7265;
   *(int8_t *)((longlong)class_name + 10) = 0;
   stack_value_80 = 10;
-  stack_ptr_b8 = &unknown_var_3456_ptr;
+  stack_ptr_b8 = &system_data_buffer_ptr;
   stack_size_a0 = 0;
   stack_ptr_b0 = (int32_t *)0x0;
   stack_size_a8 = 0;
@@ -1174,7 +1174,7 @@ void UI_Load_Assembly(void)
   *(int16_t *)(namespace_ptr + 4) = 0x74;
   stack_size_a8 = 0x11;
   mono_class_from_name(domain_handle[1], namespace_ptr, class_name);
-  stack_ptr_b8 = &unknown_var_3456_ptr;
+  stack_ptr_b8 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   System_Error_Handler(namespace_ptr);
 }
@@ -1195,7 +1195,7 @@ void UI_Load_Assembly(void)
  */
 uint64_t * UI_String_Copy(uint64_t source_string, uint64_t *dest_buffer, uint64_t copy_param, uint64_t copy_flags)
 {
-  *dest_buffer = &unknown_var_720_ptr;
+  *dest_buffer = &system_state_ptr;
   dest_buffer[1] = 0;
   *(int32_t *)(dest_buffer + 2) = 0;
   *dest_buffer = &unknown_var_3432_ptr;

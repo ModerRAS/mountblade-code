@@ -759,7 +759,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0xc40;
-  func_0x00018010bc90(uVar1,&unknown_var_9376_ptr);
+  func_0x00018010bc90(uVar1,&render_data_ptr);
   uStackX_8._0_4_ = 2;
   FUN_180046240(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
@@ -819,7 +819,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1500;
-  func_0x00018010bc90(uVar1,&unknown_var_9552_ptr);
+  func_0x00018010bc90(uVar1,&system_string1_ptr);
   uStackX_8._0_4_ = 0x3f800000;
   FUN_180046240(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
@@ -835,7 +835,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1570;
-  func_0x00018010bc90(uVar1,&unknown_var_9584_ptr);
+  func_0x00018010bc90(uVar1,&system_pattern2_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_180046240(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -907,7 +907,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1180;
-  func_0x00018010bc90(uVar1,&unknown_var_9776_ptr);
+  func_0x00018010bc90(uVar1,&system_string2_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_180046240(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;

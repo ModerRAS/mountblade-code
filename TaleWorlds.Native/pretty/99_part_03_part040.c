@@ -143,7 +143,7 @@ joined_r0x0001801f1e51:
             FUN_180057010(lVar16 + 0x60);
             break;
           }
-          puStack_a0 = &unknown_var_3456_ptr;
+          puStack_a0 = &system_data_buffer_ptr;
           uStack_88 = 0;
           lStack_98 = 0;
           iStack_90 = 0;
@@ -216,14 +216,14 @@ LAB_1801f1fe9:
           ppuStack_50 = (void **)&uStack_80;
           FUN_1800591c0(&uStack_80);
           ppuStack_50 = &puStack_a0;
-          puStack_a0 = &unknown_var_3456_ptr;
+          puStack_a0 = &system_data_buffer_ptr;
           if (lStack_98 != 0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
           lStack_98 = 0;
           uStack_88 = uStack_88 & 0xffffffff00000000;
-          puStack_a0 = &unknown_var_720_ptr;
+          puStack_a0 = &system_state_ptr;
           lVar15 = lStack_48;
         } while( true );
       }
@@ -373,10 +373,10 @@ LAB_1801f22be:
       uVar12 = uVar12 + 0x48;
     } while ((ulonglong)(longlong)(int)uVar13 < (ulonglong)(lVar10 - lVar8));
   }
-  *(void **)(param_2 + 2) = &unknown_var_720_ptr;
+  *(void **)(param_2 + 2) = &system_state_ptr;
   *(uint64_t *)(param_2 + 4) = 0;
   param_2[6] = 0;
-  *(void **)(param_2 + 2) = &unknown_var_3456_ptr;
+  *(void **)(param_2 + 2) = &system_data_buffer_ptr;
   *(uint64_t *)(param_2 + 8) = 0;
   *(uint64_t *)(param_2 + 4) = 0;
   param_2[6] = 0;
@@ -413,11 +413,11 @@ FUN_1801f2390(uint64_t param_1,uint64_t *param_2,void *param_3,uint64_t param_4)
     while (lVar3 = lVar5 + 1, *(char *)(param_2[1] + lVar5) == (&unknown_var_5300_ptr)[lVar5]) {
       lVar5 = lVar3;
       if (lVar3 == 4) {
-        *param_2 = &unknown_var_3456_ptr;
+        *param_2 = &system_data_buffer_ptr;
         if (param_2[1] == 0) {
           param_2[1] = 0;
           *(int32_t *)(param_2 + 3) = 0;
-          *param_2 = &unknown_var_720_ptr;
+          *param_2 = &system_state_ptr;
           return 1;
         }
                     // WARNING: Subroutine does not return
@@ -787,10 +787,10 @@ LAB_1801f3218:
     puVar8 = puVar4 + 0x10;
     do {
       *puVar6 = *(int32_t *)(lVar9 + -0x40 + (longlong)puVar8);
-      *(void **)(puVar8 + -0xe) = &unknown_var_720_ptr;
+      *(void **)(puVar8 + -0xe) = &system_state_ptr;
       *(uint64_t *)(puVar8 + -0xc) = 0;
       puVar8[-10] = 0;
-      *(void **)(puVar8 + -0xe) = &unknown_var_3456_ptr;
+      *(void **)(puVar8 + -0xe) = &system_data_buffer_ptr;
       *(uint64_t *)(puVar8 + -8) = 0;
       *(uint64_t *)(puVar8 + -0xc) = 0;
       puVar8[-10] = 0;

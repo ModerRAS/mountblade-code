@@ -66,7 +66,7 @@ void RenderingSystem_WriteResourceData(longlong resource_context, longlong file_
   list_head = data_ptr;
   
   // 初始化写入缓冲区
-  FUN_180639bf0(&total_size, 8, data_ptr, data_size, RENDERING_FILE_BUFFER_SIZE);
+  System_BufferManager(&total_size, 8, data_ptr, data_size, RENDERING_FILE_BUFFER_SIZE);
   
   *(uint64_t *)write_ptr = resource_header;
   buffer_writer = (uint *)((longlong)write_ptr + 8);
@@ -84,7 +84,7 @@ void RenderingSystem_WriteResourceData(longlong resource_context, longlong file_
       
       // 检查缓冲区容量
       if ((ulonglong)((buffer_ptr - (longlong)buffer_writer) + buffer_capacity) < 9) {
-        FUN_180639bf0(&total_size, (longlong)buffer_writer + (8 - buffer_ptr));
+        System_BufferManager(&total_size, (longlong)buffer_writer + (8 - buffer_ptr));
         buffer_ptr = total_size;
         buffer_writer = write_ptr;
       }
@@ -95,7 +95,7 @@ void RenderingSystem_WriteResourceData(longlong resource_context, longlong file_
       
       // 检查缓冲区容量
       if ((ulonglong)((buffer_ptr - (longlong)write_ptr) + buffer_capacity) < 5) {
-        FUN_180639bf0(&total_size, (longlong)write_ptr + (4 - buffer_ptr));
+        System_BufferManager(&total_size, (longlong)write_ptr + (4 - buffer_ptr));
         buffer_ptr = total_size;
       }
       
@@ -112,7 +112,7 @@ void RenderingSystem_WriteResourceData(longlong resource_context, longlong file_
         
         // 检查缓冲区容量
         if ((ulonglong)((buffer_ptr - (longlong)buffer_writer) + buffer_capacity) <= (ulonglong)data_length + 4) {
-          FUN_180639bf0(&total_size, (((ulonglong)data_length + 4) - buffer_ptr) + (longlong)buffer_writer);
+          System_BufferManager(&total_size, (((ulonglong)data_length + 4) - buffer_ptr) + (longlong)buffer_writer);
         }
         
         *write_ptr = data_length;
@@ -194,7 +194,7 @@ void RenderingSystem_ReadResourceData(longlong resource_context, longlong file_c
   buffer_mode = 3;
   
   if (file_offset != 0) {
-    FUN_180639bf0(&buffer_size);
+    System_BufferManager(&buffer_size);
   }
   
   current_pos = buffer_size;
@@ -380,7 +380,7 @@ void RenderingSystem_ProcessResourceChunk(longlong resource_context, longlong fi
   list_head = data_ptr;
   
   // 初始化写入缓冲区
-  FUN_180639bf0(&total_size, 8, data_ptr, data_size, RENDERING_FILE_BUFFER_SIZE);
+  System_BufferManager(&total_size, 8, data_ptr, data_size, RENDERING_FILE_BUFFER_SIZE);
   
   *(uint64_t *)write_ptr = resource_header;
   data_writer = (uint *)((longlong)write_ptr + 8);
@@ -398,7 +398,7 @@ void RenderingSystem_ProcessResourceChunk(longlong resource_context, longlong fi
       
       // 检查缓冲区容量
       if ((ulonglong)((buffer_capacity - (longlong)data_writer) + buffer_ptr) < 9) {
-        FUN_180639bf0(&total_size, (longlong)data_writer + (8 - buffer_ptr));
+        System_BufferManager(&total_size, (longlong)data_writer + (8 - buffer_ptr));
         data_writer = write_ptr;
         buffer_ptr = total_size;
       }
@@ -409,7 +409,7 @@ void RenderingSystem_ProcessResourceChunk(longlong resource_context, longlong fi
       
       // 检查缓冲区容量
       if ((ulonglong)((buffer_capacity - (longlong)write_ptr) + buffer_ptr) < 5) {
-        FUN_180639bf0(&total_size, (longlong)write_ptr + (4 - buffer_ptr));
+        System_BufferManager(&total_size, (longlong)write_ptr + (4 - buffer_ptr));
         buffer_ptr = total_size;
       }
       
@@ -426,7 +426,7 @@ void RenderingSystem_ProcessResourceChunk(longlong resource_context, longlong fi
         
         // 检查缓冲区容量
         if ((ulonglong)((buffer_capacity - (longlong)data_writer) + buffer_ptr) <= (ulonglong)data_length + 4) {
-          FUN_180639bf0(&total_size, (((ulonglong)data_length + 4) - buffer_ptr) + (longlong)data_writer);
+          System_BufferManager(&total_size, (((ulonglong)data_length + 4) - buffer_ptr) + (longlong)data_writer);
         }
         
         *write_ptr = data_length;
@@ -513,7 +513,7 @@ void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file
   buffer_mode = 3;
   
   if (file_offset != 0) {
-    FUN_180639bf0(&buffer_size);
+    System_BufferManager(&buffer_size);
   }
   
   current_pos = buffer_size;

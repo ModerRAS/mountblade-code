@@ -281,8 +281,8 @@ LAB_1800b0d28:
     plVar7 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x170, 8, 3);
     
     // 初始化资源对象结构
-    *plVar7 = (longlong)&unknown_var_3552_ptr;
-    *plVar7 = (longlong)&unknown_var_3696_ptr;
+    *plVar7 = (longlong)&system_handler1_ptr;
+    *plVar7 = (longlong)&system_handler2_ptr;
     *(int32_t *)(plVar7 + 1) = 0;
     *plVar7 = (longlong)&unknown_var_2696_ptr;
     plVar7[6] = 0;
@@ -293,7 +293,7 @@ LAB_1800b0d28:
     plVar7[7] = 0;
     *(int32_t *)(plVar7 + 8) = 0;
     pplVar1 = (longlong **)(plVar7 + 10);
-    *pplVar1 = (longlong *)&unknown_var_720_ptr;
+    *pplVar1 = (longlong *)&system_state_ptr;
     plVar7[0xb] = 0;
     *(int32_t *)(plVar7 + 0xc) = 0;
     *pplVar1 = (longlong *)&unknown_var_2008_ptr;
@@ -398,7 +398,7 @@ LAB_1800b0d28:
         (**(code **)(*plVar9 + 0x38))(plVar9);
       }
       ppuStack_200 = &puStack_1c8;
-      puStack_1c8 = &unknown_var_720_ptr;
+      puStack_1c8 = &system_state_ptr;
     }
     
     // 处理异步模式下的资源管理
@@ -573,7 +573,7 @@ LAB_1800b1065:
     puVar13 = *(void **)(lStack_250 + 8);
   }
   strcpy_s(auStack_d0, 0x80, puVar13);
-  puStack_e8 = &unknown_var_720_ptr;
+  puStack_e8 = &system_state_ptr;
   *(int32_t *)((longlong)plVar5 + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
   *puStack_208 = plVar5;
   plStack_270 = (longlong *)0x0;

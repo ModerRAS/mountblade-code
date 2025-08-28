@@ -91,31 +91,31 @@ uint64_t * FUN_180285df0(uint64_t *param_1,ulonglong param_2)
 int32_t * FUN_180285e20(int32_t *param_1)
 
 {
-  *(void **)(param_1 + 6) = &unknown_var_720_ptr;
+  *(void **)(param_1 + 6) = &system_state_ptr;
   *(uint64_t *)(param_1 + 8) = 0;
   param_1[10] = 0;
   *(void **)(param_1 + 6) = &unknown_var_3432_ptr;
   *(int32_t **)(param_1 + 8) = param_1 + 0xc;
   param_1[10] = 0;
   *(int8_t *)(param_1 + 0xc) = 0;
-  *(void **)(param_1 + 0x2c) = &unknown_var_720_ptr;
+  *(void **)(param_1 + 0x2c) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x2e) = 0;
   param_1[0x30] = 0;
   *(void **)(param_1 + 0x2c) = &unknown_var_3432_ptr;
   *(int32_t **)(param_1 + 0x2e) = param_1 + 0x32;
   param_1[0x30] = 0;
   *(int8_t *)(param_1 + 0x32) = 0;
-  *(void **)(param_1 + 0x52) = &unknown_var_720_ptr;
+  *(void **)(param_1 + 0x52) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x54) = 0;
   param_1[0x56] = 0;
-  *(void **)(param_1 + 0x52) = &unknown_var_3456_ptr;
+  *(void **)(param_1 + 0x52) = &system_data_buffer_ptr;
   *(uint64_t *)(param_1 + 0x58) = 0;
   *(uint64_t *)(param_1 + 0x54) = 0;
   param_1[0x56] = 0;
-  *(void **)(param_1 + 0x5a) = &unknown_var_720_ptr;
+  *(void **)(param_1 + 0x5a) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x5c) = 0;
   param_1[0x5e] = 0;
-  *(void **)(param_1 + 0x5a) = &unknown_var_3456_ptr;
+  *(void **)(param_1 + 0x5a) = &system_data_buffer_ptr;
   *(uint64_t *)(param_1 + 0x60) = 0;
   *(uint64_t *)(param_1 + 0x5c) = 0;
   param_1[0x5e] = 0;

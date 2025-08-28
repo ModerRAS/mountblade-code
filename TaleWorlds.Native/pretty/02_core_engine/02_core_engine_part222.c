@@ -107,7 +107,7 @@ LAB_180198f21:
   }
   
   // 事件处理循环
-  global_ptr = &unknown_var_3456_ptr;
+  global_ptr = &system_data_buffer_ptr;
   global_checksum = 0;
   global_buffer = (byte *)0x0;
   global_size = 0;

@@ -541,7 +541,7 @@ void configure_engine_render_settings(uint64_t *engine_config, ulonglong setting
     puVar9 = &unknown_var_2664_ptr;
   }
   FUN_18010f010(&unknown_var_2696_ptr,puVar9);
-  puStack_b0 = &unknown_var_3456_ptr;
+  puStack_b0 = &system_data_buffer_ptr;
   uStack_98 = 0;
   puStack_a8 = (int8_t *)0x0;
   uStack_a0 = 0;
@@ -731,11 +731,11 @@ LAB_18019d905:
     (**(code **)*puVar2)(puVar2,0);
   }
   if (puVar18 == (uint64_t *)0x0) {
-    puStack_b0 = &unknown_var_3456_ptr;
+    puStack_b0 = &system_data_buffer_ptr;
     if (puStack_a8 == (int8_t *)0x0) {
       puStack_a8 = (int8_t *)0x0;
       uStack_98 = uStack_98 & 0xffffffff00000000;
-      puStack_b0 = &unknown_var_720_ptr;
+      puStack_b0 = &system_state_ptr;
       SYSTEM_DATA_MANAGER_A = uVar13;
       iVar5 = _Mtx_unlock(0x180c91970);
       if (iVar5 != 0) {

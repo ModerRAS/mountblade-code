@@ -20,7 +20,7 @@ void FUN_1804c60b0(uint64_t param_1,uint64_t param_2)
   puVar4 = puVar2;
   FUN_1803456e0(puVar2,param_2,param_1);
   *puVar4 = &unknown_var_1216_ptr;
-  puStack_40 = &unknown_var_3456_ptr;
+  puStack_40 = &system_data_buffer_ptr;
   uStack_28 = 0;
   puStack_38 = (int32_t *)0x0;
   uStack_30 = 0;
@@ -34,7 +34,7 @@ void FUN_1804c60b0(uint64_t param_1,uint64_t param_2)
   *(int8_t *)((longlong)puVar3 + 6) = 0;
   uStack_30 = 6;
   FUN_1803460a0(puVar2,&puStack_40,puVar2 + 0xe,0xb);
-  puStack_40 = &unknown_var_3456_ptr;
+  puStack_40 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar3);
 }

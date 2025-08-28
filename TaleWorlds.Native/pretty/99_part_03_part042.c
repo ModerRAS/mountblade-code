@@ -468,7 +468,7 @@ LAB_1801f5b10:
         if (aplStack_c8[0] != (longlong *)0x0) {
           (**(code **)(*aplStack_c8[0] + 0x38))();
         }
-        puStack_a8 = &unknown_var_720_ptr;
+        puStack_a8 = &system_state_ptr;
       }
       else if ((iVar4 == 0x13) &&
               (iVar3 = strcmp(*(uint64_t *)(param_1 + 0x48),&unknown_var_6456_ptr), iVar3 == 0)) {
@@ -498,7 +498,7 @@ LAB_1801f5b10:
         if (plStack_d0 != (longlong *)0x0) {
           (**(code **)(*plStack_d0 + 0x38))();
         }
-        puStack_a8 = &unknown_var_720_ptr;
+        puStack_a8 = &system_state_ptr;
       }
       else if ((iVar4 == 0xf) &&
               (iVar3 = strcmp(*(uint64_t *)(param_1 + 0x48),&unknown_var_6480_ptr), iVar3 == 0)) {
@@ -581,7 +581,7 @@ LAB_1801f5b10:
           *plVar6 = (longlong)&unknown_var_7976_ptr;
           *(int32_t *)(plVar6 + 0x8a) = uVar2;
           *(int32_t *)((longlong)plVar6 + 0x454) = uVar1;
-          *plVar6 = (longlong)&unknown_var_3504_ptr;
+          *plVar6 = (longlong)&system_param1_ptr;
           *(int32_t *)(plVar6 + 0x8b) = 0;
         }
         else if ((iVar4 == 0x16) &&

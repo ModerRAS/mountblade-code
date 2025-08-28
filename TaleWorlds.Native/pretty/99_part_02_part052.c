@@ -804,8 +804,8 @@ FUN_1801be7f0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
   if ((longlong *)param_1[7] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[7] + 0x38))();
   }
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x50);
   }

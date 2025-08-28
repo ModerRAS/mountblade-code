@@ -9,22 +9,22 @@ void FUN_1804ffdd0(uint64_t *param_1)
 {
   _Mtx_destroy_in_situ();
   *param_1 = &unknown_var_5224_ptr;
-  param_1[7] = &unknown_var_3456_ptr;
+  param_1[7] = &system_data_buffer_ptr;
   if (param_1[8] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[8] = 0;
   *(int32_t *)(param_1 + 10) = 0;
-  param_1[7] = &unknown_var_720_ptr;
-  param_1[1] = &unknown_var_3456_ptr;
+  param_1[7] = &system_state_ptr;
+  param_1[1] = &system_data_buffer_ptr;
   if (param_1[2] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[2] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  param_1[1] = &unknown_var_720_ptr;
+  param_1[1] = &system_state_ptr;
   return;
 }
 
@@ -884,7 +884,7 @@ void FUN_1805a0af0(longlong param_1,float param_2,char param_3)
         (plVar2 = *(longlong **)(*(longlong *)(param_1 + 0x108) + 0x8e8), plVar2 != (longlong *)0x0)
         ) && (*plVar2 != 0)) {
       lVar6 = FUN_1805b5ad0();
-      cVar3 = FUN_180645c10(lVar6,0,&unknown_var_3504_ptr);
+      cVar3 = FUN_180645c10(lVar6,0,&system_param1_ptr);
       if (cVar3 != '\0') {
         cVar3 = FUN_180645c10(lVar6,6,&unknown_var_3472_ptr);
         if (cVar3 != '\0') {
@@ -921,7 +921,7 @@ void FUN_1805a0b96(void)
   longlong unaff_RBX;
   
   lVar5 = FUN_1805b5ad0();
-  cVar2 = FUN_180645c10(lVar5,0,&unknown_var_3504_ptr);
+  cVar2 = FUN_180645c10(lVar5,0,&system_param1_ptr);
   if (cVar2 != '\0') {
     cVar2 = FUN_180645c10(lVar5,6,&unknown_var_3472_ptr);
     if (cVar2 != '\0') {

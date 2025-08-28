@@ -1046,7 +1046,7 @@ uint64_t FUN_1802bf350(uint64_t param_1,uint64_t param_2)
               0x48) < system_system_config_config) {
     FUN_1808fcb90(&system_ptr_8db0);
     if (system_system_config_config == -1) {
-      system_system_config_config = &unknown_var_3456_ptr;
+      system_system_config_config = &system_data_buffer_ptr;
       system_system_config_config = 0;
       system_system_config_config = (int32_t *)0x0;
       system_system_config_config = 0;

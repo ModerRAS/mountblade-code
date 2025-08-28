@@ -267,7 +267,7 @@ void FUN_1800fe640(uint64_t param_1,longlong *param_2,longlong param_3)
   lVar132 = *(longlong *)(param_3 + 0x30);
   if ((ulonglong)param_2[2] <
       (ulonglong)(uint)(*(int *)(param_3 + 0x10) * *(int *)(param_3 + 0xc) * 4)) {
-    FUN_180639bf0(param_2);
+    System_BufferManager(param_2);
   }
   uVar128 = 0;
   if (0 < iVar6) {

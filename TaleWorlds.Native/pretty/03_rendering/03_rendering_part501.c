@@ -1212,7 +1212,7 @@ void FUN_180535ba0(longlong *param_1, uint64_t param_2, uint64_t param_3)
     /* 处理标志数组 */
     if (validation_result != '\0') {
         flag_array[0] = (uint)((char)flag_array[0] != '\0');
-        validation_result = FUN_18055f260(config_param, flag_array, &unknown_var_3504_ptr);
+        validation_result = FUN_18055f260(config_param, flag_array, &system_param1_ptr);
         flag_array[0] = CONCAT31(flag_array[0]._1_3_, flag_array[0] != 0);
         
         if (validation_result != '\0') {

@@ -262,7 +262,7 @@ LAB_1800c6c68:
       }
       if (bVar1) {
         lVar6 = FUN_18024c0f0(lVar8,apuStack_98);
-        puStack_500 = &unknown_var_3456_ptr;
+        puStack_500 = &system_data_buffer_ptr;
         uStack_4e8 = 0;
         puStack_4f8 = (int8_t *)0x0;
         uStack_4f0 = 0;
@@ -279,7 +279,7 @@ LAB_1800c6c68:
         if ((*(longlong *)(lVar6 + 8) != 0) && (uStack_4f0 = 0, puStack_4f8 != (int8_t *)0x0)) {
           *puStack_4f8 = 0;
         }
-        apuStack_98[0] = &unknown_var_720_ptr;
+        apuStack_98[0] = &system_state_ptr;
         puVar10 = &system_buffer_ptr;
         if (puStack_4f8 != (int8_t *)0x0) {
           puVar10 = puStack_4f8;
@@ -299,7 +299,7 @@ LAB_1800c6c68:
         auStack_1a0[0] = 0;
         uStack_1a8 = 7;
         strcpy_s(auStack_1a0,0x40,&unknown_var_2056_ptr);
-        puStack_1b8 = &unknown_var_720_ptr;
+        puStack_1b8 = &system_state_ptr;
         FUN_1800dd8a0(uVar16,lVar8);
         if (*(longlong *)(lVar8 + 0x1b0) != 0) {
           lVar6 = *(longlong *)(system_message_buffer + 0x1cd8);
@@ -343,19 +343,19 @@ LAB_1800c6c68:
         }
         FUN_1800e3700(uVar16,lVar8);
         FUN_1802c2ac0(&puStack_398);
-        puStack_500 = &unknown_var_3456_ptr;
+        puStack_500 = &system_data_buffer_ptr;
         if (puVar2 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar2);
         }
         puStack_4f8 = (int8_t *)0x0;
         uStack_4e8 = uStack_4e8 & 0xffffffff00000000;
-        puStack_500 = &unknown_var_720_ptr;
+        puStack_500 = &system_state_ptr;
         uVar15 = uStack_518;
       }
       system_system_data_memory = system_system_data_memory + -1;
       (**(code **)(*system_system_data_memory + 0x20))();
-      puStack_f8 = &unknown_var_720_ptr;
+      puStack_f8 = &system_state_ptr;
       uVar15 = uVar15 - 1;
       plVar7 = plVar7 + 1;
     } while (uVar15 != 0);
@@ -499,7 +499,7 @@ LAB_1800c6c68:
         (**(code **)(*system_system_data_memory + 0x20))();
       }
       plVar5 = plStack_4e0;
-      puStack_158 = &unknown_var_720_ptr;
+      puStack_158 = &system_state_ptr;
       uVar15 = uVar15 - 1;
       plVar7 = plVar7 + 1;
       uVar14 = uStack_510;

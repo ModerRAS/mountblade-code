@@ -535,7 +535,7 @@ void FUN_1800b57a0(uint64_t param_1,longlong *param_2)
       puVar4 = (uint64_t *)param_2[1];
       if (puVar4 < (uint64_t *)param_2[2]) {
         param_2[1] = (longlong)(puVar4 + 0xb);
-        *puVar4 = &unknown_var_720_ptr;
+        *puVar4 = &system_state_ptr;
         puVar4[1] = 0;
         *(int32_t *)(puVar4 + 2) = 0;
         *puVar4 = &unknown_var_3480_ptr;
@@ -569,7 +569,7 @@ LAB_1800b5909:
         if (puVar3 != puVar4) {
           lVar9 = (longlong)puVar3 - (longlong)puVar1;
           do {
-            *puVar2 = &unknown_var_720_ptr;
+            *puVar2 = &system_state_ptr;
             puVar2[1] = 0;
             *(int32_t *)(puVar2 + 2) = 0;
             *puVar2 = &unknown_var_3480_ptr;
@@ -589,7 +589,7 @@ LAB_1800b5909:
             lVar8 = lStack_a8;
           } while ((uint64_t *)(lVar9 + (longlong)puVar2) != puVar4);
         }
-        *puVar2 = &unknown_var_720_ptr;
+        *puVar2 = &system_state_ptr;
         puVar2[1] = 0;
         *(int32_t *)(puVar2 + 2) = 0;
         *puVar2 = &unknown_var_3480_ptr;
@@ -620,7 +620,7 @@ LAB_1800b5909:
         param_2[1] = (longlong)(puVar2 + 0xb);
         param_2[2] = (longlong)(puVar1 + lVar10 * 0xb);
       }
-      puStack_98 = &unknown_var_720_ptr;
+      puStack_98 = &system_state_ptr;
       plVar7 = plVar7 + 1;
     } while (plVar7 != *(longlong **)(lVar8 + 0x1d8));
   }
@@ -667,7 +667,7 @@ void FUN_1800b5ac0(uint64_t param_1,longlong *param_2,float param_3)
   plVar6 = (longlong *)(system_resource_state + 0xc60);
   plStack_58 = param_2;
   if (*plVar6 == 0) {
-    puStack_90 = &unknown_var_3456_ptr;
+    puStack_90 = &system_data_buffer_ptr;
     uStack_78 = 0;
     lStack_88 = 0;
     uStack_80 = 0;
@@ -704,14 +704,14 @@ void FUN_1800b5ac0(uint64_t param_1,longlong *param_2,float param_3)
       iVar7 = iVar7 + 1;
       plVar6 = plVar6 + 1;
     } while (iVar7 < 0x14);
-    puStack_90 = &unknown_var_3456_ptr;
+    puStack_90 = &system_data_buffer_ptr;
     if (lStack_88 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_88 = 0;
     uStack_78 = uStack_78 & 0xffffffff00000000;
-    puStack_90 = &unknown_var_720_ptr;
+    puStack_90 = &system_state_ptr;
   }
   plVar6 = *(longlong **)(lVar1 + 0xc60 + (longlong)((int)param_3 % 0x14) * 8);
   *param_2 = (longlong)plVar6;

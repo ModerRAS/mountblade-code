@@ -280,7 +280,7 @@ LAB_180333eb9:
       if (puVar12 != *(uint **)(lVar15 + lVar13 * 8)) {
         ppuStackX_20 = *(ulonglong ***)(puVar12 + 2);
         if (ppuStackX_20 != (ulonglong **)0x0) {
-          *(void **)((longlong)ppuStackX_20 + 0x50) = &unknown_var_720_ptr;
+          *(void **)((longlong)ppuStackX_20 + 0x50) = &system_state_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
@@ -389,11 +389,11 @@ LAB_180333fbc:
     if (ppuVar5 != (ulonglong **)0x0) {
       FUN_1808fc8a8(ppuVar5 + 7,0x30,4,FUN_18004a130);
       ppuStack_58 = ppuVar5 + 3;
-      *ppuStack_58 = (ulonglong *)&unknown_var_3456_ptr;
+      *ppuStack_58 = (ulonglong *)&system_data_buffer_ptr;
       if (ppuVar5[4] == (ulonglong *)0x0) {
         ppuVar5[4] = (ulonglong *)0x0;
         *(int32_t *)(ppuVar5 + 6) = 0;
-        *ppuStack_58 = (ulonglong *)&unknown_var_720_ptr;
+        *ppuStack_58 = (ulonglong *)&system_state_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900(ppuVar5);
       }
@@ -536,7 +536,7 @@ void RenderingSystem_InitializeResourceHandler(longlong resource_manager, char i
   *(int8_t *)(puVar1 + 2) = 0;
   FUN_18062dee0(puVar1,puVar3,puVar4);
   *(uint64_t **)(param_1 + 0x200) = puVar1;
-  puStack_40 = &unknown_var_3456_ptr;
+  puStack_40 = &system_data_buffer_ptr;
   if (lStack_38 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -565,10 +565,10 @@ RenderingSystem_CreateResourcePath(longlong resource_context, uint64_t *path_buf
   int iVar1;
   uint64_t *puVar2;
   
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -604,10 +604,10 @@ RenderingSystem_CreateDataPath(longlong resource_context, uint64_t *path_buffer,
   int iVar1;
   uint64_t *puVar2;
   
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;

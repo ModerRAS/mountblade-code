@@ -281,7 +281,7 @@ LAB_1802f137b:
           if (plVar9 != plVar11) {
             plVar9 = plVar9 + 1;
             do {
-              *plVar14 = (longlong)&unknown_var_720_ptr;
+              *plVar14 = (longlong)&system_state_ptr;
               plVar14[1] = 0;
               *(int32_t *)(plVar14 + 2) = 0;
               *plVar14 = (longlong)&unknown_var_3480_ptr;

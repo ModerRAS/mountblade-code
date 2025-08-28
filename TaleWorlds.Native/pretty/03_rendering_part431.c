@@ -394,14 +394,14 @@ longlong * FUN_1805021f0(longlong *param_1,longlong *param_2)
 void FUN_180502300(longlong *param_1)
 
 {
-  param_1[9] = (longlong)&unknown_var_3456_ptr;
+  param_1[9] = (longlong)&system_data_buffer_ptr;
   if (param_1[10] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[10] = 0;
   *(int32_t *)(param_1 + 0xc) = 0;
-  param_1[9] = (longlong)&unknown_var_720_ptr;
+  param_1[9] = (longlong)&system_state_ptr;
   if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

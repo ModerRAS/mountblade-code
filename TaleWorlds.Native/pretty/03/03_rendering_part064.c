@@ -546,7 +546,7 @@ uint64_t *render_system_deallocate_object(uint64_t *object_ptr, ulonglong flags,
 uint64_t *render_system_initialize_string_object(uint64_t param1, uint64_t *string_obj, uint64_t param3, uint64_t param4)
 {
     // 初始化字符串对象结构
-    *string_obj = &unknown_var_720_ptr;
+    *string_obj = &system_state_ptr;
     string_obj[1] = 0;
     *(int32_t *)(string_obj + 2) = 0;
     
@@ -681,20 +681,20 @@ longlong *render_system_initialize_render_object(longlong *render_obj)
     FUN_180094c20(render_obj + 0xdc); // 初始化渲染数据
     
     // 初始化字符串缓冲区
-    render_obj[0x106] = (longlong)&unknown_var_720_ptr;
+    render_obj[0x106] = (longlong)&system_state_ptr;
     render_obj[0x107] = 0;
     *(int32_t *)(render_obj + 0x108) = 0;
-    render_obj[0x106] = (longlong)&unknown_var_3456_ptr;
+    render_obj[0x106] = (longlong)&system_data_buffer_ptr;
     render_obj[0x109] = 0;
     render_obj[0x107] = 0;
     *(int32_t *)(render_obj + 0x108) = 0;
     
     // 初始化第二个字符串缓冲区
     resource_ptr = render_obj + 0x10b;
-    *resource_ptr = (longlong)&unknown_var_720_ptr;
+    *resource_ptr = (longlong)&system_state_ptr;
     render_obj[0x10c] = 0;
     *(int32_t *)(render_obj + 0x10d) = 0;
-    *resource_ptr = (longlong)&unknown_var_3456_ptr;
+    *resource_ptr = (longlong)&system_data_buffer_ptr;
     render_obj[0x10e] = 0;
     render_obj[0x10c] = 0;
     *(int32_t *)(render_obj + 0x10d) = 0;
@@ -1134,11 +1134,11 @@ uint64_t *render_system_create_string_buffer(longlong param1, uint64_t *string_b
     int32_t copy_flag;
     
     // 初始化字符串缓冲区结构
-    *string_buffer = &unknown_var_720_ptr;
+    *string_buffer = &system_state_ptr;
     string_buffer[1] = 0;
     *(int32_t *)(string_buffer + 2) = 0;
     
-    *string_buffer = &unknown_var_3456_ptr;
+    *string_buffer = &system_data_buffer_ptr;
     string_buffer[3] = 0;
     string_buffer[1] = 0;
     *(int32_t *)(string_buffer + 2) = 0;

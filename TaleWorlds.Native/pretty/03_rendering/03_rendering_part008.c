@@ -52,7 +52,7 @@ void rendering_system_execute_render_pipeline(void)
   
   // 初始化渲染管线
   do {
-    FUN_180639ec0();
+    System_QueueProcessor();
     render_context = render_context + -1;
   } while (render_context != 0);
   
@@ -63,7 +63,7 @@ void rendering_system_execute_render_pipeline(void)
   
   // 检查字符缓冲区空间
   if ((ulonglong)((*buffer_manager - (longlong)char_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MIN_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     char_buffer_ptr = (int8_t *)buffer_manager[1];
   }
   
@@ -77,7 +77,7 @@ void rendering_system_execute_render_pipeline(void)
   // 处理整数数据
   int_buffer_ptr = (int32_t *)buffer_manager[1];
   if ((ulonglong)((*buffer_manager - (longlong)int_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
@@ -91,7 +91,7 @@ void rendering_system_execute_render_pipeline(void)
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -105,19 +105,19 @@ void rendering_system_execute_render_pipeline(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_DATA_OFFSET_END) - 
                         *(longlong *)(data_context + RENDER_DATA_OFFSET_START)) / RENDER_DATA_BUFFER_SIZE));
   }
   
-  FUN_180639ec0();
+  System_QueueProcessor();
   char_buffer_ptr = (int8_t *)buffer_manager[1];
   char_value = *(int8_t *)(data_context + RENDER_TEXTURE_DATA_OFFSET);
   
   if ((ulonglong)((*buffer_manager - (longlong)char_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MIN_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     char_buffer_ptr = (int8_t *)buffer_manager[1];
   }
   
@@ -127,20 +127,20 @@ void rendering_system_execute_render_pipeline(void)
   int_value = *(int32_t *)(data_context + RENDER_TEXTURE_DATA_SIZE_OFFSET);
   
   if ((ulonglong)((*buffer_manager - (longlong)int_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
   *int_buffer_ptr = int_value;
   buffer_manager[1] = buffer_manager[1] + 4;
   
-  FUN_180639ec0();
+  System_QueueProcessor();
   data_size = *(longlong *)(data_context + RENDER_COLOR_DATA_SIZE_OFFSET) - *(longlong *)(data_context + RENDER_COLOR_DATA_OFFSET);
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   int_ptr = (int *)buffer_manager[1];
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -153,7 +153,7 @@ void rendering_system_execute_render_pipeline(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_COLOR_DATA_SIZE_OFFSET) - 
@@ -163,7 +163,7 @@ void rendering_system_execute_render_pipeline(void)
   // 处理着色器数据
   loop_counter = RENDER_SHADER_COUNT;
   do {
-    FUN_180639ec0();
+    System_QueueProcessor();
     loop_counter = loop_counter + -1;
   } while (loop_counter != 0);
   
@@ -172,7 +172,7 @@ void rendering_system_execute_render_pipeline(void)
   int_ptr = (int *)buffer_manager[1];
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -185,7 +185,7 @@ void rendering_system_execute_render_pipeline(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_LIGHT_DATA_SIZE_OFFSET) - 
@@ -195,19 +195,19 @@ void rendering_system_execute_render_pipeline(void)
   // 处理光照数据
   loop_counter = RENDER_LIGHT_COUNT;
   do {
-    FUN_180639ec0();
+    System_QueueProcessor();
     loop_counter = loop_counter + -1;
   } while (loop_counter != 0);
   
-  FUN_180639ec0();
-  FUN_180639ec0();
+  System_QueueProcessor();
+  System_QueueProcessor();
   
   data_size = *(longlong *)(data_context + RENDER_SHADER_DATA_SIZE_OFFSET) - *(longlong *)(data_context + RENDER_SHADER_DATA_OFFSET);
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   int_ptr = (int *)buffer_manager[1];
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -220,19 +220,19 @@ void rendering_system_execute_render_pipeline(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_SHADER_DATA_SIZE_OFFSET) - 
                         *(longlong *)(data_context + RENDER_SHADER_DATA_OFFSET)) / RENDER_DATA_BUFFER_SIZE));
   }
   
-  FUN_180639ec0();
+  System_QueueProcessor();
   char_buffer_ptr = (int8_t *)buffer_manager[1];
   char_value = *(int8_t *)(data_context + RENDER_MATERIAL_DATA_OFFSET);
   
   if ((ulonglong)((*buffer_manager - (longlong)char_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MIN_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     char_buffer_ptr = (int8_t *)buffer_manager[1];
   }
   
@@ -241,18 +241,18 @@ void rendering_system_execute_render_pipeline(void)
   int_buffer_ptr = (int32_t *)buffer_manager[1];
   
   if (*(char *)(data_context + RENDER_MATERIAL_DATA_OFFSET) != '\0') {
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
   if ((ulonglong)((*buffer_manager - (longlong)int_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
@@ -263,12 +263,12 @@ void rendering_system_execute_render_pipeline(void)
   do {
     int_ptr = (int *)buffer_manager[1];
     if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-      FUN_180639bf0();
+      System_BufferManager();
       int_ptr = (int *)buffer_manager[1];
     }
     *int_ptr = zero_counter;
     buffer_manager[1] = buffer_manager[1] + 4;
-    FUN_180639ec0();
+    System_QueueProcessor();
     zero_counter = zero_counter + 1;
   } while (zero_counter < RENDER_MATERIAL_NAME_MAX_SIZE);
   
@@ -295,7 +295,7 @@ void rendering_system_process_render_state(void)
   longlong data_context;
   
   // 初始化缓冲区
-  FUN_180639bf0();
+  System_BufferManager();
   *(int8_t *)buffer_manager[1] = stack_value;
   buffer_manager[1] = buffer_manager[1] + 1;
   
@@ -306,7 +306,7 @@ void rendering_system_process_render_state(void)
   // 处理整数数据
   int_buffer_ptr = (int32_t *)buffer_manager[1];
   if ((ulonglong)((*buffer_manager - (longlong)int_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
@@ -320,7 +320,7 @@ void rendering_system_process_render_state(void)
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -334,19 +334,19 @@ void rendering_system_process_render_state(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_DATA_OFFSET_END) - 
                         *(longlong *)(data_context + RENDER_DATA_OFFSET_START)) / RENDER_DATA_BUFFER_SIZE));
   }
   
-  FUN_180639ec0();
+  System_QueueProcessor();
   char_buffer_ptr = (int8_t *)buffer_manager[1];
   char_value = *(int8_t *)(data_context + RENDER_TEXTURE_DATA_OFFSET);
   
   if ((ulonglong)((*buffer_manager - (longlong)char_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MIN_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     char_buffer_ptr = (int8_t *)buffer_manager[1];
   }
   
@@ -356,20 +356,20 @@ void rendering_system_process_render_state(void)
   int_value = *(int32_t *)(data_context + RENDER_TEXTURE_DATA_SIZE_OFFSET);
   
   if ((ulonglong)((*buffer_manager - (longlong)int_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
   *int_buffer_ptr = int_value;
   buffer_manager[1] = buffer_manager[1] + 4;
   
-  FUN_180639ec0();
+  System_QueueProcessor();
   data_size = *(longlong *)(data_context + RENDER_COLOR_DATA_SIZE_OFFSET) - *(longlong *)(data_context + RENDER_COLOR_DATA_OFFSET);
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   int_ptr = (int *)buffer_manager[1];
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -382,7 +382,7 @@ void rendering_system_process_render_state(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_COLOR_DATA_SIZE_OFFSET) - 
@@ -392,7 +392,7 @@ void rendering_system_process_render_state(void)
   // 处理着色器数据
   loop_counter = RENDER_SHADER_COUNT;
   do {
-    FUN_180639ec0();
+    System_QueueProcessor();
     loop_counter = loop_counter + -1;
   } while (loop_counter != 0);
   
@@ -401,7 +401,7 @@ void rendering_system_process_render_state(void)
   int_ptr = (int *)buffer_manager[1];
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -414,7 +414,7 @@ void rendering_system_process_render_state(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_LIGHT_DATA_SIZE_OFFSET) - 
@@ -424,19 +424,19 @@ void rendering_system_process_render_state(void)
   // 处理光照数据
   loop_counter = RENDER_LIGHT_COUNT;
   do {
-    FUN_180639ec0();
+    System_QueueProcessor();
     loop_counter = loop_counter + -1;
   } while (loop_counter != 0);
   
-  FUN_180639ec0();
-  FUN_180639ec0();
+  System_QueueProcessor();
+  System_QueueProcessor();
   
   data_size = *(longlong *)(data_context + RENDER_SHADER_DATA_SIZE_OFFSET) - *(longlong *)(data_context + RENDER_SHADER_DATA_OFFSET);
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   int_ptr = (int *)buffer_manager[1];
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -449,19 +449,19 @@ void rendering_system_process_render_state(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_SHADER_DATA_SIZE_OFFSET) - 
                         *(longlong *)(data_context + RENDER_SHADER_DATA_OFFSET)) / RENDER_DATA_BUFFER_SIZE));
   }
   
-  FUN_180639ec0();
+  System_QueueProcessor();
   char_buffer_ptr = (int8_t *)buffer_manager[1];
   char_value = *(int8_t *)(data_context + RENDER_MATERIAL_DATA_OFFSET);
   
   if ((ulonglong)((*buffer_manager - (longlong)char_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MIN_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     char_buffer_ptr = (int8_t *)buffer_manager[1];
   }
   
@@ -470,18 +470,18 @@ void rendering_system_process_render_state(void)
   int_buffer_ptr = (int32_t *)buffer_manager[1];
   
   if (*(char *)(data_context + RENDER_MATERIAL_DATA_OFFSET) != '\0') {
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
   if ((ulonglong)((*buffer_manager - (longlong)int_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
@@ -492,12 +492,12 @@ void rendering_system_process_render_state(void)
   do {
     int_ptr = (int *)buffer_manager[1];
     if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-      FUN_180639bf0();
+      System_BufferManager();
       int_ptr = (int *)buffer_manager[1];
     }
     *int_ptr = zero_counter;
     buffer_manager[1] = buffer_manager[1] + 4;
-    FUN_180639ec0();
+    System_QueueProcessor();
     zero_counter = zero_counter + 1;
   } while (zero_counter < RENDER_MATERIAL_NAME_MAX_SIZE);
   
@@ -528,7 +528,7 @@ void rendering_system_handle_render_parameters(void)
   int_buffer_ptr = (int32_t *)buffer_manager[1];
   
   if ((ulonglong)((*buffer_manager - (longlong)int_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
@@ -542,7 +542,7 @@ void rendering_system_handle_render_parameters(void)
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -556,19 +556,19 @@ void rendering_system_handle_render_parameters(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_DATA_OFFSET_END) - 
                         *(longlong *)(data_context + RENDER_DATA_OFFSET_START)) / RENDER_DATA_BUFFER_SIZE));
   }
   
-  FUN_180639ec0();
+  System_QueueProcessor();
   char_buffer_ptr = (int8_t *)buffer_manager[1];
   char_value = *(int8_t *)(data_context + RENDER_TEXTURE_DATA_OFFSET);
   
   if ((ulonglong)((*buffer_manager - (longlong)char_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MIN_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     char_buffer_ptr = (int8_t *)buffer_manager[1];
   }
   
@@ -578,20 +578,20 @@ void rendering_system_handle_render_parameters(void)
   int_value = *(int32_t *)(data_context + RENDER_TEXTURE_DATA_SIZE_OFFSET);
   
   if ((ulonglong)((*buffer_manager - (longlong)int_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
   *int_buffer_ptr = int_value;
   buffer_manager[1] = buffer_manager[1] + 4;
   
-  FUN_180639ec0();
+  System_QueueProcessor();
   data_size = *(longlong *)(data_context + RENDER_COLOR_DATA_SIZE_OFFSET) - *(longlong *)(data_context + RENDER_COLOR_DATA_OFFSET);
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   int_ptr = (int *)buffer_manager[1];
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -604,7 +604,7 @@ void rendering_system_handle_render_parameters(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_COLOR_DATA_SIZE_OFFSET) - 
@@ -614,7 +614,7 @@ void rendering_system_handle_render_parameters(void)
   // 处理着色器数据
   loop_counter = RENDER_SHADER_COUNT;
   do {
-    FUN_180639ec0();
+    System_QueueProcessor();
     loop_counter = loop_counter + -1;
   } while (loop_counter != 0);
   
@@ -623,7 +623,7 @@ void rendering_system_handle_render_parameters(void)
   int_ptr = (int *)buffer_manager[1];
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -636,7 +636,7 @@ void rendering_system_handle_render_parameters(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_LIGHT_DATA_SIZE_OFFSET) - 
@@ -646,19 +646,19 @@ void rendering_system_handle_render_parameters(void)
   // 处理光照数据
   loop_counter = RENDER_LIGHT_COUNT;
   do {
-    FUN_180639ec0();
+    System_QueueProcessor();
     loop_counter = loop_counter + -1;
   } while (loop_counter != 0);
   
-  FUN_180639ec0();
-  FUN_180639ec0();
+  System_QueueProcessor();
+  System_QueueProcessor();
   
   data_size = *(longlong *)(data_context + RENDER_SHADER_DATA_SIZE_OFFSET) - *(longlong *)(data_context + RENDER_SHADER_DATA_OFFSET);
   data_size = data_size / 0x26 + (data_size >> 0x3f);
   int_ptr = (int *)buffer_manager[1];
   
   if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_ptr = (int *)buffer_manager[1];
   }
   
@@ -671,19 +671,19 @@ void rendering_system_handle_render_parameters(void)
   
   if (iteration_count / RENDER_DATA_BUFFER_SIZE + data_size != data_size) {
     do {
-      FUN_180639ec0();
+      System_QueueProcessor();
       loop_counter = loop_counter + 1;
     } while ((ulonglong)(longlong)loop_counter <
              (ulonglong)((*(longlong *)(data_context + RENDER_SHADER_DATA_SIZE_OFFSET) - 
                         *(longlong *)(data_context + RENDER_SHADER_DATA_OFFSET)) / RENDER_DATA_BUFFER_SIZE));
   }
   
-  FUN_180639ec0();
+  System_QueueProcessor();
   char_buffer_ptr = (int8_t *)buffer_manager[1];
   char_value = *(int8_t *)(data_context + RENDER_MATERIAL_DATA_OFFSET);
   
   if ((ulonglong)((*buffer_manager - (longlong)char_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MIN_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     char_buffer_ptr = (int8_t *)buffer_manager[1];
   }
   
@@ -692,18 +692,18 @@ void rendering_system_handle_render_parameters(void)
   int_buffer_ptr = (int32_t *)buffer_manager[1];
   
   if (*(char *)(data_context + RENDER_MATERIAL_DATA_OFFSET) != '\0') {
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
-    FUN_180639ec0();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
+    System_QueueProcessor();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
   if ((ulonglong)((*buffer_manager - (longlong)int_buffer_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-    FUN_180639bf0();
+    System_BufferManager();
     int_buffer_ptr = (int32_t *)buffer_manager[1];
   }
   
@@ -714,12 +714,12 @@ void rendering_system_handle_render_parameters(void)
   do {
     int_ptr = (int *)buffer_manager[1];
     if ((ulonglong)((*buffer_manager - (longlong)int_ptr) + buffer_manager[2]) < RENDER_PARAM_BUFFER_MAX_SIZE) {
-      FUN_180639bf0();
+      System_BufferManager();
       int_ptr = (int *)buffer_manager[1];
     }
     *int_ptr = zero_counter;
     buffer_manager[1] = buffer_manager[1] + 4;
-    FUN_180639ec0();
+    System_QueueProcessor();
     zero_counter = zero_counter + 1;
   } while (zero_counter < RENDER_MATERIAL_NAME_MAX_SIZE);
   
@@ -1047,7 +1047,7 @@ void rendering_system_process_render_commands(longlong param1, longlong param2)
         }
         (**(code **)(*render_object + 0x10))(render_object, char_buffer);
       }
-      stack_buffer_ptr = &unknown_var_720_ptr;
+      stack_buffer_ptr = &system_state_ptr;
       render_object = render_object + 0xb;
       iteration_count = iteration_count + -1;
     } while (iteration_count != 0);

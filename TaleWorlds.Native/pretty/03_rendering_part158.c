@@ -65,8 +65,8 @@ void FUN_1803663f0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 uint64_t * FUN_180366540(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_3552_ptr;
-  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &system_handler1_ptr;
+  *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
   *param_1 = &unknown_var_768_ptr;
   *(int32_t *)(param_1 + 2) = 4;
@@ -178,8 +178,8 @@ FUN_1803667e0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
   }
   *param_1 = &unknown_var_768_ptr;
   param_1[5] = 0;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x98,param_3,param_4,0xfffffffffffffffe);
   }
@@ -246,7 +246,7 @@ void FUN_180366900(longlong param_1)
   uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   apuStack_b8[0] = &unknown_var_9264_ptr;
   apuStack_b8[1] = &unknown_var_9240_ptr;
-  apuStack_b8[2] = &unknown_var_9376_ptr;
+  apuStack_b8[2] = &render_data_ptr;
   apuStack_b8[3] = &unknown_var_9352_ptr;
   apuStack_b8[4] = &unknown_var_9328_ptr;
   apuStack_b8[5] = &unknown_var_9304_ptr;
@@ -255,7 +255,7 @@ void FUN_180366900(longlong param_1)
   apuStack_b8[8] = &unknown_var_9424_ptr;
   apuStack_b8[9] = &unknown_var_9408_ptr;
   apuStack_b8[10] = &unknown_var_9424_ptr;
-  apuStack_b8[0xb] = &unknown_var_9552_ptr;
+  apuStack_b8[0xb] = &system_string1_ptr;
   apuStack_b8[0xc] = &unknown_var_9528_ptr;
   apuStack_b8[0xd] = &unknown_var_9504_ptr;
   apuStack_b8[0xe] = &unknown_var_9488_ptr;
@@ -348,7 +348,7 @@ void FUN_180366b10(longlong param_1,longlong param_2)
       if (param_1 == param_2) break;
       apuStack_c8[0] = &unknown_var_9264_ptr;
       apuStack_c8[1] = &unknown_var_9240_ptr;
-      apuStack_c8[2] = &unknown_var_9376_ptr;
+      apuStack_c8[2] = &render_data_ptr;
       apuStack_c8[3] = &unknown_var_9352_ptr;
       apuStack_c8[4] = &unknown_var_9328_ptr;
       apuStack_c8[5] = &unknown_var_9304_ptr;
@@ -357,7 +357,7 @@ void FUN_180366b10(longlong param_1,longlong param_2)
       apuStack_c8[8] = &unknown_var_9424_ptr;
       apuStack_c8[9] = &unknown_var_9408_ptr;
       apuStack_c8[10] = &unknown_var_9424_ptr;
-      apuStack_c8[0xb] = &unknown_var_9552_ptr;
+      apuStack_c8[0xb] = &system_string1_ptr;
       apuStack_c8[0xc] = &unknown_var_9528_ptr;
       apuStack_c8[0xd] = &unknown_var_9504_ptr;
       apuStack_c8[0xe] = &unknown_var_9488_ptr;

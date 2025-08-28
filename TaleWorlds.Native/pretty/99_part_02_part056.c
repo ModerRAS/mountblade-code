@@ -720,8 +720,8 @@ void FUN_1801c27f0(uint64_t *param_1)
 
 {
   *param_1 = &unknown_var_8336_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   return;
 }
 
@@ -732,8 +732,8 @@ FUN_1801c2830(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 
 {
   *param_1 = &unknown_var_8336_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x28,param_3,param_4,0xfffffffffffffffe);
   }
@@ -745,10 +745,10 @@ FUN_1801c2830(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 uint64_t * FUN_1801c2890(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_3456_ptr;
+  *param_1 = &system_data_buffer_ptr;
   param_1[3] = 0;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;

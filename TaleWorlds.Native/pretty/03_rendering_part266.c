@@ -157,7 +157,7 @@ void FUN_180415120(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
     if (pcStack_a0 != (code *)0x0) {
       (*pcStack_a0)(auStack_b0,0,0);
     }
-    puStack_1f8 = &unknown_var_720_ptr;
+    puStack_1f8 = &system_state_ptr;
     puStack_2e8 = (uint64_t *)auStack_2d8;
     if (pcStack_2c8 != (code *)0x0) {
       (*pcStack_2c8)(auStack_2d8,0,0);

@@ -830,7 +830,7 @@ LAB_18053ef74:
               (*(longlong *)(render_system_config + 8) + *(longlong *)(render_system_config + 0x10) * 8);
   }
   *(int8_t *)((longlong)puVar1 + 0x22) = 4;
-  FUN_180639bf0(puVar1 + 1,param_2);
+  System_BufferManager(puVar1 + 1,param_2);
                     // WARNING: Subroutine does not return
   memcpy(puVar1[1],*param_1,param_2);
 }

@@ -633,7 +633,7 @@ LAB_18027c306:
 
 // 全局常量定义
 #define DEFAULT_MATERIAL_PATH (&system_buffer_ptr)    // 默认材质路径
-#define DEFAULT_TEXTURE_PATH (&unknown_var_720_ptr)      // 默认纹理路径
+#define DEFAULT_TEXTURE_PATH (&system_state_ptr)      // 默认纹理路径
 #define INVALID_CHARS (&system_memory_ff10)             // 无效字符序列
 #define FILE_OPERATION_TABLE (&unknown_var_4880_ptr)      // 文件操作表
 #define MODEL_LOADING_LOGGER (&unknown_var_9040_ptr)      // 模型加载日志器

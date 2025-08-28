@@ -113,7 +113,7 @@ void FUN_18066d7c0(void)
   }
   ui_system_config_config = FUN_180678ef0;
   if (bVar6) {
-    ui_system_config_config = (code *)&unknown_var_3504_ptr;
+    ui_system_config_config = (code *)&system_param1_ptr;
   }
   ui_system_config_config = FUN_180678fc0;
   if (bVar6) {

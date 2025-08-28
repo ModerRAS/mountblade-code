@@ -388,7 +388,7 @@ LAB_18050e0d9:
   uStack_a8 = 0x16;
   uVar9 = strcpy_s(auStack_a0,0x40,&unknown_var_6680_ptr);
   uVar9 = FUN_1800c17c0(uVar9,&puStack_b8);
-  puStack_b8 = &unknown_var_720_ptr;
+  puStack_b8 = &system_state_ptr;
   FUN_1804ebb80(*(uint64_t *)(param_1 + 0x8d8),uVar9,&uStack_f8,1);
   FUN_1805a3a20(param_1 + 0x28);
                     // WARNING: Subroutine does not return

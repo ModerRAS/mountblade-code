@@ -774,7 +774,7 @@ void FUN_1808d9bd0(uint64_t *param_1)
   longlong lVar4;
   longlong *plVar5;
   
-  *param_1 = &unknown_var_9376_ptr;
+  *param_1 = &render_data_ptr;
   if (0 < (longlong)*(int *)(param_1 + 10)) {
     lVar4 = 0;
     do {

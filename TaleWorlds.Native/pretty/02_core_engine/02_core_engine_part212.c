@@ -461,7 +461,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     *(uint64_t *)(param_2 + 0x20) = 0;
     
     // 设置默认路径
-    path_ptr = &unknown_var_3456_ptr;
+    path_ptr = &system_data_buffer_ptr;
     name_capacity = 0;
     data_ptr = (uint64_t *)0x0;
     data_size = 0;
@@ -534,7 +534,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
         stream_status = *(byte *)((longlong)*(int *)(*stream_ptr + 4) + 0x10 + (longlong)stream_ptr);
         
         while ((stream_status & 6) == 0) {
-            path_ptr = &unknown_var_3456_ptr;
+            path_ptr = &system_data_buffer_ptr;
             name_capacity = 0;
             name_buffer = (int8_t *)0x0;
             name_size = 0;
@@ -576,7 +576,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
                 release_resource_memory(extraout_XMM0_Da, data_offset);
             }
             
-            path_ptr = &unknown_var_3456_ptr;
+            path_ptr = &system_data_buffer_ptr;
             if (name_buffer != (int8_t *)0x0) {
                 free_memory(name_buffer);
             }
@@ -605,7 +605,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     destroy_file_stream(line_buffer);
     destroy_file_stream(line_storage);
     
-    path_ptr = &unknown_var_3456_ptr;
+    path_ptr = &system_data_buffer_ptr;
     if (data_ptr != (uint64_t *)0x0) {
         free_memory(data_ptr);
     }

@@ -266,7 +266,7 @@ void RenderingSystem_AdvancedParameterProcessor(RenderingContextHandle context, 
             
             // 处理渲染队列
             uint_value2 = *(uint *)(*data_pointer + 0x10);
-            status_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
+            status_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
             if ((status_flag != '\0') && 
                 (status_flag = FUN_180645c10(0x180c95578, 4, &unknown_var_3472_ptr), status_flag != '\0')) {
                 FUN_180645c10(0x180c95578, uint_value2, &unknown_var_3424_ptr);
@@ -482,7 +482,7 @@ SHADOW_PROCESSING_BRANCH:
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                  0x48) < render_system_config_memory) && (FUN_1808fcb90(&system_memory_9ed8), render_system_config_memory == -1)) {
       // 错误处理：创建和初始化错误信息结构
-      char* error_msg_ptr = &unknown_var_3456_ptr;
+      char* error_msg_ptr = &system_data_buffer_ptr;
       uint error_code = 0;
       uint error_subtype = 0;
       char* error_data_ptr = (char*)0x0;
@@ -495,7 +495,7 @@ SHADOW_PROCESSING_BRANCH:
       *(ushort*)(error_buffer + 1) = 'h';
       error_flags = 5;
       render_system_config_memory = FUN_180571e20(&system_memory_60c0, &error_msg_ptr);
-      error_msg_ptr = &unknown_var_3456_ptr;
+      error_msg_ptr = &system_data_buffer_ptr;
       // 错误处理完成，程序终止
       FUN_18064e900(error_buffer);
     }
@@ -660,7 +660,7 @@ SHADOW_PROCESSING_BRANCH:
       uVar12 = render_system_config_memory;
       if ((iVar7 < render_system_config_memory) &&
          (FUN_1808fcb90(&system_memory_9ee0), uVar12 = render_system_config_memory, render_system_config_memory == -1)) {
-        puStack_258 = &unknown_var_3456_ptr;
+        puStack_258 = &system_data_buffer_ptr;
         uStack_240 = 0;
         uStack_23c = 0;
         puStack_250 = (int32_t *)0x0;
@@ -673,7 +673,7 @@ SHADOW_PROCESSING_BRANCH:
         *(int16_t *)(puVar11 + 1) = 0x68;
         uStack_248 = 5;
         render_system_config_memory = FUN_180571e20(&system_memory_60c0,&puStack_258);
-        puStack_258 = &unknown_var_3456_ptr;
+        puStack_258 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar11);
       }
@@ -682,7 +682,7 @@ SHADOW_PROCESSING_BRANCH:
       uVar12 = render_system_config_memory;
       if ((iVar7 < render_system_config_memory) &&
          (FUN_1808fcb90(&system_memory_9ee8), uVar12 = render_system_config_memory, render_system_config_memory == -1)) {
-        puStack_258 = &unknown_var_3456_ptr;
+        puStack_258 = &system_data_buffer_ptr;
         uStack_240 = 0;
         uStack_23c = 0;
         puStack_250 = (int32_t *)0x0;
@@ -695,7 +695,7 @@ SHADOW_PROCESSING_BRANCH:
         *(int8_t *)(puVar11 + 1) = 0;
         uStack_248 = 4;
         render_system_config_memory = FUN_180571e20(&system_memory_60c0,&puStack_258);
-        puStack_258 = &unknown_var_3456_ptr;
+        puStack_258 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar11);
       }

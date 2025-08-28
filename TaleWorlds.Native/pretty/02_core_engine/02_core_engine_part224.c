@@ -39,7 +39,7 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
   
   // 初始化资源管理器
   FUN_180627ae0(&stack_resource1, context_param1, context_param1, context_param2, 0, 0xfffffffffffffffe);
-  FUN_180628040(&stack_resource1, &STRING_CONST_180a0b2b4, *(uint64_t *)(data_source + 0x20));
+  System_DataHandler(&stack_resource1, &STRING_CONST_180a0b2b4, *(uint64_t *)(data_source + 0x20));
   
   context_data = *engine_context;
   
@@ -130,11 +130,11 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
     if (*(void **)(iteration_data + 8) != (void *)0x0) {
       resource_ptr = *(void **)(iteration_data + 8);
     }
-    FUN_180628040(*engine_context + 0x60780, &STRING_CONST_180a0b2a8, resource_ptr, *(int32_t *)(iteration_data + 0x20));
+    System_DataHandler(*engine_context + 0x60780, &STRING_CONST_180a0b2a8, resource_ptr, *(int32_t *)(iteration_data + 0x20));
   }
   
   // 最终清理和同步
-  FUN_180628040(*engine_context + 0x60780, &STRING_CONST_1809fcc18);
+  System_DataHandler(*engine_context + 0x60780, &STRING_CONST_1809fcc18);
   stack_resource1 = &RESOURCE_HANDLE_180a3c3e0;
   
   if (stack_data1 == 0) {

@@ -371,18 +371,18 @@ LAB_1804b6fde:
         puVar13 = puVar22;
         do {
           puStack_a8 = puVar10 + -5;
-          *puStack_a8 = (ulonglong)&unknown_var_720_ptr;
+          *puStack_a8 = (ulonglong)&system_state_ptr;
           puVar10[-4] = 0;
           *(int32_t *)(puVar10 + -3) = 0;
-          *puStack_a8 = (ulonglong)&unknown_var_3456_ptr;
+          *puStack_a8 = (ulonglong)&system_data_buffer_ptr;
           puVar10[-2] = 0;
           puVar10[-4] = 0;
           *(int32_t *)(puVar10 + -3) = 0;
           puStack_a0 = puVar10 + -1;
-          *puStack_a0 = (ulonglong)&unknown_var_720_ptr;
+          *puStack_a0 = (ulonglong)&system_state_ptr;
           *puVar10 = 0;
           *(int32_t *)(puVar10 + 1) = 0;
-          *puStack_a0 = (ulonglong)&unknown_var_3456_ptr;
+          *puStack_a0 = (ulonglong)&system_data_buffer_ptr;
           puVar10[2] = 0;
           *puVar10 = 0;
           *(int32_t *)(puVar10 + 1) = 0;
@@ -423,7 +423,7 @@ LAB_1804b6fde:
           auStack_60[0] = 0;
           iStack_68 = 0xe;
           strcpy_s(auStack_60,0x20);
-          puStack_c8 = &unknown_var_3456_ptr;
+          puStack_c8 = &system_data_buffer_ptr;
           uStack_b0 = 0;
           puStack_c0 = (int8_t *)0x0;
           uStack_b8 = 0;
@@ -441,15 +441,15 @@ LAB_1804b6fde:
             *puStack_c0 = 0;
           }
           cVar5 = FUN_180063510(lVar4 + 0x218,&puStack_c8);
-          puStack_c8 = &unknown_var_3456_ptr;
+          puStack_c8 = &system_data_buffer_ptr;
           if (puStack_c0 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
           puStack_c0 = (int8_t *)0x0;
           uStack_b0 = uStack_b0 & 0xffffffff00000000;
-          puStack_c8 = &unknown_var_720_ptr;
-          puStack_78 = &unknown_var_720_ptr;
+          puStack_c8 = &system_state_ptr;
+          puStack_78 = &system_state_ptr;
           if (cVar5 != '\0') {
             lVar17 = *(longlong *)(*(longlong *)(lVar11 + 0x38) + (longlong)(int)puVar7 * 0x10);
             break;

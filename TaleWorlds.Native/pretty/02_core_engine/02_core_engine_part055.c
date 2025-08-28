@@ -337,7 +337,7 @@ longlong *debug_output_buffer = system_global_data_ptr;
 // 原始实现：FUN_18024b8d0() -> initialize_render_backend()
 // 原始实现：FUN_18062b420() -> create_debug_message()
 // 原始实现：FUN_18064e990() -> allocate_message_buffer()
-// 原始实现：FUN_180628040() -> send_debug_message()
+// 原始实现：System_DataHandler() -> send_debug_message()
 // 原始实现：FUN_18064e900() -> free_message_buffer()
 // 原始实现：FUN_18005e6a0() -> process_render_queue()
 // 原始实现：SUB84() -> calculate_shader_parameter()

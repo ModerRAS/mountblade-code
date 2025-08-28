@@ -1162,7 +1162,7 @@ FUN_180600cc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   
   uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_180555eb0(&system_memory_60a0,uVar2);
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

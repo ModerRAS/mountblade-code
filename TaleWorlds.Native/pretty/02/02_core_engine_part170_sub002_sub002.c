@@ -114,7 +114,7 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
     (*(code**)(*(longlong*)(engine_context + 0xf90) + 0x10))((longlong*)(engine_context + 0xf90), &unknown_var_7240_ptr);
     
     // 设置资源路径字符串
-    stack_ptr_70 = &unknown_var_3456_ptr;
+    stack_ptr_70 = &system_data_buffer_ptr;
     stack_value_58 = 0;
     stack_ptr_68 = (uint64_t*)0x0;
     stack_value_60 = 0;
@@ -134,13 +134,13 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
     FUN_18005c8a0(temp_long, &stack_ptr_70);
     
     // 错误处理和清理
-    stack_ptr_70 = &unknown_var_3456_ptr;
+    stack_ptr_70 = &system_data_buffer_ptr;
     if (stack_ptr_68 == (uint64_t*)0x0) {
         // 备用路径配置
         stack_ptr_68 = (uint64_t*)0x0;
         stack_value_58 = stack_value_58 & 0xffffffff00000000;
-        stack_ptr_70 = &unknown_var_720_ptr;
-        stack_ptr_50 = &unknown_var_3456_ptr;
+        stack_ptr_70 = &system_state_ptr;
+        stack_ptr_50 = &system_data_buffer_ptr;
         stack_ptr_38 = (void*)0x0;
         stack_ptr_48 = (uint64_t*)0x0;
         function_ptr = (code*)((ulonglong)function_ptr & 0xffffffff00000000);
@@ -158,11 +158,11 @@ void initialize_engine_configuration(longlong engine_context, uint64_t param2, u
         function_ptr = (code*)CONCAT44(function_ptr._4_4_, 0x2b);
         FUN_1800b0680(temp_long, &stack_ptr_50);
         
-        stack_ptr_50 = &unknown_var_3456_ptr;
+        stack_ptr_50 = &system_data_buffer_ptr;
         if (stack_ptr_48 == (uint64_t*)0x0) {
             stack_ptr_48 = (uint64_t*)0x0;
             stack_ptr_38 = (void*)((ulonglong)stack_ptr_38 & 0xffffffff00000000);
-            stack_ptr_50 = &unknown_var_720_ptr;
+            stack_ptr_50 = &system_state_ptr;
             stack_data_8 = (int32_t*)temp_long;
             FUN_18005ea90(engine_context + 0x48, &stack_data_8);
             *(int32_t*)(engine_context + 0x88) = 1;

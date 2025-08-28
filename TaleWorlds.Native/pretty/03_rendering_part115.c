@@ -497,11 +497,11 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   uint uVar12;
   ulonglong uVar13;
   
-  FUN_180639ec0(param_2,param_1);
+  System_QueueProcessor(param_2,param_1);
   puVar5 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0x5c);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     puVar5 = (int32_t *)param_2[1];
   }
   *puVar5 = uVar1;
@@ -509,7 +509,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   puVar5 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0x58);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     puVar5 = (int32_t *)param_2[1];
   }
   *puVar5 = uVar1;
@@ -517,7 +517,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   puVar5 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0x60);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     puVar5 = (int32_t *)param_2[1];
   }
   *puVar5 = uVar1;
@@ -539,7 +539,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
     cVar7 = '\0';
   }
   if ((ulonglong)((*param_2 - (longlong)pcVar3) + param_2[2]) < 2) {
-    FUN_180639bf0(param_2,pcVar3 + (1 - *param_2));
+    System_BufferManager(param_2,pcVar3 + (1 - *param_2));
     pcVar3 = (char *)param_2[1];
   }
   *pcVar3 = cVar7;
@@ -553,7 +553,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   /* 处理矩阵数据 */
   uVar1 = *(int32_t *)(param_1 + 100);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     puVar5 = (int32_t *)param_2[1];
   }
   *puVar5 = uVar1;
@@ -568,7 +568,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   puVar5 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0x68);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     puVar5 = (int32_t *)param_2[1];
   }
   *puVar5 = uVar1;
@@ -576,7 +576,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   puVar5 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0x198);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     puVar5 = (int32_t *)param_2[1];
   }
   *puVar5 = uVar1;
@@ -587,7 +587,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   lVar6 = *(longlong *)(param_1 + 0x138);
   lVar11 = *(longlong *)(param_1 + 0x130);
   if ((ulonglong)((*param_2 - (longlong)piVar4) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)piVar4 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)piVar4 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     piVar4 = (int *)param_2[1];
   }
   iVar8 = (int)(lVar6 - lVar11 >> 3);
@@ -600,7 +600,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
     do {
       lVar6 = *(longlong *)(param_1 + 0x130);
       if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_LONG_SIZE) {
-        FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_LONG_SIZE - *param_2));
+        System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_LONG_SIZE - *param_2));
         puVar5 = (int32_t *)param_2[1];
       }
       *puVar5 = *(int32_t *)(lVar6 + uVar10 * 8);
@@ -616,7 +616,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   /* 处理附加数据 */
   uVar1 = *(int32_t *)(param_1 + 0x7c);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     puVar5 = (int32_t *)param_2[1];
   }
   *puVar5 = uVar1;
@@ -624,7 +624,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   puVar5 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0x74);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     puVar5 = (int32_t *)param_2[1];
   }
   *puVar5 = uVar1;
@@ -638,13 +638,13 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
       lVar11 = param_2[2];
       lVar2 = *(longlong *)(param_1 + 0x150);
       if ((ulonglong)((lVar6 - (longlong)puVar5) + lVar11) < RENDERING_SYSTEM_MATRIX_SIZE) {
-        FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_MATRIX_SIZE - lVar6));
+        System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_MATRIX_SIZE - lVar6));
         puVar5 = (int32_t *)param_2[1];
         lVar11 = param_2[2];
         lVar6 = *param_2;
       }
       if ((ulonglong)((lVar6 - (longlong)puVar5) + lVar11) < RENDERING_SYSTEM_VECTOR_SIZE) {
-        FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_VECTOR_SIZE - lVar6));
+        System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_VECTOR_SIZE - lVar6));
         puVar5 = (int32_t *)param_2[1];
       }
       *puVar5 = *(int32_t *)(uVar10 + lVar2);
@@ -657,7 +657,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
       puVar5 = (int32_t *)(param_2[1] + RENDERING_SYSTEM_INT_SIZE);
       param_2[1] = (longlong)puVar5;
       if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_VECTOR_SIZE) {
-        FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_VECTOR_SIZE - *param_2));
+        System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_VECTOR_SIZE - *param_2));
         puVar5 = (int32_t *)param_2[1];
       }
       *puVar5 = *(int32_t *)(uVar10 + 0x10 + lVar2);
@@ -670,7 +670,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
       puVar5 = (int32_t *)(param_2[1] + RENDERING_SYSTEM_INT_SIZE);
       param_2[1] = (longlong)puVar5;
       if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_VECTOR_SIZE) {
-        FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_VECTOR_SIZE - *param_2));
+        System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_VECTOR_SIZE - *param_2));
         puVar5 = (int32_t *)param_2[1];
       }
       *puVar5 = *(int32_t *)(uVar10 + 0x20 + lVar2);
@@ -683,7 +683,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
       puVar5 = (int32_t *)(param_2[1] + RENDERING_SYSTEM_INT_SIZE);
       param_2[1] = (longlong)puVar5;
       if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_VECTOR_SIZE) {
-        FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_VECTOR_SIZE - *param_2));
+        System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_VECTOR_SIZE - *param_2));
         puVar5 = (int32_t *)param_2[1];
       }
       uVar12 = (int)uVar9 + 1;
@@ -704,7 +704,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   /* 处理剩余数据 */
   uVar1 = *(int32_t *)(param_1 + 0x78);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     puVar5 = (int32_t *)param_2[1];
   }
   *puVar5 = uVar1;
@@ -715,7 +715,7 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
       iVar8 = (int)uVar13;
       lVar6 = *(longlong *)(param_1 + 0x170);
       if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 2) {
-        FUN_180639bf0(param_2,(int8_t *)((longlong)puVar5 + (1 - *param_2)));
+        System_BufferManager(param_2,(int8_t *)((longlong)puVar5 + (1 - *param_2)));
         puVar5 = (int32_t *)param_2[1];
       }
       uVar12 = iVar8 + 1;
@@ -729,16 +729,16 @@ void RenderingSystem_Serializer(longlong param_1,longlong *param_2)
   /* 处理最终数据 */
   uVar1 = *(int32_t *)(param_1 + 0x6c);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(int8_t *)((longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2)));
+    System_BufferManager(param_2,(int8_t *)((longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2)));
     puVar5 = (int32_t *)param_2[1];
   }
   *puVar5 = uVar1;
   param_2[1] = param_2[1] + RENDERING_SYSTEM_INT_SIZE;
-  FUN_180639ec0(param_2,param_1 + 0x110);
+  System_QueueProcessor(param_2,param_1 + 0x110);
   puVar5 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0x70);
   if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
+    System_BufferManager(param_2,(longlong)puVar5 + (RENDERING_SYSTEM_INT_SIZE - *param_2));
     *(int32_t *)param_2[1] = uVar1;
   }
   else {

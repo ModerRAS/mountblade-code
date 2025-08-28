@@ -645,7 +645,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                 if (temp_data_ptr != data_array) {
                     do {
                         quad_stack_ptr10 = (QuadPointer)(temp_data_ptr + 1);
-                        *quad_stack_ptr10 = (TriplePointer *)&unknown_var_3456_ptr;
+                        *quad_stack_ptr10 = (TriplePointer *)&system_data_buffer_ptr;
                         if (temp_data_ptr[2] != (TriplePointer)0x0) {
                             quad_stack_ptr8 = (QuadPointer)temp_data_ptr;
                             // 调用错误处理函数
@@ -653,7 +653,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
                         }
                         temp_data_ptr[2] = (TriplePointer)0x0;
                         *(int32_t *)(temp_data_ptr + 4) = 0;
-                        *quad_stack_ptr10 = (TriplePointer *)&unknown_var_720_ptr;
+                        *quad_stack_ptr10 = (TriplePointer *)&system_state_ptr;
                         quad_stack_ptr8 = (QuadPointer)(temp_data_ptr + 5);
                         temp_data_ptr = (TriplePointer *)quad_stack_ptr8;
                     } while (quad_stack_ptr8 != (QuadPointer)data_array);
@@ -879,10 +879,10 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             ResourceInitializer(quad_pointer);
             *quad_pointer = (TriplePointer *)&unknown_var_1816_ptr;
             quad_stack_ptr10 = quad_pointer + 0x19;
-            *quad_stack_ptr10 = (TriplePointer *)&unknown_var_720_ptr;
+            *quad_stack_ptr10 = (TriplePointer *)&system_state_ptr;
             quad_pointer[0x1a] = (TriplePointer)0x0;
             *(int32_t *)(quad_pointer + 0x1b) = 0;
-            *quad_stack_ptr10 = (TriplePointer *)&unknown_var_3456_ptr;
+            *quad_stack_ptr10 = (TriplePointer *)&system_data_buffer_ptr;
             quad_pointer[0x1c] = (TriplePointer)0x0;
             quad_pointer[0x1a] = (TriplePointer)0x0;
             *(int32_t *)(quad_pointer + 0x1b) = 0;
@@ -902,13 +902,13 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             }
             *(int32_t *)((longlong)quad_pointer + 0xe4) = *(int32_t *)((longlong)system_data + 0x1c);
             quad_pointer[0x18] = data_ptr;
-            *system_data = &unknown_var_3456_ptr;
+            *system_data = &system_data_buffer_ptr;
             if (system_data[1] != 0) {
                 ErrorHandler();
             }
             system_data[1] = 0;
             *(int32_t *)(system_data + 3) = 0;
-            *system_data = &unknown_var_720_ptr;
+            *system_data = &system_state_ptr;
             quad_stack_88 = quad_pointer;
             ((code *)(*quad_pointer)[5])(quad_pointer, temp_offset);
             temp_offset = system_context_ptr;
@@ -934,7 +934,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             __Throw_C_error_std__YAXH_Z(resource_id);
         }
     }
-    ptr_stack_c8 = &unknown_var_3456_ptr;
+    ptr_stack_c8 = &system_data_buffer_ptr;
     if (long_stack_c0 == 0) {
         return;
     }
@@ -1067,13 +1067,13 @@ void core_engine_resource_cleaner(longlong resource_handle, uint64_t config_para
 longlong core_engine_memory_manager(longlong memory_ptr, ulonglong memory_flag)
 {
     // 重置内存状态
-    *(uint64_t *)(memory_ptr + 200) = &unknown_var_3456_ptr;
+    *(uint64_t *)(memory_ptr + 200) = &system_data_buffer_ptr;
     if (*(longlong *)(memory_ptr + 0xd0) != 0) {
         ErrorHandler();
     }
     *(uint64_t *)(memory_ptr + 0xd0) = 0;
     *(int32_t *)(memory_ptr + 0xe0) = 0;
-    *(uint64_t *)(memory_ptr + 200) = &unknown_var_720_ptr;
+    *(uint64_t *)(memory_ptr + 200) = &system_state_ptr;
     DataValidator(memory_ptr);
     
     // 根据标志决定是否释放内存

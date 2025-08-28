@@ -721,44 +721,44 @@ void reset_render_manager(longlong manager_context)
 
 {
   // 重置主渲染管理器
-  *(uint64_t *)(manager_context + 0x68) = &unknown_var_3456_ptr;
+  *(uint64_t *)(manager_context + 0x68) = &system_data_buffer_ptr;
   if (*(longlong *)(manager_context + 0x70) != 0) {
     // 渲染管理器状态错误
     trigger_render_manager_error();
   }
   *(uint64_t *)(manager_context + 0x70) = 0;
   *(int32_t *)(manager_context + 0x80) = 0;
-  *(uint64_t *)(manager_context + 0x68) = &unknown_var_720_ptr;
+  *(uint64_t *)(manager_context + 0x68) = &system_state_ptr;
   
   // 重置纹理管理器
-  *(uint64_t *)(manager_context + 0x48) = &unknown_var_3456_ptr;
+  *(uint64_t *)(manager_context + 0x48) = &system_data_buffer_ptr;
   if (*(longlong *)(manager_context + 0x50) != 0) {
     // 纹理管理器状态错误
     trigger_texture_manager_error();
   }
   *(uint64_t *)(manager_context + 0x50) = 0;
   *(int32_t *)(manager_context + 0x60) = 0;
-  *(uint64_t *)(manager_context + 0x48) = &unknown_var_720_ptr;
+  *(uint64_t *)(manager_context + 0x48) = &system_state_ptr;
   
   // 重置着色器管理器
-  *(uint64_t *)(manager_context + 0x28) = &unknown_var_3456_ptr;
+  *(uint64_t *)(manager_context + 0x28) = &system_data_buffer_ptr;
   if (*(longlong *)(manager_context + 0x30) != 0) {
     // 着色器管理器状态错误
     trigger_shader_manager_error();
   }
   *(uint64_t *)(manager_context + 0x30) = 0;
   *(int32_t *)(manager_context + 0x40) = 0;
-  *(uint64_t *)(manager_context + 0x28) = &unknown_var_720_ptr;
+  *(uint64_t *)(manager_context + 0x28) = &system_state_ptr;
   
   // 重置缓冲区管理器
-  *(uint64_t *)(manager_context + 8) = &unknown_var_3456_ptr;
+  *(uint64_t *)(manager_context + 8) = &system_data_buffer_ptr;
   if (*(longlong *)(manager_context + 0x10) != 0) {
     // 缓冲区管理器状态错误
     trigger_buffer_manager_error();
   }
   *(uint64_t *)(manager_context + 0x10) = 0;
   *(int32_t *)(manager_context + 0x20) = 0;
-  *(uint64_t *)(manager_context + 8) = &unknown_var_720_ptr;
+  *(uint64_t *)(manager_context + 8) = &system_state_ptr;
   return;
 }
 
@@ -809,14 +809,14 @@ void reset_shader_manager(uint64_t *shader_context)
 
 {
   batch_reset_render_managers();
-  *shader_context = &unknown_var_3456_ptr;
+  *shader_context = &system_data_buffer_ptr;
   if (shader_context[1] != 0) {
     // 着色器上下文错误
     trigger_shader_context_error();
   }
   shader_context[1] = 0;
   *(int32_t *)(shader_context + 3) = 0;
-  *shader_context = &unknown_var_720_ptr;
+  *shader_context = &system_state_ptr;
   return;
 }
 
@@ -867,14 +867,14 @@ void reset_buffer_manager(uint64_t *buffer_context)
 
 {
   batch_reset_shader_managers();
-  *buffer_context = &unknown_var_3456_ptr;
+  *buffer_context = &system_data_buffer_ptr;
   if (buffer_context[1] != 0) {
     // 缓冲区上下文错误
     trigger_buffer_context_error();
   }
   buffer_context[1] = 0;
   *(int32_t *)(buffer_context + 3) = 0;
-  *buffer_context = &unknown_var_720_ptr;
+  *buffer_context = &system_state_ptr;
   return;
 }
 
@@ -894,7 +894,7 @@ void initialize_engine_module(uint64_t module_handle,uint64_t init_flags,uint64_
   int32_t resource_count;
   uint64_t resource_handle;
   
-  module_security = &unknown_var_3456_ptr;
+  module_security = &system_data_buffer_ptr;
   resource_handle = 0;
   module_resources = (int32_t *)0x0;
   resource_count = 0;
@@ -910,7 +910,7 @@ void initialize_engine_module(uint64_t module_handle,uint64_t init_flags,uint64_
   *(int16_t *)(module_config + 4) = 0x69;  // "i"
   resource_count = 0x11;
   register_engine_module(module_handle,&module_security);
-  module_security = &unknown_var_3456_ptr;
+  module_security = &system_data_buffer_ptr;
                     // 模块初始化失败
   trigger_module_initialization_failure(module_config);
 }

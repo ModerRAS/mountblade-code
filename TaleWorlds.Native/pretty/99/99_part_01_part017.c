@@ -214,8 +214,8 @@ process_data:
         long_ptr2 = (void*)((MemoryAllocatorFunc)FUN_18062b1e0)(GLOBAL_DATA_PTR_180c8ed18, 0x170, 8, 3);
         
         // 初始化资源对象结构
-        *(void**)long_ptr2 = (void*)&unknown_var_3552_ptr;
-        *(void**)long_ptr2 = (void*)&unknown_var_3696_ptr;
+        *(void**)long_ptr2 = (void*)&system_handler1_ptr;
+        *(void**)long_ptr2 = (void*)&system_handler2_ptr;
         *(unsigned int*)(long_ptr2 + 1) = 0;
         *(void**)long_ptr2 = (void*)&unknown_var_2696_ptr;
         ((void**)long_ptr2)[6] = (void*)0;
@@ -226,7 +226,7 @@ process_data:
         ((void**)long_ptr2)[7] = (void*)0;
         *(unsigned int*)(long_ptr2 + 8) = 0;
         indirect_ptr1 = (void**)(long_ptr2 + 10);
-        *indirect_ptr1 = (void**)&unknown_var_720_ptr;
+        *indirect_ptr1 = (void**)&system_state_ptr;
         ((void**)long_ptr2)[0xb] = (void*)0;
         *(unsigned int*)(long_ptr2 + 0xc) = 0;
         *indirect_ptr1 = (void**)&unknown_var_2008_ptr;
@@ -331,7 +331,7 @@ process_data:
                 ((void(*)(void*))(*(void**)(*long_ptr3 + 0x38)))(long_ptr3);
             }
             stack_indirect_ptr2 = &stack_ptr8;
-            stack_ptr8 = &unknown_var_720_ptr;
+            stack_ptr8 = &system_state_ptr;
         }
         
         // 处理异步模式下的资源管理
@@ -505,7 +505,7 @@ expand_queue:
         data_ptr3 = *(void**)((long long)data_source + 8);
     }
     strcpy_s(stack_buffer3, 0x80, data_ptr3);
-    stack_ptr11 = &unknown_var_720_ptr;
+    stack_ptr11 = &system_state_ptr;
     *(unsigned int*)((long long)long_ptr1 + 0x16c) = *(unsigned int*)(GLOBAL_DATA_PTR_180c86870 + 0x224);
     *stack_ptr4 = long_ptr1;
     stack_long_ptr3 = (void*)0x0;

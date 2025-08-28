@@ -402,22 +402,22 @@ void RenderingSystem_SerializeOutput(longlong render_data, longlong *output_buff
   
   // 检查缓冲区空间
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
   
   // 序列化渲染数据块
-  FUN_180639ec0(output_buffer, render_data + 0xb0);
-  FUN_180639ec0(output_buffer, render_data + 0x108);
-  FUN_180639ec0(output_buffer, render_data + 0x160);
+  System_QueueProcessor(output_buffer, render_data + 0xb0);
+  System_QueueProcessor(output_buffer, render_data + 0x108);
+  System_QueueProcessor(output_buffer, render_data + 0x160);
   
   // 序列化渲染状态数据
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0x1b8);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -426,7 +426,7 @@ void RenderingSystem_SerializeOutput(longlong render_data, longlong *output_buff
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0x1bc);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -435,7 +435,7 @@ void RenderingSystem_SerializeOutput(longlong render_data, longlong *output_buff
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0x1c0);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -445,7 +445,7 @@ void RenderingSystem_SerializeOutput(longlong render_data, longlong *output_buff
   byte_ptr = (int8_t *)output_buffer[1];
   output_byte = *(int8_t *)(render_data + 0x1c4);
   if ((ulonglong)((output_buffer[2] - (longlong)byte_ptr) + *output_buffer) < 2) {
-    FUN_180639bf0(output_buffer, byte_ptr + (1 - *output_buffer));
+    System_BufferManager(output_buffer, byte_ptr + (1 - *output_buffer));
     *(int8_t *)output_buffer[1] = output_byte;
   }
   else {
@@ -556,7 +556,7 @@ uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
   // 初始化资源管理器结构
   FUN_180320470();
   *resource_manager = &unknown_var_8368_ptr;
-  resource_manager[0x16] = &unknown_var_720_ptr;
+  resource_manager[0x16] = &system_state_ptr;
   resource_manager[0x17] = 0;
   *(int32_t *)(resource_manager + 0x18) = 0;
   resource_manager[0x16] = &unknown_var_3480_ptr;
@@ -565,7 +565,7 @@ uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
   *(int8_t *)(resource_manager + 0x19) = 0;
   
   // 设置资源管理器参数
-  resource_manager[0x21] = &unknown_var_720_ptr;
+  resource_manager[0x21] = &system_state_ptr;
   resource_manager[0x22] = 0;
   *(int32_t *)(resource_manager + 0x23) = 0;
   resource_manager[0x21] = &unknown_var_3480_ptr;
@@ -574,7 +574,7 @@ uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
   *(int8_t *)(resource_manager + 0x24) = 0;
   
   // 初始化资源管理器
-  resource_manager[0x2c] = &unknown_var_720_ptr;
+  resource_manager[0x2c] = &system_state_ptr;
   resource_manager[0x2d] = 0;
   *(int32_t *)(resource_manager + 0x2e) = 0;
   resource_manager[0x2c] = &unknown_var_3480_ptr;
@@ -760,7 +760,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   
   // 检查缓冲区空间并写入数据
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -770,7 +770,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xb4);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -779,7 +779,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xb8);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -788,7 +788,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xbc);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -797,7 +797,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xc0);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -806,7 +806,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xc4);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -815,7 +815,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 200);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -824,7 +824,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xcc);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -833,7 +833,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xd0);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -842,7 +842,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xd4);
   if ((ulonglong)((output_buffer[2] - (longlong)word_ptr) + *output_buffer) < 5) {
-    FUN_180639bf0(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
+    System_BufferManager(output_buffer, (longlong)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
@@ -851,8 +851,8 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   // 序列化渲染数据块
   FUN_180639fd0(output_buffer, render_data + 0xd8);
   FUN_180639fd0(output_buffer, render_data + 0xe8);
-  FUN_180639ec0(output_buffer, render_data + 0xf8);
-  FUN_180639ec0(output_buffer, render_data + 0x150);
+  System_QueueProcessor(output_buffer, render_data + 0xf8);
+  System_QueueProcessor(output_buffer, render_data + 0x150);
   
   // 序列化资源数据
   data_size = *(uint *)(render_data + 0x1b8);
@@ -860,7 +860,7 @@ void RenderingSystem_SerializeResources(longlong render_data, longlong *output_b
   buffer_size = (ulonglong)data_size + 4;
   temp_offset = *output_buffer;
   if ((ulonglong)((output_buffer[2] - (longlong)uint_ptr) + temp_offset) <= buffer_size) {
-    FUN_180639bf0(output_buffer, (longlong)uint_ptr + (buffer_size - temp_offset), temp_offset, resource_manager2, unaff_RDI);
+    System_BufferManager(output_buffer, (longlong)uint_ptr + (buffer_size - temp_offset), temp_offset, resource_manager2, unaff_RDI);
     uint_ptr = (uint *)output_buffer[1];
   }
   *uint_ptr = data_size;

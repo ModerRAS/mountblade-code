@@ -955,7 +955,7 @@ LAB_1804bee5c:
       if ((puVar8 == puVar12) || (uVar13 < *(uint *)(puVar8 + 4))) goto LAB_1804bee5c;
     }
     if (puVar8[5] == 0) {
-      FUN_180626f80(&unknown_var_7512_ptr);
+      FUN_180626f80(&system_config_ptr);
       iVar14 = 0;
     }
     else {
@@ -1157,14 +1157,14 @@ LAB_1804beff7:
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar4);
   }
-  puStack_c38 = &unknown_var_3456_ptr;
+  puStack_c38 = &system_data_buffer_ptr;
   if (lStack_c30 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_c30 = 0;
   uStack_c20 = 0;
-  puStack_c38 = &unknown_var_720_ptr;
+  puStack_c38 = &system_state_ptr;
   puVar8 = puStack_c88;
   puVar4 = puStack_c80;
   for (puVar20 = puVar12; puStack_c88 = puVar8, puStack_c80 = puVar4, puVar20 != puVar17;
@@ -1174,23 +1174,23 @@ LAB_1804beff7:
     puVar4 = puStack_c80;
   }
   if (puVar12 == (uint64_t *)0x0) {
-    puStack_c18 = &unknown_var_3456_ptr;
+    puStack_c18 = &system_data_buffer_ptr;
     if (lStack_c10 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_c10 = 0;
     uStack_c00 = 0;
-    puStack_c18 = &unknown_var_720_ptr;
+    puStack_c18 = &system_state_ptr;
     for (puVar12 = puVar8; puVar12 != puVar4; puVar12 = puVar12 + 4) {
       (**(code **)*puVar12)(puVar12,0);
     }
     if (puVar8 == (uint64_t *)0x0) {
-      puStack_bf8 = &unknown_var_3456_ptr;
+      puStack_bf8 = &system_data_buffer_ptr;
       if (lStack_bf0 == 0) {
         lStack_bf0 = 0;
         uStack_be0 = 0;
-        puStack_bf8 = &unknown_var_720_ptr;
+        puStack_bf8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
         FUN_1808fc050(uStack_e8 ^ (ulonglong)auStack_d28);
       }

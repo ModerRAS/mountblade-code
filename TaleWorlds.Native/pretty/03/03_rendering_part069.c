@@ -165,7 +165,7 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   
   // 初始化渲染资源管理器
   local_stack_ptr_1 = render_context + 0x380;
-  *local_stack_ptr_1 = &unknown_var_720_ptr;
+  *local_stack_ptr_1 = &system_state_ptr;
   render_context[0x381] = 0;
   *(int32_t *)(render_context + 0x382) = 0;
   *local_stack_ptr_1 = &unknown_var_672_ptr;
@@ -185,7 +185,7 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   *(int8_t *)(render_context + 0x38a) = local_var_1;
   
   // 初始化渲染资源处理器
-  local_stack_ptr_5 = &unknown_var_720_ptr;
+  local_stack_ptr_5 = &system_state_ptr;
   FUN_1803073e0(render_context);
   *(int *)(render_context + 0x387) = init_param;
   
@@ -203,7 +203,7 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
     local_ptr_1 = local_stack_ptr_4;
   }
   strcpy_s(render_context[0x381], 0x20, local_ptr_1);
-  local_stack_ptr_3 = &unknown_var_720_ptr;
+  local_stack_ptr_3 = &system_state_ptr;
   
   // 处理渲染参数字符串
   local_long_1 = -1;
@@ -301,7 +301,7 @@ void rendering_system_advanced_cleanup(uint64_t *render_context, uint64_t param_
   }
   
   // 重置渲染资源管理器
-  render_context[0x380] = &unknown_var_720_ptr;
+  render_context[0x380] = &system_state_ptr;
   _Mtx_destroy_in_situ();
   
   // 清理核心资源

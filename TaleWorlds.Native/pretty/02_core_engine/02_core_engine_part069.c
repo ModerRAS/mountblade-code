@@ -105,7 +105,7 @@ void initialize_engine_core_structure(uint64_t *engine_context, uint64_t param2,
   
   // 设置引擎数据结构
   *engine_context = &unknown_var_7304_ptr;
-  engine_context[0x18] = &unknown_var_3456_ptr;
+  engine_context[0x18] = &system_data_buffer_ptr;
   
   // 检查并初始化关键组件
   if (engine_context[0x19] != 0) {
@@ -114,7 +114,7 @@ void initialize_engine_core_structure(uint64_t *engine_context, uint64_t param2,
   }
   engine_context[0x19] = 0;
   *(int32_t *)(engine_context + 0x1b) = 0;
-  engine_context[0x18] = &unknown_var_720_ptr;
+  engine_context[0x18] = &system_state_ptr;
   
   // 调用核心初始化函数
   FUN_18005d260(engine_context + 0x12, engine_context[0x14], param3, param4, 0xfffffffffffffffe);

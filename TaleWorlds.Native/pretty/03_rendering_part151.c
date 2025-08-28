@@ -479,7 +479,7 @@ void RenderingSystem_AdvancedVertexProcessor(longlong renderContext, longlong re
     // 设置顶点管线处理器的配置参数
     uStack_3e8 = (void **)alStack_1b8;
     uStack_3e0 = &plStack_3b0;
-    pcStack_3c8 = (code *)&unknown_var_720_ptr;
+    pcStack_3c8 = (code *)&system_state_ptr;
     pcStack_3c0 = FUN_180360210;
     pfStack_438 = (float *)auStack_3d8;
     auStack_3d8 = (int8_t  [8])uStack_3e8;
@@ -675,7 +675,7 @@ LAB_18035f156:
       if (uStack_410 != (longlong **)0x0) {
         (*(code *)(*uStack_410)[7])();
       }
-      puStack_1f0 = &unknown_var_720_ptr;
+      puStack_1f0 = &system_state_ptr;
       plStack_390 = (longlong *)0x0;
       pplStack_388 = (longlong **)0x0;
       pplStack_400 = &plStack_380;

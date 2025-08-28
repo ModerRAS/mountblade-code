@@ -676,11 +676,11 @@ void FUN_1803b1ad0(longlong param_1,longlong param_2)
     FUN_1800b8090();
   }
   uStack_150 = 0;
-  puStack_108 = &unknown_var_3456_ptr;
+  puStack_108 = &system_data_buffer_ptr;
   if (lStack_100 == 0) {
     lStack_100 = 0;
     uStack_f0 = 0;
-    puStack_108 = &unknown_var_720_ptr;
+    puStack_108 = &system_state_ptr;
                     // WARNING: Subroutine does not return
     FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_178);
   }

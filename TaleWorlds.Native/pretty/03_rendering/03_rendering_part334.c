@@ -472,7 +472,7 @@ void FUN_180443b00(void)
     }
     
     // 设置渲染配置
-    stack_ptr_c8 = &unknown_var_720_ptr;
+    stack_ptr_c8 = &system_state_ptr;
     FUN_1808fc050(stack_data_28 ^ (ulonglong)stack_buffer_278);
 }
 
@@ -533,7 +533,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
     parameter_ptr_a8 = parameter_ptr;
     
     if (*(longlong *)(render_system_data_config + 8) == 0) {
-        *parameter_ptr = &unknown_var_3456_ptr;
+        *parameter_ptr = &system_data_buffer_ptr;
         if (parameter_ptr[1] != 0) {
             FUN_18064e900();
         }
@@ -566,7 +566,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
         
         (**(code **)(*parameter_manager + 0x20))(parameter_manager, parameter_buffer_40, &parameter_ptr_a0, 0);
         FUN_180067070(parameter_buffer_40);
-        *parameter_ptr = &unknown_var_3456_ptr;
+        *parameter_ptr = &system_data_buffer_ptr;
         
         if (parameter_ptr[1] != 0) {
             FUN_18064e900();
@@ -575,7 +575,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
         *(int32_t *)(parameter_ptr + 3) = 0;
     }
     
-    *parameter_ptr = &unknown_var_720_ptr;
+    *parameter_ptr = &system_state_ptr;
     FUN_1808fc050(parameter_data_18 ^ (ulonglong)parameter_buffer_d8);
 }
 
@@ -1421,14 +1421,14 @@ int32_t FUN_180445180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint
     int32_t validation_data_20;
     uint64_t validation_data_18;
     
-    validation_ptr_30 = &unknown_var_3456_ptr;
+    validation_ptr_30 = &system_data_buffer_ptr;
     validation_data_18 = 0;
     validation_data_28 = 0;
     validation_data_20 = 0;
     
     FUN_1801717e0(*(uint64_t *)(system_main_module_state + 8), &validation_ptr_30, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     validation_result = (**(code **)(*system_cache_buffer + 0x78))(system_cache_buffer, &validation_ptr_30);
-    validation_ptr_30 = &unknown_var_3456_ptr;
+    validation_ptr_30 = &system_data_buffer_ptr;
     
     if (validation_data_28 != 0) {
         FUN_18064e900();

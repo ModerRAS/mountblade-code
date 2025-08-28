@@ -588,7 +588,7 @@ void FUN_1800fe2d0(longlong param_1)
   strcpy_s(auStack_70,0x40,&unknown_var_7496_ptr);
   FUN_1800b30d0(uVar1,&plStack_100,&puStack_88,1);
   uStack_118 = 1;
-  puStack_88 = &unknown_var_720_ptr;
+  puStack_88 = &system_state_ptr;
   uVar3 = FUN_18022cb40(plStack_100,&plStack_110);
   uStack_118 = 0;
   if (plStack_100 != (longlong *)0x0) {

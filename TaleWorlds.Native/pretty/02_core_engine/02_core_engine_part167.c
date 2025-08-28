@@ -82,7 +82,7 @@ void process_engine_string_operations(longlong param_1,uint64_t param_2,uint64_t
   (**(code **)(param_1 + 0x68))();
   *(longlong *)(param_1 + 0x10) = param_1;
   engine_base = system_main_module_state;
-  string_buffer = &unknown_var_3456_ptr;
+  string_buffer = &system_data_buffer_ptr;
   context_flag = 0;
   allocated_memory = 0;
   processed_length = 0;
@@ -115,7 +115,7 @@ void process_engine_string_operations(longlong param_1,uint64_t param_2,uint64_t
     result_value = (**(code **)(*callback_result + 8))(callback_result);
   }
   (**(code **)(core_system_data_string + 0x70))(&callback_result);
-  string_buffer = &unknown_var_3456_ptr;
+  string_buffer = &system_data_buffer_ptr;
   if (allocated_memory != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -135,10 +135,10 @@ create_taleworlds_engine_string(uint64_t param_1,uint64_t *param_2,uint64_t para
 {
   uint64_t *string_data;
   
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -163,10 +163,10 @@ create_taleworlds_engine_managed_string(uint64_t param_1,uint64_t *param_2,uint6
 {
   uint64_t *string_data;
   
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -227,7 +227,7 @@ void process_engine_iteration(uint64_t param_1,longlong param_2,longlong param_3
       if (*(void **)(item_data + 8) != (void *)0x0) {
         string_source = *(void **)(item_data + 8);
       }
-      stack_buffer = &unknown_var_3456_ptr;
+      stack_buffer = &system_data_buffer_ptr;
       buffer_capacity = 0;
       allocated_string = (int8_t *)0x0;
       operation_flag = 0;
@@ -256,10 +256,10 @@ void process_engine_iteration(uint64_t param_1,longlong param_2,longlong param_3
       output_buffer = *(uint64_t **)(param_3 + 8);
       if (output_buffer < *(uint64_t **)(param_3 + 0x10)) {
         *(uint64_t **)(param_3 + 8) = output_buffer + 4;
-        *output_buffer = &unknown_var_720_ptr;
+        *output_buffer = &system_state_ptr;
         output_buffer[1] = 0;
         *(int32_t *)(output_buffer + 2) = 0;
-        *output_buffer = &unknown_var_3456_ptr;
+        *output_buffer = &system_data_buffer_ptr;
         output_buffer[3] = 0;
         output_buffer[1] = 0;
         *(int32_t *)(output_buffer + 2) = 0;
@@ -270,14 +270,14 @@ void process_engine_iteration(uint64_t param_1,longlong param_2,longlong param_3
         FUN_180059820(param_3,&stack_buffer);
         temp_buffer = allocated_string;
       }
-      stack_buffer = &unknown_var_3456_ptr;
+      stack_buffer = &system_data_buffer_ptr;
       if (temp_buffer != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(temp_buffer);
       }
       allocated_string = (int8_t *)0x0;
       buffer_capacity = buffer_capacity & 0xffffffff00000000;
-      stack_buffer = &unknown_var_720_ptr;
+      stack_buffer = &system_state_ptr;
       current_index = current_index + 1;
     } while (current_index < iteration_count);
   }
@@ -452,24 +452,24 @@ void shutdown_engine_system(longlong param_1)
     if (((lVar4 != 0) && (0 < *(int *)(SYSTEM_STATE_MANAGER + 0x1b20))) &&
        (*(char *)(system_main_module_state + 0x2b) != '\0')) {
       fVar17 = *(float *)(system_operation_state + 0x17ec);
-      puStack_1a0 = &unknown_var_3456_ptr;
+      puStack_1a0 = &system_data_buffer_ptr;
       uStack_188 = 0;
       lStack_198 = 0;
       iStack_190 = 0;
       uStack_1a8 = 1;
-      FUN_180628040(&puStack_1a0,&unknown_var_6184_ptr,(double)*(float *)(system_main_module_state + 500));
+      System_DataHandler(&puStack_1a0,&unknown_var_6184_ptr,(double)*(float *)(system_main_module_state + 500));
       plStack_1b0 = (longlong *)CONCAT44(plStack_1b0._4_4_,0xffffff00);
       ppuStack_1c8 = &puStack_1a0;
       FUN_180632f00(lVar4 + 0x11a50,fVar17 - (float)((iStack_190 + 1) * 10));
       uStack_1a8 = 0;
-      puStack_1a0 = &unknown_var_3456_ptr;
+      puStack_1a0 = &system_data_buffer_ptr;
       if (lStack_198 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       lStack_198 = 0;
       uStack_188 = uStack_188 & 0xffffffff00000000;
-      puStack_1a0 = &unknown_var_720_ptr;
+      puStack_1a0 = &system_state_ptr;
     }
     if (((*(char *)(system_parameter_buffer + 0x12e3) != '\0') ||
         (*(char *)(system_parameter_buffer + 0x12dd) != '\0')) ||
@@ -519,7 +519,7 @@ void shutdown_engine_system(longlong param_1)
         uStack_d8 = 0xb;
         uVar18 = strcpy_s(auStack_d0,0x40,&unknown_var_2256_ptr);
         FUN_180096b60(uVar18,&puStack_e8,uVar19,0);
-        puStack_e8 = &unknown_var_720_ptr;
+        puStack_e8 = &system_state_ptr;
       }
       if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') && (*(char *)(lVar4 + 0x7f21) != '\0')) {
         puVar12 = (uint64_t *)core_system_data_string[1];

@@ -761,7 +761,7 @@ void FUN_1803235c0(uint64_t param_1,longlong *param_2,longlong param_3)
       pcVar8 = pcStack_a0;
     }
     strcpy_s(*(uint64_t *)(lVar6 + 0x158),0x40,pcVar8);
-    puStack_a8 = &unknown_var_720_ptr;
+    puStack_a8 = &system_state_ptr;
   }
   if (*(longlong *)(param_3 + 0x110) != 0) {
     puVar11 = *(void **)(*(longlong *)(param_3 + 0x110) + 0x18);

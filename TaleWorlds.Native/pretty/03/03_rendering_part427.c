@@ -271,7 +271,7 @@ void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param
   FUN_1803456e0(texture_ptr,param2,param1);
   *texture_ptr = &unknown_var_2720_ptr;
   *(int32_t *)(texture_ptr + 0xe) = 0x1f;
-  init_stack_ptr = &unknown_var_3456_ptr;
+  init_stack_ptr = &system_data_buffer_ptr;
   alloc_context = 0;
   alloc_ptr = (uint64_t *)0x0;
   alloc_size = 0;
@@ -285,7 +285,7 @@ void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param
   *(int16_t *)((longlong)texture_ptr + 0xc) = 0x78;
   alloc_size = 0xd;
   FUN_1803460a0(texture_manager,&init_stack_ptr,texture_manager + 0xe,4);
-  init_stack_ptr = &unknown_var_3456_ptr;
+  init_stack_ptr = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(texture_ptr);
 }
@@ -326,8 +326,8 @@ void rendering_system_process_texture_data(uint64_t param1)
   FUN_1803617c0(param1,process_array,data_array);
   process_param = 0;
   process_array[0] = data_array;
-  data_array[0] = &unknown_var_720_ptr;
-  process_ptr = &unknown_var_720_ptr;
+  data_array[0] = &system_state_ptr;
+  process_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(security_hash ^ (ulonglong)texture_buffer);
 }
@@ -384,43 +384,43 @@ void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2)
   resource_ptr = manager_ptr;
   FUN_1803456e0(manager_ptr,param2,param1);
   *resource_ptr = &unknown_var_4296_ptr;
-  resource_ptr[0xe] = &unknown_var_720_ptr;
+  resource_ptr[0xe] = &system_state_ptr;
   resource_ptr[0xf] = 0;
   *(int32_t *)(resource_ptr + 0x10) = 0;
-  resource_ptr[0xe] = &unknown_var_3456_ptr;
+  resource_ptr[0xe] = &system_data_buffer_ptr;
   resource_ptr[0x11] = 0;
   resource_ptr[0xf] = 0;
   *(int32_t *)(resource_ptr + 0x10) = 0;
-  manager_ptr[0x12] = &unknown_var_720_ptr;
+  manager_ptr[0x12] = &system_state_ptr;
   manager_ptr[0x13] = 0;
   *(int32_t *)(manager_ptr + 0x14) = 0;
-  manager_ptr[0x12] = &unknown_var_3456_ptr;
+  manager_ptr[0x12] = &system_data_buffer_ptr;
   manager_ptr[0x15] = 0;
   manager_ptr[0x13] = 0;
   *(int32_t *)(manager_ptr + 0x14) = 0;
   texture_ptr = manager_ptr + 0x16;
-  *texture_ptr = &unknown_var_720_ptr;
+  *texture_ptr = &system_state_ptr;
   manager_ptr[0x17] = 0;
   *(int32_t *)(manager_ptr + 0x18) = 0;
-  *texture_ptr = &unknown_var_3456_ptr;
+  *texture_ptr = &system_data_buffer_ptr;
   manager_ptr[0x19] = 0;
   manager_ptr[0x17] = 0;
   *(int32_t *)(manager_ptr + 0x18) = 0;
-  manager_ptr[0x1a] = &unknown_var_720_ptr;
+  manager_ptr[0x1a] = &system_state_ptr;
   manager_ptr[0x1b] = 0;
   *(int32_t *)(manager_ptr + 0x1c) = 0;
-  manager_ptr[0x1a] = &unknown_var_3456_ptr;
+  manager_ptr[0x1a] = &system_data_buffer_ptr;
   manager_ptr[0x1d] = 0;
   manager_ptr[0x1b] = 0;
   *(int32_t *)(manager_ptr + 0x1c) = 0;
-  manager_ptr[0x1e] = &unknown_var_720_ptr;
+  manager_ptr[0x1e] = &system_state_ptr;
   manager_ptr[0x1f] = 0;
   *(int32_t *)(manager_ptr + 0x20) = 0;
-  manager_ptr[0x1e] = &unknown_var_3456_ptr;
+  manager_ptr[0x1e] = &system_data_buffer_ptr;
   manager_ptr[0x21] = 0;
   manager_ptr[0x1f] = 0;
   *(int32_t *)(manager_ptr + 0x20) = 0;
-  cleanup_stack_ptr = &unknown_var_3456_ptr;
+  cleanup_stack_ptr = &system_data_buffer_ptr;
   alloc_context = 0;
   alloc_ptr = (uint64_t *)0x0;
   alloc_size = 0;
@@ -433,7 +433,7 @@ void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2)
   *(int8_t *)(texture_ptr + 1) = 0;
   alloc_size = 8;
   FUN_1803460a0(manager_ptr,&cleanup_stack_ptr,texture_ptr,0,resource_data);
-  cleanup_stack_ptr = &unknown_var_3456_ptr;
+  cleanup_stack_ptr = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(texture_ptr);
 }
@@ -461,7 +461,7 @@ void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2
   shader_ptr = shader_manager;
   FUN_1803456e0(shader_ptr,param2,param1);
   *shader_ptr = &unknown_var_4704_ptr;
-  init_stack_ptr = &unknown_var_3456_ptr;
+  init_stack_ptr = &system_data_buffer_ptr;
   alloc_context = 0;
   alloc_ptr = (uint64_t *)0x0;
   alloc_size = 0;
@@ -475,7 +475,7 @@ void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2
   *(int8_t *)((longlong)shader_ptr + 0xc) = 0;
   alloc_size = 0xc;
   FUN_1803460a0(shader_manager,&init_stack_ptr,0,0xb);
-  init_stack_ptr = &unknown_var_3456_ptr;
+  init_stack_ptr = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(shader_ptr);
 }
@@ -566,13 +566,13 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   FUN_18049dc80();
   (**(code **)(render_system_texture + 0x10))(&system_buffer_24d0,&system_buffer_d128);
   *(int32_t *)(param1 + 1) = 0;
-  alloc_ptr2 = &unknown_var_7512_ptr;
+  alloc_ptr2 = &system_config_ptr;
   alloc_ptr3 = string_buffer;
   string_buffer[0] = 0;
   string_size = 6;
   strcpy_s(string_buffer,0x10,&unknown_var_2588_ptr);
   data_param = 1;
-  stack_ptr = &unknown_var_3456_ptr;
+  stack_ptr = &system_data_buffer_ptr;
   data_context = 0;
   data_ptr = (int8_t *)0x0;
   data_size = 0;
@@ -593,7 +593,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   }
   process_flag = data_size;
   data_param = 0;
-  alloc_ptr2 = &unknown_var_720_ptr;
+  alloc_ptr2 = &system_state_ptr;
   init_flag = data_size + 8;
   FUN_1806277c0(&stack_ptr,init_flag);
   *(uint64_t *)(data_ptr + data_size) = 0x2f73656c75646f4d;
@@ -621,14 +621,14 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   }
   render_system_texture = data_context._4_4_;
   *(int32_t *)(param1 + 0x84) = 0;
-  stack_ptr = &unknown_var_3456_ptr;
+  stack_ptr = &system_data_buffer_ptr;
   if (data_ptr != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   data_ptr = (int8_t *)0x0;
   data_context = (ulonglong)data_context._4_4_ << 0x20;
-  stack_ptr = &unknown_var_720_ptr;
+  stack_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(security_hash ^ (ulonglong)init_buffer,0);
 }
@@ -663,7 +663,7 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
   FUN_180057110(param2);
   FUN_180052200(system_main_module_state,param2);
   if ((param2[1] - *param2 & 0xffffffffffffffe0U) == 0) {
-    process_stack_ptr = &unknown_var_3456_ptr;
+    process_stack_ptr = &system_data_buffer_ptr;
     alloc_context = 0;
     alloc_ptr = (uint64_t *)0x0;
     alloc_size = 0;
@@ -677,15 +677,15 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
     alloc_size = 6;
     alloc_context._0_4_ = data_config;
     FUN_180066df0(param2,&process_stack_ptr);
-    process_stack_ptr = &unknown_var_3456_ptr;
+    process_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     alloc_ptr = (uint64_t *)0x0;
     alloc_context = (ulonglong)alloc_context._4_4_ << 0x20;
-    process_stack_ptr = &unknown_var_720_ptr;
-    alloc_stack_ptr = &unknown_var_3456_ptr;
+    process_stack_ptr = &system_state_ptr;
+    alloc_stack_ptr = &system_data_buffer_ptr;
     alloc_context2 = 0;
     alloc_ptr2 = (uint64_t *)0x0;
     alloc_size2 = 0;
@@ -698,15 +698,15 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
     alloc_size2 = 0xb;
     alloc_context2._0_4_ = data_config;
     FUN_180066df0(param2,&alloc_stack_ptr);
-    alloc_stack_ptr = &unknown_var_3456_ptr;
+    alloc_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     alloc_ptr2 = (uint64_t *)0x0;
     alloc_context2 = (ulonglong)alloc_context2._4_4_ << 0x20;
-    alloc_stack_ptr = &unknown_var_720_ptr;
-    process_stack_ptr = &unknown_var_3456_ptr;
+    alloc_stack_ptr = &system_state_ptr;
+    process_stack_ptr = &system_data_buffer_ptr;
     alloc_context = 0;
     alloc_ptr = (uint64_t *)0x0;
     alloc_size = 0;
@@ -719,15 +719,15 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
     alloc_size = 0xb;
     alloc_context._0_4_ = data_config;
     FUN_180066df0(param2,&process_stack_ptr);
-    process_stack_ptr = &unknown_var_3456_ptr;
+    process_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     alloc_ptr = (uint64_t *)0x0;
     alloc_context = (ulonglong)alloc_context._4_4_ << 0x20;
-    process_stack_ptr = &unknown_var_720_ptr;
-    alloc_stack_ptr = &unknown_var_3456_ptr;
+    process_stack_ptr = &system_state_ptr;
+    alloc_stack_ptr = &system_data_buffer_ptr;
     alloc_context2 = 0;
     alloc_ptr2 = (uint64_t *)0x0;
     alloc_size2 = 0;
@@ -739,15 +739,15 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
     alloc_size2 = 7;
     alloc_context2._0_4_ = data_config;
     FUN_180066df0(param2,&alloc_stack_ptr);
-    alloc_stack_ptr = &unknown_var_3456_ptr;
+    alloc_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     alloc_ptr2 = (uint64_t *)0x0;
     alloc_context2 = (ulonglong)alloc_context2._4_4_ << 0x20;
-    alloc_stack_ptr = &unknown_var_720_ptr;
-    process_stack_ptr = &unknown_var_3456_ptr;
+    alloc_stack_ptr = &system_state_ptr;
+    process_stack_ptr = &system_data_buffer_ptr;
     alloc_context = 0;
     alloc_ptr = (uint64_t *)0x0;
     alloc_size = 0;
@@ -761,15 +761,15 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
     alloc_size = 0xc;
     alloc_context._0_4_ = data_config;
     FUN_180066df0(param2,&process_stack_ptr);
-    process_stack_ptr = &unknown_var_3456_ptr;
+    process_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     alloc_ptr = (uint64_t *)0x0;
     alloc_context = (ulonglong)alloc_context._4_4_ << 0x20;
-    process_stack_ptr = &unknown_var_720_ptr;
-    alloc_stack_ptr = &unknown_var_3456_ptr;
+    process_stack_ptr = &system_state_ptr;
+    alloc_stack_ptr = &system_data_buffer_ptr;
     alloc_context2 = 0;
     alloc_ptr2 = (uint64_t *)0x0;
     alloc_size2 = 0;
@@ -782,7 +782,7 @@ void rendering_system_process_render_data(uint64_t param1, longlong *param2, uin
     *(int16_t *)(texture_ptr + 1) = 0x65;
     alloc_size2 = 9;
     FUN_180066df0(param2,&alloc_stack_ptr);
-    alloc_stack_ptr = &unknown_var_3456_ptr;
+    alloc_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();

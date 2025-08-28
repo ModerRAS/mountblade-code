@@ -658,7 +658,7 @@ longlong * FUN_1803c2430(longlong param_1,longlong *param_2,uint64_t param_3,uin
   lStackX_10 = lVar4;
   lVar5 = FUN_1800590b0(param_1,&puStackX_8,puVar1);
   if ((char)puStackX_8 == '\0') {
-    *puVar1 = &unknown_var_720_ptr;
+    *puVar1 = &system_state_ptr;
     if (lVar4 != 0) {
       puStackX_8 = puVar1;
                     // WARNING: Subroutine does not return
@@ -717,10 +717,10 @@ void FUN_1803c2540(longlong param_1,uint param_2)
       puVar1[3] = 0;
       puVar1[4] = 0;
       puVar1[5] = 0;
-      puVar1[2] = &unknown_var_720_ptr;
+      puVar1[2] = &system_state_ptr;
       puVar1[3] = 0;
       *(int32_t *)(puVar1 + 4) = 0;
-      puVar1[2] = &unknown_var_3456_ptr;
+      puVar1[2] = &system_data_buffer_ptr;
       puVar1[5] = 0;
       puVar1[3] = 0;
       *(int32_t *)(puVar1 + 4) = 0;

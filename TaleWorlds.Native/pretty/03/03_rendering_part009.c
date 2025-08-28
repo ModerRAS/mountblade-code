@@ -700,7 +700,7 @@ HASH_MATCH_FOUND:
 
 
 // 函数: 序列化渲染特性标志
-// 原始函数名: FUN_180272d60
+// 原始函数名: System_DataSerializer
 void serialize_render_feature_flags(uint64_t *feature_table, uint feature_mask, longlong *buffer_context)
 
 {

@@ -642,8 +642,8 @@ void FUN_180093780(uint64_t param_1,int param_2,int param_3)
     plVar9 = (longlong *)
              FUN_18062b1e0(system_memory_pool_ptr,0x48,8,CONCAT71((int7)((ulonglong)lVar1 >> 8),3),
                            0xfffffffffffffffe);
-    *plVar9 = (longlong)&unknown_var_3552_ptr;
-    *plVar9 = (longlong)&unknown_var_3696_ptr;
+    *plVar9 = (longlong)&system_handler1_ptr;
+    *plVar9 = (longlong)&system_handler2_ptr;
     *(int32_t *)(plVar9 + 1) = 0;
     *plVar9 = (longlong)&unknown_var_1000_ptr;
     LOCK();

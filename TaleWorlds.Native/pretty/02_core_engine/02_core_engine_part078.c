@@ -86,7 +86,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       // 分配和初始化字符串缓冲区
       uStack_1a8 = uStack_1a8 - request_type;
       *(int8_t *)((ulonglong)uStack_1a8 + (longlong)puStack_1b0) = 0;
-      puStack_190 = &unknown_var_3456_ptr;
+      puStack_190 = &system_data_buffer_ptr;
       uStack_178 = 0;
       puStack_188 = (int16_t *)0x0;
       uStack_180 = 0;
@@ -98,7 +98,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       *string_buffer = 0x20;
       uStack_180 = 1;
       process_string_operation(&puStack_1b8,(int)string_pos - (int)puStack_1b0,&puStack_190);
-      puStack_190 = &unknown_var_3456_ptr;
+      puStack_190 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
       cleanup_memory(string_buffer);
     }
@@ -106,22 +106,22 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
     config_data = (uint64_t *)extract_string_data(&puStack_190,&puStack_1b8);
     puStack_168 = config_data;
     FUN_18005c8a0(puStack_170 + 0x124,config_data);
-    *config_data = &unknown_var_3456_ptr;
+    *config_data = &system_data_buffer_ptr;
     if (config_data[1] != 0) {
                     // WARNING: Subroutine does not return
       cleanup_memory();
     }
     config_data[1] = 0;
     *(int32_t *)(config_data + 3) = 0;
-    *config_data = &unknown_var_720_ptr;
-    puStack_1b8 = &unknown_var_3456_ptr;
+    *config_data = &system_state_ptr;
+    puStack_1b8 = &system_data_buffer_ptr;
     if (puStack_1b0 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
       cleanup_memory();
     }
     puStack_1b0 = (int8_t *)0x0;
     uStack_1a0 = (ulonglong)uStack_1a0._4_4_ << 0x20;
-    puStack_1b8 = &unknown_var_720_ptr;
+    puStack_1b8 = &system_state_ptr;
   }
   // 处理名称信息请求 (request_type == 0x12)
   else if ((request_type == 0x12) &&
@@ -143,7 +143,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         string_pos = loop_counter;
       } while (stack_buffer[array_index] != '\0');
       uStack_194 = buffer_size + (int)loop_counter + 1;
-      puStack_1b8 = &unknown_var_3456_ptr;
+      puStack_1b8 = &system_data_buffer_ptr;
       uStack_1a0 = 0;
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a8 = 0;
@@ -168,7 +168,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       uStack_1a0 = 0;
       uStack_1a8 = 0;
       puStack_1b0 = (int8_t *)0x0;
-      puStack_1b8 = &unknown_var_3456_ptr;
+      puStack_1b8 = &system_data_buffer_ptr;
       if ((ulonglong)puStack_170[1] < (ulonglong)puStack_170[2]) {
         puStack_170[1] = puStack_170[1] + 0x20;
         extract_string_data();
@@ -180,7 +180,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       do {
         string_length = string_length + 1;
       } while (config_data[string_length] != '\0');
-      puStack_1b8 = &unknown_var_3456_ptr;
+      puStack_1b8 = &system_data_buffer_ptr;
       if (string_length <= (ulonglong)(longlong)(int)uStack_194) {
         if (puStack_1b0 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -188,7 +188,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         }
         puStack_1b0 = (int8_t *)0x0;
         uStack_1a0 = (ulonglong)uStack_1a0._4_4_ << 0x20;
-        puStack_1b8 = &unknown_var_720_ptr;
+        puStack_1b8 = &system_state_ptr;
         break;
       }
       if (puStack_1b0 != (int8_t *)0x0) {
@@ -197,7 +197,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       }
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a0 = (ulonglong)uStack_1a0._4_4_ << 0x20;
-      puStack_1b8 = &unknown_var_720_ptr;
+      puStack_1b8 = &system_state_ptr;
       request_type = FUN_18010cbc0(config_data + (int)uStack_194,&unknown_var_1928_ptr,stack_buffer);
       buffer_size = uStack_194;
     }
@@ -223,7 +223,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         string_pos = loop_counter;
       } while (stack_buffer[array_index] != '\0');
       uStack_194 = (int)memory_ptr + (int)loop_counter + 1;
-      puStack_1b8 = &unknown_var_3456_ptr;
+      puStack_1b8 = &system_data_buffer_ptr;
       uStack_160 = 0;
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a8 = 0;
@@ -251,10 +251,10 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       memory_ptr = (uint64_t *)context_ptr[0x275];
       if (memory_ptr < (uint64_t *)context_ptr[0x276]) {
         context_ptr[0x275] = memory_ptr + 4;
-        *memory_ptr = &unknown_var_720_ptr;
+        *memory_ptr = &system_state_ptr;
         memory_ptr[1] = 0;
         *(int32_t *)(memory_ptr + 2) = 0;
-        *memory_ptr = &unknown_var_3456_ptr;
+        *memory_ptr = &system_data_buffer_ptr;
         *(int32_t *)(memory_ptr + 2) = 0;
         memory_ptr[1] = 0;
         *(int32_t *)((longlong)memory_ptr + 0x1c) = 0;
@@ -281,10 +281,10 @@ LAB_18010b692:
         }
         puStack_170 = config_data;
         puStack_150 = (uint64_t *)FUN_180059780(string_pos,memory_ptr,config_data);
-        *puStack_150 = &unknown_var_720_ptr;
+        *puStack_150 = &system_state_ptr;
         puStack_150[1] = 0;
         *(int32_t *)(puStack_150 + 2) = 0;
-        *puStack_150 = &unknown_var_3456_ptr;
+        *puStack_150 = &system_data_buffer_ptr;
         *(int32_t *)(puStack_150 + 2) = 0;
         puStack_150[1] = 0;
         *(int32_t *)((longlong)puStack_150 + 0x1c) = 0;
@@ -314,7 +314,7 @@ LAB_18010b692:
       memory_ptr = (uint64_t *)(ulonglong)uStack_194;
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a0 = uStack_1a0 & 0xffffffff00000000;
-      puStack_1b8 = &unknown_var_720_ptr;
+      puStack_1b8 = &system_state_ptr;
       string_length = 0xffffffffffffffff;
       do {
         string_length = string_length + 1;
@@ -384,14 +384,14 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
     // 初始化堆栈保护值
     uStack_38 = 0xfffffffffffffffe;
     string_length = 0;
-    puStack_d8 = &unknown_var_3456_ptr;
+    puStack_d8 = &system_data_buffer_ptr;
     uStack_c0 = 0;
     lStack_d0 = 0;
     iStack_c8 = 0;
     
     // 处理主字符串区域
     if (*(longlong *)(context_ptr + 5000) - *(longlong *)(context_ptr + 0x1380) >> 5 != 0) {
-      FUN_180628040(&puStack_d8,&unknown_var_1944_ptr);
+      System_DataHandler(&puStack_d8,&unknown_var_1944_ptr);
       longlong end_pos = *(longlong *)(context_ptr + 5000);
       longlong start_pos = *(longlong *)(context_ptr + 0x1380);
       ulonglong current_offset = string_length;
@@ -422,29 +422,29 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
             puStack_b0[uStack_a8] = 0;
             uint64_t marker = FUN_180627910(&puStack_78,&unknown_var_7168_ptr);
             process_string_operation(&puStack_b8,(int)end_pos - (int)puStack_b0,marker);
-            puStack_78 = &unknown_var_3456_ptr;
+            puStack_78 = &system_data_buffer_ptr;
             if (lStack_70 != 0) {
                     // WARNING: Subroutine does not return
               cleanup_memory();
             }
             lStack_70 = 0;
             uStack_60 = 0;
-            puStack_78 = &unknown_var_720_ptr;
+            puStack_78 = &system_state_ptr;
           }
           // 记录处理结果
           void *record_ptr = &system_buffer_ptr;
           if (puStack_b0 != (void *)0x0) {
             record_ptr = puStack_b0;
           }
-          FUN_180628040(&puStack_d8,&unknown_var_2004_ptr,record_ptr);
-          puStack_b8 = &unknown_var_3456_ptr;
+          System_DataHandler(&puStack_d8,&unknown_var_2004_ptr,record_ptr);
+          puStack_b8 = &system_data_buffer_ptr;
           if (puStack_b0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
             cleanup_memory();
           }
           puStack_b0 = (void *)0x0;
           uStack_a0 = 0;
-          puStack_b8 = &unknown_var_720_ptr;
+          puStack_b8 = &system_state_ptr;
           uint item_count = (int)total_items + 1;
           end_pos = *(longlong *)(context_ptr + 5000);
           start_pos = *(longlong *)(context_ptr + 0x1380);
@@ -473,34 +473,34 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
         puStack_90[uStack_88] = 0;
         uint64_t marker = FUN_180627910(&puStack_58,&unknown_var_7168_ptr);
         process_string_operation(&puStack_98,(int)end_pos - (int)puStack_90,marker);
-        puStack_58 = &unknown_var_3456_ptr;
+        puStack_58 = &system_data_buffer_ptr;
         if (lStack_50 != 0) {
                     // WARNING: Subroutine does not return
           cleanup_memory();
         }
         lStack_50 = 0;
         uStack_40 = 0;
-        puStack_58 = &unknown_var_720_ptr;
+        puStack_58 = &system_state_ptr;
       }
       // 记录最终结果
       void *final_record = &system_buffer_ptr;
       if (puStack_90 != (void *)0x0) {
         final_record = puStack_90;
       }
-      FUN_180628040(&puStack_d8,&unknown_var_92_ptr,final_record);
-      puStack_98 = &unknown_var_3456_ptr;
+      System_DataHandler(&puStack_d8,&unknown_var_92_ptr,final_record);
+      puStack_98 = &system_data_buffer_ptr;
       if (puStack_90 != (void *)0x0) {
                     // WARNING: Subroutine does not return
         cleanup_memory();
       }
       puStack_90 = (void *)0x0;
       uStack_80 = 0;
-      puStack_98 = &unknown_var_720_ptr;
+      puStack_98 = &system_state_ptr;
     }
     
     // 处理附加数据区域
     if (*(longlong *)(context_ptr + 0x13a8) - *(longlong *)(context_ptr + 0x13a0) >> 5 != 0) {
-      FUN_180628040(&puStack_d8,&unknown_var_1984_ptr);
+      System_DataHandler(&puStack_d8,&unknown_var_1984_ptr);
       longlong end_pos = *(longlong *)(context_ptr + 0x13a8);
       longlong start_pos = *(longlong *)(context_ptr + 0x13a0);
       current_offset = string_length;
@@ -513,7 +513,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
           if (item_data != (void *)0x0) {
             default_data = item_data;
           }
-          FUN_180628040(&puStack_d8,&unknown_var_2004_ptr,default_data);
+          System_DataHandler(&puStack_d8,&unknown_var_2004_ptr,default_data);
           uint item_count = (int)current_offset + 1;
           string_length = string_length + 0x20;
           end_pos = *(longlong *)(context_ptr + 0x13a8);
@@ -527,7 +527,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
       if (last_item != (void *)0x0) {
         default_last = last_item;
       }
-      FUN_180628040(&puStack_d8,&unknown_var_92_ptr,default_last);
+      System_DataHandler(&puStack_d8,&unknown_var_92_ptr,default_last);
     }
     
     // 写入输出文件并清理
@@ -539,7 +539,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
       SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
       UNLOCK();
     }
-    puStack_d8 = &unknown_var_3456_ptr;
+    puStack_d8 = &system_data_buffer_ptr;
     if (lStack_d0 != 0) {
                     // WARNING: Subroutine does not return
       cleanup_memory();

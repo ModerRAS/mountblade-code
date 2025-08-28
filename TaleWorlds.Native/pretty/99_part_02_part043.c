@@ -525,7 +525,7 @@ void FUN_1801b4980(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int32_t uStack_20;
   uint64_t uStack_18;
   
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   uStack_18 = 0;
   puStack_28 = (int16_t *)0x0;
   uStack_20 = 0;
@@ -538,7 +538,7 @@ void FUN_1801b4980(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   *(int8_t *)(puVar2 + 1) = 0;
   uStack_20 = 2;
   FUN_180063510(param_1 + 0x8178,&puStack_30);
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar2);
 }

@@ -434,7 +434,7 @@ LAB_18010a4a0:
   *(int32_t *)(param_1 + 0x10e4) = uVar8;
   uStackX_8 = (int32_t *)(param_1 + 0x10e0);
   FUN_18005ea90(param_1 + 8,&uStackX_8);
-  pcStack_50 = (code *)&unknown_var_9584_ptr;
+  pcStack_50 = (code *)&system_pattern2_ptr;
   puStack_48 = &unknown_var_9440_ptr;
   *(int32_t *)(param_1 + 0x1198) = 0;
   puVar4 = (int8_t *)(param_1 + 0x11a0);
@@ -492,7 +492,7 @@ LAB_18010a4a0:
   *(int32_t *)(param_1 + 0x1154) = uVar8;
   uStackX_8 = (int32_t *)(param_1 + 0x1150);
   FUN_18005ea90(param_1 + 8,&uStackX_8);
-  pcStack_50 = (code *)&unknown_var_9552_ptr;
+  pcStack_50 = (code *)&system_string1_ptr;
   puStack_48 = &unknown_var_9440_ptr;
   *(int32_t *)(param_1 + 0x1208) = 0;
   puVar4 = (int8_t *)(param_1 + 0x1210);

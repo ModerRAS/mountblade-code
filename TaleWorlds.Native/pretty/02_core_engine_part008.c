@@ -846,7 +846,7 @@ void FUN_180042ad0(void)
   }
   puVar7[6] = 0x4fc124d23d41985f;
   puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &unknown_var_3504_ptr;
+  puVar7[8] = &system_param1_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;

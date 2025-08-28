@@ -32,7 +32,7 @@ void FUN_18055b600(longlong *param_1)
   if (0 < iVar4) {
     do {
       lVar5 = *param_1 + uVar8;
-      puStack_48 = &unknown_var_3456_ptr;
+      puStack_48 = &system_data_buffer_ptr;
       uStack_30 = 0;
       puStack_40 = (int8_t *)0x0;
       uStack_38 = 0;
@@ -50,7 +50,7 @@ void FUN_18055b600(longlong *param_1)
       }
       plVar2 = (longlong *)FUN_18055b790(param_1 + 4,auStack_60);
       *(int *)(*plVar2 + 0x20) = (int)uVar7;
-      puStack_48 = &unknown_var_3456_ptr;
+      puStack_48 = &system_data_buffer_ptr;
       if (puStack_40 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -190,7 +190,7 @@ void FUN_18055b940(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     lVar13 = lVar10;
     lVar14 = lVar10;
     do {
-      *(void **)(puVar8 + -4) = &unknown_var_720_ptr;
+      *(void **)(puVar8 + -4) = &system_state_ptr;
       *(uint64_t *)(puVar8 + -2) = 0;
       *puVar8 = 0;
       *(void **)(puVar8 + -4) = &unknown_var_3480_ptr;
@@ -217,7 +217,7 @@ void FUN_18055b940(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   param_1[2] = lVar10;
   *(uint *)(param_1 + 3) = uVar1;
   for (puVar6 = puVar3; puVar6 != puVar4; puVar6 = puVar6 + 0xd) {
-    *puVar6 = &unknown_var_720_ptr;
+    *puVar6 = &system_state_ptr;
   }
   if (puVar3 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -398,7 +398,7 @@ LAB_18055bcdc:
     lVar8 = (longlong)puVar2 - (longlong)puVar4;
     puVar4 = puVar4 + 1;
     do {
-      *puVar5 = &unknown_var_720_ptr;
+      *puVar5 = &system_state_ptr;
       *(uint64_t *)(lVar8 + (longlong)puVar4) = 0;
       *(int32_t *)(lVar8 + 8 + (longlong)puVar4) = 0;
       *puVar5 = &unknown_var_3480_ptr;
@@ -428,7 +428,7 @@ LAB_18055bcdc:
   puVar4 = (uint64_t *)*param_1;
   if (puVar4 != puVar7) {
     do {
-      *puVar4 = &unknown_var_720_ptr;
+      *puVar4 = &system_state_ptr;
       puVar4 = puVar4 + 0xd;
     } while (puVar4 != puVar7);
     puVar4 = (uint64_t *)*param_1;

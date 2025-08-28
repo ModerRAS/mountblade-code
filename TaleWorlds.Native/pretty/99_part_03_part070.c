@@ -558,7 +558,7 @@ void FUN_18023ccc0(longlong *param_1)
                           (**(code **)(*plVar10 + 0x38))(plVar10);
                         }
                         ppplStack_4c0 = (longlong ***)&plStack_128;
-                        plStack_128 = (longlong *)&unknown_var_720_ptr;
+                        plStack_128 = (longlong *)&system_state_ptr;
                         lVar12 = system_main_module_state;
                       }
                     }
@@ -627,7 +627,7 @@ void FUN_18023ccc0(longlong *param_1)
                         (*(code *)(*pplVar11)[7])(pplVar11);
                       }
                       ppplStack_4c0 = (longlong ***)&plStack_208;
-                      plStack_208 = (longlong *)&unknown_var_720_ptr;
+                      plStack_208 = (longlong *)&system_state_ptr;
                     }
                     *puVar15 = 0;
                     puVar15[1] = 0;
@@ -681,7 +681,7 @@ void FUN_18023ccc0(longlong *param_1)
           (**(code **)(*plVar10 + 0x38))(plVar10);
         }
         ppplStack_4c0 = (longlong ***)&plStack_3c8;
-        plStack_3c8 = (longlong *)&unknown_var_720_ptr;
+        plStack_3c8 = (longlong *)&system_state_ptr;
       }
       if (param_1[0x3c] != 0) {
         ppplStack_4c0 = (longlong ***)&plStack_2e8;
@@ -719,7 +719,7 @@ void FUN_18023ccc0(longlong *param_1)
           (**(code **)(*plVar10 + 0x38))(plVar10);
         }
         ppplStack_4c0 = (longlong ***)&plStack_2e8;
-        plStack_2e8 = (longlong *)&unknown_var_720_ptr;
+        plStack_2e8 = (longlong *)&system_state_ptr;
       }
       FUN_1802a01a0(param_1 + 0x2d);
       FUN_1802a01a0(param_1 + 0x34);
@@ -764,14 +764,14 @@ void FUN_18023ccc0(longlong *param_1)
         if (plVar10 != (longlong *)0x0) {
           (**(code **)(*plVar10 + 0x38))(plVar10);
         }
-        puStack_460 = &unknown_var_3456_ptr;
+        puStack_460 = &system_data_buffer_ptr;
         if (lStack_458 != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         lStack_458 = 0;
         uStack_448 = 0;
-        puStack_460 = &unknown_var_720_ptr;
+        puStack_460 = &system_state_ptr;
       }
       LOCK();
       *(int32_t *)(param_1 + 0x70) = 0;

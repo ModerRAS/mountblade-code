@@ -458,7 +458,7 @@ LAB_1804d4bf3:
       if (plStack_310 != (longlong *)0x0) {
         (**(code **)(*plStack_310 + 0x38))();
       }
-      puStack_1e8 = &unknown_var_720_ptr;
+      puStack_1e8 = &system_state_ptr;
       goto LAB_1804d5429;
     }
     puVar7 = *(void **)(*(longlong *)(*plVar48 + 0x208) + 0x18);
@@ -483,7 +483,7 @@ LAB_1804d4bf3:
       if (plStack_320 != (longlong *)0x0) {
         (**(code **)(*plStack_320 + 0x38))();
       }
-      puStack_148 = &unknown_var_720_ptr;
+      puStack_148 = &system_state_ptr;
       goto LAB_1804d5429;
     }
     plVar44 = *(longlong **)(lVar46 + 0x98 + lVar45);

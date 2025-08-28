@@ -648,7 +648,7 @@ void FUN_180108190(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   *(int32_t *)(param_1 + 0x544) = uVar5;
   uStackX_8 = (uint64_t *)(param_1 + 0x540);
   FUN_18005ea90(param_1 + 8,&uStackX_8);
-  pcStack_40 = (code *)&unknown_var_9776_ptr;
+  pcStack_40 = (code *)&system_string2_ptr;
   puStack_38 = &unknown_var_9440_ptr;
   *(int32_t *)(param_1 + 0x5f8) = 0;
   puVar1 = (int8_t *)(param_1 + 0x600);

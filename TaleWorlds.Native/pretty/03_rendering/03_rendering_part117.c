@@ -210,7 +210,7 @@ uint64_t * RenderingSystem_ObjectCreator(uint64_t *param_1)
   *param_1 = &unknown_var_8432_ptr;
   
   // 初始化第一组虚函数
-  param_1[0x1f] = &unknown_var_720_ptr;
+  param_1[0x1f] = &system_state_ptr;
   param_1[0x20] = 0;
   *(int32_t *)(param_1 + 0x21) = 0;
   
@@ -221,7 +221,7 @@ uint64_t * RenderingSystem_ObjectCreator(uint64_t *param_1)
   *(int8_t *)(param_1 + 0x22) = 0;
   
   // 初始化第三组虚函数
-  param_1[0x2a] = &unknown_var_720_ptr;
+  param_1[0x2a] = &system_state_ptr;
   param_1[0x2b] = 0;
   *(int32_t *)(param_1 + 0x2c) = 0;
   
@@ -232,7 +232,7 @@ uint64_t * RenderingSystem_ObjectCreator(uint64_t *param_1)
   *(int8_t *)(param_1 + 0x2d) = 0;
   
   // 初始化第五组虚函数
-  param_1[0x35] = &unknown_var_720_ptr;
+  param_1[0x35] = &system_state_ptr;
   param_1[0x36] = 0;
   *(int32_t *)(param_1 + 0x37) = 0;
   
@@ -274,7 +274,7 @@ void RenderingSystem_DataSerializer(longlong param_1, longlong *param_2, uint64_
   // 序列化第一个数据项
   uVar1 = *(int32_t *)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XF0);
   if ((ulonglong)((param_2[2] - (longlong)puVar2) + *param_2) < 5) {
-    FUN_180639bf0(param_2, (longlong)puVar2 + (4 - *param_2));
+    System_BufferManager(param_2, (longlong)puVar2 + (4 - *param_2));
     puVar2 = (int32_t *)param_2[1];
   }
   *puVar2 = uVar1;
@@ -284,7 +284,7 @@ void RenderingSystem_DataSerializer(longlong param_1, longlong *param_2, uint64_
   puVar2 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XF4);
   if ((ulonglong)((param_2[2] - (longlong)puVar2) + *param_2) < 5) {
-    FUN_180639bf0(param_2, (longlong)puVar2 + (4 - *param_2));
+    System_BufferManager(param_2, (longlong)puVar2 + (4 - *param_2));
     puVar2 = (int32_t *)param_2[1];
   }
   *puVar2 = uVar1;
@@ -292,7 +292,7 @@ void RenderingSystem_DataSerializer(longlong param_1, longlong *param_2, uint64_
   
   // 检查缓冲区空间并扩展
   if ((ulonglong)((param_2[2] - param_2[1]) + *param_2) < 0x41) {
-    FUN_180639bf0(param_2, (param_2[1] - *param_2) + 0x40, param_3, param_4, unaff_RDI);
+    System_BufferManager(param_2, (param_2[1] - *param_2) + 0x40, param_3, param_4, unaff_RDI);
   }
   
   // 序列化多个数据块
@@ -303,7 +303,7 @@ void RenderingSystem_DataSerializer(longlong param_1, longlong *param_2, uint64_
   // 序列化最后的数据项
   puVar2 = (int32_t *)param_2[1];
   if ((ulonglong)((param_2[2] - (longlong)puVar2) + *param_2) < 0x11) {
-    FUN_180639bf0(param_2, (longlong)puVar2 + (0x10 - *param_2), param_3, param_4, unaff_RDI);
+    System_BufferManager(param_2, (longlong)puVar2 + (0x10 - *param_2), param_3, param_4, unaff_RDI);
     puVar2 = (int32_t *)param_2[1];
   }
   
@@ -612,7 +612,7 @@ void RenderingSystem_BufferWriter(longlong param_1, longlong *param_2)
   // 写入第一个字节
   uVar1 = *(int8_t *)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XB0);
   if ((ulonglong)((param_2[2] - (longlong)puVar4) + *param_2) < 2) {
-    FUN_180639bf0(param_2, puVar4 + (1 - *param_2));
+    System_BufferManager(param_2, puVar4 + (1 - *param_2));
     puVar4 = (int8_t *)param_2[1];
   }
   *puVar4 = uVar1;
@@ -623,7 +623,7 @@ void RenderingSystem_BufferWriter(longlong param_1, longlong *param_2)
   lVar7 = *(longlong *)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XC0);
   lVar2 = *(longlong *)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XB8);
   if ((ulonglong)((param_2[2] - (longlong)piVar5) + *param_2) < 5) {
-    FUN_180639bf0(param_2, (longlong)piVar5 + (4 - *param_2));
+    System_BufferManager(param_2, (longlong)piVar5 + (4 - *param_2));
     piVar5 = (int *)param_2[1];
   }
   iVar6 = (int)(lVar7 - lVar2 >> 3);

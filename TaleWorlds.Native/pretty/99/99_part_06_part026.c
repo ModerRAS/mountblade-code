@@ -162,7 +162,7 @@ void SceneLevelDataProcessor(void* scene_data, void* level_config)
                                 }
                                 
                                 // 调用名称处理函数
-                                void* name_processor = &unknown_var_3456_ptr;
+                                void* name_processor = &system_data_buffer_ptr;
                                 FUN_180627c50(&name_processor, (long long)name_value);
                                 break;
                             }
@@ -262,7 +262,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
     // 检查预制体数据状态
     if (*(long long*)((char*)(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET)) + SCENE_PREFAB_OFFSET) == 0) {
         // 处理预制体属性
-        void* prefab_attr_data = &unknown_var_3456_ptr;
+        void* prefab_attr_data = &system_data_buffer_ptr;
         uint64_t attr_flags = 0;
         void* attr_value = NULL;
         
@@ -320,14 +320,14 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                         ((char*)prefab_data)[0x39] = 1;
                         
                         // 清理属性数据
-                        prefab_attr_data = &unknown_var_3456_ptr;
+                        prefab_attr_data = &system_data_buffer_ptr;
                         if (attr_value != NULL) {
                             FUN_18064e900();
                         }
                         
                         attr_value = NULL;
                         attr_flags = attr_flags & 0xffffffff00000000;
-                        prefab_attr_data = &unknown_var_720_ptr;
+                        prefab_attr_data = &system_state_ptr;
                         goto config_complete;
                     }
                     
@@ -341,18 +341,18 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
         }
         
         // 清理属性数据
-        prefab_attr_data = &unknown_var_3456_ptr;
+        prefab_attr_data = &system_data_buffer_ptr;
         if (attr_value != NULL) {
             FUN_18064e900();
         }
         
         attr_value = NULL;
         attr_flags = attr_flags & 0xffffffff00000000;
-        prefab_attr_data = &unknown_var_720_ptr;
+        prefab_attr_data = &system_state_ptr;
     }
     
     // 处理名称属性
-    void* name_attr_data = &unknown_var_3456_ptr;
+    void* name_attr_data = &system_data_buffer_ptr;
     uint64_t name_attr_flags = 0;
     void* name_attr_value = NULL;
     int name_attr_count = 0;
@@ -467,7 +467,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
     }
     
     // 处理GUID属性
-    void* guid_attr_data = &unknown_var_3456_ptr;
+    void* guid_attr_data = &system_data_buffer_ptr;
     uint64_t guid_attr_flags = 0;
     void* guid_attr_value = NULL;
     int guid_attr_count = 0;
@@ -739,7 +739,7 @@ config_complete:
                     do {
                         if ((temp_mask & mask_bit) != 0) {
                             // 处理每个掩码位
-                            void* mask_processor = &unknown_var_3456_ptr;
+                            void* mask_processor = &system_data_buffer_ptr;
                             void* mask_data = FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
                             
                             *(char*)mask_data = 0;
@@ -748,7 +748,7 @@ config_complete:
                             *(uint16_t*)((char*)mask_data + 1) = 0x5f6c;
                             *(char*)((long long)mask_data + 6) = 0;
                             
-                            FUN_180628040(&mask_processor, &unknown_var_4576_ptr, guid_index);
+                            System_DataHandler(&mask_processor, &unknown_var_4576_ptr, guid_index);
                             FUN_1803c2430(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET) + LEVEL_DATA_BLOCK_SIZE, 
                                          &config_stack[0], &mask_processor);
                             
@@ -814,23 +814,23 @@ config_complete:
                 }
                 
                 // 清理属性数据
-                guid_attr_data = &unknown_var_3456_ptr;
+                guid_attr_data = &system_data_buffer_ptr;
                 if (guid_attr_value != NULL) {
                     FUN_18064e900();
                 }
                 
                 guid_attr_value = NULL;
                 guid_attr_flags = guid_attr_flags & 0xffffffff00000000;
-                guid_attr_data = &unknown_var_720_ptr;
+                guid_attr_data = &system_state_ptr;
                 
-                name_attr_data = &unknown_var_3456_ptr;
+                name_attr_data = &system_data_buffer_ptr;
                 if (name_attr_value != NULL) {
                     FUN_18064e900();
                 }
                 
                 name_attr_value = NULL;
                 name_attr_flags = name_attr_flags & 0xffffffff00000000;
-                name_attr_data = &unknown_var_720_ptr;
+                name_attr_data = &system_state_ptr;
                 
                 // 返回配置处理结果
                 FUN_1808fc050(config_stack[1] ^ (uint64_t)config_data);

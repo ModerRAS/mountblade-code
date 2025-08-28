@@ -324,7 +324,7 @@ LAB_1801da300:
               plVar22 = plStack_320;
               uVar20 = uStack_378;
               uStack_378 = uStack_378 & 0xfffffff7 | 4;
-              puStack_f8 = &unknown_var_720_ptr;
+              puStack_f8 = &system_state_ptr;
               plStack_320 = (longlong *)0x0;
               plStack_208 = *(longlong **)(lVar31 + 0x278);
               *(longlong **)(lVar31 + 0x278) = plVar22;
@@ -440,7 +440,7 @@ LAB_1801da300:
             uStack_88 = 0x15;
             strcpy_s(auStack_80,0x40,&system_data_e020);
             FUN_180240430(plStack_2d0,&puStack_98,0);
-            puStack_98 = &unknown_var_720_ptr;
+            puStack_98 = &system_state_ptr;
             puStack_360 = (int32_t *)0x0;
             puStack_358 = (int32_t *)0x0;
             puStack_350 = (int32_t *)0x0;

@@ -1110,8 +1110,8 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     }
     
     strcpy_s(output_buffer_580, 0x100, format_ptr);
-    output_array[0] = &unknown_var_720_ptr;
-    output_ptr_6b8 = &unknown_var_720_ptr;
+    output_array[0] = &system_state_ptr;
+    output_ptr_6b8 = &system_state_ptr;
     output_length = 0x118;
     output_ptr = output_buffer_258;
     
@@ -1150,7 +1150,7 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
     finalize_output_stream(temp_buffer_7d0);
     cleanup_output_stream(output_buffer_7c8);
     cleanup_input_stream(output_buffer_730);
-    output_ptr_598 = &unknown_var_720_ptr;
+    output_ptr_598 = &system_state_ptr;
     
     // 警告：子程序不返回
     cleanup_security_cookie(security_cookie ^ (ulonglong)output_buffer);
@@ -1161,7 +1161,7 @@ void format_resource_info_output(uint64_t output_handle, longlong resource_info)
  * 
  * 简化实现说明：
  * - unknown_var_3456 -> EMPTY_RESOURCE_POOL (空资源池)
- * - unknown_var_720_ptr -> RESOURCE_CLEANUP_POOL (资源清理池)
+ * - system_state_ptr -> RESOURCE_CLEANUP_POOL (资源清理池)
  * - unknown_var_3480 -> RESOURCE_HANDLER_TABLE (资源处理表)
  * - system_buffer_ptr -> EMPTY_STRING_BUFFER (空字符串缓冲区)
  * - core_system_data_resource -> GLOBAL_RESOURCE_TABLE (全局资源表)

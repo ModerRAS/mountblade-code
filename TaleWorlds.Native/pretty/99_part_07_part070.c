@@ -474,7 +474,7 @@ void FUN_1804d9b70(uint64_t *param_1)
   *(ulonglong *)(lVar2 + 0x140) = *(ulonglong *)(lVar2 + 0x140) | uVar4;
   FUN_18022dd60(lVar2);
   *(int16_t *)(lVar2 + 0x3c0) = 0xffff;
-  puStack_c8 = &unknown_var_720_ptr;
+  puStack_c8 = &system_state_ptr;
   *(int8_t *)((longlong)param_1 + 0xac) = 0;
   *(int16_t *)(param_1 + 0x56a) = 0x100;
   FUN_1804da310(param_1);
@@ -754,7 +754,7 @@ void FUN_1804da7e0(int32_t *param_1,uint64_t param_2,longlong param_3)
     uStack_40 = &ppuStackX_20;
     uStack_38 = alStack_68;
     pcStack_20 = FUN_1804df390;
-    puStack_18 = &unknown_var_9552_ptr;
+    puStack_18 = &system_string1_ptr;
     alStack_68[0] = param_3;
     uStack_50 = param_1;
     apuStack_30[0] = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,system_allocation_flags);

@@ -93,7 +93,7 @@ void release_engine_resources(longlong *resource_ptr)
             if (resource_interface != (void **)0x0) {
                 (**(code **)(*resource_interface + 0x38))(resource_interface);
             }
-            resource_type = &unknown_var_720_ptr;
+            resource_type = &system_state_ptr;
             heap_buffer = resource_ptr[1];
             LOCK();
             *(int *)(heap_buffer + 0x10) = *(int *)(heap_buffer + 0x10) + 1;
@@ -121,7 +121,7 @@ void release_engine_resources(longlong *resource_ptr)
                 (**(code **)(*resource_data + 0x38))(resource_data);
             }
             interface_ptr = (void ***)&resource_properties;
-            resource_properties = &unknown_var_720_ptr;
+            resource_properties = &system_state_ptr;
         }
         LOCK();
         *(int8_t *)((longlong)resource_ptr + 0x15) = 0;
@@ -629,14 +629,14 @@ void write_to_stream(int *data_count, longlong *stream_info)
     stream_end = *stream_info;
     required_space = (longlong)item_count * 0x10 + 4;
     if ((ulonglong)((stream_end - (longlong)stream_base) + available_space) <= required_space) {
-        FUN_180639bf0(stream_info, (longlong)stream_base + (required_space - stream_end));
+        System_BufferManager(stream_info, (longlong)stream_base + (required_space - stream_end));
         available_space = stream_info[2];
         stream_base = (int *)stream_info[1];
         stream_end = *stream_info;
         item_count = *data_count;
     }
     if ((ulonglong)((stream_end - (longlong)stream_base) + available_space) < 5) {
-        FUN_180639bf0(stream_info, (longlong)stream_base + (4 - stream_end));
+        System_BufferManager(stream_info, (longlong)stream_base + (4 - stream_end));
         stream_base = (int *)stream_info[1];
     }
     *stream_base = item_count;
@@ -648,7 +648,7 @@ void write_to_stream(int *data_count, longlong *stream_info)
         do {
             stream_end = *(longlong *)(data_count + 2);
             if ((ulonglong)((stream_info[2] - (longlong)write_ptr) + *stream_info) < 0x11) {
-                FUN_180639bf0(stream_info, (longlong)write_ptr + (0x10 - *stream_info));
+                System_BufferManager(stream_info, (longlong)write_ptr + (0x10 - *stream_info));
                 write_ptr = (int32_t *)stream_info[1];
             }
             item_count = item_count + 1;
@@ -691,7 +691,7 @@ void process_data_batch(int32_t *output_ptr)
     do {
         stream_end = *(longlong *)(item_counter + 2);
         if ((ulonglong)((data_info[2] - (longlong)output_ptr) + *data_info) < 0x11) {
-            FUN_180639bf0();
+            System_BufferManager();
             output_ptr = (int32_t *)data_info[1];
         }
         item_count = item_count + 1;
@@ -1244,13 +1244,13 @@ void cleanup_resource_handles(longlong *resource_array)
     
     current_handle = (uint64_t *)resource_array[1];
     for (end_handle = (uint64_t *)*resource_array; end_handle != current_handle; end_handle = end_handle + 6) {
-        *end_handle = &unknown_var_3456_ptr;
+        *end_handle = &system_data_buffer_ptr;
         if (end_handle[1] != 0) {
             FUN_18064e900();
         }
         end_handle[1] = 0;
         *(int32_t *)(end_handle + 3) = 0;
-        *end_handle = &unknown_var_720_ptr;
+        *end_handle = &system_state_ptr;
     }
     if (*resource_array != 0) {
         FUN_18064e900();

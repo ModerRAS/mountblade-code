@@ -603,7 +603,7 @@ LAB_180583e24:
                   uVar23 = strcpy_s(auStack_210,0x40,&unknown_var_1688_ptr);
                   uVar11 = FUN_1800c17c0(uVar23,&puStack_228);
                   FUN_1804eb8d0(lVar17,uVar11,&uStack_658,&system_data_01d0);
-                  puStack_228 = &unknown_var_720_ptr;
+                  puStack_228 = &system_state_ptr;
                 }
               }
             }
@@ -673,7 +673,7 @@ LAB_180583e24:
                 afStack_188[lVar17 * 0xc + 1] = 1.0;
                 auStack_180[lVar17 * 0x30] = 0;
                 iStack_e8 = iStack_e8 + 1;
-                puStack_258 = &unknown_var_720_ptr;
+                puStack_258 = &system_state_ptr;
                 lVar17 = param_1[0x1e];
                 if (*(int *)((longlong)*(int *)(lVar17 + 0xf0) * 0xa0 + 0x5c +
                             *(longlong *)(lVar17 + 0xd0)) == 0x12) {
@@ -702,7 +702,7 @@ LAB_180583e24:
                   afStack_188[lVar17 * 0xc + 1] = fVar26;
                   auStack_180[lVar17 * 0x30] = 1;
                   iStack_e8 = iStack_e8 + 1;
-                  puStack_278 = &unknown_var_720_ptr;
+                  puStack_278 = &system_state_ptr;
                   lVar17 = param_1[0x1e];
                 }
                 fStack_6f8 = *(float *)(param_1 + 0x10) + *(float *)(param_1 + 0xc);

@@ -293,7 +293,7 @@ ulonglong FUN_18011c120(int *param_1)
   FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80,&uStack_68);
   *(uint64_t *)(lVar1 + 0x1818) = 0;
   *(uint64_t *)(lVar1 + 0x1820) = 0;
-  cVar15 = FUN_1801129b0(&unknown_var_2224_ptr,0,0x41);
+  cVar15 = FUN_1801129b0(&system_callback2_ptr,0,0x41);
   lVar14 = SYSTEM_DATA_MANAGER_A;
   puVar2 = (uint64_t *)
            (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +
@@ -416,7 +416,7 @@ ulonglong FUN_18011c15d(float param_1,float param_2)
   FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80,&stack0x00000030);
   *(uint64_t *)(lVar1 + 0x1818) = 0;
   *(uint64_t *)(lVar1 + 0x1820) = 0;
-  cVar14 = FUN_1801129b0(&unknown_var_2224_ptr,0,0x41);
+  cVar14 = FUN_1801129b0(&system_callback2_ptr,0,0x41);
   lVar13 = SYSTEM_DATA_MANAGER_A;
   puVar2 = (uint64_t *)
            (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +

@@ -327,7 +327,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         FUN_180627ae0(&puStack_3b8, param_2 + 10);
         if (RENDERING_MAX_STRING_LENGTH < (int)uStack_3a8) {
             // 处理长字符串资源
-            puStack_3f0 = &unknown_var_3456_ptr;
+            puStack_3f0 = &system_data_buffer_ptr;
             uStack_3d8 = 0;
             puStack_3e8 = (void *)0x0;
             uStack_3e0 = 0;
@@ -362,7 +362,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             uStack_3c0 = 0;
             puStack_3e8 = (void *)0x0;
             uStack_3d8 = 0;
-            puStack_3f0 = &unknown_var_720_ptr;
+            puStack_3f0 = &system_state_ptr;
             plVar12 = plStack_3c8;
             param_3 = lStack_330;
         }
@@ -397,14 +397,14 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         }
         
         // 清理临时资源
-        puStack_e8 = &unknown_var_720_ptr;
-        puStack_3b8 = &unknown_var_3456_ptr;
+        puStack_e8 = &system_state_ptr;
+        puStack_3b8 = &system_data_buffer_ptr;
         if (puStack_3b0 != (void *)0x0) {
             FUN_18064e900();
         }
         puStack_3b0 = (void *)0x0;
         uStack_3a0 = uStack_3a0 & 0xffffffff00000000;
-        puStack_3b8 = &unknown_var_720_ptr;
+        puStack_3b8 = &system_state_ptr;
         lVar18 = param_2[2];
     }
     
@@ -498,7 +498,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
                 (**(code **)(*plVar12 + 0x38))(plVar12);
             }
             pplStack_3d0 = (longlong **)&puStack_1c8;
-            puStack_1c8 = &unknown_var_720_ptr;
+            puStack_1c8 = &system_state_ptr;
             plVar20 = plStack_398;
             plVar21 = plStack_380;
             plVar8 = plStack_388;

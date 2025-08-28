@@ -1064,7 +1064,7 @@ void perform_emergency_exit(uint64_t param1, uint64_t error_message)
 #define initialize_error_buffer FUN_1800f9ce0
 #define initialize_output_channels FUN_1806277c0
 #define configure_existing_output FUN_1802265d0
-#define format_error_message FUN_180628040
+#define format_error_message System_DataHandler
 #define log_error_message FUN_180062380
 #define log_error_level FUN_1800623b0
 #define flush_error_logs FUN_1800623e0

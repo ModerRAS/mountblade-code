@@ -146,7 +146,7 @@ void SystemStringProcessor_1(longlong param_1, longlong param_2, longlong param_
     }
     
     /* 更新处理状态 */
-    puStack_468 = &unknown_var_720_ptr;
+    puStack_468 = &system_state_ptr;
     FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_498);
 }
 
@@ -332,7 +332,7 @@ void SystemResourceCleaner_1(uint64_t param_1, uint32_t param_2)
 uint64_t *SystemMemoryManager_1(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
     /* 重置内存管理器状态 */
-    *param_1 = &unknown_var_720_ptr;
+    *param_1 = &system_state_ptr;
     
     /* 根据标志决定是否释放内存 */
     if ((param_2 & 1) != 0) {
@@ -442,7 +442,7 @@ void SystemStringInitializer(uint8_t *param_1)
 uint64_t *SystemResourceInitializer(uint64_t *param_1)
 {
     /* 初始化资源对象状态 */
-    *param_1 = &unknown_var_720_ptr;
+    *param_1 = &system_state_ptr;
     param_1[1] = 0;
     *(uint32_t *)(param_1 + 2) = 0;
     
@@ -505,7 +505,7 @@ void SystemStringProcessor_2(longlong param_1, longlong param_2, longlong param_
     }
     
     /* 更新处理状态 */
-    puStack_80 = &unknown_var_720_ptr;
+    puStack_80 = &system_state_ptr;
     FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_a8);
 }
 /**
@@ -520,7 +520,7 @@ void SystemStringProcessor_2(longlong param_1, longlong param_2, longlong param_
 uint64_t *SystemMemoryManager_2(uint64_t *param_1, ulonglong param_2)
 {
     /* 重置内存管理器状态 */
-    *param_1 = &unknown_var_720_ptr;
+    *param_1 = &system_state_ptr;
     
     /* 根据标志决定是否释放内存 */
     if ((param_2 & 1) != 0) {
@@ -592,8 +592,8 @@ void SystemResourceCleaner_3(uint64_t *param_1)
 
 {
   *param_1 = &unknown_var_1000_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   return;
 }
 
@@ -604,8 +604,8 @@ SystemMemoryManager_3(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint6
 
 {
   *param_1 = &unknown_var_1000_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x20,param_3,param_4,0xfffffffffffffffe);
   }
@@ -647,14 +647,14 @@ void SystemMemoryAllocator(longlong *param_1)
   
   puVar1 = (uint64_t *)param_1[1];
   for (puVar2 = (uint64_t *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 5) {
-    *puVar2 = &unknown_var_3456_ptr;
+    *puVar2 = &system_data_buffer_ptr;
     if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puVar2[1] = 0;
     *(uint32_t *)(puVar2 + 3) = 0;
-    *puVar2 = &unknown_var_720_ptr;
+    *puVar2 = &system_state_ptr;
   }
   if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
@@ -755,7 +755,7 @@ int SystemResourceInserter(longlong param_1,longlong param_2)
   
   uStack_38 = 0xfffffffffffffffe;
   lVar2 = 0;
-  puStack_138 = (uint64_t *)&unknown_var_3456_ptr;
+  puStack_138 = (uint64_t *)&system_data_buffer_ptr;
   uStack_120 = 0;
   lStack_130 = 0;
   uStack_128 = 0;
@@ -839,7 +839,7 @@ LAB_180046a90:
   pppuStackX_8 = &pppuStack_68;
   FUN_180049fd0(&pppuStack_68,uStack_58);
   pppuStackX_8 = (uint64_t ***)&puStack_138;
-  puStack_138 = (uint64_t *)&unknown_var_3456_ptr;
+  puStack_138 = (uint64_t *)&system_data_buffer_ptr;
   if (lStack_130 == 0) {
     return iVar5;
   }
@@ -856,14 +856,14 @@ void SystemResourceDeleter(uint64_t *param_1,uint64_t param_2,uint64_t param_3,u
 
 {
   FUN_180049fd0(param_1 + 0x1a,param_1[0x1c],param_3,param_4,0xfffffffffffffffe);
-  *param_1 = &unknown_var_3456_ptr;
+  *param_1 = &system_data_buffer_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 3) = 0;
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   return;
 }
 
@@ -980,14 +980,14 @@ void SystemResourceHandler(longlong *param_1,uint64_t *param_2)
   (**(code **)(*plVar1 + 0x38))(plVar1);
   init_system_control_memory = (longlong)*(int *)(system_main_module_state + 0x224);
   FUN_180627be0(&system_memory_52c0,param_2);
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_2[1] = 0;
   *(uint32_t *)(param_2 + 3) = 0;
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   return;
 }
 
@@ -1109,14 +1109,14 @@ void SystemResourceProcessor(void)
   uStack_4d8 = 0x18;
   strcpy_s(auStack_4d0,0x40,&unknown_var_2296_ptr);
   FUN_180097d40(init_system_data_memory,&puStack_4e8,&lStack_678);
-  puStack_4e8 = &unknown_var_720_ptr;
+  puStack_4e8 = &system_state_ptr;
   puStack_488 = &unknown_var_3480_ptr;
   puStack_480 = auStack_470;
   auStack_470[0] = 0;
   uStack_478 = 0xb;
   strcpy_s(auStack_470,0x40,&unknown_var_2256_ptr);
   FUN_180097d40(init_system_data_memory,&puStack_488,&lStack_678);
-  puStack_488 = &unknown_var_720_ptr;
+  puStack_488 = &system_state_ptr;
   puStack_428 = &unknown_var_3480_ptr;
   puStack_420 = auStack_410;
   auStack_410[0] = 0;
@@ -1124,7 +1124,7 @@ void SystemResourceProcessor(void)
   uVar10 = strcpy_s(auStack_410,0x40,&unknown_var_2296_ptr);
   init_system_control_memory = (float)FUN_180095480(uVar10,&puStack_428);
   init_system_control_memory = 1.0 / init_system_control_memory;
-  puStack_428 = &unknown_var_720_ptr;
+  puStack_428 = &system_state_ptr;
   puStack_3c8 = &unknown_var_3480_ptr;
   puStack_3c0 = auStack_3b0;
   auStack_3b0[0] = 0;
@@ -1132,21 +1132,21 @@ void SystemResourceProcessor(void)
   uVar10 = strcpy_s(auStack_3b0,0x40,&unknown_var_2256_ptr);
   init_system_control_memory = (float)FUN_180095480(uVar10,&puStack_3c8);
   init_system_control_memory = 1.0 / init_system_control_memory;
-  puStack_3c8 = &unknown_var_720_ptr;
+  puStack_3c8 = &system_state_ptr;
   puStack_368 = &unknown_var_3480_ptr;
   puStack_360 = auStack_350;
   auStack_350[0] = 0;
   uStack_358 = 0xb;
   uVar10 = strcpy_s(auStack_350,0x40,&unknown_var_2256_ptr);
   fVar11 = (float)FUN_180095720(uVar10,&puStack_368);
-  puStack_368 = &unknown_var_720_ptr;
+  puStack_368 = &system_state_ptr;
   puStack_308 = &unknown_var_3480_ptr;
   puStack_300 = auStack_2f0;
   auStack_2f0[0] = 0;
   uStack_2f8 = 0x18;
   uVar10 = strcpy_s(auStack_2f0,0x40,&unknown_var_2296_ptr);
   fVar12 = (float)FUN_180095720(uVar10,&puStack_308);
-  puStack_308 = &unknown_var_720_ptr;
+  puStack_308 = &system_state_ptr;
   uVar5 = FUN_180623ce0();
   if (0 < init_system_control_memory) {
     FUN_180629a40(&system_memory_52c0,&puStack_558,0,init_system_control_memory + -1);
@@ -1179,28 +1179,28 @@ void SystemResourceProcessor(void)
     *(int *)(lVar6 + 0xb0 + init_system_control_memory) = (int)(longlong)init_system_control_memory;
     *(int *)(lVar6 + 200 + init_system_control_memory) = (int)(longlong)init_system_control_memory;
     *(double *)(lVar6 + 0x20 + init_system_control_memory) = (double)(uVar5 >> 0x14);
-    puStack_538 = &unknown_var_3456_ptr;
+    puStack_538 = &system_data_buffer_ptr;
     if (lStack_530 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_530 = 0;
     uStack_520 = 0;
-    puStack_538 = &unknown_var_720_ptr;
-    puStack_558 = &unknown_var_3456_ptr;
+    puStack_538 = &system_state_ptr;
+    puStack_558 = &system_data_buffer_ptr;
     if (lStack_550 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_550 = 0;
     uStack_540 = 0;
-    puStack_558 = &unknown_var_720_ptr;
+    puStack_558 = &system_state_ptr;
   }
-  puStack_578 = &unknown_var_3456_ptr;
+  puStack_578 = &system_data_buffer_ptr;
   uStack_560 = 0;
   uStack_570 = 0;
   uStack_568 = 0;
-  puStack_618 = &unknown_var_3456_ptr;
+  puStack_618 = &system_data_buffer_ptr;
   uStack_600 = 0;
   puStack_610 = (uint8_t *)0x0;
   uStack_608 = 0;
@@ -1283,7 +1283,7 @@ SystemConfigManager(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_
 void SystemResourceReleaser_1(longlong param_1)
 
 {
-  *(void **)(param_1 + 0x10) = &unknown_var_720_ptr;
+  *(void **)(param_1 + 0x10) = &system_state_ptr;
   return;
 }
 
@@ -1295,7 +1295,7 @@ void SystemResourceReleaser_1(longlong param_1)
 void SystemResourceReleaser_2(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   return;
 }
 

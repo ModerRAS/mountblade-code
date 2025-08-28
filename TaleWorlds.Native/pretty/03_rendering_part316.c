@@ -322,7 +322,7 @@ uint64_t * FUN_180435690(uint64_t *param_1,uint64_t param_2,byte param_3)
   if (plStackX_8 == (longlong *)0x0) {
     plStack_38 = (longlong *)0x0;
     uStack_30 = 0xffffffff;
-    puStack_28 = &unknown_var_3456_ptr;
+    puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -334,7 +334,7 @@ uint64_t * FUN_180435690(uint64_t *param_1,uint64_t param_2,byte param_3)
     if (plStackX_8 != (longlong *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();
     }
-    puStack_28 = &unknown_var_3456_ptr;
+    puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -374,7 +374,7 @@ void FUN_1804357a0(uint64_t param_1,int32_t *param_2)
   if (aplStackX_18[0] != (longlong *)0x0) {
     (**(code **)(*aplStackX_18[0] + 0x38))();
   }
-  puStack_28 = &unknown_var_3456_ptr;
+  puStack_28 = &system_data_buffer_ptr;
   if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

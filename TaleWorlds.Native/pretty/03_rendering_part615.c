@@ -771,7 +771,7 @@ FUN_1806071f0(int32_t *param_1,longlong param_2,uint64_t param_3,int8_t param_4)
   param_1[1] = uStack_3c;
   param_1[2] = uVar2;
   param_1[3] = uStack_34;
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 == 0) {
     return param_1;
   }

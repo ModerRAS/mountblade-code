@@ -6,8 +6,8 @@
 
 // 全局变量声明
 uint64_t core_system_data_pointer;  // 数据表指针
-uint64_t unknown_var_3456_ptr;  // 默认对象模板
-uint64_t unknown_var_720_ptr;  // 基础对象模板
+uint64_t system_data_buffer_ptr;  // 默认对象模板
+uint64_t system_state_ptr;  // 基础对象模板
 uint64_t unknown_var_5392_ptr;  // 字符串处理模板
 uint64_t system_buffer_ptr;  // 默认名称指针
 
@@ -88,7 +88,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
     }
     
     // 设置默认模板
-    local_var2 = &unknown_var_3456_ptr;
+    local_var2 = &system_data_buffer_ptr;
     if (local_var2 != 0) {
         // 处理错误情况
         handle_memory_error();
@@ -97,7 +97,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, longlong config_ptr)
     // 初始化矩阵数据
     local_var2 = 0;
     local_var3 = 0;
-    local_var2 = &unknown_var_720_ptr;
+    local_var2 = &system_state_ptr;
     
     // 确保矩阵指针有效
     if (matrix_ptr == 0) {

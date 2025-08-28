@@ -103,7 +103,7 @@ uint64_t *
 FUN_18008fd70(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x218,param_3,param_4,0xfffffffffffffffe);
   }
@@ -226,7 +226,7 @@ void FUN_18008fe90(longlong param_1,longlong param_2,longlong param_3)
                     // WARNING: Subroutine does not return
     memcpy(puStack_260,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
   }
-  puStack_268 = &unknown_var_720_ptr;
+  puStack_268 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_298);
 }
@@ -870,7 +870,7 @@ void FUN_180091020(void)
     if (plStack_98 != (longlong *)0x0) {
       (**(code **)(*plStack_98 + 0x38))();
     }
-    puStack_88 = &unknown_var_720_ptr;
+    puStack_88 = &system_state_ptr;
     (**(code **)(**(longlong **)(lVar6 + 0x1698) + 0x60))();
 LAB_180091192:
     (**(code **)(*core_system_data_config + 0x10))();

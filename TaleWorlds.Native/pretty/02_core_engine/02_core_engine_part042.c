@@ -677,7 +677,7 @@ void expand_dynamic_array_4byte_typeA(longlong source_array, longlong *target_pt
     stack_size = 0x1c;
     strcpy_s(stack_data, 0x40, &system_memory_fc60);
     FUN_1802037e0();
-    stack_ptr1 = &unknown_var_720_ptr;
+    stack_ptr1 = &system_state_ptr;
     
     // 分配新内存
     allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, array_size, 0x10, 0x1e);
@@ -755,7 +755,7 @@ void expand_dynamic_array_4byte_typeB(longlong source_array, longlong *target_pt
     stack_size = 0x1c;
     strcpy_s(stack_data, 0x40, &system_memory_fc60);
     FUN_1802037e0();
-    stack_ptr1 = &unknown_var_720_ptr;
+    stack_ptr1 = &system_state_ptr;
     
     // 分配新内存
     allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, array_size, 0x10, 0x1e);
@@ -834,7 +834,7 @@ void expand_dynamic_array_2byte(longlong source_array, longlong *target_ptr)
     stack_size = 0x1c;
     strcpy_s(stack_data, 0x40, &system_memory_fc60);
     FUN_1802037e0();
-    stack_ptr1 = &unknown_var_720_ptr;
+    stack_ptr1 = &system_state_ptr;
     
     // 分配新内存
     allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, array_size, 0x10, 0x1e);

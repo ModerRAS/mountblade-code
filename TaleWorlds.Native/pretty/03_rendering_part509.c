@@ -166,7 +166,7 @@ void FUN_18053cee0(uint64_t *param_1)
       }
       strcpy_s(auStack_90,0x40,puVar22);
       sVar10 = FUN_1804e5820(&system_data_5ed0,&puStack_a8);
-      puStack_a8 = &unknown_var_720_ptr;
+      puStack_a8 = &system_state_ptr;
 LAB_18053cd7a:
       *(short *)((longlong)param_1 + 0x7e) = sVar10;
       goto LAB_18053cd7e;
@@ -189,7 +189,7 @@ LAB_18053cd7a:
       lVar18 = *(longlong *)(render_system_config + (longlong)iVar12 * 8);
     }
     lVar18 = *(longlong *)(*(longlong *)(lVar18 + 0x200) + 0x20);
-    puStack_168 = &unknown_var_720_ptr;
+    puStack_168 = &system_state_ptr;
     puStack_108 = &unknown_var_3480_ptr;
     puStack_100 = auStack_f0;
     auStack_f0[0] = 0;
@@ -204,7 +204,7 @@ LAB_18053cd7a:
       lVar23 = *(longlong *)(render_system_config + (longlong)iVar12 * 8);
     }
     lVar23 = *(longlong *)(*(longlong *)(lVar23 + 0x200) + 0x20);
-    puStack_108 = &unknown_var_720_ptr;
+    puStack_108 = &system_state_ptr;
     iVar12 = *(int *)(lVar23 + 0x128);
     iVar4 = *(int *)(lVar18 + 0x128);
     if (iVar4 == iVar12) {
@@ -230,7 +230,7 @@ LAB_18053cb9d:
         }
         strcpy_s(auStack_f0,0x40,puVar22);
         sVar10 = FUN_1804e5820(&system_data_5ed0,&puStack_108);
-        puStack_108 = &unknown_var_720_ptr;
+        puStack_108 = &system_state_ptr;
         goto LAB_18053cd7a;
       }
     }
@@ -245,7 +245,7 @@ LAB_18053cb9d:
     }
     strcpy_s(auStack_90,0x40,puVar22);
     uVar9 = FUN_1804e5820(&system_data_5ed0,&puStack_a8);
-    puStack_a8 = &unknown_var_720_ptr;
+    puStack_a8 = &system_state_ptr;
     puStack_168 = &unknown_var_3480_ptr;
     puStack_160 = auStack_150;
     auStack_150[0] = 0;
@@ -256,7 +256,7 @@ LAB_18053cb9d:
     }
     strcpy_s(auStack_150,0x40,puVar22);
     uVar11 = FUN_1804e5820(&system_data_5ed0,&puStack_168);
-    puStack_168 = &unknown_var_720_ptr;
+    puStack_168 = &system_state_ptr;
     sVar10 = FUN_1804e58d0(&system_data_5ed0,uVar9,uVar11,
                            *(int32_t *)(&unknown_var_5192_ptr + (longlong)*(char *)(lVar5 + 0x1b0) * 4))
     ;

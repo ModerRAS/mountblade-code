@@ -743,7 +743,7 @@ void FUN_18053c7b0(uint64_t *param_1,longlong param_2)
       }
       strcpy_s(auStack_90,0x40,puVar20);
       sVar8 = FUN_1804e5820(&system_data_5ed0,&puStack_a8);
-      puStack_a8 = &unknown_var_720_ptr;
+      puStack_a8 = &system_state_ptr;
 LAB_18053cd7a:
       *(short *)((longlong)param_1 + 0x7e) = sVar8;
       goto LAB_18053cd7e;
@@ -766,7 +766,7 @@ LAB_18053cd7a:
       lVar16 = *(longlong *)(render_system_memory + (longlong)iVar10 * 8);
     }
     lVar16 = *(longlong *)(*(longlong *)(lVar16 + 0x200) + 0x20);
-    puStack_168 = &unknown_var_720_ptr;
+    puStack_168 = &system_state_ptr;
     puStack_108 = &unknown_var_3480_ptr;
     puStack_100 = auStack_f0;
     auStack_f0[0] = 0;
@@ -781,7 +781,7 @@ LAB_18053cd7a:
       lVar21 = *(longlong *)(render_system_memory + (longlong)iVar10 * 8);
     }
     lVar21 = *(longlong *)(*(longlong *)(lVar21 + 0x200) + 0x20);
-    puStack_108 = &unknown_var_720_ptr;
+    puStack_108 = &system_state_ptr;
     iVar10 = *(int *)(lVar21 + 0x128);
     iVar4 = *(int *)(lVar16 + 0x128);
     if (iVar4 == iVar10) {
@@ -807,7 +807,7 @@ LAB_18053cb9d:
         }
         strcpy_s(auStack_f0,0x40,puVar20);
         sVar8 = FUN_1804e5820(&system_data_5ed0,&puStack_108);
-        puStack_108 = &unknown_var_720_ptr;
+        puStack_108 = &system_state_ptr;
         goto LAB_18053cd7a;
       }
     }
@@ -822,7 +822,7 @@ LAB_18053cb9d:
     }
     strcpy_s(auStack_90,0x40,puVar20);
     uVar7 = FUN_1804e5820(&system_data_5ed0,&puStack_a8);
-    puStack_a8 = &unknown_var_720_ptr;
+    puStack_a8 = &system_state_ptr;
     puStack_168 = &unknown_var_3480_ptr;
     puStack_160 = auStack_150;
     auStack_150[0] = 0;
@@ -833,7 +833,7 @@ LAB_18053cb9d:
     }
     strcpy_s(auStack_150,0x40,puVar20);
     uVar9 = FUN_1804e5820(&system_data_5ed0,&puStack_168);
-    puStack_168 = &unknown_var_720_ptr;
+    puStack_168 = &system_state_ptr;
     sVar8 = FUN_1804e58d0(&system_data_5ed0,uVar7,uVar9,
                           *(int32_t *)(&unknown_var_5192_ptr + (longlong)*(char *)(param_2 + 0x1b0) * 4)
                          );

@@ -33,7 +33,7 @@ uint64_t * FUN_180865a20(uint64_t *param_1)
   param_1[6] = param_1 + 8;
   param_1[7] = param_1 + 0xe;
   *param_1 = &unknown_var_9632_ptr;
-  param_1[8] = &unknown_var_9552_ptr;
+  param_1[8] = &system_string1_ptr;
   *(int8_t *)(param_1 + 9) = 0;
   param_1[10] = 0;
   param_1[0xb] = 0;

@@ -31,7 +31,7 @@ void FUN_1804f8630(uint64_t param_1,int32_t param_2,longlong param_3,int32_t par
               0x48) < system_system_config_config) {
     FUN_1808fcb90();
     if (system_system_config_config == -1) {
-      puStack_70 = &unknown_var_7512_ptr;
+      puStack_70 = &system_config_ptr;
       puStack_68 = auStack_58;
       auStack_58[0] = 0;
       uStack_60 = 0xc;
@@ -43,7 +43,7 @@ void FUN_1804f8630(uint64_t param_1,int32_t param_2,longlong param_3,int32_t par
         lVar4 = *(longlong *)(lVar2 + 0x28);
       }
       system_system_config_config = *(int32_t *)(lVar4 + 100);
-      puStack_70 = &unknown_var_720_ptr;
+      puStack_70 = &system_state_ptr;
       FUN_1808fcb30(&system_ptr_9e58);
     }
   }

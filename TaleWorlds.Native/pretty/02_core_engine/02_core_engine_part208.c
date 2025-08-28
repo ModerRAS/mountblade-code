@@ -310,7 +310,7 @@ LAB_18018baee:
     texture_table = texture_table + 2;
     if (0x180bf674f < (longlong)texture_table) {
 LAB_18018baff:
-      texture_data_ptr = &unknown_var_720_ptr;
+      texture_data_ptr = &system_state_ptr;
       
       // 读取纹理属性
       *(int32_t *)(texture_params + 0x24) = **(int32_t **)(data_stream + 8);

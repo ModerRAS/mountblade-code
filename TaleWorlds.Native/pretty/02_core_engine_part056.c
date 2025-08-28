@@ -500,8 +500,8 @@ void FUN_180091970(ulonglong param_1)
       if (plStack_1c8 != (longlong *)0x0) {
         (**(code **)(*plStack_1c8 + 0x38))();
       }
-      puStack_d8 = &unknown_var_720_ptr;
-      puStack_138 = &unknown_var_720_ptr;
+      puStack_d8 = &system_state_ptr;
+      puStack_138 = &system_state_ptr;
     }
     lStack_218 = 0;
     lStack_210 = 0;

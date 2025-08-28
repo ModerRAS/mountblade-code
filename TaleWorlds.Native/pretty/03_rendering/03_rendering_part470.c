@@ -239,7 +239,7 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(longlong render_context, l
                 __Throw_C_error_std__YAXH_Z(material_index);
             }
             render_state = *(int32_t*)(*material_ptr + 0x10);
-            mode_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
+            mode_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
             if ((mode_flag != '\0') && 
                 (mode_flag = FUN_180645c10(0x180c95578, 4, &unknown_var_3472_ptr), mode_flag != '\0')) {
                 FUN_180645c10(0x180c95578, render_state, &unknown_var_3424_ptr);
@@ -449,7 +449,7 @@ LABEL_TEXTURE_PROCESS:
         if ((*(int*)(*(longlong*)((longlong)ThreadLocalStoragePointer + 
                                (ulonglong)__tls_index * 8) + 0x48) < render_system_config_material) && 
             (FUN_1808fcb90(&system_memory_9ed8), render_system_config_material == -1)) {
-            stack_ptr = &unknown_var_3456_ptr;
+            stack_ptr = &system_data_buffer_ptr;
             stack_param_4 = 0;
             stack_param_5 = 0;
             stack_param_ptr = (int32_t*)0x0;
@@ -462,7 +462,7 @@ LABEL_TEXTURE_PROCESS:
             *(int16_t*)(param_ptr + 1) = 0x68;
             stack_param_2 = 5;
             render_system_config_material = FUN_180571e20(&system_memory_60c0, &stack_ptr);
-            stack_ptr = &unknown_var_3456_ptr;
+            stack_ptr = &system_data_buffer_ptr;
             FUN_18064e900(param_ptr);
         }
         
@@ -646,7 +646,7 @@ LABEL_TEXTURE_PROCESS:
             if ((thread_id < render_system_config_material) &&
                 (FUN_1808fcb90(&system_memory_9ee0), param_flag = render_system_config_material, 
                  render_system_config_material == -1)) {
-                stack_ptr = &unknown_var_3456_ptr;
+                stack_ptr = &system_data_buffer_ptr;
                 stack_param_4 = 0;
                 stack_param_5 = 0;
                 stack_param_ptr = (int32_t*)0x0;
@@ -659,7 +659,7 @@ LABEL_TEXTURE_PROCESS:
                 *(int16_t*)(param_ptr + 1) = 0x68;
                 stack_param_2 = 5;
                 render_system_config_material = FUN_180571e20(&system_memory_60c0, &stack_ptr);
-                stack_ptr = &unknown_var_3456_ptr;
+                stack_ptr = &system_data_buffer_ptr;
                 FUN_18064e900(param_ptr);
             }
         } else {
@@ -667,7 +667,7 @@ LABEL_TEXTURE_PROCESS:
             if ((thread_id < render_system_config_material) &&
                 (FUN_1808fcb90(&system_memory_9ee8), param_flag = render_system_config_material, 
                  render_system_config_material == -1)) {
-                stack_ptr = &unknown_var_3456_ptr;
+                stack_ptr = &system_data_buffer_ptr;
                 stack_param_4 = 0;
                 stack_param_5 = 0;
                 stack_param_ptr = (int32_t*)0x0;
@@ -680,7 +680,7 @@ LABEL_TEXTURE_PROCESS:
                 *(int8_t*)(param_ptr + 1) = 0;
                 stack_param_2 = 4;
                 render_system_config_material = FUN_180571e20(&system_memory_60c0, &stack_ptr);
-                stack_ptr = &unknown_var_3456_ptr;
+                stack_ptr = &system_data_buffer_ptr;
                 FUN_18064e900(param_ptr);
             }
         }

@@ -51,7 +51,7 @@ void FUN_18064e990(void *ptr);
 void FUN_1806277c0(void *param1, int param2, uint64_t param3, uint64_t param4, int param5, uint64_t memory_flags);
 void FUN_180627c50(void *param1, longlong param2, uint64_t param3, uint64_t param4, uint64_t memory_flags);
 void FUN_180628f30(void *param1, uint *param2, uint param3, uint64_t param4, uint64_t memory_flags);
-void FUN_180639ec0(uint64_t param1, void *param2);
+void System_QueueProcessor(uint64_t param1, void *param2);
 void FUN_1800f5a90(uint64_t param1, uint64_t param2, uint64_t param3, void *param4, uint64_t memory_flags);
 uint FUN_18064e990(void *ptr);
 void free(void *ptr, int size, ...);
@@ -726,7 +726,7 @@ void rendering_system_process_cloth_texture(
     texture_ptr[3] = 0x726f74; // "trot"
     temp_data = RENDERING_CLOTH_TEXTURE_SIZE;
     
-    FUN_180639ec0(param2, &texture_cleanup);
+    System_QueueProcessor(param2, &texture_cleanup);
     texture_cleanup = &cloth_string_constants;
     
     // 警告：子程序不返回

@@ -901,7 +901,7 @@ void RenderingSystem_DataSerializer(longlong serialize_context, longlong file_co
   stack_offset = data_context;
   
   // 初始化序列化缓冲区
-  FUN_180639bf0(&buffer_start, 8, data_context, format_context, 0xfffffffffffffffe);
+  System_BufferManager(&buffer_start, 8, data_context, format_context, 0xfffffffffffffffe);
   
   // 设置输出缓冲区
   *(uint64_t *)stack_buffer = format_data;
@@ -920,7 +920,7 @@ void RenderingSystem_DataSerializer(longlong serialize_context, longlong file_co
       
       // 检查缓冲区空间
       if ((ulonglong)((buffer_size - (longlong)output_buffer) + stack_data) < 9) {
-        FUN_180639bf0(&buffer_start, (longlong)output_buffer + (8 - buffer_size));
+        System_BufferManager(&buffer_start, (longlong)output_buffer + (8 - buffer_size));
         buffer_size = buffer_start;
         output_buffer = stack_buffer;
       }
@@ -931,7 +931,7 @@ void RenderingSystem_DataSerializer(longlong serialize_context, longlong file_co
       
       // 检查缓冲区空间
       if ((ulonglong)((buffer_size - (longlong)stack_buffer) + stack_data) < 5) {
-        FUN_180639bf0(&buffer_start, (longlong)stack_buffer + (4 - buffer_size));
+        System_BufferManager(&buffer_start, (longlong)stack_buffer + (4 - buffer_size));
         buffer_size = buffer_start;
       }
       
@@ -948,7 +948,7 @@ void RenderingSystem_DataSerializer(longlong serialize_context, longlong file_co
         
         // 检查缓冲区空间
         if ((ulonglong)((buffer_size - (longlong)output_buffer) + stack_data) <= (ulonglong)format_data + 4) {
-          FUN_180639bf0(&buffer_start, (((ulonglong)format_data + 4) - buffer_size) + (longlong)output_buffer);
+          System_BufferManager(&buffer_start, (((ulonglong)format_data + 4) - buffer_size) + (longlong)output_buffer);
         }
         
         // 写入数据大小
@@ -1046,7 +1046,7 @@ void RenderingSystem_DataDeserializer(longlong deserialize_context, longlong fil
   
   // 分配缓冲区
   if (stack_offset != 0) {
-    FUN_180639bf0(&stack_buffer);
+    System_BufferManager(&stack_buffer);
   }
   
   buffer_size = stack_buffer;
@@ -1085,10 +1085,10 @@ void RenderingSystem_DataDeserializer(longlong deserialize_context, longlong fil
         // 分配资源块
         block_ptr = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x68, 8, 3);
         data_ptr = (longlong *)(block_ptr + 0x12);
-        *data_ptr = (longlong)&unknown_var_720_ptr;
+        *data_ptr = (longlong)&system_state_ptr;
         *(uint64_t *)(block_ptr + 0x14) = 0;
         block_ptr[0x16] = 0;
-        *data_ptr = (longlong)&unknown_var_3456_ptr;
+        *data_ptr = (longlong)&system_data_buffer_ptr;
         *(uint64_t *)(block_ptr + 0x18) = 0;
         *(uint64_t *)(block_ptr + 0x14) = 0;
         block_ptr[0x16] = 0;

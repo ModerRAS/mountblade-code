@@ -56,7 +56,7 @@ LAB_180193562:
       }
     }
   }
-  puStack_50 = &unknown_var_3456_ptr;
+  puStack_50 = &system_data_buffer_ptr;
   uStack_38 = 0;
   lStack_48 = 0;
   uStack_40 = 0;
@@ -312,7 +312,7 @@ LAB_180193a66:
       if ((param_1 + 0x60 != 0) && (pcVar7 != (char *)0x0)) {
         FUN_18010cbc0(pcVar7,&system_data_6430,param_1 + 0x60);
       }
-      puStack_50 = &unknown_var_3456_ptr;
+      puStack_50 = &system_data_buffer_ptr;
       if (lStack_48 == 0) {
         return;
       }
@@ -556,17 +556,17 @@ FUN_180193bc0(ulonglong param_1,uint64_t param_2,uint64_t param_3,uint64_t param
       puVar3[-2] = (ulonglong)&unknown_var_5912_ptr;
       puVar3[-2] = (ulonglong)&unknown_var_2184_ptr;
       puVar1 = puVar3 + -1;
-      *puVar1 = (ulonglong)&unknown_var_720_ptr;
+      *puVar1 = (ulonglong)&system_state_ptr;
       *puVar3 = 0;
       *(int32_t *)(puVar3 + 1) = 0;
-      *puVar1 = (ulonglong)&unknown_var_3456_ptr;
+      *puVar1 = (ulonglong)&system_data_buffer_ptr;
       puVar3[2] = 0;
       *puVar3 = 0;
       *(int32_t *)(puVar3 + 1) = 0;
-      puVar3[3] = (ulonglong)&unknown_var_720_ptr;
+      puVar3[3] = (ulonglong)&system_state_ptr;
       puVar3[4] = 0;
       *(int32_t *)(puVar3 + 5) = 0;
-      puVar3[3] = (ulonglong)&unknown_var_3456_ptr;
+      puVar3[3] = (ulonglong)&system_data_buffer_ptr;
       puVar3[6] = 0;
       puVar3[4] = 0;
       *(int32_t *)(puVar3 + 5) = 0;
@@ -986,22 +986,22 @@ uint64_t *
 FUN_180193f10(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  param_1[5] = &unknown_var_3456_ptr;
+  param_1[5] = &system_data_buffer_ptr;
   if (param_1[6] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[6] = 0;
   *(int32_t *)(param_1 + 8) = 0;
-  param_1[5] = &unknown_var_720_ptr;
-  param_1[1] = &unknown_var_3456_ptr;
+  param_1[5] = &system_state_ptr;
+  param_1[1] = &system_data_buffer_ptr;
   if (param_1[2] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[2] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  param_1[1] = &unknown_var_720_ptr;
+  param_1[1] = &system_state_ptr;
   *param_1 = &unknown_var_5912_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x68,param_3,param_4,0xfffffffffffffffe);

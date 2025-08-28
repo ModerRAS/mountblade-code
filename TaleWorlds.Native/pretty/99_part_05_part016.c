@@ -369,7 +369,7 @@ LAB_1802e099e:
   uStack_198._0_6_ = CONCAT24(9,uVar14);
   plStack_138 = (longlong *)0x0;
   ppuStack_1b8 = &puStack_130;
-  puStack_130 = &unknown_var_3456_ptr;
+  puStack_130 = &system_data_buffer_ptr;
   uStack_118 = 0;
   lStack_128 = 0;
   uStack_120 = 0;
@@ -547,14 +547,14 @@ LAB_1802e0f33:
         memcpy((ulonglong)uStack_120 + lStack_128,aplStack_1b0[0][1],
                (longlong)((int)aplStack_1b0[0][2] + 1));
       }
-      puStack_188 = (uint64_t *)&unknown_var_3456_ptr;
+      puStack_188 = (uint64_t *)&system_data_buffer_ptr;
       if (uStack_180 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       uStack_180 = 0;
       uStack_170 = (ulonglong)uStack_170._4_4_ << 0x20;
-      puStack_188 = (uint64_t *)&unknown_var_720_ptr;
+      puStack_188 = (uint64_t *)&system_state_ptr;
     }
   }
   puVar27 = (uint64_t *)(param_2 + 0x5a8);

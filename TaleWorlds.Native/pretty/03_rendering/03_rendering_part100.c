@@ -54,7 +54,7 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
     FUN_180627910(&stack_pointer, error_handler);
     FUN_180058080(render_context + RENDERING_PARAM_OFFSET_BF8, &allocated_resource, &stack_pointer);
     
-    stack_pointer = &unknown_var_3456_ptr;
+    stack_pointer = &system_data_buffer_ptr;
     if (stack_value != 0) {
       // 严重错误：系统无法恢复
       FUN_18064e900();
@@ -62,7 +62,7 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
     
     stack_value = 0;
     status_flag = 0;
-    stack_pointer = &unknown_var_720_ptr;
+    stack_pointer = &system_state_ptr;
     resource_manager = (longlong *)allocated_resource[8];
     
     if (resource_manager != (longlong *)0x0) {

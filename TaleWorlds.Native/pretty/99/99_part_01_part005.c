@@ -218,8 +218,8 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, longlong 
     FUN_1806279c0(&local_stack_ptr_ptr, local_var2);
     
     // 资源句柄管理
-    local_stack_ptr_array[0] = &unknown_var_720_ptr;
-    local_stack_ptr5 = &unknown_var_720_ptr;
+    local_stack_ptr_array[0] = &system_state_ptr;
+    local_stack_ptr5 = &system_state_ptr;
     local_stack_value1 = 0x118;
     local_stack_ptr1 = local_stack_buffer7;
     
@@ -276,14 +276,14 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, longlong 
     __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(local_stack_buffer4);
     
     // 内存释放
-    local_stack_ptr_ptr = &unknown_var_3456_ptr;
+    local_stack_ptr_ptr = &system_data_buffer_ptr;
     if (local_stack_value3 != 0) {
         // WARNING: Subroutine does not return
         FUN_18064e900();
     }
     local_stack_value3 = 0;
     local_stack_value4 = 0;
-    local_stack_ptr_ptr = &unknown_var_720_ptr;
+    local_stack_ptr_ptr = &system_state_ptr;
     // WARNING: Subroutine does not return
     FUN_1808fc050(stack_canary ^ (ulonglong)local_stack_buffer1);
 }
@@ -309,19 +309,19 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, longlong 
 uint64_t* system_resource_handle_initializer(uint64_t *handle_array)
 {
     // 第一组句柄初始化
-    *handle_array = &unknown_var_720_ptr;
+    *handle_array = &system_state_ptr;
     handle_array[1] = 0;
     *(int32_t *)(handle_array + 2) = 0;
-    *handle_array = &unknown_var_3456_ptr;
+    *handle_array = &system_data_buffer_ptr;
     handle_array[3] = 0;
     handle_array[1] = 0;
     *(int32_t *)(handle_array + 2) = 0;
     
     // 第二组句柄初始化
-    handle_array[4] = &unknown_var_720_ptr;
+    handle_array[4] = &system_state_ptr;
     handle_array[5] = 0;
     *(int32_t *)(handle_array + 6) = 0;
-    handle_array[4] = &unknown_var_3456_ptr;
+    handle_array[4] = &system_data_buffer_ptr;
     handle_array[7] = 0;
     handle_array[5] = 0;
     *(int32_t *)(handle_array + 6) = 0;
@@ -525,7 +525,7 @@ void resource_manager_and_handle_cleaner(ulonglong *resource_ptr)
     // 资源数组遍历
     local_var5 = resource_ptr[1];
     for (local_var4 = *resource_ptr; local_var4 != local_var5; local_var4 = local_var4 + 0xd0) {
-        *(void **)(local_var4 + 0x10) = &unknown_var_720_ptr;
+        *(void **)(local_var4 + 0x10) = &system_state_ptr;
     }
     
     // 资源句柄清理
@@ -633,7 +633,7 @@ void directx_subsystem_initializer(longlong system_handle)
     if (local_var4 != local_var2) {
         do {
             local_stack_ptr_ptr = (void **)(local_var4 + 0x10);
-            *local_stack_ptr_ptr = &unknown_var_720_ptr;
+            *local_stack_ptr_ptr = &system_state_ptr;
             local_stack_value1 = local_var4 + 0xd0;
             local_var4 = local_stack_value1;
         } while (local_stack_value1 != local_var2);
@@ -721,7 +721,7 @@ void system_memory_allocator_and_resource_manager(longlong system_handle)
     
     // 系统资源管理器
     local_var1 = system_system_data_memory;
-    local_stack_ptr1 = &unknown_var_3456_ptr;
+    local_stack_ptr1 = &system_data_buffer_ptr;
     local_stack_value2 = 0;
     local_stack_ptr2 = (int32_t *)0x0;
     local_stack_value1 = 0;
@@ -743,7 +743,7 @@ void system_memory_allocator_and_resource_manager(longlong system_handle)
     
     // 系统状态更新
     *(int32_t *)(local_var1 + 0x468) = 0xffffffff;
-    local_stack_ptr1 = &unknown_var_3456_ptr;
+    local_stack_ptr1 = &system_data_buffer_ptr;
     // WARNING: Subroutine does not return
     FUN_18064e900(local_var4);
 }

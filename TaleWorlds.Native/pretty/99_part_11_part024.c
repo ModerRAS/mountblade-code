@@ -244,7 +244,7 @@ longlong FUN_1806f3440(longlong param_1)
   *(void **)(param_1 + 0x220) = &unknown_var_4720_ptr;
   *(void **)(param_1 + 0x228) = &unknown_var_4704_ptr;
   *(int32_t *)(param_1 + 0x218) = 0x17f;
-  *(void **)(param_1 + 0x230) = &unknown_var_9376_ptr;
+  *(void **)(param_1 + 0x230) = &render_data_ptr;
   *(void **)(param_1 + 0x240) = &unknown_var_4752_ptr;
   *(void **)(param_1 + 0x248) = &unknown_var_4736_ptr;
   *(int32_t *)(param_1 + 0x238) = 0x180;
@@ -394,11 +394,11 @@ longlong FUN_1806f39b0(longlong param_1)
   *(void **)(param_1 + 0x1f0) = &unknown_var_9528_ptr;
   *(void **)(param_1 + 0x200) = &unknown_var_5280_ptr;
   *(int32_t *)(param_1 + 0x1f8) = 0x195;
-  *(void **)(param_1 + 0x208) = &unknown_var_9540_ptr;
+  *(void **)(param_1 + 0x208) = &system_pattern1_ptr;
   *(code **)(param_1 + 0x218) = FUN_1806f4da0;
   *(void **)(param_1 + 0x220) = &unknown_var_5296_ptr;
   *(int32_t *)(param_1 + 0x210) = 0x196;
-  *(void **)(param_1 + 0x228) = &unknown_var_9552_ptr;
+  *(void **)(param_1 + 0x228) = &system_string1_ptr;
   *(code **)(param_1 + 0x238) = FUN_1806f4e00;
   *(code **)(param_1 + 0x240) = FUN_1806f4dd0;
   *(int32_t *)(param_1 + 0x230) = 0x197;
@@ -458,11 +458,11 @@ longlong FUN_1806f3c00(longlong param_1)
   *(void **)(param_1 + 0x1f0) = &unknown_var_9528_ptr;
   *(void **)(param_1 + 0x200) = &unknown_var_5552_ptr;
   *(int32_t *)(param_1 + 0x1f8) = 0x19e;
-  *(void **)(param_1 + 0x208) = &unknown_var_9540_ptr;
+  *(void **)(param_1 + 0x208) = &system_pattern1_ptr;
   *(code **)(param_1 + 0x218) = FUN_1806f4eb0;
   *(void **)(param_1 + 0x220) = &unknown_var_5568_ptr;
   *(int32_t *)(param_1 + 0x210) = 0x19f;
-  *(void **)(param_1 + 0x228) = &unknown_var_9584_ptr;
+  *(void **)(param_1 + 0x228) = &system_pattern2_ptr;
   *(void **)(param_1 + 0x238) = &unknown_var_5664_ptr;
   *(void **)(param_1 + 0x240) = &unknown_var_5632_ptr;
   *(int32_t *)(param_1 + 0x230) = 0x1a0;

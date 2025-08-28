@@ -222,7 +222,7 @@ void FUN_180535c60(longlong *param_1,uint64_t param_2,uint64_t param_3)
       if (resource_id != 0) {
         __Throw_C_error_std__YAXH_Z(resource_id);
       }
-      resource_status_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
+      resource_status_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
       if ((resource_status_flag != '\0') &&
          (resource_status_flag = FUN_180645c10(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
         FUN_180645c10(0x180c95578, resource_handle, &unknown_var_3424_ptr);
@@ -572,7 +572,7 @@ void FUN_180535c78(int32_t param_1)
       if (resource_id != 0) {
         __Throw_C_error_std__YAXH_Z(resource_id);
       }
-      resource_status_flag = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
+      resource_status_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
       if ((resource_status_flag != '\0') && 
           (resource_status_flag = FUN_180645c10(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
         FUN_180645c10(0x180c95578, resource_handle, &unknown_var_3424_ptr);

@@ -174,7 +174,7 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
     
     // 检查缓冲区空间
     if ((ulonglong)((buffer_position - (longlong)data_items) + buffer_size) <= total_space) {
-        FUN_180639bf0(output_buffer, (longlong)data_items + (total_space - buffer_position), buffer_size, total_space, temp_var);
+        System_BufferManager(output_buffer, (longlong)data_items + (total_space - buffer_position), buffer_size, total_space, temp_var);
         item_count = *(int *)(data_ptr + 0x60);
         buffer_size = output_buffer[2];
         data_items = (int *)output_buffer[1];
@@ -183,7 +183,7 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
     
     // 确保最小空间
     if ((ulonglong)((buffer_position - (longlong)data_items) + buffer_size) < 5) {
-        FUN_180639bf0(output_buffer, (longlong)data_items + (4 - buffer_position));
+        System_BufferManager(output_buffer, (longlong)data_items + (4 - buffer_position));
         data_items = (int *)output_buffer[1];
     }
     
@@ -206,7 +206,7 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
     
     // 检查并扩展缓冲区
     if ((ulonglong)((*output_buffer - (longlong)data_ptr2) + output_buffer[2]) < 5) {
-        FUN_180639bf0(output_buffer, (longlong)data_ptr2 + (4 - *output_buffer));
+        System_BufferManager(output_buffer, (longlong)data_ptr2 + (4 - *output_buffer));
         data_ptr2 = (int32_t *)output_buffer[1];
     }
     
@@ -222,7 +222,7 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
     buffer_position = *output_buffer;
     
     if ((ulonglong)((buffer_position - (longlong)data_ptr2) + buffer_size) <= total_space) {
-        FUN_180639bf0(output_buffer, (longlong)data_ptr2 + (total_space - buffer_position));
+        System_BufferManager(output_buffer, (longlong)data_ptr2 + (total_space - buffer_position));
         remaining_space = (ulonglong)*(ushort *)(data_ptr + 0xc0);
         buffer_size = output_buffer[2];
         data_ptr2 = (int32_t *)output_buffer[1];
@@ -230,7 +230,7 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
     }
     
     if ((ulonglong)((buffer_position - (longlong)data_ptr2) + buffer_size) < 5) {
-        FUN_180639bf0(output_buffer, (longlong)data_ptr2 + (4 - buffer_position));
+        System_BufferManager(output_buffer, (longlong)data_ptr2 + (4 - buffer_position));
         data_ptr2 = (int32_t *)output_buffer[1];
     }
     
@@ -252,7 +252,7 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
     data_ptr2 = (int32_t *)output_buffer[1];
     
     if ((ulonglong)((*output_buffer - (longlong)data_ptr2) + output_buffer[2]) < 5) {
-        FUN_180639bf0(output_buffer, (longlong)data_ptr2 + (4 - *output_buffer));
+        System_BufferManager(output_buffer, (longlong)data_ptr2 + (4 - *output_buffer));
         data_ptr2 = (int32_t *)output_buffer[1];
     }
     
@@ -263,7 +263,7 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
     data_ptr2 = (int32_t *)output_buffer[1];
     
     if ((ulonglong)((*output_buffer - (longlong)data_ptr2) + output_buffer[2]) < 5) {
-        FUN_180639bf0(output_buffer, (longlong)data_ptr2 + (4 - *output_buffer));
+        System_BufferManager(output_buffer, (longlong)data_ptr2 + (4 - *output_buffer));
         data_ptr2 = (int32_t *)output_buffer[1];
     }
     

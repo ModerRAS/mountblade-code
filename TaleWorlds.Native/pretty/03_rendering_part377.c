@@ -587,7 +587,7 @@ LAB_180473445:
               uStack_78 = 0;
               uStack_70 = 0xf;
               uStack_88 = 0;
-              FUN_1800671b0(&uStack_88,&unknown_var_3552_ptr,0x48);
+              FUN_1800671b0(&uStack_88,&system_handler1_ptr,0x48);
               FUN_180472d60(param_2,puStack_150,&uStack_88,0xfffffffffffffffc);
               uStack_158 = 1;
               if (0xf < uStack_70) {

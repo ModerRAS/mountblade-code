@@ -695,26 +695,26 @@ void FUN_180494010(longlong param_1,float *param_2,uint64_t *param_3,int param_4
     uStack_1bc = 0;
     do {
       uVar10 = uStack_1bc * 3;
-      uVar29 = auStack_f8[(ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)uVar10 * 4) * 2];
+      uVar29 = auStack_f8[(ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)uVar10 * 4) * 2];
       uStack_138 = uVar29;
       uVar29 = uStack_138;
-      uStack_130 = auStack_f8[(ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)uVar10 * 4) * 2 + 1];
+      uStack_130 = auStack_f8[(ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)uVar10 * 4) * 2 + 1];
       uVar12 = uStack_130;
       if (cVar15 == '\0') {
-        uVar14 = auStack_f8[(ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar10 + 1) * 4) * 2];
+        uVar14 = auStack_f8[(ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar10 + 1) * 4) * 2];
         uStack_120 = auStack_f8
-                     [(ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar10 + 1) * 4) * 2 + 1];
-        uVar18 = *(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar10 + 2) * 4);
+                     [(ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar10 + 1) * 4) * 2 + 1];
+        uVar18 = *(uint *)(&system_handler3_ptr + (ulonglong)(uVar10 + 2) * 4);
       }
       else {
-        uVar14 = auStack_f8[(ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar10 + 2) * 4) * 2];
+        uVar14 = auStack_f8[(ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar10 + 2) * 4) * 2];
         uStack_120 = auStack_f8
-                     [(ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar10 + 2) * 4) * 2 + 1];
-        uVar18 = *(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar10 + 1) * 4);
+                     [(ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar10 + 2) * 4) * 2 + 1];
+        uVar18 = *(uint *)(&system_handler3_ptr + (ulonglong)(uVar10 + 1) * 4);
       }
       uStack_138._4_4_ = (float)(uVar29 >> 0x20);
       uStack_130._0_4_ =
-           (float)auStack_f8[(ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)uVar10 * 4) * 2 + 1];
+           (float)auStack_f8[(ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)uVar10 * 4) * 2 + 1];
       uStack_128 = uVar14;
       uVar14 = uStack_128;
       uVar8 = uStack_120;

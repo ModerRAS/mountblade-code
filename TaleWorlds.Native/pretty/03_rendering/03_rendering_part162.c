@@ -162,7 +162,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         } while (temp_counter + 1 != RENDERING_SYSTEM_STRING_LENGTH_5);
         
         // 准备输出缓冲区
-        stack_buffer_60 = &unknown_var_3456_ptr;
+        stack_buffer_60 = &system_data_buffer_ptr;
         stack_ulong_48 = 0;
         stack_buffer_58 = (void*)0x0;
         stack_uint_50 = 0;
@@ -190,7 +190,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         FUN_180066df0(output_handler, &stack_buffer_60);
         
         // 清理缓冲区
-        stack_buffer_60 = &unknown_var_3456_ptr;
+        stack_buffer_60 = &system_data_buffer_ptr;
         if (stack_buffer_58 != (void*)0x0) {
             // 释放缓冲区
             FUN_18064e900();
@@ -199,8 +199,8 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         // 准备下一个输出
         stack_buffer_58 = (void*)0x0;
         stack_ulong_48 = (uint64_t)stack_ulong_48 >> 0x20;
-        stack_buffer_60 = &unknown_var_720_ptr;
-        stack_buffer_40 = &unknown_var_3456_ptr;
+        stack_buffer_60 = &system_state_ptr;
+        stack_buffer_40 = &system_data_buffer_ptr;
         stack_ulong_28 = 0;
         stack_buffer_38 = (void*)0x0;
         stack_uint_30 = 0;
@@ -220,7 +220,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 输出第二个字符串
         FUN_180066df0(output_handler, &stack_buffer_40);
-        stack_buffer_40 = &unknown_var_3456_ptr;
+        stack_buffer_40 = &system_data_buffer_ptr;
         
         // 清理第二个缓冲区
         if (stack_buffer_38 != (void*)0x0) {
@@ -230,8 +230,8 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         // 准备第三个输出
         stack_buffer_38 = (void*)0x0;
         stack_ulong_28 = (uint64_t)stack_ulong_28 >> 0x20;
-        stack_buffer_40 = &unknown_var_720_ptr;
-        stack_buffer_60 = &unknown_var_3456_ptr;
+        stack_buffer_40 = &system_state_ptr;
+        stack_buffer_60 = &system_data_buffer_ptr;
         stack_ulong_48 = 0;
         stack_buffer_58 = (void*)0x0;
         stack_uint_50 = 0;
@@ -252,7 +252,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 输出第三个字符串
         FUN_180066df0(output_handler, &stack_buffer_60);
-        stack_buffer_60 = &unknown_var_3456_ptr;
+        stack_buffer_60 = &system_data_buffer_ptr;
         
         // 清理第三个缓冲区
         if (stack_buffer_58 != (void*)0x0) {
@@ -262,8 +262,8 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         // 准备第四个输出
         stack_buffer_58 = (void*)0x0;
         stack_ulong_48 = (uint64_t)stack_ulong_48 >> 0x20;
-        stack_buffer_60 = &unknown_var_720_ptr;
-        stack_buffer_40 = &unknown_var_3456_ptr;
+        stack_buffer_60 = &system_state_ptr;
+        stack_buffer_40 = &system_data_buffer_ptr;
         stack_ulong_28 = 0;
         stack_buffer_38 = (void*)0x0;
         stack_uint_30 = 0;
@@ -287,7 +287,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 输出第四个字符串
         FUN_180066df0(output_handler, &stack_buffer_40);
-        stack_buffer_40 = &unknown_var_3456_ptr;
+        stack_buffer_40 = &system_data_buffer_ptr;
         
         // 清理第四个缓冲区
         if (stack_buffer_38 != (void*)0x0) {

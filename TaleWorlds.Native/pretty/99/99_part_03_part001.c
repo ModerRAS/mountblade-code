@@ -391,7 +391,7 @@ void file_data_processor(uint64_t param_1, longlong param_2)
         stack_var1 = 0;
         stack_var2 = 0;
         stack_var3 = 3;
-        FUN_180639bf0(&stack_long1, temp_long1);
+        System_BufferManager(&stack_long1, temp_long1);
         fread(stack_long1, temp_long1, 1, temp_long3);
         
         // 处理读取的数据

@@ -925,7 +925,7 @@ LAB_1805570ae:
                               goto joined_r0x000180557003;
                             }
                           }
-                          puStack_b0 = &unknown_var_3456_ptr;
+                          puStack_b0 = &system_data_buffer_ptr;
                           uStack_98 = 0;
                           puStack_a8 = (int8_t *)0x0;
                           iStack_a0 = 0;
@@ -1117,7 +1117,7 @@ LAB_1805570ae:
                           if (puStack_a8 != (int8_t *)0x0) {
                             *puStack_a8 = 0;
                           }
-                          puStack_b0 = &unknown_var_3456_ptr;
+                          puStack_b0 = &system_data_buffer_ptr;
                           if (puStack_a8 == (int8_t *)0x0) {
                             return;
                           }

@@ -234,7 +234,7 @@ uint64_t FUN_1804f7af0(longlong param_1,int param_2,char param_3)
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
-    cVar5 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+    cVar5 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
     if ((cVar5 != '\0') && (cVar5 = FUN_180645c10(0x180c95578,0xf,&unknown_var_3472_ptr), cVar5 != '\0')) {
       FUN_180645c10(0x180c95578,param_2,&unknown_var_3344_ptr);
     }

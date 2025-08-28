@@ -291,7 +291,7 @@ SystemUInt64* SystemMemoryAllocator(SystemUInt64* param_1, SystemUInt64 param_2)
     if (pointer_manager == (SystemInt64*)0x0) {
         // 初始化新的内存块
         param_1[0x1c] = 0;
-        param_1[0x18] = &unknown_var_3456_ptr;
+        param_1[0x18] = &system_data_buffer_ptr;
         
         // 检查内存状态标志
         if (param_1[0x19] != 0) {
@@ -304,7 +304,7 @@ SystemUInt64* SystemMemoryAllocator(SystemUInt64* param_1, SystemUInt64 param_2)
         *(SystemFlagType*)(param_1 + 0x1b) = 0;
         
         // 设置内存管理器
-        param_1[0x18] = &unknown_var_720_ptr;
+        param_1[0x18] = &system_state_ptr;
         
         // 调用内存初始化函数
         FUN_180049470(param_1);
@@ -481,7 +481,7 @@ void SystemGraphicsRenderer(SystemInt64 param_1) {
         _Thrd_id();
         
         // 重置数据指针
-        stack_data_ptr = &unknown_var_720_ptr;
+        stack_data_ptr = &system_state_ptr;
     }
     
     // 第六阶段：函数完成处理
@@ -588,7 +588,7 @@ void SystemResourceCleanup(SystemInt64 param_1) {
         }
         
         // 重置数据指针
-        stack_data_ptr = &unknown_var_720_ptr;
+        stack_data_ptr = &system_state_ptr;
     }
     
     // 第五阶段：函数完成处理

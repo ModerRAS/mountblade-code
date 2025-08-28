@@ -482,7 +482,7 @@ uint64_t * create_runtime_exception(uint64_t *exception_data)
 uint64_t * create_string_exception(uint64_t param1, uint64_t *exception_data, 
                                    uint64_t param2, uint64_t param3)
 {
-    *exception_data = &unknown_var_720_ptr;
+    *exception_data = &system_state_ptr;
     exception_data[1] = 0;
     *(int32_t *)(exception_data + 2) = 0;
     *exception_data = &unknown_var_3432_ptr;

@@ -305,7 +305,7 @@ void FUN_180443b00(void)
                     // WARNING: Subroutine does not return
     FUN_180062300(system_message_context,&unknown_var_9856_ptr,uVar4);
   }
-  puStack_c8 = &unknown_var_720_ptr;
+  puStack_c8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_278);
 }
@@ -361,7 +361,7 @@ void FUN_180443b80(uint64_t param_1,int8_t param_2)
   lVar2 = render_system_data_memory;
   puStack_a8 = puVar3;
   if (*(longlong *)(render_system_data_memory + 8) == 0) {
-    *puVar3 = &unknown_var_3456_ptr;
+    *puVar3 = &system_data_buffer_ptr;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -390,7 +390,7 @@ void FUN_180443b80(uint64_t param_1,int8_t param_2)
     uStack_20 = param_2;
     (**(code **)(*plVar1 + 0x20))(plVar1,auStack_40,&puStack_a0,0);
     FUN_180067070(auStack_40);
-    *puVar3 = &unknown_var_3456_ptr;
+    *puVar3 = &system_data_buffer_ptr;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -398,7 +398,7 @@ void FUN_180443b80(uint64_t param_1,int8_t param_2)
     puVar3[1] = 0;
     *(int32_t *)(puVar3 + 3) = 0;
   }
-  *puVar3 = &unknown_var_720_ptr;
+  *puVar3 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_d8);
 }
@@ -1187,13 +1187,13 @@ FUN_180445180(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   int32_t uStack_20;
   uint64_t uStack_18;
   
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   uStack_18 = 0;
   lStack_28 = 0;
   uStack_20 = 0;
   FUN_1801717e0(*(uint64_t *)(system_main_module_state + 8),&puStack_30,param_3,param_4,0xfffffffffffffffe);
   uVar1 = (**(code **)(*system_cache_buffer + 0x78))(system_cache_buffer,&puStack_30);
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

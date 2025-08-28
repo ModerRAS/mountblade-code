@@ -519,7 +519,7 @@ void FUN_180343a00(uint64_t param_1,longlong param_2,uint64_t param_3)
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   uStack_c8 = 0;
   FUN_180343ee0(param_1,&puStack_88);
-  puStack_60 = &unknown_var_7512_ptr;
+  puStack_60 = &system_config_ptr;
   puStack_58 = auStack_48;
   auStack_48[0] = 0;
   uStack_50 = 6;
@@ -527,7 +527,7 @@ void FUN_180343a00(uint64_t param_1,longlong param_2,uint64_t param_3)
   uStack_c8 = 2;
   FUN_1806279c0(&puStack_c0,&puStack_60);
   uStack_c8 = 0;
-  puStack_60 = &unknown_var_720_ptr;
+  puStack_60 = &system_state_ptr;
   uVar3 = uStack_b0 + 0x10;
   FUN_1806277c0(&puStack_c0,uVar3);
   puVar1 = (int32_t *)(puStack_b8 + uStack_b0);
@@ -585,22 +585,22 @@ void FUN_180343a00(uint64_t param_1,longlong param_2,uint64_t param_3)
     SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
-  puStack_c0 = &unknown_var_3456_ptr;
+  puStack_c0 = &system_data_buffer_ptr;
   if (puStack_b8 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_b8 = (void *)0x0;
   uStack_a8 = 0;
-  puStack_c0 = &unknown_var_720_ptr;
-  puStack_88 = &unknown_var_3456_ptr;
+  puStack_c0 = &system_state_ptr;
+  puStack_88 = &system_data_buffer_ptr;
   if (puStack_80 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_80 = (void *)0x0;
   uStack_70 = 0;
-  puStack_88 = &unknown_var_720_ptr;
+  puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_e8);
 }
@@ -644,7 +644,7 @@ void FUN_180343c70(uint64_t param_1,longlong param_2,uint64_t param_3)
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   uStack_c8 = 0;
   FUN_180343fc0(param_1,&puStack_88);
-  puStack_60 = &unknown_var_7512_ptr;
+  puStack_60 = &system_config_ptr;
   puStack_58 = auStack_48;
   auStack_48[0] = 0;
   uStack_50 = 6;
@@ -652,7 +652,7 @@ void FUN_180343c70(uint64_t param_1,longlong param_2,uint64_t param_3)
   uStack_c8 = 2;
   FUN_1806279c0(&puStack_c0,&puStack_60);
   uStack_c8 = 0;
-  puStack_60 = &unknown_var_720_ptr;
+  puStack_60 = &system_state_ptr;
   uVar4 = uStack_b0 + 0x10;
   FUN_1806277c0(&puStack_c0,uVar4);
   puVar1 = (int32_t *)(puStack_b8 + uStack_b0);
@@ -707,22 +707,22 @@ void FUN_180343c70(uint64_t param_1,longlong param_2,uint64_t param_3)
     SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
-  puStack_c0 = &unknown_var_3456_ptr;
+  puStack_c0 = &system_data_buffer_ptr;
   if (puStack_b8 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_b8 = (void *)0x0;
   uStack_a8 = 0;
-  puStack_c0 = &unknown_var_720_ptr;
-  puStack_88 = &unknown_var_3456_ptr;
+  puStack_c0 = &system_state_ptr;
+  puStack_88 = &system_data_buffer_ptr;
   if (puStack_80 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_80 = (void *)0x0;
   uStack_70 = 0;
-  puStack_88 = &unknown_var_720_ptr;
+  puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_e8);
 }
@@ -737,10 +737,10 @@ FUN_180343ee0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   int32_t *puVar2;
   int32_t uVar3;
   
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -772,10 +772,10 @@ FUN_180343fc0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   int32_t *puVar2;
   int32_t uVar3;
   
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;

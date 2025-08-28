@@ -489,7 +489,7 @@ LAB_180378e96:
                   uStack_208 = 0;
                   uStack_210 = 0;
                   lStack_218 = 0;
-                  puStack_220 = (int32_t *)&unknown_var_3456_ptr;
+                  puStack_220 = (int32_t *)&system_data_buffer_ptr;
                   plStack_228 = (longlong *)0x0;
                   uStack_200 = 0x3f8000003f800000;
                   uStack_1f8 = 0x7f7fffff3f800000;
@@ -618,14 +618,14 @@ LAB_180379446:
                     (**(code **)(*plStack_270 + 0x38))();
                   }
                   ppuStack_268 = &puStack_220;
-                  puStack_220 = (int32_t *)&unknown_var_3456_ptr;
+                  puStack_220 = (int32_t *)&system_data_buffer_ptr;
                   if (lStack_218 != 0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900();
                   }
                   lStack_218 = 0;
                   uStack_208 = uStack_208 & 0xffffffff00000000;
-                  puStack_220 = (int32_t *)&unknown_var_720_ptr;
+                  puStack_220 = (int32_t *)&system_state_ptr;
                   if (plStack_228 != (longlong *)0x0) {
                     (**(code **)(*plStack_228 + 0x38))();
                   }

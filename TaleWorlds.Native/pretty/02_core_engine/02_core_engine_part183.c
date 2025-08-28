@@ -69,9 +69,9 @@ void CoreEngineInitializer(uint64_t *data_ptr) {
     // 技术说明：本函数实现引擎基础结构的初始化和配置
     
     // 初始化引擎核心数据结构
-    data_ptr[0x16] = &unknown_var_720_ptr;    // 设置内存管理器指针
-    data_ptr[0xb] = &unknown_var_720_ptr;     // 设置数据处理器指针
-    *data_ptr = &unknown_var_720_ptr;         // 设置主控制块指针
+    data_ptr[0x16] = &system_state_ptr;    // 设置内存管理器指针
+    data_ptr[0xb] = &system_state_ptr;     // 设置数据处理器指针
+    *data_ptr = &system_state_ptr;         // 设置主控制块指针
     
     return;
 }
@@ -129,7 +129,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
         lVar5 = *(longlong *)(param_2 + 0x20) - (longlong)puVar6;
         do {
             // 初始化数据块结构
-            *puVar6 = &unknown_var_720_ptr;           // 设置基础结构
+            *puVar6 = &system_state_ptr;           // 设置基础结构
             puVar6[1] = 0;                       // 清空计数器
             *(int32_t *)(puVar6 + 2) = 0;     // 清空标志位
             *puVar6 = &unknown_var_3432_ptr;            // 设置数据处理器
@@ -182,7 +182,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
         lVar5 = *(longlong *)(param_2 + 0x178) - (longlong)puVar6;
         do {
             // 初始化第二个数据块结构
-            *puVar6 = &unknown_var_720_ptr;
+            *puVar6 = &system_state_ptr;
             puVar6[1] = 0;
             *(int32_t *)(puVar6 + 2) = 0;
             *puVar6 = &unknown_var_3432_ptr;
@@ -229,7 +229,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
         lVar5 = *(longlong *)(param_2 + 0x490) - (longlong)puVar6;
         do {
             // 初始化第三个数据块结构
-            *puVar6 = &unknown_var_720_ptr;
+            *puVar6 = &system_state_ptr;
             puVar6[1] = 0;
             *(int32_t *)(puVar6 + 2) = 0;
             *puVar6 = &unknown_var_3432_ptr;
@@ -280,7 +280,7 @@ longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
         lVar3 = *(longlong *)(param_2 + 0x10b8) - (longlong)puVar6;
         do {
             // 初始化第四个数据块结构
-            *puVar6 = &unknown_var_720_ptr;
+            *puVar6 = &system_state_ptr;
             puVar6[1] = 0;
             *(int32_t *)(puVar6 + 2) = 0;
             *puVar6 = &unknown_var_3432_ptr;
@@ -353,7 +353,7 @@ longlong *CoreEngineDataManager(uint64_t resource_type, longlong *resource_ptr, 
     lVar3 = core_system_data_memory;
     FUN_1806279c0(&puStack_78, param_3, param_3, param_4, 0, 0xfffffffffffffffe);
     lVar4 = FUN_180169350(lVar3, &puStack_78);
-    puStack_78 = &unknown_var_3456_ptr;
+    puStack_78 = &system_data_buffer_ptr;
     
     // 清理临时数据
     if (puStack_70 != (int8_t *)0x0) {
@@ -361,13 +361,13 @@ longlong *CoreEngineDataManager(uint64_t resource_type, longlong *resource_ptr, 
     }
     puStack_70 = (int8_t *)0x0;
     uStack_60 = (ulonglong)uStack_60._4_4_ << 0x20;
-    puStack_78 = &unknown_var_720_ptr;
+    puStack_78 = &system_state_ptr;
     
     // 初始化数据管理器结构
-    *param_2 = (longlong)&unknown_var_720_ptr;
+    *param_2 = (longlong)&system_state_ptr;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
-    *param_2 = (longlong)&unknown_var_3456_ptr;
+    *param_2 = (longlong)&system_data_buffer_ptr;
     param_2[3] = 0;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
@@ -386,17 +386,17 @@ longlong *CoreEngineDataManager(uint64_t resource_type, longlong *resource_ptr, 
         // 处理有数据的情况
         uVar5 = FUN_1801616b0(lVar4, &puStack_58, param_3, param_4, 1);
         FUN_18005d190(param_2, uVar5);
-        puStack_58 = &unknown_var_3456_ptr;
+        puStack_58 = &system_data_buffer_ptr;
         if (lStack_50 != 0) {
             FUN_18064e900();
         }
         lStack_50 = 0;
         uStack_40 = 0;
-        puStack_58 = &unknown_var_720_ptr;
+        puStack_58 = &system_state_ptr;
     }
     
     // 清理和优化数据
-    puStack_78 = &unknown_var_3456_ptr;
+    puStack_78 = &system_data_buffer_ptr;
     uStack_60 = 0;
     puStack_70 = (int8_t *)0x0;
     uStack_68 = 0;
@@ -427,10 +427,10 @@ longlong *CoreEngineDataManager(uint64_t resource_type, longlong *resource_ptr, 
     }
     else {
         // 扩展数据管理器
-        *puVar2 = &unknown_var_720_ptr;
+        *puVar2 = &system_state_ptr;
         puVar2[1] = 0;
         *(int32_t *)(puVar2 + 2) = 0;
-        *puVar2 = &unknown_var_3456_ptr;
+        *puVar2 = &system_data_buffer_ptr;
         puVar2[3] = 0;
         puVar2[1] = 0;
         *(int32_t *)(puVar2 + 2) = 0;
@@ -445,7 +445,7 @@ longlong *CoreEngineDataManager(uint64_t resource_type, longlong *resource_ptr, 
     }
     
     // 最终清理操作
-    puStack_78 = &unknown_var_3456_ptr;
+    puStack_78 = &system_data_buffer_ptr;
     if (puStack_70 != (int8_t *)0x0) {
         FUN_18064e900();
     }
@@ -512,13 +512,13 @@ longlong CoreEngineDataValidator(longlong *context_ptr, longlong string_data) {
                     *(int32_t *)(lVar3 + 0x10) = 0;
                     *(uint64_t *)(lVar3 + 8) = 0;
                     *(uint64_t *)(lVar3 + 0x18) = 0;
-                    puStack_80 = &unknown_var_3456_ptr;
+                    puStack_80 = &system_data_buffer_ptr;
                     if (puStack_78 != (int16_t *)0x0) {
                         FUN_18064e900();
                     }
                     puStack_78 = (int16_t *)0x0;
                     uStack_68 = uStack_68 & 0xffffffff00000000;
-                    puStack_80 = &unknown_var_720_ptr;
+                    puStack_80 = &system_state_ptr;
                 }
                 break;
             }
@@ -528,7 +528,7 @@ longlong CoreEngineDataValidator(longlong *context_ptr, longlong string_data) {
     }
     
     // 初始化验证结果
-    puStack_e0 = &unknown_var_3456_ptr;
+    puStack_e0 = &system_data_buffer_ptr;
     uStack_c8 = 0;
     uStack_d8 = 0;
     uStack_d0 = 0;
@@ -536,7 +536,7 @@ longlong CoreEngineDataValidator(longlong *context_ptr, longlong string_data) {
     
     // 执行验证操作
     if ((lStack_60 != 0) && (0 < iStack_f0)) {
-        puStack_80 = &unknown_var_3456_ptr;
+        puStack_80 = &system_data_buffer_ptr;
         uStack_68 = 0;
         puStack_78 = (int16_t *)0x0;
         uStack_70 = 0;
@@ -552,15 +552,15 @@ longlong CoreEngineDataValidator(longlong *context_ptr, longlong string_data) {
             puVar5 = puStack_f8;
         }
         strstr(puVar5, puVar4);
-        puStack_80 = &unknown_var_3456_ptr;
+        puStack_80 = &system_data_buffer_ptr;
         FUN_18064e900(puVar4);
     }
     
     // 清理验证器状态
     uStack_d8 = 0;
     uStack_c8 = 0;
-    puStack_e0 = &unknown_var_720_ptr;
-    puStack_100 = &unknown_var_3456_ptr;
+    puStack_e0 = &system_state_ptr;
+    puStack_100 = &system_data_buffer_ptr;
     if (puStack_f8 != (void *)0x0) {
         FUN_18064e900();
     }
@@ -620,7 +620,7 @@ longlong *CoreEngineStringProcessor(longlong *config_ptr, longlong input_data) {
     if (*pcVar15 != '\0') {
         do {
             puVar7 = (int8_t *)0x0;
-            puStack_58 = &unknown_var_3456_ptr;
+            puStack_58 = &system_data_buffer_ptr;
             uStack_40 = 0;
             puStack_50 = (int8_t *)0x0;
             uStack_3c = 0;
@@ -701,10 +701,10 @@ longlong *CoreEngineStringProcessor(longlong *config_ptr, longlong input_data) {
             puVar2 = (uint64_t *)param_1[1];
             if (puVar2 < (uint64_t *)param_1[2]) {
                 param_1[1] = (longlong)(puVar2 + 4);
-                *puVar2 = &unknown_var_720_ptr;
+                *puVar2 = &system_state_ptr;
                 puVar2[1] = 0;
                 *(int32_t *)(puVar2 + 2) = 0;
-                *puVar2 = &unknown_var_3456_ptr;
+                *puVar2 = &system_data_buffer_ptr;
                 puVar2[3] = 0;
                 puVar2[1] = 0;
                 *(int32_t *)(puVar2 + 2) = 0;
@@ -724,13 +724,13 @@ longlong *CoreEngineStringProcessor(longlong *config_ptr, longlong input_data) {
                 FUN_180059820(param_1, &puStack_58);
                 puVar5 = puStack_50;
             }
-            puStack_58 = &unknown_var_3456_ptr;
+            puStack_58 = &system_data_buffer_ptr;
             if (puVar5 != (int8_t *)0x0) {
                 FUN_18064e900(puVar5);
             }
             puStack_50 = (int8_t *)0x0;
             uStack_40 = 0;
-            puStack_58 = &unknown_var_720_ptr;
+            puStack_58 = &system_state_ptr;
         } while (*pcVar15 != '\0');
         
         // 检查引号匹配
@@ -860,13 +860,13 @@ longlong *CoreEnginePathParser(uint64_t manager_type, longlong *data_ptr, uint64
                     *(int32_t *)(lVar3 + 0x10) = 0;
                     *(uint64_t *)(lVar3 + 8) = 0;
                     *(uint64_t *)(lVar3 + 0x18) = 0;
-                    plStack_b0 = (longlong *)&unknown_var_3456_ptr;
+                    plStack_b0 = (longlong *)&system_data_buffer_ptr;
                     if (plStack_a8 != (longlong *)0x0) {
                         FUN_18064e900();
                     }
                     plStack_a8 = (longlong *)0x0;
                     uStack_98 = 0;
-                    plStack_b0 = (longlong *)&unknown_var_720_ptr;
+                    plStack_b0 = (longlong *)&system_state_ptr;
                     lVar3 = FUN_180629a40(&puStack_90, &plStack_b0, iVar10 + 1, uStack_80);
                     if (lStack_88 != 0) {
                         FUN_18064e900();
@@ -877,13 +877,13 @@ longlong *CoreEnginePathParser(uint64_t manager_type, longlong *data_ptr, uint64
                     *(int32_t *)(lVar3 + 0x10) = 0;
                     *(uint64_t *)(lVar3 + 8) = 0;
                     *(uint64_t *)(lVar3 + 0x18) = 0;
-                    plStack_b0 = (longlong *)&unknown_var_3456_ptr;
+                    plStack_b0 = (longlong *)&system_data_buffer_ptr;
                     if (plStack_a8 != (longlong *)0x0) {
                         FUN_18064e900();
                     }
                     plStack_a8 = (longlong *)0x0;
                     uStack_98 = 0;
-                    plStack_b0 = (longlong *)&unknown_var_720_ptr;
+                    plStack_b0 = (longlong *)&system_state_ptr;
                     goto LAB_18016a086;
                 }
                 break;
@@ -941,7 +941,7 @@ LAB_18016a086:
             do {
                 lVar5 = 0;
                 lVar3 = *plStackX_8;
-                puStack_118 = &unknown_var_3456_ptr;
+                puStack_118 = &system_data_buffer_ptr;
                 uStack_100 = 0;
                 puStack_110 = (int8_t *)0x0;
                 uStack_108 = 0;
@@ -958,7 +958,7 @@ LAB_18016a086:
                     uStack_100 = uStack_100 & 0xffffffff;
                 }
                 if (0 < (int)uStack_c0) {
-                    puStack_f8 = &unknown_var_3456_ptr;
+                    puStack_f8 = &system_data_buffer_ptr;
                     uStack_e0 = 0;
                     lStack_f0 = 0;
                     uStack_e8 = uStack_e8 & 0xffffffff00000000;
@@ -988,21 +988,21 @@ LAB_18016a086:
                     *(int32_t *)(lVar3 + 0x10) = 0;
                     *(uint64_t *)(lVar3 + 8) = 0;
                     *(uint64_t *)(lVar3 + 0x18) = 0;
-                    puStack_68 = &unknown_var_3456_ptr;
+                    puStack_68 = &system_data_buffer_ptr;
                     if (lStack_60 != 0) {
                         FUN_18064e900();
                     }
                     lStack_60 = 0;
                     uStack_50 = 0;
-                    puStack_68 = &unknown_var_720_ptr;
-                    puStack_f8 = &unknown_var_3456_ptr;
+                    puStack_68 = &system_state_ptr;
+                    puStack_f8 = &system_data_buffer_ptr;
                     uStack_d8 = 1;
                     if (lStack_f0 != 0) {
                         FUN_18064e900();
                     }
                     lStack_f0 = 0;
                     uStack_e0 = (ulonglong)uStack_e0._4_4_ << 0x20;
-                    puStack_f8 = &unknown_var_720_ptr;
+                    puStack_f8 = &system_state_ptr;
                 }
                 if (*(int *)(*plStackX_8 + 0x20) == 0) {
                     uVar8 = uStack_108 + 1;
@@ -1044,13 +1044,13 @@ LAB_18016a086:
                     param_2[1] = lVar6 + 0x20;
                     param_2[2] = lVar3 * 0x20 + lVar5;
                 }
-                puStack_118 = &unknown_var_3456_ptr;
+                puStack_118 = &system_data_buffer_ptr;
                 if (puStack_110 != (int8_t *)0x0) {
                     FUN_18064e900();
                 }
                 puStack_110 = (int8_t *)0x0;
                 uStack_100 = uStack_100 & 0xffffffff00000000;
-                puStack_118 = &unknown_var_720_ptr;
+                puStack_118 = &system_state_ptr;
                 uStackX_20 = uStackX_20 + 1;
                 plVar12 = (longlong *)(ulonglong)uStackX_20;
                 plStackX_8 = plStackX_8 + 1;
@@ -1063,14 +1063,14 @@ LAB_18016a086:
     
     // 执行路径标准化
     FUN_18016d200(*param_2, param_2[1], 0);
-    puStack_90 = &unknown_var_3456_ptr;
+    puStack_90 = &system_data_buffer_ptr;
     if (lStack_88 != 0) {
         FUN_18064e900();
     }
     lStack_88 = 0;
     uStack_78 = uStack_78 & 0xffffffff00000000;
-    puStack_90 = &unknown_var_720_ptr;
-    puStack_d0 = &unknown_var_3456_ptr;
+    puStack_90 = &system_state_ptr;
+    puStack_d0 = &system_data_buffer_ptr;
     if (lStack_c8 != 0) {
         FUN_18064e900();
     }
@@ -1155,16 +1155,16 @@ uint64_t *CoreEngineDataLoader(longlong *param_array, uint64_t *config_ptr, uint
         }
         else {
             // 处理复杂数据加载
-            puStack_38 = &unknown_var_3456_ptr;
+            puStack_38 = &system_data_buffer_ptr;
             uStack_20 = 0;
             uStack_30 = 0;
             uStack_28 = 0;
-            FUN_180628040(&puStack_38, &unknown_var_1660_ptr, (double)*(float *)param_1[1], param_4, 0,
+            System_DataHandler(&puStack_38, &unknown_var_1660_ptr, (double)*(float *)param_1[1], param_4, 0,
                           0xfffffffffffffffe);
-            *param_2 = &unknown_var_720_ptr;
+            *param_2 = &system_state_ptr;
             param_2[1] = 0;
             *(int32_t *)(param_2 + 2) = 0;
-            *param_2 = &unknown_var_3456_ptr;
+            *param_2 = &system_data_buffer_ptr;
             *(int32_t *)(param_2 + 2) = uStack_28;
             param_2[1] = uStack_30;
             *(int32_t *)((longlong)param_2 + 0x1c) = uStack_20._4_4_;

@@ -81,7 +81,7 @@ int32_t FUN_1806a1b30(void)
       puVar3[3] = 0;
       puVar3[4] = 0;
       puVar3[5] = 0;
-      puVar3[6] = &unknown_var_2240_ptr;
+      puVar3[6] = &system_callback1_ptr;
       puVar3[7] = 0;
       puVar3[8] = 0;
       puVar3[9] = 0;
@@ -158,7 +158,7 @@ int32_t FUN_1806a1b59(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64
     puVar3[3] = 0;
     puVar3[4] = 0;
     puVar3[5] = 0;
-    puVar3[6] = &unknown_var_2240_ptr;
+    puVar3[6] = &system_callback1_ptr;
     puVar3[7] = 0;
     puVar3[8] = 0;
     puVar3[9] = 0;
@@ -230,7 +230,7 @@ int32_t FUN_1806a1b8e(uint64_t *param_1)
   unaff_RBX[3] = unaff_RDI;
   unaff_RBX[4] = unaff_RDI;
   unaff_RBX[5] = unaff_RDI;
-  unaff_RBX[6] = &unknown_var_2240_ptr;
+  unaff_RBX[6] = &system_callback1_ptr;
   *param_1 = unaff_RDI;
   param_1[1] = unaff_RDI;
   param_1[2] = unaff_RDI;
@@ -555,7 +555,7 @@ void FUN_1806a2100(uint64_t *param_1)
   longlong lVar1;
   longlong *plVar2;
   
-  *param_1 = &unknown_var_2240_ptr;
+  *param_1 = &system_callback1_ptr;
   __1MutexImpl_shdfnd_physx__QEAA_XZ(param_1[8]);
   lVar1 = param_1[8];
   if (lVar1 != 0) {

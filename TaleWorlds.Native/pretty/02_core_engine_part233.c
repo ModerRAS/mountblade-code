@@ -398,7 +398,7 @@ LAB_1802038fb:
   }
   puVar4 = puVar9;
 LAB_18020393c:
-  puStack_f8 = &unknown_var_720_ptr;
+  puStack_f8 = &system_state_ptr;
   if (puVar4 == puVar9) {
     puStack_98 = &unknown_var_3480_ptr;
     puStack_90 = auStack_80;
@@ -435,9 +435,9 @@ LAB_18020393c:
     strcpy_s(abStack_e0,0x40,puVar11);
     piVar5 = (int *)FUN_180203aa0(puVar9,&puStack_f8);
     *piVar5 = iVar10 + param_2;
-    puStack_f8 = &unknown_var_720_ptr;
+    puStack_f8 = &system_state_ptr;
   }
-  puStack_98 = &unknown_var_720_ptr;
+  puStack_98 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_128);
 }

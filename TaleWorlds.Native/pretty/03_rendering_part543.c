@@ -536,8 +536,8 @@ void FUN_180565cc0(int param_1,int param_2)
     lVar2 = *(longlong *)(system_main_module_state + 8);
     plVar9 = (longlong *)
              FUN_18062b1e0(system_memory_pool_ptr,0x48,8,CONCAT71((int7)((ulonglong)lVar1 >> 8),3));
-    *plVar9 = (longlong)&unknown_var_3552_ptr;
-    *plVar9 = (longlong)&unknown_var_3696_ptr;
+    *plVar9 = (longlong)&system_handler1_ptr;
+    *plVar9 = (longlong)&system_handler2_ptr;
     *(int32_t *)(plVar9 + 1) = 0;
     *plVar9 = (longlong)&unknown_var_1000_ptr;
     LOCK();
@@ -666,7 +666,7 @@ void FUN_180565d50(longlong param_1,longlong *param_2,longlong param_3)
   if (plStack_120 != (longlong *)0x0) {
     (**(code **)(*plStack_120 + 0x38))();
   }
-  puStack_68 = &unknown_var_720_ptr;
+  puStack_68 = &system_state_ptr;
   plStack_120 = alStack_d8;
   pplStack_118 = &plStack_128;
   pcStack_f8 = (code *)&unknown_var_7792_ptr;
@@ -797,7 +797,7 @@ void FUN_180566010(longlong param_1,uint *param_2,uint *param_3)
   if (aplStack_108[0] != (longlong *)0x0) {
     (**(code **)(*aplStack_108[0] + 0x38))();
   }
-  puStack_80 = &unknown_var_720_ptr;
+  puStack_80 = &system_state_ptr;
   *param_2 = (uint)*(ushort *)((longlong)plVar1 + 0x32c);
   *param_3 = (uint)*(ushort *)((longlong)plVar1 + 0x32e);
   (**(code **)(*plVar1 + 0x38))(plVar1);
@@ -895,7 +895,7 @@ void FUN_1805661a0(longlong param_1,longlong *param_2)
   if (plStack_e8 != (longlong *)0x0) {
     (**(code **)(*plStack_e8 + 0x38))();
   }
-  puStack_68 = &unknown_var_720_ptr;
+  puStack_68 = &system_state_ptr;
   cVar1 = FUN_18023cbe0(plVar2,&lStack_d8);
   if (cVar1 != '\0') {
     if ((cStack_72 == '\0') && ((char)uStack_c8 != '\0')) {

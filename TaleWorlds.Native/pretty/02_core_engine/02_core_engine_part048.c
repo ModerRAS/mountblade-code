@@ -14,9 +14,9 @@ uint64_t unknown_var_8368_ptr;   // 系统消息指针
 uint64_t unknown_var_8076_ptr;   // 警告消息指针
 uint64_t unknown_var_8376_ptr;   // 调试消息指针
 uint64_t unknown_var_8416_ptr;   // 状态消息指针
-uint64_t unknown_var_3456_ptr;   // 内存管理对象
-uint64_t unknown_var_7512_ptr;   // 默认字符串
-uint64_t unknown_var_720_ptr;   // 空指针标记
+uint64_t system_data_buffer_ptr;   // 内存管理对象
+uint64_t system_config_ptr;   // 默认字符串
+uint64_t system_state_ptr;   // 空指针标记
 uint64_t DAT;   // 搜索模式字符串
 
 /**
@@ -215,7 +215,7 @@ process_string_match:
         address_value = (ulonglong)search_index;
         current_char = *(char *)(address_value + *(longlong *)(*_DAT + 0x8c8));
         if (current_char == '\0') {
-            stack_pointer23 = &unknown_var_7512_ptr;
+            stack_pointer23 = &system_config_ptr;
             stack_pointer24 = stack_buffer5;
             stack_buffer5[0] = 0;
             stack_uint13 = 0;
@@ -229,7 +229,7 @@ process_string_match:
         }
         
         // 创建字符串处理对象
-        stack_pointer10 = &unknown_var_3456_ptr;
+        stack_pointer10 = &system_data_buffer_ptr;
         stack_ulong5 = 0;
         stack_pointer11 = (int8_t *)0x0;
         stack_int1 = 0;
@@ -256,18 +256,18 @@ process_string_match:
         // 清理字符串处理标志
         if ((temp_uint1 & 2) != 0) {
             temp_uint1 = temp_uint1 & 0xfffffffd;
-            stack_pointer23 = &unknown_var_720_ptr;
+            stack_pointer23 = &system_state_ptr;
             stack_uint1 = temp_uint1;
         }
         if ((temp_uint1 & 1) != 0) {
             temp_uint1 = temp_uint1 & 0xfffffffe;
-            stack_pointer_array2[0] = &unknown_var_720_ptr;
+            stack_pointer_array2[0] = &system_state_ptr;
             stack_uint1 = temp_uint1;
         }
         temp_ulong2 = (ulonglong)temp_uint1;
         
         // 创建第二个字符串处理对象
-        stack_pointer13 = &unknown_var_3456_ptr;
+        stack_pointer13 = &system_data_buffer_ptr;
         stack_ulong7 = 0;
         stack_pointer14 = (void *)0x0;
         stack_uint7 = 0;
@@ -283,7 +283,7 @@ process_string_match:
         }
         
         // 创建第三个字符串处理对象
-        stack_pointer4 = &unknown_var_3456_ptr;
+        stack_pointer4 = &system_data_buffer_ptr;
         stack_ulong2 = 0;
         stack_pointer5 = (int8_t *)0x0;
         stack_uint3 = 0;
@@ -328,7 +328,7 @@ process_string_match:
         
         // 处理字符串比较结果
         if (current_char != '\0') {
-            stack_pointer3 = &unknown_var_3456_ptr;
+            stack_pointer3 = &system_data_buffer_ptr;
             stack_ulong1 = 0;
             stack_long3 = 0;
             stack_uint2 = 0;
@@ -345,7 +345,7 @@ process_string_match:
             
             // 处理字符串替换
             if (compare_char != '\0') {
-                stack_pointer8 = &unknown_var_3456_ptr;
+                stack_pointer8 = &system_data_buffer_ptr;
                 stack_ulong9 = 0;
                 stack_data9 = 0;
                 stack_uint10 = 0;
@@ -369,19 +369,19 @@ process_string_match:
                 }
                 stack_data9 = 0;
                 stack_ulong9 = stack_ulong9 & 0xffffffff00000000;
-                stack_pointer8 = &unknown_var_720_ptr;
+                stack_pointer8 = &system_state_ptr;
             }
             
             // 执行字符串处理操作
             execute_string_operation(&stack_pointer25,temp_long2);
             array_pointer = stack_long4;
-            stack_pointer17 = &unknown_var_3456_ptr;
+            stack_pointer17 = &system_data_buffer_ptr;
             stack_ulong8 = 0;
             stack_pointer18 = (void *)0x0;
             stack_uint9 = 0;
             search_result = *(int8_t *)(offset_value + 0x58 + *(longlong *)(stack_long4 + 8));
             stack_pointer22 = &stack_pointer16;
-            stack_pointer16 = &unknown_var_3456_ptr;
+            stack_pointer16 = &system_data_buffer_ptr;
             stack_int8_t0 = 0;
             stack_pointer16 = (int8_t *)0x0;
             stack_uint8 = 0;
@@ -402,7 +402,7 @@ process_string_match:
                 *stack_pointer16 = 0;
             }
             stack_pointer20 = &stack_pointer6;
-            stack_pointer6 = &unknown_var_3456_ptr;
+            stack_pointer6 = &system_data_buffer_ptr;
             stack_ulong3 = 0;
             stack_pointer7 = (int8_t *)0x0;
             stack_uint4 = 0;
@@ -447,50 +447,50 @@ process_string_match:
             }
             
             // 清理字符串处理对象
-            stack_pointer17 = &unknown_var_3456_ptr;
+            stack_pointer17 = &system_data_buffer_ptr;
             if (stack_pointer18 != (void *)0x0) {
                     // 释放内存
                 free_memory();
             }
             stack_pointer18 = (void *)0x0;
             stack_ulong8 = stack_ulong8 & 0xffffffff00000000;
-            stack_pointer17 = &unknown_var_720_ptr;
-            stack_pointer25 = &unknown_var_720_ptr;
-            stack_pointer3 = &unknown_var_3456_ptr;
+            stack_pointer17 = &system_state_ptr;
+            stack_pointer25 = &system_state_ptr;
+            stack_pointer3 = &system_data_buffer_ptr;
             if (stack_long3 != 0) {
                     // 释放内存
                 free_memory();
             }
             stack_long3 = 0;
             stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
-            stack_pointer3 = &unknown_var_720_ptr;
+            stack_pointer3 = &system_state_ptr;
         }
         
         // 清理所有字符串处理对象
-        stack_pointer4 = &unknown_var_3456_ptr;
+        stack_pointer4 = &system_data_buffer_ptr;
         if (temp_buffer1 != (int8_t *)0x0) {
                     // 释放内存
             free_memory(temp_buffer1);
         }
         stack_pointer5 = (int8_t *)0x0;
         stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
-        stack_pointer4 = &unknown_var_720_ptr;
-        stack_pointer13 = &unknown_var_3456_ptr;
+        stack_pointer4 = &system_state_ptr;
+        stack_pointer13 = &system_data_buffer_ptr;
         if (stack_pointer14 != (void *)0x0) {
                     // 释放内存
             free_memory();
         }
         stack_pointer14 = (void *)0x0;
         stack_ulong7 = stack_ulong7 & 0xffffffff00000000;
-        stack_pointer13 = &unknown_var_720_ptr;
-        stack_pointer10 = &unknown_var_3456_ptr;
+        stack_pointer13 = &system_state_ptr;
+        stack_pointer10 = &system_data_buffer_ptr;
         if (string_buffer != (int8_t *)0x0) {
                     // 释放内存
             free_memory(string_buffer);
         }
         stack_pointer11 = (int8_t *)0x0;
         stack_ulong5 = stack_ulong5 & 0xffffffff00000000;
-        stack_pointer10 = &unknown_var_720_ptr;
+        stack_pointer10 = &system_state_ptr;
         offset_value = stack_long4;
     }
     else {
@@ -506,7 +506,7 @@ process_string_match:
         }
         
         // 创建字符串缓冲区
-        stack_pointer12 = &unknown_var_3456_ptr;
+        stack_pointer12 = &system_data_buffer_ptr;
         stack_ulong6 = 0;
         stack_pointer9 = (int8_t *)0x0;
         stack_uint6 = 0;
@@ -561,7 +561,7 @@ process_string_match:
         }
         
         // 设置字符串处理参数
-        stack_pointer12 = &unknown_var_3456_ptr;
+        stack_pointer12 = &system_data_buffer_ptr;
         stack_ulong6 = 0;
         stack_long3 = 0;
         stack_uint6 = 0;
@@ -639,22 +639,22 @@ process_string_match:
         }
         
         // 清理字符串处理对象
-        stack_pointer12 = &unknown_var_3456_ptr;
+        stack_pointer12 = &system_data_buffer_ptr;
         if (stack_long3 != 0) {
                     // 释放内存
             free_memory();
         }
         stack_long3 = 0;
         stack_ulong6 = stack_ulong6 & 0xffffffff00000000;
-        stack_pointer12 = &unknown_var_720_ptr;
-        stack_pointer12 = &unknown_var_3456_ptr;
+        stack_pointer12 = &system_state_ptr;
+        stack_pointer12 = &system_data_buffer_ptr;
         if (string_buffer != (int8_t *)0x0) {
                     // 释放内存
             free_memory(string_buffer);
         }
         stack_pointer9 = (int8_t *)0x0;
         stack_ulong6 = stack_ulong6 & 0xffffffff00000000;
-        stack_pointer12 = &unknown_var_720_ptr;
+        stack_pointer12 = &system_state_ptr;
     }
     
     // 继续处理下一个字符串
@@ -710,7 +710,7 @@ void process_string_search_and_validation(uint64_t search_param1, longlong searc
     }
     data_pointer2 = search_string_pattern(string_pointer,&DAT,search_param3,search_param4,0xfffffffffffffffe);
     if (data_pointer2 == 0) {
-        stack_pointer1 = &unknown_var_3456_ptr;
+        stack_pointer1 = &system_data_buffer_ptr;
         stack_int8_t = 0;
         stack_pointer2 = (int8_t *)0x0;
         stack_uint1 = 0;
@@ -733,7 +733,7 @@ void process_string_search_and_validation(uint64_t search_param1, longlong searc
         
         // 执行字符串处理
         execute_string_processing(data_pointer1 + 0x28,&stack_pointer1);
-        stack_pointer1 = &unknown_var_3456_ptr;
+        stack_pointer1 = &system_data_buffer_ptr;
         if (stack_pointer2 != (int8_t *)0x0) {
                     // 释放内存
             free_memory();

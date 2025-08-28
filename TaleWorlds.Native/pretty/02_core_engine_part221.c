@@ -213,13 +213,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     FUN_1801ba4d0();
     FUN_1801ba4d0();
     FUN_18004b730();
-    param_1[0xc169] = &unknown_var_3456_ptr;
+    param_1[0xc169] = &system_data_buffer_ptr;
     if (param_1[0xc16a] != 0) {
         FUN_18064e900();
     }
     param_1[0xc16a] = 0;
     *(int32_t *)(param_1 + 0xc16c) = 0;
-    param_1[0xc169] = &unknown_var_720_ptr;
+    param_1[0xc169] = &system_state_ptr;
     
     /* 清理回调管理器 */
     FUN_180196de0(param_1 + 0xc11e);
@@ -252,13 +252,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     }
     
     /* 清理线程局部存储 */
-    param_1[0x103a] = &unknown_var_3456_ptr;
+    param_1[0x103a] = &system_data_buffer_ptr;
     if (param_1[0x103b] != 0) {
         FUN_18064e900();
     }
     param_1[0x103b] = 0;
     *(int32_t *)(param_1 + 0x103d) = 0;
-    param_1[0x103a] = &unknown_var_720_ptr;
+    param_1[0x103a] = &system_state_ptr;
     FUN_180057830();
     FUN_18005d580();
     FUN_180057830();
@@ -290,13 +290,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     FUN_1800e7d00(param_1 + 0xa3a);
     FUN_1808fc8a8(param_1 + 0x7f7, 0x908, 2, FUN_1800e7d00);
     FUN_1800e7c40(param_1 + 0x7ed);
-    param_1[0x7da] = &unknown_var_3456_ptr;
+    param_1[0x7da] = &system_data_buffer_ptr;
     if (param_1[0x7db] != 0) {
         FUN_18064e900();
     }
     param_1[0x7db] = 0;
     *(int32_t *)(param_1 + 0x7dd) = 0;
-    param_1[0x7da] = &unknown_var_720_ptr;
+    param_1[0x7da] = &system_state_ptr;
     if (param_1[0x7ce] != 0) {
         FUN_18064e900();
     }
@@ -325,13 +325,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
         FUN_1801c0df0(param_1 + 0x519);
     }
     FUN_1801c0df0(param_1 + 0x519);
-    param_1[0x512] = &unknown_var_3456_ptr;
+    param_1[0x512] = &system_data_buffer_ptr;
     if (param_1[0x513] != 0) {
         FUN_18064e900();
     }
     param_1[0x513] = 0;
     *(int32_t *)(param_1 + 0x515) = 0;
-    param_1[0x512] = &unknown_var_720_ptr;
+    param_1[0x512] = &system_state_ptr;
     if (param_1[0x50e] != 0) {
         FUN_18064e900();
     }
@@ -352,13 +352,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     if ((longlong *)param_1[0x4fd] != (longlong *)0x0) {
         (**(code **)(*(longlong *)param_1[0x4fd] + 0x38))();
     }
-    param_1[0x4f9] = &unknown_var_3456_ptr;
+    param_1[0x4f9] = &system_data_buffer_ptr;
     if (param_1[0x4fa] != 0) {
         FUN_18064e900();
     }
     param_1[0x4fa] = 0;
     *(int32_t *)(param_1 + 0x4fc) = 0;
-    param_1[0x4f9] = &unknown_var_720_ptr;
+    param_1[0x4f9] = &system_state_ptr;
     
     /* 清理线程同步对象 */
     _Mtx_destroy_in_situ();
@@ -374,34 +374,34 @@ void ObjectManagerDestructor(uint64_t *param_1)
     if (param_1[0xa8] != 0) {
         FUN_18064e900();
     }
-    param_1[0xa4] = &unknown_var_3456_ptr;
+    param_1[0xa4] = &system_data_buffer_ptr;
     if (param_1[0xa5] != 0) {
         FUN_18064e900();
     }
     param_1[0xa5] = 0;
     *(int32_t *)(param_1 + 0xa7) = 0;
-    param_1[0xa4] = &unknown_var_720_ptr;
-    param_1[0xa0] = &unknown_var_3456_ptr;
+    param_1[0xa4] = &system_state_ptr;
+    param_1[0xa0] = &system_data_buffer_ptr;
     if (param_1[0xa1] != 0) {
         FUN_18064e900();
     }
     param_1[0xa1] = 0;
     *(int32_t *)(param_1 + 0xa3) = 0;
-    param_1[0xa0] = &unknown_var_720_ptr;
-    param_1[0x9b] = &unknown_var_3456_ptr;
+    param_1[0xa0] = &system_state_ptr;
+    param_1[0x9b] = &system_data_buffer_ptr;
     if (param_1[0x9c] != 0) {
         FUN_18064e900();
     }
     param_1[0x9c] = 0;
     *(int32_t *)(param_1 + 0x9e) = 0;
-    param_1[0x9b] = &unknown_var_720_ptr;
-    param_1[0x91] = &unknown_var_3456_ptr;
+    param_1[0x9b] = &system_state_ptr;
+    param_1[0x91] = &system_data_buffer_ptr;
     if (param_1[0x92] != 0) {
         FUN_18064e900();
     }
     param_1[0x92] = 0;
     *(int32_t *)(param_1 + 0x94) = 0;
-    param_1[0x91] = &unknown_var_720_ptr;
+    param_1[0x91] = &system_state_ptr;
     
     /* 清理系统对象 */
     if ((longlong *)param_1[0x77] != (longlong *)0x0) {
@@ -453,8 +453,8 @@ void ObjectManagerDestructor(uint64_t *param_1)
     }
     
     /* 最终清理 */
-    *param_1 = &unknown_var_3696_ptr;
-    *param_1 = &unknown_var_3552_ptr;
+    *param_1 = &system_handler2_ptr;
+    *param_1 = &system_handler1_ptr;
     return;
 }
 
@@ -1021,7 +1021,7 @@ void ObjectDestructor(longlong param_1, longlong *param_2, uint64_t param_3, uin
         }
     }
     else {
-        FUN_180626f80(&unknown_var_2360_ptr);
+        FUN_180626f80(&system_param2_ptr);
     }
     
     /* 最终清理 */

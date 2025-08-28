@@ -171,7 +171,7 @@ void CoreEngineSystemStateManager(void)
       core_system_memory = FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
       FUN_180653ef0();
       system_context = core_system_memory;
-      callback_array = (code ***)&unknown_var_3456_ptr;
+      callback_array = (code ***)&system_data_buffer_ptr;
       timestamp = (void *)0x0;
       flag_ptr = (int32_t *)0x0;
       context_data = (void *)((ulonglong)context_data & 0xffffffff00000000);
@@ -187,7 +187,7 @@ void CoreEngineSystemStateManager(void)
       *(uint64_t *)(resource_ptr + 4) = 0x65746167656c65;  // "etagele"
       context_data = (void *)CONCAT44(context_data._4_4_,0x17);
       GetProcAddress(*(uint64_t *)(system_context + 0x10),resource_ptr);
-      callback_array = (code ***)&unknown_var_3456_ptr;
+      callback_array = (code ***)&system_data_buffer_ptr;
       FUN_18064e900(resource_ptr);
     }
     
@@ -358,12 +358,12 @@ void CoreEngineSystemStateManager(void)
             strcpy_s(temp_buffer,0x20,&unknown_var_5080_ptr);
             FUN_180051f00(system_main_module_state,&heap_buffer);
             system_context = core_system_data_memory;
-            heap_buffer = &unknown_var_720_ptr;
-            callback_array = (code ***)&unknown_var_3456_ptr;
+            heap_buffer = &system_state_ptr;
+            callback_array = (code ***)&system_data_buffer_ptr;
             timestamp = (void *)0x0;
             flag_ptr = (int32_t *)0x0;
             context_data = (void *)((ulonglong)context_data._4_4_ << 0x20);
-            memory_buffer = &unknown_var_3456_ptr;
+            memory_buffer = &system_data_buffer_ptr;
             process_id = 0;
             resource_handle = (int32_t *)0x0;
             handle_flag = 0;
@@ -389,7 +389,7 @@ void CoreEngineSystemStateManager(void)
               }
             }
             version_info = 0;
-            memory_buffer = &unknown_var_3456_ptr;
+            memory_buffer = &system_data_buffer_ptr;
             FUN_18064e900(resource_ptr);
           }
           

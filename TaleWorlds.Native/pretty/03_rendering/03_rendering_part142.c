@@ -139,14 +139,14 @@ void FUN_180352bf0(uint64_t *param_1)
     
     // 配置渲染对象的虚函数表
     plVar1 = puVar4 + 0xf;       // 虚函数表指针位置
-    *plVar1 = (longlong)&unknown_var_720_ptr;  // 设置默认虚函数表
+    *plVar1 = (longlong)&system_state_ptr;  // 设置默认虚函数表
     
     // 初始化渲染对象的状态字段
     puVar4[0x10] = 0;            // 状态字段1
     *(int32_t *)(puVar4 + 0x11) = 0;  // 状态字段2
     
     // 更新虚函数表指针
-    *plVar1 = (longlong)&unknown_var_3456_ptr;  // 设置新的虚函数表
+    *plVar1 = (longlong)&system_data_buffer_ptr;  // 设置新的虚函数表
     
     // 重置状态字段
     puVar4[0x12] = 0;            // 状态字段3
@@ -158,7 +158,7 @@ void FUN_180352bf0(uint64_t *param_1)
     (**(code **)(*plVar1 + 0x10))(plVar1, &system_memory_e968);
     
     // 准备栈参数用于配置消息
-    puStack_80 = &unknown_var_3456_ptr;  // 配置类型指针
+    puStack_80 = &system_data_buffer_ptr;  // 配置类型指针
     uStack_68 = 0;                // 配置参数1
     puStack_78 = (int32_t *)0x0;  // 配置数据指针
     uStack_70 = 0;                // 配置参数2
@@ -191,7 +191,7 @@ void FUN_180352bf0(uint64_t *param_1)
     FUN_1803460a0(param_1, &puStack_80, param_1 + 0xe, 0xb, uVar5);
     
     // 清理配置缓冲区
-    puStack_80 = &unknown_var_3456_ptr;
+    puStack_80 = &system_data_buffer_ptr;
     FUN_18064e900(puVar3);        // 释放缓冲区内存
 }
 
@@ -207,7 +207,7 @@ void FUN_180352bf0(uint64_t *param_1)
 longlong FUN_180352dc0(longlong param_1, ulonglong param_2)
 {
     // 设置渲染对象为清理状态
-    *(uint64_t *)(param_1 + 0x78) = &unknown_var_3456_ptr;  // 清理状态标志
+    *(uint64_t *)(param_1 + 0x78) = &system_data_buffer_ptr;  // 清理状态标志
     
     // 检查是否有未释放的资源
     if (*(longlong *)(param_1 + 0x80) != 0) {
@@ -220,7 +220,7 @@ longlong FUN_180352dc0(longlong param_1, ulonglong param_2)
     *(int32_t *)(param_1 + 0x90) = 0;  // 引用计数清零
     
     // 设置渲染对象为已清理状态
-    *(uint64_t *)(param_1 + 0x78) = &unknown_var_720_ptr;  // 清理完成标志
+    *(uint64_t *)(param_1 + 0x78) = &system_state_ptr;  // 清理完成标志
     
     // 调用渲染对象清理回调函数
     FUN_1803457d0(param_1);
@@ -268,7 +268,7 @@ void FUN_180352e50(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
                         0xfffffffffffffffe), iVar1 == 0)) {
         
         // 第一阶段：处理 "Normal" 配置消息
-        puStack_60 = &unknown_var_3456_ptr;  // 配置类型指针
+        puStack_60 = &system_data_buffer_ptr;  // 配置类型指针
         uStack_48 = 0;                // 配置参数1
         puStack_58 = (int32_t *)0x0;  // 配置数据指针
         uStack_50 = 0;                // 配置参数2
@@ -296,7 +296,7 @@ void FUN_180352e50(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
         FUN_180066df0(param_3, &puStack_60);
         
         // 清理第一阶段配置缓冲区
-        puStack_60 = &unknown_var_3456_ptr;
+        puStack_60 = &system_data_buffer_ptr;
         if (puStack_58 != (int32_t *)0x0) {
             FUN_18064e900();  // 释放缓冲区内存
         }
@@ -304,10 +304,10 @@ void FUN_180352e50(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
         // 重置栈参数
         puStack_58 = (int32_t *)0x0;
         uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
-        puStack_60 = &unknown_var_720_ptr;
+        puStack_60 = &system_state_ptr;
         
         // 第二阶段：处理 "High" 配置消息
-        puStack_40 = &unknown_var_3456_ptr;  // 配置类型指针
+        puStack_40 = &system_data_buffer_ptr;  // 配置类型指针
         uStack_28 = 0;                // 配置参数1
         puStack_38 = (int32_t *)0x0;  // 配置数据指针
         uStack_30 = 0;                // 配置参数2
@@ -334,7 +334,7 @@ void FUN_180352e50(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
         FUN_180066df0(param_3, &puStack_40);
         
         // 清理第二阶段配置缓冲区
-        puStack_40 = &unknown_var_3456_ptr;
+        puStack_40 = &system_data_buffer_ptr;
         if (puStack_38 != (int32_t *)0x0) {
             FUN_18064e900();  // 释放缓冲区内存
         }
@@ -358,7 +358,7 @@ void FUN_180352e50(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_
 uint64_t * FUN_180352ff0(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
     // 初始化数据对象的基本状态
-    *param_2 = &unknown_var_720_ptr;  // 设置初始状态
+    *param_2 = &system_state_ptr;  // 设置初始状态
     param_2[1] = 0;             // 清空数据指针
     *(int32_t *)(param_2 + 2) = 0;  // 清空数据长度
     
@@ -397,8 +397,8 @@ void FUN_180353070(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     FUN_1802f5b10(param_1 + 4, param_1[6], param_3, param_4, 0xfffffffffffffffe);
     
     // 更新渲染对象的配置状态
-    *param_1 = &unknown_var_3696_ptr;  // 配置状态1
-    *param_1 = &unknown_var_3552_ptr;  // 配置状态2
+    *param_1 = &system_handler2_ptr;  // 配置状态1
+    *param_1 = &system_handler1_ptr;  // 配置状态2
     
     // 函数返回
     return;
@@ -488,7 +488,7 @@ void FUN_1803530c0(longlong *param_1, longlong param_2, uint64_t param_3)
     // 检查是否有数据需要处理
     if (puStack_6d0 != puStack_6c8) {
         // 准备数据处理参数
-        puStack_7b8 = &unknown_var_3456_ptr;  // 数据类型指针
+        puStack_7b8 = &system_data_buffer_ptr;  // 数据类型指针
         uStack_7a0 = 0;                // 数据参数1
         puStack_7b0 = (int8_t *)0x0;  // 数据指针
         uStack_7a8 = 0;                // 数据参数2
@@ -556,13 +556,13 @@ void FUN_1803530c0(longlong *param_1, longlong param_2, uint64_t param_3)
     }
     
     // 重置栈参数
-    puStack_698 = &unknown_var_3456_ptr;
+    puStack_698 = &system_data_buffer_ptr;
     if (lStack_690 != 0) {
         FUN_18064e900();  // 清理栈内存
     }
     lStack_690 = 0;
     uStack_680 = 0;
-    puStack_698 = &unknown_var_720_ptr;
+    puStack_698 = &system_state_ptr;
     
     // 执行安全检查
     FUN_1808fc050(uStack_e8 ^ (ulonglong)auStack_7e8);
@@ -765,22 +765,22 @@ LAB_180353f85:
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puStack_348 = &unknown_var_3456_ptr;
+  puStack_348 = &system_data_buffer_ptr;
   if (lStack_340 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_340 = 0;
   uStack_330 = 0;
-  puStack_348 = &unknown_var_720_ptr;
-  puStack_328 = &unknown_var_3456_ptr;
+  puStack_348 = &system_state_ptr;
+  puStack_328 = &system_data_buffer_ptr;
   if (lStack_320 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_320 = 0;
   uStack_310 = 0;
-  puStack_328 = &unknown_var_720_ptr;
+  puStack_328 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_3b8);
 }
@@ -883,14 +883,14 @@ longlong * FUN_1803543b0(longlong param_1,uint64_t *param_2,char param_3,char pa
     uVar5 = FUN_180627ae0(alStack_48,param_2);
     uVar5 = FUN_180354db0(&puStack_70,uVar5);
     FUN_18005d190(param_2,uVar5);
-    puStack_70 = &unknown_var_3456_ptr;
+    puStack_70 = &system_data_buffer_ptr;
     if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_68 = 0;
     uStack_58 = 0;
-    puStack_70 = &unknown_var_720_ptr;
+    puStack_70 = &system_state_ptr;
     lVar7 = render_system_data_memory;
   }
   lVar2 = *(longlong *)(*(longlong *)(lVar7 + 8) + *(longlong *)(lVar7 + 0x10) * 8);
@@ -950,11 +950,11 @@ longlong * FUN_1803543b0(longlong param_1,uint64_t *param_2,char param_3,char pa
       (**(code **)(*plVar6 + 0x38))(plVar6);
     }
   }
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   if (param_2[1] == 0) {
     param_2[1] = 0;
     *(int32_t *)(param_2 + 3) = 0;
-    *param_2 = &unknown_var_720_ptr;
+    *param_2 = &system_state_ptr;
     return plVar6;
   }
                     // WARNING: Subroutine does not return
@@ -1018,10 +1018,10 @@ FUN_180354db0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
   if (*plVar2 == lVar1) {
     (**(code **)(**(longlong **)(system_main_module_state + 0x2b0) + 0xa0))
               (*(longlong **)(system_main_module_state + 0x2b0),&puStack_38,param_2);
-    *param_1 = &unknown_var_720_ptr;
+    *param_1 = &system_state_ptr;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
-    *param_1 = &unknown_var_3456_ptr;
+    *param_1 = &system_data_buffer_ptr;
     *(int32_t *)(param_1 + 2) = uStack_28;
     param_1[1] = uStack_30;
     *(int32_t *)((longlong)param_1 + 0x1c) = uStack_20._4_4_;
@@ -1029,8 +1029,8 @@ FUN_180354db0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     uStack_28 = 0;
     uStack_30 = 0;
     uStack_20 = 0;
-    puStack_38 = &unknown_var_720_ptr;
-    *param_2 = &unknown_var_3456_ptr;
+    puStack_38 = &system_state_ptr;
+    *param_2 = &system_data_buffer_ptr;
     if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -1039,10 +1039,10 @@ FUN_180354db0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     *(int32_t *)(param_2 + 3) = 0;
   }
   else {
-    *param_1 = &unknown_var_720_ptr;
+    *param_1 = &system_state_ptr;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
-    *param_1 = &unknown_var_3456_ptr;
+    *param_1 = &system_data_buffer_ptr;
     param_1[3] = 0;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
@@ -1053,7 +1053,7 @@ FUN_180354db0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     *(int32_t *)(param_2 + 2) = 0;
     param_2[1] = 0;
     param_2[3] = 0;
-    *param_2 = &unknown_var_3456_ptr;
+    *param_2 = &system_data_buffer_ptr;
     if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -1061,7 +1061,7 @@ FUN_180354db0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     param_2[1] = 0;
     *(int32_t *)(param_2 + 3) = 0;
   }
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   return param_1;
 }
 
@@ -1085,11 +1085,11 @@ void FUN_180354f20(longlong param_1)
     do {
       puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
       if (puVar2 != (uint64_t *)0x0) {
-        *puVar2 = &unknown_var_3456_ptr;
+        *puVar2 = &system_data_buffer_ptr;
         if (puVar2[1] == 0) {
           puVar2[1] = 0;
           *(int32_t *)(puVar2 + 3) = 0;
-          *puVar2 = &unknown_var_720_ptr;
+          *puVar2 = &system_state_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar2);
         }
@@ -1129,11 +1129,11 @@ void FUN_180354f40(longlong param_1)
     do {
       puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
       if (puVar2 != (uint64_t *)0x0) {
-        *puVar2 = &unknown_var_3456_ptr;
+        *puVar2 = &system_data_buffer_ptr;
         if (puVar2[1] == 0) {
           puVar2[1] = 0;
           *(int32_t *)(puVar2 + 3) = 0;
-          *puVar2 = &unknown_var_720_ptr;
+          *puVar2 = &system_state_ptr;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar2);
         }
@@ -1238,11 +1238,11 @@ longlong * FUN_180355140(longlong param_1,longlong *param_2,uint64_t param_3,lon
   
   uVar14 = 0xfffffffffffffffe;
   puVar7 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr);
-  *puVar7 = &unknown_var_720_ptr;
+  *puVar7 = &system_state_ptr;
   uVar12 = 0;
   puVar7[1] = 0;
   *(int32_t *)(puVar7 + 2) = 0;
-  *puVar7 = &unknown_var_3456_ptr;
+  *puVar7 = &system_data_buffer_ptr;
   puVar7[3] = 0;
   puVar7[1] = 0;
   *(int32_t *)(puVar7 + 2) = 0;
@@ -1319,14 +1319,14 @@ void FUN_1803552e0(uint64_t param_1,uint64_t *param_2)
   longlong lVar2;
   ulonglong uVar3;
   
-  *param_2 = &unknown_var_3456_ptr;
+  *param_2 = &system_data_buffer_ptr;
   if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_2[1] = 0;
   *(int32_t *)(param_2 + 3) = 0;
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   uVar3 = (ulonglong)param_2 & 0xffffffffffc00000;
   if (uVar3 != 0) {
     lVar2 = uVar3 + 0x80 + ((longlong)param_2 - uVar3 >> 0x10) * 0x50;

@@ -273,7 +273,7 @@ void RenderingSystemResourceRecycler(void)
   
   uStack_48 = 0xfffffffffffffffe;
   uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0x88,8,3);
-  puStack_288 = &unknown_var_3456_ptr;
+  puStack_288 = &system_data_buffer_ptr;
   uStack_270 = 0;
   puStack_280 = (uint64_t *)0x0;
   uStack_278 = 0;
@@ -286,7 +286,7 @@ void RenderingSystemResourceRecycler(void)
   *(int32_t *)(puVar3 + 1) = 0x707063;
   uStack_278 = 0xb;
   FUN_1801614d0(uVar2,&puStack_288);
-  puStack_288 = &unknown_var_3456_ptr;
+  puStack_288 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar3);
 }

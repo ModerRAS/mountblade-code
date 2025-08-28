@@ -175,7 +175,7 @@ typedef struct {
 #define InitializationSystemGlobalData1 unknown_var_3480_ptr
 #define InitializationSystemGlobalData2 system_memory_91c8
 #define InitializationSystemGlobalData3 system_memory_a368
-#define InitializationSystemNodeData1 unknown_var_3504_ptr
+#define InitializationSystemNodeData1 system_param1_ptr
 #define InitializationSystemNodeData2 unknown_var_3520_ptr
 #define InitializationSystemNodeData3 unknown_var_3544_ptr
 #define InitializationSystemNodeData4 unknown_var_3560_ptr
@@ -1127,7 +1127,7 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
     // 设置节点数据
     parent_node[6] = 0x4b2d79e470ee4e2c;
     parent_node[7] = 0x9c552acd3ed5548d;
-    parent_node[8] = &unknown_var_7632_ptr;
+    parent_node[8] = &InitializationSystemNodeData13;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -1185,7 +1185,7 @@ void InitializationSystem_RegistrySearchAndInsert16(void)
     // 设置节点数据
     parent_node[6] = 0x49086ba08ab981a7;
     parent_node[7] = 0xa9191d34ad910696;
-    parent_node[8] = &unknown_var_7656_ptr;
+    parent_node[8] = &InitializationSystemNodeData14;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -1243,7 +1243,7 @@ void InitializationSystem_RegistrySearchAndInsert17(void)
     // 设置节点数据
     parent_node[6] = 0x402feffe4481676e;
     parent_node[7] = 0xd4c2151109de93a0;
-    parent_node[8] = &unknown_var_7680_ptr;
+    parent_node[8] = &InitializationSystemNodeData15;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -1610,7 +1610,7 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
     // 设置节点数据
     parent_node[6] = 0x4b2d79e470ee4e2c;
     parent_node[7] = 0x9c552acd3ed5548d;
-    parent_node[8] = &unknown_var_7632_ptr;
+    parent_node[8] = &InitializationSystemNodeData13;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     
@@ -1668,7 +1668,7 @@ void InitializationSystem_RegistrySearchAndInsert24(void)
     // 设置节点数据
     parent_node[6] = 0x49086ba08ab981a7;
     parent_node[7] = 0xa9191d34ad910696;
-    parent_node[8] = &unknown_var_7656_ptr;
+    parent_node[8] = &InitializationSystemNodeData14;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -1726,7 +1726,7 @@ void InitializationSystem_RegistrySearchAndInsert25(void)
     // 设置节点数据
     parent_node[6] = 0x402feffe4481676e;
     parent_node[7] = 0xd4c2151109de93a0;
-    parent_node[8] = &unknown_var_7680_ptr;
+    parent_node[8] = &InitializationSystemNodeData15;
     parent_node[9] = 0;
     parent_node[10] = node_value;
     

@@ -127,7 +127,7 @@ LAB_record_found:
     animation_node = (uint64_t *)(node_index + 0x50);
     system_param = animation_system;
     do {
-      stack_pointer = &unknown_var_3456_ptr;
+      stack_pointer = &system_data_buffer_ptr;
       buffer_capacity = 0;
       name_buffer = (byte *)0x0;
       buffer_size = 0;
@@ -170,17 +170,17 @@ LAB_id_found:
       if (current_record == (uint64_t *)0x0) {
 LAB_create_new_record:
         new_record = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x48,8,3);
-        *new_record = &unknown_var_720_ptr;
+        *new_record = &system_state_ptr;
         new_record[1] = 0;
         *(int32_t *)(new_record + 2) = 0;
-        *new_record = &unknown_var_3456_ptr;
+        *new_record = &system_data_buffer_ptr;
         new_record[3] = 0;
         new_record[1] = 0;
         *(int32_t *)(new_record + 2) = 0;
-        new_record[4] = &unknown_var_720_ptr;
+        new_record[4] = &system_state_ptr;
         new_record[5] = 0;
         *(int32_t *)(new_record + 6) = 0;
-        new_record[4] = &unknown_var_3456_ptr;
+        new_record[4] = &system_data_buffer_ptr;
         new_record[7] = 0;
         new_record[5] = 0;
         *(int32_t *)(new_record + 6) = 0;
@@ -415,7 +415,7 @@ LAB_skip_record:
       new_record = (uint64_t *)0x0;
 LAB_next_record:
       *animation_records_ptr = (longlong)new_record;
-      stack_pointer = &unknown_var_3456_ptr;
+      stack_pointer = &system_data_buffer_ptr;
       if (name_buffer != (byte *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();

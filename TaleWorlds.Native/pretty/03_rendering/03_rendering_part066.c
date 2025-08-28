@@ -961,9 +961,9 @@ void rendering_system_generate_render_report(longlong render_context, longlong r
             texture_name = object_name;
         }
         
-        FUN_180628040(report_buffer, &global_state_2760_ptr, texture_name);
+        System_DataHandler(report_buffer, &global_state_2760_ptr, texture_name);
         shadow_system = *(longlong *)(render_context + 0x530);
-        FUN_180628040(report_buffer, &global_state_8544_ptr);
+        System_DataHandler(report_buffer, &global_state_8544_ptr);
         
         texture_manager = *(longlong *)(shadow_system + 0x70);
         texture_count = 0;
@@ -986,7 +986,7 @@ void rendering_system_generate_render_report(longlong render_context, longlong r
                     object_cost = (float)(int)(object_index * (unsigned int)*(unsigned short *)(render_object + 0x32e) *
                                         (unsigned int)*(unsigned short *)(render_object + 0x32c)) * 9.536743e-07;
                     total_cost = total_cost + object_cost;
-                    FUN_180628040(report_buffer, &global_state_8536_ptr, object_name, (double)object_cost);
+                    System_DataHandler(report_buffer, &global_state_8536_ptr, object_name, (double)object_cost);
                 }
                 
                 texture_manager = *(longlong *)(shadow_system + 0x70);
@@ -995,7 +995,7 @@ void rendering_system_generate_render_report(longlong render_context, longlong r
             } while ((unsigned long long)(long long)object_count < (unsigned long long)(*(longlong *)(shadow_system + 0x78) - texture_manager >> 3));
         }
         
-        FUN_180628040(report_buffer, &global_state_8160_ptr, texture_count, (double)total_cost);
+        System_DataHandler(report_buffer, &global_state_8160_ptr, texture_count, (double)total_cost);
     }
     return;
 }
@@ -1046,9 +1046,9 @@ void rendering_system_process_render_data(uint64_t data_handle, longlong process
         texture_name = object_name;
     }
     
-    result_handle = FUN_180628040(0x2f2f2f2f2f2f2f2f, &global_state_2760_ptr, texture_name);
+    result_handle = System_DataHandler(0x2f2f2f2f2f2f2f2f, &global_state_2760_ptr, texture_name);
     render_manager = *(longlong *)(render_manager + 0x530);
-    result_handle = FUN_180628040(result_handle, &global_state_8544_ptr);
+    result_handle = System_DataHandler(result_handle, &global_state_8544_ptr);
     
     texture_manager = *(longlong *)(render_manager + 0x70);
     texture_count = 0;
@@ -1071,7 +1071,7 @@ void rendering_system_process_render_data(uint64_t data_handle, longlong process
                 processing_cost = (float)(int)(object_index * (unsigned int)*(unsigned short *)(render_object + 0x32e) *
                                        (unsigned int)*(unsigned short *)(render_object + 0x32c)) * 9.536743e-07;
                 total_cost = total_cost + processing_cost;
-                result_handle = FUN_180628040(processing_cost, &global_state_8536_ptr, object_name, (double)processing_cost);
+                result_handle = System_DataHandler(processing_cost, &global_state_8536_ptr, object_name, (double)processing_cost);
             }
             
             texture_manager = *(longlong *)(render_manager + 0x70);
@@ -1080,7 +1080,7 @@ void rendering_system_process_render_data(uint64_t data_handle, longlong process
         } while ((unsigned long long)(long long)object_count < (unsigned long long)(*(longlong *)(render_manager + 0x78) - texture_manager >> 3));
     }
     
-    FUN_180628040(result_handle, &global_state_8160_ptr, texture_count, (double)total_cost);
+    System_DataHandler(result_handle, &global_state_8160_ptr, texture_count, (double)total_cost);
     return;
 }
 
@@ -1116,7 +1116,7 @@ void rendering_system_update_render_statistics(uint64_t statistic_handle, longlo
             
             object_cost = (float)(int)(object_index * (unsigned int)*(unsigned short *)(render_object + 0x32e) *
                                 (unsigned int)*(unsigned short *)(render_object + 0x32c)) * 9.536743e-07;
-            FUN_180628040(object_cost, &global_state_8536_ptr, object_name, (double)object_cost);
+            System_DataHandler(object_cost, &global_state_8536_ptr, object_name, (double)object_cost);
         }
         
         data_buffer = *(longlong *)(render_manager + 0x70);
@@ -1125,7 +1125,7 @@ void rendering_system_update_render_statistics(uint64_t statistic_handle, longlo
     } while ((unsigned long long)(long long)object_count <
              (unsigned long long)(*(longlong *)(render_manager + 0x78) - data_buffer >> 3));
     
-    FUN_180628040();
+    System_DataHandler();
     return;
 }
 
@@ -1135,7 +1135,7 @@ void rendering_system_update_render_statistics(uint64_t statistic_handle, longlo
  */
 void rendering_system_finalize_render_batch(void)
 {
-    FUN_180628040();
+    System_DataHandler();
     return;
 }
 

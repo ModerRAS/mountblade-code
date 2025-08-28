@@ -336,7 +336,7 @@ void FUN_180404050(longlong param_1,uint64_t param_2,int32_t param_3,int32_t par
       uStack_70 = 0;
       uStack_80 = 0;
       uStack_78 = 0;
-      puStack_68 = &unknown_var_3456_ptr;
+      puStack_68 = &system_data_buffer_ptr;
       uStack_50 = 0;
       uStack_60 = 0;
       uStack_58 = 0;
@@ -368,7 +368,7 @@ void FUN_180404050(longlong param_1,uint64_t param_2,int32_t param_3,int32_t par
   uStack_70 = 0;
   uStack_80 = 0;
   uStack_78 = 0;
-  puStack_68 = &unknown_var_3456_ptr;
+  puStack_68 = &system_data_buffer_ptr;
   uStack_50 = 0;
   uStack_60 = 0;
   uStack_58 = 0;

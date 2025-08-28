@@ -255,8 +255,8 @@ uint64_t * FUN_1800f7e80(longlong param_1,uint64_t *param_2)
   lVar1 = *(longlong *)(param_1 + 200);
   if (*(longlong *)(param_1 + 0xc0) == lVar1) {
     plVar3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,0x20,uVar4,uVar5);
-    *plVar3 = (longlong)&unknown_var_3552_ptr;
-    *plVar3 = (longlong)&unknown_var_3696_ptr;
+    *plVar3 = (longlong)&system_handler1_ptr;
+    *plVar3 = (longlong)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
     *plVar3 = (longlong)&unknown_var_6544_ptr;
     plVar3[2] = 0;
@@ -273,8 +273,8 @@ uint64_t * FUN_1800f7e80(longlong param_1,uint64_t *param_2)
     plVar3[2] = -0x5a5a5a5a5a5a5a5b;
     plVar3[3] = -0x5a5a5a5a5a5a5a5b;
     plVar3[4] = -0x5a5a5a5a5a5a5a5b;
-    *plVar3 = (longlong)&unknown_var_3552_ptr;
-    *plVar3 = (longlong)&unknown_var_3696_ptr;
+    *plVar3 = (longlong)&system_handler1_ptr;
+    *plVar3 = (longlong)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
     *plVar3 = (longlong)&unknown_var_6544_ptr;
     plVar3[2] = 0;
@@ -894,14 +894,14 @@ void FUN_1800f88f0(longlong param_1)
 void FUN_1800f8930(longlong param_1)
 
 {
-  *(uint64_t *)(param_1 + 0x108) = &unknown_var_3456_ptr;
+  *(uint64_t *)(param_1 + 0x108) = &system_data_buffer_ptr;
   if (*(longlong *)(param_1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(param_1 + 0x110) = 0;
   *(int32_t *)(param_1 + 0x120) = 0;
-  *(uint64_t *)(param_1 + 0x108) = &unknown_var_720_ptr;
+  *(uint64_t *)(param_1 + 0x108) = &system_state_ptr;
   FUN_1808fc8a8(param_1,0x58,2,FUN_1800f88f0,0xfffffffffffffffe);
   return;
 }

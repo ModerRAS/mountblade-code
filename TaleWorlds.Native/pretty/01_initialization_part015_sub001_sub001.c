@@ -52,7 +52,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   if (system_data_5240 == '\0') {
     return;
   }
-  puStack_c8 = &unknown_var_3456_ptr;
+  puStack_c8 = &system_data_buffer_ptr;
   uStack_b0 = 0;
   puStack_c0 = (void *)0x0;
   uStack_b8 = 0;
@@ -96,7 +96,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     do {
       lVar13 = init_system_control_config;
       lVar11 = 0;
-      puStack_88 = &unknown_var_3456_ptr;
+      puStack_88 = &system_data_buffer_ptr;
       uStack_70 = 0;
       pcStack_80 = (char *)0x0;
       uStack_78 = 0;
@@ -227,7 +227,7 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       uVar4 = (uint)uVar12;
       while (lVar11 != lVar13) {
         lVar6 = 0;
-        puStack_a8 = &unknown_var_3456_ptr;
+        puStack_a8 = &system_data_buffer_ptr;
         uStack_90 = 0;
         pcStack_a0 = (char *)0x0;
         uStack_98 = 0;
@@ -257,26 +257,26 @@ void FUN_180047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
           pcVar14 = pcStack_a0;
         }
         FUN_18062e0f0(puVar5,&unknown_var_2632_ptr,pcVar14,*(uint64_t *)(lVar11 + 0x60));
-        puStack_a8 = &unknown_var_3456_ptr;
+        puStack_a8 = &system_data_buffer_ptr;
         if (pcStack_a0 != (char *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         pcStack_a0 = (char *)0x0;
         uStack_90 = uStack_90 & 0xffffffff00000000;
-        puStack_a8 = &unknown_var_720_ptr;
+        puStack_a8 = &system_state_ptr;
         lVar11 = func_0x00018066bd70(lVar11);
         uVar4 = uVar16;
       }
       FUN_18062e0f0(puVar5,&system_data_cc18);
-      puStack_88 = &unknown_var_3456_ptr;
+      puStack_88 = &system_data_buffer_ptr;
       if (pcStack_80 != (char *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       pcStack_80 = (char *)0x0;
       uStack_70 = uStack_70 & 0xffffffff00000000;
-      puStack_88 = &unknown_var_720_ptr;
+      puStack_88 = &system_state_ptr;
       uVar16 = uVar4 + 1;
       uVar12 = (ulonglong)uVar16;
       uVar10 = uVar10 + 0x100;
@@ -367,14 +367,14 @@ void FUN_180048980(longlong *param_1)
   
   puVar1 = (uint64_t *)param_1[1];
   for (puVar2 = (uint64_t *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 5) {
-    *puVar2 = &unknown_var_3456_ptr;
+    *puVar2 = &system_data_buffer_ptr;
     if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puVar2[1] = 0;
     *(int32_t *)(puVar2 + 3) = 0;
-    *puVar2 = &unknown_var_720_ptr;
+    *puVar2 = &system_state_ptr;
   }
   if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
@@ -727,10 +727,10 @@ LAB_180048f62:
   *(uint64_t *)(lVar5 + 0x50) = 0;
   *(uint64_t *)(lVar5 + 0x58) = 0;
   *(uint64_t *)(lVar5 + 0x60) = 0;
-  *puVar4 = &unknown_var_720_ptr;
+  *puVar4 = &system_state_ptr;
   *(uint64_t *)(lVar5 + 0x48) = 0;
   *(int32_t *)(lVar5 + 0x50) = 0;
-  *puVar4 = &unknown_var_3456_ptr;
+  *puVar4 = &system_data_buffer_ptr;
   *(uint64_t *)(lVar5 + 0x58) = 0;
   *(uint64_t *)(lVar5 + 0x48) = 0;
   *(int32_t *)(lVar5 + 0x50) = 0;
@@ -815,10 +815,10 @@ FUN_1800491b0(uint64_t *param_1,longlong *param_2,longlong *param_3,uint64_t *pa
   if (param_2 != param_3) {
     plVar5 = param_2 + 0x1b;
     do {
-      *param_4 = &unknown_var_720_ptr;
+      *param_4 = &system_state_ptr;
       param_4[1] = 0;
       *(int32_t *)(param_4 + 2) = 0;
-      *param_4 = &unknown_var_3456_ptr;
+      *param_4 = &system_data_buffer_ptr;
       param_4[3] = 0;
       param_4[1] = 0;
       *(int32_t *)(param_4 + 2) = 0;
@@ -935,8 +935,8 @@ void FUN_180049470(uint64_t *param_1)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(param_1 + 4);
   *param_1 = &unknown_var_1000_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   return;
 }
 

@@ -558,7 +558,7 @@ void FUN_18026a400(longlong param_1)
   lVar1 = *(longlong *)(param_1 + 0xb0);
   plVar2 = *(longlong **)(*(longlong *)(lVar1 + 0x10) + 0x88);
   pcStack_20 = (code *)&unknown_var_9616_ptr;
-  puStack_18 = &unknown_var_9584_ptr;
+  puStack_18 = &system_pattern2_ptr;
   alStack_30[0] = lVar1;
   cVar3 = (**(code **)(*plVar2 + 0x60))
                     (plVar2,&system_data_c8c8,*(longlong *)(lVar1 + 0x10) + 0xc,0,alStack_30);

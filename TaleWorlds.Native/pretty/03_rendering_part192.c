@@ -117,10 +117,10 @@ extern void* unknown_var_1040_ptr;      // 未知变量 1040
 extern void* unknown_var_1024_ptr;      // 未知变量 1024
 extern void* unknown_var_960_ptr;        // 未知变量 960
 extern void* unknown_var_944_ptr;        // 未知变量 944
-extern void* unknown_var_3456_ptr;       // 未知变量 3456
+extern void* system_data_buffer_ptr;       // 未知变量 3456
 extern void* unknown_var_8600_ptr;       // 未知变量 8600
 extern void* unknown_var_8592_ptr;       // 未知变量 8592
-extern void* unknown_var_720_ptr;        // 未知变量 720
+extern void* system_state_ptr;        // 未知变量 720
 extern void* unknown_var_880_ptr;        // 未知变量 880
 extern void* unknown_var_2788_ptr;       // 未知变量 2788
 extern void* system_buffer_ptr;          // 系统缓冲区指针
@@ -137,7 +137,7 @@ extern void* system_buffer_ptr;          // 系统缓冲区指针
 #define RenderSystem_ExecuteRenderCommand      FUN_18005c650
 #define RenderSystem_InitializeRenderContext    FUN_180372430
 #define RenderSystem_CreateRenderState          FUN_18037f020
-#define RenderSystem_UpdateRenderStatistics     FUN_180628040
+#define RenderSystem_UpdateRenderStatistics     System_DataHandler
 #define RenderSystem_CleanupRenderData          FUN_18037f790
 #define RenderSystem_LinkRenderResource        FUN_18066bdc0
 #define RenderSystem_FindRenderResource        FUN_180048980
@@ -818,11 +818,11 @@ LAB_18037d26b:
                 }
                 
                 // 计算帧率数据
-                tempPtr4 = &unknown_var_3456_ptr;
+                tempPtr4 = &system_data_buffer_ptr;
                 tempValue22 = 0;
                 tempValue9 = 0;
                 tempValue10 = 0;
-                tempPtr10 = &unknown_var_3456_ptr;
+                tempPtr10 = &system_data_buffer_ptr;
                 tempValue14 = 0;
                 tempValue20 = 0;
                 tempValue21 = 0;
@@ -909,10 +909,10 @@ LAB_18037d51b:
                                 
                                 // 添加到性能数据数组
                                 if (tempPtr7 < tempPtr8) {
-                                    *tempPtr7 = &unknown_var_720_ptr;
+                                    *tempPtr7 = &system_state_ptr;
                                     tempPtr7[1] = 0;
                                     *(int32_t *)(tempPtr7 + 2) = 0;
-                                    *tempPtr7 = &unknown_var_3456_ptr;
+                                    *tempPtr7 = &system_data_buffer_ptr;
                                     tempPtr7[3] = 0;
                                     tempPtr7[1] = 0;
                                     *(int32_t *)(tempPtr7 + 2) = 0;
@@ -930,13 +930,13 @@ LAB_18037d51b:
                                     RenderSystem_FindRenderResource(&tempValue15, &tempPtr1);
                                 }
                                 
-                                tempPtr1 = &unknown_var_3456_ptr;
+                                tempPtr1 = &system_data_buffer_ptr;
                                 if (tempValue6 != 0) {
                                     RenderSystem_FreeRenderResource();
                                 }
                                 tempValue6 = 0;
                                 tempValue8 = tempValue8 & 0xffffffff00000000;
-                                tempPtr1 = &unknown_var_720_ptr;
+                                tempPtr1 = &system_state_ptr;
                                 break;
                             }
                             tempIndex = tempIndex + 1;
@@ -947,15 +947,15 @@ LAB_18037d51b:
                 // 重置临时变量
                 tempValue20 = 0;
                 tempValue14 = tempValue14 & 0xffffffff00000000;
-                tempPtr10 = &unknown_var_720_ptr;
-                tempPtr4 = &unknown_var_3456_ptr;
+                tempPtr10 = &system_state_ptr;
+                tempPtr4 = &system_data_buffer_ptr;
                 
                 if (tempValue9 != 0) {
                     RenderSystem_FreeRenderResource();
                 }
                 tempValue9 = 0;
                 tempValue22 = tempValue22 & 0xffffffff00000000;
-                tempPtr4 = &unknown_var_720_ptr;
+                tempPtr4 = &system_state_ptr;
             }
             
             pppppppuVar10 = (uint64_t *******)RenderSystem_NextRenderNode(pppppppuVar10);
@@ -965,7 +965,7 @@ LAB_18037d51b:
     // 清理渲染数据
     RenderSystem_CleanupRenderData(tempValue15, tempPtr7, &unknown_var_880_ptr);
     
-    tempPtr6 = &unknown_var_3456_ptr;
+    tempPtr6 = &system_data_buffer_ptr;
     tempValue14 = 0;
     tempValue12 = 0;
     tempValue13 = 0;
@@ -990,13 +990,13 @@ LAB_18037d51b:
                  (ulonglong)(((longlong)tempPtr7 - tempValue15) / 0x28));
     }
     
-    tempPtr6 = &unknown_var_3456_ptr;
+    tempPtr6 = &system_data_buffer_ptr;
     if (tempValue12 != 0) {
         RenderSystem_FreeRenderResource();
     }
     tempValue12 = 0;
     tempValue14 = tempValue14 & 0xffffffff00000000;
-    tempPtr6 = &unknown_var_720_ptr;
+    tempPtr6 = &system_state_ptr;
     
     // 释放统计资源
     RenderSystem_FindRenderResource(&tempValue15);

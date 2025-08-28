@@ -722,7 +722,7 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
     ComplexMetadataHandler(param_5, &system_memory_c8e4);
     
     structure_size = ComplexDataProcessor(structure_stack, structure_offset + 0x60);
-    structure_context = &unknown_var_3456_ptr;
+    structure_context = &system_data_buffer_ptr;
     structure_buffer = 0;
     structure_data = (void*)0x0;
     structure_flags = structure_flags & 0xffffffff00000000;
@@ -798,7 +798,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     
     // 获取资源清理状态
     cleanup_status = *(uint32_t*)(param_1 + 0x574);
-    cleanup_metadata = &unknown_var_3456_ptr;
+    cleanup_metadata = &system_data_buffer_ptr;
     cleanup_capacity = 0;
     cleanup_iterator = (void*)0x0;
     cleanup_control = 0;
@@ -814,7 +814,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     
     // 调用资源清理处理函数
     ComplexDataProcessor(&cleanup_metadata, &unknown_var_2064_ptr, cleanup_data);
-    cleanup_handle = &unknown_var_3456_ptr;
+    cleanup_handle = &system_data_buffer_ptr;
     
     if (cleanup_size != 0) {
         return DATA_ERROR_STATE;
@@ -822,7 +822,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     
     cleanup_size = 0;
     cleanup_flags = 0;
-    cleanup_handle = &unknown_var_720_ptr;
+    cleanup_handle = &system_state_ptr;
     
     // 调用资源清理管理函数
     ResourceCleanupManager(&cleanup_iterator);
@@ -854,7 +854,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     } else {
         cleanup_marker = 0;
         cleanup_marker |= 0x0100;
-        cleanup_handle = &unknown_var_3456_ptr;
+        cleanup_handle = &system_data_buffer_ptr;
         cleanup_capacity = 0;
         cleanup_size = 0;
         cleanup_flags = 0;
@@ -871,14 +871,14 @@ DataErrorCode DataResourceCleaner(void* param_1)
         // 调用资源清理处理函数
         (*(void (**)(void**, void**))(cleanup_iterator + 0x78))(&cleanup_iterator, &cleanup_handle);
         
-        cleanup_handle = &unknown_var_3456_ptr;
+        cleanup_handle = &system_data_buffer_ptr;
         if (cleanup_size != 0) {
             return DATA_ERROR_STATE;
         }
         
         cleanup_size = 0;
         cleanup_capacity = cleanup_capacity & 0xffffffff00000000;
-        cleanup_handle = &unknown_var_720_ptr;
+        cleanup_handle = &system_state_ptr;
     }
     
     // 最终资源清理处理
@@ -892,14 +892,14 @@ DataErrorCode DataResourceCleaner(void* param_1)
     ResourceCleanupManager(&cleanup_iterator);
     
     // 清理资源清理元数据
-    cleanup_metadata = &unknown_var_3456_ptr;
+    cleanup_metadata = &system_data_buffer_ptr;
     if (cleanup_iterator != (void*)0x0) {
         return DATA_ERROR_STATE;
     }
     
     cleanup_iterator = (void*)0x0;
     cleanup_capacity = cleanup_capacity & 0xffffffff00000000;
-    cleanup_metadata = &unknown_var_720_ptr;
+    cleanup_metadata = &system_state_ptr;
     
     // 资源清理完成
     return DATA_SUCCESS;

@@ -170,7 +170,7 @@ void FUN_1803ca330(longlong param_1,uint64_t *param_2,uint64_t *param_3,longlong
   fVar3 = *pfVar16;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                0x48) < system_system_config_memory) && (FUN_1808fcb90(&system_ptr_9994), system_system_config_memory == -1)) {
-    uStack_d8 = &unknown_var_7512_ptr;
+    uStack_d8 = &system_config_ptr;
     uStack_d0 = afStack_c0;
     afStack_c0[0] = (float)((uint)afStack_c0[0] & 0xffffff00);
     fStack_c8 = 7.00649e-45;
@@ -182,7 +182,7 @@ void FUN_1803ca330(longlong param_1,uint64_t *param_2,uint64_t *param_3,longlong
        ) {
       system_system_config_memory = *(ulonglong *)(lVar13 + 0x28);
     }
-    uStack_d8 = &unknown_var_720_ptr;
+    uStack_d8 = &system_state_ptr;
     FUN_1808fcb30(&system_ptr_9994);
   }
   puVar17 = (uint64_t *)(system_system_data_memory + 0xd8);

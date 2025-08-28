@@ -166,7 +166,7 @@ void FUN_180437d60(longlong param_1,longlong param_2)
       strcpy_s(auStack_60,0x40,param_2);
     }
     FUN_1800c48e0();
-    puStack_78 = &unknown_var_720_ptr;
+    puStack_78 = &system_state_ptr;
     if (plStack_98 == (longlong *)0x0) {
       FUN_180626f80(&unknown_var_6376_ptr,param_2);
     }
@@ -404,7 +404,7 @@ FUN_1804382b0(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   uVar3 = (**(code **)(*render_system_data_config + 0xa0))
                     (render_system_data_config,&puStack_30,param_1,param_4,0xfffffffffffffffe);
   uVar2 = (*pcVar1)(system_cache_buffer,uVar3);
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

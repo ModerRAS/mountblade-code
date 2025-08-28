@@ -114,8 +114,8 @@ void FUN_1803feb90(longlong param_1,longlong param_2)
   strcpy_s(auStack_134 + 4,0x40,&unknown_var_3112_ptr);
   uVar4 = FUN_180240430(uVar4,&uStack_148,1);
   *(uint64_t *)(param_1 + 0x4d0) = uVar4;
-  uStack_148 = &unknown_var_720_ptr;
-  puStack_e8 = &unknown_var_720_ptr;
+  uStack_148 = &system_state_ptr;
+  puStack_e8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_188);
 }
@@ -384,8 +384,8 @@ void FUN_1803ff5c0(longlong param_1,longlong param_2)
   strcpy_s(auStack_130,0x40,&unknown_var_3112_ptr);
   uVar4 = FUN_180240430(uVar4,&uStack_148,1);
   *(uint64_t *)(param_1 + 0x4b8) = uVar4;
-  uStack_148 = &unknown_var_720_ptr;
-  puStack_e8 = &unknown_var_720_ptr;
+  uStack_148 = &system_state_ptr;
+  puStack_e8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_188);
 }

@@ -116,11 +116,11 @@ LAB_1804b7550:
             }
           }
 LAB_1804b75b6:
-          puStack_78 = &unknown_var_3456_ptr;
+          puStack_78 = &system_data_buffer_ptr;
           uStack_60 = 0;
           lStack_70 = 0;
           uStack_68 = 0;
-          puStack_58 = &unknown_var_3456_ptr;
+          puStack_58 = &system_data_buffer_ptr;
           uStack_40 = 0;
           uStack_50 = 0;
           uStack_48 = 0;
@@ -135,8 +135,8 @@ LAB_1804b75b6:
 LAB_1804b7d50:
               uStack_50 = 0;
               uStack_40 = uStack_40 & 0xffffffff00000000;
-              puStack_58 = &unknown_var_720_ptr;
-              puStack_78 = &unknown_var_3456_ptr;
+              puStack_58 = &system_state_ptr;
+              puStack_78 = &system_data_buffer_ptr;
               if (lStack_70 == 0) {
                 return;
               }

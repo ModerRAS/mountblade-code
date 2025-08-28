@@ -611,7 +611,7 @@ void FUN_180492a90(void *param_1)
     if (ppuStack_f0 != (void **)0x0) {
       (**(code **)(*ppuStack_f0 + 0x38))();
     }
-    puStack_c8 = &unknown_var_720_ptr;
+    puStack_c8 = &system_state_ptr;
     if (plStack_100 != (longlong *)0x0) {
       (**(code **)(*plStack_100 + 0x38))();
     }
@@ -632,7 +632,7 @@ void FUN_180492a90(void *param_1)
   ppuStack_e8 = (void **)SYSTEM_DATA_MANAGER_A;
   SYSTEM_DATA_MANAGER_A = *puVar4;
   ppuStack_f0 = &puStack_128;
-  puStack_128 = &unknown_var_3456_ptr;
+  puStack_128 = &system_data_buffer_ptr;
   uStack_110 = 0;
   uStack_10c = 0;
   uStack_120 = 0;

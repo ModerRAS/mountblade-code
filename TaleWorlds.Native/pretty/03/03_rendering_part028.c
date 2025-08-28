@@ -822,7 +822,7 @@ material_processing_complete:
                 render_cache[0x28] = render_cache[0x28] | texture_hash;
                 FUN_18022dd60(render_cache);
                 *(int16_t*)(render_cache + 0x78) = 0xffff;
-                render_state = &unknown_var_720_ptr;
+                render_state = &system_state_ptr;
                 FUN_180076910(texture_handle, &shader_cache);
                 if (shader_cache != (longlong*)0x0) {
                     (**(code**)(*shader_cache + 0x38))();
@@ -862,7 +862,7 @@ static char system_buffer_d580[64] = "RenderSystem_v1.0";  // 渲染系统版本
 static code unknown_var_2528_ptr = {0};              // 默认渲染函数
 static code unknown_var_6368_ptr = {0};              // 渲染上下文更新函数
 static uint64_t unknown_var_3480_ptr = 0;           // 渲染状态指针
-static uint64_t unknown_var_720_ptr = 0;           // 纹理状态指针
+static uint64_t system_state_ptr = 0;           // 纹理状态指针
 
 //============================================================================
 // 函数别名定义（为了保持与原始代码的兼容性）

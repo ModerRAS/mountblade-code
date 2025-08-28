@@ -639,7 +639,7 @@ void FUN_1803898a0(longlong *param_1)
     (**(code **)(*plStack_e8 + 0x38))();
   }
   ppuStack_e0 = apuStack_c8;
-  apuStack_c8[0] = &unknown_var_720_ptr;
+  apuStack_c8[0] = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_108);
 }

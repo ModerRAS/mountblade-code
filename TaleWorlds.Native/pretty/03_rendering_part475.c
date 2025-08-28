@@ -90,14 +90,14 @@ LAB_1805205ee:
     uVar11 = (int32_t)(lVar6 - *render_system_data_memory >> 5);
   }
   *(int32_t *)(param_1 + 0x740) = uVar11;
-  puStack_c8 = &unknown_var_3456_ptr;
+  puStack_c8 = &system_data_buffer_ptr;
   if (puStack_c0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_c0 = (void *)0x0;
   uStack_b0 = 0;
-  puStack_c8 = &unknown_var_720_ptr;
+  puStack_c8 = &system_state_ptr;
   if ((iVar2 != 0) && (system_cache_buffer != 0)) {
     (**(code **)(system_cache_buffer + 0x18))(iVar2);
   }

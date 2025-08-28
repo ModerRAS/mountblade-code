@@ -1100,14 +1100,14 @@ void SystemDataProcessor_Type2(SystemInt64 param_1)
     FUN_180057830();
     
     /* 设置系统句柄 */
-    *(SystemUInt8 *)(param_1 + 0x560) = &unknown_var_3456_ptr;
+    *(SystemUInt8 *)(param_1 + 0x560) = &system_data_buffer_ptr;
     if (*(SystemInt64 *)(param_1 + 0x568) != 0) {
         FUN_18064e900();
     }
     
     *(SystemInt64 *)(param_1 + 0x568) = 0;
     *(SystemUInt32 *)(param_1 + 0x578) = 0;
-    *(SystemUInt8 *)(param_1 + 0x560) = &unknown_var_720_ptr;
+    *(SystemUInt8 *)(param_1 + 0x560) = &system_state_ptr;
     
     /* 初始化配置管理器 */
     FUN_1808fc8a8(param_1 + 8, 0x98, 9, FUN_1802ab7f0);
@@ -1747,10 +1747,10 @@ SystemUInt64* SystemInitializer(SystemUInt64 *param_1)
     FUN_1808fc838(param_1 + 1, 0x98, 9, FUN_1802ab780, FUN_1802ab7f0);
     
     /* 配置系统参数 */
-    param_1[0xac] = &unknown_var_720_ptr;
+    param_1[0xac] = &system_state_ptr;
     param_1[0xad] = 0;
     *(SystemUInt32 *)(param_1 + 0xae) = 0;
-    param_1[0xac] = &unknown_var_3456_ptr;
+    param_1[0xac] = &system_data_buffer_ptr;
     param_1[0xaf] = 0;
     param_1[0xad] = 0;
     *(SystemUInt32 *)(param_1 + 0xae) = 0;

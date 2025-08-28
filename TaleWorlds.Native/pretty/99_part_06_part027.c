@@ -317,7 +317,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                             if (temp_ptr4 <= temp_ptr2) {
                                 // 名称处理分支
                                 do {
-                                    resource_ptr = &unknown_var_3456_ptr;
+                                    resource_ptr = &system_data_buffer_ptr;
                                     stack_data_block = SYSTEM_NULL_POINTER;
                                     stack_handle = SYSTEM_NULL_POINTER;
                                     stack_status = SYSTEM_NULL_POINTER;
@@ -453,7 +453,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                 temp_ptr4 = temp_ptr4 + 1;
                                                 if (temp_ptr5 <= temp_ptr4) {
                                                     // 特征处理完成
-                                                    resource_ptr = &unknown_var_3456_ptr;
+                                                    resource_ptr = &system_data_buffer_ptr;
                                                     if (stack_handle != SYSTEM_NULL_POINTER) {
                                                         // 警告: 子程序不返回
                                                         SystemResourceCleaner();
@@ -469,7 +469,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                     }
                                     
                                     // 继续处理
-                                    resource_ptr = &unknown_var_3456_ptr;
+                                    resource_ptr = &system_data_buffer_ptr;
                                     if (stack_handle != SYSTEM_NULL_POINTER) {
                                         // 警告: 子程序不返回
                                         SystemResourceCleaner();
@@ -488,7 +488,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                 if (temp_ptr4 <= temp_ptr2) {
                                     // 名称处理分支
                                     do {
-                                        resource_ptr = &unknown_var_3456_ptr;
+                                        resource_ptr = &system_data_buffer_ptr;
                                         stack_data_block = SYSTEM_NULL_POINTER;
                                         stack_handle = SYSTEM_NULL_POINTER;
                                         stack_status = SYSTEM_NULL_POINTER;
@@ -583,7 +583,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                     if (temp_ptr4 <= temp_ptr2) {
                                         // 名称处理分支
                                         do {
-                                            resource_ptr = &unknown_var_3456_ptr;
+                                            resource_ptr = &system_data_buffer_ptr;
                                             stack_data_block = SYSTEM_NULL_POINTER;
                                             stack_handle = SYSTEM_NULL_POINTER;
                                             stack_status = SYSTEM_NULL_POINTER;
@@ -720,7 +720,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                         temp_ptr4 = temp_ptr4 + 1;
                                                         if (temp_ptr5 <= temp_ptr4) {
                                                             // 特征处理完成
-                                                            resource_ptr = &unknown_var_3456_ptr;
+                                                            resource_ptr = &system_data_buffer_ptr;
                                                             if (stack_handle != SYSTEM_NULL_POINTER) {
                                                                 // 警告: 子程序不返回
                                                                 SystemResourceCleaner();
@@ -736,7 +736,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                             }
                                             
                                             // 继续处理
-                                            resource_ptr = &unknown_var_3456_ptr;
+                                            resource_ptr = &system_data_buffer_ptr;
                                             if (stack_handle != SYSTEM_NULL_POINTER) {
                                                 // 警告: 子程序不返回
                                                 SystemResourceCleaner();
@@ -786,7 +786,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                         if (temp_ptr4 <= temp_ptr2) {
                                             // 名称处理分支
                                             do {
-                                                resource_ptr = &unknown_var_3456_ptr;
+                                                resource_ptr = &system_data_buffer_ptr;
                                                 stack_data_block = SYSTEM_NULL_POINTER;
                                                 stack_handle = SYSTEM_NULL_POINTER;
                                                 stack_status = SYSTEM_NULL_POINTER;
@@ -923,7 +923,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                                             temp_ptr4 = temp_ptr4 + 1;
                                                             if (temp_ptr5 <= temp_ptr4) {
                                                                 // 特征处理完成
-                                                                resource_ptr = &unknown_var_3456_ptr;
+                                                                resource_ptr = &system_data_buffer_ptr;
                                                                 if (stack_handle != SYSTEM_NULL_POINTER) {
                                                                     // 警告: 子程序不返回
                                                                     SystemResourceCleaner();
@@ -940,7 +940,7 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
                                             }
                                             
                                             // 继续处理
-                                            resource_ptr = &unknown_var_3456_ptr;
+                                            resource_ptr = &system_data_buffer_ptr;
                                             if (stack_handle != SYSTEM_NULL_POINTER) {
                                                 // 警告: 子程序不返回
                                                 SystemResourceCleaner();
@@ -1087,7 +1087,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                 handle_ptr2 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
                 
                 if (temp_uint == SYSTEM_MODE_NORMAL) {
-                    stack_resource_ptr1 = &unknown_var_3456_ptr;
+                    stack_resource_ptr1 = &system_data_buffer_ptr;
                     stack_size1 = SYSTEM_NULL_POINTER;
                     stack_resource_ptr2 = (SystemResourcePtr)SYSTEM_NULL_POINTER;
                     stack_param1 = SYSTEM_NULL_POINTER;
@@ -1149,7 +1149,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     if (temp_handle3 == SYSTEM_NULL_POINTER) {
                         temp_handle3 = *(SystemHandle*)(system_system_data_pointer + 0x2d8);
                         if (temp_handle3 == SYSTEM_NULL_POINTER) {
-                            stack_resource_ptr3 = &unknown_var_3456_ptr;
+                            stack_resource_ptr3 = &system_data_buffer_ptr;
                             stack_data_block1 = SYSTEM_NULL_POINTER;
                             stack_data_block_ptr1 = (SystemDataBlock*)SYSTEM_NULL_POINTER;
                             stack_param2 = SYSTEM_NULL_POINTER;
@@ -1166,7 +1166,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                             stack_param2 = 0xc;
                             
                             SystemDataManager(temp_data_block, &stack_resource_ptr3, 1);
-                            stack_resource_ptr3 = &unknown_var_3456_ptr;
+                            stack_resource_ptr3 = &system_data_buffer_ptr;
                             
                             // 警告: 子程序不返回
                             SystemResourceCleaner(data_block_ptr1);
@@ -1388,7 +1388,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     }
                     
                     cleanup_section:
-                    stack_resource_ptr1 = &unknown_var_3456_ptr;
+                    stack_resource_ptr1 = &system_data_buffer_ptr;
                     
                     if (stack_resource_ptr2 != (SystemResourcePtr)SYSTEM_NULL_POINTER) {
                         // 警告: 子程序不返回
@@ -1397,7 +1397,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     
                     stack_resource_ptr2 = (SystemResourcePtr)SYSTEM_NULL_POINTER;
                     stack_size1 = stack_size1 & SYSTEM_ITERATION_MASK;
-                    stack_resource_ptr1 = &unknown_var_720_ptr;
+                    stack_resource_ptr1 = &system_state_ptr;
                 } else if (temp_uint == SYSTEM_MODE_FAST) {
                     temp_data_block = SystemMemoryAllocator(system_memory_pool_ptr, SYSTEM_CONFIG_BLOCK_SIZE, 8, 3, 1, 0, temp_int, temp_param);
                     handle_ptr2 = (SystemHandlePtr)SystemConfigProcessor(temp_data_block, string_ptr4);
@@ -1442,8 +1442,8 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     if (temp_uint == SYSTEM_MODE_LEGACY) {
                         handle_ptr2 = (SystemHandlePtr)SystemMemoryAllocator(system_memory_pool_ptr, 0x298, 8, 0xd, 7, 0, temp_int, temp_param);
                         
-                        *handle_ptr2 = (SystemHandle)&unknown_var_3552_ptr;
-                        *handle_ptr2 = (SystemHandle)&unknown_var_3696_ptr;
+                        *handle_ptr2 = (SystemHandle)&system_handler1_ptr;
+                        *handle_ptr2 = (SystemHandle)&system_handler2_ptr;
                         *(SystemParameter*)(handle_ptr2 + 1) = SYSTEM_NULL_POINTER;
                         *handle_ptr2 = (SystemHandle)&unknown_var_768_ptr;
                         *(SystemParameter*)(handle_ptr2 + 2) = 4;
@@ -1458,10 +1458,10 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                         handle_ptr2[0x14] = SYSTEM_NULL_POINTER;
                         
                         stack_handle_ptr17 = handle_ptr2 + 0x27;
-                        *stack_handle_ptr17 = (SystemHandle)&unknown_var_720_ptr;
+                        *stack_handle_ptr17 = (SystemHandle)&system_state_ptr;
                         handle_ptr2[0x28] = SYSTEM_NULL_POINTER;
                         *(SystemParameter*)(handle_ptr2 + 0x29) = SYSTEM_NULL_POINTER;
-                        *stack_handle_ptr17 = (SystemHandle)&unknown_var_3456_ptr;
+                        *stack_handle_ptr17 = (SystemHandle)&system_data_buffer_ptr;
                         handle_ptr2[0x2a] = SYSTEM_NULL_POINTER;
                         handle_ptr2[0x28] = SYSTEM_NULL_POINTER;
                         *(SystemParameter*)(handle_ptr2 + 0x29) = SYSTEM_NULL_POINTER;

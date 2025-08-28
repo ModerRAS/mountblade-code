@@ -91,8 +91,8 @@ void FUN_18007f2cf(void)
 uint64_t * FUN_18007f2f0(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_3552_ptr;
-  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &system_handler1_ptr;
+  *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
   *param_1 = &unknown_var_6648_ptr;
   param_1[2] = 0;
@@ -154,8 +154,8 @@ uint64_t * FUN_18007f3b0(uint64_t *param_1,ulonglong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xf0);
   }

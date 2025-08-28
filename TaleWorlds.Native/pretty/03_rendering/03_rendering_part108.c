@@ -469,7 +469,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
         data_buffer_ptr = (uint *)0x0;
         resource_data_ptr = (ulonglong *)0x0;
         thread_counter = CONCAT13(thread_counter._3_1_, RENDERING_MUTEX_TIMEOUT);
-        FUN_180639bf0(&resource_list_ptr, RENDERING_RESOURCE_POOL_SIZE);
+        System_BufferManager(&resource_list_ptr, RENDERING_RESOURCE_POOL_SIZE);
         data_buffer_ptr = buffer_start_ptr;
         
         if (count_array[0] != 0) {
@@ -479,7 +479,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
             
             // 内存边界检查
             if ((ulonglong)(((longlong)resource_data_ptr - (longlong)data_buffer_ptr) + (longlong)resource_list_ptr) < 5) {
-                FUN_180639bf0(&resource_list_ptr, (longlong)data_buffer_ptr + (4 - (longlong)resource_list_ptr));
+                System_BufferManager(&resource_list_ptr, (longlong)data_buffer_ptr + (4 - (longlong)resource_list_ptr));
             }
             
             *data_buffer_ptr = resource_value;
@@ -488,18 +488,18 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
             // 处理资源数据块
             resource_value = resource_array_ptr[2];
             if ((ulonglong)(((longlong)resource_data_ptr - (longlong)data_buffer_ptr) + (longlong)resource_list_ptr) < 5) {
-                FUN_180639bf0(&resource_list_ptr, (longlong)data_buffer_ptr + (4 - (longlong)resource_list_ptr));
+                System_BufferManager(&resource_list_ptr, (longlong)data_buffer_ptr + (4 - (longlong)resource_list_ptr));
             }
             *data_buffer_ptr = resource_value;
             data_buffer_ptr = data_buffer_ptr + 1;
             
             // 处理更大的数据块
             if ((ulonglong)(((longlong)resource_data_ptr - (longlong)data_buffer_ptr) + (longlong)resource_list_ptr) < 0x41) {
-                FUN_180639bf0(&resource_list_ptr, (longlong)data_buffer_ptr + (0x40 - (longlong)resource_list_ptr));
+                System_BufferManager(&resource_list_ptr, (longlong)data_buffer_ptr + (0x40 - (longlong)resource_list_ptr));
             }
             
             if ((ulonglong)(((longlong)resource_data_ptr - (longlong)data_buffer_ptr) + (longlong)resource_list_ptr) < 0x11) {
-                FUN_180639bf0(&resource_list_ptr, (longlong)data_buffer_ptr + (0x10 - (longlong)resource_list_ptr));
+                System_BufferManager(&resource_list_ptr, (longlong)data_buffer_ptr + (0x10 - (longlong)resource_list_ptr));
             }
             
             *data_buffer_ptr = resource_array_ptr[3];
@@ -510,7 +510,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
             
             // 继续处理数据块
             if ((ulonglong)(((longlong)resource_data_ptr - (longlong)data_buffer_ptr) + (longlong)resource_list_ptr) < 0x11) {
-                FUN_180639bf0(&resource_list_ptr, (longlong)data_buffer_ptr + (0x10 - (longlong)resource_list_ptr));
+                System_BufferManager(&resource_list_ptr, (longlong)data_buffer_ptr + (0x10 - (longlong)resource_list_ptr));
             }
             
             *data_buffer_ptr = resource_array_ptr[7];
@@ -520,7 +520,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
             data_buffer_ptr = data_buffer_ptr + 4;
             
             if ((ulonglong)(((longlong)resource_data_ptr - (longlong)data_buffer_ptr) + (longlong)resource_list_ptr) < 0x11) {
-                FUN_180639bf0(&resource_list_ptr, (longlong)data_buffer_ptr + (0x10 - (longlong)resource_list_ptr));
+                System_BufferManager(&resource_list_ptr, (longlong)data_buffer_ptr + (0x10 - (longlong)resource_list_ptr));
             }
             
             *data_buffer_ptr = resource_array_ptr[11];
@@ -530,7 +530,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
             data_buffer_ptr = data_buffer_ptr + 4;
             
             if ((ulonglong)(((longlong)resource_data_ptr - (longlong)data_buffer_ptr) + (longlong)resource_list_ptr) < 0x11) {
-                FUN_180639bf0(&resource_list_ptr, (longlong)data_buffer_ptr + (0x10 - (longlong)resource_list_ptr));
+                System_BufferManager(&resource_list_ptr, (longlong)data_buffer_ptr + (0x10 - (longlong)resource_list_ptr));
             }
             
             *data_buffer_ptr = resource_array_ptr[15];
@@ -543,7 +543,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
             loop_counter = resource_array_ptr[24];
             resource_id = (ulonglong)loop_counter + 4;
             if ((ulonglong)(((longlong)resource_data_ptr - (longlong)data_buffer_ptr) + (longlong)resource_list_ptr) <= resource_id) {
-                FUN_180639bf0(&resource_list_ptr, (longlong)data_buffer_ptr + (resource_id - (longlong)resource_list_ptr));
+                System_BufferManager(&resource_list_ptr, (longlong)data_buffer_ptr + (resource_id - (longlong)resource_list_ptr));
             }
             
             *data_buffer_ptr = loop_counter;
@@ -569,7 +569,7 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
         callback_function = (code *)0x0;
         error_handler = (void *)CONCAT53(error_handler._3_5_, RENDERING_MUTEX_TIMEOUT);
         loop_counter = resource_id & 0xffffffff;
-        FUN_180639bf0(&resource_data_ptr, resource_id & 0xffffffff);
+        System_BufferManager(&resource_data_ptr, resource_id & 0xffffffff);
         
         // 执行数据压缩
         FUN_18021f4e0(&resource_data_ptr, float_buffer, buffer_start_ptr, resource_id & 0xffffffff, resource_data_ptr, loop_counter);
@@ -581,13 +581,13 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
         fwrite(resource_data_ptr, item_count, 1, *(uint64_t *)(output_handle_local + RENDER_OUTPUT_OFFSET));
         
         // 清理临时数据
-        cleanup_handler = &unknown_var_3456_ptr;
+        cleanup_handler = &system_data_buffer_ptr;
         if (cleanup_flag != 0) {
             FUN_18064e900();
         }
         cleanup_flag = 0;
         status_flag = 0;
-        cleanup_handler = &unknown_var_720_ptr;
+        cleanup_handler = &system_state_ptr;
         if (((char)error_handler == '\0') && (resource_data_ptr != (longlong *)0x0)) {
             FUN_18064e900(resource_data_ptr);
         }
@@ -686,7 +686,7 @@ void RenderingSystem_ExecuteBatchOperations(uint64_t *param_1, int param_2, int 
             pool_flag = 3;
             
             // 初始化内存池
-            FUN_180639bf0(&memory_pool_1, RENDERING_RESOURCE_POOL_SIZE);
+            System_BufferManager(&memory_pool_1, RENDERING_RESOURCE_POOL_SIZE);
             batch_count[0] = 0;
             
             // 计算项目数量和偏移量
@@ -779,7 +779,7 @@ void RenderingSystem_ExecuteBatchOperations(uint64_t *param_1, int param_2, int 
             
             // 分配处理后的数据内存
             resource_id_2 = resource_id_1 & 0xffffffff;
-            FUN_180639bf0(callback_stack, resource_id_2);
+            System_BufferManager(callback_stack, resource_id_2);
             resource_data = callback_stack[0];
             
             // 执行数据压缩处理
@@ -815,13 +815,13 @@ void RenderingSystem_ExecuteBatchOperations(uint64_t *param_1, int param_2, int 
             
             // 清理回调数据
             callback_stack_ptr = &error_handler;
-            error_handler = &unknown_var_3456_ptr;
+            error_handler = &system_data_buffer_ptr;
             if (error_flag != 0) {
                 FUN_18064e900();
             }
             error_flag = 0;
             completion_flag = 0;
-            error_handler = &unknown_var_720_ptr;
+            error_handler = &system_state_ptr;
             
             // 清理处理后的数据
             if (((char)callback_status == '\0') && (resource_data != 0)) {

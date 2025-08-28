@@ -397,7 +397,7 @@ LAB_180331b54:
     puStack_140 = (uint *)0x0;
     plStack_138 = (longlong *)0x0;
     uStack_130 = CONCAT13(uStack_130._3_1_,0x30000);
-    FUN_180639bf0(&plStack_148,0x100000);
+    System_BufferManager(&plStack_148,0x100000);
     puVar7 = puStack_118;
     plVar3 = plStack_148;
     if (auStackX_20[0] != 0) {
@@ -405,24 +405,24 @@ LAB_180331b54:
       uVar1 = *puVar16;
       if ((ulonglong)(((longlong)plStack_138 - (longlong)puStack_140) + (longlong)plStack_148) < 5)
       {
-        FUN_180639bf0(&plStack_148,(longlong)puStack_140 + (4 - (longlong)plStack_148));
+        System_BufferManager(&plStack_148,(longlong)puStack_140 + (4 - (longlong)plStack_148));
       }
       *puStack_140 = uVar1;
       puStack_140 = (uint *)((longlong)puStack_140 + 4);
       uVar1 = puVar16[2];
       if ((ulonglong)(((longlong)plStack_138 - (longlong)puStack_140) + (longlong)plStack_148) < 5)
       {
-        FUN_180639bf0(&plStack_148,(longlong)puStack_140 + (4 - (longlong)plStack_148));
+        System_BufferManager(&plStack_148,(longlong)puStack_140 + (4 - (longlong)plStack_148));
       }
       *puStack_140 = uVar1;
       puStack_140 = puStack_140 + 1;
       if ((ulonglong)(((longlong)plStack_138 - (longlong)puStack_140) + (longlong)plStack_148) <
           0x41) {
-        FUN_180639bf0(&plStack_148,(longlong)puStack_140 + (0x40 - (longlong)plStack_148));
+        System_BufferManager(&plStack_148,(longlong)puStack_140 + (0x40 - (longlong)plStack_148));
       }
       if ((ulonglong)(((longlong)plStack_138 - (longlong)puStack_140) + (longlong)plStack_148) <
           0x11) {
-        FUN_180639bf0(&plStack_148,(longlong)puStack_140 + (0x10 - (longlong)plStack_148));
+        System_BufferManager(&plStack_148,(longlong)puStack_140 + (0x10 - (longlong)plStack_148));
       }
       *puStack_140 = puVar16[3];
       puStack_140[1] = puVar16[4];
@@ -431,7 +431,7 @@ LAB_180331b54:
       puStack_140 = puStack_140 + 4;
       if ((ulonglong)(((longlong)plStack_138 - (longlong)puStack_140) + (longlong)plStack_148) <
           0x11) {
-        FUN_180639bf0(&plStack_148,(longlong)puStack_140 + (0x10 - (longlong)plStack_148));
+        System_BufferManager(&plStack_148,(longlong)puStack_140 + (0x10 - (longlong)plStack_148));
       }
       *puStack_140 = puVar16[7];
       puStack_140[1] = puVar16[8];
@@ -440,7 +440,7 @@ LAB_180331b54:
       puStack_140 = puStack_140 + 4;
       if ((ulonglong)(((longlong)plStack_138 - (longlong)puStack_140) + (longlong)plStack_148) <
           0x11) {
-        FUN_180639bf0(&plStack_148,(longlong)puStack_140 + (0x10 - (longlong)plStack_148));
+        System_BufferManager(&plStack_148,(longlong)puStack_140 + (0x10 - (longlong)plStack_148));
       }
       *puStack_140 = puVar16[0xb];
       puStack_140[1] = puVar16[0xc];
@@ -449,7 +449,7 @@ LAB_180331b54:
       puStack_140 = puStack_140 + 4;
       if ((ulonglong)(((longlong)plStack_138 - (longlong)puStack_140) + (longlong)plStack_148) <
           0x11) {
-        FUN_180639bf0(&plStack_148,(longlong)puStack_140 + (0x10 - (longlong)plStack_148));
+        System_BufferManager(&plStack_148,(longlong)puStack_140 + (0x10 - (longlong)plStack_148));
       }
       *puStack_140 = puVar16[0xf];
       puStack_140[1] = puVar16[0x10];
@@ -460,7 +460,7 @@ LAB_180331b54:
       uVar13 = (ulonglong)uVar19 + 4;
       if ((ulonglong)(((longlong)plStack_138 - (longlong)puStack_140) + (longlong)plStack_148) <=
           uVar13) {
-        FUN_180639bf0(&plStack_148,(longlong)puStack_140 + (uVar13 - (longlong)plStack_148));
+        System_BufferManager(&plStack_148,(longlong)puStack_140 + (uVar13 - (longlong)plStack_148));
       }
       *puStack_140 = uVar19;
       puStack_140 = puStack_140 + 1;
@@ -480,7 +480,7 @@ LAB_180331b54:
     pcStack_e8 = (code *)0x0;
     puStack_e0 = (void *)CONCAT53(puStack_e0._3_5_,0x30000);
     uVar17 = uVar13 & 0xffffffff;
-    FUN_180639bf0(&plStack_f8,uVar13 & 0xffffffff);
+    System_BufferManager(&plStack_f8,uVar13 & 0xffffffff);
     plVar4 = plStack_f8;
     pplStack_a8 = (longlong **)&unknown_var_3856_ptr;
     uStack_a0 = 1;
@@ -491,14 +491,14 @@ LAB_180331b54:
     fwrite(&uStack_128,8,1,*(uint64_t *)(lStackX_10 + 8));
     fwrite(&uStack_120,8,1,*(uint64_t *)(lStackX_10 + 8));
     fwrite(plVar4,uStack_120,1,*(uint64_t *)(lStackX_10 + 8));
-    puStack_68 = &unknown_var_3456_ptr;
+    puStack_68 = &system_data_buffer_ptr;
     if (lStack_60 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_60 = 0;
     uStack_50 = 0;
-    puStack_68 = &unknown_var_720_ptr;
+    puStack_68 = &system_state_ptr;
     if (((char)puStack_e0 == '\0') && (plVar4 != (longlong *)0x0)) {
                     // WARNING: Subroutine does not return
       FUN_18064e900(plVar4);
@@ -592,7 +592,7 @@ void RenderingSystem_ExecuteBatchOperations(uint64_t *batch_context, int start_i
             thread_counter = 0;
             thread_flag = 0;
             memory_flag = 3;
-            FUN_180639bf0(&memory_pool, RENDERING_RESOURCE_POOL_SIZE);
+            System_BufferManager(&memory_pool, RENDERING_RESOURCE_POOL_SIZE);
             count_array[0] = 0;
             item_counter = *(int *)*batch_context * loop_index;
             current_index = loop_index + 1;
@@ -664,7 +664,7 @@ LAB_180332267:
             cleanup_flag = 0;
             cleanup_mode = 3;
             buffer_size = data_size & 0xffffffff;
-            FUN_180639bf0(buffer_array, buffer_size);
+            System_BufferManager(buffer_array, buffer_size);
             buffer_start = buffer_array[0];
             output_ptr = &unknown_var_3856_ptr;
             output_flag = 0;
@@ -690,13 +690,13 @@ LAB_180332267:
                 __Throw_C_error_std__YAXH_Z(status_code);
             }
             item_list = &cleanup_ptr;
-            cleanup_ptr = &unknown_var_3456_ptr;
+            cleanup_ptr = &system_data_buffer_ptr;
             if (cleanup_status != 0) {
                 FUN_18064e900();
             }
             cleanup_status = 0;
             final_flag = 0;
-            cleanup_ptr = &unknown_var_720_ptr;
+            cleanup_ptr = &system_state_ptr;
             if (((char)cleanup_flag == '\0') && (buffer_start != 0)) {
                 FUN_18064e900(buffer_start);
             }

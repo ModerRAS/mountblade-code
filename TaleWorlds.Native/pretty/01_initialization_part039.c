@@ -860,7 +860,7 @@ FUN_18006de00(longlong *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t *pa
   if (param_2 != param_3) {
     puVar3 = param_2 + 0x2b;
     do {
-      *param_4 = &unknown_var_720_ptr;
+      *param_4 = &system_state_ptr;
       param_4[1] = 0;
       *(int32_t *)(param_4 + 2) = 0;
       *param_4 = &unknown_var_2008_ptr;

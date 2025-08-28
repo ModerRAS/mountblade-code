@@ -111,7 +111,7 @@ void register_rendering_module(void)
     // 设置渲染模块数据
     parent_node[6] = 0x4fc124d23d41985f;  // 模块ID哈希值
     parent_node[7] = 0xe2f4a30d6e6ae482;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_3504_ptr;      // 模块数据指针
+    parent_node[8] = &system_param1_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;

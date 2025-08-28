@@ -471,13 +471,13 @@ void FUN_1802c84d0(longlong param_1,longlong param_2)
           break;
         case 0xfffffff2:
           uVar2 = *(uint64_t *)(param_2 + 0x99c0);
-          puStack_70 = &unknown_var_7512_ptr;
+          puStack_70 = &system_config_ptr;
           auStack_58[0] = 0;
           uStack_60 = 0xb;
           puStack_68 = auStack_58;
           strcpy_s(auStack_58,0x10,&unknown_var_4832_ptr);
           lVar5 = FUN_1802c90a0(uVar2,&puStack_70);
-          puStack_70 = &unknown_var_720_ptr;
+          puStack_70 = &system_state_ptr;
           plVar6 = *(longlong **)(lVar5 + 0x428);
           if (plVar6 != (longlong *)0x0) {
             plStack_108 = plVar6;
@@ -710,7 +710,7 @@ void FUN_1802c8c60(longlong param_1)
       (**(code **)(*ppuVar4 + 0x38))(ppuVar4);
     }
     pppuStack_110 = (void ***)&puStack_f8;
-    puStack_f8 = &unknown_var_720_ptr;
+    puStack_f8 = &system_state_ptr;
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_138);

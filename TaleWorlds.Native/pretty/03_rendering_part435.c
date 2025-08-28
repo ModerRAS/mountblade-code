@@ -402,22 +402,22 @@ void FUN_1805065c0(uint64_t *param_1)
 
 {
   *param_1 = &unknown_var_5224_ptr;
-  param_1[7] = &unknown_var_3456_ptr;
+  param_1[7] = &system_data_buffer_ptr;
   if (param_1[8] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[8] = 0;
   *(int32_t *)(param_1 + 10) = 0;
-  param_1[7] = &unknown_var_720_ptr;
-  param_1[1] = &unknown_var_3456_ptr;
+  param_1[7] = &system_state_ptr;
+  param_1[1] = &system_data_buffer_ptr;
   if (param_1[2] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[2] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  param_1[1] = &unknown_var_720_ptr;
+  param_1[1] = &system_state_ptr;
   return;
 }
 

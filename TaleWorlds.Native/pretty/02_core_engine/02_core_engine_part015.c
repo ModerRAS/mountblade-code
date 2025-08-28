@@ -70,14 +70,14 @@ longlong initialize_resource_manager(longlong resource_manager)
 
 {
   // 初始化资源数组指针
-  *(uint64_t *)(resource_manager + 8) = &unknown_var_720_ptr;
+  *(uint64_t *)(resource_manager + 8) = &system_state_ptr;
   // 设置资源数量为0
   *(uint64_t *)(resource_manager + 0x10) = 0;
   // 设置状态标志为0
   *(int32_t *)(resource_manager + 0x18) = 0;
   
   // 设置备用资源数组指针
-  *(uint64_t *)(resource_manager + 8) = &unknown_var_3456_ptr;
+  *(uint64_t *)(resource_manager + 8) = &system_data_buffer_ptr;
   // 设置备用资源数量为0
   *(uint64_t *)(resource_manager + 0x20) = 0;
   // 重置资源数量为0
@@ -98,7 +98,7 @@ void reset_resource_manager(longlong resource_manager)
 
 {
   // 设置资源数组指针为空
-  *(uint64_t *)(resource_manager + 8) = &unknown_var_3456_ptr;
+  *(uint64_t *)(resource_manager + 8) = &system_data_buffer_ptr;
   
   // 检查是否有资源存在
   if (*(longlong *)(resource_manager + 0x10) != 0) {
@@ -111,7 +111,7 @@ void reset_resource_manager(longlong resource_manager)
   // 重置备用资源数量为0
   *(int32_t *)(resource_manager + 0x20) = 0;
   // 设置资源数组指针为空
-  *(uint64_t *)(resource_manager + 8) = &unknown_var_720_ptr;
+  *(uint64_t *)(resource_manager + 8) = &system_state_ptr;
   
   return;
 }
@@ -435,17 +435,17 @@ void merge_and_deduplicate_resources(longlong resource_container)
           }
           
           // 重置资源指针
-          resource_ptr[4] = &unknown_var_3456_ptr;
+          resource_ptr[4] = &system_data_buffer_ptr;
           if (resource_ptr[5] == 0) {
             resource_ptr[5] = 0;
             *(int32_t *)(resource_ptr + 7) = 0;
-            resource_ptr[4] = &unknown_var_720_ptr;
-            *resource_ptr = &unknown_var_3456_ptr;
+            resource_ptr[4] = &system_state_ptr;
+            *resource_ptr = &system_data_buffer_ptr;
             
             if (resource_ptr[1] == 0) {
               resource_ptr[1] = 0;
               *(int32_t *)(resource_ptr + 3) = 0;
-              *resource_ptr = &unknown_var_720_ptr;
+              *resource_ptr = &system_state_ptr;
               FUN_18064e900(resource_ptr);
             }
             FUN_18064e900();
@@ -518,16 +518,16 @@ void cleanup_resource_array(longlong param_1,uint64_t param_2,uint64_t param_3,u
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        puVar2[4] = &unknown_var_3456_ptr;
+        puVar2[4] = &system_data_buffer_ptr;
         if (puVar2[5] == 0) {
           puVar2[5] = 0;
           *(int32_t *)(puVar2 + 7) = 0;
-          puVar2[4] = &unknown_var_720_ptr;
-          *puVar2 = &unknown_var_3456_ptr;
+          puVar2[4] = &system_state_ptr;
+          *puVar2 = &system_data_buffer_ptr;
           if (puVar2[1] == 0) {
             puVar2[1] = 0;
             *(int32_t *)(puVar2 + 3) = 0;
-            *puVar2 = &unknown_var_720_ptr;
+            *puVar2 = &system_state_ptr;
                     // WARNING: Subroutine does not return
             FUN_18064e900(puVar2);
           }
@@ -612,7 +612,7 @@ void initialize_resource_handler(longlong *param_1)
     (**(code **)(*plStack_68 + 0x38))();
   }
   lVar3 = system_context_ptr;
-  puStack_50 = &unknown_var_7512_ptr;
+  puStack_50 = &system_config_ptr;
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
   uStack_40 = 0xc;
@@ -626,7 +626,7 @@ void initialize_resource_handler(longlong *param_1)
   FUN_18020e840(plVar4);
   FUN_18005ea90(lVar3 + 0x48,&plStack_68);
   param_1[1] = (longlong)plVar4;
-  puStack_50 = &unknown_var_720_ptr;
+  puStack_50 = &system_state_ptr;
   puVar1 = (uint64_t *)param_1[1];
   pcVar2 = *(code **)*puVar1;
   pplStack_60 = &plStack_68;
@@ -716,7 +716,7 @@ void monitor_resource_performance(longlong param_1)
     LOCK();
     *(int32_t *)(param_1 + 200) = 1;
     UNLOCK();
-    puStack_98 = &unknown_var_3456_ptr;
+    puStack_98 = &system_data_buffer_ptr;
     uStack_80 = 0;
     puStack_90 = (void *)0x0;
     uStack_88 = 0;
@@ -780,14 +780,14 @@ void monitor_resource_performance(longlong param_1)
     (**(code **)(*(longlong *)*core_system_data_config + 0x20))
               ((longlong *)*core_system_data_config,&unknown_var_7440_ptr,0x175c,puVar9);
     *(double *)(param_1 + 0xc0) = dVar2;
-    puStack_98 = &unknown_var_3456_ptr;
+    puStack_98 = &system_data_buffer_ptr;
     if (puStack_90 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_90 = (void *)0x0;
     uStack_80 = uStack_80 & 0xffffffff00000000;
-    puStack_98 = &unknown_var_720_ptr;
+    puStack_98 = &system_state_ptr;
   }
   FUN_1806277c0(&puStack_98,uStack_88 + iVar7);
                     // WARNING: Subroutine does not return
@@ -896,15 +896,15 @@ void process_resource_event(uint64_t param_1,uint64_t *param_2,int32_t param_3)
     (**(code **)(*ppuVar2 + 0x38))(ppuVar2);
   }
   pppuStack_130 = (void ***)&puStack_108;
-  puStack_108 = &unknown_var_720_ptr;
-  *param_2 = &unknown_var_3456_ptr;
+  puStack_108 = &system_state_ptr;
+  *param_2 = &system_data_buffer_ptr;
   if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_2[1] = 0;
   *(int32_t *)(param_2 + 3) = 0;
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_158);
 }
@@ -1117,10 +1117,10 @@ initialize_resource_info(uint64_t *param_1,longlong param_2,uint64_t param_3,uin
 {
   longlong lVar1;
   
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_7512_ptr;
+  *param_1 = &system_config_ptr;
   param_1[1] = param_1 + 3;
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;

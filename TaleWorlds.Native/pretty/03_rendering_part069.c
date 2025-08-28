@@ -78,7 +78,7 @@ void FUN_180306d80(uint64_t *param_1,int param_2)
   puStack_a8 = param_1;
   _Mtx_init_in_situ(puStack_b8,2);
   puStack_b8 = param_1 + 0x380;
-  *puStack_b8 = &unknown_var_720_ptr;
+  *puStack_b8 = &system_state_ptr;
   param_1[0x381] = 0;
   *(int32_t *)(param_1 + 0x382) = 0;
   *puStack_b8 = &unknown_var_672_ptr;
@@ -94,7 +94,7 @@ void FUN_180306d80(uint64_t *param_1,int param_2)
   strcpy_s(auStack_50,0x20,&unknown_var_3800_ptr);
   uVar1 = FUN_180051f00(system_main_module_state,&puStack_68);
   *(int8_t *)(param_1 + 0x38a) = uVar1;
-  puStack_68 = &unknown_var_720_ptr;
+  puStack_68 = &system_state_ptr;
   FUN_1803073e0(param_1);
   *(int *)(param_1 + 0x387) = param_2;
   puStack_a0 = &unknown_var_672_ptr;
@@ -108,7 +108,7 @@ void FUN_180306d80(uint64_t *param_1,int param_2)
     puVar6 = puStack_98;
   }
   strcpy_s(param_1[0x381],0x20,puVar6);
-  puStack_a0 = &unknown_var_720_ptr;
+  puStack_a0 = &system_state_ptr;
   lVar2 = -1;
   do {
     lVar3 = lVar2;
@@ -192,7 +192,7 @@ void FUN_180307090(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   if ((longlong *)param_1[0x389] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x389] + 0x38))();
   }
-  param_1[0x380] = &unknown_var_720_ptr;
+  param_1[0x380] = &system_state_ptr;
   _Mtx_destroy_in_situ();
   if (*plVar1 == 0) {
     FUN_1800e7d00(param_1 + 0x251);

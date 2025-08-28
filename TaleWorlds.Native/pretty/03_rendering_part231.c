@@ -22,7 +22,7 @@ void FUN_180399af0(longlong param_1,longlong param_2)
   
   uVar9 = 0xfffffffffffffffe;
   pcVar8 = (char *)0x0;
-  puStack_60 = &unknown_var_3456_ptr;
+  puStack_60 = &system_data_buffer_ptr;
   uStack_48 = 0;
   lStack_58 = 0;
   iStack_50 = 0;
@@ -445,7 +445,7 @@ LAB_18039a1d9:
           }
         }
 LAB_18039a23e:
-        puStack_60 = &unknown_var_3456_ptr;
+        puStack_60 = &system_data_buffer_ptr;
         if (lStack_58 != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();

@@ -212,7 +212,7 @@ void FUN_1801cdb50(uint64_t *******param_1,longlong param_2,longlong *param_3,ul
   cVar7 = *(char *)(param_2 + 0x13c);
   pppppppuStackX_18 = (uint64_t *******)CONCAT71(pppppppuStackX_18._1_7_,cVar7);
   if ((char)param_7 != '\0') {
-    pppppppuStack_1d8 = (uint64_t *******)&unknown_var_3456_ptr;
+    pppppppuStack_1d8 = (uint64_t *******)&system_data_buffer_ptr;
     uStack_1c0 = 0;
     pppppppuStack_1d0 = (uint64_t *******)0x0;
     pppppppuStack_1c8 = (uint64_t *******)((ulonglong)pppppppuStack_1c8 & 0xffffffff00000000);
@@ -235,15 +235,15 @@ void FUN_1801cdb50(uint64_t *******param_1,longlong param_2,longlong *param_3,ul
       FUN_1801e8f50(&pppppppuStack_178,&pppppppuStack_1d8);
       pppppppuVar12 = pppppppuStack_1d0;
     }
-    pppppppuStack_1d8 = (uint64_t *******)&unknown_var_3456_ptr;
+    pppppppuStack_1d8 = (uint64_t *******)&system_data_buffer_ptr;
     if (pppppppuVar12 != (uint64_t *******)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900(pppppppuVar12);
     }
     pppppppuStack_1d0 = (uint64_t *******)0x0;
     uStack_1c0 = uStack_1c0 & 0xffffffff00000000;
-    pppppppuStack_1d8 = (uint64_t *******)&unknown_var_720_ptr;
-    pppppppuStack_1f8 = (uint64_t *******)&unknown_var_3456_ptr;
+    pppppppuStack_1d8 = (uint64_t *******)&system_state_ptr;
+    pppppppuStack_1f8 = (uint64_t *******)&system_data_buffer_ptr;
     uStack_1e0 = 0;
     pppppppuStack_1f0 = (uint64_t *******)0x0;
     uStack_1e8 = (uint64_t *******)((ulonglong)uStack_1e8._4_4_ << 0x20);
@@ -265,14 +265,14 @@ void FUN_1801cdb50(uint64_t *******param_1,longlong param_2,longlong *param_3,ul
       FUN_1801e8f50(&pppppppuStack_178);
       pppppppuVar12 = pppppppuStack_1f0;
     }
-    pppppppuStack_1f8 = (uint64_t *******)&unknown_var_3456_ptr;
+    pppppppuStack_1f8 = (uint64_t *******)&system_data_buffer_ptr;
     if (pppppppuVar12 != (uint64_t *******)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900(pppppppuVar12);
     }
     pppppppuStack_1f0 = (uint64_t *******)0x0;
     uStack_1e0 = uStack_1e0 & 0xffffffff00000000;
-    pppppppuStack_1f8 = (uint64_t *******)&unknown_var_720_ptr;
+    pppppppuStack_1f8 = (uint64_t *******)&system_state_ptr;
   }
   if ((*(longlong *)(param_2 + 0xb8) != 0) &&
      ((*(uint *)(*(longlong *)(param_2 + 0xb8) + 0x328) >> 0xf & 1) == 0)) {

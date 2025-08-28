@@ -202,7 +202,7 @@ void ui_system_cpu_feature_detector(void)
     
     ui_system_function_table[15] = FUN_180678ef0;
     if (sse2_supported) {
-        ui_system_function_table[15] = (code *)&unknown_var_3504_ptr;
+        ui_system_function_table[15] = (code *)&system_param1_ptr;
     }
     
     ui_system_function_table[16] = FUN_180678fc0;

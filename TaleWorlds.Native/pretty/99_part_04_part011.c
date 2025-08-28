@@ -374,7 +374,7 @@ void DataStructureProcessor(uint64_t context_ptr, longlong data_buffer, uint *re
             } while ((longlong)table_ptr < 0x18098dc90);
             
             // 重置处理环境
-            stack_data_ptr = &unknown_var_720_ptr;
+            stack_data_ptr = &system_state_ptr;
             iteration_count = iteration_count - 1;
         } while (iteration_count != 0);
     }
@@ -417,7 +417,7 @@ void ContainerInitializer(uint64_t context_ptr, uint init_flag, longlong *contai
     
     // 检查是否需要扩容
     if ((ulonglong)((*container_ptr - (longlong)data_ptr) + container_ptr[2]) < 5) {
-        FUN_180639bf0(container_ptr, (longlong)data_ptr + (4 - *container_ptr));
+        System_BufferManager(container_ptr, (longlong)data_ptr + (4 - *container_ptr));
         data_ptr = (int32_t *)container_ptr[1];
     }
     
@@ -436,7 +436,7 @@ void ContainerInitializer(uint64_t context_ptr, uint init_flag, longlong *contai
     
     // 检查是否需要再次扩容
     if ((ulonglong)((container_start - current_position) + container_ptr[2]) < 5) {
-        FUN_180639bf0(container_ptr, (current_position - container_start) + 4);
+        System_BufferManager(container_ptr, (current_position - container_start) + 4);
         current_position = container_ptr[1];
     }
     
@@ -502,13 +502,13 @@ void ContainerResizer(longlong *container_ptr, ulonglong new_capacity)
         if (new_end_position != container_end) {
             // 清理多余的容器空间
             do {
-                *(uint64_t *)(new_end_position + 0x28) = &unknown_var_3456_ptr;
+                *(uint64_t *)(new_end_position + 0x28) = &system_data_buffer_ptr;
                 if (*(longlong *)(new_end_position + 0x30) != 0) {
                     FUN_18064e900();
                 }
                 *(uint64_t *)(new_end_position + 0x30) = 0;
                 *(int32_t *)(new_end_position + 0x40) = 0;
-                *(uint64_t *)(new_end_position + 0x28) = &unknown_var_720_ptr;
+                *(uint64_t *)(new_end_position + 0x28) = &system_state_ptr;
                 new_end_position = new_end_position + CONTAINER_SIZE_0x48;
             } while (new_end_position != container_end);
             new_end_position = *container_ptr;
@@ -564,13 +564,13 @@ void SmallContainerResizer(longlong *container_ptr, ulonglong new_capacity)
         if (new_end_position != container_end) {
             // 清理多余的容器空间
             do {
-                *(uint64_t *)(new_end_position + 0x18) = &unknown_var_3456_ptr;
+                *(uint64_t *)(new_end_position + 0x18) = &system_data_buffer_ptr;
                 if (*(longlong *)(new_end_position + 0x20) != 0) {
                     FUN_18064e900();
                 }
                 *(uint64_t *)(new_end_position + 0x20) = 0;
                 *(int32_t *)(new_end_position + 0x30) = 0;
-                *(uint64_t *)(new_end_position + 0x18) = &unknown_var_720_ptr;
+                *(uint64_t *)(new_end_position + 0x18) = &system_state_ptr;
                 new_end_position = new_end_position + CONTAINER_SIZE_0x38;
             } while (new_end_position != container_end);
             new_end_position = *container_ptr;
@@ -1518,10 +1518,10 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
                 *(int32_t *)((longlong)temp_ptr4 + -0x14) = temp_value2;
                 *(int32_t *)(temp_ptr4 + -2) = temp_value3;
                 *(int32_t *)((longlong)temp_ptr4 + -0xc) = *(int32_t *)(start_position + -0xc + (longlong)temp_ptr4);
-                temp_ptr4[-1] = &unknown_var_720_ptr;
+                temp_ptr4[-1] = &system_state_ptr;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
-                temp_ptr4[-1] = &unknown_var_3456_ptr;
+                temp_ptr4[-1] = &system_data_buffer_ptr;
                 temp_ptr4[2] = 0;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
@@ -1550,10 +1550,10 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
                 temp_ptr5[-2] = 0;
                 *(uint64_t *)((longlong)temp_ptr5 + 0xc) = 0;
                 *(int32_t *)((longlong)temp_ptr5 + 0x14) = 0;
-                temp_ptr5[-1] = &unknown_var_720_ptr;
+                temp_ptr5[-1] = &system_state_ptr;
                 *temp_ptr5 = 0;
                 *(int32_t *)(temp_ptr5 + 1) = 0;
-                temp_ptr5[-1] = &unknown_var_3456_ptr;
+                temp_ptr5[-1] = &system_data_buffer_ptr;
                 temp_ptr5[2] = 0;
                 *temp_ptr5 = 0;
                 *(int32_t *)(temp_ptr5 + 1) = 0;
@@ -1567,13 +1567,13 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
         current_position = *container_ptr;
         if (current_position != start_position) {
             do {
-                *(uint64_t *)(current_position + 0x28) = &unknown_var_3456_ptr;
+                *(uint64_t *)(current_position + 0x28) = &system_data_buffer_ptr;
                 if (*(longlong *)(current_position + 0x30) != 0) {
                     FUN_18064e900();
                 }
                 *(uint64_t *)(current_position + 0x30) = 0;
                 *(int32_t *)(current_position + 0x40) = 0;
-                *(uint64_t *)(current_position + 0x28) = &unknown_var_720_ptr;
+                *(uint64_t *)(current_position + 0x28) = &system_state_ptr;
                 current_position = current_position + CONTAINER_SIZE_0x48;
             } while (current_position != start_position);
             current_position = *container_ptr;
@@ -1604,10 +1604,10 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
                 temp_ptr5[6] = 0;
                 temp_ptr5[7] = 0;
                 temp_ptr5[8] = 0;
-                temp_ptr4[-1] = &unknown_var_720_ptr;
+                temp_ptr4[-1] = &system_state_ptr;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
-                temp_ptr4[-1] = &unknown_var_3456_ptr;
+                temp_ptr4[-1] = &system_data_buffer_ptr;
                 temp_ptr4[2] = 0;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
@@ -1705,10 +1705,10 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
                 *(int32_t *)((longlong)temp_ptr4 + -0x14) = temp_value2;
                 *(int32_t *)(temp_ptr4 + -2) = temp_value3;
                 *(int32_t *)((longlong)temp_ptr4 + -0xc) = *(int32_t *)(start_position + -0xc + (longlong)temp_ptr4);
-                temp_ptr4[-1] = &unknown_var_720_ptr;
+                temp_ptr4[-1] = &system_state_ptr;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
-                temp_ptr4[-1] = &unknown_var_3456_ptr;
+                temp_ptr4[-1] = &system_data_buffer_ptr;
                 temp_ptr4[2] = 0;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
@@ -1735,10 +1735,10 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
                 temp_ptr5[-2] = 0;
                 *(uint64_t *)((longlong)temp_ptr5 + 0xc) = 0;
                 *(int32_t *)((longlong)temp_ptr5 + 0x14) = 0;
-                temp_ptr5[-1] = &unknown_var_720_ptr;
+                temp_ptr5[-1] = &system_state_ptr;
                 *temp_ptr5 = 0;
                 *(int32_t *)(temp_ptr5 + 1) = 0;
-                temp_ptr5[-1] = &unknown_var_3456_ptr;
+                temp_ptr5[-1] = &system_data_buffer_ptr;
                 temp_ptr5[2] = 0;
                 *temp_ptr5 = 0;
                 *(int32_t *)(temp_ptr5 + 1) = 0;
@@ -1752,13 +1752,13 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
         current_position = *container_ptr;
         if (current_position != start_position) {
             do {
-                *(uint64_t *)(current_position + 0x18) = &unknown_var_3456_ptr;
+                *(uint64_t *)(current_position + 0x18) = &system_data_buffer_ptr;
                 if (*(longlong *)(current_position + 0x20) != 0) {
                     FUN_18064e900();
                 }
                 *(uint64_t *)(current_position + 0x20) = 0;
                 *(int32_t *)(current_position + 0x30) = 0;
-                *(uint64_t *)(current_position + 0x18) = &unknown_var_720_ptr;
+                *(uint64_t *)(current_position + 0x18) = &system_state_ptr;
                 current_position = current_position + CONTAINER_SIZE_0x38;
             } while (current_position != start_position);
             current_position = *container_ptr;
@@ -1787,10 +1787,10 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
                 temp_ptr5[4] = 0;
                 temp_ptr5[5] = 0;
                 temp_ptr5[6] = 0;
-                temp_ptr4[-1] = &unknown_var_720_ptr;
+                temp_ptr4[-1] = &system_state_ptr;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
-                temp_ptr4[-1] = &unknown_var_3456_ptr;
+                temp_ptr4[-1] = &system_data_buffer_ptr;
                 temp_ptr4[2] = 0;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;

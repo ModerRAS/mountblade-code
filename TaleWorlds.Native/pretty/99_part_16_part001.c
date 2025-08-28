@@ -179,7 +179,7 @@ void system_event_dispatcher(longlong param_1, uint64_t param_2, uint64_t param_
     }
     
     // 设置系统状态标志
-    *(uint64_t *)(param_1 + 0x30) = &unknown_var_3456_ptr;
+    *(uint64_t *)(param_1 + 0x30) = &system_data_buffer_ptr;
     
     // 检查系统状态
     if (*(longlong *)(param_1 + 0x38) != 0) {

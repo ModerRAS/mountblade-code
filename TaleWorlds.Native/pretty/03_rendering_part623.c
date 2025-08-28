@@ -832,7 +832,7 @@ void FUN_1806143e0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       memcpy((ulonglong)*(uint *)(param_1 + 0x87b740) + *(longlong *)(param_1 + 0x87b738),lStack_28,
              (longlong)(iStack_20 + 1),param_4,uVar2);
     }
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();

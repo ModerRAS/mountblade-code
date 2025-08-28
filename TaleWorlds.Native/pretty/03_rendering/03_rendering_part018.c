@@ -327,8 +327,8 @@ void RenderingSystemParameterInitializer(render_context_t context, render_resour
     
     // 分配新资源
     resource_ptr2 = (render_resource_t*)FUN_18062b1e0(system_memory_pool_ptr, RENDERING_SYSTEM_QUEUE_SIZE, 8, 0x1e);
-    *resource_ptr2 = (render_resource_t)&unknown_var_3552_ptr;
-    *resource_ptr2 = (render_resource_t)&unknown_var_3696_ptr;
+    *resource_ptr2 = (render_resource_t)&system_handler1_ptr;
+    *resource_ptr2 = (render_resource_t)&system_handler2_ptr;
     *(render_flag_t*)(resource_ptr2 + 1) = 0;
     *resource_ptr2 = (render_resource_t)&unknown_var_9184_ptr;
     resource_ptr2[3] = 0;
@@ -748,7 +748,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
                 do {
                     attribute_list = (uint64_t *)attribute_list[0xb];
                     if (attribute_list == (uint64_t *)0x0) {
-                        mesh_handler = &unknown_var_720_ptr;
+                        mesh_handler = &system_state_ptr;
                         goto process_next_attribute;
                     }
                     string_ptr = (char *)*attribute_list;
@@ -886,7 +886,7 @@ process_next_attribute:
     if (attribute_list == (uint64_t *)0x0) {
         // 材质处理完成
         material_processing_complete:
-        string_handler = &unknown_var_720_ptr;
+        string_handler = &system_state_ptr;
         // 注意：这里会调用不返回的函数
         cleanup_material_processing(security_hash ^ (ulonglong)temp_buffer);
     }

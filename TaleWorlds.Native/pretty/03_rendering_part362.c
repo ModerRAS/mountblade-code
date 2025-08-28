@@ -522,14 +522,14 @@ int FUN_1804660e0(uint64_t param_1,uint64_t *param_2,void *param_3,void *param_4
     while (lVar3 = lVar2 + 1, param_3[lVar2] == (&unknown_var_1148_ptr)[lVar2]) {
       lVar2 = lVar3;
       if (lVar3 == 7) {
-        *param_2 = &unknown_var_3456_ptr;
+        *param_2 = &system_data_buffer_ptr;
         if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         param_2[1] = 0;
         *(int32_t *)(param_2 + 3) = 0;
-        *param_2 = &unknown_var_720_ptr;
+        *param_2 = &system_state_ptr;
         return 0;
       }
     }

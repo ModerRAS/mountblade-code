@@ -126,7 +126,7 @@ LAB_18053abd4:
       strcpy_s(auStack_f0,0x40);
       iVar1 = FUN_18053a5e0(&system_counter_5f30,&puStack_108);
       lVar10 = (longlong)iVar1 * 0xe0 + render_system_memory;
-      puStack_108 = &unknown_var_720_ptr;
+      puStack_108 = &system_state_ptr;
       param_1[0xb] = *(longlong *)(lVar10 + 0x58);
       *(int32_t *)(param_1 + 0xc) = *(int32_t *)(lVar10 + 0x60);
       iVar1 = (int)(param_1[0x10] - param_1[0xf] >> 3);
@@ -140,7 +140,7 @@ LAB_18053abd4:
         } while ((longlong)pcVar14 < (longlong)iVar1);
       }
 LAB_18053aca8:
-      puStack_140 = &unknown_var_3456_ptr;
+      puStack_140 = &system_data_buffer_ptr;
       uStack_128 = 0;
       lStack_138 = 0;
       iStack_130 = 0;
@@ -170,7 +170,7 @@ LAB_18053ad36:
             FUN_180627c50(&puStack_140,lVar10);
             break;
           }
-          lVar10 = (longlong)&unknown_var_2360_ptr - (longlong)pcVar14;
+          lVar10 = (longlong)&system_param2_ptr - (longlong)pcVar14;
           while (*pcVar14 == pcVar14[lVar10]) {
             pcVar14 = pcVar14 + 1;
             if (pcVar8 <= pcVar14) goto LAB_18053ad36;
@@ -194,7 +194,7 @@ LAB_18053ad36:
         }
         param_1[0xb] = lVar10;
       }
-      puStack_160 = &unknown_var_3456_ptr;
+      puStack_160 = &system_data_buffer_ptr;
       uStack_148 = 0;
       puStack_158 = (void *)0x0;
       iStack_150 = 0;
@@ -285,7 +285,7 @@ LAB_18053aed5:
       if (pcVar6 <= pcVar8) {
 LAB_18053af50:
         do {
-          puStack_180 = &unknown_var_3456_ptr;
+          puStack_180 = &system_data_buffer_ptr;
           uStack_168 = 0;
           puStack_178 = (void *)0x0;
           uStack_170 = 0;
@@ -330,7 +330,7 @@ LAB_18053afe4:
             }
             FUN_180626f80(&unknown_var_8688_ptr,puVar12);
 LAB_18053b2bb:
-            puStack_180 = &unknown_var_3456_ptr;
+            puStack_180 = &system_data_buffer_ptr;
             if (puStack_178 != (void *)0x0) {
                     // WARNING: Subroutine does not return
               FUN_18064e900();
@@ -419,8 +419,8 @@ LAB_18053b194:
                 FUN_1800b8370(param_3,&puStack_108);
               }
               *(ulonglong *)(param_1[0xf] + (longlong)iVar1 * 8) = CONCAT44(iVar3,iVar2);
-              puStack_108 = &unknown_var_720_ptr;
-              puStack_a8 = &unknown_var_720_ptr;
+              puStack_108 = &system_state_ptr;
+              puStack_a8 = &system_state_ptr;
               iStack_188 = iVar2;
               iStack_184 = iVar3;
               goto LAB_18053b2bb;
@@ -430,8 +430,8 @@ LAB_18053b194:
               puVar12 = puStack_a0;
             }
             FUN_180626f80(&unknown_var_8096_ptr,puVar12);
-            puStack_a8 = &unknown_var_720_ptr;
-            puStack_180 = &unknown_var_3456_ptr;
+            puStack_a8 = &system_state_ptr;
+            puStack_180 = &system_data_buffer_ptr;
             if (puStack_178 != (void *)0x0) {
                     // WARNING: Subroutine does not return
               FUN_18064e900();
@@ -439,7 +439,7 @@ LAB_18053b194:
           }
           uStack_168 = uStack_168 & 0xffffffff00000000;
           puStack_178 = (void *)0x0;
-          puStack_180 = &unknown_var_720_ptr;
+          puStack_180 = &system_state_ptr;
           pcVar7 = "action";
           do {
             pcVar8 = pcVar7;
@@ -477,22 +477,22 @@ LAB_18053b356:
       }
     }
   }
-  puStack_160 = &unknown_var_3456_ptr;
+  puStack_160 = &system_data_buffer_ptr;
   if (puStack_158 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_158 = (void *)0x0;
   uStack_148 = uStack_148 & 0xffffffff00000000;
-  puStack_160 = &unknown_var_720_ptr;
-  puStack_140 = &unknown_var_3456_ptr;
+  puStack_160 = &system_state_ptr;
+  puStack_140 = &system_data_buffer_ptr;
   if (lStack_138 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_138 = 0;
   uStack_128 = uStack_128 & 0xffffffff00000000;
-  puStack_140 = &unknown_var_720_ptr;
+  puStack_140 = &system_state_ptr;
   goto LAB_18053b3c0;
 }
 

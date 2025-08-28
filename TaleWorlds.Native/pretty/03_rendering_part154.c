@@ -994,8 +994,8 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     FUN_180180730(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
-    resource_array[0] = &unknown_var_720_ptr;
-    string_pointer = &unknown_var_720_ptr;
+    resource_array[0] = &system_state_ptr;
+    string_pointer = &system_state_ptr;
     texture_pointer = &unknown_var_3480_ptr;
     texture_buffer = texture_data;
     texture_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
@@ -1007,8 +1007,8 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     FUN_180180730(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
-    resource_array[0] = &unknown_var_720_ptr;
-    texture_pointer = &unknown_var_720_ptr;
+    resource_array[0] = &system_state_ptr;
+    texture_pointer = &system_state_ptr;
     shader_pointer = &unknown_var_3480_ptr;
     shader_buffer = shader_data;
     shader_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
@@ -1020,8 +1020,8 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     FUN_180180730(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
-    resource_array[0] = &unknown_var_720_ptr;
-    shader_pointer = &unknown_var_720_ptr;
+    resource_array[0] = &system_state_ptr;
+    shader_pointer = &system_state_ptr;
     pipeline_pointer = &unknown_var_3480_ptr;
     pipeline_buffer = pipeline_data;
     pipeline_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
@@ -1033,8 +1033,8 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     FUN_180180730(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
-    resource_array[0] = &unknown_var_720_ptr;
-    pipeline_pointer = &unknown_var_720_ptr;
+    resource_array[0] = &system_state_ptr;
+    pipeline_pointer = &system_state_ptr;
     
     // 调用渲染管线处理
     FUN_1808fc050(stack_protection ^ (ulonglong)stack_guard_array);
@@ -1081,19 +1081,19 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     FUN_1803456e0();
     *data_pointer = &unknown_var_7800_ptr;
     object_pointer = data_pointer + 0x12;
-    *object_pointer = (longlong)&unknown_var_720_ptr;
+    *object_pointer = (longlong)&system_state_ptr;
     operation_flag = 0;
     data_pointer[0x13] = 0;
     *(int32_t *)(data_pointer + 0x14) = 0;
-    *object_pointer = (longlong)&unknown_var_3456_ptr;
+    *object_pointer = (longlong)&system_data_buffer_ptr;
     data_pointer[0x15] = 0;
     data_pointer[0x13] = 0;
     *(int32_t *)(data_pointer + 0x14) = 0;
     object_pointer = param_1 + 0x16;
-    *object_pointer = (longlong)&unknown_var_720_ptr;
+    *object_pointer = (longlong)&system_state_ptr;
     param_1[0x17] = 0;
     *(int32_t *)(param_1 + 0x18) = 0;
-    *object_pointer = (longlong)&unknown_var_3456_ptr;
+    *object_pointer = (longlong)&system_data_buffer_ptr;
     param_1[0x19] = 0;
     param_1[0x17] = 0;
     *(int32_t *)(param_1 + 0x18) = 0;
@@ -1125,7 +1125,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     // 处理配置数组
     do {
         index_counter = *object_pointer;
-        config_pointer = &unknown_var_3456_ptr;
+        config_pointer = &system_data_buffer_ptr;
         buffer_size_64 = 0;
         buffer_pointer = (uint64_t *)0x0;
         buffer_status = 0;
@@ -1161,7 +1161,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
         *(int *)(texture_pointer + 8) = operation_flag;
         buffer_pointer = (uint64_t *)0x0;
         buffer_size_64 = buffer_size_64 & 0xffffffff00000000;
-        config_pointer = &unknown_var_720_ptr;
+        config_pointer = &system_state_ptr;
         operation_flag = operation_flag + 1;
         object_pointer = object_pointer + 1;
     } while (operation_flag < 4);
@@ -1173,7 +1173,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     }
     *(int8_t *)(param_1 + 0x29) = 0;
     *(int16_t *)(param_1 + 0x11) = 0;
-    config_pointer = &unknown_var_3456_ptr;
+    config_pointer = &system_data_buffer_ptr;
     buffer_size_64 = 0;
     buffer_pointer = (uint64_t *)0x0;
     buffer_status = 0;
@@ -1187,7 +1187,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     *(int8_t *)((longlong)data_pointer + 10) = 0;
     buffer_status = 10;
     FUN_1803460a0(param_1, &config_pointer, param_1 + 0x12, 9);
-    config_pointer = &unknown_var_3456_ptr;
+    config_pointer = &system_data_buffer_ptr;
     FUN_18064e900(data_pointer);
 }
 
@@ -1250,27 +1250,27 @@ void RenderingSystem_ResourceReleaser(uint64_t *param_1, uint64_t param_2, uint6
         (**(code **)(*(longlong *)param_1[0x24] + 0x38))();
     }
     FUN_180058370(param_1 + 0x1a, param_1[0x1c], param_3, param_4, resource_handle);
-    param_1[0x16] = &unknown_var_3456_ptr;
+    param_1[0x16] = &system_data_buffer_ptr;
     if (param_1[0x17] != 0) {
         FUN_18064e900();
     }
     param_1[0x17] = 0;
     *(int32_t *)(param_1 + 0x19) = 0;
-    param_1[0x16] = &unknown_var_720_ptr;
-    param_1[0x12] = &unknown_var_3456_ptr;
+    param_1[0x16] = &system_state_ptr;
+    param_1[0x12] = &system_data_buffer_ptr;
     if (param_1[0x13] != 0) {
         FUN_18064e900();
     }
     param_1[0x13] = 0;
     *(int32_t *)(param_1 + 0x15) = 0;
-    param_1[0x12] = &unknown_var_720_ptr;
+    param_1[0x12] = &system_state_ptr;
     resource_handle = RENDERING_SYSTEM_MAGIC_NUMBER;
     *param_1 = &unknown_var_4544_ptr;
     FUN_180080df0();
     *param_1 = &unknown_var_4912_ptr;
     FUN_1802f5b10(param_1 + 4, param_1[6], param_3, param_4, resource_handle);
-    *param_1 = &unknown_var_3696_ptr;
-    *param_1 = &unknown_var_3552_ptr;
+    *param_1 = &system_handler2_ptr;
+    *param_1 = &system_handler1_ptr;
 }
 
 /**
@@ -1456,8 +1456,8 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     FUN_180180730(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
-    resource_array[0] = &unknown_var_720_ptr;
-    string_pointer = &unknown_var_720_ptr;
+    resource_array[0] = &system_state_ptr;
+    string_pointer = &system_state_ptr;
     texture_pointer = &unknown_var_3480_ptr;
     texture_buffer = texture_data;
     texture_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
@@ -1469,8 +1469,8 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     FUN_180180730(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
-    resource_array[0] = &unknown_var_720_ptr;
-    texture_pointer = &unknown_var_720_ptr;
+    resource_array[0] = &system_state_ptr;
+    texture_pointer = &system_state_ptr;
     shader_pointer = &unknown_var_3480_ptr;
     shader_buffer = shader_data;
     shader_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
@@ -1482,8 +1482,8 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     FUN_180180730(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
-    resource_array[0] = &unknown_var_720_ptr;
-    shader_pointer = &unknown_var_720_ptr;
+    resource_array[0] = &system_state_ptr;
+    shader_pointer = &system_state_ptr;
     pipeline_pointer = &unknown_var_3480_ptr;
     pipeline_buffer = pipeline_data;
     pipeline_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
@@ -1495,8 +1495,8 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     FUN_180180730(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
-    resource_array[0] = &unknown_var_720_ptr;
-    pipeline_pointer = &unknown_var_720_ptr;
+    resource_array[0] = &system_state_ptr;
+    pipeline_pointer = &system_state_ptr;
     config_pointer = &unknown_var_3480_ptr;
     config_buffer = config_data;
     config_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
@@ -1508,8 +1508,8 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     FUN_180180730(param_1, object_pointer_array, resource_array);
     operation_counter = 0;
     object_pointer_array[0] = resource_array;
-    resource_array[0] = &unknown_var_720_ptr;
-    config_pointer = &unknown_var_720_ptr;
+    resource_array[0] = &system_state_ptr;
+    config_pointer = &system_state_ptr;
     
     // 调用参数处理管线
     FUN_1808fc050(stack_protection ^ (ulonglong)stack_guard_array);
@@ -1615,7 +1615,7 @@ void RenderingSystem_AdvancedParameterManager(longlong param_1, longlong param_2
                 }
                 data_pointer = texture_pointer;
                 strcpy_s(stack_data, RENDERING_SYSTEM_BUFFER_SIZE, resource_data);
-                config_pointer = &unknown_var_3456_ptr;
+                config_pointer = &system_data_buffer_ptr;
                 buffer_size_64 = 0;
                 string_pointer = (int8_t *)0x0;
                 string_buffer_length = 0;
@@ -1635,10 +1635,10 @@ void RenderingSystem_AdvancedParameterManager(longlong param_1, longlong param_2
                 shader_pointer = (uint64_t *)param_3[1];
                 if (shader_pointer < (uint64_t *)param_3[2]) {
                     param_3[1] = (longlong)(shader_pointer + 4);
-                    *shader_pointer = &unknown_var_720_ptr;
+                    *shader_pointer = &system_state_ptr;
                     shader_pointer[1] = 0;
                     *(int32_t *)(shader_pointer + 2) = 0;
-                    *shader_pointer = &unknown_var_3456_ptr;
+                    *shader_pointer = &system_data_buffer_ptr;
                     *(int32_t *)(shader_pointer + 2) = string_buffer_length;
                     shader_pointer[1] = string_pointer;
                     *(int32_t *)((longlong)shader_pointer + 0x1c) = buffer_size_64._4_4_;
@@ -1663,10 +1663,10 @@ ADVANCED_PARAM_PROCESSOR:
                         if (resource_size != 0) goto ADVANCED_PARAM_PROCESSOR;
                     }
                     pipeline_pointer = (uint64_t *)FUN_180059780(resource_pointer, shader_pointer, loop_counter);
-                    *pipeline_pointer = &unknown_var_720_ptr;
+                    *pipeline_pointer = &system_state_ptr;
                     pipeline_pointer[1] = 0;
                     *(int32_t *)(pipeline_pointer + 2) = 0;
-                    *pipeline_pointer = &unknown_var_3456_ptr;
+                    *pipeline_pointer = &system_data_buffer_ptr;
                     *(int32_t *)(pipeline_pointer + 2) = string_buffer_length;
                     pipeline_pointer[1] = string_pointer;
                     *(int32_t *)((longlong)pipeline_pointer + 0x1c) = buffer_size_64._4_4_;
@@ -1693,8 +1693,8 @@ ADVANCED_PARAM_PROCESSOR:
                 }
                 string_pointer = (int8_t *)0x0;
                 buffer_size_64 = buffer_size_64 & 0xffffffff00000000;
-                config_pointer = &unknown_var_720_ptr;
-                config_data_pointer = &unknown_var_720_ptr;
+                config_pointer = &system_state_ptr;
+                config_data_pointer = &system_state_ptr;
                 texture_pointer = data_pointer + 0x13;
                 config_pointer = data_pointer + 0x12;
                 data_pointer = texture_pointer;
@@ -1721,13 +1721,13 @@ ADVANCED_PARAM_PROCESSOR:
             else {
                 FUN_180059820(param_3, &config_pointer);
             }
-            config_pointer = &unknown_var_3456_ptr;
+            config_pointer = &system_data_buffer_ptr;
             if (string_pointer != (int8_t *)0x0) {
                 FUN_18064e900();
             }
             string_pointer = (int8_t *)0x0;
             buffer_size_64 = buffer_size_64 & 0xffffffff00000000;
-            config_pointer = &unknown_var_720_ptr;
+            config_pointer = &system_state_ptr;
             shader_pointer = shader_pointer + 1;
             resource_size = resource_size + -1;
         } while (resource_size != 0);
@@ -1926,18 +1926,18 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
     FUN_1803624e0();
     *param_1 = &unknown_var_8440_ptr;
-    param_1[0x2b] = &unknown_var_720_ptr;
+    param_1[0x2b] = &system_state_ptr;
     param_1[0x2c] = 0;
     *(int32_t *)(param_1 + 0x2d) = 0;
-    param_1[0x2b] = &unknown_var_3456_ptr;
+    param_1[0x2b] = &system_data_buffer_ptr;
     param_1[0x2e] = 0;
     param_1[0x2c] = 0;
     *(int32_t *)(param_1 + 0x2d) = 0;
     component_pointer = param_1 + 0x30;
-    *component_pointer = (longlong)&unknown_var_720_ptr;
+    *component_pointer = (longlong)&system_state_ptr;
     param_1[0x31] = 0;
     *(int32_t *)(param_1 + 0x32) = 0;
-    *component_pointer = (longlong)&unknown_var_3456_ptr;
+    *component_pointer = (longlong)&system_data_buffer_ptr;
     param_1[0x33] = 0;
     param_1[0x31] = 0;
     *(int32_t *)(param_1 + 0x32) = 0;
@@ -1946,7 +1946,7 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     *(int8_t *)(param_1 + 0x2f) = 0;
     *(int16_t *)(param_1 + 0x2a) = 0;
     *(int8_t *)((longlong)param_1 + 0x1a4) = 0;
-    component_data = &unknown_var_3456_ptr;
+    component_data = &system_data_buffer_ptr;
     component_buffer_size = 0;
     component_buffer = (int32_t *)0x0;
     component_status = 0;
@@ -1961,7 +1961,7 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     component_pointer_ptr[3] = 0x646e75;
     component_status = 0x0f;
     FUN_1803460a0(param_1, &component_data, param_1 + 0x2a, 3);
-    component_data = &unknown_var_3456_ptr;
+    component_data = &system_data_buffer_ptr;
     FUN_18064e900(component_pointer_ptr);
 }
 
@@ -1979,20 +1979,20 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
  * - 返回销毁结果
  */
 longlong RenderingSystem_Destroyer(longlong param_1, ulonglong param_2) {
-    *(uint64_t *)(param_1 + 0x180) = &unknown_var_3456_ptr;
+    *(uint64_t *)(param_1 + 0x180) = &system_data_buffer_ptr;
     if (*(longlong *)(param_1 + 0x188) != 0) {
         FUN_18064e900();
     }
     *(uint64_t *)(param_1 + 0x188) = 0;
     *(int32_t *)(param_1 + 0x198) = 0;
-    *(uint64_t *)(param_1 + 0x180) = &unknown_var_720_ptr;
-    *(uint64_t *)(param_1 + 0x158) = &unknown_var_3456_ptr;
+    *(uint64_t *)(param_1 + 0x180) = &system_state_ptr;
+    *(uint64_t *)(param_1 + 0x158) = &system_data_buffer_ptr;
     if (*(longlong *)(param_1 + 0x160) != 0) {
         FUN_18064e900();
     }
     *(uint64_t *)(param_1 + 0x160) = 0;
     *(int32_t *)(param_1 + 0x170) = 0;
-    *(uint64_t *)(param_1 + 0x158) = &unknown_var_720_ptr;
+    *(uint64_t *)(param_1 + 0x158) = &system_state_ptr;
     FUN_180362cf0(param_1);
     if ((param_2 & 1) != 0) {
         free(param_1, 0x1a8);
@@ -2031,18 +2031,18 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
     FUN_1803624e0(resource_pointer, param_2, param_1);
     *resource_pointer = &unknown_var_8440_ptr;
-    resource_pointer[0x2b] = &unknown_var_720_ptr;
+    resource_pointer[0x2b] = &system_state_ptr;
     resource_pointer[0x2c] = 0;
     *(int32_t *)(resource_pointer + 0x2d) = 0;
-    resource_pointer[0x2b] = &unknown_var_3456_ptr;
+    resource_pointer[0x2b] = &system_data_buffer_ptr;
     resource_pointer[0x2e] = 0;
     resource_pointer[0x2c] = 0;
     *(int32_t *)(resource_pointer + 0x2d) = 0;
     system_pointer = resource_pointer + 0x30;
-    *system_pointer = (longlong)&unknown_var_720_ptr;
+    *system_pointer = (longlong)&system_state_ptr;
     resource_pointer[0x31] = 0;
     *(int32_t *)(resource_pointer + 0x32) = 0;
-    *system_pointer = (longlong)&unknown_var_3456_ptr;
+    *system_pointer = (longlong)&system_data_buffer_ptr;
     resource_pointer[0x33] = 0;
     resource_pointer[0x31] = 0;
     *(int32_t *)(resource_pointer + 0x32) = 0;
@@ -2051,7 +2051,7 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     *(int8_t *)(resource_pointer + 0x2f) = 0;
     *(int16_t *)(resource_pointer + 0x2a) = 0;
     *(int8_t *)((longlong)resource_pointer + 0x1a4) = 0;
-    system_data = &unknown_var_3456_ptr;
+    system_data = &system_data_buffer_ptr;
     system_buffer_size = 0;
     system_buffer = (int32_t *)0x0;
     system_status = 0;
@@ -2066,7 +2066,7 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     system_pointer_ptr[3] = 0x646e75;
     system_status = 0x0f;
     FUN_1803460a0(resource_pointer, &system_data, resource_pointer + 0x2a, 3);
-    system_data = &unknown_var_3456_ptr;
+    system_data = &system_data_buffer_ptr;
     FUN_18064e900(system_pointer_ptr);
 }
 

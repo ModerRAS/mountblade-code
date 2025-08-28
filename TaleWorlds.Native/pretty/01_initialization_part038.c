@@ -371,7 +371,7 @@ LAB_18006ca44:
                 }
                 puVar5[0x24] = puVar6[0x24];
               }
-              *puVar20 = &unknown_var_720_ptr;
+              *puVar20 = &system_state_ptr;
               ppuStack_248 = (void **)puVar20;
                     // WARNING: Subroutine does not return
               FUN_18064e900(puVar20);
@@ -457,7 +457,7 @@ LAB_18006ca95:
       }
     }
     ppuStack_248 = &puStack_1f8;
-    puStack_1f8 = &unknown_var_720_ptr;
+    puStack_1f8 = &system_state_ptr;
     cVar9 = *(char *)(*(longlong *)(param_1 + 1000) + 0x58);
   } while( true );
 }
@@ -482,7 +482,7 @@ void FUN_18006cb90(longlong param_1)
     do {
       puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
       if (puVar2 != (uint64_t *)0x0) {
-        *puVar2 = &unknown_var_720_ptr;
+        *puVar2 = &system_state_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }

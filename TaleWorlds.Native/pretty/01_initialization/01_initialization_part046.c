@@ -17,14 +17,14 @@ void SerializeTransformData(longlong source_buffer, longlong *target_buffer)
   
   buffer_ptr = (int32_t *)target_buffer[1];
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
-    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
+    System_BufferManager(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
     buffer_ptr = (int32_t *)target_buffer[1];
   }
   *buffer_ptr = 1;
   buffer_ptr = (int32_t *)(target_buffer[1] + 4);
   target_buffer[1] = (longlong)buffer_ptr;
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 0x11) {
-    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (0x10 - *target_buffer));
+    System_BufferManager(target_buffer,(longlong)buffer_ptr + (0x10 - *target_buffer));
     buffer_ptr = (int32_t *)target_buffer[1];
   }
   temp_word1 = *(int32_t *)(source_buffer + 0x1c);
@@ -38,14 +38,14 @@ void SerializeTransformData(longlong source_buffer, longlong *target_buffer)
   target_buffer[1] = (longlong)byte_data_ptr;
   temp_word1 = *(int8_t *)(source_buffer + 0x28);
   if ((ulonglong)((*target_buffer - (longlong)byte_data_ptr) + target_buffer[2]) < 2) {
-    FUN_180639bf0(target_buffer,byte_data_ptr + (1 - *target_buffer));
+    System_BufferManager(target_buffer,byte_data_ptr + (1 - *target_buffer));
     byte_data_ptr = (int8_t *)target_buffer[1];
   }
   *byte_data_ptr = temp_word1;
   buffer_ptr = (int32_t *)(target_buffer[1] + 1);
   target_buffer[1] = (longlong)buffer_ptr;
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 0x11) {
-    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (0x10 - *target_buffer));
+    System_BufferManager(target_buffer,(longlong)buffer_ptr + (0x10 - *target_buffer));
     buffer_ptr = (int32_t *)target_buffer[1];
   }
   temp_word1 = *(int32_t *)(source_buffer + 0xc);
@@ -59,7 +59,7 @@ void SerializeTransformData(longlong source_buffer, longlong *target_buffer)
   target_buffer[1] = (longlong)buffer_ptr;
   temp_word1 = *(int32_t *)(source_buffer + 0x2c);
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
-    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
+    System_BufferManager(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
     buffer_ptr = (int32_t *)target_buffer[1];
   }
   *buffer_ptr = temp_word1;
@@ -67,7 +67,7 @@ void SerializeTransformData(longlong source_buffer, longlong *target_buffer)
   target_buffer[1] = (longlong)buffer_ptr;
   temp_word1 = *(int32_t *)(source_buffer + 0x30);
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
-    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
+    System_BufferManager(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
     buffer_ptr = (int32_t *)target_buffer[1];
   }
   *buffer_ptr = temp_word1;
@@ -75,7 +75,7 @@ void SerializeTransformData(longlong source_buffer, longlong *target_buffer)
   target_buffer[1] = (longlong)buffer_ptr;
   temp_word1 = *(int32_t *)(source_buffer + 0x34);
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
-    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
+    System_BufferManager(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
     *(int32_t *)target_buffer[1] = temp_word1;
   }
   else {
@@ -428,11 +428,11 @@ uint64_t * InitializeComplexTransformObject(uint64_t *object, char param2, char 
   longlong *cleanup_ptr1;
   longlong *cleanup_ptr2;
   
-  *param_1 = &unknown_var_3552_ptr;
-  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &system_handler1_ptr;
+  *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
   *param_1 = &unknown_var_8584_ptr;
-  param_1[2] = &unknown_var_720_ptr;
+  param_1[2] = &system_state_ptr;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
   param_1[2] = &unknown_var_3432_ptr;
@@ -578,14 +578,14 @@ uint64_t * InitializeComplexTransformObject(uint64_t *object, char param2, char 
   *(int32_t *)((longlong)param_1 + 0x1ac) = 0x7f7fffff;
   *(int32_t *)(param_1 + 0x3a) = 0xffffffff;
   plVar3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,9,plVar4,plVar3);
-  *plVar3 = (longlong)&unknown_var_3552_ptr;
-  *plVar3 = (longlong)&unknown_var_3696_ptr;
+  *plVar3 = (longlong)&system_handler1_ptr;
+  *plVar3 = (longlong)&system_handler2_ptr;
   *(int32_t *)(plVar3 + 1) = 0;
   *plVar3 = (longlong)&unknown_var_7224_ptr;
-  plVar3[4] = (longlong)&unknown_var_720_ptr;
+  plVar3[4] = (longlong)&system_state_ptr;
   plVar3[5] = 0;
   *(int32_t *)(plVar3 + 6) = 0;
-  plVar3[4] = (longlong)&unknown_var_3456_ptr;
+  plVar3[4] = (longlong)&system_data_buffer_ptr;
   plVar3[7] = 0;
   plVar3[5] = 0;
   *(int32_t *)(plVar3 + 6) = 0;

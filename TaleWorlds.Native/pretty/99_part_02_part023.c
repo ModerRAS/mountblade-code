@@ -393,7 +393,7 @@ uint64_t * FUN_1800fd120(uint64_t *param_1)
   *param_1 = &unknown_var_7760_ptr;
   *param_1 = &unknown_var_7560_ptr;
   plVar2 = param_1 + 1;
-  *plVar2 = (longlong)&unknown_var_720_ptr;
+  *plVar2 = (longlong)&system_state_ptr;
   param_1[2] = 0;
   *(int32_t *)(param_1 + 3) = 0;
   *plVar2 = (longlong)&unknown_var_2008_ptr;
@@ -473,7 +473,7 @@ uint64_t * FUN_1800fd330(uint64_t *param_1,ulonglong param_2)
     (**(code **)(*(longlong *)param_1[0x47] + 0x38))();
   }
   FUN_1800fd430(param_1 + 0x25);
-  param_1[1] = &unknown_var_720_ptr;
+  param_1[1] = &system_state_ptr;
   *param_1 = &unknown_var_7760_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x378);
@@ -656,7 +656,7 @@ void FUN_1800fd5a0(longlong param_1,longlong param_2,uint64_t param_3,float para
         }
         if ((ulonglong)puVar4[2] <
             (ulonglong)(longlong)(*(int *)(param_1 + 0x298) * *(int *)(param_1 + 0x294) * 4)) {
-          FUN_180639bf0(puVar4);
+          System_BufferManager(puVar4);
         }
         puVar6 = puVar6 + 1;
         lVar3 = lVar3 + -1;
@@ -669,7 +669,7 @@ void FUN_1800fd5a0(longlong param_1,longlong param_2,uint64_t param_3,float para
         uStack_14c = 3;
         uStack_146 = 1;
         uStack_148 = 1;
-        puStack_120 = &unknown_var_7512_ptr;
+        puStack_120 = &system_config_ptr;
         puStack_118 = auStack_108;
         auStack_108[0] = 0;
         uStack_110 = 0xb;
@@ -680,8 +680,8 @@ void FUN_1800fd5a0(longlong param_1,longlong param_2,uint64_t param_3,float para
         if (plStack_178 != (longlong *)0x0) {
           (**(code **)(*plStack_178 + 0x38))();
         }
-        apuStack_f8[0] = &unknown_var_720_ptr;
-        puStack_120 = &unknown_var_720_ptr;
+        apuStack_f8[0] = &system_state_ptr;
+        puStack_120 = &system_state_ptr;
         if (plStack_140 != (longlong *)0x0) {
           (**(code **)(*plStack_140 + 0x38))();
         }
@@ -696,7 +696,7 @@ void FUN_1800fd5a0(longlong param_1,longlong param_2,uint64_t param_3,float para
         uStack_188 = 1;
         uStack_190 = 0;
         uStack_198 = 0;
-        uVar11 = FUN_1801580f0(system_system_data_config,&plStack_170,&unknown_var_7512_ptr,param_3);
+        uVar11 = FUN_1801580f0(system_system_data_config,&plStack_170,&system_config_ptr,param_3);
         FUN_180060b80(param_1 + 0x260,uVar11);
         uVar9 = uVar7;
         uVar10 = uVar7;

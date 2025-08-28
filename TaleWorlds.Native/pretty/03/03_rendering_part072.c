@@ -661,12 +661,12 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context, u
     (**(code **)(*(longlong *)resource_context[0x30] + 0x38))();
   }
   // 设置资源上下文状态
-  resource_context[0x1c] = &unknown_var_720_ptr;
-  resource_context[7] = &unknown_var_720_ptr;
+  resource_context[0x1c] = &system_state_ptr;
+  resource_context[7] = &system_state_ptr;
   temp_stack_ptr = resource_context + 3;
   FUN_1800f89b0();
-  *resource_context = &unknown_var_3696_ptr;
-  *resource_context = &unknown_var_3552_ptr;
+  *resource_context = &system_handler2_ptr;
+  *resource_context = &system_handler1_ptr;
   // 根据标志释放资源
   if ((resource_flags & 1) != 0) {
     free(resource_context, 0x188);
@@ -932,7 +932,7 @@ LAB_18030a662:
 uint64_t * render_system_resource_data_initializer(uint64_t resource_id, uint64_t *resource_data_context, uint64_t resource_config, uint64_t resource_options)
 {
   // 初始化资源数据结构
-  *resource_data_context = &unknown_var_720_ptr;
+  *resource_data_context = &system_state_ptr;
   resource_data_context[1] = 0;
   *(int32_t *)(resource_data_context + 2) = 0;
   *resource_data_context = &unknown_var_3432_ptr;

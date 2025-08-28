@@ -232,8 +232,8 @@ void FUN_1802cdda0(void **param_1,longlong param_2)
           if (aplStack_378[0] != (longlong *)0x0) {
             (**(code **)(*aplStack_378[0] + 0x38))();
           }
-          apuStack_108[0] = &unknown_var_720_ptr;
-          puStack_148 = &unknown_var_720_ptr;
+          apuStack_108[0] = &system_state_ptr;
+          puStack_148 = &system_state_ptr;
           *(uint *)(param_1[0x68] + 0x328) = *(uint *)(param_1[0x68] + 0x328) | 0x8000;
           plVar9 = (longlong *)param_1[0x68];
         }
@@ -515,7 +515,7 @@ LAB_1802ce536:
         (**(code **)(*plVar9 + 0x38))(plVar9);
       }
       ppuStack_380 = &puStack_228;
-      puStack_228 = &unknown_var_720_ptr;
+      puStack_228 = &system_state_ptr;
     }
   }
   puVar1 = param_1[0x62];

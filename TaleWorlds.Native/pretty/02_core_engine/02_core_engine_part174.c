@@ -756,10 +756,10 @@ LAB_REALLOC_DONE:
     
     // 复制现有数据
     do {
-      *temp_ptr = &unknown_var_720_ptr;
+      *temp_ptr = &system_state_ptr;
       *(uint64_t *)(copy_offset + (longlong)array_start) = 0;
       *(int32_t *)(copy_offset + 8 + (longlong)array_start) = 0;
-      *temp_ptr = &unknown_var_3456_ptr;
+      *temp_ptr = &system_data_buffer_ptr;
       *(uint64_t *)(copy_offset + 0x10 + (longlong)array_start) = 0;
       *(uint64_t *)(copy_offset + (longlong)array_start) = 0;
       *(int32_t *)(copy_offset + 8 + (longlong)array_start) = 0;
@@ -785,13 +785,13 @@ LAB_REALLOC_DONE:
   array_start = (uint64_t *)*array_ptr;
   if (array_start != array_end) {
     do {
-      *array_start = &unknown_var_3456_ptr;
+      *array_start = &system_data_buffer_ptr;
       if (array_start[1] != 0) {
         release_memory();
       }
       array_start[1] = 0;
       *(int32_t *)(array_start + 3) = 0;
-      *array_start = &unknown_var_720_ptr;
+      *array_start = &system_state_ptr;
       array_start = array_start + 5;
     } while (array_start != array_end);
     array_start = (uint64_t *)*array_ptr;
@@ -934,10 +934,10 @@ int32_t *initialize_engine_object_structure(int32_t *object_ptr, uint64_t param2
   longlong *internal_ptr;
   
   internal_ptr = (longlong *)(object_ptr + 2);
-  *internal_ptr = (longlong)&unknown_var_720_ptr;
+  *internal_ptr = (longlong)&system_state_ptr;
   *(uint64_t *)(object_ptr + 4) = 0;
   object_ptr[6] = 0;
-  *internal_ptr = (longlong)&unknown_var_3456_ptr;
+  *internal_ptr = (longlong)&system_data_buffer_ptr;
   *(uint64_t *)(object_ptr + 8) = 0;
   *(uint64_t *)(object_ptr + 4) = 0;
   object_ptr[6] = 0;

@@ -744,22 +744,22 @@ void 销毁互斥锁清理资源(uint64_t *mutex_ptr)
   }
   _Mtx_destroy_in_situ();
   *mutex_ptr = &unknown_var_5224_ptr;
-  mutex_ptr[7] = &unknown_var_3456_ptr;
+  mutex_ptr[7] = &system_data_buffer_ptr;
   if (mutex_ptr[8] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   mutex_ptr[8] = 0;
   *(int32_t *)(mutex_ptr + 10) = 0;
-  mutex_ptr[7] = &unknown_var_720_ptr;
-  mutex_ptr[1] = &unknown_var_3456_ptr;
+  mutex_ptr[7] = &system_state_ptr;
+  mutex_ptr[1] = &system_data_buffer_ptr;
   if (mutex_ptr[2] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   mutex_ptr[2] = 0;
   *(int32_t *)(mutex_ptr + 4) = 0;
-  mutex_ptr[1] = &unknown_var_720_ptr;
+  mutex_ptr[1] = &system_state_ptr;
   return;
 }
 
@@ -832,7 +832,7 @@ void 初始化线程池资源(uint64_t param1,longlong config_ptr)
   uStack_1b8 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
   lStack_210 = system_message_context;
-  puStack_1a8 = &unknown_var_7512_ptr;
+  puStack_1a8 = &system_config_ptr;
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 6;
@@ -846,7 +846,7 @@ void 初始化线程池资源(uint64_t param1,longlong config_ptr)
   FUN_18020e840(puVar3);
   FUN_18005ea90(lVar1 + 0x48,&puStack_238);
   *(uint64_t **)(lVar2 + 400) = puVar3;
-  puStack_1a8 = &unknown_var_720_ptr;
+  puStack_1a8 = &system_state_ptr;
   FUN_180627e10(system_main_module_state + 0x170,auStack_230,&system_buffer_c8c8);
   if (0 < *(int *)(param_2 + 0x10)) {
     FUN_1806277c0(auStack_230,uStack_220 + *(int *)(param_2 + 0x10));

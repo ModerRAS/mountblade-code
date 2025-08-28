@@ -398,7 +398,7 @@ LAB_1803be720:
     
 LAB_1803be7b2:
     do {
-        puStack_50 = &unknown_var_3456_ptr;
+        puStack_50 = &system_data_buffer_ptr;
         uStack_38 = 0;
         lStack_48 = 0;
         iStack_40 = 0;
@@ -510,7 +510,7 @@ LAB_1803be904:
         }
         
 LAB_1803be98e:
-        puStack_50 = &unknown_var_3456_ptr;
+        puStack_50 = &system_data_buffer_ptr;
         if (lStack_48 != 0) {
             SystemMemoryDeallocate();
         }
@@ -614,7 +614,7 @@ joined_r0x0001803beb6b:
                 plVar17 = (longlong *)SYSTEM_NULL_POINTER;
                 
                 if (uVar26 == 0) {
-                    puStack_120 = &unknown_var_3456_ptr;
+                    puStack_120 = &system_data_buffer_ptr;
                     uStack_108 = 0;
                     puStack_118 = (void *)SYSTEM_NULL_POINTER;
                     uStack_110 = 0;
@@ -658,7 +658,7 @@ joined_r0x0001803beb6b:
                         lVar15 = *(longlong *)(system_system_data_memory + SYSTEM_OFFSET_MEMORY_POOL);
                         if (lVar15 == 0) {
                             // 创建新的系统配置
-                            puStack_100 = &unknown_var_3456_ptr;
+                            puStack_100 = &system_data_buffer_ptr;
                             uStack_e8 = 0;
                             puStack_f8 = (uint64_t *)SYSTEM_NULL_POINTER;
                             uStack_f0 = 0;
@@ -672,7 +672,7 @@ joined_r0x0001803beb6b:
                             *(int8_t *)((longlong)puVar4 + 0xc) = 0;
                             uStack_f0 = 0xc;
                             SystemProcessCreate(uVar2, &puStack_100, 1);
-                            puStack_100 = &unknown_var_3456_ptr;
+                            puStack_100 = &system_data_buffer_ptr;
                             SystemMemoryDeallocate(puVar4);
                         }
                         
@@ -854,13 +854,13 @@ LAB_1803bf01b:
                     }
                     
 LAB_1803bf025:
-                    puStack_120 = &unknown_var_3456_ptr;
+                    puStack_120 = &system_data_buffer_ptr;
                     if (puStack_118 != (void *)SYSTEM_NULL_POINTER) {
                         SystemMemoryDeallocate();
                     }
                     puStack_118 = (void *)SYSTEM_NULL_POINTER;
                     uStack_108 = uStack_108 & 0xffffffff00000000;
-                    puStack_120 = &unknown_var_720_ptr;
+                    puStack_120 = &system_state_ptr;
                 } else if (uVar26 == 1) {
                     // 处理不同类型的配置操作
                     uVar2 = SystemMemoryAllocate(system_memory_pool_ptr, 0x468, 8, 3, 1, 0, iVar27, uVar28);
@@ -896,8 +896,8 @@ LAB_1803bf025:
                     plVar17 = plVar12;
                     if (uVar26 == 7) {
                         plVar17 = (longlong *)SystemMemoryAllocate(system_memory_pool_ptr, 0x298, 8, 0xd, 7, 0, iVar27, uVar28);
-                        *plVar17 = (longlong)&unknown_var_3552_ptr;
-                        *plVar17 = (longlong)&unknown_var_3696_ptr;
+                        *plVar17 = (longlong)&system_handler1_ptr;
+                        *plVar17 = (longlong)&system_handler2_ptr;
                         *(int32_t *)(plVar17 + 1) = 0;
                         *plVar17 = (longlong)&unknown_var_768_ptr;
                         *(int32_t *)(plVar17 + 2) = 4;
@@ -911,10 +911,10 @@ LAB_1803bf025:
                         plVar17[0x13] = 0;
                         plVar17[0x14] = 0;
                         plStack_80 = plVar17 + 0x27;
-                        *plStack_80 = (longlong)&unknown_var_720_ptr;
+                        *plStack_80 = (longlong)&system_state_ptr;
                         plVar17[0x28] = 0;
                         *(int32_t *)(plVar17 + 0x29) = 0;
-                        *plStack_80 = (longlong)&unknown_var_3456_ptr;
+                        *plStack_80 = (longlong)&system_data_buffer_ptr;
                         plVar17[0x2a] = 0;
                         plVar17[0x28] = 0;
                         *(int32_t *)(plVar17 + 0x29) = 0;

@@ -134,7 +134,7 @@ void FUN_180538a20(uint64_t param_1,longlong param_2,int32_t param_3)
   apuStack_628[0x6f] = &unknown_var_2424_ptr;
   apuStack_628[0x70] = &unknown_var_2080_ptr;
   apuStack_628[0x71] = &unknown_var_2008_ptr;
-  apuStack_628[0x72] = &unknown_var_2224_ptr;
+  apuStack_628[0x72] = &system_callback2_ptr;
   apuStack_628[0x73] = &unknown_var_2152_ptr;
   apuStack_628[0x74] = &unknown_var_2912_ptr;
   apuStack_628[0x75] = &unknown_var_2840_ptr;
@@ -656,7 +656,7 @@ void FUN_18053a6a0(uint64_t *param_1)
     FUN_18064e900();
   }
   if (param_1[0xf] == 0) {
-    *param_1 = &unknown_var_720_ptr;
+    *param_1 = &system_state_ptr;
     return;
   }
                     // WARNING: Subroutine does not return

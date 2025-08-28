@@ -367,13 +367,13 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
             if (plStack_118 != (longlong *)0x0) {
                 uVar26 = (**(code **)(*plStack_118 + 0x38))();
             }
-            puStack_108 = &unknown_var_3456_ptr;
+            puStack_108 = &system_data_buffer_ptr;
             if (lStack_100 != 0) {
                 FUN_18064e900();
             }
             lStack_100 = 0;
             plStack_f0 = (longlong *)((ulonglong)plStack_f0 & MEMORY_ALIGNMENT_MASK);
-            puStack_108 = &unknown_var_720_ptr;
+            puStack_108 = &system_state_ptr;
             
             // 渲染状态获取和处理
             if (*(int *)(param_1 + 0x198) == -1) {
@@ -482,7 +482,7 @@ void rendering_system_parameter_processor(longlong param_1, longlong param_2, lo
                 plVar16[0x28] = plVar16[0x28] | uVar18;
                 FUN_18022dd60(plVar16);
                 *(int16_t *)(plVar16 + 0x78) = 0xffff;
-                puStack_a8 = &unknown_var_720_ptr;
+                puStack_a8 = &system_state_ptr;
                 FUN_18022cd30(plStack_118,1,uVar3);
                 FUN_180076910(param_3);
                 if (plStack_118 != (longlong *)0x0) {

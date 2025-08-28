@@ -964,7 +964,7 @@ void FUN_180185cf0(uint64_t param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_180062300(system_message_context,&unknown_var_9856_ptr,uVar1);
   }
-  puStack_c8 = &unknown_var_720_ptr;
+  puStack_c8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_278);
 }

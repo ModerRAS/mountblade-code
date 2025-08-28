@@ -64,7 +64,7 @@ void FUN_1805521f0(longlong *param_1,longlong param_2)
   goto LAB_18055255b;
 LAB_1805522b0:
   do {
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     uStack_48 = 0;
     pbStack_58 = (byte *)0x0;
     iStack_50 = 0;
@@ -191,7 +191,7 @@ LAB_180552487:
         }
       }
     }
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     if (pbStack_58 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -254,7 +254,7 @@ LAB_18055255b:
     pcVar14 = *(char **)(pcVar14 + 0x58);
   } while( true );
 LAB_1805525b0:
-  puStack_60 = &unknown_var_3456_ptr;
+  puStack_60 = &system_data_buffer_ptr;
   uStack_48 = 0;
   pbStack_58 = (byte *)0x0;
   iStack_50 = 0;
@@ -348,7 +348,7 @@ LAB_1805526fb:
   }
 LAB_180552716:
   FUN_18054cb10((longlong)*(int *)(puVar5 + 8) * 0x170 + lVar10,pcVar14);
-  puStack_60 = &unknown_var_3456_ptr;
+  puStack_60 = &system_data_buffer_ptr;
   if (pbStack_58 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -458,7 +458,7 @@ void FUN_1805528b0(int32_t *param_1,longlong param_2)
   uint64_t uStack_28;
   
   pcVar7 = (char *)0x0;
-  puStack_40 = &unknown_var_3456_ptr;
+  puStack_40 = &system_data_buffer_ptr;
   uStack_28 = 0;
   lStack_38 = 0;
   iStack_30 = 0;
@@ -592,7 +592,7 @@ LAB_180552b7d:
       }
       *(int8_t *)(param_1 + 4) = 0;
       FUN_180631000(param_2,&unknown_var_1800_ptr);
-      puStack_40 = &unknown_var_3456_ptr;
+      puStack_40 = &system_data_buffer_ptr;
       if (lStack_38 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -888,10 +888,10 @@ FUN_180552ee0(ulonglong param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   iVar3 = 0;
   puVar2 = puVar1 + 0xd;
   do {
-    puVar2[-0xb] = (ulonglong)&unknown_var_720_ptr;
+    puVar2[-0xb] = (ulonglong)&system_state_ptr;
     puVar2[-10] = 0;
     *(int32_t *)(puVar2 + -9) = 0;
-    puVar2[-0xb] = (ulonglong)&unknown_var_3456_ptr;
+    puVar2[-0xb] = (ulonglong)&system_data_buffer_ptr;
     puVar2[-8] = 0;
     puVar2[-10] = 0;
     *(int32_t *)(puVar2 + -9) = 0;
@@ -981,14 +981,14 @@ void FUN_180553110(uint64_t *param_1)
   FUN_180057790();
   FUN_180057790();
   FUN_180057790();
-  *param_1 = &unknown_var_3456_ptr;
+  *param_1 = &system_data_buffer_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[1] = 0;
   *(int32_t *)(param_1 + 3) = 0;
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   return;
 }
 

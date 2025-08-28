@@ -347,7 +347,7 @@ LAB_1803e4fb4:
     (*(code *)(*pppppplVar11)[5])(pppppplVar11);
   }
   uVar22 = 0;
-  uStack_200 = (longlong ***)&unknown_var_3456_ptr;
+  uStack_200 = (longlong ***)&system_data_buffer_ptr;
   uStack_1e8 = (longlong ***)0x0;
   ppppplStack_1f8 = (longlong *****)0x0;
   uStack_1f0 = (longlong ***)((ulonglong)uStack_1f0 & 0xffffffff00000000);
@@ -584,7 +584,7 @@ LAB_1803e54a3:
     if (ppppppplVar20 != (longlong *******)0x0) {
       (*(code *)(*ppppppplVar20)[7])(ppppppplVar20);
     }
-    ppppplStack_138 = (longlong *****)&unknown_var_720_ptr;
+    ppppplStack_138 = (longlong *****)&system_state_ptr;
   }
   lVar26 = lStack_178;
   uVar8 = (ulonglong)iStack_184;
@@ -601,14 +601,14 @@ LAB_1803e54a3:
   if (ppppppplStack_208 != (longlong *******)0x0) {
     (*(code *)(*ppppppplStack_208)[7])();
   }
-  uStack_200 = (longlong ***)&unknown_var_3456_ptr;
+  uStack_200 = (longlong ***)&system_data_buffer_ptr;
   if (puVar12 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar12);
   }
   ppppplStack_1f8 = (longlong *****)0x0;
   uStack_1e8 = (longlong ***)((ulonglong)uStack_1e8._4_4_ << 0x20);
-  uStack_200 = (longlong ***)&unknown_var_720_ptr;
+  uStack_200 = (longlong ***)&system_state_ptr;
   (*(code *)(*pppppplVar11)[7])(pppppplVar11);
 LAB_1803e577e:
   pppppplStack_168 = &ppppplStack_1c0;

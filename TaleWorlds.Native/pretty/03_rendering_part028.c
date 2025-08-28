@@ -784,7 +784,7 @@ LAB_18028135c:
         plVar8[0x28] = plVar8[0x28] | uVar6;
         FUN_18022dd60(plVar8);
         *(int16_t *)(plVar8 + 0x78) = 0xffff;
-        puStack_a8 = &unknown_var_720_ptr;
+        puStack_a8 = &system_state_ptr;
         FUN_180076910(lVar3,&plStack_f0);
         if (plStack_f0 != (longlong *)0x0) {
           (**(code **)(*plStack_f0 + 0x38))();

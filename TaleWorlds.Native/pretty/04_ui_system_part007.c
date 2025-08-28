@@ -595,7 +595,7 @@ void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t
   item_count = current_offset;
   if (*(longlong *)(data_source + 0x10) - source_data_ptr >> 5 != 0) {
     do {
-      stack_data_buffer = &unknown_var_3456_ptr;
+      stack_data_buffer = &system_data_buffer_ptr;
       buffer_size = 0;
       string_buffer_ptr = (int8_t *)0x0;
       string_length = 0;
@@ -614,10 +614,10 @@ void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t
       data_structure_ptr = *(uint64_t **)(data_target + 8);
       if (data_structure_ptr < *(uint64_t **)(data_target + 0x10)) {
         *(uint64_t **)(data_target + 8) = data_structure_ptr + 4;
-        *data_structure_ptr = &unknown_var_720_ptr;
+        *data_structure_ptr = &system_state_ptr;
         data_structure_ptr[1] = 0;
         *(int32_t *)(data_structure_ptr + 2) = 0;
-        *data_structure_ptr = &unknown_var_3456_ptr;
+        *data_structure_ptr = &system_data_buffer_ptr;
         data_structure_ptr[3] = 0;
         data_structure_ptr[1] = 0;
         *(int32_t *)(data_structure_ptr + 2) = 0;
@@ -636,7 +636,7 @@ void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t
       else {
         FUN_180059820(data_target,&stack_data_buffer);
       }
-      stack_data_buffer = &unknown_var_3456_ptr;
+      stack_data_buffer = &system_data_buffer_ptr;
       if (string_buffer_ptr != (int8_t *)0x0) {
         FUN_18064e900();
       }

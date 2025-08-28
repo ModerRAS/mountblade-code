@@ -724,13 +724,13 @@ longlong SystemInitializer(longlong param_1, uint64_t *param_2, uint64_t param_3
     *(int8_t *)(param_1 + 0x7c) = *(int8_t *)((longlong)param_2 + 0x2c);
     *(int8_t *)(param_1 + 0x7d) = *(int8_t *)((longlong)param_2 + 0x2d);
     *(uint64_t *)(param_1 + 0x80) = param_2[6];
-    *param_2 = &unknown_var_3456_ptr;
+    *param_2 = &system_data_buffer_ptr;
     if (param_2[1] != 0) {
         FUN_18064e900();
     }
     param_2[1] = 0;
     *(int32_t *)(param_2 + 3) = 0;
-    *param_2 = &unknown_var_720_ptr;
+    *param_2 = &system_state_ptr;
     return param_1;
 }
 
@@ -764,10 +764,10 @@ void SystemConfigurationProcessor(longlong *param_1)
     
     uStack_60 = 0xfffffffffffffffe;
     uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_88;
-    *param_1 = (longlong)&unknown_var_720_ptr;
+    *param_1 = (longlong)&system_state_ptr;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
-    *param_1 = (longlong)&unknown_var_3456_ptr;
+    *param_1 = (longlong)&system_data_buffer_ptr;
     param_1[3] = 0;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
@@ -784,7 +784,7 @@ void SystemConfigurationProcessor(longlong *param_1)
         puVar1 = puStack_48;
     }
     (**(code **)(*param_1 + 0x10))(param_1, puVar1);
-    puStack_50 = &unknown_var_720_ptr;
+    puStack_50 = &system_state_ptr;
     *(int32_t *)(param_1 + 4) = 0x43700000;
     *(uint64_t *)((longlong)param_1 + 0x24) = 0x42700000;
     *(int16_t *)((longlong)param_1 + 0x2c) = 0x101;
@@ -1018,7 +1018,7 @@ joined_r0x0001806311cf:
         if (cVar2 != '\0') {
 LAB_1806311d1:
             FUN_180627340(&unknown_var_5416_ptr, &unknown_var_8824_ptr, lVar9, &unknown_var_5512_ptr, uVar14);
-            puStack_30 = &unknown_var_3456_ptr;
+            puStack_30 = &system_data_buffer_ptr;
             if (pcStack_28 != (char *)0x0) {
                 FUN_18064e900();
             }
@@ -1043,7 +1043,7 @@ LAB_1806311d1:
     }
     *puVar1 = 0;
 LAB_18063123e:
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (pcStack_28 != (char *)0x0) {
         FUN_18064e900();
     }

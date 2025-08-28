@@ -22,8 +22,8 @@ FUN_1803c6260(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 {
   *param_1 = &unknown_var_3632_ptr;
   *param_1 = &unknown_var_8336_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x30,param_3,param_4,0xfffffffffffffffe);
   }
@@ -597,7 +597,7 @@ void FUN_1803c6c90(uint64_t *param_1,longlong param_2,uint64_t *param_3,char par
                     // WARNING: Subroutine does not return
       FUN_18064e900(puVar6);
     }
-    puStack_d8 = &unknown_var_3552_ptr;
+    puStack_d8 = &system_handler1_ptr;
     goto LAB_1803c708d;
   }
   func_0x0001806d85e0(&puStack_108,*param_3,*(int32_t *)(param_3 + 1));
@@ -650,7 +650,7 @@ LAB_1803c6d98:
   puStack_138 = (ulonglong *)((ulonglong)puStack_138 & 0xffffffffffffff00);
   (**(code **)(*(longlong *)*param_1 + 0xb8))((longlong *)*param_1,&puStack_d8,&puStack_118,1);
   (**(code **)*puVar6)(puVar6);
-  puStack_108 = (uint64_t *)&unknown_var_3552_ptr;
+  puStack_108 = (uint64_t *)&system_handler1_ptr;
 LAB_1803c708d:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_78 ^ (ulonglong)auStack_158);
@@ -665,8 +665,8 @@ LAB_1803c708d:
 void FUN_1803c70d0(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_3504_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_param1_ptr;
+  *param_1 = &system_handler1_ptr;
   return;
 }
 
@@ -844,7 +844,7 @@ void FUN_1803c7100(uint64_t *param_1,longlong param_2,longlong *param_3,char par
                     // WARNING: Subroutine does not return
       FUN_18064e900(puVar8);
     }
-    uStack_d8 = &unknown_var_3552_ptr;
+    uStack_d8 = &system_handler1_ptr;
     ppuVar11 = apuStack_108;
     goto LAB_1803c75bf;
   }
@@ -918,7 +918,7 @@ LAB_1803c72e4:
   puStack_158 = (ulonglong *)CONCAT71(puStack_158._1_7_,1);
   (**(code **)(*(longlong *)*param_1 + 0xb8))((longlong *)*param_1,&uStack_d8,&puStack_140);
   (**(code **)*puVar8)(puVar8);
-  apuStack_108[0] = (uint64_t *)&unknown_var_3552_ptr;
+  apuStack_108[0] = (uint64_t *)&system_handler1_ptr;
   ppuVar11 = &puStack_128;
 LAB_1803c75bf:
   FUN_1806d84a0(ppuVar11);

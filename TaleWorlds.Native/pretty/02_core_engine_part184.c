@@ -479,7 +479,7 @@ void core_engine_data_block_cleaner(longlong *data_ptr)
         data_element = (uint64_t *)current_index;
         
         // 清理数据元素指针
-        *(uint64_t *)(current_index + 8) = &unknown_var_3456_ptr;
+        *(uint64_t *)(current_index + 8) = &system_data_buffer_ptr;
         
         // 检查数据完整性
         if (*(longlong *)(current_index + 0x10) != 0) {
@@ -490,7 +490,7 @@ void core_engine_data_block_cleaner(longlong *data_ptr)
         // 重置数据状态
         *(uint64_t *)(current_index + 0x10) = 0;
         *(int32_t *)(current_index + 0x20) = 0;
-        *(uint64_t *)(current_index + 8) = &unknown_var_720_ptr;
+        *(uint64_t *)(current_index + 8) = &system_state_ptr;
     }
     
     // 验证起始索引的有效性
@@ -548,7 +548,7 @@ void core_engine_config_parameter_processor(uint64_t config_handle, longlong par
     }
     
     // 初始化上下文和缓冲区
-    context_ptr = &unknown_var_3456_ptr;
+    context_ptr = &system_data_buffer_ptr;
     stack_data_2 = 0;
     buffer_ptr = (void *)0x0;
     stack_data_1 = 0;
@@ -608,13 +608,13 @@ PROCESS_DATA:
             if (buffer_size <= (uint)param_size) {
 FINALIZE_STRING:
                 *(int16_t *)(temp_ptr + param_size) = 10;
-                context_ptr = &unknown_var_3456_ptr;
+                context_ptr = &system_data_buffer_ptr;
                 if (stack_data_4 != 0) {
                     ErrorHandler();
                 }
                 stack_data_4 = 0;
                 stack_data_5 = 0;
-                context_ptr = &unknown_var_720_ptr;
+                context_ptr = &system_state_ptr;
                 
                 // 调用错误处理函数
                 ErrorHandler(string_buffer);
@@ -672,9 +672,9 @@ void core_engine_data_structure_manager(uint64_t struct_handle, longlong source_
     
     // 初始化结构数据
     struct_ptr[0] = 0;
-    context_ptr = &unknown_var_3456_ptr;
+    context_ptr = &system_data_buffer_ptr;
     stack_data_1 = 0;
-    stack_data_2 = &unknown_var_3456_ptr;
+    stack_data_2 = &system_data_buffer_ptr;
     stack_data_3 = 0;
     stack_data_4 = 0;
     stack_data_5 = 0;
@@ -710,17 +710,17 @@ void core_engine_data_structure_manager(uint64_t struct_handle, longlong source_
     struct_ptr = *(uint64_t **)(global_data_ptr + 8);
     if (struct_ptr < *(uint64_t **)(global_data_ptr + 0x10)) {
         *(uint64_t **)(global_data_ptr + 8) = struct_ptr + 10;
-        *struct_ptr = &unknown_var_720_ptr;
+        *struct_ptr = &system_state_ptr;
         struct_ptr[1] = 0;
         *(int32_t *)(struct_ptr + 2) = 0;
-        *struct_ptr = &unknown_var_3456_ptr;
+        *struct_ptr = &system_data_buffer_ptr;
         struct_ptr[1] = 0;
         *(int32_t *)(struct_ptr + 2) = 0;
         *(int32_t *)(struct_ptr + 2) = 0;
         struct_ptr[1] = stack_data_3;
         *(uint64_t *)(struct_ptr + 4) = 0;
         struct_ptr[6] = 0;
-        *(void **)(struct_ptr + 2) = &unknown_var_720_ptr;
+        *(void **)(struct_ptr + 2) = &system_state_ptr;
         *(uint64_t *)(struct_ptr + 8) = 0;
         *(uint64_t *)(struct_ptr + 4) = 0;
         struct_ptr[6] = 0;
@@ -739,7 +739,7 @@ void core_engine_data_structure_manager(uint64_t struct_handle, longlong source_
     }
     
     // 清理上下文数据
-    context_ptr = &unknown_var_3456_ptr;
+    context_ptr = &system_data_buffer_ptr;
     if (stack_data_3 != 0) {
         ErrorHandler();
     }
@@ -1420,10 +1420,10 @@ CONTINUE_PROCESSING:
                 
                 if (stack_ptr_11 < (uint64_t *)stack_ptr_13[2]) {
                     stack_ptr_13[1] = (longlong)(stack_ptr_11 + 4);
-                    *stack_ptr_11 = &unknown_var_720_ptr;
+                    *stack_ptr_11 = &system_state_ptr;
                     stack_ptr_11[1] = 0;
                     *(int32_t *)(stack_ptr_11 + 2) = 0;
-                    *stack_ptr_11 = &unknown_var_3456_ptr;
+                    *stack_ptr_11 = &system_data_buffer_ptr;
                     *(int32_t *)(stack_ptr_11 + 2) = 0;
                     stack_ptr_11[1] = 0;
                     *(int32_t *)((longlong)stack_ptr_11 + 0x1c) = 0;
@@ -1449,10 +1449,10 @@ ALLOCATE_MEMORY:
                     }
                     
                     stack_ptr_4 = (uint64_t *)DataSizeCalculator(stack_ptr_11, stack_ptr_11, stack_ptr_9);
-                    *stack_ptr_4 = &unknown_var_720_ptr;
+                    *stack_ptr_4 = &system_state_ptr;
                     stack_ptr_4[1] = 0;
                     *(int32_t *)(stack_ptr_4 + 2) = 0;
-                    *stack_ptr_4 = &unknown_var_3456_ptr;
+                    *stack_ptr_4 = &system_data_buffer_ptr;
                     *(int32_t *)(stack_ptr_4 + 2) = 0;
                     stack_ptr_4[1] = 0;
                     *(int32_t *)((longlong)stack_ptr_4 + 0x1c) = 0;
@@ -1488,7 +1488,7 @@ ALLOCATE_MEMORY:
         
         stack_ptr_11 = stack_ptr_1;
         stack_ptr_2 = stack_ptr_2;
-        stack_ptr_16 = &unknown_var_3456_ptr;
+        stack_ptr_16 = &system_data_buffer_ptr;
         
         if (stack_ptr_16 != (char *)0x0) {
             ErrorHandler();
@@ -1496,7 +1496,7 @@ ALLOCATE_MEMORY:
         
         stack_ptr_16 = (char *)0x0;
         stack_data_5 = 0;
-        stack_ptr_16 = &unknown_var_720_ptr;
+        stack_ptr_16 = &system_state_ptr;
         stack_ptr_2 = stack_ptr_13;
         stack_ptr_4 = stack_ptr_2;
         
@@ -1520,7 +1520,7 @@ ALLOCATE_MEMORY:
             ErrorHandler(stack_ptr_2);
         }
         
-        stack_ptr_15 = &unknown_var_3456_ptr;
+        stack_ptr_15 = &system_data_buffer_ptr;
         
         if (stack_data_12 != 0) {
             ErrorHandler();

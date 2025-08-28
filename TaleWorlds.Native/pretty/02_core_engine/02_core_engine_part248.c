@@ -547,7 +547,7 @@ void generate_error_report(longlong error_context)
   if (error_code == 0) {
     return;
   }
-  output_stream = &unknown_var_3456_ptr;
+  output_stream = &system_data_buffer_ptr;
   system_handle = 0;
   report_buffer = (uint64_t *)0x0;
   buffer_capacity = 0;
@@ -709,7 +709,7 @@ FINALIZE_REPORT:
   }
   buffer_capacity = error_code;
   log_error_message(system_message_context,0,0x1000000000000,3,message_buffer);
-  output_stream = &unknown_var_3456_ptr;
+  output_stream = &system_data_buffer_ptr;
   if (report_buffer == (uint64_t *)0x0) {
     return;
   }

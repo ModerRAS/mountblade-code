@@ -904,7 +904,7 @@ void FUN_18043ef90(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     puVar2 = puStack_28;
   }
   (*pcVar1)((longlong *)(param_1 + 0x288),puVar2,pcVar1,param_4,uVar3);
-  puStack_30 = &unknown_var_3456_ptr;
+  puStack_30 = &system_data_buffer_ptr;
   if (puStack_28 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -927,14 +927,14 @@ ulonglong FUN_18043f010(longlong param_1,uint64_t param_2,uint64_t param_3,uint6
   uint64_t uStack_18;
   
   if (*(longlong *)(param_1 + 0x268) == 0) {
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     uStack_18 = 0;
     lStack_28 = 0;
     uStack_20 = 0;
     uVar1 = (**(code **)(*system_cache_buffer + 0x70))
                       (system_cache_buffer,&puStack_30,param_3,param_4,0xfffffffffffffffe);
     uVar2 = (ulonglong)uVar1;
-    puStack_30 = &unknown_var_3456_ptr;
+    puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();

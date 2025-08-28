@@ -17,8 +17,8 @@
 
 /* 全局变量和常量 */
 #define GLOBAL_ENGINE_VTABLE_1 (&unknown_var_7040_ptr)
-#define GLOBAL_ENGINE_VTABLE_2 (&unknown_var_3696_ptr)
-#define GLOBAL_ENGINE_VTABLE_3 (&unknown_var_3552_ptr)
+#define GLOBAL_ENGINE_VTABLE_2 (&system_handler2_ptr)
+#define GLOBAL_ENGINE_VTABLE_3 (&system_handler1_ptr)
 #define GLOBAL_EVENT_SYSTEM_HANDLE (core_system_data_string)
 #define GLOBAL_MEMORY_ALLOCATOR (system_memory_pool_ptr)
 #define GLOBAL_EVENT_MANAGER (system_cache_buffer)
@@ -92,13 +92,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     FUN_18004b730();  // 清理图形设备
     
     // 设置渲染目标为默认状态
-    engine_context[0xc169] = &unknown_var_3456_ptr;
+    engine_context[0xc169] = &system_data_buffer_ptr;
     if (engine_context[0xc16a] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0xc16a] = 0;
     *(int32_t *)(engine_context + 0xc16c) = 0;
-    engine_context[0xc169] = &unknown_var_720_ptr;
+    engine_context[0xc169] = &system_state_ptr;
     
     // 清理渲染管线
     FUN_180196de0(engine_context + 0xc11e);
@@ -133,13 +133,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     // 重置音频缓冲区
-    engine_context[0x103a] = &unknown_var_3456_ptr;
+    engine_context[0x103a] = &system_data_buffer_ptr;
     if (engine_context[0x103b] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x103b] = 0;
     *(int32_t *)(engine_context + 0x103d) = 0;
-    engine_context[0x103a] = &unknown_var_720_ptr;
+    engine_context[0x103a] = &system_state_ptr;
     
     // 多次清理内存池
     FUN_180057830();
@@ -178,13 +178,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     FUN_1800e7c40(engine_context + 0x7ed);
     
     // 重置物理世界状态
-    engine_context[0x7da] = &unknown_var_3456_ptr;
+    engine_context[0x7da] = &system_data_buffer_ptr;
     if (engine_context[0x7db] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x7db] = 0;
     *(int32_t *)(engine_context + 0x7dd) = 0;
-    engine_context[0x7da] = &unknown_var_720_ptr;
+    engine_context[0x7da] = &system_state_ptr;
     
     if (engine_context[0x7ce] != 0) {
         FUN_18064e900();  // 触发错误处理
@@ -219,13 +219,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     FUN_1801c0df0(engine_context + 0x519);
     
     // 重置着色器程序状态
-    engine_context[0x512] = &unknown_var_3456_ptr;
+    engine_context[0x512] = &system_data_buffer_ptr;
     if (engine_context[0x513] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x513] = 0;
     *(int32_t *)(engine_context + 0x515) = 0;
-    engine_context[0x512] = &unknown_var_720_ptr;
+    engine_context[0x512] = &system_state_ptr;
     
     if (engine_context[0x50e] != 0) {
         FUN_18064e900();  // 触发错误处理
@@ -252,13 +252,13 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     // 重置脚本引擎状态
-    engine_context[0x4f9] = &unknown_var_3456_ptr;
+    engine_context[0x4f9] = &system_data_buffer_ptr;
     if (engine_context[0x4fa] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x4fa] = 0;
     *(int32_t *)(engine_context + 0x4fc) = 0;
-    engine_context[0x4f9] = &unknown_var_720_ptr;
+    engine_context[0x4f9] = &system_state_ptr;
     
     // 清理线程同步对象
     _Mtx_destroy_in_situ();
@@ -277,40 +277,40 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     // 重置UI渲染器状态
-    engine_context[0xa4] = &unknown_var_3456_ptr;
+    engine_context[0xa4] = &system_data_buffer_ptr;
     if (engine_context[0xa5] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0xa5] = 0;
     *(int32_t *)(engine_context + 0xa7) = 0;
-    engine_context[0xa4] = &unknown_var_720_ptr;
+    engine_context[0xa4] = &system_state_ptr;
     
     // 重置字体系统状态
-    engine_context[0xa0] = &unknown_var_3456_ptr;
+    engine_context[0xa0] = &system_data_buffer_ptr;
     if (engine_context[0xa1] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0xa1] = 0;
     *(int32_t *)(engine_context + 0xa3) = 0;
-    engine_context[0xa0] = &unknown_var_720_ptr;
+    engine_context[0xa0] = &system_state_ptr;
     
     // 重置文本渲染器状态
-    engine_context[0x9b] = &unknown_var_3456_ptr;
+    engine_context[0x9b] = &system_data_buffer_ptr;
     if (engine_context[0x9c] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x9c] = 0;
     *(int32_t *)(engine_context + 0xa7) = 0;
-    engine_context[0x9b] = &unknown_var_720_ptr;
+    engine_context[0x9b] = &system_state_ptr;
     
     // 重置窗口系统状态
-    engine_context[0x91] = &unknown_var_3456_ptr;
+    engine_context[0x91] = &system_data_buffer_ptr;
     if (engine_context[0x92] != 0) {
         FUN_18064e900();  // 触发错误处理
     }
     engine_context[0x92] = 0;
     *(int32_t *)(engine_context + 0x94) = 0;
-    engine_context[0x91] = &unknown_var_720_ptr;
+    engine_context[0x91] = &system_state_ptr;
     
     // 清理其他系统组件
     if ((longlong *)engine_context[0x77] != (longlong *)0x0) {
@@ -950,7 +950,7 @@ void destroy_game_entity(longlong entity_system, longlong *entity_ptr, uint64_t 
         }
     }
     else {
-        FUN_180626f80(&unknown_var_2360_ptr);  // 触发实体销毁错误
+        FUN_180626f80(&system_param2_ptr);  // 触发实体销毁错误
     }
     
     // 调用实体销毁方法

@@ -385,7 +385,7 @@ longlong* rendering_system_array_data_copy(longlong** dest_ptr, longlong* src_st
             dest_data[0xb] = float_value2;
             
             // 设置虚函数表
-            *(void **)(dest_data + 0xc) = &unknown_var_720_ptr;
+            *(void **)(dest_data + 0xc) = &system_state_ptr;
             *(uint64_t *)(dest_data + 0xe) = 0;
             dest_data[0x10] = 0;
             
@@ -866,12 +866,12 @@ void rendering_system_empty_operation(void) {
  */
 uint64_t* rendering_system_object_initializer(uint64_t param_1, uint64_t* param_2) {
     // 设置第一组虚函数表
-    *param_2 = &unknown_var_720_ptr;
+    *param_2 = &system_state_ptr;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
     
     // 设置第二组虚函数表
-    *param_2 = &unknown_var_3456_ptr;
+    *param_2 = &system_data_buffer_ptr;
     param_2[3] = 0;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;

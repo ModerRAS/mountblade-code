@@ -80,8 +80,8 @@ FUN_1804857a0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
   if ((longlong *)param_1[0x2a] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x2a] + 0x38))();
   }
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x160,param_3,param_4,uVar1);
   }
@@ -997,68 +997,68 @@ FUN_180485a80(longlong *param_1,longlong param_2,float *param_3,float *param_4,f
   if (plStack_2e0 != (longlong *)0x0) {
     (**(code **)(*plStack_2e0 + 0x38))();
   }
-  puStack_1e8 = &unknown_var_3456_ptr;
+  puStack_1e8 = &system_data_buffer_ptr;
   if (lStack_1e0 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_1e0 = 0;
   uStack_1d0 = 0;
-  puStack_1e8 = &unknown_var_720_ptr;
-  puStack_1c8 = &unknown_var_3456_ptr;
+  puStack_1e8 = &system_state_ptr;
+  puStack_1c8 = &system_data_buffer_ptr;
   if (lStack_1c0 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_1c0 = 0;
   uStack_1b0 = 0;
-  puStack_1c8 = &unknown_var_720_ptr;
-  puStack_1a8 = &unknown_var_3456_ptr;
+  puStack_1c8 = &system_state_ptr;
+  puStack_1a8 = &system_data_buffer_ptr;
   if (lStack_1a0 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_1a0 = 0;
   uStack_190 = 0;
-  puStack_1a8 = &unknown_var_720_ptr;
-  puStack_188 = &unknown_var_3456_ptr;
+  puStack_1a8 = &system_state_ptr;
+  puStack_188 = &system_data_buffer_ptr;
   if (lStack_180 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_180 = 0;
   uStack_170 = 0;
-  puStack_188 = &unknown_var_720_ptr;
-  puStack_168 = &unknown_var_3456_ptr;
+  puStack_188 = &system_state_ptr;
+  puStack_168 = &system_data_buffer_ptr;
   if (lStack_160 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_160 = 0;
   uStack_150 = 0;
-  puStack_168 = &unknown_var_720_ptr;
-  puStack_208 = &unknown_var_3456_ptr;
+  puStack_168 = &system_state_ptr;
+  puStack_208 = &system_data_buffer_ptr;
   if (lStack_200 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_200 = 0;
   uStack_1f0 = 0;
-  puStack_208 = &unknown_var_720_ptr;
-  puStack_148 = &unknown_var_3456_ptr;
+  puStack_208 = &system_state_ptr;
+  puStack_148 = &system_data_buffer_ptr;
   if (lStack_140 == 0) {
     lStack_140 = 0;
     uStack_130 = 0;
-    puStack_148 = &unknown_var_720_ptr;
-    puStack_128 = &unknown_var_3456_ptr;
+    puStack_148 = &system_state_ptr;
+    puStack_128 = &system_data_buffer_ptr;
     if (lStack_120 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_120 = 0;
     uStack_110 = 0;
-    puStack_128 = &unknown_var_720_ptr;
-    puStack_108 = &unknown_var_3456_ptr;
+    puStack_128 = &system_state_ptr;
+    puStack_108 = &system_data_buffer_ptr;
     if (lStack_100 == 0) {
       return param_1;
     }
@@ -1293,23 +1293,23 @@ FUN_1804871c0(longlong *param_1,longlong param_2,uint64_t *param_3,int32_t *para
   }
   (**(code **)(*plVar5 + 0x38))(plVar5);
   (**(code **)(*plVar3 + 0x38))(plVar3);
-  puStack_100 = &unknown_var_3456_ptr;
+  puStack_100 = &system_data_buffer_ptr;
   if (lStack_f8 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_f8 = 0;
   uStack_e8 = 0;
-  puStack_100 = &unknown_var_720_ptr;
-  puStack_e0 = &unknown_var_3456_ptr;
+  puStack_100 = &system_state_ptr;
+  puStack_e0 = &system_data_buffer_ptr;
   if (lStack_d8 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_d8 = 0;
   uStack_c8 = 0;
-  puStack_e0 = &unknown_var_720_ptr;
-  puStack_c0 = &unknown_var_3456_ptr;
+  puStack_e0 = &system_state_ptr;
+  puStack_c0 = &system_data_buffer_ptr;
   if (lStack_b8 == 0) {
     return param_1;
   }

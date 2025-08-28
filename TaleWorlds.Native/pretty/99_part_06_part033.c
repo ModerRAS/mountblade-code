@@ -142,7 +142,7 @@ void FUN_1803c51c0(uint64_t param_1,longlong *param_2,int param_3)
   plStack_98 = param_2;
   strcpy_s(auStack_70,0x40,&system_data_fc60);
   FUN_1802037e0();
-  puStack_88 = &unknown_var_720_ptr;
+  puStack_88 = &system_state_ptr;
   uVar2 = FUN_18062b1e0(system_memory_pool_ptr,param_3,0x10,0x21);
   FUN_1803c52f0(uVar1,param_2);
   *(uint64_t *)(*param_2 + 0x10) = uVar2;
@@ -176,8 +176,8 @@ uint64_t * FUN_1803c52f0(longlong param_1,uint64_t *param_2)
   lVar1 = *(longlong *)(param_1 + 200);
   if (*(longlong *)(param_1 + 0xc0) == lVar1) {
     plVar3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,0x20,uVar4,uVar5);
-    *plVar3 = (longlong)&unknown_var_3552_ptr;
-    *plVar3 = (longlong)&unknown_var_3696_ptr;
+    *plVar3 = (longlong)&system_handler1_ptr;
+    *plVar3 = (longlong)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
     *plVar3 = (longlong)&unknown_var_6544_ptr;
     plVar3[2] = 0;
@@ -194,8 +194,8 @@ uint64_t * FUN_1803c52f0(longlong param_1,uint64_t *param_2)
     plVar3[2] = -0x5a5a5a5a5a5a5a5b;
     plVar3[3] = -0x5a5a5a5a5a5a5a5b;
     plVar3[4] = -0x5a5a5a5a5a5a5a5b;
-    *plVar3 = (longlong)&unknown_var_3552_ptr;
-    *plVar3 = (longlong)&unknown_var_3696_ptr;
+    *plVar3 = (longlong)&system_handler1_ptr;
+    *plVar3 = (longlong)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
     *plVar3 = (longlong)&unknown_var_6544_ptr;
     plVar3[2] = 0;
@@ -444,14 +444,14 @@ FUN_1803c57f0(longlong *param_1,uint64_t *param_2,longlong *param_3,uint64_t par
   param_2[2] = puVar4[2];
   *(int8_t *)(param_2 + 3) = *(int8_t *)(puVar4 + 3);
   FUN_18005d190(param_2 + 4,puVar4 + 4);
-  puStack_48 = &unknown_var_3456_ptr;
+  puStack_48 = &system_data_buffer_ptr;
   if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_40 = 0;
   uStack_30 = 0;
-  puStack_48 = &unknown_var_720_ptr;
+  puStack_48 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(plVar2);
 }
@@ -1114,8 +1114,8 @@ uint64_t * FUN_1803c6190(uint64_t *param_1,uint64_t param_2)
 {
   int32_t *puVar1;
   
-  *param_1 = &unknown_var_3552_ptr;
-  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &system_handler1_ptr;
+  *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
   *param_1 = &unknown_var_8336_ptr;
   param_1[2] = 0;

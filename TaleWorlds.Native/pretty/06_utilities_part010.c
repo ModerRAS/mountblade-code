@@ -252,7 +252,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
         process_result = validation_result;
         if (*(char *)(temp_context_2 + 0x29) != '\0') {
           resource_count = 0;
-          resource_handler = &unknown_var_9776_ptr;
+          resource_handler = &system_string2_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
           cleanup_result = FUN_180897520(system_context,&resource_handler);
@@ -309,7 +309,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
         process_result = validation_result;
         if (*(char *)(temp_context_2 + 0x29) != '\0') {
           resource_count = 0;
-          resource_handler = &unknown_var_9776_ptr;
+          resource_handler = &system_string2_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
           cleanup_result = FUN_180897520(system_context,&resource_handler);
@@ -366,7 +366,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
         process_result = validation_result;
         if (*(char *)(temp_context_2 + 0x29) != '\0') {
           resource_count = 0;
-          resource_handler = &unknown_var_9776_ptr;
+          resource_handler = &system_string2_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
           cleanup_result = FUN_180897520(system_context,&resource_handler);
@@ -423,7 +423,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
         process_result = validation_result;
         if (*(char *)(temp_context_2 + 0x29) != '\0') {
           resource_count = 0;
-          resource_handler = &unknown_var_9776_ptr;
+          resource_handler = &system_string2_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
           cleanup_result = FUN_180897520(system_context,&resource_handler);
@@ -575,7 +575,7 @@ void UtilitiesSystem_StateManager(void)
         
         if (*(char *)(context_2 + 0x29) != '\0') {
           stack_value = 0;
-          stack_handler = &unknown_var_9776_ptr;
+          stack_handler = &system_string2_ptr;
           stack_config = stack_param;
           stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
           validation_result = FUN_180897520(transform_result,&stack_handler);
@@ -638,7 +638,7 @@ void UtilitiesSystem_StateManager(void)
         
         if (*(char *)(context_2 + 0x29) != '\0') {
           stack_value = 0;
-          stack_handler = &unknown_var_9776_ptr;
+          stack_handler = &system_string2_ptr;
           stack_config = stack_param;
           stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
           validation_result = FUN_180897520(transform_result,&stack_handler);

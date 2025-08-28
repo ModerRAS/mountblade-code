@@ -920,7 +920,7 @@ void register_system_debugging_components_third(void)
 int system_initialization_main(void)
 {
     /* 初始化系统全局状态 */
-    init_system_control_file = &unknown_var_7512_ptr;
+    init_system_control_file = &system_config_ptr;
     init_system_control_file = &system_buffer_64e8;
     
     /* 注册所有系统组件 */

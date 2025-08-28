@@ -1023,7 +1023,7 @@ void rendering_system_process_render_state(longlong *state_ptr, uint64_t param_1
         
         // 获取状态值
         state_flag = *(int32_t *)(state_data + 0xc);
-        system_status = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
+        system_status = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
         
         // 处理状态清理
         if ((system_status != '\0') &&
@@ -1130,7 +1130,7 @@ void rendering_system_cleanup_render_resources(void)
         
         // 处理状态标志
         status_flag = *(int32_t *)(state_data + 0xc);
-        system_status = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
+        system_status = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
         
         // 验证系统状态
         if ((system_status != '\0') && 
@@ -1228,7 +1228,7 @@ void rendering_system_reset_render_state(uint context_param)
       
       // 处理状态标志
       status_flag = *(int32_t *)(state_data + 0xc);
-      system_status = FUN_180645c10(0x180c95578, 0, &unknown_var_3504_ptr);
+      system_status = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
       
       // 验证系统状态
       if ((system_status != '\0') && 

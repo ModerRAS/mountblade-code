@@ -841,7 +841,7 @@ context_setup_complete:
         resource_manager[0x28] = resource_manager[0x28] | hash_key;
         FUN_18022dd60(resource_manager);
         *(int16_t *)(resource_manager + 0x78) = 0xffff;
-        temp_ptr = &unknown_var_720_ptr;
+        temp_ptr = &system_state_ptr;
         FUN_180076910(config_data, &temp_context);
         if (temp_context != (longlong *)0x0) {
           (**(code **)(*temp_context + 0x38))();

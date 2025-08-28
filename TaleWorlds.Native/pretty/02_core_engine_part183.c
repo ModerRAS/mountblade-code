@@ -275,8 +275,8 @@ typedef void (*code)(void);
 /* FUN_180162220 - 初始化参数处理函数 */
 #define InitParameterProcessor FUN_180162220
 
-/* FUN_180628040 - 浮点数据处理函数 */
-#define FloatDataProcessor FUN_180628040
+/* System_DataHandler - 浮点数据处理函数 */
+#define FloatDataProcessor System_DataHandler
 
 /* FUN_180627d90 - 参数处理函数 */
 #define ParameterProcessor FUN_180627d90

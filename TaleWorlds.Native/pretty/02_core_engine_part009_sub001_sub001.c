@@ -114,10 +114,10 @@ uint64_t FUN_180043720(void)
   int *piVar2;
   
   lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(uint64_t *)(lVar1 + 0x18) = &unknown_var_720_ptr;
+  *(uint64_t *)(lVar1 + 0x18) = &system_state_ptr;
   *(uint64_t *)(lVar1 + 0x20) = 0;
   *(int32_t *)(lVar1 + 0x28) = 0;
-  *(uint64_t *)(lVar1 + 0x18) = &unknown_var_3456_ptr;
+  *(uint64_t *)(lVar1 + 0x18) = &system_data_buffer_ptr;
   *(uint64_t *)(lVar1 + 0x30) = 0;
   *(uint64_t *)(lVar1 + 0x20) = 0;
   *(int32_t *)(lVar1 + 0x28) = 0;
@@ -583,8 +583,8 @@ LAB_180043e47:
   FUN_1800466d0(*(uint64_t *)(param_1 + 0x20));
   if (*(char *)(system_main_module_state + 0x1ed) != '\0') {
     plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,3);
-    *plVar2 = (longlong)&unknown_var_3552_ptr;
-    *plVar2 = (longlong)&unknown_var_3696_ptr;
+    *plVar2 = (longlong)&system_handler1_ptr;
+    *plVar2 = (longlong)&system_handler2_ptr;
     *(int32_t *)(plVar2 + 1) = 0;
     *plVar2 = (longlong)&unknown_var_1000_ptr;
     LOCK();
@@ -613,8 +613,8 @@ FUN_180043f30(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 {
   *param_1 = &unknown_var_864_ptr;
   *param_1 = &unknown_var_1000_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x28,param_3,param_4,0xfffffffffffffffe);
   }
@@ -645,7 +645,7 @@ void FUN_180043f90(void)
 void FUN_180044a30(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   return;
 }
 
@@ -718,11 +718,11 @@ void FUN_180044a50(void)
     (*pcVar2)(puVar1,&plStack_208);
     (**(code **)(*plVar6 + 0x38))(plVar6);
     FUN_1800624c0();
-    puStack_1d8 = &unknown_var_3456_ptr;
+    puStack_1d8 = &system_data_buffer_ptr;
     uStack_1c0 = 0;
     puStack_1d0 = (void *)0x0;
     uStack_1c8 = 0;
-    puStack_1f8 = &unknown_var_3456_ptr;
+    puStack_1f8 = &system_data_buffer_ptr;
     uStack_1e0 = 0;
     puStack_1f0 = (void *)0x0;
     uStack_1e8 = 0;
@@ -776,31 +776,31 @@ LAB_180044db8:
     puStack_228 = &unknown_var_232_ptr;
     FUN_1800623b0(system_message_context,5,0xffffffffffffffff,4);
     uStack_200 = 0;
-    puStack_188 = &unknown_var_720_ptr;
-    puStack_1f8 = &unknown_var_3456_ptr;
+    puStack_188 = &system_state_ptr;
+    puStack_1f8 = &system_data_buffer_ptr;
     if (puStack_1f0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_1f0 = (void *)0x0;
     uStack_1e0 = uStack_1e0 & 0xffffffff00000000;
-    puStack_1f8 = &unknown_var_720_ptr;
-    puStack_1d8 = &unknown_var_3456_ptr;
+    puStack_1f8 = &system_state_ptr;
+    puStack_1d8 = &system_data_buffer_ptr;
     if (puStack_1d0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_1d0 = (void *)0x0;
     uStack_1c0 = uStack_1c0 & 0xffffffff00000000;
-    puStack_1d8 = &unknown_var_720_ptr;
-    puStack_1b8 = &unknown_var_3456_ptr;
+    puStack_1d8 = &system_state_ptr;
+    puStack_1b8 = &system_data_buffer_ptr;
     if (lStack_1b0 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     lStack_1b0 = 0;
     uStack_1a0 = 0;
-    puStack_1b8 = &unknown_var_720_ptr;
+    puStack_1b8 = &system_state_ptr;
   }
   uStack_200 = 0;
                     // WARNING: Subroutine does not return
@@ -881,7 +881,7 @@ void FUN_180044dc0(uint64_t param_1,longlong param_2)
     lVar7 = LoadLibraryA(&unknown_var_3528_ptr);
     plVar6[0xb] = lVar7;
     if (lVar7 != 0) goto LAB_180044ee3;
-    puStack_b8 = &unknown_var_3456_ptr;
+    puStack_b8 = &system_data_buffer_ptr;
     if (puStack_b0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -890,10 +890,10 @@ void FUN_180044dc0(uint64_t param_1,longlong param_2)
   else {
 LAB_180044ee3:
     if (plVar6[0xc] == 0) {
-      lVar7 = GetProcAddress(lVar7,&unknown_var_3504_ptr);
+      lVar7 = GetProcAddress(lVar7,&system_param1_ptr);
       plVar6[0xc] = lVar7;
       if (lVar7 == 0) {
-        puStack_b8 = &unknown_var_3456_ptr;
+        puStack_b8 = &system_data_buffer_ptr;
         if (puStack_b0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
@@ -907,7 +907,7 @@ LAB_180044ee3:
     }
     iVar2 = SymInitialize(core_system_memory,puVar13,1);
     if (iVar2 == 0) {
-      puStack_b8 = &unknown_var_3456_ptr;
+      puStack_b8 = &system_data_buffer_ptr;
       if (puStack_b0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -915,7 +915,7 @@ LAB_180044ee3:
     }
     else {
       *(char *)plVar6 = '\x01';
-      puStack_b8 = &unknown_var_3456_ptr;
+      puStack_b8 = &system_data_buffer_ptr;
       if (puStack_b0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -925,7 +925,7 @@ LAB_180044ee3:
 LAB_180044f8f:
   uStack_a0 = 0;
   puStack_b0 = (void *)0x0;
-  puStack_b8 = &unknown_var_720_ptr;
+  puStack_b8 = &system_state_ptr;
   iVar2 = _Mtx_unlock(pplVar1);
   if (iVar2 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar2);
@@ -978,7 +978,7 @@ void FUN_180045380(void)
   int32_t uStack_58;
   uint64_t uStack_50;
   
-  puStack_68 = &unknown_var_3456_ptr;
+  puStack_68 = &system_data_buffer_ptr;
   uStack_50 = 0;
   puStack_60 = (uint64_t *)0x0;
   uStack_58 = 0;
@@ -991,7 +991,7 @@ void FUN_180045380(void)
   uStack_58 = 7;
   uVar1 = GetCurrentThread();
   FUN_180623fd0(uVar1,&puStack_68);
-  puStack_68 = &unknown_var_3456_ptr;
+  puStack_68 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar3);
 }
@@ -1285,7 +1285,7 @@ uint64_t *
 FUN_180045d80(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x1018,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1327,7 +1327,7 @@ uint64_t *
 FUN_180045ea0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x418,param_3,param_4,0xfffffffffffffffe);
   }

@@ -479,14 +479,14 @@ void initialize_data_structure(uint64_t *param_1)
 
 {
   FUN_180211720(param_1 + 4);
-  *param_1 = &unknown_var_3456_ptr;
+  *param_1 = &system_data_buffer_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[1] = 0;
   *(int32_t *)(param_1 + 3) = 0;
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   return;
 }
 
@@ -671,7 +671,7 @@ void process_configuration_file(longlong param_1)
         line_length = char_index;
       } while (line_buffer[index] != '\0');
       if (char_index != 0) {
-        FUN_18010cbc0(line_buffer, &unknown_var_3504_ptr, temp_buffer2, processed_line + 1);
+        FUN_18010cbc0(line_buffer, &system_param1_ptr, temp_buffer2, processed_line + 1);
         string_len = 0xffffffffffffffff;
         do {
           config_name_len = string_len;
@@ -710,7 +710,7 @@ void process_configuration_file(longlong param_1)
           }
         }
 LAB_18021a863:
-        config_ptr = &unknown_var_720_ptr;
+        config_ptr = &system_state_ptr;
       }
       stream_state = stream_flags[*(int *)(stream_handle[0] + 4)];
     }
@@ -798,14 +798,14 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
     }
     buffer_size2 = string_size;
     FUN_180626f80(&unknown_var_5040_ptr, default_ptr);
-    string_ptr = &unknown_var_3456_ptr;
+    string_ptr = &system_data_buffer_ptr;
     if (data_offset != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     data_offset = 0;
     stack_flag = 0;
-    string_ptr = &unknown_var_720_ptr;
+    string_ptr = &system_state_ptr;
   }
   else {
     buffer_size = 0;
@@ -817,7 +817,7 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
     _fseeki64(file_handle, 0, 2);
     file_size = _ftelli64(file_handle);
     _fseeki64(file_handle, file_pos, 0);
-    FUN_180639bf0(&buffer_size, file_size);
+    System_BufferManager(&buffer_size, file_size);
     fread(file_data, 1, file_size, file_handle);
     fclose(file_handle);
     temp_long2 = 0;
@@ -830,7 +830,7 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
     if ((ushort)string_size != 0) {
       entry_count = (ulonglong)(ushort)string_size;
       do {
-        temp_data_ptr = &unknown_var_3456_ptr;
+        temp_data_ptr = &system_data_buffer_ptr;
         entry_index = 0;
         temp_long = 0;
         temp_flag = 0;
@@ -854,14 +854,14 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
         else {
           FUN_1802195b0(param_1 + 0x280, &temp_data_ptr);
         }
-        temp_data_ptr = &unknown_var_3456_ptr;
+        temp_data_ptr = &system_data_buffer_ptr;
         if (temp_long != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         temp_long = 0;
         entry_index = entry_index & 0xffffffff00000000;
-        temp_data_ptr = &unknown_var_720_ptr;
+        temp_data_ptr = &system_state_ptr;
         entry_count = entry_count - 1;
       } while (entry_count != 0);
     }
@@ -871,7 +871,7 @@ void process_resource_file(longlong param_1, uint64_t param_2, uint64_t param_3,
       FUN_18064e900();
     }
   }
-  cleanup_ptr = &unknown_var_3456_ptr;
+  cleanup_ptr = &system_data_buffer_ptr;
   if (file_ptr != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -1233,7 +1233,7 @@ void initialize_message_system(void)
     if (*(longlong *)(*system_main_module_state + 0x890) - queue_start >> 5 == 0) {
       queue_start = FUN_180628ca0();
     }
-    message_ptr = &unknown_var_3456_ptr;
+    message_ptr = &system_data_buffer_ptr;
     message_timeout = 0;
     message_buffer = (uint64_t *)0x0;
     message_count = 0;
@@ -1248,7 +1248,7 @@ void initialize_message_system(void)
     *(int8_t *)((longlong)message_handler + 0xe) = 0;
     message_count = 0xe;
     FUN_180627ce0(queue_start, stack_buffer2, &message_ptr);
-    message_ptr = &unknown_var_3456_ptr;
+    message_ptr = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
     FUN_18064e900(message_handler);
   }

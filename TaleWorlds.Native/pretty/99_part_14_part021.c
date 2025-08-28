@@ -215,7 +215,7 @@ ulonglong FUN_1808fc074(uint64_t param_1,int param_2,longlong param_3)
       FUN_1808fd5e4();
       iVar6 = _initterm_e(&unknown_var_6104_ptr,&unknown_var_6120_ptr);
       if ((iVar6 == 0) && (cVar4 = FUN_1808fc490(), cVar4 != '\0')) {
-        _initterm(&unknown_var_2224_ptr,&unknown_var_6072_ptr);
+        _initterm(&system_callback2_ptr,&unknown_var_6072_ptr);
         system_system_data_config = 2;
         bVar2 = false;
       }
@@ -266,7 +266,7 @@ uint64_t FUN_1808fc0c4(uint64_t param_1,uint64_t param_2)
       FUN_1808fd5e4();
       iVar5 = _initterm_e(&unknown_var_6104_ptr,&unknown_var_6120_ptr);
       if ((iVar5 == 0) && (cVar3 = FUN_1808fc490(), cVar3 != '\0')) {
-        _initterm(&unknown_var_2224_ptr,&unknown_var_6072_ptr);
+        _initterm(&system_callback2_ptr,&unknown_var_6072_ptr);
         system_system_data_config = 2;
         bVar2 = false;
       }

@@ -686,10 +686,10 @@ uint64_t * FUN_1803739d0(uint64_t *param_1,int32_t param_2,longlong param_3)
   void *puVar2;
   
   plVar1 = param_1 + 2;
-  *plVar1 = (longlong)&unknown_var_720_ptr;
+  *plVar1 = (longlong)&system_state_ptr;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  *plVar1 = (longlong)&unknown_var_3456_ptr;
+  *plVar1 = (longlong)&system_data_buffer_ptr;
   param_1[5] = 0;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;

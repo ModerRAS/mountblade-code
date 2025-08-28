@@ -86,7 +86,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
   uVar2 = *data_context;
   puVar5 = (int32_t *)buffer_context[1];
   if ((ulonglong)((*buffer_context - (longlong)puVar5) + buffer_context[2]) < 5) {
-    FUN_180639bf0(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
+    System_BufferManager(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
     puVar5 = (int32_t *)buffer_context[1];
   }
   *puVar5 = uVar2;
@@ -97,7 +97,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x11];
   if ((ulonglong)((*buffer_context - (longlong)puVar5) + buffer_context[2]) < 5) {
-    FUN_180639bf0(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
+    System_BufferManager(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
     puVar5 = (int32_t *)buffer_context[1];
   }
   *puVar5 = uVar2;
@@ -107,7 +107,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x12];
   if ((ulonglong)((*buffer_context - (longlong)puVar5) + buffer_context[2]) < 5) {
-    FUN_180639bf0(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
+    System_BufferManager(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
     puVar5 = (int32_t *)buffer_context[1];
   }
   *puVar5 = uVar2;
@@ -117,18 +117,18 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
   puVar4 = (int8_t *)buffer_context[1];
   uVar1 = *(int8_t *)(data_context + 0x13);
   if ((ulonglong)((*buffer_context - (longlong)puVar4) + buffer_context[2]) < 2) {
-    FUN_180639bf0(buffer_context, puVar4 + (1 - *buffer_context));
+    System_BufferManager(buffer_context, puVar4 + (1 - *buffer_context));
     puVar4 = (int8_t *)buffer_context[1];
   }
   *puVar4 = uVar1;
   buffer_context[1] = buffer_context[1] + 1;
   
   // 序列化配置数据
-  FUN_180639ec0(buffer_context, data_context + 0x14);
+  System_QueueProcessor(buffer_context, data_context + 0x14);
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x2a];
   if ((ulonglong)((*buffer_context - (longlong)puVar5) + buffer_context[2]) < 5) {
-    FUN_180639bf0(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
+    System_BufferManager(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
     puVar5 = (int32_t *)buffer_context[1];
   }
   *puVar5 = uVar2;
@@ -138,7 +138,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x2b];
   if ((ulonglong)((*buffer_context - (longlong)puVar5) + buffer_context[2]) < 5) {
-    FUN_180639bf0(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
+    System_BufferManager(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
     puVar5 = (int32_t *)buffer_context[1];
   }
   *puVar5 = uVar2;
@@ -148,7 +148,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
   puVar4 = (int8_t *)buffer_context[1];
   uVar1 = *(int8_t *)(data_context + 0x2c);
   if ((ulonglong)((*buffer_context - (longlong)puVar4) + buffer_context[2]) < 2) {
-    FUN_180639bf0(buffer_context, puVar4 + (1 - *buffer_context));
+    System_BufferManager(buffer_context, puVar4 + (1 - *buffer_context));
     puVar4 = (int8_t *)buffer_context[1];
   }
   *puVar4 = uVar1;
@@ -158,7 +158,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x2e];
   if ((ulonglong)((*buffer_context - (longlong)puVar5) + buffer_context[2]) < 5) {
-    FUN_180639bf0(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
+    System_BufferManager(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
     puVar5 = (int32_t *)buffer_context[1];
   }
   *puVar5 = uVar2;
@@ -168,7 +168,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x2d];
   if ((ulonglong)((*buffer_context - (longlong)puVar5) + buffer_context[2]) < 5) {
-    FUN_180639bf0(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
+    System_BufferManager(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
     puVar5 = (int32_t *)buffer_context[1];
   }
   *puVar5 = uVar2;
@@ -182,7 +182,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
   lVar3 = *(longlong *)(data_context + 0x5c);
   puVar5 = (int32_t *)buffer_context[1];
   if ((ulonglong)((*buffer_context - (longlong)puVar5) + buffer_context[2]) < 5) {
-    FUN_180639bf0(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
+    System_BufferManager(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
     puVar5 = (int32_t *)buffer_context[1];
   }
   *puVar5 = (int)(lVar8 - lVar3 >> 2);
@@ -196,7 +196,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
     do {
       uVar2 = *(int32_t *)(lVar8 + uVar7);
       if ((ulonglong)((*buffer_context - (longlong)puVar5) + buffer_context[2]) < 5) {
-        FUN_180639bf0(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
+        System_BufferManager(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
         puVar5 = (int32_t *)buffer_context[1];
       }
       *puVar5 = uVar2;
@@ -214,7 +214,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, longlong *buffer_conte
   lVar8 = *(longlong *)(data_context + 0x66);
   lVar3 = *(longlong *)(data_context + 100);
   if ((ulonglong)((*buffer_context - (longlong)puVar5) + buffer_context[2]) < 5) {
-    FUN_180639bf0(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
+    System_BufferManager(buffer_context, (longlong)puVar5 + (4 - *buffer_context));
     puVar5 = (int32_t *)buffer_context[1];
   }
   *puVar5 = (int)(lVar8 - lVar3 >> 3);
@@ -262,7 +262,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
   // 处理批处理基础数据
   puVar5 = (int32_t *)buffer_context[1];
   if ((ulonglong)((*buffer_context - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = unaff_ESI;
@@ -273,7 +273,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0x44);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -283,7 +283,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0x48);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -293,18 +293,18 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
   puVar4 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0x4c);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 2) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (int8_t *)unaff_RBX[1];
   }
   *puVar4 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   
   // 处理批处理配置数据
-  FUN_180639ec0();
+  System_QueueProcessor();
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xa8);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -314,7 +314,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xac);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -324,7 +324,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
   puVar4 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0xb0);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 2) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (int8_t *)unaff_RBX[1];
   }
   *puVar4 = uVar1;
@@ -334,7 +334,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xb8);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -344,7 +344,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xb4);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -358,7 +358,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
   lVar3 = *(longlong *)(unaff_RDI + 0x170);
   puVar5 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = (int)(lVar8 - lVar3 >> 2);
@@ -372,7 +372,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
     do {
       uVar2 = *(int32_t *)(lVar8 + uVar7);
       if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar5 = (int32_t *)unaff_RBX[1];
       }
       *puVar5 = uVar2;
@@ -390,7 +390,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, longlong *buffer_conte
   lVar8 = *(longlong *)(unaff_RDI + 0x198);
   lVar3 = *(longlong *)(unaff_RDI + 400);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = (int)(lVar8 - lVar3 >> 3);
@@ -436,7 +436,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   
   // 管理缓冲区基础数据
   if ((ulonglong)((in_RAX - (longlong)buffer_context) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     buffer_context = (int32_t *)unaff_RBX[1];
   }
   *buffer_context = unaff_ESI;
@@ -447,7 +447,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0x44);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -457,7 +457,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0x48);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -467,18 +467,18 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   puVar4 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0x4c);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 2) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (int8_t *)unaff_RBX[1];
   }
   *puVar4 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   
   // 管理缓冲区配置数据
-  FUN_180639ec0();
+  System_QueueProcessor();
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xa8);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -488,7 +488,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xac);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -498,7 +498,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   puVar4 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0xb0);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 2) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar4 = (int8_t *)unaff_RBX[1];
   }
   *puVar4 = uVar1;
@@ -508,7 +508,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xb8);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -518,7 +518,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xb4);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = uVar2;
@@ -532,7 +532,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   lVar3 = *(longlong *)(unaff_RDI + 0x170);
   puVar5 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = (int)(lVar8 - lVar3 >> 2);
@@ -546,7 +546,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
     do {
       uVar2 = *(int32_t *)(lVar8 + uVar7);
       if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar5 = (int32_t *)unaff_RBX[1];
       }
       *puVar5 = uVar2;
@@ -564,7 +564,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   lVar8 = *(longlong *)(unaff_RDI + 0x198);
   lVar3 = *(longlong *)(unaff_RDI + 400);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar5 = (int32_t *)unaff_RBX[1];
   }
   *puVar5 = (int)(lVar8 - lVar3 >> 3);
@@ -605,7 +605,7 @@ void RenderingSystem_ReadData(void)
   ulonglong uVar8;
   
   // 初始化数据读取
-  FUN_180639bf0();
+  System_BufferManager();
   *(int32_t *)unaff_RBX[1] = unaff_ESI;
   uVar4 = 0;
   puVar3 = (int32_t *)(unaff_RBX[1] + 4);
@@ -619,7 +619,7 @@ void RenderingSystem_ReadData(void)
     do {
       uVar1 = *(int32_t *)(lVar6 + uVar5);
       if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
+        System_BufferManager();
         puVar3 = (int32_t *)unaff_RBX[1];
       }
       *puVar3 = uVar1;
@@ -637,7 +637,7 @@ void RenderingSystem_ReadData(void)
   lVar6 = *(longlong *)(unaff_RDI + 0x198);
   lVar2 = *(longlong *)(unaff_RDI + 400);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     puVar3 = (int32_t *)unaff_RBX[1];
   }
   *puVar3 = (int)(lVar6 - lVar2 >> 3);
@@ -683,7 +683,7 @@ void RenderingSystem_WriteData(uint64_t write_context, int32_t *data_context, lo
   do {
     uVar1 = *(int32_t *)(offset_context + uVar5);
     if ((ulonglong)((*unaff_RBX - (longlong)data_context) + unaff_RBX[2]) < 5) {
-      FUN_180639bf0();
+      System_BufferManager();
       data_context = (int32_t *)unaff_RBX[1];
     }
     *data_context = uVar1;
@@ -699,7 +699,7 @@ void RenderingSystem_WriteData(uint64_t write_context, int32_t *data_context, lo
   lVar2 = *(longlong *)(unaff_RDI + 0x198);
   lVar3 = *(longlong *)(unaff_RDI + 400);
   if ((ulonglong)((*unaff_RBX - (longlong)data_context) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     data_context = (int32_t *)unaff_RBX[1];
   }
   *data_context = (int)(lVar2 - lVar3 >> 3);
@@ -741,7 +741,7 @@ void RenderingSystem_ProcessResource(uint64_t resource_context, int32_t *buffer_
   lVar1 = *(longlong *)(unaff_RDI + 0x198);
   lVar2 = *(longlong *)(unaff_RDI + 400);
   if ((ulonglong)((*unaff_RBX - (longlong)buffer_context) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
+    System_BufferManager();
     buffer_context = (int32_t *)unaff_RBX[1];
   }
   *buffer_context = (int)(lVar1 - lVar2 >> 3);
@@ -777,7 +777,7 @@ void RenderingSystem_ManageState(void)
   longlong unaff_RDI;
   
   // 初始化状态管理
-  FUN_180639bf0();
+  System_BufferManager();
   **(int32_t **)(unaff_RBX + 8) = unaff_ESI;
   *(longlong *)(unaff_RBX + 8) = *(longlong *)(unaff_RBX + 8) + 4;
   

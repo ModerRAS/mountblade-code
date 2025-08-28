@@ -2240,12 +2240,12 @@ LAB_180858c20:
           }
           in_stack_fffffffffffffe78 =
                (ulonglong **)((ulonglong)in_stack_fffffffffffffe78 & 0xffffffffffffff00);
-          uVar19 = FUN_18085f8d0(*(uint64_t *)(param_1 + 0x160),uVar26,
+          uVar19 = UISystem_StateLoader(*(uint64_t *)(param_1 + 0x160),uVar26,
                                  *(longlong *)(param_1 + 0x110) + 0x48,1,in_stack_fffffffffffffe78);
           if ((int)uVar19 != 0) {
             return uVar19;
           }
-          uVar19 = FUN_18085c6f0(param_1,uVar26,&uStack_158,0);
+          uVar19 = UISystem_StateSetter(param_1,uVar26,&uStack_158,0);
           if ((int)uVar19 != 0) {
             return uVar19;
           }
@@ -2258,12 +2258,12 @@ LAB_180858c20:
       }
       in_stack_fffffffffffffe78 = (ulonglong **)((ulonglong)puVar15 & 0xffffffffffffff00);
       uStack_158 = uVar8;
-      uVar19 = FUN_18085f8d0(*(uint64_t *)(param_1 + 0x160),uVar26,
+      uVar19 = UISystem_StateLoader(*(uint64_t *)(param_1 + 0x160),uVar26,
                              *(longlong *)(param_1 + 0x110) + 0x48,1,in_stack_fffffffffffffe78);
       if ((int)uVar19 != 0) {
         return uVar19;
       }
-      uVar19 = FUN_18085c6f0(param_1,uVar26,&uStack_158,0);
+      uVar19 = UISystem_StateSetter(param_1,uVar26,&uStack_158,0);
       if ((int)uVar19 != 0) {
         return uVar19;
       }

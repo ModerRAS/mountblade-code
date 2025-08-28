@@ -487,7 +487,7 @@ FUN_180099f90(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
               0x48) < core_system_config_memory) {
     FUN_1808fcb90(&system_ptr_9210);
     if (core_system_config_memory == -1) {
-      core_system_config_memory = &unknown_var_3456_ptr;
+      core_system_config_memory = &system_data_buffer_ptr;
       core_system_config_memory = 0;
       core_system_config_memory = (void *)0x0;
       core_system_config_memory = 0;
@@ -543,14 +543,14 @@ int8_t FUN_18009a080(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t
   uStackX_10 = 0x43800000;
   uVar1 = FUN_180110ca0(param_2,&uStackX_10,&uStackX_8,&uStackX_18,uVar4,&uStack_30,&uStack_40);
   FUN_18012e4e0();
-  *param_4 = &unknown_var_3456_ptr;
+  *param_4 = &system_data_buffer_ptr;
   if (param_4[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_4[1] = 0;
   *(int32_t *)(param_4 + 3) = 0;
-  *param_4 = &unknown_var_720_ptr;
+  *param_4 = &system_state_ptr;
   return uVar1;
 }
 

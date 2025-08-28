@@ -511,64 +511,64 @@ RenderObject* InitializeRenderObject(RenderObject* render_object)
   *render_object = &unknown_var_8536_ptr;
   
   // 初始化渲染状态和参数
-  render_object[0xb] = &unknown_var_720_ptr;
+  render_object[0xb] = &system_state_ptr;
   render_object[0xc] = 0;
   *(int32_t *)(render_object + 0xd) = 0;
-  render_object[0xb] = &unknown_var_3456_ptr;
+  render_object[0xb] = &system_data_buffer_ptr;
   render_object[0xe] = 0;
   render_object[0xc] = 0;
   *(int32_t *)(render_object + 0xd) = 0;
   
   // 初始化纹理和材质参数
-  render_object[0xf] = &unknown_var_720_ptr;
+  render_object[0xf] = &system_state_ptr;
   render_object[0x10] = 0;
   *(int32_t *)(render_object + 0x11) = 0;
-  render_object[0xf] = &unknown_var_3456_ptr;
+  render_object[0xf] = &system_data_buffer_ptr;
   render_object[0x12] = 0;
   render_object[0x10] = 0;
   *(int32_t *)(render_object + 0x11) = 0;
   
   // 初始化着色器参数
-  render_object[0x13] = &unknown_var_720_ptr;
+  render_object[0x13] = &system_state_ptr;
   render_object[0x14] = 0;
   *(int32_t *)(render_object + 0x15) = 0;
-  render_object[0x13] = &unknown_var_3456_ptr;
+  render_object[0x13] = &system_data_buffer_ptr;
   render_object[0x16] = 0;
   render_object[0x14] = 0;
   *(int32_t *)(render_object + 0x15) = 0;
   
   // 初始化顶点缓冲区
-  render_object[0x17] = &unknown_var_720_ptr;
+  render_object[0x17] = &system_state_ptr;
   render_object[0x18] = 0;
   *(int32_t *)(render_object + 0x19) = 0;
-  render_object[0x17] = &unknown_var_3456_ptr;
+  render_object[0x17] = &system_data_buffer_ptr;
   render_object[0x1a] = 0;
   render_object[0x18] = 0;
   *(int32_t *)(render_object + 0x19) = 0;
   
   // 初始化索引缓冲区
-  render_object[0x1b] = &unknown_var_720_ptr;
+  render_object[0x1b] = &system_state_ptr;
   render_object[0x1c] = 0;
   *(int32_t *)(render_object + 0x1d) = 0;
-  render_object[0x1b] = &unknown_var_3456_ptr;
+  render_object[0x1b] = &system_data_buffer_ptr;
   render_object[0x1e] = 0;
   render_object[0x1c] = 0;
   *(int32_t *)(render_object + 0x1d) = 0;
   
   // 初始化常量缓冲区
-  render_object[0x1f] = &unknown_var_720_ptr;
+  render_object[0x1f] = &system_state_ptr;
   render_object[0x20] = 0;
   *(int32_t *)(render_object + 0x21) = 0;
-  render_object[0x1f] = &unknown_var_3456_ptr;
+  render_object[0x1f] = &system_data_buffer_ptr;
   render_object[0x22] = 0;
   render_object[0x20] = 0;
   *(int32_t *)(render_object + 0x21) = 0;
   
   // 初始化采样器状态
-  render_object[0x23] = &unknown_var_720_ptr;
+  render_object[0x23] = &system_state_ptr;
   render_object[0x24] = 0;
   *(int32_t *)(render_object + 0x25) = 0;
-  render_object[0x23] = &unknown_var_3456_ptr;
+  render_object[0x23] = &system_data_buffer_ptr;
   render_object[0x26] = 0;
   render_object[0x24] = 0;
   *(int32_t *)(render_object + 0x25) = 0;
@@ -580,19 +580,19 @@ RenderObject* InitializeRenderObject(RenderObject* render_object)
   *(int32_t *)(render_object + 0x2d) = 3;
   
   // 初始化混合状态
-  render_object[0x2e] = &unknown_var_720_ptr;
+  render_object[0x2e] = &system_state_ptr;
   render_object[0x2f] = 0;
   *(int32_t *)(render_object + 0x30) = 0;
-  render_object[0x2e] = &unknown_var_3456_ptr;
+  render_object[0x2e] = &system_data_buffer_ptr;
   render_object[0x31] = 0;
   render_object[0x2f] = 0;
   *(int32_t *)(render_object + 0x30) = 0;
   
   // 初始化深度模板状态
-  render_object[0x32] = &unknown_var_720_ptr;
+  render_object[0x32] = &system_state_ptr;
   render_object[0x33] = 0;
   *(int32_t *)(render_object + 0x34) = 0;
-  render_object[0x32] = &unknown_var_3456_ptr;
+  render_object[0x32] = &system_data_buffer_ptr;
   render_object[0x35] = 0;
   render_object[0x33] = 0;
   *(int32_t *)(render_object + 0x34) = 0;
@@ -663,22 +663,22 @@ RenderObject* ReleaseRenderObject(RenderObject* render_object, uint32_t flags)
 void CleanupRenderObject(RenderObject* render_object)
 {
   // 清理深度模板状态
-  render_object[0x32] = &unknown_var_3456_ptr;
+  render_object[0x32] = &system_data_buffer_ptr;
   if (render_object[0x33] != 0) {
     FUN_18064e900(); // 释放资源
   }
   render_object[0x33] = 0;
   *(int32_t *)(render_object + 0x35) = 0;
-  render_object[0x32] = &unknown_var_720_ptr;
+  render_object[0x32] = &system_state_ptr;
   
   // 清理混合状态
-  render_object[0x2e] = &unknown_var_3456_ptr;
+  render_object[0x2e] = &system_data_buffer_ptr;
   if (render_object[0x2f] != 0) {
     FUN_18064e900(); // 释放资源
   }
   render_object[0x2f] = 0;
   *(int32_t *)(render_object + 0x31) = 0;
-  render_object[0x2e] = &unknown_var_720_ptr;
+  render_object[0x2e] = &system_state_ptr;
   
   // 清理渲染状态
   if (render_object[0x2a] != 0) {
@@ -686,67 +686,67 @@ void CleanupRenderObject(RenderObject* render_object)
   }
   
   // 清理采样器状态
-  render_object[0x23] = &unknown_var_3456_ptr;
+  render_object[0x23] = &system_data_buffer_ptr;
   if (render_object[0x24] != 0) {
     FUN_18064e900(); // 释放资源
   }
   render_object[0x24] = 0;
   *(int32_t *)(render_object + 0x26) = 0;
-  render_object[0x23] = &unknown_var_720_ptr;
+  render_object[0x23] = &system_state_ptr;
   
   // 清理常量缓冲区
-  render_object[0x1f] = &unknown_var_3456_ptr;
+  render_object[0x1f] = &system_data_buffer_ptr;
   if (render_object[0x20] != 0) {
     FUN_18064e900(); // 释放资源
   }
   render_object[0x20] = 0;
   *(int32_t *)(render_object + 0x22) = 0;
-  render_object[0x1f] = &unknown_var_720_ptr;
+  render_object[0x1f] = &system_state_ptr;
   
   // 清理索引缓冲区
-  render_object[0x1b] = &unknown_var_3456_ptr;
+  render_object[0x1b] = &system_data_buffer_ptr;
   if (render_object[0x1c] != 0) {
     FUN_18064e900(); // 释放资源
   }
   render_object[0x1c] = 0;
   *(int32_t *)(render_object + 0x1e) = 0;
-  render_object[0x1b] = &unknown_var_720_ptr;
+  render_object[0x1b] = &system_state_ptr;
   
   // 清理顶点缓冲区
-  render_object[0x17] = &unknown_var_3456_ptr;
+  render_object[0x17] = &system_data_buffer_ptr;
   if (render_object[0x18] != 0) {
     FUN_18064e900(); // 释放资源
   }
   render_object[0x18] = 0;
   *(int32_t *)(render_object + 0x1a) = 0;
-  render_object[0x17] = &unknown_var_720_ptr;
+  render_object[0x17] = &system_state_ptr;
   
   // 清理着色器参数
-  render_object[0x13] = &unknown_var_3456_ptr;
+  render_object[0x13] = &system_data_buffer_ptr;
   if (render_object[0x14] != 0) {
     FUN_18064e900(); // 释放资源
   }
   render_object[0x14] = 0;
   *(int32_t *)(render_object + 0x16) = 0;
-  render_object[0x13] = &unknown_var_720_ptr;
+  render_object[0x13] = &system_state_ptr;
   
   // 清理材质参数
-  render_object[0xf] = &unknown_var_3456_ptr;
+  render_object[0xf] = &system_data_buffer_ptr;
   if (render_object[0x10] != 0) {
     FUN_18064e900(); // 释放资源
   }
   render_object[0x10] = 0;
   *(int32_t *)(render_object + 0x12) = 0;
-  render_object[0xf] = &unknown_var_720_ptr;
+  render_object[0xf] = &system_state_ptr;
   
   // 清理纹理
-  render_object[0xb] = &unknown_var_3456_ptr;
+  render_object[0xb] = &system_data_buffer_ptr;
   if (render_object[0xc] != 0) {
     FUN_18064e900(); // 释放资源
   }
   render_object[0xc] = 0;
   *(int32_t *)(render_object + 0xe) = 0;
-  render_object[0xb] = &unknown_var_720_ptr;
+  render_object[0xb] = &system_state_ptr;
   
   // 重置虚函数表
   *render_object = &unknown_var_5192_ptr;
@@ -775,10 +775,10 @@ RenderContext* CreateRenderContext(RenderContext* parent_context)
   FUN_18034dd90(); // 初始化上下文
   
   // 初始化渲染状态对象
-  *(uint64_t *)(context + 0x1b0) = &unknown_var_720_ptr;
+  *(uint64_t *)(context + 0x1b0) = &system_state_ptr;
   *(uint64_t *)(context + 0x1b8) = 0;
   *(int32_t *)(context + 0x1c0) = 0;
-  *(uint64_t *)(context + 0x1b0) = &unknown_var_3456_ptr;
+  *(uint64_t *)(context + 0x1b0) = &system_data_buffer_ptr;
   *(uint64_t *)(context + 0x1c8) = 0;
   *(uint64_t *)(context + 0x1b8) = 0;
   *(int32_t *)(context + 0x1c0) = 0;

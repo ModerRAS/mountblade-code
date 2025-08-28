@@ -178,7 +178,7 @@ uint64_t *
 FUN_18022b510(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_2 = &unknown_var_720_ptr;
+  *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
   *param_2 = &unknown_var_3432_ptr;
@@ -202,11 +202,11 @@ uint64_t * FUN_18022b590(uint64_t *param_1)
   longlong *plVar6;
   uint64_t *puVar7;
   
-  *param_1 = &unknown_var_3552_ptr;
-  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &system_handler1_ptr;
+  *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
   *param_1 = &unknown_var_8584_ptr;
-  param_1[2] = &unknown_var_720_ptr;
+  param_1[2] = &system_state_ptr;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
   param_1[2] = &unknown_var_3432_ptr;
@@ -243,7 +243,7 @@ uint64_t * FUN_18022b590(uint64_t *param_1)
   param_1[0x48] = 0;
   param_1[0x49] = 0;
   *(int32_t *)(param_1 + 0x4a) = 3;
-  param_1[0x5a] = &unknown_var_720_ptr;
+  param_1[0x5a] = &system_state_ptr;
   param_1[0x5b] = 0;
   *(int32_t *)(param_1 + 0x5c) = 0;
   param_1[0x5a] = &unknown_var_3432_ptr;
@@ -394,7 +394,7 @@ void FUN_18022ba40(uint64_t *param_1)
   }
   FUN_1808fc8a8(param_1 + 0x7c,8,0x10,FUN_180045af0,uVar4);
   FUN_180057170();
-  param_1[0x5a] = &unknown_var_720_ptr;
+  param_1[0x5a] = &system_state_ptr;
   if (param_1[0x47] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -406,9 +406,9 @@ void FUN_18022ba40(uint64_t *param_1)
   FUN_1808fc8a8(param_1 + 0x2c,0x38,2,FUN_180044a30);
   FUN_1808fc8a8(param_1 + 0x17,8,0x10,FUN_180045af0);
   *param_1 = &unknown_var_8584_ptr;
-  param_1[2] = &unknown_var_720_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  param_1[2] = &system_state_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   return;
 }
 
@@ -684,7 +684,7 @@ LAB_18022c3ff:
         lVar19 = *plVar9 - (longlong)plVar10;
         plStack_258 = plVar10;
         do {
-          *plVar11 = (longlong)&unknown_var_720_ptr;
+          *plVar11 = (longlong)&system_state_ptr;
           plVar11[1] = 0;
           *(int32_t *)(plVar11 + 2) = 0;
           *plVar11 = (longlong)&unknown_var_3480_ptr;
@@ -860,7 +860,7 @@ LAB_18022c460:
   strcpy_s(auStack_220,0x40,&system_data_ba58);
   uVar14 = FUN_180240430(uVar14,&puStack_238,0);
   *(uint64_t *)(param_1 + 0x390) = uVar14;
-  puStack_238 = &unknown_var_720_ptr;
+  puStack_238 = &system_state_ptr;
   uVar14 = *(uint64_t *)(param_1 + 0x1e0);
   puStack_1d8 = &unknown_var_3480_ptr;
   puStack_1d0 = auStack_1c0;
@@ -876,8 +876,8 @@ LAB_18022c460:
   uVar27 = FUN_180240430(uVar7,&puStack_238,0);
   uVar15 = FUN_180240430(uVar14,&puStack_1d8,0);
   *(ulonglong *)(param_1 + 0x3a8) = uVar27 | uVar15;
-  puStack_238 = &unknown_var_720_ptr;
-  puStack_1d8 = &unknown_var_720_ptr;
+  puStack_238 = &system_state_ptr;
+  puStack_1d8 = &system_state_ptr;
   uVar14 = *(uint64_t *)(param_1 + 0x1e0);
   puStack_178 = &unknown_var_3480_ptr;
   puStack_170 = auStack_160;
@@ -886,7 +886,7 @@ LAB_18022c460:
   strcpy_s(auStack_160,0x40,&system_data_d580);
   uVar14 = FUN_180240430(uVar14,&puStack_178,0);
   *(uint64_t *)(param_1 + 0x3b0) = uVar14;
-  puStack_178 = &unknown_var_720_ptr;
+  puStack_178 = &system_state_ptr;
   uVar14 = *(uint64_t *)(param_1 + 0x1e0);
   puStack_118 = &unknown_var_3480_ptr;
   puStack_110 = auStack_100;
@@ -895,7 +895,7 @@ LAB_18022c460:
   strcpy_s(auStack_100,0x40,&system_data_d5b8);
   uVar14 = FUN_180240430(uVar14,&puStack_118,0);
   *(uint64_t *)(param_1 + 0x3b8) = uVar14;
-  puStack_118 = &unknown_var_720_ptr;
+  puStack_118 = &system_state_ptr;
   uVar14 = *(uint64_t *)(param_1 + 0x1e0);
   apuStack_b8[0] = &unknown_var_3480_ptr;
   apuStack_b8[1] = auStack_a0;
@@ -904,7 +904,7 @@ LAB_18022c460:
   strcpy_s(auStack_a0,0x40,&unknown_var_7528_ptr);
   uVar14 = FUN_180240430(uVar14,apuStack_b8,0);
   *(uint64_t *)(param_1 + 0x398) = uVar14;
-  apuStack_b8[0] = &unknown_var_720_ptr;
+  apuStack_b8[0] = &system_state_ptr;
   uVar8 = FUN_18022d6c0(param_1);
   *(ulonglong *)(param_1 + 0x3a0) = (ulonglong)uVar8;
   *(int16_t *)(param_1 + 0x3c0) = 0xffff;

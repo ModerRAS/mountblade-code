@@ -67,8 +67,8 @@ extern uint64_t global_var_720;
 // 外部函数声明
 // ============================================================================
 
-extern void FUN_180639bf0(longlong param_1, longlong param_2);
-extern void FUN_180639ec0(longlong param_1, longlong param_2);
+extern void System_BufferManager(longlong param_1, longlong param_2);
+extern void System_QueueProcessor(longlong param_1, longlong param_2);
 extern void FUN_18063a050(longlong param_1, longlong param_2);
 extern void FUN_18063a110(longlong param_1, longlong param_2);
 extern void FUN_18063aca0(longlong param_1, longlong param_2);

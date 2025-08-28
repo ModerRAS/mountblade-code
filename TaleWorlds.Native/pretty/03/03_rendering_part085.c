@@ -519,7 +519,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     
     // 配置渲染链
     render_object = resource_chain_1;
-    render_ptr = &unknown_var_720_ptr;
+    render_ptr = &system_state_ptr;
     shader_params[1] = shader_params[1] | RENDER_FLAG_MODIFIED;
     *(uint64_t *)(shader_params + 0x2684) = 0;
     *(uint64_t *)(shader_params + 0x2686) = 0;
@@ -756,7 +756,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   }
   
   // 清理渲染资源
-  buffer_ptr = &unknown_var_3456_ptr;
+  buffer_ptr = &system_data_buffer_ptr;
   buffer_data = 0;
   data_ptr = (uint64_t *)0x0;
   buffer_param = 0;
@@ -783,7 +783,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     (**(code **)(*resource_chain_8 + FUNCTION_POINTER_OFFSET))();
   }
   
-  buffer_ptr = &unknown_var_3456_ptr;
+  buffer_ptr = &system_data_buffer_ptr;
   FUN_18064e900(vertex_data);
 }
 

@@ -277,10 +277,10 @@ void FUN_1800a73e0(longlong param_1, uint64_t param_2, longlong param_3, int8_t 
   // 路径处理初始化
   uVar5 = FUN_180624440(apuStack_2d8, param_2);  // 处理基础路径字符串
   FUN_1806279c0(auStack_7b0, uVar5);               // 初始化路径缓冲区
-  apuStack_2d8[0] = &unknown_var_720_ptr;                // 设置路径数组初始值
+  apuStack_2d8[0] = &system_state_ptr;                // 设置路径数组初始值
   
   // 字符串处理初始化
-  puStack_858 = &unknown_var_3456_ptr;             // 初始化字符串指针
+  puStack_858 = &system_data_buffer_ptr;             // 初始化字符串指针
   uStack_840 = 0;                            // 重置路径控制变量10
   uStack_850 = 0;                            // 重置路径控制变量8
   uStack_848 = 0;                            // 重置路径控制变量9
@@ -379,13 +379,13 @@ LAB_1800a7660:
   // ==================== 路径处理初始化 ====================
   
   // 初始化路径处理相关变量
-  puStack_988 = &unknown_var_3456_ptr;                  // 初始化路径指针1
+  puStack_988 = &system_data_buffer_ptr;                  // 初始化路径指针1
   uStack_970 = 0;                                // 重置8字节栈变量2
   puStack_980 = (int8_t *)0x0;               // 初始化1字节栈指针1为NULL
   uStack_978 = 0;                                // 重置无符号整型栈变量1
   
   // 初始化第二个路径处理实例
-  puStack_918 = &unknown_var_3456_ptr;                  // 初始化路径指针2
+  puStack_918 = &system_data_buffer_ptr;                  // 初始化路径指针2
   uStack_900 = 0;                                // 重置路径控制变量2
   puStack_910 = (int8_t *)0x0;               // 初始化路径指针3为NULL
   uStack_908 = 0;                                // 重置路径长度2
@@ -427,7 +427,7 @@ LAB_1800a7660:
   // 处理第二个路径字符串
   uVar5 = FUN_180627600(apuStack_518, uStack_790);  // 处理路径参数
   FUN_1806279c0(auStack_750, uVar5);               // 初始化文件缓冲区
-  apuStack_518[0] = &unknown_var_720_ptr;                // 设置路径数组初始值
+  apuStack_518[0] = &system_state_ptr;                // 设置路径数组初始值
   
   // 文件名处理初始化
   puStack_638 = &unknown_var_2008_ptr;                    // 初始化字符串指针1
@@ -473,10 +473,10 @@ LAB_1800a7660:
   // 完成文件名处理
   FUN_1806279c0(auStack_788, &puStack_638);         // 完成文件名处理
   uStack_838 = 0;                                   // 重置路径控制标志
-  puStack_638 = &unknown_var_720_ptr;                    // 重置字符串指针1
+  puStack_638 = &system_state_ptr;                    // 重置字符串指针1
   
   // 初始化第三个路径处理实例
-  puStack_960 = &unknown_var_3456_ptr;                    // 初始化无定义栈指针2
+  puStack_960 = &system_data_buffer_ptr;                    // 初始化无定义栈指针2
   uStack_948 = 0;                                   // 重置无符号长长整型栈变量1
   puStack_958 = (int8_t *)0x0;                // 初始化1字节栈指针2为NULL
   uStack_950 = 0;                                   // 重置无符号整型栈变量2
@@ -753,7 +753,7 @@ LAB_1800a7f91:
   uVar5 = FUN_1806276d0(apuStack_3f8,auStack_7b0);
   FUN_1806279c0(auStack_938,uVar5);
   uVar11 = uStack_928;
-  apuStack_3f8[0] = &unknown_var_720_ptr;
+  apuStack_3f8[0] = &system_state_ptr;
   uVar16 = uStack_928 + 1;
   if (uVar16 != 0) {
     uVar18 = uStack_928 + 2;
@@ -816,7 +816,7 @@ LAB_1800a80cc:
 LAB_1800a814a:
   *(uint64_t *)(puStack_930 + uStack_928) = 0x656372756f732e;
   lVar6 = 0;
-  puStack_8b8 = &unknown_var_3456_ptr;
+  puStack_8b8 = &system_data_buffer_ptr;
   uStack_8a0 = 0;
   lStack_8b0 = 0;
   uStack_8a8 = 0;
@@ -830,7 +830,7 @@ LAB_1800a814a:
     uStack_758 = 0;
     FUN_18062dee0(&uStack_768,puVar12,&system_memory_c7ec);
     if (cStack_968 == '\0') {
-      puStack_7d0 = &unknown_var_3456_ptr;
+      puStack_7d0 = &system_data_buffer_ptr;
       uStack_7b8 = 0;
       puStack_7c8 = (void *)0x0;
       iStack_7c0 = 0;
@@ -838,7 +838,7 @@ LAB_1800a814a:
       if (*(void **)(param_11 + 8) != (void *)0x0) {
         puVar15 = *(void **)(param_11 + 8);
       }
-      FUN_180628040(&puStack_7d0,&unknown_var_4888_ptr,puVar15);
+      System_DataHandler(&puStack_7d0,&unknown_var_4888_ptr,puVar15);
       lVar8 = lStack_760;
       puVar15 = &system_buffer_ptr;
       if (puStack_7c8 != (void *)0x0) {
@@ -875,14 +875,14 @@ LAB_1800a814a:
         UNLOCK();
         lVar8 = lStack_760;
       }
-      puStack_7d0 = &unknown_var_3456_ptr;
+      puStack_7d0 = &system_data_buffer_ptr;
       if (puStack_7c8 != (void *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       puStack_7c8 = (void *)0x0;
       uStack_7b8 = uStack_7b8 & 0xffffffff00000000;
-      puStack_7d0 = &unknown_var_720_ptr;
+      puStack_7d0 = &system_state_ptr;
     }
     else {
       lVar7 = 0;
@@ -909,7 +909,7 @@ LAB_1800a814a:
         *(int8_t *)(lVar6 + lVar7) = 0;
       }
       lVar9 = alStack_7e0[0];
-      puStack_898 = &unknown_var_3456_ptr;
+      puStack_898 = &system_data_buffer_ptr;
       uStack_880 = 0;
       puStack_890 = (int8_t *)0x0;
       uStack_888 = 0;
@@ -986,14 +986,14 @@ LAB_1800a837b:
         if (lVar6 != 0) {
           uVar5 = FUN_180627910(&puStack_6d8,puVar15);
           FUN_1806288c0(&puStack_898,(int)lVar8 - (int)puStack_890,uVar5);
-          puStack_6d8 = &unknown_var_3456_ptr;
+          puStack_6d8 = &system_data_buffer_ptr;
           if (lStack_6d0 != 0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
           lStack_6d0 = 0;
           uStack_6c0 = 0;
-          puStack_6d8 = &unknown_var_720_ptr;
+          puStack_6d8 = &system_state_ptr;
         }
       }
       lVar8 = lStack_760;
@@ -1006,14 +1006,14 @@ LAB_1800a837b:
         puVar12 = puStack_890;
       }
       fwrite(puVar12,(longlong)(int)uStack_888,1,lStack_760);
-      puStack_898 = &unknown_var_3456_ptr;
+      puStack_898 = &system_data_buffer_ptr;
       if (puStack_890 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       puStack_890 = (int8_t *)0x0;
       uStack_880 = uStack_880 & 0xffffffff00000000;
-      puStack_898 = &unknown_var_720_ptr;
+      puStack_898 = &system_state_ptr;
       if (lVar9 != -1) {
         LOCK();
         SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
@@ -1064,7 +1064,7 @@ LAB_1800a87af:
   if (cStack_93c == '\0') {
     if (cStack_968 == '\0') {
       if (cStack_93d == '\0') goto LAB_1800a9cf6;
-      puStack_8f8 = &unknown_var_3456_ptr;
+      puStack_8f8 = &system_data_buffer_ptr;
       uStack_8e0 = 0;
       puStack_8f0 = (int8_t *)0x0;
       iStack_8e8 = 0;
@@ -1222,17 +1222,17 @@ LAB_1800a990c:
                     // WARNING: Subroutine does not return
         memcpy(puStack_980 + uStack_978,puStack_910,(longlong)(int)(uStack_908 + 1));
       }
-      puStack_8f8 = &unknown_var_3456_ptr;
+      puStack_8f8 = &system_data_buffer_ptr;
       if (puStack_8f0 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       puStack_8f0 = (int8_t *)0x0;
       uStack_8e0 = uStack_8e0 & 0xffffffff00000000;
-      puStack_8f8 = &unknown_var_720_ptr;
+      puStack_8f8 = &system_state_ptr;
       goto LAB_1800a9cf6;
     }
-    puStack_8d8 = &unknown_var_3456_ptr;
+    puStack_8d8 = &system_data_buffer_ptr;
     uStack_8c0 = 0;
     puStack_8d0 = (int8_t *)0x0;
     iStack_8c8 = 0;
@@ -1499,17 +1499,17 @@ LAB_1800a9108:
                     // WARNING: Subroutine does not return
       memcpy(puStack_980 + uStack_978,puStack_910,(longlong)(int)(uStack_908 + 1));
     }
-    puStack_8d8 = &unknown_var_3456_ptr;
+    puStack_8d8 = &system_data_buffer_ptr;
     if (puStack_8d0 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_8d0 = (int8_t *)0x0;
     uStack_8c0 = uStack_8c0 & 0xffffffff00000000;
-    puStack_8d8 = &unknown_var_720_ptr;
+    puStack_8d8 = &system_state_ptr;
     goto LAB_1800a9cf6;
   }
-  puStack_878 = &unknown_var_3456_ptr;
+  puStack_878 = &system_data_buffer_ptr;
   uStack_860 = 0;
   lStack_870 = 0;
   iStack_868 = 0;
@@ -1778,14 +1778,14 @@ LAB_1800a8b50:
                     // WARNING: Subroutine does not return
     memcpy(puStack_980 + uStack_978,puStack_910,(longlong)(int)(uStack_908 + 1));
   }
-  puStack_878 = &unknown_var_3456_ptr;
+  puStack_878 = &system_data_buffer_ptr;
   if (lStack_870 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_870 = 0;
   uStack_860 = uStack_860 & 0xffffffff00000000;
-  puStack_878 = &unknown_var_720_ptr;
+  puStack_878 = &system_state_ptr;
 LAB_1800a9cf6:
                     // WARNING: Subroutine does not return
   memset(auStack_6a8,0,0x70);

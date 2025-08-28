@@ -97,7 +97,7 @@ void FUN_180206950(uint64_t param_1,longlong *param_2,longlong param_3)
         puVar11 = *(void **)(param_3 + 8);
       }
       strcpy_s(auStack_d0,0x80,puVar11);
-      puStack_e8 = &unknown_var_720_ptr;
+      puStack_e8 = &system_state_ptr;
       goto LAB_180206c6d;
     }
     iStack_158 = iVar12 * iVar4;

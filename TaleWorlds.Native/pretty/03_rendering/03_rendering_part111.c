@@ -91,7 +91,7 @@ extern void FUN_1802feba0(longlong param_1, longlong param_2);
 extern void FUN_1808fc050(ulonglong param_1);
 extern void FUN_180179aa0(uint64_t param_1, uint64_t param_2, int param_3, uint64_t param_4, int param_5);
 extern void FUN_1801b9a40(longlong param_1, int param_2);
-extern void FUN_180639bf0(longlong param_1, longlong param_2, longlong param_3, uint64_t param_4, ulonglong param_5);
+extern void System_BufferManager(longlong param_1, longlong param_2, longlong param_3, uint64_t param_4, ulonglong param_5);
 extern void FUN_18062b1e0(uint64_t param_1, int param_2, int param_3, int param_4);
 extern void FUN_1800c17c0(int32_t param_1, longlong param_2);
 extern void FUN_18020d730(uint64_t param_1, uint64_t param_2);

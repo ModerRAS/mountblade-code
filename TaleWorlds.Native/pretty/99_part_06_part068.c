@@ -465,21 +465,21 @@ FUN_1803e8a40(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
   param_1[0x39] = 0;
   param_1[0x3a] = 0;
   *(int32_t *)(param_1 + 0x3b) = 3;
-  param_1[0x3c] = &unknown_var_720_ptr;
+  param_1[0x3c] = &system_state_ptr;
   param_1[0x3d] = 0;
   *(int32_t *)(param_1 + 0x3e) = 0;
-  param_1[0x3c] = &unknown_var_3456_ptr;
+  param_1[0x3c] = &system_data_buffer_ptr;
   param_1[0x3f] = 0;
   param_1[0x3d] = 0;
   *(int32_t *)(param_1 + 0x3e) = 0;
-  param_1[0x40] = &unknown_var_720_ptr;
+  param_1[0x40] = &system_state_ptr;
   param_1[0x41] = 0;
   *(int32_t *)(param_1 + 0x42) = 0;
   param_1[0x40] = &unknown_var_2008_ptr;
   param_1[0x41] = param_1 + 0x43;
   *(int32_t *)(param_1 + 0x42) = 0;
   *(int8_t *)(param_1 + 0x43) = 0;
-  param_1[99] = &unknown_var_720_ptr;
+  param_1[99] = &system_state_ptr;
   param_1[100] = 0;
   *(int32_t *)(param_1 + 0x65) = 0;
   param_1[99] = &unknown_var_2008_ptr;
@@ -492,24 +492,24 @@ FUN_1803e8a40(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
   _Mtx_init_in_situ(param_1 + 0x8c,0x102);
   param_1[0x97] = 0;
   plVar1 = param_1 + 0x98;
-  *plVar1 = (longlong)&unknown_var_720_ptr;
+  *plVar1 = (longlong)&system_state_ptr;
   param_1[0x99] = 0;
   *(int32_t *)(param_1 + 0x9a) = 0;
-  *plVar1 = (longlong)&unknown_var_3456_ptr;
+  *plVar1 = (longlong)&system_data_buffer_ptr;
   param_1[0x9b] = 0;
   param_1[0x99] = 0;
   *(int32_t *)(param_1 + 0x9a) = 0;
-  param_1[0x9c] = &unknown_var_720_ptr;
+  param_1[0x9c] = &system_state_ptr;
   param_1[0x9d] = 0;
   *(int32_t *)(param_1 + 0x9e) = 0;
-  param_1[0x9c] = &unknown_var_3456_ptr;
+  param_1[0x9c] = &system_data_buffer_ptr;
   param_1[0x9f] = 0;
   param_1[0x9d] = 0;
   *(int32_t *)(param_1 + 0x9e) = 0;
-  param_1[0xa0] = &unknown_var_720_ptr;
+  param_1[0xa0] = &system_state_ptr;
   param_1[0xa1] = 0;
   *(int32_t *)(param_1 + 0xa2) = 0;
-  param_1[0xa0] = &unknown_var_3456_ptr;
+  param_1[0xa0] = &system_data_buffer_ptr;
   param_1[0xa3] = 0;
   param_1[0xa1] = 0;
   *(int32_t *)(param_1 + 0xa2) = 0;
@@ -560,45 +560,45 @@ void FUN_1803e8ce0(uint64_t *param_1)
 
 {
   _Mtx_destroy_in_situ();
-  param_1[0xa0] = &unknown_var_3456_ptr;
+  param_1[0xa0] = &system_data_buffer_ptr;
   if (param_1[0xa1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0xa1] = 0;
   *(int32_t *)(param_1 + 0xa3) = 0;
-  param_1[0xa0] = &unknown_var_720_ptr;
-  param_1[0x9c] = &unknown_var_3456_ptr;
+  param_1[0xa0] = &system_state_ptr;
+  param_1[0x9c] = &system_data_buffer_ptr;
   if (param_1[0x9d] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0x9d] = 0;
   *(int32_t *)(param_1 + 0x9f) = 0;
-  param_1[0x9c] = &unknown_var_720_ptr;
-  param_1[0x98] = &unknown_var_3456_ptr;
+  param_1[0x9c] = &system_state_ptr;
+  param_1[0x98] = &system_data_buffer_ptr;
   if (param_1[0x99] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0x99] = 0;
   *(int32_t *)(param_1 + 0x9b) = 0;
-  param_1[0x98] = &unknown_var_720_ptr;
+  param_1[0x98] = &system_state_ptr;
   if ((longlong *)param_1[0x97] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x97] + 0x38))();
   }
   _Mtx_destroy_in_situ();
   FUN_180067070(param_1 + 0x88);
-  param_1[99] = &unknown_var_720_ptr;
-  param_1[0x40] = &unknown_var_720_ptr;
-  param_1[0x3c] = &unknown_var_3456_ptr;
+  param_1[99] = &system_state_ptr;
+  param_1[0x40] = &system_state_ptr;
+  param_1[0x3c] = &system_data_buffer_ptr;
   if (param_1[0x3d] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   param_1[0x3d] = 0;
   *(int32_t *)(param_1 + 0x3f) = 0;
-  param_1[0x3c] = &unknown_var_720_ptr;
+  param_1[0x3c] = &system_state_ptr;
   FUN_1803f3810();
   FUN_1803f3810();
   *param_1 = &unknown_var_3768_ptr;

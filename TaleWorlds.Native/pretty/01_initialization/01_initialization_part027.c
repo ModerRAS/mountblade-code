@@ -856,10 +856,10 @@ void set_status_flag(longlong context, int32_t flag)
 uint64_t * copy_and_initialize_data_structure(uint64_t *dest, longlong src)
 
 {
-  *dest = &unknown_var_720_ptr; // 初始化指针
+  *dest = &system_state_ptr; // 初始化指针
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_3456_ptr;
+  *param_1 = &system_data_buffer_ptr;
   param_1[3] = 0;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
@@ -870,10 +870,10 @@ uint64_t * copy_and_initialize_data_structure(uint64_t *dest, longlong src)
   *(int32_t *)(src + 0x10) = 0; // 清空源数据
   *(uint64_t *)(param_2 + 8) = 0;
   *(uint64_t *)(param_2 + 0x18) = 0;
-  memory_ptr[4] = &unknown_var_720_ptr; // 设置内存标记
+  memory_ptr[4] = &system_state_ptr; // 设置内存标记
   param_1[5] = 0;
   *(int32_t *)(param_1 + 6) = 0;
-  param_1[4] = &unknown_var_3456_ptr;
+  param_1[4] = &system_data_buffer_ptr;
   param_1[7] = 0;
   param_1[5] = 0;
   *(int32_t *)(param_1 + 6) = 0;
@@ -896,22 +896,22 @@ uint64_t * copy_and_initialize_data_structure(uint64_t *dest, longlong src)
 longlong cleanup_and_reset_structure(longlong structure)
 
 {
-  *(uint64_t *)(structure + 0x40) = &unknown_var_3456_ptr; // 设置安全标记
+  *(uint64_t *)(structure + 0x40) = &system_data_buffer_ptr; // 设置安全标记
   if (*(longlong *)(param_1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(param_1 + 0x48) = 0;
   *(int32_t *)(param_1 + 0x58) = 0;
-  *(uint64_t *)(param_1 + 0x40) = &unknown_var_720_ptr;
-  *(uint64_t *)(param_1 + 0x20) = &unknown_var_3456_ptr;
+  *(uint64_t *)(param_1 + 0x40) = &system_state_ptr;
+  *(uint64_t *)(param_1 + 0x20) = &system_data_buffer_ptr;
   if (*(longlong *)(param_1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(param_1 + 0x28) = 0;
   *(int32_t *)(param_1 + 0x38) = 0;
-  *(uint64_t *)(param_1 + 0x20) = &unknown_var_720_ptr;
+  *(uint64_t *)(param_1 + 0x20) = &system_state_ptr;
   return param_1;
 }
 
@@ -967,13 +967,13 @@ void register_or_add_component(void **registry, uint64_t param_2, uint64_t param
       FUN_18064e900(lVar3);
     }
     ppuStackX_8 = &puStack_48;
-    puStack_48 = &unknown_var_3456_ptr;
+    puStack_48 = &system_data_buffer_ptr;
     if (lStack_40 == 0) {
       lStack_40 = 0;
       uStack_30 = 0;
-      puStack_48 = &unknown_var_720_ptr;
+      puStack_48 = &system_state_ptr;
       ppuStackX_8 = &puStack_68;
-      puStack_68 = &unknown_var_3456_ptr;
+      puStack_68 = &system_data_buffer_ptr;
       if (lStack_60 == 0) {
         return;
       }
@@ -1012,10 +1012,10 @@ uint64_t *
 allocate_and_initialize_memory(uint64_t *memory_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 
 {
-  memory_ptr[4] = &unknown_var_720_ptr; // 设置内存标记
+  memory_ptr[4] = &system_state_ptr; // 设置内存标记
   *memory_ptr = &unknown_var_1000_ptr; // 设置虚函数表
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x100,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1030,8 +1030,8 @@ uint64_t * FUN_18005ce30(uint64_t *param_1,uint64_t *param_2)
   uint64_t *puVar1;
   uint64_t uVar2;
   
-  *param_1 = &unknown_var_3552_ptr;
-  *param_1 = &unknown_var_3696_ptr;
+  *param_1 = &system_handler1_ptr;
+  *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
   *memory_ptr = &unknown_var_1000_ptr; // 设置虚函数表
   LOCK();
@@ -1040,7 +1040,7 @@ uint64_t * FUN_18005ce30(uint64_t *param_1,uint64_t *param_2)
   param_1[3] = 0xffffffffffffffff;
   *param_1 = &unknown_var_8464_ptr;
   puVar1 = param_1 + 4;
-  *puVar1 = &unknown_var_720_ptr;
+  *puVar1 = &system_state_ptr;
   param_1[5] = 0;
   *(int32_t *)(param_1 + 6) = 0;
   *puVar1 = &unknown_var_3432_ptr;
@@ -1300,14 +1300,14 @@ longlong copy_and_initialize_simple_structure(longlong dest, longlong src)
 void cleanup_structure_safety(uint64_t param_1, longlong structure)
 
 {
-  *(uint64_t *)(structure + 0x20) = &unknown_var_3456_ptr; // 设置安全标记
+  *(uint64_t *)(structure + 0x20) = &system_data_buffer_ptr; // 设置安全标记
   if (*(longlong *)(param_2 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   *(uint64_t *)(structure + 0x28) = 0; // 清理指针
   *(int32_t *)(param_2 + 0x38) = 0;
-  *(uint64_t *)(param_2 + 0x20) = &unknown_var_720_ptr;
+  *(uint64_t *)(param_2 + 0x20) = &system_state_ptr;
   if (param_2 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(param_2);

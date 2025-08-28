@@ -62,7 +62,7 @@
 #define SystemInitializer FUN_18005e630          // 系统初始化器
 #define SystemCleanupHandler FUN_1808fc050      // 系统清理处理器
 #define SystemValidator FUN_18062dee0            // 系统验证器
-#define SystemBufferManager FUN_180639bf0       // 系统缓冲区管理器
+#define SystemBufferManager System_BufferManager       // 系统缓冲区管理器
 #define SystemDataProcessor FUN_180628f30       // 系统数据处理器
 #define SystemSearchHandler FUN_1801ea180       // 系统搜索处理器
 #define SystemDataFinder FUN_1801ea730          // 系统数据查找器

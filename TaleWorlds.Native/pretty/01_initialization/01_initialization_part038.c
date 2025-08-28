@@ -402,7 +402,7 @@ LAB_18006ca44:
                 }
                 ptr_array[0x24] = ptr_array2[0x24];
               }
-              *manager_ptr = &unknown_var_720_ptr;
+              *manager_ptr = &system_state_ptr;
               callback_ptr = (void **)manager_ptr;
                     // WARNING: Subroutine does not return
               FUN_18064e900(manager_ptr);
@@ -496,7 +496,7 @@ LAB_18006ca95:
     
     // 重置清理指针
     callback_ptr = &cleanup_ptr;
-    cleanup_ptr = &unknown_var_720_ptr;
+    cleanup_ptr = &system_state_ptr;
     status_flag = *(char *)(*(longlong *)(context + 1000) + 0x58);
   } while( true );
 }
@@ -525,7 +525,7 @@ void ResourcePool_Cleanup(longlong pool_handle)
     do {
       resource_ptr = *(uint64_t **)(pool_base + index * 8);
       if (resource_ptr != (uint64_t *)0x0) {
-        *resource_ptr = &unknown_var_720_ptr;
+        *resource_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900(resource_ptr);
       }

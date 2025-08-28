@@ -94,7 +94,7 @@ FUN_1802aa550(char *param_1,longlong param_2,longlong param_3,longlong param_4,l
   NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_3864_ptr,uVar2);
   NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_3880_ptr,uVar3);
   NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_3848_ptr,uVar10);
-  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_2360_ptr,uVar6);
+  NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&system_param2_ptr,uVar6);
   NVSDK_NGX_Parameter_SetD3d11Resource(uVar7,&unknown_var_3920_ptr,0);
   NVSDK_NGX_Parameter_SetI(uVar7,&unknown_var_2612_ptr,uVar11);
   NVSDK_NGX_Parameter_SetF(uVar7,&unknown_var_3944_ptr,0x3f800000);

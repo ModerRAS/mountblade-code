@@ -162,8 +162,8 @@ uint64_t * RenderingSystem_AllocateResourceMemory(uint64_t *param_1,ulonglong pa
   uVar1 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
   *param_1 = &unknown_var_9832_ptr;
   FUN_18022f410(param_1 + 2);
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,RENDERING_SYSTEM_DATA_SIZE_0X48,param_3,param_4,uVar1);
   }
@@ -198,8 +198,8 @@ int32_t * RenderingSystem_CreateColorBuffer(int32_t *param_1,longlong *param_2)
   int32_t uStack_34;
   
   plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,RENDERING_SYSTEM_DATA_SIZE_0X48,8,3,RENDERING_SYSTEM_FLAG_FFFFFFFE);
-  *plVar2 = (longlong)&unknown_var_3552_ptr;
-  *plVar2 = (longlong)&unknown_var_3696_ptr;
+  *plVar2 = (longlong)&system_handler1_ptr;
+  *plVar2 = (longlong)&system_handler2_ptr;
   *(int32_t *)(plVar2 + 1) = 0;
   *plVar2 = (longlong)&unknown_var_9832_ptr;
   if (param_2 != (longlong *)0x0) {
@@ -1706,7 +1706,7 @@ uint64_t * RenderingSystem_AllocateColorBuffer(uint64_t *param_1)
   if (plStackX_8 == (longlong *)0x0) {
     plStack_38 = (longlong *)0x0;
     uStack_30 = 0xffffffff;
-    puStack_28 = &unknown_var_3456_ptr;
+    puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -1718,7 +1718,7 @@ uint64_t * RenderingSystem_AllocateColorBuffer(uint64_t *param_1)
     if (plStackX_8 != (longlong *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();
     }
-    puStack_28 = &unknown_var_3456_ptr;
+    puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();

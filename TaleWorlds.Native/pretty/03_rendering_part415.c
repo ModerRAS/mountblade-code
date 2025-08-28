@@ -229,10 +229,10 @@ void FUN_180494ad0(longlong param_1,float *param_2,int param_3)
     uStack_154 = 0;
     do {
       uVar24 = uStack_154 * 3;
-      uVar12 = (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)uVar24 * 4);
-      uVar27 = (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar24 + 2) * 4);
+      uVar12 = (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)uVar24 * 4);
+      uVar27 = (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar24 + 2) * 4);
       fVar2 = afStack_e8[uVar12 * 4 + 2];
-      uVar10 = (ulonglong)*(uint *)(&unknown_var_4192_ptr + (ulonglong)(uVar24 + 1) * 4);
+      uVar10 = (ulonglong)*(uint *)(&system_handler3_ptr + (ulonglong)(uVar24 + 1) * 4);
       uVar20 = (uint)(afStack_e8[uVar12 * 4] + 0.5);
       uStack_178 = (uint)(afStack_e8[uVar12 * 4 + 1] + 0.5);
       uVar18 = (uint)(afStack_e8[uVar27 * 4] + 0.5);

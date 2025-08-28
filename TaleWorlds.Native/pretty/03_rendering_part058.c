@@ -611,7 +611,7 @@ uint64_t *render_mutex_initialize(uint64_t *mutex_data)
 {
   // 初始化互斥锁结构和同步机制
   _Mtx_init_in_situ(); // 就地初始化互斥锁
-  mutex_data[0x11] = &unknown_var_720_ptr; // 设置互斥锁类型
+  mutex_data[0x11] = &system_state_ptr; // 设置互斥锁类型
   mutex_data[0x12] = 0; // 清空锁状态
   *(int32_t *)(mutex_data + 0x13) = 0; // 清空锁计数
   mutex_data[0x11] = &unknown_var_3432_ptr; // 设置递归锁类型

@@ -662,10 +662,10 @@ LAB_1803c02ef:
     }
     FUN_180630b20(lStack_128,param_3,&unknown_var_1520_ptr,pbVar7);
   }
-  puStack_a8 = &unknown_var_720_ptr;
+  puStack_a8 = &system_state_ptr;
 LAB_1803c03a8:
   lVar6 = lStack_128;
-  puStack_108 = &unknown_var_720_ptr;
+  puStack_108 = &system_state_ptr;
   lVar3 = *(longlong *)(lStack_120 + 8);
   lVar4 = *(longlong *)(lVar3 + 0x268);
   if (((lVar4 == 0) || (*(int *)(lVar3 + 0x18) != *(int *)(lVar4 + 0x18))) &&

@@ -500,7 +500,7 @@ void FUN_1806bf130(longlong *param_1)
   plVar1 = (longlong *)PxGetFoundation();
   plVar1 = (longlong *)(**(code **)(*plVar1 + 0x20))(plVar1);
   puVar2 = (uint64_t *)(**(code **)(*plVar1 + 8))(plVar1,0x10,&unknown_var_1104_ptr,&unknown_var_1008_ptr,0xa1);
-  *puVar2 = &unknown_var_720_ptr;
+  *puVar2 = &system_state_ptr;
   puVar2[1] = &unknown_var_1168_ptr;
   (**(code **)*param_1)(param_1,0x105,puVar2);
   plVar1 = (longlong *)PxGetFoundation();

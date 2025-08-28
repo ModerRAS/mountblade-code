@@ -318,7 +318,7 @@ FUN_1800fbe20(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t *puVar1;
   
   *param_1 = 0;
-  param_1[1] = &unknown_var_3552_ptr;
+  param_1[1] = &system_handler1_ptr;
   param_1[1] = &unknown_var_7264_ptr;
   param_1[2] = &unknown_var_3616_ptr;
   param_1[2] = &unknown_var_3584_ptr;
@@ -354,7 +354,7 @@ uint64_t *
 FUN_1800fbf40(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8,param_3,param_4,0xfffffffffffffffe);
   }
@@ -904,8 +904,8 @@ void FUN_1800fc580(uint64_t param_1,longlong *****param_2)
   longlong *****ppppplStackX_20;
   
   pppppplVar3 = (longlong ******)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,3,0xfffffffffffffffe);
-  *pppppplVar3 = (longlong *****)&unknown_var_3552_ptr;
-  *pppppplVar3 = (longlong *****)&unknown_var_3696_ptr;
+  *pppppplVar3 = (longlong *****)&system_handler1_ptr;
+  *pppppplVar3 = (longlong *****)&system_handler2_ptr;
   *(int32_t *)(pppppplVar3 + 1) = 0;
   *pppppplVar3 = (longlong *****)&unknown_var_1000_ptr;
   LOCK();

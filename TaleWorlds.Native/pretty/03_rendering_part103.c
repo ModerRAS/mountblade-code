@@ -729,14 +729,14 @@ void FUN_18032c0b0(longlong param_1,uint64_t param_2)
   FUN_18062dee0(puVar1,puVar4,&unknown_var_9772_ptr);
   
   // 设置文件操作参数
-  puStack_68 = &unknown_var_3456_ptr;
+  puStack_68 = &system_data_buffer_ptr;
   if (lStack_60 != 0) {
     FUN_18064e900();
   }
   
   lStack_60 = 0;
   uStack_50 = 0;
-  puStack_68 = &unknown_var_720_ptr;
+  puStack_68 = &system_state_ptr;
   
   // 打开文件并定位到开始位置
   _fseeki64(puVar1[1],0,0);
@@ -1145,7 +1145,7 @@ void FUN_18032c9f0(longlong param_1,longlong param_2,longlong param_3,int32_t pa
   
   // 检查是否需要扩展缓冲区
   if ((uVar6 & 0xffffff) != 0) {
-    FUN_180639bf0(&lStack_b0,(longlong)(aiStack_b8[0] << 8));
+    System_BufferManager(&lStack_b0,(longlong)(aiStack_b8[0] << 8));
   }
   
   // 写入扩展数据
@@ -1161,7 +1161,7 @@ void FUN_18032c9f0(longlong param_1,longlong param_2,longlong param_3,int32_t pa
     
     // 检查缓冲区空间
     if ((ulonglong)((lStack_a0 - (longlong)puStack_a8) + lStack_b0) < 5) {
-      FUN_180639bf0(&lStack_b0,(longlong)puStack_a8 + (4 - lStack_b0));
+      System_BufferManager(&lStack_b0,(longlong)puStack_a8 + (4 - lStack_b0));
     }
     
     // 写入资源数据
@@ -1169,7 +1169,7 @@ void FUN_18032c9f0(longlong param_1,longlong param_2,longlong param_3,int32_t pa
     puStack_a8 = puStack_a8 + 1;
     
     if ((ulonglong)((lStack_a0 - (longlong)puStack_a8) + lStack_b0) < 0x11) {
-      FUN_180639bf0(&lStack_b0,(longlong)puStack_a8 + (0x10 - lStack_b0));
+      System_BufferManager(&lStack_b0,(longlong)puStack_a8 + (0x10 - lStack_b0));
     }
     
     *puStack_a8 = puVar3[1];
@@ -1182,7 +1182,7 @@ void FUN_18032c9f0(longlong param_1,longlong param_2,longlong param_3,int32_t pa
     uVar6 = (ulonglong)uVar2 + 4;
     
     if ((ulonglong)((lStack_a0 - (longlong)puStack_a8) + lStack_b0) <= uVar6) {
-      FUN_180639bf0(&lStack_b0,(uVar6 - lStack_b0) + (longlong)puStack_a8);
+      System_BufferManager(&lStack_b0,(uVar6 - lStack_b0) + (longlong)puStack_a8);
     }
     
     *puStack_a8 = uVar2;

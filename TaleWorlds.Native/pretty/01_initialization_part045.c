@@ -709,7 +709,7 @@ void FUN_1800744b0(longlong param_1,longlong param_2)
       FUN_180049910(&puStack_c8,puVar1,uVar3);
       *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar3;
     }
-    puStack_c8 = &unknown_var_720_ptr;
+    puStack_c8 = &system_state_ptr;
     puVar13 = *(int32_t **)(param_2 + 8);
   }
   else {
@@ -788,11 +788,11 @@ void FUN_1800746c0(longlong param_1)
   
   if (*(char *)(*(longlong *)(param_1 + 0x20) + 0x28) == '\0') {
     plVar3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0xc0,0x10,4,0xfffffffffffffffe);
-    *plVar3 = (longlong)&unknown_var_3552_ptr;
-    *plVar3 = (longlong)&unknown_var_3696_ptr;
+    *plVar3 = (longlong)&system_handler1_ptr;
+    *plVar3 = (longlong)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
     *plVar3 = (longlong)&unknown_var_8584_ptr;
-    plVar3[2] = (longlong)&unknown_var_720_ptr;
+    plVar3[2] = (longlong)&system_state_ptr;
     plVar3[3] = 0;
     *(int32_t *)(plVar3 + 4) = 0;
     plVar3[2] = (longlong)&unknown_var_3432_ptr;

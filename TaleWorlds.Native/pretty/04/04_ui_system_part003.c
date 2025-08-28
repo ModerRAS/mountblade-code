@@ -1375,44 +1375,44 @@ void ui_cleanup_resource_pointers(longlong resource_ptr)
 
 {
   // 重置资源指针为默认值
-  *(uint64_t *)(resource_ptr + 0x80) = &unknown_var_3456_ptr;
+  *(uint64_t *)(resource_ptr + 0x80) = &system_data_buffer_ptr;
   if (*(longlong *)(resource_ptr + 0x88) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x88) = 0;
   *(int32_t *)(resource_ptr + 0x98) = 0;
-  *(uint64_t *)(resource_ptr + 0x80) = &unknown_var_720_ptr;
+  *(uint64_t *)(resource_ptr + 0x80) = &system_state_ptr;
   
   // 清理第二组资源指针
-  *(uint64_t *)(resource_ptr + 0x60) = &unknown_var_3456_ptr;
+  *(uint64_t *)(resource_ptr + 0x60) = &system_data_buffer_ptr;
   if (*(longlong *)(resource_ptr + 0x68) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x68) = 0;
   *(int32_t *)(resource_ptr + 0x78) = 0;
-  *(uint64_t *)(resource_ptr + 0x60) = &unknown_var_720_ptr;
+  *(uint64_t *)(resource_ptr + 0x60) = &system_state_ptr;
   
   // 清理第三组资源指针
-  *(uint64_t *)(resource_ptr + 0x28) = &unknown_var_3456_ptr;
+  *(uint64_t *)(resource_ptr + 0x28) = &system_data_buffer_ptr;
   if (*(longlong *)(resource_ptr + 0x30) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x30) = 0;
   *(int32_t *)(resource_ptr + 0x40) = 0;
-  *(uint64_t *)(resource_ptr + 0x28) = &unknown_var_720_ptr;
+  *(uint64_t *)(resource_ptr + 0x28) = &system_state_ptr;
   
   // 清理第四组资源指针
-  *(uint64_t *)(resource_ptr + 8) = &unknown_var_3456_ptr;
+  *(uint64_t *)(resource_ptr + 8) = &system_data_buffer_ptr;
   if (*(longlong *)(resource_ptr + 0x10) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x10) = 0;
   *(int32_t *)(resource_ptr + 0x20) = 0;
-  *(uint64_t *)(resource_ptr + 8) = &unknown_var_720_ptr;
+  *(uint64_t *)(resource_ptr + 8) = &system_state_ptr;
   return;
 }
 

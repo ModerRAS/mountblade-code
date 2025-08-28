@@ -256,7 +256,7 @@ void rendering_system_host_interface_initializer(uint64_t param_1, uint64_t para
   FUN_1803456e0(puVar2, param_2, param_1);
   *puVar3 = &unknown_var_2720_ptr;
   *(int32_t *)(puVar3 + 0xe) = 0x1f;
-  puStack_40 = &unknown_var_3456_ptr;
+  puStack_40 = &system_data_buffer_ptr;
   uStack_28 = 0;
   puStack_38 = (uint64_t *)0x0;
   uStack_30 = 0;
@@ -270,7 +270,7 @@ void rendering_system_host_interface_initializer(uint64_t param_1, uint64_t para
   *(int16_t *)((longlong)puVar3 + 0xc) = 0x78;  // "x"
   uStack_30 = 0xd;
   FUN_1803460a0(puVar2, &puStack_40, puVar2 + 0xe, 4);
-  puStack_40 = &unknown_var_3456_ptr;
+  puStack_40 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar3);
 }
@@ -309,8 +309,8 @@ void rendering_system_module_loader(uint64_t param_1)
   FUN_1803617c0(param_1, appuStack_168, apuStack_b8);
   uStack_178 = 0;
   appuStack_168[0] = apuStack_b8;
-  apuStack_b8[0] = &unknown_var_720_ptr;
-  puStack_158 = &unknown_var_720_ptr;
+  apuStack_b8[0] = &system_state_ptr;
+  puStack_158 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_198);
 }
@@ -362,43 +362,43 @@ void rendering_system_name_manager(uint64_t param_1, uint64_t param_2)
   puVar4 = puVar2;
   FUN_1803456e0(puVar2, param_2, param_1);
   *puVar4 = &unknown_var_4296_ptr;
-  puVar4[0xe] = &unknown_var_720_ptr;
+  puVar4[0xe] = &system_state_ptr;
   puVar4[0xf] = 0;
   *(int32_t *)(puVar4 + 0x10) = 0;
-  puVar4[0xe] = &unknown_var_3456_ptr;
+  puVar4[0xe] = &system_data_buffer_ptr;
   puVar4[0x11] = 0;
   puVar4[0xf] = 0;
   *(int32_t *)(puVar4 + 0x10) = 0;
-  puVar2[0x12] = &unknown_var_720_ptr;
+  puVar2[0x12] = &system_state_ptr;
   puVar2[0x13] = 0;
   *(int32_t *)(puVar2 + 0x14) = 0;
-  puVar2[0x12] = &unknown_var_3456_ptr;
+  puVar2[0x12] = &system_data_buffer_ptr;
   puVar2[0x15] = 0;
   puVar2[0x13] = 0;
   *(int32_t *)(puVar2 + 0x14) = 0;
   puVar4 = puVar2 + 0x16;
-  *puVar4 = &unknown_var_720_ptr;
+  *puVar4 = &system_state_ptr;
   puVar2[0x17] = 0;
   *(int32_t *)(puVar2 + 0x18) = 0;
-  *puVar4 = &unknown_var_3456_ptr;
+  *puVar4 = &system_data_buffer_ptr;
   puVar2[0x19] = 0;
   puVar2[0x17] = 0;
   *(int32_t *)(puVar2 + 0x18) = 0;
-  puVar2[0x1a] = &unknown_var_720_ptr;
+  puVar2[0x1a] = &system_state_ptr;
   puVar2[0x1b] = 0;
   *(int32_t *)(puVar2 + 0x1c) = 0;
-  puVar2[0x1a] = &unknown_var_3456_ptr;
+  puVar2[0x1a] = &system_data_buffer_ptr;
   puVar2[0x1d] = 0;
   puVar2[0x1b] = 0;
   *(int32_t *)(puVar2 + 0x1c) = 0;
-  puVar2[0x1e] = &unknown_var_720_ptr;
+  puVar2[0x1e] = &system_state_ptr;
   puVar2[0x1f] = 0;
   *(int32_t *)(puVar2 + 0x20) = 0;
-  puVar2[0x1e] = &unknown_var_3456_ptr;
+  puVar2[0x1e] = &system_data_buffer_ptr;
   puVar2[0x21] = 0;
   puVar2[0x1f] = 0;
   *(int32_t *)(puVar2 + 0x20) = 0;
-  puStack_a0 = &unknown_var_3456_ptr;
+  puStack_a0 = &system_data_buffer_ptr;
   uStack_88 = 0;
   puStack_98 = (uint64_t *)0x0;
   uStack_90 = 0;
@@ -411,7 +411,7 @@ void rendering_system_name_manager(uint64_t param_1, uint64_t param_2)
   *(int8_t *)(puVar3 + 1) = 0;
   uStack_90 = 8;
   FUN_1803460a0(puVar2, &puStack_a0, puVar4, 0, uVar5);
-  puStack_a0 = &unknown_var_3456_ptr;
+  puStack_a0 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar3);
 }
@@ -437,7 +437,7 @@ void rendering_system_grid_handler(uint64_t param_1, uint64_t param_2)
   puVar3 = puVar2;
   FUN_1803456e0(puVar2, param_2, param_1);
   *puVar3 = &unknown_var_4704_ptr;
-  puStack_40 = &unknown_var_3456_ptr;
+  puStack_40 = &system_data_buffer_ptr;
   uStack_28 = 0;
   puStack_38 = (uint64_t *)0x0;
   uStack_30 = 0;
@@ -451,7 +451,7 @@ void rendering_system_grid_handler(uint64_t param_1, uint64_t param_2)
   *(int8_t *)((longlong)puVar3 + 0xc) = 0;
   uStack_30 = 0xc;
   FUN_1803460a0(puVar2, &puStack_40, 0, 0xb);
-  puStack_40 = &unknown_var_3456_ptr;
+  puStack_40 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar3);
 }
@@ -536,13 +536,13 @@ void rendering_system_shader_manager(uint64_t *param_1)
   FUN_18049dc80();
   (**(code **)(render_system_memory + 0x10))(&system_memory_24d0, &system_memory_d128);
   *(int32_t *)(param_1 + 1) = 0;
-  puStack_50 = &unknown_var_7512_ptr;
+  puStack_50 = &system_config_ptr;
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
   iStack_40 = 6;
   strcpy_s(auStack_38, 0x10, &unknown_var_2588_ptr);
   uStack_68 = 1;
-  puStack_88 = &unknown_var_3456_ptr;
+  puStack_88 = &system_data_buffer_ptr;
   uStack_70 = 0;
   puStack_80 = (int8_t *)0x0;
   uStack_78 = 0;
@@ -563,7 +563,7 @@ void rendering_system_shader_manager(uint64_t *param_1)
   }
   uVar3 = uStack_78;
   uStack_68 = 0;
-  puStack_50 = &unknown_var_720_ptr;
+  puStack_50 = &system_state_ptr;
   uVar2 = uStack_78 + 8;
   FUN_1806277c0(&puStack_88, uVar2);
   *(uint64_t *)(puStack_80 + uStack_78) = 0x2f73656c75646f4d;  // "Modules/"
@@ -591,14 +591,14 @@ void rendering_system_shader_manager(uint64_t *param_1)
   }
   render_system_memory = uStack_70._4_4_;
   *(int32_t *)(param_1 + 0x84) = 0;
-  puStack_88 = &unknown_var_3456_ptr;
+  puStack_88 = &system_data_buffer_ptr;
   if (puStack_80 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_80 = (int8_t *)0x0;
   uStack_70 = (ulonglong)uStack_70._4_4_ << 0x20;
-  puStack_88 = &unknown_var_720_ptr;
+  puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_b8, 0);
 }
@@ -631,7 +631,7 @@ void rendering_system_material_processor(uint64_t param_1, longlong *param_2, ui
   FUN_180057110(param_2);
   FUN_180052200(system_main_module_state, param_2);
   if ((param_2[1] - *param_2 & 0xffffffffffffffe0U) == 0) {
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     uStack_48 = 0;
     puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
@@ -645,15 +645,15 @@ void rendering_system_material_processor(uint64_t param_1, longlong *param_2, ui
     uStack_50 = 6;
     uStack_48._0_4_ = uVar1;
     FUN_180066df0(param_2, &puStack_60);
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_58 = (uint64_t *)0x0;
     uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
-    puStack_60 = &unknown_var_720_ptr;
-    puStack_40 = &unknown_var_3456_ptr;
+    puStack_60 = &system_state_ptr;
+    puStack_40 = &system_data_buffer_ptr;
     uStack_28 = 0;
     puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
@@ -666,15 +666,15 @@ void rendering_system_material_processor(uint64_t param_1, longlong *param_2, ui
     uStack_30 = 0xb;
     uStack_28._0_4_ = uVar1;
     FUN_180066df0(param_2, &puStack_40);
-    puStack_40 = &unknown_var_3456_ptr;
+    puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_38 = (uint64_t *)0x0;
     uStack_28 = (ulonglong)uStack_28._4_4_ << 0x20;
-    puStack_40 = &unknown_var_720_ptr;
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_40 = &system_state_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     uStack_48 = 0;
     puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
@@ -687,15 +687,15 @@ void rendering_system_material_processor(uint64_t param_1, longlong *param_2, ui
     uStack_50 = 0xb;
     uStack_48._0_4_ = uVar1;
     FUN_180066df0(param_2, &puStack_60);
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_58 = (uint64_t *)0x0;
     uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
-    puStack_60 = &unknown_var_720_ptr;
-    puStack_40 = &unknown_var_3456_ptr;
+    puStack_60 = &system_state_ptr;
+    puStack_40 = &system_data_buffer_ptr;
     uStack_28 = 0;
     puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
@@ -707,15 +707,15 @@ void rendering_system_material_processor(uint64_t param_1, longlong *param_2, ui
     uStack_30 = 7;
     uStack_28._0_4_ = uVar1;
     FUN_180066df0(param_2, &puStack_40);
-    puStack_40 = &unknown_var_3456_ptr;
+    puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_38 = (uint64_t *)0x0;
     uStack_28 = (ulonglong)uStack_28._4_4_ << 0x20;
-    puStack_40 = &unknown_var_720_ptr;
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_40 = &system_state_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     uStack_48 = 0;
     puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
@@ -729,15 +729,15 @@ void rendering_system_material_processor(uint64_t param_1, longlong *param_2, ui
     uStack_50 = 0xc;
     uStack_48._0_4_ = uVar1;
     FUN_180066df0(param_2, &puStack_60);
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_58 = (uint64_t *)0x0;
     uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
-    puStack_60 = &unknown_var_720_ptr;
-    puStack_40 = &unknown_var_3456_ptr;
+    puStack_60 = &system_state_ptr;
+    puStack_40 = &system_data_buffer_ptr;
     uStack_28 = 0;
     puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
@@ -750,7 +750,7 @@ void rendering_system_material_processor(uint64_t param_1, longlong *param_2, ui
     *(int16_t *)(puVar3 + 1) = 0x65;  // "e"
     uStack_30 = 9;
     FUN_180066df0(param_2, &puStack_40);
-    puStack_40 = &unknown_var_3456_ptr;
+    puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();

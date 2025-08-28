@@ -294,7 +294,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
             } while ((longlong)string_table_ptr < 0x18098e220);
             
             // 重置缓冲区
-            texture_info_ptr = &unknown_var_720_ptr;
+            texture_info_ptr = &system_state_ptr;
             buffer_size = buffer_size - 1;
             current_texture_id = material_id;
         } while (buffer_size != 0);
@@ -358,7 +358,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
     } while ((longlong)string_table_ptr < 0x180bf90b0);
     
     // 重置着色器缓冲区
-    shader_info_ptr = &unknown_var_720_ptr;
+    shader_info_ptr = &system_state_ptr;
     
     // 读取材质基本信息
     material_name_hash = (*(uint64_t **)(data_stream + 8))[1];

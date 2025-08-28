@@ -756,7 +756,7 @@ uint64_t * FUN_18083ef10(uint64_t param_1,uint64_t *param_2)
   param_2[6] = param_2 + 8;
   param_2[7] = param_2 + 0xe;
   *param_2 = &unknown_var_9632_ptr;
-  param_2[8] = &unknown_var_9552_ptr;
+  param_2[8] = &system_string1_ptr;
   *(int8_t *)(param_2 + 9) = 0;
   param_2[10] = 0;
   param_2[0xb] = 0;

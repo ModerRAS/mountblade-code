@@ -146,7 +146,7 @@ void FUN_18008bb30(uint64_t param_1,longlong param_2,longlong *param_3,longlong 
   if (pcStack_a0 != (code *)0x0) {
     (*pcStack_a0)(auStack_b0,0,0);
   }
-  puStack_1f8 = &unknown_var_720_ptr;
+  puStack_1f8 = &system_state_ptr;
   puStack_258 = (uint64_t *)auStack_238;
   if (pcStack_228 != (code *)0x0) {
     (*pcStack_228)(auStack_238,0,0);
@@ -247,7 +247,7 @@ LAB_18008c01e:
   *(int8_t *)((longlong)plVar3 + 0x1a) = 3;
   if (uVar8 != 0) {
     uVar11 = (ulonglong)uVar8;
-    FUN_180639bf0(plVar3,uVar8);
+    System_BufferManager(plVar3,uVar8);
     lVar6 = plVar3[1];
     uVar9 = 0;
     if (uVar11 != 0) {
@@ -287,7 +287,7 @@ LAB_18008c01e:
   lStack_300 = param_3[1];
   plStack_2d0 = plVar4;
   if ((ulonglong)((plVar4[2] - plVar4[1]) + *plVar4) <= lStack_300 + 1U) {
-    FUN_180639bf0(plVar4,(plVar4[1] - *plVar4) + lStack_300 + 1U);
+    System_BufferManager(plVar4,(plVar4[1] - *plVar4) + lStack_300 + 1U);
     lStack_300 = param_3[1];
   }
   puStack_2c8 = &unknown_var_3856_ptr;
@@ -972,7 +972,7 @@ FUN_18008d320(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
 {
   void *puVar1;
   
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
   *param_1 = &unknown_var_9208_ptr;

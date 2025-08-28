@@ -7,8 +7,8 @@
 /* 常量定义 */
 #define DEFAULT_MATERIAL_HANDLE &system_buffer_ptr
 #define DEFAULT_TEXTURE_NAME &unknown_var_3432_ptr
-#define EMPTY_STRING_PTR &unknown_var_720_ptr
-#define COMPONENT_SYSTEM_NAME &unknown_var_3456_ptr
+#define EMPTY_STRING_PTR &system_state_ptr
+#define COMPONENT_SYSTEM_NAME &system_data_buffer_ptr
 #define MEMORY_BLOCK_SIZE 0x300
 #define MEMORY_ALIGNMENT 0x10
 #define STRING_BUFFER_SIZE 0x80
@@ -602,13 +602,13 @@ void update_material_system_status(longlong material_system, longlong* texture_d
     // 处理材质状态标志
     if ((material_state & 2) != 0) {
         name_length = material_state & 0xfffffffd;
-        stack_name = &unknown_var_720_ptr;
+        stack_name = &system_state_ptr;
         material_state = name_length;
     }
     
     if ((material_state & 1) != 0) {
         name_length = material_state & 0xfffffffe;
-        stack_source = &unknown_var_720_ptr;
+        stack_source = &system_state_ptr;
     }
     
     // 清理纹理数据
@@ -694,7 +694,7 @@ void process_material_batch_update(longlong material_system, longlong* texture_d
     
     // 处理默认纹理或自定义纹理
     if (is_default_texture) {
-        stack_source = &unknown_var_3456_ptr;
+        stack_source = &system_data_buffer_ptr;
         stack_size = 0;
         stack_offset = 0;
         stack_flags = 0;
@@ -719,7 +719,7 @@ void process_material_batch_update(longlong material_system, longlong* texture_d
     
     // 清理默认纹理资源
     if (is_default_texture) {
-        stack_source = &unknown_var_3456_ptr;
+        stack_source = &system_data_buffer_ptr;
         
         if (system_handle != 0) {
             FUN_18064e900(system_handle);
@@ -727,12 +727,12 @@ void process_material_batch_update(longlong material_system, longlong* texture_d
         
         stack_offset = 0;
         stack_size = stack_size & 0xffffffff00000000;
-        stack_source = &unknown_var_720_ptr;
+        stack_source = &system_state_ptr;
     }
     
     // 清理自定义纹理资源
     if (!is_default_texture) {
-        stack_buffer = &unknown_var_3456_ptr;
+        stack_buffer = &system_data_buffer_ptr;
         
         if (stack_value != 0) {
             FUN_18064e900();
@@ -740,7 +740,7 @@ void process_material_batch_update(longlong material_system, longlong* texture_d
         
         stack_value = 0;
         stack_param = 0;
-        stack_buffer = &unknown_var_720_ptr;
+        stack_buffer = &system_state_ptr;
     }
     
     // 最终清理
@@ -764,10 +764,10 @@ uint64_t* initialize_material_system_component(uint64_t component_handle, uint64
     uint64_t* component_ptr;
     
     // 初始化组件参数
-    *param_array = &unknown_var_720_ptr;
+    *param_array = &system_state_ptr;
     param_array[1] = 0;
     *(int32_t*)(param_array + 2) = 0;
-    *param_array = &unknown_var_3456_ptr;
+    *param_array = &system_data_buffer_ptr;
     param_array[3] = 0;
     param_array[1] = 0;
     *(int32_t*)(param_array + 2) = 0;
@@ -827,7 +827,7 @@ void process_render_system_component_update(longlong render_system, longlong com
     
     // 初始化栈保护
     stack_block = 0xfffffffffffffffe;
-    stack_source = &unknown_var_3456_ptr;
+    stack_source = &system_data_buffer_ptr;
     stack_guard = 0;
     stack_offset = 0;
     stack_size = 0;
@@ -895,7 +895,7 @@ void process_render_system_component_update(longlong render_system, longlong com
     
     // 处理字符串数据
     if (data_flag != '\0') {
-        stack_buffer = &unknown_var_3456_ptr;
+        stack_buffer = &system_data_buffer_ptr;
         stack_value = 0;
         stack_format = 0;
         data_size = *size_ptr;
@@ -926,7 +926,7 @@ void process_render_system_component_update(longlong render_system, longlong com
             (**(code**)(*stack_data + 0x38))();
         }
         
-        stack_buffer = &unknown_var_3456_ptr;
+        stack_buffer = &system_data_buffer_ptr;
         
         if (stack_value != 0) {
             FUN_18064e900();
@@ -934,7 +934,7 @@ void process_render_system_component_update(longlong render_system, longlong com
         
         stack_value = 0;
         stack_capacity = stack_capacity & 0xffffffff00000000;
-        stack_buffer = &unknown_var_720_ptr;
+        stack_buffer = &system_state_ptr;
         size_ptr = *(uint**)(component_data + 8);
     }
     
@@ -956,7 +956,7 @@ void process_render_system_component_update(longlong render_system, longlong com
                 component_offset = FUN_180075030(temp_value, 0, 1);
             }
             
-            stack_params[0] = &unknown_var_3456_ptr;
+            stack_params[0] = &system_data_buffer_ptr;
             stack_count = 0;
             stack_params[1] = 0;
             stack_flags = 0;
@@ -969,7 +969,7 @@ void process_render_system_component_update(longlong render_system, longlong com
                 *(longlong*)(component_data + 8) = *(longlong*)(component_data + 8) + (ulonglong)data_size;
             }
             
-            stack_buffer = &unknown_var_3456_ptr;
+            stack_buffer = &system_data_buffer_ptr;
             stack_capacity = 0;
             stack_value = 0;
             stack_format = 0;
@@ -1052,7 +1052,7 @@ void process_render_system_component_update(longlong render_system, longlong com
             *(int32_t*)(*(longlong*)(component_offset + 0x268) + 0x6c) = data_buffer[9];
             *(int32_t**)(component_data + 8) = data_buffer + 10;
             
-            stack_buffer = &unknown_var_3456_ptr;
+            stack_buffer = &system_data_buffer_ptr;
             
             if (stack_value != 0) {
                 FUN_18064e900();
@@ -1060,8 +1060,8 @@ void process_render_system_component_update(longlong render_system, longlong com
             
             stack_value = 0;
             stack_capacity = stack_capacity & 0xffffffff00000000;
-            stack_buffer = &unknown_var_720_ptr;
-            stack_params[0] = &unknown_var_3456_ptr;
+            stack_buffer = &system_state_ptr;
+            stack_params[0] = &system_data_buffer_ptr;
             
             if (stack_params[1] != 0) {
                 FUN_18064e900();
@@ -1069,7 +1069,7 @@ void process_render_system_component_update(longlong render_system, longlong com
             
             stack_params[1] = 0;
             stack_count = stack_count & 0xffffffff00000000;
-            stack_params[0] = &unknown_var_720_ptr;
+            stack_params[0] = &system_state_ptr;
             buffer_size = (ulonglong)((int)buffer_size + 1);
             system_handle = system_handle + -1;
             processed_size = processed_size + 0x10;
@@ -1077,7 +1077,7 @@ void process_render_system_component_update(longlong render_system, longlong com
     }
     
     // 最终清理
-    stack_source = &unknown_var_3456_ptr;
+    stack_source = &system_data_buffer_ptr;
     
     if (stack_offset == 0) {
         return;

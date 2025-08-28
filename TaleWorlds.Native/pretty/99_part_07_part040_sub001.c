@@ -46,10 +46,10 @@ void FUN_1804c01f0(uint64_t *param_1,ulonglong param_2)
       lVar8 = (longlong)puVar5 - (longlong)puVar2;
       puVar5 = puVar2 + 7;
       do {
-        *puVar6 = &unknown_var_720_ptr;
+        *puVar6 = &system_state_ptr;
         puVar5[-6] = 0;
         *(int32_t *)(puVar5 + -5) = 0;
-        *puVar6 = &unknown_var_3456_ptr;
+        *puVar6 = &system_data_buffer_ptr;
         puVar5[-4] = 0;
         puVar5[-6] = 0;
         *(int32_t *)(puVar5 + -5) = 0;
@@ -65,10 +65,10 @@ void FUN_1804c01f0(uint64_t *param_1,ulonglong param_2)
         *(uint64_t *)(lVar8 + -0x18 + (longlong)puVar5) = 0;
         puVar5[-2] = *(uint64_t *)(lVar8 + -0x10 + (longlong)puVar5);
         *(uint64_t *)(lVar8 + -0x10 + (longlong)puVar5) = 0;
-        puVar5[-1] = &unknown_var_720_ptr;
+        puVar5[-1] = &system_state_ptr;
         *puVar5 = 0;
         *(int32_t *)(puVar5 + 1) = 0;
-        puVar5[-1] = &unknown_var_3456_ptr;
+        puVar5[-1] = &system_data_buffer_ptr;
         puVar5[2] = 0;
         *puVar5 = 0;
         *(int32_t *)(puVar5 + 1) = 0;
@@ -88,19 +88,19 @@ void FUN_1804c01f0(uint64_t *param_1,ulonglong param_2)
       puVar7 = puVar6 + 7;
       uVar9 = param_2;
       do {
-        puVar7[-7] = &unknown_var_720_ptr;
+        puVar7[-7] = &system_state_ptr;
         puVar7[-6] = 0;
         *(int32_t *)(puVar7 + -5) = 0;
-        puVar7[-7] = &unknown_var_3456_ptr;
+        puVar7[-7] = &system_data_buffer_ptr;
         puVar7[-4] = 0;
         puVar7[-6] = 0;
         *(int32_t *)(puVar7 + -5) = 0;
         puVar7[-3] = 0;
         puVar7[-2] = 0;
-        puVar7[-1] = &unknown_var_720_ptr;
+        puVar7[-1] = &system_state_ptr;
         *puVar7 = 0;
         *(int32_t *)(puVar7 + 1) = 0;
-        puVar7[-1] = &unknown_var_3456_ptr;
+        puVar7[-1] = &system_data_buffer_ptr;
         puVar7[2] = 0;
         *puVar7 = 0;
         *(int32_t *)(puVar7 + 1) = 0;
@@ -117,28 +117,28 @@ void FUN_1804c01f0(uint64_t *param_1,ulonglong param_2)
     puVar5 = (uint64_t *)*param_1;
     if (puVar5 != puVar7) {
       do {
-        puVar5[6] = &unknown_var_3456_ptr;
+        puVar5[6] = &system_data_buffer_ptr;
         if (puVar5[7] != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         puVar5[7] = 0;
         *(int32_t *)(puVar5 + 9) = 0;
-        puVar5[6] = &unknown_var_720_ptr;
+        puVar5[6] = &system_state_ptr;
         if ((longlong *)puVar5[5] != (longlong *)0x0) {
           (**(code **)(*(longlong *)puVar5[5] + 0x38))();
         }
         if ((longlong *)puVar5[4] != (longlong *)0x0) {
           (**(code **)(*(longlong *)puVar5[4] + 0x38))();
         }
-        *puVar5 = &unknown_var_3456_ptr;
+        *puVar5 = &system_data_buffer_ptr;
         if (puVar5[1] != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
         puVar5[1] = 0;
         *(int32_t *)(puVar5 + 3) = 0;
-        *puVar5 = &unknown_var_720_ptr;
+        *puVar5 = &system_state_ptr;
         puVar5 = puVar5 + 10;
       } while (puVar5 != puVar7);
       puVar5 = (uint64_t *)*param_1;
@@ -156,19 +156,19 @@ void FUN_1804c01f0(uint64_t *param_1,ulonglong param_2)
       puVar5 = puVar7 + 7;
       uVar4 = param_2;
       do {
-        *puVar7 = &unknown_var_720_ptr;
+        *puVar7 = &system_state_ptr;
         puVar5[-6] = 0;
         *(int32_t *)(puVar5 + -5) = 0;
-        *puVar7 = &unknown_var_3456_ptr;
+        *puVar7 = &system_data_buffer_ptr;
         puVar5[-4] = 0;
         puVar5[-6] = 0;
         *(int32_t *)(puVar5 + -5) = 0;
         puVar5[-3] = 0;
         puVar5[-2] = 0;
-        puVar5[-1] = &unknown_var_720_ptr;
+        puVar5[-1] = &system_state_ptr;
         *puVar5 = 0;
         *(int32_t *)(puVar5 + 1) = 0;
-        puVar5[-1] = &unknown_var_3456_ptr;
+        puVar5[-1] = &system_data_buffer_ptr;
         puVar5[2] = 0;
         *puVar5 = 0;
         *(int32_t *)(puVar5 + 1) = 0;
@@ -632,7 +632,7 @@ uint64_t *
 FUN_1804c0af0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xa8,param_3,param_4,0xfffffffffffffffe);
   }

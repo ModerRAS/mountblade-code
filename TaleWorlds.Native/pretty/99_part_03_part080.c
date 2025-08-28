@@ -308,7 +308,7 @@ longlong FUN_180245b90(longlong param_1)
   *(uint64_t *)(param_1 + 0x1a8) = 0;
   *(uint64_t *)(param_1 + 0x1b0) = 0;
   FUN_18024e7b0();
-  *(uint64_t *)(param_1 + 0x1be8) = &unknown_var_720_ptr;
+  *(uint64_t *)(param_1 + 0x1be8) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x1bf0) = 0;
   *(int32_t *)(param_1 + 0x1bf8) = 0;
   *(uint64_t *)(param_1 + 0x1be8) = &unknown_var_3480_ptr;
@@ -555,7 +555,7 @@ longlong FUN_180245b90(longlong param_1)
   *(uint64_t *)(param_1 + 0x34f0) = 0;
   *(uint64_t *)(param_1 + 0x34f8) = 0;
   *(uint64_t *)(param_1 + 0x3500) = 0;
-  *(uint64_t *)(param_1 + 0x3520) = &unknown_var_720_ptr;
+  *(uint64_t *)(param_1 + 0x3520) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x3528) = 0;
   *(int32_t *)(param_1 + 0x3530) = 0;
   *(uint64_t *)(param_1 + 0x3520) = &unknown_var_3480_ptr;
@@ -568,17 +568,17 @@ longlong FUN_180245b90(longlong param_1)
   *(uint64_t *)(param_1 + 0x35a8) = 0;
   *(uint64_t *)(param_1 + 0x35b0) = 0;
   *(uint64_t *)(param_1 + 0x35b8) = 0;
-  *(uint64_t *)(param_1 + 0x95c8) = &unknown_var_720_ptr;
+  *(uint64_t *)(param_1 + 0x95c8) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x95d0) = 0;
   *(int32_t *)(param_1 + 0x95d8) = 0;
-  *(uint64_t *)(param_1 + 0x95c8) = &unknown_var_3456_ptr;
+  *(uint64_t *)(param_1 + 0x95c8) = &system_data_buffer_ptr;
   *(uint64_t *)(param_1 + 0x95e0) = 0;
   *(uint64_t *)(param_1 + 0x95d0) = 0;
   *(int32_t *)(param_1 + 0x95d8) = 0;
-  *(uint64_t *)(param_1 + 0x95e8) = &unknown_var_720_ptr;
+  *(uint64_t *)(param_1 + 0x95e8) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x95f0) = 0;
   *(int32_t *)(param_1 + 0x95f8) = 0;
-  *(uint64_t *)(param_1 + 0x95e8) = &unknown_var_3456_ptr;
+  *(uint64_t *)(param_1 + 0x95e8) = &system_data_buffer_ptr;
   *(uint64_t *)(param_1 + 0x9600) = 0;
   *(uint64_t *)(param_1 + 0x95f0) = 0;
   *(int32_t *)(param_1 + 0x95f8) = 0;
@@ -735,7 +735,7 @@ void FUN_1802464f0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   if (*(code **)(param_1 + 0x78) != (code *)0x0) {
     (**(code **)(param_1 + 0x78))(param_1 + 0x68,0,0,param_4,0xfffffffffffffffe);
   }
-  *(void **)(param_1 + 0x10) = &unknown_var_720_ptr;
+  *(void **)(param_1 + 0x10) = &system_state_ptr;
   return;
 }
 
@@ -756,7 +756,7 @@ void FUN_180246540(ulonglong *param_1)
   
   puVar2 = (uint64_t *)param_1[1];
   for (puVar4 = (uint64_t *)*param_1; puVar4 != puVar2; puVar4 = puVar4 + 0x18) {
-    *puVar4 = &unknown_var_720_ptr;
+    *puVar4 = &system_state_ptr;
   }
   puVar2 = (uint64_t *)*param_1;
   if (puVar2 != (uint64_t *)0x0) {

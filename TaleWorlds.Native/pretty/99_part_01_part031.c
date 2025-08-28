@@ -72,7 +72,7 @@ void FUN_1800bdfe0(void)
     if (aplStack_308[0] != (longlong *)0x0) {
       (**(code **)(*aplStack_308[0] + 0x38))();
     }
-    puStack_c8 = &unknown_var_720_ptr;
+    puStack_c8 = &system_state_ptr;
     ppuStack_2f8 = &puStack_288;
     puStack_288 = &unknown_var_3432_ptr;
     puStack_280 = auStack_270;
@@ -932,7 +932,7 @@ void FUN_1800bf780(void)
   
   uVar1 = system_resource_state;
   if (*(longlong *)(system_system_data_memory + 0x360) == 0) {
-    puStack_58 = &unknown_var_3456_ptr;
+    puStack_58 = &system_data_buffer_ptr;
     uStack_40 = 0;
     puStack_50 = (uint64_t *)0x0;
     uStack_48 = 0;
@@ -946,7 +946,7 @@ void FUN_1800bf780(void)
     *(int8_t *)((longlong)puVar3 + 10) = 0;
     uStack_48 = 10;
     FUN_1800b6de0(uVar1,&puStack_58,1);
-    puStack_58 = &unknown_var_3456_ptr;
+    puStack_58 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar3);
   }

@@ -356,13 +356,13 @@ void FUN_180323b30(RenderContext* context, void** resource_array, uint64_t param
     // 执行资源清理和状态更新
     resource_iter = resource_iter2;
 LAB_180323c2a:
-    stack_data_70 = &unknown_var_3456_ptr;
+    stack_data_70 = &system_data_buffer_ptr;
     if (stack_data_68 != (uint8_t*)0x0) {
         FUN_18064e900();
     }
     stack_data_68 = (uint8_t*)0x0;
     stack_data_58 = 0;
-    stack_data_70 = &unknown_var_720_ptr;
+    stack_data_70 = &system_state_ptr;
     
     // 执行最终处理和回调
     if (resource_iter == resource_iter2) {
@@ -375,13 +375,13 @@ LAB_180323c2a:
         if (stack_data_30 != (void**)0x0) {
             (**(code**)(*stack_data_30 + 0x38))();
         }
-        stack_data_50 = &unknown_var_3456_ptr;
+        stack_data_50 = &system_data_buffer_ptr;
         if (stack_data_48 != 0) {
             FUN_18064e900();
         }
         stack_data_48 = 0;
         stack_data_38 = 0;
-        stack_data_50 = &unknown_var_720_ptr;
+        stack_data_50 = &system_state_ptr;
     }
     
     // 执行系统清理和资源释放

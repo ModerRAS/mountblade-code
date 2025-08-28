@@ -462,11 +462,11 @@ void FUN_1806ed5a0(longlong param_1,longlong *param_2,uint64_t param_3,longlong 
     (**(code **)(**(longlong **)(param_6 + 8) + 0x20))
               (*(longlong **)(param_6 + 8),&uStack_108,&uStack_140,0);
     FUN_1806f0c90(param_4,param_5,0x10,uStack_120,(int32_t)uStack_128,&unknown_var_8648_ptr,
-                  &unknown_var_9376_ptr);
+                  &render_data_ptr);
     uStack_140 = &unknown_var_8576_ptr;
     puStack_138 = &unknown_var_8592_ptr;
     FUN_1806f1550(uStack_130,uStack_120);
-    puStack_138 = &unknown_var_3552_ptr;
+    puStack_138 = &system_handler1_ptr;
     uStack_140 = &unknown_var_1760_ptr;
     FUN_1806f1080(&puStack_a0);
   }
@@ -605,7 +605,7 @@ LAB_1806edccd:
   *param_2 = &unknown_var_9144_ptr;
   puStack_118 = &unknown_var_8592_ptr;
   FUN_1806f1550(puStack_110,uStack_100);
-  puStack_118 = &unknown_var_3552_ptr;
+  puStack_118 = &system_handler1_ptr;
   puStack_120 = &unknown_var_1760_ptr;
   FUN_1806f1080(&puStack_90);
   return param_2;
@@ -775,11 +775,11 @@ void FUN_1806edd50(longlong param_1,longlong *param_2,uint64_t param_3,longlong 
     (**(code **)(**(longlong **)(param_6 + 8) + 0x20))
               (*(longlong **)(param_6 + 8),&uStack_108,&uStack_140,0);
     FUN_1806f0c90(param_4,param_5,0x10,uStack_120,(int32_t)uStack_128,&unknown_var_8648_ptr,
-                  &unknown_var_9376_ptr);
+                  &render_data_ptr);
     uStack_140 = &unknown_var_8576_ptr;
     puStack_138 = &unknown_var_8592_ptr;
     FUN_1806f1550(uStack_130,uStack_120);
-    puStack_138 = &unknown_var_3552_ptr;
+    puStack_138 = &system_handler1_ptr;
     uStack_140 = &unknown_var_1760_ptr;
     FUN_1806f1080(&puStack_a0);
   }
@@ -915,7 +915,7 @@ LAB_1806ee47a:
   *param_2 = &unknown_var_9168_ptr;
   puStack_118 = &unknown_var_8592_ptr;
   FUN_1806f1550(puStack_110,uStack_100);
-  puStack_118 = &unknown_var_3552_ptr;
+  puStack_118 = &system_handler1_ptr;
   puStack_120 = &unknown_var_1760_ptr;
   FUN_1806f1080(&puStack_90);
   return param_2;

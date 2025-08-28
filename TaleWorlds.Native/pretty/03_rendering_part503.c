@@ -84,7 +84,7 @@ void FUN_180535cb1(void)
       if (iVar5 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar5);
       }
-      cVar4 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+      cVar4 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
       if ((cVar4 != '\0') && (cVar4 = FUN_180645c10(0x180c95578,0xd,&unknown_var_3472_ptr), cVar4 != '\0'))
       {
         FUN_180645c10(0x180c95578,in_stack_00000030,&unknown_var_3424_ptr);
@@ -324,7 +324,7 @@ void FUN_180535cd0(longlong *param_1,uint64_t param_2,uint64_t param_3)
   if ((cVar3 != '\0') && (cVar3 = FUN_18055f260(param_3,auStack_18,&unknown_var_3344_ptr), cVar3 != '\0'))
   {
     auStackX_8[0] = (uint)((char)auStackX_8[0] != '\0');
-    cVar3 = FUN_18055f260(param_3,auStackX_8,&unknown_var_3504_ptr);
+    cVar3 = FUN_18055f260(param_3,auStackX_8,&system_param1_ptr);
     auStackX_8[0] = CONCAT31(auStackX_8[0]._1_3_,auStackX_8[0] != 0);
     if (cVar3 != '\0') {
       bVar2 = true;
@@ -383,7 +383,7 @@ uint64_t FUN_180535e30(longlong *param_1,uint64_t param_2,uint64_t param_3)
         if (iVar5 != 0) {
           __Throw_C_error_std__YAXH_Z(iVar5);
         }
-        cVar4 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+        cVar4 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
         if ((cVar4 != '\0') &&
            (cVar4 = FUN_180645c10(0x180c95578,0xf,&unknown_var_3472_ptr), cVar4 != '\0')) {
           FUN_180645c10(0x180c95578,(ulonglong)plStackX_8 & 0xffffffff,&unknown_var_3344_ptr);
@@ -506,7 +506,7 @@ uint64_t FUN_180535e48(void)
     if (iVar5 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar5);
     }
-    cVar4 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+    cVar4 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
     if ((cVar4 != '\0') && (cVar4 = FUN_180645c10(0x180c95578,0xf,&unknown_var_3472_ptr), cVar4 != '\0')) {
       FUN_180645c10(0x180c95578,uVar9,&unknown_var_3344_ptr);
     }
@@ -619,7 +619,7 @@ uint64_t FUN_180535e81(void)
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
-    cVar5 = FUN_180645c10(0x180c95578,0,&unknown_var_3504_ptr);
+    cVar5 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
     if ((cVar5 != '\0') && (cVar5 = FUN_180645c10(0x180c95578,0xf,&unknown_var_3472_ptr), cVar5 != '\0')) {
       FUN_180645c10(0x180c95578,in_stack_00000030,&unknown_var_3344_ptr);
     }

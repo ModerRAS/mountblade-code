@@ -1142,8 +1142,8 @@ int SUB164(longlong param1, int param2);
 longlong SEXT816(longlong param);
 
 // 全局常量
-void *default_empty_string = &unknown_var_3456_ptr;
-void *default_null_terminator = &unknown_var_720_ptr;
+void *default_empty_string = &system_data_buffer_ptr;
+void *default_null_terminator = &system_state_ptr;
 void *default_null_char = &system_buffer_ptr;
 void *config_key_prefix = &unknown_var_3520_ptr;
 void *config_version_string = &unknown_var_3472_ptr;

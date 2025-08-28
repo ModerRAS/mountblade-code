@@ -518,7 +518,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         stack_val3 = 0x15;
         strcpy_s(stack_buffer2, 0x80, &unknown_var_3144_ptr);
         stack_ptr_ptr1 = &stack_ptr2;
-        stack_ptr2 = &unknown_var_720_ptr;
+        stack_ptr2 = &system_state_ptr;
         temp_handle2 = *(longlong *)(handle + 0x121e0);
         stack_handle_ptr3 = *(longlong **)(temp_handle2 + 0x1d8);
         
@@ -830,7 +830,7 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
             temp_ptr1 = *(void **)(data2 + 0x58);
         }
         strcpy_s(stack_buffer2, 0x80, temp_ptr1);
-        stack_ptr5 = &unknown_var_720_ptr;
+        stack_ptr5 = &system_state_ptr;
     }
     
 LAB_1800a4380:
@@ -1041,7 +1041,7 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, longlong 
     
     *(uint64_t *)(sync_handle + 0x170) = stack_data4;
     stack_ptr_ptr1 = (void **)FUN_180049b30(stack_buffer4, sync_handle + 0x10);
-    *stack_ptr_ptr1 = &unknown_var_720_ptr;
+    *stack_ptr_ptr1 = &system_state_ptr;
     *(longlong *)(sync_handle + 0x168) = sync_handle;
     data_word1 = *(ushort *)(sync_handle + 0x332);
     uint_var5 = (uint)*(byte *)(sync_handle + 0x335);
@@ -1121,7 +1121,7 @@ LAB_1800a46f5:
                         temp_ptr1 = *(void **)(sync_handle + 0x18);
                     }
                     strcpy_s(stack_buffer2, 0x80, temp_ptr1);
-                    stack_ptr1 = &unknown_var_720_ptr;
+                    stack_ptr1 = &system_state_ptr;
                     handle_ptr1 = handle_ptr2;
                     if (*(longlong *)(sync_handle + 0x1d8) != 0) {
                         if (system_main_module_state != 0) {

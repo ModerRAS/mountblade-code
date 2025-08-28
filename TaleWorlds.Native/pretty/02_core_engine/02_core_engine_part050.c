@@ -171,7 +171,7 @@ void process_engine_data_stream(uint64_t param_1, longlong param_2, longlong *pa
   if (pcStack_a0 != (code *)0x0) {
     (*pcStack_a0)(auStack_b0, 0, 0);
   }
-  puStack_1f8 = &unknown_var_720_ptr;
+  puStack_1f8 = &system_state_ptr;
   puStack_258 = (uint64_t *)auStack_238;
   if (pcStack_228 != (code *)0x0) {
     (*pcStack_228)(auStack_238, 0, 0);
@@ -1004,7 +1004,7 @@ uint64_t * initialize_data_structure_params(uint64_t *param_1, longlong param_2,
 {
   void *puVar1;
   
-  *param_1 = &unknown_var_720_ptr;
+  *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
   *param_1 = &unknown_var_9208_ptr;

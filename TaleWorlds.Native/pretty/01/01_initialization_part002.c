@@ -916,7 +916,7 @@ int FUN_18002e3e0(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  init_system_control_ui = &unknown_var_7512_ptr;
+  init_system_control_ui = &system_config_ptr;
   init_system_control_ui = &system_memory_64e8;
   return 0;
 }

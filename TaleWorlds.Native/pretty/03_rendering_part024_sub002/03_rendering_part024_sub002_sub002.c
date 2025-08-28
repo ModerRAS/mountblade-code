@@ -322,7 +322,7 @@ LAB_18027de2e:
                     FUN_180284830(auStack_108,&ppppppuStack_200);
                     ppppppuVar12 = ppppppuStack_200;
                     lVar10 = FUN_180079430(*(uint64_t *)(uVar38 + (longlong)*ppppppuVar22));
-                    puStack_238 = &unknown_var_3456_ptr;
+                    puStack_238 = &system_data_buffer_ptr;
                     uStack_220 = 0;
                     pbStack_230 = (byte *)0x0;
                     uStack_228 = 0;

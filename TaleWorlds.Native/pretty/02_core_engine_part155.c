@@ -720,7 +720,7 @@ void FUN_18013d200(longlong param_1,uint64_t *param_2,int *param_3)
       }
       fVar1 = *(float *)(uVar14 + 0x14 + lVar5);
       if ((fVar1 != 0.0) || (*(float *)(uVar14 + 0x18 + lVar5) != 0.0)) {
-        FUN_180122210(param_3,&unknown_var_3456_ptr,(int)fVar1,(int)*(float *)(uVar14 + 0x18 + lVar5));
+        FUN_180122210(param_3,&system_data_buffer_ptr,(int)fVar1,(int)*(float *)(uVar14 + 0x18 + lVar5));
       }
       FUN_180122210(param_3,&unknown_var_3440_ptr,*(int8_t *)(uVar14 + 0x32 + lVar5));
       iVar9 = *(int *)(uVar14 + 0x28 + lVar5);
@@ -851,7 +851,7 @@ void FUN_18013d22f(uint64_t param_1)
           fVar1 = *(float *)(uVar14 + 0x14 + lVar5);
           uVar7 = (ulonglong)(uint)fVar1;
           if ((fVar1 != 0.0) || (*(float *)(uVar14 + 0x18 + lVar5) != 0.0)) {
-            uVar7 = FUN_180122210(uVar7,&unknown_var_3456_ptr,(int)fVar1,
+            uVar7 = FUN_180122210(uVar7,&system_data_buffer_ptr,(int)fVar1,
                                   (int)*(float *)(uVar14 + 0x18 + lVar5));
           }
           uVar15 = FUN_180122210(uVar7,&unknown_var_3440_ptr,*(int8_t *)(uVar14 + 0x32 + lVar5));
@@ -930,7 +930,7 @@ void FUN_18013d36b(int32_t param_1)
       }
       fVar9 = *(float *)(uVar7 + 0x14 + lVar2);
       if ((fVar9 != 0.0) || (*(float *)(uVar7 + 0x18 + lVar2) != 0.0)) {
-        fVar9 = (float)FUN_180122210(fVar9,&unknown_var_3456_ptr,(int)fVar9,
+        fVar9 = (float)FUN_180122210(fVar9,&system_data_buffer_ptr,(int)fVar9,
                                      (int)*(float *)(uVar7 + 0x18 + lVar2));
       }
       uVar8 = FUN_180122210(fVar9,&unknown_var_3440_ptr,*(int8_t *)(uVar7 + 0x32 + lVar2));

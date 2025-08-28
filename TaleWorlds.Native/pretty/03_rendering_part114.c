@@ -82,8 +82,8 @@
 /* 辅助函数别名 */
 #define RenderingSystem_AllocateRenderMemory          FUN_18033ab50  /* 渲染系统内存分配器 */
 #define RenderingSystem_GetRenderResource             FUN_180337b40  /* 渲染系统资源获取器 */
-#define RenderingSystem_ExpandRenderBuffer           FUN_180639bf0  /* 渲染系统缓冲区扩展器 */
-#define RenderingSystem_ProcessRenderSubData         FUN_180639ec0  /* 渲染系统子数据处理器 */
+#define RenderingSystem_ExpandRenderBuffer           System_BufferManager  /* 渲染系统缓冲区扩展器 */
+#define RenderingSystem_ProcessRenderSubData         System_QueueProcessor  /* 渲染系统子数据处理器 */
 #define RenderingSystem_ProcessRenderParameters      FUN_18063a050  /* 渲染系统参数处理器 */
 #define RenderingSystem_InitializeRenderState        FUN_18063a110  /* 渲染系统状态初始化器 */
 #define RenderingSystem_SaveRenderParameters         FUN_18063aca0  /* 渲染系统参数保存器 */

@@ -810,7 +810,7 @@ void FUN_1803ebc80(longlong param_1,longlong param_2,longlong *param_3,uint64_t 
   if ((void *)param_3[1] != (void *)0x0) {
     puVar10 = (void *)param_3[1];
   }
-  FUN_180628040(param_4,&unknown_var_992_ptr,puVar10);
+  System_DataHandler(param_4,&unknown_var_992_ptr,puVar10);
   plVar7 = plStack_418;
   if (plStack_418 != (longlong *)0x0) {
     LOCK();
@@ -832,7 +832,7 @@ void FUN_1803ebc80(longlong param_1,longlong param_2,longlong *param_3,uint64_t 
   }
   puStack_440 = auStack_2d8;
   FUN_1803e8470(auStack_2d8);
-  puStack_178 = &unknown_var_720_ptr;
+  puStack_178 = &system_state_ptr;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_478);
 }

@@ -26,7 +26,7 @@ void set_engine_configuration(longlong *engine_context, int config_type)
   uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
   if (param_2 == 0) {
     pcVar1 = *(code **)(*param_1 + 0x18);
-    puStack_40 = &unknown_var_7512_ptr;
+    puStack_40 = &system_config_ptr;
     puStack_38 = auStack_28;
     auStack_28[0] = 0;
     uStack_30 = 6;
@@ -35,7 +35,7 @@ void set_engine_configuration(longlong *engine_context, int config_type)
   }
   else if (param_2 == 1) {
     pcVar1 = *(code **)(*param_1 + 0x18);
-    puStack_40 = &unknown_var_7512_ptr;
+    puStack_40 = &system_config_ptr;
     puStack_38 = auStack_28;
     auStack_28[0] = 0;
     uStack_30 = 6;
@@ -44,7 +44,7 @@ void set_engine_configuration(longlong *engine_context, int config_type)
   }
   else if (param_2 == 2) {
     pcVar1 = *(code **)(*param_1 + 0x18);
-    puStack_40 = &unknown_var_7512_ptr;
+    puStack_40 = &system_config_ptr;
     puStack_38 = auStack_28;
     auStack_28[0] = 0;
     uStack_30 = 6;
@@ -54,14 +54,14 @@ void set_engine_configuration(longlong *engine_context, int config_type)
   else {
     if (param_2 != 3) goto LAB_180158962;
     pcVar1 = *(code **)(*param_1 + 0x18);
-    puStack_40 = &unknown_var_7512_ptr;
+    puStack_40 = &system_config_ptr;
     puStack_38 = auStack_28;
     auStack_28[0] = 0;
     uStack_30 = 6;
     strcpy_s(auStack_28,0x10,&unknown_var_7676_ptr);
     (*pcVar1)(param_1,&puStack_40,0x40400000);
   }
-  puStack_40 = &unknown_var_720_ptr;
+  puStack_40 = &system_state_ptr;
 LAB_180158962:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
@@ -178,7 +178,7 @@ LAB_180158aea:
     goto LAB_180158cb6;
   }
   if (*(int *)(core_system_data_memory + 0x9a0) != 0) {
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     uStack_48 = 0;
     puStack_58 = (int32_t *)0x0;
     uStack_50 = 0;
@@ -219,14 +219,14 @@ LAB_180158c0c:
     }
     uStack_50 = iVar3;
     FUN_1800623b0(system_message_context,0,0x1000000000000,3,puVar6);
-    puStack_60 = &unknown_var_3456_ptr;
+    puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
     puStack_58 = (int32_t *)0x0;
     uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
-    puStack_60 = &unknown_var_720_ptr;
+    puStack_60 = &system_state_ptr;
   }
   uVar8 = 0;
 LAB_180158cb6:
@@ -685,7 +685,7 @@ void initialize_engine_data_structure(longlong engine_context, longlong param_2,
   int8_t uStack_28;
   
   uVar2 = 0xfffffffffffffffe;
-  puStack_50 = &unknown_var_3456_ptr;
+  puStack_50 = &system_data_buffer_ptr;
   uStack_38 = 0;
   lStack_48 = 0;
   uStack_40 = 0;
@@ -698,7 +698,7 @@ void initialize_engine_data_structure(longlong engine_context, longlong param_2,
   *(int32_t *)(lVar1 + 0x20) = uStack_30;
   *(int32_t *)(lVar1 + 0x24) = uStack_2c;
   *(int8_t *)(lVar1 + 0x28) = uStack_28;
-  puStack_50 = &unknown_var_3456_ptr;
+  puStack_50 = &system_data_buffer_ptr;
   if (lStack_48 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -736,7 +736,7 @@ void set_engine_path_string(uint64_t param_1, longlong path_ptr)
   uStack_50 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
   uStack_58 = 0;
-  puStack_40 = &unknown_var_7512_ptr;
+  puStack_40 = &system_config_ptr;
   puStack_38 = auStack_28;
   auStack_28[0] = 0;
   uStack_30 = 6;
@@ -745,7 +745,7 @@ void set_engine_path_string(uint64_t param_1, longlong path_ptr)
   uStack_58 = 2;
   FUN_1806279c0(param_2,&puStack_40);
   uStack_58 = 1;
-  puStack_40 = &unknown_var_720_ptr;
+  puStack_40 = &system_state_ptr;
   iVar1 = *(int *)(param_2 + 0x10) + 7;
   FUN_1806277c0(param_2,iVar1);
   *(uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
@@ -965,7 +965,7 @@ void process_engine_string_operation(uint64_t param_1, uint64_t param_2, uint64_
     *(int32_t **)(apuStack_60[0] + 2) = auStackX_10;
     *(uint64_t **)(apuStack_60[0] + 4) = auStackX_18;
     FUN_18015b810(uStack_98,0,4,1,0xffffffffffffffff,apuStack_60,uVar5,uVar6);
-    puStack_80 = &unknown_var_3456_ptr;
+    puStack_80 = &system_data_buffer_ptr;
     if (lStack_78 == 0) {
       return;
     }
@@ -1071,14 +1071,14 @@ void process_engine_resources_batch(longlong *engine_context, int start_index, i
                     apuStack_68);
       piVar1 = (int *)(*(longlong *)param_1[2] + lVar6 * 4);
       *piVar1 = *piVar1 + aiStackX_10[0];
-      puStack_a0 = &unknown_var_3456_ptr;
+      puStack_a0 = &system_data_buffer_ptr;
       if (lStack_98 != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       lStack_98 = 0;
       uStack_88 = 0;
-      puStack_a0 = &unknown_var_720_ptr;
+      puStack_a0 = &system_state_ptr;
       lVar6 = lVar6 + 1;
     } while (lVar6 < lStackX_20);
   }
@@ -1130,7 +1130,7 @@ ulonglong calculate_engine_resource_checksum(longlong *engine_context, int start
     do {
       lVar9 = 0;
       lVar2 = *param_1;
-      puStack_68 = &unknown_var_3456_ptr;
+      puStack_68 = &system_data_buffer_ptr;
       uStack_50 = 0;
       puStack_60 = (int8_t *)0x0;
       uStack_58 = 0;
@@ -1172,7 +1172,7 @@ ulonglong calculate_engine_resource_checksum(longlong *engine_context, int start
         _fseeki64(lVar2,0,2);
         uVar7 = _ftelli64(lVar2);
         _fseeki64(lVar2,uVar6,0);
-        FUN_180639bf0(&lStack_48,uVar7);
+        System_BufferManager(&lStack_48,uVar7);
         fread(uStack_40,1,uVar7,lVar2);
         fclose(lVar2);
         lStack_78 = 0;
@@ -1208,7 +1208,7 @@ ulonglong calculate_engine_resource_checksum(longlong *engine_context, int start
         UNLOCK();
         SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
       }
-      puStack_68 = &unknown_var_3456_ptr;
+      puStack_68 = &system_data_buffer_ptr;
       if (puStack_60 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();

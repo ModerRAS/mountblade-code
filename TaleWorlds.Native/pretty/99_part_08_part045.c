@@ -835,7 +835,7 @@ LAB_1805a7803:
      (system_status_flag != 4)) {
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                  0x48) < system_system_config_config) && (FUN_1808fcb90(&system_ptr_a058), system_system_config_config == -1)) {
-      uStack_80 = &unknown_var_3456_ptr;
+      uStack_80 = &system_data_buffer_ptr;
       uStack_68 = 0;
       puStack_78 = (int32_t *)0x0;
       uStack_70 = 0;
@@ -848,7 +848,7 @@ LAB_1805a7803:
       *(int16_t *)(puVar7 + 1) = 0x74;
       uStack_70 = 5;
       system_system_config_config = FUN_180571e20(&system_ptr_60c0,&uStack_80);
-      uStack_80 = &unknown_var_3456_ptr;
+      uStack_80 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
       FUN_18064e900(puVar7);
     }

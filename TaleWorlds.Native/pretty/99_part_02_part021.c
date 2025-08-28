@@ -86,7 +86,7 @@ LAB_1800fa2b9:
 LAB_1800fa3e0:
       *param_2 = puVar5;
       *(int8_t *)(param_2 + 1) = 0;
-      puStack_40 = &unknown_var_3456_ptr;
+      puStack_40 = &system_data_buffer_ptr;
       if (pbStack_38 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -214,8 +214,8 @@ FUN_1800fa580(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 
 {
   *param_1 = &unknown_var_1000_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x28,param_3,param_4,0xfffffffffffffffe);
   }

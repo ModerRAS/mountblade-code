@@ -318,8 +318,8 @@ void FUN_1805f6020(uint64_t *param_1)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(param_1 + 4);
   *param_1 = &unknown_var_1000_ptr;
-  *param_1 = &unknown_var_3696_ptr;
-  *param_1 = &unknown_var_3552_ptr;
+  *param_1 = &system_handler2_ptr;
+  *param_1 = &system_handler1_ptr;
   return;
 }
 
