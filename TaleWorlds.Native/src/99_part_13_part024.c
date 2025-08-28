@@ -1065,86 +1065,112 @@ SystemError SystemPermissionValidatorAndAuthorizationManager(SystemResource* res
 
 
 
-undefined8 FUN_1808b4f40(longlong param_1,longlong param_2)
-
+// 函数17: 系统数据变换器和缩放处理器
+// 功能：变换系统数据和执行缩放处理，包括数据转换、缩放计算、矩阵变换等
+SystemError SystemDataTransformerAndScalingProcessor(SystemProcessor* processor, SystemData* data)
 {
-  undefined8 uVar1;
-  float *pfVar2;
-  int iVar3;
-  undefined4 auStackX_8 [2];
-  longlong lStackX_18;
-  
-  if ((*(uint *)(param_1 + 0x88) >> 4 & 1) == 0) {
-    uVar1 = FUN_1807404e0(*(undefined8 *)(param_1 + 0x30),0,param_2);
-    if ((int)uVar1 != 0) {
-      return uVar1;
+    SystemError error = SYSTEM_ERROR_NONE;
+    float* data_ptr = NULL;
+    int count = 0;
+    SystemTransformParams params;
+    SystemScalingFactors factors;
+    
+    // 检查是否启用缩放模式
+    if (!IsScalingModeEnabled(processor)) {
+        // 执行标准数据变换
+        error = TransformStandardData(processor->data_handle, 0, data);
+        if (error != SYSTEM_ERROR_NONE) {
+            return error;
+        }
     }
-  }
-  else {
-    uVar1 = FUN_1807404e0(*(undefined8 *)(param_1 + 0x30),param_2,0);
-    if ((int)uVar1 != 0) {
-      return uVar1;
+    else {
+        // 执行缩放数据变换
+        error = TransformScaledData(processor->data_handle, data, 0);
+        if (error != SYSTEM_ERROR_NONE) {
+            return error;
+        }
+        
+        // 初始化缩放参数
+        count = 0;
+        factors.handle = 0;
+        params.flags = 0;
+        
+        // 获取缩放因子
+        error = GetScalingFactors(processor->data_handle, SCALE_TYPE_MULTIPLY, &factors, &params, 0, 0);
+        if (error != SYSTEM_ERROR_NONE) {
+            return error;
+        }
+        
+        // 应用缩放变换
+        if (data->element_count > 0) {
+            data_ptr = (float*)(data->data_buffer + data->offset);
+            do {
+                count++;
+                // 应用缩放到数据元素
+                data_ptr[-32] = data_ptr[-32] * factors.scale_factor;
+                *data_ptr = *data_ptr * factors.scale_factor;
+                data_ptr++;
+            } while (count < data->element_count);
+            
+            return SYSTEM_ERROR_NONE;
+        }
     }
-    iVar3 = 0;
-    lStackX_18 = 0;
-    auStackX_8[0] = 0;
-    uVar1 = FUN_1807406e0(*(undefined8 *)(param_1 + 0x30),7,&lStackX_18,auStackX_8,0,0);
-    if ((int)uVar1 != 0) {
-      return uVar1;
-    }
-    if (0 < *(short *)(param_2 + 0x104)) {
-      pfVar2 = (float *)(param_2 + 0x84);
-      do {
-        iVar3 = iVar3 + 1;
-        pfVar2[-0x20] = pfVar2[-0x20] * *(float *)(lStackX_18 + 4);
-        *pfVar2 = *pfVar2 * *(float *)(lStackX_18 + 4);
-        pfVar2 = pfVar2 + 1;
-      } while (iVar3 < *(short *)(param_2 + 0x104));
-      return 0;
-    }
-  }
-  return 0;
+    
+    return SYSTEM_ERROR_NONE;
 }
 
 
 
-undefined8 FUN_1808b5030(longlong param_1,undefined8 param_2)
-
+// 函数18: 系统缓冲区管理器和数据读写器
+// 功能：管理系统缓冲区和执行数据读写，包括缓冲区分配、数据读写、错误处理等
+SystemError SystemBufferManagerAndDataAccessor(SystemBuffer* buffer, SystemData* data)
 {
-  undefined8 uVar1;
-  
-  if ((*(int *)(param_1 + 0x7c) != -1) &&
-     (uVar1 = FUN_180741560(*(undefined8 *)(param_1 + 0x30),*(int *)(param_1 + 0x7c),param_2,8),
-     (int)uVar1 != 0)) {
-    return uVar1;
-  }
-  return 0;
+    SystemError error = SYSTEM_ERROR_NONE;
+    
+    // 检查缓冲区句柄是否有效
+    if (buffer->handle != -1) {
+        // 执行数据读写操作
+        error = ExecuteDataOperation(buffer->data_handle, buffer->handle, data, DATA_OP_SIZE_8);
+        if (error != SYSTEM_ERROR_NONE) {
+            return error;
+        }
+    }
+    
+    return SYSTEM_ERROR_NONE;
 }
 
 
 
-undefined8 FUN_1808b5060(longlong param_1,undefined8 param_2,undefined8 param_3)
-
+// 函数19: 系统数据同步器和状态更新器
+// 功能：同步系统数据和更新状态，包括数据同步、状态更新、缓存清理等
+SystemError SystemDataSynchronizerAndStateUpdater(SystemDataSync* sync, SystemData* primary_data, SystemData* secondary_data)
 {
-  undefined8 uVar1;
-  
-  if (*(int *)(param_1 + 0x74) == -1) {
-    if ((*(int *)(param_1 + 0x70) != -1) &&
-       (uVar1 = FUN_180741560(*(undefined8 *)(param_1 + 0x30),*(int *)(param_1 + 0x70),param_2,0x60)
-       , (int)uVar1 != 0)) {
-      return uVar1;
+    SystemError error = SYSTEM_ERROR_NONE;
+    
+    // 检查是否使用主数据同步
+    if (sync->primary_handle == -1) {
+        // 使用备份数据同步
+        if (sync->backup_handle != -1) {
+            error = ExecuteDataOperation(sync->data_handle, sync->backup_handle, primary_data, DATA_SYNC_SIZE_96);
+            if (error != SYSTEM_ERROR_NONE) {
+                return error;
+            }
+        }
     }
-  }
-  else {
-    uVar1 = FUN_180741560(*(undefined8 *)(param_1 + 0x30),*(int *)(param_1 + 0x74),param_3,0x1d4);
-    if ((int)uVar1 != 0) {
-      return uVar1;
+    else {
+        // 使用主数据同步
+        error = ExecuteDataOperation(sync->data_handle, sync->primary_handle, secondary_data, DATA_SYNC_SIZE_468);
+        if (error != SYSTEM_ERROR_NONE) {
+            return error;
+        }
     }
-  }
-  if (*(int *)(param_1 + 0x78) != -1) {
-    func_0x000180862c20(*(undefined8 *)(param_1 + 0x48));
-  }
-  return 0;
+    
+    // 清理缓存（如果需要）
+    if (sync->cache_handle != -1) {
+        ClearDataCache(sync->cache_handle);
+    }
+    
+    return SYSTEM_ERROR_NONE;
 }
 
 
@@ -1154,99 +1180,83 @@ undefined8 FUN_1808b5060(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 
 
-// 函数: void FUN_1808b50d0(longlong param_1,undefined8 *param_2)
-void FUN_1808b50d0(longlong param_1,undefined8 *param_2)
-
+// 函数20: 系统核心处理器和状态管理器
+// 功能：处理系统核心操作和管理状态，包括对象处理、状态验证、错误处理等
+void SystemCoreProcessorAndStateManager(SystemContext* context, SystemObject** objects)
 {
-  short sVar1;
-  longlong *plVar2;
-  char cVar3;
-  int iVar4;
-  longlong lVar5;
-  int *piVar6;
-  undefined8 uVar7;
-  undefined1 auStack_f8 [32];
-  uint uStack_d8;
-  uint uStack_d0;
-  uint uStack_c8;
-  uint uStack_c0;
-  uint uStack_b8;
-  uint uStack_b0;
-  uint uStack_a8;
-  uint uStack_a0;
-  uint uStack_98;
-  uint uStack_90;
-  undefined4 uStack_88;
-  ushort uStack_84;
-  ushort uStack_82;
-  byte bStack_80;
-  byte bStack_7f;
-  byte bStack_7e;
-  byte bStack_7d;
-  byte bStack_7c;
-  byte bStack_7b;
-  byte bStack_7a;
-  byte bStack_79;
-  int aiStack_78 [2];
-  undefined1 auStack_70 [40];
-  ulonglong uStack_48;
-  
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
-  plVar2 = *(longlong **)(param_1 + 0x40);
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x40))(plVar2,&uStack_88);
-    lVar5 = (**(code **)(*(longlong *)*param_2 + 0x140))((longlong *)*param_2,&uStack_88,1);
-    if (lVar5 == 0) {
-      uStack_90 = (uint)bStack_79;
-      uStack_98 = (uint)bStack_7a;
-      uStack_a0 = (uint)bStack_7b;
-      uStack_a8 = (uint)bStack_7c;
-      uStack_b0 = (uint)bStack_7d;
-      uStack_b8 = (uint)bStack_7e;
-      uStack_c0 = (uint)bStack_7f;
-      uStack_c8 = (uint)bStack_80;
-      uStack_d0 = (uint)uStack_82;
-      uStack_d8 = (uint)uStack_84;
-                    // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_70,0x27,&UNK_180958180,uStack_88);
+    SystemSecurityContext security_ctx;
+    SystemObject* current_obj = NULL;
+    SystemStatus status;
+    SystemError error = SYSTEM_ERROR_NONE;
+    SystemObjectData obj_data;
+    SystemValidationResult validation;
+    SystemProcessResult process_result;
+    
+    // 初始化安全上下文
+    InitializeSecurityContext(&security_ctx);
+    
+    // 获取当前对象
+    current_obj = GetContextObject(context);
+    if (current_obj != NULL) {
+        // 执行对象处理
+        error = ProcessObject(current_obj, &obj_data);
+        SystemObject* new_obj = ProcessObjectChain(objects, &obj_data, 1);
+        if (new_obj == NULL) {
+            // 处理对象链失败，执行错误恢复
+            HandleObjectChainFailure(&security_ctx, 0x27, &obj_data);
+        }
+        // 更新上下文对象
+        context->current_object = new_obj;
     }
-    *(longlong *)(param_1 + 0x40) = lVar5;
-  }
-  iVar4 = FUN_1808b2950(param_1,param_2);
-  if ((((((iVar4 != 0) ||
-         (cVar3 = func_0x0001808c5780(param_2,*(undefined8 *)(param_1 + 0x40)), cVar3 == '\0')) ||
-        (iVar4 = FUN_1808b5a30(param_1,plVar2), iVar4 != 0)) ||
-       (((*(short *)((longlong)plVar2 + 0xc) == 7 && ((*(uint *)(param_1 + 0x88) >> 3 & 1) != 0)) &&
-        (iVar4 = FUN_1808b59b0(param_1), iVar4 != 0)))) ||
-      ((*(short *)((longlong)plVar2 + 0xc) == 6 &&
-       ((((piVar6 = (int *)func_0x0001808da6d0(plVar2,&uStack_88), *piVar6 != 0 || (piVar6[1] != 0))
-         || ((piVar6[2] != 0 || (piVar6[3] != 0)))) && (iVar4 = FUN_1808b4e20(param_1), iVar4 != 0))
-       )))) || ((*(short *)((longlong)plVar2 + 0xc) == 7 &&
-                (iVar4 = FUN_1808b4d60(param_1,plVar2), iVar4 != 0)))) goto LAB_1808b536d;
-  lVar5 = *(longlong *)(param_1 + 0x40);
-  sVar1 = *(short *)(lVar5 + 0xc);
-  if ((ushort)(sVar1 - 4U) < 2) {
-    iVar4 = FUN_1808b5eb0(param_1,lVar5,plVar2);
-  }
-  else if (sVar1 == 6) {
-    iVar4 = FUN_180740c00(*(undefined8 *)(param_1 + 0x30),aiStack_78);
-    if (((iVar4 != 0) || (aiStack_78[0] != 0x18)) || (iVar4 = FUN_1808b2f30(param_1,0), iVar4 != 0))
-    goto LAB_1808b536d;
-    uVar7 = func_0x0001808da6d0(lVar5,&uStack_88);
-    iVar4 = FUN_1808b4440(param_1,uVar7);
-  }
-  else {
-    if (sVar1 != 7) goto LAB_1808b536d;
-    iVar4 = FUN_1808b4320(param_1,lVar5);
-  }
-  if (((iVar4 == 0) &&
-      (iVar4 = FUN_180740ff0(*(undefined8 *)(param_1 + 0x30),*(undefined1 *)(lVar5 + 0x40)),
-      iVar4 == 0)) && ((iVar4 = FUN_1808b3f80(param_1,lVar5), iVar4 == 0 && (sVar1 == 7)))) {
-    FUN_1808b2f30(param_1,0);
-  }
-LAB_1808b536d:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_f8);
+    
+    // 验证对象状态
+    error = ValidateObjectState(context, objects);
+    if ((((((error != SYSTEM_ERROR_NONE) ||
+           (status = CheckObjectStatus(objects, context->current_object), status == STATUS_INVALID)) ||
+          (error = ProcessObjectValidation(context, current_obj), error != SYSTEM_ERROR_NONE)) ||
+         (((GetObjectType(current_obj) == OBJECT_TYPE_SPECIAL && IsSpecialProcessingEnabled(context)) &&
+           (error = ProcessSpecialObject(context), error != SYSTEM_ERROR_NONE)))) ||
+        ((GetObjectType(current_obj) == OBJECT_TYPE_COMPLEX &&
+         ((((validation = ValidateComplexObject(current_obj, &obj_data), 
+            validation.result != VALIDATION_OK || (validation.secondary_result != VALIDATION_OK))) ||
+           ((validation.tertiary_result != VALIDATION_OK || (validation.quaternary_result != VALIDATION_OK)))) && 
+          (error = InitializeDeviceObject(context), error != SYSTEM_ERROR_NONE))
+         )))) || ((GetObjectType(current_obj) == OBJECT_TYPE_SPECIAL &&
+                  (error = ProcessSpecialObjectChain(context, current_obj), error != SYSTEM_ERROR_NONE)))) {
+        goto error_handling;
+    }
+    
+    // 获取当前对象信息
+    current_obj = GetContextObject(context);
+    SystemObjectType obj_type = GetObjectType(current_obj);
+    if (IsObjectTypeSimple(obj_type)) {
+        error = ProcessSimpleObject(context, current_obj, objects);
+    }
+    else if (obj_type == OBJECT_TYPE_COMPLEX) {
+        error = GetObjectConfiguration(context->config_handle, &obj_data);
+        if (((error != SYSTEM_ERROR_NONE) || (obj_data.config_type != CONFIG_TYPE_STANDARD)) || 
+            (error = InitializeObjectContext(context, 0), error != SYSTEM_ERROR_NONE)) {
+            goto error_handling;
+        }
+        process_result = GetComplexObjectData(current_obj, &obj_data);
+        error = ProcessComplexObjectResult(context, process_result);
+    }
+    else {
+        if (obj_type != OBJECT_TYPE_SPECIAL) goto error_handling;
+        error = ProcessSpecialObjectContext(context, current_obj);
+    }
+    
+    // 验证处理结果
+    if (((error == SYSTEM_ERROR_NONE) &&
+         (error = ValidateObjectProcessing(context->config_handle, GetObjectData(current_obj)),
+         error == SYSTEM_ERROR_NONE)) && 
+        ((error = FinalizeObjectProcessing(context, current_obj), error == SYSTEM_ERROR_NONE && (obj_type == OBJECT_TYPE_SPECIAL)))) {
+        InitializeObjectContext(context, 0);
+    }
+
+error_handling:
+    // 执行安全清理
+    ExecuteSecurityCleanup(&security_ctx);
 }
 
 
