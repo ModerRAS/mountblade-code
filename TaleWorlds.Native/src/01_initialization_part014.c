@@ -451,104 +451,132 @@ undefined8 *SystemResourceInitializer(undefined8 *param_1)
     return param_1;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1800464f0(longlong param_1,longlong param_2,longlong param_3)
-void FUN_1800464f0(longlong param_1,longlong param_2,longlong param_3)
-
+/**
+ * @brief 系统字符串处理器 2
+ * 
+ * 第二个字符串处理函数，负责更复杂的字符串操作。
+ * 
+ * @param param_1 字符串处理上下文指针
+ * @param param_2 源字符串指针
+ * @param param_3 目标字符串指针
+ */
+void SystemStringProcessor_2(longlong param_1, longlong param_2, longlong param_3)
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined1 auStack_a8 [32];
-  undefined8 uStack_88;
-  undefined *puStack_80;
-  undefined1 *puStack_78;
-  undefined4 uStack_70;
-  undefined1 auStack_68 [32];
-  ulonglong uStack_48;
-  
-  uStack_88 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
-  puStack_80 = &UNK_18098bc80;
-  puStack_78 = auStack_68;
-  uStack_70 = 0;
-  auStack_68[0] = 0;
-  lVar1 = strstr(*(undefined8 *)(param_1 + 8));
-  if (lVar1 != 0) {
-    lVar2 = -1;
-    lVar3 = -1;
-    do {
-      lVar3 = lVar3 + 1;
-    } while (*(char *)(param_2 + lVar3) != '\0');
-    do {
-      lVar2 = lVar2 + 1;
-    } while (*(char *)(lVar2 + param_3) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_78,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
-  }
-  puStack_80 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_a8);
+    longlong lVar1;
+    longlong lVar2;
+    longlong lVar3;
+    undefined1 auStack_a8 [32];
+    undefined8 uStack_88;
+    undefined *puStack_80;
+    undefined1 *puStack_78;
+    undefined4 uStack_70;
+    undefined1 auStack_68 [32];
+    ulonglong uStack_48;
+    
+    /* 初始化栈变量 */
+    uStack_88 = 0xfffffffffffffffe;
+    uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+    puStack_80 = &UNK_18098bc80;
+    puStack_78 = auStack_68;
+    uStack_70 = 0;
+    auStack_68[0] = 0;
+    
+    /* 搜索字符串模式 */
+    lVar1 = strstr(*(undefined8 *)(param_1 + 8));
+    if (lVar1 != 0) {
+        /* 计算源字符串长度 */
+        lVar2 = -1;
+        lVar3 = -1;
+        do {
+            lVar3 = lVar3 + 1;
+        } while (*(char *)(param_2 + lVar3) != '\0');
+        
+        /* 计算目标字符串长度 */
+        do {
+            lVar2 = lVar2 + 1;
+        } while (*(char *)(lVar2 + param_3) != '\0');
+        
+        /* 执行字符串复制操作 */
+        memcpy(puStack_78, *(longlong *)(param_1 + 8), lVar1 - *(longlong *)(param_1 + 8));
+    }
+    
+    /* 更新处理状态 */
+    puStack_80 = &UNK_18098bcb0;
+    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_a8);
+}
+/**
+ * @brief 系统内存管理器 2
+ * 
+ * 第二个内存管理函数，负责特定类型的内存操作。
+ * 
+ * @param param_1 内存管理器指针
+ * @param param_2 内存操作标志
+ * @return 内存管理器指针
+ */
+undefined8 *SystemMemoryManager_2(undefined8 *param_1, ulonglong param_2)
+{
+    /* 重置内存管理器状态 */
+    *param_1 = &UNK_18098bcb0;
+    
+    /* 根据标志决定是否释放内存 */
+    if ((param_2 & 1) != 0) {
+        free(param_1, 0x18);
+    }
+    
+    return param_1;
 }
 
 
-
-undefined8 * FUN_180046650(undefined8 *param_1,ulonglong param_2)
-
+/**
+ * @brief 系统互斥锁管理器 2
+ * 
+ * 第二个互斥锁管理函数，负责释放互斥锁。
+ * 
+ * @param param_1 互斥锁句柄指针
+ */
+void SystemMutexManager_2(undefined8 *param_1)
 {
-  *param_1 = &UNK_18098bcb0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x18);
-  }
-  return param_1;
+    int iVar1;
+    
+    /* 释放互斥锁 */
+    iVar1 = _Mtx_unlock(*param_1);
+    if (iVar1 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar1);
+    }
 }
 
 
-
-
-
-// 函数: void FUN_1800466a0(undefined8 *param_1)
-void FUN_1800466a0(undefined8 *param_1)
-
+/**
+ * @brief 系统条件变量通知器
+ * 
+ * 负责通知条件变量的等待线程，唤醒它们继续执行。
+ * 
+ * @param param_1 条件变量上下文指针
+ */
+void SystemConditionVariableNotifier(longlong param_1)
 {
-  int iVar1;
-  
-  iVar1 = _Mtx_unlock(*param_1);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
-  }
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_1800466d0(longlong param_1)
-void FUN_1800466d0(longlong param_1)
-
-{
-  int iVar1;
-  
-  iVar1 = _Mtx_lock(param_1 + 0x48);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
-  }
-  *(undefined1 *)(param_1 + 0x98) = 1;
-  iVar1 = _Cnd_broadcast(param_1);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
-  }
-  iVar1 = _Mtx_unlock(param_1 + 0x48);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
-  }
-  return;
+    int iVar1;
+    
+    /* 获取互斥锁 */
+    iVar1 = _Mtx_lock(param_1 + 0x48);
+    if (iVar1 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar1);
+    }
+    
+    /* 设置条件变量状态 */
+    *(undefined1 *)(param_1 + 0x98) = 1;
+    
+    /* 广播通知所有等待线程 */
+    iVar1 = _Cnd_broadcast(param_1);
+    if (iVar1 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar1);
+    }
+    
+    /* 释放互斥锁 */
+    iVar1 = _Mtx_unlock(param_1 + 0x48);
+    if (iVar1 != 0) {
+        __Throw_C_error_std__YAXH_Z(iVar1);
+    }
 }
 
 
