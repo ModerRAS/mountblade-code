@@ -49,6 +49,32 @@
 #define UI_SYSTEM_BIT_SHIFT 0x1f
 #define UI_SYSTEM_BIT_MASK 0xffffffff
 
+// 额外的UI系统动画处理常量
+#define UI_SPEED_FACTOR_1 2.0f
+#define UI_SPEED_FACTOR_2 4.0f
+#define UI_SPEED_FACTOR_3 5.0f
+#define UI_SPEED_FACTOR_4 4.0f
+#define UI_SPEED_FACTOR_5 5.0f
+#define UI_POSITION_THRESHOLD 0.5f
+#define UI_BASE_THRESHOLD 0.001f
+#define UI_THRESHOLD_LOW 0.1f
+#define UI_THRESHOLD_HIGH 0.2f
+#define UI_NORMALIZATION_FACTOR 1.0f
+#define UI_COMPARISON_THRESHOLD 0.0001f
+#define UI_ADJUSTMENT_FACTOR 1.5f
+#define UI_BLEND_FACTOR 0.9f
+#define UI_MODULATION_FACTOR 0x3f800000
+#define UI_BLOCK_OFFSET_4 0x1358
+#define UI_BLOCK_OFFSET_1 0x4d6
+#define UI_INITIALIZATION_VALUE 0xffffffff
+#define UI_FLOAT_DEFAULT 0x3f800000
+#define UI_FLOAT_MAX 0x7f7fffff
+#define UI_MAGIC_NUMBER 0x7149f2ca
+#define UI_STATUS_FLAG 0x1010000
+#define UI_STACK_OFFSET 0x26b
+#define UI_ITERATION_SIZE 0x12
+#define UI_ARRAY_SIZE 8
+
 // ====================== 全局变量引用 ======================
 extern const void* _DAT_180c8ed00;     // UI系统配置数据
 extern const void* _DAT_180bf00a8;     // UI系统安全数据
