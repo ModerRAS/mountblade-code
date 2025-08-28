@@ -493,45 +493,72 @@ void render_system_add_character_to_string(longlong string_context, char target_
 
 
 
-undefined8 *
-FUN_180300f20(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 释放对象资源
+ * @param object_ptr 对象指针
+ * @param flags 释放标志
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 对象指针
+ */
+undefined8 *render_system_deallocate_object(undefined8 *object_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
 {
-  longlong *plVar1;
-  undefined8 uVar2;
-  
-  uVar2 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a19fd8;
-  plVar1 = (longlong *)param_1[0x19];
-  param_1[0x19] = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
-  }
-  if ((longlong *)param_1[0x19] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x19] + 0x38))();
-  }
-  FUN_180049470(param_1);
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xd0,param_3,param_4,uVar2);
-  }
-  return param_1;
+    longlong *resource_ptr;
+    undefined8 dealloc_flag;
+    
+    dealloc_flag = 0xfffffffffffffffe;
+    *object_ptr = &UNK_180a19fd8; // 设置对象指针
+    
+    // 清理第一个资源
+    resource_ptr = (longlong *)object_ptr[0x19];
+    object_ptr[0x19] = 0;
+    if (resource_ptr != (longlong *)0x0) {
+        (**(code **)(*resource_ptr + 0x38))(); // 调用资源清理函数
+    }
+    
+    // 清理第二个资源
+    if ((longlong *)object_ptr[0x19] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)object_ptr[0x19] + 0x38))(); // 调用资源清理函数
+    }
+    
+    // 执行清理操作
+    FUN_180049470(object_ptr);
+    
+    // 根据标志决定是否释放内存
+    if ((flags & RENDER_RESOURCE_FLAG_DEALLOCATE) != 0) {
+        free(object_ptr, 0xd0, param3, param4, dealloc_flag);
+    }
+    
+    return object_ptr;
 }
 
 
 
-undefined8 *
-FUN_180300fc0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 初始化字符串对象
+ * @param param1 参数1
+ * @param string_obj 字符串对象指针
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 字符串对象指针
+ */
+undefined8 *render_system_initialize_string_object(undefined8 param1, undefined8 *string_obj, undefined8 param3, undefined8 param4)
 {
-  *param_2 = &UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
-  param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 0xd;
-  strcpy_s(param_2[1],0x80,&UNK_180a19df0,param_4,0,0xfffffffffffffffe);
-  return param_2;
+    // 初始化字符串对象结构
+    *string_obj = &UNK_18098bcb0;
+    string_obj[1] = 0;
+    *(undefined4 *)(string_obj + 2) = 0;
+    
+    // 设置字符串数据
+    *string_obj = &UNK_1809fcc28;
+    string_obj[1] = string_obj + 3;
+    *(undefined1 *)(string_obj + 3) = 0;
+    *(undefined4 *)(string_obj + 2) = 0xd;
+    
+    // 复制字符串数据
+    strcpy_s(string_obj[1], RENDER_STRING_BUFFER_SIZE, &UNK_180a19df0, param4, 0, 0xfffffffffffffffe);
+    
+    return string_obj;
 }
 
 
