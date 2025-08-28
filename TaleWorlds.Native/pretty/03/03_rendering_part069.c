@@ -72,100 +72,155 @@ static RenderContext* g_render_context = NULL;
  * 该函数初始化渲染系统的高级配置和资源
  * 设置渲染参数、分配内存资源、初始化状态变量
  */
-void render_system_advanced_initializer(undefined8 *param_1, int param_2) {
-    if (!param_1) {
-        return;
-    }
-    
-    // 初始化渲染上下文
-    RenderContext* context = (RenderContext*)param_1;
-    
-    // 设置安全标志
-    uint64_t security_key = 0xfffffffffffffffe;
-    
-    // 初始化基本参数
-    *param_1 = (undefined8)&render_system_function_table;
-    param_1[1] = 0;
-    param_1[2] = 0;
-    param_1[3] = 0;
-    *(undefined4 *)(param_1 + 4) = 3;
-    
-    // 设置函数表
-    *param_1 = (undefined8)&render_system_main_table;
-    param_1[0xd] = 0;
-    param_1[0xe] = 0;
-    
-    // 线程安全初始化
-    acquire_render_lock();
-    *(undefined4 *)(param_1 + 0xf) = 0;
-    release_render_lock();
-    
-    // 初始化参数数组
-    uint32_t init_index = 0;
-    do {
-        param_1[(longlong)(int)init_index + 0x10] = 0;
-        acquire_render_lock();
-        *(undefined1 *)((longlong)param_1 + (longlong)(int)init_index + 0x880) = 1;
-        release_render_lock();
-        init_index++;
-    } while (init_index < RENDER_MAX_INITIALIZATION_SIZE);
-    
-    // 初始化配置参数
-    acquire_render_lock();
-    *(undefined4 *)(param_1 + 0x130) = 0;
-    release_render_lock();
-    
-    uint32_t config_index = 0;
-    do {
-        param_1[(longlong)(int)config_index + 0x131] = 0;
-        acquire_render_lock();
-        *(undefined1 *)((longlong)param_1 + (longlong)(int)config_index + 0x1188) = 1;
-        release_render_lock();
-        config_index++;
-    } while (config_index < RENDER_MAX_INITIALIZATION_SIZE);
-    
-    // 初始化状态参数
-    acquire_render_lock();
-    *(undefined4 *)(param_1 + 0x251) = 0;
-    release_render_lock();
-    
-    uint32_t state_index = 0;
-    do {
-        param_1[(longlong)(int)state_index + 0x252] = 0;
-        acquire_render_lock();
-        *(undefined1 *)((longlong)param_1 + (longlong)(int)state_index + 0x1a90) = 1;
-        release_render_lock();
-        state_index++;
-    } while (state_index < RENDER_MAX_INITIALIZATION_SIZE);
-    
-    // 设置渲染状态
-    param_1[0x372] = 0;
-    param_1[0x373] = 0;
-    param_1[0x374] = 0;
-    *(undefined4 *)(param_1 + 0x375) = 3;
-    
-    // 初始化互斥锁
-    initialize_render_mutex(param_1 + 0x376, 2);
-    
-    // 设置渲染参数
-    param_1[0x380] = (undefined8)&render_system_parameter_table;
-    param_1[0x381] = 0;
-    *(undefined4 *)(param_1 + 0x382) = 0;
-    
-    // 配置渲染名称
-    configure_render_name(param_1);
-    
-    // 设置初始化参数
-    *(int *)(param_1 + 0x387) = param_2;
-    
-    // 配置渲染系统
-    configure_render_system(param_1);
-    
-    // 验证初始化
-    validate_render_initialization(param_1);
-    
-    // 清理临时资源
-    cleanup_temporary_initialization_resources(security_key);
+// 函数：渲染系统高级初始化
+// 功能：初始化渲染系统的各个组件，设置互斥锁、分配内存、初始化参数
+void rendering_system_advanced_initialize(undefined8 *render_context, int init_param)
+
+{
+  undefined1 local_var_1;
+  longlong local_long_1;
+  uint local_uint_1;
+  uint local_uint_2;
+  undefined *local_ptr_1;
+  undefined1 local_stack_array_1 [32];
+  undefined8 *local_stack_ptr_1;
+  undefined8 local_stack_var_1;
+  undefined8 *local_stack_ptr_2;
+  undefined *local_stack_ptr_3;
+  undefined *local_stack_ptr_4;
+  undefined4 local_stack_var_2;
+  undefined local_stack_array_2 [32];
+  undefined *local_stack_ptr_5;
+  undefined1 *local_stack_ptr_6;
+  undefined4 local_stack_var_3;
+  undefined1 local_stack_array_3 [32];
+  ulonglong local_stack_var_4;
+  longlong local_long_2;
+  
+  // 初始化堆栈变量
+  local_stack_var_1 = 0xfffffffffffffffe;
+  local_stack_var_4 = _DAT_180bf00a8 ^ (ulonglong)local_stack_array_1;
+  
+  // 设置渲染上下文指针
+  *render_context = &UNK_180a1a2f0;
+  local_uint_2 = 0;
+  render_context[1] = 0;
+  render_context[2] = 0;
+  render_context[3] = 0;
+  *(undefined4 *)(render_context + 4) = 3;
+  *render_context = &UNK_180a1a278;
+  render_context[0xd] = 0;
+  render_context[0xe] = 0;
+  
+  // 初始化互斥锁
+  LOCK();
+  *(undefined4 *)(render_context + 0xf) = 0;
+  UNLOCK();
+  
+  // 初始化渲染状态数组 (256个元素)
+  local_uint_1 = local_uint_2;
+  do {
+    render_context[(longlong)(int)local_uint_1 + 0x10] = 0;
+    LOCK();
+    *(undefined1 *)((longlong)render_context + (longlong)(int)local_uint_1 + 0x880) = 1;
+    UNLOCK();
+    local_uint_1 = local_uint_1 + 1;
+  } while (local_uint_1 < 0x100);
+  
+  // 初始化渲染参数数组 (256个元素)
+  LOCK();
+  *(undefined4 *)(render_context + 0x130) = 0;
+  UNLOCK();
+  local_uint_1 = local_uint_2;
+  do {
+    render_context[(longlong)(int)local_uint_1 + 0x131] = 0;
+    LOCK();
+    *(undefined1 *)((longlong)render_context + (longlong)(int)local_uint_1 + 0x1188) = 1;
+    UNLOCK();
+    local_uint_1 = local_uint_1 + 1;
+  } while (local_uint_1 < 0x100);
+  
+  // 初始化渲染资源数组 (256个元素)
+  LOCK();
+  *(undefined4 *)(render_context + 0x251) = 0;
+  UNLOCK();
+  do {
+    render_context[(longlong)(int)local_uint_2 + 0x252] = 0;
+    LOCK();
+    *(undefined1 *)((longlong)render_context + (longlong)(int)local_uint_2 + 0x1a90) = 1;
+    UNLOCK();
+    local_uint_2 = local_uint_2 + 1;
+  } while (local_uint_2 < 0x100);
+  
+  // 初始化渲染缓冲区
+  render_context[0x372] = 0;
+  render_context[0x373] = 0;
+  render_context[0x374] = 0;
+  *(undefined4 *)(render_context + 0x375) = 3;
+  
+  // 初始化互斥锁结构
+  local_stack_ptr_1 = render_context + 0x376;
+  local_stack_ptr_2 = render_context;
+  _Mtx_init_in_situ(local_stack_ptr_1, 2);
+  
+  // 初始化渲染资源管理器
+  local_stack_ptr_1 = render_context + 0x380;
+  *local_stack_ptr_1 = &UNK_18098bcb0;
+  render_context[0x381] = 0;
+  *(undefined4 *)(render_context + 0x382) = 0;
+  *local_stack_ptr_1 = &UNK_18098bc80;
+  render_context[0x381] = render_context + 899;
+  *(undefined4 *)(render_context + 0x382) = 0;
+  *(undefined1 *)(render_context + 899) = 0;
+  *(undefined8 *)((longlong)render_context + 0x1c3c) = 0;
+  render_context[0x389] = 0;
+  
+  // 初始化渲染字符串处理
+  local_stack_ptr_5 = &UNK_18098bc80;
+  local_stack_ptr_6 = local_stack_array_3;
+  local_stack_array_3[0] = 0;
+  local_stack_var_3 = 0x15;
+  strcpy_s(local_stack_array_3, 0x20, &UNK_180a1a258);
+  local_var_1 = FUN_180051f00(_DAT_180c86870, &local_stack_ptr_5);
+  *(undefined1 *)(render_context + 0x38a) = local_var_1;
+  
+  // 初始化渲染资源处理器
+  local_stack_ptr_5 = &UNK_18098bcb0;
+  FUN_1803073e0(render_context);
+  *(int *)(render_context + 0x387) = init_param;
+  
+  // 初始化渲染配置参数
+  local_stack_ptr_3 = &UNK_18098bc80;
+  local_stack_ptr_4 = local_stack_array_2;
+  local_stack_array_2[0] = 0;
+  local_stack_var_2 = 0xc;
+  strcpy_s(local_stack_array_2, 0x20, &UNK_180a1a248);
+  *(undefined4 *)(render_context + 0x382) = local_stack_var_2;
+  
+  // 处理渲染字符串配置
+  local_ptr_1 = &DAT_18098bc73;
+  if (local_stack_ptr_4 != (undefined *)0x0) {
+    local_ptr_1 = local_stack_ptr_4;
+  }
+  strcpy_s(render_context[0x381], 0x20, local_ptr_1);
+  local_stack_ptr_3 = &UNK_18098bcb0;
+  
+  // 处理渲染参数字符串
+  local_long_1 = -1;
+  do {
+    local_long_2 = local_long_1;
+    local_long_1 = local_long_2 + 1;
+  } while (*(char *)(*(longlong *)(&UNK_180a0c288 + (longlong)init_param * 8) + local_long_1) != '\0');
+  
+  // 复制渲染参数字符串
+  if ((0 < (int)local_long_1) && (*(uint *)(render_context + 0x382) + (int)local_long_1 < 0x1f)) {
+    memcpy((ulonglong)*(uint *)(render_context + 0x382) + render_context[0x381],
+           *(longlong *)(&UNK_180a0c288 + (longlong)init_param * 8), (longlong)((int)local_long_2 + 2));
+  }
+  
+  // 清理初始化状态
+  *(undefined8 *)((longlong)render_context + 0x1c3c) = 0;
+  FUN_1808fc050(local_stack_var_4 ^ (ulonglong)local_stack_array_1);
 }
 
 /**
@@ -177,16 +232,19 @@ void render_system_advanced_initializer(undefined8 *param_1, int param_2) {
  * 该函数释放渲染系统的资源
  * 根据释放标志决定是否释放内存资源
  */
-undefined8 render_system_resource_releaser(undefined8 param_1, ulonglong param_2) {
-    // 执行资源清理操作
-    cleanup_render_resources();
-    
-    // 根据标志释放内存
-    if ((param_2 & 1) != 0) {
-        free(param_1, RENDER_MEMORY_POOL_SIZE);
-    }
-    
-    return param_1;
+// 函数：渲染系统资源清理器
+// 功能：清理渲染系统资源，释放内存，处理资源释放逻辑
+undefined8 rendering_system_cleanup_resources(undefined8 render_context, ulonglong cleanup_flags)
+
+{
+  // 调用资源清理函数
+  FUN_180307090();
+  
+  // 根据清理标志释放内存
+  if ((cleanup_flags & 1) != 0) {
+    free(render_context, 0x1c58);
+  }
+  return render_context;
 }
 
 /**
@@ -199,78 +257,71 @@ undefined8 render_system_resource_releaser(undefined8 param_1, ulonglong param_2
  * 该函数清理渲染系统的上下文和资源
  * 释放内存、清理状态、重置配置
  */
-void render_system_context_cleaner(undefined8 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4) {
-    if (!param_1) {
-        return;
+// 函数：渲染系统高级资源清理
+// 功能：执行高级资源清理操作，包括内存释放、互斥锁销毁、状态重置
+void rendering_system_advanced_cleanup(undefined8 *render_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+
+{
+  longlong *local_ptr_1;
+  longlong local_long_1;
+  longlong local_long_2;
+  undefined8 local_var_1;
+  
+  local_var_1 = 0xfffffffffffffffe;
+  *render_context = &UNK_180a1a278;
+  
+  // 执行资源清理预处理
+  FUN_180306c30();
+  
+  // 计算资源块大小
+  local_ptr_1 = render_context + 0x372;
+  local_long_2 = render_context[0x373] - *local_ptr_1 >> 3;
+  if (local_long_2 == 0) {
+    local_long_2 = 0;
+  }
+  else {
+    // 分配内存用于资源转移
+    local_long_2 = FUN_18062b420(_DAT_180c8ed18, local_long_2 * 8, *(uint *)(render_context + 0x375) & 0xff, param_4, local_var_1);
+  }
+  
+  // 转移资源数据
+  local_long_1 = *local_ptr_1;
+  if (local_long_1 != render_context[0x373]) {
+    memmove(local_long_2, local_long_1, render_context[0x373] - local_long_1);
+  }
+  
+  // 释放转移后的内存
+  if (local_long_2 != 0) {
+    FUN_18064e900(local_long_2);
+  }
+  
+  // 执行回调函数
+  if ((longlong *)render_context[0x389] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)render_context[0x389] + 0x38))();
+  }
+  
+  // 重置渲染资源管理器
+  render_context[0x380] = &UNK_18098bcb0;
+  _Mtx_destroy_in_situ();
+  
+  // 清理核心资源
+  if (*local_ptr_1 == 0) {
+    FUN_1800e7d00(render_context + 0x251);
+    FUN_1800e7d00(render_context + 0x130);
+    FUN_1800e7d00(render_context + 0xf);
+    if ((longlong *)render_context[0xe] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)render_context[0xe] + 0x38))();
     }
-    
-    // 设置安全标志
-    undefined8 security_key = 0xfffffffffffffffe;
-    
-    // 重置函数表
-    *param_1 = (undefined8)&render_system_main_table;
-    
-    // 执行状态清理
-    cleanup_render_system_state();
-    
-    // 计算资源数量
-    longlong *resource_ptr = param_1 + 0x372;
-    longlong resource_count = param_1[0x373] - *resource_ptr >> 3;
-    
-    // 处理资源数据
-    void* resource_data = NULL;
-    if (resource_count == 0) {
-        resource_data = 0;
-    } else {
-        resource_data = allocate_render_resource_data(resource_count * 8, *(uint *)(param_1 + 0x375) & 0xff, param_4, security_key);
+    if ((longlong *)render_context[0xd] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)render_context[0xd] + 0x38))();
     }
-    
-    // 移动资源数据
-    longlong resource_start = *resource_ptr;
-    if (resource_start != param_1[0x373]) {
-        memmove(resource_data, resource_start, param_1[0x373] - resource_start);
+    *render_context = &UNK_180a1a2f0;
+    if (render_context[1] == 0) {
+      return;
     }
-    
-    // 释放资源数据
-    if (resource_data != 0) {
-        release_render_resource_data(resource_data);
-    }
-    
-    // 执行回调函数
-    if ((longlong *)param_1[0x389] != (longlong *)0x0) {
-        execute_render_callback(param_1[0x389]);
-    }
-    
-    // 重置参数表
-    param_1[0x380] = (undefined8)&render_system_parameter_table;
-    destroy_render_mutex();
-    
-    // 清理基础资源
-    if (*resource_ptr == 0) {
-        cleanup_render_parameter_block(param_1 + 0x251);
-        cleanup_render_parameter_block(param_1 + 0x130);
-        cleanup_render_parameter_block(param_1 + 0xf);
-        
-        // 执行额外回调
-        if ((longlong *)param_1[0xe] != (longlong *)0x0) {
-            execute_render_callback(param_1[0xe]);
-        }
-        if ((longlong *)param_1[0xd] != (longlong *)0x0) {
-            execute_render_callback(param_1[0xd]);
-        }
-        
-        // 重置主表
-        *param_1 = (undefined8)&render_system_function_table;
-        
-        // 清理额外资源
-        if (param_1[1] == 0) {
-            return;
-        }
-        
-        release_render_resource_data();
-    }
-    
-    release_render_resource_data();
+    FUN_18064e900();
+  }
+  FUN_18064e900();
 }
 
 /**

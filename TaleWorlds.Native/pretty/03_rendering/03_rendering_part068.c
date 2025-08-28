@@ -354,78 +354,78 @@ void rendering_system_execute_render_pipeline(longlong *render_pipeline_data, in
   *(undefined8 *)(pipeline_context + -0x28) = register_r14;
   *(int *)(pipeline_context + 0x10) = start_index;
   do {
-    lVar6 = *(longlong *)*param_1;
-    plVar7 = *(longlong **)(*(longlong *)(lVar6 + 0x88) + (longlong)param_2 * 8);
-    if ((((char)plVar7[7] == '\0') && (*(char *)param_1[1] == '\0')) &&
-       ((*(char *)((longlong)plVar7 + 0x39) != '\0' ||
-        ((*(float *)param_1[2] < *(float *)(plVar7 + 6) ||
-         (*(float *)param_1[3] < *(float *)((longlong)plVar7 + 0x34))))))) {
-      if (*(char *)(lVar6 + 0x7d) != '\0') {
-        fVar4 = *(float *)(plVar7 + 0x52);
-        fVar3 = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4
+    render_context = *(longlong *)*render_pipeline_data;
+    render_object = *(longlong **)(*(longlong *)(render_context + 0x88) + (longlong)start_index * 8);
+    if ((((char)render_object[7] == '\0') && (*(char *)render_pipeline_data[1] == '\0')) &&
+       ((*(char *)((longlong)render_object + 0x39) != '\0' ||
+        ((*(float *)render_pipeline_data[2] < *(float *)(render_object + 6) ||
+         (*(float *)render_pipeline_data[3] < *(float *)((longlong)render_object + 0x34))))))) {
+      if (*(char *)(render_context + 0x7d) != '\0') {
+        quality_factor = *(float *)(render_object + 0x52);
+        quality_threshold = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4
                           );
-        (**(code **)(*plVar7 + 0x108))(plVar7);
-        if (0.08 <= fVar4 + fVar3 * -0.1) goto LAB_1803066f9;
-        lVar6 = *(longlong *)*param_1;
+        (**(code **)(*render_object + 0x108))(render_object);
+        if (RENDERING_SYSTEM_QUALITY_THRESHOLD <= quality_factor + quality_threshold * -0.1) goto LAB_1803066f9;
+        render_context = *(longlong *)*render_pipeline_data;
       }
-      FUN_180308500(lVar6 + 0xa8);
-      *(undefined1 *)((longlong)plVar7 + 0x39) = 1;
-      param_2 = in_stack_00000098;
+      FUN_180308500(render_context + 0xa8);
+      *(undefined1 *)((longlong)render_object + 0x39) = 1;
+      start_index = stack_param;
     }
 LAB_1803066f9:
-    if ((*(char *)((longlong)plVar7 + 0x39) == '\0') && (cVar8 = FUN_1803068a0(), cVar8 != '\0')) {
-      cVar8 = '\x01';
+    if ((*(char *)((longlong)render_object + 0x39) == '\0') && (visibility_flag = rendering_system_check_render_visibility(), visibility_flag != '\0')) {
+      visibility_flag = '\x01';
     }
     else {
-      cVar8 = '\0';
+      visibility_flag = '\0';
     }
-    *(char *)(plVar7 + 9) = cVar8;
-    fVar3 = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4);
-    fVar4 = *(float *)(plVar7 + 6);
-    *(float *)(plVar7 + 6) = fVar3 + fVar4;
-    if (cVar8 == '\0') {
-      *(float *)((longlong)plVar7 + 0x34) =
-           *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)param_1[4] + 0x5b98) * 4) +
-           *(float *)((longlong)plVar7 + 0x34);
+    *(char *)(render_object + 9) = visibility_flag;
+    quality_threshold = *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4);
+    quality_factor = *(float *)(render_object + 6);
+    *(float *)(render_object + 6) = quality_threshold + quality_factor;
+    if (visibility_flag == '\0') {
+      *(float *)((longlong)render_object + 0x34) =
+           *(float *)(&DAT_180bf3ff8 + (longlong)*(int *)(*(longlong *)render_pipeline_data[4] + 0x5b98) * 4) +
+           *(float *)((longlong)render_object + 0x34);
     }
     else {
-      uVar10 = plVar7[0x2b];
-      *(undefined4 *)((longlong)plVar7 + 0x34) = 0;
-      if (uVar10 != 0) {
-        uVar10 = (ulonglong)(byte)(*(char *)(uVar10 + 0x2c8) + 8);
+      resource_handle = render_object[0x2b];
+      *(undefined4 *)((longlong)render_object + 0x34) = 0;
+      if (resource_handle != 0) {
+        resource_handle = (ulonglong)(byte)(*(char *)(resource_handle + 0x2c8) + 8);
       }
-      *(uint *)((longlong)plVar7 + 0x4c) =
-           ((int)(fVar3 + fVar4) & 0xfff0U | ((uint)uVar10 & 0xff) << 0x14) << 8 |
-           (int)plVar7 >> 4 & 0xfffU;
-      lVar6 = param_1[5];
+      *(uint *)((longlong)render_object + 0x4c) =
+           ((int)(quality_threshold + quality_factor) & 0xfff0U | ((uint)resource_handle & 0xff) << RENDERING_SYSTEM_INDEX_SHIFT) << 8 |
+           (int)render_object >> 4 & RENDERING_SYSTEM_PRIORITY_MASK;
+      render_context = render_pipeline_data[5];
       LOCK();
-      puVar1 = (uint *)(lVar6 + 0x78);
-      uVar5 = *puVar1;
-      *puVar1 = *puVar1 + 1;
+      frame_counter = (uint *)(render_context + 0x78);
+      render_flags = *frame_counter;
+      *frame_counter = *frame_counter + 1;
       UNLOCK();
-      uVar9 = uVar5 >> 0xb;
-      if (*(longlong *)(lVar6 + 0x80 + (ulonglong)uVar9 * 8) == 0) {
-        lVar11 = FUN_18062b420(_DAT_180c8ed18,0x4000,0x25);
-        plVar2 = (longlong *)(lVar6 + 0x80 + (ulonglong)uVar9 * 8);
+      priority_bits = render_flags >> 0xb;
+      if (*(longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8) == 0) {
+        allocated_memory = FUN_18062b420(_DAT_180c8ed18,0x4000,0x25);
+        render_buffer = (longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8);
         LOCK();
-        bVar12 = *plVar2 == 0;
-        if (bVar12) {
-          *plVar2 = lVar11;
+        allocation_success = *render_buffer == 0;
+        if (allocation_success) {
+          *render_buffer = allocated_memory;
         }
         UNLOCK();
-        if ((!bVar12) && (lVar11 != 0)) {
+        if ((!allocation_success) && (allocated_memory != 0)) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
       }
       *(longlong **)
-       (*(longlong *)(lVar6 + 0x80 + (ulonglong)uVar9 * 8) + (ulonglong)(uVar5 + uVar9 * -0x800) * 8
-       ) = plVar7;
-      param_2 = in_stack_00000098;
+       (*(longlong *)(render_context + 0x80 + (ulonglong)priority_bits * 8) + (ulonglong)(render_flags + priority_bits * -0x800) * 8
+       ) = render_object;
+      start_index = stack_param;
     }
-    in_stack_00000098 = param_2 + 1;
-    param_2 = in_stack_00000098;
-    if (param_3 <= in_stack_00000098) {
+    stack_param = start_index + 1;
+    start_index = stack_param;
+    if (end_index <= stack_param) {
       return;
     }
   } while( true );
@@ -435,87 +435,94 @@ LAB_1803066f9:
 
 
 
-// 函数: void FUN_180306894(void)
-void FUN_180306894(void)
-
+// 渲染系统空函数占位符
+// 用作渲染系统中的占位符函数，保持结构完整性
+void rendering_system_empty_function_placeholder(void)
 {
   return;
 }
 
 
 
-bool FUN_1803068a0(undefined8 param_1,longlong *param_2,longlong param_3,longlong param_4,
-                  undefined8 param_5,float param_6)
-
+// 渲染系统检查渲染可见性
+// 参数: render_context - 渲染上下文
+//       camera_matrix - 相机矩阵指针
+//       render_target - 渲染目标
+//       viewport_size - 视口大小
+//       render_flags - 渲染标志
+//       visibility_threshold - 可见性阈值
+// 返回: bool - 是否可见
+bool rendering_system_check_render_visibility(longlong render_context, longlong *camera_matrix, longlong render_target, longlong viewport_size,
+                                             longlong render_flags, float visibility_threshold)
 {
-  float fVar1;
-  float fVar2;
-  char cVar3;
-  longlong lVar4;
-  uint uVar5;
+  float distance_factor;
+  float quality_factor;
+  char visibility_state;
+  longlong render_object;
+  uint render_priority;
   float fVar6;
-  float fStack_68;
-  float fStack_64;
-  float fStack_60;
-  undefined4 uStack_5c;
-  float fStack_58;
-  float fStack_54;
-  float fStack_50;
-  undefined4 uStack_4c;
-  float fStack_48;
-  float fStack_44;
-  float fStack_40;
-  undefined4 uStack_3c;
-  float fStack_38;
-  float fStack_34;
-  float fStack_30;
-  undefined4 uStack_2c;
+  float matrix_a;
+  float matrix_b;
+  float matrix_c;
+  undefined4 padding_a;
+  float matrix_d;
+  float matrix_e;
+  float matrix_f;
+  undefined4 padding_b;
+  float matrix_g;
+  float matrix_h;
+  float matrix_i;
+  undefined4 padding_c;
+  float matrix_j;
+  float matrix_k;
+  float matrix_l;
+  undefined4 padding_d;
   
-  (**(code **)(*param_2 + 0x218))(param_2);
-  (**(code **)(*param_2 + 0x218))(param_2);
-  if ((undefined *)*param_2 == &UNK_180a19770) {
-    uVar5 = *(uint *)((longlong)param_2 + 0x174);
+  (**(code **)(*camera_matrix + 0x218))(camera_matrix);
+  (**(code **)(*camera_matrix + 0x218))(camera_matrix);
+  if ((undefined *)*camera_matrix == &UNK_180a19770) {
+    render_priority = *(uint *)((longlong)camera_matrix + 0x174);
   }
   else {
-    uVar5 = (**(code **)((undefined *)*param_2 + 0x130))(param_2);
+    render_priority = (**(code **)((undefined *)*camera_matrix + 0x130))(camera_matrix);
   }
-  if (((uVar5 & 1) != 0) &&
-     ((uVar5 = *(uint *)(param_3 + 0x60300) & 0xfffffffe,
-      (uVar5 & *(uint *)(param_2 + 0x2e)) == uVar5 || ((*(uint *)(param_2 + 0x2e) & 1) != 0)))) {
-    lVar4 = (**(code **)(*param_2 + 0x218))(param_2);
-    fVar6 = *(float *)(lVar4 + 0x14);
-    fVar1 = *(float *)(lVar4 + 0x10);
-    fVar2 = *(float *)(lVar4 + 0x18);
-    lVar4 = (**(code **)(*param_2 + 0x218))(param_2);
-    cVar3 = func_0x0001801be000(param_4 + 0x30,lVar4 + 0x30,
-                                SQRT(fVar1 * fVar1 + fVar6 * fVar6 + fVar2 * fVar2));
-    if (cVar3 != '\0') {
-      if ((char)param_2[0x2f] == '\0') {
-        FUN_180287b30(param_4 + 0xf0,&fStack_68);
-        uStack_5c = 0;
-        uStack_4c = 0;
-        uStack_3c = 0;
-        uStack_2c = 0x3f800000;
-        lVar4 = (**(code **)(*param_2 + 0x218))(param_2);
-        fVar6 = *(float *)(lVar4 + 0x34);
-        fVar1 = *(float *)(lVar4 + 0x38);
-        fVar2 = *(float *)(lVar4 + 0x30);
-        fStack_38 = fVar6 * fStack_58 + fStack_68 * fVar2 + fVar1 * fStack_48 + fStack_38;
-        fStack_34 = fVar6 * fStack_54 + fStack_64 * fVar2 + fVar1 * fStack_44 + fStack_34;
-        fStack_30 = fVar6 * fStack_50 + fStack_60 * fVar2 + fVar1 * fStack_40 + fStack_30;
-        if ((0.0 < param_6) && (param_6 < -fStack_30)) {
+  if (((render_priority & 1) != 0) &&
+     ((render_priority = *(uint *)(render_target + 0x60300) & 0xfffffffe,
+      (render_priority & *(uint *)(camera_matrix + 0x2e)) == render_priority || ((*(uint *)(camera_matrix + 0x2e) & 1) != 0)))) {
+    render_object = (**(code **)(*camera_matrix + 0x218))(camera_matrix);
+    fVar6 = *(float *)(render_object + 0x14);
+    distance_factor = *(float *)(render_object + 0x10);
+    quality_factor = *(float *)(render_object + 0x18);
+    render_object = (**(code **)(*camera_matrix + 0x218))(camera_matrix);
+    visibility_state = func_0x0001801be000(viewport_size + 0x30,render_object + 0x30,
+                                SQRT(distance_factor * distance_factor + fVar6 * fVar6 + quality_factor * quality_factor));
+    if (visibility_state != '\0') {
+      if ((char)camera_matrix[0x2f] == '\0') {
+        FUN_180287b30(viewport_size + 0xf0,&matrix_a);
+        padding_a = 0;
+        padding_b = 0;
+        padding_c = 0;
+        padding_d = 0x3f800000;
+        render_object = (**(code **)(*camera_matrix + 0x218))(camera_matrix);
+        fVar6 = *(float *)(render_object + 0x34);
+        distance_factor = *(float *)(render_object + 0x38);
+        quality_factor = *(float *)(render_object + 0x30);
+        matrix_j = fVar6 * matrix_d + matrix_a * quality_factor + distance_factor * matrix_g + matrix_j;
+        matrix_k = fVar6 * matrix_e + matrix_b * quality_factor + distance_factor * matrix_h + matrix_k;
+        matrix_l = fVar6 * matrix_f + matrix_c * quality_factor + distance_factor * matrix_i + matrix_l;
+        if ((0.0 < visibility_threshold) && (visibility_threshold < -matrix_l)) {
           return false;
         }
-        if ((0.0 < (float)param_5) && (0.0 < param_5._4_4_)) {
-          fVar6 = 1.0 / (1.0 - fStack_30 * fStack_30);
-          fVar6 = SQRT(ABS(((fStack_34 * fStack_34 + fStack_38 * fStack_38 + fStack_30 * fStack_30)
-                           - 1.0) * fVar6)) *
-                  *(float *)(param_4 + 0x14c) * -3.1415927 * *(float *)(param_4 + 0x14c) * fVar6 *
-                  *(float *)(param_4 + 0x11c20) * *(float *)(param_4 + 0x11c24) * 0.25;
+        if ((0.0 < (float)render_flags) && (0.0 < render_flags._4_4_)) {
+          fVar6 = RENDERING_SYSTEM_FLOAT_NORMALIZATION / (RENDERING_SYSTEM_FLOAT_NORMALIZATION - matrix_l * matrix_l);
+          fVar6 = SQRT(ABS(((matrix_k * matrix_k + matrix_j * matrix_j + matrix_l * matrix_l)
+                           - RENDERING_SYSTEM_FLOAT_NORMALIZATION) * fVar6)) *
+                  *(float *)(viewport_size + 0x14c) * -RENDERING_SYSTEM_PI * *(float *)(viewport_size + 0x14c) * fVar6 *
+                  *(float *)(viewport_size + 0x11c20) * *(float *)(viewport_size + 0x11c24) * RENDERING_SYSTEM_MATRIX_MULTIPLIER;
           if (fVar6 < 0.0) {
-            fVar6 = *(float *)(param_4 + 0x11c24) * *(float *)(param_4 + 0x11c20);
+            fVar6 = *(float *)(viewport_size + 0x11c24) * *(float *)(viewport_size + 0x11c20);
           }
-          return param_5._4_4_ * (float)param_5 < fVar6;
+          return render_flags._4_4_ * (float)render_flags < fVar6;
         }
       }
       return true;
@@ -526,38 +533,37 @@ bool FUN_1803068a0(undefined8 param_1,longlong *param_2,longlong param_3,longlon
 
 
 
-bool FUN_1803068ec(void)
-
+// 渲染系统验证渲染状态
+// 返回: bool - 渲染状态是否有效
+bool rendering_system_validate_render_state(void)
 {
-  float fVar1;
-  float fVar2;
-  char cVar3;
-  ulonglong in_RAX;
-  longlong lVar4;
-  uint uVar5;
-  longlong *unaff_RBX;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  float fVar6;
-  float fStack0000000000000030;
-  float fStack0000000000000034;
-  float in_stack_00000038;
-  undefined4 uStack000000000000003c;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
-  float in_stack_00000048;
-  undefined4 uStack000000000000004c;
-  float fStack0000000000000050;
-  float fStack0000000000000054;
-  float in_stack_00000058;
-  undefined4 uStack000000000000005c;
-  float fStack0000000000000060;
-  float fStack0000000000000064;
-  float in_stack_00000068;
-  undefined4 uStack000000000000006c;
-  float fStack00000000000000c0;
-  float fStack00000000000000c4;
-  float in_stack_000000c8;
+  float distance_factor;
+  float quality_factor;
+  char visibility_state;
+  ulonglong render_flags;
+  longlong render_object;
+  uint render_priority;
+  longlong *camera_matrix;
+  longlong render_target;
+  longlong viewport_size;
+  float coordinate_x;
+  float coordinate_y;
+  float coordinate_z;
+  undefined4 padding_a;
+  float matrix_a;
+  float matrix_b;
+  float matrix_c;
+  undefined4 padding_b;
+  float matrix_d;
+  float matrix_e;
+  float matrix_f;
+  undefined4 padding_c;
+  float matrix_g;
+  float matrix_h;
+  float matrix_i;
+  undefined4 padding_d;
+  float visibility_threshold;
+  float quality_metric;
   
   if (((in_RAX & 1) != 0) &&
      ((uVar5 = *(uint *)(unaff_RSI + 0x60300) & 0xfffffffe,
