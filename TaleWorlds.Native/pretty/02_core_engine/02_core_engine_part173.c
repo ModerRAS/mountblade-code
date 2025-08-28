@@ -372,8 +372,13 @@ void update_engine_state(undefined8 state_manager, longlong state_id)
 
 
 
-// 函数: void FUN_180158f40(undefined8 param_1,longlong param_2)
-void FUN_180158f40(undefined8 param_1,longlong param_2)
+/**
+ * 处理引擎资源收集和清理
+ * @param param_1 资源管理器指针
+ * @param param_2 资源ID
+ * 功能: 收集指定ID的资源并进行清理处理
+ */
+void collect_and_cleanup_engine_resources(undefined8 param_1, longlong param_2)
 
 {
   longlong lVar1;
@@ -507,7 +512,16 @@ LAB_18015906f:
 
 
 
-longlong * FUN_180159210(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 从队列中移除并返回资源
+ * @param resource_manager 资源管理器指针
+ * @param output_ptr 输出结果指针
+ * @param param_3 参数3 (用途未知)
+ * @param param_4 参数4 (用途未知)
+ * @return 返回输出结果指针
+ * 功能: 从资源队列中移除资源并返回
+ */
+longlong * dequeue_and_return_resource(longlong resource_manager, longlong *output_ptr, undefined8 param_3, undefined8 param_4)
 
 {
   longlong *plVar1;
@@ -546,8 +560,15 @@ longlong * FUN_180159210(longlong param_1,longlong *param_2,undefined8 param_3,u
 
 
 
-// 函数: void FUN_1801592f0(undefined8 param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1801592f0(undefined8 param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 入队资源到管理器
+ * @param param_1 资源管理器指针
+ * @param resource_ptr 资源指针
+ * @param param_3 参数3 (用途未知)
+ * @param param_4 参数4 (用途未知)
+ * 功能: 将资源添加到管理器队列中
+ */
+void enqueue_resource_to_manager(undefined8 param_1, longlong *resource_ptr, undefined8 param_3, undefined8 param_4)
 
 {
   longlong lVar1;
@@ -641,8 +662,15 @@ LAB_180159499:
 
 
 
-// 函数: void FUN_1801594d0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1801594d0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 初始化引擎数据结构
+ * @param engine_context 引擎上下文指针
+ * @param param_2 参数2 (用途未知)
+ * @param param_3 参数3 (用途未知)
+ * @param param_4 参数4 (用途未知)
+ * 功能: 初始化引擎的内部数据结构
+ */
+void initialize_engine_data_structure(longlong engine_context, longlong param_2, undefined8 param_3, undefined8 param_4)
 
 {
   longlong lVar1;
@@ -684,8 +712,13 @@ void FUN_1801594d0(longlong param_1,longlong param_2,undefined8 param_3,undefine
 
 
 
-// 函数: void FUN_1801595d0(undefined8 param_1,longlong param_2)
-void FUN_1801595d0(undefined8 param_1,longlong param_2)
+/**
+ * 设置引擎路径字符串
+ * @param param_1 引擎上下文指针
+ * @param path_ptr 路径指针
+ * 功能: 设置引擎相关的路径字符串
+ */
+void set_engine_path_string(undefined8 param_1, longlong path_ptr)
 
 {
   int iVar1;
@@ -723,7 +756,16 @@ void FUN_1801595d0(undefined8 param_1,longlong param_2)
 
 
 
-longlong FUN_1801596c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 添加GUITexture扩展名到路径
+ * @param param_1 引擎上下文指针
+ * @param path_ptr 路径指针
+ * @param param_3 参数3 (用途未知)
+ * @param param_4 参数4 (用途未知)
+ * @return 返回路径指针
+ * 功能: 在路径字符串后添加".GUITexture"扩展名
+ */
+longlong add_gui_texture_extension(undefined8 param_1, longlong path_ptr, undefined8 param_3, undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -743,7 +785,16 @@ longlong FUN_1801596c0(undefined8 param_1,longlong param_2,undefined8 param_3,un
 
 
 
-longlong FUN_180159730(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 添加dds.data扩展名到路径
+ * @param param_1 引擎上下文指针
+ * @param path_ptr 路径指针
+ * @param param_3 参数3 (用途未知)
+ * @param param_4 参数4 (用途未知)
+ * @return 返回路径指针
+ * 功能: 在路径字符串后添加"dds.data"扩展名
+ */
+longlong add_dds_data_extension(undefined8 param_1, longlong path_ptr, undefined8 param_3, undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -764,7 +815,16 @@ longlong FUN_180159730(undefined8 param_1,longlong param_2,undefined8 param_3,un
 
 
 
-longlong FUN_1801597a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 添加smaPar.defs扩展名到路径
+ * @param param_1 引擎上下文指针
+ * @param path_ptr 路径指针
+ * @param param_3 参数3 (用途未知)
+ * @param param_4 参数4 (用途未知)
+ * @return 返回路径指针
+ * 功能: 在路径字符串后添加"smaPar.defs"扩展名
+ */
+longlong add_smapar_defs_extension(undefined8 param_1, longlong path_ptr, undefined8 param_3, undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -786,8 +846,16 @@ longlong FUN_1801597a0(undefined8 param_1,longlong param_2,undefined8 param_3,un
 
 
 
-undefined8
-FUN_180159820(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 写入引擎数据字符串
+ * @param param_1 引擎上下文指针
+ * @param param_2 输出指针
+ * @param param_3 参数3 (用途未知)
+ * @param param_4 参数4 (用途未知)
+ * @return 返回输出指针
+ * 功能: 写入引擎相关的数据字符串
+ */
+undefined8 write_engine_data_string(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -802,8 +870,16 @@ FUN_180159820(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8
-FUN_180159870(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 写入扩展引擎数据字符串
+ * @param param_1 引擎上下文指针
+ * @param param_2 输出指针
+ * @param param_3 参数3 (用途未知)
+ * @param param_4 参数4 (用途未知)
+ * @return 返回输出指针
+ * 功能: 写入扩展的引擎数据字符串
+ */
+undefined8 write_extended_engine_data(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -821,8 +897,11 @@ FUN_180159870(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_1801598f0(void)
-void FUN_1801598f0(void)
+/**
+ * 引擎错误处理函数
+ * 功能: 处理引擎错误并终止程序
+ */
+void handle_engine_error(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -835,8 +914,14 @@ void FUN_1801598f0(void)
 
 
 
-// 函数: void FUN_18015a900(undefined8 param_1,undefined8 param_2,undefined8 param_3)
-void FUN_18015a900(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 处理引擎字符串操作
+ * @param param_1 引擎上下文指针
+ * @param param_2 输出指针
+ * @param param_3 字符串参数
+ * 功能: 处理引擎相关的字符串操作
+ */
+void process_engine_string_operation(undefined8 param_1, undefined8 param_2, undefined8 param_3)
 
 {
   undefined8 uVar1;
@@ -897,8 +982,14 @@ void FUN_18015a900(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 
 
-// 函数: void FUN_18015aa70(longlong *param_1,int param_2,int param_3)
-void FUN_18015aa70(longlong *param_1,int param_2,int param_3)
+/**
+ * 批量处理引擎资源
+ * @param engine_context 引擎上下文指针
+ * @param start_index 起始索引
+ * @param end_index 结束索引
+ * 功能: 批量处理指定索引范围内的引擎资源
+ */
+void process_engine_resources_batch(longlong *engine_context, int start_index, int end_index)
 
 {
   int *piVar1;
@@ -997,7 +1088,15 @@ void FUN_18015aa70(longlong *param_1,int param_2,int param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18015acc0(longlong *param_1,int param_2,int param_3)
+/**
+ * 计算引擎资源校验和
+ * @param engine_context 引擎上下文指针
+ * @param start_index 起始索引
+ * @param end_index 结束索引
+ * @return 返回校验和结果
+ * 功能: 计算指定索引范围内引擎资源的校验和
+ */
+ulonglong calculate_engine_resource_checksum(longlong *engine_context, int start_index, int end_index)
 
 {
   int iVar1;
