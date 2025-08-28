@@ -161,16 +161,22 @@ void FUN_180848e50(char *param_1,undefined8 *param_2)
   undefined1 auStack_3d [5];
   ulonglong uStack_38;
   
+  // 初始化栈保护机制
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  
+  // 检查输出参数有效性
   if (param_2 != (undefined8 *)0x0) {
-    if ((((param_1 == (char *)0x0) || (iVar5 = func_0x00018076b690(), iVar5 != 0x26)) ||
-        (*param_1 != '{')) || (param_1[0x25] != '}')) {
+    // 验证输入字符串格式和长度
+    if ((((param_1 == (char *)0x0) || (iVar5 = func_0x00018076b690(), iVar5 != UI_SYSTEM_VALIDATION_LENGTH_0X26)) ||
+        (*param_1 != '{')) || (param_1[UI_SYSTEM_VALIDATION_LENGTH_0X27] != '}')) {
+      // 字符串格式验证失败，设置默认值
 FUN_180848ff1:
       *param_2 = 0;
       param_2[1] = 0;
     }
     else {
-      func_0x00018076b450(&uStack_60,param_1,0x27);
+      // 执行字符串解析和处理
+      func_0x00018076b450(&uStack_60,param_1,UI_SYSTEM_VALIDATION_LENGTH_0X27);
       uStack_57 = 0;
       apuStack_88[0] = auStack_5f;
       lVar9 = 0;
@@ -182,10 +188,13 @@ FUN_180848ff1:
       apuStack_88[4] = auStack_47;
       uStack_48 = 0;
       auStack_3d[2] = 0;
+      
+      // 验证字符串数组中的每个元素
       do {
         pcVar6 = apuStack_88[lVar9];
         cVar2 = *pcVar6;
         while (cVar2 != '\0') {
+          // 检查字符是否为有效字符
           if (((9 < (byte)(cVar2 - 0x30U)) && (5 < (byte)(cVar2 + 0xbfU))) &&
              (5 < (byte)(cVar2 + 0x9fU))) goto FUN_180848ff1;
           pcVar1 = pcVar6 + 1;
@@ -193,7 +202,9 @@ FUN_180848ff1:
           cVar2 = *pcVar1;
         }
         lVar9 = lVar9 + 1;
-      } while (lVar9 < 5);
+      } while (lVar9 < UI_SYSTEM_ARRAY_SIZE_5);
+      
+      // 处理字符串数据并转换为数值
       uStack_98 = func_0x00018076b320(auStack_5f);
       uVar4 = func_0x00018076b320(auStack_56);
       uStack_94 = CONCAT22(uStack_94._2_2_,uVar4);
@@ -205,6 +216,8 @@ FUN_180848ff1:
       puVar7 = auStack_3d;
       iVar5 = 5;
       puVar10 = auStack_3d;
+      
+      // 处理剩余的数据元素
       do {
         uVar3 = func_0x00018076b320(puVar10);
         puVar10 = puVar10 + -2;
@@ -214,13 +227,15 @@ FUN_180848ff1:
         puVar8 = puVar8 + -1;
         puVar7 = puVar7 + -2;
       } while (-1 < iVar5);
+      
+      // 将处理后的数据写入输出结构
       *(undefined4 *)param_2 = uStack_98;
       *(undefined4 *)((longlong)param_2 + 4) = uStack_94;
       *(undefined4 *)(param_2 + 1) = uStack_90;
       *(undefined4 *)((longlong)param_2 + 0xc) = uStack_8c;
     }
   }
-                    // WARNING: Subroutine does not return
+  // 执行栈清理和安全退出
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_b8);
 }
 
