@@ -1,4 +1,66 @@
+// 系统初始化和清理函数
 #define SystemInitializer FUN_1808fcb90  // 系统初始化器
+#define SystemStateCleaner FUN_1808fcb30  // 系统状态清理器
+
+// 资源管理函数
+#define ResourceManager FUN_1808db3f0    // 资源管理器
+#define ResourceCleanupHandler FUN_180768400  // 资源清理处理器
+#define ResourceAllocator FUN_180768360   // 资源分配器
+#define ResourcePoolManager FUN_180742250  // 资源池管理器
+#define ResourceSystemController FUN_180741e10  // 资源系统控制器
+#define ResourceReferenceManager FUN_18084c220  // 资源引用管理器
+#define ResourceReleaseHandler FUN_1808b02a0  // 资源释放处理器
+
+// 系统控制函数
+#define SystemController FUN_1808fc050   // 系统控制器
+#define SystemCleanupInvoker FUN_1808fd200  // 系统清理调用器
+#define SystemDataManager FUN_1808dcd20  // 系统数据管理器
+#define SystemResourceHandler FUN_1808dbcd0  // 系统资源处理器
+#define SystemValidator FUN_1808db010   // 系统验证器
+
+// 事件和状态管理函数
+#define EventManager FUN_18088c790       // 事件管理器
+#define EventHandler FUN_18088c740      // 事件处理器
+#define EventDispatcher FUN_18088c620   // 事件分发器
+#define EventInitializer FUN_18088a0c0  // 事件初始化器
+#define StateManager FUN_180867d60      // 状态管理器
+
+// 资源操作函数
+#define ResourceOperationHandler FUN_18085dbf0  // 资源操作处理器
+#define ResourceAccessController FUN_180747f10  // 资源访问控制器
+#define ResourceDataProcessor FUN_180741df0  // 资源数据处理器
+#define ResourceQueryHandler FUN_180741d10  // 资源查询处理器
+#define ResourceValidator FUN_180739cc0  // 资源验证器
+#define ResourceChecker FUN_180739b90   // 资源检查器
+
+// 系统内部函数 (简化实现)
+#define SystemInternalFunc1 FUN_1808daf3b  // 系统内部函数1
+#define SystemInternalFunc2 FUN_1808daf2a  // 系统内部函数2
+#define SystemInternalFunc3 FUN_1808dae64  // 系统内部函数3
+#define SystemInternalFunc4 FUN_1808dae5f  // 系统内部函数4
+#define SystemInternalFunc5 FUN_1808dae4c  // 系统内部函数5
+#define SystemInternalFunc6 FUN_1808dae30  // 系统内部函数6
+#define SystemInternalFunc7 FUN_1808dad80  // 系统内部函数7
+#define SystemInternalFunc8 FUN_1808dad20  // 系统内部函数8
+#define SystemInternalFunc9 FUN_1808dac90  // 系统内部函数9
+#define SystemInternalFunc10 FUN_1808dab90  // 系统内部函数10
+#define SystemInternalFunc11 FUN_1808dab64  // 系统内部函数11
+#define SystemInternalFunc12 FUN_1808dab52  // 系统内部函数12
+#define SystemInternalFunc13 FUN_1808daaa9  // 系统内部函数13
+#define SystemInternalFunc14 FUN_1808daa70  // 系统内部函数14
+#define SystemInternalFunc15 FUN_1808daa00  // 系统内部函数15
+#define SystemInternalFunc16 FUN_1808da910  // 系统内部函数16
+#define SystemInternalFunc17 FUN_1808da8ec  // 系统内部函数17
+#define SystemInternalFunc18 FUN_1808da82b  // 系统内部函数18
+#define SystemInternalFunc19 FUN_1808da7b0  // 系统内部函数19
+#define SystemInternalFunc20 FUN_1808da5c0  // 系统内部函数20
+#define SystemInternalFunc21 FUN_1808da330  // 系统内部函数21
+#define SystemInternalFunc22 FUN_1808d9fe0  // 系统内部函数22
+#define SystemInternalFunc23 FUN_1808d9e90  // 系统内部函数23
+#define SystemInternalFunc24 FUN_1808d9de0  // 系统内部函数24
+#define SystemInternalFunc25 FUN_1808d9d50  // 系统内部函数25
+#define SystemInternalFunc26 FUN_1808d9ce0  // 系统内部函数26
+#define SystemInternalFunc27 FUN_1808d9c82  // 系统内部函数27
 
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
