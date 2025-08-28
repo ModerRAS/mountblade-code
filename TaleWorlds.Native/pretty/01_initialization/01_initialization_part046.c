@@ -190,156 +190,157 @@ void ResizeTransformArray(longlong *array_container, ulonglong new_size)
 
 
 
-// 函数: void FUN_180074c20(undefined8 *param_1,ulonglong param_2)
-void FUN_180074c20(undefined8 *param_1,ulonglong param_2)
+// 函数: void ReallocateTransformArray - 重新分配变换数组内存
+// 重新分配变换数组的内存，处理数据的复制和清理
+void ReallocateTransformArray(undefined8 *array_container, ulonglong additional_elements)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  undefined8 *puVar3;
-  longlong *plVar4;
-  longlong *plVar5;
-  ulonglong uVar6;
-  undefined8 *puVar7;
-  longlong lVar8;
-  ulonglong uVar9;
+  longlong *new_array;
+  longlong *old_array;
+  undefined8 *old_start;
+  longlong *copy_source;
+  longlong *copy_dest;
+  ulonglong current_capacity;
+  undefined8 *current_end;
+  longlong current_used;
+  ulonglong new_capacity;
   
-  puVar7 = (undefined8 *)param_1[1];
-  if ((ulonglong)((param_1[2] - (longlong)puVar7) / 0x24) < param_2) {
-    puVar3 = (undefined8 *)*param_1;
-    lVar8 = ((longlong)puVar7 - (longlong)puVar3) / 0x24;
-    uVar9 = lVar8 * 2;
-    if (lVar8 == 0) {
-      uVar9 = 1;
+  current_end = (undefined8 *)array_container[1];
+  if ((ulonglong)((array_container[2] - (longlong)current_end) / 0x24) < additional_elements) {
+    old_start = (undefined8 *)*array_container;
+    current_used = ((longlong)current_end - (longlong)old_start) / 0x24;
+    new_capacity = current_used * 2;
+    if (current_used == 0) {
+      new_capacity = 1;
     }
-    if (uVar9 < lVar8 + param_2) {
-      uVar9 = lVar8 + param_2;
+    if (new_capacity < current_used + additional_elements) {
+      new_capacity = current_used + additional_elements;
     }
-    plVar1 = (longlong *)0x0;
-    if (uVar9 != 0) {
-      plVar1 = (longlong *)
-               FUN_18062b420(_DAT_180c8ed18,uVar9 * 0x24,*(undefined1 *)(param_1 + 3),puVar7,
+    new_array = (longlong *)0x0;
+    if (new_capacity != 0) {
+      new_array = (longlong *)
+               FUN_18062b420(_DAT_180c8ed18,new_capacity * 0x24,*(undefined1 *)(array_container + 3),current_end,
                              0xfffffffffffffffe);
-      puVar7 = (undefined8 *)param_1[1];
-      puVar3 = (undefined8 *)*param_1;
+      current_end = (undefined8 *)array_container[1];
+      old_start = (undefined8 *)*array_container;
     }
-    plVar2 = plVar1;
-    if (puVar3 != puVar7) {
-      lVar8 = (longlong)plVar1 - (longlong)puVar3;
-      plVar4 = (longlong *)((longlong)puVar3 + 0x1a);
+    copy_dest = new_array;
+    if (old_start != current_end) {
+      current_used = (longlong)new_array - (longlong)old_start;
+      copy_source = (longlong *)((longlong)old_start + 0x1a);
       do {
-        *(undefined2 *)(lVar8 + -10 + (longlong)plVar4) = *(undefined2 *)((longlong)plVar4 + -10);
-        if (*(longlong *)((longlong)plVar4 + -0x12) == 0) {
-          *(undefined8 *)(lVar8 + -0x12 + (longlong)plVar4) = 0;
+        *(undefined2 *)(current_used + -10 + (longlong)copy_source) = *(undefined2 *)((longlong)copy_source + -10);
+        if (*(longlong *)((longlong)copy_source + -0x12) == 0) {
+          *(undefined8 *)(current_used + -0x12 + (longlong)copy_source) = 0;
         }
         else {
-          *(longlong *)(lVar8 + -0x12 + (longlong)plVar4) = *(longlong *)((longlong)plVar4 + -0x12);
-          *(undefined8 *)((longlong)plVar4 + -0x12) = 0;
+          *(longlong *)(current_used + -0x12 + (longlong)copy_source) = *(longlong *)((longlong)copy_source + -0x12);
+          *(undefined8 *)((longlong)copy_source + -0x12) = 0;
         }
-        if (*(longlong *)((longlong)plVar4 + -0x1a) == 0) {
-          *plVar2 = 0;
-        }
-        else {
-          *plVar2 = *(longlong *)((longlong)plVar4 + -0x1a);
-          *(undefined8 *)((longlong)plVar4 + -0x1a) = 0;
-        }
-        *(undefined2 *)((longlong)plVar4 + -10) = 0;
-        *(short *)(lVar8 + 8 + (longlong)plVar4) = (short)plVar4[1];
-        if (*plVar4 == 0) {
-          *(undefined8 *)((longlong)plVar4 + lVar8) = 0;
+        if (*(longlong *)((longlong)copy_source + -0x1a) == 0) {
+          *copy_dest = 0;
         }
         else {
-          *(longlong *)((longlong)plVar4 + lVar8) = *plVar4;
-          *plVar4 = 0;
+          *copy_dest = *(longlong *)((longlong)copy_source + -0x1a);
+          *(undefined8 *)((longlong)copy_source + -0x1a) = 0;
         }
-        if (plVar4[-1] == 0) {
-          *(undefined8 *)(lVar8 + -8 + (longlong)plVar4) = 0;
+        *(undefined2 *)((longlong)copy_source + -10) = 0;
+        *(short *)(current_used + 8 + (longlong)copy_source) = (short)copy_source[1];
+        if (*copy_source == 0) {
+          *(undefined8 *)((longlong)copy_source + current_used) = 0;
         }
         else {
-          *(longlong *)(lVar8 + -8 + (longlong)plVar4) = plVar4[-1];
-          plVar4[-1] = 0;
+          *(longlong *)((longlong)copy_source + current_used) = *copy_source;
+          *copy_source = 0;
         }
-        *(undefined2 *)(plVar4 + 1) = 0;
-        plVar2 = (longlong *)((longlong)plVar2 + 0x24);
-        puVar3 = (undefined8 *)((longlong)plVar4 + 10);
-        plVar4 = (longlong *)((longlong)plVar4 + 0x24);
-      } while (puVar3 != puVar7);
+        if (copy_source[-1] == 0) {
+          *(undefined8 *)(current_used + -8 + (longlong)copy_source) = 0;
+        }
+        else {
+          *(longlong *)(current_used + -8 + (longlong)copy_source) = copy_source[-1];
+          copy_source[-1] = 0;
+        }
+        *(undefined2 *)(copy_source + 1) = 0;
+        copy_dest = (longlong *)((longlong)copy_dest + 0x24);
+        old_start = (undefined8 *)((longlong)copy_source + 10);
+        copy_source = (longlong *)((longlong)copy_source + 0x24);
+      } while (old_start != current_end);
     }
-    if (param_2 != 0) {
-      puVar7 = (undefined8 *)((longlong)plVar2 + 0x1a);
-      uVar6 = param_2;
+    if (additional_elements != 0) {
+      current_end = (undefined8 *)((longlong)copy_dest + 0x1a);
+      current_capacity = additional_elements;
       do {
-        puVar7[-1] = 0;
-        *puVar7 = 0;
-        *(undefined2 *)(puVar7 + 1) = 0;
-        *(undefined2 *)((longlong)puVar7 + -10) = 0;
-        *(undefined8 *)((longlong)puVar7 + -0x1a) = 0;
-        *(undefined8 *)((longlong)puVar7 + -0x12) = 0;
-        *(undefined2 *)(puVar7 + 1) = 0;
-        puVar7[-1] = 0;
-        *puVar7 = 0;
-        puVar7 = (undefined8 *)((longlong)puVar7 + 0x24);
-        uVar6 = uVar6 - 1;
-      } while (uVar6 != 0);
+        current_end[-1] = 0;
+        *current_end = 0;
+        *(undefined2 *)(current_end + 1) = 0;
+        *(undefined2 *)((longlong)current_end + -10) = 0;
+        *(undefined8 *)((longlong)current_end + -0x1a) = 0;
+        *(undefined8 *)((longlong)current_end + -0x12) = 0;
+        *(undefined2 *)(current_end + 1) = 0;
+        current_end[-1] = 0;
+        *current_end = 0;
+        current_end = (undefined8 *)((longlong)current_end + 0x24);
+        current_capacity = current_capacity - 1;
+      } while (current_capacity != 0);
     }
-    plVar4 = (longlong *)param_1[1];
-    plVar5 = (longlong *)*param_1;
-    if (plVar5 != plVar4) {
+    copy_source = (longlong *)array_container[1];
+    old_array = (longlong *)*array_container;
+    if (old_array != copy_source) {
       do {
-        if (*(longlong *)((longlong)plVar5 + 0x12) != 0) {
+        if (*(longlong *)((longlong)old_array + 0x12) != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)((longlong)plVar5 + 0x12) = 0;
-        if (*(longlong *)((longlong)plVar5 + 0x1a) != 0) {
+        *(undefined8 *)((longlong)old_array + 0x12) = 0;
+        if (*(longlong *)((longlong)old_array + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)((longlong)plVar5 + 0x1a) = 0;
-        if (*plVar5 != 0) {
+        *(undefined8 *)((longlong)old_array + 0x1a) = 0;
+        if (*old_array != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *plVar5 = 0;
-        if (plVar5[1] != 0) {
+        *old_array = 0;
+        if (old_array[1] != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        plVar5[1] = 0;
-        plVar5 = (longlong *)((longlong)plVar5 + 0x24);
-      } while (plVar5 != plVar4);
-      plVar5 = (longlong *)*param_1;
+        old_array[1] = 0;
+        old_array = (longlong *)((longlong)old_array + 0x24);
+      } while (old_array != copy_source);
+      old_array = (longlong *)*array_container;
     }
-    if (plVar5 != (longlong *)0x0) {
+    if (old_array != (longlong *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(plVar5);
+      FUN_18064e900(old_array);
     }
-    *param_1 = plVar1;
-    param_1[1] = (longlong)plVar2 + param_2 * 0x24;
-    param_1[2] = (longlong)plVar1 + uVar9 * 0x24;
+    *array_container = new_array;
+    array_container[1] = (longlong)copy_dest + additional_elements * 0x24;
+    array_container[2] = (longlong)new_array + new_capacity * 0x24;
   }
   else {
-    if (param_2 != 0) {
-      puVar3 = (undefined8 *)((longlong)puVar7 + 0x1a);
-      uVar9 = param_2;
+    if (additional_elements != 0) {
+      old_start = (undefined8 *)((longlong)current_end + 0x1a);
+      new_capacity = additional_elements;
       do {
-        puVar7[1] = 0;
-        puVar7[2] = 0;
-        puVar7[3] = 0;
-        *(undefined4 *)(puVar7 + 4) = 0;
-        *(undefined2 *)((longlong)puVar3 + -10) = 0;
-        *puVar7 = 0;
-        *(undefined8 *)((longlong)puVar3 + -0x12) = 0;
-        *(undefined2 *)(puVar3 + 1) = 0;
-        puVar3[-1] = 0;
-        *puVar3 = 0;
-        puVar7 = (undefined8 *)((longlong)puVar7 + 0x24);
-        puVar3 = (undefined8 *)((longlong)puVar3 + 0x24);
-        uVar9 = uVar9 - 1;
-      } while (uVar9 != 0);
-      puVar7 = (undefined8 *)param_1[1];
+        current_end[1] = 0;
+        current_end[2] = 0;
+        current_end[3] = 0;
+        *(undefined4 *)(current_end + 4) = 0;
+        *(undefined2 *)((longlong)old_start + -10) = 0;
+        *current_end = 0;
+        *(undefined8 *)((longlong)old_start + -0x12) = 0;
+        *(undefined2 *)(old_start + 1) = 0;
+        old_start[-1] = 0;
+        *old_start = 0;
+        current_end = (undefined8 *)((longlong)current_end + 0x24);
+        old_start = (undefined8 *)((longlong)old_start + 0x24);
+        new_capacity = new_capacity - 1;
+      } while (new_capacity != 0);
+      current_end = (undefined8 *)array_container[1];
     }
-    param_1[1] = (longlong)puVar7 + param_2 * 0x24;
+    array_container[1] = (longlong)current_end + additional_elements * 0x24;
   }
   return;
 }
@@ -348,46 +349,50 @@ void FUN_180074c20(undefined8 *param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_180074ed0(longlong *param_1)
-void FUN_180074ed0(longlong *param_1)
+// 函数: void ResetTransformPointers - 重置变换指针
+// 重置变换相关的指针，确保它们为空
+void ResetTransformPointers(longlong *transform_data)
 
 {
-  if (*param_1 != 0) {
+  if (*transform_data != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *param_1 = 0;
-  if (param_1[1] != 0) {
+  *transform_data = 0;
+  if (transform_data[1] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  param_1[1] = 0;
+  transform_data[1] = 0;
   return;
 }
 
 
 
-undefined8 *
-FUN_180074f20(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: undefined8 * InitializeTransformVTable - 初始化变换虚函数表
+// 初始化变换对象的虚函数表指针
+undefined8 * InitializeTransformVTable(undefined8 *object, ulonglong flags, undefined8 param3, undefined8 param_4)
 
 {
-  *param_1 = &UNK_1809ffa18;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x38,param_3,param_4,0xfffffffffffffffe);
+  *object = &VTABLE_TransformObject;
+  if ((flags & 1) != 0) {
+    free(object,0x38,param3,param4,0xfffffffffffffffe);
   }
-  return param_1;
+  return object;
 }
 
 
 
-undefined8 * FUN_180074f70(undefined8 *param_1,ulonglong param_2)
+// 函数: undefined8 * CleanupTransformMemory - 清理变换内存
+// 清理变换对象的内存，根据标志决定是否释放
+undefined8 * CleanupTransformMemory(undefined8 *object, ulonglong flags)
 
 {
-  *param_1 = &UNK_1809ffa18;
-  if ((param_2 & 1) != 0) {
-    free(param_1,8);
+  *object = &VTABLE_TransformObject;
+  if ((flags & 1) != 0) {
+    free(object,8);
   }
-  return param_1;
+  return object;
 }
 
 

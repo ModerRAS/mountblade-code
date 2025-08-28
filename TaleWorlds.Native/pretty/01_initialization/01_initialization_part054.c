@@ -181,133 +181,158 @@ void process_render_data(void)
             *thread_ptr = (longlong)thread_data;
           }
         }
-        if (plVar32 != (longlong *)0x0) {
-          iVar41 = 0;
-          uVar33 = (uint)cVar14;
-          iVar42 = iVar41;
-          if ((0 < iVar40) && (0xf < uVar33)) {
-            iVar36 = *(int *)(lVar16 + 0x2c);
-            plVar2 = (longlong *)((longlong)plVar32 + (longlong)(cVar14 + -1) * 4);
-            if ((((longlong *)(lVar16 + 0x2c) < plVar32) || (plVar2 < (longlong *)(lVar16 + 0x2c)))
-               && ((plVar1 < plVar32 || (iVar42 = 0, plVar2 < plVar1)))) {
-              uVar35 = uVar33 & 0x8000000f;
-              if ((int)uVar35 < 0) {
-                uVar35 = (uVar35 - 1 | 0xfffffff0) + 1;
+        // 处理线程数据初始化
+        if (thread_data != (longlong *)0x0) {
+          int batch_start = 0;
+          uint thread_count_uint = (uint)thread_count;
+          int batch_count = batch_start;
+          
+          // 批量初始化线程数据（当线程数大于15时）
+          if ((0 < thread_count_int) && (0xf < thread_count_uint)) {
+            int base_offset = *(int *)(render_context + 0x2c);
+            longlong *thread_end_ptr = (longlong *)((longlong)thread_data + (longlong)(thread_count + -1) * 4);
+            
+            // 检查内存边界
+            if ((((longlong *)(render_context + 0x2c) < thread_data) || (thread_end_ptr < (longlong *)(render_context + 0x2c)))
+               && ((thread_ptr < thread_data || (batch_count = 0, thread_end_ptr < thread_ptr)))) {
+              
+              // 计算批量处理的对齐偏移
+              uint aligned_offset = thread_count_uint & 0x8000000f;
+              if ((int)aligned_offset < 0) {
+                aligned_offset = (aligned_offset - 1 | 0xfffffff0) + 1;
               }
-              plVar32 = plVar32 + 4;
-              iVar34 = 8;
+              
+              // 批量初始化线程数据
+              thread_data = thread_data + 4;
+              int value_base = 8;
               do {
-                *(int *)(plVar32 + -4) = iVar41 + iVar36;
-                *(int *)((longlong)plVar32 + -0x1c) = iVar41 + 1 + iVar36;
-                *(int *)(plVar32 + -3) = iVar41 + 2 + iVar36;
-                *(int *)((longlong)plVar32 + -0x14) = iVar41 + 3 + iVar36;
-                iVar41 = iVar41 + 0x10;
-                *(int *)(plVar32 + -2) = iVar34 + -4 + iVar36;
-                *(int *)((longlong)plVar32 + -0xc) = iVar34 + -3 + iVar36;
-                *(int *)(plVar32 + -1) = iVar34 + -2 + iVar36;
-                *(int *)((longlong)plVar32 + -4) = iVar34 + -1 + iVar36;
-                *(int *)plVar32 = iVar34 + iVar36;
-                *(int *)((longlong)plVar32 + 4) = iVar34 + 1 + iVar36;
-                *(int *)(plVar32 + 1) = iVar34 + 2 + iVar36;
-                *(int *)((longlong)plVar32 + 0xc) = iVar34 + 3 + iVar36;
-                *(int *)(plVar32 + 2) = iVar34 + 4 + iVar36;
-                *(int *)((longlong)plVar32 + 0x14) = iVar34 + 5 + iVar36;
-                *(int *)(plVar32 + 3) = iVar34 + 6 + iVar36;
-                *(int *)((longlong)plVar32 + 0x1c) = iVar34 + 7 + iVar36;
-                plVar32 = plVar32 + 8;
-                iVar34 = iVar34 + 0x10;
-                iVar42 = iVar41;
-              } while (iVar41 < (int)(uVar33 - uVar35));
+                *(int *)(thread_data + -4) = batch_start + base_offset;
+                *(int *)((longlong)thread_data + -0x1c) = batch_start + 1 + base_offset;
+                *(int *)(thread_data + -3) = batch_start + 2 + base_offset;
+                *(int *)((longlong)thread_data + -0x14) = batch_start + 3 + base_offset;
+                batch_start = batch_start + 0x10;
+                *(int *)(thread_data + -2) = value_base + -4 + base_offset;
+                *(int *)((longlong)thread_data + -0xc) = value_base + -3 + base_offset;
+                *(int *)(thread_data + -1) = value_base + -2 + base_offset;
+                *(int *)((longlong)thread_data + -4) = value_base + -1 + base_offset;
+                *(int *)thread_data = value_base + base_offset;
+                *(int *)((longlong)thread_data + 4) = value_base + 1 + base_offset;
+                *(int *)(thread_data + 1) = value_base + 2 + base_offset;
+                *(int *)((longlong)thread_data + 0xc) = value_base + 3 + base_offset;
+                *(int *)(thread_data + 2) = value_base + 4 + base_offset;
+                *(int *)((longlong)thread_data + 0x14) = value_base + 5 + base_offset;
+                *(int *)(thread_data + 3) = value_base + 6 + base_offset;
+                *(int *)((longlong)thread_data + 0x1c) = value_base + 7 + base_offset;
+                thread_data = thread_data + 8;
+                value_base = value_base + 0x10;
+                batch_count = batch_start;
+              } while (batch_start < (int)(thread_count_uint - aligned_offset));
             }
           }
-          for (lVar31 = (longlong)iVar42; lVar31 < (longlong)uVar37; lVar31 = lVar31 + 1) {
-            iVar41 = *(int *)(lVar16 + 0x2c) + iVar42;
-            iVar42 = iVar42 + 1;
-            *(int *)(*plVar1 + lVar31 * 4) = iVar41;
+          // 初始化剩余的线程数据
+          for (longlong thread_idx = (longlong)batch_count; thread_idx < (longlong)thread_count_ulong; thread_idx = thread_idx + 1) {
+            int thread_value = *(int *)(render_context + 0x2c) + batch_count;
+            batch_count = batch_count + 1;
+            *(int *)(*thread_ptr + thread_idx * 4) = thread_value;
           }
-          iVar42 = *(int *)(lVar16 + 0x18);
-          iVar41 = 0;
-          if (0 < (longlong)iVar42) {
-            lVar31 = 0;
+          
+          // 处理渲染项索引
+          int render_item_count = *(int *)(render_context + 0x18);
+          int item_index = 0;
+          if (0 < (longlong)render_item_count) {
+            longlong item_offset = 0;
             do {
-              iVar36 = *(int *)(lVar16 + 0x30) + iVar41;
-              iVar41 = iVar41 + 1;
-              pbVar3 = (byte *)(*(longlong *)(lVar16 + 0x10) + lVar31);
-              lVar31 = lVar31 + 1;
-              *(int *)(*plVar1 + (ulonglong)*pbVar3 * 4) = iVar36;
-            } while (lVar31 < iVar42);
+              int render_offset = *(int *)(render_context + 0x30) + item_index;
+              item_index = item_index + 1;
+              byte *item_ptr = (byte *)(*(longlong *)(render_context + 0x10) + item_offset);
+              item_offset = item_offset + 1;
+              *(int *)(*thread_ptr + (ulonglong)*item_ptr * 4) = render_offset;
+            } while (item_offset < render_item_count);
           }
         }
-        puVar39 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
-                          _DAT_180c86890 + 0x9d0);
-        if (iVar40 == 0) {
-          uVar33 = (int)cVar14 - 1;
-        }
-        else {
+        // 获取渲染队列指针
+        uint *render_queue = (uint *)((longlong)*(int *)(render_global_data + 0xc20) * 0x128 + render_global_data + 0x9d0);
+        
+        if (thread_count_int == 0) {
+          uint queue_index = (int)thread_count - 1;
+        } else {
+          // 原子操作更新队列索引
           LOCK();
-          uVar33 = *puVar39;
-          *puVar39 = *puVar39 + (int)cVar14;
+          uint queue_index = *render_queue;
+          *render_queue = *render_queue + (int)thread_count;
           UNLOCK();
-          uVar46 = (ulonglong)(uVar33 >> 0xb);
-          uVar47 = (ulonglong)(cVar14 + -1 + uVar33 >> 0xb);
-          if (uVar46 <= uVar47) {
-            pcVar38 = (char *)((longlong)puVar39 + uVar46 + 0x108);
-            lVar31 = (uVar47 - uVar46) + 1;
-            puVar45 = puVar39 + uVar46 * 2 + 2;
+          
+          // 计算队列块索引
+          ulonglong start_block = (ulonglong)(queue_index >> 0xb);
+          ulonglong end_block = (ulonglong)(thread_count + -1 + queue_index >> 0xb);
+          
+          // 检查并分配必要的队列块
+          if (start_block <= end_block) {
+            char *block_flag = (char *)((longlong)render_queue + start_block + 0x108);
+            longlong block_count = (end_block - start_block) + 1;
+            uint *block_ptr = render_queue + start_block * 2 + 2;
+            
             do {
-              iVar42 = (int)uVar46;
-              if (*(longlong *)puVar45 == 0) {
-                lVar43 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+              int current_block = (int)start_block;
+              if (*(longlong *)block_ptr == 0) {
+                // 分配新的队列块
+                longlong new_block = FUN_18062b420(_DAT_180c8ed18, 0x2000, 0x25);
                 LOCK();
-                bVar48 = *(longlong *)(puVar39 + (longlong)iVar42 * 2 + 2) == 0;
-                if (bVar48) {
-                  *(longlong *)(puVar39 + (longlong)iVar42 * 2 + 2) = lVar43;
+                bool block_allocated = *(longlong *)(render_queue + (longlong)current_block * 2 + 2) == 0;
+                if (block_allocated) {
+                  *(longlong *)(render_queue + (longlong)current_block * 2 + 2) = new_block;
                 }
                 UNLOCK();
-                if (bVar48) {
+                
+                if (block_allocated) {
                   LOCK();
-                  *(undefined1 *)((longlong)iVar42 + 0x108 + (longlong)puVar39) = 0;
+                  *(undefined1 *)((longlong)current_block + 0x108 + (longlong)render_queue) = 0;
                   UNLOCK();
-                }
-                else {
-                  if (lVar43 != 0) {
+                } else {
+                  if (new_block != 0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900();
                   }
+                  // 等待块初始化完成
                   do {
-                  } while (*pcVar38 != '\0');
+                  } while (*block_flag != '\0');
                 }
-              }
-              else {
+              } else {
+                // 等待块初始化完成
                 do {
-                } while (*pcVar38 != '\0');
+                } while (*block_flag != '\0');
               }
-              uVar46 = (ulonglong)(iVar42 + 1);
-              puVar45 = puVar45 + 2;
-              pcVar38 = pcVar38 + 1;
-              lVar31 = lVar31 + -1;
-            } while (lVar31 != 0);
+              
+              start_block = (ulonglong)(current_block + 1);
+              block_ptr = block_ptr + 2;
+              block_flag = block_flag + 1;
+              block_count = block_count + -1;
+            } while (block_count != 0);
           }
         }
-        puVar44 = *(undefined4 **)(lVar16 + 0x38);
-        uVar35 = uVar33 >> 0xb;
-        *(uint *)(lVar16 + 0x2c) = uVar33;
-        if (uVar35 == (int)cVar14 + uVar33 >> 0xb) {
-                    // WARNING: Subroutine does not return
-          memcpy(*(longlong *)(puVar39 + (ulonglong)uVar35 * 2 + 2) +
-                 (ulonglong)(uVar33 + uVar35 * -0x800) * 4,puVar44,(uVar37 & 0xffffffff) << 2);
+        // 复制线程数据到渲染队列
+        undefined4 *thread_data_ptr = *(undefined4 **)(render_context + 0x38);
+        uint block_index = queue_index >> 0xb;
+        *(uint *)(render_context + 0x2c) = queue_index;
+        
+        // 批量复制数据（如果适合）
+        if (block_index == (int)thread_count + queue_index >> 0xb) {
+          // WARNING: Subroutine does not return
+          memcpy(*(longlong *)(render_queue + (ulonglong)block_index * 2 + 2) +
+                 (ulonglong)(queue_index + block_index * -0x800) * 4, thread_data_ptr, (thread_count_ulong & 0xffffffff) << 2);
         }
-        if (iVar40 != 0) {
-          uVar37 = uVar37 & 0xffffffff;
+        
+        // 逐个复制数据
+        if (thread_count_int != 0) {
+          ulonglong remaining_count = thread_count_ulong & 0xffffffff;
           do {
-            uVar30 = *puVar44;
-            puVar44 = puVar44 + 1;
-            *(undefined4 *)
-             (*(longlong *)(puVar39 + (ulonglong)(uVar33 >> 0xb) * 2 + 2) +
-             (ulonglong)(uVar33 + (uVar33 >> 0xb) * -0x800) * 4) = uVar30;
-            uVar37 = uVar37 - 1;
-            uVar33 = uVar33 + 1;
-          } while (uVar37 != 0);
+            undefined4 data_value = *thread_data_ptr;
+            thread_data_ptr = thread_data_ptr + 1;
+            *(undefined4 *)(*(longlong *)(render_queue + (ulonglong)(queue_index >> 0xb) * 2 + 2) +
+                           (ulonglong)(queue_index + (queue_index >> 0xb) * -0x800) * 4) = data_value;
+            remaining_count = remaining_count - 1;
+            queue_index = queue_index + 1;
+          } while (remaining_count != 0);
         }
       }
     }

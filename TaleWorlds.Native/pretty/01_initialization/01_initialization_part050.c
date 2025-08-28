@@ -9,6 +9,8 @@
 void initialize_render_state_and_transform_matrix(void)
 
 {
+  // 声明所有变量 - 包括矩阵元素、变换参数和渲染状态
+  // 矩阵计算相关变量
   float transform_x1;
   float transform_y1;
   float transform_z1;
@@ -88,6 +90,8 @@ void initialize_render_state_and_transform_matrix(void)
   undefined8 stack_param_12;
   longlong stack_param_13;
   
+  // 初始化变量
+  engine_base = stack_param_10;
   render_context = *(longlong *)(engine_base + 0x1b8);
   status_byte = *(byte *)(render_context + 0x38c);
   context_ptr = engine_base;
@@ -95,8 +99,9 @@ void initialize_render_state_and_transform_matrix(void)
     status_byte = get_next_render_mode();
     *(byte *)(render_context + 0x38c) = status_byte;
   }
-  render_context = stack_param_10;
   context_ptr = *(longlong *)(context_ptr + 0x1e0);
+  // 设置渲染参数指针
+  render_param_3_ptr = &render_param_3;
   *render_param_3_ptr = *(undefined8 *)(context_ptr + (ulonglong)status_byte * 0x18);
   render_param_3_ptr[1] = *(undefined8 *)(context_ptr + 8 + (ulonglong)status_byte * 0x18);
   *(undefined4 *)(render_param_2 + 0x10) = *(undefined4 *)(*(longlong *)(engine_base + 600) + 0x2c);
@@ -168,7 +173,10 @@ void initialize_render_state_and_transform_matrix(void)
     texture_ptr = &stack_param_9;
     context_ptr = *(longlong *)(stack_param_10 + 0x28);
   }
+  // 设置渲染参数
+  render_param_2 = stack_param_2;
   setup_render_parameters(context_ptr + 0x3388, texture_ptr, &stack_param_2);
+  // 获取矩阵指针并检查是否需要进行矩阵计算
   matrix_ptr = stack_param_11;
   if ((*(uint *)(engine_base + 0x100) & 0x4000000) != 0) {
     matrix_element_1 = *stack_param_11;
@@ -217,6 +225,7 @@ void initialize_render_state_and_transform_matrix(void)
          transform_x2 * matrix_element_8 + transform_y2 * matrix_element_4 + transform_x1 * matrix_element_12 + stack_param_11[0xf];
     matrix_ptr = &stack_matrix_1;
   }
+  // 应用渲染变换
   apply_render_transform(&stack_param_3, render_context + 0x30, *(undefined1 *)(engine_base + 0xf7), matrix_ptr);
   transform_matrix_8 = render_param_9;
   transform_matrix_7 = render_param_8;
@@ -333,6 +342,13 @@ void process_conditional_render_state(void)
   float stack_matrix_15;
   float stack_matrix_16;
   
+  // 初始化变量
+  engine_base = stack_param_10;
+  condition_flag = *(byte *)(engine_base + 0x108) != 0xff;
+  matrix_ptr = stack_param_11;
+  render_context = *(longlong *)(engine_base + 0x1b8);
+  
+  // 根据条件标志处理矩阵计算
   if (!condition_flag) {
     matrix_element_1 = *matrix_ptr;
     matrix_element_2 = matrix_ptr[1];
@@ -375,6 +391,8 @@ void process_conditional_render_state(void)
     stack_matrix_15 = transform_x2 * matrix_element_7 + transform_y2 * matrix_element_3 + transform_x1 * matrix_element_11 + matrix_ptr[0xe];
     stack_matrix_16 = transform_x2 * matrix_element_8 + transform_y2 * matrix_element_4 + transform_x1 * matrix_element_12 + matrix_ptr[0xf];
   }
+  
+  // 应用渲染变换
   apply_render_transform(&stack_param_1, render_context + 0x30, *(undefined1 *)(engine_base + 0xf7));
   transform_matrix_8 = render_param_9;
   transform_matrix_7 = render_param_8;
@@ -501,9 +519,18 @@ void simplified_render_state_handler(void)
   float *matrix_param;
   undefined8 transform_param;
   
+  // 初始化变量
+  engine_base = stack_param_10;
+  render_context = *(longlong *)(engine_base + 0x1b8);
+  
+  // 设置渲染参数
   stack_param_1 = 0xffffffff;
   setup_render_parameters(render_context + 0x3388, &stack_param_1);
+  
+  // 获取矩阵参数指针
   matrix_ptr = matrix_param;
+  
+  // 检查是否需要矩阵计算
   if ((*(uint *)(engine_base + 0x100) & 0x4000000) != 0) {
     matrix_element_1 = *matrix_param;
     matrix_element_2 = matrix_param[1];
@@ -627,6 +654,11 @@ void minimal_render_state_handler(void)
   undefined8 render_param_8;
   undefined8 render_param_9;
   
+  // 初始化变量
+  engine_base = stack_param_10;
+  render_context = *(longlong *)(engine_base + 0x1b8);
+  
+  // 应用渲染变换
   apply_render_transform(&stack_param_1, render_context + 0x30, *(undefined1 *)(engine_base + 0xf7));
   transform_matrix_9 = render_param_9;
   transform_matrix_8 = render_param_8;

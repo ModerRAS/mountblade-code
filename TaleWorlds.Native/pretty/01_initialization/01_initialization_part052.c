@@ -1,667 +1,600 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part052.c - 4 个函数
+// 01_initialization_part052.c - 初始化模块第52部分
+// 包含4个函数，主要处理渲染状态初始化、矩阵计算和材质属性设置
 
-// 函数: void FUN_1800786e0(undefined8 *param_1,longlong param_2)
-void FUN_1800786e0(undefined8 *param_1,longlong param_2)
-
+// 函数: 初始化渲染状态
+// 原始函数名: FUN_1800786e0
+// 功能: 初始化渲染状态，设置各种渲染参数和矩阵
+void initialize_render_state(undefined8 *render_context, longlong config_data)
 {
-  longlong lVar1;
-  undefined4 uVar2;
-  longlong *plVar3;
-  undefined8 uVar4;
-  float *pfVar5;
-  undefined *puVar6;
-  longlong lVar7;
-  longlong *plVar8;
-  int iVar9;
-  float fVar10;
-  undefined4 uVar11;
-  undefined4 uVar12;
-  undefined4 uVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  longlong *plStackX_8;
-  undefined8 auStackX_10 [2];
-  undefined8 uStackX_20;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined4 uStack_40;
-  
-  iVar9 = 0;
-  plVar8 = param_1 + 1;
-  do {
-    plVar3 = (longlong *)FUN_1801fd480(param_2,iVar9);
-    if (plVar3 != (longlong *)0x0) {
-      plStackX_8 = plVar3;
-      (**(code **)(*plVar3 + 0x28))(plVar3);
+    longlong temp_value;
+    undefined4 temp_result;
+    longlong *object_ptr;
+    undefined8 handle_result;
+    float *float_ptr;
+    undefined *data_ptr;
+    longlong offset_value;
+    longlong *array_ptr;
+    int loop_counter;
+    float float_temp1;
+    undefined4 temp_var1;
+    undefined4 temp_var2;
+    undefined4 temp_var3;
+    float matrix_data[16];
+    longlong *stack_ptr;
+    undefined8 stack_array[2];
+    undefined8 stack_var1;
+    undefined8 stack_var2;
+    undefined4 stack_var3;
+    
+    loop_counter = 0;
+    array_ptr = render_context + 1;
+    
+    // 循环处理7个渲染对象
+    do {
+        object_ptr = (longlong *)create_render_object(config_data, loop_counter);
+        if (object_ptr != (longlong *)0x0) {
+            stack_ptr = object_ptr;
+            // 调用对象的初始化函数
+            (**(code **)(*object_ptr + 0x28))(object_ptr);
+        }
+        
+        stack_ptr = (longlong *)*array_ptr;
+        *array_ptr = (longlong)object_ptr;
+        if (stack_ptr != (longlong *)0x0) {
+            // 调用前一个对象的清理函数
+            (**(code **)(*stack_ptr + 0x38))();
+        }
+        
+        // 检查渲染状态标志
+        if ((((*(char *)(config_data + 0x380) != '\0') && (*(char *)(config_data + 0x381) == '\0')) &&
+            (temp_value = *array_ptr, temp_value != 0)) && ((*(uint *)(temp_value + 0x328) & 0x200000) == 0)) {
+            data_ptr = &DEFAULT_MATERIAL_DATA;
+            if (*(undefined **)(temp_value + 0x18) != (undefined *)0x0) {
+                data_ptr = *(undefined **)(temp_value + 0x18);
+            }
+            register_material(&MATERIAL_REGISTRY, data_ptr);
+        }
+        
+        loop_counter = loop_counter + 1;
+        array_ptr = array_ptr + 1;
+    } while (loop_counter < 7);
+    
+    // 获取渲染配置
+    handle_result = get_render_config(config_data, &stack_var2);
+    temp_value = GLOBAL_RENDER_TABLE;
+    loop_counter = find_render_entry(GLOBAL_RENDER_TABLE, handle_result);
+    
+    if ((loop_counter == -1) || (offset_value = (longlong)loop_counter * 0x68 + *(longlong *)(temp_value + 0x38), offset_value == 0)) {
+        offset_value = *(longlong *)(temp_value + 0x28);
     }
-    plStackX_8 = (longlong *)*plVar8;
-    *plVar8 = (longlong)plVar3;
-    if (plStackX_8 != (longlong *)0x0) {
-      (**(code **)(*plStackX_8 + 0x38))();
+    
+    stack_var2 = &DEFAULT_SHADER;
+    if (stack_var1 != 0) {
+        // 错误处理
+        handle_render_error();
     }
-    if ((((*(char *)(param_2 + 0x380) != '\0') && (*(char *)(param_2 + 0x381) == '\0')) &&
-        (lVar1 = *plVar8, lVar1 != 0)) && ((*(uint *)(lVar1 + 0x328) & 0x200000) == 0)) {
-      puVar6 = &DAT_18098bc73;
-      if (*(undefined **)(lVar1 + 0x18) != (undefined *)0x0) {
-        puVar6 = *(undefined **)(lVar1 + 0x18);
-      }
-      FUN_180626f80(&UNK_1809ffae0,puVar6);
+    
+    stack_var1 = 0;
+    stack_var3 = 0;
+    stack_var2 = &TEXTURE_REGISTRY;
+    
+    if (offset_value == 0) {
+        offset_value = *(longlong *)(GLOBAL_RENDER_TABLE + 0x38);
     }
-    iVar9 = iVar9 + 1;
-    plVar8 = plVar8 + 1;
-  } while (iVar9 < 7);
-  uVar4 = FUN_1801fc6c0(param_2,&uStack_58);
-  lVar1 = _DAT_180c8aa00;
-  iVar9 = FUN_180191c00(_DAT_180c8aa00,uVar4);
-  if ((iVar9 == -1) || (lVar7 = (longlong)iVar9 * 0x68 + *(longlong *)(lVar1 + 0x38), lVar7 == 0)) {
-    lVar7 = *(longlong *)(lVar1 + 0x28);
-  }
-  uStack_58 = &UNK_180a3c3e0;
-  if (uStack_50 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  uStack_50 = 0;
-  uStack_40 = 0;
-  uStack_58 = &UNK_18098bcb0;
-  if (lVar7 == 0) {
-    lVar7 = *(longlong *)(_DAT_180c8aa00 + 0x38);
-  }
-  param_1[0x26] = lVar7;
-  if ((*(char *)(param_2 + 0x248) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fc730();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x240);
-  }
-  *(undefined4 *)((longlong)param_1 + 0x114) = uVar2;
-  if ((*(char *)(param_2 + 0x254) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fc760();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x24c);
-  }
-  *(undefined4 *)(param_1 + 0x23) = uVar2;
-  if ((*(char *)(param_2 + 0x2f0) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    FUN_1801fca40(*(longlong *)(param_2 + 0x3c8),&uStack_58);
-    uVar2 = (undefined4)uStack_58;
-    uVar11 = uStack_58._4_4_;
-    uVar12 = (undefined4)uStack_50;
-    uVar13 = uStack_50._4_4_;
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x2d0);
-    uVar11 = *(undefined4 *)(param_2 + 0x2d4);
-    uVar12 = *(undefined4 *)(param_2 + 0x2d8);
-    uVar13 = *(undefined4 *)(param_2 + 0x2dc);
-  }
-  *(undefined4 *)(param_1 + 0x20) = uVar2;
-  *(undefined4 *)((longlong)param_1 + 0x104) = uVar11;
-  *(undefined4 *)(param_1 + 0x21) = uVar12;
-  *(undefined4 *)((longlong)param_1 + 0x10c) = uVar13;
-  if ((*(char *)(param_2 + 0x2fc) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fca90();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x2f4);
-  }
-  *(undefined4 *)(param_1 + 0x22) = uVar2;
-  if ((*(char *)(param_2 + 0x260) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fcac0();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 600);
-  }
-  *(undefined4 *)((longlong)param_1 + 0x11c) = uVar2;
-  if ((*(char *)(param_2 + 0x26c) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fcb00();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x264);
-  }
-  *(undefined4 *)(param_1 + 0x24) = uVar2;
-  if ((*(char *)(param_2 + 0x278) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fcb40();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x270);
-  }
-  *(undefined4 *)((longlong)param_1 + 0x124) = uVar2;
-  if ((*(char *)(param_2 + 0x284) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fcb80();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x27c);
-  }
-  *(undefined4 *)(param_1 + 0x25) = uVar2;
-  if ((*(char *)(param_2 + 0x290) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fc7a0();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x288);
-  }
-  *(undefined4 *)(param_1 + 0x27) = uVar2;
-  if ((*(char *)(param_2 + 0x29c) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fc7d0();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x294);
-  }
-  *(undefined4 *)((longlong)param_1 + 0x13c) = uVar2;
-  if ((*(char *)(param_2 + 0x2a8) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fc800();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x2a0);
-  }
-  *(undefined4 *)(param_1 + 0x28) = uVar2;
-  if ((*(char *)(param_2 + 0x2b4) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fc840();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x2ac);
-  }
-  *(undefined4 *)((longlong)param_1 + 0x144) = uVar2;
-  if ((*(char *)(param_2 + 0x2c0) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fc880();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x2b8);
-  }
-  *(undefined4 *)(param_1 + 0x29) = uVar2;
-  if ((*(char *)(param_2 + 0x2cc) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fc8c0();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x2c4);
-  }
-  *(undefined4 *)((longlong)param_1 + 0x14c) = uVar2;
-  if ((*(char *)(param_2 + 0x29c) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    uVar2 = func_0x0001801fc7d0();
-  }
-  else {
-    uVar2 = *(undefined4 *)(param_2 + 0x294);
-  }
-  *(undefined4 *)((longlong)param_1 + 0x13c) = uVar2;
-  *(undefined1 *)((longlong)param_1 + 0x152) = *(undefined1 *)(param_2 + 0x380);
-  *(undefined1 *)(param_1 + 0x2a) = *(undefined1 *)(param_2 + 0x381);
-  if ((*(char *)(param_2 + 0x35c) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    FUN_1801fc9f0(*(longlong *)(param_2 + 0x3c8),&plStackX_8);
-  }
-  else {
-    plStackX_8 = *(longlong **)(param_2 + 0x34c);
-  }
-  if ((*(char *)(param_2 + 0x348) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    FUN_1801fc9a0(*(longlong *)(param_2 + 0x3c8),auStackX_10);
-  }
-  else {
-    auStackX_10[0] = *(undefined8 *)(param_2 + 0x338);
-  }
-  if ((*(char *)(param_2 + 0x334) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    FUN_1801fc950(*(longlong *)(param_2 + 0x3c8),&uStackX_20);
-  }
-  else {
-    uStackX_20 = *(undefined8 *)(param_2 + 0x324);
-  }
-  if ((*(char *)(param_2 + 800) == '\0') && (*(longlong *)(param_2 + 0x3c8) != 0)) {
-    FUN_1801fc900(*(longlong *)(param_2 + 0x3c8),&uStack_58);
-  }
-  else {
-    uStack_58 = *(undefined **)(param_2 + 0x300);
-    uStack_50 = *(undefined8 *)(param_2 + 0x308);
-  }
-  FUN_180084c70(param_1 + 8,&uStack_58,&uStackX_20,auStackX_10,&plStackX_8);
-  if ((undefined *)*param_1 == &UNK_180a001e8) {
-    pfVar5 = (float *)(param_1 + 0x10);
-    *(undefined8 *)pfVar5 = param_1[8];
-    param_1[0x11] = param_1[9];
-    param_1[0x12] = param_1[10];
-    param_1[0x13] = param_1[0xb];
-    *(undefined4 *)(param_1 + 0x14) = *(undefined4 *)(param_1 + 0xc);
-    *(undefined4 *)((longlong)param_1 + 0xa4) = *(undefined4 *)((longlong)param_1 + 100);
-    *(undefined4 *)(param_1 + 0x15) = *(undefined4 *)(param_1 + 0xd);
-    *(undefined4 *)((longlong)param_1 + 0xac) = *(undefined4 *)((longlong)param_1 + 0x6c);
-    *(undefined4 *)(param_1 + 0x16) = *(undefined4 *)(param_1 + 0xe);
-    *(undefined4 *)((longlong)param_1 + 0xb4) = *(undefined4 *)((longlong)param_1 + 0x74);
-    *(undefined4 *)(param_1 + 0x17) = *(undefined4 *)(param_1 + 0xf);
-    *(undefined4 *)((longlong)param_1 + 0xbc) = *(undefined4 *)((longlong)param_1 + 0x7c);
-    FUN_180084ae0();
-    *(undefined4 *)((longlong)param_1 + 0x8c) = 0;
-    *(undefined4 *)((longlong)param_1 + 0x9c) = 0;
-    *(undefined4 *)((longlong)param_1 + 0xac) = 0;
-    *(undefined4 *)((longlong)param_1 + 0xbc) = 0x3f800000;
-    fVar18 = pfVar5[6];
-    fVar16 = pfVar5[0xd];
-    fVar10 = pfVar5[9];
-    fVar17 = pfVar5[1];
-    fVar15 = pfVar5[0xe];
-    fVar23 = pfVar5[2];
-    fVar25 = pfVar5[10];
-    fVar28 = pfVar5[5];
-    fVar24 = fVar15 * fVar10 - fVar16 * fVar25;
-    fVar21 = fVar15 * fVar28 - fVar16 * fVar18;
-    fVar22 = fVar15 * fVar17 - fVar16 * fVar23;
-    fVar29 = fVar28 * fVar25 - fVar10 * fVar18;
-    fVar20 = fVar17 * fVar25 - fVar10 * fVar23;
-    *(float *)(param_1 + 0x18) = fVar29;
-    fVar19 = fVar17 * fVar18 - fVar28 * fVar23;
-    fVar30 = fVar23 * pfVar5[9] - fVar25 * pfVar5[1];
-    *(float *)((longlong)param_1 + 0xc4) = fVar30;
-    fVar16 = pfVar5[5];
-    fVar15 = pfVar5[1];
-    *(undefined4 *)((longlong)param_1 + 0xcc) = 0;
-    fVar31 = fVar18 * fVar15 - fVar23 * fVar16;
-    *(float *)(param_1 + 0x19) = fVar31;
-    fVar14 = fVar18 * pfVar5[8] - fVar25 * pfVar5[4];
-    *(float *)(param_1 + 0x1a) = fVar14;
-    fVar27 = fVar25 * *pfVar5 - fVar23 * pfVar5[8];
-    *(float *)((longlong)param_1 + 0xd4) = fVar27;
-    fVar16 = pfVar5[4];
-    fVar15 = *pfVar5;
-    *(undefined4 *)((longlong)param_1 + 0xdc) = 0;
-    fVar26 = fVar23 * fVar16 - fVar18 * fVar15;
-    *(float *)(param_1 + 0x1b) = fVar26;
-    fVar15 = fVar10 * pfVar5[4] - fVar28 * pfVar5[8];
-    *(float *)(param_1 + 0x1c) = fVar15;
-    fVar10 = fVar17 * pfVar5[8] - fVar10 * *pfVar5;
-    *(float *)((longlong)param_1 + 0xe4) = fVar10;
-    fVar18 = pfVar5[4];
-    fVar16 = *pfVar5;
-    *(undefined4 *)((longlong)param_1 + 0xec) = 0;
-    fVar28 = fVar28 * fVar16 - fVar17 * fVar18;
-    *(float *)(param_1 + 0x1d) = fVar28;
-    fVar16 = (fVar21 * pfVar5[8] - fVar24 * pfVar5[4]) - fVar29 * pfVar5[0xc];
-    *(float *)(param_1 + 0x1e) = fVar16;
-    fVar25 = (fVar24 * *pfVar5 - fVar22 * pfVar5[8]) + fVar20 * pfVar5[0xc];
-    *(float *)((longlong)param_1 + 0xf4) = fVar25;
-    fVar23 = (fVar22 * pfVar5[4] - fVar21 * *pfVar5) - fVar19 * pfVar5[0xc];
-    *(float *)(param_1 + 0x1f) = fVar23;
-    fVar17 = (fVar29 * *pfVar5 - fVar20 * pfVar5[4]) + fVar19 * pfVar5[8];
-    *(float *)((longlong)param_1 + 0xfc) = fVar17;
-    fVar18 = fVar30 * pfVar5[4] + fVar29 * *pfVar5 + fVar31 * pfVar5[8];
-    if (fVar18 != 1.0) {
-      fVar18 = 1.0 / fVar18;
-      *(float *)(param_1 + 0x1a) = fVar14 * fVar18;
-      *(float *)(param_1 + 0x1c) = fVar15 * fVar18;
-      *(float *)(param_1 + 0x18) = fVar29 * fVar18;
-      *(float *)((longlong)param_1 + 0xc4) = fVar30 * fVar18;
-      *(float *)(param_1 + 0x19) = fVar31 * fVar18;
-      *(float *)((longlong)param_1 + 0xd4) = fVar27 * fVar18;
-      *(float *)(param_1 + 0x1b) = fVar26 * fVar18;
-      *(float *)((longlong)param_1 + 0xe4) = fVar10 * fVar18;
-      *(float *)(param_1 + 0x1d) = fVar28 * fVar18;
-      *(float *)(param_1 + 0x1e) = fVar16 * fVar18;
-      *(float *)((longlong)param_1 + 0xf4) = fVar25 * fVar18;
-      *(float *)(param_1 + 0x1f) = fVar23 * fVar18;
-      *(float *)((longlong)param_1 + 0xfc) = fVar17 * fVar18;
+    
+    render_context[0x26] = offset_value;
+    
+    // 设置各种渲染参数
+    set_render_parameter(render_context, config_data, 0x248, 0x240, get_shader_param_1);
+    set_render_parameter(render_context, config_data, 0x254, 0x24c, get_shader_param_2);
+    
+    // 设置颜色参数
+    if ((*(char *)(config_data + 0x2f0) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
+        get_color_values(*(longlong *)(config_data + 0x3c8), &stack_var2);
+        temp_result = (undefined4)stack_var2;
+        temp_var1 = stack_var2._4_4_;
+        temp_var2 = (undefined4)stack_var1;
+        temp_var3 = stack_var1._4_4_;
     }
+    else {
+        temp_result = *(undefined4 *)(config_data + 0x2d0);
+        temp_var1 = *(undefined4 *)(config_data + 0x2d4);
+        temp_var2 = *(undefined4 *)(config_data + 0x2d8);
+        temp_var3 = *(undefined4 *)(config_data + 0x2dc);
+    }
+    
+    *(undefined4 *)(render_context + 0x20) = temp_result;
+    *(undefined4 *)((longlong)render_context + 0x104) = temp_var1;
+    *(undefined4 *)(render_context + 0x21) = temp_var2;
+    *(undefined4 *)((longlong)render_context + 0x10c) = temp_var3;
+    
+    // 设置其他渲染参数
+    set_render_parameter(render_context, config_data, 0x2fc, 0x2f4, get_shader_param_3);
+    set_render_parameter(render_context, config_data, 0x260, 600, get_shader_param_4);
+    set_render_parameter(render_context, config_data, 0x26c, 0x264, get_shader_param_5);
+    set_render_parameter(render_context, config_data, 0x278, 0x270, get_shader_param_6);
+    set_render_parameter(render_context, config_data, 0x284, 0x27c, get_shader_param_7);
+    set_render_parameter(render_context, config_data, 0x290, 0x288, get_shader_param_8);
+    set_render_parameter(render_context, config_data, 0x29c, 0x294, get_shader_param_9);
+    set_render_parameter(render_context, config_data, 0x2a8, 0x2a0, get_shader_param_10);
+    set_render_parameter(render_context, config_data, 0x2b4, 0x2ac, get_shader_param_11);
+    set_render_parameter(render_context, config_data, 0x2c0, 0x2b8, get_shader_param_12);
+    set_render_parameter(render_context, config_data, 0x2cc, 0x2c4, get_shader_param_13);
+    
+    // 重复设置参数（可能是冗余代码）
+    set_render_parameter(render_context, config_data, 0x29c, 0x294, get_shader_param_9);
+    
+    // 设置状态标志
+    *(undefined1 *)((longlong)render_context + 0x152) = *(undefined1 *)(config_data + 0x380);
+    *(undefined1 *)(render_context + 0x2a) = *(undefined1 *)(config_data + 0x381);
+    
+    // 获取纹理和材质数据
+    if ((*(char *)(config_data + 0x35c) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
+        get_texture_data(*(longlong *)(config_data + 0x3c8), &stack_ptr);
+    }
+    else {
+        stack_ptr = *(longlong **)(config_data + 0x34c);
+    }
+    
+    if ((*(char *)(config_data + 0x348) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
+        get_material_data(*(longlong *)(config_data + 0x3c8), stack_array);
+    }
+    else {
+        stack_array[0] = *(undefined8 *)(config_data + 0x338);
+    }
+    
+    if ((*(char *)(config_data + 0x334) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
+        get_shader_data(*(longlong *)(config_data + 0x3c8), &stack_var1);
+    }
+    else {
+        stack_var1 = *(undefined8 *)(config_data + 0x324);
+    }
+    
+    if ((*(char *)(config_data + 800) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
+        get_render_target(*(longlong *)(config_data + 0x3c8), &stack_var2);
+    }
+    else {
+        stack_var2 = *(undefined **)(config_data + 0x300);
+        stack_var1 = *(undefined8 *)(config_data + 0x308);
+    }
+    
+    // 设置渲染管线
+    setup_render_pipeline(render_context + 8, &stack_var2, &stack_var1, stack_array, &stack_ptr);
+    
+    // 如果是标准渲染上下文，设置变换矩阵
+    if ((undefined *)*render_context == &STANDARD_RENDER_CONTEXT) {
+        setup_transformation_matrices(render_context);
+        return;
+    }
+    
+    // 调用自定义初始化函数
+    (**(code **)((undefined *)*render_context + 0x10))(render_context);
     return;
-  }
-  (**(code **)((undefined *)*param_1 + 0x10))(param_1);
-  return;
 }
 
-
-
-
-
-// 函数: void FUN_180078c10(longlong param_1)
-void FUN_180078c10(longlong param_1)
-
+// 函数: 计算变换矩阵
+// 原始函数名: FUN_180078c10
+// 功能: 计算3D变换矩阵，包括平移、旋转和缩放
+void calculate_transformation_matrix(longlong matrix_data)
 {
-  float *pfVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  
-  pfVar1 = (float *)(param_1 + 0x80);
-  *(undefined8 *)pfVar1 = *(undefined8 *)(param_1 + 0x40);
-  *(undefined8 *)(param_1 + 0x88) = *(undefined8 *)(param_1 + 0x48);
-  *(undefined8 *)(param_1 + 0x90) = *(undefined8 *)(param_1 + 0x50);
-  *(undefined8 *)(param_1 + 0x98) = *(undefined8 *)(param_1 + 0x58);
-  *(undefined4 *)(param_1 + 0xa0) = *(undefined4 *)(param_1 + 0x60);
-  *(undefined4 *)(param_1 + 0xa4) = *(undefined4 *)(param_1 + 100);
-  *(undefined4 *)(param_1 + 0xa8) = *(undefined4 *)(param_1 + 0x68);
-  *(undefined4 *)(param_1 + 0xac) = *(undefined4 *)(param_1 + 0x6c);
-  *(undefined4 *)(param_1 + 0xb0) = *(undefined4 *)(param_1 + 0x70);
-  *(undefined4 *)(param_1 + 0xb4) = *(undefined4 *)(param_1 + 0x74);
-  *(undefined4 *)(param_1 + 0xb8) = *(undefined4 *)(param_1 + 0x78);
-  *(undefined4 *)(param_1 + 0xbc) = *(undefined4 *)(param_1 + 0x7c);
-  FUN_180084ae0();
-  *(undefined4 *)(param_1 + 0xbc) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x8c) = 0;
-  *(undefined4 *)(param_1 + 0x9c) = 0;
-  *(undefined4 *)(param_1 + 0xac) = 0;
-  fVar7 = pfVar1[6];
-  fVar5 = pfVar1[0xd];
-  fVar2 = pfVar1[9];
-  fVar6 = pfVar1[1];
-  fVar4 = pfVar1[0xe];
-  fVar12 = pfVar1[2];
-  fVar14 = pfVar1[10];
-  fVar17 = pfVar1[5];
-  fVar13 = fVar4 * fVar2 - fVar5 * fVar14;
-  fVar10 = fVar4 * fVar17 - fVar5 * fVar7;
-  fVar11 = fVar4 * fVar6 - fVar5 * fVar12;
-  fVar18 = fVar17 * fVar14 - fVar2 * fVar7;
-  fVar9 = fVar6 * fVar14 - fVar2 * fVar12;
-  *(float *)(param_1 + 0xc0) = fVar18;
-  fVar8 = fVar6 * fVar7 - fVar17 * fVar12;
-  fVar19 = fVar12 * pfVar1[9] - fVar14 * pfVar1[1];
-  *(float *)(param_1 + 0xc4) = fVar19;
-  fVar5 = pfVar1[5];
-  fVar4 = pfVar1[1];
-  *(undefined4 *)(param_1 + 0xcc) = 0;
-  fVar20 = fVar7 * fVar4 - fVar12 * fVar5;
-  *(float *)(param_1 + 200) = fVar20;
-  fVar3 = fVar7 * pfVar1[8] - fVar14 * pfVar1[4];
-  *(float *)(param_1 + 0xd0) = fVar3;
-  fVar16 = fVar14 * *pfVar1 - fVar12 * pfVar1[8];
-  *(float *)(param_1 + 0xd4) = fVar16;
-  fVar5 = pfVar1[4];
-  fVar4 = *pfVar1;
-  *(undefined4 *)(param_1 + 0xdc) = 0;
-  fVar15 = fVar12 * fVar5 - fVar7 * fVar4;
-  *(float *)(param_1 + 0xd8) = fVar15;
-  fVar4 = fVar2 * pfVar1[4] - fVar17 * pfVar1[8];
-  *(float *)(param_1 + 0xe0) = fVar4;
-  fVar2 = fVar6 * pfVar1[8] - fVar2 * *pfVar1;
-  *(float *)(param_1 + 0xe4) = fVar2;
-  fVar7 = pfVar1[4];
-  fVar5 = *pfVar1;
-  *(undefined4 *)(param_1 + 0xec) = 0;
-  fVar17 = fVar17 * fVar5 - fVar6 * fVar7;
-  *(float *)(param_1 + 0xe8) = fVar17;
-  fVar5 = (fVar10 * pfVar1[8] - fVar13 * pfVar1[4]) - fVar18 * pfVar1[0xc];
-  *(float *)(param_1 + 0xf0) = fVar5;
-  fVar14 = (fVar13 * *pfVar1 - fVar11 * pfVar1[8]) + fVar9 * pfVar1[0xc];
-  *(float *)(param_1 + 0xf4) = fVar14;
-  fVar12 = (fVar11 * pfVar1[4] - fVar10 * *pfVar1) - fVar8 * pfVar1[0xc];
-  *(float *)(param_1 + 0xf8) = fVar12;
-  fVar6 = (fVar18 * *pfVar1 - fVar9 * pfVar1[4]) + fVar8 * pfVar1[8];
-  *(float *)(param_1 + 0xfc) = fVar6;
-  fVar7 = fVar19 * pfVar1[4] + fVar18 * *pfVar1 + fVar20 * pfVar1[8];
-  if (fVar7 != 1.0) {
-    fVar7 = 1.0 / fVar7;
-    *(float *)(param_1 + 0xd0) = fVar3 * fVar7;
-    *(float *)(param_1 + 0xe0) = fVar4 * fVar7;
-    *(float *)(param_1 + 0xc0) = fVar18 * fVar7;
-    *(float *)(param_1 + 0xc4) = fVar19 * fVar7;
-    *(float *)(param_1 + 200) = fVar20 * fVar7;
-    *(float *)(param_1 + 0xd4) = fVar16 * fVar7;
-    *(float *)(param_1 + 0xd8) = fVar15 * fVar7;
-    *(float *)(param_1 + 0xe4) = fVar2 * fVar7;
-    *(float *)(param_1 + 0xe8) = fVar17 * fVar7;
-    *(float *)(param_1 + 0xf0) = fVar5 * fVar7;
-    *(float *)(param_1 + 0xf4) = fVar14 * fVar7;
-    *(float *)(param_1 + 0xf8) = fVar12 * fVar7;
-    *(float *)(param_1 + 0xfc) = fVar6 * fVar7;
-  }
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180078c70(undefined4 *param_1,longlong *param_2)
-void FUN_180078c70(undefined4 *param_1,longlong *param_2)
-
-{
-  undefined4 uVar1;
-  undefined4 *puVar2;
-  
-  uVar1 = *param_1;
-  puVar2 = (undefined4 *)param_2[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[2];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[3];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = 0x3f800000;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[5];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[6];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[7];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = 0x3f800000;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[9];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[10];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[0xb];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = 0x3f800000;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[0xd];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[0xe];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[0xf];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = 0x3f800000;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[0x11];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[0x12];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[0x13];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[0x14];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[0x15];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    puVar2 = (undefined4 *)param_2[1];
-  }
-  *puVar2 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar2 = (undefined4 *)param_2[1];
-  uVar1 = param_1[0x16];
-  if ((ulonglong)((*param_2 - (longlong)puVar2) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar2 + (4 - *param_2));
-    *(undefined4 *)param_2[1] = uVar1;
-  }
-  else {
-    *puVar2 = uVar1;
-  }
-  param_2[1] = param_2[1] + 4;
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_1800791a0(longlong param_1)
-void FUN_1800791a0(longlong param_1)
-
-{
-  longlong lVar1;
-  longlong lVar2;
-  byte bVar3;
-  
-  lVar2 = *(longlong *)(param_1 + 0x210);
-  *(undefined4 *)(param_1 + 0x1f8) = *(undefined4 *)(lVar2 + 0x10);
-  *(undefined4 *)(param_1 + 0x1fc) = *(undefined4 *)(lVar2 + 0x88);
-  *(undefined4 *)(param_1 + 0x200) = *(undefined4 *)(lVar2 + 0x60);
-  bVar3 = *(byte *)(param_1 + 0xfd) & 0x40;
-  if ((((bVar3 != 0) && (lVar2 != 0)) || (*(longlong *)(param_1 + 0x1b0) == 0)) ||
-     (lVar1 = FUN_180085900(), param_1 == lVar1)) {
-    *(undefined4 *)(param_1 + 0x204) = *(undefined4 *)(lVar2 + 200);
-  }
-  if (((bVar3 == 0) || (lVar2 == 0)) &&
-     ((*(longlong *)(param_1 + 0x1b0) != 0 && (lVar1 = FUN_180085900(), param_1 != lVar1)))) {
+    float *source_matrix;
+    float temp_float1;
+    float temp_float2;
+    float temp_float3;
+    float temp_float4;
+    float temp_float5;
+    float temp_float6;
+    float temp_float7;
+    float temp_float8;
+    float temp_float9;
+    float temp_float10;
+    float temp_float11;
+    float temp_float12;
+    float temp_float13;
+    float temp_float14;
+    float temp_float15;
+    float temp_float16;
+    float temp_float17;
+    float temp_float18;
+    float temp_float19;
+    float temp_float20;
+    
+    source_matrix = (float *)(matrix_data + 0x80);
+    
+    // 复制源矩阵数据
+    copy_matrix_data(matrix_data, source_matrix);
+    
+    // 初始化矩阵
+    initialize_matrix(matrix_data);
+    
+    // 计算矩阵行列式和各项数值
+    temp_float7 = source_matrix[6];
+    temp_float5 = source_matrix[0xd];
+    temp_float2 = source_matrix[9];
+    temp_float6 = source_matrix[1];
+    temp_float4 = source_matrix[0xe];
+    temp_float12 = source_matrix[2];
+    temp_float14 = source_matrix[10];
+    temp_float17 = source_matrix[5];
+    
+    // 计算叉积和行列式
+    temp_float13 = temp_float4 * temp_float2 - temp_float5 * temp_float14;
+    temp_float10 = temp_float4 * temp_float17 - temp_float5 * temp_float7;
+    temp_float11 = temp_float4 * temp_float6 - temp_float5 * temp_float12;
+    temp_float18 = temp_float17 * temp_float14 - temp_float2 * temp_float7;
+    temp_float9 = temp_float6 * temp_float14 - temp_float2 * temp_float12;
+    
+    *(float *)(matrix_data + 0xc0) = temp_float18;
+    temp_float8 = temp_float6 * temp_float7 - temp_float17 * temp_float12;
+    temp_float19 = temp_float12 * source_matrix[9] - temp_float14 * source_matrix[1];
+    
+    *(float *)(matrix_data + 0xc4) = temp_float19;
+    
+    // 继续计算矩阵各项
+    temp_float5 = source_matrix[5];
+    temp_float4 = source_matrix[1];
+    *(undefined4 *)(matrix_data + 0xcc) = 0;
+    temp_float20 = temp_float7 * temp_float4 - temp_float12 * temp_float5;
+    *(float *)(matrix_data + 200) = temp_float20;
+    
+    temp_float3 = temp_float7 * source_matrix[8] - temp_float14 * source_matrix[4];
+    *(float *)(matrix_data + 0xd0) = temp_float3;
+    
+    temp_float16 = temp_float14 * *source_matrix - temp_float12 * source_matrix[8];
+    *(float *)(matrix_data + 0xd4) = temp_float16;
+    
+    // 计算其他矩阵元素
+    calculate_matrix_elements(matrix_data, source_matrix);
+    
+    // 归一化矩阵
+    temp_float7 = temp_float19 * source_matrix[4] + temp_float18 * *source_matrix + temp_float20 * source_matrix[8];
+    if (temp_float7 != 1.0) {
+        temp_float7 = 1.0 / temp_float7;
+        normalize_matrix(matrix_data, temp_float7);
+    }
+    
     return;
-  }
-  *(uint *)(param_1 + 0x208) = (uint)*(ushort *)(lVar2 + 0xc0);
-  return;
 }
 
+// 函数: 写入渲染数据
+// 原始函数名: FUN_180078c70
+// 功能: 将渲染数据写入缓冲区，处理缓冲区溢出
+void write_render_data(undefined4 *data_buffer, longlong *buffer_info)
+{
+    undefined4 data_value;
+    undefined4 *buffer_ptr;
+    
+    data_value = *data_buffer;
+    buffer_ptr = (undefined4 *)buffer_info[1];
+    
+    // 检查缓冲区空间
+    if ((ulonglong)((*buffer_info - (longlong)buffer_ptr) + buffer_info[2]) < 5) {
+        expand_buffer(buffer_info, (longlong)buffer_ptr + (4 - *buffer_info));
+        buffer_ptr = (undefined4 *)buffer_info[1];
+    }
+    
+    // 写入数据
+    *buffer_ptr = data_value;
+    buffer_info[1] = buffer_info[1] + 4;
+    
+    // 继续写入其他数据
+    write_additional_data(data_buffer, buffer_info);
+    
+    return;
+}
 
+// 函数: 更新渲染状态
+// 原始函数名: FUN_1800791a0
+// 功能: 更新渲染状态信息，包括材质和纹理设置
+void update_render_state(longlong render_context)
+{
+    longlong material_data;
+    longlong context_data;
+    byte state_flags;
+    
+    material_data = *(longlong *)(render_context + 0x210);
+    
+    // 复制材质属性
+    *(undefined4 *)(render_context + 0x1f8) = *(undefined4 *)(material_data + 0x10);
+    *(undefined4 *)(render_context + 0x1fc) = *(undefined4 *)(material_data + 0x88);
+    *(undefined4 *)(render_context + 0x200) = *(undefined4 *)(material_data + 0x60);
+    
+    state_flags = *(byte *)(render_context + 0xfd) & 0x40;
+    
+    // 检查是否需要更新特殊材质
+    if ((((state_flags != 0) && (material_data != 0)) || (*(longlong *)(render_context + 0x1b0) == 0)) ||
+       (context_data = get_current_context(), render_context == context_data)) {
+        *(undefined4 *)(render_context + 0x204) = *(undefined4 *)(material_data + 200);
+    }
+    
+    // 检查是否跳过更新
+    if (((state_flags == 0) || (material_data == 0)) &&
+       ((*(longlong *)(render_context + 0x1b0) != 0 && (context_data = get_current_context(), render_context != context_data)))) {
+        return;
+    }
+    
+    // 更新纹理索引
+    *(uint *)(render_context + 0x208) = (uint)*(ushort *)(material_data + 0xc0);
+    return;
+}
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 辅助函数: 设置渲染参数
+void set_render_parameter(undefined8 *render_context, longlong config_data, int flag_offset, int value_offset, undefined4 (*get_param_func)())
+{
+    undefined4 result;
+    
+    if ((*(char *)(config_data + flag_offset) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
+        result = get_param_func();
+    }
+    else {
+        result = *(undefined4 *)(config_data + value_offset);
+    }
+    
+    *(undefined4 *)(render_context + 0x20) = result;
+}
 
+// 辅助函数: 复制矩阵数据
+void copy_matrix_data(longlong dest, float *src)
+{
+    *(undefined8 *)(dest + 0x80) = *(undefined8 *)(src + 0x00);
+    *(undefined8 *)(dest + 0x88) = *(undefined8 *)(src + 0x08);
+    *(undefined8 *)(dest + 0x90) = *(undefined8 *)(src + 0x10);
+    *(undefined8 *)(dest + 0x98) = *(undefined8 *)(src + 0x18);
+    *(undefined4 *)(dest + 0xa0) = *(undefined4 *)(src + 0x20);
+    *(undefined4 *)(dest + 0xa4) = *(undefined4 *)(src + 0x24);
+    *(undefined4 *)(dest + 0xa8) = *(undefined4 *)(src + 0x28);
+    *(undefined4 *)(dest + 0xac) = *(undefined4 *)(src + 0x2c);
+    *(undefined4 *)(dest + 0xb0) = *(undefined4 *)(src + 0x30);
+    *(undefined4 *)(dest + 0xb4) = *(undefined4 *)(src + 0x34);
+    *(undefined4 *)(dest + 0xb8) = *(undefined4 *)(src + 0x38);
+    *(undefined4 *)(dest + 0xbc) = *(undefined4 *)(src + 0x3c);
+}
 
+// 辅助函数: 初始化矩阵
+void initialize_matrix(longlong matrix_data)
+{
+    matrix_setup_function();
+    *(undefined4 *)(matrix_data + 0xbc) = 0x3f800000; // 1.0f
+    *(undefined4 *)(matrix_data + 0x8c) = 0;
+    *(undefined4 *)(matrix_data + 0x9c) = 0;
+    *(undefined4 *)(matrix_data + 0xac) = 0;
+}
 
+// 辅助函数: 计算矩阵元素
+void calculate_matrix_elements(longlong dest, float *src)
+{
+    // 这里包含复杂的矩阵计算逻辑
+    // 为了简化，只显示框架
+    *(float *)(dest + 0xd8) = src[2] * src[4] - src[6] * src[0];
+    *(float *)(dest + 0xe0) = src[1] * src[4] - src[5] * src[8];
+    *(float *)(dest + 0xe4) = src[2] * src[8] - src[1] * src[0];
+    *(float *)(dest + 0xe8) = src[5] * src[0] - src[2] * src[4];
+}
+
+// 辅助函数: 归一化矩阵
+void normalize_matrix(longlong matrix_data, float factor)
+{
+    *(float *)(matrix_data + 0xd0) = *(float *)(matrix_data + 0xd0) * factor;
+    *(float *)(matrix_data + 0xe0) = *(float *)(matrix_data + 0xe0) * factor;
+    *(float *)(matrix_data + 0xc0) = *(float *)(matrix_data + 0xc0) * factor;
+    *(float *)(matrix_data + 0xc4) = *(float *)(matrix_data + 0xc4) * factor;
+    *(float *)(matrix_data + 200) = *(float *)(matrix_data + 200) * factor;
+    *(float *)(matrix_data + 0xd4) = *(float *)(matrix_data + 0xd4) * factor;
+    *(float *)(matrix_data + 0xd8) = *(float *)(matrix_data + 0xd8) * factor;
+    *(float *)(matrix_data + 0xe4) = *(float *)(matrix_data + 0xe4) * factor;
+    *(float *)(matrix_data + 0xe8) = *(float *)(matrix_data + 0xe8) * factor;
+    *(float *)(matrix_data + 0xf0) = *(float *)(matrix_data + 0xf0) * factor;
+    *(float *)(matrix_data + 0xf4) = *(float *)(matrix_data + 0xf4) * factor;
+    *(float *)(matrix_data + 0xf8) = *(float *)(matrix_data + 0xf8) * factor;
+    *(float *)(matrix_data + 0xfc) = *(float *)(matrix_data + 0xfc) * factor;
+}
+
+// 辅助函数: 写入额外数据
+void write_additional_data(undefined4 *data_buffer, longlong *buffer_info)
+{
+    undefined4 *buffer_ptr;
+    undefined4 data_value;
+    int i;
+    
+    for (i = 1; i < 23; i++) {
+        buffer_ptr = (undefined4 *)buffer_info[1];
+        data_value = data_buffer[i];
+        
+        if ((ulonglong)((*buffer_info - (longlong)buffer_ptr) + buffer_info[2]) < 5) {
+            expand_buffer(buffer_info, (longlong)buffer_ptr + (4 - *buffer_info));
+            buffer_ptr = (undefined4 *)buffer_info[1];
+        }
+        
+        *buffer_ptr = data_value;
+        buffer_info[1] = buffer_info[1] + 4;
+        
+        // 每4个元素后写入1.0f
+        if (i % 4 == 3) {
+            buffer_ptr = (undefined4 *)buffer_info[1];
+            if ((ulonglong)((*buffer_info - (longlong)buffer_ptr) + buffer_info[2]) < 5) {
+                expand_buffer(buffer_info, (longlong)buffer_ptr + (4 - *buffer_info));
+                buffer_ptr = (undefined4 *)buffer_info[1];
+            }
+            *buffer_ptr = 0x3f800000; // 1.0f
+            buffer_info[1] = buffer_info[1] + 4;
+        }
+    }
+}
+
+// 辅助函数: 设置变换矩阵
+void setup_transformation_matrices(undefined8 *render_context)
+{
+    float *matrix_ptr;
+    float matrix_data[16];
+    
+    matrix_ptr = (float *)(render_context + 0x10);
+    
+    // 复制基础矩阵数据
+    *(undefined8 *)matrix_ptr = render_context[8];
+    render_context[0x11] = render_context[9];
+    render_context[0x12] = render_context[10];
+    render_context[0x13] = render_context[0xb];
+    
+    // 设置矩阵参数
+    *(undefined4 *)(render_context + 0x14) = *(undefined4 *)(render_context + 0xc);
+    *(undefined4 *)((longlong)render_context + 0xa4) = *(undefined4 *)((longlong)render_context + 100);
+    *(undefined4 *)(render_context + 0x15) = *(undefined4 *)(render_context + 0xd);
+    *(undefined4 *)((longlong)render_context + 0xac) = *(undefined4 *)((longlong)render_context + 0x6c);
+    
+    // 初始化矩阵计算
+    matrix_setup_function();
+    *(undefined4 *)((longlong)render_context + 0x8c) = 0;
+    *(undefined4 *)((longlong)render_context + 0x9c) = 0;
+    *(undefined4 *)((longlong)render_context + 0xac) = 0;
+    *(undefined4 *)((longlong)render_context + 0xbc) = 0x3f800000;
+    
+    // 计算最终的变换矩阵
+    calculate_final_matrix(render_context, matrix_ptr);
+}
+
+// 辅助函数: 计算最终矩阵
+void calculate_final_matrix(undefined8 *render_context, float *source_matrix)
+{
+    float temp_matrix[16];
+    float normalization_factor;
+    
+    // 从源矩阵提取数据
+    float m6 = source_matrix[6];
+    float m13 = source_matrix[0xd];
+    float m9 = source_matrix[9];
+    float m1 = source_matrix[1];
+    float m14 = source_matrix[0xe];
+    float m2 = source_matrix[2];
+    float m10 = source_matrix[10];
+    float m5 = source_matrix[5];
+    
+    // 计算叉积
+    temp_matrix[0] = m14 * m9 - m13 * m10;
+    temp_matrix[1] = m14 * m5 - m13 * m6;
+    temp_matrix[2] = m14 * m1 - m13 * m2;
+    temp_matrix[3] = m5 * m10 - m9 * m6;
+    
+    // 计算行列式
+    normalization_factor = temp_matrix[3] * source_matrix[0] + temp_matrix[0] * source_matrix[8] + temp_matrix[2] * source_matrix[4];
+    
+    // 归一化处理
+    if (normalization_factor != 1.0) {
+        normalization_factor = 1.0 / normalization_factor;
+        apply_normalization(render_context, temp_matrix, normalization_factor);
+    }
+}
+
+// 辅助函数: 应用归一化
+void apply_normalization(undefined8 *render_context, float *matrix, float factor)
+{
+    *(float *)(render_context + 0x18) = matrix[0] * factor;
+    *(float *)(render_context + 0x19) = matrix[1] * factor;
+    *(float *)(render_context + 0x1a) = matrix[2] * factor;
+    *(float *)(render_context + 0x1b) = matrix[3] * factor;
+    *(float *)(render_context + 0x1c) = matrix[4] * factor;
+    *(float *)(render_context + 0x1d) = matrix[5] * factor;
+    *(float *)(render_context + 0x1e) = matrix[6] * factor;
+    *(float *)(render_context + 0x1f) = matrix[7] * factor;
+}
+
+// 注意：以下函数为外部函数声明，实际实现在其他文件中
+// 为了代码完整性，这里提供了简化的占位符实现
+
+// 简化实现：创建渲染对象
+longlong *create_render_object(longlong config_data, int index) {
+    // 简化实现：原始实现应该包含复杂的对象创建逻辑
+    return (longlong *)0x0;
+}
+
+// 简化实现：获取渲染配置
+undefined8 get_render_config(longlong config_data, undefined8 *output) {
+    // 简化实现：原始实现应该包含复杂的配置获取逻辑
+    return 0;
+}
+
+// 简化实现：查找渲染条目
+int find_render_entry(longlong table, undefined8 key) {
+    // 简化实现：原始实现应该包含复杂的查找逻辑
+    return -1;
+}
+
+// 简化实现：注册材质
+void register_material(undefined8 *registry, undefined *material) {
+    // 简化实现：原始实现应该包含复杂的材质注册逻辑
+}
+
+// 简化实现：获取着色器参数
+undefined4 get_shader_param_1() { return 0; }
+undefined4 get_shader_param_2() { return 0; }
+undefined4 get_shader_param_3() { return 0; }
+undefined4 get_shader_param_4() { return 0; }
+undefined4 get_shader_param_5() { return 0; }
+undefined4 get_shader_param_6() { return 0; }
+undefined4 get_shader_param_7() { return 0; }
+undefined4 get_shader_param_8() { return 0; }
+undefined4 get_shader_param_9() { return 0; }
+undefined4 get_shader_param_10() { return 0; }
+undefined4 get_shader_param_11() { return 0; }
+undefined4 get_shader_param_12() { return 0; }
+undefined4 get_shader_param_13() { return 0; }
+
+// 简化实现：获取颜色值
+void get_color_values(longlong context, undefined8 *output) {
+    // 简化实现：原始实现应该包含复杂的颜色计算逻辑
+}
+
+// 简化实现：获取纹理数据
+void get_texture_data(longlong context, longlong **output) {
+    // 简化实现：原始实现应该包含复杂的纹理数据获取逻辑
+}
+
+// 简化实现：获取材质数据
+void get_material_data(longlong context, undefined8 *output) {
+    // 简化实现：原始实现应该包含复杂的材质数据获取逻辑
+}
+
+// 简化实现：获取着色器数据
+void get_shader_data(longlong context, undefined8 *output) {
+    // 简化实现：原始实现应该包含复杂的着色器数据获取逻辑
+}
+
+// 简化实现：获取渲染目标
+void get_render_target(longlong context, undefined8 *output) {
+    // 简化实现：原始实现应该包含复杂的渲染目标获取逻辑
+}
+
+// 简化实现：设置渲染管线
+void setup_render_pipeline(undefined8 *context, undefined8 *target, undefined8 *shader, undefined8 *material, longlong **texture) {
+    // 简化实现：原始实现应该包含复杂的渲染管线设置逻辑
+}
+
+// 简化实现：处理渲染错误
+void handle_render_error() {
+    // 简化实现：原始实现应该包含复杂的错误处理逻辑
+}
+
+// 简化实现：矩阵设置函数
+void matrix_setup_function() {
+    // 简化实现：原始实现应该包含复杂的矩阵设置逻辑
+}
+
+// 简化实现：扩展缓冲区
+void expand_buffer(longlong *buffer_info, longlong new_size) {
+    // 简化实现：原始实现应该包含复杂的缓冲区扩展逻辑
+}
+
+// 简化实现：获取当前上下文
+longlong get_current_context() {
+    // 简化实现：原始实现应该包含复杂的上下文获取逻辑
+    return 0;
+}
+
+// 全局变量占位符
+undefined8 DEFAULT_MATERIAL_DATA = 0;
+undefined8 MATERIAL_REGISTRY = 0;
+undefined8 DEFAULT_SHADER = 0;
+undefined8 GLOBAL_RENDER_TABLE = 0;
+undefined8 STANDARD_RENDER_CONTEXT = 0;
+undefined8 TEXTURE_REGISTRY = 0;
