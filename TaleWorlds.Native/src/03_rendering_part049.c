@@ -312,114 +312,145 @@ void RenderingSystem_NoOperation2(void)
 
 
 // 函数: void FUN_1802939e0(longlong param_1,float *param_2,float *param_3,float param_4,uint param_5)
-void FUN_1802939e0(longlong param_1,float *param_2,float *param_3,float param_4,uint param_5)
+// 功能: 渲染系统矩形区域处理函数
+// 参数: param_1 - 渲染上下文指针, param_2 - 起始坐标点, param_3 - 结束坐标点, param_4 - 距离阈值, param_5 - 处理标志
+void RenderingSystem_ProcessRectangleArea(longlong render_context, float *start_coord, float *end_coord, float distance_threshold, uint process_flags)
 
 {
-  byte bVar1;
-  int iVar2;
-  int iVar3;
-  int iVar4;
-  int *piVar5;
-  int iVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fStackX_10;
-  float fStackX_14;
+  byte process_flags_byte;
+  int buffer_capacity;
+  int new_capacity;
+  int current_count;
+  int *buffer_count_ptr;
+  int default_capacity;
+  float x_scale_factor;
+  float x_distance;
+  float y_scale_factor;
+  float y_distance;
+  float final_distance;
+  float temp_coord_x;
+  float temp_coord_y;
   
-  fVar7 = 0.5;
-  bVar1 = (byte)param_5;
-  if ((bVar1 & 3) == 3 || (bVar1 & 0xc) == 0xc) {
-    fVar8 = 0.5;
+  x_scale_factor = 0.5;
+  process_flags_byte = (byte)process_flags;
+  
+  // 根据处理标志确定X轴缩放因子
+  if ((process_flags_byte & 3) == 3 || (process_flags_byte & 0xc) == 0xc) {
+    x_distance = 0.5;
   }
   else {
-    fVar8 = 1.0;
+    x_distance = 1.0;
   }
-  fVar8 = ABS(*param_3 - *param_2) * fVar8 - 1.0;
-  if (fVar8 <= param_4) {
-    param_4 = fVar8;
+  
+  // 计算X轴距离
+  x_distance = ABS(*end_coord - *start_coord) * x_distance - 1.0;
+  if (x_distance <= distance_threshold) {
+    distance_threshold = x_distance;
   }
-  if ((bVar1 & 5) != 5 && (bVar1 & 10) != 10) {
-    fVar7 = 1.0;
+  
+  // 根据处理标志确定Y轴缩放因子
+  if ((process_flags_byte & 5) != 5 && (process_flags_byte & 10) != 10) {
+    y_scale_factor = 1.0;
   }
-  fVar7 = ABS(param_3[1] - param_2[1]) * fVar7 - 1.0;
-  if (param_4 <= fVar7) {
-    fVar7 = param_4;
+  
+  // 计算Y轴距离
+  y_scale_factor = ABS(end_coord[1] - start_coord[1]) * y_scale_factor - 1.0;
+  if (distance_threshold <= y_scale_factor) {
+    y_scale_factor = distance_threshold;
   }
-  if ((fVar7 <= 0.0) || (param_5 == 0)) {
-    piVar5 = (int *)(param_1 + 0x80);
-    FUN_18011d9a0(piVar5);
-    fStackX_10 = *param_3;
-    iVar6 = 8;
-    fStackX_14 = param_2[1];
-    iVar3 = *piVar5;
-    iVar2 = *(int *)(param_1 + 0x84);
-    if (iVar3 == iVar2) {
-      if (iVar2 == 0) {
-        iVar2 = 8;
+  
+  // 检查距离是否在阈值范围内或处理标志为0
+  if ((y_scale_factor <= 0.0) || (process_flags == 0)) {
+    buffer_count_ptr = (int *)(render_context + 0x80);
+    FUN_18011d9a0(buffer_count_ptr);
+    temp_coord_x = *end_coord;
+    default_capacity = 8;
+    temp_coord_y = start_coord[1];
+    current_count = *buffer_count_ptr;
+    buffer_capacity = *(int *)(render_context + 0x84);
+    
+    // 检查缓冲区是否需要扩展
+    if (current_count == buffer_capacity) {
+      if (buffer_capacity == 0) {
+        buffer_capacity = 8;
       }
       else {
-        iVar2 = iVar2 / 2 + iVar2;
+        buffer_capacity = buffer_capacity / 2 + buffer_capacity;
       }
-      iVar4 = iVar3 + 1;
-      if (iVar3 + 1 < iVar2) {
-        iVar4 = iVar2;
+      new_capacity = current_count + 1;
+      if (current_count + 1 < buffer_capacity) {
+        new_capacity = buffer_capacity;
       }
-      FUN_18011dc70(piVar5,iVar4);
-      iVar3 = *piVar5;
+      FUN_18011dc70(buffer_count_ptr, new_capacity);
+      current_count = *buffer_count_ptr;
     }
-    *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar3 * 8) =
-         CONCAT44(fStackX_14,fStackX_10);
-    *piVar5 = *piVar5 + 1;
-    FUN_18011d9a0(piVar5,param_3);
-    fStackX_10 = *param_2;
-    fStackX_14 = param_3[1];
-    iVar3 = *piVar5;
-    iVar2 = *(int *)(param_1 + 0x84);
-    if (iVar3 == iVar2) {
-      if (iVar2 != 0) {
-        iVar6 = iVar2 + iVar2 / 2;
+    
+    // 存储第一个坐标点
+    *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+         CONCAT44(temp_coord_y, temp_coord_x);
+    *buffer_count_ptr = *buffer_count_ptr + 1;
+    
+    FUN_18011d9a0(buffer_count_ptr, end_coord);
+    temp_coord_x = *start_coord;
+    temp_coord_y = end_coord[1];
+    current_count = *buffer_count_ptr;
+    buffer_capacity = *(int *)(render_context + 0x84);
+    
+    // 检查缓冲区是否需要扩展
+    if (current_count == buffer_capacity) {
+      if (buffer_capacity != 0) {
+        default_capacity = buffer_capacity + buffer_capacity / 2;
       }
-      iVar2 = iVar3 + 1;
-      if (iVar3 + 1 < iVar6) {
-        iVar2 = iVar6;
+      buffer_capacity = current_count + 1;
+      if (current_count + 1 < default_capacity) {
+        buffer_capacity = default_capacity;
       }
-      FUN_18011dc70(piVar5,iVar2);
-      iVar3 = *piVar5;
+      FUN_18011dc70(buffer_count_ptr, buffer_capacity);
+      current_count = *buffer_count_ptr;
     }
-    *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar3 * 8) =
-         CONCAT44(fStackX_14,fStackX_10);
-    *piVar5 = *piVar5 + 1;
+    
+    // 存储第二个坐标点
+    *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+         CONCAT44(temp_coord_y, temp_coord_x);
+    *buffer_count_ptr = *buffer_count_ptr + 1;
   }
   else {
-    fVar8 = fVar7;
-    if ((param_5 & 1) == 0) {
-      fVar8 = 0.0;
+    // 根据处理标志计算各个方向的偏移量
+    final_distance = y_scale_factor;
+    if ((process_flags & 1) == 0) {
+      final_distance = 0.0;
     }
-    fVar10 = fVar7;
-    if ((param_5 & 2) == 0) {
-      fVar10 = 0.0;
+    
+    y_distance = y_scale_factor;
+    if ((process_flags & 2) == 0) {
+      y_distance = 0.0;
     }
-    fVar9 = fVar7;
-    if ((param_5 & 8) == 0) {
-      fVar9 = 0.0;
+    
+    x_distance = y_scale_factor;
+    if ((process_flags & 8) == 0) {
+      x_distance = 0.0;
     }
-    if ((param_5 & 4) == 0) {
-      fVar7 = 0.0;
+    
+    if ((process_flags & 4) == 0) {
+      y_scale_factor = 0.0;
     }
-    fStackX_10 = *param_2 + fVar8;
-    fStackX_14 = param_2[1] + fVar8;
-    FUN_180293730(param_1,&fStackX_10,fVar8,6,9);
-    fStackX_14 = fVar10 + param_2[1];
-    fStackX_10 = *param_3 - fVar10;
-    FUN_180293730(param_1,&fStackX_10,fVar10,9,0xc);
-    fStackX_10 = *param_3 - fVar9;
-    fStackX_14 = param_3[1] - fVar9;
-    FUN_180293730(param_1,&fStackX_10,fVar9,0,3);
-    fStackX_10 = fVar7 + *param_2;
-    fStackX_14 = param_3[1] - fVar7;
-    FUN_180293730(param_1,&fStackX_10,fVar7,3,6);
+    
+    // 处理四个方向的坐标变换
+    temp_coord_x = *start_coord + final_distance;
+    temp_coord_y = start_coord[1] + final_distance;
+    FUN_180293730(render_context, &temp_coord_x, final_distance, 6, 9);
+    
+    temp_coord_y = y_distance + start_coord[1];
+    temp_coord_x = *end_coord - y_distance;
+    FUN_180293730(render_context, &temp_coord_x, y_distance, 9, 0xc);
+    
+    temp_coord_x = *end_coord - x_distance;
+    temp_coord_y = end_coord[1] - x_distance;
+    FUN_180293730(render_context, &temp_coord_x, x_distance, 0, 3);
+    
+    temp_coord_x = y_scale_factor + *start_coord;
+    temp_coord_y = end_coord[1] - y_scale_factor;
+    FUN_180293730(render_context, &temp_coord_x, y_scale_factor, 3, 6);
   }
   return;
 }
