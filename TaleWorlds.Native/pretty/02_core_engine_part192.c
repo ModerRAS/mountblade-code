@@ -701,7 +701,7 @@ void SystemDataValidator(int64_t data_context,int64_t validation_data)
           puStack_e0 = auStack_d0;
           auStack_d0[0] = 0;
           uStack_d8 = 0x18;
-          puVar8 = (int32_t *)&system_buffer_ptr;
+          puVar8 = (int32_t *)&system_string_buffer_ptr;
           if (puVar5 != (int32_t *)0x0) {
             puVar8 = puVar5;
           }
@@ -743,8 +743,9 @@ void SystemDataValidator(int64_t data_context,int64_t validation_data)
 
 
 
-// 函数: void FUN_180175a30(int64_t param_1)
-void FUN_180175a30(int64_t param_1)
+// 函数: void SystemMemoryCleaner(int64_t memory_context)
+// 功能: 系统内存清理器，负责内存释放和资源清理
+void SystemMemoryCleaner(int64_t memory_context)
 
 {
   int64_t *plVar1;
@@ -771,8 +772,9 @@ void FUN_180175a30(int64_t param_1)
 
 
 
-// 函数: void FUN_180175aa0(uint64_t *param_1)
-void FUN_180175aa0(uint64_t *param_1)
+// 函数: void SystemGraphicsInitializer(uint64_t *graphics_context)
+// 功能: 系统图形初始化器，负责图形子系统的初始化和配置
+void SystemGraphicsInitializer(uint64_t *graphics_context)
 
 {
   uint64_t *puVar1;
