@@ -151,6 +151,24 @@ void initialize_engine_resource_manager(undefined8 engine_context, longlong *res
 
 // WARNING: Removing unreachable block (ram,0x0001802081ca)
 // WARNING: Removing unreachable block (ram,0x0001802081e9)
+// 函数调用映射说明 (简化实现标注):
+// FUN_180209470 -> configure_resource_manager (简化实现)
+// FUN_180209720 -> process_resource_manager_advanced (简化实现)
+// FUN_18064e900 -> handle_resource_manager_error (简化实现)
+// FUN_1800b3590 -> create_resource_processor (简化实现)
+// FUN_180208400 -> initialize_resource_processor (简化实现)
+// FUN_180080810 -> process_resource_data (简化实现)
+// FUN_1801efdb0 -> lookup_resource_data (简化实现)
+// FUN_1801ef300 -> validate_resource_data (简化实现)
+// FUN_1801ef620 -> process_resource_data (简化实现)
+// FUN_180626f80 -> log_resource_error (简化实现)
+// FUN_18062b1e0 -> allocate_resource_memory (简化实现)
+// FUN_18062b420 -> allocate_resource_chunk (简化实现)
+// FUN_180208f20 -> process_resource_float_data (简化实现)
+// SUB168 -> calculate_resource_count (简化实现)
+// handle_batch_cleanup_failure -> handle_resource_cleanup_failure (简化实现)
+// handle_memory_allocation_error -> handle_resource_cleanup_failure (简化实现)
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
@@ -609,6 +627,24 @@ void update_resource_manager_time(longlong manager_ptr, float time_delta)
 
 
 
+// 函数调用映射说明 (简化实现标注):
+// FUN_180209470 -> configure_resource_manager (简化实现)
+// FUN_180209720 -> process_resource_manager_advanced (简化实现)
+// FUN_18064e900 -> handle_resource_manager_error (简化实现)
+// FUN_1800b3590 -> create_resource_processor (简化实现)
+// FUN_180208400 -> initialize_resource_processor (简化实现)
+// FUN_180080810 -> process_resource_data (简化实现)
+// FUN_1801efdb0 -> lookup_resource_data (简化实现)
+// FUN_1801ef300 -> validate_resource_data (简化实现)
+// FUN_1801ef620 -> process_resource_data (简化实现)
+// FUN_180626f80 -> log_resource_error (简化实现)
+// FUN_18062b1e0 -> allocate_resource_memory (简化实现)
+// FUN_18062b420 -> allocate_resource_chunk (简化实现)
+// FUN_180208f20 -> process_resource_float_data (简化实现)
+// SUB168 -> calculate_resource_count (简化实现)
+// handle_batch_cleanup_failure -> handle_resource_cleanup_failure (简化实现)
+// handle_memory_allocation_error -> handle_resource_cleanup_failure (简化实现)
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
@@ -756,240 +792,240 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
       } while ((longlong)ullong_counter1 < (longlong)data_count);
       stack_data = CONCAT44(stack_data._4_4_,(int)ullong_counter3);
     }
-    iVar14 = (int)uVar24;
-    if (0 < iVar14) {
-      if (0x80 < iVar14) {
-        if (1 < iVar14) {
-          lVar11 = (longlong)(iVar14 + -1);
-          uVar24 = (ulonglong)(iVar14 - 1);
+    temp_int = (int)ullong_counter3;
+    if (0 < temp_int) {
+      if (0x80 < temp_int) {
+        if (1 < temp_int) {
+          resource_base = (longlong)(temp_int + -1);
+          ullong_counter3 = (ulonglong)(temp_int - 1);
           do {
-            uVar22 = uVar25;
-            if (3 < lVar11) {
-              puVar7 = (undefined8 *)((longlong)param_1 + 0x44);
-              lVar20 = (lVar11 - 4U >> 2) + 1;
-              uVar22 = lVar20 * 4;
+            ullong_counter1 = ullong_counter4;
+            if (3 < resource_base) {
+              ptr_ullong = (undefined8 *)((longlong)resource_manager + 0x44);
+              temp_long4 = (resource_base - 4U >> 2) + 1;
+              ullong_counter1 = temp_long4 * 4;
               do {
-                fVar30 = *(float *)((longlong)puVar7 + 0xc);
-                if (*(float *)((longlong)puVar7 + 4) <= fVar30 &&
-                    fVar30 != *(float *)((longlong)puVar7 + 4)) {
-                  uVar4 = puVar7[1];
-                  puVar7[1] = *puVar7;
-                  fVar30 = *(float *)((longlong)puVar7 + 0xc);
-                  *puVar7 = uVar4;
+                normalization_factor = *(float *)((longlong)ptr_ullong + 0xc);
+                if (*(float *)((longlong)ptr_ullong + 4) <= normalization_factor &&
+                    normalization_factor != *(float *)((longlong)ptr_ullong + 4)) {
+                  temp_ullong = ptr_ullong[1];
+                  ptr_ullong[1] = *ptr_ullong;
+                  normalization_factor = *(float *)((longlong)ptr_ullong + 0xc);
+                  *ptr_ullong = temp_ullong;
                 }
-                if (fVar30 < *(float *)((longlong)puVar7 + 0x14)) {
-                  uVar4 = puVar7[1];
-                  puVar7[1] = puVar7[2];
-                  puVar7[2] = uVar4;
+                if (normalization_factor < *(float *)((longlong)ptr_ullong + 0x14)) {
+                  temp_ullong = ptr_ullong[1];
+                  ptr_ullong[1] = ptr_ullong[2];
+                  ptr_ullong[2] = temp_ullong;
                 }
-                if (*(float *)((longlong)puVar7 + 0x14) <= *(float *)((longlong)puVar7 + 0x1c) &&
-                    *(float *)((longlong)puVar7 + 0x1c) != *(float *)((longlong)puVar7 + 0x14)) {
-                  uVar4 = puVar7[2];
-                  puVar7[2] = puVar7[3];
-                  puVar7[3] = uVar4;
+                if (*(float *)((longlong)ptr_ullong + 0x14) <= *(float *)((longlong)ptr_ullong + 0x1c) &&
+                    *(float *)((longlong)ptr_ullong + 0x1c) != *(float *)((longlong)ptr_ullong + 0x14)) {
+                  temp_ullong = ptr_ullong[2];
+                  ptr_ullong[2] = ptr_ullong[3];
+                  ptr_ullong[3] = temp_ullong;
                 }
-                if (*(float *)((longlong)puVar7 + 0x1c) <= *(float *)((longlong)puVar7 + 0x24) &&
-                    *(float *)((longlong)puVar7 + 0x24) != *(float *)((longlong)puVar7 + 0x1c)) {
-                  uVar4 = puVar7[3];
-                  puVar7[3] = puVar7[4];
-                  puVar7[4] = uVar4;
+                if (*(float *)((longlong)ptr_ullong + 0x1c) <= *(float *)((longlong)ptr_ullong + 0x24) &&
+                    *(float *)((longlong)ptr_ullong + 0x24) != *(float *)((longlong)ptr_ullong + 0x1c)) {
+                  temp_ullong = ptr_ullong[3];
+                  ptr_ullong[3] = ptr_ullong[4];
+                  ptr_ullong[4] = temp_ullong;
                 }
-                puVar7 = puVar7 + 4;
-                lVar20 = lVar20 + -1;
-              } while (lVar20 != 0);
+                ptr_ullong = ptr_ullong + 4;
+                temp_long4 = temp_long4 + -1;
+              } while (temp_long4 != 0);
             }
-            if ((longlong)uVar22 < lVar11) {
-              puVar7 = (undefined8 *)((longlong)param_1 + uVar22 * 8 + 0x44);
-              lVar20 = lVar11 - uVar22;
+            if ((longlong)ullong_counter1 < resource_base) {
+              ptr_ullong = (undefined8 *)((longlong)resource_manager + ullong_counter1 * 8 + 0x44);
+              temp_long4 = resource_base - ullong_counter1;
               do {
-                if (*(float *)((longlong)puVar7 + 4) <= *(float *)((longlong)puVar7 + 0xc) &&
-                    *(float *)((longlong)puVar7 + 0xc) != *(float *)((longlong)puVar7 + 4)) {
-                  uVar4 = *puVar7;
-                  *puVar7 = puVar7[1];
-                  puVar7[1] = uVar4;
+                if (*(float *)((longlong)ptr_ullong + 4) <= *(float *)((longlong)ptr_ullong + 0xc) &&
+                    *(float *)((longlong)ptr_ullong + 0xc) != *(float *)((longlong)ptr_ullong + 4)) {
+                  temp_ullong = *ptr_ullong;
+                  *ptr_ullong = ptr_ullong[1];
+                  ptr_ullong[1] = temp_ullong;
                 }
-                puVar7 = puVar7 + 1;
-                lVar20 = lVar20 + -1;
-              } while (lVar20 != 0);
+                ptr_ullong = ptr_ullong + 1;
+                temp_long4 = temp_long4 + -1;
+              } while (temp_long4 != 0);
             }
-            lVar11 = lVar11 + -1;
-            uVar24 = uVar24 - 1;
-          } while (uVar24 != 0);
+            resource_base = resource_base + -1;
+            ullong_counter3 = ullong_counter3 - 1;
+          } while (ullong_counter3 != 0);
         }
-        uVar24 = 0x80;
-        uStackX_10 = CONCAT44(uStackX_10._4_4_,0x80);
+        ullong_counter3 = 0x80;
+        stack_data = CONCAT44(stack_data._4_4_,0x80);
       }
-      *(int *)((longlong)param_1 + 0x844) = (int)uVar24;
-      lVar11 = *param_1;
-      uStack_64 = 0;
-      lVar20 = SUB168(SEXT816(-0x7777777777777777) * SEXT816(param_1[1] - lVar11),8) +
-               (param_1[1] - lVar11);
-      if (lVar20 >> 6 != lVar20 >> 0x3f) {
-        lStack_58 = 0;
-        uVar22 = uVar25;
+      *(int *)((longlong)resource_manager + 0x844) = (int)ullong_counter3;
+      resource_base = *resource_manager;
+      stack_uint2 = 0;
+      temp_long4 = SUB168(SEXT816(-0x7777777777777777) * SEXT816(resource_manager[1] - resource_base),8) +
+               (resource_manager[1] - resource_base);
+      if (temp_long4 >> 6 != temp_long4 >> 0x3f) {
+        stack_long2 = 0;
+        ullong_counter1 = ullong_counter4;
         do {
-          lVar20 = *(longlong *)(lVar11 + 0x58 + lStack_58);
-          lVar10 = *(longlong *)(lVar11 + 0x60 + lStack_58) - lVar20;
-          uStack_68 = 0;
-          lVar16 = lVar10 >> 0x3f;
-          uVar19 = (uint)uVar22;
-          if (lVar10 / 0xc + lVar16 != lVar16) {
-            lStack_48 = 0;
-            lStack_60 = 0;
-            uVar22 = uVar25;
+          temp_long4 = *(longlong *)(resource_base + 0x58 + stack_long2);
+          temp_long2 = *(longlong *)(resource_base + 0x60 + stack_long2) - temp_long4;
+          stack_uint1 = 0;
+          temp_long3 = temp_long2 >> 0x3f;
+          temp_uint4 = (uint)ullong_counter1;
+          if (temp_long2 / 0xc + temp_long3 != temp_long3) {
+            stack_long3 = 0;
+            stack_long1 = 0;
+            ullong_counter1 = ullong_counter4;
             do {
-              lVar16 = *(longlong *)(*(longlong *)(lVar11 + lStack_58) + 0x38);
-              uVar19 = (uint)uVar22;
-              if ((*(byte *)(lStack_60 + 8 + lVar16) & 1) != 0) {
-                iVar14 = *(int *)(lVar20 + lStack_48);
-                lVar10 = *(longlong *)(lStack_60 + lVar16);
-                bVar6 = 0;
-                if (iVar14 == -1) {
-                  lVar8 = *(longlong *)(lVar11 + 0x10 + lStack_58);
-                  if (lVar8 == 0) {
-                    lVar16 = FUN_1801efdb0(lVar16,lVar10);
-                    uVar19 = uStack_68;
-                    if ((lVar16 == 0) || (iVar21 = *(int *)(lVar16 + 0x18), iVar21 == 0))
-                    goto LAB_180208aa2;
-                    uVar17 = *(undefined4 *)(lVar16 + 0x2c);
+              temp_long3 = *(longlong *)(*(longlong *)(resource_base + stack_long2) + 0x38);
+              temp_uint4 = (uint)ullong_counter1;
+              if ((*(byte *)(stack_long1 + 8 + temp_long3) & 1) != 0) {
+                temp_int = *(int *)(temp_long4 + stack_long3);
+                temp_long2 = *(longlong *)(stack_long1 + temp_long3);
+                temp_byte = 0;
+                if (temp_int == -1) {
+                  temp_long1 = *(longlong *)(resource_base + 0x10 + stack_long2);
+                  if (temp_long1 == 0) {
+                    temp_long3 = lookup_resource_data(temp_long3, temp_long2);
+                    temp_uint4 = stack_uint1;
+                    if ((temp_long3 == 0) || (temp_int2 = *(int *)(temp_long3 + 0x18), temp_int2 == 0))
+                    goto resource_skip_label;
+                    temp_uint3 = *(undefined4 *)(temp_long3 + 0x2c);
                   }
                   else {
-                    cVar5 = FUN_1801ef300(lVar16,lVar10,lVar8);
-                    if (cVar5 == '\0') {
-                      FUN_180626f80(&UNK_180a0fec0);
-                      iVar14 = *(int *)(lVar20 + lStack_48);
-                      uVar19 = uStack_68;
-                      goto LAB_180208aa2;
+                    temp_char = validate_resource_data(temp_long3, temp_long2, temp_long1);
+                    if (temp_char == '\0') {
+                      log_resource_error(&UNK_180a0fec0);
+                      temp_int = *(int *)(temp_long4 + stack_long3);
+                      temp_uint4 = stack_uint1;
+                      goto resource_skip_label;
                     }
-                    lVar16 = FUN_1801ef620(extraout_XMM0_Qa,lVar10,lVar8);
-                    uVar17 = *(undefined4 *)(lVar16 + 0x2c);
-                    lVar16 = FUN_1801efdb0(extraout_XMM0_Qa_00,lVar8);
-                    iVar21 = *(int *)(lVar16 + 0x18);
+                    temp_long3 = process_resource_data(xmm0_out1, temp_long2, temp_long1);
+                    temp_uint3 = *(undefined4 *)(temp_long3 + 0x2c);
+                    temp_long3 = lookup_resource_data(xmm0_out2, temp_long1);
+                    temp_int2 = *(int *)(temp_long3 + 0x18);
                   }
-                  uVar2 = *(undefined4 *)(lVar16 + 0x24);
-                  uVar3 = *(undefined4 *)(lVar16 + 0x28);
-                  *(int *)(lVar20 + 4 + lStack_48) = iVar21;
-                  *(undefined4 *)(lVar20 + 8 + lStack_48) = *(undefined4 *)(lVar16 + 0x1c);
-                  *(byte *)(lVar10 + 0xfe) = *(byte *)(lVar10 + 0xfe) & 0xf7;
-                  *(uint *)(lVar10 + 0x100) = *(uint *)(lVar10 + 0x100) | 0x800;
-                  uVar4 = _DAT_180c8ed18;
-                  *(undefined4 *)(lVar10 + 0x10c) = uVar2;
-                  if (lVar8 == 0) {
-                    bVar6 = 8;
+                  temp_uint1 = *(undefined4 *)(temp_long3 + 0x24);
+                  temp_uint2 = *(undefined4 *)(temp_long3 + 0x28);
+                  *(int *)(temp_long4 + 4 + stack_long3) = temp_int2;
+                  *(undefined4 *)(temp_long4 + 8 + stack_long3) = *(undefined4 *)(temp_long3 + 0x1c);
+                  *(byte *)(temp_long2 + 0xfe) = *(byte *)(temp_long2 + 0xfe) & 0xf7;
+                  *(uint *)(temp_long2 + 0x100) = *(uint *)(temp_long2 + 0x100) | 0x800;
+                  temp_ullong = _DAT_180c8ed18;
+                  *(undefined4 *)(temp_long2 + 0x10c) = temp_uint1;
+                  if (temp_long1 == 0) {
+                    temp_byte = 8;
                   }
-                  *(undefined4 *)(lVar10 + 0x110) = uVar3;
-                  *(byte *)(lVar10 + 0xfe) = *(byte *)(lVar10 + 0xfe) | bVar6;
-                  *(undefined4 *)(lVar10 + 0x108) = uVar17;
-                  puVar7 = (undefined8 *)FUN_18062b1e0(uVar4,0x20,8,3);
-                  *puVar7 = 0;
-                  *(undefined4 *)(puVar7 + 1) = 0;
-                  *(undefined4 *)((longlong)puVar7 + 0xc) = 0xffffffff;
-                  puVar7[2] = 0;
-                  *(undefined4 *)(puVar7 + 3) = 0;
-                  *(undefined8 **)(lVar10 + 0x2d0) = puVar7;
-                  *(undefined4 *)(lVar20 + lStack_48) = 0;
+                  *(undefined4 *)(temp_long2 + 0x110) = temp_uint2;
+                  *(byte *)(temp_long2 + 0xfe) = *(byte *)(temp_long2 + 0xfe) | temp_byte;
+                  *(undefined4 *)(temp_long2 + 0x108) = temp_uint3;
+                  ptr_ullong = (undefined8 *)allocate_resource_memory(temp_ullong, 0x20, 8, 3);
+                  *ptr_ullong = 0;
+                  *(undefined4 *)(ptr_ullong + 1) = 0;
+                  *(undefined4 *)((longlong)ptr_ullong + 0xc) = 0xffffffff;
+                  ptr_ullong[2] = 0;
+                  *(undefined4 *)(ptr_ullong + 3) = 0;
+                  *(undefined8 **)(temp_long2 + 0x2d0) = ptr_ullong;
+                  *(undefined4 *)(temp_long4 + stack_long3) = 0;
                 }
                 else {
-LAB_180208aa2:
-                  if (iVar14 < 0) goto LAB_180208d4a;
+resource_skip_label:
+                  if (temp_int < 0) goto resource_complete_label;
                 }
-                puVar18 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 +
+                ptr_uint = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 +
                                   _DAT_180c86890 + 0xb8);
-                if ((int)uVar24 == 0) {
-                  uVar26 = 0xffffffff;
+                if ((int)ullong_counter3 == 0) {
+                  temp_uint5 = 0xffffffff;
                 }
                 else {
                   LOCK();
-                  uVar26 = *puVar18;
-                  *puVar18 = *puVar18 + (int)uVar24;
+                  temp_uint5 = *ptr_uint;
+                  *ptr_uint = *ptr_uint + (int)ullong_counter3;
                   UNLOCK();
-                  uVar22 = (ulonglong)(uVar26 >> 0xb);
-                  uVar24 = (ulonglong)(((uint)uStackX_10 - 1) + uVar26 >> 0xb);
-                  if (uVar22 <= uVar24) {
-                    pcVar15 = (char *)((longlong)puVar18 + uVar22 + 0x408);
-                    lVar16 = (uVar24 - uVar22) + 1;
-                    puVar27 = puVar18 + (ulonglong)(uVar26 >> 0xb) * 2 + 2;
+                  ullong_counter1 = (ulonglong)(temp_uint5 >> 0xb);
+                  ullong_counter3 = (ulonglong)(((uint)stack_data - 1) + temp_uint5 >> 0xb);
+                  if (ullong_counter1 <= ullong_counter3) {
+                    char_ptr = (char *)((longlong)ptr_uint + ullong_counter1 + 0x408);
+                    temp_long3 = (ullong_counter3 - ullong_counter1) + 1;
+                    ptr_uint2 = ptr_uint + (ulonglong)(temp_uint5 >> 0xb) * 2 + 2;
                     do {
-                      iVar14 = (int)uVar22;
-                      if (*(longlong *)puVar27 == 0) {
-                        lVar8 = FUN_18062b420(_DAT_180c8ed18,0x4000,0x25);
+                      temp_int = (int)ullong_counter1;
+                      if (*(longlong *)ptr_uint2 == 0) {
+                        temp_long1 = allocate_resource_chunk(_DAT_180c8ed18, 0x4000, 0x25);
                         LOCK();
-                        bVar28 = *(longlong *)(puVar18 + (longlong)iVar14 * 2 + 2) == 0;
-                        if (bVar28) {
-                          *(longlong *)(puVar18 + (longlong)iVar14 * 2 + 2) = lVar8;
+                        bool_flag = *(longlong *)(ptr_uint + (longlong)temp_int * 2 + 2) == 0;
+                        if (bool_flag) {
+                          *(longlong *)(ptr_uint + (longlong)temp_int * 2 + 2) = temp_long1;
                         }
                         UNLOCK();
-                        if (bVar28) {
-                          uVar19 = iVar14 * 0x800;
-                          iVar21 = uVar19 + 0x800;
-                          for (; (int)uVar19 < iVar21; uVar19 = uVar19 + 1) {
+                        if (bool_flag) {
+                          temp_uint4 = temp_int * 0x800;
+                          temp_int2 = temp_uint4 + 0x800;
+                          for (; (int)temp_uint4 < temp_int2; temp_uint4 = temp_uint4 + 1) {
                             *(undefined8 *)
-                             (*(longlong *)(puVar18 + (ulonglong)(uVar19 >> 0xb) * 2 + 2) +
-                             (longlong)(int)(uVar19 + (uVar19 >> 0xb) * -0x800) * 8) = 0;
+                             (*(longlong *)(ptr_uint + (ulonglong)(temp_uint4 >> 0xb) * 2 + 2) +
+                             (longlong)(int)(temp_uint4 + (temp_uint4 >> 0xb) * -0x800) * 8) = 0;
                           }
                           LOCK();
-                          *(undefined1 *)((longlong)iVar14 + 0x408 + (longlong)puVar18) = 0;
+                          *(undefined1 *)((longlong)temp_int + 0x408 + (longlong)ptr_uint) = 0;
                           UNLOCK();
                         }
                         else {
-                          if (lVar8 != 0) {
-                    // WARNING: Subroutine does not return
-                            FUN_18064e900();
+                          if (temp_long1 != 0) {
+                            // 内存分配失败
+                            handle_memory_allocation_error();
                           }
                           do {
-                          } while (*pcVar15 != '\0');
+                          } while (*char_ptr != '\0');
                         }
                       }
                       else {
                         do {
-                        } while (*pcVar15 != '\0');
+                        } while (*char_ptr != '\0');
                       }
-                      uVar22 = (ulonglong)(iVar14 + 1);
-                      puVar27 = puVar27 + 2;
-                      pcVar15 = pcVar15 + 1;
-                      lVar16 = lVar16 + -1;
-                    } while (lVar16 != 0);
+                      ullong_counter1 = (ulonglong)(temp_int + 1);
+                      ptr_uint2 = ptr_uint2 + 2;
+                      char_ptr = char_ptr + 1;
+                      temp_long3 = temp_long3 + -1;
+                    } while (temp_long3 != 0);
                   }
-                  uVar24 = (ulonglong)(uint)uStackX_10;
+                  ullong_counter3 = (ulonglong)(uint)stack_data;
                 }
-                *(undefined4 *)(*(longlong *)(lVar10 + 0x2d0) + 0x10) =
-                     *(undefined4 *)(lVar20 + 8 + lStack_48);
-                *(int *)(*(longlong *)(lVar10 + 0x2d0) + 0x14) = (int)uVar24;
-                *(uint *)(*(longlong *)(lVar10 + 0x2d0) + 0x18) = uVar26;
-                *(undefined4 *)(*(longlong *)(lVar10 + 0x2d0) + 0xc) =
+                *(undefined4 *)(*(longlong *)(temp_long2 + 0x2d0) + 0x10) =
+                     *(undefined4 *)(temp_long4 + 8 + stack_long3);
+                *(int *)(*(longlong *)(temp_long2 + 0x2d0) + 0x14) = (int)ullong_counter3;
+                *(uint *)(*(longlong *)(temp_long2 + 0x2d0) + 0x18) = temp_uint5;
+                *(undefined4 *)(*(longlong *)(temp_long2 + 0x2d0) + 0xc) =
                      *(undefined4 *)(_DAT_180c86870 + 0x224);
-                uVar19 = uStack_68;
-                if (0 < (int)uVar24) {
-                  pfVar9 = (float *)(param_1 + 9);
+                temp_uint4 = stack_uint1;
+                if (0 < (int)ullong_counter3) {
+                  ptr_float = (float *)(resource_manager + 9);
                   do {
-                    pfVar13 = (float *)(*(longlong *)(puVar18 + (ulonglong)(uVar26 >> 0xb) * 2 + 2)
-                                       + (ulonglong)(uVar26 + (uVar26 >> 0xb) * -0x800) * 8);
-                    *pfVar13 = (float)(int)pfVar9[-1];
-                    pfVar13[1] = *pfVar9;
-                    uVar24 = uVar24 - 1;
-                    pfVar9 = pfVar9 + 2;
-                    uVar26 = uVar26 + 1;
-                  } while (uVar24 != 0);
-                  uVar24 = uStackX_10 & 0xffffffff;
+                    float_ptr = (float *)(*(longlong *)(ptr_uint + (ulonglong)(temp_uint5 >> 0xb) * 2 + 2)
+                                       + (ulonglong)(temp_uint5 + (temp_uint5 >> 0xb) * -0x800) * 8);
+                    *float_ptr = (float)(int)ptr_float[-1];
+                    float_ptr[1] = *ptr_float;
+                    ullong_counter3 = ullong_counter3 - 1;
+                    ptr_float = ptr_float + 2;
+                    temp_uint5 = temp_uint5 + 1;
+                  } while (ullong_counter3 != 0);
+                  ullong_counter3 = stack_data & 0xffffffff;
                 }
               }
-LAB_180208d4a:
-              lVar20 = *(longlong *)(lVar11 + 0x58 + lStack_58);
-              uStack_68 = uVar19 + 1;
-              uVar22 = (ulonglong)uStack_68;
-              lStack_60 = lStack_60 + 0x10;
-              lStack_48 = lStack_48 + 0xc;
-              uVar19 = uStack_64;
-            } while ((ulonglong)(longlong)(int)uStack_68 <
-                     (ulonglong)((*(longlong *)(lVar11 + 0x60 + lStack_58) - lVar20) / 0xc));
+resource_complete_label:
+              temp_long4 = *(longlong *)(resource_base + 0x58 + stack_long2);
+              stack_uint1 = temp_uint4 + 1;
+              ullong_counter1 = (ulonglong)stack_uint1;
+              stack_long1 = stack_long1 + 0x10;
+              stack_long3 = stack_long3 + 0xc;
+              temp_uint4 = stack_uint2;
+            } while ((ulonglong)(longlong)(int)stack_uint1 <
+                     (ulonglong)((*(longlong *)(resource_base + 0x60 + stack_long2) - temp_long4) / 0xc));
           }
-          lVar11 = *param_1;
-          uStack_64 = uVar19 + 1;
-          uVar22 = (ulonglong)uStack_64;
-          lStack_58 = lStack_58 + 0x78;
-          lVar20 = SUB168(SEXT816(-0x7777777777777777) * SEXT816(param_1[1] - lVar11),8) +
-                   (param_1[1] - lVar11);
-          if ((ulonglong)((lVar20 >> 6) - (lVar20 >> 0x3f)) <= (ulonglong)(longlong)(int)uStack_64)
+          resource_base = *resource_manager;
+          stack_uint2 = temp_uint4 + 1;
+          ullong_counter1 = (ulonglong)stack_uint2;
+          stack_long2 = stack_long2 + 0x78;
+          temp_long4 = SUB168(SEXT816(-0x7777777777777777) * SEXT816(resource_manager[1] - resource_base),8) +
+                   (resource_manager[1] - resource_base);
+          if ((ulonglong)((temp_long4 >> 6) - (temp_long4 >> 0x3f)) <= (ulonglong)(longlong)(int)stack_uint2)
           {
             return;
           }
@@ -1001,6 +1037,24 @@ LAB_180208d4a:
 }
 
 
+
+// 函数调用映射说明 (简化实现标注):
+// FUN_180209470 -> configure_resource_manager (简化实现)
+// FUN_180209720 -> process_resource_manager_advanced (简化实现)
+// FUN_18064e900 -> handle_resource_manager_error (简化实现)
+// FUN_1800b3590 -> create_resource_processor (简化实现)
+// FUN_180208400 -> initialize_resource_processor (简化实现)
+// FUN_180080810 -> process_resource_data (简化实现)
+// FUN_1801efdb0 -> lookup_resource_data (简化实现)
+// FUN_1801ef300 -> validate_resource_data (简化实现)
+// FUN_1801ef620 -> process_resource_data (简化实现)
+// FUN_180626f80 -> log_resource_error (简化实现)
+// FUN_18062b1e0 -> allocate_resource_memory (简化实现)
+// FUN_18062b420 -> allocate_resource_chunk (简化实现)
+// FUN_180208f20 -> process_resource_float_data (简化实现)
+// SUB168 -> calculate_resource_count (简化实现)
+// handle_batch_cleanup_failure -> handle_resource_cleanup_failure (简化实现)
+// handle_memory_allocation_error -> handle_resource_cleanup_failure (简化实现)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 

@@ -702,3 +702,84 @@ LAB_180209c13:
   if (texture_data == (undefined8 *)0x0) goto LAB_18020a68a;
   goto LAB_180209ba0;
 }
+
+/**
+ * 处理顶点数据的空间位置验证和存储
+ * 检查顶点位置是否与目标位置重合，如果不重合则添加到顶点缓冲区中
+ * 
+ * @param vertex_context 顶点上下文指针，包含顶点缓冲区信息
+ * @param spatial_context 空间上下文指针，包含空间索引数据
+ * @param target_position 目标位置坐标数组 [x, y, z]
+ */
+void process_vertex_position_validation(longlong vertex_context, longlong spatial_context, float *target_position)
+
+{
+  int *vertex_count;
+  undefined8 *vertex_data;
+  longlong spatial_index;
+  undefined8 position_x;
+  undefined8 position_y;
+  undefined8 position_z;
+  longlong vertex_offset;
+  uint vertex_id;
+  uint block_index;
+  int current_count;
+  float distance_x;
+  float distance_y;
+  float distance_z;
+  
+  // 检查顶点缓冲区是否已满
+  if (*(int *)(vertex_context + 8) < *(int *)(vertex_context + 0xc)) {
+    current_count = 0;
+    if (0 < *(int *)(vertex_context + 8)) {
+      do {
+        // 计算顶点的空间索引
+        vertex_id = *(int *)(vertex_context + 0x10) + current_count;
+        block_index = vertex_id >> 0xc;
+        spatial_index = *(longlong *)(spatial_context + 0x1220 + (ulonglong)block_index * 8);
+        vertex_offset = (ulonglong)(vertex_id + block_index * -0x1000) * 0x20;
+        
+        // 计算当前顶点与目标位置的距离
+        distance_z = *(float *)(spatial_index + 4 + vertex_offset) - target_position[1];
+        distance_y = *(float *)(spatial_index + vertex_offset) - *target_position;
+        distance_x = *(float *)(spatial_index + 8 + vertex_offset) - target_position[2];
+        
+        // 如果距离小于阈值（0.2单位），则认为顶点重合，直接返回
+        if (distance_z * distance_z + distance_y * distance_y + distance_x * distance_x < 0.040000003) {
+          return;
+        }
+        current_count = current_count + 1;
+      } while (current_count < *(int *)(vertex_context + 8));
+    }
+    
+    // 加锁保护顶点计数器
+    LOCK();
+    vertex_count = (int *)(vertex_context + 8);
+    current_count = *vertex_count;
+    *vertex_count = *vertex_count + 1;
+    UNLOCK();
+    
+    // 检查是否还有空间
+    if (current_count < *(int *)(vertex_context + 0xc)) {
+      // 准备位置数据
+      position_x = *(undefined8 *)(target_position + 2);
+      vertex_id = *(int *)(vertex_context + 0x10) + current_count;
+      position_y = *(undefined8 *)(target_position + 4);
+      position_z = *(undefined8 *)(target_position + 6);
+      block_index = vertex_id >> 0xc;
+      spatial_index = *(longlong *)(spatial_context + 0x1220 + (ulonglong)block_index * 8);
+      vertex_offset = (ulonglong)(vertex_id + block_index * -0x1000) * 0x20;
+      
+      // 存储顶点位置数据（前16字节：x,y坐标）
+      vertex_data = (undefined8 *)(spatial_index + vertex_offset);
+      *vertex_data = *(undefined8 *)target_position;
+      vertex_data[1] = position_x;
+      
+      // 存储顶点位置数据（后16字节：z坐标和其他数据）
+      vertex_data = (undefined8 *)(spatial_index + 0x10 + vertex_offset);
+      *vertex_data = position_y;
+      vertex_data[1] = position_z;
+    }
+  }
+  return;
+}
