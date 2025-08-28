@@ -132,8 +132,12 @@ LAB_1801571ef:
 // WARNING: Removing unreachable block (ram,0x000180157b0e)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 函数: 创建引擎事件对象
+// 功能: 创建一个新的引擎事件对象并进行初始化
+// 参数: param_1 - 引擎上下文指针, param_2 - 输出参数存储创建的事件对象, param_3 - 事件参数, param_4 - 事件类型, param_5 - 标志位
+// 返回: 事件对象指针
 longlong *
-FUN_180157390(longlong *param_1,longlong *param_2,longlong param_3,undefined8 param_4,char param_5)
+EngineEvent_Create(longlong *param_1,longlong *param_2,longlong param_3,undefined8 param_4,char param_5)
 
 {
   longlong *plVar1;
@@ -167,7 +171,7 @@ FUN_180157390(longlong *param_1,longlong *param_2,longlong param_3,undefined8 pa
   undefined8 uStack_60;
   longlong *plStack_58;
   
-  plVar2 = _DAT_180c86878;
+  plVar2 = g_pEngineContext;  // 获取引擎全局上下文
   uStack_60 = 0xfffffffffffffffe;
   uStack_a8 = 0;
   plStackX_8 = param_1;
@@ -194,7 +198,7 @@ FUN_180157390(longlong *param_1,longlong *param_2,longlong param_3,undefined8 pa
     uStack_b0 = 0;
     puStack_c0 = (undefined8 *)0x0;
     uStack_b8 = 0;
-    puVar7 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,&UNK_180a3c313);
+    puVar7 = (undefined8 *)MemoryPool_Allocate(g_pMemoryPool,0x10,&g_sEmptyString);  // 分配错误消息缓冲区
     *(undefined1 *)puVar7 = 0;
     puStack_c0 = puVar7;
     uVar5 = FUN_18064e990(puVar7);
@@ -263,10 +267,10 @@ LAB_180157585:
   if (*(undefined **)(param_3 + 8) != (undefined *)0x0) {
     puVar11 = *(undefined **)(param_3 + 8);
   }
-  FUN_180627c50(&puStack_98,puVar11);
+  String_Concatenate(&puStack_98,puVar11);  // 字符串连接操作
   iVar4 = (int)plVar2[5];
   *(int *)(plVar2 + 5) = iVar4 + 1;
-  (**(code **)(*plVar2 + 0x208))(plVar2,&plStackX_8,auStack_a0,iVar4,param_4);
+  EngineContext_CreateEvent(plVar2,&plStackX_8,auStack_a0,iVar4,param_4);  // 调用引擎事件创建函数
   if (*(int *)(_DAT_180c8a9c8 + 0x9a0) != 0) {
     puStack_c8 = &UNK_180a3c3e0;
     uStack_b0 = 0;
@@ -331,7 +335,7 @@ LAB_180157862:
       puVar7 = puStack_c0;
     }
     uStack_b8 = iVar4;
-    FUN_1800623b0(_DAT_180c86928,0,0x1000000000000,3,puVar7);
+    Logger_WriteError(g_pLogger,0,0x1000000000000,3,puVar7);  // 写入错误日志
     puStack_c8 = &UNK_180a3c3e0;
     if (puStack_c0 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
@@ -344,7 +348,7 @@ LAB_180157862:
   ppuStack_70 = (undefined **)CONCAT44(ppuStack_70._4_4_,(int)plStackX_8[10]);
   plStack_68 = plStackX_8;
   (**(code **)(*plStackX_8 + 0x28))();
-  FUN_18015b6b0(plVar2 + 6,&puStack_c8,&ppuStack_70);
+  EventQueue_Push(plVar2 + 6,&puStack_c8,&ppuStack_70);  // 将事件推入队列
   if (plStack_68 != (longlong *)0x0) {
     (**(code **)(*plStack_68 + 0x38))();
   }
@@ -355,7 +359,7 @@ LAB_180157862:
     uStack_b0 = 0;
     puStack_c0 = (undefined8 *)0x0;
     uStack_b8 = 0;
-    puVar9 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x18,0x13);
+    puVar9 = (undefined4 *)MemoryPool_Allocate(g_pMemoryPool,0x18,0x13);  // 分配警告消息缓冲区
     *(undefined1 *)puVar9 = 0;
     puStack_c0 = (undefined8 *)puVar9;
     uVar5 = FUN_18064e990(puVar9);
@@ -400,7 +404,7 @@ LAB_180157a6e:
     if (puVar9 != (undefined4 *)0x0) {
       puVar10 = puVar9;
     }
-    FUN_180626f80(puVar10);
+    Logger_WriteWarning(puVar10);  // 写入警告日志
     puStack_c8 = &UNK_180a3c3e0;
     if (puVar9 != (undefined4 *)0x0) {
                     // WARNING: Subroutine does not return
