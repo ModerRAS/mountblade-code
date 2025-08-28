@@ -32,7 +32,7 @@ extern uint64_t system_buffer_cc18;     // 换行符常量
 extern void FUN_18011da00(void *buffer, int64_t size);
 extern void *FUN_1801210b0(const char *str);
 extern void *func_0x000180120ce0(int64_t size, uint64_t context);
-extern int FUN_18010cbc0(uint64_t config, uint64_t key, void *value1, void *value2);
+extern int AdvancedSystemOptimizer(uint64_t config, uint64_t key, void *value1, void *value2);
 extern void *FUN_180122210(void *buffer, const char *format, ...);
 extern void *strstr(const char *haystack, const char *needle);
 extern void *memcpy(void *dest, const void *src, int64_t n);
@@ -635,7 +635,7 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, int64_
     int temp_int_array[2];
     
     // 解析位置偏移参数
-    parse_result = FUN_18010cbc0(config_data, &global_config_3208_ptr, &temp_float1, &temp_float2);
+    parse_result = AdvancedSystemOptimizer(config_data, &global_config_3208_ptr, &temp_float1, &temp_float2);
     if (parse_result == 2) {
         *(float *)(target_struct + 0xc) = temp_float1;
         *(float *)(target_struct + 0x10) = temp_float2;
@@ -643,7 +643,7 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, int64_
     }
     
     // 解析边界检查参数
-    parse_result = FUN_18010cbc0(config_data, &global_config_3248_ptr, &temp_float1, &temp_float2);
+    parse_result = AdvancedSystemOptimizer(config_data, &global_config_3248_ptr, &temp_float1, &temp_float2);
     if (parse_result == 2) {
         if (temp_float1 <= *(float *)(SYSTEM_DATA_MANAGER_A + 0x163c)) {
             temp_float1 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x163c);
@@ -658,14 +658,14 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, int64_
     }
     
     // 解析材质ID参数
-    parse_result = FUN_18010cbc0(config_data, &global_config_3224_ptr, temp_array);
+    parse_result = AdvancedSystemOptimizer(config_data, &global_config_3224_ptr, temp_array);
     if (parse_result == 1) {
         *(int32_t *)(target_struct + 0x24) = temp_array[0];
         return;
     }
     
     // 解析纹理坐标参数
-    parse_result = FUN_18010cbc0(config_data, &global_config_3280_ptr, &temp_float1, &temp_float2);
+    parse_result = AdvancedSystemOptimizer(config_data, &global_config_3280_ptr, &temp_float1, &temp_float2);
     if (parse_result == 2) {
         *(float *)(target_struct + 0x1c) = temp_float1;
         *(float *)(target_struct + 0x20) = temp_float2;
@@ -673,14 +673,14 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, int64_
     }
     
     // 解析布尔标志参数
-    parse_result = FUN_18010cbc0(config_data, &global_config_3264_ptr, temp_int_array);
+    parse_result = AdvancedSystemOptimizer(config_data, &global_config_3264_ptr, temp_int_array);
     if (parse_result == 1) {
         *(bool *)(target_struct + 0x32) = temp_int_array[0] != 0;
         return;
     }
     
     // 解析颜色值参数
-    parse_result = FUN_18010cbc0(config_data, &global_config_3320_ptr, temp_array, temp_int_array);
+    parse_result = AdvancedSystemOptimizer(config_data, &global_config_3320_ptr, temp_array, temp_int_array);
     if (parse_result == 2) {
         *(int32_t *)(target_struct + 0x28) = temp_array[0];
         *(int16_t *)(target_struct + 0x30) = (int16_t)temp_int_array[0];
@@ -688,7 +688,7 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, int64_
     }
     
     // 解析整数值参数
-    parse_result = FUN_18010cbc0(config_data, &global_config_3304_ptr, temp_array);
+    parse_result = AdvancedSystemOptimizer(config_data, &global_config_3304_ptr, temp_array);
     if (parse_result == 1) {
         *(int32_t *)(target_struct + 0x28) = temp_array[0];
         *(int16_t *)(target_struct + 0x30) = 0xffff;
@@ -696,7 +696,7 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, int64_
     }
     
     // 解析浮点数值参数
-    parse_result = FUN_18010cbc0(config_data, &global_config_3344_ptr, temp_array);
+    parse_result = AdvancedSystemOptimizer(config_data, &global_config_3344_ptr, temp_array);
     if (parse_result == 1) {
         *(int32_t *)(target_struct + 0x2c) = temp_array[0];
     }

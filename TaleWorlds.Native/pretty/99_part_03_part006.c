@@ -279,7 +279,7 @@ LAB_1801cad0b:
               }
               else if ((uint)uStack_210 < uVar14) {
                 puStack_220 = (int16_t *)
-                              FUN_18062b8b0(system_memory_pool_ptr,puStack_220,uVar14,0x10,0x13);
+                              DataValidator(system_memory_pool_ptr,puStack_220,uVar14,0x10,0x13);
                 uVar6 = (uint64_t)puStack_220 & 0xffffffffffc00000;
                 if (uVar6 == 0) {
                   uStack_210._0_4_ = 0;

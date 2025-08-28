@@ -293,7 +293,7 @@ LAB_18040a675:
     uStack_f0 = (uint64_t)uVar7;
     if (0 < iStack_118) {
       if ((iStack_118 != -0x29) && (uVar7 < iStack_118 + 0x2aU)) {
-        puVar8 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar8,iStack_118 + 0x2aU,0x10,0x13);
+        puVar8 = (uint64_t *)DataValidator(system_memory_pool_ptr,puVar8,iStack_118 + 0x2aU,0x10,0x13);
         puStack_100 = puVar8;
         uVar23 = CoreEngineSystemCleanup(puVar8);
         uStack_f0 = CONCAT44(uStack_f0._4_4_,uVar23);

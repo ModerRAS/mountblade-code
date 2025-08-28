@@ -451,7 +451,7 @@ configure_engine_ai_system(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
   uVar3 = 0xfffffffffffffffe;
   uVar2 = 0;
   uVar1 = FUN_180167a50();
-  FUN_180627910(param_1,uVar1,param_3,param_4,uVar2,uVar3);
+  CoreMemoryPoolValidator(param_1,uVar1,param_3,param_4,uVar2,uVar3);
   return param_1;
 }
 
@@ -558,7 +558,7 @@ initialize_engine_animation_system(uint64_t param_1,uint64_t param_2,uint64_t pa
   uVar3 = 0xfffffffffffffffe;
   uVar2 = 0;
   uVar1 = FUN_1801676b0();
-  FUN_180627910(param_1,uVar1,param_3,param_4,uVar2,uVar3);
+  CoreMemoryPoolValidator(param_1,uVar1,param_3,param_4,uVar2,uVar3);
   return param_1;
 }
 
@@ -705,7 +705,7 @@ uint64_t process_engine_render_queue(uint64_t param_1,uint64_t param_2,int64_t *
     FUN_18032c450(*(uint64_t *)(system_main_module_state + 0x3d8));
     puVar1 = &unknown_var_9916_ptr;
   }
-  FUN_180627910(param_1,puVar1);
+  CoreMemoryPoolValidator(param_1,puVar1);
   return param_1;
 }
 
@@ -780,7 +780,7 @@ uint64_t manage_engine_texture_resources(uint64_t param_1,uint64_t param_2,int64
     }
     puVar4 = &unknown_var_9916_ptr;
   }
-  FUN_180627910(param_1,puVar4);
+  CoreMemoryPoolValidator(param_1,puVar4);
   return param_1;
 }
 
@@ -1137,7 +1137,7 @@ initialize_engine_stencil_buffer(uint64_t param_1,uint64_t param_2,uint64_t para
   if (*(int *)*param_4 != 0) {
     puVar1 = &system_buffer_8120;
   }
-  FUN_180627910(param_1,puVar1,param_3,param_4,0,0xfffffffffffffffe);
+  CoreMemoryPoolValidator(param_1,puVar1,param_3,param_4,0,0xfffffffffffffffe);
   return param_1;
 }
 
@@ -1201,7 +1201,7 @@ initialize_engine_viewport_system(uint64_t param_1,uint64_t param_2,uint64_t par
   uVar3 = 0xfffffffffffffffe;
   uVar2 = 0;
   uVar1 = FUN_1801659e0();
-  FUN_180627910(param_1,uVar1,param_3,param_4,uVar2,uVar3);
+  CoreMemoryPoolValidator(param_1,uVar1,param_3,param_4,uVar2,uVar3);
   return param_1;
 }
 
@@ -1249,7 +1249,7 @@ uint64_t configure_engine_scissor_region(uint64_t param_1,uint64_t param_2,int64
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x38))(plVar2);
   }
-  FUN_180627910(param_1,&system_buffer_ptr);
+  CoreMemoryPoolValidator(param_1,&system_buffer_ptr);
   return param_1;
 }
 
@@ -1294,7 +1294,7 @@ initialize_engine_clear_operation(uint64_t param_1,uint64_t param_2,uint64_t par
     FUN_180170ac0(0,&unknown_var_9728_ptr,param_3,param_4,0,0xfffffffffffffffe);
     puVar1 = &system_buffer_80cc;
   }
-  FUN_180627910(param_1,puVar1);
+  CoreMemoryPoolValidator(param_1,puVar1);
   return param_1;
 }
 

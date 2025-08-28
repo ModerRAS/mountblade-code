@@ -760,7 +760,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
                   stack_a8 = CoreEngineSystemCleanup(temp_ptr1);
                 }
                 else if ((uint)temp_ptr1 < temp_uint) {
-                  temp_ptr1 = (int8_t *)FUN_18062b8b0(_DAT,temp_ptr1,temp_uint,0x10,0x13);
+                  temp_ptr1 = (int8_t *)DataValidator(_DAT,temp_ptr1,temp_uint,0x10,0x13);
                   stack_ptr_b8 = (uint64_t *)temp_ptr1;
                   stack_a8 = CoreEngineSystemCleanup(temp_ptr1);
                 }
@@ -787,7 +787,7 @@ uint64_t * process_config_command(int64_t command_context,uint64_t *output_buffe
                 }
                 else {
                   if (buffer_size <= (uint)temp_ptr1) goto LAB_18016195a;
-                  temp_ptr1 = (int8_t *)FUN_18062b8b0(_DAT,temp_ptr1,buffer_size,0x10,0x13);
+                  temp_ptr1 = (int8_t *)DataValidator(_DAT,temp_ptr1,buffer_size,0x10,0x13);
                 }
                 stack_ptr_b8 = (uint64_t *)temp_ptr1;
                 stack_a8 = CoreEngineSystemCleanup(temp_ptr1);
@@ -829,7 +829,7 @@ LAB_18016195a:
           stack_ptr1 = *(void **)(temp_long + 8);
         }
         
-        FUN_180627910(output_buffer,stack_ptr1);
+        CoreMemoryPoolValidator(output_buffer,stack_ptr1);
         stack_ptr_c0 = (uint64_t *)&STRING_CONSTANT_EMPTY;
         
         if (temp_ptr1 == (int8_t *)0x0) {

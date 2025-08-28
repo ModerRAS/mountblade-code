@@ -955,7 +955,7 @@ void FUN_1806259b0(int64_t param_1,int32_t param_2)
   
   uStack_48 = 0xfffffffffffffffe;
   uStack_20 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_88;
-  FUN_180627910(&puStack_68,&system_data_c230);
+  CoreMemoryPoolValidator(&puStack_68,&system_data_c230);
   uVar3 = uStack_58 + 3;
   CoreEngineDataBufferProcessor(&puStack_68,uVar3);
   *(int32_t *)(puStack_60 + uStack_58) = 0x64742d;
@@ -1036,7 +1036,7 @@ void FUN_180625ba0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t par
   void *puStack_28;
   uint uStack_20;
   
-  FUN_180627910(&puStack_30,&system_data_c230,param_3,param_4,0xfffffffffffffffe);
+  CoreMemoryPoolValidator(&puStack_30,&system_data_c230,param_3,param_4,0xfffffffffffffffe);
   uVar3 = uStack_20;
   uVar2 = uStack_20 + 3;
   CoreEngineDataBufferProcessor(&puStack_30,uVar2);

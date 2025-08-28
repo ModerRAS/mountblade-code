@@ -101,7 +101,7 @@ void FUN_1806e9710(int64_t param_1,uint64_t param_2,uint64_t param_3)
   
   FUN_1806dee40(param_1,param_2,param_3,auStack_d8,auStack_108,auStack_128,1);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(float *)(param_1 + 0x70) * 0.5);
+  AdvancedSystemController(*(float *)(param_1 + 0x70) * 0.5);
 }
 
 
@@ -142,7 +142,7 @@ void FUN_1806e9765(void)
     fStack000000000000005c = fVar2 * fStack000000000000005c * fVar1;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(float *)(unaff_RBX + 0x70) * 0.5);
+  AdvancedSystemController(*(float *)(unaff_RBX + 0x70) * 0.5);
 }
 
 

@@ -188,7 +188,7 @@ void FUN_1805cbf90(int64_t *param_1,char param_2)
       auVar15 = rsqrtss(ZEXT416((uint)fVar16),ZEXT416((uint)fVar16));
       uStackX_8 = uVar7;
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(iVar6 == 3,3.0 - fVar16 * auVar15._0_4_ * auVar15._0_4_);
+      AdvancedSystemController(iVar6 == 3,3.0 - fVar16 * auVar15._0_4_ * auVar15._0_4_);
     }
 FUN_1805cc66f:
     if (iVar6 == 3) {
@@ -298,7 +298,7 @@ void FUN_1805cc543(uint64_t param_1,uint64_t param_2)
   auVar4._12_4_ = in_XMM1_Dd;
   auVar4 = rsqrtss(auVar3,auVar4);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(in_RAX + 0x34),3.0 - fVar1 * auVar4._0_4_ * auVar4._0_4_);
+  AdvancedSystemController(*(int32_t *)(in_RAX + 0x34),3.0 - fVar1 * auVar4._0_4_ * auVar4._0_4_);
 }
 
 

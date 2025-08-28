@@ -166,7 +166,7 @@ LAB_180193772:
     }
   }
   if ((physics_context + 0x4c != 0) && (pcVar8 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar8,&system_flag_6430,physics_context + 0x4c); // 设置静态摩擦系数
+    AdvancedSystemOptimizer(pcVar8,&system_flag_6430,physics_context + 0x4c); // 设置静态摩擦系数
   }
   
   // 处理动态摩擦系数
@@ -203,7 +203,7 @@ LAB_180193810:
     }
   }
   if ((physics_context + 0x50 != 0) && (pcVar8 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar8,&system_flag_6430,physics_context + 0x50); // 设置动态摩擦系数
+    AdvancedSystemOptimizer(pcVar8,&system_flag_6430,physics_context + 0x50); // 设置动态摩擦系数
   }
   
   // 处理弹性系数
@@ -240,7 +240,7 @@ LAB_1801938a0:
     }
   }
   if ((physics_context + 0x54 != 0) && (pcVar8 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar8,&system_flag_6430,physics_context + 0x54); // 设置弹性系数
+    AdvancedSystemOptimizer(pcVar8,&system_flag_6430,physics_context + 0x54); // 设置弹性系数
   }
   
   // 处理柔软度
@@ -277,7 +277,7 @@ LAB_180193930:
     }
   }
   if ((physics_context + 0x58 != 0) && (pcVar8 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar8,&system_flag_6430,physics_context + 0x58); // 设置柔软度
+    AdvancedSystemOptimizer(pcVar8,&system_flag_6430,physics_context + 0x58); // 设置柔软度
   }
   
   // 处理线性阻尼
@@ -314,7 +314,7 @@ LAB_1801939c0:
     }
   }
   if ((physics_context + 0x5c != 0) && (pcVar8 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar8,&system_flag_6430,physics_context + 0x5c); // 设置线性阻尼
+    AdvancedSystemOptimizer(pcVar8,&system_flag_6430,physics_context + 0x5c); // 设置线性阻尼
   }
   
   // 处理角阻尼
@@ -328,7 +328,7 @@ LAB_1801939c0:
     if (puVar6 == (uint64_t *)0x0) {
 LAB_180193a66:
       if ((physics_context + 0x60 != 0) && (pcVar7 != (char *)0x0)) {
-        FUN_18010cbc0(pcVar7,&system_flag_6430,physics_context + 0x60); // 设置角阻尼
+        AdvancedSystemOptimizer(pcVar7,&system_flag_6430,physics_context + 0x60); // 设置角阻尼
       }
       puStack_50 = &system_data_buffer_ptr;
       if (lStack_48 == 0) {

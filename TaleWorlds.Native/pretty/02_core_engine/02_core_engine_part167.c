@@ -92,7 +92,7 @@ void process_engine_string_operations(int64_t param_1,uint64_t param_2,uint64_t 
   string_length = *(uint *)(system_main_module_state + 0x180);
   buffer_size = (uint64_t)string_length;
   if (*(int64_t *)(system_main_module_state + 0x178) != 0) {
-    FUN_1806277c0(&string_buffer,buffer_size);
+    CoreMemoryPoolProcessor(&string_buffer,buffer_size);
   }
   if (string_length != 0) {
                     // WARNING: Subroutine does not return
@@ -103,7 +103,7 @@ void process_engine_string_operations(int64_t param_1,uint64_t param_2,uint64_t 
   }
   context_flag = CONCAT44(*(int32_t *)(engine_base + 0x18c),(int32_t)context_flag);
   processed_length = string_length;
-  FUN_1806277c0(&string_buffer,5);
+  CoreMemoryPoolProcessor(&string_buffer,5);
   *(int32_t *)((uint64_t)processed_length + allocated_memory) = 0x73676f6c;
   *(int16_t *)((int32_t *)((uint64_t)processed_length + allocated_memory) + 1) = 0x2f;
   processed_length = 5;
@@ -120,7 +120,7 @@ void process_engine_string_operations(int64_t param_1,uint64_t param_2,uint64_t 
   string_buffer = &system_data_buffer_ptr;
   if (allocated_memory != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   return;
 }
@@ -144,7 +144,7 @@ create_taleworlds_engine_string(uint64_t param_1,uint64_t *param_2,uint64_t para
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  FUN_1806277c0(param_2,0x11,param_3,param_4,0,0xfffffffffffffffe);
+  CoreMemoryPoolProcessor(param_2,0x11,param_3,param_4,0,0xfffffffffffffffe);
   string_data = (uint64_t *)param_2[1];
   *string_data = 0x6c726f57656c6154;  // "TaleWorlds.Engine." (部分)
   string_data[1] = 0x6e69676e452e7364; // "TaleWorlds.Engine." (部分)
@@ -172,7 +172,7 @@ create_taleworlds_engine_managed_string(uint64_t param_1,uint64_t *param_2,uint6
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  FUN_1806277c0(param_2,0x1f,param_3,param_4,0,0xfffffffffffffffe);
+  CoreMemoryPoolProcessor(param_2,0x1f,param_3,param_4,0,0xfffffffffffffffe);
   string_data = (uint64_t *)param_2[1];
   *string_data = 0x6c726f57656c6154;  // "TaleWorlds.Engine.Managed" (部分)
   string_data[1] = 0x6e69676e452e7364; // "TaleWorlds.Engine.Managed" (部分)
@@ -245,10 +245,10 @@ void process_engine_iteration(uint64_t param_1,int64_t param_2,int64_t param_3)
           if (iteration_count < 0x10) {
             context_id = 0x10;
           }
-          temp_buffer = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)context_id,0x13);
+          temp_buffer = (int8_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)context_id,0x13);
           *temp_buffer = 0;
           allocated_string = temp_buffer;
-          buffer_flag = FUN_18064e990(temp_buffer);
+          buffer_flag = CoreMemoryPoolCleaner(temp_buffer);
           buffer_capacity = CONCAT44(buffer_capacity._4_4_,buffer_flag);
                     // WARNING: Subroutine does not return
           memcpy(temp_buffer,string_source,iteration_count);
@@ -265,7 +265,7 @@ void process_engine_iteration(uint64_t param_1,int64_t param_2,int64_t param_3)
         output_buffer[3] = 0;
         output_buffer[1] = 0;
         *(int32_t *)(output_buffer + 2) = 0;
-        FUN_1806277c0(output_buffer,0);
+        CoreMemoryPoolProcessor(output_buffer,0);
         temp_buffer = (int8_t *)0;
       }
       else {
@@ -275,7 +275,7 @@ void process_engine_iteration(uint64_t param_1,int64_t param_2,int64_t param_3)
       stack_buffer = &system_data_buffer_ptr;
       if (temp_buffer != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(temp_buffer);
+        CoreMemoryPoolInitializer(temp_buffer);
       }
       allocated_string = (int8_t *)0x0;
       buffer_capacity = buffer_capacity & 0xffffffff00000000;
@@ -467,7 +467,7 @@ void shutdown_engine_system(int64_t param_1)
       puStack_1a0 = &system_data_buffer_ptr;
       if (lStack_198 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
       lStack_198 = 0;
       uStack_188 = uStack_188 & 0xffffffff00000000;
@@ -600,7 +600,7 @@ void shutdown_engine_system(int64_t param_1)
       (**(code **)(*plVar5 + 0x10))(plVar5,&system_memory_143c);
       plStack_1b0 = plVar5;
       FUN_18005ea90(lVar4 + 0x7fe8 + (int64_t)*(int *)(lVar4 + 0x8088) * 0x20,&plStack_1b0);
-      uVar19 = FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
+      uVar19 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x70,8,3);
       lVar4 = FUN_1800a1e20(uVar19);
       plVar5[0xb] = lVar4;
       uVar19 = FUN_1802c2400(plVar5);
@@ -686,7 +686,7 @@ void shutdown_engine_system(int64_t param_1)
     *(int8_t *)(system_parameter_buffer + 0x12f4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_88 ^ (uint64_t)auStack_1e8);
+  SystemSecurityChecker(uStack_88 ^ (uint64_t)auStack_1e8);
 }
 
 

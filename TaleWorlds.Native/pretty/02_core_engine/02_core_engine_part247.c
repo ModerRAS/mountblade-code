@@ -112,7 +112,7 @@ uint64_t process_event_trigger(int64_t event_context, int64_t trigger_data, char
   string_length = *(int *)(trigger_data + 0x10);
   if (0 < string_length) {
     if ((string_length != -0xf) && (buffer_size < string_length + 0x10U)) {
-      message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, string_length + 0x10U, 0x10, 0x13);
+      message_buffer = (int32_t *)DataValidator(system_memory_pool_ptr, message_buffer, string_length + 0x10U, 0x10, 0x13);
       CoreEngineSystemCleanup(message_buffer);
       string_length = *(int *)(trigger_data + 0x10);
     }
@@ -127,7 +127,7 @@ build_message:
     CoreEngineSystemCleanup(message_buffer);
   }
   else if (buffer_size < 0x11) {
-    message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, 0x11, 0x10, 0x13);
+    message_buffer = (int32_t *)DataValidator(system_memory_pool_ptr, message_buffer, 0x11, 0x10, 0x13);
     goto build_message;
   }
   
@@ -238,7 +238,7 @@ int64_t process_event_type(int64_t event_context, int event_type, char is_enable
     }
     else {
       if (buffer_size <= (uint)result_code) goto buffer_ready;
-      temp_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, temp_buffer, buffer_size, 0x10, 0x13);
+      temp_buffer = (int32_t *)DataValidator(system_memory_pool_ptr, temp_buffer, buffer_size, 0x10, 0x13);
     }
     result_code._0_4_ = CoreEngineSystemCleanup(temp_buffer);
   }
@@ -317,7 +317,7 @@ uint64_t check_event_system_state(int64_t event_context, int64_t state_data)
   string_length = *(int *)(state_data + 0x10);
   if (0 < string_length) {
     if ((string_length != -0x15) && (buffer_size < string_length + 0x16U)) {
-      message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, string_length + 0x16U, 0x10, 0x13);
+      message_buffer = (int32_t *)DataValidator(system_memory_pool_ptr, message_buffer, string_length + 0x16U, 0x10, 0x13);
       CoreEngineSystemCleanup(message_buffer);
       string_length = *(int *)(state_data + 0x10);
     }
@@ -333,7 +333,7 @@ build_message:
     CoreEngineSystemCleanup(message_buffer);
   }
   else if (buffer_size < 0x17) {
-    message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, 0x17, 0x10, 0x13);
+    message_buffer = (int32_t *)DataValidator(system_memory_pool_ptr, message_buffer, 0x17, 0x10, 0x13);
     goto build_message;
   }
   
@@ -432,7 +432,7 @@ uint64_t process_thread_safe_event_operation(int64_t event_context, int32_t oper
     }
     else {
       if (buffer_size <= (uint)debug_result) goto buffer_ready;
-      temp_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, temp_buffer, buffer_size, 0x10, 0x13);
+      temp_buffer = (int32_t *)DataValidator(system_memory_pool_ptr, temp_buffer, buffer_size, 0x10, 0x13);
     }
     debug_result._0_4_ = CoreEngineSystemCleanup(temp_buffer);
   }

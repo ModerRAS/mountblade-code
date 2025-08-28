@@ -546,7 +546,7 @@ void format_error_message(int error_code, int64_t error_message)
     }
     else {
       if (temp_size <= (uint)buffer_info) goto LAB_180211b66;
-      buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, temp_size, 0x10, 0x13);
+      buffer_data = (uint64_t *)DataValidator(system_memory_pool_ptr, buffer_data, temp_size, 0x10, 0x13);
     }
     format_result = CoreEngineSystemCleanup(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -570,7 +570,7 @@ LAB_180211b66:
     }
     else {
       if (temp_size <= (uint)buffer_info) goto LAB_180211be9;
-      buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, temp_size, 0x10, 0x13);
+      buffer_data = (uint64_t *)DataValidator(system_memory_pool_ptr, buffer_data, temp_size, 0x10, 0x13);
     }
     format_result = CoreEngineSystemCleanup(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -601,7 +601,7 @@ LAB_180211be9:
         }
         else {
           if (message_length <= (uint)buffer_info) goto LAB_180211c85;
-          buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
+          buffer_data = (uint64_t *)DataValidator(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
         }
         format_result = CoreEngineSystemCleanup(buffer_data);
         buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -626,7 +626,7 @@ LAB_180211c85:
     }
     else {
       if (message_length <= (uint)buffer_info) goto LAB_180211d03;
-      buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
+      buffer_data = (uint64_t *)DataValidator(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
     }
     format_result = CoreEngineSystemCleanup(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -660,7 +660,7 @@ LAB_180211d03:
         }
         else {
           if (message_length <= (uint)buffer_info) goto LAB_180211da7;
-          buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
+          buffer_data = (uint64_t *)DataValidator(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
         }
         format_result = CoreEngineSystemCleanup(buffer_data);
         buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -685,7 +685,7 @@ LAB_180211da7:
     }
     else {
       if (message_length <= (uint)buffer_info) goto LAB_180211e24;
-      buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
+      buffer_data = (uint64_t *)DataValidator(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
     }
     format_result = CoreEngineSystemCleanup(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
@@ -727,7 +727,7 @@ uint64_t process_parameter_data(uint64_t param1, int param2, uint64_t param3, ui
   
   // 根据数据大小处理
   if (param2 == 8) {
-    FUN_180627910(&temp_ptr, param4, param3, param4, 0xfffffffffffffffe);
+    CoreMemoryPoolValidator(&temp_ptr, param4, param3, param4, 0xfffffffffffffffe);
     FUN_180623fd0(param3, &temp_ptr);
     temp_ptr = &system_data_buffer_ptr;
     if (temp_value != 0) {
@@ -746,7 +746,7 @@ uint64_t process_parameter_data(uint64_t param1, int param2, uint64_t param3, ui
  */
 void reallocate_memory(uint64_t memory_ptr, int32_t new_size)
 {
-  FUN_18062b8b0(system_memory_pool_ptr, memory_ptr, new_size, 0x10, 7);
+  DataValidator(system_memory_pool_ptr, memory_ptr, new_size, 0x10, 7);
   return;
 }
 

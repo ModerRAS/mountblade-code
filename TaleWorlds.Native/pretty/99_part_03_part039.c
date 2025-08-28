@@ -185,7 +185,7 @@ LAB_1801f14e3:
     else {
       if (uVar9 <= uVar10) goto LAB_1801f157c;
       uStack_2d8 = CONCAT31(uStack_2d8._1_3_,0x13);
-      puVar14 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar14,uVar9,0x10);
+      puVar14 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar14,uVar9,0x10);
     }
     puStack_298 = (uint64_t *)puVar14;
     uVar6 = CoreEngineSystemCleanup(puVar14);
@@ -240,7 +240,7 @@ LAB_1801f161f:
     else {
       if (uVar10 <= uVar9) goto LAB_1801f16b2;
       uStack_2d8 = CONCAT31(uStack_2d8._1_3_,0x13);
-      puVar15 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar15,uVar10,0x10);
+      puVar15 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar15,uVar10,0x10);
     }
     puStack_2b8 = (int32_t *)puVar15;
     uStack_2a8._0_4_ = CoreEngineSystemCleanup(puVar15);

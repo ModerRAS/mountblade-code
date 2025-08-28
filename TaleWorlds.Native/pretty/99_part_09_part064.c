@@ -14,7 +14,7 @@ void FUN_1805e24f4(uint64_t param_1,uint64_t param_2,int64_t param_3)
     *(uint *)(param_3 + 0x10) = *(uint *)(param_3 + 0x10) | 0x20;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(*(int64_t *)(unaff_R14 + 0x20) + 0x34));
+  AdvancedSystemController(*(int32_t *)(*(int64_t *)(unaff_R14 + 0x20) + 0x34));
 }
 
 
@@ -42,7 +42,7 @@ uint64_t FUN_1805e25ee(void)
   
   if (-1 < *(int *)(unaff_RBX + 0x564)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)
+    AdvancedSystemController(*(int32_t *)
                    (*(int64_t *)
                      ((int64_t)*(int *)(unaff_RBX + 0x564) * 0xa60 + 0x30c0 + unaff_R15) + 0x34));
   }
@@ -157,7 +157,7 @@ void FUN_1805e2950(int64_t param_1)
          ((-1 < *(int *)(param_1 + 0x1164) &&
           (*(int *)(lVar3 + 0x3604 + (int64_t)*(int *)(param_1 + 0x1164) * 0xa60) < 0)))) {
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(*(int32_t *)(*(int64_t *)(lVar2 + 0x20) + 0x34));
+        AdvancedSystemController(*(int32_t *)(*(int64_t *)(lVar2 + 0x20) + 0x34));
       }
       *(uint *)(param_1 + 0x18) = *(uint *)(param_1 + 0x18) | 1;
     }
@@ -204,7 +204,7 @@ void FUN_1805e2a50(void)
       (-1 < *(int *)(unaff_RDI + 0x1164))) &&
      (*(int *)(unaff_R15 + 0x3604 + (int64_t)*(int *)(unaff_RDI + 0x1164) * 0xa60) < unaff_R14D)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(*(int64_t *)(unaff_RSI + 0x20) + 0x34));
+    AdvancedSystemController(*(int32_t *)(*(int64_t *)(unaff_RSI + 0x20) + 0x34));
   }
   *(uint *)(unaff_RDI + 0x18) = *(uint *)(unaff_RDI + 0x18) | 1;
   if ((*(byte *)(*(int64_t *)(unaff_RDI + 0x20) + 0x2098) & 8) == 0) {
@@ -242,7 +242,7 @@ void FUN_1805e2a98(void)
   
   uStack0000000000000090 = *(uint64_t *)(*(int64_t *)(unaff_RSI + 0x20) + 0x1c);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(*(int64_t *)(unaff_RSI + 0x20) + 0x34));
+  AdvancedSystemController(*(int32_t *)(*(int64_t *)(unaff_RSI + 0x20) + 0x34));
 }
 
 

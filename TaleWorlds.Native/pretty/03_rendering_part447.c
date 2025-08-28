@@ -277,7 +277,7 @@ void FUN_18050f1e0(int64_t param_1,float param_2)
   fVar16 = *(float *)(lVar2 + 0x2434);
   if ((0.0 < fVar19) || (fVar11 < 0.0)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(fVar12);
+    AdvancedSystemController(fVar12);
   }
   iVar1 = *(int *)(lVar2 + 0x2498);
   if (iVar1 == -1) {
@@ -422,7 +422,7 @@ LAB_18050f687:
   afStackX_10[0] = *(float *)(param_1 + 0x4b4) + *(float *)(param_1 + 0x4a4);
   fStack_108 = afStackX_10[0];
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar15);
+  AdvancedSystemController(fVar15);
 }
 
 
@@ -464,7 +464,7 @@ void FUN_180510080(int64_t param_1,uint64_t param_2,uint64_t param_3,float param
   func_0x000180588750(lVar2,param_4);
 LAB_18051019a:
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(param_4 * 0.75);
+  AdvancedSystemController(param_4 * 0.75);
 }
 
 

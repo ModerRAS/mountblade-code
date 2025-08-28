@@ -256,7 +256,7 @@ void RenderingSystem_ScaleAndInitialize(int64_t render_context, uint64_t data_pt
     expand_render_buffer((int *)(render_context + 0x80), index_count + 1 + *(int *)(render_context + 0x80));
     if (-1 < index_count) {
       // 初始化渲染数据（此函数不返回）
-      FUN_1808fd400();
+      AdvancedSystemController();
     }
   }
   return;
@@ -277,7 +277,7 @@ void RenderingSystem_Initialize(void)
   expand_render_buffer();
   if (-1 < stack_index) {
     // 初始化渲染系统（此函数不返回）
-    FUN_1808fd400();
+    AdvancedSystemController();
   }
   return;
 }
@@ -292,7 +292,7 @@ void RenderingSystem_ForceInitialize(void)
 
 {
   // 强制初始化渲染系统（此函数不返回）
-  FUN_1808fd400();
+  AdvancedSystemController();
 }
 
 

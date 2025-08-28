@@ -132,10 +132,10 @@ void process_config_request(uint64_t *context_ptr, int64_t request_id, int64_t c
     if (*(void **)(config_ptr + 8) != (void *)0x0) {
       config_data = *(void **)(config_ptr + 8);
     }
-    request_type = FUN_18010cbc0(config_data,&unknown_var_1928_ptr,stack_buffer);
+    request_type = AdvancedSystemOptimizer(config_data,&unknown_var_1928_ptr,stack_buffer);
     buffer_size = 0;
     while (request_type != -1) {
-      FUN_18010cbc0(config_data,&unknown_var_1920_ptr,temp_array);
+      AdvancedSystemOptimizer(config_data,&unknown_var_1920_ptr,temp_array);
       string_pos = -1;
       do {
         loop_counter = string_pos + 1;
@@ -198,7 +198,7 @@ void process_config_request(uint64_t *context_ptr, int64_t request_id, int64_t c
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a0 = (uint64_t)uStack_1a0._4_4_ << 0x20;
       puStack_1b8 = &system_state_ptr;
-      request_type = FUN_18010cbc0(config_data + (int)uStack_194,&unknown_var_1928_ptr,stack_buffer);
+      request_type = AdvancedSystemOptimizer(config_data + (int)uStack_194,&unknown_var_1928_ptr,stack_buffer);
       buffer_size = uStack_194;
     }
   }
@@ -212,10 +212,10 @@ void process_config_request(uint64_t *context_ptr, int64_t request_id, int64_t c
       config_data = *(uint64_t **)(config_ptr + 8);
     }
     puStack_168 = config_data;
-    request_type = FUN_18010cbc0(config_data,&unknown_var_1928_ptr,stack_buffer);
+    request_type = AdvancedSystemOptimizer(config_data,&unknown_var_1928_ptr,stack_buffer);
     memory_ptr = (uint64_t *)0x0;
     while (request_type != -1) {
-      FUN_18010cbc0(config_data,&unknown_var_1920_ptr,temp_array);
+      AdvancedSystemOptimizer(config_data,&unknown_var_1920_ptr,temp_array);
       string_pos = -1;
       do {
         loop_counter = string_pos + 1;
@@ -320,7 +320,7 @@ LAB_18010b692:
         string_length = string_length + 1;
       } while (*(char *)((int64_t)config_data + string_length) != '\0');
       if (string_length <= (uint64_t)(int64_t)(int)uStack_194) break;
-      request_type = FUN_18010cbc0((void *)((int64_t)(int)uStack_194 + (int64_t)config_data),
+      request_type = AdvancedSystemOptimizer((void *)((int64_t)(int)uStack_194 + (int64_t)config_data),
                              &unknown_var_1928_ptr,stack_buffer);
     }
   }
@@ -420,7 +420,7 @@ void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
             }
             uStack_a8 = uStack_a8 - remove_count;
             puStack_b0[uStack_a8] = 0;
-            uint64_t marker = FUN_180627910(&puStack_78,&unknown_var_7168_ptr);
+            uint64_t marker = CoreMemoryPoolValidator(&puStack_78,&unknown_var_7168_ptr);
             process_string_operation(&puStack_b8,(int)end_pos - (int)puStack_b0,marker);
             puStack_78 = &system_data_buffer_ptr;
             if (lStack_70 != 0) {
@@ -471,7 +471,7 @@ void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
         }
         uStack_88 = uStack_88 - remove_count;
         puStack_90[uStack_88] = 0;
-        uint64_t marker = FUN_180627910(&puStack_58,&unknown_var_7168_ptr);
+        uint64_t marker = CoreMemoryPoolValidator(&puStack_58,&unknown_var_7168_ptr);
         process_string_operation(&puStack_98,(int)end_pos - (int)puStack_90,marker);
         puStack_58 = &system_data_buffer_ptr;
         if (lStack_50 != 0) {

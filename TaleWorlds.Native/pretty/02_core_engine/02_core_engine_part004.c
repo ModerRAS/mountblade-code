@@ -32,7 +32,7 @@ void 注册基础场景组件(void)
     void (*component_handler)(void);
     
     // 获取全局组件管理器
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     
     // 检查根节点是否有效
@@ -60,8 +60,8 @@ void 注册基础场景组件(void)
     // 如果需要创建新节点
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_BASE_SCENE, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -97,7 +97,7 @@ void 注册渲染组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025cc00;
@@ -119,8 +119,8 @@ void 注册渲染组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_RENDER, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -155,7 +155,7 @@ void 注册物理组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025c000;
@@ -177,8 +177,8 @@ void 注册物理组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_PHYSICS, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -213,7 +213,7 @@ void 注册音频组件(void)
     uint64_t *new_node;
     uint64_t component_handler;
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = 0; // 音频组件没有处理函数
@@ -235,8 +235,8 @@ void 注册音频组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_AUDIO, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -271,7 +271,7 @@ void 注册输入组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025d270;
@@ -293,8 +293,8 @@ void 注册输入组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_INPUT, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -329,7 +329,7 @@ void 注册网络组件(void)
     uint64_t *new_node;
     uint64_t component_handler;
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = 0; // 网络组件没有处理函数
@@ -351,8 +351,8 @@ void 注册网络组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_NETWORK, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -387,7 +387,7 @@ void 注册脚本组件(void)
     uint64_t *new_node;
     void *component_handler;
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = &SCRIPT_ENGINE_HANDLER;
@@ -409,8 +409,8 @@ void 注册脚本组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_SCRIPT, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -445,7 +445,7 @@ void 注册资源管理组件(void)
     uint64_t *new_node;
     uint64_t component_handler;
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = 0; // 资源管理组件没有处理函数
@@ -467,8 +467,8 @@ void 注册资源管理组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_RESOURCE, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -503,7 +503,7 @@ void 注册AI组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_1802633c0;
@@ -525,8 +525,8 @@ void 注册AI组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_AI, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -561,7 +561,7 @@ void 注册动画组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_180262b00;
@@ -583,8 +583,8 @@ void 注册动画组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_ANIMATION, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -619,7 +619,7 @@ void 注册UI组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025cc00;
@@ -641,8 +641,8 @@ void 注册UI组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_UI, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -677,7 +677,7 @@ void 注册粒子系统组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025c000;
@@ -699,8 +699,8 @@ void 注册粒子系统组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_PARTICLE, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -735,7 +735,7 @@ void 注册地形组件(void)
     uint64_t *new_node;
     uint64_t component_handler;
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = 0; // 地形组件没有处理函数
@@ -757,8 +757,8 @@ void 注册地形组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_TERRAIN, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -793,7 +793,7 @@ void 注册光照组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025d270;
@@ -815,8 +815,8 @@ void 注册光照组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_LIGHTING, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -851,7 +851,7 @@ void 注册材质组件(void)
     uint64_t *new_node;
     uint64_t component_handler;
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = 0; // 材质组件没有处理函数
@@ -873,8 +873,8 @@ void 注册材质组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_MATERIAL, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -909,7 +909,7 @@ void 注册着色器组件(void)
     uint64_t *new_node;
     void *component_handler;
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = &SHADER_ENGINE_HANDLER;
@@ -931,8 +931,8 @@ void 注册着色器组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_SHADER, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -967,7 +967,7 @@ void 注册纹理组件(void)
     uint64_t *new_node;
     uint64_t component_handler;
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = 0; // 纹理组件没有处理函数
@@ -989,8 +989,8 @@ void 注册纹理组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_TEXTURE, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -1025,7 +1025,7 @@ void 注册游戏逻辑组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025d510;
@@ -1047,8 +1047,8 @@ void 注册游戏逻辑组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_GAME_LOGIC, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -1083,7 +1083,7 @@ void 注册场景管理组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025e330;
@@ -1105,8 +1105,8 @@ void 注册场景管理组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_SCENE_MANAGER, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -1141,7 +1141,7 @@ void 注册行为树组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_1802633c0;
@@ -1163,8 +1163,8 @@ void 注册行为树组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_BEHAVIOR_TREE, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -1199,7 +1199,7 @@ void 注册骨骼动画组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_180262b00;
@@ -1221,8 +1221,8 @@ void 注册骨骼动画组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_SKELETAL_ANIMATION, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -1257,7 +1257,7 @@ void 注册摄像机组件(void)
     uint64_t *new_node;
     uint64_t component_handler;
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = 0; // 摄像机组件没有处理函数
@@ -1279,8 +1279,8 @@ void 注册摄像机组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_CAMERA, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -1315,7 +1315,7 @@ void 注册后处理组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025cc00;
@@ -1337,8 +1337,8 @@ void 注册后处理组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_POST_PROCESS, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -1373,7 +1373,7 @@ void 注册水面组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025c000;
@@ -1395,8 +1395,8 @@ void 注册水面组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_WATER, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -1431,7 +1431,7 @@ void 注册天空组件(void)
     uint64_t *new_node;
     uint64_t component_handler;
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = 0; // 天空组件没有处理函数
@@ -1453,8 +1453,8 @@ void 注册天空组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_SKY, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     
@@ -1489,7 +1489,7 @@ void 注册天气组件(void)
     uint64_t *new_node;
     void (*component_handler)(void);
     
-    component_manager = (uint64_t *)FUN_18008d070();
+    component_manager = (uint64_t *)NetworkDataProcessor();
     root_node = (uint64_t *)*component_manager;
     node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
     component_handler = FUN_18025d270;
@@ -1511,8 +1511,8 @@ void 注册天气组件(void)
     
     if ((parent_node == root_node) || 
         (int compare_result = memcmp(&COMPONENT_SIGNATURE_WEATHER, parent_node + 4, 0x10), compare_result < 0)) {
-        uint64_t allocation_size = FUN_18008f0d0(component_manager);
-        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        uint64_t allocation_size = NetworkConnectionManager(component_manager);
+        NetworkProtocolHandler(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
         parent_node = new_node;
     }
     

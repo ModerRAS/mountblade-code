@@ -39,7 +39,7 @@ void resize_and_copy_array(int64_t param_1, int64_t *param_2, int64_t param_3, i
     }
     if (*unaff_RDI != 0) {
       // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     *unaff_RDI = lVar3;
     lVar3 = uVar5 * 0x30 + lVar3;
@@ -105,7 +105,7 @@ void initialize_array_with_defaults(void)
   }
   if (*unaff_RDI != 0) {
     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   *unaff_RDI = lVar1;
   lVar1 = unaff_RBX * 0x30 + lVar1;

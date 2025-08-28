@@ -229,7 +229,7 @@ LAB_1801f39c0:
        (puVar19 = &unknown_var_5412_ptr, (pcVar24[1] + 0xa8U & 0xdf) != 0)) {
       puVar19 = &unknown_var_2208_ptr;
     }
-    FUN_18010cbc0(pcVar24,puVar19,(int64_t)param_1 + 100);
+    AdvancedSystemOptimizer(pcVar24,puVar19,(int64_t)param_1 + 100);
   }
   FUN_180631000(param_2,&unknown_var_6040_ptr,(int64_t)param_1 + 0x69);
   puStack_1c8 = &system_data_buffer_ptr;
@@ -370,7 +370,7 @@ LAB_1801f3c88:
     }
   }
   if (((int64_t)param_1 + 0x6c != 0) && (pcVar24 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar24,&system_config_6430,(int64_t)param_1 + 0x6c);
+    AdvancedSystemOptimizer(pcVar24,&system_config_6430,(int64_t)param_1 + 0x6c);
   }
   pcVar24 = "height";
   do {
@@ -405,7 +405,7 @@ LAB_1801f3d20:
     }
   }
   if ((param_1 + 0xe != (int64_t *)0x0) && (pcVar24 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar24,&system_config_6430,param_1 + 0xe);
+    AdvancedSystemOptimizer(pcVar24,&system_config_6430,param_1 + 0xe);
   }
   FUN_180631000(param_2,&unknown_var_6096_ptr,(int64_t)param_1 + 0x6a);
   FUN_180631330(param_2,&unknown_var_6152_ptr,(int64_t)param_1 + 0x7c);
@@ -470,7 +470,7 @@ LAB_1801f3e94:
                (puVar19 = &unknown_var_5412_ptr, (pcVar24[1] + 0xa8U & 0xdf) != 0)) {
               puVar19 = &unknown_var_2208_ptr;
             }
-            FUN_18010cbc0(pcVar24,puVar19,aiStackX_18);
+            AdvancedSystemOptimizer(pcVar24,puVar19,aiStackX_18);
           }
           puStack_168 = &system_data_buffer_ptr;
           uStack_150 = 0;
@@ -583,7 +583,7 @@ LAB_1801f40e4:
                    (puVar19 = &unknown_var_5412_ptr, (pcVar24[1] + 0xa8U & 0xdf) != 0)) {
                   puVar19 = &unknown_var_2208_ptr;
                 }
-                FUN_18010cbc0(pcVar24,puVar19,&uStack_128);
+                AdvancedSystemOptimizer(pcVar24,puVar19,&uStack_128);
                 break;
               }
               lVar18 = (int64_t)&unknown_var_6216_ptr - (int64_t)pcVar24;
@@ -1014,7 +1014,7 @@ LAB_1801f4ae0:
          (puVar19 = &unknown_var_5412_ptr, (pcVar24[1] + 0xa8U & 0xdf) != 0)) {
         puVar19 = &unknown_var_2208_ptr;
       }
-      FUN_18010cbc0(pcVar24,puVar19,&plStackX_8);
+      AdvancedSystemOptimizer(pcVar24,puVar19,&plStackX_8);
     }
     lVar18 = (int64_t)(int)plStackX_8;
     lVar11 = FUN_1800a02a0(puVar10,&unknown_var_7680_ptr);

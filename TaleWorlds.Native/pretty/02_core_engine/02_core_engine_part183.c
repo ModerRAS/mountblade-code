@@ -650,7 +650,7 @@ int64_t *CoreEngineStringProcessor(int64_t *config_ptr, int64_t input_data) {
                             }
                             else {
                                 if (uVar4 <= (uint)puVar7) goto LAB_180169e1e;
-                                puVar5 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr, puVar5, uVar4, 0x10, 0x13);
+                                puVar5 = (int8_t *)DataValidator(system_memory_pool_ptr, puVar5, uVar4, 0x10, 0x13);
                             }
                             uVar11 = (uint64_t)puVar5 & 0xffffffffffc00000;
                             if (uVar11 == 0) {

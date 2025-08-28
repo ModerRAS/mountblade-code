@@ -136,7 +136,7 @@ void CoreEngineSystemStateManager(void)
   // 系统状态处理主逻辑
   if (current_state == SYSTEM_STATE_UNINITIALIZED) {
     // 系统初始化流程
-    memory_block = FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3);
+    memory_block = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
     manager_stack = (code *****)&callback_array;
     context_data = &unknown_var_6112_ptr;
     timestamp = &unknown_var_6096_ptr;
@@ -160,7 +160,7 @@ void CoreEngineSystemStateManager(void)
     
     // 状态特定的初始化处理
     if (current_state == SYSTEM_STATE_RUNNING) {
-      core_system_memory = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
+      core_system_memory = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
       *core_system_memory = 0;
       core_system_memory[1] = 0;
       core_system_memory[2] = 0;
@@ -170,17 +170,17 @@ void CoreEngineSystemStateManager(void)
     }
     
     if (current_state == SYSTEM_STATE_PAUSED) {
-      core_system_memory = FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
+      core_system_memory = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
       FUN_180653ef0();
       system_context = core_system_memory;
       callback_array = (code ***)&system_data_buffer_ptr;
       timestamp = (void *)0x0;
       flag_ptr = (int32_t *)0x0;
       context_data = (void *)((uint64_t)context_data & 0xffffffff00000000);
-      resource_ptr = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x18,0x13);
+      resource_ptr = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x18,0x13);
       *(int8_t *)resource_ptr = 0;
       flag_ptr = resource_ptr;
-      status_flag = FUN_18064e990(resource_ptr);
+      status_flag = CoreMemoryPoolCleaner(resource_ptr);
       timestamp = (void *)CONCAT44(timestamp._4_4_,status_flag);
       *resource_ptr = 0x65726f63;  // "core"
       resource_ptr[1] = 0x5f726c63;  // "_rlc"
@@ -190,11 +190,11 @@ void CoreEngineSystemStateManager(void)
       context_data = (void *)CONCAT44(context_data._4_4_,0x17);
       GetProcAddress(*(uint64_t *)(system_context + 0x10),resource_ptr);
       callback_array = (code ***)&system_data_buffer_ptr;
-      FUN_18064e900(resource_ptr);
+      CoreMemoryPoolInitializer(resource_ptr);
     }
     
     if (*(int *)(system_context + 0x340) != SYSTEM_STATE_UNINITIALIZED) {
-      manager_stack = (code *****)FUN_18062b1e0(system_memory_pool_ptr,MEMORY_POOL_SIZE,8,3);
+      manager_stack = (code *****)CoreMemoryPoolReallocator(system_memory_pool_ptr,MEMORY_POOL_SIZE,8,3);
       *manager_stack = (code ****)&unknown_var_9808_ptr;
       manager_stack[1] = (code ****)&unknown_var_9792_ptr;
       manager_stack[2] = (code ****)0x0;
@@ -211,7 +211,7 @@ void CoreEngineSystemStateManager(void)
     }
     
     // 第二阶段系统初始化
-    manager_stack = (code *****)FUN_18062b1e0(system_memory_pool_ptr,MEMORY_POOL_SIZE,8,3);
+    manager_stack = (code *****)CoreMemoryPoolReallocator(system_memory_pool_ptr,MEMORY_POOL_SIZE,8,3);
     *manager_stack = (code ****)&unknown_var_9808_ptr;
     ((code ******)manager_stack)[1] = (code *****)&unknown_var_9792_ptr;
     ((code ******)manager_stack)[2] = (code *****)0x0;
@@ -225,7 +225,7 @@ void CoreEngineSystemStateManager(void)
     *(int32_t *)((int64_t)manager_stack + 0x18c) = 0;
     *manager_stack = (code ****)&unknown_var_704_ptr;
     *(code ******)(system_context + 0x40) = manager_stack;
-    memory_block = FUN_18062b1e0(system_memory_pool_ptr,0x238,8,3);
+    memory_block = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x238,8,3);
     memory_block = FUN_1801504b0(memory_block);
     (**(code **)(**(int64_t **)(system_context + 0x40) + 8))(*(int64_t **)(system_context + 0x40),memory_block);
     (**(code **)(**(int64_t **)(system_context + 0x2b0) + 0x80))
@@ -250,7 +250,7 @@ void CoreEngineSystemStateManager(void)
           if ((*(int64_t *)(object_offset + 0x15b8) == 0) && (*(int *)(object_offset + 0x16c0) != 0)) {
             iteration_count = FUN_1802aaef0(system_context + 0xac0,object_offset + 0x16b0);
             if (iteration_count == 0) {
-              memory_block = FUN_18062b1e0(system_memory_pool_ptr,0x50,0x10,3);
+              memory_block = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x50,0x10,3);
               iteration_count = FUN_1800ba230(memory_block,object_offset + 0x16b0);
               FUN_1802ab0c0(system_context + 0xac0,iteration_count);
             }
@@ -280,7 +280,7 @@ void CoreEngineSystemStateManager(void)
       // 这里包含多个系统回调函数的调用，用于处理暂停状态下的系统操作
       // 每个回调都负责不同的系统功能模块
       // 由于代码长度限制，这里只展示部分逻辑
-      memory_block = FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3);
+      memory_block = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       manager_stack = (code *****)&callback_array;
       context_data = &unknown_var_6032_ptr;
       timestamp = &unknown_var_6016_ptr;
@@ -369,10 +369,10 @@ void CoreEngineSystemStateManager(void)
             process_id = 0;
             resource_handle = (int32_t *)0x0;
             handle_flag = 0;
-            resource_ptr = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+            resource_ptr = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
             *(int8_t *)resource_ptr = 0;
             resource_handle = resource_ptr;
-            status_flag = FUN_18064e990(resource_ptr);
+            status_flag = CoreMemoryPoolCleaner(resource_ptr);
             process_id = CONCAT44(process_id._4_4_,status_flag);
             *resource_ptr = 0x646e6572;  // "nder"
             *(int16_t *)(resource_ptr + 1) = 0x7265;  // "re"
@@ -392,7 +392,7 @@ void CoreEngineSystemStateManager(void)
             }
             version_info = 0;
             memory_buffer = &system_data_buffer_ptr;
-            FUN_18064e900(resource_ptr);
+            CoreMemoryPoolInitializer(resource_ptr);
           }
           
           // 执行系统更新和状态切换
@@ -417,7 +417,7 @@ void CoreEngineSystemStateManager(void)
             } while (thread_local_data != system_context);
           }
           (**(code **)(**(int64_t **)(system_main_module_state + 0x2b0) + 0x128))();
-          memory_block = FUN_18062b1e0(system_memory_pool_ptr,0xc0,8,3);
+          memory_block = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xc0,8,3);
           memory_block = FUN_180370550(memory_block);
           *(uint64_t *)(system_context + 0x3e0) = memory_block;
           if ((*(int *)(system_context + 0x3c) != -1) &&
@@ -429,7 +429,7 @@ void CoreEngineSystemStateManager(void)
       // 执行关闭状态的处理
       FUN_18005e770(system_context_ptr,system_context + 800,0);
       FUN_1800b8500(system_context + 800);
-      memory_block = FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3);
+      memory_block = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       manager_stack = (code *****)&callback_array;
       context_data = &unknown_var_6032_ptr;
       timestamp = &unknown_var_6016_ptr;
@@ -468,7 +468,7 @@ void CoreEngineSystemStateManager(void)
   }
   
   // 安全退出函数
-  FUN_1808fc050(checksum_value ^ (uint64_t)system_stack);
+  SystemSecurityChecker(checksum_value ^ (uint64_t)system_stack);
 }
 
 // 函数别名定义

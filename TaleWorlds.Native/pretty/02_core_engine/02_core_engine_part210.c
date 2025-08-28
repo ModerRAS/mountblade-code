@@ -174,7 +174,7 @@ LAB_18018d08e:
             }
             if ((local_int1 != -0x35) && (uint_var4 < local_int1 + 0x36U)) {
               ulong_ptr2 = (uint64_t *)
-                        FUN_18062b8b0(system_memory_pool_ptr,ulong_ptr2,local_int1 + 0x36U,0x10,0x13);
+                        DataValidator(system_memory_pool_ptr,ulong_ptr2,local_int1 + 0x36U,0x10,0x13);
               CoreEngineSystemCleanup(ulong_ptr2);
             }
                     // WARNING: Subroutine does not return

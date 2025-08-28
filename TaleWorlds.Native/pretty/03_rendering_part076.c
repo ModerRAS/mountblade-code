@@ -392,7 +392,7 @@ LAB_18030c2f0:
         if (puVar18[1] != 0) {
           lVar10 = puVar18[1];
         }
-        FUN_18010cbc0(lVar10,&system_data_6430,&uStack_c8);
+        AdvancedSystemOptimizer(lVar10,&system_data_6430,&uStack_c8);
         break;
       }
       lVar10 = (int64_t)&unknown_var_4352_ptr - (int64_t)pcVar21;
@@ -492,7 +492,7 @@ LAB_18030c490:
         lVar11 = 0;
 LAB_18030c4af:
         if ((auStack_168 + (int64_t)iVar22 * 0x58 != (int8_t *)0x0) && (lVar11 != 0)) {
-          FUN_18010cbc0(lVar11,&system_data_6430,auStack_168 + (int64_t)iVar22 * 0x58);
+          AdvancedSystemOptimizer(lVar11,&system_data_6430,auStack_168 + (int64_t)iVar22 * 0x58);
         }
         pcVar21 = "bones";
         do {
@@ -614,7 +614,7 @@ LAB_18030c6d0:
 LAB_18030c6f3:
                   if ((auStack_170 + ((int64_t)iVar22 * 0x16 + (int64_t)iVar14) * 4 !=
                        (int8_t *)0x0) && (lVar12 != 0)) {
-                    FUN_18010cbc0(lVar12,&system_data_6430,
+                    AdvancedSystemOptimizer(lVar12,&system_data_6430,
                                   auStack_170 + ((int64_t)iVar22 * 0x16 + (int64_t)iVar14) * 4);
                   }
                   iVar14 = iVar14 + 1;

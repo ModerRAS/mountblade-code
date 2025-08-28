@@ -579,7 +579,7 @@ void configure_engine_render_settings(uint64_t *engine_config, uint64_t settings
           }
           else {
             if (uVar15 <= (uint)uStack_98) goto LAB_18019d47d;
-            puStack_a8 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_a8,uVar15,0x10,0x13);
+            puStack_a8 = (int8_t *)DataValidator(system_memory_pool_ptr,puStack_a8,uVar15,0x10,0x13);
           }
           uVar6 = CoreEngineSystemCleanup(puStack_a8);
           uStack_98 = CONCAT44(uStack_98._4_4_,uVar6);
@@ -603,7 +603,7 @@ LAB_18019d47d:
           else {
             uVar10 = uStackX_10;
             if (uVar7 <= (uint)uStack_98) goto LAB_18019d50f;
-            puStack_a8 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_a8,uVar7,0x10,0x13);
+            puStack_a8 = (int8_t *)DataValidator(system_memory_pool_ptr,puStack_a8,uVar7,0x10,0x13);
           }
           uVar6 = CoreEngineSystemCleanup(puStack_a8);
           uStack_98 = CONCAT44(uStack_98._4_4_,uVar6);
