@@ -74,6 +74,10 @@
 #define MEMORY_CACHE_LINE_SIZE 64         /**< 缓存行大小 */
 #define MEMORY_PAGE_SIZE 4096             /**< 内存页大小 */
 
+//==============================================================================
+// 类型定义和结构体
+//==============================================================================
+
 // 资源状态枚举
 typedef enum {
     RESOURCE_STATE_UNINITIALIZED = 0,
@@ -93,6 +97,106 @@ typedef enum {
     RESOURCE_TYPE_GPU = 4,
     RESOURCE_TYPE_AUDIO = 5
 } ResourceType;
+
+/** @brief 哈希表节点结构 */
+typedef struct HashTableNode {
+    uint32_t key;                        /**< 键值 */
+    uint32_t hash;                       /**< 哈希值 */
+    void* value;                         /**< 值指针 */
+    struct HashTableNode* next;          /**< 下一个节点（链表解决冲突） */
+} HashTableNode;
+
+/** @brief 哈希表结构 */
+typedef struct {
+    HashTableNode** buckets;              /**< 桶数组 */
+    uint32_t size;                       /**< 当前大小 */
+    uint32_t capacity;                   /**< 桶容量 */
+    uint32_t count;                      /**< 元素数量 */
+    float load_factor;                   /**< 负载因子 */
+    uint32_t prime1;                     /**< 哈希函数质数1 */
+    uint32_t prime2;                     /**< 哈希函数质数2 */
+} HashTable;
+
+/** @brief 红黑树节点结构 */
+typedef struct RedBlackTreeNode {
+    uint32_t key;                        /**< 键值 */
+    void* value;                         /**< 值指针 */
+    uint32_t color;                      /**< 节点颜色 */
+    struct RedBlackTreeNode* left;      /**< 左子节点 */
+    struct RedBlackTreeNode* right;     /**< 右子节点 */
+    struct RedBlackTreeNode* parent;     /**< 父节点 */
+} RedBlackTreeNode;
+
+/** @brief 红黑树结构 */
+typedef struct {
+    RedBlackTreeNode* root;              /**< 根节点 */
+    RedBlackTreeNode* nil;               /**< NIL节点 */
+    uint32_t count;                      /**< 节点数量 */
+} RedBlackTree;
+
+/** @brief 图邻接表节点结构 */
+typedef struct GraphAdjListNode {
+    uint32_t vertex_id;                  /**< 邻接顶点ID */
+    uint32_t weight;                     /**< 边权重 */
+    struct GraphAdjListNode* next;       /**< 下一个邻接节点 */
+} GraphAdjListNode;
+
+/** @brief 图结构 */
+typedef struct {
+    GraphAdjListNode** adjacency_list;  /**< 邻接表 */
+    uint32_t vertex_count;               /**< 顶点数量 */
+    uint32_t edge_count;                 /**< 边数量 */
+    uint32_t capacity;                   /**< 容量 */
+    bool directed;                       /**< 是否为有向图 */
+} Graph;
+
+/** @brief 堆结构 */
+typedef struct {
+    void** elements;                     /**< 元素数组 */
+    uint32_t size;                       /**< 当前大小 */
+    uint32_t capacity;                   /**< 容量 */
+    int (*compare)(const void*, const void*); /**< 比较函数 */
+} Heap;
+
+/** @brief 排序算法类型枚举 */
+typedef enum {
+    SORT_ALGORITHM_QUICK,               /**< 快速排序 */
+    SORT_ALGORITHM_MERGE,               /**< 归并排序 */
+    SORT_ALGORITHM_HEAP,                /**< 堆排序 */
+    SORT_ALGORITHM_INSERTION,           /**< 插入排序 */
+    SORT_ALGORITHM_RADIX,               /**< 基数排序 */
+    SORT_ALGORITHM_BUBBLE,              /**< 冒泡排序 */
+    SORT_ALGORITHM_SELECTION            /**< 选择排序 */
+} SortAlgorithm;
+
+/** @brief 排序上下文结构 */
+typedef struct {
+    void* array;                         /**< 数组指针 */
+    uint32_t size;                       /**< 数组大小 */
+    uint32_t element_size;               /**< 元素大小 */
+    SortAlgorithm algorithm;             /**< 排序算法 */
+    int (*compare)(const void*, const void*); /**< 比较函数 */
+    void* temp_buffer;                   /**< 临时缓冲区 */
+    uint32_t temp_size;                  /**< 临时缓冲区大小 */
+} SortContext;
+
+/** @brief 内存池块结构 */
+typedef struct MemoryPoolBlock {
+    uint32_t size;                       /**< 块大小 */
+    uint32_t used;                       /**< 已使用大小 */
+    struct MemoryPoolBlock* next;       /**< 下一个块 */
+    uint8_t data[1];                     /**< 数据起始位置 */
+} MemoryPoolBlock;
+
+/** @brief 内存池结构 */
+typedef struct {
+    MemoryPoolBlock* blocks;            /**< 块链表 */
+    uint32_t block_size;                 /**< 块大小 */
+    uint32_t alignment;                  /**< 对齐大小 */
+    uint32_t total_allocated;            /**< 总分配大小 */
+    uint32_t total_used;                 /**< 总使用大小 */
+    uint32_t block_count;                /**< 块数量 */
+} MemoryPool;
 
 // 资源描述结构体
 typedef struct {
