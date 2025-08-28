@@ -985,18 +985,32 @@ undefined8 * UI_Process_Mono_String(undefined8 *result_buffer, longlong mono_str
 
 
 
-// 函数: void FUN_180653530(undefined8 param_1)
-// UI系统调试输出函数
+/**
+ * UI系统调试输出函数
+ * 
+ * 输出UI系统的调试信息，包括错误日志、
+ * 性能统计、状态信息等。
+ * 
+ * @param debug_message 调试信息指针
+ * @return 无返回值
+ */
 void UI_Debug_Output(undefined8 debug_message)
 {
   UI_String_Process_Wrapper();
   OutputDebugStringA(debug_message);
   System_Error_Reporter(&UNK_180a3dd80);
+}
 
-
-
-// 函数: void FUN_180653670(longlong param_1,longlong param_2)
-// UI系统内存分配函数
+/**
+ * UI系统内存分配函数
+ * 
+ * 为UI系统分配内存，包括缓冲区分配、
+ * 对象分配、资源分配等。
+ * 
+ * @param element_size 元素大小
+ * @param element_count 元素数量
+ * @return 无返回值
+ */
 void UI_Memory_Allocate(longlong element_size, longlong element_count)
 {
   undefined8 memory_handle;
