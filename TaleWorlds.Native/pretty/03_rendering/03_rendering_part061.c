@@ -1,84 +1,162 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part061.c - 18 个函数
+// 03_rendering_part061.c - 渲染系统高级状态管理和参数控制模块
+// 包含18个核心函数，涵盖渲染状态管理、参数设置、标志位处理、
+// 资源管理、数据验证和高级渲染控制等功能
 
-// 函数: void FUN_18029ccc0(longlong param_1,int param_2,undefined4 param_3,uint param_4)
+// 渲染状态标志位常量定义
+#define RENDER_STATE_FLAG_TEXTURE      0x01    // 纹理状态标志
+#define RENDER_STATE_FLAG_NORMAL       0x02    // 法线状态标志
+#define RENDER_STATE_FLAG_SPECULAR     0x04    // 高光状态标志
+#define RENDER_STATE_FLAG_ALPHA        0x08    // 透明度状态标志
+#define RENDER_STATE_FLAG_DEPTH        0x10    // 深度状态标志
+#define RENDER_STATE_FLAG_STENCIL      0x20    // 模板状态标志
+
+// 渲染参数常量定义
+#define RENDER_PARAM_DEFAULT_FLOAT     0x3f800000  // 默认浮点值 1.0f
+#define RENDER_PARAM_MAX_TEXTURES     0x80        // 最大纹理数量
+#define RENDER_PARAM_MAX_SLOTS        7           // 最大插槽数量
+#define RENDER_PARAM_MAGIC_VALUE      0xdeadfeee  // 魔术数值
+
+// 渲染模式常量定义
+#define RENDER_MODE_VERTEX            1           // 顶点模式
+#define RENDER_MODE_NORMAL            2           // 法线模式
+#define RENDER_MODE_TEXTURE           3           // 纹理模式
+#define RENDER_MODE_COLOR             4           // 颜色模式
+#define RENDER_MODE_ALPHA             5           // 透明度模式
+#define RENDER_MODE_DEPTH             6           // 深度模式
+#define RENDER_MODE_STENCIL           0x23        // 模板模式
+
+// 渲染缓冲区大小常量
+#define RENDER_BUFFER_SIZE_SMALL      32          // 小缓冲区大小
+#define RENDER_BUFFER_SIZE_MEDIUM     40          // 中等缓冲区大小
+#define RENDER_BUFFER_SIZE_LARGE      136         // 大缓冲区大小
+#define RENDER_BUFFER_NAME_MAX        128         // 名称最大长度
+
+// 渲染数据结构偏移量
+#define RENDER_OFFSET_TEXTURE_DATA    0x10        // 纹理数据偏移
+#define RENDER_OFFSET_MATERIAL_DATA   0x18        // 材质数据偏移
+#define RENDER_OFFSET_SHADER_DATA     0x20        // 着色器数据偏移
+#define RENDER_OFFSET_RENDER_STATE    0x340       // 渲染状态偏移
+#define RENDER_OFFSET_TEXTURE_SLOT   0x1f8       // 纹理插槽偏移
+#define RENDER_OFFSET_PARAM_ARRAY    0x1a0       // 参数数组偏移
+
+// 函数别名定义
+#define RenderingSystem_UpdateStateFlags        FUN_18029ccc0
+#define RenderingSystem_ProcessMaterialData    FUN_18029cdd0
+#define RenderingSystem_UpdateShaderParams      FUN_18029cfa0
+#define RenderingSystem_SetRenderMode          FUN_18029d000
+#define RenderingSystem_ApplyTextureSettings   FUN_18029d0a0
+#define RenderingSystem_UpdateRenderState      FUN_18029d150
+#define RenderingSystem_GenerateRenderInfo     FUN_18029d280
+#define RenderingSystem_CreateRenderReport     FUN_18029d500
+#define RenderingSystem_SetRenderTarget        FUN_18029d760
+#define RenderingSystem_SetRenderTexture       FUN_18029d930
+#define RenderingSystem_UpdateViewport        FUN_18029db70
+#define RenderingSystem_SetRenderTargetEx      FUN_18029dc40
+#define RenderingSystem_ProcessRenderFlags     FUN_18029dca0
+#define RenderingSystem_UpdateRenderSlots     FUN_18029de40
+#define RenderingSystem_CheckRenderStatus     FUN_18029e060
+#define RenderingSystem_SetRenderParams       FUN_18029e090
+#define RenderingSystem_UpdateRenderContext    FUN_18029e110
+#define RenderingSystem_ValidateRenderData    FUN_18029e1a0
+#define RenderingSystem_ApplyRenderSettings   FUN_18029e2a0
+#define RenderingSystem_CheckRenderCapability FUN_18029e2f0
+
+// 全局变量引用
+extern ulonglong _DAT_180bf00a8;      // 渲染系统全局数据指针
+extern longlong _DAT_180c86938;      // 渲染系统核心数据指针
+extern longlong _DAT_180c86870;      // 渲染系统参数指针
+extern char DAT_180c82846;           // 渲染系统状态标志
+
+// 渲染系统状态更新函数
+// 根据标志位参数更新渲染系统的各种状态
+// param_1: 渲染系统上下文指针
+// param_2: 渲染状态索引
+// param_3: 渲染参数值
+// param_4: 状态标志位掩码
 void FUN_18029ccc0(longlong param_1,int param_2,undefined4 param_3,uint param_4)
-
 {
-  undefined8 auStack_18 [2];
+  undefined8 render_state_stack[RENDER_BUFFER_SIZE_SMALL/8];
   
-  auStack_18[0] = *(undefined8 *)(_DAT_180c86938 + 0x1e08 + (longlong)param_2 * 8);
-  if ((param_4 & 1) != 0) {
+  // 获取渲染状态数据
+  render_state_stack[0] = *(undefined8 *)(_DAT_180c86938 + RENDER_OFFSET_TEXTURE_DATA + (longlong)param_2 * 8);
+  
+  // 根据标志位更新相应的渲染状态
+  if ((param_4 & RENDER_STATE_FLAG_TEXTURE) != 0) {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0xd0))
-              (*(longlong **)(param_1 + 0x8400),param_3,1,auStack_18);
+              (*(longlong **)(param_1 + 0x8400),param_3,1,render_state_stack);
   }
-  if ((param_4 & 2) != 0) {
+  if ((param_4 & RENDER_STATE_FLAG_NORMAL) != 0) {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x208))
-              (*(longlong **)(param_1 + 0x8400),param_3,1,auStack_18);
+              (*(longlong **)(param_1 + 0x8400),param_3,1,render_state_stack);
   }
-  if ((param_4 & 4) != 0) {
+  if ((param_4 & RENDER_STATE_FLAG_SPECULAR) != 0) {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x1e8))
-              (*(longlong **)(param_1 + 0x8400),param_3,1,auStack_18);
+              (*(longlong **)(param_1 + 0x8400),param_3,1,render_state_stack);
   }
-  if ((param_4 & 8) != 0) {
+  if ((param_4 & RENDER_STATE_FLAG_ALPHA) != 0) {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x100))
-              (*(longlong **)(param_1 + 0x8400),param_3,1,auStack_18);
+              (*(longlong **)(param_1 + 0x8400),param_3,1,render_state_stack);
   }
-  if ((param_4 & 0x10) != 0) {
+  if ((param_4 & RENDER_STATE_FLAG_DEPTH) != 0) {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x50))
-              (*(longlong **)(param_1 + 0x8400),param_3,1,auStack_18);
+              (*(longlong **)(param_1 + 0x8400),param_3,1,render_state_stack);
   }
-  if ((param_4 & 0x20) != 0) {
+  if ((param_4 & RENDER_STATE_FLAG_STENCIL) != 0) {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x230))
-              (*(longlong **)(param_1 + 0x8400),param_3,1,auStack_18);
+              (*(longlong **)(param_1 + 0x8400),param_3,1,render_state_stack);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18029cdd0(longlong param_1,undefined8 *param_2)
+// 渲染材质数据处理函数
+// 处理材质数据的各种参数和状态更新
+// param_1: 渲染系统上下文指针
+// param_2: 材质数据包指针
 void FUN_18029cdd0(longlong param_1,undefined8 *param_2)
-
 {
-  longlong lVar1;
-  byte bVar2;
-  longlong lVar3;
-  undefined1 auStack_58 [32];
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
-  ulonglong uStack_28;
+  longlong material_handle;
+  byte material_type;
+  longlong render_core;
+  undefined1 security_buffer[RENDER_BUFFER_SIZE_MEDIUM];
+  undefined4 default_float_params[4];
+  ulonglong security_key;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
-  lVar1 = *(longlong *)
+  // 初始化安全缓冲区
+  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  
+  // 计算材质句柄
+  material_handle = *(longlong *)
            (_DAT_180c86938 + 0x1e50 +
            ((ulonglong)*(byte *)((longlong)param_2 + 0x16) +
            (((ulonglong)*(byte *)((longlong)param_2 + 0x14) +
             ((ulonglong)*(byte *)((longlong)param_2 + 0x15) +
             (ulonglong)*(byte *)((longlong)param_2 + 0x12) * 4) * 2) * 3 +
            (ulonglong)*(byte *)((longlong)param_2 + 0x13)) * 2) * 8);
-  lVar3 = _DAT_180c86938;
-  if (lVar1 != *(longlong *)(param_1 + 0x8418)) {
-    (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x158))(*(longlong **)(param_1 + 0x8400),lVar1)
-    ;
-    lVar3 = _DAT_180c86938;
-    *(longlong *)(param_1 + 0x8418) = lVar1;
+  
+  render_core = _DAT_180c86938;
+  
+  // 更新材质句柄
+  if (material_handle != *(longlong *)(param_1 + 0x8418)) {
+    (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x158))(*(longlong **)(param_1 + 0x8400),material_handle);
+    render_core = _DAT_180c86938;
+    *(longlong *)(param_1 + 0x8418) = material_handle;
   }
+  
+  // 确定材质类型
   if (*(char *)((longlong)param_2 + 0x11) == '\0') {
-    bVar2 = *(byte *)((longlong)param_2 + 0xf);
+    material_type = *(byte *)((longlong)param_2 + 0xf);
   }
   else {
-    bVar2 = *(byte *)(param_2 + 2);
+    material_type = *(byte *)(param_2 + 2);
   }
-  lVar1 = *(longlong *)
-           (lVar3 + 0x21b8 +
+  
+  // 计算着色器句柄
+  material_handle = *(longlong *)
+           (render_core + 0x21b8 +
            ((ulonglong)*(byte *)((longlong)param_2 + 0xe) +
            ((ulonglong)*(byte *)((longlong)param_2 + 0xd) +
            ((ulonglong)*(byte *)((longlong)param_2 + 0xc) +
@@ -86,34 +164,43 @@ void FUN_18029cdd0(longlong param_1,undefined8 *param_2)
            ((ulonglong)*(byte *)((longlong)param_2 + 10) +
            ((ulonglong)*(byte *)((longlong)param_2 + 9) + (ulonglong)*(byte *)(param_2 + 1) * 2) * 8
            ) * 2) * 8) * 8) * 2) * 8);
-  if ((lVar1 != *(longlong *)(param_1 + 0x8420)) || ((uint)bVar2 != *(uint *)(param_1 + 0x8428))) {
+  
+  // 更新着色器和材质类型
+  if ((material_handle != *(longlong *)(param_1 + 0x8420)) || ((uint)material_type != *(uint *)(param_1 + 0x8428))) {
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x120))
-              (*(longlong **)(param_1 + 0x8400),lVar1,bVar2);
-    lVar3 = _DAT_180c86938;
-    *(longlong *)(param_1 + 0x8420) = lVar1;
-    *(uint *)(param_1 + 0x8428) = (uint)bVar2;
+              (*(longlong **)(param_1 + 0x8400),material_handle,material_type);
+    render_core = _DAT_180c86938;
+    *(longlong *)(param_1 + 0x8420) = material_handle;
+    *(uint *)(param_1 + 0x8428) = (uint)material_type;
   }
-  lVar1 = *(longlong *)(lVar3 + 0x2150 + (ulonglong)*(byte *)(param_2 + 7) * 8);
-  if (lVar1 != *(longlong *)(param_1 + 0x8430)) {
-    uStack_38 = 0x3f800000;
-    uStack_34 = 0x3f800000;
-    uStack_30 = 0x3f800000;
-    uStack_2c = 0x3f800000;
+  
+  // 更新纹理参数
+  material_handle = *(longlong *)(render_core + 0x2150 + (ulonglong)*(byte *)(param_2 + 7) * 8);
+  if (material_handle != *(longlong *)(param_1 + 0x8430)) {
+    default_float_params[0] = RENDER_PARAM_DEFAULT_FLOAT;
+    default_float_params[1] = RENDER_PARAM_DEFAULT_FLOAT;
+    default_float_params[2] = RENDER_PARAM_DEFAULT_FLOAT;
+    default_float_params[3] = RENDER_PARAM_DEFAULT_FLOAT;
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x118))
-              (*(longlong **)(param_1 + 0x8400),lVar1,&uStack_38,0xffffffff);
-    lVar3 = _DAT_180c86938;
-    *(longlong *)(param_1 + 0x8430) = lVar1;
+              (*(longlong **)(param_1 + 0x8400),material_handle,default_float_params,0xffffffff);
+    render_core = _DAT_180c86938;
+    *(longlong *)(param_1 + 0x8430) = material_handle;
   }
-  lVar1 = *(longlong *)(lVar3 + 0x1d88 + (ulonglong)*(byte *)((longlong)param_2 + 0x39) * 8);
-  if (*(longlong *)(param_1 + 0x8410) != lVar1) {
-    (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x88))(*(longlong **)(param_1 + 0x8400),lVar1);
-    *(longlong *)(param_1 + 0x8410) = lVar1;
+  
+  // 更新渲染状态
+  material_handle = *(longlong *)(render_core + 0x1d88 + (ulonglong)*(byte *)((longlong)param_2 + 0x39) * 8);
+  if (*(longlong *)(param_1 + 0x8410) != material_handle) {
+    (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x88))(*(longlong **)(param_1 + 0x8400),material_handle);
+    *(longlong *)(param_1 + 0x8410) = material_handle;
   }
-  FUN_18029d000(param_1,*(undefined1 *)((longlong)param_2 + 0x17));
+  
+  // 设置渲染模式和纹理
+  RenderingSystem_SetRenderMode(param_1,*(undefined1 *)((longlong)param_2 + 0x17));
   FUN_18029f560(param_1,*param_2,*(undefined1 *)((longlong)param_2 + 0x3b),
                 *(undefined1 *)((longlong)param_2 + 0x3a));
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_58);
+                    
+  // 清理安全缓冲区
+  FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 

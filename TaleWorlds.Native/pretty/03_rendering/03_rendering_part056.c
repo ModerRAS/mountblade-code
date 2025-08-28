@@ -737,37 +737,37 @@ void render_simple_assignment(void)
 void render_array_resize_40bit(int *param_1, int param_2)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined8 uVar3;
-  int iVar4;
+  int current_capacity;
+  int new_capacity;
+  undefined8 new_memory_ptr;
+  int final_capacity;
   
-  iVar1 = param_1[1];
-  if (param_2 <= iVar1) {
+  current_capacity = param_1[1];
+  if (param_2 <= current_capacity) {
     *param_1 = param_2;
     return;
   }
-  if (iVar1 == 0) {
-    iVar2 = 8;
+  if (current_capacity == 0) {
+    new_capacity = 8;
   }
   else {
-    iVar2 = iVar1 / 2 + iVar1;
+    new_capacity = current_capacity / 2 + current_capacity;
   }
-  iVar4 = param_2;
-  if (param_2 < iVar2) {
-    iVar4 = iVar2;
+  final_capacity = param_2;
+  if (param_2 < new_capacity) {
+    final_capacity = new_capacity;
   }
-  if (iVar1 < iVar4) {
+  if (current_capacity < final_capacity) {
     if (_DAT_180c8a9b0 != 0) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
-    uVar3 = func_0x000180120ce0((longlong)iVar4 * 0x28,_DAT_180c8a9a8);
+    new_memory_ptr = func_0x000180120ce0((longlong)final_capacity * 0x28,_DAT_180c8a9a8);
     if (*(longlong *)(param_1 + 2) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(uVar3,*(longlong *)(param_1 + 2),(longlong)*param_1 * 0x28);
+      // WARNING: Subroutine does not return
+      memcpy(new_memory_ptr,*(longlong *)(param_1 + 2),(longlong)*param_1 * 0x28);
     }
-    *(undefined8 *)(param_1 + 2) = uVar3;
-    param_1[1] = iVar4;
+    *(undefined8 *)(param_1 + 2) = new_memory_ptr;
+    param_1[1] = final_capacity;
     *param_1 = param_2;
     return;
   }
@@ -791,37 +791,37 @@ void render_array_resize_40bit(int *param_1, int param_2)
 void render_array_resize_alt(int param_1)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  int *unaff_RBX;
-  int iVar3;
-  int unaff_EDI;
+  int current_size;
+  undefined8 new_memory_ptr;
+  int *array_ptr;
+  int new_capacity;
+  int requested_size;
   
   if (param_1 == 0) {
-    iVar1 = 8;
+    current_size = 8;
   }
   else {
-    iVar1 = param_1 / 2 + param_1;
+    current_size = param_1 / 2 + param_1;
   }
-  iVar3 = unaff_EDI;
-  if (unaff_EDI < iVar1) {
-    iVar3 = iVar1;
+  new_capacity = requested_size;
+  if (requested_size < current_size) {
+    new_capacity = current_size;
   }
-  if (param_1 < iVar3) {
+  if (param_1 < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
-    uVar2 = func_0x000180120ce0((longlong)iVar3 * 0x28,_DAT_180c8a9a8);
-    if (*(longlong *)(unaff_RBX + 2) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(uVar2,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX * 0x28);
+    new_memory_ptr = func_0x000180120ce0((longlong)new_capacity * 0x28,_DAT_180c8a9a8);
+    if (*(longlong *)(array_ptr + 2) != 0) {
+      // WARNING: Subroutine does not return
+      memcpy(new_memory_ptr,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x28);
     }
-    *(undefined8 *)(unaff_RBX + 2) = uVar2;
-    unaff_RBX[1] = iVar3;
-    *unaff_RBX = unaff_EDI;
+    *(undefined8 *)(array_ptr + 2) = new_memory_ptr;
+    array_ptr[1] = new_capacity;
+    *array_ptr = requested_size;
     return;
   }
-  *unaff_RBX = unaff_EDI;
+  *array_ptr = requested_size;
   return;
 }
 
@@ -837,10 +837,10 @@ void render_array_resize_alt(int param_1)
 void render_simple_assignment_2(void)
 
 {
-  undefined4 *unaff_RBX;
-  undefined4 unaff_EDI;
+  undefined4 *target_ptr;
+  undefined4 value;
   
-  *unaff_RBX = unaff_EDI;
+  *target_ptr = value;
   return;
 }
 
@@ -856,10 +856,10 @@ void render_simple_assignment_2(void)
 void render_simple_assignment_3(void)
 
 {
-  undefined4 *unaff_RBX;
-  undefined4 unaff_EDI;
+  undefined4 *target_ptr;
+  undefined4 value;
   
-  *unaff_RBX = unaff_EDI;
+  *target_ptr = value;
   return;
 }
 
@@ -880,48 +880,48 @@ void render_simple_assignment_3(void)
 void render_array_append_32bit(int *param_1, undefined8 *param_2)
 
 {
-  undefined8 *puVar1;
-  int iVar2;
-  longlong lVar3;
-  int iVar4;
-  undefined8 uVar5;
-  int iVar6;
+  undefined8 *array_element_ptr;
+  int current_capacity;
+  longlong array_data_ptr;
+  int new_capacity;
+  undefined8 new_memory_ptr;
+  int new_size;
   
-  iVar2 = param_1[1];
-  if (*param_1 == iVar2) {
-    iVar6 = *param_1 + 1;
-    if (iVar2 == 0) {
-      iVar4 = 8;
+  current_capacity = param_1[1];
+  if (*param_1 == current_capacity) {
+    new_size = *param_1 + 1;
+    if (current_capacity == 0) {
+      new_capacity = 8;
     }
     else {
-      iVar4 = iVar2 / 2 + iVar2;
+      new_capacity = current_capacity / 2 + current_capacity;
     }
-    if (iVar6 < iVar4) {
-      iVar6 = iVar4;
+    if (new_size < new_capacity) {
+      new_size = new_capacity;
     }
-    if (iVar2 < iVar6) {
+    if (current_capacity < new_size) {
       if (_DAT_180c8a9b0 != 0) {
         *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
       }
-      uVar5 = func_0x000180120ce0((longlong)iVar6 << 5,_DAT_180c8a9a8);
+      new_memory_ptr = func_0x000180120ce0((longlong)new_size << 5,_DAT_180c8a9a8);
       if (*(longlong *)(param_1 + 2) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(uVar5,*(longlong *)(param_1 + 2),(longlong)*param_1 << 5);
+        // WARNING: Subroutine does not return
+        memcpy(new_memory_ptr,*(longlong *)(param_1 + 2),(longlong)*param_1 << 5);
       }
-      *(undefined8 *)(param_1 + 2) = uVar5;
-      param_1[1] = iVar6;
+      *(undefined8 *)(param_1 + 2) = new_memory_ptr;
+      param_1[1] = new_size;
     }
   }
-  iVar2 = *param_1;
-  uVar5 = param_2[1];
-  lVar3 = *(longlong *)(param_1 + 2);
-  puVar1 = (undefined8 *)((longlong)iVar2 * 0x20 + lVar3);
-  *puVar1 = *param_2;
-  puVar1[1] = uVar5;
-  uVar5 = param_2[3];
-  puVar1 = (undefined8 *)((longlong)iVar2 * 0x20 + 0x10 + lVar3);
-  *puVar1 = param_2[2];
-  puVar1[1] = uVar5;
+  current_capacity = *param_1;
+  new_memory_ptr = param_2[1];
+  array_data_ptr = *(longlong *)(param_1 + 2);
+  array_element_ptr = (undefined8 *)((longlong)current_capacity * 0x20 + array_data_ptr);
+  *array_element_ptr = *param_2;
+  array_element_ptr[1] = new_memory_ptr;
+  new_memory_ptr = param_2[3];
+  array_element_ptr = (undefined8 *)((longlong)current_capacity * 0x20 + 0x10 + array_data_ptr);
+  *array_element_ptr = param_2[2];
+  array_element_ptr[1] = new_memory_ptr;
   *param_1 = *param_1 + 1;
   return;
 }
@@ -940,36 +940,36 @@ void render_array_append_32bit(int *param_1, undefined8 *param_2)
 void render_array_append_inline(void)
 
 {
-  undefined8 *puVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong in_RAX;
-  undefined8 uVar4;
-  int *unaff_RBX;
-  undefined8 *unaff_RBP;
-  int unaff_EDI;
+  undefined8 *array_element_ptr;
+  int current_size;
+  longlong array_data_ptr;
+  longlong context_ptr;
+  undefined8 new_memory_ptr;
+  int *array_ptr;
+  undefined8 *data_ptr;
+  int new_capacity;
   
-  if (in_RAX != 0) {
-    *(int *)(in_RAX + 0x3a8) = *(int *)(in_RAX + 0x3a8) + 1;
+  if (context_ptr != 0) {
+    *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + 1;
   }
-  uVar4 = func_0x000180120ce0((longlong)unaff_EDI << 5,_DAT_180c8a9a8);
-  if (*(longlong *)(unaff_RBX + 2) != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(uVar4,*(longlong *)(unaff_RBX + 2),(longlong)*unaff_RBX << 5);
+  new_memory_ptr = func_0x000180120ce0((longlong)new_capacity << 5,_DAT_180c8a9a8);
+  if (*(longlong *)(array_ptr + 2) != 0) {
+    // WARNING: Subroutine does not return
+    memcpy(new_memory_ptr,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 5);
   }
-  *(undefined8 *)(unaff_RBX + 2) = uVar4;
-  unaff_RBX[1] = unaff_EDI;
-  iVar2 = *unaff_RBX;
-  uVar4 = unaff_RBP[1];
-  lVar3 = *(longlong *)(unaff_RBX + 2);
-  puVar1 = (undefined8 *)((longlong)iVar2 * 0x20 + lVar3);
-  *puVar1 = *unaff_RBP;
-  puVar1[1] = uVar4;
-  uVar4 = unaff_RBP[3];
-  puVar1 = (undefined8 *)((longlong)iVar2 * 0x20 + 0x10 + lVar3);
-  *puVar1 = unaff_RBP[2];
-  puVar1[1] = uVar4;
-  *unaff_RBX = *unaff_RBX + 1;
+  *(undefined8 *)(array_ptr + 2) = new_memory_ptr;
+  array_ptr[1] = new_capacity;
+  current_size = *array_ptr;
+  new_memory_ptr = data_ptr[1];
+  array_data_ptr = *(longlong *)(array_ptr + 2);
+  array_element_ptr = (undefined8 *)((longlong)current_size * 0x20 + array_data_ptr);
+  *array_element_ptr = *data_ptr;
+  array_element_ptr[1] = new_memory_ptr;
+  new_memory_ptr = data_ptr[3];
+  array_element_ptr = (undefined8 *)((longlong)current_size * 0x20 + 0x10 + array_data_ptr);
+  *array_element_ptr = data_ptr[2];
+  array_element_ptr[1] = new_memory_ptr;
+  *array_ptr = *array_ptr + 1;
   return;
 }
 
@@ -985,24 +985,24 @@ void render_array_append_inline(void)
 void render_array_append_alt(void)
 
 {
-  undefined8 *puVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  int *unaff_RBX;
-  undefined8 *unaff_RBP;
+  undefined8 *array_element_ptr;
+  int current_size;
+  longlong array_data_ptr;
+  undefined8 data_value;
+  int *array_ptr;
+  undefined8 *data_ptr;
   
-  iVar2 = *unaff_RBX;
-  uVar4 = unaff_RBP[1];
-  lVar3 = *(longlong *)(unaff_RBX + 2);
-  puVar1 = (undefined8 *)((longlong)iVar2 * 0x20 + lVar3);
-  *puVar1 = *unaff_RBP;
-  puVar1[1] = uVar4;
-  uVar4 = unaff_RBP[3];
-  puVar1 = (undefined8 *)((longlong)iVar2 * 0x20 + 0x10 + lVar3);
-  *puVar1 = unaff_RBP[2];
-  puVar1[1] = uVar4;
-  *unaff_RBX = *unaff_RBX + 1;
+  current_size = *array_ptr;
+  data_value = data_ptr[1];
+  array_data_ptr = *(longlong *)(array_ptr + 2);
+  array_element_ptr = (undefined8 *)((longlong)current_size * 0x20 + array_data_ptr);
+  *array_element_ptr = *data_ptr;
+  array_element_ptr[1] = data_value;
+  data_value = data_ptr[3];
+  array_element_ptr = (undefined8 *)((longlong)current_size * 0x20 + 0x10 + array_data_ptr);
+  *array_element_ptr = data_ptr[2];
+  array_element_ptr[1] = data_value;
+  *array_ptr = *array_ptr + 1;
   return;
 }
 
