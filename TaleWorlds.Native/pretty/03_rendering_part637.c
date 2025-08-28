@@ -735,7 +735,7 @@ void FUN_180623800(uint64_t *param_1)
   }
   *param_1 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_d8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_d8);
 }
 
 
@@ -753,7 +753,7 @@ FUN_1806239a0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  FUN_1806277c0(param_2,9,param_3,param_4,0,0xfffffffffffffffe);
+  CoreEngineDataBufferProcessor(param_2,9,param_3,param_4,0,0xfffffffffffffffe);
   puVar1 = (uint64_t *)param_2[1];
   *puVar1 = 0x63656a624f6c7466;
   *(int16_t *)(puVar1 + 1) = 0x74;
@@ -919,7 +919,7 @@ void FUN_180623ce0(void)
   uVar1 = GetCurrentProcess();
   K32GetProcessMemoryInfo(uVar1,auStack_68,0x48);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_88);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_88);
 }
 
 
@@ -954,10 +954,10 @@ void FUN_180623d40(void)
       dVar3 = dVar3 + 1.8446744073709552e+19;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050((float)(dVar2 / dVar3) * 100.0);
+    SystemSecurityChecker((float)(dVar2 / dVar3) * 100.0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(0xbf800000);
+  SystemSecurityChecker(0xbf800000);
 }
 
 
@@ -1075,7 +1075,7 @@ void FUN_180623de0(int64_t *param_1)
   GetSystemInfo(auStack_88);
   *(int32_t *)(param_1 + 0x13) = uStack_68;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_d8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_d8);
 }
 
 

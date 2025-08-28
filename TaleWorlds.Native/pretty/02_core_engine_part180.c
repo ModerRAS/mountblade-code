@@ -251,8 +251,19 @@ LAB_180165e38:
 
 
 
+/**
+ * 数据处理函数
+ * 处理系统数据，进行数据过滤和转换
+ * 
+ * @param param_1 系统参数1
+ * @param param_2 数据缓冲区指针
+ * @param param_3 系统参数3
+ * @param param_4 数据结构指针
+ * @return 处理后的数据缓冲区指针
+ */
+// 函数: uint64_t* CoreEngineDataProcessor(uint64_t, uint64_t*, uint64_t, int64_t*)
 uint64_t *
-FUN_180165f80(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_4)
+CoreEngineDataProcessor(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param_4)
 
 {
   uint uVar1;

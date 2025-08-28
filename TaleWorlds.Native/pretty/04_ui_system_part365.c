@@ -92,7 +92,7 @@ void FUN_180864e8c(float param_1,int64_t param_2,float param_3,float param_4)
     func_0x000180853cc0(*(int64_t *)(unaff_RDI + 0x2b0),CONCAT44(unaff_XMM6_Db,unaff_XMM6_Da));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x60) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x60) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -117,7 +117,7 @@ void FUN_180865027(float param_1)
     func_0x000180853cc0(*(int64_t *)(unaff_RDI + 0x2b0),unaff_XMM6_Da);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x60) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x60) ^ (uint64_t)&stack0x00000000);
 }
 
 

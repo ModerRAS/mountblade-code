@@ -761,7 +761,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
     temp_value1 = SystemValueGetter();
     if (0 < temp_value1) {
       do {
-        temp_data = FUN_1804386b0(int_value);
+        temp_data = SystemDataAccessor(int_value);
         stack_data._0_4_ = (float)temp_data;
         if (((float)stack_data == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1d50)) &&
            (stack_data._4_4_ = (float)((uint64_t)temp_data >> 0x20),
@@ -782,7 +782,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
         if (temp_float1 <= 0.0) {
           temp_float2 = temp_float1 - 0.9999999;
         }
-        temp_value2 = FUN_180438940(int_value);
+        temp_value2 = SystemIndexProcessor(int_value);
         if (temp_value2 == (int)temp_float2) goto code_r0x00018043b12e;
         int_value = int_value + 1;
       } while (int_value < temp_value1);
@@ -806,7 +806,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
     float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x1110);
     goto code_r0x00018043b131;
   case 0x1d:
-    int_value = FUN_180104d00();
+    int_value = SystemStatusChecker();
     break;
   case 0x1e:
     int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x700);
@@ -1073,7 +1073,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
   case 0x1c:
     return;
   case 0x1d:
-    FUN_180104d00();
+    SystemStatusChecker();
     return;
   case 0x1e:
     return;

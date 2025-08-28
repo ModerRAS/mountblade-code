@@ -286,7 +286,7 @@ void SystemInitializer_99_02_001(void)
     int64_t unaff_RSI;
     
     // WARNING: Subroutine does not return
-    FUN_18064e900(unaff_RSI + -0x10);
+    CoreEngineMemoryPoolCleaner(unaff_RSI + -0x10);
 }
 
 /**

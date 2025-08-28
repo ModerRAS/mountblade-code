@@ -106,7 +106,7 @@ char FUN_1805ae280(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
                         if (0x7fffffffff < uStackX_20) {
                           FUN_180627340(&unknown_var_928_ptr,&unknown_var_7360_ptr,0,0x7fffffffff,uStackX_20,
                                         &unknown_var_3712_ptr);
-                          FUN_180626f80(&unknown_var_1168_ptr,0,0x7fffffffff);
+                          SystemDataInitializer(&unknown_var_1168_ptr,0,0x7fffffffff);
                         }
                         param_3[10] = uVar1;
                         if (uVar1 < 0x8000000000) {
@@ -222,7 +222,7 @@ char FUN_1805ae3cf(int32_t param_1)
   
   if (0x7fffffffff < unaff_RSI) {
     FUN_180627340(&unknown_var_928_ptr,&unknown_var_7360_ptr,0,0x7fffffffff);
-    FUN_180626f80(&unknown_var_1168_ptr,0,0x7fffffffff);
+    SystemDataInitializer(&unknown_var_1168_ptr,0,0x7fffffffff);
     param_1 = extraout_XMM0_Da;
   }
   unaff_RBX[10] = unaff_RSI;

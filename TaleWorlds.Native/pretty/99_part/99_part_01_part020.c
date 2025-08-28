@@ -875,7 +875,7 @@ void SystemDataProcessor_Type1(SystemInt64 *param_1)
     system_handle = system_system_data_resource;
     if (system_system_data_resource != 0) {
         FUN_1800bc4a0(system_system_data_resource);
-        FUN_18064e900(system_handle);
+        CoreEngineMemoryPoolCleaner(system_handle);
     }
     
     /* 重置系统句柄 */
@@ -883,7 +883,7 @@ void SystemDataProcessor_Type1(SystemInt64 *param_1)
     
     /* 重新初始化系统句柄 */
     system_handle = 8;
-    state_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x470, 8, 3);
+    state_handle = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x470, 8, 3);
     system_system_data_resource = FUN_1800bc180(state_handle);
     
     /* 处理内存管理器 */
@@ -891,12 +891,12 @@ void SystemDataProcessor_Type1(SystemInt64 *param_1)
     if (system_handle != 0) {
         _Mtx_destroy_in_situ();
         _Mtx_destroy_in_situ(system_handle);
-        FUN_18064e900(system_handle);
+        CoreEngineMemoryPoolCleaner(system_handle);
     }
     
     /* 重新初始化内存管理器 */
     *param_1 = 0;
-    system_handle = FUN_18062b1e0(system_memory_pool_ptr, 0xa0, 8, 3);
+    system_handle = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xa0, 8, 3);
     _Mtx_init_in_situ(system_handle, 2);
     _Mtx_init_in_situ(system_handle + 0x50, 2);
     *param_1 = system_handle;
@@ -1102,7 +1102,7 @@ void SystemDataProcessor_Type2(SystemInt64 param_1)
     /* 设置系统句柄 */
     *(SystemUInt8 *)(param_1 + 0x560) = &system_data_buffer_ptr;
     if (*(SystemInt64 *)(param_1 + 0x568) != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     *(SystemInt64 *)(param_1 + 0x568) = 0;
@@ -1234,7 +1234,7 @@ void SystemThreadSynchronizer(SystemInt64 param_1, SystemUInt64 param_2, SystemU
     if (resource_ptr != (SystemUInt64 *)0x0) {
         FUN_1800b9210(param_1, *resource_ptr, param_3, param_4, 0xfffffffffffffffe);
         FUN_1800b94f0(resource_ptr);
-        FUN_18064e900(resource_ptr);
+        CoreEngineMemoryPoolCleaner(resource_ptr);
     }
     
     return;
@@ -1471,7 +1471,7 @@ void SystemConfigurationManager(SystemInt64 param_1, SystemUInt64 param_2, Syste
     if (resource_ptr != (SystemUInt64 *)0x0) {
         FUN_1800b9210(param_1, *resource_ptr, param_3, param_4, 0xfffffffffffffffe);
         FUN_1800b94f0(resource_ptr);
-        FUN_18064e900(resource_ptr);
+        CoreEngineMemoryPoolCleaner(resource_ptr);
     }
     
     return;

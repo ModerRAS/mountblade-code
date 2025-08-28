@@ -237,7 +237,7 @@ void FUN_18006f530(void* param_1)
     // 检查系统配置状态
     if (*(uint64_t*)((uint8_t*)param_1 + SYSTEM_CONFIG_OFFSET) != 0) {
         // 执行系统错误处理函数
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     // 检查回调函数并执行
@@ -279,7 +279,7 @@ void* FUN_18006f590(void* param_1, void* param_2, void* param_3, void* param_4)
         *(uint32_t*)((uint8_t*)param_1 + 8) = 0;
         
         // 调用底层初始化函数
-        FUN_1806277c0(param_1, 0, param_3, param_4, 0, 0xfffffffffffffffe);
+        CoreEngineDataBufferProcessor(param_1, 0, param_3, param_4, 0, 0xfffffffffffffffe);
         
         // 清理标志
         *(uint32_t*)((uint8_t*)param_1 + 8) = 0;
@@ -485,7 +485,7 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
         
         event_data = &global_state_3456_ptr;
         if (temp_buffer[24] != NULL) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
     }
     
@@ -547,8 +547,8 @@ uint64_t FUN_18006f940(uint64_t param_1, uint64_t param_2, char param_3)
     thread_id = FUN_1800f98e0(param_2);
     if (((!is_debug_mode) && (thread_id == 0)) && (*(char*)((uint8_t*)system_main_module_state + 0x2a) != '\0')) {
         event_flag = *(uint8_t*)((uint8_t*)system_main_module_state + 0x141);
-        process_result = FUN_180627ae0(&event_data, system_main_module_state + 0x148);
-        process_result = FUN_180627ae0(&event_data, process_result);
+        process_result = CoreEngineDataTransformer(&event_data, system_main_module_state + 0x148);
+        process_result = CoreEngineDataTransformer(&event_data, process_result);
         
         // 处理错误报告
         FUN_180066320(process_result, &event_data, event_flag, 0, event_data);
@@ -742,9 +742,9 @@ resource_cleanup:
         if ((!is_debug_mode) && (thread_id == 0)) {
             // 处理错误报告
             uint8_t error_flag = *(uint8_t*)((uint8_t*)system_main_module_state + 0x141);
-            void** error_context = (void**)FUN_180627ae0(&temp_buffer, system_main_module_state + 0x148);
+            void** error_context = (void**)CoreEngineDataTransformer(&temp_buffer, system_main_module_state + 0x148);
             
-            resource_result = FUN_180627ae0(&temp_buffer, error_context);
+            resource_result = CoreEngineDataTransformer(&temp_buffer, error_context);
             FUN_180066320(resource_result, &temp_buffer, error_flag, 0, temp_buffer);
         }
         

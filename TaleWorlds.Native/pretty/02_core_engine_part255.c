@@ -360,7 +360,7 @@ void FUN_18021fbb0(int64_t param_1)
   }
   puStack_e8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_168);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_168);
 }
 
 

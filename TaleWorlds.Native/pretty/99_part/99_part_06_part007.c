@@ -570,9 +570,9 @@ typedef struct {
  *  @{
  */
 #define Memory_SystemAllocator          func_0x00018064e870  ///< 内存系统分配器
-#define Memory_BlockInitializer        FUN_18064d630       ///< 内存块初始化器
+#define Memory_BlockInitializer        SystemDataCleaner       ///< 内存块初始化器
 #define Memory_ResourceManager          FUN_18005d260       ///< 内存资源管理器
-#define Memory_Validator                FUN_18064e900       ///< 内存验证器
+#define Memory_Validator                CoreEngineMemoryPoolCleaner       ///< 内存验证器
 /** @} */
 
 /** @defgroup ExceptionFunctionAliases 异常处理函数别名

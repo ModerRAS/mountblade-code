@@ -131,7 +131,7 @@ uint64_t FUN_18076fc40(int64_t param_1)
 {
   int iVar1;
   
-  iVar1 = FUN_180744cc0(param_1 + 0x10);
+  iVar1 = SystemStatusChecker(param_1 + 0x10);
   if (iVar1 == 0) {
     iVar1 = FUN_180744e20(param_1 + 0x20);
     if (iVar1 == 0) {
