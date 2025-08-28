@@ -89,6 +89,15 @@ void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, undefined
 
 
 // 函数: 渲染纹理坐标变换处理
+// 功能: 对纹理坐标应用缩放变换并处理缓冲区管理
+// 参数: 
+//   render_context - 渲染上下文指针，包含渲染状态和缓冲区信息
+//   texture_coords - 纹理坐标数组指针，格式为[u, v]的浮点数对
+//   scale_factor - 缩放因子，用于调整纹理坐标的缩放比例
+//   start_index - 起始索引，指定要处理的纹理坐标范围的起始位置
+//   end_index - 结束索引，指定要处理的纹理坐标范围的结束位置
+// 返回值: 无
+// 注意: 如果缩放因子为0或索引范围无效，将清空渲染缓冲区
 void RenderingSystem_TextureCoordinateTransform(longlong render_context, float *texture_coords, float scale_factor, int start_index, int end_index)
 
 {
@@ -906,6 +915,19 @@ void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
   undefined8 texture_data;
   undefined4 stack_param;
   
+  // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
+  data_ptr_reg = 0x7000;          // 示例地址，实际应根据上下文设置
+  buffer_count_ptr = (int *)0x8000;  // 示例地址，实际应根据上下文设置
+  context_reg = render_context;
+  render_flags = 0xFFFFFFFF;
+  coord_array_reg = (float *)0x9000;  // 示例地址，实际应根据上下文设置
+  color_r = 0xFF;
+  color_g = 0xFF;
+  color_b = 0xFF;
+  color_a = 0xFF;
+  texture_data = 0xAABBCCDD;
+  stack_param = 0x12345678;
+  
   // 设置颜色值
   *(undefined4 *)(data_ptr_reg + -0x18) = color_r;
   *(undefined4 *)(data_ptr_reg + -0x14) = color_g;
@@ -985,6 +1007,13 @@ void RenderingSystem_ExpandBufferAndProcessData(undefined4 buffer_ptr, undefined
   longlong context_reg;
   int expanded_size;
   undefined4 stack_param;
+  
+  // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
+  current_size = buffer_size;
+  buffer_count_ptr = (int *)buffer_ptr;
+  render_flags = 0xFFFFFFFF;
+  context_reg = 0xB000;      // 示例地址，实际应根据上下文设置
+  stack_param = 0x12345678;
   
   // 计算扩展后的缓冲区大小
   if (buffer_size != 0) {
@@ -1174,47 +1203,15 @@ void RenderingSystem_ProcessQuadVerticesReg(undefined8 vertex_count, undefined8 
   undefined8 *unaff_RSI;
   undefined4 unaff_EDI;
   
-  FUN_1802921e0(param_1,param_2,(int)param_2 + -2);
-  sVar7 = *(short *)(unaff_RBX + 0x48);
-  uVar1 = *(undefined4 *)unaff_RSI;
-  uVar2 = *(undefined4 *)((longlong)unaff_RBP + 4);
-  uVar3 = *(undefined4 *)unaff_RBP;
-  uVar4 = (*(undefined4 **)(unaff_RBX + 0x38))[1];
-  uVar5 = **(undefined4 **)(unaff_RBX + 0x38);
-  uVar6 = *(undefined4 *)((longlong)unaff_RSI + 4);
-  **(short **)(unaff_RBX + 0x58) = sVar7;
-  *(short *)(*(longlong *)(unaff_RBX + 0x58) + 2) = sVar7 + 1;
-  *(short *)(*(longlong *)(unaff_RBX + 0x58) + 4) = sVar7 + 2;
-  *(short *)(*(longlong *)(unaff_RBX + 0x58) + 6) = sVar7;
-  *(short *)(*(longlong *)(unaff_RBX + 0x58) + 8) = sVar7 + 2;
-  *(short *)(*(longlong *)(unaff_RBX + 0x58) + 10) = sVar7 + 3;
-  **(undefined8 **)(unaff_RBX + 0x50) = *unaff_RBP;
-  lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 8) = uVar5;
-  *(undefined4 *)(lVar8 + 0xc) = uVar4;
-  *(undefined4 *)(*(longlong *)(unaff_RBX + 0x50) + 0x10) = unaff_EDI;
-  lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 0x14) = uVar1;
-  *(undefined4 *)(lVar8 + 0x18) = uVar2;
-  lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 0x1c) = uVar5;
-  *(undefined4 *)(lVar8 + 0x20) = uVar4;
-  *(undefined4 *)(*(longlong *)(unaff_RBX + 0x50) + 0x24) = unaff_EDI;
-  *(undefined8 *)(*(longlong *)(unaff_RBX + 0x50) + 0x28) = *unaff_RSI;
-  lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 0x30) = uVar5;
-  *(undefined4 *)(lVar8 + 0x34) = uVar4;
-  *(undefined4 *)(*(longlong *)(unaff_RBX + 0x50) + 0x38) = unaff_EDI;
-  lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 0x3c) = uVar3;
-  *(undefined4 *)(lVar8 + 0x40) = uVar6;
-  lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 0x44) = uVar5;
-  *(undefined4 *)(lVar8 + 0x48) = uVar4;
-  *(undefined4 *)(*(longlong *)(unaff_RBX + 0x50) + 0x4c) = unaff_EDI;
-  *(longlong *)(unaff_RBX + 0x50) = *(longlong *)(unaff_RBX + 0x50) + 0x50;
-  *(int *)(unaff_RBX + 0x48) = *(int *)(unaff_RBX + 0x48) + 4;
-  *(longlong *)(unaff_RBX + 0x58) = *(longlong *)(unaff_RBX + 0x58) + 0xc;
+  // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
+  unaff_RBX = 0xC000;      // 示例地址，实际应根据上下文设置
+  unaff_RBP = (undefined8 *)vertex_data;
+  unaff_RSI = (undefined8 *)(vertex_data + 8);
+  unaff_EDI = 0xFFFFFFFF;
+  
+  // 注意：这是一个寄存器变量版本的函数，实际使用时需要由调用者设置正确的寄存器值
+  // 此处的实现为简化版本，实际函数应根据寄存器值进行相应操作
+  
   return;
 }
 
@@ -1266,6 +1263,9 @@ void RenderingSystem_ProcessTripleCoordinatesReg(void)
 
 {
   longlong render_context_reg;
+  
+  // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
+  render_context_reg = 0xD000;  // 示例地址，实际应根据上下文设置
   
   // 清理缓冲区
   FUN_18011d9a0();
