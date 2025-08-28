@@ -970,29 +970,50 @@ uint64_t UI_CheckStatus(longlong system_ptr)
 
 
 
-// 函数: void FUN_180789360(uint *param_1,uint param_2,int param_3,int param_4,uint param_5)
-void FUN_180789360(uint *param_1,uint param_2,int param_3,int param_4,uint param_5)
-
+/**
+ * UI_RecursiveProcess - UI系统递归处理
+ * 
+ * 递归处理UI系统数据，用于复杂的数据结构处理和内存操作
+ * 
+ * @param data_ptr 数据指针
+ * @param base_value 基础值
+ * @param step_size 步长
+ * @param process_size 处理大小
+ * @param mask_value 掩码值
+ * 
+ * 原始实现：FUN_180789360
+ */
+void UI_RecursiveProcess(uint *data_ptr, uint base_value, int step_size, int process_size, uint mask_value)
 {
-  int iVar1;
-  
-  if (param_4 != 1) {
-    do {
-      if (param_4 == 2) {
-        param_1[1] = param_2 + param_3 & param_5;
-        break;
-      }
-      iVar1 = (int)((param_4 >> 0x1f & 3U) + param_4) >> 2;
-      FUN_180789360(param_1,param_2,param_3 * 2,param_4 / 2,param_5);
-      FUN_180789360(param_1 + param_4 / 2,param_2 + param_3,param_3 * 4,iVar1,param_5);
-      param_2 = param_2 + (param_4 + -1) * param_3;
-      param_1 = param_1 + iVar1 * 3;
-      param_4 = iVar1;
-      param_3 = param_3 * 4;
-    } while (iVar1 != 1);
-  }
-  *param_1 = param_2 & param_5;
-  return;
+    int divided_size;
+    
+    if (process_size != 1) {
+        do {
+            if (process_size == 2) {
+                data_ptr[1] = base_value + step_size & mask_value;
+                break;
+            }
+            
+            // 计算分割大小
+            divided_size = (int)((process_size >> 0x1f & 3U) + process_size) >> 2;
+            
+            // 递归处理前半部分
+            UI_RecursiveProcess(data_ptr, base_value, step_size * 2, process_size / 2, mask_value);
+            
+            // 递归处理后半部分
+            UI_RecursiveProcess(data_ptr + process_size / 2, base_value + step_size, step_size * 4, divided_size, mask_value);
+            
+            // 更新参数继续处理
+            base_value = base_value + (process_size + -1) * step_size;
+            data_ptr = data_ptr + divided_size * 3;
+            process_size = divided_size;
+            step_size = step_size * 4;
+        } while (divided_size != 1);
+    }
+    
+    // 设置最终值
+    *data_ptr = base_value & mask_value;
+    return;
 }
 
 
