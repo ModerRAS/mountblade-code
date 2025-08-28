@@ -244,7 +244,7 @@ void NetworkingSystem_EmptyOperation1(void)
  * @param param_2 连接参数指针数组
  * @return 验证状态码（0表示成功，0x1c表示错误）
  */
-uint64_t NetworkingSystem_ProtocolValidator(longlong param_1,longlong *param_2)
+uint64_t NetworkingSystem_ProtocolValidator(int64_t param_1,int64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -309,7 +309,7 @@ uint64_t NetworkingSystem_ProtocolValidator(longlong param_1,longlong *param_2)
  * @param param_2 连接参数指针数组
  * @return 连接管理状态码（0表示成功，0x1c表示错误）
  */
-uint64_t NetworkingSystem_ConnectionManager(longlong param_1,longlong *param_2)
+uint64_t NetworkingSystem_ConnectionManager(int64_t param_1,int64_t *param_2)
 
 {
   uint64_t uVar1;
@@ -749,7 +749,7 @@ void NetworkingSystem_EmptyOperation3(void)
  * @param param_5 处理标志
  * @return 数据包处理状态码（0表示成功，0x1c表示错误）
  */
-ulonglong NetworkingSystem_PacketProcessor(longlong param_1,uint64_t *param_2,int32_t param_3,int32_t param_4,
+uint64_t NetworkingSystem_PacketProcessor(int64_t param_1,uint64_t *param_2,int32_t param_3,int32_t param_4,
                        char param_5)
 
 {
@@ -851,7 +851,7 @@ void NetworkingSystem_EmptyOperation4(void)
  * @param param_2 协议参数指针数组
  * @return 协议管理状态码（0表示成功，0x1c表示错误）
  */
-uint64_t NetworkingSystem_ProtocolManager(longlong param_1,longlong *param_2)
+uint64_t NetworkingSystem_ProtocolManager(int64_t param_1,int64_t *param_2)
 
 {
   uint64_t uVar1;

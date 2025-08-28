@@ -1,6 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
+// FUN_ 函数语义化别名定义
+// 渲染系统核心函数
+#define RenderQueueProcessor                   RenderQueueProcessor
+#define RenderQueueFinalizer                   FUN_180291cf0
+
+// 动画系统核心函数
+#define AnimationInitializer                   FUN_18012e2d0
+#define AnimationIDResolver                    FUN_180121250
+#define AnimationDataAllocator                 FUN_180134480
+#define AnimationParameterUpdater              FUN_18013e250
+
+// 渲染效果处理函数
+#define RenderEffectProcessor                  FUN_18011dbd0
+
 // 02_core_engine_part141.c - 核心引擎模块第141部分
 // 包含4个函数定义：渲染队列管理和动画效果处理相关函数
 
@@ -42,7 +56,7 @@ void update_render_queue_state(longlong render_queue)
     lVar2 = *(longlong *)(lVar4 + 0x1af8);
     
     // 执行渲染队列更新
-    FUN_180291b40(*(uint64_t *)(lVar2 + 0x2e8),*(uint64_t *)(lVar5 + 0xc),
+    RenderQueueProcessor(*(uint64_t *)(lVar2 + 0x2e8),*(uint64_t *)(lVar5 + 0xc),
                   *(uint64_t *)(lVar5 + 0x14),0);
     
     // 获取渲染参数
@@ -380,7 +394,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     lVar14 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
     *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
     lVar6 = *(longlong *)(lVar5 + 0x1af8);
-    FUN_180291b40(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar14 + 0xc),
+    RenderQueueProcessor(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar14 + 0xc),
                   *(uint64_t *)(lVar14 + 0x14),0);
     lVar5 = SYSTEM_DATA_MANAGER_A;
     puVar2 = (uint64_t *)
@@ -692,7 +706,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     lVar14 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
     *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
     lVar6 = *(longlong *)(lVar5 + 0x1af8);
-    FUN_180291b40(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar14 + 0xc),
+    RenderQueueProcessor(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar14 + 0xc),
                   *(uint64_t *)(lVar14 + 0x14),0);
     lVar5 = SYSTEM_DATA_MANAGER_A;
     puVar2 = (uint64_t *)
@@ -993,7 +1007,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     lVar13 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
     *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
     lVar6 = *(longlong *)(lVar5 + 0x1af8);
-    FUN_180291b40(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar13 + 0xc),
+    RenderQueueProcessor(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar13 + 0xc),
                   *(uint64_t *)(lVar13 + 0x14),0);
     lVar5 = SYSTEM_DATA_MANAGER_A;
     puVar2 = (uint64_t *)
