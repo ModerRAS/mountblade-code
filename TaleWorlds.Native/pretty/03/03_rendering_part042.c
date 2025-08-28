@@ -1,38 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part042.c - 渲染系统高级数据处理和渲染控制模块
-// 该模块包含9个核心函数，主要处理渲染数据解析、浮点运算和渲染控制操作
+// 03_rendering_part042.c - 渲染系统指令处理和顶点数据计算模块
+// 该模块包含9个核心函数，主要处理渲染指令解析、顶点计算和插值操作
 
 // =============================================================================
 // 数据结构定义
 // =============================================================================
 
-/// @brief 渲染数据块头部结构
-typedef struct {
-    uint8_t* data_ptr;          // 数据指针
-    uint32_t data_size;         // 数据大小
-    uint32_t offset;            // 当前偏移量
-    uint32_t capacity;          // 容量
-} render_data_block_t;
-
-/// @brief 渲染参数结构
-typedef struct {
-    float param1;               // 参数1
-    float param2;               // 参数2
-    float param3;               // 参数3
-    float param4;               // 参数4
-    float* output_buffer;       // 输出缓冲区
-    int buffer_size;            // 缓冲区大小
-} render_params_t;
-
-/// @brief 渲染顶点属性
-typedef struct {
-    float x, y, z, w;           // 位置坐标
-    float u, v;                 // 纹理坐标
-    float r, g, b, a;           // 颜色值
-} vertex_attribute_t;
-
-/// @brief 渲染操作码枚举
+/// @brief 渲染指令操作码枚举
 typedef enum {
     RENDER_OP_NOP = 0,           // 无操作
     RENDER_OP_DRAW = 1,          // 绘制操作
@@ -41,53 +16,84 @@ typedef enum {
     RENDER_OP_SET_TEXTURE = 4,   // 设置纹理
     RENDER_OP_PUSH_STATE = 5,   // 推送状态
     RENDER_OP_POP_STATE = 6,    // 弹出状态
-    RENDER_OP_SET_MATRIX = 7,    // 设置矩阵
-    RENDER_OP_CALL_FUNCTION = 8, // 调用函数
-    RENDER_OP_RETURN = 9,       // 返回
-    RENDER_OP_JUMP = 10,         // 跳转
-    RENDER_OP_BRANCH = 11,       // 分支
-    RENDER_OP_COMPARE = 12,      // 比较
-    RENDER_OP_STRING = 13,       // 字符串操作
-    RENDER_OP_END = 14           // 结束操作
+    RENDER_OP_JUMP = 7,         // 跳转操作
+    RENDER_OP_BRANCH = 8,       // 分支操作
+    RENDER_OP_COMPARE = 9,      // 比较操作
+    RENDER_OP_CALL = 10,        // 调用操作
+    RENDER_OP_RETURN = 11,      // 返回操作
+    RENDER_OP_STRING = 12,      // 字符串操作
+    RENDER_OP_END = 13,         // 结束操作
+    RENDER_OP_SPECIAL = 14      // 特殊操作
 } render_opcode_t;
+
+/// @brief 渲染数据流结构
+typedef struct {
+    uint8_t* data_ptr;          // 数据指针
+    uint32_t data_size;         // 数据大小
+    uint32_t current_offset;    // 当前偏移量
+    uint32_t max_offset;        // 最大偏移量
+    float operand_stack[32];    // 操作数栈
+    uint32_t stack_ptr;         // 栈指针
+    uint32_t state_flags;       // 状态标志
+} render_data_stream_t;
+
+/// @brief 渲染参数结构
+typedef struct {
+    float param1;               // 参数1
+    float param2;               // 参数2
+    float param3;               // 参数3
+    float param4;               // 参数4
+    float min_bound;            // 最小边界
+    float max_bound;            // 最大边界
+    float scale_factor;         // 缩放因子
+    float* output_buffer;       // 输出缓冲区
+    int buffer_size;            // 缓冲区大小
+} render_params_t;
+
+/// @brief 渲染上下文结构
+typedef struct {
+    void* render_context;       // 渲染上下文
+    uint32_t context_flags;     // 上下文标志
+    render_data_stream_t* data_stream; // 数据流
+    render_params_t* params;    // 渲染参数
+    uint32_t object_count;      // 对象计数
+    void** object_array;        // 对象数组
+} render_context_t;
 
 // =============================================================================
 // 核心函数实现
 // =============================================================================
 
 /**
- * @brief 解析渲染数据块并执行相应操作
+ * @brief 解析并执行渲染指令流
  * @param context 渲染上下文指针
  * @param operation 操作码
  * @param data_ptr 数据指针
- * @return 执行状态，成功返回1，失败返回0
+ * @return 执行状态，成功返回非0，失败返回0
  * 
- * 该函数是渲染系统核心的指令解析器，负责解析和执行各种渲染操作指令。
- * 支持多种渲染操作类型，包括绘制、变换、状态管理等。
+ * 该函数是渲染系统的核心指令解析器，负责解析和执行各种渲染操作指令。
+ * 支持多种渲染操作类型，包括绘制、变换、状态管理和特殊操作。
  */
-uint32_t parse_render_data_block(void* context, uint32_t operation, void* data_ptr) {
-    render_data_block_t* data_block = (render_data_block_t*)context;
-    render_params_t* params = (render_params_t*)data_ptr;
+uint32_t parse_render_instruction_stream(void* context, uint32_t operation, void* data_ptr) {
+    render_context_t* render_ctx = (render_context_t*)context;
+    render_data_stream_t* stream = (render_data_stream_t*)data_ptr;
     
-    if (!data_block || !params) {
+    if (!render_ctx || !stream) {
         return 0;
     }
     
-    uint8_t* current_ptr = data_block->data_ptr + data_block->offset;
-    uint32_t remaining_size = data_block->data_size - data_block->offset;
+    uint8_t* current_ptr = stream->data_ptr + stream->current_offset;
+    uint32_t remaining_size = stream->data_size - stream->current_offset;
     
-    // 操作数栈
-    float operand_stack[16];
+    // 初始化操作数栈
+    float operand_stack[32];
     uint32_t stack_ptr = 0;
+    uint32_t state_flags = 0;
     
-    // 渲染状态
-    uint32_t render_state = 0;
-    uint32_t jump_target = 0;
-    
-    while (data_block->offset < data_block->data_size) {
+    while (stream->current_offset < stream->max_offset) {
         uint8_t opcode = *current_ptr;
         current_ptr++;
-        data_block->offset++;
+        stream->current_offset++;
         
         switch (opcode) {
             case RENDER_OP_NOP:
@@ -97,7 +103,7 @@ uint32_t parse_render_data_block(void* context, uint32_t operation, void* data_p
             case RENDER_OP_DRAW:
                 // 绘制操作
                 if (stack_ptr >= 1) {
-                    execute_draw_operation(params, operand_stack[stack_ptr - 1]);
+                    execute_draw_operation(render_ctx, operand_stack[stack_ptr - 1]);
                     stack_ptr--;
                 }
                 break;
@@ -105,7 +111,7 @@ uint32_t parse_render_data_block(void* context, uint32_t operation, void* data_p
             case RENDER_OP_TRANSFORM:
                 // 变换操作
                 if (stack_ptr >= 3) {
-                    execute_transform_operation(params, 
+                    execute_transform_operation(render_ctx, 
                         operand_stack[stack_ptr - 3],
                         operand_stack[stack_ptr - 2],
                         operand_stack[stack_ptr - 1]);
@@ -116,32 +122,32 @@ uint32_t parse_render_data_block(void* context, uint32_t operation, void* data_p
             case RENDER_OP_SET_COLOR:
                 // 设置颜色
                 if (stack_ptr >= 4) {
-                    params->param1 = operand_stack[stack_ptr - 4];
-                    params->param2 = operand_stack[stack_ptr - 3];
-                    params->param3 = operand_stack[stack_ptr - 2];
-                    params->param4 = operand_stack[stack_ptr - 1];
+                    render_ctx->params->param1 = operand_stack[stack_ptr - 4];
+                    render_ctx->params->param2 = operand_stack[stack_ptr - 3];
+                    render_ctx->params->param3 = operand_stack[stack_ptr - 2];
+                    render_ctx->params->param4 = operand_stack[stack_ptr - 1];
                     stack_ptr -= 4;
                 }
                 break;
                 
             case RENDER_OP_PUSH_STATE:
                 // 推送渲染状态
-                render_state++;
+                state_flags++;
                 break;
                 
             case RENDER_OP_POP_STATE:
                 // 弹出渲染状态
-                if (render_state > 0) {
-                    render_state--;
+                if (state_flags > 0) {
+                    state_flags--;
                 }
                 break;
                 
             case RENDER_OP_JUMP:
                 // 跳转操作
                 if (stack_ptr >= 1) {
-                    jump_target = (uint32_t)operand_stack[stack_ptr - 1];
-                    data_block->offset = jump_target;
-                    current_ptr = data_block->data_ptr + data_block->offset;
+                    uint32_t jump_target = (uint32_t)operand_stack[stack_ptr - 1];
+                    stream->current_offset = jump_target;
+                    current_ptr = stream->data_ptr + stream->current_offset;
                     stack_ptr--;
                 }
                 break;
@@ -152,8 +158,8 @@ uint32_t parse_render_data_block(void* context, uint32_t operation, void* data_p
                     uint32_t condition = (uint32_t)operand_stack[stack_ptr - 2];
                     uint32_t target = (uint32_t)operand_stack[stack_ptr - 1];
                     if (condition != 0) {
-                        data_block->offset = target;
-                        current_ptr = data_block->data_ptr + data_block->offset;
+                        stream->current_offset = target;
+                        current_ptr = stream->data_ptr + stream->current_offset;
                     }
                     stack_ptr -= 2;
                 }
@@ -161,27 +167,27 @@ uint32_t parse_render_data_block(void* context, uint32_t operation, void* data_p
                 
             case RENDER_OP_STRING:
                 // 字符串操作
-                if (data_block->offset < data_block->data_size) {
+                if (stream->current_offset < stream->max_offset) {
                     uint8_t str_opcode = *current_ptr;
                     current_ptr++;
-                    data_block->offset++;
+                    stream->current_offset++;
                     
                     switch (str_opcode) {
-                        case '"':
+                        case '\"':
                             // 字符串常量处理
-                            execute_string_constant(params);
+                            execute_string_constant(render_ctx);
                             break;
                         case '#':
                             // 哈希值处理
-                            execute_hash_operation(params);
+                            execute_hash_operation(render_ctx);
                             break;
                         case '$':
                             // 变量处理
-                            execute_variable_operation(params);
+                            execute_variable_operation(render_ctx);
                             break;
                         case '%':
                             // 百分比处理
-                            execute_percentage_operation(params);
+                            execute_percentage_operation(render_ctx);
                             break;
                     }
                 }
@@ -197,8 +203,8 @@ uint32_t parse_render_data_block(void* context, uint32_t operation, void* data_p
         }
         
         // 处理操作数
-        if (stack_ptr < 16) {
-            operand_stack[stack_ptr] = read_next_operand(data_block, &current_ptr);
+        if (stack_ptr < 32) {
+            operand_stack[stack_ptr] = read_next_operand(stream, &current_ptr);
             stack_ptr++;
         }
     }
@@ -208,9 +214,9 @@ uint32_t parse_render_data_block(void* context, uint32_t operation, void* data_p
 
 /**
  * @brief 创建渲染对象
- * @param param1 对象类型
- * @param param2 对象参数
- * @param param3 输出对象指针
+ * @param object_type 对象类型
+ * @param object_params 对象参数
+ * @param object_ptr 输出对象指针
  * @return 创建状态，成功返回非0，失败返回0
  * 
  * 该函数用于创建各种类型的渲染对象，包括几何体、纹理、材质等。
@@ -221,7 +227,7 @@ uint32_t create_render_object(uint32_t object_type, uint32_t object_params, void
     }
     
     // 初始化渲染环境
-    uint32_t init_result = parse_render_data_block(NULL, 0, NULL);
+    uint32_t init_result = parse_render_instruction_stream(NULL, 0, NULL);
     if (init_result == 0) {
         *object_ptr = NULL;
         return 0;
@@ -291,7 +297,7 @@ uint32_t batch_render_objects(uint32_t object_type, uint64_t batch_params,
     }
     
     // 初始化批处理环境
-    uint32_t init_result = parse_render_data_batch(NULL, 0, NULL);
+    uint32_t init_result = parse_render_instruction_stream(NULL, 0, NULL);
     if (init_result == 0) {
         return 0;
     }
@@ -469,35 +475,159 @@ void render_nop_operation3(void) {
     return;
 }
 
+/**
+ * @brief 执行渲染批处理操作
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @param param5 参数5
+ * 
+ * 该函数用于执行复杂的渲染批处理操作，包括顶点计算和插值处理。
+ */
+void execute_render_batch(longlong param1, longlong param2, int param3, longlong* param4, float param5) {
+    if (!param4) {
+        return;
+    }
+    
+    float fVar21 = param5 + 1.0f;
+    
+    do {
+        float fVar16 = *(float*)((longlong)param4 + 0xc);
+        float fVar11 = *(float*)(param4 + 1);
+        
+        if (fVar16 == 0.0f) {
+            if (fVar11 < (float)param3) {
+                if (fVar11 < 0.0f) {
+                    render_coordinate_interpolation(param2 - 4, 0, param4, fVar11, param5, fVar11, fVar21);
+                } else {
+                    render_coordinate_interpolation(param1, (int)fVar11, param4, fVar11, param5, fVar11, fVar21);
+                    render_coordinate_interpolation(param2 - 4, 0, param4, 0, 0, 0, 0);
+                }
+            }
+        } else {
+            float fVar17 = *(float*)(param4 + 3);
+            float fVar19 = *(float*)(param4 + 2);
+            float fVar20 = fVar16 + fVar11;
+            float fVar15 = fVar11;
+            float fVar18 = param5;
+            
+            if (param5 < fVar17) {
+                fVar15 = (fVar17 - param5) * fVar16 + fVar11;
+                fVar18 = fVar17;
+            }
+            
+            fVar17 = *(float*)((longlong)param4 + 0x1c);
+            float fVar14 = fVar20;
+            float fVar10 = fVar21;
+            
+            if (fVar17 < fVar21) {
+                fVar14 = (fVar17 - param5) * fVar16 + fVar11;
+                fVar10 = fVar17;
+            }
+            
+            if (((fVar15 < 0.0f) || (fVar14 < 0.0f)) || ((float)param3 <= fVar15) || ((float)param3 <= fVar14)) {
+                // 处理边界情况
+                for (int i = 0; i < param3; i++) {
+                    float index_val = (float)i;
+                    float next_index_val = (float)(i + 1);
+                    float start_interp = (index_val - fVar11) * (1.0f / fVar16) + param5;
+                    float end_interp = (next_index_val - fVar11) * (1.0f / fVar16) + param5;
+                    
+                    if ((index_val <= fVar11) || (fVar20 <= next_index_val)) {
+                        if ((index_val <= fVar20) || (fVar11 <= next_index_val)) {
+                            if (((fVar11 < index_val) && (index_val < fVar20)) || ((fVar20 < index_val && (index_val < fVar11)))) {
+                                render_coordinate_interpolation(param1, i, param4, fVar11, param5, index_val, start_interp);
+                            } else if ((next_index_val <= fVar11) || (fVar20 <= next_index_val)) {
+                                if ((fVar20 < next_index_val) && (next_index_val < fVar11)) {
+                                    render_coordinate_interpolation(param1, i, param4, fVar11, param5, next_index_val, end_interp);
+                                }
+                            } else {
+                                render_coordinate_interpolation(param1, i, param4, fVar11, param5, next_index_val, end_interp);
+                            }
+                        } else {
+                            render_coordinate_interpolation(param1, i, param4, fVar11, param5, next_index_val, end_interp);
+                            render_coordinate_interpolation(param1, i, param4, 0, 0, 0, 0);
+                        }
+                    } else {
+                        render_coordinate_interpolation(param1, i, param4, fVar11, param5, index_val, start_interp);
+                        render_coordinate_interpolation(param1, i, param4, 0, 0, 0, 0);
+                    }
+                    render_coordinate_interpolation(param1, i, param4, 0, 0, 0, 0);
+                }
+            } else {
+                // 处理内部情况
+                int iVar3 = (int)fVar15;
+                if (iVar3 == (int)fVar14) {
+                    longlong lVar1 = (longlong)iVar3;
+                    *(float*)(param1 + lVar1 * 4) = (1.0f - ((fVar14 - (float)iVar3) + (fVar15 - (float)iVar3)) * 0.5f) * *(float*)((longlong)param4 + 0x14) * (fVar10 - fVar18) + *(float*)(param1 + lVar1 * 4);
+                    *(float*)(param2 + lVar1 * 4) = (fVar10 - fVar18) * *(float*)((longlong)param4 + 0x14) + *(float*)(param2 + lVar1 * 4);
+                } else {
+                    // 处理复杂插值情况
+                    float temp_fVar16 = fVar15;
+                    if (fVar14 < fVar15) {
+                        fVar19 = -fVar19;
+                        temp_fVar16 = fVar10 - param5;
+                        fVar10 = fVar21 - (fVar18 - param5);
+                        fVar18 = fVar21 - temp_fVar16;
+                        temp_fVar16 = fVar14;
+                        fVar14 = fVar15;
+                        fVar11 = fVar20;
+                    }
+                    
+                    int iVar7 = (int)temp_fVar16;
+                    iVar3 = (int)fVar14;
+                    longlong lVar1 = (longlong)(iVar7 + 1);
+                    longlong lVar6 = (longlong)iVar3;
+                    float fVar17 = *(float*)((longlong)param4 + 0x14);
+                    float fVar15_calc = fVar17 * fVar19;
+                    float fVar20_calc = ((float)(iVar7 + 1) - fVar11) * fVar19 + param5;
+                    float fVar11_calc = (fVar20_calc - fVar18) * fVar17;
+                    
+                    *(float*)(param1 + (longlong)iVar7 * 4) = (0.5f - (temp_fVar16 - (float)iVar7) * 0.5f) * fVar11_calc + *(float*)(param1 + (longlong)iVar7 * 4);
+                    
+                    if (lVar1 < lVar6) {
+                        // 批量处理插值
+                        for (longlong i = lVar1; i < lVar6; i++) {
+                            float fVar16_temp = fVar15_calc * 0.5f + fVar11_calc;
+                            fVar11_calc = fVar11_calc + fVar15_calc;
+                            *(float*)(param1 + i * 4) = fVar16_temp + *(float*)(param1 + i * 4);
+                        }
+                    }
+                    
+                    *(float*)(param1 + lVar6 * 4) = (fVar10 - ((float)((iVar3 - iVar7) - 1) * fVar19 + fVar20_calc)) * (1.0f - (fVar14 - (float)iVar3) * 0.5f) * fVar17 + fVar11_calc + *(float*)(param1 + lVar6 * 4);
+                    *(float*)(param2 + lVar6 * 4) = (fVar10 - fVar18) * fVar17 + *(float*)(param2 + lVar6 * 4);
+                }
+            }
+        }
+        
+        param4 = (longlong*)*param4;
+    } while (param4 != (longlong*)0x0);
+}
+
 // =============================================================================
 // 辅助函数实现
 // =============================================================================
 
 /**
  * @brief 执行绘制操作
- * @param params 渲染参数
+ * @param context 渲染上下文
  * @param draw_type 绘制类型
  */
-static void execute_draw_operation(render_params_t* params, float draw_type) {
-    // 实现绘制操作
-    if (params && params->output_buffer) {
-        // 根据绘制类型执行相应的绘制操作
+static void execute_draw_operation(render_context_t* context, float draw_type) {
+    if (context && context->params) {
         uint32_t type = (uint32_t)draw_type;
         switch (type) {
             case 1:
-                // 点绘制
-                draw_points(params);
+                draw_points(context->params);
                 break;
             case 2:
-                // 线绘制
-                draw_lines(params);
+                draw_lines(context->params);
                 break;
             case 3:
-                // 三角形绘制
-                draw_triangles(params);
+                draw_triangles(context->params);
                 break;
             default:
-                // 未知绘制类型
                 break;
         }
     }
@@ -505,55 +635,52 @@ static void execute_draw_operation(render_params_t* params, float draw_type) {
 
 /**
  * @brief 执行变换操作
- * @param params 渲染参数
+ * @param context 渲染上下文
  * @param x X坐标
  * @param y Y坐标
  * @param z Z坐标
  */
-static void execute_transform_operation(render_params_t* params, float x, float y, float z) {
-    // 实现变换操作
-    if (params) {
-        // 应用变换矩阵
-        apply_transformation(params, x, y, z);
+static void execute_transform_operation(render_context_t* context, float x, float y, float z) {
+    if (context && context->params) {
+        apply_transformation(context->params, x, y, z);
     }
 }
 
 /**
  * @brief 读取下一个操作数
- * @param data_block 数据块
+ * @param stream 数据流
  * @param current_ptr 当前指针指针
  * @return 读取的操作数值
  */
-static float read_next_operand(render_data_block_t* data_block, uint8_t** current_ptr) {
-    if (!data_block || !current_ptr || !*current_ptr) {
+static float read_next_operand(render_data_stream_t* stream, uint8_t** current_ptr) {
+    if (!stream || !current_ptr || !*current_ptr) {
         return 0.0f;
     }
     
-    // 读取不同类型的操作数
     uint8_t operand_type = **current_ptr;
     (*current_ptr)++;
-    data_block->offset++;
+    stream->current_offset++;
     
     float operand = 0.0f;
     
     switch (operand_type) {
         case 0xFF: {
             // 32位浮点数
-            if (data_block->offset + 4 <= data_block->data_size) {
+            if (stream->current_offset + 4 <= stream->data_size) {
                 uint32_t value = *(uint32_t*)*current_ptr;
                 operand = *(float*)&value;
                 *current_ptr += 4;
-                data_block->offset += 4;
+                stream->current_offset += 4;
             }
             break;
         }
         case 0x1C: {
             // 16位整数转换为浮点数
-            if (data_block->offset + 2 <= data_block->data_size) {
+            if (stream->current_offset + 2 <= stream->data_size) {
                 int16_t value = *(int16_t*)*current_ptr;
                 operand = (float)value;
                 *current_ptr += 2;
-                data_block->offset += 2;
+                stream->current_offset += 2;
             }
             break;
         }
@@ -571,7 +698,7 @@ static float read_next_operand(render_data_block_t* data_block, uint8_t** curren
 // 函数别名定义 - 保持向后兼容性
 // =============================================================================
 
-#define FUN_18028d680 parse_render_data_block
+#define FUN_18028d680 parse_render_instruction_stream
 #define FUN_18028e390 create_render_object
 #define FUN_18028e460 create_render_object_ex
 #define FUN_18028e48d batch_render_objects
@@ -590,15 +717,15 @@ static float read_next_operand(render_data_block_t* data_block, uint8_t** curren
 
 /**
  * @file 03_rendering_part042.c
- * @brief 渲染系统高级数据处理和渲染控制模块
+ * @brief 渲染系统指令处理和顶点数据计算模块
  * 
- * 该模块是渲染系统的核心组件之一，提供了完整的渲染数据解析、
- * 对象创建、坐标插值和渲染控制功能。支持多种渲染操作类型，
+ * 该模块是渲染系统的核心组件之一，提供了完整的渲染指令解析、
+ * 顶点计算、插值处理和对象管理功能。支持多种渲染操作类型，
  * 包括绘制、变换、状态管理等。模块采用面向对象的设计，
  * 提供了丰富的API接口和高度可定制的渲染流程。
  * 
  * 主要功能：
- * - 渲染数据块解析和执行
+ * - 渲染指令流解析和执行
  * - 渲染对象的创建和管理
  * - 批量渲染操作
  * - 坐标插值计算
