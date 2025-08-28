@@ -525,12 +525,24 @@ void data_multiplier(longlong data_context, int multiplier, int multiplicand)
 
 
 
-// 函数: void FUN_1807c41d0(undefined8 param_1,undefined8 param_2)
-void FUN_1807c41d0(undefined8 param_1,undefined8 param_2)
+/**
+ * 数据处理器 - 处理数据操作
+ * 
+ * 功能：
+ * - 执行数据处理操作
+ * - 管理数据缓冲区
+ * - 处理数据转换
+ * - 执行数据清理
+ * 
+ * @param operation_context 操作上下文指针
+ * @param data_buffer 数据缓冲区指针
+ * @return 无返回值（函数不返回）
+ */
+void data_handler(undefined8 operation_context, undefined8 data_buffer)
 
 {
-                    // WARNING: Subroutine does not return
-  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2,&UNK_18097c540,0x52,1);
+  /* 执行数据处理操作 - 此函数不返回 */
+  data_processing_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), data_buffer, &GLOBAL_BUFFER_ADDRESS, 0x52, 1);
 }
 
 
@@ -540,15 +552,27 @@ void FUN_1807c41d0(undefined8 param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_1807c4200(longlong param_1,int param_2)
-void FUN_1807c4200(longlong param_1,int param_2)
+/**
+ * 数据递增器 - 递增数据计数器
+ * 
+ * 功能：
+ * - 递增数据计数器
+ * - 管理数据缓冲区
+ * - 处理数据更新
+ * - 执行数据验证
+ * 
+ * @param data_context 数据上下文指针
+ * @param increment_value 递增值
+ * @return 无返回值
+ */
+void data_incrementer(longlong data_context, int increment_value)
 
 {
-  longlong lVar1;
+  longlong operation_result;
   
-  lVar1 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2,&UNK_18097c540,0x15,0,0,1);
-  if ((lVar1 != 0) && (param_1 != 0)) {
-    *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_2;
+  operation_result = data_increment_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), increment_value, &GLOBAL_BUFFER_ADDRESS, 0x15, 0, 0, 1);
+  if ((operation_result != 0) && (data_context != 0)) {
+    *(int *)(data_context + 0x4f0) = *(int *)(data_context + 0x4f0) + increment_value;
   }
   return;
 }

@@ -112,106 +112,154 @@ undefined FUN_1805fffa0;
 
 
 
-// 函数: undefined FUN_1806e71c0;
+/**
+ * @brief 数据结构管理器
+ * @details 管理复杂数据结构的创建和操作
+ * @note 包含多个相关数据结构定义
+ */
 undefined FUN_1806e71c0;
-undefined UNK_180a36e08;
-undefined UNK_180a36e78;
-undefined UNK_180a36e58;
-undefined UNK_180a36fb0;
-undefined UNK_180588340;
 
+/**
+ * @brief 数据结构成员变量
+ * @details 数据结构管理器的相关成员变量
+ */
+undefined UNK_180a36e08;  // 数据结构指针
+undefined UNK_180a36e78;  // 数据结构状态
+undefined UNK_180a36e58;  // 数据结构配置
+undefined UNK_180a36fb0;  // 数据结构缓存
+undefined UNK_180588340;  // 数据结构锁
 
-
-// 函数: undefined FUN_1805f3060;
+/**
+ * @brief 内存池管理器
+ * @details 管理系统内存池的分配和回收
+ * @note 包含内存池相关数据结构
+ */
 undefined FUN_1805f3060;
-undefined UNK_180a37b40;
-undefined UNK_180a37c10;
-undefined UNK_180a37cd8;
 
+/**
+ * @brief 内存池数据结构
+ * @details 内存池管理器的相关数据结构
+ */
+undefined UNK_180a37b40;  // 内存池头部
+undefined UNK_180a37c10;  // 内存池配置
+undefined UNK_180a37cd8;  // 内存池状态
 
-
-// 函数: undefined FUN_1805f32b0;
+/**
+ * @brief 线程管理器
+ * @details 管理系统线程的创建和同步
+ */
 undefined FUN_1805f32b0;
 
-
-
-// 函数: undefined FUN_1804aa030;
+/**
+ * @brief 渲染系统管理器
+ * @details 管理渲染系统的核心功能
+ * @note 包含大量渲染相关的数据结构
+ */
 undefined FUN_1804aa030;
-undefined UNK_180a37e00;
-undefined UNK_180a37d98;
-undefined UNK_180a37f38;
-undefined UNK_180a37fd8;
-undefined UNK_1809fad38;
-undefined UNK_1809fad48;
-undefined UNK_180a38060;
-undefined UNK_180a380b0;
-undefined UNK_180a38100;
-undefined UNK_180a38150;
-undefined UNK_180a381a0;
-undefined UNK_180a38310;
-undefined UNK_180a381e8;
-undefined UNK_180a38260;
-undefined UNK_180a38298;
-undefined UNK_180a383d0;
-undefined UNK_180a38408;
-undefined UNK_180a38440;
+
+/**
+ * @brief 渲染系统数据结构
+ * @details 渲染系统管理器的相关数据结构
+ */
+undefined UNK_180a37e00;  // 渲染上下文
+undefined UNK_180a37d98;  // 渲染配置
+undefined UNK_180a37f38;  // 渲染状态
+undefined UNK_180a37fd8;  // 渲染缓存
+undefined UNK_1809fad38;  // 渲染队列
+undefined UNK_1809fad48;  // 渲染缓冲区
+undefined UNK_180a38060;  // 渲染纹理
+undefined UNK_180a380b0;  // 渲染着色器
+undefined UNK_180a38100;  // 渲染材质
+undefined UNK_180a38150;  // 渲染光照
+undefined UNK_180a381a0;  // 渲染相机
+undefined UNK_180a38310;  // 渲染场景
+undefined UNK_180a381e8;  // 渲染对象
+undefined UNK_180a38260;  // 渲染变换
+undefined UNK_180a38298;  // 渲染矩阵
+undefined UNK_180a383d0;  // 渲染管线
+undefined UNK_180a38408;  // 渲染目标
+undefined UNK_180a38440;  // 渲染深度
 
 
 
-// 函数: undefined FUN_1805f8910;
+/**
+ * @brief 音频系统管理器
+ * @details 管理音频系统的播放和控制
+ * @note 包含音频相关的数据结构
+ */
 undefined FUN_1805f8910;
-undefined UNK_1805f8810;
 
+/**
+ * @brief 音频系统数据结构
+ * @details 音频系统管理器的相关数据结构
+ */
+undefined UNK_1805f8810;  // 音频上下文
 
-
-// 函数: undefined FUN_1805f8820;
+/**
+ * @brief 音频数据结构管理器
+ * @details 管理音频数据结构的创建和操作
+ * @note 包含大量音频相关的数据结构
+ */
 undefined FUN_1805f8820;
-undefined UNK_1809fadd8;
-undefined UNK_1809fade8;
-undefined UNK_1809fadf8;
-undefined UNK_1809fae08;
-undefined UNK_1809fae78;
-undefined UNK_1809fae88;
-undefined UNK_1809fae98;
-undefined UNK_1809fad98;
-undefined UNK_1809fada8;
-undefined UNK_1809fadb8;
-undefined UNK_1809fadc8;
-undefined UNK_1809fae18;
-undefined UNK_1809fae28;
-undefined UNK_1809fae38;
-undefined UNK_1809fae48;
-undefined UNK_1809faec8;
-undefined UNK_1809faef8;
-undefined UNK_1809faf08;
-undefined UNK_1809faed8;
-undefined UNK_1809faee8;
 
+/**
+ * @brief 音频数据结构成员
+ * @details 音频数据结构管理器的相关成员
+ */
+undefined UNK_1809fadd8;  // 音频缓冲区
+undefined UNK_1809fade8;  // 音频流
+undefined UNK_1809fadf8;  // 音频设备
+undefined UNK_1809fae08;  // 音频格式
+undefined UNK_1809fae78;  // 音频音量
+undefined UNK_1809fae88;  // 音频声道
+undefined UNK_1809fae98;  // 音频采样率
+undefined UNK_1809fad98;  // 音频状态
+undefined UNK_1809fada8;  // 音频配置
+undefined UNK_1809fadb8;  // 音频效果
+undefined UNK_1809fadc8;  // 音频混音器
+undefined UNK_1809fae18;  // 音频源
+undefined UNK_1809fae28;  // 音频监听器
+undefined UNK_1809fae38;  // 音频3D
+undefined UNK_1809fae48;  // 音频距离
+undefined UNK_1809faec8;  // 音频回响
+undefined UNK_1809faef8;  // 音频压缩
+undefined UNK_1809faf08;  // 音频编解码器
+undefined UNK_1809faed8;  // 音频滤波器
+undefined UNK_1809faee8;  // 音频均衡器
 
-
-// 函数: undefined FUN_1805faf50;
+/**
+ * @brief 输入系统管理器
+ * @details 管理输入设备的控制和事件处理
+ */
 undefined FUN_1805faf50;
 
-
-
-// 函数: undefined FUN_1805fd350;
+/**
+ * @brief 物理系统管理器
+ * @details 管理物理引擎的核心功能
+ * @note 包含物理相关的数据结构
+ */
 undefined FUN_1805fd350;
-undefined UNK_180a38478;
-undefined UNK_180a38488;
-undefined UNK_180a38498;
-undefined UNK_180a384a8;
-undefined UNK_1805feb50;
-undefined UNK_180a38588;
-undefined UNK_180a30d60;
-undefined UNK_180a385b0;
-undefined UNK_180a38608;
-undefined UNK_180a38638;
-undefined UNK_180a3be00;
-undefined UNK_180a38690;
-undefined UNK_180a386b0;
-undefined UNK_180a386e8;
-undefined UNK_180a38700;
-undefined UNK_180607c40;
+
+/**
+ * @brief 物理系统数据结构
+ * @details 物理系统管理器的相关数据结构
+ */
+undefined UNK_180a38478;  // 物理世界
+undefined UNK_180a38488;  // 物理配置
+undefined UNK_180a38498;  // 物理状态
+undefined UNK_180a384a8;  // 物理缓存
+undefined UNK_1805feb50;  // 物理形状
+undefined UNK_180a38588;  // 物理材质
+undefined UNK_180a30d60;  // 物理约束
+undefined UNK_180a385b0;  // 物理碰撞
+undefined UNK_180a38608;  // 物理触发器
+undefined UNK_180a38638;  // 物理关节
+undefined UNK_180a3be00;  // 物理力
+undefined UNK_180a38690;  // 物理质量
+undefined UNK_180a386b0;  // 物理摩擦
+undefined UNK_180a386e8;  // 物理弹性
+undefined UNK_180a38700;  // 物理阻尼
+undefined UNK_180607c40;  // 物理重力
 
 
 
