@@ -98,8 +98,8 @@ LAB_180056228:
                       *(uint64_t *)(lVar9 + 0x48),*(uint64_t *)(lVar9 + 0x50));
         lVar9 = *(int64_t *)(*(int64_t *)(param_1 + 0x48) + lVar14 * 8);
         *(uint64_t *)(lVar9 + 0x50) = *(uint64_t *)(lVar9 + 0x48);
-        FUN_180056150(*(uint64_t *)(uVar18 + *(int64_t *)(param_1 + 0x48)));
-        FUN_180056410(*(uint64_t *)(*(int64_t *)(param_1 + 0x48) + lVar14 * 8));
+        SystemInitializer(*(uint64_t *)(uVar18 + *(int64_t *)(param_1 + 0x48)));
+        SystemDataProcessor(*(uint64_t *)(*(int64_t *)(param_1 + 0x48) + lVar14 * 8));
         puVar4 = *(uint64_t **)(*(int64_t *)(param_1 + 0x48) + lVar14 * 8);
         if (puVar4 != (uint64_t *)0x0) {
           if (puVar4[9] != 0) {
@@ -179,7 +179,7 @@ void SystemDataProcessor(int64_t param_1,uint64_t param_2,uint64_t param_3,uint6
   uVar8 = uVar3;
   if ((int64_t)(*(int64_t *)(param_1 + 0x50) - uVar4) >> 3 != 0) {
     do {
-      FUN_180056410(*(uint64_t *)(uVar4 + uVar5));
+      SystemDataProcessor(*(uint64_t *)(uVar4 + uVar5));
       puVar2 = *(uint64_t **)(*puVar1 + uVar5);
       if (puVar2 != (uint64_t *)0x0) {
         if (puVar2[9] != 0) {
@@ -213,7 +213,7 @@ void SystemDataProcessor(int64_t param_1,uint64_t param_2,uint64_t param_3,uint6
     } while ((uint64_t)(int64_t)(int)uVar7 <
              (uint64_t)((int64_t)(*(int64_t *)(param_1 + 0x50) - uVar4) >> 3));
   }
-  FUN_180057340(puVar1,0);
+  SystemMemoryCleaner(puVar1,0);
   uVar4 = *(uint64_t *)(param_1 + 0x50);
   uVar5 = *puVar1;
   uVar7 = *(uint *)(param_1 + 0x60);
