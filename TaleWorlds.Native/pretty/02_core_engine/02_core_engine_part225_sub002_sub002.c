@@ -1,9 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part225_sub002_sub002.c - 1 个函数
+// 02_core_engine_part225_sub002_sub002.c - 核心引擎模块第225部分第2子部分第2子部分
+// 本文件包含4个函数，主要处理游戏对象的初始化、状态管理和资源清理
 
-// 函数: void FUN_18019ad80(longlong *param_1,longlong *param_2,char param_3)
-void FUN_18019ad80(longlong *param_1,longlong *param_2,char param_3)
+// 函数: void process_entity_initialization(longlong *entity_context, longlong *scene_context, char initialization_flags)
+// 处理实体初始化过程，包括状态同步、资源分配和组件管理
+void process_entity_initialization(longlong *entity_context, longlong *scene_context, char initialization_flags)
 
 {
   float fVar1;
