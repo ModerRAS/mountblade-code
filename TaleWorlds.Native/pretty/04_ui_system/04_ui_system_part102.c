@@ -1,52 +1,65 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part102.c - 16 个函数
+// 04_ui_system_part102.c - UI系统高级数学计算模块
+// 本模块包含16个函数，主要处理UI系统的数学计算、矩阵变换、数据处理等高级功能
 
-// 函数: void FUN_18072ad65(uint param_1,undefined8 param_2,undefined8 param_3,short param_4)
-void FUN_18072ad65(uint param_1,undefined8 param_2,undefined8 param_3,short param_4)
-
+// 函数: UI系统向量变换处理器
+// 原始函数名: FUN_18072ad65
+// 功能: 处理UI系统中的向量变换，包括矩阵乘法、位移计算等
+// 参数: 
+//   param_1 - 变换参数1
+//   param_2 - 输入数据指针
+//   param_3 - 输出数据指针
+//   param_4 - 变换参数2
+void UIProcessVectorTransform(uint param_1, undefined8 param_2, undefined8 param_3, short param_4)
 {
-  short in_AX;
-  undefined2 uVar1;
-  int iVar2;
-  longlong lVar3;
-  int *unaff_RBX;
-  int *unaff_RSI;
-  longlong unaff_RDI;
-  longlong lVar4;
-  int iVar5;
-  longlong lVar6;
-  ulonglong in_R10;
-  longlong in_R11;
-  undefined2 *in_stack_00000050;
+  short transform_AX;
+  undefined2 temp_result;
+  int matrix_index;
+  longlong scale_factor;
+  int *input_buffer;
+  int *transform_matrix;
+  longlong buffer_offset;
+  longlong temp_offset;
+  int result_value;
+  longlong loop_counter;
+  ulonglong scale_param;
+  longlong iteration_count;
+  undefined2 *output_pointer;
   
-  lVar4 = unaff_RDI - (longlong)in_stack_00000050;
+  // 计算缓冲区偏移量
+  temp_offset = buffer_offset - (longlong)output_pointer;
   do {
-    lVar6 = (longlong)*(short *)(lVar4 + (longlong)in_stack_00000050);
-    iVar5 = *unaff_RBX * 4 + (int)((ulonglong)(*unaff_RSI * lVar6) >> 0x10) * 4;
-    lVar3 = (longlong)iVar5;
-    iVar2 = (((int)((in_R10 & 0xffffffff) * lVar3 >> 0x10) >> 0xd) + 1 >> 1) +
-            (int)((ulonglong)(in_AX * lVar3) >> 0x10) + unaff_RBX[1];
-    *unaff_RBX = iVar2;
-    *unaff_RBX = (int)((ulonglong)(unaff_RSI[1] * lVar6) >> 0x10) + iVar2;
-    iVar2 = (((int)((ulonglong)param_1 * lVar3 >> 0x10) >> 0xd) + 1 >> 1) +
-            (int)((ulonglong)(param_4 * lVar3) >> 0x10);
-    unaff_RBX[1] = iVar2;
-    unaff_RBX[1] = (int)((ulonglong)(unaff_RSI[2] * lVar6) >> 0x10) + iVar2;
-    iVar2 = iVar5 + 0x3fff >> 0xe;
-    if (iVar2 < 0x8000) {
-      uVar1 = (undefined2)iVar2;
-      if (iVar2 < -0x8000) {
-        uVar1 = 0x8000;
+    // 获取缩放因子
+    scale_factor = (longlong)*(short *)(temp_offset + (longlong)output_pointer);
+    // 计算矩阵索引和变换结果
+    matrix_index = *input_buffer * 4 + (int)((ulonglong)(*transform_matrix * scale_factor) >> 0x10) * 4;
+    scale_factor = (longlong)matrix_index;
+    // 执行矩阵变换计算
+    result_value = (((int)((scale_param & 0xffffffff) * scale_factor >> 0x10) >> 0xd) + 1 >> 1) +
+                   (int)((ulonglong)(transform_AX * scale_factor) >> 0x10) + input_buffer[1];
+    *input_buffer = result_value;
+    *input_buffer = (int)((ulonglong)(transform_matrix[1] * scale_factor) >> 0x10) + result_value;
+    // 计算第二组变换结果
+    result_value = (((int)((ulonglong)param_1 * scale_factor >> 0x10) >> 0xd) + 1 >> 1) +
+                   (int)((ulonglong)(param_4 * scale_factor) >> 0x10);
+    input_buffer[1] = result_value;
+    input_buffer[1] = (int)((ulonglong)(transform_matrix[2] * scale_factor) >> 0x10) + result_value;
+    // 处理结果值范围限制
+    result_value = matrix_index + 0x3fff >> 0xe;
+    if (result_value < 0x8000) {
+      temp_result = (undefined2)result_value;
+      if (result_value < -0x8000) {
+        temp_result = 0x8000;  // 最小值限制
       }
     }
     else {
-      uVar1 = 0x7fff;
+      temp_result = 0x7fff;  // 最大值限制
     }
-    *in_stack_00000050 = uVar1;
-    in_stack_00000050 = in_stack_00000050 + 1;
-    in_R11 = in_R11 + -1;
-  } while (in_R11 != 0);
+    *output_pointer = temp_result;
+    output_pointer = output_pointer + 1;
+    iteration_count = iteration_count + -1;
+  } while (iteration_count != 0);
   return;
 }
 
@@ -54,9 +67,10 @@ void FUN_18072ad65(uint param_1,undefined8 param_2,undefined8 param_3,short para
 
 
 
-// 函数: void FUN_18072ae6c(void)
-void FUN_18072ae6c(void)
-
+// 函数: UI系统空操作处理器
+// 原始函数名: FUN_18072ae6c
+// 功能: 空操作函数，用于系统初始化或占位
+void UIEmptyOperationHandler(void)
 {
   return;
 }
@@ -67,276 +81,320 @@ void FUN_18072ae6c(void)
 
 
 
-// 函数: void FUN_18072af30(longlong param_1,longlong param_2,int param_3)
-void FUN_18072af30(longlong param_1,longlong param_2,int param_3)
-
+// 函数: UI系统矩阵逆变换处理器
+// 原始函数名: FUN_18072af30
+// 功能: 执行UI系统中的矩阵逆变换计算，处理浮点数矩阵运算
+// 参数:
+//   param_1 - 输出缓冲区指针
+//   param_2 - 输入数据指针
+//   param_3 - 数据元素数量
+void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
 {
-  double dVar1;
-  double dVar2;
-  double dVar3;
-  undefined1 auVar4 [16];
-  longlong lVar5;
-  double *pdVar6;
-  longlong lVar7;
-  longlong lVar8;
-  ulonglong uVar9;
-  ulonglong uVar10;
-  longlong lVar11;
-  undefined1 (*pauVar12) [16];
-  longlong lVar13;
-  longlong lVar14;
-  undefined4 uVar15;
-  undefined4 uVar16;
-  double dVar17;
-  undefined1 auStack_1b8 [8];
-  double adStack_1b0 [49];
-  ulonglong uStack_28;
+  double input_value;
+  double matrix_val1;
+  double matrix_val2;
+  double result_val;
+  undefined1 conversion_buffer [16];
+  longlong element_index;
+  double *matrix_pointer;
+  longlong row_count;
+  longlong col_count;
+  ulonglong element_count;
+  ulonglong remaining_elements;
+  longlong batch_size;
+  undefined1 (*buffer_ptr) [16];
+  longlong processed_elements;
+  longlong matrix_offset;
+  undefined4 float_part1;
+  undefined4 float_part2;
+  double scale_factor;
+  undefined1 stack_protector [8];
+  double matrix_stack [49];
+  ulonglong security_cookie;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_1b8;
-  uVar9 = (ulonglong)param_3;
-  lVar5 = 0;
-  pauVar12 = (undefined1 (*) [16])auStack_1b8;
+  // 安全检查：栈保护cookie
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_protector;
+  element_count = (ulonglong)param_3;
+  element_index = 0;
+  buffer_ptr = (undefined1 (*) [16])stack_protector;
+  
+  // 预处理：将输入数据转换为双精度浮点数
   do {
-    dVar17 = (double)*(float *)(param_2 + lVar5 * 4);
-    lVar5 = lVar5 + 1;
-    auVar4._8_4_ = SUB84(dVar17,0);
-    auVar4._0_8_ = dVar17;
-    auVar4._12_4_ = (int)((ulonglong)dVar17 >> 0x20);
-    *pauVar12 = auVar4;
-    pauVar12 = pauVar12 + 1;
-  } while (lVar5 <= (longlong)uVar9);
+    result_val = (double)*(float *)(param_2 + element_index * 4);
+    element_index = element_index + 1;
+    conversion_buffer._8_4_ = SUB84(result_val, 0);
+    conversion_buffer._0_8_ = result_val;
+    conversion_buffer._12_4_ = (int)((ulonglong)result_val >> 0x20);
+    *buffer_ptr = conversion_buffer;
+    buffer_ptr = buffer_ptr + 1;
+  } while (element_index <= (longlong)element_count);
+  
   if (0 < param_3) {
-    lVar14 = 0;
-    lVar11 = 8;
-    lVar5 = -8;
-    uVar10 = uVar9;
+    matrix_offset = 0;
+    batch_size = 8;
+    element_index = -8;
+    remaining_elements = element_count;
     do {
-      uVar15 = SUB84(adStack_1b0[0],0);
-      uVar16 = (undefined4)((ulonglong)adStack_1b0[0] >> 0x20);
-      if (adStack_1b0[0] <= 9.999999717180685e-10) {
-        uVar15 = 0xe0000000;
-        uVar16 = 0x3e112e0b;
+      // 处理矩阵元素，进行数值范围检查
+      float_part1 = SUB84(matrix_stack[0], 0);
+      float_part2 = (undefined4)((ulonglong)matrix_stack[0] >> 0x20);
+      if (matrix_stack[0] <= 9.999999717180685e-10) {
+        float_part1 = 0xe0000000;  // 极小值处理
+        float_part2 = 0x3e112e0b;
       }
-      lVar8 = (longlong)(int)uVar10;
-      pdVar6 = (double *)((longlong)adStack_1b0 + lVar11 + 0x10);
-      lVar13 = 0;
-      dVar17 = (-1.0 / (double)CONCAT44(uVar16,uVar15)) *
-               *(double *)((longlong)adStack_1b0 + lVar11);
-      *(float *)(param_1 + lVar14 * 4) = (float)dVar17;
-      if (3 < lVar8) {
-        lVar7 = (lVar8 - 4U >> 2) + 1;
-        lVar13 = lVar7 * 4;
+      row_count = (longlong)(int)remaining_elements;
+      matrix_pointer = (double *)((longlong)matrix_stack + batch_size + 0x10);
+      processed_elements = 0;
+      
+      // 计算缩放因子
+      result_val = (-1.0 / (double)CONCAT44(float_part2, float_part1)) *
+                   *(double *)((longlong)matrix_stack + batch_size);
+      *(float *)(param_1 + matrix_offset * 4) = (float)result_val;
+      
+      // 批量处理矩阵运算（4元素一组）
+      if (3 < row_count) {
+        batch_size = (row_count - 4U >> 2) + 1;
+        processed_elements = batch_size * 4;
         do {
-          dVar1 = *(double *)((longlong)pdVar6 + lVar5 + -0x10);
-          dVar2 = pdVar6[-2];
-          pdVar6[-2] = dVar1 * dVar17 + dVar2;
-          dVar3 = *(double *)((longlong)pdVar6 + lVar5);
-          *(double *)((longlong)pdVar6 + lVar5 + -0x10) = dVar2 * dVar17 + dVar1;
-          dVar1 = *pdVar6;
-          *pdVar6 = dVar3 * dVar17 + dVar1;
-          dVar2 = *(double *)((longlong)pdVar6 + lVar5 + 0x10);
-          *(double *)((longlong)pdVar6 + lVar5) = dVar1 * dVar17 + dVar3;
-          dVar1 = pdVar6[2];
-          pdVar6[2] = dVar2 * dVar17 + dVar1;
-          dVar3 = *(double *)((longlong)pdVar6 + lVar5 + 0x20);
-          *(double *)((longlong)pdVar6 + lVar5 + 0x10) = dVar1 * dVar17 + dVar2;
-          dVar1 = pdVar6[4];
-          pdVar6[4] = dVar3 * dVar17 + dVar1;
-          *(double *)((longlong)pdVar6 + lVar5 + 0x20) = dVar1 * dVar17 + dVar3;
-          pdVar6 = pdVar6 + 8;
-          lVar7 = lVar7 + -1;
-        } while (lVar7 != 0);
+          // 执行4x4矩阵块运算
+          matrix_val1 = *(double *)((longlong)matrix_pointer + element_index + -0x10);
+          matrix_val2 = matrix_pointer[-2];
+          matrix_pointer[-2] = matrix_val1 * result_val + matrix_val2;
+          result_val = *(double *)((longlong)matrix_pointer + element_index);
+          *(double *)((longlong)matrix_pointer + element_index + -0x10) = matrix_val2 * result_val + matrix_val1;
+          matrix_val1 = *matrix_pointer;
+          *matrix_pointer = result_val * result_val + matrix_val1;
+          matrix_val2 = *(double *)((longlong)matrix_pointer + element_index + 0x10);
+          *(double *)((longlong)matrix_pointer + element_index) = matrix_val1 * result_val + result_val;
+          matrix_val1 = matrix_pointer[2];
+          matrix_pointer[2] = matrix_val2 * result_val + matrix_val1;
+          result_val = *(double *)((longlong)matrix_pointer + element_index + 0x20);
+          *(double *)((longlong)matrix_pointer + element_index + 0x10) = matrix_val1 * result_val + matrix_val2;
+          matrix_val1 = matrix_pointer[4];
+          matrix_pointer[4] = result_val * result_val + matrix_val1;
+          *(double *)((longlong)matrix_pointer + element_index + 0x20) = matrix_val1 * result_val + result_val;
+          matrix_pointer = matrix_pointer + 8;
+          batch_size = batch_size + -1;
+        } while (batch_size != 0);
       }
-      if (lVar13 < lVar8) {
-        pdVar6 = adStack_1b0 + lVar13 * 2;
-        lVar8 = lVar8 - lVar13;
+      
+      // 处理剩余元素
+      if (processed_elements < row_count) {
+        matrix_pointer = matrix_stack + processed_elements * 2;
+        row_count = row_count - processed_elements;
         do {
-          dVar1 = *pdVar6;
-          dVar2 = *(double *)(lVar11 + (longlong)pdVar6);
-          *(double *)(lVar11 + (longlong)pdVar6) = dVar1 * dVar17 + dVar2;
-          *pdVar6 = dVar2 * dVar17 + dVar1;
-          pdVar6 = pdVar6 + 2;
-          lVar8 = lVar8 + -1;
-        } while (lVar8 != 0);
+          matrix_val1 = *matrix_pointer;
+          matrix_val2 = *(double *)(batch_size + (longlong)matrix_pointer);
+          *(double *)(batch_size + (longlong)matrix_pointer) = matrix_val1 * result_val + matrix_val2;
+          *matrix_pointer = matrix_val2 * result_val + matrix_val1;
+          matrix_pointer = matrix_pointer + 2;
+          row_count = row_count + -1;
+        } while (row_count != 0);
       }
-      uVar10 = (ulonglong)((int)uVar10 - 1);
-      lVar14 = lVar14 + 1;
-      lVar5 = lVar5 + -0x10;
-      lVar11 = lVar11 + 0x10;
-    } while (lVar14 < (longlong)uVar9);
+      remaining_elements = (ulonglong)((int)remaining_elements - 1);
+      matrix_offset = matrix_offset + 1;
+      element_index = element_index + -0x10;
+      batch_size = batch_size + 0x10;
+    } while (matrix_offset < (longlong)element_count);
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_1b8);
+  
+  // 安全检查：函数不会返回
+  FUN_1808fc050(security_cookie ^ (ulonglong)stack_protector);
 }
 
 
 
 
 
-// 函数: void FUN_18072afa1(void)
-void FUN_18072afa1(void)
-
+// 函数: UI系统高级矩阵处理器
+// 原始函数名: FUN_18072afa1
+// 功能: 执行UI系统中的高级矩阵运算，包括矩阵变换和数值处理
+void UIAdvancedMatrixProcessor(void)
 {
-  double dVar1;
-  double dVar2;
-  double dVar3;
-  double *pdVar4;
-  longlong lVar5;
-  longlong lVar6;
-  int unaff_EBX;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  ulonglong uVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong in_R11;
-  double dVar10;
-  double in_XMM5_Qa;
-  double adStackX_8 [4];
+  double matrix_val1;
+  double matrix_val2;
+  double matrix_val3;
+  double *matrix_pointer;
+  longlong batch_counter;
+  longlong offset_val;
+  int matrix_rows;
+  longlong output_buffer;
+  longlong matrix_limit;
+  ulonglong element_offset;
+  longlong processed_count;
+  longlong total_elements;
+  longlong iteration_index;
+  double scale_factor;
+  double threshold_value;
+  double matrix_stack [4];
   
-  uVar7 = (ulonglong)((int)in_R11 + 8);
-  lVar8 = in_R11 + -8;
+  element_offset = (ulonglong)((int)iteration_index + 8);
+  offset_val = iteration_index + -8;
   do {
-    dVar10 = adStackX_8[0];
-    if (adStackX_8[0] <= in_XMM5_Qa) {
-      dVar10 = in_XMM5_Qa;
+    // 获取缩放因子并进行阈值检查
+    scale_factor = matrix_stack[0];
+    if (matrix_stack[0] <= threshold_value) {
+      scale_factor = threshold_value;  // 应用阈值限制
     }
-    lVar6 = (longlong)unaff_EBX;
-    pdVar4 = (double *)((longlong)adStackX_8 + uVar7 + 0x10);
-    lVar9 = 0;
-    dVar10 = (-1.0 / dVar10) * *(double *)((longlong)adStackX_8 + uVar7);
-    *(float *)(unaff_RSI + in_R11 * 4) = (float)dVar10;
-    if (3 < lVar6) {
-      lVar5 = (lVar6 - 4U >> 2) + 1;
-      lVar9 = lVar5 * 4;
+    total_elements = (longlong)matrix_rows;
+    matrix_pointer = (double *)((longlong)matrix_stack + element_offset + 0x10);
+    processed_count = 0;
+    
+    // 计算逆变换因子
+    scale_factor = (-1.0 / scale_factor) * *(double *)((longlong)matrix_stack + element_offset);
+    *(float *)(output_buffer + iteration_index * 4) = (float)scale_factor;
+    
+    // 批量处理矩阵元素（4元素优化）
+    if (3 < total_elements) {
+      batch_counter = (total_elements - 4U >> 2) + 1;
+      processed_count = batch_counter * 4;
       do {
-        dVar1 = *(double *)((longlong)pdVar4 + lVar8 + -0x10);
-        dVar2 = pdVar4[-2];
-        pdVar4[-2] = dVar1 * dVar10 + dVar2;
-        dVar3 = *(double *)((longlong)pdVar4 + lVar8);
-        *(double *)((longlong)pdVar4 + lVar8 + -0x10) = dVar2 * dVar10 + dVar1;
-        dVar1 = *pdVar4;
-        *pdVar4 = dVar3 * dVar10 + dVar1;
-        dVar2 = *(double *)((longlong)pdVar4 + lVar8 + 0x10);
-        *(double *)((longlong)pdVar4 + lVar8) = dVar1 * dVar10 + dVar3;
-        dVar1 = pdVar4[2];
-        pdVar4[2] = dVar2 * dVar10 + dVar1;
-        dVar3 = *(double *)((longlong)pdVar4 + lVar8 + 0x20);
-        *(double *)((longlong)pdVar4 + lVar8 + 0x10) = dVar1 * dVar10 + dVar2;
-        dVar1 = pdVar4[4];
-        pdVar4[4] = dVar3 * dVar10 + dVar1;
-        *(double *)((longlong)pdVar4 + lVar8 + 0x20) = dVar1 * dVar10 + dVar3;
-        pdVar4 = pdVar4 + 8;
-        lVar5 = lVar5 + -1;
-      } while (lVar5 != 0);
+        // 执行4x4矩阵块运算
+        matrix_val1 = *(double *)((longlong)matrix_pointer + offset_val + -0x10);
+        matrix_val2 = matrix_pointer[-2];
+        matrix_pointer[-2] = matrix_val1 * scale_factor + matrix_val2;
+        matrix_val3 = *(double *)((longlong)matrix_pointer + offset_val);
+        *(double *)((longlong)matrix_pointer + offset_val + -0x10) = matrix_val2 * scale_factor + matrix_val1;
+        matrix_val1 = *matrix_pointer;
+        *matrix_pointer = matrix_val3 * scale_factor + matrix_val1;
+        matrix_val2 = *(double *)((longlong)matrix_pointer + offset_val + 0x10);
+        *(double *)((longlong)matrix_pointer + offset_val) = matrix_val1 * scale_factor + matrix_val3;
+        matrix_val1 = matrix_pointer[2];
+        matrix_pointer[2] = matrix_val2 * scale_factor + matrix_val1;
+        matrix_val3 = *(double *)((longlong)matrix_pointer + offset_val + 0x20);
+        *(double *)((longlong)matrix_pointer + offset_val + 0x10) = matrix_val1 * scale_factor + matrix_val2;
+        matrix_val1 = matrix_pointer[4];
+        matrix_pointer[4] = matrix_val3 * scale_factor + matrix_val1;
+        *(double *)((longlong)matrix_pointer + offset_val + 0x20) = matrix_val1 * scale_factor + matrix_val3;
+        matrix_pointer = matrix_pointer + 8;
+        batch_counter = batch_counter + -1;
+      } while (batch_counter != 0);
     }
-    if (lVar9 < lVar6) {
-      pdVar4 = adStackX_8 + lVar9 * 2;
-      lVar6 = lVar6 - lVar9;
+    
+    // 处理剩余的矩阵元素
+    if (processed_count < total_elements) {
+      matrix_pointer = matrix_stack + processed_count * 2;
+      total_elements = total_elements - processed_count;
       do {
-        dVar1 = *pdVar4;
-        dVar2 = *(double *)(uVar7 + (longlong)pdVar4);
-        *(double *)(uVar7 + (longlong)pdVar4) = dVar1 * dVar10 + dVar2;
-        *pdVar4 = dVar2 * dVar10 + dVar1;
-        pdVar4 = pdVar4 + 2;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        matrix_val1 = *matrix_pointer;
+        matrix_val2 = *(double *)(element_offset + (longlong)matrix_pointer);
+        *(double *)(element_offset + (longlong)matrix_pointer) = matrix_val1 * scale_factor + matrix_val2;
+        *matrix_pointer = matrix_val2 * scale_factor + matrix_val1;
+        matrix_pointer = matrix_pointer + 2;
+        total_elements = total_elements + -1;
+      } while (total_elements != 0);
     }
-    unaff_EBX = unaff_EBX + -1;
-    in_R11 = in_R11 + 1;
-    lVar8 = lVar8 + -0x10;
-    uVar7 = uVar7 + 0x10;
-  } while (in_R11 < unaff_RDI);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050((float)adStackX_8[0]);
-}
-
-
-
-
-
-// 函数: void FUN_18072b12c(void)
-void FUN_18072b12c(void)
-
-{
-  undefined8 uStackX_8;
+    
+    matrix_rows = matrix_rows + -1;
+    iteration_index = iteration_index + 1;
+    offset_val = offset_val + -0x10;
+    element_offset = element_offset + 0x10;
+  } while (iteration_index < matrix_limit);
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050((float)uStackX_8);
+  // 安全检查：函数不会返回
+  FUN_1808fc050((float)matrix_stack[0]);
 }
 
 
 
 
 
-// 函数: void FUN_18072b160(longlong param_1,float *param_2,int param_3)
-void FUN_18072b160(longlong param_1,float *param_2,int param_3)
-
+// 函数: UI系统栈保护处理器
+// 原始函数名: FUN_18072b12c
+// 功能: 处理UI系统栈保护和安全检查
+void UIStackProtectionHandler(void)
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  longlong lVar5;
-  longlong lVar6;
-  float *pfVar7;
-  longlong lVar8;
-  longlong lVar9;
-  int iVar10;
-  longlong lVar11;
-  float *pfVar12;
+  undefined8 stack_cookie;
+  
+  // 安全检查：函数不会返回
+  FUN_1808fc050((float)stack_cookie);
+}
+
+
+
+
+
+// 函数: UI系统浮点矩阵变换器
+// 原始函数名: FUN_18072b160
+// 功能: 执行UI系统中的浮点矩阵变换运算
+// 参数:
+//   param_1 - 输出矩阵指针
+//   param_2 - 输入矩阵指针
+//   param_3 - 矩阵元素数量
+void UIFloatMatrixTransformer(longlong param_1, float *param_2, int param_3)
+{
+  float transform_factor;
+  float matrix_val1;
+  float matrix_val2;
+  float matrix_val3;
+  float matrix_val4;
+  longlong batch_counter;
+  longlong element_count;
+  float *output_matrix;
+  longlong row_index;
+  longlong matrix_offset;
+  int iteration_count;
+  longlong half_size;
+  float *input_matrix;
   
   if (0 < param_3) {
-    lVar8 = 0;
-    lVar9 = param_1 - (longlong)param_2;
-    iVar10 = 0;
+    row_index = 0;
+    matrix_offset = param_1 - (longlong)param_2;
+    iteration_count = 0;
     do {
-      iVar10 = iVar10 + 1;
-      fVar1 = *param_2;
-      lVar6 = 0;
-      lVar11 = (longlong)iVar10 >> 1;
-      if (3 < lVar11) {
-        pfVar12 = (float *)(lVar9 + -8 + (longlong)param_2);
-        pfVar7 = (float *)(param_1 + 8);
-        lVar5 = (lVar11 - 4U >> 2) + 1;
-        lVar6 = lVar5 * 4;
+      iteration_count = iteration_count + 1;
+      transform_factor = *param_2;
+      element_count = 0;
+      half_size = (longlong)iteration_count >> 1;
+      
+      // 批量处理矩阵元素（4元素优化）
+      if (3 < half_size) {
+        input_matrix = (float *)(matrix_offset + -8 + (longlong)param_2);
+        output_matrix = (float *)(param_1 + 8);
+        batch_counter = (half_size - 4U >> 2) + 1;
+        element_count = batch_counter * 4;
         do {
-          fVar2 = pfVar12[1];
-          fVar3 = pfVar7[-2];
-          pfVar7[-2] = fVar2 * fVar1 + fVar3;
-          fVar4 = *pfVar12;
-          pfVar12[1] = fVar3 * fVar1 + fVar2;
-          fVar2 = pfVar7[-1];
-          pfVar7[-1] = fVar4 * fVar1 + fVar2;
-          fVar3 = pfVar12[-1];
-          *pfVar12 = fVar2 * fVar1 + fVar4;
-          fVar2 = *pfVar7;
-          *pfVar7 = fVar3 * fVar1 + fVar2;
-          fVar4 = pfVar12[-2];
-          pfVar12[-1] = fVar2 * fVar1 + fVar3;
-          fVar2 = pfVar7[1];
-          pfVar7[1] = fVar4 * fVar1 + fVar2;
-          pfVar7 = pfVar7 + 4;
-          pfVar12[-2] = fVar2 * fVar1 + fVar4;
-          pfVar12 = pfVar12 + -4;
-          lVar5 = lVar5 + -1;
-        } while (lVar5 != 0);
+          // 执行4x4矩阵块变换
+          matrix_val1 = input_matrix[1];
+          matrix_val2 = output_matrix[-2];
+          output_matrix[-2] = matrix_val1 * transform_factor + matrix_val2;
+          matrix_val3 = *input_matrix;
+          input_matrix[1] = matrix_val2 * transform_factor + matrix_val1;
+          matrix_val1 = output_matrix[-1];
+          output_matrix[-1] = matrix_val3 * transform_factor + matrix_val1;
+          matrix_val2 = input_matrix[-1];
+          *input_matrix = matrix_val1 * transform_factor + matrix_val3;
+          matrix_val1 = *output_matrix;
+          *output_matrix = matrix_val2 * transform_factor + matrix_val1;
+          matrix_val3 = input_matrix[-2];
+          input_matrix[-1] = matrix_val1 * transform_factor + matrix_val2;
+          matrix_val1 = output_matrix[1];
+          output_matrix[1] = matrix_val3 * transform_factor + matrix_val1;
+          output_matrix = output_matrix + 4;
+          input_matrix[-2] = matrix_val1 * transform_factor + matrix_val3;
+          input_matrix = input_matrix + -4;
+          batch_counter = batch_counter + -1;
+        } while (batch_counter != 0);
       }
-      if (lVar6 < lVar11) {
-        pfVar7 = (float *)(param_1 + ((lVar8 - lVar6) + -1) * 4);
+      
+      // 处理剩余的矩阵元素
+      if (element_count < half_size) {
+        output_matrix = (float *)(param_1 + ((row_index - element_count) + -1) * 4);
         do {
-          fVar2 = *pfVar7;
-          fVar3 = *(float *)(param_1 + lVar6 * 4);
-          *(float *)(param_1 + lVar6 * 4) = fVar2 * fVar1 + fVar3;
-          lVar6 = lVar6 + 1;
-          *pfVar7 = fVar3 * fVar1 + fVar2;
-          pfVar7 = pfVar7 + -1;
-        } while (lVar6 < lVar11);
+          matrix_val1 = *output_matrix;
+          matrix_val2 = *(float *)(param_1 + element_count * 4);
+          *(float *)(param_1 + element_count * 4) = matrix_val1 * transform_factor + matrix_val2;
+          element_count = element_count + 1;
+          *output_matrix = matrix_val2 * transform_factor + matrix_val1;
+          output_matrix = output_matrix + -1;
+        } while (element_count < half_size);
       }
-      *(float *)(lVar9 + (longlong)param_2) = -fVar1;
-      lVar8 = lVar8 + 1;
+      
+      // 应用负变换因子
+      *(float *)(matrix_offset + (longlong)param_2) = -transform_factor;
+      row_index = row_index + 1;
       param_2 = param_2 + 1;
-    } while (lVar8 < param_3);
+    } while (row_index < param_3);
   }
   return;
 }
@@ -345,74 +403,88 @@ void FUN_18072b160(longlong param_1,float *param_2,int param_3)
 
 
 
-// 函数: void FUN_18072b17c(longlong param_1,longlong param_2,undefined8 param_3,longlong param_4)
-void FUN_18072b17c(longlong param_1,longlong param_2,undefined8 param_3,longlong param_4)
-
+// 函数: UI系统加密矩阵变换器
+// 原始函数名: FUN_18072b17c
+// 功能: 执行UI系统中的加密矩阵变换，包含XOR加密操作
+// 参数:
+//   param_1 - 基础地址指针
+//   param_2 - 偏移地址指针
+//   param_3 - 保留参数
+//   param_4 - 输出矩阵指针
+void UIEncryptedMatrixTransformer(longlong param_1, longlong param_2, undefined8 param_3, longlong param_4)
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  longlong lVar5;
-  longlong lVar6;
-  float *pfVar7;
-  longlong lVar8;
-  longlong unaff_RBP;
-  int iVar9;
-  longlong lVar10;
-  float *pfVar11;
-  float *in_R11;
-  uint in_XMM5_Da;
+  float transform_factor;
+  float matrix_val1;
+  float matrix_val2;
+  float matrix_val3;
+  float matrix_val4;
+  longlong batch_counter;
+  longlong element_count;
+  float *output_matrix;
+  longlong row_index;
+  longlong matrix_size;
+  int iteration_count;
+  longlong half_size;
+  float *input_matrix;
+  float *data_pointer;
+  uint encryption_key;
   
-  lVar8 = 0;
-  iVar9 = 0;
+  row_index = 0;
+  iteration_count = 0;
   do {
-    iVar9 = iVar9 + 1;
-    fVar1 = *in_R11;
-    lVar6 = 0;
-    lVar10 = (longlong)iVar9 >> 1;
-    if (3 < lVar10) {
-      pfVar11 = (float *)((param_1 - param_2) + -8 + (longlong)in_R11);
-      pfVar7 = (float *)(param_4 + 8);
-      lVar5 = (lVar10 - 4U >> 2) + 1;
-      lVar6 = lVar5 * 4;
+    iteration_count = iteration_count + 1;
+    transform_factor = *data_pointer;
+    element_count = 0;
+    half_size = (longlong)iteration_count >> 1;
+    
+    // 批量处理加密矩阵元素（4元素优化）
+    if (3 < half_size) {
+      input_matrix = (float *)((param_1 - param_2) + -8 + (longlong)data_pointer);
+      output_matrix = (float *)(param_4 + 8);
+      batch_counter = (half_size - 4U >> 2) + 1;
+      element_count = batch_counter * 4;
       do {
-        fVar2 = pfVar11[1];
-        fVar3 = pfVar7[-2];
-        pfVar7[-2] = fVar2 * fVar1 + fVar3;
-        fVar4 = *pfVar11;
-        pfVar11[1] = fVar3 * fVar1 + fVar2;
-        fVar2 = pfVar7[-1];
-        pfVar7[-1] = fVar4 * fVar1 + fVar2;
-        fVar3 = pfVar11[-1];
-        *pfVar11 = fVar2 * fVar1 + fVar4;
-        fVar2 = *pfVar7;
-        *pfVar7 = fVar3 * fVar1 + fVar2;
-        fVar4 = pfVar11[-2];
-        pfVar11[-1] = fVar2 * fVar1 + fVar3;
-        fVar2 = pfVar7[1];
-        pfVar7[1] = fVar4 * fVar1 + fVar2;
-        pfVar7 = pfVar7 + 4;
-        pfVar11[-2] = fVar2 * fVar1 + fVar4;
-        pfVar11 = pfVar11 + -4;
-        lVar5 = lVar5 + -1;
-      } while (lVar5 != 0);
+        // 执行4x4加密矩阵块变换
+        matrix_val1 = input_matrix[1];
+        matrix_val2 = output_matrix[-2];
+        output_matrix[-2] = matrix_val1 * transform_factor + matrix_val2;
+        matrix_val3 = *input_matrix;
+        input_matrix[1] = matrix_val2 * transform_factor + matrix_val1;
+        matrix_val1 = output_matrix[-1];
+        output_matrix[-1] = matrix_val3 * transform_factor + matrix_val1;
+        matrix_val2 = input_matrix[-1];
+        *input_matrix = matrix_val1 * transform_factor + matrix_val3;
+        matrix_val1 = *output_matrix;
+        *output_matrix = matrix_val2 * transform_factor + matrix_val1;
+        matrix_val3 = input_matrix[-2];
+        input_matrix[-1] = matrix_val1 * transform_factor + matrix_val2;
+        matrix_val1 = output_matrix[1];
+        output_matrix[1] = matrix_val3 * transform_factor + matrix_val1;
+        output_matrix = output_matrix + 4;
+        input_matrix[-2] = matrix_val1 * transform_factor + matrix_val3;
+        input_matrix = input_matrix + -4;
+        batch_counter = batch_counter + -1;
+      } while (batch_counter != 0);
     }
-    if (lVar6 < lVar10) {
-      pfVar7 = (float *)(param_4 + ((lVar8 - lVar6) + -1) * 4);
+    
+    // 处理剩余的加密矩阵元素
+    if (element_count < half_size) {
+      output_matrix = (float *)(param_4 + ((row_index - element_count) + -1) * 4);
       do {
-        fVar2 = *pfVar7;
-        fVar3 = *(float *)(param_4 + lVar6 * 4);
-        *(float *)(param_4 + lVar6 * 4) = fVar2 * fVar1 + fVar3;
-        lVar6 = lVar6 + 1;
-        *pfVar7 = fVar3 * fVar1 + fVar2;
-        pfVar7 = pfVar7 + -1;
-      } while (lVar6 < lVar10);
+        matrix_val1 = *output_matrix;
+        matrix_val2 = *(float *)(param_4 + element_count * 4);
+        *(float *)(param_4 + element_count * 4) = matrix_val1 * transform_factor + matrix_val2;
+        element_count = element_count + 1;
+        *output_matrix = matrix_val2 * transform_factor + matrix_val1;
+        output_matrix = output_matrix + -1;
+      } while (element_count < half_size);
     }
-    *(uint *)((param_1 - param_2) + (longlong)in_R11) = (uint)fVar1 ^ in_XMM5_Da;
-    lVar8 = lVar8 + 1;
-    in_R11 = in_R11 + 1;
-  } while (lVar8 < unaff_RBP);
+    
+    // 应用XOR加密
+    *(uint *)((param_1 - param_2) + (longlong)data_pointer) = (uint)transform_factor ^ encryption_key;
+    row_index = row_index + 1;
+    data_pointer = data_pointer + 1;
+  } while (row_index < matrix_size);
   return;
 }
 
@@ -420,9 +492,10 @@ void FUN_18072b17c(longlong param_1,longlong param_2,undefined8 param_3,longlong
 
 
 
-// 函数: void FUN_18072b301(void)
-void FUN_18072b301(void)
-
+// 函数: UI系统空操作处理器2
+// 原始函数名: FUN_18072b301
+// 功能: 空操作函数，用于系统初始化或占位
+void UIEmptyOperationHandler2(void)
 {
   return;
 }
@@ -431,29 +504,37 @@ void FUN_18072b301(void)
 
 
 
-// 函数: void FUN_18072b310(longlong param_1,longlong param_2,int param_3,int param_4)
-void FUN_18072b310(longlong param_1,longlong param_2,int param_3,int param_4)
-
+// 函数: UI系统数据转换处理器
+// 原始函数名: FUN_18072b310
+// 功能: 执行UI系统中的数据转换处理，调用外部函数进行数据计算
+// 参数:
+//   param_1 - 输出数据指针
+//   param_2 - 输入数据指针
+//   param_3 - 数据范围1
+//   param_4 - 数据范围2
+void UIDataConversionProcessor(longlong param_1, longlong param_2, int param_3, int param_4)
 {
-  int iVar1;
-  ulonglong uVar2;
-  ulonglong uVar3;
-  double dVar4;
+  int range_limit;
+  ulonglong element_index;
+  ulonglong data_offset;
+  double calculated_value;
   
-  uVar2 = 0;
-  iVar1 = param_3;
+  element_index = 0;
+  range_limit = param_3;
   if (param_4 <= param_3) {
-    iVar1 = param_4;
+    range_limit = param_4;  // 选择较小的范围作为限制
   }
-  uVar3 = uVar2;
-  if (0 < iVar1) {
+  data_offset = element_index;
+  
+  if (0 < range_limit) {
     do {
-      dVar4 = (double)FUN_180734500(param_2,param_2 + (longlong)(int)uVar3 * 4,param_3);
+      // 调用外部计算函数进行数据处理
+      calculated_value = (double)FUN_180734500(param_2, param_2 + (longlong)(int)data_offset * 4, param_3);
       param_3 = param_3 + -1;
-      *(float *)(param_1 + uVar2 * 4) = (float)dVar4;
-      uVar2 = uVar2 + 1;
-      uVar3 = (ulonglong)((int)uVar3 + 1);
-    } while ((longlong)uVar2 < (longlong)iVar1);
+      *(float *)(param_1 + element_index * 4) = (float)calculated_value;
+      element_index = element_index + 1;
+      data_offset = (ulonglong)((int)data_offset + 1);
+    } while ((longlong)element_index < (longlong)range_limit);
   }
   return;
 }

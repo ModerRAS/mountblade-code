@@ -330,102 +330,140 @@ undefined8 rendering_system_get_global_render_data(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180534770(longlong param_1,uint *param_2,char param_3)
-void FUN_180534770(longlong param_1,uint *param_2,char param_3)
+/**
+ * 渲染参数处理函数
+ * 处理渲染参数并更新渲染状态
+ * 
+ * @param render_context 渲染上下文
+ * @param param_ptr 参数指针
+ * @param process_flag 处理标志
+ */
+void rendering_system_process_render_parameters(longlong render_context, uint *param_ptr, char process_flag)
 
 {
-  uint uVar1;
-  uint *puVar2;
-  undefined1 auStack_68 [32];
-  uint uStack_48;
-  uint uStack_44;
-  uint uStack_40;
-  uint uStack_3c;
-  uint uStack_38;
-  uint uStack_34;
-  uint uStack_30;
-  uint uStack_2c;
-  ulonglong uStack_28;
+  uint param_value;
+  uint *param_source;
+  undefined1 stack_data [32];
+  uint stack_param_1;
+  uint stack_param_2;
+  uint stack_param_3;
+  uint stack_param_4;
+  uint stack_param_5;
+  uint stack_param_6;
+  uint stack_param_7;
+  uint stack_param_8;
+  uint stack_param_9;
+  ulonglong security_cookie;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  if ((*(byte *)(param_1 + 0xa8) & 1) == 0) {
-    FUN_1802fac00(param_1,*(longlong *)(param_1 + 0x10) + 0x70,0xbf800000);
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_data;
+  
+  // 检查是否需要处理渲染参数
+  if ((*(byte *)(render_context + 0xa8) & 1) == 0) {
+    FUN_1802fac00(render_context, *(longlong *)(render_context + 0x10) + 0x70, 0xbf800000);
   }
-  puVar2 = (uint *)((longlong)param_3 * 0x100 + *(longlong *)(param_1 + 0x18));
+  
+  // 获取参数源指针
+  param_source = (uint *)((longlong)process_flag * 0x100 + *(longlong *)(render_context + 0x18));
+  
+  // 加锁并获取参数值
   do {
     LOCK();
-    uVar1 = *puVar2;
-    *puVar2 = *puVar2 | 1;
+    param_value = *param_source;
+    *param_source = *param_source | 1;
     UNLOCK();
-  } while ((uVar1 & 1) != 0);
-  uStack_48 = puVar2[1];
-  uStack_44 = puVar2[2];
-  uStack_40 = puVar2[3];
-  uStack_3c = puVar2[4];
-  uStack_38 = puVar2[5];
-  uStack_34 = puVar2[6];
-  uStack_30 = puVar2[7];
-  uStack_2c = puVar2[8];
-  *puVar2 = 0;
-  *param_2 = uStack_48;
-  param_2[1] = uStack_44;
-  param_2[2] = uStack_40;
-  param_2[3] = uStack_3c;
-  param_2[4] = uStack_38;
-  param_2[5] = uStack_34;
-  param_2[6] = uStack_30;
-  param_2[7] = uStack_2c;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_68);
+  } while ((param_value & 1) != 0);
+  
+  // 复制参数到栈变量
+  stack_param_1 = param_source[1];
+  stack_param_2 = param_source[2];
+  stack_param_3 = param_source[3];
+  stack_param_4 = param_source[4];
+  stack_param_5 = param_source[5];
+  stack_param_6 = param_source[6];
+  stack_param_7 = param_source[7];
+  stack_param_8 = param_source[8];
+  *param_source = 0;
+  
+  // 复制参数到输出指针
+  *param_ptr = stack_param_1;
+  param_ptr[1] = stack_param_2;
+  param_ptr[2] = stack_param_3;
+  param_ptr[3] = stack_param_4;
+  param_ptr[4] = stack_param_5;
+  param_ptr[5] = stack_param_6;
+  param_ptr[6] = stack_param_7;
+  param_ptr[7] = stack_param_8;
+                    
+  // 清理栈数据并返回
+  FUN_1808fc050(security_cookie ^ (ulonglong)stack_data);
 }
 
 
 
-float * FUN_180534800(float *param_1,float *param_2,float *param_3)
+/**
+ * 矩阵向量乘法函数
+ * 执行矩阵与向量的乘法运算
+ * 
+ * @param matrix_ptr 矩阵指针
+ * @param result_ptr 结果向量指针
+ * @param vector_ptr 向量指针
+ * @return 结果向量指针
+ */
+float * rendering_system_multiply_matrix_vectors(float *matrix_ptr, float *result_ptr, float *vector_ptr)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  float matrix_y;
+  float matrix_x2;
+  float matrix_y2;
+  float vector_x;
+  float vector_z;
+  float matrix_x4;
+  float matrix_y4;
+  float matrix_y2_alt;
+  float matrix_x;
+  float matrix_x1;
   
-  fVar1 = param_3[1];
-  fVar2 = param_1[4];
-  fVar3 = param_1[5];
-  fVar4 = *param_3;
-  fVar5 = param_3[2];
-  fVar6 = param_3[4];
-  fVar7 = param_3[5];
-  fVar8 = param_1[5];
-  fVar9 = param_1[1];
-  *param_2 = fVar4 * *param_1 + fVar1 * param_1[1];
-  param_2[1] = fVar4 * fVar2 + fVar1 * fVar3;
-  param_2[2] = fVar5;
-  param_2[3] = 3.4028235e+38;
-  fVar1 = param_3[6];
-  fVar3 = param_3[8];
-  fVar4 = *param_1;
-  param_2[4] = fVar6 * *param_1 + fVar7 * fVar9;
-  param_2[5] = fVar6 * fVar2 + fVar7 * fVar8;
-  param_2[6] = fVar1;
-  param_2[7] = 3.4028235e+38;
-  fVar1 = param_3[9];
-  fVar5 = param_1[5];
-  fVar6 = param_3[10];
-  param_2[8] = fVar3 * fVar4 + fVar1 * param_1[1];
-  param_2[9] = fVar3 * fVar2 + fVar1 * fVar5;
-  param_2[10] = fVar6;
-  param_2[0xb] = 3.4028235e+38;
-  return param_2;
+  // 获取矩阵和向量元素
+  matrix_y = vector_ptr[1];
+  matrix_x2 = matrix_ptr[4];
+  matrix_y2 = matrix_ptr[5];
+  vector_x = *vector_ptr;
+  vector_z = vector_ptr[2];
+  matrix_x4 = vector_ptr[4];
+  matrix_y4 = vector_ptr[5];
+  matrix_y2_alt = matrix_ptr[5];
+  matrix_x = matrix_ptr[1];
+  matrix_x1 = matrix_ptr[1];
+  
+  // 计算第一行结果
+  *result_ptr = vector_x * *matrix_ptr + matrix_y * matrix_ptr[1];
+  result_ptr[1] = vector_x * matrix_x2 + matrix_y * matrix_y2;
+  result_ptr[2] = vector_z;
+  result_ptr[3] = 3.4028235e+38;  // FLOAT_MAX
+  
+  // 获取更多矩阵元素
+  matrix_y = vector_ptr[6];
+  matrix_y2 = vector_ptr[8];
+  vector_x = *matrix_ptr;
+  
+  // 计算第二行结果
+  result_ptr[4] = matrix_x4 * *matrix_ptr + matrix_y4 * matrix_x;
+  result_ptr[5] = matrix_x4 * matrix_x2 + matrix_y4 * matrix_y2_alt;
+  result_ptr[6] = matrix_y;
+  result_ptr[7] = 3.4028235e+38;  // FLOAT_MAX
+  
+  // 获取最后一批矩阵元素
+  matrix_y = vector_ptr[9];
+  vector_z = matrix_ptr[5];
+  matrix_x4 = vector_ptr[10];
+  
+  // 计算第三行结果
+  result_ptr[8] = matrix_y2 * vector_x + matrix_y * matrix_ptr[1];
+  result_ptr[9] = matrix_y2 * matrix_x2 + matrix_y * vector_z;
+  result_ptr[10] = matrix_x4;
+  result_ptr[0xb] = 3.4028235e+38;  // FLOAT_MAX
+  
+  return result_ptr;
 }
 
 
