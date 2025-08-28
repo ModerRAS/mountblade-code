@@ -2,94 +2,6 @@
 #include "include/global_constants.h"
 
 // 02_core_engine_part192.c - 核心引擎高级数据处理和内存管理模块
-
-// FUN_18063bc80 的别名定义
-// 功能: CoreEngineFileManager - 核心引擎函数的语义化别名
-#define FUN_18063bc80 CoreEngineFileManager
-
-// FUN_18062b8b0 的别名定义
-// 功能: CoreEngineMemoryPoolManager - 核心引擎函数的语义化别名
-#define FUN_18062b8b0 CoreEngineMemoryPoolManager
-
-// FUN_18004ca00 的别名定义
-// 功能: CoreEngineSystemCallback - 核心引擎函数的语义化别名
-#define FUN_18004ca00 CoreEngineSystemCallback
-
-// FUN_180179f00 的别名定义
-// 功能: CoreEngineMemoryReleaser - 核心引擎函数的语义化别名
-#define FUN_180179f00 CoreEngineMemoryReleaser
-
-// FUN_180175f20 的别名定义
-// 功能: CoreEngineResourceManager - 核心引擎函数的语义化别名
-#define FUN_180175f20 CoreEngineResourceManager
-
-// FUN_180175f80 的别名定义
-// 功能: CoreEngineDataProcessor - 核心引擎函数的语义化别名
-#define FUN_180175f80 CoreEngineDataProcessor
-
-// FUN_18023a940 的别名定义
-// 功能: CoreEngineStateManager - 核心引擎函数的语义化别名
-#define FUN_18023a940 CoreEngineStateManager
-
-// FUN_1800b2450 的别名定义
-// 功能: CoreEngineDataTransformer - 核心引擎函数的语义化别名
-#define FUN_1800b2450 CoreEngineDataTransformer
-
-// FUN_180628ca0 的别名定义
-// 功能: CoreEngineSystemCleanup - 核心引擎函数的语义化别名
-#define FUN_180628ca0 CoreEngineSystemCleanup
-
-// FUN_180176060 的别名定义
-// 功能: CoreEngineThreadManager - 核心引擎函数的语义化别名
-#define FUN_180176060 CoreEngineThreadManager
-
-// FUN_18029e450 的别名定义
-// 功能: CoreEngineMessageHandler - 核心引擎函数的语义化别名
-#define FUN_18029e450 CoreEngineMessageHandler
-
-// FUN_180220810 的别名定义
-// 功能: CoreEngineErrorHandler - 核心引擎函数的语义化别名
-#define FUN_180220810 CoreEngineErrorHandler
-
-// FUN_180179e40 的别名定义
-// 功能: CoreEngineEventHandler - 核心引擎函数的语义化别名
-#define FUN_180179e40 CoreEngineEventHandler
-
-// FUN_180142220 的别名定义
-// 功能: CoreEngineSystemChecker - 核心引擎函数的语义化别名
-#define FUN_180142220 CoreEngineSystemChecker
-
-// FUN_18063ba00 的别名定义
-// 功能: CoreEngineFileHandler - 核心引擎函数的语义化别名
-#define FUN_18063ba00 CoreEngineFileHandler
-
-// FUN_1808fc8a8 的别名定义
-// 功能: CoreEngineSystemConfigurator - 核心引擎函数的语义化别名
-#define FUN_1808fc8a8 CoreEngineSystemConfigurator
-
-// FUN_1800693f0 的别名定义
-// 功能: CoreEngineDataInitializer - 核心引擎函数的语义化别名
-#define FUN_1800693f0 CoreEngineDataInitializer
-
-// FUN_180175ee0 的别名定义
-// 功能: CoreEngineResourceAllocator - 核心引擎函数的语义化别名
-#define FUN_180175ee0 CoreEngineResourceAllocator
-
-// FUN_180175700 的别名定义
-// 功能: CoreEngineEventProcessor - 核心引擎函数的语义化别名
-#define FUN_180175700 CoreEngineEventProcessor
-
-// FUN_18006d6c0 的别名定义
-// 功能: CoreEngineMemoryManager - 核心引擎函数的语义化别名
-#define FUN_18006d6c0 CoreEngineMemoryManager
-
-// FUN_18006d0b0 的别名定义
-// 功能: CoreEngineMemoryAllocator - 核心引擎函数的语义化别名
-#define FUN_18006d0b0 CoreEngineMemoryAllocator
-
-// FUN_180626ee0 的别名定义
-// 功能: CoreEngineSystemValidator - 核心引擎函数的语义化别名
-#define FUN_180626ee0 CoreEngineSystemValidator
 // 包含13个关键函数，负责系统核心数据处理、内存管理、安全检查等功能
 
 // 函数: void CoreEngineDataProcessor(uint64_t system_context,int64_t *data_buffer)
@@ -155,7 +67,7 @@ void CoreEngineDataProcessor(uint64_t system_context,int64_t *data_buffer)
     puVar4 = *(void **)(lVar1 + 8);
   }
   uStack_1e0 = param_2;
-  CoreEngineDataInitializer(&puStack_1c8,puVar4);
+  FUN_1800693f0(&puStack_1c8,puVar4);
   lStack_b0 = param_2[1];
   uStack_a8 = (uint64_t)*(uint *)(param_2 + 2);
   uStack_98 = 0;
@@ -163,7 +75,7 @@ void CoreEngineDataProcessor(uint64_t system_context,int64_t *data_buffer)
     (*pcStack_70)(&uStack_80,0,0);
   }
   pcStack_70 = (code *)&system_event_handler_ptr;
-  pcStack_68 = CoreEngineEventHandler;
+  pcStack_68 = FUN_180179e40;
   uStack_80 = (int32_t)uStack_1e0;
   uStack_7c = uStack_1e0._4_4_;
   uStack_78 = (int32_t)uStack_1d8;
@@ -175,9 +87,9 @@ void CoreEngineDataProcessor(uint64_t system_context,int64_t *data_buffer)
   pcStack_48 = _guard_check_icall;
   uStack_88 = 0xc0;
   lVar1 = *(int64_t *)(core_system_data_memory + 8);
-  lVar3 = CoreEngineMemoryAllocator(lVar1 + 200);
+  lVar3 = FUN_18006d0b0(lVar1 + 200);
   if (lVar3 != 0) {
-    CoreEngineMemoryManager(lVar3,&puStack_1c8);
+    FUN_18006d6c0(lVar3,&puStack_1c8);
   }
   iVar2 = _Cnd_signal(lVar1 + 0x330);
   if (iVar2 != 0) {
@@ -220,7 +132,7 @@ uint64_t SystemResourceManager(uint64_t system_handle,int64_t *resource_info)
   if (*(void **)(lVar1 + 8) != (void *)0x0) {
     puVar7 = *(void **)(lVar1 + 8);
   }
-  cVar5 = CoreEngineFileHandler(lVar1 + 0x20,puVar7,5,0x105,0xfffffffffffffffe);
+  cVar5 = FUN_18063ba00(lVar1 + 0x20,puVar7,5,0x105,0xfffffffffffffffe);
   if (cVar5 != '\0') {
     lVar4 = param_2[2];
     lVar2 = param_2[1];
@@ -230,7 +142,7 @@ uint64_t SystemResourceManager(uint64_t system_handle,int64_t *resource_info)
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
     SetFilePointerEx(*(uint64_t *)(lVar1 + 0x20),lVar2,auStackX_18,0);
-    CoreEngineFileManager(lVar1 + 0x20,lVar3,(int)lVar4);
+    FUN_18063bc80(lVar1 + 0x20,lVar3,(int)lVar4);
     iVar6 = _Mtx_unlock(lVar1 + 0x30);
     if (iVar6 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar6);
@@ -518,7 +430,7 @@ uint64_t * SystemComponentManager(uint64_t *component_array,uint component_flags
   param_1[0xd] = 0;
   *(int32_t *)(param_1 + 0xf) = 0;
   param_1[0xc] = &system_state_ptr;
-  CoreEngineSystemConfigurator(param_1 + 5,8,3,CoreEngineSystemCallback,uVar4);
+  FUN_1808fc8a8(param_1 + 5,8,3,FUN_18004ca00,uVar4);
   if ((param_2 & 1) != 0) {
     free(param_1,0x80);
   }
@@ -561,15 +473,15 @@ void SystemEventHandler(int64_t event_context,int64_t event_data)
   
   uVar1 = *(uint64_t *)(param_1 + 0x40);
   uVar8 = (uVar1 + 4) % 3;
-  CoreEngineEventProcessor(param_1,param_2);
+  FUN_180175700(param_1,param_2);
   lVar7 = param_1 + uVar8 * 8;
   if (*(int64_t *)(param_1 + 0x28 + uVar8 * 8) != 0) {
     lVar2 = *(int64_t *)(system_message_buffer + 0x1cd8);
-    lVar6 = CoreEngineStateManager();
+    lVar6 = FUN_18023a940();
     plVar3 = *(int64_t **)(lVar2 + 0x8400);
     iVar5 = (**(code **)(*plVar3 + 0x70))(plVar3,*(uint64_t *)(lVar6 + 8),0,1,0,&puStack_38);
     if (iVar5 < 0) {
-      CoreEngineErrorHandler(iVar5,&system_error_handler_ptr);
+      FUN_180220810(iVar5,&system_error_handler_ptr);
     }
     lVar2 = *(int64_t *)(lVar7 + 0x28);
     iVar5 = (**(code **)(**(int64_t **)(param_1 + 0x50) + 0xa8))
@@ -584,10 +496,10 @@ void SystemEventHandler(int64_t event_context,int64_t event_data)
     }
     plVar3 = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
     pcVar4 = *(code **)(*plVar3 + 0x78);
-    lVar7 = CoreEngineStateManager(*(uint64_t *)(lVar7 + 0x28));
+    lVar7 = FUN_18023a940(*(uint64_t *)(lVar7 + 0x28));
     (*pcVar4)(plVar3,*(uint64_t *)(lVar7 + 8),0);
     if (*(int64_t *)(param_2 + 0x99e0) != 0) {
-      CoreEngineMessageHandler(*(uint64_t *)(system_message_buffer + 0x1cd8),
+      FUN_18029e450(*(uint64_t *)(system_message_buffer + 0x1cd8),
                     *(uint64_t *)(param_1 + 0x28 + (uVar1 % 3) * 8),0,0,1,
                     *(uint64_t *)(**(int64_t **)(*(int64_t *)(param_2 + 0x99e0) + 0x50) + 0x428)
                     ,0,0,1);
@@ -623,11 +535,11 @@ void SystemEventDispatcher(void)
   void *in_stack_00000060;
   
   lVar5 = *(int64_t *)(in_RAX + 0x1cd8);
-  lVar4 = CoreEngineStateManager();
+  lVar4 = FUN_18023a940();
   plVar1 = *(int64_t **)(lVar5 + 0x8400);
   iVar3 = (**(code **)(*plVar1 + 0x70))(plVar1,*(uint64_t *)(lVar4 + 8),0,1,0);
   if (iVar3 < 0) {
-    CoreEngineErrorHandler(iVar3,&unknown_var_1856_ptr);
+    FUN_180220810(iVar3,&unknown_var_1856_ptr);
   }
   iVar3 = (**(code **)(**(int64_t **)(unaff_RSI + 0x50) + 0xa8))
                     (*(int64_t **)(unaff_RSI + 0x50),in_stack_00000050,
@@ -642,10 +554,10 @@ void SystemEventDispatcher(void)
   }
   plVar1 = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
   pcVar2 = *(code **)(*plVar1 + 0x78);
-  lVar5 = CoreEngineStateManager(*(uint64_t *)(unaff_R14 + 0x28));
+  lVar5 = FUN_18023a940(*(uint64_t *)(unaff_R14 + 0x28));
   (*pcVar2)(plVar1,*(uint64_t *)(lVar5 + 8),0);
   if (*(int64_t *)(unaff_R15 + 0x99e0) != 0) {
-    CoreEngineMessageHandler(*(uint64_t *)(system_message_buffer + 0x1cd8),
+    FUN_18029e450(*(uint64_t *)(system_message_buffer + 0x1cd8),
                   *(uint64_t *)(unaff_RSI + 0x28 + unaff_RBP * 8),0,0,1);
   }
   *(int64_t *)(unaff_RSI + 0x40) = *(int64_t *)(unaff_RSI + 0x40) + 1;
@@ -675,7 +587,7 @@ void SystemStateUpdater(void)
   uStack0000000000000038 = 0;
   uStack0000000000000030 = 0;
   uStack0000000000000028 = *(uint64_t *)(**(int64_t **)(in_RAX + 0x50) + 0x428);
-  CoreEngineMessageHandler(*(uint64_t *)(system_message_buffer + 0x1cd8),
+  FUN_18029e450(*(uint64_t *)(system_message_buffer + 0x1cd8),
                 *(uint64_t *)(unaff_RSI + 0x28 + unaff_RBP * 8),0,0,1);
   *(int64_t *)(unaff_RSI + 0x40) = *(int64_t *)(unaff_RSI + 0x40) + 1;
   return;
@@ -777,7 +689,7 @@ void SystemDataValidator(int64_t data_context,int64_t validation_data)
           if (0 < iVar4) {
             if ((iVar4 != -0x18) && (uVar3 < iVar4 + 0x19U)) {
               uStack_178 = 0x13;
-              puVar5 = (int32_t *)CoreEngineMemoryPoolManager(system_memory_pool_ptr,puVar5,iVar4 + 0x19U,0x10);
+              puVar5 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar5,iVar4 + 0x19U,0x10);
               puStack_160 = puVar5;
               uStack_150._0_4_ = CoreEngineSystemCleanup(puVar5);
               iVar4 = *(int *)(param_1 + 0x70);
@@ -794,7 +706,7 @@ void SystemDataValidator(int64_t data_context,int64_t validation_data)
             puVar8 = puVar5;
           }
           uVar11 = strcpy_s(auStack_d0,0x80,puVar8);
-          plVar6 = (int64_t *)CoreEngineDataTransformer(uVar11,&plStack_f8,&puStack_e8,&uStack_140);
+          plVar6 = (int64_t *)FUN_1800b2450(uVar11,&plStack_f8,&puStack_e8,&uStack_140);
           lVar2 = *plVar6;
           *plVar6 = 0;
           plStack_100 = (int64_t *)*plVar7;
@@ -985,7 +897,7 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
   (**(code **)*puVar8)(puVar8,puVar9);
   iVar3 = _Initialize_Granite_Graphine__YA_AW4Enum_Error_2__J_Z(0x1450);
   if (iVar3 != 0) {
-    CoreEngineSystemValidator(&unknown_var_3688_ptr,iVar3);
+    FUN_180626ee0(&unknown_var_3688_ptr,iVar3);
   }
   __0DirectX11DeviceOptions_DX11_Granite_Graphine__QEAA_XZ(auStack_60);
   uStack_44 = 1;
@@ -995,7 +907,7 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
   param_1[0x1c] = lVar5;
   param_1[0x4c] = lVar5;
   if (lVar5 == 0) {
-    CoreEngineSystemValidator(&unknown_var_3800_ptr);
+    FUN_180626ee0(&unknown_var_3800_ptr);
   }
   puVar9 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,8,8,3);
   *puVar9 = &unknown_var_5168_ptr;
@@ -1011,12 +923,12 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
                     (&uStack_90,param_1 + 0x1d);
   plVar7 = (int64_t *)param_1[0x1d];
   if ((plVar7 == (int64_t *)0x0) || (iVar3 != 0)) {
-    CoreEngineSystemValidator(&unknown_var_3760_ptr,iVar3);
+    FUN_180626ee0(&unknown_var_3760_ptr,iVar3);
     plVar7 = (int64_t *)param_1[0x1d];
   }
   iVar3 = (**(code **)(*plVar7 + 0x100))(plVar7,&unknown_var_3888_ptr);
   if (iVar3 != 0) {
-    CoreEngineSystemValidator(&unknown_var_3848_ptr,iVar3);
+    FUN_180626ee0(&unknown_var_3848_ptr,iVar3);
   }
   __0ContextBudget_Granite_Graphine__QEAA_XZ(&puStack_98);
   puStack_98 = (uint64_t *)CONCAT44(puStack_98._4_4_,0x400000);
@@ -1041,7 +953,7 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
 
 
 uint64_t *
-CoreEngineResourceAllocator(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+FUN_180175ee0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_1 = &unknown_var_5088_ptr;
@@ -1053,10 +965,10 @@ CoreEngineResourceAllocator(uint64_t *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-uint64_t * CoreEngineResourceManager(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_t param_4)
+uint64_t * FUN_180175f20(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  CoreEngineMemoryReleaser(param_1 + 1,param_1[3],param_3,param_4,0xfffffffffffffffe);
+  FUN_180179f00(param_1 + 1,param_1[3],param_3,param_4,0xfffffffffffffffe);
   *param_1 = &unknown_var_4968_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x40);
@@ -1068,7 +980,7 @@ uint64_t * CoreEngineResourceManager(uint64_t *param_1,uint param_2,uint64_t par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t CoreEngineDataProcessor(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+int64_t FUN_180175f80(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int iVar1;
@@ -1079,12 +991,12 @@ int64_t CoreEngineDataProcessor(uint64_t param_1,int64_t param_2,uint64_t param_
   
   lVar4 = *system_main_module_state;
   uVar2 = CoreEngineDataTransformer(auStack_28,param_3,param_3,param_4,0,0xfffffffffffffffe);
-  iVar1 = CoreEngineSystemChecker(lVar4,uVar2);
+  iVar1 = FUN_180142220(lVar4,uVar2);
   if ((iVar1 < 0) ||
      (lVar4 = *(int64_t *)(*system_main_module_state + 0x888),
      (uint64_t)(*(int64_t *)(*system_main_module_state + 0x890) - lVar4 >> 5) <= (uint64_t)(int64_t)iVar1)
      ) {
-    lVar4 = CoreEngineSystemCleanup();
+    lVar4 = FUN_180628ca0();
   }
   else {
     lVar4 = (int64_t)iVar1 * 0x20 + lVar4;
@@ -1103,8 +1015,8 @@ int64_t CoreEngineDataProcessor(uint64_t param_1,int64_t param_2,uint64_t param_
 
 
 
-// 函数: void CoreEngineThreadManager(int64_t param_1)
-void CoreEngineThreadManager(int64_t param_1)
+// 函数: void FUN_180176060(int64_t param_1)
+void FUN_180176060(int64_t param_1)
 
 {
   int iVar1;
@@ -1126,11 +1038,4 @@ void CoreEngineThreadManager(int64_t param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-
-
-// FUN_函数优化处理记录
-// 处理时间: $(date)
-// 处理脚本: core_engine_part192_fun_processor.sh
-// 处理结果: 成功将核心引擎模块的FUN_函数替换为语义化别名
-// 优化效果: 提升代码可读性和可维护性
 
