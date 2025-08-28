@@ -824,7 +824,7 @@ uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, longlong *
     param_2[1] = allocated_resource[1];
     param_2[2] = allocated_resource[2];
     *(int8_t *)(param_2 + 3) = *(int8_t *)(allocated_resource + 3);
-    FUN_18005d190(param_2 + 4, allocated_resource + 4);
+    SystemDataCopier(param_2 + 4, allocated_resource + 4);
     resource_context = &system_data_buffer_ptr;
     
     /* 清理资源 */
@@ -965,7 +965,7 @@ uint64_t SystemBatchProcessor(longlong param_1, longlong param_2, uint param_3)
                 source_ptr[0xf] = 0x3f19999a;
             } else {
                 /* 无空间，调用处理函数 */
-                FUN_1803cef40(data_pool, &data_value1);
+                SystemDataWriter(data_pool, &data_value1);
             }
             
             /* 移动到下一个数据项 */
@@ -1078,7 +1078,7 @@ uint64_t SystemStreamProcessor(uint64_t param_1, longlong param_2, ulonglong par
             source_ptr[0xf] = 0x3f19999a;
         } else {
             /* 无空间，调用处理函数 */
-            FUN_1803cef40(data_pool, &stack0x00000040);
+            SystemDataWriter(data_pool, &stack0x00000040);
         }
         
         /* 移动到下一个数据项 */

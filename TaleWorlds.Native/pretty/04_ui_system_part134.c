@@ -1563,7 +1563,7 @@ uint64_t UISystem_MatchComponentType(longlong param_1,longlong param_2,int32_t *
       uStack_30 = 0;
       uStack_28 = 0;
       uStack_20 = 0;
-      uVar2 = FUN_180772160(*(uint64_t *)(param_1 + 0x11418),&uStack_58,param_2,auStack_68,0);
+      uVar2 = UISystem_ComponentOperator(*(uint64_t *)(param_1 + 0x11418),&uStack_58,param_2,auStack_68,0);
       if ((int)uVar2 == 0) {
         if (param_3 != (int32_t *)0x0) {
           *param_3 = auStack_68[0];
@@ -1603,16 +1603,16 @@ uint64_t UISystem_MatchComponentTypeSimple(void)
   iVar3 = 0;
   if (0 < in_stack_000000a8) {
     do {
-      uVar2 = func_0x000180771cd0(*(uint64_t *)(unaff_RDI + 0x11418),iVar3,&stack0x000000b8);
+      uVar2 = UISystem_ComponentInfoGetter(*(uint64_t *)(unaff_RDI + 0x11418),iVar3,&stack0x000000b8);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      uVar2 = func_0x000180771c60(*(uint64_t *)(unaff_RDI + 0x11418),in_stack_000000b8,
+      uVar2 = UISystem_ComponentDataGetter(*(uint64_t *)(unaff_RDI + 0x11418),in_stack_000000b8,
                                   &stack0x00000038);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      iVar1 = func_0x00018076b420(*in_stack_00000038 + 4,unaff_RBP + 4);
+      iVar1 = UISystem_ComponentComparer(*in_stack_00000038 + 4,unaff_RBP + 4);
       if (iVar1 == 0) {
         return 8;
       }
@@ -1627,7 +1627,7 @@ uint64_t UISystem_MatchComponentTypeSimple(void)
   in_stack_00000068 = 0;
   in_stack_00000070 = 0;
   in_stack_00000078 = 0;
-  uVar2 = FUN_180772160(*(uint64_t *)(unaff_RDI + 0x11418),&stack0x00000040);
+  uVar2 = UISystem_ComponentOperator(*(uint64_t *)(unaff_RDI + 0x11418),&stack0x00000040);
   if ((int)uVar2 == 0) {
     if (unaff_RSI != (int32_t *)0x0) {
       *unaff_RSI = in_stack_00000030;
