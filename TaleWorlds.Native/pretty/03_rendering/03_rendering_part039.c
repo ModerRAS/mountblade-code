@@ -68,159 +68,185 @@ void calculate_texture_mapping(uint *render_context, int *texture_data, int text
         candidate_score = texture_value;
         best_texture_ptr = previous_texture_ptr;
       }
-      puStack_58 = puVar9;
-      uVar15 = uVar11;
-      uVar8 = uVar6;
-      puVar9 = puVar12 + 4;
-      puVar12 = *(ushort **)(puVar12 + 4);
-      uVar1 = *puVar12;
-    } while ((int)((uint)uVar1 + iVar13) <= iVar2);
-    auStackX_18[0] = uVar15;
-    if (puStack_58 != (ushort *)0x0) {
-      uStack_50 = (ulonglong)**(ushort **)puStack_58;
-      uVar15 = (uint)**(ushort **)puStack_58;
-      goto LAB_18028ac26;
+      previous_texture_ptr = best_texture_ptr;
+      texture_value = candidate_score;
+      optimal_score = current_score;
+      best_texture_ptr = selected_texture_ptr + 4;
+      selected_texture_ptr = *(ushort **)(selected_texture_ptr + 4);
+      texture_offset = *selected_texture_ptr;
+    } while ((int)((uint)texture_offset + calculated_position) <= texture_capacity);
+    mapping_result[0] = texture_value;
+    if (previous_texture_ptr != (ushort *)0x0) {
+      optimal_offset = (ulonglong)**(ushort **)previous_texture_ptr;
+      texture_value = (uint)**(ushort **)previous_texture_ptr;
+      goto finalize_mapping;
     }
   }
-  uVar15 = 0;
-LAB_18028ac26:
-  if (param_2[4] == 1) {
-    uVar1 = *puStack_60;
-    puVar12 = puStack_60;
-    while ((int)(uint)uVar1 < iVar13) {
-      puVar12 = *(ushort **)(puVar12 + 4);
-      uVar1 = *puVar12;
+  texture_value = 0;
+finalize_mapping:
+  // 处理纹理映射优化
+  if (texture_data[4] == 1) {
+    texture_offset = *current_texture_ptr;
+    selected_texture_ptr = current_texture_ptr;
+    while ((int)(uint)texture_offset < calculated_position) {
+      selected_texture_ptr = *(ushort **)(selected_texture_ptr + 4);
+      texture_offset = *selected_texture_ptr;
     }
-    puVar10 = *(ushort **)(puStack_60 + 4);
-    puVar9 = puStack_60 + 4;
-    iVar2 = param_2[1];
-    uVar6 = (uint)*puVar10;
-    puVar16 = puStack_60;
+    candidate_texture_ptr = *(ushort **)(current_texture_ptr + 4);
+    best_texture_ptr = current_texture_ptr + 4;
+    texture_capacity = texture_data[1];
+    current_score = (uint)*candidate_texture_ptr;
+    optimal_texture_ptr = current_texture_ptr;
     do {
-      uVar11 = (uint)*puVar12 - iVar13;
-      puVar4 = puVar10;
-      puVar5 = puVar9;
-      while (puVar9 = puVar5, puVar10 = puVar4, (int)uVar6 <= (int)uVar11) {
-        puVar4 = *(ushort **)(puVar10 + 4);
-        puVar5 = puVar10 + 4;
-        puVar14 = puVar9;
-        puVar16 = puVar10;
-        uVar6 = (uint)**(ushort **)(puVar10 + 4);
+      candidate_score = (uint)*selected_texture_ptr - calculated_position;
+      texture_ptr = candidate_texture_ptr;
+      next_texture_ptr = best_texture_ptr;
+      while (best_texture_ptr = next_texture_ptr, candidate_texture_ptr = texture_ptr, (int)current_score <= (int)candidate_score) {
+        texture_ptr = *(ushort **)(candidate_texture_ptr + 4);
+        next_texture_ptr = candidate_texture_ptr + 4;
+        texture_list_ptr = best_texture_ptr;
+        optimal_texture_ptr = candidate_texture_ptr;
+        current_score = (uint)**(ushort **)(candidate_texture_ptr + 4);
       }
-      uVar7 = FUN_18028aa10(iVar13,puVar16,uVar11,iVar13,&puStack_60);
-      uVar15 = (uint)uStack_50;
-      if ((((int)(iStackX_20 + uVar7) < iVar2) && ((int)uVar7 <= (int)uVar8)) &&
-         ((((int)uVar7 < (int)uVar8 || ((int)(uint)puStack_60 < (int)auStackX_18[0])) ||
-          (((uint)puStack_60 == auStackX_18[0] && ((int)uVar11 < (int)uVar15)))))) {
-        uStack_50 = (ulonglong)uVar11;
-        auStackX_18[0] = (uint)puStack_60;
-        uVar8 = uVar7;
-        uVar15 = uVar11;
-        puStack_58 = puVar14;
+      optimal_score = evaluate_texture_position(calculated_position, optimal_texture_ptr, candidate_score, calculated_position, &current_texture_ptr);
+      texture_value = (uint)optimal_offset;
+      if ((((int)(height_limit + optimal_score) < texture_capacity) && ((int)optimal_score <= (int)optimal_score)) &&
+         ((((int)optimal_score < (int)optimal_score || ((int)(uint)current_texture_ptr < (int)mapping_result[0])) ||
+          (((uint)current_texture_ptr == mapping_result[0] && ((int)candidate_score < (int)texture_value)))))) {
+        optimal_offset = (ulonglong)candidate_score;
+        mapping_result[0] = (uint)current_texture_ptr;
+        optimal_score = optimal_score;
+        texture_value = candidate_score;
+        previous_texture_ptr = texture_list_ptr;
       }
-      puVar12 = *(ushort **)(puVar12 + 4);
-    } while (puVar12 != (ushort *)0x0);
+      selected_texture_ptr = *(ushort **)(selected_texture_ptr + 4);
+    } while (selected_texture_ptr != (ushort *)0x0);
   }
-  *(ushort **)(param_1 + 2) = puStack_58;
-  *param_1 = uVar15;
-  param_1[1] = uVar8;
+  // 设置最终映射结果
+  *(ushort **)(render_context + 2) = previous_texture_ptr;
+  *render_context = texture_value;
+  render_context[1] = optimal_score;
   return;
 }
 
 
 
-undefined4 FUN_18028ad90(longlong param_1,longlong param_2,int param_3)
+/**
+ * 处理渲染空间分区数据
+ * @param space_data 空间分区数据指针
+ * @param render_info 渲染信息数据
+ * @param partition_count 分区数量
+ * @return 处理状态码
+ */
+undefined4 process_rendering_partitions(longlong space_data, longlong render_info, int partition_count)
 
 {
-  ushort *puVar1;
-  ushort uVar2;
-  ushort uVar3;
-  short *psVar4;
-  undefined8 uVar5;
-  longlong *plVar6;
-  int iVar7;
-  undefined8 *puVar8;
-  ushort *puVar9;
-  undefined4 uVar10;
-  ushort *puVar11;
-  short *psVar12;
-  longlong lVar13;
-  short sVar14;
-  int *piVar15;
-  short sVar16;
-  undefined4 uVar17;
-  longlong lVar18;
-  undefined1 auStack_48 [16];
+  ushort *partition_ptr;
+  ushort partition_width;
+  ushort partition_height;
+  short *space_info;
+  undefined8 mapping_result;
+  longlong *texture_mapping;
+  int partition_index;
+  undefined8 *partition_data;
+  ushort *texture_ptr;
+  undefined4 process_status;
+  ushort *next_texture_ptr;
+  short *partition_manager;
+  longlong space_offset;
+  short partition_offset;
+  int *index_array;
+  short texture_id;
+  undefined4 success_flag;
+  longlong partition_size;
+  undefined1 temp_buffer[16];
   
-  uVar10 = 1;
-  iVar7 = 0;
-  if (0 < param_3) {
-    piVar15 = (int *)(param_2 + 0xc);
+  process_status = 1;
+  partition_index = 0;
+  // 初始化分区索引数组
+  if (0 < partition_count) {
+    index_array = (int *)(render_info + 0xc);
     do {
-      *piVar15 = iVar7;
-      piVar15 = piVar15 + 4;
-      iVar7 = iVar7 + 1;
-    } while (iVar7 < param_3);
+      *index_array = partition_index;
+      index_array = index_array + 4;
+      partition_index = partition_index + 1;
+    } while (partition_index < partition_count);
   }
-  lVar18 = (longlong)param_3;
-  qsort(param_2,lVar18,0x10,&UNK_18028ad30);
-  if (0 < lVar18) {
-    psVar12 = (short *)(param_2 + 10);
-    lVar13 = lVar18;
+  partition_size = (longlong)partition_count;
+  qsort(render_info, partition_size, 0x10, &partition_comparator);
+  // 处理每个分区
+  if (0 < partition_size) {
+    partition_manager = (short *)(render_info + 10);
+    space_offset = partition_size;
+    
     do {
-      uVar2 = psVar12[-3];
-      if ((uVar2 == 0) || (uVar3 = psVar12[-2], uVar3 == 0)) {
-        psVar12[-1] = 0;
-        psVar12[0] = 0;
+      partition_width = partition_manager[-3];
+      
+      if ((partition_width == 0) || (partition_height = partition_manager[-2], partition_height == 0)) {
+        partition_manager[-1] = 0;
+        partition_manager[0] = 0;
       }
       else {
-        puVar8 = (undefined8 *)FUN_18028aaf0(auStack_48,param_1,uVar2,uVar3);
-        uVar5 = *puVar8;
-        plVar6 = (longlong *)puVar8[1];
-        if (((plVar6 == (longlong *)0x0) ||
-            (*(int *)(param_1 + 4) < (int)((int)((ulonglong)uVar5 >> 0x20) + (uint)uVar3))) ||
-           (psVar4 = *(short **)(param_1 + 0x20), psVar4 == (short *)0x0)) {
-          psVar12[-1] = -1;
-          psVar12[0] = -1;
+        partition_data = (undefined8 *)calculate_texture_mapping(temp_buffer, space_data, partition_width, partition_height);
+        mapping_result = *partition_data;
+        texture_mapping = (longlong *)partition_data[1];
+        
+        // 检查纹理映射有效性
+        if (((texture_mapping == (longlong *)0x0) ||
+            (*(int *)(space_data + 4) < (int)((int)((ulonglong)mapping_result >> 0x20) + (uint)partition_height))) ||
+           (space_info = *(short **)(space_data + 0x20), space_info == (short *)0x0)) {
+          partition_manager[-1] = -1;
+          partition_manager[0] = -1;
         }
         else {
-          sVar16 = (short)((ulonglong)uVar5 >> 0x20);
-          psVar4[1] = uVar3 + sVar16;
-          sVar14 = (short)uVar5;
-          *psVar4 = sVar14;
-          *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(psVar4 + 4);
-          puVar9 = (ushort *)*plVar6;
-          iVar7 = (int)uVar5;
-          if ((int)(uint)*puVar9 < iVar7) {
-            puVar11 = puVar9 + 4;
-            puVar9 = *(ushort **)(puVar9 + 4);
-            *(short **)puVar11 = psVar4;
+          // 设置分区信息
+          texture_id = (short)((ulonglong)mapping_result >> 0x20);
+          space_info[1] = partition_height + texture_id;
+          partition_offset = (short)mapping_result;
+          *space_info = partition_offset;
+          *(undefined8 *)(space_data + 0x20) = *(undefined8 *)(space_info + 4);
+          
+          texture_ptr = (ushort *)*texture_mapping;
+          partition_index = (int)mapping_result;
+          
+          // 插入纹理到链表
+          if ((int)(uint)*texture_ptr < partition_index) {
+            next_texture_ptr = texture_ptr + 4;
+            texture_ptr = *(ushort **)(texture_ptr + 4);
+            *(short **)next_texture_ptr = space_info;
           }
           else {
-            *plVar6 = (longlong)psVar4;
+            *texture_mapping = (longlong)space_info;
           }
-          if (*(ushort **)(puVar9 + 4) != (ushort *)0x0) {
-            puVar11 = *(ushort **)(puVar9 + 4);
+          
+          // 处理纹理链表优化
+          if (*(ushort **)(texture_ptr + 4) != (ushort *)0x0) {
+            next_texture_ptr = *(ushort **)(texture_ptr + 4);
+            
             do {
-              if ((int)(iVar7 + (uint)uVar2) < (int)(uint)*puVar11) break;
-              *(undefined8 *)(puVar9 + 4) = *(undefined8 *)(param_1 + 0x20);
-              *(ushort **)(param_1 + 0x20) = puVar9;
-              puVar1 = puVar11 + 4;
-              puVar9 = puVar11;
-              puVar11 = *(ushort **)puVar1;
-            } while (*(ushort **)puVar1 != (ushort *)0x0);
+              if ((int)(partition_index + (uint)partition_width) < (int)(uint)*next_texture_ptr) break;
+              *(undefined8 *)(texture_ptr + 4) = *(undefined8 *)(space_data + 0x20);
+              *(ushort **)(space_data + 0x20) = texture_ptr;
+              partition_ptr = next_texture_ptr + 4;
+              texture_ptr = next_texture_ptr;
+              next_texture_ptr = *(ushort **)partition_ptr;
+            } while (*(ushort **)partition_ptr != (ushort *)0x0);
           }
-          *(ushort **)(psVar4 + 4) = puVar9;
-          if ((int)(uint)*puVar9 < (int)(iVar7 + (uint)uVar2)) {
-            *puVar9 = uVar2 + sVar14;
+          
+          *(ushort **)(space_info + 4) = texture_ptr;
+          
+          if ((int)(uint)*texture_ptr < (int)(partition_index + (uint)partition_width)) {
+            *texture_ptr = partition_width + partition_offset;
           }
-          psVar12[-1] = sVar14;
-          *psVar12 = sVar16;
+          
+          partition_manager[-1] = partition_offset;
+          *partition_manager = texture_id;
         }
       }
-      psVar12 = psVar12 + 8;
-      lVar13 = lVar13 + -1;
-    } while (lVar13 != 0);
+      
+      partition_manager = partition_manager + 8;
+      space_offset = space_offset + -1;
+    } while (space_offset != 0);
   }
   qsort(param_2,lVar18,0x10,&UNK_18028ad70);
   if (0 < lVar18) {
