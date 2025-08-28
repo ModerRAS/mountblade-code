@@ -782,111 +782,122 @@ void process_data_array_2x_copy(longlong source_context, longlong *output_ptr)
 
 
 
-// 函数: void FUN_180082290(longlong *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180082290(longlong *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: expand_container_capacity_32byte - 扩展容器容量（32字节对齐）
+// 原始函数名: FUN_180082290
+// 功能: 扩展容器的容量，使用32字节对齐的内存分配
+// 参数: container_ptr - 容器指针，required_elements - 需要的元素数量，alignment - 对齐方式，allocator - 分配器
+// 实现简化：处理容器扩容，包括数据迁移和内存重新分配
+void expand_container_capacity_32byte(longlong *container_ptr, ulonglong required_elements, undefined8 alignment, undefined8 allocator)
 
 {
-  undefined8 *puVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  longlong *plVar8;
-  ulonglong uVar9;
-  undefined8 *puVar10;
-  ulonglong uVar11;
+  undefined8 *current_end;
+  undefined4 temp_data;
+  undefined8 temp_value;
+  longlong offset_diff;
+  undefined8 *new_memory;
+  undefined8 *new_ptr;
+  undefined8 *old_end;
+  longlong *current_ptr;
+  ulonglong new_capacity;
+  undefined8 *old_start;
+  ulonglong elements_to_init;
   
-  puVar7 = (undefined8 *)param_1[1];
-  if ((ulonglong)(param_1[2] - (longlong)puVar7 >> 5) < param_2) {
-    puVar10 = (undefined8 *)*param_1;
-    lVar4 = (longlong)puVar7 - (longlong)puVar10 >> 5;
-    uVar9 = lVar4 * 2;
-    if (lVar4 == 0) {
-      uVar9 = 1;
+  old_end = (undefined8 *)container_ptr[1];
+  // 检查是否需要扩容：当前可用空间是否小于需要的元素数量
+  if ((ulonglong)(container_ptr[2] - (longlong)old_end >> 5) < required_elements) {
+    old_start = (undefined8 *)*container_ptr;
+    offset_diff = (longlong)old_end - (longlong)old_start >> 5;  // 计算当前元素数量
+    new_capacity = offset_diff * 2;  // 新容量为当前容量的2倍
+    if (offset_diff == 0) {
+      new_capacity = 1;  // 最小容量为1
     }
-    if (uVar9 < lVar4 + param_2) {
-      uVar9 = lVar4 + param_2;
+    if (new_capacity < offset_diff + required_elements) {
+      new_capacity = offset_diff + required_elements;  // 确保容量足够
     }
-    puVar5 = (undefined8 *)0x0;
-    if (uVar9 != 0) {
-      puVar5 = (undefined8 *)
-               FUN_18062b420(_DAT_180c8ed18,uVar9 << 5,(char)param_1[3],param_4,0xfffffffffffffffe);
-      puVar7 = (undefined8 *)param_1[1];
-      puVar10 = (undefined8 *)*param_1;
+    new_memory = (undefined8 *)0x0;
+    if (new_capacity != 0) {
+      // 分配新的内存空间
+      new_memory = (undefined8 *)
+               allocate_aligned_memory(_DAT_180c8ed18,new_capacity << 5,(char)container_ptr[3],allocator,0xfffffffffffffffe);  // FUN_18062b420
+      old_end = (undefined8 *)container_ptr[1];
+      old_start = (undefined8 *)*container_ptr;
     }
-    puVar6 = puVar5;
-    if (puVar10 != puVar7) {
-      lVar4 = (longlong)puVar5 - (longlong)puVar10;
-      puVar10 = puVar10 + 3;
+    new_ptr = new_memory;
+    if (old_start != old_end) {
+      // 迁移现有数据到新内存
+      offset_diff = (longlong)new_memory - (longlong)old_start;
+      old_start = old_start + 3;
       do {
-        *puVar6 = 0;
-        *(undefined8 *)(lVar4 + -0x10 + (longlong)puVar10) = 0;
-        *(undefined8 *)(lVar4 + -8 + (longlong)puVar10) = 0;
-        *(undefined4 *)(lVar4 + (longlong)puVar10) = *(undefined4 *)puVar10;
-        uVar3 = *puVar6;
-        *puVar6 = puVar10[-3];
-        puVar10[-3] = uVar3;
-        uVar3 = *(undefined8 *)(lVar4 + -0x10 + (longlong)puVar10);
-        *(undefined8 *)(lVar4 + -0x10 + (longlong)puVar10) = puVar10[-2];
-        puVar10[-2] = uVar3;
-        uVar3 = *(undefined8 *)(lVar4 + -8 + (longlong)puVar10);
-        *(undefined8 *)(lVar4 + -8 + (longlong)puVar10) = puVar10[-1];
-        puVar10[-1] = uVar3;
-        uVar2 = *(undefined4 *)(lVar4 + (longlong)puVar10);
-        *(undefined4 *)(lVar4 + (longlong)puVar10) = *(undefined4 *)puVar10;
-        *(undefined4 *)puVar10 = uVar2;
-        puVar6 = puVar6 + 4;
-        puVar1 = puVar10 + 1;
-        puVar10 = puVar10 + 4;
-      } while (puVar1 != puVar7);
+        *new_ptr = 0;
+        *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start) = 0;
+        *(undefined8 *)(offset_diff + -8 + (longlong)old_start) = 0;
+        *(undefined4 *)(offset_diff + (longlong)old_start) = *(undefined4 *)old_start;
+        temp_value = *new_ptr;
+        *new_ptr = old_start[-3];
+        old_start[-3] = temp_value;
+        temp_value = *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start);
+        *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start) = old_start[-2];
+        old_start[-2] = temp_value;
+        temp_value = *(undefined8 *)(offset_diff + -8 + (longlong)old_start);
+        *(undefined8 *)(offset_diff + -8 + (longlong)old_start) = old_start[-1];
+        old_start[-1] = temp_value;
+        temp_data = *(undefined4 *)(offset_diff + (longlong)old_start);
+        *(undefined4 *)(offset_diff + (longlong)old_start) = *(undefined4 *)old_start;
+        *(undefined4 *)old_start = temp_data;
+        new_ptr = new_ptr + 4;
+        current_end = old_start + 1;
+        old_start = old_start + 4;
+      } while (current_end != old_end);
     }
-    if (param_2 != 0) {
-      puVar7 = puVar6 + 1;
-      uVar11 = param_2;
+    if (required_elements != 0) {
+      // 初始化新分配的元素
+      old_end = new_ptr + 1;
+      elements_to_init = required_elements;
       do {
-        puVar7[-1] = 0;
-        *puVar7 = 0;
-        puVar7[1] = 0;
-        *(undefined4 *)(puVar7 + 2) = 3;
-        puVar7 = puVar7 + 4;
-        uVar11 = uVar11 - 1;
-      } while (uVar11 != 0);
+        old_end[-1] = 0;
+        *old_end = 0;
+        old_end[1] = 0;
+        *(undefined4 *)(old_end + 2) = 3;
+        old_end = old_end + 4;
+        elements_to_init = elements_to_init - 1;
+      } while (elements_to_init != 0);
     }
-    plVar8 = (longlong *)*param_1;
-    if (plVar8 != (longlong *)param_1[1]) {
+    // 验证旧容器中没有非零指针
+    current_ptr = (longlong *)*container_ptr;
+    if (current_ptr != (longlong *)container_ptr[1]) {
       do {
-        if (*plVar8 != 0) {
-                    // WARNING: Subroutine does not return
-          FUN_18064e900();
+        if (*current_ptr != 0) {
+          // 发现非零指针，触发错误
+          trigger_critical_error();  // FUN_18064e900
         }
-        plVar8 = plVar8 + 4;
-      } while (plVar8 != (longlong *)param_1[1]);
-      plVar8 = (longlong *)*param_1;
+        current_ptr = current_ptr + 4;
+      } while (current_ptr != (longlong *)container_ptr[1]);
+      current_ptr = (longlong *)*container_ptr;
     }
-    if (plVar8 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(plVar8);
+    if (current_ptr != (longlong *)0x0) {
+      // 清理旧容器
+      cleanup_old_container(current_ptr);  // FUN_18064e900
     }
-    *param_1 = (longlong)puVar5;
-    param_1[1] = (longlong)(puVar6 + param_2 * 4);
-    param_1[2] = (longlong)(puVar5 + uVar9 * 4);
+    // 更新容器指针
+    *container_ptr = (longlong)new_memory;
+    container_ptr[1] = (longlong)(new_ptr + required_elements * 4);
+    container_ptr[2] = (longlong)(new_memory + new_capacity * 4);
   }
   else {
-    uVar9 = param_2;
-    if (param_2 != 0) {
+    // 不需要扩容，直接初始化新元素
+    elements_to_init = required_elements;
+    if (required_elements != 0) {
       do {
-        *puVar7 = 0;
-        puVar7[1] = 0;
-        puVar7[2] = 0;
-        *(undefined4 *)(puVar7 + 3) = 3;
-        puVar7 = puVar7 + 4;
-        uVar9 = uVar9 - 1;
-      } while (uVar9 != 0);
-      puVar7 = (undefined8 *)param_1[1];
+        *old_end = 0;
+        old_end[1] = 0;
+        old_end[2] = 0;
+        *(undefined4 *)(old_end + 3) = 3;
+        old_end = old_end + 4;
+        elements_to_init = elements_to_init - 1;
+      } while (elements_to_init != 0);
+      old_end = (undefined8 *)container_ptr[1];
     }
-    param_1[1] = (longlong)(puVar7 + param_2 * 4);
+    container_ptr[1] = (longlong)(old_end + required_elements * 4);
   }
   return;
 }
@@ -897,111 +908,122 @@ void FUN_180082290(longlong *param_1,ulonglong param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_1800824a0(longlong *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800824a0(longlong *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: expand_container_capacity_32byte_alt - 扩展容器容量（32字节对齐，替代版本）
+// 原始函数名: FUN_1800824a0
+// 功能: 扩展容器的容量，使用32字节对齐的内存分配（与上一个函数功能相同）
+// 参数: container_ptr - 容器指针，required_elements - 需要的元素数量，alignment - 对齐方式，allocator - 分配器
+// 实现简化：与上一个函数功能相同，可能是不同情况下的实现
+void expand_container_capacity_32byte_alt(longlong *container_ptr, ulonglong required_elements, undefined8 alignment, undefined8 allocator)
 
 {
-  undefined8 *puVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  longlong *plVar8;
-  ulonglong uVar9;
-  undefined8 *puVar10;
-  ulonglong uVar11;
+  undefined8 *current_end;
+  undefined4 temp_data;
+  undefined8 temp_value;
+  longlong offset_diff;
+  undefined8 *new_memory;
+  undefined8 *new_ptr;
+  undefined8 *old_end;
+  longlong *current_ptr;
+  ulonglong new_capacity;
+  undefined8 *old_start;
+  ulonglong elements_to_init;
   
-  puVar7 = (undefined8 *)param_1[1];
-  if ((ulonglong)(param_1[2] - (longlong)puVar7 >> 5) < param_2) {
-    puVar10 = (undefined8 *)*param_1;
-    lVar4 = (longlong)puVar7 - (longlong)puVar10 >> 5;
-    uVar9 = lVar4 * 2;
-    if (lVar4 == 0) {
-      uVar9 = 1;
+  old_end = (undefined8 *)container_ptr[1];
+  // 检查是否需要扩容：当前可用空间是否小于需要的元素数量
+  if ((ulonglong)(container_ptr[2] - (longlong)old_end >> 5) < required_elements) {
+    old_start = (undefined8 *)*container_ptr;
+    offset_diff = (longlong)old_end - (longlong)old_start >> 5;  // 计算当前元素数量
+    new_capacity = offset_diff * 2;  // 新容量为当前容量的2倍
+    if (offset_diff == 0) {
+      new_capacity = 1;  // 最小容量为1
     }
-    if (uVar9 < lVar4 + param_2) {
-      uVar9 = lVar4 + param_2;
+    if (new_capacity < offset_diff + required_elements) {
+      new_capacity = offset_diff + required_elements;  // 确保容量足够
     }
-    puVar5 = (undefined8 *)0x0;
-    if (uVar9 != 0) {
-      puVar5 = (undefined8 *)
-               FUN_18062b420(_DAT_180c8ed18,uVar9 << 5,(char)param_1[3],param_4,0xfffffffffffffffe);
-      puVar7 = (undefined8 *)param_1[1];
-      puVar10 = (undefined8 *)*param_1;
+    new_memory = (undefined8 *)0x0;
+    if (new_capacity != 0) {
+      // 分配新的内存空间
+      new_memory = (undefined8 *)
+               allocate_aligned_memory(_DAT_180c8ed18,new_capacity << 5,(char)container_ptr[3],allocator,0xfffffffffffffffe);  // FUN_18062b420
+      old_end = (undefined8 *)container_ptr[1];
+      old_start = (undefined8 *)*container_ptr;
     }
-    puVar6 = puVar5;
-    if (puVar10 != puVar7) {
-      lVar4 = (longlong)puVar5 - (longlong)puVar10;
-      puVar10 = puVar10 + 3;
+    new_ptr = new_memory;
+    if (old_start != old_end) {
+      // 迁移现有数据到新内存
+      offset_diff = (longlong)new_memory - (longlong)old_start;
+      old_start = old_start + 3;
       do {
-        *puVar6 = 0;
-        *(undefined8 *)(lVar4 + -0x10 + (longlong)puVar10) = 0;
-        *(undefined8 *)(lVar4 + -8 + (longlong)puVar10) = 0;
-        *(undefined4 *)(lVar4 + (longlong)puVar10) = *(undefined4 *)puVar10;
-        uVar3 = *puVar6;
-        *puVar6 = puVar10[-3];
-        puVar10[-3] = uVar3;
-        uVar3 = *(undefined8 *)(lVar4 + -0x10 + (longlong)puVar10);
-        *(undefined8 *)(lVar4 + -0x10 + (longlong)puVar10) = puVar10[-2];
-        puVar10[-2] = uVar3;
-        uVar3 = *(undefined8 *)(lVar4 + -8 + (longlong)puVar10);
-        *(undefined8 *)(lVar4 + -8 + (longlong)puVar10) = puVar10[-1];
-        puVar10[-1] = uVar3;
-        uVar2 = *(undefined4 *)(lVar4 + (longlong)puVar10);
-        *(undefined4 *)(lVar4 + (longlong)puVar10) = *(undefined4 *)puVar10;
-        *(undefined4 *)puVar10 = uVar2;
-        puVar6 = puVar6 + 4;
-        puVar1 = puVar10 + 1;
-        puVar10 = puVar10 + 4;
-      } while (puVar1 != puVar7);
+        *new_ptr = 0;
+        *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start) = 0;
+        *(undefined8 *)(offset_diff + -8 + (longlong)old_start) = 0;
+        *(undefined4 *)(offset_diff + (longlong)old_start) = *(undefined4 *)old_start;
+        temp_value = *new_ptr;
+        *new_ptr = old_start[-3];
+        old_start[-3] = temp_value;
+        temp_value = *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start);
+        *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start) = old_start[-2];
+        old_start[-2] = temp_value;
+        temp_value = *(undefined8 *)(offset_diff + -8 + (longlong)old_start);
+        *(undefined8 *)(offset_diff + -8 + (longlong)old_start) = old_start[-1];
+        old_start[-1] = temp_value;
+        temp_data = *(undefined4 *)(offset_diff + (longlong)old_start);
+        *(undefined4 *)(offset_diff + (longlong)old_start) = *(undefined4 *)old_start;
+        *(undefined4 *)old_start = temp_data;
+        new_ptr = new_ptr + 4;
+        current_end = old_start + 1;
+        old_start = old_start + 4;
+      } while (current_end != old_end);
     }
-    if (param_2 != 0) {
-      puVar7 = puVar6 + 1;
-      uVar11 = param_2;
+    if (required_elements != 0) {
+      // 初始化新分配的元素
+      old_end = new_ptr + 1;
+      elements_to_init = required_elements;
       do {
-        puVar7[-1] = 0;
-        *puVar7 = 0;
-        puVar7[1] = 0;
-        *(undefined4 *)(puVar7 + 2) = 3;
-        puVar7 = puVar7 + 4;
-        uVar11 = uVar11 - 1;
-      } while (uVar11 != 0);
+        old_end[-1] = 0;
+        *old_end = 0;
+        old_end[1] = 0;
+        *(undefined4 *)(old_end + 2) = 3;
+        old_end = old_end + 4;
+        elements_to_init = elements_to_init - 1;
+      } while (elements_to_init != 0);
     }
-    plVar8 = (longlong *)*param_1;
-    if (plVar8 != (longlong *)param_1[1]) {
+    // 验证旧容器中没有非零指针
+    current_ptr = (longlong *)*container_ptr;
+    if (current_ptr != (longlong *)container_ptr[1]) {
       do {
-        if (*plVar8 != 0) {
-                    // WARNING: Subroutine does not return
-          FUN_18064e900();
+        if (*current_ptr != 0) {
+          // 发现非零指针，触发错误
+          trigger_critical_error();  // FUN_18064e900
         }
-        plVar8 = plVar8 + 4;
-      } while (plVar8 != (longlong *)param_1[1]);
-      plVar8 = (longlong *)*param_1;
+        current_ptr = current_ptr + 4;
+      } while (current_ptr != (longlong *)container_ptr[1]);
+      current_ptr = (longlong *)*container_ptr;
     }
-    if (plVar8 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(plVar8);
+    if (current_ptr != (longlong *)0x0) {
+      // 清理旧容器
+      cleanup_old_container(current_ptr);  // FUN_18064e900
     }
-    *param_1 = (longlong)puVar5;
-    param_1[1] = (longlong)(puVar6 + param_2 * 4);
-    param_1[2] = (longlong)(puVar5 + uVar9 * 4);
+    // 更新容器指针
+    *container_ptr = (longlong)new_memory;
+    container_ptr[1] = (longlong)(new_ptr + required_elements * 4);
+    container_ptr[2] = (longlong)(new_memory + new_capacity * 4);
   }
   else {
-    uVar9 = param_2;
-    if (param_2 != 0) {
+    // 不需要扩容，直接初始化新元素
+    elements_to_init = required_elements;
+    if (required_elements != 0) {
       do {
-        *puVar7 = 0;
-        puVar7[1] = 0;
-        puVar7[2] = 0;
-        *(undefined4 *)(puVar7 + 3) = 3;
-        puVar7 = puVar7 + 4;
-        uVar9 = uVar9 - 1;
-      } while (uVar9 != 0);
-      puVar7 = (undefined8 *)param_1[1];
+        *old_end = 0;
+        old_end[1] = 0;
+        old_end[2] = 0;
+        *(undefined4 *)(old_end + 3) = 3;
+        old_end = old_end + 4;
+        elements_to_init = elements_to_init - 1;
+      } while (elements_to_init != 0);
+      old_end = (undefined8 *)container_ptr[1];
     }
-    param_1[1] = (longlong)(puVar7 + param_2 * 4);
+    container_ptr[1] = (longlong)(old_end + required_elements * 4);
   }
   return;
 }

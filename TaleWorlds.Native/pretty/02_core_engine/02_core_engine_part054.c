@@ -734,145 +734,205 @@ void update_float_array_values(float *float_array, float delta_value)
 
 
 
-// 函数: void FUN_180090710(float *param_1,undefined8 param_2,undefined4 *param_3)
-void FUN_180090710(float *param_1,undefined8 param_2,undefined4 *param_3)
-
+/**
+ * 渲染对象处理和颜色管理
+ * 处理游戏中的渲染对象，包括颜色计算、透明度设置和渲染参数调整
+ * 
+ * @param render_manager 渲染管理器对象指针
+ * @param render_context 渲染上下文参数
+ * @param color_param 颜色参数指针
+ */
+void process_render_objects(float *render_manager, undefined8 render_context, undefined4 *color_param)
 {
-  float fVar1;
-  longlong *plVar2;
-  int iVar3;
-  uint uVar4;
-  longlong lVar5;
-  longlong lVar6;
-  uint uVar7;
-  char cVar8;
-  float fVar9;
-  float fVar10;
-  undefined4 uStack_188;
-  undefined4 uStack_184;
-  undefined4 uStack_180;
-  float fStack_17c;
-  undefined8 uStack_178;
-  undefined4 uStack_170;
-  undefined2 uStack_16c;
-  undefined8 uStack_168;
-  undefined8 uStack_160;
-  undefined4 uStack_158;
-  undefined1 uStack_154;
-  undefined4 uStack_150;
-  undefined8 uStack_14c;
-  undefined2 uStack_144;
-  undefined8 uStack_140;
-  undefined4 uStack_138;
-  undefined8 uStack_130;
-  undefined4 uStack_128;
-  undefined1 uStack_124;
-  undefined8 uStack_110;
-  undefined8 uStack_108;
-  undefined8 uStack_100;
-  undefined8 uStack_f8;
-  undefined8 uStack_f0;
-  undefined8 uStack_e8;
-  undefined8 uStack_e0;
-  undefined8 uStack_d8;
-  undefined4 uStack_d0;
-  undefined4 uStack_cc;
-  undefined8 uStack_c8;
+  float object_color;
+  longlong *render_object;
+  int mutex_result;
+  uint object_index;
+  longlong color_data_ptr;
+  longlong render_index;
+  uint color_rgb;
+  char is_aligned;
+  float distance_factor;
+  float alpha_value;
+  undefined4 render_params_188;
+  undefined4 render_params_184;
+  undefined4 render_params_180;
+  float alpha_stack;
+  undefined8 transform_178;
+  undefined4 material_170;
+  undefined2 texture_16c;
+  undefined8 shader_168;
+  undefined8 uniform_160;
+  undefined4 buffer_158;
+  undefined1 flag_154;
+  undefined4 state_150;
+  undefined8 vertex_14c;
+  undefined2 index_144;
+  undefined8 fragment_140;
+  undefined4 geometry_138;
+  undefined8 tessellation_130;
+  undefined4 compute_128;
+  undefined1 attribute_124;
+  undefined8 viewport_110;
+  undefined8 projection_108;
+  undefined8 view_100;
+  undefined8 model_f8;
+  undefined8 normal_f0;
+  undefined8 tangent_e8;
+  undefined8 bitangent_e0;
+  undefined8 light_d8;
+  undefined4 time_d0;
+  undefined4 delta_cc;
+  undefined8 frame_c8;
   
-  uStack_c8 = 0xfffffffffffffffe;
-  iVar3 = _Mtx_lock(param_1 + 0x20c);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  // 初始化栈变量和帧参数
+  frame_c8 = 0xfffffffffffffffe;
+  
+  // 获取互斥锁
+  mutex_result = _Mtx_lock(render_manager + 0x20c);
+  if (mutex_result != 0) {
+    __Throw_C_error_std__YAXH_Z(mutex_result);
   }
-  uStack_108 = 0x3f800000;
-  uStack_100 = 0;
-  uStack_f8 = 0x3f80000000000000;
-  uStack_f0 = 0;
-  uStack_e8 = 0;
-  uStack_e0 = 0x3f800000;
-  uStack_d8 = 0x3a03126f;
-  _uStack_d0 = CONCAT44(0x3f800000,*param_3);
-  fVar10 = 0.1 - *param_1;
-  iVar3 = 0;
+  
+  // 初始化渲染参数
+  projection_108 = 0x3f800000;  // 投影矩阵
+  view_100 = 0;                // 视图矩阵
+  model_f8 = 0x3f80000000000000;  // 模型矩阵
+  normal_f0 = 0;               // 法线矩阵
+  tangent_e8 = 0;              // 切线矩阵
+  bitangent_e0 = 0x3f800000;   // 副切线矩阵
+  light_d8 = 0x3a03126f;       // 光照参数
+  time_d0 = CONCAT44(0x3f800000, *color_param);  // 时间和颜色参数
+  
+  // 计算基础透明度值
+  alpha_value = 0.1 - *render_manager;
+  
+  // 遍历32个渲染对象
+  mutex_result = 0;
   do {
-    uVar4 = (int)param_1[1] + 0x20 + iVar3 & 0x8000001f;
-    if ((int)uVar4 < 0) {
-      uVar4 = (uVar4 - 1 | 0xffffffe0) + 1;
+    // 计算对象索引，确保在有效范围内
+    object_index = (int)render_manager[1] + 0x20 + mutex_result & 0x8000001f;
+    if ((int)object_index < 0) {
+      object_index = (object_index - 1 | 0xffffffe0) + 1;
     }
-    lVar6 = (longlong)(int)uVar4;
-    if (param_1[lVar6 + 0x82] < 10.0) {
-      fVar10 = fVar10 + param_1[lVar6 + 0xa2];
-      uStack_d8 = CONCAT44(fVar10,(undefined4)uStack_d8);
-      fVar1 = param_1[lVar6 + 0xc2];
-      fVar9 = param_1[lVar6 + 0x82] - 6.0;
-      if (fVar9 <= 0.0) {
-        fVar9 = 0.0;
+    render_index = (longlong)(int)object_index;
+    
+    // 只处理距离小于10.0的对象
+    if (render_manager[render_index + 0x82] < 10.0) {
+      // 更新透明度值
+      alpha_value = alpha_value + render_manager[render_index + 0xa2];
+      light_d8 = CONCAT44(alpha_value, (undefined4)light_d8);
+      
+      // 获取对象颜色
+      object_color = render_manager[render_index + 0xc2];
+      
+      // 计算距离因子（用于透明度衰减）
+      distance_factor = render_manager[render_index + 0x82] - 6.0;
+      if (distance_factor <= 0.0) {
+        distance_factor = 0.0;
       }
-      fStack_17c = 1.0 - fVar9 * 0.16666666;
-      uVar4 = (uint)(fStack_17c * 256.0);
-      if ((int)uVar4 < 0) {
-        uVar4 = 0;
+      
+      // 计算基于距离的透明度
+      alpha_stack = 1.0 - distance_factor * 0.16666666;  // 1/6的衰减率
+      object_index = (uint)(alpha_stack * 256.0);
+      
+      // 限制透明度在0-254范围内
+      if ((int)object_index < 0) {
+        object_index = 0;
       }
-      else if (0xfe < (int)uVar4) {
-        uVar4 = 0xfe;
+      else if (0xfe < (int)object_index) {
+        object_index = 0xfe;
       }
-      uVar7 = (uint)fVar1 & 0xffffff;
-      uStack_188 = 0x3f800000;
-      uStack_184 = 0x3f800000;
-      uStack_180 = 0x3f800000;
-      (**(code **)(**(longlong **)(param_1 + lVar6 * 2 + 2) + 0x108))
-                (*(longlong **)(param_1 + lVar6 * 2 + 2),&uStack_188);
-      plVar2 = *(longlong **)(param_1 + lVar6 * 2 + 2);
-      if (*(code **)(*plVar2 + 0xc0) == (code *)&UNK_180277e10) {
-        cVar8 = (plVar2[8] - plVar2[7] & 0xfffffffffffffff0U) == 0;
+      
+      // 提取RGB颜色值
+      color_rgb = (uint)object_color & 0xffffff;
+      
+      // 初始化渲染参数
+      render_params_188 = 0x3f800000;  // 红色通道
+      render_params_184 = 0x3f800000;  // 绿色通道
+      render_params_180 = 0x3f800000;  // 蓝色通道
+      
+      // 调用对象的渲染设置函数
+      (**(code **)(**(longlong **)(render_manager + render_index * 2 + 2) + 0x108))
+                (*(longlong **)(render_manager + render_index * 2 + 2), &render_params_188);
+      
+      // 获取渲染对象指针
+      render_object = *(longlong **)(render_manager + render_index * 2 + 2);
+      
+      // 检查对象是否对齐
+      if (*(code **)(*render_object + 0xc0) == (code *)&UNK_180277e10) {
+        is_aligned = (render_object[8] - render_object[7] & 0xfffffffffffffff0U) == 0;
       }
       else {
-        cVar8 = (**(code **)(*plVar2 + 0xc0))(plVar2);
+        is_aligned = (**(code **)(*render_object + 0xc0))(render_object);
       }
-      lVar5 = 0;
-      if (cVar8 == '\0') {
-        lVar5 = *(longlong *)plVar2[7];
+      
+      // 获取颜色数据指针
+      color_data_ptr = 0;
+      if (is_aligned == '\0') {
+        color_data_ptr = *(longlong *)render_object[7];
       }
-      *(float *)(lVar5 + 0x238) = (float)(uVar7 >> 0x10) * 0.003921569;
-      *(float *)(lVar5 + 0x23c) = (float)(uVar7 >> 8 & 0xff) * 0.003921569;
-      *(float *)(lVar5 + 0x240) = (float)((uint)fVar1 & 0xff) * 0.003921569;
-      *(float *)(lVar5 + 0x244) = (float)(uVar4 & 0xff) * 0.003921569;
-      uVar4 = ((0xff - uVar4) * 2) / 3;
-      if (0xfe < uVar4) {
-        uVar4 = 0xfe;
+      
+      // 设置主颜色（RGB转浮点数0.0-1.0）
+      *(float *)(color_data_ptr + 0x238) = (float)(color_rgb >> 0x10) * 0.003921569;  // 红色
+      *(float *)(color_data_ptr + 0x23c) = (float)(color_rgb >> 8 & 0xff) * 0.003921569;  // 绿色
+      *(float *)(color_data_ptr + 0x240) = (float)((uint)object_color & 0xff) * 0.003921569;  // 蓝色
+      *(float *)(color_data_ptr + 0x244) = (float)(object_index & 0xff) * 0.003921569;      // Alpha
+      
+      // 计算辅助透明度（用于边缘效果）
+      object_index = ((0xff - object_index) * 2) / 3;
+      if (0xfe < object_index) {
+        object_index = 0xfe;
       }
-      lVar5 = *(longlong *)(param_1 + lVar6 * 2 + 0x42);
-      uVar7 = ((uVar4 | 0xffffff00) << 8 | uVar4) << 8 | uVar4;
-      *(float *)(lVar5 + 0x238) = (float)(uVar7 >> 0x10 & 0xff) * 0.003921569;
-      *(float *)(lVar5 + 0x23c) = (float)(uVar7 >> 8 & 0xff) * 0.003921569;
-      *(float *)(lVar5 + 0x240) = (float)(uVar4 & 0xff) * 0.003921569;
-      *(float *)(lVar5 + 0x244) = (float)(uVar7 >> 0x18) * 0.003921569;
-      uStack_178 = 0;
-      uStack_170 = 0xffffffff;
-      uStack_16c = 0xff00;
-      uStack_168 = 0;
-      uStack_160 = 0xffffffffffffffff;
-      uStack_158 = 0xffffffff;
-      uStack_154 = 0xff;
-      uStack_150 = 0xffffffff;
-      uStack_14c = 0;
-      uStack_144 = 0x400;
-      uStack_140 = 0;
-      uStack_138 = 0;
-      uStack_130 = 0;
-      uStack_128 = 0;
-      uStack_124 = 0;
-      uStack_110 = 0;
-      FUN_180077750(*(undefined8 *)(param_1 + lVar6 * 2 + 0x42),param_2,&uStack_108,0,&uStack_178);
-      (**(code **)(**(longlong **)(param_1 + lVar6 * 2 + 2) + 0x1c8))
-                (*(longlong **)(param_1 + lVar6 * 2 + 2),param_2,0,&uStack_108,&uStack_178);
+      
+      // 获取第二个颜色数据指针
+      color_data_ptr = *(longlong *)(render_manager + render_index * 2 + 0x42);
+      
+      // 创建RGB颜色值（所有通道相同，用于单色效果）
+      color_rgb = ((object_index | 0xffffff00) << 8 | object_index) << 8 | object_index;
+      
+      // 设置辅助颜色
+      *(float *)(color_data_ptr + 0x238) = (float)(color_rgb >> 0x10 & 0xff) * 0.003921569;  // 红色
+      *(float *)(color_data_ptr + 0x23c) = (float)(color_rgb >> 8 & 0xff) * 0.003921569;  // 绿色
+      *(float *)(color_data_ptr + 0x240) = (float)(object_index & 0xff) * 0.003921569;      // 蓝色
+      *(float *)(color_data_ptr + 0x244) = (float)(color_rgb >> 0x18) * 0.003921569;       // Alpha
+      
+      // 设置渲染状态和变换参数
+      transform_178 = 0;              // 变换矩阵
+      material_170 = 0xffffffff;      // 材质参数
+      texture_16c = 0xff00;           // 纹理参数
+      shader_168 = 0;                 // 着色器参数
+      uniform_160 = 0xffffffffffffffff;  // Uniform变量
+      buffer_158 = 0xffffffff;        // 缓冲区参数
+      flag_154 = 0xff;                // 标志位
+      state_150 = 0xffffffff;         // 渲染状态
+      vertex_14c = 0;                 // 顶点着色器
+      index_144 = 0x400;              // 索引缓冲区
+      fragment_140 = 0;               // 片段着色器
+      geometry_138 = 0;               // 几何着色器
+      tessellation_130 = 0;           // 曲面细分着色器
+      compute_128 = 0;                // 计算着色器
+      attribute_124 = 0;              // 属性参数
+      viewport_110 = 0;               // 视口参数
+      
+      // 调用渲染函数
+      FUN_180077750(*(undefined8 *)(render_manager + render_index * 2 + 0x42), 
+                  render_context, &projection_108, 0, &transform_178);
+      
+      // 调用对象的最终渲染函数
+      (**(code **)(**(longlong **)(render_manager + render_index * 2 + 2) + 0x1c8))
+                (*(longlong **)(render_manager + render_index * 2 + 2), render_context, 0, &projection_108, &transform_178);
     }
-    iVar3 = iVar3 + 1;
-  } while (iVar3 < 0x20);
-  iVar3 = _Mtx_unlock(param_1 + 0x20c);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+    
+    mutex_result = mutex_result + 1;
+  } while (mutex_result < 0x20);
+  
+  // 释放互斥锁
+  mutex_result = _Mtx_unlock(render_manager + 0x20c);
+  if (mutex_result != 0) {
+    __Throw_C_error_std__YAXH_Z(mutex_result);
   }
+  
   return;
 }
 
@@ -880,43 +940,66 @@ void FUN_180090710(float *param_1,undefined8 param_2,undefined4 *param_3)
 
 
 
-// 函数: void FUN_180090b80(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180090b80(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 初始化渲染参数和资源管理
+ * 设置渲染系统的初始参数，清理旧的资源并初始化新的渲染对象
+ * 
+ * @param render_system 渲染系统对象指针
+ * @param param2 保留参数
+ * @param param3 保留参数
+ * @param param4 保留参数
+ */
+void initialize_render_parameters(longlong render_system, undefined8 param2, undefined8 param3, undefined8 param4)
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  undefined8 uVar4;
+  longlong loop_counter;
+  longlong *old_resource;
+  longlong *resource_array;
+  undefined8 cleanup_flag;
   
-  uVar4 = 0xfffffffffffffffe;
-  *(undefined8 *)(param_1 + 0xd28) =
-       *(undefined8 *)(&DAT_180c8ed30 + (longlong)*(int *)(param_1 + 0xd30) * 8);
-  plVar2 = *(longlong **)(param_1 + 0xd20);
-  *(undefined8 *)(param_1 + 0xd20) = 0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  cleanup_flag = 0xfffffffffffffffe;
+  
+  // 设置渲染系统的基地址
+  *(undefined8 *)(render_system + 0xd28) = 
+       *(undefined8 *)(&DAT_180c8ed30 + (longlong)*(int *)(render_system + 0xd30) * 8);
+  
+  // 清理旧的渲染资源
+  old_resource = *(longlong **)(render_system + 0xd20);
+  *(undefined8 *)(render_system + 0xd20) = 0;
+  if (old_resource != (longlong *)0x0) {
+    (**(code **)(*old_resource + 0x38))();
   }
-  *(undefined4 *)(param_1 + 0xd3c) = 0xffffffff;
-  *(undefined4 *)(param_1 + 0x28) = 0xff101010;
-  plVar2 = (longlong *)(param_1 + 0x30);
-  lVar1 = 0x50;
-  plVar3 = plVar2;
+  
+  // 设置渲染状态标志
+  *(undefined4 *)(render_system + 0xd3c) = 0xffffffff;  // 完整性标志
+  *(undefined4 *)(render_system + 0x28) = 0xff101010;    // 渲染模式
+  
+  // 初始化资源数组
+  resource_array = (longlong *)(render_system + 0x30);
+  loop_counter = 0x50;
+  
+  // 循环初始化80个资源对象
   do {
-    (**(code **)(*plVar3 + 0x10))(plVar2,&DAT_18098bc73,param_3,param_4,uVar4);
-    plVar2 = plVar2 + 4;
-    plVar3 = plVar3 + 4;
-    lVar1 = lVar1 + -1;
-  } while (lVar1 != 0);
-  *(undefined4 *)(param_1 + 0xd04) = 0;
-  *(undefined4 *)(param_1 + 0xd08) = 0xbcf5c28f;
-  *(undefined4 *)(param_1 + 0xd00) = 0;
-  plVar2 = *(longlong **)(param_1 + 0xd20);
-  *(undefined8 *)(param_1 + 0xd20) = 0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+    // 调用每个资源的初始化函数
+    (**(code **)(*resource_array + 0x10))(resource_array, &DAT_18098bc73, param3, param4, cleanup_flag);
+    resource_array = resource_array + 4;
+    loop_counter = loop_counter + -1;
+  } while (loop_counter != 0);
+  
+  // 重置渲染计数器和状态
+  *(undefined4 *)(render_system + 0xd04) = 0;      // 渲染计数器
+  *(undefined4 *)(render_system + 0xd08) = 0xbcf5c28f;  // 状态哈希
+  *(undefined4 *)(render_system + 0xd00) = 0;      // 帧计数器
+  
+  // 再次清理渲染资源（确保完全清理）
+  old_resource = *(longlong **)(render_system + 0xd20);
+  *(undefined8 *)(render_system + 0xd20) = 0;
+  if (old_resource != (longlong *)0x0) {
+    (**(code **)(*old_resource + 0x38))();
   }
-  *(undefined4 *)(param_1 + 0xd40) = 0;
+  
+  // 重置最终状态标志
+  *(undefined4 *)(render_system + 0xd40) = 0;
+  
   return;
 }
 

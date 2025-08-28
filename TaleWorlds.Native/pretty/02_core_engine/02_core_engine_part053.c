@@ -463,9 +463,14 @@ void data_structure_initialize(undefined8 param_1,undefined8 param_2,longlong *p
 
 
 
+// 函数: undefined8 *binary_tree_insert_node(longlong *param_1,undefined8 *param_2,longlong *param_3,undefined8 param_4,undefined8 param_5)
+// 功能: 在二叉树中插入节点，包含复杂的平衡和比较逻辑
+// 参数: param_1 - 树根指针, param_2 - 插入位置, param_3 - 目标节点, param_4 - 比较数据, param_5 - 附加参数
+// 返回: undefined8 * - 插入位置的指针
+// 说明: 这是一个复杂的二叉树插入算法，包含多种情况的处理和节点平衡
 undefined8 *
-FUN_18008f140(longlong *param_1,undefined8 *param_2,longlong *param_3,undefined8 param_4,
-             undefined8 param_5)
+binary_tree_insert_node(longlong *param_1,undefined8 *param_2,longlong *param_3,undefined8 param_4,
+                       undefined8 param_5)
 
 {
   longlong *plVar1;
@@ -571,8 +576,12 @@ FUN_18008f140(longlong *param_1,undefined8 *param_2,longlong *param_3,undefined8
 
 
 
-// 函数: void FUN_18008f430(undefined8 *param_1)
-void FUN_18008f430(undefined8 *param_1)
+// 函数: void *memory_allocate_and_copy(undefined8 *param_1)
+// 功能: 分配内存并复制数据
+// 参数: param_1 - 源数据指针
+// 返回: void * - 分配的内存指针
+// 说明: 分配0x58字节的内存，并将源数据复制到新分配的内存中
+void *memory_allocate_and_copy(undefined8 *param_1)
 
 {
   undefined8 *puVar1;
@@ -586,9 +595,15 @@ void FUN_18008f430(undefined8 *param_1)
 
 
 
+// 函数: undefined8 *binary_tree_node_insert(longlong *param_1,undefined8 *param_2,char param_3,undefined8 *param_4,
+//             undefined8 param_5,longlong *param_6)
+// 功能: 在二叉树中插入节点的底层实现
+// 参数: param_1 - 树结构, param_2 - 插入位置, param_3 - 插入标志, param_4 - 节点数据, param_5 - 附加参数, param_6 - 节点指针
+// 返回: undefined8 * - 插入结果
+// 说明: 这是二叉树插入操作的核心实现，处理各种边界条件和节点链接
 undefined8 *
-FUN_18008f470(longlong *param_1,undefined8 *param_2,char param_3,undefined8 *param_4,
-             undefined8 param_5,longlong *param_6)
+binary_tree_node_insert(longlong *param_1,undefined8 *param_2,char param_3,undefined8 *param_4,
+                       undefined8 param_5,longlong *param_6)
 
 {
   char cVar1;
@@ -721,9 +736,15 @@ LAB_18008f669:
 
 
 
+// 函数: undefined8 *binary_tree_find_insert_position(longlong *param_1,undefined8 *param_2,char param_3,undefined8 param_4,
+//             undefined8 param_5)
+// 功能: 在二叉树中查找合适的插入位置
+// 参数: param_1 - 树结构, param_2 - 临时存储, param_3 - 查找标志, param_4 - 比较数据, param_5 - 附加参数
+// 返回: undefined8 * - 找到的位置指针
+// 说明: 在二叉树中搜索合适的插入位置，考虑各种比较条件和平衡要求
 undefined8 *
-FUN_18008f6a0(longlong *param_1,undefined8 *param_2,char param_3,undefined8 param_4,
-             undefined8 param_5)
+binary_tree_find_insert_position(longlong *param_1,undefined8 *param_2,char param_3,undefined8 param_4,
+                                undefined8 param_5)
 
 {
   undefined8 *puVar1;
@@ -802,7 +823,12 @@ FUN_18008f6a0(longlong *param_1,undefined8 *param_2,char param_3,undefined8 para
 
 
 
-longlong * FUN_18008f870(longlong *param_1,longlong *param_2,longlong *param_3)
+// 函数: longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong *param_3)
+// 功能: 比较两个字符串，考虑各种标志和特殊情况
+// 参数: param_1 - 字符串1指针, param_2 - 字符串2指针, param_3 - 比较标志
+// 返回: longlong * - 比较结果
+// 说明: 这是一个复杂的字符串比较函数，处理空字符串和各种比较情况
+longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong *param_3)
 
 {
   byte bVar1;
@@ -950,8 +976,12 @@ longlong * FUN_18008f870(longlong *param_1,longlong *param_2,longlong *param_3)
 
 
 
-// 函数: void FUN_18008fa70(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
-void FUN_18008fa70(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
+// 函数: void heap_sort_adjust_down(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
+// 功能: 堆排序中的向下调整操作
+// 参数: param_1 - 堆数组, param_2 - 堆大小, param_3 - 调整起始位置, param_4 - 堆属性, param_5 - 临时存储
+// 返回: void
+// 说明: 这是堆排序算法中的核心向下调整函数
+void heap_sort_adjust_down(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
                   longlong *param_5)
 
 {
@@ -1037,8 +1067,12 @@ LAB_18008fb99:
 
 
 
-// 函数: void FUN_18008fb19(void)
-void FUN_18008fb19(void)
+// 函数: void heap_sort_adjust_up_string(void)
+// 功能: 堆排序中的向上调整操作，专门处理字符串比较
+// 参数: 通过寄存器传递 (in_R10, in_R11, in_stack_00000030)
+// 返回: void
+// 说明: 在堆排序中向上调整节点位置，考虑字符串比较的特殊情况
+void heap_sort_adjust_up_string(void)
 
 {
   byte bVar1;
@@ -1088,8 +1122,12 @@ LAB_18008fb99:
 
 
 
-// 函数: void FUN_18008fb96(void)
-void FUN_18008fb96(void)
+// 函数: void heap_assign_direct(void)
+// 功能: 直接赋值操作，用于堆排序中的元素交换
+// 参数: 通过寄存器传递 (unaff_RDI, in_R10, in_R11)
+// 返回: void
+// 说明: 简单的赋值操作，将一个指针指向的值赋给数组中的指定位置
+void heap_assign_direct(void)
 
 {
   undefined8 *unaff_RDI;
@@ -1104,8 +1142,12 @@ void FUN_18008fb96(void)
 
 
 
-// 函数: void FUN_18008fba9(void)
-void FUN_18008fba9(void)
+// 函数: void heap_assign_from_stack(void)
+// 功能: 从栈中赋值操作，用于堆排序中的元素交换
+// 参数: 通过寄存器传递 (in_R10, in_R11, in_stack_00000030)
+// 返回: void
+// 说明: 从栈中获取值并赋给数组中的指定位置
+void heap_assign_from_stack(void)
 
 {
   longlong in_R10;
