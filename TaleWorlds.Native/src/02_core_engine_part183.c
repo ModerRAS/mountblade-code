@@ -556,13 +556,13 @@ longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resou
     
     resource_handle = _DAT_180c868f8;
     ContextInitializer(&stack_data_1, config_data, config_data, resource_flags, 0, 0xfffffffffffffffe);
-    resource_count = FUN_180169350(resource_handle, &stack_data_1);
+    resource_count = ResourceCounter(resource_handle, &stack_data_1);
     stack_data_1 = &UNK_180a3c3e0;
     
     // 检查资源分配状态
     if (stack_data_2 != (undefined1 *)0x0) {
         // 资源分配失败
-        FUN_18064e900();
+        ErrorHandler();
     }
     
     stack_data_2 = (undefined1 *)0x0;
@@ -590,7 +590,7 @@ longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resou
         FUN_18005d190(resource_ptr, resource_id);
         stack_data_5 = &UNK_180a3c3e0;
         if (stack_data_6 != 0) {
-            FUN_18064e900();
+            ErrorHandler();
         }
         stack_data_6 = 0;
         stack_data_7 = 0;
@@ -645,7 +645,7 @@ longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resou
     
     stack_data_1 = &UNK_180a3c3e0;
     if (stack_data_2 != (undefined1 *)0x0) {
-        FUN_18064e900();
+        ErrorHandler();
     }
     return resource_ptr;
 }
@@ -697,7 +697,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
                 if (char_count != 0xffffffff) {
                     string_length = FUN_180629a40(string_data, &stack_ptr_4, 0);
                     if (stack_ptr_2 != (undefined *)0x0) {
-                        FUN_18064e900();
+                        ErrorHandler();
                     }
                     stack_int_1 = *(int *)(string_length + CORE_OFFSET_0x10);
                     stack_ptr_2 = *(undefined **)(string_length + 8);
@@ -707,7 +707,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
                     *(undefined8 *)(string_length + 0x18) = 0;
                     stack_ptr_4 = &UNK_180a3c3e0;
                     if (stack_ptr_5 != (undefined2 *)0x0) {
-                        FUN_18064e900();
+                        ErrorHandler();
                     }
                     stack_ptr_5 = (undefined2 *)0x0;
                     stack_data_6 = stack_data_6 & 0xffffffff00000000;
@@ -745,7 +745,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
         }
         strstr(temp_ptr, string_buffer);
         stack_ptr_4 = &UNK_180a3c3e0;
-        FUN_18064e900(string_buffer);
+        ErrorHandler(string_buffer);
     }
     
     stack_data_2 = 0;
@@ -753,7 +753,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
     stack_ptr_3 = &UNK_18098bcb0;
     stack_ptr_1 = &UNK_180a3c3e0;
     if (stack_ptr_2 != (undefined *)0x0) {
-        FUN_18064e900();
+        ErrorHandler();
     }
     return stack_data_7;
 }
@@ -916,7 +916,7 @@ SKIP_REALLOCATION:
             
             stack_ptr_1 = &UNK_180a3c3e0;
             if (temp_ptr_1 != (undefined1 *)0x0) {
-                FUN_18064e900(temp_ptr_1);
+                ErrorHandler(temp_ptr_1);
             }
             stack_ptr_2 = (undefined1 *)0x0;
             stack_data_2 = 0;
@@ -1039,7 +1039,7 @@ longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, 
                 if (temp_int != -1) {
                     data_handle = FUN_180629a40(&stack_ptr_6, &stack_ptr_7, 0, temp_int);
                     if (stack_data_9 != 0) {
-                        FUN_18064e900();
+                        ErrorHandler();
                     }
                     stack_data_10 = *(uint *)(data_handle + CORE_OFFSET_0x10);
                     stack_data_9 = *(longlong *)(data_handle + 8);
@@ -1049,14 +1049,14 @@ longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, 
                     *(undefined8 *)(data_handle + 0x18) = 0;
                     stack_ptr_7 = (longlong *)&UNK_180a3c3e0;
                     if (stack_ptr_8 != (longlong *)0x0) {
-                        FUN_18064e900();
+                        ErrorHandler();
                     }
                     stack_ptr_8 = (longlong *)0x0;
                     stack_data_12 = 0;
                     stack_ptr_7 = (longlong *)&UNK_18098bcb0;
                     data_handle = FUN_180629a40(&stack_ptr_10, &stack_ptr_7, temp_int + 1, stack_data_13);
                     if (stack_data_11 != 0) {
-                        FUN_18064e900();
+                        ErrorHandler();
                     }
                     stack_data_13 = *(uint *)(data_handle + CORE_OFFSET_0x10);
                     stack_data_11 = *(longlong *)(data_handle + 8);
@@ -1066,7 +1066,7 @@ longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, 
                     *(undefined8 *)(data_handle + 0x18) = 0;
                     stack_ptr_7 = (longlong *)&UNK_180a3c3e0;
                     if (stack_ptr_8 != (longlong *)0x0) {
-                        FUN_18064e900();
+                        ErrorHandler();
                     }
                     stack_ptr_8 = (longlong *)0x0;
                     stack_data_12 = 0;
@@ -1090,7 +1090,7 @@ PROCESS_DATA:
     data_ptr[2] = 0;
     *(undefined4 *)(data_ptr + 3) = 3;
     stack_data_8 = 1;
-    data_handle = FUN_180169350(data_id, &stack_ptr_6);
+    data_handle = ResourceCounter(data_id, &stack_ptr_6);
     
     // 处理有效数据
     if (data_handle != 0) {
@@ -1119,7 +1119,7 @@ PROCESS_DATA:
         }
         
         if (stack_ptr_11 != (undefined *)0x0) {
-            FUN_18064e900();
+            ErrorHandler();
         }
         stack_data_1 = 0;
         temp_size = (longlong)temp_ptr_3 - (longlong)stack_ptr_1 >> 3;
@@ -1175,7 +1175,7 @@ PROCESS_DATA:
                     data_handle = FUN_180627ce0(&stack_ptr_4, &stack_ptr_11, *stack_ptr_1);
                     
                     if (stack_ptr_3 != (undefined1 *)0x0) {
-                        FUN_18064e900();
+                        ErrorHandler();
                     }
                     stack_data_2 = *(uint *)(data_handle + CORE_OFFSET_0x10);
                     stack_ptr_3 = *(undefined1 **)(data_handle + 8);
@@ -1185,7 +1185,7 @@ PROCESS_DATA:
                     *(undefined8 *)(data_handle + 0x18) = 0;
                     stack_ptr_11 = &UNK_180a3c3e0;
                     if (stack_data_15 != 0) {
-                        FUN_18064e900();
+                        ErrorHandler();
                     }
                     stack_data_15 = 0;
                     stack_data_16 = 0;
@@ -1193,7 +1193,7 @@ PROCESS_DATA:
                     stack_ptr_4 = &UNK_180a3c3e0;
                     stack_data_8 = 1;
                     if (stack_data_5 != 0) {
-                        FUN_18064e900();
+                        ErrorHandler();
                     }
                     stack_data_5 = 0;
                     stack_data_7 = (ulonglong)stack_data_7._4_4_ << 0x20;
@@ -1236,7 +1236,7 @@ ALLOCATE_MEMORY:
                         temp_size = stack_data_14;
                     }
                     if (*data_ptr != 0) {
-                        FUN_18064e900();
+                        ErrorHandler();
                     }
                     *data_ptr = data_offset;
                     data_ptr[1] = data_size + 0x20;
@@ -1245,7 +1245,7 @@ ALLOCATE_MEMORY:
                 
                 stack_ptr_2 = &UNK_180a3c3e0;
                 if (stack_ptr_3 != (undefined1 *)0x0) {
-                    FUN_18064e900();
+                    ErrorHandler();
                 }
                 stack_ptr_3 = (undefined1 *)0x0;
                 stack_data_3 = stack_data_3 & 0xffffffff00000000;
@@ -1257,7 +1257,7 @@ ALLOCATE_MEMORY:
         }
         
         if (stack_ptr_7 != (longlong *)0x0) {
-            FUN_18064e900();
+            ErrorHandler();
         }
     }
     
@@ -1265,14 +1265,14 @@ ALLOCATE_MEMORY:
     FUN_18016d200(*data_ptr, data_ptr[1], 0);
     stack_ptr_10 = &UNK_180a3c3e0;
     if (stack_data_11 != 0) {
-        FUN_18064e900();
+        ErrorHandler();
     }
     stack_data_11 = 0;
     stack_data_6 = stack_data_6 & 0xffffffff00000000;
     stack_ptr_10 = &UNK_18098bcb0;
     stack_ptr_6 = &UNK_180a3c3e0;
     if (stack_data_9 != 0) {
-        FUN_18064e900();
+        ErrorHandler();
     }
     return data_ptr;
 }
