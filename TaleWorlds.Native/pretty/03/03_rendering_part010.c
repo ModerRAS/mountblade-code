@@ -27,6 +27,23 @@ typedef struct {
     // ... 其他渲染上下文属性
 } render_context_t;
 
+typedef struct {
+    void *vtable_ptr;                    // 虚函数表指针
+    render_object_t *object_list;        // 对象列表
+    uint32_t manager_flags;              // 管理器标志
+    char manager_name[128];              // 管理器名称
+    // ... 其他渲染管理器属性
+} render_manager_t;
+
+typedef struct texture_node {
+    struct texture_node *left;           // 左子节点
+    struct texture_node *right;          // 右子节点
+    char texture_key[16];                // 纹理键值
+    uint64_t property_value;             // 属性值
+    uint64_t texture_id;                 // 纹理ID
+    // ... 其他纹理节点属性
+} texture_node_t;
+
 // 函数: void resize_render_object_array(render_context_t *render_context, size_t new_size)
 // 功能: 调整渲染对象数组大小，处理内存重新分配和对象复制
 // 参数:
@@ -246,51 +263,70 @@ initialize_render_context(render_context_t *render_context, uint64_t init_flags,
 
 
 
-// 警告: 以'_'开头的全局变量与同一地址的较小符号重叠
-
-longlong * create_render_object_instance(longlong render_context, longlong *instance_ptr)
+// 函数: render_object_t **create_render_object_instance(render_context_t *render_context, render_object_t **instance_ptr)
+// 功能: 创建渲染对象实例，分配内存并初始化对象属性
+// 参数:
+//   render_context - 渲染上下文指针
+//   instance_ptr - 实例指针的指针
+// 返回值: 实例指针的指针
+render_object_t **create_render_object_instance(render_context_t *render_context, render_object_t **instance_ptr)
 
 {
-  undefined8 memory_handle;
-  longlong *new_instance;
-  undefined *name_string;
+  void *memory_handle;
+  render_object_t *new_instance;
+  char *name_string;
   
-  memory_handle = allocate_render_object_memory(_DAT_180c8ed18,0x470,0x10,0x15,0,0xfffffffffffffffe);
-  new_instance = (longlong *)initialize_render_object_instance(memory_handle);
-  *instance_ptr = (longlong)new_instance;
-  if (new_instance != (longlong *)0x0) {
-    (**(code **)(*new_instance + 0x28))(new_instance);
+  // 分配渲染对象内存
+  memory_handle = allocate_render_object_memory(&_DAT_180c8ed18, 0x470, 0x10, 0x15, 0, 0xfffffffffffffffe);
+  
+  // 初始化渲染对象实例
+  new_instance = (render_object_t *)initialize_render_object_instance(memory_handle);
+  *instance_ptr = new_instance;
+  
+  if (new_instance != NULL) {
+    // 调用对象的初始化函数
+    ((void (*)(render_object_t *))new_instance->vtable_ptr)(new_instance);
   }
-  *(longlong *)(*instance_ptr + 0xa8) = render_context;
-  name_string = &DAT_18098bc73;
-  if (*(undefined **)(render_context + 0x70) != (undefined *)0x0) {
-    name_string = *(undefined **)(render_context + 0x70);
+  
+  // 设置对象所属的渲染上下文
+  *(longlong *)((uint8_t *)*instance_ptr + 0xa8) = (longlong)render_context;
+  
+  // 设置对象名称
+  name_string = &DAT_18098bc73;  // 默认名称
+  if (*(void **)((uint8_t *)render_context + 0x70) != NULL) {
+    name_string = *(char **)((uint8_t *)render_context + 0x70);
   }
-  (**(code **)(*(longlong *)(*instance_ptr + 0x10) + 0x10))((longlong *)(*instance_ptr + 0x10),name_string);
+  
+  // 调用对象的名称设置函数
+  ((void (*)(render_object_t *, char *))(*(uint64_t *)((uint8_t *)*instance_ptr + 0x10) + 0x10))(
+      (render_object_t *)((uint8_t *)*instance_ptr + 0x10), name_string);
+  
   return instance_ptr;
 }
 
 
 
-// 警告: 以'_'开头的全局变量与同一地址的较小符号重叠
-
-
-
-// 函数: void setup_render_object_properties(longlong render_context, undefined8 param2, undefined8 param3, undefined8 param4)
+// 函数: void setup_render_object_properties(render_context_t *render_context, void *param2, void *param3, void *param4)
 // 功能: 设置渲染对象属性，包括纹理、材质等
-void setup_render_object_properties(longlong render_context, undefined8 param2, undefined8 param3, undefined8 param4)
+// 参数:
+//   render_context - 渲染上下文指针
+//   param2 - 设置参数2
+//   param3 - 设置参数3
+//   param4 - 设置参数4
+// 返回值: 无
+void setup_render_object_properties(render_context_t *render_context, void *param2, void *param3, void *param4)
 
 {
-  undefined8 property_value;
-  longlong *render_manager;
-  undefined8 texture_id;
-  longlong base_address;
+  uint64_t property_value;
+  render_manager_t *render_manager;
+  uint64_t texture_id;
+  uint64_t base_address;
   int compare_result;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *texture_list;
-  undefined8 *property_node;
-  longlong **instance_ptr;
+  texture_node_t *current_node;
+  texture_node_t *parent_node;
+  texture_node_t *texture_list;
+  texture_node_t *property_node;
+  render_object_t **instance_ptr;
   
   if (*(longlong *)(render_context + 0xb0) == 0) {
     texture_list = (undefined8 *)create_render_object_instance(render_context,&instance_ptr,param3,param4,0xfffffffffffffffe);
