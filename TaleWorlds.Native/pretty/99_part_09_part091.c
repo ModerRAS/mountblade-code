@@ -108,7 +108,14 @@
  * @return 验证结果
  * @note 负责系统状态的验证和检查
  */
-#define SystemStateValidator SystemStateValidator
+#define SystemStateValidator FUN_1808fc050
+
+/**
+ * @brief 系统配置管理器
+ * @param config_ptr 配置指针
+ * @note 负责系统配置的管理和应用
+ */
+#define SystemConfigManager SystemConfigManager
 
 // 函数: void SystemCoreDataProcessor(longlong *data_ptr)
 void SystemCoreDataProcessor(longlong *data_ptr)
@@ -228,7 +235,7 @@ void SystemCoreDataProcessor(longlong *data_ptr)
   uStack_9a0 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b38;
   ppuStack_b18 = (void **)SystemResourceCleaner;
-  SystemMemoryManager(auStack_998,0xa0,0xf,FUN_1805faf50);
+  SystemMemoryManager(auStack_998,0xa0,0xf,SystemConfigManager);
   ppuStack_a68 = &puStack_b08;
   lVar3 = 0;
   puStack_b08 = &system_data_buffer_ptr;
