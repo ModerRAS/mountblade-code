@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -166,9 +170,9 @@ void * FUN_1808c7170(void)
               0x48) < system_system_config) {
     SystemInitializer(&system_ptr_f4f0);
     if (system_system_config == -1) {
-      puVar2 = (int32_t *)FUN_18084da10();
+      puVar2 = (int32_t *)MemoryCacheController0();
       uVar1 = *puVar2;
-      puVar2 = (int32_t *)FUN_18084da10();
+      puVar2 = (int32_t *)MemoryCacheController0();
       lRam0000000180c4f4b8 = (uint64_t)uStack_c << 0x20;
       system_system_config = *puVar2;
       system_system_config = 0;

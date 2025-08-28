@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -50,7 +54,7 @@ void FUN_18085ca30(int64_t param_1,uint64_t param_2)
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
   if (*(int *)(*(int64_t *)(param_1 + 0x160) + 0x2e4) < 3) goto LAB_18085d424;
-  FUN_18084da10();
+  MemoryCacheController0();
   if ((*(byte *)(param_1 + 0x128) & 8) != 0) {
     plVar1 = (int64_t *)(param_1 + 0x70);
     if (((int64_t *)*plVar1 == plVar1) && (*(int64_t **)(param_1 + 0x78) == plVar1)) {
@@ -74,7 +78,7 @@ void FUN_18085ca30(int64_t param_1,uint64_t param_2)
       }
     }
     if (1 < iVar8 - 4U) goto LAB_18085d424;
-    puVar11 = (int32_t *)FUN_18084da10();
+    puVar11 = (int32_t *)MemoryCacheController0();
     *(int32_t *)(param_1 + 0x148) = *puVar11;
     if (((int64_t *)*plVar1 == plVar1) && (*(int64_t **)(param_1 + 0x78) == plVar1)) {
       uVar3 = *(int32_t *)(param_1 + 0x30);
@@ -181,9 +185,9 @@ void FUN_18085ca30(int64_t param_1,uint64_t param_2)
         }
       }
     }
-    puVar12 = (uint *)FUN_18084da10();
+    puVar12 = (uint *)MemoryCacheController0();
     if (uVar21 != *puVar12) {
-      uVar13 = FUN_18084da10();
+      uVar13 = MemoryCacheController0();
       iVar9 = FUN_180857e50(param_1,uVar13,*(int32_t *)(param_1 + 0xc),uVar21);
       if (iVar9 != 0) goto LAB_18085d424;
     }
@@ -285,7 +289,7 @@ LAB_18085ceec:
   }
   if ((*(uint64_t *)(param_1 + 0x40) != 0) && (*(uint64_t *)(param_1 + 0x40) <= param_2)) {
     pppuStack_88 = (uint64_t ****)0x0;
-    puVar11 = (int32_t *)FUN_18084da10();
+    puVar11 = (int32_t *)MemoryCacheController0();
     uStack_80 = *puVar11;
     uStack_7c = 0;
     uStack_78 = 0;
@@ -301,7 +305,7 @@ LAB_18085ceec:
         SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar14,&rendering_buffer_2208_ptr,0x76);
       }
     }
-    puVar12 = (uint *)FUN_18084da10();
+    puVar12 = (uint *)MemoryCacheController0();
     uStack_7c = 0;
     uStack_78 = 0;
     pppuStack_88 = (uint64_t ****)0x0;
@@ -313,14 +317,14 @@ LAB_18085ceec:
     *(uint64_t *)(param_1 + 0x68) = (uint64_t)uStack_74 << 0x20;
   }
   *(int32_t *)(param_1 + 0x20) = *(int32_t *)(param_1 + 0x30);
-  puVar11 = (int32_t *)FUN_18084da10();
+  puVar11 = (int32_t *)MemoryCacheController0();
   uVar22 = *(uint64_t *)(param_1 + 0x28);
   *(int32_t *)(param_1 + 0x24) = *puVar11;
   iVar9 = *(int *)(param_1 + 0x34);
   if (param_2 < uVar22) {
     if (iVar9 - 4U < 2) {
       if (**(int64_t **)(param_1 + 0x38) == 0) {
-        plVar15 = (int64_t *)FUN_18084da10();
+        plVar15 = (int64_t *)MemoryCacheController0();
       }
       else {
         plVar15 = *(int64_t **)(param_1 + 0x38) + 1;

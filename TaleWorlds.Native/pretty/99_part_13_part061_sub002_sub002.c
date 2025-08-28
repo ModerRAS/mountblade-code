@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -794,7 +798,7 @@ LAB_1808d0d3e:
       return 0;
     }
   }
-  puVar9 = (int32_t *)FUN_18084da10();
+  puVar9 = (int32_t *)MemoryCacheController0();
   uVar10 = FUN_1808ce6a0(param_1,param_2,0,*puVar9,0);
   if ((int)uVar10 == 0) {
     *(int *)(param_1 + 0x230) = *(int *)(param_1 + 0x230) + 1;

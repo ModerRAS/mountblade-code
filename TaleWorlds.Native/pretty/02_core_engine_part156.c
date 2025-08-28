@@ -75,40 +75,40 @@ code_r0x00018013d378:
                 if (lVar8 != 0) {
                   lVar10 = lVar8;
                 }
-                uVar12 = FUN_180122210(extraout_XMM0_Qa,&memory_allocator_3384_ptr,*unaff_R12,lVar10);
+                uVar12 = CoreSystem_EncryptionManager0(extraout_XMM0_Qa,&memory_allocator_3384_ptr,*unaff_R12,lVar10);
                 iVar9 = *(int *)(uVar7 + 0x24 + lVar4);
                 if ((iVar9 != 0) && (iVar9 != 0x11111111)) {
-                  uVar12 = FUN_180122210(uVar12,&memory_allocator_3360_ptr,(int)*(float *)(uVar7 + 0x1c + lVar4)
+                  uVar12 = CoreSystem_EncryptionManager0(uVar12,&memory_allocator_3360_ptr,(int)*(float *)(uVar7 + 0x1c + lVar4)
                                          ,(int)*(float *)(uVar7 + 0x20 + lVar4));
-                  FUN_180122210(uVar12,&memory_allocator_3416_ptr,*(int32_t *)(uVar7 + 0x24 + lVar4));
+                  CoreSystem_EncryptionManager0(uVar12,&memory_allocator_3416_ptr,*(int32_t *)(uVar7 + 0x24 + lVar4));
                 }
                 fVar1 = *(float *)(uVar7 + 0xc + lVar4);
                 if (((fVar1 != 0.0) || (*(float *)(uVar7 + 0x10 + lVar4) != 0.0)) ||
                    (*(int *)(uVar7 + 0x24 + lVar4) == 0x11111111)) {
-                  FUN_180122210(fVar1,&memory_allocator_3400_ptr,(int)fVar1,
+                  CoreSystem_EncryptionManager0(fVar1,&memory_allocator_3400_ptr,(int)fVar1,
                                 (int)*(float *)(uVar7 + 0x10 + lVar4));
                 }
                 fVar1 = *(float *)(uVar7 + 0x14 + lVar4);
                 uVar13 = (uint64_t)(uint)fVar1;
                 if ((fVar1 != 0.0) || (*(float *)(uVar7 + 0x18 + lVar4) != 0.0)) {
-                  uVar13 = FUN_180122210(uVar13,&system_data_buffer_ptr,(int)fVar1,
+                  uVar13 = CoreSystem_EncryptionManager0(uVar13,&system_data_buffer_ptr,(int)fVar1,
                                          (int)*(float *)(uVar7 + 0x18 + lVar4));
                 }
-                uVar12 = FUN_180122210(uVar13,&memory_allocator_3440_ptr,*(int8_t *)(uVar7 + 0x32 + lVar4));
+                uVar12 = CoreSystem_EncryptionManager0(uVar13,&memory_allocator_3440_ptr,*(int8_t *)(uVar7 + 0x32 + lVar4));
                 iVar9 = *(int *)(uVar7 + 0x28 + lVar4);
                 if (iVar9 != 0) {
                   sVar3 = *(short *)(uVar7 + 0x30 + lVar4);
                   if (sVar3 == -1) {
-                    uVar12 = FUN_180122210(uVar12,&memory_allocator_3496_ptr);
+                    uVar12 = CoreSystem_EncryptionManager0(uVar12,&memory_allocator_3496_ptr);
                   }
                   else {
-                    uVar12 = FUN_180122210(uVar12,&memory_allocator_3472_ptr,iVar9,(int)sVar3);
+                    uVar12 = CoreSystem_EncryptionManager0(uVar12,&memory_allocator_3472_ptr,iVar9,(int)sVar3);
                   }
                   if (*(int *)(uVar7 + 0x2c + lVar4) != 0) {
-                    uVar12 = FUN_180122210(uVar12,&memory_allocator_3512_ptr);
+                    uVar12 = CoreSystem_EncryptionManager0(uVar12,&memory_allocator_3512_ptr);
                   }
                 }
-                FUN_180122210(uVar12,&system_ptr_cc18);
+                CoreSystem_EncryptionManager0(uVar12,&system_ptr_cc18);
                 uVar11 = (int)unaff_RBP + 1;
                 unaff_RBP = (uint64_t)uVar11;
                 uVar7 = uVar7 + 0x38;
@@ -168,38 +168,38 @@ void FUN_18013d387(int32_t param_1)
       if (lVar4 != 0) {
         lVar5 = lVar4;
       }
-      uVar8 = FUN_180122210(extraout_XMM0_Da,&memory_allocator_3384_ptr,*unaff_R12,lVar5);
+      uVar8 = CoreSystem_EncryptionManager0(extraout_XMM0_Da,&memory_allocator_3384_ptr,*unaff_R12,lVar5);
       iVar2 = *(int *)(uVar7 + 0x24 + lVar3);
       if ((iVar2 != 0) && (iVar2 != 0x11111111)) {
-        uVar8 = FUN_180122210(uVar8,&memory_allocator_3360_ptr,(int)*(float *)(uVar7 + 0x1c + lVar3),
+        uVar8 = CoreSystem_EncryptionManager0(uVar8,&memory_allocator_3360_ptr,(int)*(float *)(uVar7 + 0x1c + lVar3),
                               (int)*(float *)(uVar7 + 0x20 + lVar3));
-        FUN_180122210(uVar8,&memory_allocator_3416_ptr,*(int32_t *)(uVar7 + 0x24 + lVar3));
+        CoreSystem_EncryptionManager0(uVar8,&memory_allocator_3416_ptr,*(int32_t *)(uVar7 + 0x24 + lVar3));
       }
       fVar9 = *(float *)(uVar7 + 0xc + lVar3);
       if (((fVar9 != 0.0) || (*(float *)(uVar7 + 0x10 + lVar3) != 0.0)) ||
          (*(int *)(uVar7 + 0x24 + lVar3) == 0x11111111)) {
-        FUN_180122210(fVar9,&memory_allocator_3400_ptr,(int)fVar9,(int)*(float *)(uVar7 + 0x10 + lVar3));
+        CoreSystem_EncryptionManager0(fVar9,&memory_allocator_3400_ptr,(int)fVar9,(int)*(float *)(uVar7 + 0x10 + lVar3));
       }
       fVar9 = *(float *)(uVar7 + 0x14 + lVar3);
       if ((fVar9 != 0.0) || (*(float *)(uVar7 + 0x18 + lVar3) != 0.0)) {
-        fVar9 = (float)FUN_180122210(fVar9,&system_data_buffer_ptr,(int)fVar9,
+        fVar9 = (float)CoreSystem_EncryptionManager0(fVar9,&system_data_buffer_ptr,(int)fVar9,
                                      (int)*(float *)(uVar7 + 0x18 + lVar3));
       }
-      uVar8 = FUN_180122210(fVar9,&memory_allocator_3440_ptr,*(int8_t *)(uVar7 + 0x32 + lVar3));
+      uVar8 = CoreSystem_EncryptionManager0(fVar9,&memory_allocator_3440_ptr,*(int8_t *)(uVar7 + 0x32 + lVar3));
       iVar2 = *(int *)(uVar7 + 0x28 + lVar3);
       if (iVar2 != 0) {
         sVar1 = *(short *)(uVar7 + 0x30 + lVar3);
         if (sVar1 == -1) {
-          uVar8 = FUN_180122210(uVar8,&memory_allocator_3496_ptr);
+          uVar8 = CoreSystem_EncryptionManager0(uVar8,&memory_allocator_3496_ptr);
         }
         else {
-          uVar8 = FUN_180122210(uVar8,&memory_allocator_3472_ptr,iVar2,(int)sVar1);
+          uVar8 = CoreSystem_EncryptionManager0(uVar8,&memory_allocator_3472_ptr,iVar2,(int)sVar1);
         }
         if (*(int *)(uVar7 + 0x2c + lVar3) != 0) {
-          uVar8 = FUN_180122210(uVar8,&memory_allocator_3512_ptr);
+          uVar8 = CoreSystem_EncryptionManager0(uVar8,&memory_allocator_3512_ptr);
         }
       }
-      FUN_180122210(uVar8,&system_ptr_cc18);
+      CoreSystem_EncryptionManager0(uVar8,&system_ptr_cc18);
       uVar6 = (int)unaff_RBP + 1;
       unaff_RBP = (uint64_t)uVar6;
       uVar7 = uVar7 + 0x38;
@@ -238,38 +238,38 @@ void FUN_18013d3ad(void)
     if (lVar4 != 0) {
       lVar5 = lVar4;
     }
-    uVar8 = FUN_180122210(extraout_XMM0_Da,&memory_allocator_3384_ptr,*unaff_R12,lVar5);
+    uVar8 = CoreSystem_EncryptionManager0(extraout_XMM0_Da,&memory_allocator_3384_ptr,*unaff_R12,lVar5);
     iVar2 = *(int *)(uVar7 + 0x24 + lVar3);
     if ((iVar2 != 0) && (iVar2 != 0x11111111)) {
-      uVar8 = FUN_180122210(uVar8,&memory_allocator_3360_ptr,(int)*(float *)(uVar7 + 0x1c + lVar3),
+      uVar8 = CoreSystem_EncryptionManager0(uVar8,&memory_allocator_3360_ptr,(int)*(float *)(uVar7 + 0x1c + lVar3),
                             (int)*(float *)(uVar7 + 0x20 + lVar3));
-      FUN_180122210(uVar8,&memory_allocator_3416_ptr,*(int32_t *)(uVar7 + 0x24 + lVar3));
+      CoreSystem_EncryptionManager0(uVar8,&memory_allocator_3416_ptr,*(int32_t *)(uVar7 + 0x24 + lVar3));
     }
     fVar9 = *(float *)(uVar7 + 0xc + lVar3);
     if (((fVar9 != 0.0) || (*(float *)(uVar7 + 0x10 + lVar3) != 0.0)) ||
        (*(int *)(uVar7 + 0x24 + lVar3) == 0x11111111)) {
-      FUN_180122210(fVar9,&memory_allocator_3400_ptr,(int)fVar9,(int)*(float *)(uVar7 + 0x10 + lVar3));
+      CoreSystem_EncryptionManager0(fVar9,&memory_allocator_3400_ptr,(int)fVar9,(int)*(float *)(uVar7 + 0x10 + lVar3));
     }
     fVar9 = *(float *)(uVar7 + 0x14 + lVar3);
     if ((fVar9 != 0.0) || (*(float *)(uVar7 + 0x18 + lVar3) != 0.0)) {
-      fVar9 = (float)FUN_180122210(fVar9,&system_data_buffer_ptr,(int)fVar9,
+      fVar9 = (float)CoreSystem_EncryptionManager0(fVar9,&system_data_buffer_ptr,(int)fVar9,
                                    (int)*(float *)(uVar7 + 0x18 + lVar3));
     }
-    uVar8 = FUN_180122210(fVar9,&memory_allocator_3440_ptr,*(int8_t *)(uVar7 + 0x32 + lVar3));
+    uVar8 = CoreSystem_EncryptionManager0(fVar9,&memory_allocator_3440_ptr,*(int8_t *)(uVar7 + 0x32 + lVar3));
     iVar2 = *(int *)(uVar7 + 0x28 + lVar3);
     if (iVar2 != 0) {
       sVar1 = *(short *)(uVar7 + 0x30 + lVar3);
       if (sVar1 == -1) {
-        uVar8 = FUN_180122210(uVar8,&memory_allocator_3496_ptr);
+        uVar8 = CoreSystem_EncryptionManager0(uVar8,&memory_allocator_3496_ptr);
       }
       else {
-        uVar8 = FUN_180122210(uVar8,&memory_allocator_3472_ptr,iVar2,(int)sVar1);
+        uVar8 = CoreSystem_EncryptionManager0(uVar8,&memory_allocator_3472_ptr,iVar2,(int)sVar1);
       }
       if (*(int *)(uVar7 + 0x2c + lVar3) != 0) {
-        uVar8 = FUN_180122210(uVar8,&memory_allocator_3512_ptr);
+        uVar8 = CoreSystem_EncryptionManager0(uVar8,&memory_allocator_3512_ptr);
       }
     }
-    FUN_180122210(uVar8,&system_ptr_cc18);
+    CoreSystem_EncryptionManager0(uVar8,&system_ptr_cc18);
     uVar6 = (int)unaff_RBP + 1;
     unaff_RBP = (uint64_t)uVar6;
     uVar7 = uVar7 + 0x38;

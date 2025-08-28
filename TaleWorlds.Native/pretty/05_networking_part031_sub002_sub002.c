@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -163,7 +167,7 @@ int FUN_180859f30(int64_t param_1,int *param_2,uint param_3,uint param_4,uint pa
   }
   uStack_d0 = 0;
   lStack_c8 = 0;
-  puVar8 = (uint *)FUN_18084da10();
+  puVar8 = (uint *)MemoryCacheController0();
   uStack_c0 = *puVar8;
   iStack_bc = 0;
   lStack_b8 = 0;
@@ -250,7 +254,7 @@ int FUN_180859f30(int64_t param_1,int *param_2,uint param_3,uint param_4,uint pa
                             in_stack_ffffffffffffff08 & 0xffffffffffffff00,0);
       if (iVar5 != 0) goto LAB_18085a4c4;
     }
-    FUN_18084da10();
+    MemoryCacheController0();
     uVar14 = (uint)uStack_d0;
     uVar15 = 0xffffffff;
     if (param_5 < (uint)uStack_d0) {
@@ -424,7 +428,7 @@ int FUN_18085a550(int64_t param_1,int *param_2,uint param_3,uint param_4,uint pa
   }
   uStack_d0 = 0;
   lStack_c8 = 0;
-  puVar9 = (uint *)FUN_18084da10();
+  puVar9 = (uint *)MemoryCacheController0();
   uStack_c0 = *puVar9;
   uStack_bc = 0;
   lStack_b8 = 0;
@@ -489,7 +493,7 @@ LAB_18085a6ac:
   }
   else {
     if (!bVar4) goto LAB_18085a746;
-    FUN_18084da10();
+    MemoryCacheController0();
     if (param_5 < uVar2) {
 LAB_18085a7de:
       uVar7 = 0xffffffff;
@@ -609,7 +613,7 @@ int FUN_18085a5e5(void)
   
   _uStack0000000000000048 = 0;
   *(uint64_t *)(unaff_RBP + -0x79) = 0;
-  puVar9 = (int32_t *)FUN_18084da10();
+  puVar9 = (int32_t *)MemoryCacheController0();
   *(int32_t *)(unaff_RBP + -0x71) = *puVar9;
   *(int32_t *)(unaff_RBP + -0x6d) = 0;
   *(uint64_t *)(unaff_RBP + -0x69) = 0;
@@ -679,7 +683,7 @@ LAB_18085a742:
   }
   else {
     if (bVar5) {
-      FUN_18084da10();
+      MemoryCacheController0();
       uVar15 = *(uint *)(unaff_RBP + -0x7d);
       if (uVar13 < uVar2) {
 LAB_18085a7de:
@@ -847,7 +851,7 @@ uint64_t FUN_18085a980(int64_t param_1)
   *(int32_t *)(param_1 + 300) = 0;
   *(int8_t *)(param_1 + 0x13c) = 0;
   *(uint64_t *)(param_1 + 0x140) = 0;
-  puVar6 = (int32_t *)FUN_18084da10();
+  puVar6 = (int32_t *)MemoryCacheController0();
   *(int32_t *)(param_1 + 0x148) = *puVar6;
   *(int32_t *)(param_1 + 0x128) = 0;
   FUN_1808556a0(param_1 + 0x70);
@@ -858,7 +862,7 @@ uint64_t FUN_18085a980(int64_t param_1)
     *(int32_t *)(param_1 + 0xb4) = 0;
   }
   uStack_28 = 0;
-  puVar6 = (int32_t *)FUN_18084da10();
+  puVar6 = (int32_t *)MemoryCacheController0();
   uStack_20 = *puVar6;
   uStack_1c = 0;
   lStack_18 = 0;
@@ -1074,7 +1078,7 @@ uint64_t FUN_18085aca0(int64_t param_1)
   uint64_t uStack_60;
   int8_t auStack_50 [24];
   
-  FUN_18084da10();
+  MemoryCacheController0();
   if (*(char *)(param_1 + 0x13c) != '\0') {
     return 0;
   }
@@ -1540,7 +1544,7 @@ LAB_180858c20:
       }
       uVar27 = uStack_15c;
       if (*(uint *)(lVar14 + 0xa0) != network_system_memory) {
-        puVar13 = (int32_t *)FUN_18084da10();
+        puVar13 = (int32_t *)MemoryCacheController0();
         uVar7 = auStack_140[0];
         plVar17 = (int64_t *)(param_1 + 0x70);
         *(int32_t *)(param_1 + 0x148) = *puVar13;
@@ -1567,7 +1571,7 @@ LAB_180858c20:
         }
         *(int8_t *)(param_1 + 0x13c) = 0;
         puStack_130 = (uint64_t *)0x0;
-        puVar13 = (int32_t *)FUN_18084da10();
+        puVar13 = (int32_t *)MemoryCacheController0();
         in_stack_fffffffffffffe78 = &puStack_130;
         uVar7 = FUN_18085c4b0(param_1,lVar14,*puVar13,uVar7,in_stack_fffffffffffffe78);
         puVar11 = puStack_130;
@@ -1741,7 +1745,7 @@ LAB_180858e04:
             return (uint64_t)uVar27;
           }
         }
-        puVar15 = (uint *)FUN_18084da10();
+        puVar15 = (uint *)MemoryCacheController0();
         plVar17 = (int64_t *)(param_1 + 0x70);
         uVar27 = *puVar15;
         uStack_15c = uVar27;

@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -120,7 +124,7 @@ uint64_t FUN_18084d140(int64_t param_1,uint param_2,int *param_3,uint *param_4)
     return 0x1c;
   }
   puVar10 = (int8_t *)0x0;
-  puVar6 = (int32_t *)FUN_18084da10();
+  puVar6 = (int32_t *)MemoryCacheController0();
   SystemDataFlowProcessor();
   puVar3 = *(int8_t **)(param_1 + 0x88);
   uStack_38 = 0x400000004;
@@ -229,7 +233,7 @@ uint64_t FUN_18084d169(void)
   *(uint64_t *)(in_RAX + 8) = unaff_RDI;
   *(int32_t *)(in_RAX + 0x20) = 4;
   *(int32_t *)(in_RAX + 0x24) = 4;
-  FUN_18084da10();
+  MemoryCacheController0();
   SystemDataFlowProcessor();
   puVar3 = *(int8_t **)(unaff_R14 + 0x88);
   uStack000000000000003c = 0x42f00000;
@@ -895,7 +899,7 @@ int32_t FUN_18084d840(int64_t param_1,uint param_2,uint param_3,double *param_4)
   int32_t uStack_2c;
   
   if (param_4 != (double *)0x0) {
-    puVar4 = (int32_t *)FUN_18084da10();
+    puVar4 = (int32_t *)MemoryCacheController0();
     SystemDataFlowProcessor();
     iVar9 = 0;
     puVar1 = *(int8_t **)(param_1 + 0x88);
@@ -976,7 +980,7 @@ uint64_t FUN_18084d86d(void)
   
   uStack0000000000000088 = 4;
   uStack000000000000008c = 4;
-  FUN_18084da10();
+  MemoryCacheController0();
   SystemDataFlowProcessor();
   iVar8 = 0;
   puVar1 = *(int8_t **)(unaff_R15 + 0x88);
@@ -1091,7 +1095,7 @@ uint64_t FUN_18084d93b(uint64_t param_1,int param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void * FUN_18084da10(void)
+void * MemoryCacheController0(void)
 
 {
   if (*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +

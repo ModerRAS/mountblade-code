@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -584,7 +588,7 @@ LAB_180858c20:
         FUN_1808fcb30(&system_ptr_ea98);
       }
       if (*(uint *)(lVar15 + 0xa0) != network_system_memory) {
-        puVar14 = (int32_t *)FUN_18084da10();
+        puVar14 = (int32_t *)MemoryCacheController0();
         uVar7 = auStack_140[0];
         plVar24 = (int64_t *)(param_1 + 0x70);
         *(int32_t *)(param_1 + 0x148) = *puVar14;
@@ -611,7 +615,7 @@ LAB_180858c20:
         }
         *(int8_t *)(param_1 + 0x13c) = 0;
         plStack_130 = (int64_t *)0x0;
-        puVar14 = (int32_t *)FUN_18084da10();
+        puVar14 = (int32_t *)MemoryCacheController0();
         in_stack_fffffffffffffe78 = &plStack_130;
         uVar7 = FUN_18085c4b0(param_1,lVar15,*puVar14,uVar7,in_stack_fffffffffffffe78);
         plVar24 = plStack_130;
@@ -788,7 +792,7 @@ LAB_180858e04:
             return (uint64_t)uVar6;
           }
         }
-        puVar16 = (uint *)FUN_18084da10();
+        puVar16 = (uint *)MemoryCacheController0();
         plVar24 = (int64_t *)(param_1 + 0x70);
         uStack_15c = *puVar16;
         uVar12 = (uint64_t)uStack_15c;

@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -61,7 +65,7 @@ LAB_18084c923:
           puVar7[-1] = uVar5;
           *puVar7 = 4;
           puVar7[1] = 4;
-          puVar6 = (int32_t *)FUN_18084da10();
+          puVar6 = (int32_t *)MemoryCacheController0();
           puVar7[2] = *puVar6;
           puVar7[3] = uVar13;
           lVar10 = lVar10 + -1;
@@ -298,7 +302,7 @@ int32_t FUN_18084cbf0(int64_t param_1,uint param_2,double param_3,int *param_4)
   int32_t uStack_3c;
   
   if (param_4 != (int *)0x0) {
-    puVar3 = (int32_t *)FUN_18084da10();
+    puVar3 = (int32_t *)MemoryCacheController0();
     SystemCoreProcessor();
     iVar10 = 0;
     puVar1 = *(int8_t **)(param_1 + 0x88);
@@ -380,7 +384,7 @@ uint64_t FUN_18084cc23(void)
   
   uStack0000000000000098 = 4;
   uStack000000000000009c = 4;
-  FUN_18084da10();
+  MemoryCacheController0();
   SystemCoreProcessor();
   iVar9 = 0;
   puVar1 = *(int8_t **)(unaff_RBP + 0x88);

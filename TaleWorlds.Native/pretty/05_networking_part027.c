@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -207,7 +211,7 @@ joined_r0x0001808572dd:
                   && (uVar17 != 0)))) {
                 iVar6 = FUN_18085ef10(*(uint64_t *)(param_1 + 0x160));
                 if (iVar6 != 0) goto LAB_180857786;
-                puVar9 = (int32_t *)FUN_18084da10();
+                puVar9 = (int32_t *)MemoryCacheController0();
                 uStack_b8 = 0;
                 *(int32_t *)(param_1 + 0x148) = *puVar9;
                 iVar6 = FUN_18085bc30(param_1,uVar17 - 1,0,1);
@@ -864,7 +868,7 @@ uint64_t FUN_180857ac0(int64_t param_1)
   int *piVar1;
   
   if ((*(uint *)(*(int64_t *)(param_1 + 0x160) + 0x2d8) >> 1 & 1) != 0) {
-    piVar1 = (int *)FUN_18084da10();
+    piVar1 = (int *)MemoryCacheController0();
     if (*(int *)(param_1 + 0x20) == *piVar1) {
       return 1;
     }

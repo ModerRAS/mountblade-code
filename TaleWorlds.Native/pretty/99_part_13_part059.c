@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #define ConditionChecker ConditionChecker  // 条件检查器
 
 #include "TaleWorlds.Native.Split.h"
@@ -79,7 +83,7 @@ void FUN_1808cf489(int64_t *param_1)
       if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto LAB_1808cf945;
       iVar12 = iVar12 + 1;
     } while (iVar12 < 4);
-    puVar8 = (uint *)FUN_18084da10();
+    puVar8 = (uint *)MemoryCacheController0();
     uVar3 = *(uint *)(unaff_R14 + 0x25);
     if ((uVar3 == *puVar8) && (*(float *)((int64_t)unaff_R14 + 300) == 0.0)) {
       uVar3 = FUN_18073fd60(*plVar5,(int)unaff_R14[0x26]);
@@ -246,7 +250,7 @@ void FUN_1808cf569(void)
       if ((0x1e < uVar4) || ((0x40000009U >> (uVar4 & 0x1f) & 1) == 0)) goto LAB_1808cf945;
       iVar12 = iVar12 + 1;
     } while (iVar12 < 4);
-    puVar8 = (uint *)FUN_18084da10();
+    puVar8 = (uint *)MemoryCacheController0();
     uVar4 = *(uint *)(unaff_R14 + 0x25);
     if ((uVar4 == *puVar8) && (*(float *)((int64_t)unaff_R14 + 300) == 0.0)) {
       uVar4 = FUN_18073fd60(*plVar1,(int)unaff_R14[0x26]);
@@ -478,7 +482,7 @@ FUN_1808cfb50(int64_t *param_1,int64_t param_2,int64_t param_3,int param_4,float
       return 0x1c;
     }
   }
-  piVar2 = (int *)FUN_18084da10();
+  piVar2 = (int *)MemoryCacheController0();
   if ((param_4 != *piVar2) || (param_5 != 0.0)) {
     lVar1 = param_1[0x1e];
     param_1[0x39] = param_2 + 0x40;
@@ -531,7 +535,7 @@ void FUN_1808cfb99(void)
   int32_t in_stack_00000070;
   float in_stack_00000090;
   
-  piVar3 = (int *)FUN_18084da10();
+  piVar3 = (int *)MemoryCacheController0();
   if ((unaff_EBP != *piVar3) || (in_stack_00000090 != 0.0)) {
     lVar1 = unaff_R14[0x1e];
     unaff_R14[0x39] = unaff_RDI + 0x40;
@@ -780,7 +784,7 @@ FUN_1808cfed0(int64_t *param_1,uint64_t param_2,int64_t param_3,int32_t param_4,
           if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto ConditionChecker;
           iVar13 = iVar13 + 1;
         } while (iVar13 < 4);
-        puVar8 = (uint *)FUN_18084da10();
+        puVar8 = (uint *)MemoryCacheController0();
         uVar3 = *(uint *)(param_1 + 0x25);
         if ((uVar3 == *puVar8) && (*(float *)((int64_t)param_1 + 300) == 0.0)) {
           uVar3 = FUN_18073fd60(*plVar5,(int)param_1[0x26]);

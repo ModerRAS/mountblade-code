@@ -33,7 +33,7 @@ extern void FUN_18011da00(void *buffer, int64_t size);
 extern void *FUN_1801210b0(const char *str);
 extern void *func_0x000180120ce0(int64_t size, uint64_t context);
 extern int AdvancedSystemOptimizer(uint64_t config, uint64_t key, void *value1, void *value2);
-extern void *FUN_180122210(void *buffer, const char *format, ...);
+extern void *CoreSystem_EncryptionManager0(void *buffer, const char *format, ...);
 extern void *strstr(const char *haystack, const char *needle);
 extern void *memcpy(void *dest, const void *src, int64_t n);
 extern void *FUN_18013c940(uint64_t param);
@@ -797,37 +797,37 @@ void process_engine_resources_and_format_output(int64_t engine_context, uint64_t
             if (string_match != 0) {
                 callback_offset = string_match;
             }
-            FUN_180122210(output_buffer, &global_config_3384_ptr, *format_params, callback_offset);
+            CoreSystem_EncryptionManager0(output_buffer, &global_config_3384_ptr, *format_params, callback_offset);
             resource_count = *(int *)(max_search + 0x24 + resource_offset);
             if ((resource_count != 0) && (resource_count != 0x11111111)) {
-                FUN_180122210(output_buffer, &global_config_3360_ptr, (int)*(float *)(max_search + 0x1c + resource_offset),
+                CoreSystem_EncryptionManager0(output_buffer, &global_config_3360_ptr, (int)*(float *)(max_search + 0x1c + resource_offset),
                               (int)*(float *)(max_search + 0x20 + resource_offset));
-                FUN_180122210(output_buffer, &global_config_3416_ptr, *(int32_t *)(max_search + 0x24 + resource_offset));
+                CoreSystem_EncryptionManager0(output_buffer, &global_config_3416_ptr, *(int32_t *)(max_search + 0x24 + resource_offset));
             }
             position_x = *(float *)(max_search + 0xc + resource_offset);
             if (((position_x != 0.0) || (*(float *)(max_search + 0x10 + resource_offset) != 0.0)) ||
                (*(int *)(max_search + 0x24 + resource_offset) == 0x11111111)) {
-                FUN_180122210(output_buffer, &global_config_3400_ptr, (int)position_x, (int)*(float *)(max_search + 0x10 + resource_offset));
+                CoreSystem_EncryptionManager0(output_buffer, &global_config_3400_ptr, (int)position_x, (int)*(float *)(max_search + 0x10 + resource_offset));
             }
             position_x = *(float *)(max_search + 0x14 + resource_offset);
             if ((position_x != 0.0) || (*(float *)(max_search + 0x18 + resource_offset) != 0.0)) {
-                FUN_180122210(output_buffer, &global_config_3456_ptr, (int)position_x, (int)*(float *)(max_search + 0x18 + resource_offset));
+                CoreSystem_EncryptionManager0(output_buffer, &global_config_3456_ptr, (int)position_x, (int)*(float *)(max_search + 0x18 + resource_offset));
             }
-            FUN_180122210(output_buffer, &global_config_3440_ptr, *(int8_t *)(max_search + 0x32 + resource_offset));
+            CoreSystem_EncryptionManager0(output_buffer, &global_config_3440_ptr, *(int8_t *)(max_search + 0x32 + resource_offset));
             resource_count = *(int *)(max_search + 0x28 + resource_offset);
             if (resource_count != 0) {
                 texture_index = *(short *)(max_search + 0x30 + resource_offset);
                 if (texture_index == -1) {
-                    FUN_180122210(output_buffer, &global_config_3496_ptr);
+                    CoreSystem_EncryptionManager0(output_buffer, &global_config_3496_ptr);
                 }
                 else {
-                    FUN_180122210(output_buffer, &global_config_3472_ptr, resource_count, (int)texture_index);
+                    CoreSystem_EncryptionManager0(output_buffer, &global_config_3472_ptr, resource_count, (int)texture_index);
                 }
                 if (*(int *)(max_search + 0x2c + resource_offset) != 0) {
-                    FUN_180122210(output_buffer, &global_config_3512_ptr);
+                    CoreSystem_EncryptionManager0(output_buffer, &global_config_3512_ptr);
                 }
             }
-            FUN_180122210(output_buffer, &system_buffer_cc18);
+            CoreSystem_EncryptionManager0(output_buffer, &system_buffer_cc18);
             current_uint = (int)search_index + 1;
             search_index = (uint64_t)current_uint;
             max_search = max_search + 0x38;
@@ -924,39 +924,39 @@ void process_engine_resources_optimized(uint64_t param_1)
                     if (string_match != 0) {
                         callback_offset = string_match;
                     }
-                    temp_result = FUN_180122210(extra_output, &global_config_3384_ptr, *format_params, callback_offset);
+                    temp_result = CoreSystem_EncryptionManager0(extra_output, &global_config_3384_ptr, *format_params, callback_offset);
                     resource_count = *(int *)(current_offset + 0x24 + resource_offset);
                     if ((resource_count != 0) && (resource_count != 0x11111111)) {
-                        temp_result = FUN_180122210(temp_result, &global_config_3360_ptr, (int)*(float *)(current_offset + 0x1c + resource_offset),
+                        temp_result = CoreSystem_EncryptionManager0(temp_result, &global_config_3360_ptr, (int)*(float *)(current_offset + 0x1c + resource_offset),
                                                    (int)*(float *)(current_offset + 0x20 + resource_offset));
-                        FUN_180122210(temp_result, &global_config_3416_ptr, *(int32_t *)(current_offset + 0x24 + resource_offset));
+                        CoreSystem_EncryptionManager0(temp_result, &global_config_3416_ptr, *(int32_t *)(current_offset + 0x24 + resource_offset));
                     }
                     position_x = *(float *)(current_offset + 0xc + resource_offset);
                     if (((position_x != 0.0) || (*(float *)(current_offset + 0x10 + resource_offset) != 0.0)) ||
                        (*(int *)(current_offset + 0x24 + resource_offset) == 0x11111111)) {
-                        FUN_180122210(position_x, &global_config_3400_ptr, (int)position_x, (int)*(float *)(current_offset + 0x10 + resource_offset));
+                        CoreSystem_EncryptionManager0(position_x, &global_config_3400_ptr, (int)position_x, (int)*(float *)(current_offset + 0x10 + resource_offset));
                     }
                     position_x = *(float *)(current_offset + 0x14 + resource_offset);
                     hash_index = (uint64_t)(uint)position_x;
                     if ((position_x != 0.0) || (*(float *)(current_offset + 0x18 + resource_offset) != 0.0)) {
-                        hash_index = FUN_180122210(hash_index, &global_config_3456_ptr, (int)position_x,
+                        hash_index = CoreSystem_EncryptionManager0(hash_index, &global_config_3456_ptr, (int)position_x,
                                                   (int)*(float *)(current_offset + 0x18 + resource_offset));
                     }
-                    temp_result = FUN_180122210(hash_index, &global_config_3440_ptr, *(int8_t *)(current_offset + 0x32 + resource_offset));
+                    temp_result = CoreSystem_EncryptionManager0(hash_index, &global_config_3440_ptr, *(int8_t *)(current_offset + 0x32 + resource_offset));
                     resource_count = *(int *)(current_offset + 0x28 + resource_offset);
                     if (resource_count != 0) {
                         texture_index = *(short *)(current_offset + 0x30 + resource_offset);
                         if (texture_index == -1) {
-                            temp_result = FUN_180122210(temp_result, &global_config_3496_ptr);
+                            temp_result = CoreSystem_EncryptionManager0(temp_result, &global_config_3496_ptr);
                         }
                         else {
-                            temp_result = FUN_180122210(temp_result, &global_config_3472_ptr, resource_count, (int)texture_index);
+                            temp_result = CoreSystem_EncryptionManager0(temp_result, &global_config_3472_ptr, resource_count, (int)texture_index);
                         }
                         if (*(int *)(current_offset + 0x2c + resource_offset) != 0) {
-                            temp_result = FUN_180122210(temp_result, &global_config_3512_ptr);
+                            temp_result = CoreSystem_EncryptionManager0(temp_result, &global_config_3512_ptr);
                         }
                     }
-                    FUN_180122210(temp_result, &system_buffer_cc18);
+                    CoreSystem_EncryptionManager0(temp_result, &system_buffer_cc18);
                     current_uint = (int)loop_counter + 1;
                     loop_counter = (uint64_t)current_uint;
                     current_offset = current_offset + 0x38;
@@ -1000,38 +1000,38 @@ void format_resource_data_output(int32_t output_buffer)
             if (resource_offset != 0) {
                 string_match = resource_offset;
             }
-            temp_result = FUN_180122210(temp_output, &global_config_3384_ptr, *format_params, string_match);
+            temp_result = CoreSystem_EncryptionManager0(temp_output, &global_config_3384_ptr, *format_params, string_match);
             resource_count = *(int *)(current_offset + 0x24 + resource_offset);
             if ((resource_count != 0) && (resource_count != 0x11111111)) {
-                temp_result = FUN_180122210(temp_result, &global_config_3360_ptr, (int)*(float *)(current_offset + 0x1c + resource_offset),
+                temp_result = CoreSystem_EncryptionManager0(temp_result, &global_config_3360_ptr, (int)*(float *)(current_offset + 0x1c + resource_offset),
                                           (int)*(float *)(current_offset + 0x20 + resource_offset));
-                FUN_180122210(temp_result, &global_config_3416_ptr, *(int32_t *)(current_offset + 0x24 + resource_offset));
+                CoreSystem_EncryptionManager0(temp_result, &global_config_3416_ptr, *(int32_t *)(current_offset + 0x24 + resource_offset));
             }
             position_x = *(float *)(current_offset + 0xc + resource_offset);
             if (((position_x != 0.0) || (*(float *)(current_offset + 0x10 + resource_offset) != 0.0)) ||
                (*(int *)(current_offset + 0x24 + resource_offset) == 0x11111111)) {
-                FUN_180122210(position_x, &global_config_3400_ptr, (int)position_x, (int)*(float *)(current_offset + 0x10 + resource_offset));
+                CoreSystem_EncryptionManager0(position_x, &global_config_3400_ptr, (int)position_x, (int)*(float *)(current_offset + 0x10 + resource_offset));
             }
             position_x = *(float *)(current_offset + 0x14 + resource_offset);
             if ((position_x != 0.0) || (*(float *)(current_offset + 0x18 + resource_offset) != 0.0)) {
-                position_x = (float)FUN_180122210(position_x, &global_config_3456_ptr, (int)position_x,
+                position_x = (float)CoreSystem_EncryptionManager0(position_x, &global_config_3456_ptr, (int)position_x,
                                              (int)*(float *)(current_offset + 0x18 + resource_offset));
             }
-            temp_result = FUN_180122210(position_x, &global_config_3440_ptr, *(int8_t *)(current_offset + 0x32 + resource_offset));
+            temp_result = CoreSystem_EncryptionManager0(position_x, &global_config_3440_ptr, *(int8_t *)(current_offset + 0x32 + resource_offset));
             resource_count = *(int *)(current_offset + 0x28 + resource_offset);
             if (resource_count != 0) {
                 texture_index = *(short *)(current_offset + 0x30 + resource_offset);
                 if (texture_index == -1) {
-                    temp_result = FUN_180122210(temp_result, &global_config_3496_ptr);
+                    temp_result = CoreSystem_EncryptionManager0(temp_result, &global_config_3496_ptr);
                 }
                 else {
-                    temp_result = FUN_180122210(temp_result, &global_config_3472_ptr, resource_count, (int)texture_index);
+                    temp_result = CoreSystem_EncryptionManager0(temp_result, &global_config_3472_ptr, resource_count, (int)texture_index);
                 }
                 if (*(int *)(current_offset + 0x30 + resource_offset) != 0) {
-                    temp_result = FUN_180122210(temp_result, &global_config_3512_ptr);
+                    temp_result = CoreSystem_EncryptionManager0(temp_result, &global_config_3512_ptr);
                 }
             }
-            FUN_180122210(temp_result, &system_buffer_cc18);
+            CoreSystem_EncryptionManager0(temp_result, &system_buffer_cc18);
             current_uint = (int)current_offset + 1;
             current_offset = (uint64_t)current_uint;
             current_offset = current_offset + 0x38;

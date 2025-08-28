@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -44,16 +48,16 @@ FUN_180854040(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[3] = 0;
   param_1[4] = 0;
   param_1[5] = 0;
-  puVar2 = (int32_t *)FUN_18084da10();
+  puVar2 = (int32_t *)MemoryCacheController0();
   *(int32_t *)(param_1 + 6) = *puVar2;
   *(int32_t *)((int64_t)param_1 + 0x34) = 0;
   param_1[7] = 0;
   param_1[8] = 0;
-  puVar2 = (int32_t *)FUN_18084da10();
+  puVar2 = (int32_t *)MemoryCacheController0();
   *(int32_t *)(param_1 + 9) = *puVar2;
   *(int32_t *)((int64_t)param_1 + 0x4c) = 0;
   param_1[10] = 0;
-  puVar2 = (int32_t *)FUN_18084da10();
+  puVar2 = (int32_t *)MemoryCacheController0();
   param_1[0xb] = 0;
   *(int32_t *)(param_1 + 0xc) = *puVar2;
   puVar1 = param_1 + 0xe;
@@ -191,11 +195,11 @@ int FUN_1808542a0(int64_t param_1,int *param_2,uint param_3,uint param_4,char pa
   puVar6 = (int32_t *)FUN_18084cde0(*(uint64_t *)(param_1 + 0x110),&uStack_c0);
   bVar10 = false;
   *(int32_t *)(param_1 + 0x10c) = *puVar6;
-  puVar7 = (uint *)FUN_18084da10();
+  puVar7 = (uint *)MemoryCacheController0();
   uStack_c0 = 0;
   uVar12 = *puVar7;
   lStack_b8 = 0;
-  puVar7 = (uint *)FUN_18084da10();
+  puVar7 = (uint *)MemoryCacheController0();
   uStack_b0 = *puVar7;
   iStack_ac = 0;
   lStack_a8 = 0;
@@ -339,11 +343,11 @@ int FUN_1808542fa(void)
   puVar8 = (int32_t *)FUN_18084cde0();
   cVar15 = '\0';
   *(int32_t *)(unaff_R13 + 0x10c) = *puVar8;
-  puVar9 = (uint *)FUN_18084da10();
+  puVar9 = (uint *)MemoryCacheController0();
   *(uint64_t *)(unaff_RBP + -0x69) = 0;
   uVar18 = *puVar9;
   *(uint64_t *)(unaff_RBP + -0x61) = 0;
-  puVar8 = (int32_t *)FUN_18084da10();
+  puVar8 = (int32_t *)MemoryCacheController0();
   *(int32_t *)(unaff_RBP + -0x59) = *puVar8;
   *(int32_t *)(unaff_RBP + -0x55) = 0;
   *(uint64_t *)(unaff_RBP + -0x51) = 0;
@@ -1069,7 +1073,7 @@ LAB_180854d65:
         dStackX_10 = 0.0;
         FUN_18084d840(lVar8,*puVar10,param_4 - *puVar10,&dStackX_10);
         SystemDataFlowProcessor();
-        FUN_18084da10();
+        MemoryCacheController0();
         if (0 < *(int *)(lVar8 + 0x90)) {
           lVar7 = 0;
           puVar5 = (uint *)(*(int64_t *)(lVar8 + 0x88) + 0x18);
@@ -1189,7 +1193,7 @@ uint64_t FUN_180854d7d(void)
     dStack0000000000000068 = 0.0;
     FUN_18084d840(lVar8,*unaff_RDI,unaff_EBX - *unaff_RDI,&stack0x00000068);
     SystemDataFlowProcessor();
-    FUN_18084da10();
+    MemoryCacheController0();
     if (0 < *(int *)(lVar8 + 0x90)) {
       lVar7 = 0;
       puVar5 = (uint *)(*(int64_t *)(lVar8 + 0x88) + 0x18);
@@ -1260,7 +1264,7 @@ uint64_t FUN_180854df5(uint64_t param_1,uint64_t param_2,int param_3)
   dStack0000000000000068 = 0.0;
   FUN_18084d840(param_1,*unaff_RDI,param_3 - *unaff_RDI,&stack0x00000068);
   SystemDataFlowProcessor();
-  FUN_18084da10();
+  MemoryCacheController0();
   if (0 < *(int *)(unaff_RSI + 0x90)) {
     lVar8 = 0;
     puVar6 = (uint *)(*(int64_t *)(unaff_RSI + 0x88) + 0x18);

@@ -1021,8 +1021,8 @@ void FUN_180122160(int *param_1,uint param_2,uint64_t param_3)
 
 
 
-// 函数: void FUN_180122210(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180122210(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void CoreSystem_EncryptionManager0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void CoreSystem_EncryptionManager0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uStackX_18;

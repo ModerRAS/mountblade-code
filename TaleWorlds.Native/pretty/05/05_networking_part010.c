@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 /**
  * @file 05_networking_part010.c
  * @brief 网络系统基础数据包处理模块
@@ -197,7 +201,7 @@ extern void SystemCore_DatabaseManager0(void* context, int size, void* info, int
 extern void FUN_1808b02a0(void* connection);          /**< 连接处理函数 */
 extern void FUN_1808b0fb0(void* connection, int flags);/**< 连接标志设置函数 */
 extern void SystemCoreProcessor(void);                     /**< 数据生成函数 */
-extern void FUN_18084da10(void);                     /**< 数据验证函数 */
+extern void MemoryCacheController0(void);                     /**< 数据验证函数 */
 extern void FUN_180840270(void* buffer);             /**< 缓冲区重置函数 */
 extern void FUN_18084d3f0(void* buffer, int flags);    /**< 缓冲区处理函数 */
 extern void FUN_18084d620(void* buffer, int flags);    /**< 缓冲区管理函数 */
@@ -864,7 +868,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
                 data_buffer[-1] = item3;
                 *data_buffer = 4;
                 data_buffer[1] = 4;
-                item_data = (int32_t*)FUN_18084da10();
+                item_data = (int32_t*)MemoryCacheController0();
                 data_buffer[2] = *item_data;
                 data_buffer[3] = 0;
                 remaining_items = remaining_items - 1;

@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -83,7 +87,7 @@ void FUN_1808cff60(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
           *(int8_t *)(param_1 + 0x1dd) = 1;
         }
         else {
-          puVar3 = (int32_t *)FUN_18084da10();
+          puVar3 = (int32_t *)MemoryCacheController0();
           uStack_d8 = 0;
           FUN_1808ce830(param_1,param_3,param_3,*puVar3);
         }
@@ -144,7 +148,7 @@ void FUN_1808d001f(void)
       *(int8_t *)(unaff_R13 + 0x1dd) = 1;
     }
     else {
-      FUN_18084da10();
+      MemoryCacheController0();
       FUN_1808ce830();
     }
   }
@@ -189,7 +193,7 @@ void FUN_1808d0087(uint64_t param_1,int64_t param_2,int32_t param_3)
         *(int8_t *)(unaff_R13 + 0x1dd) = 1;
       }
       else {
-        FUN_18084da10();
+        MemoryCacheController0();
         FUN_1808ce830();
       }
     }
@@ -240,7 +244,7 @@ void FUN_1808d0180(void)
       *(int8_t *)(unaff_R13 + 0x1dd) = 1;
     }
     else {
-      FUN_18084da10();
+      MemoryCacheController0();
       FUN_1808ce830();
     }
   }
@@ -264,7 +268,7 @@ void FUN_1808d01ae(void)
     *(int8_t *)(unaff_R13 + 0x1dd) = 1;
   }
   else {
-    FUN_18084da10();
+    MemoryCacheController0();
     FUN_1808ce830();
   }
                     // WARNING: Subroutine does not return

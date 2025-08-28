@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 /**
@@ -166,7 +170,7 @@
 #define UISystem_ResourceAllocator FUN_18084cde0
 
 // UI系统时间获取器 - 获取系统时间
-#define UISystem_TimeGetter FUN_18084da10
+#define UISystem_TimeGetter MemoryCacheController0
 
 // UI系统数据处理器 - 处理数据操作
 #define UISystem_DataProcessor FUN_180856d20

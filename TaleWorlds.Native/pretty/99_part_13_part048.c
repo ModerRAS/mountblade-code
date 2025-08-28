@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -712,7 +716,7 @@ void FUN_1808c6dd0(int64_t *param_1,int64_t *param_2,uint *param_3,uint64_t *par
   
   uStack_60 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
   *param_5 = 0;
-  puVar2 = (uint *)FUN_18084da10();
+  puVar2 = (uint *)MemoryCacheController0();
   *param_3 = *puVar2;
   *param_4 = 0;
   fStack_94 = 100.0;

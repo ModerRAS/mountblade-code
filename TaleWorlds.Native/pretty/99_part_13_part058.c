@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #define ConditionChecker ConditionChecker  // 条件检查器
 
 #include "TaleWorlds.Native.Split.h"
@@ -118,7 +122,7 @@ uint64_t FUN_1808ce950(int64_t param_1)
     uVar10 = uVar9;
     if (((uVar6 == 0) || (*(uint64_t *)(param_1 + 0x110) == 0)) ||
        (uVar6 <= *(uint64_t *)(param_1 + 0x110))) {
-      puVar5 = (uint *)FUN_18084da10();
+      puVar5 = (uint *)MemoryCacheController0();
       uVar6 = (uint64_t)*(uint *)(param_1 + 0x128);
       if ((*(uint *)(param_1 + 0x128) != *puVar5) &&
          (uVar10 = 0, (*(uint *)(param_1 + 0x134) >> 1 & 1) == 0)) {
@@ -607,7 +611,7 @@ uint64_t FUN_1808cf140(int64_t param_1,uint64_t param_2,char param_3)
   
   *(uint64_t *)(param_1 + 0x1e0) = param_2;
   *(int8_t *)(param_1 + 0x1de) = 1;
-  puVar1 = (int32_t *)FUN_18084da10();
+  puVar1 = (int32_t *)MemoryCacheController0();
   uVar2 = FUN_1808ce830(param_1,param_2,0,*puVar1,0);
   if ((int)uVar2 == 0) {
     uVar2 = FUN_1808cec30(param_1 + 0x118,param_2,param_3);
@@ -920,7 +924,7 @@ void FUN_1808cf440(int64_t *param_1)
           if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto ConditionChecker;
           iVar12 = iVar12 + 1;
         } while (iVar12 < 4);
-        puVar8 = (uint *)FUN_18084da10();
+        puVar8 = (uint *)MemoryCacheController0();
         uVar3 = *(uint *)(param_1 + 0x25);
         if ((uVar3 == *puVar8) && (*(float *)((int64_t)param_1 + 300) == 0.0)) {
           uVar3 = FUN_18073fd60(*plVar5,(int)param_1[0x26]);

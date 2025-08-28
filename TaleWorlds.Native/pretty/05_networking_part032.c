@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -107,7 +111,7 @@ int64_t * FUN_18085ba10(int64_t param_1,int64_t *param_2)
     *(int *)(lVar9 + 0x10) = *(int *)(lVar9 + 0x10) + 1;
   }
   lVar6 = (**(code **)(*(int64_t *)(*(int64_t *)(param_1 + 0x160) + 8) + 0x30))();
-  puVar7 = (int32_t *)FUN_18084da10();
+  puVar7 = (int32_t *)MemoryCacheController0();
   uStack_28 = (int32_t)uVar5;
   uStack_24 = (int32_t)((uint64_t)uVar5 >> 0x20);
   uVar3 = *puVar7;
@@ -153,7 +157,7 @@ int64_t * FUN_18085bb20(int64_t param_1,int64_t *param_2,uint64_t param_3)
   uVar1 = *(int32_t *)(param_1 + 0x20);
   lVar3 = *(int64_t *)(param_1 + 0x160);
   lVar4 = (**(code **)(*(int64_t *)(lVar3 + 8) + 0x30))();
-  puVar5 = (int32_t *)FUN_18084da10();
+  puVar5 = (int32_t *)MemoryCacheController0();
   uStack_38 = (int32_t)uVar2;
   uStack_34 = (int32_t)((uint64_t)uVar2 >> 0x20);
   *(int32_t *)((int64_t)param_2 + 0xc) = *puVar5;
@@ -186,7 +190,7 @@ void FUN_18085bbe0(int64_t param_1,int32_t param_2)
   
   iVar2 = FUN_18085ef10(*(uint64_t *)(param_1 + 0x160));
   if (iVar2 == 0) {
-    puVar1 = (int32_t *)FUN_18084da10();
+    puVar1 = (int32_t *)MemoryCacheController0();
     *(int32_t *)(param_1 + 0x148) = *puVar1;
     FUN_18085bc30(param_1,param_2,0,1,0);
   }
@@ -253,7 +257,7 @@ FUN_18085bc30(int64_t param_1,uint param_2,char param_3,char param_4,uint64_t *p
         }
       }
       if (param_5 == (uint64_t *)0x0) {
-        puVar10 = (uint *)FUN_18084da10();
+        puVar10 = (uint *)MemoryCacheController0();
         lVar14 = (uint64_t)uStack_4c << 0x20;
         uVar13 = *puVar10;
         *(uint64_t *)(param_1 + 0x58) = 0;
@@ -440,7 +444,7 @@ FUN_18085bc30(int64_t param_1,uint param_2,char param_3,char param_4,uint64_t *p
         }
       }
       if (param_5 == (uint64_t *)0x0) {
-        puVar10 = (uint *)FUN_18084da10();
+        puVar10 = (uint *)MemoryCacheController0();
         uStack_54 = 0;
         uStack_50 = 0;
         lVar14 = (uint64_t)uStack_4c << 0x20;
@@ -490,7 +494,7 @@ FUN_18085bc30(int64_t param_1,uint param_2,char param_3,char param_4,uint64_t *p
     if ((int)uVar8 != 0) {
       return uVar8;
     }
-    puVar11 = (int32_t *)FUN_18084da10();
+    puVar11 = (int32_t *)MemoryCacheController0();
     uVar8 = 1;
     if (cStackX_18 != '\0') {
       uVar8 = 4;

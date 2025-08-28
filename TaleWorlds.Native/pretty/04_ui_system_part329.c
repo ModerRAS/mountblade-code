@@ -1,3 +1,7 @@
+/* 函数别名定义: MemoryCacheController */
+#define MemoryCacheController MemoryCacheController
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -175,7 +179,7 @@ LAB_18084c923:
           puVar8[-1] = uVar6;
           *puVar8 = 4;
           puVar8[1] = 4;
-          puVar7 = (int32_t *)FUN_18084da10();
+          puVar7 = (int32_t *)MemoryCacheController0();
           puVar8[2] = *puVar7;
           puVar8[3] = 0;
           lVar13 = lVar13 + -1;
@@ -383,7 +387,7 @@ LAB_18084c923:
           puVar8[-1] = uVar6;
           *puVar8 = 4;
           puVar8[1] = 4;
-          puVar7 = (int32_t *)FUN_18084da10();
+          puVar7 = (int32_t *)MemoryCacheController0();
           puVar8[2] = *puVar7;
           puVar8[3] = 0;
           lVar13 = lVar13 + -1;
@@ -592,7 +596,7 @@ LAB_18084c923:
           puVar8[-1] = uVar6;
           *puVar8 = 4;
           puVar8[1] = 4;
-          puVar7 = (int32_t *)FUN_18084da10();
+          puVar7 = (int32_t *)MemoryCacheController0();
           puVar8[2] = *puVar7;
           puVar8[3] = 0;
           lVar13 = lVar13 + -1;
@@ -757,7 +761,7 @@ LAB_18084c923:
           puVar7[-1] = uVar5;
           *puVar7 = 4;
           puVar7[1] = 4;
-          puVar6 = (int32_t *)FUN_18084da10();
+          puVar6 = (int32_t *)MemoryCacheController0();
           puVar7[2] = *puVar6;
           puVar7[3] = uVar13;
           lVar10 = lVar10 + -1;
