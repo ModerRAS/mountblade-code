@@ -28,6 +28,40 @@
 // 常量定义和全局变量
 // ============================================================================
 
+// ============================================================================
+// FUN_函数别名定义
+// ============================================================================
+
+/** 系统内存分配和注册函数 */
+#define FUN_180623800 SystemMemoryAllocatorAndRegistrar
+
+/** 系统注册表管理器函数 */
+#define FUN_18008d070 SystemRegistryManager
+
+/** 系统内存大小计算函数 */
+#define FUN_18008f0d0 SystemMemorySizeCalculator
+
+/** 系统内存分配和插入函数 */
+#define FUN_18008f140 SystemMemoryAllocatorAndInserter
+
+/** 系统函数指针设置函数 */
+#define FUN_18007fcd0 SystemFunctionPointerSetter1
+
+/** 系统函数指针设置函数 */
+#define FUN_180073930 SystemFunctionPointerSetter2
+
+/** 系统函数指针设置函数 */
+#define FUN_18025cc00 SystemFunctionPointerSetter3
+
+/** 系统函数指针设置函数 */
+#define FUN_18025c000 SystemFunctionPointerSetter4
+
+/** 系统函数指针设置函数 */
+#define FUN_18025d270 SystemFunctionPointerSetter5
+
+/** 系统函数指针设置函数 */
+#define FUN_18025e330 SystemFunctionPointerSetter6
+
 // 系统配置常量
 #define INIT_CONFIG_SIZE 0x80        // 初始化配置缓冲区大小
 #define INIT_STRING_LENGTH 0x16     // 初始化字符串长度
