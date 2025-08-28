@@ -1,9 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part014.c - 6 个函数
+// 02_core_engine_part014.c - 7 个函数
 
-// 函数: void FUN_1800533d0(undefined8 param_1,undefined8 param_2,longlong param_3)
-void FUN_1800533d0(undefined8 param_1,undefined8 param_2,longlong param_3)
+// 函数: void BuildProcessIdString(undefined8 param_1,undefined8 param_2,longlong param_3)
+// 功能: 构建包含进程ID的字符串，格式为"PID : [进程ID]"
+// 参数: param_1 - 上下文指针, param_2 - 未知参数, param_3 - 字符串信息结构体指针
+void BuildProcessIdString(undefined8 param_1,undefined8 param_2,longlong param_3)
 
 {
   longlong lVar1;
