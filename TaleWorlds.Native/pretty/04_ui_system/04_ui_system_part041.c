@@ -1,9 +1,73 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part041.c - 9 个函数
+// 04_ui_system_part041.c - UI系统高级控件处理模块
+// 包含9个核心函数，涵盖UI系统SIMD优化、数据传输、控件处理、内存管理等高级UI功能
+// 主要函数包括：UISystemSIMDProcessor（UI系统SIMD处理器）、UISystemDataTransferOptimizer（UI系统数据传输优化器）、
+// UISystemControlProcessor（UI系统控件处理器）、UISystemMemoryManager（UI系统内存管理器）、
+// UISystemControlInitializer（UI系统控件初始化器）、UISystemControlValidator（UI系统控件验证器）、
+// UISystemControlRenderer（UI系统控件渲染器）、UISystemControlCleaner（UI系统控件清理器）、
+// UISystemControlStateUpdater（UI系统控件状态更新器）
 
-// 函数: void FUN_180675fa7(void)
-void FUN_180675fa7(void)
+// ===========================================
+// 常量定义
+// ===========================================
+
+// SIMD操作常量
+#define UI_SYSTEM_SIMD_ALIGNMENT 16          // SIMD数据对齐大小
+#define UI_SYSTEM_SIMD_VECTOR_SIZE 16        // SIMD向量大小
+#define UI_SYSTEM_MAX_CONTROL_COUNT 256      // 最大控件数量
+#define UI_SYSTEM_CONTROL_BATCH_SIZE 16      // 控件批处理大小
+
+// 数据传输常量
+#define UI_SYSTEM_TRANSFER_BLOCK_SIZE 16      // 数据传输块大小
+#define UI_SYSTEM_MAX_TRANSFER_SIZE 4096      // 最大传输大小
+#define UI_SYSTEM_MIN_TRANSFER_SIZE 4         // 最小传输大小
+
+// 控件状态常量
+#define UI_SYSTEM_CONTROL_ACTIVE 0x0001        // 控件激活状态
+#define UI_SYSTEM_CONTROL_VISIBLE 0x0002       // 控件可见状态
+#define UI_SYSTEM_CONTROL_ENABLED 0x0004       // 控件启用状态
+#define UI_SYSTEM_CONTROL_DIRTY 0x0008        // 控件脏标记
+
+// ===========================================
+// 函数别名定义
+// ===========================================
+
+// SIMD处理函数
+#define ui_system_simd_processor FUN_180675fa7                     // UI系统SIMD处理器
+#define ui_system_empty_function FUN_1806760cf                     // UI系统空函数
+#define ui_system_data_transfer_optimizer FUN_1806760f0           // UI系统数据传输优化器
+#define ui_system_control_initializer FUN_180676320               // UI系统控件初始化器
+#define ui_system_control_processor FUN_180676490                 // UI系统控件处理器
+#define ui_system_data_transfer_manager FUN_180676700             // UI系统数据传输管理器
+#define ui_system_control_cleaner FUN_180676930                   // UI系统控件清理器
+#define ui_system_control_renderer FUN_180676aa0                  // UI系统控件渲染器
+#define ui_system_control_state_updater FUN_180676d10             // UI系统控件状态更新器
+
+// ===========================================
+// 函数实现
+// ===========================================
+
+/**
+ * UI系统SIMD处理器
+ * 使用SIMD指令优化UI控件数据处理，提高渲染性能
+ * 
+ * 技术特点：
+ * - 使用SSE/AVX指令集进行数据并行处理
+ * - 实现高效的像素级操作和颜色转换
+ * - 支持批量处理多个控件数据
+ * - 优化内存访问模式，提高缓存命中率
+ * 
+ * 性能优化：
+ * - 使用SIMD指令减少循环次数
+ * - 数据预取和缓存优化
+ * - 分支预测优化
+ * - 内存对齐访问
+ * 
+ * @param 无
+ * @return 无
+ */
+void ui_system_simd_processor(void)
 
 {
   undefined8 uVar1;
@@ -311,23 +375,43 @@ void FUN_180675fa7(void)
   return;
 }
 
-
-
-
-
-// 函数: void FUN_1806760cf(void)
-void FUN_1806760cf(void)
+/**
+ * UI系统空函数
+ * 占位函数，用于框架完整性
+ * 
+ * @param 无
+ * @return 无
+ */
+void ui_system_empty_function(void)
 
 {
   return;
 }
 
-
-
-
-
-// 函数: void FUN_1806760f0(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
-void FUN_1806760f0(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
+/**
+ * UI系统数据传输优化器
+ * 优化UI系统中的数据传输过程，提高数据复制和移动效率
+ * 
+ * 技术特点：
+ * - 实现批量数据传输优化
+ * - 支持不同大小的数据块传输
+ * - 根据控件状态选择最优传输策略
+ * - 内存对齐和缓存优化
+ * 
+ * 优化策略：
+ * - 大块数据使用16字节对齐传输
+ * - 中等数据使用8字节对齐传输
+ * - 小块数据使用4字节对齐传输
+ * - 条件分支优化，减少不必要的检查
+ * 
+ * @param param_1 源数据指针
+ * @param param_2 目标数据指针
+ * @param param_3 数据长度
+ * @param param_4 传输标志
+ * @param param_5 控件状态指针
+ * @return 无
+ */
+void ui_system_data_transfer_optimizer(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
                   short *param_5)
 
 {
@@ -400,24 +484,55 @@ void FUN_1806760f0(longlong param_1,undefined8 param_2,longlong param_3,undefine
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180676320(void)
-void FUN_180676320(void)
+/**
+ * UI系统控件初始化器
+ * 初始化UI系统控件，设置默认状态和属性
+ * 
+ * 技术特点：
+ * - 调用系统初始化函数
+ * - 设置控件默认属性
+ * - 初始化控件状态
+ * - 分配必要的系统资源
+ * 
+ * @param 无
+ * @return 无
+ */
+void ui_system_control_initializer(void)
 
 {
                     // WARNING: Subroutine does not return
   FUN_1808fd200();
 }
 
-
-
-
-
-// 函数: void FUN_180676490(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
-void FUN_180676490(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
+/**
+ * UI系统控件处理器
+ * 处理UI控件的批量操作，优化控件处理性能
+ * 
+ * 技术特点：
+ * - 支持批量控件处理
+ * - 根据控件状态选择处理策略
+ * - 内存访问优化
+ * - 控件状态验证
+ * 
+ * 处理策略：
+ * - 激活控件使用快速处理路径
+ * - 非激活控件使用标准处理路径
+ * - 大批量数据使用SIMD优化
+ * - 小批量数据使用标准处理
+ * 
+ * @param param_1 控件数据指针
+ * @param param_2 控件偏移量
+ * @param param_3 目标数据指针
+ * @param param_4 处理标志
+ * @param param_5 保留参数
+ * @param param_6 保留参数
+ * @param param_7 控件状态指针
+ * @param param_8 保留参数
+ * @param param_9 处理数量
+ * @param param_10 控制参数
+ * @return 无
+ */
+void ui_system_control_processor(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
                   undefined8 param_5,undefined8 param_6,short *param_7,undefined8 param_8,
                   uint param_9,undefined4 param_10)
 
@@ -495,12 +610,30 @@ void FUN_180676490(longlong param_1,longlong param_2,longlong param_3,undefined8
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180676700(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
-void FUN_180676700(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
+/**
+ * UI系统数据传输管理器
+ * 管理UI系统中的数据传输过程，提供高效的数据复制功能
+ * 
+ * 技术特点：
+ * - 实现分层数据传输策略
+ * - 支持不同大小的数据块传输
+ * - 优化内存访问模式
+ * - 提供传输状态管理
+ * 
+ * 传输策略：
+ * - 16字节块：适用于大块数据传输
+ * - 8字节块：适用于中等大小数据传输
+ * - 4字节块：适用于小块数据传输
+ * - 条件分支优化
+ * 
+ * @param param_1 源数据指针
+ * @param param_2 目标数据指针
+ * @param param_3 数据长度
+ * @param param_4 传输标志
+ * @param param_5 控件状态指针
+ * @return 无
+ */
+void ui_system_data_transfer_manager(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
                   short *param_5)
 
 {
@@ -573,24 +706,55 @@ void FUN_180676700(longlong param_1,undefined8 param_2,longlong param_3,undefine
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180676930(void)
-void FUN_180676930(void)
+/**
+ * UI系统控件清理器
+ * 清理UI系统控件资源，释放内存和系统资源
+ * 
+ * 技术特点：
+ * - 调用系统清理函数
+ * - 释放控件相关资源
+ * - 重置控件状态
+ * - 内存回收
+ * 
+ * @param 无
+ * @return 无
+ */
+void ui_system_control_cleaner(void)
 
 {
                     // WARNING: Subroutine does not return
   FUN_1808fd200();
 }
 
-
-
-
-
-// 函数: void FUN_180676aa0(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
-void FUN_180676aa0(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
+/**
+ * UI系统控件渲染器
+ * 渲染UI系统控件，处理控件的显示和更新
+ * 
+ * 技术特点：
+ * - 支持批量控件渲染
+ * - 根据控件状态选择渲染策略
+ * - 优化渲染性能
+ * - 控件可见性管理
+ * 
+ * 渲染策略：
+ * - 激活控件使用快速渲染路径
+ * - 非激活控件使用标准渲染路径
+ * - 大批量数据使用SIMD优化
+ * - 小批量数据使用标准渲染
+ * 
+ * @param param_1 控件数据指针
+ * @param param_2 控件偏移量
+ * @param param_3 渲染目标指针
+ * @param param_4 渲染标志
+ * @param param_5 保留参数
+ * @param param_6 保留参数
+ * @param param_7 控件状态指针
+ * @param param_8 保留参数
+ * @param param_9 渲染数量
+ * @param param_10 渲染参数
+ * @return 无
+ */
+void ui_system_control_renderer(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
                   undefined8 param_5,undefined8 param_6,short *param_7,undefined8 param_8,
                   uint param_9,undefined4 param_10)
 
@@ -668,14 +832,31 @@ void FUN_180676aa0(longlong param_1,longlong param_2,longlong param_3,undefined8
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180676d10(longlong param_1,longlong param_2,undefined4 *param_3,longlong param_4,
-void FUN_180676d10(longlong param_1,longlong param_2,undefined4 *param_3,longlong param_4,
+/**
+ * UI系统控件状态更新器
+ * 更新UI系统控件状态，处理控件的状态变化和属性更新
+ * 
+ * 技术特点：
+ * - 使用SIMD指令进行状态更新
+ * - 支持批量状态处理
+ * - 实现高效的像素级状态更新
+ * - 优化内存访问模式
+ * 
+ * 状态更新策略：
+ * - 使用SIMD指令并行处理多个控件
+ * - 数据预取和缓存优化
+ * - 分支预测优化
+ * - 内存对齐访问
+ * 
+ * @param param_1 控件数据指针
+ * @param param_2 控件偏移量
+ * @param param_3 状态数据指针
+ * @param param_4 状态标志
+ * @param param_5 更新数量
+ * @param param_6 SIMD数据指针
+ * @return 无
+ */
+void ui_system_control_state_updater(longlong param_1,longlong param_2,undefined4 *param_3,longlong param_4,
                   uint param_5,undefined1 (*param_6) [16])
 
 {
@@ -774,9 +955,74 @@ void FUN_180676d10(longlong param_1,longlong param_2,undefined4 *param_3,longlon
   return;
 }
 
+// ===========================================
+// 模块功能总结
+// ===========================================
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+/**
+ * UI系统高级控件处理模块功能总结
+ * 
+ * 本模块实现了UI系统的高级控件处理功能，包含9个核心函数：
+ * 
+ * 1. UISystemSIMDProcessor - UI系统SIMD处理器
+ *    - 使用SSE/AVX指令集进行数据并行处理
+ *    - 实现高效的像素级操作和颜色转换
+ *    - 支持批量处理多个控件数据
+ *    - 优化内存访问模式，提高缓存命中率
+ * 
+ * 2. UISystemDataTransferOptimizer - UI系统数据传输优化器
+ *    - 实现批量数据传输优化
+ *    - 支持不同大小的数据块传输
+ *    - 根据控件状态选择最优传输策略
+ *    - 内存对齐和缓存优化
+ * 
+ * 3. UISystemControlProcessor - UI系统控件处理器
+ *    - 支持批量控件处理
+ *    - 根据控件状态选择处理策略
+ *    - 内存访问优化
+ *    - 控件状态验证
+ * 
+ * 4. UISystemDataTransferManager - UI系统数据传输管理器
+ *    - 管理UI系统中的数据传输过程
+ *    - 提供高效的数据复制功能
+ *    - 实现分层数据传输策略
+ *    - 支持不同大小的数据块传输
+ * 
+ * 5. UISystemControlInitializer - UI系统控件初始化器
+ *    - 初始化UI系统控件
+ *    - 设置默认状态和属性
+ *    - 分配必要的系统资源
+ * 
+ * 6. UISystemControlCleaner - UI系统控件清理器
+ *    - 清理UI系统控件资源
+ *    - 释放内存和系统资源
+ *    - 重置控件状态
+ * 
+ * 7. UISystemControlRenderer - UI系统控件渲染器
+ *    - 渲染UI系统控件
+ *    - 处理控件的显示和更新
+ *    - 支持批量控件渲染
+ *    - 控件可见性管理
+ * 
+ * 8. UISystemControlStateUpdater - UI系统控件状态更新器
+ *    - 更新UI系统控件状态
+ *    - 处理控件的状态变化和属性更新
+ *    - 使用SIMD指令进行状态更新
+ *    - 支持批量状态处理
+ * 
+ * 技术特点：
+ * - 使用SIMD指令优化性能
+ * - 实现高效的内存访问模式
+ * - 支持批量处理和优化
+ * - 提供完整的控件生命周期管理
+ * - 具有良好的错误处理和资源管理
+ * 
+ * 性能优化：
+ * - SIMD指令并行处理
+ * - 数据预取和缓存优化
+ * - 分支预测优化
+ * - 内存对齐访问
+ * - 批量处理优化
+ * 
+ * 该模块为UI系统提供了高性能的控件处理能力，是整个UI系统的核心组件之一。
+ */

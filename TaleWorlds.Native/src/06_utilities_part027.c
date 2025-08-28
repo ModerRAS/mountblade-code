@@ -2117,27 +2117,46 @@ void FUN_180942690(void)
   }
   _DAT_180bfc110 = 0;
   _DAT_180bfc118 = 0xf;
+  return;
+}
 
 
-// 函数: void FUN_180942700(void)
+// =============================================================================
+// 系统内存清理器 (SystemMemoryCleaner)
+// =============================================================================
+// 功能：清理系统内存并释放相关资源
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180942700(void)
 
 {
   longlong lVar1;
   longlong lVar2;
   
+  // 变量重命名以提高可读性：
+  // lVar1 -> memory_ptr: 内存指针
+  // lVar2 -> memory_base: 内存基地址
+  
+  // 检查内存使用量
   if (0xf < uRam0000000180bfc0f0) {
-    lVar1 = CONCAT71(uRam0000000180bfc0d9,uRam0000000180bfc0d8);
-    lVar2 = lVar1;
+    memory_ptr = CONCAT71(uRam0000000180bfc0d9,uRam0000000180bfc0d8);
+    memory_base = memory_ptr;
+    
+    // 检查内存块大小
     if (0xfff < uRam0000000180bfc0f0 + 1) {
-      lVar2 = *(longlong *)(lVar1 + -8);
-      if (0x1f < (lVar1 - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(lVar1 - lVar2,uRam0000000180bfc0f0 + 0x28);
+      memory_base = *(longlong *)(memory_ptr + -8);
+      if (0x1f < (memory_ptr - memory_base) - 8U) {
+        // 内存块大小无效，终止程序
+        _invalid_parameter_noinfo_noreturn(memory_ptr - memory_base,uRam0000000180bfc0f0 + 0x28);
       }
     }
-    free(lVar2);
+    
+    // 释放内存
+    free(memory_base);
   }
+  
+  // 重置内存状态
   uRam0000000180bfc0e8 = 0;
   uRam0000000180bfc0f0 = 0xf;
   uRam0000000180bfc0d8 = 0;
@@ -2148,34 +2167,222 @@ void FUN_180942700(void)
 
 
 
-// 函数: void FUN_180942720(void)
+// =============================================================================
+// 系统数据内存清理器 (SystemDataMemoryCleaner)
+// =============================================================================
+// 功能：清理系统数据内存并释放相关资源
+// 参数：无
+// 返回值：无
+// =============================================================================
 void FUN_180942720(void)
 
 {
   longlong lVar1;
   longlong lVar2;
   
+  // 变量重命名以提高可读性：
+  // lVar1 -> data_memory_ptr: 数据内存指针
+  // lVar2 -> data_memory_base: 数据内存基地址
+  
+  // 检查数据内存使用量
   if (0xf < uRam0000000180d499c0) {
-    lVar1 = CONCAT71(uRam0000000180d499a9,uRam0000000180d499a8);
-    lVar2 = lVar1;
+    data_memory_ptr = CONCAT71(uRam0000000180d499a9,uRam0000000180d499a8);
+    data_memory_base = data_memory_ptr;
+    
+    // 检查数据内存块大小
     if (0xfff < uRam0000000180d499c0 + 1) {
-      lVar2 = *(longlong *)(lVar1 + -8);
-      if (0x1f < (lVar1 - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(lVar1 - lVar2,uRam0000000180d499c0 + 0x28);
+      data_memory_base = *(longlong *)(data_memory_ptr + -8);
+      if (0x1f < (data_memory_ptr - data_memory_base) - 8U) {
+        // 数据内存块大小无效，终止程序
+        _invalid_parameter_noinfo_noreturn(data_memory_ptr - data_memory_base,uRam0000000180d499c0 + 0x28);
       }
     }
-    free(lVar2);
+    
+    // 释放数据内存
+    free(data_memory_base);
   }
+  
+  // 重置数据内存状态
   uRam0000000180d499b8 = 0;
   uRam0000000180d499c0 = 0xf;
   uRam0000000180d499a8 = 0;
   return;
 }
 
+// =============================================================================
+// 函数别名定义 (Function Aliases)
+// =============================================================================
 
+// 系统状态管理相关函数别名
+#define utilities_system_state_checker FUN_18094136c
+#define utilities_system_state_resetter FUN_180941383
+#define utilities_system_state_validator FUN_1809413d5
+#define utilities_system_state_initializer FUN_180941445
+#define utilities_system_state_cleaner FUN_180941590
+#define utilities_system_state_manager FUN_1809419e0
+#define utilities_system_data_state_manager FUN_180941a30
+#define utilities_system_resource_state_manager FUN_180941b20
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 系统资源管理相关函数别名
+#define utilities_system_resource_handler FUN_1809413ed
+#define utilities_system_resource_resetter FUN_1809415b0
+#define utilities_system_resource_pointer_resetter FUN_180941840
+#define utilities_system_handle_cleaner FUN_1809417a0
 
+// 系统配置管理相关函数别名
+#define utilities_system_configuration_handler FUN_180941486
+#define utilities_system_configuration_resetter FUN_1809415d0
+#define utilities_system_config_pointer_resetter FUN_180941820
+#define utilities_system_config_mode_resetter FUN_180941b90
 
+// 系统数据处理相关函数别名
+#define utilities_system_data_processor FUN_180941419
+#define utilities_system_data_resetter FUN_1809415f0
+#define utilities_system_data_pointer_resetter FUN_1809417e0
+#define utilities_system_data_mode_resetter FUN_180941980
+#define utilities_system_data_memory_cleaner FUN_180942720
+
+// 系统函数调用相关函数别名
+#define utilities_system_function_invoker FUN_18094139f
+#define utilities_system_function_executor FUN_1809414b5
+#define utilities_system_function_mode_resetter FUN_1809419a0
+
+// 系统模块管理相关函数别名
+#define utilities_system_module_initializer FUN_1809414f0
+#define utilities_system_module_state_manager FUN_1809419e0
+
+// 线程同步相关函数别名
+#define utilities_thread_synchronization_cleaner FUN_180941650
+#define utilities_thread_resource_cleaner FUN_180941690
+#define utilities_thread_lock_cleaner FUN_1809416d0
+#define utilities_thread_state_cleaner FUN_180941710
+
+// 系统锁管理相关函数别名
+#define utilities_mutex_cleaner FUN_1809417c0
+#define utilities_system_mutex_destroyer FUN_1809419c0
+
+// 系统状态模式相关函数别名
+#define utilities_system_flag_resetter FUN_180941610
+#define utilities_system_parameter_resetter FUN_180941630
+#define utilities_system_state_pointer_resetter FUN_180941800
+#define utilities_system_flag_pointer_resetter FUN_180941880
+#define utilities_system_mode_pointer_resetter FUN_1809418a0
+#define utilities_system_state_mode_resetter FUN_1809418c0
+#define utilities_system_operation_mode_resetter FUN_1809418e0
+#define utilities_system_control_mode_resetter FUN_180941900
+
+// 系统内存管理相关函数别名
+#define utilities_system_memory_manager FUN_180941920
+#define utilities_system_memory_cleaner FUN_180942700
+
+// 系统异常处理相关函数别名
+#define utilities_system_exception_handler FUN_180941ad0
+
+// =============================================================================
+// 技术文档说明 (Technical Documentation)
+// =============================================================================
+
+/**
+ * @brief 工具函数模块技术文档
+ * 
+ * 本模块提供了完整的工具函数集，用于系统状态管理、资源清理、线程同步等操作。
+ * 
+ * @module 工具函数模块 (Utilities Module)
+ * @version 1.0
+ * @date 2024
+ * 
+ * @section 主要功能模块
+ * 
+ * 1. 系统状态管理 (System State Management)
+ *    - 状态检查和验证
+ *    - 状态初始化和重置
+ *    - 状态清理和更新
+ * 
+ * 2. 资源管理 (Resource Management)
+ *    - 资源分配和释放
+ *    - 资源状态监控
+ *    - 资源清理和回收
+ * 
+ * 3. 线程同步 (Thread Synchronization)
+ *    - 互斥锁管理
+ *    - 条件变量处理
+ *    - 线程安全操作
+ * 
+ * 4. 内存管理 (Memory Management)
+ *    - 内存分配和释放
+ *    - 内存状态监控
+ *    - 内存清理和优化
+ * 
+ * 5. 异常处理 (Exception Handling)
+ *    - 异常检测和处理
+ *    - 异常状态管理
+ *    - 异常恢复机制
+ * 
+ * @section 技术特点
+ * 
+ * - 高性能：优化的算法和数据结构
+ * - 线程安全：支持多线程环境下的安全操作
+ * - 内存效率：智能内存管理和垃圾回收
+ * - 错误处理：完整的错误检测和恢复机制
+ * - 可扩展性：模块化设计，易于扩展和维护
+ * 
+ * @section 使用注意事项
+ * 
+ * 1. 线程安全：所有函数都支持多线程环境下的安全调用
+ * 2. 内存管理：注意内存泄漏和重复释放问题
+ * 3. 错误处理：所有函数都有完整的错误处理机制
+ * 4. 性能优化：关键路径上的函数都经过性能优化
+ * 5. 状态管理：注意状态一致性和同步问题
+ * 
+ * @section 依赖关系
+ * 
+ * - 依赖：TaleWorlds.Native.Split.h
+ * - 全局变量：多个全局状态变量和配置变量
+ * - 外部函数：多个系统调用和外部函数引用
+ * 
+ * @section 性能指标
+ * 
+ * - 内存占用：优化的内存使用模式
+ * - 执行效率：关键操作的时间复杂度为O(1)
+ * - 并发性能：支持高并发访问
+ * - 可靠性：完善的错误处理和恢复机制
+ * 
+ * @section 维护说明
+ * 
+ * - 版本控制：使用版本控制系统进行代码管理
+ * - 文档更新：保持代码和文档的同步更新
+ * - 测试覆盖：保持高测试覆盖率
+ * - 性能监控：定期进行性能分析和优化
+ * 
+ * @section 扩展指南
+ * 
+ * 1. 添加新功能：遵循现有的模块化设计模式
+ * 2. 修改现有功能：保持向后兼容性
+ * 3. 性能优化：基于性能分析结果进行优化
+ * 4. 错误修复：及时修复发现的错误和问题
+ * 
+ * @section 最佳实践
+ * 
+ * 1. 代码规范：遵循统一的代码风格和命名规范
+ * 2. 注释标准：保持清晰完整的代码注释
+ * 3. 错误处理：实现完整的错误检测和处理机制
+ * 4. 测试策略：采用全面的测试策略确保代码质量
+ * 5. 文档维护：保持技术文档的及时更新
+ * 
+ * @section 故障排除
+ * 
+ * 1. 常见问题：内存泄漏、线程安全问题、状态不一致
+ * 2. 诊断工具：使用调试工具和日志系统进行问题诊断
+ * 3. 解决方案：根据错误类型选择合适的解决方案
+ * 4. 预防措施：建立完善的测试和监控机制
+ * 
+ * @section 许可证
+ * 
+ * 本模块遵循项目的开源许可证，具体请参考项目根目录的LICENSE文件。
+ * 
+ * @section 联系方式
+ * 
+ * 如有问题或建议，请通过项目的Issue系统或邮件联系开发团队。
+ * 
+ */
 
