@@ -2126,7 +2126,6 @@ void FUN_18003aab0(void) {
     
     // 获取键值回调函数
     key_callback = (InitializationSystemKeyPtr)FUN_180073930;
-    search_context.current_key_callback = key_callback;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
