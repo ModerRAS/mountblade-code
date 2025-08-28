@@ -13,6 +13,32 @@
 // 美化日期：2025-08-28
 // 原始函数数量：17个
 
+// 全局常量定义
+#define GLOBAL_ENGINE_CONTEXT        _DAT_180c8a9e0
+#define SECURITY_COOKIE             _DAT_180bf00a8
+#define ENGINE_FACTORY_DATA         _DAT_180c8ed18
+
+// 字符串常量
+#define EMPTY_STRING_CONST          UNK_180a3c3e0
+#define STRING_END_CONST            UNK_18098bcb0
+#define DEFAULT_STRING_DATA         DAT_18098bc73
+#define STRING_FORMAT_CONST         UNK_180a0aa34
+
+// 资源处理器常量
+#define STRING_HANDLER_CONST         UNK_180a0abe0
+#define DUAL_RESOURCE_HANDLER_CONST UNK_180a0ab70
+#define PARAMETERIZED_RESOURCE_HANDLER_CONST UNK_180a0aba8
+#define MULTI_STRING_HANDLER_CONST  UNK_180a0ab00
+#define COMPLEX_RESOURCE_HANDLER_CONST UNK_180a0ab38
+
+// 数据处理器常量
+#define RESOURCE_HANDLER_CONST1     UNK_180a0ac88
+#define RESOURCE_HANDLER_CONST2     UNK_180a0acd8
+#define RESOURCE_HANDLER_CONST3     UNK_180a0ad28
+#define DATA_HANDLER_CONST1         UNK_180a0ac88
+#define DATA_HANDLER_CONST2         UNK_180a0acd8
+#define DATA_HANDLER_CONST3         UNK_180a0ad28
+
 // 函数: 释放资源管理器中的链表节点
 // 功能: 清理并释放资源管理器中的链表节点资源，包括遍历链表并释放每个节点
 void ResourceManager_ClearLinkedList(longlong *resource_manager, undefined8 param_2, undefined8 param_3, undefined8 param_4)
