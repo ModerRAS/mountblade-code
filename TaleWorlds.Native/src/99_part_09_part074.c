@@ -446,38 +446,56 @@ void system_parameter_handler(longlong *param_1, longlong param_2, undefined4 pa
 
 
 
-// 函数: void FUN_1805edb16(void)
-void FUN_1805edb16(void)
-
+/**
+ * 系统线程同步器 - 处理线程同步操作
+ * 
+ * 功能：
+ * - 处理线程同步和互斥锁操作
+ * - 管理线程状态
+ * - 执行线程安全的数据访问
+ * 
+ * @param system_context 系统上下文（通过寄存器传递）
+ * @param system_data 系统数据（通过寄存器传递）
+ * @param system_parameter 系统参数（通过寄存器传递）
+ * @param sync_flag 同步标志
+ */
+void system_thread_synchronizer(void)
 {
-  char cVar1;
-  int iVar2;
-  longlong unaff_RBX;
-  undefined8 uVar3;
-  longlong unaff_RDI;
-  undefined4 unaff_R14D;
-  bool in_ZF;
+  char system_validation_flag;
+  int system_result_code;
+  longlong system_context;
+  undefined8 system_handle;
+  longlong system_base_address;
+  undefined4 system_parameter;
+  bool sync_flag;
   
-  if (in_ZF) {
-    iVar2 = _Mtx_lock(unaff_RDI + 0x5990);
-    if (iVar2 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar2);
+  /* 线程同步处理 */
+  if (sync_flag) {
+    system_result_code = _Mtx_lock(system_base_address + 0x5990);
+    if (system_result_code != 0) {
+      __Throw_C_error_std__YAXH_Z(system_result_code);
     }
-    uVar3 = FUN_1805fa9a0(unaff_RDI + 0x50,0x28);
-    unaff_R14D = *(undefined4 *)(unaff_RBX + 8);
+    system_handle = FUN_1805fa9a0(system_base_address + 0x50, 0x28);
+    system_parameter = *(undefined4 *)(system_context + 8);
   }
   else {
-    uVar3 = 0;
+    system_handle = 0;
   }
-  cVar1 = FUN_180645c10(uVar3,0,&UNK_1809fa560);
-  if ((cVar1 != '\0') && (cVar1 = FUN_180645c10(uVar3,0x16,&UNK_1809fa540), cVar1 != '\0')) {
-    FUN_180645c10(uVar3,unaff_R14D,&UNK_1809fa550);
+  
+  /* 系统数据验证 */
+  system_validation_flag = FUN_180645c10(system_handle, 0, &UNK_1809fa560);
+  if ((system_validation_flag != '\0') && 
+      (system_validation_flag = FUN_180645c10(system_handle, 0x16, &UNK_1809fa540), 
+       system_validation_flag != '\0')) {
+    FUN_180645c10(system_handle, system_parameter, &UNK_1809fa550);
   }
-  if (*(char *)(unaff_RDI + 0x31) == '\0') {
-    FUN_1805faa20(unaff_RDI + 0x50);
-    iVar2 = _Mtx_unlock(unaff_RDI + 0x5990);
-    if (iVar2 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar2);
+  
+  /* 系统互斥锁释放 */
+  if (*(char *)(system_base_address + 0x31) == '\0') {
+    FUN_1805faa20(system_base_address + 0x50);
+    system_result_code = _Mtx_unlock(system_base_address + 0x5990);
+    if (system_result_code != 0) {
+      __Throw_C_error_std__YAXH_Z(system_result_code);
     }
   }
   return;
@@ -488,17 +506,27 @@ void FUN_1805edb16(void)
 
 
 
-// 函数: void FUN_1805edbad(void)
-void FUN_1805edbad(void)
-
+/**
+ * 系统互斥锁解锁器 - 解锁系统互斥锁
+ * 
+ * 功能：
+ * - 解锁系统互斥锁
+ * - 清理系统资源
+ * 
+ * @param system_context 系统上下文（通过寄存器传递）
+ */
+void system_mutex_unlocker(void)
 {
-  int iVar1;
-  longlong unaff_RDI;
+  int system_result_code;
+  longlong system_context;
   
+  /* 系统资源清理 */
   FUN_1805faa20();
-  iVar1 = _Mtx_unlock(unaff_RDI + 0x5990);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  
+  /* 系统互斥锁解锁 */
+  system_result_code = _Mtx_unlock(system_context + 0x5990);
+  if (system_result_code != 0) {
+    __Throw_C_error_std__YAXH_Z(system_result_code);
   }
   return;
 }
@@ -508,9 +536,15 @@ void FUN_1805edbad(void)
 
 
 
-// 函数: void FUN_1805edbd3(void)
-void FUN_1805edbd3(void)
-
+/**
+ * 系统空函数 - 空操作函数
+ * 
+ * 功能：
+ * - 空操作函数
+ * - 占位符函数
+ * 
+ */
+void system_empty_function(void)
 {
   return;
 }
