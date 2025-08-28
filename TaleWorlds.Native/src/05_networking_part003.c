@@ -67,6 +67,41 @@ typedef struct {
     ProtocolStatus status;
 } ProtocolContext;
 
+/* ============================================================================
+ * 函数别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 基础协议处理函数
+#define NetworkProtocol_SendBasic FUN_18083f8f0
+#define NetworkProtocol_SerializeExtended FUN_18074b880
+#define NetworkProtocol_SerializeConnectionRequest FUN_18074b880
+#define NetworkProtocol_SerializeConnectionResponse FUN_18074b880
+#define NetworkProtocol_SerializeDisconnect FUN_18074b880
+
+// 心跳和状态管理函数
+#define NetworkProtocol_SerializeHeartbeat FUN_180842690
+#define NetworkProtocol_SerializeHeartbeatResponse FUN_180842750
+#define NetworkProtocol_SerializeStatusQuery FUN_1808428d0
+
+// 安全和压缩协议函数
+#define NetworkProtocol_SendSecure FUN_1808427c0
+#define NetworkProtocol_SendCompressed FUN_1808427f0
+#define NetworkProtocol_SerializeCompressed FUN_180842820
+#define NetworkProtocol_SerializeEncrypted FUN_1808428d0
+
+// 连接管理函数
+#define NetworkProtocol_SerializeConnectionAck FUN_180842990
+#define NetworkProtocol_SerializeDataTransfer FUN_180842a00
+
+/* 协议处理辅助函数 */
+#define ProtocolSerializer_WriteHeader FUN_18074b880
+#define ProtocolSerializer_WriteSeparator FUN_18074b880
+#define ProtocolSerializer_WriteUint32 func_0x00018074b800
+#define ProtocolSerializer_WriteUint64 func_0x00018074bda0
+#define ProtocolSerializer_WriteBuffer FUN_18074b650
+#define ProtocolSerializer_WriteArray FUN_18088ebb0
+#define ProtocolSerializer_WriteCompressed FUN_18074be90
+
 /**
  * @brief 基础协议数据发送函数
  * 
