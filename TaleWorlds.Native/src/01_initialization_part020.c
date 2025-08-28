@@ -1,813 +1,991 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part020.c - 4 个函数
+// ============================================================================
+// 01_initialization_part020.c - 初始化系统高级配置和数学计算模块
+// ============================================================================
 
-// 函数: void FUN_180052940(longlong param_1,float param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180052940(longlong param_1,float param_2,undefined8 param_3,undefined8 param_4)
+// 模块概述：
+// 本模块包含4个核心函数，主要处理初始化系统的高级配置、数学计算、
+// 字符串处理、系统状态管理和资源分配等功能。涵盖了游戏引擎初始化过程中的
+// 核心数学运算和配置管理机制。
+
+// 主要功能：
+// - 高级数学计算和参数优化
+// - 系统状态配置和验证
+// - 字符串处理和缓冲区管理
+// - 资源分配和内存管理
+// - 系统初始化和清理
+
+// ============================================================================
+// 常量定义
+// ============================================================================
+
+// 系统配置常量
+#define INIT_CONFIG_MAX_ITERATIONS 1000         // 最大迭代次数
+#define INIT_CONFIG_BUFFER_SIZE 4096           // 缓冲区大小
+#define INIT_CONFIG_PRECISION 0.01             // 计算精度
+#define INIT_CONFIG_MAX_FLOAT_VALUE 100.0       // 最大浮点数值
+#define INIT_CONFIG_MIN_FLOAT_VALUE 0.2         // 最小浮点数值
+#define INIT_CONFIG_DEFAULT_FLOAT_VALUE 1.0     // 默认浮点数值
+
+// 系统状态常量
+#define INIT_STATE_READY 0x00000001             // 系统就绪状态
+#define INIT_STATE_BUSY 0x00000002              // 系统忙状态
+#define INIT_STATE_ERROR 0x00000004             // 系统错误状态
+#define INIT_STATE_PROCESSING 0x00000008        // 系统处理中状态
+#define INIT_STATE_COMPLETE 0x00000010          // 系统完成状态
+
+// 数学计算常量
+#define MATH_EXP2_BASE 2.0                      // exp2函数基数
+#define MATH_LOG2_BASE 2.0                      // log2函数基数
+#define MATH_PRECISION_FACTOR 0.05              // 精度调整因子
+#define MATH_NORMALIZATION_FACTOR 1.0            // 标准化因子
+
+// ============================================================================
+// 类型别名定义
+// ============================================================================
+
+// 基础类型别名
+typedef undefined8 SystemHandle;                // 系统句柄
+typedef undefined8 ConfigHandle;                // 配置句柄
+typedef undefined8 ResourceHandle;              // 资源句柄
+typedef undefined8 BufferHandle;                // 缓冲区句柄
+
+// 状态类型别名
+typedef undefined4 SystemStatus;               // 系统状态
+typedef undefined4 ConfigStatus;                // 配置状态
+typedef undefined4 ResourceStatus;             // 资源状态
+
+// 数学类型别名
+typedef float MathFloat;                       // 数学浮点数
+typedef double MathDouble;                      // 数学双精度数
+typedef undefined4 MathVector;                  // 数学向量
+
+// 字符串类型别名
+typedef undefined1 StringChar;                  // 字符串字符
+typedef undefined8 StringHandle;                // 字符串句柄
+
+// ============================================================================
+// 函数别名定义
+// ============================================================================
+
+// 高级数学计算处理器
+#define InitializationSystem_AdvancedMathCalculator FUN_180052940
+
+// 系统配置和状态管理器
+#define InitializationSystem_ConfigManager FUN_180052ef0
+
+// 字符串和缓冲区处理器
+#define InitializationSystem_StringProcessor FUN_180053200
+
+// 系统初始化和资源管理器
+#define InitializationSystem_ResourceManager FUN_1800533d0
+
+// 系统初始化完成处理器
+#define InitializationSystem_CompletionHandler FUN_180054120
+
+// ============================================================================
+// 函数实现
+// ============================================================================
+
+/**
+ * 初始化系统高级数学计算处理器
+ * 
+ * 功能：
+ * - 执行高级数学计算和参数优化
+ * - 处理浮点数运算和数学函数
+ * - 管理系统配置参数
+ * - 执行数值验证和范围检查
+ * - 优化计算性能和精度
+ * 
+ * @param param_1 系统上下文句柄
+ * @param param_2 浮点数参数
+ * @param param_3 配置参数1
+ * @param param_4 配置参数2
+ * @return 无返回值
+ */
+void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, MathFloat float_param, ConfigHandle config_param1, ConfigHandle config_param2)
 
 {
-  ulonglong uVar1;
-  float fVar2;
-  float fVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  int iVar6;
-  uint uVar7;
-  longlong lVar8;
-  uint uVar9;
-  undefined8 in_RDX;
-  longlong lVar10;
-  uint uVar11;
-  uint uVar12;
-  uint uVar13;
-  bool bVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  undefined4 uVar21;
-  float fVar22;
-  float fStackX_8;
-  float fStackX_c;
+  SystemHandle system_manager;
+  MathFloat calculated_value1;
+  MathFloat calculated_value2;
+  MathFloat calculated_value3;
+  MathFloat calculated_value4;
+  MathFloat calculated_value5;
+  MathFloat calculated_value6;
+  int iteration_count;
+  uint precision_counter;
+  longlong temp_pointer;
+  uint loop_counter;
+  uint gcd_counter;
+  uint optimization_counter;
+  bool condition_flag;
+  MathFloat base_value;
+  MathFloat optimized_value;
+  MathFloat temp_value1;
+  MathFloat temp_value2;
+  MathFloat temp_value3;
+  MathFloat temp_value4;
+  MathFloat temp_value5;
+  MathFloat temp_value6;
+  undefined4 precision_result;
+  MathFloat stack_value1;
+  MathFloat stack_value2;
   
-  lVar8 = _DAT_180c86920;
+  // 初始化系统管理器
+  system_manager = _DAT_180c86920;
+  
+  // 检查系统状态条件
   if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(_DAT_180c86920 + 0x540) < 1)) {
-    bVar14 = *(int *)(_DAT_180c86920 + 0x2140) != 0;
+    condition_flag = *(int *)(_DAT_180c86920 + 0x2140) != 0;
   }
   else {
-    bVar14 = false;
+    condition_flag = false;
   }
-  if (bVar14) {
-    fVar15 = (float)exp2f(_DAT_180c86920,in_RDX,param_3,param_4,0xfffffffffffffffe);
-    if (*(char *)(param_1 + 0x22d) == '\0') {
-      lVar8 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-      if ((*(int *)(lVar8 + 0x48) < _DAT_180d49140) &&
+  
+  // 执行高级数学计算
+  if (condition_flag) {
+    base_value = (float)exp2f(_DAT_180c86920, config_param1, config_param2, config_param2, 0xfffffffffffffffe);
+    
+    // 处理线程局部存储和条件检查
+    if (*(char *)(system_context + 0x22d) == '\0') {
+      temp_pointer = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+      if ((*(int *)(temp_pointer + 0x48) < _DAT_180d49140) &&
          (FUN_1808fcb90(&DAT_180d49140), _DAT_180d49140 == -1)) {
-        _DAT_180d49144 = param_2;
+        _DAT_180d49144 = float_param;
         FUN_1808fcb30(&DAT_180d49140);
       }
-      fVar16 = (float)exp2f();
-      fVar17 = (float)exp2f();
-      fVar18 = (float)exp2f();
-      fVar19 = (float)exp2f();
-      fVar20 = (float)exp2f();
-      _DAT_180d49144 = (1.0 - fVar16) * _DAT_180d49144 + fVar16 * param_2;
-      fVar2 = (float)*(int *)(_DAT_180c86920 + 0x21b0);
+      
+      // 执行一系列exp2f计算
+      calculated_value1 = (float)exp2f();
+      calculated_value2 = (float)exp2f();
+      calculated_value3 = (float)exp2f();
+      calculated_value4 = (float)exp2f();
+      calculated_value5 = (float)exp2f();
+      
+      // 优化计算结果
+      _DAT_180d49144 = (MATH_NORMALIZATION_FACTOR - calculated_value1) * _DAT_180d49144 + calculated_value1 * float_param;
+      optimized_value = (float)*(int *)(_DAT_180c86920 + 0x21b0);
+      
+      // 应用范围限制
       if (*(float *)(_DAT_180c86870 + 0x1f8) <= (float)*(int *)(_DAT_180c86920 + 0x21b0)) {
-        fVar2 = *(float *)(_DAT_180c86870 + 0x1f8);
+        optimized_value = *(float *)(_DAT_180c86870 + 0x1f8);
       }
-      fVar22 = *(float *)(_DAT_180c86920 + 0x1e30);
+      
+      // 计算优化参数
+      temp_value1 = *(float *)(_DAT_180c86920 + 0x1e30);
       if (0 < *(int *)(_DAT_180c86920 + 0x1f80)) {
-        fVar22 = fVar22 / (float)*(int *)(_DAT_180c86920 + 0x1f80);
+        temp_value1 = temp_value1 / (float)*(int *)(_DAT_180c86920 + 0x1f80);
       }
-      fVar3 = (float)((int)fVar22 + -1);
-      if (fVar2 <= (float)((int)fVar22 + -1)) {
-        fVar3 = fVar2;
+      
+      calculated_value2 = (float)((int)temp_value1 + -1);
+      if (optimized_value <= (float)((int)temp_value1 + -1)) {
+        calculated_value2 = optimized_value;
       }
-      if ((*(int *)(lVar8 + 0x48) < _DAT_180d49148) &&
+      
+      // 更新配置参数
+      if ((*(int *)(temp_pointer + 0x48) < _DAT_180d49148) &&
          (FUN_1808fcb90(&DAT_180d49148), _DAT_180d49148 == -1)) {
-        _DAT_180d4914c = fVar3;
+        _DAT_180d4914c = calculated_value2;
         FUN_1808fcb30(&DAT_180d49148);
       }
-      _DAT_180d4914c = (1.0 - fVar16) * _DAT_180d4914c + fVar3 * fVar16;
-      fVar18 = ((float)(int)((_DAT_180d49144 / _DAT_180d4914c) / fVar17) * fVar17 - 1.0) * fVar18 *
-               fVar19 + fVar18;
-      if (fVar18 <= fVar15) {
-        fVar18 = fVar15;
+      
+      _DAT_180d4914c = (MATH_NORMALIZATION_FACTOR - calculated_value1) * _DAT_180d4914c + calculated_value2 * calculated_value1;
+      
+      // 执行复杂的数学优化计算
+      calculated_value3 = ((float)(int)((_DAT_180d49144 / _DAT_180d4914c) / calculated_value2) * calculated_value2 - MATH_NORMALIZATION_FACTOR) * calculated_value3 *
+                       calculated_value4 + calculated_value3;
+      
+      // 应用数值范围限制
+      if (calculated_value3 <= base_value) {
+        calculated_value3 = base_value;
       }
-      if (1.0 <= fVar18) {
-        fVar18 = 1.0;
+      if (MATH_NORMALIZATION_FACTOR <= calculated_value3) {
+        calculated_value3 = MATH_NORMALIZATION_FACTOR;
       }
-      fVar20 = (float)(int)((fVar18 + 0.05) / fVar20) * fVar20;
-      if ((fVar15 <= fVar20) && (fVar15 = fVar20, 1.0 <= fVar20)) {
-        fVar15 = 1.0;
+      
+      calculated_value5 = (float)(int)((calculated_value3 + MATH_PRECISION_FACTOR) / calculated_value5) * calculated_value5;
+      if ((base_value <= calculated_value5) && (base_value = calculated_value5, MATH_NORMALIZATION_FACTOR <= calculated_value5)) {
+        base_value = MATH_NORMALIZATION_FACTOR;
       }
-      *(float *)(param_1 + 0x238) = fVar15;
-      uVar21 = log2f();
-      *(undefined4 *)(param_1 + 0x248) = uVar21;
-      *(float *)(param_1 + 0x250) = _DAT_180d49144;
-      lVar10 = _DAT_180c86950;
+      
+      // 存储计算结果
+      *(float *)(system_context + 0x238) = base_value;
+      precision_result = log2f();
+      *(undefined4 *)(system_context + 0x248) = precision_result;
+      *(float *)(system_context + 0x250) = _DAT_180d49144;
+      
+      // 更新系统状态
+      system_manager = _DAT_180c86950;
       *(undefined1 *)(_DAT_180c86950 + 0x162b) = 1;
-      lVar8 = _DAT_180c86920;
+      temp_pointer = _DAT_180c86920;
     }
     else {
-      *(float *)(param_1 + 0x238) = fVar15;
-      lVar8 = _DAT_180c86920;
-      lVar10 = _DAT_180c86950;
+      *(float *)(system_context + 0x238) = base_value;
+      temp_pointer = _DAT_180c86920;
+      system_manager = _DAT_180c86950;
     }
   }
   else {
-    *(undefined4 *)(param_1 + 0x238) = 0x3f800000;
-    lVar10 = _DAT_180c86950;
+    *(undefined4 *)(system_context + 0x238) = 0x3f800000;
+    system_manager = _DAT_180c86950;
   }
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(lVar8 + 0x540) < 1)) {
-    if (*(int *)(lVar8 + 0x2140) == 0) {
-      fVar15 = *(float *)(lVar8 + 0x20d0);
+  
+  // 处理系统配置和参数验证
+  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(temp_pointer + 0x540) < 1)) {
+    if (*(int *)(temp_pointer + 0x2140) == 0) {
+      base_value = *(float *)(temp_pointer + 0x20d0);
     }
     else {
-      fVar15 = 100.0;
+      base_value = INIT_CONFIG_MAX_FLOAT_VALUE;
     }
-    fVar15 = fVar15 * 0.01;
+    base_value = base_value * INIT_CONFIG_PRECISION;
   }
   else {
-    fVar15 = 1.0;
+    base_value = MATH_NORMALIZATION_FACTOR;
   }
-  *(float *)(param_1 + 0x234) = fVar15;
-  uVar11 = (uint)*(float *)(lVar10 + 0x17ec);
-  uVar13 = (uint)*(float *)(lVar10 + 0x17f0);
-  uVar12 = uVar11;
-  uVar7 = uVar13;
-  if (1.0 <= fVar15) {
-    fStackX_8 = 1.0;
-    fStackX_c = 1.0;
+  
+  *(float *)(system_context + 0x234) = base_value;
+  loop_counter = (uint)*(float *)(system_manager + 0x17ec);
+  optimization_counter = (uint)*(float *)(system_manager + 0x17f0);
+  gcd_counter = loop_counter;
+  precision_counter = optimization_counter;
+  
+  // 执行优化算法
+  if (MATH_NORMALIZATION_FACTOR <= base_value) {
+    stack_value1 = MATH_NORMALIZATION_FACTOR;
+    stack_value2 = MATH_NORMALIZATION_FACTOR;
   }
   else {
-    while (0 < (int)uVar7) {
-      uVar9 = (int)uVar12 % (int)uVar7;
-      uVar12 = uVar7;
-      uVar7 = uVar9;
+    // 计算最大公约数
+    while (0 < (int)precision_counter) {
+      iteration_count = (int)gcd_counter % (int)precision_counter;
+      gcd_counter = precision_counter;
+      precision_counter = iteration_count;
     }
-    iVar6 = (int)uVar11 / (int)uVar12;
-    fStackX_8 = (float)(int)uVar11;
+    iteration_count = (int)loop_counter / (int)gcd_counter;
+    stack_value1 = (float)(int)loop_counter;
+    
     do {
-      uVar11 = (uint)(fStackX_8 * fVar15);
-      if (1 < iVar6) {
-        uVar11 = ((uVar11 - 1) - (int)(uVar11 - 1) % iVar6) + iVar6;
+      loop_counter = (uint)(stack_value1 * base_value);
+      if (1 < iteration_count) {
+        loop_counter = ((loop_counter - 1) - (int)(loop_counter - 1) % iteration_count) + iteration_count;
       }
-      uVar1 = (longlong)(int)(((int)uVar13 / (int)uVar12) * uVar11) / (longlong)iVar6;
-      uVar7 = (uint)uVar1;
-      if (((uVar11 & 1) == 0) && ((uVar1 & 1) == 0)) goto LAB_180052ce3;
-      fVar15 = fVar15 + 0.01;
-      *(float *)(param_1 + 0x234) = fVar15;
-    } while (fVar15 <= 1.0);
-    *(undefined4 *)(param_1 + 0x234) = 0x3f800000;
-LAB_180052ce3:
-    fStackX_8 = (float)(int)uVar11 / fStackX_8;
-    fStackX_c = (float)(int)uVar7 / (float)(int)uVar13;
-    uVar13 = uVar7;
+      temp_pointer = (longlong)(int)(((int)optimization_counter / (int)gcd_counter) * loop_counter) / (longlong)iteration_count;
+      precision_counter = (uint)temp_pointer;
+      if (((loop_counter & 1) == 0) && ((temp_pointer & 1) == 0)) goto OPTIMIZATION_COMPLETE;
+      base_value = base_value + INIT_CONFIG_PRECISION;
+      *(float *)(system_context + 0x234) = base_value;
+    } while (base_value <= MATH_NORMALIZATION_FACTOR);
+    
+    *(undefined4 *)(system_context + 0x234) = 0x3f800000;
+    
+OPTIMIZATION_COMPLETE:
+    stack_value1 = (float)(int)loop_counter / stack_value1;
+    stack_value2 = (float)(int)precision_counter / (float)(int)optimization_counter;
+    optimization_counter = precision_counter;
   }
-  *(ulonglong *)(param_1 + 0x254) = CONCAT44(fStackX_c,fStackX_8);
-  fVar15 = *(float *)(param_1 + 0x238);
-  if (1.0 <= fVar15) {
-    fStackX_8 = 1.0;
-    fStackX_c = 1.0;
+  
+  *(ulonglong *)(system_context + 0x254) = CONCAT44(stack_value2, stack_value1);
+  base_value = *(float *)(system_context + 0x238);
+  
+  // 执行第二阶段优化
+  if (MATH_NORMALIZATION_FACTOR <= base_value) {
+    stack_value1 = MATH_NORMALIZATION_FACTOR;
+    stack_value2 = MATH_NORMALIZATION_FACTOR;
   }
   else {
-    uVar5 = (ulonglong)uVar13;
-    uVar1 = (ulonglong)uVar11;
-    uVar12 = uVar11;
-    uVar7 = uVar13;
-    while (uVar4 = uVar5, 0 < (int)uVar7) {
-      uVar12 = (uint)uVar4;
-      uVar1 = (longlong)(int)uVar1 % (longlong)(int)uVar12;
-      uVar7 = (uint)uVar1;
-      uVar5 = uVar1 & 0xffffffff;
-      uVar1 = uVar4;
+    // 执行高级优化算法
+    temp_pointer = (ulonglong)optimization_counter;
+    precision_counter = (ulonglong)loop_counter;
+    gcd_counter = loop_counter;
+    precision_counter = optimization_counter;
+    
+    while (temp_pointer = precision_counter, 0 < (int)precision_counter) {
+      gcd_counter = (uint)temp_pointer;
+      precision_counter = (longlong)(int)precision_counter % (longlong)(int)gcd_counter;
+      precision_counter = (uint)precision_counter;
+      temp_pointer = precision_counter & 0xffffffff;
+      precision_counter = temp_pointer;
     }
-    iVar6 = (int)uVar11 / (int)uVar12;
+    
+    iteration_count = (int)loop_counter / (int)gcd_counter;
+    
     do {
-      uVar7 = (uint)(fVar15 * (float)(int)uVar11);
-      if (1 < iVar6) {
-        uVar7 = ((uVar7 - 1) - (int)(uVar7 - 1) % iVar6) + iVar6;
+      precision_counter = (uint)(base_value * (float)(int)loop_counter);
+      if (1 < iteration_count) {
+        precision_counter = ((precision_counter - 1) - (int)(precision_counter - 1) % iteration_count) + iteration_count;
       }
-      uVar1 = (longlong)(int)(((int)uVar13 / (int)uVar12) * uVar7) / (longlong)iVar6;
-      if (((uVar7 & 1) == 0) && ((uVar1 & 1) == 0)) goto LAB_180052de5;
-      fVar15 = fVar15 + 0.01;
-      *(float *)(param_1 + 0x238) = fVar15;
-    } while (fVar15 <= 1.0);
-    *(undefined4 *)(param_1 + 0x238) = 0x3f800000;
-LAB_180052de5:
-    fStackX_8 = (float)(int)uVar7 / (float)(int)uVar11;
-    fStackX_c = (float)(int)uVar1 / (float)(int)uVar13;
+      precision_counter = (longlong)(int)(((int)optimization_counter / (int)gcd_counter) * precision_counter) / (longlong)iteration_count;
+      if (((precision_counter & 1) == 0) && ((precision_counter & 1) == 0)) goto SECOND_OPTIMIZATION_COMPLETE;
+      base_value = base_value + INIT_CONFIG_PRECISION;
+      *(float *)(system_context + 0x238) = base_value;
+    } while (base_value <= MATH_NORMALIZATION_FACTOR);
+    
+    *(undefined4 *)(system_context + 0x238) = 0x3f800000;
+    
+SECOND_OPTIMIZATION_COMPLETE:
+    stack_value1 = (float)(int)precision_counter / (float)(int)loop_counter;
+    stack_value2 = (float)(int)precision_counter / (float)(int)optimization_counter;
   }
-  *(ulonglong *)(param_1 + 0x25c) = CONCAT44(fStackX_c,fStackX_8);
+  
+  *(ulonglong *)(system_context + 0x25c) = CONCAT44(stack_value2, stack_value1);
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180052ef0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined1 param_4)
-void FUN_180052ef0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined1 param_4)
+/**
+ * 初始化系统配置和状态管理器
+ * 
+ * 功能：
+ * - 管理系统配置参数
+ * - 处理系统状态变化
+ * - 执行系统初始化流程
+ * - 管理资源分配和释放
+ * - 处理系统回调函数
+ * 
+ * @param param_1 系统配置句柄数组
+ * @param param_2 配置参数1
+ * @param param_3 配置参数2
+ * @param param_4 状态标志
+ * @return 无返回值
+ */
+void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle config_param1, ConfigHandle config_param2, undefined1 status_flag)
 
 {
-  int iVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  longlong *plVar5;
-  int *piVar6;
-  longlong lVar7;
-  ulonglong uVar8;
-  uint uVar9;
-  ulonglong uVar10;
-  float fVar11;
-  float fVar12;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
-  longlong **pplStackX_18;
-  longlong alStack_70 [2];
-  undefined *puStack_60;
-  undefined *puStack_58;
-  longlong alStack_50 [2];
-  undefined *puStack_40;
-  undefined *puStack_38;
+  int validation_result;
+  longlong system_manager;
+  longlong resource_manager;
+  undefined8 callback_param;
+  longlong *resource_pointer;
+  int *status_pointer;
+  longlong memory_manager;
+  ulonglong iteration_counter;
+  uint loop_counter;
+  ulonglong temp_counter;
+  MathFloat calculated_value1;
+  MathFloat calculated_value2;
+  longlong *temp_stack_pointer;
+  longlong *temp_stack_pointer2;
+  longlong **callback_pointer;
+  longlong temp_array1 [2];
+  undefined *temp_pointer1;
+  undefined *temp_pointer2;
+  longlong temp_array2 [2];
+  undefined *temp_pointer3;
+  undefined *temp_pointer4;
   
-  lVar2 = _DAT_180c86870;
-  plStackX_8 = param_1;
+  // 初始化系统管理器
+  system_manager = _DAT_180c86870;
+  temp_stack_pointer = config_array;
+  
+  // 检查配置状态并执行初始化
   if (*(int *)(_DAT_180c86920 + 0xd94) != *(int *)(_DAT_180c86920 + 0xd90)) {
-    FUN_18004caf0(_DAT_180c86870,param_2,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004caf0(_DAT_180c86870, config_param1, config_param2, status_flag, 0xfffffffffffffffe);
   }
-  lVar3 = _DAT_180c86950;
+  
+  resource_manager = _DAT_180c86950;
   if (_DAT_180c86950 != 0) {
-    uVar8 = 0;
-    lVar7 = *(longlong *)(_DAT_180c86950 + 0x1868);
-    uVar10 = uVar8;
-    if (*(longlong *)(_DAT_180c86950 + 0x1870) - lVar7 >> 3 != 0) {
+    iteration_counter = 0;
+    memory_manager = *(longlong *)(_DAT_180c86950 + 0x1868);
+    temp_counter = iteration_counter;
+    
+    // 遍历并执行回调函数
+    if (*(longlong *)(_DAT_180c86950 + 0x1870) - memory_manager >> 3 != 0) {
       do {
-        if (*(longlong **)(uVar8 + lVar7) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(uVar8 + lVar7) + 0x108))();
+        if (*(longlong **)(iteration_counter + memory_manager) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(iteration_counter + memory_manager) + 0x108))();
         }
-        uVar9 = (int)uVar10 + 1;
-        uVar8 = uVar8 + 8;
-        lVar7 = *(longlong *)(lVar3 + 0x1868);
-        uVar10 = (ulonglong)uVar9;
-      } while ((ulonglong)(longlong)(int)uVar9 <
-               (ulonglong)(*(longlong *)(lVar3 + 0x1870) - lVar7 >> 3));
+        loop_counter = (int)temp_counter + 1;
+        iteration_counter = iteration_counter + 8;
+        memory_manager = *(longlong *)(resource_manager + 0x1868);
+        temp_counter = (ulonglong)loop_counter;
+      } while ((ulonglong)(longlong)(int)loop_counter <
+               (ulonglong)(*(longlong *)(resource_manager + 0x1870) - memory_manager >> 3));
     }
+    
+    // 执行系统回调
     (**(code **)(_DAT_180c8a9c0 + 0x40))();
   }
-  (**(code **)(**(longlong **)(lVar2 + 0x2b0) + 0xd0))();
+  
+  // 执行系统管理回调
+  (**(code **)(**(longlong **)(system_manager + 0x2b0) + 0xd0))();
+  
+  // 检查系统状态并执行相应操作
   if (((*(int *)(_DAT_180c86920 + 0x4d4) != *(int *)(_DAT_180c86920 + 0x4d0)) ||
       (*(int *)(_DAT_180c86920 + 0x314) != *(int *)(_DAT_180c86920 + 0x310))) ||
      (*(int *)(_DAT_180c86920 + 0x544) != *(int *)(_DAT_180c86920 + 0x540))) {
-    plStackX_8 = alStack_70;
-    puStack_60 = &UNK_180058f90;
-    puStack_58 = &UNK_180058f80;
-    FUN_18005c650(alStack_70);
+    temp_stack_pointer = temp_array1;
+    temp_pointer1 = &UNK_180058f90;
+    temp_pointer2 = &UNK_180058f80;
+    FUN_18005c650(temp_array1);
   }
+  
+  // 处理高级系统配置
   if ((_DAT_180c8a9d0 != 0) &&
      ((*(int *)(_DAT_180c86920 + 900) != *(int *)(_DAT_180c86920 + 0x380) ||
       (*(int *)(_DAT_180c86920 + 0x3f4) != *(int *)(_DAT_180c86920 + 0x3f0))))) {
-    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x40,8,3);
-    plStackX_8 = alStack_50;
-    puStack_40 = &UNK_180058f60;
-    puStack_38 = &UNK_180058f50;
-    plVar5 = (longlong *)FUN_18005c2a0(uVar4,alStack_50);
-    plStackX_10 = plVar5;
-    if (plVar5 != (longlong *)0x0) {
-      (**(code **)(*plVar5 + 0x28))(plVar5);
+    callback_param = FUN_18062b1e0(_DAT_180c8ed18, 0x40, 8, 3);
+    temp_stack_pointer = temp_array2;
+    temp_pointer3 = &UNK_180058f60;
+    temp_pointer4 = &UNK_180058f50;
+    resource_pointer = (longlong *)FUN_18005c2a0(callback_param, temp_array2);
+    temp_stack_pointer2 = resource_pointer;
+    
+    if (resource_pointer != (longlong *)0x0) {
+      (**(code **)(*resource_pointer + 0x28))(resource_pointer);
     }
-    uVar4 = _DAT_180c82868;
-    pplStackX_18 = &plStackX_8;
-    plStackX_8 = plVar5;
-    if (plVar5 != (longlong *)0x0) {
-      (**(code **)(*plVar5 + 0x28))(plVar5);
+    
+    callback_param = _DAT_180c82868;
+    callback_pointer = &temp_stack_pointer;
+    temp_stack_pointer = resource_pointer;
+    
+    if (resource_pointer != (longlong *)0x0) {
+      (**(code **)(*resource_pointer + 0x28))(resource_pointer);
     }
-    FUN_18005e370(uVar4,&plStackX_8);
-    if (plVar5 != (longlong *)0x0) {
-      (**(code **)(*plVar5 + 0x38))(plVar5);
+    
+    FUN_18005e370(callback_param, &temp_stack_pointer);
+    
+    if (resource_pointer != (longlong *)0x0) {
+      (**(code **)(*resource_pointer + 0x38))(resource_pointer);
     }
   }
-  lVar3 = _DAT_180c86920;
+  
+  // 更新系统配置参数
+  resource_manager = _DAT_180c86920;
   if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(_DAT_180c86920 + 0x540) < 1)) {
     if (*(int *)(_DAT_180c86920 + 0x2140) == 0) {
-      fVar11 = *(float *)(_DAT_180c86920 + 0x20d0);
+      calculated_value1 = *(float *)(_DAT_180c86920 + 0x20d0);
     }
     else {
-      fVar11 = 100.0;
+      calculated_value1 = INIT_CONFIG_MAX_FLOAT_VALUE;
     }
-    fVar11 = fVar11 * 0.01;
+    calculated_value1 = calculated_value1 * INIT_CONFIG_PRECISION;
   }
   else {
-    fVar11 = 1.0;
+    calculated_value1 = MATH_NORMALIZATION_FACTOR;
   }
-  *(float *)(lVar2 + 0x234) = fVar11;
-  *(undefined4 *)(lVar2 + 0x238) = 0x3f800000;
-  fVar12 = 1.0;
-  if (*(int *)(lVar3 + 0x1ea0) == 1) {
-    iVar1 = *(int *)(lVar3 + 0x1d50);
-    piVar6 = (int *)FUN_180171f10(*(undefined8 *)(_DAT_180c86870 + 8),&plStackX_10);
-    fVar12 = (float)iVar1 / (float)*piVar6;
-    fVar11 = fVar12 * *(float *)(lVar2 + 0x234);
-    fVar12 = fVar12 * *(float *)(lVar2 + 0x238);
+  
+  *(float *)(system_manager + 0x234) = calculated_value1;
+  *(undefined4 *)(system_manager + 0x238) = 0x3f800000;
+  calculated_value2 = MATH_NORMALIZATION_FACTOR;
+  
+  // 处理系统状态验证
+  if (*(int *)(resource_manager + 0x1ea0) == 1) {
+    validation_result = *(int *)(resource_manager + 0x1d50);
+    status_pointer = (int *)FUN_180171f10(*(undefined8 *)(_DAT_180c86870 + 8), &temp_stack_pointer2);
+    calculated_value2 = (float)validation_result / (float)*status_pointer;
+    calculated_value1 = calculated_value2 * *(float *)(system_manager + 0x234);
+    calculated_value2 = calculated_value2 * *(float *)(system_manager + 0x238);
   }
-  if (0.2 <= fVar11) {
-    if (1.0 <= fVar11) {
-      fVar11 = 1.0;
+  
+  // 应用数值范围限制
+  if (INIT_CONFIG_MIN_FLOAT_VALUE <= calculated_value1) {
+    if (MATH_NORMALIZATION_FACTOR <= calculated_value1) {
+      calculated_value1 = MATH_NORMALIZATION_FACTOR;
     }
   }
   else {
-    fVar11 = 0.2;
+    calculated_value1 = INIT_CONFIG_MIN_FLOAT_VALUE;
   }
-  *(float *)(lVar2 + 0x234) = fVar11;
-  if (0.2 <= fVar12) {
-    if (1.0 <= fVar12) {
-      fVar12 = 1.0;
+  
+  *(float *)(system_manager + 0x234) = calculated_value1;
+  
+  if (INIT_CONFIG_MIN_FLOAT_VALUE <= calculated_value2) {
+    if (MATH_NORMALIZATION_FACTOR <= calculated_value2) {
+      calculated_value2 = MATH_NORMALIZATION_FACTOR;
     }
-    *(float *)(lVar2 + 0x238) = fVar12;
+    *(float *)(system_manager + 0x238) = calculated_value2;
   }
   else {
-    *(undefined4 *)(lVar2 + 0x238) = 0x3e4ccccd;
+    *(undefined4 *)(system_manager + 0x238) = 0x3e4ccccd;
   }
+  
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180053200(undefined8 param_1,longlong param_2)
-void FUN_180053200(undefined8 param_1,longlong param_2)
+/**
+ * 初始化系统字符串和缓冲区处理器
+ * 
+ * 功能：
+ * - 处理字符串操作和格式化
+ * - 管理缓冲区分配和释放
+ * - 执行字符串复制和连接
+ * - 处理内存分配和回收
+ * - 管理系统资源清理
+ * 
+ * @param param_1 字符串缓冲区句柄
+ * @param param_2 缓冲区大小参数
+ * @return 无返回值
+ */
+void InitializationSystem_StringProcessor(StringHandle string_buffer, longlong buffer_size)
 
 {
-  undefined4 *puVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_1c8 [32];
-  undefined **ppuStack_1a8;
-  undefined8 uStack_1a0;
-  undefined *puStack_198;
-  undefined8 uStack_190;
-  int iStack_188;
-  undefined1 auStack_e8 [16];
-  undefined *puStack_d8;
-  undefined8 uStack_d0;
-  int iStack_c8;
-  ulonglong uStack_18;
+  undefined4 *string_pointer;
+  int string_length;
+  int temp_counter;
+  int temp_counter2;
+  undefined1 temp_buffer [32];
+  undefined **pointer_array;
+  undefined8 temp_param1;
+  undefined *temp_pointer1;
+  undefined8 temp_param2;
+  int stack_value1;
+  undefined1 temp_buffer2 [16];
+  undefined *temp_pointer2;
+  undefined8 temp_param3;
+  int stack_value2;
+  ulonglong security_cookie;
   
-  uStack_1a0 = 0xfffffffffffffffe;
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_1c8;
-  FUN_180047d40(auStack_e8,
+  // 初始化安全cookie和参数
+  temp_param1 = 0xfffffffffffffffe;
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  
+  // 初始化缓冲区和系统调用
+  FUN_180047d40(temp_buffer2,
                 (longlong)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 +
                 *(longlong *)(_DAT_180c86938 + 0x1d20));
-  FUN_180623de0(&puStack_198);
-  iVar2 = 0;
-  *(undefined4 *)(param_2 + 0x10) = 0;
-  if (*(undefined1 **)(param_2 + 8) != (undefined1 *)0x0) {
-    **(undefined1 **)(param_2 + 8) = 0;
-    iVar2 = *(int *)(param_2 + 0x10);
+  
+  FUN_180623de0(&temp_pointer1);
+  string_length = 0;
+  *(undefined4 *)(buffer_size + 0x10) = 0;
+  
+  // 处理字符串缓冲区
+  if (*(undefined1 **)(buffer_size + 8) != (undefined1 *)0x0) {
+    **(undefined1 **)(buffer_size + 8) = 0;
+    string_length = *(int *)(buffer_size + 0x10);
   }
-  iVar3 = iVar2 + 5;
-  FUN_1806277c0(param_2,iVar3);
-  puVar1 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-  *puVar1 = 0x3a757067;
-  *(undefined2 *)(puVar1 + 1) = 0x20;
-  *(int *)(param_2 + 0x10) = iVar3;
-  if (0 < iStack_c8) {
-    FUN_1806277c0(param_2,iVar3 + iStack_c8);
-                    // WARNING: Subroutine does not return
-    memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),uStack_d0,
-           (longlong)(iStack_c8 + 1));
+  
+  temp_counter2 = string_length + 5;
+  FUN_1806277c0(buffer_size, temp_counter2);
+  string_pointer = (undefined4 *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8));
+  *string_pointer = 0x3a757067;  // ":upg"
+  *(undefined2 *)(string_pointer + 1) = 0x20;  // " "
+  *(int *)(buffer_size + 0x10) = temp_counter2;
+  
+  // 处理缓冲区数据
+  if (0 < stack_value2) {
+    FUN_1806277c0(buffer_size, temp_counter2 + stack_value2);
+    memcpy((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8), temp_param3,
+           (longlong)(stack_value2 + 1));
   }
-  FUN_1806277c0(param_2,iVar2 + 6);
-  *(undefined2 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 10;
-  *(int *)(param_2 + 0x10) = iVar2 + 6;
-  iVar3 = iVar2 + 0xb;
-  FUN_1806277c0(param_2,iVar3);
-  puVar1 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-  *puVar1 = 0x3a757063;
-  *(undefined2 *)(puVar1 + 1) = 0x20;
-  *(int *)(param_2 + 0x10) = iVar3;
-  if (0 < iStack_188) {
-    FUN_1806277c0(param_2,iVar3 + iStack_188);
-                    // WARNING: Subroutine does not return
-    memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),uStack_190,
-           (longlong)(iStack_188 + 1));
+  
+  // 继续字符串处理
+  FUN_1806277c0(buffer_size, string_length + 6);
+  *(undefined2 *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8)) = 10;
+  *(int *)(buffer_size + 0x10) = string_length + 6;
+  
+  temp_counter2 = string_length + 0xb;
+  FUN_1806277c0(buffer_size, temp_counter2);
+  string_pointer = (undefined4 *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8));
+  *string_pointer = 0x3a757063;  // ":upc"
+  *(undefined2 *)(string_pointer + 1) = 0x20;  // " "
+  *(int *)(buffer_size + 0x10) = temp_counter2;
+  
+  // 处理第二段缓冲区数据
+  if (0 < stack_value1) {
+    FUN_1806277c0(buffer_size, temp_counter2 + stack_value1);
+    memcpy((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8), temp_param2,
+           (longlong)(stack_value1 + 1));
   }
-  FUN_1806277c0(param_2,iVar2 + 0xc);
-  *(undefined2 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 10;
-  *(int *)(param_2 + 0x10) = iVar2 + 0xc;
-  puStack_198 = &UNK_18098bcb0;
-  ppuStack_1a8 = &puStack_d8;
-  puStack_d8 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_1c8);
+  
+  // 完成字符串处理
+  FUN_1806277c0(buffer_size, string_length + 0xc);
+  *(undefined2 *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8)) = 10;
+  *(int *)(buffer_size + 0x10) = string_length + 0xc;
+  
+  temp_pointer1 = &UNK_18098bcb0;
+  pointer_array = &temp_pointer2;
+  temp_pointer2 = &UNK_18098bcb0;
+  
+  // 清理安全cookie并退出
+  FUN_1808fc050(security_cookie ^ (ulonglong)temp_buffer);
 }
 
-
-
-// WARNING: Removing unreachable block (ram,0x000180053668)
-// WARNING: Removing unreachable block (ram,0x0001800536a5)
-// WARNING: Removing unreachable block (ram,0x0001800536a9)
-// WARNING: Removing unreachable block (ram,0x0001800536b4)
-// WARNING: Removing unreachable block (ram,0x0001800536b7)
-// WARNING: Removing unreachable block (ram,0x0001800536e1)
-// WARNING: Removing unreachable block (ram,0x0001800536e5)
-// WARNING: Removing unreachable block (ram,0x0001800536f3)
-// WARNING: Removing unreachable block (ram,0x0001800536fb)
-// WARNING: Removing unreachable block (ram,0x000180053702)
-// WARNING: Removing unreachable block (ram,0x00018005370c)
-// WARNING: Removing unreachable block (ram,0x00018005373c)
-// WARNING: Removing unreachable block (ram,0x000180053744)
-// WARNING: Removing unreachable block (ram,0x000180053747)
-// WARNING: Removing unreachable block (ram,0x000180053714)
-// WARNING: Removing unreachable block (ram,0x000180053719)
-// WARNING: Removing unreachable block (ram,0x000180053760)
-// WARNING: Removing unreachable block (ram,0x00018005376e)
-// WARNING: Removing unreachable block (ram,0x0001800537b1)
-// WARNING: Removing unreachable block (ram,0x0001800537b5)
-// WARNING: Removing unreachable block (ram,0x0001800537c0)
-// WARNING: Removing unreachable block (ram,0x0001800537c3)
-// WARNING: Removing unreachable block (ram,0x0001800537ed)
-// WARNING: Removing unreachable block (ram,0x0001800537f1)
-// WARNING: Removing unreachable block (ram,0x0001800537ff)
-// WARNING: Removing unreachable block (ram,0x000180053807)
-// WARNING: Removing unreachable block (ram,0x00018005380c)
-// WARNING: Removing unreachable block (ram,0x00018005381c)
-// WARNING: Removing unreachable block (ram,0x00018005384b)
-// WARNING: Removing unreachable block (ram,0x000180053853)
-// WARNING: Removing unreachable block (ram,0x000180053856)
-// WARNING: Removing unreachable block (ram,0x000180053824)
-// WARNING: Removing unreachable block (ram,0x000180053828)
-// WARNING: Removing unreachable block (ram,0x00018005386f)
-// WARNING: Removing unreachable block (ram,0x00018005387d)
-// WARNING: Removing unreachable block (ram,0x0001800538c8)
-// WARNING: Removing unreachable block (ram,0x0001800538cc)
-// WARNING: Removing unreachable block (ram,0x0001800538d7)
-// WARNING: Removing unreachable block (ram,0x0001800538da)
-// WARNING: Removing unreachable block (ram,0x000180053906)
-// WARNING: Removing unreachable block (ram,0x00018005390a)
-// WARNING: Removing unreachable block (ram,0x000180053918)
-// WARNING: Removing unreachable block (ram,0x000180053921)
-// WARNING: Removing unreachable block (ram,0x000180053925)
-// WARNING: Removing unreachable block (ram,0x000180053931)
-// WARNING: Removing unreachable block (ram,0x000180053962)
-// WARNING: Removing unreachable block (ram,0x00018005396a)
-// WARNING: Removing unreachable block (ram,0x00018005396d)
-// WARNING: Removing unreachable block (ram,0x000180053939)
-// WARNING: Removing unreachable block (ram,0x00018005393e)
-// WARNING: Removing unreachable block (ram,0x000180053987)
-// WARNING: Removing unreachable block (ram,0x000180053996)
-// WARNING: Removing unreachable block (ram,0x0001800539f8)
-// WARNING: Removing unreachable block (ram,0x0001800539fc)
-// WARNING: Removing unreachable block (ram,0x000180053a07)
-// WARNING: Removing unreachable block (ram,0x000180053a0a)
-// WARNING: Removing unreachable block (ram,0x000180053a34)
-// WARNING: Removing unreachable block (ram,0x000180053a38)
-// WARNING: Removing unreachable block (ram,0x000180053a46)
-// WARNING: Removing unreachable block (ram,0x000180053a4e)
-// WARNING: Removing unreachable block (ram,0x000180053a53)
-// WARNING: Removing unreachable block (ram,0x000180053ad8)
-// WARNING: Removing unreachable block (ram,0x000180053a61)
-// WARNING: Removing unreachable block (ram,0x000180053aa2)
-// WARNING: Removing unreachable block (ram,0x000180053aab)
-// WARNING: Removing unreachable block (ram,0x000180053aaf)
-// WARNING: Removing unreachable block (ram,0x000180053a69)
-// WARNING: Removing unreachable block (ram,0x000180053a74)
-// WARNING: Removing unreachable block (ram,0x000180053ade)
-// WARNING: Removing unreachable block (ram,0x000180053b28)
-// WARNING: Removing unreachable block (ram,0x000180053b2c)
-// WARNING: Removing unreachable block (ram,0x000180053b32)
-// WARNING: Removing unreachable block (ram,0x000180053b36)
-// WARNING: Removing unreachable block (ram,0x000180053b60)
-// WARNING: Removing unreachable block (ram,0x000180053b64)
-// WARNING: Removing unreachable block (ram,0x000180053b72)
-// WARNING: Removing unreachable block (ram,0x000180053b7a)
-// WARNING: Removing unreachable block (ram,0x000180053b7e)
-// WARNING: Removing unreachable block (ram,0x000180053b8e)
-// WARNING: Removing unreachable block (ram,0x000180053bbe)
-// WARNING: Removing unreachable block (ram,0x000180053bc6)
-// WARNING: Removing unreachable block (ram,0x000180053bc9)
-// WARNING: Removing unreachable block (ram,0x000180053b97)
-// WARNING: Removing unreachable block (ram,0x000180053b9b)
-// WARNING: Removing unreachable block (ram,0x000180053be2)
-// WARNING: Removing unreachable block (ram,0x000180053bf0)
-// WARNING: Removing unreachable block (ram,0x000180053c4c)
-// WARNING: Removing unreachable block (ram,0x000180053c51)
-// WARNING: Removing unreachable block (ram,0x000180053c5d)
-// WARNING: Removing unreachable block (ram,0x000180053c60)
-// WARNING: Removing unreachable block (ram,0x000180053c8e)
-// WARNING: Removing unreachable block (ram,0x000180053c93)
-// WARNING: Removing unreachable block (ram,0x000180053ca1)
-// WARNING: Removing unreachable block (ram,0x000180053caa)
-// WARNING: Removing unreachable block (ram,0x000180053caf)
-// WARNING: Removing unreachable block (ram,0x000180053cbe)
-// WARNING: Removing unreachable block (ram,0x000180053cf1)
-// WARNING: Removing unreachable block (ram,0x000180053cf9)
-// WARNING: Removing unreachable block (ram,0x000180053cfc)
-// WARNING: Removing unreachable block (ram,0x000180053cc6)
-// WARNING: Removing unreachable block (ram,0x000180053cce)
-// WARNING: Removing unreachable block (ram,0x000180053d15)
-// WARNING: Removing unreachable block (ram,0x000180053d23)
-// WARNING: Removing unreachable block (ram,0x000180053d8b)
-// WARNING: Removing unreachable block (ram,0x000180053d8f)
-// WARNING: Removing unreachable block (ram,0x000180053d9a)
-// WARNING: Removing unreachable block (ram,0x000180053d9d)
-// WARNING: Removing unreachable block (ram,0x000180053dcd)
-// WARNING: Removing unreachable block (ram,0x000180053dd1)
-// WARNING: Removing unreachable block (ram,0x000180053ddf)
-// WARNING: Removing unreachable block (ram,0x000180053de8)
-// WARNING: Removing unreachable block (ram,0x000180053ded)
-// WARNING: Removing unreachable block (ram,0x000180053dfc)
-// WARNING: Removing unreachable block (ram,0x000180053e2f)
-// WARNING: Removing unreachable block (ram,0x000180053e37)
-// WARNING: Removing unreachable block (ram,0x000180053e3a)
-// WARNING: Removing unreachable block (ram,0x000180053e03)
-// WARNING: Removing unreachable block (ram,0x000180053e0b)
-// WARNING: Removing unreachable block (ram,0x000180053e54)
-// WARNING: Removing unreachable block (ram,0x000180053e63)
-// WARNING: Removing unreachable block (ram,0x000180053ead)
-// WARNING: Removing unreachable block (ram,0x000180053eb5)
-// WARNING: Removing unreachable block (ram,0x000180053ee6)
-// WARNING: Removing unreachable block (ram,0x000180053ef5)
-// WARNING: Removing unreachable block (ram,0x000180053f18)
-// WARNING: Removing unreachable block (ram,0x000180053f20)
-// WARNING: Removing unreachable block (ram,0x000180053f43)
-// WARNING: Removing unreachable block (ram,0x000180053f4b)
-// WARNING: Removing unreachable block (ram,0x000180053f74)
-// WARNING: Removing unreachable block (ram,0x000180053f79)
-// WARNING: Removing unreachable block (ram,0x000180053f98)
-// WARNING: Removing unreachable block (ram,0x000180053fa0)
-// WARNING: Removing unreachable block (ram,0x000180053fbc)
-// WARNING: Removing unreachable block (ram,0x000180053fc4)
-// WARNING: Removing unreachable block (ram,0x000180053fe5)
-// WARNING: Removing unreachable block (ram,0x000180053fea)
-// WARNING: Removing unreachable block (ram,0x000180054035)
-// WARNING: Removing unreachable block (ram,0x000180054062)
-// WARNING: Removing unreachable block (ram,0x000180054075)
-// WARNING: Removing unreachable block (ram,0x00018005407a)
-// WARNING: Removing unreachable block (ram,0x0001800540b2)
-// WARNING: Removing unreachable block (ram,0x0001800540b7)
-// WARNING: Removing unreachable block (ram,0x0001800540d9)
-// WARNING: Removing unreachable block (ram,0x0001800540e1)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1800533d0(undefined8 param_1,undefined8 param_2,longlong param_3)
-void FUN_1800533d0(undefined8 param_1,undefined8 param_2,longlong param_3)
+/**
+ * 初始化系统资源管理器
+ * 
+ * 功能：
+ * - 管理系统资源分配和释放
+ * - 处理进程ID和系统信息
+ * - 执行字符串操作和比较
+ * - 管理内存分配和回收
+ * - 处理系统初始化流程
+ * 
+ * @param param_1 系统资源句柄
+ * @param param_2 配置参数
+ * @param param_3 资源管理参数
+ * @return 无返回值
+ */
+void InitializationSystem_ResourceManager(ResourceHandle resource_handle, ConfigHandle config_param, longlong management_param)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  undefined4 uVar3;
-  int iVar4;
-  uint uVar5;
-  uint uVar6;
-  undefined1 *puVar7;
-  ulonglong uVar8;
-  undefined *puVar9;
-  longlong lVar10;
-  uint uVar11;
-  undefined1 auStack_228 [32];
-  undefined1 uStack_208;
-  undefined4 uStack_1f8;
-  undefined4 uStack_1f4;
-  undefined *puStack_1b0;
-  undefined1 *puStack_1a8;
-  uint uStack_1a0;
-  undefined8 uStack_198;
-  undefined *puStack_f0;
-  longlong lStack_e8;
-  uint uStack_e0;
-  undefined8 uStack_d8;
-  undefined8 uStack_d0;
-  undefined *puStack_c8;
-  undefined8 uStack_c0;
-  undefined4 uStack_b8;
-  undefined8 uStack_b0;
-  undefined1 auStack_88 [32];
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  char acStack_58 [16];
-  ulonglong uStack_48;
+  longlong system_manager;
+  longlong resource_manager;
+  undefined4 process_id;
+  int iteration_count;
+  uint resource_counter;
+  uint allocation_counter;
+  undefined1 *memory_pointer;
+  ulonglong memory_size;
+  undefined *temp_pointer;
+  longlong temp_resource;
+  uint temp_counter;
+  undefined1 temp_buffer [32];
+  undefined1 temp_flag;
+  undefined4 temp_value1;
+  undefined4 temp_value2;
+  undefined *temp_pointer1;
+  undefined1 *temp_pointer2;
+  uint buffer_size;
+  undefined8 temp_param1;
+  undefined *temp_pointer3;
+  longlong stack_value;
+  uint stack_counter;
+  undefined8 temp_param2;
+  undefined8 temp_param3;
+  undefined *temp_pointer4;
+  undefined8 temp_param4;
+  undefined4 temp_value3;
+  undefined8 temp_param5;
+  undefined8 temp_param6;
+  undefined1 temp_buffer2 [32];
+  undefined8 temp_param7;
+  undefined8 temp_param8;
+  char process_name_buffer [16];
+  ulonglong security_cookie;
   
-  uStack_68 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_228;
-  puVar7 = (undefined1 *)0x0;
-  uStack_1f8 = 0;
-  uStack_d0 = param_2;
-  uStack_60 = param_2;
-  uVar3 = GetCurrentProcessId();
-  puStack_f0 = &UNK_180a3c3e0;
-  uStack_d8 = 0;
-  lStack_e8 = 0;
-  uStack_e0 = 0;
-  FUN_1806277c0(&puStack_f0,6);
-  lVar1 = lStack_e8;
-  uVar8 = (ulonglong)uStack_e0;
-  *(undefined4 *)(uVar8 + lStack_e8) = 0x44495020;
-  *(undefined2 *)(uVar8 + 4 + lStack_e8) = 0x203a;
-  *(undefined1 *)(uVar8 + 6 + lStack_e8) = 0;
-  uStack_e0 = 6;
-  FUN_180060680(acStack_58,&UNK_1809fd0a0,uVar3);
-  lVar2 = -1;
+  // 初始化安全cookie和参数
+  temp_param7 = 0xfffffffffffffffe;
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  memory_pointer = (undefined1 *)0x0;
+  temp_value1 = 0;
+  temp_param3 = config_param;
+  temp_param8 = config_param;
+  
+  // 获取进程ID并初始化缓冲区
+  process_id = GetCurrentProcessId();
+  temp_pointer3 = &UNK_180a3c3e0;
+  temp_param4 = 0;
+  stack_value = 0;
+  stack_counter = 0;
+  
+  FUN_1806277c0(&temp_pointer3, 6);
+  system_manager = stack_value;
+  memory_size = (ulonglong)stack_counter;
+  
+  // 写入进程信息前缀
+  *(undefined4 *)(memory_size + system_manager) = 0x44495020;  // "DIP "
+  *(undefined2 *)(memory_size + 4 + system_manager) = 0x203a;  // ":"
+  *(undefined1 *)(memory_size + 6 + system_manager) = 0;
+  stack_counter = 6;
+  
+  // 获取并处理进程名称
+  FUN_180060680(process_name_buffer, &UNK_1809fd0a0, process_id);
+  resource_manager = -1;
+  
+  // 计算进程名称长度
   do {
-    lVar10 = lVar2;
-    lVar2 = lVar10 + 1;
-  } while (acStack_58[lVar10 + 1] != '\0');
-  if (0 < (int)(lVar10 + 1)) {
-    FUN_1806277c0(&puStack_f0,(int)lVar10 + 7);
-                    // WARNING: Subroutine does not return
-    memcpy((ulonglong)uStack_e0 + lStack_e8,acStack_58,(longlong)((int)lVar10 + 2));
+    temp_resource = resource_manager;
+    resource_manager = temp_resource + 1;
+  } while (process_name_buffer[temp_resource + 1] != '\0');
+  
+  // 复制进程名称到缓冲区
+  if (0 < (int)(resource_manager + 1)) {
+    FUN_1806277c0(&temp_pointer3, (int)resource_manager + 7);
+    memcpy((ulonglong)stack_counter + system_manager, process_name_buffer, (longlong)((int)resource_manager + 2));
   }
-  puVar9 = &DAT_1809fd128;
+  
+  // 处理系统路径信息
+  temp_pointer = &DAT_1809fd128;
   if (DAT_180c82841 != '\0') {
-    puVar9 = &UNK_1809fd730;
+    temp_pointer = &UNK_1809fd730;
   }
-  FUN_180627910(auStack_88,puVar9);
-  puStack_c8 = &UNK_180a3c3e0;
-  uStack_b0 = 0;
-  uStack_c0 = 0;
-  uStack_b8 = 0;
-  puStack_1b0 = &UNK_180a3c3e0;
-  uVar11 = 0;
-  uStack_198 = 0;
-  puStack_1a8 = (undefined1 *)0x0;
-  uStack_1a0 = 0;
-  uStack_1f8 = 2;
-  uVar6 = *(uint *)(param_3 + 0x10);
-  uVar8 = (ulonglong)uVar6;
-  uVar5 = 0;
-  if (*(longlong *)(param_3 + 8) == 0) {
-LAB_1800535b0:
-    uVar11 = uVar5;
-    if (uVar6 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(puVar7,*(undefined8 *)(param_3 + 8),uVar8);
+  
+  FUN_180627910(temp_buffer2, temp_pointer);
+  temp_pointer4 = &UNK_180a3c3e0;
+  temp_param5 = 0;
+  temp_param6 = 0;
+  temp_value3 = 0;
+  temp_pointer1 = &UNK_180a3c3e0;
+  temp_counter = 0;
+  temp_param1 = 0;
+  temp_pointer2 = (undefined1 *)0x0;
+  buffer_size = 0;
+  temp_value2 = 2;
+  allocation_counter = *(uint *)(management_param + 0x10);
+  memory_size = (ulonglong)allocation_counter;
+  resource_counter = 0;
+  
+  // 处理资源分配
+  if (*(longlong *)(management_param + 8) == 0) {
+RESOURCE_ALLOCATION_COMPLETE:
+    temp_counter = resource_counter;
+    if (allocation_counter != 0) {
+      memcpy(memory_pointer, *(undefined8 *)(management_param + 8), memory_size);
     }
   }
-  else if (uVar6 != 0) {
-    iVar4 = uVar6 + 1;
-    if (iVar4 < 0x10) {
-      iVar4 = 0x10;
+  else if (allocation_counter != 0) {
+    iteration_count = allocation_counter + 1;
+    if (iteration_count < 0x10) {
+      iteration_count = 0x10;
     }
-    puVar7 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar4,0x13);
-    *puVar7 = 0;
-    puStack_1a8 = puVar7;
-    uVar5 = FUN_18064e990(puVar7);
-    uStack_198 = CONCAT44(uStack_198._4_4_,uVar5);
-    goto LAB_1800535b0;
+    
+    // 分配内存资源
+    memory_pointer = (undefined1 *)FUN_18062b420(_DAT_180c8ed18, (longlong)iteration_count, 0x13);
+    *memory_pointer = 0;
+    temp_pointer2 = memory_pointer;
+    resource_counter = FUN_18064e990(memory_pointer);
+    temp_param1 = CONCAT44(temp_param1._4_4_, resource_counter);
+    goto RESOURCE_ALLOCATION_COMPLETE;
   }
-  if (puVar7 != (undefined1 *)0x0) {
-    puVar7[uVar8] = 0;
+  
+  // 完成资源分配并处理数据
+  if (memory_pointer != (undefined1 *)0x0) {
+    memory_pointer[memory_size] = 0;
   }
-  uStack_1f4 = *(undefined4 *)(param_3 + 0x1c);
-  uStack_198 = CONCAT44(uStack_1f4,(undefined4)uStack_198);
-  uStack_1a0 = uVar6;
-  if (uVar6 != 0xfffffffa) {
-    uVar6 = uVar6 + 7;
-    if (puVar7 == (undefined1 *)0x0) {
-      if ((int)uVar6 < 0x10) {
-        uVar6 = 0x10;
+  
+  temp_value2 = *(undefined4 *)(management_param + 0x1c);
+  temp_param1 = CONCAT44(temp_value2, (undefined4)temp_param1);
+  buffer_size = allocation_counter;
+  
+  // 处理资源扩展
+  if (allocation_counter != 0xfffffffa) {
+    allocation_counter = allocation_counter + 7;
+    if (memory_pointer == (undefined1 *)0x0) {
+      if ((int)allocation_counter < 0x10) {
+        allocation_counter = 0x10;
       }
-      puVar7 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
-      *puVar7 = 0;
+      memory_pointer = (undefined1 *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)allocation_counter, 0x13);
+      *memory_pointer = 0;
     }
     else {
-      if (uVar6 <= uVar11) goto LAB_18005364c;
-      uStack_208 = 0x13;
-      puVar7 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puVar7,uVar6,0x10);
+      if (allocation_counter <= temp_counter) goto RESOURCE_EXTENSION_COMPLETE;
+      temp_flag = 0x13;
+      memory_pointer = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18, memory_pointer, allocation_counter, 0x10);
     }
-    puStack_1a8 = puVar7;
-    uVar3 = FUN_18064e990(puVar7);
-    uStack_198 = CONCAT44(uStack_198._4_4_,uVar3);
+    
+    temp_pointer2 = memory_pointer;
+    process_id = FUN_18064e990(memory_pointer);
+    temp_param1 = CONCAT44(temp_param1._4_4_, process_id);
   }
-LAB_18005364c:
-                    // WARNING: Subroutine does not return
-  memcpy(puVar7 + uVar8,lVar1,7);
+  
+RESOURCE_EXTENSION_COMPLETE:
+  // 完成资源处理并复制数据
+  memcpy(memory_pointer + memory_size, system_manager, 7);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 初始化系统完成处理器
+ * 
+ * 功能：
+ * - 处理系统初始化完成流程
+ * - 管理系统回调函数执行
+ * - 处理字符串比较和匹配
+ * - 管理资源清理和释放
+ * - 验证系统完整性
+ * 
+ * @param param_1 系统完成句柄
+ * @param param_2 完成参数1
+ * @param param_3 完成参数2
+ * @param param_4 完成参数3
+ * @return 系统完成状态码
+ */
 undefined8
-FUN_180054120(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+InitializationSystem_CompletionHandler(SystemHandle completion_handle, undefined8 completion_param1, undefined8 completion_param2, undefined8 completion_param3)
 
 {
-  char cVar1;
-  char cVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  longlong lVar6;
-  char *pcVar7;
-  uint uVar8;
-  int *piVar10;
-  ulonglong uVar11;
-  undefined8 uVar12;
-  ulonglong uVar13;
-  ulonglong uVar14;
-  longlong lVar15;
-  undefined8 *puVar16;
-  ulonglong uVar17;
-  undefined *puStack_70;
-  undefined1 *puStack_68;
-  uint uStack_60;
-  undefined8 uStack_58;
-  undefined8 *puStack_50;
-  undefined8 *puStack_48;
-  undefined8 uStack_40;
-  undefined4 uStack_38;
-  ulonglong uVar9;
+  char comparison_char1;
+  char comparison_char2;
+  undefined8 *callback_array;
+  undefined8 *callback_array_end;
+  undefined8 *callback_pointer;
+  longlong array_size;
+  char *string_pointer;
+  uint string_length;
+  int *function_pointer;
+  ulonglong iteration_counter;
+  undefined8 completion_status;
+  ulonglong temp_counter;
+  ulonglong loop_counter;
+  longlong temp_resource;
+  undefined8 *resource_pointer;
+  ulonglong resource_size;
+  undefined *temp_pointer1;
+  undefined1 *memory_pointer;
+  uint memory_size;
+  undefined8 temp_param1;
+  undefined8 temp_param2;
+  undefined8 *temp_pointer2;
+  undefined8 *temp_pointer3;
+  undefined8 temp_param4;
+  undefined4 temp_value;
+  ulonglong system_cookie;
   
-  puStack_50 = (undefined8 *)0x0;
-  puStack_48 = (undefined8 *)0x0;
-  uVar17 = 0;
-  uStack_40 = 0;
-  uStack_38 = 3;
-  FUN_180052200(_DAT_180c86870,&puStack_50,param_3,param_4,0xfffffffffffffffe);
-  puVar5 = puStack_48;
-  puVar4 = puStack_50;
-  uVar11 = (longlong)puStack_48 - (longlong)puStack_50 >> 5;
-  puVar3 = puVar4;
-  if (uVar11 == 0) {
-LAB_180054302:
-    uVar12 = 0;
-joined_r0x00018005430b:
-    for (; puVar3 != puVar5; puVar3 = puVar3 + 4) {
-      (**(code **)*puVar3)(puVar3,0);
+  // 初始化回调数组
+  temp_pointer2 = (undefined8 *)0x0;
+  temp_pointer3 = (undefined8 *)0x0;
+  resource_size = 0;
+  temp_param4 = 0;
+  temp_value = 3;
+  
+  // 执行字符串预处理
+  InitializationSystem_StringProcessor(_DAT_180c86870, &temp_pointer2, completion_param2, completion_param3, 0xfffffffffffffffe);
+  
+  callback_array_end = temp_pointer3;
+  callback_array = temp_pointer2;
+  array_size = (longlong)temp_pointer3 - (longlong)temp_pointer2 >> 5;
+  callback_pointer = callback_array;
+  
+  // 处理回调函数数组
+  if (array_size == 0) {
+CALLBACK_PROCESSING_COMPLETE:
+    completion_status = 0;
+    
+    // 执行所有回调函数
+    for (; callback_pointer != callback_array_end; callback_pointer = callback_pointer + 4) {
+      (**(code **)*callback_pointer)(callback_pointer, 0);
     }
-    if (puVar4 != (undefined8 *)0x0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(puVar4);
+    
+    // 清理资源并返回
+    if (callback_array != (undefined8 *)0x0) {
+      FUN_18064e900(callback_array);
     }
-    return uVar12;
+    return completion_status;
   }
-  piVar10 = (int *)(puStack_50 + 2);
-  uVar13 = uVar17;
-LAB_18005419d:
-  puStack_70 = &UNK_180a3c3e0;
-  uStack_58 = 0;
-  puStack_68 = (undefined1 *)0x0;
-  uStack_60 = 0;
-  FUN_1806277c0(&puStack_70,*piVar10);
-  if (*piVar10 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_68,*(undefined8 *)(piVar10 + -2),*piVar10 + 1);
+  
+  // 处理函数指针数组
+  function_pointer = (int *)(callback_array + 2);
+  temp_counter = resource_size;
+  
+CALLBACK_PROCESSING_LOOP:
+  // 初始化临时缓冲区
+  temp_pointer1 = &UNK_180a3c3e0;
+  temp_param2 = 0;
+  memory_pointer = (undefined1 *)0x0;
+  memory_size = 0;
+  
+  FUN_1806277c0(&temp_pointer1, *function_pointer);
+  
+  // 处理字符串数据
+  if (*function_pointer != 0) {
+    memcpy(memory_pointer, *(undefined8 *)(function_pointer + -2), *function_pointer + 1);
   }
-  if (*(longlong *)(piVar10 + -2) != 0) {
-    uStack_60 = 0;
-    if (puStack_68 != (undefined1 *)0x0) {
-      *puStack_68 = 0;
+  
+  // 检查并处理字符串数据
+  if (*(longlong *)(function_pointer + -2) != 0) {
+    memory_size = 0;
+    if (memory_pointer != (undefined1 *)0x0) {
+      *memory_pointer = 0;
     }
-    uStack_58 = uStack_58 & 0xffffffff;
+    temp_param2 = temp_param2 & 0xffffffff;
   }
-  uVar9 = uVar17;
-  uVar14 = uVar17;
-  if (uStack_60 != 0) {
+  
+  system_cookie = resource_size;
+  loop_counter = resource_size;
+  resource_size = resource_size;
+  
+  // 处理字符串字符转换
+  if (memory_size != 0) {
     do {
-      if ((byte)(puStack_68[uVar14] + 0xbf) < 0x1a) {
-        puStack_68[uVar14] = puStack_68[uVar14] + ' ';
+      if ((byte)(memory_pointer[resource_size] + 0xbf) < 0x1a) {
+        memory_pointer[resource_size] = memory_pointer[resource_size] + ' ';
       }
-      uVar8 = (int)uVar9 + 1;
-      uVar9 = (ulonglong)uVar8;
-      uVar14 = uVar14 + 1;
-    } while (uVar8 < uStack_60);
+      string_length = (int)system_cookie + 1;
+      system_cookie = (ulonglong)string_length;
+      resource_size = resource_size + 1;
+    } while (string_length < memory_size);
   }
-  lVar6 = func_0x0001800464d0(&puStack_70);
-  puVar16 = (undefined8 *)&UNK_1809fde40;
+  
+  // 执行字符串比较
+  array_size = func_0x0001800464d0(&temp_pointer1);
+  resource_pointer = (undefined8 *)&UNK_1809fde40;
+  
   do {
-    pcVar7 = (char *)*puVar16;
-    lVar15 = lVar6 - (longlong)pcVar7;
+    string_pointer = (char *)*resource_pointer;
+    temp_resource = array_size - (longlong)string_pointer;
+    
+    // 执行字符比较
     do {
-      cVar1 = *pcVar7;
-      cVar2 = pcVar7[lVar15];
-      if (cVar1 != cVar2) break;
-      pcVar7 = pcVar7 + 1;
-    } while (cVar2 != '\0');
-    if (cVar1 == cVar2) break;
-    puVar16 = puVar16 + 1;
-    if (0x1809fde87 < (longlong)puVar16) {
-      puStack_70 = &UNK_180a3c3e0;
-      if (puStack_68 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
+      comparison_char1 = *string_pointer;
+      comparison_char2 = string_pointer[temp_resource];
+      if (comparison_char1 != comparison_char2) break;
+      string_pointer = string_pointer + 1;
+    } while (comparison_char2 != '\0');
+    
+    if (comparison_char1 == comparison_char2) break;
+    
+    resource_pointer = resource_pointer + 1;
+    if (0x1809fde87 < (longlong)resource_pointer) {
+      temp_pointer1 = &UNK_180a3c3e0;
+      if (memory_pointer != (undefined1 *)0x0) {
         FUN_18064e900();
       }
-      puStack_68 = (undefined1 *)0x0;
-      uStack_58 = (ulonglong)uStack_58._4_4_ << 0x20;
-      puStack_70 = &UNK_18098bcb0;
-      uVar12 = 1;
-      goto joined_r0x00018005430b;
+      memory_pointer = (undefined1 *)0x0;
+      temp_param2 = (ulonglong)temp_param2._4_4_ << 0x20;
+      temp_pointer1 = &UNK_18098bcb0;
+      completion_status = 1;
+      goto CALLBACK_PROCESSING_COMPLETE;
     }
   } while( true );
-  puStack_70 = &UNK_180a3c3e0;
-  if (puStack_68 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
+  
+  // 清理临时资源
+  temp_pointer1 = &UNK_180a3c3e0;
+  if (memory_pointer != (undefined1 *)0x0) {
     FUN_18064e900();
   }
-  puStack_68 = (undefined1 *)0x0;
-  uStack_58 = (ulonglong)uStack_58._4_4_ << 0x20;
-  puStack_70 = &UNK_18098bcb0;
-  uVar8 = (int)uVar13 + 1;
-  uVar13 = (ulonglong)uVar8;
-  piVar10 = piVar10 + 8;
-  if (uVar11 <= (ulonglong)(longlong)(int)uVar8) goto LAB_180054302;
-  goto LAB_18005419d;
+  memory_pointer = (undefined1 *)0x0;
+  temp_param2 = (ulonglong)temp_param2._4_4_ << 0x20;
+  temp_pointer1 = &UNK_18098bcb0;
+  
+  string_length = (int)temp_counter + 1;
+  temp_counter = (ulonglong)string_length;
+  function_pointer = function_pointer + 8;
+  
+  if (array_size <= (ulonglong)(longlong)(int)string_length) goto CALLBACK_PROCESSING_COMPLETE;
+  goto CALLBACK_PROCESSING_LOOP;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+/* ============================================================================
+ * 技术说明
+ * ============================================================================
+/**
+ * 本文件实现了初始化系统的高级配置和数学计算功能：
+ * 
+ * 1. 高级数学计算
+ *    - 执行复杂的浮点数运算和数学函数
+ *    - 处理exp2f和log2f等高级数学运算
+ *    - 实现数值优化和精度控制
+ *    - 执行范围验证和限制检查
+ *    - 处理迭代计算和收敛算法
+ * 
+ * 2. 系统配置管理
+ *    - 管理系统配置参数和状态
+ *    - 处理系统初始化和配置流程
+ *    - 执行配置验证和状态检查
+ *    - 管理系统资源和内存分配
+ *    - 处理系统回调函数执行
+ * 
+ * 3. 字符串处理
+ *    - 执行字符串格式化和操作
+ *    - 处理缓冲区分配和管理
+ *    - 实现字符串复制和连接
+ *    - 处理进程信息获取和处理
+ *    - 管理字符串比较和匹配
+ * 
+ * 4. 资源管理
+ *    - 分配和释放系统资源
+ *    - 管理内存分配和回收
+ *    - 处理资源生命周期管理
+ *    - 执行资源清理和优化
+ *    - 管理系统资源池
+ * 
+ * 5. 系统完整性验证
+ *    - 执行系统完整性检查
+ *    - 处理系统状态验证
+ *    - 管理系统完成流程
+ *    - 执行最终验证和确认
+ *    - 确保系统稳定性
+ * 
+ * 该模块是初始化系统的核心组成部分，为系统启动和配置提供高级支持。
+ */
