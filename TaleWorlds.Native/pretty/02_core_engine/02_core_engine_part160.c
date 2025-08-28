@@ -171,73 +171,87 @@ void process_engine_data_statistics(longlong context_ptr)
 
 
 
-// 函数: void FUN_180149b31(longlong param_1,longlong param_2)
-void FUN_180149b31(longlong param_1,longlong param_2)
-
+/**
+ * 处理引擎数据统计的变体版本
+ * @param context_ptr 引擎上下文指针
+ * @param data_ptr 数据指针
+ */
+void process_engine_data_statistics_variant(longlong context_ptr, longlong data_ptr)
 {
-  int *piVar1;
-  ushort uVar2;
-  int iVar3;
-  int in_EAX;
-  uint uVar4;
-  ulonglong uVar5;
-  uint *unaff_RSI;
-  uint uVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
-  longlong lVar10;
-  undefined8 uStack0000000000000028;
-  undefined8 *in_stack_00000040;
+  int *counter_ptr;
+  ushort height;
+  int data_value;
+  int width;
+  uint sum_result;
+  ulonglong temp_sum;
+  uint *result_ptr;
+  uint valid_count;
+  ulonglong index;
+  ulonglong max_items;
+  longlong total_items;
+  undefined8 temp_param;
+  undefined8 *data_array;
   
-  uVar2 = *(ushort *)(param_2 + 0x32e);
-  uVar9 = 0;
-  uStack0000000000000028 = 0;
-  FUN_18029eb90(*(undefined8 *)(param_1 + 0x1cd8));
-  uVar6 = 0;
-  lVar10 = (longlong)(int)((uint)uVar2 * in_EAX);
-  uVar7 = uVar9;
-  uVar8 = uVar9;
-  uVar4 = uVar6;
-  if (0 < lVar10) {
+  // 获取高度信息
+  height = *(ushort *)(data_ptr + 0x32e);
+  temp_sum = 0;
+  temp_param = 0;
+  // 获取数据数组
+  get_data_array(*(undefined8 *)(context_ptr + 0x1cd8));
+  
+  valid_count = 0;
+  total_items = (longlong)(int)((uint)height * width);
+  index = temp_sum;
+  temp_sum = temp_sum;
+  sum_result = valid_count;
+  
+  // 遍历数据数组进行统计
+  if (0 < total_items) {
     do {
-      iVar3 = *(int *)((longlong)in_stack_00000040 + uVar8 * 4);
-      uVar5 = (ulonglong)(uint)((int)uVar9 + iVar3);
-      if (iVar3 == 0) {
-        uVar5 = uVar9;
+      data_value = *(int *)((longlong)data_array + index * 4);
+      temp_sum = (ulonglong)(uint)((int)temp_sum + data_value);
+      if (data_value == 0) {
+        temp_sum = temp_sum;
       }
-      uVar6 = (uint)uVar5;
-      uVar4 = (uint)uVar7 + 1;
-      if (iVar3 == 0) {
-        uVar4 = (uint)uVar7;
+      sum_result = (uint)temp_sum;
+      valid_count = (uint)temp_sum + 1;
+      if (data_value == 0) {
+        valid_count = (uint)temp_sum;
       }
-      uVar8 = uVar8 + 1;
-      uVar9 = uVar5;
-      uVar7 = (ulonglong)uVar4;
-    } while ((longlong)uVar8 < lVar10);
+      index = index + 1;
+      temp_sum = temp_sum;
+      temp_sum = (ulonglong)valid_count;
+    } while ((longlong)index < total_items);
   }
-  *unaff_RSI = uVar4;
-  unaff_RSI[1] = uVar6;
-  if (in_stack_00000040 == (undefined8 *)0x0) {
+  
+  // 保存统计结果
+  *result_ptr = valid_count;
+  result_ptr[1] = sum_result;
+  
+  // 清理数据数组
+  if (data_array == (undefined8 *)0x0) {
     return;
   }
-  uVar9 = (ulonglong)in_stack_00000040 & 0xffffffffffc00000;
-  if (uVar9 != 0) {
-    lVar10 = uVar9 + 0x80 + ((longlong)in_stack_00000040 - uVar9 >> 0x10) * 0x50;
-    lVar10 = lVar10 - (ulonglong)*(uint *)(lVar10 + 4);
-    if ((*(void ***)(uVar9 + 0x70) == &ExceptionList) && (*(char *)(lVar10 + 0xe) == '\0')) {
-      *in_stack_00000040 = *(undefined8 *)(lVar10 + 0x20);
-      *(undefined8 **)(lVar10 + 0x20) = in_stack_00000040;
-      piVar1 = (int *)(lVar10 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  
+  temp_sum = (ulonglong)data_array & 0xffffffffffc00000;
+  if (temp_sum != 0) {
+    total_items = temp_sum + 0x80 + ((longlong)data_array - temp_sum >> 0x10) * 0x50;
+    total_items = total_items - (ulonglong)*(uint *)(total_items + 4);
+    if ((*(void ***)(temp_sum + 0x70) == &ExceptionList) && (*(char *)(total_items + 0xe) == '\0')) {
+      // 标准清理流程
+      *data_array = *(undefined8 *)(total_items + 0x20);
+      *(undefined8 **)(total_items + 0x20) = data_array;
+      counter_ptr = (int *)(total_items + 0x18);
+      *counter_ptr = *counter_ptr + -1;
+      if (*counter_ptr == 0) {
+        cleanup_memory_pool();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar9,CONCAT71(0xff000000,*(void ***)(uVar9 + 0x70) == &ExceptionList),
-                          in_stack_00000040,uVar9,0xfffffffffffffffe);
+      // 异常清理流程
+      cleanup_memory_block(temp_sum, CONCAT71(0xff000000, *(void ***)(temp_sum + 0x70) == &ExceptionList),
+                          data_array, temp_sum, 0xfffffffffffffffe);
     }
   }
   return;
