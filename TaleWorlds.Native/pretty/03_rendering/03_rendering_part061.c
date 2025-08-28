@@ -769,101 +769,137 @@ void FUN_18029d760(longlong param_1,int param_2,char param_3,longlong param_4,in
 
 
 
-// 函数: void FUN_18029d930(longlong param_1,undefined8 param_2,char param_3,longlong param_4)
+// 渲染系统纹理设置函数
+// 设置渲染系统的纹理目标
+// param_1: 渲染系统上下文指针
+// param_2: 纹理索引
+// param_3: 纹理类型标志
+// param_4: 纹理数据指针
 void FUN_18029d930(longlong param_1,undefined8 param_2,char param_3,longlong param_4)
-
 {
-  longlong *plVar1;
-  undefined8 uVar2;
-  undefined1 auStack_88 [32];
-  undefined8 uStack_68;
-  undefined4 uStack_60;
-  undefined8 *puStack_58;
-  undefined8 uStack_50;
-  undefined8 uStack_48;
-  undefined8 auStack_40 [4];
-  ulonglong uStack_20;
+  longlong *render_core;
+  undefined8 texture_data;
+  undefined1 security_buffer[RENDER_BUFFER_SIZE_SMALL];
+  undefined8 texture_param1;
+  undefined4 param_count;
+  undefined8 *texture_array;
+  undefined8 texture_param2;
+  undefined8 texture_value;
+  undefined8 texture_handles[RENDER_PARAM_MAX_SLOTS];
+  ulonglong security_key;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
-  uVar2 = 0;
+  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  texture_data = 0;
+  
+  // 处理纹理数据
   if (param_4 != 0) {
-    uVar2 = *(undefined8 *)(param_4 + 0x20);
-    *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    texture_data = *(undefined8 *)(param_4 + 0x20);  // 获取纹理数据
+    *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);  // 设置帧计数器
   }
-  plVar1 = *(longlong **)(param_1 + 0x8400);
-  uStack_48 = uVar2;
+  
+  render_core = *(longlong **)(param_1 + 0x8400);
+  texture_value = texture_data;
+  
+  // 处理不同类型的纹理设置
   if (param_3 == '\0') {
-    puStack_58 = auStack_40;
-    uStack_60 = 4;
-    uStack_68._0_4_ = 1;
-    (**(code **)(*plVar1 + 0x2d0))(plVar1,0,0,0);
-    plVar1 = *(longlong **)(param_1 + 0x8400);
-    puStack_58 = &uStack_48;
-    uStack_50 = 0;
-    auStack_40[(int)param_2 - 1] = uVar2;
-    uStack_60 = 4;
-    uStack_68 = CONCAT44(uStack_68._4_4_,1);
-    (**(code **)(*plVar1 + 0x110))(plVar1,0xffffffff,0,0);
+    // 重置纹理设置
+    texture_array = texture_handles;
+    param_count = 4;
+    texture_param1._0_4_ = 1;
+    
+    // 调用渲染核心重置函数
+    (**(code **)(*render_core + 0x2d0))(render_core, 0, 0, 0);
+    render_core = *(longlong **)(param_1 + 0x8400);
+    
+    texture_array = &texture_value;
+    texture_param2 = 0;
+    texture_handles[(int)param_2 - 1] = texture_data;
+    param_count = 4;
+    texture_param1 = CONCAT44(texture_param1._4_4_, 1);
+    
+    // 调用渲染核心设置函数
+    (**(code **)(*render_core + 0x110))(render_core, 0xffffffff, 0, 0);
+    
+    // 如果纹理索引小于7，重置所有纹理句柄
     if ((int)param_2 < 7) {
-      *(undefined8 *)(param_1 + 0x83b8) = 0;
-      *(undefined8 *)(param_1 + 0x8378) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83c0) = 0;
-      *(undefined8 *)(param_1 + 0x8380) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83c8) = 0;
-      *(undefined8 *)(param_1 + 0x8388) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83d0) = 0;
-      *(undefined8 *)(param_1 + 0x8390) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83d8) = 0;
-      *(undefined8 *)(param_1 + 0x8398) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83e0) = 0;
-      *(undefined8 *)(param_1 + 0x83a0) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83e8) = 0;
-      *(undefined8 *)(param_1 + 0x83a8) = 0xffffffffdeadfeee;
+      *(undefined8 *)(param_1 + 0x83b8) = 0;        // 纹理0
+      *(undefined8 *)(param_1 + 0x8378) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83c0) = 0;        // 纹理1
+      *(undefined8 *)(param_1 + 0x8380) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83c8) = 0;        // 纹理2
+      *(undefined8 *)(param_1 + 0x8388) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83d0) = 0;        // 纹理3
+      *(undefined8 *)(param_1 + 0x8390) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83d8) = 0;        // 纹理4
+      *(undefined8 *)(param_1 + 0x8398) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83e0) = 0;        // 纹理5
+      *(undefined8 *)(param_1 + 0x83a0) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83e8) = 0;        // 纹理6
+      *(undefined8 *)(param_1 + 0x83a8) = RENDER_PARAM_MAGIC_VALUE;
     }
   }
   else {
-    uStack_68 = 0;
-    (**(code **)(*plVar1 + 0x220))(plVar1,param_2,1,&uStack_48);
+    // 设置指定的纹理
+    texture_param1 = 0;
+    (**(code **)(*render_core + 0x220))(render_core, param_2, 1, &texture_value);
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_88);
+  
+  // 清理安全缓冲区（函数不返回）
+  FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 
 
 
 
-// 函数: void FUN_18029db70(longlong param_1,char param_2,longlong param_3)
+// 渲染系统视口更新函数
+// 更新渲染系统的视口设置
+// param_1: 渲染系统上下文指针
+// param_2: 视口类型标识符
+// param_3: 视口数据指针
 void FUN_18029db70(longlong param_1,char param_2,longlong param_3)
-
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined4 uVar4;
-  longlong lVar5;
+  longlong *render_core;
+  longlong viewport_top;
+  longlong viewport_bottom;
+  undefined4 viewport_count;
+  longlong viewport_left;
   
-  if ((*(longlong *)(param_1 + 0x8240) != param_3) || (*(char *)(param_1 + 0x8270) != param_2)) {
-    plVar1 = *(longlong **)(param_1 + 0x8400);
+  // 检查视口是否需要更新
+  if ((*(longlong *)(param_1 + 0x8240) != param_3) || 
+      (*(char *)(param_1 + 0x8270) != param_2)) {
+    
+    render_core = *(longlong **)(param_1 + 0x8400);
     *(longlong *)(param_1 + 0x8240) = param_3;
     *(char *)(param_1 + 0x8270) = param_2;
-    if (param_2 == '\n') {
-      (**(code **)(*plVar1 + 0x90))(plVar1,0,1,param_3 + 0x2a0,param_3 + 0x2b8,param_3 + 0x2b0);
+    
+    // 处理不同类型的视口
+    if (param_2 == '\n') {  // 换行符类型的视口
+      (**(code **)(*render_core + 0x90))
+                (render_core, 0, 1, 
+                 param_3 + 0x2a0,  // 左边界
+                 param_3 + 0x2b8,  // 底边界
+                 param_3 + 0x2b0); // 顶边界
       return;
     }
-    if (param_2 == '\v') {
-      lVar2 = param_3 + 0x2b0;
-      lVar3 = param_3 + 0x2b8;
-      lVar5 = param_3 + 0x2a0;
-      uVar4 = 2;
+    
+    if (param_2 == '\v') {  // 垂直制表符类型的视口
+      viewport_top = param_3 + 0x2b0;
+      viewport_bottom = param_3 + 0x2b8;
+      viewport_left = param_3 + 0x2a0;
+      viewport_count = 2;
     }
-    else {
-      lVar2 = param_3 + 0x220;
-      lVar3 = param_3 + 0x260;
-      lVar5 = param_3 + 0x1a0;
-      uVar4 = *(undefined4 *)(param_3 + 0x18c);
+    else {  // 默认类型的视口
+      viewport_top = param_3 + 0x220;
+      viewport_bottom = param_3 + 0x260;
+      viewport_left = param_3 + 0x1a0;
+      viewport_count = *(undefined4 *)(param_3 + 0x18c);
     }
-    (**(code **)(*plVar1 + 0x90))(plVar1,0,uVar4,lVar5,lVar3,lVar2);
+    
+    // 调用渲染核心设置视口
+    (**(code **)(*render_core + 0x90))
+              (render_core, 0, viewport_count, 
+               viewport_left, viewport_bottom, viewport_top);
   }
   return;
 }
@@ -872,15 +908,23 @@ void FUN_18029db70(longlong param_1,char param_2,longlong param_3)
 
 
 
-// 函数: void FUN_18029dc40(longlong param_1,longlong param_2)
+// 渲染系统扩展目标设置函数
+// 设置渲染系统的扩展渲染目标
+// param_1: 渲染系统上下文指针
+// param_2: 扩展目标数据指针
 void FUN_18029dc40(longlong param_1,longlong param_2)
-
 {
+  // 检查扩展目标是否需要更新
   if (*(longlong *)(param_1 + 0x8240) != param_2) {
     *(longlong *)(param_1 + 0x8240) = param_2;
+    
+    // 调用渲染核心设置扩展目标
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x90))
-              (*(longlong **)(param_1 + 0x8400),0,*(undefined4 *)(param_2 + 0x188),param_2 + 0x1a0,
-               param_2 + 0x260,param_2 + 0x220);
+              (*(longlong **)(param_1 + 0x8400), 0,
+               *(undefined4 *)(param_2 + 0x188),  // 目标计数
+               param_2 + 0x1a0,                   // 左边界
+               param_2 + 0x260,                   // 底边界
+               param_2 + 0x220);                  // 顶边界
   }
   return;
 }
@@ -891,44 +935,58 @@ void FUN_18029dc40(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong param_4)
+// 渲染系统标志处理函数
+// 处理渲染系统的各种标志位设置
+// param_1: 渲染系统上下文指针
+// param_2: 标志位数据
+// param_3: 标志位掩码
+// param_4: 渲染数据指针
 void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong param_4)
-
 {
-  longlong *plVar1;
-  code *pcVar2;
-  ulonglong uVar3;
+  longlong *render_core;
+  code *render_function;
+  ulonglong flag_value;
   
-  uVar3 = param_2 & 0xffffffff;
+  flag_value = param_2 & 0xffffffff;
+  
+  // 处理顶点着色器标志
   if ((param_3 & 1) != 0) {
-    plVar1 = *(longlong **)(param_1 + 0x8400);
-    pcVar2 = *(code **)(*plVar1 + 0x38);
+    render_core = *(longlong **)(param_1 + 0x8400);
+    render_function = *(code **)(*render_core + 0x38);
     *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    (*pcVar2)(plVar1,param_2,1,param_4 + 0x10);
+    (*render_function)(render_core, param_2, 1, param_4 + 0x10);
   }
+  
+  // 处理几何着色器标志
   if ((param_3 & 4) != 0) {
-    plVar1 = *(longlong **)(param_1 + 0x8400);
-    pcVar2 = *(code **)(*plVar1 + 0x1f0);
+    render_core = *(longlong **)(param_1 + 0x8400);
+    render_function = *(code **)(*render_core + 0x1f0);
     *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    (*pcVar2)(plVar1,uVar3,1,param_4 + 0x10);
+    (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
+  
+  // 处理域着色器标志
   if ((param_3 & 2) != 0) {
-    plVar1 = *(longlong **)(param_1 + 0x8400);
-    pcVar2 = *(code **)(*plVar1 + 0x210);
+    render_core = *(longlong **)(param_1 + 0x8400);
+    render_function = *(code **)(*render_core + 0x210);
     *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    (*pcVar2)(plVar1,uVar3,1,param_4 + 0x10);
+    (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
+  
+  // 处理像素着色器标志
   if ((param_3 & 0x10) != 0) {
-    plVar1 = *(longlong **)(param_1 + 0x8400);
-    pcVar2 = *(code **)(*plVar1 + 0x80);
+    render_core = *(longlong **)(param_1 + 0x8400);
+    render_function = *(code **)(*render_core + 0x80);
     *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    (*pcVar2)(plVar1,uVar3,1,param_4 + 0x10);
+    (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
+  
+  // 处理计算着色器标志
   if ((param_3 & 0x20) != 0) {
-    plVar1 = *(longlong **)(param_1 + 0x8400);
-    pcVar2 = *(code **)(*plVar1 + 0x238);
+    render_core = *(longlong **)(param_1 + 0x8400);
+    render_function = *(code **)(*render_core + 0x238);
     *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    (*pcVar2)(plVar1,uVar3,1,param_4 + 0x10);
+    (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
   return;
 }
