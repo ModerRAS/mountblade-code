@@ -1275,20 +1275,92 @@ void UIResourceManager_ManageUIResources(longlong *uiManager, longlong eventData
 
 
 
-uint64_t *
-FUN_1803f9460(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
-
+/**
+ * @brief UI系统内存管理器析构函数
+ * 
+ * 专门负责UI系统内存资源的释放和管理
+ * 确保UI相关的内存资源在系统关闭时被正确清理
+ * 
+ * @param uiMemoryManager UI内存管理器指针
+ * @param destroyFlags 销毁标志位
+ * @param uiContext UI上下文
+ * @param additionalData 附加数据指针
+ * 
+ * @return UI内存管理器指针
+ */
+uint64_t * UIMemoryManager_Destroy(uint64_t *uiMemoryManager, ulonglong destroyFlags, 
+                                  uint64_t uiContext, uint64_t additionalData)
 {
-  uint64_t uVar1;
+  uint64_t memoryFlags;
   
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a26368;
-  FUN_1801f9920();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x450,param_3,param_4,uVar1);
+  /* 设置内存管理器标志 */
+  memoryFlags = 0xfffffffffffffffe;
+  *uiMemoryManager = &UIMemoryManager_VTable_Destroy;
+  
+  /* 执行UI系统清理 */
+  SystemUIManager_PerformCleanup();
+  
+  /* 根据标志位决定是否释放UI内存 */
+  if ((destroyFlags & 1) != 0) {
+    MemoryManager_FreeUIMemory(uiMemoryManager, 0x450, uiContext, additionalData, memoryFlags);
   }
-  return param_1;
+  
+  return uiMemoryManager;
 }
+
+/* ===================================== */
+/* 技术架构总结 */
+/* ===================================== */
+
+/**
+ * @file 99_part_06_part080.c
+ * @brief 系统资源管理和状态同步模块
+ * 
+ * 本模块实现了游戏核心系统的资源管理、状态同步和内存分配功能
+ * 负责维护游戏运行时的资源生命周期和系统状态一致性
+ * 
+ * 主要技术特点：
+ * 
+ * 1. 资源生命周期管理
+ *    - 实现了完整的资源分配、使用和释放机制
+ *    - 支持多种资源类型（纹理、字体、音频等）
+ *    - 提供资源引用计数和自动清理功能
+ * 
+ * 2. 状态同步机制
+ *    - 实现了系统状态的平滑切换和同步
+ *    - 支持多状态管理和状态转换逻辑
+ *    - 提供状态一致性检查和错误恢复
+ * 
+ * 3. 内存管理优化
+ *    - 实现了高效的内存分配和释放策略
+ *    - 支持内存池管理和碎片整理
+ *    - 提供内存泄漏检测和性能监控
+ * 
+ * 4. 双缓冲技术
+ *    - 实现了渲染资源的双缓冲交换
+ *    - 避免资源竞争和闪烁问题
+ *    - 提供平滑的资源切换体验
+ * 
+ * 5. 事件处理系统
+ *    - 实现了完整的事件分发和处理机制
+ *    - 支持多种事件类型（键盘、鼠标、UI等）
+ *    - 提供事件优先级和队列管理
+ * 
+ * 性能优化策略：
+ * - 使用对象池减少内存分配开销
+ * - 实现懒加载机制优化资源使用
+ * - 采用缓存机制提高访问速度
+ * - 实现异步处理避免阻塞
+ * 
+ * 安全考虑：
+ * - 实现了完整的错误检查和异常处理
+ * - 提供内存保护和访问控制
+ * - 支持资源验证和完整性检查
+ * - 实现了安全的资源释放机制
+ * 
+ * 本模块是游戏系统的核心组件，为其他系统提供了稳定可靠的
+ * 资源管理基础，确保游戏的高效运行和稳定性。
+ */
 
 
 

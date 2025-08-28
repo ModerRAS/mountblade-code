@@ -1732,7 +1732,7 @@ void FUN_1809420e0(void)
 void FUN_180942100(void)
 
 {
-  _DAT_180bf97b0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[16] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1746,7 +1746,7 @@ void FUN_180942100(void)
 void FUN_180942120(void)
 
 {
-  _DAT_180bf9810 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[17] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1760,7 +1760,7 @@ void FUN_180942120(void)
 void FUN_180942140(void)
 
 {
-  _DAT_180bf9870 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[18] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1774,7 +1774,7 @@ void FUN_180942140(void)
 void FUN_180942160(void)
 
 {
-  _DAT_180bf98d0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[19] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1788,7 +1788,7 @@ void FUN_180942160(void)
 void FUN_180942180(void)
 
 {
-  _DAT_180bf9930 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[20] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1802,7 +1802,7 @@ void FUN_180942180(void)
 void FUN_1809421a0(void)
 
 {
-  _DAT_180bf9990 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[21] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1816,7 +1816,7 @@ void FUN_1809421a0(void)
 void FUN_1809421c0(void)
 
 {
-  _DAT_180bf99f0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[22] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1830,7 +1830,7 @@ void FUN_1809421c0(void)
 void FUN_1809421e0(void)
 
 {
-  _DAT_180bf9a50 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[23] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1844,7 +1844,7 @@ void FUN_1809421e0(void)
 void FUN_180942200(void)
 
 {
-  _DAT_180bf9ab0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[24] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1858,7 +1858,7 @@ void FUN_180942200(void)
 void FUN_180942220(void)
 
 {
-  _DAT_180bf9b10 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[25] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1872,7 +1872,7 @@ void FUN_180942220(void)
 void FUN_180942240(void)
 
 {
-  _DAT_180bf9b70 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[26] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1886,7 +1886,7 @@ void FUN_180942240(void)
 void FUN_180942260(void)
 
 {
-  _DAT_180bf9bd0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[27] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1900,7 +1900,7 @@ void FUN_180942260(void)
 void FUN_180942280(void)
 
 {
-  _DAT_180bf9c30 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[28] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1914,7 +1914,7 @@ void FUN_180942280(void)
 void FUN_1809422a0(void)
 
 {
-  _DAT_180bf9c90 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[29] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1928,7 +1928,7 @@ void FUN_1809422a0(void)
 void FUN_1809422c0(void)
 
 {
-  _DAT_180bf9cf0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[30] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1942,7 +1942,7 @@ void FUN_1809422c0(void)
 void FUN_1809422e0(void)
 
 {
-  _DAT_180bf9d50 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[31] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1956,7 +1956,7 @@ void FUN_1809422e0(void)
 void FUN_180942300(void)
 
 {
-  _DAT_180bf9db0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[32] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1970,7 +1970,7 @@ void FUN_180942300(void)
 void FUN_180942320(void)
 
 {
-  _DAT_180bf9e10 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[33] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1984,7 +1984,7 @@ void FUN_180942320(void)
 void FUN_180942340(void)
 
 {
-  _DAT_180bf9e70 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[34] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1998,7 +1998,7 @@ void FUN_180942340(void)
 void FUN_180942360(void)
 
 {
-  _DAT_180bf9ed0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[35] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -2012,7 +2012,7 @@ void FUN_180942360(void)
 void FUN_180942380(void)
 
 {
-  _DAT_180bf9f30 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[36] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -2026,7 +2026,7 @@ void FUN_180942380(void)
 void FUN_1809423a0(void)
 
 {
-  _DAT_180bf9f90 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[37] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -2040,7 +2040,7 @@ void FUN_1809423a0(void)
 void FUN_1809423c0(void)
 
 {
-  _DAT_180bf9ff0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[38] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -2054,7 +2054,7 @@ void FUN_1809423c0(void)
 void FUN_1809423e0(void)
 
 {
-  _DAT_180bfa050 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[39] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
