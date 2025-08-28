@@ -1,71 +1,182 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_02_part010.c - 29 个函数
+// =============================================================================
+// 模块99未匹配函数第2部分第10个文件 - 高级内存管理和数据处理模块
+// =============================================================================
 
-// 函数: void FUN_1800edcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800edcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 常量定义
+#define INVALID_HANDLE          0xFFFFFFFFFFFFFFFE
+#define CONTAINER_BLOCK_SIZE    0x78
+#define CONTAINER_CHUNK_SIZE    0x1E0
+#define FLOAT_ONE               0x3F800000
+#define FLOAT_MAX_VALUE         0x7F7FFFFF
+#define DOUBLE_ONE              0x3FF0000000000000
+#define DOUBLE_MAX_VALUE        0x7FEFFFFFFFFFFFFF
+#define DEFAULT_ALIGNMENT       8
+#define MUTEX_TYPE_2            2
+#define ARRAY_SIZE_10           10
+#define ARRAY_SIZE_8            8
 
+// 偏移量常量
+#define OFFSET_0x10            0x10
+#define OFFSET_0x18            0x18
+#define OFFSET_0x20            0x20
+#define OFFSET_0x28            0x28
+#define OFFSET_0x30            0x30
+#define OFFSET_0x40            0x40
+#define OFFSET_0x48            0x48
+#define OFFSET_0x58            0x58
+#define OFFSET_0x68            0x68
+#define OFFSET_0x70            0x70
+#define OFFSET_0x78            0x78
+#define OFFSET_0x80            0x80
+#define OFFSET_0x88            0x88
+#define OFFSET_0x90            0x90
+
+// =============================================================================
+// 1. 系统调用和函数指针操作模块
+// =============================================================================
+
+/**
+ * @brief 系统调用分发器类型1
+ * @param system_context 系统上下文指针
+ * @param interface_ptr 接口指针
+ * @param param3 第三个参数
+ * @param param4 第四个参数
+ * @return 无返回值
+ * 
+ * 该函数用于分发系统调用到具体的处理函数，主要功能包括：
+ * - 获取系统上下文中的接口指针
+ * - 调用底层系统调用处理函数
+ * - 处理系统调用结果
+ */
+void system_call_dispatcher_type1(longlong system_context, undefined8 interface_ptr, undefined8 param3, undefined8 param4)
 {
-  FUN_1800ee080(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
+    // 调用系统调用处理函数
+    system_call_handler_080(system_context, *(undefined8 *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
+    return;
 }
 
+// 函数别名
+#define system_call_dispatcher_1    system_call_dispatcher_type1
 
 
 
 
 
-// 函数: void FUN_1800edce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800edce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
+/**
+ * @brief 系统调用分发器类型2
+ * @param system_context 系统上下文指针
+ * @param interface_ptr 接口指针
+ * @param param3 第三个参数
+ * @param param4 第四个参数
+ * @return 无返回值
+ * 
+ * 该函数用于分发系统调用到具体的处理函数，主要功能包括：
+ * - 获取系统上下文中的接口指针
+ * - 调用底层系统调用处理函数130
+ * - 处理系统调用结果
+ */
+void system_call_dispatcher_type2(longlong system_context, undefined8 interface_ptr, undefined8 param3, undefined8 param4)
 {
-  FUN_1800ee130(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
+    // 调用系统调用处理函数130
+    system_call_handler_130(system_context, *(undefined8 *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
+    return;
 }
 
+// 函数别名
+#define system_call_dispatcher_2    system_call_dispatcher_type2
 
 
 
 
 
-// 函数: void FUN_1800edd10(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800edd10(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
+/**
+ * @brief 资源清理和状态重置函数
+ * @param resource_handle 资源句柄
+ * @param unused_param 未使用的参数
+ * @param param3 第三个参数
+ * @param param4 第四个参数
+ * @return 无返回值
+ * 
+ * 该函数用于清理资源并重置系统状态，主要功能包括：
+ * - 调用资源清理回调函数
+ * - 释放相关资源
+ * - 重置系统状态
+ * - 验证资源释放结果
+ */
+void resource_cleanup_and_reset(longlong resource_handle, undefined8 unused_param, undefined8 param3, undefined8 param4)
 {
-  if (*(code **)(param_1 + 0x68) != (code *)0x0) {
-    (**(code **)(param_1 + 0x68))(param_1 + 0x58,0,0,param_4,0xfffffffffffffffe);
-  }
-  if (*(longlong **)(param_1 + 0x48) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_1 + 0x48) + 0x38))();
-  }
-  if (*(longlong **)(param_1 + 0x40) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_1 + 0x40) + 0x38))();
-  }
-  *(undefined8 *)(param_1 + 0x18) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  *(undefined8 *)(param_1 + 0x20) = 0;
-  *(undefined4 *)(param_1 + 0x30) = 0;
-  *(undefined8 *)(param_1 + 0x18) = &UNK_18098bcb0;
-  return;
+    // 调用资源清理回调函数
+    if (*(code **)(resource_handle + OFFSET_0x68) != (code *)0x0) {
+        (**(code **)(resource_handle + OFFSET_0x68))(resource_handle + OFFSET_0x58, 0, 0, param4, INVALID_HANDLE);
+    }
+    
+    // 释放48偏移处的资源
+    if (*(longlong **)(resource_handle + OFFSET_0x48) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(resource_handle + OFFSET_0x48) + OFFSET_0x30))();
+    }
+    
+    // 释放40偏移处的资源
+    if (*(longlong **)(resource_handle + OFFSET_0x40) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(resource_handle + OFFSET_0x40) + OFFSET_0x30))();
+    }
+    
+    // 设置清理标记
+    *(undefined8 *)(resource_handle + OFFSET_0x18) = &CLEANUP_FLAG_ACTIVE;
+    
+    // 检查是否有未释放的资源
+    if (*(longlong *)(resource_handle + OFFSET_0x20) != 0) {
+        // 如果有未释放的资源，调用错误处理函数
+        error_handler_critical();
+    }
+    
+    // 重置资源状态
+    *(undefined8 *)(resource_handle + OFFSET_0x20) = 0;
+    *(undefined4 *)(resource_handle + OFFSET_0x30) = 0;
+    *(undefined8 *)(resource_handle + OFFSET_0x18) = &CLEANUP_FLAG_INACTIVE;
+    
+    return;
 }
 
+// 函数别名
+#define resource_cleanup_reset    resource_cleanup_and_reset
 
 
-longlong FUN_1800edda0(longlong param_1)
 
+/**
+ * @brief 数据结构初始化函数
+ * @param data_structure 数据结构指针
+ * @return 初始化后的数据结构指针
+ * 
+ * 该函数用于初始化数据结构，主要功能包括：
+ * - 设置数据结构的自引用指针
+ * - 初始化数据结构的状态字段
+ * - 设置默认的配置参数
+ * - 返回初始化后的数据结构指针
+ */
+longlong data_structure_initializer(longlong data_structure)
 {
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  *(undefined4 *)(param_1 + 0x28) = 3;
-  *(longlong *)param_1 = param_1;
-  *(longlong *)(param_1 + 8) = param_1;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined1 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 0x20) = 0;
-  return param_1;
+    // 初始化数据结构的基本字段
+    *(undefined8 *)(data_structure + OFFSET_0x18) = 0;
+    *(undefined4 *)(data_structure + OFFSET_0x28) = 3;  // 设置状态为3
+    
+    // 设置自引用指针
+    *(longlong *)data_structure = data_structure;        // 头部指针指向自己
+    *(longlong *)(data_structure + 8) = data_structure;  // 尾部指针指向自己
+    
+    // 初始化其他字段
+    *(undefined8 *)(data_structure + OFFSET_0x10) = 0;   // 清空接口指针
+    *(undefined1 *)(data_structure + OFFSET_0x18) = 0;   // 清空状态标志
+    *(undefined8 *)(data_structure + OFFSET_0x20) = 0;   // 清空资源句柄
+    
+    return data_structure;
 }
+
+// 函数别名
+#define data_structure_init        data_structure_initializer
 
 
 

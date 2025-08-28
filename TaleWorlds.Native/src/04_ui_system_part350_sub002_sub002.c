@@ -196,51 +196,68 @@ void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buff
 undefined8 UISystem_DataValidator(longlong system_context, longlong *source_data, longlong *target_data, undefined1 operation_flag)
 
 {
-  int iVar1;
-  undefined4 *puVar2;
-  undefined8 uVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  int iVar6;
-  undefined1 auStackX_10 [8];
+  int match_index;
+  undefined4 *temp_ptr;
+  undefined8 operation_result;
+  longlong *data_item;
+  longlong item_offset;
+  int source_count;
+  undefined1 temp_buffer [8];
   
-  iVar6 = 0;
-  if (0 < (int)param_2[1]) {
-    lVar5 = 0;
+  source_count = 0;
+  if (0 < (int)source_data[1]) {
+    item_offset = 0;
     do {
-      iVar1 = 0;
-      plVar4 = (longlong *)(*param_2 + lVar5);
-      if (0 < (int)param_3[1]) {
+      match_index = 0;
+      data_item = (longlong *)(*source_data + item_offset);
+      if (0 < (int)target_data[1]) {
         do {
-          if ((*(longlong *)(*param_3 + (longlong)iVar1 * 0x18) == *plVar4) &&
-             (*(longlong *)(*param_3 + 8 + (longlong)iVar1 * 0x18) == plVar4[1]))
+          // 检查数据项是否匹配目标数据
+          if ((*(longlong *)(*target_data + (longlong)match_index * 0x18) == *data_item) &&
+             (*(longlong *)(*target_data + 8 + (longlong)match_index * 0x18) == data_item[1]))
           goto LAB_180859ef9;
-          iVar1 = iVar1 + 1;
-        } while (iVar1 < (int)param_3[1]);
+          match_index = match_index + 1;
+        } while (match_index < (int)target_data[1]);
       }
-      if (((((int)*plVar4 == 0) && (*(int *)((longlong)plVar4 + 4) == 0)) && ((int)plVar4[1] == 0))
-         && (*(int *)((longlong)plVar4 + 0xc) == 0)) {
-        return 0x1c;
+      // 检查数据项是否为空
+      if (((((int)*data_item == 0) && (*(int *)((longlong)data_item + 4) == 0)) && ((int)data_item[1] == 0))
+         && (*(int *)((longlong)data_item + 0xc) == 0)) {
+        return UI_ERROR_INVALID_PARAM;
       }
-      puVar2 = (undefined4 *)FUN_18084cde0(*(undefined8 *)(param_1 + 0x110),auStackX_10);
-      *(undefined4 *)(param_1 + 0x10c) = *puVar2;
-      uVar3 = FUN_1808629a0(*(undefined8 *)(param_1 + 0x160),plVar4,param_4);
-      if ((int)uVar3 != 0) {
-        return uVar3;
+      temp_ptr = (undefined4 *)FUN_18084cde0(*(undefined8 *)(system_context + 0x110),temp_buffer);
+      *(undefined4 *)(system_context + 0x10c) = *temp_ptr;
+      operation_result = FUN_1808629a0(*(undefined8 *)(system_context + 0x160),data_item,operation_flag);
+      if ((int)operation_result != 0) {
+        return operation_result;
       }
 LAB_180859ef9:
-      iVar6 = iVar6 + 1;
-      lVar5 = lVar5 + 0x18;
-    } while (iVar6 < (int)param_2[1]);
+      source_count = source_count + 1;
+      item_offset = item_offset + 0x18;
+    } while (source_count < (int)source_data[1]);
   }
-  return 0;
+  return UI_SUCCESS;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int FUN_180859f30(longlong param_1,int *param_2,uint param_3,uint param_4,uint param_5,uint param_6)
+/**
+ * UI系统参数处理器 - 处理UI系统参数配置
+ * 
+ * 功能：
+ * - 处理UI系统参数配置
+ * - 管理时间同步和频率控制
+ * - 执行参数验证和转换
+ * - 控制资源分配和释放
+ * 
+ * @param system_context 系统上下文指针
+ * @param param_array 参数数组指针
+ * @param start_pos 开始位置
+ * @param end_pos 结束位置
+ * @param time_scale 时间缩放因子
+ * @param frequency 频率参数
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint start_pos, uint end_pos, uint time_scale, uint frequency)
 
 {
   int *piVar1;
@@ -2475,6 +2492,39 @@ LAB_18085b8b5:
   }
   return iVar9;
 }
+
+/* ============================================================================
+ * 技术说明
+ * ============================================================================ */
+/**
+ * 本文件实现了UI系统高级数据处理和状态管理功能：
+ * 
+ * 1. 高级数据处理
+ *    - 处理UI系统数据转换和管理
+ *    - 验证数据有效性和完整性
+ *    - 执行数据格式转换
+ *    - 管理数据生命周期
+ * 
+ * 2. 状态管理
+ *    - 控制UI系统状态变化
+ *    - 管理状态标志和属性
+ *    - 处理状态同步和更新
+ *    - 执行状态验证和清理
+ * 
+ * 3. 资源管理
+ *    - 分配和释放UI资源
+ *    - 管理资源生命周期
+ *    - 处理资源池和缓存
+ *    - 执行资源清理和回收
+ * 
+ * 4. 参数处理
+ *    - 处理UI系统参数配置
+ *    - 管理时间同步和频率控制
+ *    - 执行参数验证和转换
+ *    - 控制系统行为和属性
+ * 
+ * 该模块是UI系统的重要组成部分，为高级UI功能提供核心支持。
+ */
 
 
 
