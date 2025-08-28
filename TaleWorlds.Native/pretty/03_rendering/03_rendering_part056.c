@@ -501,107 +501,117 @@ byte * render_data_decompress(byte *param_1)
 uint render_checksum_validation(byte *param_1, byte *param_2)
 
 {
-  byte bVar1;
-  uint uVar2;
-  byte *pbVar3;
-  byte *pbVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
-  int iVar8;
-  int iVar9;
-  int iVar10;
-  int iVar11;
-  uint uVar12;
-  uint uVar13;
-  uint uVar14;
-  byte *pbVar15;
-  uint uVar16;
-  uint uVar17;
-  ulonglong uVar18;
-  uint uVar19;
-  bool bVar20;
+  byte header_byte;
+  uint checksum_result;
+  byte *decompressed_ptr;
+  byte *current_ptr;
+  int byte_sum_1;
+  int byte_sum_2;
+  int byte_sum_3;
+  int byte_sum_4;
+  int byte_sum_5;
+  int byte_sum_6;
+  int byte_sum_7;
+  int byte_sum_8;
+  uint cumulative_sum;
+  uint bit_position;
+  uint data_length;
+  byte *data_end_ptr;
+  uint block_size;
+  uint checksum_accumulator;
+  ulonglong loop_counter;
+  uint offset_value;
+  bool has_more_data;
   
+  // 验证文件头魔术字
   if (((((uint)*param_2 * 0x100 + (uint)param_2[1]) * 0x100 + (uint)param_2[2]) * 0x100 +
        (uint)param_2[3] == 0x57bc0000) &&
      ((((uint)param_2[4] * 0x100 + (uint)param_2[5]) * 0x100 + (uint)param_2[6]) * 0x100 +
       (uint)param_2[7] == 0)) {
-    uVar19 = (uint)param_2[8] * 0x1000000 + (uint)param_2[9] * 0x10000 + (uint)param_2[10] * 0x100 +
-             (uint)param_2[0xb];
-    pbVar15 = param_1 + uVar19;
-    _DAT_180c96838 = pbVar15;
+    offset_value = (uint)param_2[8] * 0x1000000 + (uint)param_2[9] * 0x10000 + (uint)param_2[10] * 0x100 +
+                 (uint)param_2[0xb];
+    data_end_ptr = param_1 + offset_value;
+    _DAT_180c96838 = data_end_ptr;
     _DAT_180c96840 = param_1;
     _DAT_180c96848 = param_2;
     _DAT_180c96850 = param_1;
-    pbVar3 = (byte *)FUN_180298c80(param_2 + 0x10);
-    pbVar4 = pbVar3;
-    if (pbVar3 != param_2 + 0x10) {
+    decompressed_ptr = (byte *)render_data_decompress(param_2 + 0x10);
+    current_ptr = decompressed_ptr;
+    
+    // 解压缩数据验证循环
+    if (decompressed_ptr != param_2 + 0x10) {
       do {
-        if (pbVar15 < _DAT_180c96850) {
+        if (data_end_ptr < _DAT_180c96850) {
           return 0;
         }
-        pbVar3 = (byte *)FUN_180298c80(pbVar4);
-        bVar20 = pbVar3 != pbVar4;
-        pbVar4 = pbVar3;
-      } while (bVar20);
+        decompressed_ptr = (byte *)render_data_decompress(current_ptr);
+        has_more_data = decompressed_ptr != current_ptr;
+        current_ptr = decompressed_ptr;
+      } while (has_more_data);
     }
-    if (((*pbVar3 == 5) && (pbVar3[1] == 0xfa)) && (_DAT_180c96850 == pbVar15)) {
-      uVar17 = 0;
-      uVar12 = 1;
-      uVar14 = uVar19;
-      uVar2 = uVar19 % 0x15b0;
-      while (uVar14 != 0) {
-        uVar13 = 0;
-        if (7 < uVar2) {
-          uVar16 = 7;
+    
+    // 验证数据结束标记
+    if (((*decompressed_ptr == 5) && (decompressed_ptr[1] == 0xfa)) && (_DAT_180c96850 == data_end_ptr)) {
+      checksum_accumulator = 0;
+      cumulative_sum = 1;
+      data_length = offset_value;
+      checksum_result = offset_value % 0x15b0;
+      
+      // 主校验和计算循环
+      while (data_length != 0) {
+        bit_position = 0;
+        if (7 < checksum_result) {
+          block_size = 7;
           do {
-            uVar13 = uVar13 + 8;
-            iVar5 = uVar12 + *param_1;
-            uVar16 = uVar16 + 8;
-            iVar6 = iVar5 + (uint)param_1[1];
-            iVar7 = iVar6 + (uint)param_1[2];
-            iVar8 = iVar7 + (uint)param_1[3];
-            iVar9 = iVar8 + (uint)param_1[4];
-            iVar10 = iVar9 + (uint)param_1[5];
-            iVar11 = iVar10 + (uint)param_1[6];
-            uVar12 = iVar11 + (uint)param_1[7];
+            bit_position = bit_position + 8;
+            byte_sum_1 = cumulative_sum + *param_1;
+            block_size = block_size + 8;
+            byte_sum_2 = byte_sum_1 + (uint)param_1[1];
+            byte_sum_3 = byte_sum_2 + (uint)param_1[2];
+            byte_sum_4 = byte_sum_3 + (uint)param_1[3];
+            byte_sum_5 = byte_sum_4 + (uint)param_1[4];
+            byte_sum_6 = byte_sum_5 + (uint)param_1[5];
+            byte_sum_7 = byte_sum_6 + (uint)param_1[6];
+            cumulative_sum = byte_sum_7 + (uint)param_1[7];
             param_1 = param_1 + 8;
-            uVar17 = uVar17 + iVar5 + iVar6 + iVar7 + iVar8 + iVar9 + iVar10 + iVar11 + uVar12;
-          } while (uVar16 < uVar2);
+            checksum_accumulator = checksum_accumulator + byte_sum_1 + byte_sum_2 + byte_sum_3 + byte_sum_4 + byte_sum_5 + byte_sum_6 + byte_sum_7 + cumulative_sum;
+          } while (block_size < checksum_result);
         }
-        iVar5 = 0;
-        iVar6 = 0;
-        if (uVar13 < uVar2) {
-          if (1 < uVar2 - uVar13) {
-            uVar16 = ((uVar2 - uVar13) - 2 >> 1) + 1;
-            uVar18 = (ulonglong)uVar16;
-            uVar13 = uVar13 + uVar16 * 2;
+        byte_sum_1 = 0;
+        byte_sum_2 = 0;
+        if (bit_position < checksum_result) {
+          if (1 < checksum_result - bit_position) {
+            block_size = ((checksum_result - bit_position) - 2 >> 1) + 1;
+            loop_counter = (ulonglong)block_size;
+            bit_position = bit_position + block_size * 2;
             do {
-              bVar1 = *param_1;
-              pbVar4 = param_1 + 1;
-              iVar5 = iVar5 + uVar12 + bVar1;
+              header_byte = *param_1;
+              current_ptr = param_1 + 1;
+              byte_sum_1 = byte_sum_1 + cumulative_sum + header_byte;
               param_1 = param_1 + 2;
-              uVar12 = uVar12 + bVar1 + (uint)*pbVar4;
-              iVar6 = iVar6 + uVar12;
-              uVar18 = uVar18 - 1;
-            } while (uVar18 != 0);
+              cumulative_sum = cumulative_sum + header_byte + (uint)*current_ptr;
+              byte_sum_2 = byte_sum_2 + cumulative_sum;
+              loop_counter = loop_counter - 1;
+            } while (loop_counter != 0);
           }
-          if (uVar13 < uVar2) {
-            uVar12 = uVar12 + *param_1;
-            uVar17 = uVar17 + uVar12;
+          if (bit_position < checksum_result) {
+            cumulative_sum = cumulative_sum + *param_1;
+            checksum_accumulator = checksum_accumulator + cumulative_sum;
             param_1 = param_1 + 1;
           }
-          uVar17 = uVar17 + iVar6 + iVar5;
+          checksum_accumulator = checksum_accumulator + byte_sum_2 + byte_sum_1;
         }
-        uVar12 = uVar12 % 0xfff1;
-        uVar17 = uVar17 % 0xfff1;
-        uVar14 = uVar14 - uVar2;
-        uVar2 = 0x15b0;
+        cumulative_sum = cumulative_sum % 0xfff1;
+        checksum_accumulator = checksum_accumulator % 0xfff1;
+        data_length = data_length - checksum_result;
+        checksum_result = 0x15b0;
       }
-      if (uVar17 * 0x10000 + uVar12 ==
-          (uint)pbVar3[2] * 0x1000000 + (uint)pbVar3[3] * 0x10000 + (uint)pbVar3[4] * 0x100 +
-          (uint)pbVar3[5]) {
-        return uVar19;
+      
+      // 验证计算出的校验和与存储的校验和是否匹配
+      if (checksum_accumulator * 0x10000 + cumulative_sum ==
+          (uint)decompressed_ptr[2] * 0x1000000 + (uint)decompressed_ptr[3] * 0x10000 + (uint)decompressed_ptr[4] * 0x100 +
+          (uint)decompressed_ptr[5]) {
+        return offset_value;
       }
     }
   }

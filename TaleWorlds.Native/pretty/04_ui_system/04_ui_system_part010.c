@@ -1,766 +1,826 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part010.c - 1 个函数
+// 04_ui_system_part010.c - UI系统高级数据处理和渲染控制模块
+// 包含1个核心函数，涵盖UI元素处理、渲染控制、数据变换、矩阵运算、角度计算、浮点数处理等高级UI功能
 
-// 函数: void FUN_1806596fe(longlong param_1,float param_2,longlong param_3,char param_4)
-void FUN_1806596fe(longlong param_1,float param_2,longlong param_3,char param_4)
-
+/**
+ * UI系统高级数据处理和渲染控制函数
+ * 
+ * 该函数负责处理复杂的UI数据变换、渲染控制、矩阵运算和角度计算。
+ * 主要功能包括：
+ * - UI元素数据的批量处理和变换
+ * - 渲染参数的动态调整和优化
+ * - 矩阵运算和坐标变换
+ * - 角度计算和三角函数处理
+ * - 浮点数数据的精确计算
+ * - UI状态管理和条件判断
+ * 
+ * @param ui_context UI系统上下文指针，包含UI状态和数据
+ * @param time_delta 时间增量参数，用于动画和插值计算
+ * @param render_context 渲染上下文指针，包含渲染相关的状态和数据
+ * @param update_flag 更新标志，控制是否执行特定的更新操作
+ */
+void ui_system_advanced_data_processing_and_render_control(void* ui_context, float time_delta, void* render_context, char update_flag)
 {
-  char cVar1;
-  bool bVar2;
-  int iVar3;
-  undefined8 in_RAX;
-  longlong lVar4;
-  float *pfVar5;
-  longlong lVar6;
-  longlong lVar7;
-  undefined8 unaff_RBX;
-  float *pfVar8;
-  longlong unaff_RBP;
-  int iVar9;
-  undefined8 unaff_RSI;
-  ulonglong uVar10;
-  longlong in_R11;
-  undefined8 unaff_R12;
-  undefined8 unaff_R13;
-  float *unaff_R14;
-  char cVar11;
-  undefined8 unaff_R15;
-  float in_XMM0_Da;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  undefined1 auVar22 [16];
-  float fVar23;
-  float fVar24;
-  float unaff_XMM6_Da;
-  float unaff_XMM8_Da;
-  float unaff_XMM9_Da;
-  float fVar25;
-  undefined4 unaff_XMM11_Da;
-  undefined4 unaff_XMM11_Db;
-  undefined4 unaff_XMM11_Dc;
-  undefined4 unaff_XMM11_Dd;
-  undefined4 unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Db;
-  undefined4 unaff_XMM12_Dc;
-  undefined4 unaff_XMM12_Dd;
-  undefined4 unaff_XMM13_Da;
-  undefined4 unaff_XMM13_Db;
-  undefined4 unaff_XMM13_Dc;
-  undefined4 unaff_XMM13_Dd;
-  undefined4 unaff_XMM15_Da;
-  undefined4 unaff_XMM15_Db;
-  undefined4 unaff_XMM15_Dc;
-  undefined4 unaff_XMM15_Dd;
-  char cStack0000000000000030;
-  float fStack0000000000000034;
-  float fStack0000000000000038;
-  float fStack000000000000003c;
-  float fStack0000000000000040;
-  float fStack0000000000000048;
-  float fStack000000000000004c;
-  float fStack0000000000000054;
-  float fStack000000000000005c;
-  undefined8 uStack0000000000000060;
-  float fStack000000000000006c;
-  float fStack0000000000000074;
-  float fStack000000000000007c;
-  float afStack_60e8 [6200];
-  undefined8 uStack_8;
-  
-  *(undefined8 *)(in_R11 + 0x10) = unaff_RBX;
-  *(undefined8 *)(in_R11 + -0x20) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_R12;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_R13;
-  iVar3 = 0;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R15;
-  *(undefined4 *)(in_R11 + -0x98) = unaff_XMM11_Da;
-  *(undefined4 *)(in_R11 + -0x94) = unaff_XMM11_Db;
-  *(undefined4 *)(in_R11 + -0x90) = unaff_XMM11_Dc;
-  *(undefined4 *)(in_R11 + -0x8c) = unaff_XMM11_Dd;
-  *(undefined4 *)(in_R11 + -0xa8) = unaff_XMM12_Da;
-  *(undefined4 *)(in_R11 + -0xa4) = unaff_XMM12_Db;
-  *(undefined4 *)(in_R11 + -0xa0) = unaff_XMM12_Dc;
-  *(undefined4 *)(in_R11 + -0x9c) = unaff_XMM12_Dd;
-  *(undefined4 *)(in_R11 + -0xb8) = unaff_XMM13_Da;
-  *(undefined4 *)(in_R11 + -0xb4) = unaff_XMM13_Db;
-  *(undefined4 *)(in_R11 + -0xb0) = unaff_XMM13_Dc;
-  *(undefined4 *)(in_R11 + -0xac) = unaff_XMM13_Dd;
-  *(undefined4 *)(in_R11 + -0xd8) = unaff_XMM15_Da;
-  *(undefined4 *)(in_R11 + -0xd4) = unaff_XMM15_Db;
-  *(undefined4 *)(in_R11 + -0xd0) = unaff_XMM15_Dc;
-  *(undefined4 *)(in_R11 + -0xcc) = unaff_XMM15_Dd;
-  cStack0000000000000030 = param_4;
-  fStack0000000000000034 = param_2;
-  uStack0000000000000060 = in_RAX;
-  if (0 < *(int *)(param_1 + 0x60)) {
-    pfVar5 = (float *)(param_1 + 0x6c);
-    pfVar8 = pfVar5;
-    iVar9 = iVar3;
+    char local_update_flag;
+    bool needs_update;
+    int loop_counter;
+    void* register_rax;
+    longlong temp_long_1;
+    float* float_ptr_1;
+    longlong temp_long_2;
+    longlong temp_long_3;
+    void* register_rbx;
+    float* float_ptr_2;
+    longlong register_rbp;
+    int temp_int_1;
+    void* register_rsi;
+    ulonglong temp_ulong_1;
+    longlong register_r11;
+    void* register_r12;
+    void* register_r13;
+    float* register_r14;
+    char temp_char_1;
+    void* register_r15;
+    float float_xmm0;
+    float temp_float_1;
+    float temp_float_2;
+    float temp_float_3;
+    float temp_float_4;
+    float temp_float_5;
+    float temp_float_6;
+    float temp_float_7;
+    float temp_float_8;
+    float temp_float_9;
+    float temp_float_10;
+    float temp_float_11;
+    char temp_array_1[16];
+    float temp_float_12;
+    float temp_float_13;
+    float float_xmm6;
+    float float_xmm8;
+    float float_xmm9;
+    float temp_float_14;
+    float float_xmm11[4];
+    float float_xmm12[4];
+    float float_xmm13[4];
+    float float_xmm15[4];
+    char stack_char_1;
+    float stack_float_1;
+    float stack_float_2;
+    float stack_float_3;
+    float stack_float_4;
+    float stack_float_5;
+    float stack_float_6;
+    float stack_float_7;
+    float stack_float_8;
+    void* stack_ptr_1;
+    float stack_float_9;
+    float stack_float_10;
+    float stack_float_11;
+    float stack_float_12;
+    float large_float_array[6200];
+    void* stack_ptr_2;
+    
+    // 保存寄存器状态到栈上
+    *(void**)((longlong)register_r11 + 0x10) = register_rbx;
+    *(void**)((longlong)register_r11 - 0x20) = register_rsi;
+    *(void**)((longlong)register_r11 - 0x28) = register_r12;
+    *(void**)((longlong)register_r11 - 0x30) = register_r13;
+    loop_counter = 0;
+    *(void**)((longlong)register_r11 - 0x38) = register_r15;
+    *(float*)((longlong)register_r11 - 0x98) = float_xmm11[0];
+    *(float*)((longlong)register_r11 - 0x94) = float_xmm11[1];
+    *(float*)((longlong)register_r11 - 0x90) = float_xmm11[2];
+    *(float*)((longlong)register_r11 - 0x8c) = float_xmm11[3];
+    *(float*)((longlong)register_r11 - 0xa8) = float_xmm12[0];
+    *(float*)((longlong)register_r11 - 0xa4) = float_xmm12[1];
+    *(float*)((longlong)register_r11 - 0xa0) = float_xmm12[2];
+    *(float*)((longlong)register_r11 - 0x9c) = float_xmm12[3];
+    *(float*)((longlong)register_r11 - 0xb8) = float_xmm13[0];
+    *(float*)((longlong)register_r11 - 0xb4) = float_xmm13[1];
+    *(float*)((longlong)register_r11 - 0xb0) = float_xmm13[2];
+    *(float*)((longlong)register_r11 - 0xac) = float_xmm13[3];
+    *(float*)((longlong)register_r11 - 0xd8) = float_xmm15[0];
+    *(float*)((longlong)register_r11 - 0xd4) = float_xmm15[1];
+    *(float*)((longlong)register_r11 - 0xd0) = float_xmm15[2];
+    *(float*)((longlong)register_r11 - 0xcc) = float_xmm15[3];
+    stack_char_1 = update_flag;
+    stack_float_1 = time_delta;
+    stack_ptr_1 = register_rax;
+    
+    // 处理UI元素数据批量更新
+    if (0 < *(int*)((longlong)ui_context + 0x60)) {
+        float_ptr_1 = (float*)((longlong)ui_context + 0x6c);
+        float_ptr_2 = float_ptr_1;
+        temp_int_1 = loop_counter;
+        do {
+            temp_float_3 = float_ptr_2[1];
+            temp_float_1 = *float_ptr_2;
+            if (temp_float_3 <= temp_float_1) {
+                temp_float_1 = temp_float_1 - time_delta * float_xmm0;
+                if (temp_float_1 <= temp_float_3) {
+                    temp_float_1 = temp_float_3;
+                }
+            }
+            else {
+                temp_float_1 = time_delta * float_xmm0 + temp_float_1;
+                if (temp_float_3 <= temp_float_1) {
+                    temp_float_1 = temp_float_3;
+                }
+            }
+            *float_ptr_2 = temp_float_1;
+            stack_ptr_2 = (void*)0x1806597d3;
+            ui_system_update_element_state(*(void**)((longlong)float_ptr_2 + 0x495), (char*)((longlong)ui_context + 0x6150));
+            if ((*(char*)((longlong)float_ptr_2 + 0x4af) == '\0') && (*(char*)((longlong)float_ptr_2 + 0x4ce) != '\0')) {
+                *(char*)((longlong)float_ptr_2 + 0x4af) = 1;
+            }
+            if ((*(char*)((longlong)float_ptr_2 + 0x4c8) == '\0') && (*(char*)((longlong)float_ptr_2 + 0x4d4) != '\0')) {
+                *(char*)((longlong)float_ptr_2 + 0x4c8) = 1;
+            }
+            float_xmm9 = float_xmm9 + *float_ptr_2;
+            float_ptr_2 = (float*)((longlong)float_ptr_2 + 0x4d6);
+            temp_int_1 = temp_int_1 + 1;
+        } while (temp_int_1 < (int)((longlong*)register_r14)[0x18]);
+        
+        // 标准化处理
+        if (((float_xmm6 < float_xmm9) && (float_xmm9 != float_xmm8)) && (0 < (int)((longlong*)register_r14)[0x18])) {
+            do {
+                loop_counter = loop_counter + 1;
+                *float_ptr_1 = (float_xmm8 / float_xmm9) * *float_ptr_1;
+                float_ptr_1 = (float*)((longlong)float_ptr_1 + 0x4d6);
+            } while (loop_counter < (int)((longlong*)register_r14)[0x18]);
+        }
+    }
+    
+    temp_char_1 = stack_char_1;
+    stack_ptr_2 = (void*)0x18065986c;
+    ui_system_internal_update();
+    
+    // 渲染参数检查和调整
+    if (((float_xmm6 == ((longlong*)register_r14)[4]) && (float_xmm6 == ((longlong*)register_r14)[5])) &&
+        (0.25 < ((longlong*)register_r14)[2] * ((longlong*)register_r14)[2] + ((longlong*)register_r14)[3] * ((longlong*)register_r14)[3])) {
+        *(void**)((longlong)register_r14 + 4) = *(void**)((longlong)register_r14 + 2);
+    }
+    
+    // 内存分配检查
+    if (((longlong*)register_r14)[8] != float_xmm6) {
+        // WARNING: Subroutine does not return
+        stack_ptr_2 = (void*)0x1806598e8;
+        memory_allocation_error_handler(-((longlong*)register_r14)[8]);
+    }
+    
+    // 提取渲染数据
+    stack_float_3 = (float)((ulonglong)*(void**)((longlong)register_r14 + 4) >> 0x20);
+    stack_float_2 = (float)*(void**)((longlong)register_r14 + 4);
+    stack_float_7 = (float)((ulonglong)*(void**)((longlong)register_r14 + 2) >> 0x20);
+    stack_float_6 = (float)*(void**)((longlong)register_r14 + 2);
+    temp_float_3 = ((longlong*)register_r14)[0x185d];
+    
+    // UI状态检查
+    if ((((longlong*)register_r14)[0x10] == float_xmm6) || (((longlong*)register_r14)[0x10] == 0.5) || (temp_float_3 <= float_xmm6)) {
+        needs_update = false;
+    }
+    else {
+        needs_update = true;
+    }
+    
+    stack_ptr_2 = (void*)0x1806599e0;
+    temp_float_1 = (float)atan2f(*(uint*)(*(longlong*)((longlong)render_context + 0x10) + 0x80) ^ 0x80000000,
+                                *(uint*)(*(longlong*)((longlong)render_context + 0x10) + 0x84));
+    temp_float_1 = temp_float_1 + ((longlong*)register_r14)[6];
+    ((longlong*)register_r14)[0xb] = temp_float_1;
+    
+    // 角度标准化处理
+    if (temp_float_1 <= 3.1415927) {
+        if (temp_float_1 < -3.1415927) {
+            temp_float_1 = temp_float_1 + 6.2831855;
+            goto ANGLE_NORMALIZED;
+        }
+    }
+    else {
+        temp_float_1 = temp_float_1 - 6.2831855;
+    ANGLE_NORMALIZED:
+        ((longlong*)register_r14)[0xb] = temp_float_1;
+    }
+    
+    // UI元素数量处理
+    temp_float_1 = ((longlong*)register_r14)[0x18];
+    temp_long_1 = (longlong)(int)temp_float_1;
+    if (0 < (int)temp_float_1) {
+        temp_float_3 = float_xmm6;
+        if (*(char*)(temp_long_1 * 0x1358 + 0x4e + (longlong)register_r14) != '\0') {
+            temp_float_3 = ((longlong*)register_r14)[temp_long_1 * 0x4d6 + 0x12] * 0.05;
+        }
+        if ((temp_float_3 + ((longlong*)register_r14)[temp_long_1 * 0x4d6 + 0xe] < ((longlong*)register_r14)[temp_long_1 * 0x4d6 + 0x11]) ||
+            (*(char*)((longlong)register_r14 + temp_long_1 * 0x4d6 + 0x13) != '\0')) {
+            ((longlong*)register_r14)[0xc] = ((longlong*)register_r14)[0xb];
+            temp_float_1 = ((longlong*)register_r14)[0x18];
+        }
+        temp_long_1 = (longlong)(int)temp_float_1;
+        temp_float_3 = float_xmm6;
+        if (*(char*)(temp_long_1 * 0x1358 + 0x66 + (longlong)register_r14) != '\0') {
+            temp_float_3 = ((longlong*)register_r14)[temp_long_1 * 0x4d6 + 0x18] * 0.05;
+        }
+        if ((temp_float_3 + ((longlong*)register_r14)[temp_long_1 * 0x4d6 + 0x14] < ((longlong*)register_r14)[temp_long_1 * 0x4d6 + 0x17]) ||
+            (*(char*)((longlong)register_r14 + temp_long_1 * 0x4d6 + 0x19) != '\0')) {
+            ((longlong*)register_r14)[0xd] = ((longlong*)register_r14)[0xb];
+            temp_float_1 = ((longlong*)register_r14)[0x18];
+        }
+    }
+    
+    // 渲染条件检查
+    if ((((((int)temp_float_1 < 1) || (float_xmm6 != ((longlong*)register_r14)[2])) || (float_xmm6 != ((longlong*)register_r14)[3])) ||
+        (float_xmm6 == ((longlong*)register_r14)[6])) ||
+        ((ABS(((longlong*)register_r14)[0xb] - ((longlong*)register_r14)[0xc]) < 0.5 && (ABS(((longlong*)register_r14)[0xb] - ((longlong*)register_r14)[0xd]) < 0.5)))) {
+        if (((needs_update) && ((float_xmm6 == ((longlong*)register_r14)[2] && (float_xmm6 == ((longlong*)register_r14)[3])))) ||
+            (((((longlong*)register_r14)[0x14] = 0.0, stack_float_4 = float_xmm6,
+              float_xmm6 <= stack_float_2 && (stack_float_4 = float_xmm8, stack_float_2 <= float_xmm6))))
+            goto RENDER_CONDITION_MET;
+    }
+    else {
+        needs_update = true;
+        ((longlong*)register_r14)[0x14] = 1.0;
+    RENDER_CONDITION_MET:
+        if (((temp_char_1 == '\0') ||
+            (stack_float_4 = float_xmm8, float_xmm8 < ((longlong*)register_r14)[0x1854] || float_xmm8 == ((longlong*)register_r14)[0x1854])) &&
+            (stack_float_4 = float_xmm8, *(char*)((longlong)register_r14 + 0x17) != '\0')) {
+            stack_float_4 = float_xmm6;
+        }
+    }
+    
+    // 动画插值处理
+    if ((temp_float_3 <= float_xmm6) && (float_xmm6 < ((longlong*)register_r14)[0x14])) {
+        temp_float_3 = ((longlong*)register_r14)[0xb] - ((longlong*)register_r14)[0xc];
+        temp_float_1 = ((longlong*)register_r14)[0xb] - ((longlong*)register_r14)[0xd];
+        if (ABS(temp_float_3) <= ABS(temp_float_1)) {
+            temp_float_3 = temp_float_1;
+        }
+        if (temp_float_3 <= 3.1415927) {
+            if (temp_float_3 < -3.1415927) {
+                temp_float_3 = temp_float_3 + 6.2831855;
+            }
+        }
+        else {
+            temp_float_3 = temp_float_3 + -6.2831855;
+        }
+        temp_float_1 = float_xmm6;
+        if (float_xmm6 < temp_float_3) {
+            temp_float_1 = 0.5;
+        }
+        ((longlong*)register_r14)[0x10] = temp_float_1;
+    }
+    
+    // 权重计算和更新
+    if ((needs_update) && (0 < (int)((longlong*)register_r14)[0x18])) {
+        float_ptr_1 = (float*)((longlong)register_r14 + 0x1b);
+        temp_ulong_1 = (ulonglong)(uint)((longlong*)register_r14)[0x18];
+        temp_float_3 = float_xmm6;
+        do {
+            float_ptr_2 = (float*)((longlong)float_ptr_1 + 0x495);
+            temp_float_1 = *float_ptr_1;
+            float_ptr_1 = (float*)((longlong)float_ptr_1 + 0x4d6);
+            temp_float_3 = temp_float_3 + *(float*)(*(longlong*)(*(longlong*)float_ptr_2 + 0x48) + 0x188) * temp_float_1;
+            temp_ulong_1 = temp_ulong_1 - 1;
+        } while (temp_ulong_1 != 0);
+        temp_float_1 = ((longlong*)register_r14)[0x10];
+        temp_float_3 = (stack_float_1 * ((longlong*)register_r14)[7]) / temp_float_3 + temp_float_1;
+        ((longlong*)register_r14)[0x10] = temp_float_3;
+        if (temp_float_3 <= float_xmm8) {
+            if ((((temp_float_1 <= 0.5) && (0.5 < temp_float_3)) && (ABS(((longlong*)register_r14)[0xb] - ((longlong*)register_r14)[0xc]) < 0.5)) &&
+                (ABS(((longlong*)register_r14)[0xb] - ((longlong*)register_r14)[0xd]) < 0.5)) {
+                ((longlong*)register_r14)[0x10] = 0.5;
+            }
+        }
+        else if ((0.5 <= ABS(((longlong*)register_r14)[0xb] - ((longlong*)register_r14)[0xc])) ||
+                 (0.5 <= ABS(((longlong*)register_r14)[0xb] - ((longlong*)register_r14)[0xd]))) {
+            ((longlong*)register_r14)[0x10] = temp_float_3 - float_xmm8;
+        }
+        else {
+            ((longlong*)register_r14)[0x10] = float_xmm6;
+        }
+    }
+    
+    // 状态标志处理
+    temp_char_1 = *(char*)((longlong)register_rbp + 0xa0);
+    temp_char_1 = *(char*)((longlong)register_rbp + 0xa8);
+    if ((((temp_char_1 != '\0') || (temp_char_1 != '\0')) &&
+        ((float_xmm6 != ((longlong*)register_r14)[2] || (float_xmm6 != ((longlong*)register_r14)[3])))) ||
+        (((float_xmm6 != ((longlong*)register_r14)[4] || (float_xmm6 != ((longlong*)register_r14)[5])) ||
+         (temp_float_3 = float_xmm8, float_xmm6 < ((longlong*)register_r14)[0x14])))) {
+        temp_float_3 = float_xmm6;
+    }
+    
+    // 速度计算
+    temp_float_4 = stack_float_1 + stack_float_1;
+    temp_float_3 = *register_r14 - ((longlong*)register_r14)[1];
+    temp_float_1 = temp_float_3;
+    if ((temp_float_4 < ABS(temp_float_3)) && (temp_float_1 = temp_float_4, temp_float_3 < float_xmm6)) {
+        temp_float_1 = -temp_float_4;
+    }
+    ((longlong*)register_r14)[1] = ((longlong*)register_r14)[1] + temp_float_1;
+    stack_ptr_2 = (void*)0x180659d72;
+    temp_float_3 = (float)ui_system_calculate_speed_factor(ABS(temp_float_3), render_context, stack_ptr_1);
+    temp_float_1 = stack_float_1;
+    if (temp_float_3 <= 0.75) {
+        temp_float_3 = 0.75;
+    }
+    temp_float_4 = temp_float_3 - ((longlong*)register_r14)[0x16];
+    if (0.001 <= ABS(temp_float_4)) {
+        temp_float_3 = temp_float_4 * stack_float_1 + ((longlong*)register_r14)[0x16];
+    }
+    ((longlong*)register_r14)[0x16] = temp_float_3;
+    
+    // 边界检查和处理
+    if ((float_xmm9 <= float_xmm6) || (((longlong*)register_r14)[0x1854] <= float_xmm6)) {
+        ((longlong*)register_r14)[0xf] = 0.0;
+    }
+    else {
+        temp_float_3 = float_xmm6;
+        if (0 < (int)((longlong*)register_r14)[0x18]) {
+            float_ptr_1 = (float*)((longlong)register_r14 + 0x1b);
+            temp_ulong_1 = (ulonglong)(uint)((longlong*)register_r14)[0x18];
+            do {
+                float_ptr_2 = (float*)((longlong)float_ptr_1 + 0x495);
+                temp_float_4 = *float_ptr_1;
+                float_ptr_1 = (float*)((longlong)float_ptr_1 + 0x4d6);
+                temp_float_3 = temp_float_3 + *(float*)(**(longlong**)float_ptr_2 + 0x188) * temp_float_4;
+                temp_ulong_1 = temp_ulong_1 - 1;
+            } while (temp_ulong_1 != 0);
+        }
+        stack_ptr_2 = (void*)0x180659e10;
+        temp_float_3 = (float)fmodf(stack_float_1 / temp_float_3 + ((longlong*)register_r14)[0xf]);
+        ((longlong*)register_r14)[0xf] = temp_float_3;
+    }
+    
+    // 高级数据处理循环
+    temp_float_4 = ((longlong*)register_r14)[0x18];
+    loop_counter = 0;
+    temp_float_14 = float_xmm6;
+    if (0 < (int)temp_float_4) {
+        float_ptr_1 = (float*)((longlong)register_r14 + 0x1b);
+        do {
+            stack_ptr_2 = (void*)0x180659e3d;
+            temp_float_3 = (float)ui_system_calculate_weight_factor(temp_float_3, loop_counter);
+            temp_float_3 = temp_float_3 * *float_ptr_1;
+            loop_counter = loop_counter + 1;
+            float_ptr_1 = (float*)((longlong)float_ptr_1 + 0x4d6);
+            temp_float_14 = temp_float_14 + temp_float_3;
+        } while (loop_counter < (int)temp_float_4);
+        temp_char_1 = *(char*)((longlong)register_rbp + 0xa0);
+    }
+    
+    // 最终渲染参数设置
+    if (temp_float_3 < float_xmm8) {
+        if (((longlong*)register_r14)[0x1854] <= float_xmm8 && float_xmm8 != ((longlong*)register_r14)[0x1854]) {
+            temp_float_1 = temp_float_14 * temp_float_1 + ((longlong*)register_r14)[0xe];
+            ((longlong*)register_r14)[0xe] = temp_float_1;
+            if (float_xmm8 < temp_float_1) {
+                ((longlong*)register_r14)[0xe] = temp_float_1 - float_xmm8;
+            }
+        }
+        else if ((int)temp_float_4 < 1) {
+            ((longlong*)register_r14)[0xe] = float_xmm6;
+        }
+        else {
+            temp_float_1 = float_xmm8;
+            if (*(char*)((longlong)register_r14 + 0x17) != '\0') {
+                temp_float_1 = -1.0;
+            }
+            temp_long_1 = *(longlong*)((longlong)register_r14 + (longlong)(int)temp_float_4 * 0x4d6 + -0x26);
+            stack_ptr_2 = (void*)0x180659ea7;
+            temp_long_2 = ui_system_get_render_data(*(void**)((longlong)temp_long_1 + 8));
+            temp_long_3 = 0x14;
+            if (float_xmm6 <= (stack_float_7 - ABS(stack_float_6)) * temp_float_1) {
+                temp_long_3 = 0x18;
+            }
+            temp_float_1 = *(float*)((longlong)temp_long_3 + temp_long_2);
+            stack_ptr_2 = (void*)0x180659edd;
+            ui_system_get_render_data(*(void**)((longlong)temp_long_1 + 8));
+            ((longlong*)register_r14)[0xe] = temp_float_1;
+        }
+    }
+    
+    // 向量长度计算
+    temp_float_3 = stack_float_3 * stack_float_3 + stack_float_2 * stack_float_2;
+    temp_float_3 = (float)(temp_float_3 <= 1.1754944e-38) * 1.1754944e-38 + temp_float_3;
+    temp_array_1[0] = rsqrtss(ZEXT416((uint)temp_float_3), ZEXT416((uint)temp_float_3))._0_4_;
+    temp_float_4 = temp_array_1[0];
+    temp_float_1 = float_xmm8;
+    if (stack_float_3 * temp_float_4 * 0.5 * (3.0 - temp_float_3 * temp_float_4 * temp_float_4) < -0.2) {
+        temp_float_1 = float_xmm6;
+    }
+    ((longlong*)register_r14)[0x13] = temp_float_1;
+    
+    // 坐标变换处理
+    temp_float_3 = stack_float_6;
+    temp_float_4 = stack_float_7;
+    if ((stack_float_2 != float_xmm6) || (stack_float_3 != float_xmm6)) {
+        if (float_xmm6 <= stack_float_7 * stack_float_2) {
+            if (ABS(stack_float_7) < ABS(stack_float_2)) {
+                temp_float_3 = stack_float_2;
+            }
+        }
+        else {
+            temp_float_3 = stack_float_7 + stack_float_2;
+        }
+        if (float_xmm6 <= stack_float_3 * stack_float_7) {
+            if (ABS(stack_float_7) < ABS(stack_float_3)) {
+                temp_float_4 = stack_float_3;
+            }
+        }
+        else {
+            temp_float_4 = stack_float_7 + stack_float_3;
+        }
+    }
+    
+    stack_ptr_2 = (void*)0x18065a04d;
+    temp_float_3 = (float)atan2f(-temp_float_3, temp_float_4);
+    temp_float_3 = ABS(temp_float_3);
+    if (1.5707964 < temp_float_3) {
+        temp_float_3 = 3.1415927 - temp_float_3;
+    }
+    temp_float_3 = temp_float_3 * 0.63661975;
+    temp_float_5 = (float_xmm8 - *(float*)((longlong)register_rbp + 0xc0)) * 0.3;
+    temp_float_4 = float_xmm6;
+    if ((temp_float_5 + 0.05 <= temp_float_3) && (temp_float_4 = temp_float_3, 0.95 - temp_float_5 < temp_float_3)) {
+        temp_float_4 = float_xmm8;
+    }
+    
+    // 平滑插值处理
+    temp_float_5 = temp_float_4 - ((longlong*)register_r14)[0x15];
+    temp_float_12 = ABS(temp_float_5);
+    temp_float_3 = temp_float_4;
+    if (0.001 <= temp_float_12) {
+        temp_float_2 = stack_float_1;
+        if (temp_float_5 < float_xmm6) {
+            temp_float_2 = -stack_float_1;
+        }
+        temp_float_5 = 0.1;
+        if ((0.1 <= temp_float_12) && (temp_float_5 = temp_float_12, 0.5 <= temp_float_12)) {
+            temp_float_5 = 0.5;
+        }
+        temp_float_5 = temp_float_2 * temp_float_5 * 12.0;
+        if (ABS(temp_float_5) <= temp_float_12) {
+            temp_float_3 = ((longlong*)register_r14)[0x15] + temp_float_5;
+        }
+    }
+    ((longlong*)register_r14)[0x15] = temp_float_3;
+    
+    // 可见性检查
+    if ((((stack_float_7 <= -0.1) || (temp_char_1 == '\0')) || (temp_char_1 != '\0')) || (stack_float_3 <= -0.1)) {
+    VISIBILITY_CHECK_FAILED:
+        if ((((longlong*)register_r14)[0x11] <= float_xmm6) || (float_xmm8 <= ((longlong*)register_r14)[0x11])) {
+            ((longlong*)register_r14)[0x11] = 0.0;
+            ((longlong*)register_r14)[0x12] = -1.0;
+            goto FINAL_RENDER_SETUP;
+        }
+    }
+    else {
+        temp_float_3 = stack_float_7 * stack_float_7 + stack_float_7 * stack_float_7;
+        temp_float_3 = temp_float_3 + temp_float_3;
+        if (temp_float_3 <= float_xmm8) {
+            temp_float_3 = float_xmm8;
+        }
+        if (-temp_float_3 <= stack_float_6 * stack_float_2) goto VISIBILITY_CHECK_FAILED;
+    }
+    
+    // 渲染优先级计算
+    temp_float_3 = ((longlong*)register_r14)[0x11];
+    if (temp_float_3 == float_xmm6) {
+        *(bool*)((longlong)register_r14 + 0x5d) = stack_float_2 < float_xmm6;
+    }
+    temp_float_3 = (*(float*)(*(longlong*)
+                             (*(longlong*)((longlong)register_r14 + (longlong)(int)((longlong*)register_r14)[0x18] * 0x4d6 + -0x26) +
+                             8) + 0x188) /
+                    *(float*)(*(longlong*)
+                               (*(longlong*)((longlong)register_r14 + (longlong)(int)((longlong*)register_r14)[0x18] * 0x4d6 + -0x26) +
+                               0x38) + 0x188)) * temp_float_14 * stack_float_1 + temp_float_3;
+    if (float_xmm8 <= temp_float_3) {
+        temp_float_3 = float_xmm8;
+    }
+    ((longlong*)register_r14)[0x11] = temp_float_3;
+    
+    // 渲染偏移计算
+    if (((longlong*)register_r14)[0x12] <= float_xmm6 && float_xmm6 != ((longlong*)register_r14)[0x12]) {
+        temp_float_14 = float_xmm8;
+        if (*(char*)((longlong)register_r14 + 0x5d) != '\0') {
+            temp_float_14 = -1.0;
+        }
+        if (float_xmm6 <= temp_float_14 * stack_float_2) {
+            temp_float_14 = temp_float_3;
+            if (*(char*)((longlong)register_r14 + 0x5d) == '\0') {
+                stack_ptr_2 = (void*)0x18065a252;
+                temp_float_14 = (float)fmodf(temp_float_3 + 0.5);
+            }
+            temp_float_14 = temp_float_14 - ((longlong*)register_r14)[0xe];
+            if (temp_float_14 <= 0.5) {
+                if (temp_float_14 < -0.5) {
+                    temp_float_14 = temp_float_14 + float_xmm8;
+                }
+            }
+            else {
+                temp_float_14 = temp_float_14 + -1.0;
+            }
+            temp_float_5 = temp_float_3 * temp_float_3 * temp_float_3 + stack_float_1;
+            if (float_xmm8 <= temp_float_5) {
+                temp_float_5 = float_xmm8;
+            }
+            temp_float_3 = temp_float_5 * temp_float_5 * temp_float_14 + ((longlong*)register_r14)[0xe];
+            ((longlong*)register_r14)[0xe] = temp_float_3;
+            if (float_xmm6 <= temp_float_3) {
+                if (float_xmm8 <= temp_float_3) {
+                    ((longlong*)register_r14)[0xe] = temp_float_3 - float_xmm8;
+                }
+            }
+            else {
+                ((longlong*)register_r14)[0xe] = temp_float_3 + float_xmm8;
+            }
+        }
+        else {
+            ((longlong*)register_r14)[0x12] = temp_float_3 + 0.25;
+        }
+    }
+    
+FINAL_RENDER_SETUP:
+    // 最终渲染矩阵设置
+    temp_float_3 = ((longlong*)register_r14)[0x14];
+    stack_float_8 = (float_xmm8 - temp_float_3) * (float_xmm8 - temp_float_3);
+    temp_float_5 = (float_xmm8 - temp_float_1) * stack_float_8;
+    stack_float_9 = (float_xmm8 - temp_float_4) * temp_float_1 * stack_float_8;
+    temp_float_14 = temp_float_1 * stack_float_8 * temp_float_4;
+    temp_float_12 = temp_float_5 * temp_float_4;
+    stack_float_8 = stack_float_8 * temp_float_4;
+    stack_float_10 = temp_float_14 * stack_float_4;
+    *(float*)((longlong)register_rbp + -0x7c) = stack_float_8;
+    *(float*)((longlong)register_rbp + -0x78) = stack_float_8;
+    *(float*)((longlong)register_rbp + -0x74) = (float_xmm8 - temp_float_3) * temp_float_3;
+    temp_float_1 = (float_xmm8 - stack_float_4) * temp_float_12;
+    stack_float_5 = (float_xmm8 - stack_float_4) * temp_float_14;
+    stack_ptr_1 = CONCAT44(stack_ptr_1._4_4_, temp_float_1);
+    *(float*)((longlong)register_rbp + -0x80) = temp_float_1;
+    
+    // 动画速度控制
+    if ((stack_char_1 == '\0') || (float_xmm6 < stack_float_4)) {
+        if (temp_float_3 <= float_xmm6) {
+            temp_float_3 = 3.0;
+        }
+        else {
+            temp_float_3 = 5.0;
+        }
+    }
+    else {
+        temp_float_3 = 2.0;
+    }
+    
+    // 平滑过渡处理
+    temp_float_2 = ((longlong*)register_r14)[0x184a];
+    if (temp_float_3 <= temp_float_2) {
+        temp_float_2 = temp_float_2 - temp_float_3 * stack_float_1;
+        if (temp_float_2 <= temp_float_3) {
+            temp_float_2 = temp_float_3;
+        }
+    }
+    else {
+        temp_float_2 = temp_float_2 + temp_float_3 * stack_float_1;
+        if (temp_float_3 <= temp_float_2) {
+            temp_float_2 = temp_float_3;
+        }
+    }
+    ((longlong*)register_r14)[0x184a] = temp_float_2;
+    ((longlong*)register_r14)[0x1854] = temp_float_2;
+    
+    // 透明度计算
+    temp_float_3 = ((longlong*)register_r14)[0x11];
+    if (0.2 <= temp_float_3) {
+        temp_float_5 = float_xmm8;
+        if (0.7 < temp_float_3) {
+            temp_float_5 = (float_xmm8 - temp_float_3) * 3.333333;
+        }
+    }
+    else {
+        temp_float_5 = temp_float_3 * 5.0;
+    }
+    if (float_xmm6 < ((longlong*)register_r14)[0x12]) {
+        temp_float_3 = (((longlong*)register_r14)[0x12] - temp_float_3) * 4.0;
+        if (temp_float_3 <= float_xmm6) {
+            temp_float_3 = float_xmm6;
+        }
+        temp_float_5 = temp_float_5 * temp_float_3;
+    }
+    
+    // UI元素数据更新循环
+    float_ptr_1 = (float*)((longlong)register_r14 + 0x1855);
+    loop_counter = 1;
+    temp_float_3 = float_xmm6;
     do {
-      fVar17 = pfVar8[1];
-      fVar12 = *pfVar8;
-      if (fVar17 <= fVar12) {
-        fVar12 = fVar12 - param_2 * in_XMM0_Da;
-        if (fVar12 <= fVar17) {
-          fVar12 = fVar17;
+        temp_float_2 = *(float*)(((longlong)large_float_array - (longlong)register_r14) + (longlong)float_ptr_1);
+        temp_float_4 = temp_float_2 - float_ptr_1[-10];
+        temp_float_6 = ABS(temp_float_4);
+        if (0.001 <= temp_float_6) {
+            temp_float_7 = float_xmm8;
+            if (temp_float_4 < float_xmm6) {
+                temp_float_7 = -1.0;
+            }
+            if (0.05 <= temp_float_6) {
+                if (0.5 <= temp_float_6) {
+                    temp_float_6 = 0.5;
+                }
+            }
+            else {
+                temp_float_6 = 0.05;
+            }
+            temp_float_6 = temp_float_6 * temp_float_7 * stack_float_1 * 6.0;
+            if (temp_float_6 * temp_float_7 <= temp_float_7 * temp_float_4) {
+                temp_float_2 = float_ptr_1[-10] + temp_float_6;
+            }
         }
-      }
-      else {
-        fVar12 = param_2 * in_XMM0_Da + fVar12;
-        if (fVar17 <= fVar12) {
-          fVar12 = fVar17;
+        float_ptr_1[-10] = temp_float_2;
+        *float_ptr_1 = temp_float_2;
+        if (2 < loop_counter) {
+            if (loop_counter < 7) {
+                temp_float_4 = float_xmm8 - temp_float_5;
+            }
+            else {
+                temp_float_4 = float_xmm6;
+                if (loop_counter == 7) {
+                    if (*(char*)((longlong)register_r14 + 0x5d) == '\0') {
+                    USE_FADE_VALUE:
+                        temp_float_4 = temp_float_5;
+                    }
+                }
+                else {
+                    if (loop_counter != 8) goto SKIP_FADE_PROCESSING;
+                    if (*(char*)((longlong)register_r14 + 0x5d) != '\0') goto USE_FADE_VALUE;
+                }
+            }
+            temp_float_2 = temp_float_4 * temp_float_2;
+            *float_ptr_1 = temp_float_2;
         }
-      }
-      *pfVar8 = fVar12;
-      uStack_8 = 0x1806597d3;
-      FUN_18065ee60(*(undefined8 *)(pfVar8 + 0x495),param_1 + 0x6150);
-      if ((*(char *)(pfVar8 + 0x4af) == '\0') && (*(char *)(pfVar8 + 0x4ce) != '\0')) {
-        *(undefined1 *)(pfVar8 + 0x4af) = 1;
-      }
-      if ((*(char *)(pfVar8 + 0x4c8) == '\0') && (*(char *)(pfVar8 + 0x4d4) != '\0')) {
-        *(undefined1 *)(pfVar8 + 0x4c8) = 1;
-      }
-      unaff_XMM9_Da = unaff_XMM9_Da + *pfVar8;
-      pfVar8 = pfVar8 + 0x4d6;
-      iVar9 = iVar9 + 1;
-    } while (iVar9 < (int)unaff_R14[0x18]);
-    if (((unaff_XMM6_Da < unaff_XMM9_Da) && (unaff_XMM9_Da != unaff_XMM8_Da)) &&
-       (0 < (int)unaff_R14[0x18])) {
-      do {
-        iVar3 = iVar3 + 1;
-        *pfVar5 = (unaff_XMM8_Da / unaff_XMM9_Da) * *pfVar5;
-        pfVar5 = pfVar5 + 0x4d6;
-      } while (iVar3 < (int)unaff_R14[0x18]);
-    }
-  }
-  cVar11 = cStack0000000000000030;
-  uStack_8 = 0x18065986c;
-  FUN_18065cb80();
-  if (((unaff_XMM6_Da == unaff_R14[4]) && (unaff_XMM6_Da == unaff_R14[5])) &&
-     (0.25 < unaff_R14[2] * unaff_R14[2] + unaff_R14[3] * unaff_R14[3])) {
-    *(undefined8 *)(unaff_R14 + 4) = *(undefined8 *)(unaff_R14 + 2);
-  }
-  if (unaff_R14[8] != unaff_XMM6_Da) {
-                    // WARNING: Subroutine does not return
-    uStack_8 = 0x1806598e8;
-    FUN_1808fd400(-unaff_R14[8]);
-  }
-  fStack000000000000003c = (float)((ulonglong)*(undefined8 *)(unaff_R14 + 4) >> 0x20);
-  fStack0000000000000038 = (float)*(undefined8 *)(unaff_R14 + 4);
-  fStack000000000000004c = (float)((ulonglong)*(undefined8 *)(unaff_R14 + 2) >> 0x20);
-  fStack0000000000000048 = (float)*(undefined8 *)(unaff_R14 + 2);
-  fVar17 = unaff_R14[0x185d];
-  if (((unaff_R14[0x10] == unaff_XMM6_Da) || (unaff_R14[0x10] == 0.5)) || (fVar17 <= unaff_XMM6_Da))
-  {
-    bVar2 = false;
-  }
-  else {
-    bVar2 = true;
-  }
-  uStack_8 = 0x1806599e0;
-  fVar12 = (float)atan2f(*(uint *)(*(longlong *)(param_3 + 0x10) + 0x80) ^ 0x80000000,
-                         *(undefined4 *)(*(longlong *)(param_3 + 0x10) + 0x84));
-  fVar12 = fVar12 + unaff_R14[6];
-  unaff_R14[0xb] = fVar12;
-  if (fVar12 <= 3.1415927) {
-    if (fVar12 < -3.1415927) {
-      fVar12 = fVar12 + 6.2831855;
-      goto LAB_180659a1a;
-    }
-  }
-  else {
-    fVar12 = fVar12 - 6.2831855;
-LAB_180659a1a:
-    unaff_R14[0xb] = fVar12;
-  }
-  fVar12 = unaff_R14[0x18];
-  lVar6 = (longlong)(int)fVar12;
-  if (0 < (int)fVar12) {
-    fVar15 = unaff_XMM6_Da;
-    if (*(char *)(lVar6 * 0x1358 + 0x4e + (longlong)unaff_R14) != '\0') {
-      fVar15 = unaff_R14[lVar6 * 0x4d6 + 0x12] * 0.05;
-    }
-    if ((fVar15 + unaff_R14[lVar6 * 0x4d6 + 0xe] < unaff_R14[lVar6 * 0x4d6 + 0x11]) ||
-       (*(char *)(unaff_R14 + lVar6 * 0x4d6 + 0x13) != '\0')) {
-      unaff_R14[0xc] = unaff_R14[0xb];
-      fVar12 = unaff_R14[0x18];
-    }
-    lVar6 = (longlong)(int)fVar12;
-    fVar15 = unaff_XMM6_Da;
-    if (*(char *)(lVar6 * 0x1358 + 0x66 + (longlong)unaff_R14) != '\0') {
-      fVar15 = unaff_R14[lVar6 * 0x4d6 + 0x18] * 0.05;
-    }
-    if ((fVar15 + unaff_R14[lVar6 * 0x4d6 + 0x14] < unaff_R14[lVar6 * 0x4d6 + 0x17]) ||
-       (*(char *)(unaff_R14 + lVar6 * 0x4d6 + 0x19) != '\0')) {
-      unaff_R14[0xd] = unaff_R14[0xb];
-      fVar12 = unaff_R14[0x18];
-    }
-  }
-  if ((((((int)fVar12 < 1) || (unaff_XMM6_Da != unaff_R14[2])) || (unaff_XMM6_Da != unaff_R14[3]))
-      || (unaff_XMM6_Da == unaff_R14[6])) ||
-     ((ABS(unaff_R14[0xb] - unaff_R14[0xc]) < 0.5 && (ABS(unaff_R14[0xb] - unaff_R14[0xd]) < 0.5))))
-  {
-    if (((bVar2) && ((unaff_XMM6_Da == unaff_R14[2] && (unaff_XMM6_Da == unaff_R14[3])))) ||
-       ((unaff_R14[0x14] = 0.0, fStack0000000000000040 = unaff_XMM6_Da,
-        unaff_XMM6_Da <= fStack0000000000000038 &&
-        (fStack0000000000000040 = unaff_XMM8_Da, fStack0000000000000038 <= unaff_XMM6_Da))))
-    goto LAB_180659b1a;
-  }
-  else {
-    bVar2 = true;
-    unaff_R14[0x14] = 1.0;
-LAB_180659b1a:
-    if (((cVar11 == '\0') ||
-        (fStack0000000000000040 = unaff_XMM8_Da,
-        unaff_XMM8_Da < unaff_R14[0x1854] || unaff_XMM8_Da == unaff_R14[0x1854])) &&
-       (fStack0000000000000040 = unaff_XMM8_Da, *(char *)(unaff_R14 + 0x17) != '\0')) {
-      fStack0000000000000040 = unaff_XMM6_Da;
-    }
-  }
-  if ((fVar17 <= unaff_XMM6_Da) && (unaff_XMM6_Da < unaff_R14[0x14])) {
-    fVar17 = unaff_R14[0xb] - unaff_R14[0xc];
-    fVar12 = unaff_R14[0xb] - unaff_R14[0xd];
-    if (ABS(fVar17) <= ABS(fVar12)) {
-      fVar17 = fVar12;
-    }
-    if (fVar17 <= 3.1415927) {
-      if (fVar17 < -3.1415927) {
-        fVar17 = fVar17 + 6.2831855;
-      }
-    }
-    else {
-      fVar17 = fVar17 + -6.2831855;
-    }
-    fVar12 = unaff_XMM6_Da;
-    if (unaff_XMM6_Da < fVar17) {
-      fVar12 = 0.5;
-    }
-    unaff_R14[0x10] = fVar12;
-  }
-  if ((bVar2) && (0 < (int)unaff_R14[0x18])) {
-    pfVar5 = unaff_R14 + 0x1b;
-    uVar10 = (ulonglong)(uint)unaff_R14[0x18];
-    fVar17 = unaff_XMM6_Da;
-    do {
-      pfVar8 = pfVar5 + 0x495;
-      fVar12 = *pfVar5;
-      pfVar5 = pfVar5 + 0x4d6;
-      fVar17 = fVar17 + *(float *)(*(longlong *)(*(longlong *)pfVar8 + 0x48) + 0x188) * fVar12;
-      uVar10 = uVar10 - 1;
-    } while (uVar10 != 0);
-    fVar12 = unaff_R14[0x10];
-    fVar17 = (fStack0000000000000034 * unaff_R14[7]) / fVar17 + fVar12;
-    unaff_R14[0x10] = fVar17;
-    if (fVar17 <= unaff_XMM8_Da) {
-      if ((((fVar12 <= 0.5) && (0.5 < fVar17)) && (ABS(unaff_R14[0xb] - unaff_R14[0xc]) < 0.5)) &&
-         (ABS(unaff_R14[0xb] - unaff_R14[0xd]) < 0.5)) {
-        unaff_R14[0x10] = 0.5;
-      }
-    }
-    else if ((0.5 <= ABS(unaff_R14[0xb] - unaff_R14[0xc])) ||
-            (0.5 <= ABS(unaff_R14[0xb] - unaff_R14[0xd]))) {
-      unaff_R14[0x10] = fVar17 - unaff_XMM8_Da;
-    }
-    else {
-      unaff_R14[0x10] = unaff_XMM6_Da;
-    }
-  }
-  cVar11 = *(char *)(unaff_RBP + 0xa0);
-  cVar1 = *(char *)(unaff_RBP + 0xa8);
-  if ((((cVar11 != '\0') || (cVar1 != '\0')) &&
-      ((unaff_XMM6_Da != unaff_R14[2] || (unaff_XMM6_Da != unaff_R14[3])))) ||
-     (((unaff_XMM6_Da != unaff_R14[4] || (unaff_XMM6_Da != unaff_R14[5])) ||
-      (fVar17 = unaff_XMM8_Da, unaff_XMM6_Da < unaff_R14[0x14])))) {
-    fVar17 = unaff_XMM6_Da;
-  }
-  fVar18 = fStack0000000000000034 + fStack0000000000000034;
-  fVar15 = *unaff_R14 - unaff_R14[1];
-  fVar12 = fVar15;
-  if ((fVar18 < ABS(fVar15)) && (fVar12 = fVar18, fVar15 < unaff_XMM6_Da)) {
-    fVar12 = -fVar18;
-  }
-  unaff_R14[1] = unaff_R14[1] + fVar12;
-  uStack_8 = 0x180659d72;
-  fVar15 = (float)FUN_18065c070(ABS(fVar15),param_3,uStack0000000000000060);
-  fVar12 = fStack0000000000000034;
-  if (fVar15 <= 0.75) {
-    fVar15 = 0.75;
-  }
-  fVar18 = fVar15 - unaff_R14[0x16];
-  if (0.001 <= ABS(fVar18)) {
-    fVar15 = fVar18 * fStack0000000000000034 + unaff_R14[0x16];
-  }
-  unaff_R14[0x16] = fVar15;
-  if ((unaff_XMM9_Da <= unaff_XMM6_Da) || (unaff_R14[0x1854] <= unaff_XMM6_Da)) {
-    unaff_R14[0xf] = 0.0;
-  }
-  else {
-    fVar15 = unaff_XMM6_Da;
-    if (0 < (int)unaff_R14[0x18]) {
-      pfVar5 = unaff_R14 + 0x1b;
-      uVar10 = (ulonglong)(uint)unaff_R14[0x18];
-      do {
-        pfVar8 = pfVar5 + 0x495;
-        fVar18 = *pfVar5;
-        pfVar5 = pfVar5 + 0x4d6;
-        fVar15 = fVar15 + *(float *)(**(longlong **)pfVar8 + 0x188) * fVar18;
-        uVar10 = uVar10 - 1;
-      } while (uVar10 != 0);
-    }
-    uStack_8 = 0x180659e10;
-    fVar15 = (float)fmodf(fStack0000000000000034 / fVar15 + unaff_R14[0xf]);
-    unaff_R14[0xf] = fVar15;
-  }
-  fVar18 = unaff_R14[0x18];
-  iVar3 = 0;
-  fVar25 = unaff_XMM6_Da;
-  if (0 < (int)fVar18) {
-    pfVar5 = unaff_R14 + 0x1b;
-    do {
-      uStack_8 = 0x180659e3d;
-      fVar15 = (float)FUN_18065bf60(fVar15,iVar3);
-      fVar15 = fVar15 * *pfVar5;
-      iVar3 = iVar3 + 1;
-      pfVar5 = pfVar5 + 0x4d6;
-      fVar25 = fVar25 + fVar15;
-    } while (iVar3 < (int)fVar18);
-    cVar11 = *(char *)(unaff_RBP + 0xa0);
-  }
-  if (fVar17 < unaff_XMM8_Da) {
-    if (unaff_R14[0x1854] <= unaff_XMM8_Da && unaff_XMM8_Da != unaff_R14[0x1854]) {
-      fVar12 = fVar25 * fVar12 + unaff_R14[0xe];
-      unaff_R14[0xe] = fVar12;
-      if (unaff_XMM8_Da < fVar12) {
-        unaff_R14[0xe] = fVar12 - unaff_XMM8_Da;
-      }
-    }
-    else if ((int)fVar18 < 1) {
-      unaff_R14[0xe] = unaff_XMM6_Da;
-    }
-    else {
-      fVar12 = unaff_XMM8_Da;
-      if (*(char *)(unaff_R14 + 0x17) != '\0') {
-        fVar12 = -1.0;
-      }
-      lVar6 = *(longlong *)(unaff_R14 + (longlong)(int)fVar18 * 0x4d6 + -0x26);
-      uStack_8 = 0x180659ea7;
-      lVar4 = FUN_18065fd40(*(undefined8 *)(lVar6 + 8));
-      lVar7 = 0x14;
-      if (unaff_XMM6_Da <= (fStack000000000000004c - ABS(fStack0000000000000048)) * fVar12) {
-        lVar7 = 0x18;
-      }
-      fVar12 = *(float *)(lVar7 + lVar4);
-      uStack_8 = 0x180659edd;
-      FUN_18065fd40(*(undefined8 *)(lVar6 + 8));
-      unaff_R14[0xe] = fVar12;
-    }
-  }
-  fVar15 = fStack000000000000003c * fStack000000000000003c +
-           fStack0000000000000038 * fStack0000000000000038;
-  fVar15 = (float)(fVar15 <= 1.1754944e-38) * 1.1754944e-38 + fVar15;
-  auVar22 = rsqrtss(ZEXT416((uint)fVar15),ZEXT416((uint)fVar15));
-  fVar18 = auVar22._0_4_;
-  fVar12 = unaff_XMM8_Da;
-  if (fStack000000000000003c * fVar18 * 0.5 * (3.0 - fVar15 * fVar18 * fVar18) < -0.2) {
-    fVar12 = unaff_XMM6_Da;
-  }
-  unaff_R14[0x13] = fVar12;
-  fVar15 = fStack0000000000000048;
-  fVar18 = fStack000000000000004c;
-  if ((fStack0000000000000038 != unaff_XMM6_Da) || (fStack000000000000003c != unaff_XMM6_Da)) {
-    if (unaff_XMM6_Da <= fStack0000000000000048 * fStack0000000000000038) {
-      if (ABS(fStack0000000000000048) < ABS(fStack0000000000000038)) {
-        fVar15 = fStack0000000000000038;
-      }
-    }
-    else {
-      fVar15 = fStack0000000000000048 + fStack0000000000000038;
-    }
-    if (unaff_XMM6_Da <= fStack000000000000003c * fStack000000000000004c) {
-      if (ABS(fStack000000000000004c) < ABS(fStack000000000000003c)) {
-        fVar18 = fStack000000000000003c;
-      }
-    }
-    else {
-      fVar18 = fStack000000000000004c + fStack000000000000003c;
-    }
-  }
-  uStack_8 = 0x18065a04d;
-  fVar15 = (float)atan2f(-fVar15,fVar18);
-  fVar15 = ABS(fVar15);
-  if (1.5707964 < fVar15) {
-    fVar15 = 3.1415927 - fVar15;
-  }
-  fVar15 = fVar15 * 0.63661975;
-  fVar16 = (unaff_XMM8_Da - *(float *)(unaff_RBP + 0xc0)) * 0.3;
-  fVar18 = unaff_XMM6_Da;
-  if ((fVar16 + 0.05 <= fVar15) && (fVar18 = fVar15, 0.95 - fVar16 < fVar15)) {
-    fVar18 = unaff_XMM8_Da;
-  }
-  fVar16 = fVar18 - unaff_R14[0x15];
-  fVar23 = ABS(fVar16);
-  fVar15 = fVar18;
-  if (0.001 <= fVar23) {
-    fVar13 = fStack0000000000000034;
-    if (fVar16 < unaff_XMM6_Da) {
-      fVar13 = -fStack0000000000000034;
-    }
-    fVar16 = 0.1;
-    if ((0.1 <= fVar23) && (fVar16 = fVar23, 0.5 <= fVar23)) {
-      fVar16 = 0.5;
-    }
-    fVar16 = fVar13 * fVar16 * 12.0;
-    if (ABS(fVar16) <= fVar23) {
-      fVar15 = unaff_R14[0x15] + fVar16;
-    }
-  }
-  unaff_R14[0x15] = fVar15;
-  if ((((fStack000000000000004c <= -0.1) || (cVar1 == '\0')) || (cVar11 != '\0')) ||
-     (fStack000000000000003c <= -0.1)) {
-LAB_18065a17c:
-    if ((unaff_R14[0x11] <= unaff_XMM6_Da) || (unaff_XMM8_Da <= unaff_R14[0x11])) {
-      unaff_R14[0x11] = 0.0;
-      unaff_R14[0x12] = -1.0;
-      goto LAB_18065a2e9;
-    }
-  }
-  else {
-    fVar15 = fStack000000000000004c * fStack000000000000004c +
-             fStack000000000000004c * fStack000000000000004c;
-    fVar15 = fVar15 + fVar15;
-    if (fVar15 <= unaff_XMM8_Da) {
-      fVar15 = unaff_XMM8_Da;
-    }
-    if (-fVar15 <= fStack0000000000000048 * fStack0000000000000038) goto LAB_18065a17c;
-  }
-  fVar15 = unaff_R14[0x11];
-  if (fVar15 == unaff_XMM6_Da) {
-    *(bool *)((longlong)unaff_R14 + 0x5d) = fStack0000000000000038 < unaff_XMM6_Da;
-  }
-  fVar15 = (*(float *)(*(longlong *)
-                        (*(longlong *)(unaff_R14 + (longlong)(int)unaff_R14[0x18] * 0x4d6 + -0x26) +
-                        8) + 0x188) /
-           *(float *)(*(longlong *)
-                       (*(longlong *)(unaff_R14 + (longlong)(int)unaff_R14[0x18] * 0x4d6 + -0x26) +
-                       0x38) + 0x188)) * fVar25 * fStack0000000000000034 + fVar15;
-  if (unaff_XMM8_Da <= fVar15) {
-    fVar15 = unaff_XMM8_Da;
-  }
-  unaff_R14[0x11] = fVar15;
-  if (unaff_R14[0x12] <= unaff_XMM6_Da && unaff_XMM6_Da != unaff_R14[0x12]) {
-    fVar25 = unaff_XMM8_Da;
-    if (*(char *)((longlong)unaff_R14 + 0x5d) != '\0') {
-      fVar25 = -1.0;
-    }
-    if (unaff_XMM6_Da <= fVar25 * fStack0000000000000038) {
-      fVar25 = fVar15;
-      if (*(char *)((longlong)unaff_R14 + 0x5d) == '\0') {
-        uStack_8 = 0x18065a252;
-        fVar25 = (float)fmodf(fVar15 + 0.5);
-      }
-      fVar25 = fVar25 - unaff_R14[0xe];
-      if (fVar25 <= 0.5) {
-        if (fVar25 < -0.5) {
-          fVar25 = fVar25 + unaff_XMM8_Da;
+    SKIP_FADE_PROCESSING:
+        temp_float_4 = *(float*)((longlong)large_float_array + (4 - (longlong)register_r14) + (longlong)float_ptr_1);
+        temp_float_6 = temp_float_4 - float_ptr_1[-9];
+        temp_float_7 = ABS(temp_float_6);
+        if (0.001 <= temp_float_7) {
+            temp_float_8 = float_xmm8;
+            if (temp_float_6 < float_xmm6) {
+                temp_float_8 = -1.0;
+            }
+            if (0.05 <= temp_float_7) {
+                if (0.5 <= temp_float_7) {
+                    temp_float_7 = 0.5;
+                }
+            }
+            else {
+                temp_float_7 = 0.05;
+            }
+            temp_float_7 = temp_float_7 * temp_float_8 * stack_float_1 * 6.0;
+            if (temp_float_7 * temp_float_8 <= temp_float_8 * temp_float_6) {
+                temp_float_4 = float_ptr_1[-9] + temp_float_7;
+            }
         }
-      }
-      else {
-        fVar25 = fVar25 + -1.0;
-      }
-      fVar16 = fVar15 * fVar15 * fVar15 + fStack0000000000000034;
-      if (unaff_XMM8_Da <= fVar16) {
-        fVar16 = unaff_XMM8_Da;
-      }
-      fVar15 = fVar16 * fVar15 * fVar25 + unaff_R14[0xe];
-      unaff_R14[0xe] = fVar15;
-      if (unaff_XMM6_Da <= fVar15) {
-        if (unaff_XMM8_Da <= fVar15) {
-          unaff_R14[0xe] = fVar15 - unaff_XMM8_Da;
+        temp_int_1 = loop_counter + 1;
+        float_ptr_1[-9] = temp_float_4;
+        float_ptr_1[1] = temp_float_4;
+        if (2 < temp_int_1) {
+            if (temp_int_1 < 7) {
+                temp_float_6 = float_xmm8 - temp_float_5;
+            }
+            else {
+                temp_float_6 = float_xmm6;
+                if (temp_int_1 == 7) {
+                    if (*(char*)((longlong)register_r14 + 0x5d) == '\0') {
+                    USE_FADE_VALUE_2:
+                        temp_float_6 = temp_float_5;
+                    }
+                }
+                else {
+                    if (temp_int_1 != 8) goto SKIP_FADE_PROCESSING_2;
+                    if (*(char*)((longlong)register_r14 + 0x5d) != '\0') goto USE_FADE_VALUE_2;
+                }
+            }
+            temp_float_4 = temp_float_6 * temp_float_4;
+            float_ptr_1[1] = temp_float_4;
         }
-      }
-      else {
-        unaff_R14[0xe] = fVar15 + unaff_XMM8_Da;
-      }
-    }
-    else {
-      unaff_R14[0x12] = fVar15 + 0.25;
-    }
-  }
-LAB_18065a2e9:
-  fVar15 = unaff_R14[0x14];
-  fStack0000000000000054 = (unaff_XMM8_Da - fVar15) * (unaff_XMM8_Da - fVar17);
-  fVar16 = (unaff_XMM8_Da - fVar12) * fStack0000000000000054;
-  fStack000000000000006c = (unaff_XMM8_Da - fVar18) * fVar12 * fStack0000000000000054;
-  fVar25 = fVar12 * fStack0000000000000054 * fVar18;
-  fVar23 = fVar16 * fVar18;
-  fStack0000000000000054 = fStack0000000000000054 * fVar18;
-  fStack0000000000000074 = fVar25 * fStack0000000000000040;
-  *(float *)(unaff_RBP + -0x7c) = fStack0000000000000054;
-  *(float *)(unaff_RBP + -0x78) = fStack0000000000000054;
-  *(float *)(unaff_RBP + -0x74) = (unaff_XMM8_Da - fVar17) * fVar15;
-  fVar12 = (unaff_XMM8_Da - fStack0000000000000040) * fVar23;
-  fStack000000000000005c = (unaff_XMM8_Da - fStack0000000000000040) * fVar25;
-  uStack0000000000000060 = CONCAT44(uStack0000000000000060._4_4_,fVar12);
-  *(float *)(unaff_RBP + -0x80) = fVar12;
-  if ((cStack0000000000000030 == '\0') || (unaff_XMM6_Da < fStack0000000000000040)) {
-    if (fVar15 <= unaff_XMM6_Da) {
-      fVar15 = 3.0;
-    }
-    else {
-      fVar15 = 5.0;
-    }
-  }
-  else {
-    fVar15 = 2.0;
-  }
-  fVar13 = unaff_R14[0x184a];
-  if (fVar17 <= fVar13) {
-    fVar13 = fVar13 - fVar15 * fStack0000000000000034;
-    if (fVar13 <= fVar17) {
-      fVar13 = fVar17;
-    }
-  }
-  else {
-    fVar13 = fVar13 + fVar15 * fStack0000000000000034;
-    if (fVar17 <= fVar13) {
-      fVar13 = fVar17;
-    }
-  }
-  unaff_R14[0x184a] = fVar13;
-  unaff_R14[0x1854] = fVar13;
-  fVar17 = unaff_R14[0x11];
-  if (0.2 <= fVar17) {
-    fVar15 = unaff_XMM8_Da;
-    if (0.7 < fVar17) {
-      fVar15 = (unaff_XMM8_Da - fVar17) * 3.333333;
-    }
-  }
-  else {
-    fVar15 = fVar17 * 5.0;
-  }
-  if (unaff_XMM6_Da < unaff_R14[0x12]) {
-    fVar17 = (unaff_R14[0x12] - fVar17) * 4.0;
-    if (fVar17 <= unaff_XMM6_Da) {
-      fVar17 = unaff_XMM6_Da;
-    }
-    fVar15 = fVar15 * fVar17;
-  }
-  pfVar5 = unaff_R14 + 0x1855;
-  iVar3 = 1;
-  fVar17 = unaff_XMM6_Da;
-  do {
-    fVar13 = *(float *)(((longlong)afStack_60e8 - (longlong)unaff_R14) + (longlong)pfVar5);
-    fVar14 = fVar13 - pfVar5[-10];
-    fVar19 = ABS(fVar14);
-    if (0.001 <= fVar19) {
-      fVar20 = unaff_XMM8_Da;
-      if (fVar14 < unaff_XMM6_Da) {
-        fVar20 = -1.0;
-      }
-      if (0.05 <= fVar19) {
-        if (0.5 <= fVar19) {
-          fVar19 = 0.5;
+    SKIP_FADE_PROCESSING_2:
+        temp_float_6 = *(float*)((longlong)large_float_array + (8 - (longlong)register_r14) + (longlong)float_ptr_1);
+        temp_float_7 = temp_float_6 - float_ptr_1[-8];
+        temp_float_8 = ABS(temp_float_7);
+        if (0.001 <= temp_float_8) {
+            temp_float_9 = float_xmm8;
+            if (temp_float_7 < float_xmm6) {
+                temp_float_9 = -1.0;
+            }
+            if (0.05 <= temp_float_8) {
+                if (0.5 <= temp_float_8) {
+                    temp_float_8 = 0.5;
+                }
+            }
+            else {
+                temp_float_8 = 0.05;
+            }
+            temp_float_8 = temp_float_8 * temp_float_9 * stack_float_1 * 6.0;
+            if (temp_float_8 * temp_float_9 <= temp_float_9 * temp_float_7) {
+                temp_float_6 = float_ptr_1[-8] + temp_float_8;
+            }
         }
-      }
-      else {
-        fVar19 = 0.05;
-      }
-      fVar19 = fVar19 * fVar20 * fStack0000000000000034 * 6.0;
-      if (fVar19 * fVar20 <= fVar20 * fVar14) {
-        fVar13 = pfVar5[-10] + fVar19;
-      }
-    }
-    pfVar5[-10] = fVar13;
-    *pfVar5 = fVar13;
-    if (2 < iVar3) {
-      if (iVar3 < 7) {
-        fVar14 = unaff_XMM8_Da - fVar15;
-      }
-      else {
-        fVar14 = unaff_XMM6_Da;
-        if (iVar3 == 7) {
-          if (*(char *)((longlong)unaff_R14 + 0x5d) == '\0') {
-LAB_18065a5b3:
-            fVar14 = fVar15;
-          }
+        temp_int_1 = loop_counter + 2;
+        float_ptr_1[-8] = temp_float_6;
+        float_ptr_1[2] = temp_float_6;
+        if (2 < temp_int_1) {
+            if (temp_int_1 < 7) {
+                temp_float_7 = float_xmm8 - temp_float_5;
+            }
+            else {
+                temp_float_7 = float_xmm6;
+                if (temp_int_1 == 7) {
+                    if (*(char*)((longlong)register_r14 + 0x5d) == '\0') {
+                    USE_FADE_VALUE_3:
+                        temp_float_7 = temp_float_5;
+                    }
+                }
+                else {
+                    if (temp_int_1 != 8) goto SKIP_FADE_PROCESSING_3;
+                    if (*(char*)((longlong)register_r14 + 0x5d) != '\0') goto USE_FADE_VALUE_3;
+                }
+            }
+            temp_float_6 = temp_float_7 * temp_float_6;
+            float_ptr_1[2] = temp_float_6;
         }
-        else {
-          if (iVar3 != 8) goto LAB_18065a5d3;
-          if (*(char *)((longlong)unaff_R14 + 0x5d) != '\0') goto LAB_18065a5b3;
+    SKIP_FADE_PROCESSING_3:
+        loop_counter = loop_counter + 3;
+        temp_float_3 = temp_float_3 + temp_float_2 + temp_float_4 + temp_float_6;
+        float_ptr_1 = (float*)((longlong)float_ptr_1 + 3);
+        if (9 < loop_counter) {
+            temp_float_5 = ((longlong*)register_r14)[0x1854];
+            temp_float_5 = float_xmm8 - ((temp_float_5 * 6.0 - 15.0) * temp_float_5 + 10.0) * temp_float_5 * temp_float_5 * temp_float_5;
+            if (temp_float_3 != temp_float_5) {
+                if (temp_float_3 <= float_xmm6) {
+                    ((longlong*)register_r14)[0x1854] = 1.0;
+                }
+                else {
+                    temp_float_5 = temp_float_5 / temp_float_3;
+                    ((longlong*)register_r14)[0x1855] = ((longlong*)register_r14)[0x1855] * temp_float_5;
+                    ((longlong*)register_r14)[0x1856] = ((longlong*)register_r14)[0x1856] * temp_float_5;
+                    ((longlong*)register_r14)[0x1857] = ((longlong*)register_r14)[0x1857] * temp_float_5;
+                    ((longlong*)register_r14)[0x1858] = ((longlong*)register_r14)[0x1858] * temp_float_5;
+                    ((longlong*)register_r14)[0x1859] = ((longlong*)register_r14)[0x1859] * temp_float_5;
+                    ((longlong*)register_r14)[0x185a] = ((longlong*)register_r14)[0x185a] * temp_float_5;
+                    ((longlong*)register_r14)[0x185b] = ((longlong*)register_r14)[0x185b] * temp_float_5;
+                    ((longlong*)register_r14)[0x185c] = ((longlong*)register_r14)[0x185c] * temp_float_5;
+                    ((longlong*)register_r14)[0x185d] = temp_float_5 * ((longlong*)register_r14)[0x185d];
+                }
+            }
+            
+            // 最终渲染矩阵计算
+            temp_float_5 = stack_float_9 - (float_xmm8 - temp_float_4) * temp_float_5;
+            temp_float_4 = (((temp_float_12 + temp_float_14) * stack_float_4 + stack_float_8) - stack_float_5) - temp_float_1 - stack_float_8;
+            temp_float_3 = temp_float_5 * temp_float_5 + temp_float_4 * temp_float_4;
+            temp_float_3 = (float)(temp_float_3 <= 1.1754944e-38) * 1.1754944e-38 + temp_float_3;
+            temp_array_1[0] = rsqrtss(ZEXT416((uint)temp_float_3), ZEXT416((uint)temp_float_3))._0_4_;
+            temp_float_1 = temp_array_1[0];
+            temp_float_3 = temp_float_1 * 0.5 * (3.0 - temp_float_3 * temp_float_1 * temp_float_1);
+            temp_float_5 = temp_float_3 * temp_float_5;
+            temp_float_3 = temp_float_3 * temp_float_4;
+            _stack_float_2 = CONCAT44(temp_float_5, temp_float_3);
+            if (ABS(temp_float_3 * ((longlong*)register_r14)[0x185e] + temp_float_5 * ((longlong*)register_r14)[0x185f]) <= 0.999) {
+                temp_float_4 = ((longlong*)register_r14)[0x1855] - ((longlong*)register_r14)[0x1856];
+                temp_float_14 = ((((longlong*)register_r14)[0x1858] + ((longlong*)register_r14)[0x1857] + ((longlong*)register_r14)[0x185b]) - ((longlong*)register_r14)[0x1859]) - ((longlong*)register_r14)[0x185a]) - ((longlong*)register_r14)[0x185c];
+                temp_float_3 = temp_float_4 * temp_float_4 + temp_float_14 * temp_float_14;
+                temp_float_3 = (float)(temp_float_3 <= 1.1754944e-38) * 1.1754944e-38 + temp_float_3;
+                temp_array_1[0] = rsqrtss(ZEXT416((uint)temp_float_3), ZEXT416((uint)temp_float_3))._0_4_;
+                temp_float_1 = temp_array_1[0];
+                temp_float_5 = stack_float_1 * 8.0;
+                temp_float_3 = temp_float_1 * 0.5 * (3.0 - temp_float_3 * temp_float_1 * temp_float_1);
+                _stack_float_2 = CONCAT44(temp_float_3 * temp_float_4 * temp_float_5 + (float_xmm8 - temp_float_5) * ((longlong*)register_r14)[0x185f],
+                                        temp_float_3 * temp_float_14 * temp_float_5 + (float_xmm8 - temp_float_5) * ((longlong*)register_r14)[0x185e]);
+                *(void**)((longlong)register_r14 + 0x185e) = _stack_float_2;
+                temp_float_3 = ((longlong*)register_r14)[0x185f];
+                temp_float_1 = ((longlong*)register_r14)[0x185e];
+                temp_float_5 = temp_float_1 * temp_float_1 + temp_float_3 * temp_float_3;
+                temp_array_1[0] = rsqrtss(ZEXT416((uint)temp_float_5), ZEXT416((uint)temp_float_5))._0_4_;
+                temp_float_4 = temp_array_1[0];
+                temp_float_5 = temp_float_4 * 0.5 * (3.0 - temp_float_5 * temp_float_4 * temp_float_4);
+                ((longlong*)register_r14)[0x185f] = temp_float_5 * temp_float_3;
+                ((longlong*)register_r14)[0x185e] = temp_float_5 * temp_float_1;
+            }
+            else {
+                *(void**)((longlong)register_r14 + 0x185e) = _stack_float_2;
+            }
+            // WARNING: Subroutine does not return
+            stack_ptr_2 = (void*)0x18065aa9f;
+            stack_float_11 = stack_float_5;
+            ui_system_final_render(*(ulonglong*)((longlong)register_rbp + -0x70) ^ (ulonglong)&stack0x00000000);
         }
-      }
-      fVar13 = fVar14 * fVar13;
-      *pfVar5 = fVar13;
-    }
-LAB_18065a5d3:
-    fVar14 = *(float *)((longlong)afStack_60e8 + (4 - (longlong)unaff_R14) + (longlong)pfVar5);
-    fVar19 = fVar14 - pfVar5[-9];
-    fVar20 = ABS(fVar19);
-    if (0.001 <= fVar20) {
-      fVar21 = unaff_XMM8_Da;
-      if (fVar19 < unaff_XMM6_Da) {
-        fVar21 = -1.0;
-      }
-      if (0.05 <= fVar20) {
-        if (0.5 <= fVar20) {
-          fVar20 = 0.5;
-        }
-      }
-      else {
-        fVar20 = 0.05;
-      }
-      fVar20 = fVar20 * fVar21 * fStack0000000000000034 * 6.0;
-      if (fVar20 * fVar21 <= fVar21 * fVar19) {
-        fVar14 = pfVar5[-9] + fVar20;
-      }
-    }
-    iVar9 = iVar3 + 1;
-    pfVar5[-9] = fVar14;
-    pfVar5[1] = fVar14;
-    if (2 < iVar9) {
-      if (iVar9 < 7) {
-        fVar19 = unaff_XMM8_Da - fVar15;
-      }
-      else {
-        fVar19 = unaff_XMM6_Da;
-        if (iVar9 == 7) {
-          if (*(char *)((longlong)unaff_R14 + 0x5d) == '\0') {
-LAB_18065a67b:
-            fVar19 = fVar15;
-          }
-        }
-        else {
-          if (iVar9 != 8) goto LAB_18065a69c;
-          if (*(char *)((longlong)unaff_R14 + 0x5d) != '\0') goto LAB_18065a67b;
-        }
-      }
-      fVar14 = fVar19 * fVar14;
-      pfVar5[1] = fVar14;
-    }
-LAB_18065a69c:
-    fVar19 = *(float *)((longlong)afStack_60e8 + (8 - (longlong)unaff_R14) + (longlong)pfVar5);
-    fVar20 = fVar19 - pfVar5[-8];
-    fVar21 = ABS(fVar20);
-    if (0.001 <= fVar21) {
-      fVar24 = unaff_XMM8_Da;
-      if (fVar20 < unaff_XMM6_Da) {
-        fVar24 = -1.0;
-      }
-      if (0.05 <= fVar21) {
-        if (0.5 <= fVar21) {
-          fVar21 = 0.5;
-        }
-      }
-      else {
-        fVar21 = 0.05;
-      }
-      fVar21 = fVar21 * fVar24 * fStack0000000000000034 * 6.0;
-      if (fVar21 * fVar24 <= fVar24 * fVar20) {
-        fVar19 = pfVar5[-8] + fVar21;
-      }
-    }
-    iVar9 = iVar3 + 2;
-    pfVar5[-8] = fVar19;
-    pfVar5[2] = fVar19;
-    if (2 < iVar9) {
-      if (iVar9 < 7) {
-        fVar20 = unaff_XMM8_Da - fVar15;
-      }
-      else {
-        fVar20 = unaff_XMM6_Da;
-        if (iVar9 == 7) {
-          if (*(char *)((longlong)unaff_R14 + 0x5d) == '\0') {
-LAB_18065a744:
-            fVar20 = fVar15;
-          }
-        }
-        else {
-          if (iVar9 != 8) goto LAB_18065a765;
-          if (*(char *)((longlong)unaff_R14 + 0x5d) != '\0') goto LAB_18065a744;
-        }
-      }
-      fVar19 = fVar20 * fVar19;
-      pfVar5[2] = fVar19;
-    }
-LAB_18065a765:
-    iVar3 = iVar3 + 3;
-    fVar17 = fVar17 + fVar13 + fVar14 + fVar19;
-    pfVar5 = pfVar5 + 3;
-    if (9 < iVar3) {
-      fVar15 = unaff_R14[0x1854];
-      fVar15 = unaff_XMM8_Da - ((fVar15 * 6.0 - 15.0) * fVar15 + 10.0) * fVar15 * fVar15 * fVar15;
-      if (fVar17 != fVar15) {
-        if (fVar17 <= unaff_XMM6_Da) {
-          unaff_R14[0x1854] = 1.0;
-        }
-        else {
-          fVar15 = fVar15 / fVar17;
-          unaff_R14[0x1855] = unaff_R14[0x1855] * fVar15;
-          unaff_R14[0x1856] = unaff_R14[0x1856] * fVar15;
-          unaff_R14[0x1857] = unaff_R14[0x1857] * fVar15;
-          unaff_R14[0x1858] = unaff_R14[0x1858] * fVar15;
-          unaff_R14[0x1859] = unaff_R14[0x1859] * fVar15;
-          unaff_R14[0x185a] = unaff_R14[0x185a] * fVar15;
-          unaff_R14[0x185b] = unaff_R14[0x185b] * fVar15;
-          unaff_R14[0x185c] = unaff_R14[0x185c] * fVar15;
-          unaff_R14[0x185d] = fVar15 * unaff_R14[0x185d];
-        }
-      }
-      fVar15 = fStack000000000000006c - (unaff_XMM8_Da - fVar18) * fVar16;
-      fVar18 = ((((fVar23 + fVar25) * fStack0000000000000040 + fStack0000000000000054) -
-                fStack000000000000005c) - fVar12) - fStack0000000000000054;
-      fVar17 = fVar15 * fVar15 + fVar18 * fVar18;
-      fVar17 = (float)(fVar17 <= 1.1754944e-38) * 1.1754944e-38 + fVar17;
-      auVar22 = rsqrtss(ZEXT416((uint)fVar17),ZEXT416((uint)fVar17));
-      fVar12 = auVar22._0_4_;
-      fVar17 = fVar12 * 0.5 * (3.0 - fVar17 * fVar12 * fVar12);
-      fVar15 = fVar17 * fVar15;
-      fVar17 = fVar17 * fVar18;
-      _fStack0000000000000038 = CONCAT44(fVar15,fVar17);
-      if (ABS(fVar17 * unaff_R14[0x185e] + fVar15 * unaff_R14[0x185f]) <= 0.999) {
-        fVar18 = unaff_R14[0x1855] - unaff_R14[0x1856];
-        fVar25 = (((unaff_R14[0x1858] + unaff_R14[0x1857] + unaff_R14[0x185b]) - unaff_R14[0x1859])
-                 - unaff_R14[0x185a]) - unaff_R14[0x185c];
-        fVar17 = fVar18 * fVar18 + fVar25 * fVar25;
-        fVar17 = (float)(fVar17 <= 1.1754944e-38) * 1.1754944e-38 + fVar17;
-        auVar22 = rsqrtss(ZEXT416((uint)fVar17),ZEXT416((uint)fVar17));
-        fVar12 = auVar22._0_4_;
-        fVar15 = fStack0000000000000034 * 8.0;
-        fVar17 = fVar12 * 0.5 * (3.0 - fVar17 * fVar12 * fVar12);
-        _fStack0000000000000038 =
-             CONCAT44(fVar17 * fVar18 * fVar15 + (unaff_XMM8_Da - fVar15) * unaff_R14[0x185f],
-                      fVar17 * fVar25 * fVar15 + (unaff_XMM8_Da - fVar15) * unaff_R14[0x185e]);
-        *(undefined8 *)(unaff_R14 + 0x185e) = _fStack0000000000000038;
-        fVar17 = unaff_R14[0x185f];
-        fVar12 = unaff_R14[0x185e];
-        fVar15 = fVar12 * fVar12 + fVar17 * fVar17;
-        auVar22 = rsqrtss(ZEXT416((uint)fVar15),ZEXT416((uint)fVar15));
-        fVar18 = auVar22._0_4_;
-        fVar15 = fVar18 * 0.5 * (3.0 - fVar15 * fVar18 * fVar18);
-        unaff_R14[0x185f] = fVar15 * fVar17;
-        unaff_R14[0x185e] = fVar15 * fVar12;
-      }
-      else {
-        *(undefined8 *)(unaff_R14 + 0x185e) = _fStack0000000000000038;
-      }
-                    // WARNING: Subroutine does not return
-      uStack_8 = 0x18065aa9f;
-      fStack000000000000007c = fStack000000000000005c;
-      FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x70) ^ (ulonglong)&stack0x00000000);
-    }
-  } while( true );
+    } while( true );
 }
 
-
-
-
-
+// 函数别名定义
+#define ui_system_advanced_data_processing_and_render_control FUN_1806596fe
+#define ui_system_update_element_state FUN_18065ee60
+#define ui_system_internal_update FUN_18065cb80
+#define ui_system_calculate_speed_factor FUN_18065c070
+#define ui_system_calculate_weight_factor FUN_18065bf60
+#define ui_system_get_render_data FUN_18065fd40
+#define ui_system_final_render FUN_1808fc050
+#define memory_allocation_error_handler FUN_1808fd400
