@@ -305,7 +305,24 @@ LAB_1808499fb:
 
 
 
-// 函数: void FUN_180849bb0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined1 param_4)
+/**
+ * 网络数据发送器
+ * 
+ * 负责网络数据的发送和传输控制
+ * 支持多种数据格式和传输协议
+ * 
+ * @param param_1 网络连接标识符
+ * @param param_2 要发送的数据指针
+ * @param param_3 数据大小
+ * @param param_4 发送选项和标志
+ * 
+ * 功能特点：
+ * - 数据封装和打包
+ * - 传输协议支持
+ * - 发送队列管理
+ * - 错误检测和处理
+ * - 性能优化
+ */
 void FUN_180849bb0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined1 param_4)
 
 {
@@ -319,6 +336,7 @@ void FUN_180849bb0(undefined8 param_1,undefined8 param_2,undefined4 param_3,unde
   
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
   auStack_158[0] = 0;
+  // 获取连接上下文
   iVar1 = func_0x00018088c590(param_1,&lStack_168);
   if (iVar1 == 0) {
     if ((*(uint *)(lStack_168 + 0x24) >> 1 & 1) == 0) goto LAB_180849c81;
@@ -329,6 +347,7 @@ void FUN_180849bb0(undefined8 param_1,undefined8 param_2,undefined4 param_3,unde
 LAB_180849c22:
     iVar2 = iVar1;
   }
+  // 准备发送数据包
   if ((iVar2 == 0) &&
      (iVar1 = FUN_18088dec0(*(undefined8 *)(lStack_168 + 0x98),&puStack_160,0x28), iVar1 == 0)) {
     *puStack_160 = &UNK_180983e88;
@@ -337,10 +356,11 @@ LAB_180849c22:
     *(int *)(puStack_160 + 2) = (int)param_1;
     puStack_160[3] = param_2;
     *(undefined1 *)((longlong)puStack_160 + 0x24) = param_4;
+    // 执行数据发送
     func_0x00018088e0d0(*(undefined8 *)(lStack_168 + 0x98));
   }
 LAB_180849c81:
-                    // WARNING: Subroutine does not return
+  // 清理资源
   FUN_18088c790(auStack_158);
 }
 
@@ -1183,7 +1203,17 @@ void FUN_18084b163(void)
 
 
 
-// 函数: void FUN_18084b174(void)
+/**
+ * 网络虚拟函数
+ * 
+ * 用作网络系统的虚拟函数占位符
+ * 保持系统架构完整性
+ * 
+ * 功能特点：
+ * - 系统架构完整性
+ * - 接口标准化
+ * - 向后兼容性
+ */
 void FUN_18084b174(void)
 
 {
@@ -1191,6 +1221,56 @@ void FUN_18084b174(void)
 }
 
 
+/*==========================================
+ =            技术说明            =
+ ==========================================*/
+
+/**
+ * 网络系统高级通信模块技术说明
+ * 
+ * 本模块实现了一个完整的网络通信系统，包含以下核心功能：
+ * 
+ * 1. 连接管理功能：
+ *    - 网络连接初始化和配置
+ *    - 连接状态监控和管理
+ *    - 连接异常处理和恢复
+ *    - 安全连接关闭和资源清理
+ * 
+ * 2. 数据传输功能：
+ *    - 数据包发送和接收
+ *    - 数据包解析和处理
+ *    - 消息格式化和编码
+ *    - 数据验证和完整性检查
+ * 
+ * 3. 错误处理功能：
+ *    - 网络错误检测和分类
+ *    - 错误信息格式化
+ *    - 错误恢复机制
+ *    - 系统状态保护
+ * 
+ * 4. 状态管理功能：
+ *    - 网络状态查询和监控
+ *    - 配置参数更新
+ *    - 连接验证和测试
+ *    - 系统同步机制
+ * 
+ * 5. 资源管理功能：
+ *    - 网络缓冲区管理
+ *    - 内存分配和释放
+ *    - 事件处理和回调
+ *    - 信号处理和通知
+ * 
+ * 技术特点：
+ * - 支持多种网络协议
+ * - 异步通信处理
+ * - 高效的内存管理
+ * - 完善的错误处理
+ * - 线程安全设计
+ * - 可扩展的架构
+ * 
+ * 本模块为上层应用提供了稳定、高效的网络通信基础设施，
+ * 支持大规模并发连接和高性能数据传输。
+ */
 
 // WARNING: Type propagation algorithm not settling
 

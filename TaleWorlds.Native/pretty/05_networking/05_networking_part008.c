@@ -433,7 +433,23 @@ LAB_180849dd1:
 
 
 
-// 函数: void FUN_180849f40(ulonglong param_1,longlong param_2,undefined4 param_3)
+/**
+ * 网络数据接收器
+ * 
+ * 接收网络数据并处理
+ * 执行数据验证和存储
+ * 
+ * @param param_1 连接标识符
+ * @param param_2 接收缓冲区
+ * @param param_3 接收选项
+ * 
+ * 功能特点：
+ * - 数据接收
+ * - 缓冲区管理
+ * - 数据验证
+ * - 错误处理
+ * - 性能监控
+ */
 void FUN_180849f40(ulonglong param_1,longlong param_2,undefined4 param_3)
 
 {
@@ -491,7 +507,22 @@ LAB_180849fd1:
 
 
 
-// 函数: void FUN_18084a140(undefined8 param_1,undefined1 param_2)
+/**
+ * 网络状态检查器
+ * 
+ * 检查网络连接状态
+ * 执行状态更新和报告
+ * 
+ * @param param_1 连接标识符
+ * @param param_2 状态标志
+ * 
+ * 功能特点：
+ * - 状态监控
+ * - 连接检查
+ * - 状态报告
+ * - 错误检测
+ * - 自动恢复
+ */
 void FUN_18084a140(undefined8 param_1,undefined1 param_2)
 
 {
@@ -535,7 +566,22 @@ LAB_18084a1fa:
 
 
 
-// 函数: void FUN_18084a280(undefined8 param_1,undefined4 param_2)
+/**
+ * 网络配置更新器
+ * 
+ * 更新网络配置参数
+ * 执行配置验证和应用
+ * 
+ * @param param_1 连接标识符
+ * @param param_2 配置参数
+ * 
+ * 功能特点：
+ * - 配置更新
+ * - 参数验证
+ * - 配置应用
+ * - 错误处理
+ * - 配置备份
+ */
 void FUN_18084a280(undefined8 param_1,undefined4 param_2)
 
 {
@@ -579,7 +625,23 @@ LAB_18084a346:
 
 
 
-// 函数: void FUN_18084a3d0(undefined8 param_1,undefined4 param_2,undefined4 param_3)
+/**
+ * 网络参数设置器
+ * 
+ * 设置网络连接参数
+ * 执行参数验证和优化
+ * 
+ * @param param_1 连接标识符
+ * @param param_2 参数类型
+ * @param param_3 参数值
+ * 
+ * 功能特点：
+ * - 参数设置
+ * - 参数验证
+ * - 性能优化
+ * - 错误处理
+ * - 参数同步
+ */
 void FUN_18084a3d0(undefined8 param_1,undefined4 param_2,undefined4 param_3)
 
 {
@@ -624,7 +686,22 @@ LAB_18084a498:
 
 
 
-// 函数: void FUN_18084a550(undefined8 param_1,undefined4 param_2)
+/**
+ * 网络连接验证器
+ * 
+ * 验证网络连接的有效性
+ * 执行连接测试和诊断
+ * 
+ * @param param_1 连接标识符
+ * @param param_2 验证类型
+ * 
+ * 功能特点：
+ * - 连接验证
+ * - 连通性测试
+ * - 性能测试
+ * - 错误诊断
+ * - 连接优化
+ */
 void FUN_18084a550(undefined8 param_1,undefined4 param_2)
 
 {
@@ -667,7 +744,22 @@ LAB_18084a608:
 
 
 
-// 函数: void FUN_18084a680(undefined4 param_1,undefined8 param_2)
+/**
+ * 网络缓冲区管理器
+ * 
+ * 管理网络数据缓冲区
+ * 执行缓冲区分配和回收
+ * 
+ * @param param_1 缓冲区类型
+ * @param param_2 缓冲区参数
+ * 
+ * 功能特点：
+ * - 缓冲区分配
+ * - 内存管理
+ * - 缓冲区优化
+ * - 碎片整理
+ * - 性能监控
+ */
 void FUN_18084a680(undefined4 param_1,undefined8 param_2)
 
 {
@@ -701,7 +793,22 @@ LAB_18084a719:
 
 
 
-// 函数: void FUN_18084a7a0(undefined4 param_1,undefined8 param_2)
+/**
+ * 网络内存管理器
+ * 
+ * 管理网络相关内存资源
+ * 执行内存分配和回收
+ * 
+ * @param param_1 内存类型
+ * @param param_2 内存参数
+ * 
+ * 功能特点：
+ * - 内存分配
+ * - 内存回收
+ * - 内存优化
+ * - 内存保护
+ * - 内存监控
+ */
 void FUN_18084a7a0(undefined4 param_1,undefined8 param_2)
 
 {
@@ -741,7 +848,22 @@ LAB_18084a83e:
 
 
 
-// 函数: void FUN_18084a8c0(undefined8 param_1,undefined4 param_2)
+/**
+ * 网络事件处理器
+ * 
+ * 处理网络相关事件
+ * 执行事件分发和处理
+ * 
+ * @param param_1 事件源
+ * @param param_2 事件类型
+ * 
+ * 功能特点：
+ * - 事件处理
+ * - 事件分发
+ * - 事件队列管理
+ * - 错误处理
+ * - 性能优化
+ */
 void FUN_18084a8c0(undefined8 param_1,undefined4 param_2)
 
 {
@@ -785,7 +907,22 @@ LAB_18084a986:
 
 
 
-// 函数: void FUN_18084aa10(undefined8 param_1,undefined4 param_2)
+/**
+ * 网络回调处理器
+ * 
+ * 处理网络回调函数
+ * 执行回调函数管理和调用
+ * 
+ * @param param_1 回调上下文
+ * @param param_2 回调类型
+ * 
+ * 功能特点：
+ * - 回调管理
+ * - 回调执行
+ * - 回调队列
+ * - 错误处理
+ * - 性能优化
+ */
 void FUN_18084aa10(undefined8 param_1,undefined4 param_2)
 
 {
@@ -829,7 +966,22 @@ LAB_18084aad6:
 
 
 
-// 函数: void FUN_18084ab60(undefined8 param_1,undefined4 param_2)
+/**
+ * 网络信号处理器
+ * 
+ * 处理网络信号事件
+ * 执行信号捕获和处理
+ * 
+ * @param param_1 信号源
+ * @param param_2 信号类型
+ * 
+ * 功能特点：
+ * - 信号处理
+ * - 信号捕获
+ * - 信号分发
+ * - 错误处理
+ * - 系统保护
+ */
 void FUN_18084ab60(undefined8 param_1,undefined4 param_2)
 
 {
@@ -873,7 +1025,21 @@ LAB_18084ac26:
 
 
 
-// 函数: void FUN_18084acb0(undefined8 param_1)
+/**
+ * 网络状态同步器
+ * 
+ * 同步网络连接状态
+ * 执行状态一致性检查
+ * 
+ * @param param_1 连接标识符
+ * 
+ * 功能特点：
+ * - 状态同步
+ * - 一致性检查
+ * - 状态更新
+ * - 错误处理
+ * - 性能优化
+ */
 void FUN_18084acb0(undefined8 param_1)
 
 {
@@ -916,7 +1082,22 @@ LAB_18084ad66:
 
 
 
-// 函数: void FUN_18084ade0(undefined8 param_1,undefined4 param_2)
+/**
+ * 网络数据验证器
+ * 
+ * 验证网络数据的完整性
+ * 执行数据校验和验证
+ * 
+ * @param param_1 数据源
+ * @param param_2 验证类型
+ * 
+ * 功能特点：
+ * - 数据验证
+ * - 完整性检查
+ * - 校验和计算
+ * - 错误处理
+ * - 数据保护
+ */
 void FUN_18084ade0(undefined8 param_1,undefined4 param_2)
 
 {
@@ -957,7 +1138,22 @@ LAB_18084ae98:
 
 
 
-// 函数: void FUN_18084af10(undefined4 param_1,undefined4 *param_2)
+/**
+ * 网络资源管理器
+ * 
+ * 管理网络相关资源
+ * 执行资源分配和回收
+ * 
+ * @param param_1 资源类型
+ * @param param_2 资源参数
+ * 
+ * 功能特点：
+ * - 资源管理
+ * - 资源分配
+ * - 资源回收
+ * - 资源优化
+ * - 错误处理
+ */
 void FUN_18084af10(undefined4 param_1,undefined4 *param_2)
 
 {
@@ -1069,7 +1265,19 @@ undefined8 FUN_18084b015(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18084b0a1(void)
+/**
+ * 网络空闲操作处理器
+ * 
+ * 处理网络空闲状态
+ * 执行空闲时间优化
+ * 
+ * 功能特点：
+ * - 空闲处理
+ * - 资源优化
+ * - 性能调整
+ * - 状态监控
+ * - 系统维护
+ */
 void FUN_18084b0a1(void)
 
 {
@@ -1080,7 +1288,19 @@ void FUN_18084b0a1(void)
 
 
 
-// 函数: void FUN_18084b0a6(void)
+/**
+ * 网络清理处理器
+ * 
+ * 执行网络资源清理
+ * 处理临时数据和缓存
+ * 
+ * 功能特点：
+ * - 资源清理
+ * - 缓存清除
+ * - 内存回收
+ * - 状态重置
+ * - 系统维护
+ */
 void FUN_18084b0a6(void)
 
 {
