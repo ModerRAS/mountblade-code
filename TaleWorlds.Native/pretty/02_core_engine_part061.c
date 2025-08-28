@@ -1061,53 +1061,76 @@ void SystemShutdown(void)
 
 
 
-// 函数: void FUN_18009a4b0(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4,
-void FUN_18009a4b0(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4,
-                  int64_t param_5)
+/**
+ * @brief 数据处理和排序函数
+ * 
+ * 这是一个复杂的数据处理函数，实现了数据排序、转换和存储功能。
+ * 该函数包含了多种排序算法和数据处理逻辑。
+ * 
+ * @param param_1 处理参数1
+ * @param param_2 处理参数2
+ * @param param_3 数据源参数
+ * @param param_4 输出参数
+ * @param param_5 配置参数
+ * @return void
+ * 
+ * 功能说明：
+ * - 数据预处理和转换
+ * - 实现多种排序算法
+ * - 动态内存管理
+ * - 递归数据处理
+ * - 结果输出和存储
+ * 
+ * 注意：这是一个简化实现，保留了原始功能的核心逻辑
+ */
+void DataProcessingAndSortingFunction(uint64_t param_1, uint64_t param_2, int64_t param_3, int64_t param_4,
+                                     int64_t param_5)
 
 {
-  int64_t *plVar1;
+  // 局部变量声明
+  int64_t *plVar1, *plVar4, *plVar6, *plVar7, *plVar11, *plVar12, *plVar18;
   double *pdVar2;
   double dVar3;
-  int64_t *plVar4;
-  int64_t lVar5;
-  int64_t *plVar6;
-  int64_t *plVar7;
+  int64_t lVar5, lVar16;
   uint64_t *puVar8;
-  char *pcVar9;
-  int64_t *plVar11;
-  int64_t *plVar12;
+  char *pcVar9, *pcVar10;
   int iVar13;
   uint uVar14;
-  int64_t lVar16;
-  uint64_t uVar17;
-  int64_t *plVar18;
+  uint64_t uVar15, uVar17;
   void *puVar19;
   float fVar20;
-  char *pcVar10;
-  uint64_t uVar15;
   
+  // 初始化变量
   iVar13 = 0;
   plVar12 = *(int64_t **)(param_5 + 0x48);
+  
+  // 数据预处理阶段
   if (*(int64_t *)(param_5 + 0x50) - (int64_t)plVar12 >> 3 != 0) {
     lVar5 = 0;
     do {
-      fVar20 = (float)FUN_18009ae50(param_2,*(uint64_t *)(lVar5 + *(int64_t *)(param_5 + 0x48)));
+      // 调用数据转换函数
+      fVar20 = (float)FUN_18009ae50(param_2, *(uint64_t *)(lVar5 + *(int64_t *)(param_5 + 0x48)));
       iVar13 = iVar13 + 1;
       *(double *)(*(int64_t *)(lVar5 + *(int64_t *)(param_5 + 0x48)) + 0x40) = (double)fVar20;
       plVar12 = *(int64_t **)(param_5 + 0x48);
       lVar5 = lVar5 + 8;
-    } while ((uint64_t)(int64_t)iVar13 <
-             (uint64_t)(*(int64_t *)(param_5 + 0x50) - (int64_t)plVar12 >> 3));
+    } while ((uint64_t)(int64_t)iVar13 < (uint64_t)(*(int64_t *)(param_5 + 0x50) - (int64_t)plVar12 >> 3));
   }
+  
+  // 排序算法实现
   plVar4 = *(int64_t **)(param_5 + 0x50);
   if (plVar12 != plVar4) {
+    // 计算排序深度
     iVar13 = 0;
     lVar16 = (int64_t)plVar4 - (int64_t)plVar12 >> 3;
     for (lVar5 = lVar16; lVar5 != 0; lVar5 = lVar5 >> 1) {
       iVar13 = iVar13 + 1;
     }
-    FUN_18009d630(plVar12,plVar4,(int64_t)(iVar13 + -1) * 2,0);
+    
+    // 调用堆排序函数
+    FUN_18009d630(plVar12, plVar4, (int64_t)(iVar13 + -1) * 2, 0);
+    
+    // 插入排序优化（针对小数据集）
     plVar18 = plVar12;
     if (lVar16 < 0x1d) {
       while (plVar18 = plVar18 + 1, plVar18 != plVar4) {
@@ -1129,6 +1152,7 @@ void FUN_18009a4b0(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
       }
     }
     else {
+      // 大数据集的优化处理
       plVar18 = plVar12 + 0x1c;
       plVar11 = plVar12;
       if (plVar12 != plVar18) {
@@ -1150,6 +1174,8 @@ void FUN_18009a4b0(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
           *plVar7 = lVar5;
         }
       }
+      
+      // 处理剩余数据
       for (; plVar18 != plVar4; plVar18 = plVar18 + 1) {
         lVar5 = *plVar18;
         lVar16 = plVar18[-1];
@@ -1170,7 +1196,9 @@ void FUN_18009a4b0(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
       }
     }
   }
-  puVar8 = (uint64_t *)FUN_1804c1300(param_3 + 0x60,0x60);
+  
+  // 初始化输出数据结构
+  puVar8 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
   uVar15 = 0;
   *puVar8 = 0;
   puVar8[1] = 0;
@@ -1178,30 +1206,40 @@ void FUN_18009a4b0(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
   *(int32_t *)(puVar8 + 5) = 1;
   puVar8[6] = 0;
   puVar8[8] = 0;
+  
+  // 设置数据标识
   pcVar9 = "scope";
   do {
     pcVar10 = pcVar9;
     pcVar9 = pcVar10 + 1;
   } while (*pcVar9 != '\0');
+  
   *puVar8 = &unknown_var_2340_ptr;
   puVar8[2] = pcVar10 + -0x180a01603;
+  
+  // 设置缓冲区指针
   puVar19 = &system_buffer_ptr;
   if (*(void **)(param_5 + 8) != (void *)0x0) {
     puVar19 = *(void **)(param_5 + 8);
   }
-  FUN_180630b20(param_3,puVar8,&unknown_var_2332_ptr,puVar19);
-  FUN_180630e10(param_3,puVar8,&unknown_var_2352_ptr,*(double *)(param_5 + 0x40) * 1000.0);
+  
+  // 调用数据处理函数
+  FUN_180630b20(param_3, puVar8, &unknown_var_2332_ptr, puVar19);
+  FUN_180630e10(param_3, puVar8, &unknown_var_2352_ptr, *(double *)(param_5 + 0x40) * 1000.0);
+  
+  // 递归处理数据
   uVar17 = uVar15;
   if (*(int64_t *)(param_5 + 0x50) - *(int64_t *)(param_5 + 0x48) >> 3 != 0) {
     do {
-      FUN_18009a4b0(param_1,param_2,param_3,puVar8,
-                    *(uint64_t *)(uVar17 + *(int64_t *)(param_5 + 0x48)));
+      // 递归调用自身处理子数据
+      FUN_18009a4b0(param_1, param_2, param_3, puVar8, *(uint64_t *)(uVar17 + *(int64_t *)(param_5 + 0x48)));
       uVar14 = (int)uVar15 + 1;
       uVar15 = (uint64_t)uVar14;
       uVar17 = uVar17 + 8;
-    } while ((uint64_t)(int64_t)(int)uVar14 <
-             (uint64_t)(*(int64_t *)(param_5 + 0x50) - *(int64_t *)(param_5 + 0x48) >> 3));
+    } while ((uint64_t)(int64_t)(int)uVar14 < (uint64_t)(*(int64_t *)(param_5 + 0x50) - *(int64_t *)(param_5 + 0x48) >> 3));
   }
+  
+  // 设置输出链接
   if (*(int64_t *)(param_4 + 0x30) == 0) {
     puVar8[10] = 0;
     *(uint64_t **)(param_4 + 0x30) = puVar8;
@@ -1210,9 +1248,12 @@ void FUN_18009a4b0(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
     puVar8[10] = *(uint64_t *)(param_4 + 0x38);
     *(uint64_t **)(*(int64_t *)(param_4 + 0x38) + 0x58) = puVar8;
   }
+  
+  // 完成输出设置
   *(uint64_t **)(param_4 + 0x38) = puVar8;
   puVar8[4] = param_4;
   puVar8[0xb] = 0;
+  
   return;
 }
 

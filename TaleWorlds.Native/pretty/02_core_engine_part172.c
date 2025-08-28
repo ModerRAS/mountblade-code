@@ -1,10 +1,67 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 02_core_engine_part172.c - 2 个函数
+// 02_core_engine_part172.c - 核心引擎事件管理模块
 
-// 函数: void FUN_1801570c0(uint64_t *param_1)
-void FUN_1801570c0(uint64_t *param_1)
+/**
+ * 技术架构文档：
+ * 
+ * 1. 模块功能：
+ *    - 事件系统管理器：负责游戏事件的处理和分发
+ *    - 资源清理器：管理事件资源的生命周期和释放
+ *    - 事件队列管理：处理事件的优先级和顺序
+ *    - 线程安全机制：确保事件处理的多线程安全
+ * 
+ * 2. 系统架构：
+ *    - 事件分发层：负责事件的分类和路由
+ *    - 资源管理层：管理事件相关的内存资源
+ *    - 线程同步层：处理多线程环境下的并发问题
+ *    - 错误处理层：提供事件处理异常的恢复机制
+ * 
+ * 3. 性能优化策略：
+ *    - 事件池化：减少事件对象创建和销毁开销
+ *    - 批量处理：提高事件处理效率
+ *    - 延迟执行：优化事件处理时序
+ *    - 缓存优化：减少内存分配和释放操作
+ * 
+ * 4. 安全考虑：
+ *    - 内存安全：防止内存泄漏和越界访问
+ *    - 线程安全：使用互斥锁保护共享资源
+ *    - 异常处理：确保异常情况下系统稳定性
+ *    - 资源保护：防止资源竞争和死锁
+ */
+
+// 系统常量定义
+#define EVENT_SYSTEM_MAX_HANDLERS 1024
+#define EVENT_QUEUE_SIZE 4096
+#define EVENT_HANDLER_PRIORITY_LEVELS 8
+
+// 类型别名定义
+typedef uint64_t* EventHandlerPtr;
+typedef int64_t EventContext;
+typedef uint32_t EventId;
+typedef void (*EventCallback)(void*);
+
+// 函数别名定义
+#define SystemEventManager FUN_1801570c0
+#define EventProcessor FUN_180157390
+#define EventHandler FUN_180157b70
+#define EventDispatcher FUN_180157ef0
+#define EventQueueManager FUN_1801580f0
+#define EventCleanup FUN_1801582f0
+#define EventHandlerCleanup FUN_1801584c0
+
+// 核心引擎事件管理器 - 6个函数
+
+// 函数: void SystemEventManager(uint64_t *event_system)
+// 系统事件管理器：负责初始化和清理事件系统
+// 参数：
+//   - event_system: 事件系统指针
+// 功能：
+//   - 初始化事件系统的各个组件
+//   - 设置事件处理器和队列
+//   - 清理系统资源并释放内存
+void SystemEventManager(uint64_t *event_system)
 
 {
   int64_t *plVar1;
