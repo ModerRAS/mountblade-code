@@ -61,20 +61,20 @@ void ShaderFileGenerator(undefined8 param_1, longlong param_2, undefined8 param_
   ulonglong uStack_38;
   
   uStack_68 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
+  uStack_38 = g_SecurityChecksum ^ (ulonglong)auStack_e8;
   uStack_c8 = 0;
-  FUN_18033ff10(param_1,&puStack_88);
-  puStack_60 = &UNK_1809fdc18;
+  ShaderParameterInitializer(param_1, &puStack_88);
+  puStack_60 = &g_DefaultShaderConfig;
   puStack_58 = auStack_48;
   auStack_48[0] = 0;
   uStack_50 = 6;
-  strcpy_s(auStack_48,0x10,&UNK_180a3c07c);
+  strcpy_s(auStack_48, 0x10, &g_ShaderTemplatePath);
   uStack_c8 = 2;
-  FUN_1806279c0(&puStack_c0,&puStack_60);
+  BufferAllocator(&puStack_c0, &puStack_60);
   uStack_c8 = 0;
-  puStack_60 = &UNK_18098bcb0;
+  puStack_60 = &g_BufferAllocator;
   uVar4 = uStack_b0 + 0x10;
-  FUN_1806277c0(&puStack_c0,uVar4);
+  BufferExpander(&puStack_c0, uVar4);
   puVar1 = (undefined4 *)(puStack_b8 + uStack_b0);
   *puVar1 = 0x64616853;
   puVar1[1] = 0x2f737265;
@@ -82,32 +82,32 @@ void ShaderFileGenerator(undefined8 param_1, longlong param_2, undefined8 param_
   puVar1[3] = 0x2f736563;
   *(undefined1 *)(puVar1 + 4) = 0;
   uStack_b0 = uVar4;
-  FUN_180627be0(param_2,param_3);
+  ShaderConfigSetter(param_2, param_3);
   iVar5 = *(int *)(param_2 + 0x10) + 8;
-  FUN_1806277c0(param_2,iVar5);
+  BufferExpander(param_2, iVar5);
   puVar2 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar2 = 0x726566667562675f;
   *(undefined1 *)(puVar2 + 1) = 0;
   *(int *)(param_2 + 0x10) = iVar5;
   if (0 < iVar5) {
-    FUN_1806277c0(&puStack_c0,iVar5 + uStack_b0);
+    BufferExpander(&puStack_c0, iVar5 + uStack_b0);
                     // WARNING: Subroutine does not return
     memcpy(puStack_b8 + uStack_b0,*(undefined8 *)(param_2 + 8),
            (longlong)(*(int *)(param_2 + 0x10) + 1));
   }
   iVar5 = uStack_b0 + 3;
-  FUN_1806277c0(&puStack_c0,iVar5);
+  BufferExpander(&puStack_c0, iVar5);
   *(undefined4 *)(puStack_b8 + uStack_b0) = 0x73722e;
   uStack_a0 = 0;
   lStack_98 = 0;
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &g_DefaultDataBuffer;
   if (puStack_b8 != (undefined *)0x0) {
     puVar3 = puStack_b8;
   }
   uStack_b0 = iVar5;
-  FUN_18062dee0(&uStack_a0,puVar3,&DAT_1809fc7ec);
+  FileStreamOpener(&uStack_a0, puVar3, &g_FileStreamConfig);
   lVar6 = lStack_98;
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &g_DefaultDataBuffer;
   if (puStack_80 != (undefined *)0x0) {
     puVar3 = puStack_80;
   }
@@ -116,7 +116,7 @@ void ShaderFileGenerator(undefined8 param_1, longlong param_2, undefined8 param_
     fclose(lVar6);
     lStack_98 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    g_FileHandleCounter = g_FileHandleCounter + -1;
     UNLOCK();
     lVar6 = 0;
   }
@@ -124,10 +124,10 @@ void ShaderFileGenerator(undefined8 param_1, longlong param_2, undefined8 param_
     fclose(lVar6);
     lStack_98 = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    g_FileHandleCounter = g_FileHandleCounter + -1;
     UNLOCK();
   }
-  puStack_c0 = &UNK_180a3c3e0;
+  puStack_c0 = &g_MemoryManager;
   if (puStack_b8 != (undefined *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -135,16 +135,16 @@ void ShaderFileGenerator(undefined8 param_1, longlong param_2, undefined8 param_
   puStack_b8 = (undefined *)0x0;
   uStack_a8 = 0;
   puStack_c0 = &UNK_18098bcb0;
-  puStack_88 = &UNK_180a3c3e0;
+  puStack_88 = &g_MemoryManager;
   if (puStack_80 != (undefined *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   puStack_80 = (undefined *)0x0;
   uStack_70 = 0;
-  puStack_88 = &UNK_18098bcb0;
+  puStack_88 = &g_BufferAllocator;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_e8);
+  SecurityCheckHandler(uStack_38 ^ (ulonglong)auStack_e8);
 }
 
 
@@ -171,15 +171,15 @@ undefined8 *ShaderParameterInitializer(undefined8 param_1, undefined8 *param_2, 
   undefined4 *puVar2;
   undefined4 uVar3;
   
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &g_BufferAllocator;
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
+  *param_2 = &g_MemoryManager;
   param_2[3] = 0;
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
   iVar1 = *(int *)(param_2 + 2);
-  FUN_1806277c0(param_2,iVar1 + 0x15,param_3,param_4,1,0xfffffffffffffffe);
+  BufferExpander(param_2, iVar1 + 0x15, param_3, param_4, 1, 0xfffffffffffffffe);
   puVar2 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 2) + param_2[1]);
   *puVar2 = 0x66656423;
   puVar2[1] = 0x20656e69;
@@ -188,10 +188,10 @@ undefined8 *ShaderParameterInitializer(undefined8 param_1, undefined8 *param_2, 
   puVar2[4] = 0x53534150;
   *(undefined2 *)(puVar2 + 5) = 10;
   *(int *)(param_2 + 2) = iVar1 + 0x15;
-  uVar3 = FUN_18033eb00(puVar2,param_2,param_3);
-  uVar3 = FUN_18033f560(uVar3,param_2,param_3);
-  uVar3 = FUN_180342f20(uVar3,param_2,param_3);
-  FUN_180340190(uVar3,param_2,param_3);
+  uVar3 = ShaderValidator(puVar2, param_2, param_3);
+  uVar3 = ShaderOptimizer(uVar3, param_2, param_3);
+  uVar3 = ShaderLinker(uVar3, param_2, param_3);
+  ShaderSourceCompiler(uVar3, param_2, param_3);
   return param_2;
 }
 
@@ -219,10 +219,10 @@ undefined8 *ShaderHeaderGenerator(undefined8 param_1, undefined8 *param_2, undef
   undefined4 *puVar2;
   undefined4 uVar3;
   
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &g_BufferAllocator;
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
+  *param_2 = &g_MemoryManager;
   param_2[3] = 0;
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
@@ -236,9 +236,9 @@ undefined8 *ShaderHeaderGenerator(undefined8 param_1, undefined8 *param_2, undef
   *(undefined8 *)(puVar2 + 4) = 0xa535341505f50;
   *(int *)(param_2 + 2) = iVar1 + 0x17;
   uVar3 = FUN_18033eb00(0x66656423,param_2,param_3);
-  uVar3 = FUN_18033f560(uVar3,param_2,param_3);
-  uVar3 = FUN_180342f20(uVar3,param_2,param_3);
-  FUN_180340b00(uVar3,param_2,param_3);
+  uVar3 = ShaderOptimizer(uVar3, param_2, param_3);
+  uVar3 = ShaderLinker(uVar3, param_2, param_3);
+  ShaderFinalizer(uVar3, param_2, param_3);
   return param_2;
 }
 
@@ -266,10 +266,10 @@ undefined8 *ShaderPipelineGenerator(undefined8 param_1, undefined8 *param_2, und
   undefined4 *puVar2;
   undefined4 uVar3;
   
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &g_BufferAllocator;
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
+  *param_2 = &g_MemoryManager;
   param_2[3] = 0;
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
@@ -287,10 +287,10 @@ undefined8 *ShaderPipelineGenerator(undefined8 param_1, undefined8 *param_2, und
   *(undefined2 *)(puVar2 + 8) = 0xa53;
   *(undefined1 *)((longlong)puVar2 + 0x22) = 0;
   *(int *)(param_2 + 2) = iVar1 + 0x22;
-  uVar3 = FUN_18033eb00(puVar2,param_2,param_3);
-  uVar3 = FUN_18033f560(uVar3,param_2,param_3);
-  uVar3 = FUN_180342f20(uVar3,param_2,param_3);
-  FUN_1803415f0(uVar3,param_2,param_3);
+  uVar3 = ShaderValidator(puVar2, param_2, param_3);
+  uVar3 = ShaderOptimizer(uVar3, param_2, param_3);
+  uVar3 = ShaderLinker(uVar3, param_2, param_3);
+  ShaderPipelineFinalizer(uVar3, param_2, param_3);
   return param_2;
 }
 
@@ -339,10 +339,10 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   
   uVar13 = 0;
   puVar5 = (undefined4 *)
-           FUN_18062b420(_DAT_180c8ed18,0x18,0x13,param_4,0,0xfffffffffffffffe,&UNK_180a3c3e0,0,0,0)
+           MemoryAllocator(g_GlobalMemoryPool, 0x18, 0x13, param_4, 0, 0xfffffffffffffffe, &g_MemoryManager, 0, 0, 0)
   ;
   *(undefined1 *)puVar5 = 0;
-  FUN_18064e990(puVar5);
+  MemoryInitializer(puVar5);
   *puVar5 = 0x65786950;
   puVar5[1] = 0x68735f6c;
   puVar5[2] = 0x72656461;
@@ -350,7 +350,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   *(undefined8 *)(puVar5 + 4) = 0x657079745f7475;
   iVar17 = *(int *)(param_2 + 0x10);
   iVar15 = iVar17 + 0x11;
-  FUN_1806277c0(param_2,iVar15);
+  BufferExpander(param_2, iVar15);
   puVar6 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar6 = 0x20666923;
   puVar6[1] = 0x45584950;
@@ -359,7 +359,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   *(undefined2 *)(puVar6 + 4) = 10;
   *(int *)(param_2 + 0x10) = iVar15;
   if (*(char *)(param_3 + 0x10f8) == '\0') {
-    FUN_1806277c0(param_2,iVar17 + 0x39);
+    BufferExpander(param_2, iVar17 + 0x39);
     puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
     *puVar7 = 0x504c412120666923;
     puVar7[1] = 0x20545345545f4148;
@@ -370,7 +370,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
     puVar7[4] = 0xa54554f5f454441;
     *(undefined1 *)(puVar7 + 5) = 0;
     *(int *)(param_2 + 0x10) = iVar17 + 0x39;
-    FUN_1806277c0(param_2,iVar17 + 0x4d);
+    BufferExpander(param_2, iVar17 + 0x4d);
     puVar6 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
     *puVar6 = 0x7261655b;
     puVar6[1] = 0x6564796c;
@@ -380,12 +380,12 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
     *(undefined1 *)(puVar6 + 5) = 0;
     *(int *)(param_2 + 0x10) = iVar17 + 0x4d;
     iVar15 = iVar17 + 0x54;
-    FUN_1806277c0(param_2,iVar15);
+    BufferExpander(param_2, iVar15);
     *(undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
          0xa6669646e6523;
     *(int *)(param_2 + 0x10) = iVar15;
   }
-  FUN_1806277c0(param_2,iVar15 + 0x1a);
+  BufferExpander(param_2, iVar15 + 0x1a);
   puVar6 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar6 = 0x4f5f5350;
   puVar6[1] = 0x55505455;
@@ -395,7 +395,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   *(undefined2 *)(puVar6 + 6) = 0x2873;
   *(undefined1 *)((longlong)puVar6 + 0x1a) = 0;
   *(int *)(param_2 + 0x10) = iVar15 + 0x1a;
-  FUN_1806277c0(param_2,iVar15 + 0x31);
+  BufferExpander(param_2, iVar15 + 0x31);
   puVar6 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   uVar19 = puVar5[1];
   uVar1 = puVar5[2];
@@ -406,17 +406,17 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   puVar6[3] = uVar2;
   *(undefined8 *)(puVar6 + 4) = *(undefined8 *)(puVar5 + 4);
   *(int *)(param_2 + 0x10) = iVar15 + 0x31;
-  FUN_1806277c0(param_2,iVar15 + 0x36);
+  BufferExpander(param_2, iVar15 + 0x36);
   puVar6 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar6 = 0x296e4920;
   *(undefined2 *)(puVar6 + 1) = 10;
   *(int *)(param_2 + 0x10) = iVar15 + 0x36;
-  FUN_1806277c0(param_2,iVar15 + 0x38);
+  BufferExpander(param_2, iVar15 + 0x38);
   puVar8 = (undefined2 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar8 = 0xa7b;
   *(undefined1 *)(puVar8 + 1) = 0;
   *(int *)(param_2 + 0x10) = iVar15 + 0x38;
-  FUN_1806277c0(param_2,iVar15 + 0x6a);
+  BufferExpander(param_2, iVar15 + 0x6a);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0x5054554f5f535009;
   puVar7[1] = 0x46465542475f5455;
@@ -431,7 +431,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   *(undefined2 *)(puVar7 + 6) = 0xa3b;
   *(undefined1 *)((longlong)puVar7 + 0x32) = 0;
   *(int *)(param_2 + 0x10) = iVar15 + 0x6a;
-  FUN_1806277c0(param_2,iVar15 + 0xb1);
+  BufferExpander(param_2, iVar15 + 0xb1);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0x7869705f72655009;
   puVar7[1] = 0x69746174735f6c65;
@@ -445,7 +445,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   *(undefined4 *)((longlong)puVar7 + 0x3c) = 0x62616972;
   puVar7[8] = 0xa3b302973656c;
   *(int *)(param_2 + 0x10) = iVar15 + 0xb1;
-  FUN_1806277c0(param_2,iVar15 + 0x105);
+  BufferExpander(param_2, iVar15 + 0x105);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0x7869705f72655009;
   puVar7[1] = 0x6669646f6d5f6c65;
@@ -464,7 +464,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   *(undefined4 *)(puVar7 + 10) = 0xa0a3b30;
   *(undefined1 *)((longlong)puVar7 + 0x54) = 0;
   *(int *)(param_2 + 0x10) = iVar15 + 0x105;
-  FUN_1806277c0(param_2,iVar15 + 0x150);
+  BufferExpander(param_2, iVar15 + 0x150);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0x7869705f72655009;
   puVar7[1] = 0x6c697875615f6c65;
@@ -480,7 +480,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   *(undefined4 *)(puVar7 + 9) = 0xa0a3b;
   *(int *)(param_2 + 0x10) = iVar15 + 0x150;
   iVar15 = iVar15 + 0x187;
-  FUN_1806277c0(param_2,iVar15);
+  BufferExpander(param_2, iVar15);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0x616c75636c616309;
   puVar7[1] = 0x705f7265705f6574;
@@ -499,20 +499,20 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   if (lVar9 / 0x98 + lVar14 != lVar14) {
     do {
       iVar16 = iVar15 + 1;
-      FUN_1806277c0(param_2,iVar16);
+      BufferExpander(param_2, iVar16);
       *(undefined2 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 9;
       *(int *)(param_2 + 0x10) = iVar16;
       lVar14 = *(longlong *)(param_3 + 0x490);
       iVar17 = *(int *)(lVar14 + 0x10 + uVar18);
       if (0 < iVar17) {
-        FUN_1806277c0(param_2,iVar16 + iVar17);
+        BufferExpander(param_2, iVar16 + iVar17);
                     // WARNING: Subroutine does not return
         memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),
                *(undefined8 *)(lVar14 + 8 + uVar18),(longlong)(*(int *)(lVar14 + 0x10 + uVar18) + 1)
               );
       }
       iVar15 = iVar15 + 7;
-      uVar19 = FUN_1806277c0(param_2,iVar15);
+      uVar19 = BufferExpander(param_2, iVar15);
       puVar6 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
       *puVar6 = 0x296e4928;
       *(undefined2 *)(puVar6 + 1) = 0xa3b;
@@ -531,17 +531,17 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
       if (*(int *)(lVar9 + 0xa40) != 0) {
         iVar17 = *(int *)(param_2 + 0x10);
         iVar15 = iVar17 + 1;
-        FUN_1806277c0(param_2,iVar15);
+        BufferExpander(param_2, iVar15);
         *(undefined2 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 9;
         *(int *)(param_2 + 0x10) = iVar15;
         if (0 < *(int *)(lVar9 + 0xa40)) {
-          FUN_1806277c0(param_2,iVar15 + *(int *)(lVar9 + 0xa40));
+          BufferExpander(param_2, iVar15 + *(int *)(lVar9 + 0xa40));
                     // WARNING: Subroutine does not return
           memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),
                  *(undefined8 *)(lVar9 + 0xa38),(longlong)(*(int *)(lVar9 + 0xa40) + 1));
         }
         iVar17 = iVar17 + 0x2b;
-        FUN_1806277c0(param_2,iVar17);
+        BufferExpander(param_2, iVar17);
         puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
         *puVar7 = 0x7070202c206e4928;
         puVar7[1] = 0x206369746174735f;
@@ -554,13 +554,13 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
         *(int *)(param_2 + 0x10) = iVar17;
       }
       if (lVar14 == 1) {
-        uVar19 = FUN_180344f00(uVar19,param_2,param_3);
+        uVar19 = ShaderTextureProcessor(uVar19, param_2, param_3);
       }
     }
     lVar14 = lVar14 + 1;
   } while (lVar14 < 7);
   iVar17 = *(int *)(param_2 + 0x10);
-  FUN_1806277c0(param_2,iVar17 + 0x39);
+  BufferExpander(param_2, iVar17 + 0x39);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0x6f2074616f6c6609;
   puVar7[1] = 0x6e6f6973756c6363;
@@ -573,10 +573,10 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   puVar7[6] = 0x3b726f746361665f;
   *(undefined2 *)(puVar7 + 7) = 10;
   *(int *)(param_2 + 0x10) = iVar17 + 0x39;
-  FUN_1806277c0(param_2,iVar17 + 0x14f);
+  BufferExpander(param_2, iVar17 + 0x14f);
   lVar14 = 2;
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
-  puVar4 = (undefined8 *)&UNK_180a1bd10;
+  puVar4 = (undefined8 *)&g_ShaderTextureData;
   do {
     puVar11 = puVar4;
     puVar10 = puVar7;
@@ -623,7 +623,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   *(undefined2 *)((longlong)puVar10 + 0x94) = *(undefined2 *)((longlong)puVar11 + 0x94);
   *(undefined *)((longlong)puVar10 + 0x96) = *(undefined *)((longlong)puVar11 + 0x96);
   *(int *)(param_2 + 0x10) = iVar17 + 0x14f;
-  FUN_1806277c0(param_2,iVar17 + 0x177);
+  BufferExpander(param_2, iVar17 + 0x177);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0x7562675f74657309;
   puVar7[1] = 0x746f6d5f72656666;
@@ -634,7 +634,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   puVar7[4] = 0xa3b297475707475;
   *(undefined1 *)(puVar7 + 5) = 0;
   *(int *)(param_2 + 0x10) = iVar17 + 0x177;
-  FUN_1806277c0(param_2,iVar17 + 0x1b6);
+  BufferExpander(param_2, iVar17 + 0x1b6);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0x7562675f74657309;
   puVar7[1] = 0x746e655f72656666;
@@ -649,7 +649,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   *(undefined4 *)(puVar7 + 7) = 0x29747570;
   *(undefined4 *)((longlong)puVar7 + 0x3c) = 0xa0a3b;
   *(int *)(param_2 + 0x10) = iVar17 + 0x1b6;
-  FUN_1806277c0(param_2,iVar17 + 0x1d7);
+  BufferExpander(param_2, iVar17 + 0x1d7);
   puVar6 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar6 = 0x64666923;
   puVar6[1] = 0x53206665;
@@ -661,7 +661,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   puVar6[7] = 0x53524f4c;
   *(undefined2 *)(puVar6 + 8) = 10;
   *(int *)(param_2 + 0x10) = iVar17 + 0x1d7;
-  FUN_1806277c0(param_2,iVar17 + 0x22d);
+  BufferExpander(param_2, iVar17 + 0x22d);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0x414d282066692309;
   puVar7[1] = 0x495f4c4149524554;
@@ -681,7 +681,7 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   *(undefined2 *)((longlong)puVar7 + 0x54) = 0xa29;
   *(undefined1 *)((longlong)puVar7 + 0x56) = 0;
   *(int *)(param_2 + 0x10) = iVar17 + 0x22d;
-  FUN_1806277c0(param_2,iVar17 + 0x288);
+  BufferExpander(param_2, iVar17 + 0x288);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0x74757074754f0909;
   puVar7[1] = 0x726566667562672e;
@@ -698,16 +698,16 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   puVar7[10] = 0x67722e2961626772;
   *(undefined4 *)(puVar7 + 0xb) = 0xa3b62;
   *(int *)(param_2 + 0x10) = iVar17 + 0x288;
-  FUN_1806277c0(param_2,iVar17 + 0x290);
+  BufferExpander(param_2, iVar17 + 0x290);
   puVar7 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar7 = 0xa6669646e652309;
   *(undefined1 *)(puVar7 + 1) = 0;
   *(int *)(param_2 + 0x10) = iVar17 + 0x290;
-  FUN_1806277c0(param_2,iVar17 + 0x297);
+  BufferExpander(param_2, iVar17 + 0x297);
   *(undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
        0xa6669646e6523;
   *(int *)(param_2 + 0x10) = iVar17 + 0x297;
-  FUN_1806277c0(param_2,iVar17 + 0x2a7);
+  BufferExpander(param_2, iVar17 + 0x2a7);
   puVar6 = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar6 = 0x74657209;
   puVar6[1] = 0x206e7275;
@@ -715,17 +715,17 @@ void ShaderSourceCompiler(undefined8 param_1, longlong param_2, longlong param_3
   puVar6[3] = 0xa3b7475;
   *(undefined1 *)(puVar6 + 4) = 0;
   *(int *)(param_2 + 0x10) = iVar17 + 0x2a7;
-  FUN_1806277c0(param_2,iVar17 + 0x2a9);
+  BufferExpander(param_2, iVar17 + 0x2a9);
   puVar8 = (undefined2 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *puVar8 = 0xa7d;
   *(undefined1 *)(puVar8 + 1) = 0;
   *(int *)(param_2 + 0x10) = iVar17 + 0x2a9;
-  FUN_1806277c0(param_2,iVar17 + 0x2b0);
+  BufferExpander(param_2, iVar17 + 0x2b0);
   *(undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
        0xa6669646e6523;
   *(int *)(param_2 + 0x10) = iVar17 + 0x2b0;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar5);
+  MemoryDeallocator(puVar5);
 }
 
 
