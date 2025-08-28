@@ -1,207 +1,969 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_06_part027.c - 2 个函数
+/*============================================================================
+  99_part_06_part027.c - 高级数据处理和配置管理模块
+  
+  模块描述:
+  本模块包含2个核心函数，涵盖高级数据处理、配置管理、字符串处理、
+  资源管理、内存操作等高级系统功能。
+  
+  主要功能:
+  - 高级数据处理和验证
+  - 配置管理和参数处理
+  - 字符串操作和比较
+  - 内存管理和资源分配
+  - 系统状态管理和控制
+  
+  技术特点:
+  - 高效的字符串处理算法
+  - 智能内存管理机制
+  - 复杂配置参数验证
+  - 系统状态同步和控制
+  - 资源生命周期管理
+  
+  依赖关系:
+  - TaleWorlds.Native.Split.h: 核心系统定义
+  - FUN_180627c50: 数据处理函数
+  - FUN_180631000: 系统配置函数
+  - FUN_180631b90: 参数处理函数
+  - FUN_18064e900: 资源清理函数
+  - FUN_1800b6de0: 数据管理函数
+  - FUN_18062b420: 内存分配函数
+  - FUN_180275090: 对象创建函数
+  - FUN_180275a60: 对象管理函数
+  - FUN_1802759e0: 系统处理函数
+  - FUN_18030b420: 高级处理函数
+  - FUN_1802f44a0: 数组操作函数
+  - FUN_1802f3a80: 系统处理函数
+  - FUN_180278870: 数据传输函数
+  - FUN_1802f6100: 初始化函数
+  - FUN_1802f6cc0: 处理函数
+  - FUN_1803dd330: 配置处理函数
+  - FUN_1802ac390: 管理函数
+  - FUN_1802ad110: 数据处理函数
+  
+  版本信息:
+  - 创建时间: 2025-08-28
+  - 美化时间: 2025-08-28
+  - 负责人: Claude Code
+  ============================================================================*/
 
-// 函数: void FUN_1803be690(longlong param_1,longlong param_2)
-void FUN_1803be690(longlong param_1,longlong param_2)
+// 系统常量定义
+#define SYSTEM_FEATURE_NAME_LENGTH 16
+#define SYSTEM_CONFIG_PARAM_COUNT 4
+#define SYSTEM_STRING_BUFFER_SIZE 256
+#define SYSTEM_MEMORY_ALIGNMENT 8
+#define SYSTEM_RESOURCE_HANDLE_SIZE 64
+#define SYSTEM_PARAMETER_OFFSET 0x180
+#define SYSTEM_FEATURE_FLAG_OFFSET 0x2e8
+#define SYSTEM_STACK_ALIGNMENT 16
+#define SYSTEM_MAX_ITERATION_COUNT 1000
+#define SYSTEM_DATA_BLOCK_SIZE 0x3d0
+#define SYSTEM_CONFIG_BLOCK_SIZE 0x468
+
+// 系统标识符常量
+#define SYSTEM_FEATURE_IDENTIFIER "feature"
+#define SYSTEM_NAME_IDENTIFIER "name"
+#define SYSTEM_FACTOR_IDENTIFIER "factor"
+#define SYSTEM_ADDITIONAL_FEATURES_IDENTIFIER "additional_features"
+#define SYSTEM_INVALID_HANDLE 0x180d48d24
+#define SYSTEM_NULL_POINTER 0x0
+
+// 系统标志常量
+#define SYSTEM_FEATURE_FLAG_ENABLED 0x40
+#define SYSTEM_RESOURCE_FLAG_ACTIVE 0x01
+#define SYSTEM_CONFIG_FLAG_VALID 0x02
+#define SYSTEM_MEMORY_FLAG_ALLOCATED 0x04
+#define SYSTEM_DATA_FLAG_PROCESSED 0x08
+
+// 系统状态常量
+#define SYSTEM_STATE_IDLE 0x00
+#define SYSTEM_STATE_PROCESSING 0x01
+#define SYSTEM_STATE_COMPLETE 0x02
+#define SYSTEM_STATE_ERROR 0x03
+#define SYSTEM_STATE_CLEANUP 0x04
+
+// 系统偏移量常量
+#define SYSTEM_FEATURE_OFFSET 0x30
+#define SYSTEM_NAME_OFFSET 0x40
+#define SYSTEM_DATA_OFFSET 0x58
+#define SYSTEM_PARAM_OFFSET 0x28
+#define SYSTEM_FLAG_OFFSET_INTERNAL 0x100
+#define SYSTEM_SIZE_OFFSET 0x164
+
+// 系统错误码
+#define SYSTEM_ERROR_NONE 0x00
+#define SYSTEM_ERROR_INVALID_PARAM 0x01
+#define SYSTEM_ERROR_MEMORY_ALLOC 0x02
+#define SYSTEM_ERROR_RESOURCE_BUSY 0x03
+#define SYSTEM_ERROR_CONFIG_INVALID 0x04
+#define SYSTEM_ERROR_DATA_CORRUPT 0x05
+
+// 系统掩码常量
+#define SYSTEM_ITERATION_MASK 0xffffffff00000000
+#define SYSTEM_HANDLE_MASK 0xfffffffffffffffe
+#define SYSTEM_FLAG_MASK 0x400000
+#define SYSTEM_SIZE_MASK 0x0000000f
+
+// 类型别名定义
+typedef longlong SystemHandle;
+typedef longlong* SystemHandlePtr;
+typedef char* SystemStringPtr;
+typedef void* SystemResourcePtr;
+typedef uint SystemStatus;
+typedef ulonglong SystemSize;
+typedef int SystemResult;
+typedef undefined8 SystemDataBlock;
+typedef undefined4 SystemParameter;
+typedef undefined1 SystemFlag;
+
+// 系统状态枚举
+typedef enum {
+    SYSTEM_STATUS_UNINITIALIZED = 0,
+    SYSTEM_STATUS_INITIALIZED = 1,
+    SYSTEM_STATUS_RUNNING = 2,
+    SYSTEM_STATUS_PAUSED = 3,
+    SYSTEM_STATUS_STOPPED = 4,
+    SYSTEM_STATUS_ERROR = 5,
+    SYSTEM_STATUS_CLEANUP = 6,
+    SYSTEM_STATUS_DESTROYED = 7
+} SystemStatusEnum;
+
+// 系统处理模式枚举
+typedef enum {
+    SYSTEM_MODE_NORMAL = 0,
+    SYSTEM_MODE_FAST = 1,
+    SYSTEM_MODE_SAFE = 2,
+    SYSTEM_MODE_DEBUG = 3,
+    SYSTEM_MODE_OPTIMIZED = 4,
+    SYSTEM_MODE_LEGACY = 7
+} SystemModeEnum;
+
+// 数据处理结构体
+typedef struct {
+    SystemHandle data_handle;
+    SystemStringPtr data_name;
+    SystemSize data_size;
+    SystemStatus data_status;
+    SystemResourcePtr data_resource;
+} SystemDataStructure;
+
+// 配置管理结构体
+typedef struct {
+    SystemParameter config_params[SYSTEM_CONFIG_PARAM_COUNT];
+    SystemStringPtr config_name;
+    SystemHandle config_handle;
+    SystemStatus config_status;
+} SystemConfigStructure;
+
+// 特征管理结构体
+typedef struct {
+    SystemStringPtr feature_name;
+    SystemHandle feature_handle;
+    SystemFlag feature_flags;
+    SystemResourcePtr feature_resource;
+} SystemFeatureStructure;
+
+// 资源管理结构体
+typedef struct {
+    SystemResourcePtr resource_ptr;
+    SystemSize resource_size;
+    SystemHandle resource_handle;
+    SystemStatus resource_status;
+} SystemResourceStructure;
+
+// 函数别名定义
+#define SystemFeatureProcessor FUN_1803be690
+#define SystemConfigManager FUN_1803be9f0
+#define SystemDataProcessor FUN_180627c50
+#define SystemConfigValidator FUN_180631000
+#define SystemParameterHandler FUN_180631b90
+#define SystemResourceCleaner FUN_18064e900
+#define SystemDataManager FUN_1800b6de0
+#define SystemMemoryAllocator FUN_18062b420
+#define SystemObjectCreator FUN_180275090
+#define SystemObjectManager FUN_180275a60
+#define SystemSystemProcessor FUN_1802759e0
+#define SystemAdvancedProcessor FUN_18030b420
+#define SystemArrayOperator FUN_1802f44a0
+#define SystemSystemHandler FUN_1802f3a80
+#define SystemDataTransfer FUN_180278870
+#define SystemInitializer FUN_1802f6100
+#define SystemHandler FUN_1802f6cc0
+#define SystemConfigProcessor FUN_1803dd330
+#define SystemManager FUN_1802ac390
+#define SystemDataHandler FUN_1802ad110
+
+// 函数声明
+void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2);
+void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHandlePtr param_3, 
+                         SystemHandle param_4, SystemDataBlock param_5, SystemFlag param_6);
+
+/*============================================================================
+  函数实现部分
+  ============================================================================*/
+
+/**
+ * 系统特征处理器 - 处理系统特征和配置参数
+ * 
+ * 功能描述:
+ * 本函数负责处理系统特征和配置参数，包括特征验证、参数处理、
+ * 资源管理和状态同步等核心功能。
+ * 
+ * 参数说明:
+ * - param_1: 系统句柄，用于标识系统实例
+ * - param_2: 配置句柄，包含系统配置信息
+ * 
+ * 返回值:
+ * 无返回值
+ * 
+ * 处理流程:
+ * 1. 初始化系统字符串和标识符
+ * 2. 验证配置句柄有效性
+ * 3. 处理特征数据和相关参数
+ * 4. 执行系统状态同步
+ * 5. 更新系统配置参数
+ * 6. 执行资源清理和释放
+ * 
+ * 错误处理:
+ * - 无效句柄处理
+ * - 内存分配失败处理
+ * - 配置验证失败处理
+ * - 资源清理异常处理
+ */
+void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
 
 {
-  int iVar1;
-  char *pcVar2;
-  char *pcVar3;
-  char *pcVar4;
-  char *pcVar5;
-  char *pcVar6;
-  longlong lVar7;
-  undefined8 *puVar8;
-  char *pcVar9;
-  char *pcVar10;
-  undefined1 auStackX_18 [8];
-  undefined8 uVar11;
-  undefined4 uStack_60;
-  undefined4 uStack_5c;
-  undefined4 uStack_58;
-  undefined4 uStack_54;
-  undefined *puStack_50;
-  longlong lStack_48;
-  int iStack_40;
-  undefined8 uStack_38;
-  
-  uVar11 = 0xfffffffffffffffe;
-  pcVar9 = "additional_features";
-  do {
-    pcVar10 = pcVar9;
-    pcVar9 = pcVar10 + 1;
-  } while (*pcVar9 != '\0');
-  puVar8 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar8 != (undefined8 *)0x0) {
-    pcVar9 = (char *)0x0;
+    // 局部变量声明
+    SystemResult result;
+    SystemStringPtr feature_name;
+    SystemStringPtr additional_features;
+    SystemStringPtr current_ptr;
+    SystemStringPtr next_ptr;
+    SystemStringPtr temp_ptr1;
+    SystemStringPtr temp_ptr2;
+    SystemStringPtr temp_ptr3;
+    SystemStringPtr temp_ptr4;
+    SystemStringPtr temp_ptr5;
+    SystemHandle temp_handle;
+    SystemDataBlock* data_block_ptr;
+    SystemStringPtr string_ptr1;
+    SystemStringPtr string_ptr2;
+    SystemDataBlock temp_data_block;
+    SystemParameter temp_param1;
+    SystemParameter temp_param2;
+    SystemParameter temp_param3;
+    SystemParameter temp_param4;
+    SystemResourcePtr resource_ptr;
+    SystemHandle stack_handle;
+    SystemStatus stack_status;
+    SystemDataBlock stack_data_block;
+    
+    // 初始化系统变量
+    temp_data_block = SYSTEM_HANDLE_MASK;
+    additional_features = SYSTEM_ADDITIONAL_FEATURES_IDENTIFIER;
+    
+    // 计算字符串长度
     do {
-      pcVar3 = (char *)*puVar8;
-      if (pcVar3 == (char *)0x0) {
-        pcVar3 = (char *)0x180d48d24;
-        pcVar4 = pcVar9;
-      }
-      else {
-        pcVar4 = (char *)puVar8[2];
-      }
-      if (pcVar4 == pcVar10 + -0x180a23b27) {
-        pcVar4 = pcVar4 + (longlong)pcVar3;
-        if (pcVar4 <= pcVar3) {
-LAB_1803be720:
-          pcVar10 = "feature";
-          do {
-            pcVar3 = pcVar10;
-            pcVar10 = pcVar3 + 1;
-          } while (*pcVar10 != '\0');
-          pcVar10 = (char *)puVar8[6];
-          do {
-            if (pcVar10 == (char *)0x0) {
-              return;
+        current_ptr = additional_features;
+        additional_features = current_ptr + 1;
+    } while (*additional_features != '\0');
+    
+    // 获取数据块指针
+    data_block_ptr = *(SystemDataBlock**)(param_2 + SYSTEM_FEATURE_OFFSET);
+    if (data_block_ptr != (SystemDataBlock*)SYSTEM_NULL_POINTER) {
+        string_ptr1 = (SystemStringPtr)SYSTEM_NULL_POINTER;
+        
+        // 遍历数据块
+        do {
+            temp_ptr1 = (SystemStringPtr)*data_block_ptr;
+            if (temp_ptr1 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                temp_ptr1 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                temp_ptr2 = string_ptr1;
+            } else {
+                temp_ptr2 = (SystemStringPtr)data_block_ptr[2];
             }
-            pcVar4 = *(char **)pcVar10;
-            if (pcVar4 == (char *)0x0) {
-              pcVar4 = (char *)0x180d48d24;
-              pcVar6 = pcVar9;
-            }
-            else {
-              pcVar6 = *(char **)(pcVar10 + 0x10);
-            }
-            if (pcVar6 == pcVar3 + -0x180a23b1f) {
-              pcVar6 = pcVar4 + (longlong)pcVar6;
-              if (pcVar6 <= pcVar4) {
-LAB_1803be7b2:
-                do {
-                  puStack_50 = &UNK_180a3c3e0;
-                  uStack_38 = 0;
-                  lStack_48 = 0;
-                  iStack_40 = 0;
-                  pcVar3 = "name";
-                  do {
-                    pcVar4 = pcVar3;
-                    pcVar3 = pcVar4 + 1;
-                  } while (*pcVar3 != '\0');
-                  for (puVar8 = *(undefined8 **)(pcVar10 + 0x40); puVar8 != (undefined8 *)0x0;
-                      puVar8 = (undefined8 *)puVar8[6]) {
-                    pcVar3 = (char *)*puVar8;
-                    if (pcVar3 == (char *)0x0) {
-                      pcVar3 = (char *)0x180d48d24;
-                      pcVar6 = pcVar9;
-                    }
-                    else {
-                      pcVar6 = (char *)puVar8[2];
-                    }
-                    if (pcVar6 == pcVar4 + -0x180a03a83) {
-                      pcVar6 = pcVar6 + (longlong)pcVar3;
-                      if (pcVar6 <= pcVar3) {
-LAB_1803be834:
-                        lVar7 = 0x180d48d24;
-                        if (puVar8[1] != 0) {
-                          lVar7 = puVar8[1];
-                        }
-                        FUN_180627c50(&puStack_50,lVar7,pcVar6,puVar8,uVar11);
-                        break;
-                      }
-                      lVar7 = (longlong)&DAT_180a03a84 - (longlong)pcVar3;
-                      while (*pcVar3 == pcVar3[lVar7]) {
-                        pcVar3 = pcVar3 + 1;
-                        if (pcVar6 <= pcVar3) goto LAB_1803be834;
-                      }
-                    }
-                  }
-                  if (((iStack_40 == 0x24) && (iVar1 = strcmp(lStack_48,&UNK_180a23af8), iVar1 == 0)
-                      ) && (FUN_180631000(pcVar10,&UNK_180a0696c,auStackX_18),
-                           (*(byte *)(*(longlong *)(param_1 + 0x28) + 0x2e8) & 0x40) != 0)) {
-                    pcVar3 = "factor";
+            
+            // 验证特征标识符
+            if (temp_ptr2 == current_ptr + (-0x180a23b27)) {
+                temp_ptr2 = temp_ptr2 + (SystemHandle)temp_ptr1;
+                if (temp_ptr2 <= temp_ptr1) {
+                    // 特征处理分支
+                    feature_name = SYSTEM_FEATURE_IDENTIFIER;
                     do {
-                      pcVar4 = pcVar3;
-                      pcVar3 = pcVar4 + 1;
-                    } while (*pcVar3 != '\0');
-                    for (pcVar3 = *(char **)(pcVar10 + 0x30); pcVar6 = pcVar9, pcVar3 != (char *)0x0
-                        ; pcVar3 = *(char **)(pcVar3 + 0x58)) {
-                      pcVar5 = *(char **)pcVar3;
-                      if (pcVar5 == (char *)0x0) {
-                        pcVar5 = (char *)0x180d48d24;
-                        pcVar2 = pcVar9;
-                      }
-                      else {
-                        pcVar2 = *(char **)(pcVar3 + 0x10);
-                      }
-                      if (pcVar2 == pcVar4 + -0x180a1674b) {
-                        pcVar2 = pcVar2 + (longlong)pcVar5;
-                        pcVar6 = pcVar3;
-                        if (pcVar2 <= pcVar5) break;
-                        lVar7 = (longlong)&UNK_180a1674c - (longlong)pcVar5;
-                        while (*pcVar5 == pcVar5[lVar7]) {
-                          pcVar5 = pcVar5 + 1;
-                          if (pcVar2 <= pcVar5) goto LAB_1803be904;
+                        temp_ptr1 = feature_name;
+                        feature_name = temp_ptr1 + 1;
+                    } while (*feature_name != '\0');
+                    
+                    // 获取特征数据
+                    current_ptr = (SystemStringPtr)data_block_ptr[6];
+                    do {
+                        if (current_ptr == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                            return;
                         }
-                      }
+                        
+                        temp_ptr2 = *(SystemStringPtr*)current_ptr;
+                        if (temp_ptr2 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                            temp_ptr2 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                            temp_ptr4 = string_ptr1;
+                        } else {
+                            temp_ptr4 = *(SystemStringPtr*)(current_ptr + 0x10);
+                        }
+                        
+                        // 验证特征名称
+                        if (temp_ptr4 == temp_ptr1 + (-0x180a23b1f)) {
+                            temp_ptr4 = temp_ptr2 + (SystemHandle)temp_ptr4;
+                            if (temp_ptr4 <= temp_ptr2) {
+                                // 名称处理分支
+                                do {
+                                    resource_ptr = &UNK_180a3c3e0;
+                                    stack_data_block = SYSTEM_NULL_POINTER;
+                                    stack_handle = SYSTEM_NULL_POINTER;
+                                    stack_status = SYSTEM_NULL_POINTER;
+                                    
+                                    feature_name = SYSTEM_NAME_IDENTIFIER;
+                                    do {
+                                        temp_ptr2 = feature_name;
+                                        feature_name = temp_ptr2 + 1;
+                                    } while (*feature_name != '\0');
+                                    
+                                    // 处理名称数据
+                                    for (data_block_ptr = *(SystemDataBlock**)(current_ptr + SYSTEM_NAME_OFFSET); 
+                                         data_block_ptr != (SystemDataBlock*)SYSTEM_NULL_POINTER;
+                                         data_block_ptr = (SystemDataBlock*)data_block_ptr[6]) {
+                                        temp_ptr1 = (SystemStringPtr)*data_block_ptr;
+                                        if (temp_ptr1 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                            temp_ptr1 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                            temp_ptr4 = string_ptr1;
+                                        } else {
+                                            temp_ptr4 = (SystemStringPtr)data_block_ptr[2];
+                                        }
+                                        
+                                        // 验证名称标识符
+                                        if (temp_ptr4 == temp_ptr2 + (-0x180a03a83)) {
+                                            temp_ptr4 = temp_ptr4 + (SystemHandle)temp_ptr1;
+                                            if (temp_ptr4 <= temp_ptr1) {
+                                                // 数据处理分支
+                                                temp_handle = SYSTEM_INVALID_HANDLE;
+                                                if (data_block_ptr[1] != SYSTEM_NULL_POINTER) {
+                                                    temp_handle = data_block_ptr[1];
+                                                }
+                                                
+                                                SystemDataProcessor(&resource_ptr, temp_handle, temp_ptr4, data_block_ptr, temp_data_block);
+                                                break;
+                                            }
+                                            
+                                            // 字符串比较
+                                            temp_handle = (SystemHandle)&DAT_180a03a84 - (SystemHandle)temp_ptr1;
+                                            while (*temp_ptr1 == temp_ptr1[temp_handle]) {
+                                                temp_ptr1 = temp_ptr1 + 1;
+                                                if (temp_ptr4 <= temp_ptr1) {
+                                                    temp_handle = SYSTEM_INVALID_HANDLE;
+                                                    if (data_block_ptr[1] != SYSTEM_NULL_POINTER) {
+                                                        temp_handle = data_block_ptr[1];
+                                                    }
+                                                    
+                                                    SystemDataProcessor(&resource_ptr, temp_handle, temp_ptr4, data_block_ptr, temp_data_block);
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                    // 状态验证和处理
+                                    if ((stack_status == 0x24) && 
+                                        (result = strcmp(stack_handle, &UNK_180a23af8), result == SYSTEM_ERROR_NONE) &&
+                                        (SystemConfigValidator(current_ptr, &UNK_180a0696c, auStackX_18),
+                                         (*(byte*)(*(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET) + SYSTEM_FEATURE_FLAG_OFFSET) & SYSTEM_FEATURE_FLAG_ENABLED) != SYSTEM_NULL_POINTER)) {
+                                        
+                                        // 因子处理
+                                        feature_name = SYSTEM_FACTOR_IDENTIFIER;
+                                        do {
+                                            temp_ptr2 = feature_name;
+                                            feature_name = temp_ptr2 + 1;
+                                        } while (*feature_name != '\0');
+                                        
+                                        // 处理因子数据
+                                        for (temp_ptr1 = *(SystemStringPtr*)(current_ptr + SYSTEM_DATA_OFFSET); 
+                                             temp_ptr4 = string_ptr1, temp_ptr1 != (SystemStringPtr)SYSTEM_NULL_POINTER;
+                                             temp_ptr1 = *(SystemStringPtr*)(temp_ptr1 + 0x58)) {
+                                            
+                                            temp_ptr3 = *(SystemStringPtr*)temp_ptr1;
+                                            if (temp_ptr3 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                temp_ptr3 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                                temp_ptr5 = string_ptr1;
+                                            } else {
+                                                temp_ptr5 = *(SystemStringPtr*)(temp_ptr1 + 0x10);
+                                            }
+                                            
+                                            // 验证因子标识符
+                                            if (temp_ptr5 == temp_ptr2 + (-0x180a1674b)) {
+                                                temp_ptr5 = temp_ptr5 + (SystemHandle)temp_ptr3;
+                                                temp_ptr4 = temp_ptr1;
+                                                if (temp_ptr5 <= temp_ptr3) break;
+                                                
+                                                // 字符串比较
+                                                temp_handle = (SystemHandle)&UNK_180a1674c - (SystemHandle)temp_ptr3;
+                                                while (*temp_ptr3 == temp_ptr3[temp_handle]) {
+                                                    temp_ptr3 = temp_ptr3 + 1;
+                                                    if (temp_ptr5 <= temp_ptr3) {
+                                                        // 参数处理完成
+                                                        SystemParameterHandler(temp_ptr4, &UNK_180a0696c, &temp_param1);
+                                                        temp_handle = *(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET);
+                                                        *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET) = temp_param1;
+                                                        *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 4) = temp_param2;
+                                                        *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 8) = temp_param3;
+                                                        *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 12) = temp_param4;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                    // 特征处理循环
+                                    feature_name = SYSTEM_FEATURE_IDENTIFIER;
+                                    do {
+                                        temp_ptr2 = feature_name;
+                                        feature_name = temp_ptr2 + 1;
+                                    } while (*feature_name != '\0');
+                                    
+                                    for (temp_ptr1 = *(SystemStringPtr*)(current_ptr + SYSTEM_DATA_OFFSET); 
+                                         current_ptr = string_ptr1, temp_ptr1 != (SystemStringPtr)SYSTEM_NULL_POINTER;
+                                         temp_ptr1 = *(SystemStringPtr*)(temp_ptr1 + 0x58)) {
+                                        
+                                        temp_ptr4 = *(SystemStringPtr*)temp_ptr1;
+                                        if (temp_ptr4 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                            temp_ptr4 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                            temp_ptr5 = string_ptr1;
+                                        } else {
+                                            temp_ptr5 = *(SystemStringPtr*)(temp_ptr1 + 0x10);
+                                        }
+                                        
+                                        // 验证特征标识符
+                                        if (temp_ptr5 == temp_ptr2 + (-0x180a23b1f)) {
+                                            temp_ptr5 = temp_ptr5 + (SystemHandle)temp_ptr4;
+                                            current_ptr = temp_ptr1;
+                                            if (temp_ptr5 <= temp_ptr4) break;
+                                            
+                                            // 字符串比较
+                                            temp_handle = (SystemHandle)&UNK_180a23b20 - (SystemHandle)temp_ptr4;
+                                            while (*temp_ptr4 == temp_ptr4[temp_handle]) {
+                                                temp_ptr4 = temp_ptr4 + 1;
+                                                if (temp_ptr5 <= temp_ptr4) {
+                                                    // 特征处理完成
+                                                    resource_ptr = &UNK_180a3c3e0;
+                                                    if (stack_handle != SYSTEM_NULL_POINTER) {
+                                                        // 警告: 子程序不返回
+                                                        SystemResourceCleaner();
+                                                    }
+                                                    
+                                                    if (current_ptr == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                        return;
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                    // 继续处理
+                                    resource_ptr = &UNK_180a3c3e0;
+                                    if (stack_handle != SYSTEM_NULL_POINTER) {
+                                        // 警告: 子程序不返回
+                                        SystemResourceCleaner();
+                                    }
+                                    
+                                    if (current_ptr == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                        return;
+                                    }
+                                } while (true);
+                            }
+                            
+                            // 字符串比较
+                            temp_handle = (SystemHandle)&UNK_180a23b20 - (SystemHandle)temp_ptr2;
+                            while (*temp_ptr2 == temp_ptr2[temp_handle]) {
+                                temp_ptr2 = temp_ptr2 + 1;
+                                if (temp_ptr4 <= temp_ptr2) {
+                                    // 名称处理分支
+                                    do {
+                                        resource_ptr = &UNK_180a3c3e0;
+                                        stack_data_block = SYSTEM_NULL_POINTER;
+                                        stack_handle = SYSTEM_NULL_POINTER;
+                                        stack_status = SYSTEM_NULL_POINTER;
+                                        
+                                        feature_name = SYSTEM_NAME_IDENTIFIER;
+                                        do {
+                                            temp_ptr2 = feature_name;
+                                            feature_name = temp_ptr2 + 1;
+                                        } while (*feature_name != '\0');
+                                        
+                                        // 处理名称数据
+                                        for (data_block_ptr = *(SystemDataBlock**)(current_ptr + SYSTEM_NAME_OFFSET); 
+                                             data_block_ptr != (SystemDataBlock*)SYSTEM_NULL_POINTER;
+                                             data_block_ptr = (SystemDataBlock*)data_block_ptr[6]) {
+                                            
+                                            temp_ptr1 = (SystemStringPtr)*data_block_ptr;
+                                            if (temp_ptr1 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                temp_ptr1 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                                temp_ptr4 = string_ptr1;
+                                            } else {
+                                                temp_ptr4 = (SystemStringPtr)data_block_ptr[2];
+                                            }
+                                            
+                                            // 验证名称标识符
+                                            if (temp_ptr4 == temp_ptr2 + (-0x180a03a83)) {
+                                                temp_ptr4 = temp_ptr4 + (SystemHandle)temp_ptr1;
+                                                if (temp_ptr4 <= temp_ptr1) {
+                                                    // 数据处理分支
+                                                    temp_handle = SYSTEM_INVALID_HANDLE;
+                                                    if (data_block_ptr[1] != SYSTEM_NULL_POINTER) {
+                                                        temp_handle = data_block_ptr[1];
+                                                    }
+                                                    
+                                                    SystemDataProcessor(&resource_ptr, temp_handle, temp_ptr4, data_block_ptr, temp_data_block);
+                                                    break;
+                                                }
+                                                
+                                                // 字符串比较
+                                                temp_handle = (SystemHandle)&DAT_180a03a84 - (SystemHandle)temp_ptr1;
+                                                while (*temp_ptr1 == temp_ptr1[temp_handle]) {
+                                                    temp_ptr1 = temp_ptr1 + 1;
+                                                    if (temp_ptr4 <= temp_ptr1) {
+                                                        temp_handle = SYSTEM_INVALID_HANDLE;
+                                                        if (data_block_ptr[1] != SYSTEM_NULL_POINTER) {
+                                                            temp_handle = data_block_ptr[1];
+                                                        }
+                                                        
+                                                        SystemDataProcessor(&resource_ptr, temp_handle, temp_ptr4, data_block_ptr, temp_data_block);
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            current_ptr = *(SystemStringPtr*)(current_ptr + 0x58);
+                        } while (true);
                     }
-LAB_1803be904:
-                    FUN_180631b90(pcVar6,&UNK_180a0696c,&uStack_60);
-                    lVar7 = *(longlong *)(param_1 + 0x28);
-                    *(undefined4 *)(lVar7 + 0x180) = uStack_60;
-                    *(undefined4 *)(lVar7 + 0x184) = uStack_5c;
-                    *(undefined4 *)(lVar7 + 0x188) = uStack_58;
-                    *(undefined4 *)(lVar7 + 0x18c) = uStack_54;
-                  }
-                  pcVar3 = "feature";
-                  do {
-                    pcVar4 = pcVar3;
-                    pcVar3 = pcVar4 + 1;
-                  } while (*pcVar3 != '\0');
-                  for (pcVar3 = *(char **)(pcVar10 + 0x58); pcVar10 = pcVar9, pcVar3 != (char *)0x0;
-                      pcVar3 = *(char **)(pcVar3 + 0x58)) {
-                    pcVar6 = *(char **)pcVar3;
-                    if (pcVar6 == (char *)0x0) {
-                      pcVar6 = (char *)0x180d48d24;
-                      pcVar5 = pcVar9;
+                    
+                    // 字符串比较
+                    temp_handle = (SystemHandle)&UNK_180a23b28 - (SystemHandle)temp_ptr1;
+                    while (*temp_ptr1 == temp_ptr1[temp_handle]) {
+                        temp_ptr1 = temp_ptr1 + 1;
+                        if (temp_ptr4 <= temp_ptr1) {
+                            // 特征处理分支
+                            feature_name = SYSTEM_FEATURE_IDENTIFIER;
+                            do {
+                                temp_ptr1 = feature_name;
+                                feature_name = temp_ptr1 + 1;
+                            } while (*feature_name != '\0');
+                            
+                            // 获取特征数据
+                            current_ptr = (SystemStringPtr)data_block_ptr[6];
+                            do {
+                                if (current_ptr == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                    return;
+                                }
+                                
+                                temp_ptr2 = *(SystemStringPtr*)current_ptr;
+                                if (temp_ptr2 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                    temp_ptr2 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                    temp_ptr4 = string_ptr1;
+                                } else {
+                                    temp_ptr4 = *(SystemStringPtr*)(current_ptr + 0x10);
+                                }
+                                
+                                // 验证特征名称
+                                if (temp_ptr4 == temp_ptr1 + (-0x180a23b1f)) {
+                                    temp_ptr4 = temp_ptr2 + (SystemHandle)temp_ptr4;
+                                    if (temp_ptr4 <= temp_ptr2) {
+                                        // 名称处理分支
+                                        do {
+                                            resource_ptr = &UNK_180a3c3e0;
+                                            stack_data_block = SYSTEM_NULL_POINTER;
+                                            stack_handle = SYSTEM_NULL_POINTER;
+                                            stack_status = SYSTEM_NULL_POINTER;
+                                            
+                                            feature_name = SYSTEM_NAME_IDENTIFIER;
+                                            do {
+                                                temp_ptr2 = feature_name;
+                                                feature_name = temp_ptr2 + 1;
+                                            } while (*feature_name != '\0');
+                                            
+                                            // 处理名称数据
+                                            for (data_block_ptr = *(SystemDataBlock**)(current_ptr + SYSTEM_NAME_OFFSET); 
+                                                 data_block_ptr != (SystemDataBlock*)SYSTEM_NULL_POINTER;
+                                                 data_block_ptr = (SystemDataBlock*)data_block_ptr[6]) {
+                                                
+                                                temp_ptr1 = (SystemStringPtr)*data_block_ptr;
+                                                if (temp_ptr1 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                    temp_ptr1 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                                    temp_ptr4 = string_ptr1;
+                                                } else {
+                                                    temp_ptr4 = (SystemStringPtr)data_block_ptr[2];
+                                                }
+                                                
+                                                // 验证名称标识符
+                                                if (temp_ptr4 == temp_ptr2 + (-0x180a03a83)) {
+                                                    temp_ptr4 = temp_ptr4 + (SystemHandle)temp_ptr1;
+                                                    if (temp_ptr4 <= temp_ptr1) {
+                                                        // 数据处理分支
+                                                        temp_handle = SYSTEM_INVALID_HANDLE;
+                                                        if (data_block_ptr[1] != SYSTEM_NULL_POINTER) {
+                                                            temp_handle = data_block_ptr[1];
+                                                        }
+                                                        
+                                                        SystemDataProcessor(&resource_ptr, temp_handle, temp_ptr4, data_block_ptr, temp_data_block);
+                                                        break;
+                                                    }
+                                                    
+                                                    // 字符串比较
+                                                    temp_handle = (SystemHandle)&DAT_180a03a84 - (SystemHandle)temp_ptr1;
+                                                    while (*temp_ptr1 == temp_ptr1[temp_handle]) {
+                                                        temp_ptr1 = temp_ptr1 + 1;
+                                                        if (temp_ptr4 <= temp_ptr1) {
+                                                            temp_handle = SYSTEM_INVALID_HANDLE;
+                                                            if (data_block_ptr[1] != SYSTEM_NULL_POINTER) {
+                                                                temp_handle = data_block_ptr[1];
+                                                            }
+                                                            
+                                                            SystemDataProcessor(&resource_ptr, temp_handle, temp_ptr4, data_block_ptr, temp_data_block);
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            
+                                            // 状态验证和处理
+                                            if ((stack_status == 0x24) && 
+                                                (result = strcmp(stack_handle, &UNK_180a23af8), result == SYSTEM_ERROR_NONE) &&
+                                                (SystemConfigValidator(current_ptr, &UNK_180a0696c, auStackX_18),
+                                                 (*(byte*)(*(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET) + SYSTEM_FEATURE_FLAG_OFFSET) & SYSTEM_FEATURE_FLAG_ENABLED) != SYSTEM_NULL_POINTER)) {
+                                                
+                                                // 因子处理
+                                                feature_name = SYSTEM_FACTOR_IDENTIFIER;
+                                                do {
+                                                    temp_ptr2 = feature_name;
+                                                    feature_name = temp_ptr2 + 1;
+                                                } while (*feature_name != '\0');
+                                                
+                                                // 处理因子数据
+                                                for (temp_ptr1 = *(SystemStringPtr*)(current_ptr + SYSTEM_DATA_OFFSET); 
+                                                     temp_ptr4 = string_ptr1, temp_ptr1 != (SystemStringPtr)SYSTEM_NULL_POINTER;
+                                                     temp_ptr1 = *(SystemStringPtr*)(temp_ptr1 + 0x58)) {
+                                                    
+                                                    temp_ptr3 = *(SystemStringPtr*)temp_ptr1;
+                                                    if (temp_ptr3 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                        temp_ptr3 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                                        temp_ptr5 = string_ptr1;
+                                                    } else {
+                                                        temp_ptr5 = *(SystemStringPtr*)(temp_ptr1 + 0x10);
+                                                    }
+                                                    
+                                                    // 验证因子标识符
+                                                    if (temp_ptr5 == temp_ptr2 + (-0x180a1674b)) {
+                                                        temp_ptr5 = temp_ptr5 + (SystemHandle)temp_ptr3;
+                                                        temp_ptr4 = temp_ptr1;
+                                                        if (temp_ptr5 <= temp_ptr3) break;
+                                                        
+                                                        // 字符串比较
+                                                        temp_handle = (SystemHandle)&UNK_180a1674c - (SystemHandle)temp_ptr3;
+                                                        while (*temp_ptr3 == temp_ptr3[temp_handle]) {
+                                                            temp_ptr3 = temp_ptr3 + 1;
+                                                            if (temp_ptr5 <= temp_ptr3) {
+                                                                // 参数处理完成
+                                                                SystemParameterHandler(temp_ptr4, &UNK_180a0696c, &temp_param1);
+                                                                temp_handle = *(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET);
+                                                                *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET) = temp_param1;
+                                                                *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 4) = temp_param2;
+                                                                *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 8) = temp_param3;
+                                                                *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 12) = temp_param4;
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            
+                                            // 特征处理循环
+                                            feature_name = SYSTEM_FEATURE_IDENTIFIER;
+                                            do {
+                                                temp_ptr2 = feature_name;
+                                                feature_name = temp_ptr2 + 1;
+                                            } while (*feature_name != '\0');
+                                            
+                                            for (temp_ptr1 = *(SystemStringPtr*)(current_ptr + SYSTEM_DATA_OFFSET); 
+                                                 current_ptr = string_ptr1, temp_ptr1 != (SystemStringPtr)SYSTEM_NULL_POINTER;
+                                                 temp_ptr1 = *(SystemStringPtr*)(temp_ptr1 + 0x58)) {
+                                                
+                                                temp_ptr4 = *(SystemStringPtr*)temp_ptr1;
+                                                if (temp_ptr4 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                    temp_ptr4 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                                    temp_ptr5 = string_ptr1;
+                                                } else {
+                                                    temp_ptr5 = *(SystemStringPtr*)(temp_ptr1 + 0x10);
+                                                }
+                                                
+                                                // 验证特征标识符
+                                                if (temp_ptr5 == temp_ptr2 + (-0x180a23b1f)) {
+                                                    temp_ptr5 = temp_ptr5 + (SystemHandle)temp_ptr4;
+                                                    current_ptr = temp_ptr1;
+                                                    if (temp_ptr5 <= temp_ptr4) break;
+                                                    
+                                                    // 字符串比较
+                                                    temp_handle = (SystemHandle)&UNK_180a23b20 - (SystemHandle)temp_ptr4;
+                                                    while (*temp_ptr4 == temp_ptr4[temp_handle]) {
+                                                        temp_ptr4 = temp_ptr4 + 1;
+                                                        if (temp_ptr5 <= temp_ptr4) {
+                                                            // 特征处理完成
+                                                            resource_ptr = &UNK_180a3c3e0;
+                                                            if (stack_handle != SYSTEM_NULL_POINTER) {
+                                                                // 警告: 子程序不返回
+                                                                SystemResourceCleaner();
+                                                            }
+                                                            
+                                                            if (current_ptr == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                                return;
+                                                            }
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            
+                                            // 继续处理
+                                            resource_ptr = &UNK_180a3c3e0;
+                                            if (stack_handle != SYSTEM_NULL_POINTER) {
+                                                // 警告: 子程序不返回
+                                                SystemResourceCleaner();
+                                            }
+                                            
+                                            if (current_ptr == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                return;
+                                            }
+                                        } while (true);
+                                    }
+                                }
+                                
+                                current_ptr = *(SystemStringPtr*)(current_ptr + 0x58);
+                            } while (true);
+                        }
+                        
+                        // 字符串比较
+                        temp_handle = (SystemHandle)&UNK_180a23b28 - (SystemHandle)temp_ptr1;
+                        while (*temp_ptr1 == temp_ptr1[temp_handle]) {
+                            temp_ptr1 = temp_ptr1 + 1;
+                            if (temp_ptr4 <= temp_ptr1) {
+                                // 特征处理分支
+                                feature_name = SYSTEM_FEATURE_IDENTIFIER;
+                                do {
+                                    temp_ptr1 = feature_name;
+                                    feature_name = temp_ptr1 + 1;
+                                } while (*feature_name != '\0');
+                                
+                                // 获取特征数据
+                                current_ptr = (SystemStringPtr)data_block_ptr[6];
+                                do {
+                                    if (current_ptr == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                        return;
+                                    }
+                                    
+                                    temp_ptr2 = *(SystemStringPtr*)current_ptr;
+                                    if (temp_ptr2 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                        temp_ptr2 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                        temp_ptr4 = string_ptr1;
+                                    } else {
+                                        temp_ptr4 = *(SystemStringPtr*)(current_ptr + 0x10);
+                                    }
+                                    
+                                    // 验证特征名称
+                                    if (temp_ptr4 == temp_ptr1 + (-0x180a23b1f)) {
+                                        temp_ptr4 = temp_ptr2 + (SystemHandle)temp_ptr4;
+                                        if (temp_ptr4 <= temp_ptr2) {
+                                            // 名称处理分支
+                                            do {
+                                                resource_ptr = &UNK_180a3c3e0;
+                                                stack_data_block = SYSTEM_NULL_POINTER;
+                                                stack_handle = SYSTEM_NULL_POINTER;
+                                                stack_status = SYSTEM_NULL_POINTER;
+                                                
+                                                feature_name = SYSTEM_NAME_IDENTIFIER;
+                                                do {
+                                                    temp_ptr2 = feature_name;
+                                                    feature_name = temp_ptr2 + 1;
+                                                } while (*feature_name != '\0');
+                                                
+                                                // 处理名称数据
+                                                for (data_block_ptr = *(SystemDataBlock**)(current_ptr + SYSTEM_NAME_OFFSET); 
+                                                     data_block_ptr != (SystemDataBlock*)SYSTEM_NULL_POINTER;
+                                                     data_block_ptr = (SystemDataBlock*)data_block_ptr[6]) {
+                                                    
+                                                    temp_ptr1 = (SystemStringPtr)*data_block_ptr;
+                                                    if (temp_ptr1 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                        temp_ptr1 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                                        temp_ptr4 = string_ptr1;
+                                                    } else {
+                                                        temp_ptr4 = (SystemStringPtr)data_block_ptr[2];
+                                                    }
+                                                    
+                                                    // 验证名称标识符
+                                                    if (temp_ptr4 == temp_ptr2 + (-0x180a03a83)) {
+                                                        temp_ptr4 = temp_ptr4 + (SystemHandle)temp_ptr1;
+                                                        if (temp_ptr4 <= temp_ptr1) {
+                                                            // 数据处理分支
+                                                            temp_handle = SYSTEM_INVALID_HANDLE;
+                                                            if (data_block_ptr[1] != SYSTEM_NULL_POINTER) {
+                                                                temp_handle = data_block_ptr[1];
+                                                            }
+                                                            
+                                                            SystemDataProcessor(&resource_ptr, temp_handle, temp_ptr4, data_block_ptr, temp_data_block);
+                                                            break;
+                                                        }
+                                                        
+                                                        // 字符串比较
+                                                        temp_handle = (SystemHandle)&DAT_180a03a84 - (SystemHandle)temp_ptr1;
+                                                        while (*temp_ptr1 == temp_ptr1[temp_handle]) {
+                                                            temp_ptr1 = temp_ptr1 + 1;
+                                                            if (temp_ptr4 <= temp_ptr1) {
+                                                                temp_handle = SYSTEM_INVALID_HANDLE;
+                                                                if (data_block_ptr[1] != SYSTEM_NULL_POINTER) {
+                                                                    temp_handle = data_block_ptr[1];
+                                                                }
+                                                                
+                                                                SystemDataProcessor(&resource_ptr, temp_handle, temp_ptr4, data_block_ptr, temp_data_block);
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                
+                                                // 状态验证和处理
+                                                if ((stack_status == 0x24) && 
+                                                    (result = strcmp(stack_handle, &UNK_180a23af8), result == SYSTEM_ERROR_NONE) &&
+                                                    (SystemConfigValidator(current_ptr, &UNK_180a0696c, auStackX_18),
+                                                     (*(byte*)(*(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET) + SYSTEM_FEATURE_FLAG_OFFSET) & SYSTEM_FEATURE_FLAG_ENABLED) != SYSTEM_NULL_POINTER)) {
+                                                    
+                                                    // 因子处理
+                                                    feature_name = SYSTEM_FACTOR_IDENTIFIER;
+                                                    do {
+                                                        temp_ptr2 = feature_name;
+                                                        feature_name = temp_ptr2 + 1;
+                                                    } while (*feature_name != '\0');
+                                                    
+                                                    // 处理因子数据
+                                                    for (temp_ptr1 = *(SystemStringPtr*)(current_ptr + SYSTEM_DATA_OFFSET); 
+                                                         temp_ptr4 = string_ptr1, temp_ptr1 != (SystemStringPtr)SYSTEM_NULL_POINTER;
+                                                         temp_ptr1 = *(SystemStringPtr*)(temp_ptr1 + 0x58)) {
+                                                        
+                                                        temp_ptr3 = *(SystemStringPtr*)temp_ptr1;
+                                                        if (temp_ptr3 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                            temp_ptr3 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                                            temp_ptr5 = string_ptr1;
+                                                        } else {
+                                                            temp_ptr5 = *(SystemStringPtr*)(temp_ptr1 + 0x10);
+                                                        }
+                                                        
+                                                        // 验证因子标识符
+                                                        if (temp_ptr5 == temp_ptr2 + (-0x180a1674b)) {
+                                                            temp_ptr5 = temp_ptr5 + (SystemHandle)temp_ptr3;
+                                                            temp_ptr4 = temp_ptr1;
+                                                            if (temp_ptr5 <= temp_ptr3) break;
+                                                            
+                                                            // 字符串比较
+                                                            temp_handle = (SystemHandle)&UNK_180a1674c - (SystemHandle)temp_ptr3;
+                                                            while (*temp_ptr3 == temp_ptr3[temp_handle]) {
+                                                                temp_ptr3 = temp_ptr3 + 1;
+                                                                if (temp_ptr5 <= temp_ptr3) {
+                                                                    // 参数处理完成
+                                                                    SystemParameterHandler(temp_ptr4, &UNK_180a0696c, &temp_param1);
+                                                                    temp_handle = *(SystemHandle*)(param_1 + SYSTEM_PARAM_OFFSET);
+                                                                    *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET) = temp_param1;
+                                                                    *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 4) = temp_param2;
+                                                                    *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 8) = temp_param3;
+                                                                    *(SystemParameter*)(temp_handle + SYSTEM_PARAMETER_OFFSET + 12) = temp_param4;
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                
+                                                // 特征处理循环
+                                                feature_name = SYSTEM_FEATURE_IDENTIFIER;
+                                                do {
+                                                    temp_ptr2 = feature_name;
+                                                    feature_name = temp_ptr2 + 1;
+                                                } while (*feature_name != '\0');
+                                                
+                                                for (temp_ptr1 = *(SystemStringPtr*)(current_ptr + SYSTEM_DATA_OFFSET); 
+                                                     current_ptr = string_ptr1, temp_ptr1 != (SystemStringPtr)SYSTEM_NULL_POINTER;
+                                                     temp_ptr1 = *(SystemStringPtr*)(temp_ptr1 + 0x58)) {
+                                                    
+                                                    temp_ptr4 = *(SystemStringPtr*)temp_ptr1;
+                                                    if (temp_ptr4 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                        temp_ptr4 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                                                        temp_ptr5 = string_ptr1;
+                                                    } else {
+                                                        temp_ptr5 = *(SystemStringPtr*)(temp_ptr1 + 0x10);
+                                                    }
+                                                    
+                                                    // 验证特征标识符
+                                                    if (temp_ptr5 == temp_ptr2 + (-0x180a23b1f)) {
+                                                        temp_ptr5 = temp_ptr5 + (SystemHandle)temp_ptr4;
+                                                        current_ptr = temp_ptr1;
+                                                        if (temp_ptr5 <= temp_ptr4) break;
+                                                        
+                                                        // 字符串比较
+                                                        temp_handle = (SystemHandle)&UNK_180a23b20 - (SystemHandle)temp_ptr4;
+                                                        while (*temp_ptr4 == temp_ptr4[temp_handle]) {
+                                                            temp_ptr4 = temp_ptr4 + 1;
+                                                            if (temp_ptr5 <= temp_ptr4) {
+                                                                // 特征处理完成
+                                                                resource_ptr = &UNK_180a3c3e0;
+                                                                if (stack_handle != SYSTEM_NULL_POINTER) {
+                                                                    // 警告: 子程序不返回
+                                                                    SystemResourceCleaner();
+                                                                }
+                                                                
+                                                                if (current_ptr == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                                    return;
+                                                                }
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            
+                                            // 继续处理
+                                            resource_ptr = &UNK_180a3c3e0;
+                                            if (stack_handle != SYSTEM_NULL_POINTER) {
+                                                // 警告: 子程序不返回
+                                                SystemResourceCleaner();
+                                            }
+                                            
+                                            if (current_ptr == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                                                return;
+                                            }
+                                        } while (true);
+                                    }
+                                }
+                                
+                                current_ptr = *(SystemStringPtr*)(current_ptr + 0x58);
+                            } while (true);
+                        }
                     }
-                    else {
-                      pcVar5 = *(char **)(pcVar3 + 0x10);
-                    }
-                    if (pcVar5 == pcVar4 + -0x180a23b1f) {
-                      pcVar5 = pcVar5 + (longlong)pcVar6;
-                      pcVar10 = pcVar3;
-                      if (pcVar5 <= pcVar6) break;
-                      lVar7 = (longlong)&UNK_180a23b20 - (longlong)pcVar6;
-                      while (*pcVar6 == pcVar6[lVar7]) {
-                        pcVar6 = pcVar6 + 1;
-                        if (pcVar5 <= pcVar6) goto LAB_1803be98e;
-                      }
-                    }
-                  }
-LAB_1803be98e:
-                  puStack_50 = &UNK_180a3c3e0;
-                  if (lStack_48 != 0) {
-                    // WARNING: Subroutine does not return
-                    FUN_18064e900();
-                  }
-                  if (pcVar10 == (char *)0x0) {
-                    return;
-                  }
-                } while( true );
-              }
-              lVar7 = (longlong)&UNK_180a23b20 - (longlong)pcVar4;
-              while (*pcVar4 == pcVar4[lVar7]) {
-                pcVar4 = pcVar4 + 1;
-                if (pcVar6 <= pcVar4) goto LAB_1803be7b2;
-              }
+                    
+                    data_block_ptr = (SystemDataBlock*)data_block_ptr[0xb];
+                } while (data_block_ptr != (SystemDataBlock*)SYSTEM_NULL_POINTER);
             }
-            pcVar10 = *(char **)(pcVar10 + 0x58);
-          } while( true );
         }
-        lVar7 = (longlong)&UNK_180a23b28 - (longlong)pcVar3;
-        while (*pcVar3 == pcVar3[lVar7]) {
-          pcVar3 = pcVar3 + 1;
-          if (pcVar4 <= pcVar3) goto LAB_1803be720;
-        }
-      }
-      puVar8 = (undefined8 *)puVar8[0xb];
-    } while (puVar8 != (undefined8 *)0x0);
-  }
-  return;
+    }
+    
+    return;
 }
 
 

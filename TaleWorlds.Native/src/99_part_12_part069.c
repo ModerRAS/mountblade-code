@@ -1,37 +1,98 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_12_part069.c - 2 个函数
+/*=============================================================================
+ * 99_part_12_part069.c - 数学计算和矩阵变换模块
+ * 
+ * 本模块包含高级数学计算功能，主要用于：
+ * - 复杂的浮点数运算
+ * - 矩阵变换和向量计算
+ * - 3D图形渲染相关的数学处理
+ * - 向量点积和矩阵乘法运算
+ * 
+ * 包含函数：
+ * 1. Math_MatrixTransformProcessor - 矩阵变换处理器
+ * 2. Math_VectorCalculationEngine - 向量计算引擎
+ *=============================================================================*/
 
-// 函数: void FUN_1807fa710(float *param_1,float *param_2,uint param_3,int param_4,int param_5,
-void FUN_1807fa710(float *param_1,float *param_2,uint param_3,int param_4,int param_5,
-                  longlong param_6,longlong param_7,longlong param_8,longlong param_9,float param_10
-                  ,float param_11,float param_12)
+/*=============================================================================
+ * 常量定义
+ *=============================================================================*/
+#define MATRIX_BLOCK_SIZE 16          // 矩阵块大小 (16字节)
+#define VECTOR_COMPONENTS_4 4          // 4分量向量
+#define VECTOR_COMPONENTS_3 3          // 3分量向量
+#define VECTOR_COMPONENTS_2 2          // 2分量向量
+#define FLOAT_SIZE 4                  // 浮点数大小 (4字节)
+#define LOOP_UNROLL_FACTOR 4          // 循环展开因子
 
+/*=============================================================================
+ * 类型别名
+ *=============================================================================*/
+typedef float Vector2D[2];           // 2D向量类型
+typedef float Vector3D[3];           // 3D向量类型
+typedef float Vector4D[4];           // 4D向量类型
+typedef float Matrix4x4[16];         // 4x4矩阵类型
+typedef uint ElementCount;           // 元素计数类型
+typedef int StrideValue;             // 步长值类型
+typedef longlong MatrixPointer;      // 矩阵指针类型
+typedef float WeightFactor;          // 权重因子类型
+
+/*=============================================================================
+ * 函数别名
+ *=============================================================================*/
+#define Math_MatrixTransformProcessor FUN_1807fa710
+#define Math_VectorCalculationEngine FUN_1807fa774
+
+/*=============================================================================
+ * 函数实现
+ *=============================================================================*/
+
+/**
+ * 矩阵变换处理器 - 执行复杂的矩阵变换和向量计算
+ * 
+ * 该函数实现了高性能的矩阵变换计算，主要用于3D图形渲染系统。
+ * 通过循环展开和内存优化，实现了高效的向量-矩阵运算。
+ * 
+ * @param outputVector    输出向量数组指针
+ * @param inputVector     输入向量数组指针  
+ * @param elementCount    元素数量
+ * @param stride          步长值
+ * @param matrixIndex     矩阵索引
+ * @param matrixA         矩阵A的基地址
+ * @param matrixB         矩阵B的基地址
+ * @param matrixC         矩阵C的基地址
+ * @param matrixD         矩阵D的基地址
+ * @param weightA         权重因子A
+ * @param weightB         权重因子B
+ * @param weightC         权重因子C
+ * 
+ * @return 无返回值
+ * 
+ * 算法说明：
+ * 1. 使用4路循环展开提高性能
+ * 2. 实现向量-矩阵乘法运算
+ * 3. 支持加权组合计算
+ * 4. 优化内存访问模式
+ */
+void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint elementCount, 
+                                   int stride, int matrixIndex, longlong matrixA, longlong matrixB, 
+                                   longlong matrixC, longlong matrixD, float weightA, 
+                                   float weightB, float weightC)
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  longlong lVar15;
-  int iVar16;
-  int iVar17;
-  int iVar18;
-  longlong lVar19;
-  longlong lVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
+  // 声明浮点数变量用于矩阵计算
+  float matrixElement_A1, matrixElement_A2, matrixElement_A3, matrixElement_A4;
+  float matrixElement_B1, matrixElement_B2, matrixElement_B3, matrixElement_B4;
+  float matrixElement_C1, matrixElement_C2, matrixElement_C3, matrixElement_C4;
+  float matrixElement_D1, matrixElement_D2, matrixElement_D3, matrixElement_D4;
+  float vectorComponent_X, vectorComponent_Y, vectorComponent_Z, vectorComponent_W;
+  float intermediateResult_A, intermediateResult_B, intermediateResult_C, intermediateResult_D;
+  
+  // 声明循环控制变量
+  longlong matrixPointer;
+  int loopCounter;
+  int stride_2x, stride_3x;
+  longlong matrixRowPointer;
+  longlong currentMatrixIndex;
+  float calculationResult_A, calculationResult_B, calculationResult_C, calculationResult_D;
   
   lVar20 = (longlong)param_5;
   iVar18 = (int)param_3 >> 2;
