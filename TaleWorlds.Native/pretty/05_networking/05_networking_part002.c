@@ -18,36 +18,50 @@
 // 全局常量定义
 #define NETWORK_SECURITY_KEY    _DAT_180bf00a8
 #define NETWORK_ERROR_LOGGER    _DAT_180be12f0
-#define PACKET_HEADER_PTR      UNK_180982b30
-#define ERROR_MESSAGE_PTR      UNK_180982b98
+#define PACKET_HEADER_PTR      NETWORK_PACKET_HEADER
+#define ERROR_MESSAGE_PTR      NETWORK_ERROR_MESSAGE
+#define UNK_180983020          BASIC_PACKET_CONFIG
+#define UNK_1809830a0          EXTENDED_PACKET_CONFIG
+#define UNK_180983120          COMPREHENSIVE_DATA_HANDLER
+#define UNK_180982ea0          ALTERNATE_PACKET_CONFIG
+#define UNK_180982f20          SECONDARY_PACKET_CONFIG
+#define UNK_180982fa0          ALTERNATE_DATA_HANDLER
+#define UNK_180982c20          PRIMARY_PACKET_CONFIG
+#define UNK_180982ca0          URGENT_PACKET_CONFIG
+#define UNK_1809831a0          FINAL_PACKET_CONFIG
+#define UNK_180983220          COMPRESSED_PACKET_HANDLER
+#define UNK_1809832a0          ENCRYPTED_PACKET_HANDLER
+#define UNK_180983320          SECURE_PACKET_HANDLER
+#define UNK_1809833a0          PRIORITY_PACKET_HANDLER
+#define UNK_180983420          HIGH_PRIORITY_PACKET_HANDLER
 #define DATA_BUFFER_PTR        DAT_180a06434
 
 // 函数别名定义
 #define get_connection_info      func_0x00018088c590
-#define validate_packet_data     FUN_18088e0f0
-#define process_connection_data  FUN_18088c740
-#define extract_packet_header    FUN_18088dec0
+#define validate_packet_data     validate_network_packet_data
+#define process_connection_data  process_network_connection_data
+#define extract_packet_header    extract_network_packet_header
 #define finalize_packet_header  func_0x00018088e0d0
-#define cleanup_connection_data  FUN_18088c790
-#define log_network_error        FUN_180749ef0
-#define validate_security_cookie FUN_1808fc050
+#define cleanup_connection_data  cleanup_network_connection_data
+#define log_network_error        log_network_error_internal
+#define validate_security_cookie validate_network_security_cookie
 #define initialize_checksum      func_0x00018074b800
-#define process_checksum_data   FUN_18074b880
+#define process_checksum_data   process_network_checksum_data
 #define apply_checksum          func_0x00018074b7d0
-#define send_packet_data         FUN_18083faf0
+#define send_packet_data         send_network_packet_data
 #define process_encryption       func_0x00018074b7d0
-#define apply_data_padding      FUN_18074b650
+#define apply_data_padding      apply_network_data_padding
 #define initialize_compression  func_0x00018074b800
-#define process_compression      FUN_18074b880
+#define process_compression      process_network_compression
 #define finalize_compression    func_0x00018074b7d0
 #define compress_data           func_0x00018074bda0
-#define validate_packet_signature FUN_18074be90
+#define validate_packet_signature validate_network_packet_signature
 #define encode_data            func_0x00018074b830
-#define apply_security_params   FUN_18074b6f0
-#define send_basic_packet       FUN_18083f850
-#define send_extended_packet    FUN_18083f8f0
-#define apply_connection_params  FUN_18088ece0
-#define apply_encryption_params FUN_18088ece0
+#define apply_security_params   apply_network_security_params
+#define send_basic_packet       send_basic_network_packet_internal
+#define send_extended_packet    send_extended_network_packet_internal
+#define apply_connection_params  apply_network_connection_params
+#define apply_encryption_params apply_network_encryption_params
 #define initialize_protocol_params func_0x00018088ecd0
 
 // 函数: void process_network_packet(undefined8 packet_ptr)
@@ -1096,7 +1110,7 @@ int process_extended_stream_validation(longlong stream_config, longlong data_ptr
 void send_basic_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  send_basic_packet(packet_data, packet_size, &UNK_180983020, *(undefined4 *)(connection_info + 0x10),
+  send_basic_packet(packet_data, packet_size, &BASIC_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18));
   return;
 }
@@ -1112,7 +1126,7 @@ void send_basic_network_packet(longlong connection_info, undefined8 packet_data,
 void send_extended_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  send_extended_packet(packet_data, packet_size, &UNK_1809830a0, *(undefined4 *)(connection_info + 0x10),
+  send_extended_packet(packet_data, packet_size, &EXTENDED_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18), *(undefined4 *)(connection_info + 0x1c));
   return;
 }
@@ -1147,7 +1161,7 @@ int process_comprehensive_data_validation(longlong comprehensive_config, longlon
   primary_key = *(undefined4 *)(comprehensive_config + 0x10);
   
   // 处理初始数据
-  bytes_processed = process_checksum_data(data_ptr, data_size, &UNK_180983120);
+  bytes_processed = process_checksum_data(data_ptr, data_size, &COMPREHENSIVE_DATA_HANDLER);
   bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
@@ -1191,7 +1205,7 @@ int process_comprehensive_data_validation(longlong comprehensive_config, longlon
 void send_alternate_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  send_basic_packet(packet_data, packet_size, &UNK_180982ea0, *(undefined4 *)(connection_info + 0x10),
+  send_basic_packet(packet_data, packet_size, &ALTERNATE_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18));
   return;
 }
@@ -1207,7 +1221,7 @@ void send_alternate_network_packet(longlong connection_info, undefined8 packet_d
 void send_secondary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  send_extended_packet(packet_data, packet_size, &UNK_180982f20, *(undefined4 *)(connection_info + 0x10),
+  send_extended_packet(packet_data, packet_size, &SECONDARY_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18), *(undefined4 *)(connection_info + 0x1c));
   return;
 }
@@ -1242,7 +1256,7 @@ int process_alternate_comprehensive_validation(longlong alternate_config, longlo
   primary_key = *(undefined4 *)(alternate_config + 0x10);
   
   // 处理备用数据
-  bytes_processed = process_checksum_data(data_ptr, data_size, &UNK_180982fa0);
+  bytes_processed = process_checksum_data(data_ptr, data_size, &ALTERNATE_DATA_HANDLER);
   bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
@@ -1286,7 +1300,7 @@ int process_alternate_comprehensive_validation(longlong alternate_config, longlo
 void send_primary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  send_basic_packet(packet_data, packet_size, &UNK_180982c20, *(undefined4 *)(connection_info + 0x10),
+  send_basic_packet(packet_data, packet_size, &PRIMARY_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18));
   return;
 }
@@ -1302,7 +1316,7 @@ void send_primary_network_packet(longlong connection_info, undefined8 packet_dat
 void send_urgent_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  send_basic_packet(packet_data, packet_size, &UNK_180982ca0, *(undefined4 *)(connection_info + 0x10),
+  send_basic_packet(packet_data, packet_size, &URGENT_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18));
   return;
 }
@@ -1318,7 +1332,7 @@ void send_urgent_network_packet(longlong connection_info, undefined8 packet_data
 void send_final_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
 
 {
-  send_basic_packet(packet_data, packet_size, &UNK_1809831a0, *(undefined4 *)(connection_info + 0x10),
+  send_basic_packet(packet_data, packet_size, &FINAL_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
                 *(undefined4 *)(connection_info + 0x18));
   return;
 }

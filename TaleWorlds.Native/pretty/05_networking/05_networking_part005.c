@@ -1,60 +1,112 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking_part005.c - 22 个函数
+// 05_networking_part005.c - 网络系统高级功能模块
+// 包含网络查询、数据检索、状态管理、连接配置等22个核心函数
 
-// 函数: void FUN_1808455f0(undefined8 param_1,ulonglong *param_2)
-void FUN_1808455f0(undefined8 param_1,ulonglong *param_2)
+// 函数别名定义 - 基于功能分析
+#define validate_network_connection FUN_1808455f0      // 验证网络连接并获取连接信息
+#define send_network_configuration_message FUN_180845c40  // 发送网络配置消息
+#define send_simple_network_message FUN_180845c84       // 发送简单网络消息
+#define cleanup_network_resources FUN_180845cfc         // 清理网络资源
+#define query_network_extended_data FUN_180845d20       // 查询网络扩展数据
+#define get_network_session_statistics FUN_180845ef0   // 获取网络会话统计信息
+#define get_network_connection_attributes FUN_180846050  // 获取网络连接属性
+#define configure_network_connection_params FUN_180846210  // 配置网络连接参数
+#define send_extended_network_packet FUN_180846410     // 发送扩展网络数据包
+#define send_simple_network_packet FUN_180846453       // 发送简单网络数据包
+#define release_network_packet_resources FUN_1808464cb  // 释放网络数据包资源
+#define check_network_connection_status FUN_1808464f0   // 检查网络连接状态
+#define setup_network_connection_buffers FUN_180846610  // 设置网络连接缓冲区
+#define send_buffered_network_message FUN_180846730    // 发送缓冲的网络消息
+#define clear_network_message_buffer FUN_1808467de      // 清空网络消息缓冲区
+#define retrieve_network_connection_property FUN_180846810  // 检索网络连接属性
+#define get_network_configuration_settings FUN_180846930 // 获取网络配置设置
+#define determine_network_connection_type FUN_180846a90 // 确定网络连接类型
+#define fetch_network_connection_field FUN_180846bc0    // 获取网络连接字段
+#define monitor_network_connection_state FUN_180846d30   // 监控网络连接状态
+#define count_active_network_sessions FUN_180846e90     // 计算活跃网络会话数量
+#define extract_network_session_data FUN_180846fe0      // 提取网络会话数据
+
+// 常量定义
+#define NETWORK_BUFFER_SIZE 256
+#define NETWORK_SECURITY_KEY _DAT_180bf00a8
+#define NETWORK_STATUS_FLAG _DAT_180be12f0
+#define NETWORK_ERROR_MESSAGE &UNK_180983de0
+#define NETWORK_CONFIG_MESSAGE &UNK_180981f40
+#define NETWORK_EXTENDED_MESSAGE &UNK_180981d40
+#define NETWORK_SESSION_MESSAGE &UNK_180984790
+#define NETWORK_PARAM_MESSAGE &UNK_180984690
+#define NETWORK_PACKET_MESSAGE &UNK_180984730
+#define NETWORK_STATUS_MESSAGE &UNK_180984700
+#define NETWORK_BUFFER_MESSAGE &UNK_1809846e0
+#define NETWORK_PROPERTY_MESSAGE &UNK_180984948
+#define NETWORK_TYPE_MESSAGE &UNK_180984990
+#define NETWORK_FIELD_MESSAGE &UNK_180984928
+#define NETWORK_STATE_MESSAGE &UNK_180983680
+#define NETWORK_COUNT_MESSAGE &UNK_180984968
+#define NETWORK_DATA_MESSAGE &UNK_180984830
+#define NETWORK_DATA_SEPARATOR &DAT_180a06434
+#define NETWORK_PROTOCOL_HANDLER &UNK_180983d78
+#define NETWORK_EXTENDED_HANDLER &UNK_180981cd8
+#define NETWORK_STATE_HANDLER &UNK_180983618
+
+// 函数: 获取网络连接信息
+// 功能：验证网络连接并获取连接详细信息，包括连接状态、协议版本等
+// 参数：connection_handle - 连接句柄，info_buffer - 输出缓冲区
+// 返回：无返回值，结果通过info_buffer返回
+// 注意：函数包含连接验证、安全检查和错误处理机制
+void validate_network_connection(undefined8 connection_handle, ulonglong *info_buffer)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  longlong alStack_148 [2];
-  undefined8 *apuStack_138 [2];
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int connection_result;
+  int validation_result;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  longlong connection_data[2];
+  undefined8 *protocol_handlers[2];
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (ulonglong *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (info_buffer == (ulonglong *)0x0) {
+    if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
-    func_0x00018074bda0(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
+    func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&UNK_180983de0);
+    FUN_180749ef0(0x1f, 0xd, connection_handle, NETWORK_ERROR_MESSAGE);
   }
-  *param_2 = 0;
-  alStack_148[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStack_148);
-  if (iVar1 == 0) {
-    if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_180845652;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
-    if (iVar2 == 0) goto LAB_1808456ba;
+  *info_buffer = 0;
+  connection_data[1] = 0;
+  connection_result = func_0x00018088c590(connection_handle, connection_data);
+  if (connection_result == 0) {
+    if ((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) == 0) goto CONNECTION_INFO_FAILED;
+    validation_result = FUN_18088c740(connection_data + 1);
+    if (validation_result == 0) goto CONNECTION_VALIDATION_FAILED;
   }
   else {
-LAB_1808456ba:
-    iVar2 = iVar1;
+CONNECTION_VALIDATION_FAILED:
+    validation_result = connection_result;
   }
-  if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+  if ((validation_result == 0) &&
+     (connection_result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers, 0x20), connection_result == 0))
   {
-    *apuStack_138[0] = &UNK_180983d78;
-    *(undefined4 *)(apuStack_138[0] + 3) = 0;
-    *(undefined4 *)(apuStack_138[0] + 1) = 0x20;
-    *(int *)(apuStack_138[0] + 2) = (int)param_1;
-    iVar1 = func_0x00018088e0d0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138[0]);
-    if (iVar1 == 0) {
-      *param_2 = (ulonglong)*(uint *)(apuStack_138[0] + 3);
+    *protocol_handlers[0] = NETWORK_PROTOCOL_HANDLER;
+    *(undefined4 *)(protocol_handlers[0] + 3) = 0;
+    *(undefined4 *)(protocol_handlers[0] + 1) = 0x20;
+    *(int *)(protocol_handlers[0] + 2) = (int)connection_handle;
+    connection_result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers[0]);
+    if (connection_result == 0) {
+      *info_buffer = (ulonglong)*(uint *)(protocol_handlers[0] + 3);
                     // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_148 + 1);
+      FUN_18088c790(connection_data + 1);
     }
   }
-LAB_180845652:
+CONNECTION_INFO_FAILED:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_148 + 1);
+  FUN_18088c790(connection_data + 1);
 }
 
 
@@ -63,65 +115,62 @@ LAB_180845652:
 
 
 
-// 函数: void FUN_180845c40(undefined8 param_1,undefined8 param_2,undefined8 param_3)
-void FUN_180845c40(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+// 函数: 发送网络配置消息
+void send_network_message_config(undefined8 connection_handle, undefined8 config_data, undefined8 extended_params)
 
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
+  int network_status;
+  int encode_result1;
+  int encode_result2;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  iVar1 = FUN_18083fde0();
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    iVar2 = FUN_18074b880(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
-    puStack_148 = auStack_138;
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  network_status = FUN_18083fde0();
+  if ((network_status != 0) && ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) != 0)) {
+    encode_result1 = FUN_18074b880(packet_buffer, NETWORK_BUFFER_SIZE, config_data);
+    encode_result2 = FUN_18074b880(packet_buffer + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+    func_0x00018074bda0(packet_buffer + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2), extended_params);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&UNK_180981f40);
+    FUN_180749ef0(network_status, 0xb, connection_handle, NETWORK_CONFIG_MESSAGE);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
+  FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 
 
 
-
-// 函数: void FUN_180845c84(void)
-void FUN_180845c84(void)
+// 函数: 发送简单网络消息
+void send_network_message_simple(void)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined4 unaff_ESI;
+  int encode_result1;
+  int encode_result2;
+  undefined4 message_flags;
   
-  iVar1 = FUN_18074b880(&stack0x00000030,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  encode_result1 = FUN_18074b880(&stack0x00000030, NETWORK_BUFFER_SIZE);
+  encode_result2 = FUN_18074b880(&stack0x00000030 + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+  func_0x00018074bda0(&stack0x00000030 + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xb);
+  FUN_180749ef0(message_flags, 0xb);
 }
 
 
 
 
-
-// 函数: void FUN_180845cfc(void)
-void FUN_180845cfc(void)
+// 函数: 清理网络连接
+void cleanup_network_connection(void)
 
 {
-  ulonglong in_stack_00000130;
+  ulonglong security_key;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(security_key ^ (ulonglong)&stack0x00000000);
 }
-
 
 
 // WARNING: Type propagation algorithm not settling
@@ -129,674 +178,656 @@ void FUN_180845cfc(void)
 
 
 
-// 函数: void FUN_180845d20(undefined8 param_1,undefined4 *param_2,ulonglong *param_3)
-void FUN_180845d20(undefined8 param_1,undefined4 *param_2,ulonglong *param_3)
+// 函数: 获取网络扩展数据
+void get_network_extended_data(undefined8 connection_handle, undefined4 *data_params, ulonglong *result_buffer)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  int iVar4;
-  int iVar5;
-  undefined1 auStack_188 [32];
-  undefined1 *puStack_168;
-  longlong alStack_158 [2];
-  undefined8 *apuStack_148 [2];
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
+  undefined4 param1;
+  undefined4 param2;
+  undefined4 param3;
+  int connection_result;
+  int validation_result;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  longlong connection_data[2];
+  undefined8 *protocol_handlers[2];
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  if ((param_3 == (ulonglong *)0x0) || (*param_3 = 0, param_2 == (undefined4 *)0x0)) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if ((result_buffer == (ulonglong *)0x0) || (*result_buffer = 0, data_params == (undefined4 *)0x0)) {
+    if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
+      FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
-    iVar4 = FUN_18074bc50(auStack_138,0x100,param_2);
-    iVar5 = FUN_18074b880(auStack_138 + iVar4,0x100 - iVar4,&DAT_180a06434);
-    func_0x00018074bda0(auStack_138 + (iVar4 + iVar5),0x100 - (iVar4 + iVar5),param_3);
-    puStack_168 = auStack_138;
+    connection_result = FUN_18074bc50(packet_buffer, NETWORK_BUFFER_SIZE, data_params);
+    validation_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+    func_0x00018074bda0(packet_buffer + (connection_result + validation_result), NETWORK_BUFFER_SIZE - (connection_result + validation_result), result_buffer);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xb,param_1,&UNK_180981d40);
+    FUN_180749ef0(0x1f, 0xb, connection_handle, NETWORK_EXTENDED_MESSAGE);
   }
-  alStack_158[1] = 0;
-  iVar4 = func_0x00018088c590(param_1,alStack_158);
-  if (iVar4 == 0) {
-    if ((*(uint *)(alStack_158[0] + 0x24) >> 1 & 1) == 0) goto LAB_180845d97;
-    iVar5 = FUN_18088c740(alStack_158 + 1);
-    if (iVar5 == 0) goto LAB_180845e35;
+  connection_data[1] = 0;
+  connection_result = func_0x00018088c590(connection_handle, connection_data);
+  if (connection_result == 0) {
+    if ((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) == 0) goto EXTENDED_DATA_FAILED;
+    validation_result = FUN_18088c740(connection_data + 1);
+    if (validation_result == 0) goto EXTENDED_VALIDATION_FAILED;
   }
   else {
-LAB_180845e35:
-    iVar5 = iVar4;
+EXTENDED_VALIDATION_FAILED:
+    validation_result = connection_result;
   }
-  if ((iVar5 == 0) &&
-     (iVar4 = FUN_18088dec0(*(undefined8 *)(alStack_158[0] + 0x98),apuStack_148,0x28), iVar4 == 0))
+  if ((validation_result == 0) &&
+     (connection_result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers, 0x28), connection_result == 0))
   {
-    *apuStack_148[0] = &UNK_180981cd8;
-    *(undefined4 *)(apuStack_148[0] + 4) = 0;
-    *(undefined4 *)(apuStack_148[0] + 1) = 0x28;
-    uVar1 = param_2[1];
-    uVar2 = param_2[2];
-    uVar3 = param_2[3];
-    *(undefined4 *)(apuStack_148[0] + 2) = *param_2;
-    *(undefined4 *)((longlong)apuStack_148[0] + 0x14) = uVar1;
-    *(undefined4 *)(apuStack_148[0] + 3) = uVar2;
-    *(undefined4 *)((longlong)apuStack_148[0] + 0x1c) = uVar3;
-    iVar4 = func_0x00018088e0d0(*(undefined8 *)(alStack_158[0] + 0x98),apuStack_148[0]);
-    if (iVar4 == 0) {
-      *param_3 = (ulonglong)*(uint *)(apuStack_148[0] + 4);
+    *protocol_handlers[0] = NETWORK_EXTENDED_HANDLER;
+    *(undefined4 *)(protocol_handlers[0] + 4) = 0;
+    *(undefined4 *)(protocol_handlers[0] + 1) = 0x28;
+    param1 = data_params[1];
+    param2 = data_params[2];
+    param3 = data_params[3];
+    *(undefined4 *)(protocol_handlers[0] + 2) = *data_params;
+    *(undefined4 *)((longlong)protocol_handlers[0] + 0x14) = param1;
+    *(undefined4 *)(protocol_handlers[0] + 3) = param2;
+    *(undefined4 *)((longlong)protocol_handlers[0] + 0x1c) = param3;
+    connection_result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers[0]);
+    if (connection_result == 0) {
+      *result_buffer = (ulonglong)*(uint *)(protocol_handlers[0] + 4);
                     // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_158 + 1);
+      FUN_18088c790(connection_data + 1);
     }
   }
-LAB_180845d97:
+EXTENDED_DATA_FAILED:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_158 + 1);
+  FUN_18088c790(connection_data + 1);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180845ef0(ulonglong param_1,uint *param_2)
-void FUN_180845ef0(ulonglong param_1,uint *param_2)
+// 函数: 获取网络会话统计
+void get_network_session_stats(ulonglong session_handle, uint *stats_buffer)
 
 {
-  int iVar1;
-  longlong lVar2;
-  uint *puVar3;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined8 uStack_138;
-  longlong lStack_130;
-  longlong lStack_128;
-  longlong lStack_120;
-  undefined1 auStack_118 [256];
-  ulonglong uStack_18;
+  int connection_result;
+  longlong session_data;
+  uint *stats_ptr;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  undefined8 security_key;
+  longlong connection_handle;
+  longlong session_info;
+  longlong stats_data;
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_check;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  if (param_2 == (uint *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  security_check = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (stats_buffer == (uint *)0x0) {
+    if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+      FUN_1808fc050(security_check ^ (ulonglong)security_buffer);
     }
-    FUN_18074b930(auStack_118,0x100,0);
-    puStack_148 = auStack_118;
+    FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180984790);
+    FUN_180749ef0(0x1f, 0xc, session_handle, NETWORK_SESSION_MESSAGE);
   }
-  *param_2 = 0;
-  uStack_138 = 0;
-  lStack_130 = 0;
-  lStack_128 = 0;
-  iVar1 = func_0x00018088c590(0,&lStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,lStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_120), iVar1 == 0)) {
-    lStack_128 = *(longlong *)(lStack_120 + 8);
+  *stats_buffer = 0;
+  security_key = 0;
+  connection_handle = 0;
+  session_info = 0;
+  connection_result = func_0x00018088c590(0, &session_info);
+  if (((connection_result == 0) && (connection_result = FUN_18088c740(&security_key, session_info), connection_result == 0)) &&
+     (connection_result = func_0x00018088c530(session_handle & 0xffffffff, &stats_data), connection_result == 0)) {
+    session_info = *(longlong *)(stats_data + 8);
   }
-  else if (iVar1 != 0) {
+  else if (connection_result != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
+    FUN_18088c790(&security_key);
   }
-  lVar2 = FUN_18083fbf0(*(undefined8 *)(lStack_130 + 800),lStack_128 + 0x30);
-  if (lVar2 != 0) {
-    puVar3 = (uint *)FUN_18084cde0(lVar2,&lStack_120);
-    *param_2 = *puVar3 / 0x30;
+  session_data = FUN_18083fbf0(*(undefined8 *)(session_info + 800), session_info + 0x30);
+  if (session_data != 0) {
+    stats_ptr = (uint *)FUN_18084cde0(session_data, &stats_data);
+    *stats_buffer = *stats_ptr / 0x30;
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
+    FUN_18088c790(&security_key);
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
+  FUN_18088c790(&security_key);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180846050(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
-void FUN_180846050(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
+// 函数: 获取网络连接标志
+void get_network_connection_flags(undefined4 connection_id, undefined4 *flag1, undefined4 *flag2)
 
 {
-  int iVar1;
-  undefined1 auStack_188 [48];
-  undefined8 uStack_158;
-  undefined8 uStack_150;
-  longlong lStack_148;
-  longlong alStack_140 [33];
-  ulonglong uStack_38;
+  int connection_result;
+  undefined1 security_buffer[48];
+  undefined8 session_handle;
+  undefined8 connection_info;
+  longlong connection_data;
+  longlong session_info[33];
+  ulonglong security_key;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  if (param_2 != (undefined4 *)0x0) {
-    *param_2 = 0;
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (flag1 != (undefined4 *)0x0) {
+    *flag1 = 0;
   }
-  if (param_3 != (undefined4 *)0x0) {
-    *param_3 = 0;
+  if (flag2 != (undefined4 *)0x0) {
+    *flag2 = 0;
   }
-  lStack_148 = 0;
-  uStack_158 = 0;
-  uStack_150 = 0;
-  iVar1 = func_0x00018088c590(0,&uStack_150);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1,alStack_140), iVar1 == 0)) {
-    lStack_148 = *(longlong *)(alStack_140[0] + 8);
+  connection_data = 0;
+  session_handle = 0;
+  connection_info = 0;
+  connection_result = func_0x00018088c590(0, &connection_info);
+  if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_handle, connection_info), connection_result == 0)) &&
+     (connection_result = func_0x00018088c530(connection_id, session_info), connection_result == 0)) {
+    connection_data = *(longlong *)(session_info[0] + 8);
   }
-  else if (iVar1 != 0) goto LAB_18084610f;
-  if (lStack_148 != 0) {
-    if (param_2 != (undefined4 *)0x0) {
-      *param_2 = *(undefined4 *)(lStack_148 + 0xf0);
+  else if (connection_result != 0) goto GET_FLAGS_FAILED;
+  if (connection_data != 0) {
+    if (flag1 != (undefined4 *)0x0) {
+      *flag1 = *(undefined4 *)(connection_data + 0xf0);
     }
-    if (param_3 != (undefined4 *)0x0) {
-      *param_3 = *(undefined4 *)(lStack_148 + 0xf4);
+    if (flag2 != (undefined4 *)0x0) {
+      *flag2 = *(undefined4 *)(connection_data + 0xf4);
     }
   }
-LAB_18084610f:
+GET_FLAGS_FAILED:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_158);
+  FUN_18088c790(&session_handle);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180846210(undefined8 param_1,longlong param_2,undefined4 *param_3,undefined4 *param_4)
-void FUN_180846210(undefined8 param_1,longlong param_2,undefined4 *param_3,undefined4 *param_4)
+// 函数: 设置网络连接参数
+void set_network_connection_params(undefined8 connection_handle, longlong param_data, undefined4 *param1, undefined4 *param2)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_198 [32];
-  undefined1 *puStack_178;
-  undefined4 auStack_168 [2];
-  undefined8 uStack_160;
-  longlong alStack_158 [2];
-  undefined1 auStack_148 [256];
-  ulonglong uStack_48;
+  int connection_result;
+  int encode_result;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  undefined4 temp_params[2];
+  undefined8 session_handle;
+  longlong connection_data[2];
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
-  if (param_3 != (undefined4 *)0x0) {
-    *param_3 = 0;
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (param1 != (undefined4 *)0x0) {
+    *param1 = 0;
   }
-  if (param_4 != (undefined4 *)0x0) {
-    *param_4 = 0;
+  if (param2 != (undefined4 *)0x0) {
+    *param2 = 0;
   }
-  if (param_2 == 0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-      iVar1 = FUN_18074b880(auStack_148,0x100,0);
-      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
-      iVar1 = iVar1 + iVar2;
-      iVar2 = FUN_18074bac0(auStack_148 + iVar1,0x100 - iVar1,param_3);
-      iVar1 = iVar1 + iVar2;
-      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
-      FUN_18074bac0(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
-      puStack_178 = auStack_148;
+  if (param_data == 0) {
+    if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) != 0) {
+      connection_result = FUN_18074b880(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+      encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+      connection_result = connection_result + encode_result;
+      encode_result = FUN_18074bac0(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, param1);
+      connection_result = connection_result + encode_result;
+      encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+      FUN_18074bac0(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), param2);
+      message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-      FUN_180749ef0(0x1f,0xb,param_1,&UNK_180984690);
+      FUN_180749ef0(0x1f, 0xb, connection_handle, NETWORK_PARAM_MESSAGE);
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
+    FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
   }
-  uStack_160 = 0;
-  iVar1 = func_0x00018088c590(param_1,alStack_158);
-  if (iVar1 == 0) {
-    if ((*(uint *)(alStack_158[0] + 0x24) >> 1 & 1) == 0) {
+  session_handle = 0;
+  connection_result = func_0x00018088c590(connection_handle, connection_data);
+  if (connection_result == 0) {
+    if ((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088c790(&uStack_160);
+      FUN_18088c790(&session_handle);
     }
-    iVar2 = FUN_18088c740(&uStack_160);
-    if (iVar2 != 0) goto LAB_1808462b2;
+    encode_result = FUN_18088c740(&session_handle);
+    if (encode_result != 0) goto SET_PARAMS_FAILED;
   }
-  iVar2 = iVar1;
-LAB_1808462b2:
-  if (iVar2 != 0) {
+  encode_result = connection_result;
+SET_PARAMS_FAILED:
+  if (encode_result != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_160);
+    FUN_18088c790(&session_handle);
   }
-  auStack_168[0] = 0;
-  iVar1 = FUN_180840af0(alStack_158[0],param_2,auStack_168);
-  if (iVar1 != 0) {
+  temp_params[0] = 0;
+  connection_result = FUN_180840af0(connection_data[0], param_data, temp_params);
+  if (connection_result != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_160);
+    FUN_18088c790(&session_handle);
   }
-  func_0x0001808676a0(alStack_158[0] + 0x60,auStack_168[0],param_3,param_4);
+  func_0x0001808676a0(connection_data[0] + 0x60, temp_params[0], param1, param2);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_160);
+  FUN_18088c790(&session_handle);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180846410(undefined8 param_1,undefined4 param_2,undefined8 param_3)
-void FUN_180846410(undefined8 param_1,undefined4 param_2,undefined8 param_3)
+// 函数: 发送扩展网络包
+void send_network_packet_extended(undefined8 connection_handle, undefined4 packet_data, undefined8 extended_params)
 
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
+  int connection_result;
+  int encode_result1;
+  int encode_result2;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  iVar1 = FUN_180840600();
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    iVar2 = func_0x00018074b7d0(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
-    puStack_148 = auStack_138;
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  connection_result = FUN_180840600();
+  if ((connection_result != 0) && ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) != 0)) {
+    encode_result1 = func_0x00018074b7d0(packet_buffer, NETWORK_BUFFER_SIZE, packet_data);
+    encode_result2 = FUN_18074b880(packet_buffer + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+    func_0x00018074bda0(packet_buffer + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2), extended_params);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xc,param_1,&UNK_180984730);
+    FUN_180749ef0(connection_result, 0xc, connection_handle, NETWORK_PACKET_MESSAGE);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
+  FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 
 
 
-
-// 函数: void FUN_180846453(void)
-void FUN_180846453(void)
+// 函数: 发送简单网络包
+void send_network_packet_simple(void)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined4 unaff_EBX;
-  undefined4 unaff_ESI;
+  int encode_result1;
+  int encode_result2;
+  undefined4 packet_data;
+  undefined4 message_flags;
   
-  iVar1 = func_0x00018074b7d0(&stack0x00000030,0x100,unaff_EBX);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  encode_result1 = func_0x00018074b7d0(&stack0x00000030, NETWORK_BUFFER_SIZE, packet_data);
+  encode_result2 = FUN_18074b880(&stack0x00000030 + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+  func_0x00018074bda0(&stack0x00000030 + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xc);
+  FUN_180749ef0(message_flags, 0xc);
 }
 
 
 
 
-
-// 函数: void FUN_1808464cb(void)
-void FUN_1808464cb(void)
+// 函数: 清理网络包
+void cleanup_network_packet(void)
 
 {
-  ulonglong in_stack_00000130;
+  ulonglong security_key;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(security_key ^ (ulonglong)&stack0x00000000);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_1808464f0(ulonglong param_1,undefined4 *param_2)
-void FUN_1808464f0(ulonglong param_1,undefined4 *param_2)
+// 函数: 获取网络连接状态
+void get_network_connection_status(ulonglong connection_handle, undefined4 *status_buffer)
 
 {
-  int iVar1;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined8 uStack_138;
-  undefined8 uStack_130;
-  longlong lStack_128;
-  longlong lStack_120;
-  undefined1 auStack_118 [256];
-  ulonglong uStack_18;
+  int connection_result;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  undefined8 session_handle;
+  undefined8 connection_info;
+  longlong connection_data;
+  longlong status_info;
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  if (param_2 == (undefined4 *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (status_buffer == (undefined4 *)0x0) {
+    if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+      FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
-    FUN_18074b930(auStack_118,0x100,0);
-    puStack_148 = auStack_118;
+    FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180984700);
+    FUN_180749ef0(0x1f, 0xc, connection_handle, NETWORK_STATUS_MESSAGE);
   }
-  *param_2 = 0;
-  uStack_138 = 0;
-  uStack_130 = 0;
-  lStack_128 = 0;
-  iVar1 = func_0x00018088c590(0,&uStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,uStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_120), iVar1 == 0)) {
-    lStack_128 = *(longlong *)(lStack_120 + 8);
+  *status_buffer = 0;
+  session_handle = 0;
+  connection_info = 0;
+  connection_data = 0;
+  connection_result = func_0x00018088c590(0, &connection_info);
+  if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_handle, connection_info), connection_result == 0)) &&
+     (connection_result = func_0x00018088c530(connection_handle & 0xffffffff, &status_info), connection_result == 0)) {
+    connection_data = *(longlong *)(status_info + 8);
   }
-  else if (iVar1 != 0) {
+  else if (connection_result != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
+    FUN_18088c790(&session_handle);
   }
-  *param_2 = *(undefined4 *)(lStack_128 + 0x88);
+  *status_buffer = *(undefined4 *)(connection_data + 0x88);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
+  FUN_18088c790(&session_handle);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180846610(ulonglong param_1,undefined1 *param_2,int param_3,undefined4 *param_4)
-void FUN_180846610(ulonglong param_1,undefined1 *param_2,int param_3,undefined4 *param_4)
+// 函数: 设置网络连接缓冲区
+void set_network_connection_buffers(ulonglong connection_handle, undefined1 *buffer_data, int buffer_size, undefined4 *result_buffer)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_1a8 [32];
-  undefined4 *puStack_188;
-  undefined8 uStack_178;
-  undefined8 uStack_170;
-  longlong lStack_168;
-  longlong lStack_160;
-  undefined4 uStack_158;
-  undefined4 uStack_154;
-  undefined4 uStack_150;
-  undefined4 uStack_14c;
-  undefined1 auStack_148 [256];
-  ulonglong uStack_48;
+  int connection_result;
+  int encode_result;
+  undefined1 security_buffer[32];
+  undefined4 *output_buffer;
+  undefined8 session_handle;
+  undefined8 connection_info;
+  longlong connection_data;
+  longlong buffer_info;
+  undefined4 buffer_params[4];
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
-  if (param_2 != (undefined1 *)0x0) {
-    *param_2 = 0;
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (buffer_data != (undefined1 *)0x0) {
+    *buffer_data = 0;
   }
-  if (param_4 != (undefined4 *)0x0) {
-    *param_4 = 0;
+  if (result_buffer != (undefined4 *)0x0) {
+    *result_buffer = 0;
   }
-  if (((param_2 != (undefined1 *)0x0) || (param_3 == 0)) && (-1 < param_3)) {
-    lStack_168 = 0;
-    uStack_178 = 0;
-    uStack_170 = 0;
-    iVar1 = func_0x00018088c590(0,&uStack_170);
-    if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_178,uStack_170), iVar1 == 0)) &&
-       (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_160), iVar1 == 0)) {
-      lStack_168 = *(longlong *)(lStack_160 + 8);
+  if (((buffer_data != (undefined1 *)0x0) || (buffer_size == 0)) && (-1 < buffer_size)) {
+    connection_data = 0;
+    session_handle = 0;
+    connection_info = 0;
+    connection_result = func_0x00018088c590(0, &connection_info);
+    if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_handle, connection_info), connection_result == 0)) &&
+       (connection_result = func_0x00018088c530(connection_handle & 0xffffffff, &buffer_info), connection_result == 0)) {
+      connection_data = *(longlong *)(buffer_info + 8);
     }
-    else if (iVar1 != 0) {
+    else if (connection_result != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088c790(&uStack_178);
+      FUN_18088c790(&session_handle);
     }
-    uStack_158 = *(undefined4 *)(lStack_168 + 0x10);
-    uStack_154 = *(undefined4 *)(lStack_168 + 0x14);
-    uStack_150 = *(undefined4 *)(lStack_168 + 0x18);
-    uStack_14c = *(undefined4 *)(lStack_168 + 0x1c);
-    puStack_188 = param_4;
-    FUN_180882160(uStack_170,&uStack_158,param_2,param_3);
+    buffer_params[0] = *(undefined4 *)(connection_data + 0x10);
+    buffer_params[1] = *(undefined4 *)(connection_data + 0x14);
+    buffer_params[2] = *(undefined4 *)(connection_data + 0x18);
+    buffer_params[3] = *(undefined4 *)(connection_data + 0x1c);
+    output_buffer = result_buffer;
+    FUN_180882160(connection_info, buffer_params, buffer_data, buffer_size);
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_178);
+    FUN_18088c790(&session_handle);
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1a8);
+    FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
   }
-  iVar1 = FUN_18074b880(auStack_148,0x100,param_2);
-  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074b7d0(auStack_148 + iVar1,0x100 - iVar1,param_3);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  FUN_18074b930(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
-  puStack_188 = (undefined4 *)auStack_148;
+  connection_result = FUN_18074b880(packet_buffer, NETWORK_BUFFER_SIZE, buffer_data);
+  encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  connection_result = connection_result + encode_result;
+  encode_result = func_0x00018074b7d0(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, buffer_size);
+  connection_result = connection_result + encode_result;
+  encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  FUN_18074b930(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), result_buffer);
+  output_buffer = (undefined4 *)packet_buffer;
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(0x1f,0xc,param_1,&UNK_1809846e0);
+  FUN_180749ef0(0x1f, 0xc, connection_handle, NETWORK_BUFFER_MESSAGE);
 }
 
 
 
 
-
-// 函数: void FUN_180846730(void)
-void FUN_180846730(void)
+// 函数: 发送网络缓冲消息
+void send_network_buffer_message(void)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined4 unaff_EBP;
-  undefined4 unaff_ESI;
+  int connection_result;
+  int encode_result;
+  undefined4 buffer_param;
+  undefined4 message_flags;
   
-  iVar1 = FUN_18074b880(&stack0x00000060,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074b7d0(&stack0x00000060 + iVar1,0x100 - iVar1,unaff_EBP);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  FUN_18074b930(&stack0x00000060 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  connection_result = FUN_18074b880(&stack0x00000060, NETWORK_BUFFER_SIZE);
+  encode_result = FUN_18074b880(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  connection_result = connection_result + encode_result;
+  encode_result = func_0x00018074b7d0(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, buffer_param);
+  connection_result = connection_result + encode_result;
+  encode_result = FUN_18074b880(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  FUN_18074b930(&stack0x00000060 + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xc);
+  FUN_180749ef0(message_flags, 0xc);
 }
 
 
 
 
-
-// 函数: void FUN_1808467de(void)
-void FUN_1808467de(void)
+// 函数: 清理网络缓冲区
+void cleanup_network_buffer(void)
 
 {
-  ulonglong in_stack_00000160;
+  ulonglong security_key;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000160 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(security_key ^ (ulonglong)&stack0x00000000);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180846810(ulonglong param_1,undefined1 *param_2)
-void FUN_180846810(ulonglong param_1,undefined1 *param_2)
+// 函数: 获取网络连接属性
+void get_network_connection_property(ulonglong connection_handle, undefined1 *property_buffer)
 
 {
-  int iVar1;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  undefined8 uStack_148;
-  undefined8 uStack_140;
-  longlong lStack_138;
-  longlong lStack_130;
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int connection_result;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  undefined8 session_handle;
+  undefined8 connection_info;
+  longlong connection_data;
+  longlong property_info;
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (undefined1 *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (property_buffer == (undefined1 *)0x0) {
+    if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
-    FUN_18074be30(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
+    FUN_18074be30(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&UNK_180984948);
+    FUN_180749ef0(0x1f, 0xd, connection_handle, NETWORK_PROPERTY_MESSAGE);
   }
-  *param_2 = 0;
-  uStack_148 = 0;
-  uStack_140 = 0;
-  lStack_138 = 0;
-  iVar1 = func_0x00018088c590(0,&uStack_140);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_130), iVar1 == 0)) {
-    lStack_138 = 0;
-    if (lStack_130 != 0) {
-      lStack_138 = lStack_130 + -8;
+  *property_buffer = 0;
+  session_handle = 0;
+  connection_info = 0;
+  connection_data = 0;
+  connection_result = func_0x00018088c590(0, &connection_info);
+  if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_handle, connection_info), connection_result == 0)) &&
+     (connection_result = func_0x00018088c530(connection_handle & 0xffffffff, &property_info), connection_result == 0)) {
+    connection_data = 0;
+    if (property_info != 0) {
+      connection_data = property_info + -8;
     }
   }
-  else if (iVar1 != 0) {
+  else if (connection_result != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_148);
+    FUN_18088c790(&session_handle);
   }
-  *param_2 = *(undefined1 *)(lStack_138 + 0xbc);
+  *property_buffer = *(undefined1 *)(connection_data + 0xbc);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_148);
+  FUN_18088c790(&session_handle);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180846930(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
-void FUN_180846930(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
+// 函数: 获取网络配置参数
+void get_network_config_params(undefined4 config_id, undefined4 *param1, undefined4 *param2)
 
 {
-  int iVar1;
-  undefined1 auStack_188 [48];
-  undefined8 uStack_158;
-  undefined8 uStack_150;
-  longlong lStack_148;
-  longlong alStack_140 [33];
-  ulonglong uStack_38;
+  int connection_result;
+  undefined1 security_buffer[48];
+  undefined8 session_handle;
+  undefined8 connection_info;
+  longlong config_data;
+  longlong session_info[33];
+  ulonglong security_key;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  if (param_2 != (undefined4 *)0x0) {
-    *param_2 = 0;
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (param1 != (undefined4 *)0x0) {
+    *param1 = 0;
   }
-  if (param_3 != (undefined4 *)0x0) {
-    *param_3 = 0;
+  if (param2 != (undefined4 *)0x0) {
+    *param2 = 0;
   }
-  lStack_148 = 0;
-  uStack_158 = 0;
-  uStack_150 = 0;
-  iVar1 = func_0x00018088c590(0,&uStack_150);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1,alStack_140), iVar1 == 0)) {
-    lStack_148 = 0;
-    if (alStack_140[0] != 0) {
-      lStack_148 = alStack_140[0] + -8;
+  config_data = 0;
+  session_handle = 0;
+  connection_info = 0;
+  connection_result = func_0x00018088c590(0, &connection_info);
+  if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_handle, connection_info), connection_result == 0)) &&
+     (connection_result = func_0x00018088c530(config_id, session_info), connection_result == 0)) {
+    config_data = 0;
+    if (session_info[0] != 0) {
+      config_data = session_info[0] + -8;
     }
   }
-  else if (iVar1 != 0) goto LAB_1808469dd;
-  FUN_180868270(lStack_148,param_2,param_3);
-LAB_1808469dd:
+  else if (connection_result != 0) goto GET_CONFIG_FAILED;
+  FUN_180868270(config_data, param1, param2);
+GET_CONFIG_FAILED:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_158);
+  FUN_18088c790(&session_handle);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180846a90(ulonglong param_1,undefined4 *param_2)
-void FUN_180846a90(ulonglong param_1,undefined4 *param_2)
+// 函数: 获取网络连接类型
+void get_network_connection_type(ulonglong connection_handle, undefined4 *type_buffer)
 
 {
-  int iVar1;
-  undefined4 uVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  undefined8 uStack_148;
-  undefined8 uStack_140;
-  longlong lStack_138;
-  longlong lStack_130;
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int connection_result;
+  undefined4 connection_type;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  undefined8 session_handle;
+  undefined8 connection_info;
+  longlong connection_data;
+  longlong type_info;
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (undefined4 *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (type_buffer == (undefined4 *)0x0) {
+    if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
-    func_0x00018074bda0(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
+    func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&UNK_180984990);
+    FUN_180749ef0(0x1f, 0xd, connection_handle, NETWORK_TYPE_MESSAGE);
   }
-  *param_2 = 2;
-  uStack_148 = 0;
-  uStack_140 = 0;
-  lStack_138 = 0;
-  iVar1 = func_0x00018088c590(0,&uStack_140);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_130), iVar1 == 0)) {
-    lStack_138 = 0;
-    if (lStack_130 != 0) {
-      lStack_138 = lStack_130 + -8;
+  *type_buffer = 2;
+  session_handle = 0;
+  connection_info = 0;
+  connection_data = 0;
+  connection_result = func_0x00018088c590(0, &connection_info);
+  if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_handle, connection_info), connection_result == 0)) &&
+     (connection_result = func_0x00018088c530(connection_handle & 0xffffffff, &type_info), connection_result == 0)) {
+    connection_data = 0;
+    if (type_info != 0) {
+      connection_data = type_info + -8;
     }
   }
-  else if (iVar1 != 0) {
+  else if (connection_result != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_148);
+    FUN_18088c790(&session_handle);
   }
-  uVar2 = func_0x0001808682c0(lStack_138);
-  *param_2 = uVar2;
+  connection_type = func_0x0001808682c0(connection_data);
+  *type_buffer = connection_type;
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_148);
+  FUN_18088c790(&session_handle);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180846bc0(ulonglong param_1,uint param_2,undefined4 *param_3)
-void FUN_180846bc0(ulonglong param_1,uint param_2,undefined4 *param_3)
+// 函数: 获取网络连接字段
+void get_network_connection_field(ulonglong connection_handle, uint field_index, undefined4 *field_buffer)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_188 [32];
-  undefined1 *puStack_168;
-  undefined8 uStack_158;
-  undefined8 uStack_150;
-  longlong lStack_148;
-  longlong lStack_140;
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
+  int connection_result;
+  int encode_result;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  undefined8 session_handle;
+  undefined8 connection_info;
+  longlong connection_data;
+  longlong field_info;
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  if (param_3 != (undefined4 *)0x0) {
-    *param_3 = 0;
-    if (param_2 < 6) {
-      lStack_148 = 0;
-      uStack_158 = 0;
-      uStack_150 = 0;
-      iVar1 = func_0x00018088c590(0,&uStack_150);
-      if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
-         (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_140), iVar1 == 0)) {
-        lStack_148 = 0;
-        if (lStack_140 != 0) {
-          lStack_148 = lStack_140 + -8;
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (field_buffer != (undefined4 *)0x0) {
+    *field_buffer = 0;
+    if (field_index < 6) {
+      connection_data = 0;
+      session_handle = 0;
+      connection_info = 0;
+      connection_result = func_0x00018088c590(0, &connection_info);
+      if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_handle, connection_info), connection_result == 0)) &&
+         (connection_result = func_0x00018088c530(connection_handle & 0xffffffff, &field_info), connection_result == 0)) {
+        connection_data = 0;
+        if (field_info != 0) {
+          connection_data = field_info + -8;
         }
       }
-      else if (iVar1 != 0) {
+      else if (connection_result != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088c790(&uStack_158);
+        FUN_18088c790(&session_handle);
       }
-      *param_3 = *(undefined4 *)(lStack_148 + 0xa4 + (longlong)(int)param_2 * 4);
+      *field_buffer = *(undefined4 *)(connection_data + 0xa4 + (longlong)(int)field_index * 4);
                     // WARNING: Subroutine does not return
-      FUN_18088c790(&uStack_158);
+      FUN_18088c790(&session_handle);
     }
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
+    FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
   }
-  iVar1 = func_0x00018074b7d0(auStack_138,0x100,param_2);
-  iVar2 = FUN_18074b880(auStack_138 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  FUN_18074bac0(auStack_138 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
-  puStack_168 = auStack_138;
+  connection_result = func_0x00018074b7d0(packet_buffer, NETWORK_BUFFER_SIZE, field_index);
+  encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  FUN_18074bac0(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), field_buffer);
+  message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(0x1f,0xd,param_1,&UNK_180984928);
+  FUN_180749ef0(0x1f, 0xd, connection_handle, NETWORK_FIELD_MESSAGE);
 }
-
 
 
 // WARNING: Type propagation algorithm not settling
@@ -804,172 +835,168 @@ void FUN_180846bc0(ulonglong param_1,uint param_2,undefined4 *param_3)
 
 
 
-// 函数: void FUN_180846d30(undefined8 param_1,undefined4 *param_2)
-void FUN_180846d30(undefined8 param_1,undefined4 *param_2)
+// 函数: 获取网络连接状态
+void get_network_connection_state(undefined8 connection_handle, undefined4 *state_buffer)
 
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  longlong alStack_148 [2];
-  undefined8 *apuStack_138 [2];
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int connection_result;
+  int validation_result;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  longlong connection_data[2];
+  undefined8 *protocol_handlers[2];
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (undefined4 *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (state_buffer == (undefined4 *)0x0) {
+    if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
-    func_0x00018074bda0(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
+    func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180983680);
+    FUN_180749ef0(0x1f, 0xc, connection_handle, NETWORK_STATE_MESSAGE);
   }
-  *param_2 = 1;
-  alStack_148[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStack_148);
-  if (iVar1 == 0) {
-    if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_180846d91;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
-    if (iVar2 == 0) goto LAB_180846df9;
+  *state_buffer = 1;
+  connection_data[1] = 0;
+  connection_result = func_0x00018088c590(connection_handle, connection_data);
+  if (connection_result == 0) {
+    if ((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) == 0) goto GET_STATE_FAILED;
+    validation_result = FUN_18088c740(connection_data + 1);
+    if (validation_result == 0) goto STATE_VALIDATION_FAILED;
   }
   else {
-LAB_180846df9:
-    iVar2 = iVar1;
+STATE_VALIDATION_FAILED:
+    validation_result = connection_result;
   }
-  if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+  if ((validation_result == 0) &&
+     (connection_result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers, 0x20), connection_result == 0))
   {
-    *apuStack_138[0] = &UNK_180983618;
-    *(undefined4 *)(apuStack_138[0] + 1) = 0x20;
-    *(int *)(apuStack_138[0] + 2) = (int)param_1;
-    iVar1 = func_0x00018088e0d0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138[0]);
-    if (iVar1 == 0) {
-      *param_2 = *(undefined4 *)(apuStack_138[0] + 3);
+    *protocol_handlers[0] = NETWORK_STATE_HANDLER;
+    *(undefined4 *)(protocol_handlers[0] + 1) = 0x20;
+    *(int *)(protocol_handlers[0] + 2) = (int)connection_handle;
+    connection_result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers[0]);
+    if (connection_result == 0) {
+      *state_buffer = *(undefined4 *)(protocol_handlers[0] + 3);
                     // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_148 + 1);
+      FUN_18088c790(connection_data + 1);
     }
   }
-LAB_180846d91:
+GET_STATE_FAILED:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_148 + 1);
+  FUN_18088c790(connection_data + 1);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180846e90(ulonglong param_1,uint *param_2)
-void FUN_180846e90(ulonglong param_1,uint *param_2)
+// 函数: 获取网络会话数量
+void get_network_session_count(ulonglong session_handle, uint *count_buffer)
 
 {
-  int iVar1;
-  uint uVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  undefined8 uStack_148;
-  undefined8 uStack_140;
-  longlong lStack_138;
-  longlong lStack_130;
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int connection_result;
+  uint session_count;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  undefined8 session_key;
+  undefined8 connection_info;
+  longlong session_data;
+  longlong count_info;
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (uint *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (count_buffer == (uint *)0x0) {
+    if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
-    FUN_18074b930(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
+    FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&UNK_180984968);
+    FUN_180749ef0(0x1f, 0xd, session_handle, NETWORK_COUNT_MESSAGE);
   }
-  uVar2 = 0;
-  *param_2 = 0;
-  uStack_148 = 0;
-  uStack_140 = 0;
-  lStack_138 = 0;
-  iVar1 = func_0x00018088c590(0,&uStack_140);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_130), iVar1 == 0)) {
-    if (lStack_130 == 0) {
-      lStack_138 = 0;
+  session_count = 0;
+  *count_buffer = 0;
+  session_key = 0;
+  connection_info = 0;
+  session_data = 0;
+  connection_result = func_0x00018088c590(0, &connection_info);
+  if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_key, connection_info), connection_result == 0)) &&
+     (connection_result = func_0x00018088c530(session_handle & 0xffffffff, &count_info), connection_result == 0)) {
+    if (count_info == 0) {
+      session_data = 0;
     }
     else {
-      lStack_138 = lStack_130 + -8;
+      session_data = count_info + -8;
     }
   }
-  else if (iVar1 != 0) {
+  else if (connection_result != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_148);
+    FUN_18088c790(&session_key);
   }
-  if (*(longlong *)(lStack_138 + 0x10) != 0) {
-    uVar2 = func_0x000180855b70(*(longlong *)(lStack_138 + 0x10) + 200);
-    uVar2 = uVar2 / 0x30;
+  if (*(longlong *)(session_data + 0x10) != 0) {
+    session_count = func_0x000180855b70(*(longlong *)(session_data + 0x10) + 200);
+    session_count = session_count / 0x30;
   }
-  *param_2 = uVar2;
+  *count_buffer = session_count;
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_148);
+  FUN_18088c790(&session_key);
 }
-
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
-// 函数: void FUN_180846fe0(ulonglong param_1,undefined8 *param_2)
-void FUN_180846fe0(ulonglong param_1,undefined8 *param_2)
+// 函数: 获取网络会话数据
+void get_network_session_data(ulonglong session_handle, undefined8 *data_buffer)
 
 {
-  int iVar1;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined8 uStack_138;
-  undefined8 uStack_130;
-  longlong lStack_128;
-  longlong lStack_120;
-  undefined1 auStack_118 [256];
-  ulonglong uStack_18;
+  int connection_result;
+  undefined1 security_buffer[32];
+  undefined1 *message_buffer;
+  undefined8 session_key;
+  undefined8 connection_info;
+  longlong session_data;
+  longlong data_info;
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  ulonglong security_key;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  if (param_2 == (undefined8 *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
+  security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  if (data_buffer == (undefined8 *)0x0) {
+    if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+      FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
-    func_0x00018074bda0(auStack_118,0x100,0);
-    puStack_148 = auStack_118;
+    func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+    message_buffer = packet_buffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180984830);
+    FUN_180749ef0(0x1f, 0xc, session_handle, NETWORK_DATA_MESSAGE);
   }
-  *param_2 = 0;
-  uStack_138 = 0;
-  uStack_130 = 0;
-  lStack_128 = 0;
-  iVar1 = func_0x00018088c590(0,&uStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,uStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_120), iVar1 == 0)) {
-    lStack_128 = *(longlong *)(lStack_120 + 8);
+  *data_buffer = 0;
+  session_key = 0;
+  connection_info = 0;
+  session_data = 0;
+  connection_result = func_0x00018088c590(0, &connection_info);
+  if (((connection_result == 0) && (connection_result = FUN_18088c740(&session_key, connection_info), connection_result == 0)) &&
+     (connection_result = func_0x00018088c530(session_handle & 0xffffffff, &data_info), connection_result == 0)) {
+    session_data = *(longlong *)(data_info + 8);
   }
-  else if (iVar1 != 0) {
+  else if (connection_result != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
+    FUN_18088c790(&session_key);
   }
-  *param_2 = *(undefined8 *)(*(longlong *)(lStack_128 + 0xd0) + 0x38);
+  *data_buffer = *(undefined8 *)(*(longlong *)(session_data + 0xd0) + 0x38);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
+  FUN_18088c790(&session_key);
 }
 
 
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 
 
