@@ -1,3 +1,4 @@
+#include "FUN_1806d7170_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part056.c - 10 个函数
@@ -9,7 +10,7 @@ void FUN_1806d0f20(int64_t param_1,int64_t param_2)
   int *piVar1;
   int8_t auStack_108 [224];
   
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x208));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x208));
   piVar1 = *(int **)(param_2 + 0x28);
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -30,7 +31,7 @@ void FUN_1806d12f0(int64_t param_1,int64_t param_2)
   int *piVar1;
   int8_t auStack_110 [232];
   
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x208));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x208));
   piVar1 = *(int **)(param_2 + 0x28);
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -72,7 +73,7 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x32c);
   uStack_38 = *(int32_t *)(param_1 + 0x330);
   uStack_34 = *(int32_t *)(param_1 + 0x334);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x318));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x318));
   piVar1 = (int *)param_2[5];
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -109,7 +110,7 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x34c);
   uStack_38 = *(int32_t *)(param_1 + 0x350);
   uStack_34 = *(int32_t *)(param_1 + 0x354);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x338));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x338));
   piVar1 = (int *)param_2[5];
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -145,7 +146,7 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x36c);
   uStack_38 = *(int32_t *)(param_1 + 0x370);
   uStack_34 = *(int32_t *)(param_1 + 0x374);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x358));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x358));
   piVar1 = (int *)param_2[5];
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -175,7 +176,7 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x38c);
   uStack_38 = *(int32_t *)(param_1 + 0x390);
   uStack_34 = *(int32_t *)(param_1 + 0x394);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x378));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x378));
   piVar1 = (int *)param_2[5];
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -213,8 +214,8 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
   if ((int *)param_2[6] != (int *)0x0) {
     iVar7 = *(int *)param_2[6];
   }
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x398));
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x3a8));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x398));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x3a8));
   iStack_54 = iVar7 + 0xd4;
   uStack_50 = CONCAT31(uStack_50._1_3_,1);
   auStack_58[0] = 1;
@@ -230,7 +231,7 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
     }
     *(int *)(lVar5 + 0x10) = *(int *)(lVar5 + 0x10) + -1;
   }
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x3b0));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x3b0));
   iStack_54 = iVar7 + 0xd8;
   uStack_50 = uStack_50 & 0xffffff00;
   FUN_1806c14e0(param_2,*puVar6,auStack_58);
@@ -256,7 +257,7 @@ int FUN_1806d1870(int64_t param_1,int64_t *param_2,int param_3)
   uStack_3c = *(int32_t *)(param_1 + 0x3dc);
   uStack_38 = *(int32_t *)(param_1 + 0x3e0);
   uStack_34 = *(int32_t *)(param_1 + 0x3e4);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x3c8));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x3c8));
   piVar1 = (int *)param_2[5];
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -329,7 +330,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   uStack_34 = *(int32_t *)(param_1 + 0x5c);
   uStack_30 = *(int32_t *)(param_1 + 0x60);
   uStack_2c = *(int32_t *)(param_1 + 100);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x48));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x48));
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -366,7 +367,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x7c);
   uStack_58 = *(int32_t *)(param_1 + 0x80);
   uStack_54 = *(int32_t *)(param_1 + 0x84);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x68));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x68));
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -401,7 +402,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   uStack_5c = *(int32_t *)(param_1 + 0x9c);
   uStack_58 = *(int32_t *)(param_1 + 0xa0);
   uStack_54 = *(int32_t *)(param_1 + 0xa4);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x88));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x88));
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -428,7 +429,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
     }
     *(int *)(lVar8 + 0x10) = *(int *)(lVar8 + 0x10) + -1;
   }
-  FUN_1806d7170(param_2,&ui_system_data_1560_ptr);
+  SystemValidator(param_2,&ui_system_data_1560_ptr);
   FUN_1806c17d0(param_2,param_1 + 0xa8);
   lVar8 = *param_2;
   if (*(int *)(lVar8 + 0x10) != 0) {
@@ -443,7 +444,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   uStack_34 = *(int32_t *)(param_1 + 0xdc);
   uStack_30 = *(int32_t *)(param_1 + 0xe0);
   uStack_2c = *(int32_t *)(param_1 + 0xe4);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 200));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 200));
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -476,7 +477,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   uStack_34 = *(int32_t *)(param_1 + 0xfc);
   uStack_30 = *(int32_t *)(param_1 + 0x100);
   uStack_2c = *(int32_t *)(param_1 + 0x104);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0xe8));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0xe8));
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -509,7 +510,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   uStack_34 = *(int32_t *)(param_1 + 0x11c);
   uStack_30 = *(int32_t *)(param_1 + 0x120);
   uStack_2c = *(int32_t *)(param_1 + 0x124);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x108));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x108));
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -542,7 +543,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   uStack_34 = *(int32_t *)(param_1 + 0x13c);
   uStack_30 = *(int32_t *)(param_1 + 0x140);
   uStack_2c = *(int32_t *)(param_1 + 0x144);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x128));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x128));
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -575,7 +576,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   uStack_34 = *(int32_t *)(param_1 + 0x15c);
   uStack_30 = *(int32_t *)(param_1 + 0x160);
   uStack_2c = *(int32_t *)(param_1 + 0x164);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x148));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x148));
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -602,7 +603,7 @@ int FUN_1806d1d70(int64_t param_1,int64_t *param_2,int param_3)
   uStack_34 = *(int32_t *)(param_1 + 0x194);
   uStack_30 = *(int32_t *)(param_1 + 0x198);
   uStack_2c = *(int32_t *)(param_1 + 0x19c);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x180));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x180));
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -637,7 +638,7 @@ void FUN_1806d2430(int64_t param_1,int64_t param_2)
   int *piVar1;
   int8_t auStack_100 [232];
   
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x1d8));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x1d8));
   piVar1 = *(int **)(param_2 + 0x28);
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -690,7 +691,7 @@ int FUN_1806d26b0(uint64_t *param_1,int64_t *param_2,int param_3)
   puStack_f8 = (int32_t *)param_1[1];
   pcStack_f0 = (code *)param_1[2];
   lStack_e8 = param_1[3];
-  FUN_1806d7170(param_2,*param_1);
+  SystemValidator(param_2,*param_1);
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -736,7 +737,7 @@ int FUN_1806d26b0(uint64_t *param_1,int64_t *param_2,int param_3)
   }
   pcStack_f0 = (code *)param_1[6];
   lStack_e8 = param_1[7];
-  FUN_1806d7170(param_2,param_1[4]);
+  SystemValidator(param_2,param_1[4]);
   piVar2 = (int *)param_2[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;

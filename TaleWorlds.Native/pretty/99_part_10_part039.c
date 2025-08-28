@@ -1,3 +1,4 @@
+#include "FUN_1806d7170_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part039.c - 19 个函数
@@ -545,7 +546,7 @@ void FUN_1806c1230(int64_t *param_1,int64_t *param_2)
   uStack_1c = *(int32_t *)((int64_t)param_2 + 0x14);
   uStack_18 = (int32_t)param_2[3];
   uStack_14 = *(int32_t *)((int64_t)param_2 + 0x1c);
-  FUN_1806d7170((int)*param_2,*param_2);
+  SystemValidator((int)*param_2,*param_2);
   piVar2 = (int *)param_1[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -645,7 +646,7 @@ void FUN_1806c123b(uint64_t param_1,uint64_t *param_2)
   *(int32_t *)(in_RAX + -0x1c) = uVar6;
   *(int32_t *)(in_RAX + -0x18) = uVar7;
   *(int32_t *)(in_RAX + -0x14) = uVar8;
-  FUN_1806d7170(in_RCX,uVar11);
+  SystemValidator(in_RCX,uVar11);
   piVar2 = (int *)in_RCX[5];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -1023,7 +1024,7 @@ void FUN_1806c1670(int64_t *param_1,uint64_t param_2)
   uStack_110 = param_2;
   puStack_108 = puVar3;
   lStack_100 = lVar4;
-  FUN_1806d7170(&lStack_120,uStack_48);
+  SystemValidator(&lStack_120,uStack_48);
   uVar7 = (*pcStack_38)(param_2);
   if (*(int *)(lVar1 + 0x10) == 0) {
     puVar6 = &ui_system_data_1920_ptr;

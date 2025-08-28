@@ -1,3 +1,4 @@
+#include "FUN_1806d7170_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part040.c - 12 个函数
@@ -35,7 +36,7 @@ void FUN_1806c17d0(int64_t *param_1,int64_t param_2)
     uStackX_8 = 0;
     FUN_1806d7f00(auStack_68,uVar5,&uStackX_8);
     (**(code **)(param_2 + 0x10))(param_1[2],puStack_38,uVar5);
-    FUN_1806d7170(param_1,&ui_system_data_1888_ptr);
+    SystemValidator(param_1,&ui_system_data_1888_ptr);
     if (uVar5 != 0) {
       uVar9 = (uint64_t)uVar5;
       lVar10 = 0;
@@ -116,7 +117,7 @@ void FUN_1806c17f7(void)
   puStack0000000000000080 = in_RAX;
   FUN_1806d7f00(&stack0x00000050,unaff_EBX,&stack0x000000c0);
   (**(code **)(unaff_RSI + 0x10))(unaff_RDI[2],puStack0000000000000080,unaff_EBX);
-  FUN_1806d7170();
+  SystemValidator();
   if (unaff_EBX != 0) {
     uVar7 = (uint64_t)unaff_EBX;
     lVar8 = 0;

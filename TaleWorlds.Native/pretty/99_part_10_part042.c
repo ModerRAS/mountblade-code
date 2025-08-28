@@ -1,3 +1,4 @@
+#include "FUN_1806d7170_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_10_part042.c - 14 个函数
@@ -675,10 +676,10 @@ void FUN_1806c25c0(int64_t *param_1,uint64_t param_2,uint64_t *param_3,int64_t *
   int8_t auStack_c0 [24];
   int8_t auStack_a8 [128];
   
-  FUN_1806d7170(param_1,*param_3);
+  SystemValidator(param_1,*param_3);
   lVar6 = *param_4;
   while (lVar6 != 0) {
-    FUN_1806d7170(param_1,lVar6);
+    SystemValidator(param_1,lVar6);
     puVar5 = (int32_t *)(*(code *)param_3[3])(auStack_c0,param_1[2],(int)param_4[1]);
     lVar6 = *param_1;
     lVar2 = param_1[1];
@@ -758,10 +759,10 @@ void FUN_1806c25d7(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   
   *(uint64_t *)(in_RAX + -0x18) = unaff_R12;
   *(uint64_t *)(in_RAX + -0x20) = unaff_R13;
-  uVar7 = FUN_1806d7170();
+  uVar7 = SystemValidator();
   lVar6 = *param_4;
   while (lVar6 != 0) {
-    FUN_1806d7170(uVar7,lVar6);
+    SystemValidator(uVar7,lVar6);
     puVar5 = (int32_t *)
              (**(code **)(param_3 + 0x18))(&stack0x00000068,unaff_R15[2],(int)param_4[1]);
     lVar6 = *unaff_R15;
@@ -836,7 +837,7 @@ void FUN_1806c25f7(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int32_t uVar6;
   
   do {
-    FUN_1806d7170(param_1,in_RAX);
+    SystemValidator(param_1,in_RAX);
     puVar4 = (int32_t *)
              (**(code **)(unaff_R13 + 0x18))
                        (&stack0x00000068,unaff_R15[2],*(int32_t *)(unaff_R12 + 8));

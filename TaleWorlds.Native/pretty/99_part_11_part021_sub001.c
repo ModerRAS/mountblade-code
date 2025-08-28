@@ -1,3 +1,4 @@
+#include "FUN_1806d7170_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -784,7 +785,7 @@ int FUN_1806f07f0(int64_t param_1,int64_t *param_2,int param_3)
   int8_t auStackX_18 [16];
   
   pcVar3 = *(code **)(param_1 + 0x148);
-  FUN_1806d7170(param_2,*(uint64_t *)(param_1 + 0x138));
+  SystemValidator(param_2,*(uint64_t *)(param_1 + 0x138));
   piVar2 = (int *)param_2[6];
   if (piVar2 != (int *)0x0) {
     *piVar2 = *piVar2 + 1;
@@ -831,7 +832,7 @@ int FUN_1806f08b0(uint64_t *param_1,int64_t *param_2,int param_3)
   int8_t auStackX_18 [8];
   
   pcVar3 = (code *)param_1[2];
-  FUN_1806d7170(param_2,*param_1);
+  SystemValidator(param_2,*param_1);
   piVar1 = (int *)param_2[5];
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -862,7 +863,7 @@ int FUN_1806f08b0(uint64_t *param_1,int64_t *param_2,int param_3)
     *(int *)(lVar7 + 0x10) = *(int *)(lVar7 + 0x10) + -1;
   }
   pcVar3 = (code *)param_1[6];
-  FUN_1806d7170(param_2,param_1[4]);
+  SystemValidator(param_2,param_1[4]);
   piVar1 = (int *)param_2[5];
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -892,7 +893,7 @@ int FUN_1806f08b0(uint64_t *param_1,int64_t *param_2,int param_3)
     *(int *)(lVar7 + 0x10) = *(int *)(lVar7 + 0x10) + -1;
   }
   pcVar3 = (code *)param_1[10];
-  FUN_1806d7170(param_2,param_1[8]);
+  SystemValidator(param_2,param_1[8]);
   piVar1 = (int *)param_2[5];
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -927,7 +928,7 @@ int FUN_1806f08b0(uint64_t *param_1,int64_t *param_2,int param_3)
     *(int *)(lVar7 + 0x10) = *(int *)(lVar7 + 0x10) + -1;
   }
   pcVar3 = (code *)param_1[0x12];
-  FUN_1806d7170(param_2,param_1[0x10]);
+  SystemValidator(param_2,param_1[0x10]);
   piVar1 = (int *)param_2[5];
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;
@@ -957,7 +958,7 @@ int FUN_1806f08b0(uint64_t *param_1,int64_t *param_2,int param_3)
     *(int *)(lVar7 + 0x10) = *(int *)(lVar7 + 0x10) + -1;
   }
   pcVar3 = (code *)param_1[0x16];
-  FUN_1806d7170(param_2,param_1[0x14]);
+  SystemValidator(param_2,param_1[0x14]);
   piVar1 = (int *)param_2[5];
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;

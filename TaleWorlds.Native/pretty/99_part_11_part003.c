@@ -1,3 +1,4 @@
+#include "FUN_1806d7170_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_11_part003.c - 29 个函数
@@ -11,7 +12,7 @@ void FUN_1806d68fa(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int64_t unaff_RBP;
   int64_t *unaff_R15;
   
-  FUN_1806d7170(param_1,&processed_var_9592_ptr);
+  SystemValidator(param_1,&processed_var_9592_ptr);
   lVar1 = 0;
   if (*(short *)(unaff_RBX + 8) == 0xe) {
     lVar1 = unaff_RBX;
@@ -480,8 +481,8 @@ void FUN_1806d7080(int64_t *param_1,uint64_t param_2)
 
 
 
-// 函数: void FUN_1806d7170(int64_t *param_1,uint64_t param_2)
-void FUN_1806d7170(int64_t *param_1,uint64_t param_2)
+// 函数: void SystemValidator(int64_t *param_1,uint64_t param_2)
+void SystemValidator(int64_t *param_1,uint64_t param_2)
 
 {
   uint64_t *puVar1;
