@@ -1,9 +1,62 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part112.c - 5 个函数
+/**
+ * @file 03_rendering_part112.c
+ * @brief 渲染系统高级数据保存和加载模块
+ * 
+ * 本模块包含5个核心函数，涵盖渲染系统数据保存、加载、资源管理、
+ * 文件操作、内存管理和数据序列化等高级渲染功能。
+ */
 
-// 函数: void FUN_180335980(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4)
-void FUN_180335980(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4)
+/**
+ * @defgroup rendering_constants 渲染系统常量定义
+ * @{
+ */
+#define RENDERING_BUFFER_SIZE 0x48
+#define RENDERING_LARGE_BUFFER_SIZE 0xa8
+#define RENDERING_RESOURCE_OFFSET_1 0x878
+#define RENDERING_RESOURCE_OFFSET_2 0x888
+#define RENDERING_RESOURCE_OFFSET_3 0x898
+#define RENDERING_RESOURCE_OFFSET_4 0x8a8
+#define RENDERING_RESOURCE_OFFSET_5 0x8b8
+#define RENDERING_RESOURCE_OFFSET_6 0x8c8
+#define RENDERING_HASH_TABLE_SIZE 0x100
+#define RENDERING_MUTEX_TIMEOUT 0x30000
+#define RENDERING_CLEANUP_FLAG 3
+#define RENDERING_ALIGNMENT_MASK 0x1f
+#define RENDERING_MAX_ITERATIONS 0x40
+#define RENDERING_DATA_BLOCK_SIZE 0xe0
+#define RENDERING_POOL_SIZE 0x100000
+#define RENDERING_FILE_BUFFER_SIZE 0x18
+#define RENDERING_RESOURCE_ID_OFFSET 0x6c8
+#define RENDERING_CONTEXT_OFFSET 0x9f8
+#define RENDERING_OUTPUT_OFFSET 0xa00
+/* @} */
+
+/**
+ * @defgroup rendering_function_aliases 渲染系统函数别名
+ * @{
+ */
+#define RenderingSystem_SaveResourceData FUN_180335980
+#define RenderingSystem_LoadResourceData FUN_180335f10
+#define RenderingSystem_SaveResourceDataEx FUN_180336240
+#define RenderingSystem_LoadResourceDataEx FUN_180336540
+#define RenderingSystem_ProcessResourceOperation FUN_1803368b0
+/* @} */
+
+/**
+ * @brief 渲染系统资源数据保存器
+ * 
+ * 该函数负责保存渲染系统资源数据，包括数据序列化、内存管理、
+ * 文件写入、资源清理和状态管理等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param file_context 文件上下文指针
+ * @param data_context 数据上下文指针
+ * @param save_flag 保存标志
+ * @return void
+ */
+void RenderingSystem_SaveResourceData(longlong resource_context, longlong file_context, longlong data_context, undefined8 save_flag)
 
 {
   int iVar1;
@@ -93,8 +146,18 @@ void FUN_180335980(longlong param_1,longlong param_2,longlong param_3,undefined8
 
 
 
-// 函数: void FUN_180335f10(longlong param_1,longlong param_2,undefined8 param_3)
-void FUN_180335f10(longlong param_1,longlong param_2,undefined8 param_3)
+/**
+ * @brief 渲染系统资源数据加载器
+ * 
+ * 该函数负责加载渲染系统资源数据，包括数据反序列化、内存分配、
+ * 文件读取、资源重建和状态恢复等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param file_context 文件上下文指针
+ * @param load_flag 加载标志
+ * @return void
+ */
+void RenderingSystem_LoadResourceData(longlong resource_context, longlong file_context, undefined8 load_flag)
 
 {
   undefined8 *puVar1;
@@ -246,8 +309,19 @@ LAB_18033615b:
 
 
 
-// 函数: void FUN_180336240(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4)
-void FUN_180336240(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4)
+/**
+ * @brief 渲染系统资源数据扩展保存器
+ * 
+ * 该函数负责扩展保存渲染系统资源数据，包括高级数据序列化、
+ * 内存管理、文件写入、资源清理和状态管理等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param file_context 文件上下文指针
+ * @param data_context 数据上下文指针
+ * @param save_flag 保存标志
+ * @return void
+ */
+void RenderingSystem_SaveResourceDataEx(longlong resource_context, longlong file_context, longlong data_context, undefined8 save_flag)
 
 {
   int iVar1;
@@ -337,8 +411,18 @@ void FUN_180336240(longlong param_1,longlong param_2,longlong param_3,undefined8
 
 
 
-// 函数: void FUN_180336540(longlong param_1,longlong param_2,undefined8 param_3)
-void FUN_180336540(longlong param_1,longlong param_2,undefined8 param_3)
+/**
+ * @brief 渲染系统资源数据扩展加载器
+ * 
+ * 该函数负责扩展加载渲染系统资源数据，包括高级数据反序列化、
+ * 内存分配、文件读取、资源重建和状态恢复等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param file_context 文件上下文指针
+ * @param load_flag 加载标志
+ * @return void
+ */
+void RenderingSystem_LoadResourceDataEx(longlong resource_context, longlong file_context, undefined8 load_flag)
 
 {
   longlong *plVar1;
@@ -503,8 +587,17 @@ LAB_1803367cd:
 
 
 
-// 函数: void FUN_1803368b0(longlong param_1,uint param_2)
-void FUN_1803368b0(longlong param_1,uint param_2)
+/**
+ * @brief 渲染系统资源操作处理器
+ * 
+ * 该函数负责处理渲染系统资源操作，包括资源查找、数据更新、
+ * 内存管理、文件操作、线程同步和状态管理等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param resource_id 资源ID
+ * @return void
+ */
+void RenderingSystem_ProcessResourceOperation(longlong resource_context, uint resource_id)
 
 {
   ulonglong *puVar1;

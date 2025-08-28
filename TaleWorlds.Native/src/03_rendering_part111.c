@@ -1,912 +1,1214 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part111.c - 8 个函数
+/**
+ * 03_rendering_part111.c - 渲染系统高级数据处理和变换模块
+ * 
+ * 本模块包含8个核心函数，涵盖渲染系统数据变换、矩阵运算、资源管理、
+ * 内存处理、数据序列化、状态管理、文件操作和批量处理等高级渲染功能。
+ * 
+ * 主要功能：
+ * - 渲染数据变换和处理
+ * - 矩阵运算和向量计算
+ * - 资源管理和内存分配
+ * - 数据序列化和文件操作
+ * - 批量处理和状态管理
+ */
 
-// 函数: void FUN_180334b80(longlong param_1,longlong param_2,longlong param_3,longlong param_4,uint param_5,
-void FUN_180334b80(longlong param_1,longlong param_2,longlong param_3,longlong param_4,uint param_5,
-                  uint param_6)
+// 常量定义
+#define RENDERING_DATA_BLOCK_SIZE 0xb0
+#define RENDERING_DATA_OFFSET_0x10 0x10
+#define RENDERING_DATA_OFFSET_0x20 0x20
+#define RENDERING_DATA_OFFSET_0x24 0x24
+#define RENDERING_DATA_OFFSET_0x28 0x28
+#define RENDERING_FLOAT_MIN_VALUE 1.1754944e-38
+#define RENDERING_FLOAT_MAX_VALUE 3.4028235e+38
+#define RENDERING_THRESHOLD_MIN 0.001
+#define RENDERING_THRESHOLD_MAX 0.999
+#define RENDERING_NORMALIZATION_THRESHOLD 0.9995
+#define RENDERING_MEMORY_BLOCK_SIZE 0x20000
+#define RENDERING_VECTOR_COMPONENTS 4
+#define RENDERING_MATRIX_SIZE 16
 
+// 函数别名定义
+#define RenderingSystem_DataTransformer FUN_180334b80
+#define RenderingSystem_MatrixProcessor FUN_180334bf1
+#define RenderingSystem_EmptyFunction1 FUN_180334fd7
+#define RenderingSystem_ResourceManager FUN_180335000
+#define RenderingSystem_ResourceHandler FUN_1803350cd
+#define RenderingSystem_MemoryCleaner FUN_180335140
+#define RenderingSystem_EmptyFunction2 FUN_18033519d
+#define RenderingSystem_EmptyFunction3 FUN_1803351a2
+#define RenderingSystem_DataSerializer FUN_1803351b0
+#define RenderingSystem_DataDeserializer FUN_180335590
+
+/**
+ * 渲染系统数据变换器
+ * 
+ * 该函数负责处理渲染系统的高级数据变换操作，包括：
+ * - 数据批量处理和变换
+ * - 矩阵运算和向量归一化
+ * - 资源数据管理和同步
+ * - 内存管理和数据验证
+ * - 线程安全和状态控制
+ * 
+ * @param render_context 渲染上下文指针
+ * @param output_handle 输出句柄
+ * @param resource_context 资源上下文指针
+ * @param comparison_context 比较上下文指针
+ * @param process_flag 处理标志位
+ * @param filter_flag 过滤标志位
+ */
+void RenderingSystem_DataTransformer(longlong render_context, longlong output_handle, 
+                                   longlong resource_context, longlong comparison_context,
+                                   uint process_flag, uint filter_flag)
 {
-  float *pfVar1;
-  longlong lVar2;
-  undefined1 auVar3 [16];
-  int iVar4;
-  int iVar5;
-  uint uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  uint *puVar9;
-  uint uVar10;
-  longlong lVar11;
-  ulonglong uVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar23;
-  undefined1 auVar21 [16];
-  undefined1 auVar22 [16];
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  undefined1 auStack_198 [32];
-  float fStack_178;
-  float fStack_174;
-  float fStack_170;
-  float fStack_16c;
-  float fStack_168;
-  float fStack_164;
-  float fStack_160;
-  undefined4 uStack_15c;
-  float fStack_158;
-  float fStack_154;
-  float fStack_150;
-  float fStack_14c;
-  float fStack_148;
-  float fStack_144;
-  float fStack_140;
-  float fStack_13c;
-  longlong lStack_138;
-  longlong lStack_130;
-  float fStack_128;
-  float fStack_124;
-  float fStack_120;
-  float fStack_11c;
-  float fStack_118;
-  float fStack_114;
-  float fStack_110;
-  float fStack_10c;
-  float afStack_108 [8];
-  ulonglong uStack_e8;
+  float *source_data;
+  float *target_data;
+  longlong resource_start;
+  longlong resource_end;
+  longlong resource_count;
+  int index_offset;
+  int iteration_count;
+  uint current_index;
+  ulonglong loop_counter;
+  longlong data_offset;
+  uint *output_buffer;
+  uint output_value;
+  longlong comparison_start;
+  longlong comparison_size;
+  ulonglong comparison_limit;
+  float blend_factor;
+  float source_x, source_y, source_z, source_w;
+  float target_x, target_y, target_z, target_w;
+  float temp_x, temp_y, temp_z, temp_w;
+  float blend_x, blend_y, blend_z, blend_w;
+  float normalized_x, normalized_y, normalized_z, normalized_w;
+  float magnitude_x, magnitude_y, magnitude_z, magnitude_w;
+  float total_magnitude_xy, total_magnitude_zw;
+  float inverse_magnitude_x, inverse_magnitude_y, inverse_magnitude_z, inverse_magnitude_w;
+  undefined1 temp_vector_1[RENDERING_VECTOR_COMPONENTS * 4];
+  undefined1 temp_vector_2[RENDERING_VECTOR_COMPONENTS * 4];
+  float final_x, final_y, final_z, final_w;
+  undefined1 stack_buffer[32];
+  float stack_x, stack_y, stack_z, stack_w;
+  float stack_blend_x, stack_blend_y, stack_blend_z, stack_blend_w;
+  undefined4 stack_flag;
+  float result_x, result_y, result_z, result_w;
+  longlong saved_context_1;
+  longlong saved_context_2;
+  float final_result_x, final_result_y, final_result_z, final_result_w;
+  float result_array[RENDERING_VECTOR_COMPONENTS * 2];
+  ulonglong security_cookie;
   
-  uStack_e8 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
-  uVar10 = 0;
-  lVar11 = *(longlong *)(param_3 + 0x70) - *(longlong *)(param_3 + 0x68);
-  iVar5 = (int)(lVar11 >> 0x3f);
-  iVar4 = (int)(lVar11 / 0xb0) + iVar5;
-  lStack_138 = param_1;
-  lStack_130 = param_3;
-  if (iVar4 != iVar5) {
-    uVar12 = 0;
-    lVar11 = 0;
+  // 安全检查：初始化安全cookie
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  current_index = 0;
+  
+  // 计算资源范围
+  resource_start = *(longlong *)(resource_context + 0x68);
+  resource_end = *(longlong *)(resource_context + 0x70);
+  data_offset = resource_end - resource_start;
+  
+  // 计算迭代次数
+  index_offset = (int)(data_offset >> 0x3f);
+  iteration_count = (int)(data_offset / RENDERING_DATA_BLOCK_SIZE) + index_offset;
+  
+  // 保存上下文信息
+  saved_context_1 = render_context;
+  saved_context_2 = resource_context;
+  
+  // 检查是否有数据需要处理
+  if (iteration_count != index_offset) {
+    loop_counter = 0;
+    data_offset = 0;
+    
+    // 主处理循环
     do {
-      lVar2 = *(longlong *)(param_3 + 0x68);
-      if ((((byte)(*(uint *)(lVar11 + lVar2) >> 2) | (byte)(param_5 >> 2)) & (byte)(~param_6 >> 2) &
-          1) == 0) {
-        pfVar1 = (float *)(lVar11 + 0x10 + lVar2);
-        fVar19 = *pfVar1;
-        fVar16 = pfVar1[1];
-        fVar18 = pfVar1[2];
-        fVar23 = pfVar1[3];
-        pfVar1 = (float *)(lVar11 + 0x20 + lVar2);
-        fVar24 = *pfVar1;
-        fVar17 = pfVar1[1];
-        fVar26 = pfVar1[2];
-        fVar20 = pfVar1[3];
-        fStack_158 = fVar19;
-        fStack_154 = fVar16;
-        fStack_150 = fVar18;
-        fStack_14c = fVar23;
-        fStack_148 = fVar24;
-        fStack_144 = fVar17;
-        fStack_140 = fVar26;
-        fStack_13c = fVar20;
-        if (param_4 != 0) {
-          lVar2 = *(longlong *)(param_4 + 0x68);
-          lVar8 = *(longlong *)(param_4 + 0x70) - lVar2;
-          if (uVar12 < (ulonglong)(lVar8 / 0xb0)) {
-            fVar26 = 1.0 - (*(float *)(param_1 + 0x13c) - *(float *)(param_1 + 0x144)) /
-                           *(float *)(param_1 + 0x13c);
-            if (0.001 <= fVar26) {
-              if (fVar26 <= 0.999) {
-                pfVar1 = (float *)(lVar2 + 0x10 + lVar11);
-                fVar24 = pfVar1[2] * fVar18;
-                fVar17 = pfVar1[3] * fVar23;
-                afStack_108[4] = -1.0;
-                afStack_108[5] = -1.0;
-                afStack_108[6] = -1.0;
-                afStack_108[7] = -1.0;
-                auVar22._0_4_ = fVar24 + *pfVar1 * fVar19;
-                auVar22._4_4_ = fVar17 + pfVar1[1] * fVar16;
-                auVar22._8_4_ = fVar24 + fVar24;
-                auVar22._12_4_ = fVar17 + fVar17;
-                auVar21._4_12_ = auVar22._4_12_;
-                auVar21._0_4_ = auVar22._0_4_ + auVar22._4_4_;
-                afStack_108[0] = 1.0;
-                afStack_108[1] = 1.0;
-                afStack_108[2] = 1.0;
-                afStack_108[3] = 1.0;
-                uVar6 = movmskps((uint)((ulonglong)lVar8 >> 0x3f),auVar21);
-                uVar7 = (ulonglong)(uVar6 & 1);
-                fVar24 = afStack_108[uVar7 * 4];
-                fVar17 = afStack_108[uVar7 * 4 + 1];
-                fVar20 = afStack_108[uVar7 * 4 + 2];
-                fVar25 = afStack_108[uVar7 * 4 + 3];
-                pfVar1 = (float *)(lVar2 + 0x10 + lVar11);
-                fVar27 = *pfVar1;
-                fVar28 = pfVar1[1];
-                fVar29 = pfVar1[2];
-                fVar30 = pfVar1[3];
-                if (0.9995 < ABS(auVar21._0_4_)) {
-                  fVar13 = 1.0 - fVar26;
-                  fVar27 = fVar19 * fVar13 + fVar26 * fVar24 * fVar27;
-                  fVar28 = fVar16 * fVar13 + fVar26 * fVar17 * fVar28;
-                  fVar29 = fVar18 * fVar13 + fVar26 * fVar20 * fVar29;
-                  fVar30 = fVar23 * fVar13 + fVar26 * fVar25 * fVar30;
-                  fVar16 = fVar30 * fVar30 + fVar27 * fVar27;
-                  fVar18 = fVar29 * fVar29 + fVar28 * fVar28;
-                  fVar20 = fVar16 + fVar28 * fVar28 + fVar29 * fVar29;
-                  fVar25 = fVar18 + fVar27 * fVar27 + fVar30 * fVar30;
-                  auVar3._4_4_ = fVar16 + fVar18 + 1.1754944e-38;
-                  auVar3._0_4_ = fVar18 + fVar16 + 1.1754944e-38;
-                  auVar3._8_4_ = fVar20 + 1.1754944e-38;
-                  auVar3._12_4_ = fVar25 + 1.1754944e-38;
-                  auVar22 = rsqrtps(auVar21,auVar3);
-                  fVar19 = auVar22._0_4_;
-                  fVar23 = auVar22._4_4_;
-                  fVar24 = auVar22._8_4_;
-                  fVar17 = auVar22._12_4_;
-                  fVar19 = fVar27 * (3.0 - fVar19 * fVar19 * (fVar18 + fVar16)) * fVar19 * 0.5;
-                  fVar16 = fVar28 * (3.0 - fVar23 * fVar23 * (fVar16 + fVar18)) * fVar23 * 0.5;
-                  fVar18 = fVar29 * (3.0 - fVar24 * fVar24 * fVar20) * fVar24 * 0.5;
-                  fVar23 = fVar30 * (3.0 - fVar17 * fVar17 * fVar25) * fVar17 * 0.5;
+      resource_start = *(longlong *)(resource_context + 0x68);
+      
+      // 检查数据过滤条件
+      if ((((byte)(*(uint *)(data_offset + resource_start) >> 2) | (byte)(process_flag >> 2)) & 
+           (byte)(~filter_flag >> 2) & 1) == 0) {
+        
+        // 读取源数据
+        source_data = (float *)(data_offset + RENDERING_DATA_OFFSET_0x10 + resource_start);
+        source_x = *source_data;
+        source_y = source_data[1];
+        source_z = source_data[2];
+        source_w = source_data[3];
+        
+        // 读取目标数据
+        target_data = (float *)(data_offset + RENDERING_DATA_OFFSET_0x20 + resource_start);
+        target_x = *target_data;
+        target_y = target_data[1];
+        target_z = target_data[2];
+        target_w = target_data[3];
+        
+        // 保存原始数据到栈
+        stack_x = source_x;
+        stack_y = source_y;
+        stack_z = source_z;
+        stack_w = source_w;
+        stack_blend_x = target_x;
+        stack_blend_y = target_y;
+        stack_blend_z = target_z;
+        stack_blend_w = target_w;
+        
+        // 如果存在比较上下文，执行混合操作
+        if (comparison_context != 0) {
+          comparison_start = *(longlong *)(comparison_context + 0x68);
+          comparison_size = *(longlong *)(comparison_context + 0x70) - comparison_start;
+          
+          if (loop_counter < (ulonglong)(comparison_size / RENDERING_DATA_BLOCK_SIZE)) {
+            // 计算混合因子
+            blend_factor = 1.0 - (*(float *)(render_context + 0x13c) - *(float *)(render_context + 0x144)) /
+                           *(float *)(render_context + 0x13c);
+            
+            if (RENDERING_THRESHOLD_MIN <= blend_factor) {
+              if (blend_factor <= RENDERING_THRESHOLD_MAX) {
+                // 执行向量混合运算
+                target_data = (float *)(comparison_start + RENDERING_DATA_OFFSET_0x10 + data_offset);
+                target_z = target_data[2] * source_z;
+                target_w = target_data[3] * source_w;
+                
+                // 初始化结果数组
+                result_array[4] = -1.0;
+                result_array[5] = -1.0;
+                result_array[6] = -1.0;
+                result_array[7] = -1.0;
+                
+                // 计算点积和叉积
+                temp_vector_2._0_4_ = target_z + *target_data * source_x;
+                temp_vector_2._4_4_ = target_w + target_data[1] * source_y;
+                temp_vector_2._8_4_ = target_z + target_z;
+                temp_vector_2._12_4_ = target_w + target_w;
+                temp_vector_1._4_12_ = temp_vector_2._4_12_;
+                temp_vector_1._0_4_ = temp_vector_2._0_4_ + temp_vector_2._4_4_;
+                
+                // 设置单位向量
+                result_array[0] = 1.0;
+                result_array[1] = 1.0;
+                result_array[2] = 1.0;
+                result_array[3] = 1.0;
+                
+                // 执行向量掩码操作
+                output_value = movmskps((uint)((ulonglong)comparison_size >> 0x3f), temp_vector_1);
+                loop_counter = (ulonglong)(output_value & 1);
+                target_z = result_array[loop_counter * 4];
+                target_w = result_array[loop_counter * 4 + 1];
+                target_w = result_array[loop_counter * 4 + 2];
+                final_result_w = result_array[loop_counter * 4 + 3];
+                
+                // 重新读取目标数据
+                target_data = (float *)(comparison_start + RENDERING_DATA_OFFSET_0x10 + data_offset);
+                final_x = *target_data;
+                final_y = target_data[1];
+                final_z = target_data[2];
+                final_w = target_data[3];
+                
+                // 检查是否需要归一化
+                if (RENDERING_NORMALIZATION_THRESHOLD < ABS(temp_vector_1._0_4_)) {
+                  // 执行快速归一化
+                  blend_factor = 1.0 - blend_factor;
+                  final_x = source_x * blend_factor + blend_factor * target_z * final_x;
+                  final_y = source_y * blend_factor + blend_factor * target_w * final_y;
+                  final_z = source_z * blend_factor + blend_factor * target_w * final_z;
+                  final_w = source_w * blend_factor + blend_factor * final_result_w * final_w;
+                  
+                  // 计算向量长度
+                  source_y = final_w * final_w + final_x * final_x;
+                  source_z = final_z * final_z + final_y * final_y;
+                  target_w = source_y + final_y * final_y + final_z * final_z;
+                  final_result_w = source_z + final_x * final_x + final_w * final_w;
+                  
+                  // 准备归一化计算
+                  temp_vector_1._4_4_ = source_y + source_z + RENDERING_FLOAT_MIN_VALUE;
+                  temp_vector_1._0_4_ = source_z + source_y + RENDERING_FLOAT_MIN_VALUE;
+                  temp_vector_1._8_4_ = target_w + RENDERING_FLOAT_MIN_VALUE;
+                  temp_vector_1._12_4_ = final_result_w + RENDERING_FLOAT_MIN_VALUE;
+                  temp_vector_2 = rsqrtps(temp_vector_1, temp_vector_1);
+                  
+                  // 应用归一化
+                  source_x = temp_vector_2._0_4_;
+                  source_w = temp_vector_2._4_4_;
+                  target_z = temp_vector_2._8_4_;
+                  target_w = temp_vector_2._12_4_;
+                  source_x = final_x * (3.0 - source_x * source_x * (source_z + source_y)) * source_x * 0.5;
+                  source_y = final_y * (3.0 - source_w * source_w * (source_y + source_z)) * source_w * 0.5;
+                  source_z = final_z * (3.0 - target_z * target_z * target_w) * target_z * 0.5;
+                  source_w = final_w * (3.0 - target_w * target_w * final_result_w) * target_w * 0.5;
                 }
                 else {
-                  fVar13 = (float)acosf();
-                  fVar14 = (float)sinf();
-                  fVar15 = (float)sinf(fVar13 - fVar13 * fVar26);
-                  fVar15 = fVar15 * (1.0 / fVar14);
-                  fVar13 = (float)sinf(fVar13 * fVar26);
-                  fVar13 = fVar13 * (1.0 / fVar14);
-                  fVar19 = fVar15 * fVar19 + fVar13 * fVar24 * fVar27;
-                  fVar16 = fVar15 * fVar16 + fVar13 * fVar17 * fVar28;
-                  fVar18 = fVar15 * fVar18 + fVar13 * fVar20 * fVar29;
-                  fVar23 = fVar15 * fVar23 + fVar13 * fVar25 * fVar30;
+                  // 执行球形线性插值
+                  blend_factor = (float)acosf();
+                  target_z = (float)sinf();
+                  target_w = (float)sinf(blend_factor - blend_factor * blend_factor);
+                  target_w = target_w * (1.0 / target_z);
+                  blend_factor = (float)sinf(blend_factor * blend_factor);
+                  blend_factor = blend_factor * (1.0 / target_z);
+                  source_x = target_w * source_x + blend_factor * target_z * final_x;
+                  source_y = target_w * source_y + blend_factor * target_w * final_y;
+                  source_z = target_w * source_z + blend_factor * target_w * final_z;
+                  source_w = target_w * source_w + blend_factor * final_result_w * final_w;
                 }
               }
               else {
-                pfVar1 = (float *)(lVar2 + 0x10 + lVar11);
-                fVar19 = *pfVar1;
-                fVar16 = pfVar1[1];
-                fVar18 = pfVar1[2];
-                fVar23 = pfVar1[3];
+                // 直接使用目标数据
+                target_data = (float *)(comparison_start + RENDERING_DATA_OFFSET_0x10 + data_offset);
+                source_x = *target_data;
+                source_y = target_data[1];
+                source_z = target_data[2];
+                source_w = target_data[3];
               }
             }
-            fVar20 = 1.0 - fVar26;
-            fVar24 = fVar26 * *(float *)(lVar11 + 0x20 + lVar2) + fStack_148 * fVar20;
-            fVar17 = fVar26 * *(float *)(lVar11 + 0x24 + lVar2) + fStack_144 * fVar20;
-            fVar26 = fVar26 * *(float *)(lVar11 + 0x28 + lVar2) + fStack_140 * fVar20;
-            fVar20 = 3.4028235e+38;
-            uStack_15c = 0x7f7fffff;
-            fStack_178 = fVar19;
-            fStack_174 = fVar16;
-            fStack_170 = fVar18;
-            fStack_16c = fVar23;
-            fStack_168 = fVar24;
-            fStack_164 = fVar17;
-            fStack_160 = fVar26;
+            
+            // 应用混合因子
+            target_w = 1.0 - blend_factor;
+            target_z = blend_factor * *(float *)(data_offset + RENDERING_DATA_OFFSET_0x20 + comparison_start) + stack_blend_x * target_w;
+            target_w = blend_factor * *(float *)(data_offset + RENDERING_DATA_OFFSET_0x24 + comparison_start) + stack_blend_y * target_w;
+            blend_factor = blend_factor * *(float *)(data_offset + RENDERING_DATA_OFFSET_0x28 + comparison_start) + stack_blend_z * target_w;
+            target_w = RENDERING_FLOAT_MAX_VALUE;
+            stack_flag = 0x7f7fffff;
+            
+            // 保存结果到栈
+            stack_x = source_x;
+            stack_y = source_y;
+            stack_z = source_z;
+            stack_w = source_w;
+            stack_blend_x = target_z;
+            stack_blend_y = target_w;
+            stack_blend_z = blend_factor;
+            stack_blend_w = target_w;
           }
         }
-        puVar9 = (uint *)((longlong)(char)uVar10 * 0x100 + *(longlong *)(param_2 + 0x18));
+        
+        // 准备输出缓冲区
+        output_buffer = (uint *)((longlong)(char)current_index * 0x100 + *(longlong *)(output_handle + 0x18));
+        
+        // 线程安全锁定
         do {
           LOCK();
-          uVar6 = *puVar9;
-          *puVar9 = *puVar9 | 1;
+          output_value = *output_buffer;
+          *output_buffer = *output_buffer | 1;
           UNLOCK();
-        } while ((uVar6 & 1) != 0);
-        puVar9[1] = (uint)fVar19;
-        puVar9[2] = (uint)fVar16;
-        puVar9[3] = (uint)fVar18;
-        puVar9[4] = (uint)fVar23;
-        puVar9[5] = (uint)fVar24;
-        puVar9[6] = (uint)fVar17;
-        puVar9[7] = (uint)fVar26;
-        puVar9[8] = (uint)fVar20;
-        *puVar9 = 0;
-        fStack_128 = fVar19;
-        fStack_124 = fVar16;
-        fStack_120 = fVar18;
-        fStack_11c = fVar23;
-        fStack_118 = fVar24;
-        fStack_114 = fVar17;
-        fStack_110 = fVar26;
-        fStack_10c = fVar20;
-        FUN_1802feba0(param_2,(longlong)(ulonglong)(uint)((int)puVar9 - *(int *)(param_2 + 0x18)) >>
-                              8);
-        param_1 = lStack_138;
-        param_3 = lStack_130;
+        } while ((output_value & 1) != 0);
+        
+        // 写入处理结果
+        output_buffer[1] = (uint)source_x;
+        output_buffer[2] = (uint)source_y;
+        output_buffer[3] = (uint)source_z;
+        output_buffer[4] = (uint)source_w;
+        output_buffer[5] = (uint)target_z;
+        output_buffer[6] = (uint)target_w;
+        output_buffer[7] = (uint)blend_factor;
+        output_buffer[8] = (uint)target_w;
+        *output_buffer = 0;
+        
+        // 保存最终结果
+        final_result_x = source_x;
+        final_result_y = source_y;
+        final_result_z = source_z;
+        final_result_w = source_w;
+        result_x = target_z;
+        result_y = target_w;
+        result_z = blend_factor;
+        result_w = target_w;
+        
+        // 调用处理函数
+        FUN_1802feba0(output_handle, (longlong)(ulonglong)(uint)((int)output_buffer - *(int *)(output_handle + 0x18)) >> 8);
+        
+        // 恢复上下文
+        render_context = saved_context_1;
+        resource_context = saved_context_2;
       }
-      uVar10 = uVar10 + 1;
-      uVar12 = uVar12 + 1;
-      lVar11 = lVar11 + 0xb0;
-    } while (uVar10 < (uint)(iVar4 - iVar5));
+      
+      // 更新循环变量
+      current_index = current_index + 1;
+      loop_counter = loop_counter + 1;
+      data_offset = data_offset + RENDERING_DATA_BLOCK_SIZE;
+    } while (current_index < (uint)(iteration_count - index_offset));
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_e8 ^ (ulonglong)auStack_198);
+  
+  // 安全检查：验证cookie
+  FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
 }
 
-
-
-
-
-// 函数: void FUN_180334bf1(undefined8 param_1,undefined8 param_2,longlong param_3,uint param_4)
-void FUN_180334bf1(undefined8 param_1,undefined8 param_2,longlong param_3,uint param_4)
-
+/**
+ * 渲染系统矩阵处理器
+ * 
+ * 该函数负责处理渲染系统的矩阵运算和高级变换操作，包括：
+ * - 矩阵变换和向量运算
+ * - 高级数学计算和归一化
+ * - 资源数据管理和同步
+ * - 内存管理和数据验证
+ * - 批量处理和状态控制
+ * 
+ * @param matrix_context 矩阵上下文
+ * @param transform_context 变换上下文
+ * @param render_context 渲染上下文
+ * @param process_flag 处理标志位
+ */
+void RenderingSystem_MatrixProcessor(undefined8 matrix_context, undefined8 transform_context, 
+                                    longlong render_context, uint process_flag)
 {
-  float *pfVar1;
-  longlong lVar2;
-  undefined1 auVar3 [16];
-  uint uVar4;
-  uint uVar5;
-  uint uVar6;
-  uint uVar7;
-  longlong lVar8;
-  uint *puVar9;
-  longlong lVar10;
+  float *source_matrix;
+  float *target_matrix;
+  longlong data_offset;
+  longlong iteration_count;
+  uint row_index;
+  uint column_index;
+  uint process_counter;
+  longlong source_start;
+  longlong target_start;
+  longlong target_size;
   longlong unaff_RBP;
   uint unaff_ESI;
-  ulonglong uVar11;
+  ulonglong loop_counter;
   longlong in_R11;
   uint unaff_R12D;
   longlong unaff_R13;
-  ulonglong uVar12;
+  ulonglong matrix_counter;
   longlong unaff_R15;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar23;
-  undefined1 auVar21 [16];
-  undefined1 auVar22 [16];
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
+  float source_x, source_y, source_z, source_w;
+  float target_x, target_y, target_z, target_w;
+  float blend_x, blend_y, blend_z, blend_w;
+  float temp_x, temp_y, temp_z, temp_w;
+  float result_x, result_y, result_z, result_w;
+  undefined1 temp_vector_1[RENDERING_VECTOR_COMPONENTS * 4];
+  undefined1 temp_vector_2[RENDERING_VECTOR_COMPONENTS * 4];
+  float final_x, final_y, final_z, final_w;
+  float magnitude_x, magnitude_y, magnitude_z, magnitude_w;
+  float total_magnitude_xy, total_magnitude_zw;
+  float inverse_magnitude_x, inverse_magnitude_y, inverse_magnitude_z, inverse_magnitude_w;
   longlong in_stack_00000060;
   longlong in_stack_00000068;
   
-  uVar11 = (ulonglong)~param_4;
-  uVar12 = 0;
-  lVar10 = 0;
-  *(uint *)(unaff_RBP + 200) = ~param_4;
+  // 计算过滤掩码
+  matrix_counter = (ulonglong)~process_flag;
+  loop_counter = 0;
+  data_offset = 0;
+  
+  // 设置过滤标志
+  *(uint *)(unaff_RBP + 200) = ~process_flag;
+  
   do {
-    lVar2 = *(longlong *)(in_R11 + 0x68);
-    if ((((byte)(*(uint *)(lVar10 + lVar2) >> 2) | (byte)(*(uint *)(unaff_RBP + 0xc0) >> 2)) &
-         (byte)(uVar11 >> 2) & 1) == 0) {
-      pfVar1 = (float *)(lVar10 + 0x10 + lVar2);
-      fVar30 = *pfVar1;
-      fVar31 = pfVar1[1];
-      fVar32 = pfVar1[2];
-      fVar33 = pfVar1[3];
-      pfVar1 = (float *)(lVar10 + 0x20 + lVar2);
-      fVar25 = *pfVar1;
-      fVar18 = pfVar1[1];
-      fVar29 = pfVar1[2];
-      fVar28 = pfVar1[3];
+    source_start = *(longlong *)(in_R11 + 0x68);
+    
+    // 检查矩阵元素处理条件
+    if ((((byte)(*(uint *)(data_offset + source_start) >> 2) | (byte)(*(uint *)(unaff_RBP + 0xc0) >> 2)) &
+         (byte)(matrix_counter >> 2) & 1) == 0) {
+      
+      // 读取源矩阵数据
+      source_matrix = (float *)(data_offset + RENDERING_DATA_OFFSET_0x10 + source_start);
+      source_x = *source_matrix;
+      source_y = source_matrix[1];
+      source_z = source_matrix[2];
+      source_w = source_matrix[3];
+      
+      // 读取目标矩阵数据
+      target_matrix = (float *)(data_offset + RENDERING_DATA_OFFSET_0x20 + source_start);
+      target_x = *target_matrix;
+      target_y = target_matrix[1];
+      target_z = target_matrix[2];
+      target_w = target_matrix[3];
+      
+      // 如果存在目标资源，执行矩阵混合
       if (unaff_R13 != 0) {
-        lVar2 = *(longlong *)(unaff_R13 + 0x68);
-        lVar8 = *(longlong *)(unaff_R13 + 0x70) - lVar2;
-        if (uVar12 < (ulonglong)(lVar8 / 0xb0)) {
-          fVar28 = 1.0 - (*(float *)(param_3 + 0x13c) - *(float *)(param_3 + 0x144)) /
-                         *(float *)(param_3 + 0x13c);
-          if (0.001 <= fVar28) {
-            if (fVar28 <= 0.999) {
-              pfVar1 = (float *)(lVar2 + 0x10 + lVar10);
-              fVar20 = *pfVar1;
-              fVar19 = pfVar1[1];
-              fVar16 = pfVar1[2] * fVar32;
-              fVar17 = pfVar1[3] * fVar33;
+        target_start = *(longlong *)(unaff_R13 + 0x68);
+        target_size = *(longlong *)(unaff_R13 + 0x70) - target_start;
+        
+        if (loop_counter < (ulonglong)(target_size / RENDERING_DATA_BLOCK_SIZE)) {
+          // 计算混合因子
+          target_w = 1.0 - (*(float *)(render_context + 0x13c) - *(float *)(render_context + 0x144)) /
+                         *(float *)(render_context + 0x13c);
+          
+          if (RENDERING_THRESHOLD_MIN <= target_w) {
+            if (target_w <= RENDERING_THRESHOLD_MAX) {
+              // 执行矩阵混合运算
+              target_matrix = (float *)(target_start + RENDERING_DATA_OFFSET_0x10 + data_offset);
+              result_x = *target_matrix;
+              temp_x = target_matrix[1];
+              target_z = target_matrix[2] * source_z;
+              target_w = target_matrix[3] * source_w;
+              
+              // 初始化临时向量
               *(undefined4 *)(unaff_RBP + -0x60) = 0xbf800000;
               *(undefined4 *)(unaff_RBP + -0x5c) = 0xbf800000;
               *(undefined4 *)(unaff_RBP + -0x58) = 0xbf800000;
               *(undefined4 *)(unaff_RBP + -0x54) = 0xbf800000;
-              auVar22._0_4_ = fVar16 + fVar20 * fVar30;
-              auVar22._4_4_ = fVar17 + fVar19 * fVar31;
-              auVar22._8_4_ = fVar16 + fVar16;
-              auVar22._12_4_ = fVar17 + fVar17;
-              auVar21._4_12_ = auVar22._4_12_;
-              auVar21._0_4_ = auVar22._0_4_ + auVar22._4_4_;
+              
+              // 计算矩阵变换结果
+              temp_vector_2._0_4_ = target_z + result_x * source_x;
+              temp_vector_2._4_4_ = target_w + temp_x * source_y;
+              temp_vector_2._8_4_ = target_z + target_z;
+              temp_vector_2._12_4_ = target_w + target_w;
+              temp_vector_1._4_12_ = temp_vector_2._4_12_;
+              temp_vector_1._0_4_ = temp_vector_2._0_4_ + temp_vector_2._4_4_;
+              
+              // 设置单位矩阵
               *(undefined8 *)(unaff_RBP + -0x70) = 0x3f8000003f800000;
               *(undefined8 *)(unaff_RBP + -0x68) = 0x3f8000003f800000;
-              uVar7 = movmskps((uint)((ulonglong)lVar8 >> 0x3f),auVar21);
-              pfVar1 = (float *)(unaff_RBP + -0x70 + (ulonglong)(uVar7 & 1) * 0x10);
-              fVar20 = *pfVar1;
-              fVar19 = pfVar1[1];
-              fVar16 = pfVar1[2];
-              fVar17 = pfVar1[3];
-              pfVar1 = (float *)(lVar2 + 0x10 + lVar10);
-              fVar23 = *pfVar1;
-              fVar24 = pfVar1[1];
-              fVar26 = pfVar1[2];
-              fVar27 = pfVar1[3];
-              if (0.9995 < ABS(auVar21._0_4_)) {
-                fVar13 = 1.0 - fVar28;
-                fVar30 = fVar30 * fVar13 + fVar28 * fVar20 * fVar23;
-                fVar31 = fVar31 * fVar13 + fVar28 * fVar19 * fVar24;
-                fVar32 = fVar32 * fVar13 + fVar28 * fVar16 * fVar26;
-                fVar33 = fVar33 * fVar13 + fVar28 * fVar17 * fVar27;
-                fVar20 = fVar33 * fVar33 + fVar30 * fVar30;
-                fVar19 = fVar32 * fVar32 + fVar31 * fVar31;
-                fVar26 = fVar20 + fVar31 * fVar31 + fVar32 * fVar32;
-                fVar27 = fVar19 + fVar30 * fVar30 + fVar33 * fVar33;
-                auVar3._4_4_ = fVar20 + fVar19 + 1.1754944e-38;
-                auVar3._0_4_ = fVar19 + fVar20 + 1.1754944e-38;
-                auVar3._8_4_ = fVar26 + 1.1754944e-38;
-                auVar3._12_4_ = fVar27 + 1.1754944e-38;
-                auVar22 = rsqrtps(auVar21,auVar3);
-                fVar16 = auVar22._0_4_;
-                fVar17 = auVar22._4_4_;
-                fVar23 = auVar22._8_4_;
-                fVar24 = auVar22._12_4_;
-                fVar30 = fVar30 * (3.0 - fVar16 * fVar16 * (fVar19 + fVar20)) * fVar16 * 0.5;
-                fVar31 = fVar31 * (3.0 - fVar17 * fVar17 * (fVar20 + fVar19)) * fVar17 * 0.5;
-                fVar32 = fVar32 * (3.0 - fVar23 * fVar23 * fVar26) * fVar23 * 0.5;
-                fVar33 = fVar33 * (3.0 - fVar24 * fVar24 * fVar27) * fVar24 * 0.5;
+              
+              // 执行矩阵掩码操作
+              column_index = movmskps((uint)((ulonglong)target_size >> 0x3f), temp_vector_1);
+              target_matrix = (float *)(unaff_RBP + -0x70 + (ulonglong)(column_index & 1) * 0x10);
+              result_x = *target_matrix;
+              temp_x = target_matrix[1];
+              target_z = target_matrix[2];
+              target_w = target_matrix[3];
+              
+              // 重新读取目标矩阵
+              target_matrix = (float *)(target_start + RENDERING_DATA_OFFSET_0x10 + data_offset);
+              blend_x = *target_matrix;
+              blend_y = target_matrix[1];
+              blend_z = target_matrix[2];
+              blend_w = target_matrix[3];
+              
+              // 检查是否需要归一化
+              if (RENDERING_NORMALIZATION_THRESHOLD < ABS(temp_vector_1._0_4_)) {
+                // 执行快速归一化
+                temp_x = 1.0 - target_w;
+                source_x = source_x * temp_x + target_w * result_x * blend_x;
+                source_y = source_y * temp_x + target_w * temp_x * blend_y;
+                source_z = source_z * temp_x + target_w * target_z * blend_z;
+                source_w = source_w * temp_x + target_w * target_w * blend_w;
+                
+                // 计算向量长度
+                result_x = source_w * source_w + source_x * source_x;
+                temp_x = source_z * source_z + source_y * source_y;
+                blend_z = result_x + source_y * source_y + source_z * source_z;
+                blend_w = temp_x + source_x * source_x + source_w * source_w;
+                
+                // 准备归一化计算
+                temp_vector_1._4_4_ = result_x + temp_x + RENDERING_FLOAT_MIN_VALUE;
+                temp_vector_1._0_4_ = temp_x + result_x + RENDERING_FLOAT_MIN_VALUE;
+                temp_vector_1._8_4_ = blend_z + RENDERING_FLOAT_MIN_VALUE;
+                temp_vector_1._12_4_ = blend_w + RENDERING_FLOAT_MIN_VALUE;
+                temp_vector_2 = rsqrtps(temp_vector_1, temp_vector_1);
+                
+                // 应用归一化
+                target_z = temp_vector_2._0_4_;
+                target_w = temp_vector_2._4_4_;
+                result_x = temp_vector_2._8_4_;
+                temp_x = temp_vector_2._12_4_;
+                source_x = source_x * (3.0 - target_z * target_z * (temp_x + result_x)) * target_z * 0.5;
+                source_y = source_y * (3.0 - target_w * target_w * (result_x + temp_x)) * target_w * 0.5;
+                source_z = source_z * (3.0 - result_x * result_x * blend_z) * result_x * 0.5;
+                source_w = source_w * (3.0 - temp_x * temp_x * blend_w) * temp_x * 0.5;
               }
               else {
-                fVar13 = (float)acosf();
-                fVar14 = (float)sinf();
-                fVar15 = (float)sinf(fVar13 - fVar13 * fVar28);
-                fVar15 = fVar15 * (1.0 / fVar14);
-                fVar13 = (float)sinf(fVar13 * fVar28);
-                fVar13 = fVar13 * (1.0 / fVar14);
-                fVar30 = fVar15 * fVar30 + fVar13 * fVar20 * fVar23;
-                fVar31 = fVar15 * fVar31 + fVar13 * fVar19 * fVar24;
-                fVar32 = fVar15 * fVar32 + fVar13 * fVar16 * fVar26;
-                fVar33 = fVar15 * fVar33 + fVar13 * fVar17 * fVar27;
+                // 执行球形线性插值
+                temp_x = (float)acosf();
+                temp_y = (float)sinf();
+                temp_z = (float)sinf(temp_x - temp_x * target_w);
+                temp_z = temp_z * (1.0 / temp_y);
+                temp_x = (float)sinf(temp_x * target_w);
+                temp_x = temp_x * (1.0 / temp_y);
+                source_x = temp_z * source_x + temp_x * result_x * blend_x;
+                source_y = temp_z * source_y + temp_x * temp_x * blend_y;
+                source_z = temp_z * source_z + temp_x * target_z * blend_z;
+                source_w = temp_z * source_w + temp_x * target_w * blend_w;
               }
             }
             else {
-              pfVar1 = (float *)(lVar2 + 0x10 + lVar10);
-              fVar30 = *pfVar1;
-              fVar31 = pfVar1[1];
-              fVar32 = pfVar1[2];
-              fVar33 = pfVar1[3];
+              // 直接使用目标矩阵数据
+              target_matrix = (float *)(target_start + RENDERING_DATA_OFFSET_0x10 + data_offset);
+              source_x = *target_matrix;
+              source_y = target_matrix[1];
+              source_z = target_matrix[2];
+              source_w = target_matrix[3];
             }
           }
-          fVar20 = 1.0 - fVar28;
-          fVar25 = fVar28 * *(float *)(lVar10 + 0x20 + lVar2) + fVar25 * fVar20;
-          fVar18 = fVar28 * *(float *)(lVar10 + 0x24 + lVar2) + fVar18 * fVar20;
-          fVar29 = fVar28 * *(float *)(lVar10 + 0x28 + lVar2) + fVar29 * fVar20;
-          fVar28 = 3.4028235e+38;
+          
+          // 应用混合因子
+          result_x = 1.0 - target_w;
+          target_x = target_w * *(float *)(data_offset + RENDERING_DATA_OFFSET_0x20 + target_start) + target_x * result_x;
+          target_y = target_w * *(float *)(data_offset + RENDERING_DATA_OFFSET_0x24 + target_start) + target_y * result_x;
+          target_z = target_w * *(float *)(data_offset + RENDERING_DATA_OFFSET_0x28 + target_start) + target_z * result_x;
+          target_w = RENDERING_FLOAT_MAX_VALUE;
         }
       }
-      puVar9 = (uint *)((longlong)(char)unaff_ESI * 0x100 + *(longlong *)(unaff_R15 + 0x18));
-      *(float *)(unaff_RBP + -0x80) = fVar25;
-      *(float *)(unaff_RBP + -0x7c) = fVar18;
-      *(float *)(unaff_RBP + -0x78) = fVar29;
-      *(float *)(unaff_RBP + -0x74) = fVar28;
+      
+      // 准备输出缓冲区
+      target_matrix = (uint *)((longlong)(char)unaff_ESI * 0x100 + *(longlong *)(unaff_R15 + 0x18));
+      
+      // 保存计算结果
+      *(float *)(unaff_RBP + -0x80) = target_x;
+      *(float *)(unaff_RBP + -0x7c) = target_y;
+      *(float *)(unaff_RBP + -0x78) = target_z;
+      *(float *)(unaff_RBP + -0x74) = target_w;
+      
+      // 线程安全锁定
       do {
         LOCK();
-        uVar7 = *puVar9;
-        *puVar9 = *puVar9 | 1;
+        column_index = *target_matrix;
+        *target_matrix = *target_matrix | 1;
         UNLOCK();
-      } while ((uVar7 & 1) != 0);
-      uVar7 = *(uint *)(unaff_RBP + -0x80);
-      uVar4 = *(uint *)(unaff_RBP + -0x7c);
-      uVar5 = *(uint *)(unaff_RBP + -0x78);
-      uVar6 = *(uint *)(unaff_RBP + -0x74);
-      puVar9[1] = (uint)fVar30;
-      puVar9[2] = (uint)fVar31;
-      puVar9[3] = (uint)fVar32;
-      puVar9[4] = (uint)fVar33;
-      puVar9[5] = uVar7;
-      puVar9[6] = uVar4;
-      puVar9[7] = uVar5;
-      puVar9[8] = uVar6;
-      *puVar9 = 0;
-      FUN_1802feba0(fVar30,(longlong)(ulonglong)(uint)((int)puVar9 - *(int *)(unaff_R15 + 0x18)) >>
-                           8);
-      uVar11 = (ulonglong)*(uint *)(unaff_RBP + 200);
-      param_3 = in_stack_00000060;
+      } while ((column_index & 1) != 0);
+      
+      // 读取结果数据
+      column_index = *(uint *)(unaff_RBP + -0x80);
+      row_index = *(uint *)(unaff_RBP + -0x7c);
+      process_counter = *(uint *)(unaff_RBP + -0x78);
+      process_flag = *(uint *)(unaff_RBP + -0x74);
+      
+      // 写入矩阵处理结果
+      target_matrix[1] = (uint)source_x;
+      target_matrix[2] = (uint)source_y;
+      target_matrix[3] = (uint)source_z;
+      target_matrix[4] = (uint)source_w;
+      target_matrix[5] = column_index;
+      target_matrix[6] = row_index;
+      target_matrix[7] = process_counter;
+      target_matrix[8] = process_flag;
+      *target_matrix = 0;
+      
+      // 调用处理函数
+      FUN_1802feba0(source_x, (longlong)(ulonglong)(uint)((int)target_matrix - *(int *)(unaff_R15 + 0x18)) >> 8);
+      
+      // 更新循环变量
+      matrix_counter = (ulonglong)*(uint *)(unaff_RBP + 200);
+      render_context = in_stack_00000060;
       in_R11 = in_stack_00000068;
     }
+    
+    // 更新循环计数器
     unaff_ESI = unaff_ESI + 1;
-    uVar12 = uVar12 + 1;
-    lVar10 = lVar10 + 0xb0;
+    loop_counter = loop_counter + 1;
+    data_offset = data_offset + RENDERING_DATA_BLOCK_SIZE;
   } while (unaff_ESI < unaff_R12D);
-                    // WARNING: Subroutine does not return
+  
+  // 安全检查：验证栈保护
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x50) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_180334fd7(void)
-void FUN_180334fd7(void)
-
+/**
+ * 渲染系统空函数1
+ * 
+ * 这是一个占位符函数，用于保持系统架构的完整性。
+ */
+void RenderingSystem_EmptyFunction1(void)
 {
   longlong unaff_RBP;
   
-                    // WARNING: Subroutine does not return
+  // 安全检查：验证栈保护
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x50) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-undefined8 * FUN_180335000(longlong param_1)
-
+/**
+ * 渲染系统资源管理器
+ * 
+ * 该函数负责管理渲染系统的资源分配和释放，包括：
+ * - 资源查找和分配
+ * - 内存管理和优化
+ * - 数据结构维护
+ * - 线程安全操作
+ * - 资源清理和回收
+ * 
+ * @param resource_context 资源上下文指针
+ * @return 资源指针或NULL
+ */
+undefined8 *RenderingSystem_ResourceManager(longlong resource_context)
 {
-  uint *puVar1;
-  uint uVar2;
-  int *piVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  int aiStackX_8 [2];
-  int iStackX_10;
-  undefined1 auStackX_18 [8];
-  undefined1 auStackX_20 [8];
+  uint *resource_data;
+  uint resource_index;
+  int *resource_count;
+  undefined8 *resource_ptr;
+  undefined8 *prev_resource;
+  undefined8 *next_resource;
+  undefined8 *current_resource;
+  undefined8 *target_resource;
+  int search_index[2];
+  int current_offset;
+  undefined1 temp_buffer_1[8];
+  undefined1 temp_buffer_2[8];
   
-  puVar6 = (undefined8 *)(param_1 + 0x958);
-  puVar5 = *(undefined8 **)(param_1 + 0x968);
-  aiStackX_8[0] = *(int *)(param_1 + 0x160) + -5;
-  puVar7 = puVar5;
-  puVar8 = puVar6;
-  if (puVar5 != (undefined8 *)0x0) {
+  // 初始化资源指针
+  current_resource = (undefined8 *)(resource_context + 0x958);
+  prev_resource = *(undefined8 **)(resource_context + 0x968);
+  search_index[0] = *(int *)(resource_context + 0x160) + -5;
+  target_resource = prev_resource;
+  next_resource = current_resource;
+  
+  // 查找合适的资源位置
+  if (prev_resource != (undefined8 *)0x0) {
     do {
-      if (*(int *)(puVar7 + 4) < aiStackX_8[0]) {
-        puVar7 = (undefined8 *)*puVar7;
+      if (*(int *)(target_resource + 4) < search_index[0]) {
+        target_resource = (undefined8 *)*target_resource;
       }
       else {
-        puVar8 = puVar7;
-        puVar7 = (undefined8 *)puVar7[1];
+        next_resource = target_resource;
+        target_resource = (undefined8 *)target_resource[1];
       }
-    } while (puVar7 != (undefined8 *)0x0);
-    puVar7 = (undefined8 *)0x0;
-    if ((puVar8 != puVar6) && (puVar4 = puVar6, *(int *)(puVar8 + 4) <= aiStackX_8[0])) {
-      while (puVar5 != (undefined8 *)0x0) {
-        if (*(int *)(puVar5 + 4) < aiStackX_8[0]) {
-          puVar5 = (undefined8 *)*puVar5;
+    } while (target_resource != (undefined8 *)0x0);
+    
+    target_resource = (undefined8 *)0x0;
+    
+    // 检查资源是否在有效范围内
+    if ((next_resource != current_resource) && (resource_ptr = current_resource, *(int *)(next_resource + 4) <= search_index[0])) {
+      while (prev_resource != (undefined8 *)0x0) {
+        if (*(int *)(prev_resource + 4) < search_index[0]) {
+          prev_resource = (undefined8 *)*prev_resource;
         }
         else {
-          puVar4 = puVar5;
-          puVar5 = (undefined8 *)puVar5[1];
+          resource_ptr = prev_resource;
+          prev_resource = (undefined8 *)prev_resource[1];
         }
       }
-      if ((puVar4 == puVar6) || (aiStackX_8[0] < *(int *)(puVar4 + 4))) {
-        puVar4 = (undefined8 *)FUN_180179aa0(puVar6,auStackX_18,aiStackX_8[0],puVar4,aiStackX_8);
-        puVar4 = (undefined8 *)*puVar4;
+      
+      // 创建新资源
+      if ((resource_ptr == current_resource) || (search_index[0] < *(int *)(resource_ptr + 4))) {
+        resource_ptr = (undefined8 *)FUN_180179aa0(current_resource, temp_buffer_1, search_index[0], resource_ptr, search_index);
+        resource_ptr = (undefined8 *)*resource_ptr;
       }
-      puVar7 = (undefined8 *)(ulonglong)*(uint *)puVar4[5];
-      if (*(uint *)puVar4[5] != 0) {
-        iStackX_10 = *(int *)(param_1 + 0x160) + -5;
-        puVar5 = puVar6;
-        puVar7 = *(undefined8 **)(param_1 + 0x968);
-        while (puVar7 != (undefined8 *)0x0) {
-          if (*(int *)(puVar7 + 4) < iStackX_10) {
-            puVar7 = (undefined8 *)*puVar7;
+      
+      // 获取资源数据
+      target_resource = (undefined8 *)(ulonglong)*(uint *)resource_ptr[5];
+      
+      if (*(uint *)resource_ptr[5] != 0) {
+        current_offset = *(int *)(resource_context + 0x160) + -5;
+        prev_resource = current_resource;
+        target_resource = *(undefined8 **)(resource_context + 0x968);
+        
+        // 再次查找资源位置
+        while (target_resource != (undefined8 *)0x0) {
+          if (*(int *)(target_resource + 4) < current_offset) {
+            target_resource = (undefined8 *)*target_resource;
           }
           else {
-            puVar5 = puVar7;
-            puVar7 = (undefined8 *)puVar7[1];
+            prev_resource = target_resource;
+            target_resource = (undefined8 *)target_resource[1];
           }
         }
-        if ((puVar5 == puVar6) || (iStackX_10 < *(int *)(puVar5 + 4))) {
-          puVar5 = (undefined8 *)FUN_180179aa0(puVar6,auStackX_20);
-          puVar5 = (undefined8 *)*puVar5;
+        
+        // 创建资源项
+        if ((prev_resource == current_resource) || (current_offset < *(int *)(prev_resource + 4))) {
+          prev_resource = (undefined8 *)FUN_180179aa0(current_resource, temp_buffer_2);
+          prev_resource = (undefined8 *)*prev_resource;
         }
-        piVar3 = (int *)puVar5[5];
-        puVar6 = (undefined8 *)0x0;
+        
+        // 获取资源计数
+        resource_count = (int *)prev_resource[5];
+        current_resource = (undefined8 *)0x0;
+        
+        // 线程安全锁定
         LOCK();
-        puVar1 = (uint *)(*(longlong *)(param_1 + 0x2d8) + 0x51d0);
-        uVar2 = *puVar1;
-        *puVar1 = 0;
+        resource_data = (uint *)(*(longlong *)(resource_context + 0x2d8) + 0x51d0);
+        resource_index = *resource_data;
+        *resource_data = 0;
         UNLOCK();
-        puVar7 = (undefined8 *)(ulonglong)uVar2;
-        if (*piVar3 != 0) {
-          FUN_1801b9a40(*(longlong *)(param_1 + 0x2d8) + 0x51d0,*piVar3);
-          if (*piVar3 != 0) {
-            puVar6 = (undefined8 *)(ulonglong)((*piVar3 - 1U >> 0xc) + 1);
+        
+        target_resource = (undefined8 *)(ulonglong)resource_index;
+        
+        // 处理资源数据
+        if (*resource_count != 0) {
+          FUN_1801b9a40(*(longlong *)(resource_context + 0x2d8) + 0x51d0, *resource_count);
+          if (*resource_count != 0) {
+            current_resource = (undefined8 *)(ulonglong)((*resource_count - 1U >> 0xc) + 1);
           }
-          puVar7 = puVar6;
-          if ((int)puVar6 != 0) {
-                    // WARNING: Subroutine does not return
-            memcpy(*(undefined8 *)(*(longlong *)(param_1 + 0x2d8) + 0x51d8),
-                   *(undefined8 *)(piVar3 + 2),0x20000);
+          target_resource = current_resource;
+          
+          // 复制资源数据
+          if ((int)current_resource != 0) {
+            memcpy(*(undefined8 *)(*(longlong *)(resource_context + 0x2d8) + 0x51d8),
+                   *(undefined8 *)(resource_count + 2), RENDERING_MEMORY_BLOCK_SIZE);
           }
         }
       }
     }
   }
-  return puVar7;
+  
+  return target_resource;
 }
 
-
-
-undefined4 FUN_1803350cd(undefined8 *param_1,int param_2)
-
+/**
+ * 渲染系统资源处理器
+ * 
+ * 该函数负责处理资源的具体操作，包括：
+ * - 资源查找和验证
+ * - 数据复制和管理
+ * - 内存分配和释放
+ * - 线程安全操作
+ * 
+ * @param resource_ptr 资源指针
+ * @param search_index 搜索索引
+ * @return 处理结果
+ */
+undefined4 RenderingSystem_ResourceHandler(undefined8 *resource_ptr, int search_index)
 {
-  undefined4 *puVar1;
-  int *piVar2;
-  int iVar3;
-  undefined4 uVar4;
-  undefined8 *in_RAX;
-  undefined8 *puVar5;
+  undefined4 *result_ptr;
+  int *resource_count;
+  int process_result;
+  undefined4 result_value;
+  undefined8 *current_ptr;
+  undefined8 *target_ptr;
   undefined8 *unaff_RBX;
   longlong unaff_RBP;
-  int iStack0000000000000068;
+  int stack_index;
   
-  if (param_1 != (undefined8 *)0x0) {
+  // 查找资源位置
+  if (resource_ptr != (undefined8 *)0x0) {
     do {
-      if (*(int *)(param_1 + 4) < param_2) {
-        puVar5 = (undefined8 *)*param_1;
+      if (*(int *)(resource_ptr + 4) < search_index) {
+        target_ptr = (undefined8 *)*resource_ptr;
       }
       else {
-        puVar5 = (undefined8 *)param_1[1];
-        in_RAX = param_1;
+        target_ptr = (undefined8 *)resource_ptr[1];
+        current_ptr = resource_ptr;
       }
-      param_1 = puVar5;
-    } while (puVar5 != (undefined8 *)0x0);
+      resource_ptr = target_ptr;
+    } while (target_ptr != (undefined8 *)0x0);
   }
-  iStack0000000000000068 = param_2;
-  if ((in_RAX == unaff_RBX) || (param_2 < *(int *)(in_RAX + 4))) {
-    puVar5 = (undefined8 *)FUN_180179aa0();
-    in_RAX = (undefined8 *)*puVar5;
+  
+  // 设置栈索引
+  stack_index = search_index;
+  
+  // 检查资源有效性
+  if ((current_ptr == unaff_RBX) || (search_index < *(int *)(current_ptr + 4))) {
+    target_ptr = (undefined8 *)FUN_180179aa0();
+    current_ptr = (undefined8 *)*target_ptr;
   }
-  piVar2 = (int *)in_RAX[5];
-  iVar3 = 0;
+  
+  // 获取资源计数
+  resource_count = (int *)current_ptr[5];
+  process_result = 0;
+  
+  // 线程安全锁定
   LOCK();
-  puVar1 = (undefined4 *)(*(longlong *)(unaff_RBP + 0x2d8) + 0x51d0);
-  uVar4 = *puVar1;
-  *puVar1 = 0;
+  result_ptr = (undefined4 *)(*(longlong *)(unaff_RBP + 0x2d8) + 0x51d0);
+  result_value = *result_ptr;
+  *result_ptr = 0;
   UNLOCK();
-  if (*piVar2 != 0) {
-    FUN_1801b9a40(*(longlong *)(unaff_RBP + 0x2d8) + 0x51d0,*piVar2);
-    if (*piVar2 != 0) {
-      iVar3 = (*piVar2 - 1U >> 0xc) + 1;
+  
+  // 处理资源数据
+  if (*resource_count != 0) {
+    FUN_1801b9a40(*(longlong *)(unaff_RBP + 0x2d8) + 0x51d0, *resource_count);
+    if (*resource_count != 0) {
+      process_result = (*resource_count - 1U >> 0xc) + 1;
     }
-    if (iVar3 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(*(undefined8 *)(*(longlong *)(unaff_RBP + 0x2d8) + 0x51d8),*(undefined8 *)(piVar2 + 2),
-             0x20000);
+    
+    // 复制资源数据
+    if (process_result != 0) {
+      memcpy(*(undefined8 *)(*(longlong *)(unaff_RBP + 0x2d8) + 0x51d8), 
+             *(undefined8 *)(resource_count + 2), RENDERING_MEMORY_BLOCK_SIZE);
     }
-    uVar4 = 0;
+    result_value = 0;
   }
-  return uVar4;
+  
+  return result_value;
 }
 
-
-
-
-
-// 函数: void FUN_180335140(void)
-void FUN_180335140(void)
-
+/**
+ * 渲染系统内存清理器
+ * 
+ * 该函数负责清理渲染系统的内存资源，包括：
+ * - 内存释放和回收
+ * - 资源数据清理
+ * - 缓冲区管理
+ * - 线程安全操作
+ */
+void RenderingSystem_MemoryCleaner(void)
 {
-  int iVar1;
+  int cleanup_result;
   longlong unaff_RBX;
   longlong unaff_RBP;
   int *unaff_RDI;
   
+  // 清理资源数据
   FUN_1801b9a40(*(longlong *)(unaff_RBP + 0x2d8) + 0x51d0);
+  
+  // 计算清理范围
   if (*unaff_RDI == 0) {
-    iVar1 = (int)unaff_RBX;
+    cleanup_result = (int)unaff_RBX;
   }
   else {
-    iVar1 = (*unaff_RDI - 1U >> 0xc) + 1;
+    cleanup_result = (*unaff_RDI - 1U >> 0xc) + 1;
   }
-  if (iVar1 != 0) {
-                    // WARNING: Subroutine does not return
+  
+  // 执行内存清理
+  if (cleanup_result != 0) {
     memcpy(*(undefined8 *)(*(longlong *)(unaff_RBP + 0x2d8) + 0x51d8 + unaff_RBX * 8),
-           *(undefined8 *)(unaff_RDI + unaff_RBX * 2 + 2),0x20000);
+           *(undefined8 *)(unaff_RDI + unaff_RBX * 2 + 2), RENDERING_MEMORY_BLOCK_SIZE);
   }
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_18033519d(void)
-void FUN_18033519d(void)
-
-{
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_1803351a2(void)
-void FUN_1803351a2(void)
-
-{
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_1803351b0(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4)
-void FUN_1803351b0(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4)
-
-{
-  int iVar1;
-  undefined8 uVar2;
-  longlong lVar3;
-  longlong lVar4;
-  undefined *puVar5;
-  longlong lVar6;
-  undefined *puVar7;
-  longlong lVar8;
-  uint uVar9;
-  uint *puVar10;
-  longlong lStackX_18;
-  longlong lStackX_20;
-  longlong lStack_70;
-  uint *puStack_68;
-  longlong lStack_60;
-  undefined2 uStack_58;
-  undefined1 uStack_56;
   
-  lStack_70 = 0;
-  puStack_68 = (uint *)0x0;
-  lStack_60 = 0;
-  uStack_58 = 0;
-  uStack_56 = 3;
-  uVar2 = *(undefined8 *)(param_1 + 0x868);
-  lStackX_18 = param_3;
-  FUN_180639bf0(&lStack_70,8,param_3,param_4,0xfffffffffffffffe);
-  *(undefined8 *)puStack_68 = uVar2;
-  puVar10 = (uint *)((longlong)puStack_68 + 8);
-  lStackX_20 = param_1 + 0x848;
-  lVar6 = *(longlong *)(param_1 + 0x850);
-  lVar8 = lStack_70;
-  puStack_68 = puVar10;
-  if (lVar6 != lStackX_20) {
+  return;
+}
+
+/**
+ * 渲染系统空函数2
+ * 
+ * 这是一个占位符函数，用于保持系统架构的完整性。
+ */
+void RenderingSystem_EmptyFunction2(void)
+{
+  return;
+}
+
+/**
+ * 渲染系统空函数3
+ * 
+ * 这是一个占位符函数，用于保持系统架构的完整性。
+ */
+void RenderingSystem_EmptyFunction3(void)
+{
+  return;
+}
+
+/**
+ * 渲染系统数据序列化器
+ * 
+ * 该函数负责将渲染系统数据进行序列化处理，包括：
+ * - 数据格式转换
+ * - 文件写入操作
+ * - 缓冲区管理
+ * - 资源清理
+ * - 错误处理
+ * 
+ * @param serialize_context 序列化上下文
+ * @param file_context 文件上下文
+ * @param data_context 数据上下文
+ * @param format_context 格式上下文
+ */
+void RenderingSystem_DataSerializer(longlong serialize_context, longlong file_context, 
+                                   longlong data_context, undefined8 format_context)
+{
+  int data_size;
+  undefined8 format_data;
+  longlong data_start;
+  longlong data_end;
+  undefined *data_ptr;
+  longlong data_offset;
+  undefined *next_ptr;
+  longlong buffer_size;
+  uint *output_buffer;
+  longlong stack_offset;
+  longlong buffer_start;
+  uint *stack_buffer;
+  longlong stack_data;
+  undefined2 stack_flag;
+  undefined1 stack_type;
+  
+  // 初始化缓冲区
+  buffer_start = 0;
+  stack_buffer = (uint *)0x0;
+  stack_data = 0;
+  stack_flag = 0;
+  stack_type = 3;
+  
+  // 获取格式数据
+  format_data = *(undefined8 *)(serialize_context + 0x868);
+  stack_offset = data_context;
+  
+  // 初始化序列化缓冲区
+  FUN_180639bf0(&buffer_start, 8, data_context, format_context, 0xfffffffffffffffe);
+  
+  // 设置输出缓冲区
+  *(undefined8 *)stack_buffer = format_data;
+  output_buffer = (uint *)((longlong)stack_buffer + 8);
+  data_end = serialize_context + 0x848;
+  data_offset = *(longlong *)(serialize_context + 0x850);
+  buffer_size = buffer_start;
+  stack_buffer = output_buffer;
+  
+  // 处理数据序列化
+  if (data_offset != data_end) {
     do {
-      iVar1 = *(int *)(lVar6 + 0x20);
-      lVar3 = *(longlong *)(lVar6 + 0x30);
-      lVar4 = *(longlong *)(lVar6 + 0x28);
-      if ((ulonglong)((lVar8 - (longlong)puVar10) + lStack_60) < 9) {
-        FUN_180639bf0(&lStack_70,(longlong)puVar10 + (8 - lVar8));
-        lVar8 = lStack_70;
-        puVar10 = puStack_68;
+      data_size = *(int *)(data_offset + 0x20);
+      data_start = *(longlong *)(data_offset + 0x30);
+      data_end = *(longlong *)(data_offset + 0x28);
+      
+      // 检查缓冲区空间
+      if ((ulonglong)((buffer_size - (longlong)output_buffer) + stack_data) < 9) {
+        FUN_180639bf0(&buffer_start, (longlong)output_buffer + (8 - buffer_size));
+        buffer_size = buffer_start;
+        output_buffer = stack_buffer;
       }
-      *(longlong *)puVar10 = (longlong)iVar1;
-      puStack_68 = puVar10 + 2;
-      if ((ulonglong)((lVar8 - (longlong)puStack_68) + lStack_60) < 5) {
-        FUN_180639bf0(&lStack_70,(longlong)puStack_68 + (4 - lVar8));
-        lVar8 = lStack_70;
+      
+      // 写入数据大小
+      *(longlong *)output_buffer = (longlong)data_size;
+      stack_buffer = output_buffer + 2;
+      
+      // 检查缓冲区空间
+      if ((ulonglong)((buffer_size - (longlong)stack_buffer) + stack_data) < 5) {
+        FUN_180639bf0(&buffer_start, (longlong)stack_buffer + (4 - buffer_size));
+        buffer_size = buffer_start;
       }
-      uVar9 = (uint)(lVar3 - lVar4 >> 3);
-      *puStack_68 = uVar9;
-      puVar10 = puStack_68 + 1;
-      puStack_68 = puVar10;
-      if (0 < (int)uVar9) {
-        lVar6 = **(longlong **)(lVar6 + 0x28);
-        uVar9 = *(uint *)(lVar6 + 0x58);
-        if ((ulonglong)((lVar8 - (longlong)puVar10) + lStack_60) <= (ulonglong)uVar9 + 4) {
-          FUN_180639bf0(&lStack_70,(((ulonglong)uVar9 + 4) - lVar8) + (longlong)puVar10);
+      
+      // 计算数据范围
+      format_data = (uint)(data_start - data_end >> 3);
+      *stack_buffer = (uint)format_data;
+      output_buffer = stack_buffer + 1;
+      stack_buffer = output_buffer;
+      
+      // 处理数据块
+      if (0 < (int)format_data) {
+        data_offset = **(longlong **)(data_offset + 0x28);
+        format_data = *(uint *)(data_offset + 0x58);
+        
+        // 检查缓冲区空间
+        if ((ulonglong)((buffer_size - (longlong)output_buffer) + stack_data) <= (ulonglong)format_data + 4) {
+          FUN_180639bf0(&buffer_start, (((ulonglong)format_data + 4) - buffer_size) + (longlong)output_buffer);
         }
-        *puStack_68 = uVar9;
-        puStack_68 = puStack_68 + 1;
-        puVar5 = *(undefined **)(lVar6 + 0x50);
-        puVar7 = &DAT_18098bc73;
-        if (puVar5 != (undefined *)0x0) {
-          puVar7 = puVar5;
+        
+        // 写入数据大小
+        *stack_buffer = (uint)format_data;
+        stack_buffer = stack_buffer + 1;
+        
+        // 获取数据指针
+        data_ptr = *(undefined **)(data_offset + 0x50);
+        next_ptr = &DAT_18098bc73;
+        if (data_ptr != (undefined *)0x0) {
+          next_ptr = data_ptr;
         }
-                    // WARNING: Subroutine does not return
-        memcpy(puStack_68,puVar7,uVar9);
+        
+        // 复制数据
+        memcpy(stack_buffer, next_ptr, format_data);
       }
-      lVar6 = func_0x00018066bd70(lVar6);
-    } while (lVar6 != lStackX_20);
+      
+      // 移动到下一个数据块
+      data_offset = func_0x00018066bd70(data_offset);
+    } while (data_offset != data_end);
   }
-  lStackX_18 = lStack_60;
-  fwrite(&lStackX_18,8,1,*(undefined8 *)(param_2 + 8));
-  fwrite(lVar8,lStackX_18,1,*(undefined8 *)(param_2 + 8));
-  if (((char)uStack_58 == '\0') && (lVar8 != 0)) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(lVar8);
+  
+  // 更新栈偏移
+  stack_offset = stack_data;
+  
+  // 写入文件头
+  fwrite(&stack_offset, 8, 1, *(undefined8 *)(file_context + 8));
+  
+  // 写入数据
+  fwrite(buffer_size, stack_offset, 1, *(undefined8 *)(file_context + 8));
+  
+  // 清理缓冲区
+  if (((char)stack_flag == '\0') && (buffer_size != 0)) {
+    FUN_18064e900(buffer_size);
   }
+  
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180335590(longlong param_1,longlong param_2,undefined8 param_3)
-void FUN_180335590(longlong param_1,longlong param_2,undefined8 param_3)
-
+/**
+ * 渲染系统数据反序列化器
+ * 
+ * 该函数负责将序列化的数据进行反序列化处理，包括：
+ * - 数据读取和解析
+ * - 格式转换
+ * - 资源重建
+ * - 内存管理
+ * - 错误处理
+ * 
+ * @param deserialize_context 反序列化上下文
+ * @param file_context 文件上下文
+ * @param format_context 格式上下文
+ */
+void RenderingSystem_DataDeserializer(longlong deserialize_context, longlong file_context, undefined8 format_context)
 {
-  longlong *plVar1;
-  undefined8 *puVar2;
-  uint uVar3;
-  undefined8 uVar4;
-  ulonglong uVar5;
-  undefined4 *puVar6;
-  undefined8 *puVar7;
-  longlong lVar8;
-  undefined8 *puVar9;
-  longlong lVar10;
-  undefined8 *puVar11;
-  uint *puVar12;
-  undefined8 *puVar13;
-  int iVar14;
-  uint *puVar15;
-  undefined4 uVar16;
-  longlong lStackX_10;
-  undefined8 uStackX_18;
-  ulonglong uStackX_20;
-  undefined1 auStack_70 [8];
-  longlong lStack_68;
-  uint *puStack_60;
-  undefined8 uStack_58;
-  undefined2 uStack_50;
-  undefined1 uStack_4e;
+  longlong *data_ptr;
+  undefined8 *resource_ptr;
+  uint resource_size;
+  undefined8 resource_data;
+  ulonglong data_counter;
+  undefined4 *block_ptr;
+  undefined8 *temp_ptr;
+  longlong buffer_size;
+  undefined8 *resource_list;
+  longlong data_offset;
+  undefined8 *current_resource;
+  uint *output_buffer;
+  undefined8 *next_resource;
+  int process_index;
+  uint *resource_buffer;
+  undefined4 result_value;
+  longlong stack_offset;
+  undefined8 stack_data;
+  ulonglong stack_counter;
+  undefined1 temp_buffer[8];
+  longlong stack_buffer;
+  uint *stack_data_ptr;
+  undefined8 stack_value;
+  undefined2 stack_flag;
+  undefined1 stack_type;
   
-  lStackX_10 = 0;
-  uStackX_18 = param_3;
-  fread(&lStackX_10,8,1,*(undefined8 *)(param_2 + 8));
-  lStack_68 = 0;
-  puStack_60 = (uint *)0x0;
-  uStack_58 = 0;
-  uStack_50 = 0;
-  uStack_4e = 3;
-  if (lStackX_10 != 0) {
-    FUN_180639bf0(&lStack_68);
+  // 初始化变量
+  stack_offset = 0;
+  stack_data = format_context;
+  
+  // 读取文件头
+  fread(&stack_offset, 8, 1, *(undefined8 *)(file_context + 8));
+  
+  // 初始化缓冲区
+  stack_buffer = 0;
+  stack_data_ptr = (uint *)0x0;
+  stack_value = 0;
+  stack_flag = 0;
+  stack_type = 3;
+  
+  // 分配缓冲区
+  if (stack_offset != 0) {
+    FUN_180639bf0(&stack_buffer);
   }
-  lVar8 = lStack_68;
-  fread(lStack_68,lStackX_10,1,*(undefined8 *)(param_2 + 8));
-  lVar10 = *(longlong *)puStack_60;
-  puVar12 = (uint *)((longlong)puStack_60 + 8);
-  puStack_60 = puVar12;
+  
+  buffer_size = stack_buffer;
+  
+  // 读取数据
+  fread(stack_buffer, stack_offset, 1, *(undefined8 *)(file_context + 8));
+  
+  data_offset = *(longlong *)stack_data_ptr;
+  output_buffer = (uint *)((longlong)stack_data_ptr + 8);
+  stack_data_ptr = output_buffer;
+  
   do {
-    if (lVar10 == 0) {
-      if (((char)uStack_50 == '\0') && (lVar8 != 0)) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(lVar8);
+    // 检查数据结束
+    if (data_offset == 0) {
+      if (((char)stack_flag == '\0') && (buffer_size != 0)) {
+        FUN_18064e900(buffer_size);
       }
       return;
     }
-    uVar4 = *(undefined8 *)puVar12;
-    puVar15 = puVar12 + 2;
-    puVar12 = puVar12 + 3;
-    puStack_60 = puVar12;
-    if (0 < (int)*puVar15) {
-      puVar2 = (undefined8 *)(param_1 + 0x848);
-      iVar14 = (int)uVar4;
-      uVar5 = (ulonglong)uStackX_18 >> 0x20;
-      uStackX_18 = CONCAT44((int)uVar5,iVar14);
-      uStackX_20 = (ulonglong)*puVar15;
+    
+    // 读取资源数据
+    resource_data = *(undefined8 *)output_buffer;
+    resource_buffer = output_buffer + 2;
+    output_buffer = output_buffer + 3;
+    stack_data_ptr = output_buffer;
+    
+    // 处理资源数据
+    if (0 < (int)*resource_buffer) {
+      resource_ptr = (undefined8 *)(deserialize_context + 0x848);
+      process_index = (int)resource_data;
+      data_counter = (ulonglong)stack_data >> 0x20;
+      stack_data = CONCAT44((int)data_counter, process_index);
+      stack_counter = (ulonglong)*resource_buffer;
+      
       do {
-        puVar6 = (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18,0x68,8,3);
-        plVar1 = (longlong *)(puVar6 + 0x12);
-        *plVar1 = (longlong)&UNK_18098bcb0;
-        *(undefined8 *)(puVar6 + 0x14) = 0;
-        puVar6[0x16] = 0;
-        *plVar1 = (longlong)&UNK_180a3c3e0;
-        *(undefined8 *)(puVar6 + 0x18) = 0;
-        *(undefined8 *)(puVar6 + 0x14) = 0;
-        puVar6[0x16] = 0;
-        *puVar6 = 0xffffffff;
-        (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_18098bc73);
-        *(undefined8 *)(puVar6 + 1) = 0x3f800000;
-        *(undefined8 *)(puVar6 + 3) = 0;
-        *(undefined8 *)(puVar6 + 5) = 0x3f80000000000000;
-        *(undefined8 *)(puVar6 + 7) = 0;
-        uVar16 = 0;
-        puVar6[9] = 0;
-        puVar6[10] = 0;
-        puVar6[0xb] = 0x3f800000;
-        puVar6[0xc] = 0;
-        puVar6[0xd] = 0;
-        puVar6[0xe] = 0;
-        puVar6[0xf] = 0;
-        puVar6[0x10] = 0x3f800000;
-        uVar3 = *puVar12;
-        puVar12 = puVar12 + 1;
-        if (uVar3 != 0) {
-          puStack_60 = puVar12;
-          uVar16 = (**(code **)(*plVar1 + 0x18))(plVar1,puVar12,uVar3);
-          puVar12 = (uint *)((longlong)puVar12 + (ulonglong)uVar3);
+        // 分配资源块
+        block_ptr = (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18, 0x68, 8, 3);
+        data_ptr = (longlong *)(block_ptr + 0x12);
+        *data_ptr = (longlong)&UNK_18098bcb0;
+        *(undefined8 *)(block_ptr + 0x14) = 0;
+        block_ptr[0x16] = 0;
+        *data_ptr = (longlong)&UNK_180a3c3e0;
+        *(undefined8 *)(block_ptr + 0x18) = 0;
+        *(undefined8 *)(block_ptr + 0x14) = 0;
+        block_ptr[0x16] = 0;
+        *block_ptr = 0xffffffff;
+        (**(code **)(*data_ptr + 0x10))(data_ptr, &DAT_18098bc73);
+        *(undefined8 *)(block_ptr + 1) = 0x3f800000;
+        *(undefined8 *)(block_ptr + 3) = 0;
+        *(undefined8 *)(block_ptr + 5) = 0x3f80000000000000;
+        *(undefined8 *)(block_ptr + 7) = 0;
+        result_value = 0;
+        block_ptr[9] = 0;
+        block_ptr[10] = 0;
+        block_ptr[0xb] = 0x3f800000;
+        block_ptr[0xc] = 0;
+        block_ptr[0xd] = 0;
+        block_ptr[0xe] = 0;
+        block_ptr[0xf] = 0;
+        block_ptr[0x10] = 0x3f800000;
+        resource_size = *output_buffer;
+        output_buffer = output_buffer + 1;
+        
+        // 处理资源数据
+        if (resource_size != 0) {
+          stack_data_ptr = output_buffer;
+          result_value = (**(code **)(*data_ptr + 0x18))(data_ptr, output_buffer, resource_size);
+          output_buffer = (uint *)((longlong)output_buffer + (ulonglong)resource_size);
         }
-        puVar6[1] = *puVar12;
-        puVar6[2] = puVar12[1];
-        puVar6[3] = puVar12[2];
-        puVar6[4] = puVar12[3];
-        puVar6[5] = puVar12[4];
-        puVar6[6] = puVar12[5];
-        puVar6[7] = puVar12[6];
-        puVar6[8] = puVar12[7];
-        puVar6[9] = puVar12[8];
-        puVar6[10] = puVar12[9];
-        puVar6[0xb] = puVar12[10];
-        puVar6[0xc] = puVar12[0xb];
-        puVar6[0xd] = puVar12[0xc];
-        puVar6[0xe] = puVar12[0xd];
-        puVar6[0xf] = puVar12[0xe];
-        puVar6[0x10] = puVar12[0xf];
-        puVar12 = puVar12 + 0x10;
-        puStack_60 = puVar12;
-        uVar16 = FUN_1800c17c0(uVar16,plVar1);
-        *puVar6 = uVar16;
-        puVar7 = puVar2;
-        puVar13 = *(undefined8 **)(param_1 + 0x858);
-        while (puVar13 != (undefined8 *)0x0) {
-          if (*(int *)(puVar13 + 4) < iVar14) {
-            puVar13 = (undefined8 *)*puVar13;
+        
+        // 复制资源数据
+        block_ptr[1] = *output_buffer;
+        block_ptr[2] = output_buffer[1];
+        block_ptr[3] = output_buffer[2];
+        block_ptr[4] = output_buffer[3];
+        block_ptr[5] = output_buffer[4];
+        block_ptr[6] = output_buffer[5];
+        block_ptr[7] = output_buffer[6];
+        block_ptr[8] = output_buffer[7];
+        block_ptr[9] = output_buffer[8];
+        block_ptr[10] = output_buffer[9];
+        block_ptr[0xb] = output_buffer[10];
+        block_ptr[0xc] = output_buffer[0xb];
+        block_ptr[0xd] = output_buffer[0xc];
+        block_ptr[0xe] = output_buffer[0xd];
+        block_ptr[0xf] = output_buffer[0xe];
+        block_ptr[0x10] = output_buffer[0xf];
+        output_buffer = output_buffer + 0x10;
+        stack_data_ptr = output_buffer;
+        
+        // 处理资源
+        result_value = FUN_1800c17c0(result_value, data_ptr);
+        *block_ptr = result_value;
+        
+        // 查找资源位置
+        current_resource = resource_ptr;
+        next_resource = *(undefined8 **)(deserialize_context + 0x858);
+        while (next_resource != (undefined8 *)0x0) {
+          if (*(int *)(next_resource + 4) < process_index) {
+            next_resource = (undefined8 *)*next_resource;
           }
           else {
-            puVar7 = puVar13;
-            puVar13 = (undefined8 *)puVar13[1];
+            current_resource = next_resource;
+            next_resource = (undefined8 *)next_resource[1];
           }
         }
-        if ((puVar7 == puVar2) || (iVar14 < *(int *)(puVar7 + 4))) {
-          puVar7 = (undefined8 *)FUN_18020d730(puVar2,auStack_70);
-          puVar7 = (undefined8 *)*puVar7;
+        
+        // 创建新资源
+        if ((current_resource == resource_ptr) || (process_index < *(int *)(current_resource + 4))) {
+          current_resource = (undefined8 *)FUN_18020d730(resource_ptr, temp_buffer);
+          current_resource = (undefined8 *)*current_resource;
         }
-        puVar13 = (undefined8 *)puVar7[6];
-        if (puVar13 < (undefined8 *)puVar7[7]) {
-          puVar7[6] = puVar13 + 1;
-          *puVar13 = puVar6;
+        
+        // 获取资源列表
+        next_resource = (undefined8 *)current_resource[6];
+        if (next_resource < (undefined8 *)current_resource[7]) {
+          current_resource[6] = next_resource + 1;
+          *next_resource = block_ptr;
         }
         else {
-          puVar11 = (undefined8 *)puVar7[5];
-          lVar8 = (longlong)puVar13 - (longlong)puVar11 >> 3;
-          if (lVar8 == 0) {
-            lVar8 = 1;
-LAB_1803358a2:
-            puVar9 = (undefined8 *)
-                     FUN_18062b420(_DAT_180c8ed18,lVar8 * 8,*(undefined1 *)(puVar7 + 8));
-            puVar13 = (undefined8 *)puVar7[6];
-            puVar11 = (undefined8 *)puVar7[5];
+          // 扩展资源列表
+          temp_ptr = (undefined8 *)current_resource[5];
+          buffer_size = (longlong)next_resource - (longlong)temp_ptr >> 3;
+          if (buffer_size == 0) {
+            buffer_size = 1;
+          LAB_1803358a2:
+            resource_list = (undefined8 *)
+                     FUN_18062b420(_DAT_180c8ed18, buffer_size * 8, *(undefined1 *)(current_resource + 8));
+            next_resource = (undefined8 *)current_resource[6];
+            temp_ptr = (undefined8 *)current_resource[5];
           }
           else {
-            lVar8 = lVar8 * 2;
-            if (lVar8 != 0) goto LAB_1803358a2;
-            puVar9 = (undefined8 *)0x0;
+            buffer_size = buffer_size * 2;
+            if (buffer_size != 0) goto LAB_1803358a2;
+            resource_list = (undefined8 *)0x0;
           }
-          if (puVar11 != puVar13) {
-                    // WARNING: Subroutine does not return
-            memmove(puVar9,puVar11,(longlong)puVar13 - (longlong)puVar11);
+          
+          // 移动资源数据
+          if (temp_ptr != next_resource) {
+            memmove(resource_list, temp_ptr, (longlong)next_resource - (longlong)temp_ptr);
           }
-          *puVar9 = puVar6;
-          if (puVar7[5] != 0) {
-                    // WARNING: Subroutine does not return
+          
+          *resource_list = block_ptr;
+          if (current_resource[5] != 0) {
             FUN_18064e900();
           }
-          puVar7[5] = puVar9;
-          puVar7[6] = puVar9 + 1;
-          puVar7[7] = puVar9 + lVar8;
+          current_resource[5] = resource_list;
+          current_resource[6] = resource_list + 1;
+          current_resource[7] = resource_list + buffer_size;
         }
-        uStackX_20 = uStackX_20 - 1;
-      } while (uStackX_20 != 0);
-      uStackX_20 = 0;
+        
+        // 更新计数器
+        stack_counter = stack_counter - 1;
+      } while (stack_counter != 0);
+      
+      stack_counter = 0;
     }
-    lVar10 = lVar10 + -1;
-    lVar8 = lStack_68;
+    
+    // 更新数据偏移
+    data_offset = data_offset + -1;
+    buffer_size = stack_buffer;
   } while( true );
 }
 
-
-
-
-
+// 全局变量声明（避免符号重叠）
+undefined8 global_data_placeholder;
