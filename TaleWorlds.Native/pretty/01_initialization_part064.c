@@ -1141,7 +1141,7 @@ int32_t InitializationSystem_InternalInit(void)
  * 
  * 该函数负责系统清理工作。
  * 
- * @return undefined 清理结果状态
+ * @return int32_t 清理结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_Cleanup(void)
 {
