@@ -582,7 +582,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   // 检查场景是否启用特定标志并且有活动对象
   if ((*(int *)(scene_context[0x6b0] + 0x110) != 0) && ((*(byte *)(scene_context + 0x37b) & 2) != 0)) {
     // 初始化栈数组，用于数据复制
-    FUN_180094c20(stack_array_40);
+    StackArrayInitializer(stack_array_40);
     temp_long3 = 2;  // 循环计数器
     temp_long2 = 2;  // 循环控制变量
     ptr_long3 = scene_context + 6;  // 源数据指针
@@ -646,7 +646,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         LOCK();
         *(int8_t *)(ptr_uint64_t + 2) = 0;
         UNLOCK();
-        FUN_180049550(ptr_uint64_t + 4,0);
+        ComponentResourceReleaser(ptr_uint64_t + 4,0);
       }
       else {
         (**(code **)((void *)*ptr_uint64_t + 0x78))();
@@ -711,7 +711,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       if (stack_ptr_long3 != (longlong *)0x0) {
         (**(code **)(*stack_ptr_long3 + 0x28))();
       }
-      FUN_18005e110(temp_long2, &stack_ptr_long3);
+      MemoryManager(temp_long2, &stack_ptr_long3);
     }
   }
   
@@ -755,7 +755,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       (cStack_308 = '\x01', *(longlong **)(param_2[0x6b0] + 0x588) != param_1)))) {
     cStack_308 = '\0';
   }
-  FUN_1801b65d0(param_1,param_2);
+  SceneDataProcessor(param_1,param_2);
   cVar9 = func_0x0001802e1840(param_2[0x6b0] + 0x560,param_1);
   if (cVar9 != '\0') {
     *(int32_t *)(param_2[0x6b0] + 0x5e4) = 0xffffffff;
@@ -792,7 +792,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     else {
       if ((lVar25 == 0) || (lVar20 = lVar25 * 2, lVar20 != 0)) {
         plVar14 = (longlong *)
-                  FUN_18062b420(_DAT,lVar20 * 8,*(int8_t *)(_DAT + 0x10418))
+                  DynamicMemoryAllocator(_DAT,lVar20 * 8,*(int8_t *)(_DAT + 0x10418))
         ;
         plVar17 = *(longlong **)(lVar22 + 0x10408);
         plVar21 = *(longlong **)(lVar22 + 0x10400);
@@ -804,7 +804,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       *plVar14 = (longlong)(param_1 + 0xae);
       if (*(longlong *)(lVar22 + 0x10400) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        GlobalCleanup();
       }
       *(longlong **)(lVar22 + 0x10400) = plVar14;
       *(longlong **)(lVar22 + 0x10408) = plVar14 + 1;
@@ -827,46 +827,46 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     *(int32_t *)((longlong)param_2 + 0x1c64) = uVar12;
   }
   else {
-    FUN_180304010(param_2[0x6b0]);
+    SceneManager(param_2[0x6b0]);
   }
-  pplVar13 = (longlong **)FUN_18062b1e0(_DAT,0xd0,8,3);
+  pplVar13 = (longlong **)ObjectCreator(_DAT,0xd0,8,3);
   uStack_300 = pplVar13;
-  FUN_180049830(pplVar13);
+  ObjectInitializer(pplVar13);
   *pplVar13 = (longlong *)&UNK_180a0c3d8;
   pplVar13[0x18] = param_1;
   pplVar13[0x19] = param_2;
   pplStack_290 = pplVar13;
   (*(code *)(*pplVar13)[5])(pplVar13);
   plVar14 = param_1 + 0x6c;
-  FUN_1800b88d0(plVar14,&pplStack_290);
+  DataTransferProcessor(plVar14,&pplStack_290);
   if (pplStack_290 != (longlong **)0x0) {
     (*(code *)(*pplStack_290)[7])();
   }
   if ((param_1[0x70] != 0) && (*(char *)((longlong)param_1 + 0x60b91) != '\0')) {
-    FUN_18019c6e0(param_1,param_2);
+    RenderDataProcessor(param_1,param_2);
   }
-  FUN_1802e5be0(param_1 + 0x1045,param_2);
+  EntityDataSynchronizer(param_1 + 0x1045,param_2);
   if (param_1[0x75] != 0) {
-    pplVar13 = (longlong **)FUN_18062b1e0(_DAT,0xd0,8,3);
+    pplVar13 = (longlong **)ObjectCreator(_DAT,0xd0,8,3);
     uStack_300 = pplVar13;
-    FUN_180049830(pplVar13);
+    ObjectInitializer(pplVar13);
     *pplVar13 = (longlong *)&UNK_180a0c348;
     pplVar13[0x18] = param_1;
     pplVar13[0x19] = param_2;
     pplStack_288 = pplVar13;
     (*(code *)(*pplVar13)[5])(pplVar13);
-    FUN_1800b88d0(plVar14,&pplStack_288);
+    DataTransferProcessor(plVar14,&pplStack_288);
     if (pplStack_288 != (longlong **)0x0) {
       (*(code *)(*pplStack_288)[7])();
     }
   }
-  FUN_18005e250(_DAT,*plVar14,param_1[0x6d] - *plVar14 >> 3);
+  ResourceManager(_DAT,*plVar14,param_1[0x6d] - *plVar14 >> 3);
   if (((cStack_308 != '\0') && (*(char *)((longlong)param_1 + 0x60b91) != '\0')) &&
      (1 < (int)param_1[0x4f8])) {
     *(int32_t *)(param_2[0x6b0] + 0x5b0) = *(int32_t *)((longlong)param_1 + 0x27bc);
     *(int32_t *)((longlong)param_2 + 0x995c) = *(int32_t *)(param_2[0x6b0] + 0x5b0);
     lStack_280 = 0;
-    iVar11 = FUN_1802e4530(param_2[0x6b0] + 0x560,param_2,&lStack_280);
+    iVar11 = DataCollector(param_2[0x6b0] + 0x560,param_2,&lStack_280);
     if (0 < iVar11) {
       lVar20 = 0;
       do {
@@ -879,7 +879,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
           *(float *)(lVar4 + 0x11ccc) = fVar1 * *(float *)(lVar22 + 4);
           *(float *)(lVar4 + 0x11cd0) = fVar1 * fVar2;
         }
-        FUN_180304010(param_2[0x6b0],*(uint64_t *)(lStack_280 + lVar20 * 8));
+        SceneManager(param_2[0x6b0],*(uint64_t *)(lStack_280 + lVar20 * 8));
         lVar22 = *(longlong *)(lVar25 + lVar20 * 8);
         LOCK();
         plVar14 = param_2 + 0x2349;
@@ -913,16 +913,16 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     iVar11 = (int)*(uint64_t *)(param_1[0xc170] + 0x1dd0);
   }
   *(float *)((longlong)param_2 + 0x129fc) = (float)iVar11;
-  FUN_1801acb30(param_1);
+  EntityStateManager(param_1);
   iVar11 = (int)param_1[0x4f8];
   if (4 < iVar11) {
-    FUN_180316460(param_1 + 0xc182);
+    RenderInitializer(param_1 + 0xc182);
     iVar11 = (int)param_1[0x4f8];
   }
   if (6 < iVar11) {
-    FUN_18031a470(param_1 + 0xc182);
+    RenderConfigurator(param_1 + 0xc182);
   }
-  plVar14 = (longlong *)FUN_1800be440();
+  plVar14 = (longlong *)ResourceAcquirer();
   if (plVar14 != (longlong *)0x0) {
     plStack_230 = plVar14;
     (**(code **)(*plVar14 + 0x28))(plVar14);
@@ -937,13 +937,13 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     bVar8 = false;
     if ((*(longlong *)(lVar22 + 0x20) - *(longlong *)(lVar22 + 0x18) >> 4 != 0) &&
        (*(char *)(*(longlong *)(lVar20 + 0x88) + 0x60b91) != '\0')) {
-      FUN_180460970(lVar22,param_2);
+      SceneSynchronizer(lVar22,param_2);
       bVar8 = true;
     }
     if (((*(char *)(*(longlong *)(lVar20 + 0x88) + 0x60b91) != '\0') && (bVar8)) &&
        (*(longlong *)(*(longlong *)(lVar20 + 0x3c8) + 0x20) -
         *(longlong *)(*(longlong *)(lVar20 + 0x3c8) + 0x18) >> 4 == 0)) {
-      FUN_18045ff20();
+      SceneCleaner();
     }
   }
   plVar14 = param_1 + 0x1c;
@@ -979,7 +979,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       uVar18 = *(uint *)(plVar17[0xa6] + 0x94);
     }
     if (((*(char *)((longlong)param_1 + 0x2a63) == '\0') || ((int)plVar17[0x22] == 0)) ||
-       (lVar20 = FUN_180244ff0(plVar17[0x23]), lVar20 == 0)) {
+       (lVar20 = ConfigurationManager(plVar17[0x23]), lVar20 == 0)) {
       uVar18 = uVar18 & 0xfffff7ff;
     }
     else {
@@ -987,7 +987,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     }
     uVar12 = func_0x0001801f2a40();
     *(int32_t *)(param_2 + 0x133d) = uVar12;
-    FUN_180303b70(param_2[0x6b0],uVar18,param_2);
+    SceneProcessor(param_2[0x6b0],uVar18,param_2);
     plVar17 = *(longlong **)(param_2[0x6b0] + 0x530);
     if (plVar17 != (longlong *)0x0) {
       plStack_228 = plVar17;
@@ -1057,7 +1057,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     *(int8_t *)((longlong)param_2 + 0x11cf4) = 0;
   }
   else {
-    FUN_1801c1c40(param_2 + 0x23a0);
+    SceneBuilder(param_2 + 0x23a0);
     *(int8_t *)((longlong)param_2 + 0x11cf4) = 1;
   }
   lVar20 = param_1[0x103e];
@@ -1105,7 +1105,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       lVar20 = *(longlong *)(lVar22 + lVar20);
       if (((param_1[100] != 0) && ((*(byte *)(lVar20 + 0x1bd8) & 0x20) != 0)) &&
          ((*(byte *)(lVar20 + 0x1bd9) & 2) == 0)) {
-        FUN_18031e320(param_1[100],lVar20);
+        EntityManager(param_1[100],lVar20);
       }
       *(int8_t *)(lVar20 + 0x1c60) = 1;
       if (((*(int *)(lVar20 + 0x124bc) == 0) && (*(int *)(lVar20 + 0x2920) == 0)) &&
@@ -1158,7 +1158,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     fStack_2b0 = 1.0;
     uStack_2ac = 0x7f7fffff;
     fStack_2a0 = fStack_2f8;
-    FUN_180084ae0(&uStack_2d8);
+    VectorProcessor(&uStack_2d8);
     uStack_2d8 = CONCAT44(uStack_2d8._4_4_ * 200.0,(float)uStack_2d8 * 200.0);
     uStack_2d0 = CONCAT44(uStack_2d0._4_4_,(float)uStack_2d0 * 200.0);
     uStack_2c8 = CONCAT44(uStack_2c8._4_4_ * 200.0,(float)uStack_2c8 * 200.0);
@@ -1166,14 +1166,14 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     fStack_2b8 = fStack_2b8 * 200.0;
     fStack_2b4 = fStack_2b4 * 200.0;
     fStack_2b0 = fStack_2b0 * 200.0;
-    FUN_1802ea790(param_1[0x1040]);
+    VectorCleaner(param_1[0x1040]);
     *(byte *)(param_1[0x1040] + 0x2e8) = *(byte *)(param_1[0x1040] + 0x2e8) & 0xef;
   }
   if ((param_1[0x103f] != 0) && (*(char *)(_DAT + 0x1504) == '\x01')) {
-    FUN_1802ee720();
+    SystemInitializer();
   }
   if (param_1[0x89] != 0) {
-    FUN_18037c8d0();
+    SystemManager();
   }
   lVar20 = _DAT;
   if (*(int *)(param_2[0x6b0] + 0x110) != 0) {
@@ -1183,10 +1183,10 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         uStack_300 = &plStack_278;
         plStack_278 = plVar21;
         (**(code **)(*plVar21 + 0x28))();
-        FUN_18005e6a0(lVar20,&plStack_278,0);
+        MemoryReleaser(lVar20,&plStack_278,0);
       }
       if (*(char *)(_DAT + 0x162f) != '\0') {
-        FUN_180389b20(param_1 + 0x534);
+        ComponentManager(param_1 + 0x534);
       }
       if ((*(char *)(_DAT + 0x1630) != '\0') &&
          ((longlong *)param_1[0x535] != (longlong *)0x0)) {
@@ -1210,7 +1210,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
             lVar22 = (longlong)plVar21 - (longlong)plVar17 >> 3;
             lVar20 = 1;
             if ((lVar22 == 0) || (lVar20 = lVar22 * 2, lVar20 != 0)) {
-              plVar15 = (longlong *)FUN_18062b420(_DAT,lVar20 * 8,(char)param_1[0x7d1]);
+              plVar15 = (longlong *)DynamicMemoryAllocator(_DAT,lVar20 * 8,(char)param_1[0x7d1]);
               plVar21 = (longlong *)param_1[1999];
               plVar17 = (longlong *)param_1[0x7ce];
             }
@@ -1224,7 +1224,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
             *plVar15 = (longlong)uStack_300;
             if (param_1[0x7ce] != 0) {
                     // WARNING: Subroutine does not return
-              FUN_18064e900();
+              GlobalCleanup();
             }
             param_1[0x7ce] = (longlong)plVar15;
             param_1[1999] = (longlong)(plVar15 + 1);
@@ -1245,7 +1245,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       lStack_250 = 0;
     }
     else {
-      lStack_250 = FUN_18062b420(_DAT,lVar20 * 8,uStack_238 & 0xff);
+      lStack_250 = DynamicMemoryAllocator(_DAT,lVar20 * 8,uStack_238 & 0xff);
     }
     lStack_240 = lStack_250 + lVar20 * 8;
     lVar20 = param_1[0x7ce];
@@ -1254,7 +1254,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
                     // WARNING: Subroutine does not return
       memmove(lStack_250,lVar20,param_1[1999] - lVar20);
     }
-    FUN_1801c1af0(plVar14,&lStack_250);
+    ObjectProcessor(plVar14,&lStack_250);
     iVar11 = 0;
     if (param_1[0x1d] - *plVar14 >> 3 != 0) {
       lVar20 = 0;
@@ -1265,15 +1265,15 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         lVar20 = lVar20 + 8;
       } while ((ulonglong)(longlong)iVar11 < (ulonglong)(param_1[0x1d] - *plVar14 >> 3));
     }
-    uVar16 = FUN_18062b1e0(_DAT,0xe0,8,3);
+    uVar16 = ObjectCreator(_DAT,0xe0,8,3);
     uStack_300 = &plStack_1d0;
     puStack_1c0 = &UNK_1801bc960;
-    pcStack_1b8 = FUN_1801bc8d0;
+    pcStack_1b8 = CallbackProcessor;
     plStack_2e8 = param_1;
     plStack_2e0 = param_2;
     plStack_1d0 = param_1;
     plStack_1c8 = param_2;
-    plVar14 = (longlong *)FUN_18006b640(uVar16,&plStack_1d0);
+    plVar14 = (longlong *)ObjectCreator2(uVar16,&plStack_1d0);
     if (plVar14 != (longlong *)0x0) {
       plStack_1e8 = plVar14;
       (**(code **)(*plVar14 + 0x28))(plVar14);
@@ -1292,7 +1292,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       if (plVar14 != (longlong *)0x0) {
         (**(code **)(*plVar14 + 0x28))();
       }
-      FUN_18005e110(lVar20,&plStack_270);
+      MemoryManager(lVar20,&plStack_270);
     }
     else {
       (**(code **)(*plVar14 + 0x60))();
@@ -1301,13 +1301,13 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         LOCK();
         *(int8_t *)(plVar14 + 2) = 1;
         UNLOCK();
-        FUN_1800466d0(plVar14 + 4);
+        ResourceReleaser(plVar14 + 4);
       }
       else {
         (**(code **)(*plVar14 + 0x70))();
       }
     }
-    uVar16 = FUN_18062b1e0(_DAT,0xe0,8,3);
+    uVar16 = ObjectCreator(_DAT,0xe0,8,3);
     uStack_300 = &plStack_1b0;
     puStack_1a0 = &UNK_1801bc890;
     puStack_198 = &UNK_1801bc880;
@@ -1315,7 +1315,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
     plStack_2e0 = param_2;
     plStack_1b0 = param_1;
     plStack_1a8 = param_2;
-    plVar14 = (longlong *)FUN_18006b640(uVar16,&plStack_1b0);
+    plVar14 = (longlong *)ObjectCreator2(uVar16,&plStack_1b0);
     if (plVar14 != (longlong *)0x0) {
       plStack_1e0 = plVar14;
       (**(code **)(*plVar14 + 0x28))(plVar14);
@@ -1334,7 +1334,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
       if (plVar14 != (longlong *)0x0) {
         (**(code **)(*plVar14 + 0x28))();
       }
-      FUN_18005e110(lVar20,&plStack_268);
+      MemoryManager(lVar20,&plStack_268);
     }
     else {
       (**(code **)(*plVar14 + 0x60))();
@@ -1343,23 +1343,23 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         LOCK();
         *(int8_t *)(plVar14 + 2) = 1;
         UNLOCK();
-        FUN_1800466d0(plVar14 + 4);
+        ResourceReleaser(plVar14 + 4);
       }
       else {
         (**(code **)(*plVar14 + 0x70))();
       }
     }
     if (param_1[0x89] != 0) {
-      FUN_180374f40(param_1[0x89],param_2);
+      EntityConnector(param_1[0x89],param_2);
     }
     if ((*(char *)((longlong)param_1 + 0x563) != '\0') &&
        (iVar6 = (int)(param_1[0xb6] - param_1[0xb5] >> 0x3f),
        iVar11 = (int)((param_1[0xb6] - param_1[0xb5]) / 0xc) + iVar6,
        iVar11 != iVar6 && -1 < iVar11 - iVar6)) {
-      pplVar13 = (longlong **)FUN_18062b1e0(_DAT,0xe8,8,3);
+      pplVar13 = (longlong **)ObjectCreator(_DAT,0xe8,8,3);
       bVar24 = *(byte *)(param_2 + 0x37b);
       uStack_300 = pplVar13;
-      FUN_180049830(pplVar13);
+      ObjectInitializer(pplVar13);
       *pplVar13 = (longlong *)&UNK_180a0c2b8;
       pplVar13[0x18] = param_1;
       pplVar13[0x19] = param_2;
@@ -1381,7 +1381,7 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         if (plVar14 != (longlong *)0x0) {
           (**(code **)(*plVar14 + 0x28))();
         }
-        FUN_18005e110(lVar20,&plStack_260);
+        MemoryManager(lVar20,&plStack_260);
       }
       else {
         (**(code **)(*plVar14 + 0x60))();
@@ -1418,13 +1418,13 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         }
         if (cVar9 == '\0') {
           bVar8 = true;
-          plVar17 = (longlong *)FUN_18005e890(lVar25);
+          plVar17 = (longlong *)TempObjectManager(lVar25);
           cVar9 = (**(code **)(*plVar17 + 0x20))(plVar17,0);
           if (cVar9 == '\0') {
             plVar17 = *(longlong **)(*plVar14 + uVar23 * 8);
             pcVar5 = *(code **)(*plVar17 + 0x80);
             if (pcVar5 == (code *)&UNK_180049760) {
-              FUN_1800496b0(plVar17 + 4);
+              ComponentCleaner(plVar17 + 4);
             }
             else {
               (*pcVar5)();
@@ -1436,12 +1436,12 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
         lVar22 = *plVar14;
       } while (uVar23 < (ulonglong)(lVar20 - lVar22 >> 3));
     } while (bVar8);
-    FUN_1800b8500(plVar14);
+    BufferManager(plVar14);
     param_1 = plStack_1d8;
   }
   *(int8_t *)(param_1 + 2) = 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_328);
+  SystemSecurityChecker(uStack_48 ^ (ulonglong)auStack_328);
 }
 
 
@@ -1513,8 +1513,8 @@ uint32_t EntityDataTransfer(EntityContextPtr entity_data)
   *(int32_t *)(temp_long2 + 0x3c) = temp_int32_t_7;
   
   // 调用数据处理函数
-  FUN_1802c6190(*(uint64_t *)(*(longlong *)(entity_data + 0xc0) + 0x3a8));
-  FUN_18019c5b0(*(longlong *)(entity_data + 200) + 0x12678,
+  DataProcessor(*(uint64_t *)(*(longlong *)(entity_data + 0xc0) + 0x3a8));
+  DataTransmitter(*(longlong *)(entity_data + 200) + 0x12678,
                 *(uint64_t *)(*(longlong *)(entity_data + 0xc0) + 0x3a8));
   
   // 复制变换数据
@@ -1575,7 +1575,7 @@ uint64_t EntityResourceCleanup(uint64_t resource_ptr, ResourceCleanupFlags clean
   uint64_t temp_uint64_t;  // 临时变量
   
   temp_uint64_t = 0xfffffffffffffffe;  // 设置特殊值
-  FUN_180049470();  // 调用清理准备函数
+  CleanupPreparer();  // 调用清理准备函数
   
   // 根据标志位决定是否释放内存
   if ((cleanup_flags & 1) != 0) {

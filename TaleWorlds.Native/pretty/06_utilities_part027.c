@@ -313,6 +313,53 @@ static uint64_t* exception_handler_ptr = (uint64_t*)0x180d493f8;        // 异�
 static const uint64_t SYSTEM_DEFAULT_VALUE = 0x18098bcb0;               // 系统默认值
 static const uint64_t SYSTEM_INIT_VALUE = 0x180a3c3e0;                  // 系统初始化值
 
+// 系统管理相关指针
+static uint64_t* system_config_ptr = (uint64_t*)0x180bf5208;            // 系统配置指针
+static uint64_t* system_data_ptr = (uint64_t*)0x180bf5bc0;              // 系统数据指针
+static uint64_t* system_flag_ptr = (uint64_t*)0x180bf5c30;              // 系统标志指针
+static uint64_t* system_parameter_ptr = (uint64_t*)0x180bf6080;          // 系统参数指针
+static uint64_t* system_state_mode_ptr = (uint64_t*)0x180bf52e8;        // 系统状态模式指针
+static uint64_t* system_function_mode_ptr = (uint64_t*)0x180bf5738;      // 系统功能模式指针
+static uint64_t* system_config_mode_ptr = (uint64_t*)0x180bf7250;       // 系统配置模式指针
+static uint64_t* system_exception_ptr = (uint64_t*)0x180d493f8;         // 系统异常指针
+static uint64_t* system_resource_ptr = (uint64_t*)0x180bf5770;          // 系统资源指针
+static uint64_t* system_memory_ptr = (uint64_t*)0x180d49200;            // 系统内存指针
+static uint64_t* system_sync_ptr = (uint64_t*)0x180c91900;              // 系统同步指针
+
+// 系统状态管理指针
+static uint64_t* utilities_system_state_ptr = (uint64_t*)0x180bf5320;   // 工具系统状态指针
+static uint64_t* utilities_system_data_ptr = (uint64_t*)0x180d49160;     // 工具系统数据指针
+static uint64_t* utilities_system_config_ptr = (uint64_t*)0x180bf6530;   // 工具系统配置指针
+static uint64_t* utilities_system_resource_ptr = (uint64_t*)0x180bf6590; // 工具系统资源指针
+static uint64_t* utilities_system_mode_ptr = (uint64_t*)0x180bf6620;    // 工具系统模式指针
+static uint64_t* utilities_system_control_ptr = (uint64_t*)0x180bf66b0; // 工具系统控制指针
+static uint64_t* utilities_system_operation_ptr = (uint64_t*)0x180bf6680; // 工具系统操作指针
+
+// 系统模块状态指针
+static uint64_t* system_module_state_ptr = (uint64_t*)0x180d49218;       // 系统模块状态指针
+static uint64_t* system_module_status_ptr = (uint64_t*)0x180d49220;     // 系统模块状态指针
+static uint64_t* system_module_cleanup_ptr = (uint64_t*)0x180d49230;     // 系统模块清理指针
+static uint64_t* system_data_state_ptr = (uint64_t*)0x180d49240;         // 系统数据状态指针
+static uint64_t* system_data_status_ptr = (uint64_t*)0x180d49248;        // 系统数据状态指针
+static uint64_t* system_data_cleanup_ptr = (uint64_t*)0x180d49258;       // 系统数据清理指针
+static uint64_t* system_resource_state_ptr = (uint64_t*)0x180d49638;      // 系统资源状态指针
+static uint64_t* system_resource_status_ptr = (uint64_t*)0x180d49640;    // 系统资源状态指针
+static uint64_t* system_resource_cleanup_ptr = (uint64_t*)0x180d49650;   // 系统资源清理指针
+
+// 系统句柄和互斥锁指针
+static uint64_t* system_mutex_ptr = (uint64_t*)0x180c91910;              // 系统互斥锁指针
+static uint64_t* system_mutex_destroy_ptr = (uint64_t*)0x180c91970;     // 系统互斥锁销毁指针
+static uint64_t* system_sync_destroy_ptr = (uint64_t*)0x180c91f70;      // 系统同步销毁指针
+static uint64_t* system_thread_sync_ptr = (uint64_t*)0x180d49680;        // 系统线程同步指针
+
+// 系统内存管理指针
+static uint64_t* system_memory_manager_ptr = (uint64_t*)0x180d49730;     // 系统内存管理指针
+static uint64_t* system_memory_state_ptr = (uint64_t*)0x180d497e0;       // 系统内存状态指针
+static uint64_t* system_memory_status_ptr = (uint64_t*)0x180d49970;       // 系统内存状态指针
+static uint64_t* system_memory_cleanup_ptr = (uint64_t*)0x180d49950;      // 系统内存清理指针
+static uint64_t* system_memory_handler_ptr = (uint64_t*)0x180d498a0;      // 系统内存处理指针
+static uint64_t* system_memory_data_ptr = (uint64_t*)0x180d49830;         // 系统内存数据指针
+
 // =============================================================================
 // 系统模块初始化器 (SystemModuleInitializer)
 // =============================================================================
@@ -433,7 +480,7 @@ void FUN_1809415d0(void)
 
 {
   // 重置系统配置并设置为默认值
-  _DAT_180bf5208 = &UNK_18098bcb0;  // 设置默认配置指针
+  *system_config_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认配置指针
   return;
 }
 
@@ -454,7 +501,7 @@ void FUN_1809415f0(void)
 
 {
   // 重置系统数据并设置为默认值
-  _DAT_180bf5bc0 = &UNK_18098bcb0;  // 设置默认数据指针
+  *system_data_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认数据指针
   return;
 }
 
@@ -475,7 +522,7 @@ void FUN_180941610(void)
 
 {
   // 重置系统标志并设置为默认值
-  _DAT_180bf5c30 = &UNK_18098bcb0;  // 设置默认标志指针
+  *system_flag_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认标志指针
   return;
 }
 
@@ -496,7 +543,7 @@ void FUN_180941630(void)
 
 {
   // 重置系统参数并设置为默认值
-  _DAT_180bf6080 = &UNK_18098bcb0;  // 设置默认参数指针
+  *system_parameter_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认参数指针
   return;
 }
 
@@ -663,7 +710,7 @@ void FUN_1809417e0(void)
 
 {
   // 重置系统数据指针并设置为默认值
-  _DAT_180d49160 = &UNK_18098bcb0;  // 设置默认数据指针
+  *utilities_system_data_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认数据指针
   return;
 }
 
@@ -684,7 +731,7 @@ void FUN_180941800(void)
 
 {
   // 重置系统状态指针并设置为默认值
-  _DAT_180bf64d0 = &UNK_18098bcb0;  // 设置默认状态指针
+  *utilities_system_state_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认状态指针
   return;
 }
 
@@ -705,7 +752,7 @@ void FUN_180941820(void)
 
 {
   // 重置系统配置指针并设置为默认值
-  _DAT_180bf6530 = &UNK_18098bcb0;  // 设置默认配置指针
+  *utilities_system_config_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认配置指针
   return;
 }
 
@@ -726,7 +773,7 @@ void FUN_180941840(void)
 
 {
   // 重置系统资源指针并设置为默认值
-  _DAT_180bf6590 = &UNK_18098bcb0;  // 设置默认资源指针
+  *utilities_system_resource_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认资源指针
   return;
 }
 
@@ -747,7 +794,7 @@ void FUN_180941860(void)
 
 {
   // 重置系统参数指针并设置为默认值
-  _DAT_180bf65c0 = &UNK_18098bcb0;  // 设置默认参数指针
+  *system_parameter_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认参数指针
   return;
 }
 

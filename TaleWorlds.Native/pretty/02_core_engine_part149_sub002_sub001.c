@@ -110,7 +110,7 @@ typedef uint64_t StateHandle;                   // 状态句柄
 //   简化实现：基于核心引擎架构模式，创建完整的配置管理功能
 //   优化点：添加完整的配置管理、接口处理、资源管理功能
 //------------------------------------------------------------------------------
-uint64_t FUN_1800599e0(uint64_t param_1, uint64_t param_2)
+uint64_t CoreEngineSubmoduleConfigManager(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
     uint64_t uVar1;                              // 操作结果

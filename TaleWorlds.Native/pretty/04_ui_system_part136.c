@@ -330,6 +330,17 @@ void UISystem_CleanupManager(longlong context);                // UI系统清理
 #define UISystem_UnlockSharedMemory UISystem_UnlockSharedMemory
 
 // ============================================================================
+// 全局变量定义
+// ============================================================================
+
+// UI系统全局变量
+static uint64_t *puRam0000000000012780 = (uint64_t *)0x12780;  // UI系统全局指针
+static longlong lRam0000000000012770 = 0;                       // UI系统全局锁
+static code *pcRam0000000000011838 = (code *)0x0;               // UI系统全局代码指针
+static uint uRam0000000000011840 = 0;                           // UI系统全局标志
+static float *pfRam0000000000011670 = (float *)0x0;              // UI系统全局浮点指针
+
+// ============================================================================
 // 核心函数实现
 // ============================================================================
 
@@ -814,7 +825,7 @@ void UISystem_DataManager(longlong context)
                     stackVar16 = 0;
                     stackVar17 = 0;
                     stackVar18 = 0;
-                    func_0x000180746970(context, *(int32_t *)(context + UI_OFFSET_11654), &stackVar13);
+                    UISystem_RenderOptimizer(context, *(int32_t *)(context + UI_OFFSET_11654), &stackVar13);
                     UISystem_QueueManager(&stackVar1, &stackVar13, 1.0 - floatVar);
                     floatVar = 1.0;
                 }
@@ -885,7 +896,7 @@ LAB_18078c477:
     stateHandle = *(longlong *)(context + 0x670);
     if ((stateHandle != 0) && (0 < *(int *)(context + 0x10f70))) {
         if (context != 0) {
-            func_0x000180743c20(context, UI_CONST_0X7);
+            UISystem_ContextManager(context, UI_CONST_0X7);
             stateHandle = *(longlong *)(context + 0x670);
         }
         renderValue = *(int32_t *)(stateHandle + 0x318);
@@ -906,7 +917,7 @@ LAB_18078c477:
     result = UISystem_ContextInitializer(context);
     if (result == 0) {
         if (context != 0) {
-            func_0x000180743c20(context, UI_CONST_0X6);
+            UISystem_ContextManager(context, UI_CONST_0X6);
         }
         componentPtr = *(uint64_t **)(context + 0x10ff0);
         while (componentPtr != (uint64_t *)(context + 0x10ff0)) {
@@ -967,7 +978,7 @@ int UISystem_RenderController(longlong context)
     int index;
     
     if (context != 0) {
-        func_0x000180743c20(context, UI_CONST_0X10);
+        UISystem_ContextManager(context, UI_CONST_0X10);
     }
     index = 0;
     if (0 < *(int *)(context + 0x694)) {
@@ -1017,7 +1028,7 @@ int UISystem_StateValidator_Validate(longlong context)
     int index;
     
     if (context != 0) {
-        func_0x000180743c20(context, UI_CONST_0X10);
+        UISystem_ContextManager(context, UI_CONST_0X10);
     }
     index = 0;
     if (0 < *(int *)(context + 0x694)) {
@@ -1151,6 +1162,8 @@ UISystem_ErrorHandler:
 #define UISystem_EventCreator UISystem_UnmapSharedMemory
 #define UISystem_ResourceCreator UISystem_MapSharedMemory
 #define UISystem_SystemChecker func_0x000180069ee0
+#define UISystem_ContextManager func_0x000180743c20
+#define UISystem_RenderOptimizer func_0x000180746970
 // 缺失的UI系统函数别名定义（补充）
 }
 
