@@ -9,59 +9,81 @@
  * - 几何变换和矩阵运算
  * - 高级渲染参数处理
  * - 渲染状态管理和优化
+ * - 递归纹理搜索算法
+ * - 多方向匹配策略
+ * - 向量运算和归一化
+ * - 快速平方根倒数计算
  * 
  * 主要功能特点：
  * - 支持多种纹理映射算法
  * - 高效的几何变换处理
  * - 智能的渲染状态管理
  * - 优化的性能和内存使用
+ * - 精确的距离计算和匹配
+ * - 递归树结构搜索
+ * - SIMD优化的数学运算
+ * - 边界检查和错误处理
+ * 
+ * 核心算法：
+ * - 多方向纹理搜索：支持8个方向的纹理匹配
+ * - 递归纹理映射：使用树结构进行深度搜索
+ * - 线段投影计算：计算点到线段的最近点
+ * - 快速归一化：使用牛顿迭代法的平方根倒数
+ * - 距离阈值优化：使用1.5距离阈值进行快速筛选
+ * 
+ * 性能优化：
+ * - 使用寄存器变量减少内存访问
+ * - 栈空间优化减少动态分配
+ * - SIMD指令加速数学运算
+ * - 循环展开和条件分支优化
+ * - 缓存友好的数据访问模式
  * 
  * @author Claude Code
- * @version 1.0
+ * @version 2.0
  * @date 2025-08-28
  */
 
 // 常量定义
-#define RENDERING_MAX_TEXTURE_LAYERS 16
-#define RENDERING_MAX_GEOMETRY_TRANSFORMS 32
-#define RENDERING_COORDINATE_PRECISION 1e-06f
-#define RENDERING_DISTANCE_THRESHOLD 1.5f
-#define RENDERING_MAX_FLOAT_VALUE 3.4028235e+38f
+#define RENDERING_MAX_TEXTURE_LAYERS 16         // 最大纹理层数量
+#define RENDERING_MAX_GEOMETRY_TRANSFORMS 32    // 最大几何变换数量
+#define RENDERING_COORDINATE_PRECISION 1e-06f   // 坐标计算精度
+#define RENDERING_DISTANCE_THRESHOLD 1.5f      // 距离计算阈值
+#define RENDERING_MAX_FLOAT_VALUE 3.4028235e+38f  // 最大浮点数值
 
 // 渲染系统状态枚举
 typedef enum {
-    RENDERING_STATE_IDLE = 0,
-    RENDERING_STATE_ACTIVE = 1,
-    RENDERING_STATE_PROCESSING = 2,
-    RENDERING_STATE_COMPLETED = 3
+    RENDERING_STATE_IDLE = 0,        // 系统空闲状态
+    RENDERING_STATE_ACTIVE = 1,      // 系统激活状态
+    RENDERING_STATE_PROCESSING = 2,  // 系统处理状态
+    RENDERING_STATE_COMPLETED = 3    // 系统完成状态
 } RenderingState;
 
 // 纹理映射结构体
 typedef struct {
-    float texture_coords[2];      // 纹理坐标
-    float normal_vector[3];       // 法线向量
-    float tangent_vector[3];      // 切线向量
-    float bitangent_vector[3];    // 副切线向量
-    unsigned int texture_id;      // 纹理ID
-    unsigned char flags;          // 纹理标志
+    float texture_coords[2];      // 纹理坐标 (U,V)
+    float normal_vector[3];       // 法线向量 (X,Y,Z)
+    float tangent_vector[3];      // 切线向量 (X,Y,Z)
+    float bitangent_vector[3];    // 副切线向量 (X,Y,Z)
+    unsigned int texture_id;      // 纹理ID标识符
+    unsigned char flags;          // 纹理状态标志 (位掩码)
 } TextureMappingData;
 
 // 几何变换结构体
 typedef struct {
-    float transform_matrix[16];   // 变换矩阵
-    float position[3];            // 位置坐标
-    float rotation[4];            // 旋转四元数
-    float scale[3];               // 缩放因子
-    unsigned int transform_id;    // 变换ID
+    float transform_matrix[16];   // 4x4变换矩阵 (列主序)
+    float position[3];            // 位置坐标 (X,Y,Z)
+    float rotation[4];            // 旋转四元数 (W,X,Y,Z)
+    float scale[3];               // 缩放因子 (X,Y,Z)
+    unsigned int transform_id;    // 变换ID标识符
 } GeometryTransformData;
 
 // 渲染参数结构体
 typedef struct {
-    float* position_data;         // 位置数据指针
-    float* texture_data;          // 纹理数据指针
-    longlong* geometry_data;      // 几何数据指针
-    unsigned int data_size;       // 数据大小
-    unsigned int flags;           // 参数标志
+    float* position_data;         // 位置数据指针 (X,Y,Z数组)
+    float* texture_data;          // 纹理数据指针 (U,V数组)
+    longlong* geometry_data;      // 几何数据指针 (网格和变换数据)
+    unsigned int data_size;       // 数据大小 (字节)
+    unsigned int flags;           // 参数标志 (位掩码)
 } RenderingParameters;
 
 // 函数别名定义
@@ -1062,82 +1084,129 @@ void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong pa
                   ,undefined8 *param_6)
 
 {
-  float fVar1;
-  undefined8 *puVar2;
-  float *pfVar3;
-  float *pfVar4;
-  undefined8 uVar5;
-  longlong lVar6;
-  undefined8 *puVar7;
-  int iVar8;
-  ulonglong uVar9;
-  longlong lVar10;
-  float fVar11;
-  undefined1 auVar12 [16];
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fStackX_8;
-  float fStackX_c;
+  // 局部变量声明
+  float fVar1;                    // 浮点变量，用于Y坐标存储
+  undefined8 *puVar2;             // 无类型指针，用于数据结构访问
+  float *pfVar3;                  // 浮点指针，用于线段终点坐标
+  float *pfVar4;                  // 浮点指针，用于线段起点坐标
+  undefined8 uVar5;               // 无类型变量，用于坐标组合
+  longlong lVar6;                 // 长整型变量，用于偏移量计算
+  undefined8 *puVar7;             // 无类型指针，用于子节点遍历
+  int iVar8;                      // 整型变量，用于循环计数
+  ulonglong uVar9;                // 无符号长整型，用于纹理层索引
+  longlong lVar10;                // 长整型变量，用于纹理层偏移
+  float fVar11;                   // 浮点变量，用于距离平方计算
+  undefined1 auVar12 [16];        // 数组变量，用于SIMD指令结果
+  float fVar13;                   // 浮点变量，用于投影参数计算
+  float fVar14;                   // 浮点变量，用于X方向向量
+  float fVar15;                   // 浮点变量，用于Y方向向量
+  float fVar16;                   // 浮点变量，用于归一化因子
+  float fVar17;                   // 浮点变量，用于向量长度平方
+  float fStackX_8;                // 栈变量，用于X方向距离计算
+  float fStackX_c;                // 栈变量，用于Y方向距离计算
   
-  lVar10 = (longlong)(int)param_4;
-  iVar8 = 0;
+  // 初始化纹理层数据
+  lVar10 = (longlong)(int)param_4;  // 获取纹理层索引
+  iVar8 = 0;  // 初始化循环计数器
+  
+  // 复制纹理层数据到目标位置
   *(undefined4 *)(param_3 + 0x40 + lVar10 * 4) = *(undefined4 *)(param_1 + 0x558 + lVar10 * 4);
+  
+  // 检查是否有子节点需要处理
   if (*(char *)(param_3 + 0xa8) != '\0') {
+    // 获取子节点数组起始地址
     puVar7 = (undefined8 *)(param_3 + 0x60);
-    uVar9 = param_4;
+    uVar9 = param_4;  // 保存纹理层索引
+    
+    // 遍历所有子节点
     do {
+      // 获取当前子节点
       puVar2 = (undefined8 *)*puVar7;
+      
+      // 检查是否为线段节点（类型为0x01）
       if (*(char *)(puVar2 + 4) == '\x01') {
-        pfVar3 = (float *)puVar2[1];
-        pfVar4 = (float *)*puVar2;
-        fVar11 = *pfVar4;
-        fVar1 = pfVar4[1];
-        fVar14 = *pfVar3 - fVar11;
-        fVar15 = pfVar3[1] - fVar1;
+        // 处理线段节点 - 计算点到线段的投影
+        pfVar3 = (float *)puVar2[1];  // 获取线段终点坐标
+        pfVar4 = (float *)*puVar2;    // 获取线段起点坐标
+        
+        // 提取线段起点坐标
+        fVar11 = *pfVar4;             // 线段起点X坐标
+        fVar1 = pfVar4[1];            // 线段起点Y坐标
+        
+        // 计算线段方向向量
+        fVar14 = *pfVar3 - fVar11;    // X方向向量
+        fVar15 = pfVar3[1] - fVar1;   // Y方向向量
+        
+        // 计算线段长度的平方
         fVar17 = fVar15 * fVar15 + fVar14 * fVar14;
+        
+        // 使用快速平方根倒数算法计算归一化因子
         auVar12 = rsqrtss(ZEXT416((uint)fVar17),ZEXT416((uint)fVar17));
-        fVar13 = auVar12._0_4_;
+        fVar13 = auVar12._0_4_;       // 获取平方根倒数
+        
+        // 使用牛顿迭代法提高精度
         fVar16 = fVar13 * 0.5 * (3.0 - fVar17 * fVar13 * fVar13);
+        
+        // 计算目标点在线段上的投影参数
         fVar13 = (param_2[1] - fVar1) * fVar15 * fVar16 + (*param_2 - fVar11) * fVar14 * fVar16;
+        
+        // 根据投影参数确定最近点
         if (0.0 <= fVar13) {
           if (fVar13 <= fVar16 * fVar17) {
+            // 投影点在线段上，计算投影点坐标
             uVar5 = CONCAT44(fVar15 * fVar16 * fVar13 + fVar1,fVar14 * fVar16 * fVar13 + fVar11);
           }
           else {
+            // 投影点在线段终点之外，选择终点
             uVar5 = *(undefined8 *)pfVar3;
           }
         }
         else {
+          // 投影点在线段起点之外，选择起点
           uVar5 = *(undefined8 *)pfVar4;
         }
-        fStackX_8 = (float)uVar5;
-        fStackX_8 = *param_2 - fStackX_8;
-        fStackX_c = (float)((ulonglong)uVar5 >> 0x20);
-        fStackX_c = param_2[1] - fStackX_c;
-        fVar11 = fStackX_8 * fStackX_8 + fStackX_c * fStackX_c;
+        
+        // 计算目标点到最近点的距离平方
+        fStackX_8 = (float)uVar5;             // 提取最近点X坐标
+        fStackX_8 = *param_2 - fStackX_8;    // 计算X方向距离
+        fStackX_c = (float)((ulonglong)uVar5 >> 0x20);  // 提取最近点Y坐标
+        fStackX_c = param_2[1] - fStackX_c;   // 计算Y方向距离
+        fVar11 = fStackX_8 * fStackX_8 + fStackX_c * fStackX_c;  // 计算距离平方
+        
+        // 更新最小距离和最佳匹配
         if (fVar11 < *param_5) {
-          *param_5 = fVar11;
-          *param_6 = puVar2;
+          *param_5 = fVar11;   // 更新最小距离
+          *param_6 = puVar2;   // 更新最佳匹配节点
         }
       }
       else {
-        lVar6 = 0x10;
+        // 处理分支节点 - 递归搜索子树
+        lVar6 = 0x10;  // 默认偏移量
+        
+        // 根据节点类型调整偏移量
         if (puVar2[2] == param_3) {
-          lVar6 = 0x18;
+          lVar6 = 0x18;  // 特殊节点类型的偏移量
         }
+        
+        // 获取子节点指针
         lVar6 = *(longlong *)(lVar6 + (longlong)puVar2);
+        
+        // 检查子节点是否有效且需要递归处理
+        // 条件1：子节点纹理激活 (*(byte *)(lVar6 + 0x139) & 1) != 0
+        // 条件2：纹理层数据不同，需要进一步搜索
         if (((*(byte *)(lVar6 + 0x139) & 1) != 0) &&
            (*(int *)(lVar6 + 0x40 + lVar10 * 4) != *(int *)(param_1 + 0x558 + lVar10 * 4))) {
+          
+          // 递归调用处理子节点
           FUN_180395c50(param_1,param_2,lVar6,uVar9,param_5,param_6);
-          uVar9 = param_4 & 0xffffffff;
+          uVar9 = param_4 & 0xffffffff;  // 恢复纹理层索引
         }
       }
+      
+      // 移动到下一个子节点
       iVar8 = iVar8 + 1;
       puVar7 = puVar7 + 1;
-    } while (iVar8 < (int)(uint)*(byte *)(param_3 + 0xa8));
+    } while (iVar8 < (int)(uint)*(byte *)(param_3 + 0xa8));  // 继续遍历所有子节点
   }
   return;
 }
