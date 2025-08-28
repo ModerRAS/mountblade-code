@@ -86,7 +86,7 @@ FUN_18043cbd0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   int64_t lStack_28;
   int iStack_20;
   
-  FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   lVar2 = lStack_28;
   if (iStack_20 == 0xf) {
     iVar1 = strcmp(lStack_28,&unknown_var_6672_ptr);
@@ -361,8 +361,8 @@ FUN_18043d100(uint64_t param_1,uint64_t param_2,int8_t param_3,uint64_t param_4)
   int8_t auStack_50 [32];
   int8_t auStack_30 [40];
   
-  FUN_180627910(auStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
-  FUN_180627910(auStack_50,param_2);
+  CoreMemoryPoolValidator(auStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  CoreMemoryPoolValidator(auStack_50,param_2);
   cVar1 = FUN_180629850(auStack_30,&unknown_var_6672_ptr,1);
   if (cVar1 == '\0') {
     cVar1 = FUN_180629850(auStack_30,&unknown_var_6568_ptr,1);

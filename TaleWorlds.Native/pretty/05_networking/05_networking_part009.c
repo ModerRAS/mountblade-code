@@ -168,7 +168,7 @@ void network_connection_status_checker(uint64_t param_1, int8_t param_2)
     }
     
     // 清理连接资源
-    FUN_18088c790(connection_context + 1);
+    AdvancedSystemProcessor(connection_context + 1);
 }
 
 /**
@@ -229,7 +229,7 @@ void network_connection_initializer(uint64_t param_1)
         large_buffer[0] = 0;
         
         // 发送控制信息
-        FUN_180749ef0(initialization_status, PACKET_TYPE_CONTROL, param_1, &unknown_var_4232_ptr);
+        DataTransformer(initialization_status, PACKET_TYPE_CONTROL, param_1, &unknown_var_4232_ptr);
     }
     
     // 执行清理操作
@@ -269,7 +269,7 @@ void network_connection_processor(uint64_t param_1)
         large_buffer[0] = 0;
         
         // 发送错误信息
-        FUN_180749ef0(processing_status, PACKET_TYPE_ERROR, param_1, &unknown_var_2648_ptr);
+        DataTransformer(processing_status, PACKET_TYPE_ERROR, param_1, &unknown_var_2648_ptr);
     }
     
     // 执行清理操作
@@ -323,7 +323,7 @@ void network_connection_validator(uint64_t param_1)
         large_buffer[0] = 0;
         
         // 发送错误信息
-        FUN_180749ef0(validation_status, PACKET_TYPE_ERROR, param_1, &unknown_var_5264_ptr);
+        DataTransformer(validation_status, PACKET_TYPE_ERROR, param_1, &unknown_var_5264_ptr);
     }
 
 validation_complete:

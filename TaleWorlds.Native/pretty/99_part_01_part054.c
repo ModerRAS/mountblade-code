@@ -428,7 +428,7 @@ void FUN_1800dc070(void **param_1,int64_t param_2,char param_3)
   if (param_3 != '\0') {
     if (uVar6 < 0x18) {
       uStack_218 = 0x13;
-      puVar7 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar7,0x18,0x10);
+      puVar7 = (int32_t *)DataValidator(system_memory_pool_ptr,puVar7,0x18,0x10);
       puStack_1e8 = puVar7;
       uStack_1d8._0_4_ = CoreEngineSystemCleanup(puVar7);
     }

@@ -684,7 +684,7 @@ void get_network_connection_info(uint64_t connection_handle, uint64_t *connectio
     func_0x00018074bda0(local_buffer, 0x100, 0);
     buffer_ptr = local_buffer;
     // 记录错误日志
-    FUN_180749ef0(0x1f, 0xd, connection_handle, &NETWORK_PROTOCOL_HANDLER);
+    DataTransformer(0x1f, 0xd, connection_handle, &NETWORK_PROTOCOL_HANDLER);
   }
   
   // 初始化连接信息缓冲区
@@ -703,7 +703,7 @@ void get_network_connection_info(uint64_t connection_handle, uint64_t *connectio
   }
   else if (status_code != 0) {
     // 清理资源
-    FUN_18088c790(&stack_buffer1);
+    AdvancedSystemProcessor(&stack_buffer1);
   }
   
   // 提取连接信息
@@ -726,7 +726,7 @@ void get_network_connection_info(uint64_t connection_handle, uint64_t *connectio
   *(int32_t *)((int64_t)connection_info + 0x2c) = info_field3;
   
   // 清理资源
-  FUN_18088c790(&stack_buffer1);
+  AdvancedSystemProcessor(&stack_buffer1);
 }
 
 // 网络连接设置函数
@@ -748,7 +748,7 @@ void set_network_connection_settings(uint64_t connection_handle, int64_t setting
       func_0x00018074bda0(local_buffer, 0x100, 0);
       buffer_ptr = local_buffer;
       // 记录错误日志
-      FUN_180749ef0(0x1f, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
+      DataTransformer(0x1f, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
     }
     // 安全验证失败
     SystemSecurityChecker(security_token ^ (uint64_t)temp_buffer);
@@ -760,7 +760,7 @@ void set_network_connection_settings(uint64_t connection_handle, int64_t setting
   if (status_code == 0) {
     if ((*(uint *)(connection_ptr + 0x24) >> 1 & 1) == 0) {
       // 清理资源
-      FUN_18088c790(&stack_buffer);
+      AdvancedSystemProcessor(&stack_buffer);
     }
     error_code = FUN_18088c740(&stack_buffer);
     if (error_code != 0) goto error_handler;
@@ -769,14 +769,14 @@ void set_network_connection_settings(uint64_t connection_handle, int64_t setting
 error_handler:
   if (error_code != 0) {
     // 清理资源
-    FUN_18088c790(&stack_buffer);
+    AdvancedSystemProcessor(&stack_buffer);
   }
   
   // 应用连接设置
   func_0x0001808754e0(connection_ptr, settings_data);
   
   // 清理资源
-  FUN_18088c790(&stack_buffer);
+  AdvancedSystemProcessor(&stack_buffer);
 }
 
 // 网络连接广播函数
@@ -799,7 +799,7 @@ void broadcast_network_connection(uint64_t connection_handle, uint64_t message_d
     func_0x00018074bda0(local_buffer + (error_code + message_length), 0x100 - (error_code + message_length), message_size);
     buffer_ptr = local_buffer;
     // 发送广播消息
-    FUN_180749ef0(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
+    DataTransformer(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
   }
   // 安全验证失败
   SystemSecurityChecker(security_token ^ (uint64_t)temp_buffer);
@@ -816,7 +816,7 @@ void handle_network_connection_error(uint64_t connection_handle)
   error_code = SystemDataProcessor(&stack0x00000030 + status_code, 0x100 - status_code, &NETWORK_BUFFER_MANAGER);
   func_0x00018074bda0(&stack0x00000030 + (status_code + error_code), 0x100 - (status_code + error_code));
   // 记录错误日志
-  FUN_180749ef0(unaff_ESI, 0xb);
+  DataTransformer(unaff_ESI, 0xb);
 }
 
 // 网络连接清理函数
@@ -857,7 +857,7 @@ void validate_network_connection(uint64_t connection_handle, int32_t *validation
     func_0x00018074bda0(local_buffer + (error_code + validation_length), 0x100 - (error_code + validation_length), validation_data);
     buffer_ptr = local_buffer;
     // 记录验证日志
-    FUN_180749ef0(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
+    DataTransformer(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
   }
 validation_success:
   // 安全验证失败
@@ -875,7 +875,7 @@ void reset_network_connection(uint64_t connection_handle)
   error_code = SystemDataProcessor(&stack0x00000040 + status_code, 0x100 - status_code, &NETWORK_BUFFER_MANAGER);
   func_0x00018074bda0(&stack0x00000040 + (status_code + error_code), 0x100 - (status_code + error_code));
   // 记录重置日志
-  FUN_180749ef0(unaff_ESI, 0xb);
+  DataTransformer(unaff_ESI, 0xb);
 }
 
 // 网络连接终止函数
@@ -909,7 +909,7 @@ void query_network_connection_status(uint64_t connection_handle, uint64_t *statu
     func_0x00018074bda0(local_buffer, 0x100, 0);
     buffer_ptr = local_buffer;
     // 记录查询日志
-    FUN_180749ef0(0x1f, 0xf, connection_handle, &NETWORK_PROTOCOL_HANDLER);
+    DataTransformer(0x1f, 0xf, connection_handle, &NETWORK_PROTOCOL_HANDLER);
   }
   
   // 初始化状态查询
@@ -935,12 +935,12 @@ cleanup_handler:
     if (status_code == 0) {
       *status_info = status_buffers[0][3];
       // 清理资源
-      FUN_18088c790(connection_buffers + 1);
+      AdvancedSystemProcessor(connection_buffers + 1);
     }
   }
 status_success:
   // 清理资源
-  FUN_18088c790(connection_buffers + 1);
+  AdvancedSystemProcessor(connection_buffers + 1);
 }
 
 // 网络连接ID获取函数
@@ -970,7 +970,7 @@ void get_network_connection_id(uint64_t connection_handle, uint64_t *connection_
     func_0x00018074bda0(local_buffer, 0x100, connection_id);
     buffer_ptr = local_buffer;
     // 记录错误日志
-    FUN_180749ef0(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
+    DataTransformer(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
   }
 success_handler:
   // 安全验证失败

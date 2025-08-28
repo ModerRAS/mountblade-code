@@ -404,7 +404,7 @@ int64_t FUN_1801a5190(uint64_t param_1,int64_t param_2,char param_3,char param_4
     }
     uStack_70 = uStack_70 - iVar11;
     *(int8_t *)((uint64_t)uStack_70 + lStack_78) = 0;
-    uVar5 = FUN_180627910(&puStack_a0,&system_ptr_e2c8);
+    uVar5 = CoreMemoryPoolValidator(&puStack_a0,&system_ptr_e2c8);
     FUN_1806288c0(&puStack_80,(int)lVar4 - (int)lStack_78,uVar5);
     puStack_a0 = &system_data_buffer_ptr;
     if (puStack_98 != (int8_t *)0x0) {

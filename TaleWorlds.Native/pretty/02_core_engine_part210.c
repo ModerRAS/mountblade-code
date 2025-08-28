@@ -173,7 +173,7 @@ LAB_18018d08e:
             }
             if ((iStack_370 != -0x35) && (uVar21 < iStack_370 + 0x36U)) {
               puVar11 = (uint64_t *)
-                        FUN_18062b8b0(system_memory_pool_ptr,puVar11,iStack_370 + 0x36U,0x10,0x13);
+                        DataValidator(system_memory_pool_ptr,puVar11,iStack_370 + 0x36U,0x10,0x13);
               CoreEngineSystemCleanup(puVar11);
             }
                     // WARNING: Subroutine does not return

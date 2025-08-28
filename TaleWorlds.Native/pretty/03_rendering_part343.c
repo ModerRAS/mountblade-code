@@ -247,7 +247,7 @@ FUN_18044f210(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   
   uVar9 = 0xfffffffffffffffe;
   if (param_1 != 0) {
-    FUN_180627910(&puStack_60);
+    CoreMemoryPoolValidator(&puStack_60);
     FUN_1801c2360(param_1 + 0x60830,&plStack_40,param_3,param_4,uVar9);
     uVar7 = uStack_38;
     lVar8 = lStack_28;
@@ -559,7 +559,7 @@ void FUN_18044fa00(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
   int32_t uStack_18;
   
   if ((param_1 != 0) && (param_2 != (int64_t *)0x0)) {
-    uVar1 = FUN_180627910(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
+    uVar1 = CoreMemoryPoolValidator(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
     uVar1 = FUN_180306ba0(*(uint64_t *)(param_1 + 0x328),uVar1);
     puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {

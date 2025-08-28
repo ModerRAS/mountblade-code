@@ -88,9 +88,9 @@ void FUN_180612360(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int8_t auStack_40 [40];
   
   uVar1 = render_system_memory;
-  uVar2 = FUN_180627910(auStack_80,param_4);
-  uVar3 = FUN_180627910(auStack_60,param_3);
-  uVar4 = FUN_180627910(auStack_40,param_2);
+  uVar2 = CoreMemoryPoolValidator(auStack_80,param_4);
+  uVar3 = CoreMemoryPoolValidator(auStack_60,param_3);
+  uVar4 = CoreMemoryPoolValidator(auStack_40,param_2);
   FUN_180567fd0(uVar1,uVar4,uVar3,uVar2,param_1);
   return;
 }
@@ -113,7 +113,7 @@ void FUN_180612410(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   
   uVar1 = render_system_memory;
   uVar3 = 0xfffffffffffffffe;
-  uVar2 = FUN_180627910(auStack_30);
+  uVar2 = CoreMemoryPoolValidator(auStack_30);
   FUN_180568ac0(uVar1,uVar2,param_3,param_4,uVar3);
   return;
 }

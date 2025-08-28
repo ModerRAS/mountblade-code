@@ -80,7 +80,7 @@ void validate_network_connection(uint64_t connection_handle, uint64_t *info_buff
     func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
     // 发送错误消息（函数不返回）
-    FUN_180749ef0(0x1f, 0xd, connection_handle, NETWORK_ERROR_MESSAGE);
+    DataTransformer(0x1f, 0xd, connection_handle, NETWORK_ERROR_MESSAGE);
   }
   
   // 初始化输出缓冲区
@@ -113,12 +113,12 @@ CONNECTION_VALIDATION_FAILED:
     if (connection_result == 0) {
       *info_buffer = (uint64_t)*(uint *)(protocol_handlers[0] + 3);
       // 清理连接数据（函数不返回）
-      FUN_18088c790(connection_data + 1);
+      AdvancedSystemProcessor(connection_data + 1);
     }
   }
 CONNECTION_INFO_FAILED:
   // 清理连接数据（函数不返回）
-  FUN_18088c790(connection_data + 1);
+  AdvancedSystemProcessor(connection_data + 1);
 }
 
 
@@ -157,7 +157,7 @@ void send_network_configuration_message(uint64_t connection_handle, uint64_t con
     func_0x00018074bda0(packet_buffer + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2), extended_params);
     message_buffer = packet_buffer;
     // 发送配置消息（函数不返回）
-    FUN_180749ef0(network_status, 0xb, connection_handle, NETWORK_CONFIG_MESSAGE);
+    DataTransformer(network_status, 0xb, connection_handle, NETWORK_CONFIG_MESSAGE);
   }
   
   // 安全验证失败，执行异常处理（函数不返回）
@@ -186,7 +186,7 @@ void send_simple_network_message(void)
   // 编码剩余数据
   func_0x00018074bda0(&stack0x00000030 + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2));
   // 发送消息（函数不返回）
-  FUN_180749ef0(message_flags, 0xb);
+  DataTransformer(message_flags, 0xb);
 }
 
 
@@ -249,7 +249,7 @@ void query_network_extended_data(uint64_t connection_handle, int32_t *data_param
     func_0x00018074bda0(packet_buffer + (connection_result + validation_result), NETWORK_BUFFER_SIZE - (connection_result + validation_result), result_buffer);
     message_buffer = packet_buffer;
     // 发送扩展数据消息（函数不返回）
-    FUN_180749ef0(0x1f, 0xb, connection_handle, NETWORK_EXTENDED_MESSAGE);
+    DataTransformer(0x1f, 0xb, connection_handle, NETWORK_EXTENDED_MESSAGE);
   }
   
   // 初始化连接数据
@@ -288,12 +288,12 @@ EXTENDED_VALIDATION_FAILED:
     if (connection_result == 0) {
       *result_buffer = (uint64_t)*(uint *)(protocol_handlers[0] + 4);
       // 清理连接数据（函数不返回）
-      FUN_18088c790(connection_data + 1);
+      AdvancedSystemProcessor(connection_data + 1);
     }
   }
 EXTENDED_DATA_FAILED:
   // 清理连接数据（函数不返回）
-  FUN_18088c790(connection_data + 1);
+  AdvancedSystemProcessor(connection_data + 1);
 }
 
 
@@ -334,7 +334,7 @@ void get_network_session_statistics(uint64_t session_handle, uint *stats_buffer)
     FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
     // 发送错误消息（函数不返回）
-    FUN_180749ef0(0x1f, 0xc, session_handle, NETWORK_SESSION_MESSAGE);
+    DataTransformer(0x1f, 0xc, session_handle, NETWORK_SESSION_MESSAGE);
   }
   
   // 初始化统计缓冲区
@@ -351,7 +351,7 @@ void get_network_session_statistics(uint64_t session_handle, uint *stats_buffer)
   }
   else if (connection_result != 0) {
     // 清理安全密钥（函数不返回）
-    FUN_18088c790(&security_key);
+    AdvancedSystemProcessor(&security_key);
   }
   
   // 获取会话数据
@@ -361,10 +361,10 @@ void get_network_session_statistics(uint64_t session_handle, uint *stats_buffer)
     stats_ptr = (uint *)FUN_18084cde0(session_data, &stats_data);
     *stats_buffer = *stats_ptr / 0x30;
     // 清理安全密钥（函数不返回）
-    FUN_18088c790(&security_key);
+    AdvancedSystemProcessor(&security_key);
   }
   // 清理安全密钥（函数不返回）
-  FUN_18088c790(&security_key);
+  AdvancedSystemProcessor(&security_key);
 }
 
 
@@ -422,7 +422,7 @@ void get_network_connection_attributes(int32_t connection_id, int32_t *flag1, in
   }
 GET_FLAGS_FAILED:
   // 清理会话句柄（函数不返回）
-  FUN_18088c790(&session_handle);
+  AdvancedSystemProcessor(&session_handle);
 }
 
 
@@ -476,7 +476,7 @@ void configure_network_connection_params(uint64_t connection_handle, int64_t par
       FUN_18074bac0(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), param2);
       message_buffer = packet_buffer;
       // 发送参数配置消息（函数不返回）
-      FUN_180749ef0(0x1f, 0xb, connection_handle, NETWORK_PARAM_MESSAGE);
+      DataTransformer(0x1f, 0xb, connection_handle, NETWORK_PARAM_MESSAGE);
     }
     // 安全验证失败，执行异常处理（函数不返回）
     SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
@@ -490,7 +490,7 @@ void configure_network_connection_params(uint64_t connection_handle, int64_t par
     // 检查连接状态标志位
     if ((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) == 0) {
       // 清理会话句柄（函数不返回）
-      FUN_18088c790(&session_handle);
+      AdvancedSystemProcessor(&session_handle);
     }
     // 验证连接数据
     encode_result = FUN_18088c740(&session_handle);
@@ -500,7 +500,7 @@ void configure_network_connection_params(uint64_t connection_handle, int64_t par
 SET_PARAMS_FAILED:
   if (encode_result != 0) {
     // 清理会话句柄（函数不返回）
-    FUN_18088c790(&session_handle);
+    AdvancedSystemProcessor(&session_handle);
   }
   
   // 配置连接参数
@@ -508,12 +508,12 @@ SET_PARAMS_FAILED:
   connection_result = FUN_180840af0(connection_data[0], param_data, temp_params);
   if (connection_result != 0) {
     // 清理会话句柄（函数不返回）
-    FUN_18088c790(&session_handle);
+    AdvancedSystemProcessor(&session_handle);
   }
   // 应用配置参数
   func_0x0001808676a0(connection_data[0] + 0x60, temp_params[0], param1, param2);
   // 清理会话句柄（函数不返回）
-  FUN_18088c790(&session_handle);
+  AdvancedSystemProcessor(&session_handle);
 }
 
 
@@ -550,7 +550,7 @@ void send_extended_network_packet(uint64_t connection_handle, int32_t packet_dat
     func_0x00018074bda0(packet_buffer + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2), extended_params);
     message_buffer = packet_buffer;
     // 发送扩展数据包消息（函数不返回）
-    FUN_180749ef0(connection_result, 0xc, connection_handle, NETWORK_PACKET_MESSAGE);
+    DataTransformer(connection_result, 0xc, connection_handle, NETWORK_PACKET_MESSAGE);
   }
   // 安全验证失败，执行异常处理（函数不返回）
   SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
@@ -579,7 +579,7 @@ void send_simple_network_packet(void)
   // 编码剩余数据
   func_0x00018074bda0(&stack0x00000030 + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2));
   // 发送数据包消息（函数不返回）
-  FUN_180749ef0(message_flags, 0xc);
+  DataTransformer(message_flags, 0xc);
 }
 
 
@@ -635,7 +635,7 @@ void check_network_connection_status(uint64_t connection_handle, int32_t *status
     FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
     // 发送错误消息（函数不返回）
-    FUN_180749ef0(0x1f, 0xc, connection_handle, NETWORK_STATUS_MESSAGE);
+    DataTransformer(0x1f, 0xc, connection_handle, NETWORK_STATUS_MESSAGE);
   }
   
   // 初始化状态缓冲区
@@ -652,12 +652,12 @@ void check_network_connection_status(uint64_t connection_handle, int32_t *status
   }
   else if (connection_result != 0) {
     // 清理会话句柄（函数不返回）
-    FUN_18088c790(&session_handle);
+    AdvancedSystemProcessor(&session_handle);
   }
   // 提取连接状态信息
   *status_buffer = *(int32_t *)(connection_data + 0x88);
   // 清理会话句柄（函数不返回）
-  FUN_18088c790(&session_handle);
+  AdvancedSystemProcessor(&session_handle);
 }
 
 
@@ -710,7 +710,7 @@ void setup_network_connection_buffers(uint64_t connection_handle, int8_t *buffer
     }
     else if (connection_result != 0) {
       // 清理会话句柄（函数不返回）
-      FUN_18088c790(&session_handle);
+      AdvancedSystemProcessor(&session_handle);
     }
     
     // 提取缓冲区参数
@@ -722,7 +722,7 @@ void setup_network_connection_buffers(uint64_t connection_handle, int8_t *buffer
     // 配置缓冲区参数
     FUN_180882160(connection_info, buffer_params, buffer_data, buffer_size);
     // 清理会话句柄（函数不返回）
-    FUN_18088c790(&session_handle);
+    AdvancedSystemProcessor(&session_handle);
   }
   
   // 检查网络状态标志
@@ -745,7 +745,7 @@ void setup_network_connection_buffers(uint64_t connection_handle, int8_t *buffer
   FUN_18074b930(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), result_buffer);
   output_buffer = (int32_t *)packet_buffer;
   // 发送缓冲区配置消息（函数不返回）
-  FUN_180749ef0(0x1f, 0xc, connection_handle, NETWORK_BUFFER_MESSAGE);
+  DataTransformer(0x1f, 0xc, connection_handle, NETWORK_BUFFER_MESSAGE);
 }
 
 
@@ -777,7 +777,7 @@ void send_buffered_network_message(void)
   // 编码最终数据
   FUN_18074b930(&stack0x00000060 + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result));
   // 发送缓冲消息（函数不返回）
-  FUN_180749ef0(message_flags, 0xc);
+  DataTransformer(message_flags, 0xc);
 }
 
 
@@ -833,7 +833,7 @@ void retrieve_network_connection_property(uint64_t connection_handle, int8_t *pr
     FUN_18074be30(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
     // 发送错误消息（函数不返回）
-    FUN_180749ef0(0x1f, 0xd, connection_handle, NETWORK_PROPERTY_MESSAGE);
+    DataTransformer(0x1f, 0xd, connection_handle, NETWORK_PROPERTY_MESSAGE);
   }
   
   // 初始化属性缓冲区
@@ -853,12 +853,12 @@ void retrieve_network_connection_property(uint64_t connection_handle, int8_t *pr
   }
   else if (connection_result != 0) {
     // 清理会话句柄（函数不返回）
-    FUN_18088c790(&session_handle);
+    AdvancedSystemProcessor(&session_handle);
   }
   // 提取连接属性信息
   *property_buffer = *(int8_t *)(connection_data + 0xbc);
   // 清理会话句柄（函数不返回）
-  FUN_18088c790(&session_handle);
+  AdvancedSystemProcessor(&session_handle);
 }
 
 
@@ -912,7 +912,7 @@ void get_network_configuration_settings(int32_t config_id, int32_t *param1, int3
   FUN_180868270(config_data, param1, param2);
 GET_CONFIG_FAILED:
   // 清理会话句柄（函数不返回）
-  FUN_18088c790(&session_handle);
+  AdvancedSystemProcessor(&session_handle);
 }
 
 
@@ -952,7 +952,7 @@ void determine_network_connection_type(uint64_t connection_handle, int32_t *type
     func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
     // 发送错误消息（函数不返回）
-    FUN_180749ef0(0x1f, 0xd, connection_handle, NETWORK_TYPE_MESSAGE);
+    DataTransformer(0x1f, 0xd, connection_handle, NETWORK_TYPE_MESSAGE);
   }
   
   // 初始化类型缓冲区（默认值2）
@@ -972,14 +972,14 @@ void determine_network_connection_type(uint64_t connection_handle, int32_t *type
   }
   else if (connection_result != 0) {
     // 清理会话句柄（函数不返回）
-    FUN_18088c790(&session_handle);
+    AdvancedSystemProcessor(&session_handle);
   }
   
   // 获取连接类型
   connection_type = func_0x0001808682c0(connection_data);
   *type_buffer = connection_type;
   // 清理会话句柄（函数不返回）
-  FUN_18088c790(&session_handle);
+  AdvancedSystemProcessor(&session_handle);
 }
 
 
@@ -1029,12 +1029,12 @@ void fetch_network_connection_field(uint64_t connection_handle, uint field_index
       }
       else if (connection_result != 0) {
         // 清理会话句柄（函数不返回）
-        FUN_18088c790(&session_handle);
+        AdvancedSystemProcessor(&session_handle);
       }
       // 提取指定索引的字段信息
       *field_buffer = *(int32_t *)(connection_data + 0xa4 + (int64_t)(int)field_index * 4);
       // 清理会话句柄（函数不返回）
-      FUN_18088c790(&session_handle);
+      AdvancedSystemProcessor(&session_handle);
     }
   }
   
@@ -1052,7 +1052,7 @@ void fetch_network_connection_field(uint64_t connection_handle, uint field_index
   FUN_18074bac0(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), field_buffer);
   message_buffer = packet_buffer;
   // 发送字段消息（函数不返回）
-  FUN_180749ef0(0x1f, 0xd, connection_handle, NETWORK_FIELD_MESSAGE);
+  DataTransformer(0x1f, 0xd, connection_handle, NETWORK_FIELD_MESSAGE);
 }
 
 
@@ -1091,7 +1091,7 @@ void monitor_network_connection_state(uint64_t connection_handle, int32_t *state
     func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
     // 发送错误消息（函数不返回）
-    FUN_180749ef0(0x1f, 0xc, connection_handle, NETWORK_STATE_MESSAGE);
+    DataTransformer(0x1f, 0xc, connection_handle, NETWORK_STATE_MESSAGE);
   }
   
   // 初始化状态缓冲区（默认值1）
@@ -1123,12 +1123,12 @@ STATE_VALIDATION_FAILED:
     if (connection_result == 0) {
       *state_buffer = *(int32_t *)(protocol_handlers[0] + 3);
       // 清理连接数据（函数不返回）
-      FUN_18088c790(connection_data + 1);
+      AdvancedSystemProcessor(connection_data + 1);
     }
   }
 GET_STATE_FAILED:
   // 清理连接数据（函数不返回）
-  FUN_18088c790(connection_data + 1);
+  AdvancedSystemProcessor(connection_data + 1);
 }
 
 
@@ -1168,7 +1168,7 @@ void count_active_network_sessions(uint64_t session_handle, uint *count_buffer)
     FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
     // 发送错误消息（函数不返回）
-    FUN_180749ef0(0x1f, 0xd, session_handle, NETWORK_COUNT_MESSAGE);
+    DataTransformer(0x1f, 0xd, session_handle, NETWORK_COUNT_MESSAGE);
   }
   
   // 初始化数量缓冲区
@@ -1191,7 +1191,7 @@ void count_active_network_sessions(uint64_t session_handle, uint *count_buffer)
   }
   else if (connection_result != 0) {
     // 清理会话密钥（函数不返回）
-    FUN_18088c790(&session_key);
+    AdvancedSystemProcessor(&session_key);
   }
   
   // 计算活跃会话数量
@@ -1201,7 +1201,7 @@ void count_active_network_sessions(uint64_t session_handle, uint *count_buffer)
   }
   *count_buffer = session_count;
   // 清理会话密钥（函数不返回）
-  FUN_18088c790(&session_key);
+  AdvancedSystemProcessor(&session_key);
 }
 
 
@@ -1240,7 +1240,7 @@ void extract_network_session_data(uint64_t session_handle, uint64_t *data_buffer
     func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
     // 发送错误消息（函数不返回）
-    FUN_180749ef0(0x1f, 0xc, session_handle, NETWORK_DATA_MESSAGE);
+    DataTransformer(0x1f, 0xc, session_handle, NETWORK_DATA_MESSAGE);
   }
   
   // 初始化数据缓冲区
@@ -1257,13 +1257,13 @@ void extract_network_session_data(uint64_t session_handle, uint64_t *data_buffer
   }
   else if (connection_result != 0) {
     // 清理会话密钥（函数不返回）
-    FUN_18088c790(&session_key);
+    AdvancedSystemProcessor(&session_key);
   }
   
   // 提取会话数据信息
   *data_buffer = *(uint64_t *)(*(int64_t *)(session_data + 0xd0) + 0x38);
   // 清理会话密钥（函数不返回）
-  FUN_18088c790(&session_key);
+  AdvancedSystemProcessor(&session_key);
 }
 
 

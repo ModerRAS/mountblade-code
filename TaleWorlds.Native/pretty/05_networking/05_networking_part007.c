@@ -621,7 +621,7 @@ void network_connection_pool_manager(int64_t *connection_pool, uint pool_size, u
         result = FUN_18088f710(network_context, stack_buffer2);
         if ((result == 0) && (result = FUN_18088f710(stack_buffer2, &stack_buffer), result == 0)) {
             // 配置连接池属性
-            result = FUN_18010cbc0(stack_buffer, &unknown_var_7592_ptr, (int64_t)connection_pool + 0x14, connection_pool + 3,
+            result = AdvancedSystemOptimizer(stack_buffer, &unknown_var_7592_ptr, (int64_t)connection_pool + 0x14, connection_pool + 3,
                                   (int64_t)connection_pool + 0x1c);
             if (((result == 3) ||
                 (((result = FUN_18088eea0(&stack_buffer, (int64_t)connection_pool + 0x14), result == 0 &&
@@ -629,7 +629,7 @@ void network_connection_pool_manager(int64_t *connection_pool, uint pool_size, u
                  (result = FUN_18088eea0(&stack_buffer, (int64_t)connection_pool + 0x1c), result == 0)))) &&
                 (result = FUN_18088f710(stack_buffer2, &stack_buffer), result == 0)) {
                 // 设置连接池参数
-                result = FUN_18010cbc0(stack_buffer, &unknown_var_7592_ptr, connection_pool + 4, (int64_t)connection_pool + 0x24,
+                result = AdvancedSystemOptimizer(stack_buffer, &unknown_var_7592_ptr, connection_pool + 4, (int64_t)connection_pool + 0x24,
                                       connection_pool + 5);
                 if (((result == 3) ||
                     (((result = FUN_18088eea0(&stack_buffer, connection_pool + 4), result == 0 &&
@@ -1222,7 +1222,7 @@ void network_message_broadcaster(uint64_t message_id)
     }
 broadcast_complete:
     // 清理资源
-    FUN_18088c790(stack_array + 1);
+    AdvancedSystemProcessor(stack_array + 1);
 }
 
 /**
@@ -1257,7 +1257,7 @@ void network_connection_closer(uint64_t connection_id)
                 FUN_18088da50(*(uint64_t *)(stack_array[0] + 0x98));
             }
             // 清理资源
-            FUN_18088c790(stack_array + 1);
+            AdvancedSystemProcessor(stack_array + 1);
         }
         result = FUN_180883a30();
         if (result == 0) goto connection_close_complete;
@@ -1266,7 +1266,7 @@ void network_connection_closer(uint64_t connection_id)
         stack_ptr = large_buffer;
         large_buffer[0] = 0;
         // 记录关闭日志
-        FUN_180749ef0(result, 0xb, connection_id, &unknown_var_4712_ptr);
+        DataTransformer(result, 0xb, connection_id, &unknown_var_4712_ptr);
     }
 connection_close_complete:
     // 安全清理
@@ -1307,7 +1307,7 @@ void network_config_setter(uint64_t config_id, uint64_t *config_data)
         func_0x00018074bda0(large_buffer, 0x100, 0);
         stack_ptr = large_buffer;
         // 记录配置日志
-        FUN_180749ef0(0x1f, 0xd, config_id, &unknown_var_6920_ptr);
+        DataTransformer(0x1f, 0xd, config_id, &unknown_var_6920_ptr);
     }
     stack_value = 0;
     result = func_0x00018088c590(config_id, &stack_long);
@@ -1345,11 +1345,11 @@ void network_config_setter(uint64_t config_id, uint64_t *config_data)
         *(int32_t *)((int64_t)ptr_array[0] + 0x44) = value3;
         func_0x00018088e0d0(*(uint64_t *)(stack_long + 0x98));
         // 清理资源
-        FUN_18088c790(&stack_value);
+        AdvancedSystemProcessor(&stack_value);
     }
 config_set_complete:
     // 清理资源
-    FUN_18088c790(&stack_value);
+    AdvancedSystemProcessor(&stack_value);
 }
 
 /**
@@ -1377,7 +1377,7 @@ void network_connection_validator(uint64_t connection_id, uint64_t validation_da
         func_0x00018074bda0(large_buffer, 0x100, validation_data);
         stack_ptr = large_buffer;
         // 记录验证日志
-        FUN_180749ef0(result, 0xb, connection_id, &unknown_var_5000_ptr);
+        DataTransformer(result, 0xb, connection_id, &unknown_var_5000_ptr);
     }
     // 安全清理
     SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
@@ -1425,7 +1425,7 @@ void network_parameter_setter(int32_t param_id, int64_t param_value, int32_t par
     *(int64_t *)(config_ptr + 0x40) = param_value;
 param_set_complete:
     // 清理资源
-    FUN_18088c790(&stack_value1);
+    AdvancedSystemProcessor(&stack_value1);
 }
 
 /**
@@ -1445,7 +1445,7 @@ void network_logger(void)
     length = SystemDataProcessor(&stack0x00000050 + result, 0x100 - result, &system_temp_buffer);
     func_0x00018074b800(&stack0x00000050 + (result + length), 0x100 - (result + length), param2);
     // 记录日志
-    FUN_180749ef0(param1, 0xc);
+    DataTransformer(param1, 0xc);
 }
 
 /**

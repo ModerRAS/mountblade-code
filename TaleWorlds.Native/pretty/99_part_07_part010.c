@@ -385,7 +385,7 @@ int64_t FUN_1804a3c40(uint64_t param_1,int64_t param_2)
   if (*(void **)(lVar4 + 8) != (void *)0x0) {
     puVar10 = *(void **)(lVar4 + 8);
   }
-  FUN_180627910(&puStack_70,puVar10);
+  CoreMemoryPoolValidator(&puStack_70,puVar10);
   puStack_90 = (uint64_t *)0x0;
   puStack_88 = (uint64_t *)0x0;
   uStack_80 = 0;

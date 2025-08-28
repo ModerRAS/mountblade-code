@@ -69,7 +69,7 @@ void network_get_connection_info(uint64_t param_1,uint64_t *param_2)
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&unknown_var_1312_ptr);
+    DataTransformer(0x1f,0xd,param_1,&unknown_var_1312_ptr);
   }
   *param_2 = 0;
   uStack_148 = 0;
@@ -85,11 +85,11 @@ void network_get_connection_info(uint64_t param_1,uint64_t *param_2)
   }
   else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_148);
+    AdvancedSystemProcessor(&uStack_148);
   }
   *param_2 = *(uint64_t *)(lStack_138 + 0x30);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_148);
+  AdvancedSystemProcessor(&uStack_148);
 }
 
 // 函数: void network_log_connection_event(uint64_t param_1,uint64_t param_2,uint64_t param_3)
@@ -118,7 +118,7 @@ void network_log_connection_event(uint64_t param_1,uint64_t param_2,uint64_t par
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xc,param_1,&unknown_var_696_ptr);
+    DataTransformer(iVar1,0xc,param_1,&unknown_var_696_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_168);
@@ -139,7 +139,7 @@ void network_log_connection_event_simple(void)
   iVar2 = SystemDataProcessor(&stack0x00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xc);
+  DataTransformer(unaff_ESI,0xc);
 }
 
 // 函数: void network_cleanup_connection_event(void)
@@ -181,7 +181,7 @@ void network_log_server_event(uint64_t param_1,uint64_t param_2,uint64_t param_3
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&unknown_var_664_ptr);
+    DataTransformer(iVar1,0xb,param_1,&unknown_var_664_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_168);
@@ -202,7 +202,7 @@ void network_log_server_event_simple(void)
   iVar2 = SystemDataProcessor(&stack0x00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xb);
+  DataTransformer(unaff_ESI,0xb);
 }
 
 // 函数: void network_cleanup_server_event(void)
@@ -258,7 +258,7 @@ void network_get_peer_address_info(int32_t param_1,int32_t *param_2,int32_t *par
   FUN_1808682e0(lStack_148,param_2,param_3);
 LAB_18084749d:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_158);
+  AdvancedSystemProcessor(&uStack_158);
 }
 
 // 函数: void network_extract_peer_data(int64_t param_1,uint64_t *param_2,int8_t param_3)
@@ -377,7 +377,7 @@ void network_log_multi_param_event(uint64_t param_1,int32_t param_2,int32_t para
     func_0x00018074bda0(auStack_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_5);
     puStack_168 = auStack_148;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&unknown_var_384_ptr);
+    DataTransformer(iVar1,0xb,param_1,&unknown_var_384_ptr);
   }
 LAB_1808477fa:
                     // WARNING: Subroutine does not return
@@ -410,7 +410,7 @@ void network_log_multi_param_event_simple(void)
   iVar2 = SystemDataProcessor(&stack0x00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074bda0(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xb);
+  DataTransformer(unaff_ESI,0xb);
 }
 
 // 函数: void network_cleanup_multi_param_event(void)
@@ -475,7 +475,7 @@ void network_get_connection_status(uint64_t param_1,int8_t *param_2)
     FUN_18074be30(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_840_ptr);
+    DataTransformer(0x1f,0xc,param_1,&unknown_var_840_ptr);
   }
   *param_2 = 0;
   uStack_128 = 0;
@@ -488,11 +488,11 @@ void network_get_connection_status(uint64_t param_1,int8_t *param_2)
   }
   else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
+    AdvancedSystemProcessor(&uStack_138);
   }
   FUN_1808479d0(uStack_128,*(uint64_t *)(lStack_130 + 800),param_2);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
+  AdvancedSystemProcessor(&uStack_138);
 }
 
 // 函数: void network_check_connection_readiness(int64_t param_1,int64_t *param_2,byte *param_3)
@@ -691,7 +691,7 @@ void network_get_connection_stability_status(uint64_t param_1,int8_t *param_2)
     FUN_18074be30(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&unknown_var_808_ptr);
+    DataTransformer(0x1f,0xc,param_1,&unknown_var_808_ptr);
   }
   *param_2 = 0;
   uStack_128 = 0;
@@ -704,11 +704,11 @@ void network_get_connection_stability_status(uint64_t param_1,int8_t *param_2)
   }
   else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
+    AdvancedSystemProcessor(&uStack_138);
   }
   FUN_180847c60(uStack_128,*(uint64_t *)(lStack_130 + 800),param_2);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
+  AdvancedSystemProcessor(&uStack_138);
 }
 
 // 函数: bool network_is_valid_connection_id(uint64_t param_1)
@@ -763,7 +763,7 @@ LAB_180847fc4:
   }
 LAB_180848016:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_138 + 1);
+  AdvancedSystemProcessor(alStack_138 + 1);
 }
 
 // 函数: void network_send_data_packet(uint64_t param_1,int64_t param_2,int32_t param_3,uint64_t *param_4)
@@ -808,7 +808,7 @@ void network_send_data_packet(uint64_t param_1,int64_t param_2,int32_t param_3,u
     func_0x00018074bda0(auStack_158 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_4);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xb,param_1,&unknown_var_2000_ptr);
+    DataTransformer(0x1f,0xb,param_1,&unknown_var_2000_ptr);
   }
   uStack_170 = 0;
   iVar3 = func_0x00018088c590(param_1 & 0xffffffff,&lStack_168);
@@ -832,7 +832,7 @@ LAB_18084820e:
   }
 LAB_180848132:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_170);
+  AdvancedSystemProcessor(&uStack_170);
 }
 
 // 函数: void network_send_simple_notification(uint64_t param_1)
@@ -872,7 +872,7 @@ LAB_180848354:
   }
 LAB_1808483a6:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_138 + 1);
+  AdvancedSystemProcessor(alStack_138 + 1);
 }
 
 // 函数: void network_handle_connection_setup(int64_t param_1,uint64_t param_2)

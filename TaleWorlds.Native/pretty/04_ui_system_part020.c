@@ -317,7 +317,7 @@ void FUN_180662320(int64_t param_1,int64_t param_2,float *param_3,int64_t param_
   fVar19 = (float)atan2f(fVar19 * fStack_154 - fVar23 * fVar21 * fStack_158,
                          fVar19 * fStack_158 + fVar23 * fVar21 * fStack_154);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar19 * 0.5);
+  AdvancedSystemController(fVar19 * 0.5);
 }
 
 

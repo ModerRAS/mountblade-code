@@ -185,7 +185,7 @@ uint64_t FUN_1804a6370(uint64_t param_1,uint64_t param_2,int64_t *param_3)
     system_system_control_config = (float)dVar2;
     puVar1 = &unknown_var_864_ptr;
   }
-  FUN_180627910(param_1,puVar1);
+  CoreMemoryPoolValidator(param_1,puVar1);
   return param_1;
 }
 
@@ -218,7 +218,7 @@ uint64_t FUN_1804a6410(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   }
   puVar4 = &unknown_var_488_ptr;
 LAB_1804a64d2:
-  FUN_180627910(param_1,puVar4);
+  CoreMemoryPoolValidator(param_1,puVar4);
   return param_1;
 }
 
@@ -245,7 +245,7 @@ FUN_1804a6520(uint64_t param_1,uint64_t param_2,uint64_t *param_3,uint64_t param
     (**(code **)(*system_system_data_config + 0x10))(system_system_data_config,puVar2);
     puVar2 = &unknown_var_384_ptr;
   }
-  FUN_180627910(param_1,puVar2);
+  CoreMemoryPoolValidator(param_1,puVar2);
   return param_1;
 }
 

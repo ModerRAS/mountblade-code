@@ -55,7 +55,7 @@ void FUN_1806598ca(uint64_t param_1,uint param_2,uint param_3,uint64_t param_4,
   if (!in_ZF) {
                     // WARNING: Subroutine does not return
     uStack_8 = 0x1806598e8;
-    FUN_1808fd400(param_2 ^ param_3);
+    AdvancedSystemController(param_2 ^ param_3);
   }
   fVar25 = fStack000000000000003c;
   fVar15 = fStack0000000000000038;

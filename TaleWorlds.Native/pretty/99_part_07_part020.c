@@ -133,7 +133,7 @@ LAB_1804ae8e0:
        (puVar8 = &unknown_var_5412_ptr, (pcVar14[1] + 0xa8U & 0xdf) != 0)) {
       puVar8 = &unknown_var_2208_ptr;
     }
-    FUN_18010cbc0(pcVar14,puVar8,param_3);
+    AdvancedSystemOptimizer(pcVar14,puVar8,param_3);
   }
   uStack_118 = 0;
   pcVar14 = "morph_key";
@@ -167,7 +167,7 @@ LAB_1804ae9b4:
            (puVar8 = &unknown_var_5616_ptr, (pcVar14[1] + 0xa8U & 0xdf) != 0)) {
           puVar8 = &unknown_var_2216_ptr;
         }
-        FUN_18010cbc0(pcVar14,puVar8,&uStack_118);
+        AdvancedSystemOptimizer(pcVar14,puVar8,&uStack_118);
 LAB_1804ae9f7:
         *(uint64_t *)(param_1 + 0x48) = *(uint64_t *)(param_1 + 0x48) | uStack_118;
         (**(code **)(*(int64_t *)(param_1 + 0x50) + 0x10))(param_1 + 0x50,&system_buffer_ptr);
@@ -227,7 +227,7 @@ LAB_1804aeaf4:
               if (puVar13[1] != 0) {
                 lVar7 = puVar13[1];
               }
-              FUN_18010cbc0(lVar7,&system_data_6430,param_1);
+              AdvancedSystemOptimizer(lVar7,&system_data_6430,param_1);
               break;
             }
             lVar7 = (int64_t)&unknown_var_5760_ptr - (int64_t)pcVar14;

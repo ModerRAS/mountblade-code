@@ -33,7 +33,7 @@ void FUN_1805d6382(void)
       *(int8_t *)(*(int64_t *)(*unaff_RBX + 0x738) + 0x180) = 1;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x34));
+    AdvancedSystemController(*(int32_t *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x34));
   }
   uVar8 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
   uVar8 = uVar8 ^ uVar8 >> 0x11;
@@ -143,7 +143,7 @@ void FUN_1805d6396(void)
       *(int8_t *)(*(int64_t *)(*unaff_RBX + 0x738) + 0x180) = 1;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x34));
+    AdvancedSystemController(*(int32_t *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x34));
   }
   uVar8 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
   uVar8 = uVar8 ^ uVar8 >> 0x11;
@@ -316,7 +316,7 @@ void FUN_1805d6890(int64_t *param_1)
     uStack_178 = 0x1010101;
     lStack_160 = *(int64_t *)(*param_1 + 0x20) + 0xc;
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(*(int64_t *)(*param_1 + 0x20) + 0x34));
+    AdvancedSystemController(*(int32_t *)(*(int64_t *)(*param_1 + 0x20) + 0x34));
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_1a8);

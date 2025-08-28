@@ -562,7 +562,7 @@ LAB_1808768bc:
             }
 LAB_180876b83:
                     // WARNING: Subroutine does not return
-            FUN_18088c790(auStack_958);
+            AdvancedSystemProcessor(auStack_958);
           }
           if (puVar2[0x5c] != 0) {
             lVar10 = *(int64_t *)(param_1 + 0xa0);

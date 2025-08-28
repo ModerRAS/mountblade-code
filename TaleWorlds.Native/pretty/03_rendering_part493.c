@@ -52,7 +52,7 @@ void FUN_18052f7be(void)
       *unaff_R14 = uVar6;
       *unaff_R12 = 1;
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(*(int32_t *)(*(int64_t *)(unaff_RDI + 0x20) + 0x34));
+      AdvancedSystemController(*(int32_t *)(*(int64_t *)(unaff_RDI + 0x20) + 0x34));
     }
   }
   uVar6 = func_0x00018051cd90();

@@ -210,9 +210,9 @@ extern uint64_t global_state_2504_ptr;            /* 系统字符串3 */
 #define MutexInitializer_3 FUN_1800435e0         // 互斥锁初始化3
 
 // 系统核心功能函数
-#define SystemCoreFunction_1 FUN_18008d070        // 系统核心功能1
-#define SystemCoreFunction_2 FUN_18008f0d0        // 系统核心功能2
-#define SystemCoreFunction_3 FUN_18008f140        // 系统核心功能3
+#define SystemCoreFunction_1 NetworkDataProcessor        // 系统核心功能1
+#define SystemCoreFunction_2 NetworkConnectionManager        // 系统核心功能2
+#define SystemCoreFunction_3 NetworkProtocolHandler        // 系统核心功能3
 #define SystemCoreFunction_4 FUN_180623800        // 系统核心功能4
 #define SystemCoreFunction_5 FUN_180629770        // 系统核心功能5
 #define SystemCoreFunction_6 FUN_1808fc7d0        // 系统核心功能6

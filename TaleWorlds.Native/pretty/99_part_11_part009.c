@@ -343,7 +343,7 @@ void FUN_1806df600(void)
   float in_stack_00000030;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(in_stack_00000028 * 1.0 + in_stack_00000030 * 0.0);
+  AdvancedSystemController(in_stack_00000028 * 1.0 + in_stack_00000030 * 0.0);
 }
 
 

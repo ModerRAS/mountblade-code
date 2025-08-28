@@ -739,7 +739,7 @@ void FUN_18035b330(int64_t param_1)
     (*pcVar1)(*(int64_t **)(param_1 + 0xd0));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400((float)*(double *)(param_1 + 0xe8));
+  AdvancedSystemController((float)*(double *)(param_1 + 0xe8));
 }
 
 

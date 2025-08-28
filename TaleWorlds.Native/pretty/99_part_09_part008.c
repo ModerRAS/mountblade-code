@@ -208,7 +208,7 @@ LAB_1805c09a3:
             uVar5 = uVar5 ^ uVar5 << 5;
             *(uint *)(unaff_RDI + 0x272) = uVar5;
                     // WARNING: Subroutine does not return
-            FUN_1808fd400((float)(uVar5 - 1) * 3.949879e-10 - 0.84823006);
+            AdvancedSystemController((float)(uVar5 - 1) * 3.949879e-10 - 0.84823006);
           }
         }
         puVar8 = *(uint64_t **)(unaff_RBP + 200);
@@ -378,7 +378,7 @@ void FUN_1805c1160(int64_t *param_1,uint64_t *param_2,float param_3,uint64_t *pa
   }
 LAB_1805c14f2:
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(0x3db2b8c3);
+  AdvancedSystemController(0x3db2b8c3);
 }
 
 

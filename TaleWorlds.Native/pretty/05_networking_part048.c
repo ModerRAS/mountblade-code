@@ -653,7 +653,7 @@ void FUN_1808674e0(int64_t *param_1,int64_t param_2)
   }
 LAB_1808675ba:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_38);
+  AdvancedSystemProcessor(&uStack_38);
 }
 
 
@@ -872,7 +872,7 @@ void FUN_180867810(int64_t *param_1,int64_t param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStackX_8);
+  AdvancedSystemProcessor(&uStackX_8);
 }
 
 

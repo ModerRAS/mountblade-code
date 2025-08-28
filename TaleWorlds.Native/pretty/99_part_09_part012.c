@@ -122,7 +122,7 @@ void FUN_1805c1ed9(void)
         fVar15 = (float)(int)CONCAT71(uVar2,fVar15 <= 1.1754944e-38) * 1.1754944e-38 + fVar15;
         auVar16 = rsqrtss(ZEXT416((uint)fVar15),ZEXT416((uint)fVar15));
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(*(int32_t *)(lVar4 + 0x34),3.0 - fVar15 * auVar16._0_4_ * auVar16._0_4_);
+        AdvancedSystemController(*(int32_t *)(lVar4 + 0x34),3.0 - fVar15 * auVar16._0_4_ * auVar16._0_4_);
       }
     }
     in_XMM5_Da = 0.001;

@@ -135,7 +135,7 @@ LAB_1803bc194:
                      (puVar13 = &unknown_var_5412_ptr, (pcVar22[1] + 0xa8U & 0xdf) != 0)) {
                     puVar13 = &unknown_var_2208_ptr;
                   }
-                  param_1 = FUN_18010cbc0(pcVar22,puVar13,&iStack_a8);
+                  param_1 = AdvancedSystemOptimizer(pcVar22,puVar13,&iStack_a8);
                   bVar4 = true;
                   if (iVar17 < iStack_a8) {
                     iVar17 = iStack_a8;
@@ -260,7 +260,7 @@ LAB_1803bc476:
                          (puVar13 = &unknown_var_5412_ptr, (pcVar23[1] + 0xa8U & 0xdf) != 0)) {
                         puVar13 = &unknown_var_2208_ptr;
                       }
-                      param_1 = FUN_18010cbc0(pcVar23,puVar13,&iStack_a4);
+                      param_1 = AdvancedSystemOptimizer(pcVar23,puVar13,&iStack_a4);
                       iVar16 = iStack_a4;
                     }
                   }

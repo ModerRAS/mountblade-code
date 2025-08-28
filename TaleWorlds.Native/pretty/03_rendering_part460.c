@@ -159,7 +159,7 @@ void FUN_180514c04(uint64_t param_1,int64_t param_2)
   }
   fVar22 = (float)asinf(fVar22);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar22 * 0.5);
+  AdvancedSystemController(fVar22 * 0.5);
 }
 
 
@@ -308,7 +308,7 @@ void FUN_180514cd3(float param_1,int64_t param_2,float param_3,float param_4)
   }
   fVar18 = (float)asinf(fVar18);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar18 * 0.5);
+  AdvancedSystemController(fVar18 * 0.5);
 }
 
 

@@ -395,7 +395,7 @@ process_connections:
     
     if (data_size == 0) {
         /* 清理网络资源 */
-        FUN_1808ddf80(param_2, temp_buffer_38);
+        AdvancedSystemManager(param_2, temp_buffer_38);
     }
     return (uint64_t)data_size;
 }
@@ -488,7 +488,7 @@ process_validation:
     }
     
     /* 清理验证资源 */
-    FUN_1808ddf80();
+    AdvancedSystemManager();
 }
 
 /**
@@ -680,7 +680,7 @@ protocol_cleanup:
     
 protocol_finalization:
     /* 清理协议资源 */
-    FUN_1808ddf80(param_2, temp_buffer_48);
+    AdvancedSystemManager(param_2, temp_buffer_48);
 }
 
 /**
@@ -791,7 +791,7 @@ uint64_t NetworkDataTransmitter(int64_t param_1, uint64_t *param_2)
         }
         if ((int)operation_result == 0) {
             /* 清理传输资源 */
-            FUN_1808ddf80(param_2, temp_buffer_48);
+            AdvancedSystemManager(param_2, temp_buffer_48);
         }
     }
     return operation_result;
@@ -844,7 +844,7 @@ uint64_t NetworkDataReceiver(void)
         }
         if ((int)final_result == 0) {
             /* 清理接收资源 */
-            FUN_1808ddf80();
+            AdvancedSystemManager();
         }
     }
     return final_result;
@@ -892,7 +892,7 @@ uint64_t NetworkErrorHandler(void)
         }
         if ((int)final_result == 0) {
             /* 清理错误处理资源 */
-            FUN_1808ddf80();
+            AdvancedSystemManager();
         }
     }
     return final_result;
@@ -909,7 +909,7 @@ uint64_t NetworkErrorHandler(void)
 void NetworkSystemController(void)
 {
     /* 清理系统控制资源 */
-    FUN_1808ddf80();
+    AdvancedSystemManager();
 }
 
 /**
@@ -960,7 +960,7 @@ uint64_t NetworkPacketProcessor(uint64_t param_1, int64_t *param_2)
     if ((int)processing_result == NETWORK_ERROR_DATA_TOO_LARGE) {
 packet_cleanup:
         /* 清理数据包资源 */
-        FUN_1808ddf80(param_2, temp_buffer_38);
+        AdvancedSystemManager(param_2, temp_buffer_38);
     }
     
     if ((int)processing_result != 0) {
@@ -1045,7 +1045,7 @@ buffer_validation_complete:
         if ((int)processing_result == 0) {
 packet_finalization:
             /* 清理数据包处理资源 */
-            FUN_1808ddf80(param_2, temp_buffer_58);
+            AdvancedSystemManager(param_2, temp_buffer_58);
         }
     }
     return processing_result;
@@ -1076,7 +1076,7 @@ uint64_t NetworkPacketValidator(void)
     if ((int)validation_result == NETWORK_ERROR_DATA_TOO_LARGE) {
 packet_validation_cleanup:
         /* 清理验证资源 */
-        FUN_1808ddf80();
+        AdvancedSystemManager();
     }
     
     if ((int)validation_result != 0) {
@@ -1161,7 +1161,7 @@ validation_complete:
         if ((int)validation_result == 0) {
 packet_finalization:
             /* 清理验证资源 */
-            FUN_1808ddf80();
+            AdvancedSystemManager();
         }
     }
     return validation_result;
@@ -1293,7 +1293,7 @@ void NetworkDataSynchronizer(int64_t param_1, uint64_t *param_2)
                     *(int32_t *)(param_1 + 0x20c) = *(int32_t *)(param_1 + 0x1c);
                     
                     /* 清理同步资源 */
-                    FUN_1808ddf80(param_2, temp_buffer_48);
+                    AdvancedSystemManager(param_2, temp_buffer_48);
                 }
             }
         }
@@ -1362,7 +1362,7 @@ void NetworkProtocolManager(int32_t param_1)
                         *(int32_t *)(data_ptr + 0x20c) = *(int32_t *)(data_ptr + 0x1c);
                         
                         /* 清理协议资源 */
-                        FUN_1808ddf80(*(int32_t *)(data_ptr + 0x10), &protocol_param);
+                        AdvancedSystemManager(*(int32_t *)(data_ptr + 0x10), &protocol_param);
                     }
                 }
             }

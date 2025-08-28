@@ -685,7 +685,7 @@ void FUN_1800ae730(int64_t *param_1,int64_t param_2)
         }
         uStack_80 = uStack_80 - iVar12;
         puStack_88[uStack_80] = 0;
-        uVar13 = FUN_180627910(&puStack_50,&unknown_var_7168_ptr);
+        uVar13 = CoreMemoryPoolValidator(&puStack_50,&unknown_var_7168_ptr);
         FUN_1806288c0(&puStack_90,(int)lVar2 - (int)puStack_88,uVar13);
         puStack_50 = &system_data_buffer_ptr;
         if (lStack_48 != 0) {
