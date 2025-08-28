@@ -604,7 +604,7 @@ void SystemDataProcessor(uint64_t param_1,uint64_t *param_2,int32_t param_3)
 
 
 
-uint64_t * FUN_180056de0(uint64_t *param_1)
+uint64_t * SystemDataAllocator(uint64_t *param_1)
 
 {
   *param_1 = 0;
@@ -616,7 +616,7 @@ uint64_t * FUN_180056de0(uint64_t *param_1)
 
 
 
-uint64_t * FUN_180056e10(uint64_t *param_1)
+uint64_t * SystemMemoryAllocator(uint64_t *param_1)
 
 {
   *param_1 = 0;
@@ -640,7 +640,7 @@ void SystemCleanup(void)
 
 
 
-uint64_t * FUN_180056e60(uint64_t *param_1)
+uint64_t * SystemResourceAllocator(uint64_t *param_1)
 
 {
   *param_1 = 0;
@@ -652,7 +652,7 @@ uint64_t * FUN_180056e60(uint64_t *param_1)
 
 
 
-uint64_t * FUN_180056e90(uint64_t *param_1)
+uint64_t * SystemStateAllocator(uint64_t *param_1)
 
 {
   uint64_t *puVar1;
@@ -676,7 +676,7 @@ uint64_t * FUN_180056e90(uint64_t *param_1)
 
 
 
-int64_t * FUN_180056f10(int64_t *param_1,int64_t *param_2)
+int64_t * SystemContextAllocator(int64_t *param_1,int64_t *param_2)
 
 {
   int64_t *plVar1;
