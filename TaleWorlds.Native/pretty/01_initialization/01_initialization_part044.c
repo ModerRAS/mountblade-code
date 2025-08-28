@@ -66,21 +66,21 @@ void initialize_system_config_parameters_variant1(undefined8 config_handle, unde
   
   FUN_1800623b0(_DAT_180c86928,0,0x100000000,0xc,&UNK_1809ff958,param_3,0xfffffffffffffffe);
   if (DAT_180c82860 == '\0') {
-    auStackX_20[0] = param_2;
-    FUN_180627910(&puStack_30,param_3);
-    puVar1 = *(undefined **)*_DAT_180c8ed08;
-    if (puVar1 == &UNK_18098bb88) {
-      cVar2 = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
+    stack_params[0] = config_param;
+    FUN_180627910(&stack_ptr,param_3);
+    interface_ptr = *(undefined **)*_DAT_180c8ed08;
+    if (interface_ptr == &UNK_18098bb88) {
+      status_flag = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
     }
     else {
-      cVar2 = (**(code **)(puVar1 + 0x50))((undefined8 *)*_DAT_180c8ed08);
+      status_flag = (**(code **)(interface_ptr + 0x50))((undefined8 *)*_DAT_180c8ed08);
     }
-    if (cVar2 == '\0') {
+    if (status_flag == '\0') {
       (**(code **)(*(longlong *)_DAT_180c8ed08[1] + 0x18))
-                ((longlong *)_DAT_180c8ed08[1],&puStack_30,auStackX_20);
+                ((longlong *)_DAT_180c8ed08[1],&stack_ptr,stack_params);
     }
-    puStack_30 = &UNK_180a3c3e0;
-    if (lStack_28 != 0) {
+    stack_ptr = &UNK_180a3c3e0;
+    if (stack_value != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }

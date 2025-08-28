@@ -2079,72 +2079,82 @@ undefined system_analysis_data;  // 系统分析数据
 
 
 
-// 函数: undefined FUN_180446120;
-undefined FUN_180446120;
-undefined UNK_18044fe80;
+// 函数: 绘制应用分析
+// 负责绘制应用程序分析信息
+undefined draw_app_analysis;
+undefined app_analysis_data;      // 应用分析数据
 
 
 
 
-// 函数: undefined FUN_180446160;
-undefined FUN_180446160;
-undefined UNK_18044fe90;
+// 函数: 绘制用户分析
+// 负责绘制用户分析信息
+undefined draw_user_analysis;
+undefined user_analysis_data;     // 用户分析数据
 
 
 
 
-// 函数: undefined FUN_1804461b0;
-undefined FUN_1804461b0;
-undefined UNK_18044fea0;
+// 函数: 绘制安全分析
+// 负责绘制安全分析信息
+undefined draw_security_analysis;
+undefined security_analysis_data; // 安全分析数据
 
 
 
 
-// 函数: undefined FUN_1804462a0;
-undefined FUN_1804462a0;
-undefined UNK_18044fee0;
+// 函数: 绘制访问分析
+// 负责绘制访问分析信息
+undefined draw_access_analysis;
+undefined access_analysis_data;  // 访问分析数据
 
 
 
 
-// 函数: undefined FUN_1804462e0;
-undefined FUN_1804462e0;
-undefined UNK_18044ff00;
+// 函数: 绘制事件分析
+// 负责绘制事件分析信息
+undefined draw_event_analysis;
+undefined event_analysis_data;    // 事件分析数据
 
 
 
 
-// 函数: undefined FUN_180446320;
-undefined FUN_180446320;
-undefined UNK_18044ff20;
+// 函数: 绘制操作分析
+// 负责绘制操作分析信息
+undefined draw_operation_analysis;
+undefined operation_analysis_data; // 操作分析数据
 
 
 
 
-// 函数: undefined FUN_180446370;
-undefined FUN_180446370;
-undefined UNK_18044ff40;
+// 函数: 绘制错误优化
+// 负责绘制错误优化建议
+undefined draw_error_optimization;
+undefined error_optimization_data; // 错误优化数据
 
 
 
 
-// 函数: undefined FUN_1804463b0;
-undefined FUN_1804463b0;
-undefined UNK_18044ff60;
+// 函数: 绘制性能优化
+// 负责绘制性能优化建议
+undefined draw_performance_optimization;
+undefined performance_optimization_data; // 性能优化数据
 
 
 
 
-// 函数: undefined FUN_1804463f0;
-undefined FUN_1804463f0;
-undefined UNK_18044ff80;
+// 函数: 绘制内存优化
+// 负责绘制内存优化建议
+undefined draw_memory_optimization;
+undefined memory_optimization_data; // 内存优化数据
 
 
 
 
-// 函数: undefined FUN_180446430;
-undefined FUN_180446430;
-undefined UNK_180450350;
+// 函数: 绘制CPU优化
+// 负责绘制CPU优化建议
+undefined draw_cpu_optimization;
+undefined cpu_optimization_data;  // CPU优化数据
 
 
 
