@@ -415,173 +415,179 @@ void process_configuration_serialization(longlong config_data, longlong *buffer_
 
 
 
-// 函数: void FUN_180073adc(longlong param_1)
-void FUN_180073adc(longlong param_1)
+/**
+ * 处理配置序列化（变体1）
+ * 主要功能：与主函数类似，但使用不同的参数传递方式
+ * 
+ * 原始实现：FUN_180073adc
+ * 简化实现：配置序列化处理变体函数
+ */
+void process_configuration_serialization_variant1(longlong config_data)
 
 {
-  ushort uVar1;
-  undefined8 uVar2;
-  int *piVar3;
-  undefined4 *puVar4;
-  uint *puVar5;
-  longlong lVar6;
-  longlong *unaff_RBX;
-  longlong lVar7;
-  int iVar8;
-  ulonglong uVar9;
-  longlong lVar10;
+  ushort data_value;        // 数据值
+  undefined8 data_ptr;      // 数据指针
+  int *write_ptr;           // 写入指针
+  undefined4 *buffer_ptr;   // 缓冲区指针
+  uint *uint_ptr;           // 无符号整数指针
+  longlong data_count;      // 数据计数
+  longlong current_offset; // 当前偏移
+  int entry_count;          // 条目计数
+  ulonglong data_size;      // 数据大小
+  longlong loop_index;      // 循环索引
+  longlong *buffer_manager; // 缓冲区管理器
   
-  FUN_180639ec0();
-  lVar6 = *(longlong *)(param_1 + 0x28) - *(longlong *)(param_1 + 0x20);
-  piVar3 = (int *)unaff_RBX[1];
-  lVar6 = lVar6 / 0x12 + (lVar6 >> 0x3f);
-  iVar8 = (int)(lVar6 >> 1) - (int)(lVar6 >> 0x3f);
-  if ((ulonglong)((*unaff_RBX - (longlong)piVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    piVar3 = (int *)unaff_RBX[1];
+  initialize_serialization_buffer();
+  data_count = *(longlong *)(config_data + 0x28) - *(longlong *)(config_data + 0x20);
+  write_ptr = (int *)buffer_manager[1];
+  data_count = data_count / 0x12 + (data_count >> 0x3f);
+  entry_count = (int)(data_count >> 1) - (int)(data_count >> 0x3f);
+  if ((ulonglong)((*buffer_manager - (longlong)write_ptr) + buffer_manager[2]) < 5) {
+    expand_serialization_buffer();
+    write_ptr = (int *)buffer_manager[1];
   }
-  *piVar3 = iVar8;
-  puVar4 = (undefined4 *)(unaff_RBX[1] + 4);
-  unaff_RBX[1] = (longlong)puVar4;
-  lVar6 = (longlong)iVar8;
-  if (0 < iVar8) {
-    lVar10 = 0;
+  *write_ptr = entry_count;
+  buffer_ptr = (undefined4 *)(buffer_manager[1] + 4);
+  buffer_manager[1] = (longlong)buffer_ptr;
+  data_count = (longlong)entry_count;
+  if (0 < entry_count) {
+    loop_index = 0;
     do {
-      lVar7 = *(longlong *)(param_1 + 0x20) + lVar10;
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+      current_offset = *(longlong *)(config_data + 0x20) + loop_index;
+      if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) < 5) {
+        expand_serialization_buffer();
+        buffer_ptr = (undefined4 *)buffer_manager[1];
       }
-      *puVar4 = 0;
-      unaff_RBX[1] = unaff_RBX[1] + 4;
-      puVar4 = (undefined4 *)unaff_RBX[1];
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+      *buffer_ptr = 0;
+      buffer_manager[1] = buffer_manager[1] + 4;
+      buffer_ptr = (undefined4 *)buffer_manager[1];
+      if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) < 5) {
+        expand_serialization_buffer();
+        buffer_ptr = (undefined4 *)buffer_manager[1];
       }
-      *puVar4 = 0x10;
-      unaff_RBX[1] = unaff_RBX[1] + 4;
-      puVar5 = (uint *)unaff_RBX[1];
-      uVar1 = *(ushort *)(lVar7 + 0x10);
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
-        puVar5 = (uint *)unaff_RBX[1];
+      *buffer_ptr = 0x10;
+      buffer_manager[1] = buffer_manager[1] + 4;
+      uint_ptr = (uint *)buffer_manager[1];
+      data_value = *(ushort *)(current_offset + 0x10);
+      if ((ulonglong)((*buffer_manager - (longlong)uint_ptr) + buffer_manager[2]) < 5) {
+        expand_serialization_buffer();
+        uint_ptr = (uint *)buffer_manager[1];
       }
-      *puVar5 = (uint)uVar1;
-      puVar4 = (undefined4 *)(unaff_RBX[1] + 4);
-      unaff_RBX[1] = (longlong)puVar4;
-      if (*(ushort *)(lVar7 + 0x10) != 0) {
-        uVar2 = *(undefined8 *)(lVar7 + 8);
-        uVar9 = (ulonglong)*(ushort *)(lVar7 + 0x10) * 4;
-        if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar9) {
-          FUN_180639bf0();
-          puVar4 = (undefined4 *)unaff_RBX[1];
+      *uint_ptr = (uint)data_value;
+      buffer_ptr = (undefined4 *)(buffer_manager[1] + 4);
+      buffer_manager[1] = (longlong)buffer_ptr;
+      if (*(ushort *)(current_offset + 0x10) != 0) {
+        data_ptr = *(undefined8 *)(current_offset + 8);
+        data_size = (ulonglong)*(ushort *)(current_offset + 0x10) * 4;
+        if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) <= data_size) {
+          expand_serialization_buffer();
+          buffer_ptr = (undefined4 *)buffer_manager[1];
         }
                     // WARNING: Subroutine does not return
-        memcpy(puVar4,uVar2,uVar9);
+        memcpy(buffer_ptr,data_ptr,data_size);
       }
-      lVar7 = *(longlong *)(param_1 + 0x20) + lVar10;
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+      current_offset = *(longlong *)(config_data + 0x20) + loop_index;
+      if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) < 5) {
+        expand_serialization_buffer();
+        buffer_ptr = (undefined4 *)buffer_manager[1];
       }
-      *puVar4 = 0;
-      unaff_RBX[1] = unaff_RBX[1] + 4;
-      puVar4 = (undefined4 *)unaff_RBX[1];
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+      *buffer_ptr = 0;
+      buffer_manager[1] = buffer_manager[1] + 4;
+      buffer_ptr = (undefined4 *)buffer_manager[1];
+      if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) < 5) {
+        expand_serialization_buffer();
+        buffer_ptr = (undefined4 *)buffer_manager[1];
       }
-      *puVar4 = 0x10;
-      unaff_RBX[1] = unaff_RBX[1] + 4;
-      puVar5 = (uint *)unaff_RBX[1];
-      uVar1 = *(ushort *)(lVar7 + 0x22);
-      if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-        FUN_180639bf0();
-        puVar5 = (uint *)unaff_RBX[1];
+      *buffer_ptr = 0x10;
+      buffer_manager[1] = buffer_manager[1] + 4;
+      uint_ptr = (uint *)buffer_manager[1];
+      data_value = *(ushort *)(current_offset + 0x22);
+      if ((ulonglong)((*buffer_manager - (longlong)uint_ptr) + buffer_manager[2]) < 5) {
+        expand_serialization_buffer();
+        uint_ptr = (uint *)buffer_manager[1];
       }
-      *puVar5 = (uint)uVar1;
-      puVar4 = (undefined4 *)(unaff_RBX[1] + 4);
-      unaff_RBX[1] = (longlong)puVar4;
-      if (*(ushort *)(lVar7 + 0x22) != 0) {
-        uVar2 = *(undefined8 *)(lVar7 + 0x1a);
-        uVar9 = (ulonglong)*(ushort *)(lVar7 + 0x22) * 4;
-        if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar9) {
-          FUN_180639bf0();
-          puVar4 = (undefined4 *)unaff_RBX[1];
+      *uint_ptr = (uint)data_value;
+      buffer_ptr = (undefined4 *)(buffer_manager[1] + 4);
+      buffer_manager[1] = (longlong)buffer_ptr;
+      if (*(ushort *)(current_offset + 0x22) != 0) {
+        data_ptr = *(undefined8 *)(current_offset + 0x1a);
+        data_size = (ulonglong)*(ushort *)(current_offset + 0x22) * 4;
+        if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) <= data_size) {
+          expand_serialization_buffer();
+          buffer_ptr = (undefined4 *)buffer_manager[1];
         }
                     // WARNING: Subroutine does not return
-        memcpy(puVar4,uVar2,uVar9);
+        memcpy(buffer_ptr,data_ptr,data_size);
       }
-      lVar10 = lVar10 + 0x24;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      loop_index = loop_index + 0x24;
+      data_count = data_count + -1;
+    } while (data_count != 0);
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+  if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) < 5) {
+    expand_serialization_buffer();
+    buffer_ptr = (undefined4 *)buffer_manager[1];
   }
-  *puVar4 = 0;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar4 = (undefined4 *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+  *buffer_ptr = 0;
+  buffer_manager[1] = buffer_manager[1] + 4;
+  buffer_ptr = (undefined4 *)buffer_manager[1];
+  if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) < 5) {
+    expand_serialization_buffer();
+    buffer_ptr = (undefined4 *)buffer_manager[1];
   }
-  *puVar4 = 0x10;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar5 = (uint *)unaff_RBX[1];
-  uVar1 = *(ushort *)(param_1 + 0x50);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar5 = (uint *)unaff_RBX[1];
+  *buffer_ptr = 0x10;
+  buffer_manager[1] = buffer_manager[1] + 4;
+  uint_ptr = (uint *)buffer_manager[1];
+  data_value = *(ushort *)(config_data + 0x50);
+  if ((ulonglong)((*buffer_manager - (longlong)uint_ptr) + buffer_manager[2]) < 5) {
+    expand_serialization_buffer();
+    uint_ptr = (uint *)buffer_manager[1];
   }
-  *puVar5 = (uint)uVar1;
-  puVar4 = (undefined4 *)(unaff_RBX[1] + 4);
-  unaff_RBX[1] = (longlong)puVar4;
-  if (*(ushort *)(param_1 + 0x50) != 0) {
-    uVar2 = *(undefined8 *)(param_1 + 0x48);
-    uVar9 = (ulonglong)*(ushort *)(param_1 + 0x50) * 4;
-    if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) <= uVar9) {
-      FUN_180639bf0();
-      puVar4 = (undefined4 *)unaff_RBX[1];
+  *uint_ptr = (uint)data_value;
+  buffer_ptr = (undefined4 *)(buffer_manager[1] + 4);
+  buffer_manager[1] = (longlong)buffer_ptr;
+  if (*(ushort *)(config_data + 0x50) != 0) {
+    data_ptr = *(undefined8 *)(config_data + 0x48);
+    data_size = (ulonglong)*(ushort *)(config_data + 0x50) * 4;
+    if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) <= data_size) {
+      expand_serialization_buffer();
+      buffer_ptr = (undefined4 *)buffer_manager[1];
     }
                     // WARNING: Subroutine does not return
-    memcpy(puVar4,uVar2,uVar9);
+    memcpy(buffer_ptr,data_ptr,data_size);
   }
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+  if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) < 5) {
+    expand_serialization_buffer();
+    buffer_ptr = (undefined4 *)buffer_manager[1];
   }
-  *puVar4 = 0;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar4 = (undefined4 *)unaff_RBX[1];
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+  *buffer_ptr = 0;
+  buffer_manager[1] = buffer_manager[1] + 4;
+  buffer_ptr = (undefined4 *)buffer_manager[1];
+  if ((ulonglong)((*buffer_manager - (longlong)buffer_ptr) + buffer_manager[2]) < 5) {
+    expand_serialization_buffer();
+    buffer_ptr = (undefined4 *)buffer_manager[1];
   }
-  *puVar4 = 0x10;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar5 = (uint *)unaff_RBX[1];
-  uVar1 = *(ushort *)(param_1 + 0x62);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar5 = (uint *)unaff_RBX[1];
+  *buffer_ptr = 0x10;
+  buffer_manager[1] = buffer_manager[1] + 4;
+  uint_ptr = (uint *)buffer_manager[1];
+  data_value = *(ushort *)(config_data + 0x62);
+  if ((ulonglong)((*buffer_manager - (longlong)uint_ptr) + buffer_manager[2]) < 5) {
+    expand_serialization_buffer();
+    uint_ptr = (uint *)buffer_manager[1];
   }
-  *puVar5 = (uint)uVar1;
-  lVar6 = unaff_RBX[1] + 4;
-  unaff_RBX[1] = lVar6;
-  if (*(ushort *)(param_1 + 0x62) == 0) {
+  *uint_ptr = (uint)data_value;
+  data_count = buffer_manager[1] + 4;
+  buffer_manager[1] = data_count;
+  if (*(ushort *)(config_data + 0x62) == 0) {
     return;
   }
-  uVar2 = *(undefined8 *)(param_1 + 0x5a);
-  uVar9 = (ulonglong)*(ushort *)(param_1 + 0x62) * 4;
-  if ((ulonglong)((*unaff_RBX - lVar6) + unaff_RBX[2]) <= uVar9) {
-    FUN_180639bf0();
-    lVar6 = unaff_RBX[1];
+  data_ptr = *(undefined8 *)(config_data + 0x5a);
+  data_size = (ulonglong)*(ushort *)(config_data + 0x62) * 4;
+  if ((ulonglong)((*buffer_manager - data_count) + buffer_manager[2]) <= data_size) {
+    expand_serialization_buffer();
+    data_count = buffer_manager[1];
   }
                     // WARNING: Subroutine does not return
-  memcpy(lVar6,uVar2,uVar9);
+  memcpy(data_count,data_ptr,data_size);
 }
 
 
@@ -912,39 +918,45 @@ void FUN_180073e23(void)
 
 
 
-// 函数: void FUN_180073f90(void)
-void FUN_180073f90(void)
+/**
+ * 最终配置处理
+ * 主要功能：完成最终的配置处理和数据复制操作
+ * 
+ * 原始实现：FUN_180073f90
+ * 简化实现：最终配置处理函数
+ */
+void finalize_configuration_process(void)
 
 {
-  ushort uVar1;
-  undefined8 uVar2;
-  uint *puVar3;
-  longlong lVar4;
-  longlong *unaff_RBX;
-  ulonglong uVar5;
-  longlong unaff_R15;
+  ushort data_size;          // 数据大小
+  undefined8 data_source;    // 数据源
+  uint *data_ptr;           // 数据指针
+  longlong buffer_pos;       // 缓冲区位置
+  longlong *buffer_manager;  // 缓冲区管理器
+  ulonglong copy_size;       // 复制大小
+  longlong config_handle;     // 配置句柄
   
-  FUN_180639bf0();
-  *(undefined4 *)unaff_RBX[1] = 0x10;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar3 = (uint *)unaff_RBX[1];
-  uVar1 = *(ushort *)(unaff_R15 + 0x62);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar3 = (uint *)unaff_RBX[1];
+  initialize_buffer_manager();
+  *(undefined4 *)buffer_manager[1] = 0x10;
+  buffer_manager[1] = buffer_manager[1] + 4;
+  data_ptr = (uint *)buffer_manager[1];
+  data_size = *(ushort *)(config_handle + 0x62);
+  if ((ulonglong)((*buffer_manager - (longlong)data_ptr) + buffer_manager[2]) < 5) {
+    initialize_buffer_manager();
+    data_ptr = (uint *)buffer_manager[1];
   }
-  *puVar3 = (uint)uVar1;
-  lVar4 = unaff_RBX[1] + 4;
-  unaff_RBX[1] = lVar4;
-  if (*(ushort *)(unaff_R15 + 0x62) != 0) {
-    uVar2 = *(undefined8 *)(unaff_R15 + 0x5a);
-    uVar5 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
-    if ((ulonglong)((*unaff_RBX - lVar4) + unaff_RBX[2]) <= uVar5) {
-      FUN_180639bf0();
-      lVar4 = unaff_RBX[1];
+  *data_ptr = (uint)data_size;
+  buffer_pos = buffer_manager[1] + 4;
+  buffer_manager[1] = buffer_pos;
+  if (*(ushort *)(config_handle + 0x62) != 0) {
+    data_source = *(undefined8 *)(config_handle + 0x5a);
+    copy_size = (ulonglong)*(ushort *)(config_handle + 0x62) * 4;
+    if ((ulonglong)((*buffer_manager - buffer_pos) + buffer_manager[2]) <= copy_size) {
+      initialize_buffer_manager();
+      buffer_pos = buffer_manager[1];
     }
                     // WARNING: Subroutine does not return
-    memcpy(lVar4,uVar2,uVar5);
+    memcpy(buffer_pos,data_source,copy_size);
   }
   return;
 }

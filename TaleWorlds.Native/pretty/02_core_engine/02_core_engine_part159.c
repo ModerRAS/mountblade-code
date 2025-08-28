@@ -2,8 +2,8 @@
 
 // 02_core_engine_part159.c - 11 个函数
 
-// 函数: void FUN_1801429dc(void)
-void FUN_1801429dc(void)
+// 函数: void initialize_data_structure(void)
+void initialize_data_structure(void)
 
 {
   longlong unaff_RBX;
@@ -22,8 +22,8 @@ void FUN_1801429dc(void)
 
 
 
-// 函数: void FUN_180142a00(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
-void FUN_180142a00(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
+// 函数: void process_resource_data(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
+void process_resource_data(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
                   longlong param_5)
 
 {
@@ -65,7 +65,7 @@ LAB_180142a82:
 
 
 
-undefined8 * FUN_180142b20(undefined8 *param_1)
+undefined8 * setup_render_context(undefined8 *param_1)
 
 {
   undefined8 *puVar1;
@@ -301,10 +301,10 @@ undefined8 * FUN_180142b20(undefined8 *param_1)
 
 
 
-undefined8 FUN_180143190(undefined8 param_1,ulonglong param_2)
+undefined8 cleanup_memory_block(undefined8 param_1,ulonglong param_2)
 
 {
-  FUN_1801431d0();
+  reset_render_state();
   if ((param_2 & 1) != 0) {
     free(param_1,0x348);
   }
@@ -315,13 +315,13 @@ undefined8 FUN_180143190(undefined8 param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_1801431d0(undefined8 *param_1)
-void FUN_1801431d0(undefined8 *param_1)
+// 函数: void reset_render_state(undefined8 *param_1)
+void reset_render_state(undefined8 *param_1)
 
 {
   *param_1 = &UNK_180a071f8;
   if (DAT_180c8ecee == '\0') {
-    FUN_180143430();
+    initialize_render_system();
   }
   param_1[100] = &UNK_180a3c3e0;
   if (param_1[0x65] != 0) {
@@ -427,8 +427,8 @@ void FUN_1801431d0(undefined8 *param_1)
 
 
 
-// 函数: void FUN_180143430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180143430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void initialize_render_system(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void initialize_render_system(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong *plStackX_8;
@@ -511,8 +511,8 @@ void FUN_180143430(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180143610(undefined8 param_1,longlong param_2)
-void FUN_180143610(undefined8 param_1,longlong param_2)
+// 函数: void process_values_data(undefined8 param_1,longlong param_2)
+void process_values_data(undefined8 param_1,longlong param_2)
 
 {
   undefined4 uVar1;
@@ -585,8 +585,8 @@ LAB_1801436c2:
 
 
 
-// 函数: void FUN_180145140(longlong param_1,longlong param_2)
-void FUN_180145140(longlong param_1,longlong param_2)
+// 函数: void calculate_angle_conversion(longlong param_1,longlong param_2)
+void calculate_angle_conversion(longlong param_1,longlong param_2)
 
 {
   float fVar1;
@@ -603,8 +603,8 @@ void FUN_180145140(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180145250(undefined8 param_1,longlong param_2)
-void FUN_180145250(undefined8 param_1,longlong param_2)
+// 函数: void process_fog_settings(undefined8 param_1,longlong param_2)
+void process_fog_settings(undefined8 param_1,longlong param_2)
 
 {
   undefined4 uVar1;
@@ -672,8 +672,8 @@ LAB_1801452ee:
 
 
 
-// 函数: void FUN_180146180(undefined8 param_1,longlong param_2)
-void FUN_180146180(undefined8 param_1,longlong param_2)
+// 函数: void process_cloud_shadow_settings(undefined8 param_1,longlong param_2)
+void process_cloud_shadow_settings(undefined8 param_1,longlong param_2)
 
 {
   undefined4 uVar1;
@@ -749,8 +749,8 @@ LAB_180146224:
 
 
 
-// 函数: void FUN_1801469d0(undefined8 param_1,longlong param_2)
-void FUN_1801469d0(undefined8 param_1,longlong param_2)
+// 函数: void process_sun_settings(undefined8 param_1,longlong param_2)
+void process_sun_settings(undefined8 param_1,longlong param_2)
 
 {
   undefined4 uVar1;
