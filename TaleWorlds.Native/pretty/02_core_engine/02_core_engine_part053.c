@@ -588,9 +588,9 @@ void *memory_allocate_and_copy(undefined8 *param_1)
   
   puVar1 = (undefined8 *)memory_allocate_0x58_bytes();
   *puVar1 = *param_1;
-  puVar1[1] = *param_1;
-  puVar1[2] = *param_1;
-  return;
+  puVar1[1] = param_1[1];
+  puVar1[2] = param_1[2];
+  return puVar1;
 }
 
 
