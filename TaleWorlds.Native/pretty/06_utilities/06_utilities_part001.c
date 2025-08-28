@@ -202,29 +202,38 @@ undefined DAT_180bf5220;  // 请求数据区域4
 undefined UNK_18098bc80; // 请求处理指针
 
 
-// 函数: undefined FUN_1809415d0;
-undefined FUN_1809415d0;
-undefined DAT_180bf5bc0;
-undefined DAT_180bf5bc8;
-undefined DAT_180bf5bd0;
-undefined DAT_180bf5bd8;
-undefined UNK_1809fcc58;
+// 函数: undefined manage_system_resources(void);
+// 管理系统资源，包括内存、CPU、网络等资源的分配和释放
+undefined manage_system_resources(void);
+
+// 资源管理相关数据区域
+undefined DAT_180bf5bc0;  // 资源数据区域1
+undefined DAT_180bf5bc8;  // 资源数据区域2
+undefined DAT_180bf5bd0;  // 资源数据区域3
+undefined DAT_180bf5bd8;  // 资源数据区域4
+undefined UNK_1809fcc58; // 资源管理指针
 
 
-// 函数: undefined FUN_1809415f0;
-undefined FUN_1809415f0;
-undefined DAT_180bf5c30;
-undefined DAT_180bf5c38;
-undefined DAT_180bf5c40;
-undefined DAT_180bf5c48;
+// 函数: undefined execute_system_command(void);
+// 执行系统命令，处理命令行和系统级操作
+undefined execute_system_command(void);
+
+// 命令执行相关数据区域
+undefined DAT_180bf5c30;  // 命令数据区域1
+undefined DAT_180bf5c38;  // 命令数据区域2
+undefined DAT_180bf5c40;  // 命令数据区域3
+undefined DAT_180bf5c48;  // 命令数据区域4
 
 
-// 函数: undefined FUN_180941610;
-undefined FUN_180941610;
-undefined DAT_180bf6080;
-undefined DAT_180bf6088;
-undefined DAT_180bf6090;
-undefined DAT_180bf6098;
+// 函数: undefined validate_system_state(void);
+// 验证系统状态，检查系统运行状态和健康度
+undefined validate_system_state(void);
+
+// 状态验证相关数据区域
+undefined DAT_180bf6080;  // 状态数据区域1
+undefined DAT_180bf6088;  // 状态数据区域2
+undefined DAT_180bf6090;  // 状态数据区域3
+undefined DAT_180bf6098;  // 状态数据区域4
 
 
 // 函数: undefined FUN_180941630;

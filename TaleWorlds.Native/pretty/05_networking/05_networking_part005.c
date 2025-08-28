@@ -127,7 +127,11 @@ CONNECTION_INFO_FAILED:
 
 
 // 函数: 发送网络配置消息
-void send_network_message_config(undefined8 connection_handle, undefined8 config_data, undefined8 extended_params)
+// 功能：向指定连接发送网络配置消息，包括配置数据和扩展参数
+// 参数：connection_handle - 连接句柄，config_data - 配置数据，extended_params - 扩展参数
+// 返回：无返回值
+// 注意：函数包含网络状态检查、数据编码和消息发送机制
+void send_network_configuration_message(undefined8 connection_handle, undefined8 config_data, undefined8 extended_params)
 
 {
   int network_status;
@@ -138,17 +142,24 @@ void send_network_message_config(undefined8 connection_handle, undefined8 config
   undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
   ulonglong security_key;
   
+  // 安全密钥生成和验证
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  
+  // 检查网络状态
   network_status = FUN_18083fde0();
   if ((network_status != 0) && ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) != 0)) {
+    // 编码配置数据
     encode_result1 = FUN_18074b880(packet_buffer, NETWORK_BUFFER_SIZE, config_data);
+    // 编码数据分隔符
     encode_result2 = FUN_18074b880(packet_buffer + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+    // 编码扩展参数
     func_0x00018074bda0(packet_buffer + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2), extended_params);
     message_buffer = packet_buffer;
-                    // WARNING: Subroutine does not return
+    // 发送配置消息（函数不返回）
     FUN_180749ef0(network_status, 0xb, connection_handle, NETWORK_CONFIG_MESSAGE);
   }
-                    // WARNING: Subroutine does not return
+  
+  // 安全验证失败，执行异常处理（函数不返回）
   FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
