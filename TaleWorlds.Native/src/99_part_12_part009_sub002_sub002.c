@@ -2469,36 +2469,50 @@ code_r0x0001807cf0cd:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1807ce6c8(void)
+/**
+ * 系统清理器 - 负责清理系统资源和管理内存释放
+ * 这个函数确保系统资源的正确释放和内存的合理使用
+ * 
+ * @return 清理状态码，0表示成功
+ * 
+ * 功能说明：
+ * - 清理不再使用的系统资源
+ * - 释放内存和句柄
+ * - 重置系统状态
+ * - 处理资源回收
+ * - 确保系统稳定性
+ */
+undefined8 SystemCleaner(void)
 
 {
-  longlong *plVar1;
-  byte *pbVar2;
-  int *piVar3;
-  char cVar4;
-  undefined4 uVar5;
-  longlong lVar6;
-  uint uVar7;
-  byte bVar8;
-  byte bVar9;
-  int iVar10;
-  ushort *puVar11;
-  ulonglong uVar12;
-  int iVar13;
-  int iVar14;
-  uint uVar15;
-  longlong *plVar16;
-  longlong unaff_RBX;
+  /* 清理相关的变量 */
+  longlong *resource_ptr;
+  byte *memory_ptr;
+  int *counter_ptr;
+  char cleanup_type;
+  undefined4 cleanup_status;
+  longlong resource_handle;
+  uint cleanup_count;
+  byte resource_type;
+  byte cleanup_flag;
+  int item_count;
+  ushort *cleanup_table;
+  ulonglong memory_address;
+  int index1;
+  int index2;
+  uint temp_value;
+  longlong *context_ptr;
+  longlong system_base;
   longlong unaff_RBP;
-  byte bVar18;
-  longlong lVar19;
-  undefined *puVar20;
-  int iVar21;
+  byte status_byte;
+  longlong cleanup_data;
+  undefined *cleanup_resource;
+  int resource_id;
   ulonglong in_R11;
-  byte bVar22;
-  char *unaff_R14;
-  char cVar23;
-  ulonglong uVar17;
+  byte resource_code;
+  char *system_data;
+  char operation_mode;
+  ulonglong temp_ulong;
   
   uVar12 = in_R11 & 0xffffffff;
   *(ulonglong *)(unaff_RBP + 7) = uVar12;
@@ -3014,21 +3028,52 @@ code_r0x0001807cf0cd:
 
 
 
-undefined8 FUN_1807cf15c(void)
+/**
+ * 系统完成处理器 - 负责处理系统操作的完成状态
+ * 这是一个简化版本的完成处理器，当前只返回成功状态
+ * 
+ * @return 返回0表示操作成功完成
+ * 
+ * 功能说明：
+ * - 在未来的实现中，这个函数将负责：
+ * - 验证系统操作的完整性
+ * - 处理完成后的清理工作
+ * - 生成完成报告
+ * - 通知相关组件操作已完成
+ */
+undefined8 SystemCompletionProcessor(void)
 
 {
+  /* 当前实现：返回成功状态 */
+  /* TODO: 实现完整的完成处理逻辑 */
   return 0;
 }
 
 
 
-undefined8 FUN_1807cf390(longlong param_1,undefined8 param_2,longlong param_3)
+/**
+ * 系统最终处理器 - 负责系统的最终处理和初始化
+ * 这个函数处理系统的最终配置和初始化工作
+ * 
+ * @param param_1 系统上下文指针
+ * @param param_2 系统配置数据
+ * @param param_3 处理参数
+ * @return 处理状态码，0表示成功，非0表示错误
+ * 
+ * 功能说明：
+ * - 初始化系统数据结构
+ * - 设置系统配置参数
+ * - 处理内存分配和初始化
+ * - 验证系统完整性
+ * - 返回初始化状态
+ */
+undefined8 SystemFinalProcessor(longlong system_context, undefined8 config_data, longlong process_params)
 
 {
-  int iVar1;
-  undefined1 auVar2 [16];
-  undefined8 uVar3;
-  ulonglong uVar4;
+  int process_type;
+  undefined1 temp_buffer [16];
+  undefined8 init_result;
+  ulonglong buffer_size;
   
   *(undefined4 *)(param_1 + 0x28) = 0xe;
   *(undefined8 *)(param_1 + 0x120) = 0;
