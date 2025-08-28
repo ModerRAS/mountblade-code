@@ -187,81 +187,92 @@ undefined8 process_memory_block(longlong memory_context, longlong block_param, l
 
 
 
-longlong FUN_180068490(longlong param_1,longlong param_2)
+// 函数: copy_memory_block_config - 复制内存块配置
+// 参数:
+//   param_1 - 目标内存块
+//   param_2 - 源内存块
+// 功能: 完整复制内存块的配置信息，包括回调函数和状态
+longlong copy_memory_block_config(longlong dest_block, longlong src_block)
 
 {
-  longlong lVar1;
-  code *pcVar2;
-  undefined *puVar3;
+  longlong offset_diff;
+  code *callback_ptr;
+  undefined *string_ptr;
   
-  *(undefined4 *)(param_1 + 0x10) = *(undefined4 *)(param_2 + 0x10);
-  puVar3 = &DAT_18098bc73;
-  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-    puVar3 = *(undefined **)(param_2 + 8);
+  *(undefined4 *)(dest_block + 0x10) = *(undefined4 *)(src_block + 0x10);
+  string_ptr = &DAT_18098bc73;
+  if (*(undefined **)(src_block + 8) != (undefined *)0x0) {
+    string_ptr = *(undefined **)(src_block + 8);
   }
-  strcpy_s(*(undefined8 *)(param_1 + 8),0x100,puVar3);
-  *(undefined8 *)(param_1 + 0x118) = *(undefined8 *)(param_2 + 0x118);
-  lVar1 = param_1 + 0x148;
-  *(undefined8 *)(param_1 + 0x120) = *(undefined8 *)(param_2 + 0x120);
-  *(undefined8 *)(param_1 + 0x128) = *(undefined8 *)(param_2 + 0x128);
-  *(undefined8 *)(param_1 + 0x130) = *(undefined8 *)(param_2 + 0x130);
-  *(undefined8 *)(param_1 + 0x138) = *(undefined8 *)(param_2 + 0x138);
-  *(undefined1 *)(param_1 + 0x140) = *(undefined1 *)(param_2 + 0x140);
-  if (lVar1 != param_2 + 0x148) {
-    if (*(code **)(param_1 + 0x158) != (code *)0x0) {
-      (**(code **)(param_1 + 0x158))(lVar1,0,0);
+  strcpy_s(*(undefined8 *)(dest_block + 8),0x100,string_ptr);
+  *(undefined8 *)(dest_block + 0x118) = *(undefined8 *)(src_block + 0x118);
+  offset_diff = dest_block + 0x148;
+  *(undefined8 *)(dest_block + 0x120) = *(undefined8 *)(src_block + 0x120);
+  *(undefined8 *)(dest_block + 0x128) = *(undefined8 *)(src_block + 0x128);
+  *(undefined8 *)(dest_block + 0x130) = *(undefined8 *)(src_block + 0x130);
+  *(undefined8 *)(dest_block + 0x138) = *(undefined8 *)(src_block + 0x138);
+  *(undefined1 *)(dest_block + 0x140) = *(undefined1 *)(src_block + 0x140);
+  if (offset_diff != src_block + 0x148) {
+    if (*(code **)(dest_block + 0x158) != (code *)0x0) {
+      (**(code **)(dest_block + 0x158))(offset_diff,0,0);
     }
-    pcVar2 = *(code **)(param_2 + 0x158);
-    if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(lVar1,param_2 + 0x148,1);
-      pcVar2 = *(code **)(param_2 + 0x158);
+    callback_ptr = *(code **)(src_block + 0x158);
+    if (callback_ptr != (code *)0x0) {
+      (*callback_ptr)(offset_diff,src_block + 0x148,1);
+      callback_ptr = *(code **)(src_block + 0x158);
     }
-    *(code **)(param_1 + 0x158) = pcVar2;
-    *(undefined8 *)(param_1 + 0x160) = *(undefined8 *)(param_2 + 0x160);
+    *(code **)(dest_block + 0x158) = callback_ptr;
+    *(undefined8 *)(dest_block + 0x160) = *(undefined8 *)(src_block + 0x160);
   }
-  lVar1 = param_1 + 0x168;
-  if (lVar1 != param_2 + 0x168) {
-    if (*(code **)(param_1 + 0x178) != (code *)0x0) {
-      (**(code **)(param_1 + 0x178))(lVar1,0,0);
+  offset_diff = dest_block + 0x168;
+  if (offset_diff != src_block + 0x168) {
+    if (*(code **)(dest_block + 0x178) != (code *)0x0) {
+      (**(code **)(dest_block + 0x178))(offset_diff,0,0);
     }
-    pcVar2 = *(code **)(param_2 + 0x178);
-    if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(lVar1,param_2 + 0x168,1);
-      pcVar2 = *(code **)(param_2 + 0x178);
+    callback_ptr = *(code **)(src_block + 0x178);
+    if (callback_ptr != (code *)0x0) {
+      (*callback_ptr)(offset_diff,src_block + 0x168,1);
+      callback_ptr = *(code **)(src_block + 0x178);
     }
-    *(code **)(param_1 + 0x178) = pcVar2;
-    *(undefined8 *)(param_1 + 0x180) = *(undefined8 *)(param_2 + 0x180);
+    *(code **)(dest_block + 0x178) = callback_ptr;
+    *(undefined8 *)(dest_block + 0x180) = *(undefined8 *)(src_block + 0x180);
   }
-  *(undefined8 *)(param_1 + 0x188) = *(undefined8 *)(param_2 + 0x188);
-  *(undefined8 *)(param_1 + 400) = *(undefined8 *)(param_2 + 400);
-  *(undefined8 *)(param_1 + 0x198) = *(undefined8 *)(param_2 + 0x198);
-  *(undefined8 *)(param_1 + 0x1a0) = *(undefined8 *)(param_2 + 0x1a0);
-  return param_1;
+  *(undefined8 *)(dest_block + 0x188) = *(undefined8 *)(src_block + 0x188);
+  *(undefined8 *)(dest_block + 400) = *(undefined8 *)(src_block + 400);
+  *(undefined8 *)(dest_block + 0x198) = *(undefined8 *)(src_block + 0x198);
+  *(undefined8 *)(dest_block + 0x1a0) = *(undefined8 *)(src_block + 0x1a0);
+  return dest_block;
 }
 
 
 
 
 
-// 函数: void FUN_180068620(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180068620(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+// 函数: close_file_handle - 关闭文件句柄并清理资源
+// 参数:
+//   param_1 - 引擎上下文
+//   param_2 - 文件句柄数组
+//   param_3 - 清理参数1
+//   param_4 - 清理参数2
+// 功能: 安全关闭文件句柄，释放相关资源
+void close_file_handle(longlong engine_context, undefined8 *file_handle_array, undefined8 cleanup_param1, undefined8 cleanup_param2)
 
 {
-  int iVar1;
-  undefined8 uVar2;
+  int lock_result;
+  undefined8 cleanup_flag;
   
-  uVar2 = 0xfffffffffffffffe;
-  CloseHandle(param_2[0x25]);
-  iVar1 = _Mtx_lock(param_1 + 0x2133e0);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  cleanup_flag = 0xfffffffffffffffe;
+  CloseHandle(file_handle_array[0x25]);
+  lock_result = _Mtx_lock(engine_context + 0x2133e0);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  (**(code **)*param_2)(param_2,0,param_3,param_4,uVar2);
-  *param_2 = *(undefined8 *)(param_1 + 0x2133d8);
-  *(undefined8 **)(param_1 + 0x2133d8) = param_2;
-  iVar1 = _Mtx_unlock(param_1 + 0x2133e0);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  (**(code **)*file_handle_array)(file_handle_array,0,cleanup_param1,cleanup_param2,cleanup_flag);
+  *file_handle_array = *(undefined8 *)(engine_context + 0x2133d8);
+  *(undefined8 **)(engine_context + 0x2133d8) = file_handle_array;
+  lock_result = _Mtx_unlock(engine_context + 0x2133e0);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
   return;
 }
