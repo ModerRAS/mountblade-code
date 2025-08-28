@@ -11,6 +11,13 @@
 #define UI_FLOAT_MIN_VALUE -2.0f
 #define UI_PROCESSING_CHUNK_SIZE 16
 
+// 全局变量定义
+#define UI_FLOAT_ARRAY_MAX _DAT_180a401b0
+#define UI_FLOAT_ARRAY_MIN _DAT_18094ed40
+
+// 函数别名定义
+#define ui_system_calculate_audio_data_size func_0x0001807104d0
+
 // 函数别名定义
 typedef void (*ui_system_void_function)(void);
 typedef uint (*ui_system_data_processor)(longlong *, uint);
@@ -311,7 +318,7 @@ SAMPLE_RATE_CALCULATION:
   }
   else if ((format_header & 3) == 2) {
     frame_count = 2;
-    sample_rate = func_0x0001807104d0(data_ptr, remaining_data, channel_sizes);
+    sample_rate = ui_system_calculate_audio_data_size(data_ptr, remaining_data, channel_sizes);
     channel_size = *channel_sizes;
     remaining_data = remaining_data - sample_rate;
     if (channel_size < 0) {
@@ -366,7 +373,7 @@ SAMPLE_RATE_CALCULATION:
       total_frames = remaining_data;
       if (0 < (int)(channels_per_frame - 1)) {
         do {
-          sample_rate = func_0x0001807104d0(data_ptr, remaining_data, channel_sizes + (int)result);
+          sample_rate = ui_system_calculate_audio_data_size(data_ptr, remaining_data, channel_sizes + (int)result);
           channel_size = *channel_ptr;
           remaining_data = remaining_data - sample_rate;
           if (channel_size < 0) {
@@ -408,7 +415,7 @@ SAMPLE_RATE_CALCULATION:
     }
   }
   else {
-    sample_rate = func_0x0001807104d0(data_ptr, remaining_data, channel_sizes + (frame_count - 1));
+    sample_rate = ui_system_calculate_audio_data_size(data_ptr, remaining_data, channel_sizes + (frame_count - 1));
     if ((-1 < channel_sizes[frame_count - 1]) &&
        (bitrate = (int)channel_sizes[frame_count - 1], bitrate <= (int)(remaining_data - sample_rate))) {
       data_ptr = data_ptr + sample_rate;
@@ -520,7 +527,7 @@ SAMPLE_RATE_PROCESSING:
   }
   else if ((format_header & 3) == 2) {
     frame_count = 2;
-    sample_rate = func_0x0001807104d0(data_ptr, remaining_data);
+    sample_rate = ui_system_calculate_audio_data_size(data_ptr, remaining_data);
     channel_size = *param_2;
     remaining_data = remaining_data - sample_rate;
     if (channel_size < 0) {
@@ -572,7 +579,7 @@ SAMPLE_RATE_PROCESSING:
       total_frames = remaining_data;
       if (0 < (int)(frame_size - 1)) {
         do {
-          sample_rate = func_0x0001807104d0(data_ptr, remaining_data, param_2 + (int)result);
+          sample_rate = ui_system_calculate_audio_data_size(data_ptr, remaining_data, param_2 + (int)result);
           channel_size = *channel_ptr;
           remaining_data = remaining_data - sample_rate;
           if (channel_size < 0) {
@@ -614,7 +621,7 @@ SAMPLE_RATE_PROCESSING:
     }
   }
   else {
-    sample_rate = func_0x0001807104d0(data_ptr, remaining_data, param_2 + (frame_count - 1));
+    sample_rate = ui_system_calculate_audio_data_size(data_ptr, remaining_data, param_2 + (frame_count - 1));
     if ((-1 < param_2[frame_count - 1]) &&
        (bitrate = (int)param_2[frame_count - 1], bitrate <= (int)(remaining_data - sample_rate))) {
       data_ptr = data_ptr + sample_rate;
@@ -760,8 +767,8 @@ void ui_system_process_float_array(longlong array_ptr, int width, int height, fl
   float *stack_ptr;
   longlong stack_offset;
   
-  temp_array_2 = _DAT_180a401b0;
-  temp_array_1 = _DAT_18094ed40;
+  temp_array_2 = UI_FLOAT_ARRAY_MAX;
+  temp_array_1 = UI_FLOAT_ARRAY_MIN;
   offset_5 = (longlong)height;
   if ((((0 < height) && (0 < width)) && (array_ptr != 0)) && (output_buffer != (float *)0x0)) {
     element_count = width * height;
