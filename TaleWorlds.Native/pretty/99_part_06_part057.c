@@ -104,7 +104,7 @@ int64_t FUN_1803e0820(int64_t param_1)
   int64_t lVar6;
   void *puVar7;
   
-  uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x200,8,3);
+  uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x200,8,3);
   lVar5 = FUN_180339920(uVar4);
   *(int32_t *)(lVar5 + 0x10) = 0;
   uVar4 = *(uint64_t *)(param_1 + 0x48);
@@ -816,7 +816,7 @@ FUN_1803e1170(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  FUN_1806277c0(param_2,0xf,param_3,param_4,0,0xfffffffffffffffe);
+  CoreEngineDataBufferProcessor(param_2,0xf,param_3,param_4,0,0xfffffffffffffffe);
   puVar1 = (uint64_t *)param_2[1];
   *puVar1 = 0x6f635f746867696c;
   puVar1[1] = 0x746e656e6f706d;

@@ -115,7 +115,7 @@ void NetworkClient_GetConnectionInfo(uint64_t client_id, uint64_t *connection_in
         // 检查调试状态
         if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
             // 触发调试陷阱（反调试保护）
-            FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+            SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
         }
         
         // 准备错误消息
@@ -217,10 +217,10 @@ void NetworkClient_SendMessage(uint64_t client_id, uint64_t message_data, uint64
     // 检查调试状态和网络可用性
     if ((message_type != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
         // 序列化消息头
-        data_length = FUN_18074b880(temp_buffer, 0x100, message_data);
+        data_length = SystemDataProcessor(temp_buffer, 0x100, message_data);
         
         // 添加分隔符
-        header_length = FUN_18074b880(temp_buffer + data_length, 0x100 - data_length, 
+        header_length = SystemDataProcessor(temp_buffer + data_length, 0x100 - data_length, 
                                      &system_temp_buffer);
         
         // 添加消息体
@@ -234,7 +234,7 @@ void NetworkClient_SendMessage(uint64_t client_id, uint64_t message_data, uint64
     }
     
     // 清理资源
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 
@@ -258,10 +258,10 @@ void NetworkClient_BroadcastMessage(void)
     int32_t message_type;
     
     // 准备广播消息头
-    header_size = FUN_18074b880(&stack0x00000030, 0x100);
+    header_size = SystemDataProcessor(&stack0x00000030, 0x100);
     
     // 添加消息分隔符
-    separator_size = FUN_18074b880(&stack0x00000030 + header_size, 
+    separator_size = SystemDataProcessor(&stack0x00000030 + header_size, 
                                    0x100 - header_size, &system_temp_buffer);
     
     // 添加消息体
@@ -293,7 +293,7 @@ void NetworkClient_Initialize(void)
     uint64_t initialization_data;
     
     // 执行初始化序列（包含安全检查）
-    FUN_1808fc050(initialization_data ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(initialization_data ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -338,12 +338,12 @@ void NetworkClient_GetPropertyList(uint64_t client_id, int32_t *property_array, 
     if ((property_count == (uint64_t *)0x0) || (*property_count = 0, property_array == (int32_t *)0x0)) {
         if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
             // 触发调试陷阱
-            FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+            SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
         }
         
         // 准备错误消息
         query_result = FUN_18074bc50(temp_buffer, 0x100, property_array);
-        status = FUN_18074b880(temp_buffer + query_result, 0x100 - query_result, 
+        status = SystemDataProcessor(temp_buffer + query_result, 0x100 - query_result, 
                               &system_temp_buffer);
         func_0x00018074bda0(temp_buffer + (query_result + status), 
                            0x100 - (query_result + status), property_count);
@@ -451,7 +451,7 @@ void NetworkClient_GetConnectionCount(uint64_t server_id, uint *connection_count
     if (connection_count == (uint *)0x0) {
         if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
             // 触发调试陷阱
-            FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+            SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
         }
         
         // 准备错误消息
@@ -618,19 +618,19 @@ void NetworkClient_SetClientProperty(uint64_t client_id, int64_t property_id, in
   }
   if (param_2 == 0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-      iVar1 = FUN_18074b880(auStack_148,0x100,0);
-      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
+      iVar1 = SystemDataProcessor(auStack_148,0x100,0);
+      iVar2 = SystemDataProcessor(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
       iVar1 = iVar1 + iVar2;
       iVar2 = FUN_18074bac0(auStack_148 + iVar1,0x100 - iVar1,param_3);
       iVar1 = iVar1 + iVar2;
-      iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
+      iVar2 = SystemDataProcessor(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
       FUN_18074bac0(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
       puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
       FUN_180749ef0(0x1f,0xb,param_1,&unknown_var_480_ptr);
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_198);
+    SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_198);
   }
   uStack_160 = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_158);
@@ -694,14 +694,14 @@ void NetworkClient_QueryClientStatus(uint64_t client_id, int32_t status_code, ui
   iVar1 = FUN_180840600();
   if ((iVar1 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     iVar2 = func_0x00018074b7d0(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
+    iVar3 = SystemDataProcessor(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
     FUN_180749ef0(iVar1,0xc,param_1,&unknown_var_640_ptr);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_168);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_168);
 }
 
 
@@ -726,7 +726,7 @@ void NetworkClient_PingClient(void)
   int32_t unaff_ESI;
   
   iVar1 = func_0x00018074b7d0(&stack0x00000030,0x100,unaff_EBX);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(&stack0x00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -751,7 +751,7 @@ void NetworkClient_DisconnectClient(void)
   uint64_t in_stack_00000130;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000130 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -789,7 +789,7 @@ void NetworkClient_GetClientAddress(uint64_t client_id, int32_t *client_address)
   if (param_2 == (int32_t *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_168);
+      SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_168);
     }
     FUN_18074b930(auStack_118,0x100,0);
     puStack_148 = auStack_118;
@@ -883,14 +883,14 @@ void NetworkClient_GetClientData(uint64_t client_id, int8_t *data_buffer, int da
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_1a8);
+    SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_1a8);
   }
-  iVar1 = FUN_18074b880(auStack_148,0x100,param_2);
-  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar1 = SystemDataProcessor(auStack_148,0x100,param_2);
+  iVar2 = SystemDataProcessor(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(auStack_148 + iVar1,0x100 - iVar1,param_3);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(auStack_148 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074b930(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
   puStack_188 = (int32_t *)auStack_148;
                     // WARNING: Subroutine does not return
@@ -919,12 +919,12 @@ void NetworkClient_InitializeClientData(void)
   int32_t unaff_EBP;
   int32_t unaff_ESI;
   
-  iVar1 = FUN_18074b880(&stack0x00000060,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar1 = SystemDataProcessor(&stack0x00000060,0x100);
+  iVar2 = SystemDataProcessor(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(&stack0x00000060 + iVar1,0x100 - iVar1,unaff_EBP);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(&stack0x00000060 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074b930(&stack0x00000060 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -950,7 +950,7 @@ void NetworkClient_CleanupClientData(void)
   uint64_t in_stack_00000160;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -988,7 +988,7 @@ void NetworkClient_GetClientState(uint64_t client_id, int8_t *client_state)
   if (param_2 == (int8_t *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_178);
+      SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_178);
     }
     FUN_18074be30(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -1107,7 +1107,7 @@ void NetworkClient_GetClientPing(uint64_t client_id, int32_t *ping_time)
   if (param_2 == (int32_t *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_178);
+      SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_178);
     }
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -1195,10 +1195,10 @@ void NetworkClient_GetClientProperty(uint64_t client_id, uint property_index, in
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_188);
+    SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_188);
   }
   iVar1 = func_0x00018074b7d0(auStack_138,0x100,param_2);
-  iVar2 = FUN_18074b880(auStack_138 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(auStack_138 + iVar1,0x100 - iVar1,&system_temp_buffer);
   FUN_18074bac0(auStack_138 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -1240,7 +1240,7 @@ void NetworkClient_IsClientConnected(uint64_t client_id, int32_t *connection_sta
   if (param_2 == (int32_t *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_178);
+      SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_178);
     }
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -1313,7 +1313,7 @@ void NetworkClient_GetActiveConnections(uint64_t server_id, uint *active_count)
   if (param_2 == (uint *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_178);
+      SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_178);
     }
     FUN_18074b930(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -1383,7 +1383,7 @@ void NetworkClient_GetConnectionHandle(uint64_t client_id, uint64_t *connection_
   if (param_2 == (uint64_t *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_168);
+      SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_168);
     }
     func_0x00018074bda0(auStack_118,0x100,0);
     puStack_148 = auStack_118;

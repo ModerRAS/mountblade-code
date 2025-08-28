@@ -45,7 +45,7 @@ void FUN_1805f6af0(int64_t param_1)
     if ((uVar4 == puVar2[1]) && (puVar2[1] = puVar2[8], uVar4 == puVar2[8])) {
       if (puVar2 == *(uint64_t **)(param_1 + 0x658)) {
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_2a8);
+        SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_2a8);
       }
       puVar2 = *(uint64_t **)(param_1 + 0x618);
       puVar2[1] = puVar2[8];
@@ -422,37 +422,37 @@ void FUN_1805f7460(float *param_1)
   
   fVar2 = *param_1;
   if (fVar2 < -100.0) {
-    FUN_180626f80(&unknown_var_6496_ptr,(double)fVar2,(double)param_1[1],(double)param_1[2],
+    SystemDataInitializer(&unknown_var_6496_ptr,(double)fVar2,(double)param_1[1],(double)param_1[2],
                   0xc059000000000000);
     fVar2 = -100.0;
     *param_1 = -100.0;
   }
   fVar1 = param_1[1];
   if (fVar1 < -100.0) {
-    FUN_180626f80(&unknown_var_6256_ptr,(double)fVar2,(double)fVar1,(double)param_1[2],0xc059000000000000);
+    SystemDataInitializer(&unknown_var_6256_ptr,(double)fVar2,(double)fVar1,(double)param_1[2],0xc059000000000000);
     fVar1 = -100.0;
     param_1[1] = -100.0;
   }
   fVar2 = param_1[2];
   if (fVar2 < -100.0) {
-    FUN_180626f80(&unknown_var_6176_ptr,(double)*param_1,(double)fVar1,(double)fVar2,0xc059000000000000);
+    SystemDataInitializer(&unknown_var_6176_ptr,(double)*param_1,(double)fVar1,(double)fVar2,0xc059000000000000);
     fVar2 = -100.0;
     param_1[2] = -100.0;
   }
   fVar1 = *param_1;
   if (10385.0 < fVar1) {
-    FUN_180626f80(&unknown_var_6416_ptr,(double)fVar1,(double)param_1[1],(double)fVar2,0x40c4488000000000);
+    SystemDataInitializer(&unknown_var_6416_ptr,(double)fVar1,(double)param_1[1],(double)fVar2,0x40c4488000000000);
     fVar1 = 10385.0;
     *param_1 = 10385.0;
   }
   fVar2 = param_1[1];
   if (10385.0 < fVar2) {
-    FUN_180626f80(&unknown_var_6336_ptr,(double)fVar1,(double)fVar2,(double)param_1[2],0x40c4488000000000);
+    SystemDataInitializer(&unknown_var_6336_ptr,(double)fVar1,(double)fVar2,(double)param_1[2],0x40c4488000000000);
     fVar2 = 10385.0;
     param_1[1] = 10385.0;
   }
   if (2521.0 < param_1[2]) {
-    FUN_180626f80(&unknown_var_6864_ptr,(double)*param_1,(double)fVar2,(double)param_1[2],
+    SystemDataInitializer(&unknown_var_6864_ptr,(double)*param_1,(double)fVar2,(double)param_1[2],
                   0x40a3b20000000000);
     param_1[2] = 2521.0;
   }
@@ -584,22 +584,22 @@ void FUN_1805f7890(int64_t param_1,uint64_t param_2,float *param_3)
   iStack_24 = iVar3;
   iStack_20 = iVar1;
   if (iVar2 < -0x4e3) {
-    FUN_180626f80(&unknown_var_6568_ptr,iVar2,iVar3,iVar1);
+    SystemDataInitializer(&unknown_var_6568_ptr,iVar2,iVar3,iVar1);
   }
   if (iVar3 < -0x4e3) {
-    FUN_180626f80(&unknown_var_6744_ptr,iVar2,iVar3,iVar1);
+    SystemDataInitializer(&unknown_var_6744_ptr,iVar2,iVar3,iVar1);
   }
   if (iVar1 < -0x4e3) {
-    FUN_180626f80(&unknown_var_6688_ptr,iVar2,iVar3,iVar1);
+    SystemDataInitializer(&unknown_var_6688_ptr,iVar2,iVar3,iVar1);
   }
   if (0x1fb15 < iVar2) {
-    FUN_180626f80(&unknown_var_7112_ptr,iVar2,iVar3,iVar1);
+    SystemDataInitializer(&unknown_var_7112_ptr,iVar2,iVar3,iVar1);
   }
   if (0x1fb15 < iVar3) {
-    FUN_180626f80(&unknown_var_7056_ptr,iVar2,iVar3,iVar1);
+    SystemDataInitializer(&unknown_var_7056_ptr,iVar2,iVar3,iVar1);
   }
   if (0x7b19 < iVar1) {
-    FUN_180626f80(&unknown_var_7168_ptr,iVar2,iVar3,iVar1);
+    SystemDataInitializer(&unknown_var_7168_ptr,iVar2,iVar3,iVar1);
   }
   FUN_180645c10(param_2,iVar2,param_1 + 0x18);
   FUN_180645c10(param_2,iVar3,param_1 + 0x24);
@@ -892,7 +892,7 @@ void FUN_1805f7e10(int *param_1,int64_t *param_2,int64_t *param_3)
     puStack_40 = &unknown_var_1696_ptr;
     plStack_88 = param_2;
     plStack_78 = param_3;
-    aplStack_58[0] = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x40,8,system_allocation_flags);
+    aplStack_58[0] = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x40,8,system_allocation_flags);
     *aplStack_58[0] = (int64_t)puStack_98;
     aplStack_58[0][1] = (int64_t)puStack_90;
     aplStack_58[0][2] = (int64_t)plStack_88;

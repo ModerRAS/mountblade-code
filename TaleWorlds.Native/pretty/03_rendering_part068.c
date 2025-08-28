@@ -207,7 +207,7 @@ void rendering_system_advanced_initializer(int64_t param_1, int64_t param_2, int
             cleanup_callback = FUN_1803089a0;
             global_data = &unknown_var_1888_ptr;
             context_offset = param_1;
-            resource_array[0] = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
+            resource_array[0] = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
             
             // 设置资源参数
             *resource_array[0] = (int64_t)batch_processor;
@@ -250,7 +250,7 @@ void rendering_system_advanced_initializer(int64_t param_1, int64_t param_2, int
   }
   
   // 清理和返回
-  FUN_1808fc050(memory_guard ^ (uint64_t)alignment_buffer);
+  SystemSecurityChecker(memory_guard ^ (uint64_t)alignment_buffer);
 }
 
 /**
@@ -357,7 +357,7 @@ LAB_1803066f9:
         
         // 检查是否需要分配新内存
         if (*(int64_t *)(system_context + 0x80 + (uint64_t)batch_index * 8) == 0) {
-          memory_block = FUN_18062b420(system_memory_pool_ptr, 0x4000, 0x25);
+          memory_block = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x4000, 0x25);
           resource_manager = (int64_t *)(system_context + 0x80 + (uint64_t)batch_index * 8);
           LOCK();
           allocation_success = *resource_manager == 0;
@@ -366,7 +366,7 @@ LAB_1803066f9:
           }
           UNLOCK();
           if ((!allocation_success) && (memory_block != 0)) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
           }
         }
         
@@ -518,7 +518,7 @@ LAB_1803066f9:
       
       // 检查是否需要分配新内存
       if (*(int64_t *)(system_context + 0x80 + (uint64_t)batch_index * 8) == 0) {
-        memory_block = FUN_18062b420(system_memory_pool_ptr, 0x4000, 0x25);
+        memory_block = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x4000, 0x25);
         state_manager = (int64_t *)(system_context + 0x80 + (uint64_t)batch_index * 8);
         LOCK();
         allocation_success = *state_manager == 0;
@@ -527,7 +527,7 @@ LAB_1803066f9:
         }
         UNLOCK();
         if ((!allocation_success) && (memory_block != 0)) {
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
       }
       

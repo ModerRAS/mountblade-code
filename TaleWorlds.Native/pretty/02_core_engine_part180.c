@@ -138,6 +138,7 @@ CoreEngineDataBufferProcessor(uint64_t param_1,uint64_t *param_2,uint64_t param_
   plStack_40 = (int64_t *)0x0;
   uStack_38 = 0;
   uStack_30 = 3;
+  // 内部函数调用：数据结构处理器
   FUN_1800b6780(lVar1,&plStack_48);
   plVar4 = plStack_40;
   if (plStack_48 < plStack_40) {

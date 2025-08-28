@@ -929,7 +929,7 @@ void FUN_1807a66c0(int64_t param_1)
   }
                     // WARNING: Subroutine does not return
   uStack_a0 = 0x1807a6951;
-  FUN_1808fc050((uint64_t)piStack_18 ^ (uint64_t)auStack_98);
+  SystemSecurityChecker((uint64_t)piStack_18 ^ (uint64_t)auStack_98);
 }
 
 
