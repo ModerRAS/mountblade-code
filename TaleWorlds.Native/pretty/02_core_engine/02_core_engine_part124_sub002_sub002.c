@@ -1,9 +1,16 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part124_sub002_sub002.c - 1 个函数
+// 02_core_engine_part124_sub002_sub002.c - 游戏对象渲染更新函数
+// 核心引擎模块 - 渲染系统子模块
 
-// 函数: void FUN_18012ae5a(float param_1,float param_2,float param_3,float param_4)
-void FUN_18012ae5a(float param_1,float param_2,float param_3,float param_4)
+/**
+ * 更新游戏对象的渲染状态和位置
+ * @param param_1 X坐标偏移量
+ * @param param_2 X坐标最大值
+ * @param param_3 Y坐标偏移量
+ * @param param_4 Y坐标缩放因子
+ */
+void update_game_object_render(float param_1, float param_2, float param_3, float param_4)
 
 {
   int *piVar1;

@@ -2,36 +2,42 @@
 
 // 02_core_engine_part127.c - 15 个函数
 
-// 函数: void FUN_18012cf49(undefined4 param_1)
-void FUN_18012cf49(undefined4 param_1)
+// 函数: void Engine_SetStateFlags(uint32_t state_flags)
+void Engine_SetStateFlags(uint32_t state_flags)
 
 {
-  longlong in_RAX;
-  char cVar1;
-  undefined1 uVar2;
-  longlong unaff_RBP;
-  longlong in_stack_00000040;
+  longlong context_ptr;
+  char flag_result;
+  undefined1 state_enable;
+  longlong engine_base;
+  longlong state_struct;
   
-  *(undefined4 *)(in_RAX + 0xd8) = param_1;
-  if ((*(int *)(in_stack_00000040 + 0xd8) < 1) && (*(int *)(in_stack_00000040 + 0xdc) < 1)) {
-    cVar1 = '\0';
+  // 设置状态标志到引擎上下文
+  *(uint32_t *)(context_ptr + 0xd8) = state_flags;
+  
+  // 检查条件状态
+  if ((*(int *)(state_struct + 0xd8) < 1) && (*(int *)(state_struct + 0xdc) < 1)) {
+    flag_result = 0;
   }
   else {
-    cVar1 = '\x01';
+    flag_result = 1;
   }
-  *(char *)(in_stack_00000040 + 0xb6) = cVar1;
-  if ((((*(char *)(in_stack_00000040 + 0xb2) == '\0') &&
-       (*(char *)(in_stack_00000040 + 0xaf) != '\0')) && (cVar1 == '\0')) ||
-     (((0 < *(int *)(in_stack_00000040 + 0xc4) || (0 < *(int *)(in_stack_00000040 + 200))) ||
-      (0 < *(int *)(in_stack_00000040 + 0xdc))))) {
-    uVar2 = 0;
+  *(char *)(state_struct + 0xb6) = flag_result;
+  
+  // 复杂条件检查以确定是否启用状态
+  if ((((*(char *)(state_struct + 0xb2) == 0) &&
+       (*(char *)(state_struct + 0xaf) != 0)) && (flag_result == 0)) ||
+     (((0 < *(int *)(state_struct + 0xc4) || (0 < *(int *)(state_struct + 200))) ||
+      (0 < *(int *)(state_struct + 0xdc))))) {
+    state_enable = 0;
   }
   else {
-    uVar2 = 1;
+    state_enable = 1;
   }
-  *(undefined1 *)(in_stack_00000040 + 0xb4) = uVar2;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  *(uint8_t *)(state_struct + 0xb4) = state_enable;
+  
+  // 调用引擎内部处理函数（不返回）
+  Engine_Internal_ProcessState(*(ulonglong *)(engine_base + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -40,102 +46,105 @@ void FUN_18012cf49(undefined4 param_1)
 
 
 
-// 函数: void FUN_18012cfe0(void)
-void FUN_18012cfe0(void)
+// 函数: void Engine_CleanupResources(void)
+void Engine_CleanupResources(void)
 
 {
-  char *pcVar1;
-  int *piVar2;
-  float fVar3;
-  longlong lVar4;
-  longlong lVar5;
-  uint uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
-  float fVar10;
+  char *log_buffer;
+  int *resource_count;
+  float transform_y;
+  longlong context_obj;
+  longlong engine_instance;
+  uint object_flags;
+  longlong file_handle;
+  longlong temp_ptr;
+  longlong result_ptr;
+  longlong transform_obj;
+  float scale_factor;
   
-  lVar5 = _DAT_180c8a9b0;
-  if ((1 < *(int *)(_DAT_180c8a9b0 + 0x1ad0)) || (*(char *)(_DAT_180c8a9b0 + 2) == '\0')) {
-    lVar4 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-    if (*(longlong *)(lVar4 + 0x210) != 0) {
-      FUN_180134b80();
+  engine_instance = g_EngineInstance;
+  if ((1 < *(int *)(g_EngineInstance + 0x1ad0)) || (*(char *)(g_EngineInstance + 2) == 0)) {
+    context_obj = *(longlong *)(g_EngineInstance + 0x1af8);
+    if (*(longlong *)(context_obj + 0x210) != 0) {
+      Engine_ReleaseTextureData();
     }
-    uVar6 = *(uint *)(lVar4 + 0xc);
-    if ((uVar6 >> 0x1d & 1) == 0) {
-      FUN_180126d80();
-      uVar6 = *(uint *)(lVar4 + 0xc);
+    object_flags = *(uint *)(context_obj + 0xc);
+    if ((object_flags >> 0x1d & 1) == 0) {
+      Engine_InitializeObjectState();
+      object_flags = *(uint *)(context_obj + 0xc);
     }
-    lVar8 = _DAT_180c8a9b0;
-    lVar9 = 0;
-    if (((uVar6 >> 0x18 & 1) == 0) && (pcVar1 = (char *)(_DAT_180c8a9b0 + 0x2e38), *pcVar1 != '\0'))
+    temp_ptr = g_EngineInstance;
+    result_ptr = 0;
+    if (((object_flags >> 0x18 & 1) == 0) && (log_buffer = (char *)(g_EngineInstance + 0x2e38), *log_buffer != 0))
     {
-      FUN_18013c760(&UNK_180a0677c);
-      if (*(longlong *)(lVar8 + 0x2e40) != 0) {
-        lVar7 = __acrt_iob_func(1);
-        if (*(longlong *)(lVar8 + 0x2e40) == lVar7) {
+      Engine_ProcessLogBuffer(&g_LogBufferPtr);
+      if (*(longlong *)(temp_ptr + 0x2e40) != 0) {
+        file_handle = __acrt_iob_func(1);
+        if (*(longlong *)(temp_ptr + 0x2e40) == file_handle) {
           fflush();
         }
         else {
           fclose();
         }
-        *(undefined8 *)(lVar8 + 0x2e40) = 0;
+        *(uint64_t *)(temp_ptr + 0x2e40) = 0;
       }
-      piVar2 = (int *)(lVar8 + 0x2e48);
-      lVar7 = *(longlong *)(lVar8 + 0x2e50);
-      if ((lVar7 != 0) && (1 < *piVar2 + -1)) {
-        if (*(code **)(_DAT_180c8a9b0 + 0x100) != (code *)0x0) {
-          (**(code **)(_DAT_180c8a9b0 + 0x100))(*(undefined8 *)(_DAT_180c8a9b0 + 0x108),lVar7);
-          lVar7 = *(longlong *)(lVar8 + 0x2e50);
+      resource_count = (int *)(temp_ptr + 0x2e48);
+      file_handle = *(longlong *)(temp_ptr + 0x2e50);
+      if ((file_handle != 0) && (1 < *resource_count + -1)) {
+        if (*(code **)(g_EngineInstance + 0x100) != (code *)0x0) {
+          (**(code **)(g_EngineInstance + 0x100))(*(undefined8 *)(g_EngineInstance + 0x108),file_handle);
+          file_handle = *(longlong *)(temp_ptr + 0x2e50);
         }
-        lVar8 = _DAT_180c8a9b0;
-        if (lVar7 != 0) {
-          piVar2[0] = 0;
-          piVar2[1] = 0;
-          if (lVar8 != 0) {
-            piVar2 = (int *)(lVar8 + 0x3a8);
-            *piVar2 = *piVar2 + -1;
+        temp_ptr = g_EngineInstance;
+        if (file_handle != 0) {
+          resource_count[0] = 0;
+          resource_count[1] = 0;
+          if (temp_ptr != 0) {
+            resource_count = (int *)(temp_ptr + 0x3a8);
+            *resource_count = *resource_count + -1;
           }
-                    // WARNING: Subroutine does not return
-          FUN_180059ba0(lVar7,_DAT_180c8a9a8);
+          // 释放资源（不返回）
+          Engine_FreeResource(file_handle,g_MemoryAllocator);
         }
       }
-      lVar8 = _DAT_180c8a9b0;
-      *pcVar1 = '\0';
+      temp_ptr = g_EngineInstance;
+      *log_buffer = 0;
     }
-    if (((*(longlong *)(lVar4 + 0x408) != 0) && ((*(byte *)(lVar4 + 0x432) & 2) != 0)) &&
-       (lVar7 = *(longlong *)(*(longlong *)(lVar4 + 0x408) + 0x68), lVar7 != 0)) {
-      fVar10 = *(float *)(lVar4 + 0x11c);
-      fVar3 = *(float *)(lVar4 + 0x74);
-      *(float *)(lVar7 + 0x118) =
-           (*(float *)(lVar4 + 0x118) + *(float *)(lVar4 + 0x70)) - *(float *)(lVar7 + 0x70);
-      *(float *)(lVar7 + 0x11c) = (fVar10 + fVar3) - *(float *)(lVar7 + 0x74);
+    // 更新变换数据
+    if (((*(longlong *)(context_obj + 0x408) != 0) && ((*(byte *)(context_obj + 0x432) & 2) != 0)) &&
+       (file_handle = *(longlong *)(*(longlong *)(context_obj + 0x408) + 0x68), file_handle != 0)) {
+      transform_y = *(float *)(context_obj + 0x11c);
+      scale_factor = *(float *)(context_obj + 0x74);
+      *(float *)(file_handle + 0x118) =
+           (*(float *)(context_obj + 0x118) + *(float *)(context_obj + 0x70)) - *(float *)(file_handle + 0x70);
+      *(float *)(file_handle + 0x11c) = (transform_y + scale_factor) - *(float *)(file_handle + 0x74);
     }
-    *(int *)(lVar5 + 0x1ad0) = *(int *)(lVar5 + 0x1ad0) + -1;
-    if ((*(uint *)(lVar4 + 0xc) & 0x4000000) != 0) {
-      *(int *)(lVar5 + 0x1bc0) = *(int *)(lVar5 + 0x1bc0) + -1;
+    // 减少引用计数
+    *(int *)(engine_instance + 0x1ad0) = *(int *)(engine_instance + 0x1ad0) + -1;
+    if ((*(uint *)(context_obj + 0xc) & 0x4000000) != 0) {
+      *(int *)(engine_instance + 0x1bc0) = *(int *)(engine_instance + 0x1bc0) + -1;
     }
-    if (*(int *)(lVar5 + 0x1ad0) != 0) {
-      lVar9 = *(longlong *)
-               (*(longlong *)(lVar5 + 0x1ad8) + -8 + (longlong)*(int *)(lVar5 + 0x1ad0) * 8);
+    if (*(int *)(engine_instance + 0x1ad0) != 0) {
+      result_ptr = *(longlong *)
+               (*(longlong *)(engine_instance + 0x1ad8) + -8 + (longlong)*(int *)(engine_instance + 0x1ad0) * 8);
     }
-    *(longlong *)(lVar8 + 0x1af8) = lVar9;
-    if (lVar9 != 0) {
-      fVar10 = *(float *)(lVar8 + 0x19fc) * *(float *)(lVar9 + 0x2d8) * *(float *)(lVar9 + 0x2dc);
-      *(float *)(lVar8 + 0x1a10) = fVar10;
-      *(float *)(lVar8 + 0x19f8) = fVar10;
+    *(longlong *)(temp_ptr + 0x1af8) = result_ptr;
+    if (result_ptr != 0) {
+      scale_factor = *(float *)(temp_ptr + 0x19fc) * *(float *)(result_ptr + 0x2d8) * *(float *)(result_ptr + 0x2dc);
+      *(float *)(temp_ptr + 0x1a10) = scale_factor;
+      *(float *)(temp_ptr + 0x19f8) = scale_factor;
     }
-    if (*(longlong *)(lVar5 + 0x1af8) != 0) {
-      lVar5 = *(longlong *)(*(longlong *)(lVar5 + 0x1af8) + 0x28);
-      if (lVar5 != 0) {
-        *(undefined4 *)(lVar5 + 0x54) = *(undefined4 *)(lVar8 + 0x1a90);
+    // 更新当前对象
+    if (*(longlong *)(engine_instance + 0x1af8) != 0) {
+      engine_instance = *(longlong *)(*(longlong *)(engine_instance + 0x1af8) + 0x28);
+      if (engine_instance != 0) {
+        *(uint32_t *)(engine_instance + 0x54) = *(uint32_t *)(temp_ptr + 0x1a90);
       }
-      if (((*(longlong *)(lVar8 + 0x1c78) != lVar5) &&
-          (*(longlong *)(lVar8 + 0x1c78) = lVar5, lVar5 != 0)) &&
-         (*(code **)(lVar8 + 0x15c0) != (code *)0x0)) {
-                    // WARNING: Could not recover jumptable at 0x00018012d226. Too many branches
-                    // WARNING: Treating indirect jump as call
-        (**(code **)(lVar8 + 0x15c0))();
+      if (((*(longlong *)(temp_ptr + 0x1c78) != engine_instance) &&
+          (*(longlong *)(temp_ptr + 0x1c78) = engine_instance, engine_instance != 0)) &&
+         (*(code **)(temp_ptr + 0x15c0) != (code *)0x0)) {
+        // 调用对象更新回调函数
+        (**(code **)(temp_ptr + 0x15c0))();
         return;
       }
     }
@@ -149,101 +158,104 @@ void FUN_18012cfe0(void)
 
 
 
-// 函数: void FUN_18012d004(void)
-void FUN_18012d004(void)
+// 函数: void Engine_CleanupResourcesWithParams(void)
+void Engine_CleanupResourcesWithParams(void)
 
 {
-  char *pcVar1;
-  int *piVar2;
-  float fVar3;
-  longlong lVar4;
-  longlong lVar5;
-  uint uVar6;
-  longlong lVar7;
-  longlong unaff_RBX;
-  longlong lVar8;
-  longlong unaff_RDI;
-  float fVar9;
+  char *log_buffer;
+  int *resource_count;
+  float transform_y;
+  longlong context_obj;
+  longlong temp_ptr;
+  uint object_flags;
+  longlong file_handle;
+  longlong engine_instance;
+  longlong result_ptr;
+  longlong engine_params;
+  longlong target_instance;
+  float scale_factor;
   
-  lVar4 = *(longlong *)(unaff_RBX + 0x1af8);
-  if (*(longlong *)(lVar4 + 0x210) != 0) {
-    FUN_180134b80();
-    unaff_RBX = _DAT_180c8a9b0;
+  context_obj = *(longlong *)(engine_params + 0x1af8);
+  if (*(longlong *)(context_obj + 0x210) != 0) {
+    Engine_ReleaseTextureData();
+    engine_params = g_EngineInstance;
   }
-  uVar6 = *(uint *)(lVar4 + 0xc);
-  if ((uVar6 >> 0x1d & 1) == 0) {
-    FUN_180126d80();
-    uVar6 = *(uint *)(lVar4 + 0xc);
-    unaff_RBX = _DAT_180c8a9b0;
+  object_flags = *(uint *)(context_obj + 0xc);
+  if ((object_flags >> 0x1d & 1) == 0) {
+    Engine_InitializeObjectState();
+    object_flags = *(uint *)(context_obj + 0xc);
+    engine_params = g_EngineInstance;
   }
-  lVar8 = 0;
-  if (((uVar6 >> 0x18 & 1) == 0) && (pcVar1 = (char *)(unaff_RBX + 0x2e38), *pcVar1 != '\0')) {
-    FUN_18013c760(&UNK_180a0677c);
-    if (*(longlong *)(unaff_RBX + 0x2e40) != 0) {
-      lVar7 = __acrt_iob_func(1);
-      if (*(longlong *)(unaff_RBX + 0x2e40) == lVar7) {
+  result_ptr = 0;
+  if (((object_flags >> 0x18 & 1) == 0) && (log_buffer = (char *)(engine_params + 0x2e38), *log_buffer != 0)) {
+    Engine_ProcessLogBuffer(&g_LogBufferPtr);
+    if (*(longlong *)(engine_params + 0x2e40) != 0) {
+      file_handle = __acrt_iob_func(1);
+      if (*(longlong *)(engine_params + 0x2e40) == file_handle) {
         fflush();
       }
       else {
         fclose();
       }
-      *(undefined8 *)(unaff_RBX + 0x2e40) = 0;
+      *(uint64_t *)(engine_params + 0x2e40) = 0;
     }
-    piVar2 = (int *)(unaff_RBX + 0x2e48);
-    lVar7 = *(longlong *)(unaff_RBX + 0x2e50);
-    if ((lVar7 != 0) && (1 < *piVar2 + -1)) {
-      if (*(code **)(_DAT_180c8a9b0 + 0x100) != (code *)0x0) {
-        (**(code **)(_DAT_180c8a9b0 + 0x100))(*(undefined8 *)(_DAT_180c8a9b0 + 0x108),lVar7);
-        lVar7 = *(longlong *)(unaff_RBX + 0x2e50);
+    resource_count = (int *)(engine_params + 0x2e48);
+    file_handle = *(longlong *)(engine_params + 0x2e50);
+    if ((file_handle != 0) && (1 < *resource_count + -1)) {
+      if (*(code **)(g_EngineInstance + 0x100) != (code *)0x0) {
+        (**(code **)(g_EngineInstance + 0x100))(*(undefined8 *)(g_EngineInstance + 0x108),file_handle);
+        file_handle = *(longlong *)(engine_params + 0x2e50);
       }
-      lVar5 = _DAT_180c8a9b0;
-      if (lVar7 != 0) {
-        piVar2[0] = 0;
-        piVar2[1] = 0;
-        if (lVar5 != 0) {
-          piVar2 = (int *)(lVar5 + 0x3a8);
-          *piVar2 = *piVar2 + -1;
+      temp_ptr = g_EngineInstance;
+      if (file_handle != 0) {
+        resource_count[0] = 0;
+        resource_count[1] = 0;
+        if (temp_ptr != 0) {
+          resource_count = (int *)(temp_ptr + 0x3a8);
+          *resource_count = *resource_count + -1;
         }
-                    // WARNING: Subroutine does not return
-        FUN_180059ba0(lVar7,_DAT_180c8a9a8);
+        // 释放资源（不返回）
+        Engine_FreeResource(file_handle,g_MemoryAllocator);
       }
     }
-    unaff_RBX = _DAT_180c8a9b0;
-    *pcVar1 = '\0';
+    engine_params = g_EngineInstance;
+    *log_buffer = 0;
   }
-  if (((*(longlong *)(lVar4 + 0x408) != 0) && ((*(byte *)(lVar4 + 0x432) & 2) != 0)) &&
-     (lVar7 = *(longlong *)(*(longlong *)(lVar4 + 0x408) + 0x68), lVar7 != 0)) {
-    fVar9 = *(float *)(lVar4 + 0x11c);
-    fVar3 = *(float *)(lVar4 + 0x74);
-    *(float *)(lVar7 + 0x118) =
-         (*(float *)(lVar4 + 0x118) + *(float *)(lVar4 + 0x70)) - *(float *)(lVar7 + 0x70);
-    *(float *)(lVar7 + 0x11c) = (fVar9 + fVar3) - *(float *)(lVar7 + 0x74);
+  // 更新变换数据
+  if (((*(longlong *)(context_obj + 0x408) != 0) && ((*(byte *)(context_obj + 0x432) & 2) != 0)) &&
+     (file_handle = *(longlong *)(*(longlong *)(context_obj + 0x408) + 0x68), file_handle != 0)) {
+    transform_y = *(float *)(context_obj + 0x11c);
+    scale_factor = *(float *)(context_obj + 0x74);
+    *(float *)(file_handle + 0x118) =
+         (*(float *)(context_obj + 0x118) + *(float *)(context_obj + 0x70)) - *(float *)(file_handle + 0x70);
+    *(float *)(file_handle + 0x11c) = (transform_y + scale_factor) - *(float *)(file_handle + 0x74);
   }
-  *(int *)(unaff_RDI + 0x1ad0) = *(int *)(unaff_RDI + 0x1ad0) + -1;
-  if ((*(uint *)(lVar4 + 0xc) & 0x4000000) != 0) {
-    *(int *)(unaff_RDI + 0x1bc0) = *(int *)(unaff_RDI + 0x1bc0) + -1;
+  // 减少引用计数
+  *(int *)(target_instance + 0x1ad0) = *(int *)(target_instance + 0x1ad0) + -1;
+  if ((*(uint *)(context_obj + 0xc) & 0x4000000) != 0) {
+    *(int *)(target_instance + 0x1bc0) = *(int *)(target_instance + 0x1bc0) + -1;
   }
-  if (*(int *)(unaff_RDI + 0x1ad0) != 0) {
-    lVar8 = *(longlong *)
-             (*(longlong *)(unaff_RDI + 0x1ad8) + -8 + (longlong)*(int *)(unaff_RDI + 0x1ad0) * 8);
+  if (*(int *)(target_instance + 0x1ad0) != 0) {
+    result_ptr = *(longlong *)
+             (*(longlong *)(target_instance + 0x1ad8) + -8 + (longlong)*(int *)(target_instance + 0x1ad0) * 8);
   }
-  *(longlong *)(unaff_RBX + 0x1af8) = lVar8;
-  if (lVar8 != 0) {
-    fVar9 = *(float *)(unaff_RBX + 0x19fc) * *(float *)(lVar8 + 0x2d8) * *(float *)(lVar8 + 0x2dc);
-    *(float *)(unaff_RBX + 0x1a10) = fVar9;
-    *(float *)(unaff_RBX + 0x19f8) = fVar9;
+  *(longlong *)(engine_params + 0x1af8) = result_ptr;
+  if (result_ptr != 0) {
+    scale_factor = *(float *)(engine_params + 0x19fc) * *(float *)(result_ptr + 0x2d8) * *(float *)(result_ptr + 0x2dc);
+    *(float *)(engine_params + 0x1a10) = scale_factor;
+    *(float *)(engine_params + 0x19f8) = scale_factor;
   }
-  if (*(longlong *)(unaff_RDI + 0x1af8) != 0) {
-    lVar4 = *(longlong *)(*(longlong *)(unaff_RDI + 0x1af8) + 0x28);
-    if (lVar4 != 0) {
-      *(undefined4 *)(lVar4 + 0x54) = *(undefined4 *)(unaff_RBX + 0x1a90);
+  // 更新当前对象
+  if (*(longlong *)(target_instance + 0x1af8) != 0) {
+    context_obj = *(longlong *)(*(longlong *)(target_instance + 0x1af8) + 0x28);
+    if (context_obj != 0) {
+      *(uint32_t *)(context_obj + 0x54) = *(uint32_t *)(engine_params + 0x1a90);
     }
-    if (((*(longlong *)(unaff_RBX + 0x1c78) != lVar4) &&
-        (*(longlong *)(unaff_RBX + 0x1c78) = lVar4, lVar4 != 0)) &&
-       (*(code **)(unaff_RBX + 0x15c0) != (code *)0x0)) {
-                    // WARNING: Could not recover jumptable at 0x00018012d226. Too many branches
-                    // WARNING: Treating indirect jump as call
-      (**(code **)(unaff_RBX + 0x15c0))();
+    if (((*(longlong *)(engine_params + 0x1c78) != context_obj) &&
+        (*(longlong *)(engine_params + 0x1c78) = context_obj, context_obj != 0)) &&
+       (*(code **)(engine_params + 0x15c0) != (code *)0x0)) {
+      // 调用对象更新回调函数
+      (**(code **)(engine_params + 0x15c0))();
       return;
     }
   }
@@ -256,89 +268,106 @@ void FUN_18012d004(void)
 
 
 
-// 函数: void FUN_18012d04f(void)
-void FUN_18012d04f(void)
+// 函数: void Engine_ProcessLogBufferAndCleanupResources(longlong engine_instance, longlong context_obj, longlong target_instance, longlong log_buffer_state, longlong resource_handle)
+void Engine_ProcessLogBufferAndCleanupResources(longlong engine_instance, longlong context_obj, longlong target_instance, longlong log_buffer_state, longlong resource_handle)
 
 {
-  char *pcVar1;
-  int *piVar2;
-  float fVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  float fVar6;
+  char *log_buffer_ptr;
+  int *resource_counter;
+  float transform_offset_y;
+  float scale_factor;
+  longlong file_handle;
+  longlong log_file_handle;
+  longlong current_context;
+  longlong result_ptr;
+  float computed_scale;
   
-  pcVar1 = (char *)(unaff_RBX + 0x2e38);
-  if (*pcVar1 != (char)unaff_RSI) {
-    FUN_18013c760(&UNK_180a0677c);
-    if (*(longlong *)(unaff_RBX + 0x2e40) != unaff_RSI) {
-      lVar5 = __acrt_iob_func((int)unaff_RSI + 1);
-      if (*(longlong *)(unaff_RBX + 0x2e40) == lVar5) {
+  // 获取日志缓冲区指针
+  log_buffer_ptr = (char *)(engine_instance + 0x2e38);
+  if (*log_buffer_ptr != (char)log_buffer_state) {
+    // 处理日志缓冲区
+    Engine_ProcessLogBuffer(&g_LogBufferPtr);
+    
+    // 检查并关闭日志文件
+    if (*(longlong *)(engine_instance + 0x2e40) != log_buffer_state) {
+      log_file_handle = __acrt_iob_func((int)log_buffer_state + 1);
+      if (*(longlong *)(engine_instance + 0x2e40) == log_file_handle) {
         fflush();
       }
       else {
         fclose();
       }
-      *(longlong *)(unaff_RBX + 0x2e40) = unaff_RSI;
+      *(longlong *)(engine_instance + 0x2e40) = log_buffer_state;
     }
-    lVar5 = *(longlong *)(unaff_RBX + 0x2e50);
-    if ((lVar5 != 0) && (1 < *(int *)(unaff_RBX + 0x2e48) + -1)) {
-      if (*(code **)(_DAT_180c8a9b0 + 0x100) != (code *)0x0) {
-        (**(code **)(_DAT_180c8a9b0 + 0x100))(*(undefined8 *)(_DAT_180c8a9b0 + 0x108),lVar5);
-        lVar5 = *(longlong *)(unaff_RBX + 0x2e50);
+    
+    // 释放资源句柄
+    file_handle = *(longlong *)(engine_instance + 0x2e50);
+    if ((file_handle != 0) && (1 < *(int *)(engine_instance + 0x2e48) + -1)) {
+      if (*(code **)(g_EngineInstance + 0x100) != (code *)0x0) {
+        // 调用资源处理回调函数
+        (**(code **)(g_EngineInstance + 0x100))(*(undefined8 *)(g_EngineInstance + 0x108), file_handle);
+        file_handle = *(longlong *)(engine_instance + 0x2e50);
       }
-      lVar4 = _DAT_180c8a9b0;
-      if (lVar5 != 0) {
-        *(longlong *)(unaff_RBX + 0x2e48) = unaff_RSI;
-        if (lVar4 != 0) {
-          piVar2 = (int *)(lVar4 + 0x3a8);
-          *piVar2 = *piVar2 + -1;
+      current_context = g_EngineInstance;
+      if (file_handle != 0) {
+        // 重置资源计数器
+        *(longlong *)(engine_instance + 0x2e48) = log_buffer_state;
+        if (current_context != 0) {
+          resource_counter = (int *)(current_context + 0x3a8);
+          *resource_counter = *resource_counter + -1;
         }
-                    // WARNING: Subroutine does not return
-        FUN_180059ba0(lVar5,_DAT_180c8a9a8);
+        // 释放资源（不返回）
+        Engine_FreeResource(file_handle, g_MemoryAllocator);
       }
     }
-    unaff_RBX = _DAT_180c8a9b0;
-    *pcVar1 = (char)unaff_RSI;
+    engine_instance = g_EngineInstance;
+    *log_buffer_ptr = (char)log_buffer_state;
   }
-  if (((*(longlong *)(unaff_RBP + 0x408) != 0) && ((*(byte *)(unaff_RBP + 0x432) & 2) != 0)) &&
-     (lVar5 = *(longlong *)(*(longlong *)(unaff_RBP + 0x408) + 0x68), lVar5 != 0)) {
-    fVar6 = *(float *)(unaff_RBP + 0x11c);
-    fVar3 = *(float *)(unaff_RBP + 0x74);
-    *(float *)(lVar5 + 0x118) =
-         (*(float *)(unaff_RBP + 0x118) + *(float *)(unaff_RBP + 0x70)) - *(float *)(lVar5 + 0x70);
-    *(float *)(lVar5 + 0x11c) = (fVar6 + fVar3) - *(float *)(lVar5 + 0x74);
+  
+  // 更新变换数据
+  if (((*(longlong *)(context_obj + 0x408) != 0) && ((*(byte *)(context_obj + 0x432) & 2) != 0)) &&
+     (file_handle = *(longlong *)(*(longlong *)(context_obj + 0x408) + 0x68), file_handle != 0)) {
+    transform_offset_y = *(float *)(context_obj + 0x11c);
+    scale_factor = *(float *)(context_obj + 0x74);
+    // 计算并设置新的变换位置
+    *(float *)(file_handle + 0x118) =
+         (*(float *)(context_obj + 0x118) + *(float *)(context_obj + 0x70)) - *(float *)(file_handle + 0x70);
+    *(float *)(file_handle + 0x11c) = (transform_offset_y + scale_factor) - *(float *)(file_handle + 0x74);
   }
-  *(int *)(unaff_RDI + 0x1ad0) = *(int *)(unaff_RDI + 0x1ad0) + -1;
-  if ((*(uint *)(unaff_RBP + 0xc) & 0x4000000) != 0) {
-    *(int *)(unaff_RDI + 0x1bc0) = *(int *)(unaff_RDI + 0x1bc0) + -1;
+  
+  // 减少引用计数
+  *(int *)(target_instance + 0x1ad0) = *(int *)(target_instance + 0x1ad0) + -1;
+  if ((*(uint *)(context_obj + 0xc) & 0x4000000) != 0) {
+    *(int *)(target_instance + 0x1bc0) = *(int *)(target_instance + 0x1bc0) + -1;
   }
-  if (*(int *)(unaff_RDI + 0x1ad0) != 0) {
-    unaff_RSI = *(longlong *)
-                 (*(longlong *)(unaff_RDI + 0x1ad8) + -8 +
-                 (longlong)*(int *)(unaff_RDI + 0x1ad0) * 8);
+  
+  // 获取当前上下文对象
+  if (*(int *)(target_instance + 0x1ad0) != 0) {
+    resource_handle = *(longlong *)
+                 (*(longlong *)(target_instance + 0x1ad8) + -8 +
+                 (longlong)*(int *)(target_instance + 0x1ad0) * 8);
   }
-  *(longlong *)(unaff_RBX + 0x1af8) = unaff_RSI;
-  if (unaff_RSI != 0) {
-    fVar6 = *(float *)(unaff_RBX + 0x19fc) * *(float *)(unaff_RSI + 0x2d8) *
-            *(float *)(unaff_RSI + 0x2dc);
-    *(float *)(unaff_RBX + 0x1a10) = fVar6;
-    *(float *)(unaff_RBX + 0x19f8) = fVar6;
+  *(longlong *)(engine_instance + 0x1af8) = resource_handle;
+  
+  // 计算缩放因子
+  if (resource_handle != 0) {
+    computed_scale = *(float *)(engine_instance + 0x19fc) * *(float *)(resource_handle + 0x2d8) *
+                   *(float *)(resource_handle + 0x2dc);
+    *(float *)(engine_instance + 0x1a10) = computed_scale;
+    *(float *)(engine_instance + 0x19f8) = computed_scale;
   }
-  if (*(longlong *)(unaff_RDI + 0x1af8) != 0) {
-    lVar5 = *(longlong *)(*(longlong *)(unaff_RDI + 0x1af8) + 0x28);
-    if (lVar5 != 0) {
-      *(undefined4 *)(lVar5 + 0x54) = *(undefined4 *)(unaff_RBX + 0x1a90);
+  
+  // 更新当前对象并触发回调
+  if (*(longlong *)(target_instance + 0x1af8) != 0) {
+    current_context = *(longlong *)(*(longlong *)(target_instance + 0x1af8) + 0x28);
+    if (current_context != 0) {
+      *(uint32_t *)(current_context + 0x54) = *(uint32_t *)(engine_instance + 0x1a90);
     }
-    if (((*(longlong *)(unaff_RBX + 0x1c78) != lVar5) &&
-        (*(longlong *)(unaff_RBX + 0x1c78) = lVar5, lVar5 != 0)) &&
-       (*(code **)(unaff_RBX + 0x15c0) != (code *)0x0)) {
-                    // WARNING: Could not recover jumptable at 0x00018012d226. Too many branches
-                    // WARNING: Treating indirect jump as call
-      (**(code **)(unaff_RBX + 0x15c0))();
+    if (((*(longlong *)(engine_instance + 0x1c78) != current_context) &&
+        (*(longlong *)(engine_instance + 0x1c78) = current_context, current_context != 0)) &&
+       (*(code **)(engine_instance + 0x15c0) != (code *)0x0)) {
+      // 调用对象更新回调函数
+      (**(code **)(engine_instance + 0x15c0))();
       return;
     }
   }
@@ -351,86 +380,102 @@ void FUN_18012d04f(void)
 
 
 
-// 函数: void FUN_18012d06b(void)
-void FUN_18012d06b(void)
+// 函数: void Engine_UpdateStateAndManageResources(longlong engine_instance, longlong context_obj, longlong target_instance, longlong log_buffer_state, char *log_buffer_flag)
+void Engine_UpdateStateAndManageResources(longlong engine_instance, longlong context_obj, longlong target_instance, longlong log_buffer_state, char *log_buffer_flag)
 
 {
-  int *piVar1;
-  float fVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  undefined1 *unaff_R15;
-  float fVar5;
+  int *resource_counter;
+  float transform_offset_y;
+  float scale_factor;
+  longlong file_handle;
+  longlong log_file_handle;
+  longlong current_context;
+  longlong result_context;
+  float computed_scale;
   
-  FUN_18013c760();
-  if (*(longlong *)(unaff_RBX + 0x2e40) != unaff_RSI) {
-    lVar4 = __acrt_iob_func((int)unaff_RSI + 1);
-    if (*(longlong *)(unaff_RBX + 0x2e40) == lVar4) {
+  // 处理日志缓冲区
+  Engine_ProcessLogBuffer(&g_LogBufferPtr);
+  
+  // 检查并关闭日志文件
+  if (*(longlong *)(engine_instance + 0x2e40) != log_buffer_state) {
+    log_file_handle = __acrt_iob_func((int)log_buffer_state + 1);
+    if (*(longlong *)(engine_instance + 0x2e40) == log_file_handle) {
       fflush();
     }
     else {
       fclose();
     }
-    *(longlong *)(unaff_RBX + 0x2e40) = unaff_RSI;
+    *(longlong *)(engine_instance + 0x2e40) = log_buffer_state;
   }
-  lVar4 = *(longlong *)(unaff_RBX + 0x2e50);
-  if ((lVar4 != 0) && (1 < *(int *)(unaff_RBX + 0x2e48) + -1)) {
-    if (*(code **)(_DAT_180c8a9b0 + 0x100) != (code *)0x0) {
-      (**(code **)(_DAT_180c8a9b0 + 0x100))(*(undefined8 *)(_DAT_180c8a9b0 + 0x108),lVar4);
-      lVar4 = *(longlong *)(unaff_RBX + 0x2e50);
+  
+  // 释放资源句柄
+  file_handle = *(longlong *)(engine_instance + 0x2e50);
+  if ((file_handle != 0) && (1 < *(int *)(engine_instance + 0x2e48) + -1)) {
+    if (*(code **)(g_EngineInstance + 0x100) != (code *)0x0) {
+      // 调用资源处理回调函数
+      (**(code **)(g_EngineInstance + 0x100))(*(undefined8 *)(g_EngineInstance + 0x108), file_handle);
+      file_handle = *(longlong *)(engine_instance + 0x2e50);
     }
-    lVar3 = _DAT_180c8a9b0;
-    if (lVar4 != 0) {
-      *(longlong *)(unaff_RBX + 0x2e48) = unaff_RSI;
-      if (lVar3 != 0) {
-        piVar1 = (int *)(lVar3 + 0x3a8);
-        *piVar1 = *piVar1 + -1;
+    current_context = g_EngineInstance;
+    if (file_handle != 0) {
+      // 重置资源计数器
+      *(longlong *)(engine_instance + 0x2e48) = log_buffer_state;
+      if (current_context != 0) {
+        resource_counter = (int *)(current_context + 0x3a8);
+        *resource_counter = *resource_counter + -1;
       }
-                    // WARNING: Subroutine does not return
-      FUN_180059ba0(lVar4,_DAT_180c8a9a8);
+      // 释放资源（不返回）
+      Engine_FreeResource(file_handle, g_MemoryAllocator);
     }
   }
-  lVar4 = _DAT_180c8a9b0;
-  *unaff_R15 = (char)unaff_RSI;
-  if (((*(longlong *)(unaff_RBP + 0x408) != 0) && ((*(byte *)(unaff_RBP + 0x432) & 2) != 0)) &&
-     (lVar3 = *(longlong *)(*(longlong *)(unaff_RBP + 0x408) + 0x68), lVar3 != 0)) {
-    fVar5 = *(float *)(unaff_RBP + 0x11c);
-    fVar2 = *(float *)(unaff_RBP + 0x74);
-    *(float *)(lVar3 + 0x118) =
-         (*(float *)(unaff_RBP + 0x118) + *(float *)(unaff_RBP + 0x70)) - *(float *)(lVar3 + 0x70);
-    *(float *)(lVar3 + 0x11c) = (fVar5 + fVar2) - *(float *)(lVar3 + 0x74);
+  
+  current_context = g_EngineInstance;
+  *log_buffer_flag = (char)log_buffer_state;
+  
+  // 更新变换数据
+  if (((*(longlong *)(context_obj + 0x408) != 0) && ((*(byte *)(context_obj + 0x432) & 2) != 0)) &&
+     (result_context = *(longlong *)(*(longlong *)(context_obj + 0x408) + 0x68), result_context != 0)) {
+    transform_offset_y = *(float *)(context_obj + 0x11c);
+    scale_factor = *(float *)(context_obj + 0x74);
+    // 计算并设置新的变换位置
+    *(float *)(result_context + 0x118) =
+         (*(float *)(context_obj + 0x118) + *(float *)(context_obj + 0x70)) - *(float *)(result_context + 0x70);
+    *(float *)(result_context + 0x11c) = (transform_offset_y + scale_factor) - *(float *)(result_context + 0x74);
   }
-  *(int *)(unaff_RDI + 0x1ad0) = *(int *)(unaff_RDI + 0x1ad0) + -1;
-  if ((*(uint *)(unaff_RBP + 0xc) & 0x4000000) != 0) {
-    *(int *)(unaff_RDI + 0x1bc0) = *(int *)(unaff_RDI + 0x1bc0) + -1;
+  
+  // 减少引用计数
+  *(int *)(target_instance + 0x1ad0) = *(int *)(target_instance + 0x1ad0) + -1;
+  if ((*(uint *)(context_obj + 0xc) & 0x4000000) != 0) {
+    *(int *)(target_instance + 0x1bc0) = *(int *)(target_instance + 0x1bc0) + -1;
   }
-  if (*(int *)(unaff_RDI + 0x1ad0) != 0) {
-    unaff_RSI = *(longlong *)
-                 (*(longlong *)(unaff_RDI + 0x1ad8) + -8 +
-                 (longlong)*(int *)(unaff_RDI + 0x1ad0) * 8);
+  
+  // 获取当前上下文对象
+  if (*(int *)(target_instance + 0x1ad0) != 0) {
+    log_buffer_state = *(longlong *)
+                 (*(longlong *)(target_instance + 0x1ad8) + -8 +
+                 (longlong)*(int *)(target_instance + 0x1ad0) * 8);
   }
-  *(longlong *)(lVar4 + 0x1af8) = unaff_RSI;
-  if (unaff_RSI != 0) {
-    fVar5 = *(float *)(lVar4 + 0x19fc) * *(float *)(unaff_RSI + 0x2d8) *
-            *(float *)(unaff_RSI + 0x2dc);
-    *(float *)(lVar4 + 0x1a10) = fVar5;
-    *(float *)(lVar4 + 0x19f8) = fVar5;
+  *(longlong *)(current_context + 0x1af8) = log_buffer_state;
+  
+  // 计算缩放因子
+  if (log_buffer_state != 0) {
+    computed_scale = *(float *)(current_context + 0x19fc) * *(float *)(log_buffer_state + 0x2d8) *
+                   *(float *)(log_buffer_state + 0x2dc);
+    *(float *)(current_context + 0x1a10) = computed_scale;
+    *(float *)(current_context + 0x19f8) = computed_scale;
   }
-  if (*(longlong *)(unaff_RDI + 0x1af8) != 0) {
-    lVar3 = *(longlong *)(*(longlong *)(unaff_RDI + 0x1af8) + 0x28);
-    if (lVar3 != 0) {
-      *(undefined4 *)(lVar3 + 0x54) = *(undefined4 *)(lVar4 + 0x1a90);
+  
+  // 更新当前对象并触发回调
+  if (*(longlong *)(target_instance + 0x1af8) != 0) {
+    result_context = *(longlong *)(*(longlong *)(target_instance + 0x1af8) + 0x28);
+    if (result_context != 0) {
+      *(uint32_t *)(result_context + 0x54) = *(uint32_t *)(current_context + 0x1a90);
     }
-    if (((*(longlong *)(lVar4 + 0x1c78) != lVar3) &&
-        (*(longlong *)(lVar4 + 0x1c78) = lVar3, lVar3 != 0)) &&
-       (*(code **)(lVar4 + 0x15c0) != (code *)0x0)) {
-                    // WARNING: Could not recover jumptable at 0x00018012d226. Too many branches
-                    // WARNING: Treating indirect jump as call
-      (**(code **)(lVar4 + 0x15c0))();
+    if (((*(longlong *)(current_context + 0x1c78) != result_context) &&
+        (*(longlong *)(current_context + 0x1c78) = result_context, result_context != 0)) &&
+       (*(code **)(current_context + 0x15c0) != (code *)0x0)) {
+      // 调用对象更新回调函数
+      (**(code **)(current_context + 0x15c0))();
       return;
     }
   }
