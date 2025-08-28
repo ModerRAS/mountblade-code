@@ -35,7 +35,7 @@ void FUN_180696370(longlong param_1,int param_2,longlong param_3,int param_4,int
   longlong lStackX_18;
   longlong lStack_48;
   
-  iVar1 = _DAT_180bf00b0;
+  iVar1 = render_system_control_ui;
   lStack_48 = 8;
   lStackX_18 = param_3;
   do {
@@ -160,7 +160,7 @@ void FUN_180696540(longlong param_1,int param_2,longlong param_3,int param_4,int
   longlong lStackX_18;
   longlong lStack_48;
   
-  iVar1 = _DAT_180bf00b0;
+  iVar1 = render_system_control_ui;
   lStack_48 = 3;
   lStackX_18 = param_3;
   do {
@@ -285,7 +285,7 @@ void FUN_180696710(longlong param_1,int param_2,longlong param_3,int param_4,int
   longlong lStackX_18;
   longlong lStack_48;
   
-  iVar1 = _DAT_180bf00b0;
+  iVar1 = render_system_control_ui;
   lStack_48 = 8;
   lStackX_18 = param_3;
   do {
@@ -404,7 +404,7 @@ void FUN_1806968e0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   uint *puStackX_18;
   longlong lStack_48;
   
-  iVar1 = _DAT_180bf00b0;
+  iVar1 = render_system_control_ui;
   lStack_48 = 3;
   puStackX_18 = param_3;
   do {
@@ -504,7 +504,7 @@ void FUN_180696a60(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   uint *puStackX_18;
   longlong lStack_48;
   
-  iVar1 = _DAT_180bf00b0;
+  iVar1 = render_system_control_ui;
   lStack_48 = 8;
   puStackX_18 = param_3;
   do {
@@ -609,7 +609,7 @@ void FUN_180696be0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   uint *puStackX_18;
   longlong lStack_48;
   
-  iVar1 = _DAT_180bf00b0;
+  iVar1 = render_system_control_ui;
   lStack_48 = 3;
   puStackX_18 = param_3;
   do {
@@ -729,7 +729,7 @@ void FUN_180696d90(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   uint *puStackX_18;
   longlong lStack_48;
   
-  iVar1 = _DAT_180bf00b0;
+  iVar1 = render_system_control_ui;
   lStack_48 = 8;
   puStackX_18 = param_3;
   do {
@@ -849,7 +849,7 @@ void FUN_180696f40(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   uint *puStackX_18;
   longlong lStack_48;
   
-  iVar1 = _DAT_180bf00b0;
+  iVar1 = render_system_control_ui;
   lStack_48 = 3;
   puStackX_18 = param_3;
   do {

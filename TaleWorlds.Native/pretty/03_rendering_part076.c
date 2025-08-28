@@ -267,7 +267,7 @@ LAB_18030c93f:
             } while (plStack_1e0 != (longlong *)0x0);
           }
           if (*(char *)(lVar10 + 0x14) != '\0') {
-            FUN_1800f4980(_DAT_180c8a980,*(int32_t *)(lVar10 + 0x10),lVar10);
+            FUN_1800f4980(render_system_data_memory,*(int32_t *)(lVar10 + 0x10),lVar10);
           }
           puStack_1d0 = &unknown_var_3456_ptr;
           if (lStack_1c8 != 0) {

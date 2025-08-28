@@ -405,7 +405,7 @@ void FUN_180430110(void)
             if (iVar16 <= iVar22) {
               iVar20 = iVar16 + -1;
             }
-            if (_DAT_180c8ec8c != 0) {
+            if (render_system_data_memory != 0) {
               iVar20 = (iVar16 - iVar20) + -1;
             }
             iVar20 = iVar20 * unaff_EBX;

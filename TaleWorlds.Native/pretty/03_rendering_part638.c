@@ -742,7 +742,7 @@ bool FUN_180625470(longlong param_1,longlong param_2)
       if (system_data_ecec != '\0') {
         uVar8 = 0xe9977;
       }
-      lVar9 = _DAT_180c8ed10 + 8;
+      lVar9 = system_heap_base + 8;
       uStack_60 = uVar1;
       lStack_5c = param_2;
       iVar3 = _Mtx_lock(lVar9);
@@ -879,7 +879,7 @@ void FUN_1806257b0(uint64_t *param_1)
   uStack_4a0 = 0;
   puStack_4b0 = (int32_t *)0x0;
   uStack_4a8 = 0;
-  puVar5 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x13,0x13);
+  puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x13,0x13);
   *(int8_t *)puVar5 = 0;
   puStack_4b0 = puVar5;
   uVar3 = FUN_18064e990(puVar5);

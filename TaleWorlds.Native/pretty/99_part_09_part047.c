@@ -234,7 +234,7 @@ LAB_1805d29f8:
             goto LAB_1805d29f8;
             bVar4 = true;
             bVar10 = *(byte *)((longlong)*(int *)(lVar8 + 100 + *(longlong *)(lVar7 + 0xd0)) * 0x170
-                               + 0x140 + _DAT_180c95ff0) >> 4 & 1;
+                               + 0x140 + system_system_memory) >> 4 & 1;
           }
           puVar9 = (uint *)((longlong)*(char *)(*(longlong *)(lVar12 + 0x590) + 0x2581) * 0x100 +
                            *(longlong *)(*(longlong *)(lVar1 + 0x658) + 0x18));
@@ -304,7 +304,7 @@ LAB_1805d29f8:
         lVar8 = (longlong)*(int *)(lVar7 + 0xf0) * 0xa0;
         if (((*(byte *)(lVar8 + 0x50 + *(longlong *)(lVar7 + 0xd0)) & 0x40) == 0) ||
            ((*(byte *)((longlong)*(int *)(lVar8 + 100 + *(longlong *)(lVar7 + 0xd0)) * 0x170 + 0x140
-                      + _DAT_180c95ff0) & 0x10) == 0)) goto LAB_1805d294d;
+                      + system_system_memory) & 0x10) == 0)) goto LAB_1805d294d;
       }
       uVar5 = 3;
       goto LAB_1805d2bf1;
@@ -430,7 +430,7 @@ LAB_1805d29f8:
             goto LAB_1805d29f8;
             bVar4 = true;
             bVar9 = *(byte *)((longlong)*(int *)(lVar6 + 100 + *(longlong *)(unaff_RSI + 0xd0)) *
-                              0x170 + 0x140 + _DAT_180c95ff0) >> 4 & 1;
+                              0x170 + 0x140 + system_system_memory) >> 4 & 1;
           }
           puVar8 = (uint *)((longlong)*(char *)(*(longlong *)(unaff_R14 + 0x590) + 0x2581) * 0x100 +
                            *(longlong *)(*(longlong *)(unaff_RBP + 0x658) + 0x18));
@@ -496,7 +496,7 @@ LAB_1805d29f8:
         lVar6 = (longlong)*(int *)(unaff_RSI + 0xf0) * 0xa0;
         if (((*(byte *)(lVar6 + 0x50 + *(longlong *)(unaff_RSI + 0xd0)) & 0x40) == 0) ||
            ((*(byte *)((longlong)*(int *)(lVar6 + 100 + *(longlong *)(unaff_RSI + 0xd0)) * 0x170 +
-                       0x140 + _DAT_180c95ff0) & 0x10) == 0)) goto LAB_1805d294d;
+                       0x140 + system_system_memory) & 0x10) == 0)) goto LAB_1805d294d;
       }
       uVar5 = 3;
       goto LAB_1805d2bf1;

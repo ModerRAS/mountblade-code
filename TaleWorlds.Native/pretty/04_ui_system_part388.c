@@ -184,12 +184,12 @@ LAB_1808788de:
         if (plVar16 != plVar1) {
           lVar3 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
-            if ((*(int *)(lVar3 + 0x48) < _DAT_180c4ea98) &&
-               (FUN_1808fcb90(&system_ptr_ea98), _DAT_180c4ea98 == -1)) {
-              _DAT_180c4ea94 = 0;
+            if ((*(int *)(lVar3 + 0x48) < ui_system_config) &&
+               (FUN_1808fcb90(&system_ptr_ea98), ui_system_config == -1)) {
+              ui_system_config = 0;
               FUN_1808fcb30(&system_ptr_ea98);
             }
-            if ((int)plVar16[0x14] != _DAT_180c4ea94) {
+            if ((int)plVar16[0x14] != ui_system_config) {
               for (uVar10 = plVar16[0x10];
                   (uVar12 = plVar16[0x10], uVar12 <= uVar10 &&
                   (uVar10 < uVar12 + (longlong)(int)plVar16[0x11] * 0x18)); uVar10 = uVar10 + 0x18)
@@ -477,12 +477,12 @@ void FUN_1808789b7(float param_1)
         if (plVar17 != plVar1) {
           lVar3 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
-            if ((*(int *)(lVar3 + 0x48) < _DAT_180c4ea98) &&
-               (param_1 = (float)FUN_1808fcb90(&system_ptr_ea98), _DAT_180c4ea98 == -1)) {
-              _DAT_180c4ea94 = 0;
+            if ((*(int *)(lVar3 + 0x48) < ui_system_config) &&
+               (param_1 = (float)FUN_1808fcb90(&system_ptr_ea98), ui_system_config == -1)) {
+              ui_system_config = 0;
               param_1 = (float)FUN_1808fcb30(&system_ptr_ea98);
             }
-            if ((int)plVar17[0x14] != _DAT_180c4ea94) {
+            if ((int)plVar17[0x14] != ui_system_config) {
               for (uVar13 = plVar17[0x10];
                   (uVar14 = plVar17[0x10], uVar14 <= uVar13 &&
                   (uVar13 < uVar14 + (longlong)(int)plVar17[0x11] * 0x18)); uVar13 = uVar13 + 0x18)

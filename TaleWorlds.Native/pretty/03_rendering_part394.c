@@ -840,7 +840,7 @@ void FUN_180488930(void)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x58,8,3,0xfffffffffffffffe);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x58,8,3,0xfffffffffffffffe);
   *puVar1 = &unknown_var_1864_ptr;
   *puVar1 = &unknown_var_1608_ptr;
   puVar1[9] = 0;

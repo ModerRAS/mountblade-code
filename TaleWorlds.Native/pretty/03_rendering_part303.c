@@ -196,7 +196,7 @@ LAB_18042c87d:
                 }
                 if ((lVar9 == 0) &&
                    ((0x1fffffff < (int)uVar6 ||
-                    (lVar9 = FUN_18062b420(_DAT_180c8ed18,(longlong)(int)(uVar6 * 4),0x22),
+                    (lVar9 = FUN_18062b420(system_memory_pool_ptr,(longlong)(int)(uVar6 * 4),0x22),
                     lVar9 == 0)))) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900(lVar7);

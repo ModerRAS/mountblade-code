@@ -117,7 +117,7 @@ uint64_t * FUN_18027db30(uint64_t param_1,uint64_t *param_2)
   uint64_t uVar1;
   longlong *plVar2;
   
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,0x16,0,0xfffffffffffffffe);
+  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,0x16,0,0xfffffffffffffffe);
   plVar2 = (longlong *)FUN_180275090(uVar1);
   if (plVar2 != (longlong *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);

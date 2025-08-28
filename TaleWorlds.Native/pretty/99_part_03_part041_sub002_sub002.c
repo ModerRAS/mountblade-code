@@ -700,7 +700,7 @@ LAB_1801f41d4:
                     lVar18 = 1;
 LAB_1801f439b:
                     ppuVar8 = (void **)
-                              FUN_18062b420(_DAT_180c8ed18,lVar18 << 5,(int8_t)uStack_170);
+                              FUN_18062b420(system_memory_pool_ptr,lVar18 << 5,(int8_t)uStack_170);
                   }
                   else {
                     lVar18 = lVar18 * 2;
@@ -752,7 +752,7 @@ LAB_1801f439b:
                 lVar18 = 1;
 LAB_1801f44fa:
                 ppuVar8 = (void **)
-                          FUN_18062b420(_DAT_180c8ed18,lVar18 << 5,(int8_t)uStack_170);
+                          FUN_18062b420(system_memory_pool_ptr,lVar18 << 5,(int8_t)uStack_170);
               }
               else {
                 lVar18 = lVar18 * 2;

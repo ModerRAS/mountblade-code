@@ -89,12 +89,12 @@ void FUN_1805cbf90(longlong *param_1,char param_2)
     }
     iVar6 = FUN_18053a410(&system_data_5f30,*(int32_t *)(*(longlong *)(*param_1 + 0x590) + 0xac),
                           uVar12);
-    iVar6 = *(int *)(_DAT_180c95f68 + (longlong)iVar6 * 4);
+    iVar6 = *(int *)(system_system_config + (longlong)iVar6 * 4);
     if (iVar6 == -1) {
       lVar9 = 0;
     }
     else {
-      lVar9 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar6 * 8);
+      lVar9 = *(longlong *)(system_system_config + (longlong)iVar6 * 8);
     }
     lVar13 = *param_1;
     fVar16 = *(float *)(lVar9 + 0x188);

@@ -268,13 +268,13 @@ uint64_t NVSDK_NGX_D3D11_GetParameters(uint64_t param_1)
     uint64_t uVar1;
     
     // 获取参数获取函数指针
-    UNRECOVERED_JUMPTABLE = _DAT_180c69ea0;
-    if (_DAT_180c69ea0 == (code*)0x0) {
+    UNRECOVERED_JUMPTABLE = system_system_memory;
+    if (system_system_memory == (code*)0x0) {
         return NGX_ERROR_NOT_INITIALIZED;
     }
     
     // 执行控制流_guard检查
-    _guard_check_icall(_DAT_180c69ea0);
+    _guard_check_icall(system_system_memory);
     
     // WARNING: 无法恢复跳转表，分支过多
     // WARNING: 将间接跳转作为调用处理
@@ -304,13 +304,13 @@ uint64_t NVSDK_NGX_D3D11_GetScratchBufferSize(int32_t param_1, uint64_t param_2,
     uint64_t uVar2;
     
     // 获取缓冲区大小计算函数指针
-    pcVar1 = _DAT_180c69e98;
-    if (_DAT_180c69e98 == (code*)0x0) {
+    pcVar1 = system_system_memory;
+    if (system_system_memory == (code*)0x0) {
         uVar2 = NGX_ERROR_NOT_INITIALIZED;
     }
     else {
         // 执行控制流_guard检查
-        _guard_check_icall(_DAT_180c69e98);
+        _guard_check_icall(system_system_memory);
         uVar2 = (*pcVar1)(param_1, param_2, param_3);
     }
     return uVar2;
@@ -377,33 +377,33 @@ uint64_t FUN_1808f8f41(void)
     lVar6 = FUN_1808fa290();
     if (lVar6 != 0) {
         // 获取NGX SDK函数指针
-        _DAT_180c69e80 = (code*)GetProcAddress(lVar6, &unknown_var_5592_ptr);
-        _DAT_180c69e88 = (code*)GetProcAddress(lVar6, &unknown_var_5616_ptr);
-        _DAT_180c69e90 = GetProcAddress(lVar6, &unknown_var_5648_ptr);
-        _DAT_180c69ea0 = GetProcAddress(lVar6, &unknown_var_5680_ptr);
-        _DAT_180c69e98 = GetProcAddress(lVar6, &unknown_var_5712_ptr);
-        _DAT_180c69ea8 = GetProcAddress(lVar6, &unknown_var_5752_ptr);
-        _DAT_180c69eb0 = GetProcAddress(lVar6, &unknown_var_5784_ptr);
-        _DAT_180c69eb8 = GetProcAddress(lVar6, &unknown_var_5816_ptr);
-        _DAT_180c69ec0 = GetProcAddress(lVar6, &unknown_var_5848_ptr);
-        _DAT_180c69ec8 = GetProcAddress(lVar6, &unknown_var_5888_ptr);
-        _DAT_180c69ed0 = GetProcAddress(lVar6, &unknown_var_5928_ptr);
+        system_system_memory = (code*)GetProcAddress(lVar6, &unknown_var_5592_ptr);
+        system_system_memory = (code*)GetProcAddress(lVar6, &unknown_var_5616_ptr);
+        system_system_memory = GetProcAddress(lVar6, &unknown_var_5648_ptr);
+        system_system_memory = GetProcAddress(lVar6, &unknown_var_5680_ptr);
+        system_system_memory = GetProcAddress(lVar6, &unknown_var_5712_ptr);
+        system_system_memory = GetProcAddress(lVar6, &unknown_var_5752_ptr);
+        system_system_memory = GetProcAddress(lVar6, &unknown_var_5784_ptr);
+        system_system_memory = GetProcAddress(lVar6, &unknown_var_5816_ptr);
+        system_system_memory = GetProcAddress(lVar6, &unknown_var_5848_ptr);
+        system_system_memory = GetProcAddress(lVar6, &unknown_var_5888_ptr);
+        system_system_memory = GetProcAddress(lVar6, &unknown_var_5928_ptr);
     }
     
-    pcVar5 = _DAT_180c69e88;
-    pcVar4 = _DAT_180c69e80;
+    pcVar5 = system_system_memory;
+    pcVar4 = system_system_memory;
     
     // 验证必要的函数指针
-    if (((((_DAT_180c69e80 == (code*)0x0) || (_DAT_180c69e90 == unaff_R13)) ||
-         (_DAT_180c69ea0 == unaff_R13)) ||
-        ((_DAT_180c69e98 == unaff_R13 || (_DAT_180c69ea8 == unaff_R13))) ||
-       ((_DAT_180c69eb0 == unaff_R13 || (_DAT_180c69eb8 == unaff_R13)))) {
+    if (((((system_system_memory == (code*)0x0) || (system_system_memory == unaff_R13)) ||
+         (system_system_memory == unaff_R13)) ||
+        ((system_system_memory == unaff_R13 || (system_system_memory == unaff_R13))) ||
+       ((system_system_memory == unaff_R13 || (system_system_memory == unaff_R13)))) {
         uVar7 = NGX_ERROR_INVALID_PARAMETER;
     }
-    else if (_DAT_180c69e88 == (code*)0x0) {
+    else if (system_system_memory == (code*)0x0) {
         if (((unaff_RBX == (longlong*)0x0) || (*unaff_RBX == unaff_R13)) ||
            (*(uint*)(unaff_RBX + 1) <= (uint)unaff_R13)) {
-            _guard_check_icall(_DAT_180c69e80);
+            _guard_check_icall(system_system_memory);
             uVar7 = (*pcVar4)();
         }
         else {
@@ -462,8 +462,8 @@ uint64_t FUN_1808f90aa(void)
     code* unaff_RDI;
     longlong unaff_R13;
     
-    pcVar5 = _DAT_180c69e88;
-    if (_DAT_180c69e88 == (code*)0x0) {
+    pcVar5 = system_system_memory;
+    if (system_system_memory == (code*)0x0) {
         if (((unaff_RBX == (longlong*)0x0) || (*unaff_RBX == unaff_R13)) ||
            (*(uint*)(unaff_RBX + 1) <= (uint)unaff_R13)) {
             _guard_check_icall();
@@ -602,13 +602,13 @@ uint64_t NVSDK_NGX_D3D11_ReleaseFeature(uint64_t param_1)
     uint64_t uVar1;
     
     // 获取功能释放函数指针
-    UNRECOVERED_JUMPTABLE = _DAT_180c69eb8;
-    if (_DAT_180c69eb8 == (code*)0x0) {
+    UNRECOVERED_JUMPTABLE = system_system_memory;
+    if (system_system_memory == (code*)0x0) {
         return NGX_ERROR_NOT_INITIALIZED;
     }
     
     // 执行控制流_guard检查
-    _guard_check_icall(_DAT_180c69eb8);
+    _guard_check_icall(system_system_memory);
     
     // WARNING: 无法恢复跳转表，分支过多
     // WARNING: 将间接跳转作为调用处理
@@ -638,13 +638,13 @@ uint64_t NVSDK_NGX_D3D11_Shutdown(void)
     _guard_check_icall();
     
     // 获取关闭函数指针
-    UNRECOVERED_JUMPTABLE = _DAT_180c69e90;
-    if (_DAT_180c69e90 == (code*)0x0) {
+    UNRECOVERED_JUMPTABLE = system_system_memory;
+    if (system_system_memory == (code*)0x0) {
         return NGX_ERROR_NOT_INITIALIZED;
     }
     
     // 执行控制流_guard检查
-    _guard_check_icall(_DAT_180c69e90);
+    _guard_check_icall(system_system_memory);
     
     // WARNING: 无法恢复跳转表，分支过多
     // WARNING: 将间接跳转作为调用处理
@@ -753,10 +753,10 @@ bool FUN_1808f92e0(longlong param_1, uint64_t param_2)
         do {
             // 比较功能名称
             iVar3 = lstrcmpA(*(uint64_t*)(*(longlong*)(param_1 + 0x70) + uVar5 * 0x18), &unknown_var_6928_ptr);
-            pcVar2 = _DAT_180c69f78;
+            pcVar2 = system_system_memory;
             if (iVar3 == 0) {
                 puVar1 = *(int32_t**)(*(longlong*)(param_1 + 0x70) + 0x10 + uVar5 * 0x18);
-                _guard_check_icall(_DAT_180c69f78);
+                _guard_check_icall(system_system_memory);
                 iVar3 = (*pcVar2)(0x10001, &unknown_var_6928_ptr, *(uint64_t*)(puVar1 + 2), *puVar1, 0, 0, param_2,
                                 auStackX_8);
                 return iVar3 == 1;

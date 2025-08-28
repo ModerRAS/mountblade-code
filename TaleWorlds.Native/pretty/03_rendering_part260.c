@@ -565,7 +565,7 @@ void FUN_180411f50(uint64_t param_1,longlong param_2,int *param_3,uint param_4,u
   lStack_1f8 = param_2;
   uStack_1f0 = param_1;
   if (0 < (int)param_4) {
-    if ((7 < param_4) && (1 < _DAT_180bf00b0)) {
+    if ((7 < param_4) && (1 < render_system_control_memory)) {
       uVar18 = 0;
       uVar22 = 0;
       uVar23 = 0;

@@ -608,144 +608,144 @@ void FUN_180506ae0(longlong *param_1,int param_2)
   param_2 = param_2 * 0x10;
   if ((ulonglong)(longlong)param_2 < (ulonglong)(lVar2 - lVar4 >> 5)) {
     puVar1 = (uint64_t *)(uVar3 * 0x200 + lVar4);
-    *(uint64_t *)((longlong)puVar1 + 0xc) = _DAT_180c966e8;
+    *(uint64_t *)((longlong)puVar1 + 0xc) = render_system_config;
     *puVar1 = 0;
-    *(uint64_t *)((longlong)puVar1 + 0x14) = _DAT_180c966e8;
+    *(uint64_t *)((longlong)puVar1 + 0x14) = render_system_config;
     *(int16_t *)(puVar1 + 1) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 1) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x2c + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x2c + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x20 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x34 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x34 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x28 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 2) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x4c + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x4c + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x40 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x54 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x54 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x48 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 3) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x6c + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x6c + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x60 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x74 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x74 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x68 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 4) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x8c + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x8c + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x80 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x94 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x94 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x88 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 5) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0xac + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0xac + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0xa0 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0xb4 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0xb4 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0xa8 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 6) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0xcc + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0xcc + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0xc0 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0xd4 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0xd4 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 200 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 7) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0xec + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0xec + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0xe0 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0xf4 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0xf4 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0xe8 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 8) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x10c + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x10c + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x100 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x114 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x114 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x108 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 9) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 300 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 300 + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x120 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x134 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x134 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x128 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 10) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x14c + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x14c + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x140 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x154 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x154 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x148 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 0xb) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x16c + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x16c + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x160 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x174 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x174 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x168 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 0xc) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x18c + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x18c + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x180 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x194 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x194 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x188 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 0xd) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x1ac + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x1ac + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x1a0 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x1b4 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x1b4 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x1a8 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 0xe) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x1cc + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x1cc + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x1c0 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 0x1d4 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x1d4 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x1c8 + lVar4) = 0x101;
     lVar2 = param_1[1];
     lVar4 = *param_1;
   }
   if ((ulonglong)(longlong)(param_2 + 0xf) < (ulonglong)(lVar2 - lVar4 >> 5)) {
     lVar2 = uVar3 * 0x200;
-    *(uint64_t *)(lVar2 + 0x1ec + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 0x1ec + lVar4) = render_system_config;
     *(uint64_t *)(lVar2 + 0x1e0 + lVar4) = 0;
-    *(uint64_t *)(lVar2 + 500 + lVar4) = _DAT_180c966e8;
+    *(uint64_t *)(lVar2 + 500 + lVar4) = render_system_config;
     *(int16_t *)(lVar2 + 0x1e8 + lVar4) = 0x101;
   }
   return;

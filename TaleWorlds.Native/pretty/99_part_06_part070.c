@@ -270,7 +270,7 @@ LAB_1803ea221:
       if (iVar5 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar5);
       }
-      if (*(char *)(_DAT_180c86870 + 0x1ed) == '\0') goto LAB_1803ea9e4;
+      if (*(char *)(system_main_module_state + 0x1ed) == '\0') goto LAB_1803ea9e4;
       Sleep(1000);
       iVar5 = _Mtx_lock(param_1 + 0x520);
       if (iVar5 != 0) {
@@ -568,7 +568,7 @@ void FUN_1803eaa70(longlong param_1)
     plVar10 = (longlong *)*plVar10;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&unknown_var_832_ptr,plVar10);
+  FUN_180062300(system_message_context,&unknown_var_832_ptr,plVar10);
 }
 
 

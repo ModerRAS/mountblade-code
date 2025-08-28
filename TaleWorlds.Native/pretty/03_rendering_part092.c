@@ -45,7 +45,7 @@ void FUN_18031efb0(uint64_t param_1,longlong *param_2,int param_3)
   int8_t auStack_70 [72];
   ulonglong uStack_28;
   
-  uVar1 = _DAT_180c8a998;
+  uVar1 = render_system_data_config;
   uStack_a0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
@@ -58,7 +58,7 @@ void FUN_18031efb0(uint64_t param_1,longlong *param_2,int param_3)
   strcpy_s(auStack_70,0x40,&system_data_fc60);
   FUN_1802037e0();
   puStack_88 = &unknown_var_720_ptr;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,param_3,0x10,0x21);
+  uVar2 = FUN_18062b1e0(system_memory_pool_ptr,param_3,0x10,0x21);
   FUN_18031f2e0(uVar1,param_2);
   *(uint64_t *)(*param_2 + 0x10) = uVar2;
   *(int *)(*param_2 + 0x18) = param_3;
@@ -175,7 +175,7 @@ uint64_t * FUN_18031f2e0(longlong param_1,uint64_t *param_2)
   }
   lVar1 = *(longlong *)(param_1 + 200);
   if (*(longlong *)(param_1 + 0xc0) == lVar1) {
-    plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,0x20,uVar4,uVar5);
+    plVar3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,0x20,uVar4,uVar5);
     *plVar3 = (longlong)&unknown_var_3552_ptr;
     *plVar3 = (longlong)&unknown_var_3696_ptr;
     *(int32_t *)(plVar3 + 1) = 0;

@@ -486,7 +486,7 @@ void RenderingSystemAdvancedStateProcessor(rendering_int param_1, rendering_int*
                     temp_char = '\0';
                     *(rendering_pointer*)(temp_long2 + 0x4f4) = temp_float_stack[4];
                     *(rendering_pointer*)(temp_long2 + 0x4fc) = temp_float_stack[2];
-                    *(rendering_float*)(*(rendering_long*)(temp_long1 + 0x728) + 0x564) = (rendering_float)_DAT_180c8ed38 * RENDERING_FLOAT_SCALE_1E_05;
+                    *(rendering_float*)(*(rendering_long*)(temp_long1 + 0x728) + 0x564) = (rendering_float)render_system_data_buffer * RENDERING_FLOAT_SCALE_1E_05;
                     
                     // 处理渲染数据数组
                     temp_long2 = *(rendering_long*)(temp_long1 + 0x658);
@@ -571,7 +571,7 @@ void RenderingSystemAdvancedStateProcessor(rendering_int param_1, rendering_int*
                        ((temp_long2 = *(rendering_long*)(*(rendering_long*)(temp_long1 + 0x8f8) + 0x9e8), temp_long2 != 0 &&
                         (*(rendering_char*)((rendering_long)
                                    *(rendering_int*)((rendering_long)*(rendering_int*)(temp_long2 + 0xf0) * 160 + 100 +
-                                           *(rendering_long*)(temp_long2 + 0xd0)) * RENDERING_BUFFER_SIZE_0x170 + 0x135 + _DAT_180c95ff0) !=
+                                           *(rendering_long*)(temp_long2 + 0xd0)) * RENDERING_BUFFER_SIZE_0x170 + 0x135 + render_system_buffer) !=
                          '\0')))) {
                         temp_param1 = 8;
                         if (*(rendering_int*)(temp_long1 + 0x1fc) != 0) {
@@ -590,7 +590,7 @@ void RenderingSystemAdvancedStateProcessor(rendering_int param_1, rendering_int*
     }
     
     // 执行高级渲染特性处理
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
         temp_int1 = *param_2;
         temp_long2 = *(rendering_long*)(temp_long1 + 0x590);
         temp_ulong1 = *(rendering_ulong*)(param_2 + 2);
@@ -819,7 +819,7 @@ void RenderingSystemAdvancedDataManager(rendering_long* param_1)
                     temp_char = '\0';
                     *(rendering_pointer*)(temp_long1 + 0x4f4) = temp_ulong1;
                     *(rendering_pointer*)(temp_long1 + 0x4fc) = temp_ulong2;
-                    *(rendering_float*)(*(rendering_long*)(temp_long2 + 0x728) + 0x564) = (rendering_float)_DAT_180c8ed38 * RENDERING_FLOAT_SCALE_1E_05;
+                    *(rendering_float*)(*(rendering_long*)(temp_long2 + 0x728) + 0x564) = (rendering_float)render_system_data_buffer * RENDERING_FLOAT_SCALE_1E_05;
                     
                     // 处理数据数组
                     temp_long1 = *(rendering_long*)(temp_long2 + 0x658);
@@ -916,7 +916,7 @@ void RenderingSystemAdvancedDataManager(rendering_long* param_1)
                        ((temp_long1 = *(rendering_long*)(*(rendering_long*)(temp_long2 + 0x8f8) + 0x9e8), temp_long1 != 0 &&
                         (*(rendering_char*)((rendering_long)
                                    *(rendering_int*)((rendering_long)*(rendering_int*)(temp_long1 + 0xf0) * 160 + 100 +
-                                           *(rendering_long*)(temp_long1 + 0xd0)) * RENDERING_BUFFER_SIZE_0x170 + 0x135 + _DAT_180c95ff0) !=
+                                           *(rendering_long*)(temp_long1 + 0xd0)) * RENDERING_BUFFER_SIZE_0x170 + 0x135 + render_system_buffer) !=
                          '\0')))) {
                         temp_param1 = 8;
                         if (*(rendering_int*)(temp_long2 + 0x1fc) != 0) {
@@ -935,7 +935,7 @@ void RenderingSystemAdvancedDataManager(rendering_long* param_1)
     }
     
     // 执行高级数据特性处理
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
         temp_int1 = *temp_ptr_ptr2;
         temp_long1 = *(rendering_long*)(temp_long2 + 0x590);
         temp_ulong1 = *(rendering_ulong*)(temp_ptr_ptr2 + 2);

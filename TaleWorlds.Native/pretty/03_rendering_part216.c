@@ -153,7 +153,7 @@ void FUN_1803911d7(void)
       pfStack0000000000000080 = pfVar4;
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&unknown_var_5304_ptr);
+    FUN_180062300(system_message_context,&unknown_var_5304_ptr);
   }
   return;
 }
@@ -316,7 +316,7 @@ void FUN_180391209(void)
       pfStack0000000000000080 = pfVar4;
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&unknown_var_5304_ptr);
+    FUN_180062300(system_message_context,&unknown_var_5304_ptr);
   }
   return;
 }
@@ -385,7 +385,7 @@ void FUN_18039153e(void)
       pfStack0000000000000080 = pfVar5;
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&unknown_var_5304_ptr);
+    FUN_180062300(system_message_context,&unknown_var_5304_ptr);
   }
   return;
 }

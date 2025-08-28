@@ -66,7 +66,7 @@ void FUN_1805f83e0(int *param_1,longlong *param_2,longlong *param_3)
     puStack_40 = &unknown_var_1696_ptr;
     plStack_88 = param_2;
     plStack_78 = param_3;
-    aplStack_58[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x40,8,system_allocation_flags);
+    aplStack_58[0] = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x40,8,system_allocation_flags);
     *aplStack_58[0] = (longlong)puStack_98;
     aplStack_58[0][1] = (longlong)puStack_90;
     aplStack_58[0][2] = (longlong)plStack_88;
@@ -242,7 +242,7 @@ longlong FUN_1805f8820(longlong *param_1,longlong *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x40,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x40,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -293,7 +293,7 @@ longlong FUN_1805f8910(longlong *param_1,longlong *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x40,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x40,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;

@@ -155,7 +155,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
   
   // 配置输入装配器
   FUN_1800b0a10(blend_state, &input_layout, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
-  pipeline_config = _DAT_180c86898;
+  pipeline_config = render_system_data_texture;
   vertex_shader = (code *)&unknown_var_720_ptr;
   shader_program = render_context_ptr[0x11];
   
@@ -231,19 +231,19 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       
       // 执行材质绑定
       pipeline_config = FUN_180299eb0(render_target, 0, &vertex_shader, padding_buffer);
-      pipeline_config = _DAT_180c86938;
-      *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d88) =
+      pipeline_config = system_message_buffer;
+      *(int32_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1d88) =
            *(int32_t *)(render_context_ptr[0x11] + 0x30b0);
       blend_state = powf(0x40000000, *(int32_t *)(render_context_ptr[0x11] + 0x320c));
       *(int32_t *)(*(longlong *)(pipeline_config + 0x1cd8) + 0x1d58) = blend_state;
       FUN_18029fc10(*(longlong *)(pipeline_config + 0x1cd8), *(uint64_t *)(pipeline_config + 0x1c88),
                     *(longlong *)(pipeline_config + 0x1cd8) + 0x1be0, 0x230);
-      pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1c88);
-      state_block = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+      pipeline_config = *(longlong *)(system_message_buffer + 0x1c88);
+      state_block = *(longlong **)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x8400);
       shader_program = *(code **)(*state_block + 0x238);
-      *(int32_t *)(pipeline_config + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(pipeline_config + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
       (*shader_program)(state_block, 2, 1, pipeline_config + 0x10);
-      pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+      pipeline_config = *(longlong *)(system_message_buffer + 0x1cd8);
       
       // 更新渲染状态
       if ((pipeline_config != 0) && (*(longlong *)(pipeline_config + 0x82a0) != (longlong)**(int **)(pipeline_config + 0x10))) {
@@ -255,17 +255,17 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       
       // 执行渲染操作
       depth_stencil_state = CONCAT44(depth_stencil_state._4_4_, 0xffffffff);
-      FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 0, frame_buffer, 0x20);
-      pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+      FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, frame_buffer, 0x20);
+      pipeline_config = *(longlong *)(system_message_buffer + 0x1cd8);
       if (input_layout != (code **)0x0) {
-        *(int32_t *)((longlong)input_layout + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+        *(int32_t *)((longlong)input_layout + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
         render_pass = (code **)input_layout[4];
       }
       state_block = *(longlong **)(pipeline_config + 0x8400);
       depth_stencil_state = 0;
       vertex_buffer = render_pass;
       (**(code **)(*state_block + 0x220))(state_block, 1, 1, &vertex_buffer);
-      state_block = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+      state_block = *(longlong **)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x8400);
       (**(code **)(*state_block + 0x148))(state_block, 1, 1, 1);
       
       // 配置第二渲染通道
@@ -283,7 +283,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       depth_stencil_state._4_4_ = 0x10;
       FUN_1800b0a10(blend_state, &domain_shader, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
       vertex_shader = (code *)&unknown_var_720_ptr;
-      render_pass = (code **)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
+      render_pass = (code **)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3);
       shader_program = domain_shader;
       render_pass[1] = (code *)0x0;
       render_pass[2] = (code *)0x0;
@@ -909,7 +909,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   frame_buffer = 0;
   constant_buffer = (uint64_t *)0x0;
   buffer_size = 0;
-  vertex_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x1c, 0x13);
+  vertex_buffer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x1c, 0x13);
   *(int8_t *)vertex_buffer = 0;
   constant_buffer = vertex_buffer;
   buffer_size = FUN_18064e990(vertex_buffer);
@@ -924,7 +924,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   if (0 < texture_index) {
     if ((texture_index != -0x1b) && (buffer_size < texture_index + 0x1cU)) {
       user_flag = 0x13;
-      vertex_buffer = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, vertex_buffer, texture_index + 0x1cU, 0x10);
+      vertex_buffer = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, vertex_buffer, texture_index + 0x1cU, 0x10);
       constant_buffer = vertex_buffer;
       frame_buffer._0_4_ = FUN_18064e990(vertex_buffer);
       texture_index = *(int *)(shader_program + 0x4e8);
@@ -941,7 +941,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   stencil_enable = 0;
   clear_flags = 0xffffffff;
   scissor_enable = 0;
-  shader_program = *(longlong *)(_DAT_180c86890 + 0x7ab8);
+  shader_program = *(longlong *)(system_parameter_buffer + 0x7ab8);
   aspect_ratio_x = 1.0;
   aspect_ratio_y = 1.0;
   if ((*(char *)(shader_program + 0xd9) != '\0') &&
@@ -964,7 +964,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   shader_program = *(longlong *)(source_context + 0x230);
   if (shader_program == 0) {
 LAB_18031eaf0:
-    index_buffer = (uint64_t *)FUN_1800b1230(_DAT_180c86930, &stream_output, &frame_buffer_ptr, &texture_depth);
+    index_buffer = (uint64_t *)FUN_1800b1230(system_resource_state, &stream_output, &frame_buffer_ptr, &texture_depth);
     texture_handle = *index_buffer;
     *index_buffer = 0;
     compute_shader = *(longlong **)(source_context + 0x230);

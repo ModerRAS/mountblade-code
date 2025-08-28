@@ -172,7 +172,7 @@ void FUN_180591d90(longlong param_1,longlong param_2,float param_3)
     }
   }
   else {
-    *(int32_t *)(param_1 + 0x1f8) = _DAT_180c9646c;
+    *(int32_t *)(param_1 + 0x1f8) = render_system_config;
   }
   if ((*(float *)(param_1 + 0x1ac) <= 0.0) ||
      (fVar5 = *(float *)(param_1 + 0x1b0) - *(float *)(param_1 + 0x18c),
@@ -278,7 +278,7 @@ void FUN_180591dbf(longlong param_1,uint64_t param_2,float param_3)
     }
   }
   else {
-    *(int32_t *)(unaff_RBX + 0x1f8) = _DAT_180c9646c;
+    *(int32_t *)(unaff_RBX + 0x1f8) = render_system_config;
   }
   if ((*(float *)(unaff_RBX + 0x1ac) <= 0.0) ||
      (fVar6 = *(float *)(unaff_RBX + 0x1b0) - *(float *)(unaff_RBX + 0x18c),
@@ -369,7 +369,7 @@ void FUN_180591ed5(void)
     }
   }
   else {
-    *(int32_t *)(unaff_RBX + 0x1f8) = _DAT_180c9646c;
+    *(int32_t *)(unaff_RBX + 0x1f8) = render_system_config;
   }
   if ((*(float *)(unaff_RBX + 0x1ac) <= 0.0) ||
      (fVar5 = *(float *)(unaff_RBX + 0x1b0) - *(float *)(unaff_RBX + 0x18c),

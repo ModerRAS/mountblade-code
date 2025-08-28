@@ -523,7 +523,7 @@ void FUN_180621d60(longlong *param_1,ulonglong param_2)
       puVar3 = (int32_t *)0x0;
     }
     else {
-      puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,uVar7 * 0x1c,(char)param_1[3]);
+      puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,uVar7 * 0x1c,(char)param_1[3]);
       lVar9 = param_1[1];
       lVar8 = *param_1;
     }
@@ -590,7 +590,7 @@ void FUN_180621dce(uint64_t param_1,uint64_t param_2,longlong param_3,longlong p
     puVar2 = (int32_t *)0x0;
   }
   else {
-    puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,uVar6 * 0x1c,(char)unaff_RBX[3]);
+    puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,uVar6 * 0x1c,(char)unaff_RBX[3]);
     in_R10 = unaff_RBX[1];
     param_4 = *unaff_RBX;
   }
@@ -770,7 +770,7 @@ void FUN_180622130(longlong *param_1,ulonglong param_2)
     puVar2 = (int32_t *)0x0;
   }
   else {
-    puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,uVar8 * 0x60,(char)param_1[3]);
+    puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,uVar8 * 0x60,(char)param_1[3]);
     lVar7 = param_1[1];
     lVar6 = *param_1;
   }
@@ -856,7 +856,7 @@ void FUN_180622178(uint64_t param_1,uint64_t param_2,longlong param_3,longlong p
     puVar2 = (int32_t *)0x0;
   }
   else {
-    puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,uVar6 * 0x60,(char)unaff_RSI[3]);
+    puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,uVar6 * 0x60,(char)unaff_RSI[3]);
     param_4 = unaff_RSI[1];
     param_3 = *unaff_RSI;
   }
@@ -975,7 +975,7 @@ void FUN_1806223a0(longlong *param_1,ulonglong param_2)
     puVar2 = (int32_t *)0x0;
   }
   else {
-    puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,uVar6 * 0x18,(char)param_1[3]);
+    puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,uVar6 * 0x18,(char)param_1[3]);
     lVar8 = param_1[1];
     lVar7 = *param_1;
   }
@@ -1040,7 +1040,7 @@ void FUN_1806223eb(longlong param_1,uint64_t param_2,longlong param_3,longlong p
     puVar2 = (int32_t *)0x0;
   }
   else {
-    puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,uVar6 * 0x18,(char)unaff_RBX[3]);
+    puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,uVar6 * 0x18,(char)unaff_RBX[3]);
     param_4 = unaff_RBX[1];
     param_3 = *unaff_RBX;
   }

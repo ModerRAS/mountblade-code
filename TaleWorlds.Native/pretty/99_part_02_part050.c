@@ -155,7 +155,7 @@ void FUN_1801bac9c(longlong *param_1,uint param_2)
                     do {
                       iVar10 = (int)uVar11;
                       if (*(longlong *)puVar16 == 0) {
-                        lVar4 = FUN_18062b420(_DAT_180c8ed18,0x8000,0x25);
+                        lVar4 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
                         LOCK();
                         bVar18 = *(longlong *)(puVar12 + (longlong)iVar10 * 2 + 2) == 0;
                         if (bVar18) {
@@ -477,7 +477,7 @@ void FUN_1801bb560(longlong *param_1,uint64_t *param_2)
     if (lVar9 == 0) goto LAB_1801bb5eb;
   }
   puVar3 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar9 * 0x18,(char)param_1[3],puVar7,0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr,lVar9 * 0x18,(char)param_1[3],puVar7,0xfffffffffffffffe);
   puVar7 = (uint64_t *)param_1[1];
   puVar8 = (uint64_t *)*param_1;
 LAB_1801bb5eb:
@@ -554,7 +554,7 @@ void FUN_1801bb6c0(longlong *param_1,uint64_t *param_2)
     if (lVar10 == 0) goto LAB_1801bb74b;
   }
   puVar4 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar10 * 0x18,(char)param_1[3],puVar8,0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr,lVar10 * 0x18,(char)param_1[3],puVar8,0xfffffffffffffffe);
   puVar8 = (uint64_t *)param_1[1];
   puVar9 = (uint64_t *)*param_1;
 LAB_1801bb74b:
@@ -837,7 +837,7 @@ void FUN_1801bbc00(int param_1,int param_2,longlong *param_3)
       lVar3 = *param_3;
       lVar2 = *(longlong *)(lVar3 + 0x448);
       if (lVar2 == 0) {
-        uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x2370,8,3);
+        uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x2370,8,3);
         lVar2 = FUN_180373a60(uVar1,lVar3);
         lVar3 = *param_3;
       }
@@ -868,7 +868,7 @@ void FUN_1801bbc16(int param_1,int param_2)
     lVar3 = *unaff_RSI;
     lVar2 = *(longlong *)(lVar3 + 0x448);
     if (lVar2 == 0) {
-      uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x2370,8,3);
+      uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x2370,8,3);
       lVar2 = FUN_180373a60(uVar1,lVar3);
       lVar3 = *unaff_RSI;
     }

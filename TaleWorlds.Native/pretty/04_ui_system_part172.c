@@ -40,7 +40,7 @@ void FUN_18076c270(longlong param_1,longlong param_2,uint *param_3)
     *(int32_t *)(param_1 + 0x3b0) = 0;
     if (*plVar1 == 0) {
       *plVar1 = 0x58585858;
-      _DAT_180c0cab0 = 0;
+      ui_system_config = 0;
     }
     *(uint64_t *)(param_1 + 0x390) = 0x1000;
     *(uint64_t *)(param_1 + 0x398) = 0x1000;

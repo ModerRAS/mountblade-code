@@ -427,7 +427,7 @@ void FUN_180736180(ulonglong param_1,ulonglong param_2,ulonglong param_3,short p
   iVar11 = 0;
   if (0 < (int)param_5) {
     iVar13 = iVar12;
-    if ((7 < param_5) && (iVar13 = iVar11, 1 < _DAT_180bf00b0)) {
+    if ((7 < param_5) && (iVar13 = iVar11, 1 < ui_system_control_ui)) {
       lVar10 = (longlong)(int)(param_5 - 1);
       uVar14 = param_1 + lVar10 * 2;
       if (((param_2 + lVar10 * 2 < param_1) || (uVar14 < param_2)) &&
@@ -549,7 +549,7 @@ void FUN_18073619d(uint64_t param_1,uint param_2,ulonglong param_3)
   int8_t auVar18 [16];
   int8_t auVar19 [16];
   
-  if ((7 < param_2) && (1 < _DAT_180bf00b0)) {
+  if ((7 < param_2) && (1 < ui_system_control_ui)) {
     lVar9 = (longlong)(int)(param_2 - 1);
     uVar10 = in_R11 + lVar9 * 2;
     if (((in_R10 + lVar9 * 2 < in_R11) || (uVar10 < in_R10)) &&

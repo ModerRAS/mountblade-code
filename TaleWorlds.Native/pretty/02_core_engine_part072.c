@@ -456,7 +456,7 @@ int FUN_180104d00(void)
 LAB_1801054a3:
     bVar1 = false;
   }
-  if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != 0) {
+  if (*(int *)(core_system_data_state + 0xcb0) != 0) {
     if (bVar1) {
       if ((iVar4 == 0) || (iVar4 == 1)) {
         iVar5 = 0;
@@ -473,7 +473,7 @@ LAB_1801054a3:
     bVar1 = false;
   }
 LAB_1801054f1:
-  if (*(int *)(_DAT_180c8a9c8 + 0xd20) != 0) {
+  if (*(int *)(core_system_data_state + 0xd20) != 0) {
     if (bVar1) {
       if ((iVar4 == 0) || (iVar4 == 1)) {
         iVar5 = 0;
@@ -490,7 +490,7 @@ LAB_1801054f1:
     bVar1 = false;
   }
 LAB_180105536:
-  if (*(int *)(_DAT_180c8a9c8 + 0xd90) != 0) {
+  if (*(int *)(core_system_data_state + 0xd90) != 0) {
     if (bVar1) {
       if ((iVar4 == 0) || (iVar4 == 1)) {
         iVar5 = 0;
@@ -507,7 +507,7 @@ LAB_180105536:
     bVar1 = false;
   }
 LAB_18010557b:
-  if (*(int *)(_DAT_180c8a9c8 + 0xe00) != 0) {
+  if (*(int *)(core_system_data_state + 0xe00) != 0) {
     if (bVar1) {
       if (((iVar4 != 0) && (iVar4 != 1)) && ((iVar4 != 2 && ((iVar4 != 3 && (iVar4 == 5)))))) {
         iVar3 = *(int *)(SYSTEM_STATE_MANAGER + 0x1030);
@@ -523,7 +523,7 @@ LAB_1801055b6:
   if (!bVar1) {
     return 5;
   }
-  if (*(int *)(_DAT_180c8a9c8 + 0xe70) != 0) {
+  if (*(int *)(core_system_data_state + 0xe70) != 0) {
     iVar5 = 0;
     if ((((iVar4 != 0) && (iVar5 = iVar6, iVar4 != 1)) && (iVar4 != 2)) &&
        ((iVar4 != 3 && (iVar4 == 5)))) {

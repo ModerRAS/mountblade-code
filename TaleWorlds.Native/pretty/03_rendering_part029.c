@@ -237,7 +237,7 @@ void FUN_180281770(uint64_t *param_1,uint64_t param_2)
   lVar9 = 0;
   uStack_518 = 0;
   uStack_508 = param_2;
-  uVar6 = FUN_18062b1e0(_DAT_180c8ed18,0x1c8,8,3);
+  uVar6 = FUN_18062b1e0(system_memory_pool_ptr,0x1c8,8,3);
   lVar7 = FUN_180339110(uVar6);
   lStack_4e0 = lVar7;
   FUN_180627ae0(&puStack_500,param_1 + 0x3e);
@@ -346,7 +346,7 @@ void FUN_180281770(uint64_t *param_1,uint64_t param_2)
   *(int32_t *)(lVar7 + 0x1b8) = *(int32_t *)(lVar8 + 0x2d8);
   bVar19 = 0 < (int)uStack_4f0;
   if (0 < (int)uStack_4f0) {
-    lVar9 = FUN_1800b6de0(_DAT_180c86930,&puStack_500);
+    lVar9 = FUN_1800b6de0(system_resource_state,&puStack_500);
     if ((bVar19) && (lVar9 != 0)) {
       bVar19 = true;
       iVar5 = (int)(*(longlong *)(lVar9 + 0x40) - *(longlong *)(lVar9 + 0x38) >> 4);

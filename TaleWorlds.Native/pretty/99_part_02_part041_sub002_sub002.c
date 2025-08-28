@@ -83,7 +83,7 @@ LAB_1801b0db0:
       uStack_d0 = 0;
       puStack_e0 = (int32_t *)0x0;
       iStack_d8 = 0;
-      puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+      puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
       *(int8_t *)puVar3 = 0;
       puStack_e0 = puVar3;
       uVar18 = FUN_18064e990(puVar3);
@@ -830,7 +830,7 @@ LAB_1801b2018:
                                 if (iVar2 == 0) {
                                   FUN_180630fb0(pcVar9,&unknown_var_3692_ptr,param_1 + 0x3ed0);
                                   plVar6 = (longlong *)
-                                           FUN_1800b30d0(_DAT_180c86930,&plStack_60,param_1 + 0x3ed0
+                                           FUN_1800b30d0(system_resource_state,&plStack_60,param_1 + 0x3ed0
                                                          ,0);
                                   lVar11 = *plVar6;
                                   if (plStack_60 != (longlong *)0x0) {

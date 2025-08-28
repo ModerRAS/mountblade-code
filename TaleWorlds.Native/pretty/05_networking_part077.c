@@ -628,7 +628,7 @@ void FUN_180882400(longlong param_1)
               uStack_58 = 0;
               puStack_60 = &unknown_var_5584_ptr;
               uStack_40 = 0;
-              uStack_50 = _DAT_180c4eaf8;
+              uStack_50 = network_system_config;
               uStack_4c = uRam0000000180c4eafc;
               uStack_48 = uRam0000000180c4eb00;
               uStack_44 = uRam0000000180c4eb04;
@@ -720,7 +720,7 @@ void FUN_180882440(void)
           *(int32_t *)(unaff_RBP + 7) = 0;
           *(void **)(unaff_RBP + -1) = &unknown_var_5584_ptr;
           *(int32_t *)(unaff_RBP + 0x1f) = 0;
-          uVar6 = _DAT_180c4eaf8;
+          uVar6 = network_system_config;
           uVar7 = uRam0000000180c4eafc;
           uVar8 = uRam0000000180c4eb00;
           uVar9 = uRam0000000180c4eb04;

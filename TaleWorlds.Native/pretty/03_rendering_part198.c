@@ -389,8 +389,8 @@ LAB_180383325:
   }
   *(char *)((longlong)param_2 + 5) = cVar1;
   if (cVar1 == '\0') goto LAB_1803833bf;
-  puVar13 = (uint64_t *)(_DAT_180c8a9d8 + 0x20);
-  puVar11 = *(uint64_t **)(_DAT_180c8a9d8 + 0x30);
+  puVar13 = (uint64_t *)(render_system_data_config + 0x20);
+  puVar11 = *(uint64_t **)(render_system_data_config + 0x30);
   if (puVar11 == (uint64_t *)0x0) {
 LAB_180383399:
     puVar6 = puVar13;
@@ -538,8 +538,8 @@ LAB_180383325:
   }
   *(char *)((longlong)unaff_RDI + 5) = cVar1;
   if (cVar1 == '\0') goto LAB_1803833bf;
-  puVar13 = (uint64_t *)(_DAT_180c8a9d8 + 0x20);
-  puVar11 = *(uint64_t **)(_DAT_180c8a9d8 + 0x30);
+  puVar13 = (uint64_t *)(render_system_data_config + 0x20);
+  puVar11 = *(uint64_t **)(render_system_data_config + 0x30);
   if (puVar11 == (uint64_t *)0x0) {
 LAB_180383399:
     puVar6 = puVar13;

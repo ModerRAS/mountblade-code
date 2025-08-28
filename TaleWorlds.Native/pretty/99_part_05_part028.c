@@ -259,7 +259,7 @@ void FUN_1802e94a0(longlong param_1,longlong *param_2,ulonglong *param_3,float *
                   if (lVar7 == 0) {
                     lVar7 = 1;
 LAB_1802e998b:
-                    plVar5 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar7 * 8,(char)param_2[3]);
+                    plVar5 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar7 * 8,(char)param_2[3]);
                     plVar11 = (longlong *)param_2[1];
                     plVar8 = (longlong *)*param_2;
                   }
@@ -307,7 +307,7 @@ LAB_1802e998b:
                   if (lVar15 == 0) {
                     lVar15 = 1;
 LAB_1802e9a40:
-                    pfVar6 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar15 << 6,(char)param_3[3]);
+                    pfVar6 = (float *)FUN_18062b420(system_memory_pool_ptr,lVar15 << 6,(char)param_3[3]);
                     pfVar9 = (float *)param_3[1];
                     pfVar10 = (float *)*param_3;
                   }
@@ -498,7 +498,7 @@ LAB_1802e9a40:
           if (lVar7 == 0) {
             lVar7 = 1;
 LAB_1802e9de5:
-            pfVar6 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar7 << 6,(char)param_3[3]);
+            pfVar6 = (float *)FUN_18062b420(system_memory_pool_ptr,lVar7 << 6,(char)param_3[3]);
             pfVar9 = (float *)param_3[1];
             pfVar10 = (float *)*param_3;
           }
@@ -546,7 +546,7 @@ LAB_1802e9de5:
           if (lVar7 == 0) {
             lVar7 = 1;
 LAB_1802e9e97:
-            plVar8 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar7 * 8,(char)param_2[3]);
+            plVar8 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar7 * 8,(char)param_2[3]);
             plVar12 = (longlong *)param_2[1];
             plVar11 = (longlong *)*param_2;
           }

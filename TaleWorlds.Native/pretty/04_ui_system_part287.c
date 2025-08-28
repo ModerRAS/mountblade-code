@@ -146,7 +146,7 @@ void FUN_18082c450(longlong param_1,float *param_2,longlong param_3,float *param
         } while (uVar31 != 0);
       }
     }
-    auVar4 = _DAT_180980640;
+    auVar4 = ui_system_memory_config;
                     // WARNING: Read-only address (ram,0x000180980640) is written
     for (iVar28 = (int)param_9 >> 3; iVar28 != 0; iVar28 = iVar28 + -1) {
       auVar5 = *(int8_t (*) [32])(param_3 + -0x20);
@@ -160,7 +160,7 @@ void FUN_18082c450(longlong param_1,float *param_2,longlong param_3,float *param
       fVar21 = param_4[6];
       param_3 = param_3 + -0x20;
       pfVar25 = pfVar25 + -8;
-      _DAT_180980640 = auVar4;
+      ui_system_memory_config = auVar4;
       if (iVar29 != 0) {
         iVar36 = 0x800;
         iVar34 = 0x400;
@@ -289,9 +289,9 @@ void FUN_18082c450(longlong param_1,float *param_2,longlong param_3,float *param
       param_4 = param_4 + 8;
       param_2 = param_2 + iVar22;
       pfVar33 = pfVar33 + 8;
-      auVar4 = _DAT_180980640;
+      auVar4 = ui_system_memory_config;
     }
-    for (param_9 = param_9 & 7; _DAT_180980640 = auVar4, param_9 != 0; param_9 = param_9 - 1) {
+    for (param_9 = param_9 & 7; ui_system_memory_config = auVar4, param_9 != 0; param_9 = param_9 - 1) {
       uVar31 = *(uint *)(param_3 + -4);
       fVar3 = *param_4;
       in_ZMM4 = ZEXT464((uint)fVar3);
@@ -313,7 +313,7 @@ void FUN_18082c450(longlong param_1,float *param_2,longlong param_3,float *param
       }
       pfVar33 = pfVar33 + 1;
       param_4 = param_4 + 1;
-      auVar4 = _DAT_180980640;
+      auVar4 = ui_system_memory_config;
     }
     for (iVar28 = (int)param_10 >> 3; iVar28 != 0; iVar28 = iVar28 + -1) {
       auVar5 = vpermps_avx2(auVar4,*(int8_t (*) [32])(param_3 + -0x20));

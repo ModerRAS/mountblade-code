@@ -111,7 +111,7 @@ LAB_18027c7bb:
       }
       FUN_180630b20(param_2,puVar8,&system_data_3a84,pcVar10);
     }
-    puStackX_20 = (uint64_t *)FUN_1800b6de0(_DAT_180c86930,param_1 + 0x3e,1);
+    puStackX_20 = (uint64_t *)FUN_1800b6de0(system_resource_state,param_1 + 0x3e,1);
     if (puStackX_20 == (uint64_t *)0x0) {
       return;
     }
@@ -265,7 +265,7 @@ LAB_18027c801:
               iVar5 = 0x10;
             }
             puStack_c0 = puVar14;
-            puVar14 = (int8_t *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar5,0x13);
+            puVar14 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)iVar5,0x13);
             *puVar14 = 0;
             uVar27 = (ulonglong)puVar14 & 0xffffffffffc00000;
             if (uVar27 == 0) {
@@ -393,7 +393,7 @@ LAB_18027cd98:
                       iVar26 = 0x10;
                     }
                     puStack_e0 = (int8_t *)
-                                 FUN_18062b420(_DAT_180c8ed18,(longlong)iVar26,
+                                 FUN_18062b420(system_memory_pool_ptr,(longlong)iVar26,
                                                CONCAT71((uint7)(uint3)((uint)iVar5 >> 8),0x13));
                     *puStack_e0 = 0;
                     uVar6 = FUN_18064e990(puStack_e0);
@@ -703,7 +703,7 @@ LAB_18027d492:
   *(int32_t *)(puStack_a0 + uStack_98) = 0x646d6d2e;
   *(int8_t *)((longlong)(puStack_a0 + uStack_98) + 4) = 0;
   uStack_98 = iVar10;
-  puVar4 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
+  puVar4 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
   puVar6 = &system_buffer_ptr;
   if (puStack_a0 != (void *)0x0) {
     puVar6 = puStack_a0;
@@ -734,7 +734,7 @@ LAB_18027d492:
       lVar3 = lStack_70;
       aiStackX_8[0] = *(int *)(lStack_70 + 0x60);
       fwrite(aiStackX_8,4,1,puVar4[1]);
-      puVar5 = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18,(longlong)aiStackX_8[0] << 2,0x10);
+      puVar5 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,(longlong)aiStackX_8[0] << 2,0x10);
       iVar10 = 0;
       if (0 < aiStackX_8[0]) {
         lVar11 = 0;

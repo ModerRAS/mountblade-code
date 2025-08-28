@@ -69,7 +69,7 @@ void FUN_180156300(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
       puStack_68 = (int32_t *)0x0;
     }
     else {
-      puVar4 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lVar7 * 4,3);
+      puVar4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lVar7 * 4,3);
       if (puVar14 != puVar5) {
                     // WARNING: Subroutine does not return
         memmove(puVar4,puVar14,lVar13,param_4,uVar15);
@@ -106,7 +106,7 @@ void FUN_180156300(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
         if (lVar7 == 0) {
           lVar7 = 1;
 LAB_180156576:
-          puVar6 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lVar7 * 4,(int8_t)uStack_98);
+          puVar6 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lVar7 * 4,(int8_t)uStack_98);
         }
         else {
           lVar7 = lVar7 * 2;
@@ -140,7 +140,7 @@ LAB_180156576:
           if (lVar7 == 0) {
             lVar7 = 1;
 LAB_1801564c8:
-            puVar5 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lVar7 * 4,3);
+            puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lVar7 * 4,3);
           }
           else {
             lVar7 = lVar7 * 2;
@@ -302,7 +302,7 @@ FUN_1801566b0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *(int32_t *)(param_1 + 0x3a) = 0;
   *(int32_t *)((longlong)param_1 + 0x1d4) = 0x3f800000;
   FUN_180157050(param_1);
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x60,8,3);
+  plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x60,8,3);
   *plVar2 = (longlong)&unknown_var_3552_ptr;
   *plVar2 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar2 + 1) = 0;
@@ -570,7 +570,7 @@ void FUN_180156c20(uint64_t param_1,longlong param_2,int8_t param_3)
   uint64_t uStack_40;
   int8_t uStack_38;
   
-  plVar6 = _DAT_180c86878;
+  plVar6 = core_system_data_config;
   puStack_58 = &unknown_var_3456_ptr;
   uStack_40 = 0;
   lStack_50 = 0;
@@ -682,7 +682,7 @@ void FUN_180156e40(uint64_t param_1,longlong param_2,int8_t param_3)
   uint64_t uStack_40;
   int8_t uStack_38;
   
-  plVar6 = _DAT_180c86878;
+  plVar6 = core_system_data_config;
   puStack_58 = &unknown_var_3456_ptr;
   uStack_40 = 0;
   lStack_50 = 0;

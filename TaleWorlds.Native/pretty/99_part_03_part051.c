@@ -189,7 +189,7 @@ void FUN_180230580(longlong param_1)
     uVar3 = 0;
   }
   else {
-    uVar3 = FUN_18062b420(_DAT_180c8ed18,(longlong)*(int *)(lVar2 + 0x14) << 4);
+    uVar3 = FUN_18062b420(system_memory_pool_ptr,(longlong)*(int *)(lVar2 + 0x14) << 4);
   }
                     // WARNING: Subroutine does not return
   memcpy(uVar3,*(uint64_t *)(lVar2 + 0x18),(longlong)iVar1 << 4);

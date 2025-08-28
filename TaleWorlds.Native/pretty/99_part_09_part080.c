@@ -712,7 +712,7 @@ void FUN_1805f2580(longlong *param_1,ulonglong param_2)
     puVar1 = (int32_t *)0x0;
   }
   else {
-    puVar1 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,uVar4 * 4,(char)param_1[3]);
+    puVar1 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,uVar4 * 4,(char)param_1[3]);
     puVar3 = (int32_t *)*param_1;
     puVar5 = (int32_t *)param_1[1];
   }
@@ -768,7 +768,7 @@ void FUN_1805f25c6(longlong param_1,longlong param_2)
     puVar1 = (int32_t *)0x0;
   }
   else {
-    puVar1 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,uVar3 * 4,(char)unaff_RSI[3]);
+    puVar1 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,uVar3 * 4,(char)unaff_RSI[3]);
     param_2 = *unaff_RSI;
     unaff_RDI = unaff_RSI[1];
   }

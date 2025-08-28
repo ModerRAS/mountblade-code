@@ -43,10 +43,10 @@ void FUN_180194370(void)
   uint uVar5;
   ulonglong uVar6;
   
-  lVar1 = _DAT_180c868f0;
+  lVar1 = core_system_data_config;
   uVar4 = 0;
-  plVar3 = *(longlong **)(_DAT_180c868f0 + 0x58);
-  plVar2 = *(longlong **)(_DAT_180c868f0 + 0x50);
+  plVar3 = *(longlong **)(core_system_data_config + 0x58);
+  plVar2 = *(longlong **)(core_system_data_config + 0x50);
   uVar6 = uVar4;
   if (((longlong)plVar3 - (longlong)plVar2) / 0x18 != 0) {
     do {
@@ -145,7 +145,7 @@ void FUN_180194530(longlong *param_1,longlong *param_2)
     if (lVar9 == 0) goto LAB_1801945bb;
   }
   plVar3 = (longlong *)
-           FUN_18062b420(_DAT_180c8ed18,lVar9 * 0x18,(char)param_1[3],puVar7,0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr,lVar9 * 0x18,(char)param_1[3],puVar7,0xfffffffffffffffe);
   puVar8 = (uint64_t *)param_1[1];
   puVar7 = (uint64_t *)*param_1;
 LAB_1801945bb:
@@ -448,7 +448,7 @@ void FUN_180194a50(longlong *param_1,int8_t *param_2)
       goto LAB_180194acf;
     }
   }
-  puVar1 = (int8_t *)FUN_18062b420(_DAT_180c8ed18,lVar3,(char)param_1[3]);
+  puVar1 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,lVar3,(char)param_1[3]);
   puVar2 = (int8_t *)*param_1;
   puVar4 = (int8_t *)param_1[1];
 LAB_180194acf:
@@ -550,7 +550,7 @@ FUN_180194d10(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
 {
   longlong *plVar1;
   
-  plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
+  plVar1 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&unknown_var_3552_ptr;
   *plVar1 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar1 + 1) = 0;
@@ -588,7 +588,7 @@ FUN_180194e00(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
 {
   longlong *plVar1;
   
-  plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
+  plVar1 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&unknown_var_3552_ptr;
   *plVar1 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar1 + 1) = 0;
@@ -629,7 +629,7 @@ uint64_t * FUN_180194ef0(longlong param_1)
   uint64_t *puVar4;
   uint64_t *puVar5;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,8,8,3,0xfffffffffffffffe);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,8,8,3,0xfffffffffffffffe);
   *puVar1 = &unknown_var_8736_ptr;
   *puVar1 = &unknown_var_8320_ptr;
   puVar5 = *(uint64_t **)(param_1 + 0x30);
@@ -650,7 +650,7 @@ uint64_t * FUN_180194ef0(longlong param_1)
       goto LAB_180194fa5;
     }
   }
-  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar2 * 8,*(int8_t *)(param_1 + 0x40));
+  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar2 * 8,*(int8_t *)(param_1 + 0x40));
   puVar5 = *(uint64_t **)(param_1 + 0x30);
   puVar4 = *(uint64_t **)(param_1 + 0x28);
 LAB_180194fa5:
@@ -678,7 +678,7 @@ uint64_t * FUN_180195000(uint64_t param_1,uint64_t *param_2)
 {
   longlong *plVar1;
   
-  plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
+  plVar1 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&unknown_var_3552_ptr;
   *plVar1 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar1 + 1) = 0;
@@ -715,7 +715,7 @@ uint64_t * FUN_1801950d0(longlong param_1)
   uint64_t *puVar1;
   uint64_t *puStackX_8;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,8,8,3,0xfffffffffffffffe);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,8,8,3,0xfffffffffffffffe);
   *puVar1 = &unknown_var_7888_ptr;
   *puVar1 = &unknown_var_7864_ptr;
   puStackX_8 = puVar1;
@@ -838,7 +838,7 @@ uint64_t * FUN_1801951e0(uint64_t param_1,uint64_t *param_2)
 {
   longlong *plVar1;
   
-  plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
+  plVar1 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&unknown_var_3552_ptr;
   *plVar1 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar1 + 1) = 0;

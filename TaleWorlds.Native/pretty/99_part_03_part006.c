@@ -75,8 +75,8 @@ void FUN_1801ca670(longlong *param_1,uint64_t param_2)
   pppplStack_1b8 = (longlong ****)0x0;
   uStack_1b0 = 0;
   lStack_1a8 = 0;
-  pppplStack_1e0 = (longlong ****)_DAT_180c86930;
-  uVar6 = (longlong)_DAT_180c86930[0x159] - (longlong)_DAT_180c86930[0x158] >> 3;
+  pppplStack_1e0 = (longlong ****)system_resource_state;
+  uVar6 = (longlong)system_resource_state[0x159] - (longlong)system_resource_state[0x158] >> 3;
   plStackX_8 = param_1;
   uStackX_10 = param_2;
   if ((int)uVar6 != 0) {
@@ -87,7 +87,7 @@ void FUN_1801ca670(longlong *param_1,uint64_t param_2)
       puVar3 = *(ulonglong **)((longlong)plStackX_18 + (longlong)pppplStack_1e0[0x158]);
       pppplStackX_20 = (longlong ****)uVar6;
       puStack_1d8 = puVar3;
-      FUN_1800b31f0(_DAT_180c86930,&plStackX_8,puVar3 + 6,0);
+      FUN_1800b31f0(system_resource_state,&plStackX_8,puVar3 + 6,0);
       if (plStackX_8 != (longlong *)0x0) {
         puVar10 = (uint64_t *)puVar3[1];
         pauVar29 = (int8_t (*) [16])*puVar10;
@@ -127,7 +127,7 @@ void FUN_1801ca670(longlong *param_1,uint64_t param_2)
     do {
       pppplStackX_20 = (longlong ****)ppppplVar13;
       pppplStack_1e0 = (longlong ****)(ppppplVar13 + 8);
-      FUN_1800b31f0(_DAT_180c86930,&plStackX_18,ppppplVar13 + 4,0);
+      FUN_1800b31f0(system_resource_state,&plStackX_18,ppppplVar13 + 4,0);
       if (plStackX_18 != (longlong *)0x0) {
         plVar11 = (longlong *)FUN_180240a60();
         pppplVar7 = (longlong ****)&system_buffer_ptr;
@@ -168,7 +168,7 @@ void FUN_1801ca670(longlong *param_1,uint64_t param_2)
               if ((longlong)uStack_208 >> 3 == 0) {
                 lVar22 = 1;
 LAB_1801caca9:
-                plVar12 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar22 * 8,3);
+                plVar12 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar22 * 8,3);
               }
               else {
                 lVar22 = ((longlong)uStack_208 >> 3) * 2;
@@ -209,7 +209,7 @@ LAB_1801cad0b:
             uStack_210 = 0;
             puStack_220 = (int16_t *)0x0;
             uStack_218 = 0;
-            puStack_220 = (int16_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+            puStack_220 = (int16_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
             *(int8_t *)puStack_220 = 0;
             uVar6 = (ulonglong)puStack_220 & 0xffffffffffc00000;
             if (uVar6 == 0) {
@@ -272,14 +272,14 @@ LAB_1801cad0b:
                   uVar14 = 0x10;
                 }
                 puStack_220 = (int16_t *)
-                              FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar14,
+                              FUN_18062b420(system_memory_pool_ptr,(longlong)(int)uVar14,
                                             CONCAT71((int7)((ulonglong)lVar22 >> 8),0x13));
                 *(int8_t *)puStack_220 = 0;
                 uStack_210._0_4_ = FUN_18064e990(puStack_220);
               }
               else if ((uint)uStack_210 < uVar14) {
                 puStack_220 = (int16_t *)
-                              FUN_18062b8b0(_DAT_180c8ed18,puStack_220,uVar14,0x10,0x13);
+                              FUN_18062b8b0(system_memory_pool_ptr,puStack_220,uVar14,0x10,0x13);
                 uVar6 = (ulonglong)puStack_220 & 0xffffffffffc00000;
                 if (uVar6 == 0) {
                   uStack_210._0_4_ = 0;
@@ -520,7 +520,7 @@ LAB_1801ca9af:
           }
           uVar27 = 1;
         }
-        lVar22 = FUN_18062b420(_DAT_180c8ed18,0x70,(int8_t)uStack_1a0);
+        lVar22 = FUN_18062b420(system_memory_pool_ptr,0x70,(int8_t)uStack_1a0);
         lStack_168 = lVar22 + 0x20;
         FUN_180627ae0(lStack_168,puVar3 + 6);
         lStack_160 = lVar22 + 0x40;
@@ -586,7 +586,7 @@ LAB_1801caa3a:
       ppppplVar5 = (longlong *****)*ppppplVar5;
     }
   }
-  lVar22 = FUN_18062b420(_DAT_180c8ed18,0x30,*(int8_t *)(ppppplVar13 + 0xd));
+  lVar22 = FUN_18062b420(system_memory_pool_ptr,0x30,*(int8_t *)(ppppplVar13 + 0xd));
   *(int8_t (*) [8])(lVar22 + 0x20) = auVar17;
   *(int *)(lVar22 + 0x28) = (int)uStack_208;
   *(uint *)(lVar22 + 0x2c) = auVar1._12_4_ & 0xffff;

@@ -25,8 +25,8 @@ void FUN_1807b1620(int *param_1)
   *(int32_t *)(unaff_RSI + 0x178) = 0;
   uVar3 = *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x128);
   FUN_180768360(uVar3);
-  puVar4 = _DAT_180be4cc8;
-  if (_DAT_180be4cc8 != (uint64_t *)&system_data_4cc8) {
+  puVar4 = system_system_buffer_ui;
+  if (system_system_buffer_ui != (uint64_t *)&system_data_4cc8) {
     do {
       if (*(int *)(puVar4 + 3) == iVar2) break;
       puVar4 = (uint64_t *)*puVar4;
@@ -65,8 +65,8 @@ void FUN_1807b1625(int *param_1)
   *(int32_t *)(unaff_RSI + 0x178) = 0;
   uVar3 = *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x128);
   FUN_180768360(uVar3);
-  puVar4 = _DAT_180be4cc8;
-  if (_DAT_180be4cc8 != (uint64_t *)&system_data_4cc8) {
+  puVar4 = system_system_buffer_ui;
+  if (system_system_buffer_ui != (uint64_t *)&system_data_4cc8) {
     do {
       if (*(int *)(puVar4 + 3) == iVar2) break;
       puVar4 = (uint64_t *)*puVar4;
