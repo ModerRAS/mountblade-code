@@ -128,42 +128,42 @@ void rendering_system_advanced_render_controller(void)
   scale_factor = (float)*(byte *)(render_base_ptr + -0x57) * diffuse_light;
   
   // 处理渲染管线参数
-  render_value = rendering_system_parameter_handler(scale_factor,0xf0,(byte)(*(uint *)(render_base_ptr + -0x60) >> 4) & *(byte *)(render_base_ptr + 0x7d));
-  render_value = rendering_system_parameter_handler(render_value,0xf1,
+  render_value = rendering_system_parameter_handler(scale_factor,RENDER_PARAM_COLOR_RED,(byte)(*(uint *)(render_base_ptr + -0x60) >> 4) & *(byte *)(render_base_ptr + 0x7d));
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_COLOR_GREEN,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 0xe),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 6) & *(byte *)(render_base_ptr + 0x7d)));
-  render_value = rendering_system_parameter_handler(render_value,0xf2,
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_COLOR_BLUE,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 0xf),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 7) & *(byte *)(render_base_ptr + 0x7d)));
-  render_value = rendering_system_parameter_handler(render_value,0xf3,
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_COLOR_ALPHA,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 0xd),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 5) & *(byte *)(render_base_ptr + 0x7d)));
-  render_value = rendering_system_parameter_handler(render_value,0xf6,
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_TEXTURE_U,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 0x17),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 0xf) & *(byte *)(render_base_ptr + 0x7d)));
-  render_value = rendering_system_parameter_handler(render_value,0xf4,
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_TEXTURE_V,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 0x14),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 0xc) & *(byte *)(render_base_ptr + 0x7d)));
-  render_value = rendering_system_parameter_handler(render_value,0xf5,
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_TEXTURE_W,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 0x16),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 0xe) & *(byte *)(render_base_ptr + 0x7d)));
-  render_value = rendering_system_parameter_handler(render_value,0xf7,
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_NORMAL_X,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 0x15),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 0xd) & *(byte *)(render_base_ptr + 0x7d)));
-  render_value = rendering_system_parameter_handler(render_value,0xfa,texture_index);
-  render_value = rendering_system_parameter_handler(render_value,0xfb,
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_SPECULAR,texture_index);
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_EMISSION,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 0xb),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 3) & *(byte *)(render_base_ptr + 0x7d)));
-  render_value = rendering_system_parameter_handler(render_value,0xf8,
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_ROUGHNESS,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 0x12),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 10) & *(byte *)(render_base_ptr + 0x7d)));
-  render_value = rendering_system_parameter_handler(render_value,0xf9,
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_METALLIC,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 0x13),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 0xb) & *(byte *)(render_base_ptr + 0x7d)));
-  render_value = rendering_system_parameter_handler(render_value,0xfc,
+  render_value = rendering_system_parameter_handler(render_value,RENDER_PARAM_AMBIENT,
                          CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 9),
                                   (byte)(*(uint *)(render_base_ptr + -0x60) >> 1) & *(byte *)(render_base_ptr + 0x7d)));
-  rendering_system_parameter_handler(render_value,0xfd,
+  rendering_system_parameter_handler(render_value,RENDER_PARAM_DIFFUSE,
                 CONCAT31((uint3)(*(uint *)(render_base_ptr + -0x60) >> 10),
                          (byte)(*(uint *)(render_base_ptr + -0x60) >> 2) & *(byte *)(render_base_ptr + 0x7d)));
   
@@ -175,7 +175,7 @@ void rendering_system_advanced_render_controller(void)
     color_value = CONCAT44(render_quality,texture_coord_u);
     texture_coord_u = color_value;
   }
-  texture_coord_u = CONCAT14(0xfe,texture_coord_u);
+  texture_coord_u = CONCAT14(RENDER_CMD_DEPTH_TEST,texture_coord_u);
   FUN_180310a00();
   
   if (scale_factor <= specular_light) {
@@ -185,11 +185,11 @@ void rendering_system_advanced_render_controller(void)
     texture_coord_u = CONCAT44(render_quality,scale_factor);
     color_value = texture_coord_u;
   }
-  texture_coord_u = CONCAT14(0xff,texture_coord_u);
+  texture_coord_u = CONCAT14(RENDER_CMD_DISTANCE_TEST,texture_coord_u);
   FUN_180310a00();
   
   texture_format = (undefined2)((uint)scale_factor >> 0x10);
-  status_flag = *(int *)(0x180c86920 + 0x2300);
+  status_flag = *(int *)(RENDER_SYSTEM_BASE_ADDR + 0x2300);
   render_state = (char)render_quality;
   
   // 处理渲染上下文和场景数据
@@ -201,11 +201,11 @@ void rendering_system_advanced_render_controller(void)
        scale_factor = SQRT(scale_factor * scale_factor + depth_value * depth_value), scale_factor <= RENDERING_MAX_THRESHOLD)) {
       texture_coord_u = RENDERING_FLAG_MASK;
       camera_distance = RENDERING_FLAG_MASK;
-      render_mode = 0xe7;
+      render_mode = RENDER_CMD_BEGIN_BATCH;
       FUN_180310a00(scale_factor,&matrix_data);
     }
     camera_distance = 0;
-    render_mode = 0xe7;
+    render_mode = RENDER_CMD_BEGIN_BATCH;
     FUN_180310a00();
     *(char *)(scene_context + 0x7c) = render_state;
     *(undefined4 *)(scene_context + 0x68) = 0xbf800000;
@@ -224,11 +224,11 @@ void rendering_system_advanced_render_controller(void)
       *(undefined8 *)(scene_context + 0x6c) = texture_coord_u;
     }
     else {
-      scale_factor = *(float *)(scene_context + 0x68) + 0x3f000000;
+      scale_factor = *(float *)(scene_context + 0x68) + RENDERING_TIME_DELTA;
     }
     *(float *)(scene_context + 0x68) = scale_factor;
     color_value = 0;
-    texture_coord_u = CONCAT14(0xe7,texture_coord_u);
+    texture_coord_u = CONCAT14(RENDER_CMD_BEGIN_BATCH,texture_coord_u);
     FUN_180310a00();
     texture_coord_u =
          CONCAT44((float)*(ushort *)(render_base_ptr + -0x22),(float)*(ushort *)(render_base_ptr + -0x24));
@@ -236,12 +236,12 @@ void rendering_system_advanced_render_controller(void)
     texture_index = *(byte *)(render_base_ptr + 0x7d);
   }
   *(byte *)(scene_context + 0x7d) = texture_index;
-  matrix_data = 0x180c868d0;
+  matrix_data = RENDER_SYSTEM_CONTEXT_ADDR;
   scale_factor = position_y * position_y + position_x * position_x;
   
   // 处理光照和距离计算
   if (camera_distance * camera_distance <= scale_factor) {
-    position_x = (float)0x3f800000;
+    position_x = (float)RENDERING_FLAG_MASK;
     position_buffer_1._8_8_ = 0;
     position_buffer_1._0_8_ = CONCAT44(0,scale_factor);
     position_buffer_2._8_8_ = 0;
@@ -273,7 +273,7 @@ void rendering_system_advanced_render_controller(void)
   }
   
   // 处理渲染参数和状态更新
-  render_data_ptr = 0x180c86920;
+  render_data_ptr = RENDER_SYSTEM_BASE_ADDR;
   render_flag = *(undefined4 *)(render_base_ptr + -0x34);
   *(undefined4 *)(scene_context + 0x338) = *(undefined4 *)(render_base_ptr + -0x38);
   *(undefined4 *)(scene_context + 0x340) = *(undefined4 *)(render_base_ptr + -0x30);
@@ -301,10 +301,10 @@ void rendering_system_advanced_render_controller(void)
         render_quality = distance_value;
         render_quality = loop_counter;
         FUN_1801edeb0();
-        matrix_data = 0x180c868d0;
-        if (*(char *)(0x180c86950 + 0x1609) != render_state) {
+        matrix_data = RENDER_SYSTEM_CONTEXT_ADDR;
+        if (*(char *)(RENDER_SYSTEM_STATUS_ADDR + 0x1609) != render_state) {
           texture_coord_u = CONCAT44(loop_counter,distance_value);
-          FUN_180174080(*(undefined8 *)(0x180c86870 + 8),texture_coord_u);
+          FUN_180174080(*(undefined8 *)(RENDER_SYSTEM_DATA_ADDR + 8),texture_coord_u);
           matrix_data = 0x180c868d0;
         }
       }
@@ -354,54 +354,54 @@ void rendering_system_advanced_render_controller(void)
   if (*(int *)(render_base_ptr + -0x60) != render_quality) {
     *(char *)(matrix_data + 0x2028) = render_state;
   }
-  render_mode = 0xde;
+  render_mode = RENDER_CMD_END_BATCH;
   camera_distance = render_value;
   texture_coord_v = scale_factor;
   specular_light = ambient_light;
   render_value = FUN_180310a00(color_value,&matrix_data);
-  render_mode = 0xdf;
+  render_mode = RENDER_CMD_SET_TRANSFORM;
   camera_distance = scale_factor;
   diffuse_light = ambient_light;
   render_value = FUN_180310a00(render_value,&matrix_data);
   loop_counter = *(uint *)(render_base_ptr + -0x74);
   camera_distance = CONCAT44(render_quality,loop_counter);
-  render_mode = 0xe8;
+  render_mode = RENDER_CMD_SET_COLOR;
   texture_coord_u = (float)loop_counter;
   render_value = FUN_180310a00(render_value,&matrix_data);
   texture_coord_u = (float)(loop_counter ^ *(uint *)&specular_light);
   camera_distance = CONCAT44(render_quality,texture_coord_u);
-  render_mode = 0xe9;
+  render_mode = RENDER_CMD_SET_COLOR_INVERTED;
   render_value = FUN_180310a00(render_value,&matrix_data);
   loop_counter = *(uint *)(render_base_ptr + -0x78);
   camera_distance = CONCAT44(render_quality,loop_counter);
-  render_mode = 0xeb;
+  render_mode = RENDER_CMD_SET_NORMAL;
   texture_coord_u = (float)loop_counter;
   render_value = FUN_180310a00(render_value,&matrix_data);
   texture_coord_u = (float)(loop_counter ^ *(uint *)&specular_light);
   camera_distance = CONCAT44(render_quality,texture_coord_u);
-  render_mode = 0xea;
+  render_mode = RENDER_CMD_SET_NORMAL_INVERTED;
   render_value = FUN_180310a00(render_value,&matrix_data);
   scale_factor = diffuse_light;
   texture_coord_u = diffuse_light;
   camera_distance = CONCAT44(render_quality,diffuse_light);
-  render_mode = 0xec;
+  render_mode = RENDER_CMD_SET_TEXCOORD_U;
   render_value = FUN_180310a00(render_value,&matrix_data);
   texture_coord_u = (float)((uint)scale_factor ^ *(uint *)&specular_light);
   camera_distance = CONCAT44(render_quality,texture_coord_u);
-  render_mode = 0xed;
+  render_mode = RENDER_CMD_SET_TEXCOORD_U_INVERTED;
   render_value = FUN_180310a00(render_value,&matrix_data);
   scale_factor = texture_coord_v;
   texture_coord_v = CONCAT44(render_quality,texture_coord_v);
   camera_distance = texture_coord_v;
-  render_mode = 0xef;
+  render_mode = RENDER_CMD_SET_TEXCOORD_V;
   render_value = FUN_180310a00(render_value,&matrix_data);
   texture_coord_v = CONCAT44(render_quality,(uint)scale_factor ^ *(uint *)&specular_light);
   camera_distance = texture_coord_v;
-  render_mode = 0xee;
+  render_mode = RENDER_CMD_SET_TEXCOORD_V_INVERTED;
   FUN_180310a00(render_value,&matrix_data);
   
   // 处理渲染管线和资源管理
-  scale_factor = 0x3f000000;
+  scale_factor = RENDERING_TIME_DELTA;
   render_context = 0;
   render_value = 0;
   if (*(char *)(scene_context + 0x80) != render_state) {
@@ -450,7 +450,7 @@ void rendering_system_advanced_render_controller(void)
     texture_buffer_2._0_4_ = normal_buffer._0_4_ * 255.0;
     FUN_1808eecf0(*(undefined4 *)(scene_context + 0x330),&position_buffer_1,position_buffer_2._0_8_,texture_buffer_2._0_8_,
                   CONCAT22(texture_format,CONCAT11((char)(int)texture_buffer_2._0_4_,(char)(int)position_buffer_2._0_4_)));
-    scale_factor = 0x3f000000;
+    scale_factor = RENDERING_TIME_DELTA;
   }
   
   // 处理渲染模式和状态切换

@@ -2,73 +2,75 @@
 
 // 03_rendering_part080.c - 3 个函数
 
-// 函数: void FUN_18030fbd4(void)
-void FUN_18030fbd4(void)
+// 函数: void rendering_system_process_render_data(void)
+// 渲染系统数据处理函数
+// 处理渲染对象的坐标变换、颜色计算和渲染参数设置
+void rendering_system_process_render_data(void)
 
 {
-  uint uVar1;
-  ushort uVar2;
-  ushort uVar3;
-  ushort uVar4;
-  ushort uVar5;
-  longlong lVar6;
-  int in_EAX;
-  int iVar7;
-  ulonglong uVar8;
-  byte bVar9;
-  int iVar10;
-  undefined4 uVar11;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  char cVar12;
-  int unaff_R13D;
-  undefined4 unaff_000000ac;
-  byte unaff_R14B;
-  int iVar13;
-  longlong lVar14;
-  float fVar15;
-  undefined8 uVar16;
-  undefined1 auVar18 [16];
-  undefined1 auVar19 [16];
-  undefined1 auVar20 [16];
-  undefined1 auVar21 [16];
-  float fVar22;
-  undefined1 auVar23 [16];
-  undefined1 auVar24 [16];
-  undefined1 auVar25 [16];
-  ulonglong uVar26;
-  undefined1 auVar27 [16];
-  undefined1 auVar29 [16];
-  float fVar30;
-  float unaff_XMM7_Da;
-  float unaff_XMM8_Da;
-  uint unaff_XMM9_Da;
-  float unaff_XMM10_Da;
-  float unaff_XMM11_Da;
-  float unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Db;
-  undefined4 unaff_XMM12_Dc;
-  undefined4 unaff_XMM12_Dd;
-  float fVar31;
-  float fVar32;
-  float unaff_XMM14_Da;
-  undefined2 uVar33;
-  float fStack0000000000000028;
-  int in_stack_00000038;
-  float fStack0000000000000048;
-  undefined4 uStack000000000000004c;
-  undefined8 in_stack_00000050;
-  float fStack0000000000000058;
-  float fStack000000000000005c;
-  int iStack0000000000000068;
-  undefined1 uStack000000000000006c;
-  float fStack0000000000000070;
-  float fStack0000000000000074;
-  int iStack0000000000000078;
-  int iStack000000000000007c;
-  undefined8 uVar17;
+  uint render_flags;
+  ushort coord_x;
+  ushort coord_y;
+  ushort prev_coord_x;
+  ushort prev_coord_y;
+  longlong render_context;
+  int render_param;
+  int texture_id;
+  ulonglong color_data;
+  byte alpha_value;
+  int vertex_count;
+  undefined4 render_mode;
+  longlong object_ptr;
+  longlong scene_ptr;
+  char render_state;
+  int frame_counter;
+  undefined4 render_flags_ext;
+  byte visibility_flag;
+  int index_offset;
+  longlong shader_ptr;
+  float position_x;
+  undefined8 matrix_data;
+  undefined1 transform_matrix[16];
+  undefined1 color_matrix[16];
+  undefined1 projection_matrix[16];
+  undefined1 view_matrix[16];
+  float depth_value;
+  undefined1 normal_matrix[16];
+  undefined1 texture_matrix[16];
+  undefined1 light_matrix[16];
+  ulonglong vertex_buffer;
+  undefined1 shadow_matrix[16];
+  undefined1 fog_matrix[16];
+  float rotation_angle;
+  float camera_distance;
+  uint material_flags;
+  float scale_factor;
+  float blend_factor;
+  float opacity;
+  undefined4 blend_mode;
+  undefined4 color_r;
+  undefined4 color_g;
+  undefined4 color_b;
+  float position_y;
+  float position_z;
+  float light_intensity;
+  undefined2 texture_coord;
+  float world_x;
+  int render_pass;
+  float screen_x;
+  undefined4 screen_flags;
+  undefined8 viewport_data;
+  float world_y;
+  float world_z;
+  int pixel_x;
+  undefined1 render_opcode;
+  float clip_x;
+  float clip_y;
+  int pixel_y;
+  int pixel_z;
+  undefined8 transform_result;
   undefined8 extraout_XMM0_Qb;
-  undefined1 auVar28 [16];
+  undefined1 final_matrix[16];
   
   fVar15 = (float)*(byte *)(unaff_RBP + 0xa9) * unaff_XMM10_Da;
   if (unaff_XMM12_Da <= (float)in_EAX * unaff_XMM10_Da) {
