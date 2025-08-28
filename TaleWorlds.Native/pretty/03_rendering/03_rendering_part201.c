@@ -1,6 +1,50 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part201.c - 5 个函数
+/**
+ * @file 03_rendering_part201.c
+ * @brief 渲染系统高级数据处理和变换模块
+ * 
+ * 本模块包含5个核心函数，涵盖渲染系统高级数据处理、参数计算、
+ * 状态管理、函数跳转和内存管理等高级渲染功能。
+ * 
+ * 主要功能：
+ * - 渲染系统高级数据处理和变换
+ * - 渲染系统高级参数计算和变换
+ * - 渲染系统状态设置和管理
+ * - 渲染系统函数跳转和路由
+ * - 渲染系统高级数据处理和内存管理
+ */
+
+// 常量定义
+#define RENDERING_SYSTEM_PARAM_SCALE_FACTOR 0.05f      // 渲染系统参数缩放因子
+#define RENDERING_SYSTEM_PARAM_MULTIPLIER 0.9f          // 渲染系统参数乘数
+#define RENDERING_SYSTEM_MEMORY_ALIGNMENT 0x28         // 渲染系统内存对齐大小
+#define RENDERING_SYSTEM_BUFFER_SIZE 0x58              // 渲染系统缓冲区大小
+#define RENDERING_SYSTEM_DATA_OFFSET 0x120             // 渲染系统数据偏移量
+#define RENDERING_SYSTEM_OFFSET_STEP 0x10              // 渲染系统偏移步长
+#define RENDERING_SYSTEM_MAX_ITERATIONS 7              // 渲染系统最大迭代次数
+
+// 函数别名定义
+#define RenderingSystemAdvancedDataProcessor FUN_180384a67              // 渲染系统高级数据处理器
+#define RenderingSystemAdvancedParameterCalculator FUN_180384c38       // 渲染系统高级参数计算器
+#define RenderingSystemStateSetter FUN_180384e7e                         // 渲染系统状态设置器
+#define RenderingSystemFunctionRouter FUN_180384e9c                      // 渲染系统函数路由器
+#define RenderingSystemAdvancedMemoryManager FUN_180384ed0               // 渲染系统高级内存管理器
+
+// 辅助函数声明
+void* FUN_180387860(void);
+void* FUN_180387380(void);
+void* FUN_180388290(void);
+void* FUN_180388120(void);
+void* FUN_180388040(void);
+void* FUN_180387ed0(void);
+void FUN_1808fc050(ulonglong param);
+void FUN_18024fb60(void* param1, void* param2, void* param3);
+void* FUN_18062b420(void* param1, longlong param2, char param3);
+void* FUN_18062b1e0(void* param1, longlong param2, longlong param3, void* param4);
+void FUN_18015b810(void* param1, longlong param2, longlong param3, longlong param4, ulonglong param5, void* param6);
+longlong func_0x00018066bd70(longlong param);
+void FUN_18064e900(void);
 
 // 函数: void FUN_180384a67(void)
 void FUN_180384a67(void)
