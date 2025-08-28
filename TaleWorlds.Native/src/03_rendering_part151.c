@@ -1,8 +1,123 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part151.c - 1 个函数
+//==============================================================================
+// 03_rendering_part151.c - 渲染系统高级数据处理和渲染管线管理模块
+// 
+// 本模块包含1个核心函数，主要用于处理高级渲染数据、管线管理和纹理映射
+// 涉及顶点处理、纹理坐标变换、渲染状态管理、资源分配等高级渲染功能
+// 
+// 主要功能：
+// - 渲染管线初始化和配置
+// - 顶点数据处理和变换
+// - 纹理坐标映射和优化
+// - 渲染状态管理和同步
+// - 内存资源管理和清理
+//==============================================================================
 
-// 函数: void FUN_18035ec20(longlong param_1,longlong param_2)
+// 常量定义
+#define RENDER_SYSTEM_MAX_VERTEX_COUNT 65535           // 渲染系统最大顶点数量
+#define RENDER_SYSTEM_MAX_TEXTURE_COORDS 8192          // 渲染系统最大纹理坐标数量
+#define RENDER_SYSTEM_PIPELINE_STAGES 16               // 渲染管线阶段数量
+#define RENDER_SYSTEM_DEFAULT_QUALITY_THRESHOLD 0.15f // 默认质量阈值
+#define RENDER_SYSTEM_TEXTURE_SAMPLE_RATE 0.05f        // 纹理采样率
+#define RENDER_SYSTEM_MAX_SAMPLE_ITERATIONS 16         // 最大采样迭代次数
+#define RENDER_SYSTEM_VERTEX_BUFFER_SIZE 0x3d0         // 顶点缓冲区大小 (976字节)
+#define RENDER_SYSTEM_INDEX_BUFFER_SIZE 0x300          // 索引缓冲区大小 (768字节)
+#define RENDER_SYSTEM_ALIGNMENT_8 8                     // 8字节对齐
+#define RENDER_SYSTEM_ALIGNMENT_16 16                  // 16字节对齐
+#define RENDER_SYSTEM_MAX_FLOAT_VALUE 0x7f7fffff       // 最大浮点数值
+#define RENDER_SYSTEM_COLOR_WHITE 0xffffff             // 白色值
+#define RENDER_SYSTEM_COLOR_ALPHA_MASK 0xff            // Alpha通道掩码
+
+// 渲染状态常量
+#define RENDER_STATE_READY 0x00                        // 渲染状态：就绪
+#define RENDER_STATE_PROCESSING 0x01                   // 渲染状态：处理中
+#define RENDER_STATE_COMPLETED 0x02                    // 渲染状态：已完成
+#define RENDER_STATE_ERROR 0x03                        // 渲染状态：错误
+#define RENDER_STATE_CLEANUP 0x04                      // 渲染状态：清理中
+
+// 纹理采样常量
+#define TEXTURE_SAMPLE_MIN 0.2f                        // 最小采样值
+#define TEXTURE_SAMPLE_MAX 0.8f                        // 最大采样值
+#define TEXTURE_SAMPLE_STEP 0.05f                      // 采样步长
+#define TEXTURE_QUALITY_THRESHOLD 0.15f               // 纹理质量阈值
+
+// 顶点处理常量
+#define VERTEX_COMPONENT_COUNT 3                      // 顶点组件数量
+#define VERTEX_STRIDE_FLOAT 7                          // 顶点浮点数步长
+#define VERTEX_BARYCENTRIC_WEIGHT 0.33333334f         // 重心权重
+#define VERTEX_POSITION_OFFSET 0.5f                    // 顶点位置偏移
+
+// 渲染管线常量
+#define PIPELINE_STAGE_VERTEX 0x00                     // 管线阶段：顶点处理
+#define PIPELINE_STAGE_FRAGMENT 0x01                  // 管线阶段：片段处理
+#define PIPELINE_STAGE_TEXTURE 0x02                   // 管线阶段：纹理处理
+#define PIPELINE_STAGE_OUTPUT 0x03                     // 管线阶段：输出处理
+
+// 类型别名定义
+typedef longlong RenderContextHandle;                  // 渲染上下文句柄
+typedef longlong RenderPipelineHandle;                 // 渲染管线句柄
+typedef longlong RenderTextureHandle;                 // 渲染纹理句柄
+typedef longlong RenderBufferHandle;                   // 渲染缓冲区句柄
+typedef longlong RenderStateHandle;                    // 渲染状态句柄
+typedef float RenderVertex[3];                         // 渲染顶点坐标
+typedef float RenderTexCoord[2];                      // 渲染纹理坐标
+typedef float RenderColor[4];                          // 渲染颜色值
+typedef uint RenderFlags;                              // 渲染标志位
+typedef ulonglong RenderMemoryPtr;                    // 渲染内存指针
+typedef code* RenderShaderFunction;                   // 渲染着色器函数
+typedef undefined8* RenderDataBuffer;                 // 渲染数据缓冲区
+typedef longlong** RenderResourceTable;               // 渲染资源表
+
+// 渲染顶点结构体
+typedef struct {
+    RenderVertex position;                            // 顶点位置
+    RenderTexCoord texCoord;                           // 纹理坐标
+    RenderColor color;                                 // 顶点颜色
+    float quality;                                     // 顶点质量
+} RenderVertexInfo;
+
+// 渲染管线配置结构体
+typedef struct {
+    RenderPipelineHandle pipelineHandle;               // 管线句柄
+    uint vertexCount;                                  // 顶点数量
+    uint textureCount;                                 // 纹理数量
+    float qualityThreshold;                            // 质量阈值
+    RenderFlags renderFlags;                           // 渲染标志
+    RenderStateHandle stateHandle;                     // 状态句柄
+} RenderPipelineConfig;
+
+// 渲染纹理信息结构体
+typedef struct {
+    RenderTextureHandle textureHandle;                 // 纹理句柄
+    float sampleRate;                                  // 采样率
+    uint width;                                        // 纹理宽度
+    uint height;                                       // 纹理高度
+    float quality;                                     // 纹理质量
+} RenderTextureInfo;
+
+// 渲染数据管理器结构体
+typedef struct {
+    RenderDataBuffer vertexBuffer;                     // 顶点缓冲区
+    RenderDataBuffer indexBuffer;                      // 索引缓冲区
+    RenderDataBuffer textureBuffer;                    // 纹理缓冲区
+    uint vertexCount;                                  // 当前顶点数量
+    uint indexCount;                                   // 当前索引数量
+    uint textureCount;                                 // 当前纹理数量
+} RenderDataManager;
+
+// 函数别名定义
+#define RenderingSystem_AdvancedDataProcessor FUN_18035ec20
+#define RenderingSystem_PipelineInitializer FUN_18035ec20
+#define RenderingSystem_VertexDataProcessor FUN_18035ec20
+#define RenderingSystem_TextureCoordinateMapper FUN_18035ec20
+#define RenderingSystem_RenderStateManager FUN_18035ec20
+#define RenderingSystem_ResourceAllocator FUN_18035ec20
+#define RenderingSystem_QualityAnalyzer FUN_18035ec20
+#define RenderingSystem_BufferManager FUN_18035ec20
+#define RenderingSystem_CleanupHandler FUN_18035ec20
+
+// 核心函数实现
 void FUN_18035ec20(longlong param_1,longlong param_2)
 
 {

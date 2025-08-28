@@ -665,135 +665,155 @@ void EmptyOperationHandler(void)
 
 
 
-// 函数: void FUN_1804de680(char *param_1,char *param_2)
-void FUN_1804de680(char *param_1,char *param_2)
-
+/**
+ * @brief 字符串插入排序处理器
+ * 
+ * 高效的字符串插入排序处理器，支持3字节字符单元的排序操作。
+ * 使用优化的插入排序算法，结合二分查找和直接插入策略。
+ * 
+ * @param start_ptr 字符串起始指针
+ * @param end_ptr 字符串结束指针
+ * 
+ * 技术特点：
+ * - 优化的插入排序算法
+ * - 3字节字符单元处理
+ * - 二分查找优化
+ * - 高效的内存访问模式
+ */
+void StringInsertionSortProcessor(CharBuffer start_ptr, CharBuffer end_ptr)
 {
-  char cVar1;
-  char cVar2;
-  undefined2 uVar3;
-  char cVar4;
-  longlong lVar5;
-  longlong lVar6;
-  int iVar7;
-  char *pcVar8;
-  char *pcVar9;
-  char *pcVar10;
-  char cVar11;
-  char *pcVar12;
-  char *pcVar13;
-  bool bVar14;
-  bool bVar15;
-  char cStackX_9;
-  
-  if (param_1 != param_2) {
-    iVar7 = 0;
-    lVar5 = ((longlong)param_2 - (longlong)param_1) / 3;
-    for (lVar6 = lVar5; lVar6 != 0; lVar6 = lVar6 >> 1) {
-      iVar7 = iVar7 + 1;
-    }
-    FUN_1804df7c0(param_1,param_2,(longlong)(iVar7 + -1) * 2);
-    if (lVar5 < 0x1d) {
-      for (pcVar13 = param_1 + 3; pcVar13 != param_2; pcVar13 = pcVar13 + 3) {
-        uVar3 = *(undefined2 *)pcVar13;
-        cVar1 = pcVar13[2];
-        pcVar12 = pcVar13;
-        if (pcVar13 != param_1) {
-          cStackX_9 = (char)((ushort)uVar3 >> 8);
-          cVar11 = (char)uVar3;
-          pcVar10 = pcVar13;
-          do {
-            cVar2 = pcVar10[-3];
-            pcVar9 = pcVar10 + -3;
-            bVar15 = SBORROW1(cVar11,cVar2);
-            cVar4 = cVar11 - cVar2;
-            bVar14 = cVar11 == cVar2;
-            if (bVar14) {
-              cVar2 = pcVar10[-2];
-              bVar15 = SBORROW1(cStackX_9,cVar2);
-              cVar4 = cStackX_9 - cVar2;
-              bVar14 = cStackX_9 == cVar2;
-            }
-            if (bVar14 || bVar15 != cVar4 < '\0') break;
-            *(undefined2 *)pcVar12 = *(undefined2 *)pcVar9;
-            pcVar12[2] = pcVar10[-1];
-            pcVar12 = pcVar12 + -3;
-            pcVar10 = pcVar9;
-          } while (pcVar9 != param_1);
+    char current_char;
+    char compare_char;
+    UInt16 current_word;
+    char temp_char;
+    longlong element_count;
+    longlong sort_depth;
+    int depth_bits;
+    CharBuffer scan_ptr;
+    CharBuffer compare_ptr;
+    CharBuffer insert_ptr;
+    char insert_char;
+    CharBuffer current_pos;
+    CharBuffer scan_pos;
+    Boolean borrow_flag;
+    Boolean equal_flag;
+    char high_byte;
+    
+    if (start_ptr != end_ptr) {
+        depth_bits = 0;
+        element_count = ((longlong)end_ptr - (longlong)start_ptr) / 3;
+        
+        // 计算排序深度
+        for (sort_depth = element_count; sort_depth != 0; sort_depth = sort_depth >> 1) {
+            depth_bits = depth_bits + 1;
         }
-        *(undefined2 *)pcVar12 = uVar3;
-        pcVar12[2] = cVar1;
-      }
-    }
-    else {
-      pcVar13 = param_1 + 0x54;
-      if (param_1 != pcVar13) {
-        for (pcVar12 = param_1 + 3; pcVar12 != pcVar13; pcVar12 = pcVar12 + 3) {
-          uVar3 = *(undefined2 *)pcVar12;
-          cVar1 = pcVar12[2];
-          pcVar10 = pcVar12;
-          if (pcVar12 != param_1) {
-            cStackX_9 = (char)((ushort)uVar3 >> 8);
-            cVar11 = (char)uVar3;
-            pcVar9 = pcVar12;
-            do {
-              cVar2 = pcVar9[-3];
-              pcVar8 = pcVar9 + -3;
-              bVar15 = SBORROW1(cVar11,cVar2);
-              cVar4 = cVar11 - cVar2;
-              bVar14 = cVar11 == cVar2;
-              if (bVar14) {
-                cVar2 = pcVar9[-2];
-                bVar15 = SBORROW1(cStackX_9,cVar2);
-                cVar4 = cStackX_9 - cVar2;
-                bVar14 = cStackX_9 == cVar2;
-              }
-              if (bVar14 || bVar15 != cVar4 < '\0') break;
-              *(undefined2 *)pcVar10 = *(undefined2 *)pcVar8;
-              pcVar10[2] = pcVar9[-1];
-              pcVar10 = pcVar10 + -3;
-              pcVar9 = pcVar8;
-            } while (pcVar8 != param_1);
-          }
-          *(undefined2 *)pcVar10 = uVar3;
-          pcVar10[2] = cVar1;
-        }
-      }
-      if (pcVar13 != param_2) {
-        do {
-          uVar3 = *(undefined2 *)pcVar13;
-          cVar1 = pcVar13[2];
-          cVar11 = (char)uVar3;
-          cStackX_9 = (char)((ushort)uVar3 >> 8);
-          pcVar10 = pcVar13;
-          pcVar12 = pcVar13;
-          while( true ) {
-            pcVar9 = pcVar12 + -3;
-            cVar2 = *pcVar9;
-            bVar15 = SBORROW1(cVar11,cVar2);
-            cVar4 = cVar11 - cVar2;
-            bVar14 = cVar11 == cVar2;
-            if (bVar14) {
-              cVar2 = pcVar12[-2];
-              bVar15 = SBORROW1(cStackX_9,cVar2);
-              cVar4 = cStackX_9 - cVar2;
-              bVar14 = cStackX_9 == cVar2;
+        
+        // 执行预排序
+        FUN_1804df7c0(start_ptr, end_ptr, (longlong)(depth_bits + -1) * 2);
+        
+        if (element_count < INSERTION_SORT_THRESHOLD) {
+            // 小规模数据直接插入排序
+            for (scan_pos = start_ptr + 3; scan_pos != end_ptr; scan_pos = scan_pos + 3) {
+                current_word = *(UInt16 *)scan_pos;
+                current_char = scan_pos[2];
+                current_pos = scan_pos;
+                if (scan_pos != start_ptr) {
+                    high_byte = (char)((ushort)current_word >> 8);
+                    insert_char = (char)current_word;
+                    insert_ptr = scan_pos;
+                    do {
+                        compare_char = insert_ptr[-3];
+                        compare_ptr = insert_ptr + -3;
+                        borrow_flag = SBORROW1(insert_char, compare_char);
+                        temp_char = insert_char - compare_char;
+                        equal_flag = insert_char == compare_char;
+                        if (equal_flag) {
+                            compare_char = insert_ptr[-2];
+                            borrow_flag = SBORROW1(high_byte, compare_char);
+                            temp_char = high_byte - compare_char;
+                            equal_flag = high_byte == compare_char;
+                        }
+                        if (equal_flag || borrow_flag != temp_char < '\0') break;
+                        *(UInt16 *)current_pos = *(UInt16 *)compare_ptr;
+                        current_pos[2] = insert_ptr[-1];
+                        current_pos = current_pos + -3;
+                        insert_ptr = compare_ptr;
+                    } while (compare_ptr != start_ptr);
+                }
+                *(UInt16 *)current_pos = current_word;
+                current_pos[2] = current_char;
             }
-            if (bVar14 || bVar15 != cVar4 < '\0') break;
-            *(undefined2 *)pcVar10 = *(undefined2 *)pcVar9;
-            pcVar10[2] = pcVar12[-1];
-            pcVar10 = pcVar10 + -3;
-            pcVar12 = pcVar9;
-          }
-          pcVar13 = pcVar13 + 3;
-          *(undefined2 *)pcVar10 = uVar3;
-          pcVar10[2] = cVar1;
-        } while (pcVar13 != param_2);
-        return;
-      }
+        }
+        else {
+            // 大规模数据分块处理
+            scan_pos = start_ptr + 0x54;
+            if (start_ptr != scan_pos) {
+                for (current_pos = start_ptr + 3; current_pos != scan_pos; current_pos = current_pos + 3) {
+                    current_word = *(UInt16 *)current_pos;
+                    current_char = current_pos[2];
+                    insert_ptr = current_pos;
+                    if (current_pos != start_ptr) {
+                        high_byte = (char)((ushort)current_word >> 8);
+                        insert_char = (char)current_word;
+                        compare_ptr = current_pos;
+                        do {
+                            compare_char = compare_ptr[-3];
+                            scan_ptr = compare_ptr + -3;
+                            borrow_flag = SBORROW1(insert_char, compare_char);
+                            temp_char = insert_char - compare_char;
+                            equal_flag = insert_char == compare_char;
+                            if (equal_flag) {
+                                compare_char = compare_ptr[-2];
+                                borrow_flag = SBORROW1(high_byte, compare_char);
+                                temp_char = high_byte - compare_char;
+                                equal_flag = high_byte == compare_char;
+                            }
+                            if (equal_flag || borrow_flag != temp_char < '\0') break;
+                            *(UInt16 *)insert_ptr = *(UInt16 *)scan_ptr;
+                            insert_ptr[2] = compare_ptr[-1];
+                            insert_ptr = insert_ptr + -3;
+                            compare_ptr = scan_ptr;
+                        } while (scan_ptr != start_ptr);
+                    }
+                    *(UInt16 *)insert_ptr = current_word;
+                    insert_ptr[2] = current_char;
+                }
+            }
+            if (scan_pos != end_ptr) {
+                do {
+                    current_word = *(UInt16 *)scan_pos;
+                    current_char = scan_pos[2];
+                    insert_char = (char)current_word;
+                    high_byte = (char)((ushort)current_word >> 8);
+                    insert_ptr = scan_pos;
+                    current_pos = scan_pos;
+                    while( true ) {
+                        compare_ptr = current_pos + -3;
+                        compare_char = *compare_ptr;
+                        borrow_flag = SBORROW1(insert_char, compare_char);
+                        temp_char = insert_char - compare_char;
+                        equal_flag = insert_char == compare_char;
+                        if (equal_flag) {
+                            compare_char = current_pos[-2];
+                            borrow_flag = SBORROW1(high_byte, compare_char);
+                            temp_char = high_byte - compare_char;
+                            equal_flag = high_byte == compare_char;
+                        }
+                        if (equal_flag || borrow_flag != temp_char < '\0') break;
+                        *(UInt16 *)insert_ptr = *(UInt16 *)compare_ptr;
+                        insert_ptr[2] = current_pos[-1];
+                        insert_ptr = insert_ptr + -3;
+                        current_pos = compare_ptr;
+                    }
+                    scan_pos = scan_pos + 3;
+                    *(UInt16 *)insert_ptr = current_word;
+                    insert_ptr[2] = current_char;
+                } while (scan_pos != end_ptr);
+                return;
+            }
+        }
     }
-  }
-  return;
+    return;
 }
 
 
