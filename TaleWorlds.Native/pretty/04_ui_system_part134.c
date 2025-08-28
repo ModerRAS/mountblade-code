@@ -564,7 +564,9 @@ ulonglong UISystem_FindComponent_SearchAlgorithm(uint64_t param_1,longlong param
 
 
 
-ulonglong FUN_180747ad0(longlong param_1,longlong param_2,uint64_t param_3,int8_t param_4,
+// 函数: ulonglong FUN_180747ad0(longlong param_1,longlong param_2,uint64_t param_3,int8_t param_4,
+//                      longlong *param_5) - UI组件高级搜索函数
+ulonglong UISystem_AdvancedComponentSearch_AdvancedSearch(longlong param_1,longlong param_2,uint64_t param_3,int8_t param_4,
                        longlong *param_5)
 
 {
@@ -673,7 +675,8 @@ ulonglong FUN_180747ad0(longlong param_1,longlong param_2,uint64_t param_3,int8_
 
 
 
-ulonglong FUN_180747bb5(float param_1)
+// 函数: ulonglong FUN_180747bb5(float param_1) - UI组件距离筛选函数
+ulonglong UISystem_DistanceBasedSearch_DistanceFilter(float param_1)
 
 {
   longlong lVar1;
