@@ -584,16 +584,29 @@ void data_incrementer(longlong data_context, int increment_value)
 
 
 
-// 函数: void FUN_1807c4260(longlong param_1,undefined8 param_2,int param_3)
-void FUN_1807c4260(longlong param_1,undefined8 param_2,int param_3)
+/**
+ * 高级数据处理器 - 执行高级数据处理操作
+ * 
+ * 功能：
+ * - 执行高级数据处理
+ * - 管理数据缓冲区
+ * - 处理数据转换
+ * - 更新数据计数器
+ * 
+ * @param data_context 数据上下文指针
+ * @param data_buffer 数据缓冲区指针
+ * @param data_size 数据大小
+ * @return 无返回值
+ */
+void data_processor_advanced(longlong data_context, undefined8 data_buffer, int data_size)
 
 {
-  longlong lVar1;
+  longlong operation_result;
   
-  lVar1 = FUN_180742650(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2,param_3,&UNK_18097c540,0x3c,
+  operation_result = advanced_data_processing_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), data_buffer, data_size, &GLOBAL_BUFFER_ADDRESS, 0x3c,
                         0);
-  if ((lVar1 != 0) && (param_1 != 0)) {
-    *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_3;
+  if ((operation_result != 0) && (data_context != 0)) {
+    *(int *)(data_context + 0x4f0) = *(int *)(data_context + 0x4f0) + data_size;
   }
   return;
 }
