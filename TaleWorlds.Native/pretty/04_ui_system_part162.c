@@ -59,6 +59,40 @@
 // 已简化为易于理解的形式。
 
 //==============================================================================
+// 系统函数别名定义
+//==============================================================================
+
+// 安全检查函数
+#define UISystem_SecurityChecker FUN_1808fc050  // UI系统安全检查器
+
+// 控件管理函数
+#define UISystem_ControlStateGetter FUN_18075e410  // UI控件状态获取器
+#define UISystem_ControlPropertyHandler FUN_18075e390  // UI控件属性处理器
+
+// 上下文管理函数
+#define UISystem_ContextAllocator FUN_180742050  // UI系统上下文分配器
+#define UISystem_ContextManager FUN_180741e10  // UI系统上下文管理器
+#define UISystem_ContextCleaner FUN_180743d60  // UI系统上下文清理器
+
+// 事件处理函数
+#define UISystem_EventHandler FUN_180743700  // UI系统事件处理器
+#define UISystem_EventDispatcher FUN_1807636f0  // UI系统事件分发器
+
+// 控件属性管理函数
+#define UISystem_PropertySetter FUN_18076203a  // UI系统属性设置器
+#define UISystem_PropertyValidator FUN_180762070  // UI系统属性验证器
+#define UISystem_PropertyInitializer FUN_1807621f0  // UI系统属性初始化器
+#define UISystem_PropertyUpdater FUN_180762250  // UI系统属性更新器
+#define UISystem_PropertyCleaner FUN_180762360  // UI系统属性清理器
+#define UISystem_PropertySynchronizer FUN_1807623d0  // UI系统属性同步器
+#define UISystem_PropertyFinalizer FUN_180762660  // UI系统属性终结器
+#define UISystem_PropertyOptimizer FUN_1807627a8  // UI系统属性优化器
+#define UISystem_PropertySerializer FUN_180762b60  // UI系统属性序列化器
+#define UISystem_PropertyDeserializer FUN_180762c70  // UI系统属性反序列化器
+#define UISystem_PropertyManager FUN_180762d22  // UI系统属性管理器
+#define UISystem_Processor FUN_180763100  // UI系统处理器
+
+//==============================================================================
 // 系统常量定义
 //==============================================================================
 
