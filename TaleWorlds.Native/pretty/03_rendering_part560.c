@@ -538,7 +538,7 @@ LAB_1805788ef:
       if (fVar21 <= 0.0) {
         *(int8_t *)(*(longlong *)(param_1 + 0xabf0) + 0x48) = 0;
       }
-      if ((_DAT_180c96070 == 0) || (*(char *)(_DAT_180c96070 + 0x87b718) == '\0')) {
+      if ((render_system_memory == 0) || (*(char *)(render_system_memory + 0x87b718) == '\0')) {
         FUN_1805ee510(*(uint64_t *)(param_1 + 0xabf0),param_2,*(int8_t *)(param_1 + 0xde));
       }
     }

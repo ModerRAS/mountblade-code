@@ -147,8 +147,8 @@ uint64_t FUN_18077d4a0(longlong param_1,float *param_2,float *param_3,uint param
         fVar17 = fVar16;
         do {
           fVar16 = *(float *)((longlong)param_3 + lVar6);
-          fVar12 = fVar16 + fVar12 + _DAT_180be2288;
-          _DAT_180be2288 = -_DAT_180be2288;
+          fVar12 = fVar16 + fVar12 + ui_system_buffer_config;
+          ui_system_buffer_config = -ui_system_buffer_config;
           fVar12 = (fVar12 - fVar17) * *(float *)(param_1 + 0x31c);
           *param_3 = fVar12;
           param_3 = param_3 + 1;
@@ -172,9 +172,9 @@ uint64_t FUN_18077d4a0(longlong param_1,float *param_2,float *param_3,uint param
           fVar11 = *param_2;
           fVar13 = param_2[1];
           param_2 = param_2 + 2;
-          fVar17 = fVar11 + fVar17 + _DAT_180be2288;
-          fVar19 = fVar13 + fVar19 + _DAT_180be2288;
-          _DAT_180be2288 = -_DAT_180be2288;
+          fVar17 = fVar11 + fVar17 + ui_system_buffer_config;
+          fVar19 = fVar13 + fVar19 + ui_system_buffer_config;
+          ui_system_buffer_config = -ui_system_buffer_config;
           fVar17 = (fVar17 - fVar16) * *(float *)(param_1 + 0x31c);
           fVar19 = (fVar19 - fVar12) * *(float *)(param_1 + 0x31c);
           *param_3 = fVar17;
@@ -219,20 +219,20 @@ uint64_t FUN_18077d4a0(longlong param_1,float *param_2,float *param_3,uint param
           fVar13 = pfVar3[1];
           fVar19 = pfVar3[-2];
           fVar16 = pfVar3[-1];
-          fVar20 = ((fVar19 + fVar20 + _DAT_180be2288) - fVar14) * fVar15;
-          fVar21 = ((fVar16 + fVar21 + _DAT_180be2288) - fStackX_10) * fVar15;
+          fVar20 = ((fVar19 + fVar20 + ui_system_buffer_config) - fVar14) * fVar15;
+          fVar21 = ((fVar16 + fVar21 + ui_system_buffer_config) - fStackX_10) * fVar15;
           fVar17 = pfVar3[3];
           fVar12 = pfVar3[2];
-          fVar23 = ((fVar11 + fVar23 + _DAT_180be2288) - fVar10) * fVar15;
+          fVar23 = ((fVar11 + fVar23 + ui_system_buffer_config) - fVar10) * fVar15;
           *(float *)((longlong)param_3 + (-8 - (longlong)param_2) + (longlong)pfVar3) = fVar20;
           pfVar4[-1] = fVar21;
           pfVar3 = pfVar3 + 6;
-          fVar24 = ((fVar13 + fVar24 + _DAT_180be2288) - fVar22) * fVar15;
+          fVar24 = ((fVar13 + fVar24 + ui_system_buffer_config) - fVar22) * fVar15;
           *pfVar4 = fVar23;
-          fVar25 = fVar12 + fVar25 + _DAT_180be2288;
+          fVar25 = fVar12 + fVar25 + ui_system_buffer_config;
           pfVar4[1] = fVar24;
-          fVar26 = fVar17 + fVar26 + _DAT_180be2288;
-          _DAT_180be2288 = -_DAT_180be2288;
+          fVar26 = fVar17 + fVar26 + ui_system_buffer_config;
+          ui_system_buffer_config = -ui_system_buffer_config;
           fVar25 = (fVar25 - fStack_d8) * fVar15;
           pfVar4[2] = fVar25;
           fVar26 = (fVar26 - fStack_d4) * fVar15;
@@ -296,14 +296,14 @@ uint64_t FUN_18077d4a0(longlong param_1,float *param_2,float *param_3,uint param
           fVar12 = pfVar3[2];
           fVar17 = pfVar3[3];
           fVar16 = pfVar3[1];
-          fVar23 = ((fVar13 + fVar23 + _DAT_180be2288) - fVar15) * fVar1;
-          fVar21 = ((fVar21 + fVar11 + _DAT_180be2288) - fVar14) * fVar1;
-          fVar24 = ((fVar20 + fVar24 + _DAT_180be2288) - fVar18) * fVar1;
+          fVar23 = ((fVar13 + fVar23 + ui_system_buffer_config) - fVar15) * fVar1;
+          fVar21 = ((fVar21 + fVar11 + ui_system_buffer_config) - fVar14) * fVar1;
+          fVar24 = ((fVar20 + fVar24 + ui_system_buffer_config) - fVar18) * fVar1;
           fVar19 = pfVar3[4];
-          fVar25 = ((fVar16 + fVar25 + _DAT_180be2288) - fStack_cc) * fVar1;
-          fVar26 = ((fVar12 + fVar26 + _DAT_180be2288) - fStack_d0) * fVar1;
-          fVar10 = ((fVar17 + fVar10 + _DAT_180be2288) - fStack_d4) * fVar1;
-          fStackX_10 = ((fVar19 + fStackX_10 + _DAT_180be2288) - fStack_c8) * fVar1;
+          fVar25 = ((fVar16 + fVar25 + ui_system_buffer_config) - fStack_cc) * fVar1;
+          fVar26 = ((fVar12 + fVar26 + ui_system_buffer_config) - fStack_d0) * fVar1;
+          fVar10 = ((fVar17 + fVar10 + ui_system_buffer_config) - fStack_d4) * fVar1;
+          fStackX_10 = ((fVar19 + fStackX_10 + ui_system_buffer_config) - fStack_c8) * fVar1;
           fVar2 = pfVar3[5];
           *(float *)((longlong)pfVar3 + (longlong)param_3 + (-8 - (longlong)param_2)) = fVar21;
           pfVar4[-1] = fVar23;
@@ -311,9 +311,9 @@ uint64_t FUN_18077d4a0(longlong param_1,float *param_2,float *param_3,uint param
           *pfVar4 = fVar24;
           pfVar4[1] = fVar25;
           pfVar4[2] = fVar26;
-          fVar22 = fVar22 + fVar2 + _DAT_180be2288;
+          fVar22 = fVar22 + fVar2 + ui_system_buffer_config;
           pfVar4[3] = fVar10;
-          _DAT_180be2288 = -_DAT_180be2288;
+          ui_system_buffer_config = -ui_system_buffer_config;
           pfVar4[4] = fStackX_10;
           fVar22 = (fVar22 - fStack_d8) * fVar1;
           pfVar4[5] = fVar22;
@@ -351,7 +351,7 @@ uint64_t FUN_18077d4a0(longlong param_1,float *param_2,float *param_3,uint param
       pfVar4 = (float *)(param_1 + 0x29c);
       lVar6 = (longlong)param_3 - (longlong)param_2;
       uVar9 = (ulonglong)param_5;
-      fVar16 = _DAT_180be2288;
+      fVar16 = ui_system_buffer_config;
       do {
         fVar12 = pfVar4[-0x20];
         fVar17 = *pfVar4;
@@ -369,7 +369,7 @@ uint64_t FUN_18077d4a0(longlong param_1,float *param_2,float *param_3,uint param
             pfVar3 = pfVar3 + (int)param_5;
             uVar5 = (ulonglong)uVar7;
             fVar12 = fVar19;
-            _DAT_180be2288 = fVar16;
+            ui_system_buffer_config = fVar16;
           } while (uVar7 != 0);
         }
         pfVar4[-0x20] = fVar19;
@@ -439,9 +439,9 @@ uint64_t FUN_18077d60f(void)
         fVar9 = *unaff_RBP;
         fVar10 = unaff_RBP[1];
         unaff_RBP = unaff_RBP + 2;
-        fVar15 = fVar9 + fVar15 + _DAT_180be2288;
-        fVar17 = fVar10 + fVar17 + _DAT_180be2288;
-        _DAT_180be2288 = -_DAT_180be2288;
+        fVar15 = fVar9 + fVar15 + ui_system_buffer_config;
+        fVar17 = fVar10 + fVar17 + ui_system_buffer_config;
+        ui_system_buffer_config = -ui_system_buffer_config;
         fVar15 = (fVar15 - fVar14) * *(float *)(unaff_RBX + 0x31c);
         fVar17 = (fVar17 - fVar12) * *(float *)(unaff_RBX + 0x31c);
         *unaff_RDI = fVar15;
@@ -485,20 +485,20 @@ uint64_t FUN_18077d60f(void)
         fVar10 = pfVar3[1];
         fVar17 = pfVar3[-2];
         fVar14 = pfVar3[-1];
-        fVar18 = ((fVar17 + fVar18 + _DAT_180be2288) - fVar11) * fVar13;
-        fVar19 = ((fVar14 + fVar19 + _DAT_180be2288) - fStack0000000000000108) * fVar13;
+        fVar18 = ((fVar17 + fVar18 + ui_system_buffer_config) - fVar11) * fVar13;
+        fVar19 = ((fVar14 + fVar19 + ui_system_buffer_config) - fStack0000000000000108) * fVar13;
         fVar15 = pfVar3[3];
         fVar12 = pfVar3[2];
-        fVar21 = ((fVar9 + fVar21 + _DAT_180be2288) - fVar8) * fVar13;
+        fVar21 = ((fVar9 + fVar21 + ui_system_buffer_config) - fVar8) * fVar13;
         *(float *)((longlong)unaff_RDI + (-8 - (longlong)unaff_RBP) + (longlong)pfVar3) = fVar18;
         pfVar4[-1] = fVar19;
         pfVar3 = pfVar3 + 6;
-        fVar22 = ((fVar10 + fVar22 + _DAT_180be2288) - fVar20) * fVar13;
+        fVar22 = ((fVar10 + fVar22 + ui_system_buffer_config) - fVar20) * fVar13;
         *pfVar4 = fVar21;
-        fVar23 = fVar12 + fVar23 + _DAT_180be2288;
+        fVar23 = fVar12 + fVar23 + ui_system_buffer_config;
         pfVar4[1] = fVar22;
-        fVar24 = fVar15 + fVar24 + _DAT_180be2288;
-        _DAT_180be2288 = -_DAT_180be2288;
+        fVar24 = fVar15 + fVar24 + ui_system_buffer_config;
+        ui_system_buffer_config = -ui_system_buffer_config;
         fVar23 = (fVar23 - fStackX_20) * fVar13;
         pfVar4[2] = fVar23;
         fVar24 = (fVar24 - fStackX_24) * fVar13;
@@ -561,15 +561,15 @@ uint64_t FUN_18077d60f(void)
         fVar12 = pfVar3[2];
         fVar15 = pfVar3[3];
         fVar14 = pfVar3[1];
-        fVar21 = ((fVar10 + fVar21 + _DAT_180be2288) - fVar13) * fVar1;
-        fVar19 = ((fVar19 + fVar9 + _DAT_180be2288) - fVar11) * fVar1;
-        fVar22 = ((fVar18 + fVar22 + _DAT_180be2288) - fVar16) * fVar1;
+        fVar21 = ((fVar10 + fVar21 + ui_system_buffer_config) - fVar13) * fVar1;
+        fVar19 = ((fVar19 + fVar9 + ui_system_buffer_config) - fVar11) * fVar1;
+        fVar22 = ((fVar18 + fVar22 + ui_system_buffer_config) - fVar16) * fVar1;
         fVar17 = pfVar3[4];
-        fVar23 = ((fVar14 + fVar23 + _DAT_180be2288) - fStack000000000000002c) * fVar1;
-        fVar24 = ((fVar12 + fVar24 + _DAT_180be2288) - fStack0000000000000028) * fVar1;
-        fVar8 = ((fVar15 + fVar8 + _DAT_180be2288) - fStackX_24) * fVar1;
+        fVar23 = ((fVar14 + fVar23 + ui_system_buffer_config) - fStack000000000000002c) * fVar1;
+        fVar24 = ((fVar12 + fVar24 + ui_system_buffer_config) - fStack0000000000000028) * fVar1;
+        fVar8 = ((fVar15 + fVar8 + ui_system_buffer_config) - fStackX_24) * fVar1;
         fStack0000000000000108 =
-             ((fVar17 + fStack0000000000000108 + _DAT_180be2288) - fStack0000000000000030) * fVar1;
+             ((fVar17 + fStack0000000000000108 + ui_system_buffer_config) - fStack0000000000000030) * fVar1;
         fVar2 = pfVar3[5];
         *(float *)((longlong)pfVar3 + (longlong)unaff_RDI + (-8 - (longlong)unaff_RBP)) = fVar19;
         pfVar4[-1] = fVar21;
@@ -577,9 +577,9 @@ uint64_t FUN_18077d60f(void)
         *pfVar4 = fVar22;
         pfVar4[1] = fVar23;
         pfVar4[2] = fVar24;
-        fVar20 = fVar20 + fVar2 + _DAT_180be2288;
+        fVar20 = fVar20 + fVar2 + ui_system_buffer_config;
         pfVar4[3] = fVar8;
-        _DAT_180be2288 = -_DAT_180be2288;
+        ui_system_buffer_config = -ui_system_buffer_config;
         pfVar4[4] = fStack0000000000000108;
         fVar20 = (fVar20 - fStackX_20) * fVar1;
         pfVar4[5] = fVar20;
@@ -616,7 +616,7 @@ uint64_t FUN_18077d60f(void)
     pfVar4 = (float *)(unaff_RBX + 0x29c);
     lVar6 = (longlong)unaff_RDI - (longlong)unaff_RBP;
     uVar7 = in_R9 & 0xffffffff;
-    fVar14 = _DAT_180be2288;
+    fVar14 = ui_system_buffer_config;
     do {
       fVar12 = pfVar4[-0x20];
       fVar15 = *pfVar4;
@@ -633,7 +633,7 @@ uint64_t FUN_18077d60f(void)
           iVar5 = iVar5 + -1;
           pfVar3 = pfVar3 + in_R9;
           fVar12 = fVar17;
-          _DAT_180be2288 = fVar14;
+          ui_system_buffer_config = fVar14;
         } while (iVar5 != 0);
       }
       pfVar4[-0x20] = fVar17;
@@ -718,20 +718,20 @@ uint64_t FUN_18077d6ff(void)
         fVar10 = pfVar3[1];
         fVar17 = pfVar3[-2];
         fVar15 = pfVar3[-1];
-        fVar18 = ((fVar17 + fVar18 + _DAT_180be2288) - fVar11) * fVar14;
-        fVar19 = ((fVar15 + fVar19 + _DAT_180be2288) - fStack0000000000000108) * fVar14;
+        fVar18 = ((fVar17 + fVar18 + ui_system_buffer_config) - fVar11) * fVar14;
+        fVar19 = ((fVar15 + fVar19 + ui_system_buffer_config) - fStack0000000000000108) * fVar14;
         fVar12 = pfVar3[3];
         fVar13 = pfVar3[2];
-        fVar21 = ((fVar9 + fVar21 + _DAT_180be2288) - fVar8) * fVar14;
+        fVar21 = ((fVar9 + fVar21 + ui_system_buffer_config) - fVar8) * fVar14;
         *(float *)((unaff_RDI - (longlong)unaff_RBP) + -8 + (longlong)pfVar3) = fVar18;
         pfVar4[-1] = fVar19;
         pfVar3 = pfVar3 + 6;
-        fVar22 = ((fVar10 + fVar22 + _DAT_180be2288) - fVar20) * fVar14;
+        fVar22 = ((fVar10 + fVar22 + ui_system_buffer_config) - fVar20) * fVar14;
         *pfVar4 = fVar21;
-        fVar23 = fVar13 + fVar23 + _DAT_180be2288;
+        fVar23 = fVar13 + fVar23 + ui_system_buffer_config;
         pfVar4[1] = fVar22;
-        fVar24 = fVar12 + fVar24 + _DAT_180be2288;
-        _DAT_180be2288 = -_DAT_180be2288;
+        fVar24 = fVar12 + fVar24 + ui_system_buffer_config;
+        ui_system_buffer_config = -ui_system_buffer_config;
         fVar23 = (fVar23 - fStackX_20) * fVar14;
         pfVar4[2] = fVar23;
         fVar24 = (fVar24 - fStackX_24) * fVar14;
@@ -794,15 +794,15 @@ uint64_t FUN_18077d6ff(void)
         fVar13 = pfVar3[2];
         fVar12 = pfVar3[3];
         fVar15 = pfVar3[1];
-        fVar21 = ((fVar10 + fVar21 + _DAT_180be2288) - fVar14) * fVar1;
-        fVar19 = ((fVar19 + fVar9 + _DAT_180be2288) - fVar11) * fVar1;
-        fVar22 = ((fVar18 + fVar22 + _DAT_180be2288) - fVar16) * fVar1;
+        fVar21 = ((fVar10 + fVar21 + ui_system_buffer_config) - fVar14) * fVar1;
+        fVar19 = ((fVar19 + fVar9 + ui_system_buffer_config) - fVar11) * fVar1;
+        fVar22 = ((fVar18 + fVar22 + ui_system_buffer_config) - fVar16) * fVar1;
         fVar17 = pfVar3[4];
-        fVar23 = ((fVar15 + fVar23 + _DAT_180be2288) - fStack000000000000002c) * fVar1;
-        fVar24 = ((fVar13 + fVar24 + _DAT_180be2288) - fStack0000000000000028) * fVar1;
-        fVar8 = ((fVar12 + fVar8 + _DAT_180be2288) - fStackX_24) * fVar1;
+        fVar23 = ((fVar15 + fVar23 + ui_system_buffer_config) - fStack000000000000002c) * fVar1;
+        fVar24 = ((fVar13 + fVar24 + ui_system_buffer_config) - fStack0000000000000028) * fVar1;
+        fVar8 = ((fVar12 + fVar8 + ui_system_buffer_config) - fStackX_24) * fVar1;
         fStack0000000000000108 =
-             ((fVar17 + fStack0000000000000108 + _DAT_180be2288) - fStack0000000000000030) * fVar1;
+             ((fVar17 + fStack0000000000000108 + ui_system_buffer_config) - fStack0000000000000030) * fVar1;
         fVar2 = pfVar3[5];
         *(float *)((longlong)pfVar3 + (unaff_RDI - (longlong)unaff_RBP) + -8) = fVar19;
         pfVar4[-1] = fVar21;
@@ -810,9 +810,9 @@ uint64_t FUN_18077d6ff(void)
         *pfVar4 = fVar22;
         pfVar4[1] = fVar23;
         pfVar4[2] = fVar24;
-        fVar20 = fVar20 + fVar2 + _DAT_180be2288;
+        fVar20 = fVar20 + fVar2 + ui_system_buffer_config;
         pfVar4[3] = fVar8;
-        _DAT_180be2288 = -_DAT_180be2288;
+        ui_system_buffer_config = -ui_system_buffer_config;
         pfVar4[4] = fStack0000000000000108;
         fVar20 = (fVar20 - fStackX_20) * fVar1;
         pfVar4[5] = fVar20;
@@ -849,7 +849,7 @@ uint64_t FUN_18077d6ff(void)
     pfVar4 = (float *)(unaff_RBX + 0x29c);
     lVar6 = unaff_RDI - (longlong)unaff_RBP;
     uVar7 = in_R9 & 0xffffffff;
-    fVar15 = _DAT_180be2288;
+    fVar15 = ui_system_buffer_config;
     do {
       fVar13 = pfVar4[-0x20];
       fVar12 = *pfVar4;
@@ -866,7 +866,7 @@ uint64_t FUN_18077d6ff(void)
           iVar5 = iVar5 + -1;
           pfVar3 = pfVar3 + in_R9;
           fVar13 = fVar17;
-          _DAT_180be2288 = fVar15;
+          ui_system_buffer_config = fVar15;
         } while (iVar5 != 0);
       }
       pfVar4[-0x20] = fVar17;

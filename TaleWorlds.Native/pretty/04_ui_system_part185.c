@@ -286,7 +286,7 @@ FUN_180775620(longlong *param_1,uint64_t param_2,uint64_t param_3,int param_4,in
                              aiStackX_20,lVar2 + 0x25c), param_3 = uStackX_8, param_2 = uStackX_10,
       iVar6 = aiStackX_20[0], param_4 = param_5, (int)uVar5 == 0)))) {
     if (param_4 != 0) {
-      (*(code *)*_DAT_180c0d100)
+      (*(code *)*ui_system_config)
                 (param_3,param_2,*(uint64_t *)(lVar2 + 0x238),*(int32_t *)(lVar2 + 600),*puVar1
                  ,(int32_t *)(lVar2 + 600),puVar1,*(int32_t *)(lVar2 + 0x24c),
                  *(int32_t *)(lVar2 + 0x230),*(int32_t *)(lVar2 + 0x228),
@@ -343,7 +343,7 @@ uint64_t FUN_180775691(void)
     uStack0000000000000038 = *(int32_t *)(unaff_RBX + 0x24c);
     uStack0000000000000040 = *(int32_t *)(unaff_RBX + 0x230);
     iStack0000000000000058 = unaff_ESI;
-    (*(code *)*_DAT_180c0d100)
+    (*(code *)*ui_system_config)
               (unaff_RBP,unaff_R15,*(uint64_t *)(unaff_RBX + 0x238),*puStack0000000000000028,
                *(int32_t *)(unaff_RBX + 0x254));
   }

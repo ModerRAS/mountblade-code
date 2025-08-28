@@ -434,7 +434,7 @@ uint64_t FUN_1805a15d0(longlong *param_1)
   if (*(int *)(lVar2 + 0x568) == 1) {
     if ((*(byte *)(param_1 + 4) & 1) == 0) {
       iVar1 = *(int *)(*(longlong *)(lVar2 + 0x590) + 0x2498);
-      if ((iVar1 != -1) && (*(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150) == 0x14)) {
+      if ((iVar1 != -1) && (*(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_ui) == 0x14)) {
         return 0;
       }
     }

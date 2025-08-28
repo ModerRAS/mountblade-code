@@ -626,7 +626,7 @@ void FUN_1806961a0(longlong param_1,int param_2,longlong param_3,int param_4,int
   longlong lStackX_18;
   longlong lStack_48;
   
-  iVar1 = _DAT_180bf00b0;
+  iVar1 = ui_system_control_config;
   lStack_48 = 3;
   lStackX_18 = param_3;
   do {

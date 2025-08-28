@@ -15,11 +15,11 @@ void FUN_18056d560(longlong param_1)
   *(uint64_t *)(param_1 + 0x46c38) = *(uint64_t *)(param_1 + 0x46c30);
   lVar2 = 36000;
   *(uint64_t *)(param_1 + 0x46c58) = *(uint64_t *)(param_1 + 0x46c50);
-  *(uint64_t *)(param_1 + 0x71c) = _DAT_180c966e8;
-  *(uint64_t *)(param_1 + 0x724) = _DAT_180c966e8;
+  *(uint64_t *)(param_1 + 0x71c) = render_system_config;
+  *(uint64_t *)(param_1 + 0x724) = render_system_config;
   *(int32_t *)(param_1 + 0x72c) = 0;
   do {
-    *puVar1 = _DAT_180c966e8;
+    *puVar1 = render_system_config;
     puVar1 = puVar1 + 1;
     lVar2 = lVar2 + -1;
   } while (lVar2 != 0);
@@ -33,7 +33,7 @@ void FUN_18056d560(longlong param_1)
   *(uint64_t *)(param_1 + 0x46cc0) = 0;
   *(uint64_t *)(param_1 + 0x46ca0) = 0;
   *(uint64_t *)(param_1 + 0x46cc8) = 0;
-  *(uint64_t *)(param_1 + 0x6b8) = _DAT_180c966e8;
+  *(uint64_t *)(param_1 + 0x6b8) = render_system_config;
   *(uint64_t *)(param_1 + 0x700) = 0;
   *(int32_t *)(param_1 + 0x718) = 0xffffffff;
   *(uint64_t *)(param_1 + 0x4c490) = *(uint64_t *)(param_1 + 0x4c488);
@@ -84,10 +84,10 @@ void FUN_18056de00(longlong param_1)
       if (puVar5 == *(ulonglong **)(param_1 + 0x658)) {
         dVar1 = *(double *)(param_1 + 0x700);
         dVar7 = (double)FUN_180629810();
-        if ((dVar1 + 120.0 < dVar7) && (_DAT_180c92514 == 1)) {
+        if ((dVar1 + 120.0 < dVar7) && (system_status_flag == 1)) {
                     // WARNING: Could not recover jumptable at 0x00018056df78. Too many branches
                     // WARNING: Treating indirect jump as call
-          (**(code **)(_DAT_180c8ece0 + 0x130))();
+          (**(code **)(render_system_data_config + 0x130))();
           return;
         }
         return;
@@ -155,10 +155,10 @@ void FUN_18056de04(longlong param_1)
       if (puVar5 == *(ulonglong **)(param_1 + 0x658)) {
         dVar1 = *(double *)(param_1 + 0x700);
         dVar7 = (double)FUN_180629810();
-        if ((dVar1 + 120.0 < dVar7) && (_DAT_180c92514 == 1)) {
+        if ((dVar1 + 120.0 < dVar7) && (system_status_flag == 1)) {
                     // WARNING: Could not recover jumptable at 0x00018056df78. Too many branches
                     // WARNING: Treating indirect jump as call
-          (**(code **)(_DAT_180c8ece0 + 0x130))();
+          (**(code **)(render_system_data_config + 0x130))();
           return;
         }
         return;
@@ -209,10 +209,10 @@ LAB_18056de98:
 void FUN_18056df64(void)
 
 {
-  if (_DAT_180c92514 == 1) {
+  if (system_status_flag == 1) {
                     // WARNING: Could not recover jumptable at 0x00018056df78. Too many branches
                     // WARNING: Treating indirect jump as call
-    (**(code **)(_DAT_180c8ece0 + 0x130))();
+    (**(code **)(render_system_data_config + 0x130))();
     return;
   }
   return;
@@ -240,13 +240,13 @@ void FUN_18056df90(longlong param_1,float param_2)
   
   bVar6 = false;
   uStack_50 = 0;
-  if (((_DAT_180c96070 != 0) && (-1 < *(int *)(_DAT_180c96070 + 0x98d930))) &&
-     (lVar5 = _DAT_180c96070 + 0x30a0 + (longlong)*(int *)(_DAT_180c96070 + 0x98d930) * 0xa60,
+  if (((render_system_config != 0) && (-1 < *(int *)(render_system_config + 0x98d930))) &&
+     (lVar5 = render_system_config + 0x30a0 + (longlong)*(int *)(render_system_config + 0x98d930) * 0xa60,
      lVar5 != 0)) {
     uStack_50 = (uint)*(uint64_t *)(lVar5 + 0x4c4);
     if (-1 < *(int *)(lVar5 + 0x564)) {
       uStack_50 = uStack_50 |
-                  *(uint *)((longlong)*(int *)(lVar5 + 0x564) * 0xa60 + 0x3564 + _DAT_180c96070) &
+                  *(uint *)((longlong)*(int *)(lVar5 + 0x564) * 0xa60 + 0x3564 + render_system_config) &
                   0x7800c;
     }
     iStack_4c = (int)((ulonglong)*(uint64_t *)(lVar5 + 0x4c4) >> 0x20);
@@ -372,7 +372,7 @@ FUN_18056e468:
       bVar8 = true;
       if ((ushort)auStackX_18[0] < 0x17) {
         uVar7 = (ulonglong)(auStackX_18[0] & 0xffff);
-        FUN_1800623b0(_DAT_180c86928,0,0x40000000000,0xc,&unknown_var_8832_ptr,
+        FUN_1800623b0(system_message_context,0,0x40000000000,0xc,&unknown_var_8832_ptr,
                       *(uint64_t *)(&unknown_var_8272_ptr + uVar7 * 8));
         uVar4 = 0x180c95bf8;
         lVar1 = *(longlong *)(uVar7 * 0x10 + 0x180c95bf8);
@@ -389,10 +389,10 @@ FUN_18056e468:
     }
     else {
       if (!bVar8) goto FUN_18056e468;
-      _DAT_180c95dc8 = param_2;
-      uVar4 = (**(code **)(_DAT_180c8ece0 + 0x138))();
+      render_system_config = param_2;
+      uVar4 = (**(code **)(render_system_data_config + 0x138))();
       bVar8 = (char)uVar4 != '\0';
-      _DAT_180c95dc8 = 0;
+      render_system_config = 0;
     }
     iVar6 = iVar6 + 1;
     if (bVar8 == false) {
@@ -595,9 +595,9 @@ LAB_18056e76f:
       }
       else if (((int)uStack_628 < iVar14) ||
               (((int)uStack_628 == iVar14 && (uStack_628._4_4_ < *(int *)(param_1 + 0x720))))) {
-        uStack_630 = _DAT_180c966e8;
+        uStack_630 = render_system_config;
         puVar15 = (ulonglong *)(param_1 + 0x730);
-        uVar9 = _DAT_180c966e8;
+        uVar9 = render_system_config;
         do {
           iVar14 = (int)*puVar15;
           if ((iVar14 == (int)uStack_628) && (*(int *)((longlong)puVar15 + 4) == uStack_628._4_4_))
@@ -627,7 +627,7 @@ LAB_18056e777:
         }
         uStack_630 = CONCAT44(uStack_630._4_4_,iVar14);
         uStack_90 = 0;
-        uStack_78 = _DAT_180c966e8;
+        uStack_78 = render_system_config;
         uStack_58 = 0;
         puStack_80 = auStack_618;
         uStack_88 = 0x2c40;

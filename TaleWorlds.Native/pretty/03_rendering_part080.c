@@ -235,7 +235,7 @@ void rendering_system_process_render_data(void)
       *(uint64_t *)(unaff_RSI + 0x6c) = _fStack0000000000000048;
     }
     else {
-      fVar15 = *(float *)(unaff_RSI + 0x68) + _DAT_180bf3ff8;
+      fVar15 = *(float *)(unaff_RSI + 0x68) + render_system_control_memory;
     }
     *(float *)(unaff_RSI + 0x68) = fVar15;
     in_stack_00000050 = 0;
@@ -247,7 +247,7 @@ void rendering_system_process_render_data(void)
     bVar9 = unaff_R14B;
   }
   *(byte *)(unaff_RSI + 0x7d) = bVar9;
-  lVar14 = _DAT_180c868d0;
+  lVar14 = render_system_data_memory;
   fVar15 = fVar32 * fVar32 + fVar31 * fVar31;
   if (unaff_XMM14_Da * unaff_XMM14_Da <= fVar15) {
     fVar31 = (float)system_buffer_01f0;
@@ -308,11 +308,11 @@ void rendering_system_process_render_data(void)
         iStack0000000000000078 = iVar10;
         iStack000000000000007c = iVar13;
         FUN_1801edeb0();
-        lVar14 = _DAT_180c868d0;
-        if (*(char *)(_DAT_180c86950 + 0x1609) != cVar12) {
+        lVar14 = render_system_data_memory;
+        if (*(char *)(system_operation_state + 0x1609) != cVar12) {
           _fStack0000000000000048 = CONCAT44(iVar13,iVar10);
-          FUN_180174080(*(uint64_t *)(_DAT_180c86870 + 8),_fStack0000000000000048);
-          lVar14 = _DAT_180c868d0;
+          FUN_180174080(*(uint64_t *)(system_main_module_state + 8),_fStack0000000000000048);
+          lVar14 = render_system_data_memory;
         }
       }
       *(char *)(lVar14 + 0x2028) = cVar12;
@@ -402,7 +402,7 @@ void rendering_system_process_render_data(void)
   _fStack0000000000000070 = _fStack0000000000000058;
   uStack000000000000006c = 0xee;
   FUN_180310a00(uVar16,&stack0x00000068);
-  fVar15 = _DAT_180bf3ff8;
+  fVar15 = render_system_control_memory;
   uVar8 = 0;
   uVar26 = 0;
   if (*(char *)(unaff_RSI + 0x80) != cVar12) {
@@ -449,7 +449,7 @@ void rendering_system_process_render_data(void)
     auVar29._0_4_ = auVar28._0_4_ * 255.0;
     FUN_1808eecf0(*(int32_t *)(unaff_RSI + 0x330),&stack0x00000020,auVar25._0_8_,auVar29._0_8_,
                   CONCAT22(uVar33,CONCAT11((char)(int)auVar29._0_4_,(char)(int)auVar25._0_4_)));
-    fVar15 = _DAT_180bf3ff8;
+    fVar15 = render_system_control_memory;
   }
   if (*(char *)(unaff_RSI + 0x192) == cVar12) {
     uVar11 = 4;

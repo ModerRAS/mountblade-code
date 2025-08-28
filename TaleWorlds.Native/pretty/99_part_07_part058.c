@@ -108,7 +108,7 @@ void FUN_1804d2fd0(longlong *param_1,longlong param_2)
   pcStack_1d8 = FUN_1804df640;
   pcStack_1d0 = (code *)&unknown_var_240_ptr;
   plStack_1a8 = param_1;
-  aplStack_1e8[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(int)lVar13 + 0x28,8,system_allocation_flags);
+  aplStack_1e8[0] = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,(int)lVar13 + 0x28,8,system_allocation_flags);
   *aplStack_1e8[0] = (longlong)plStack_1a8;
   aplStack_1e8[0][1] = (longlong)plStack_1a0;
   *(int32_t *)(aplStack_1e8[0] + 2) = (int32_t)uStack_198;
@@ -145,7 +145,7 @@ void FUN_1804d2fd0(longlong *param_1,longlong param_2)
           if (lVar13 == 0) {
             lVar13 = 1;
 LAB_1804d3239:
-            puVar8 = (uint *)FUN_18062b420(_DAT_180c8ed18,lVar13 * 4,(char)param_1[0x87]);
+            puVar8 = (uint *)FUN_18062b420(system_memory_pool_ptr,lVar13 * 4,(char)param_1[0x87]);
             puVar7 = (uint *)param_1[0x85];
             puVar11 = (uint *)param_1[0x84];
             uVar15 = extraout_XMM0_Da;

@@ -471,11 +471,11 @@ int FUN_1806391a0(longlong param_1,uint64_t param_2,char *param_3)
   
   (**(code **)(*(longlong *)(param_1 + 8) + 0x10))(param_1 + 8);
   if (*param_3 == '\0') {
-    puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
+    puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
     puVar2 = &system_data_c7ec;
   }
   else {
-    puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
+    puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
     puVar2 = &unknown_var_24_ptr;
   }
   *(int8_t *)(puVar1 + 2) = 0;
@@ -717,12 +717,12 @@ void FUN_1806393b0(uint64_t param_1,longlong *param_2,ulonglong param_3)
   ulonglong uStack_48;
   
   uVar4 = auStack_7c._4_8_;
-  lVar3 = _DAT_180c8ed70;
+  lVar3 = render_system_data_config;
   alStack_b0[1] = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
   uStack_b8 = 0;
-  alStack_b0[0] = _DAT_180c8ed70;
-  lVar1 = _DAT_180c8ed70 + 200;
+  alStack_b0[0] = render_system_data_config;
+  lVar1 = render_system_data_config + 200;
   auStackX_18[0] = param_3;
   plStack_98 = param_2;
   lStack_88 = lVar1;
@@ -999,8 +999,8 @@ void FUN_180639830(uint64_t param_1,ulonglong param_2)
   uint64_t *puVar5;
   uint64_t *puVar6;
   
-  lVar2 = _DAT_180c8ed70;
-  lVar1 = _DAT_180c8ed70 + 200;
+  lVar2 = render_system_data_config;
+  lVar1 = render_system_data_config + 200;
   iVar3 = _Mtx_lock(lVar1);
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
@@ -1111,7 +1111,7 @@ LAB_180639a12:
   else {
     uVar5 = 1;
   }
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0xc0,(char)param_1[5]);
+  lVar4 = FUN_18062b420(system_memory_pool_ptr,0xc0,(char)param_1[5]);
   *(ulonglong *)(lVar4 + 0x20) = *param_5;
   *(uint64_t *)(lVar4 + 0x28) = &unknown_var_720_ptr;
   *(uint64_t *)(lVar4 + 0x30) = 0;
@@ -1145,7 +1145,7 @@ void FUN_180639ad0(longlong param_1,uint64_t param_2,longlong param_3,uint64_t p
   else {
     uVar2 = 0;
   }
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0xc0,*(int8_t *)(param_1 + 0x28),param_4,
+  lVar1 = FUN_18062b420(system_memory_pool_ptr,0xc0,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
   *(ulonglong *)(lVar1 + 0x20) = *param_5;
   *(uint64_t *)(lVar1 + 0x28) = &unknown_var_720_ptr;

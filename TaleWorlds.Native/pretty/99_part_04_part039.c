@@ -190,7 +190,7 @@ void FUN_1802ab9c0(ulonglong *param_1)
       lVar12 = uVar5 - uVar10;
       lVar4 = lVar12 >> 3;
       if (lVar4 != 0) {
-        uVar7 = FUN_18062b420(_DAT_180c8ed18,lVar4 * 8,(uint)uVar11 & 0xff);
+        uVar7 = FUN_18062b420(system_memory_pool_ptr,lVar4 * 8,(uint)uVar11 & 0xff);
       }
       uVar1 = uVar7 + lVar4 * 8;
       if (uVar10 != uVar5) {
@@ -364,7 +364,7 @@ void FUN_1802abe00(longlong *param_1,longlong *param_2,uint64_t param_3,uint64_t
   if (lVar5 == 0) {
     lVar5 = 1;
 LAB_1802abea0:
-    puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar5 * 8,(char)param_1[3],param_4,uVar9);
+    puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar5 * 8,(char)param_1[3],param_4,uVar9);
     puVar7 = (uint64_t *)param_1[1];
     puVar4 = (uint64_t *)*param_1;
     puVar8 = puVar3;
@@ -541,7 +541,7 @@ void FUN_1802ac200(uint64_t param_1,longlong *param_2,longlong param_3)
   int8_t auStack_b0 [136];
   ulonglong uStack_28;
   
-  uVar1 = _DAT_180c86970;
+  uVar1 = system_system_data_config;
   uStack_e0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   uStack_e8 = 0;

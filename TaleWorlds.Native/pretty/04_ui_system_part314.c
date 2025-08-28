@@ -58,7 +58,7 @@ void FUN_18083b202(uint64_t param_1,int8_t (*param_2) [32],int param_3,int param
     *(int8_t (*) [16])(in_RAX + -0x48) = in_ZMM6._0_16_;
     pauVar16 = param_2;
     do {
-      auVar13 = _DAT_1809815e0;
+      auVar13 = ui_system_memory_config;
       param_2 = pauVar16;
       if (0 < (int)uVar19) {
         iVar22 = 4 << (uStack0000000000000080 & 0x1f);
@@ -192,7 +192,7 @@ ulonglong FUN_18083b22e(uint64_t param_1,uint param_2,uint64_t param_3,int param
   *(int8_t (*) [16])(in_RAX + -0x48) = in_ZMM6._0_16_;
   uVar20 = (ulonglong)(param_2 + 4);
   do {
-    auVar13 = _DAT_1809815e0;
+    auVar13 = ui_system_memory_config;
     if (0 < (int)uVar18) {
       iVar21 = (int)uVar20 << (param_2 & 0x1f);
       lVar15 = (longlong)param_4 >> ((longlong)(int)param_2 & 0x3fU);
@@ -384,7 +384,7 @@ void FUN_18083b3d0(int8_t (*param_1) [32])
   auVar5._24_4_ = auVar2._24_4_ * 1.0 + auVar1._24_4_;
   auVar5._28_4_ = fVar4 + auVar1._28_4_;
   auVar1 = vperm2f128_avx(auVar7,auVar7,0);
-  auVar3 = vpermilps_avx(auVar5,_DAT_180981440);
+  auVar3 = vpermilps_avx(auVar5,ui_system_memory_config);
   auVar2 = vperm2f128_avx(auVar7,auVar7,0x11);
   auVar8._0_4_ = auVar1._0_4_ * -1.0 + auVar2._0_4_;
   auVar8._4_4_ = auVar1._4_4_ * -1.0 + auVar2._4_4_;
@@ -394,7 +394,7 @@ void FUN_18083b3d0(int8_t (*param_1) [32])
   auVar8._20_4_ = auVar1._20_4_ * 1.0 + auVar2._20_4_;
   auVar8._24_4_ = auVar1._24_4_ * 1.0 + auVar2._24_4_;
   auVar8._28_4_ = fVar4 + auVar2._28_4_;
-  auVar2 = vpermilps_avx(auVar8,_DAT_180981440);
+  auVar2 = vpermilps_avx(auVar8,ui_system_memory_config);
   auVar1 = vshufps_avx(auVar5,auVar5,0xee);
   *(float *)*param_1 = auVar3._0_4_ * 1.0 + auVar1._0_4_;
   *(float *)(*param_1 + 4) = auVar3._4_4_ * -1.0 + auVar1._4_4_;
@@ -447,7 +447,7 @@ void FUN_18083b4a0(int8_t (*param_1) [32])
   auVar3 = *pauVar1;
   auVar4 = param_1[1];
   auVar5 = vsubps_avx(auVar4,auVar2);
-  auVar7 = vpermilps_avx(auVar5,_DAT_1809813c0);
+  auVar7 = vpermilps_avx(auVar5,ui_system_memory_config);
   auVar9 = *param_1;
   auVar6 = vsubps_avx(auVar9,auVar3);
   auVar12 = vshufps_avx(auVar6,auVar6,0xb5);
@@ -467,7 +467,7 @@ void FUN_18083b4a0(int8_t (*param_1) [32])
   *(float *)(*param_1 + 0x18) = (auVar6._24_4_ * 0.0 + auVar12._24_4_) * 1.0 + auVar13._24_4_ * 0.0;
   *(float *)(*param_1 + 0x1c) = in_register_0000131c + in_register_0000125c;
   auVar12 = vblendps_avx(ZEXT832(0) << 0x20,auVar5,0xf);
-  auVar13 = vpermilps_avx(auVar5,_DAT_1809814a0);
+  auVar13 = vpermilps_avx(auVar5,ui_system_memory_config);
   *(float *)param_1[1] =
        (auVar7._0_4_ * 0.0 + auVar12._0_4_) * -0.38268343 + auVar13._0_4_ * 0.9238795;
   *(float *)(param_1[1] + 4) =
@@ -546,7 +546,7 @@ void FUN_18083b4a0(int8_t (*param_1) [32])
   auVar9._24_4_ = auVar3._24_4_ * 1.0 + auVar2._24_4_;
   auVar9._28_4_ = fVar8 + auVar2._28_4_;
   auVar2 = vperm2f128_avx(auVar12,auVar12,0);
-  auVar4 = vpermilps_avx(auVar9,_DAT_180981440);
+  auVar4 = vpermilps_avx(auVar9,ui_system_memory_config);
   auVar3 = vperm2f128_avx(auVar12,auVar12,0x11);
   auVar13._0_4_ = auVar2._0_4_ * -1.0 + auVar3._0_4_;
   auVar13._4_4_ = auVar2._4_4_ * -1.0 + auVar3._4_4_;
@@ -556,7 +556,7 @@ void FUN_18083b4a0(int8_t (*param_1) [32])
   auVar13._20_4_ = auVar2._20_4_ * 1.0 + auVar3._20_4_;
   auVar13._24_4_ = auVar2._24_4_ * 1.0 + auVar3._24_4_;
   auVar13._28_4_ = fVar8 + auVar3._28_4_;
-  auVar3 = vpermilps_avx(auVar13,_DAT_180981440);
+  auVar3 = vpermilps_avx(auVar13,ui_system_memory_config);
   auVar2 = vshufps_avx(auVar9,auVar9,0xee);
   *(float *)*pauVar1 = auVar4._0_4_ * 1.0 + auVar2._0_4_;
   *(float *)(param_1[2] + 4) = auVar4._4_4_ * -1.0 + auVar2._4_4_;

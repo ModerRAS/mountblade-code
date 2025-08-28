@@ -197,12 +197,12 @@ void FUN_1805fab40(void)
 {
   longlong lVar1;
   
-  lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x5d0,8,3);
+  lVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x5d0,8,3);
   *(uint64_t *)(lVar1 + 0x598) = 0;
   *(int32_t *)(lVar1 + 0x590) = 0;
   *(uint64_t *)(lVar1 + 0x5a0) = 0;
   *(uint64_t *)(lVar1 + 0x588) = 0;
-  *(uint64_t *)(lVar1 + 0x5a0) = _DAT_180c966e8;
+  *(uint64_t *)(lVar1 + 0x5a0) = system_system_config;
   *(uint64_t *)(lVar1 + 0x5c0) = 0;
   *(longlong *)(lVar1 + 0x598) = lVar1;
   *(int32_t *)(lVar1 + 0x590) = 0x2c40;
@@ -256,20 +256,20 @@ void FUN_1805fabe0(int param_1,int param_2,longlong param_3,uint64_t *param_4)
   lVar7 = (longlong)param_1;
   if (param_2 == 0) {
 LAB_1805fac53:
-    iVar4 = *(int *)(_DAT_180c95ef8 + lVar7 * 0x14);
+    iVar4 = *(int *)(system_system_config + lVar7 * 0x14);
   }
   else if (param_2 == 1) {
-    iVar4 = *(int *)(_DAT_180c95ef8 + 4 + lVar7 * 0x14);
+    iVar4 = *(int *)(system_system_config + 4 + lVar7 * 0x14);
   }
   else if (param_2 == 2) {
-    iVar4 = *(int *)(_DAT_180c95ef8 + 8 + lVar7 * 0x14);
+    iVar4 = *(int *)(system_system_config + 8 + lVar7 * 0x14);
   }
   else if (param_2 == 3) {
-    iVar4 = *(int *)(_DAT_180c95ef8 + 0xc + lVar7 * 0x14);
+    iVar4 = *(int *)(system_system_config + 0xc + lVar7 * 0x14);
   }
   else {
     if (param_2 != 4) goto LAB_1805fac53;
-    iVar4 = *(int *)(_DAT_180c95ef8 + 0x10 + lVar7 * 0x14);
+    iVar4 = *(int *)(system_system_config + 0x10 + lVar7 * 0x14);
   }
   puStack_b8 = param_4;
   if (iVar4 != -1) {

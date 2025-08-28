@@ -184,10 +184,10 @@ void FUN_180535970(longlong *param_1,uint64_t param_2,uint64_t param_3)
                               1.0 < fVar10 * fVar10 + fVar9 * fVar9);
     if (*(int *)(*(longlong *)
                   ((longlong)*(int *)(*(longlong *)(lVar3 + 0x590) + 0xac) * 0xe0 + 0x78 +
-                  _DAT_180c95fb0) + (longlong)iStack_34 * 8) < 0) {
+                  render_system_render) + (longlong)iStack_34 * 8) < 0) {
       return;
     }
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       FUN_1805ed8d0(*(uint64_t *)(lVar3 + 0x8e0));
     }
     uStack_30 = 0;
@@ -201,8 +201,8 @@ void FUN_180535970(longlong *param_1,uint64_t param_2,uint64_t param_3)
     goto LAB_18052490a;
   }
   lVar6 = 0;
-  if ((((*(uint *)(lVar3 + 0x56c) >> 0xe & 1) != 0) && (_DAT_180c92514 != 1)) &&
-     (_DAT_180c92514 != 4)) {
+  if ((((*(uint *)(lVar3 + 0x56c) >> 0xe & 1) != 0) && (system_status_flag != 1)) &&
+     (system_status_flag != 4)) {
     plVar8 = (longlong *)(*(longlong *)(lVar3 + 0x8f8) + 0x9e8);
     piVar5 = (int *)(*(longlong *)(lVar3 + 0x8f8) + 0x9e0);
     do {
@@ -217,7 +217,7 @@ void FUN_180535970(longlong *param_1,uint64_t param_2,uint64_t param_3)
       plVar8 = plVar8 + 1;
     } while (lVar6 < 2);
   }
-  if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+  if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
     FUN_1805ed8d0(*(uint64_t *)(lVar3 + 0x8e0));
   }
   lVar6 = *(longlong *)(lVar3 + 0x20);
@@ -428,12 +428,12 @@ void FUN_18053598c(int32_t param_1)
     // 步骤5.5：检查渲染结果状态
     if (*(int *)(*(longlong *)
                   ((longlong)*(int *)(*(longlong *)(render_context_ptr + 0x590) + 0xac) * 0xe0 + 0x78 +
-                  _DAT_180c95fb0) + (longlong)render_result_code * 8) < 0) {
+                  render_system_render) + (longlong)render_result_code * 8) < 0) {
       return;  // 渲染结果无效，退出处理
     }
     
     // 步骤5.6：执行系统调用和状态更新
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       FUN_1805ed8d0(*(uint64_t *)(render_context_ptr + 0x8e0));
     }
     
@@ -445,8 +445,8 @@ void FUN_18053598c(int32_t param_1)
   
   // 步骤6：执行标志位检查和对象处理
   render_loop_counter = 0;
-  if ((((*(uint *)(render_context_ptr + 0x56c) >> 0xe & 1) != 0) && (_DAT_180c92514 != 1)) &&
-     (_DAT_180c92514 != 4)) {
+  if ((((*(uint *)(render_context_ptr + 0x56c) >> 0xe & 1) != 0) && (system_status_flag != 1)) &&
+     (system_status_flag != 4)) {
     render_object_array = (longlong *)(*(longlong *)(render_context_ptr + 0x8f8) + 0x9e8);
     render_flag_pointer = (int *)(*(longlong *)(render_context_ptr + 0x8f8) + 0x9e0);
     
@@ -465,7 +465,7 @@ void FUN_18053598c(int32_t param_1)
   }
   
   // 步骤7：执行系统状态检查和更新
-  if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+  if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
     FUN_1805ed8d0(*(uint64_t *)(render_context_ptr + 0x8e0));
   }
   
@@ -668,12 +668,12 @@ void FUN_1805359c5(void)
     // 步骤3.5：检查渲染结果状态
     if (*(int *)(*(longlong *)
                   ((longlong)*(int *)(*(longlong *)(render_context_base + 0x590) + 0xac) * 0xe0 + 0x78 +
-                  _DAT_180c95fb0) + (longlong)render_status_result * 8) < 0) {
+                  render_system_render) + (longlong)render_status_result * 8) < 0) {
       return;  // 渲染结果无效，退出处理
     }
     
     // 步骤3.6：执行系统调用和状态更新
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       FUN_1805ed8d0(*(uint64_t *)(render_context_base + 0x8e0));
     }
     
@@ -685,8 +685,8 @@ void FUN_1805359c5(void)
   
   // 步骤4：执行标志位检查和对象处理
   render_object_index = 0;
-  if ((((*(uint *)(render_context_base + 0x56c) >> 0xe & 1) != 0) && (_DAT_180c92514 != 1)) &&
-     (_DAT_180c92514 != 4)) {
+  if ((((*(uint *)(render_context_base + 0x56c) >> 0xe & 1) != 0) && (system_status_flag != 1)) &&
+     (system_status_flag != 4)) {
     render_object_list = (longlong *)(*(longlong *)(render_context_base + 0x8f8) + 0x9e8);
     render_flag_array = (int *)(*(longlong *)(render_context_base + 0x8f8) + 0x9e0);
     
@@ -705,7 +705,7 @@ void FUN_1805359c5(void)
   }
   
   // 步骤5：执行系统状态检查和更新
-  if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+  if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
     FUN_1805ed8d0(*(uint64_t *)(render_context_base + 0x8e0));
   }
   

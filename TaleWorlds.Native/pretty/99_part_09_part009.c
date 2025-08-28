@@ -286,7 +286,7 @@ LAB_1805c1cc6:
   lVar22 = *param_1;
   if ((((*(int *)(lVar22 + 0x920) != 0) && ((*(uint *)(lVar22 + 0x56c) & 0x100000) != 0)) &&
       ((*(uint *)(param_1 + 0x413) >> 8 & 1) == 0)) &&
-     ((_DAT_180c92514 == 0 || (_DAT_180c92514 == 5)))) {
+     ((system_status_flag == 0 || (system_status_flag == 5)))) {
     param_2[8] = 100000.0;
     lVar22 = *param_1;
   }

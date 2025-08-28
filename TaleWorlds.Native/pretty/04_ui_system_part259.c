@@ -537,7 +537,7 @@ FUN_180815ea0(uint64_t param_1,float *param_2,int param_3,int param_4,int16_t *p
   
   lVar4 = (longlong)param_4;
   lVar2 = 4;
-  pfVar5 = (float *)(_DAT_180c2e978 + (0x10 - (longlong)param_3) * 4);
+  pfVar5 = (float *)(ui_system_config + (0x10 - (longlong)param_3) * 4);
   do {
     pfVar6 = pfVar5;
     pfVar3 = param_2;

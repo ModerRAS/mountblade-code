@@ -150,7 +150,7 @@ int FUN_1802346f0(longlong *param_1)
     if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
       puVar2 = *(void **)(*param_1 + 0x18);
     }
-    FUN_1800623b0(_DAT_180c86928,0,0x80000000000,3,&unknown_var_5472_ptr,iVar1,puVar2,
+    FUN_1800623b0(system_message_context,0,0x80000000000,3,&unknown_var_5472_ptr,iVar1,puVar2,
                   *(int32_t *)(param_1[1] + 0x60));
   }
   *(int8_t *)(param_1 + 6) = 1;

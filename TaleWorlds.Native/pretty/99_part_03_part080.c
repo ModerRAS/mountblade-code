@@ -14,7 +14,7 @@ void FUN_180245600(longlong param_1)
   
   *(int8_t *)(param_1 + 0x1c60) = 1;
   lVar4 = param_1;
-  uVar1 = func_0x0001800e2bf0(_DAT_180c86890);
+  uVar1 = func_0x0001800e2bf0(system_parameter_buffer);
   *(int8_t *)(param_1 + 0x1c61) = uVar1;
   if (*(int *)(param_1 + 8) == -1) {
     bVar2 = 0;
@@ -638,7 +638,7 @@ longlong FUN_180245b90(longlong param_1)
   *(uint64_t *)(param_1 + 0x98e0) = 0;
   *(uint64_t *)(param_1 + 0x98e8) = 0;
   *(uint64_t *)(param_1 + 0x98f0) = 0;
-  lVar2 = _DAT_180c86890 + 0xee0;
+  lVar2 = system_parameter_buffer + 0xee0;
   *(uint64_t *)(param_1 + 0x98f8) = 0;
   *(uint64_t *)(param_1 + 0x9900) = 0;
   *(uint64_t *)(param_1 + 0x9908) = 0;

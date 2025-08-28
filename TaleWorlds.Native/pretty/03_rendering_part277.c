@@ -46,7 +46,7 @@ void FUN_18041be90(longlong param_1,ulonglong param_2)
     pfVar6 = pfVar5;
     pfVar2 = pfVar4;
     if (uVar11 != 0) {
-      pfVar2 = (float *)FUN_18062b420(_DAT_180c8ed18,uVar11 * 0xc,*(int8_t *)(param_1 + 0x60));
+      pfVar2 = (float *)FUN_18062b420(system_memory_pool_ptr,uVar11 * 0xc,*(int8_t *)(param_1 + 0x60));
       pfVar5 = (float *)*plVar1;
       pfVar6 = *(float **)(param_1 + 0x50);
     }
@@ -105,7 +105,7 @@ void FUN_18041be90(longlong param_1,ulonglong param_2)
           if (lVar9 == 0) {
             lVar9 = 1;
 LAB_18041a774:
-            pfVar3 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar9 * 0xc,
+            pfVar3 = (float *)FUN_18062b420(system_memory_pool_ptr,lVar9 * 0xc,
                                             *(int8_t *)(param_1 + 0x60));
             pfVar6 = (float *)*plVar1;
             pfVar8 = *(float **)(param_1 + 0x50);
@@ -255,7 +255,7 @@ uint64_t * FUN_18041bf60(uint64_t *param_1,uint64_t param_2,longlong param_3)
   *param_1 = &unknown_var_9560_ptr;
   FUN_1801eb9b0(param_1 + 0x19);
   LOCK();
-  *(int *)(_DAT_180c8aa08 + 0x30c) = *(int *)(_DAT_180c8aa08 + 0x30c) + 1;
+  *(int *)(system_global_data_ptr + 0x30c) = *(int *)(system_global_data_ptr + 0x30c) + 1;
   UNLOCK();
   param_1[0x18] = param_2;
   FUN_18029a300(param_1 + 0x19,param_3);
@@ -264,7 +264,7 @@ uint64_t * FUN_18041bf60(uint64_t *param_1,uint64_t param_2,longlong param_3)
   *(int32_t *)(param_1 + 0x2d) = *(int32_t *)(param_3 + 0xa0);
   *(int32_t *)((longlong)param_1 + 0x16c) = *(int32_t *)(param_3 + 0xa4);
   *(int32_t *)(param_1 + 0x2e) = *(int32_t *)(param_3 + 0xa8);
-  if (*(char *)(_DAT_180c8aa08 + 9) == '\0') {
+  if (*(char *)(system_global_data_ptr + 9) == '\0') {
     param_1[3] = 0xfffffffffffffffc;
   }
   return param_1;
@@ -297,12 +297,12 @@ int FUN_18041c0b0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int iVar2;
   int8_t auStack_c0 [184];
   
-  if (*(char *)(_DAT_180c8aa08 + 0x310) != '\0') {
+  if (*(char *)(system_global_data_ptr + 0x310) != '\0') {
     FUN_1801c9340(auStack_c0,param_1 + 200,param_3,param_4,0xfffffffffffffffe);
     FUN_1801c8b50();
   }
   LOCK();
-  piVar1 = (int *)(_DAT_180c8aa08 + 0x30c);
+  piVar1 = (int *)(system_global_data_ptr + 0x30c);
   iVar2 = *piVar1;
   *piVar1 = *piVar1 + -1;
   UNLOCK();

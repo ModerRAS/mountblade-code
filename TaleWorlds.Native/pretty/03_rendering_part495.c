@@ -42,7 +42,7 @@ void FUN_180531050(longlong param_1,int param_2,int param_3)
     lVar14 = (longlong)iVar12 * 0x1f8 + lStackX_20;
     lVar5 = *(longlong *)(lVar14 + 0xd8);
     lVar11 = (longlong)*(int *)(lVar14 + 0xf8) * 0xa0;
-    bVar7 = *(byte *)((longlong)*(int *)(lVar11 + 100 + lVar5) * 0x170 + 0x140 + _DAT_180c95ff0);
+    bVar7 = *(byte *)((longlong)*(int *)(lVar11 + 100 + lVar5) * 0x170 + 0x140 + render_system_config);
     if ((*(int *)(lVar11 + 0x5c + lVar5) == 0xf) && ((*(uint *)(param_1 + 0x56c) & 0x1000000) != 0))
     {
       bVar7 = bVar7 & 0xfd;
@@ -60,7 +60,7 @@ void FUN_180531050(longlong param_1,int param_2,int param_3)
         do {
           iVar10 = (int)((longlong)iVar13 % (longlong)iVar2);
           bVar7 = *(byte *)((longlong)*(int *)((longlong)iVar10 * 0xa0 + 100 + lVar5) * 0x170 +
-                            0x140 + _DAT_180c95ff0);
+                            0x140 + render_system_config);
           if ((bVar7 & 0x10) == 0) {
             if (bVar15 == 0) {
               if ((bVar7 & 1) == 0) goto LAB_1805311e8;
@@ -153,7 +153,7 @@ void FUN_180531057(longlong param_1,int param_2,int param_3)
     lVar14 = (longlong)iVar12 * 0x1f8 + in_stack_000000a8;
     lVar5 = *(longlong *)(lVar14 + 0xd8);
     lVar11 = (longlong)*(int *)(lVar14 + 0xf8) * 0xa0;
-    bVar7 = *(byte *)((longlong)*(int *)(lVar11 + 100 + lVar5) * 0x170 + 0x140 + _DAT_180c95ff0);
+    bVar7 = *(byte *)((longlong)*(int *)(lVar11 + 100 + lVar5) * 0x170 + 0x140 + render_system_config);
     if ((*(int *)(lVar11 + 0x5c + lVar5) == 0xf) && ((*(uint *)(param_1 + 0x56c) & 0x1000000) != 0))
     {
       bVar7 = bVar7 & 0xfd;
@@ -171,7 +171,7 @@ void FUN_180531057(longlong param_1,int param_2,int param_3)
         do {
           iVar10 = (int)((longlong)iVar13 % (longlong)iVar2);
           bVar7 = *(byte *)((longlong)*(int *)((longlong)iVar10 * 0xa0 + 100 + lVar5) * 0x170 +
-                            0x140 + _DAT_180c95ff0);
+                            0x140 + render_system_config);
           if ((bVar7 & 0x10) == 0) {
             if (bVar15 == 0) {
               if ((bVar7 & 1) == 0) goto LAB_1805311e8;
@@ -260,7 +260,7 @@ void FUN_180531094(longlong param_1)
   lVar10 = (longlong)unaff_EDI * 0x1f8 + lStack00000000000000a8;
   lVar3 = *(longlong *)(lVar10 + 0xd8);
   lVar8 = (longlong)*(int *)(lVar10 + 0xf8) * 0xa0;
-  bVar5 = *(byte *)((longlong)*(int *)(lVar8 + 100 + lVar3) * 0x170 + 0x140 + _DAT_180c95ff0);
+  bVar5 = *(byte *)((longlong)*(int *)(lVar8 + 100 + lVar3) * 0x170 + 0x140 + render_system_config);
   if ((*(int *)(lVar8 + 0x5c + lVar3) == 0xf) && ((*(uint *)(unaff_RBX + 0x56c) & 0x1000000) != 0))
   {
     bVar5 = bVar5 & 0xfd;
@@ -278,7 +278,7 @@ void FUN_180531094(longlong param_1)
       do {
         iVar7 = (int)((longlong)iVar9 % (longlong)iVar2);
         bVar5 = *(byte *)((longlong)*(int *)((longlong)iVar7 * 0xa0 + 100 + lVar3) * 0x170 + 0x140 +
-                         _DAT_180c95ff0);
+                         render_system_config);
         if ((bVar5 & 0x10) == 0) {
           if ((in_R10B ^ 1) == 0) {
             if ((bVar5 & 1) == 0) goto LAB_1805311e8;

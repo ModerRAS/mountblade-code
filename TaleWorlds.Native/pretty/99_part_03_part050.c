@@ -59,7 +59,7 @@ void FUN_1801ff450(longlong param_1)
   uint64_t uStack_d8;
   
   uStack_f8 = 0xfffffffffffffffe;
-  plVar3 = (longlong *)*_DAT_180c86960;
+  plVar3 = (longlong *)*system_system_data_memory;
   iVar7 = _Mtx_lock(0x180c91970);
   if (iVar7 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar7);
@@ -67,16 +67,16 @@ void FUN_1801ff450(longlong param_1)
   uVar6 = SYSTEM_DATA_MANAGER_A;
   uStackX_18 = SYSTEM_DATA_MANAGER_A;
   SYSTEM_DATA_MANAGER_A = *plVar3;
-  fVar24 = *(float *)(_DAT_180c86950 + 0x17ec) * 0.2;
-  fVar25 = *(float *)(_DAT_180c86950 + 0x17f0) * 0.16666667;
+  fVar24 = *(float *)(system_operation_state + 0x17ec) * 0.2;
+  fVar25 = *(float *)(system_operation_state + 0x17f0) * 0.16666667;
   if (system_debug_flag == '\0') {
-    dVar19 = 1.0 / *(double *)(_DAT_180c86870 + 0x208);
+    dVar19 = 1.0 / *(double *)(system_main_module_state + 0x208);
   }
   else {
-    dVar19 = 1000.0 / *(double *)(_DAT_180c86870 + 0x70);
+    dVar19 = 1000.0 / *(double *)(system_main_module_state + 0x70);
   }
   fVar20 = (float)dVar19;
-  dVar2 = *(double *)(_DAT_180c86890 + 0x1510);
+  dVar2 = *(double *)(system_parameter_buffer + 0x1510);
   fVar21 = (float)dVar2;
   fStackX_8 = fVar20;
   fStackX_10 = fVar21;
@@ -474,7 +474,7 @@ void FUN_1801fffd0(longlong param_1)
   int32_t uStack_c8;
   int32_t uStack_c4;
   
-  plVar20 = (longlong *)*_DAT_180c86960;
+  plVar20 = (longlong *)*system_system_data_memory;
   iVar6 = _Mtx_lock(0x180c91970);
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
@@ -482,8 +482,8 @@ void FUN_1801fffd0(longlong param_1)
   uVar4 = SYSTEM_DATA_MANAGER_A;
   uStackX_18 = SYSTEM_DATA_MANAGER_A;
   lVar2 = *plVar20;
-  fVar16 = *(float *)(_DAT_180c86950 + 0x17ec) * 0.5;
-  fVar15 = *(float *)(_DAT_180c86950 + 0x17f0) * 0.5;
+  fVar16 = *(float *)(system_operation_state + 0x17ec) * 0.5;
+  fVar15 = *(float *)(system_operation_state + 0x17f0) * 0.5;
   puVar3 = (int32_t *)**(uint64_t **)(lVar2 + 0x1c70);
   fVar13 = (float)puVar3[5];
   fVar11 = (float)puVar3[3];

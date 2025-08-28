@@ -125,7 +125,7 @@ LAB_18053abd4:
       iStack_f8 = (int)lVar4;
       strcpy_s(auStack_f0,0x40);
       iVar1 = FUN_18053a5e0(&system_counter_5f30,&puStack_108);
-      lVar10 = (longlong)iVar1 * 0xe0 + _DAT_180c95fb0;
+      lVar10 = (longlong)iVar1 * 0xe0 + render_system_memory;
       puStack_108 = &unknown_var_720_ptr;
       param_1[0xb] = *(longlong *)(lVar10 + 0x58);
       *(int32_t *)(param_1 + 0xc) = *(int32_t *)(lVar10 + 0x60);
@@ -538,7 +538,7 @@ void FUN_18053b400(longlong param_1,int param_2,longlong param_3,longlong param_
       uVar6 = uVar8;
       uVar12 = uVar7;
       if (uVar13 != 0) {
-        uVar6 = FUN_18062b420(_DAT_180c8ed18,uVar13 * 8,*(int8_t *)(param_1 + 0xb0));
+        uVar6 = FUN_18062b420(system_memory_pool_ptr,uVar13 * 8,*(int8_t *)(param_1 + 0xb0));
         uVar3 = *(ulonglong *)(param_1 + 0x98);
         uVar12 = *(ulonglong *)(param_1 + 0xa0);
       }
@@ -578,8 +578,8 @@ void FUN_18053b400(longlong param_1,int param_2,longlong param_3,longlong param_
     } while ((ulonglong)(longlong)(int)uVar10 <
              (ulonglong)(*(longlong *)(param_1 + 0xa0) - *(longlong *)(param_1 + 0x98) >> 3));
   }
-  plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,8,8,3);
-  lVar2 = FUN_18062b420(_DAT_180c8ed18,0x2a0,3);
+  plVar1 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,8,8,3);
+  lVar2 = FUN_18062b420(system_memory_pool_ptr,0x2a0,3);
   puVar4 = (uint64_t *)(lVar2 + 8);
   uVar7 = uVar8;
   do {
@@ -710,7 +710,7 @@ LAB_18053b7c3:
             }
           }
           FUN_18066c220(&uStack_58,&uStackX_18,uStack_68 & 0xffffffff,uStack_60 & 0xffffffff,1);
-          piVar6 = (int *)FUN_18062b420(_DAT_180c8ed18,0x10,(int8_t)uStack_4c);
+          piVar6 = (int *)FUN_18062b420(system_memory_pool_ptr,0x10,(int8_t)uStack_4c);
           *piVar6 = *(int *)(lVar13 + 4 + uVar14 * 8);
           piVar6[1] = 0;
           piVar6[2] = 0;
@@ -743,7 +743,7 @@ LAB_18053b8cf:
           if (lVar15 == 0) {
             lVar15 = 1;
 LAB_18053b930:
-            piVar7 = (int *)FUN_18062b420(_DAT_180c8ed18,lVar15 * 4,
+            piVar7 = (int *)FUN_18062b420(system_memory_pool_ptr,lVar15 * 4,
                                           *(int8_t *)(lVar10 + 0x18 + lVar13));
             piVar6 = *(int **)(lVar10 + 8 + lVar13);
             piVar9 = *(int **)(lVar10 + lVar13);
@@ -792,7 +792,7 @@ LAB_18053b930:
         lVar8 = 0;
       }
       else {
-        lVar8 = FUN_18062b420(_DAT_180c8ed18,lVar15 * 4,uVar3 & 0xff);
+        lVar8 = FUN_18062b420(system_memory_pool_ptr,lVar15 * 4,uVar3 & 0xff);
       }
       lVar15 = lVar8 + lVar15 * 4;
       if (piVar7 != piVar6) {
@@ -878,15 +878,15 @@ ulonglong FUN_18053bc10(longlong *param_1,uint64_t param_2,longlong *param_3)
   
   alStack_48[1] = 0xfffffffffffffffe;
   lVar1 = *param_1;
-  pplVar5 = _DAT_180c8ed58;
+  pplVar5 = render_system_data_memory;
   aplStackX_18[0] = param_3;
-  if (_DAT_180c8ed58 == (longlong **)0x0) {
+  if (render_system_data_memory == (longlong **)0x0) {
     QueryPerformanceCounter(applStackX_8);
     pplVar5 = applStackX_8[0];
   }
   *(int *)(lVar1 + 0x84) =
-       (int)((double)((longlong)pplVar5 - _DAT_180c8ed48) * _DAT_180c8ed50 * 100.0);
-  puVar6 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x60,0x10,3);
+       (int)((double)((longlong)pplVar5 - render_system_data_memory) * render_system_data_memory * 100.0);
+  puVar6 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x60,0x10,3);
   *puVar6 = 0;
   puVar6[1] = 0;
   puVar6[2] = 0;
@@ -928,12 +928,12 @@ ulonglong FUN_18053bc10(longlong *param_1,uint64_t param_2,longlong *param_3)
   if ((int)uVar7 != 0) {
     uVar7 = __Throw_C_error_std__YAXH_Z(uVar7 & 0xffffffff);
   }
-  uVar3 = _DAT_180c82868;
+  uVar3 = system_context_ptr;
   LOCK();
-  iVar4 = _DAT_180c91d10 + *(int *)(lVar2 + 0x80);
+  iVar4 = render_system_memory + *(int *)(lVar2 + 0x80);
   UNLOCK();
-  iVar8 = _DAT_180c91d10 + *(int *)(lVar2 + 0x80);
-  _DAT_180c91d10 = iVar4;
+  iVar8 = render_system_memory + *(int *)(lVar2 + 0x80);
+  render_system_memory = iVar4;
   if (0xf00000 < iVar8) {
     uVar7 = 0;
     LOCK();

@@ -473,7 +473,7 @@ FUN_18026ead0(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
     lVar4 = 0;
   }
   else {
-    lVar4 = FUN_18062b420(_DAT_180c8ed18,lVar6 << 5,uVar2 & 0xff,param_4,0xfffffffffffffffe);
+    lVar4 = FUN_18062b420(system_memory_pool_ptr,lVar6 << 5,uVar2 & 0xff,param_4,0xfffffffffffffffe);
   }
   param_1[1] = lVar4;
   param_1[2] = lVar4;

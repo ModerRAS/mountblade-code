@@ -177,10 +177,10 @@ void FUN_1802c8260(longlong param_1,longlong param_2,int32_t param_3)
       if (*(longlong *)(uVar4 + lVar5) != 0) {
         if (((-0.0001 < *(float *)(param_2 + 0x124d4)) && (*(float *)(param_2 + 0x124d4) < 0.0001))
            || ((*(byte *)(param_1 + 0x98) & 8) == 0)) {
-          *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1c5c) = 0;
+          *(int32_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1c5c) = 0;
         }
         else {
-          *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1c5c) = 0x3f800000;
+          *(int32_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1c5c) = 0x3f800000;
         }
         plVar1 = *(longlong **)(uVar4 + *(longlong *)(param_1 + 0x70));
         (**(code **)(*plVar1 + 0x40))(plVar1,param_2,param_3);
@@ -217,10 +217,10 @@ void FUN_1802c82a3(uint64_t param_1,uint64_t param_2,longlong param_3)
     if (*(ulonglong *)(uVar1 + param_3) != unaff_R14) {
       if (((-0.0001 < *(float *)(unaff_RSI + 0x124d4)) && (*(float *)(unaff_RSI + 0x124d4) < 0.0001)
           ) || ((*(byte *)(unaff_RBX + 0x98) & 8) == 0)) {
-        *(int *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1c5c) = (int)unaff_R14;
+        *(int *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1c5c) = (int)unaff_R14;
       }
       else {
-        *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1c5c) = 0x3f800000;
+        *(int32_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1c5c) = 0x3f800000;
       }
       (**(code **)(**(longlong **)(uVar1 + *(longlong *)(unaff_RBX + 0x70)) + 0x40))();
     }
@@ -693,13 +693,13 @@ void FUN_1802c8c60(longlong param_1)
     uStack_e8 = 0;
     auStack_e0[0] = 0;
     uStack_60 = 0x28;
-    uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
+    uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0x100,8,3);
     ppuVar4 = (void **)FUN_18005ce30(uVar3,&puStack_f8);
     ppuStack_100 = ppuVar4;
     if (ppuVar4 != (void **)0x0) {
       (**(code **)(*ppuVar4 + 0x28))(ppuVar4);
     }
-    uVar3 = _DAT_180c82868;
+    uVar3 = system_context_ptr;
     pppuStack_110 = &ppuStack_118;
     ppuStack_118 = ppuVar4;
     if (ppuVar4 != (void **)0x0) {
