@@ -218,7 +218,7 @@
 - [x] `02_core_engine_part094_sub001.c` - 已完成 - 负责人: Claude - 完成时间: 2025-08-28
 - [x] `02_core_engine_part094_sub002_sub001.c` - 已完成 - 负责人: Claude Code - 完成时间: 2025-08-28
 - [-] `02_core_engine_part094_sub002_sub002.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
-- [-] `02_core_engine_part095.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
+- [x] `02_core_engine_part095.c` - 已完成 - 负责人: Claude - 预计完成时间: 2025-08-28 - 完成时间: 2025-08-28
 - [x] `02_core_engine_part096.c` - 已完成 - 负责人: Claude - 完成时间: 2025-08-28
 - [x] `02_core_engine_part097.c` - 已完成 - 负责人: Claude - 完成时间: 2025-08-28
 - [-] `02_core_engine_part098.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
