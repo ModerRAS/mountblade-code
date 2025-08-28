@@ -621,6 +621,12 @@ void RenderingSystem_ProcessDualCoordinates2(void)
   int default_capacity;
   undefined4 coord_y;
   
+  // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
+  buffer_count_ptr = (int *)0x4000;  // 示例地址，实际应根据上下文设置
+  coord_ptr1 = (undefined4 *)0x5000;  // 示例地址，实际应根据上下文设置
+  coord_ptr2 = (undefined4 *)0x5008;  // 示例地址，实际应根据上下文设置
+  coord_x = 0x6000;                   // 示例值，实际应根据上下文设置
+  
   FUN_18011d9a0();
   coord_x = *coord_ptr2;
   default_capacity = 8;
@@ -793,6 +799,18 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_
   undefined4 color_b;
   undefined4 color_a;
   undefined4 stack_param;
+  
+  // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
+  data_ptr_reg = (longlong)data_ptr1;
+  context_reg = render_context;
+  context_reg2 = render_context;
+  render_flags = 0xFFFFFFFF;
+  texture_data = data_ptr3;
+  color_r = 0xFF;
+  color_g = 0xFF;
+  color_b = 0xFF;
+  color_a = 0xFF;
+  stack_param = 0x12345678;
   
   // 设置纹理数据
   *(undefined8 *)(data_ptr_reg + 0x10) = texture_data;
