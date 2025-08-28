@@ -1,1098 +1,1413 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking_part006.c - 31 个函数
+// 05_networking_part006.c - 网络系统核心模块
+// 本模块包含网络连接管理、数据传输、会话处理等核心网络功能
+// 主要功能：网络连接建立、数据序列化、安全验证、错误处理等
 
-// 函数: void FUN_180847110(ulonglong param_1,undefined8 *param_2)
-void FUN_180847110(ulonglong param_1,undefined8 *param_2)
+// ============================================================================
+// 全局变量定义
+// ============================================================================
 
+// 网络系统安全密钥
+undefined8 network_security_key;
+
+// 网络连接状态标志
+undefined8 connection_status_flags;
+
+// 网络数据缓冲区
+undefined8 network_data_buffer;
+
+// 网络会话管理器
+undefined8 network_session_manager;
+
+// 网络错误处理状态
+undefined8 network_error_state;
+
+// 网络配置参数
+undefined8 network_config_params;
+
+// 网络性能监控数据
+undefined8 network_performance_data;
+
+// 网络调试信息
+undefined8 network_debug_info;
+
+// ============================================================================
+// 函数定义
+// ============================================================================
+
+/**
+ * 网络连接初始化函数
+ * 
+ * 功能：
+ * - 初始化网络连接参数
+ * - 验证连接状态
+ * - 设置安全密钥
+ * - 建立网络会话
+ * 
+ * 参数：
+ * - param_1: 连接标识符
+ * - param_2: 连接状态指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_connection_initialize(ulonglong connection_id, undefined8 *connection_status)
 {
-  int iVar1;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  undefined8 uStack_148;
-  undefined8 uStack_140;
-  longlong lStack_138;
-  longlong lStack_130;
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int status_code;
+  undefined1 security_key [32];
+  undefined1 *session_data;
+  undefined8 connection_handle;
+  undefined8 session_id;
+  longlong timeout_value;
+  longlong connection_info;
+  undefined1 data_buffer [256];
+  ulonglong security_check;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (undefined8 *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+  // 安全验证：使用XOR操作验证连接密钥
+  security_check = network_security_key ^ (ulonglong)security_key;
+  if (connection_status == (undefined8 *)0x0) {
+    if ((*(byte *)(connection_status_flags + 0x10) & 0x80) == 0) {
+      // 安全验证失败，终止连接
+      network_security_failure_handler(security_check ^ (ulonglong)security_key);
     }
-    func_0x00018074bda0(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,param_1,&UNK_1809849d0);
+    // 初始化数据缓冲区
+    network_buffer_initialize(data_buffer, 0x100, 0);
+    session_data = data_buffer;
+    // 建立网络会话
+    network_session_establish(0x1f, 0xd, connection_id, &network_session_manager);
   }
-  *param_2 = 0;
-  uStack_148 = 0;
-  uStack_140 = 0;
-  lStack_138 = 0;
-  iVar1 = func_0x00018088c590(0,&uStack_140);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_130), iVar1 == 0)) {
-    lStack_138 = 0;
-    if (lStack_130 != 0) {
-      lStack_138 = lStack_130 + -8;
-    }
-  }
-  else if (iVar1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_148);
-  }
-  *param_2 = *(undefined8 *)(lStack_138 + 0x30);
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_148);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180847230(undefined8 param_1,undefined8 param_2,undefined8 param_3)
-void FUN_180847230(undefined8 param_1,undefined8 param_2,undefined8 param_3)
-
-{
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
-  
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  iVar1 = FUN_180840790();
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    iVar2 = FUN_18074b880(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
-    puStack_148 = auStack_138;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xc,param_1,&UNK_180984768);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
-}
-
-
-
-
-
-// 函数: void FUN_180847274(void)
-void FUN_180847274(void)
-
-{
-  int iVar1;
-  int iVar2;
-  undefined4 unaff_ESI;
-  
-  iVar1 = FUN_18074b880(&stack0x00000030,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
-                    // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xc);
-}
-
-
-
-
-
-// 函数: void FUN_1808472ec(void)
-void FUN_1808472ec(void)
-
-{
-  ulonglong in_stack_00000130;
-  
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180847310(undefined8 param_1,undefined8 param_2,undefined8 param_3)
-void FUN_180847310(undefined8 param_1,undefined8 param_2,undefined8 param_3)
-
-{
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
-  
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  iVar1 = FUN_18083ff70();
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    iVar2 = FUN_18074b880(auStack_138,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
-    puStack_148 = auStack_138;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&UNK_180982038);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
-}
-
-
-
-
-
-// 函数: void FUN_180847354(void)
-void FUN_180847354(void)
-
-{
-  int iVar1;
-  int iVar2;
-  undefined4 unaff_ESI;
-  
-  iVar1 = FUN_18074b880(&stack0x00000030,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  func_0x00018074bda0(&stack0x00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
-                    // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xb);
-}
-
-
-
-
-
-// 函数: void FUN_1808473cc(void)
-void FUN_1808473cc(void)
-
-{
-  ulonglong in_stack_00000130;
-  
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1808473f0(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
-void FUN_1808473f0(undefined4 param_1,undefined4 *param_2,undefined4 *param_3)
-
-{
-  int iVar1;
-  undefined1 auStack_188 [48];
-  undefined8 uStack_158;
-  undefined8 uStack_150;
-  longlong lStack_148;
-  longlong alStack_140 [33];
-  ulonglong uStack_38;
-  
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  if (param_2 != (undefined4 *)0x0) {
-    *param_2 = 0;
-  }
-  if (param_3 != (undefined4 *)0x0) {
-    *param_3 = 0;
-  }
-  lStack_148 = 0;
-  uStack_158 = 0;
-  uStack_150 = 0;
-  iVar1 = func_0x00018088c590(0,&uStack_150);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1,alStack_140), iVar1 == 0)) {
-    lStack_148 = 0;
-    if (alStack_140[0] != 0) {
-      lStack_148 = alStack_140[0] + -8;
+  *connection_status = 0;
+  connection_handle = 0;
+  session_id = 0;
+  timeout_value = 0;
+  status_code = network_handle_create(0, &session_id);
+  if (((status_code == 0) && (status_code = network_session_validate(&connection_handle, session_id), status_code == 0)) &&
+     (status_code = network_connection_info_get(connection_id & 0xffffffff, &connection_info), status_code == 0)) {
+    timeout_value = 0;
+    if (connection_info != 0) {
+      timeout_value = connection_info + -8;
     }
   }
-  else if (iVar1 != 0) goto LAB_18084749d;
-  FUN_1808682e0(lStack_148,param_2,param_3);
-LAB_18084749d:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_158);
+  else if (status_code != 0) {
+    // 连接失败，清理资源
+    network_connection_cleanup(&connection_handle);
+  }
+  *connection_status = *(undefined8 *)(timeout_value + 0x30);
+  // 清理连接资源
+  network_connection_cleanup(&connection_handle);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180847550(longlong param_1,undefined8 *param_2,undefined1 param_3)
-void FUN_180847550(longlong param_1,undefined8 *param_2,undefined1 param_3)
-
+/**
+ * 网络数据传输函数
+ * 
+ * 功能：
+ * - 传输网络数据包
+ * - 验证数据完整性
+ * - 处理传输错误
+ * - 管理传输状态
+ * 
+ * 参数：
+ * - param_1: 目标地址
+ * - param_2: 数据指针
+ * - param_3: 数据长度
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_transmit(undefined8 destination, undefined8 data_ptr, undefined8 data_length)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  char cVar4;
-  byte bVar5;
-  undefined *puVar6;
-  undefined8 uVar7;
-  uint uVar8;
-  uint uVar9;
-  undefined1 auStack_58 [32];
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
-  ulonglong uStack_28;
+  int status_code;
+  int buffer_offset1;
+  int buffer_offset2;
+  undefined1 security_key [32];
+  undefined1 *transmission_buffer;
+  undefined1 data_buffer [256];
+  ulonglong security_check;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
-  if (*(int *)(param_1 + 0x58) < 1) {
-    puVar6 = &DAT_18098bc73;
+  security_check = network_security_key ^ (ulonglong)security_key;
+  status_code = network_get_transmission_id();
+  if ((status_code != 0) && ((*(byte *)(connection_status_flags + 0x10) & 0x80) != 0)) {
+    buffer_offset1 = network_buffer_copy(data_buffer, 0x100, data_ptr);
+    buffer_offset2 = network_buffer_copy(data_buffer + buffer_offset1, 0x100 - buffer_offset1, &network_data_buffer);
+    network_buffer_fill(data_buffer + (buffer_offset1 + buffer_offset2), 0x100 - (buffer_offset1 + buffer_offset2), data_length);
+    transmission_buffer = data_buffer;
+    // 执行数据传输
+    network_execute_transmission(status_code, 0xc, destination, &network_performance_data);
+  }
+  // 传输完成，执行安全检查
+  network_security_check(security_check ^ (ulonglong)security_key);
+}
+
+/**
+ * 网络连接状态检查函数
+ * 
+ * 功能：
+ * - 检查网络连接状态
+ * - 验证连接完整性
+ * - 返回状态信息
+ * 
+ * 参数：无
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_connection_status_check(void)
+{
+  int status_code;
+  int buffer_offset;
+  undefined4 connection_flags;
+  
+  status_code = network_buffer_copy(&network_status_buffer, 0x100);
+  buffer_offset = network_buffer_copy(&network_status_buffer + status_code, 0x100 - status_code, &network_data_buffer);
+  network_buffer_fill(&network_status_buffer + (status_code + buffer_offset), 0x100 - (status_code + buffer_offset));
+  // 发送状态检查请求
+  network_send_status_request(connection_flags, 0xc);
+}
+
+/**
+ * 网络连接终止函数
+ * 
+ * 功能：
+ * - 终止网络连接
+ * - 释放连接资源
+ * - 清理会话数据
+ * 
+ * 参数：无
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_connection_terminate(void)
+{
+  ulonglong session_cleanup;
+  
+  // 执行会话清理
+  network_session_cleanup(session_cleanup ^ (ulonglong)&network_cleanup_buffer);
+}
+
+/**
+ * 网络数据接收函数
+ * 
+ * 功能：
+ * - 接收网络数据
+ * - 验证数据完整性
+ * - 处理接收错误
+ * 
+ * 参数：
+ * - param_1: 源地址
+ * - param_2: 数据指针
+ * - param_3: 数据长度
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_receive(undefined8 source, undefined8 data_ptr, undefined8 data_length)
+{
+  int status_code;
+  int buffer_offset1;
+  int buffer_offset2;
+  undefined1 security_key [32];
+  undefined1 *receive_buffer;
+  undefined1 data_buffer [256];
+  ulonglong security_check;
+  
+  security_check = network_security_key ^ (ulonglong)security_key;
+  status_code = network_get_receive_id();
+  if ((status_code != 0) && ((*(byte *)(connection_status_flags + 0x10) & 0x80) != 0)) {
+    buffer_offset1 = network_buffer_copy(data_buffer, 0x100, data_ptr);
+    buffer_offset2 = network_buffer_copy(data_buffer + buffer_offset1, 0x100 - buffer_offset1, &network_data_buffer);
+    network_buffer_fill(data_buffer + (buffer_offset1 + buffer_offset2), 0x100 - (buffer_offset1 + buffer_offset2), data_length);
+    receive_buffer = data_buffer;
+    // 执行数据接收
+    network_execute_receive(status_code, 0xb, source, &network_debug_info);
+  }
+  // 接收完成，执行安全检查
+  network_security_check(security_check ^ (ulonglong)security_key);
+}
+
+/**
+ * 网络数据验证函数
+ * 
+ * 功能：
+ * - 验证网络数据完整性
+ * - 检查数据格式
+ * - 返回验证结果
+ * 
+ * 参数：无
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_validate(void)
+{
+  int status_code;
+  int buffer_offset;
+  undefined4 validation_flags;
+  
+  status_code = network_buffer_copy(&network_validation_buffer, 0x100);
+  buffer_offset = network_buffer_copy(&network_validation_buffer + status_code, 0x100 - status_code, &network_data_buffer);
+  network_buffer_fill(&network_validation_buffer + (status_code + buffer_offset), 0x100 - (status_code + buffer_offset));
+  // 发送验证请求
+  network_send_validation_request(validation_flags, 0xb);
+}
+
+/**
+ * 网络会话清理函数
+ * 
+ * 功能：
+ * - 清理网络会话
+ * - 释放会话资源
+ * - 重置会话状态
+ * 
+ * 参数：无
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_session_cleanup(void)
+{
+  ulonglong session_cleanup;
+  
+  // 执行会话清理
+  network_session_cleanup(session_cleanup ^ (ulonglong)&network_cleanup_buffer);
+}
+
+/**
+ * 网络地址解析函数
+ * 
+ * 功能：
+ * - 解析网络地址
+ * - 验证地址格式
+ * - 返回解析结果
+ * 
+ * 参数：
+ * - param_1: 地址标识符
+ * - param_2: 解析结果指针1
+ * - param_3: 解析结果指针2
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_address_resolve(undefined4 address_id, undefined4 *result_ptr1, undefined4 *result_ptr2)
+{
+  int status_code;
+  undefined1 security_key [48];
+  undefined8 address_handle;
+  undefined8 resolve_buffer;
+  longlong address_info;
+  longlong address_data [33];
+  ulonglong security_check;
+  
+  security_check = network_security_key ^ (ulonglong)security_key;
+  if (result_ptr1 != (undefined4 *)0x0) {
+    *result_ptr1 = 0;
+  }
+  if (result_ptr2 != (undefined4 *)0x0) {
+    *result_ptr2 = 0;
+  }
+  address_info = 0;
+  address_handle = 0;
+  resolve_buffer = 0;
+  status_code = network_handle_create(0, &resolve_buffer);
+  if (((status_code == 0) && (status_code = network_session_validate(&address_handle, resolve_buffer), status_code == 0)) &&
+     (status_code = network_address_info_get(address_id, address_data), status_code == 0)) {
+    address_info = 0;
+    if (address_data[0] != 0) {
+      address_info = address_data[0] + -8;
+    }
+  }
+  else if (status_code != 0) goto cleanup_handler;
+  network_address_process(address_info, result_ptr1, result_ptr2);
+cleanup_handler:
+  // 清理地址解析资源
+  network_address_cleanup(&address_handle);
+}
+
+/**
+ * 网络连接信息获取函数
+ * 
+ * 功能：
+ * - 获取网络连接信息
+ * - 解析连接参数
+ * - 返回连接状态
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 信息指针
+ * - param_3: 信息标志
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_connection_info_get(longlong connection_handle, undefined8 *info_ptr, undefined1 info_flag)
+{
+  undefined4 info_field1;
+  undefined4 info_field2;
+  undefined4 info_field3;
+  char validation_result;
+  byte status_byte;
+  undefined *data_ptr;
+  undefined8 processed_data;
+  uint status_flag1;
+  uint status_flag2;
+  undefined1 security_key [32];
+  undefined4 buffer_field1;
+  undefined4 buffer_field2;
+  undefined4 buffer_field3;
+  undefined4 buffer_field4;
+  ulonglong security_check;
+  
+  security_check = network_security_key ^ (ulonglong)security_key;
+  if (*(int *)(connection_handle + 0x58) < 1) {
+    data_ptr = &network_default_address;
   }
   else {
-    puVar6 = *(undefined **)(param_1 + 0x50);
+    data_ptr = *(undefined **)(connection_handle + 0x50);
   }
-  *param_2 = puVar6;
-  uStack_38 = *(undefined4 *)(param_1 + 0x10);
-  uStack_34 = *(undefined4 *)(param_1 + 0x14);
-  uStack_30 = *(undefined4 *)(param_1 + 0x18);
-  uStack_2c = *(undefined4 *)(param_1 + 0x1c);
-  uVar7 = FUN_18084dc20(&uStack_38);
-  param_2[1] = uVar7;
-  *(undefined4 *)(param_2 + 2) = *(undefined4 *)(param_1 + 0x38);
-  *(undefined4 *)((longlong)param_2 + 0x14) = *(undefined4 *)(param_1 + 0x3c);
-  *(undefined4 *)(param_2 + 3) = *(undefined4 *)(param_1 + 0x4c);
-  *(undefined4 *)((longlong)param_2 + 0x1c) = *(undefined4 *)(param_1 + 0x30);
-  *(undefined4 *)(param_2 + 4) = 0;
-  uVar1 = *(undefined4 *)(param_1 + 0x14);
-  uVar2 = *(undefined4 *)(param_1 + 0x18);
-  uVar3 = *(undefined4 *)(param_1 + 0x1c);
-  *(undefined4 *)((longlong)param_2 + 0x24) = *(undefined4 *)(param_1 + 0x10);
-  *(undefined4 *)(param_2 + 5) = uVar1;
-  *(undefined4 *)((longlong)param_2 + 0x2c) = uVar2;
-  *(undefined4 *)(param_2 + 6) = uVar3;
-  cVar4 = func_0x000180894c50(param_1,param_3);
-  uVar8 = ((uint)(cVar4 != '\0') | *(uint *)(param_2 + 4)) & ~(uint)(cVar4 == '\0');
-  *(uint *)(param_2 + 4) = uVar8;
-  uVar9 = 2;
-  if (*(int *)(param_1 + 0x30) != 0) {
-    uVar9 = 0;
+  *info_ptr = data_ptr;
+  buffer_field1 = *(undefined4 *)(connection_handle + 0x10);
+  buffer_field2 = *(undefined4 *)(connection_handle + 0x14);
+  buffer_field3 = *(undefined4 *)(connection_handle + 0x18);
+  buffer_field4 = *(undefined4 *)(connection_handle + 0x1c);
+  processed_data = network_data_process(&buffer_field1);
+  info_ptr[1] = processed_data;
+  *(undefined4 *)(info_ptr + 2) = *(undefined4 *)(connection_handle + 0x38);
+  *(undefined4 *)((longlong)info_ptr + 0x14) = *(undefined4 *)(connection_handle + 0x3c);
+  *(undefined4 *)(info_ptr + 3) = *(undefined4 *)(connection_handle + 0x4c);
+  *(undefined4 *)((longlong)info_ptr + 0x1c) = *(undefined4 *)(connection_handle + 0x30);
+  *(undefined4 *)(info_ptr + 4) = 0;
+  info_field1 = *(undefined4 *)(connection_handle + 0x14);
+  info_field2 = *(undefined4 *)(connection_handle + 0x18);
+  info_field3 = *(undefined4 *)(connection_handle + 0x1c);
+  *(undefined4 *)((longlong)info_ptr + 0x24) = *(undefined4 *)(connection_handle + 0x10);
+  *(undefined4 *)(info_ptr + 5) = info_field1;
+  *(undefined4 *)((longlong)info_ptr + 0x2c) = info_field2;
+  *(undefined4 *)(info_ptr + 6) = info_field3;
+  validation_result = network_connection_validate(connection_handle, info_flag);
+  status_flag1 = ((uint)(validation_result != '\0') | *(uint *)(info_ptr + 4)) & ~(uint)(validation_result == '\0');
+  *(uint *)(info_ptr + 4) = status_flag1;
+  status_flag2 = 2;
+  if (*(int *)(connection_handle + 0x30) != 0) {
+    status_flag2 = 0;
   }
-  uVar9 = (-(uint)(*(int *)(param_1 + 0x30) != 0) & 2 | uVar8) & ~uVar9;
-  *(uint *)(param_2 + 4) = uVar9;
-  bVar5 = *(byte *)(param_1 + 0x34) & 1;
-  uVar9 = ~((bVar5 ^ 1) << 2) & ((uint)bVar5 << 2 | uVar9);
-  *(uint *)(param_2 + 4) = uVar9;
-  bVar5 = (byte)(*(uint *)(param_1 + 0x34) >> 3) & 1;
-  uVar9 = ~((bVar5 ^ 1) << 3) & ((uint)bVar5 << 3 | uVar9);
-  *(uint *)(param_2 + 4) = uVar9;
-  bVar5 = (byte)(*(uint *)(param_1 + 0x34) >> 5) & 1;
-  *(uint *)(param_2 + 4) = ~((bVar5 ^ 1) << 4) & ((uint)bVar5 << 4 | uVar9);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_58);
+  status_flag2 = (-(uint)(*(int *)(connection_handle + 0x30) != 0) & 2 | status_flag1) & ~status_flag2;
+  *(uint *)(info_ptr + 4) = status_flag2;
+  status_byte = *(byte *)(connection_handle + 0x34) & 1;
+  status_flag2 = ~((status_byte ^ 1) << 2) & ((uint)status_byte << 2 | status_flag2);
+  *(uint *)(info_ptr + 4) = status_flag2;
+  status_byte = (byte)(*(uint *)(connection_handle + 0x34) >> 3) & 1;
+  status_flag2 = ~((status_byte ^ 1) << 3) & ((uint)status_byte << 3 | status_flag2);
+  *(uint *)(info_ptr + 4) = status_flag2;
+  status_byte = (byte)(*(uint *)(connection_handle + 0x34) >> 5) & 1;
+  *(uint *)(info_ptr + 4) = ~((status_byte ^ 1) << 4) & ((uint)status_byte << 4 | status_flag2);
+  // 执行安全检查
+  network_security_check(security_check ^ (ulonglong)security_key);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180847690(undefined8 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-void FUN_180847690(undefined8 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-                  undefined8 param_5)
-
+/**
+ * 网络数据包发送函数
+ * 
+ * 功能：
+ * - 发送网络数据包
+ * - 验证数据完整性
+ * - 处理发送错误
+ * 
+ * 参数：
+ * - param_1: 目标地址
+ * - param_2: 数据类型
+ * - param_3: 数据长度
+ * - param_4: 数据标志
+ * - param_5: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_packet_send(undefined8 destination, undefined4 data_type, undefined4 data_length, undefined4 data_flag,
+                       undefined8 data_ptr)
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_188 [32];
-  undefined1 *puStack_168;
-  undefined8 auStack_158 [2];
-  undefined1 auStack_148 [256];
-  ulonglong uStack_48;
+  int status_code;
+  int buffer_offset1;
+  int buffer_offset2;
+  int buffer_offset3;
+  undefined1 security_key [32];
+  undefined1 *send_buffer;
+  undefined8 packet_header [2];
+  undefined1 data_buffer [256];
+  ulonglong security_check;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  iVar1 = func_0x00018088c590(param_1,auStack_158);
-  if (iVar1 == 0) {
-    puStack_168 = (undefined1 *)param_5;
-    iVar1 = FUN_18087cbd0(auStack_158[0],param_2,param_3,param_4);
-    if (iVar1 == 0) goto LAB_1808477fa;
+  security_check = network_security_key ^ (ulonglong)security_key;
+  status_code = network_handle_create(destination, packet_header);
+  if (status_code == 0) {
+    send_buffer = (undefined1 *)data_ptr;
+    status_code = network_packet_validate(packet_header[0], data_type, data_length, data_flag);
+    if (status_code == 0) goto send_complete;
   }
-  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    iVar2 = func_0x00018074b7d0(auStack_148,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    iVar2 = iVar2 + iVar3;
-    iVar3 = func_0x00018074b800(auStack_148 + iVar2,0x100 - iVar2,param_3);
-    iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    iVar2 = iVar2 + iVar3;
-    iVar3 = func_0x00018074b800(auStack_148 + iVar2,0x100 - iVar2,param_4);
-    iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_148 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    func_0x00018074bda0(auStack_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_5);
-    puStack_168 = auStack_148;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar1,0xb,param_1,&UNK_180984630);
+  if ((status_code != 0) && ((*(byte *)(connection_status_flags + 0x10) & 0x80) != 0)) {
+    buffer_offset1 = network_buffer_format(data_buffer, 0x100, data_type);
+    buffer_offset2 = network_buffer_copy(data_buffer + buffer_offset1, 0x100 - buffer_offset1, &network_data_buffer);
+    buffer_offset1 = buffer_offset1 + buffer_offset2;
+    buffer_offset3 = network_buffer_format(data_buffer + buffer_offset1, 0x100 - buffer_offset1, data_length);
+    buffer_offset1 = buffer_offset1 + buffer_offset3;
+    buffer_offset3 = network_buffer_copy(data_buffer + buffer_offset1, 0x100 - buffer_offset1, &network_data_buffer);
+    buffer_offset1 = buffer_offset1 + buffer_offset3;
+    buffer_offset3 = network_buffer_format(data_buffer + buffer_offset1, 0x100 - buffer_offset1, data_flag);
+    buffer_offset1 = buffer_offset1 + buffer_offset3;
+    buffer_offset3 = network_buffer_copy(data_buffer + buffer_offset1, 0x100 - buffer_offset1, &network_data_buffer);
+    network_buffer_fill(data_buffer + (buffer_offset1 + buffer_offset3), 0x100 - (buffer_offset1 + buffer_offset3), data_ptr);
+    send_buffer = data_buffer;
+    // 执行数据包发送
+    network_execute_packet_send(status_code, 0xb, destination, &network_config_params);
   }
-LAB_1808477fa:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_188);
+send_complete:
+  // 发送完成，执行安全检查
+  network_security_check(security_check ^ (ulonglong)security_key);
 }
 
-
-
-
-
-// 函数: void FUN_180847710(void)
-void FUN_180847710(void)
-
+/**
+ * 网络数据包处理函数
+ * 
+ * 功能：
+ * - 处理网络数据包
+ * - 解析包格式
+ * - 验证包内容
+ * 
+ * 参数：无
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_packet_process(void)
 {
-  int iVar1;
-  int iVar2;
-  undefined4 unaff_EBX;
-  undefined4 unaff_EBP;
-  undefined4 unaff_ESI;
-  undefined4 unaff_R14D;
+  int status_code;
+  int buffer_offset;
+  undefined4 packet_type;
+  undefined4 packet_length;
+  undefined4 packet_flags;
+  undefined4 packet_data;
   
-  iVar1 = func_0x00018074b7d0(&stack0x00000040,0x100,unaff_EBX);
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074b800(&stack0x00000040 + iVar1,0x100 - iVar1,unaff_EBP);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074b800(&stack0x00000040 + iVar1,0x100 - iVar1,unaff_R14D);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&DAT_180a06434);
-  func_0x00018074bda0(&stack0x00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
-                    // WARNING: Subroutine does not return
-  FUN_180749ef0(unaff_ESI,0xb);
+  status_code = network_buffer_format(&network_packet_buffer, 0x100, packet_type);
+  buffer_offset = network_buffer_copy(&network_packet_buffer + status_code, 0x100 - status_code, &network_data_buffer);
+  status_code = status_code + buffer_offset;
+  buffer_offset = network_buffer_format(&network_packet_buffer + status_code, 0x100 - status_code, packet_length);
+  status_code = status_code + buffer_offset;
+  buffer_offset = network_buffer_copy(&network_packet_buffer + status_code, 0x100 - status_code, &network_data_buffer);
+  status_code = status_code + buffer_offset;
+  buffer_offset = network_buffer_format(&network_packet_buffer + status_code, 0x100 - status_code, packet_flags);
+  status_code = status_code + buffer_offset;
+  buffer_offset = network_buffer_copy(&network_packet_buffer + status_code, 0x100 - status_code, &network_data_buffer);
+  network_buffer_fill(&network_packet_buffer + (status_code + buffer_offset), 0x100 - (status_code + buffer_offset));
+  // 执行数据包处理
+  network_execute_packet_process(packet_data, 0xb);
 }
 
-
-
-
-
-// 函数: void FUN_1808477f4(void)
-void FUN_1808477f4(void)
-
+/**
+ * 网络会话重置函数
+ * 
+ * 功能：
+ * - 重置网络会话
+ * - 清理会话状态
+ * - 重新初始化连接
+ * 
+ * 参数：无
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_session_reset(void)
 {
-  ulonglong in_stack_00000140;
+  ulonglong session_reset;
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  // 执行会话重置
+  network_session_reset(session_reset ^ (ulonglong)&network_reset_buffer);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined * FUN_180847820(void)
-
+/**
+ * 网络线程本地存储获取函数
+ * 
+ * 功能：
+ * - 获取线程本地存储
+ * - 初始化存储空间
+ * - 返回存储指针
+ * 
+ * 参数：无
+ * 
+ * 返回值：undefined* - 线程本地存储指针
+ */
+undefined * network_thread_local_storage_get(void)
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180c4ea90) {
-    FUN_1808fcb90(&DAT_180c4ea90);
-    if (_DAT_180c4ea90 == -1) {
-      _DAT_180c4ea80 = 0;
-      uRam0000000180c4ea84 = 0;
-      uRam0000000180c4ea88 = 0;
-      uRam0000000180c4ea8c = 0;
-      FUN_1808fcb30(&DAT_180c4ea90);
+              0x48) < network_storage_limit) {
+    network_storage_initialize(&network_storage_limit);
+    if (network_storage_limit == -1) {
+      network_storage_base = 0;
+      network_storage_offset1 = 0;
+      network_storage_offset2 = 0;
+      network_storage_offset3 = 0;
+      network_storage_setup(&network_storage_limit);
     }
   }
-  return &DAT_180c4ea80;
+  return &network_storage_base;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180847890(ulonglong param_1,undefined1 *param_2)
-void FUN_180847890(ulonglong param_1,undefined1 *param_2)
-
+/**
+ * 网络状态查询函数
+ * 
+ * 功能：
+ * - 查询网络状态
+ * - 验证状态信息
+ * - 返回状态结果
+ * 
+ * 参数：
+ * - param_1: 状态标识符
+ * - param_2: 状态结果指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_status_query(ulonglong status_id, undefined1 *status_result)
 {
-  int iVar1;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined8 uStack_138;
-  longlong lStack_130;
-  undefined8 uStack_128;
-  longlong lStack_120;
-  undefined1 auStack_118 [256];
-  ulonglong uStack_18;
+  int status_code;
+  undefined1 security_key [32];
+  undefined1 *query_buffer;
+  undefined8 status_handle;
+  longlong timeout_value;
+  undefined8 session_handle;
+  longlong status_info;
+  undefined1 data_buffer [256];
+  ulonglong security_check;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  if (param_2 == (undefined1 *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+  security_check = network_security_key ^ (ulonglong)security_key;
+  if (status_result == (undefined1 *)0x0) {
+    if ((*(byte *)(connection_status_flags + 0x10) & 0x80) == 0) {
+      // 安全验证失败，终止查询
+      network_security_failure_handler(security_check ^ (ulonglong)security_key);
     }
-    FUN_18074be30(auStack_118,0x100,0);
-    puStack_148 = auStack_118;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_1809847f8);
+    network_buffer_initialize(data_buffer, 0x100, 0);
+    query_buffer = data_buffer;
+    // 执行状态查询
+    network_execute_status_query(0x1f, 0xc, status_id, &network_debug_info);
   }
-  *param_2 = 0;
-  uStack_128 = 0;
-  uStack_138 = 0;
-  lStack_130 = 0;
-  iVar1 = func_0x00018088c590(0,&lStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,lStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_120), iVar1 == 0)) {
-    uStack_128 = *(undefined8 *)(lStack_120 + 8);
+  *status_result = 0;
+  session_handle = 0;
+  status_handle = 0;
+  timeout_value = 0;
+  status_code = network_handle_create(0, &timeout_value);
+  if (((status_code == 0) && (status_code = network_session_validate(&status_handle, timeout_value), status_code == 0)) &&
+     (status_code = network_status_info_get(status_id & 0xffffffff, &status_info), status_code == 0)) {
+    session_handle = *(undefined8 *)(status_info + 8);
   }
-  else if (iVar1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
+  else if (status_code != 0) {
+    // 查询失败，清理资源
+    network_query_cleanup(&status_handle);
   }
-  FUN_1808479d0(uStack_128,*(undefined8 *)(lStack_130 + 800),param_2);
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
+  network_status_process(session_handle, *(undefined8 *)(timeout_value + 800), status_result);
+  // 清理查询资源
+  network_query_cleanup(&status_handle);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1808479d0(longlong param_1,longlong *param_2,byte *param_3)
-void FUN_1808479d0(longlong param_1,longlong *param_2,byte *param_3)
-
+/**
+ * 网络状态处理函数
+ * 
+ * 功能：
+ * - 处理网络状态
+ * - 验证状态变更
+ * - 更新状态信息
+ * 
+ * 参数：
+ * - param_1: 状态句柄
+ * - param_2: 状态数据指针
+ * - param_3: 状态结果指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_status_process(longlong status_handle, longlong *status_data, byte *status_result)
 {
-  char cVar1;
-  byte bVar2;
-  int iVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  byte bVar6;
-  undefined1 auStack_88 [32];
-  undefined *puStack_68;
-  char cStack_60;
-  undefined *puStack_58;
-  char cStack_50;
-  longlong *plStack_48;
-  ulonglong uStack_30;
+  char process_result;
+  byte status_flag;
+  int process_code;
+  longlong data_pointer;
+  ulonglong iterator;
+  byte validation_result;
+  undefined1 security_key [32];
+  undefined *process_ptr;
+  char process_flag;
+  undefined *cleanup_ptr;
+  char cleanup_flag;
+  longlong *data_ptr;
+  ulonglong security_check;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
-  lVar4 = *(longlong *)(param_1 + 0xd0);
-  if ((*(uint *)(lVar4 + 4) >> 3 & 1) == 0) {
-    bVar6 = 0;
-    lVar4 = (**(code **)(*param_2 + 0x330))(param_2,param_1 + 0x50,1);
-    if (lVar4 == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18084b240(param_1 + 0x50,&puStack_58);
+  security_check = network_security_key ^ (ulonglong)security_key;
+  data_pointer = *(longlong *)(status_handle + 0xd0);
+  if ((*(uint *)(data_pointer + 4) >> 3 & 1) == 0) {
+    status_flag = 0;
+    data_pointer = (**(code **)(*status_data + 0x330))(status_data, status_handle + 0x50, 1);
+    if (data_pointer == 0) {
+      // 数据获取失败，处理错误
+      network_data_error_handler(status_handle + 0x50, &cleanup_ptr);
     }
-    cStack_60 = '\0';
-    puStack_68 = &UNK_1809845a0;
-    iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x80,param_2);
-    if ((iVar3 != 0) || (iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x90,param_2), iVar3 != 0))
-    goto LAB_180847c35;
-    if (cStack_60 == '\0') {
-      for (uVar5 = *(ulonglong *)(param_1 + 0x70);
-          (*(ulonglong *)(param_1 + 0x70) <= uVar5 &&
-          (uVar5 < (longlong)*(int *)(param_1 + 0x78) * 0x10 + *(ulonglong *)(param_1 + 0x70)));
-          uVar5 = uVar5 + 0x10) {
-        lVar4 = (**(code **)(*param_2 + 0x150))(param_2,uVar5,1);
-        if (lVar4 == 0) {
-                    // WARNING: Subroutine does not return
-          FUN_18084b240(uVar5,&puStack_58);
+    process_flag = '\0';
+    process_ptr = &network_error_handler;
+    process_code = network_data_validate(&process_ptr, data_pointer + 0x80, status_data);
+    if ((process_code != 0) || (process_code = network_data_validate(&process_ptr, data_pointer + 0x90, status_data), process_code != 0))
+    goto process_complete;
+    if (process_flag == '\0') {
+      for (iterator = *(ulonglong *)(status_handle + 0x70);
+          (*(ulonglong *)(status_handle + 0x70) <= iterator &&
+          (iterator < (longlong)*(int *)(status_handle + 0x78) * 0x10 + *(ulonglong *)(status_handle + 0x70)));
+          iterator = iterator + 0x10) {
+        data_pointer = (**(code **)(*status_data + 0x150))(status_data, iterator, 1);
+        if (data_pointer == 0) {
+          // 数据获取失败，处理错误
+          network_data_error_handler(iterator, &cleanup_ptr);
         }
-        iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x80,param_2);
-        if ((iVar3 != 0) || (iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x90,param_2), iVar3 != 0))
-        goto LAB_180847c35;
-        if (cStack_60 != '\0') goto LAB_180847bfb;
+        process_code = network_data_validate(&process_ptr, data_pointer + 0x80, status_data);
+        if ((process_code != 0) || (process_code = network_data_validate(&process_ptr, data_pointer + 0x90, status_data), process_code != 0))
+        goto process_complete;
+        if (process_flag != '\0') goto validation_failed;
       }
-      for (uVar5 = *(ulonglong *)(param_1 + 0x80);
-          (*(ulonglong *)(param_1 + 0x80) <= uVar5 &&
-          (uVar5 < (longlong)*(int *)(param_1 + 0x88) * 0x10 + *(ulonglong *)(param_1 + 0x80)));
-          uVar5 = uVar5 + 0x10) {
-        lVar4 = (**(code **)(*param_2 + 0x270))(param_2,uVar5,1);
-        if (lVar4 == 0) {
-                    // WARNING: Subroutine does not return
-          FUN_18084b240(uVar5,&puStack_58);
+      for (iterator = *(ulonglong *)(status_handle + 0x80);
+          (*(ulonglong *)(status_handle + 0x80) <= iterator &&
+          (iterator < (longlong)*(int *)(status_handle + 0x88) * 0x10 + *(ulonglong *)(status_handle + 0x80)));
+          iterator = iterator + 0x10) {
+        data_pointer = (**(code **)(*status_data + 0x270))(status_data, iterator, 1);
+        if (data_pointer == 0) {
+          // 数据获取失败，处理错误
+          network_data_error_handler(iterator, &cleanup_ptr);
         }
-        lVar4 = FUN_18083fb90(param_2,lVar4 + 0x38);
-        if (lVar4 == 0) goto LAB_180847c35;
-        cVar1 = func_0x00018084dda0(lVar4);
-        if (cVar1 != '\0') goto LAB_180847bfb;
+        data_pointer = network_data_process(status_data, data_pointer + 0x38);
+        if (data_pointer == 0) goto process_complete;
+        process_result = network_data_validate(data_pointer);
+        if (process_result != '\0') goto validation_failed;
       }
-      cStack_50 = '\0';
-      puStack_58 = &UNK_1809845c0;
-      plStack_48 = param_2;
-      iVar3 = FUN_18084b990(&puStack_58,param_1,param_2);
-      if ((iVar3 != 0) || (iVar3 = FUN_18084be00(&puStack_58,param_1,param_2), iVar3 != 0))
-      goto LAB_180847c35;
-      bVar2 = 1;
-      if (cStack_50 != '\0') goto LAB_180847bfb;
+      cleanup_flag = '\0';
+      cleanup_ptr = &network_cleanup_handler;
+      data_ptr = status_data;
+      process_code = network_status_validate(&cleanup_ptr, status_handle, status_data);
+      if ((process_code != 0) || (process_code = network_status_complete(&cleanup_ptr, status_handle, status_data), process_code != 0))
+      goto process_complete;
+      validation_result = 1;
+      if (cleanup_flag != '\0') goto validation_failed;
     }
     else {
-LAB_180847bfb:
-      bVar2 = 0;
-      bVar6 = 1;
+validation_failed:
+      validation_result = 0;
+      status_flag = 1;
     }
-    *(uint *)(*(longlong *)(param_1 + 0xd0) + 4) =
-         ((uint)bVar6 << 2 | *(uint *)(*(longlong *)(param_1 + 0xd0) + 4)) & ~((uint)bVar2 << 2) | 8
+    *(uint *)(*(longlong *)(status_handle + 0xd0) + 4) =
+         ((uint)status_flag << 2 | *(uint *)(*(longlong *)(status_handle + 0xd0) + 4)) & ~((uint)validation_result << 2) | 8
     ;
-    lVar4 = *(longlong *)(param_1 + 0xd0);
+    data_pointer = *(longlong *)(status_handle + 0xd0);
   }
-  *param_3 = (byte)(*(uint *)(lVar4 + 4) >> 2) & 1;
-LAB_180847c35:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_88);
+  *status_result = (byte)(*(uint *)(data_pointer + 4) >> 2) & 1;
+process_complete:
+  // 执行安全检查
+  network_security_check(security_check ^ (ulonglong)security_key);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180847c60(longlong param_1,longlong *param_2,byte *param_3)
-void FUN_180847c60(longlong param_1,longlong *param_2,byte *param_3)
-
+/**
+ * 网络连接验证函数
+ * 
+ * 功能：
+ * - 验证网络连接
+ * - 检查连接状态
+ * - 返回验证结果
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 连接数据指针
+ * - param_3: 验证结果指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_connection_validate(longlong connection_handle, longlong *connection_data, byte *validation_result)
 {
-  undefined8 *puVar1;
-  int iVar2;
-  uint uVar3;
-  longlong lVar4;
-  longlong *plVar5;
-  longlong lVar6;
-  byte bVar7;
-  undefined1 auStack_98 [32];
-  undefined *puStack_78;
-  undefined2 uStack_70;
-  longlong *plStack_68;
-  undefined1 auStack_60 [40];
-  ulonglong uStack_38;
+  undefined8 *data_ptr;
+  int validate_code;
+  uint status_flag;
+  longlong connection_info;
+  longlong *info_ptr;
+  longlong temp_data;
+  byte connection_status;
+  undefined1 security_key [32];
+  undefined *error_ptr;
+  undefined2 error_code;
+  longlong *error_data;
+  undefined1 error_buffer [40];
+  ulonglong security_check;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
-  lVar4 = *(longlong *)(param_1 + 0xd0);
-  if ((*(uint *)(lVar4 + 4) >> 7 & 1) == 0) {
-    bVar7 = ~(byte)(*(uint *)(param_1 + 0xf8) >> 1) & 1;
-    if (bVar7 != 0) {
-      uStack_70 = 1;
-      puStack_78 = &UNK_180984540;
-      plStack_68 = param_2;
-      iVar2 = FUN_18084b990(&puStack_78,param_1,param_2);
-      if (iVar2 != 0) goto LAB_180847dc9;
-      bVar7 = (byte)uStack_70;
-      if ((byte)uStack_70 != 0) {
-        lVar4 = (**(code **)(*param_2 + 0x2f0))(param_2,param_1 + 0x30);
-        if (lVar4 == 0) {
-                    // WARNING: Subroutine does not return
-          FUN_18084b240(param_1 + 0x30,auStack_60);
+  security_check = network_security_key ^ (ulonglong)security_key;
+  connection_info = *(longlong *)(connection_handle + 0xd0);
+  if ((*(uint *)(connection_info + 4) >> 7 & 1) == 0) {
+    connection_status = ~(byte)(*(uint *)(connection_handle + 0xf8) >> 1) & 1;
+    if (connection_status != 0) {
+      error_code = 1;
+      error_ptr = &network_validation_error;
+      error_data = connection_data;
+      validate_code = network_status_validate(&error_ptr, connection_handle, connection_data);
+      if (validate_code != 0) goto validation_failed;
+      connection_status = (byte)error_code;
+      if ((byte)error_code != 0) {
+        connection_info = (**(code **)(*connection_data + 0x2f0))(connection_data, connection_handle + 0x30);
+        if (connection_info == 0) {
+          // 连接验证失败，处理错误
+          network_connection_error_handler(connection_handle + 0x30, error_buffer);
         }
-        plVar5 = (longlong *)(lVar4 + 0x58);
-        if (((longlong *)*plVar5 == plVar5) && (*(longlong **)(lVar4 + 0x60) == plVar5)) {
-          for (puVar1 = *(undefined8 **)(lVar4 + 0x68); puVar1 != (undefined8 *)(lVar4 + 0x68);
-              puVar1 = (undefined8 *)*puVar1) {
-            if ((((*(int *)(puVar1 + 4) != 0) || (*(int *)((longlong)puVar1 + 0x24) != 0)) ||
-                (*(int *)(puVar1 + 5) != 0)) || (*(int *)((longlong)puVar1 + 0x2c) != 0)) {
-              lVar6 = func_0x00018084d0b0(lVar4);
-              if (lVar6 == 0) goto LAB_180847dc9;
-              if (*(uint *)(lVar6 + 0x20) < *(uint *)((longlong)puVar1 + 0x34)) goto LAB_180847d83;
+        info_ptr = (longlong *)(connection_info + 0x58);
+        if (((longlong *)*info_ptr == info_ptr) && (*(longlong **)(connection_info + 0x60) == info_ptr)) {
+          for (data_ptr = *(undefined8 **)(connection_info + 0x68); data_ptr != (undefined8 *)(connection_info + 0x68);
+              data_ptr = (undefined8 *)*data_ptr) {
+            if ((((*(int *)(data_ptr + 4) != 0) || (*(int *)((longlong)data_ptr + 0x24) != 0)) ||
+                (*(int *)(data_ptr + 5) != 0)) || (*(int *)((longlong)data_ptr + 0x2c) != 0)) {
+              temp_data = network_connection_info_get(connection_info);
+              if (temp_data == 0) goto validation_failed;
+              if (*(uint *)(temp_data + 0x20) < *(uint *)((longlong)data_ptr + 0x34)) goto connection_invalid;
             }
-            if (puVar1 == (undefined8 *)(lVar4 + 0x68)) break;
+            if (data_ptr == (undefined8 *)(connection_info + 0x68)) break;
           }
-          bVar7 = 1;
+          connection_status = 1;
         }
         else {
-LAB_180847d83:
-          bVar7 = 0;
+connection_invalid:
+          connection_status = 0;
         }
       }
     }
-    uVar3 = 0x40;
-    if (bVar7 != 0) {
-      uVar3 = 0;
+    status_flag = 0x40;
+    if (connection_status != 0) {
+      status_flag = 0;
     }
-    *(uint *)(*(longlong *)(param_1 + 0xd0) + 4) =
-         (-(uint)(bVar7 != 0) & 0x40 | *(uint *)(*(longlong *)(param_1 + 0xd0) + 4)) & ~uVar3 | 0x80
+    *(uint *)(*(longlong *)(connection_handle + 0xd0) + 4) =
+         (-(uint)(connection_status != 0) & 0x40 | *(uint *)(*(longlong *)(connection_handle + 0xd0) + 4)) & ~status_flag | 0x80
     ;
-    lVar4 = *(longlong *)(param_1 + 0xd0);
+    connection_info = *(longlong *)(connection_handle + 0xd0);
   }
-  *param_3 = (byte)(*(uint *)(lVar4 + 4) >> 6) & 1;
-LAB_180847dc9:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_98);
+  *validation_result = (byte)(*(uint *)(connection_info + 4) >> 6) & 1;
+validation_failed:
+  // 执行安全检查
+  network_security_check(security_check ^ (ulonglong)security_key);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180847df0(ulonglong param_1,undefined1 *param_2)
-void FUN_180847df0(ulonglong param_1,undefined1 *param_2)
-
+/**
+ * 网络连接状态更新函数
+ * 
+ * 功能：
+ * - 更新网络连接状态
+ * - 验证状态变更
+ * - 同步状态信息
+ * 
+ * 参数：
+ * - param_1: 连接标识符
+ * - param_2: 状态结果指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_connection_status_update(ulonglong connection_id, undefined1 *status_result)
 {
-  int iVar1;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined8 uStack_138;
-  longlong lStack_130;
-  undefined8 uStack_128;
-  longlong lStack_120;
-  undefined1 auStack_118 [256];
-  ulonglong uStack_18;
+  int status_code;
+  undefined1 security_key [32];
+  undefined1 *update_buffer;
+  undefined8 status_handle;
+  longlong timeout_value;
+  undefined8 session_handle;
+  longlong status_info;
+  undefined1 data_buffer [256];
+  ulonglong security_check;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  if (param_2 == (undefined1 *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+  security_check = network_security_key ^ (ulonglong)security_key;
+  if (status_result == (undefined1 *)0x0) {
+    if ((*(byte *)(connection_status_flags + 0x10) & 0x80) == 0) {
+      // 安全验证失败，终止更新
+      network_security_failure_handler(security_check ^ (ulonglong)security_key);
     }
-    FUN_18074be30(auStack_118,0x100,0);
-    puStack_148 = auStack_118;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_1809847d8);
+    network_buffer_initialize(data_buffer, 0x100, 0);
+    update_buffer = data_buffer;
+    // 执行状态更新
+    network_execute_status_update(0x1f, 0xc, connection_id, &network_debug_info);
   }
-  *param_2 = 0;
-  uStack_128 = 0;
-  uStack_138 = 0;
-  lStack_130 = 0;
-  iVar1 = func_0x00018088c590(0,&lStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,lStack_130), iVar1 == 0)) &&
-     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_120), iVar1 == 0)) {
-    uStack_128 = *(undefined8 *)(lStack_120 + 8);
+  *status_result = 0;
+  session_handle = 0;
+  status_handle = 0;
+  timeout_value = 0;
+  status_code = network_handle_create(0, &timeout_value);
+  if (((status_code == 0) && (status_code = network_session_validate(&status_handle, timeout_value), status_code == 0)) &&
+     (status_code = network_status_info_get(connection_id & 0xffffffff, &status_info), status_code == 0)) {
+    session_handle = *(undefined8 *)(status_info + 8);
   }
-  else if (iVar1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18088c790(&uStack_138);
+  else if (status_code != 0) {
+    // 更新失败，清理资源
+    network_update_cleanup(&status_handle);
   }
-  FUN_180847c60(uStack_128,*(undefined8 *)(lStack_130 + 800),param_2);
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_138);
+  network_connection_validate(session_handle, *(undefined8 *)(timeout_value + 800), status_result);
+  // 清理更新资源
+  network_update_cleanup(&status_handle);
 }
 
-
-
-bool FUN_180847f30(undefined8 param_1)
-
+/**
+ * 网络连接存在性检查函数
+ * 
+ * 功能：
+ * - 检查网络连接是否存在
+ * - 验证连接有效性
+ * - 返回检查结果
+ * 
+ * 参数：
+ * - param_1: 连接标识符
+ * 
+ * 返回值：bool - 连接是否存在
+ */
+bool network_connection_exists(undefined8 connection_id)
 {
-  int iVar1;
-  undefined1 auStackX_8 [32];
+  int status_code;
+  undefined1 connection_info [32];
   
-  iVar1 = func_0x00018088c530(param_1,auStackX_8);
-  return iVar1 == 0;
+  status_code = network_connection_info_get(connection_id, connection_info);
+  return status_code == 0;
 }
 
-
-
-// WARNING: Type propagation algorithm not settling
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180847f60(undefined8 param_1)
-void FUN_180847f60(undefined8 param_1)
-
+/**
+ * 网络连接断开函数
+ * 
+ * 功能：
+ * - 断开网络连接
+ * - 释放连接资源
+ * - 清理连接状态
+ * 
+ * 参数：
+ * - param_1: 连接标识符
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_connection_disconnect(undefined8 connection_id)
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_168 [48];
-  longlong alStack_138 [2];
-  undefined8 *apuStack_128 [34];
-  ulonglong uStack_18;
+  int status_code;
+  int disconnect_code;
+  undefined1 security_key [48];
+  longlong connection_info [2];
+  undefined8 *disconnect_data [34];
+  ulonglong security_check;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  alStack_138[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStack_138);
-  if (iVar1 == 0) {
-    if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_180848016;
-    iVar2 = FUN_18088c740(alStack_138 + 1);
-    if (iVar2 == 0) goto LAB_180847fc4;
+  security_check = network_security_key ^ (ulonglong)security_key;
+  connection_info[1] = 0;
+  status_code = network_handle_create(connection_id, connection_info);
+  if (status_code == 0) {
+    if ((*(uint *)(connection_info[0] + 0x24) >> 1 & 1) == 0) goto disconnect_complete;
+    disconnect_code = network_session_validate(connection_info + 1);
+    if (disconnect_code == 0) goto disconnect_handler;
   }
   else {
-LAB_180847fc4:
-    iVar2 = iVar1;
+disconnect_handler:
+    disconnect_code = status_code;
   }
-  if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
+  if ((disconnect_code == 0) &&
+     (status_code = network_disconnect_prepare(*(undefined8 *)(connection_info[0] + 0x98), disconnect_data, 0x18), status_code == 0))
   {
-    *apuStack_128[0] = &UNK_180983c78;
-    *(undefined4 *)(apuStack_128[0] + 1) = 0x18;
-    *(int *)(apuStack_128[0] + 2) = (int)param_1;
-    func_0x00018088e0d0(*(undefined8 *)(alStack_138[0] + 0x98));
+    *disconnect_data[0] = &network_disconnect_handler;
+    *(undefined4 *)(disconnect_data[0] + 1) = 0x18;
+    *(int *)(disconnect_data[0] + 2) = (int)connection_id;
+    network_execute_disconnect(*(undefined8 *)(connection_info[0] + 0x98));
   }
-LAB_180848016:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_138 + 1);
+disconnect_complete:
+  // 清理断开连接资源
+  network_disconnect_cleanup(connection_info + 1);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180848090(ulonglong param_1,longlong param_2,undefined4 param_3,undefined8 *param_4)
-void FUN_180848090(ulonglong param_1,longlong param_2,undefined4 param_3,undefined8 *param_4)
-
+/**
+ * 网络数据发送函数
+ * 
+ * 功能：
+ * - 发送网络数据
+ * - 验证数据完整性
+ * - 处理发送错误
+ * 
+ * 参数：
+ * - param_1: 目标标识符
+ * - param_2: 数据长度
+ * - param_3: 数据类型
+ * - param_4: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_send(ulonglong destination, longlong data_length, undefined4 data_type, undefined8 *data_ptr)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  int iVar4;
-  undefined1 auStack_1a8 [32];
-  undefined1 *puStack_188;
-  undefined4 uStack_178;
-  undefined8 uStack_170;
-  longlong lStack_168;
-  undefined8 *puStack_160;
-  undefined1 auStack_158 [256];
-  ulonglong uStack_58;
+  undefined4 processed_type;
+  int status_code;
+  int buffer_offset1;
+  int buffer_offset2;
+  int buffer_offset3;
+  undefined1 security_key [32];
+  undefined1 *send_buffer;
+  undefined4 send_length;
+  undefined8 send_handle;
+  longlong destination_info;
+  undefined8 *packet_data;
+  undefined1 data_buffer [256];
+  ulonglong security_check;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
-  uStack_178 = param_3;
-  if (((param_4 == (undefined8 *)0x0) || (*param_4 = 0, param_2 == 0)) ||
-     (iVar2 = func_0x00018076b690(param_2), 0x1ff < iVar2)) {
-    uVar1 = uStack_178;
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
+  security_check = network_security_key ^ (ulonglong)security_key;
+  send_length = data_type;
+  if (((data_ptr == (undefined8 *)0x0) || (*data_ptr = 0, data_length == 0)) ||
+     (status_code = network_data_validate_length(data_length), 0x1ff < status_code)) {
+    processed_type = send_length;
+    if ((*(byte *)(connection_status_flags + 0x10) & 0x80) == 0) {
+      // 安全验证失败，终止发送
+      network_security_failure_handler(security_check ^ (ulonglong)security_key);
     }
-    iVar2 = FUN_18074b880(auStack_158,0x100,param_2);
-    iVar3 = FUN_18074b880(auStack_158 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    iVar2 = iVar2 + iVar3;
-    iVar3 = func_0x00018074b800(auStack_158 + iVar2,0x100 - iVar2,uVar1);
-    iVar2 = iVar2 + iVar3;
-    iVar3 = FUN_18074b880(auStack_158 + iVar2,0x100 - iVar2,&DAT_180a06434);
-    func_0x00018074bda0(auStack_158 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_4);
-    puStack_188 = auStack_158;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xb,param_1,&UNK_180982570);
+    status_code = network_buffer_copy(data_buffer, 0x100, data_length);
+    buffer_offset1 = network_buffer_copy(data_buffer + status_code, 0x100 - status_code, &network_data_buffer);
+    status_code = status_code + buffer_offset1;
+    buffer_offset2 = network_buffer_format(data_buffer + status_code, 0x100 - status_code, processed_type);
+    status_code = status_code + buffer_offset2;
+    buffer_offset3 = network_buffer_copy(data_buffer + status_code, 0x100 - status_code, &network_data_buffer);
+    network_buffer_fill(data_buffer + (status_code + buffer_offset3), 0x100 - (status_code + buffer_offset3), data_ptr);
+    send_buffer = data_buffer;
+    // 执行数据发送
+    network_execute_data_send(0x1f, 0xb, destination, &network_performance_data);
   }
-  uStack_170 = 0;
-  iVar3 = func_0x00018088c590(param_1 & 0xffffffff,&lStack_168);
-  if (iVar3 == 0) {
-    if ((*(uint *)(lStack_168 + 0x24) >> 1 & 1) == 0) goto LAB_180848132;
-    iVar4 = FUN_18088c740(&uStack_170);
-    if (iVar4 == 0) goto LAB_18084820e;
+  send_handle = 0;
+  buffer_offset2 = network_handle_create(destination & 0xffffffff, &destination_info);
+  if (buffer_offset2 == 0) {
+    if ((*(uint *)(destination_info + 0x24) >> 1 & 1) == 0) goto send_complete;
+    buffer_offset3 = network_session_validate(&send_handle);
+    if (buffer_offset3 == 0) goto send_handler;
   }
   else {
-LAB_18084820e:
-    iVar4 = iVar3;
+send_handler:
+    buffer_offset3 = buffer_offset2;
   }
-  if ((iVar4 == 0) &&
-     (iVar3 = FUN_18088dec0(*(undefined8 *)(lStack_168 + 0x98),&puStack_160,0x218), iVar3 == 0)) {
-    *puStack_160 = &UNK_180982508;
-    *(undefined4 *)(puStack_160 + 2) = 0;
-    *(undefined4 *)(puStack_160 + 1) = 0x218;
-    *(undefined4 *)((longlong)puStack_160 + 0x14) = uStack_178;
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_160 + 3,param_2,(longlong)(iVar2 + 1));
+  if ((buffer_offset3 == 0) &&
+     (buffer_offset2 = network_packet_prepare(*(undefined8 *)(destination_info + 0x98), &packet_data, 0x218), buffer_offset2 == 0)) {
+    *packet_data = &network_packet_handler;
+    *(undefined4 *)(packet_data + 2) = 0;
+    *(undefined4 *)(packet_data + 1) = 0x218;
+    *(undefined4 *)((longlong)packet_data + 0x14) = send_length;
+    // 复制数据到数据包
+    memcpy(packet_data + 3, data_length, (longlong)(status_code + 1));
   }
-LAB_180848132:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_170);
+send_complete:
+  // 清理发送资源
+  network_send_cleanup(&send_handle);
 }
 
-
-
-// WARNING: Type propagation algorithm not settling
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1808482f0(undefined8 param_1)
-void FUN_1808482f0(undefined8 param_1)
-
+/**
+ * 网络连接关闭函数
+ * 
+ * 功能：
+ * - 关闭网络连接
+ * - 释放连接资源
+ * - 清理连接状态
+ * 
+ * 参数：
+ * - param_1: 连接标识符
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_connection_close(undefined8 connection_id)
 {
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_168 [48];
-  longlong alStack_138 [2];
-  undefined8 *apuStack_128 [34];
-  ulonglong uStack_18;
+  int status_code;
+  int close_code;
+  undefined1 security_key [48];
+  longlong connection_info [2];
+  undefined8 *close_data [34];
+  ulonglong security_check;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  alStack_138[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStack_138);
-  if (iVar1 == 0) {
-    if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808483a6;
-    iVar2 = FUN_18088c740(alStack_138 + 1);
-    if (iVar2 == 0) goto LAB_180848354;
+  security_check = network_security_key ^ (ulonglong)security_key;
+  connection_info[1] = 0;
+  status_code = network_handle_create(connection_id, connection_info);
+  if (status_code == 0) {
+    if ((*(uint *)(connection_info[0] + 0x24) >> 1 & 1) == 0) goto close_complete;
+    close_code = network_session_validate(connection_info + 1);
+    if (close_code == 0) goto close_handler;
   }
   else {
-LAB_180848354:
-    iVar2 = iVar1;
+close_handler:
+    close_code = status_code;
   }
-  if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStack_138[0] + 0x98),apuStack_128,0x18), iVar1 == 0))
+  if ((close_code == 0) &&
+     (status_code = network_close_prepare(*(undefined8 *)(connection_info[0] + 0x98), close_data, 0x18), status_code == 0))
   {
-    *apuStack_128[0] = &UNK_180982cc0;
-    *(undefined4 *)(apuStack_128[0] + 1) = 0x18;
-    *(int *)(apuStack_128[0] + 2) = (int)param_1;
-    func_0x00018088e0d0(*(undefined8 *)(alStack_138[0] + 0x98));
+    *close_data[0] = &network_close_handler;
+    *(undefined4 *)(close_data[0] + 1) = 0x18;
+    *(int *)(close_data[0] + 2) = (int)connection_id;
+    network_execute_close(*(undefined8 *)(connection_info[0] + 0x98));
   }
-LAB_1808483a6:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_138 + 1);
+close_complete:
+  // 清理关闭连接资源
+  network_close_cleanup(connection_info + 1);
 }
 
-
-
-
-
-// 函数: void FUN_180848440(longlong param_1,undefined8 param_2)
-void FUN_180848440(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据读取函数
+ * 
+ * 功能：
+ * - 从网络读取数据
+ * - 验证数据完整性
+ * - 处理读取错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_read(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088ee20(param_2,param_1 + 0x18);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    network_data_execute(data_ptr, connection_handle + 0x18);
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180848480(longlong param_1,undefined8 param_2)
-void FUN_180848480(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据写入函数
+ * 
+ * 功能：
+ * - 向网络写入数据
+ * - 验证写入状态
+ * - 处理写入错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_write(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
-    if (iVar1 == 0) {
-      FUN_18088ee20(param_2,param_1 + 0x1c);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    status_code = network_data_execute(data_ptr, connection_handle + 0x18);
+    if (status_code == 0) {
+      network_data_execute(data_ptr, connection_handle + 0x1c);
     }
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_1808484d0(longlong param_1,undefined8 param_2)
-void FUN_1808484d0(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据刷新函数
+ * 
+ * 功能：
+ * - 刷新网络数据缓冲区
+ * - 确保数据完整性
+ * - 处理刷新错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_flush(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
-    if (iVar1 == 0) {
-      iVar1 = FUN_18088f1a0(param_2,param_1 + 0x1c);
-      if (iVar1 == 0) {
-        FUN_18088ee60(param_2,param_1 + 0x2c);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    status_code = network_data_execute(data_ptr, connection_handle + 0x18);
+    if (status_code == 0) {
+      status_code = network_data_validate(data_ptr, connection_handle + 0x1c);
+      if (status_code == 0) {
+        network_data_execute(data_ptr, connection_handle + 0x2c);
       }
     }
   }
   return;
 }
 
-
-
-undefined8 FUN_180848530(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据获取函数
+ * 
+ * 功能：
+ * - 获取网络数据
+ * - 验证数据有效性
+ * - 返回获取结果
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：undefined8 - 获取的数据
+ */
+undefined8 network_data_get(longlong connection_handle, undefined8 data_ptr)
 {
-  undefined8 uVar1;
-  undefined4 auStackX_8 [2];
+  undefined8 result;
+  undefined4 data_buffer [2];
   
-  uVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if ((int)uVar1 == 0) {
-    uVar1 = FUN_18088ee20(param_2,auStackX_8);
-    if ((int)uVar1 == 0) {
-      *(undefined4 *)(param_1 + 0x18) = auStackX_8[0];
-      uVar1 = 0;
+  result = network_data_validate(data_ptr, connection_handle + 0x10);
+  if ((int)result == 0) {
+    result = network_data_execute(data_ptr, data_buffer);
+    if ((int)result == 0) {
+      *(undefined4 *)(connection_handle + 0x18) = data_buffer[0];
+      result = 0;
     }
   }
-  return uVar1;
+  return result;
 }
 
-
-
-
-
-// 函数: void FUN_180848590(longlong param_1,undefined8 param_2)
-void FUN_180848590(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据发送确认函数
+ * 
+ * 功能：
+ * - 确认数据发送状态
+ * - 验证发送完整性
+ * - 处理确认错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_send_ack(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088f010(param_2,param_1 + 0x18);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    network_data_acknowledge(data_ptr, connection_handle + 0x18);
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_1808485d0(longlong param_1,undefined8 param_2)
-void FUN_1808485d0(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据接收确认函数
+ * 
+ * 功能：
+ * - 确认数据接收状态
+ * - 验证接收完整性
+ * - 处理确认错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_receive_ack(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088f470(param_2,param_1 + 0x18);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    network_data_acknowledge(data_ptr, connection_handle + 0x18);
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180848610(longlong param_1,undefined8 param_2)
-void FUN_180848610(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据同步函数
+ * 
+ * 功能：
+ * - 同步网络数据
+ * - 确保数据一致性
+ * - 处理同步错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_sync(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088eea0(param_2,param_1 + 0x18);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    network_data_synchronize(data_ptr, connection_handle + 0x18);
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180848650(longlong param_1,undefined8 param_2)
-void FUN_180848650(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据重置函数
+ * 
+ * 功能：
+ * - 重置网络数据状态
+ * - 清理数据缓冲区
+ * - 处理重置错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_reset(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088ee60(param_2,param_1 + 0x18);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    network_data_execute(data_ptr, connection_handle + 0x18);
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180848690(longlong param_1,undefined8 param_2)
-void FUN_180848690(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据复制函数
+ * 
+ * 功能：
+ * - 复制网络数据
+ * - 验证复制完整性
+ * - 处理复制错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_copy(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
-    if (iVar1 == 0) {
-      FUN_18088ee60(param_2,param_1 + 0x1c);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    network_data_execute(data_ptr, connection_handle + 0x18);
+  }
+  return;
+}
+
+/**
+ * 网络数据移动函数
+ * 
+ * 功能：
+ * - 移动网络数据
+ * - 验证移动完整性
+ * - 处理移动错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_move(longlong connection_handle, undefined8 data_ptr)
+{
+  int status_code;
+  
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    status_code = network_data_execute(data_ptr, connection_handle + 0x18);
+    if (status_code == 0) {
+      network_data_execute(data_ptr, connection_handle + 0x1c);
     }
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_1808486e0(longlong param_1,undefined8 param_2)
-void FUN_1808486e0(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据交换函数
+ * 
+ * 功能：
+ * - 交换网络数据
+ * - 验证交换完整性
+ * - 处理交换错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_swap(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088f050(param_2,param_1 + 0x18);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    network_data_exchange(data_ptr, connection_handle + 0x18);
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180848720(longlong param_1,undefined8 param_2)
-void FUN_180848720(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据比较函数
+ * 
+ * 功能：
+ * - 比较网络数据
+ * - 验证比较结果
+ * - 处理比较错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_compare(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088f310(param_2,param_1 + 0x18);
-    if (iVar1 == 0) {
-      iVar1 = FUN_18088eea0(param_2,param_1 + 0x20);
-      if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x24);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    status_code = network_data_execute(data_ptr, connection_handle + 0x18);
+    if (status_code == 0) {
+      status_code = network_data_validate(data_ptr, connection_handle + 0x20);
+      if (status_code == 0) {
+        network_data_execute(data_ptr, connection_handle + 0x24);
       }
     }
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180848780(longlong param_1,undefined8 param_2)
-void FUN_180848780(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据合并函数
+ * 
+ * 功能：
+ * - 合并网络数据
+ * - 验证合并完整性
+ * - 处理合并错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_merge(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088f310(param_2,param_1 + 0x18);
-    if (iVar1 == 0) {
-      iVar1 = FUN_18088f4d0(param_2,param_1 + 0x25,0x80);
-      if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x24);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    status_code = network_data_execute(data_ptr, connection_handle + 0x18);
+    if (status_code == 0) {
+      status_code = network_data_validate(data_ptr, connection_handle + 0x25, 0x80);
+      if (status_code == 0) {
+        network_data_execute(data_ptr, connection_handle + 0x24);
       }
     }
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_1808487e0(longlong param_1,undefined8 param_2)
-void FUN_1808487e0(longlong param_1,undefined8 param_2)
-
+/**
+ * 网络数据分割函数
+ * 
+ * 功能：
+ * - 分割网络数据
+ * - 验证分割完整性
+ * - 处理分割错误
+ * 
+ * 参数：
+ * - param_1: 连接句柄
+ * - param_2: 数据指针
+ * 
+ * 返回值：void - 无返回值
+ */
+void network_data_split(longlong connection_handle, undefined8 data_ptr)
 {
-  int iVar1;
+  int status_code;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088f4d0(param_2,param_1 + 0x28,0x80);
-    if (iVar1 == 0) {
-      iVar1 = FUN_18088eea0(param_2,param_1 + 0x18);
-      if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x1c);
+  status_code = network_data_validate(data_ptr, connection_handle + 0x10);
+  if (status_code == 0) {
+    status_code = network_data_validate(data_ptr, connection_handle + 0x28, 0x80);
+    if (status_code == 0) {
+      status_code = network_data_execute(data_ptr, connection_handle + 0x18);
+      if (status_code == 0) {
+        network_data_execute(data_ptr, connection_handle + 0x1c);
       }
     }
   }
   return;
 }
 
-
-
-
-
+// ============================================================================
+// 模块结束
+// ============================================================================

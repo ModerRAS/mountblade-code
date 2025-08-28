@@ -1,26 +1,70 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_01_part070.c - 15 个函数
+// 99_part_01_part070.c - 内存管理和数据结构操作模块
+// 本文件包含内存管理、数据结构操作和资源清理功能
+// 
+// 主要功能：
+// 1. 内存清理：清理内存块、重置内存区域
+// 2. 数据结构初始化：初始化复杂数据结构
+// 3. 内存分配和释放：动态内存管理
+// 4. 排序和搜索：数据结构的排序和搜索操作
+// 5. 资源清理：安全的资源释放和清理
+//
+// 文件包含15个核心函数，用于内存管理和数据结构操作
 
-// 函数: void FUN_1800e94a0(longlong param_1,uint param_2)
-void FUN_1800e94a0(longlong param_1,uint param_2)
+// 全局常量定义
+// 内存管理常量
+#define MEMORY_BLOCK_SIZE           0x60
+#define MEMORY_LARGE_BLOCK_SIZE     0x330
+#define MEMORY_CHUNK_SIZE           0x200
+#define MEMORY_SMALL_CHUNK_SIZE     0x10
+#define MEMORY_PAGE_SIZE            0x800
+#define MEMORY_ENTRY_SIZE           0x18
+#define MEMORY_LARGE_ENTRY_SIZE     0x12c30
+#define MEMORY_ALLOC_BASE_SIZE      0x10
+
+// 函数别名定义
+#define clear_memory_block          FUN_1800e94a0
+#define clear_memory_block_fast     FUN_1800e94be
+#define empty_function              FUN_1800e9522
+#define initialize_memory_structure FUN_1800e9540
+#define process_memory_batch        FUN_1800e9790
+#define allocate_memory_structure   FUN_1800e97f0
+#define free_memory_structure       FUN_1800e9840
+#define sort_data_structure         FUN_1800e98d0
+#define merge_data_structures       FUN_1800e98fb
+#define insert_data_sorted          FUN_1800e996b
+#define add_data_entry              FUN_1800e9a94
+#define empty_function_2            FUN_1800e9ab1
+#define empty_function_3            FUN_1800e9ab9
+#define empty_function_4            FUN_1800e9ac1
+#define create_array_structure      FUN_1800e9ae0
+#define cleanup_memory_handlers      FUN_1800e9b50
+#define cleanup_memory_handlers_fast FUN_1800e9b5a
+#define cleanup_memory_pool          FUN_1800e9b7d
+
+// 函数: void clear_memory_block(longlong memory_ptr, uint block_index)
+// 内存块清理函数
+// 参数: memory_ptr - 内存指针, block_index - 块索引
+// 功能: 清理指定内存块，将内存区域重置为0
+void clear_memory_block(longlong memory_ptr, uint block_index)
 
 {
-  if ((int)param_2 < (int)(param_2 + 0x200)) {
+  if ((int)block_index < (int)(block_index + MEMORY_CHUNK_SIZE)) {
                     // WARNING: Subroutine does not return
-    memset(*(longlong *)(param_1 + 8 + (ulonglong)(param_2 >> 9) * 8) +
-           (longlong)(int)(param_2 + (param_2 >> 9) * -0x200) * 0x60,0,0x60);
+    memset(*(longlong *)(memory_ptr + 8 + (ulonglong)(block_index >> 9) * 8) +
+           (longlong)(int)(block_index + (block_index >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,0,MEMORY_BLOCK_SIZE);
   }
   return;
 }
 
 
 
-
-
-
-// 函数: void FUN_1800e94be(void)
-void FUN_1800e94be(void)
+// 函数: void clear_memory_block_fast(void)
+// 快速内存块清理函数
+// 参数: 无参数，使用寄存器变量
+// 功能: 快速清理内存块，使用优化的内存清理路径
+void clear_memory_block_fast(void)
 
 {
   uint unaff_EBX;
@@ -28,16 +72,18 @@ void FUN_1800e94be(void)
   
                     // WARNING: Subroutine does not return
   memset(*(longlong *)(unaff_RBP + 8 + (ulonglong)(unaff_EBX >> 9) * 8) +
-         (longlong)(int)(unaff_EBX + (unaff_EBX >> 9) * -0x200) * 0x60,0,0x60);
+         (longlong)(int)(unaff_EBX + (unaff_EBX >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,0,MEMORY_BLOCK_SIZE);
 }
 
 
 
 
 
-
-// 函数: void FUN_1800e9522(void)
-void FUN_1800e9522(void)
+// 函数: void empty_function(void)
+// 空函数
+// 参数: 无参数
+// 功能: 空实现函数，可能用作占位符或接口兼容
+void empty_function(void)
 
 {
   return;
@@ -47,9 +93,11 @@ void FUN_1800e9522(void)
 
 
 
-
-// 函数: void FUN_1800e9540(longlong param_1,uint param_2)
-void FUN_1800e9540(longlong param_1,uint param_2)
+// 函数: void initialize_memory_structure(longlong memory_ptr, uint block_index)
+// 内存结构初始化函数
+// 参数: memory_ptr - 内存指针, block_index - 块索引
+// 功能: 初始化复杂的内存结构，设置默认值和状态标志
+void initialize_memory_structure(longlong memory_ptr, uint block_index)
 
 {
   longlong lVar1;
@@ -58,12 +106,12 @@ void FUN_1800e9540(longlong param_1,uint param_2)
   uint uVar4;
   ulonglong uVar5;
   
-  uVar5 = (ulonglong)param_2;
-  if ((int)param_2 < (int)(param_2 + 0x200)) {
+  uVar5 = (ulonglong)block_index;
+  if ((int)block_index < (int)(block_index + MEMORY_CHUNK_SIZE)) {
     do {
       puVar3 = (undefined8 *)
-               (*(longlong *)(param_1 + 8 + (uVar5 >> 9) * 8) +
-               (longlong)((int)uVar5 + (int)(uVar5 >> 9) * -0x200) * 0x330);
+               (*(longlong *)(memory_ptr + 8 + (uVar5 >> 9) * 8) +
+               (longlong)((int)uVar5 + (int)(uVar5 >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_LARGE_BLOCK_SIZE);
       puVar3[0x11] = 0;
       *(undefined4 *)(puVar3 + 0x12) = 0x1060101;
       *(undefined4 *)((longlong)puVar3 + 0x94) = 0xff000000;
@@ -91,7 +139,7 @@ void FUN_1800e9540(longlong param_1,uint param_2)
       puVar3[0x50] = 0;
       *(undefined4 *)(puVar3 + 0x10) = 0;
       puVar2 = puVar3;
-      for (lVar1 = 0x10; lVar1 != 0; lVar1 = lVar1 + -1) {
+      for (lVar1 = MEMORY_ALLOC_BASE_SIZE; lVar1 != 0; lVar1 = lVar1 + -1) {
         *puVar2 = 0;
         puVar2 = puVar2 + 1;
       }
@@ -131,7 +179,7 @@ void FUN_1800e9540(longlong param_1,uint param_2)
       *(undefined1 *)((longlong)puVar3 + 0x322) = 0;
       uVar4 = (int)uVar5 + 1;
       uVar5 = (ulonglong)uVar4;
-    } while ((int)uVar4 < (int)(param_2 + 0x200));
+    } while ((int)uVar4 < (int)(block_index + MEMORY_CHUNK_SIZE));
   }
   return;
 }
@@ -140,22 +188,24 @@ void FUN_1800e9540(longlong param_1,uint param_2)
 
 
 
-
-// 函数: void FUN_1800e9790(longlong param_1,uint param_2)
-void FUN_1800e9790(longlong param_1,uint param_2)
+// 函数: void process_memory_batch(longlong memory_ptr, uint block_index)
+// 批量内存处理函数
+// 参数: memory_ptr - 内存指针, block_index - 块索引
+// 功能: 批量处理内存块，调用处理函数进行内存操作
+void process_memory_batch(longlong memory_ptr, uint block_index)
 
 {
   uint uVar1;
   ulonglong uVar2;
   
-  uVar2 = (ulonglong)param_2;
-  if ((int)param_2 < (int)(param_2 + 0x10)) {
+  uVar2 = (ulonglong)block_index;
+  if ((int)block_index < (int)(block_index + MEMORY_SMALL_CHUNK_SIZE)) {
     do {
-      FUN_180245b90((longlong)((int)uVar2 + (int)(uVar2 >> 4) * -0x10) * 0x12c30 +
-                    *(longlong *)(param_1 + 8 + (uVar2 >> 4) * 8));
+      FUN_180245b90((longlong)((int)uVar2 + (int)(uVar2 >> 4) * -MEMORY_SMALL_CHUNK_SIZE) * MEMORY_LARGE_ENTRY_SIZE +
+                    *(longlong *)(memory_ptr + 8 + (uVar2 >> 4) * 8));
       uVar1 = (int)uVar2 + 1;
       uVar2 = (ulonglong)uVar1;
-    } while ((int)uVar1 < (int)(param_2 + 0x10));
+    } while ((int)uVar1 < (int)(block_index + MEMORY_SMALL_CHUNK_SIZE));
   }
   return;
 }
@@ -163,7 +213,7 @@ void FUN_1800e9790(longlong param_1,uint param_2)
 
 
 undefined8 *
-FUN_1800e97f0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+allocate_memory_structure(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   *param_1 = &UNK_180a21720;
@@ -177,7 +227,7 @@ FUN_1800e97f0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 undefined8 *
-FUN_1800e9840(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+free_memory_structure(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -202,9 +252,11 @@ FUN_1800e9840(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-
-// 函数: void FUN_1800e98d0(longlong *param_1,undefined8 *param_2)
-void FUN_1800e98d0(longlong *param_1,undefined8 *param_2)
+// 函数: void sort_data_structure(longlong *data_ptr, undefined8 *key_ptr)
+// 数据结构排序函数
+// 参数: data_ptr - 数据指针, key_ptr - 键指针
+// 功能: 对数据结构进行排序操作，实现插入排序算法
+void sort_data_structure(longlong *data_ptr, undefined8 *key_ptr)
 
 {
   undefined8 *puVar1;
@@ -248,27 +300,27 @@ void FUN_1800e98d0(longlong *param_1,undefined8 *param_2)
   undefined4 uStack_40;
   undefined4 uStack_3c;
   
-  iVar5 = (int)param_1[1];
-  if (iVar5 != *(int *)(param_2 + 1)) {
+  iVar5 = (int)data_ptr[1];
+  if (iVar5 != *(int *)(key_ptr + 1)) {
     iVar19 = 0;
-    lVar17 = (longlong)*(int *)(param_2 + 1) - (longlong)iVar5;
+    lVar17 = (longlong)*(int *)(key_ptr + 1) - (longlong)iVar5;
     for (lVar13 = lVar17; lVar13 != 0; lVar13 = lVar13 >> 1) {
       iVar19 = iVar19 + 1;
     }
-    uStack_98 = *param_2;
-    uStack_90 = param_2[1];
-    uStack_88 = (undefined4)*param_1;
-    uStack_84 = *(undefined4 *)((longlong)param_1 + 4);
-    uStack_80 = (undefined4)param_1[1];
-    uStack_7c = *(undefined4 *)((longlong)param_1 + 0xc);
+    uStack_98 = *key_ptr;
+    uStack_90 = key_ptr[1];
+    uStack_88 = (undefined4)*data_ptr;
+    uStack_84 = *(undefined4 *)((longlong)data_ptr + 4);
+    uStack_80 = (undefined4)data_ptr[1];
+    uStack_7c = *(undefined4 *)((longlong)data_ptr + 0xc);
     FUN_1800ea950(&uStack_88,&uStack_98,(longlong)(iVar19 + -1) * 2);
-    uStack_68 = (undefined4)*param_1;
-    uStack_64 = *(undefined4 *)((longlong)param_1 + 4);
-    uStack_60 = (undefined4)param_1[1];
-    uStack_5c = *(undefined4 *)((longlong)param_1 + 0xc);
+    uStack_68 = (undefined4)*data_ptr;
+    uStack_64 = *(undefined4 *)((longlong)data_ptr + 4);
+    uStack_60 = (undefined4)data_ptr[1];
+    uStack_5c = *(undefined4 *)((longlong)data_ptr + 0xc);
     if (lVar17 < 0x1d) {
-      uStack_58 = *param_2;
-      uStack_50 = param_2[1];
+      uStack_58 = *key_ptr;
+      uStack_50 = key_ptr[1];
       uStack_48 = uStack_68;
       uStack_44 = uStack_64;
       uStack_40 = uStack_60;
@@ -276,26 +328,26 @@ void FUN_1800e98d0(longlong *param_1,undefined8 *param_2)
       FUN_1800eac80(&uStack_48,&uStack_58);
     }
     else {
-      lVar13 = *param_1;
+      lVar13 = *data_ptr;
       uVar18 = iVar5 + 0x1c;
       uStack_70 = CONCAT44(uStack_ac,uVar18);
       lStack_78 = lVar13;
       FUN_1800eac80(&uStack_68,&lStack_78);
-      uVar7 = *(uint *)(param_2 + 1);
+      uVar7 = *(uint *)(key_ptr + 1);
       for (; uVar18 != uVar7; uVar18 = uVar18 + 1) {
-        uVar15 = (ulonglong)(uVar18 + (uVar18 >> 0xb) * -0x800);
+        uVar15 = (ulonglong)(uVar18 + (uVar18 >> 0xb) * -MEMORY_PAGE_SIZE);
         lVar17 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar18 >> 0xb) * 8);
-        puVar14 = (ulonglong *)(lVar17 + uVar15 * 0x18);
+        puVar14 = (ulonglong *)(lVar17 + uVar15 * MEMORY_ENTRY_SIZE);
         uVar10 = *puVar14;
         uVar11 = puVar14[1];
-        uVar4 = *(undefined8 *)(lVar17 + 0x10 + uVar15 * 0x18);
+        uVar4 = *(undefined8 *)(lVar17 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE);
         uVar20 = uVar18;
         uVar6 = uVar18;
         while( true ) {
           uVar6 = uVar6 - 1;
           uVar16 = (ulonglong)(uVar6 & 0x7ff);
           puVar14 = (ulonglong *)
-                    (*(longlong *)(lVar13 + 8 + (ulonglong)(uVar6 >> 0xb) * 8) + uVar16 * 0x18);
+                    (*(longlong *)(lVar13 + 8 + (ulonglong)(uVar6 >> 0xb) * 8) + uVar16 * MEMORY_ENTRY_SIZE);
           uVar15 = *puVar14;
           bVar21 = uVar10 < uVar15;
           if (uVar10 == uVar15) {
@@ -303,27 +355,27 @@ void FUN_1800e98d0(longlong *param_1,undefined8 *param_2)
           }
           if (!bVar21) break;
           lVar17 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar6 >> 0xb) * 8);
-          puVar1 = (undefined8 *)(lVar17 + uVar16 * 0x18);
+          puVar1 = (undefined8 *)(lVar17 + uVar16 * MEMORY_ENTRY_SIZE);
           uVar12 = puVar1[1];
-          puVar3 = (undefined4 *)(lVar17 + 0x10 + uVar16 * 0x18);
+          puVar3 = (undefined4 *)(lVar17 + 0x10 + uVar16 * MEMORY_ENTRY_SIZE);
           uVar8 = *puVar3;
           uVar9 = puVar3[1];
           lVar17 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar20 >> 0xb) * 8);
-          uVar15 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -0x800);
-          puVar2 = (undefined8 *)(lVar17 + uVar15 * 0x18);
+          uVar15 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
+          puVar2 = (undefined8 *)(lVar17 + uVar15 * MEMORY_ENTRY_SIZE);
           *puVar2 = *puVar1;
           puVar2[1] = uVar12;
-          puVar3 = (undefined4 *)(lVar17 + 0x10 + uVar15 * 0x18);
+          puVar3 = (undefined4 *)(lVar17 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE);
           *puVar3 = uVar8;
           puVar3[1] = uVar9;
           uVar20 = uVar20 - 1;
         }
-        uVar15 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -0x800);
+        uVar15 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
         lVar17 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar20 >> 0xb) * 8);
-        puVar14 = (ulonglong *)(lVar17 + uVar15 * 0x18);
+        puVar14 = (ulonglong *)(lVar17 + uVar15 * MEMORY_ENTRY_SIZE);
         *puVar14 = uVar10;
         puVar14[1] = uVar11;
-        *(undefined8 *)(lVar17 + 0x10 + uVar15 * 0x18) = uVar4;
+        *(undefined8 *)(lVar17 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE) = uVar4;
       }
     }
   }
@@ -334,9 +386,11 @@ void FUN_1800e98d0(longlong *param_1,undefined8 *param_2)
 
 
 
-
-// 函数: void FUN_1800e98fb(undefined4 *param_1,undefined8 *param_2)
-void FUN_1800e98fb(undefined4 *param_1,undefined8 *param_2)
+// 函数: void merge_data_structures(undefined4 *data_ptr, undefined8 *key_ptr)
+// 数据结构合并函数
+// 参数: data_ptr - 数据指针, key_ptr - 键指针
+// 功能: 合并两个数据结构，保持排序顺序
+void merge_data_structures(undefined4 *data_ptr, undefined8 *key_ptr)
 
 {
   undefined8 *puVar1;
@@ -374,12 +428,12 @@ void FUN_1800e98fb(undefined4 *param_1,undefined8 *param_2)
   for (lVar13 = in_RAX - unaff_RDI; lVar13 != 0; lVar13 = lVar13 >> 1) {
     iVar19 = iVar19 + 1;
   }
-  uVar4 = param_2[1];
-  uVar22 = *param_1;
-  uVar23 = param_1[1];
-  uVar24 = param_1[2];
-  uVar25 = param_1[3];
-  *(undefined8 *)(unaff_RBP + -0x39) = *param_2;
+  uVar4 = key_ptr[1];
+  uVar22 = *data_ptr;
+  uVar23 = data_ptr[1];
+  uVar24 = data_ptr[2];
+  uVar25 = data_ptr[3];
+  *(undefined8 *)(unaff_RBP + -0x39) = *key_ptr;
   *(undefined8 *)(unaff_RBP + -0x31) = uVar4;
   *(undefined4 *)(unaff_RBP + -0x29) = uVar22;
   *(undefined4 *)(unaff_RBP + -0x25) = uVar23;
@@ -432,12 +486,12 @@ void FUN_1800e98fb(undefined4 *param_1,undefined8 *param_2)
         *(undefined4 *)(unaff_RBP + -0x41) = uVar24;
         *(undefined4 *)(unaff_RBP + -0x3d) = uVar25;
         lVar5 = *(longlong *)(unaff_RBP + -0x49);
-        uVar15 = (ulonglong)(uVar18 + (uVar18 >> 0xb) * -0x800);
+        uVar15 = (ulonglong)(uVar18 + (uVar18 >> 0xb) * -MEMORY_PAGE_SIZE);
         lVar6 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar18 >> 0xb) * 8);
-        puVar1 = (undefined8 *)(lVar6 + uVar15 * 0x18);
+        puVar1 = (undefined8 *)(lVar6 + uVar15 * MEMORY_ENTRY_SIZE);
         uVar10 = *puVar1;
         uVar11 = puVar1[1];
-        uVar4 = *(undefined8 *)(lVar6 + 0x10 + uVar15 * 0x18);
+        uVar4 = *(undefined8 *)(lVar6 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE);
         *(undefined8 *)(unaff_RBP + 0x27) = uVar10;
         *(undefined8 *)(unaff_RBP + 0x2f) = uVar11;
         uVar15 = *(ulonglong *)(unaff_RBP + 0x2f);
@@ -448,7 +502,7 @@ void FUN_1800e98fb(undefined4 *param_1,undefined8 *param_2)
           uVar8 = uVar8 - 1;
           uVar17 = (ulonglong)(uVar8 & 0x7ff);
           puVar14 = (ulonglong *)
-                    (*(longlong *)(lVar13 + 8 + (ulonglong)(uVar8 >> 0xb) * 8) + uVar17 * 0x18);
+                    (*(longlong *)(lVar13 + 8 + (ulonglong)(uVar8 >> 0xb) * 8) + uVar17 * MEMORY_ENTRY_SIZE);
           uVar16 = *puVar14;
           bVar21 = uVar7 < uVar16;
           if (uVar7 == uVar16) {
@@ -456,29 +510,29 @@ void FUN_1800e98fb(undefined4 *param_1,undefined8 *param_2)
           }
           if (!bVar21) break;
           lVar6 = *(longlong *)(lVar13 + 8 + (ulonglong)(uVar8 >> 0xb) * 8);
-          puVar1 = (undefined8 *)(lVar6 + uVar17 * 0x18);
+          puVar1 = (undefined8 *)(lVar6 + uVar17 * MEMORY_ENTRY_SIZE);
           uVar12 = puVar1[1];
-          puVar3 = (undefined4 *)(lVar6 + 0x10 + uVar17 * 0x18);
+          puVar3 = (undefined4 *)(lVar6 + 0x10 + uVar17 * MEMORY_ENTRY_SIZE);
           uVar22 = *puVar3;
           uVar23 = puVar3[1];
           lVar6 = *(longlong *)(lVar5 + 8 + (ulonglong)(uVar20 >> 0xb) * 8);
-          uVar16 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -0x800);
-          puVar2 = (undefined8 *)(lVar6 + uVar16 * 0x18);
+          uVar16 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
+          puVar2 = (undefined8 *)(lVar6 + uVar16 * MEMORY_ENTRY_SIZE);
           *puVar2 = *puVar1;
           puVar2[1] = uVar12;
-          puVar3 = (undefined4 *)(lVar6 + 0x10 + uVar16 * 0x18);
+          puVar3 = (undefined4 *)(lVar6 + 0x10 + uVar16 * MEMORY_ENTRY_SIZE);
           *puVar3 = uVar22;
           puVar3[1] = uVar23;
           uVar20 = uVar20 - 1;
         }
         uVar18 = uVar18 + 1;
         *(uint *)(unaff_RBP + -0x51) = uVar18;
-        uVar15 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -0x800);
+        uVar15 = (ulonglong)(uVar20 + (uVar20 >> 0xb) * -MEMORY_PAGE_SIZE);
         lVar5 = *(longlong *)(lVar5 + 8 + (ulonglong)(uVar20 >> 0xb) * 8);
-        puVar1 = (undefined8 *)(lVar5 + uVar15 * 0x18);
+        puVar1 = (undefined8 *)(lVar5 + uVar15 * MEMORY_ENTRY_SIZE);
         *puVar1 = uVar10;
         puVar1[1] = uVar11;
-        *(undefined8 *)(lVar5 + 0x10 + uVar15 * 0x18) = uVar4;
+        *(undefined8 *)(lVar5 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE) = uVar4;
         if (uVar18 == uVar9) break;
         uVar22 = *(undefined4 *)(unaff_RBP + -0x59);
         uVar23 = *(undefined4 *)(unaff_RBP + -0x55);
@@ -494,9 +548,11 @@ void FUN_1800e98fb(undefined4 *param_1,undefined8 *param_2)
 
 
 
-
-// 函数: void FUN_1800e996b(undefined8 param_1,undefined8 param_2)
-void FUN_1800e996b(undefined8 param_1,undefined8 param_2)
+// 函数: void insert_data_sorted(undefined8 data_param, undefined8 key_param)
+// 数据插入排序函数
+// 参数: data_param - 数据参数, key_param - 键参数
+// 功能: 将数据插入到已排序的结构中，保持排序顺序
+void insert_data_sorted(undefined8 data_param, undefined8 key_param)
 
 {
   undefined8 *puVar1;
@@ -530,8 +586,8 @@ void FUN_1800e996b(undefined8 param_1,undefined8 param_2)
   undefined4 in_XMM1_Dd;
   undefined4 uVar24;
   
-  *(int *)(unaff_RBP + -9) = (int)param_2;
-  *(int *)(unaff_RBP + -5) = (int)((ulonglong)param_2 >> 0x20);
+  *(int *)(unaff_RBP + -9) = (int)key_param;
+  *(int *)(unaff_RBP + -5) = (int)((ulonglong)key_param >> 0x20);
   *(undefined4 *)(unaff_RBP + -1) = in_XMM1_Dc;
   *(undefined4 *)(unaff_RBP + 3) = in_XMM1_Dd;
   FUN_1800eac80();
@@ -555,12 +611,12 @@ void FUN_1800e996b(undefined8 param_1,undefined8 param_2)
       *(undefined4 *)(unaff_RBP + -0x41) = uVar23;
       *(undefined4 *)(unaff_RBP + -0x3d) = uVar24;
       lVar6 = *(longlong *)(unaff_RBP + -0x49);
-      uVar15 = (ulonglong)(uVar18 + (uVar18 >> 0xb) * -0x800);
+      uVar15 = (ulonglong)(uVar18 + (uVar18 >> 0xb) * -MEMORY_PAGE_SIZE);
       lVar7 = *(longlong *)(lVar5 + 8 + (ulonglong)(uVar18 >> 0xb) * 8);
-      puVar1 = (undefined8 *)(lVar7 + uVar15 * 0x18);
+      puVar1 = (undefined8 *)(lVar7 + uVar15 * MEMORY_ENTRY_SIZE);
       uVar11 = *puVar1;
       uVar12 = puVar1[1];
-      uVar4 = *(undefined8 *)(lVar7 + 0x10 + uVar15 * 0x18);
+      uVar4 = *(undefined8 *)(lVar7 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE);
       *(undefined8 *)(unaff_RBP + 0x27) = uVar11;
       *(undefined8 *)(unaff_RBP + 0x2f) = uVar12;
       uVar15 = *(ulonglong *)(unaff_RBP + 0x2f);
@@ -571,7 +627,7 @@ void FUN_1800e996b(undefined8 param_1,undefined8 param_2)
         uVar9 = uVar9 - 1;
         uVar17 = (ulonglong)(uVar9 & 0x7ff);
         puVar14 = (ulonglong *)
-                  (*(longlong *)(lVar5 + 8 + (ulonglong)(uVar9 >> 0xb) * 8) + uVar17 * 0x18);
+                  (*(longlong *)(lVar5 + 8 + (ulonglong)(uVar9 >> 0xb) * 8) + uVar17 * MEMORY_ENTRY_SIZE);
         uVar16 = *puVar14;
         bVar20 = uVar8 < uVar16;
         if (uVar8 == uVar16) {
@@ -579,29 +635,29 @@ void FUN_1800e996b(undefined8 param_1,undefined8 param_2)
         }
         if (!bVar20) break;
         lVar7 = *(longlong *)(lVar5 + 8 + (ulonglong)(uVar9 >> 0xb) * 8);
-        puVar1 = (undefined8 *)(lVar7 + uVar17 * 0x18);
+        puVar1 = (undefined8 *)(lVar7 + uVar17 * MEMORY_ENTRY_SIZE);
         uVar13 = puVar1[1];
-        puVar3 = (undefined4 *)(lVar7 + 0x10 + uVar17 * 0x18);
+        puVar3 = (undefined4 *)(lVar7 + 0x10 + uVar17 * MEMORY_ENTRY_SIZE);
         uVar21 = *puVar3;
         uVar22 = puVar3[1];
         lVar7 = *(longlong *)(lVar6 + 8 + (ulonglong)(uVar19 >> 0xb) * 8);
-        uVar16 = (ulonglong)(uVar19 + (uVar19 >> 0xb) * -0x800);
-        puVar2 = (undefined8 *)(lVar7 + uVar16 * 0x18);
+        uVar16 = (ulonglong)(uVar19 + (uVar19 >> 0xb) * -MEMORY_PAGE_SIZE);
+        puVar2 = (undefined8 *)(lVar7 + uVar16 * MEMORY_ENTRY_SIZE);
         *puVar2 = *puVar1;
         puVar2[1] = uVar13;
-        puVar3 = (undefined4 *)(lVar7 + 0x10 + uVar16 * 0x18);
+        puVar3 = (undefined4 *)(lVar7 + 0x10 + uVar16 * MEMORY_ENTRY_SIZE);
         *puVar3 = uVar21;
         puVar3[1] = uVar22;
         uVar19 = uVar19 - 1;
       }
       uVar18 = uVar18 + 1;
       *(uint *)(unaff_RBP + -0x51) = uVar18;
-      uVar15 = (ulonglong)(uVar19 + (uVar19 >> 0xb) * -0x800);
+      uVar15 = (ulonglong)(uVar19 + (uVar19 >> 0xb) * -MEMORY_PAGE_SIZE);
       lVar6 = *(longlong *)(lVar6 + 8 + (ulonglong)(uVar19 >> 0xb) * 8);
-      puVar1 = (undefined8 *)(lVar6 + uVar15 * 0x18);
+      puVar1 = (undefined8 *)(lVar6 + uVar15 * MEMORY_ENTRY_SIZE);
       *puVar1 = uVar11;
       puVar1[1] = uVar12;
-      *(undefined8 *)(lVar6 + 0x10 + uVar15 * 0x18) = uVar4;
+      *(undefined8 *)(lVar6 + 0x10 + uVar15 * MEMORY_ENTRY_SIZE) = uVar4;
       if (uVar18 == uVar10) break;
       uVar21 = *(undefined4 *)(unaff_RBP + -0x59);
       uVar22 = *(undefined4 *)(unaff_RBP + -0x55);
@@ -616,9 +672,11 @@ void FUN_1800e996b(undefined8 param_1,undefined8 param_2)
 
 
 
-
-// 函数: void FUN_1800e9a94(undefined8 param_1,undefined8 param_2)
-void FUN_1800e9a94(undefined8 param_1,undefined8 param_2)
+// 函数: void add_data_entry(undefined8 entry_param, undefined8 data_param)
+// 数据条目添加函数
+// 参数: entry_param - 条目参数, data_param - 数据参数
+// 功能: 向数据结构中添加新的数据条目
+void add_data_entry(undefined8 entry_param, undefined8 data_param)
 
 {
   undefined4 uVar1;
@@ -635,7 +693,7 @@ void FUN_1800e9a94(undefined8 param_1,undefined8 param_2)
   *(undefined4 *)(unaff_RBP + 0xb) = uVar1;
   *(undefined4 *)(unaff_RBP + 0xf) = uVar2;
   *(undefined4 *)(unaff_RBP + 0x13) = uVar3;
-  *(undefined8 *)(unaff_RBP + 0x17) = param_2;
+  *(undefined8 *)(unaff_RBP + 0x17) = data_param;
   *(undefined8 *)(unaff_RBP + 0x1f) = in_XMM1_Qb;
   FUN_1800eac80(unaff_RBP + 0x17,unaff_RBP + 7);
   return;
@@ -645,21 +703,11 @@ void FUN_1800e9a94(undefined8 param_1,undefined8 param_2)
 
 
 
-
-// 函数: void FUN_1800e9ab1(void)
-void FUN_1800e9ab1(void)
-
-{
-  return;
-}
-
-
-
-
-
-
-// 函数: void FUN_1800e9ab9(void)
-void FUN_1800e9ab9(void)
+// 函数: void empty_function_2(void)
+// 空函数2
+// 参数: 无参数
+// 功能: 空实现函数，可能用作占位符或接口兼容
+void empty_function_2(void)
 
 {
   return;
@@ -669,37 +717,56 @@ void FUN_1800e9ab9(void)
 
 
 
-
-// 函数: void FUN_1800e9ac1(void)
-void FUN_1800e9ac1(void)
+// 函数: void empty_function_3(void)
+// 空函数3
+// 参数: 无参数
+// 功能: 空实现函数，可能用作占位符或接口兼容
+void empty_function_3(void)
 
 {
   return;
 }
 
+
+
+
+
+// 函数: void empty_function_4(void)
+// 空函数4
+// 参数: 无参数
+// 功能: 空实现函数，可能用作占位符或接口兼容
+void empty_function_4(void)
+
+{
+  return;
+}
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong * FUN_1800e9ae0(ulonglong param_1)
+// 函数: ulonglong * create_array_structure(ulonglong size)
+// 数组结构创建函数
+// 参数: size - 数组大小
+// 功能: 创建指定大小的数组结构，初始化内存并返回指针
+ulonglong * create_array_structure(ulonglong size)
 
 {
   ulonglong *puVar1;
   ulonglong *puVar2;
   int iVar3;
   
-  if (param_1 == 0) {
+  if (size == 0) {
     return (ulonglong *)0x0;
   }
-  puVar1 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,param_1 * 8 + 0x10,3);
-  *puVar1 = param_1 << 0x20 | 8;
+  puVar1 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,size * 8 + MEMORY_ALLOC_BASE_SIZE,3);
+  *puVar1 = size << 0x20 | 8;
   iVar3 = 0;
   puVar2 = puVar1 + 2;
   do {
     iVar3 = iVar3 + 1;
     *puVar2 = 0;
     puVar2 = puVar2 + 1;
-  } while ((ulonglong)(longlong)iVar3 < param_1);
+  } while ((ulonglong)(longlong)iVar3 < size);
   return puVar1 + 2;
 }
 
@@ -707,41 +774,45 @@ ulonglong * FUN_1800e9ae0(ulonglong param_1)
 
 
 
-
-// 函数: void FUN_1800e9b50(longlong param_1)
-void FUN_1800e9b50(longlong param_1)
+// 函数: void cleanup_memory_handlers(longlong memory_ptr)
+// 内存处理器清理函数
+// 参数: memory_ptr - 内存指针
+// 功能: 清理内存处理器，调用析构函数并释放内存
+void cleanup_memory_handlers(longlong memory_ptr)
 
 {
   ulonglong uVar1;
   ulonglong uVar2;
   ulonglong uVar3;
   
-  if (param_1 == 0) {
+  if (memory_ptr == 0) {
     return;
   }
   uVar3 = 0;
-  uVar1 = *(ulonglong *)(param_1 + -0x10);
+  uVar1 = *(ulonglong *)(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
   uVar2 = uVar1 >> 0x20;
   if ((int)(uVar1 >> 0x20) != 0) {
     do {
-      if (*(longlong **)(uVar3 + param_1) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(uVar3 + param_1) + 0x38))();
+      if (*(longlong **)(uVar3 + memory_ptr) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(uVar3 + memory_ptr) + 0x38))();
       }
       uVar3 = (ulonglong)(uint)((int)uVar3 + (int)uVar1);
       uVar2 = uVar2 - 1;
     } while (uVar2 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(param_1 + -0x10);
+  FUN_18064e900(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
 }
 
 
 
 
 
-
-// 函数: void FUN_1800e9b5a(longlong param_1)
-void FUN_1800e9b5a(longlong param_1)
+// 函数: void cleanup_memory_handlers_fast(longlong memory_ptr)
+// 快速内存处理器清理函数
+// 参数: memory_ptr - 内存指针
+// 功能: 快速清理内存处理器，优化版本的清理函数
+void cleanup_memory_handlers_fast(longlong memory_ptr)
 
 {
   ulonglong uVar1;
@@ -749,28 +820,30 @@ void FUN_1800e9b5a(longlong param_1)
   ulonglong uVar3;
   
   uVar3 = 0;
-  uVar1 = *(ulonglong *)(param_1 + -0x10);
+  uVar1 = *(ulonglong *)(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
   uVar2 = uVar1 >> 0x20;
   if ((int)(uVar1 >> 0x20) != 0) {
     do {
-      if (*(longlong **)(uVar3 + param_1) != (longlong *)0x0) {
-        (**(code **)(**(longlong **)(uVar3 + param_1) + 0x38))();
+      if (*(longlong **)(uVar3 + memory_ptr) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(uVar3 + memory_ptr) + 0x38))();
       }
       uVar3 = (ulonglong)(uint)((int)uVar3 + (int)uVar1);
       uVar2 = uVar2 - 1;
     } while (uVar2 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(param_1 + -0x10);
+  FUN_18064e900(memory_ptr + -MEMORY_ALLOC_BASE_SIZE);
 }
 
 
 
 
 
-
-// 函数: void FUN_1800e9b7d(void)
-void FUN_1800e9b7d(void)
+// 函数: void cleanup_memory_pool(void)
+// 内存池清理函数
+// 参数: 无参数，使用寄存器变量
+// 功能: 清理内存池，释放所有分配的内存资源
+void cleanup_memory_pool(void)
 
 {
   longlong in_RAX;
@@ -786,11 +859,7 @@ void FUN_1800e9b7d(void)
     in_RAX = in_RAX + -1;
   } while (in_RAX != 0);
                     // WARNING: Subroutine does not return
-  FUN_18064e900(unaff_RSI + -0x10);
+  FUN_18064e900(unaff_RSI + -MEMORY_ALLOC_BASE_SIZE);
 }
-
-
-
-
 
 

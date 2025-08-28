@@ -1,13 +1,45 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part028.c - 6 个函数
+// 03_rendering_part028.c - 渲染系统哈希表和资源管理模块
+// 本文件包含渲染系统的核心功能，包括哈希表管理、资源分配和矩阵变换操作
+//
+// 主要功能模块：
+// 1. 哈希表管理：FUN_180280ab8 - 渲染资源哈希表操作和缓存管理
+// 2. 矩阵变换：FUN_180280ad0 - 3D矩阵变换和坐标系统处理
+// 3. 资源管理：FUN_180280fd0 - 渲染资源的引用计数和生命周期管理
+// 4. 内存清理：FUN_180281020 - 渲染缓冲区的内存释放和清理
+// 5. 系统初始化：FUN_180281040 - 渲染系统的初始化和设置
+// 6. 渲染管线：FUN_180281080 - 渲染管线的高级处理和状态管理
 
-// 函数: void FUN_180280ab8(undefined8 param_1,code *param_2,undefined8 param_3,longlong *param_4,
-void FUN_180280ab8(undefined8 param_1,code *param_2,undefined8 param_3,longlong *param_4,
-                  undefined8 param_5,undefined8 param_6,undefined8 param_7,longlong *param_8,
-                  longlong *param_9,longlong param_10,longlong param_11,ulonglong *param_12,
-                  longlong param_13,undefined8 param_14,ulonglong *param_15,ulonglong param_16,
-                  ulonglong param_17,ulonglong param_18)
+// 全局常量定义
+// 渲染系统数据区域
+#define RENDER_HASH_TABLE_BASE   UNK_180a3e3d8
+#define RENDER_MATRIX_BUFFER     DAT_180c967d8
+#define RENDER_RESOURCE_POOL    UNK_180a3e3f0
+#define RENDER_SYSTEM_CONFIG    DAT_180c967e0
+#define RENDER_PARAM_DATA       DAT_180c967e8
+#define RENDER_BUFFER_SIZE      DAT_180c967f0
+#define RENDER_CONTROL_DATA     DAT_180c967f8
+#define RENDER_SYSTEM_DATA      _DAT_180c8ed18
+
+// 函数别名定义
+// 哈希表和资源管理函数
+#define process_render_hash_table     FUN_180280ab8
+#define transform_3d_matrices         FUN_180280ad0
+#define manage_render_resources       FUN_180280fd0
+#define cleanup_render_buffers        FUN_180281020
+#define initialize_render_system      FUN_180281040
+#define execute_render_pipeline       FUN_180281080
+
+// 函数: void process_render_hash_table(undefined8 param_1,code *param_2,undefined8 param_3,longlong *param_4,
+// 处理渲染哈希表，管理渲染资源的缓存和分配
+// 参数: param_1 - 渲染上下文, param_2 - 代码指针, param_3 - 系统参数, param_4 - 哈希表指针,
+//       param_5-param_18 - 渲染资源和处理参数
+void process_render_hash_table(undefined8 param_1,code *param_2,undefined8 param_3,longlong *param_4,
+                              undefined8 param_5,undefined8 param_6,undefined8 param_7,longlong *param_8,
+                              longlong *param_9,longlong param_10,longlong param_11,ulonglong *param_12,
+                              longlong param_13,undefined8 param_14,ulonglong *param_15,ulonglong param_16,
+                              ulonglong param_17,ulonglong param_18)
 
 {
   uint *puVar1;
@@ -254,8 +286,11 @@ LAB_180280958:
 
 
 
-// 函数: void FUN_180280ad0(longlong *param_1,longlong *param_2)
-void FUN_180280ad0(longlong *param_1,longlong *param_2)
+// 函数: void transform_3d_matrices(longlong *param_1,longlong *param_2)
+// 执行3D矩阵变换，处理坐标系统转换和矩阵运算
+// 参数: param_1 - 目标矩阵数组指针, param_2 - 源矩阵数组指针
+// 功能：实现3D渲染中的矩阵变换，包括平移、旋转、缩放等操作
+void transform_3d_matrices(longlong *param_1,longlong *param_2)
 
 {
   undefined4 uVar1;
