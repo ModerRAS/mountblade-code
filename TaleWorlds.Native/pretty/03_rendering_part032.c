@@ -75,7 +75,7 @@ typedef enum {
 
 // 全局数据引用
 #define RenderingSystemGlobalData _DAT_180c8ed18
-#define RenderingSystemDefaultData RenderingSystemDefaultData
+#define RenderingSystemDefaultData &DAT_18098bc73
 #define RenderingSystemVTableData1 &UNK_18098bcb0
 #define RenderingSystemVTableData2 &UNK_1809fcc58
 #define RenderingSystemVTableData3 &UNK_180a3c3e0
