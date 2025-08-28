@@ -1262,7 +1262,7 @@ LAB_1805a2c79:
   FUN_1805a0af0(lVar23,fVar34,CONCAT71(uVar18,1));
 FUN_1805a18e3:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_98 ^ (uint64_t)auStack_898);
+  SystemSecurityChecker(uStack_98 ^ (uint64_t)auStack_898);
 }
 
 

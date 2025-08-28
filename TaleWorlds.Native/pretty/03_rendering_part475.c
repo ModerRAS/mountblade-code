@@ -58,7 +58,7 @@ void FUN_1805204e0(int64_t param_1,uint64_t param_2)
   if (*(void **)(lVar6 + 8) != (void *)0x0) {
     puVar9 = *(void **)(lVar6 + 8);
   }
-  FUN_180627910(&puStack_c8,puVar9);
+  CoreMemoryPoolValidator(&puStack_c8,puVar9);
   for (lVar6 = *render_system_data_memory; lVar6 != render_system_data_memory[1]; lVar6 = lVar6 + 0x20) {
     iVar3 = *(int *)(lVar6 + 0x10);
     iVar8 = iStack_b8;
@@ -93,7 +93,7 @@ LAB_1805205ee:
   puStack_c8 = &system_data_buffer_ptr;
   if (puStack_c0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   puStack_c0 = (void *)0x0;
   uStack_b0 = 0;
@@ -142,7 +142,7 @@ LAB_1805205ee:
   uStack_68 = 3;
   uStack_70 = uStack_90;
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(*(int64_t *)(lVar6 + 0x20) + 0x34));
+  AdvancedSystemController(*(int32_t *)(*(int64_t *)(lVar6 + 0x20) + 0x34));
 }
 
 

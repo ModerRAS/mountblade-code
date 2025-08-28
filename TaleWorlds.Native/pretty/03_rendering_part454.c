@@ -507,7 +507,7 @@ void FUN_180513264(uint64_t param_1,int64_t param_2)
     }
   } while (-1 < unaff_BL);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x98) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x98) ^ (uint64_t)&stack0x00000000);
 }
 
 

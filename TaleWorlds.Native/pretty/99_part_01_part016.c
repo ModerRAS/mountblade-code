@@ -278,7 +278,7 @@ void FUN_1800b0380(int64_t param_1)
         uVar9 = *(uint *)(lVar7 + 0x10);
         uVar11 = (uint64_t)uVar9;
         if (*(int64_t *)(lVar7 + 8) != 0) {
-          FUN_1806277c0(lVar7 + 0x20,uVar11);
+          CoreMemoryPoolProcessor(lVar7 + 0x20,uVar11);
         }
         if (uVar9 != 0) {
                     // WARNING: Subroutine does not return
@@ -301,7 +301,7 @@ void FUN_1800b0380(int64_t param_1)
         uVar9 = *(uint *)(lVar7 + 0x90);
         uVar11 = (uint64_t)uVar9;
         if (*(int64_t *)(lVar7 + 0x88) != 0) {
-          FUN_1806277c0(lVar7 + 0x20,uVar11);
+          CoreMemoryPoolProcessor(lVar7 + 0x20,uVar11);
         }
         if (uVar9 != 0) {
                     // WARNING: Subroutine does not return
@@ -438,7 +438,7 @@ void FUN_1800b039e(uint64_t param_1,int64_t param_2)
         uVar10 = *(uint *)(lVar8 + 0x10);
         uVar12 = (uint64_t)uVar10;
         if (*(uint64_t *)(lVar8 + 8) != unaff_R12) {
-          FUN_1806277c0(lVar8 + 0x20,uVar12);
+          CoreMemoryPoolProcessor(lVar8 + 0x20,uVar12);
         }
         if (uVar10 != 0) {
                     // WARNING: Subroutine does not return
@@ -461,7 +461,7 @@ void FUN_1800b039e(uint64_t param_1,int64_t param_2)
         uVar10 = *(uint *)(lVar8 + 0x90);
         uVar12 = (uint64_t)uVar10;
         if (*(uint64_t *)(lVar8 + 0x88) != unaff_R12) {
-          FUN_1806277c0(lVar8 + 0x20,uVar12);
+          CoreMemoryPoolProcessor(lVar8 + 0x20,uVar12);
         }
         if (uVar10 != 0) {
                     // WARNING: Subroutine does not return
@@ -541,7 +541,7 @@ void FUN_1800b04d8(uint64_t param_1,int64_t param_2)
       uVar9 = *(uint *)(lVar6 + 0x10);
       uVar8 = (uint64_t)uVar9;
       if (*(uint64_t *)(lVar6 + 8) != unaff_R12) {
-        FUN_1806277c0(lVar6 + 0x20,uVar8);
+        CoreMemoryPoolProcessor(lVar6 + 0x20,uVar8);
       }
       if (uVar9 != 0) {
                     // WARNING: Subroutine does not return
@@ -564,7 +564,7 @@ void FUN_1800b04d8(uint64_t param_1,int64_t param_2)
       uVar9 = *(uint *)(lVar6 + 0x90);
       uVar8 = (uint64_t)uVar9;
       if (*(uint64_t *)(lVar6 + 0x88) != unaff_R12) {
-        FUN_1806277c0(lVar6 + 0x20,uVar8);
+        CoreMemoryPoolProcessor(lVar6 + 0x20,uVar8);
       }
       if (uVar9 != 0) {
                     // WARNING: Subroutine does not return

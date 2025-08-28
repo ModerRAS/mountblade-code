@@ -7,7 +7,7 @@ void FUN_18079ae50(int64_t param_1,float param_2)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400((param_2 * 6.2831855) / (float)*(int *)(*(int64_t *)(param_1 + 0xa8) + 0x6d0));
+  AdvancedSystemController((param_2 * 6.2831855) / (float)*(int *)(*(int64_t *)(param_1 + 0xa8) + 0x6d0));
 }
 
 
@@ -26,7 +26,7 @@ void FUN_18079af30(uint64_t param_1,float param_2,int param_3)
     fVar1 = 0.999;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar1 * 3.1415927);
+  AdvancedSystemController(fVar1 * 3.1415927);
 }
 
 

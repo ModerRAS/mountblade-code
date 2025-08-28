@@ -396,7 +396,7 @@ LAB_18052a5b9:
                 (**(code **)(*plStackX_8 + 0x38))();
               }
               FUN_1802f5e40(aplStack_128);
-              uVar11 = FUN_18062b1e0(system_memory_pool_ptr,0x140,0x10,3);
+              uVar11 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x140,0x10,3);
               plVar12 = (int64_t *)FUN_18014a1b0(uVar11);
               if (plVar12 != (int64_t *)0x0) {
                 plStackX_8 = plVar12;
@@ -410,7 +410,7 @@ LAB_18052a5b9:
                 plVar12 = aplStack_128[0];
               }
               aplStack_128[0] = plVar12;
-              uVar11 = FUN_18062b1e0(system_memory_pool_ptr,0x130,8,6);
+              uVar11 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x130,8,6);
                     // WARNING: Subroutine does not return
               memset(uVar11,0,0x130);
             }

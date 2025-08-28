@@ -596,7 +596,7 @@ void FUN_1805d62c0(int64_t *param_1)
       *(int8_t *)(*(int64_t *)(*param_1 + 0x738) + 0x180) = 1;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(*(int64_t *)(*param_1 + 0x20) + 0x34));
+    AdvancedSystemController(*(int32_t *)(*(int64_t *)(*param_1 + 0x20) + 0x34));
   }
   uVar7 = *(uint *)(param_1 + 0x272) << 0xd ^ *(uint *)(param_1 + 0x272);
   uVar7 = uVar7 ^ uVar7 >> 0x11;
@@ -714,7 +714,7 @@ void FUN_1805d62f9(uint param_1)
       *(int8_t *)(*(int64_t *)(*unaff_RBX + 0x738) + 0x180) = 1;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x34));
+    AdvancedSystemController(*(int32_t *)(*(int64_t *)(*unaff_RBX + 0x20) + 0x34));
   }
   uVar8 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
   uVar8 = uVar8 ^ uVar8 >> 0x11;

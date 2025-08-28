@@ -386,7 +386,7 @@ void FUN_18047a710(int8_t *param_1,uint64_t *param_2)
   uStack_58 = 1;
   FUN_180067070(param_2);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_78);
+  SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_78);
 }
 
 
@@ -665,7 +665,7 @@ LAB_18047ab4b:
 LAB_18047ac81:
   __1_Lockit_std__QEAA_XZ(auStack_c4);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_e8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_e8);
 }
 
 

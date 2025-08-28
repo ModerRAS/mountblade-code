@@ -1281,7 +1281,7 @@ code_r0x0001805a68bf:
   }
 FUN_1805a6b33:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_98 ^ (uint64_t)auStack_558);
+  SystemSecurityChecker(uStack_98 ^ (uint64_t)auStack_558);
 }
 
 

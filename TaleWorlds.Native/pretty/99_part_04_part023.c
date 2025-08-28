@@ -161,7 +161,7 @@ LAB_18026d697:
           lVar6 = lVar6 + 1;
         } while (lVar6 < iVar5);
       }
-      uVar10 = FUN_18062b1e0(system_memory_pool_ptr,0x900,8,0xd,uVar17,plVar18,plVar19,plVar21,uVar22);
+      uVar10 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x900,8,0xd,uVar17,plVar18,plVar19,plVar21,uVar22);
       lVar13 = FUN_1802699c0(uVar10,plVar3);
       FUN_180267ee0(lVar13,plVar3,0);
       if (plVar8 < plVar20) {

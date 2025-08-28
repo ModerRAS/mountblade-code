@@ -179,7 +179,7 @@
 // 辅助函数别名
 #define RenderingSystemResourceInitializer FUN_18031ccb0
 #define RenderingSystemResourceFinalizer FUN_18031ef50
-#define RenderingSystemMemoryManager FUN_1808fc050
+#define RenderingSystemMemoryManager SystemSecurityChecker
 
 // =============================================================================
 // 渲染系统高级处理器
@@ -415,7 +415,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             
             // 创建着色器资源
             puStack_148 = &system_state_ptr;
-            ppcVar8 = (code **)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3);
+            ppcVar8 = (code **)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x48, 8, 3);
             pcVar4 = apcStack_1c8[0];
             ppcVar8[1] = (code *)0x0;
             ppcVar8[2] = (code *)0x0;
@@ -497,7 +497,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             
             if (lStack_188 != 0) {
                 // 处理渲染错误
-                FUN_18064e900();
+                CoreMemoryPoolInitializer();
             }
             
             lStack_188 = 0;

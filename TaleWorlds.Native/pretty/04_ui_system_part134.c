@@ -113,7 +113,7 @@ struct UIMemoryBlock {
 
 // 内存管理相关函数别名
 #define UISystem_MemoryAllocator(param1, param2, param3, param4, param5, param6, param7) FUN_180741e10(param1, param2, param3, param4, param5, param6, param7)
-#define UISystem_MemoryReleaser(param1, param2, param3, param4, param5) FUN_180742250(param1, param2, param3, param4, param5)
+#define UISystem_MemoryReleaser(param1, param2, param3, param4, param5) SystemInitializer(param1, param2, param3, param4, param5)
 #define UISystem_MemoryAllocatorEx(param1, param2, param3, param4, param5) FUN_180742050(param1, param2, param3, param4, param5)
 #define UISystem_ParameterUpdater(param1, param2, param3, param4, param5) FUN_180742650(param1, param2, param3, param4, param5)
 
@@ -442,7 +442,7 @@ void UISystem_SetComponentActivation_Simplified(int32_t component_id, uint state
 void UISystem_ProcessComponentEvent_Simplified(uint64_t component_handle, uint64_t event_data, uint64_t callback_handle)
 {
     // 简化实现：直接调用底层系统函数
-    // 原始实现：FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, param_3, 0, 1);
+    // 原始实现：SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, param_3, 0, 1);
     
     // 在实际应用中，这里应该：
     // 1. 验证事件数据的合法性
@@ -970,7 +970,7 @@ uint64_t UISystem_AdjustArrayCapacity(int64_t *param_1,int param_2)
 LAB_180747ea4:
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((int64_t)param_1 + 0xc) = param_2;
@@ -994,7 +994,7 @@ uint64_t UISystem_AdjustArrayCapacitySimple(uint64_t param_1,int param_2)
 LAB_180747ea4:
     if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
@@ -1054,7 +1054,7 @@ uint64_t UISystem_AdjustArrayCapacity64(int64_t *param_1,int param_2)
 LAB_180747fa4:
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((int64_t)param_1 + 0xc) = param_2;
@@ -1078,7 +1078,7 @@ uint64_t UISystem_AdjustArrayCapacity64Simple(uint64_t param_1,int param_2)
 LAB_180747fa4:
     if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
@@ -1138,7 +1138,7 @@ uint64_t UISystem_AdjustArrayCapacity128(int64_t *param_1,int param_2)
 LAB_1807480a0:
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((int64_t)param_1 + 0xc) = param_2;
@@ -1162,7 +1162,7 @@ uint64_t UISystem_AdjustArrayCapacity128Simple(uint64_t param_1,int param_2)
 LAB_1807480a0:
     if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
@@ -1432,7 +1432,7 @@ uint64_t UISystem_ValidateComponentAdd(int64_t param_1,int param_2)
     UISystem_ComponentCleaner(param_1,0x10);
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                 *(uint64_t *)(lVar3 + 0x30 + *(int64_t *)(param_1 + 0x6a0)),&unknown_var_8576_ptr,0x1470
                 ,1);
 }
@@ -1816,7 +1816,7 @@ uint64_t UISystem_ComponentTypeMatchFailed(void)
  * 
  * - 系统控制块 (SYSTEM_MAIN_CONTROL_BLOCK)
  * - 全局常量定义 (global_constants.h)
- * - 内存管理函数 (FUN_180741e10, FUN_180742250)
+ * - 内存管理函数 (FUN_180741e10, SystemInitializer)
  * - 组件管理函数 (FUN_18078cde0, FUN_180743ab0)
  * - 事件处理函数 (FUN_1807889e0, FUN_180788d20)
  * 

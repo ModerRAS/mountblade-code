@@ -49,7 +49,7 @@ void FUN_1805a0cf5(uint64_t param_1,int64_t param_2)
   if (iVar26 < 1) {
 FUN_1805a15a6:
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(unaff_RBP[0x32] ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(unaff_RBP[0x32] ^ (uint64_t)&stack0x00000000);
   }
   lVar29 = 0;
   unaff_RBP[-0xc] = 0;

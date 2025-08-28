@@ -736,7 +736,7 @@ void FUN_1805b2510(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(float *)(in_stack_00000028 + 0x14) * 0.0 + *(float *)(in_R9 + 0x14) * 1.0);
+  AdvancedSystemController(*(float *)(in_stack_00000028 + 0x14) * 0.0 + *(float *)(in_R9 + 0x14) * 1.0);
 }
 
 
@@ -1004,7 +1004,7 @@ void FUN_1805b30a0(int64_t *param_1,int param_2)
       }
       if (lVar2 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        CoreMemoryPoolInitializer(lVar2);
       }
     }
   }

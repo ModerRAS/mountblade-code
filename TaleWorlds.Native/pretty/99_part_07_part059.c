@@ -317,7 +317,7 @@ LAB_1804d38db:
     uVar21 = uVar21 + 1;
     if (param_3 <= (int)uStackX_24) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x20) ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x20) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -334,7 +334,7 @@ void FUN_1804d39b7(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x20) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x20) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -657,7 +657,7 @@ void FUN_1804d3d10(int64_t param_1,int64_t param_2)
       *(uint64_t *)(lVar4 + 0x18) = *(uint64_t *)(lVar6 + 0x18);
     }
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lStack_28);
+    CoreMemoryPoolInitializer(lStack_28);
   }
   puVar3 = (uint64_t *)(param_1 + 0x2b88);
   puVar7 = *(uint64_t **)(param_1 + 0x2b98);
@@ -682,7 +682,7 @@ LAB_1804d3e91:
     FUN_18066ba00(puVar8,puVar3);
     if (puVar8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(puVar8);
+      CoreMemoryPoolInitializer(puVar8);
     }
   }
   return;
@@ -744,7 +744,7 @@ void FUN_1804d3d17(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       *(uint64_t *)(lVar4 + 0x18) = *(uint64_t *)(lVar6 + 0x18);
     }
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lStackX_20);
+    CoreMemoryPoolInitializer(lStackX_20);
   }
   puVar3 = (uint64_t *)(param_1 + 0x2b88);
   puVar7 = *(uint64_t **)(param_1 + 0x2b98);
@@ -769,7 +769,7 @@ LAB_1804d3e91:
     FUN_18066ba00(puVar8,puVar3);
     if (puVar8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(puVar8);
+      CoreMemoryPoolInitializer(puVar8);
     }
   }
   return;
@@ -826,7 +826,7 @@ void FUN_1804d3d5d(void)
     *(uint64_t *)(lVar3 + 0x18) = *(uint64_t *)(lVar5 + 0x18);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreMemoryPoolInitializer();
 }
 
 

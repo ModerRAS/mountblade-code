@@ -1696,7 +1696,7 @@ LAB_18012ce0f:
   }
   *(int8_t *)((int64_t)plStack_238 + 0xb4) = uVar20;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_278);
+  SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_278);
 }
 
 

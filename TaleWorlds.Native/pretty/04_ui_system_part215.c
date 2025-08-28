@@ -13,10 +13,10 @@ void FUN_180790266(void)
   FUN_180773410();
   if (unaff_R14 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x42a0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x42a0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -30,7 +30,7 @@ void FUN_18079027d(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 
@@ -403,7 +403,7 @@ FUN_180790610(int64_t *param_1,uint64_t param_2,int64_t param_3,int64_t param_4,
     return 0x1f;
   }
   uVar2 = *(uint64_t *)(in_stack_00000008 + 0x60);
-  FUN_180768360(uVar2);
+  SystemStateManager(uVar2);
   iVar4 = *(int *)(in_stack_00000008 + 0x18);
   pfVar1 = *(float **)(in_stack_00000008 + 0x20);
   if (param_6 == 1) {
@@ -475,7 +475,7 @@ LAB_180789990:
             (pfVar1,param_4,*(uint64_t *)(in_stack_00000008 + 0x30),
              *(int32_t *)(in_stack_00000008 + 0x18));
                     // WARNING: Subroutine does not return
-  FUN_180768400(uVar2);
+  SystemConfigManager(uVar2);
 }
 
 
@@ -512,7 +512,7 @@ FUN_180790680(int64_t *param_1,uint64_t param_2,int64_t param_3,int32_t *param_4
       lVar4 = (int64_t)param_6;
       if (param_6 != 0) {
         uVar2 = *(uint64_t *)(in_stack_00000008 + 0x68);
-        FUN_180768360(uVar2);
+        SystemStateManager(uVar2);
         (**(code **)(ui_system_config + 0x18))
                   (param_3,*(uint64_t *)(in_stack_00000008 + 0x28),
                    *(uint64_t *)(in_stack_00000008 + 0x30),
@@ -615,7 +615,7 @@ FUN_180790680(int64_t *param_1,uint64_t param_2,int64_t param_3,int32_t *param_4
           }
         }
                     // WARNING: Subroutine does not return
-        FUN_180768400(uVar2);
+        SystemConfigManager(uVar2);
       }
       return 0x1f;
     }

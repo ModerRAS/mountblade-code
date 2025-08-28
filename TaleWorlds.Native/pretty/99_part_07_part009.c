@@ -72,8 +72,8 @@ void FUN_1804a2fc0(void)
   char acStackX_10 [8];
   
   lVar6 = system_system_data_ui + 0x150;
-  lVar3 = FUN_18062b420(system_memory_pool_ptr,0x40,*(int8_t *)(system_system_data_ui + 0x178));
-  FUN_180627910(lVar3 + 0x20,&system_data_92b8);
+  lVar3 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(system_system_data_ui + 0x178));
+  CoreMemoryPoolValidator(lVar3 + 0x20,&system_data_92b8);
   lVar4 = FUN_1800590b0(lVar6,acStackX_10,lVar3 + 0x20);
   uVar7 = 1;
   if (acStackX_10[0] == '\0') {
@@ -82,8 +82,8 @@ void FUN_1804a2fc0(void)
       return;
     }
     lVar6 = system_system_data_ui + 0x150;
-    lVar3 = FUN_18062b420(system_memory_pool_ptr,0x40,*(int8_t *)(system_system_data_ui + 0x178));
-    FUN_180627910(lVar3 + 0x20,&system_data_90b0);
+    lVar3 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(system_system_data_ui + 0x178));
+    CoreMemoryPoolValidator(lVar3 + 0x20,&system_data_90b0);
     lVar4 = FUN_1800590b0(lVar6,acStackX_10,lVar3 + 0x20);
     if (acStackX_10[0] == '\0') {
       FUN_18005d1f0();
@@ -629,7 +629,7 @@ FUN_1804a3360(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   if (*(void **)(lVar1 + 8) != (void *)0x0) {
     puVar2 = *(void **)(lVar1 + 8);
   }
-  FUN_180627910(param_2,puVar2,param_3,param_4,uVar3,uVar4);
+  CoreMemoryPoolValidator(param_2,puVar2,param_3,param_4,uVar3,uVar4);
   return param_2;
 }
 

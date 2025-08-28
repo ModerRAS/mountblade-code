@@ -248,7 +248,7 @@ void FUN_18057be32(void)
   *(uint64_t *)(unaff_RDI + 0x808) =
        *(uint64_t *)(unaff_RDI + 0x808) | 1L << ((int64_t)(char)unaff_R15B & 0x3fU);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x60) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x60) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -401,7 +401,7 @@ void FUN_18057c02d(void)
   *(uint64_t *)(unaff_RDI + 0x808) =
        *(uint64_t *)(unaff_RDI + 0x808) | 1L << ((int64_t)(char)unaff_R15B & 0x3fU);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x60) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x60) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -466,7 +466,7 @@ void FUN_18057c1b0(void)
   *(uint64_t *)(unaff_RDI + 0x808) =
        *(uint64_t *)(unaff_RDI + 0x808) | 1L << ((int64_t)(char)unaff_R15B & 0x3fU);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x60) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x60) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -524,7 +524,7 @@ void FUN_18057c25f(uint64_t param_1,int64_t param_2,int64_t param_3)
     } while (uVar10 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x60) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x60) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -787,7 +787,7 @@ uint64_t * FUN_18057c7c0(uint64_t *param_1,uint64_t param_2)
     (**(code **)*puVar1)(puVar1,0);
     if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar3);
+      CoreMemoryPoolInitializer(lVar3);
     }
   }
   param_1[0x4b2] = 0;
@@ -797,7 +797,7 @@ uint64_t * FUN_18057c7c0(uint64_t *param_1,uint64_t param_2)
     (**(code **)(*plVar2 + 0x20))(plVar2,0);
     if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar3);
+      CoreMemoryPoolInitializer(lVar3);
     }
   }
   param_1[0x4b3] = 0;

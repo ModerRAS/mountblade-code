@@ -243,7 +243,7 @@ void FUN_1805771cb(uint64_t param_1,int64_t param_2)
          ABS(*(float *)(unaff_RBP + -0x20) - *(float *)(unaff_RBP + -0x80));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -318,7 +318,7 @@ void FUN_1805776ba(int32_t param_1)
          ABS(*(float *)(unaff_RBP + -0x20) - *(float *)(unaff_RBP + -0x80));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -387,7 +387,7 @@ void FUN_1805776ee(int64_t param_1)
   *(float *)(unaff_RSI + 0x2560) =
        ABS(*(float *)(unaff_RBP + -0x20) - *(float *)(unaff_RBP + -0x80));
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -401,7 +401,7 @@ void FUN_18057788a(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -415,7 +415,7 @@ void FUN_18057789a(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -429,7 +429,7 @@ void FUN_1805778a2(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x290) ^ (uint64_t)&stack0x00000000);
 }
 
 

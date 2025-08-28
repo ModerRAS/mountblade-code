@@ -287,7 +287,7 @@ void FUN_18065bf60(int64_t param_1)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(uint *)(param_1 + 0x20) ^ 0x80000000);
+  AdvancedSystemController(*(uint *)(param_1 + 0x20) ^ 0x80000000);
 }
 
 
@@ -299,7 +299,7 @@ void FUN_18065c070(int64_t param_1)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(uint *)(param_1 + 0x20) ^ 0x80000000);
+  AdvancedSystemController(*(uint *)(param_1 + 0x20) ^ 0x80000000);
 }
 
 
@@ -383,7 +383,7 @@ void FUN_18065c20a(int64_t param_1)
           FUN_180669700(pcStack0000000000000088 + -0x1298,&stack0x00000078,
                         *(uint64_t *)(unaff_RBP + 0x208),iVar7,*unaff_RSI);
                     // WARNING: Subroutine does not return
-          FUN_1808fd400(*(int32_t *)(in_stack_000001b0 + 0x20));
+          AdvancedSystemController(*(int32_t *)(in_stack_000001b0 + 0x20));
         }
       }
       unaff_RSI = unaff_RSI + 1;
@@ -587,7 +587,7 @@ void FUN_18065cc10(int64_t param_1)
     uVar2 = uVar2 + 1;
   } while ((int64_t)uVar2 < 10);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_98);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_98);
 }
 
 

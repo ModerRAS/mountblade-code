@@ -267,7 +267,7 @@ void FUN_1806478d0(uint64_t param_1,uint64_t param_2)
   }
   FUN_1806502b0(FUN_180647850,&uStack_1d8,&system_memory_cc18);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_228);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_228);
 }
 
 

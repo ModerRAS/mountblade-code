@@ -859,7 +859,7 @@ code_r0x00018027a5b1:
     } while (plVar14 != param_2 + 1);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_488);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_488);
 }
 
 

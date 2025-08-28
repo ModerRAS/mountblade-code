@@ -147,7 +147,7 @@ LAB_1803bf934:
                      (puVar7 = &unknown_var_5412_ptr, (pcVar16[1] + 0xa8U & 0xdf) != 0)) {
                     puVar7 = &unknown_var_2208_ptr;
                   }
-                  FUN_18010cbc0(pcVar16,puVar7,aiStackX_10);
+                  AdvancedSystemOptimizer(pcVar16,puVar7,aiStackX_10);
                   if (aiStackX_10[0] == iVar10) {
                     puVar11 = puVar12;
                   }
@@ -755,7 +755,7 @@ LAB_1803c03a8:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_148);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_148);
 }
 
 

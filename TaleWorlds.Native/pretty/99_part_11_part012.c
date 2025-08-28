@@ -158,7 +158,7 @@ void FUN_1806e44a0(int64_t param_1,uint64_t param_2,uint64_t param_3)
   }
   fVar1 = *(float *)(param_1 + 0x7c) * 0.5;
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar1,fVar1,fStack_f4 * -fStack_f8);
+  AdvancedSystemController(fVar1,fVar1,fStack_f4 * -fStack_f8);
 }
 
 

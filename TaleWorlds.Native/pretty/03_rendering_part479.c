@@ -39,7 +39,7 @@ void FUN_1805249c1(uint64_t *param_1,uint64_t param_2,uint64_t *param_3)
 LAB_180524a5a:
       if (((*(uint *)(unaff_RSI + 0x56c) & 0x800) != 0) && (iVar4 == -1)) {
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(*(int32_t *)(*(int64_t *)(unaff_RSI + 0x20) + 0x34));
+        AdvancedSystemController(*(int32_t *)(*(int64_t *)(unaff_RSI + 0x20) + 0x34));
       }
       fVar2 = *(float *)(*(int64_t *)(unaff_RSI + 0x20) + 0x20);
       if (*(int *)(unaff_RSI + 0x564) == -1) {
