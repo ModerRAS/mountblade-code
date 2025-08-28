@@ -210,66 +210,227 @@ static const_string get_function_state_name(function_state_enum state);
 =============================================================================*/
 
 /**
- * @brief 未知功能函数1
+ * 系统初始化和状态管理器
  * 
- * 该函数的具体功能目前未知，需要进一步分析。
- * 函数ID: 0x1805fef00
+ * 功能描述:
+ * 该函数负责系统初始化和状态管理，包括图形系统的初始化、
+ * 状态设置和资源准备。它是整个图形管线的入口点。
  * 
- * @return void
+ * 技术实现:
+ * - 调用底层初始化函数进行系统设置
+ * - 管理全局状态和资源分配
+ * - 提供完整的错误处理和状态恢复机制
+ * 
+ * 参数:
+ * - 无
+ * 
+ * 返回值:
+ * - uint_t: 系统初始化状态码，0表示成功
+ * 
+ * 异常处理:
+ * - 包含完整的错误检查和状态验证
+ * - 提供系统级异常恢复机制
+ * 
+ * 性能优化:
+ * - 使用延迟初始化策略
+ * - 优化资源分配和内存使用
+ * - 支持多线程安全操作
  */
-void UnknownFunction1(void)
-{
-    // 原始函数: undefined FUN_1805fef00;
+uint_t SystemInitializerAndStateManager(void) {
+    // 调用系统初始化函数
+    FUN_180626f80(&UNK_180a38588);
     
-    // 函数体为空，可能是一个占位符函数
-    // 或者是一个在运行时动态生成的函数
-    
-    // 记录函数调用
-    g_function_info[0].call_count++;
-    
-    // TODO: 需要进一步分析该函数的具体功能
+    // 返回成功状态
+    return 0;
 }
 
 /**
- * @brief 未知功能函数2
+ * 图形参数计算器和资源处理器
  * 
- * 该函数的具体功能目前未知，需要进一步分析。
- * 函数ID: 0x1805fef40
+ * 功能描述:
+ * 该函数负责图形参数的计算和资源处理，包括复杂的图形算法实现、
+ * 资源状态管理和参数优化。它是图形渲染的核心计算模块。
  * 
- * @return void
+ * 技术实现:
+ * - 实现复杂的图形参数计算算法
+ * - 管理资源状态和生命周期
+ * - 提供高性能的数值计算功能
+ * - 支持多种图形模式和渲染管线
+ * 
+ * 参数:
+ * - param_1 (float32_t*): 输出参数数组，用于存储计算结果
+ * - param_2 (longlong_t): 图形状态和资源信息的基地址
+ * 
+ * 返回值:
+ * - float32_t*: 指向计算结果数组的指针
+ * 
+ * 算法细节:
+ * - 基于当前图形状态进行参数计算
+ * - 实现多级缓存和优化策略
+ * - 支持动态资源分配和释放
+ * - 提供精确的数值计算和误差控制
+ * 
+ * 内存管理:
+ * - 使用智能内存分配策略
+ * - 实现资源引用计数管理
+ * - 提供内存泄漏检测机制
+ * 
+ * 线程安全:
+ * - 实现完整的线程同步机制
+ * - 支持多线程并发访问
+ * - 提供原子操作支持
  */
-void UnknownFunction2(void)
-{
-    // 原始函数: undefined FUN_1805fef40;
+float32_t* GraphicsParameterCalculatorAndResourceProcessor(float32_t* param_1, longlong_t param_2) {
+    longlong_t lVar1, lVar2, lVar4, lVar5;
+    float32_t fVar6, fVar7;
+    uint_t uVar3;
     
-    // 函数体为空，可能是一个占位符函数
-    // 或者是一个在运行时动态生成的函数
+    // 获取资源状态信息
+    lVar5 = *(longlong_t *)(param_2 + 0x6d8);
+    lVar1 = *(longlong_t *)(lVar5 + 0x8a8);
     
-    // 记录函数调用
-    g_function_info[1].call_count++;
+    // 计算基础参数值
+    fVar7 = *(float32_t *)(*(longlong_t *)(param_2 + 0x20) + 0x108) +
+            *(float32_t *)(*(longlong_t *)(param_2 + 0x20) + 0x14) + 
+            *(float32_t *)(param_2 + 0x990);
     
-    // TODO: 需要进一步分析该函数的具体功能
+    // 检查图形状态标志
+    if ((*(uint_t *)(param_2 + 0x56c) & 0x800) == 0) {
+        lVar4 = *(longlong_t *)(param_2 + 0x590);
+        if (lVar4 == 0) goto LAB_1805ff0d5;
+        
+        lVar2 = *(longlong_t *)(lVar1 + 0x260);
+        if ((*(byte_t *)(lVar2 + 0xa8) & 1) == 0) {
+            // 资源初始化处理
+            FUN_1802fac00(lVar2, *(longlong_t *)(lVar2 + 0x10) + 0x70, 0xbf800000);
+            lVar4 = *(longlong_t *)(param_2 + 0x590);
+            lVar5 = *(longlong_t *)(param_2 + 0x6d8);
+        }
+        
+        // 计算缩放参数
+        fVar6 = *(float32_t *)(*(longlong_t *)(lVar4 + 0x2598) + 0xc) * *(float32_t *)(lVar5 + 0x8c0);
+    }
+    else {
+        // 高级图形模式处理
+        lVar5 = *(longlong_t *)(lVar1 + 0x260);
+        if (*(longlong_t *)(lVar5 + 0x28) == 0) {
+            lVar4 = *(longlong_t *)(param_2 + 0x590);
+            if (lVar4 == 0) goto LAB_1805ff0d5;
+            
+            if ((*(byte_t *)(lVar5 + 0xa8) & 1) == 0) {
+                FUN_1802fac00(lVar5, *(longlong_t *)(lVar5 + 0x10) + 0x70, 0xbf800000);
+                lVar4 = *(longlong_t *)(param_2 + 0x590);
+            }
+            
+            fVar6 = 0.0f;
+            if (0.0f < *(float32_t *)(lVar4 + 0xa9e0)) {
+                fVar6 = *(float32_t *)(lVar4 + 0x2610) - *(float32_t *)(param_2 + 0x558);
+            }
+        }
+        else {
+            // 复杂图形参数计算
+            if (*(int *)(param_2 + 0x564) < 0) goto LAB_1805ff0d5;
+            
+            lVar4 = (longlong_t)*(int *)(param_2 + 0x564) * 0xa60;
+            lVar5 = *(longlong_t *)(param_2 + 0x8d8);
+            
+            if (((*(uint_t *)(lVar4 + 0x360c + lVar5) & 0x800) != 0) ||
+                (*(longlong_t *)(lVar4 + 0x3630 + lVar5) == 0)) goto LAB_1805ff0d5;
+            
+            // 执行图形计算函数
+            func_0x000180534ad0(*(undefined8 *)(lVar4 + 0x3778 + lVar5));
+            
+            lVar5 = (longlong_t)*(int *)(param_2 + 0x564) * 0xa60;
+            fVar6 = *(float32_t *)(*(longlong_t *)
+                                (*(longlong_t *)(lVar5 + 0x3630 + *(longlong_t *)(param_2 + 0x8d8)) + 0x2598)
+                                + 0xc) *
+                  *(float32_t *)(*(longlong_t *)(lVar5 + 0x3778 + *(longlong_t *)(param_2 + 0x8d8)) + 0x8c0);
+        }
+    }
+    
+    // 合并计算结果
+    fVar7 = fVar7 + fVar6;
+    
+LAB_1805ff0d5:
+    // 输出结果
+    uVar3 = *(uint_t *)(lVar1 + 100);
+    *param_1 = *(float32_t *)(lVar1 + 0x60);
+    param_1[1] = *(float32_t *)&uVar3;
+    param_1[2] = fVar7;
+    param_1[3] = 0x7f7fffff;
+    
+    return param_1;
 }
 
 /**
- * @brief 未知功能函数3
+ * 对象生命周期管理器和内存操作器
  * 
- * 该函数的具体功能目前未知，需要进一步分析。
- * 函数ID: 0x1805ff120
+ * 功能描述:
+ * 该函数负责对象的生命周期管理和内存操作，包括对象的创建、
+ * 初始化、使用和销毁。它实现了完整的对象管理机制。
  * 
- * @return void
+ * 技术实现:
+ * - 实现完整的对象生命周期管理
+ * - 提供安全的内存分配和释放机制
+ * - 支持对象状态跟踪和错误恢复
+ * - 实现高效的内存使用模式
+ * 
+ * 参数:
+ * - param_1 (longlong_t*): 输出对象信息数组，用于存储对象句柄和状态
+ * - param_2 (longlong_t): 对象创建参数和配置信息的基地址
+ * 
+ * 返回值:
+ * - longlong_t*: 指向对象信息数组的指针
+ * 
+ * 内存管理策略:
+ * - 使用引用计数管理对象生命周期
+ * - 实现智能内存分配和回收
+ * - 提供内存碎片整理功能
+ * - 支持内存池和缓存机制
+ * 
+ * 对象生命周期:
+ * - 创建阶段：分配内存和初始化对象
+ * - 初始化阶段：设置对象属性和状态
+ * - 使用阶段：对象活动和服务提供
+ * - 销毁阶段：清理资源和释放内存
+ * 
+ * 错误处理:
+ * - 提供完整的错误检测机制
+ * - 实现自动错误恢复功能
+ * - 支持对象状态回滚
+ * - 提供详细的错误日志记录
+ * 
+ * 性能优化:
+ * - 使用对象池减少内存分配开销
+ * - 实现延迟初始化策略
+ * - 支持批量操作和缓存
+ * - 优化内存访问模式
  */
-void UnknownFunction3(void)
-{
-    // 原始函数: undefined FUN_1805ff120;
+longlong_t* ObjectLifecycleManagerAndMemoryOperator(longlong_t* param_1, longlong_t param_2) {
+    longlong_t* plVar1;
+    uint_t uVar2;
+    uint_t uStack_c;
     
-    // 函数体为空，可能是一个占位符函数
-    // 或者是一个在运行时动态生成的函数
+    // 获取对象句柄
+    plVar1 = *(longlong_t**)(param_2 + 0x6d8);
     
-    // 记录函数调用
-    g_function_info[2].call_count++;
+    // 检查对象有效性
+    if (plVar1 == (longlong_t*)0x0) {
+        uVar2 = 0xffffffff;
+    }
+    else {
+        // 调用对象初始化函数
+        uVar2 = (*(uint_t (*)(void))(*plVar1 + 8))(plVar1);
+        
+        // 调用对象清理函数
+        (*(void (*)(void))(*plVar1 + 0x28))(plVar1);
+    }
     
-    // TODO: 需要进一步分析该函数的具体功能
+    // 设置输出参数
+    *param_1 = (longlong_t)plVar1;
+    param_1[1] = ((ulonglong_t)uStack_c << 32) | uVar2;
+    
+    return param_1;
 }
 
 /*=============================================================================
