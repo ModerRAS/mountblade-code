@@ -402,7 +402,9 @@ LAB_1800b547f:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-char FUN_1800b55b0(uint64_t param_1,longlong *param_2)
+// 函数: char FUN_1800b55b0(uint64_t param_1,longlong *param_2)
+// 字符串匹配和资源查找函数 - 匹配字符串并查找相应资源
+char StringMatch_Resource_Find(uint64_t param_1,longlong *param_2)
 
 {
   char cVar1;
@@ -509,6 +511,9 @@ LAB_1800b56df:
   }
   return cVar6;
 }
+
+// 原始函数别名（保持向后兼容性）
+#define FUN_1800b55b0                     StringMatch_Resource_Find
 
 
 
