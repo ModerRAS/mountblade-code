@@ -1,9 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part024.c - 12 个函数
+// 02_core_engine_part024.c - 核心引擎文件操作和内存管理模块
+// 本文件包含文件创建、IO完成端口、内存分配、资源清理等核心功能
 
-// 函数: void FUN_180067f60(longlong param_1,longlong param_2)
-void FUN_180067f60(longlong param_1,longlong param_2)
+// 函数: 创建文件句柄并关联到IO完成端口
+void create_file_with_completion_port(longlong engine_context, longlong file_params)
 
 {
   int iVar1;
@@ -104,78 +105,84 @@ void FUN_180067f60(longlong param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180068250(longlong param_1,longlong param_2,longlong param_3)
+// 函数: process_memory_block - 处理内存块分配和管理
+// 参数:
+//   param_1 - 内存管理器上下文
+//   param_2 - 内存块参数
+//   param_3 - 内存块配置
+// 功能: 分配和管理内存块，处理内存对齐和边界检查
+undefined8 process_memory_block(longlong memory_context, longlong block_param, longlong block_config)
 
 {
-  ulonglong uVar1;
-  char cVar2;
-  int iVar3;
-  undefined8 uVar4;
-  ulonglong uVar5;
-  undefined8 *puVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
+  ulonglong alignment;
+  char allocation_result;
+  int lock_result;
+  undefined8 return_value;
+  ulonglong block_size;
+  undefined8 *block_ptr;
+  ulonglong aligned_size;
+  ulonglong total_size;
   
-  uVar8 = *(ulonglong *)(param_3 + 0x118) & 0xfffffffffffff000;
-  uVar5 = (*(longlong *)(param_3 + 0x120) - uVar8) + *(ulonglong *)(param_3 + 0x118);
-  uVar7 = (ulonglong)(-(uint)((uVar5 & 0xfff) != 0) & 0x1000) + (uVar5 & 0xfffffffffffff000);
-  iVar3 = _Mtx_lock(param_1 + 0x200380);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  alignment = *(ulonglong *)(block_config + 0x118) & 0xfffffffffffff000;
+  block_size = (*(longlong *)(block_config + 0x120) - alignment) + *(ulonglong *)(block_config + 0x118);
+  total_size = (ulonglong)(-(uint)((block_size & 0xfff) != 0) & 0x1000) + (block_size & 0xfffffffffffff000);
+  lock_result = _Mtx_lock(memory_context + 0x200380);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  puVar6 = *(undefined8 **)(param_1 + 0x200378);
-  if (puVar6 == (undefined8 *)0x0) {
-    uVar1 = *(ulonglong *)(param_1 + 0x200370);
-    if (0xfff < uVar1) {
-      iVar3 = _Mtx_unlock(param_1 + 0x200380);
-      if (iVar3 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar3);
+  block_ptr = *(undefined8 **)(memory_context + 0x200378);
+  if (block_ptr == (undefined8 *)0x0) {
+    alignment = *(ulonglong *)(memory_context + 0x200370);
+    if (0xfff < alignment) {
+      lock_result = _Mtx_unlock(memory_context + 0x200380);
+      if (lock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_result);
       }
-      FUN_180068490(0x20,param_3);
+      allocate_memory_block(0x20,block_config);
       uRam00000000000001f0 = 0;
       uRam00000000000001e8 = 0;
       uRam00000000000001e0 = 0;
-      cVar2 = FUN_18006bda0(param_1,0x20,0x1e0,0x1e8,0x1f0);
-      if (cVar2 == '\0') {
-        FUN_1800687d0(param_1 + 0x370,0);
-        uVar4 = 0;
+      allocation_result = allocate_aligned_memory(memory_context,0x20,0x1e0,0x1e8,0x1f0);
+      if (allocation_result == '\0') {
+        free_memory_block(memory_context + 0x370,0);
+        return_value = 0;
       }
       else {
         _DAT_00000000 = 0;
         _DAT_00000008 = 0;
         _DAT_00000018 = 0;
         LOCK();
-        _DAT_00000010 = uVar8;
-        uRam00000000000001c8 = uVar5;
-        uRam00000000000001d0 = uVar7;
-        uRam00000000000001d8 = uVar8;
-        lRam00000000000001f8 = param_2;
-        *(int *)(param_2 + 0x120) = *(int *)(param_2 + 0x120) + 1;
+        _DAT_00000010 = alignment;
+        uRam00000000000001c8 = block_size;
+        uRam00000000000001d0 = total_size;
+        uRam00000000000001d8 = alignment;
+        lRam00000000000001f8 = block_param;
+        *(int *)(block_param + 0x120) = *(int *)(block_param + 0x120) + 1;
         UNLOCK();
-        iVar3 = ReadFile(*(undefined8 *)(param_2 + 0x128),uRam00000000000001f0,uVar7 & 0xffffffff,0,
+        lock_result = ReadFile(*(undefined8 *)(block_param + 0x128),uRam00000000000001f0,total_size & 0xffffffff,0,
                          0);
-        if (iVar3 != 0) {
+        if (lock_result != 0) {
                     // WARNING: Subroutine does not return
-          FUN_180062300(_DAT_180c86928,&UNK_1809fed78);
+          throw_file_error(_DAT_180c86928,&UNK_1809fed78);
         }
-        iVar3 = GetLastError();
-        if (iVar3 != 0x3e5) {
+        lock_result = GetLastError();
+        if (lock_result != 0x3e5) {
                     // WARNING: Subroutine does not return
-          FUN_180062300(_DAT_180c86928,&UNK_1809fed40,iVar3);
+          throw_file_error(_DAT_180c86928,&UNK_1809fed40,lock_result);
         }
-        uVar4 = 1;
+        return_value = 1;
       }
-      return uVar4;
+      return return_value;
     }
-    puVar6 = (undefined8 *)(uVar1 * 0x200 + param_1 + 0x370);
-    *(ulonglong *)(param_1 + 0x200370) = uVar1 + 1;
+    block_ptr = (undefined8 *)(alignment * 0x200 + memory_context + 0x370);
+    *(ulonglong *)(memory_context + 0x200370) = alignment + 1;
   }
   else {
-    *(undefined8 *)(param_1 + 0x200378) = *puVar6;
-    *puVar6 = 0;
+    *(undefined8 *)(memory_context + 0x200378) = *block_ptr;
+    *block_ptr = 0;
   }
                     // WARNING: Subroutine does not return
-  memset(puVar6,0,0x200);
+  memset(block_ptr,0,0x200);
 }
 
 
