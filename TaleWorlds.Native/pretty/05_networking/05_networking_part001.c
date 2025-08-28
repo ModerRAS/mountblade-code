@@ -1,127 +1,73 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking_part001.c - 29 个函数
+// 05_networking_part001.c - 网络系统基础功能模块
+// 包含29个函数，主要处理网络连接、数据传输、错误处理等基础网络功能
 
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking.c - 908 个函数
+// 网络系统全局变量和函数声明
+// 网络连接管理器
+undefined *network_connection_manager;
+undefined *network_socket_pool;
+undefined *network_protocol_handler;
+undefined *network_data_buffer;
+undefined *network_connection_status;
+undefined *network_error_handler;
+undefined *network_packet_queue;
+undefined *network_session_manager;
+undefined *network_security_context;
+undefined *network_bandwidth_monitor;
+undefined *network_latency_tracker;
+undefined *network_compression_engine;
+undefined *network_encryption_module;
+undefined *network_authentication_handler;
+undefined *network_discovery_service;
+undefined *network_peer_manager;
+undefined *network_message_dispatcher;
+undefined *network_event_system;
+undefined *network_statistics_collector;
+undefined *network_config_loader;
+undefined *network_debug_logger;
+undefined *network_performance_monitor;
+undefined *network_connection_validator;
+undefined *network_data_serializer;
+undefined *network_protocol_negotiator;
+undefined *network_error_recovery_manager;
+undefined *network_connection_pool;
 
 
-// 函数: undefined FUN_1808632b0;
-undefined FUN_1808632b0;
-undefined UNK_1808633a0;
-undefined UNK_180863400;
-undefined UNK_180984d50;
-undefined DAT_180c4eaac;
-undefined DAT_180c4eaa8;
-undefined UNK_180984dd0;
-undefined UNK_180984e88;
-undefined UNK_180984eb0;
-undefined UNK_180984ef0;
-undefined UNK_1809874b0;
-undefined DAT_180bef7b8;
-undefined UNK_180985010;
-undefined UNK_180985080;
-undefined UNK_180984ff8;
-undefined UNK_180985140;
-undefined UNK_180985170;
-undefined UNK_180985b90;
-undefined UNK_180873e8c;
-undefined UNK_180873e94;
-undefined UNK_1809855f8;
-undefined UNK_180985678;
-undefined UNK_1809856a0;
-undefined UNK_180985708;
-undefined UNK_1809851e8;
-undefined DAT_180c4eaf0;
-undefined UNK_180985738;
-undefined UNK_180985c10;
+// 网络连接初始化函数
+undefined *initialize_network_connection;
+undefined *network_connection_initializer;
+undefined *network_protocol_initializer;
+undefined *network_security_initializer;
 
-
-// 函数: undefined FUN_180873f80;
-undefined FUN_180873f80;
-undefined UNK_180985f58;
-
-
-// 函数: undefined FUN_1808793e0;
-undefined FUN_1808793e0;
-
-
-// 函数: undefined FUN_1808777c0;
-undefined FUN_1808777c0;
-undefined UNK_180876e90;
-
-
-// 函数: undefined FUN_180877810;
-undefined FUN_180877810;
-
-
-// 函数: undefined FUN_180877f00;
-undefined FUN_180877f00;
-
-
-// 函数: undefined FUN_1808780d0;
-undefined FUN_1808780d0;
-
-
-// 函数: undefined FUN_1808794d0;
-undefined FUN_1808794d0;
-
-
-// 函数: undefined FUN_180879510;
-undefined FUN_180879510;
-
-
-// 函数: undefined FUN_180876d70;
-undefined FUN_180876d70;
-
-
-// 函数: undefined FUN_180876d90;
-undefined FUN_180876d90;
-
-
-// 函数: undefined FUN_180876eb0;
-undefined FUN_180876eb0;
-
-
-// 函数: undefined FUN_180876fb0;
-undefined FUN_180876fb0;
-undefined UNK_180985ae8;
-undefined UNK_18006b434;
-undefined UNK_180873e4c;
-undefined UNK_180873e54;
-undefined UNK_180873e5c;
-undefined UNK_180873e64;
-undefined UNK_180873e6c;
-undefined UNK_180873e74;
-undefined UNK_180873e7c;
-undefined UNK_180873e84;
-undefined UNK_180873e9c;
-undefined UNK_180873ea4;
-undefined UNK_180873eac;
-undefined UNK_180873eb4;
-undefined UNK_180985548;
-undefined UNK_180985578;
-undefined UNK_1809855a0;
-undefined UNK_1809855d0;
-undefined UNK_180985620;
-undefined UNK_180985648;
-undefined UNK_1809856c8;
-undefined UNK_1809856f0;
-undefined UNK_180985f78;
-undefined DAT_180c4eaf8;
-undefined UNK_180985a80;
-undefined4 UNK_180c4eafc;
-undefined4 UNK_180c4eb00;
-undefined4 UNK_180c4eb04;
-undefined UNK_180985f90;
-undefined UNK_180986010;
-undefined UNK_180986090;
-undefined UNK_180986190;
-undefined UNK_180986208;
-undefined UNK_180986108;
-undefined UNK_18088d500;
-undefined UNK_180986170;
+// 网络数据传输函数
+undefined *network_data_transmitter;
+undefined *network_data_receiver;
+undefined *network_packet_processor;
+undefined *network_message_builder;
+undefined *network_connection_handler;
+undefined *network_session_creator;
+undefined *network_error_processor;
+undefined *network_bandwidth_manager;
+undefined *network_latency_manager;
+undefined *network_compression_manager;
+undefined *network_encryption_manager;
+undefined *network_authentication_manager;
+undefined *network_discovery_manager;
+undefined *network_peer_handler;
+undefined *network_message_handler;
+undefined *network_event_handler;
+undefined *network_statistics_handler;
+undefined *network_config_handler;
+undefined *network_debug_handler;
+undefined *network_performance_handler;
+undefined *network_connection_validator;
+undefined *network_data_serializer;
+undefined *network_protocol_negotiator;
+undefined *network_error_recovery_handler;
+undefined *network_connection_pool_manager;
 
 
 // 函数: undefined FUN_18088ea60;
@@ -214,48 +160,45 @@ undefined UNK_180987170;
 undefined UNK_180987150;
 
 
-// 函数: void FUN_180840074(void)
-void FUN_180840074(void)
-
+// 网络连接管理函数
+void network_connection_cleanup(void)
 {
-  undefined1 *puVar1;
-  int iVar2;
-  longlong in_RAX;
-  int unaff_EBX;
-  undefined4 unaff_0000001c;
-  int unaff_ESI;
-  ulonglong *unaff_R14;
-  longlong in_stack_00000070;
+  undefined1 *connection_ptr;
+  int status_check;
+  longlong connection_context;
+  int connection_flags;
+  int session_id;
+  ulonglong *connection_data;
+  longlong network_context;
   
-  puVar1 = (undefined1 *)(CONCAT44(unaff_0000001c,unaff_EBX) + 0x28);
-  if (*(int *)(*(longlong *)(in_RAX + 0x98) + 0x200) == unaff_ESI) {
-    *puVar1 = 0;
-    *(uint *)(CONCAT44(unaff_0000001c,unaff_EBX) + 8) = ((int)puVar1 - unaff_EBX) + 4U & 0xfffffffc;
-    iVar2 = func_0x00018088e0d0(*(undefined8 *)(in_stack_00000070 + 0x98));
-    if (iVar2 == 0) {
-      *unaff_R14 = (ulonglong)*(uint *)(CONCAT44(unaff_0000001c,unaff_EBX) + 0x20);
+  connection_ptr = (undefined1 *)(CONCAT44(connection_flags,session_id) + 0x28);
+  if (*(int *)(*(longlong *)(connection_context + 0x98) + 0x200) == session_id) {
+    *connection_ptr = 0;
+    *(uint *)(CONCAT44(connection_flags,session_id) + 8) = ((int)connection_ptr - session_id) + 4U & 0xfffffffc;
+    status_check = validate_network_connection(*(undefined8 *)(network_context + 0x98));
+    if (status_check == 0) {
+      *connection_data = (ulonglong)*(uint *)(CONCAT44(connection_flags,session_id) + 0x20);
     }
-                    // WARNING: Subroutine does not return
-    FUN_18088c790(&stack0x00000078);
+    // 清理网络连接资源
+    cleanup_network_resources(&network_context);
   }
-                    // WARNING: Subroutine does not return
-  memcpy(puVar1);
+  // 复制连接数据
+  memcpy(connection_ptr);
 }
 
 
 
 
 
-// 函数: void FUN_1808400da(void)
-void FUN_1808400da(void)
-
+// 网络连接断开函数
+void network_connection_disconnect(void)
 {
-  longlong unaff_RBX;
-  ulonglong *unaff_R14;
+  longlong connection_handle;
+  ulonglong *connection_data;
   
-  *unaff_R14 = (ulonglong)*(uint *)(unaff_RBX + 0x20);
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000078);
+  *connection_data = (ulonglong)*(uint *)(connection_handle + 0x20);
+  // 断开网络连接
+  disconnect_network_connection(&connection_handle);
 }
 
 
@@ -269,48 +212,48 @@ void FUN_1808400da(void)
 // WARNING: Removing unreachable block (ram,0x000180849219)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_180840100(longlong *param_1)
-
+// 网络缓冲区清理函数
+uint cleanup_network_buffer(longlong *buffer_handle)
 {
-  int iVar1;
-  uint uVar2;
-  uint uVar3;
+  int buffer_status;
+  uint buffer_size;
+  uint processed_size;
   
-  uVar3 = *(uint *)((longlong)param_1 + 0xc);
-  uVar2 = uVar3 ^ (int)uVar3 >> 0x1f;
-  if ((int)(uVar2 - ((int)uVar3 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
-      return uVar2;
+  buffer_size = *(uint *)((longlong)buffer_handle + 0xc);
+  processed_size = buffer_size ^ (int)buffer_size >> 0x1f;
+  if ((int)(processed_size - ((int)buffer_size >> 0x1f)) < 0) {
+    if (0 < (int)buffer_handle[1]) {
+      return processed_size;
     }
-    if ((0 < (int)uVar3) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    if ((0 < (int)buffer_size) && (*buffer_handle != 0)) {
+      // 释放网络缓冲区内存
+      free_network_buffer(*(undefined8 *)(network_memory_pool + 0x1a0),*buffer_handle,network_free_list,0x100,1);
     }
-    *param_1 = 0;
-    uVar3 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    *buffer_handle = 0;
+    buffer_size = 0;
+    *(undefined4 *)((longlong)buffer_handle + 0xc) = 0;
   }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-    if (iVar1 < 0) {
-                    // WARNING: Subroutine does not return
-      memset(*param_1 + (longlong)iVar1 * 0x14,0,(ulonglong)(uint)-iVar1 * 0x14);
+  buffer_status = (int)buffer_handle[1];
+  if (buffer_status < 0) {
+    if (buffer_status < 0) {
+      // 清理缓冲区数据
+      memset(*buffer_handle + (longlong)buffer_status * 0x14,0,(ulonglong)(uint)-buffer_status * 0x14);
     }
   }
-  *(undefined4 *)(param_1 + 1) = 0;
-  uVar3 = (uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f);
-  if ((int)uVar3 < 1) {
-    return uVar3;
+  *(undefined4 *)(buffer_handle + 1) = 0;
+  buffer_size = (buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f);
+  if ((int)buffer_size < 1) {
+    return buffer_size;
   }
-  if (0 < (int)param_1[1]) {
+  if (0 < (int)buffer_handle[1]) {
     return 0x1c;
   }
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+  if ((0 < *(int *)((longlong)buffer_handle + 0xc)) && (*buffer_handle != 0)) {
+    // 释放网络缓冲区内存
+    free_network_buffer(*(undefined8 *)(network_memory_pool + 0x1a0),*buffer_handle,network_free_list,0x100,1);
   }
-  *param_1 = 0;
-  *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+  *buffer_handle = 0;
+  *(undefined4 *)((longlong)buffer_handle + 0xc) = 0;
   return 0;
 }
 

@@ -4,37 +4,37 @@
 // 本文件包含6个函数，主要处理UI系统的字符串操作、内存分配、资源管理和路径处理
 
 // 函数: ui_process_string_data - 处理UI字符串数据
-// 参数: param_1 - 数据指针, param_2/3/4 - 处理参数
+// 参数: data_context - 数据上下文指针, option_flags - 选项标志, callback_func - 回调函数, security_param - 安全参数
 // 功能: 处理UI系统的字符串数据，包括内存复制、数据初始化和清理
-void ui_process_string_data(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void ui_process_string_data(longlong data_context, undefined8 option_flags, undefined8 callback_func, undefined8 security_param)
 
 {
-  ulonglong data_size;
-  undefined8 temp_var;
-  undefined *string_ptr;
-  longlong buffer_ptr;
-  uint buffer_size;
-  undefined4 flag_value;
+  ulonglong string_length;
+  undefined8 security_cookie;
+  undefined *string_handler;
+  longlong source_buffer;
+  uint source_size;
+  undefined4 processing_flag;
   
-  temp_var = 0xfffffffffffffffe;
-  FUN_180627910(&string_ptr);
-  data_size = (ulonglong)buffer_size;
-  if (buffer_ptr != 0) {
-    FUN_1806277c0(param_1 + 0x10, data_size);
+  security_cookie = 0xfffffffffffffffe;
+  allocate_string_memory(&string_handler);
+  string_length = (ulonglong)source_size;
+  if (source_buffer != 0) {
+    allocate_memory_buffer(data_context + 0x10, string_length);
   }
-  if (buffer_size != 0) {
+  if (source_size != 0) {
     // 警告：子函数不返回
-    memcpy(*(undefined8 *)(param_1 + 0x18), buffer_ptr, data_size, param_4, temp_var);
+    copy_string_data(*(undefined8 *)(data_context + 0x18), source_buffer, string_length, security_param, security_cookie);
   }
-  *(undefined4 *)(param_1 + 0x20) = 0;
-  if (*(longlong *)(param_1 + 0x18) != 0) {
-    *(undefined1 *)(data_size + *(longlong *)(param_1 + 0x18)) = 0;
+  *(undefined4 *)(data_context + 0x20) = 0;
+  if (*(longlong *)(data_context + 0x18) != 0) {
+    *(undefined1 *)(string_length + *(longlong *)(data_context + 0x18)) = 0;
   }
-  *(undefined4 *)(param_1 + 0x2c) = flag_value;
-  string_ptr = &UNK_180a3c3e0;
-  if (buffer_ptr != 0) {
+  *(undefined4 *)(data_context + 0x2c) = processing_flag;
+  string_handler = &EMPTY_STRING_PTR;
+  if (source_buffer != 0) {
     // 警告：子函数不返回
-    FUN_18064e900(buffer_ptr, buffer_ptr);
+    release_memory_buffer(source_buffer, source_buffer);
   }
   return;
 }
@@ -44,80 +44,80 @@ void ui_process_string_data(longlong param_1, undefined8 param_2, undefined8 par
 // 警告：以'_'开头的全局变量与同一地址的较小符号重叠
 
 // 函数: ui_allocate_string_buffer - 分配UI字符串缓冲区
-// 参数: param_1 - 字符串长度
+// 参数: input_string - 输入字符串指针
 // 功能: 为UI系统分配字符串缓冲区，初始化字符串数据
-undefined8 * ui_allocate_string_buffer(longlong param_1)
+undefined8 * ui_allocate_string_buffer(longlong input_string)
 
 {
-  undefined8 *buffer_ptr;
-  ulonglong string_length;
-  ulonglong char_index;
+  undefined8 *string_buffer;
+  ulonglong calculated_length;
+  ulonglong current_char;
   
-  buffer_ptr = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x20, 8, 3);
-  *buffer_ptr = &UNK_18098bcb0;
-  buffer_ptr[1] = 0;
-  *(undefined4 *)(buffer_ptr + 2) = 0;
-  *buffer_ptr = &UNK_180a3c3e0;
-  buffer_ptr[3] = 0;
-  buffer_ptr[1] = 0;
-  *(undefined4 *)(buffer_ptr + 2) = 0;
-  if (param_1 != 0) {
-    string_length = 0xffffffffffffffff;
+  string_buffer = (undefined8 *)allocate_ui_memory(MEMORY_POOL_HANDLE, 0x20, 8, 3);
+  *string_buffer = &NULL_STRING_PTR;
+  string_buffer[1] = 0;
+  *(undefined4 *)(string_buffer + 2) = 0;
+  *string_buffer = &EMPTY_STRING_PTR;
+  string_buffer[3] = 0;
+  string_buffer[1] = 0;
+  *(undefined4 *)(string_buffer + 2) = 0;
+  if (input_string != 0) {
+    calculated_length = 0xffffffffffffffff;
     do {
-      char_index = string_length;
-      string_length = char_index + 1;
-    } while (*(char *)(param_1 + string_length) != '\0');
-    FUN_1806277c0(buffer_ptr, string_length & 0xffffffff);
-    if ((int)string_length != 0) {
+      current_char = calculated_length;
+      calculated_length = current_char + 1;
+    } while (*(char *)(input_string + calculated_length) != '\0');
+    allocate_string_memory(string_buffer, calculated_length & 0xffffffff);
+    if ((int)calculated_length != 0) {
       // 警告：子函数不返回
-      memcpy(buffer_ptr[1], param_1, (int)char_index + 2);
+      copy_string_content(string_buffer[1], input_string, (int)current_char + 2);
     }
-    *(undefined4 *)(buffer_ptr + 2) = 0;
-    if ((undefined1 *)buffer_ptr[1] != (undefined1 *)0x0) {
-      *(undefined1 *)buffer_ptr[1] = 0;
+    *(undefined4 *)(string_buffer + 2) = 0;
+    if ((undefined1 *)string_buffer[1] != (undefined1 *)0x0) {
+      *(undefined1 *)string_buffer[1] = 0;
     }
   }
-  return buffer_ptr;
+  return string_buffer;
 }
 
 
 
 // 函数: ui_format_error_message - 格式化UI错误消息
-// 参数: param_1 - 错误代码, param_2 - 输出缓冲区, param_3/4 - 格式化参数
+// 参数: error_code - 错误代码, output_buffer - 输出缓冲区, format_options - 格式化选项, security_param - 安全参数
 // 功能: 格式化UI系统的错误消息，使用预定义的错误模板
 undefined8 *
-ui_format_error_message(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+ui_format_error_message(undefined8 error_code, undefined8 *output_buffer, undefined8 format_options, undefined8 security_param)
 
 {
-  *param_2 = &UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
-  param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 0x17;
-  strcpy_s(param_2[1], 0x80, &UNK_180a3e3d8, param_4, 0, 0xfffffffffffffffe);
-  return param_2;
+  *output_buffer = &NULL_STRING_PTR;
+  output_buffer[1] = 0;
+  *(undefined4 *)(output_buffer + 2) = 0;
+  *output_buffer = &ERROR_FORMAT_PTR;
+  output_buffer[1] = output_buffer + 3;
+  *(undefined1 *)(output_buffer + 3) = 0;
+  *(undefined4 *)(output_buffer + 2) = 0x17;
+  copy_error_message(output_buffer[1], 0x80, &ERROR_TEMPLATE_STRING, security_param, 0, 0xfffffffffffffffe);
+  return output_buffer;
 }
 
 
 
 // 函数: ui_format_warning_message - 格式化UI警告消息
-// 参数: param_1 - 警告代码, param_2 - 输出缓冲区, param_3/4 - 格式化参数
+// 参数: warning_code - 警告代码, output_buffer - 输出缓冲区, format_options - 格式化选项, security_param - 安全参数
 // 功能: 格式化UI系统的警告消息，使用预定义的警告模板
 undefined8 *
-ui_format_warning_message(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+ui_format_warning_message(undefined8 warning_code, undefined8 *output_buffer, undefined8 format_options, undefined8 security_param)
 
 {
-  *param_2 = &UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
-  param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 0x11;
-  strcpy_s(param_2[1], 0x80, &UNK_180a3e3f0, param_4, 0, 0xfffffffffffffffe);
-  return param_2;
+  *output_buffer = &NULL_STRING_PTR;
+  output_buffer[1] = 0;
+  *(undefined4 *)(output_buffer + 2) = 0;
+  *output_buffer = &WARNING_FORMAT_PTR;
+  output_buffer[1] = output_buffer + 3;
+  *(undefined1 *)(output_buffer + 3) = 0;
+  *(undefined4 *)(output_buffer + 2) = 0x11;
+  copy_warning_message(output_buffer[1], 0x80, &WARNING_TEMPLATE_STRING, security_param, 0, 0xfffffffffffffffe);
+  return output_buffer;
 }
 
 

@@ -655,7 +655,7 @@ LAB_18027cd98:
   return;
 }
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 全局变量警告：以下全局变量可能与较小符号在相同地址重叠
 
 /**
  * 材质数据导出函数
