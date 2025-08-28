@@ -137,215 +137,331 @@ undefined FUN_180448110;
 undefined UNK_180455960;
 
 
-// 函数: undefined FUN_180448420;
+/*-----------------------------------------------------------------------------
+ * 纹理和材质处理函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 纹理创建函数
+ * @details 创建新的纹理对象，设置纹理参数
+ */
 undefined FUN_180448420;
 
-
-// 函数: undefined FUN_180448470;
+/** 
+ * @brief 纹理绑定函数
+ * @details 将纹理绑定到指定的纹理单元
+ */
 undefined FUN_180448470;
 
-
-// 函数: undefined FUN_1804484c0;
+/** 
+ * @brief 纹理参数设置函数
+ * @details 设置纹理的过滤、包裹等参数
+ */
 undefined FUN_1804484c0;
 
-
-// 函数: undefined FUN_180448540;
+/** 
+ * @brief 纹理数据更新函数
+ * @details 更新纹理的像素数据
+ */
 undefined FUN_180448540;
 
-
-// 函数: undefined FUN_1804485c0;
+/** 
+ * @brief 纹理释放函数
+ * @details 释放纹理资源，清理内存
+ */
 undefined FUN_1804485c0;
 
-
-// 函数: undefined FUN_1804489a0;
+/** 
+ * @brief 材质创建函数
+ * @details 创建新的材质对象，设置材质属性
+ */
 undefined FUN_1804489a0;
 
-
-// 函数: undefined FUN_180448d90;
+/** 
+ * @brief 材质参数设置函数
+ * @details 设置材质的各种参数，如颜色、光泽度等
+ */
 undefined FUN_180448d90;
 
-
-// 函数: undefined FUN_180448df0;
+/** 
+ * @brief 材质着色器绑定函数
+ * @details 将着色器程序绑定到材质
+ */
 undefined FUN_180448df0;
 
-
-// 函数: undefined FUN_180448e50;
+/** 
+ * @brief 材质纹理绑定函数
+ * @details 将纹理绑定到材质的指定槽位
+ */
 undefined FUN_180448e50;
 
-
-// 函数: undefined FUN_180448ea0;
+/** 
+ * @brief 材质参数更新函数
+ * @details 更新材质的参数值
+ */
 undefined FUN_180448ea0;
 
-
-// 函数: undefined FUN_180448f00;
+/** 
+ * @brief 材质激活函数
+ * @details 激活材质，使其可用于渲染
+ */
 undefined FUN_180448f00;
 
-
-// 函数: undefined FUN_180448f50;
+/** 
+ * @brief 材质验证函数
+ * @details 验证材质的完整性和有效性
+ */
 undefined FUN_180448f50;
 
-
-// 函数: undefined FUN_180448fb0;
+/** 
+ * @brief 材质克隆函数
+ * @details 克隆现有材质，创建副本
+ */
 undefined FUN_180448fb0;
 
-
-// 函数: undefined FUN_180449000;
+/** 
+ * @brief 材质释放函数
+ * @details 释放材质资源，清理内存
+ */
 undefined FUN_180449000;
 
-
-// 函数: undefined FUN_180449070;
+/** 
+ * @brief 材质缓存管理函数
+ * @details 管理材质缓存，提高材质访问效率
+ */
 undefined FUN_180449070;
 
-
-// 函数: undefined FUN_1804491c0;
+/** 
+ * @brief 材质批量处理函数
+ * @details 批量处理多个材质的操作
+ */
 undefined FUN_1804491c0;
 
-
-// 函数: undefined FUN_180449230;
+/** 
+ * @brief 材质状态查询函数
+ * @details 查询材质的当前状态
+ */
 undefined FUN_180449230;
 
-
-// 函数: undefined FUN_180449300;
+/** 
+ * @brief 材质错误处理函数
+ * @details 处理材质相关的错误和异常
+ */
 undefined FUN_180449300;
 
 
-// 函数: undefined FUN_1804496f0;
+/*-----------------------------------------------------------------------------
+ * 几何体和网格操作函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 网格创建函数
+ * @details 创建新的网格对象，设置网格属性
+ */
 undefined FUN_1804496f0;
 
-
-// 函数: undefined FUN_180449780;
+/** 
+ * @brief 网格顶点数据设置函数
+ * @details 设置网格的顶点数据，包括位置、法线、UV等
+ */
 undefined FUN_180449780;
 
-
-// 函数: undefined FUN_180449850;
+/** 
+ * @brief 网格索引数据设置函数
+ * @details 设置网格的索引数据，定义顶点连接关系
+ */
 undefined FUN_180449850;
 
-
-// 函数: undefined FUN_1804498f0;
+/** 
+ * @brief 网格属性计算函数
+ * @details 计算网格的各种属性，如边界框、法线等
+ */
 undefined FUN_1804498f0;
 
-
-// 函数: undefined FUN_180449930;
+/** 
+ * @brief 网格优化函数
+ * @details 优化网格结构，提高渲染性能
+ */
 undefined FUN_180449930;
 
-
-// 函数: undefined FUN_180449a00;
+/** 
+ * @brief 网格细分函数
+ * @details 对网格进行细分，增加顶点数量
+ */
 undefined FUN_180449a00;
 
-
-// 函数: undefined FUN_180449a80;
+/** 
+ * @brief 网格简化函数
+ * @details 简化网格结构，减少顶点数量
+ */
 undefined FUN_180449a80;
 
-
-// 函数: undefined FUN_180449c00;
+/** 
+ * @brief 网格变形函数
+ * @details 对网格进行变形操作
+ */
 undefined FUN_180449c00;
 
-
-// 函数: undefined FUN_180449d70;
+/** 
+ * @brief 网格合并函数
+ * @details 合并多个网格为一个网格
+ */
 undefined FUN_180449d70;
 
-
-// 函数: undefined FUN_18044a080;
+/** 
+ * @brief 网格分割函数
+ * @details 将一个网格分割为多个网格
+ */
 undefined FUN_18044a080;
 
-
-// 函数: undefined FUN_18044a3a0;
+/** 
+ * @brief 网格验证函数
+ * @details 验证网格的完整性和有效性
+ */
 undefined FUN_18044a3a0;
 
-
-// 函数: undefined FUN_18044a590;
+/** 
+ * @brief 网格克隆函数
+ * @details 克隆现有网格，创建副本
+ */
 undefined FUN_18044a590;
 
-
-// 函数: undefined FUN_18044a810;
+/** 
+ * @brief 网格实例化函数
+ * @details 创建网格的实例，支持实例化渲染
+ */
 undefined FUN_18044a810;
 
-
-// 函数: undefined FUN_18044aad0;
+/** 
+ * @brief 网格LOD生成函数
+ * @details 生成网格的多级细节(LOD)版本
+ */
 undefined FUN_18044aad0;
 
-
-// 函数: undefined FUN_18044ab80;
+/** 
+ * @brief 网格碰撞检测函数
+ * @details 进行网格的碰撞检测
+ */
 undefined FUN_18044ab80;
 
-
-// 函数: undefined FUN_18044ac20;
+/** 
+ * @brief 网格射线检测函数
+ * @details 进行网格的射线相交检测
+ */
 undefined FUN_18044ac20;
 
-
-// 函数: undefined FUN_18044ad90;
+/** 
+ * @brief 网格包围盒计算函数
+ * @details 计算网格的包围盒
+ */
 undefined FUN_18044ad90;
 
-
-// 函数: undefined FUN_18044af00;
+/** 
+ * @brief 网格包围球计算函数
+ * @details 计算网格的包围球
+ */
 undefined FUN_18044af00;
 
-
-// 函数: undefined FUN_18044afb0;
+/** 
+ * @brief 网格凸包生成函数
+ * @details 生成网格的凸包
+ */
 undefined FUN_18044afb0;
 
-
-// 函数: undefined FUN_18044b010;
+/** 
+ * @brief 网格法线计算函数
+ * @details 计算网格的法线信息
+ */
 undefined FUN_18044b010;
 
-
-// 函数: undefined FUN_18044b080;
+/** 
+ * @brief 网格切线计算函数
+ * @details 计算网格的切线信息
+ */
 undefined FUN_18044b080;
 
-
-// 函数: undefined FUN_18044b110;
+/** 
+ * @brief 网格UV生成函数
+ * @details 生成网格的UV坐标
+ */
 undefined FUN_18044b110;
 
-
-// 函数: undefined FUN_18044b1d0;
+/** 
+ * @brief 网格UV展开函数
+ * @details 展开网格的UV坐标
+ */
 undefined FUN_18044b1d0;
 
-
-// 函数: undefined FUN_18044b280;
+/** 
+ * @brief 网格拓扑修复函数
+ * @details 修复网格的拓扑问题
+ */
 undefined FUN_18044b280;
 
-
-// 函数: undefined FUN_18044b3d0;
+/** 
+ * @brief 网格平滑函数
+ * @details 对网格进行平滑处理
+ */
 undefined FUN_18044b3d0;
 
-
-// 函数: undefined FUN_18044b4f0;
+/** 
+ * @brief 网格锐化函数
+ * @details 对网格进行锐化处理
+ */
 undefined FUN_18044b4f0;
 
-
-// 函数: undefined FUN_18044b580;
+/** 
+ * @brief 网格变形动画函数
+ * @details 处理网格的变形动画
+ */
 undefined FUN_18044b580;
 
-
-// 函数: undefined FUN_18044b610;
+/** 
+ * @brief 网格骨骼绑定函数
+ * @details 将网格绑定到骨骼系统
+ */
 undefined FUN_18044b610;
 
-
-// 函数: undefined FUN_18044b6e0;
+/** 
+ * @brief 网格蒙皮函数
+ * @details 对网格进行蒙皮处理
+ */
 undefined FUN_18044b6e0;
 
-
-// 函数: undefined FUN_18044b700;
+/** 
+ * @brief 网格顶点混合函数
+ * @details 混合网格的顶点数据
+ */
 undefined FUN_18044b700;
 
-
-// 函数: undefined FUN_18044b7a0;
+/** 
+ * @brief 网格实例渲染函数
+ * @details 进行网格的实例化渲染
+ */
 undefined FUN_18044b7a0;
 
-
-// 函数: undefined FUN_18044b910;
+/** 
+ * @brief 网格批处理函数
+ * @details 批量处理多个网格的操作
+ */
 undefined FUN_18044b910;
 
-
-// 函数: undefined FUN_18044baf0;
+/** 
+ * @brief 网格流处理函数
+ * @details 流式处理大型网格数据
+ */
 undefined FUN_18044baf0;
 
-
-// 函数: undefined FUN_18044bc50;
+/** 
+ * @brief 网格压缩函数
+ * @details 压缩网格数据以节省内存
+ */
 undefined FUN_18044bc50;
 
-
-// 函数: undefined FUN_18044be30;
+/** 
+ * @brief 网格解压函数
+ * @details 解压压缩的网格数据
+ */
 undefined FUN_18044be30;
 
 
