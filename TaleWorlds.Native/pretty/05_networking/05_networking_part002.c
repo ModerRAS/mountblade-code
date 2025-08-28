@@ -744,7 +744,7 @@ int process_protocol_data_validation(longlong protocol_config, longlong data_ptr
   encryption_info = *(undefined8 *)(protocol_config + 0x40);
   
   // 初始化协议处理
-  bytes_processed = func_0x00018088ecd0(data_ptr, data_size, &base_addr);
+  bytes_processed = initialize_protocol_params(data_ptr, data_size, &base_addr);
   bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
