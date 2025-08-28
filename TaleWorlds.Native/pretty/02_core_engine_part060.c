@@ -750,7 +750,7 @@ void FUN_180098ae0(int64_t *param_1,int param_2,int param_3,uint64_t param_4)
   *(int32_t *)(lVar3 + 0x8c) = 0x2c;
   *(uint *)(lVar3 + 8) = *(uint *)(lVar3 + 8) | 0x40;
   *(uint64_t *)(lVar3 + 0x110) = param_4;
-  *(void **)(lVar3 + 0x100) = &unknown_var_1840_ptr;
+  *(void **)(lVar3 + 0x100) = system_init_data_ptr;
   *(code **)(lVar3 + 0xf8) = FUN_180099f90;
   uVar5 = FUN_18062b1e0(system_memory_pool_ptr,0xa0,8,3);
   plVar6 = (int64_t *)FUN_1800842a0(uVar5);
@@ -766,11 +766,11 @@ void FUN_180098ae0(int64_t *param_1,int param_2,int param_3,uint64_t param_4)
   auStack_48[0] = 0;
   uStack_50 = 5;
   pplStack_148 = (int64_t **)plVar7;
-  strcpy_s(auStack_48,0x10,&unknown_var_2264_ptr);
+  strcpy_s(auStack_48,0x10,system_callback_data_ptr);
   *plVar7 = (int64_t)&system_handler1_ptr;
   *plVar7 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar7 + 1) = 0;
-  *plVar7 = (int64_t)&unknown_var_7064_ptr;
+  *plVar7 = (int64_t)system_message_data_ptr;
   LOCK();
   *(int8_t *)(plVar7 + 2) = 0;
   UNLOCK();
@@ -796,7 +796,7 @@ void FUN_180098ae0(int64_t *param_1,int param_2,int param_3,uint64_t param_4)
   *plVar7 = (int64_t)&system_handler1_ptr;
   *plVar7 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar7 + 1) = 0;
-  *plVar7 = (int64_t)&unknown_var_6752_ptr;
+  *plVar7 = (int64_t)system_handler_data_ptr;
   plVar7[4] = 0;
   plVar7[2] = 0;
   *(byte *)(plVar7 + 5) = *(byte *)(plVar7 + 5) | 1;
@@ -810,7 +810,7 @@ void FUN_180098ae0(int64_t *param_1,int param_2,int param_3,uint64_t param_4)
   *plVar8 = (int64_t)&system_handler1_ptr;
   *plVar8 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar8 + 1) = 0;
-  *plVar8 = (int64_t)&unknown_var_6960_ptr;
+  *plVar8 = (int64_t)system_resource_manager_ptr;
   LOCK();
   *(int32_t *)(plVar8 + 2) = 0;
   UNLOCK();
@@ -984,7 +984,7 @@ void FUN_180099100(int64_t param_1)
   uStack_b8 = 0;
   uStack_b0 = 0;
   uStack_ac = 0;
-  FUN_18009e9e0(param_1,&plStackX_10,&unknown_var_2296_ptr);
+  FUN_18009e9e0(param_1,&plStackX_10,system_processing_data_ptr);
   plStack_f8 = (int64_t *)0x0;
   pplStackX_20 = (int64_t **)&puStack_f0;
   puStack_f0 = &system_data_buffer_ptr;
@@ -1000,7 +1000,7 @@ void FUN_180099100(int64_t param_1)
   uStack_cc = 0;
   uStack_c8 = 0;
   uStack_c4 = 0;
-  FUN_18009e9e0(pplStackX_20,&plStackX_18,&unknown_var_2280_ptr);
+  FUN_18009e9e0(pplStackX_20,&plStackX_18,system_context_data_ptr);
   uVar3 = uStack_b0;
   uVar5 = uStack_b8;
   puStack_150 = &system_data_buffer_ptr;
