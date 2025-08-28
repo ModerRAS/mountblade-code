@@ -228,17 +228,20 @@ void RenderingSystem_ClearBuffer(longlong render_context)
 
 
 // 函数: void FUN_180293860(longlong param_1,undefined8 param_2,float param_3,undefined8 param_4,
-void FUN_180293860(longlong param_1,undefined8 param_2,float param_3,undefined8 param_4,
-                  undefined8 param_5,int param_6)
+// 功能: 渲染系统缩放和初始化函数
+// 参数: param_1 - 渲染上下文指针, param_2 - 数据指针, param_3 - 缩放因子, param_4 - 数据指针2, param_5 - 数据指针3, param_6 - 索引数量
+void RenderingSystem_ScaleAndInitialize(longlong render_context, undefined8 data_ptr, float scale_factor, undefined8 data_ptr2, undefined8 data_ptr3, int index_count)
 
 {
-  if (param_3 == 0.0) {
+  // 检查缩放因子是否为0
+  if (scale_factor == 0.0) {
     FUN_18011d9a0();
   }
   else {
-    FUN_18011dc70((int *)(param_1 + 0x80),param_6 + 1 + *(int *)(param_1 + 0x80));
-    if (-1 < param_6) {
-                    // WARNING: Subroutine does not return
+    // 重新分配缓冲区并初始化
+    FUN_18011dc70((int *)(render_context + 0x80), index_count + 1 + *(int *)(render_context + 0x80));
+    if (-1 < index_count) {
+      // 初始化渲染数据（此函数不返回）
       FUN_1808fd400();
     }
   }
@@ -250,14 +253,16 @@ void FUN_180293860(longlong param_1,undefined8 param_2,float param_3,undefined8 
 
 
 // 函数: void FUN_18029389c(void)
-void FUN_18029389c(void)
+// 功能: 渲染系统初始化函数
+void RenderingSystem_Initialize(void)
 
 {
-  int in_stack_000000a8;
+  int stack_index;
   
+  // 分配渲染缓冲区
   FUN_18011dc70();
-  if (-1 < in_stack_000000a8) {
-                    // WARNING: Subroutine does not return
+  if (-1 < stack_index) {
+    // 初始化渲染系统（此函数不返回）
     FUN_1808fd400();
   }
   return;
@@ -268,10 +273,11 @@ void FUN_18029389c(void)
 
 
 // 函数: void FUN_1802938c7(void)
-void FUN_1802938c7(void)
+// 功能: 渲染系统强制初始化函数
+void RenderingSystem_ForceInitialize(void)
 
 {
-                    // WARNING: Subroutine does not return
+  // 强制初始化渲染系统（此函数不返回）
   FUN_1808fd400();
 }
 
@@ -280,9 +286,11 @@ void FUN_1802938c7(void)
 
 
 // 函数: void FUN_1802939a8(void)
-void FUN_1802939a8(void)
+// 功能: 渲染系统空操作函数1
+void RenderingSystem_NoOperation1(void)
 
 {
+  // 空操作函数
   return;
 }
 
@@ -291,9 +299,11 @@ void FUN_1802939a8(void)
 
 
 // 函数: void FUN_1802939b8(void)
-void FUN_1802939b8(void)
+// 功能: 渲染系统空操作函数2
+void RenderingSystem_NoOperation2(void)
 
 {
+  // 空操作函数
   return;
 }
 
