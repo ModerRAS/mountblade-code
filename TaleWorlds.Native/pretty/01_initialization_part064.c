@@ -391,36 +391,36 @@ int32_t InitializationSystem_LogEvent(void);
  * 
  * 该函数负责系统内部初始化工作。
  * 
- * @return undefined 初始化结果状态
+ * @return int32_t 初始化结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_InternalInit(void);
+int32_t InitializationSystem_InternalInit(void);
 
 /**
  * @brief 清理器
  * 
  * 该函数负责系统清理工作。
  * 
- * @return undefined 清理结果状态
+ * @return int32_t 清理结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_Cleanup(void);
+int32_t InitializationSystem_Cleanup(void);
 
 /**
  * @brief 状态验证器
  * 
  * 该函数负责验证系统状态的有效性。
  * 
- * @return undefined 验证结果状态
+ * @return int32_t 验证结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_ValidateState(void);
+int32_t InitializationSystem_ValidateState(void);
 
 /**
  * @brief 错误处理器
  * 
  * 该函数负责处理系统错误。
  * 
- * @return undefined 处理结果状态
+ * @return int32_t 处理结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_HandleError(void);
+int32_t InitializationSystem_HandleError(void);
 
 /* ============================================================================
  * 主要功能函数实现
@@ -473,9 +473,9 @@ undefined InitializationSystem_HandleError(void);
  * - 提供错误恢复机制
  * - 支持动态配置更新
  * 
- * @return undefined 初始化结果状态
+ * @return int32_t 初始化结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_ComponentInitializer(void)
+int32_t InitializationSystem_ComponentInitializer(void)
 {
     // 系统组件初始化逻辑实现
     
@@ -597,7 +597,7 @@ undefined InitializationSystem_ComponentInitializer(void)
     // - 验证资源使用
     // - 确认系统可用性
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -765,7 +765,7 @@ undefined InitializationSystem_ConfigProcessor(void)
     // - 验证更新效果
     // - 处理更新异常
     
-    return undefined;
+    return 0;
 }
 
 /* ============================================================================
@@ -817,7 +817,7 @@ undefined InitializationSystem_ResourceManager(void)
      *    - 资源共享
      */
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -853,7 +853,7 @@ undefined InitializationSystem_ValidateConfig(void)
      *    - 访问控制验证
      */
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -889,7 +889,7 @@ undefined InitializationSystem_AllocateResource(void)
      *    - 分配优化算法
      */
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -925,7 +925,7 @@ undefined InitializationSystem_ReleaseResource(void)
      *    - 清理优化算法
      */
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -961,7 +961,7 @@ undefined InitializationSystem_UpdateStatus(void)
      *    - 状态历史记录
      */
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -997,7 +997,7 @@ undefined InitializationSystem_LogEvent(void)
      *    - 事件预测分析
      */
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -1045,7 +1045,7 @@ undefined InitializationSystem_StateMonitor(void)
      *    - 预测性维护
      */
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -1093,7 +1093,7 @@ undefined InitializationSystem_ErrorHandler(void)
      *    - 用户友好提示
      */
     
-    return undefined;
+    return 0;
 }
 
 /* ============================================================================
@@ -1133,7 +1133,7 @@ undefined InitializationSystem_InternalInit(void)
      *    - 系统调用初始化
      */
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -1169,7 +1169,7 @@ undefined InitializationSystem_Cleanup(void)
      *    - 统计数据清理
      */
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -1205,7 +1205,7 @@ undefined InitializationSystem_ValidateState(void)
      *    - 状态逻辑关系验证
      */
     
-    return undefined;
+    return 0;
 }
 
 /**
@@ -1241,7 +1241,7 @@ undefined InitializationSystem_HandleError(void)
      *    - 降级处理恢复
      */
     
-    return undefined;
+    return 0;
 }
 
 /* ============================================================================

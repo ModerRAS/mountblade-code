@@ -59,7 +59,7 @@ typedef uint64_t GameLogic_EventManager_type;
  * - 状态一致性维护
  * - 状态恢复和修复
  */
-typedef undefined GameLogic_StateManager_type;
+typedef uint64_t GameLogic_StateManager_type;
 
 /**
  * @brief 游戏资源管理器类型
@@ -73,7 +73,7 @@ typedef undefined GameLogic_StateManager_type;
  * - 资源优化和回收
  * - 资源冲突解决
  */
-typedef undefined GameLogic_ResourceManager_type;
+typedef uint64_t GameLogic_ResourceManager_type;
 
 /* ========================================
    核心功能常量定义
@@ -301,7 +301,7 @@ typedef undefined GameLogic_ResourceManager_type;
  * @note 此函数在游戏启动时被调用
  * @warning 错误的初始化可能导致系统不稳定
  */
-undefined GameLogic_Initializer(uint64_t system_context, uint64_t init_flag, uint64_t config_param, uint64_t resource_param);
+uint64_t GameLogic_Initializer(uint64_t system_context, uint64_t init_flag, uint64_t config_param, uint64_t resource_param);
 
 /**
  * @brief 游戏事件处理器
@@ -321,7 +321,7 @@ undefined GameLogic_Initializer(uint64_t system_context, uint64_t init_flag, uin
  * @note 此函数在游戏运行时被频繁调用
  * @warning 错误的事件处理可能导致逻辑错误
  */
-undefined GameLogic_EventHandler(uint64_t event_context, uint64_t event_type, uint64_t event_data, uint64_t event_param);
+uint64_t GameLogic_EventHandler(uint64_t event_context, uint64_t event_type, uint64_t event_data, uint64_t event_param);
 
 /**
  * @brief 游戏状态更新器
@@ -341,7 +341,7 @@ undefined GameLogic_EventHandler(uint64_t event_context, uint64_t event_type, ui
  * @note 此函数在游戏主循环中被调用
  * @warning 错误的状态更新可能导致游戏逻辑错误
  */
-undefined GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, uint64_t delta_time, uint64_t update_param);
+uint64_t GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, uint64_t delta_time, uint64_t update_param);
 
 /**
  * @brief 游戏资源清理器
@@ -360,7 +360,7 @@ undefined GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, u
  * @note 此函数在游戏关闭时被调用
  * @warning 需要确保所有资源都已正确释放
  */
-undefined GameLogic_ResourceCleaner(uint64_t resource_context, uint64_t cleanup_flag, uint64_t cleanup_param);
+uint64_t GameLogic_ResourceCleaner(uint64_t resource_context, uint64_t cleanup_flag, uint64_t cleanup_param);
 
 /* ========================================
    函数别名定义（便于代码阅读和维护）
@@ -424,7 +424,7 @@ static uint32_t g_game_system_flags = 0;
  * @param resource_param 资源参数
  * @return undefined 初始化状态
  */
-undefined GameLogic_Initializer(uint64_t system_context, uint64_t init_flag, uint64_t config_param, uint64_t resource_param)
+uint64_t GameLogic_Initializer(uint64_t system_context, uint64_t init_flag, uint64_t config_param, uint64_t resource_param)
 
 {
   uint64_t initialization_result;
