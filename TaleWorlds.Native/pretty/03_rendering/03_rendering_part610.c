@@ -1,5 +1,5 @@
-/* SystemEventHandler - FUN_1808fd200 的语义化别名 */
-#define SystemEventHandler FUN_1808fd200
+/* SystemEventHandler - SystemCore_MemoryManager0 的语义化别名 */
+#define SystemEventHandler SystemCore_MemoryManager0
 
 /**
  * TaleWorlds.Native 渲染系统高级数据处理和参数管理模块

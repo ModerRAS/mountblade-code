@@ -4,3 +4,7 @@
 // 自动生成的FUN_函数语义化别名定义
 // 生成时间: $(date)
 
+
+// DataEncryptionHandler - FUN_180046240 的语义化别名
+// 功能描述：系统核心功能函数
+#define DataEncryptionHandler FUN_180046240
