@@ -119,7 +119,7 @@ void FUN_1807d68f0(int *param_1,float param_2,float param_3,float param_4,float 
          fVar7 + *(float *)(param_8 + 4 + (int64_t)(param_1[0x26] * param_7) * 4);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_a8 ^ (uint64_t)auStack_168);
+  SystemSecurityChecker(uStack_a8 ^ (uint64_t)auStack_168);
 }
 
 
@@ -279,7 +279,7 @@ void FUN_1807d6934(int *param_1,float param_2,float param_3,float param_4)
          fVar7 + *(float *)(unaff_RSI + 4 + (int64_t)(int)(unaff_RBX[0x26] * unaff_EBP) * 4);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000c0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000c0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -377,7 +377,7 @@ void FUN_1807d69da(float param_1,uint64_t param_2,uint64_t param_3,uint64_t para
          fVar3 + *(float *)(unaff_RSI + 4 + (int64_t)(int)(unaff_RBX[0x26] * unaff_EBP) * 4);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000c0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000c0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -406,7 +406,7 @@ void FUN_1807d6c9e(void)
     *(float *)(unaff_RSI + 4 + lVar1 * 4) = fVar2 + *(float *)(unaff_RSI + 4 + lVar1 * 4);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000c0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000c0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -434,7 +434,7 @@ void FUN_1807d6ccb(void)
   lVar1 = (int64_t)(*(int *)(unaff_RBX + 0x98) * unaff_EBP);
   *(float *)(unaff_RSI + 4 + lVar1 * 4) = fVar2 + *(float *)(unaff_RSI + 4 + lVar1 * 4);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000c0 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000c0 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -691,7 +691,7 @@ LAB_1807d71b7:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_f8 ^ (uint64_t)auStack_1d8);
+  SystemSecurityChecker(uStack_f8 ^ (uint64_t)auStack_1d8);
 }
 
 

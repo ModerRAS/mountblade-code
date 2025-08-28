@@ -118,7 +118,7 @@ void NetworkSystem_ConnectionProcessor(uint64_t *connection_pool_ptr, int64_t ne
   }
 LAB_180864019:
   // 执行最终的连接状态同步（该子程序不返回）
-  FUN_1808fc050(*(uint64_t *)(system_context + 0x1b0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(system_context + 0x1b0) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
