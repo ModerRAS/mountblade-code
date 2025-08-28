@@ -1,4 +1,4 @@
-#define StringProcessor FUN_1805a3b20  // 字符串处理器
+#define StringProcessor System_StringProcessor  // 字符串处理器
 
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"

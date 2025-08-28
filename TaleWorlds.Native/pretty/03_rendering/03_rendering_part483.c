@@ -1,4 +1,4 @@
-#define StringProcessor FUN_1805a3b20  // 字符串处理器
+#define StringProcessor System_StringProcessor  // 字符串处理器
 
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
@@ -706,7 +706,7 @@ void RenderingSystem_EmptyOperationProcessor2(void)
 // - FUN_18054f900: 资源分配函数
 // - FUN_18058ada0: 系统更新函数
 // - FUN_180590480: 状态处理函数
-// - FUN_1805a3b20: 状态检查函数
+// - System_StringProcessor: 状态检查函数
 // - func_0x000180525320: 配置获取函数
 // - func_0x0001805a7480: 系统清理函数
 // 
