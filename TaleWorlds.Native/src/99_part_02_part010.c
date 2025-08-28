@@ -981,73 +981,116 @@ undefined8 *data_structure_initializer_ext(undefined8 *data_structure)
 
 
 
-// 函数: void FUN_1800ee650(longlong param_1)
-void FUN_1800ee650(longlong param_1)
-
+/**
+ * @brief 系统资源初始化和清理函数
+ * @param param_1 系统参数指针
+ * @return 无返回值
+ * 
+ * 该函数用于系统资源的初始化和清理，主要功能包括：
+ * - 初始化系统资源管理器
+ * - 处理资源数组的递归清理
+ * - 管理系统资源的状态
+ */
+void system_resource_initializer(longlong param_1)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  ulonglong uVar3;
-  uint uVar4;
-  ulonglong uVar5;
-  
-  if (*(longlong *)(param_1 + 0x28) == 0) {
-    uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x178,8,0x1c);
-    uVar2 = FUN_1800ee510(uVar2);
-    *(byte *)(param_1 + 0x2e9) = *(byte *)(param_1 + 0x2e9) & 0xfb;
-    *(undefined8 *)(param_1 + 0x28) = uVar2;
-  }
-  uVar3 = 0;
-  uVar5 = uVar3;
-  if (*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3 != 0) {
+    longlong lVar1;
+    undefined8 uVar2;
+    ulonglong uVar3;
+    uint uVar4;
+    ulonglong uVar5;
+    
+    // 检查是否需要初始化资源管理器
+    if (*(longlong *)(param_1 + 0x28) == 0) {
+        // 创建资源管理器实例
+        uVar2 = FUN_18062b1e0(_DAT_180c8ed18, 0x178, 8, 0x1c);
+        uVar2 = FUN_1800ee510(uVar2);
+        // 更新状态标志
+        *(byte *)(param_1 + 0x2e9) = *(byte *)(param_1 + 0x2e9) & 0xfb;
+        *(undefined8 *)(param_1 + 0x28) = uVar2;
+    }
+    
+    // 递归处理资源数组
+    uVar3 = 0;
+    uVar5 = uVar3;
+    if (*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3 != 0) {
+        do {
+            lVar1 = *(longlong *)(uVar3 + *(longlong *)(param_1 + 0x1c0));
+            // 递归调用处理子资源
+            FUN_1800ee650(lVar1, lVar1 + 0x70);
+            uVar3 = uVar3 + 8;
+            uVar4 = (int)uVar5 + 1;
+            uVar5 = (ulonglong)uVar4;
+        } while ((ulonglong)(longlong)(int)uVar4 <
+                 (ulonglong)(*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3));
+    }
+    return;
+}
+
+// 函数别名
+#define system_resource_init       system_resource_initializer
+#define resource_array_cleanup     system_resource_initializer
+
+
+
+
+
+
+/**
+ * @brief 批量资源清理函数
+ * @return 无返回值
+ * 
+ * 该函数用于批量清理系统资源，主要功能包括：
+ * - 遍历资源数组进行清理
+ * - 调用资源清理函数
+ * - 管理资源生命周期
+ */
+void batch_resource_cleanup(void)
+{
+    longlong lVar1;
+    longlong unaff_RBX;
+    ulonglong uVar2;
+    uint unaff_EDI;
+    
+    // 遍历资源数组进行批量清理
+    uVar2 = (ulonglong)unaff_EDI;
     do {
-      lVar1 = *(longlong *)(uVar3 + *(longlong *)(param_1 + 0x1c0));
-      FUN_1800ee650(lVar1,lVar1 + 0x70);
-      uVar3 = uVar3 + 8;
-      uVar4 = (int)uVar5 + 1;
-      uVar5 = (ulonglong)uVar4;
-    } while ((ulonglong)(longlong)(int)uVar4 <
-             (ulonglong)(*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3));
-  }
-  return;
+        lVar1 = *(longlong *)(uVar2 + *(longlong *)(unaff_RBX + 0x1c0));
+        // 调用资源清理函数
+        FUN_1800ee650(lVar1, lVar1 + 0x70);
+        uVar2 = uVar2 + 8;
+        unaff_EDI = unaff_EDI + 1;
+    } while ((ulonglong)(longlong)(int)unaff_EDI <
+             (ulonglong)(*(longlong *)(unaff_RBX + 0x1c8) - *(longlong *)(unaff_RBX + 0x1c0) >> 3));
+    return;
 }
 
+// 函数别名
+#define cleanup_all_resources      batch_resource_cleanup
+#define resource_batch_cleanup     batch_resource_cleanup
 
 
 
 
 
-// 函数: void FUN_1800ee6aa(void)
-void FUN_1800ee6aa(void)
 
+/**
+ * @brief 空操作函数
+ * @return 无返回值
+ * 
+ * 该函数是一个空操作函数，主要用于：
+ * - 作为占位符函数
+ * - 提供统一的函数接口
+ * - 保持API兼容性
+ */
+void noop_function(void)
 {
-  longlong lVar1;
-  longlong unaff_RBX;
-  ulonglong uVar2;
-  uint unaff_EDI;
-  
-  uVar2 = (ulonglong)unaff_EDI;
-  do {
-    lVar1 = *(longlong *)(uVar2 + *(longlong *)(unaff_RBX + 0x1c0));
-    FUN_1800ee650(lVar1,lVar1 + 0x70);
-    uVar2 = uVar2 + 8;
-    unaff_EDI = unaff_EDI + 1;
-  } while ((ulonglong)(longlong)(int)unaff_EDI <
-           (ulonglong)(*(longlong *)(unaff_RBX + 0x1c8) - *(longlong *)(unaff_RBX + 0x1c0) >> 3));
-  return;
+    return;
 }
 
-
-
-
-
-
-// 函数: void FUN_1800ee6ea(void)
-void FUN_1800ee6ea(void)
-
-{
-  return;
-}
+// 函数别名
+#define empty_function            noop_function
+#define placeholder_function      noop_function
+#define nop                       noop_function
 
 
 
@@ -1056,349 +1099,598 @@ void FUN_1800ee6ea(void)
 
 
 
-// 函数: void FUN_1800ee700(undefined8 param_1,longlong *param_2,undefined1 param_3)
-void FUN_1800ee700(undefined8 param_1,longlong *param_2,undefined1 param_3)
-
+/**
+ * @brief 高级资源处理函数
+ * @param param_1 处理参数1
+ * @param param_2 资源指针数组
+ * @param param_3 处理参数3
+ * @return 无返回值
+ * 
+ * 该函数用于高级资源处理，主要功能包括：
+ * - 创建资源处理器实例
+ * - 管理资源生命周期
+ * - 处理资源回调函数
+ * - 执行资源清理操作
+ */
+void advanced_resource_processor(undefined8 param_1, longlong *param_2, undefined1 param_3)
 {
-  undefined8 uVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  undefined *puVar4;
-  longlong *plStackX_20;
-  undefined8 uVar5;
-  longlong *plVar6;
-  longlong **pplVar7;
-  
-  uVar5 = 0xfffffffffffffffe;
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,3,0xfffffffffffffffe);
-  plVar2 = (longlong *)FUN_180275090(uVar1);
-  plVar6 = plVar2;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))(plVar2);
-  }
-  puVar4 = &DAT_18098bc73;
-  if (*(undefined **)(*param_2 + 0x18) != (undefined *)0x0) {
-    puVar4 = *(undefined **)(*param_2 + 0x18);
-  }
-  (**(code **)(plVar2[0x3e] + 0x10))(plVar2 + 0x3e,puVar4);
-  pplVar7 = &plStackX_20;
-  plStackX_20 = (longlong *)*param_2;
-  if (plStackX_20 != (longlong *)0x0) {
-    (**(code **)(*plStackX_20 + 0x28))();
-  }
-  FUN_180275cf0(plVar2,0,&plStackX_20,1,uVar5,plVar6,pplVar7);
-  if (*(longlong *)(*param_2 + 0x1b0) == 0) {
-    lVar3 = *param_2 + 0x10;
-  }
-  else {
-    lVar3 = func_0x000180079240();
-  }
-  puVar4 = &DAT_18098bc73;
-  if (*(undefined **)(lVar3 + 8) != (undefined *)0x0) {
-    puVar4 = *(undefined **)(lVar3 + 8);
-  }
-  (**(code **)(plVar2[0x3e] + 0x10))(plVar2 + 0x3e,puVar4);
-  plStackX_20 = plVar2;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))(plVar2);
-  }
-  FUN_1802edcd0(param_1,plStackX_20,param_3);
-  if (plStackX_20 != (longlong *)0x0) {
-    (**(code **)(*plStackX_20 + 0x38))();
-  }
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))(plVar2);
-  }
-  if ((longlong *)*param_2 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_2 + 0x38))();
-  }
-  return;
-}
-
-
-
-
-
-
-// 函数: void FUN_1800ee890(undefined8 param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800ee890(undefined8 param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  FUN_1802edcd0(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
-  if ((longlong *)*param_2 != (longlong *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x0001800ee8bf. Too many branches
-                    // WARNING: Treating indirect jump as call
-    (**(code **)(*(longlong *)*param_2 + 0x38))();
+    undefined8 uVar1;
+    longlong *plVar2;
+    longlong lVar3;
+    undefined *puVar4;
+    longlong *plStackX_20;
+    undefined8 uVar5;
+    longlong *plVar6;
+    longlong **pplVar7;
+    
+    // 设置处理参数
+    uVar5 = 0xfffffffffffffffe;
+    
+    // 创建资源处理器实例
+    uVar1 = FUN_18062b1e0(_DAT_180c8ed18, 0x3d0, 8, 3, 0xfffffffffffffffe);
+    plVar2 = (longlong *)FUN_180275090(uVar1);
+    plVar6 = plVar2;
+    
+    // 初始化资源处理器
+    if (plVar2 != (longlong *)0x0) {
+        (**(code **)(*plVar2 + 0x28))(plVar2);
+    }
+    
+    // 获取默认数据指针
+    puVar4 = &DAT_18098bc73;
+    if (*(undefined **)(*param_2 + 0x18) != (undefined *)0x0) {
+        puVar4 = *(undefined **)(*param_2 + 0x18);
+    }
+    
+    // 处理资源数据
+    (**(code **)(plVar2[0x3e] + 0x10))(plVar2 + 0x3e, puVar4);
+    
+    // 设置资源栈
+    pplVar7 = &plStackX_20;
+    plStackX_20 = (longlong *)*param_2;
+    if (plStackX_20 != (longlong *)0x0) {
+        (**(code **)(*plStackX_20 + 0x28))();
+    }
+    
+    // 执行资源处理
+    FUN_180275cf0(plVar2, 0, &plStackX_20, 1, uVar5, plVar6, pplVar7);
+    
+    // 获取资源句柄
+    if (*(longlong *)(*param_2 + 0x1b0) == 0) {
+        lVar3 = *param_2 + 0x10;
+    } else {
+        lVar3 = func_0x000180079240();
+    }
+    
+    // 处理资源数据
+    puVar4 = &DAT_18098bc73;
+    if (*(undefined **)(lVar3 + 8) != (undefined *)0x0) {
+        puVar4 = *(undefined **)(lVar3 + 8);
+    }
+    
+    // 执行数据处理
+    (**(code **)(plVar2[0x3e] + 0x10))(plVar2 + 0x3e, puVar4);
+    
+    // 清理资源
+    plStackX_20 = plVar2;
+    if (plVar2 != (longlong *)0x0) {
+        (**(code **)(*plVar2 + 0x28))(plVar2);
+    }
+    
+    // 执行最终处理
+    FUN_1802edcd0(param_1, plStackX_20, param_3);
+    
+    // 执行资源释放
+    if (plStackX_20 != (longlong *)0x0) {
+        (**(code **)(*plStackX_20 + 0x38))();
+    }
+    if (plVar2 != (longlong *)0x0) {
+        (**(code **)(*plVar2 + 0x38))(plVar2);
+    }
+    if ((longlong *)*param_2 != (longlong *)0x0) {
+        (**(code **)(*(longlong *)*param_2 + 0x38))();
+    }
     return;
-  }
-  return;
 }
 
+// 函数别名
+#define resource_processor_advanced  advanced_resource_processor
+#define complex_resource_handler     advanced_resource_processor
 
 
-undefined4 * FUN_1800ee8d0(undefined4 *param_1)
 
+
+
+
+/**
+ * @brief 简化资源处理函数
+ * @param param_1 处理参数1
+ * @param param_2 资源指针数组
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @return 无返回值
+ * 
+ * 该函数用于简化的资源处理，主要功能包括：
+ * - 执行基础资源处理操作
+ * - 处理资源回调函数
+ * - 管理资源生命周期
+ */
+void simplified_resource_processor(undefined8 param_1, longlong *param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined4 *puVar1;
-  uint uVar2;
-  
-  _Mtx_init_in_situ(param_1 + 2,2);
-  FUN_1800f9010(param_1 + 0x16,0x2000,1);
-  uVar2 = 0;
-  *(undefined8 *)(param_1 + 0x30) = 0;
-  *(undefined8 *)(param_1 + 0x32) = 0;
-  *(undefined8 *)(param_1 + 0x34) = 0;
-  param_1[0x36] = 3;
-  *(undefined8 *)(param_1 + 0x38) = 0;
-  *(undefined8 *)(param_1 + 0x3a) = 0;
-  *(undefined8 *)(param_1 + 0x3c) = 0;
-  param_1[0x3e] = 3;
-  *(undefined8 *)(param_1 + 0x40) = 0;
-  *(undefined8 *)(param_1 + 0x42) = 0;
-  *(undefined8 *)(param_1 + 0x44) = 0;
-  param_1[0x46] = 3;
-  *(undefined8 *)(param_1 + 0x48) = 0;
-  *(undefined8 *)(param_1 + 0x4a) = 0;
-  *(undefined8 *)(param_1 + 0x4c) = 0;
-  param_1[0x4e] = 3;
-  *(undefined8 *)(param_1 + 0x50) = 0;
-  *(undefined8 *)(param_1 + 0x52) = 0;
-  *(undefined8 *)(param_1 + 0x54) = 0;
-  param_1[0x56] = 3;
-  *(undefined8 *)(param_1 + 0x58) = 0;
-  *(undefined8 *)(param_1 + 0x5a) = 0;
-  *(undefined8 *)(param_1 + 0x5c) = 0;
-  param_1[0x5e] = 3;
-  *(undefined8 *)(param_1 + 0x60) = 0;
-  *(undefined8 *)(param_1 + 0x62) = 0;
-  *(undefined8 *)(param_1 + 100) = 0;
-  param_1[0x66] = 3;
-  *(undefined8 *)(param_1 + 0x68) = 0;
-  *(undefined8 *)(param_1 + 0x6a) = 0;
-  *(undefined8 *)(param_1 + 0x6c) = 0;
-  param_1[0x6e] = 3;
-  _Mtx_init_in_situ(param_1 + 0x70,2);
-  *(undefined8 *)(param_1 + 0x84) = 0;
-  *(undefined8 *)(param_1 + 0x86) = 0;
-  *(undefined8 *)(param_1 + 0x88) = 0;
-  param_1[0x8a] = 3;
-  *(undefined8 *)(param_1 + 0x8c) = 0;
-  *(undefined8 *)(param_1 + 0x8e) = 0;
-  *(undefined8 *)(param_1 + 0x90) = 0;
-  param_1[0x92] = 3;
-  LOCK();
-  param_1[0x94] = 0;
-  UNLOCK();
-  do {
-    *(undefined8 *)(param_1 + (longlong)(int)uVar2 * 2 + 0x96) = 0;
+    // 执行基础资源处理操作
+    FUN_1802edcd0(param_1, *param_2, param_3, param_4, INVALID_HANDLE);
+    
+    // 处理资源回调函数
+    if ((longlong *)*param_2 != (longlong *)0x0) {
+        // 注意：此处包含复杂的跳转表逻辑，简化为直接调用
+        (**(code **)(*(longlong *)*param_2 + OFFSET_0x30))();
+        return;
+    }
+    
+    return;
+}
+
+// 函数别名
+#define resource_processor_simple   simplified_resource_processor
+
+
+
+/**
+ * @brief 复杂数据结构初始化函数
+ * @param data_structure 数据结构指针
+ * @return 初始化后的数据结构指针
+ * 
+ * 该函数用于初始化复杂的数据结构，主要功能包括：
+ * - 初始化互斥锁和同步机制
+ * - 设置多个数据区域的状态
+ * - 初始化链表和队列结构
+ * - 配置系统参数和标志位
+ * - 设置清理和状态管理机制
+ */
+undefined4 *complex_data_structure_initializer(undefined4 *data_structure)
+{
+    undefined4 *return_ptr;
+    uint index;
+    
+    // 初始化互斥锁
+    _Mtx_init_in_situ(data_structure + 2, MUTEX_TYPE_2);
+    
+    // 初始化数据区域1
+    FUN_1800f9010(data_structure + 0x16, 0x2000, 1);
+    
+    // 初始化多个状态区域
+    index = 0;
+    *(undefined8 *)(data_structure + 0x30) = 0;
+    *(undefined8 *)(data_structure + 0x32) = 0;
+    *(undefined8 *)(data_structure + 0x34) = 0;
+    data_structure[0x36] = 3;
+    *(undefined8 *)(data_structure + 0x38) = 0;
+    *(undefined8 *)(data_structure + 0x3a) = 0;
+    *(undefined8 *)(data_structure + 0x3c) = 0;
+    data_structure[0x3e] = 3;
+    *(undefined8 *)(data_structure + 0x40) = 0;
+    *(undefined8 *)(data_structure + 0x42) = 0;
+    *(undefined8 *)(data_structure + 0x44) = 0;
+    data_structure[0x46] = 3;
+    *(undefined8 *)(data_structure + 0x48) = 0;
+    *(undefined8 *)(data_structure + 0x4a) = 0;
+    *(undefined8 *)(data_structure + 0x4c) = 0;
+    data_structure[0x4e] = 3;
+    *(undefined8 *)(data_structure + 0x50) = 0;
+    *(undefined8 *)(data_structure + 0x52) = 0;
+    *(undefined8 *)(data_structure + 0x54) = 0;
+    data_structure[0x56] = 3;
+    *(undefined8 *)(data_structure + 0x58) = 0;
+    *(undefined8 *)(data_structure + 0x5a) = 0;
+    *(undefined8 *)(data_structure + 0x5c) = 0;
+    data_structure[0x5e] = 3;
+    *(undefined8 *)(data_structure + 0x60) = 0;
+    *(undefined8 *)(data_structure + 0x62) = 0;
+    *(undefined8 *)(data_structure + 100) = 0;
+    data_structure[0x66] = 3;
+    *(undefined8 *)(data_structure + 0x68) = 0;
+    *(undefined8 *)(data_structure + 0x6a) = 0;
+    *(undefined8 *)(data_structure + 0x6c) = 0;
+    data_structure[0x6e] = 3;
+    
+    // 初始化第二个互斥锁
+    _Mtx_init_in_situ(data_structure + 0x70, MUTEX_TYPE_2);
+    
+    // 初始化数据区域2
+    *(undefined8 *)(data_structure + 0x84) = 0;
+    *(undefined8 *)(data_structure + 0x86) = 0;
+    *(undefined8 *)(data_structure + 0x88) = 0;
+    data_structure[0x8a] = 3;
+    *(undefined8 *)(data_structure + 0x8c) = 0;
+    *(undefined8 *)(data_structure + 0x8e) = 0;
+    *(undefined8 *)(data_structure + 0x90) = 0;
+    data_structure[0x92] = 3;
+    
+    // 初始化同步变量
     LOCK();
-    *(undefined1 *)((longlong)param_1 + (longlong)(int)uVar2 + 0x2a8) = 1;
+    data_structure[0x94] = 0;
     UNLOCK();
-    uVar2 = uVar2 + 1;
-  } while (uVar2 < 10);
-  *(undefined8 *)(param_1 + 0xae) = 0;
-  puVar1 = param_1 + 0xb2;
-  *(undefined8 *)(param_1 + 0xb8) = 0;
-  param_1[0xbc] = 3;
-  *(undefined4 **)puVar1 = puVar1;
-  *(undefined4 **)(param_1 + 0xb4) = puVar1;
-  *(undefined8 *)(param_1 + 0xb6) = 0;
-  *(undefined1 *)(param_1 + 0xb8) = 0;
-  *(undefined8 *)(param_1 + 0xba) = 0;
-  FUN_1808fc838(param_1 + 0xc2,8,0xd,&SUB_18005d5f0,FUN_180045af0);
-  *(undefined8 *)(param_1 + 0xdc) = 0;
-  *(undefined8 *)(param_1 + 0xde) = 0;
-  *(undefined8 *)(param_1 + 0xe0) = 0;
-  *(undefined8 *)(param_1 + 0xe2) = 0;
-  *(undefined8 *)(param_1 + 0xe4) = 0;
-  *(undefined8 *)(param_1 + 0xe6) = 0;
-  FUN_1808fc838(param_1 + 0xea,8,0xd,&SUB_18005d5f0,FUN_180045af0);
-  *(undefined8 *)(param_1 + 0x104) = 0;
-  *(undefined8 *)(param_1 + 0x106) = 0;
-  *(undefined8 *)(param_1 + 0x108) = 0;
-  *(undefined8 *)(param_1 + 0x10a) = 0;
-  *(undefined8 *)(param_1 + 0x10c) = 0;
-  *(undefined8 *)(param_1 + 0x10e) = 0;
-  *(undefined8 *)(param_1 + 0x110) = 0;
-  *(undefined8 *)(param_1 + 0x112) = 0;
-  *(undefined8 *)(param_1 + 0x114) = 0;
-  *(undefined8 *)(param_1 + 0x116) = 0;
-  *(undefined8 *)(param_1 + 0x118) = 0;
-  *(undefined8 *)(param_1 + 0x11a) = 0;
-  puVar1 = param_1 + 0x11c;
-  *(undefined8 *)(param_1 + 0x122) = 0;
-  param_1[0x126] = 3;
-  *(undefined4 **)puVar1 = puVar1;
-  *(undefined4 **)(param_1 + 0x11e) = puVar1;
-  *(undefined8 *)(param_1 + 0x120) = 0;
-  *(undefined1 *)(param_1 + 0x122) = 0;
-  *(undefined8 *)(param_1 + 0x124) = 0;
-  *(undefined8 *)(param_1 + 0x1028) = 0;
-  *(undefined8 *)(param_1 + 0x102a) = 0;
-  *(undefined8 *)(param_1 + 0x102c) = 0;
-  puVar1 = param_1 + 0x1038;
-  *(undefined8 *)(param_1 + 0x103e) = 0;
-  param_1[0x1042] = 3;
-  *(undefined4 **)puVar1 = puVar1;
-  *(undefined4 **)(param_1 + 0x103a) = puVar1;
-  *(undefined8 *)(param_1 + 0x103c) = 0;
-  *(undefined1 *)(param_1 + 0x103e) = 0;
-  *(undefined8 *)(param_1 + 0x1040) = 0;
-  puVar1 = param_1 + 0x1044;
-  *(undefined8 *)(param_1 + 0x104a) = 0;
-  param_1[0x104e] = 3;
-  *(undefined4 **)puVar1 = puVar1;
-  *(undefined4 **)(param_1 + 0x1046) = puVar1;
-  *(undefined8 *)(param_1 + 0x1048) = 0;
-  *(undefined1 *)(param_1 + 0x104a) = 0;
-  *(undefined8 *)(param_1 + 0x104c) = 0;
-  FUN_1800f63f0(param_1 + 0x1050);
-  *(undefined **)(param_1 + 0x1064) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x1066) = 0;
-  param_1[0x1068] = 0;
-  *(undefined **)(param_1 + 0x1064) = &UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x106a) = 0;
-  *(undefined8 *)(param_1 + 0x1066) = 0;
-  param_1[0x1068] = 0;
-  param_1[0xbe] = 0;
-  *param_1 = 0;
-  *(undefined1 *)(param_1 + 1) = 0;
-  *(undefined2 *)(param_1 + 0xb0) = 0;
-  *(undefined1 *)(param_1 + 0xe8) = 0;
-  return param_1;
+    
+    // 初始化数组状态
+    do {
+        *(undefined8 *)(data_structure + (longlong)(int)index * 2 + 0x96) = 0;
+        LOCK();
+        *(undefined1 *)((longlong)data_structure + (longlong)(int)index + 0x2a8) = 1;
+        UNLOCK();
+        index = index + 1;
+    } while (index < ARRAY_SIZE_10);
+    
+    // 初始化链表结构
+    *(undefined8 *)(data_structure + 0xae) = 0;
+    return_ptr = data_structure + 0xb2;
+    *(undefined8 *)(data_structure + 0xb8) = 0;
+    data_structure[0xbc] = 3;
+    *(undefined4 **)return_ptr = return_ptr;
+    *(undefined4 **)(data_structure + 0xb4) = return_ptr;
+    *(undefined8 *)(data_structure + 0xb6) = 0;
+    *(undefined1 *)(data_structure + 0xb8) = 0;
+    *(undefined8 *)(data_structure + 0xba) = 0;
+    
+    // 初始化回调函数
+    FUN_1808fc838(data_structure + 0xc2, 8, 0xd, &SUB_18005d5f0, FUN_180045af0);
+    
+    // 初始化更多数据区域
+    *(undefined8 *)(data_structure + 0xdc) = 0;
+    *(undefined8 *)(data_structure + 0xde) = 0;
+    *(undefined8 *)(data_structure + 0xe0) = 0;
+    *(undefined8 *)(data_structure + 0xe2) = 0;
+    *(undefined8 *)(data_structure + 0xe4) = 0;
+    *(undefined8 *)(data_structure + 0xe6) = 0;
+    FUN_1808fc838(data_structure + 0xea, 8, 0xd, &SUB_18005d5f0, FUN_180045af0);
+    
+    // 初始化扩展数据区域
+    *(undefined8 *)(data_structure + 0x104) = 0;
+    *(undefined8 *)(data_structure + 0x106) = 0;
+    *(undefined8 *)(data_structure + 0x108) = 0;
+    *(undefined8 *)(data_structure + 0x10a) = 0;
+    *(undefined8 *)(data_structure + 0x10c) = 0;
+    *(undefined8 *)(data_structure + 0x10e) = 0;
+    *(undefined8 *)(data_structure + 0x110) = 0;
+    *(undefined8 *)(data_structure + 0x112) = 0;
+    *(undefined8 *)(data_structure + 0x114) = 0;
+    *(undefined8 *)(data_structure + 0x116) = 0;
+    *(undefined8 *)(data_structure + 0x118) = 0;
+    *(undefined8 *)(data_structure + 0x11a) = 0;
+    
+    // 初始化第二个链表
+    return_ptr = data_structure + 0x11c;
+    *(undefined8 *)(data_structure + 0x122) = 0;
+    data_structure[0x126] = 3;
+    *(undefined4 **)return_ptr = return_ptr;
+    *(undefined4 **)(data_structure + 0x11e) = return_ptr;
+    *(undefined8 *)(data_structure + 0x120) = 0;
+    *(undefined1 *)(data_structure + 0x122) = 0;
+    *(undefined8 *)(data_structure + 0x124) = 0;
+    
+    // 初始化第三个链表
+    *(undefined8 *)(data_structure + 0x1028) = 0;
+    *(undefined8 *)(data_structure + 0x102a) = 0;
+    *(undefined8 *)(data_structure + 0x102c) = 0;
+    return_ptr = data_structure + 0x1038;
+    *(undefined8 *)(data_structure + 0x103e) = 0;
+    data_structure[0x1042] = 3;
+    *(undefined4 **)return_ptr = return_ptr;
+    *(undefined4 **)(data_structure + 0x103a) = return_ptr;
+    *(undefined8 *)(data_structure + 0x103c) = 0;
+    *(undefined1 *)(data_structure + 0x103e) = 0;
+    *(undefined8 *)(data_structure + 0x1040) = 0;
+    
+    // 初始化第四个链表
+    return_ptr = data_structure + 0x1044;
+    *(undefined8 *)(data_structure + 0x104a) = 0;
+    data_structure[0x104e] = 3;
+    *(undefined4 **)return_ptr = return_ptr;
+    *(undefined4 **)(data_structure + 0x1046) = return_ptr;
+    *(undefined8 *)(data_structure + 0x1048) = 0;
+    *(undefined1 *)(data_structure + 0x104a) = 0;
+    *(undefined8 *)(data_structure + 0x104c) = 0;
+    
+    // 初始化特殊功能区域
+    FUN_1800f63f0(data_structure + 0x1050);
+    
+    // 设置清理标志
+    *(undefined **)(data_structure + 0x1064) = &CLEANUP_FLAG_INACTIVE;
+    *(undefined8 *)(data_structure + 0x1066) = 0;
+    data_structure[0x1068] = 0;
+    *(undefined **)(data_structure + 0x1064) = &CLEANUP_FLAG_ACTIVE;
+    *(undefined8 *)(data_structure + 0x106a) = 0;
+    *(undefined8 *)(data_structure + 0x1066) = 0;
+    data_structure[0x1068] = 0;
+    
+    // 最终状态设置
+    data_structure[0xbe] = 0;
+    *data_structure = 0;
+    *(undefined1 *)(data_structure + 1) = 0;
+    *(undefined2 *)(data_structure + 0xb0) = 0;
+    *(undefined1 *)(data_structure + 0xe8) = 0;
+    
+    return data_structure;
 }
 
+// 函数别名
+#define complex_data_init           complex_data_structure_initializer
 
 
 
 
 
-// 函数: void FUN_1800eec90(longlong *param_1)
-void FUN_1800eec90(longlong *param_1)
 
+/**
+ * @brief 资源链遍历和清理函数
+ * @param resource_chain 资源链指针
+ * @return 无返回值
+ * 
+ * 该函数用于遍历和清理资源链，主要功能包括：
+ * - 遍历资源链中的所有资源
+ * - 调用资源清理函数
+ * - 处理空链情况
+ * - 在错误情况下调用系统终止函数
+ */
+void resource_chain_traverse(longlong *resource_chain)
 {
-  longlong lVar1;
-  longlong lVar2;
-  
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x30) {
-    FUN_1800f89b0();
-  }
-  if (*param_1 == 0) {
+    longlong chain_end;
+    longlong current_item;
+    
+    // 获取资源链的结束位置
+    chain_end = resource_chain[1];
+    
+    // 遍历资源链
+    for (current_item = *resource_chain; current_item != chain_end; current_item = current_item + 0x30) {
+        // 调用资源清理函数
+        FUN_1800f89b0();
+    }
+    
+    // 检查链是否为空
+    if (*resource_chain == 0) {
+        return;  // 链已为空，正常返回
+    }
+    
+    // 如果链不为空，调用系统终止函数（此函数不返回）
+    FUN_18064e900();
+}
+
+// 函数别名
+#define resource_chain_cleanup      resource_chain_traverse
+#define chain_traverse_resources    resource_chain_traverse
+
+
+
+
+
+
+/**
+ * @brief 资源处理委托函数类型1
+ * @param param_1 处理参数1
+ * @param param_2 处理参数2
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @return 无返回值
+ * 
+ * 该函数用于委托资源处理操作，主要功能包括：
+ * - 获取接口指针
+ * - 调用底层资源处理函数
+ * - 传递所有参数
+ */
+void resource_processor_delegate_type1(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+{
+    // 调用底层资源处理函数
+    FUN_1800f7260(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
     return;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
 }
 
+// 函数别名
+#define resource_delegate_1         resource_processor_delegate_type1
+#define processor_delegate_1        resource_processor_delegate_type1
 
 
 
 
 
-// 函数: void FUN_1800eecb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800eecb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
+/**
+ * @brief 多层级资源清理函数
+ * @param resource_manager 资源管理器指针
+ * @return 无返回值
+ * 
+ * 该函数用于清理多个层级的资源，主要功能包括：
+ * - 清理90偏移处的资源
+ * - 清理88偏移处的资源
+ * - 清理80偏移处的资源
+ * - 清理78偏移处的资源
+ * - 清理70偏移处的资源
+ * - 清理68偏移处的资源
+ * - 执行最终的清理操作
+ */
+void multi_level_resource_cleanup(longlong resource_manager)
 {
-  FUN_1800f7260(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
+    // 清理90偏移处的资源
+    if (*(longlong **)(resource_manager + OFFSET_0x90) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x90) + OFFSET_0x30))();
+    }
+    
+    // 清理88偏移处的资源
+    if (*(longlong **)(resource_manager + OFFSET_0x88) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x88) + OFFSET_0x30))();
+    }
+    
+    // 清理80偏移处的资源
+    if (*(longlong **)(resource_manager + OFFSET_0x80) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x80) + OFFSET_0x30))();
+    }
+    
+    // 清理78偏移处的资源
+    if (*(longlong **)(resource_manager + OFFSET_0x78) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x78) + OFFSET_0x30))();
+    }
+    
+    // 清理70偏移处的资源
+    if (*(longlong **)(resource_manager + OFFSET_0x70) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x70) + OFFSET_0x30))();
+    }
+    
+    // 清理68偏移处的资源
+    if (*(longlong **)(resource_manager + OFFSET_0x68) != (longlong *)0x0) {
+        (**(code **)(**(longlong **)(resource_manager + OFFSET_0x68) + OFFSET_0x30))();
+    }
+    
+    // 执行最终的清理操作
+    FUN_1808fc8a8(resource_manager, 8, 0xd, FUN_180045af0);
+    return;
 }
 
+// 函数别名
+#define multi_level_cleanup         multi_level_resource_cleanup
+#define resource_cleanup_levels     multi_level_resource_cleanup
 
 
 
 
 
-// 函数: void FUN_1800eece0(longlong param_1)
-void FUN_1800eece0(longlong param_1)
 
+/**
+ * @brief 资源处理委托函数类型2
+ * @param param_1 处理参数1
+ * @param param_2 处理参数2
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @return 无返回值
+ * 
+ * 该函数用于委托资源处理操作，主要功能包括：
+ * - 获取接口指针
+ * - 调用底层资源处理函数7320
+ * - 传递所有参数
+ */
+void resource_processor_delegate_type2(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  if (*(longlong **)(param_1 + 0x90) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_1 + 0x90) + 0x38))();
-  }
-  if (*(longlong **)(param_1 + 0x88) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_1 + 0x88) + 0x38))();
-  }
-  if (*(longlong **)(param_1 + 0x80) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_1 + 0x80) + 0x38))();
-  }
-  if (*(longlong **)(param_1 + 0x78) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_1 + 0x78) + 0x38))();
-  }
-  if (*(longlong **)(param_1 + 0x70) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_1 + 0x70) + 0x38))();
-  }
-  if (*(longlong **)(param_1 + 0x68) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_1 + 0x68) + 0x38))();
-  }
-  FUN_1808fc8a8(param_1,8,0xd,FUN_180045af0);
-  return;
+    // 调用底层资源处理函数7320
+    FUN_1800f7320(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    return;
 }
 
+// 函数别名
+#define resource_delegate_2         resource_processor_delegate_type2
+#define processor_delegate_2        resource_processor_delegate_type2
 
 
 
 
 
-// 函数: void FUN_1800eed80(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800eed80(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
+/**
+ * @brief 资源处理委托函数类型3
+ * @param param_1 处理参数1
+ * @param param_2 处理参数2
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @return 无返回值
+ * 
+ * 该函数用于委托资源处理操作，主要功能包括：
+ * - 获取接口指针
+ * - 调用底层资源处理函数74f0
+ * - 传递所有参数
+ */
+void resource_processor_delegate_type3(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_1800f7320(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
+    // 调用底层资源处理函数74f0
+    FUN_1800f74f0(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    return;
 }
 
+// 函数别名
+#define resource_delegate_3         resource_processor_delegate_type3
+#define processor_delegate_3        resource_processor_delegate_type3
 
 
 
 
 
-// 函数: void FUN_1800eedb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800eedb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
+/**
+ * @brief 资源处理委托函数类型4
+ * @param param_1 处理参数1
+ * @param param_2 处理参数2
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @return 无返回值
+ * 
+ * 该函数用于委托资源处理操作，主要功能包括：
+ * - 获取接口指针
+ * - 调用底层资源处理函数7260
+ * - 传递所有参数
+ */
+void resource_processor_delegate_type4(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_1800f74f0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
+    // 调用底层资源处理函数7260
+    FUN_1800f7260(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    return;
 }
 
+// 函数别名
+#define resource_delegate_4         resource_processor_delegate_type4
+#define processor_delegate_4        resource_processor_delegate_type4
 
 
 
 
 
-// 函数: void FUN_1800eede0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800eede0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
+/**
+ * @brief 资源处理委托函数类型5
+ * @param param_1 处理参数1
+ * @param param_2 处理参数2
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @return 无返回值
+ * 
+ * 该函数用于委托资源处理操作，主要功能包括：
+ * - 获取接口指针
+ * - 调用底层资源处理函数7320
+ * - 传递所有参数
+ */
+void resource_processor_delegate_type5(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_1800f7260(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
+    // 调用底层资源处理函数7320
+    FUN_1800f7320(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    return;
 }
 
+// 函数别名
+#define resource_delegate_5         resource_processor_delegate_type5
+#define processor_delegate_5        resource_processor_delegate_type5
 
 
 
 
 
-// 函数: void FUN_1800eee10(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800eee10(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
+/**
+ * @brief 资源处理委托函数类型6
+ * @param param_1 处理参数1
+ * @param param_2 处理参数2
+ * @param param_3 处理参数3
+ * @param param_4 处理参数4
+ * @return 无返回值
+ * 
+ * 该函数用于委托资源处理操作，主要功能包括：
+ * - 获取接口指针
+ * - 调用底层资源处理函数74f0
+ * - 传递所有参数
+ */
+void resource_processor_delegate_type6(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_1800f7320(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
+    // 调用底层资源处理函数74f0
+    FUN_1800f74f0(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    return;
 }
 
-
-
-
-
-
-// 函数: void FUN_1800eee40(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800eee40(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  FUN_1800f74f0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
-}
+// 函数别名
+#define resource_delegate_6         resource_processor_delegate_type6
+#define processor_delegate_6        resource_processor_delegate_type6
 
 
 
