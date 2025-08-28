@@ -65,7 +65,7 @@ typedef enum {
 #define AdvancedMemoryAllocator FUN_18062b420
 
 // 资源释放器 - 用于释放渲染系统资源
-#define ResourceReleaser FUN_18064e900
+#define ResourceReleaser ResourceReleaser
 
 // 状态查询处理器 - 用于查询渲染系统状态
 #define StateQueryProcessor FUN_18007b240
@@ -75,7 +75,7 @@ typedef enum {
 
 // 全局数据引用
 #define RenderingSystemGlobalData _DAT_180c8ed18
-#define RenderingSystemDefaultData &DAT_18098bc73
+#define RenderingSystemDefaultData &system_buffer_ptr
 #define RenderingSystemVTableData1 &UNK_18098bcb0
 #define RenderingSystemVTableData2 &UNK_1809fcc58
 #define RenderingSystemVTableData3 &UNK_180a3c3e0
@@ -289,7 +289,7 @@ void RenderingSystemAddMatrixData(ulonglong *param_1, uint64_t *param_2)
     }
     
     // 分配新的内存空间
-    puVar5 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, lVar8 << 4, (char)param_1[3]);
+    puVar5 = (uint64_t *)AdvancedMemoryAllocator(_DAT_180c8ed18, lVar8 << 4, (char)param_1[3]);
     puVar9 = (uint64_t *)param_1[1];
     puVar6 = (uint64_t *)*param_1;
     puVar7 = puVar5;
@@ -321,7 +321,7 @@ joined_r0x000180284d76:
     }
     
     // 处理错误情况
-    FUN_18064e900();
+    ResourceReleaser();
 }
 
 /**
@@ -363,7 +363,7 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
         puVar3 = (uint64_t *)0x0;
         if (uVar10 != 0) {
             puVar3 = (uint64_t *)
-                     FUN_18062b420(_DAT_180c8ed18, uVar10 << 4, (char)param_1[3], puVar5, 0xfffffffffffffffe);
+                     AdvancedMemoryAllocator(_DAT_180c8ed18, uVar10 << 4, (char)param_1[3], puVar5, 0xfffffffffffffffe);
             puVar5 = (uint64_t *)param_1[1];
             puVar4 = (uint64_t *)*param_1;
         }
@@ -409,7 +409,7 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
         }
         
         if (plVar9 != (longlong *)0x0) {
-            FUN_18064e900(plVar9);
+            ResourceReleaser(plVar9);
         }
         
         // 更新指针
@@ -510,16 +510,16 @@ void RenderingSystemCleanupProjectionParameters(longlong param_1)
             puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
             if (puVar2 != (uint64_t *)0x0) {
                 if (puVar2[4] != 0) {
-                    FUN_18064e900();
+                    ResourceReleaser();
                 }
                 *puVar2 = &UNK_180a3c3e0;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
                     *puVar2 = &UNK_18098bcb0;
-                    FUN_18064e900(puVar2);
+                    ResourceReleaser(puVar2);
                 }
-                FUN_18064e900();
+                ResourceReleaser();
             }
             *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
@@ -528,7 +528,7 @@ void RenderingSystemCleanupProjectionParameters(longlong param_1)
     }
     *(uint64_t *)(param_1 + 0x18) = 0;
     if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
-        FUN_18064e900();
+        ResourceReleaser();
     }
     return;
 }
@@ -556,16 +556,16 @@ void RenderingSystemCleanupViewParameters(longlong param_1)
             puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
             if (puVar2 != (uint64_t *)0x0) {
                 if (puVar2[4] != 0) {
-                    FUN_18064e900();
+                    ResourceReleaser();
                 }
                 *puVar2 = &UNK_180a3c3e0;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
                     *puVar2 = &UNK_18098bcb0;
-                    FUN_18064e900(puVar2);
+                    ResourceReleaser(puVar2);
                 }
-                FUN_18064e900();
+                ResourceReleaser();
             }
             *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
@@ -574,7 +574,7 @@ void RenderingSystemCleanupViewParameters(longlong param_1)
     }
     *(uint64_t *)(param_1 + 0x18) = 0;
     if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
-        FUN_18064e900();
+        ResourceReleaser();
     }
     return;
 }
@@ -602,16 +602,16 @@ void RenderingSystemCleanupTextureParameters(longlong param_1)
             puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
             if (puVar2 != (uint64_t *)0x0) {
                 if (puVar2[4] != 0) {
-                    FUN_18064e900();
+                    ResourceReleaser();
                 }
                 *puVar2 = &UNK_180a3c3e0;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
                     *puVar2 = &UNK_18098bcb0;
-                    FUN_18064e900(puVar2);
+                    ResourceReleaser(puVar2);
                 }
-                FUN_18064e900();
+                ResourceReleaser();
             }
             *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
@@ -620,7 +620,7 @@ void RenderingSystemCleanupTextureParameters(longlong param_1)
     }
     *(uint64_t *)(param_1 + 0x18) = 0;
     if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
-        FUN_18064e900();
+        ResourceReleaser();
     }
     return;
 }
@@ -730,16 +730,16 @@ void RenderingSystemCleanupDepthBuffer(longlong param_1)
             puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
             if (puVar2 != (uint64_t *)0x0) {
                 if (puVar2[4] != 0) {
-                    FUN_18064e900();
+                    ResourceReleaser();
                 }
                 *puVar2 = &UNK_180a3c3e0;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
                     *puVar2 = &UNK_18098bcb0;
-                    FUN_18064e900(puVar2);
+                    ResourceReleaser(puVar2);
                 }
-                FUN_18064e900();
+                ResourceReleaser();
             }
             *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
@@ -748,7 +748,7 @@ void RenderingSystemCleanupDepthBuffer(longlong param_1)
     }
     *(uint64_t *)(param_1 + 0x20) = 0;
     if ((1 < uVar3) && (*(longlong *)(param_1 + 0x10) != 0)) {
-        FUN_18064e900();
+        ResourceReleaser();
     }
     return;
 }

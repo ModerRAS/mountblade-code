@@ -1549,8 +1549,7 @@ void utilities_system_ptr_array_resetter_3(void)
 
 
 
-// 函数: void FUN_180941f80(void)
-void FUN_180941f80(void)
+void utilities_system_ptr_array_resetter_4(void)
 
 {
   *utilities_system_ptr_array[4] = SYSTEM_DEFAULT_VALUE;
@@ -1563,8 +1562,7 @@ void FUN_180941f80(void)
 
 
 
-// 函数: void FUN_180941fa0(void)
-void FUN_180941fa0(void)
+void utilities_system_ptr_array_resetter_5(void)
 
 {
   *utilities_system_ptr_array[5] = SYSTEM_DEFAULT_VALUE;
@@ -1577,8 +1575,7 @@ void FUN_180941fa0(void)
 
 
 
-// 函数: void FUN_180941fc0(void)
-void FUN_180941fc0(void)
+void utilities_system_ptr_array_resetter_6(void)
 
 {
   *utilities_system_ptr_array[6] = SYSTEM_DEFAULT_VALUE;
@@ -1591,8 +1588,7 @@ void FUN_180941fc0(void)
 
 
 
-// 函数: void FUN_180941fe0(void)
-void FUN_180941fe0(void)
+void utilities_system_ptr_array_resetter_7(void)
 
 {
   *utilities_system_ptr_array[7] = SYSTEM_DEFAULT_VALUE;
@@ -1605,8 +1601,7 @@ void FUN_180941fe0(void)
 
 
 
-// 函数: void FUN_180942000(void)
-void FUN_180942000(void)
+void utilities_system_ptr_array_resetter_8(void)
 
 {
   *utilities_system_ptr_array[8] = SYSTEM_DEFAULT_VALUE;
@@ -1619,8 +1614,7 @@ void FUN_180942000(void)
 
 
 
-// 函数: void FUN_180942020(void)
-void FUN_180942020(void)
+void utilities_system_ptr_array_resetter_9(void)
 
 {
   *utilities_system_ptr_array[9] = SYSTEM_DEFAULT_VALUE;
@@ -1633,8 +1627,7 @@ void FUN_180942020(void)
 
 
 
-// 函数: void FUN_180942040(void)
-void FUN_180942040(void)
+void utilities_system_ptr_array_resetter_10(void)
 
 {
   *utilities_system_ptr_array[10] = SYSTEM_DEFAULT_VALUE;
@@ -1647,8 +1640,7 @@ void FUN_180942040(void)
 
 
 
-// 函数: void FUN_180942060(void)
-void FUN_180942060(void)
+void utilities_system_ptr_array_resetter_11(void)
 
 {
   *utilities_system_ptr_array[11] = SYSTEM_DEFAULT_VALUE;
@@ -1661,8 +1653,7 @@ void FUN_180942060(void)
 
 
 
-// 函数: void FUN_180942080(void)
-void FUN_180942080(void)
+void utilities_system_ptr_array_resetter_12(void)
 
 {
   *utilities_system_ptr_array[12] = SYSTEM_DEFAULT_VALUE;
@@ -1675,8 +1666,7 @@ void FUN_180942080(void)
 
 
 
-// 函数: void FUN_1809420a0(void)
-void FUN_1809420a0(void)
+void utilities_system_ptr_array_resetter_13(void)
 
 {
   *utilities_system_ptr_array[13] = SYSTEM_DEFAULT_VALUE;
@@ -1689,8 +1679,7 @@ void FUN_1809420a0(void)
 
 
 
-// 函数: void FUN_1809420c0(void)
-void FUN_1809420c0(void)
+void utilities_system_ptr_array_resetter_14(void)
 
 {
   *utilities_system_ptr_array[14] = SYSTEM_DEFAULT_VALUE;
@@ -1703,8 +1692,7 @@ void FUN_1809420c0(void)
 
 
 
-// 函数: void FUN_1809420e0(void)
-void FUN_1809420e0(void)
+void utilities_system_ptr_array_resetter_15(void)
 
 {
   *utilities_system_ptr_array[15] = SYSTEM_DEFAULT_VALUE;
@@ -1717,8 +1705,7 @@ void FUN_1809420e0(void)
 
 
 
-// 函数: void FUN_180942100(void)
-void FUN_180942100(void)
+void utilities_system_ptr_array_resetter_16(void)
 
 {
   *utilities_system_ptr_array[16] = SYSTEM_DEFAULT_VALUE;
@@ -1731,8 +1718,7 @@ void FUN_180942100(void)
 
 
 
-// 函数: void FUN_180942120(void)
-void FUN_180942120(void)
+void utilities_system_ptr_array_resetter_17(void)
 
 {
   *utilities_system_ptr_array[17] = SYSTEM_DEFAULT_VALUE;
@@ -1745,8 +1731,7 @@ void FUN_180942120(void)
 
 
 
-// 函数: void FUN_180942140(void)
-void FUN_180942140(void)
+void utilities_system_ptr_array_resetter_18(void)
 
 {
   *utilities_system_ptr_array[18] = SYSTEM_DEFAULT_VALUE;
