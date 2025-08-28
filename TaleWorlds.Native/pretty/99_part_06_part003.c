@@ -236,7 +236,7 @@ float * FloatDataProcessor(float *param_1, uint64_t *param_2, float param_3, uin
             uVar7 = (uint64_t)(int)param_1[4];
             puVar11 = puVar10;
             if (uVar7 != 0) {
-                puVar5 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, uVar7 * DATA_STRUCTURE_SIZE_0x68 + 0x10, 3);
+                puVar5 = (uint64_t *)SystemMemoryPoolAllocator(system_memory_pool_ptr, uVar7 * DATA_STRUCTURE_SIZE_0x68 + 0x10, 3);
                 *puVar5 = uVar7 << 0x20 | DATA_STRUCTURE_SIZE_0x68;
                 puVar6 = puVar5 + 10;
                 puVar8 = puVar10;
