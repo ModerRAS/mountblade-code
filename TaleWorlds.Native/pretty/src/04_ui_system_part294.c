@@ -302,7 +302,7 @@ UI_SYSTEM_RESULT UIControlStateResetter(UI_SYSTEM_CONTEXT* context, CONTROL_STAT
     // 清理绑定的上下文数据
     if (context != NULL) {
         // 使用上下文进行清理
-        FUN_1807c41d0(context);
+        SystemCleanupFunction(context);
     }
     
     // 重置控件数据
@@ -315,7 +315,7 @@ UI_SYSTEM_RESULT UIControlStateResetter(UI_SYSTEM_CONTEXT* context, CONTROL_STAT
     control->user_data = NULL;
     
     // 调用系统重置回调
-    FUN_1807c41d0(context, control);
+    SystemCleanupFunction(context, control);
     
     return UI_SYSTEM_SUCCESS;
 }
@@ -441,7 +441,7 @@ longlong UIAdvancedDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_dat
     transform_y = (double)ldexp(input_data[6], ((int)input_data[6] >> 0x15 & 0x3ffU) - 0x314);
     
     // 分配处理结果句柄
-    result_handle = FUN_1807c4170(context, *input_data * data_size);
+    result_handle = SystemDataProcessor(context, *input_data * data_size);
     if (result_handle != 0) {
         
         // 处理一维数据
