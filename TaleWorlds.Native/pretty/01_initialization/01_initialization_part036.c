@@ -4,6 +4,12 @@
 // 01_initialization_part036.c - 初始化模块第36部分
 // 本文件包含文件系统、I/O完成端口和内存管理相关的初始化函数
 
+// ============================================================================
+// 系统清理函数语义别名定义
+// ============================================================================
+
+/* FUN_180069530 - 系统清理和回调处理函数 */
+#define InitializationSystem_CallbackCleaner FUN_180069530
 // 函数: 创建文件句柄并关联到I/O完成端口
 void create_file_handle_with_completion_port(int64_t engine_context, int64_t file_params)
 
