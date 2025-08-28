@@ -1031,8 +1031,8 @@ void SystemMemoryCleaner(int64_t *param_1,uint64_t param_2)
 
 
 
-// 函数: void FUN_18005736b(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
-void FUN_18005736b(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
+// 函数: void SystemDataCleaner(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
+void SystemDataCleaner(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
 
 {
   int64_t in_RAX;
@@ -1088,8 +1088,8 @@ void FUN_18005736b(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
 
 
 
-// 函数: void FUN_180057446(void)
-void FUN_180057446(void)
+// 函数: void SystemShutdown(void)
+void SystemShutdown(void)
 
 {
   int64_t unaff_RBX;
@@ -1108,8 +1108,8 @@ void FUN_180057446(void)
 
 
 
-// 函数: void FUN_180057479(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
-void FUN_180057479(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
+// 函数: void SystemResourceCleaner(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
+void SystemResourceCleaner(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
 
 {
   int64_t unaff_RBX;
@@ -1122,8 +1122,8 @@ void FUN_180057479(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t par
 
 
 
-// 函数: void FUN_180057490(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057490(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemDataFinalizer(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void SystemDataFinalizer(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   FUN_180058210(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
