@@ -999,8 +999,8 @@ resource_section_exit:
     section_table_offset = section_table_offset & 0xffffffffffffff00;
   }
   else {
-    uVar9 = 0;
-    if (uVar7 != 0) {
+    resource_index = 0;
+    if (resource_size != 0) {
       piVar6 = (int *)((ulonglong)*(uint *)(lVar5 + 0xb8) + 0xc + param_2);
       do {
         if ((piVar6[1] != 0) && (*piVar6 == 2)) {
