@@ -893,8 +893,12 @@ LAB_180146a6e:
 
 
 
-// 函数: void FUN_180147920(undefined8 param_1,longlong param_2)
-void FUN_180147920(undefined8 param_1,longlong param_2)
+// 函数: void process_postfx_settings(undefined8 param_1,longlong param_2)
+// 功能: 处理后处理效果设置，配置场景中的后处理效果参数
+// 参数: param_1 - 渲染管理器, param_2 - 配置数据指针
+// 返回: 无
+// 说明: 此函数负责处理和设置场景中的后处理效果参数，包括亮度、对比度等
+void process_postfx_settings(undefined8 param_1,longlong param_2)
 
 {
   undefined4 uVar1;
@@ -929,7 +933,7 @@ void FUN_180147920(undefined8 param_1,longlong param_2)
       if (pcVar2 == pcVar6) {
         pcVar2 = pcVar2 + (longlong)pcVar5;
         if (pcVar2 <= pcVar5) {
-LAB_1801479b7:
+POSTFX_PROCESS:
           puStack_50 = &UNK_180a3c3e0;
           uStack_38 = 0;
           puStack_48 = (undefined4 *)0x0;
@@ -941,11 +945,11 @@ LAB_1801479b7:
           puStack_48 = puVar3;
           uVar1 = FUN_18064e990(puVar3);
           uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
-          *puVar3 = 0x67697262;
-          puVar3[1] = 0x61707468;
-          puVar3[2] = 0x745f7373;
-          puVar3[3] = 0x73657268;
-          puVar3[4] = 0x646c6f68;
+          *puVar3 = 0x67697262;  // "brig"
+          puVar3[1] = 0x61707468;  // "htne"
+          puVar3[2] = 0x745f7373;  // "s_st"
+          puVar3[3] = 0x73657268;  // "resh"
+          puVar3[4] = 0x646c6f68;  // "hold"
           *(undefined1 *)(puVar3 + 5) = 0;
           uStack_40 = 0x14;
           FUN_180632650(puVar7,&puStack_50);
@@ -956,7 +960,7 @@ LAB_1801479b7:
         lVar4 = (longlong)&UNK_180a071e8 - (longlong)pcVar5;
         while (*pcVar5 == pcVar5[lVar4]) {
           pcVar5 = pcVar5 + 1;
-          if (pcVar2 <= pcVar5) goto LAB_1801479b7;
+          if (pcVar2 <= pcVar5) goto POSTFX_PROCESS;
         }
       }
       puVar7 = (undefined8 *)puVar7[0xb];
