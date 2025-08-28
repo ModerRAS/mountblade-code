@@ -439,7 +439,9 @@ uint64_t * SystemComponentManager(uint64_t *component_array,uint component_flags
 
 
 
-uint64_t * FUN_1801754b0(uint64_t *param_1)
+// 函数: uint64_t* SystemDataInitializer(uint64_t *data_buffer)
+// 功能: 系统数据初始化器，负责数据缓冲区的初始化
+uint64_t * SystemDataInitializer(uint64_t *data_buffer)
 
 {
   *param_1 = 0;
@@ -452,8 +454,9 @@ uint64_t * FUN_1801754b0(uint64_t *param_1)
 
 
 
-// 函数: void FUN_180175500(int64_t param_1,int64_t param_2)
-void FUN_180175500(int64_t param_1,int64_t param_2)
+// 函数: void SystemEventHandler(int64_t event_context,int64_t event_data)
+// 功能: 系统事件处理器，负责事件的分发、处理和状态管理
+void SystemEventHandler(int64_t event_context,int64_t event_data)
 
 {
   uint64_t uVar1;
@@ -478,15 +481,15 @@ void FUN_180175500(int64_t param_1,int64_t param_2)
     plVar3 = *(int64_t **)(lVar2 + 0x8400);
     iVar5 = (**(code **)(*plVar3 + 0x70))(plVar3,*(uint64_t *)(lVar6 + 8),0,1,0,&puStack_38);
     if (iVar5 < 0) {
-      FUN_180220810(iVar5,&unknown_var_1856_ptr);
+      FUN_180220810(iVar5,&system_error_handler_ptr);
     }
     lVar2 = *(int64_t *)(lVar7 + 0x28);
     iVar5 = (**(code **)(**(int64_t **)(param_1 + 0x50) + 0xa8))
                       (*(int64_t **)(param_1 + 0x50),puStack_38,*(int16_t *)(lVar2 + 0x32c),
                        *(int16_t *)(lVar2 + 0x32e),uStack_30,param_1 + 8);
     if (iVar5 != 0) {
-      puStack_38 = &unknown_var_3640_ptr;
-      puStack_28 = &unknown_var_3520_ptr;
+      puStack_38 = &system_event_data_ptr;
+      puStack_28 = &system_event_callback_ptr;
       uStack_30 = 0x191;
       (**(code **)**(uint64_t **)(param_1 + 0x48))
                 (*(uint64_t **)(param_1 + 0x48),5,&unknown_var_3576_ptr,&puStack_38);
