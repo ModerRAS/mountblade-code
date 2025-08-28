@@ -336,7 +336,7 @@ int32_t * FUN_180447660(int32_t *param_1,int8_t param_2)
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);
   }
-  (**(code **)(plVar3[2] + 0x10))(plVar3 + 2,&unknown_var_16_ptr);
+  (**(code **)(plVar3[2] + 0x10))(plVar3 + 2,&rendering_param16_ptr);
   uVar1 = (**(code **)(*plVar3 + 8))(plVar3);
   (**(code **)(*plVar3 + 0x28))(plVar3);
   uStack_20 = SUB84(plVar3,0);
@@ -371,7 +371,7 @@ int32_t * FUN_180447710(int32_t *param_1,int64_t *param_2)
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);
   }
-  (**(code **)(plVar3[2] + 0x10))(plVar3 + 2,&unknown_var_16_ptr);
+  (**(code **)(plVar3[2] + 0x10))(plVar3 + 2,&rendering_param16_ptr);
   plStackX_8 = param_2;
   if (param_2 != (int64_t *)0x0) {
     (**(code **)(*param_2 + 0x28))(param_2);

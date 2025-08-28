@@ -1233,10 +1233,10 @@ set_matrix_size:
           float_val_6 = SQRT(stack_float_4 * stack_float_4 + stack_float_3 * stack_float_3);
           
           if (*(int *)(matrix_ptr + 0x4c) == 0) {
-            matrix_int = FUN_18028c3e0();
+            matrix_int = process_rendering_transformation_matrix();
           }
           else {
-            matrix_int = FUN_18028e390(matrix_ptr, (uint)*byte_ptr_3 * 0x100 + (uint)*data_ptr_1, &stack_param_1);
+            matrix_int = matrix_transform_processor(matrix_ptr, (uint)*byte_ptr_3 * 0x100 + (uint)*data_ptr_1, &stack_param_1);
           }
           
           if (0 < matrix_int) break;

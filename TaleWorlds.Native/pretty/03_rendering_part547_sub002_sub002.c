@@ -424,7 +424,7 @@ void FUN_1805698e0(int64_t param_1)
   (**(code **)(param_1 + 0x100))(0x160,FUN_18060c6a0);
   (**(code **)(param_1 + 0x100))(0x161,FUN_18060cb10);
   (**(code **)(param_1 + 0x100))(0x162,FUN_18060d060);
-  (**(code **)(param_1 + 0x100))(0x163,&unknown_var_48_ptr);
+  (**(code **)(param_1 + 0x100))(0x163,&rendering_param48_ptr);
   (**(code **)(param_1 + 0x100))(0x164,FUN_18060be80);
   (**(code **)(param_1 + 0x100))(0x165,FUN_18060bf00);
   (**(code **)(param_1 + 0x100))(0x166,FUN_18060bf40);
