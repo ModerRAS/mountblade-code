@@ -758,32 +758,41 @@ void setup_network_connection_buffers(ulonglong connection_handle, undefined1 *b
 void send_buffered_network_message(void)
 
 {
-  int connection_result;
-  int encode_result;
-  undefined4 buffer_param;
-  undefined4 message_flags;
+  int connection_result;       // 连接结果
+  int encode_result;          // 编码结果
+  undefined4 buffer_param;    // 缓冲区参数
+  undefined4 message_flags;   // 消息标志位
   
+  // 编码缓冲区数据
   connection_result = FUN_18074b880(&stack0x00000060, NETWORK_BUFFER_SIZE);
+  // 编码数据分隔符
   encode_result = FUN_18074b880(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
   connection_result = connection_result + encode_result;
+  // 编码缓冲区参数
   encode_result = func_0x00018074b7d0(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, buffer_param);
   connection_result = connection_result + encode_result;
+  // 编码数据分隔符
   encode_result = FUN_18074b880(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  // 编码最终数据
   FUN_18074b930(&stack0x00000060 + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result));
-                    // WARNING: Subroutine does not return
+  // 发送缓冲消息（函数不返回）
   FUN_180749ef0(message_flags, 0xc);
 }
 
 
 
 
-// 函数: 清理网络缓冲区
-void cleanup_network_buffer(void)
+// 函数: 清空网络消息缓冲区
+// 功能：清空网络消息缓冲区，释放相关资源
+// 参数：无显式参数，使用内部缓冲区
+// 返回：无返回值
+// 注意：函数包含安全验证和资源清理机制
+void clear_network_message_buffer(void)
 
 {
-  ulonglong security_key;
+  ulonglong security_key;    // 安全密钥
   
-                    // WARNING: Subroutine does not return
+  // 执行安全验证和资源清理（函数不返回）
   FUN_1808fc050(security_key ^ (ulonglong)&stack0x00000000);
 }
 
@@ -792,8 +801,12 @@ void cleanup_network_buffer(void)
 
 
 
-// 函数: 获取网络连接属性
-void get_network_connection_property(ulonglong connection_handle, undefined1 *property_buffer)
+// 函数: 检索网络连接属性
+// 功能：检索并获取网络连接的属性信息，包括连接配置等
+// 参数：connection_handle - 连接句柄，property_buffer - 属性缓冲区
+// 返回：无返回值，结果通过property_buffer返回
+// 注意：函数包含连接验证、属性获取和错误处理机制
+void retrieve_network_connection_property(ulonglong connection_handle, undefined1 *property_buffer)
 
 {
   int connection_result;
